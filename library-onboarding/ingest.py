@@ -1,29 +1,34 @@
 """Checkpoints 2 + 3 -- SCRIPT and LOAD.
 
-Checkpoint 2: Claude writes a source-specific ``fetch_data(context)`` function
-that downloads/parses the source and returns a pandas DataFrame.
+Checkpoint 2: Claude writes a source-specific ``fetch_data(context)`` that
+downloads/parses the source and returns a pandas DataFrame (raw, all values as
+strings) -- and stashes the raw source bytes for content hashing.
 
-Checkpoint 3: we run that function, stamp every row with the standard metadata
-columns (``_loaded_at`` / ``_source_url`` / ``_source_file``), and load the
-result into the source's raw table in Snowflake.
+Checkpoint 3: we run it, content-hash the source (SHA-256), stamp every row with
+``_INGESTED_AT / _SOURCE_RUN_ID / _SRC_SHA256``, snapshot-replace the landing
+table ``RIPPLE_RAW.LANDING.<UPPER(SOURCE_ID)>`` (idempotent by construction), and
+write one row to ``RIPPLE_META.INGEST_LOGS.INGEST_RUNS``.
 
-The generated function deliberately does NOT touch Snowflake itself -- the load
-is standardized here so every source lands the same way. The foreman reviews the
-generated code at Checkpoint 2 before it is ever executed.
+If the content hash matches the source's last successful run, the reload is
+skipped (set ONBOARD_SKIP_IF_UNCHANGED=0 to force).
 """
 
 from __future__ import annotations
 
 import datetime as _dt
+import hashlib
 import os
-from typing import Optional
+import re
+import uuid
+from typing import Optional, Tuple
 
+import snow
 from config import ConfigError, settings
 from llm import call_claude, extract_code, render_prompt
 
-META_LOADED_AT = "_LOADED_AT"
-META_SOURCE_URL = "_SOURCE_URL"
-META_SOURCE_FILE = "_SOURCE_FILE"
+META_INGESTED_AT = "_INGESTED_AT"
+META_SOURCE_RUN_ID = "_SOURCE_RUN_ID"
+META_SRC_SHA256 = "_SRC_SHA256"
 SAMPLE_ROWS = 5
 
 
@@ -51,9 +56,9 @@ def generate_ingest_script(config: dict, feedback: Optional[str] = None) -> str:
     raw = call_claude(
         user=prompt,
         system=(
-            "You write robust Python data-ingestion functions. Output ONLY a "
-            "Python code block defining `def fetch_data(context):` that returns a "
-            "pandas.DataFrame. No Snowflake code."
+            "You write robust Python data-ingestion functions for a raw landing "
+            "zone. Output ONLY a Python code block defining `def fetch_data(context):` "
+            "that returns a pandas.DataFrame of strings. No Snowflake code."
         ),
         kind="ingest",
         fake_context=config,
@@ -66,39 +71,81 @@ def generate_ingest_script(config: dict, feedback: Optional[str] = None) -> str:
 # Checkpoint 3 -- execute + load
 # ---------------------------------------------------------------------------
 def run_ingest(config: dict, code: str) -> dict:
-    """Execute the generated fetch_data() and load the result to Snowflake."""
-    df = _execute_fetch(config, code)
+    run_id = str(uuid.uuid4())
+    started = _utcnow()
+    source_id = config["source_id"]
+    table = config["landing_table"]
+    url = config["url"]
 
-    # Stamp standard metadata columns (raw table spec).
-    df[META_LOADED_AT] = _dt.datetime.now(_dt.timezone.utc).replace(tzinfo=None)
-    df[META_SOURCE_URL] = config["url"]
-    if META_SOURCE_FILE not in df.columns:
-        df[META_SOURCE_FILE] = config.get("_source_file", "")
+    df, raw_bytes, source_file = _execute_fetch(config, code)
+    payload = raw_bytes if raw_bytes else _df_bytes(df)
+    sha = hashlib.sha256(payload).hexdigest()
+    file_bytes = len(payload)
 
-    sample = df.head(SAMPLE_ROWS).astype(str).to_dict(orient="records")
-    base = {
+    df = _stringify(df)  # raw mirror: all source columns are text
+    df[META_INGESTED_AT] = started.replace(tzinfo=None)
+    df[META_SOURCE_RUN_ID] = run_id
+    df[META_SRC_SHA256] = sha
+
+    result = {
+        "run_id": run_id,
+        "sha256": sha,
+        "file_bytes": file_bytes,
+        "source_file": source_file,
         "rows": int(len(df)),
         "columns": ", ".join(map(str, df.columns)),
-        "sample_rows": sample,
+        "sample_rows": df.head(SAMPLE_ROWS).astype(str).to_dict(orient="records"),
     }
 
-    if settings.fake_llm and not settings.snowflake_password:
-        base["status"] = "DRY RUN (fake mode -- not written to Snowflake)"
-        return base
+    if settings.fake_llm or not settings.snowflake_ready():
+        why = "fake mode" if settings.fake_llm else "Snowflake creds not set"
+        result["status"] = (
+            f"DRY RUN ({why}) -- would snapshot-replace RIPPLE_RAW.LANDING.{table} "
+            f"with {len(df):,} rows (sha {sha[:12]})"
+        )
+        return result
 
-    written = _load_dataframe(df, config)
-    base["status"] = f"Loaded into {written}"
-    return base
+    conn = snow.connect()
+    try:
+        if settings.skip_if_unchanged:
+            last = _latest_success_sha(conn, source_id)
+            if last == sha:
+                result["status"] = (
+                    f"UNCHANGED -- sha {sha[:12]} matches last successful run; reload skipped "
+                    "(set ONBOARD_SKIP_IF_UNCHANGED=0 to force)"
+                )
+                result["skipped"] = True
+                return result
+        try:
+            _load_landing(conn, df, table)
+            ended = _utcnow()
+            _log_run(conn, source_id, run_id, "success", len(df), file_bytes, sha, url,
+                     started, ended, _auto_message(config, len(df)))
+            result["status"] = f"Loaded {len(df):,} rows -> RIPPLE_RAW.LANDING.{table}"
+        except Exception as exc:
+            ended = _utcnow()
+            try:
+                _log_run(conn, source_id, run_id, "failed", None, file_bytes, sha, url,
+                         started, ended, f"Load failed: {exc}")
+            except Exception:
+                pass
+            raise
+    finally:
+        conn.close()
+    return result
 
 
-def _execute_fetch(config: dict, code: str):
-    """Run Claude-generated code and return the DataFrame it produces.
+# ---------------------------------------------------------------------------
+# Helpers
+# ---------------------------------------------------------------------------
+def _execute_fetch(config: dict, code: str) -> Tuple[object, Optional[bytes], str]:
+    """Run Claude-generated code and return (DataFrame, raw_bytes, source_file).
 
     SECURITY: this executes model-generated Python. It only runs after the
     foreman approved the exact code shown at Checkpoint 2.
     """
     try:
-        import pandas as pd  # noqa: F401  (made available to generated code)
+        import pandas as pd  # noqa: F401  (available to generated code)
     except ImportError as exc:  # pragma: no cover
         raise ConfigError("pandas is required. Run `pip install -r requirements.txt`.") from exc
 
@@ -112,62 +159,86 @@ def _execute_fetch(config: dict, code: str):
         "url": config["url"],
         "source_name": config["name"],
         "auth_type": config.get("auth", {}).get("type", "none"),
-        "env": dict(os.environ),  # generated code reads API keys from here
+        "env": dict(os.environ),
+        "source_bytes": None,
         "source_file": "",
     }
     df = fetch(context)
-    config["_source_file"] = context.get("source_file", "")
-
     if not hasattr(df, "columns"):
         raise RuntimeError("fetch_data must return a pandas.DataFrame.")
     if len(df) == 0:
         raise RuntimeError("fetch_data returned 0 rows -- failing loudly (schema drift?).")
+
+    raw_bytes = context.get("source_bytes")
+    if raw_bytes is not None and not isinstance(raw_bytes, (bytes, bytearray)):
+        raw_bytes = str(raw_bytes).encode("utf-8")
+    return df, raw_bytes, context.get("source_file", "") or ""
+
+
+def _stringify(df):
+    """Coerce every source column to text (the raw landing convention)."""
+    df = df.where(df.notna(), None)
+    df.columns = [_sf_col(c) for c in df.columns]
+    for col in df.columns:
+        df[col] = df[col].map(lambda v: "" if v is None else str(v))
     return df
 
 
-def _load_dataframe(df, config: dict) -> str:
-    """Create the schema/table if needed and load the frame. Fails loudly."""
-    settings.require(
-        "snowflake_account", "snowflake_user", "snowflake_password", "snowflake_database"
+def _sf_col(name) -> str:
+    """Sanitize to an unquoted, uppercase Snowflake identifier (matches LANDING)."""
+    clean = re.sub(r"[^0-9A-Za-z_]+", "_", str(name)).strip("_") or "COL"
+    if clean[0].isdigit():
+        clean = "C_" + clean
+    return clean.upper()
+
+
+def _df_bytes(df) -> bytes:
+    return df.to_csv(index=False).encode("utf-8")
+
+
+def _load_landing(conn, df, table: str) -> None:
+    from snowflake.connector.pandas_tools import write_pandas
+
+    database, schema = settings.raw_database, settings.raw_schema
+    snow.execute(conn, f'CREATE SCHEMA IF NOT EXISTS "{database}"."{schema}"')
+    ok, _chunks, nrows, _ = write_pandas(
+        conn, df, table_name=table, database=database, schema=schema,
+        auto_create_table=True, overwrite=True, quote_identifiers=False,
     )
-    if not settings.snowflake_warehouse:
-        raise ConfigError("SNOWFLAKE_WAREHOUSE must be set for writes.")
+    if not ok:
+        raise RuntimeError(f"write_pandas reported failure loading {table}.")
 
-    try:
-        import snowflake.connector
-        from snowflake.connector.pandas_tools import write_pandas
-    except ImportError as exc:  # pragma: no cover
-        raise ConfigError(
-            "snowflake-connector-python is required. Run `pip install -r requirements.txt`."
-        ) from exc
 
-    database = config["raw_database"]
-    schema = config["raw_schema"]
-    table = config["raw_table_short"]
-
-    conn = snowflake.connector.connect(
-        account=settings.snowflake_account,
-        user=settings.snowflake_user,
-        password=settings.snowflake_password,
-        database=database,
-        warehouse=settings.snowflake_warehouse,
-        role=settings.snowflake_role or None,
+def _latest_success_sha(conn, source_id: str) -> Optional[str]:
+    fqt = f'"{settings.meta_database}"."{settings.ingest_log_schema}"."{settings.ingest_log_table}"'
+    return snow.fetch_scalar(
+        conn,
+        f"SELECT SHA256 FROM {fqt} WHERE SOURCE_ID=%s AND STATUS='success' "
+        "ORDER BY STARTED_AT DESC LIMIT 1",
+        (source_id,),
     )
-    try:
-        cur = conn.cursor()
-        cur.execute(f'CREATE SCHEMA IF NOT EXISTS "{database}"."{schema}"')
-        success, _nchunks, nrows, _ = write_pandas(
-            conn,
-            df,
-            table_name=table,
-            database=database,
-            schema=schema,
-            auto_create_table=True,
-            overwrite=False,
-            quote_identifiers=True,
-        )
-        if not success:
-            raise RuntimeError(f"write_pandas reported failure loading {table}.")
-        return f"{database}.{schema}.{table} ({nrows} rows)"
-    finally:
-        conn.close()
+
+
+def _log_run(conn, source_id, run_id, status, row_count, file_bytes, sha, url, started, ended, message) -> None:
+    fqt = f'"{settings.meta_database}"."{settings.ingest_log_schema}"."{settings.ingest_log_table}"'
+    snow.execute(
+        conn,
+        f"INSERT INTO {fqt} (SOURCE_ID, RUN_ID, STARTED_AT, ENDED_AT, STATUS, ROW_COUNT, "
+        "FILE_BYTES, SHA256, SOURCE_URL, MESSAGE, _LOADED_AT) "
+        "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s, CURRENT_TIMESTAMP())",
+        (source_id, run_id, started.replace(tzinfo=None), ended.replace(tzinfo=None),
+         status, row_count, file_bytes, sha, url, message),
+    )
+
+
+def _auto_message(config: dict, rows: int) -> str:
+    desc = config.get("description") or config["name"]
+    unit = config.get("unit_of_observation") or "one row = one record"
+    return (
+        f"{desc}. {unit}. Snapshot-replace load of {rows} rows into "
+        f"RIPPLE_RAW.LANDING.{config['landing_table']} via the onboarding agent."
+    )
+
+
+def _utcnow() -> _dt.datetime:
+    return _dt.datetime.now(_dt.timezone.utc)

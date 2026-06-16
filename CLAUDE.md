@@ -9,7 +9,7 @@ Everything Claude Code needs to work with Chris on this repo. Read this before t
 Three layers. Every decision maps to one of them:
 
 - **The Library** — Snowflake data warehouse ingesting public + paid data across any domain. This repo builds and maintains it.
-- **The Catalog** — Data dictionary and connection map. OpenMetadata at `localhost:8585`. Shows how datasets relate across domains.
+- **The Catalog** — Source registry + connection map, Snowflake-native in `RIPPLE_META` (`REGISTRY.SOURCE_REGISTRY`, ~900 sources; `INGEST_LOGS.INGEST_RUNS` logs every load). Shows how datasets relate across domains.
 - **The Publishing Layer** — Website where findings become stories told through data viz. Not this repo's concern yet.
 
 **Stack is non-negotiable:** Python, Snowflake, dbt, Plotly. Never suggest something outside it.
@@ -33,19 +33,24 @@ python onboard.py --batch   # runs all 37 sources in sources_queue.py
 ```
 [1] RECON    → Claude reads the source, extracts schema + access pattern
 [2] SCRIPT   → Claude writes the ingestion script
-[3] LOAD     → Script runs, data lands in RAW schema, shows row counts + sample
+[3] LOAD     → Script runs, lands in RIPPLE_RAW.LANDING (+ logs the run), shows row counts + sample
 [4] DBT      → Claude generates staging + mart models, writes to dbt project
-[5] CATALOG  → Registers in OpenMetadata, shows the catalog entry
+[5] REGISTRY → Upserts the source into RIPPLE_META.REGISTRY.SOURCE_REGISTRY
 ```
 
 Chris approves each checkpoint before anything executes. `go` / `edit [feedback]` / `skip` / `abort`.
 
-**Snowflake:**
-- Account: `ONEAFDA-UMB20733`
-- Database: `DISASTER_IMPACT`
-- Raw schema: `RAW`
-- dbt schema: `DBT_CROGERS`
-- User: `CROGG23`
+**Snowflake (the live Ripple v6 stack):**
+- Account: `ONEAFDA-UMB20733` · User: `CROGG23`
+- `RIPPLE_RAW.LANDING.<UPPER(SOURCE_ID)>` — raw landing (every column TEXT)
+- `RIPPLE_META.REGISTRY.SOURCE_REGISTRY` — the source catalog (keyed on SOURCE_ID)
+- `RIPPLE_META.INGEST_LOGS.INGEST_RUNS` — one row per ingest run (RUN_ID, SHA256, status)
+- `RIPPLE_STAGING` / `RIPPLE_MARTS` — dbt outputs
+- `RIPPLE_PRESERVE` — preservation vault (snapshot artifacts + receipts)
+
+`SOURCE_ID` (e.g. `fed_usgs_earthquakes`) is the linchpin: landing table = `UPPER(SOURCE_ID)`; registry + logs key on it. Prefix = jurisdiction: `fed_` / `intl_` / `xc_` (cross-cutting) / `loc_` / `st_`.
+
+**`DISASTER_IMPACT` is a separate, older weather/disaster project — NOT the Ripple landing zone.**
 
 **Never reference OneDrive paths on either machine.**
 
@@ -134,11 +139,11 @@ If Chris signals "go deep" or "full technical" — drop the scaffolding immediat
 
 ### Pipeline architecture — always three layers
 
-**RAW schema** (Python loads, dbt never touches)
-- Exact mirror of source data
+**RIPPLE_RAW.LANDING** (Python loads, dbt never touches)
+- Exact mirror of source data — every column stored as TEXT (cast later in staging)
 - No transformation
-- Every table gets: `_loaded_at TIMESTAMP_NTZ`, `_source_url VARCHAR`, `_source_file VARCHAR`
-- Idempotent loads — running twice never duplicates
+- Every table gets: `_INGESTED_AT TIMESTAMP_NTZ`, `_SOURCE_RUN_ID VARCHAR`, `_SRC_SHA256 VARCHAR`
+- Snapshot-replace loads — running twice never duplicates (idempotent). Skip reload when the SHA-256 matches the last successful run.
 
 **Staging models** (`stg_[source]__[entity].sql`)
 - Rename to snake_case
@@ -189,10 +194,11 @@ Libraries: BeautifulSoup (static), Playwright (JS-rendered)
 ### Naming conventions
 
 ```
-Raw table:    RAW.[SOURCE_NAME_UPPER].[ENTITY_NAME]
-Staging:      stg_[source]__[entity]
-Intermediate: int_[description]
-Mart:         [domain]__[entity]
+SOURCE_ID:    <prefix>_<slug>           (fed_/intl_/xc_/loc_/st_)
+Raw table:    RIPPLE_RAW.LANDING.<UPPER(SOURCE_ID)>
+Staging:      stg_<source_id>__<entity>
+Intermediate: int_<source_id>_<description>
+Mart:         <domain>__<source_id>
 ```
 
 ### dbt tests to always add
@@ -204,22 +210,20 @@ Mart:         [domain]__[entity]
 
 ---
 
-## Catalog Registration (OpenMetadata)
+## Catalog Registration (SOURCE_REGISTRY)
 
-After every successful load + dbt run, register in OpenMetadata at `localhost:8585`.
+The catalog is Snowflake-native: `RIPPLE_META.REGISTRY.SOURCE_REGISTRY`, keyed on `SOURCE_ID`. After every load the agent upserts the source's row (and `INGEST_LOGS.INGEST_RUNS` already holds the run record).
 
-Catalog entry must include:
-- Source name and URL
-- Raw table name and schema
-- Mart model name
-- Grain (one row = one what?)
-- Key fields and their meaning
-- Available identifiers (FIPS, EIN, CIK, NPI, etc.)
-- Join map — what other Library tables this connects to
-- Update cadence
-- Known quirks or data quality issues
+Registry row must include:
+- `SOURCE_ID`, `NAME`, `URL`, `PUBLISHER`
+- `JURISDICTION`, `CATEGORY` / `SUBCATEGORY`
+- `UNIT_OF_OBSERVATION` (one row = one what?)
+- `ACCESS_METHOD`, `FORMAT`, `AUTH_REQUIRED`, `COST`, `UPDATE_CADENCE`, `VOLUME`, `LICENSE_TERMS`
+- `JOIN_KEYS` — identifiers it carries (FIPS, EIN, CIK, NPI, etc.)
+- `ACCOUNTABILITY_RELEVANCE`, `EPSTEIN_RELEVANT`, `PRIORITY_TIER`
+- Known quirks → `NOTES`
 
-Without the catalog entry, the Library is just a pile of tables nobody can navigate.
+Without the registry row, the Library is just a pile of tables nobody can navigate.
 
 ---
 
@@ -227,7 +231,7 @@ Without the catalog entry, the Library is just a pile of tables nobody can navig
 
 When asked to research a data source before building:
 
-1. **Check what's already in the Library first.** Don't re-scout what exists.
+1. **Check what's already in the Library first.** Query `RIPPLE_META.REGISTRY.SOURCE_REGISTRY` (~900 sources cataloged) and `RIPPLE_RAW.LANDING` — don't re-scout what exists.
 2. **Use web search.** Sources change. Don't rely on training data.
 3. **Pull live metadata where APIs self-describe:**
    - Census: `https://api.census.gov/data.json`
@@ -337,30 +341,30 @@ ANTHROPIC_API_KEY=
 SNOWFLAKE_ACCOUNT=ONEAFDA-UMB20733
 SNOWFLAKE_USER=CROGG23
 SNOWFLAKE_PASSWORD=
-SNOWFLAKE_DATABASE=DISASTER_IMPACT
-SNOWFLAKE_SCHEMA=RAW
-OPENMETADATA_HOST=http://localhost:8585
-OPENMETADATA_TOKEN=
+SNOWFLAKE_WAREHOUSE=
+RIPPLE_RAW_DATABASE=RIPPLE_RAW
+RIPPLE_META_DATABASE=RIPPLE_META
+RIPPLE_STAGING_DATABASE=RIPPLE_STAGING
+RIPPLE_MARTS_DATABASE=RIPPLE_MARTS
 DBT_PROJECT_PATH=
 ```
 
-Load from `.env`. Never commit secrets. Never hardcode credentials.
+Load from `.env` (full list: `library-onboarding/.env.example`). Never commit secrets. Never hardcode credentials.
 
 ---
 
 ## Already in the Library
 
-These sources are already ingested — don't re-onboard them:
+Source of truth is the registry — check `RIPPLE_META.REGISTRY.SOURCE_REGISTRY` (rows with `INCLUDE='Y'`) and `RIPPLE_RAW.LANDING` before onboarding; don't re-onboard what's there.
 
-- FEMA — Disaster Declarations
-- FEMA — Public Assistance
-- NOAA — Storm Events
-- NWS — Weather Alerts
-- Census ACS
-- BLS — Employment
-- IRS — Migration Data
-- FHFA — Housing Finance
-- NFIP — Flood Insurance
+Currently landed in `RIPPLE_RAW.LANDING`:
+- `FED_USGS_EARTHQUAKES` — USGS earthquake feed (rolling 30-day)
+- `FED_HHS_OIG_LEIE` — HHS-OIG List of Excluded Individuals/Entities
+- `FED_USASPENDING_SUBAWARDS` — USAspending subawards (proof slice)
+- `FED_DOJ_EPSTEIN_LIBRARY` — DOJ Epstein Library listing
+- `XC_WAYBACK_DOJ_EPSTEIN` / `XC_WAYBACK_REPLAY_DOJ_LISTING` / `XC_WAYBACK_REPLAY_DOJ_DEEP_PAGES` — Internet Archive captures + replays
+
+(The FEMA/NOAA/BLS/IRS/FHFA weather-and-disaster sets live in the separate, older `DISASTER_IMPACT` project — not this repo's landing zone.)
 
 ---
 

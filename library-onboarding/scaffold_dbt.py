@@ -1,13 +1,19 @@
 """Checkpoint 4 -- DBT.
 
-Claude turns the raw schema into a staging model (rename/cast/dedupe), a mart
-model (analytics-ready), and a schema.yml (descriptions + tests). Files are
-written directly into the configured dbt project.
+Claude turns the landing table into the standard layer stack:
+
+    staging      stg_<source_id>__<entity>   (view; rename/cast/dedupe)
+    intermediate int_<source_id>_<...>        (optional; joins/derived)
+    mart         <domain>__<source_id>        (table; analytics-ready)
+
+plus a schema.yml with descriptions and the standard test battery. Files are
+written into the configured dbt project. Models read from
+``source('ripple_raw', '<LANDING_TABLE>')`` and materialize into
+RIPPLE_STAGING / RIPPLE_MARTS via your dbt profile.
 """
 
 from __future__ import annotations
 
-from pathlib import Path
 from typing import Optional
 
 from config import ConfigError, settings
@@ -23,8 +29,9 @@ def generate_dbt_models(config: dict, feedback: Optional[str] = None) -> dict:
     prompt = render_prompt(
         "generate_dbt",
         name=config["name"],
-        raw_table=config["raw_table"],
-        source_schema=config["raw_schema"],
+        source_id=config["source_id"],
+        landing_table=config["landing_table"],
+        raw_database=settings.raw_database,
         entity=config["entity"],
         staging_model=config["staging_model"],
         mart_model=config["mart_model"],
@@ -36,20 +43,20 @@ def generate_dbt_models(config: dict, feedback: Optional[str] = None) -> dict:
         user=prompt,
         system=(
             "You are a dbt expert. Output strict JSON with keys staging_sql, "
-            "mart_sql, schema_yml. SQL must be valid dbt (Jinja + Snowflake)."
+            "intermediate_sql (may be empty), mart_sql, schema_yml. SQL must be "
+            "valid dbt (Jinja + Snowflake) and reference the landing source."
         ),
         kind="dbt",
         fake_context=config,
         max_tokens=4096,
     )
     models = extract_json(raw)
-    for key in ("staging_sql", "mart_sql", "schema_yml"):
+    for key in ("staging_sql", "intermediate_sql", "mart_sql", "schema_yml"):
         models.setdefault(key, "")
     return models
 
 
 def write_dbt_models(config: dict, models: dict) -> dict:
-    """Write the generated models into the dbt project. Returns paths written."""
     if not settings.dbt_project_path.strip():
         if settings.fake_llm:
             return {**models, "written": [], "note": "dry run -- DBT_PROJECT_PATH not set"}
@@ -60,21 +67,25 @@ def write_dbt_models(config: dict, models: dict) -> dict:
 
     project = settings.dbt_dir()
     models_dir = project / "models"
-
-    src_slug = config["staging_model"].split("__")[0].replace("stg_", "", 1)
+    src = config["source_id"]
     domain = config["mart_model"].split("__")[0]
 
-    staging_dir = models_dir / "staging" / src_slug
+    staging_dir = models_dir / "staging" / src
+    int_dir = models_dir / "intermediate" / src
     mart_dir = models_dir / "marts" / domain
-    staging_dir.mkdir(parents=True, exist_ok=True)
-    mart_dir.mkdir(parents=True, exist_ok=True)
+    for d in (staging_dir, mart_dir):
+        d.mkdir(parents=True, exist_ok=True)
 
     written = []
     targets = [
         (staging_dir / f"{config['staging_model']}.sql", models.get("staging_sql", "")),
-        (mart_dir / f"{config['mart_model']}.sql", models.get("mart_sql", "")),
         (staging_dir / "schema.yml", models.get("schema_yml", "")),
+        (mart_dir / f"{config['mart_model']}.sql", models.get("mart_sql", "")),
     ]
+    if models.get("intermediate_sql", "").strip():
+        int_dir.mkdir(parents=True, exist_ok=True)
+        targets.append((int_dir / f"int_{src}_{config['entity']}.sql", models["intermediate_sql"]))
+
     for path, body in targets:
         if not body.strip():
             continue

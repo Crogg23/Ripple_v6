@@ -151,48 +151,50 @@ def _fake_response(kind: str, ctx: dict) -> str:
         return _fake_ingest(ctx)
     if kind == "dbt":
         return json.dumps(_fake_dbt(ctx))
-    if kind == "catalog":
-        return json.dumps(_fake_catalog(ctx))
+    if kind == "registry":
+        return json.dumps(_fake_registry(ctx))
     return "{}"
 
 
 def _fake_recon(ctx: dict) -> dict:
     name = ctx.get("name", "Unknown Source")
-    url = ctx.get("url", "")
     identifiers = ctx.get("identifiers", [])
     is_fred = "fred" in name.lower()
     return {
+        "jurisdiction": "federal",
+        "category": "Economy" if is_fred else "unknown",
+        "subcategory": "Macroeconomic indicators" if is_fred else "",
+        "publisher": "Federal Reserve Bank of St. Louis" if is_fred else name,
         "description": "Federal Reserve Economic Data" if is_fred else f"{name} data source",
+        "unit_of_observation": "one row = one series observation" if is_fred else "one row = one record",
+        "temporal_coverage": "1947-present" if is_fred else "unknown",
+        "geographic_scope": "US (national + regional)" if is_fred else "unknown",
         "access_pattern": "paginated_api" if is_fred else "bulk_csv",
+        "access_method": "API" if is_fred else "bulk download",
         "auth": {
-            "type": "api_key" if is_fred else "none",
-            "notes": "free -- register at fredaccount.stlouisfed.org"
-            if is_fred
-            else "no authentication required",
+            "type": "free API key" if is_fred else "none",
+            "notes": "free -- register at fredaccount.stlouisfed.org" if is_fred else "no auth required",
         },
-        "format": "json" if is_fred else "csv",
-        "est_volume": "845,000 series x N observations" if is_fred else "unknown",
-        "update_frequency": "Daily (varies by series)" if is_fred else "unknown",
-        "rate_limits": "120 requests/min" if is_fred else "unspecified",
+        "format": "JSON" if is_fred else "CSV",
+        "cost": "free",
+        "update_cadence": "daily" if is_fred else "unknown",
+        "est_volume": "~845,000 series" if is_fred else "unknown",
+        "license_terms": "public domain",
         "key_identifiers": identifiers,
+        "accountability_relevance": "Macroeconomic baseline for follow-the-money analysis." if is_fred else "",
+        "priority_tier": "2",
         "schema_fields": [
-            {"name": "series_id", "type": "VARCHAR", "description": "FRED series identifier"},
-            {"name": "date", "type": "DATE", "description": "Observation date"},
-            {"name": "value", "type": "FLOAT", "description": "Observation value"},
+            {"name": "series_id", "type": "TEXT", "description": "FRED series identifier"},
+            {"name": "date", "type": "TEXT", "description": "Observation date (raw string)"},
+            {"name": "value", "type": "TEXT", "description": "Observation value (raw string)"},
         ]
         if is_fred
         else [
-            {"name": "id", "type": "VARCHAR", "description": "Record identifier"},
-            {"name": "value", "type": "VARCHAR", "description": "Record value"},
+            {"name": "id", "type": "TEXT", "description": "Record identifier"},
+            {"name": "value", "type": "TEXT", "description": "Record value"},
         ],
-        "entity": "series_observations" if is_fred else "records",
-        "joins_to": [
-            {"source": "ACS", "on": "FIPS"},
-            {"source": "FEMA", "on": "FIPS"},
-            {"source": "BLS", "on": "FIPS"},
-        ]
-        if "FIPS" in identifiers
-        else [],
+        "entity": "series" if is_fred else "records",
+        "joins_to": [{"source": "fed_census_acs", "on": "FIPS"}] if "FIPS" in identifiers else [],
         "notes": "[FAKE_LLM fixture -- not real recon output]",
     }
 
@@ -203,46 +205,58 @@ def _fake_ingest(ctx: dict) -> str:
         "import pandas as pd\n"
         "\n"
         "def fetch_data(context):\n"
-        '    """[FAKE_LLM fixture] Return a tiny synthetic frame for offline demo."""\n'
-        "    return pd.DataFrame(\n"
-        "        [\n"
-        '            {"series_id": "GDP", "date": "2024-01-01", "value": 27000.0},\n'
-        '            {"series_id": "GDP", "date": "2024-04-01", "value": 27200.0},\n'
-        '            {"series_id": "UNRATE", "date": "2024-01-01", "value": 3.7},\n'
-        "        ]\n"
-        "    )\n"
+        '    """[FAKE_LLM fixture] Return a tiny synthetic frame for offline demo.\n'
+        "\n"
+        "    Real scripts also stash the raw source bytes for content hashing:\n"
+        '        context["source_bytes"] = resp.content\n'
+        '        context["source_file"] = "all_month.csv"\n'
+        '    """\n'
+        '    rows = [\n'
+        '        {"series_id": "GDP", "date": "2024-01-01", "value": "27000.0"},\n'
+        '        {"series_id": "GDP", "date": "2024-04-01", "value": "27200.0"},\n'
+        '        {"series_id": "UNRATE", "date": "2024-01-01", "value": "3.7"},\n'
+        "    ]\n"
+        '    context["source_bytes"] = repr(rows).encode("utf-8")\n'
+        '    context["source_file"] = "fixture.csv"\n'
+        "    return pd.DataFrame(rows)\n"
         "```\n"
     )
 
 
 def _fake_dbt(ctx: dict) -> dict:
-    src = (ctx.get("name", "source")).lower().replace(" ", "_").replace(".", "_")
+    sid = ctx.get("source_id", "fed_fred")
+    table = ctx.get("landing_table", sid.upper())
     entity = ctx.get("entity", "records")
+    stg = f"stg_{sid}__{entity}"
     return {
         "staging_sql": (
-            f"with source as (\n    select * from {{{{ source('{src}', '{entity}') }}}}\n),\n"
-            "renamed as (\n    select\n        series_id::varchar as series_id,\n"
-            "        date::date as observation_date,\n        value::float as value,\n"
-            "        _loaded_at,\n        _source_url\n    from source\n)\nselect * from renamed\n"
+            "{{ config(materialized='view') }}\n\n"
+            f"with source as (\n    select * from {{{{ source('ripple_raw', '{table}') }}}}\n),\n"
+            "renamed as (\n    select\n        series_id::varchar     as series_id,\n"
+            "        try_to_date(date)      as observation_date,\n"
+            "        try_to_double(value)   as value,\n"
+            "        _ingested_at,\n        _source_run_id\n    from source\n"
+            ")\nselect * from renamed\n"
         ),
+        "intermediate_sql": "",
         "mart_sql": (
-            f"select\n    series_id,\n    observation_date,\n    value\nfrom "
-            f"{{{{ ref('stg_{src}__{entity}') }}}}\n"
+            "{{ config(materialized='table') }}\n\n"
+            f"select series_id, observation_date, value\nfrom {{{{ ref('{stg}') }}}}\n"
         ),
         "schema_yml": (
             "version: 2\n\nmodels:\n"
-            f"  - name: stg_{src}__{entity}\n"
+            f"  - name: {stg}\n"
             "    description: '[FAKE_LLM fixture] staged rows.'\n"
             "    columns:\n"
             "      - name: series_id\n        description: Series identifier.\n"
-            "        tests: [not_null]\n"
+            "        data_tests: [not_null]\n"
         ),
     }
 
 
-def _fake_catalog(ctx: dict) -> dict:
+def _fake_registry(ctx: dict) -> dict:
     return {
-        "tableName": ctx.get("table", "records"),
-        "description": "[FAKE_LLM fixture] catalog entry.",
-        "tags": ["onboarded-by-agent"],
+        "accountability_relevance": "[FAKE_LLM fixture] relevance note.",
+        "epstein_relevant": "no",
+        "notes": "[FAKE_LLM fixture] registered by agent.",
     }

@@ -33,7 +33,7 @@ _CHECKPOINTS = {
     2: "SCRIPT",
     3: "LOAD",
     4: "DBT",
-    5: "CATALOG",
+    5: "REGISTRY",
 }
 
 
@@ -107,24 +107,33 @@ def render_recon(config: dict, position=None) -> None:
     )
     desc = config.get("description", "")
     source_line = f"{config['name']}" + (f" ({desc})" if desc else "")
+    access = config.get("access_method", "")
+    pattern = config.get("access_pattern", "")
+    access_str = f"{access} [{pattern}]" if access and pattern else (access or pattern or "unknown")
 
     _kv_table(
         [
             ("Source:", source_line),
+            ("SOURCE_ID:", config.get("source_id", "")),
             ("URL:", config["url"]),
-            ("Access:", config.get("access_pattern", "unknown")),
+            ("Jurisdiction:", config.get("jurisdiction", "")),
+            ("Category:", config.get("category", "") + (f" / {config['subcategory']}" if config.get("subcategory") else "")),
+            ("Publisher:", config.get("publisher", "") or "—"),
+            ("Access:", access_str),
             ("Auth:", auth_str),
             ("Format:", config.get("format", "unknown")),
-            ("Est. volume:", config.get("est_volume", "unknown")),
-            ("Update:", config.get("update_frequency", "unknown")),
+            ("Volume:", config.get("volume", "unknown")),
+            ("Update:", config.get("update_cadence", "unknown")),
             ("Key IDs:", ", ".join(config.get("key_identifiers", [])) or "—"),
-            ("Rate limits:", config.get("rate_limits", "unspecified")),
-            ("Raw table:", config.get("raw_table", "")),
+            ("Priority:", "tier " + str(config.get("priority_tier", "2"))),
+            ("Landing:", f"{settings.raw_database}.{settings.raw_schema}.{config.get('landing_table','')}"),
             ("Staging:", config.get("staging_model", "")),
             ("Mart:", config.get("mart_model", "")),
             ("Joins to:", joins_str),
         ]
     )
+    if config.get("accountability_relevance"):
+        _print(f"\n[dim]Why it matters:[/dim] {config['accountability_relevance']}")
     fields = config.get("schema_fields", [])
     if fields:
         _print(f"\n[dim]Schema ({len(fields)} fields):[/dim]")
@@ -142,7 +151,7 @@ def render_recon(config: dict, position=None) -> None:
 def render_script(config: dict, code: str, position=None) -> None:
     banner(2, position)
     info(f"Ingestion script for {config['name']} ({config.get('access_pattern')})")
-    info(f"Target: {config.get('raw_table')}")
+    info(f"Target: {settings.raw_database}.{settings.raw_schema}.{config.get('landing_table','')}")
     _print()
     if _RICH:
         console.print(Syntax(code, "python", theme="ansi_dark", line_numbers=True))
@@ -152,9 +161,13 @@ def render_script(config: dict, code: str, position=None) -> None:
 
 def render_load(config: dict, result: dict, position=None) -> None:
     banner(3, position)
+    sha = result.get("sha256", "")
     _kv_table(
         [
-            ("Table:", config.get("raw_table", "")),
+            ("Landing:", f"{settings.raw_database}.{settings.raw_schema}.{config.get('landing_table','')}"),
+            ("Run ID:", result.get("run_id", "")),
+            ("Content SHA-256:", (sha[:24] + "…") if len(sha) > 24 else sha),
+            ("Source bytes:", f"{result.get('file_bytes', 0):,}"),
             ("Rows loaded:", f"{result.get('rows', 0):,}"),
             ("Columns:", result.get("columns", "")),
             ("Status:", result.get("status", "")),
@@ -180,9 +193,16 @@ def render_dbt(config: dict, files: dict, position=None) -> None:
     info("Generated dbt models:")
     for path in files.get("written", []):
         success(path)
-    for label, key in (("Staging", "staging_sql"), ("Mart", "mart_sql"), ("schema.yml", "schema_yml")):
+    if files.get("note"):
+        warn(files["note"])
+    for label, key in (
+        ("Staging", "staging_sql"),
+        ("Intermediate", "intermediate_sql"),
+        ("Mart", "mart_sql"),
+        ("schema.yml", "schema_yml"),
+    ):
         body = files.get(key)
-        if not body:
+        if not body or not str(body).strip():
             continue
         _print(f"\n[bold cyan]── {label} ──[/bold cyan]")
         if _RICH:
@@ -192,18 +212,19 @@ def render_dbt(config: dict, files: dict, position=None) -> None:
             print(body)
 
 
-def render_catalog(config: dict, result: dict, position=None) -> None:
+def render_registry(config: dict, result: dict, position=None) -> None:
     banner(5, position)
     _kv_table(
         [
-            ("Entity:", result.get("fqn", config.get("raw_table", ""))),
-            ("OpenMetadata:", result.get("url", settings.openmetadata_host)),
-            ("Columns:", result.get("column_count", "")),
+            ("SOURCE_ID:", result.get("source_id", config.get("source_id", ""))),
+            ("Registry:", result.get("fqn", "")),
+            ("Join keys:", result.get("join_keys", "") or "—"),
             ("Status:", result.get("status", "")),
         ]
     )
-    if result.get("identifiers"):
-        _print(f"[dim]Key identifiers tagged:[/dim] {', '.join(result['identifiers'])}")
+    preview = result.get("preview")
+    if preview:
+        _print("[dim]Row preview:[/dim] " + ", ".join(f"{k}={v}" for k, v in preview.items()))
 
 
 # ---------------------------------------------------------------------------
