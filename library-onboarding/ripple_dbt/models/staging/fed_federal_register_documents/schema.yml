@@ -1,0 +1,276 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: RIPPLE_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FEDERAL_REGISTER_DOCUMENTS
+        description: >
+          Raw landing table for Federal Register documents ingested from the
+          Federal Register API. All columns arrive as TEXT.
+
+models:
+
+  - name: stg_fed_federal_register_documents__federal_register_documents
+    description: >
+      Staging model for Federal Register documents. Casts TEXT columns to
+      appropriate types, resolves boolean flags, deduplicates on document_number
+      keeping the most-recently ingested row, and surfaces all raw URL and JSON
+      fields for downstream consumption.
+    columns:
+
+      - name: document_number
+        description: Unique Federal Register document number, e.g. 2024-12345.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: title
+        description: Title of the Federal Register document.
+
+      - name: type
+        description: Document type classification.
+        data_tests:
+          - accepted_values:
+              values:
+                - Rule
+                - Proposed Rule
+                - Notice
+                - Presidential Document
+
+      - name: abstract
+        description: Short summary of the document contents.
+
+      - name: action
+        description: Action type description, e.g. Final rule, Interim final rule.
+
+      - name: subtype
+        description: Document subtype, e.g. Executive Order, Proclamation.
+
+      - name: president
+        description: For presidential documents, the issuing president.
+
+      - name: excerpts
+        description: Short text excerpt for search and preview purposes.
+
+      - name: executive_order_notes
+        description: Notes on applicable executive orders.
+
+      - name: agencies
+        description: >
+          JSON array of agency objects including name, id, slug, and url.
+
+      - name: agency_names
+        description: Flattened list of publishing agency names.
+        data_tests:
+          - not_null
+
+      - name: publication_date
+        description: Date the document was published in the Federal Register.
+
+      - name: effective_on
+        description: Date the rule or action becomes effective.
+
+      - name: comments_close_on
+        description: Deadline for public comments on proposed rules.
+
+      - name: citation
+        description: Federal Register citation, e.g. 89 FR 12345.
+        data_tests:
+          - not_null
+
+      - name: docket_ids
+        description: JSON array of associated docket identifiers linking to regulations.gov.
+        data_tests:
+          - not_null
+
+      - name: regulation_id_numbers
+        description: JSON array of RINs (Regulation Identifier Numbers) for rulemaking tracking.
+        data_tests:
+          - not_null
+
+      - name: cfr_references
+        description: JSON array of Code of Federal Regulations title/part references.
+
+      - name: start_page
+        description: Starting page number in the Federal Register (numeric).
+
+      - name: end_page
+        description: Ending page number in the Federal Register (numeric).
+
+      - name: page_length
+        description: Number of pages in the document (numeric).
+
+      - name: is_significant
+        description: >
+          Boolean flag indicating whether the document is economically significant
+          under Executive Order 12866.
+
+      - name: html_url
+        description: Canonical URL for the document on federalregister.gov.
+
+      - name: pdf_url
+        description: URL to the full PDF of the document.
+
+      - name: full_text_xml_url
+        description: URL to the full XML text of the document.
+
+      - name: body_html_url
+        description: URL to the HTML body of the document.
+
+      - name: json_url
+        description: URL to this document's individual JSON endpoint.
+
+      - name: raw_text_url
+        description: URL to raw plain-text version of the document.
+
+      - name: images
+        description: JSON object of associated image URLs.
+
+      - name: _ingested_at
+        description: Timestamp when the record was loaded into the landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier for lineage tracking.
+
+
+  - name: regulatory__fed_federal_register_documents
+    description: >
+      Analytics-ready mart table for Federal Register documents. Exposes all key
+      identifiers for cross-source joins, adds derived date parts and computed
+      metrics (comment window days, days until effective, derived page count),
+      and surfaces all metadata and URL fields.
+    columns:
+
+      - name: document_number
+        description: Unique Federal Register document number — primary key.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: citation
+        description: Federal Register citation, e.g. 89 FR 12345.
+        data_tests:
+          - not_null
+
+      - name: docket_ids
+        description: JSON array of associated docket identifiers linking to regulations.gov.
+        data_tests:
+          - not_null
+
+      - name: regulation_id_numbers
+        description: JSON array of RINs for rulemaking tracking.
+        data_tests:
+          - not_null
+
+      - name: agency
+        description: Flattened list of publishing agency names (maps to agency_names in staging).
+        data_tests:
+          - not_null
+
+      - name: title
+        description: Title of the Federal Register document.
+
+      - name: type
+        description: Document type classification.
+        data_tests:
+          - accepted_values:
+              values:
+                - Rule
+                - Proposed Rule
+                - Notice
+                - Presidential Document
+
+      - name: subtype
+        description: Document subtype, e.g. Executive Order, Proclamation.
+
+      - name: action
+        description: Action type description.
+
+      - name: abstract
+        description: Short summary of the document contents.
+
+      - name: excerpts
+        description: Short text excerpt for search and preview.
+
+      - name: president
+        description: For presidential documents, the issuing president.
+
+      - name: executive_order_notes
+        description: Notes on applicable executive orders.
+
+      - name: agencies
+        description: JSON array of agency objects.
+
+      - name: agency_names
+        description: Flattened list of publishing agency names.
+
+      - name: publication_date
+        description: Date the document was published in the Federal Register.
+
+      - name: effective_on
+        description: Date the rule or action becomes effective.
+
+      - name: comments_close_on
+        description: Deadline for public comments on proposed rules.
+
+      - name: publication_year
+        description: Calendar year extracted from publication_date.
+
+      - name: publication_month
+        description: Calendar month extracted from publication_date.
+
+      - name: publication_quarter
+        description: Calendar quarter (date-truncated) from publication_date.
+
+      - name: start_page
+        description: Starting page number in the Federal Register.
+
+      - name: end_page
+        description: Ending page number in the Federal Register.
+
+      - name: page_length
+        description: Number of pages as reported in the source.
+
+      - name: derived_page_count
+        description: Computed page count as end_page minus start_page plus one.
+
+      - name: is_significant
+        description: Boolean flag for economic significance under EO 12866.
+
+      - name: comment_window_days
+        description: Number of days between publication_date and comments_close_on.
+
+      - name: days_until_effective
+        description: Number of days between publication_date and effective_on.
+
+      - name: cfr_references
+        description: JSON array of Code of Federal Regulations title/part references.
+
+      - name: html_url
+        description: Canonical URL for the document on federalregister.gov.
+
+      - name: pdf_url
+        description: URL to the full PDF of the document.
+
+      - name: full_text_xml_url
+        description: URL to the full XML text of the document.
+
+      - name: body_html_url
+        description: URL to the HTML body of the document.
+
+      - name: json_url
+        description: URL to this document's individual JSON endpoint.
+
+      - name: raw_text_url
+        description: URL to raw plain-text version of the document.
+
+      - name: images
+        description: JSON object of associated image URLs.
+
+      - name: _ingested_at
+        description: Timestamp when the record was loaded into the landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier for lineage tracking.

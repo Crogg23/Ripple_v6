@@ -34,6 +34,13 @@ def _flag(name: str, default: str = "") -> bool:
     return os.getenv(name, default).strip().lower() in ("1", "true", "yes", "on")
 
 
+def _int_env(name: str, default: int) -> int:
+    try:
+        return int(os.getenv(name, str(default)).strip() or default)
+    except ValueError:
+        return default
+
+
 @dataclass
 class Config:
     """Resolved configuration, read once from the environment."""
@@ -81,6 +88,9 @@ class Config:
     fake_llm: bool = field(default_factory=lambda: _flag("ONBOARD_FAKE_LLM"))
     # ONBOARD_AUTO_APPROVE=1 answers every checkpoint with "go" (smoke tests only).
     auto_approve: bool = field(default_factory=lambda: _flag("ONBOARD_AUTO_APPROVE"))
+    # Unattended (auto-approve) self-repair: how many times to feed a stage error
+    # back to Claude as feedback and retry before giving up on the source.
+    auto_repair: int = field(default_factory=lambda: _int_env("ONBOARD_AUTO_REPAIR", 3))
 
     # ------------------------------------------------------------------
     def require(self, *keys: str) -> None:

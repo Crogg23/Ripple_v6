@@ -1,0 +1,77 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: RIPPLE_RAW
+    schema: LANDING
+    tables:
+      - name: FED_SEC_EDGAR_COMPANY_TICKERS
+        description: >
+          Raw landing table for SEC EDGAR company tickers data. Each row represents
+          a company registered with the SEC, identified by its Central Index Key (CIK)
+          and exchange ticker symbol.
+        columns:
+          - name: index_key
+            description: Zero-based integer index key as returned in the source JSON object.
+          - name: cik_str
+            description: SEC Central Index Key (CIK) as an integer string without leading zeros.
+          - name: ticker
+            description: Exchange ticker symbol for the company (e.g. AAPL).
+          - name: title
+            description: Full legal name of the company as registered with the SEC.
+
+models:
+  - name: stg_fed_sec_edgar_company_tickers__company_tickers
+    description: >
+      Staging model for SEC EDGAR company tickers. Casts raw TEXT columns to
+      appropriate types, trims whitespace, and deduplicates on (cik, ticker),
+      keeping the most recently ingested record.
+    columns:
+      - name: cik
+        description: SEC Central Index Key (CIK) cast to a numeric type.
+        data_tests:
+          - not_null
+      - name: ticker
+        description: Exchange ticker symbol for the company.
+        data_tests:
+          - not_null
+      - name: index_key
+        description: Zero-based integer index key from the source JSON object.
+      - name: company_title
+        description: Full legal name of the company as registered with the SEC.
+        data_tests:
+          - not_null
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+      - name: _source_run_id
+        description: Identifier for the ingestion run that produced this record.
+
+  - name: economics__fed_sec_edgar_company_tickers
+    description: >
+      Analytics-ready mart table for SEC EDGAR company tickers. Exposes CIK and
+      ticker as key identifiers for cross-source joins. One row per unique
+      (cik, ticker) combination.
+    columns:
+      - name: cik
+        description: SEC Central Index Key (CIK) — primary key component and cross-source join key.
+        data_tests:
+          - not_null
+      - name: ticker
+        description: Exchange ticker symbol — primary key component and cross-source join key.
+        data_tests:
+          - not_null
+      - name: index_key
+        description: Zero-based integer index key from the source JSON object.
+      - name: company_title
+        description: Full legal name of the company as registered with the SEC.
+        data_tests:
+          - not_null
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+      - name: _source_run_id
+        description: Identifier for the ingestion run that produced this record.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - cik
+            - ticker

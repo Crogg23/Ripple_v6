@@ -15,6 +15,10 @@ FOREMAN FEEDBACK (apply this if not "(none)"):
   {feedback}
 
 REQUIREMENTS
+  - Use the EXACT source URL shown above (also in context["url"]). Do NOT swap in
+    a different host, endpoint, or API version from memory -- look-alike hosts are
+    a common trap. The URL above is authoritative; your prior is not. Keep any
+    query parameters it already has.
   - Output ONLY one Python code block. No explanation before or after.
   - Define exactly: def fetch_data(context): ... returning a pandas.DataFrame.
   - Store EVERY column as a string -- no type casting. Raw is a verbatim mirror;

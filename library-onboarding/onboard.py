@@ -83,9 +83,22 @@ def _run_stage(
             cp.error(str(exc))
             if error_hint:
                 cp.warn(error_hint)
-            # Auto-approve has no human to fix the cause, and any human will
-            # eventually give up: bail out rather than retry a failure forever.
-            if settings.auto_approve or errors >= 5:
+            # Unattended (auto-approve): no human to fix the cause, so feed the
+            # error back as foreman feedback and let the model repair itself, up
+            # to ONBOARD_AUTO_REPAIR times before giving up on the source.
+            if settings.auto_approve:
+                if errors > settings.auto_repair:
+                    cp.error(f"Giving up after {settings.auto_repair} auto-repair attempts.")
+                    return ABORT, None
+                cp.warn(f"Auto-repair {errors}/{settings.auto_repair} — feeding the error back to Claude.")
+                feedback = (
+                    "The previous attempt failed with this error:\n"
+                    f"{exc}\n"
+                    "Fix it so the step succeeds."
+                )
+                continue
+            # Interactive: any human will eventually give up; cap the retries.
+            if errors >= 5:
                 cp.error("Giving up on this stage after repeated errors.")
                 return ABORT, None
             action, fb = cp.prompt_action()

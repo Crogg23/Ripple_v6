@@ -1,0 +1,201 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: RIPPLE_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FDIC_FAILED_BANKS
+        description: >-
+          Raw landing table containing FDIC failed bank data. All columns are loaded
+          as TEXT from the source feed.
+
+models:
+
+  - name: stg_fed_fdic_failed_banks__failed_banks
+    description: >-
+      Staging model for FDIC failed bank records. Casts TEXT columns to appropriate
+      types, renames to snake_case, and deduplicates on FDIC certificate number.
+    columns:
+
+      - name: fdic_cert
+        description: FDIC Certificate Number — unique identifier for the institution.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: fips
+        description: FIPS county code for the bank headquarters location.
+        data_tests:
+          - not_null
+
+      - name: fdic_failure_record_id
+        description: Internal FDIC failure record ID.
+
+      - name: financial_institution_number
+        description: Financial Institution Number, if applicable.
+
+      - name: bank_name
+        description: Name of the failed bank.
+        data_tests:
+          - not_null
+
+      - name: city
+        description: City where the bank was headquartered.
+
+      - name: state_abbr
+        description: Two-letter state abbreviation of bank headquarters.
+
+      - name: state_name
+        description: Full state name of bank headquarters.
+
+      - name: city_state
+        description: Combined city and state string.
+
+      - name: charter_type
+        description: Charter type of the failed institution.
+        data_tests:
+          - accepted_values:
+              values: ['NM', 'OI', 'SM', 'SB', 'SL', 'SA', 'NC', 'NA', 'OC']
+              severity: warn
+
+      - name: acquiring_institution
+        description: Name of the acquiring institution, if any.
+
+      - name: supervisory_agency_code
+        description: Supervisory agency code at time of failure.
+        data_tests:
+          - accepted_values:
+              values: ['OCC', 'FRB', 'FDIC', 'OTS', 'State']
+              severity: warn
+
+      - name: resolution_type
+        description: Resolution type (e.g., Deposit Payoff, Purchase & Assumption).
+        data_tests:
+          - accepted_values:
+              values:
+                - 'Deposit Payoff'
+                - 'Purchase & Assumption'
+                - 'Transfer'
+                - 'Assistance Transaction'
+                - 'Open Bank Assistance'
+              severity: warn
+
+      - name: resolution_type_detail
+        description: Secondary resolution type detail.
+
+      - name: fail_date
+        description: Date the bank was closed or failed.
+        data_tests:
+          - not_null
+
+      - name: insured_date
+        description: Date the institution became FDIC-insured.
+
+      - name: total_assets_thousands
+        description: Total assets at last Call Report before failure (in thousands USD).
+
+      - name: total_deposits_thousands
+        description: Total deposits at last Call Report before failure (in thousands USD).
+
+      - name: estimated_loss_thousands
+        description: Estimated loss to FDIC Deposit Insurance Fund (in thousands USD).
+
+      - name: years_insured_before_failure
+        description: Calculated years between insured_date and fail_date.
+
+      - name: _ingested_at
+        description: Timestamp when this record was processed by the staging model.
+
+      - name: _source_run_id
+        description: Source pipeline run identifier (propagated from landing metadata).
+
+  - name: economics__fed_fdic_failed_banks
+    description: >-
+      Analytics-ready mart table for FDIC failed bank data. Includes enriched
+      financial ratios, failure flags, and key identifiers for cross-source joins.
+    columns:
+
+      - name: fdic_cert
+        description: FDIC Certificate Number — primary key and cross-source join key.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: fips
+        description: FIPS county code — identifier for geographic cross-source joins.
+        data_tests:
+          - not_null
+
+      - name: fdic_failure_record_id
+        description: Internal FDIC failure record ID.
+
+      - name: financial_institution_number
+        description: Financial Institution Number, if applicable.
+
+      - name: bank_name
+        description: Name of the failed bank.
+        data_tests:
+          - not_null
+
+      - name: city
+        description: City where the bank was headquartered.
+
+      - name: state_abbr
+        description: Two-letter state abbreviation of bank headquarters.
+
+      - name: state_name
+        description: Full state name of bank headquarters.
+
+      - name: city_state
+        description: Combined city and state string.
+
+      - name: charter_type
+        description: Charter type of the failed institution.
+
+      - name: acquiring_institution
+        description: Name of the acquiring institution, if any.
+
+      - name: supervisory_agency_code
+        description: Supervisory agency code at time of failure.
+
+      - name: resolution_type
+        description: Resolution type (e.g., Deposit Payoff, Purchase & Assumption).
+
+      - name: resolution_type_detail
+        description: Secondary resolution type detail.
+
+      - name: fail_date
+        description: Date the bank was closed or failed.
+        data_tests:
+          - not_null
+
+      - name: insured_date
+        description: Date the institution became FDIC-insured.
+
+      - name: years_insured_before_failure
+        description: Number of years the institution was insured before failing.
+
+      - name: total_assets_thousands
+        description: Total assets at last Call Report before failure (in thousands USD).
+
+      - name: total_deposits_thousands
+        description: Total deposits at last Call Report before failure (in thousands USD).
+
+      - name: estimated_loss_thousands
+        description: Estimated loss to FDIC Deposit Insurance Fund (in thousands USD).
+
+      - name: loss_to_assets_ratio
+        description: Ratio of estimated loss to total assets at time of failure.
+
+      - name: loss_to_deposits_ratio
+        description: Ratio of estimated loss to total deposits at time of failure.
+
+      - name: is_deposit_payoff
+        description: Boolean flag indicating the bank had no acquiring institution (pure deposit payoff).
+
+      - name: _ingested_at
+        description: Timestamp when this record was processed by the staging model.
+
+      - name: _source_run_id
+        description: Source pipeline run identifier.

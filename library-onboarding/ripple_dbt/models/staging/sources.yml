@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    description: >
+      Raw landing zone -- exact, all-TEXT mirrors written by the onboarding agent.
+      Every table is stamped _INGESTED_AT / _SOURCE_RUN_ID / _SRC_SHA256 and
+      snapshot-replaced on each run (idempotent).
+    database: RIPPLE_RAW
+    schema: LANDING
+    loaded_at_field: _INGESTED_AT
+    tables:
+      - name: FED_USASPENDING_TOPTIER_AGENCIES
+        description: One row = one top-tier federal agency (USAspending reference API).
+      - name: FED_SEC_EDGAR_COMPANY_TICKERS
+        description: One row = one SEC filer (CIK ↔ ticker ↔ company name).
+      - name: FED_FDIC_FAILED_BANKS
+        description: One row = one failed/assisted US bank (FDIC BankFind).
+      - name: FED_FEDERAL_REGISTER_DOCUMENTS
+        description: One row = one Federal Register document (rules, notices, orders).

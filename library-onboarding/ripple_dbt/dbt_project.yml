@@ -1,0 +1,30 @@
+name: 'ripple'
+version: '1.0.0'
+config-version: 2
+
+# Minimal dbt project the onboarding agent (checkpoint 4) writes models into.
+# We do NOT run dbt from the agent -- it only scaffolds model files here. Running
+# dbt (and the matching profiles.yml with Snowflake creds) is a separate step.
+profile: 'ripple'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+# Staging mirrors RIPPLE_STAGING (views); marts mirror RIPPLE_MARTS (tables).
+models:
+  ripple:
+    staging:
+      +materialized: view
+      +database: RIPPLE_STAGING
+    marts:
+      +materialized: table
+      +database: RIPPLE_MARTS

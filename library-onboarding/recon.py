@@ -86,11 +86,18 @@ def _resolve(source: dict, extracted: dict, fetch_error: Optional[str]) -> dict:
     name = source["name"]
     layer = source.get("layer", "unknown")
 
-    jurisdiction = (extracted.get("jurisdiction") or naming.LAYER_JURISDICTION.get(layer, "cross-cutting")).strip().lower()
+    # A foreman-pinned jurisdiction / source_id on the input wins over recon's
+    # guess -- lets us onboard a specific slice without colliding with (and
+    # overwriting) an existing SOURCE_REGISTRY row.
+    jurisdiction = (
+        source.get("jurisdiction")
+        or extracted.get("jurisdiction")
+        or naming.LAYER_JURISDICTION.get(layer, "cross-cutting")
+    ).strip().lower()
     if jurisdiction not in naming.JURISDICTION_PREFIX:
         jurisdiction = "cross-cutting"
 
-    sid = naming.source_id(extracted.get("source_id") or name, jurisdiction)
+    sid = naming.source_id(source.get("source_id") or extracted.get("source_id") or name, jurisdiction)
     entity = naming.slug(extracted.get("entity") or "records")
     domain = extracted.get("domain") or naming.JURISDICTION_DOMAIN.get(jurisdiction, jurisdiction)
 
