@@ -1,23 +1,47 @@
-"""Naming conventions shared across recon, ingest, dbt, and catalog steps.
+"""Naming conventions for the Ripple warehouse.
 
-One place decides how a source name + entity become a Snowflake table, a dbt
-model name, and a schema -- so every step agrees on where data lives.
+The whole platform hangs off ``SOURCE_ID`` -- a lowercase, underscore-separated
+key like ``fed_usgs_earthquakes``. From it everything else is derived:
+
+    landing table : RIPPLE_RAW.LANDING.<UPPER(SOURCE_ID)>
+    registry row  : SOURCE_REGISTRY keyed on SOURCE_ID
+    ingest log    : INGEST_RUNS keyed on SOURCE_ID
+    dbt staging   : stg_<source_id>__<entity>
+    dbt mart      : <domain>__<source_id>
+
+The first token of SOURCE_ID is a jurisdiction prefix.
 """
 
 from __future__ import annotations
 
 import re
 
-from config import settings
+# Jurisdiction <-> SOURCE_ID prefix, taken from the live registry.
+JURISDICTION_PREFIX = {
+    "federal": "fed",
+    "international": "intl",
+    "cross-cutting": "xc",
+    "local": "loc",
+    "state": "st",
+}
+PREFIXES = set(JURISDICTION_PREFIX.values())
 
-# Maps a Library layer to a default dbt mart "domain" prefix. Recon can override
-# this when Claude proposes a more specific domain (e.g. "economics").
-LAYER_DOMAIN = {
-    "us_federal": "gov",
+# Build-plan "layer" -> registry jurisdiction (recon can override per source).
+LAYER_JURISDICTION = {
+    "us_federal": "federal",
+    "international": "international",
+    "corporate": "cross-cutting",
+    "investigative": "cross-cutting",
+    "geospatial": "federal",
+}
+
+# Jurisdiction -> default dbt mart "domain" prefix (recon may override).
+JURISDICTION_DOMAIN = {
+    "federal": "gov",
     "international": "global",
-    "corporate": "entity",
-    "investigative": "civic",
-    "geospatial": "geo",
+    "cross-cutting": "xc",
+    "local": "local",
+    "state": "state",
 }
 
 
@@ -27,35 +51,31 @@ def slug(text: str) -> str:
     return re.sub(r"_+", "_", s).strip("_")
 
 
-def _sf_ident(text: str) -> str:
-    """Uppercase, underscore-separated Snowflake identifier."""
-    return slug(text).upper()
+def prefix_for(jurisdiction: str) -> str:
+    return JURISDICTION_PREFIX.get((jurisdiction or "").strip().lower(), "xc")
 
 
-def source_schema(source_name: str) -> str:
-    return _sf_ident(source_name)
+def source_id(name: str, jurisdiction: str) -> str:
+    """Derive a conforming SOURCE_ID: ``<prefix>_<slug(name)>``.
+
+    Already-prefixed names are left alone so recon/foreman can hand us a final
+    SOURCE_ID directly (e.g. 'fed_usgs_earthquakes').
+    """
+    base = slug(name)
+    first = base.split("_", 1)[0]
+    if first in PREFIXES:
+        return base
+    return f"{prefix_for(jurisdiction)}_{base}"
 
 
-def raw_table_parts(source_name: str, entity: str) -> dict:
-    """Resolve the database / schema / table for a source's raw landing table."""
-    database = settings.snowflake_database
-    if settings.snowflake_raw_layout == "single_schema":
-        schema = settings.snowflake_schema
-        table = f"{_sf_ident(source_name)}_{_sf_ident(entity)}"
-    else:  # schema_per_source (default)
-        schema = source_schema(source_name)
-        table = _sf_ident(entity)
-    return {"database": database, "schema": schema, "table": table}
+def landing_table(source_id_value: str) -> str:
+    """RIPPLE_RAW.LANDING table name == UPPER(SOURCE_ID)."""
+    return slug(source_id_value).upper()
 
 
-def qualified_raw_table(source_name: str, entity: str) -> str:
-    p = raw_table_parts(source_name, entity)
-    return f"{p['database']}.{p['schema']}.{p['table']}"
+def staging_model(source_id_value: str, entity: str) -> str:
+    return f"stg_{slug(source_id_value)}__{slug(entity)}"
 
 
-def staging_model(source_name: str, entity: str) -> str:
-    return f"stg_{slug(source_name)}__{slug(entity)}"
-
-
-def mart_model(domain: str, source_name: str, entity: str) -> str:
-    return f"{slug(domain)}__{slug(source_name)}_{slug(entity)}"
+def mart_model(domain: str, source_id_value: str) -> str:
+    return f"{slug(domain)}__{slug(source_id_value)}"

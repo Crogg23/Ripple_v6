@@ -1,9 +1,15 @@
-"""Central configuration for the Source Onboarding Agent.
+"""Central configuration for the Ripple Source Onboarding Agent.
 
 Every credential and tunable lives here and is read from the environment
-(optionally via a local ``.env`` file loaded with python-dotenv). Nothing in
-this repository ever hard-codes a secret -- see ``.env.example`` for the full
-list of variables the agent understands.
+(optionally via a local ``.env`` file). Nothing is hard-coded as a secret -- see
+``.env.example`` for the full list.
+
+The agent targets the live Ripple v6 warehouse layout:
+
+    RIPPLE_RAW.LANDING.<UPPER(SOURCE_ID)>          raw landing tables
+    RIPPLE_META.REGISTRY.SOURCE_REGISTRY           the source catalog
+    RIPPLE_META.INGEST_LOGS.INGEST_RUNS            one row per ingest run
+    RIPPLE_STAGING / RIPPLE_MARTS                  dbt outputs
 """
 
 from __future__ import annotations
@@ -28,89 +34,79 @@ def _flag(name: str, default: str = "") -> bool:
     return os.getenv(name, default).strip().lower() in ("1", "true", "yes", "on")
 
 
+def _int_env(name: str, default: int) -> int:
+    try:
+        return int(os.getenv(name, str(default)).strip() or default)
+    except ValueError:
+        return default
+
+
 @dataclass
 class Config:
     """Resolved configuration, read once from the environment."""
 
-    # --- Anthropic -------------------------------------------------------
-    anthropic_api_key: str = field(
-        default_factory=lambda: os.getenv("ANTHROPIC_API_KEY", "")
-    )
-    # Defaults to a current, capable model. Override with ANTHROPIC_MODEL to
-    # trade cost for capability (a larger model gives better recon/codegen).
+    # --- Anthropic ------------------------------------------------------
+    anthropic_api_key: str = field(default_factory=lambda: os.getenv("ANTHROPIC_API_KEY", ""))
     anthropic_model: str = field(
         default_factory=lambda: os.getenv("ANTHROPIC_MODEL", "claude-sonnet-4-6")
     )
 
-    # --- Snowflake -------------------------------------------------------
+    # --- Snowflake connection ------------------------------------------
     snowflake_account: str = field(
         default_factory=lambda: os.getenv("SNOWFLAKE_ACCOUNT", "ONEAFDA-UMB20733")
     )
-    snowflake_user: str = field(
-        default_factory=lambda: os.getenv("SNOWFLAKE_USER", "CROGG23")
-    )
-    snowflake_password: str = field(
-        default_factory=lambda: os.getenv("SNOWFLAKE_PASSWORD", "")
-    )
-    snowflake_database: str = field(
-        default_factory=lambda: os.getenv("SNOWFLAKE_DATABASE", "DISASTER_IMPACT")
-    )
-    # The flat "raw" schema used when SNOWFLAKE_RAW_LAYOUT=single_schema.
-    snowflake_schema: str = field(
-        default_factory=lambda: os.getenv("SNOWFLAKE_SCHEMA", "RAW")
-    )
-    snowflake_warehouse: str = field(
-        default_factory=lambda: os.getenv("SNOWFLAKE_WAREHOUSE", "")
-    )
-    snowflake_role: str = field(
-        default_factory=lambda: os.getenv("SNOWFLAKE_ROLE", "")
-    )
-    # How raw tables are laid out. The build plan writes to "RAW.<SOURCE>.<TABLE>";
-    # interpreting the middle token as a Snowflake schema gives a clean
-    # schema-per-source layout under the configured database. The alternative
-    # keeps everything in one schema with a source-prefixed table name.
-    #   schema_per_source -> <DATABASE>.<SOURCE>.<TABLE>            (default)
-    #   single_schema     -> <DATABASE>.<SCHEMA>.<SOURCE>_<TABLE>
-    snowflake_raw_layout: str = field(
-        default_factory=lambda: os.getenv("SNOWFLAKE_RAW_LAYOUT", "schema_per_source")
-    )
+    snowflake_user: str = field(default_factory=lambda: os.getenv("SNOWFLAKE_USER", "CROGG23"))
+    snowflake_password: str = field(default_factory=lambda: os.getenv("SNOWFLAKE_PASSWORD", ""))
+    # Programmatic Access Token (used in place of a password if set).
+    snowflake_pat: str = field(default_factory=lambda: os.getenv("SNOWFLAKE_PAT", ""))
+    snowflake_authenticator: str = field(default_factory=lambda: os.getenv("SNOWFLAKE_AUTHENTICATOR", ""))
+    snowflake_warehouse: str = field(default_factory=lambda: os.getenv("SNOWFLAKE_WAREHOUSE", ""))
+    snowflake_role: str = field(default_factory=lambda: os.getenv("SNOWFLAKE_ROLE", ""))
 
-    # --- OpenMetadata ----------------------------------------------------
-    openmetadata_host: str = field(
-        default_factory=lambda: os.getenv("OPENMETADATA_HOST", "http://localhost:8585")
-    )
-    openmetadata_token: str = field(
-        default_factory=lambda: os.getenv("OPENMETADATA_TOKEN", "")
-    )
+    # --- Ripple warehouse layout (rarely overridden) -------------------
+    raw_database: str = field(default_factory=lambda: os.getenv("RIPPLE_RAW_DATABASE", "RIPPLE_RAW"))
+    raw_schema: str = field(default_factory=lambda: os.getenv("RIPPLE_RAW_SCHEMA", "LANDING"))
+    meta_database: str = field(default_factory=lambda: os.getenv("RIPPLE_META_DATABASE", "RIPPLE_META"))
+    registry_schema: str = field(default_factory=lambda: os.getenv("RIPPLE_REGISTRY_SCHEMA", "REGISTRY"))
+    registry_table: str = field(default_factory=lambda: os.getenv("RIPPLE_REGISTRY_TABLE", "SOURCE_REGISTRY"))
+    ingest_log_schema: str = field(default_factory=lambda: os.getenv("RIPPLE_INGEST_LOG_SCHEMA", "INGEST_LOGS"))
+    ingest_log_table: str = field(default_factory=lambda: os.getenv("RIPPLE_INGEST_LOG_TABLE", "INGEST_RUNS"))
+    staging_database: str = field(default_factory=lambda: os.getenv("RIPPLE_STAGING_DATABASE", "RIPPLE_STAGING"))
+    marts_database: str = field(default_factory=lambda: os.getenv("RIPPLE_MARTS_DATABASE", "RIPPLE_MARTS"))
 
-    # --- dbt -------------------------------------------------------------
-    dbt_project_path: str = field(
-        default_factory=lambda: os.getenv("DBT_PROJECT_PATH", "")
-    )
+    # --- dbt ------------------------------------------------------------
+    dbt_project_path: str = field(default_factory=lambda: os.getenv("DBT_PROJECT_PATH", ""))
 
-    # --- Agent behaviour -------------------------------------------------
-    # ONBOARD_FAKE_LLM=1 short-circuits every Claude call with deterministic
-    # fixtures so the checkpoint flow can be exercised offline (no API key, no
-    # outbound network). Intended for testing/demos only.
+    # --- Agent behaviour ------------------------------------------------
+    # Skip reloading a source whose content hash matches its last successful run.
+    skip_if_unchanged: bool = field(
+        default_factory=lambda: os.getenv("ONBOARD_SKIP_IF_UNCHANGED", "1").strip().lower()
+        in ("1", "true", "yes", "on")
+    )
+    # ONBOARD_FAKE_LLM=1 short-circuits every Claude call AND Snowflake write with
+    # deterministic fixtures so the flow runs offline (no API key / network / db).
     fake_llm: bool = field(default_factory=lambda: _flag("ONBOARD_FAKE_LLM"))
-    # ONBOARD_AUTO_APPROVE=1 answers every checkpoint with "go" without reading
-    # stdin -- handy for non-interactive smoke tests. Never use for real loads.
+    # ONBOARD_AUTO_APPROVE=1 answers every checkpoint with "go" (smoke tests only).
     auto_approve: bool = field(default_factory=lambda: _flag("ONBOARD_AUTO_APPROVE"))
+    # Unattended (auto-approve) self-repair: how many times to feed a stage error
+    # back to Claude as feedback and retry before giving up on the source.
+    auto_repair: int = field(default_factory=lambda: _int_env("ONBOARD_AUTO_REPAIR", 3))
 
     # ------------------------------------------------------------------
     def require(self, *keys: str) -> None:
-        """Raise ConfigError if any of the named attributes are empty."""
         missing = [k for k in keys if not str(getattr(self, k, "")).strip()]
         if missing:
             env_names = ", ".join(_ATTR_TO_ENV.get(k, k.upper()) for k in missing)
             raise ConfigError(
-                "Missing required configuration: "
-                f"{env_names}. Set these in your environment or .env file "
-                "(see .env.example)."
+                f"Missing required configuration: {env_names}. Set these in your "
+                "environment or .env file (see .env.example)."
             )
 
+    def snowflake_ready(self) -> bool:
+        has_secret = bool(self.snowflake_pat.strip() or self.snowflake_password.strip())
+        return has_secret and bool(self.snowflake_warehouse.strip())
+
     def dbt_dir(self) -> Path:
-        """Return the configured dbt project directory, validated to exist."""
         if not self.dbt_project_path.strip():
             raise ConfigError(
                 "DBT_PROJECT_PATH is not set. Point it at the directory that "
@@ -125,21 +121,16 @@ class Config:
         return path
 
 
-# Map attribute names back to the env var the user actually sets, for messages.
 _ATTR_TO_ENV = {
     "anthropic_api_key": "ANTHROPIC_API_KEY",
     "anthropic_model": "ANTHROPIC_MODEL",
     "snowflake_account": "SNOWFLAKE_ACCOUNT",
     "snowflake_user": "SNOWFLAKE_USER",
     "snowflake_password": "SNOWFLAKE_PASSWORD",
-    "snowflake_database": "SNOWFLAKE_DATABASE",
-    "snowflake_schema": "SNOWFLAKE_SCHEMA",
     "snowflake_warehouse": "SNOWFLAKE_WAREHOUSE",
-    "openmetadata_host": "OPENMETADATA_HOST",
-    "openmetadata_token": "OPENMETADATA_TOKEN",
+    "snowflake_role": "SNOWFLAKE_ROLE",
     "dbt_project_path": "DBT_PROJECT_PATH",
 }
 
 
-# A single shared instance is convenient; tests can build their own Config().
 settings = Config()

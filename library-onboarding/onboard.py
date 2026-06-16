@@ -29,7 +29,7 @@ from checkpoint import ABORT, EDIT, GO, SKIP
 from config import settings
 from ingest import generate_ingest_script, run_ingest
 from recon import run_recon
-from register import register_in_openmetadata
+from register import register_source
 from scaffold_dbt import generate_dbt_models, write_dbt_models
 from sources_queue import SOURCES, find_source
 
@@ -83,9 +83,22 @@ def _run_stage(
             cp.error(str(exc))
             if error_hint:
                 cp.warn(error_hint)
-            # Auto-approve has no human to fix the cause, and any human will
-            # eventually give up: bail out rather than retry a failure forever.
-            if settings.auto_approve or errors >= 5:
+            # Unattended (auto-approve): no human to fix the cause, so feed the
+            # error back as foreman feedback and let the model repair itself, up
+            # to ONBOARD_AUTO_REPAIR times before giving up on the source.
+            if settings.auto_approve:
+                if errors > settings.auto_repair:
+                    cp.error(f"Giving up after {settings.auto_repair} auto-repair attempts.")
+                    return ABORT, None
+                cp.warn(f"Auto-repair {errors}/{settings.auto_repair} — feeding the error back to Claude.")
+                feedback = (
+                    "The previous attempt failed with this error:\n"
+                    f"{exc}\n"
+                    "Fix it so the step succeeds."
+                )
+                continue
+            # Interactive: any human will eventually give up; cap the retries.
+            if errors >= 5:
                 cp.error("Giving up on this stage after repeated errors.")
                 return ABORT, None
             action, fb = cp.prompt_action()
@@ -163,19 +176,21 @@ def onboard_source(source: dict, position=None) -> dict:
     if action != GO:
         return _record(action)
 
-    # --- Checkpoint 5: CATALOG -----------------------------------------
+    # --- Checkpoint 5: REGISTRY ----------------------------------------
     action, _ = _run_stage(
-        lambda fb: register_in_openmetadata(config, load_result),
-        lambda r: cp.render_catalog(config, r, position),
-        error_hint="Set OPENMETADATA_TOKEN (Settings -> Access Token), then retry.",
+        lambda fb: register_source(config),
+        lambda r: cp.render_registry(config, r, position),
+        error_hint="Check Snowflake credentials for RIPPLE_META, then retry.",
     )
     if action != GO:
         return _record(action)
 
-    cp.success(f"{name} onboarded -> {config['raw_table']}")
+    cp.success(f"{name} onboarded -> SOURCE_ID {config['source_id']} ({config['landing_table']})")
     return {
         "status": "complete",
-        "raw_table": config["raw_table"],
+        "source_id": config["source_id"],
+        "landing_table": config["landing_table"],
+        "run_id": (load_result or {}).get("run_id"),
         "staging_model": config["staging_model"],
         "mart_model": config["mart_model"],
         "completed_at": _now(),

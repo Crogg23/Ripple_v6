@@ -1,10 +1,11 @@
-You are onboarding a data source into a Library of investigative datasets.
-Read the documentation page below and extract a precise ingestion profile.
+You are onboarding a data source into Ripple, an investigative-journalism data
+Library. Read the documentation page below and extract a precise profile that
+will become a row in the SOURCE_REGISTRY and drive ingestion.
 
 SOURCE
   Name:        {name}
   URL:         {url}
-  Layer:       {layer}
+  Layer hint:  {layer}
   Known IDs:   {identifiers}
 
 FOREMAN FEEDBACK (apply this if not "(none)"):
@@ -18,21 +19,34 @@ DOCUMENTATION PAGE (truncated):
 Return STRICT JSON only (no prose, no code fences) with exactly these keys:
 
 {
-  "description": "one-line human description of the source",
+  "jurisdiction": "one of: federal | international | cross-cutting | local | state",
+  "source_id": "lowercase snake_case id, e.g. fed_usgs_earthquakes (omit to auto-derive)",
+  "category": "high-level domain, e.g. Economy, Healthcare, Spending & Budget",
+  "subcategory": "finer topic",
+  "publisher": "the issuing agency/org",
+  "description": "one-line human description",
+  "unit_of_observation": "one row = one WHAT",
+  "temporal_coverage": "e.g. 1947-present",
+  "geographic_scope": "e.g. US (county-level), global",
   "access_pattern": "one of: bulk_csv | bulk_zip | bulk_json | paginated_api | scrape",
-  "auth": {"type": "none | api_key | oauth", "notes": "where to get a key, cost, etc."},
-  "format": "json | csv | xml | parquet | ...",
-  "est_volume": "rough row/record volume estimate",
-  "update_frequency": "how often the source refreshes",
-  "rate_limits": "documented rate limits, or 'unspecified'",
-  "key_identifiers": ["join keys present, e.g. FIPS, EIN, NPI, lat_lon"],
-  "schema_fields": [{"name": "col", "type": "VARCHAR|INT|FLOAT|DATE|TIMESTAMP|...", "description": "..."}],
-  "entity": "snake_case name for the primary table, e.g. series_observations",
-  "domain": "analytics domain for the mart, e.g. economics, health, elections",
-  "mart_model": "optional explicit mart model name, else omit",
-  "joins_to": [{"source": "OTHER_SOURCE", "on": "SHARED_KEY"}],
-  "notes": "caveats, gotchas, anything the foreman should know"
+  "access_method": "registry vocab: API | bulk download | API + bulk download | portal-only | scrape | mixed",
+  "auth": {"type": "none | free API key | registration | paid/license", "notes": "where to get a key, cost"},
+  "format": "CSV | JSON | XML | ...",
+  "cost": "free | paid | freemium",
+  "update_cadence": "real-time | daily | monthly | annual | irregular | static",
+  "est_volume": "rough row/record volume",
+  "license_terms": "e.g. public domain, CC-BY",
+  "key_identifiers": ["join keys present, e.g. FIPS, EIN, NPI, lat_lon, CIK"],
+  "accountability_relevance": "1 sentence: why this matters for following money/power",
+  "priority_tier": "1 (high) | 2 | 3",
+  "schema_fields": [{"name": "col", "type": "TEXT|INT|FLOAT|DATE|...", "description": "..."}],
+  "entity": "snake_case name for the primary table, e.g. earthquakes",
+  "domain": "dbt mart domain, e.g. economics, health, seismic",
+  "joins_to": [{"source": "other_source_id", "on": "SHARED_KEY"}],
+  "notes": "caveats, gotchas, snapshot-vs-append behaviour"
 }
 
 Be honest about uncertainty -- use "unknown" rather than inventing values.
-Prefer the documented bulk download over scraping when both exist.
+Prefer a documented bulk download over scraping when both exist.
+Note: the raw landing table stores every column as TEXT (an exact mirror);
+type casting happens later in dbt staging.

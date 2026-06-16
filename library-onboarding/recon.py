@@ -1,8 +1,9 @@
 """Checkpoint 1 -- RECON.
 
 Fetch a source's docs page, hand the readable text to Claude, and turn the
-response into a fully-resolved source config: access pattern, auth, schema,
-identifiers, plus the Snowflake table and dbt model names downstream steps use.
+response into a fully-resolved profile: a SOURCE_REGISTRY-shaped record plus the
+SOURCE_ID, the RIPPLE_RAW.LANDING table, and the dbt model names downstream
+steps use.
 """
 
 from __future__ import annotations
@@ -12,9 +13,10 @@ from typing import Optional
 import requests
 
 import naming
+from config import settings
 from llm import call_claude, extract_json, render_prompt
 
-USER_AGENT = "LibraryOnboardingAgent/1.0 (+https://github.com/crogg23/ripple_v6)"
+USER_AGENT = "RippleOnboardingAgent/1.0 (+https://github.com/Crogg23/Ripple_v6)"
 MAX_PAGE_CHARS = 18_000
 
 
@@ -24,7 +26,6 @@ def fetch_page(url: str, timeout: int = 30) -> str:
     resp.raise_for_status()
     content_type = resp.headers.get("Content-Type", "")
 
-    # PDFs and other binaries: hand the model the URL + a note rather than bytes.
     if "html" not in content_type and "text" not in content_type and not url.endswith(
         (".html", ".htm", "/")
     ):
@@ -36,7 +37,6 @@ def fetch_page(url: str, timeout: int = 30) -> str:
     try:
         from bs4 import BeautifulSoup
     except ImportError:  # pragma: no cover
-        # Without BeautifulSoup, return raw text -- still usable by the model.
         return resp.text[:MAX_PAGE_CHARS]
 
     soup = BeautifulSoup(resp.text, "html.parser")
@@ -48,11 +48,7 @@ def fetch_page(url: str, timeout: int = 30) -> str:
 
 
 def run_recon(source: dict, feedback: Optional[str] = None) -> dict:
-    """Run recon for a source dict and return a resolved config.
-
-    ``source`` carries what we know up front: name, url, layer, identifiers.
-    ``feedback`` is foreman text from an ``edit`` action, folded into the prompt.
-    """
+    """Run recon for a source dict and return a resolved profile."""
     name = source["name"]
     url = source["url"]
     layer = source.get("layer", "unknown")
@@ -60,10 +56,10 @@ def run_recon(source: dict, feedback: Optional[str] = None) -> dict:
 
     page_text = "[page not fetched -- fake mode]"
     fetch_error = None
-    if not _fake_mode():
+    if not settings.fake_llm:
         try:
             page_text = fetch_page(url)
-        except Exception as exc:  # surface as a note; recon can still proceed
+        except Exception as exc:
             fetch_error = str(exc)
             page_text = f"[Could not fetch {url}: {exc}]"
 
@@ -76,67 +72,79 @@ def run_recon(source: dict, feedback: Optional[str] = None) -> dict:
         feedback=feedback or "(none)",
         page_text=page_text,
     )
-
     raw = call_claude(
         user=prompt,
-        system="You are a meticulous data-engineering recon analyst. Output strict JSON only.",
+        system="You are a meticulous data-engineering recon analyst for an investigative-journalism data platform. Output strict JSON only.",
         kind="recon",
         fake_context=source,
         max_tokens=3000,
     )
-    extracted = extract_json(raw)
-
-    return _resolve(source, extracted, fetch_error)
+    return _resolve(source, extract_json(raw), fetch_error)
 
 
 def _resolve(source: dict, extracted: dict, fetch_error: Optional[str]) -> dict:
-    """Merge known queue metadata with Claude's output and derive names."""
     name = source["name"]
     layer = source.get("layer", "unknown")
 
-    # Identifiers: prefer the queue's curated list, union anything Claude adds.
+    # A foreman-pinned jurisdiction / source_id on the input wins over recon's
+    # guess -- lets us onboard a specific slice without colliding with (and
+    # overwriting) an existing SOURCE_REGISTRY row.
+    jurisdiction = (
+        source.get("jurisdiction")
+        or extracted.get("jurisdiction")
+        or naming.LAYER_JURISDICTION.get(layer, "cross-cutting")
+    ).strip().lower()
+    if jurisdiction not in naming.JURISDICTION_PREFIX:
+        jurisdiction = "cross-cutting"
+
+    sid = naming.source_id(source.get("source_id") or extracted.get("source_id") or name, jurisdiction)
+    entity = naming.slug(extracted.get("entity") or "records")
+    domain = extracted.get("domain") or naming.JURISDICTION_DOMAIN.get(jurisdiction, jurisdiction)
+
     identifiers = list(source.get("identifiers", []))
     for ident in extracted.get("key_identifiers", []) or []:
         if ident not in identifiers:
             identifiers.append(ident)
 
-    entity = naming.slug(extracted.get("entity") or "records")
-    domain = extracted.get("domain") or naming.LAYER_DOMAIN.get(layer, layer)
-
     auth = extracted.get("auth") or {}
-    if isinstance(auth, str):  # tolerate a bare string from the model
+    if isinstance(auth, str):
         auth = {"type": auth, "notes": ""}
 
-    parts = naming.raw_table_parts(name, entity)
-
-    config = {
+    return {
+        # identity
         "name": name,
         "url": source["url"],
         "layer": layer,
-        "description": extracted.get("description", ""),
-        "access_pattern": extracted.get("access_pattern", "unknown"),
-        "auth": {"type": auth.get("type", "none"), "notes": auth.get("notes", "")},
-        "format": extracted.get("format", "unknown"),
-        "est_volume": extracted.get("est_volume", "unknown"),
-        "update_frequency": extracted.get("update_frequency", "unknown"),
-        "rate_limits": extracted.get("rate_limits", "unspecified"),
-        "key_identifiers": identifiers,
-        "schema_fields": extracted.get("schema_fields", []),
+        "source_id": sid,
+        "landing_table": naming.landing_table(sid),
         "entity": entity,
-        "raw_database": parts["database"],
-        "raw_schema": parts["schema"],
-        "raw_table": naming.qualified_raw_table(name, entity),
-        "raw_table_short": parts["table"],
-        "staging_model": naming.staging_model(name, entity),
-        "mart_model": extracted.get("mart_model") or naming.mart_model(domain, name, entity),
+        # registry fields
+        "jurisdiction": jurisdiction,
+        "category": extracted.get("category", "unknown"),
+        "subcategory": extracted.get("subcategory", ""),
+        "publisher": extracted.get("publisher", ""),
+        "description": extracted.get("description", ""),
+        "unit_of_observation": extracted.get("unit_of_observation", ""),
+        "temporal_coverage": extracted.get("temporal_coverage", "unknown"),
+        "geographic_scope": extracted.get("geographic_scope", "unknown"),
+        "access_method": extracted.get("access_method", "unknown"),
+        "format": extracted.get("format", "unknown"),
+        "auth": {"type": auth.get("type", "none"), "notes": auth.get("notes", "")},
+        "cost": extracted.get("cost", ""),
+        "update_cadence": extracted.get("update_cadence", "unknown"),
+        "volume": extracted.get("est_volume", extracted.get("volume", "unknown")),
+        "license_terms": extracted.get("license_terms", ""),
+        "key_identifiers": identifiers,
+        "join_keys": ", ".join(identifiers),
+        "accountability_relevance": extracted.get("accountability_relevance", ""),
+        "priority_tier": str(extracted.get("priority_tier", "2")),
+        # ingest + dbt
+        "access_pattern": extracted.get("access_pattern", "unknown"),
+        "rate_limits": extracted.get("rate_limits", "unspecified"),
+        "schema_fields": extracted.get("schema_fields", []),
+        "staging_model": naming.staging_model(sid, entity),
+        "mart_model": extracted.get("mart_model") or naming.mart_model(domain, sid),
         "joins_to": extracted.get("joins_to", []),
         "notes": extracted.get("notes", ""),
         "fetch_error": fetch_error,
     }
-    return config
-
-
-def _fake_mode() -> bool:
-    from config import settings
-
-    return settings.fake_llm

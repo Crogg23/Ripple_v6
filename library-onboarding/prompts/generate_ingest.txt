@@ -1,4 +1,5 @@
-Write a Python ingestion function for the source below.
+Write a Python ingestion function for the source below. It feeds a RAW landing
+zone: an exact, untyped mirror of the source (every value as a string).
 
 SOURCE
   Name:           {name}
@@ -14,17 +15,28 @@ FOREMAN FEEDBACK (apply this if not "(none)"):
   {feedback}
 
 REQUIREMENTS
+  - Use the EXACT source URL shown above (also in context["url"]). Do NOT swap in
+    a different host, endpoint, or API version from memory -- look-alike hosts are
+    a common trap. The URL above is authoritative; your prior is not. Keep any
+    query parameters it already has.
   - Output ONLY one Python code block. No explanation before or after.
   - Define exactly: def fetch_data(context): ... returning a pandas.DataFrame.
-  - `context` is a dict with: "url", "source_name", "auth_type",
-    "env" (a dict -- read API keys from here, e.g. context["env"].get("FRED_API_KEY")),
-    and "source_file" (set context["source_file"] = filename if you download a file).
-  - Do NOT connect to or write to Snowflake. Just return the DataFrame.
-  - Do NOT add the _loaded_at / _source_url / _source_file columns -- the caller does that.
-  - Use `requests` for HTTP. Handle pagination with a loop. Respect rate limits
-    with time.sleep() derived from the documented limit.
-  - For bulk CSV/ZIP: download, parse with pandas (use io.BytesIO / zipfile as needed).
-  - Raise a clear exception on auth failure or unexpected schema (fail loudly).
-  - Keep all imports inside the function or at module top of the code block.
-  - If an API key is required but missing from context["env"], raise RuntimeError
-    naming the exact env var to set.
+  - Store EVERY column as a string -- no type casting. Raw is a verbatim mirror;
+    dbt staging does the casting later. (df = df.astype(str) is fine.)
+  - Do NOT add _INGESTED_AT / _SOURCE_RUN_ID / _SRC_SHA256 -- the caller does that.
+  - Do NOT connect to Snowflake. Just return the DataFrame.
+  - Stash the raw source bytes and filename for content hashing + provenance:
+        context["source_bytes"] = resp.content      # the exact bytes you downloaded
+        context["source_file"]  = "all_month.csv"    # filename, if a file
+    For paginated APIs, accumulate the raw response bodies (e.g. join them) into
+    context["source_bytes"] so the SHA-256 reflects the real payload.
+  - `context` also has: "url", "source_name", "auth_type", and "env" (a dict --
+    read API keys from here, e.g. context["env"].get("FRED_API_KEY")).
+  - Use `requests` for HTTP. Loop for pagination. Respect rate limits with
+    time.sleep() derived from the documented limit.
+  - For bulk CSV/ZIP: download, parse with pandas (io.BytesIO / zipfile as needed).
+  - For paginated APIs that return nested JSON, store each record as one row
+    (json.dumps the record into a single column if the shape is irregular).
+  - If a required API key is missing from context["env"], raise RuntimeError
+    naming the exact env var to set. Fail loudly on auth errors or empty results.
+  - Keep imports at the top of the code block.

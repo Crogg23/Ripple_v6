@@ -1,16 +1,11 @@
-# Source Onboarding Agent -- runtime dependencies
+# Ripple Source Onboarding Agent -- runtime dependencies
 anthropic>=0.40
 requests>=2.31
 httpx>=0.27
 pandas>=2.0
-snowflake-connector-python>=3.7
+snowflake-connector-python[pandas]>=3.7
 rich>=13.7
 pyyaml>=6.0
 beautifulsoup4>=4.12
 tenacity>=8.2
 python-dotenv>=1.0
-
-# Optional: the OpenMetadata Python SDK. register.py talks to the OpenMetadata
-# REST API with `requests`, so this is NOT required -- install it only if you
-# prefer the official client. It pulls a large dependency tree.
-# openmetadata-ingestion>=1.3
