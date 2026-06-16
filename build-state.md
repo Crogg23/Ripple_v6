@@ -30,6 +30,10 @@ Ripple v6 warehouse (`RIPPLE_RAW` / `RIPPLE_META` / `RIPPLE_STAGING` / `RIPPLE_M
 Each: a `success` row in `INGEST_RUNS`, an `INCLUDE=Y` row in `SOURCE_REGISTRY` (live Claude
 enrichment), and (for the three LLM-driven ones) staging+mart dbt models under `ripple_dbt/models/`.
 Registry now 898 rows.
+- **dbt is RUN, not just generated** (2026-06-16): `dbt run` built all 6 models — 3 staging views in
+  `RIPPLE_STAGING.DBT_CROGERS`, 3 mart tables in `RIPPLE_MARTS.DBT_CROGERS` (SEC 10,414 / FedReg 5,000 /
+  FDIC 3,584). `dbt test`: 31/34 pass, 0 errors, 3 warns (FDIC enum drift on charter/agency/resolution
+  codes — severity=warn by design). Creds via env (`profiles.yml`, PAT as password); `dbt_utils` pinned.
 
 ## DECISIONS MADE
 - Target the live `RIPPLE_*` stack, NOT `DISASTER_IMPACT.RAW` (which doesn't exist — that's the
@@ -44,6 +48,8 @@ Registry now 898 rows.
   upsert inserts a new row instead of clobbering a curated family row (`fed_sec_edgar`, etc.).
 - Codegen prompt now forbids substituting a host/endpoint from memory — must use the exact source
   URL (this was the FDIC failure: the model used `api.fdic.gov` instead of `banks.data.fdic.gov`).
+- dbt builds into the `DBT_CROGERS` schema (in `RIPPLE_STAGING` / `RIPPLE_MARTS`) to avoid touching the
+  existing `CORE` schemas; dbt auth = PAT-as-password via `env_var` (no secrets committed).
 
 ## PARKED IDEAS
 - [IDEA — SOMEDAY] Drive the onboarding queue from `SOURCE_REGISTRY` (rows by `INCLUDE` / `PRIORITY_TIER`) instead of the static 37-source `sources_queue.py`. | WHY: ~900 sources already cataloged. | LAYER: Library
@@ -52,9 +58,11 @@ Registry now 898 rows.
 ## OPEN QUESTIONS
 - The PAT authenticates as `ACCOUNTADMIN` — fine to unblock, but a least-privilege role scoped to
   write only `RIPPLE_RAW` + `RIPPLE_META` would be safer for routine onboarding.
-- Nobody has *run* dbt yet — the agent only writes model files. Running needs `dbt-snowflake` +
-  a `profiles.yml` with creds (the in-repo `ripple_dbt/` project is ready to point at).
+- The agent writes a `sources:` block into every model's `schema.yml`, so a separate central
+  `sources.yml` collides (dbt: "two sources with the same name"). Removed the central one for now; the
+  agent's dbt generation should emit sources centrally instead. [parked agent fix]
 
 ## NEXT ACTION
-Either: (a) run dbt on `ripple_dbt/` to build the staging views + marts for the 3 sources that have
-models, or (b) keep landing sources — the unattended `live_batch.py` pattern scales to the queue.
+The 4th source (`fed_usaspending_toptier_agencies`) has no dbt models (its first load skipped
+checkpoint 4) — generate + run them, or keep feeding the queue via `live_batch.py`. Optionally tighten
+the 3 FDIC `accepted_values` warns (real categories the enum lists missed).
