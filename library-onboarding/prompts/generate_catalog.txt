@@ -1,0 +1,17 @@
+Write data-catalog metadata for a raw table being registered in OpenMetadata.
+
+SOURCE
+  Name:        {name}
+  Raw table:   {raw_table}
+  Description: {description}
+  Key IDs:     {identifiers}
+  Update freq: {update_frequency}
+
+Return STRICT JSON only with exactly these keys:
+
+{
+  "description": "2-3 sentence catalog description: what the table contains, its grain, and how it joins to other sources via the key identifiers",
+  "tags": ["short", "lowercase-hyphenated", "classification tags"]
+}
+
+Keep the description factual and useful to an analyst discovering this table.

@@ -1,0 +1,20 @@
+# Secrets -- never commit
+.env
+*.env
+!.env.example
+
+# Batch run state (auto-created, machine-specific)
+onboarding_log.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+
+# Editors / OS
+.DS_Store
+.idea/
+.vscode/

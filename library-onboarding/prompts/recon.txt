@@ -1,0 +1,38 @@
+You are onboarding a data source into a Library of investigative datasets.
+Read the documentation page below and extract a precise ingestion profile.
+
+SOURCE
+  Name:        {name}
+  URL:         {url}
+  Layer:       {layer}
+  Known IDs:   {identifiers}
+
+FOREMAN FEEDBACK (apply this if not "(none)"):
+  {feedback}
+
+DOCUMENTATION PAGE (truncated):
+---
+{page_text}
+---
+
+Return STRICT JSON only (no prose, no code fences) with exactly these keys:
+
+{
+  "description": "one-line human description of the source",
+  "access_pattern": "one of: bulk_csv | bulk_zip | bulk_json | paginated_api | scrape",
+  "auth": {"type": "none | api_key | oauth", "notes": "where to get a key, cost, etc."},
+  "format": "json | csv | xml | parquet | ...",
+  "est_volume": "rough row/record volume estimate",
+  "update_frequency": "how often the source refreshes",
+  "rate_limits": "documented rate limits, or 'unspecified'",
+  "key_identifiers": ["join keys present, e.g. FIPS, EIN, NPI, lat_lon"],
+  "schema_fields": [{"name": "col", "type": "VARCHAR|INT|FLOAT|DATE|TIMESTAMP|...", "description": "..."}],
+  "entity": "snake_case name for the primary table, e.g. series_observations",
+  "domain": "analytics domain for the mart, e.g. economics, health, elections",
+  "mart_model": "optional explicit mart model name, else omit",
+  "joins_to": [{"source": "OTHER_SOURCE", "on": "SHARED_KEY"}],
+  "notes": "caveats, gotchas, anything the foreman should know"
+}
+
+Be honest about uncertainty -- use "unknown" rather than inventing values.
+Prefer the documented bulk download over scraping when both exist.

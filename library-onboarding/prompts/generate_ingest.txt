@@ -1,0 +1,30 @@
+Write a Python ingestion function for the source below.
+
+SOURCE
+  Name:           {name}
+  URL:            {url}
+  Access pattern: {access_pattern}
+  Auth:           {auth_type} ({auth_notes})
+  Format:         {data_format}
+  Rate limits:    {rate_limits}
+  Schema:
+{schema}
+
+FOREMAN FEEDBACK (apply this if not "(none)"):
+  {feedback}
+
+REQUIREMENTS
+  - Output ONLY one Python code block. No explanation before or after.
+  - Define exactly: def fetch_data(context): ... returning a pandas.DataFrame.
+  - `context` is a dict with: "url", "source_name", "auth_type",
+    "env" (a dict -- read API keys from here, e.g. context["env"].get("FRED_API_KEY")),
+    and "source_file" (set context["source_file"] = filename if you download a file).
+  - Do NOT connect to or write to Snowflake. Just return the DataFrame.
+  - Do NOT add the _loaded_at / _source_url / _source_file columns -- the caller does that.
+  - Use `requests` for HTTP. Handle pagination with a loop. Respect rate limits
+    with time.sleep() derived from the documented limit.
+  - For bulk CSV/ZIP: download, parse with pandas (use io.BytesIO / zipfile as needed).
+  - Raise a clear exception on auth failure or unexpected schema (fail loudly).
+  - Keep all imports inside the function or at module top of the code block.
+  - If an API key is required but missing from context["env"], raise RuntimeError
+    naming the exact env var to set.

@@ -1,0 +1,248 @@
+"""Thin wrapper around the Anthropic API plus prompt-template loading.
+
+Every Claude-powered step -- recon, ingest codegen, dbt scaffolding, catalog
+registration -- goes through :func:`call_claude`. Set ``ONBOARD_FAKE_LLM=1`` to
+short-circuit the network call and return deterministic fixtures, which lets the
+whole checkpoint flow be exercised offline (no API key, no outbound network).
+"""
+
+from __future__ import annotations
+
+import json
+import re
+from pathlib import Path
+from typing import Any, Optional
+
+from config import ConfigError, settings
+
+PROMPTS_DIR = Path(__file__).resolve().parent / "prompts"
+
+
+# ---------------------------------------------------------------------------
+# Prompt loading
+# ---------------------------------------------------------------------------
+def load_prompt(name: str) -> str:
+    """Load a prompt template from the ``prompts/`` directory."""
+    path = PROMPTS_DIR / f"{name}.txt"
+    if not path.exists():
+        raise FileNotFoundError(f"Prompt template not found: {path}")
+    return path.read_text(encoding="utf-8")
+
+
+def render_prompt(template_name: str, **kwargs: Any) -> str:
+    """Load a prompt template and fill ``{placeholders}`` with kwargs."""
+    template = load_prompt(template_name)
+    # Use a forgiving formatter so stray braces in the template don't blow up.
+    for key, value in kwargs.items():
+        template = template.replace("{" + key + "}", str(value))
+    return template
+
+
+# ---------------------------------------------------------------------------
+# The single entry point every module uses
+# ---------------------------------------------------------------------------
+def call_claude(
+    user: str,
+    system: str = "",
+    kind: str = "generic",
+    max_tokens: int = 4096,
+    fake_context: Optional[dict] = None,
+) -> str:
+    """Call Claude (or the offline fake) and return the response text.
+
+    ``kind`` lets the offline fixture return something shaped correctly for the
+    calling step; the real API ignores it.
+    """
+    if settings.fake_llm:
+        return _fake_response(kind, fake_context or {})
+
+    return _real_call(user=user, system=system, max_tokens=max_tokens)
+
+
+def _real_call(user: str, system: str, max_tokens: int) -> str:
+    settings.require("anthropic_api_key")
+    try:
+        import anthropic
+    except ImportError as exc:  # pragma: no cover
+        raise ConfigError(
+            "The 'anthropic' package is not installed. Run "
+            "`pip install -r requirements.txt`."
+        ) from exc
+
+    from tenacity import (
+        retry,
+        retry_if_exception_type,
+        stop_after_attempt,
+        wait_exponential,
+    )
+
+    client = anthropic.Anthropic(api_key=settings.anthropic_api_key)
+
+    @retry(
+        reraise=True,
+        stop=stop_after_attempt(4),
+        wait=wait_exponential(multiplier=2, min=2, max=30),
+        retry=retry_if_exception_type(
+            (
+                anthropic.APIConnectionError,
+                anthropic.RateLimitError,
+                anthropic.InternalServerError,
+            )
+        ),
+    )
+    def _send() -> str:
+        message = client.messages.create(
+            model=settings.anthropic_model,
+            max_tokens=max_tokens,
+            system=system or "You are a precise data-engineering assistant.",
+            messages=[{"role": "user", "content": user}],
+        )
+        return "".join(
+            block.text for block in message.content if getattr(block, "type", "") == "text"
+        )
+
+    return _send()
+
+
+# ---------------------------------------------------------------------------
+# Response parsing helpers
+# ---------------------------------------------------------------------------
+def extract_json(text: str) -> dict:
+    """Pull the first JSON object out of a model response.
+
+    Handles ```json fenced blocks, leading prose, and trailing commentary.
+    """
+    fenced = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", text, re.DOTALL)
+    if fenced:
+        return json.loads(fenced.group(1))
+
+    # Fall back to a balanced-brace scan for the first top-level object.
+    start = text.find("{")
+    if start == -1:
+        raise ValueError(f"No JSON object found in response:\n{text[:500]}")
+    depth = 0
+    for i in range(start, len(text)):
+        if text[i] == "{":
+            depth += 1
+        elif text[i] == "}":
+            depth -= 1
+            if depth == 0:
+                return json.loads(text[start : i + 1])
+    raise ValueError(f"Unbalanced JSON in response:\n{text[:500]}")
+
+
+def extract_code(text: str, language: str = "python") -> str:
+    """Pull a fenced code block (defaulting to python) out of a response."""
+    fenced = re.search(
+        rf"```(?:{language})?\s*(.*?)```", text, re.DOTALL | re.IGNORECASE
+    )
+    if fenced:
+        return fenced.group(1).strip()
+    return text.strip()
+
+
+# ---------------------------------------------------------------------------
+# Offline fixtures (ONBOARD_FAKE_LLM=1)
+# ---------------------------------------------------------------------------
+def _fake_response(kind: str, ctx: dict) -> str:
+    if kind == "recon":
+        return json.dumps(_fake_recon(ctx))
+    if kind == "ingest":
+        return _fake_ingest(ctx)
+    if kind == "dbt":
+        return json.dumps(_fake_dbt(ctx))
+    if kind == "catalog":
+        return json.dumps(_fake_catalog(ctx))
+    return "{}"
+
+
+def _fake_recon(ctx: dict) -> dict:
+    name = ctx.get("name", "Unknown Source")
+    url = ctx.get("url", "")
+    identifiers = ctx.get("identifiers", [])
+    is_fred = "fred" in name.lower()
+    return {
+        "description": "Federal Reserve Economic Data" if is_fred else f"{name} data source",
+        "access_pattern": "paginated_api" if is_fred else "bulk_csv",
+        "auth": {
+            "type": "api_key" if is_fred else "none",
+            "notes": "free -- register at fredaccount.stlouisfed.org"
+            if is_fred
+            else "no authentication required",
+        },
+        "format": "json" if is_fred else "csv",
+        "est_volume": "845,000 series x N observations" if is_fred else "unknown",
+        "update_frequency": "Daily (varies by series)" if is_fred else "unknown",
+        "rate_limits": "120 requests/min" if is_fred else "unspecified",
+        "key_identifiers": identifiers,
+        "schema_fields": [
+            {"name": "series_id", "type": "VARCHAR", "description": "FRED series identifier"},
+            {"name": "date", "type": "DATE", "description": "Observation date"},
+            {"name": "value", "type": "FLOAT", "description": "Observation value"},
+        ]
+        if is_fred
+        else [
+            {"name": "id", "type": "VARCHAR", "description": "Record identifier"},
+            {"name": "value", "type": "VARCHAR", "description": "Record value"},
+        ],
+        "entity": "series_observations" if is_fred else "records",
+        "joins_to": [
+            {"source": "ACS", "on": "FIPS"},
+            {"source": "FEMA", "on": "FIPS"},
+            {"source": "BLS", "on": "FIPS"},
+        ]
+        if "FIPS" in identifiers
+        else [],
+        "notes": "[FAKE_LLM fixture -- not real recon output]",
+    }
+
+
+def _fake_ingest(ctx: dict) -> str:
+    return (
+        "```python\n"
+        "import pandas as pd\n"
+        "\n"
+        "def fetch_data(context):\n"
+        '    """[FAKE_LLM fixture] Return a tiny synthetic frame for offline demo."""\n'
+        "    return pd.DataFrame(\n"
+        "        [\n"
+        '            {"series_id": "GDP", "date": "2024-01-01", "value": 27000.0},\n'
+        '            {"series_id": "GDP", "date": "2024-04-01", "value": 27200.0},\n'
+        '            {"series_id": "UNRATE", "date": "2024-01-01", "value": 3.7},\n'
+        "        ]\n"
+        "    )\n"
+        "```\n"
+    )
+
+
+def _fake_dbt(ctx: dict) -> dict:
+    src = (ctx.get("name", "source")).lower().replace(" ", "_").replace(".", "_")
+    entity = ctx.get("entity", "records")
+    return {
+        "staging_sql": (
+            f"with source as (\n    select * from {{{{ source('{src}', '{entity}') }}}}\n),\n"
+            "renamed as (\n    select\n        series_id::varchar as series_id,\n"
+            "        date::date as observation_date,\n        value::float as value,\n"
+            "        _loaded_at,\n        _source_url\n    from source\n)\nselect * from renamed\n"
+        ),
+        "mart_sql": (
+            f"select\n    series_id,\n    observation_date,\n    value\nfrom "
+            f"{{{{ ref('stg_{src}__{entity}') }}}}\n"
+        ),
+        "schema_yml": (
+            "version: 2\n\nmodels:\n"
+            f"  - name: stg_{src}__{entity}\n"
+            "    description: '[FAKE_LLM fixture] staged rows.'\n"
+            "    columns:\n"
+            "      - name: series_id\n        description: Series identifier.\n"
+            "        tests: [not_null]\n"
+        ),
+    }
+
+
+def _fake_catalog(ctx: dict) -> dict:
+    return {
+        "tableName": ctx.get("table", "records"),
+        "description": "[FAKE_LLM fixture] catalog entry.",
+        "tags": ["onboarded-by-agent"],
+    }
