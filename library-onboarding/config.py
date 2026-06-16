@@ -50,6 +50,9 @@ class Config:
     )
     snowflake_user: str = field(default_factory=lambda: os.getenv("SNOWFLAKE_USER", "CROGG23"))
     snowflake_password: str = field(default_factory=lambda: os.getenv("SNOWFLAKE_PASSWORD", ""))
+    # Programmatic Access Token (used in place of a password if set).
+    snowflake_pat: str = field(default_factory=lambda: os.getenv("SNOWFLAKE_PAT", ""))
+    snowflake_authenticator: str = field(default_factory=lambda: os.getenv("SNOWFLAKE_AUTHENTICATOR", ""))
     snowflake_warehouse: str = field(default_factory=lambda: os.getenv("SNOWFLAKE_WAREHOUSE", ""))
     snowflake_role: str = field(default_factory=lambda: os.getenv("SNOWFLAKE_ROLE", ""))
 
@@ -90,7 +93,8 @@ class Config:
             )
 
     def snowflake_ready(self) -> bool:
-        return bool(self.snowflake_password.strip() and self.snowflake_warehouse.strip())
+        has_secret = bool(self.snowflake_pat.strip() or self.snowflake_password.strip())
+        return has_secret and bool(self.snowflake_warehouse.strip())
 
     def dbt_dir(self) -> Path:
         if not self.dbt_project_path.strip():
