@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-"""Unattended live batch -- onboard several real sources through the FULL agent.
+"""Unattended live batch -- grow the Library through the FULL agent.
 
-Unlike ``first_live_load.py`` (deterministic, hand-built), this runs the real
-5-checkpoint flow for each source: **Claude does recon and writes the ingestion
-script**, the script runs and lands to RIPPLE_RAW, Claude generates dbt models,
-and the source is registered. It runs unattended:
+Runs the real 5-checkpoint flow for each source: **Claude does recon and writes
+the ingestion script**, the script runs and lands to RIPPLE_RAW, Claude generates
+dbt models, and the source is registered. Unattended:
 
     ONBOARD_AUTO_APPROVE=1   every checkpoint auto-"go"s
     ONBOARD_AUTO_REPAIR=3    on a stage error, feed it back to Claude and retry
 
-Each source pins its own ``source_id`` so we land a specific slice without
-colliding with the broader family rows already in SOURCE_REGISTRY.
+This is the canonical growing queue: each source pins its own ``source_id`` and the
+runner **skips any source already landed** (a success row in INGEST_RUNS), so it's
+safe to re-run -- it only onboards what's missing.
 
     python live_batch.py
 """
@@ -31,41 +31,65 @@ import checkpoint as cp  # noqa: E402
 from onboard import onboard_source  # noqa: E402
 
 # Small, reliable, no-auth federal sources -- varied JSON shapes on purpose, so
-# Claude's codegen gets a real workout. Pinned source_ids are all NEW (distinct
-# from the curated fed_sec_edgar / fed_fdic_bank_data / fed_federal_register rows).
+# Claude's codegen gets a real workout. Pinned source_ids avoid colliding with
+# (overwriting) the broader family rows already in SOURCE_REGISTRY.
 SOURCES = [
-    {
-        "name": "SEC EDGAR Company Tickers",
-        "source_id": "fed_sec_edgar_company_tickers",
-        "url": "https://www.sec.gov/files/company_tickers.json",
-        "jurisdiction": "federal",
-        "layer": "us_federal",
-        "identifiers": ["CIK", "ticker"],
-    },
-    {
-        "name": "FDIC Failed Banks",
-        "source_id": "fed_fdic_failed_banks",
-        "url": "https://banks.data.fdic.gov/api/failures?limit=10000&format=json",
-        "jurisdiction": "federal",
-        "layer": "us_federal",
-        "identifiers": ["FDIC_cert", "FIPS"],
-    },
-    {
-        "name": "Federal Register Documents",
-        "source_id": "fed_federal_register_documents",
-        "url": "https://www.federalregister.gov/api/v1/documents.json?per_page=100&order=newest",
-        "jurisdiction": "federal",
-        "layer": "us_federal",
-        "identifiers": ["document_number", "agency"],
-    },
+    # --- batch 1 (landed 2026-06-16) ----------------------------------------
+    {"name": "SEC EDGAR Company Tickers", "source_id": "fed_sec_edgar_company_tickers",
+     "url": "https://www.sec.gov/files/company_tickers.json",
+     "jurisdiction": "federal", "layer": "us_federal", "identifiers": ["CIK", "ticker"]},
+    {"name": "FDIC Failed Banks", "source_id": "fed_fdic_failed_banks",
+     "url": "https://banks.data.fdic.gov/api/failures?limit=10000&format=json",
+     "jurisdiction": "federal", "layer": "us_federal", "identifiers": ["FDIC_cert", "FIPS"]},
+    {"name": "Federal Register Documents", "source_id": "fed_federal_register_documents",
+     "url": "https://www.federalregister.gov/api/v1/documents.json?per_page=100&order=newest",
+     "jurisdiction": "federal", "layer": "us_federal", "identifiers": ["document_number", "agency"]},
+
+    # --- batch 2 ------------------------------------------------------------
+    {"name": "Treasury Debt to the Penny", "source_id": "fed_treasury_debt_to_penny",
+     "url": "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/debt_to_penny?page[size]=500&sort=-record_date",
+     "jurisdiction": "federal", "layer": "us_federal", "identifiers": ["record_date"]},
+    {"name": "CFPB Consumer Complaints", "source_id": "fed_cfpb_complaints",
+     "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=500",
+     "jurisdiction": "federal", "layer": "us_federal", "identifiers": ["complaint_id", "company", "zip_code", "state"]},
+    {"name": "ProPublica Nonprofit Explorer (IRS 990)", "source_id": "fed_propublica_nonprofits",
+     "url": "https://projects.propublica.org/nonprofits/api/v2/search.json?q=foundation",
+     "jurisdiction": "federal", "layer": "us_federal", "identifiers": ["EIN"]},
+    {"name": "FDA Drug Enforcement Reports (Recalls)", "source_id": "fed_fda_drug_enforcement",
+     "url": "https://api.fda.gov/drug/enforcement.json?limit=500",
+     "jurisdiction": "federal", "layer": "us_federal", "identifiers": ["recall_number", "NDC", "event_id"]},
 ]
 
 
+def _already_onboarded() -> set:
+    """SOURCE_IDs that already have a successful ingest run -- skip these."""
+    try:
+        import snow
+        conn = snow.connect()
+        try:
+            cur = conn.cursor()
+            cur.execute(
+                "SELECT DISTINCT SOURCE_ID FROM RIPPLE_META.INGEST_LOGS.INGEST_RUNS WHERE STATUS='success'"
+            )
+            return {row[0] for row in cur.fetchall()}
+        finally:
+            conn.close()
+    except Exception as exc:  # no creds / offline -> attempt everything
+        cp.warn(f"Could not read existing runs ({exc}); will attempt all sources.")
+        return set()
+
+
 def main() -> int:
-    total = len(SOURCES)
-    cp.info(f"Live batch: {total} sources through the full agent (auto-approve + auto-repair).")
+    done = _already_onboarded()
+    todo = [s for s in SOURCES if s["source_id"] not in done]
+    skipped = [s for s in SOURCES if s["source_id"] in done]
+    for s in skipped:
+        cp.info(f"already landed — skipping {s['source_id']}")
+
+    total = len(todo)
+    cp.info(f"Live batch: {total} new sources through the full agent (auto-approve + auto-repair).")
     results = []
-    for i, source in enumerate(SOURCES, 1):
+    for i, source in enumerate(todo, 1):
         record = onboard_source(source, position=(i, total))
         results.append((source["name"], record))
 
@@ -83,8 +107,8 @@ def main() -> int:
         if run_id:
             line += f"  run={run_id[:8]}"
         cp.info(line)
-    done = sum(1 for _, r in results if r.get("status") == "complete")
-    cp.info(f"\n{done}/{total} complete.")
+    complete = sum(1 for _, r in results if r.get("status") == "complete")
+    cp.info(f"\n{complete}/{total} complete ({len(skipped)} already landed).")
     return 0
 
 
