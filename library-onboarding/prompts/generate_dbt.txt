@@ -1,0 +1,33 @@
+Generate dbt models for a raw table just landed in Snowflake.
+
+SOURCE
+  Name:          {name}
+  Raw table:     {raw_table}
+  Source schema: {source_schema}
+  Entity:        {entity}
+  Staging model: {staging_model}
+  Mart model:    {mart_model}
+  Key IDs:       {identifiers}
+  Raw schema:
+{schema}
+
+FOREMAN FEEDBACK (apply this if not "(none)"):
+  {feedback}
+
+Return STRICT JSON only with exactly these keys:
+
+{
+  "staging_sql": "dbt SQL for the staging model",
+  "mart_sql": "dbt SQL for the mart model",
+  "schema_yml": "dbt schema.yml (version: 2) describing both models"
+}
+
+GUIDELINES
+  - staging_sql: select from {{ source('<source_schema_lower>', '<entity>') }},
+    rename columns to snake_case, cast to proper types, drop obvious dupes,
+    and carry through _loaded_at and _source_url.
+  - mart_sql: select from {{ ref('{staging_model}') }}, analytics-ready, with
+    the key identifiers exposed for cross-source joins.
+  - schema_yml: column descriptions + tests (not_null / unique on identifiers,
+    relationships where sensible). Valid YAML, 2-space indent.
+  - SQL must be valid Snowflake + dbt Jinja. Escape nothing -- emit literal {{ }}.
