@@ -1,0 +1,150 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: INTL_CH_ZEFIX
+        description: >
+          Raw landing table for Switzerland Zefix Central Business Name Index.
+          All columns arrive as TEXT from the ingestion pipeline.
+        columns:
+          - name: BUSINESS_NAME
+            description: Raw business name of the registered company.
+          - name: CANTONAL_EXCERPT
+            description: Cantonal excerpt identifier (used as ehraid and chid in staging).
+          - name: UID
+            description: Unique identification number (UID) issued by the Swiss federal authorities.
+          - name: LEGAL_FORM
+            description: Legal form of the company (e.g. GmbH, AG).
+          - name: SEAT
+            description: Municipality of the registered seat.
+          - name: CANTON_RC
+            description: Two-letter canton code of the commercial registry.
+
+models:
+
+  - name: stg_intl_ch_zefix__companies
+    description: >
+      Staging model for Switzerland Zefix Central Business Name Index companies.
+      Renames raw columns to snake_case, derives a surrogate company_id, deduplicates
+      on (uid, business_name, canton_rc) keeping the most-recently ingested row,
+      and hard-codes country = 'CH' for cross-source joins.
+    columns:
+      - name: company_id
+        description: Surrogate primary key derived from uid, business_name and canton_rc.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: country
+        description: ISO-3166-1 alpha-2 country code. Always 'CH' for this source.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['CH']
+
+      - name: uid
+        description: Swiss federal unique identification number.
+        data_tests:
+          - not_null
+
+      - name: ehraid
+        description: EHRA (cantonal excerpt) identifier derived from the cantonal_excerpt field.
+        data_tests:
+          - not_null
+
+      - name: chid
+        description: CH identifier derived from the cantonal_excerpt field.
+        data_tests:
+          - not_null
+
+      - name: business_name
+        description: Official registered business name.
+        data_tests:
+          - not_null
+
+      - name: legal_form
+        description: Legal form of the entity (e.g. GmbH, AG, Einzelfirma).
+
+      - name: seat
+        description: Municipality in which the company is registered.
+
+      - name: canton_rc
+        description: Two-letter canton abbreviation for the commercial registry.
+
+      - name: cantonal_excerpt
+        description: Raw cantonal excerpt reference string.
+
+      - name: _ingested_at
+        description: Timestamp when the record was loaded into the landing zone.
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this record.
+
+  - name: economics__intl_ch_zefix
+    description: >
+      Analytics-ready mart for Switzerland Zefix Central Business Name Index companies.
+      Materialized as a table. Exposes all key identifiers for cross-source joins and
+      enriches with an audit timestamp.
+    columns:
+      - name: company_id
+        description: Surrogate primary key — unique per company record.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: country
+        description: ISO-3166-1 alpha-2 country code. Always 'CH' for this source.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['CH']
+
+      - name: uid
+        description: Swiss federal unique identification number.
+        data_tests:
+          - not_null
+
+      - name: ehraid
+        description: EHRA (cantonal excerpt) identifier.
+        data_tests:
+          - not_null
+
+      - name: chid
+        description: CH identifier.
+        data_tests:
+          - not_null
+
+      - name: business_name
+        description: Official registered business name.
+        data_tests:
+          - not_null
+
+      - name: legal_form
+        description: Legal form of the entity (e.g. GmbH, AG, Einzelfirma).
+
+      - name: seat
+        description: Municipality in which the company is registered.
+
+      - name: canton_rc
+        description: Two-letter canton abbreviation for the commercial registry.
+
+      - name: cantonal_excerpt
+        description: Raw cantonal excerpt reference string.
+
+      - name: _ingested_at
+        description: Timestamp when the record was loaded into the landing zone.
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this record.
+
+      - name: _mart_updated_at
+        description: Timestamp when the mart table was last refreshed.
+        data_tests:
+          - not_null

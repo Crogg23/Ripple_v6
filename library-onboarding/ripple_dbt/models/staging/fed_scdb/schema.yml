@@ -1,0 +1,267 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_SCDB
+        description: >
+          Raw landing table for the Supreme Court Database (SCDB) published by
+          Washington University Law. Each row represents a single justice-vote
+          record for a Supreme Court case.
+
+models:
+
+  - name: stg_fed_scdb__supreme_court_cases
+    description: >
+      Staging view for the Supreme Court Database. Renames raw columns to
+      snake_case, casts TEXT fields to appropriate types, and deduplicates
+      on vote_id (latest ingestion wins).
+    columns:
+
+      - name: vote_id
+        description: Surrogate primary key — one row per justice per case-issue.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: case_id
+        description: Unique identifier for the case.
+        data_tests:
+          - not_null
+
+      - name: docket_id
+        description: Docket identifier.
+        data_tests:
+          - not_null
+
+      - name: case_issues_id
+        description: Case-issues composite identifier.
+        data_tests:
+          - not_null
+
+      - name: date_decision
+        description: Date the decision was handed down.
+        data_tests:
+          - not_null
+
+      - name: us_citation
+        description: U.S. Reports citation (primary citation).
+        data_tests:
+          - not_null
+
+      - name: docket
+        description: Docket number as filed with the Court.
+        data_tests:
+          - not_null
+
+      - name: natural_court
+        description: Natural court composition identifier.
+        data_tests:
+          - not_null
+
+      - name: justice_name
+        description: Name of the justice casting the vote.
+        data_tests:
+          - not_null
+
+      - name: term
+        description: Supreme Court term (year).
+
+      - name: date_argument
+        description: Date of oral argument.
+
+      - name: date_reargument
+        description: Date of reargument, if any.
+
+      - name: decision_type_code
+        description: >
+          Numeric code for the type of decision
+          (1=orally argued, 2=per curiam, 5=equally divided, 6=unargued, etc.).
+        data_tests:
+          - accepted_values:
+              values: [1, 2, 3, 4, 5, 6, 7]
+              quote: false
+
+      - name: decision_direction_code
+        description: "Direction of the decision: 1=conservative, 2=liberal, 3=unspecifiable."
+        data_tests:
+          - accepted_values:
+              values: [1, 2, 3]
+              quote: false
+
+      - name: party_winning
+        description: "1=petitioner wins, 0=petitioner loses, null=unclear."
+        data_tests:
+          - accepted_values:
+              values: [0, 1]
+              quote: false
+
+      - name: majority_code
+        description: "1=majority, 2=dissent, 3=concurrence, etc."
+        data_tests:
+          - accepted_values:
+              values: [1, 2, 3, 4, 5, 6]
+              quote: false
+
+      - name: vote_code
+        description: >
+          Numeric code for the justice vote
+          (1=majority, 2=dissent, 3=regular concurrence, etc.).
+        data_tests:
+          - accepted_values:
+              values: [1, 2, 3, 4, 5, 6, 7, 8]
+              quote: false
+
+      - name: issue_area_code
+        description: >
+          Broad issue area code
+          (1=Criminal Procedure, 2=Civil Rights, 3=First Amendment, etc.).
+        data_tests:
+          - accepted_values:
+              values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+              quote: false
+
+      - name: _ingested_at
+        description: Timestamp when the record was loaded into the landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier.
+
+
+  - name: justice__fed_scdb
+    description: >
+      Analytics-ready mart for the Supreme Court Database. One row per
+      justice-vote (vote_id). Exposes all key identifiers for cross-source
+      joins and adds convenience boolean flags.
+    columns:
+
+      - name: vote_id
+        description: Primary key — one row per justice vote per case-issue.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: case_id
+        description: Case identifier — joins to case-level aggregations.
+        data_tests:
+          - not_null
+
+      - name: docket_id
+        description: Docket identifier.
+        data_tests:
+          - not_null
+
+      - name: case_issues_id
+        description: Case-issues composite identifier.
+        data_tests:
+          - not_null
+
+      - name: date_decision
+        description: Date the decision was handed down (key date identifier).
+        data_tests:
+          - not_null
+
+      - name: us_citation
+        description: U.S. Reports citation — primary citation identifier.
+        data_tests:
+          - not_null
+
+      - name: docket
+        description: Docket number as filed with the Court.
+        data_tests:
+          - not_null
+
+      - name: court
+        description: Natural court composition identifier.
+        data_tests:
+          - not_null
+
+      - name: justice_name
+        description: Full name of the justice casting the vote (person identifier).
+        data_tests:
+          - not_null
+
+      - name: justice_code
+        description: Numeric justice identifier (SCDB coding).
+        data_tests:
+          - not_null
+
+      - name: term
+        description: Supreme Court term (year).
+
+      - name: case_name
+        description: Name of the case.
+
+      - name: chief_justice
+        description: Name of the Chief Justice presiding.
+
+      - name: decision_type_code
+        description: Numeric code for the type of decision.
+        data_tests:
+          - accepted_values:
+              values: [1, 2, 3, 4, 5, 6, 7]
+              quote: false
+
+      - name: decision_direction_code
+        description: "Direction of the decision: 1=conservative, 2=liberal, 3=unspecifiable."
+        data_tests:
+          - accepted_values:
+              values: [1, 2, 3]
+              quote: false
+
+      - name: party_winning
+        description: "1=petitioner wins, 0=petitioner loses."
+        data_tests:
+          - accepted_values:
+              values: [0, 1]
+              quote: false
+
+      - name: majority_code
+        description: Whether the justice voted with the majority or in dissent.
+        data_tests:
+          - accepted_values:
+              values: [1, 2, 3, 4, 5, 6]
+              quote: false
+
+      - name: vote_code
+        description: Numeric code for the justice vote.
+        data_tests:
+          - accepted_values:
+              values: [1, 2, 3, 4, 5, 6, 7, 8]
+              quote: false
+
+      - name: issue_area_code
+        description: Broad issue area code.
+        data_tests:
+          - accepted_values:
+              values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+              quote: false
+
+      - name: is_petitioner_winning
+        description: Boolean flag — true when the petitioner prevailed.
+
+      - name: is_precedent_altered
+        description: Boolean flag — true when the decision alters precedent.
+
+      - name: is_unconstitutional_declaration
+        description: Boolean flag — true when a statute was declared unconstitutional.
+
+      - name: total_votes
+        description: Sum of majority and minority votes cast in the case.
+
+      - name: maj_votes
+        description: Number of votes for the majority.
+
+      - name: min_votes
+        description: Number of dissenting votes.
+
+      - name: split_vote
+        description: Indicator for a split vote.
+
+      - name: _ingested_at
+        description: Timestamp when the record was loaded into the landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier.

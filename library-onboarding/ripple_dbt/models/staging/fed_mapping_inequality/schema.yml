@@ -1,0 +1,194 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_MAPPING_INEQUALITY
+        description: >
+          Raw landing table for Mapping Inequality: Redlining in New Deal America v3.
+          Contains HOLC neighborhood grade polygons with associated area descriptions,
+          residential notes, and geographic identifiers. All columns land as TEXT.
+
+models:
+
+  - name: stg_fed_mapping_inequality__holc_neighborhood_grades
+    description: >
+      Staging model for HOLC neighborhood grade records sourced from the
+      Mapping Inequality dataset. Renames columns to snake_case, casts values
+      to appropriate types, and deduplicates on the composite neighborhood key.
+    columns:
+
+      - name: holc_neighborhood_key
+        description: Composite surrogate key: holc_id|fips|city|state|holc_grade.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: holc_id
+        description: Unique identifier for the HOLC neighborhood polygon.
+        data_tests:
+          - not_null
+
+      - name: fips
+        description: FIPS county code associated with the neighborhood.
+        data_tests:
+          - not_null
+
+      - name: city
+        description: City in which the neighborhood is located.
+        data_tests:
+          - not_null
+
+      - name: state
+        description: Two-letter US state abbreviation.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID',
+                       'IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS',
+                       'MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK',
+                       'OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV',
+                       'WI','WY','DC']
+
+      - name: holc_grade
+        description: HOLC security grade assigned to the neighborhood (A, B, C, or D).
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['A', 'B', 'C', 'D']
+
+      - name: holc_color
+        description: Color associated with the HOLC grade on historical maps.
+        data_tests:
+          - accepted_values:
+              values: ['green', 'blue', 'yellow', 'red']
+              severity: warn
+
+      - name: area_description_data
+        description: Raw JSON or text area description data from the HOLC appraisal form.
+
+      - name: residential_description
+        description: Narrative residential description from the HOLC appraisal form.
+
+      - name: year_mapped
+        description: Year the neighborhood was mapped by the HOLC, cast to numeric.
+
+      - name: geometry
+        description: WKT or GeoJSON polygon geometry of the neighborhood boundary.
+
+      - name: lat
+        description: Latitude of the neighborhood centroid, cast to double.
+
+      - name: lon
+        description: Longitude of the neighborhood centroid, cast to double.
+
+      - name: holc_grade_rank
+        description: >
+          Ordinal rank derived from holc_grade (A=1 best, D=4 worst).
+          Present only in the mart model.
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier for the ingestion job.
+
+  - name: housing__fed_mapping_inequality
+    description: >
+      Analytics-ready mart table for HOLC neighborhood grade data from the
+      Mapping Inequality: Redlining in New Deal America v3 dataset. Exposes
+      all key identifiers for cross-source joins, adds human-readable grade
+      labels and ordinal ranks, and preserves geometry for spatial analysis.
+    columns:
+
+      - name: holc_neighborhood_key
+        description: Composite surrogate key: holc_id|fips|city|state|holc_grade.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: holc_id
+        description: Unique identifier for the HOLC neighborhood polygon.
+        data_tests:
+          - not_null
+
+      - name: fips
+        description: FIPS county code associated with the neighborhood.
+        data_tests:
+          - not_null
+
+      - name: city
+        description: City in which the neighborhood is located.
+        data_tests:
+          - not_null
+
+      - name: state
+        description: Two-letter US state abbreviation.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID',
+                       'IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS',
+                       'MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK',
+                       'OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV',
+                       'WI','WY','DC']
+
+      - name: holc_grade
+        description: HOLC security grade assigned to the neighborhood (A, B, C, or D).
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['A', 'B', 'C', 'D']
+
+      - name: holc_color
+        description: Color associated with the HOLC grade on historical maps.
+
+      - name: area_description_data
+        description: Raw JSON or text area description data from the HOLC appraisal form.
+
+      - name: residential_description
+        description: Narrative residential description from the HOLC appraisal form.
+
+      - name: year_mapped
+        description: Year the neighborhood was mapped by the HOLC.
+
+      - name: geometry
+        description: WKT or GeoJSON polygon geometry of the neighborhood boundary.
+
+      - name: lat
+        description: Latitude of the neighborhood centroid.
+
+      - name: lon
+        description: Longitude of the neighborhood centroid.
+
+      - name: holc_grade_rank
+        description: Ordinal rank derived from holc_grade (A=1 best, D=4 worst).
+        data_tests:
+          - accepted_values:
+              values: [1, 2, 3, 4]
+              severity: warn
+
+      - name: holc_grade_label
+        description: Human-readable label for the HOLC grade.
+        data_tests:
+          - accepted_values:
+              values: ['Best', 'Still Desirable', 'Definitely Declining', 'Hazardous', 'Unknown']
+
+      - name: source_id
+        description: Constant identifier for the source dataset (fed_mapping_inequality).
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['fed_mapping_inequality']
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Pipeline run identifier for the ingestion job.
+        data_tests:
+          - not_null

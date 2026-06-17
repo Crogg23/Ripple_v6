@@ -1,0 +1,320 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_REVOLVINGDOOR_PROJECT
+        description: >
+          Raw landing table for the Revolving Door Project Personnel Map and
+          Trump Administration Trackers. All columns arrive as TEXT from the
+          ingestion pipeline.
+
+models:
+
+  - name: stg_fed_revolvingdoor_project__personnel_positions
+    description: >
+      Staging view for Revolving Door Project personnel positions. Renames raw
+      columns to snake_case, derives convenience columns (person_name, agency,
+      industry_sector, position_key), and deduplicates on the composite natural
+      key keeping the most-recently ingested record.
+    columns:
+
+      - name: position_key
+        description: MD5 surrogate key over (person_name, position_name, position_department, position_type).
+        data_tests:
+          - unique
+          - not_null
+
+      - name: person_name
+        description: Full name of the individual (sourced from the H column).
+        data_tests:
+          - not_null
+
+      - name: agency
+        description: Federal agency or department associated with the position (alias of position_department).
+        data_tests:
+          - not_null
+
+      - name: industry_sector
+        description: Primary private-sector industry affiliation (alias of sector1).
+        data_tests:
+          - not_null
+
+      - name: position_type
+        description: Classification of the position (e.g. Appointee, Revolving Door).
+        data_tests:
+          - not_null
+
+      - name: position_name
+        description: Title or name of the position held.
+        data_tests:
+          - not_null
+
+      - name: position_department
+        description: Department or agency name as recorded in the source.
+        data_tests:
+          - not_null
+
+      - name: position_description
+        description: Free-text description of the role.
+
+      - name: h
+        description: Raw header / name column from the source spreadsheet.
+
+      - name: sector1
+        description: First (primary) private-sector interest area.
+
+      - name: sector1_interest
+        description: Nature of the conflict-of-interest for sector1.
+
+      - name: sector2
+        description: Second private-sector interest area.
+
+      - name: sector2_interest
+        description: Nature of the conflict-of-interest for sector2.
+
+      - name: sector3
+        description: Third private-sector interest area.
+
+      - name: sector3_interest
+        description: Nature of the conflict-of-interest for sector3.
+
+      - name: sector4
+        description: Fourth private-sector interest area.
+
+      - name: sector4_interest
+        description: Nature of the conflict-of-interest for sector4.
+
+      - name: sector5
+        description: Fifth private-sector interest area.
+
+      - name: sector5_interest
+        description: Nature of the conflict-of-interest for sector5.
+
+      - name: sector6
+        description: Sixth private-sector interest area.
+
+      - name: sector6_interest
+        description: Nature of the conflict-of-interest for sector6.
+
+      - name: sector7
+        description: Seventh private-sector interest area.
+
+      - name: sector7_interest
+        description: Nature of the conflict-of-interest for sector7.
+
+      - name: sector8
+        description: Eighth private-sector interest area.
+
+      - name: sector8_interest
+        description: Nature of the conflict-of-interest for sector8.
+
+      - name: sector9
+        description: Ninth private-sector interest area.
+
+      - name: sector9_interest
+        description: Nature of the conflict-of-interest for sector9.
+
+      - name: sector10
+        description: Tenth private-sector interest area.
+
+      - name: sector10_interest
+        description: Nature of the conflict-of-interest for sector10.
+
+      - name: sector11
+        description: Eleventh private-sector interest area.
+
+      - name: sector11_interest
+        description: Nature of the conflict-of-interest for sector11.
+
+      - name: sector12
+        description: Twelfth private-sector interest area.
+
+      - name: sector12_interest
+        description: Nature of the conflict-of-interest for sector12.
+
+      - name: sector14
+        description: Fourteenth private-sector interest area (note: 13 absent in source).
+
+      - name: sector14_interest
+        description: Nature of the conflict-of-interest for sector14.
+
+      - name: sector14_1
+        description: Duplicate/alternate fourteenth sector column from source.
+
+      - name: sector14_interest_1
+        description: Nature of the conflict-of-interest for sector14_1.
+
+      - name: sector15
+        description: Fifteenth private-sector interest area.
+
+      - name: sector15_interest
+        description: Nature of the conflict-of-interest for sector15.
+
+      - name: sector16
+        description: Sixteenth private-sector interest area.
+
+      - name: sector16_interest
+        description: Nature of the conflict-of-interest for sector16.
+
+      - name: _ingested_at
+        description: Timestamp when the record was loaded into the landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this record.
+
+  - name: int_fed_revolvingdoor_project__positions_sectors
+    description: >
+      Intermediate view that unpivots the 16 wide sector/interest column pairs
+      from the staging model into a tidy long format.  One row per
+      (position_key, sector_slot) where sector_name is non-null.
+    columns:
+
+      - name: position_sector_key
+        description: Surrogate key over (position_key, sector_slot).
+        data_tests:
+          - unique
+          - not_null
+
+      - name: position_key
+        description: Foreign key to stg_fed_revolvingdoor_project__personnel_positions.
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('stg_fed_revolvingdoor_project__personnel_positions')
+              field: position_key
+
+      - name: person_name
+        description: Full name of the individual.
+        data_tests:
+          - not_null
+
+      - name: agency
+        description: Federal agency associated with the position.
+        data_tests:
+          - not_null
+
+      - name: industry_sector
+        description: Primary industry sector for the position.
+        data_tests:
+          - not_null
+
+      - name: sector_slot
+        description: Identifier for which sector column this row originated from (e.g. sector1, sector2).
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - sector1
+                - sector2
+                - sector3
+                - sector4
+                - sector5
+                - sector6
+                - sector7
+                - sector8
+                - sector9
+                - sector10
+                - sector11
+                - sector12
+                - sector14
+                - sector14_1
+                - sector15
+                - sector16
+
+      - name: sector_name
+        description: Name of the private-sector interest area for this slot.
+        data_tests:
+          - not_null
+
+      - name: sector_interest
+        description: Nature/type of the conflict-of-interest for this sector slot.
+
+      - name: _ingested_at
+        description: Timestamp when the record was loaded into the landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this record.
+
+  - name: governance__fed_revolvingdoor_project
+    description: >
+      Analytics-ready mart table for the Revolving Door Project personnel
+      positions. One row per unique personnel position. Exposes key identifiers
+      (person_name, agency, industry_sector) for cross-source governance joins,
+      retains the full wide sector/interest structure, and adds convenience
+      flags and counts.
+    columns:
+
+      - name: position_key
+        description: Surrogate primary key for the position record.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: person_name
+        description: Full name of the individual.
+        data_tests:
+          - not_null
+
+      - name: agency
+        description: Federal agency or department associated with the position.
+        data_tests:
+          - not_null
+
+      - name: industry_sector
+        description: Primary private-sector industry affiliation.
+        data_tests:
+          - not_null
+
+      - name: position_type
+        description: Classification of the position.
+        data_tests:
+          - not_null
+
+      - name: position_name
+        description: Title or name of the position.
+        data_tests:
+          - not_null
+
+      - name: position_department
+        description: Department or agency name as recorded in the source.
+        data_tests:
+          - not_null
+
+      - name: position_description
+        description: Free-text description of the role.
+
+      - name: sector_count
+        description: Number of non-null/non-empty sector columns populated for this position.
+        data_tests:
+          - not_null
+
+      - name: is_political_appointee
+        description: Boolean flag; true when position_type indicates a political appointee.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+
+      - name: is_revolving_door
+        description: Boolean flag; true when position_type contains 'revolv'.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+
+      - name: _source_id
+        description: Static source identifier for cross-source lineage.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - fed_revolvingdoor_project
+
+      - name: _ingested_at
+        description: Timestamp when the record was loaded into the landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this record.

@@ -1,0 +1,173 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_SLAVEVOYAGES_INTRAAMERICAN
+        description: >
+          Raw landing table for the Intra-American Slave Trade Database
+          (SlaveVoyages). All columns arrive as TEXT from the ingestion pipeline.
+
+models:
+
+  - name: stg_fed_slavevoyages_intraamerican__intra_american_voyages
+    description: >
+      Staging model for the Intra-American Slave Trade Database (SlaveVoyages).
+      Renames raw columns to snake_case, casts to appropriate types, and
+      deduplicates on voyage_id.
+    columns:
+
+      - name: voyage_id
+        description: Unique identifier for each recorded voyage.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: date_of_departure
+        description: Parsed date of the voyage departure.
+        data_tests:
+          - not_null
+
+      - name: year_of_departure
+        description: Year extracted from the departure date.
+        data_tests:
+          - not_null
+
+      - name: port_of_departure
+        description: Name of the port from which the voyage departed.
+        data_tests:
+          - not_null
+
+      - name: port_of_arrival
+        description: Name of the port at which the voyage arrived.
+        data_tests:
+          - not_null
+
+      - name: country_of_departure
+        description: Country associated with the port of departure.
+        data_tests:
+          - not_null
+
+      - name: country_of_arrival
+        description: Country associated with the port of arrival.
+
+      - name: captain_name
+        description: Name of the captain recorded for the voyage.
+        data_tests:
+          - not_null
+
+      - name: num_enslaved_embarked
+        description: Number of enslaved persons who embarked.
+
+      - name: num_enslaved_disembarked
+        description: Number of enslaved persons who disembarked.
+
+      - name: vessel_name
+        description: Name of the vessel used for the voyage.
+
+      - name: slave_trade_company
+        description: Trading company associated with the voyage, if applicable.
+
+      - name: source_citation
+        description: Bibliographic citation for the primary source record.
+
+      - name: doctype_html
+        description: Raw HTML doctype field carried through from landing.
+
+      - name: _ingested_at
+        description: Timestamp when the row was processed by the staging model.
+
+      - name: _source_run_id
+        description: Pipeline run identifier propagated from the ingestion layer.
+
+  - name: historical_records__fed_slavevoyages_intraamerican
+    description: >
+      Analytics-ready mart table for the Intra-American Slave Trade Database.
+      Exposes standardised cross-source join keys alongside voyage-level detail
+      including temporal, geographic, and demographic dimensions.
+    columns:
+
+      - name: voyage_id
+        description: Primary key — unique identifier for each recorded voyage.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: date_of_departure
+        description: Date of the voyage departure (cross-source date key).
+        data_tests:
+          - not_null
+
+      - name: year_of_departure
+        description: Year of the voyage departure.
+        data_tests:
+          - not_null
+
+      - name: port_of_departure
+        description: Name of the port from which the voyage departed.
+        data_tests:
+          - not_null
+
+      - name: port_of_arrival
+        description: Name of the port at which the voyage arrived.
+        data_tests:
+          - not_null
+
+      - name: country_of_departure
+        description: Country associated with the port of departure.
+        data_tests:
+          - not_null
+
+      - name: country_of_arrival
+        description: Country associated with the port of arrival.
+
+      - name: person_name
+        description: Name of the captain (cross-source person_name key).
+        data_tests:
+          - not_null
+
+      - name: slave_trade_company
+        description: Trading company associated with the voyage.
+
+      - name: num_enslaved_embarked
+        description: Number of enslaved persons who embarked on the voyage.
+
+      - name: num_enslaved_disembarked
+        description: Number of enslaved persons who disembarked from the voyage.
+
+      - name: num_enslaved_mortality_estimate
+        description: >
+          Derived estimate of mortality: embarked minus disembarked.
+          Null values in source measures are treated as zero for this calculation.
+
+      - name: vessel_name
+        description: Name of the vessel used for the voyage.
+
+      - name: source_citation
+        description: Bibliographic citation for the primary source record.
+
+      - name: source_voyage_id
+        description: Voyage identifier as supplied by the original source system.
+
+      - name: source_id
+        description: Constant identifier for this source dataset.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['fed_slavevoyages_intraamerican']
+
+      - name: country
+        description: Standardised country field (cross-source join key); maps to country_of_departure.
+        data_tests:
+          - not_null
+
+      - name: fips_code
+        description: FIPS geographic code (null for this source — reserved for cross-source joins).
+
+      - name: _ingested_at
+        description: Timestamp when the row was processed by the staging model.
+
+      - name: _source_run_id
+        description: Pipeline run identifier propagated from the ingestion layer.

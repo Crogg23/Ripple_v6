@@ -42,7 +42,7 @@ Return STRICT JSON only (no prose, no code fences) with exactly these keys:
   "key_identifiers": ["join keys present, e.g. FIPS, EIN, NPI, lat_lon, CIK"],
   "accountability_relevance": "1 sentence: why this matters for following money/power",
   "priority_tier": "1 (high) | 2 | 3",
-  "load_mode": "snapshot | incremental -- DEFAULT snapshot. Use incremental ONLY for huge / daily-growing sources (millions of rows, a date-bounded search API) where re-mirroring everything each run is wrong",
+  "load_mode": "snapshot | incremental | chunked -- DEFAULT snapshot. incremental = huge / daily-growing sources (millions of rows, a date-bounded search API) where re-mirroring everything each run is wrong. chunked = a SINGLE very large bulk FILE (hundreds of MB to multiple GB -- e.g. NPPES ~9GB, a national CSV/ZIP) that won't fit in memory: the fetch STREAMS it and yields row-batches. Pick chunked when est_volume/format implies a multi-GB download; cursor_field/primary_key are not needed for it",
   "cursor_field": "incremental only: the sortable column to advance on (a date/timestamp, e.g. date_received); else \"\"",
   "primary_key": "incremental only: the unique record id used to dedupe in staging (e.g. complaint_id); else \"\"",
   "schema_fields": [{"name": "col", "type": "TEXT|INT|FLOAT|DATE|...", "description": "..."}],

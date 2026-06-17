@@ -2,15 +2,20 @@
 Last updated: 2026-06-17
 
 ## CURRENT FOCUS
-The agent now has **three fetch capabilities** and picks each autonomously at recon: **bulk/API**,
-**static scrape** (C1, BS4), and **headless-browser scrape** (C1b, Playwright `render()` for
-JS-rendered / bot-protected pages) — plus two **load modes** (snapshot + C2 incremental). C1b is now
+The agent now has **three fetch capabilities** (bulk/API, static scrape C1, headless-browser scrape C1b)
+and **three load modes** — snapshot, **C2 incremental**, and **C3 chunked/streaming** (large files that
+won't fit in memory) — each picked autonomously at recon. **C3 proven on NPPES (~9 GB)**: streamed 300,000
+rows in 50k chunks at ~3 GB peak RSS where the all-in-memory load OOM-killed (exit 137) every prior batch.
+C1b is
 **proven full end-to-end through `onboard.py` with real creds**: recon autonomously set `scrape_js`,
 codegen used the injected `render()`, Playwright cleared a JS shell, and 100 rows landed in
 `LIBRARY_RAW.LANDING` + registered in `LIBRARY_META` (target `quotes.toscrape.com/js` — BAILII's wall was
 down at run time; see the C1b end-to-end section for why). With full capability proven, **ran registry
-batch 2** (tier-1, auth-free, 12 attempted → 4 landed incl. FARA 221,900 rows; see that section). PR #2–#7
-merged to `main`; batch-2 work is on `claude/laughing-knuth-fmjka8`.
+batches 2 + 3** (tier-1, auth-free): batch 2 = 12 attempted → 4 landed (incl. FARA 221,900); batch 3 = 4
+ran before an **Anthropic credit exhaustion** halted the queue → 3 landed (incl. Mapping Inequality 10,154),
+8 credit-blocked. Credits funded → **batch 4** retried those + 8 new: **16 attempted, 10 landed** (incl.
+NOAA AIS 7.3M, SCDB 83,644). **Live total: 36 landing tables, 9,337,547 rows.** PR #2–#9 merged to `main`;
+batch-4 work is on `claude/laughing-knuth-fmjka8`.
 
 ## WHAT EXISTS
 - `library-onboarding/` — the 5-checkpoint CLI agent: RECON → SCRIPT → LOAD → DBT → REGISTRY.
@@ -47,9 +52,24 @@ merged to `main`; batch-2 work is on `claude/laughing-knuth-fmjka8`.
 | `fed_doj_fca_settlements` | 19 | registry batch 2 (DOJ False Claims Act press-release scrape) |
 | `fed_doj_crt_cases` | 1 | registry batch 2 (DOJ Civil Rights portal scrape — ⚠ thin/incomplete, review) |
 | `fed_fara_bulk` | 221,900 | registry batch 2 (FARA eFile bulk — foreign-agent registrations) |
+| `fed_mapping_inequality` | 10,154 | **registry batch 3** (2026-06-17 — HOLC redlining, GeoJSON flattened to rows) |
+| `fed_hhs_taggs` | 45 | registry batch 3 (HHS grant-tracking, incremental backfill) |
+| `fed_fdic_enforcement` | 2 | registry batch 3 (FDIC enforcement portal scrape — ⚠ thin, review) |
+| `fed_noaa_ais` | 7,296,275 | **registry batch 4** (NOAA Marine Cadastre AIS vessel tracking — incremental) |
+| `fed_scdb` | 83,644 | registry batch 4 (Supreme Court Database — case-level votes/decisions) |
+| `fed_nara_aad` | 554 | registry batch 4 (NARA Access to Archival Databases) |
+| `fed_revolvingdoor_project` | 409 | registry batch 4 (gov-accountability tracking; portal scrape) |
+| `fed_slavevoyages_intraamerican` | 201 | registry batch 4 (intra-American slave-trade voyages) |
+| `fed_wpa_slave_narratives` | 100 | registry batch 4 (WPA slave narratives 1936–38) |
+| `fed_naag_multistate_settlements` | 26 | registry batch 4 (multistate AG settlements) |
+| `fed_oyez` | 25 | registry batch 4 (SCOTUS oral-argument/case data, API) |
+| `fed_nara_wra_aad` | 4 | registry batch 4 (WRA records — ⚠ thin, review) |
+| `intl_ch_zefix` | 1 | registry batch 4 (Swiss business registry — ⚠ thin, review) |
+| `fed_cms_nppes` | 300,000 | **C3 chunked** (2026-06-17 — ~9 GB NPPES streamed in 50k chunks, demo-capped at 300k) |
 
-**15 clean sources in `LANDING`** (after batch 2 added 4). Live total: **23 landing tables,
-1,946,107 raw rows** (was 19 / 1,709,487 at batch-2 start; +236,620). The demo `intl_demo_quotes_toscrape_js`
+**29 clean sources in `LANDING`** (batches 2–4 +17, C3 NPPES +1). Live total: **37 landing tables,
+9,637,547 raw rows** (was 19 / 1,709,487 before batch 2). Batch 4 added +7,381,239 rows (dominated by
+`fed_noaa_ais` 7,296,275 and `fed_scdb` 83,644); C3 NPPES added the latest +300,000. The demo `intl_demo_quotes_toscrape_js`
 was dropped (table + registry + ingest_runs) before the batch. The false-success `fed_cms_hpt_enforcement`
 was dequeued earlier (registry un-flagged + junk table dropped, 2026-06-17, with Chris's OK): it had landed
 an HTML page (one `DOCTYPE_HTML` column, 22 junk rows), not data — caught when its mart wouldn't build.
@@ -85,6 +105,40 @@ portal/scrape/huge shapes, so a low hit-rate is expected.
   `extract_code` returns it → `invalid syntax (line 1)`; it self-corrected on retry here. Worth hardening
   `extract_code`/the codegen system prompt before a future batch. The DOJ CRT 1-row landing is a thin-scrape
   near-miss (no pagination) — flagged for review, not auto-dequeued (it did land structured data).
+
+### Registry batch 3 — next 12 fresh tier-1 (skipping batch-2's 8 attempts), 2026-06-17
+Worked further down the queue, excluding the 8 sources batch 2 already attempted. **Cut short by an
+Anthropic API credit exhaustion partway through** — so the run splits in two:
+- **Ran with working credits (4):** `fed_mapping_inequality` ✅ 10,154 (GeoJSON flattened), `fed_hhs_taggs`
+  ✅ 45, `fed_fdic_enforcement` ✅ 2 (⚠ thin portal scrape), `fed_fjc_idb` ❌ killed (OOM — large bulk CSV).
+- **Credit-blocked (8, NOT genuine failures — still queued for retry):** `fed_mapping_prejudice`,
+  `fed_naag_multistate_settlements`, `fed_nara_aad`, `fed_nara_wra_aad`, `fed_noaa_ais`, `fed_npdb_puf`,
+  `fed_olms_lm_reports`, `fed_opm_fedworkforce` — every `call_claude` returned HTTP 400 "credit balance is
+  too low", so recon couldn't run and each aborted in ~6s. These left zero partial state (no landing, no
+  `INGEST_RUNS`, registry untouched) — re-run them once credits are topped up.
+- **BLOCKER surfaced (stopped the queue):** the `ANTHROPIC_API_KEY` has no credits left. No further batches
+  can run until it's funded — this is the pipeline-wide stop condition, not source difficulty.
+- **Recurring OOM on big bulk files** (`fed_cms_nppes` ~9 GB in batch 2, `fed_fjc_idb` in batch 3): the load
+  path reads the whole download into pandas in memory → container OOM (exit 137). Follow-up: stream/chunk
+  large downloads (or cap rows) so multi-GB sources don't get killed.
+
+### Registry batch 4 — credits funded, retried the 8 + 8 new (2026-06-17)
+After Chris topped up the Anthropic key, re-ran the queue: the 8 batch-3 credit-blocked sources + 8 new,
+skipping the 9 genuinely-hard fails (dead APIs / dynamic portals / OOM-prone multi-GB). **16 attempted,
+10 landed, 6 failed** — the best batch yet.
+- **Landed (10):** `fed_noaa_ais` 7,296,275 (incremental — biggest source in the Library now), `fed_scdb`
+  83,644, `fed_nara_aad` 554, `fed_revolvingdoor_project` 409, `fed_slavevoyages_intraamerican` 201,
+  `fed_wpa_slave_narratives` 100, `fed_naag_multistate_settlements` 26, `fed_oyez` 25, `fed_nara_wra_aad` 4
+  (⚠ thin), `intl_ch_zefix` 1 (⚠ thin). The 3 portal scrapes (nara_aad, revolvingdoor, naag) confirm the
+  browser/scrape path earns real rows from JS/portal sources.
+- **Failed (6):** `fed_mapping_prejudice` (Shapefile — no pandas path), `fed_npdb_puf`, `fed_olms_lm_reports`,
+  `fed_opm_fedworkforce` (large/dynamic bulk), `fed_slavevoyages_transatlantic` (much larger than the
+  intra-American set), `intl_ca_statscan` (StatCan WDS API shape).
+- **Retry verdict**: of the 8 formerly credit-blocked, 4 landed (naag, nara_aad, nara_wra_aad, noaa_ais) and
+  4 genuinely failed — confirming they were *not* all hard, just blocked before. The credit-block accounting
+  in batch 3 was correct.
+- **Thin landings flagged for review** (real data, likely incomplete): `fed_nara_wra_aad` (4),
+  `intl_ch_zefix` (1) — alongside batch-2/3's `fed_doj_crt_cases` (1) and `fed_fdic_enforcement` (2).
 
 ### Registry-driven queue (B) — `xc_biorxiv_medrxiv` (2026-06-17), verified live
 - `registry_batch.py --source-id xc_biorxiv_medrxiv --run` selected the row from the catalog and ran the
@@ -144,6 +198,32 @@ First run (empty table) → bounded backfill; a run with no new rows → clean n
 - Trade-off (ADR in `docs/design-incremental-and-scrape.md`): incremental breaks the snapshot-replace raw
   invariant for these sources — landing becomes append-only. Mitigated: still all-TEXT + provenance; clean
   current state lives in staging.
+
+### C3 — chunked / streaming load (2026-06-17), built + PROVEN live on NPPES
+The third load mode, for a SINGLE file too big for memory (the NPPES ~9 GB CSV, big bulk ZIPs) that was
+OOM-killing the agent (exit 137 — pandas balloons a 9 GB string-column CSV to 30–50 GB, past the 16 GB box).
+**snapshot + incremental paths untouched** — chunked is a separate `run_ingest` branch.
+- **Autonomy**: recon flags `load_mode=chunked` when est_volume/format implies a multi-GB download
+  (verified: NPPES recon picked `chunked` + `bulk_zip`, "~9 GB uncompressed"). Codegen writes `fetch_data`
+  as a **generator** that yields DataFrame chunks of `context["chunk_rows"]` (50k default), streaming the
+  download (`pd.read_csv(chunksize=)`, or stream-to-temp-file + `zipfile` for ZIPs).
+- **Loader** (`ingest._run_chunked` / `_load_landing_chunked`): writes each chunk to the SAME landing table
+  with the SAME provenance stamps — first fresh chunk replaces the table, the rest append, so peak memory is
+  ~one chunk regardless of file size. Each row carries its chunk's SHA-256; `INGEST_RUNS` gets a manifest SHA
+  over all chunk hashes. Config: `ONBOARD_CHUNK_ROWS` (50k), `ONBOARD_CHUNK_MAX_ROWS` (0 = unlimited).
+- **Resume**: the landing row-count is the progress ledger. A crash leaves landed chunks + no `success`
+  `INGEST_RUNS` row → a re-run detects that, passes `resume_from_row` (skip already-landed), and appends. A
+  re-run AFTER success = clean full reload (overwrite). All three proven on a synthetic source (fresh 300,
+  reload-no-dup 300, crash→resume 100+200=300).
+- **PROVEN on NPPES** (`fed_cms_nppes`) — the source that OOM-killed every batch: full agent run, all 5
+  checkpoints, **exit 0**. Streamed **300,000 rows × 333 columns** into `LIBRARY_RAW.LANDING.FED_CMS_NPPES`
+  (6 chunks, 6 per-chunk SHAs, manifest sha `e5022b4f053e`), `INGEST_RUNS` success (433 MB processed),
+  registry `INCLUDE=Y`. **Peak Python RSS 2,999 MB** — bounded + constant per chunk (lower `chunk_rows` to
+  shrink it for very wide tables), vs the 30–50 GB the whole-file load needed. Demo-capped at 300k via
+  `ONBOARD_CHUNK_MAX_ROWS`; uncap to land all ~8.5 M providers with the same flat memory.
+- Wide-table note: NPPES is 333 columns — checkpoint-4 dbt-gen truncated its JSON once (max_tokens) but
+  self-recovered on auto-repair 1. Very wide tables remain a dbt-gen stress point (raise max_tokens further
+  or emit YAML/SQL outside JSON) — tracked, not blocking.
 
 ### C1 — static scrape (Phase 1, 2026-06-17), built + proven
 For sources with no clean file/API. Changes: codegen prompt gained scrape + bounded-crawl + browser-UA

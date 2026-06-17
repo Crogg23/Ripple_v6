@@ -1,0 +1,210 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_HHS_TAGGS
+        description: >
+          Raw landing table for the HHS TAGGS (Tracking Accountability in
+          Government Grants System) grant awards dataset. All columns are TEXT
+          as ingested.
+
+models:
+
+  - name: stg_fed_hhs_taggs__grant_awards
+    description: >
+      Staging model for HHS TAGGS grant awards. Renames columns to snake_case,
+      casts types, and deduplicates on award_number keeping the most-recently
+      ingested record.
+    columns:
+
+      - name: award_number
+        description: Unique identifier assigned to each HHS grant award.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: opdiv
+        description: HHS Operating Division that issued the award.
+        data_tests:
+          - not_null
+
+      - name: recipient_name
+        description: Legal name of the grant recipient organisation.
+
+      - name: recipient_ein
+        description: Employer Identification Number of the recipient.
+        data_tests:
+          - not_null
+
+      - name: recipient_class
+        description: Classification of the recipient entity type.
+
+      - name: award_date
+        description: Date the award was issued (cast from TEXT via try_to_date).
+        data_tests:
+          - not_null
+
+      - name: fiscal_year
+        description: Federal fiscal year associated with the award.
+        data_tests:
+          - not_null
+
+      - name: award_amount
+        description: Dollar value of the grant award.
+
+      - name: activity_type
+        description: Type of grant activity.
+
+      - name: award_type
+        description: Classification of the award instrument.
+
+      - name: project_description
+        description: Free-text description of the funded project.
+
+      - name: assistance_listing_number
+        description: Assistance Listing Number (ALN / formerly CFDA number).
+        data_tests:
+          - not_null
+
+      - name: assistance_listing_name
+        description: Official name of the assistance listing programme.
+
+      - name: recipient_city
+        description: City of the recipient organisation.
+
+      - name: recipient_state
+        description: Two-letter US state abbreviation of the recipient.
+
+      - name: recipient_zip
+        description: ZIP code of the recipient organisation.
+        data_tests:
+          - not_null
+
+      - name: recipient_fips
+        description: FIPS county code of the recipient organisation.
+        data_tests:
+          - not_null
+
+      - name: recipient_country
+        description: Country of the recipient organisation.
+
+      - name: metro_nonmetro
+        description: Indicates whether the recipient is in a metro or non-metro area.
+        data_tests:
+          - accepted_values:
+              values: ['Metro', 'Non-Metro', 'Unknown', 'metro', 'non-metro', 'unknown']
+              quote: true
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier for lineage tracking.
+
+  - name: economics__fed_hhs_taggs
+    description: >
+      Analytics-ready mart for HHS TAGGS grant awards. Exposes all key
+      identifiers (EIN, award_date, zip_code, fips_code, ALN) for cross-source
+      joins in the economics domain, and adds convenience derived columns such
+      as award_year, award_month, and award_size_band.
+    columns:
+
+      - name: award_number
+        description: Unique identifier for each HHS grant award (primary key).
+        data_tests:
+          - unique
+          - not_null
+
+      - name: ein
+        description: Employer Identification Number of the recipient (from RECIPIENT_EIN).
+        data_tests:
+          - not_null
+
+      - name: award_date
+        description: Date the award was issued.
+        data_tests:
+          - not_null
+
+      - name: fiscal_year
+        description: Federal fiscal year associated with the award.
+        data_tests:
+          - not_null
+
+      - name: zip_code
+        description: ZIP code of the recipient (from RECIPIENT_ZIP).
+        data_tests:
+          - not_null
+
+      - name: fips_code
+        description: FIPS county code of the recipient (from RECIPIENT_FIPS).
+        data_tests:
+          - not_null
+
+      - name: aln
+        description: Assistance Listing Number / CFDA number (from ASSISTANCE_LISTING_NUMBER).
+        data_tests:
+          - not_null
+
+      - name: recipient_name
+        description: Legal name of the grant recipient organisation.
+
+      - name: recipient_class
+        description: Classification of the recipient entity type.
+
+      - name: recipient_city
+        description: City of the recipient organisation.
+
+      - name: recipient_state
+        description: Two-letter US state abbreviation of the recipient.
+
+      - name: recipient_country
+        description: Country of the recipient organisation.
+
+      - name: metro_nonmetro
+        description: Indicates whether the recipient is in a metro or non-metro area.
+        data_tests:
+          - accepted_values:
+              values: ['Metro', 'Non-Metro', 'Unknown', 'metro', 'non-metro', 'unknown']
+              quote: true
+
+      - name: opdiv
+        description: HHS Operating Division that issued the award.
+        data_tests:
+          - not_null
+
+      - name: activity_type
+        description: Type of grant activity.
+
+      - name: award_type
+        description: Classification of the award instrument.
+
+      - name: award_amount
+        description: Dollar value of the grant award.
+
+      - name: assistance_listing_name
+        description: Official name of the assistance listing programme.
+
+      - name: project_description
+        description: Free-text description of the funded project.
+
+      - name: award_year
+        description: Calendar year of the award date (truncated to year).
+
+      - name: award_month
+        description: Calendar month of the award date (truncated to month).
+
+      - name: award_size_band
+        description: Bucketed award size — large (>=1M), medium (>=100K), small (>=0), unknown.
+        data_tests:
+          - accepted_values:
+              values: ['large', 'medium', 'small', 'unknown']
+              quote: true
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier for lineage tracking.
