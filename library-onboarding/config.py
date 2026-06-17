@@ -92,6 +92,15 @@ class Config:
     # back to Claude as feedback and retry before giving up on the source.
     auto_repair: int = field(default_factory=lambda: _int_env("ONBOARD_AUTO_REPAIR", 3))
 
+    # --- Chunked load (C3 -- large files that won't fit in memory) ------
+    # Rows per chunk written to Snowflake. The streamed download never holds more
+    # than ~one chunk in memory, so peak RSS is bounded regardless of file size.
+    chunk_rows: int = field(default_factory=lambda: _int_env("ONBOARD_CHUNK_ROWS", 50_000))
+    # Optional safety/demo cap: stop a chunked load after this many rows (0 = no cap,
+    # stream the whole file). Lets a proof land a bounded slice fast without changing
+    # the (size-independent) memory profile.
+    chunk_max_rows: int = field(default_factory=lambda: _int_env("ONBOARD_CHUNK_MAX_ROWS", 0))
+
     # --- Headless browser (C1b -- Playwright, for scrape_js sources) ----
     # Run the browser headless (set 0 only to watch it locally during debugging).
     browser_headless: bool = field(

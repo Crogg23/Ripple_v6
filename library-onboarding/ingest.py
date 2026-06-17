@@ -77,9 +77,16 @@ def run_ingest(config: dict, code: str) -> dict:
     source_id = config["source_id"]
     table = config["landing_table"]
     url = config["url"]
-    incremental = (config.get("load_mode") or "snapshot").strip().lower() == "incremental"
-    cursor_field = (config.get("cursor_field") or "").strip()
+    load_mode = (config.get("load_mode") or "snapshot").strip().lower()
     live = not (settings.fake_llm or not settings.snowflake_ready())
+
+    # Chunked: a single very large file streamed in row-batches (separate path, so the
+    # snapshot/incremental logic below is untouched). Same landing table + provenance.
+    if load_mode == "chunked":
+        return _run_chunked(config, code, run_id, started, source_id, table, url, live)
+
+    incremental = load_mode == "incremental"
+    cursor_field = (config.get("cursor_field") or "").strip()
 
     # Incremental: read the high-water mark BEFORE fetching, so the fetch pulls only
     # records newer than what we already hold. None => first run (bounded backfill).
@@ -174,6 +181,207 @@ def run_ingest(config: dict, code: str) -> dict:
     finally:
         conn.close()
     return result
+
+
+# ---------------------------------------------------------------------------
+# Chunked load (C3) -- stream a large file and write it in row-batches
+# ---------------------------------------------------------------------------
+def _run_chunked(config: dict, code: str, run_id: str, started, source_id: str,
+                 table: str, url: str, live: bool) -> dict:
+    """Stream a too-big-for-memory source in chunks, writing each to the landing
+    table as it arrives. The table grows chunk-by-chunk, so a crash leaves the rows
+    already landed in place; a re-run resumes from the current row count.
+
+    Same landing-table shape + provenance stamps as snapshot/incremental. Each row
+    carries the SHA-256 of ITS chunk (per-chunk provenance, since the whole file is
+    never held in memory); INGEST_RUNS gets a manifest SHA over all chunk hashes.
+    """
+    chunk_rows = max(1, settings.chunk_rows)
+    max_rows = max(0, settings.chunk_max_rows)
+
+    if not live:
+        why = "fake mode" if settings.fake_llm else "Snowflake creds not set"
+        return {
+            "run_id": run_id, "load_mode": "chunked", "rows": 0,
+            "status": (f"DRY RUN ({why}) -- would STREAM a chunked load into "
+                       f"LIBRARY_RAW.LANDING.{table} in batches of {chunk_rows:,} rows"
+                       + (f" (capped at {max_rows:,})" if max_rows else "")),
+        }
+
+    # Resume detection: rows already in the landing table that were NOT followed by a
+    # successful run = a prior chunked load that crashed mid-stream. Resume from there.
+    # If the last run DID succeed, a fresh re-run replaces the table (full reload).
+    conn0 = snow.connect()
+    try:
+        existing = _landing_count(conn0, table)
+        had_success = _latest_success_sha(conn0, source_id) is not None
+    finally:
+        conn0.close()
+    resume = existing > 0 and not had_success
+    resume_from = existing if resume else 0
+
+    chunk_iter = _execute_fetch_chunks(config, code, resume_from_row=resume_from,
+                                       chunk_rows=chunk_rows, chunk_max_rows=max_rows)
+
+    conn = snow.connect()
+    try:
+        appended, manifest_sha, file_bytes, columns, sample = _load_landing_chunked(
+            conn, chunk_iter, table, run_id, started,
+            resume_from_row=resume_from, fresh=not resume, max_rows=max_rows,
+        )
+        ended = _utcnow()
+        total = resume_from + appended
+        verb = f"resumed from row {resume_from:,}; appended" if resume else "streamed"
+        msg = (f"Chunked load: {verb} {appended:,} rows in batches of {chunk_rows:,} "
+               f"-> LIBRARY_RAW.LANDING.{table} (table now {total:,} rows"
+               + (f"; capped at {max_rows:,}/run)." if max_rows else ").")
+               + f" Manifest sha {manifest_sha[:12]}.")
+        _log_run(conn, source_id, run_id, "success", appended, file_bytes, manifest_sha,
+                 url, started, ended, msg)
+        status = (f"Streamed {appended:,} rows in {chunk_rows:,}-row chunks "
+                  f"-> LIBRARY_RAW.LANDING.{table} (table now {total:,} rows)"
+                  + (f" [resumed from {resume_from:,}]" if resume else ""))
+        return {
+            "run_id": run_id, "sha256": manifest_sha, "file_bytes": file_bytes,
+            "rows": appended, "load_mode": "chunked", "resumed_from": resume_from,
+            "columns": ", ".join(map(str, columns)), "sample_rows": sample,
+            "status": status,
+        }
+    except Exception as exc:
+        ended = _utcnow()
+        # Rows already written stay put -- log the partial progress so the next run
+        # can resume from the current landing row count.
+        try:
+            landed = _landing_count(conn, table)
+            _log_run(conn, source_id, run_id, "failed", None, None, "", url, started, ended,
+                     f"Chunked load failed after landing {landed:,} rows (resumable): {exc}")
+        except Exception:
+            pass
+        raise
+    finally:
+        conn.close()
+
+
+def _execute_fetch_chunks(config: dict, code: str, resume_from_row: int,
+                          chunk_rows: int, chunk_max_rows: int):
+    """Exec the generated code and return an ITERATOR of DataFrame chunks.
+
+    The generated ``fetch_data`` is expected to be a generator that ``yield``s
+    DataFrames (streaming the download). A generator function returns its generator
+    object without running the body, so building this is cheap -- the network work
+    happens lazily as the loader pulls each chunk. If the code returns a single
+    DataFrame instead, it is treated as a one-chunk stream.
+
+    SECURITY: executes model-generated Python, only after Checkpoint-2 approval.
+    """
+    try:
+        import pandas as pd  # noqa: F401  (available to generated code)
+    except ImportError as exc:  # pragma: no cover
+        raise ConfigError("pandas is required. Run `pip install -r requirements.txt`.") from exc
+
+    namespace: dict = {}
+    exec(compile(code, "<generated_ingest>", "exec"), namespace)  # noqa: S102
+    fetch = namespace.get("fetch_data")
+    if not callable(fetch):
+        raise RuntimeError("Generated script did not define fetch_data(context).")
+
+    context = {
+        "url": config["url"],
+        "source_name": config["name"],
+        "auth_type": config.get("auth", {}).get("type", "none"),
+        "env": dict(os.environ),
+        "render": browser.render,
+        # chunked controls the generated fetch honours:
+        "load_mode": "chunked",
+        "resume_from_row": resume_from_row,  # skip this many data rows (resume)
+        "chunk_rows": chunk_rows,            # rows per yielded chunk
+        "chunk_max_rows": chunk_max_rows,    # stop after this many (0 = unlimited)
+        "since": None,
+        "source_bytes": None,
+        "source_file": "",
+    }
+    result = fetch(context)
+    if hasattr(result, "columns"):           # a single DataFrame -> one chunk
+        return iter([result])
+    if result is None:
+        raise RuntimeError("Chunked fetch_data returned None -- it must yield DataFrame chunks.")
+    return iter(result)
+
+
+def _load_landing_chunked(conn, chunk_iter, table: str, run_id: str, started,
+                          resume_from_row: int, fresh: bool, max_rows: int):
+    """Write a stream of DataFrame chunks to the landing table, bounded memory.
+
+    First chunk of a FRESH load replaces the table (snapshot-style); every other
+    chunk appends. On resume, all chunks append. Returns
+    ``(appended_rows, manifest_sha, file_bytes, columns, sample_rows)``.
+    """
+    from snowflake.connector.pandas_tools import write_pandas
+
+    database, schema = settings.raw_database, settings.raw_schema
+    snow.execute(conn, f'CREATE SCHEMA IF NOT EXISTS "{database}"."{schema}"')
+    ingested_at = started.replace(tzinfo=None)
+
+    appended = 0
+    file_bytes = 0
+    chunk_shas: list[str] = []
+    columns: list = []
+    sample: list = []
+    n = 0
+    for chunk in chunk_iter:
+        if not hasattr(chunk, "columns"):
+            raise RuntimeError("Chunked fetch_data must yield pandas DataFrames.")
+        if len(chunk) == 0:
+            continue
+        if n == 0:
+            _reject_html(chunk)  # catch an HTML/landing page streamed as data
+
+        csv_bytes = chunk.to_csv(index=False).encode("utf-8")
+        chunk_sha = hashlib.sha256(csv_bytes).hexdigest()
+        file_bytes += len(csv_bytes)
+        chunk_shas.append(chunk_sha)
+
+        out = _stringify(chunk)
+        out[META_INGESTED_AT] = ingested_at
+        out[META_SOURCE_RUN_ID] = run_id
+        out[META_SRC_SHA256] = chunk_sha  # per-chunk provenance
+        overwrite = (n == 0 and fresh)    # fresh first chunk replaces; otherwise append
+
+        ok, _chunks, _nrows, _ = write_pandas(
+            conn, out, table_name=table, database=database, schema=schema,
+            auto_create_table=True, overwrite=overwrite, quote_identifiers=False,
+        )
+        if not ok:
+            raise RuntimeError(f"write_pandas reported failure on chunk {n + 1} of {table}.")
+
+        if n == 0:
+            columns = list(out.columns)
+            sample = out.head(SAMPLE_ROWS).astype(str).to_dict(orient="records")
+        appended += len(chunk)
+        n += 1
+        print(f"  chunk {n}: +{len(chunk):,} rows "
+              f"(run {appended:,}, table {resume_from_row + appended:,})", flush=True)
+
+        if max_rows and appended >= max_rows:
+            print(f"  hit ONBOARD_CHUNK_MAX_ROWS={max_rows:,} -- stopping stream (cap).", flush=True)
+            break
+
+    if appended == 0 and resume_from_row == 0:
+        raise RuntimeError(
+            "Chunked fetch_data yielded no rows -- failing loudly (bad URL / parse / "
+            "wrong format?)."
+        )
+    manifest_sha = hashlib.sha256("".join(chunk_shas).encode("utf-8")).hexdigest()
+    return appended, manifest_sha, file_bytes, columns, sample
+
+
+def _landing_count(conn, table: str) -> int:
+    """Rows currently in the landing table (0 if it doesn't exist yet)."""
+    fqt = f'"{settings.raw_database}"."{settings.raw_schema}"."{table}"'
+    try:
+        return int(snow.fetch_scalar(conn, f"SELECT COUNT(*) FROM {fqt}") or 0)
+    except Exception:
+        return 0
 
 
 # ---------------------------------------------------------------------------
