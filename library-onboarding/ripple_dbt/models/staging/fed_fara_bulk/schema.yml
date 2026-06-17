@@ -1,0 +1,287 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FARA_BULK
+        description: >
+          Raw landing table for FARA eFile Bulk Data. All columns arrive as TEXT
+          and are cast to appropriate types in the staging layer.
+
+models:
+
+  - name: stg_fed_fara_bulk__fara_registrations
+    description: >
+      Staging model for FARA (Foreign Agents Registration Act) registrations
+      sourced from the DOJ eFile bulk data export. Columns are renamed to
+      snake_case, TEXT values are cast to proper types, and obvious duplicates
+      are removed. One row per unique combination of registration_number,
+      person_name, registration_date, and state.
+    columns:
+
+      - name: fara_registration_key
+        description: Surrogate primary key derived from registration_number, person_name, registration_date, and state.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: registration_number
+        description: Official FARA registration number assigned by the DOJ.
+        data_tests:
+          - not_null
+
+      - name: person_name
+        description: Full name of the individual registrant (maps to person_name key ID).
+        data_tests:
+          - not_null
+
+      - name: company_name
+        description: Business name of the registering entity (maps to company_id key ID).
+        data_tests:
+          - not_null
+
+      - name: state
+        description: US state associated with the registrant address (maps to state key ID).
+        data_tests:
+          - not_null
+
+      - name: registration_date
+        description: Date the registration was filed with the DOJ (maps to date key ID).
+        data_tests:
+          - not_null
+
+      - name: termination_date
+        description: Date the registration was terminated, if applicable.
+
+      - name: date_stamped
+        description: Date the record was stamped or last updated in the source system.
+
+      - name: registrant_date
+        description: Date associated with the registrant record.
+
+      - name: short_form_date
+        description: Date the short form was filed.
+
+      - name: short_form_termination_date
+        description: Termination date for the short form filing.
+
+      - name: foreign_principal_registration_date
+        description: Date the foreign principal was registered.
+
+      - name: foreign_principal_termination_date
+        description: Date the foreign principal registration was terminated.
+
+      - name: address_1
+        description: Primary street address line of the registrant.
+
+      - name: address_2
+        description: Secondary street address line of the registrant.
+
+      - name: city
+        description: City of the registrant address.
+
+      - name: zip
+        description: ZIP code of the registrant address.
+
+      - name: document_type
+        description: Type of FARA document filed.
+        data_tests:
+          - accepted_values:
+              values:
+                - 'Registration Statement'
+                - 'Supplemental Statement'
+                - 'Short Form'
+                - 'Exhibit AB'
+                - 'Exhibit C'
+                - 'Amendment'
+                - 'Termination'
+                - 'Other'
+              config:
+                severity: warn
+
+      - name: doc_url
+        description: URL link to the filed document on the FARA eFile system.
+
+      - name: source_file
+        description: Name of the source bulk data file from which this record was extracted.
+
+      - name: source_link
+        description: URL to the source bulk data file.
+
+      - name: registrant_name
+        description: Name of the registrant entity as listed on the filing.
+
+      - name: short_form_name
+        description: Name as listed on the short form filing.
+
+      - name: short_form_last_name
+        description: Last name of the individual listed on the short form.
+
+      - name: short_form_first_name
+        description: First name of the individual listed on the short form.
+
+      - name: foreign_principal_name
+        description: Name of the foreign principal on whose behalf the registrant acts.
+
+      - name: foreign_principal_country
+        description: Country of the foreign principal.
+
+      - name: foreign_principal
+        description: Full foreign principal descriptor as provided in the filing.
+
+      - name: country_location_represented
+        description: Country whose interests are being represented under the registration.
+
+      - name: _ingested_at
+        description: Timestamp indicating when this record was ingested into the data warehouse.
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Identifier for the source pipeline run, derived from the source_file column.
+
+
+  - name: foreign_influence__fed_fara_bulk
+    description: >
+      Analytics-ready mart table for FARA registrations. Exposes key identifiers
+      for cross-source joins (company_id, person_name, date, state) alongside
+      enriched registration and foreign principal details. Includes derived
+      flags for active registration and active foreign principal status.
+    columns:
+
+      - name: fara_registration_key
+        description: Surrogate primary key for the mart — unique per FARA registration record.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: registration_number
+        description: Official FARA registration number assigned by the DOJ.
+        data_tests:
+          - not_null
+
+      - name: person_name
+        description: Full name of the individual registrant. Key identifier for cross-source joins.
+        data_tests:
+          - not_null
+
+      - name: company_id
+        description: Business name of the registering entity, used as the company identifier for cross-source joins.
+        data_tests:
+          - not_null
+
+      - name: state
+        description: US state associated with the registrant. Key identifier for cross-source joins.
+        data_tests:
+          - not_null
+
+      - name: date
+        description: Registration date — the primary date identifier for cross-source joins.
+        data_tests:
+          - not_null
+
+      - name: termination_date
+        description: Date the FARA registration was terminated, if applicable.
+
+      - name: registrant_name
+        description: Name of the registrant entity as listed on the filing.
+
+      - name: registrant_date
+        description: Date associated with the registrant record.
+
+      - name: document_type
+        description: Type of FARA document filed.
+        data_tests:
+          - accepted_values:
+              values:
+                - 'Registration Statement'
+                - 'Supplemental Statement'
+                - 'Short Form'
+                - 'Exhibit AB'
+                - 'Exhibit C'
+                - 'Amendment'
+                - 'Termination'
+                - 'Other'
+              config:
+                severity: warn
+
+      - name: doc_url
+        description: URL link to the filed document on the FARA eFile system.
+
+      - name: address_1
+        description: Primary street address line of the registrant.
+
+      - name: address_2
+        description: Secondary street address line of the registrant.
+
+      - name: city
+        description: City of the registrant address.
+
+      - name: zip
+        description: ZIP code of the registrant address.
+
+      - name: short_form_name
+        description: Name as listed on the short form filing.
+
+      - name: short_form_last_name
+        description: Last name of the individual listed on the short form.
+
+      - name: short_form_first_name
+        description: First name of the individual listed on the short form.
+
+      - name: short_form_date
+        description: Date the short form was filed.
+
+      - name: short_form_termination_date
+        description: Termination date for the short form filing.
+
+      - name: foreign_principal
+        description: Full foreign principal descriptor as provided in the filing.
+
+      - name: foreign_principal_name
+        description: Name of the foreign principal on whose behalf the registrant acts.
+
+      - name: foreign_principal_country
+        description: Country of the foreign principal.
+
+      - name: foreign_principal_registration_date
+        description: Date the foreign principal was registered.
+
+      - name: foreign_principal_termination_date
+        description: Date the foreign principal registration was terminated.
+
+      - name: country_location_represented
+        description: Country whose interests are being represented under the registration.
+
+      - name: is_active_registration
+        description: Boolean flag — true if the registration has not been terminated as of today.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+
+      - name: is_active_foreign_principal
+        description: Boolean flag — true if the foreign principal relationship has not been terminated as of today.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+
+      - name: source_file
+        description: Name of the source bulk data file from which this record was extracted.
+
+      - name: source_link
+        description: URL to the source bulk data file.
+
+      - name: date_stamped
+        description: Date the record was stamped or last updated in the source system.
+
+      - name: _ingested_at
+        description: Timestamp indicating when this record was ingested into the data warehouse.
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Identifier for the source pipeline run, derived from the source_file column.

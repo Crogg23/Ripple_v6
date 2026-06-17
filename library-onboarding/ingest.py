@@ -94,7 +94,13 @@ def run_ingest(config: dict, code: str) -> dict:
         except Exception:
             since = None
 
-    df, raw_bytes, source_file = _execute_fetch(config, code, since=since, allow_empty=incremental)
+    # allow_empty only on a CONTINUING incremental run (we already hold a watermark):
+    # then "0 new rows" is a legit no-op. On the FIRST incremental run (since is None,
+    # empty table) 0 rows means the backfill found nothing -> fail loudly so the source
+    # isn't falsely marked onboarded with no data landed.
+    df, raw_bytes, source_file = _execute_fetch(
+        config, code, since=since, allow_empty=incremental and since is not None
+    )
     payload = raw_bytes if raw_bytes else _df_bytes(df)
     sha = hashlib.sha256(payload).hexdigest()
     file_bytes = len(payload)
