@@ -34,11 +34,12 @@ to `INCLUDE=Y` in place (no duplicate). PR #2 + PR #3 (batches 1–3, 12 dbt mod
 | `fed_treasury_avg_interest_rates` | 4,961 | full LLM agent (batch 3, 2026-06-17 — full monthly history 2001→2026) |
 | `xc_biorxiv_medrxiv` | 432 | **registry-driven queue** (2026-06-17 — first source onboarded straight from the catalog) |
 | `fed_clinicaltrials` | 500 | registry queue, tier-1 batch (bounded API snapshot) |
-| `fed_cms_hcris` | 6,103 | registry queue, tier-1 batch (a "bulk" source the agent hit via its data API) |
-| `fed_cms_hpt_enforcement` | 22 | registry queue, tier-1 batch (recovered via auto-repair) |
+| `fed_cms_hcris` | 6,103 | registry queue, tier-1 batch (117-col hospital cost report; rebuilt against real columns) |
 
-11 sources, ~44,987 raw rows. Registry now **901** rows (**14** `INCLUDE=Y`). Each: a `success` row in
-`INGEST_RUNS`, an `INCLUDE=Y` row in `SOURCE_REGISTRY` (live Claude enrichment).
+**10 clean sources, ~44,965 raw rows.** Registry **901** rows, currently **14** `INCLUDE=Y` (drops to 13
+once the false-success `fed_cms_hpt_enforcement` is dequeued — see below; needs Chris's OK as a shared-state write).
+`fed_cms_hpt_enforcement` was a **false success**: the load landed an HTML page (one `DOCTYPE_HTML` column,
+22 junk rows), not data — caught when its mart wouldn't build.
 
 ### Registry-driven queue (B) — `xc_biorxiv_medrxiv` (2026-06-17), verified live
 - `registry_batch.py --source-id xc_biorxiv_medrxiv --run` selected the row from the catalog and ran the
@@ -66,9 +67,23 @@ First real unattended batch off the catalog. **3/5 complete**, verified live:
 - Registry stayed **901** rows (3 in-place UPDATEs, no duplicates); `INCLUDE=Y` 11→14. **The 2 failures
   left zero partial state** — no landing table, no `INGEST_RUNS` row, registry untouched — so they remain
   queued for a retry. Clean graceful-failure behaviour.
-- Takeaway: 60% hit rate on **unvetted** sources, and two nominally-"bulk" CMS sources succeeded because
-  the agent used their JSON data APIs. Both failures are scrape/JS-portal shapes — the case for **C**
-  (a scrape + incremental/bulk path). The 3 successes' dbt models are GENERATED, not yet RUN.
+- Takeaway: 60% landed, but **`dbt build` then exposed quality gaps the batch's "success" counter missed**
+  (see hardening below). The real tally: 2 clean (clinicaltrials, biorxiv), 1 good-data-but-broken-models
+  (cms_hcris, since fixed), 1 garbage (cms_hpt_enforcement HTML). Both hard-fails are scrape/JS shapes — the
+  case for **C** (a scrape + incremental/bulk path).
+
+### dbt build + agent hardening (2026-06-17) — `dbt build` the 4 newly-onboarded sources
+Building the marts (not just generating models) surfaced two systemic agent bugs and got fixed:
+- **`fed_cms_hpt_enforcement` was a false success**: the generated fetch hit a docs/landing URL, so pandas
+  parsed an HTML page into one bogus column (`DOCTYPE_HTML`, 22 junk rows). The mart wouldn't build → caught.
+  **Fix**: `ingest._reject_html()` now fails the LOAD loudly when the payload is an HTML page / single
+  `<…>`/`DOCTYPE` column. (Cleanup of its registry row + junk landing table is pending Chris's OK.)
+- **`fed_cms_hcris` staging wouldn't compile**: dbt-gen built SQL from recon's *guessed* schema
+  (`PROVIDER_NUMBER`) but the CSV landed `PROVIDER_CCN` + 116 other real columns. **Fix**:
+  `scaffold_dbt._actual_landing_columns()` introspects the real landing columns and generates against those;
+  dbt-gen `max_tokens` 8192→16384 for very wide tables. Regenerated → builds green (mart = 6,103 rows).
+- **Built green now**: `health__fed_clinicaltrials` (500), `science_research__xc_biorxiv_medrxiv` (432),
+  `health__fed_cms_hcris` (6,103) — all materialized into `RIPPLE_MARTS.DBT_CROGERS`.
 
 ### Batch 3 — `fed_treasury_avg_interest_rates` (2026-06-17), verified live
 - LOAD → `RIPPLE_RAW.LANDING.FED_TREASURY_AVG_INTEREST_RATES` = **4,961 rows**, run `4046bcc7…`,

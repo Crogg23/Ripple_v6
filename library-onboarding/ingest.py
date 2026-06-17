@@ -172,7 +172,30 @@ def _execute_fetch(config: dict, code: str) -> Tuple[object, Optional[bytes], st
     raw_bytes = context.get("source_bytes")
     if raw_bytes is not None and not isinstance(raw_bytes, (bytes, bytearray)):
         raw_bytes = str(raw_bytes).encode("utf-8")
+
+    _reject_html(df, raw_bytes)  # a docs/landing page fetched instead of the data
     return df, raw_bytes, context.get("source_file", "") or ""
+
+
+def _reject_html(df, raw_bytes) -> None:
+    """Fail loudly when an HTML page lands instead of the dataset.
+
+    Symptom seen in the wild (fed_cms_hpt_enforcement): the generated fetch hit a
+    docs/landing URL, so pandas parsed an HTML page into a single bogus column
+    (e.g. ``DOCTYPE_HTML``) -- a false "success" of junk rows. Catch it here.
+    """
+    head = bytes(raw_bytes[:256]).lstrip().lower() if raw_bytes else b""
+    if head.startswith((b"<!doctype html", b"<html", b"<!doctype>")):
+        raise RuntimeError(
+            "fetch_data returned an HTML page, not data -- the fetch hit a docs/"
+            "landing URL instead of the dataset endpoint. Fix the URL/parse."
+        )
+    cols = [str(c).upper() for c in df.columns]
+    if len(cols) == 1 and ("DOCTYPE" in cols[0] or "HTML" in cols[0] or "<" in cols[0]):
+        raise RuntimeError(
+            f"fetch_data parsed HTML into a single column ('{df.columns[0]}'), not "
+            "tabular data -- the fetch hit the wrong URL. Fix the URL/parse."
+        )
 
 
 def _stringify(df):
