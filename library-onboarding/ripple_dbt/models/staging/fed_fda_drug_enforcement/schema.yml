@@ -1,0 +1,279 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: RIPPLE_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FDA_DRUG_ENFORCEMENT
+        description: >
+          Raw landing table for FDA Drug Enforcement (Recall) reports.
+          All columns arrive as TEXT from the ingestion pipeline.
+
+models:
+
+  - name: stg_fed_fda_drug_enforcement__drug_enforcement_recalls
+    description: >
+      Staging model for FDA Drug Enforcement recall records.
+      Renames columns to snake_case, casts to appropriate types,
+      and deduplicates on recall_number keeping the most recently ingested row.
+    columns:
+
+      - name: recall_number
+        description: Unique identifier for the recall action assigned by FDA.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: event_id
+        description: FDA enforcement event identifier grouping related recall actions.
+        data_tests:
+          - not_null
+
+      - name: product_ndc
+        description: National Drug Code (NDC) identifying the specific drug product.
+        data_tests:
+          - not_null
+
+      - name: status
+        description: Current status of the recall.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - Ongoing
+                - Completed
+                - Terminated
+                - Pending
+
+      - name: classification
+        description: >
+          Recall classification: Class I (dangerous/defective),
+          Class II (may cause temporary adverse health consequences),
+          Class III (unlikely to cause health problems).
+        data_tests:
+          - accepted_values:
+              values:
+                - Class I
+                - Class II
+                - Class III
+
+      - name: voluntary_mandated
+        description: Whether the recall was voluntary (firm-initiated) or FDA-mandated.
+        data_tests:
+          - accepted_values:
+              values:
+                - Voluntary
+                - FDA Mandated
+                - FDA-Mandated
+              severity: warn
+
+      - name: product_type
+        description: Type of product recalled.
+
+      - name: product_description
+        description: Detailed description of the recalled product.
+
+      - name: product_quantity
+        description: Quantity of product subject to recall.
+
+      - name: reason_for_recall
+        description: Narrative explanation of why the product is being recalled.
+
+      - name: distribution_pattern
+        description: Geographic scope and channels of distribution for the recalled product.
+
+      - name: code_info
+        description: Lot numbers, expiration dates, serial numbers, or other product codes.
+
+      - name: more_code_info
+        description: Additional code/lot information beyond the primary code_info field.
+
+      - name: recall_initiation_date
+        description: Date the recall was initiated by the recalling firm.
+
+      - name: center_classification_date
+        description: Date FDA center classified the recall.
+
+      - name: termination_date
+        description: Date the recall was terminated, if applicable.
+
+      - name: report_date
+        description: Date the enforcement report was published by FDA.
+
+      - name: recalling_firm
+        description: Name of the firm initiating the recall.
+        data_tests:
+          - not_null
+
+      - name: address_1
+        description: Primary street address of the recalling firm.
+
+      - name: address_2
+        description: Secondary address line of the recalling firm.
+
+      - name: city
+        description: City of the recalling firm.
+
+      - name: state
+        description: State of the recalling firm.
+
+      - name: postal_code
+        description: Postal/ZIP code of the recalling firm.
+
+      - name: country
+        description: Country of the recalling firm.
+
+      - name: initial_firm_notification
+        description: Method used by the firm to first notify the public or trade about the recall.
+
+      - name: _ingested_at
+        description: Timestamp when the record was loaded into the landing table.
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this row.
+
+  - name: health__fed_fda_drug_enforcement
+    description: >
+      Analytics-ready mart table for FDA Drug Enforcement recall records.
+      Exposes key identifiers for cross-source joins, adds derived metrics
+      (classification severity rank, days open, is_active flag), and provides
+      a convenience full-address field for the recalling firm.
+    columns:
+
+      - name: recall_number
+        description: Unique identifier for the recall action assigned by FDA (primary key).
+        data_tests:
+          - unique
+          - not_null
+
+      - name: event_id
+        description: FDA enforcement event identifier grouping related recall actions.
+        data_tests:
+          - not_null
+
+      - name: product_ndc
+        description: National Drug Code (NDC) identifying the specific drug product.
+        data_tests:
+          - not_null
+
+      - name: status
+        description: Current status of the recall.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - Ongoing
+                - Completed
+                - Terminated
+                - Pending
+
+      - name: classification
+        description: Recall classification (Class I / II / III).
+        data_tests:
+          - accepted_values:
+              values:
+                - Class I
+                - Class II
+                - Class III
+
+      - name: classification_severity_rank
+        description: >
+          Numeric severity rank derived from classification:
+          1 = Class I (most severe), 2 = Class II, 3 = Class III (least severe).
+
+      - name: voluntary_mandated
+        description: Whether the recall was voluntary or FDA-mandated.
+        data_tests:
+          - accepted_values:
+              values:
+                - Voluntary
+                - FDA Mandated
+                - FDA-Mandated
+              severity: warn
+
+      - name: initial_firm_notification
+        description: Method used by the firm to first notify the public or trade.
+
+      - name: product_type
+        description: Type of product recalled.
+
+      - name: product_description
+        description: Detailed description of the recalled product.
+
+      - name: product_quantity
+        description: Quantity of product subject to recall.
+
+      - name: reason_for_recall
+        description: Narrative explanation of why the product is being recalled.
+
+      - name: distribution_pattern
+        description: Geographic scope and channels of distribution.
+
+      - name: code_info
+        description: Lot numbers, expiration dates, serial numbers, or other product codes.
+
+      - name: more_code_info
+        description: Additional code/lot information.
+
+      - name: recall_initiation_date
+        description: Date the recall was initiated.
+
+      - name: center_classification_date
+        description: Date FDA center classified the recall.
+
+      - name: termination_date
+        description: Date the recall was terminated, if applicable.
+
+      - name: report_date
+        description: Date the enforcement report was published.
+
+      - name: days_open
+        description: >
+          Number of days the recall has been open. For terminated recalls,
+          the difference between termination_date and recall_initiation_date.
+          For active recalls, the difference between today and recall_initiation_date.
+
+      - name: is_active
+        description: Boolean flag indicating whether the recall status is Ongoing.
+
+      - name: recalling_firm
+        description: Name of the firm initiating the recall.
+        data_tests:
+          - not_null
+
+      - name: address_1
+        description: Primary street address of the recalling firm.
+
+      - name: address_2
+        description: Secondary address line of the recalling firm.
+
+      - name: city
+        description: City of the recalling firm.
+
+      - name: state
+        description: State of the recalling firm.
+
+      - name: postal_code
+        description: Postal/ZIP code of the recalling firm.
+
+      - name: country
+        description: Country of the recalling firm.
+
+      - name: recalling_firm_full_address
+        description: Concatenated full address of the recalling firm.
+
+      - name: source_id
+        description: Constant source identifier for cross-source lineage (fed_fda_drug_enforcement).
+        data_tests:
+          - not_null
+
+      - name: _ingested_at
+        description: Timestamp when the record was loaded into the landing table.
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this row.

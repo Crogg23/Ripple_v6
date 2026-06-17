@@ -1,0 +1,166 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: RIPPLE_RAW
+    schema: LANDING
+    tables:
+      - name: FED_TREASURY_DEBT_TO_PENNY
+        description: >
+          Raw landing table for the US Treasury "Debt to the Penny" dataset.
+          All columns arrive as TEXT and are cast in the staging model.
+
+models:
+  - name: stg_fed_treasury_debt_to_penny__debt_to_penny
+    description: >
+      Staging model for the Treasury Debt to the Penny source. Casts all TEXT
+      columns to appropriate types, deduplicates on record_date keeping the
+      most-recently ingested row, and surfaces ingestion metadata.
+    columns:
+      - name: record_date
+        description: Date of the debt record (YYYY-MM-DD).
+        data_tests:
+          - unique
+          - not_null
+
+      - name: debt_held_public_amt
+        description: Debt held by the public in dollars.
+        data_tests:
+          # Null for ~2,958 historical rows (pre-breakdown era) -- warn, don't fail.
+          - not_null:
+              severity: warn
+
+      - name: intragov_hold_amt
+        description: Intragovernmental holdings in dollars.
+        data_tests:
+          # Null for ~2,958 historical rows (pre-breakdown era) -- warn, don't fail.
+          - not_null:
+              severity: warn
+
+      - name: tot_pub_debt_out_amt
+        description: Total public debt outstanding in dollars.
+        data_tests:
+          - not_null
+
+      - name: src_line_nbr
+        description: Source line number within the report.
+
+      - name: record_fiscal_yr
+        description: Federal fiscal year of the record.
+
+      - name: record_fiscal_qtr
+        description: Federal fiscal quarter of the record (1-4).
+        data_tests:
+          - accepted_values:
+              values: ['1', '2', '3', '4']
+              quote: true
+              severity: warn
+
+      - name: record_calendar_yr
+        description: Calendar year of the record.
+
+      - name: record_calendar_qtr
+        description: Calendar quarter of the record (1-4).
+        data_tests:
+          - accepted_values:
+              values: ['1', '2', '3', '4']
+              quote: true
+              severity: warn
+
+      - name: record_calendar_month
+        description: Calendar month of the record (01-12).
+
+      - name: record_calendar_day
+        description: Calendar day of the record (01-31).
+
+      - name: _ingested_at
+        description: Timestamp when the row was ingested into the landing table.
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this row.
+        data_tests:
+          - not_null
+
+  - name: economics__fed_treasury_debt_to_penny
+    description: >
+      Analytics-ready mart table for the US Treasury Debt to the Penny dataset.
+      Each row represents one daily debt snapshot. Includes derived percentage
+      metrics for public and intragovernmental debt composition.
+    columns:
+      - name: record_date
+        description: Date of the debt record — primary key.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: record_fiscal_yr
+        description: Federal fiscal year of the record.
+
+      - name: record_fiscal_qtr
+        description: Federal fiscal quarter of the record (1-4).
+        data_tests:
+          - accepted_values:
+              values: ['1', '2', '3', '4']
+              quote: true
+              severity: warn
+
+      - name: record_calendar_yr
+        description: Calendar year of the record.
+
+      - name: record_calendar_qtr
+        description: Calendar quarter of the record (1-4).
+        data_tests:
+          - accepted_values:
+              values: ['1', '2', '3', '4']
+              quote: true
+              severity: warn
+
+      - name: record_calendar_month
+        description: Calendar month of the record (01-12).
+
+      - name: record_calendar_day
+        description: Calendar day of the record (01-31).
+
+      - name: src_line_nbr
+        description: Source line number within the report.
+
+      - name: debt_held_public_amt
+        description: Debt held by the public in dollars.
+        data_tests:
+          # Null for ~2,958 historical rows (pre-breakdown era) -- warn, don't fail.
+          - not_null:
+              severity: warn
+
+      - name: intragov_hold_amt
+        description: Intragovernmental holdings in dollars.
+        data_tests:
+          # Null for ~2,958 historical rows (pre-breakdown era) -- warn, don't fail.
+          - not_null:
+              severity: warn
+
+      - name: tot_pub_debt_out_amt
+        description: Total public debt outstanding in dollars.
+        data_tests:
+          - not_null
+
+      - name: pct_debt_held_public
+        description: >
+          Percentage of total public debt outstanding held by the public,
+          rounded to 4 decimal places. Null when tot_pub_debt_out_amt is zero.
+
+      - name: pct_intragov_hold
+        description: >
+          Percentage of total public debt outstanding held intragovernmentally,
+          rounded to 4 decimal places. Null when tot_pub_debt_out_amt is zero.
+
+      - name: _ingested_at
+        description: Timestamp when the row was ingested into the landing table.
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this row.
+        data_tests:
+          - not_null
