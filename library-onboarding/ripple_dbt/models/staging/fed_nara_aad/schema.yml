@@ -1,0 +1,134 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_NARA_AAD
+        description: >
+          Raw landing table for the NARA Access to Archival Databases (AAD) feed.
+          All columns arrive as TEXT from the ingestion pipeline.
+
+models:
+
+  - name: stg_fed_nara_aad__archival_records
+    description: >
+      Staging model for NARA AAD archival records. Renames columns to snake_case,
+      casts TEXT fields to appropriate types, de-duplicates on dataset_id + record_id,
+      and carries pipeline metadata through.
+    columns:
+
+      - name: dataset_id
+        description: Identifier for the AAD dataset containing this record.
+        data_tests:
+          - not_null
+
+      - name: record_id
+        description: Unique identifier for an individual archival record within its dataset.
+        data_tests:
+          - not_null
+
+      - name: dataset_name
+        description: Human-readable name of the AAD dataset.
+
+      - name: series_title
+        description: Title of the record series within the record group.
+
+      - name: description_text
+        description: Free-text description or abstract for the archival record.
+
+      - name: date
+        description: Date associated with the archival record (cast from raw TEXT via try_to_date).
+        data_tests:
+          - not_null
+
+      - name: person_name
+        description: Name of the primary person referenced in the archival record.
+        data_tests:
+          - not_null
+
+      - name: geo_location
+        description: Geographic location or FIPS code associated with the record.
+        data_tests:
+          - not_null
+
+      - name: record_group_number
+        description: NARA record group number under which the record is classified.
+        data_tests:
+          - not_null
+
+      - name: raw_fields_json
+        description: Parsed VARIANT containing all additional fields from the raw JSON payload.
+
+      - name: _ingested_at
+        description: Timestamp when the row was loaded into the landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this row.
+
+  - name: government_records__fed_nara_aad
+    description: >
+      Analytics-ready mart table for NARA AAD archival records. Exposes a surrogate key
+      and all cross-source join identifiers (date, person_name, geo_location / FIPS,
+      record_group_number) alongside descriptive attributes.
+    columns:
+
+      - name: archival_record_sk
+        description: Surrogate key derived from dataset_id and record_id.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: dataset_id
+        description: Identifier for the AAD dataset containing this record.
+        data_tests:
+          - not_null
+
+      - name: record_id
+        description: Unique identifier for an individual archival record within its dataset.
+        data_tests:
+          - not_null
+
+      - name: record_date
+        description: Date associated with the archival record.
+        data_tests:
+          - not_null
+
+      - name: person_name
+        description: Name of the primary person referenced in the archival record.
+        data_tests:
+          - not_null
+
+      - name: geo_location
+        description: Geographic location or FIPS code associated with the record.
+        data_tests:
+          - not_null
+
+      - name: fips_geo
+        description: Alias of geo_location exposed for FIPS-based cross-source joins.
+        data_tests:
+          - not_null
+
+      - name: record_group_number
+        description: NARA record group number under which the record is classified.
+        data_tests:
+          - not_null
+
+      - name: dataset_name
+        description: Human-readable name of the AAD dataset.
+
+      - name: series_title
+        description: Title of the record series within the record group.
+
+      - name: description_text
+        description: Free-text description or abstract for the archival record.
+
+      - name: raw_fields_json
+        description: Parsed VARIANT containing all additional fields from the raw JSON payload.
+
+      - name: _ingested_at
+        description: Timestamp when the row was loaded into the landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this row.
