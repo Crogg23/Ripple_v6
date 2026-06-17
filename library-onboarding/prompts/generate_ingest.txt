@@ -53,10 +53,10 @@ REQUIREMENTS
         * Big ZIP: stream-download to a temp file (requests stream=True, iter_content to
           disk -- do NOT hold the bytes in memory), then `zipfile.ZipFile(path).open(member)`
           and `pd.read_csv(member, dtype=str, chunksize=context["chunk_rows"])`, yielding chunks.
-      Honour two context controls:
-        * context["resume_from_row"]: if > 0, SKIP that many leading data rows before
-          yielding (a prior run already landed them) -- e.g. drop rows from the first
-          chunks until you've skipped that many.
+      Honour the cap; the caller handles resume:
+        * Always yield the file FROM THE START -- do NOT try to skip rows yourself.
+          The caller drops rows already landed (it passes context["resume_from_row"]
+          for reference only; you can ignore it).
         * context["chunk_max_rows"]: if > 0, stop yielding once you've produced that many
           rows total (a bounded cap); if 0, stream the whole file.
       Do NOT set context["source_bytes"] (the caller hashes each chunk). Read everything

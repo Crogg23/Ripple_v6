@@ -328,11 +328,21 @@ def _load_landing_chunked(conn, chunk_iter, table: str, run_id: str, started,
     columns: list = []
     sample: list = []
     n = 0
+    # Resume is enforced HERE, not in the generated code: a resumed fetch re-yields
+    # the file from the start, and we drop the rows already landed. This is dup-safe
+    # regardless of whether the model's fetch honoured resume_from_row.
+    to_skip = resume_from_row if not fresh else 0
     for chunk in chunk_iter:
         if not hasattr(chunk, "columns"):
             raise RuntimeError("Chunked fetch_data must yield pandas DataFrames.")
         if len(chunk) == 0:
             continue
+        if to_skip > 0:
+            if len(chunk) <= to_skip:
+                to_skip -= len(chunk)
+                continue
+            chunk = chunk.iloc[to_skip:]
+            to_skip = 0
         if n == 0:
             _reject_html(chunk)  # catch an HTML/landing page streamed as data
 
