@@ -2,9 +2,10 @@
 Last updated: 2026-06-17
 
 ## CURRENT FOCUS
-Growing the Library via the full LLM agent. PR #2 + PR #3 are MERGED — `main` now holds batches 1–3
-(7 sources, all loaded + registered, 12 dbt models built + tested). Next lever: scale the queue off the
-~900-row registry instead of the static list, and build an incremental path for huge/daily sources.
+Scaling the Library: the onboarding queue is now **registry-driven** (option B). It pulls candidates
+straight from the ~900-row `SOURCE_REGISTRY` by `PRIORITY_TIER`, instead of a hand-curated list. Proven
+end to end — `xc_biorxiv_medrxiv` was onboarded straight from the catalog, and its registry row flipped
+to `INCLUDE=Y` in place (no duplicate). PR #2 + PR #3 (batches 1–3, 12 dbt models) are MERGED to `main`.
 
 ## WHAT EXISTS
 - `library-onboarding/` — the 5-checkpoint CLI agent: RECON → SCRIPT → LOAD → DBT → REGISTRY.
@@ -12,7 +13,12 @@ Growing the Library via the full LLM agent. PR #2 + PR #3 are MERGED — `main` 
   `_INGESTED_AT` / `_SOURCE_RUN_ID` / `_SRC_SHA256`, snapshot-replace (idempotent), SHA-256 hash.
 - Logs every run to `RIPPLE_META.INGEST_LOGS.INGEST_RUNS`; upserts `RIPPLE_META.REGISTRY.SOURCE_REGISTRY`.
 - **Unattended**: `ONBOARD_AUTO_APPROVE=1` + `ONBOARD_AUTO_REPAIR=N` (default 3, feeds errors back to
-  Claude). `live_batch.py` is the canonical growing queue — skips anything already landed, safe to re-run.
+  Claude). `live_batch.py` is the hand-curated growing queue — skips anything already landed, safe to re-run.
+- **Registry-driven queue (B)**: `registry_queue.py` selects candidates from `SOURCE_REGISTRY`
+  (not `INCLUDE='Y'`, not already landed, has URL, conforming `SOURCE_ID`, auth filter) ordered by
+  `PRIORITY_TIER`; `registry_batch.py` runs them through the full agent. **Safe by default** — previews
+  the queue read-only unless `--run`. Pinning each candidate's registry `SOURCE_ID` makes onboarding
+  *update that row* (`INCLUDE` blank→`Y`), so the catalog is both the queue and the completion ledger.
 - A minimal dbt project at `library-onboarding/ripple_dbt/` (run with the in-repo `profiles.yml`,
   creds from env / PAT-as-password, builds into the `DBT_CROGERS` schema).
 
@@ -26,9 +32,22 @@ Growing the Library via the full LLM agent. PR #2 + PR #3 are MERGED — `main` 
 | `fed_treasury_debt_to_penny` | 8,329 | full LLM agent (full daily debt history) |
 | `fed_fda_drug_enforcement` | 5,000 | full LLM agent (bounded sample) |
 | `fed_treasury_avg_interest_rates` | 4,961 | full LLM agent (batch 3, 2026-06-17 — full monthly history 2001→2026) |
+| `xc_biorxiv_medrxiv` | 432 | **registry-driven queue** (2026-06-17 — first source onboarded straight from the catalog) |
 
-7 sources, ~37,930 raw rows. Registry now **901** rows (**10** `INCLUDE=Y`). Each: a `success` row in
+8 sources, ~38,362 raw rows. Registry now **901** rows (**11** `INCLUDE=Y`). Each: a `success` row in
 `INGEST_RUNS`, an `INCLUDE=Y` row in `SOURCE_REGISTRY` (live Claude enrichment).
+
+### Registry-driven queue (B) — `xc_biorxiv_medrxiv` (2026-06-17), verified live
+- `registry_batch.py --source-id xc_biorxiv_medrxiv --run` selected the row from the catalog and ran the
+  full agent. End to end: RECON → LOAD (432 rows → `RIPPLE_RAW.LANDING.XC_BIORXIV_MEDRXIV`) → DBT-gen →
+  REGISTRY. The candidate's row flipped `INCLUDE` blank→`Y` **in place** — registry stayed **901** rows
+  (an UPDATE via the pinned `SOURCE_ID`, not a duplicate INSERT), `INCLUDE=Y` went 10→11.
+- **Agent fix this exposed**: dbt-gen returned the models as JSON with multi-line SQL/YAML values; for a
+  wide (~25-col) table that JSON blew past `max_tokens=4096` and truncated → `extract_json` "Unbalanced
+  JSON" → checkpoint 4 aborted before REGISTRY. Fixed: dbt-gen `max_tokens` 4096→8192, and `extract_json`
+  now matches the fence greedily + parses with `strict=False` (tolerates literal newlines + dbt `{{ }}`).
+- dbt models for biorxiv are GENERATED (staging view + `science_research` mart + schema.yml; `dbt parse`
+  clean, 14 models total) but not yet RUN.
 
 ### Batch 3 — `fed_treasury_avg_interest_rates` (2026-06-17), verified live
 - LOAD → `RIPPLE_RAW.LANDING.FED_TREASURY_AVG_INTEREST_RATES` = **4,961 rows**, run `4046bcc7…`,
@@ -62,7 +81,8 @@ Growing the Library via the full LLM agent. PR #2 + PR #3 are MERGED — `main` 
   real gov data are downgraded to `severity: warn` (Treasury historical nulls, FDA recall-type drift).
 
 ## PARKED IDEAS
-- [IDEA — SOMEDAY] Drive the queue from `SOURCE_REGISTRY` (by `INCLUDE`/`PRIORITY_TIER`) instead of the static list. | WHY: ~900 sources cataloged. | LAYER: Library
+- [DONE 2026-06-17] Drive the queue from `SOURCE_REGISTRY` (by `PRIORITY_TIER`) instead of the static list.
+  → `registry_queue.py` + `registry_batch.py`; proven with `xc_biorxiv_medrxiv`.
 - [IDEA — HOT] CFPB complaints + ProPublica nonprofits are huge, daily-growing search APIs — a snapshot
   mirror is the wrong shape. Need an **incremental** load path before onboarding them. | LAYER: Library
 - [IDEA — SOMEDAY] The agent writes a `sources:` block into every model's `schema.yml`; it should emit a
@@ -77,7 +97,9 @@ Growing the Library via the full LLM agent. PR #2 + PR #3 are MERGED — `main` 
   (+ `RIPPLE_STAGING`/`RIPPLE_MARTS` for dbt) would be safer for routine onboarding.
 
 ## NEXT ACTION
-Pick the next lever: (B) drive the onboarding queue off `SOURCE_REGISTRY` by `INCLUDE`/`PRIORITY_TIER`
-instead of the static 37-source list — the real unlock for scaling to the ~900 cataloged sources; or
-(C) build the incremental load path for CFPB/ProPublica-style huge daily sources; or (D) point routine
-onboarding at the least-privilege `RIPPLE_INGEST_RW` role instead of the `ACCOUNTADMIN` PAT.
+B is built + proven on one source. Next: run the registry queue **at scale** — e.g.
+`registry_batch.py --tier 1 --limit 10 --run` to onboard a real batch from the catalog (watch the
+auto-repair rate now that the dbt-gen truncation bug is fixed). Then the still-open levers: (C) build
+the incremental load path for CFPB/ProPublica-style huge daily sources; (D) point routine onboarding at
+the least-privilege `RIPPLE_INGEST_RW` role instead of the `ACCOUNTADMIN` PAT. (Also: `dbt run` the
+biorxiv models — generated but not yet built.)

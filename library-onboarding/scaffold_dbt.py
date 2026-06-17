@@ -48,7 +48,9 @@ def generate_dbt_models(config: dict, feedback: Optional[str] = None) -> dict:
         ),
         kind="dbt",
         fake_context=config,
-        max_tokens=4096,
+        # Wide tables (many columns) make staging_sql + mart_sql + schema_yml a
+        # long JSON payload; 4096 truncated it (the biorxiv ~25-col failure).
+        max_tokens=8192,
     )
     models = extract_json(raw)
     for key in ("staging_sql", "intermediate_sql", "mart_sql", "schema_yml"):

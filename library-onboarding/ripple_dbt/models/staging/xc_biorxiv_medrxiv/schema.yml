@@ -1,0 +1,357 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: RIPPLE_RAW
+    schema: LANDING
+    tables:
+      - name: XC_BIORXIV_MEDRXIV
+        description: >
+          Raw landing table for the bioRxiv / medRxiv API (source ID: xc_biorxiv_medrxiv).
+          All columns arrive as TEXT and are cast in the staging layer.
+
+models:
+
+  # ---------------------------------------------------------------------------
+  # Staging
+  # ---------------------------------------------------------------------------
+  - name: stg_xc_biorxiv_medrxiv__preprint_manuscript
+    description: >
+      Staging view for bioRxiv / medRxiv preprint manuscripts. Casts raw TEXT
+      columns to appropriate types, deduplicates on the composite natural key,
+      and surfaces metadata fields.
+    columns:
+
+      - name: doi
+        description: Digital Object Identifier for the preprint.
+        data_tests:
+          - not_null:
+              where: "biorxiv_doi is null and published_doi is null"
+
+      - name: biorxiv_doi
+        description: The preprint DOI on bioRxiv or medRxiv (pubs/pub endpoints).
+        data_tests:
+          - not_null:
+              where: "doi is null"
+
+      - name: published_doi
+        description: DOI of the published journal article.
+
+      - name: person_name
+        description: Name of the corresponding author (mapped from author_corresponding).
+
+      - name: funder_ror_id
+        description: Funder identifier string (e.g. ROR ID), mapped from funding_id.
+
+      - name: title
+        description: Title of the preprint manuscript.
+
+      - name: authors
+        description: Semicolon-delimited list of all authors.
+
+      - name: author_corresponding_institution
+        description: Institution of the corresponding author.
+
+      - name: preprint_posted_date
+        description: Date the preprint was posted (cast from raw date column).
+
+      - name: version
+        description: Version number of the preprint.
+
+      - name: submission_type
+        description: Type of the submission (e.g. new result, confirmatory result).
+        data_tests:
+          - accepted_values:
+              values:
+                - new results
+                - confirmatory results
+                - contradictory results
+                - null results
+                - new result
+                - confirmatory result
+                - contradictory result
+                - null result
+                - other
+              quote: true
+              severity: warn
+
+      - name: license
+        description: License under which the preprint is published.
+        data_tests:
+          - accepted_values:
+              values:
+                - cc_by
+                - cc_by_nc
+                - cc_by_nd
+                - cc_by_nc_nd
+                - cc_no_reuse
+                - cc0
+                - none
+              quote: true
+              severity: warn
+
+      - name: category
+        description: Subject category of the preprint.
+
+      - name: abstract
+        description: Abstract of the preprint.
+
+      - name: server
+        description: Server the preprint is hosted on (biorxiv or medrxiv).
+        data_tests:
+          - accepted_values:
+              values:
+                - biorxiv
+                - medrxiv
+              quote: true
+              severity: warn
+
+      - name: jats_xml_path
+        description: Path to the JATS XML representation of the manuscript.
+
+      - name: published_journal_doi_raw
+        description: Raw published DOI string from the 'published' column.
+
+      - name: funding_name
+        description: Name of the funding organisation.
+
+      - name: funding_id_type
+        description: Type of funder identifier (e.g. ROR).
+
+      - name: funding_award
+        description: Grant or award number associated with the funding.
+
+      - name: published_journal
+        description: Journal in which the preprint was published.
+
+      - name: preprint_platform
+        description: Platform on which the preprint was hosted.
+
+      - name: preprint_title
+        description: Title of the preprint (pubs endpoint).
+
+      - name: preprint_authors
+        description: Authors of the preprint (pubs endpoint).
+
+      - name: preprint_category
+        description: Subject category of the preprint (pubs endpoint).
+
+      - name: preprint_date
+        description: Date the preprint was first posted (pubs endpoint).
+
+      - name: published_date
+        description: Date the article was published in a journal.
+
+      - name: preprint_abstract
+        description: Abstract of the preprint (pubs endpoint).
+
+      - name: preprint_author_corresponding
+        description: Corresponding author of the preprint (pubs endpoint).
+
+      - name: preprint_author_corresponding_institution
+        description: Institution of corresponding author (pubs endpoint).
+
+      - name: stat_month
+        description: Year-month string for summary / usage statistics records.
+
+      - name: new_papers
+        description: Count of new papers for the period.
+
+      - name: new_papers_cumulative
+        description: Cumulative count of new papers.
+
+      - name: revised_papers
+        description: Count of revised papers for the period.
+
+      - name: revised_papers_cumulative
+        description: Cumulative count of revised papers.
+
+      - name: abstract_views
+        description: Monthly abstract view count.
+
+      - name: full_text_views
+        description: Monthly full-text view count.
+
+      - name: pdf_downloads
+        description: Monthly PDF download count.
+
+      - name: abstract_cumulative
+        description: Cumulative abstract views.
+
+      - name: full_text_cumulative
+        description: Cumulative full-text views.
+
+      - name: pdf_cumulative
+        description: Cumulative PDF downloads.
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Identifier for the pipeline run that produced this record.
+        data_tests:
+          - not_null
+
+  # ---------------------------------------------------------------------------
+  # Mart
+  # ---------------------------------------------------------------------------
+  - name: science_research__xc_biorxiv_medrxiv
+    description: >
+      Analytics-ready mart table for bioRxiv / medRxiv preprint manuscripts.
+      Exposes all key identifiers for cross-source joins, derived convenience
+      flags, and pre-cast statistics columns.
+    columns:
+
+      - name: doi
+        description: Digital Object Identifier for the preprint.
+        data_tests:
+          - not_null:
+              where: "biorxiv_doi is null and published_doi is null"
+
+      - name: biorxiv_doi
+        description: The preprint DOI on bioRxiv or medRxiv.
+        data_tests:
+          - not_null:
+              where: "doi is null"
+
+      - name: published_doi
+        description: DOI of the published journal article.
+
+      - name: person_name
+        description: Name of the corresponding author.
+
+      - name: funder_ror_id
+        description: Funder ROR identifier string.
+
+      - name: title
+        description: Title of the preprint manuscript.
+
+      - name: authors
+        description: Semicolon-delimited list of all authors.
+
+      - name: author_corresponding_institution
+        description: Institution of the corresponding author.
+
+      - name: preprint_posted_date
+        description: Date the preprint was posted.
+
+      - name: version
+        description: Version number of the preprint.
+
+      - name: submission_type
+        description: Type of submission.
+
+      - name: license
+        description: License under which the preprint is published.
+
+      - name: category
+        description: Subject category of the preprint.
+
+      - name: abstract
+        description: Abstract of the preprint.
+
+      - name: server
+        description: Server the preprint is hosted on (biorxiv or medrxiv).
+        data_tests:
+          - accepted_values:
+              values:
+                - biorxiv
+                - medrxiv
+              quote: true
+              severity: warn
+
+      - name: jats_xml_path
+        description: Path to the JATS XML file.
+
+      - name: published_journal_doi_raw
+        description: Raw published DOI from the published column.
+
+      - name: funding_name
+        description: Name of the funding organisation.
+
+      - name: funding_id_type
+        description: Type of funder identifier.
+
+      - name: funding_award
+        description: Grant or award number.
+
+      - name: published_journal
+        description: Journal in which the preprint was published.
+
+      - name: preprint_platform
+        description: Platform hosting the preprint.
+
+      - name: preprint_title
+        description: Preprint title from the pubs endpoint.
+
+      - name: preprint_authors
+        description: Preprint authors from the pubs endpoint.
+
+      - name: preprint_category
+        description: Subject category from the pubs endpoint.
+
+      - name: preprint_date
+        description: Date the preprint was first posted (pubs endpoint).
+
+      - name: published_date
+        description: Date the article was published in a journal.
+
+      - name: preprint_abstract
+        description: Preprint abstract from the pubs endpoint.
+
+      - name: preprint_author_corresponding
+        description: Corresponding author from the pubs endpoint.
+
+      - name: preprint_author_corresponding_institution
+        description: Institution of corresponding author from the pubs endpoint.
+
+      - name: is_published
+        description: TRUE if the preprint has a known published DOI or journal link.
+
+      - name: days_preprint_to_publication
+        description: Number of days between the preprint posting date and the journal publication date.
+
+      - name: stat_month
+        description: Year-month string for summary / usage statistics records.
+
+      - name: new_papers
+        description: Count of new papers for the period.
+
+      - name: new_papers_cumulative
+        description: Cumulative count of new papers.
+
+      - name: revised_papers
+        description: Count of revised papers for the period.
+
+      - name: revised_papers_cumulative
+        description: Cumulative count of revised papers.
+
+      - name: abstract_views
+        description: Monthly abstract view count.
+
+      - name: full_text_views
+        description: Monthly full-text view count.
+
+      - name: pdf_downloads
+        description: Monthly PDF download count.
+
+      - name: abstract_cumulative
+        description: Cumulative abstract views.
+
+      - name: full_text_cumulative
+        description: Cumulative full-text views.
+
+      - name: pdf_cumulative
+        description: Cumulative PDF downloads.
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested.
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Pipeline run identifier.
+        data_tests:
+          - not_null
