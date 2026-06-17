@@ -20,11 +20,45 @@ from config import ConfigError, settings
 from llm import call_claude, extract_json, render_prompt
 
 
+def _actual_landing_columns(landing_table: str) -> list:
+    """The real, current columns of the landing table (minus the _meta columns).
+
+    dbt models must be generated against what *actually landed*, not recon's schema
+    guess -- a CSV/bulk source often lands different columns than predicted (the
+    fed_cms_hcris failure: recon guessed PROVIDER_NUMBER; the data had PROVIDER_CCN,
+    so the staging view wouldn't compile). Best-effort: [] if Snowflake is unreachable.
+    """
+    if not landing_table.strip() or settings.fake_llm or not settings.snowflake_ready():
+        return []
+    try:
+        import snow
+
+        conn = snow.connect()
+        try:
+            cur = conn.cursor()
+            cur.execute(
+                f"SELECT COLUMN_NAME FROM {settings.raw_database}.INFORMATION_SCHEMA.COLUMNS "
+                "WHERE TABLE_SCHEMA=%s AND TABLE_NAME=%s ORDER BY ORDINAL_POSITION",
+                (settings.raw_schema, landing_table),
+            )
+            cols = [r[0] for r in cur.fetchall()]
+        finally:
+            conn.close()
+        return [c for c in cols if not str(c).startswith("_")]
+    except Exception:
+        return []
+
+
 def generate_dbt_models(config: dict, feedback: Optional[str] = None) -> dict:
-    schema_repr = "\n".join(
-        f"  - {f.get('name')} ({f.get('type')}): {f.get('description','')}"
-        for f in config.get("schema_fields", [])
-    ) or "  (schema unknown)"
+    # Prefer the real landed columns over recon's guess (see _actual_landing_columns).
+    actual = _actual_landing_columns(config.get("landing_table", ""))
+    if actual:
+        schema_repr = "\n".join(f"  - {c} (TEXT): raw landing column" for c in actual)
+    else:
+        schema_repr = "\n".join(
+            f"  - {f.get('name')} ({f.get('type')}): {f.get('description','')}"
+            for f in config.get("schema_fields", [])
+        ) or "  (schema unknown)"
 
     prompt = render_prompt(
         "generate_dbt",
@@ -48,7 +82,10 @@ def generate_dbt_models(config: dict, feedback: Optional[str] = None) -> dict:
         ),
         kind="dbt",
         fake_context=config,
-        max_tokens=4096,
+        # Wide tables make staging_sql + mart_sql + schema_yml a long JSON payload;
+        # 4096 truncated at ~25 cols (biorxiv), and HCRIS has 117 cols. Cap high --
+        # it's a ceiling, not a target, so narrow sources still return small.
+        max_tokens=16384,
     )
     models = extract_json(raw)
     for key in ("staging_sql", "intermediate_sql", "mart_sql", "schema_yml"):

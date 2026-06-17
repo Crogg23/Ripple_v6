@@ -1,0 +1,234 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: RIPPLE_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CMS_HCRIS
+        description: >
+          Raw landing table for the Healthcare Provider Cost Reporting Information
+          System (HCRIS) published by the Centers for Medicare & Medicaid Services.
+          All columns arrive as TEXT.
+
+models:
+
+  - name: stg_fed_cms_hcris__hospital_cost_report
+    description: >
+      Staging model for HCRIS hospital cost reports. Casts raw TEXT columns to
+      appropriate types, renames to snake_case, and deduplicates on the natural
+      key (provider_ccn, hospital_name, fiscal_year_end_date), keeping the most
+      recently ingested record.
+    columns:
+
+      - name: provider_ccn
+        description: CMS Certification Number uniquely identifying the provider.
+        data_tests:
+          - not_null
+
+      - name: hospital_name
+        description: Name of the hospital as reported to CMS.
+        data_tests:
+          - not_null
+
+      - name: fiscal_year_end_date
+        description: Last day of the hospital's fiscal year for this cost report.
+        data_tests:
+          - not_null
+
+      - name: rpt_rec_num
+        description: Report record number assigned by CMS.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: state_code
+        description: Two-letter US state abbreviation.
+
+      - name: rural_versus_urban
+        description: Classification of the provider as Rural or Urban.
+        data_tests:
+          - accepted_values:
+              values: ['R', 'U', 'Rural', 'Urban']
+              quote: true
+              severity: warn
+
+      - name: fiscal_year_begin_date
+        description: First day of the hospital's fiscal year for this cost report.
+
+      - name: fte_employees_on_payroll
+        description: Full-time equivalent employees on payroll.
+
+      - name: number_of_beds
+        description: Total number of licensed hospital beds.
+
+      - name: total_bed_days_available
+        description: Total bed-days available during the reporting period.
+
+      - name: total_days_all
+        description: Total patient days across Title V, XVIII, XIX and unknown payers.
+
+      - name: total_discharges_all
+        description: Total discharges across all payer titles.
+
+      - name: total_costs
+        description: Total operating costs reported on cost report.
+
+      - name: total_assets
+        description: Total assets from the balance sheet.
+
+      - name: total_liabilities
+        description: Total liabilities from the balance sheet.
+
+      - name: net_patient_revenue
+        description: Net patient revenue after contractual allowances.
+
+      - name: net_income
+        description: Net income (or loss) for the reporting period.
+
+      - name: cost_to_charge_ratio
+        description: Ratio of total costs to total charges.
+
+      - name: _ingested_at
+        description: Timestamp when the record was loaded into the landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier associated with the ingestion event.
+
+  - name: health__fed_cms_hcris
+    description: >
+      Analytics-ready mart for HCRIS hospital cost reports. Exposes all key
+      financial, utilization, and demographic fields alongside derived metrics
+      (occupancy rate, current ratio, net margin ratio) suitable for
+      cross-source joins on provider_ccn and fiscal_year_end_date.
+    columns:
+
+      - name: provider_ccn
+        description: CMS Certification Number – primary join key for cross-source analysis.
+        data_tests:
+          - not_null
+
+      - name: hospital_name
+        description: Name of the hospital as reported to CMS.
+        data_tests:
+          - not_null
+
+      - name: fiscal_year_end_date
+        description: Last day of the hospital's fiscal year – composite key component.
+        data_tests:
+          - not_null
+
+      - name: rpt_rec_num
+        description: CMS report record number; unique per submission.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: state_code
+        description: Two-letter US state abbreviation.
+        data_tests:
+          - not_null
+
+      - name: rural_versus_urban
+        description: Rural / Urban classification.
+        data_tests:
+          - accepted_values:
+              values: ['R', 'U', 'Rural', 'Urban']
+              quote: true
+              severity: warn
+
+      - name: type_of_control
+        description: Ownership / control type of the hospital (e.g. Government, Non-profit, For-profit).
+
+      - name: fiscal_year_begin_date
+        description: First day of the fiscal year.
+
+      - name: fiscal_year_end_date_key
+        description: Alias of fiscal_year_end_date retained for explicit mart key documentation.
+
+      - name: fiscal_year_length_days
+        description: Derived – number of days in the fiscal year.
+
+      - name: fte_employees_on_payroll
+        description: Full-time equivalent employees on payroll.
+
+      - name: number_of_interns_and_residents_fte
+        description: FTE count of interns and residents.
+
+      - name: number_of_beds
+        description: Total licensed beds.
+
+      - name: total_bed_days_available
+        description: Total bed-days available in the period.
+
+      - name: total_days_all
+        description: Total inpatient days across all payer titles.
+
+      - name: total_discharges_all
+        description: Total discharges across all payer titles.
+
+      - name: occupancy_rate
+        description: Derived – total_days_all divided by total_bed_days_available.
+
+      - name: cost_of_charity_care
+        description: Cost of charity care provided.
+
+      - name: total_bad_debt_expense
+        description: Total bad debt expense.
+
+      - name: cost_of_uncompensated_care
+        description: Cost of uncompensated care.
+
+      - name: total_unreimbursed_and_uncompensated_care
+        description: Total unreimbursed and uncompensated care.
+
+      - name: total_costs
+        description: Total operating costs.
+
+      - name: total_assets
+        description: Total assets.
+
+      - name: total_liabilities
+        description: Total liabilities.
+
+      - name: total_fund_balances
+        description: Total fund balances (net assets).
+
+      - name: current_ratio
+        description: Derived – total_current_assets divided by total_current_liabilities.
+
+      - name: net_patient_revenue
+        description: Net patient revenue after contractual allowances.
+
+      - name: net_income
+        description: Net income or loss for the period.
+
+      - name: net_margin_ratio
+        description: Derived – net_income divided by total_patient_revenue.
+
+      - name: cost_to_charge_ratio
+        description: Ratio of costs to charges.
+
+      - name: net_revenue_from_medicaid
+        description: Net revenue received from Medicaid.
+
+      - name: net_revenue_from_stand_alone_chip
+        description: Net revenue from stand-alone CHIP program.
+
+      - name: source_id
+        description: Constant identifier for this data source (fed_cms_hcris).
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['fed_cms_hcris']
+              quote: true
+
+      - name: _ingested_at
+        description: Timestamp when the record was loaded into the landing table.
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Pipeline run identifier associated with the ingestion event.
+        data_tests:
+          - not_null

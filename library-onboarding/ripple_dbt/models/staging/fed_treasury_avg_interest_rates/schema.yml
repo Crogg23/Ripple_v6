@@ -30,10 +30,8 @@ models:
           - accepted_values:
               values:
                 - 'Marketable'
-                - 'Non-Marketable'
-                - 'Total Marketable'
-                - 'Total Non-Marketable'
-                - 'Total Interest-Bearing Debt'
+                - 'Non-marketable'
+                - 'Interest-bearing Debt'
 
       - name: security_desc
         description: Specific security instrument name.
@@ -107,10 +105,8 @@ models:
           - accepted_values:
               values:
                 - 'Marketable'
-                - 'Non-Marketable'
-                - 'Total Marketable'
-                - 'Total Non-Marketable'
-                - 'Total Interest-Bearing Debt'
+                - 'Non-marketable'
+                - 'Interest-bearing Debt'
 
       - name: security_desc
         description: Specific security instrument name.

@@ -110,25 +110,23 @@ def _real_call(user: str, system: str, max_tokens: int) -> str:
 def extract_json(text: str) -> dict:
     """Pull the first JSON object out of a model response.
 
-    Handles ```json fenced blocks, leading prose, and trailing commentary.
+    Robust to ```json fences, leading/trailing prose, dbt Jinja braces (``{{ }}``)
+    inside string values, and literal newlines in embedded SQL/YAML. We match the
+    fence greedily (so an inner ``}`` doesn't cut it short) and parse with
+    ``strict=False`` so multi-line SQL / YAML values are tolerated.
     """
-    fenced = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", text, re.DOTALL)
+    fenced = re.search(r"```(?:json)?\s*(\{.*\})\s*```", text, re.DOTALL)
     if fenced:
-        return json.loads(fenced.group(1))
-
-    # Fall back to a balanced-brace scan for the first top-level object.
-    start = text.find("{")
-    if start == -1:
-        raise ValueError(f"No JSON object found in response:\n{text[:500]}")
-    depth = 0
-    for i in range(start, len(text)):
-        if text[i] == "{":
-            depth += 1
-        elif text[i] == "}":
-            depth -= 1
-            if depth == 0:
-                return json.loads(text[start : i + 1])
-    raise ValueError(f"Unbalanced JSON in response:\n{text[:500]}")
+        candidate = fenced.group(1)
+    else:
+        start, end = text.find("{"), text.rfind("}")
+        if start == -1 or end <= start:
+            raise ValueError(f"No JSON object found in response:\n{text[:500]}")
+        candidate = text[start : end + 1]
+    try:
+        return json.loads(candidate, strict=False)
+    except json.JSONDecodeError as exc:
+        raise ValueError(f"Could not parse JSON ({exc}) from response:\n{text[:500]}")
 
 
 def extract_code(text: str, language: str = "python") -> str:

@@ -76,8 +76,24 @@ def run_ingest(config: dict, code: str) -> dict:
     source_id = config["source_id"]
     table = config["landing_table"]
     url = config["url"]
+    incremental = (config.get("load_mode") or "snapshot").strip().lower() == "incremental"
+    cursor_field = (config.get("cursor_field") or "").strip()
+    live = not (settings.fake_llm or not settings.snowflake_ready())
 
-    df, raw_bytes, source_file = _execute_fetch(config, code)
+    # Incremental: read the high-water mark BEFORE fetching, so the fetch pulls only
+    # records newer than what we already hold. None => first run (bounded backfill).
+    since = None
+    if incremental and cursor_field and live:
+        try:
+            wm_conn = snow.connect()
+            try:
+                since = _watermark(wm_conn, table, cursor_field)
+            finally:
+                wm_conn.close()
+        except Exception:
+            since = None
+
+    df, raw_bytes, source_file = _execute_fetch(config, code, since=since, allow_empty=incremental)
     payload = raw_bytes if raw_bytes else _df_bytes(df)
     sha = hashlib.sha256(payload).hexdigest()
     file_bytes = len(payload)
@@ -93,21 +109,33 @@ def run_ingest(config: dict, code: str) -> dict:
         "file_bytes": file_bytes,
         "source_file": source_file,
         "rows": int(len(df)),
+        "load_mode": "incremental" if incremental else "snapshot",
+        "since": since,
         "columns": ", ".join(map(str, df.columns)),
         "sample_rows": df.head(SAMPLE_ROWS).astype(str).to_dict(orient="records"),
     }
 
-    if settings.fake_llm or not settings.snowflake_ready():
+    if not live:
         why = "fake mode" if settings.fake_llm else "Snowflake creds not set"
+        verb = f"append to (since {since or 'start'})" if incremental else "snapshot-replace"
         result["status"] = (
-            f"DRY RUN ({why}) -- would snapshot-replace RIPPLE_RAW.LANDING.{table} "
+            f"DRY RUN ({why}) -- would {verb} RIPPLE_RAW.LANDING.{table} "
             f"with {len(df):,} rows (sha {sha[:12]})"
         )
         return result
 
     conn = snow.connect()
     try:
-        if settings.skip_if_unchanged:
+        # Incremental run that found nothing new since the watermark -> clean no-op.
+        if incremental and len(df) == 0:
+            ended = _utcnow()
+            _log_run(conn, source_id, run_id, "success", 0, file_bytes, sha, url,
+                     started, ended, f"Incremental: no new rows since {since or 'start'}.")
+            result["status"] = f"UP TO DATE -- no new rows since {since or 'start'} (incremental)"
+            return result
+
+        # Snapshot only: skip the reload when the content hash is unchanged.
+        if not incremental and settings.skip_if_unchanged:
             last = _latest_success_sha(conn, source_id)
             if last == sha:
                 result["status"] = (
@@ -117,11 +145,17 @@ def run_ingest(config: dict, code: str) -> dict:
                 result["skipped"] = True
                 return result
         try:
-            _load_landing(conn, df, table)
+            _load_landing(conn, df, table, overwrite=not incremental)
             ended = _utcnow()
             _log_run(conn, source_id, run_id, "success", len(df), file_bytes, sha, url,
                      started, ended, _auto_message(config, len(df)))
-            result["status"] = f"Loaded {len(df):,} rows -> RIPPLE_RAW.LANDING.{table}"
+            if incremental:
+                result["status"] = (
+                    f"Appended {len(df):,} rows (incremental since {since or 'start'}) "
+                    f"-> RIPPLE_RAW.LANDING.{table}"
+                )
+            else:
+                result["status"] = f"Loaded {len(df):,} rows -> RIPPLE_RAW.LANDING.{table}"
         except Exception as exc:
             ended = _utcnow()
             try:
@@ -138,8 +172,13 @@ def run_ingest(config: dict, code: str) -> dict:
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
-def _execute_fetch(config: dict, code: str) -> Tuple[object, Optional[bytes], str]:
+def _execute_fetch(config: dict, code: str, since: Optional[str] = None,
+                   allow_empty: bool = False) -> Tuple[object, Optional[bytes], str]:
     """Run Claude-generated code and return (DataFrame, raw_bytes, source_file).
+
+    ``since`` is the incremental high-water mark (or None) handed to the fetch as
+    ``context["since"]`` so it can pull only newer records. ``allow_empty`` lets an
+    incremental run that finds no new rows return cleanly (a no-op, not an error).
 
     SECURITY: this executes model-generated Python. It only runs after the
     foreman approved the exact code shown at Checkpoint 2.
@@ -159,6 +198,7 @@ def _execute_fetch(config: dict, code: str) -> Tuple[object, Optional[bytes], st
         "url": config["url"],
         "source_name": config["name"],
         "auth_type": config.get("auth", {}).get("type", "none"),
+        "since": since,  # incremental high-water mark (or None on first/snapshot run)
         "env": dict(os.environ),
         "source_bytes": None,
         "source_file": "",
@@ -167,12 +207,44 @@ def _execute_fetch(config: dict, code: str) -> Tuple[object, Optional[bytes], st
     if not hasattr(df, "columns"):
         raise RuntimeError("fetch_data must return a pandas.DataFrame.")
     if len(df) == 0:
+        if allow_empty:
+            return df, None, ""  # incremental: no new rows since the watermark
         raise RuntimeError("fetch_data returned 0 rows -- failing loudly (schema drift?).")
 
     raw_bytes = context.get("source_bytes")
     if raw_bytes is not None and not isinstance(raw_bytes, (bytes, bytearray)):
         raw_bytes = str(raw_bytes).encode("utf-8")
+
+    _reject_html(df)  # a docs/landing page parsed AS data instead of the dataset
     return df, raw_bytes, context.get("source_file", "") or ""
+
+
+def _reject_html(df) -> None:
+    """Fail loudly when an HTML page lands AS DATA (a false "success").
+
+    Judge the DataFrame's shape, NOT the raw bytes -- scrape sources legitimately
+    fetch an HTML page (raw_bytes is HTML) but parse it into a proper multi-column
+    table, which is fine. The failure we catch is when the HTML itself becomes the
+    data: a docs/landing page parsed into a single bogus column (the
+    fed_cms_hpt_enforcement case: one ``DOCTYPE_HTML`` column of junk rows).
+    """
+    cols = [str(c) for c in df.columns]
+    if len(cols) != 1:
+        return  # real tabular data (incl. legitimately-scraped tables)
+    name = cols[0].upper()
+    first = ""
+    try:
+        nonnull = df.iloc[:, 0].dropna()
+        if len(nonnull):
+            first = str(nonnull.iloc[0]).lstrip().upper()
+    except Exception:
+        first = ""
+    if ("DOCTYPE" in name or "HTML" in name or name.startswith("<")
+            or first.startswith(("<!DOCTYPE", "<HTML", "<"))):
+        raise RuntimeError(
+            f"fetch_data parsed HTML into a single column ('{df.columns[0]}'), not "
+            "tabular data -- the fetch likely hit a docs/landing URL. Fix the URL/parse."
+        )
 
 
 def _stringify(df):
@@ -196,17 +268,39 @@ def _df_bytes(df) -> bytes:
     return df.to_csv(index=False).encode("utf-8")
 
 
-def _load_landing(conn, df, table: str) -> None:
+def _load_landing(conn, df, table: str, overwrite: bool = True) -> None:
+    """Write the frame to the landing table.
+
+    overwrite=True  -> snapshot-replace (the default, idempotent mirror).
+    overwrite=False -> append (incremental; landing becomes an append log and
+                       staging dedups to current-state-per-key).
+    """
     from snowflake.connector.pandas_tools import write_pandas
 
     database, schema = settings.raw_database, settings.raw_schema
     snow.execute(conn, f'CREATE SCHEMA IF NOT EXISTS "{database}"."{schema}"')
     ok, _chunks, nrows, _ = write_pandas(
         conn, df, table_name=table, database=database, schema=schema,
-        auto_create_table=True, overwrite=True, quote_identifiers=False,
+        auto_create_table=True, overwrite=overwrite, quote_identifiers=False,
     )
     if not ok:
         raise RuntimeError(f"write_pandas reported failure loading {table}.")
+
+
+def _watermark(conn, table: str, cursor_field: str) -> Optional[str]:
+    """High-water mark = MAX(cursor_field) in the landing table.
+
+    None if the table doesn't exist yet (first incremental run -> backfill). The
+    cursor must be lexicographically orderable as TEXT (ISO date/timestamp), which
+    is how the raw mirror stores everything; that covers date_received, record_date,
+    created_at, etc. (For a numeric id cursor, recon should pick a date instead.)
+    """
+    col = _sf_col(cursor_field)
+    fqt = f'"{settings.raw_database}"."{settings.raw_schema}"."{table}"'
+    try:
+        return snow.fetch_scalar(conn, f"SELECT MAX({col}) FROM {fqt}")
+    except Exception:
+        return None  # table not created yet
 
 
 def _latest_success_sha(conn, source_id: str) -> Optional[str]:
