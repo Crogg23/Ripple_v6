@@ -10,3 +10,9 @@ beautifulsoup4>=4.12
 lxml>=5.0          # HTML/XML parser for scrape sources (pandas.read_html, bs4)
 tenacity>=8.2
 python-dotenv>=1.0
+
+# C1b -- headless-browser scrape (scrape_js sources only). OPTIONAL + HEAVY: the
+# pip package is small but drives a ~170 MB browser installed separately. Imported
+# lazily; the agent runs fine without it until a source actually needs a browser.
+# After installing, fetch the browser binary:  playwright install chromium
+playwright>=1.40  # optional; only needed for access_pattern=scrape_js

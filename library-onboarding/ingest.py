@@ -22,6 +22,7 @@ import re
 import uuid
 from typing import Optional, Tuple
 
+import browser
 import snow
 from config import ConfigError, settings
 from llm import call_claude, extract_code, render_prompt
@@ -202,6 +203,11 @@ def _execute_fetch(config: dict, code: str, since: Optional[str] = None,
         "env": dict(os.environ),
         "source_bytes": None,
         "source_file": "",
+        # Headless-browser renderer (C1b). Generated scrape_js code calls
+        # html = context["render"](url) to get fully-rendered HTML (JS executed,
+        # bot-challenge cleared), then parses it with BeautifulSoup exactly like a
+        # static page. Lazily imports Playwright -- no cost unless actually called.
+        "render": browser.render,
     }
     df = fetch(context)
     if not hasattr(df, "columns"):

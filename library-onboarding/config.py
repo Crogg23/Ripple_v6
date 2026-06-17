@@ -92,6 +92,27 @@ class Config:
     # back to Claude as feedback and retry before giving up on the source.
     auto_repair: int = field(default_factory=lambda: _int_env("ONBOARD_AUTO_REPAIR", 3))
 
+    # --- Headless browser (C1b -- Playwright, for scrape_js sources) ----
+    # Run the browser headless (set 0 only to watch it locally during debugging).
+    browser_headless: bool = field(
+        default_factory=lambda: os.getenv("ONBOARD_BROWSER_HEADLESS", "1").strip().lower()
+        not in ("0", "false", "no", "off")
+    )
+    # Per-step timeout (navigation / selector wait), milliseconds.
+    browser_timeout_ms: int = field(default_factory=lambda: _int_env("ONBOARD_BROWSER_TIMEOUT_MS", 45_000))
+    # Navigation milestone for page.goto. domcontentloaded is reliable; a bounded
+    # networkidle wait happens afterwards in browser.render().
+    browser_wait_until: str = field(
+        default_factory=lambda: os.getenv("ONBOARD_BROWSER_WAIT_UNTIL", "domcontentloaded").strip()
+    )
+    # Accept untrusted TLS certs. Default ON: this agent commonly runs behind a
+    # TLS-intercepting proxy whose CA the bundled Chromium does not trust, and the
+    # raw layer keeps a SHA-256 of every payload regardless.
+    browser_ignore_https_errors: bool = field(
+        default_factory=lambda: os.getenv("ONBOARD_BROWSER_IGNORE_HTTPS_ERRORS", "1").strip().lower()
+        not in ("0", "false", "no", "off")
+    )
+
     # ------------------------------------------------------------------
     def require(self, *keys: str) -> None:
         missing = [k for k in keys if not str(getattr(self, k, "")).strip()]

@@ -28,7 +28,7 @@ Return STRICT JSON only (no prose, no code fences) with exactly these keys:
   "unit_of_observation": "one row = one WHAT",
   "temporal_coverage": "e.g. 1947-present",
   "geographic_scope": "e.g. US (county-level), global",
-  "access_pattern": "one of: bulk_csv | bulk_zip | bulk_json | paginated_api | scrape",
+  "access_pattern": "one of: bulk_csv | bulk_zip | bulk_json | paginated_api | scrape | scrape_js. Use scrape for plain HTML you can parse from the raw response. Use scrape_js ONLY when the data needs a real browser: a JS-rendered SPA (the data is not in the page source) OR a bot wall (a 'Just a moment...' / Cloudflare / 'enable JavaScript' challenge instead of content). scrape_js is heavier (drives a headless browser) -- prefer a documented file/API, then scrape, before scrape_js",
   "access_method": "registry vocab: API | bulk download | API + bulk download | portal-only | scrape | mixed",
   "auth": {"type": "none | free API key | registration | paid/license", "notes": "where to get a key, cost"},
   "format": "CSV | JSON | XML | ...",

@@ -75,6 +75,64 @@ guidance to honour `context["since"]`. No new dependencies.
   index → follow ≤N links → parse each). Light.
 - **C1b · JS-rendered (Playwright)** — new optional dependency + a headless-browser install + a
   `render(url)` helper. Heaviest (browser in the container). Only build when a real source needs it.
+  **BUILT + PROVEN 2026-06-17** — see the C1b section below.
+
+---
+
+## C1b — Headless-browser scrape (Playwright)  ✅ BUILT + PROVEN
+
+### The gap C1 Phase 1 left
+Static scrape (requests + BeautifulSoup) only reaches data that's in the *initial* HTML. C1 Phase 1's
+own finding: most accountability scrape targets are **JS-rendered** (the data is injected client-side,
+so `requests` gets an empty shell) or **bot-protected** (a JS challenge — Cloudflare "Just a moment…",
+"enable JavaScript" — served instead of content). Static BS4 can't pass either. BAILII (UK case law)
+was the documented graceful-failure: the agent wrote correct BS4 code, then hit the bot wall.
+
+### The capability
+A new `render(url)` helper (`browser.py`) drives a real headless **Chromium via Playwright**: it loads
+the page, runs its JavaScript, waits for the content to settle (or for a CSS selector), optionally
+scrolls for lazy content, and returns the **fully-rendered HTML**. The generated `fetch_data()` parses
+that HTML with BeautifulSoup / `pandas.read_html` **exactly like a static page** — the only thing that
+changed is *how the bytes were fetched*.
+
+### How the agent chooses it autonomously
+Mirrors the C2 `load_mode` pattern — recon decides, the executor honours it:
+1. **Recon** (`recon.txt`) gained a `scrape_js` value in the `access_pattern` enum, with guidance:
+   use it *only* for a JS-rendered SPA or a bot wall; prefer file/API → `scrape` → `scrape_js`.
+2. **Recon can now read walled pages.** `recon.fetch_page` detects a challenge / empty-shell response
+   (`browser.looks_blocked`) and **escalates to the browser** to get the real page — so recon profiles
+   the actual source, not the interstitial. Best-effort: falls back to the static shell if Playwright
+   isn't installed.
+3. **The LOAD executor** (`ingest._execute_fetch`) always injects `context["render"]`. The codegen prompt
+   (`generate_ingest.txt`) tells Claude: for `scrape_js`, `html = context["render"](url)` (optionally
+   `wait_selector=` / `scroll=True`), then parse with BS4. It never imports Playwright itself.
+
+### The trade-offs  → this is the ADR
+`scrape_js` is the heaviest path in the agent. We make it **opt-in per source**, not the default:
+
+| Cost | Detail | Mitigation |
+|---|---|---|
+| **Heavy dependency** | Playwright ships a ~170 MB browser binary (`playwright install chromium`), separate from the pip package. | Optional dep: imported **lazily**, `render()` raises actionable install instructions, the rest of the agent runs without it. Only `scrape_js` sources pay. |
+| **Slower** | A full browser launch + JS execution + network-settle is seconds per page vs milliseconds for `requests`. | Bounded crawl (≤25 sub-pages) still applies; recon prefers file/API/static scrape first. |
+| **Heavier runtime** | Chromium needs real RAM/CPU and container libs (`playwright install-deps`); `--no-sandbox` + `--disable-dev-shm-usage` to run as root in a container. | Headless by default; one browser per `render()` call, closed in a `finally`. |
+| **Fragile / arms-race** | Bot defences evolve; a real browser passes *basic* checks, not aggressive ones (hard CAPTCHAs, behavioural fingerprinting). | Fails loudly + lands no junk (the `_reject_html` shape guard still applies); the source stays queued for a retry. |
+| **TLS behind a proxy** | Containers behind a TLS-intercepting proxy present a CA Chromium doesn't trust → `ERR_CERT_AUTHORITY_INVALID`. | `ignore_https_errors` default ON (`ONBOARD_BROWSER_IGNORE_HTTPS_ERRORS`); the raw layer still SHA-256s every payload. |
+
+**Verdict:** worth it — it's the only path that reaches the bot-protected / JS-rendered accountability
+sources (courts, portals), and the cost is fully contained to the sources that opt in.
+
+### Proven live (2026-06-17) — same target, before vs after
+`scripts/prove_c1b_bailii.py` runs **both** approaches through the real `ingest._execute_fetch`
+(the exact LOAD-checkpoint path; only the Snowflake write is skipped). Target:
+`https://www.bailii.org/uk/cases/UKSC/2024/`.
+
+| Approach | Result |
+|---|---|
+| **BEFORE** — `scrape` (requests + BS4) | HTTP 200 but a **4.5 KB bot-challenge shell, 0 case links** → raises, **lands nothing** |
+| **AFTER** — `scrape_js` (`context["render"]` + BS4) | challenge cleared, **44 UK Supreme Court 2024 judgments** (title + URL) into a clean DataFrame |
+
+Recon autonomy independently verified: `recon.fetch_page` on the same URL detected the wall, rendered
+through the browser, and returned the real case names (Potanina v Potanin, Paul v Royal Wolverhampton…).
 
 ---
 
