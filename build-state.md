@@ -33,8 +33,11 @@ to `INCLUDE=Y` in place (no duplicate). PR #2 + PR #3 (batches 1–3, 12 dbt mod
 | `fed_fda_drug_enforcement` | 5,000 | full LLM agent (bounded sample) |
 | `fed_treasury_avg_interest_rates` | 4,961 | full LLM agent (batch 3, 2026-06-17 — full monthly history 2001→2026) |
 | `xc_biorxiv_medrxiv` | 432 | **registry-driven queue** (2026-06-17 — first source onboarded straight from the catalog) |
+| `fed_clinicaltrials` | 500 | registry queue, tier-1 batch (bounded API snapshot) |
+| `fed_cms_hcris` | 6,103 | registry queue, tier-1 batch (a "bulk" source the agent hit via its data API) |
+| `fed_cms_hpt_enforcement` | 22 | registry queue, tier-1 batch (recovered via auto-repair) |
 
-8 sources, ~38,362 raw rows. Registry now **901** rows (**11** `INCLUDE=Y`). Each: a `success` row in
+11 sources, ~44,987 raw rows. Registry now **901** rows (**14** `INCLUDE=Y`). Each: a `success` row in
 `INGEST_RUNS`, an `INCLUDE=Y` row in `SOURCE_REGISTRY` (live Claude enrichment).
 
 ### Registry-driven queue (B) — `xc_biorxiv_medrxiv` (2026-06-17), verified live
@@ -48,6 +51,24 @@ to `INCLUDE=Y` in place (no duplicate). PR #2 + PR #3 (batches 1–3, 12 dbt mod
   now matches the fence greedily + parses with `strict=False` (tolerates literal newlines + dbt `{{ }}`).
 - dbt models for biorxiv are GENERATED (staging view + `science_research` mart + schema.yml; `dbt parse`
   clean, 14 models total) but not yet RUN.
+
+### Registry batch 1 — `registry_batch.py --tier 1 --limit 5 --run` (2026-06-17)
+First real unattended batch off the catalog. **3/5 complete**, verified live:
+
+| Source | Result | Rows |
+|---|---|---|
+| `fed_clinicaltrials` | ✅ onboarded, `INCLUDE=Y` | 500 |
+| `fed_cms_hcris` | ✅ onboarded, `INCLUDE=Y` | 6,103 |
+| `fed_cms_hpt_enforcement` | ✅ onboarded (auto-repair recovered a CSV-parse error) | 22 |
+| `fed_chronicling_america` | ❌ aborted (3 repairs) — JS-heavy API docs page recon couldn't crack | — |
+| `fed_cms_hpt_mrf` | ❌ aborted (3 repairs) — per-hospital MRF scrape (GitHub index) | — |
+
+- Registry stayed **901** rows (3 in-place UPDATEs, no duplicates); `INCLUDE=Y` 11→14. **The 2 failures
+  left zero partial state** — no landing table, no `INGEST_RUNS` row, registry untouched — so they remain
+  queued for a retry. Clean graceful-failure behaviour.
+- Takeaway: 60% hit rate on **unvetted** sources, and two nominally-"bulk" CMS sources succeeded because
+  the agent used their JSON data APIs. Both failures are scrape/JS-portal shapes — the case for **C**
+  (a scrape + incremental/bulk path). The 3 successes' dbt models are GENERATED, not yet RUN.
 
 ### Batch 3 — `fed_treasury_avg_interest_rates` (2026-06-17), verified live
 - LOAD → `RIPPLE_RAW.LANDING.FED_TREASURY_AVG_INTEREST_RATES` = **4,961 rows**, run `4046bcc7…`,
@@ -97,9 +118,9 @@ to `INCLUDE=Y` in place (no duplicate). PR #2 + PR #3 (batches 1–3, 12 dbt mod
   (+ `RIPPLE_STAGING`/`RIPPLE_MARTS` for dbt) would be safer for routine onboarding.
 
 ## NEXT ACTION
-B is built + proven on one source. Next: run the registry queue **at scale** — e.g.
-`registry_batch.py --tier 1 --limit 10 --run` to onboard a real batch from the catalog (watch the
-auto-repair rate now that the dbt-gen truncation bug is fixed). Then the still-open levers: (C) build
-the incremental load path for CFPB/ProPublica-style huge daily sources; (D) point routine onboarding at
-the least-privilege `RIPPLE_INGEST_RW` role instead of the `ACCOUNTADMIN` PAT. (Also: `dbt run` the
-biorxiv models — generated but not yet built.)
+B ran at scale (registry batch 1: 3/5 live). Both failures were scrape/JS-portal shapes, so the next
+lever is **(C) a scrape + incremental/bulk load path** — the recurring blocker for the harder catalog
+sources. Other open threads: (D) point routine onboarding at the least-privilege `RIPPLE_INGEST_RW` role
+instead of the `ACCOUNTADMIN` PAT; keep feeding the queue (`registry_batch.py --tier 1 --run`, larger
+limits); and `dbt run` the 4 newly-onboarded sources' models (biorxiv + the 3 batch-1 successes —
+generated, not yet built).
