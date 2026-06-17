@@ -2,15 +2,18 @@
 Last updated: 2026-06-17
 
 ## CURRENT FOCUS
-Scaling the Library: the onboarding queue is now **registry-driven** (option B). It pulls candidates
-straight from the ~900-row `SOURCE_REGISTRY` by `PRIORITY_TIER`, instead of a hand-curated list. Proven
-end to end — `xc_biorxiv_medrxiv` was onboarded straight from the catalog, and its registry row flipped
-to `INCLUDE=Y` in place (no duplicate). PR #2 + PR #3 (batches 1–3, 12 dbt models) are MERGED to `main`.
+Scaling the Library on two axes, both proven live today: **(B) registry-driven queue** — onboarding pulls
+candidates straight from the ~900-row `SOURCE_REGISTRY` by `PRIORITY_TIER` (proven: `xc_biorxiv_medrxiv`
+flipped its own row to `INCLUDE=Y`); and **(C2) incremental load** — append-only landing + watermark for
+huge/growing sources (proven: `fed_cfpb_complaints`, 2 runs, watermark-advance append). Next: C1 scrape.
+PR #2 + PR #3 (batches 1–3) merged to `main`; everything since is on `claude/reconcile-onboarding-agent`.
 
 ## WHAT EXISTS
 - `library-onboarding/` — the 5-checkpoint CLI agent: RECON → SCRIPT → LOAD → DBT → REGISTRY.
 - LOAD lands raw to `RIPPLE_RAW.LANDING.<UPPER(SOURCE_ID)>` — all columns TEXT, stamped
-  `_INGESTED_AT` / `_SOURCE_RUN_ID` / `_SRC_SHA256`, snapshot-replace (idempotent), SHA-256 hash.
+  `_INGESTED_AT` / `_SOURCE_RUN_ID` / `_SRC_SHA256`. Two load modes: **snapshot** (default — replace,
+  idempotent by SHA) and **incremental** (C2 — read `MAX(cursor_field)` watermark, fetch only newer rows
+  via `context["since"]`, append; staging dedups on the primary key). The LOAD also rejects HTML-as-data.
 - Logs every run to `RIPPLE_META.INGEST_LOGS.INGEST_RUNS`; upserts `RIPPLE_META.REGISTRY.SOURCE_REGISTRY`.
 - **Unattended**: `ONBOARD_AUTO_APPROVE=1` + `ONBOARD_AUTO_REPAIR=N` (default 3, feeds errors back to
   Claude). `live_batch.py` is the hand-curated growing queue — skips anything already landed, safe to re-run.
@@ -35,10 +38,12 @@ to `INCLUDE=Y` in place (no duplicate). PR #2 + PR #3 (batches 1–3, 12 dbt mod
 | `xc_biorxiv_medrxiv` | 432 | **registry-driven queue** (2026-06-17 — first source onboarded straight from the catalog) |
 | `fed_clinicaltrials` | 500 | registry queue, tier-1 batch (bounded API snapshot) |
 | `fed_cms_hcris` | 6,103 | registry queue, tier-1 batch (117-col hospital cost report; rebuilt against real columns) |
+| `fed_cfpb_complaints` | 500 | **incremental (C2)** — 2 runs (backfill + watermark-advance append) |
 
-**10 clean sources, ~44,965 raw rows.** Registry **901** rows, **13** `INCLUDE=Y` — the false-success
-`fed_cms_hpt_enforcement` was dequeued (registry un-flagged + junk table dropped, 2026-06-17, with Chris's OK).
-It had landed an HTML page (one `DOCTYPE_HTML` column, 22 junk rows), not data — caught when its mart wouldn't build.
+**11 clean sources, ~45,465 raw rows.** Registry **901** rows, **14** `INCLUDE=Y` (CFPB +1; the dequeue
+below −1). The false-success `fed_cms_hpt_enforcement` was dequeued (registry un-flagged + junk table
+dropped, 2026-06-17, with Chris's OK): it had landed an HTML page (one `DOCTYPE_HTML` column, 22 junk
+rows), not data — caught when its mart wouldn't build.
 
 ### Registry-driven queue (B) — `xc_biorxiv_medrxiv` (2026-06-17), verified live
 - `registry_batch.py --source-id xc_biorxiv_medrxiv --run` selected the row from the catalog and ran the
@@ -85,6 +90,20 @@ Building the marts (not just generating models) surfaced two systemic agent bugs
 - **Built green now**: `health__fed_clinicaltrials` (500), `science_research__xc_biorxiv_medrxiv` (432),
   `health__fed_cms_hcris` (6,103) — all materialized into `RIPPLE_MARTS.DBT_CROGERS`.
 
+### C2 — incremental load (2026-06-17), built + proven live
+The agent now does two load modes. **Incremental** (for huge/daily-growing sources): `run_ingest` reads the
+`MAX(cursor_field)` watermark from landing, hands it to the fetch as `context["since"]`, fetches only newer
+rows, and **appends** (`overwrite=False`); landing is an append log, staging dedups on the primary key.
+First run (empty table) → bounded backfill; a run with no new rows → clean no-op (not an error).
+- Touchpoints: `ingest.run_ingest` (+ `_watermark`, `_execute_fetch(since, allow_empty)`,
+  `_load_landing(overwrite)`), `recon` emits `load_mode`/`cursor_field`/`primary_key`, prompts updated. No new deps.
+- **Proven on CFPB consumer complaints** (`fed_cfpb_complaints`) — the canonical "wrong shape for snapshot"
+  parked source: run 1 backfilled 250; run 2 **read watermark `2026-05-15T23:59:55Z`** and appended 250 more
+  forward → landing **500**, 2 `INGEST_RUNS` rows, registered `INCLUDE=Y`. Append + watermark-advance confirmed.
+- Trade-off (ADR in `docs/design-incremental-and-scrape.md`): incremental breaks the snapshot-replace raw
+  invariant for these sources — landing becomes append-only. Mitigated: still all-TEXT + provenance; clean
+  current state lives in staging.
+
 ### Batch 3 — `fed_treasury_avg_interest_rates` (2026-06-17), verified live
 - LOAD → `RIPPLE_RAW.LANDING.FED_TREASURY_AVG_INTEREST_RATES` = **4,961 rows**, run `4046bcc7…`,
   sha `7fe37899…` (the same sha is on every row's `_SRC_SHA256` and on the `INGEST_RUNS` row — provenance chain intact).
@@ -119,10 +138,10 @@ Building the marts (not just generating models) surfaced two systemic agent bugs
 ## PARKED IDEAS
 - [DONE 2026-06-17] Drive the queue from `SOURCE_REGISTRY` (by `PRIORITY_TIER`) instead of the static list.
   → `registry_queue.py` + `registry_batch.py`; proven with `xc_biorxiv_medrxiv`.
-- [SCOPED 2026-06-17 — C] Scrape + incremental load path for huge/growing/portal sources (CFPB,
-  ProPublica, NPPES, per-hospital MRF). Design written: `library-onboarding/docs/design-incremental-and-scrape.md`
-  (C2 incremental = append-only landing + watermark + staging dedup; C1 scrape = BS4 then Playwright).
-  Recommend building **C2 incremental first**, proven on CFPB complaints. Awaiting foreman go. | LAYER: Library
+- [DONE 2026-06-17 — C2] Incremental load path (append-only landing + watermark + staging dedup). Built in
+  `ingest.py`/`recon.py`/prompts; proven live on `fed_cfpb_complaints`. Design: `docs/design-incremental-and-scrape.md`.
+- [NEXT — C1] Scrape extraction for portal/per-entity sources (per-hospital MRF, JS portals): BS4 static
+  first (mostly there — tighten recon/codegen + a bounded crawl helper), then Playwright for JS. | LAYER: Library
 - [IDEA — SOMEDAY] The agent writes a `sources:` block into every model's `schema.yml`; it should emit a
   single central `sources.yml` instead. | NOTE: dbt 1.11 actually tolerates the per-file blocks (parse +
   build are clean) — it only collides if you ALSO add a central one. Cosmetic, not blocking. | LAYER: Library
@@ -135,7 +154,7 @@ Building the marts (not just generating models) surfaced two systemic agent bugs
   (+ `RIPPLE_STAGING`/`RIPPLE_MARTS` for dbt) would be safer for routine onboarding.
 
 ## NEXT ACTION
-**C is scoped** (`docs/design-incremental-and-scrape.md`). Pending foreman go: **build C2 — incremental
-load** (`load_mode=incremental` in `ingest.py` + config/recon: append-only landing + watermark + staging
-dedup), proven on CFPB consumer complaints. Then C1 scrape (BS4 → Playwright). Other open threads:
+**C2 incremental is built + proven** (CFPB). Open levers: **(C1) scrape extraction** — BS4 static first
+(tighten recon/codegen + a bounded per-entity crawl helper), then Playwright for JS portals (the remaining
+queue failure shape); generate + `dbt run` a staging/mart for `fed_cfpb_complaints` (dedup-on-`complaint_id`);
 (D) least-privilege `RIPPLE_INGEST_RW` role; keep feeding the registry queue at larger limits.

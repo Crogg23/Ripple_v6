@@ -140,6 +140,11 @@ def _resolve(source: dict, extracted: dict, fetch_error: Optional[str]) -> dict:
         "priority_tier": str(extracted.get("priority_tier", "2")),
         # ingest + dbt
         "access_pattern": extracted.get("access_pattern", "unknown"),
+        # Incremental load (huge / daily-growing sources): a foreman-pinned value
+        # wins; else recon's guess; else snapshot (the default mirror).
+        "load_mode": (source.get("load_mode") or extracted.get("load_mode") or "snapshot").strip().lower(),
+        "cursor_field": source.get("cursor_field") or extracted.get("cursor_field") or "",
+        "primary_key": source.get("primary_key") or extracted.get("primary_key") or "",
         "rate_limits": extracted.get("rate_limits", "unspecified"),
         "schema_fields": extracted.get("schema_fields", []),
         "staging_model": naming.staging_model(sid, entity),

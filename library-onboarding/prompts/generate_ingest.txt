@@ -39,6 +39,12 @@ REQUIREMENTS
     through the whole dataset. Respect the limit/size/page already in the URL and
     fetch a single bounded page (or a small capped number of pages). Many APIs also
     reject deep pagination (offset > 10,000).
+  - Incremental sources (the config sets load_mode=incremental): context["since"]
+    holds the high-water mark -- the latest cursor value already loaded -- or None on
+    the first run. If it is set, fetch ONLY records at/after it (e.g.
+    date_received_min = context["since"][:10]); if None, fetch a bounded initial
+    backfill. Return just that slice -- the caller APPENDS it (landing is an append
+    log; staging dedups on the primary key). Do not try to mirror the whole source.
   - For bulk CSV/ZIP: download, parse with pandas (io.BytesIO / zipfile as needed).
   - For paginated APIs that return nested JSON, store each record as one row
     (json.dumps the record into a single column if the shape is irregular).
