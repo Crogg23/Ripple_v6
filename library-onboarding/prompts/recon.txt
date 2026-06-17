@@ -11,6 +11,9 @@ SOURCE
 FOREMAN FEEDBACK (apply this if not "(none)"):
   {feedback}
 
+ACCESS NOTE (how the page below was fetched -- this drives access_pattern):
+  {access_note}
+
 DOCUMENTATION PAGE (truncated):
 ---
 {page_text}

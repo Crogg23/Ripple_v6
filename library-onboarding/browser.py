@@ -24,6 +24,8 @@ binary is missing -- the agent only pays the cost for sources that actually need
 
 from __future__ import annotations
 
+import re
+
 from config import settings
 
 # A real desktop-Chrome UA. Many bot walls 403 (or challenge) obvious automation
@@ -58,12 +60,14 @@ def playwright_available() -> bool:
         return False
 
 
-def looks_blocked(html: str, min_chars: int = 600) -> bool:
+def looks_blocked(html: str, min_visible_chars: int = 200) -> bool:
     """Heuristic: does this HTML look like a bot-challenge / empty-SPA shell?
 
-    True when the page carries a known challenge marker, or is suspiciously short
-    (a challenge interstitial / SPA skeleton is tiny compared to a real listing).
-    Lets recon and generated fetches notice "we got a wall, not data" and escalate
+    True when the page carries a known challenge marker, or renders almost no
+    VISIBLE text. The visible-text test (not raw byte length) is what catches a
+    JS-rendered SPA: its shell can be 100+ KB of HTML/script with a near-empty
+    <body>, so the data simply isn't in the static response. Lets recon and
+    generated fetches notice "we got a wall / empty shell, not data" and escalate
     to the browser.
     """
     if not html:
@@ -71,11 +75,21 @@ def looks_blocked(html: str, min_chars: int = 600) -> bool:
     low = html.lower()
     if any(marker in low for marker in CHALLENGE_MARKERS):
         return True
-    # An SPA shell with a mount point and almost no text is also "blocked" for our
-    # purposes (the data isn't in the static HTML).
-    if len(html) < min_chars:
-        return True
-    return False
+    return len(_visible_text(html)) < min_visible_chars
+
+
+def _visible_text(html: str) -> str:
+    """Best-effort visible text: drop script/style/etc, collapse whitespace."""
+    try:
+        from bs4 import BeautifulSoup
+        soup = BeautifulSoup(html, "html.parser")
+        for tag in soup(["script", "style", "noscript", "svg", "template"]):
+            tag.decompose()
+        text = soup.get_text(" ")
+    except Exception:
+        text = re.sub(r"(?is)<(script|style)[^>]*>.*?</\1>", " ", html)
+        text = re.sub(r"(?s)<[^>]+>", " ", text)
+    return re.sub(r"\s+", " ", text).strip()
 
 
 def render(
