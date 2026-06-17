@@ -1,0 +1,222 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CMS_TIC_MRF
+        description: >
+          Raw landing table for Transparency in Coverage Machine-Readable Files
+          published by health plans and issuers under the CMS TiC Final Rule.
+          All columns arrive as TEXT from the ingestion pipeline.
+
+models:
+
+  - name: stg_fed_cms_tic_mrf__transparency_in_coverage_rates
+    description: >
+      Staging model for CMS Transparency in Coverage MRF negotiated rates.
+      Casts TEXT columns to appropriate types, deduplicates on a SHA-2 row hash,
+      and surfaces provenance metadata.
+    columns:
+
+      - name: _row_hash
+        description: SHA-2 surrogate key computed over all core business columns.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: npi
+        description: National Provider Identifier for the provider.
+        data_tests:
+          - not_null
+
+      - name: plan_id
+        description: Identifier for the health plan.
+        data_tests:
+          - not_null
+
+      - name: billing_code
+        description: Procedure or service code (CPT, HCPCS, DRG, NDC, etc.).
+        data_tests:
+          - not_null
+
+      - name: reporting_entity_name
+        description: Name of the health plan or issuer (payer name).
+        data_tests:
+          - not_null
+
+      - name: plan_id_type
+        description: Type of plan identifier.
+        data_tests:
+          - accepted_values:
+              values: ['EIN', 'HIOS', 'Other']
+              quote: true
+              severity: warn
+
+      - name: plan_market_type
+        description: Market type for the plan.
+        data_tests:
+          - accepted_values:
+              values: ['individual', 'small group', 'large group', 'self-insured']
+              quote: true
+              severity: warn
+
+      - name: billing_code_type
+        description: Coding system used for the billing code.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['CPT', 'HCPCS', 'DRG', 'NDC', 'ICD', 'MS-DRG', 'R-DRG', 'S-DRG', 'APS-DRG', 'AP-DRG', 'APR-DRG', 'APC', 'LOCAL', 'CSTM-ALL', 'OTHER']
+              quote: true
+              severity: warn
+
+      - name: negotiation_arrangement
+        description: Type of negotiation arrangement.
+        data_tests:
+          - accepted_values:
+              values: ['ffs', 'bundle', 'capitation']
+              quote: true
+              severity: warn
+
+      - name: negotiated_type
+        description: Nature of the negotiated rate.
+        data_tests:
+          - accepted_values:
+              values: ['negotiated', 'derived', 'fee schedule', 'percentage', 'per diem']
+              quote: true
+              severity: warn
+
+      - name: billing_class
+        description: Professional or institutional billing class.
+        data_tests:
+          - accepted_values:
+              values: ['professional', 'institutional']
+              quote: true
+              severity: warn
+
+      - name: tin_type
+        description: Type of taxpayer identification number.
+        data_tests:
+          - accepted_values:
+              values: ['EIN', 'NPI']
+              quote: true
+              severity: warn
+
+      - name: negotiated_rate
+        description: Dollar amount of the negotiated rate (cast to DOUBLE).
+
+      - name: effective_date
+        description: Date the negotiated rate becomes effective.
+
+      - name: expiration_date
+        description: Date the negotiated rate expires.
+
+      - name: last_updated_on
+        description: Date the MRF was last updated by the issuer.
+
+      - name: source_file_url
+        description: URL of the source machine-readable JSON file.
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the Ripple platform.
+
+
+  - name: health__fed_cms_tic_mrf
+    description: >
+      Analytics-ready mart for CMS Transparency in Coverage negotiated rates.
+      One row per unique provider-plan-code-rate combination. Exposes all key
+      identifiers for cross-source joins (NPI, payer_name, plan_id, billing_code)
+      and includes derived columns such as rate_validity_days and is_rate_active.
+    columns:
+
+      - name: transparency_in_coverage_rate_key
+        description: Surrogate primary key (SHA-2 row hash from staging).
+        data_tests:
+          - unique
+          - not_null
+
+      - name: npi
+        description: National Provider Identifier — primary cross-source join key.
+        data_tests:
+          - not_null
+
+      - name: plan_id
+        description: Health plan identifier — primary cross-source join key.
+        data_tests:
+          - not_null
+
+      - name: billing_code
+        description: Procedure / service code — primary cross-source join key.
+        data_tests:
+          - not_null
+
+      - name: payer_name
+        description: Name of the health plan or issuer (alias of reporting_entity_name).
+        data_tests:
+          - not_null
+
+      - name: billing_code_type
+        description: Coding system used for the billing code.
+        data_tests:
+          - not_null
+
+      - name: plan_id_type
+        description: Type of plan identifier (EIN, HIOS, etc.).
+
+      - name: billing_code_type_version
+        description: Version of the billing code system.
+
+      - name: tin_type
+        description: Type of taxpayer identification number.
+
+      - name: tin_value
+        description: Taxpayer identification number value.
+
+      - name: service_code
+        description: Place of service code.
+
+      - name: reporting_entity_type
+        description: Type of reporting entity.
+
+      - name: plan_name
+        description: Name of the specific health plan.
+
+      - name: plan_market_type
+        description: Market type (individual, small group, large group, self-insured).
+
+      - name: billing_code_description
+        description: Human-readable description of the billed item or service.
+
+      - name: negotiation_arrangement
+        description: Type of negotiation (ffs, bundle, capitation).
+
+      - name: negotiated_type
+        description: Nature of the negotiated rate.
+
+      - name: negotiated_rate
+        description: Dollar amount of the negotiated rate.
+
+      - name: billing_class
+        description: Professional or institutional billing class.
+
+      - name: effective_date
+        description: Date the negotiated rate becomes effective.
+
+      - name: expiration_date
+        description: Date the negotiated rate expires.
+
+      - name: last_updated_on
+        description: Date the MRF was last updated by the issuer.
+
+      - name: rate_validity_days
+        description: Number of days between effective_date and expiration_date.
+
+      - name: is_rate_active
+        description: Boolean flag — true when expiration_date is on or after today.
+
+      - name: source_file_url
+        description: URL of the originating machine-readable JSON file.
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the Ripple platform.
