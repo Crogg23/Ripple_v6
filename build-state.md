@@ -2,9 +2,9 @@
 Last updated: 2026-06-17
 
 ## CURRENT FOCUS
-Growing the Library via the full LLM agent. PR #2 (retarget + first loads + dbt) is MERGED.
-Post-merge work — batch 2 (Treasury debt, FDA recalls) + batch 3 (Treasury avg interest rates) —
-lives on `claude/reconcile-onboarding-agent` and goes up as a NEW PR to `main`.
+Growing the Library via the full LLM agent. PR #2 + PR #3 are MERGED — `main` now holds batches 1–3
+(7 sources, all loaded + registered, 12 dbt models built + tested). Next lever: scale the queue off the
+~900-row registry instead of the static list, and build an incremental path for huge/daily sources.
 
 ## WHAT EXISTS
 - `library-onboarding/` — the 5-checkpoint CLI agent: RECON → SCRIPT → LOAD → DBT → REGISTRY.
@@ -38,13 +38,17 @@ lives on `claude/reconcile-onboarding-agent` and goes up as a NEW PR to `main`.
   `record_date, security_type_desc, security_desc`). The curated `fed_fiscaldata_treasury` family row was NOT clobbered.
 - Verified independently with the read-only MCP role (`CLAUDE_MCP_READONLY`); the agent wrote via the
   env PAT (`ACCOUNTADMIN`).
-- **dbt for batch 3 is GENERATED, not RUN**: checkpoint 4 wrote `stg_…__avg_interest_rates` (view) +
-  `economics__fed_treasury_avg_interest_rates` (table) + `schema.yml`, but `dbt run`/`dbt test` was NOT
-  executed this session — its staging view / mart table aren't built in Snowflake yet.
+- **dbt for batch 3 is RUN** (2026-06-17): `dbt build` created the staging view
+  `stg_fed_treasury_avg_interest_rates__avg_interest_rates` (`RIPPLE_STAGING.DBT_CROGERS`) + the mart table
+  `economics__fed_treasury_avg_interest_rates` (`RIPPLE_MARTS.DBT_CROGERS`, 4,961 rows, surrogate key 1:1
+  unique). Final: **PASS=18, WARN=0, ERROR=0**. One fix: the agent's `accepted_values` on
+  `security_type_desc` was wrong (guessed five `Total *` labels from a *different* Treasury dataset) —
+  corrected to the 3 real categories `Marketable / Non-marketable / Interest-bearing Debt` (a real guard,
+  not downgraded to warn, since the categories are stable + exhaustive across the full history).
 
-- **dbt is RUN** (batches 1–2): `dbt run` builds all **10 models** (5 sources × staging view + mart table)
-  into `RIPPLE_STAGING.DBT_CROGERS` / `RIPPLE_MARTS.DBT_CROGERS` — 0 errors. `dbt test`: **PASS=60, WARN=13,
-  ERROR=0**. (USAspending agencies has no dbt models — its first load skipped checkpoint 4.)
+- **dbt is RUN** (batches 1–3): all **12 models** (6 sources × staging view + mart table) build into
+  `RIPPLE_STAGING.DBT_CROGERS` / `RIPPLE_MARTS.DBT_CROGERS` — 0 errors. (USAspending agencies has no dbt
+  models — its first load skipped checkpoint 4.)
 
 ## DECISIONS MADE
 - Target the live `RIPPLE_*` stack, NOT `DISASTER_IMPACT.RAW`. — Chris, 2026-06-16
@@ -62,13 +66,18 @@ lives on `claude/reconcile-onboarding-agent` and goes up as a NEW PR to `main`.
 - [IDEA — HOT] CFPB complaints + ProPublica nonprofits are huge, daily-growing search APIs — a snapshot
   mirror is the wrong shape. Need an **incremental** load path before onboarding them. | LAYER: Library
 - [IDEA — SOMEDAY] The agent writes a `sources:` block into every model's `schema.yml`; it should emit a
-  single central `sources.yml` instead (avoids duplicate-source conflicts). | LAYER: Library
+  single central `sources.yml` instead. | NOTE: dbt 1.11 actually tolerates the per-file blocks (parse +
+  build are clean) — it only collides if you ALSO add a central one. Cosmetic, not blocking. | LAYER: Library
+- [IDEA — SOMEDAY] The agent's generated test YAML trips dbt 1.11 deprecations (generic-test args should
+  nest under `arguments:`; `severity` under `config:`). Works now (warnings only), but update the codegen
+  prompt before a future dbt makes them errors. | LAYER: Library
 
 ## OPEN QUESTIONS
 - The PAT authenticates as `ACCOUNTADMIN` — a least-privilege role scoped to `RIPPLE_RAW` + `RIPPLE_META`
   (+ `RIPPLE_STAGING`/`RIPPLE_MARTS` for dbt) would be safer for routine onboarding.
 
 ## NEXT ACTION
-Land this branch's post-merge work (batch 2 + batch 3) via the open PR to `main`. Then: run dbt for
-`fed_treasury_avg_interest_rates` (build + test its staging view + mart table — would make it 12 models),
-keep feeding the queue via `live_batch.py`, and build the incremental load path for CFPB-style sources.
+Pick the next lever: (B) drive the onboarding queue off `SOURCE_REGISTRY` by `INCLUDE`/`PRIORITY_TIER`
+instead of the static 37-source list — the real unlock for scaling to the ~900 cataloged sources; or
+(C) build the incremental load path for CFPB/ProPublica-style huge daily sources; or (D) point routine
+onboarding at the least-privilege `RIPPLE_INGEST_RW` role instead of the `ACCOUNTADMIN` PAT.
