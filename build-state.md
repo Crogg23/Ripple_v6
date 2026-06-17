@@ -36,10 +36,9 @@ to `INCLUDE=Y` in place (no duplicate). PR #2 + PR #3 (batches 1–3, 12 dbt mod
 | `fed_clinicaltrials` | 500 | registry queue, tier-1 batch (bounded API snapshot) |
 | `fed_cms_hcris` | 6,103 | registry queue, tier-1 batch (117-col hospital cost report; rebuilt against real columns) |
 
-**10 clean sources, ~44,965 raw rows.** Registry **901** rows, currently **14** `INCLUDE=Y` (drops to 13
-once the false-success `fed_cms_hpt_enforcement` is dequeued — see below; needs Chris's OK as a shared-state write).
-`fed_cms_hpt_enforcement` was a **false success**: the load landed an HTML page (one `DOCTYPE_HTML` column,
-22 junk rows), not data — caught when its mart wouldn't build.
+**10 clean sources, ~44,965 raw rows.** Registry **901** rows, **13** `INCLUDE=Y` — the false-success
+`fed_cms_hpt_enforcement` was dequeued (registry un-flagged + junk table dropped, 2026-06-17, with Chris's OK).
+It had landed an HTML page (one `DOCTYPE_HTML` column, 22 junk rows), not data — caught when its mart wouldn't build.
 
 ### Registry-driven queue (B) — `xc_biorxiv_medrxiv` (2026-06-17), verified live
 - `registry_batch.py --source-id xc_biorxiv_medrxiv --run` selected the row from the catalog and ran the
@@ -77,7 +76,8 @@ Building the marts (not just generating models) surfaced two systemic agent bugs
 - **`fed_cms_hpt_enforcement` was a false success**: the generated fetch hit a docs/landing URL, so pandas
   parsed an HTML page into one bogus column (`DOCTYPE_HTML`, 22 junk rows). The mart wouldn't build → caught.
   **Fix**: `ingest._reject_html()` now fails the LOAD loudly when the payload is an HTML page / single
-  `<…>`/`DOCTYPE` column. (Cleanup of its registry row + junk landing table is pending Chris's OK.)
+  `<…>`/`DOCTYPE` column. Dequeued 2026-06-17 (Chris's OK): registry un-flagged, junk landing table dropped.
+  Re-onboarding it later needs `--include-landed` (the bad run still sits in `INGEST_RUNS` history).
 - **`fed_cms_hcris` staging wouldn't compile**: dbt-gen built SQL from recon's *guessed* schema
   (`PROVIDER_NUMBER`) but the CSV landed `PROVIDER_CCN` + 116 other real columns. **Fix**:
   `scaffold_dbt._actual_landing_columns()` introspects the real landing columns and generates against those;
