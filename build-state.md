@@ -4,9 +4,12 @@ Last updated: 2026-06-17
 ## CURRENT FOCUS
 The agent now has **three fetch capabilities** and picks each autonomously at recon: **bulk/API**,
 **static scrape** (C1, BS4), and **headless-browser scrape** (C1b, Playwright `render()` for
-JS-rendered / bot-protected pages) — plus two **load modes** (snapshot + C2 incremental). C1b is the
-newest: proven live on BAILII (static scrape blocked by the bot wall → browser renders 44 UK Supreme
-Court judgments). PR #2/#3 merged to `main`; PR #4 (C1 + C2) merged; C1b is on `claude/laughing-knuth-fmjka8`.
+JS-rendered / bot-protected pages) — plus two **load modes** (snapshot + C2 incremental). C1b is now
+**proven full end-to-end through `onboard.py` with real creds**: recon autonomously set `scrape_js`,
+codegen used the injected `render()`, Playwright cleared a JS shell, and 100 rows landed in
+`LIBRARY_RAW.LANDING` + registered in `LIBRARY_META` (target `quotes.toscrape.com/js` — BAILII's wall was
+down at run time; see the C1b end-to-end section for why). PR #2–#6 merged to `main`; C1b end-to-end work
+is on `claude/laughing-knuth-fmjka8`.
 
 ## WHAT EXISTS
 - `library-onboarding/` — the 5-checkpoint CLI agent: RECON → SCRIPT → LOAD → DBT → REGISTRY.
@@ -140,11 +143,39 @@ generated `fetch_data` parses with BS4 exactly like a static page.
   - AFTER (`scrape_js`, `context["render"]`+BS4): challenge cleared → **44 UK Supreme Court 2024
     judgments** (title + URL) into a clean DataFrame. Recon autonomy independently verified (read real
     case names through the browser).
-- **NOTE on this container**: the live proof exercised the full RECON→SCRIPT→LOAD-*fetch* path (render
-  injection + generated `fetch_data` + HTML-junk guard). The Snowflake **write** + real-LLM codegen
-  weren't run here (this session's `SNOWFLAKE_PAT`/`ANTHROPIC_API_KEY` are read-only/placeholder; the
-  Snowflake MCP is `CLAUDE_MCP_READONLY`). That plumbing is unchanged from C1 and already proven — what
-  C1b adds is the fetch capability, and that's what's proven live.
+- **NOTE on the C1b PR container**: that earlier proof exercised the full RECON→SCRIPT→LOAD-*fetch* path
+  (render injection + generated `fetch_data` + HTML-junk guard). The Snowflake **write** + real-LLM codegen
+  weren't run there (placeholder creds). Now done — see below.
+
+### C1b — FULL end-to-end live proof through `onboard.py` (2026-06-17, real creds)
+Ran the whole agent (`onboard.py --url …`, `ONBOARD_AUTO_APPROVE=1`) with a real `ANTHROPIC_API_KEY` +
+write PAT (`ACCOUNTADMIN`) + `DBT_WH`, browser at `/opt/pw-browsers`. All 5 checkpoints green, exit 0:
+- **RECON → `access_pattern=scrape_js` autonomously**, **codegen wrote `context["render"](url,
+  wait_selector=".quote")`**, Playwright cleared the JS shell, **LOAD landed 100 rows** →
+  `LIBRARY_RAW.LANDING.INTL_DEMO_QUOTES_TOSCRAPE_JS` with full provenance (`_INGESTED_AT` /
+  `_SOURCE_RUN_ID` / `_SRC_SHA256`), one `success` row in `INGEST_RUNS` (100 rows, 93,596 B, sha
+  `03c989fc4da3`), and a `SOURCE_REGISTRY` row (`INCLUDE=Y`). Verified independently via the read-only
+  MCP role. DBT checkpoint also ran (demo models written, not committed — see target note).
+
+**Target = `quotes.toscrape.com/js` (a JS-render sandbox), NOT BAILII — and why:**
+- **BAILII's bot wall is intermittent / IP-reputation-based.** At run time it served the *real* page to a
+  plain `requests` GET (12 KB, 0 challenge markers) — so recon *correctly* called it plain `scrape`, and a
+  scrape_js proof on it would've been theatre. (This is exactly the "fragile / arms-race" trade-off in the
+  ADR.) BAILII still works via static scrape right now; it just isn't a JS wall *today from this IP*.
+- Swept the queue's real JS candidates: **OECD** data-explorer is a true JS shell (0 visible chars static)
+  but headless render returns an SPA *error* page (needs bespoke UI-driving); **ICIJ**/`pages/database`,
+  OpenSanctions, GDELT, GFW, supremecourt.uk are all server-rendered (real content static → plain scrape).
+  None cleanly exercises scrape_js from a single URL. `quotes.toscrape.com/js` reliably does: static = 0
+  data rows (JS shell), render = real quotes. Registered with NOTES flagging it a demo to exclude from
+  real analysis. **It can be dropped on request** (`DROP TABLE LIBRARY_RAW.LANDING.INTL_DEMO_QUOTES_TOSCRAPE_JS`
+  + delete its `SOURCE_REGISTRY` / `INGEST_RUNS` rows).
+
+**Autonomy hardening this exposed (committed):** recon was picking `scrape` even for JS shells because it
+*escalates to the browser to read walled pages*, so the LLM saw clean rendered HTML and mislabeled it. Fixes:
+(1) `browser.looks_blocked` now judges **visible text** (a JS SPA shell is 100+ KB of HTML with ~0 visible
+chars — the old raw-byte-length test missed it); (2) `recon.fetch_page` returns a `browser_required` signal
+(static was blocked, only render worked); (3) `recon._resolve` **forces `access_pattern=scrape_js` on that
+empirical signal** rather than trusting the LLM. Deterministic across repeated runs after the fix.
 
 ### Batch 3 — `fed_treasury_avg_interest_rates` (2026-06-17), verified live
 - LOAD → `LIBRARY_RAW.LANDING.FED_TREASURY_AVG_INTEREST_RATES` = **4,961 rows**, run `4046bcc7…`,
