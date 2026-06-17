@@ -1,0 +1,270 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: RIPPLE_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CMS_HCRIS
+        description: >
+          Raw landing table for the Healthcare Provider Cost Reporting Information
+          System (HCRIS) sourced from CMS. All columns arrive as TEXT.
+
+models:
+
+  - name: stg_fed_cms_hcris__hospital_cost_report
+    description: >
+      Staging model for CMS HCRIS hospital cost reports. Casts raw TEXT columns to
+      appropriate types, derives fiscal_year from fiscal_year_end_date, de-duplicates
+      on (provider_number, fiscal_year) keeping the most-recently ingested record,
+      and generates a surrogate primary key.
+    columns:
+
+      - name: hospital_cost_report_key
+        description: Surrogate primary key derived from provider_number and fiscal_year.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: provider_number
+        description: CMS 6-digit Medicare provider/certification number.
+        data_tests:
+          - not_null
+
+      - name: npi
+        description: National Provider Identifier for the hospital.
+        data_tests:
+          - not_null
+
+      - name: fiscal_year
+        description: Integer calendar year derived from fiscal_year_end_date.
+        data_tests:
+          - not_null
+
+      - name: hospital_name
+        description: Legal name of the hospital facility.
+
+      - name: street_address
+        description: Street address of the facility.
+
+      - name: city
+        description: City where the facility is located.
+
+      - name: state
+        description: Two-letter state abbreviation.
+
+      - name: zip_code
+        description: ZIP code of the facility.
+
+      - name: county
+        description: County where the facility is located.
+
+      - name: fiscal_year_begin_date
+        description: Start date of the hospital fiscal year for this report.
+
+      - name: fiscal_year_end_date
+        description: End date of the hospital fiscal year for this report.
+
+      - name: report_status
+        description: Status of the cost report (e.g., as submitted, settled, final).
+        data_tests:
+          - accepted_values:
+              values:
+                - 'As Submitted'
+                - 'Settled'
+                - 'Settled w/o Audit'
+                - 'Final'
+                - 'Reopened'
+                - 'Amended'
+              quote: true
+              severity: warn
+
+      - name: rural_versus_urban
+        description: Indicator of rural or urban classification.
+        data_tests:
+          - accepted_values:
+              values:
+                - 'Rural'
+                - 'Urban'
+              quote: true
+              severity: warn
+
+      - name: type_of_control
+        description: Ownership type (e.g., voluntary non-profit, government, proprietary).
+        data_tests:
+          - accepted_values:
+              values:
+                - 'Voluntary Nonprofit, Church'
+                - 'Voluntary Nonprofit, Other'
+                - 'Proprietary, Individual'
+                - 'Proprietary, Corporation'
+                - 'Proprietary, Partnership'
+                - 'Proprietary, Other'
+                - 'Governmental, Federal'
+                - 'Governmental, City-County'
+                - 'Governmental, County'
+                - 'Governmental, State'
+                - 'Governmental, Hospital District'
+                - 'Governmental, City'
+                - 'Governmental, Other'
+              quote: true
+              severity: warn
+
+      - name: number_of_beds
+        description: Total licensed beds reported by the hospital.
+
+      - name: total_discharges
+        description: Total patient discharges during the fiscal year.
+
+      - name: total_patient_days
+        description: Total inpatient days across all beds.
+
+      - name: medicare_discharges
+        description: Discharges attributed to Medicare patients.
+
+      - name: medicare_days
+        description: Inpatient days attributed to Medicare patients.
+
+      - name: medicaid_days
+        description: Inpatient days attributed to Medicaid patients.
+
+      - name: fte_employees
+        description: Full-time equivalent employees reported.
+
+      - name: total_charges
+        description: Total gross charges billed by the hospital.
+
+      - name: net_revenue
+        description: Net patient revenue after contractual adjustments.
+
+      - name: total_costs
+        description: Total reported operating costs.
+
+      - name: dsh_percent
+        description: Disproportionate Share Hospital percentage.
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing zone.
+
+      - name: _source_run_id
+        description: Pipeline run identifier associated with the ingestion.
+
+
+  - name: health__fed_cms_hcris
+    description: >
+      Analytics-ready mart for CMS HCRIS hospital cost reports. Exposes all key
+      identifiers for cross-source joins and adds derived performance metrics
+      including average length of stay, occupancy rate, operating margin, and
+      payer-mix percentages.
+    columns:
+
+      - name: hospital_cost_report_key
+        description: Surrogate primary key derived from provider_number and fiscal_year.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: provider_number
+        description: CMS 6-digit Medicare provider/certification number.
+        data_tests:
+          - not_null
+
+      - name: npi
+        description: National Provider Identifier for the hospital.
+        data_tests:
+          - not_null
+
+      - name: fiscal_year
+        description: Integer calendar year derived from fiscal_year_end_date.
+        data_tests:
+          - not_null
+
+      - name: fiscal_year_begin_date
+        description: Start date of the hospital fiscal year for this report.
+
+      - name: fiscal_year_end_date
+        description: End date of the hospital fiscal year for this report.
+
+      - name: hospital_name
+        description: Legal name of the hospital facility.
+
+      - name: street_address
+        description: Street address of the facility.
+
+      - name: city
+        description: City where the facility is located.
+
+      - name: state
+        description: Two-letter state abbreviation.
+
+      - name: zip_code
+        description: ZIP code of the facility.
+
+      - name: county
+        description: County where the facility is located.
+
+      - name: rural_versus_urban
+        description: Indicator of rural or urban classification.
+
+      - name: type_of_control
+        description: Ownership type (e.g., voluntary non-profit, government, proprietary).
+
+      - name: report_status
+        description: Status of the cost report.
+
+      - name: number_of_beds
+        description: Total licensed beds reported by the hospital.
+
+      - name: total_discharges
+        description: Total patient discharges during the fiscal year.
+
+      - name: total_patient_days
+        description: Total inpatient days across all beds.
+
+      - name: medicare_discharges
+        description: Discharges attributed to Medicare patients.
+
+      - name: medicare_days
+        description: Inpatient days attributed to Medicare patients.
+
+      - name: medicaid_days
+        description: Inpatient days attributed to Medicaid patients.
+
+      - name: fte_employees
+        description: Full-time equivalent employees reported.
+
+      - name: total_charges
+        description: Total gross charges billed by the hospital.
+
+      - name: net_revenue
+        description: Net patient revenue after contractual adjustments.
+
+      - name: total_costs
+        description: Total reported operating costs.
+
+      - name: dsh_percent
+        description: Disproportionate Share Hospital percentage.
+
+      - name: avg_length_of_stay
+        description: Derived average length of stay (total_patient_days / total_discharges).
+
+      - name: medicare_discharge_pct
+        description: Percentage of total discharges attributed to Medicare patients.
+
+      - name: government_payer_days_pct
+        description: Percentage of total patient days covered by Medicare or Medicaid.
+
+      - name: operating_margin_pct
+        description: Operating margin as a percentage of net revenue ((net_revenue - total_costs) / net_revenue * 100).
+
+      - name: cost_per_discharge
+        description: Average cost per patient discharge (total_costs / total_discharges).
+
+      - name: occupancy_rate_pct
+        description: Bed occupancy rate as a percentage (total_patient_days / (number_of_beds * 365) * 100).
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing zone.
+
+      - name: _source_run_id
+        description: Pipeline run identifier associated with the ingestion.

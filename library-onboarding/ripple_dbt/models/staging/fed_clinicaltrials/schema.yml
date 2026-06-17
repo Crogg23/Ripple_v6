@@ -1,0 +1,400 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: RIPPLE_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CLINICALTRIALS
+        description: >
+          Raw landing table for ClinicalTrials.gov data sourced via the
+          ClinicalTrials.gov API and the AACT database. All columns are TEXT.
+
+models:
+
+  - name: stg_fed_clinicaltrials__clinical_trials
+    description: >
+      Staging view for ClinicalTrials.gov clinical trial records. Casts TEXT
+      columns to appropriate types, normalises boolean flags, deduplicates on
+      nct_id retaining the most-recently-updated record, and carries through
+      audit columns.
+    columns:
+
+      - name: nct_id
+        description: Unique ClinicalTrials.gov identifier (e.g. NCT00000001).
+        data_tests:
+          - unique
+          - not_null
+
+      - name: org_study_id
+        description: Sponsor-assigned internal study identifier.
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+
+      - name: secondary_ids
+        description: >
+          JSON array of other identifiers (EudraCT, FDA IND, etc.).  The
+          EudraCT number is parsed out in the mart layer.
+
+      - name: brief_title
+        description: Short descriptive title of the clinical study.
+
+      - name: official_title
+        description: Full scientific title of the study.
+
+      - name: overall_status
+        description: Current recruitment/study status.
+        data_tests:
+          - accepted_values:
+              values:
+                - Recruiting
+                - Not yet recruiting
+                - Enrolling by invitation
+                - Active, not recruiting
+                - Completed
+                - Terminated
+                - Withdrawn
+                - Suspended
+                - Unknown status
+                - Available
+                - No longer available
+                - Temporarily not available
+                - Approved for marketing
+              config:
+                severity: warn
+
+      - name: phase
+        description: Trial phase.
+        data_tests:
+          - accepted_values:
+              values:
+                - 'Phase 1'
+                - 'Phase 1/Phase 2'
+                - 'Phase 2'
+                - 'Phase 2/Phase 3'
+                - 'Phase 3'
+                - 'Phase 3/Phase 4'
+                - 'Phase 4'
+                - 'Early Phase 1'
+                - 'N/A'
+                - 'Not Applicable'
+              config:
+                severity: warn
+
+      - name: study_type
+        description: Study design classification.
+        data_tests:
+          - accepted_values:
+              values:
+                - Interventional
+                - Observational
+                - Expanded Access
+              config:
+                severity: warn
+
+      - name: start_date
+        description: Date the study began enrolling participants (cast to DATE).
+
+      - name: completion_date
+        description: Actual or anticipated study completion date (cast to DATE).
+
+      - name: primary_completion_date
+        description: >
+          Date primary outcome data collection was or will be completed
+          (cast to DATE).
+
+      - name: results_first_posted_date
+        description: Date results were first submitted/posted (cast to DATE).
+
+      - name: last_update_posted_date
+        description: Date record was last updated on ClinicalTrials.gov (cast to DATE).
+
+      - name: first_posted_date
+        description: Date record was first posted publicly (cast to DATE).
+
+      - name: enrollment
+        description: Actual or anticipated number of participants (cast to NUMBER).
+
+      - name: lead_sponsor_name
+        description: Name of the primary sponsor organisation.
+
+      - name: lead_sponsor_class
+        description: Sponsor class (Industry, NIH, U.S. Fed, Other).
+        data_tests:
+          - accepted_values:
+              values:
+                - INDUSTRY
+                - NIH
+                - U.S. FED
+                - OTHER
+                - Industry
+                - NIH
+                - U.S. Fed
+                - Other
+              config:
+                severity: warn
+
+      - name: responsible_party
+        description: Principal investigator or sponsor contact responsible for the study.
+
+      - name: has_results
+        description: Boolean flag indicating whether results have been submitted.
+
+      - name: oversight_has_dmc
+        description: Whether the study has a Data Monitoring Committee (boolean).
+
+      - name: is_fda_regulated_drug
+        description: Whether the intervention is an FDA-regulated drug (boolean).
+
+      - name: is_fda_regulated_device
+        description: Whether the intervention is an FDA-regulated device (boolean).
+
+      - name: gender
+        description: Eligible participant sex.
+        data_tests:
+          - accepted_values:
+              values:
+                - All
+                - Female
+                - Male
+              config:
+                severity: warn
+
+      - name: minimum_age
+        description: Minimum participant age (free-text, e.g. '18 Years').
+
+      - name: maximum_age
+        description: Maximum participant age (free-text, e.g. '65 Years').
+
+      - name: eligibility_criteria
+        description: Full inclusion/exclusion criteria text.
+
+      - name: collaborators
+        description: JSON array of collaborating organisations.
+
+      - name: conditions
+        description: Medical conditions or diseases being studied.
+
+      - name: interventions
+        description: Drugs, devices, or procedures being tested.
+
+      - name: primary_outcomes
+        description: Primary endpoints and measures.
+
+      - name: secondary_outcomes
+        description: Secondary endpoints and measures.
+
+      - name: locations
+        description: Facility names, cities, states, and countries where study is conducted.
+
+      - name: keywords
+        description: MeSH and freetext keywords assigned to the study.
+
+      - name: references
+        description: Published citations related to the study.
+
+      - name: why_stopped
+        description: Reason study was stopped early, if applicable.
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Pipeline run identifier for the ingestion job.
+        data_tests:
+          - not_null
+
+
+  - name: health__fed_clinicaltrials
+    description: >
+      Analytics-ready mart table for ClinicalTrials.gov clinical trial data.
+      Exposes all key identifiers for cross-source joins, adds derived metrics
+      (duration, days-to-results), categorisation helpers (status_category,
+      phase_category), and parses the EudraCT number from secondary_ids.
+    columns:
+
+      - name: nct_id
+        description: Unique ClinicalTrials.gov identifier — primary key.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: org_study_id
+        description: Sponsor-assigned internal study identifier.
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+
+      - name: eudract_number
+        description: >
+          EudraCT number parsed from secondary_ids JSON array. Used for
+          cross-source joins with EU clinical trial registries.
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+
+      - name: npi
+        description: >
+          National Provider Identifier. Not present in the ClinicalTrials.gov
+          source; exposed as NULL for cross-source schema parity.
+
+      - name: brief_title
+        description: Short descriptive title of the clinical study.
+
+      - name: official_title
+        description: Full scientific title of the study.
+
+      - name: overall_status
+        description: Current recruitment/study status.
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+
+      - name: phase
+        description: Trial phase.
+
+      - name: study_type
+        description: Study design classification (Interventional / Observational).
+
+      - name: first_posted_date
+        description: Date record was first posted publicly.
+
+      - name: start_date
+        description: Date the study began enrolling participants.
+
+      - name: primary_completion_date
+        description: Date primary outcome data collection was or will be completed.
+
+      - name: completion_date
+        description: Actual or anticipated study completion date.
+
+      - name: results_first_posted_date
+        description: Date results were first submitted/posted.
+
+      - name: last_update_posted_date
+        description: Date record was last updated on ClinicalTrials.gov.
+
+      - name: study_duration_days
+        description: Number of days between start_date and completion_date.
+
+      - name: days_to_results_posting
+        description: Number of days between first_posted_date and results_first_posted_date.
+
+      - name: enrollment
+        description: Actual or anticipated number of participants.
+
+      - name: lead_sponsor_name
+        description: Name of the primary sponsor organisation.
+
+      - name: lead_sponsor_class
+        description: Sponsor class (Industry, NIH, U.S. Fed, Other).
+
+      - name: responsible_party
+        description: Principal investigator or sponsor contact.
+
+      - name: oversight_has_dmc
+        description: Whether the study has a Data Monitoring Committee.
+
+      - name: is_fda_regulated_drug
+        description: Whether the intervention is an FDA-regulated drug.
+
+      - name: is_fda_regulated_device
+        description: Whether the intervention is an FDA-regulated device.
+
+      - name: gender
+        description: Eligible participant sex.
+
+      - name: minimum_age
+        description: Minimum participant age.
+
+      - name: maximum_age
+        description: Maximum participant age.
+
+      - name: eligibility_criteria
+        description: Full inclusion/exclusion criteria text.
+
+      - name: has_results
+        description: Boolean flag indicating whether results have been submitted.
+
+      - name: why_stopped
+        description: Reason study was stopped early, if applicable.
+
+      - name: conditions
+        description: Medical conditions or diseases being studied.
+
+      - name: interventions
+        description: Drugs, devices, or procedures being tested.
+
+      - name: primary_outcomes
+        description: Primary endpoints and measures.
+
+      - name: secondary_outcomes
+        description: Secondary endpoints and measures.
+
+      - name: collaborators
+        description: JSON array of collaborating organisations.
+
+      - name: locations
+        description: Facility names, cities, states, and countries where study is conducted.
+
+      - name: keywords
+        description: MeSH and freetext keywords assigned to the study.
+
+      - name: references
+        description: Published citations related to the study.
+
+      - name: secondary_ids
+        description: Raw JSON array of all secondary identifiers.
+
+      - name: status_category
+        description: >
+          Derived high-level status grouping: Active, Completed, Stopped,
+          Active not recruiting, or Other / Unknown.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - Active
+                - Completed
+                - Stopped
+                - Active, not recruiting
+                - Other / Unknown
+
+      - name: phase_category
+        description: >
+          Derived phase grouping: Early Phase, Mid Phase, Late Phase,
+          Post-Market, N/A, or Unknown.
+        data_tests:
+          - accepted_values:
+              values:
+                - Early Phase
+                - Mid Phase
+                - Late Phase
+                - Post-Market
+                - N/A
+                - Unknown
+
+      - name: source_id
+        description: Constant identifier for this data source ('fed_clinicaltrials').
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - fed_clinicaltrials
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Pipeline run identifier for the ingestion job.
+        data_tests:
+          - not_null
