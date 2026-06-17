@@ -6,10 +6,10 @@ Every credential and tunable lives here and is read from the environment
 
 The agent targets the live Ripple v6 warehouse layout:
 
-    RIPPLE_RAW.LANDING.<UPPER(SOURCE_ID)>          raw landing tables
-    RIPPLE_META.REGISTRY.SOURCE_REGISTRY           the source catalog
-    RIPPLE_META.INGEST_LOGS.INGEST_RUNS            one row per ingest run
-    RIPPLE_STAGING / RIPPLE_MARTS                  dbt outputs
+    LIBRARY_RAW.LANDING.<UPPER(SOURCE_ID)>          raw landing tables
+    LIBRARY_META.REGISTRY.SOURCE_REGISTRY           the source catalog
+    LIBRARY_META.INGEST_LOGS.INGEST_RUNS            one row per ingest run
+    LIBRARY_STAGING / LIBRARY_MARTS                  dbt outputs
 """
 
 from __future__ import annotations
@@ -64,15 +64,15 @@ class Config:
     snowflake_role: str = field(default_factory=lambda: os.getenv("SNOWFLAKE_ROLE", ""))
 
     # --- Ripple warehouse layout (rarely overridden) -------------------
-    raw_database: str = field(default_factory=lambda: os.getenv("RIPPLE_RAW_DATABASE", "RIPPLE_RAW"))
+    raw_database: str = field(default_factory=lambda: os.getenv("RIPPLE_RAW_DATABASE", "LIBRARY_RAW"))
     raw_schema: str = field(default_factory=lambda: os.getenv("RIPPLE_RAW_SCHEMA", "LANDING"))
-    meta_database: str = field(default_factory=lambda: os.getenv("RIPPLE_META_DATABASE", "RIPPLE_META"))
+    meta_database: str = field(default_factory=lambda: os.getenv("RIPPLE_META_DATABASE", "LIBRARY_META"))
     registry_schema: str = field(default_factory=lambda: os.getenv("RIPPLE_REGISTRY_SCHEMA", "REGISTRY"))
     registry_table: str = field(default_factory=lambda: os.getenv("RIPPLE_REGISTRY_TABLE", "SOURCE_REGISTRY"))
     ingest_log_schema: str = field(default_factory=lambda: os.getenv("RIPPLE_INGEST_LOG_SCHEMA", "INGEST_LOGS"))
     ingest_log_table: str = field(default_factory=lambda: os.getenv("RIPPLE_INGEST_LOG_TABLE", "INGEST_RUNS"))
-    staging_database: str = field(default_factory=lambda: os.getenv("RIPPLE_STAGING_DATABASE", "RIPPLE_STAGING"))
-    marts_database: str = field(default_factory=lambda: os.getenv("RIPPLE_MARTS_DATABASE", "RIPPLE_MARTS"))
+    staging_database: str = field(default_factory=lambda: os.getenv("RIPPLE_STAGING_DATABASE", "LIBRARY_STAGING"))
+    marts_database: str = field(default_factory=lambda: os.getenv("RIPPLE_MARTS_DATABASE", "LIBRARY_MARTS"))
 
     # --- dbt ------------------------------------------------------------
     dbt_project_path: str = field(default_factory=lambda: os.getenv("DBT_PROJECT_PATH", ""))

@@ -1,7 +1,7 @@
 # dbt connection profile for the in-repo ripple_dbt project.
 # NO SECRETS HERE -- everything reads from environment variables. The Snowflake
 # PAT is passed as the password (PATs work as a password replacement).
-# Staging builds into RIPPLE_STAGING, marts into RIPPLE_MARTS (see dbt_project.yml),
+# Staging builds into LIBRARY_STAGING, marts into LIBRARY_MARTS (see dbt_project.yml),
 # both in the DBT_CROGERS schema so we never touch the existing CORE schemas.
 ripple:
   target: dev
@@ -13,6 +13,6 @@ ripple:
       password: "{{ env_var('SNOWFLAKE_PAT') }}"
       role: "{{ env_var('SNOWFLAKE_ROLE', 'ACCOUNTADMIN') }}"
       warehouse: "{{ env_var('SNOWFLAKE_WAREHOUSE', 'RIPPLE_WH') }}"
-      database: RIPPLE_STAGING
+      database: LIBRARY_STAGING
       schema: DBT_CROGERS
       threads: 4

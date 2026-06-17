@@ -19,12 +19,12 @@ clean-targets:
   - "target"
   - "dbt_packages"
 
-# Staging mirrors RIPPLE_STAGING (views); marts mirror RIPPLE_MARTS (tables).
+# Staging mirrors LIBRARY_STAGING (views); marts mirror LIBRARY_MARTS (tables).
 models:
   ripple:
     staging:
       +materialized: view
-      +database: RIPPLE_STAGING
+      +database: LIBRARY_STAGING
     marts:
       +materialized: table
-      +database: RIPPLE_MARTS
+      +database: LIBRARY_MARTS

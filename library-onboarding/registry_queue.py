@@ -1,7 +1,7 @@
 """Registry-driven onboarding queue.
 
 Instead of a hand-curated list, pull the next onboarding candidates straight from
-``RIPPLE_META.REGISTRY.SOURCE_REGISTRY`` -- the ~900-source catalog -- prioritized
+``LIBRARY_META.REGISTRY.SOURCE_REGISTRY`` -- the ~900-source catalog -- prioritized
 by ``PRIORITY_TIER``. This is the scaling unlock: the catalog already knows what we
 want in the Library, so the catalog drives the queue.
 
@@ -69,7 +69,7 @@ def fetch_candidates(
     if not include_landed:
         conds.append(
             "SOURCE_ID NOT IN (SELECT DISTINCT SOURCE_ID FROM "
-            "RIPPLE_META.INGEST_LOGS.INGEST_RUNS WHERE STATUS = 'success')"
+            "LIBRARY_META.INGEST_LOGS.INGEST_RUNS WHERE STATUS = 'success')"
         )
     conds.append(_AUTH_CLAUSE.get(auth, _AUTH_CLAUSE["none"]))
     if tier:
@@ -85,7 +85,7 @@ def fetch_candidates(
     sql = (
         "SELECT SOURCE_ID, NAME, URL, JURISDICTION, JOIN_KEYS, PRIORITY_TIER, "
         "ACCESS_METHOD, FORMAT, AUTH_REQUIRED, CATEGORY "
-        "FROM RIPPLE_META.REGISTRY.SOURCE_REGISTRY "
+        "FROM LIBRARY_META.REGISTRY.SOURCE_REGISTRY "
         f"WHERE {' AND '.join(conds)} "
         "ORDER BY TRY_TO_NUMBER(PRIORITY_TIER) NULLS LAST, SOURCE_ID "
         "LIMIT %(limit)s"

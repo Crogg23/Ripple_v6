@@ -10,11 +10,11 @@ Court judgments). PR #2/#3 merged to `main`; PR #4 (C1 + C2) merged; C1b is on `
 
 ## WHAT EXISTS
 - `library-onboarding/` — the 5-checkpoint CLI agent: RECON → SCRIPT → LOAD → DBT → REGISTRY.
-- LOAD lands raw to `RIPPLE_RAW.LANDING.<UPPER(SOURCE_ID)>` — all columns TEXT, stamped
+- LOAD lands raw to `LIBRARY_RAW.LANDING.<UPPER(SOURCE_ID)>` — all columns TEXT, stamped
   `_INGESTED_AT` / `_SOURCE_RUN_ID` / `_SRC_SHA256`. Two load modes: **snapshot** (default — replace,
   idempotent by SHA) and **incremental** (C2 — read `MAX(cursor_field)` watermark, fetch only newer rows
   via `context["since"]`, append; staging dedups on the primary key). The LOAD also rejects HTML-as-data.
-- Logs every run to `RIPPLE_META.INGEST_LOGS.INGEST_RUNS`; upserts `RIPPLE_META.REGISTRY.SOURCE_REGISTRY`.
+- Logs every run to `LIBRARY_META.INGEST_LOGS.INGEST_RUNS`; upserts `LIBRARY_META.REGISTRY.SOURCE_REGISTRY`.
 - **Unattended**: `ONBOARD_AUTO_APPROVE=1` + `ONBOARD_AUTO_REPAIR=N` (default 3, feeds errors back to
   Claude). `live_batch.py` is the hand-curated growing queue — skips anything already landed, safe to re-run.
 - **Registry-driven queue (B)**: `registry_queue.py` selects candidates from `SOURCE_REGISTRY`
@@ -47,7 +47,7 @@ rows), not data — caught when its mart wouldn't build.
 
 ### Registry-driven queue (B) — `xc_biorxiv_medrxiv` (2026-06-17), verified live
 - `registry_batch.py --source-id xc_biorxiv_medrxiv --run` selected the row from the catalog and ran the
-  full agent. End to end: RECON → LOAD (432 rows → `RIPPLE_RAW.LANDING.XC_BIORXIV_MEDRXIV`) → DBT-gen →
+  full agent. End to end: RECON → LOAD (432 rows → `LIBRARY_RAW.LANDING.XC_BIORXIV_MEDRXIV`) → DBT-gen →
   REGISTRY. The candidate's row flipped `INCLUDE` blank→`Y` **in place** — registry stayed **901** rows
   (an UPDATE via the pinned `SOURCE_ID`, not a duplicate INSERT), `INCLUDE=Y` went 10→11.
 - **Agent fix this exposed**: dbt-gen returned the models as JSON with multi-line SQL/YAML values; for a
@@ -88,7 +88,7 @@ Building the marts (not just generating models) surfaced two systemic agent bugs
   `scaffold_dbt._actual_landing_columns()` introspects the real landing columns and generates against those;
   dbt-gen `max_tokens` 8192→16384 for very wide tables. Regenerated → builds green (mart = 6,103 rows).
 - **Built green now**: `health__fed_clinicaltrials` (500), `science_research__xc_biorxiv_medrxiv` (432),
-  `health__fed_cms_hcris` (6,103) — all materialized into `RIPPLE_MARTS.DBT_CROGERS`.
+  `health__fed_cms_hcris` (6,103) — all materialized into `LIBRARY_MARTS.DBT_CROGERS`.
 
 ### C2 — incremental load (2026-06-17), built + proven live
 The agent now does two load modes. **Incremental** (for huge/daily-growing sources): `run_ingest` reads the
@@ -111,7 +111,7 @@ guidance; `lxml` added to requirements (so `pandas.read_html` works); and **the 
 old raw-bytes check wrongly rejected ALL legitimate scrapes (a scraped page's raw bytes are HTML by
 definition); the shape check still catches the `fed_cms_hpt_enforcement`-style single-column junk.
 - **Proven**: deterministic scrape of the "largest US companies by revenue" table (Wikipedia) → **100
-  clean rows** (RANK/NAME/INDUSTRY/REVENUE/EMPLOYEES/HQ) into `RIPPLE_RAW.LANDING` (unregistered demo table).
+  clean rows** (RANK/NAME/INDUSTRY/REVENUE/EMPLOYEES/HQ) into `LIBRARY_RAW.LANDING` (unregistered demo table).
 - The **full agent** also wrote correct BS4 scrape code for BAILII UKSC cases and **failed gracefully** on
   BAILII's bot-detection wall (3 repairs → clean abort, no junk landed). Codegen quality confirmed.
 - **KEY FINDING**: most accountability scrape targets are **bot-protected (BAILII) or JS-rendered**, so
@@ -147,7 +147,7 @@ generated `fetch_data` parses with BS4 exactly like a static page.
   C1b adds is the fetch capability, and that's what's proven live.
 
 ### Batch 3 — `fed_treasury_avg_interest_rates` (2026-06-17), verified live
-- LOAD → `RIPPLE_RAW.LANDING.FED_TREASURY_AVG_INTEREST_RATES` = **4,961 rows**, run `4046bcc7…`,
+- LOAD → `LIBRARY_RAW.LANDING.FED_TREASURY_AVG_INTEREST_RATES` = **4,961 rows**, run `4046bcc7…`,
   sha `7fe37899…` (the same sha is on every row's `_SRC_SHA256` and on the `INGEST_RUNS` row — provenance chain intact).
 - `INGEST_RUNS` → one `success` row (4,961 rows, 1.65 MB, ~11s).
 - `SOURCE_REGISTRY` → new `INCLUDE=Y` row (Economy / Federal Debt & Interest Rates; join keys
@@ -155,19 +155,27 @@ generated `fetch_data` parses with BS4 exactly like a static page.
 - Verified independently with the read-only MCP role (`CLAUDE_MCP_READONLY`); the agent wrote via the
   env PAT (`ACCOUNTADMIN`).
 - **dbt for batch 3 is RUN** (2026-06-17): `dbt build` created the staging view
-  `stg_fed_treasury_avg_interest_rates__avg_interest_rates` (`RIPPLE_STAGING.DBT_CROGERS`) + the mart table
-  `economics__fed_treasury_avg_interest_rates` (`RIPPLE_MARTS.DBT_CROGERS`, 4,961 rows, surrogate key 1:1
+  `stg_fed_treasury_avg_interest_rates__avg_interest_rates` (`LIBRARY_STAGING.DBT_CROGERS`) + the mart table
+  `economics__fed_treasury_avg_interest_rates` (`LIBRARY_MARTS.DBT_CROGERS`, 4,961 rows, surrogate key 1:1
   unique). Final: **PASS=18, WARN=0, ERROR=0**. One fix: the agent's `accepted_values` on
   `security_type_desc` was wrong (guessed five `Total *` labels from a *different* Treasury dataset) —
   corrected to the 3 real categories `Marketable / Non-marketable / Interest-bearing Debt` (a real guard,
   not downgraded to warn, since the categories are stable + exhaustive across the full history).
 
 - **dbt is RUN** (batches 1–3): all **12 models** (6 sources × staging view + mart table) build into
-  `RIPPLE_STAGING.DBT_CROGERS` / `RIPPLE_MARTS.DBT_CROGERS` — 0 errors. (USAspending agencies has no dbt
+  `LIBRARY_STAGING.DBT_CROGERS` / `LIBRARY_MARTS.DBT_CROGERS` — 0 errors. (USAspending agencies has no dbt
   models — its first load skipped checkpoint 4.)
 
 ## DECISIONS MADE
-- Target the live `RIPPLE_*` stack, NOT `DISASTER_IMPACT.RAW`. — Chris, 2026-06-16
+- **Snowflake cleanup + rebrand (2026-06-17, Chris ran the DDL).** Dropped dead DBs (`RIPPLE` v3,
+  `RIPPLE_PRESERVE` [empty — vault never populated], `STORMS`, `STORM_LOCATIONS`, `WEATHER_PROJECT`,
+  `TEST`) + the two `DISASTER_IMPACT.PUBLIC.MY_*_DBT_MODEL` tutorial leftovers. **Renamed the live
+  Library DBs**: `RIPPLE_RAW→LIBRARY_RAW`, `RIPPLE_META→LIBRARY_META`, `RIPPLE_STAGING→LIBRARY_STAGING`,
+  `RIPPLE_MARTS→LIBRARY_MARTS`. Repo updated to match (database-name refs → `LIBRARY_*`; the `RIPPLE_*`
+  env-var *keys* stay — the project is still "Ripple", only the warehouse DBs were rebranded). Verified:
+  `SHOW DATABASES` (4 `LIBRARY_*` present, all `RIPPLE*` gone) + `dbt compile` green against the renamed
+  stack (compiled SQL resolves to `LIBRARY_RAW.LANDING.*`). `RIPPLE_WH` warehouse unchanged (compute, not a DB).
+- Target the live `LIBRARY_*` stack, NOT `DISASTER_IMPACT.RAW`. — Chris, 2026-06-16
 - `SOURCE_ID` is the linchpin; landing table = `UPPER(SOURCE_ID)`; prefixes `fed_`/`intl_`/`xc_`/`loc_`/`st_`.
 - Catalog is Snowflake-native (`SOURCE_REGISTRY`); raw is an all-TEXT snapshot-replace mirror.
 - Compute = `RIPPLE_WH`; the session env leaves `SNOWFLAKE_WAREHOUSE` blank, so the runners self-default it.
@@ -195,8 +203,8 @@ generated `fetch_data` parses with BS4 exactly like a static page.
   prompt before a future dbt makes them errors. | LAYER: Library
 
 ## OPEN QUESTIONS
-- The PAT authenticates as `ACCOUNTADMIN` — a least-privilege role scoped to `RIPPLE_RAW` + `RIPPLE_META`
-  (+ `RIPPLE_STAGING`/`RIPPLE_MARTS` for dbt) would be safer for routine onboarding.
+- The PAT authenticates as `ACCOUNTADMIN` — a least-privilege role scoped to `LIBRARY_RAW` + `LIBRARY_META`
+  (+ `LIBRARY_STAGING`/`LIBRARY_MARTS` for dbt) would be safer for routine onboarding.
 
 ## NEXT ACTION
 **C1b — Playwright is built + proven** (BAILII: static blocked → 44 judgments rendered). All three fetch

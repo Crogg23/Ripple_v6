@@ -1,6 +1,6 @@
 """Checkpoint 5 -- REGISTRY.
 
-Upsert the source into ``RIPPLE_META.REGISTRY.SOURCE_REGISTRY`` (keyed on
+Upsert the source into ``LIBRARY_META.REGISTRY.SOURCE_REGISTRY`` (keyed on
 SOURCE_ID) so it's discoverable in the catalog alongside the other ~900 sources.
 This is the Ripple-native catalog; there is no OpenMetadata in this stack.
 """

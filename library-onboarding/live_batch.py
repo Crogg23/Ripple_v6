@@ -2,7 +2,7 @@
 """Unattended live batch -- grow the Library through the FULL agent.
 
 Runs the real 5-checkpoint flow for each source: **Claude does recon and writes
-the ingestion script**, the script runs and lands to RIPPLE_RAW, Claude generates
+the ingestion script**, the script runs and lands to LIBRARY_RAW, Claude generates
 dbt models, and the source is registered. Unattended:
 
     ONBOARD_AUTO_APPROVE=1   every checkpoint auto-"go"s
@@ -76,7 +76,7 @@ def _already_onboarded() -> set:
         try:
             cur = conn.cursor()
             cur.execute(
-                "SELECT DISTINCT SOURCE_ID FROM RIPPLE_META.INGEST_LOGS.INGEST_RUNS WHERE STATUS='success'"
+                "SELECT DISTINCT SOURCE_ID FROM LIBRARY_META.INGEST_LOGS.INGEST_RUNS WHERE STATUS='success'"
             )
             return {row[0] for row in cur.fetchall()}
         finally:
