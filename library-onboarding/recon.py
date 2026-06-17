@@ -2,7 +2,7 @@
 
 Fetch a source's docs page, hand the readable text to Claude, and turn the
 response into a fully-resolved profile: a SOURCE_REGISTRY-shaped record plus the
-SOURCE_ID, the RIPPLE_RAW.LANDING table, and the dbt model names downstream
+SOURCE_ID, the LIBRARY_RAW.LANDING table, and the dbt model names downstream
 steps use.
 """
 

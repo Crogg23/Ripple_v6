@@ -2,8 +2,8 @@
 
 A CLI agent that onboards data sources into the **Ripple** Library end to end.
 Give it a URL (or run the batch) and it does recon, writes the ingestion script,
-lands the data in `RIPPLE_RAW`, scaffolds dbt models, and registers the source in
-`RIPPLE_META` — pausing at **five checkpoints** so you (the foreman) approve every
+lands the data in `LIBRARY_RAW`, scaffolds dbt models, and registers the source in
+`LIBRARY_META` — pausing at **five checkpoints** so you (the foreman) approve every
 step before it runs.
 
 ```bash
@@ -23,7 +23,7 @@ At every checkpoint: `go` | `edit <feedback>` | `skip` | `abort`.
 [2] SCRIPT    Claude writes the ingestion script (returns a DataFrame of strings)
 [3] LOAD      runs it, hashes the source, snapshot-replaces the landing table, logs the run
 [4] DBT       generates staging + (optional) intermediate + mart models, writes them
-[5] REGISTRY  upserts the source into RIPPLE_META.REGISTRY.SOURCE_REGISTRY
+[5] REGISTRY  upserts the source into LIBRARY_META.REGISTRY.SOURCE_REGISTRY
 ```
 
 Nothing executes without your `go`. Batch mode shows a `[3 of 37]` counter and
@@ -34,16 +34,16 @@ tracks state in `onboarding_log.json` so an interrupted run resumes.
 ## Where everything lands (the live Ripple v6 layout)
 
 ```
-RIPPLE_RAW.LANDING.<UPPER(SOURCE_ID)>      raw landing  (every column TEXT)
-RIPPLE_META.REGISTRY.SOURCE_REGISTRY       the catalog  (keyed on SOURCE_ID)
-RIPPLE_META.INGEST_LOGS.INGEST_RUNS        one row per ingest run
-RIPPLE_STAGING / RIPPLE_MARTS              dbt outputs
+LIBRARY_RAW.LANDING.<UPPER(SOURCE_ID)>      raw landing  (every column TEXT)
+LIBRARY_META.REGISTRY.SOURCE_REGISTRY       the catalog  (keyed on SOURCE_ID)
+LIBRARY_META.INGEST_LOGS.INGEST_RUNS        one row per ingest run
+LIBRARY_STAGING / LIBRARY_MARTS              dbt outputs
 ```
 
 **`SOURCE_ID` is the linchpin.** It's `<prefix>_<slug>` where the prefix is the
 jurisdiction — `fed_` / `intl_` / `xc_` (cross-cutting) / `loc_` / `st_` — and the
 landing table is literally `UPPER(SOURCE_ID)` (e.g. `fed_usgs_earthquakes` →
-`RIPPLE_RAW.LANDING.FED_USGS_EARTHQUAKES`).
+`LIBRARY_RAW.LANDING.FED_USGS_EARTHQUAKES`).
 
 Every landing table is a verbatim, all-TEXT mirror of the source plus three
 provenance columns:
@@ -88,7 +88,7 @@ Define that once in your dbt project's `sources.yml`:
 ```yaml
 sources:
   - name: ripple_raw
-    database: RIPPLE_RAW
+    database: LIBRARY_RAW
     schema: LANDING
     tables:
       - name: FED_USGS_EARTHQUAKES   # etc.

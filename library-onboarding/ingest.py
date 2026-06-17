@@ -6,8 +6,8 @@ strings) -- and stashes the raw source bytes for content hashing.
 
 Checkpoint 3: we run it, content-hash the source (SHA-256), stamp every row with
 ``_INGESTED_AT / _SOURCE_RUN_ID / _SRC_SHA256``, snapshot-replace the landing
-table ``RIPPLE_RAW.LANDING.<UPPER(SOURCE_ID)>`` (idempotent by construction), and
-write one row to ``RIPPLE_META.INGEST_LOGS.INGEST_RUNS``.
+table ``LIBRARY_RAW.LANDING.<UPPER(SOURCE_ID)>`` (idempotent by construction), and
+write one row to ``LIBRARY_META.INGEST_LOGS.INGEST_RUNS``.
 
 If the content hash matches the source's last successful run, the reload is
 skipped (set ONBOARD_SKIP_IF_UNCHANGED=0 to force).
@@ -120,7 +120,7 @@ def run_ingest(config: dict, code: str) -> dict:
         why = "fake mode" if settings.fake_llm else "Snowflake creds not set"
         verb = f"append to (since {since or 'start'})" if incremental else "snapshot-replace"
         result["status"] = (
-            f"DRY RUN ({why}) -- would {verb} RIPPLE_RAW.LANDING.{table} "
+            f"DRY RUN ({why}) -- would {verb} LIBRARY_RAW.LANDING.{table} "
             f"with {len(df):,} rows (sha {sha[:12]})"
         )
         return result
@@ -153,10 +153,10 @@ def run_ingest(config: dict, code: str) -> dict:
             if incremental:
                 result["status"] = (
                     f"Appended {len(df):,} rows (incremental since {since or 'start'}) "
-                    f"-> RIPPLE_RAW.LANDING.{table}"
+                    f"-> LIBRARY_RAW.LANDING.{table}"
                 )
             else:
-                result["status"] = f"Loaded {len(df):,} rows -> RIPPLE_RAW.LANDING.{table}"
+                result["status"] = f"Loaded {len(df):,} rows -> LIBRARY_RAW.LANDING.{table}"
         except Exception as exc:
             ended = _utcnow()
             try:
@@ -336,7 +336,7 @@ def _auto_message(config: dict, rows: int) -> str:
     unit = config.get("unit_of_observation") or "one row = one record"
     return (
         f"{desc}. {unit}. Snapshot-replace load of {rows} rows into "
-        f"RIPPLE_RAW.LANDING.{config['landing_table']} via the onboarding agent."
+        f"LIBRARY_RAW.LANDING.{config['landing_table']} via the onboarding agent."
     )
 
 

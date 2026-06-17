@@ -3,7 +3,7 @@
 The whole platform hangs off ``SOURCE_ID`` -- a lowercase, underscore-separated
 key like ``fed_usgs_earthquakes``. From it everything else is derived:
 
-    landing table : RIPPLE_RAW.LANDING.<UPPER(SOURCE_ID)>
+    landing table : LIBRARY_RAW.LANDING.<UPPER(SOURCE_ID)>
     registry row  : SOURCE_REGISTRY keyed on SOURCE_ID
     ingest log    : INGEST_RUNS keyed on SOURCE_ID
     dbt staging   : stg_<source_id>__<entity>
@@ -69,7 +69,7 @@ def source_id(name: str, jurisdiction: str) -> str:
 
 
 def landing_table(source_id_value: str) -> str:
-    """RIPPLE_RAW.LANDING table name == UPPER(SOURCE_ID)."""
+    """LIBRARY_RAW.LANDING table name == UPPER(SOURCE_ID)."""
     return slug(source_id_value).upper()
 
 

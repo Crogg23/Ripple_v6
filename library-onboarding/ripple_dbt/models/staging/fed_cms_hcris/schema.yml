@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: ripple_raw
-    database: RIPPLE_RAW
+    database: LIBRARY_RAW
     schema: LANDING
     tables:
       - name: FED_CMS_HCRIS

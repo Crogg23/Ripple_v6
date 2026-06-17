@@ -9,7 +9,7 @@ Claude turns the landing table into the standard layer stack:
 plus a schema.yml with descriptions and the standard test battery. Files are
 written into the configured dbt project. Models read from
 ``source('ripple_raw', '<LANDING_TABLE>')`` and materialize into
-RIPPLE_STAGING / RIPPLE_MARTS via your dbt profile.
+LIBRARY_STAGING / LIBRARY_MARTS via your dbt profile.
 """
 
 from __future__ import annotations

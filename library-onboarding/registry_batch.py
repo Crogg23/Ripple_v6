@@ -2,7 +2,7 @@
 """Registry-driven live batch -- onboard candidates straight from the catalog.
 
 Where ``live_batch.py`` walks a hand-curated SOURCES list, this walks the live
-``RIPPLE_META.REGISTRY.SOURCE_REGISTRY`` (~900 sources), prioritized by
+``LIBRARY_META.REGISTRY.SOURCE_REGISTRY`` (~900 sources), prioritized by
 ``PRIORITY_TIER`` and skipping anything already onboarded or landed. The catalog
 drives the queue -- the scaling unlock for getting to hundreds of sources.
 

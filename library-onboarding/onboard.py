@@ -180,7 +180,7 @@ def onboard_source(source: dict, position=None) -> dict:
     action, _ = _run_stage(
         lambda fb: register_source(config),
         lambda r: cp.render_registry(config, r, position),
-        error_hint="Check Snowflake credentials for RIPPLE_META, then retry.",
+        error_hint="Check Snowflake credentials for LIBRARY_META, then retry.",
     )
     if action != GO:
         return _record(action)

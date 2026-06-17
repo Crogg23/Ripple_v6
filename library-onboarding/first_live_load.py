@@ -12,9 +12,9 @@ It deliberately does NOT call Claude for recon/codegen -- the config and the
 ``fetch_data`` below are hand-built so the first live write is deterministic.
 It DOES exercise the agent's actual machinery:
 
-    run_ingest()      -> RIPPLE_RAW.LANDING.FED_USASPENDING_TOPTIER_AGENCIES
-                         + one row in RIPPLE_META.INGEST_LOGS.INGEST_RUNS
-    register_source() -> upsert into RIPPLE_META.REGISTRY.SOURCE_REGISTRY
+    run_ingest()      -> LIBRARY_RAW.LANDING.FED_USASPENDING_TOPTIER_AGENCIES
+                         + one row in LIBRARY_META.INGEST_LOGS.INGEST_RUNS
+    register_source() -> upsert into LIBRARY_META.REGISTRY.SOURCE_REGISTRY
                          (with best-effort live Claude catalog enrichment)
 
 DBT (checkpoint 4) is intentionally skipped -- DBT_PROJECT_PATH isn't wired yet.
@@ -115,7 +115,7 @@ def _banner(title: str) -> None:
 def main() -> int:
     print(f"Source     : {CONFIG['name']}")
     print(f"SOURCE_ID  : {CONFIG['source_id']}")
-    print(f"Landing    : RIPPLE_RAW.LANDING.{CONFIG['landing_table']}")
+    print(f"Landing    : LIBRARY_RAW.LANDING.{CONFIG['landing_table']}")
     print(f"URL        : {CONFIG['url']}")
 
     _banner("CHECKPOINT 3 -- LOAD")
