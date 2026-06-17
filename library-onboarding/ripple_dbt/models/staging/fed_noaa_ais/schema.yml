@@ -1,0 +1,210 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_NOAA_AIS
+        description: >
+          Raw landing table for NOAA Marine Cadastre Nationwide AIS vessel
+          position data. All columns arrive as TEXT from the ingestion pipeline.
+
+models:
+
+  - name: stg_fed_noaa_ais__ais_vessel_positions
+    description: >
+      Staging view for NOAA AIS vessel position records. Renames columns to
+      snake_case, casts to appropriate types, and deduplicates on the natural
+      key (mmsi, imo_number, date, base_datetime).
+    columns:
+
+      - name: mmsi
+        description: Maritime Mobile Service Identity – primary vessel radio identifier.
+        data_tests:
+          - not_null
+
+      - name: imo_number
+        description: International Maritime Organization vessel number.
+        data_tests:
+          - not_null
+
+      - name: date
+        description: Calendar date of the AIS transmission (cast from raw DATE column).
+        data_tests:
+          - not_null
+
+      - name: base_datetime
+        description: Full UTC timestamp of the AIS position report.
+        data_tests:
+          - not_null
+
+      - name: latitude
+        description: Vessel latitude in decimal degrees (WGS-84).
+
+      - name: longitude
+        description: Vessel longitude in decimal degrees (WGS-84).
+
+      - name: speed_over_ground
+        description: Speed over ground in knots.
+
+      - name: course_over_ground
+        description: Course over ground in degrees (0–359.9).
+
+      - name: heading
+        description: True heading in degrees (0–359); 511 indicates not available.
+
+      - name: vessel_name
+        description: Vessel name as broadcast by the AIS transponder.
+
+      - name: imo_number
+        description: IMO vessel number (may be 0 or null for non-IMO vessels).
+
+      - name: call_sign
+        description: Radio call sign of the vessel.
+
+      - name: vessel_type_code
+        description: Numeric vessel type code per ITU-R M.1371.
+
+      - name: nav_status
+        description: Navigational status code (e.g. 0 = under way using engine).
+
+      - name: length_meters
+        description: Overall vessel length in metres.
+
+      - name: width_meters
+        description: Overall vessel beam/width in metres.
+
+      - name: draft_meters
+        description: Maximum static draught in metres.
+
+      - name: cargo_type_code
+        description: Cargo type / hazard classification code.
+
+      - name: transceiver_class
+        description: AIS transceiver class (A or B).
+        data_tests:
+          - accepted_values:
+              values: ['A', 'B']
+              quote: true
+
+      - name: source_file
+        description: Name of the source file from which this record was ingested.
+
+      - name: _ingested_at
+        description: Pipeline audit timestamp – when the record landed in the raw table.
+
+      - name: _source_run_id
+        description: Pipeline audit identifier – the run that produced this record.
+
+  - name: maritime__fed_noaa_ais
+    description: >
+      Analytics-ready mart table for NOAA AIS vessel positions. Exposes all
+      key identifiers for cross-source joins, adds a surrogate key, a speed
+      category, and a Snowflake GEOGRAPHY point column for spatial analysis.
+    columns:
+
+      - name: ais_position_sk
+        description: >
+          Surrogate key generated from mmsi, imo_number, date, and
+          base_datetime. Uniquely identifies a single deduplicated position
+          report.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: mmsi
+        description: Maritime Mobile Service Identity – primary vessel radio identifier.
+        data_tests:
+          - not_null
+
+      - name: imo_number
+        description: International Maritime Organization vessel number.
+        data_tests:
+          - not_null
+
+      - name: date
+        description: Calendar date of the AIS transmission.
+        data_tests:
+          - not_null
+
+      - name: base_datetime
+        description: Full UTC timestamp of the AIS position report.
+        data_tests:
+          - not_null
+
+      - name: base_datetime_hour
+        description: Timestamp truncated to the hour – useful for time-bucketed aggregations.
+
+      - name: latitude
+        description: Vessel latitude in decimal degrees (WGS-84).
+
+      - name: longitude
+        description: Vessel longitude in decimal degrees (WGS-84).
+
+      - name: speed_over_ground
+        description: Speed over ground in knots.
+
+      - name: course_over_ground
+        description: Course over ground in degrees.
+
+      - name: heading
+        description: True heading in degrees; 511 = not available.
+
+      - name: vessel_name
+        description: Vessel name as broadcast by the AIS transponder.
+
+      - name: call_sign
+        description: Radio call sign.
+
+      - name: vessel_type_code
+        description: Numeric vessel type code per ITU-R M.1371.
+
+      - name: nav_status
+        description: Navigational status code.
+
+      - name: length_meters
+        description: Overall vessel length in metres.
+
+      - name: width_meters
+        description: Overall vessel beam in metres.
+
+      - name: draft_meters
+        description: Maximum static draught in metres.
+
+      - name: cargo_type_code
+        description: Cargo type / hazard classification code.
+
+      - name: speed_category
+        description: Derived speed band (moored / slow / underway / fast).
+        data_tests:
+          - accepted_values:
+              values: ['moored', 'slow', 'underway', 'fast']
+              quote: true
+
+      - name: position_geography
+        description: Snowflake GEOGRAPHY POINT object derived from longitude and latitude.
+
+      - name: transceiver_class
+        description: AIS transceiver class (A or B).
+        data_tests:
+          - accepted_values:
+              values: ['A', 'B']
+              quote: true
+
+      - name: source_file
+        description: Source file name.
+
+      - name: _ingested_at
+        description: Pipeline audit – landing timestamp.
+
+      - name: _source_run_id
+        description: Pipeline audit – ingestion run identifier.
+
+      - name: source_id
+        description: Hardcoded source identifier ('fed_noaa_ais') for cross-source joins.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['fed_noaa_ais']
+              quote: true

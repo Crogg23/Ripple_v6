@@ -1,0 +1,222 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_OYEZ
+        description: >-
+          Raw landing table for the Oyez Project SCOTUS cases feed.
+          All columns arrive as TEXT and are cast in the staging layer.
+
+models:
+
+  - name: stg_fed_oyez__scotus_cases
+    description: >-
+      Staged and lightly cleaned records from the Oyez Project landing table.
+      Each row represents one Supreme Court case, deduplicated on (case_id, docket)
+      keeping the most-recent scrape.
+    columns:
+
+      - name: case_id
+        description: Unique Oyez identifier for the SCOTUS case.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: docket
+        description: Official SCOTUS docket number.
+        data_tests:
+          - not_null
+
+      - name: decision_date
+        description: Date the Supreme Court issued its decision (maps to the 'date' key).
+        data_tests:
+          - not_null
+
+      - name: person_name
+        description: Name of the majority-opinion author (primary person identifier).
+        data_tests:
+          - not_null
+
+      - name: case_name
+        description: Full name of the case.
+
+      - name: term
+        description: SCOTUS term year (numeric).
+
+      - name: argument_date
+        description: Date oral arguments were heard.
+
+      - name: decision
+        description: Short label for the decision outcome.
+
+      - name: majority_author
+        description: Justice who authored the majority opinion.
+
+      - name: disposition
+        description: How the lower-court ruling was treated (e.g. Affirmed, Reversed).
+        data_tests:
+          - accepted_values:
+              values:
+                - Affirmed
+                - Reversed
+                - Vacated
+                - Remanded
+                - Reversed and Remanded
+                - Vacated and Remanded
+                - Affirmed in Part and Reversed in Part
+                - Dismissed
+                - Per Curiam
+                - Other
+              config:
+                severity: warn
+
+      - name: citation
+        description: Official U.S. Reports citation for the case.
+
+      - name: audio_url
+        description: URL to the oral-argument audio recording on Oyez.
+
+      - name: transcript_url
+        description: URL to the oral-argument transcript on Oyez.
+
+      - name: summary
+        description: Prose summary of the case facts and holding.
+
+      - name: advocate_names
+        description: Delimited list of advocate names who argued before the Court.
+
+      - name: petitioner
+        description: Name of the petitioning party.
+
+      - name: respondent
+        description: Name of the responding party.
+
+      - name: lower_court
+        description: Name of the lower court whose decision was under review.
+
+      - name: justice_votes
+        description: Raw JSON / delimited string of individual justice votes.
+
+      - name: scraped_at
+        description: Timestamp when this record was scraped from Oyez.
+
+      - name: _ingested_at
+        description: Timestamp when the record was loaded into the staging view.
+
+      - name: _source_run_id
+        description: Pipeline run identifier propagated from the source extract.
+
+  - name: judiciary__fed_oyez
+    description: >-
+      Analytics-ready mart table for Oyez Project SCOTUS cases.
+      Exposes canonical key identifiers (case_id, docket, date, person_name)
+      to support cross-source joins within the judiciary domain.
+    columns:
+
+      - name: case_id
+        description: Unique Oyez identifier for the SCOTUS case (primary key).
+        data_tests:
+          - unique
+          - not_null
+
+      - name: docket
+        description: Official SCOTUS docket number.
+        data_tests:
+          - not_null
+
+      - name: date
+        description: Decision date — the canonical 'date' key for cross-source joins.
+        data_tests:
+          - not_null
+
+      - name: person_name
+        description: Majority-opinion author name — the canonical 'person_name' key.
+        data_tests:
+          - not_null
+
+      - name: case_name
+        description: Full name of the case.
+
+      - name: term
+        description: SCOTUS term year.
+
+      - name: petitioner
+        description: Name of the petitioning party.
+
+      - name: respondent
+        description: Name of the responding party.
+
+      - name: lower_court
+        description: Name of the lower court whose ruling was reviewed.
+
+      - name: argument_date
+        description: Date oral arguments were heard.
+
+      - name: decision_date
+        description: Date the Supreme Court issued its decision.
+
+      - name: decision
+        description: Short label for the decision outcome.
+
+      - name: majority_author
+        description: Justice who authored the majority opinion.
+
+      - name: disposition
+        description: How the lower-court ruling was treated.
+        data_tests:
+          - accepted_values:
+              values:
+                - Affirmed
+                - Reversed
+                - Vacated
+                - Remanded
+                - Reversed and Remanded
+                - Vacated and Remanded
+                - Affirmed in Part and Reversed in Part
+                - Dismissed
+                - Per Curiam
+                - Other
+              config:
+                severity: warn
+
+      - name: citation
+        description: Official U.S. Reports citation.
+
+      - name: advocate_names
+        description: Delimited list of advocates who argued before the Court.
+
+      - name: justice_votes
+        description: Raw justice-vote data preserved for downstream parsing.
+
+      - name: summary
+        description: Prose summary of the case facts and holding.
+
+      - name: audio_url
+        description: URL to oral-argument audio on Oyez.
+
+      - name: transcript_url
+        description: URL to oral-argument transcript on Oyez.
+
+      - name: has_audio
+        description: Boolean flag — true when an audio recording URL is present.
+        data_tests:
+          - accepted_values:
+              values: [true, false]
+
+      - name: has_transcript
+        description: Boolean flag — true when a transcript URL is present.
+        data_tests:
+          - accepted_values:
+              values: [true, false]
+
+      - name: scraped_at
+        description: Timestamp when the record was scraped from Oyez.
+
+      - name: _ingested_at
+        description: Timestamp when the record entered the staging layer.
+
+      - name: _source_run_id
+        description: Pipeline run identifier from the source extract.

@@ -1,0 +1,177 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_WPA_SLAVE_NARRATIVES
+        description: >
+          Raw landing table for the Library of Congress collection
+          'Born in Slavery: Slave Narratives from the Federal Writers' Project,
+          1936–1938'. All columns arrive as TEXT.
+
+models:
+
+  - name: stg_fed_wpa_slave_narratives__slave_narratives
+    description: >
+      Staging model for the WPA Slave Narratives landing table.
+      Renames columns to snake_case, casts to appropriate types, and
+      deduplicates on loc_item_id.
+    columns:
+
+      - name: loc_item_id
+        description: Library of Congress item identifier — primary key.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: person_name
+        description: Full name of the formerly enslaved person interviewed.
+        data_tests:
+          - not_null
+
+      - name: interview_date
+        description: Date the interview was conducted (cast from raw TEXT).
+        data_tests:
+          - not_null
+
+      - name: state_fips
+        description: Two-digit FIPS code for the U.S. state where the interview took place.
+        data_tests:
+          - not_null
+
+      - name: state
+        description: Full name of the U.S. state where the interview took place.
+        data_tests:
+          - not_null
+
+      - name: title
+        description: Descriptive title of the narrative document.
+
+      - name: interviewer
+        description: Name of the Federal Writers' Project interviewer.
+
+      - name: document_type
+        description: Type of document (e.g., transcript, photograph).
+        data_tests:
+          - accepted_values:
+              values:
+                - 'Transcript'
+                - 'Photograph'
+                - 'Document'
+                - 'Sound Recording'
+                - 'Map'
+              severity: warn
+
+      - name: format_label
+        description: Format label assigned by the Library of Congress.
+
+      - name: subjects
+        description: Pipe- or semicolon-delimited subject headings.
+
+      - name: full_text
+        description: Full OCR/transcription text of the narrative.
+
+      - name: digital_url
+        description: URL to the digitised item on loc.gov.
+
+      - name: thumbnail_url
+        description: URL to the item thumbnail image on loc.gov.
+
+      - name: _ingested_at
+        description: Timestamp when the row was processed by the staging model.
+
+      - name: _source_run_id
+        description: Pipeline run identifier (populated downstream).
+
+  - name: history__fed_wpa_slave_narratives
+    description: >
+      Analytics-ready mart table for the WPA Slave Narratives collection.
+      Exposes key identifiers for cross-source joins and adds convenience
+      columns such as interview_year, interview_month, and full_text_char_length.
+    columns:
+
+      - name: loc_item_id
+        description: Library of Congress item identifier — primary key.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: person_name
+        description: Full name of the formerly enslaved person interviewed.
+        data_tests:
+          - not_null
+
+      - name: interview_date
+        description: Date the interview was conducted.
+        data_tests:
+          - not_null
+
+      - name: state_fips
+        description: Two-digit FIPS code for the U.S. state where the interview took place.
+        data_tests:
+          - not_null
+
+      - name: state
+        description: Full name of the U.S. state where the interview took place.
+        data_tests:
+          - not_null
+
+      - name: interview_year
+        description: Calendar year derived from interview_date.
+        data_tests:
+          - not_null
+
+      - name: interview_month
+        description: Calendar month (1–12) derived from interview_date.
+
+      - name: title
+        description: Descriptive title of the narrative document.
+
+      - name: interviewer
+        description: Name of the Federal Writers' Project interviewer.
+
+      - name: document_type
+        description: Type of document.
+        data_tests:
+          - accepted_values:
+              values:
+                - 'Transcript'
+                - 'Photograph'
+                - 'Document'
+                - 'Sound Recording'
+                - 'Map'
+              severity: warn
+
+      - name: format_label
+        description: Format label assigned by the Library of Congress.
+
+      - name: subjects
+        description: Pipe- or semicolon-delimited subject headings.
+
+      - name: full_text
+        description: Full OCR/transcription text of the narrative.
+
+      - name: full_text_char_length
+        description: Character length of the full_text field.
+
+      - name: digital_url
+        description: URL to the digitised item on loc.gov.
+
+      - name: thumbnail_url
+        description: URL to the item thumbnail image on loc.gov.
+
+      - name: source_id
+        description: Constant identifier for this source dataset ('fed_wpa_slave_narratives').
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - 'fed_wpa_slave_narratives'
+
+      - name: _ingested_at
+        description: Timestamp when the row was first processed.
+
+      - name: _source_run_id
+        description: Pipeline run identifier.

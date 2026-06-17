@@ -11,8 +11,9 @@ codegen used the injected `render()`, Playwright cleared a JS shell, and 100 row
 down at run time; see the C1b end-to-end section for why). With full capability proven, **ran registry
 batches 2 + 3** (tier-1, auth-free): batch 2 = 12 attempted → 4 landed (incl. FARA 221,900); batch 3 = 4
 ran before an **Anthropic credit exhaustion** halted the queue → 3 landed (incl. Mapping Inequality 10,154),
-8 credit-blocked (still queued for retry). **Live total: 26 landing tables, 1,956,308 rows.** PR #2–#8
-merged to `main`; batch-3 work is on `claude/laughing-knuth-fmjka8`. **Blocked on: Anthropic API credits.**
+8 credit-blocked. Credits funded → **batch 4** retried those + 8 new: **16 attempted, 10 landed** (incl.
+NOAA AIS 7.3M, SCDB 83,644). **Live total: 36 landing tables, 9,337,547 rows.** PR #2–#9 merged to `main`;
+batch-4 work is on `claude/laughing-knuth-fmjka8`.
 
 ## WHAT EXISTS
 - `library-onboarding/` — the 5-checkpoint CLI agent: RECON → SCRIPT → LOAD → DBT → REGISTRY.
@@ -52,9 +53,20 @@ merged to `main`; batch-3 work is on `claude/laughing-knuth-fmjka8`. **Blocked o
 | `fed_mapping_inequality` | 10,154 | **registry batch 3** (2026-06-17 — HOLC redlining, GeoJSON flattened to rows) |
 | `fed_hhs_taggs` | 45 | registry batch 3 (HHS grant-tracking, incremental backfill) |
 | `fed_fdic_enforcement` | 2 | registry batch 3 (FDIC enforcement portal scrape — ⚠ thin, review) |
+| `fed_noaa_ais` | 7,296,275 | **registry batch 4** (NOAA Marine Cadastre AIS vessel tracking — incremental) |
+| `fed_scdb` | 83,644 | registry batch 4 (Supreme Court Database — case-level votes/decisions) |
+| `fed_nara_aad` | 554 | registry batch 4 (NARA Access to Archival Databases) |
+| `fed_revolvingdoor_project` | 409 | registry batch 4 (gov-accountability tracking; portal scrape) |
+| `fed_slavevoyages_intraamerican` | 201 | registry batch 4 (intra-American slave-trade voyages) |
+| `fed_wpa_slave_narratives` | 100 | registry batch 4 (WPA slave narratives 1936–38) |
+| `fed_naag_multistate_settlements` | 26 | registry batch 4 (multistate AG settlements) |
+| `fed_oyez` | 25 | registry batch 4 (SCOTUS oral-argument/case data, API) |
+| `fed_nara_wra_aad` | 4 | registry batch 4 (WRA records — ⚠ thin, review) |
+| `intl_ch_zefix` | 1 | registry batch 4 (Swiss business registry — ⚠ thin, review) |
 
-**18 clean sources in `LANDING`** (batch 2 +4, batch 3 +3). Live total: **26 landing tables,
-1,956,308 raw rows** (was 19 / 1,709,487 before batch 2; batch 3 added +10,201). The demo `intl_demo_quotes_toscrape_js`
+**28 clean sources in `LANDING`** (batch 2 +4, batch 3 +3, batch 4 +10). Live total: **36 landing tables,
+9,337,547 raw rows** (was 19 / 1,709,487 before batch 2). Batch 4 added +7,381,239 rows — dominated by
+`fed_noaa_ais` (7,296,275) and `fed_scdb` (83,644). The demo `intl_demo_quotes_toscrape_js`
 was dropped (table + registry + ingest_runs) before the batch. The false-success `fed_cms_hpt_enforcement`
 was dequeued earlier (registry un-flagged + junk table dropped, 2026-06-17, with Chris's OK): it had landed
 an HTML page (one `DOCTYPE_HTML` column, 22 junk rows), not data — caught when its mart wouldn't build.
@@ -106,6 +118,24 @@ Anthropic API credit exhaustion partway through** — so the run splits in two:
 - **Recurring OOM on big bulk files** (`fed_cms_nppes` ~9 GB in batch 2, `fed_fjc_idb` in batch 3): the load
   path reads the whole download into pandas in memory → container OOM (exit 137). Follow-up: stream/chunk
   large downloads (or cap rows) so multi-GB sources don't get killed.
+
+### Registry batch 4 — credits funded, retried the 8 + 8 new (2026-06-17)
+After Chris topped up the Anthropic key, re-ran the queue: the 8 batch-3 credit-blocked sources + 8 new,
+skipping the 9 genuinely-hard fails (dead APIs / dynamic portals / OOM-prone multi-GB). **16 attempted,
+10 landed, 6 failed** — the best batch yet.
+- **Landed (10):** `fed_noaa_ais` 7,296,275 (incremental — biggest source in the Library now), `fed_scdb`
+  83,644, `fed_nara_aad` 554, `fed_revolvingdoor_project` 409, `fed_slavevoyages_intraamerican` 201,
+  `fed_wpa_slave_narratives` 100, `fed_naag_multistate_settlements` 26, `fed_oyez` 25, `fed_nara_wra_aad` 4
+  (⚠ thin), `intl_ch_zefix` 1 (⚠ thin). The 3 portal scrapes (nara_aad, revolvingdoor, naag) confirm the
+  browser/scrape path earns real rows from JS/portal sources.
+- **Failed (6):** `fed_mapping_prejudice` (Shapefile — no pandas path), `fed_npdb_puf`, `fed_olms_lm_reports`,
+  `fed_opm_fedworkforce` (large/dynamic bulk), `fed_slavevoyages_transatlantic` (much larger than the
+  intra-American set), `intl_ca_statscan` (StatCan WDS API shape).
+- **Retry verdict**: of the 8 formerly credit-blocked, 4 landed (naag, nara_aad, nara_wra_aad, noaa_ais) and
+  4 genuinely failed — confirming they were *not* all hard, just blocked before. The credit-block accounting
+  in batch 3 was correct.
+- **Thin landings flagged for review** (real data, likely incomplete): `fed_nara_wra_aad` (4),
+  `intl_ch_zefix` (1) — alongside batch-2/3's `fed_doj_crt_cases` (1) and `fed_fdic_enforcement` (2).
 
 ### Registry-driven queue (B) — `xc_biorxiv_medrxiv` (2026-06-17), verified live
 - `registry_batch.py --source-id xc_biorxiv_medrxiv --run` selected the row from the catalog and ran the
