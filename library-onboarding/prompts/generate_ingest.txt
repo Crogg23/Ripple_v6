@@ -34,6 +34,11 @@ REQUIREMENTS
     read API keys from here, e.g. context["env"].get("FRED_API_KEY")).
   - Use `requests` for HTTP. Loop for pagination. Respect rate limits with
     time.sleep() derived from the documented limit.
+  - Bounded snapshot: if the source is huge or effectively unbounded (a search API
+    over millions of rows, an Elasticsearch from/size endpoint, etc.), do NOT page
+    through the whole dataset. Respect the limit/size/page already in the URL and
+    fetch a single bounded page (or a small capped number of pages). Many APIs also
+    reject deep pagination (offset > 10,000).
   - For bulk CSV/ZIP: download, parse with pandas (io.BytesIO / zipfile as needed).
   - For paginated APIs that return nested JSON, store each record as one row
     (json.dumps the record into a single column if the shape is irregular).

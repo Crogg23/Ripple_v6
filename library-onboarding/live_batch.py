@@ -49,15 +49,14 @@ SOURCES = [
     {"name": "Treasury Debt to the Penny", "source_id": "fed_treasury_debt_to_penny",
      "url": "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/debt_to_penny?page[size]=500&sort=-record_date",
      "jurisdiction": "federal", "layer": "us_federal", "identifiers": ["record_date"]},
-    {"name": "CFPB Consumer Complaints", "source_id": "fed_cfpb_complaints",
-     "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=500",
-     "jurisdiction": "federal", "layer": "us_federal", "identifiers": ["complaint_id", "company", "zip_code", "state"]},
-    {"name": "ProPublica Nonprofit Explorer (IRS 990)", "source_id": "fed_propublica_nonprofits",
-     "url": "https://projects.propublica.org/nonprofits/api/v2/search.json?q=foundation",
-     "jurisdiction": "federal", "layer": "us_federal", "identifiers": ["EIN"]},
     {"name": "FDA Drug Enforcement Reports (Recalls)", "source_id": "fed_fda_drug_enforcement",
      "url": "https://api.fda.gov/drug/enforcement.json?limit=500",
      "jurisdiction": "federal", "layer": "us_federal", "identifiers": ["recall_number", "NDC", "event_id"]},
+    # PARKED -- huge / effectively unbounded search APIs (millions of rows, grow
+    # daily). A snapshot-replace mirror is the wrong shape; these want an
+    # incremental load. Re-add once the agent supports bounded/incremental fetch:
+    #   CFPB Consumer Complaints  https://www.consumerfinance.gov/.../search/api/v1/
+    #   ProPublica Nonprofits     https://projects.propublica.org/nonprofits/api/v2/search.json
 ]
 
 
