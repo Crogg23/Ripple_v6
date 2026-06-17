@@ -91,12 +91,18 @@ def _real_call(user: str, system: str, max_tokens: int) -> str:
         ),
     )
     def _send() -> str:
-        message = client.messages.create(
+        # Stream and reassemble: the Anthropic SDK REQUIRES streaming for requests
+        # whose max_tokens is large enough to risk a >10-min generation (it raises
+        # "Streaming is required for operations that may take longer than 10 minutes"
+        # otherwise). dbt-gen for wide tables uses a high max_tokens ceiling, so we
+        # always stream and accumulate -- identical text, no token-ceiling foot-gun.
+        with client.messages.stream(
             model=settings.anthropic_model,
             max_tokens=max_tokens,
             system=system or "You are a precise data-engineering assistant.",
             messages=[{"role": "user", "content": user}],
-        )
+        ) as stream:
+            message = stream.get_final_message()
         return "".join(
             block.text for block in message.content if getattr(block, "type", "") == "text"
         )

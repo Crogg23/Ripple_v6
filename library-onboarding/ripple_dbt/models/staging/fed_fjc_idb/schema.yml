@@ -1,0 +1,270 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FJC_IDB
+        description: >
+          Raw landing table for the FJC Integrated Database of Federal Court Cases.
+          All columns are loaded as TEXT.
+
+models:
+
+  - name: stg_fed_fjc_idb__federal_court_cases
+    description: >
+      Staging model for FJC Integrated Database federal court cases.
+      Casts raw TEXT columns to appropriate types, derives a surrogate case_id,
+      and deduplicates on the latest ingestion timestamp.
+    columns:
+
+      - name: case_id
+        description: Surrogate primary key derived from circuit, district, office, and docket.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: file_date
+        description: Date the case was filed (parsed from FILEDATE YYYYMMDD).
+        data_tests:
+          - not_null
+
+      - name: district
+        description: Federal judicial district code.
+        data_tests:
+          - not_null
+
+      - name: circuit
+        description: Federal circuit number.
+        data_tests:
+          - not_null
+
+      - name: office
+        description: Divisional office code within the district.
+        data_tests:
+          - not_null
+
+      - name: docket
+        description: Docket number for the case within the office.
+        data_tests:
+          - not_null
+
+      - name: judge
+        description: Judge identifier assigned to the case.
+        data_tests:
+          - not_null
+
+      - name: term_date
+        description: Date the case was terminated (parsed from TERMDATE YYYYMMDD).
+
+      - name: origin_code
+        description: Numeric code indicating the origin/transfer basis of the case.
+
+      - name: judgment_code
+        description: Numeric code for the final judgment type.
+
+      - name: nature_of_suit_code
+        description: NOS code classifying the nature of the civil suit.
+
+      - name: jurisdiction_code
+        description: Numeric code for jurisdictional basis (1=US Govt Plaintiff, 2=US Govt Defendant, 3=Fed Question, 4=Diversity).
+        data_tests:
+          - accepted_values:
+              values: [1, 2, 3, 4]
+              quote: false
+              config:
+                severity: warn
+
+      - name: prose_code
+        description: Indicator of pro se representation (0=Not Pro Se, 1=Plaintiff, 2=Defendant, 3=Both).
+        data_tests:
+          - accepted_values:
+              values: [0, 1, 2, 3]
+              quote: false
+              config:
+                severity: warn
+
+      - name: gender_code
+        description: Gender code of the primary plaintiff/defendant (1=Male, 2=Female).
+        data_tests:
+          - accepted_values:
+              values: [1, 2]
+              quote: false
+              config:
+                severity: warn
+
+      - name: criminal_count
+        description: Number of criminal counts in the case.
+
+      - name: stat_year
+        description: Statistical reporting year.
+
+      - name: tape_year
+        description: Tape/extract year the record was captured.
+
+      - name: disposition_code
+        description: Numeric code for case disposition.
+
+      - name: amount_received
+        description: Dollar amount received in judgment (if applicable).
+
+      - name: section_code
+        description: Statute section code.
+
+      - name: subsection_code
+        description: Statute subsection code.
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Identifier for the pipeline run that loaded this record.
+        data_tests:
+          - not_null
+
+
+  - name: justice__fed_fjc_idb
+    description: >
+      Analytics-ready mart for FJC Integrated Database federal court cases.
+      Exposes cross-source key identifiers (date_id, court_id, judge_id),
+      human-readable labels, and derived metrics such as days to termination.
+    columns:
+
+      - name: case_id
+        description: Surrogate primary key for the court case.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: date_id
+        description: File date exposed as the date key for cross-source joins.
+        data_tests:
+          - not_null
+
+      - name: state_id
+        description: State identifier placeholder (not present in FJC source; NULL).
+
+      - name: court_id
+        description: Composite court identifier (district || '-' || office) for cross-source joins.
+        data_tests:
+          - not_null
+
+      - name: judge_id
+        description: Judge identifier for cross-source joins.
+        data_tests:
+          - not_null
+
+      - name: circuit
+        description: Federal circuit number.
+        data_tests:
+          - not_null
+
+      - name: district
+        description: Federal judicial district code.
+        data_tests:
+          - not_null
+
+      - name: office
+        description: Divisional office code within the district.
+        data_tests:
+          - not_null
+
+      - name: docket
+        description: Docket number for the case within the office.
+        data_tests:
+          - not_null
+
+      - name: judge
+        description: Judge identifier assigned to the case.
+        data_tests:
+          - not_null
+
+      - name: file_date
+        description: Date the case was filed.
+        data_tests:
+          - not_null
+
+      - name: term_date
+        description: Date the case was terminated.
+
+      - name: days_to_termination
+        description: Number of calendar days between file_date and term_date.
+
+      - name: origin_code
+        description: Numeric code for the origin/transfer basis of the case.
+
+      - name: judgment_code
+        description: Numeric code for the final judgment type.
+
+      - name: nature_of_suit_code
+        description: NOS code classifying the nature of the civil suit.
+
+      - name: jurisdiction_code
+        description: Numeric code for jurisdictional basis.
+        data_tests:
+          - accepted_values:
+              values: [1, 2, 3, 4]
+              quote: false
+              config:
+                severity: warn
+
+      - name: jurisdiction_label
+        description: Human-readable label for jurisdiction_code.
+
+      - name: prose_code
+        description: Indicator of pro se representation.
+        data_tests:
+          - accepted_values:
+              values: [0, 1, 2, 3]
+              quote: false
+              config:
+                severity: warn
+
+      - name: prose_label
+        description: Human-readable label for prose_code.
+
+      - name: gender_code
+        description: Gender code of the primary party.
+        data_tests:
+          - accepted_values:
+              values: [1, 2]
+              quote: false
+              config:
+                severity: warn
+
+      - name: gender_label
+        description: Human-readable label for gender_code.
+
+      - name: criminal_count
+        description: Number of criminal counts in the case.
+
+      - name: stat_year
+        description: Statistical reporting year.
+
+      - name: tape_year
+        description: Tape/extract year.
+
+      - name: disposition_code
+        description: Numeric code for case disposition.
+
+      - name: amount_received
+        description: Dollar amount received in judgment.
+
+      - name: section_code
+        description: Statute section code.
+
+      - name: subsection_code
+        description: Statute subsection code.
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested.
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Pipeline run identifier.
+        data_tests:
+          - not_null
