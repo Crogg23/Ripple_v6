@@ -215,28 +215,35 @@ def _execute_fetch(config: dict, code: str, since: Optional[str] = None,
     if raw_bytes is not None and not isinstance(raw_bytes, (bytes, bytearray)):
         raw_bytes = str(raw_bytes).encode("utf-8")
 
-    _reject_html(df, raw_bytes)  # a docs/landing page fetched instead of the data
+    _reject_html(df)  # a docs/landing page parsed AS data instead of the dataset
     return df, raw_bytes, context.get("source_file", "") or ""
 
 
-def _reject_html(df, raw_bytes) -> None:
-    """Fail loudly when an HTML page lands instead of the dataset.
+def _reject_html(df) -> None:
+    """Fail loudly when an HTML page lands AS DATA (a false "success").
 
-    Symptom seen in the wild (fed_cms_hpt_enforcement): the generated fetch hit a
-    docs/landing URL, so pandas parsed an HTML page into a single bogus column
-    (e.g. ``DOCTYPE_HTML``) -- a false "success" of junk rows. Catch it here.
+    Judge the DataFrame's shape, NOT the raw bytes -- scrape sources legitimately
+    fetch an HTML page (raw_bytes is HTML) but parse it into a proper multi-column
+    table, which is fine. The failure we catch is when the HTML itself becomes the
+    data: a docs/landing page parsed into a single bogus column (the
+    fed_cms_hpt_enforcement case: one ``DOCTYPE_HTML`` column of junk rows).
     """
-    head = bytes(raw_bytes[:256]).lstrip().lower() if raw_bytes else b""
-    if head.startswith((b"<!doctype html", b"<html", b"<!doctype>")):
-        raise RuntimeError(
-            "fetch_data returned an HTML page, not data -- the fetch hit a docs/"
-            "landing URL instead of the dataset endpoint. Fix the URL/parse."
-        )
-    cols = [str(c).upper() for c in df.columns]
-    if len(cols) == 1 and ("DOCTYPE" in cols[0] or "HTML" in cols[0] or "<" in cols[0]):
+    cols = [str(c) for c in df.columns]
+    if len(cols) != 1:
+        return  # real tabular data (incl. legitimately-scraped tables)
+    name = cols[0].upper()
+    first = ""
+    try:
+        nonnull = df.iloc[:, 0].dropna()
+        if len(nonnull):
+            first = str(nonnull.iloc[0]).lstrip().upper()
+    except Exception:
+        first = ""
+    if ("DOCTYPE" in name or "HTML" in name or name.startswith("<")
+            or first.startswith(("<!DOCTYPE", "<HTML", "<"))):
         raise RuntimeError(
             f"fetch_data parsed HTML into a single column ('{df.columns[0]}'), not "
-            "tabular data -- the fetch hit the wrong URL. Fix the URL/parse."
+            "tabular data -- the fetch likely hit a docs/landing URL. Fix the URL/parse."
         )
 
 

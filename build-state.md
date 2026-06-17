@@ -104,6 +104,20 @@ First run (empty table) → bounded backfill; a run with no new rows → clean n
   invariant for these sources — landing becomes append-only. Mitigated: still all-TEXT + provenance; clean
   current state lives in staging.
 
+### C1 — static scrape (Phase 1, 2026-06-17), built + proven
+For sources with no clean file/API. Changes: codegen prompt gained scrape + bounded-crawl + browser-UA
+guidance; `lxml` added to requirements (so `pandas.read_html` works); and **the HTML-guard was corrected**
+— it now judges the DataFrame's *shape* (a single HTML-ish column = junk) instead of the raw bytes. The
+old raw-bytes check wrongly rejected ALL legitimate scrapes (a scraped page's raw bytes are HTML by
+definition); the shape check still catches the `fed_cms_hpt_enforcement`-style single-column junk.
+- **Proven**: deterministic scrape of the "largest US companies by revenue" table (Wikipedia) → **100
+  clean rows** (RANK/NAME/INDUSTRY/REVENUE/EMPLOYEES/HQ) into `RIPPLE_RAW.LANDING` (unregistered demo table).
+- The **full agent** also wrote correct BS4 scrape code for BAILII UKSC cases and **failed gracefully** on
+  BAILII's bot-detection wall (3 repairs → clean abort, no junk landed). Codegen quality confirmed.
+- **KEY FINDING**: most accountability scrape targets are **bot-protected (BAILII) or JS-rendered**, so
+  static BS4 has limited reach. **C1b (Playwright + a real browser session) is the actual unlock** for
+  these — now a higher priority than originally scoped (evidence-driven).
+
 ### Batch 3 — `fed_treasury_avg_interest_rates` (2026-06-17), verified live
 - LOAD → `RIPPLE_RAW.LANDING.FED_TREASURY_AVG_INTEREST_RATES` = **4,961 rows**, run `4046bcc7…`,
   sha `7fe37899…` (the same sha is on every row's `_SRC_SHA256` and on the `INGEST_RUNS` row — provenance chain intact).
@@ -140,8 +154,11 @@ First run (empty table) → bounded backfill; a run with no new rows → clean n
   → `registry_queue.py` + `registry_batch.py`; proven with `xc_biorxiv_medrxiv`.
 - [DONE 2026-06-17 — C2] Incremental load path (append-only landing + watermark + staging dedup). Built in
   `ingest.py`/`recon.py`/prompts; proven live on `fed_cfpb_complaints`. Design: `docs/design-incremental-and-scrape.md`.
-- [NEXT — C1] Scrape extraction for portal/per-entity sources (per-hospital MRF, JS portals): BS4 static
-  first (mostly there — tighten recon/codegen + a bounded crawl helper), then Playwright for JS. | LAYER: Library
+- [DONE 2026-06-17 — C1 Phase 1] Static scrape (BS4 + `lxml` + corrected HTML-guard); proven on a Wikipedia
+  table (100 rows). Codegen writes good scrape code (BAILII) but most targets are bot-protected/JS-rendered.
+- [HOT — C1b] Playwright + real browser session for bot-protected / JS-rendered scrape targets (BAILII,
+  portals). Evidence says this — not static BS4 — is the actual unlock for the accountability scrape sources.
+  Heaviest lift (ships a headless browser). | LAYER: Library
 - [IDEA — SOMEDAY] The agent writes a `sources:` block into every model's `schema.yml`; it should emit a
   single central `sources.yml` instead. | NOTE: dbt 1.11 actually tolerates the per-file blocks (parse +
   build are clean) — it only collides if you ALSO add a central one. Cosmetic, not blocking. | LAYER: Library
@@ -154,7 +171,8 @@ First run (empty table) → bounded backfill; a run with no new rows → clean n
   (+ `RIPPLE_STAGING`/`RIPPLE_MARTS` for dbt) would be safer for routine onboarding.
 
 ## NEXT ACTION
-**C2 incremental is built + proven** (CFPB). Open levers: **(C1) scrape extraction** — BS4 static first
-(tighten recon/codegen + a bounded per-entity crawl helper), then Playwright for JS portals (the remaining
-queue failure shape); generate + `dbt run` a staging/mart for `fed_cfpb_complaints` (dedup-on-`complaint_id`);
-(D) least-privilege `RIPPLE_INGEST_RW` role; keep feeding the registry queue at larger limits.
+**C2 incremental + C1 Phase-1 static scrape are built + proven.** The evidence-driven next lever is
+**C1b — Playwright** (a real browser session) for the bot-protected / JS-rendered scrape targets that
+static BS4 can't reach (BAILII et al.). Other open threads: generate + `dbt run` a staging/mart for
+`fed_cfpb_complaints` (dedup-on-`complaint_id`); (D) least-privilege `RIPPLE_INGEST_RW` role; keep feeding
+the registry queue at larger limits.
