@@ -60,13 +60,16 @@ def fetch_candidates(
     jurisdiction/layer/identifiers) plus ``_``-prefixed preview fields.
     """
     conds = [
-        "TRIM(COALESCE(INCLUDE,'')) <> 'Y'",
         "URL IS NOT NULL AND TRIM(URL) <> ''",
         "REGEXP_LIKE(SOURCE_ID, '^(fed|intl|xc|loc|st)_.*')",
     ]
     params: dict = {"limit": int(limit)}
 
+    # include_landed = "let me re-onboard sources that are already done": drop BOTH
+    # the not-already-onboarded (INCLUDE<>'Y') and the no-successful-run filters, so a
+    # targeted re-run (e.g. a fuller chunked reload of an already-included source) works.
     if not include_landed:
+        conds.append("TRIM(COALESCE(INCLUDE,'')) <> 'Y'")
         conds.append(
             "SOURCE_ID NOT IN (SELECT DISTINCT SOURCE_ID FROM "
             "LIBRARY_META.INGEST_LOGS.INGEST_RUNS WHERE STATUS = 'success')"
