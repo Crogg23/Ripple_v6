@@ -119,8 +119,10 @@ Building the marts (not just generating models) surfaced two systemic agent bugs
 ## PARKED IDEAS
 - [DONE 2026-06-17] Drive the queue from `SOURCE_REGISTRY` (by `PRIORITY_TIER`) instead of the static list.
   → `registry_queue.py` + `registry_batch.py`; proven with `xc_biorxiv_medrxiv`.
-- [IDEA — HOT] CFPB complaints + ProPublica nonprofits are huge, daily-growing search APIs — a snapshot
-  mirror is the wrong shape. Need an **incremental** load path before onboarding them. | LAYER: Library
+- [SCOPED 2026-06-17 — C] Scrape + incremental load path for huge/growing/portal sources (CFPB,
+  ProPublica, NPPES, per-hospital MRF). Design written: `library-onboarding/docs/design-incremental-and-scrape.md`
+  (C2 incremental = append-only landing + watermark + staging dedup; C1 scrape = BS4 then Playwright).
+  Recommend building **C2 incremental first**, proven on CFPB complaints. Awaiting foreman go. | LAYER: Library
 - [IDEA — SOMEDAY] The agent writes a `sources:` block into every model's `schema.yml`; it should emit a
   single central `sources.yml` instead. | NOTE: dbt 1.11 actually tolerates the per-file blocks (parse +
   build are clean) — it only collides if you ALSO add a central one. Cosmetic, not blocking. | LAYER: Library
@@ -133,9 +135,7 @@ Building the marts (not just generating models) surfaced two systemic agent bugs
   (+ `RIPPLE_STAGING`/`RIPPLE_MARTS` for dbt) would be safer for routine onboarding.
 
 ## NEXT ACTION
-B ran at scale (registry batch 1: 3/5 live). Both failures were scrape/JS-portal shapes, so the next
-lever is **(C) a scrape + incremental/bulk load path** — the recurring blocker for the harder catalog
-sources. Other open threads: (D) point routine onboarding at the least-privilege `RIPPLE_INGEST_RW` role
-instead of the `ACCOUNTADMIN` PAT; keep feeding the queue (`registry_batch.py --tier 1 --run`, larger
-limits); and `dbt run` the 4 newly-onboarded sources' models (biorxiv + the 3 batch-1 successes —
-generated, not yet built).
+**C is scoped** (`docs/design-incremental-and-scrape.md`). Pending foreman go: **build C2 — incremental
+load** (`load_mode=incremental` in `ingest.py` + config/recon: append-only landing + watermark + staging
+dedup), proven on CFPB consumer complaints. Then C1 scrape (BS4 → Playwright). Other open threads:
+(D) least-privilege `RIPPLE_INGEST_RW` role; keep feeding the registry queue at larger limits.
