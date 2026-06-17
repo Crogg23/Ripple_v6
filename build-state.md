@@ -9,8 +9,10 @@ JS-rendered / bot-protected pages) — plus two **load modes** (snapshot + C2 in
 codegen used the injected `render()`, Playwright cleared a JS shell, and 100 rows landed in
 `LIBRARY_RAW.LANDING` + registered in `LIBRARY_META` (target `quotes.toscrape.com/js` — BAILII's wall was
 down at run time; see the C1b end-to-end section for why). With full capability proven, **ran registry
-batch 2** (tier-1, auth-free, 12 attempted → 4 landed incl. FARA 221,900 rows; see that section). PR #2–#7
-merged to `main`; batch-2 work is on `claude/laughing-knuth-fmjka8`.
+batches 2 + 3** (tier-1, auth-free): batch 2 = 12 attempted → 4 landed (incl. FARA 221,900); batch 3 = 4
+ran before an **Anthropic credit exhaustion** halted the queue → 3 landed (incl. Mapping Inequality 10,154),
+8 credit-blocked (still queued for retry). **Live total: 26 landing tables, 1,956,308 rows.** PR #2–#8
+merged to `main`; batch-3 work is on `claude/laughing-knuth-fmjka8`. **Blocked on: Anthropic API credits.**
 
 ## WHAT EXISTS
 - `library-onboarding/` — the 5-checkpoint CLI agent: RECON → SCRIPT → LOAD → DBT → REGISTRY.
@@ -47,9 +49,12 @@ merged to `main`; batch-2 work is on `claude/laughing-knuth-fmjka8`.
 | `fed_doj_fca_settlements` | 19 | registry batch 2 (DOJ False Claims Act press-release scrape) |
 | `fed_doj_crt_cases` | 1 | registry batch 2 (DOJ Civil Rights portal scrape — ⚠ thin/incomplete, review) |
 | `fed_fara_bulk` | 221,900 | registry batch 2 (FARA eFile bulk — foreign-agent registrations) |
+| `fed_mapping_inequality` | 10,154 | **registry batch 3** (2026-06-17 — HOLC redlining, GeoJSON flattened to rows) |
+| `fed_hhs_taggs` | 45 | registry batch 3 (HHS grant-tracking, incremental backfill) |
+| `fed_fdic_enforcement` | 2 | registry batch 3 (FDIC enforcement portal scrape — ⚠ thin, review) |
 
-**15 clean sources in `LANDING`** (after batch 2 added 4). Live total: **23 landing tables,
-1,946,107 raw rows** (was 19 / 1,709,487 at batch-2 start; +236,620). The demo `intl_demo_quotes_toscrape_js`
+**18 clean sources in `LANDING`** (batch 2 +4, batch 3 +3). Live total: **26 landing tables,
+1,956,308 raw rows** (was 19 / 1,709,487 before batch 2; batch 3 added +10,201). The demo `intl_demo_quotes_toscrape_js`
 was dropped (table + registry + ingest_runs) before the batch. The false-success `fed_cms_hpt_enforcement`
 was dequeued earlier (registry un-flagged + junk table dropped, 2026-06-17, with Chris's OK): it had landed
 an HTML page (one `DOCTYPE_HTML` column, 22 junk rows), not data — caught when its mart wouldn't build.
@@ -85,6 +90,22 @@ portal/scrape/huge shapes, so a low hit-rate is expected.
   `extract_code` returns it → `invalid syntax (line 1)`; it self-corrected on retry here. Worth hardening
   `extract_code`/the codegen system prompt before a future batch. The DOJ CRT 1-row landing is a thin-scrape
   near-miss (no pagination) — flagged for review, not auto-dequeued (it did land structured data).
+
+### Registry batch 3 — next 12 fresh tier-1 (skipping batch-2's 8 attempts), 2026-06-17
+Worked further down the queue, excluding the 8 sources batch 2 already attempted. **Cut short by an
+Anthropic API credit exhaustion partway through** — so the run splits in two:
+- **Ran with working credits (4):** `fed_mapping_inequality` ✅ 10,154 (GeoJSON flattened), `fed_hhs_taggs`
+  ✅ 45, `fed_fdic_enforcement` ✅ 2 (⚠ thin portal scrape), `fed_fjc_idb` ❌ killed (OOM — large bulk CSV).
+- **Credit-blocked (8, NOT genuine failures — still queued for retry):** `fed_mapping_prejudice`,
+  `fed_naag_multistate_settlements`, `fed_nara_aad`, `fed_nara_wra_aad`, `fed_noaa_ais`, `fed_npdb_puf`,
+  `fed_olms_lm_reports`, `fed_opm_fedworkforce` — every `call_claude` returned HTTP 400 "credit balance is
+  too low", so recon couldn't run and each aborted in ~6s. These left zero partial state (no landing, no
+  `INGEST_RUNS`, registry untouched) — re-run them once credits are topped up.
+- **BLOCKER surfaced (stopped the queue):** the `ANTHROPIC_API_KEY` has no credits left. No further batches
+  can run until it's funded — this is the pipeline-wide stop condition, not source difficulty.
+- **Recurring OOM on big bulk files** (`fed_cms_nppes` ~9 GB in batch 2, `fed_fjc_idb` in batch 3): the load
+  path reads the whole download into pandas in memory → container OOM (exit 137). Follow-up: stream/chunk
+  large downloads (or cap rows) so multi-GB sources don't get killed.
 
 ### Registry-driven queue (B) — `xc_biorxiv_medrxiv` (2026-06-17), verified live
 - `registry_batch.py --source-id xc_biorxiv_medrxiv --run` selected the row from the catalog and ran the
