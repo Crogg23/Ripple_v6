@@ -52,6 +52,14 @@ SOURCES = [
     {"name": "FDA Drug Enforcement Reports (Recalls)", "source_id": "fed_fda_drug_enforcement",
      "url": "https://api.fda.gov/drug/enforcement.json?limit=500",
      "jurisdiction": "federal", "layer": "us_federal", "identifiers": ["recall_number", "NDC", "event_id"]},
+
+    # --- batch 3 (2026-06-17) -----------------------------------------------
+    # Average interest rate the Treasury pays by security type -- the price tag on
+    # the national debt. Same Fiscal Data API family as debt_to_penny (proven), so
+    # codegen risk is low. Small + bounded (~4,961 monthly rows since FY2001).
+    {"name": "Treasury Average Interest Rates", "source_id": "fed_treasury_avg_interest_rates",
+     "url": "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/avg_interest_rates?page[size]=10000&sort=-record_date",
+     "jurisdiction": "federal", "layer": "us_federal", "identifiers": ["record_date", "security_type_desc", "security_desc"]},
     # PARKED -- huge / effectively unbounded search APIs (millions of rows, grow
     # daily). A snapshot-replace mirror is the wrong shape; these want an
     # incremental load. Re-add once the agent supports bounded/incremental fetch:

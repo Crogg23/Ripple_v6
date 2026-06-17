@@ -1,9 +1,10 @@
 # Build State
-Last updated: 2026-06-16
+Last updated: 2026-06-17
 
 ## CURRENT FOCUS
-Growing the Library via the full LLM agent. PR #2 (retarget + first loads + dbt) is MERGED;
-batch-2 sources land on `claude/reconcile-onboarding-agent` (no PR opened yet post-merge).
+Growing the Library via the full LLM agent. PR #2 (retarget + first loads + dbt) is MERGED.
+Post-merge work — batch 2 (Treasury debt, FDA recalls) + batch 3 (Treasury avg interest rates) —
+lives on `claude/reconcile-onboarding-agent` and goes up as a NEW PR to `main`.
 
 ## WHAT EXISTS
 - `library-onboarding/` — the 5-checkpoint CLI agent: RECON → SCRIPT → LOAD → DBT → REGISTRY.
@@ -24,12 +25,25 @@ batch-2 sources land on `claude/reconcile-onboarding-agent` (no PR opened yet po
 | `fed_fdic_failed_banks` | 4,115 | full LLM agent (after URL-hallucination prompt fix) |
 | `fed_treasury_debt_to_penny` | 8,329 | full LLM agent (full daily debt history) |
 | `fed_fda_drug_enforcement` | 5,000 | full LLM agent (bounded sample) |
+| `fed_treasury_avg_interest_rates` | 4,961 | full LLM agent (batch 3, 2026-06-17 — full monthly history 2001→2026) |
 
-6 sources, ~32,969 raw rows. Registry now **900** rows. Each: a `success` row in `INGEST_RUNS`, an
-`INCLUDE=Y` row in `SOURCE_REGISTRY` (live Claude enrichment).
+7 sources, ~37,930 raw rows. Registry now **901** rows (**10** `INCLUDE=Y`). Each: a `success` row in
+`INGEST_RUNS`, an `INCLUDE=Y` row in `SOURCE_REGISTRY` (live Claude enrichment).
 
-- **dbt is RUN**: `dbt run` builds all **10 models** (5 sources × staging view + mart table) into
-  `RIPPLE_STAGING.DBT_CROGERS` / `RIPPLE_MARTS.DBT_CROGERS` — 0 errors. `dbt test`: **PASS=60, WARN=13,
+### Batch 3 — `fed_treasury_avg_interest_rates` (2026-06-17), verified live
+- LOAD → `RIPPLE_RAW.LANDING.FED_TREASURY_AVG_INTEREST_RATES` = **4,961 rows**, run `4046bcc7…`,
+  sha `7fe37899…` (the same sha is on every row's `_SRC_SHA256` and on the `INGEST_RUNS` row — provenance chain intact).
+- `INGEST_RUNS` → one `success` row (4,961 rows, 1.65 MB, ~11s).
+- `SOURCE_REGISTRY` → new `INCLUDE=Y` row (Economy / Federal Debt & Interest Rates; join keys
+  `record_date, security_type_desc, security_desc`). The curated `fed_fiscaldata_treasury` family row was NOT clobbered.
+- Verified independently with the read-only MCP role (`CLAUDE_MCP_READONLY`); the agent wrote via the
+  env PAT (`ACCOUNTADMIN`).
+- **dbt for batch 3 is GENERATED, not RUN**: checkpoint 4 wrote `stg_…__avg_interest_rates` (view) +
+  `economics__fed_treasury_avg_interest_rates` (table) + `schema.yml`, but `dbt run`/`dbt test` was NOT
+  executed this session — its staging view / mart table aren't built in Snowflake yet.
+
+- **dbt is RUN** (batches 1–2): `dbt run` builds all **10 models** (5 sources × staging view + mart table)
+  into `RIPPLE_STAGING.DBT_CROGERS` / `RIPPLE_MARTS.DBT_CROGERS` — 0 errors. `dbt test`: **PASS=60, WARN=13,
   ERROR=0**. (USAspending agencies has no dbt models — its first load skipped checkpoint 4.)
 
 ## DECISIONS MADE
@@ -55,5 +69,6 @@ batch-2 sources land on `claude/reconcile-onboarding-agent` (no PR opened yet po
   (+ `RIPPLE_STAGING`/`RIPPLE_MARTS` for dbt) would be safer for routine onboarding.
 
 ## NEXT ACTION
-PR #2 merged mid-batch — decide how batch-2 work (Treasury + FDA + dbt) lands: new PR, or fold into the
-next one. Then keep feeding the queue via `live_batch.py`, and build the incremental path for CFPB-style sources.
+Land this branch's post-merge work (batch 2 + batch 3) via the open PR to `main`. Then: run dbt for
+`fed_treasury_avg_interest_rates` (build + test its staging view + mart table — would make it 12 models),
+keep feeding the queue via `live_batch.py`, and build the incremental load path for CFPB-style sources.

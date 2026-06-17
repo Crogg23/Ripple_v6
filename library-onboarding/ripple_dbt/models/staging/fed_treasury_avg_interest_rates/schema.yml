@@ -1,0 +1,166 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: RIPPLE_RAW
+    schema: LANDING
+    tables:
+      - name: FED_TREASURY_AVG_INTEREST_RATES
+        description: >
+          Raw landing table containing Treasury average interest rate data published
+          by the U.S. Department of the Treasury. All columns arrive as TEXT.
+
+models:
+
+  - name: stg_fed_treasury_avg_interest_rates__avg_interest_rates
+    description: >
+      Staging view for Treasury average interest rates. Casts raw TEXT columns to
+      appropriate types, deduplicates on the natural key, and carries through
+      ingestion metadata.
+    columns:
+      - name: record_date
+        description: End-of-month date for the reported average interest rate.
+        data_tests:
+          - not_null
+
+      - name: security_type_desc
+        description: Broad category of Treasury security (e.g., Marketable, Non-Marketable).
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - 'Marketable'
+                - 'Non-Marketable'
+                - 'Total Marketable'
+                - 'Total Non-Marketable'
+                - 'Total Interest-Bearing Debt'
+
+      - name: security_desc
+        description: Specific security instrument name.
+        data_tests:
+          - not_null
+
+      - name: avg_interest_rate_amt
+        description: Average interest rate (percent) for the given security and period.
+
+      - name: src_line_nbr
+        description: Source line number for ordering within the report.
+
+      - name: record_fiscal_year
+        description: Federal fiscal year of the record date.
+
+      - name: record_fiscal_quarter
+        description: Federal fiscal quarter of the record date.
+        data_tests:
+          - accepted_values:
+              values: ['1', '2', '3', '4']
+              quote: false
+              severity: warn
+
+      - name: record_calendar_year
+        description: Calendar year of the record date.
+
+      - name: record_calendar_quarter
+        description: Calendar quarter of the record date.
+        data_tests:
+          - accepted_values:
+              values: ['1', '2', '3', '4']
+              quote: false
+              severity: warn
+
+      - name: record_calendar_month
+        description: Calendar month number of the record date.
+        data_tests:
+          - accepted_values:
+              values: ['1','2','3','4','5','6','7','8','9','10','11','12']
+              quote: false
+              severity: warn
+
+      - name: _ingested_at
+        description: Timestamp when the row was loaded into the landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this row.
+
+  - name: economics__fed_treasury_avg_interest_rates
+    description: >
+      Analytics-ready mart table for U.S. Treasury average interest rates.
+      Sourced from the Federal Reserve / Treasury public data set. Exposes natural
+      key columns for cross-source joins and adds a surrogate key and convenience
+      date truncations.
+    columns:
+      - name: avg_interest_rate_key
+        description: Surrogate key derived from record_date + security_type_desc + security_desc.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: record_date
+        description: End-of-month date for the reported average interest rate.
+        data_tests:
+          - not_null
+
+      - name: security_type_desc
+        description: Broad category of Treasury security (e.g., Marketable, Non-Marketable).
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - 'Marketable'
+                - 'Non-Marketable'
+                - 'Total Marketable'
+                - 'Total Non-Marketable'
+                - 'Total Interest-Bearing Debt'
+
+      - name: security_desc
+        description: Specific security instrument name.
+        data_tests:
+          - not_null
+
+      - name: avg_interest_rate_amt
+        description: Average interest rate (percent) for the given security and period.
+
+      - name: src_line_nbr
+        description: Source line number for ordering within the report.
+
+      - name: record_fiscal_year
+        description: Federal fiscal year of the record date.
+
+      - name: record_fiscal_quarter
+        description: Federal fiscal quarter of the record date.
+        data_tests:
+          - accepted_values:
+              values: ['1', '2', '3', '4']
+              quote: false
+              severity: warn
+
+      - name: record_calendar_year
+        description: Calendar year of the record date.
+
+      - name: record_calendar_quarter
+        description: Calendar quarter of the record date.
+        data_tests:
+          - accepted_values:
+              values: ['1', '2', '3', '4']
+              quote: false
+              severity: warn
+
+      - name: record_calendar_month
+        description: Calendar month number of the record date.
+        data_tests:
+          - accepted_values:
+              values: ['1','2','3','4','5','6','7','8','9','10','11','12']
+              quote: false
+              severity: warn
+
+      - name: report_month
+        description: Record date truncated to the first day of the month (convenience column).
+
+      - name: report_year
+        description: Record date truncated to the first day of the year (convenience column).
+
+      - name: _ingested_at
+        description: Timestamp when the row was loaded into the landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this row.
