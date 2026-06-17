@@ -1,0 +1,302 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CMS_NURSING_HOME
+        description: >
+          Raw landing table for CMS Nursing Home Care Compare data.
+          All columns arrive as TEXT and are cast in the staging layer.
+
+models:
+
+  - name: stg_fed_cms_nursing_home__nursing_home_facilities
+    description: >
+      Staged and typed view of CMS Nursing Home Care Compare facility records.
+      One row per facility (deduplicated on CMS Certification Number / Provider Number,
+      keeping the most recent processing date).
+    columns:
+
+      - name: cms_certification_number_ccn
+        description: CMS Certification Number (CCN) — primary key for this dataset.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: provider_number
+        description: CMS Provider Number — alternate facility identifier.
+        data_tests:
+          - not_null
+
+      - name: npi
+        description: National Provider Identifier (NPI).
+        data_tests:
+          - not_null
+
+      - name: county_fips
+        description: County FIPS code for geographic joins.
+        data_tests:
+          - not_null
+
+      - name: state
+        description: Two-letter US state abbreviation.
+        data_tests:
+          - not_null
+
+      - name: zip_code
+        description: Five-digit ZIP code.
+        data_tests:
+          - not_null
+
+      - name: provider_ssa_county_code
+        description: SSA county code used in CMS geographic hierarchies.
+
+      - name: provider_name
+        description: Facility name as reported to CMS.
+
+      - name: legal_business_name
+        description: Legal business name of the nursing home operator.
+
+      - name: provider_type
+        description: Type of CMS-certified provider.
+        data_tests:
+          - accepted_values:
+              values:
+                - 'Medicare and Medicaid'
+                - 'Medicare'
+                - 'Medicaid'
+              quote: true
+              severity: warn
+
+      - name: ownership_type
+        description: Ownership classification of the facility.
+        data_tests:
+          - accepted_values:
+              values:
+                - 'For profit - Corporation'
+                - 'For profit - Individual'
+                - 'For profit - Limited Liability company'
+                - 'For profit - Partnership'
+                - 'Government - Federal'
+                - 'Government - Hospital District'
+                - 'Government - Local'
+                - 'Government - State'
+                - 'Non profit - Church related'
+                - 'Non profit - Corporation'
+                - 'Non profit - Other'
+              quote: true
+              severity: warn
+
+      - name: urban
+        description: Urban/rural classification of the facility location.
+
+      - name: latitude
+        description: Latitude coordinate (WGS-84).
+
+      - name: longitude
+        description: Longitude coordinate (WGS-84).
+
+      - name: number_of_certified_beds
+        description: Total number of CMS-certified beds in the facility.
+
+      - name: average_number_of_residents_per_day
+        description: Average daily resident census.
+
+      - name: overall_rating
+        description: CMS Five-Star Overall Quality Rating (1–5).
+        data_tests:
+          - accepted_values:
+              values: [1, 2, 3, 4, 5]
+              severity: warn
+
+      - name: health_inspection_rating
+        description: CMS Five-Star Health Inspection domain rating (1–5).
+        data_tests:
+          - accepted_values:
+              values: [1, 2, 3, 4, 5]
+              severity: warn
+
+      - name: quality_measure_rating
+        description: CMS Five-Star Quality Measure domain rating (1–5).
+        data_tests:
+          - accepted_values:
+              values: [1, 2, 3, 4, 5]
+              severity: warn
+
+      - name: staffing_rating
+        description: CMS Five-Star Staffing domain rating (1–5).
+        data_tests:
+          - accepted_values:
+              values: [1, 2, 3, 4, 5]
+              severity: warn
+
+      - name: processing_date
+        description: Date the CMS data extract was processed.
+
+      - name: _ingested_at
+        description: Timestamp when this record was ingested into the warehouse.
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Identifier for the pipeline run that loaded this record.
+
+
+  - name: health__fed_cms_nursing_home
+    description: >
+      Analytics-ready mart table for CMS Nursing Home Care Compare facilities.
+      Exposes all key identifiers for cross-source joins, enriched with derived
+      convenience fields such as rating bands and financial penalty flags.
+    columns:
+
+      - name: cms_certification_number_ccn
+        description: CMS Certification Number (CCN) — primary key.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: provider_number
+        description: CMS Provider Number.
+        data_tests:
+          - not_null
+
+      - name: npi
+        description: National Provider Identifier.
+        data_tests:
+          - not_null
+
+      - name: county_fips
+        description: County FIPS code for geographic joins.
+        data_tests:
+          - not_null
+
+      - name: state
+        description: Two-letter US state abbreviation.
+        data_tests:
+          - not_null
+
+      - name: zip_code
+        description: Five-digit ZIP code.
+        data_tests:
+          - not_null
+
+      - name: provider_ssa_county_code
+        description: SSA county code.
+
+      - name: provider_name
+        description: Facility name.
+
+      - name: legal_business_name
+        description: Legal business name.
+
+      - name: provider_type
+        description: CMS provider type classification.
+
+      - name: ownership_type
+        description: Ownership type classification.
+
+      - name: address
+        description: Street address (coalesced from provider_address / address).
+
+      - name: city
+        description: City (coalesced from city_town / city).
+
+      - name: county_parish
+        description: County or parish name.
+
+      - name: urban
+        description: Urban/rural indicator.
+
+      - name: latitude
+        description: Latitude coordinate.
+
+      - name: longitude
+        description: Longitude coordinate.
+
+      - name: phone_number
+        description: Primary contact phone number.
+
+      - name: date_first_approved_to_provide_medicare_and_medicaid_services
+        description: Date the facility was first certified by Medicare/Medicaid.
+
+      - name: date_of_most_recent_health_inspection
+        description: Date of the most recent standard health inspection.
+
+      - name: processing_date
+        description: CMS data extract processing date.
+
+      - name: number_of_certified_beds
+        description: Number of certified beds.
+
+      - name: average_number_of_residents_per_day
+        description: Average daily census.
+
+      - name: number_of_residents_in_certified_beds
+        description: Number of residents occupying certified beds.
+
+      - name: chain_name
+        description: Name of the chain the facility belongs to, if any.
+
+      - name: chain_id
+        description: Chain identifier.
+
+      - name: overall_rating
+        description: Overall Five-Star rating (1–5).
+
+      - name: overall_rating_band
+        description: Derived rating band ('High (4-5 stars)', 'Average (3 stars)', 'Low (1-2 stars)', 'Not Rated').
+        data_tests:
+          - accepted_values:
+              values:
+                - 'High (4-5 stars)'
+                - 'Average (3 stars)'
+                - 'Low (1-2 stars)'
+                - 'Not Rated'
+              quote: true
+
+      - name: health_inspection_rating
+        description: Health Inspection domain rating (1–5).
+
+      - name: quality_measure_rating
+        description: Quality Measure domain rating (1–5).
+
+      - name: long_stay_qm_rating
+        description: Long-Stay Quality Measure rating (1–5).
+
+      - name: short_stay_qm_rating
+        description: Short-Stay Quality Measure rating (1–5).
+
+      - name: staffing_rating
+        description: Staffing domain rating (1–5).
+
+      - name: total_nursing_staff_turnover
+        description: Total nursing staff turnover rate.
+
+      - name: registered_nurse_turnover
+        description: Registered nurse turnover rate.
+
+      - name: total_amount_of_fines_in_dollars
+        description: Total dollar value of CMS fines levied against the facility.
+
+      - name: has_financial_penalty
+        description: Boolean flag — true if the facility has incurred any CMS financial penalty.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+
+      - name: total_number_of_penalties
+        description: Total count of CMS enforcement penalties.
+
+      - name: total_weighted_health_survey_score
+        description: Total weighted health survey score used for rating calculations.
+
+      - name: _ingested_at
+        description: Timestamp when the source record was ingested.
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Pipeline run identifier.

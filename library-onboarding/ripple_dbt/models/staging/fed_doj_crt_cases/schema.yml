@@ -1,0 +1,183 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_DOJ_CRT_CASES
+        description: >
+          Raw landing table for the DOJ Civil Rights Division Cases and
+          Settlements Database. All columns arrive as TEXT.
+
+models:
+
+  - name: stg_fed_doj_crt_cases__crt_cases
+    description: >
+      Staged and lightly cleaned view of DOJ Civil Rights Division cases.
+      Text columns are cast to appropriate types; duplicate records (by
+      company_id, person_name, state, date_filed) are removed, keeping the
+      most-recently-ingested row.
+    columns:
+
+      - name: company_id
+        description: Identifier for the defendant company (maps to DEFENDANT_COMPANY_ID).
+        data_tests:
+          - not_null
+
+      - name: person_name
+        description: Name of the individual defendant or complainant.
+        data_tests:
+          - not_null
+
+      - name: state
+        description: US state associated with the case.
+        data_tests:
+          - not_null
+
+      - name: date_filed
+        description: Date the case was filed with the DOJ Civil Rights Division.
+        data_tests:
+          - not_null
+
+      - name: case_title
+        description: Official title of the civil rights case.
+
+      - name: section
+        description: DOJ Civil Rights Division section responsible for the case.
+
+      - name: case_type
+        description: Classification of the civil rights case type.
+
+      - name: status
+        description: Current status of the case (e.g. Open, Closed, Settled).
+        data_tests:
+          - accepted_values:
+              values: ['Open', 'Closed', 'Settled', 'Pending', 'Dismissed', 'Active']
+              quote: true
+              severity: warn
+
+      - name: summary
+        description: Narrative summary of the case allegations and findings.
+
+      - name: case_url
+        description: URL linking to the official DOJ case record.
+
+      - name: date_filed
+        description: Date the case was originally filed.
+
+      - name: date_resolved
+        description: Date the case was resolved, if applicable.
+
+      - name: date_updated
+        description: Date the record was last updated in the source system.
+
+      - name: settlement_amount
+        description: Monetary value of any settlement reached, in USD.
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this record.
+        data_tests:
+          - not_null
+
+  - name: justice__fed_doj_crt_cases
+    description: >
+      Analytics-ready mart table for DOJ Civil Rights Division cases and
+      settlements. Exposes key identifiers for cross-source joins, derived
+      financial and temporal metrics, and a surrogate primary key.
+    columns:
+
+      - name: crt_case_key
+        description: >
+          Surrogate primary key derived from company_id, person_name, state,
+          and date_filed using dbt_utils.generate_surrogate_key.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: company_id
+        description: Defendant company identifier; join key for cross-source enrichment.
+        data_tests:
+          - not_null
+
+      - name: person_name
+        description: Individual defendant or complainant name; join key.
+        data_tests:
+          - not_null
+
+      - name: state
+        description: US state associated with the case; join key.
+        data_tests:
+          - not_null
+
+      - name: date_filed
+        description: Date the case was filed; primary temporal join key.
+        data_tests:
+          - not_null
+
+      - name: case_title
+        description: Official title of the civil rights case.
+
+      - name: section
+        description: DOJ Civil Rights Division section responsible for the case.
+
+      - name: case_type
+        description: Classification of the civil rights case type.
+
+      - name: status
+        description: Current status of the case.
+        data_tests:
+          - accepted_values:
+              values: ['Open', 'Closed', 'Settled', 'Pending', 'Dismissed', 'Active']
+              quote: true
+              severity: warn
+
+      - name: summary
+        description: Narrative summary of the case allegations and findings.
+
+      - name: case_url
+        description: URL linking to the official DOJ case record.
+
+      - name: date_resolved
+        description: Date the case was resolved, if applicable.
+
+      - name: date_updated
+        description: Date the record was last updated in the source system.
+
+      - name: settlement_amount
+        description: Monetary value of any settlement reached, in USD.
+
+      - name: has_monetary_settlement
+        description: Boolean flag; true when a positive settlement amount is recorded.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+
+      - name: days_to_resolution
+        description: >
+          Number of days from date_filed to date_resolved (or current date if
+          still open).
+
+      - name: case_open_closed
+        description: Derived label indicating whether the case is open or closed.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['open', 'closed']
+              quote: true
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this record.
+        data_tests:
+          - not_null

@@ -1,0 +1,156 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_DOJ_FCA_SETTLEMENTS
+        description: >
+          Raw landing table for DOJ False Claims Act Settlements and Judgments.
+          All columns are loaded as TEXT from the source feed.
+
+models:
+  - name: stg_fed_doj_fca_settlements__fca_settlements
+    description: >
+      Staging view for DOJ FCA Settlements. Columns are renamed to snake_case,
+      TEXT fields are cast to appropriate types, and duplicate rows are removed
+      using the latest ingestion timestamp.
+    columns:
+      - name: fca_settlement_id
+        description: Surrogate primary key derived from company_id, person_name, and settlement date.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: company_id
+        description: Defendant company name, used as a cross-source join key.
+        data_tests:
+          - not_null
+
+      - name: person_name
+        description: Defendant person name, used as a cross-source join key.
+        data_tests:
+          - not_null
+
+      - name: date
+        description: Settlement date parsed from the raw SETTLEMENT_DATE text field.
+        data_tests:
+          - not_null
+
+      - name: case_title
+        description: Full title of the FCA case.
+
+      - name: fiscal_year
+        description: Federal fiscal year in which the settlement was recorded.
+
+      - name: settlement_amount
+        description: Dollar value of the settlement or judgment.
+
+      - name: is_qui_tam
+        description: Boolean flag indicating whether the case was a qui tam (whistleblower) action.
+        data_tests:
+          - accepted_values:
+              values: [true, false]
+
+      - name: relator_name
+        description: Name of the qui tam relator (whistleblower), if applicable.
+
+      - name: relator_share
+        description: Dollar amount paid to the relator as their share of the settlement.
+
+      - name: fraud_type
+        description: Category or type of fraud alleged in the case.
+
+      - name: agency_defrauded
+        description: Federal agency or program that was the target of the alleged fraud.
+
+      - name: case_number
+        description: Official case docket number.
+
+      - name: district
+        description: Federal judicial district where the case was filed or resolved.
+
+      - name: press_release_url
+        description: URL to the DOJ press release for this settlement.
+
+      - name: source_url
+        description: URL to the original source record.
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.
+
+  - name: justice__fed_doj_fca_settlements
+    description: >
+      Analytics-ready mart table for DOJ False Claims Act Settlements and Judgments.
+      Exposes key identifiers for cross-source joins alongside enriched financial
+      and classification fields.
+    columns:
+      - name: fca_settlement_id
+        description: Surrogate primary key for each unique FCA settlement record.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: company_id
+        description: Defendant company name; serves as a cross-source join key.
+        data_tests:
+          - not_null
+
+      - name: person_name
+        description: Defendant person name; serves as a cross-source join key.
+        data_tests:
+          - not_null
+
+      - name: settlement_date
+        description: Date the settlement or judgment was reached.
+        data_tests:
+          - not_null
+
+      - name: case_title
+        description: Full title of the FCA case.
+
+      - name: case_number
+        description: Official case docket number.
+
+      - name: district
+        description: Federal judicial district where the case was filed or resolved.
+
+      - name: fiscal_year
+        description: Federal fiscal year in which the settlement was recorded.
+
+      - name: settlement_amount
+        description: Dollar value of the settlement or judgment.
+
+      - name: is_qui_tam
+        description: Boolean flag indicating whether the case was a qui tam action.
+        data_tests:
+          - accepted_values:
+              values: [true, false]
+
+      - name: relator_name
+        description: Name of the qui tam relator, if applicable.
+
+      - name: relator_share
+        description: Dollar amount paid to the relator as their share of the settlement.
+
+      - name: fraud_type
+        description: Category or type of fraud alleged in the case.
+
+      - name: agency_defrauded
+        description: Federal agency or program that was the target of the alleged fraud.
+
+      - name: press_release_url
+        description: URL to the DOJ press release for this settlement.
+
+      - name: source_url
+        description: URL to the original source record.
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.

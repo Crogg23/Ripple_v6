@@ -8,8 +8,9 @@ JS-rendered / bot-protected pages) — plus two **load modes** (snapshot + C2 in
 **proven full end-to-end through `onboard.py` with real creds**: recon autonomously set `scrape_js`,
 codegen used the injected `render()`, Playwright cleared a JS shell, and 100 rows landed in
 `LIBRARY_RAW.LANDING` + registered in `LIBRARY_META` (target `quotes.toscrape.com/js` — BAILII's wall was
-down at run time; see the C1b end-to-end section for why). PR #2–#6 merged to `main`; C1b end-to-end work
-is on `claude/laughing-knuth-fmjka8`.
+down at run time; see the C1b end-to-end section for why). With full capability proven, **ran registry
+batch 2** (tier-1, auth-free, 12 attempted → 4 landed incl. FARA 221,900 rows; see that section). PR #2–#7
+merged to `main`; batch-2 work is on `claude/laughing-knuth-fmjka8`.
 
 ## WHAT EXISTS
 - `library-onboarding/` — the 5-checkpoint CLI agent: RECON → SCRIPT → LOAD → DBT → REGISTRY.
@@ -42,11 +43,48 @@ is on `claude/laughing-knuth-fmjka8`.
 | `fed_clinicaltrials` | 500 | registry queue, tier-1 batch (bounded API snapshot) |
 | `fed_cms_hcris` | 6,103 | registry queue, tier-1 batch (117-col hospital cost report; rebuilt against real columns) |
 | `fed_cfpb_complaints` | 500 | **incremental (C2)** — 2 runs (backfill + watermark-advance append) |
+| `fed_cms_nursing_home` | 14,700 | **registry batch 2** (2026-06-17 — bulk CSV, Care Compare) |
+| `fed_doj_fca_settlements` | 19 | registry batch 2 (DOJ False Claims Act press-release scrape) |
+| `fed_doj_crt_cases` | 1 | registry batch 2 (DOJ Civil Rights portal scrape — ⚠ thin/incomplete, review) |
+| `fed_fara_bulk` | 221,900 | registry batch 2 (FARA eFile bulk — foreign-agent registrations) |
 
-**11 clean sources, ~45,465 raw rows.** Registry **901** rows, **14** `INCLUDE=Y` (CFPB +1; the dequeue
-below −1). The false-success `fed_cms_hpt_enforcement` was dequeued (registry un-flagged + junk table
-dropped, 2026-06-17, with Chris's OK): it had landed an HTML page (one `DOCTYPE_HTML` column, 22 junk
-rows), not data — caught when its mart wouldn't build.
+**15 clean sources in `LANDING`** (after batch 2 added 4). Live total: **23 landing tables,
+1,946,107 raw rows** (was 19 / 1,709,487 at batch-2 start; +236,620). The demo `intl_demo_quotes_toscrape_js`
+was dropped (table + registry + ingest_runs) before the batch. The false-success `fed_cms_hpt_enforcement`
+was dequeued earlier (registry un-flagged + junk table dropped, 2026-06-17, with Chris's OK): it had landed
+an HTML page (one `DOCTYPE_HTML` column, 22 junk rows), not data — caught when its mart wouldn't build.
+
+### Registry batch 2 — `registry_batch.py` tier-1, auth-free, per-source timeout (2026-06-17)
+Ran the queue end to end through the full agent (all 4 fetch capabilities live), each source wrapped in a
+12-min wall-clock `timeout` so one hang couldn't stall the session. **12 attempted, 4 landed, 1 false-success
+(corrected), 7 failed.** The easy bulk/API sources were already onboarded — this tier-1 residue is the hard
+portal/scrape/huge shapes, so a low hit-rate is expected.
+
+| Source | Result | Rows |
+|---|---|---|
+| `fed_cms_nursing_home` | ✅ onboarded | 14,700 |
+| `fed_doj_fca_settlements` | ✅ onboarded (press-release scrape) | 19 |
+| `fed_doj_crt_cases` | ✅ onboarded — ⚠ **thin scrape, review** | 1 |
+| `fed_fara_bulk` | ✅ onboarded (bulk) | 221,900 |
+| `fed_cms_tic_mrf` | ⚠ **false success → un-flagged** (incremental first-run 0 rows, no table) | 0 |
+| `fed_chronicling_america` | ❌ aborted — LoC API migrated/dead (404) | — |
+| `fed_cms_hpt_mrf` | ❌ aborted — per-hospital MRF crawl, no single data file | — |
+| `fed_cms_ma_enrollment` | ❌ aborted — CMS dynamic portal, grabbed instructions ZIP / no CSV links | — |
+| `fed_cms_nppes` | ❌ killed (exit 137, OOM) — ~9 GB download blew container memory | — |
+| `fed_densho_ddr` | ❌ aborted — portal-only, no machine-readable endpoint | — |
+| `fed_docsouth` | ❌ aborted — couldn't resolve a bulk data file | — |
+| `fed_epa_egrid` | ❌ aborted — multi-sheet Excel / dynamic download | — |
+
+- **Agent gap this exposed + FIXED**: an **incremental** source whose **first** run (empty watermark, `since
+  is None`) returns 0 rows was logged `success` (0 rows) and flipped `INCLUDE=Y` — a false success with no
+  table (`fed_cms_tic_mrf`: recon called the per-insurer MRF incremental, the scrape found nothing). Fix in
+  `ingest.run_ingest`: `allow_empty` now only applies to a *continuing* incremental run (`since is not None`);
+  a first-run empty backfill fails loudly (→ auto-repair → abort), so it can't false-succeed. tic_mrf's
+  registry row was un-flagged (`INCLUDE` blank); the 0-row `INGEST_RUNS` record is kept as history.
+- **Also seen (not yet fixed)**: codegen occasionally emits a prose preamble before the code block →
+  `extract_code` returns it → `invalid syntax (line 1)`; it self-corrected on retry here. Worth hardening
+  `extract_code`/the codegen system prompt before a future batch. The DOJ CRT 1-row landing is a thin-scrape
+  near-miss (no pagination) — flagged for review, not auto-dequeued (it did land structured data).
 
 ### Registry-driven queue (B) — `xc_biorxiv_medrxiv` (2026-06-17), verified live
 - `registry_batch.py --source-id xc_biorxiv_medrxiv --run` selected the row from the catalog and ran the
