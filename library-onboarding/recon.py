@@ -21,8 +21,13 @@ USER_AGENT = "RippleOnboardingAgent/1.0 (+https://github.com/Crogg23/Ripple_v6)"
 MAX_PAGE_CHARS = 18_000
 
 
-def fetch_page(url: str, timeout: int = 30) -> str:
-    """Fetch a URL and return readable text (scripts/styles stripped)."""
+def fetch_page(url: str, timeout: int = 30) -> tuple[str, bool]:
+    """Fetch a URL and return ``(readable_text, browser_required)``.
+
+    ``browser_required`` is True when a plain HTTP GET hit a bot-challenge / empty
+    SPA shell and we had to render the page in a headless browser to read it -- the
+    signal recon uses to set ``access_pattern=scrape_js``.
+    """
     resp = requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=timeout)
     resp.raise_for_status()
     content_type = resp.headers.get("Content-Type", "")
@@ -32,25 +37,29 @@ def fetch_page(url: str, timeout: int = 30) -> str:
     ):
         return (
             f"[Non-HTML document at {url} (Content-Type: {content_type or 'unknown'}). "
-            "Infer the access pattern and schema from the URL and source name.]"
+            "Infer the access pattern and schema from the URL and source name.]",
+            False,
         )
 
     try:
         from bs4 import BeautifulSoup
     except ImportError:  # pragma: no cover
-        return resp.text[:MAX_PAGE_CHARS]
+        return resp.text[:MAX_PAGE_CHARS], False
 
     html = resp.text
+    browser_required = False
     # If the static fetch hit a bot-challenge ("Just a moment...") or an empty SPA
     # shell, the readable text we'd hand Claude is a wall, not the source -- recon
     # would mis-profile it. Escalate to the headless browser (C1b) to get the real,
-    # JS-rendered page. Best-effort: if Playwright/Chromium isn't installed we fall
-    # back to the static HTML and recon notes the gap.
+    # JS-rendered page, and remember that we HAD to -- so recon flags scrape_js.
+    # Best-effort: if Playwright/Chromium isn't installed we fall back to the static
+    # HTML and recon notes the gap.
     if browser.looks_blocked(html):
         try:
             rendered = browser.render(url)
             if rendered and not browser.looks_blocked(rendered):
                 html = rendered
+                browser_required = True
         except Exception:
             pass  # browser unavailable -- recon profiles from the static shell
 
@@ -59,7 +68,7 @@ def fetch_page(url: str, timeout: int = 30) -> str:
         tag.decompose()
     text = soup.get_text(separator="\n")
     lines = [line.strip() for line in text.splitlines() if line.strip()]
-    return "\n".join(lines)[:MAX_PAGE_CHARS]
+    return "\n".join(lines)[:MAX_PAGE_CHARS], browser_required
 
 
 def run_recon(source: dict, feedback: Optional[str] = None) -> dict:
@@ -71,12 +80,24 @@ def run_recon(source: dict, feedback: Optional[str] = None) -> dict:
 
     page_text = "[page not fetched -- fake mode]"
     fetch_error = None
+    browser_required = False
     if not settings.fake_llm:
         try:
-            page_text = fetch_page(url)
+            page_text, browser_required = fetch_page(url)
         except Exception as exc:
             fetch_error = str(exc)
             page_text = f"[Could not fetch {url}: {exc}]"
+
+    # Tell recon when the static fetch was blocked and only a headless browser could
+    # read the page -- that is exactly the scrape_js signal.
+    access_note = (
+        "A plain HTTP GET of this URL returned a bot-challenge / JS-required shell "
+        "(no usable data); the readable text below was obtained by RENDERING the page "
+        "in a headless browser. This source needs a browser to access -- set "
+        "access_pattern = scrape_js."
+        if browser_required
+        else "(A plain HTTP GET returned the page directly -- no headless browser was needed.)"
+    )
 
     prompt = render_prompt(
         "recon",
@@ -85,6 +106,7 @@ def run_recon(source: dict, feedback: Optional[str] = None) -> dict:
         layer=layer,
         identifiers=", ".join(identifiers) or "(none known yet)",
         feedback=feedback or "(none)",
+        access_note=access_note,
         page_text=page_text,
     )
     raw = call_claude(
@@ -94,10 +116,11 @@ def run_recon(source: dict, feedback: Optional[str] = None) -> dict:
         fake_context=source,
         max_tokens=3000,
     )
-    return _resolve(source, extract_json(raw), fetch_error)
+    return _resolve(source, extract_json(raw), fetch_error, browser_required)
 
 
-def _resolve(source: dict, extracted: dict, fetch_error: Optional[str]) -> dict:
+def _resolve(source: dict, extracted: dict, fetch_error: Optional[str],
+             browser_required: bool = False) -> dict:
     name = source["name"]
     layer = source.get("layer", "unknown")
 
@@ -124,6 +147,15 @@ def _resolve(source: dict, extracted: dict, fetch_error: Optional[str]) -> dict:
     auth = extracted.get("auth") or {}
     if isinstance(auth, str):
         auth = {"type": auth, "notes": ""}
+
+    # access_pattern: a foreman pin wins; otherwise recon's guess. But if fetching
+    # the page EMPIRICALLY required a headless browser (the static GET was a
+    # bot-challenge / empty JS shell), that's ground truth, not a guess -- force
+    # scrape_js regardless of what the LLM proposed (it sees the rendered HTML and
+    # often mistakes it for plain scrape). This is the autonomous scrape_js trigger.
+    access_pattern = source.get("access_pattern") or extracted.get("access_pattern", "unknown")
+    if browser_required and not source.get("access_pattern"):
+        access_pattern = "scrape_js"
 
     return {
         # identity
@@ -154,7 +186,7 @@ def _resolve(source: dict, extracted: dict, fetch_error: Optional[str]) -> dict:
         "accountability_relevance": extracted.get("accountability_relevance", ""),
         "priority_tier": str(extracted.get("priority_tier", "2")),
         # ingest + dbt
-        "access_pattern": extracted.get("access_pattern", "unknown"),
+        "access_pattern": access_pattern,
         # Incremental load (huge / daily-growing sources): a foreman-pinned value
         # wins; else recon's guess; else snapshot (the default mirror).
         "load_mode": (source.get("load_mode") or extracted.get("load_mode") or "snapshot").strip().lower(),
