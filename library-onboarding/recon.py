@@ -12,6 +12,7 @@ from typing import Optional
 
 import requests
 
+import browser
 import naming
 from config import settings
 from llm import call_claude, extract_json, render_prompt
@@ -39,7 +40,21 @@ def fetch_page(url: str, timeout: int = 30) -> str:
     except ImportError:  # pragma: no cover
         return resp.text[:MAX_PAGE_CHARS]
 
-    soup = BeautifulSoup(resp.text, "html.parser")
+    html = resp.text
+    # If the static fetch hit a bot-challenge ("Just a moment...") or an empty SPA
+    # shell, the readable text we'd hand Claude is a wall, not the source -- recon
+    # would mis-profile it. Escalate to the headless browser (C1b) to get the real,
+    # JS-rendered page. Best-effort: if Playwright/Chromium isn't installed we fall
+    # back to the static HTML and recon notes the gap.
+    if browser.looks_blocked(html):
+        try:
+            rendered = browser.render(url)
+            if rendered and not browser.looks_blocked(rendered):
+                html = rendered
+        except Exception:
+            pass  # browser unavailable -- recon profiles from the static shell
+
+    soup = BeautifulSoup(html, "html.parser")
     for tag in soup(["script", "style", "noscript", "svg"]):
         tag.decompose()
     text = soup.get_text(separator="\n")

@@ -2,11 +2,11 @@
 Last updated: 2026-06-17
 
 ## CURRENT FOCUS
-Scaling the Library on two axes, both proven live today: **(B) registry-driven queue** — onboarding pulls
-candidates straight from the ~900-row `SOURCE_REGISTRY` by `PRIORITY_TIER` (proven: `xc_biorxiv_medrxiv`
-flipped its own row to `INCLUDE=Y`); and **(C2) incremental load** — append-only landing + watermark for
-huge/growing sources (proven: `fed_cfpb_complaints`, 2 runs, watermark-advance append). Next: C1 scrape.
-PR #2 + PR #3 (batches 1–3) merged to `main`; everything since is on `claude/reconcile-onboarding-agent`.
+The agent now has **three fetch capabilities** and picks each autonomously at recon: **bulk/API**,
+**static scrape** (C1, BS4), and **headless-browser scrape** (C1b, Playwright `render()` for
+JS-rendered / bot-protected pages) — plus two **load modes** (snapshot + C2 incremental). C1b is the
+newest: proven live on BAILII (static scrape blocked by the bot wall → browser renders 44 UK Supreme
+Court judgments). PR #2/#3 merged to `main`; PR #4 (C1 + C2) merged; C1b is on `claude/laughing-knuth-fmjka8`.
 
 ## WHAT EXISTS
 - `library-onboarding/` — the 5-checkpoint CLI agent: RECON → SCRIPT → LOAD → DBT → REGISTRY.
@@ -118,6 +118,34 @@ definition); the shape check still catches the `fed_cms_hpt_enforcement`-style s
   static BS4 has limited reach. **C1b (Playwright + a real browser session) is the actual unlock** for
   these — now a higher priority than originally scoped (evidence-driven).
 
+### C1b — headless-browser scrape (Playwright, 2026-06-17), built + PROVEN live
+The third fetch capability (after static `scrape`). For JS-rendered / bot-protected sources static BS4
+can't reach. New `browser.py` exposes `render(url, wait_selector=, scroll=, timeout_ms=)` — drives a real
+headless Chromium, runs the page JS, clears the bot challenge, returns fully-rendered HTML that the
+generated `fetch_data` parses with BS4 exactly like a static page.
+- **Agent chooses it autonomously** (mirrors C2's `load_mode`): recon's `access_pattern` enum gained
+  `scrape_js`; `ingest._execute_fetch` always injects `context["render"]`; the codegen prompt tells Claude
+  to use it for `scrape_js`. **Recon can now read walled pages too** — `fetch_page` detects a challenge /
+  empty shell (`browser.looks_blocked`) and escalates to the browser to profile the real source.
+- **Optional + heavy**: Playwright pip pkg is small but drives a ~170 MB browser (`playwright install
+  chromium`). Imported **lazily** — the agent runs fine without it; `render()` raises actionable install
+  steps. Only `scrape_js` sources pay the cost. Trade-offs ADR in `docs/design-incremental-and-scrape.md`
+  (slower, heavier RAM/CPU, container libs, `--no-sandbox`, `ignore_https_errors` for proxied TLS, basic
+  bot checks only — not hard CAPTCHAs).
+- **PROVEN — same target, before vs after** (`scripts/prove_c1b_bailii.py`, run through the real
+  `ingest._execute_fetch`): BAILII UK Supreme Court 2024 index
+  (`https://www.bailii.org/uk/cases/UKSC/2024/`).
+  - BEFORE (`scrape`, requests+BS4): HTTP 200 but a **4.5 KB bot-challenge shell, 0 case links** → raised,
+    **landed nothing** (clean graceful failure — exactly the documented C1 wall).
+  - AFTER (`scrape_js`, `context["render"]`+BS4): challenge cleared → **44 UK Supreme Court 2024
+    judgments** (title + URL) into a clean DataFrame. Recon autonomy independently verified (read real
+    case names through the browser).
+- **NOTE on this container**: the live proof exercised the full RECON→SCRIPT→LOAD-*fetch* path (render
+  injection + generated `fetch_data` + HTML-junk guard). The Snowflake **write** + real-LLM codegen
+  weren't run here (this session's `SNOWFLAKE_PAT`/`ANTHROPIC_API_KEY` are read-only/placeholder; the
+  Snowflake MCP is `CLAUDE_MCP_READONLY`). That plumbing is unchanged from C1 and already proven — what
+  C1b adds is the fetch capability, and that's what's proven live.
+
 ### Batch 3 — `fed_treasury_avg_interest_rates` (2026-06-17), verified live
 - LOAD → `RIPPLE_RAW.LANDING.FED_TREASURY_AVG_INTEREST_RATES` = **4,961 rows**, run `4046bcc7…`,
   sha `7fe37899…` (the same sha is on every row's `_SRC_SHA256` and on the `INGEST_RUNS` row — provenance chain intact).
@@ -156,9 +184,9 @@ definition); the shape check still catches the `fed_cms_hpt_enforcement`-style s
   `ingest.py`/`recon.py`/prompts; proven live on `fed_cfpb_complaints`. Design: `docs/design-incremental-and-scrape.md`.
 - [DONE 2026-06-17 — C1 Phase 1] Static scrape (BS4 + `lxml` + corrected HTML-guard); proven on a Wikipedia
   table (100 rows). Codegen writes good scrape code (BAILII) but most targets are bot-protected/JS-rendered.
-- [HOT — C1b] Playwright + real browser session for bot-protected / JS-rendered scrape targets (BAILII,
-  portals). Evidence says this — not static BS4 — is the actual unlock for the accountability scrape sources.
-  Heaviest lift (ships a headless browser). | LAYER: Library
+- [DONE 2026-06-17 — C1b] Playwright + real browser session for bot-protected / JS-rendered scrape targets.
+  → `browser.render()` + `access_pattern=scrape_js` + recon browser-escalation; proven on BAILII UKSC
+  (blocked static → 44 judgments rendered). Trade-offs ADR in `docs/design-incremental-and-scrape.md`.
 - [IDEA — SOMEDAY] The agent writes a `sources:` block into every model's `schema.yml`; it should emit a
   single central `sources.yml` instead. | NOTE: dbt 1.11 actually tolerates the per-file blocks (parse +
   build are clean) — it only collides if you ALSO add a central one. Cosmetic, not blocking. | LAYER: Library
@@ -171,8 +199,9 @@ definition); the shape check still catches the `fed_cms_hpt_enforcement`-style s
   (+ `RIPPLE_STAGING`/`RIPPLE_MARTS` for dbt) would be safer for routine onboarding.
 
 ## NEXT ACTION
-**C2 incremental + C1 Phase-1 static scrape are built + proven.** The evidence-driven next lever is
-**C1b — Playwright** (a real browser session) for the bot-protected / JS-rendered scrape targets that
-static BS4 can't reach (BAILII et al.). Other open threads: generate + `dbt run` a staging/mart for
-`fed_cfpb_complaints` (dedup-on-`complaint_id`); (D) least-privilege `RIPPLE_INGEST_RW` role; keep feeding
-the registry queue at larger limits.
+**C1b — Playwright is built + proven** (BAILII: static blocked → 44 judgments rendered). All three fetch
+shapes (bulk/API, static scrape, headless scrape) + both load modes are live. Natural next steps:
+**onboard a real `scrape_js` source end-to-end into Snowflake** (e.g. add BAILII UKSC to the registry
+queue and run the full agent with live creds — needs a real `ANTHROPIC_API_KEY` + write PAT + warehouse,
+which this container didn't have); generate + `dbt run` a staging/mart for `fed_cfpb_complaints`
+(dedup-on-`complaint_id`); (D) least-privilege `RIPPLE_INGEST_RW` role; keep feeding the registry queue.

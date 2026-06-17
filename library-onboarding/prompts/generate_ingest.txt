@@ -55,6 +55,19 @@ REQUIREMENTS
     linking to per-entity pages/files), fetch the index, extract the matching links,
     then follow at most ~25 of them (a bounded sample) and parse each into rows.
     NEVER crawl unboundedly. Accumulate the fetched HTML into context["source_bytes"].
+  - JS-rendered / bot-protected sources (access_pattern = scrape_js): plain requests
+    gets back an empty SPA shell or a bot-challenge page ("Just a moment...",
+    Cloudflare), NOT the data. Use the headless browser the caller injected:
+        html = context["render"](url)                       # runs JS, clears the challenge
+        # or wait for the data element to appear before reading (most robust):
+        html = context["render"](url, wait_selector="table.results")
+    `render(url, wait_selector=None, scroll=False, timeout_ms=45000)` returns the
+    fully-rendered HTML as a string. Then parse it EXACTLY like a static page
+    (BeautifulSoup(html, "html.parser") or pandas.read_html(html)) -- one row per
+    record. Set context["source_bytes"] = html.encode("utf-8"). Pass scroll=True for
+    infinite-scroll / lazy-loaded lists. For a bounded crawl of JS sub-pages, call
+    render() on the index, extract the links, then render() at most ~25 sub-pages.
+    Do NOT import playwright yourself -- only ever use context["render"].
   - Never return raw HTML as data: if you cannot find structured records, raise a
     RuntimeError describing the page (the loader rejects single-column HTML dumps).
   - For bulk CSV/ZIP: download, parse with pandas (io.BytesIO / zipfile as needed).
