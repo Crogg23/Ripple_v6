@@ -380,7 +380,18 @@ empirical signal** rather than trusting the LLM. Deterministic across repeated r
   env-var *keys* stay — the project is still "Ripple", only the warehouse DBs were rebranded). Verified:
   `SHOW DATABASES` (4 `LIBRARY_*` present, all `RIPPLE*` gone) + `dbt compile` green against the renamed
   stack (compiled SQL resolves to `LIBRARY_RAW.LANDING.*`). `RIPPLE_WH` warehouse unchanged (compute, not a DB).
-- Target the live `LIBRARY_*` stack, NOT `DISASTER_IMPACT.RAW`. — Chris, 2026-06-16
+- **`DISASTER_IMPACT` + `WEATHER_ANALYSIS` dropped (2026-06-18).** `DISASTER_IMPACT` was a frozen April dbt
+  build (308 GB, ~50B rows of weather/ACS/econ staging in `DBT_CROGERS`, untouched 2.5 months); dependency
+  check was clean (no LIBRARY view/registry/object refs) so it was dropped — reclaim clears over ~7 days of
+  Failsafe. `WEATHER_ANALYSIS` was an empty shell (no user objects) — dropped too. Account is now the 4
+  `LIBRARY_*` DBs + Snowflake system/shared. **MCP-server side-effect — RESOLVED**: the read-only Snowflake
+  MCP server was hosted at `DISASTER_IMPACT.DBT_PROD.CLAUDE_MCP_SERVER`, so the drop disabled the MCP tool.
+  Re-provisioned 2026-06-18 in a new no-data container **`LIBRARY_TOOLS.PUBLIC.CLAUDE_MCP_SERVER`** (identical
+  spec recovered from `QUERY_HISTORY`; `SYSTEM_EXECUTE_SQL` tool `sql_exec_tool`), with `USAGE` re-granted to
+  `CLAUDE_MCP_READONLY`. Server verified live (`SHOW MCP SERVERS`); **remaining client-side step (external):
+  repoint the MCP integration's server path from the old `DISASTER_IMPACT...` to `LIBRARY_TOOLS.PUBLIC...`**.
+  Lesson: don't host tooling/infra inside data DBs. The agent's own PAT connection was the fallback throughout.
+- Target the live `LIBRARY_*` stack. — Chris, 2026-06-16
 - `SOURCE_ID` is the linchpin; landing table = `UPPER(SOURCE_ID)`; prefixes `fed_`/`intl_`/`xc_`/`loc_`/`st_`.
 - Catalog is Snowflake-native (`SOURCE_REGISTRY`); raw is an all-TEXT snapshot-replace mirror.
 - Compute = `RIPPLE_WH`; the session env leaves `SNOWFLAKE_WAREHOUSE` blank, so the runners self-default it.
