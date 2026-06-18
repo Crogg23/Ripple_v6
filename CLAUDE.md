@@ -49,8 +49,6 @@ Chris approves each checkpoint before anything executes. `go` / `edit [feedback]
 
 `SOURCE_ID` (e.g. `fed_usgs_earthquakes`) is the linchpin: landing table = `UPPER(SOURCE_ID)`; registry + logs key on it. Prefix = jurisdiction: `fed_` / `intl_` / `xc_` (cross-cutting) / `loc_` / `st_`.
 
-**`DISASTER_IMPACT` is a separate, older weather/disaster project — NOT the Ripple landing zone.**
-
 **Never reference OneDrive paths on either machine.**
 
 ---
@@ -362,8 +360,6 @@ Currently landed in `LIBRARY_RAW.LANDING`:
 - `FED_USASPENDING_SUBAWARDS` — USAspending subawards (proof slice)
 - `FED_DOJ_EPSTEIN_LIBRARY` — DOJ Epstein Library listing
 - `XC_WAYBACK_DOJ_EPSTEIN` / `XC_WAYBACK_REPLAY_DOJ_LISTING` / `XC_WAYBACK_REPLAY_DOJ_DEEP_PAGES` — Internet Archive captures + replays
-
-(The FEMA/NOAA/BLS/IRS/FHFA weather-and-disaster sets live in the separate, older `DISASTER_IMPACT` project — not this repo's landing zone.)
 
 ---
 

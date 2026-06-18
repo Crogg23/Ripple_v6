@@ -380,7 +380,15 @@ empirical signal** rather than trusting the LLM. Deterministic across repeated r
   env-var *keys* stay — the project is still "Ripple", only the warehouse DBs were rebranded). Verified:
   `SHOW DATABASES` (4 `LIBRARY_*` present, all `RIPPLE*` gone) + `dbt compile` green against the renamed
   stack (compiled SQL resolves to `LIBRARY_RAW.LANDING.*`). `RIPPLE_WH` warehouse unchanged (compute, not a DB).
-- Target the live `LIBRARY_*` stack, NOT `DISASTER_IMPACT.RAW`. — Chris, 2026-06-16
+- **`DISASTER_IMPACT` + `WEATHER_ANALYSIS` dropped (2026-06-18).** `DISASTER_IMPACT` was a frozen April dbt
+  build (308 GB, ~50B rows of weather/ACS/econ staging in `DBT_CROGERS`, untouched 2.5 months); dependency
+  check was clean (no LIBRARY view/registry/object refs) so it was dropped — reclaim clears over ~7 days of
+  Failsafe. `WEATHER_ANALYSIS` was an empty shell (no user objects) — dropped too. Account is now the 4
+  `LIBRARY_*` DBs + Snowflake system/shared. **Side-effect to fix**: the read-only Snowflake MCP server was
+  hosted at `DISASTER_IMPACT.DBT_PROD.CLAUDE_MCP_SERVER`, so the drop disabled the MCP tool — the agent's own
+  PAT connection still works; the MCP server needs re-provisioning in a surviving DB (or `UNDROP DATABASE
+  DISASTER_IMPACT` within the 1-day Time-Travel window to recover it).
+- Target the live `LIBRARY_*` stack. — Chris, 2026-06-16
 - `SOURCE_ID` is the linchpin; landing table = `UPPER(SOURCE_ID)`; prefixes `fed_`/`intl_`/`xc_`/`loc_`/`st_`.
 - Catalog is Snowflake-native (`SOURCE_REGISTRY`); raw is an all-TEXT snapshot-replace mirror.
 - Compute = `RIPPLE_WH`; the session env leaves `SNOWFLAKE_WAREHOUSE` blank, so the runners self-default it.
