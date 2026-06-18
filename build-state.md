@@ -14,8 +14,9 @@ down at run time; see the C1b end-to-end section for why). With full capability 
 batches 2 + 3** (tier-1, auth-free): batch 2 = 12 attempted → 4 landed (incl. FARA 221,900); batch 3 = 4
 ran before an **Anthropic credit exhaustion** halted the queue → 3 landed (incl. Mapping Inequality 10,154),
 8 credit-blocked. Credits funded → **batch 4** retried those + 8 new: **16 attempted, 10 landed** (incl.
-NOAA AIS 7.3M, SCDB 83,644). **Live total: 36 landing tables, 9,337,547 rows.** PR #2–#9 merged to `main`;
-batch-4 work is on `claude/laughing-knuth-fmjka8`.
+NOAA AIS 7.3M, SCDB 83,644). Then **C3 chunked landed the two big OOM files**: NPPES 9,606,683 (full file
+to EOF, via crash-resume) + FJC IDB 4,126,450. **Live total: 38 landing tables, 23,070,680 rows.** PR #2–#9
+merged to `main`; the C3 big-load work is on `claude/laughing-knuth-fmjka8`. **Blocked on: nothing.**
 
 ## WHAT EXISTS
 - `library-onboarding/` — the 5-checkpoint CLI agent: RECON → SCRIPT → LOAD → DBT → REGISTRY.
@@ -55,6 +56,9 @@ batch-4 work is on `claude/laughing-knuth-fmjka8`.
 | `fed_mapping_inequality` | 10,154 | **registry batch 3** (2026-06-17 — HOLC redlining, GeoJSON flattened to rows) |
 | `fed_hhs_taggs` | 45 | registry batch 3 (HHS grant-tracking, incremental backfill) |
 | `fed_fdic_enforcement` | 2 | registry batch 3 (FDIC enforcement portal scrape — ⚠ thin, review) |
+| `fed_cms_nppes` | 9,606,683 | **chunked (C3)** — full NPPES provider file streamed to EOF (~9 GB; was OOM) |
+| `fed_fjc_idb` | 4,126,450 | **chunked (C3)** — federal court cases (FJC IDB; was OOM) |
+| *(batch-4 sources: noaa_ais 7.3M, scdb 83,644, etc. — see batch 4 above)* | | |
 | `fed_noaa_ais` | 7,296,275 | **registry batch 4** (NOAA Marine Cadastre AIS vessel tracking — incremental) |
 | `fed_scdb` | 83,644 | registry batch 4 (Supreme Court Database — case-level votes/decisions) |
 | `fed_nara_aad` | 554 | registry batch 4 (NARA Access to Archival Databases) |
@@ -67,9 +71,10 @@ batch-4 work is on `claude/laughing-knuth-fmjka8`.
 | `intl_ch_zefix` | 1 | registry batch 4 (Swiss business registry — ⚠ thin, review) |
 | `fed_cms_nppes` | 300,000 | **C3 chunked** (2026-06-17 — ~9 GB NPPES streamed in 50k chunks, demo-capped at 300k) |
 
-**29 clean sources in `LANDING`** (batches 2–4 +17, C3 NPPES +1). Live total: **37 landing tables,
-9,637,547 raw rows** (was 19 / 1,709,487 before batch 2). Batch 4 added +7,381,239 rows (dominated by
-`fed_noaa_ais` 7,296,275 and `fed_scdb` 83,644); C3 NPPES added the latest +300,000. The demo `intl_demo_quotes_toscrape_js`
+**30 clean sources in `LANDING`** (batches 2–4 +17, C3 big files +2). Live total: **38 landing tables,
+23,070,680 raw rows** (was 19 / 1,709,487 before batch 2). The C3 chunked path then landed the two big
+federal files that used to OOM-crash: **`fed_cms_nppes` 9,606,683** (full provider file, streamed to EOF)
+and **`fed_fjc_idb` 4,126,450** (federal court cases) — +13.7M rows. The demo `intl_demo_quotes_toscrape_js`
 was dropped (table + registry + ingest_runs) before the batch. The false-success `fed_cms_hpt_enforcement`
 was dequeued earlier (registry un-flagged + junk table dropped, 2026-06-17, with Chris's OK): it had landed
 an HTML page (one `DOCTYPE_HTML` column, 22 junk rows), not data — caught when its mart wouldn't build.
@@ -221,6 +226,29 @@ OOM-killing the agent (exit 137 — pandas balloons a 9 GB string-column CSV to 
   registry `INCLUDE=Y`. **Peak Python RSS 2,999 MB** — bounded + constant per chunk (lower `chunk_rows` to
   shrink it for very wide tables), vs the 30–50 GB the whole-file load needed. Demo-capped at 300k via
   `ONBOARD_CHUNK_MAX_ROWS`; uncap to land all ~8.5 M providers with the same flat memory.
+
+### C3 — full uncapped big loads (2026-06-18): NPPES + FJC landed, transatlantic failed
+Used C3 to land the 3 files that OOM-crashed pre-C3. **2 of 3 fully onboarded; 1 genuine source failure.**
+- **`fed_cms_nppes` — 9,606,683 rows (FULL file, to EOF)**, `INCLUDE=Y`, ingest success. The 9 GB,
+  333-column provider file — streamed in 50k/200k-row chunks at **1.2–5.9 GB peak RSS** (vs the prior
+  exit-137 OOM). This took a container restart (cut at 9.05 M) **and** a 90-min timeout (cut at 9.45 M)
+  before a **resume run** finished the 156,683-row tail to EOF and logged a clean success — a real-world
+  proof of crash-resume. Landing carries 2 run_ids (bulk + tail) = honest provenance.
+- **`fed_fjc_idb` — 4,126,450 rows**, `INCLUDE=Y`, ingest success. Federal court cases (FJC IDB).
+- **`fed_slavevoyages_transatlantic` — FAILED** (genuine): no clean export endpoint — codegen got
+  "not a zip file", then an HTML page; the `_reject_html` guard correctly rejected it (3 repairs → abort).
+- **Three agent fixes this run forced (committed)**:
+  1. **Streaming LLM calls** (`llm._real_call` → `client.messages.stream`): bumping dbt-gen `max_tokens`
+     tripped the Anthropic SDK's "Streaming is required for operations >10 min" guard, which aborted the
+     **dbt checkpoint for every big source** (FJC landed but didn't register until this was fixed). Now
+     streams + reassembles — works at any `max_tokens`.
+  2. **Wide-table dbt-gen** (`scaffold_dbt`): >60-col tables (NPPES 333) blew the JSON past `max_tokens` →
+     truncation. Now a compact passthrough directive + key-only tests; `max_tokens` 16k→24k (safe w/ streaming).
+  3. **Framework-enforced resume-skip** (`_load_landing_chunked`): the loader drops already-landed rows
+     itself (codegen always yields from the start) — dup-safe regardless of the generated code.
+- **Note**: X-Small `DBT_WH` write throughput is the real limiter on the very biggest files (~50k-row chunks =
+  ~190 COPYs for NPPES). Larger `ONBOARD_CHUNK_ROWS` (200k used for the resume) cuts round-trips; memory still
+  bounded. transatlantic stays queued — it needs a source-specific fetch (search/export UI), not more retries.
 - Wide-table note: NPPES is 333 columns — checkpoint-4 dbt-gen truncated its JSON once (max_tokens) but
   self-recovered on auto-repair 1. Very wide tables remain a dbt-gen stress point (raise max_tokens further
   or emit YAML/SQL outside JSON) — tracked, not blocking.

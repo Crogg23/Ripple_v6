@@ -7,148 +7,56 @@ sources:
     tables:
       - name: FED_CMS_NPPES
         description: >
-          Raw landing table for the CMS National Plan and Provider Enumeration
-          System (NPPES). All columns are TEXT.
+          Raw landing table for the NPPES National Plan and Provider Enumeration System.
+          Contains all 330 columns as TEXT, ingested from the CMS public data release.
 
 models:
-
   - name: stg_fed_cms_nppes__npi_providers
     description: >
-      Staged and type-cast NPPES NPI provider records. One row per NPI
-      (deduplicated to the most-recently ingested record). Source:
-      fed_cms_nppes.
+      Staging view over the NPPES raw landing table. Deduplicates on NPI (most recent
+      _ingested_at wins). All columns are passed through as-is from the wide 330-column
+      source; no per-column casting is applied at this layer.
     columns:
-      - name: npi
-        description: National Provider Identifier (10-digit).
+      - name: NPI
+        description: National Provider Identifier — the primary key for this entity.
         data_tests:
           - unique
           - not_null
-
-      - name: ein
-        description: Employer Identification Number.
-
-      - name: entity_type_code
-        description: 1 = Individual, 2 = Organization.
+      - name: EIN
+        description: Employer Identification Number associated with the provider organization.
         data_tests:
-          - accepted_values:
-              values: ['1', '2']
-              quote: true
-              severity: warn
-
-      - name: mailing_zip
-        description: Mailing address postal code.
-
-      - name: practice_zip
-        description: Practice location postal code.
-
-      - name: provider_enumeration_date
-        description: Date the NPI was assigned.
-
-      - name: last_update_date
-        description: Date the record was last updated in NPPES.
-
-      - name: npi_deactivation_date
-        description: Date the NPI was deactivated, if applicable.
-
-      - name: npi_reactivation_date
-        description: Date the NPI was reactivated, if applicable.
-
-      - name: certification_date
-        description: Date the provider certified the information.
-
-      - name: provider_sex_code
-        description: M = Male, F = Female.
+          - not_null:
+              config:
+                severity: warn
+      - name: Provider_Business_Mailing_Address_Postal_Code
+        description: >-
+          ZIP / postal code from the provider's business mailing address. Mapped to the
+          'zip' key identifier for cross-source joins.
         data_tests:
-          - accepted_values:
-              values: ['M', 'F']
-              quote: true
-              severity: warn
-
-      - name: is_sole_proprietor
-        description: Y / N flag indicating sole proprietor status.
-        data_tests:
-          - accepted_values:
-              values: ['Y', 'N', 'X']
-              quote: true
-              severity: warn
-
-      - name: is_organization_subpart
-        description: Y / N flag indicating subpart of a larger organization.
-        data_tests:
-          - accepted_values:
-              values: ['Y', 'N', 'X']
-              quote: true
-              severity: warn
-
-      - name: primary_taxonomy_switch_1
-        description: Y if taxonomy slot 1 is the primary taxonomy.
-        data_tests:
-          - accepted_values:
-              values: ['Y', 'N', 'X']
-              quote: true
-              severity: warn
-
-      - name: _ingested_at
-        description: Timestamp when the record was ingested into the landing table.
-        data_tests:
-          - not_null
-
-      - name: _source_run_id
-        description: Pipeline run identifier associated with the ingestion.
+          - not_null:
+              config:
+                severity: warn
 
   - name: health__fed_cms_nppes
     description: >
-      Analytics-ready mart for NPPES NPI providers. One row per active or
-      historical NPI. Exposes key identifiers (npi, ein, practice_zip) for
-      cross-source joins and enriches records with derived flags such as
-      is_deactivated.
+      Analytics-ready mart table for NPPES NPI providers. Materialised as a table for
+      query performance. Exposes all staging columns including the key identifiers NPI,
+      EIN, and ZIP for cross-source joins within the Ripple warehouse.
     columns:
-      - name: npi
-        description: National Provider Identifier -- primary key.
+      - name: NPI
+        description: National Provider Identifier — primary key.
         data_tests:
           - unique
           - not_null
-
-      - name: ein
+      - name: EIN
         description: Employer Identification Number.
-
-      - name: entity_type_code
-        description: 1 = Individual, 2 = Organization.
         data_tests:
-          - accepted_values:
-              values: ['1', '2']
-              quote: true
-              severity: warn
-
-      - name: provider_display_name
-        description: >
-          Display name derived from legal business name (organizations) or
-          concatenated first/middle/last name (individuals).
-
-      - name: practice_zip
-        description: Practice location postal code. Key for geo-based joins.
-
-      - name: mailing_zip
-        description: Mailing address postal code.
-
-      - name: primary_taxonomy_code
-        description: Primary NUCC healthcare provider taxonomy code (slot 1).
-
-      - name: is_deactivated
-        description: True when an NPI has a deactivation date and no reactivation date.
+          - not_null:
+              config:
+                severity: warn
+      - name: Provider_Business_Mailing_Address_Postal_Code
+        description: Provider mailing address ZIP code (key identifier).
         data_tests:
-          - not_null
-
-      - name: provider_enumeration_date
-        description: Date the NPI was assigned.
-
-      - name: last_update_date
-        description: Date the record was last updated in NPPES.
-
-      - name: _ingested_at
-        description: Timestamp when the record was ingested into the landing table.
-        data_tests:
-          - not_null
-
-      - name: _source_run_id
-        description: Pipeline run identifier associated with the ingestion.
+          - not_null:
+              config:
+                severity: warn
