@@ -7,26 +7,34 @@ with base as (
 )
 
 select
-
     -- key identifiers (exposed for cross-source joins)
     company_id,
-    country,
     uid,
     ehraid,
     chid,
+    country,
 
-    -- descriptive attributes
-    business_name,
+    -- descriptive
+    name,
     legal_form,
-    seat,
-    canton_rc,
-    cantonal_excerpt,
+    status,
+
+    -- address
+    address_street,
+    address_house_number,
+    address_zip,
+    address_city,
+    address_canton,
+
+    -- registration & publication
+    registry_of_commerce,
+    old_names,
+    sogc_publication_date,
+    mutation_type,
+    community_bfs_id,
 
     -- metadata
     _ingested_at,
-    _source_run_id,
-
-    -- audit columns
-    current_timestamp()  as _mart_updated_at
+    _source_run_id
 
 from base

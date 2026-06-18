@@ -1,0 +1,174 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: INTL_EMBER_ELEC
+        description: >
+          Raw landing table for Ember Yearly and Monthly Electricity Data.
+          All columns arrive as TEXT from the ingestion pipeline.
+
+models:
+
+  - name: stg_intl_ember_elec__yearly_electricity
+    description: >
+      Staging model for Ember yearly electricity data. Renames columns to
+      snake_case, casts to appropriate types, and deduplicates on the
+      natural key (country, date, variable) keeping the latest ingestion.
+    columns:
+
+      - name: country
+        description: Country or region name as provided by Ember.
+        data_tests:
+          - not_null
+
+      - name: iso_3_code
+        description: ISO 3166-1 alpha-3 country code.
+
+      - name: date
+        description: Year of the observation cast to a DATE (YYYY-01-01).
+        data_tests:
+          - not_null
+
+      - name: area_type
+        description: Indicates whether the row represents a country or a region aggregate.
+        data_tests:
+          - accepted_values:
+              values: ['Country', 'Region']
+              quote: true
+
+      - name: continent
+        description: Continent name associated with the country/region.
+
+      - name: ember_region
+        description: Ember-specific regional grouping.
+
+      - name: is_eu
+        description: Boolean flag – true if the country is an EU member.
+
+      - name: is_oecd
+        description: Boolean flag – true if the country is an OECD member.
+
+      - name: is_g20
+        description: Boolean flag – true if the country is a G20 member.
+
+      - name: is_g7
+        description: Boolean flag – true if the country is a G7 member.
+
+      - name: is_asean
+        description: Boolean flag – true if the country is an ASEAN member.
+
+      - name: category
+        description: High-level metric category (e.g. Electricity generation).
+
+      - name: subcategory
+        description: Sub-category beneath the main category.
+
+      - name: variable
+        description: Specific electricity variable being measured (e.g. Solar, Wind).
+        data_tests:
+          - not_null
+
+      - name: unit
+        description: Unit of measurement for the value column (e.g. TWh, %).
+
+      - name: value
+        description: Numeric value of the observation.
+
+      - name: yoy_absolute_change
+        description: Year-over-year absolute change in the value.
+
+      - name: yoy_pct_change
+        description: Year-over-year percentage change in the value.
+
+      - name: _ingested_at
+        description: Timestamp when the row was ingested into the landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this row.
+
+  - name: energy__intl_ember_elec
+    description: >
+      Analytics-ready mart table for Ember yearly electricity data.
+      One row per country × year × variable combination. Suitable for
+      cross-source joins using the country and date key identifiers.
+    columns:
+
+      - name: country
+        description: Country or region name – primary key component.
+        data_tests:
+          - not_null
+
+      - name: date
+        description: Observation year as a DATE (YYYY-01-01) – primary key component.
+        data_tests:
+          - not_null
+
+      - name: variable
+        description: Electricity variable being measured – primary key component.
+        data_tests:
+          - not_null
+
+      - name: iso_3_code
+        description: ISO 3166-1 alpha-3 country code.
+
+      - name: year
+        description: Integer year extracted from the date column for convenience.
+
+      - name: area_type
+        description: Indicates whether the row represents a country or a region aggregate.
+        data_tests:
+          - accepted_values:
+              values: ['Country', 'Region']
+              quote: true
+
+      - name: continent
+        description: Continent name associated with the country/region.
+
+      - name: ember_region
+        description: Ember-specific regional grouping.
+
+      - name: is_eu
+        description: Boolean – EU membership flag.
+
+      - name: is_oecd
+        description: Boolean – OECD membership flag.
+
+      - name: is_g20
+        description: Boolean – G20 membership flag.
+
+      - name: is_g7
+        description: Boolean – G7 membership flag.
+
+      - name: is_asean
+        description: Boolean – ASEAN membership flag.
+
+      - name: category
+        description: High-level metric category.
+
+      - name: subcategory
+        description: Sub-category beneath the main category.
+
+      - name: unit
+        description: Unit of measurement for the value column.
+
+      - name: value
+        description: Numeric value of the observation.
+
+      - name: yoy_absolute_change
+        description: Year-over-year absolute change in the value.
+
+      - name: yoy_pct_change
+        description: Year-over-year percentage change in the value.
+
+      - name: _ingested_at
+        description: Timestamp when the row was ingested into the landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this row.
+
+    data_tests:
+      - unique:
+          column_name: "country || '|' || date::varchar || '|' || variable"

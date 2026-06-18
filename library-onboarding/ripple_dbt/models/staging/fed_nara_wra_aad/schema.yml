@@ -7,102 +7,26 @@ sources:
     tables:
       - name: FED_NARA_WRA_AAD
         description: >
-          Raw landing table for NARA AAD Series 623 – Records About Japanese Americans
-          Relocated During World War II. All columns are loaded as TEXT.
+          Raw landing table for NARA AAD Series 623 — Records About Japanese Americans
+          Relocated During World War II. All columns arrive as TEXT.
 
 models:
 
   - name: stg_fed_nara_wra_aad__japanese_american_relocation_records
     description: >
-      Staging model for NARA AAD Series 623. Renames columns to snake_case,
-      casts dates using try_to_date, and removes duplicate records by
-      retaining the most-recently ingested row per record_id.
+      Staging view for NARA WRA AAD Series 623. Renames columns to snake_case,
+      casts TEXT to proper types, and removes duplicate rows by record_id.
     columns:
 
       - name: record_id
-        description: Unique identifier for the archival record.
+        description: Unique identifier for an individual relocation record.
         data_tests:
           - unique
           - not_null
 
-      - name: person_name
-        description: Full name of the individual as recorded in the archival document.
+      - name: series_id
+        description: NARA AAD series identifier (Series 623).
         data_tests:
-          - not_null
-
-      - name: date_of_birth
-        description: Date of birth of the individual (cast from raw TEXT).
-
-      - name: gender
-        description: Gender as recorded in the archival document.
-        data_tests:
-          - accepted_values:
-              values: ['Male', 'Female', 'M', 'F', 'Unknown', '']
-              quote: true
-
-      - name: citizenship_status
-        description: Citizenship status of the individual at time of relocation.
-
-      - name: occupation
-        description: Occupation of the individual as recorded.
-
-      - name: family_number
-        description: Family unit identifier used by the War Relocation Authority.
-
-      - name: original_residence_city
-        description: City of the individual's pre-relocation residence.
-
-      - name: original_residence_state
-        description: State of the individual's pre-relocation residence.
-
-      - name: fips_code
-        description: FIPS geographic code corresponding to the original residence.
-        data_tests:
-          - not_null
-
-      - name: relocation_center
-        description: Name of the War Relocation Authority camp.
-        data_tests:
-          - not_null
-
-      - name: relocation_center_state
-        description: State in which the relocation center was located.
-
-      - name: arrival_date
-        description: Date the individual arrived at the relocation center.
-        data_tests:
-          - not_null
-
-      - name: departure_date
-        description: Date the individual departed the relocation center (may be null if not recorded).
-
-      - name: departure_reason
-        description: Documented reason for departure from the relocation center.
-
-      - name: series
-        description: NARA archival series identifier.
-
-      - name: record_group
-        description: NARA record group identifier.
-
-      - name: _ingested_at
-        description: Timestamp when the row was loaded into the landing table.
-
-      - name: _source_run_id
-        description: Pipeline run identifier associated with the ingestion event.
-
-
-  - name: civil_rights__fed_nara_wra_aad
-    description: >
-      Analytics-ready mart table for NARA AAD Series 623 – Records About Japanese
-      Americans Relocated During World War II. Exposes key identifiers for
-      cross-source joins and adds a derived days_in_camp metric.
-    columns:
-
-      - name: record_id
-        description: Unique identifier for the archival record (natural key from NARA).
-        data_tests:
-          - unique
           - not_null
 
       - name: person_name
@@ -110,74 +34,157 @@ models:
         data_tests:
           - not_null
 
-      - name: date_of_birth
-        description: Date of birth of the individual.
+      - name: record_date
+        description: Parsed date of the record (try_to_date applied).
         data_tests:
           - not_null
 
-      - name: fips_code
-        description: FIPS geographic code for the individual's pre-relocation residence.
-        data_tests:
-          - not_null
+      - name: raw_date
+        description: Original raw date string from the source.
 
       - name: camp_location
-        description: Name of the War Relocation Authority camp (relocation center).
+        description: Name or code of the War Relocation Authority camp.
         data_tests:
           - not_null
 
-      - name: camp_location_state
-        description: State in which the relocation center was located.
-
-      - name: arrival_date
-        description: Date the individual arrived at the relocation center.
+      - name: fips
+        description: FIPS geographic code associated with the record.
         data_tests:
           - not_null
 
-      - name: departure_date
-        description: Date the individual departed the relocation center.
+      - name: geo
+        description: Geographic label or coordinates paired with the FIPS code.
+        data_tests:
+          - not_null
 
-      - name: days_in_camp
-        description: >
-          Derived number of days the individual spent in the camp, calculated as
-          departure_date minus arrival_date. Uses current_date() when departure_date
-          is null.
+      - name: age
+        description: Age of the individual at time of record (cast to numeric).
 
-      - name: gender
-        description: Gender as recorded in the archival document.
+      - name: sex
+        description: Sex of the individual, uppercased.
         data_tests:
           - accepted_values:
-              values: ['Male', 'Female', 'M', 'F', 'Unknown', '']
+              values: ['M', 'F', 'MALE', 'FEMALE', 'U', 'UNKNOWN']
               quote: true
+              severity: warn
 
       - name: citizenship_status
-        description: Citizenship status of the individual at time of relocation.
-
-      - name: occupation
-        description: Occupation of the individual.
+        description: Citizenship status of the individual, uppercased.
+        data_tests:
+          - accepted_values:
+              values:
+                - 'US CITIZEN'
+                - 'ALIEN'
+                - 'UNKNOWN'
+                - 'NISEI'
+                - 'ISSEI'
+                - 'KIBEI'
+                - 'SANSEI'
+              quote: true
+              severity: warn
 
       - name: family_number
-        description: Family unit identifier used by the War Relocation Authority.
+        description: Family unit identifier used by the WRA.
 
-      - name: original_residence_city
-        description: City of the individual's pre-relocation residence.
-
-      - name: original_residence_state
-        description: State of the individual's pre-relocation residence.
-
-      - name: departure_reason
-        description: Documented reason for departure from the relocation center.
-
-      - name: series
-        description: NARA archival series identifier.
-
-      - name: record_group
-        description: NARA record group identifier.
-
-      - name: source_id
-        description: Constant identifier for this data source (fed_nara_wra_aad).
+      - name: notes_field
+        description: Free-text notes attached to the record.
 
       - name: _ingested_at
-        description: Timestamp when the row was loaded into the landing table.
+        description: Timestamp when the row was ingested into the landing table.
 
       - name: _source_run_id
-        description: Pipeline run identifier associated with the ingestion event.
+        description: Pipeline run ID that produced this row.
+
+  - name: civil_rights__fed_nara_wra_aad
+    description: >
+      Analytics-ready mart table for NARA WRA AAD Series 623 — Records About
+      Japanese Americans Relocated During World War II. Exposes all key identifiers
+      for cross-source civil-rights joins and adds source lineage metadata.
+    columns:
+
+      - name: record_id
+        description: Unique identifier for an individual relocation record (primary key).
+        data_tests:
+          - unique
+          - not_null
+
+      - name: series_id
+        description: NARA AAD series identifier.
+        data_tests:
+          - not_null
+
+      - name: person_name
+        description: Full name of the relocated individual.
+        data_tests:
+          - not_null
+
+      - name: record_date
+        description: Typed date of the record.
+        data_tests:
+          - not_null
+
+      - name: raw_date
+        description: Original raw date string retained for auditing.
+
+      - name: camp_location
+        description: Name or code of the War Relocation Authority camp.
+        data_tests:
+          - not_null
+
+      - name: fips
+        description: FIPS geographic code — key for geo joins.
+        data_tests:
+          - not_null
+
+      - name: geo
+        description: Geographic label paired with the FIPS code.
+        data_tests:
+          - not_null
+
+      - name: age
+        description: Age of the individual (numeric).
+
+      - name: sex
+        description: Sex of the individual.
+        data_tests:
+          - accepted_values:
+              values: ['M', 'F', 'MALE', 'FEMALE', 'U', 'UNKNOWN']
+              quote: true
+              severity: warn
+
+      - name: citizenship_status
+        description: Citizenship status of the individual.
+        data_tests:
+          - accepted_values:
+              values:
+                - 'US CITIZEN'
+                - 'ALIEN'
+                - 'UNKNOWN'
+                - 'NISEI'
+                - 'ISSEI'
+                - 'KIBEI'
+                - 'SANSEI'
+              quote: true
+              severity: warn
+
+      - name: family_number
+        description: Family unit identifier.
+
+      - name: notes_field
+        description: Free-text notes.
+
+      - name: source_id
+        description: Constant identifier for this source (fed_nara_wra_aad).
+        data_tests:
+          - not_null
+
+      - name: entity_type
+        description: Constant entity label for this mart.
+        data_tests:
+          - not_null
+
+      - name: _ingested_at
+        description: Timestamp when the row was ingested.
+
+      - name: _source_run_id
+        description: Pipeline run ID that produced this row.

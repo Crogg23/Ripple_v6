@@ -1,0 +1,250 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: INTL_HUDOC
+        description: >
+          Raw landing table for HUDOC — ECHR Case-Law Database. All columns
+          arrive as TEXT and are cast in the staging layer.
+
+models:
+
+  - name: stg_intl_hudoc__echr_cases
+    description: >
+      Staging model for ECHR cases sourced from the HUDOC database.
+      Columns are renamed to snake_case, TEXT columns are cast to appropriate
+      types, and exact duplicates (by case_id / appno / ecli) are removed,
+      keeping the most-recently ingested record.
+    columns:
+
+      - name: case_id
+        description: Unique identifier assigned to each ECHR case.
+        data_tests:
+          - not_null
+
+      - name: appno
+        description: Application number submitted to the European Court of Human Rights.
+        data_tests:
+          - not_null
+
+      - name: ecli
+        description: European Case Law Identifier — cross-jurisdiction unique reference.
+        data_tests:
+          - not_null
+
+      - name: country
+        description: Respondent country involved in the case.
+        data_tests:
+          - not_null
+
+      - name: person_name
+        description: Name of the applicant or key person associated with the case.
+        data_tests:
+          - not_null
+
+      - name: date
+        description: Date of the judgment or decision (cast from TEXT via try_to_date).
+        data_tests:
+          - not_null
+
+      - name: case_title
+        description: Full title of the ECHR case.
+
+      - name: doc_type
+        description: Type of document (e.g., JUDGMENT, DECISION, ADVISORY-OPINION).
+        data_tests:
+          - accepted_values:
+              values:
+                - JUDGMENT
+                - DECISION
+                - ADVISORY-OPINION
+                - COMMUNICATED CASE
+                - STRIKE OUT
+                - REVISION
+                - INTERPRETATION
+                - OTHER
+              quote: true
+              severity: warn
+
+      - name: importance
+        description: >
+          Numeric importance level assigned by the Court
+          (1 = Grand Chamber / key cases, 4 = low importance).
+        data_tests:
+          - accepted_values:
+              values: [1, 2, 3, 4]
+              quote: false
+              severity: warn
+
+      - name: articles
+        description: Convention articles cited in the case.
+
+      - name: violation
+        description: Convention articles for which a violation was found.
+
+      - name: nonviolation
+        description: Convention articles for which no violation was found.
+
+      - name: originating_body
+        description: Court body that issued the decision (e.g., Grand Chamber, Section).
+
+      - name: respondent
+        description: Respondent state(s) named in the case.
+
+      - name: keywords
+        description: Thematic keywords associated with the case.
+
+      - name: conclusion
+        description: Summary conclusion of the judgment or decision.
+
+      - name: language
+        description: Language in which the case was published (EN or FR).
+        data_tests:
+          - accepted_values:
+              values:
+                - EN
+                - FR
+              quote: true
+              severity: warn
+
+      - name: url
+        description: Direct URL to the case on the HUDOC portal.
+
+      - name: _ingested_at
+        description: Timestamp when the record was loaded into the landing table.
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this record.
+        data_tests:
+          - not_null
+
+  - name: justice__intl_hudoc
+    description: >
+      Analytics-ready mart table for ECHR case-law from the HUDOC database.
+      Each row represents one unique ECHR case judgment or decision. Surrogate
+      key and calendar helpers are added for cross-source joins and time-series
+      analysis.
+    columns:
+
+      - name: echr_case_sk
+        description: >
+          Surrogate key derived from case_id + appno + ecli via
+          dbt_utils.generate_surrogate_key. Primary key for this mart.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: case_id
+        description: Natural identifier of the ECHR case.
+        data_tests:
+          - not_null
+
+      - name: appno
+        description: Application number submitted to the Court.
+        data_tests:
+          - not_null
+
+      - name: ecli
+        description: European Case Law Identifier.
+        data_tests:
+          - not_null
+
+      - name: country
+        description: Respondent country.
+        data_tests:
+          - not_null
+
+      - name: person_name
+        description: Key applicant or person name.
+        data_tests:
+          - not_null
+
+      - name: judgment_date
+        description: Date of the judgment or decision.
+        data_tests:
+          - not_null
+
+      - name: case_title
+        description: Full title of the case.
+
+      - name: doc_type
+        description: Document type.
+        data_tests:
+          - accepted_values:
+              values:
+                - JUDGMENT
+                - DECISION
+                - ADVISORY-OPINION
+                - COMMUNICATED CASE
+                - STRIKE OUT
+                - REVISION
+                - INTERPRETATION
+                - OTHER
+              quote: true
+              severity: warn
+
+      - name: importance
+        description: Numeric importance level (1–4).
+        data_tests:
+          - accepted_values:
+              values: [1, 2, 3, 4]
+              quote: false
+              severity: warn
+
+      - name: originating_body
+        description: Court body that issued the ruling.
+
+      - name: respondent
+        description: Respondent state(s).
+
+      - name: language
+        description: Publication language.
+        data_tests:
+          - accepted_values:
+              values:
+                - EN
+                - FR
+              quote: true
+              severity: warn
+
+      - name: articles
+        description: Convention articles cited.
+
+      - name: violation
+        description: Articles where violation was found.
+
+      - name: nonviolation
+        description: Articles where no violation was found.
+
+      - name: conclusion
+        description: Judgment conclusion summary.
+
+      - name: keywords
+        description: Thematic keywords.
+
+      - name: url
+        description: HUDOC portal URL for the case.
+
+      - name: judgment_year
+        description: Calendar year extracted from judgment_date.
+
+      - name: judgment_month
+        description: Calendar month number extracted from judgment_date.
+
+      - name: judgment_quarter
+        description: First day of the quarter in which the judgment was issued.
+
+      - name: _ingested_at
+        description: Landing ingestion timestamp.
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Pipeline run identifier.
+        data_tests:
+          - not_null

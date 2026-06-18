@@ -1,0 +1,356 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: INTL_EC_SERCOP
+        description: >
+          Raw landing table for Ecuador SERCOP Public Procurement OCDS data.
+          All columns arrive as TEXT and are cast in the staging layer.
+
+models:
+
+  - name: stg_intl_ec_sercop__contracting_process
+    description: >
+      Staged and typed contracting-process records from Ecuador SERCOP OCDS.
+      Duplicates are removed by selecting the most-recently ingested row per
+      (ocid, id, tag) combination.
+    columns:
+
+      - name: ocid
+        description: Open Contracting ID — globally unique contracting process identifier.
+        data_tests:
+          - not_null
+
+      - name: id
+        description: Release identifier within the contracting process.
+        data_tests:
+          - not_null
+
+      - name: date
+        description: Date of the release (cast from raw TEXT).
+        data_tests:
+          - not_null
+
+      - name: tag
+        description: OCDS release tag indicating the stage of the contracting process.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - planning
+                - planningUpdate
+                - tender
+                - tenderAmendment
+                - tenderUpdate
+                - tenderCancellation
+                - award
+                - awardUpdate
+                - awardCancellation
+                - contract
+                - contractUpdate
+                - contractAmendment
+                - implementation
+                - implementationUpdate
+                - contractTermination
+                - compiled
+
+      - name: initiation_type
+        description: Mechanism used to initiate the contracting process (e.g. tender).
+        data_tests:
+          - accepted_values:
+              values:
+                - tender
+
+      - name: language
+        description: Language of the release content.
+
+      - name: tender_date_published
+        description: Date the tender notice was published.
+
+      - name: award_date
+        description: Date the award decision was made.
+
+      - name: contract_date_signed
+        description: Date the contract was signed.
+
+      - name: buyer_id
+        description: Identifier for the buying organisation.
+        data_tests:
+          - not_null
+
+      - name: buyer_name
+        description: Name of the buying organisation.
+
+      - name: tender_id
+        description: Identifier for the tender within the contracting process.
+
+      - name: tender_title
+        description: Title or name of the tender.
+
+      - name: tender_status
+        description: Current status of the tender.
+        data_tests:
+          - accepted_values:
+              values:
+                - planning
+                - planned
+                - active
+                - cancelled
+                - unsuccessful
+                - complete
+                - withdrawn
+
+      - name: tender_procurement_method
+        description: Method used to solicit offers (e.g. open, selective, limited, direct).
+        data_tests:
+          - accepted_values:
+              values:
+                - open
+                - selective
+                - limited
+                - direct
+
+      - name: tender_value_amount
+        description: Estimated monetary value of the tender.
+
+      - name: tender_value_currency
+        description: ISO 4217 currency code for the tender value.
+
+      - name: award_id
+        description: Identifier for the award.
+
+      - name: award_status
+        description: Current status of the award.
+        data_tests:
+          - accepted_values:
+              values:
+                - pending
+                - active
+                - cancelled
+                - unsuccessful
+
+      - name: award_value_amount
+        description: Monetary value of the award.
+
+      - name: award_value_currency
+        description: ISO 4217 currency code for the award value.
+
+      - name: supplier_id
+        description: Identifier for the awarded supplier.
+
+      - name: supplier_name
+        description: Name of the awarded supplier.
+
+      - name: contract_id
+        description: Identifier for the signed contract.
+
+      - name: contract_value_amount
+        description: Monetary value of the contract.
+
+      - name: contract_value_currency
+        description: ISO 4217 currency code for the contract value.
+
+      - name: parties_id
+        description: Identifier for a party involved in the contracting process.
+
+      - name: parties_name
+        description: Name of the party.
+
+      - name: parties_roles
+        description: Comma-separated roles held by the party (e.g. buyer, supplier, tenderer).
+
+      - name: planning_budget_amount
+        description: Budgeted amount at the planning stage.
+
+      - name: _ingested_at
+        description: Timestamp when the row was loaded into the landing table.
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this row.
+        data_tests:
+          - not_null
+
+
+  - name: procurement__intl_ec_sercop
+    description: >
+      Analytics-ready mart table for Ecuador SERCOP OCDS contracting processes.
+      Exposes all key identifiers required for cross-source joins within the
+      Ripple procurement domain.
+    columns:
+
+      - name: ocid
+        description: Open Contracting ID — primary key for this mart.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: source_id
+        description: Constant value 'intl_ec_sercop' identifying the data source.
+        data_tests:
+          - not_null
+
+      - name: ocds_prefix
+        description: OCDS publisher prefix 'ocds-5wno2w' used for cross-source joins.
+        data_tests:
+          - not_null
+
+      - name: record_date
+        description: Date of the release; maps to the key identifier 'date'.
+        data_tests:
+          - not_null
+
+      - name: company_id
+        description: Buyer identifier; serves as the 'company_id' key for cross-source joins.
+        data_tests:
+          - not_null
+
+      - name: record_id
+        description: Release identifier within the contracting process.
+        data_tests:
+          - not_null
+
+      - name: tag
+        description: OCDS release tag indicating the stage of the contracting process.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - planning
+                - planningUpdate
+                - tender
+                - tenderAmendment
+                - tenderUpdate
+                - tenderCancellation
+                - award
+                - awardUpdate
+                - awardCancellation
+                - contract
+                - contractUpdate
+                - contractAmendment
+                - implementation
+                - implementationUpdate
+                - contractTermination
+                - compiled
+
+      - name: initiation_type
+        description: Mechanism used to initiate the contracting process.
+        data_tests:
+          - accepted_values:
+              values:
+                - tender
+
+      - name: language
+        description: Language of the release content.
+
+      - name: buyer_id
+        description: Identifier for the buying organisation.
+        data_tests:
+          - not_null
+
+      - name: buyer_name
+        description: Name of the buying organisation.
+
+      - name: tender_id
+        description: Tender identifier.
+
+      - name: tender_title
+        description: Title of the tender.
+
+      - name: tender_status
+        description: Status of the tender.
+        data_tests:
+          - accepted_values:
+              values:
+                - planning
+                - planned
+                - active
+                - cancelled
+                - unsuccessful
+                - complete
+                - withdrawn
+
+      - name: tender_procurement_method
+        description: Procurement method used.
+        data_tests:
+          - accepted_values:
+              values:
+                - open
+                - selective
+                - limited
+                - direct
+
+      - name: tender_value_amount
+        description: Estimated tender value.
+
+      - name: tender_value_currency
+        description: Currency of the tender value.
+
+      - name: tender_date_published
+        description: Date the tender was published.
+
+      - name: award_id
+        description: Award identifier.
+
+      - name: award_date
+        description: Date of the award decision.
+
+      - name: award_status
+        description: Status of the award.
+        data_tests:
+          - accepted_values:
+              values:
+                - pending
+                - active
+                - cancelled
+                - unsuccessful
+
+      - name: award_value_amount
+        description: Monetary value of the award.
+
+      - name: award_value_currency
+        description: Currency of the award value.
+
+      - name: supplier_id
+        description: Awarded supplier identifier.
+
+      - name: supplier_name
+        description: Name of the awarded supplier.
+
+      - name: contract_id
+        description: Contract identifier.
+
+      - name: contract_date_signed
+        description: Date the contract was signed.
+
+      - name: contract_value_amount
+        description: Monetary value of the contract.
+
+      - name: contract_value_currency
+        description: Currency of the contract value.
+
+      - name: parties_id
+        description: Party identifier.
+
+      - name: parties_name
+        description: Party name.
+
+      - name: parties_roles
+        description: Roles held by the party.
+
+      - name: planning_budget_amount
+        description: Budget amount at the planning stage.
+
+      - name: _ingested_at
+        description: Timestamp of landing table ingestion.
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Pipeline run identifier.
+        data_tests:
+          - not_null

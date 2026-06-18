@@ -6,42 +6,34 @@ with source as (
 
 ),
 
-renamed as (
+renamed_cast as (
 
     select
 
-        -- primary identifier
-        record_id                                               as record_id,
+        -- identifiers
+        RECORD_ID                                          as record_id,
+        SERIES_ID                                         as series_id,
+
+        -- key dimensions
+        PERSON_NAME                                       as person_name,
+        try_to_date(DATE, 'YYYY-MM-DD')                   as record_date,
+        DATE                                              as raw_date,
+        CAMP_LOCATION                                     as camp_location,
+        FIPS                                              as fips,
+        GEO                                               as geo,
 
         -- person attributes
-        person_name                                             as person_name,
-        try_to_date(date_of_birth, 'YYYY-MM-DD')               as date_of_birth,
-        gender                                                  as gender,
-        citizenship_status                                      as citizenship_status,
-        occupation                                              as occupation,
-        family_number                                           as family_number,
+        try_to_number(AGE)                                as age,
+        upper(trim(SEX))                                  as sex,
+        upper(trim(CITIZENSHIP_STATUS))                   as citizenship_status,
+        FAMILY_NUMBER                                     as family_number,
 
-        -- original residence
-        original_residence_city                                 as original_residence_city,
-        original_residence_state                                as original_residence_state,
-        fips_code                                               as fips_code,
+        -- supplemental
+        NOTES_FIELD                                       as notes_field,
 
-        -- relocation center
-        relocation_center                                       as relocation_center,
-        relocation_center_state                                 as relocation_center_state,
-
-        -- relocation dates / reason
-        try_to_date(arrival_date, 'YYYY-MM-DD')                 as arrival_date,
-        try_to_date(departure_date, 'YYYY-MM-DD')               as departure_date,
-        departure_reason                                        as departure_reason,
-
-        -- archival metadata
-        series                                                  as series,
-        record_group                                            as record_group,
-
-        -- pipeline metadata
-        _ingested_at                                            as _ingested_at,
-        _source_run_id                                          as _source_run_id
+        -- metadata
+        _ingested_at,
+        _source_run_id
 
     from source
 
@@ -49,13 +41,30 @@ renamed as (
 
 deduped as (
 
-    select *
-    from renamed
-    qualify row_number() over (
-        partition by record_id
-        order by _ingested_at desc
-    ) = 1
+    select *,
+        row_number() over (
+            partition by record_id
+            order by _ingested_at desc
+        ) as _row_num
+    from renamed_cast
 
 )
 
-select * from deduped
+select
+    record_id,
+    series_id,
+    person_name,
+    record_date,
+    raw_date,
+    camp_location,
+    fips,
+    geo,
+    age,
+    sex,
+    citizenship_status,
+    family_number,
+    notes_field,
+    _ingested_at,
+    _source_run_id
+from deduped
+where _row_num = 1

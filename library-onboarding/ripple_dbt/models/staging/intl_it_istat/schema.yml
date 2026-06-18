@@ -1,0 +1,198 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: INTL_IT_ISTAT
+        description: >
+          Raw landing table for Italy ISTAT Statistics API (IstatData/SDMX).
+          All columns are TEXT as ingested from the source system.
+        columns:
+          - name: DATAFLOW_ID
+            description: SDMX dataflow identifier (e.g. IT1:DCSC_PREZINDPRO_1(1.0)).
+          - name: DIMENSION_KEYS
+            description: Pipe- or dot-delimited dimension key string identifying the series.
+          - name: DATE
+            description: Observation date as a text string.
+          - name: OBS_VALUE
+            description: Observed numeric value as text.
+          - name: OBS_STATUS
+            description: SDMX observation status code (e.g. A = Normal, M = Missing).
+          - name: UNIT_MEASURE
+            description: Unit of measure code (e.g. EUR, INDEX, PC).
+          - name: UNIT_MULT
+            description: Power-of-ten multiplier applied to OBS_VALUE.
+          - name: FREQ
+            description: Frequency of observation (A=Annual, Q=Quarterly, M=Monthly).
+          - name: SERIES_KEY
+            description: Full SDMX series key string.
+          - name: FETCHED_AT
+            description: Timestamp when this record was fetched from the API.
+
+models:
+
+  - name: stg_intl_it_istat__istat_sdmx_observations
+    description: >
+      Staging view for ISTAT SDMX observations. Casts all TEXT columns to
+      appropriate types, deduplicates on (dataflow_id, dimension_keys, date)
+      keeping the most recently ingested record, and derives a surrogate primary
+      key plus a static country code 'IT'.
+    columns:
+
+      - name: istat_obs_id
+        description: Surrogate primary key derived from dataflow_id + dimension_keys + date.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: country
+        description: ISO 3166-1 alpha-2 country code. Always 'IT' for this source.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['IT']
+
+      - name: date
+        description: Parsed observation date.
+        data_tests:
+          - not_null
+
+      - name: dataflow_id
+        description: SDMX dataflow identifier.
+        data_tests:
+          - not_null
+
+      - name: dimension_keys
+        description: Pipe- or dot-delimited dimension key string.
+        data_tests:
+          - not_null
+
+      - name: series_key
+        description: Full SDMX series key string.
+
+      - name: obs_value
+        description: Parsed numeric observation value.
+
+      - name: obs_status
+        description: SDMX observation status code.
+        data_tests:
+          - accepted_values:
+              values: ['A', 'M', 'E', 'P', 'D', 'S', 'U', 'B', 'F', 'I', 'T', 'N', 'L', 'W', 'K', 'O']
+              severity: warn
+
+      - name: unit_measure
+        description: Unit of measure code.
+
+      - name: unit_mult
+        description: Power-of-ten multiplier as an integer.
+
+      - name: freq
+        description: Frequency of observation (A, Q, M, W, D, etc.).
+        data_tests:
+          - accepted_values:
+              values: ['A', 'Q', 'M', 'W', 'D', 'B', 'N', 'H', 'S', 'T']
+              severity: warn
+
+      - name: _ingested_at
+        description: Timestamp when the record was fetched from the ISTAT API.
+
+      - name: _source_run_id
+        description: Surrogate key acting as a run fingerprint for lineage tracking.
+        data_tests:
+          - not_null
+
+  - name: economics__intl_it_istat
+    description: >
+      Analytics-ready mart table for Italy ISTAT SDMX observations. Exposes all
+      key identifiers for cross-source joins, computes absolute values using the
+      unit multiplier, and adds time-period helper columns and boolean flags.
+    columns:
+
+      - name: istat_obs_id
+        description: Surrogate primary key derived from dataflow_id + dimension_keys + date.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: country
+        description: ISO 3166-1 alpha-2 country code. Always 'IT' for this source.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['IT']
+
+      - name: date
+        description: Observation date.
+        data_tests:
+          - not_null
+
+      - name: dataflow_id
+        description: SDMX dataflow identifier.
+        data_tests:
+          - not_null
+
+      - name: dimension_keys
+        description: Pipe- or dot-delimited dimension key string.
+        data_tests:
+          - not_null
+
+      - name: series_key
+        description: Full SDMX series key string.
+
+      - name: obs_value
+        description: Raw numeric observation value as reported by ISTAT.
+
+      - name: obs_year
+        description: Calendar year extracted from the observation date.
+
+      - name: obs_month
+        description: Calendar month (1–12) extracted from the observation date.
+
+      - name: obs_quarter
+        description: Calendar quarter (1–4) extracted from the observation date.
+
+      - name: obs_status
+        description: SDMX observation status code (A = Normal, M = Missing, etc.).
+        data_tests:
+          - accepted_values:
+              values: ['A', 'M', 'E', 'P', 'D', 'S', 'U', 'B', 'F', 'I', 'T', 'N', 'L', 'W', 'K', 'O']
+              severity: warn
+
+      - name: unit_measure
+        description: Unit of measure code (EUR, INDEX, PC, etc.).
+
+      - name: unit_mult
+        description: Power-of-ten multiplier integer as published by ISTAT.
+
+      - name: unit_multiplier_value
+        description: Numeric value of the unit multiplier (e.g. unit_mult=3 → 1000).
+
+      - name: obs_value_absolute
+        description: obs_value multiplied by unit_multiplier_value giving the true absolute value.
+
+      - name: freq
+        description: Frequency of observation (A=Annual, Q=Quarterly, M=Monthly, etc.).
+        data_tests:
+          - accepted_values:
+              values: ['A', 'Q', 'M', 'W', 'D', 'B', 'N', 'H', 'S', 'T']
+              severity: warn
+
+      - name: is_normal_value
+        description: Boolean flag; true when obs_status = 'A' (normal/regular observation).
+        data_tests:
+          - not_null
+
+      - name: is_missing_value
+        description: Boolean flag; true when obs_value is null.
+        data_tests:
+          - not_null
+
+      - name: _ingested_at
+        description: Timestamp when the record was fetched from the ISTAT API.
+
+      - name: _source_run_id
+        description: Surrogate key acting as a run fingerprint for lineage tracking.
+        data_tests:
+          - not_null

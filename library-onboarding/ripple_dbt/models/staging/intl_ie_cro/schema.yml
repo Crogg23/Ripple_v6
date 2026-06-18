@@ -1,0 +1,153 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: INTL_IE_CRO
+        description: >
+          Raw landing table for the Ireland Companies Registration Office (CRO)
+          Open Data Portal. All columns are loaded as TEXT by the ingestion pipeline.
+
+models:
+
+  - name: stg_intl_ie_cro__cro_companies
+    description: >
+      Staging model for Ireland CRO company records. Renames columns to
+      snake_case, casts dates safely, and deduplicates on (company_id, country)
+      keeping the most recently ingested row.
+    columns:
+      - name: company_id
+        description: Unique identifier assigned by the Ireland CRO to each company.
+        data_tests:
+          - not_null
+
+      - name: country
+        description: Country code / name associated with the record (always IE for this source).
+        data_tests:
+          - not_null
+
+      - name: company_name
+        description: Registered legal name of the company.
+        data_tests:
+          - not_null
+
+      - name: company_status
+        description: Current status of the company as reported by the CRO.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - 'Normal'
+                - 'Dissolved'
+                - 'Struck Off'
+                - 'Liquidation'
+                - 'Receivership'
+                - 'Examined'
+                - 'Converted'
+              quote: true
+
+      - name: company_type
+        description: Legal company type classification as defined by the CRO.
+
+      - name: registered_address
+        description: Official registered address of the company.
+
+      - name: dataset_name
+        description: Name of the dataset bundle from which this record was sourced.
+
+      - name: incorporation_date
+        description: Date the company was incorporated, cast from TEXT using try_to_date.
+
+      - name: financial_year_end
+        description: Financial year-end date for the company, cast from TEXT using try_to_date.
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this landing record.
+
+
+  - name: corporate_registry__intl_ie_cro
+    description: >
+      Analytics-ready mart table for Ireland CRO company data. Exposes key
+      identifiers for cross-source joins, adds derived convenience fields, and
+      surfaces source lineage metadata.
+    columns:
+      - name: corporate_registry_key
+        description: Surrogate key generated from (company_id, country).
+        data_tests:
+          - unique
+          - not_null
+
+      - name: company_id
+        description: Natural key — unique identifier assigned by the Ireland CRO.
+        data_tests:
+          - not_null
+
+      - name: country
+        description: Country associated with the registry record.
+        data_tests:
+          - not_null
+
+      - name: company_name
+        description: Registered legal name of the company.
+        data_tests:
+          - not_null
+
+      - name: company_status
+        description: Current operational status of the company.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - 'Normal'
+                - 'Dissolved'
+                - 'Struck Off'
+                - 'Liquidation'
+                - 'Receivership'
+                - 'Examined'
+                - 'Converted'
+              quote: true
+
+      - name: company_type
+        description: Legal company type classification.
+
+      - name: registered_address
+        description: Official registered address of the company.
+
+      - name: incorporation_date
+        description: Date the company was incorporated.
+
+      - name: financial_year_end
+        description: Financial year-end date for the company.
+
+      - name: incorporation_year
+        description: Calendar year extracted from incorporation_date for easy bucketing.
+
+      - name: company_age_years
+        description: Number of full years since incorporation, calculated at model build time.
+
+      - name: source_id
+        description: Static source identifier (intl_ie_cro) for cross-source lineage.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - 'intl_ie_cro'
+              quote: true
+
+      - name: dataset_name
+        description: Original dataset bundle name from the CRO portal.
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Pipeline run identifier that produced the source landing record.

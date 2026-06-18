@@ -71,8 +71,8 @@ merged to `main`; the C3 big-load work is on `claude/laughing-knuth-fmjka8`. **B
 | `intl_ch_zefix` | 1 | registry batch 4 (Swiss business registry — ⚠ thin, review) |
 | `fed_cms_nppes` | 300,000 | **C3 chunked** (2026-06-17 — ~9 GB NPPES streamed in 50k chunks, demo-capped at 300k) |
 
-**30 clean sources in `LANDING`** (batches 2–4 +17, C3 big files +2). Live total: **38 landing tables,
-23,070,680 raw rows** (was 19 / 1,709,487 before batch 2). The C3 chunked path then landed the two big
+**37 clean sources in `LANDING`** (batches 2–5 + C3 big files). Live total: **45 landing tables,
+23,788,352 raw rows** (was 19 / 1,709,487 before batch 2). The C3 chunked path then landed the two big
 federal files that used to OOM-crash: **`fed_cms_nppes` 9,606,683** (full provider file, streamed to EOF)
 and **`fed_fjc_idb` 4,126,450** (federal court cases) — +13.7M rows. The demo `intl_demo_quotes_toscrape_js`
 was dropped (table + registry + ingest_runs) before the batch. The false-success `fed_cms_hpt_enforcement`
@@ -252,6 +252,34 @@ Used C3 to land the 3 files that OOM-crashed pre-C3. **2 of 3 fully onboarded; 1
 - Wide-table note: NPPES is 333 columns — checkpoint-4 dbt-gen truncated its JSON once (max_tokens) but
   self-recovered on auto-repair 1. Very wide tables remain a dbt-gen stress point (raise max_tokens further
   or emit YAML/SQL outside JSON) — tracked, not blocking.
+
+### Thin-scrape fixes + Registry batch 5 (2026-06-18)
+**Pagination prompt fix** then two phases. Strengthened the codegen scrape guidance (loop pages via
+next-link/`?page=N`/offset until no new records; a few-row result is a "you stopped at page 1" signal) —
+the thin landings had happened because a 1-row scrape is a non-error *success*, so auto-repair never fired.
+
+**Phase 1 — re-ran the 4 thin scrapes** (dropped the thin tables, forced `snapshot` for a clean overwrite,
+paginated prompt). **3 of 4 improved:**
+- `fed_nara_wra_aad` 4 → **36** · `intl_ch_zefix` 1 → **18** · `fed_fdic_enforcement` 2 → **14**
+- `fed_doj_crt_cases` 1 → **1** (resistant — JS-driven case search; pagination prompt didn't crack it. A
+  thin scrape can't self-correct via auto-repair; needs `scrape_js` + click-through, parked).
+
+**Phase 2 — next 12 fresh tier-1** (international registries/APIs). **12 attempted, 7 landed, 5 failed:**
+
+| Source | Result | Rows |
+|---|---|---|
+| `intl_ember_elec` | ✅ Ember global electricity | 369,264 |
+| `intl_it_istat` | ✅ Italy ISTAT (SDMX, incremental) | 213,284 |
+| `intl_ec_sercop` | ✅ Ecuador procurement (**chunked** — recon picked it autonomously) | 132,995 |
+| `intl_hudoc` | ✅ ECHR case-law (incremental) | 2,000 |
+| `intl_gr_gemi` | ✅ Greece business registry | 40 |
+| `intl_es_borme` | ✅ Spain BORME gazette (incremental) | 25 |
+| `intl_ie_cro` | ✅ Ireland CRO — ⚠ thin (3), review | 3 |
+| `intl_cz_ares` `intl_fi_ytj` `intl_fr_insee` `intl_ge_spa_procurement` `intl_jp_nta_houjin` | ❌ aborted (3 repairs) | — |
+
+The 5 failures are foreign registry/stat APIs with awkward shapes or key/appID requirements (ARES XML, YTJ,
+INSEE token, Georgia procurement, Japan NTA houjin-bangō appID). Net **+717,672 rows**; Library now **45
+tables, 23,788,352 rows**. New thin to review: `intl_ie_cro` (3), plus the still-resistant `fed_doj_crt_cases` (1).
 
 ### C1 — static scrape (Phase 1, 2026-06-17), built + proven
 For sources with no clean file/API. Changes: codegen prompt gained scrape + bounded-crawl + browser-UA
