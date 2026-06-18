@@ -1,8 +1,12 @@
 {
   "mcpServers": {
     "snowflake": {
-      "type": "url",
-      "url": "https://oneafda-umb20733.snowflakecomputing.com/api/v2/databases/LIBRARY_TOOLS/schemas/PUBLIC/mcp-servers/CLAUDE_MCP_SERVER"
+      "type": "http",
+      "url": "https://oneafda-umb20733.snowflakecomputing.com/api/v2/databases/LIBRARY_TOOLS/schemas/PUBLIC/mcp-servers/CLAUDE_MCP_SERVER",
+      "headers": {
+        "Authorization": "Bearer ${SNOWFLAKE_PAT}",
+        "X-Snowflake-Authorization-Token-Type": "PROGRAMMATIC_ACCESS_TOKEN"
+      }
     }
   }
 }
