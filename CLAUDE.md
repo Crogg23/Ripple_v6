@@ -46,6 +46,10 @@ Chris approves each checkpoint before anything executes. `go` / `edit [feedback]
 - `LIBRARY_META.REGISTRY.SOURCE_REGISTRY` — the source catalog (keyed on SOURCE_ID)
 - `LIBRARY_META.INGEST_LOGS.INGEST_RUNS` — one row per ingest run (RUN_ID, SHA256, status)
 - `LIBRARY_STAGING` / `LIBRARY_MARTS` — dbt outputs
+- `LIBRARY_TOOLS.PUBLIC.CLAUDE_MCP_SERVER` — the read-only Snowflake MCP server (tool `sql_exec_tool`,
+  type `SYSTEM_EXECUTE_SQL`; used by role `CLAUDE_MCP_READONLY`). **Do NOT drop `LIBRARY_TOOLS`** — it's a
+  no-data container that exists only to host this server. (It was relocated here 2026-06-18 after the
+  original at `DISASTER_IMPACT.DBT_PROD` was lost when that DB was dropped — don't host infra in data DBs.)
 
 `SOURCE_ID` (e.g. `fed_usgs_earthquakes`) is the linchpin: landing table = `UPPER(SOURCE_ID)`; registry + logs key on it. Prefix = jurisdiction: `fed_` / `intl_` / `xc_` (cross-cutting) / `loc_` / `st_`.
 
