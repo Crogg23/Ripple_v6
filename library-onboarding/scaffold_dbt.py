@@ -52,13 +52,41 @@ def _actual_landing_columns(landing_table: str) -> list:
 def generate_dbt_models(config: dict, feedback: Optional[str] = None) -> dict:
     # Prefer the real landed columns over recon's guess (see _actual_landing_columns).
     actual = _actual_landing_columns(config.get("landing_table", ""))
-    if actual:
+    ncols = len(actual)
+    # WIDE TABLE guard: a 300+-column source (e.g. NPPES) makes enumerating every
+    # column blow the JSON payload past max_tokens -> truncated -> "Unterminated
+    # string". For wide tables, show only the key-identifier columns + a count, and
+    # direct the model to emit a compact passthrough instead of 300 explicit casts.
+    wide = ncols > 60
+    keys = config.get("key_identifiers", []) or []
+    if actual and wide:
+        key_up = {k.upper() for k in keys}
+        shown = [c for c in actual if c.upper() in key_up][:12] or actual[:10]
+        schema_repr = "\n".join(f"  - {c} (TEXT): raw landing column" for c in shown)
+        schema_repr += f"\n  ... (+{ncols - len(shown)} more TEXT columns -- WIDE TABLE, {ncols} total)"
+    elif actual:
         schema_repr = "\n".join(f"  - {c} (TEXT): raw landing column" for c in actual)
     else:
         schema_repr = "\n".join(
             f"  - {f.get('name')} ({f.get('type')}): {f.get('description','')}"
             for f in config.get("schema_fields", [])
         ) or "  (schema unknown)"
+
+    # Compact-output directive for wide tables, prepended to the feedback channel so
+    # we don't touch the prompt template. Keeps staging/mart as passthroughs and the
+    # schema.yml tests scoped to the keys -> small, untruncated JSON.
+    eff_feedback = feedback or ""
+    if wide:
+        directive = (
+            f"WIDE TABLE ({ncols} columns) -- keep the JSON output COMPACT, do NOT "
+            "enumerate every column. staging_sql: a lightweight passthrough -- "
+            "`select *` from the source, dedupe on the primary key with "
+            "qualify row_number() over (partition by <pk> order by _ingested_at desc)=1, "
+            "no per-column casts. mart_sql: `select * from {{ ref(staging) }}`. "
+            "schema.yml: document the model + add not_null/unique tests ONLY on the key "
+            "identifier column(s), not all columns."
+        )
+        eff_feedback = (directive + ("\n\n" + feedback if feedback else "")).strip()
 
     prompt = render_prompt(
         "generate_dbt",
@@ -69,9 +97,9 @@ def generate_dbt_models(config: dict, feedback: Optional[str] = None) -> dict:
         entity=config["entity"],
         staging_model=config["staging_model"],
         mart_model=config["mart_model"],
-        identifiers=", ".join(config.get("key_identifiers", [])) or "(none)",
+        identifiers=", ".join(keys) or "(none)",
         schema=schema_repr,
-        feedback=feedback or "(none)",
+        feedback=eff_feedback or "(none)",
     )
     raw = call_claude(
         user=prompt,
@@ -83,9 +111,10 @@ def generate_dbt_models(config: dict, feedback: Optional[str] = None) -> dict:
         kind="dbt",
         fake_context=config,
         # Wide tables make staging_sql + mart_sql + schema_yml a long JSON payload;
-        # 4096 truncated at ~25 cols (biorxiv), and HCRIS has 117 cols. Cap high --
-        # it's a ceiling, not a target, so narrow sources still return small.
-        max_tokens=16384,
+        # 4096 truncated at ~25 cols (biorxiv), 117-col HCRIS needed more. Cap high --
+        # it's a ceiling, not a target, so narrow sources still return small. The wide
+        # directive above keeps even 300-col tables compact.
+        max_tokens=24576,
     )
     models = extract_json(raw)
     for key in ("staging_sql", "intermediate_sql", "mart_sql", "schema_yml"):

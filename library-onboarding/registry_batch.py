@@ -55,6 +55,9 @@ def main() -> int:
                    help="auth policy. 'none' (default) is the only fully-unattended-safe set.")
     p.add_argument("--include-landed", action="store_true",
                    help="don't skip sources that already have a successful ingest run.")
+    p.add_argument("--load-mode", choices=["snapshot", "incremental", "chunked"],
+                   help="force this load_mode on the candidate(s), overriding recon's guess "
+                        "(e.g. force chunked for a known multi-GB file).")
     p.add_argument("--run", action="store_true",
                    help="actually onboard (default is a read-only preview).")
     args = p.parse_args()
@@ -63,6 +66,10 @@ def main() -> int:
         limit=args.limit, tier=args.tier, jurisdiction=args.jurisdiction,
         source_id=args.source_id, auth=args.auth, include_landed=args.include_landed,
     )
+    # A forced load_mode is pinned onto each candidate; recon honours a pinned value.
+    if args.load_mode:
+        for c in candidates:
+            c["load_mode"] = args.load_mode
     if not candidates:
         cp.warn("No candidates matched -- the registry queue is drained for these filters.")
         return 0
