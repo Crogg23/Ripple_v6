@@ -1,0 +1,183 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: INTL_GR_GEMI
+        description: >
+          Raw landing table for the Greece General Electronic Commercial Registry
+          (GEMI — Γενικό Εμπορικό Μητρώο). All columns arrive as TEXT.
+
+models:
+
+  - name: stg_intl_gr_gemi__greek_companies
+    description: >
+      Staging model for Greek companies sourced from the General Electronic
+      Commercial Registry (GEMI). Casts raw TEXT columns to proper types,
+      renames to snake_case, and de-duplicates on gemi_number keeping the
+      most-recently ingested record.
+    columns:
+
+      - name: gemi_number
+        description: GEMI registration number (Αριθμός ΓΕΜΗ) — primary key of the source.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: afm
+        description: Greek Tax Identification Number (ΑΦΜ) for the company.
+        data_tests:
+          - not_null
+
+      - name: company_name
+        description: Official registered name of the company.
+        data_tests:
+          - not_null
+
+      - name: distinctive_title
+        description: Trade or distinctive title used by the company.
+
+      - name: legal_form
+        description: Legal form / entity type (e.g. ΑΕ, ΕΠΕ, ΙΚΕ, ΟΕ, ΕΕ).
+
+      - name: status
+        description: Current registration status of the company.
+        data_tests:
+          - accepted_values:
+              values: ['Active', 'Inactive', 'Suspended', 'Dissolved', 'In Liquidation',
+                       'active', 'inactive', 'suspended', 'dissolved', 'in liquidation']
+              severity: warn
+
+      - name: registration_suspension
+        description: Details of any suspension on the company registration.
+
+      - name: special_designations
+        description: Any special regulatory designations attached to the company.
+
+      - name: local_gemi_office
+        description: Name of the local GEMI office responsible for the registration.
+
+      - name: formation_date
+        description: Date the company was formally registered (cast from TEXT).
+
+      - name: closure_date
+        description: Date the company was closed or dissolved, if applicable.
+
+      - name: kak_change_date
+        description: Date of the most recent KAK (company activity code) change.
+
+      - name: city
+        description: City of the company's registered address.
+
+      - name: postal_code
+        description: Postal code of the company's registered address.
+
+      - name: _ingested_at
+        description: Timestamp at which the record was ingested into the landing zone.
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Pipeline run ID that produced this record.
+        data_tests:
+          - not_null
+
+  - name: economics__intl_gr_gemi
+    description: >
+      Analytics-ready mart table for Greek companies from the GEMI registry.
+      Exposes all key identifiers for cross-source joins, adds convenience
+      flags (is_active, is_closed), and attaches a surrogate company_id.
+    columns:
+
+      - name: company_id
+        description: Surrogate primary key derived from gemi_number via dbt_utils.generate_surrogate_key.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: gemi_number
+        description: GEMI registration number (Αριθμός ΓΕΜΗ) — natural key.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: afm
+        description: Greek Tax Identification Number (ΑΦΜ) — cross-source join key.
+        data_tests:
+          - not_null
+
+      - name: company_name
+        description: Official registered name of the company.
+        data_tests:
+          - not_null
+
+      - name: distinctive_title
+        description: Trade or distinctive title used by the company.
+
+      - name: legal_form
+        description: Legal form / entity type.
+
+      - name: status
+        description: Current registration status.
+        data_tests:
+          - accepted_values:
+              values: ['Active', 'Inactive', 'Suspended', 'Dissolved', 'In Liquidation',
+                       'active', 'inactive', 'suspended', 'dissolved', 'in liquidation']
+              severity: warn
+
+      - name: registration_suspension
+        description: Details of any registration suspension.
+
+      - name: special_designations
+        description: Special regulatory designations.
+
+      - name: local_gemi_office
+        description: Local GEMI office responsible for the registration.
+
+      - name: formation_date
+        description: Date the company was formally registered.
+
+      - name: closure_date
+        description: Date the company was closed or dissolved.
+
+      - name: kak_change_date
+        description: Date of the most recent KAK change.
+
+      - name: is_closed
+        description: Boolean flag — true when a closure_date is present.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+
+      - name: is_active
+        description: Boolean flag — true when status equals 'active' (case-insensitive).
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+
+      - name: city
+        description: City of the registered address.
+
+      - name: postal_code
+        description: Postal code of the registered address.
+
+      - name: source_id
+        description: Constant identifier for this data source ('intl_gr_gemi').
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['intl_gr_gemi']
+
+      - name: _ingested_at
+        description: Timestamp the record was ingested into the landing zone.
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Pipeline run ID that produced this record.
+        data_tests:
+          - not_null

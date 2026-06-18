@@ -6,178 +6,149 @@ sources:
     schema: LANDING
     tables:
       - name: FED_DOJ_CRT_CASES
-        description: >
+        description: >-
           Raw landing table for the DOJ Civil Rights Division Cases and
-          Settlements Database. All columns arrive as TEXT.
+          Settlements Database. All columns are TEXT as received from the
+          source system.
 
 models:
 
   - name: stg_fed_doj_crt_cases__crt_cases
-    description: >
-      Staged and lightly cleaned view of DOJ Civil Rights Division cases.
-      Text columns are cast to appropriate types; duplicate records (by
-      company_id, person_name, state, date_filed) are removed, keeping the
-      most-recently-ingested row.
+    description: >-
+      Staged and lightly transformed view of DOJ Civil Rights Division cases.
+      Columns are renamed to snake_case, TEXT values are cast to appropriate
+      types, and duplicate rows (by company_id, person_name, date, state) are
+      removed, keeping the most-recently ingested record.
     columns:
 
-      - name: company_id
-        description: Identifier for the defendant company (maps to DEFENDANT_COMPANY_ID).
-        data_tests:
-          - not_null
-
-      - name: person_name
-        description: Name of the individual defendant or complainant.
-        data_tests:
-          - not_null
-
-      - name: state
-        description: US state associated with the case.
-        data_tests:
-          - not_null
-
-      - name: date_filed
-        description: Date the case was filed with the DOJ Civil Rights Division.
-        data_tests:
-          - not_null
-
       - name: case_title
-        description: Official title of the civil rights case.
+        description: Title or name of the civil rights case.
 
       - name: section
         description: DOJ Civil Rights Division section responsible for the case.
 
       - name: case_type
-        description: Classification of the civil rights case type.
+        description: Classification / type of the civil rights case.
+
+      - name: company_id
+        description: Identifier for the company or entity involved in the case.
+        data_tests:
+          - not_null
+
+      - name: person_name
+        description: Name of the individual associated with the case record.
+        data_tests:
+          - not_null
+
+      - name: date
+        description: Relevant date of the case or settlement (cast from TEXT).
+        data_tests:
+          - not_null
+
+      - name: state
+        description: US state in which the case is or was active.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - AL - AK - AZ - AR - CA - CO - CT - DE - FL - GA
+                - HI - ID - IL - IN - IA - KS - KY - LA - ME - MD
+                - MA - MI - MN - MS - MO - MT - NE - NV - NH - NJ
+                - NM - NY - NC - ND - OH - OK - OR - PA - RI - SC
+                - SD - TN - TX - UT - VT - VA - WA - WV - WI - WY
+                - DC - PR - GU - VI - AS - MP
+              quote: false
+
+      - name: document_url
+        description: URL linking to the official case or settlement document.
+
+      - name: description
+        description: Free-text description of the case and its key facts.
 
       - name: status
-        description: Current status of the case (e.g. Open, Closed, Settled).
+        description: Current status of the case (e.g. Open, Settled, Closed).
         data_tests:
           - accepted_values:
-              values: ['Open', 'Closed', 'Settled', 'Pending', 'Dismissed', 'Active']
+              values:
+                - Open
+                - Settled
+                - Closed
+                - Pending
+                - Dismissed
+                - Ongoing
               quote: true
-              severity: warn
-
-      - name: summary
-        description: Narrative summary of the case allegations and findings.
-
-      - name: case_url
-        description: URL linking to the official DOJ case record.
-
-      - name: date_filed
-        description: Date the case was originally filed.
-
-      - name: date_resolved
-        description: Date the case was resolved, if applicable.
-
-      - name: date_updated
-        description: Date the record was last updated in the source system.
-
-      - name: settlement_amount
-        description: Monetary value of any settlement reached, in USD.
 
       - name: _ingested_at
         description: Timestamp when the record was ingested into the landing table.
-        data_tests:
-          - not_null
 
       - name: _source_run_id
         description: Pipeline run identifier that produced this record.
-        data_tests:
-          - not_null
 
   - name: justice__fed_doj_crt_cases
-    description: >
+    description: >-
       Analytics-ready mart table for DOJ Civil Rights Division cases and
-      settlements. Exposes key identifiers for cross-source joins, derived
-      financial and temporal metrics, and a surrogate primary key.
+      settlements. One row per unique combination of company_id, person_name,
+      date, and state. Includes a surrogate key for cross-source joins.
     columns:
 
       - name: crt_case_key
-        description: >
-          Surrogate primary key derived from company_id, person_name, state,
-          and date_filed using dbt_utils.generate_surrogate_key.
+        description: >-
+          Surrogate key generated from company_id, person_name, date, and state.
+          Serves as the primary key for this mart table.
         data_tests:
           - unique
           - not_null
 
       - name: company_id
-        description: Defendant company identifier; join key for cross-source enrichment.
+        description: Identifier for the company or entity involved in the case.
         data_tests:
           - not_null
 
       - name: person_name
-        description: Individual defendant or complainant name; join key.
+        description: Name of the individual associated with the case record.
+        data_tests:
+          - not_null
+
+      - name: date
+        description: Relevant date of the case or settlement.
         data_tests:
           - not_null
 
       - name: state
-        description: US state associated with the case; join key.
-        data_tests:
-          - not_null
-
-      - name: date_filed
-        description: Date the case was filed; primary temporal join key.
+        description: US state in which the case is or was active.
         data_tests:
           - not_null
 
       - name: case_title
-        description: Official title of the civil rights case.
+        description: Title or name of the civil rights case.
 
       - name: section
         description: DOJ Civil Rights Division section responsible for the case.
 
       - name: case_type
-        description: Classification of the civil rights case type.
+        description: Classification / type of the civil rights case.
 
       - name: status
         description: Current status of the case.
         data_tests:
           - accepted_values:
-              values: ['Open', 'Closed', 'Settled', 'Pending', 'Dismissed', 'Active']
+              values:
+                - Open
+                - Settled
+                - Closed
+                - Pending
+                - Dismissed
+                - Ongoing
               quote: true
-              severity: warn
 
-      - name: summary
-        description: Narrative summary of the case allegations and findings.
+      - name: document_url
+        description: URL linking to the official case or settlement document.
 
-      - name: case_url
-        description: URL linking to the official DOJ case record.
-
-      - name: date_resolved
-        description: Date the case was resolved, if applicable.
-
-      - name: date_updated
-        description: Date the record was last updated in the source system.
-
-      - name: settlement_amount
-        description: Monetary value of any settlement reached, in USD.
-
-      - name: has_monetary_settlement
-        description: Boolean flag; true when a positive settlement amount is recorded.
-        data_tests:
-          - not_null
-          - accepted_values:
-              values: [true, false]
-
-      - name: days_to_resolution
-        description: >
-          Number of days from date_filed to date_resolved (or current date if
-          still open).
-
-      - name: case_open_closed
-        description: Derived label indicating whether the case is open or closed.
-        data_tests:
-          - not_null
-          - accepted_values:
-              values: ['open', 'closed']
-              quote: true
+      - name: description
+        description: Free-text description of the case and its key facts.
 
       - name: _ingested_at
         description: Timestamp when the record was ingested into the landing table.
-        data_tests:
-          - not_null
 
       - name: _source_run_id
         description: Pipeline run identifier that produced this record.
-        data_tests:
-          - not_null

@@ -1,0 +1,172 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: INTL_ES_BORME
+        description: >-
+          Raw landing table for Spain BORME (Boletín Oficial del Registro Mercantil).
+          Contains official corporate act announcements published by the Spanish
+          Mercantile Registry. All columns arrive as TEXT from the ingestion pipeline.
+        columns:
+          - name: DATE
+            description: Publication date of the BORME entry (raw TEXT).
+          - name: BORME_ISSUE_NUMBER
+            description: Official issue number of the BORME bulletin.
+          - name: SECTION
+            description: Section of the BORME in which the act was published.
+          - name: COMPANY_ID
+            description: Unique identifier assigned to the company in the BORME.
+          - name: COMPANY_NAME
+            description: Registered name of the company.
+          - name: ACT_TYPE
+            description: Category / type of the corporate act (e.g. Constitución, Disolución).
+          - name: ACT_DESCRIPTION
+            description: Full text description of the corporate act.
+          - name: PROVINCE
+            description: Spanish province where the company is registered.
+          - name: COUNTRY
+            description: Country code (expected value: ES).
+          - name: CVE
+            description: Código de Verificación Electrónica – unique document verification code.
+          - name: PDF_URL
+            description: Direct URL to the official PDF of the BORME entry.
+
+models:
+  - name: stg_intl_es_borme__borme_corporate_acts
+    description: >-
+      Staging model for Spain BORME corporate acts. Casts raw TEXT columns to
+      appropriate types, renames to snake_case, and deduplicates on the natural
+      key (company_id, country, date, act_type, cve), keeping the most recently
+      ingested record.
+    columns:
+      - name: company_id
+        description: Unique identifier assigned to the company in the BORME.
+        data_tests:
+          - not_null
+
+      - name: country
+        description: Country code for the source registry (expected value ES).
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['ES']
+
+      - name: date
+        description: Publication date of the BORME entry, cast to DATE.
+        data_tests:
+          - not_null
+
+      - name: borme_issue_number
+        description: Official issue number of the BORME bulletin.
+
+      - name: section
+        description: Section of the BORME (e.g. Sección Segunda, Sección Tercera).
+        data_tests:
+          - accepted_values:
+              values:
+                - 'Sección Primera'
+                - 'Sección Segunda'
+                - 'Sección Tercera'
+              config:
+                severity: warn
+
+      - name: company_name
+        description: Registered name of the company.
+        data_tests:
+          - not_null
+
+      - name: act_type
+        description: Category of the corporate act.
+        data_tests:
+          - not_null
+
+      - name: act_description
+        description: Full text description of the corporate act.
+
+      - name: province
+        description: Spanish province where the company is registered.
+
+      - name: cve
+        description: Código de Verificación Electrónica – unique document verification code.
+
+      - name: pdf_url
+        description: Direct URL to the official PDF of the BORME entry.
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier associated with the ingestion.
+
+  - name: corporate_registry__intl_es_borme
+    description: >-
+      Analytics-ready mart for Spain BORME corporate acts. Exposes all key
+      identifiers for cross-source joins, enriches with convenience date
+      truncations, and tags each row with the source_id 'intl_es_borme'.
+    columns:
+      - name: company_id
+        description: Unique identifier assigned to the company in the BORME. Part of the composite primary key.
+        data_tests:
+          - not_null
+
+      - name: country
+        description: Country code for the source registry. Part of the composite primary key.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['ES']
+
+      - name: date
+        description: Publication date of the BORME entry. Part of the composite primary key.
+        data_tests:
+          - not_null
+
+      - name: borme_issue_number
+        description: Official issue number of the BORME bulletin.
+
+      - name: section
+        description: Section of the BORME in which the act was published.
+
+      - name: cve
+        description: Código de Verificación Electrónica – unique document verification code.
+
+      - name: company_name
+        description: Registered name of the company.
+        data_tests:
+          - not_null
+
+      - name: province
+        description: Spanish province where the company is registered.
+
+      - name: act_type
+        description: Category of the corporate act.
+        data_tests:
+          - not_null
+
+      - name: act_description
+        description: Full text description of the corporate act.
+
+      - name: pdf_url
+        description: Direct URL to the official PDF of the BORME entry.
+
+      - name: act_month
+        description: First day of the month in which the act was published (date_trunc month).
+
+      - name: act_year
+        description: First day of the year in which the act was published (date_trunc year).
+
+      - name: source_id
+        description: Constant identifier for this data source – always 'intl_es_borme'.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['intl_es_borme']
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier associated with the ingestion.

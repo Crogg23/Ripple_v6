@@ -9,221 +9,155 @@ sources:
         description: >
           Raw landing table for FDIC Enforcement Decisions and Orders.
           All columns are loaded as TEXT from the source feed.
+        columns:
+          - name: RAW_TEXT
+            description: Full raw JSON or delimited text payload from the FDIC enforcement feed.
+          - name: ORDER_URL
+            description: Direct URL to the enforcement order document on the FDIC website.
 
 models:
-
   - name: stg_fed_fdic_enforcement__enforcement_orders
     description: >
-      Staging model for FDIC Enforcement Decisions and Orders.
-      Casts TEXT columns to appropriate types, deduplicates on
-      (docket_number, respondent_name, issued_date), and exposes
-      ingestion metadata.
+      Staging view for FDIC Enforcement Decisions and Orders.
+      Renames raw columns to snake_case, casts TEXT fields to appropriate types,
+      and deduplicates records by docket_number + fdic_cert_number + respondent.
     columns:
-
-      - name: enforcement_order_sk
-        description: Surrogate primary key derived from docket_number, respondent_name, and issued_date.
-        data_tests:
-          - unique
-          - not_null
-
       - name: docket_number
-        description: Unique docket identifier assigned by the FDIC.
-        data_tests:
-          - not_null
-
-      - name: respondent_name
-        description: Name of the individual or institution subject to the enforcement action.
-        data_tests:
-          - not_null
-
-      - name: issued_date
-        description: Date the enforcement order was issued (cast from TEXT).
+        description: Unique FDIC docket number assigned to the enforcement action.
         data_tests:
           - not_null
 
       - name: fdic_cert_number
-        description: FDIC certificate number identifying the institution (TEXT).
+        description: FDIC certificate number identifying the regulated institution.
+        data_tests:
+          - not_null
+
+      - name: company_id
+        description: Cross-source company identifier; mirrors fdic_cert_number for federation.
+        data_tests:
+          - not_null
+
+      - name: respondent_name
+        description: Name of the institutional respondent named in the enforcement order.
+        data_tests:
+          - not_null
+
+      - name: person_name
+        description: Name of the individual respondent (if applicable) named in the enforcement order.
+        data_tests:
+          - not_null
+
+      - name: date
+        description: Effective date of the enforcement order.
         data_tests:
           - not_null
 
       - name: nmls_id
-        description: Nationwide Multistate Licensing System identifier (TEXT).
+        description: Nationwide Multistate Licensing System identifier for individual respondents.
         data_tests:
           - not_null
 
-      - name: order_category
-        description: High-level category of the enforcement order.
-        data_tests:
-          - accepted_values:
-              values:
-                - 'Formal Agreement'
-                - 'Cease and Desist Order'
-                - 'Consent Order'
-                - 'Order of Prohibition'
-                - 'Civil Money Penalty'
-                - 'Order of Removal'
-                - 'Order of Suspension'
-                - 'Order to Pay'
-                - 'Prompt Corrective Action'
-                - 'Safety and Soundness Order'
-                - 'Other'
-              quote: true
+      - name: order_url
+        description: URL to the enforcement order document.
+
+      - name: institution_name
+        description: Name of the FDIC-regulated institution.
+
+      - name: city
+        description: City where the institution is located.
+
+      - name: state
+        description: State where the institution is located.
 
       - name: action_type
-        description: Specific action type within the enforcement order category.
+        description: Category or type of enforcement action (e.g., Consent Order, Civil Money Penalty).
 
-      - name: respondent_type
-        description: Indicates whether the respondent is an institution or an individual.
-        data_tests:
-          - accepted_values:
-              values:
-                - 'Institution'
-                - 'Individual'
-                - 'Both'
-              quote: true
+      - name: termination_date
+        description: Date on which the enforcement order was terminated, if applicable.
 
-      - name: bank_name
-        description: Name of the bank associated with the enforcement action.
-
-      - name: bank_city
-        description: City where the bank is located.
-
-      - name: bank_state
-        description: State abbreviation where the bank is located.
-
-      - name: order_title
-        description: Title of the enforcement order document.
-
-      - name: order_attachment_text
-        description: Full text of the enforcement order attachment.
-
-      - name: fdic_cert_number_int
-        description: FDIC certificate number cast to integer for numeric joins.
-
-      - name: nmls_id_int
-        description: NMLS ID cast to integer for numeric joins.
+      - name: raw_text
+        description: Original raw text payload preserved for auditability.
 
       - name: _ingested_at
-        description: Timestamp when the record was ingested into the landing table.
+        description: Timestamp when the record was processed by the staging layer.
 
       - name: _source_run_id
-        description: Pipeline run identifier that loaded this record.
+        description: Identifier for the pipeline run that loaded this record.
 
   - name: regulation__fed_fdic_enforcement
     description: >
       Analytics-ready mart table for FDIC Enforcement Decisions and Orders.
-      Exposes all key identifiers for cross-source joins and enriches the
-      data with derived date parts. Sourced from the FDIC enforcement
-      decisions feed (source_id: fed_fdic_enforcement).
+      Exposes key identifiers for cross-source joins and enriches with descriptive attributes.
     columns:
-
-      - name: enforcement_order_sk
-        description: Surrogate primary key derived from docket_number, respondent_name, and issued_date.
+      - name: enforcement_order_id
+        description: >  
+          Surrogate primary key derived from docket_number, fdic_cert_number,
+          and the coalesced respondent name.
         data_tests:
           - unique
           - not_null
 
       - name: company_id
-        description: FDIC certificate number used as the company identifier for cross-source joins.
-        data_tests:
-          - not_null
-
-      - name: person_name
-        description: Name of the respondent individual or institution (alias of respondent_name).
-        data_tests:
-          - not_null
-
-      - name: date
-        description: Issued date used as the primary date key (alias of issued_date).
+        description: Cross-source company identifier; mirrors fdic_cert_number.
         data_tests:
           - not_null
 
       - name: fdic_cert_number
-        description: FDIC certificate number identifying the institution (TEXT).
+        description: FDIC certificate number identifying the regulated institution.
         data_tests:
           - not_null
 
       - name: docket_number
-        description: Unique docket identifier assigned by the FDIC.
-        data_tests:
-          - not_null
-
-      - name: nmls_id
-        description: Nationwide Multistate Licensing System identifier (TEXT).
+        description: Unique FDIC docket number for the enforcement action.
         data_tests:
           - not_null
 
       - name: respondent_name
-        description: Name of the individual or institution subject to the enforcement action.
+        description: Name of the institutional respondent.
         data_tests:
           - not_null
 
-      - name: issued_date
-        description: Date the enforcement order was issued.
-
-      - name: issued_year
-        description: Calendar year extracted from issued_date.
-
-      - name: issued_month
-        description: Calendar month extracted from issued_date.
-
-      - name: order_title
-        description: Title of the enforcement order document.
-
-      - name: order_category
-        description: High-level category of the enforcement order.
+      - name: person_name
+        description: Name of the individual respondent, if applicable.
         data_tests:
-          - accepted_values:
-              values:
-                - 'Formal Agreement'
-                - 'Cease and Desist Order'
-                - 'Consent Order'
-                - 'Order of Prohibition'
-                - 'Civil Money Penalty'
-                - 'Order of Removal'
-                - 'Order of Suspension'
-                - 'Order to Pay'
-                - 'Prompt Corrective Action'
-                - 'Safety and Soundness Order'
-                - 'Other'
-              quote: true
+          - not_null
+
+      - name: order_date
+        description: Effective date of the enforcement order.
+        data_tests:
+          - not_null
+
+      - name: nmls_id
+        description: NMLS identifier for individual respondents.
+        data_tests:
+          - not_null
+
+      - name: institution_name
+        description: Name of the FDIC-regulated institution.
+
+      - name: city
+        description: City where the institution is located.
+
+      - name: state
+        description: State where the institution is located.
 
       - name: action_type
-        description: Specific action type within the enforcement order category.
+        description: Category of enforcement action.
 
-      - name: respondent_type
-        description: Indicates whether the respondent is an institution or an individual.
-        data_tests:
-          - accepted_values:
-              values:
-                - 'Institution'
-                - 'Individual'
-                - 'Both'
-              quote: true
+      - name: termination_date
+        description: Date the enforcement order was terminated, if applicable.
 
-      - name: bank_name
-        description: Name of the bank associated with the enforcement action.
-
-      - name: bank_city
-        description: City where the bank is located.
-
-      - name: bank_state
-        description: Two-letter state abbreviation where the bank is located.
-
-      - name: fdic_cert_number_int
-        description: FDIC certificate number cast to integer for numeric joins.
-
-      - name: nmls_id_int
-        description: NMLS ID cast to integer for numeric joins.
-
-      - name: order_attachment_text
-        description: Full text of the enforcement order attachment.
+      - name: order_url
+        description: URL to the enforcement order document.
 
       - name: source_id
-        description: Constant identifier for this data source (fed_fdic_enforcement).
+        description: Static tag identifying the originating source system (fed_fdic_enforcement).
+        data_tests:
+          - accepted_values:
+              values: ['fed_fdic_enforcement']
 
       - name: _ingested_at
-        description: Timestamp when the record was ingested into the landing table.
+        description: Timestamp when the record was processed.
 
       - name: _source_run_id
-        description: Pipeline run identifier that loaded this record.
+        description: Identifier for the pipeline run that produced this record.

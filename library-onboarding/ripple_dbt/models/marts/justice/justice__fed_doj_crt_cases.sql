@@ -1,62 +1,43 @@
 {{ config(materialized='table') }}
 
-with base as (
+with
 
-    select *
-    from {{ ref('stg_fed_doj_crt_cases__crt_cases') }}
+staging as (
+
+    select * from {{ ref('stg_fed_doj_crt_cases__crt_cases') }}
+
+),
+
+final as (
+
+    select
+
+        -- surrogate / natural key
+        {{ dbt_utils.generate_surrogate_key(['company_id', 'person_name', 'date', 'state']) }}
+                                                          as crt_case_key,
+
+        -- key identifiers for cross-source joins
+        company_id,
+        person_name,
+        date,
+        state,
+
+        -- core case attributes
+        case_title,
+        section,
+        case_type,
+        status,
+
+        -- reference
+        document_url,
+        description,
+
+        -- pipeline metadata
+        _ingested_at,
+        _source_run_id
+
+    from staging
 
 )
 
-select
-
-    -- surrogate / join keys exposed for cross-source joins
-    {{ dbt_utils.generate_surrogate_key([
-        'company_id',
-        'person_name',
-        'state',
-        'date_filed'
-    ]) }}                                       as crt_case_key,
-
-    company_id,
-    person_name,
-    state,
-
-    -- case details
-    case_title,
-    section,
-    case_type,
-    status,
-    summary,
-    case_url,
-
-    -- dates
-    date_filed,
-    date_resolved,
-    date_updated,
-
-    -- financials
-    settlement_amount,
-
-    -- derived helpers
-    case
-        when settlement_amount is not null and settlement_amount > 0
-            then true
-        else false
-    end                                         as has_monetary_settlement,
-
-    datediff(
-        'day',
-        date_filed,
-        coalesce(date_resolved, current_date())
-    )                                           as days_to_resolution,
-
-    case
-        when date_resolved is not null then 'closed'
-        else 'open'
-    end                                         as case_open_closed,
-
-    -- metadata
-    _ingested_at,
-    _source_run_id
-
-from base
+select * from final

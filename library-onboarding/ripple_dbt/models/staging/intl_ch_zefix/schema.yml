@@ -7,78 +7,95 @@ sources:
     tables:
       - name: INTL_CH_ZEFIX
         description: >
-          Raw landing table for Switzerland Zefix Central Business Name Index.
-          All columns arrive as TEXT from the ingestion pipeline.
-        columns:
-          - name: BUSINESS_NAME
-            description: Raw business name of the registered company.
-          - name: CANTONAL_EXCERPT
-            description: Cantonal excerpt identifier (used as ehraid and chid in staging).
-          - name: UID
-            description: Unique identification number (UID) issued by the Swiss federal authorities.
-          - name: LEGAL_FORM
-            description: Legal form of the company (e.g. GmbH, AG).
-          - name: SEAT
-            description: Municipality of the registered seat.
-          - name: CANTON_RC
-            description: Two-letter canton code of the commercial registry.
+          Raw landing table for the Switzerland Zefix Central Business Name Index.
+          All columns arrive as TEXT and are cast in the staging model.
 
 models:
-
   - name: stg_intl_ch_zefix__companies
     description: >
-      Staging model for Switzerland Zefix Central Business Name Index companies.
-      Renames raw columns to snake_case, derives a surrogate company_id, deduplicates
-      on (uid, business_name, canton_rc) keeping the most-recently ingested row,
-      and hard-codes country = 'CH' for cross-source joins.
+      Staged and deduplicated view of the Switzerland Zefix company register.
+      TEXT columns are cast to appropriate types; one row per company_id
+      (most-recent ingest wins).
     columns:
       - name: company_id
-        description: Surrogate primary key derived from uid, business_name and canton_rc.
+        description: Surrogate key derived from uid, ehraid, and chid.
         data_tests:
           - unique
           - not_null
 
+      - name: uid
+        description: Swiss Unique Identification Number (UID) for the company.
+        data_tests:
+          - not_null
+
+      - name: ehraid
+        description: Internal ZEFIX identifier (EHRA ID) for the company.
+        data_tests:
+          - not_null
+
+      - name: chid
+        description: Swiss Commercial Register (CH-ID) identifier.
+        data_tests:
+          - not_null
+
       - name: country
-        description: ISO-3166-1 alpha-2 country code. Always 'CH' for this source.
+        description: ISO country code; always CH for this source.
         data_tests:
           - not_null
           - accepted_values:
               values: ['CH']
 
-      - name: uid
-        description: Swiss federal unique identification number.
-        data_tests:
-          - not_null
-
-      - name: ehraid
-        description: EHRA (cantonal excerpt) identifier derived from the cantonal_excerpt field.
-        data_tests:
-          - not_null
-
-      - name: chid
-        description: CH identifier derived from the cantonal_excerpt field.
-        data_tests:
-          - not_null
-
-      - name: business_name
-        description: Official registered business name.
+      - name: name
+        description: Registered business name.
         data_tests:
           - not_null
 
       - name: legal_form
-        description: Legal form of the entity (e.g. GmbH, AG, Einzelfirma).
+        description: Legal form of the company (e.g. AG, GmbH, Einzelunternehmen).
 
-      - name: seat
-        description: Municipality in which the company is registered.
+      - name: status
+        description: Current registration status of the company.
+        data_tests:
+          - accepted_values:
+              values:
+                - ACTIVE
+                - DELETED
+                - BEING_CANCELLED
+                - CANCELLED
+              severity: warn
 
-      - name: canton_rc
-        description: Two-letter canton abbreviation for the commercial registry.
+      - name: address_street
+        description: Street name of the registered address.
 
-      - name: cantonal_excerpt
-        description: Raw cantonal excerpt reference string.
+      - name: address_house_number
+        description: House number of the registered address.
+
+      - name: address_zip
+        description: Postal code of the registered address.
+
+      - name: address_city
+        description: City of the registered address.
+
+      - name: address_canton
+        description: Canton abbreviation of the registered address (e.g. ZH, BE, GE).
+
+      - name: registry_of_commerce
+        description: Name or identifier of the cantonal registry of commerce.
+
+      - name: old_names
+        description: Previous registered names of the company (JSON array or delimited string).
+
+      - name: sogc_publication_date
+        description: Date of the most recent publication in the Swiss Official Gazette of Commerce (SOGC).
+
+      - name: mutation_type
+        description: Type of the most recent mutation recorded in the SOGC.
+
+      - name: community_bfs_id
+        description: Swiss Federal Statistical Office (BFS) municipality identifier (integer).
 
       - name: _ingested_at
-        description: Timestamp when the record was loaded into the landing zone.
+        description: Timestamp when the record was ingested into the landing table.
         data_tests:
           - not_null
 
@@ -87,64 +104,91 @@ models:
 
   - name: economics__intl_ch_zefix
     description: >
-      Analytics-ready mart for Switzerland Zefix Central Business Name Index companies.
-      Materialized as a table. Exposes all key identifiers for cross-source joins and
-      enriches with an audit timestamp.
+      Analytics-ready mart table for the Switzerland Zefix Central Business
+      Name Index. Exposes all key identifiers for cross-source joins and
+      presents one row per company.
     columns:
       - name: company_id
-        description: Surrogate primary key — unique per company record.
+        description: Surrogate primary key derived from uid, ehraid, and chid.
         data_tests:
           - unique
           - not_null
 
+      - name: uid
+        description: Swiss Unique Identification Number (UID) for the company.
+        data_tests:
+          - not_null
+
+      - name: ehraid
+        description: Internal ZEFIX identifier (EHRA ID) for the company.
+        data_tests:
+          - not_null
+
+      - name: chid
+        description: Swiss Commercial Register (CH-ID) identifier.
+        data_tests:
+          - not_null
+
       - name: country
-        description: ISO-3166-1 alpha-2 country code. Always 'CH' for this source.
+        description: ISO country code; always CH for this source.
         data_tests:
           - not_null
           - accepted_values:
               values: ['CH']
 
-      - name: uid
-        description: Swiss federal unique identification number.
-        data_tests:
-          - not_null
-
-      - name: ehraid
-        description: EHRA (cantonal excerpt) identifier.
-        data_tests:
-          - not_null
-
-      - name: chid
-        description: CH identifier.
-        data_tests:
-          - not_null
-
-      - name: business_name
-        description: Official registered business name.
+      - name: name
+        description: Registered business name.
         data_tests:
           - not_null
 
       - name: legal_form
-        description: Legal form of the entity (e.g. GmbH, AG, Einzelfirma).
+        description: Legal form of the company (e.g. AG, GmbH, Einzelunternehmen).
 
-      - name: seat
-        description: Municipality in which the company is registered.
+      - name: status
+        description: Current registration status of the company.
+        data_tests:
+          - accepted_values:
+              values:
+                - ACTIVE
+                - DELETED
+                - BEING_CANCELLED
+                - CANCELLED
+              severity: warn
 
-      - name: canton_rc
-        description: Two-letter canton abbreviation for the commercial registry.
+      - name: address_street
+        description: Street name of the registered address.
 
-      - name: cantonal_excerpt
-        description: Raw cantonal excerpt reference string.
+      - name: address_house_number
+        description: House number of the registered address.
+
+      - name: address_zip
+        description: Postal code of the registered address.
+
+      - name: address_city
+        description: City of the registered address.
+
+      - name: address_canton
+        description: Canton abbreviation of the registered address.
+
+      - name: registry_of_commerce
+        description: Name or identifier of the cantonal registry of commerce.
+
+      - name: old_names
+        description: Previous registered names of the company.
+
+      - name: sogc_publication_date
+        description: Date of the most recent SOGC publication.
+
+      - name: mutation_type
+        description: Type of the most recent mutation recorded in the SOGC.
+
+      - name: community_bfs_id
+        description: Swiss BFS municipality identifier (integer).
 
       - name: _ingested_at
-        description: Timestamp when the record was loaded into the landing zone.
+        description: Timestamp when the record was ingested into the landing table.
         data_tests:
           - not_null
 
       - name: _source_run_id
         description: Pipeline run identifier that produced this record.
-
-      - name: _mart_updated_at
-        description: Timestamp when the mart table was last refreshed.
-        data_tests:
-          - not_null

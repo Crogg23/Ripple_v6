@@ -67,6 +67,14 @@ REQUIREMENTS
     of rows/cards -- and extract ONE ROW PER RECORD into the DataFrame. Stash the page
     bytes: context["source_bytes"] = resp.content. Send a browser-like User-Agent
     header (e.g. "Mozilla/5.0 ..."); some sites 403 non-browser agents.
+  - PAGINATE listing/search/portal scrapes -- this is the #1 scrape bug. A portal that
+    shows results almost ALWAYS spans many pages; grabbing only page 1 lands a handful
+    of rows and misses ~all the data. LOOP over pages until a page yields no new records
+    (or you hit a sane cap of ~50-100 pages): follow the "next" link, or increment the
+    page/offset/start parameter (?page=N, &offset=N, &start=N, &from=N), or post the
+    pager form. Treat a result of only a few rows as a SIGNAL you stopped at page 1 --
+    re-check for a next-page mechanism before returning. Accumulate every page's records
+    into one DataFrame and join the page bytes into context["source_bytes"].
   - Bounded crawl: if the records are spread across linked sub-pages (an index page
     linking to per-entity pages/files), fetch the index, extract the matching links,
     then follow at most ~25 of them (a bounded sample) and parse each into rows.

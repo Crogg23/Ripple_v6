@@ -10,32 +10,64 @@ with source as (
 renamed as (
 
     select
-        -- identifiers
-        DOCKET_NUMBER                                   as docket_number,
-        NMLS_ID                                         as nmls_id,
-        FDIC_CERT_NUMBER                                as fdic_cert_number,
-        RESPONDENT_NAME                                 as respondent_name,
+        -- raw fields
+        RAW_TEXT                                          as raw_text,
+        ORDER_URL                                         as order_url,
 
-        -- dates
-        try_to_date(ISSUED_DATE, 'YYYY-MM-DD')          as issued_date,
+        -- parsed / typed fields extracted from raw_text
+        -- FDIC certificate number (numeric identifier for the institution)
+        try_to_number(
+            nullif(trim(regexp_substr(RAW_TEXT, '"fdic_cert_number"\s*:\s*"([^"]+)"', 1, 1, 'e', 1)), '')
+        )                                                 as fdic_cert_number,
 
-        -- descriptive fields
-        ORDER_TITLE                                     as order_title,
-        ORDER_CATEGORY                                  as order_category,
-        ACTION_TYPE                                     as action_type,
-        RESPONDENT_TYPE                                 as respondent_type,
-        BANK_NAME                                       as bank_name,
-        BANK_CITY                                       as bank_city,
-        BANK_STATE                                      as bank_state,
-        ORDER_ATTACHMENT_TEXT                           as order_attachment_text,
+        -- company_id mirrors fdic_cert_number for cross-source keying
+        try_to_number(
+            nullif(trim(regexp_substr(RAW_TEXT, '"fdic_cert_number"\s*:\s*"([^"]+)"', 1, 1, 'e', 1)), '')
+        )                                                 as company_id,
 
-        -- numeric casting
-        try_to_number(FDIC_CERT_NUMBER)                 as fdic_cert_number_int,
-        try_to_number(NMLS_ID)                          as nmls_id_int,
+        -- docket number
+        nullif(trim(regexp_substr(RAW_TEXT, '"docket_number"\s*:\s*"([^"]+)"', 1, 1, 'e', 1)), '')
+                                                          as docket_number,
+
+        -- respondent / person name
+        nullif(trim(regexp_substr(RAW_TEXT, '"respondent_name"\s*:\s*"([^"]+)"', 1, 1, 'e', 1)), '')
+                                                          as respondent_name,
+
+        nullif(trim(regexp_substr(RAW_TEXT, '"person_name"\s*:\s*"([^"]+)"', 1, 1, 'e', 1)), '')
+                                                          as person_name,
+
+        -- NMLS ID
+        nullif(trim(regexp_substr(RAW_TEXT, '"nmls_id"\s*:\s*"([^"]+)"', 1, 1, 'e', 1)), '')
+                                                          as nmls_id,
+
+        -- effective / order date
+        try_to_date(
+            nullif(trim(regexp_substr(RAW_TEXT, '"date"\s*:\s*"([^"]+)"', 1, 1, 'e', 1)), '')
+        )                                                 as date,
+
+        -- additional descriptive fields
+        nullif(trim(regexp_substr(RAW_TEXT, '"action_type"\s*:\s*"([^"]+)"', 1, 1, 'e', 1)), '')
+                                                          as action_type,
+
+        nullif(trim(regexp_substr(RAW_TEXT, '"institution_name"\s*:\s*"([^"]+)"', 1, 1, 'e', 1)), '')
+                                                          as institution_name,
+
+        nullif(trim(regexp_substr(RAW_TEXT, '"city"\s*:\s*"([^"]+)"', 1, 1, 'e', 1)), '')
+                                                          as city,
+
+        nullif(trim(regexp_substr(RAW_TEXT, '"state"\s*:\s*"([^"]+)"', 1, 1, 'e', 1)), '')
+                                                          as state,
+
+        nullif(trim(regexp_substr(RAW_TEXT, '"termination_date"\s*:\s*"([^"]+)"', 1, 1, 'e', 1)), '')
+                                                          as termination_date_raw,
+
+        try_to_date(
+            nullif(trim(regexp_substr(RAW_TEXT, '"termination_date"\s*:\s*"([^"]+)"', 1, 1, 'e', 1)), '')
+        )                                                 as termination_date,
 
         -- ingestion metadata
-        _ingested_at,
-        _source_run_id
+        current_timestamp()                               as _ingested_at,
+        null::varchar                                     as _source_run_id
 
     from source
 
@@ -43,37 +75,13 @@ renamed as (
 
 deduped as (
 
-    select *,
-        row_number() over (
-            partition by docket_number, respondent_name, issued_date
-            order by _ingested_at desc
-        ) as _row_num
+    select *
     from renamed
+    qualify row_number() over (
+        partition by docket_number, fdic_cert_number, coalesce(person_name, respondent_name)
+        order by _ingested_at desc
+    ) = 1
 
 )
 
-select
-    -- surrogate / primary key
-    {{ dbt_utils.generate_surrogate_key(['docket_number', 'respondent_name', 'issued_date']) }}
-                                                        as enforcement_order_sk,
-
-    docket_number,
-    nmls_id,
-    fdic_cert_number,
-    fdic_cert_number_int,
-    nmls_id_int,
-    respondent_name,
-    issued_date,
-    order_title,
-    order_category,
-    action_type,
-    respondent_type,
-    bank_name,
-    bank_city,
-    bank_state,
-    order_attachment_text,
-    _ingested_at,
-    _source_run_id
-
-from deduped
-where _row_num = 1
+select * from deduped

@@ -8,42 +8,36 @@ with base as (
 )
 
 select
-    -- primary key
-    enforcement_order_sk,
 
-    -- cross-source join keys
-    fdic_cert_number                            as company_id,          -- FDIC cert as company identifier
+    -- surrogate / natural keys
+    {{ dbt_utils.generate_surrogate_key(['docket_number', 'fdic_cert_number', "coalesce(person_name, respondent_name)"]) }}
+                                    as enforcement_order_id,
+
+    -- cross-source join identifiers
+    company_id,
     fdic_cert_number,
-    fdic_cert_number_int,
     docket_number,
     nmls_id,
-    nmls_id_int,
-    respondent_name                             as person_name,
     respondent_name,
+    person_name,
+    date                            as order_date,
 
-    -- date keys
-    issued_date                                 as date,
-    issued_date,
-    year(issued_date)                           as issued_year,
-    month(issued_date)                          as issued_month,
-
-    -- order attributes
-    order_title,
-    order_category,
+    -- descriptive attributes
+    institution_name,
+    city,
+    state,
     action_type,
-    respondent_type,
+    termination_date,
 
-    -- institution attributes
-    bank_name,
-    bank_city,
-    bank_state,
+    -- source reference
+    order_url,
+    raw_text,
 
-    -- full text
-    order_attachment_text,
-
-    -- lineage
+    -- metadata
     _ingested_at,
     _source_run_id,
-    'fed_fdic_enforcement'                      as source_id
+
+    -- source system tag for cross-source federation
+    'fed_fdic_enforcement'          as source_id
 
 from base
