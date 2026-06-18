@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "snowflake": {
+      "type": "url",
+      "url": "https://oneafda-umb20733.snowflakecomputing.com/api/v2/databases/LIBRARY_TOOLS/schemas/PUBLIC/mcp-servers/CLAUDE_MCP_SERVER"
+    }
+  }
+}
