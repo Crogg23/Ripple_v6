@@ -136,7 +136,7 @@ models:
         description: Nature of the conflict-of-interest for sector12.
 
       - name: sector14
-        description: Fourteenth private-sector interest area (note: 13 absent in source).
+        description: "Fourteenth private-sector interest area (note: 13 absent in source)."
 
       - name: sector14_interest
         description: Nature of the conflict-of-interest for sector14.
