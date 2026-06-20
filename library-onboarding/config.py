@@ -21,7 +21,9 @@ from pathlib import Path
 try:  # python-dotenv is convenient but not strictly required
     from dotenv import load_dotenv
 
-    load_dotenv()
+    # override=True: .env is the source of truth, beats any stale value the
+    # container already injected into the environment (e.g. an old PAT).
+    load_dotenv(override=True)
 except Exception:  # pragma: no cover - dotenv missing is fine
     pass
 

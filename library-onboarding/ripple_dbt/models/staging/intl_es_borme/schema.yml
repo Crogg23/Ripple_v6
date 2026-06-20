@@ -28,7 +28,7 @@ sources:
           - name: PROVINCE
             description: Spanish province where the company is registered.
           - name: COUNTRY
-            description: Country code (expected value: ES).
+            description: "Country code (expected value: ES)."
           - name: CVE
             description: Código de Verificación Electrónica – unique document verification code.
           - name: PDF_URL

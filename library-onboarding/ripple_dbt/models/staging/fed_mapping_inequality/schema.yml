@@ -21,7 +21,7 @@ models:
     columns:
 
       - name: holc_neighborhood_key
-        description: Composite surrogate key: holc_id|fips|city|state|holc_grade.
+        description: "Composite surrogate key: holc_id|fips|city|state|holc_grade."
         data_tests:
           - unique
           - not_null
@@ -104,7 +104,7 @@ models:
     columns:
 
       - name: holc_neighborhood_key
-        description: Composite surrogate key: holc_id|fips|city|state|holc_grade.
+        description: "Composite surrogate key: holc_id|fips|city|state|holc_grade."
         data_tests:
           - unique
           - not_null
