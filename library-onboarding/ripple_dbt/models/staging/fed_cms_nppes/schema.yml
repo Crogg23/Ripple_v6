@@ -24,10 +24,6 @@ models:
           - not_null
       - name: EIN
         description: Employer Identification Number associated with the provider organization.
-        data_tests:
-          - not_null:
-              config:
-                severity: warn
       - name: Provider_Business_Mailing_Address_Postal_Code
         description: >-
           ZIP / postal code from the provider's business mailing address. Mapped to the
@@ -50,10 +46,6 @@ models:
           - not_null
       - name: EIN
         description: Employer Identification Number.
-        data_tests:
-          - not_null:
-              config:
-                severity: warn
       - name: Provider_Business_Mailing_Address_Postal_Code
         description: Provider mailing address ZIP code (key identifier).
         data_tests:

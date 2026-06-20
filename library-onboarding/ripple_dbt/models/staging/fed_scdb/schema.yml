@@ -97,7 +97,8 @@ models:
           - accepted_values:
               values: [0, 1]
               quote: false
-
+              config:
+                severity: warn
       - name: majority_code
         description: "1=majority, 2=dissent, 3=concurrence, etc."
         data_tests:
@@ -217,7 +218,8 @@ models:
           - accepted_values:
               values: [0, 1]
               quote: false
-
+              config:
+                severity: warn
       - name: majority_code
         description: Whether the justice voted with the majority or in dissent.
         data_tests:

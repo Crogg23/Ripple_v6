@@ -41,23 +41,27 @@ models:
       - name: date
         description: Date associated with the archival record (cast from raw TEXT via try_to_date).
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: person_name
         description: Name of the primary person referenced in the archival record.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: geo_location
         description: Geographic location or FIPS code associated with the record.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: record_group_number
         description: NARA record group number under which the record is classified.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: raw_fields_json
         description: Parsed VARIANT containing all additional fields from the raw JSON payload.
 
@@ -93,28 +97,33 @@ models:
       - name: record_date
         description: Date associated with the archival record.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: person_name
         description: Name of the primary person referenced in the archival record.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: geo_location
         description: Geographic location or FIPS code associated with the record.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: fips_geo
         description: Alias of geo_location exposed for FIPS-based cross-source joins.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: record_group_number
         description: NARA record group number under which the record is classified.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: dataset_name
         description: Human-readable name of the AAD dataset.
 

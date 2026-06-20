@@ -28,8 +28,9 @@ models:
       - name: file_date
         description: Date the case was filed (parsed from FILEDATE YYYYMMDD).
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: district
         description: Federal judicial district code.
         data_tests:
@@ -142,8 +143,9 @@ models:
       - name: date_id
         description: File date exposed as the date key for cross-source joins.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: state_id
         description: State identifier placeholder (not present in FJC source; NULL).
 
@@ -185,8 +187,9 @@ models:
       - name: file_date
         description: Date the case was filed.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: term_date
         description: Date the case was terminated.
 

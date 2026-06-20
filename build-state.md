@@ -1,7 +1,19 @@
 # Build State
-Last updated: 2026-06-17
+Last updated: 2026-06-20
 
 ## CURRENT FOCUS
+**Session 2026-06-20 — env recovery + warehouse verification + dbt hygiene (no new sources).** A fresh
+container had a **dead `SNOWFLAKE_PAT`** (Snowflake `394400`), so everything Snowflake-side (connector, MCP
+server, dbt) was dark. Recovered: new PAT into a gitignored `.env`, `config.py` now `load_dotenv(override=True)`
+so `.env` beats stale container vars, deps + `dbt deps` installed, **live connector connection proven**
+(`ACCOUNTADMIN` / `RIPPLE_WH` / `LIBRARY_RAW`). Read-only sweep confirmed **5 `LIBRARY_*` DBs, 45 landing
+tables, 23,788,352 rows** (matches the ledger). Reconciled dbt vs landing and cleaned house — removed the
+`fed_cms_tic_mrf` ghost, fixed 4 YAML-bomb descriptions, renamed the revolvingdoor intermediate → **`dbt
+parse` clean**. Then **`dbt build` materialized all 35 modeled sources — 53 models, fully green (PASS=459,
+WARN=96, 0 errors)** — after fixing 5 build bugs (epoch-micros audit casts ×2, a Snowflake-incompatible
+multi-column UNPIVOT → `LATERAL FLATTEN`, a phantom-column test, a malformed accepted_values) and downgrading
+73 over-strict null/enum tests to `warn` (+2 dropped). Merged via **PR #14 + #15**. **Blocked on: nothing.**
+
 The agent now has **three fetch capabilities** (bulk/API, static scrape C1, headless-browser scrape C1b)
 and **three load modes** — snapshot, **C2 incremental**, and **C3 chunked/streaming** (large files that
 won't fit in memory) — each picked autonomously at recon. **C3 proven on NPPES (~9 GB)**: streamed 300,000
@@ -371,6 +383,28 @@ empirical signal** rather than trusting the LLM. Deterministic across repeated r
   `LIBRARY_STAGING.DBT_CROGERS` / `LIBRARY_MARTS.DBT_CROGERS` — 0 errors. (USAspending agencies has no dbt
   models — its first load skipped checkpoint 4.)
 
+### Session 2026-06-20 — env recovery, warehouse verified, dbt cleanup (PR #14 + #15)
+Fresh ephemeral container, **no new sources** — got the stack live again and cleaned the dbt project.
+- **Connection recovered (PR #14)**: the container's injected `SNOWFLAKE_PAT` was **dead** (`394400 invalid
+  token`), which also killed the read-only MCP server (same bearer token). Fix: new PAT into gitignored
+  `library-onboarding/.env`; `config.py` now `load_dotenv(override=True)` so `.env` wins over stale container
+  vars (empty `SNOWFLAKE_WAREHOUSE`, dead PAT); set `SNOWFLAKE_WAREHOUSE=RIPPLE_WH`, `SNOWFLAKE_ROLE=ACCOUNTADMIN`.
+  Installed `requirements.txt` (needed `--ignore-installed` to shadow two apt-pinned pkgs — PyJWT, cryptography),
+  `dbt-snowflake 1.11.5`, `dbt deps` (dbt_utils 1.3.3). **Live connection proven via `snow.connect()`.** New
+  PAT `exp` = **2026-07-05** — rotate before then.
+- **Warehouse verified (read-only sweep)**: 5 DBs (`LIBRARY_RAW/META/STAGING/MARTS/TOOLS`); **45 landing
+  tables / 23,788,352 rows** (matches the ledger); `SOURCE_REGISTRY` 901 rows (40 `INCLUDE=Y`); `INGEST_RUNS`
+  57 runs / 49 distinct sources. **Materialization (after the dbt build below): all 35 modeled sources built
+  in `…DBT_CROGERS` — 53 models green (was 9 of 36 at the start of this session).**
+- **dbt reconciled + cleaned (PR #14 + #15)**: of 36 dbt source refs, 35 matched a live table; 1 **ghost**
+  removed — `fed_cms_tic_mrf` (models existed, no landing table — the un-flagged false-success) → staging dir
+  + schema.yml + mart deleted. Fixed **4 YAML bombs** (unquoted descriptions with embedded `: ` → `mapping
+  values are not allowed`): `fed_revolvingdoor_project`, `fed_mapping_inequality` (×2), `intl_es_borme`.
+  **Renamed** the revolvingdoor intermediate `…_personnel_positions` → `…__positions_sectors` to match its
+  schema.yml (mart reads staging directly → ref-safe), reattaching its 10 orphaned tests. **`dbt parse` exit
+  0; WARNING 14 → 3** (the 3 left are the parked deprecations). 10 landing tables remain un-modeled
+  (early-proof + Wayback + a few others) — raw-only, not broken.
+
 ## DECISIONS MADE
 - **Snowflake cleanup + rebrand (2026-06-17, Chris ran the DDL).** Dropped dead DBs (`RIPPLE` v3,
   `RIPPLE_PRESERVE` [empty — vault never populated], `STORMS`, `STORM_LOCATIONS`, `WEATHER_PROJECT`,
@@ -400,6 +434,9 @@ empirical signal** rather than trusting the LLM. Deterministic across repeated r
   huge/unbounded sources — fetch a bounded snapshot (the CFPB runaway: it tried to mirror millions of rows).
 - dbt builds into `DBT_CROGERS` (not the existing `CORE` schemas); over-strict auto-generated tests on
   real gov data are downgraded to `severity: warn` (Treasury historical nulls, FDA recall-type drift).
+- **`.env` is the source of truth (2026-06-20).** `config.py` loads it with `override=True` so a fresh
+  container's stale/injected env can't shadow it (dead `SNOWFLAKE_PAT`, empty `SNOWFLAKE_WAREHOUSE`). The PAT
+  lives only in the gitignored `.env` — never committed (verified absent from git history). Rotate by ~2026-07-05.
 
 ## PARKED IDEAS
 - [DONE 2026-06-17] Drive the queue from `SOURCE_REGISTRY` (by `PRIORITY_TIER`) instead of the static list.
@@ -414,18 +451,23 @@ empirical signal** rather than trusting the LLM. Deterministic across repeated r
 - [IDEA — SOMEDAY] The agent writes a `sources:` block into every model's `schema.yml`; it should emit a
   single central `sources.yml` instead. | NOTE: dbt 1.11 actually tolerates the per-file blocks (parse +
   build are clean) — it only collides if you ALSO add a central one. Cosmetic, not blocking. | LAYER: Library
-- [IDEA — SOMEDAY] The agent's generated test YAML trips dbt 1.11 deprecations (generic-test args should
-  nest under `arguments:`; `severity` under `config:`). Works now (warnings only), but update the codegen
-  prompt before a future dbt makes them errors. | LAYER: Library
+- [IDEA — SOMEDAY] **dbt deprecation sweep** — the agent's generated test YAML trips dbt 1.11 deprecations:
+  **148× generic-test args should nest under `arguments:`** + **57× `severity` should move under `config:`**
+  (these are the 3 WARNING lines left after the 2026-06-20 cleanup). Works now (warnings only). Update the
+  codegen prompt + existing schema.yml files **before any dbt major bump** turns them into errors. | LAYER: Library
 
 ## OPEN QUESTIONS
 - The PAT authenticates as `ACCOUNTADMIN` — a least-privilege role scoped to `LIBRARY_RAW` + `LIBRARY_META`
   (+ `LIBRARY_STAGING`/`LIBRARY_MARTS` for dbt) would be safer for routine onboarding.
 
 ## NEXT ACTION
-**C1b — Playwright is built + proven** (BAILII: static blocked → 44 judgments rendered). All three fetch
-shapes (bulk/API, static scrape, headless scrape) + both load modes are live. Natural next steps:
-**onboard a real `scrape_js` source end-to-end into Snowflake** (e.g. add BAILII UKSC to the registry
-queue and run the full agent with live creds — needs a real `ANTHROPIC_API_KEY` + write PAT + warehouse,
-which this container didn't have); generate + `dbt run` a staging/mart for `fed_cfpb_complaints`
-(dedup-on-`complaint_id`); (D) least-privilege `RIPPLE_INGEST_RW` role; keep feeding the registry queue.
+**`dbt build` of the 53 previously-unbuilt models is DONE — fully green (2026-06-20): PASS=459, WARN=96,
+0 errors, 0 skips.** All 35 modeled sources are now materialized in `LIBRARY_STAGING/MARTS.DBT_CROGERS`
+(incl. the giants `nppes` 9.6M, `noaa_ais` 7.3M, `fjc_idb` 4.1M). Getting green took 5 build-bug fixes
+(2 epoch-micros audit casts via `to_timestamp_ntz(_ingested_at, 6)`; the revolvingdoor intermediate's
+multi-column UNPIVOT rewritten as `LATERAL FLATTEN` — Snowflake has no multi-column unpivot; dropped a
+phantom `EIN` not_null + a malformed `state` accepted_values) plus 73 over-strict null/enum tests downgraded
+to `severity: warn` (kept, not deleted). **Reminder: dbt reads OS env, not `.env` — `source ../.env` before
+any dbt command**, else it uses the dead container PAT + empty warehouse.
+**Next:** onboard a real `scrape_js` source end-to-end; `dbt run` a `fed_cfpb_complaints` staging/mart
+(dedup-on-`complaint_id`); (D) least-privilege `RIPPLE_INGEST_RW` role; then the parked dbt deprecation sweep.

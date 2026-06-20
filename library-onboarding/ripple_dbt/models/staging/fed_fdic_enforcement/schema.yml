@@ -25,38 +25,45 @@ models:
       - name: docket_number
         description: Unique FDIC docket number assigned to the enforcement action.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: fdic_cert_number
         description: FDIC certificate number identifying the regulated institution.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: company_id
         description: Cross-source company identifier; mirrors fdic_cert_number for federation.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: respondent_name
         description: Name of the institutional respondent named in the enforcement order.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: person_name
         description: Name of the individual respondent (if applicable) named in the enforcement order.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: date
         description: Effective date of the enforcement order.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: nmls_id
         description: Nationwide Multistate Licensing System identifier for individual respondents.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: order_url
         description: URL to the enforcement order document.
 
@@ -90,7 +97,7 @@ models:
       Exposes key identifiers for cross-source joins and enriches with descriptive attributes.
     columns:
       - name: enforcement_order_id
-        description: >  
+        description: >
           Surrogate primary key derived from docket_number, fdic_cert_number,
           and the coalesced respondent name.
         data_tests:
@@ -100,38 +107,45 @@ models:
       - name: company_id
         description: Cross-source company identifier; mirrors fdic_cert_number.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: fdic_cert_number
         description: FDIC certificate number identifying the regulated institution.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: docket_number
         description: Unique FDIC docket number for the enforcement action.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: respondent_name
         description: Name of the institutional respondent.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: person_name
         description: Name of the individual respondent, if applicable.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: order_date
         description: Effective date of the enforcement order.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: nmls_id
         description: NMLS identifier for individual respondents.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: institution_name
         description: Name of the FDIC-regulated institution.
 

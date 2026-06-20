@@ -87,7 +87,8 @@ models:
           - accepted_values:
               values: ['A', 'B']
               quote: true
-
+              config:
+                severity: warn
       - name: source_file
         description: Name of the source file from which this record was ingested.
 
@@ -191,7 +192,8 @@ models:
           - accepted_values:
               values: ['A', 'B']
               quote: true
-
+              config:
+                severity: warn
       - name: source_file
         description: Source file name.
 

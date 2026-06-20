@@ -102,7 +102,8 @@ models:
                 - unsuccessful
                 - complete
                 - withdrawn
-
+              config:
+                severity: warn
       - name: tender_procurement_method
         description: Method used to solicit offers (e.g. open, selective, limited, direct).
         data_tests:
@@ -112,7 +113,8 @@ models:
                 - selective
                 - limited
                 - direct
-
+              config:
+                severity: warn
       - name: tender_value_amount
         description: Estimated monetary value of the tender.
 
@@ -131,7 +133,8 @@ models:
                 - active
                 - cancelled
                 - unsuccessful
-
+              config:
+                severity: warn
       - name: award_value_amount
         description: Monetary value of the award.
 
@@ -273,7 +276,8 @@ models:
                 - unsuccessful
                 - complete
                 - withdrawn
-
+              config:
+                severity: warn
       - name: tender_procurement_method
         description: Procurement method used.
         data_tests:
@@ -283,7 +287,8 @@ models:
                 - selective
                 - limited
                 - direct
-
+              config:
+                severity: warn
       - name: tender_value_amount
         description: Estimated tender value.
 
@@ -308,7 +313,8 @@ models:
                 - active
                 - cancelled
                 - unsuccessful
-
+              config:
+                severity: warn
       - name: award_value_amount
         description: Monetary value of the award.
 

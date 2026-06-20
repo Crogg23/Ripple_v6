@@ -71,7 +71,7 @@ renamed as (
         )                                                        as position_key,
 
         -- ingestion metadata (populated by the loader; cast safely)
-        try_to_timestamp(_ingested_at)                           as _ingested_at,
+        to_timestamp_ntz(_ingested_at, 6)                        as _ingested_at,
         _source_run_id                                           as _source_run_id
 
     from source

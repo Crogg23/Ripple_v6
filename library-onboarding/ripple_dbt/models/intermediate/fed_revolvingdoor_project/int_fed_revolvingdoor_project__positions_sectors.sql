@@ -4,6 +4,9 @@
   Unpivot the wide sector/interest columns into a tidy long table so that
   downstream mart and analytics queries can filter/aggregate on any sector
   without referencing 30+ columns.  One row per (position_key, sector_slot).
+
+  Snowflake has no multi-column UNPIVOT, so we FLATTEN an array of one object
+  per sector slot ({slot, name, interest}) and pull the pair back out.
 */
 
 with stg as (
@@ -14,31 +17,39 @@ with stg as (
 
 unpivoted as (
 
-    select position_key, person_name, agency, industry_sector,
-           position_type, position_name, position_department,
-           position_description, _ingested_at, _source_run_id,
-           sector_slot, sector_name, sector_interest
-    from stg
-    unpivot (
-        (sector_name, sector_interest) for sector_slot in (
-            (sector1,  sector1_interest)  as 'sector1',
-            (sector2,  sector2_interest)  as 'sector2',
-            (sector3,  sector3_interest)  as 'sector3',
-            (sector4,  sector4_interest)  as 'sector4',
-            (sector5,  sector5_interest)  as 'sector5',
-            (sector6,  sector6_interest)  as 'sector6',
-            (sector7,  sector7_interest)  as 'sector7',
-            (sector8,  sector8_interest)  as 'sector8',
-            (sector9,  sector9_interest)  as 'sector9',
-            (sector10, sector10_interest) as 'sector10',
-            (sector11, sector11_interest) as 'sector11',
-            (sector12, sector12_interest) as 'sector12',
-            (sector14, sector14_interest) as 'sector14',
-            (sector14_1, sector14_interest_1) as 'sector14_1',
-            (sector15, sector15_interest) as 'sector15',
-            (sector16, sector16_interest) as 'sector16'
-        )
-    )
+    select
+        stg.position_key,
+        stg.person_name,
+        stg.agency,
+        stg.industry_sector,
+        stg.position_type,
+        stg.position_name,
+        stg.position_department,
+        stg.position_description,
+        stg._ingested_at,
+        stg._source_run_id,
+        f.value:slot::string     as sector_slot,
+        f.value:name::string     as sector_name,
+        f.value:interest::string as sector_interest
+    from stg,
+    lateral flatten(input => array_construct(
+        object_construct_keep_null('slot', 'sector1',    'name', sector1,    'interest', sector1_interest),
+        object_construct_keep_null('slot', 'sector2',    'name', sector2,    'interest', sector2_interest),
+        object_construct_keep_null('slot', 'sector3',    'name', sector3,    'interest', sector3_interest),
+        object_construct_keep_null('slot', 'sector4',    'name', sector4,    'interest', sector4_interest),
+        object_construct_keep_null('slot', 'sector5',    'name', sector5,    'interest', sector5_interest),
+        object_construct_keep_null('slot', 'sector6',    'name', sector6,    'interest', sector6_interest),
+        object_construct_keep_null('slot', 'sector7',    'name', sector7,    'interest', sector7_interest),
+        object_construct_keep_null('slot', 'sector8',    'name', sector8,    'interest', sector8_interest),
+        object_construct_keep_null('slot', 'sector9',    'name', sector9,    'interest', sector9_interest),
+        object_construct_keep_null('slot', 'sector10',   'name', sector10,   'interest', sector10_interest),
+        object_construct_keep_null('slot', 'sector11',   'name', sector11,   'interest', sector11_interest),
+        object_construct_keep_null('slot', 'sector12',   'name', sector12,   'interest', sector12_interest),
+        object_construct_keep_null('slot', 'sector14',   'name', sector14,   'interest', sector14_interest),
+        object_construct_keep_null('slot', 'sector14_1', 'name', sector14_1, 'interest', sector14_interest_1),
+        object_construct_keep_null('slot', 'sector15',   'name', sector15,   'interest', sector15_interest),
+        object_construct_keep_null('slot', 'sector16',   'name', sector16,   'interest', sector16_interest)
+    )) f
 
 )
 

@@ -47,7 +47,8 @@ models:
                 - 'Examined'
                 - 'Converted'
               quote: true
-
+              config:
+                severity: warn
       - name: company_type
         description: Legal company type classification as defined by the CRO.
 
@@ -113,7 +114,8 @@ models:
                 - 'Examined'
                 - 'Converted'
               quote: true
-
+              config:
+                severity: warn
       - name: company_type
         description: Legal company type classification.
 

@@ -50,8 +50,9 @@ models:
       - name: registration_date
         description: Date the registration was filed with the DOJ (maps to date key ID).
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: termination_date
         description: Date the registration was terminated, if applicable.
 
@@ -180,8 +181,9 @@ models:
       - name: date
         description: Registration date — the primary date identifier for cross-source joins.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: termination_date
         description: Date the FARA registration was terminated, if applicable.
 

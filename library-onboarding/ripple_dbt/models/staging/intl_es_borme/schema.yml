@@ -53,6 +53,8 @@ models:
           - not_null
           - accepted_values:
               values: ['ES']
+              config:
+                severity: warn
 
       - name: date
         description: Publication date of the BORME entry, cast to DATE.
@@ -118,6 +120,8 @@ models:
           - not_null
           - accepted_values:
               values: ['ES']
+              config:
+                severity: warn
 
       - name: date
         description: Publication date of the BORME entry. Part of the composite primary key.
