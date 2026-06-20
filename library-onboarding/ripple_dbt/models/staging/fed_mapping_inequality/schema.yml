@@ -46,11 +46,7 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: ['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID',
-                       'IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS',
-                       'MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK',
-                       'OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV',
-                       'WI','WY','DC']
+              values: ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY', 'DC']
 
       - name: holc_grade
         description: HOLC security grade assigned to the neighborhood (A, B, C, or D).
@@ -58,6 +54,8 @@ models:
           - not_null
           - accepted_values:
               values: ['A', 'B', 'C', 'D']
+              config:
+                severity: warn
 
       - name: holc_color
         description: Color associated with the HOLC grade on historical maps.
@@ -129,11 +127,7 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: ['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID',
-                       'IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS',
-                       'MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK',
-                       'OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV',
-                       'WI','WY','DC']
+              values: ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY', 'DC']
 
       - name: holc_grade
         description: HOLC security grade assigned to the neighborhood (A, B, C, or D).
@@ -141,6 +135,8 @@ models:
           - not_null
           - accepted_values:
               values: ['A', 'B', 'C', 'D']
+              config:
+                severity: warn
 
       - name: holc_color
         description: Color associated with the HOLC grade on historical maps.

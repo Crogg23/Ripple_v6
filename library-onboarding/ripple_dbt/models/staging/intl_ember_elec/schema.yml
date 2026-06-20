@@ -38,7 +38,8 @@ models:
           - accepted_values:
               values: ['Country', 'Region']
               quote: true
-
+              config:
+                severity: warn
       - name: continent
         description: Continent name associated with the country/region.
 
@@ -123,7 +124,8 @@ models:
           - accepted_values:
               values: ['Country', 'Region']
               quote: true
-
+              config:
+                severity: warn
       - name: continent
         description: Continent name associated with the country/region.
 

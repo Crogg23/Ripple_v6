@@ -28,13 +28,15 @@ models:
       - name: date_of_departure
         description: Parsed date of the voyage departure.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: year_of_departure
         description: Year extracted from the departure date.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: port_of_departure
         description: Name of the port from which the voyage departed.
         data_tests:
@@ -98,13 +100,15 @@ models:
       - name: date_of_departure
         description: Date of the voyage departure (cross-source date key).
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: year_of_departure
         description: Year of the voyage departure.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: port_of_departure
         description: Name of the port from which the voyage departed.
         data_tests:

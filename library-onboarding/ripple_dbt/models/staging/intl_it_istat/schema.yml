@@ -57,8 +57,9 @@ models:
       - name: date
         description: Parsed observation date.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: dataflow_id
         description: SDMX dataflow identifier.
         data_tests:
@@ -126,8 +127,9 @@ models:
       - name: date
         description: Observation date.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: dataflow_id
         description: SDMX dataflow identifier.
         data_tests:

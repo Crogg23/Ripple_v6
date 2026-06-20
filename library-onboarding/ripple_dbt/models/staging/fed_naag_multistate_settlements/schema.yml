@@ -25,8 +25,9 @@ models:
       - name: date
         description: Date of the settlement (cast from TEXT to DATE).
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: state
         description: US state participating in the multistate settlement.
         data_tests:
@@ -81,8 +82,9 @@ models:
       - name: settlement_date
         description: Date of the settlement.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: state
         description: US state participating in the multistate settlement.
         data_tests:

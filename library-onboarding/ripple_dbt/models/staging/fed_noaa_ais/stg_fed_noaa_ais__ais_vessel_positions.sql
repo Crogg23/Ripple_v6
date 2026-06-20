@@ -42,10 +42,8 @@ renamed_cast as (
         trim(SOURCE_FILE)                                   as source_file,
 
         -- pipeline audit columns (carry-through if present, else null)
-        try_to_timestamp(
-            nullif(trim(try_cast("_ingested_at" as text)), '')
-        )                                                   as _ingested_at,
-        nullif(trim(try_cast("_source_run_id" as text)), '') as _source_run_id
+        to_timestamp_ntz(_ingested_at, 6)                   as _ingested_at,
+        nullif(trim(try_cast(_source_run_id as text)), '') as _source_run_id
 
     from source
 

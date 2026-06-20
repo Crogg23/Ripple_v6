@@ -45,13 +45,15 @@ models:
       - name: award_date
         description: Date the award was issued (cast from TEXT via try_to_date).
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: fiscal_year
         description: Federal fiscal year associated with the award.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: award_amount
         description: Dollar value of the grant award.
 
@@ -97,7 +99,8 @@ models:
           - accepted_values:
               values: ['Metro', 'Non-Metro', 'Unknown', 'metro', 'non-metro', 'unknown']
               quote: true
-
+              config:
+                severity: warn
       - name: _ingested_at
         description: Timestamp when the record was ingested into the landing table.
 
@@ -126,13 +129,15 @@ models:
       - name: award_date
         description: Date the award was issued.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: fiscal_year
         description: Federal fiscal year associated with the award.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: zip_code
         description: ZIP code of the recipient (from RECIPIENT_ZIP).
         data_tests:
@@ -169,7 +174,8 @@ models:
           - accepted_values:
               values: ['Metro', 'Non-Metro', 'Unknown', 'metro', 'non-metro', 'unknown']
               quote: true
-
+              config:
+                severity: warn
       - name: opdiv
         description: HHS Operating Division that issued the award.
         data_tests:

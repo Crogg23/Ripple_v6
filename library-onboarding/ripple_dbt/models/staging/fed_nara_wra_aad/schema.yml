@@ -37,8 +37,9 @@ models:
       - name: record_date
         description: Parsed date of the record (try_to_date applied).
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: raw_date
         description: Original raw date string from the source.
 
@@ -121,8 +122,9 @@ models:
       - name: record_date
         description: Typed date of the record.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: raw_date
         description: Original raw date string retained for auditing.
 

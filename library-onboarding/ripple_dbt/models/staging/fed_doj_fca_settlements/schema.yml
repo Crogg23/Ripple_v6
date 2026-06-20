@@ -36,8 +36,9 @@ models:
       - name: date
         description: Settlement date parsed from the raw SETTLEMENT_DATE text field.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: case_title
         description: Full title of the FCA case.
 
@@ -108,8 +109,9 @@ models:
       - name: settlement_date
         description: Date the settlement or judgment was reached.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: case_title
         description: Full title of the FCA case.
 

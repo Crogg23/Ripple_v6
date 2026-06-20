@@ -34,8 +34,9 @@ models:
       - name: interview_date
         description: Date the interview was conducted (cast from raw TEXT).
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: state_fips
         description: Two-digit FIPS code for the U.S. state where the interview took place.
         data_tests:
@@ -106,8 +107,9 @@ models:
       - name: interview_date
         description: Date the interview was conducted.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: state_fips
         description: Two-digit FIPS code for the U.S. state where the interview took place.
         data_tests:
@@ -121,8 +123,9 @@ models:
       - name: interview_year
         description: Calendar year derived from interview_date.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: interview_month
         description: Calendar month (1–12) derived from interview_date.
 

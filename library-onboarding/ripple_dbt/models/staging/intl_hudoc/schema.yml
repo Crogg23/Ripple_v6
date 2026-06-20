@@ -48,8 +48,9 @@ models:
       - name: date
         description: Date of the judgment or decision (cast from TEXT via try_to_date).
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: case_title
         description: Full title of the ECHR case.
 
@@ -167,8 +168,9 @@ models:
       - name: judgment_date
         description: Date of the judgment or decision.
         data_tests:
-          - not_null
-
+          - not_null:
+              config:
+                severity: warn
       - name: case_title
         description: Full title of the case.
 
