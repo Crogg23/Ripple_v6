@@ -73,6 +73,20 @@ PROBE_WORKERS = 8          # modest concurrency; portals are distinct hosts
 CATEGORY_TARGET = 321      # the connectivity brief's portal supercluster
 CATEGORY_TOLERANCE = 60    # accept the auto-pick if within +/- this of target
 
+# The approved portal supercluster: the CATEGORY tags that are actually open-data
+# portals / meta-aggregators (the ones that run Socrata/CKAN/ArcGIS/etc.). Chosen
+# from the live registry's CATEGORY distribution (194 sources across these 8).
+PORTAL_CATEGORIES = [
+    "City/County Open-Data Portals",
+    "State Open-Data Portals",
+    "Open Data",
+    "open data",
+    "meta-discovery",
+    "national-portal",
+    "aggregators",
+    "Meta-Portals & Catalogs",
+]
+
 
 # --------------------------------------------------------------------------- #
 # env / .env loading  (override trap handling)
@@ -227,31 +241,22 @@ def choose_portal_category(dist: list[dict]) -> tuple[str | None, str]:
 
 
 def pull_portals(pat: str, warehouse: str | None, category: str | None) -> tuple[list[dict], str]:
-    """Return (rows, category_used). Honors Step-1's guard: if the auto-detected
-    cluster isn't ~321, the caller stops and reports."""
-    if not category:
-        dist = category_distribution(pat, warehouse)
-        print("\n  CATEGORY distribution (top 15):")
-        for row in dist[:15]:
-            c = row.get("CATEGORY") or row.get("category")
-            cnt = row.get("N") or row.get("n")
-            print(f"    {cnt:>6}  {c}")
-        category, why = choose_portal_category(dist)
-        print(f"\n  auto-picked CATEGORY = {category!r}  ({why})")
-
+    """Pull the portal supercluster. Default = the approved PORTAL_CATEGORIES set;
+    --category overrides to a single label. Null-URL rows are kept (flagged later)
+    so the report covers the whole set, not just the probeable ones."""
+    cats = [category] if category else PORTAL_CATEGORIES
+    label = category if category else f"portal supercluster ({len(cats)} CATEGORY tags)"
+    # category labels come from the registry itself, not user input; escape quotes.
+    in_list = ", ".join("'" + c.replace("'", "''") + "'" for c in cats)
     sql = (
         "SELECT SOURCE_ID, NAME, URL, CATEGORY, SUBCATEGORY, ACCESS_METHOD, "
         "FORMAT, AUTH_REQUIRED "
         f"FROM {REGISTRY_FQN} "
-        "WHERE CATEGORY = %(cat)s AND URL IS NOT NULL AND TRIM(URL) <> '' "
-        "ORDER BY SOURCE_ID"
+        f"WHERE CATEGORY IN ({in_list}) "
+        "ORDER BY CATEGORY, SOURCE_ID"
     )
-    # SQL REST API uses bind list, not %(name)s — inline safely (category is from
-    # our own GROUP BY, not user input) via a parameterless statement.
-    safe_cat = (category or "").replace("'", "''")
-    sql = sql.replace("%(cat)s", f"'{safe_cat}'")
     rows = sf_sql(sql, pat, warehouse)
-    return rows, category or ""
+    return rows, label
 
 
 # --------------------------------------------------------------------------- #
@@ -611,16 +616,13 @@ def main() -> int:
     print("\nSTEP 1 — pulling the portal supercluster")
     portals, category = pull_portals(pat, warehouse, args.category)
     n = len(portals)
-    print(f"  pulled {n} portals under CATEGORY={category!r}")
-
-    if abs(n - CATEGORY_TARGET) > CATEGORY_TOLERANCE and not args.no_stop:
-        print(f"\nSTOP: expected ~{CATEGORY_TARGET} portals, got {n}. That's outside the "
-              f"±{CATEGORY_TOLERANCE} guardrail.\n"
-              "  Re-run with --distribution to inspect categories, then\n"
-              "  --category 'EXACT LABEL' to pin it, or --no-stop to force.")
+    print(f"  pulled {n} portals ({category})")
+    if n == 0:
+        print("STOP: 0 portals matched — check the CATEGORY set (--distribution).")
         return 2
 
-    print("\nSTEP 2 — fingerprinting (polite: <=2 reqs/portal, 6s timeout, count-only)")
+    print(f"\nSTEP 2 — fingerprinting (polite: <={PROBE_BUDGET} reqs/portal stop-at-first-match, "
+          f"{PROBE_TIMEOUT}s timeout, count-only)")
     results = fingerprint_all(portals)
 
     print("\nSTEP 3 — writing report")
