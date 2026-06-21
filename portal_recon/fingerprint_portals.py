@@ -160,6 +160,16 @@ def pick_warehouse(pat: str) -> str | None:
     wh = os.environ.get("SNOWFLAKE_WAREHOUSE", "").strip()
     if wh:
         return wh
+    # The user's account-default warehouse (the SQL API applies it automatically).
+    # It's proven usable by this role, so prefer it before guessing from SHOW.
+    try:
+        rows = sf_sql("SELECT CURRENT_WAREHOUSE() AS W", pat, timeout=20)
+        w = (rows[0].get("W") if rows else None) or ""
+        if w.strip():
+            print(f"  using account-default warehouse: {w}")
+            return w
+    except SnowflakeError:
+        pass
     try:
         rows = sf_sql("SHOW WAREHOUSES", pat)
     except SnowflakeError as e:
@@ -168,7 +178,7 @@ def pick_warehouse(pat: str) -> str | None:
     for r in rows:
         name = r.get("name") or r.get("NAME")
         if name:
-            print(f"  no SNOWFLAKE_WAREHOUSE set; using discovered warehouse: {name}")
+            print(f"  no default warehouse; using discovered: {name}")
             return name
     return None
 
