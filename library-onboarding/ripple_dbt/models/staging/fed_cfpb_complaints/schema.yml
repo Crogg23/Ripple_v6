@@ -1,0 +1,196 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CFPB_COMPLAINTS
+        description: >-
+          Raw landing table for CFPB Consumer Complaint Database records, loaded
+          incrementally (append-only) by the onboarding agent. All source columns
+          are TEXT; _ingested_at is an epoch-microseconds NUMBER.
+
+models:
+
+  - name: stg_fed_cfpb_complaints__complaints
+    description: >-
+      Staging model for CFPB consumer complaints. Casts TEXT columns to typed
+      values, normalises Yes/No and True/False flags to booleans, and
+      deduplicates on complaint_id keeping the most-recently-ingested record.
+    columns:
+
+      - name: complaint_id
+        description: CFPB-assigned unique complaint identifier (primary key).
+        data_tests:
+          - unique
+          - not_null
+
+      - name: date_received
+        description: Date the CFPB received the complaint.
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+
+      - name: date_sent_to_company
+        description: Date the complaint was forwarded to the company.
+
+      - name: product
+        description: Financial product or service the complaint is about.
+
+      - name: sub_product
+        description: More specific product category.
+
+      - name: issue
+        description: The issue the consumer identified in the complaint.
+
+      - name: sub_issue
+        description: More specific issue category.
+
+      - name: company
+        description: Company the complaint is about.
+
+      - name: state
+        description: Two-letter US state / territory code of the consumer (cross-source geo join key).
+
+      - name: zip_code
+        description: Consumer ZIP code (cross-source geo join key; may be partially masked).
+
+      - name: submitted_via
+        description: Channel through which the complaint was submitted.
+        data_tests:
+          - accepted_values:
+              values: ['Web', 'Phone', 'Postal mail', 'Fax', 'Email', 'Referral', 'Web Referral']
+              config:
+                severity: warn
+
+      - name: company_response
+        description: How the company responded to the consumer.
+        data_tests:
+          - accepted_values:
+              values:
+                - 'Closed with explanation'
+                - 'Closed with monetary relief'
+                - 'Closed with non-monetary relief'
+                - 'Closed without relief'
+                - 'Closed'
+                - 'In progress'
+                - 'Untimely response'
+              config:
+                severity: warn
+
+      - name: company_public_response
+        description: The company's optional public response.
+
+      - name: is_timely
+        description: Whether the company responded in a timely manner.
+
+      - name: has_narrative
+        description: Whether the consumer provided a free-text narrative.
+
+      - name: tags
+        description: CFPB tags applied to the complaint (e.g. Servicemember, Older American).
+
+      - name: complaint_narrative
+        description: Consumer's free-text description of what happened, if provided.
+
+      - name: _ingested_at
+        description: Timestamp the record was ingested into the landing table (from epoch microseconds).
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Pipeline run identifier for the ingestion job.
+
+  - name: consumer_protection__fed_cfpb_complaints
+    description: >-
+      Analytics-ready mart for CFPB consumer complaints. Exposes geography and
+      company join keys, adds response-time and date-truncation helpers and a
+      closed-status flag, and tags each row with the source_id.
+    columns:
+
+      - name: complaint_id
+        description: CFPB-assigned unique complaint identifier (primary key and cross-source join key).
+        data_tests:
+          - unique
+          - not_null
+
+      - name: state
+        description: Two-letter US state / territory code (cross-source geo join key).
+
+      - name: zip_code
+        description: Consumer ZIP code (cross-source geo join key).
+
+      - name: company
+        description: Company the complaint is about.
+
+      - name: date_received
+        description: Date the CFPB received the complaint.
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+
+      - name: date_sent_to_company
+        description: Date the complaint was forwarded to the company.
+
+      - name: days_received_to_company
+        description: Days between date_received and date_sent_to_company.
+
+      - name: received_month
+        description: First day of the month the complaint was received (date_trunc month).
+
+      - name: received_year
+        description: First day of the year the complaint was received (date_trunc year).
+
+      - name: product
+        description: Financial product or service the complaint is about.
+
+      - name: sub_product
+        description: More specific product category.
+
+      - name: issue
+        description: The issue the consumer identified.
+
+      - name: sub_issue
+        description: More specific issue category.
+
+      - name: submitted_via
+        description: Channel through which the complaint was submitted.
+
+      - name: company_response
+        description: How the company responded to the consumer.
+
+      - name: company_public_response
+        description: The company's optional public response.
+
+      - name: is_timely
+        description: Whether the company responded in a timely manner.
+
+      - name: has_narrative
+        description: Whether the consumer provided a free-text narrative.
+
+      - name: tags
+        description: CFPB tags applied to the complaint.
+
+      - name: complaint_narrative
+        description: Consumer's free-text description of what happened, if provided.
+
+      - name: is_closed
+        description: Flag — true when company_response indicates the complaint is closed.
+
+      - name: source_id
+        description: Constant identifier for this data source ('fed_cfpb_complaints').
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['fed_cfpb_complaints']
+
+      - name: _ingested_at
+        description: Timestamp the record was ingested into the landing table.
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Pipeline run identifier for the ingestion job.
