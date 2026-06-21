@@ -1,0 +1,1954 @@
+{
+  "label": "portal supercluster (8 CATEGORY tags)",
+  "n": 194,
+  "by_platform": {
+    "UNKNOWN": 89,
+    "CKAN": 25,
+    "OPENDATASOFT": 5,
+    "SOCRATA": 35,
+    "ARCGIS": 40
+  },
+  "reclaimed": 13,
+  "results": [
+    {
+      "source_id": "fed_datagov_catalog",
+      "name": "Data.gov Catalog API",
+      "base_url": "https://open.gsa.gov",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_ae_bayanat",
+      "name": "UAE Bayanat Open Data Portal",
+      "base_url": "https://bayanat.ae",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": false,
+      "notes": "reclaim: still no homepage response",
+      "method": ""
+    },
+    {
+      "source_id": "intl_ar_datosgob",
+      "name": "Argentina National Open Data Portal (datos.gob.ar)",
+      "base_url": "https://datos.gob.ar",
+      "platform": "CKAN",
+      "api_base": "https://datos.gob.ar/api/3/action",
+      "responded": true,
+      "notes": "matched CKAN via /api/3/action/package_search?rows=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "intl_at_datagvat",
+      "name": "Austria National Open Data Portal (data.gv.at)",
+      "base_url": "https://www.data.gv.at",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_au_data_gov",
+      "name": "data.gov.au",
+      "base_url": "https://data.gov.au",
+      "platform": "CKAN",
+      "api_base": "https://data.gov.au/data/api/3/action",
+      "responded": true,
+      "notes": "reclaimed at subpath /data (CKAN)",
+      "method": "subpath"
+    },
+    {
+      "source_id": "intl_bd_datagov",
+      "name": "Bangladesh Open Government Data Portal (data.gov.bd)",
+      "base_url": "https://data.gov.bd",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_be_datagovbe",
+      "name": "Belgium Federal Open Data Portal (data.gov.be)",
+      "base_url": "https://data.gov.be",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_bg_opendata",
+      "name": "Bulgaria National Open Data Portal (opendata.government.bg)",
+      "base_url": "https://opendata.government.bg",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: still no homepage response",
+      "method": ""
+    },
+    {
+      "source_id": "intl_bh_opendata",
+      "name": "Bahrain Open Data Portal (data.gov.bh)",
+      "base_url": "https://data.gov.bh",
+      "platform": "OPENDATASOFT",
+      "api_base": "https://data.gov.bh/api/v2",
+      "responded": true,
+      "notes": "matched OPENDATASOFT via /api/v2/catalog/datasets?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "intl_br_dados_gov",
+      "name": "dados.gov.br",
+      "base_url": "https://dados.gov.br",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_ca_open_canada",
+      "name": "Open Government Portal Canada (open.canada.ca)",
+      "base_url": "https://open.canada.ca",
+      "platform": "CKAN",
+      "api_base": "https://open.canada.ca/data/api/3/action",
+      "responded": true,
+      "notes": "reclaimed at subpath /data (CKAN)",
+      "method": "subpath"
+    },
+    {
+      "source_id": "intl_ch_opendataswiss",
+      "name": "Switzerland Open Government Data Portal (opendata.swiss)",
+      "base_url": "https://handbook.opendata.swiss",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_cl_datosgob",
+      "name": "Chile National Open Data Portal (datos.gob.cl)",
+      "base_url": "https://datos.gob.cl",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_co_datosgov",
+      "name": "Colombia National Open Data Portal (datos.gov.co)",
+      "base_url": "https://www.datos.gov.co",
+      "platform": "SOCRATA",
+      "api_base": "https://www.datos.gov.co/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "intl_cy_opendata",
+      "name": "Cyprus National Open Data Portal",
+      "base_url": "https://dateno.io",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_cz_nkod",
+      "name": "Czechia National Open Data Catalog (NKOD) (data.gov.cz)",
+      "base_url": "https://data.gov.cz",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_de_govdata",
+      "name": "GovData.de",
+      "base_url": "https://www.govdata.de",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_eg_capmas",
+      "name": "Egypt Data Portal (opendataforafrica.org/Egypt)",
+      "base_url": "https://egypt.opendataforafrica.org",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_es_datosgob",
+      "name": "Spain National Open Data Portal (datos.gob.es)",
+      "base_url": "https://datos.gob.es",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_eu_data_europa",
+      "name": "European Data Portal (data.europa.eu)",
+      "base_url": "https://data.europa.eu",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_fi_avoindata",
+      "name": "Finland National Open Data Catalog (avoindata.fi)",
+      "base_url": "https://www.avoindata.fi",
+      "platform": "CKAN",
+      "api_base": "https://www.avoindata.fi/data/api/3/action",
+      "responded": true,
+      "notes": "reclaimed at subpath /data (CKAN)",
+      "method": "subpath"
+    },
+    {
+      "source_id": "intl_fr_data_gouv",
+      "name": "data.gouv.fr",
+      "base_url": "https://www.data.gouv.fr",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_ge_datagov",
+      "name": "Georgia National Open Data Portal (data.gov.ge)",
+      "base_url": "https://www.opengovpartnership.org",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_gh_datagovgh",
+      "name": "Ghana Open Data Initiative (data.gov.gh)",
+      "base_url": "https://data.gov.gh",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_gr_datagov",
+      "name": "Greece National Open Data Portal (data.gov.gr)",
+      "base_url": "https://data.gov.gr",
+      "platform": "CKAN",
+      "api_base": "https://data.gov.gr/api/3/action",
+      "responded": true,
+      "notes": "matched CKAN via /api/3/action/package_search?rows=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "intl_hdx",
+      "name": "Humanitarian Data Exchange (HDX) CKAN API",
+      "base_url": "https://data.humdata.org",
+      "platform": "CKAN",
+      "api_base": "https://data.humdata.org/api/3/action",
+      "responded": true,
+      "notes": "matched CKAN via /api/3/action/package_search?rows=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "intl_hk_datagov",
+      "name": "Hong Kong Open Data Portal (data.gov.hk)",
+      "base_url": "https://data.gov.hk",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_hr_datagov",
+      "name": "Croatia National Open Data Portal (data.gov.hr)",
+      "base_url": "https://data.gov.hr",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_hu_opendata",
+      "name": "Hungary National Open Data Portal (opendata.hu)",
+      "base_url": "https://opendata.hu",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_id_datagoid",
+      "name": "Indonesia Satu Data Portal (data.go.id)",
+      "base_url": "https://data.go.id",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_ie_datagovie",
+      "name": "Ireland National Open Data Portal (data.gov.ie)",
+      "base_url": "https://data.gov.ie",
+      "platform": "CKAN",
+      "api_base": "https://data.gov.ie/api/3/action",
+      "responded": true,
+      "notes": "matched CKAN via /api/3/action/package_search?rows=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "intl_il_datagov",
+      "name": "Israel National Open Data Portal (data.gov.il)",
+      "base_url": "https://data.gov.il",
+      "platform": "CKAN",
+      "api_base": "https://data.gov.il/api/3/action",
+      "responded": true,
+      "notes": "matched CKAN via /api/3/action/package_search?rows=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "intl_in_data_gov",
+      "name": "Open Government Data Platform India (data.gov.in)",
+      "base_url": "https://www.data.gov.in",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_is_opendata",
+      "name": "Iceland Open Data Portal (island.is/en/o/digital-iceland/open-data)",
+      "base_url": "https://island.is",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_it_datigovit",
+      "name": "Italy National Open Data Portal (dati.gov.it)",
+      "base_url": "https://www.dati.gov.it",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_jm_opendata",
+      "name": "Jamaica Open Data Portal (data.gov.jm)",
+      "base_url": "https://data.gov.jm",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_jo_opendata",
+      "name": "Jordan Open Government Data Portal (opendata.gov.jo)",
+      "base_url": "https://www.opendata.gov.jo",
+      "platform": "CKAN",
+      "api_base": "",
+      "responded": true,
+      "notes": "homepage branding => CKAN (NOT API-confirmed)",
+      "method": "branding"
+    },
+    {
+      "source_id": "intl_jp_datagojp",
+      "name": "Japan National Open Data Portal (data.go.jp)",
+      "base_url": "https://www.data.go.jp",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_ke_opendata",
+      "name": "Kenya Open Data Initiative (opendata.go.ke)",
+      "base_url": "https://www.opendata.go.ke",
+      "platform": "ARCGIS",
+      "api_base": "",
+      "responded": true,
+      "notes": "homepage branding => ARCGIS (NOT API-confirmed)",
+      "method": "branding"
+    },
+    {
+      "source_id": "intl_kr_datagokr",
+      "name": "South Korea Public Data Portal (data.go.kr)",
+      "base_url": "https://www.data.go.kr",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_lk_datagov",
+      "name": "Sri Lanka Open Data Portal (data.gov.lk)",
+      "base_url": "https://data.gov.lk",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": false,
+      "notes": "reclaim: still no homepage response",
+      "method": ""
+    },
+    {
+      "source_id": "intl_lt_datagov",
+      "name": "Lithuania National Open Data Portal (data.gov.lt)",
+      "base_url": "https://data.gov.lt",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_ma_opendata",
+      "name": "Morocco National Open Data Portal (data.gov.ma)",
+      "base_url": "https://dataportals.org",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_md_datagov",
+      "name": "Moldova National Open Data Portal (data.gov.md)",
+      "base_url": "https://data.gov.md",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_mx_datos_gob",
+      "name": "datos.gob.mx",
+      "base_url": "https://www.datos.gob.mx",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_my_datagov",
+      "name": "Malaysia National Open Data Portal (data.gov.my)",
+      "base_url": "https://data.gov.my",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_ng_datagov",
+      "name": "Nigeria Open Data Portal (data.gov.ng)",
+      "base_url": "http://www.data.gov.ng",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_nl_overheid",
+      "name": "Netherlands National Data Register (data.overheid.nl)",
+      "base_url": "https://data.overheid.nl",
+      "platform": "CKAN",
+      "api_base": "https://data.overheid.nl/data/api/3/action",
+      "responded": true,
+      "notes": "reclaimed at subpath /data (CKAN)",
+      "method": "subpath"
+    },
+    {
+      "source_id": "intl_no_norgeno",
+      "name": "Norway National Data Portal (data.norge.no)",
+      "base_url": "https://data.norge.no",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_np_opendata",
+      "name": "Open Data Nepal Portal (opendatanepal.com)",
+      "base_url": "https://opendatanepal.com",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_nz_datagovtnz",
+      "name": "New Zealand Government Open Data Catalog (data.govt.nz)",
+      "base_url": "https://data.govt.nz",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_om_opendata",
+      "name": "Oman National Open Data Portal (oman.om open data)",
+      "base_url": "https://oman.om",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_owid",
+      "name": "Our World in Data Catalog API",
+      "base_url": "https://docs.owid.io",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_pe_datosabiertos",
+      "name": "Peru National Open Data Platform (datosabiertos.gob.pe)",
+      "base_url": "https://www.datosabiertos.gob.pe",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_ph_datagovph",
+      "name": "Philippines Open Data Portal (data.gov.ph)",
+      "base_url": "https://data.gov.ph",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_pl_danegov",
+      "name": "Poland National Open Data Portal (dane.gov.pl)",
+      "base_url": "https://api.dane.gov.pl",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_pt_dadosgov",
+      "name": "Portugal Open Data Portal (dados.gov.pt)",
+      "base_url": "https://dados.gov.pt",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_qa_datagov",
+      "name": "Qatar National Open Data Portal (data.gov.qa)",
+      "base_url": "https://www.data.gov.qa",
+      "platform": "OPENDATASOFT",
+      "api_base": "https://www.data.gov.qa/api/v2",
+      "responded": true,
+      "notes": "matched OPENDATASOFT via /api/v2/catalog/datasets?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "intl_ro_datagov",
+      "name": "Romania National Open Data Portal (data.gov.ro)",
+      "base_url": "https://data.gov.ro",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": false,
+      "notes": "reclaim: still no homepage response",
+      "method": ""
+    },
+    {
+      "source_id": "intl_rs_opendata",
+      "name": "Serbia National Open Data Portal (data.gov.rs)",
+      "base_url": "https://www.ite.gov.rs",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_sa_opendata",
+      "name": "Saudi Arabia National Open Data Platform (open.data.gov.sa)",
+      "base_url": "https://od.data.gov.sa",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": false,
+      "notes": "reclaim: still no homepage response",
+      "method": ""
+    },
+    {
+      "source_id": "intl_se_dataportal",
+      "name": "Sweden National Data Portal (dataportal.se)",
+      "base_url": "https://www.dataportal.se",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_sg_data_gov",
+      "name": "data.gov.sg",
+      "base_url": "https://data.gov.sg",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_si_datagov",
+      "name": "Slovenia Open Data Portal (podatki.gov.si)",
+      "base_url": "https://nio.gov.si",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_sk_datagov",
+      "name": "Slovakia National Open Data Portal (data.gov.sk)",
+      "base_url": "https://data.gov.sk",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_sn_opendata",
+      "name": "Senegal Data Portal (opendataforafrica.org/Senegal)",
+      "base_url": "https://senegal.opendataforafrica.org",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_th_datagoth",
+      "name": "Thailand Open Government Data Portal (data.go.th)",
+      "base_url": "https://api.data.go.th",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_tw_datagov",
+      "name": "Taiwan Government Open Data Platform (data.gov.tw)",
+      "base_url": "https://data.gov.tw",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_ua_datagov",
+      "name": "Ukraine National Open Data Portal (data.gov.ua)",
+      "base_url": "https://data.gov.ua",
+      "platform": "CKAN",
+      "api_base": "https://data.gov.ua/api/3/action",
+      "responded": true,
+      "notes": "matched CKAN via /api/3/action/package_search?rows=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "intl_uk_data_gov",
+      "name": "UK National Data Library (data.gov.uk)",
+      "base_url": "https://www.data.gov.uk",
+      "platform": "CKAN",
+      "api_base": "https://www.data.gov.uk/api/3/action",
+      "responded": true,
+      "notes": "matched CKAN via /api/3/action/package_search?rows=0 (HTTP 200); redirects to ckan.publishing.service.gov.uk",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "intl_uy_datos",
+      "name": "Uruguay Open Data Platform (datos.gub.uy)",
+      "base_url": "https://datos.gub.uy",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "intl_za_datagov",
+      "name": "South Africa National Data Portal (data.gov.za)",
+      "base_url": "http://data.gov.za",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": false,
+      "notes": "reclaim: still no homepage response",
+      "method": ""
+    },
+    {
+      "source_id": "loc_albuquerque_open",
+      "name": "ABQ Data Open Data Portal",
+      "base_url": "https://opendata.cabq.gov",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "loc_alleghenycounty_open",
+      "name": "WPRDC Allegheny County Data",
+      "base_url": "https://data.wprdc.org",
+      "platform": "CKAN",
+      "api_base": "https://data.wprdc.org/api/3/action",
+      "responded": true,
+      "notes": "matched CKAN via /api/3/action/package_search?rows=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_asheville_open",
+      "name": "Asheville Open Data Portal",
+      "base_url": "https://data-avl.opendata.arcgis.com",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_atlanta_open",
+      "name": "Atlanta DataAtlanta / City Planning GIS Open Data Hub",
+      "base_url": "https://dpcd-coaplangis.opendata.arcgis.com",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_austin_open",
+      "name": "Austin Open Data",
+      "base_url": "https://data.austintexas.gov",
+      "platform": "SOCRATA",
+      "api_base": "https://data.austintexas.gov/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_baltimore_open",
+      "name": "Open Baltimore",
+      "base_url": "https://data.baltimorecity.gov",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_baton_rouge_open",
+      "name": "Open Data BR",
+      "base_url": "https://data.brla.gov",
+      "platform": "SOCRATA",
+      "api_base": "https://data.brla.gov/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_boston_open",
+      "name": "Analyze Boston",
+      "base_url": "https://data.boston.gov",
+      "platform": "CKAN",
+      "api_base": "https://data.boston.gov/api/3/action",
+      "responded": true,
+      "notes": "matched CKAN via /api/3/action/package_search?rows=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_buffalo_open",
+      "name": "OpenData Buffalo",
+      "base_url": "https://data.buffalony.gov",
+      "platform": "SOCRATA",
+      "api_base": "https://data.buffalony.gov/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_cambridge_open",
+      "name": "Cambridge Open Data Portal",
+      "base_url": "https://data.cambridgema.gov",
+      "platform": "SOCRATA",
+      "api_base": "https://data.cambridgema.gov/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_charlotte_open",
+      "name": "Charlotte Open Data Portal",
+      "base_url": "https://data.charlottenc.gov",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_chicago_open",
+      "name": "Chicago Data Portal",
+      "base_url": "https://data.cityofchicago.org",
+      "platform": "SOCRATA",
+      "api_base": "https://data.cityofchicago.org/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_cincinnati_open",
+      "name": "Open Data Cincinnati",
+      "base_url": "https://data.cincinnati-oh.gov",
+      "platform": "SOCRATA",
+      "api_base": "https://data.cincinnati-oh.gov/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_cleveland_open",
+      "name": "Cleveland Open Data Portal",
+      "base_url": "https://data.clevelandohio.gov",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_columbus_open",
+      "name": "Columbus GIS Open Data",
+      "base_url": "https://opendata.columbus.gov",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_cookcounty_open",
+      "name": "Cook County Open Data Portal",
+      "base_url": "https://datacatalog.cookcountyil.gov",
+      "platform": "SOCRATA",
+      "api_base": "https://datacatalog.cookcountyil.gov/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_dallas_open",
+      "name": "Dallas OpenData",
+      "base_url": "https://www.dallasopendata.com",
+      "platform": "SOCRATA",
+      "api_base": "https://www.dallasopendata.com/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_dc_open",
+      "name": "Open Data DC",
+      "base_url": "https://opendata.dc.gov",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_denver_open",
+      "name": "Denver Open Data Catalog",
+      "base_url": "https://denvergov.org",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "loc_detroit_open",
+      "name": "Detroit Open Data Portal",
+      "base_url": "https://data.detroitmi.gov",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_fairfaxcounty_open",
+      "name": "Fairfax County GIS Open Data Site",
+      "base_url": "https://data-fairfaxcountygis.opendata.arcgis.com",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_fortworth_open",
+      "name": "Fort Worth Open Data",
+      "base_url": "https://data.fortworthtexas.gov",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_gainesville_open",
+      "name": "DataGNV Gainesville Open Data Portal",
+      "base_url": "https://data.cityofgainesville.org",
+      "platform": "SOCRATA",
+      "api_base": "https://data.cityofgainesville.org/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_harriscounty_open",
+      "name": "Harris County Open Data / Dashboards & Datasets Hub",
+      "base_url": "https://geo-harriscounty.opendata.arcgis.com",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_hartford_open",
+      "name": "Open Data Hartford",
+      "base_url": "https://data.hartford.gov",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_houston_open",
+      "name": "Houston Open Data",
+      "base_url": "https://data.houstontx.gov",
+      "platform": "CKAN",
+      "api_base": "https://data.houstontx.gov/api/3/action",
+      "responded": true,
+      "notes": "matched CKAN via /api/3/action/package_search?rows=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_indianapolis_open",
+      "name": "Open Indy Data Portal",
+      "base_url": "https://data.indy.gov",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_kcmo_open",
+      "name": "Open Data KC",
+      "base_url": "https://data.kcmo.org",
+      "platform": "SOCRATA",
+      "api_base": "https://data.kcmo.org/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_kingcounty_open",
+      "name": "King County Open Data",
+      "base_url": "https://data.kingcounty.gov",
+      "platform": "SOCRATA",
+      "api_base": "https://data.kingcounty.gov/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_la_open",
+      "name": "DataLA \u2014 Los Angeles Open Data",
+      "base_url": "https://data.lacity.org",
+      "platform": "SOCRATA",
+      "api_base": "https://data.lacity.org/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_lacounty_open",
+      "name": "LA County Open Data Portal",
+      "base_url": "https://data.lacounty.gov",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_lasvegas_open",
+      "name": "Las Vegas Open Data Portal",
+      "base_url": "https://opendata.lasvegasnevada.gov",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": false,
+      "notes": "reclaim: still no homepage response",
+      "method": ""
+    },
+    {
+      "source_id": "loc_longbeach_open",
+      "name": "Long Beach Open Data Portal",
+      "base_url": "https://data.longbeach.gov",
+      "platform": "OPENDATASOFT",
+      "api_base": "https://data.longbeach.gov/api/v2",
+      "responded": true,
+      "notes": "matched OPENDATASOFT via /api/v2/catalog/datasets?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_louisville_open",
+      "name": "Louisville Open Data Portal",
+      "base_url": "https://data.louisvilleky.gov",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_maricopacounty_open",
+      "name": "Maricopa County GIS Open Data",
+      "base_url": "https://data-maricopa.opendata.arcgis.com",
+      "platform": "ARCGIS",
+      "api_base": "",
+      "responded": true,
+      "notes": "homepage branding => ARCGIS (NOT API-confirmed)",
+      "method": "branding"
+    },
+    {
+      "source_id": "loc_mecklenburgcounty_open",
+      "name": "Mecklenburg County GIS Open Data Portal",
+      "base_url": "https://data.mecknc.gov",
+      "platform": "ARCGIS",
+      "api_base": "",
+      "responded": true,
+      "notes": "homepage branding => ARCGIS (NOT API-confirmed)",
+      "method": "branding"
+    },
+    {
+      "source_id": "loc_memphis_open",
+      "name": "Memphis Open Data Hub",
+      "base_url": "https://data.memphistn.gov",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_mesa_open",
+      "name": "Mesa City Data Hub",
+      "base_url": "https://data.mesaaz.gov",
+      "platform": "SOCRATA",
+      "api_base": "https://data.mesaaz.gov/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_miami_city_open",
+      "name": "Miami Open Data Portal",
+      "base_url": "https://data.miamigov.com",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": false,
+      "notes": "reclaim: still no homepage response",
+      "method": ""
+    },
+    {
+      "source_id": "loc_miamidade_open",
+      "name": "Miami-Dade County Open Data Hub",
+      "base_url": "https://opendata.miamidade.gov",
+      "platform": "ARCGIS",
+      "api_base": "",
+      "responded": true,
+      "notes": "homepage branding => ARCGIS (NOT API-confirmed)",
+      "method": "branding"
+    },
+    {
+      "source_id": "loc_minneapolis_open",
+      "name": "Open Data Minneapolis",
+      "base_url": "https://opendata.minneapolismn.gov",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_montgomerycounty_open",
+      "name": "dataMontgomery Open Data Portal",
+      "base_url": "https://data.montgomerycountymd.gov",
+      "platform": "SOCRATA",
+      "api_base": "https://data.montgomerycountymd.gov/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_nashville_open",
+      "name": "Nashville Open Data",
+      "base_url": "https://data.nashville.gov",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_nyc_open",
+      "name": "NYC Open Data",
+      "base_url": "https://opendata.cityofnewyork.us",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "loc_nyc_palmbeach",
+      "name": "Palm Beach County Open Data",
+      "base_url": "https://opendata2-pbcgov.opendata.arcgis.com",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_oakland_open",
+      "name": "Oakland Open Data Portal",
+      "base_url": "https://data.oaklandca.gov",
+      "platform": "SOCRATA",
+      "api_base": "https://data.oaklandca.gov/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_orangecounty_ca_open",
+      "name": "Orange County Open GIS Data Portal",
+      "base_url": "https://data-ocpw.opendata.arcgis.com",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_orlando_open",
+      "name": "Orlando Open Data Portal",
+      "base_url": "https://data.cityoforlando.net",
+      "platform": "SOCRATA",
+      "api_base": "https://data.cityoforlando.net/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_philadelphia_open",
+      "name": "OpenDataPhilly",
+      "base_url": "https://opendataphilly.org",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_phoenix_open",
+      "name": "Phoenix Open Data Portal",
+      "base_url": "https://data.phoenix.gov",
+      "platform": "CKAN",
+      "api_base": "https://phoenixstaging.ogopendata.com/api/3/action",
+      "responded": true,
+      "notes": "reclaimed at redirect target https://phoenixstaging.ogopendata.com (CKAN)",
+      "method": "redirect-reprobe"
+    },
+    {
+      "source_id": "loc_pittsburgh_open",
+      "name": "Western Pennsylvania Regional Data Center (WPRDC) - Pittsburgh Data",
+      "base_url": "https://data.wprdc.org",
+      "platform": "CKAN",
+      "api_base": "https://data.wprdc.org/api/3/action",
+      "responded": true,
+      "notes": "matched CKAN via /api/3/action/package_search?rows=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_portland_open",
+      "name": "Portland Open Data",
+      "base_url": "https://www.portland.gov",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "loc_raleigh_open",
+      "name": "Open Data Raleigh",
+      "base_url": "https://data.raleighnc.gov",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_sacramento_open",
+      "name": "Sacramento Open Data Portal",
+      "base_url": "https://data.cityofsacramento.org",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_sanantonio_open",
+      "name": "Open Data SA",
+      "base_url": "https://data.sanantonio.gov",
+      "platform": "CKAN",
+      "api_base": "https://data.sanantonio.gov/api/3/action",
+      "responded": true,
+      "notes": "matched CKAN via /api/3/action/package_search?rows=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_sandiego_city_open",
+      "name": "San Diego Open Data Portal",
+      "base_url": "https://data.sandiego.gov",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "loc_sandiegocounty_open",
+      "name": "San Diego County Open Data Portal",
+      "base_url": "https://data.sandiegocounty.gov",
+      "platform": "SOCRATA",
+      "api_base": "https://data.sandiegocounty.gov/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_sanjose_open",
+      "name": "San Jose Open Data Portal",
+      "base_url": "https://data.sanjoseca.gov",
+      "platform": "CKAN",
+      "api_base": "https://data.sanjoseca.gov/api/3/action",
+      "responded": true,
+      "notes": "matched CKAN via /api/3/action/package_search?rows=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_santaclara_county_open",
+      "name": "Santa Clara County Open Data Portal",
+      "base_url": "https://data.sccgov.org",
+      "platform": "SOCRATA",
+      "api_base": "https://data.sccgov.org/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_seattle_open",
+      "name": "Seattle Open Data",
+      "base_url": "https://data.seattle.gov",
+      "platform": "SOCRATA",
+      "api_base": "https://data.seattle.gov/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_sf_open",
+      "name": "SF OpenData (DataSF)",
+      "base_url": "https://data.sfgov.org",
+      "platform": "SOCRATA",
+      "api_base": "https://data.sfgov.org/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_stlouis_open",
+      "name": "St. Louis City Open Data",
+      "base_url": "https://www.stlouis-mo.gov",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_tampa_open",
+      "name": "Tampa Open Data Portal",
+      "base_url": "https://opendata.tampa.gov",
+      "platform": "CKAN",
+      "api_base": "https://opendata.tampa.gov/api/3/action",
+      "responded": true,
+      "notes": "matched CKAN via /api/3/action/package_search?rows=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_tempe_open",
+      "name": "Tempe Open Data Catalog",
+      "base_url": "https://data.tempe.gov",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_tucson_open",
+      "name": "Tucson Open Data",
+      "base_url": "https://gisdata.tucsonaz.gov",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "loc_wakecounty_open",
+      "name": "Wake County Open Data",
+      "base_url": "https://data.wake.gov",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "st_ak_open",
+      "name": "Alaska Open Data Portal",
+      "base_url": "https://data.alaska.gov",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": false,
+      "notes": "reclaim: still no homepage response",
+      "method": ""
+    },
+    {
+      "source_id": "st_ar_open",
+      "name": "Arkansas Open Data (GIS/fragmented)",
+      "base_url": "https://gis.arkansas.gov",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "st_ca_open",
+      "name": "California Open Data Portal",
+      "base_url": "https://data.ca.gov",
+      "platform": "CKAN",
+      "api_base": "https://data.ca.gov/api/3/action",
+      "responded": true,
+      "notes": "matched CKAN via /api/3/action/package_search?rows=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "st_co_open",
+      "name": "Colorado Information Marketplace",
+      "base_url": "https://data.colorado.gov",
+      "platform": "SOCRATA",
+      "api_base": "https://data.colorado.gov/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "st_ct_open",
+      "name": "Connecticut Open Data Portal",
+      "base_url": "https://data.ct.gov",
+      "platform": "SOCRATA",
+      "api_base": "https://data.ct.gov/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "st_de_open",
+      "name": "Delaware Open Data Portal",
+      "base_url": "https://data.delaware.gov",
+      "platform": "SOCRATA",
+      "api_base": "https://data.delaware.gov/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "st_fl_open",
+      "name": "Florida Open Data (no unified portal \u2014 agency-fragmented)",
+      "base_url": "https://geodata.floridagio.gov",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "st_ga_open",
+      "name": "Georgia Open Data (GDAC)",
+      "base_url": "https://gdac.georgia.gov",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "st_hi_open",
+      "name": "Hawaii Open Data Portal",
+      "base_url": "https://data.hawaii.gov",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "st_ia_open",
+      "name": "Iowa Data Hub",
+      "base_url": "https://data.iowa.gov",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "st_id_open",
+      "name": "Idaho Open Data (GIS-focused)",
+      "base_url": "https://gis.idaho.gov",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "st_il_open",
+      "name": "Illinois Open Data Portal",
+      "base_url": "https://data.illinois.gov",
+      "platform": "SOCRATA",
+      "api_base": "https://data.illinois.gov/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "st_in_open",
+      "name": "Indiana Data Hub",
+      "base_url": "https://hub.mph.in.gov",
+      "platform": "CKAN",
+      "api_base": "https://hub.mph.in.gov/api/3/action",
+      "responded": true,
+      "notes": "matched CKAN via /api/3/action/package_search?rows=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "st_ks_open",
+      "name": "Kansas Open Gov",
+      "base_url": "https://kansasopengov.org",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "st_ky_open",
+      "name": "Kentucky Open GIS Data",
+      "base_url": "https://opengisdata.ky.gov",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "st_ma_open",
+      "name": "Massachusetts Data Hub",
+      "base_url": "https://data.mass.gov",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "st_md_open",
+      "name": "Maryland Open Data Portal",
+      "base_url": "https://opendata.maryland.gov",
+      "platform": "SOCRATA",
+      "api_base": "https://opendata.maryland.gov/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "st_me_open",
+      "name": "Maine Open Data",
+      "base_url": "https://www.maine.gov",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "st_mi_open",
+      "name": "Michigan Open Data Portal",
+      "base_url": "https://data.michigan.gov",
+      "platform": "SOCRATA",
+      "api_base": "https://data.michigan.gov/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "st_mn_open",
+      "name": "Minnesota Geospatial Commons / TransparencyMN",
+      "base_url": "https://gisdata.mn.gov",
+      "platform": "CKAN",
+      "api_base": "https://gisdata.mn.gov/api/3/action",
+      "responded": true,
+      "notes": "matched CKAN via /api/3/action/package_search?rows=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "st_mo_open",
+      "name": "Missouri Open Data Portal",
+      "base_url": "https://data.mo.gov",
+      "platform": "SOCRATA",
+      "api_base": "https://data.mo.gov/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "st_ms_open",
+      "name": "Mississippi GIS Open Data",
+      "base_url": "https://opendata.gis.ms.gov",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "st_mt_open",
+      "name": "Montana Data Portal",
+      "base_url": "https://data.mt.gov",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "st_nc_open",
+      "name": "NC LINC / NC OSBM Open Data",
+      "base_url": "https://linc.osbm.nc.gov",
+      "platform": "OPENDATASOFT",
+      "api_base": "https://linc.osbm.nc.gov/api/v2",
+      "responded": true,
+      "notes": "matched OPENDATASOFT via /api/v2/catalog/datasets?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "st_nd_open",
+      "name": "North Dakota Open Data (fragmented)",
+      "base_url": "https://www.nd.gov",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "st_ne_open",
+      "name": "Nebraska Open Data / StateSpending",
+      "base_url": "https://www.nebraska.gov",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "st_nh_open",
+      "name": "New Hampshire Geodata Portal",
+      "base_url": "https://new-hampshire-geodata-portal-1-nhgranit.hub.arcgis.com",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "st_nj_open",
+      "name": "NJ Open Data Center",
+      "base_url": "https://data.nj.gov",
+      "platform": "SOCRATA",
+      "api_base": "https://data.nj.gov/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "st_nm_open",
+      "name": "New Mexico Open Data (fragmented \u2014 agency-level)",
+      "base_url": "https://data-nmenv.opendata.arcgis.com",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "st_nv_open",
+      "name": "Nevada Open Data Portal",
+      "base_url": "https://open.nv.gov",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "st_ny_open",
+      "name": "New York State Open Data",
+      "base_url": "https://data.ny.gov",
+      "platform": "SOCRATA",
+      "api_base": "https://data.ny.gov/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "st_oh_open",
+      "name": "DataOhio",
+      "base_url": "https://data.ohio.gov",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "st_ok_open",
+      "name": "Oklahoma Open Data Portal",
+      "base_url": "https://data.ok.gov",
+      "platform": "CKAN",
+      "api_base": "https://data.ok.gov/api/3/action",
+      "responded": true,
+      "notes": "matched CKAN via /api/3/action/package_search?rows=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "st_or_open",
+      "name": "Oregon Open Data Portal",
+      "base_url": "https://data.oregon.gov",
+      "platform": "SOCRATA",
+      "api_base": "https://data.oregon.gov/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "st_pa_open",
+      "name": "PA Open Data Portal",
+      "base_url": "https://data.pa.gov",
+      "platform": "SOCRATA",
+      "api_base": "https://data.pa.gov/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "st_ri_open",
+      "name": "Rhode Island Open Data Portal",
+      "base_url": "https://www.ri.gov",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "st_sc_open",
+      "name": "South Carolina Data and Transparency",
+      "base_url": "https://sc.gov",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "st_tn_open",
+      "name": "TN DATA / Tennessee Geospatial Portal",
+      "base_url": "https://geodata.tn.gov",
+      "platform": "ARCGIS",
+      "api_base": "",
+      "responded": true,
+      "notes": "homepage branding => ARCGIS (NOT API-confirmed)",
+      "method": "branding"
+    },
+    {
+      "source_id": "st_tx_open",
+      "name": "Texas Open Data Portal",
+      "base_url": "https://data.texas.gov",
+      "platform": "SOCRATA",
+      "api_base": "https://data.texas.gov/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "st_ut_open",
+      "name": "Utah Open Data Portal",
+      "base_url": "https://opendata.utah.gov",
+      "platform": "SOCRATA",
+      "api_base": "https://opendata.utah.gov/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "st_va_open",
+      "name": "Virginia Open Data Portal",
+      "base_url": "https://data.virginia.gov",
+      "platform": "CKAN",
+      "api_base": "https://data.virginia.gov/api/3/action",
+      "responded": true,
+      "notes": "matched CKAN via /api/3/action/package_search?rows=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "st_vt_open",
+      "name": "Vermont Open Geodata / Open Data",
+      "base_url": "https://geodata.vermont.gov",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "st_wa_open",
+      "name": "Washington State Open Data Portal",
+      "base_url": "https://data.wa.gov",
+      "platform": "SOCRATA",
+      "api_base": "https://data.wa.gov/api/catalog/v1",
+      "responded": true,
+      "notes": "matched SOCRATA via /api/catalog/v1?limit=0 (HTTP 200)",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "st_wi_open",
+      "name": "Wisconsin Open Data (fragmented \u2014 no unified portal)",
+      "base_url": "https://data.dhsgis.wi.gov",
+      "platform": "ARCGIS",
+      "api_base": "hub.arcgis.com/api/search/v1",
+      "responded": true,
+      "notes": "\u2705",
+      "method": "pass-1"
+    },
+    {
+      "source_id": "st_wv_open",
+      "name": "West Virginia Open Data (fragmented \u2014 GIS-focused)",
+      "base_url": "https://data-wvdot.opendata.arcgis.com",
+      "platform": "ARCGIS",
+      "api_base": "",
+      "responded": true,
+      "notes": "homepage branding => ARCGIS (NOT API-confirmed)",
+      "method": "branding"
+    },
+    {
+      "source_id": "st_wy_open",
+      "name": "Wyoming GeoHub",
+      "base_url": "https://wyogeo.org",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "xc_aws_opendata",
+      "name": "Registry of Open Data on AWS",
+      "base_url": "https://registry.opendata.aws",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "xc_azure_open_datasets",
+      "name": "Azure Open Datasets",
+      "base_url": "https://learn.microsoft.com",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "xc_data_world",
+      "name": "data.world",
+      "base_url": "https://developer.data.world",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "xc_dataportals_org",
+      "name": "DataPortals.org",
+      "base_url": "https://dataportals.org",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "xc_gcp_public_datasets",
+      "name": "Google Cloud Public Datasets",
+      "base_url": "https://cloud.google.com",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "xc_google_dataset_search",
+      "name": "Google Dataset Search",
+      "base_url": "https://datasetsearch.research.google.com",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "xc_huggingface_datasets",
+      "name": "Hugging Face Datasets Hub",
+      "base_url": "https://huggingface.co",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "xc_kaggle_datasets",
+      "name": "Kaggle Datasets",
+      "base_url": "https://www.kaggle.com",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    },
+    {
+      "source_id": "xc_open_data_inception",
+      "name": "Open Data Inception",
+      "base_url": "https://opendatainception.io",
+      "platform": "OPENDATASOFT",
+      "api_base": "",
+      "responded": true,
+      "notes": "homepage branding => OPENDATASOFT (NOT API-confirmed)",
+      "method": "branding"
+    },
+    {
+      "source_id": "xc_re3data",
+      "name": "re3data.org (Registry of Research Data Repositories)",
+      "base_url": "https://www.re3data.org",
+      "platform": "UNKNOWN",
+      "api_base": "",
+      "responded": true,
+      "notes": "reclaim: no subpath/redirect/branding match",
+      "method": ""
+    }
+  ]
+}
