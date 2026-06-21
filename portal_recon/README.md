@@ -22,26 +22,42 @@ python fingerprint_portals.py --selftest
 # inspect the registry's CATEGORY breakdown + which one it'd auto-pick:
 python fingerprint_portals.py --distribution
 
-# full run -> writes portal_recon_results.md:
+# full run -> writes portal_recon_results.md (+ .json):
 python fingerprint_portals.py
+
+# Wave-1.5: retry only the UNKNOWNs (redirect-reprobe + CKAN subpaths + branding):
+python reclaim.py
+python reclaim.py --rebuild        # regenerate the report from JSON, no probing
 
 # pin the category if auto-pick is off, or cap politeness:
 python fingerprint_portals.py --category 'Open Data Portal'
 python fingerprint_portals.py --budget 2
 ```
 
-Output: **`portal_recon_results.md`** — summary headline + per-portal table
-(`portal name | base URL | platform detected | API base URL | responded? | notes`).
+Output: **`portal_recon_results.md`** (summary headline + per-portal table) and
+**`portal_recon_results.json`** (structured, for `--rebuild`).
 
 ---
 
-## Blocker (as of this commit)
+## Status / results
 
-The `SNOWFLAKE_PAT` injected into this container is **dead** — the SQL API returns
-`401 / 394400 "Programmatic access token is invalid."` The fresh PAT the task
-expected at `library-onboarding/.env` isn't present (that file is gitignored, so it
-never ships with a fresh clone). **Step 1 can't pull the portal list until a valid
-PAT is supplied.** The prober itself is built and verified (`--selftest` = 4/4).
+Done. Pulled **194** portals (the 8 portal/open-data/meta CATEGORY tags — the
+"~321 supercluster" doesn't reconstruct from any single column; 194 is the clean
+platform-portal set). After the Wave-1.5 reclaim pass:
+
+| Platform | Portals |
+|---|---:|
+| ArcGIS Hub | 40 |
+| Socrata | 35 |
+| CKAN | 25 |
+| OpenDataSoft | 5 |
+| UNKNOWN | 89 |
+
+**Coverage: top-2 (ArcGIS + Socrata) = 39%, top-3 (+CKAN) = 52%, all detected =
+105/194 (54%).** Those are the Wave-2 readers, by priority. The 89 UNKNOWN are
+mostly bespoke national stacks (data.gouv.fr/uData, data.europa.eu/Piveau,
+data.gov.cz) plus a few flagship portals registered at the wrong URL (NYC, Denver)
+— registry hygiene, not a detection gap.
 
 ---
 
