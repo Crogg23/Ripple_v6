@@ -31,6 +31,19 @@ to EOF, via crash-resume) + FJC IDB 4,126,450. **Live total: 38 landing tables, 
 merged to `main`; the C3 big-load work is on `claude/laughing-knuth-fmjka8`. **Blocked on: nothing.**
 
 ## WHAT EXISTS
+- **`portal_recon/` — catalog-of-catalogs (Wave 1 + Wave 2).** Wave 1 fingerprinted
+  the ~194 open-data portals in `SOURCE_REGISTRY` by platform (ArcGIS 40 / Socrata 35
+  / CKAN 25 / ODS 5 / 89 UNKNOWN). **Wave 2 (2026-06-21)** built one index reader per
+  platform (`arcgis_reader` / `socrata_reader` / `ckan_reader` + shared `portal_lib`,
+  orchestrated by `harvest_index.py`) and harvested the dataset INDEX of the 100
+  ArcGIS/Socrata/CKAN portals — **metadata only, nothing landed**. Result: **338,520
+  datasets across 96 live portals, 19,496 carrying a known join key** (ZIP/lat-lon/FIPS
+  lead). Outputs: `portal_datasets_index.json` (master, gitignored at ~360 MB → commit
+  the `.json.gz`) + `portal_datasets_index.md` (summary). Politeness baked in
+  (pagination, 25k + 300s/portal caps, delays, parallel only across distinct hosts).
+  **Finding:** many public open-data APIs sit behind Cloudflare that 502s a custom bot
+  UA — a normal browser UA is required; we stay good citizens through rate, not volume.
+  Next = Wave 3 (confidence-tiered join-key tagging across this index).
 - `library-onboarding/` — the 5-checkpoint CLI agent: RECON → SCRIPT → LOAD → DBT → REGISTRY.
 - LOAD lands raw to `LIBRARY_RAW.LANDING.<UPPER(SOURCE_ID)>` — all columns TEXT, stamped
   `_INGESTED_AT` / `_SOURCE_RUN_ID` / `_SRC_SHA256`. Two load modes: **snapshot** (default — replace,
