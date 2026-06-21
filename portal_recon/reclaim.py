@@ -190,8 +190,11 @@ def write_report(results, label, n_confirmed, n_targets, n_reclaimed):
              f"Of recovered, {branding_only} are homepage-branding only (softer — verify in Wave 2).")
     L.append("")
 
-    flags = [r for r in results if (not r["responded"]) or "redirect" in r["notes"].lower()
-             or "auth" in r["notes"].lower()]
+    # Flag only genuinely actionable issues: dead, a *real* cross-domain redirect,
+    # or auth-required. Match "redirects to" (the actual phrase) — NOT bare
+    # "redirect", which also appears in the note "no subpath/redirect/branding match".
+    flags = [r for r in results if (not r["responded"]) or "redirects to" in r["notes"].lower()
+             or "auth_key" in r["notes"].lower() or "auth required" in r["notes"].lower()]
     if flags:
         L.append(f"### ⚠ Flags ({len(flags)}) — dead / redirecting / auth-required\n")
         L.append("| source_id | portal | issue |")
@@ -231,6 +234,25 @@ def pct_prev(confirmed, n):
 
 # --------------------------------------------------------------------------- #
 def main() -> int:
+    import argparse
+    ap = argparse.ArgumentParser(description="Wave 1.5 reclaim pass")
+    ap.add_argument("--rebuild", action="store_true",
+                    help="rewrite the report from the existing JSON (no probing)")
+    args = ap.parse_args()
+
+    if args.rebuild:
+        if not JSON_FILE.exists():
+            sys.exit(f"No {JSON_FILE} to rebuild from — run reclaim.py first.")
+        data = json.loads(JSON_FILE.read_text())
+        results = data["results"]
+        label = data.get("label", "portal supercluster")
+        n_confirmed = sum(1 for r in results if r.get("method") == "pass-1")
+        n_reclaimed = sum(1 for r in results if r.get("method") in ("redirect-reprobe", "subpath", "branding"))
+        results.sort(key=lambda r: r.get("source_id", ""))
+        write_report(results, label, n_confirmed, len(results) - n_confirmed, n_reclaimed)
+        print("  (rebuilt from JSON — no probing)")
+        return 0
+
     load_env()
     pat = get_pat()
     print("validating PAT…")
