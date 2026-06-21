@@ -494,12 +494,16 @@ def write_report(results: list[dict], category: str) -> None:
     responded = sum(1 for r in results if r["responded"])
     dead = sum(1 for r in results if not r["responded"])
 
-    socrata = by_plat.get("SOCRATA", 0)
-    ckan = by_plat.get("CKAN", 0)
-    arcgis = by_plat.get("ARCGIS", 0)
-    top2 = socrata + ckan
-    top2_pct = (100.0 * top2 / n) if n else 0.0
-    top3_pct = (100.0 * (top2 + arcgis) / n) if n else 0.0
+    # "Top platforms" = the most-covering readers, ranked by count — NOT a fixed
+    # Socrata/CKAN assumption. ArcGIS can (and here does) outrank CKAN.
+    detected = sorted(((p, c) for p, c in by_plat.items() if p != "UNKNOWN"),
+                      key=lambda x: (-x[1], x[0]))
+    total_detected = sum(c for _, c in detected)
+    top2_n = sum(c for _, c in detected[:2])
+    top3_n = sum(c for _, c in detected[:3])
+    top2_lbl = " + ".join(f"{p} {c}" for p, c in detected[:2]) or "—"
+    top3_lbl = " + ".join(f"{p} {c}" for p, c in detected[:3]) or "—"
+    pct = lambda x: (100.0 * x / n) if n else 0.0
 
     flags = [r for r in results if (not r["responded"]) or "redirect" in r["notes"]
              or "auth" in r["notes"].lower()]
@@ -517,9 +521,10 @@ def write_report(results: list[dict], category: str) -> None:
     lines.append(f"| **TOTAL** | **{n}** |")
     lines.append("")
     lines.append(f"- **Responded:** {responded}/{n} · **Dead / no response:** {dead}")
-    lines.append(f"- **Headline:** **{top2_pct:.0f}% of portals are covered by the top 2 "
-                 f"platforms** (Socrata {socrata} + CKAN {ckan} = {top2}). "
-                 f"Add ArcGIS and it's {top3_pct:.0f}% — that's the Wave-2 reader count.")
+    lines.append(f"- **Headline:** **{pct(top2_n):.0f}% of portals are covered by the top-2 "
+                 f"platforms** ({top2_lbl} = {top2_n} of {n}). Top-3 ({top3_lbl}) = "
+                 f"{pct(top3_n):.0f}%; all detected platforms = {total_detected} "
+                 f"({pct(total_detected):.0f}%). Those are your Wave-2 readers, by priority.")
     lines.append("")
     if flags:
         lines.append(f"### ⚠ Flags ({len(flags)}) — dead / redirecting / auth-required\n")
@@ -545,7 +550,7 @@ def write_report(results: list[dict], category: str) -> None:
     lines.append("")
     OUT_FILE.write_text("\n".join(lines))
     print(f"\n  wrote {OUT_FILE}  ({n} portals)")
-    print(f"  headline: {top2_pct:.0f}% covered by top-2 (Socrata {socrata} + CKAN {ckan})")
+    print(f"  headline: {pct(top2_n):.0f}% covered by top-2 ({top2_lbl})")
 
 
 # --------------------------------------------------------------------------- #

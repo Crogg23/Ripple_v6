@@ -14,7 +14,7 @@ _Generated 2026-06-21 19:23:56 UTC · source category: `portal supercluster (8 C
 | **TOTAL** | **194** |
 
 - **Responded:** 185/194 · **Dead / no response:** 9
-- **Headline:** **28% of portals are covered by the top 2 platforms** (Socrata 35 + CKAN 19 = 54). Add ArcGIS and it's 45% — that's the Wave-2 reader count.
+- **Headline:** **36% of portals are covered by the top-2 platforms** (SOCRATA 35 + ARCGIS 34 = 69 of 194). Top-3 (+ CKAN 19 = 88) = 45%; all four detected platforms = 92 (47%). Those are your Wave-2 readers, by priority: **Socrata ≈ ArcGIS (co-leaders), then CKAN, then OpenDataSoft.**
 
 ### ⚠ Flags (15) — dead / redirecting / auth-required
 
