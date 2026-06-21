@@ -1,0 +1,49 @@
+{
+  "source_index": "portal_datasets_index.json.gz",
+  "datasets_total": 338520,
+  "expected_total": 338520,
+  "columns_known": 78651,
+  "columns_unknown": 259869,
+  "by_top_tier": {
+    "STEEL": 185,
+    "STRONG": 563,
+    "GEO": 47438,
+    "PROBABILISTIC": 9834
+  },
+  "none_no_key": 20631,
+  "carries_a_key": 58020,
+  "by_join_key": {
+    "GEOM": 36242,
+    "NAME": 32507,
+    "ADDRESS": 16981,
+    "ZIP": 11913,
+    "FIPS": 4435,
+    "LATLON": 7796,
+    "COUNTRY": 1676,
+    "NPI": 44,
+    "EIN": 30,
+    "NAICS": 364,
+    "SIC": 153,
+    "DOCKET": 145,
+    "CCN": 92,
+    "UEI": 2,
+    "NCES": 31,
+    "DUNS": 6,
+    "PATENT": 15
+  },
+  "steel_by_key": {
+    "NPI": 44,
+    "EIN": 30,
+    "CCN": 92,
+    "UEI": 2,
+    "DUNS": 6,
+    "PATENT": 15
+  },
+  "ein_carriers": 30,
+  "geo_and_steel": 145,
+  "by_platform": {
+    "ARCGIS": 95348,
+    "SOCRATA": 29421,
+    "CKAN": 213751
+  }
+}
