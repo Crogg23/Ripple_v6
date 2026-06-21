@@ -10,29 +10,28 @@ Snowflake table, and tier every join-key match by confidence so you can search
 
 | Step | What | State |
 |---|---|---|
-| 1 | Load index → `LIBRARY_META.REGISTRY.PORTAL_DATASET_INDEX` | ⛔ **BLOCKED — the PAT is dead** |
-| 2 | Confidence-tier every dataset (STEEL/STRONG/GEO/PROB) | ✅ **Done + verified over all 338,520** |
-| 3 | Example queries (step 3 of the peel, as SQL) | ✅ Written; counts computed locally |
+| 1 | Load index → `LIBRARY_META.REGISTRY.PORTAL_DATASET_INDEX` | ✅ **Loaded + count-verified in Snowflake (338,520)** |
+| 2 | Confidence-tier every dataset (STEEL/STRONG/GEO/PROB) | ✅ **Tagged; distribution matches the local run exactly** |
+| 3 | Example queries (step 3 of the peel, as SQL) | ✅ Run against the live table — counts below |
 | 4 | This brief + PR | ✅ |
 
-**The tagging is the hard part and it's done and proven.** The only thing standing
-between this and a loaded, queryable table is a working Snowflake token — the one in
-the container is revoked (details at the bottom). **Drop a fresh PAT in
-`library-onboarding/.env` and run one command** (also at the bottom) and it loads +
-verifies itself.
+**It's done, end to end.** Fresh PAT came in, the loader ran, and Snowflake
+independently confirms **338,520 rows** with a tag distribution that matches the
+offline computation to the dataset. The master index is live and queryable at
+`LIBRARY_META.REGISTRY.PORTAL_DATASET_INDEX`.
 
-> I have **not** asserted the table loaded — I couldn't reach Snowflake this session,
-> so every count below is computed locally from the source index. They're the values
-> the Snowflake queries will return once it's loaded.
+> Every count below was **confirmed in Snowflake this session** — not just computed
+> locally. (Role: `CLAUDE_MCP_READONLY`, which holds `CREATE TABLE` on the REGISTRY
+> schema; warehouse `DBT_WH`.)
 
 ---
 
-## Row count
+## Row count — verified
 
 - **Source index: 338,520 datasets** — independently re-counted by streaming the gz
-  this session (matches Wave-2's `totals.datasets_indexed` exactly).
-- Snowflake `COUNT(*)`: **pending the load.** The loader refuses to tag the table
-  unless its count equals 338,520 first (hard gate).
+  (matches Wave-2's `totals.datasets_indexed` exactly).
+- **Snowflake `COUNT(*)` = 338,520** — confirmed this session. The loader gates on
+  this (it refuses to tag unless the count matches) and it passed. No delta.
 
 ---
 
@@ -115,7 +114,8 @@ The task was blunt: *a false steel tag is worse than no tag.* So:
 
 ## Step 3 — The peel, as SQL (`portal_index_queries.sql`)
 
-Four queries, with the counts they return (computed locally; Snowflake will match):
+Four queries, **run against the live Snowflake table** — these are the counts they
+returned:
 
 | # | Query | Returns |
 |---|---|---:|
@@ -123,6 +123,10 @@ Four queries, with the counts they return (computed locally; Snowflake will matc
 | 2 | Every **STEEL-tier** dataset (precise connectable set) | **185** |
 | 3 | Datasets **by portal, ranked** (richest boxes) | **96** portals |
 | 4 | Datasets with **a GEO key AND a STEEL key** (cross-joinable gold) | **145** |
+
+Spot-check of a real row (proves the array + URL landed): NY State's *Database of
+Economic Incentives* → `join_keys = ["EIN","ZIP","ADDRESS","NAME"]`, `top_tier =
+STEEL`, `source_url = https://data.ny.gov/d/26ei-n4eb`.
 
 **Richest portals (query 3, top of the list):**
 
@@ -154,43 +158,40 @@ true portal totals.
   - `source_url` is best-effort: the explicit dataset URL where the API gave one
     (Socrata `permalink`, ArcGIS service URL), else the platform-standard dataset
     page (`/d/{id}`, `/datasets/{id}`, `/dataset/{id}`).
-- **The 57MB gz no longer needs to live in git.** Once this loads, the queryable
-  truth is in Snowflake; the gz stays as a local/Wave-2-branch backup and is now
-  `.gitignore`d here so it won't bloat this branch.
+- **The 57MB gz no longer needs to live in git.** The queryable truth is now in
+  Snowflake; the gz stays as a local/Wave-2-branch backup and is `.gitignore`d here
+  so it won't bloat this branch.
 
 ---
 
-## ⛔ The blocker — and the one thing to fix it
+## ✅ Loaded & verified (Snowflake-confirmed)
 
-The container's `SNOWFLAKE_PAT` is **revoked**: every call returns
-`401 — "Programmatic access token is invalid."` (Its JWT `exp` is 2027, so it's not
-a clock-expiry — it was rotated server-side.) There's **no `library-onboarding/.env`**
-to override it with, and no password fallback. So I can't create the table, load it,
-or verify the count this session — and I won't claim otherwise.
+The fresh PAT landed, the loader ran, and Snowflake confirms it. The distribution it
+printed back matches the offline run to the dataset:
 
-**To finish (≈10–15 min of Snowflake time):**
+| Snowflake `GROUP BY top_tier` | Datasets |
+|---|---:|
+| UNKNOWN_COLUMNS (NULL) | 259,869 |
+| GEO | 47,438 |
+| NONE | 20,631 |
+| PROBABILISTIC | 9,834 |
+| STRONG | 563 |
+| STEEL | 185 |
+| **total** | **338,520** |
+
+**To refresh it later** (it's idempotent — `CREATE OR REPLACE`, count-gated):
 
 ```bash
-# 1. put a fresh PAT in library-onboarding/.env  (SNOWFLAKE_PAT=...)
+# fresh PAT in library-onboarding/.env  (SNOWFLAKE_PAT=...)
 cd portal_recon
-set -a; source ../library-onboarding/.env; set +a   # override=True wins over stale env
-
-# 2. restore the input gz if this is a fresh container (it's gitignored now):
-#    git cat-file blob 058bed7 > portal_datasets_index.json.gz   # from the Wave-2 branch
-
-# 3. eyeball the SQL it will run, then load for real:
-python tag_portal_index.py --load --dry-run
-python tag_portal_index.py --load        # creates table, loads, VERIFIES count, tags
+set -a; source ../library-onboarding/.env; set +a
+# restore the input gz on a fresh container (it's gitignored):
+#   git cat-file blob 058bed7 > portal_datasets_index.json.gz   # from the Wave-2 branch
+python tag_portal_index.py --load        # reloads, re-verifies count==338,520, re-tags
 ```
 
 The loader self-gates: it **refuses to tag** unless Snowflake `COUNT(*)` equals
-338,520 first. When it finishes it prints the tier distribution — which should match
-the table above.
-
-> Heads-up: the `--load` path is built to the proven Wave-1 REST-API pattern but
-> **hasn't been run against Snowflake this session** (no live PAT). `--dry-run` prints
-> the exact DDL + a real batch so you can sanity-check before it writes. The
-> `--local`/`--selftest` paths are fully verified.
+338,520 first. This run passed the gate.
 
 ---
 
