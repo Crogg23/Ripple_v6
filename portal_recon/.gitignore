@@ -1,3 +1,8 @@
 __pycache__/
 *.pyc
 *.log
+
+# Wave 2: the raw master index is ~360 MB (over git's 100 MB file limit).
+# The committed master asset is the gzip (portal_datasets_index.json.gz), which
+# decompresses to this identical file:  gunzip -k portal_datasets_index.json.gz
+portal_datasets_index.json
