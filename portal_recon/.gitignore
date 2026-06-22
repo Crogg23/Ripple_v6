@@ -1,3 +1,9 @@
 __pycache__/
 *.pyc
 *.log
+
+# Wave-2 master asset — big and now redundant once loaded into Snowflake
+# (LIBRARY_META.REGISTRY.PORTAL_DATASET_INDEX). Keep it as a local backup, but
+# git no longer needs to carry it. Restore from the Wave-2 branch if required.
+portal_datasets_index.json
+portal_datasets_index.json.gz
