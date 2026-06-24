@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>The Trail Atlas — Library Catalog Map</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<style>
+:root{
+  --bg:#0a0e14; --bg2:#0f141c; --panel:#10161f; --panel2:#141c27;
+  --line:#1f2935; --line2:#2a3644; --text:#c9d4e0; --dim:#7c8a9a; --dim2:#566373;
+  --accent:#39d0d8; --accent2:#1b2a33; --pill-bg:#0c1420;
+  --t-STEEL:#7fd4ff; --t-STRONG:#5fd98a; --t-GEO:#e0a44f; --t-PROBABILISTIC:#b08fe0; --t-NONE:#697482;
+  --d-geography:#4a90d9; --d-organizations:#e0a44f; --d-health:#e0556f;
+  --d-justice:#b06fd9; --d-education:#43c9b8; --d-innovation:#d9cf5f; --d-people:#93a4b6;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:13px;overflow:hidden}
+.mono{font-family:'JetBrains Mono','Cascadia Code','Consolas',monospace}
+button{font-family:inherit;cursor:pointer}
+a{color:var(--accent);text-decoration:none}
+
+#app{display:flex;flex-direction:column;height:100%}
+#topbar{display:flex;align-items:center;gap:12px;padding:8px 14px;background:linear-gradient(180deg,#0d1320,#0a0e14);border-bottom:1px solid var(--line);z-index:30}
+#brand{font-weight:700;letter-spacing:.5px;color:#e7eef6;white-space:nowrap}
+#brand .sub{color:var(--dim);font-weight:400;font-size:11px;margin-left:6px}
+#searchwrap{position:relative;flex:1;max-width:460px}
+#search{width:100%;background:var(--panel2);border:1px solid var(--line2);color:var(--text);padding:7px 10px;border-radius:5px;font-size:13px;outline:none}
+#search:focus{border-color:var(--accent)}
+#searchResults{position:absolute;top:38px;left:0;right:0;background:#0c121b;border:1px solid var(--line2);border-radius:6px;max-height:340px;overflow-y:auto;display:none;z-index:50;box-shadow:0 12px 30px rgba(0,0,0,.6)}
+#searchResults.show{display:block}
+.sr{padding:7px 10px;border-bottom:1px solid var(--line);cursor:pointer;display:flex;gap:8px;align-items:center}
+.sr:hover{background:var(--accent2)}
+.sr .srt{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sr .srp{color:var(--dim);font-size:10px;white-space:nowrap}
+.srhead{padding:6px 10px;color:var(--dim);font-size:11px;border-bottom:1px solid var(--line2)}
+.tdot{width:8px;height:8px;border-radius:50%;flex-shrink:0;display:inline-block}
+.topbtn{background:var(--panel2);border:1px solid var(--line2);color:var(--text);padding:6px 11px;border-radius:5px;font-size:12px}
+.topbtn:hover{border-color:var(--accent);color:#fff}
+#stats{color:var(--dim);font-size:11px;white-space:nowrap}
+#zlevel{color:var(--accent);font-size:11px;white-space:nowrap;font-weight:600}
+
+#stage{flex:1;position:relative;min-height:0;overflow:hidden;background:radial-gradient(1400px 900px at 50% 45%,#0d1421 0%,#0a0e14 75%)}
+svg#atlas{width:100%;height:100%;display:block;cursor:grab}
+svg#atlas:active{cursor:grabbing}
+.regionRect{fill-opacity:.11;stroke-opacity:.65}
+.regionRect.key{fill-opacity:.06;stroke-opacity:.5}
+.regionLabel{font-weight:700;pointer-events:none;text-transform:uppercase;letter-spacing:1px}
+.keyLabel{font-weight:700;pointer-events:none;font-family:'JetBrains Mono',monospace}
+.regionCount{pointer-events:none;font-weight:400}
+.dot{cursor:pointer;stroke:#0a0e14;stroke-width:.5px}
+.dot:hover{stroke:#fff;stroke-width:1.5px}
+.dotLabel{fill:var(--dim);font-size:10px;pointer-events:none;text-anchor:middle;font-family:'JetBrains Mono',monospace}
+
+/* in-map + board cards */
+#cardLayer{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.mcard{position:absolute;width:220px;background:#0e1620;border:1px solid var(--line2);border-radius:7px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.5);pointer-events:auto;cursor:pointer;display:flex;flex-direction:column}
+.mcard:hover{border-color:var(--accent)}
+.mcard.isfocus{border-color:#fff;box-shadow:0 0 0 1px rgba(255,255,255,.25),0 10px 30px rgba(0,0,0,.7)}
+.mh{height:34px;display:flex;align-items:center;gap:6px;padding:0 8px;border-bottom:1px solid var(--line2);background:#121b27;flex-shrink:0}
+.cpin{width:11px;height:11px;border-radius:50%;flex-shrink:0;box-shadow:inset -1.5px -1.5px 2px rgba(0,0,0,.45),inset 1px 1px 1.5px rgba(255,255,255,.4),0 1px 2px rgba(0,0,0,.5)}
+.mh .mt{flex:1;font-size:11px;font-weight:600;color:#eef4fa;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cstar{font-size:12px;color:var(--dim);background:none;border:none;padding:0 2px}
+.cstar.on{color:#ffd45e}
+.mkeys{flex-shrink:0}
+.krow{height:19px;display:flex;align-items:center;padding:0 8px;font-size:10.5px;font-weight:600;border-left:3px solid;background:#101a24;cursor:help}
+.krow>span:first-child{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.krow .kf{color:var(--dim2);font-size:9px;font-weight:400}
+.mcolh{height:18px;display:flex;align-items:center;padding:0 8px;font-size:9px;letter-spacing:.5px;text-transform:uppercase;color:var(--dim2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#0b1119;flex-shrink:0}
+.mcols{max-height:120px;overflow-y:auto;padding:3px 8px}
+.mcols .cc{font-size:10px;color:var(--dim);line-height:1.55;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* focus board (column lanes) */
+#focus{position:absolute;inset:0;background:rgba(8,11,16,.86);backdrop-filter:blur(2px);display:none;z-index:40;overflow:hidden}
+#focus.show{display:block}
+#focusStrings{position:absolute;inset:0;pointer-events:none;z-index:1}
+#focusCols{position:absolute;inset:0;display:flex;align-items:flex-start;gap:60px;padding:54px 40px 24px;overflow-x:auto;overflow-y:hidden;z-index:2}
+.lane{display:flex;flex-direction:column;gap:14px;flex-shrink:0;height:100%;max-height:calc(100% - 0px);overflow-y:auto;padding-bottom:20px}
+.lane.focuslane{justify-content:center}
+.laneHead{display:flex;align-items:center;gap:7px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;padding:4px 10px;border:1px solid;border-radius:14px;background:var(--pill-bg);white-space:nowrap;align-self:flex-start;position:sticky;top:0}
+.laneHead .lc{color:var(--dim2);font-weight:400;font-size:10px}
+.lane .mcard{position:relative;width:230px;cursor:pointer}
+.lane.focuslane .mcard{width:250px}
+#focusBar{position:absolute;top:0;left:0;right:0;height:42px;display:flex;align-items:center;gap:10px;padding:0 16px;background:rgba(10,15,22,.92);border-bottom:1px solid var(--line);z-index:3}
+#backMap{background:var(--accent);color:#04121a;font-weight:700;border:none;border-radius:5px;padding:6px 13px;font-size:12px}
+.crumbs{display:flex;gap:6px;align-items:center;overflow-x:auto;white-space:nowrap}
+.crumb{background:var(--panel2);border:1px solid var(--line2);border-radius:4px;padding:3px 9px;font-size:11px;color:var(--text);cursor:pointer;max-width:200px;overflow:hidden;text-overflow:ellipsis}
+.crumb:hover{border-color:var(--accent)}
+.crumb.cur{border-color:var(--accent);color:#fff;background:var(--accent2)}
+.crumbsep{color:var(--dim2)}
+.fstr{fill:none;stroke-opacity:.7}
+.fstrlab{font-size:10px;font-weight:700;font-family:'JetBrains Mono',monospace}
+.fpill rect{fill:var(--pill-bg)}
+#casenote{position:absolute;bottom:16px;left:16px;max-width:420px;background:var(--bg2);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:6px;padding:10px 13px;font-size:12px;line-height:1.5;z-index:3;color:var(--text)}
+#casenote b{color:#eef4fa}
+#casenote .ct{font-size:13px;font-weight:700;color:#eef4fa;margin-bottom:4px}
+
+/* hint / legend / loader */
+.hint{position:absolute;bottom:10px;left:14px;color:var(--dim2);font-size:10px;pointer-events:none;z-index:5}
+#overlay{position:absolute;inset:0;background:rgba(8,11,16,.94);display:flex;align-items:center;justify-content:center;z-index:100}
+#overlay.hide{display:none}
+.ldr{text-align:center;max-width:460px}
+.ldr h1{font-size:20px;color:#e7eef6;margin:0 0 6px}
+.ldr p{color:var(--dim);margin:6px 0 16px;font-size:12px;line-height:1.5}
+.spin{width:30px;height:30px;border:3px solid var(--line2);border-top-color:var(--accent);border-radius:50%;margin:14px auto;animation:sp 1s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+#fileBtn{background:var(--accent);color:#04121a;font-weight:600;padding:9px 18px;border-radius:6px;border:none;font-size:13px}
+#status{color:var(--dim);font-size:11px;margin-top:12px;min-height:16px}
+::-webkit-scrollbar{width:9px;height:9px}::-webkit-scrollbar-thumb{background:#243140;border-radius:5px}::-webkit-scrollbar-track{background:transparent}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#142230;border:1px solid var(--accent);color:#dff;padding:8px 16px;border-radius:6px;font-size:12px;z-index:200;opacity:0;transition:opacity .2s}
+.toast.show{opacity:1}
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="topbar">
+    <div id="brand">◢ THE TRAIL ATLAS<span class="sub">a map of the library · prototype</span></div>
+    <div id="searchwrap">
+      <input id="search" class="mono" placeholder="search 78k datasets — fly to any of them…" autocomplete="off"/>
+      <div id="searchResults"></div>
+    </div>
+    <button class="topbtn" id="homeBtn" title="Fly out to the whole atlas">⌂ Whole atlas</button>
+    <div id="zlevel"></div>
+    <div id="stats"></div>
+  </div>
+  <div id="stage">
+    <svg id="atlas"></svg>
+    <div id="cardLayer"></div>
+    <div id="focus">
+      <div id="focusBar">
+        <button id="backMap" title="back to the map (Esc)">◀ Map</button>
+        <span class="crumbs" id="crumbs"></span>
+      </div>
+      <svg id="focusStrings"></svg>
+      <div id="focusCols"></div>
+      <div id="casenote"></div>
+    </div>
+    <div class="hint">scroll = zoom · drag = pan · click a region to fly in · click a dataset to open its board</div>
+    <div id="overlay">
+      <div class="ldr">
+        <h1>◢ THE TRAIL ATLAS</h1>
+        <p>A continuous map of 78,651 public datasets — fly around it, zoom into a region, open a dataset's board. If it doesn't auto-load (browsers block <span class="mono">file://</span>), pick <span class="mono">portal_index.json</span> by hand.</p>
+        <div class="spin" id="spin"></div>
+        <button id="fileBtn">⬆ Load portal_index.json</button>
+        <input type="file" id="fileInput" accept=".json,application/json" style="display:none"/>
+        <div id="status">trying ./portal_index.json …</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+"use strict";
+/* ===========================================================================
+   THE TRAIL ATLAS — prototype of the "fractal / Google-Maps" navigation.
+   Position = meaning (domain -> key -> dataset, via a treemap). Zoom = detail.
+   Only what's in the viewport ever renders, so 78k datasets never hairball.
+   =========================================================================== */
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const truncate = (s,n)=>{ s=String(s==null?'':s); return s.length>n?s.slice(0,n-1)+'…':s; };
+let toastTimer=null; function toast(m){ const t=$('#toast'); t.textContent=m; t.classList.add('show'); clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove('show'),2000); }
+
+// ---- tiers / domains / glossary (same vocabulary as the trail map) ----
+const TIERS=['STEEL','STRONG','GEO','PROBABILISTIC','NONE'];
+const TIER_RANK={STEEL:4,STRONG:3,GEO:2,PROBABILISTIC:1,NONE:0};
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim()||'#888';
+const tierColor=t=>css('--t-'+t);
+const KEY_DOMAIN={GEOM:'geography',LATLON:'geography',FIPS:'geography',ZIP:'geography',ADDRESS:'geography',COUNTRY:'geography',
+  EIN:'organizations',UEI:'organizations',DUNS:'organizations',NAICS:'organizations',SIC:'organizations',
+  NPI:'health',CCN:'health',DOCKET:'justice',NCES:'education',PATENT:'innovation',NAME:'people'};
+const domainColor=d=>css('--d-'+d);
+const keyColor=k=>domainColor(KEY_DOMAIN[k]||'people');
+const DOMAIN_LABEL={geography:'GEOGRAPHY',organizations:'ORGANIZATIONS',health:'HEALTH',justice:'JUSTICE',education:'EDUCATION',innovation:'INNOVATION',people:'PEOPLE / NAMES'};
+const KEY_INFO={
+  EIN:{label:'Employer ID Number',grade:'STEEL',blurb:'IRS tax ID — US businesses & nonprofits.'},
+  NPI:{label:'National Provider Identifier',grade:'STEEL',blurb:'CMS — US healthcare providers.'},
+  CCN:{label:'CMS Certification Number',grade:'STEEL',blurb:'Medicare facility ID — hospitals, dialysis, surgical.'},
+  UEI:{label:'Unique Entity Identifier',grade:'STEEL',blurb:'SAM.gov — US federal contractors/grantees.'},
+  DUNS:{label:'D&B Number',grade:'STEEL',blurb:'Dun & Bradstreet business ID.'},
+  PATENT:{label:'US Patent Number',grade:'STEEL',blurb:'A granted US patent.'},
+  NAICS:{label:'NAICS Industry Code',grade:'STRONG',blurb:'Modern industry classification.'},
+  SIC:{label:'SIC Industry Code',grade:'STRONG',blurb:'Legacy industry classification.'},
+  DOCKET:{label:'Court Docket Number',grade:'STRONG',blurb:'A court case docket.'},
+  NCES:{label:'NCES ID',grade:'STRONG',blurb:'Schools & districts (Nat. Center for Education Statistics).'},
+  FIPS:{label:'FIPS Geographic Code',grade:'GEO',blurb:'US Census state/county code.'},
+  ZIP:{label:'ZIP Code',grade:'GEO',blurb:'US postal code.'},
+  LATLON:{label:'Latitude / Longitude',grade:'GEO',blurb:'A point coordinate.'},
+  COUNTRY:{label:'Country (ISO)',grade:'GEO',blurb:'International join key.'},
+  GEOM:{label:'GIS Geometry',grade:'GEO',blurb:'A shape/boundary — the most common key here.'},
+  NAME:{label:'Entity Name',grade:'PROBABILISTIC',blurb:'An org/person/place name — fuzzy.'},
+  ADDRESS:{label:'Street / Mailing Address',grade:'PROBABILISTIC',blurb:'A street/mailing address — fuzzy.'},
+};
+const TIER_INFO={STEEL:{label:'Steel',oneLine:'Precise, globally-unique entity ID — a join you can trust.'},
+  STRONG:{label:'Strong',oneLine:'Domain-specific code — reliable inside its own world.'},
+  GEO:{label:'Geographic',oneLine:'A location key — coarse; many things share a place.'},
+  PROBABILISTIC:{label:'Probabilistic',oneLine:'Name or address only — fuzzy, never exact.'},
+  NONE:{label:'No key',oneLine:'Columns are known, but nothing joinable.'}};
+const keyInfo=k=>KEY_INFO[k]||{label:k,grade:'GEO',blurb:''};
+const tierInfo=t=>TIER_INFO[t]||{label:t,oneLine:''};
+const keyTip=k=>{const z=keyInfo(k);return `${k} — ${z.label}. ${z.blurb}`;};
+const NOISE=new Set(['GEOM','NAME','ADDRESS','ZIP','LATLON','FIPS','COUNTRY']);
+
+// ---- state ----
+let DATA=[],N=0,keyIndex=new Map(),keyFreq=new Map(),keyWeight=new Map(),titlesLower=[];
+let atlasPos=[],domains=[],keyRegions=[],spatial=new Map();
+const CELL=400, WORLD_W=13000, WORLD_H=8200;
+const DOT_K=1.0, KEY_K=0.42, CARD_K=6;       // zoom thresholds (dials)
+let W=0,Hh=0,T=d3.zoomIdentity,k0=0.1;
+let trail=[], _rnCache=new Map();
+let pulls=loadPulls();
+
+// =====================================================================
+// INDEX + ATLAS LAYOUT
+// =====================================================================
+function buildIndex(){
+  keyIndex=new Map();keyFreq=new Map();keyWeight=new Map();titlesLower=new Array(N);
+  for(let i=0;i<N;i++){const d=DATA[i];if(!Array.isArray(d.join_keys))d.join_keys=[];if(!Array.isArray(d.columns))d.columns=[];
+    titlesLower[i]=(d.title||'').toLowerCase();
+    for(const k of d.join_keys){let a=keyIndex.get(k);if(!a){a=[];keyIndex.set(k,a);}a.push(i);}}
+  for(const[k,a]of keyIndex){keyFreq.set(k,a.length);keyWeight.set(k,1/Math.log2(a.length+2));}
+  _rnCache.clear();
+}
+function primaryKey(keys){let best=keys[0],bw=keyWeight.get(best)||0;for(const k of keys){const w=keyWeight.get(k)||0;if(w>bw){bw=w;best=k;}}return best;}
+
+// Treemap: root -> domains -> keys -> datasets(leaf). Area = count. Stable, meaningful "geography".
+function buildAtlas(){
+  const byDom=new Map();
+  for(let i=0;i<N;i++){const keys=DATA[i].join_keys;if(!keys.length)continue;
+    const pk=primaryKey(keys),dom=KEY_DOMAIN[pk]||'people';
+    let bk=byDom.get(dom);if(!bk){bk=new Map();byDom.set(dom,bk);}
+    let arr=bk.get(pk);if(!arr){arr=[];bk.set(pk,arr);}arr.push(i);}
+  const root={name:'root',children:[]};
+  for(const[dom,bk]of byDom){const dn={name:dom,type:'domain',children:[]};
+    // leaf value = 1/sqrt(region size) -> region AREA scales as sqrt(count): big regions stay big,
+    // but rare valuable regions (health/CCN, orgs/EIN) stay visible & navigable instead of microscopic.
+    for(const[k,arr]of bk){const v=1/Math.sqrt(arr.length);dn.children.push({name:k,type:'key',domain:dom,children:arr.map(i=>({type:'ds',idx:i,value:v}))});}
+    root.children.push(dn);}
+  const h=d3.hierarchy(root).sum(d=>d.value||0).sort((a,b)=>b.value-a.value);
+  d3.treemap().size([WORLD_W,WORLD_H]).tile(d3.treemapSquarify).paddingInner(2)
+    .paddingOuter(24).paddingTop(d=>d.depth===1?90:(d.depth===2?38:0))(h);
+  atlasPos=new Array(N);domains=[];keyRegions=[];
+  for(const dn of h.children){
+    domains.push({name:dn.data.name,x0:dn.x0,y0:dn.y0,x1:dn.x1,y1:dn.y1,count:dn.value});
+    for(const kn of dn.children){
+      keyRegions.push({key:kn.data.name,domain:dn.data.name,x0:kn.x0,y0:kn.y0,x1:kn.x1,y1:kn.y1,count:kn.value});
+      for(const ln of kn.leaves()){const i=ln.data.idx;atlasPos[i]={x:(ln.x0+ln.x1)/2,y:(ln.y0+ln.y1)/2};}
+    }
+  }
+  spatial=new Map();
+  for(let i=0;i<N;i++){const p=atlasPos[i];if(!p)continue;const key=Math.floor(p.x/CELL)+'_'+Math.floor(p.y/CELL);let a=spatial.get(key);if(!a){a=[];spatial.set(key,a);}a.push(i);}
+}
+function visibleDatasets(x0,y0,x1,y1,cap){
+  const out=[];const c0=Math.floor(x0/CELL),c1=Math.floor(x1/CELL),r0=Math.floor(y0/CELL),r1=Math.floor(y1/CELL);
+  for(let cx=c0;cx<=c1;cx++)for(let cy=r0;cy<=r1;cy++){const a=spatial.get(cx+'_'+cy);if(!a)continue;
+    for(const i of a){const p=atlasPos[i];if(p.x>=x0&&p.x<=x1&&p.y>=y0&&p.y<=y1){out.push(i);if(cap&&out.length>cap)return out;}}}
+  return out;
+}
+
+// =====================================================================
+// NEIGHBORS (for the focus board)
+// =====================================================================
+function rankedNeighbors(i){
+  let full=_rnCache.get(i);
+  if(!full){const acc=new Map();
+    for(const k of DATA[i].join_keys){const w=keyWeight.get(k),post=keyIndex.get(k);
+      for(const j of post){if(j===i)continue;let e=acc.get(j);if(!e){e={strength:0,keys:[]};acc.set(j,e);}e.strength+=w;e.keys.push(k);}}
+    const arr=[];let strong=0;
+    for(const[j,e]of acc){const hasRare=e.keys.some(k=>!NOISE.has(k));if(hasRare)strong++;arr.push({j,strength:e.strength,keys:e.keys});}
+    arr.sort((a,b)=>b.strength-a.strength||TIER_RANK[DATA[b.j].confidence_tier]-TIER_RANK[DATA[a.j].confidence_tier]||a.j-b.j);
+    full={total:arr.length,strong,arr};_rnCache.set(i,full);}
+  return full;
+}
+
+// =====================================================================
+// LOADING
+// =====================================================================
+function ingest(arr){
+  if(!Array.isArray(arr))throw new Error('JSON is not an array');
+  DATA=arr;N=arr.length;$('#status').textContent='indexing '+N.toLocaleString()+'…';
+  buildIndex();$('#status').textContent='laying out the atlas…';buildAtlas();
+  $('#stats').textContent=N.toLocaleString()+' datasets · '+keyIndex.size+' keys';
+  $('#overlay').classList.add('hide');
+  sizeStage();fitAtlas();
+}
+function tryFetch(){
+  fetch('portal_index.json').then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);$('#status').textContent='parsing…';return r.json();})
+    .then(ingest).catch(err=>{$('#spin').style.display='none';
+      $('#status').textContent='Auto-load blocked ('+err.message+'). Use the button, or run: python -m http.server then open /outputs/trail_atlas.html';});
+}
+$('#fileBtn').addEventListener('click',()=>$('#fileInput').click());
+$('#fileInput').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;$('#spin').style.display='block';$('#status').textContent='reading '+f.name+'…';
+  const rd=new FileReader();rd.onload=()=>{try{ingest(JSON.parse(rd.result));}catch(err){$('#spin').style.display='none';$('#status').textContent='Parse failed: '+err.message;}};
+  rd.onerror=()=>{$('#spin').style.display='none';$('#status').textContent='File read failed.';};rd.readAsText(f);});
+
+// ---- pulls ----
+function sig(d){return (d.title||'')+'§'+(d.url||'');}
+function loadPulls(){try{const r=localStorage.getItem('trailmap.pulls');return r?new Map(Object.entries(JSON.parse(r))):new Map();}catch(e){return new Map();}}
+function savePulls(){try{localStorage.setItem('trailmap.pulls',JSON.stringify(Object.fromEntries(pulls)));}catch(e){}}
+function isPulled(i){return pulls.has(sig(DATA[i]));}
+function togglePull(i){const d=DATA[i],s=sig(d);if(pulls.has(s)){pulls.delete(s);toast('removed from pull list');}else{pulls.set(s,{title:d.title,portal:d.portal,tier:d.confidence_tier,url:d.url});toast('★ pinned to pull list ('+pulls.size+')');}savePulls();}
+
+// =====================================================================
+// ATLAS RENDER  (screen-space projection; constant-size labels/cards)
+// =====================================================================
+const svg=d3.select('#atlas');
+const gRegions=svg.append('g'),gDots=svg.append('g'),gDotLabels=svg.append('g');
+function sizeStage(){const r=$('#stage').getBoundingClientRect();W=r.width;Hh=r.height;}
+const w2s=(x,y)=>[x*T.k+T.x,y*T.k+T.y];
+const s2w=(x,y)=>[(x-T.x)/T.k,(y-T.y)/T.k];
+
+const zoom=d3.zoom().scaleExtent([0.05,9]).on('zoom',ev=>{T=ev.transform;render();});
+svg.call(zoom).on('dblclick.zoom',null);
+function fitAtlas(){sizeStage();k0=Math.min(W/WORLD_W,Hh/WORLD_H)*0.92;
+  const tx=(W-WORLD_W*k0)/2,ty=(Hh-WORLD_H*k0)/2;
+  svg.transition().duration(600).call(zoom.transform,d3.zoomIdentity.translate(tx,ty).scale(k0));}
+function flyToRegion(r){sizeStage();const w=r.x1-r.x0,h=r.y1-r.y0;const k=Math.min(W/w,Hh/h)*0.82;
+  const cx=(r.x0+r.x1)/2,cy=(r.y0+r.y1)/2;
+  svg.transition().duration(650).call(zoom.transform,d3.zoomIdentity.translate(W/2-cx*k,Hh/2-cy*k).scale(k));}
+function flyToDataset(i,then){const p=atlasPos[i];if(!p){if(then)then();return;}const k=Math.min(CARD_K*1.25,8);
+  svg.transition().duration(650).call(zoom.transform,d3.zoomIdentity.translate(W/2-p.x*k,Hh/2-p.y*k).scale(k)).on('end',()=>{if(then)then();});}
+
+function zLevelLabel(k){if(k<KEY_K)return'CONTINENTS';if(k<DOT_K)return'REGIONS';if(k<CARD_K)return'DATASETS';return'CARDS';}
+
+const CARD_MAX=16;   // in-map cards appear ONLY when this few are visible -> they can never pile up/overlap
+function render(){
+  if(!N)return;
+  const k=T.k;
+  const [x0,y0]=s2w(0,0),[x1,y1]=s2w(W,Hh);
+  drawRegions(k,x0,y0,x1,y1);
+  let vis=[];
+  if(k>=DOT_K) vis=visibleDatasets(x0-20,y0-20,x1+20,y1+20,900);
+  const asCards = k>=1.5 && vis.length>0 && vis.length<=CARD_MAX;
+  drawDots(asCards?[]:vis,k);
+  drawCards(asCards?vis:[],k);
+  $('#zlevel').textContent = k<KEY_K?'CONTINENTS':(k<DOT_K?'REGIONS':(asCards?'CARDS · click one':'DATASETS · zoom for cards'));
+}
+
+function drawRegions(k,x0,y0,x1,y1){
+  // domains always; key-regions when zoomed in enough and on-screen
+  const domVis=domains.filter(d=>d.x1>=x0&&d.x0<=x1&&d.y1>=y0&&d.y0<=y1);
+  const keyVis=k>=KEY_K?keyRegions.filter(d=>d.x1>=x0&&d.x0<=x1&&d.y1>=y0&&d.y0<=y1):[];
+  const data=domVis.map(d=>({t:'domain',d})).concat(keyVis.map(d=>({t:'key',d})));
+  const sel=gRegions.selectAll('g.region').data(data,o=>o.t+':'+(o.t==='domain'?o.d.name:o.d.domain+'/'+o.d.key));
+  sel.exit().remove();
+  const ent=sel.enter().append('g').attr('class','region');
+  ent.append('rect').attr('class','regionRect');
+  ent.append('text').attr('class','rlabel');
+  ent.append('text').attr('class','rcount');
+  ent.merge(sel).each(function(o){
+    const g=d3.select(this),d=o.d,isDom=o.t==='domain';
+    const col=isDom?domainColor(d.name):keyColor(d.key);
+    const a=w2s(d.x0,d.y0),b=w2s(d.x1,d.y1);
+    // NOTE: select by STABLE classes (regionRect / rlabel / rcount) and never overwrite them,
+    // or the next render's selection comes back empty and labels detach from their boxes.
+    g.select('rect.regionRect').classed('key',!isDom)
+      .attr('x',a[0]).attr('y',a[1]).attr('width',Math.max(0,b[0]-a[0])).attr('height',Math.max(0,b[1]-a[1]))
+      .attr('fill',col).attr('stroke',col).attr('rx',isDom?10:6)
+      .style('cursor',T.k<DOT_K?'pointer':'default').on('click',(ev)=>{if(T.k>=DOT_K)return;ev.stopPropagation();flyToRegion(d);});
+    const boxW=Math.max(0,b[0]-a[0]), boxH=Math.max(0,b[1]-a[1]);
+    const label=isDom?(DOMAIN_LABEL[d.name]||d.name):'⚿ '+d.key;
+    let fs=isDom?Math.min(42,Math.max(13,boxW/9)):Math.min(15,Math.max(9,boxW/8));
+    fs=Math.min(fs,(boxW-14)/Math.max(1,label.length*0.6));        // shrink the font to fit inside the box
+    const showLbl = fs>=8 && boxW>30;                              // too small to read -> hide (zoom in reveals it)
+    const cfs=isDom?Math.max(10,fs*0.42):9;
+    const showCount = showLbl && boxH>(isDom?fs*1.8:0) && boxW>62;
+    g.select('text.rlabel')
+      .attr('x',a[0]+10).attr('y',a[1]+fs).attr('font-size',Math.max(8,fs)).attr('fill',col)
+      .attr('font-weight',700).attr('pointer-events','none')
+      .style('text-transform',isDom?'uppercase':'none')
+      .style('letter-spacing',isDom?'1px':'0')
+      .style('font-family',isDom?'Segoe UI,system-ui,sans-serif':"'JetBrains Mono',monospace")
+      .attr('opacity',showLbl?(isDom?(k<KEY_K?1:0.5):0.95):0)
+      .text(label);
+    g.select('text.rcount')
+      .attr('x',a[0]+10).attr('y',a[1]+fs+cfs+2).attr('font-size',cfs)
+      .attr('fill',col).attr('pointer-events','none').attr('opacity',showCount?(isDom?(k<KEY_K?0.75:0.4):0.6):0)
+      .text(isDom?d.count.toLocaleString()+' datasets':(keyInfo(d.key).label+' · '+d.count.toLocaleString()));
+  });
+}
+
+function drawDots(vis,k){
+  const sel=gDots.selectAll('circle.dot').data(vis,i=>i);
+  sel.exit().remove();
+  const ent=sel.enter().append('circle').attr('class','dot')
+    .on('click',(ev,i)=>{ev.stopPropagation();trail=[];lanePer=4;openFocus(i,true);});
+  ent.append('title');
+  const all=ent.merge(sel);
+  all.attr('cx',i=>w2s(atlasPos[i].x,atlasPos[i].y)[0]).attr('cy',i=>w2s(atlasPos[i].x,atlasPos[i].y)[1])
+    .attr('r',Math.max(3,Math.min(7,k*1.6)))
+    .attr('fill',i=>tierColor(DATA[i].confidence_tier));
+  all.select('title').text(i=>DATA[i].title+'  ['+DATA[i].confidence_tier+']');
+  // titles for the closest datasets when near card zoom
+  const showLabels = k>=2 && vis.length>0 && vis.length<=14;   // only a handful -> no label overlap; hover gives the rest
+  const ldata = showLabels?vis:[];
+  const ls=gDotLabels.selectAll('text.dotLabel').data(ldata,i=>i);
+  ls.exit().remove();
+  ls.enter().append('text').attr('class','dotLabel').merge(ls)
+    .attr('x',i=>w2s(atlasPos[i].x,atlasPos[i].y)[0]).attr('y',i=>w2s(atlasPos[i].x,atlasPos[i].y)[1]-8)
+    .text(i=>truncate(DATA[i].title,22));
+}
+
+function cardHTML(i,opts){
+  opts=opts||{};
+  const ds=DATA[i],tcol=tierColor(ds.confidence_tier),tt=tierInfo(ds.confidence_tier);
+  const keys=ds.join_keys.map(k=>`<div class="krow" data-key="${esc(k)}" style="border-left-color:${keyColor(k)}" title="${esc(keyTip(k))}"><span style="color:${keyColor(k)}">⚿ ${esc(k)}</span><span class="kf">${(keyFreq.get(k)||0).toLocaleString()}</span></div>`).join('');
+  const cols=opts.cols?`<div class="mcolh">columns · ${ds.columns.length}</div><div class="mcols">${ds.columns.map(c=>`<div class="cc">${esc(c)}</div>`).join('')||'<div class="cc">—</div>'}</div>`:'';
+  const star=`<button class="cstar ${isPulled(i)?'on':''}" data-star="${i}" title="pull">★</button>`;
+  return `<div class="mcard ${opts.focus?'isfocus':''}" data-ds="${i}">
+    <div class="mh" title="${esc(tt.label+' — '+tt.oneLine)}"><span class="cpin" style="background:${tcol}"></span><span class="mt" title="${esc(ds.title)}">${esc(ds.title)}</span>${star}</div>
+    <div class="mkeys">${keys||'<div class="krow" style="border-left-color:#444"><span style="color:#667">no keys</span></div>'}</div>${cols}</div>`;
+}
+
+let cardEls=new Map();
+function drawCards(vis,k){
+  const layer=$('#cardLayer');
+  const keep=new Set(vis);
+  for(const[i,el]of cardEls){if(!keep.has(i)){el.remove();cardEls.delete(i);}}
+  for(const i of vis){
+    let el=cardEls.get(i);
+    if(!el){const div=document.createElement('div');div.innerHTML=cardHTML(i,{cols:false});el=div.firstElementChild;
+      el.addEventListener('click',ev=>{if(ev.target.closest('[data-star]'))return;trail=[];lanePer=4;openFocus(i,true);});
+      el.querySelector('[data-star]').addEventListener('click',ev=>{ev.stopPropagation();togglePull(i);ev.currentTarget.classList.toggle('on',isPulled(i));});
+      layer.appendChild(el);cardEls.set(i,el);}
+    const p=w2s(atlasPos[i].x,atlasPos[i].y);
+    el.style.left=(p[0]-110)+'px';el.style.top=(p[1]-26)+'px';
+  }
+}
+
+// =====================================================================
+// FOCUS BOARD (column lanes — the ER view, deterministic, never overlaps)
+// =====================================================================
+function groupNeighbors(i){
+  const rn=rankedNeighbors(i);
+  // group the FULL neighbor set (rn.arr is strength-sorted) so distinct lanes show:
+  // "via CCN" (the precise matches) AND "via ZIP" / "via NAME" (the broad ones), not one lonely column.
+  const g=new Map();
+  for(const nb of rn.arr){let best=nb.keys[0],bw=keyWeight.get(best)||0;for(const k of nb.keys){const w=keyWeight.get(k)||0;if(w>bw){bw=w;best=k;}}
+    let e=g.get(best);if(!e){e={key:best,grade:keyInfo(best).grade,members:[]};g.set(best,e);}e.members.push(nb);}
+  const groups=[...g.values()].sort((a,b)=>(TIER_RANK[b.grade]-TIER_RANK[a.grade])||((keyWeight.get(b.key)||0)-(keyWeight.get(a.key)||0))||b.members.length-a.members.length);
+  return {groups:groups.slice(0,6),rn};
+}
+let focusIdx=null, lanePer=4;
+function openFocus(i,pushTrail){
+  focusIdx=i;
+  if(pushTrail){lanePer=4;if(trail[trail.length-1]!==i)trail.push(i);}
+  const {groups,rn}=groupNeighbors(i);
+  // build columns
+  const cols=$('#focusCols');cols.innerHTML='';
+  const fl=document.createElement('div');fl.className='lane focuslane';
+  const fc=document.createElement('div');fc.innerHTML=cardHTML(i,{focus:true,cols:true});const fcard=fc.firstElementChild;
+  fcard.querySelector('[data-star]').addEventListener('click',ev=>{ev.stopPropagation();togglePull(i);ev.currentTarget.classList.toggle('on',isPulled(i));});
+  fl.appendChild(fcard);cols.appendChild(fl);
+  for(const grp of groups){
+    const lane=document.createElement('div');lane.className='lane';lane.dataset.key=grp.key;
+    const head=document.createElement('div');head.className='laneHead';head.style.color=keyColor(grp.key);head.style.borderColor=keyColor(grp.key);
+    head.title=keyTip(grp.key);
+    const strong=grp.grade==='STEEL'||grp.grade==='STRONG';
+    head.innerHTML=`${strong?'🔩 ':''}via ${esc(grp.key)} <span class="lc">${grp.members.length}</span>`;
+    lane.appendChild(head);
+    grp.members.slice(0,lanePer).forEach(nb=>{
+      const d=document.createElement('div');d.innerHTML=cardHTML(nb.j,{});const c=d.firstElementChild;
+      c.dataset.via=grp.key;
+      c.addEventListener('click',ev=>{if(ev.target.closest('[data-star]'))return;openFocus(nb.j,true);drawBoard();});
+      c.querySelector('[data-star]').addEventListener('click',ev=>{ev.stopPropagation();togglePull(nb.j);ev.currentTarget.classList.toggle('on',isPulled(nb.j));});
+      lane.appendChild(c);
+    });
+    if(grp.members.length>lanePer){const more=document.createElement('div');more.className='laneHead';more.style.color='var(--dim)';more.style.borderColor='var(--line2)';more.style.cursor='pointer';
+      more.textContent=`+ ${grp.members.length-lanePer} more`;
+      more.addEventListener('click',()=>{lanePer+=8;openFocus(i,false);drawBoard();});lane.appendChild(more);}
+    cols.appendChild(lane);
+  }
+  if(!groups.length){
+    const note=document.createElement('div');note.className='lane';
+    note.innerHTML=`<div class="laneHead" style="color:var(--dim);border-color:var(--line2)">no connections</div>
+      <div style="color:var(--dim);font-size:12px;max-width:250px;line-height:1.5;padding:6px 2px">${DATA[i].join_keys.length?'This dataset shares no join key with any other on the board — an island. Worth pulling on its own merits.':'This dataset carries no join key, so nothing links to it.'}</div>`;
+    cols.appendChild(note);
+  }
+  // case note
+  renderCaseNote(i,rn);
+  renderCrumbs();
+  $('#focus').classList.add('show');
+  requestAnimationFrame(()=>{drawFocusStrings();});
+  window.addEventListener('resize',drawFocusStrings);
+}
+function drawBoard(){ /* openFocus already rebuilt DOM; just redraw strings */ requestAnimationFrame(drawFocusStrings); }
+
+function renderCaseNote(i,rn){
+  const ds=DATA[i],ti=tierInfo(ds.confidence_tier),keys=ds.join_keys;
+  const tcol=tierColor(ds.confidence_tier);
+  let lead='';
+  const fl=rn.arr.find(n=>true);
+  if(fl){const shared=[...fl.keys].sort((a,b)=>(keyWeight.get(b)||0)-(keyWeight.get(a)||0)).slice(0,2).map(k=>esc(k)).join(' + ');
+    lead=` Strongest lead: <b>${esc(truncate(DATA[fl.j].title,46))}</b> via ${shared}.`;}
+  $('#casenote').innerHTML=`<div class="ct">${esc(ds.title)}</div>
+    <div><span style="color:${tcol};font-weight:700">${ds.confidence_tier} · ${esc(ti.label)}</span> — ${esc(ti.oneLine)}</div>
+    <div style="margin-top:5px">Touches <b>${rn.total.toLocaleString()}</b> datasets, <b style="color:var(--accent)">${rn.strong.toLocaleString()}</b> via strong keys.${keys.length?'':' Carries no join key — an island.'}${lead}</div>
+    <div style="margin-top:5px;color:var(--dim);font-size:11px">Portal: ${esc(ds.portal)}${ds.row_count!=null?' · '+Number(ds.row_count).toLocaleString()+' rows':''}</div>`;
+}
+function renderCrumbs(){
+  const c=$('#crumbs');c.innerHTML='';
+  trail.forEach((i,idx)=>{const chip=document.createElement('span');chip.className='crumb mono'+(idx===trail.length-1?' cur':'');
+    chip.innerHTML=`<span class="tdot" style="background:${tierColor(DATA[i].confidence_tier)}"></span>${esc(truncate(DATA[i].title,22))}`;
+    chip.title=DATA[i].title;chip.addEventListener('click',()=>{trail=trail.slice(0,idx+1);lanePer=4;openFocus(i,false);});c.appendChild(chip);
+    if(idx<trail.length-1){const s=document.createElement('span');s.className='crumbsep';s.textContent='→';c.appendChild(s);}});
+}
+function drawFocusStrings(){
+  const fs=$('#focusStrings');const cont=$('#focus').getBoundingClientRect();
+  fs.setAttribute('width',cont.width);fs.setAttribute('height',cont.height);
+  while(fs.firstChild)fs.removeChild(fs.firstChild);
+  if(focusIdx==null)return;
+  const focusCard=$('#focusCols').querySelector('.focuslane .mcard');if(!focusCard)return;
+  const neighborCards=$('#focusCols').querySelectorAll('.lane:not(.focuslane) .mcard[data-ds]');
+  const NS='http://www.w3.org/2000/svg';
+  neighborCards.forEach(nc=>{
+    const key=nc.dataset.via;if(!key)return;
+    const aRow=focusCard.querySelector(`.krow[data-key="${key}"]`);
+    const bRow=nc.querySelector(`.krow[data-key="${key}"]`);
+    const aEl=aRow||focusCard,bEl=bRow||nc;
+    const ar=aEl.getBoundingClientRect(),br=bEl.getBoundingClientRect();
+    const ax=ar.right-cont.left,ay=ar.top+ar.height/2-cont.top;
+    const bx=br.left-cont.left,by=br.top+br.height/2-cont.top;
+    const mx=(ax+bx)/2;
+    const path=document.createElementNS(NS,'path');
+    path.setAttribute('class','fstr');path.setAttribute('stroke',keyColor(key));
+    path.setAttribute('stroke-width',(1+Math.min(3,(keyWeight.get(key)||0)*4)).toFixed(1));
+    path.setAttribute('d',`M${ax},${ay} C${mx},${ay} ${mx},${by} ${bx},${by}`);
+    fs.appendChild(path);
+    // pill at midpoint
+    const midx=0.125*(ax+bx)+0.75*mx,midy=0.5*(ay+by);
+    const g=document.createElementNS(NS,'g');g.setAttribute('class','fpill');g.setAttribute('transform',`translate(${midx},${midy})`);
+    const w=key.length*6.6+10;
+    const rect=document.createElementNS(NS,'rect');rect.setAttribute('x',-w/2);rect.setAttribute('y',-8);rect.setAttribute('width',w);rect.setAttribute('height',16);rect.setAttribute('rx',8);rect.setAttribute('stroke',keyColor(key));
+    const tx=document.createElementNS(NS,'text');tx.setAttribute('class','fstrlab');tx.setAttribute('text-anchor','middle');tx.setAttribute('dy','0.32em');tx.setAttribute('fill',keyColor(key));tx.textContent=key;
+    g.appendChild(rect);g.appendChild(tx);fs.appendChild(g);
+  });
+}
+function closeFocus(){$('#focus').classList.remove('show');focusIdx=null;window.removeEventListener('resize',drawFocusStrings);}
+$('#backMap').addEventListener('click',closeFocus);
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#focus').classList.contains('show'))closeFocus();});
+$('#focusCols').addEventListener('scroll',()=>requestAnimationFrame(drawFocusStrings));
+
+// =====================================================================
+// SEARCH
+// =====================================================================
+let searchTimer=null;
+$('#search').addEventListener('input',e=>{clearTimeout(searchTimer);const q=e.target.value.trim().toLowerCase();searchTimer=setTimeout(()=>runSearch(q),110);});
+$('#search').addEventListener('focus',()=>{if($('#searchResults').innerHTML)$('#searchResults').classList.add('show');});
+document.addEventListener('click',e=>{if(!$('#searchwrap').contains(e.target))$('#searchResults').classList.remove('show');});
+function runSearch(q){const box=$('#searchResults');if(q.length<2||!N){box.classList.remove('show');return;}
+  const hits=[];let total=0;
+  for(let i=0;i<N;i++){let m=titlesLower[i].includes(q);
+    if(!m)for(const k of DATA[i].join_keys){if(k.toLowerCase().includes(q)){m=true;break;}}
+    if(!m)for(const c of DATA[i].columns){if(c.toLowerCase().includes(q)){m=true;break;}}
+    if(m){total++;if(hits.length<50)hits.push(i);}}
+  box.innerHTML=`<div class="srhead">${total.toLocaleString()} matches${total>50?' · showing 50':''}</div>`+hits.map(i=>`<div class="sr" data-i="${i}"><span class="tdot" style="background:${tierColor(DATA[i].confidence_tier)}"></span><span class="srt mono">${esc(DATA[i].title)}</span><span class="srp">${esc(DATA[i].portal)}</span></div>`).join('')||'<div class="sr">no matches</div>';
+  box.classList.add('show');
+  box.querySelectorAll('.sr[data-i]').forEach(el=>el.addEventListener('click',()=>{clearTimeout(searchTimer);const i=+el.dataset.i;box.classList.remove('show');$('#search').value='';
+    if(atlasPos[i]){closeFocus();flyToDataset(i,()=>{trail=[];lanePer=4;openFocus(i,true);});}else{trail=[];lanePer=4;openFocus(i,true);}}));}
+
+// =====================================================================
+// BOOT
+// =====================================================================
+$('#homeBtn').addEventListener('click',()=>{closeFocus();fitAtlas();});
+window.addEventListener('resize',()=>{sizeStage();render();if($('#focus').classList.contains('show'))drawFocusStrings();});
+sizeStage();tryFetch();
+</script>
+</body>
+</html>
