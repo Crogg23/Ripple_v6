@@ -17,10 +17,11 @@ Safe by default: skips anything already landed, caps rows, previews unless --run
 
 from __future__ import annotations
 
-import datetime as _dt
 import hashlib
 import json
+import os
 import re
+import time
 import uuid
 from urllib.parse import urlparse
 
@@ -39,6 +40,28 @@ UA = {"User-Agent": "Mozilla/5.0 (ripple-portal-loader)"}
 SOC_PAGE = 50_000
 ARC_PAGE = 2_000
 
+# One shared session + retry on rate-limits / transient 5xx, so a hiccup on page
+# 3 of 10 doesn't discard pages 1-2 and abandon the dataset (the reliability gap a
+# big unattended harvest would hit). SOCRATA_APP_TOKEN env raises Socrata limits.
+_SESSION = requests.Session()
+_SESSION.headers.update(UA)
+_RETRY_STATUS = {429, 500, 502, 503, 504}
+
+
+def _get(url, params=None, headers=None, tries=5, timeout=60):
+    last = None
+    for i in range(tries):
+        r = _SESSION.get(url, params=params, headers=headers, timeout=timeout)
+        if r.status_code in _RETRY_STATUS:
+            last = r
+            time.sleep(min(float(r.headers.get("Retry-After") or 2 ** i), 30))
+            continue
+        r.raise_for_status()
+        return r
+    if last is not None:
+        last.raise_for_status()
+    raise RuntimeError(f"GET failed after {tries} tries: {url}")
+
 
 # --------------------------------------------------------------------------- #
 # Candidate selection
@@ -46,7 +69,7 @@ ARC_PAGE = 2_000
 def candidates(conn, platform=None, with_key=False, min_rows=1, max_rows=200_000,
                limit=20) -> list[dict]:
     where = ["ARRAY_SIZE(column_names) > 0", "NULLIF(TRIM(source_url),'') IS NOT NULL",
-             "platform IN ('SOCRATA','ARCGIS')"]
+             f"platform IN ({_PLATFORM_SQL})"]
     if platform:
         where.append(f"platform = '{platform.upper()}'")
     if with_key:
@@ -65,10 +88,8 @@ def candidates(conn, platform=None, with_key=False, min_rows=1, max_rows=200_000
     return db.dicts(conn, q)
 
 
-# Entity keys where a shared key TYPE strongly implies a real, joinable connection
-# (unlike GEO/NAME, where a type match can still overlap nothing).
-ENTITY_KEYS = ["EIN", "NPI", "CIK", "UEI", "DUNS", "LEI", "IMO", "MMSI",
-               "PATENT", "CCN", "DOCKET", "NAICS", "NCES", "SIC"]
+# Entity keys (STEEL/STRONG) come from the shared tagger -- single source of truth.
+from .keys import ENTITY_KEYS  # noqa: E402
 
 
 def live_key_types(entity_only: bool = True) -> set[str]:
@@ -101,7 +122,7 @@ def connectable_candidates(conn, limit=50, size_cap=2_000_000) -> list[dict]:
                ARRAYS_OVERLAP(join_keys, ARRAY_CONSTRUCT({live_arr})) AS hits_live
         FROM {INDEX}
         WHERE ARRAY_SIZE(column_names) > 0 AND NULLIF(TRIM(source_url),'') IS NOT NULL
-          AND platform IN ('SOCRATA','ARCGIS')
+          AND platform IN ({_PLATFORM_SQL})
           AND ARRAYS_OVERLAP(join_keys, ARRAY_CONSTRUCT({net}))
           AND (row_count IS NULL OR row_count <= {size_cap})
         ORDER BY hits_live DESC,
@@ -156,10 +177,13 @@ def _slug(s: str, n: int = 22) -> str:
 
 
 def source_id_for(rec: dict) -> str:
+    """portal_<plat>_<portal-slug>_<hash>. The hash of the FULL identity makes it
+    collision-free + bounded length (truncating the raw dataset_id collided)."""
     plat = rec["PLATFORM"].lower()[:3]                 # soc / arc
-    portal = _slug(rec["PORTAL_NAME"])
-    did = _slug(rec["DATASET_ID"], 40)
-    return f"portal_{plat}_{portal}_{did}"
+    portal = _slug(rec["PORTAL_NAME"], 16)
+    full = f"{rec['PLATFORM']}|{rec['PORTAL_NAME']}|{rec['DATASET_ID']}"
+    h = hashlib.sha1(full.encode("utf-8")).hexdigest()[:10]
+    return f"portal_{plat}_{portal}_{h}"
 
 
 # --------------------------------------------------------------------------- #
@@ -175,13 +199,12 @@ def _flatten(v):
 def fetch_socrata(rec: dict, max_rows: int) -> list[dict]:
     domain = urlparse(rec["SOURCE_URL"]).netloc
     endpoint = f"https://{domain}/resource/{rec['DATASET_ID']}.json"
+    tok = os.environ.get("SOCRATA_APP_TOKEN", "").strip()
+    hdr = {"X-App-Token": tok} if tok else None
     out, offset = [], 0
     while len(out) < max_rows:
         page = min(SOC_PAGE, max_rows - len(out))
-        r = requests.get(endpoint, headers=UA, timeout=60,
-                         params={"$limit": page, "$offset": offset})
-        r.raise_for_status()
-        batch = r.json()
+        batch = _get(endpoint, params={"$limit": page, "$offset": offset}, headers=hdr).json()
         if not batch:
             break
         out.extend({k: _flatten(v) for k, v in row.items()} for row in batch)
@@ -192,9 +215,13 @@ def fetch_socrata(rec: dict, max_rows: int) -> list[dict]:
 
 
 def _arcgis_service_url(item_id: str) -> str | None:
-    meta = requests.get(f"https://www.arcgis.com/sharing/rest/content/items/{item_id}",
-                        headers=UA, timeout=30, params={"f": "json"}).json()
+    meta = _get(f"https://www.arcgis.com/sharing/rest/content/items/{item_id}",
+                params={"f": "json"}, timeout=30).json()
     return meta.get("url")
+
+
+def _page_sig(feats: list) -> int:
+    return hash(tuple(json.dumps(f.get("properties"), sort_keys=True) for f in feats[:5]))
 
 
 def fetch_arcgis(rec: dict, max_rows: int) -> list[dict]:
@@ -203,17 +230,19 @@ def fetch_arcgis(rec: dict, max_rows: int) -> list[dict]:
     if not svc:
         raise RuntimeError("no FeatureServer url for item")
     qurl = f"{svc}/{layer}/query"
-    out, offset = [], 0
+    out, offset, last_sig = [], 0, None
     while len(out) < max_rows:
         page = min(ARC_PAGE, max_rows - len(out))
-        r = requests.get(qurl, headers=UA, timeout=60, params={
-            "where": "1=1", "outFields": "*", "f": "geojson",
-            "resultRecordCount": page, "resultOffset": offset})
-        r.raise_for_status()
-        gj = r.json()
+        gj = _get(qurl, params={"where": "1=1", "outFields": "*", "f": "geojson",
+                                "resultRecordCount": page, "resultOffset": offset}).json()
         feats = gj.get("features", [])
         if not feats:
             break
+        sig = _page_sig(feats)
+        if sig == last_sig:   # layer ignores resultOffset -> same page again; stop, don't spin to cap
+            print(f"    [warn] {rec['DATASET_ID']}: non-advancing page, stopping at {len(out)} rows")
+            break
+        last_sig = sig
         for f in feats:
             row = {k: _flatten(v) for k, v in (f.get("properties") or {}).items()}
             if f.get("geometry"):
@@ -225,7 +254,10 @@ def fetch_arcgis(rec: dict, max_rows: int) -> list[dict]:
     return out
 
 
-FETCHERS = {"SOCRATA": fetch_socrata, "ARCGIS": fetch_arcgis}
+# Platform registry -- ONE place to add a platform end to end. The candidate SQL
+# derives its platform filter from these keys, so a new fetcher is never dead code.
+PLATFORMS = {"SOCRATA": fetch_socrata, "ARCGIS": fetch_arcgis}
+_PLATFORM_SQL = ", ".join(f"'{p}'" for p in PLATFORMS)
 
 
 # --------------------------------------------------------------------------- #
@@ -239,49 +271,65 @@ def _already_landed(conn, table: str) -> bool:
     return bool(n)
 
 
-def load_one(conn, rec: dict, max_rows: int, force: bool = False) -> dict:
+def load_one(conn, rec: dict, max_rows: int, force: bool = False, refresh: bool = False) -> dict:
     sid = source_id_for(rec)
     table = sid.upper()
-    if not force and _already_landed(conn, table):
+    landed = _already_landed(conn, table)
+    if landed and not force and not refresh:
         return {"source_id": sid, "status": "skip (already landed)", "rows": 0}
 
     started = ingest._utcnow()
     run_id = str(uuid.uuid4())
-    rows = FETCHERS[rec["PLATFORM"]](rec, max_rows)
-    if not rows:
-        return {"source_id": sid, "status": "skip (0 rows fetched)", "rows": 0}
+    try:
+        fetcher = PLATFORMS.get(rec["PLATFORM"])
+        if fetcher is None:
+            raise RuntimeError(f"unregistered platform '{rec['PLATFORM']}' (add it to PLATFORMS)")
+        rows = fetcher(rec, max_rows)
+        if not rows:
+            ingest._log_run(conn, sid, run_id, "empty", 0, 0, "", rec["SOURCE_URL"],
+                            started, ingest._utcnow(), "No rows fetched.")
+            return {"source_id": sid, "status": "skip (0 rows fetched)", "rows": 0}
 
-    df = pd.DataFrame(rows)
-    df = df.loc[:, ~df.columns.duplicated()]          # drop dup column names
-    sha = hashlib.sha256(ingest._df_bytes(df)).hexdigest()
-    df[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
-    df["_SOURCE_RUN_ID"] = run_id
-    df["_SRC_SHA256"] = sha
-    df = ingest._stringify(df)
+        df = pd.DataFrame(rows)
+        df = df.loc[:, ~df.columns.duplicated()].drop_duplicates()   # de-dup cols + rows
+        sha = hashlib.sha256(ingest._df_bytes(df)).hexdigest()
+        if refresh and landed and ingest._latest_success_sha(conn, sid) == sha:
+            return {"source_id": sid, "status": "skip (unchanged)", "rows": len(df)}
 
-    ingest._load_landing(conn, df, table, overwrite=True)
-    ended = ingest._utcnow()
-    ingest._log_run(conn, sid, run_id, "success", len(rows),
-                    len(ingest._df_bytes(df)), sha, rec["SOURCE_URL"], started, ended,
-                    f"Bulk portal load ({rec['PLATFORM']}) of {len(rows)} rows.")
+        df[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
+        df["_SOURCE_RUN_ID"] = run_id
+        df["_SRC_SHA256"] = sha
+        df = ingest._stringify(df)
 
-    jk = rec.get("JOIN_KEYS")
-    join_keys = ", ".join(json.loads(jk) if isinstance(jk, str) else (jk or [])) if jk else ""
-    cfg = {
-        "source_id": sid, "name": rec["DATASET_TITLE"] or sid,
-        "publisher": rec["PORTAL_NAME"], "url": rec["SOURCE_URL"],
-        "description": f"{rec['DATASET_TITLE']} — bulk-loaded from {rec['PORTAL_NAME']} ({rec['PLATFORM']}).",
-        "access_method": "api", "format": rec["PLATFORM"].lower(), "cost": "free",
-        "auth": {"type": "none"}, "join_keys": join_keys, "priority_tier": "3",
-        "geographic_scope": "", "unit_of_observation": "one row = one record",
-        "notes": "Auto-loaded by connect.portal_loader (no LLM).",
-    }
-    snow.execute(conn, *register._merge_sql(register._build_row(cfg, {})))
-    return {"source_id": sid, "status": "loaded", "rows": len(rows), "platform": rec["PLATFORM"]}
+        ingest._load_landing(conn, df, table, overwrite=True)
+        ingest._log_run(conn, sid, run_id, "success", len(df),
+                        len(ingest._df_bytes(df)), sha, rec["SOURCE_URL"], started,
+                        ingest._utcnow(), f"Bulk portal load ({rec['PLATFORM']}) of {len(df)} rows.")
+
+        jk = rec.get("JOIN_KEYS")
+        join_keys = ", ".join(json.loads(jk) if isinstance(jk, str) else (jk or [])) if jk else ""
+        cfg = {
+            "source_id": sid, "name": rec["DATASET_TITLE"] or sid,
+            "publisher": rec["PORTAL_NAME"], "url": rec["SOURCE_URL"],
+            "description": f"{rec['DATASET_TITLE']} — bulk-loaded from {rec['PORTAL_NAME']} ({rec['PLATFORM']}).",
+            "access_method": "api", "format": rec["PLATFORM"].lower(), "cost": "free",
+            "auth": {"type": "none"}, "join_keys": join_keys, "priority_tier": "3",
+            "geographic_scope": "", "unit_of_observation": "one row = one record",
+            "notes": "Auto-loaded by connect.portal_loader (no LLM).",
+        }
+        snow.execute(conn, *register._merge_sql(register._build_row(cfg, {})))
+        return {"source_id": sid, "status": "loaded", "rows": len(df), "platform": rec["PLATFORM"]}
+    except Exception as e:
+        try:    # always leave a trace of a failed harvest, never swallow it silently
+            ingest._log_run(conn, sid, run_id, "failed", None, None, "", rec["SOURCE_URL"],
+                            started, ingest._utcnow(), str(e)[:200])
+        except Exception:
+            pass
+        raise
 
 
 def run(platform=None, with_key=False, limit=10, max_rows=500, do_run=False,
-        force=False, connectable=False, verify=False) -> list[dict]:
+        force=False, connectable=False, verify=False, refresh=False) -> list[dict]:
     conn = db.connect()
     try:
         if connectable:
@@ -304,7 +352,7 @@ def run(platform=None, with_key=False, limit=10, max_rows=500, do_run=False,
         results = []
         for c in cands:
             try:
-                res = load_one(conn, c, max_rows=max_rows, force=force)
+                res = load_one(conn, c, max_rows=max_rows, force=force, refresh=refresh)
             except Exception as e:
                 res = {"source_id": source_id_for(c), "status": f"ERROR: {str(e)[:90]}", "rows": 0}
             print(f"  [{res['status']:<22}] {res['source_id']}  ({res.get('rows',0)} rows)")

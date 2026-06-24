@@ -1,7 +1,39 @@
 # Build State
-Last updated: 2026-06-20
+Last updated: 2026-06-24
 
 ## CURRENT FOCUS
+**Session 2026-06-23/24 — built the CONNECT + EXPLORE layer and scaled the Library 45 → 638 sources.**
+A new `connect/` package (the connection engine) was added and the Library jumped from 45 to 638 landing
+tables. All on branch `claude/connect-engine-and-bulk-loader`, merged to `main`.
+
+What shipped:
+- **`connect/` engine** — turns the landed Library into a graph of REAL connections: it measures actual
+  value overlap on a shared key (not just "both carry an EIN-shaped column"). Pipeline: `fingerprint`
+  (which keys each table carries + are they populated) → `overlap` (value equi-join + spatial point-in-
+  polygon) → `discover` (the edge list) → `explore` (interactive Plotly map → `outputs/connection_explorer.html`).
+  Reuses the `portal_recon` tagger and `library-onboarding/snow.py`. Run: `python -m connect all`. See `connect/README.md` + `connect/HOWTO.md`.
+- **`connect/portal_loader.py`** — LLM-free bulk loader. Pulls ArcGIS/Socrata datasets straight from the
+  338k `PORTAL_DATASET_INDEX` via templated platform APIs (no recon/codegen), landing them identically to
+  the onboarding agent (same provenance / INGEST_RUNS / registry). `--connectable` targets datasets whose
+  keys overlap what the Library already holds. `python -m connect harvest --connectable --run`.
+- **Hardening** — an adversarial audit found 23 real issues; fixed in two passes:
+  - FLAWLESS (correctness): per-key `NORM_RULES` that PAD (never strip) IDs + drop malformed; a confidence
+    gate (0–1) that kills chance-level "connections" (a collision guard over each key's value space); spatial
+    fixes. Cut a 97-table graph from 809 edges → 307 honest ones (502 flukes gated).
+  - EXPANDABLE (scale): set-based discovery (one keyset table + one self-join) replaced the O(n²) per-pair
+    query crawl; loader gained retry/backoff, failed-run logging, SHA-idempotent `--refresh`, collision-free
+    IDs, a `PLATFORMS` registry, an ArcGIS non-advancing-page guard.
+
+**Live now: 638 landing tables (~24.3M rows), 12,804 real connections across 547 datasets**, each scored by
+confidence. Headliner survives: NPPES providers ↔ HHS-OIG **banned providers** on NPI = 8,503 matched (100%).
+Most new edges are local-gov datasets linking each other (industry/school codes, NPI); 730 reach into the
+federal data; 17 are federal↔federal. **Blocked on: nothing.** PAT rotates ~2026-07-05.
+
+**Deliberately deferred (don't over-build until needed):** incremental/cached re-discovery + a Snowflake-backed
+graph store (only needed at ~tens-of-thousands of tables — a full rebuild currently re-indexes everything);
+making the 15MB explorer fast at scale (top-N / default-filter); a crosswalk/bridge layer (NPI↔CCN, CIK↔EIN).
+
+## PRIOR FOCUS (2026-06-20 — env recovery)
 **Session 2026-06-20 — env recovery + warehouse verification + dbt hygiene (no new sources).** A fresh
 container had a **dead `SNOWFLAKE_PAT`** (Snowflake `394400`), so everything Snowflake-side (connector, MCP
 server, dbt) was dark. Recovered: new PAT into a gitignored `.env`, `config.py` now `load_dotenv(override=True)`
@@ -461,13 +493,17 @@ Fresh ephemeral container, **no new sources** — got the stack live again and c
   (+ `LIBRARY_STAGING`/`LIBRARY_MARTS` for dbt) would be safer for routine onboarding.
 
 ## NEXT ACTION
-**`dbt build` of the 53 previously-unbuilt models is DONE — fully green (2026-06-20): PASS=459, WARN=96,
-0 errors, 0 skips.** All 35 modeled sources are now materialized in `LIBRARY_STAGING/MARTS.DBT_CROGERS`
-(incl. the giants `nppes` 9.6M, `noaa_ais` 7.3M, `fjc_idb` 4.1M). Getting green took 5 build-bug fixes
-(2 epoch-micros audit casts via `to_timestamp_ntz(_ingested_at, 6)`; the revolvingdoor intermediate's
-multi-column UNPIVOT rewritten as `LATERAL FLATTEN` — Snowflake has no multi-column unpivot; dropped a
-phantom `EIN` not_null + a malformed `state` accepted_values) plus 73 over-strict null/enum tests downgraded
-to `severity: warn` (kept, not deleted). **Reminder: dbt reads OS env, not `.env` — `source ../.env` before
-any dbt command**, else it uses the dead container PAT + empty warehouse.
-**Next:** onboard a real `scrape_js` source end-to-end; `dbt run` a `fed_cfpb_complaints` staging/mart
-(dedup-on-`complaint_id`); (D) least-privilege `RIPPLE_INGEST_RW` role; then the parked dbt deprecation sweep.
+**The connect engine + bulk loader are built, hardened, and merged to `main`; the Library is at 638 tables /
+12,804 real connections.** Best next moves (Chris to pick):
+1. **Make the explorer usable at scale** — it's 15MB / 12,804 edges and sluggish. Default to high-confidence
+   + federal edges, expand on click (the deferred top-N/filter polish). Highest near-term value.
+2. **Mine the gold** — filter to STEEL/entity edges + the 730 portal↔federal connections and chase a real
+   story (e.g. banned providers ↔ where they still operate); uncap those specific high-value source threads
+   (most portal data is a 2,000-row sample right now).
+3. **Crosswalk/bridge layer** — load NPI↔CCN, CIK↔EIN, FIPS↔ZIP so datasets that don't share a key directly
+   connect through a hop (multiplies the graph without more sources).
+4. **Pour more** — the connectable net was ~679; the full loadable universe is ~78k ArcGIS/Socrata datasets.
+5. (Ops) PAT rotates ~2026-07-05. dbt reads OS env not `.env` — `source ../.env` before any dbt command.
+
+**Re-run the map any time:** `python -m connect all` (rebuilds from scratch — slow at 638 tables until the
+deferred incremental-cache is built; `python -m connect explore` alone is instant if data hasn't changed).

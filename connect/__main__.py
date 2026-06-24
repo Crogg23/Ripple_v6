@@ -39,6 +39,7 @@ def main() -> int:
     h.add_argument("--max-rows", type=int, default=500, help="row cap per dataset")
     h.add_argument("--run", action="store_true", help="actually load (default previews only)")
     h.add_argument("--force", action="store_true", help="reload even if already landed")
+    h.add_argument("--refresh", action="store_true", help="re-fetch landed sources; skip if content SHA unchanged")
 
     args = ap.parse_args()
 
@@ -67,7 +68,8 @@ def main() -> int:
         portal_loader.run(platform=args.platform, with_key=args.with_key,
                           limit=args.limit, max_rows=args.max_rows,
                           do_run=args.run, force=args.force,
-                          connectable=args.connectable, verify=args.verify)
+                          connectable=args.connectable, verify=args.verify,
+                          refresh=args.refresh)
     return 0
 
 

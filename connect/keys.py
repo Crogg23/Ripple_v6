@@ -56,6 +56,11 @@ def detect_key(column_name: str) -> tuple[str | None, str | None]:
 # 'skip'    : detected but not directly join-able as a single column
 SPATIAL_KEYS = {"LATLON", "GEOM"}
 
+# Entity keys: a shared key TYPE here strongly implies a real connection (unlike
+# GEO/NAME, where a type match can overlap nothing). Single source of truth =
+# the tagger's tiers, so a new STEEL/STRONG key is picked up everywhere at once.
+ENTITY_KEYS = [k for k, (tier, _toks) in KEY_TOKENS.items() if tier in ("STEEL", "STRONG")]
+
 
 def join_mode(key: str) -> str:
     if key in SPATIAL_KEYS:
@@ -64,47 +69,54 @@ def join_mode(key: str) -> str:
 
 
 # --------------------------------------------------------------------------- #
-# Value normalizers — return a Snowflake SQL expression that canonicalizes the
-# column for joining. NULL/empty after normalization => excluded from the join.
+# Value normalizers -- a Snowflake SQL expression canonicalizing a column for an
+# equi-join. NULL/empty after normalization => excluded from the join.
+#
+# We PAD, never strip. Padding two distinct fixed-width IDs can never collapse
+# them; LTRIM '0' provably can ('015009' and '15009' both -> '15009') -- the
+# exact mechanism that manufactured the Alabama/Puerto-Rico false match.
+#
+# rule = (mode, width)
+#   pad   N : alnum, upper, LPAD to width N; NULL if longer than N (dirty)
+#   fixed N : alnum, upper, keep ONLY if exactly N chars (UEI/LEI), else NULL
+#   code    : keep leading zeros, strip punctuation, upper (FIPS/ZIP/NAICS/docket)
+#   country : upper letters only (ISO)
+#   name    : upper, punctuation -> single space, trim (fuzzy by nature)
 # --------------------------------------------------------------------------- #
-def _id_strip0(col: str) -> str:
-    # Entity IDs (EIN/NPI/CIK/CCN/...): keep alphanumerics, upper, drop leading
-    # zeros (so '015009' == '15009'). Same fix that doubled the CCN match earlier.
-    return (
-        f"NULLIF(LTRIM(UPPER(REGEXP_REPLACE(TO_VARCHAR({col}), '[^0-9A-Za-z]', '')), '0'), '')"
-    )
+NORM_RULES: dict[str, tuple[str, int]] = {
+    "NPI": ("pad", 10), "EIN": ("pad", 9), "DUNS": ("pad", 9), "CIK": ("pad", 10),
+    "CCN": ("pad", 6), "IMO": ("pad", 7), "MMSI": ("pad", 9),
+    "UEI": ("fixed", 12), "LEI": ("fixed", 20),
+    "NAICS": ("code", 0), "SIC": ("code", 0), "NCES": ("code", 0),
+    "DOCKET": ("code", 0), "PATENT": ("code", 0), "FIPS": ("code", 0), "ZIP": ("code", 0),
+    "COUNTRY": ("country", 0), "NAME": ("name", 0), "ADDRESS": ("name", 0),
+}
 
 
-def _code_keep0(col: str) -> str:
-    # Geographic codes (FIPS/ZIP): leading zeros are significant — keep them.
-    return f"NULLIF(REGEXP_REPLACE(TO_VARCHAR({col}), '[^0-9A-Za-z]', ''), '')"
-
-
-def _name(col: str) -> str:
-    # Names/addresses: upper, punctuation -> single space, trim. Fuzzy by nature.
-    return f"NULLIF(TRIM(REGEXP_REPLACE(UPPER(TO_VARCHAR({col})), '[^A-Z0-9]+', ' ')), '')"
-
-
-def _country(col: str) -> str:
-    return f"NULLIF(UPPER(REGEXP_REPLACE(TO_VARCHAR({col}), '[^A-Za-z]', '')), '')"
-
-
-# key -> normalizer
-_NORMALIZERS: dict[str, callable] = {}
-for _k in ("EIN", "NPI", "CIK", "UEI", "DUNS", "LEI", "IMO", "MMSI", "PATENT",
-           "CCN", "DOCKET", "NAICS", "NCES", "SIC"):
-    _NORMALIZERS[_k] = _id_strip0
-for _k in ("FIPS", "ZIP"):
-    _NORMALIZERS[_k] = _code_keep0
-_NORMALIZERS["COUNTRY"] = _country
-for _k in ("NAME", "ADDRESS"):
-    _NORMALIZERS[_k] = _name
+def _alnum(col: str) -> str:
+    return f"UPPER(REGEXP_REPLACE(TO_VARCHAR({col}), '[^0-9A-Za-z]', ''))"
 
 
 def normalize_sql(key: str, col: str) -> str:
-    """SQL expression canonicalizing `col` for an equi-join on `key`."""
-    fn = _NORMALIZERS.get(key, _code_keep0)
-    return fn(col)
+    """SQL expression canonicalizing `col` for an equi-join on `key`.
+
+    Raises on an unmapped value key -- fail loud, never silently mis-canonicalize
+    (the old code fell back to a keep-zeros default, hiding newly-added keys).
+    """
+    if key not in NORM_RULES:
+        raise KeyError(f"No NORM_RULES entry for key '{key}'. Add one before joining on it.")
+    mode, width = NORM_RULES[key]
+    clean = _alnum(col)
+    if mode == "pad":
+        return (f"CASE WHEN LENGTH({clean}) = 0 OR LENGTH({clean}) > {width} THEN NULL "
+                f"ELSE LPAD({clean}, {width}, '0') END")
+    if mode == "fixed":
+        return f"CASE WHEN LENGTH({clean}) = {width} THEN {clean} ELSE NULL END"
+    if mode == "code":
+        return f"NULLIF({clean}, '')"
+    if mode == "country":
+        return f"NULLIF(UPPER(REGEXP_REPLACE(TO_VARCHAR({col}), '[^A-Za-z]', '')), '')"
+    return f"NULLIF(TRIM(REGEXP_REPLACE(UPPER(TO_VARCHAR({col})), '[^A-Z0-9]+', ' ')), '')"
 
 
 def quote_ident(name: str) -> str:

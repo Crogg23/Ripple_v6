@@ -105,8 +105,8 @@ def build_figure(graph: dict) -> go.Figure:
             mode = "in" if e["mode"] == "spatial" else "↔"
             htext.append(
                 f"<b>{_short(a)} {mode} {_short(b)}</b><br>"
-                f"key: {e['key']} ({tier})<br>"
-                f"<b>{e['matched']:,}</b> matched · {e['match_rate']}% of smaller side<br>"
+                f"key: {e['key']} ({tier}) · confidence {e.get('confidence', 0)}<br>"
+                f"<b>{e['matched']:,}</b> matched · {e['match_rate']}% overlap<br>"
                 + (f"e.g. {', '.join(map(str, e['sample'][:4]))}" if e.get("sample") else "")
             )
         width = 1.5 if tier in ("PROBABILISTIC",) else 2.5
@@ -175,6 +175,7 @@ def _table_html(graph: dict) -> str:
             f"<td>{_short(e['a'])} <span class='m'>{mode}</span> {_short(e['b'])}</td>"
             f"<td class='num'>{e['matched']:,}</td>"
             f"<td class='num'>{e['match_rate']}%</td>"
+            f"<td class='num'>{e.get('confidence', 0)}</td>"
             f"<td class='samp'>{samp}</td></tr>"
         )
     return "\n".join(rows)
@@ -205,13 +206,13 @@ def render(graph: dict | None = None, open_browser: bool = True) -> Path:
 </style></head><body><div class="wrap">
 <h1>Ripple — Connection Explorer</h1>
 <p class="sub">{len(graph['nodes'])} datasets · <b>{m['edges']} real connections</b> from {m['pairs_tested']} pairs tested
-({m['pairs_skipped']} fuzzy/oversized pairs skipped). Edge = rows that actually join. Hover the map; sort/filter the table.</p>
+({m.get('gated_out', 0)} flukes gated out, {m['pairs_skipped']} skipped). Edge = rows that actually join, scored by confidence (0–1). Hover the map; sort/filter the table.</p>
 {plot_div}
 <h1 style="font-size:17px;margin-top:26px">Every connection, ranked</h1>
 <p class="sub">Type to filter (dataset, key, tier). Click a header to sort.</p>
 <input id="q" placeholder="filter… e.g. NPI, LEIE, STEEL">
 <table id="t"><thead><tr>
-  <th>Tier</th><th>Key</th><th>Connection</th><th class="num">Matched</th><th class="num">Rate</th><th>Sample</th>
+  <th>Tier</th><th>Key</th><th>Connection</th><th class="num">Matched</th><th class="num">Rate</th><th class="num">Conf</th><th>Sample</th>
 </tr></thead><tbody>
 {_table_html(graph)}
 </tbody></table>
@@ -225,7 +226,7 @@ q.addEventListener('input',()=>{{const v=q.value.toLowerCase();
   for(const r of t.tBodies[0].rows) r.style.display = r.innerText.toLowerCase().includes(v)?'':'none';}});
 for(const [i,th] of [...t.tHead.rows[0].cells].entries()){{
   th.addEventListener('click',()=>{{
-    const num=i>=3&&i<=4, rs=[...t.tBodies[0].rows];
+    const num=i>=3&&i<=5, rs=[...t.tBodies[0].rows];
     const dir=th.dataset.d=th.dataset.d==='1'?'':'1';
     rs.sort((a,b)=>{{let x=a.cells[i].innerText,y=b.cells[i].innerText;
       if(num){{x=parseFloat(x.replace(/[^0-9.]/g,''))||0;y=parseFloat(y.replace(/[^0-9.]/g,''))||0;return dir?y-x:x-y;}}
