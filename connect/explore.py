@@ -28,6 +28,8 @@ OUT = Path(__file__).resolve().parents[1] / "outputs" / "connection_explorer.htm
 TIER_STYLE = {  # trust tier -> (color, label)
     "STEEL": ("#f4c20d", "STEEL · hard entity ID"),
     "STRONG": ("#4da6ff", "STRONG · domain ID"),
+    "BRIDGE": ("#e879f9", "BRIDGE · via a hop (crosswalk)"),
+    "CORROBORATED": ("#22d3ee", "CORROBORATED · name + place"),
     "GEO": ("#36c98a", "GEO · place / spatial"),
     "PROBABILISTIC": ("#9aa0a6", "PROBABILISTIC · name / address"),
 }
@@ -103,14 +105,16 @@ def build_figure(graph: dict) -> go.Figure:
             hx.append((pos[a][0] + pos[b][0]) / 2)
             hy.append((pos[a][1] + pos[b][1]) / 2)
             mode = "in" if e["mode"] == "spatial" else "↔"
+            via = f"via {_short(e['via'])} ({e.get('hop','')})<br>" if e.get("via") else ""
             htext.append(
                 f"<b>{_short(a)} {mode} {_short(b)}</b><br>"
                 f"key: {e['key']} ({tier}) · confidence {e.get('confidence', 0)}<br>"
+                f"{via}"
                 f"<b>{e['matched']:,}</b> matched · {e['match_rate']}% overlap<br>"
                 + (f"e.g. {', '.join(map(str, e['sample'][:4]))}" if e.get("sample") else "")
             )
         width = 1.5 if tier in ("PROBABILISTIC",) else 2.5
-        dash = "dot" if tier == "PROBABILISTIC" else ("dash" if tier == "GEO" else "solid")
+        dash = "dot" if tier == "PROBABILISTIC" else ("dash" if tier in ("GEO", "BRIDGE") else "solid")
         fig.add_trace(go.Scatter(
             x=xs, y=ys, mode="lines", line=dict(color=color, width=width, dash=dash),
             opacity=0.55 if tier == "PROBABILISTIC" else 0.8, hoverinfo="skip",
