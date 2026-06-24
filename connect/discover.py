@@ -57,7 +57,7 @@ def confidence(key, tier, a_distinct, b_distinct, matched):
     numeric key scores ~0 and is dropped; a dense overlap on a hard ID scores ~1."""
     if matched <= 0:
         return 0.0, False
-    floor = MIN_MATCH_PROB if tier == "PROBABILISTIC" else MIN_MATCH
+    floor = MIN_MATCH_PROB if tier in ("PROBABILISTIC", "CORROBORATED") else MIN_MATCH
     if matched < floor:
         return 0.0, False
     cover = matched / (min(a_distinct, b_distinct) or 1)    # coverage of the smaller set
@@ -67,8 +67,10 @@ def confidence(key, tier, a_distinct, b_distinct, matched):
         if matched < COLLISION_MULT * expected:             # indistinguishable from chance -> drop
             return round(matched / (matched + expected + 1e-9), 3), False
         chance_free = matched / (matched + expected)        # fraction of matches not explained by chance
+    elif tier == "CORROBORATED":
+        chance_free = 0.85                                  # name pinned to a place -> trustworthy
     elif key in PROBABILISTIC:
-        chance_free = 0.5                                   # name/address: unscored -> medium-low
+        chance_free = 0.5                                   # name/address alone: unscored -> medium-low
     else:
         chance_free = 0.9                                   # spatial: geometry already verifies it
     score = chance_free * (0.4 + 0.6 * min(cover, 1.0))     # reward covering the smaller set (subset joins)
@@ -139,11 +141,13 @@ def _wgs84_poly_tables(conn, poly_raw: dict) -> dict:
     return good
 
 
-def run(name_max_rows: int = NAME_MAX_ROWS, write: bool = True) -> dict:
+def run(name_max_rows: int = NAME_MAX_ROWS, write: bool = True,
+        bridge_on: bool = True, fanout_max: int = 40) -> dict:
     fp = json.loads(FP_PATH.read_text())
     conn = db.connect()
     tested = skipped = gated = 0
     edges: list[dict] = []
+    bridge_stats: dict = {}
 
     try:
         # ---- value-key connections (set-based: keyset table + one self-join) --
@@ -182,6 +186,19 @@ def run(name_max_rows: int = NAME_MAX_ROWS, write: bool = True) -> dict:
                         edges.append(_edge(pt, poly, "GEO_IN", "GEO", f"{lat}/{lon}", geom, ov, conf))
                     else:
                         gated += 1
+
+        # ---- bridged (transitive) connections through dual-key crosswalk tables --
+        bridge_stats: dict = {}
+        if bridge_on:
+            from . import bridge
+            direct_pairs = {frozenset((e["a"], e["b"])) for e in edges}
+            try:
+                bridged, bridge_stats = bridge.discover_bridged(conn, fp, direct_pairs, fanout_max=fanout_max)
+                edges += bridged
+                tested += bridge_stats.get("crosswalk_pairs", 0)
+                gated += bridge_stats.get("gated", 0)
+            except Exception as ex:
+                print(f"  [bridge] failed (skipping): {str(ex)[:120]}")
     finally:
         conn.close()
 
@@ -192,14 +209,21 @@ def run(name_max_rows: int = NAME_MAX_ROWS, write: bool = True) -> dict:
         "keys": sorted({k["key"] for k in info["keys"] if k["populated_pct"] >= MIN_POP_PCT}),
     } for t, info in fp.items()]
 
+    by_tier: dict = {}
+    for e in edges:
+        by_tier[e["tier"]] = by_tier.get(e["tier"], 0) + 1
+
     graph = {
         "meta": {"pairs_tested": tested, "pairs_skipped": skipped, "gated_out": gated,
-                 "edges": len(edges), "name_max_rows": name_max_rows},
+                 "edges": len(edges), "name_max_rows": name_max_rows,
+                 "by_tier": by_tier, "bridge": bridge_stats},
         "nodes": nodes,
         "edges": sorted(edges, key=lambda e: (-e.get("confidence", 0), -e["matched"])),
     }
+    tier_str = ", ".join(f"{t}={n}" for t, n in sorted(by_tier.items(), key=lambda x: -x[1]))
     print(f"\n{len(edges)} real connections kept ({gated} flukes gated out) "
           f"from {tested} pairs tested ({skipped} skipped).")
+    print(f"  by tier: {tier_str}")
     if write:
         GRAPH_OUT.write_text(json.dumps(graph, indent=2))
         print(f"wrote {GRAPH_OUT}")
@@ -234,6 +258,23 @@ def _build_keysets(conn, fp, name_max_rows) -> tuple[dict, int]:
             db.rows(conn, f"INSERT INTO {KEYSET_FQN} "
                           f"SELECT DISTINCT '{tbl}', '{key}', {norm} "
                           f"FROM {db.fqn(tbl)} WHERE {norm} IS NOT NULL")
+
+        # --- corroborated composite key: NAME pinned to a place (ZIP, else FIPS).
+        # A name alone is noise ("JOHN SMITH"); a name + the same ZIP is a real
+        # entity match. It's selective, so it runs at ANY table size (no name cap)
+        # and unlocks the 379 NAME x 338 ZIP tables without the false-positive swamp.
+        name_col = _best_value_col(info["keys"], "NAME")
+        for geo in ("ZIP", "FIPS"):
+            geo_col = _best_value_col(info["keys"], geo)
+            if name_col and geo_col:
+                ck = f"NAME@{geo}"
+                nexpr = normalize_sql("NAME", quote_ident(name_col["column"]))
+                gexpr = normalize_sql(geo, quote_ident(geo_col["column"]))
+                members[(tbl, ck)] = (f"{name_col['column']}+{geo_col['column']}", "CORROBORATED")
+                db.rows(conn, f"INSERT INTO {KEYSET_FQN} "
+                              f"SELECT DISTINCT '{tbl}', '{ck}', {nexpr} || '|' || {gexpr} "
+                              f"FROM {db.fqn(tbl)} WHERE {nexpr} IS NOT NULL AND {gexpr} IS NOT NULL")
+                break   # one composite per table (prefer ZIP) to bound the keyset
     return members, skipped
 
 

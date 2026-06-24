@@ -20,9 +20,13 @@ def main() -> int:
     sub.add_parser("fingerprint", help="profile landed tables")
     d = sub.add_parser("discover", help="compute real connections")
     d.add_argument("--name-max-rows", type=int, default=None, help="include name joins up to this table size")
+    d.add_argument("--no-bridge", action="store_true", help="skip the transitive crosswalk/bridge pass (#2)")
+    d.add_argument("--fanout-max", type=int, default=40, help="drop crosswalk values mapping to > this many targets")
     sub.add_parser("explore", help="render the interactive map")
     a = sub.add_parser("all", help="fingerprint -> discover -> explore")
     a.add_argument("--name-max-rows", type=int, default=None)
+    a.add_argument("--no-bridge", action="store_true")
+    a.add_argument("--fanout-max", type=int, default=40)
 
     p = sub.add_parser("probe", help="overlap of one ad-hoc pair")
     p.add_argument("--a", required=True); p.add_argument("--akey", required=True)
@@ -48,7 +52,8 @@ def main() -> int:
         fingerprint.run()
     if args.cmd in ("discover", "all"):
         from . import discover
-        kw = {}
+        kw = {"bridge_on": not getattr(args, "no_bridge", False),
+              "fanout_max": getattr(args, "fanout_max", 40)}
         if getattr(args, "name_max_rows", None):
             kw["name_max_rows"] = args.name_max_rows
         discover.run(**kw)
