@@ -34,6 +34,7 @@ KEYSET_FQN = f'"{CONNECT_DB}"."{CONNECT_SCHEMA}"."KEYSET_SCRATCH"'
 MIN_POP_PCT = 1.0          # a key must be at least this populated to count as live
 NAME_MAX_ROWS = 300_000    # skip name/address joins when EITHER table exceeds this
 SPATIAL_POINT_MAX = 100_000  # skip point-in-polygon when the point table exceeds this
+SPATIAL_MAX_PAIRS = 1500     # backstop: cap spatial pair-queries so they can't explode at scale
 PROBABILISTIC = {"NAME", "ADDRESS"}
 
 # --- confidence: refuse to draw a fluke. A connection isn't real just because one
@@ -116,6 +117,28 @@ def _geom_col(keys: list[dict]) -> str | None:
     return max(cands, key=lambda k: k["nonnull"])["column"] if cands else None
 
 
+def _wgs84_poly_tables(conn, poly_raw: dict) -> dict:
+    """Keep only geometry tables that parse as WGS84 lon/lat GEOGRAPHY. Projected
+    coordinate systems (state-plane, huge x/y) make TO_GEOGRAPHY throw -- test each
+    table ONCE here and skip the bad ones, instead of erroring on every spatial pair."""
+    good = {}
+    for t, geom in poly_raw.items():
+        qi = quote_ident(geom)
+        try:
+            ok = db.scalar(conn, f"""
+                SELECT COUNT(*) FROM (
+                    SELECT TRY_TO_GEOGRAPHY({qi}) AS g FROM {db.fqn(t)}
+                    WHERE {qi} IS NOT NULL LIMIT 50
+                ) WHERE g IS NOT NULL""")
+        except Exception:
+            ok = 0
+        if ok and int(ok) > 0:
+            good[t] = geom
+        else:
+            print(f"  [skip spatial-poly] {t}: geometry not WGS84/parseable")
+    return good
+
+
 def run(name_max_rows: int = NAME_MAX_ROWS, write: bool = True) -> dict:
     fp = json.loads(FP_PATH.read_text())
     conn = db.connect()
@@ -130,30 +153,33 @@ def run(name_max_rows: int = NAME_MAX_ROWS, write: bool = True) -> dict:
         skipped += v_skipped
         tested += v_tested
 
-        # ---- spatial connections (point-in-polygon) ------------------------
+        # ---- spatial (point-in-polygon): WGS84 geometry only, hard-capped --
         pt_tables = {t: ll for t, info in fp.items()
-                     if (ll := _latlon_cols(info["keys"]))}
-        poly_tables = {t: g for t, info in fp.items()
-                       if (g := _geom_col(info["keys"]))}
+                     if (ll := _latlon_cols(info["keys"])) and info["rows"] <= SPATIAL_POINT_MAX}
+        poly_tables = _wgs84_poly_tables(
+            conn, {t: g for t, info in fp.items() if (g := _geom_col(info["keys"]))})
+        print(f"  [spatial] {len(pt_tables)} point tables x {len(poly_tables)} WGS84 polygon tables")
+        sp = 0
         for pt, (lat, lon) in pt_tables.items():
-            if fp[pt]["rows"] > SPATIAL_POINT_MAX:
-                skipped += 1
-                print(f"  [skip spatial] {pt} has {fp[pt]['rows']:,} points (> {SPATIAL_POINT_MAX:,})")
-                continue
+            if sp >= SPATIAL_MAX_PAIRS:
+                break
             for poly, geom in poly_tables.items():
                 if pt == poly:
                     continue
+                if sp >= SPATIAL_MAX_PAIRS:
+                    print(f"  [cap] spatial reached {SPATIAL_MAX_PAIRS} pairs; skipping the rest")
+                    break
+                sp += 1
                 tested += 1
                 try:
                     ov = spatial_overlap(conn, pt, lat, lon, poly, geom)
                 except Exception as e:
-                    print(f"  [err] spatial {pt} in {poly}: {str(e)[:80]}")
+                    print(f"  [err] spatial {pt} in {poly}: {str(e)[:60]}")
                     continue
                 if ov["matched"] > 0:
                     conf, keep = confidence("GEO_IN", "GEO", ov["a_distinct"], ov["b_distinct"], ov["matched"])
                     if keep:
                         edges.append(_edge(pt, poly, "GEO_IN", "GEO", f"{lat}/{lon}", geom, ov, conf))
-                        print(f"  [edge {conf:.2f}] SPATIAL {pt} in {poly}: {ov['matched']:,} ({ov['match_rate']}%)")
                     else:
                         gated += 1
     finally:
