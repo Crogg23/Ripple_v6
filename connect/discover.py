@@ -16,15 +16,20 @@ Output: outputs/connect_graph.json  { nodes:[...], edges:[...], meta:{...} }
 from __future__ import annotations
 
 import json
-from itertools import combinations
 from pathlib import Path
 
 from . import db
 from .fingerprint import OUT as FP_PATH
-from .keys import TIER_RANK
-from .overlap import _is_lon, spatial_overlap, value_overlap
+from .keys import TIER_RANK, normalize_sql, quote_ident
+from .overlap import _is_lon, spatial_overlap
 
 GRAPH_OUT = Path(__file__).resolve().parents[1] / "outputs" / "connect_graph.json"
+
+# Set-based discovery materializes every table's distinct normalized keys here,
+# then ONE self-join finds all co-occurring pairs + overlap counts -- instead of
+# a live full-scan query per candidate pair (the O(n^2) crawl).
+CONNECT_DB, CONNECT_SCHEMA = "LIBRARY_META", "CONNECT"   # CONNECT is reserved -> always quote
+KEYSET_FQN = f'"{CONNECT_DB}"."{CONNECT_SCHEMA}"."KEYSET_SCRATCH"'
 
 MIN_POP_PCT = 1.0          # a key must be at least this populated to count as live
 NAME_MAX_ROWS = 300_000    # skip name/address joins when EITHER table exceeds this
@@ -118,38 +123,12 @@ def run(name_max_rows: int = NAME_MAX_ROWS, write: bool = True) -> dict:
     edges: list[dict] = []
 
     try:
-        # ---- value-key connections -----------------------------------------
-        value_keys: dict[str, list[tuple]] = {}
-        for tbl, info in fp.items():
-            seen = set()
-            for k in info["keys"]:
-                if k["mode"] != "value" or k["key"] in seen:
-                    continue
-                best = _best_value_col(info["keys"], k["key"])
-                if best:
-                    value_keys.setdefault(k["key"], []).append((tbl, best, info["rows"]))
-                    seen.add(k["key"])
-
-        for key in sorted(value_keys, key=lambda k: TIER_RANK.get(_tier(fp, k), 9)):
-            carriers = value_keys[key]
-            for (ta, ca, ra), (tb, cb, rb) in combinations(carriers, 2):
-                if key in PROBABILISTIC and max(ra, rb) > name_max_rows:
-                    skipped += 1
-                    print(f"  [skip name] {ta} x {tb} on {key} (max rows {max(ra,rb):,} > {name_max_rows:,})")
-                    continue
-                tested += 1
-                try:
-                    ov = value_overlap(conn, ta, ca["column"], tb, cb["column"], key)
-                except Exception as e:  # a bad column shouldn't kill the sweep
-                    print(f"  [err] {ta} x {tb} on {key}: {str(e)[:80]}")
-                    continue
-                if ov["matched"] > 0:
-                    conf, keep = confidence(key, _tier(fp, key), ov["a_distinct"], ov["b_distinct"], ov["matched"])
-                    if keep:
-                        edges.append(_edge(ta, tb, key, _tier(fp, key), ca["column"], cb["column"], ov, conf))
-                        print(f"  [edge {conf:.2f}] {key:<8} {ta} x {tb}: {ov['matched']:,} ({ov['match_rate']}%)")
-                    else:
-                        gated += 1
+        # ---- value-key connections (set-based: keyset table + one self-join) --
+        v_edges, v_gated, v_skipped, v_tested = _value_edges_bulk(conn, fp, name_max_rows)
+        edges += v_edges
+        gated += v_gated
+        skipped += v_skipped
+        tested += v_tested
 
         # ---- spatial connections (point-in-polygon) ------------------------
         pt_tables = {t: ll for t, info in fp.items()
@@ -199,6 +178,75 @@ def run(name_max_rows: int = NAME_MAX_ROWS, write: bool = True) -> dict:
         GRAPH_OUT.write_text(json.dumps(graph, indent=2))
         print(f"wrote {GRAPH_OUT}")
     return graph
+
+
+# --- set-based value discovery ---------------------------------------------- #
+def _build_keysets(conn, fp, name_max_rows) -> tuple[dict, int]:
+    """Materialize every table's DISTINCT normalized keys into ONE scratch table.
+    Returns {(table,key): (column, tier)} and the count of skipped name-keysets.
+    One INSERT per (table,key) -- linear in tables, not pairs."""
+    db.rows(conn, f'CREATE SCHEMA IF NOT EXISTS "{CONNECT_DB}"."{CONNECT_SCHEMA}"')
+    db.rows(conn, f"CREATE OR REPLACE TRANSIENT TABLE {KEYSET_FQN} "
+                  f"(table_name STRING, key STRING, val STRING)")
+    members, skipped = {}, 0
+    for tbl, info in fp.items():
+        seen = set()
+        for k in info["keys"]:
+            key = k["key"]
+            if k["mode"] != "value" or key in seen:
+                continue
+            best = _best_value_col(info["keys"], key)
+            if not best:
+                continue
+            seen.add(key)
+            if key in PROBABILISTIC and info["rows"] > name_max_rows:
+                skipped += 1                      # fuzzy name-matching huge tables: skip + log
+                print(f"  [skip name] {tbl} on {key} ({info['rows']:,} rows > {name_max_rows:,})")
+                continue
+            members[(tbl, key)] = (best["column"], _tier(fp, key))
+            norm = normalize_sql(key, quote_ident(best["column"]))
+            db.rows(conn, f"INSERT INTO {KEYSET_FQN} "
+                          f"SELECT DISTINCT '{tbl}', '{key}', {norm} "
+                          f"FROM {db.fqn(tbl)} WHERE {norm} IS NOT NULL")
+    return members, skipped
+
+
+def _value_edges_bulk(conn, fp, name_max_rows) -> tuple[list, int, int, int]:
+    members, skipped = _build_keysets(conn, fp, name_max_rows)
+    if not members:
+        return [], 0, skipped, 0
+
+    counts = {(r["TABLE_NAME"], r["KEY"]): int(r["ND"])
+              for r in db.dicts(conn, f"SELECT table_name, key, COUNT(*) nd FROM {KEYSET_FQN} GROUP BY 1, 2")}
+
+    # ONE self-join: all co-occurring (table_a, table_b) pairs per key + overlap + a sample.
+    pairs = db.dicts(conn, f"""
+        SELECT a.key AS jkey, a.table_name AS ta, b.table_name AS tb,
+               COUNT(*) AS matched,
+               ARRAY_SLICE(ARRAY_AGG(a.val), 0, 4) AS samp
+        FROM {KEYSET_FQN} a
+        JOIN {KEYSET_FQN} b ON a.key = b.key AND a.val = b.val AND a.table_name < b.table_name
+        GROUP BY 1, 2, 3
+        HAVING COUNT(*) >= {MIN_MATCH}
+    """)
+
+    edges, gated = [], 0
+    for r in pairs:
+        key, ta, tb, matched = r["JKEY"], r["TA"], r["TB"], int(r["MATCHED"])
+        a_d, b_d = counts.get((ta, key), 0), counts.get((tb, key), 0)
+        col_a, tier = members.get((ta, key), ("", "PROBABILISTIC"))
+        col_b = members.get((tb, key), ("", ""))[0]
+        conf, keep = confidence(key, tier, a_d, b_d, matched)
+        if not keep:
+            gated += 1
+            continue
+        samp = r["SAMP"]
+        samp = json.loads(samp) if isinstance(samp, str) else (samp or [])
+        ov = {"mode": "value", "a_distinct": a_d, "b_distinct": b_d, "matched": matched,
+              "match_rate": round(matched / (min(a_d, b_d) or 1) * 100, 1), "sample": samp[:4]}
+        edges.append(_edge(ta, tb, key, tier, col_a, col_b, ov, conf))
+    print(f"  [value] {len(edges)} kept / {gated} gated from {len(pairs)} co-occurring pairs (set-based)")
+    return edges, gated, skipped, len(pairs)
 
 
 # --- small helpers ---------------------------------------------------------- #
