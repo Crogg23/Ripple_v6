@@ -1,0 +1,1503 @@
+{
+  "FED_CFPB_COMPLAINTS": {
+    "rows": 500,
+    "keys": [
+      {
+        "column": "COMPANY",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 500,
+        "distinct": 24,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIP_CODE",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 498,
+        "distinct": 270,
+        "populated_pct": 99.6
+      },
+      {
+        "column": "DATE_SENT_TO_COMPANY",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 500,
+        "distinct": 440,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "COMPANY_RESPONSE",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 500,
+        "distinct": 3,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "COMPANY_PUBLIC_RESPONSE",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 85,
+        "distinct": 1,
+        "populated_pct": 17.0
+      }
+    ]
+  },
+  "FED_CLINICALTRIALS": {
+    "rows": 500,
+    "keys": [
+      {
+        "column": "LEAD_SPONSOR_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 500,
+        "distinct": 398,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "FED_CMS_HCRIS": {
+    "rows": 6103,
+    "keys": [
+      {
+        "column": "PROVIDER_CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 6103,
+        "distinct": 6010,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "HOSPITAL_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 6103,
+        "distinct": 5735,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "STREET_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 6103,
+        "distinct": 5999,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIP_CODE",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 6103,
+        "distinct": 5232,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "CCN_FACILITY_TYPE",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 6103,
+        "distinct": 9,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "FED_CMS_NPPES": {
+    "rows": 9606683,
+    "keys": [
+      {
+        "column": "NPI",
+        "key": "NPI",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 9606683,
+        "distinct": 9631613,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "REPLACEMENT_NPI",
+        "key": "NPI",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 82,
+        "distinct": 83,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "EMPLOYER_IDENTIFICATION_NUMBER__EIN",
+        "key": "EIN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 1937362,
+        "distinct": 1,
+        "populated_pct": 20.2
+      },
+      {
+        "column": "PROVIDER_ORGANIZATION_NAME__LEGAL_BUSINESS_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 1937319,
+        "distinct": 1401643,
+        "populated_pct": 20.2
+      },
+      {
+        "column": "PROVIDER_LAST_NAME__LEGAL_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 7323140,
+        "distinct": 885084,
+        "populated_pct": 76.2
+      },
+      {
+        "column": "PROVIDER_FIRST_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 7323140,
+        "distinct": 369889,
+        "populated_pct": 76.2
+      },
+      {
+        "column": "PROVIDER_MIDDLE_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 3944046,
+        "distinct": 238114,
+        "populated_pct": 41.1
+      },
+      {
+        "column": "PROVIDER_NAME_PREFIX_TEXT",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 2089149,
+        "distinct": 6,
+        "populated_pct": 21.7
+      },
+      {
+        "column": "PROVIDER_NAME_SUFFIX_TEXT",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 115980,
+        "distinct": 12,
+        "populated_pct": 1.2
+      },
+      {
+        "column": "PROVIDER_OTHER_ORGANIZATION_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 513488,
+        "distinct": 1,
+        "populated_pct": 5.3
+      },
+      {
+        "column": "PROVIDER_OTHER_ORGANIZATION_NAME_TYPE_CODE",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 513488,
+        "distinct": 1,
+        "populated_pct": 5.3
+      },
+      {
+        "column": "PROVIDER_OTHER_LAST_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 475969,
+        "distinct": 149719,
+        "populated_pct": 5.0
+      },
+      {
+        "column": "PROVIDER_OTHER_FIRST_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 475970,
+        "distinct": 46749,
+        "populated_pct": 5.0
+      },
+      {
+        "column": "PROVIDER_OTHER_MIDDLE_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 289797,
+        "distinct": 30409,
+        "populated_pct": 3.0
+      },
+      {
+        "column": "PROVIDER_OTHER_NAME_PREFIX_TEXT",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 117282,
+        "distinct": 7,
+        "populated_pct": 1.2
+      },
+      {
+        "column": "PROVIDER_OTHER_NAME_SUFFIX_TEXT",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 2366,
+        "distinct": 12,
+        "populated_pct": 0.0
+      }
+    ]
+  },
+  "FED_CMS_NURSING_HOME": {
+    "rows": 14700,
+    "keys": [
+      {
+        "column": "CMS_CERTIFICATION_NUMBER__CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 14700,
+        "distinct": 14284,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "PROVIDER_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 14700,
+        "distinct": 14536,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "PROVIDER_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 14700,
+        "distinct": 14744,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIP_CODE",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 14700,
+        "distinct": 9229,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LEGAL_BUSINESS_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 14700,
+        "distinct": 11771,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "CHAIN_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 10479,
+        "distinct": 638,
+        "populated_pct": 71.3
+      },
+      {
+        "column": "LATITUDE",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 14700,
+        "distinct": 13820,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LONGITUDE",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 14700,
+        "distinct": 10565,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "COUNTY_FIPS",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "NPI",
+        "key": "NPI",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      }
+    ]
+  },
+  "FED_DOJ_CRT_CASES": {
+    "rows": 1,
+    "keys": [
+      {
+        "column": "COMPANY_ID",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "PERSON_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      }
+    ]
+  },
+  "FED_DOJ_EPSTEIN_LIBRARY": {
+    "rows": 777,
+    "keys": []
+  },
+  "FED_DOJ_FCA_SETTLEMENTS": {
+    "rows": 19,
+    "keys": [
+      {
+        "column": "DEFENDANT_COMPANY",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "RELATOR_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      }
+    ]
+  },
+  "FED_FARA_BULK": {
+    "rows": 221900,
+    "keys": [
+      {
+        "column": "NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 7060,
+        "distinct": 6328,
+        "populated_pct": 3.2
+      },
+      {
+        "column": "BUSINESS_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 221,
+        "distinct": 213,
+        "populated_pct": 0.1
+      },
+      {
+        "column": "ADDRESS_1",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 66145,
+        "distinct": 9846,
+        "populated_pct": 29.8
+      },
+      {
+        "column": "ADDRESS_2",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 29436,
+        "distinct": 2756,
+        "populated_pct": 13.3
+      },
+      {
+        "column": "ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 47325,
+        "distinct": 1617,
+        "populated_pct": 21.3
+      },
+      {
+        "column": "REGISTRANT_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 214840,
+        "distinct": 7116,
+        "populated_pct": 96.8
+      },
+      {
+        "column": "SHORT_FORM_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 43020,
+        "distinct": 29878,
+        "populated_pct": 19.4
+      },
+      {
+        "column": "FOREIGN_PRINCIPAL_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 37507,
+        "distinct": 8289,
+        "populated_pct": 16.9
+      },
+      {
+        "column": "FOREIGN_PRINCIPAL_COUNTRY",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 37460,
+        "distinct": 247,
+        "populated_pct": 16.9
+      },
+      {
+        "column": "SHORT_FORM_LAST_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 44506,
+        "distinct": 21005,
+        "populated_pct": 20.1
+      },
+      {
+        "column": "SHORT_FORM_FIRST_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 44509,
+        "distinct": 20271,
+        "populated_pct": 20.1
+      },
+      {
+        "column": "COUNTRY_LOCATION_REPRESENTED",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 17664,
+        "distinct": 257,
+        "populated_pct": 8.0
+      }
+    ]
+  },
+  "FED_FDA_DRUG_ENFORCEMENT": {
+    "rows": 5000,
+    "keys": [
+      {
+        "column": "ADDRESS_1",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 5000,
+        "distinct": 909,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS_2",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 3453,
+        "distinct": 89,
+        "populated_pct": 69.1
+      },
+      {
+        "column": "POSTAL_CODE",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 5000,
+        "distinct": 830,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "COUNTRY",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 5000,
+        "distinct": 15,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "FED_FDIC_ENFORCEMENT": {
+    "rows": 14,
+    "keys": []
+  },
+  "FED_FDIC_FAILED_BANKS": {
+    "rows": 4115,
+    "keys": [
+      {
+        "column": "NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 4115,
+        "distinct": 3663,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "CERT_FIPS",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      }
+    ]
+  },
+  "FED_FEDERAL_REGISTER_DOCUMENTS": {
+    "rows": 5000,
+    "keys": [
+      {
+        "column": "DOCKET_IDS",
+        "key": "DOCKET",
+        "tier": "STRONG",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      }
+    ]
+  },
+  "FED_FJC_IDB": {
+    "rows": 4126450,
+    "keys": [
+      {
+        "column": "DOCKET",
+        "key": "DOCKET",
+        "tier": "STRONG",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      }
+    ]
+  },
+  "FED_HHS_OIG_LEIE": {
+    "rows": 83464,
+    "keys": [
+      {
+        "column": "LASTNAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 80063,
+        "distinct": 32434,
+        "populated_pct": 95.9
+      },
+      {
+        "column": "FIRSTNAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 80063,
+        "distinct": 12985,
+        "populated_pct": 95.9
+      },
+      {
+        "column": "NPI",
+        "key": "NPI",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 8684,
+        "distinct": 8775,
+        "populated_pct": 10.4
+      },
+      {
+        "column": "ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 83460,
+        "distinct": 76872,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 83464,
+        "distinct": 18383,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "FED_HHS_TAGGS": {
+    "rows": 45,
+    "keys": [
+      {
+        "column": "RECIPIENT_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "RECIPIENT_EIN",
+        "key": "EIN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "RECIPIENT_CLASS",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "ASSISTANCE_LISTING_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "RECIPIENT_CITY",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "RECIPIENT_STATE",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "RECIPIENT_ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "RECIPIENT_FIPS",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "RECIPIENT_COUNTRY",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      }
+    ]
+  },
+  "FED_MAPPING_INEQUALITY": {
+    "rows": 10154,
+    "keys": [
+      {
+        "column": "FIPS",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 10154,
+        "distinct": 10154,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LAT",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 10154,
+        "distinct": 10154,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LON",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 10154,
+        "distinct": 10153,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "FED_NAAG_MULTISTATE_SETTLEMENTS": {
+    "rows": 26,
+    "keys": [
+      {
+        "column": "COMPANY_ID",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "COMPANY_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 16,
+        "distinct": 5,
+        "populated_pct": 61.5
+      }
+    ]
+  },
+  "FED_NARA_AAD": {
+    "rows": 554,
+    "keys": [
+      {
+        "column": "DATASET_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "PERSON_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      }
+    ]
+  },
+  "FED_NARA_WRA_AAD": {
+    "rows": 36,
+    "keys": [
+      {
+        "column": "PERSON_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "FIPS",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      }
+    ]
+  },
+  "FED_NOAA_AIS": {
+    "rows": 7296275,
+    "keys": [
+      {
+        "column": "MMSI",
+        "key": "MMSI",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 7295879,
+        "distinct": 14699,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LAT",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 7296275,
+        "distinct": 1042750,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LON",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 7296275,
+        "distinct": 1247985,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "IMO",
+        "key": "IMO",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 5050367,
+        "distinct": 5102,
+        "populated_pct": 69.2
+      }
+    ]
+  },
+  "FED_OYEZ": {
+    "rows": 25,
+    "keys": [
+      {
+        "column": "DOCKET",
+        "key": "DOCKET",
+        "tier": "STRONG",
+        "mode": "value",
+        "nonnull": 25,
+        "distinct": 25,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "CASE_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 25,
+        "distinct": 25,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "FED_REVOLVINGDOOR_PROJECT": {
+    "rows": 409,
+    "keys": [
+      {
+        "column": "POSITION_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 409,
+        "distinct": 367,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "FED_SCDB": {
+    "rows": 83644,
+    "keys": [
+      {
+        "column": "DOCKET",
+        "key": "DOCKET",
+        "tier": "STRONG",
+        "mode": "value",
+        "nonnull": 83572,
+        "distinct": 6802,
+        "populated_pct": 99.9
+      }
+    ]
+  },
+  "FED_SEC_EDGAR_COMPANY_TICKERS": {
+    "rows": 10414,
+    "keys": [
+      {
+        "column": "CIK_STR",
+        "key": "CIK",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 10414,
+        "distinct": 8041,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "FED_SLAVEVOYAGES_INTRAAMERICAN": {
+    "rows": 201,
+    "keys": [
+      {
+        "column": "COUNTRY_OF_DEPARTURE",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "COUNTRY_OF_ARRIVAL",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "VESSEL_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "CAPTAIN_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "SLAVE_TRADE_COMPANY",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      }
+    ]
+  },
+  "FED_TREASURY_AVG_INTEREST_RATES": {
+    "rows": 4961,
+    "keys": []
+  },
+  "FED_TREASURY_DEBT_TO_PENNY": {
+    "rows": 8329,
+    "keys": []
+  },
+  "FED_USASPENDING_SUBAWARDS": {
+    "rows": 5000,
+    "keys": []
+  },
+  "FED_USASPENDING_TOPTIER_AGENCIES": {
+    "rows": 111,
+    "keys": [
+      {
+        "column": "AGENCY_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 111,
+        "distinct": 113,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "FED_USGS_EARTHQUAKES": {
+    "rows": 9890,
+    "keys": [
+      {
+        "column": "LATITUDE",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 9890,
+        "distinct": 8104,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LONGITUDE",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 9890,
+        "distinct": 8473,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "FED_WPA_SLAVE_NARRATIVES": {
+    "rows": 100,
+    "keys": [
+      {
+        "column": "PERSON_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "STATE_FIPS",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      }
+    ]
+  },
+  "INTL_CH_ZEFIX": {
+    "rows": 18,
+    "keys": [
+      {
+        "column": "NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 18,
+        "distinct": 6,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS_STREET",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "ADDRESS_HOUSE_NUMBER",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "ADDRESS_ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "ADDRESS_CITY",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "ADDRESS_CANTON",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 18,
+        "distinct": 3,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "COUNTRY",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 18,
+        "distinct": 1,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "INTL_EC_SERCOP": {
+    "rows": 132995,
+    "keys": [
+      {
+        "column": "BUYER_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 132995,
+        "distinct": 2967,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "SUPPLIER_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 127299,
+        "distinct": 13947,
+        "populated_pct": 95.7
+      },
+      {
+        "column": "PARTIES_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 132995,
+        "distinct": 53455,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "INTL_EMBER_ELEC": {
+    "rows": 369264,
+    "keys": [
+      {
+        "column": "COUNTRY_OR_REGION",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 369264,
+        "distinct": 226,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "INTL_ES_BORME": {
+    "rows": 25,
+    "keys": [
+      {
+        "column": "COMPANY_ID",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "COMPANY_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "COUNTRY",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 25,
+        "distinct": 1,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "INTL_GR_GEMI": {
+    "rows": 40,
+    "keys": [
+      {
+        "column": "COMPANY_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 15,
+        "distinct": 3,
+        "populated_pct": 37.5
+      },
+      {
+        "column": "POSTAL_CODE",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      }
+    ]
+  },
+  "INTL_HUDOC": {
+    "rows": 2000,
+    "keys": [
+      {
+        "column": "COUNTRY",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 2000,
+        "distinct": 48,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "PERSON_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 1255,
+        "distinct": 734,
+        "populated_pct": 62.7
+      }
+    ]
+  },
+  "INTL_IE_CRO": {
+    "rows": 3,
+    "keys": [
+      {
+        "column": "COMPANY_ID",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 3,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "COMPANY_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 3,
+        "distinct": 3,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "COUNTRY",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 3,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "COMPANY_STATUS",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "COMPANY_TYPE",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 3,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "REGISTERED_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "DATASET_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 3,
+        "distinct": 1,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "INTL_IT_ISTAT": {
+    "rows": 213284,
+    "keys": []
+  },
+  "PORTAL_SOC_COLOMBIA_NATIONAL_OPEN_BTSG_JTQH": {
+    "rows": 500,
+    "keys": [
+      {
+        "column": "THE_GEOM",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 500,
+        "distinct": 500,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_SOC_COLOMBIA_NATIONAL_OPEN_BUTW_9J6D": {
+    "rows": 500,
+    "keys": [
+      {
+        "column": "THE_GEOM",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 500,
+        "distinct": 500,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "AREA_GEOM",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 500,
+        "distinct": 500,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_SOC_COLOMBIA_NATIONAL_OPEN_BWMX_M4UG": {
+    "rows": 500,
+    "keys": [
+      {
+        "column": "THE_GEOM",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 500,
+        "distinct": 500,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "AREA_GEOM",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 500,
+        "distinct": 500,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_SOC_COLOMBIA_NATIONAL_OPEN_BXHG_NBD8": {
+    "rows": 500,
+    "keys": [
+      {
+        "column": "THE_GEOM",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 500,
+        "distinct": 500,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "AREA_GEOM",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 500,
+        "distinct": 500,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_SOC_COLOMBIA_NATIONAL_OPEN_C7QW_4MCK": {
+    "rows": 500,
+    "keys": [
+      {
+        "column": "THE_GEOM",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 500,
+        "distinct": 500,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "XC_BIORXIV_MEDRXIV": {
+    "rows": 432,
+    "keys": [
+      {
+        "column": "FUNDING_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      }
+    ]
+  },
+  "XC_WAYBACK_DOJ_EPSTEIN": {
+    "rows": 1537352,
+    "keys": []
+  },
+  "XC_WAYBACK_REPLAY_DOJ_DEEP_PAGES": {
+    "rows": 2542,
+    "keys": []
+  },
+  "XC_WAYBACK_REPLAY_DOJ_LISTING": {
+    "rows": 24897,
+    "keys": []
+  },
+  "XC_WIKIPEDIA_LARGEST_US_COMPANIES": {
+    "rows": 100,
+    "keys": [
+      {
+        "column": "NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 100,
+        "distinct": 101,
+        "populated_pct": 100.0
+      }
+    ]
+  }
+}

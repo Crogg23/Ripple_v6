@@ -1,0 +1,1210 @@
+{
+  "meta": {
+    "pairs_tested": 207,
+    "pairs_skipped": 18,
+    "edges": 42,
+    "name_max_rows": 300000
+  },
+  "nodes": [
+    {
+      "id": "FED_CFPB_COMPLAINTS",
+      "rows": 500,
+      "domain": "other",
+      "keys": [
+        "NAME",
+        "ZIP"
+      ]
+    },
+    {
+      "id": "FED_CLINICALTRIALS",
+      "rows": 500,
+      "domain": "health",
+      "keys": [
+        "NAME"
+      ]
+    },
+    {
+      "id": "FED_CMS_HCRIS",
+      "rows": 6103,
+      "domain": "health",
+      "keys": [
+        "ADDRESS",
+        "CCN",
+        "NAME",
+        "ZIP"
+      ]
+    },
+    {
+      "id": "FED_CMS_NPPES",
+      "rows": 9606683,
+      "domain": "health",
+      "keys": [
+        "EIN",
+        "NAME",
+        "NPI"
+      ]
+    },
+    {
+      "id": "FED_CMS_NURSING_HOME",
+      "rows": 14700,
+      "domain": "health",
+      "keys": [
+        "ADDRESS",
+        "CCN",
+        "LATLON",
+        "NAME",
+        "ZIP"
+      ]
+    },
+    {
+      "id": "FED_DOJ_CRT_CASES",
+      "rows": 1,
+      "domain": "justice",
+      "keys": []
+    },
+    {
+      "id": "FED_DOJ_EPSTEIN_LIBRARY",
+      "rows": 777,
+      "domain": "justice",
+      "keys": []
+    },
+    {
+      "id": "FED_DOJ_FCA_SETTLEMENTS",
+      "rows": 19,
+      "domain": "justice",
+      "keys": []
+    },
+    {
+      "id": "FED_FARA_BULK",
+      "rows": 221900,
+      "domain": "foreign_influence",
+      "keys": [
+        "ADDRESS",
+        "COUNTRY",
+        "NAME",
+        "ZIP"
+      ]
+    },
+    {
+      "id": "FED_FDA_DRUG_ENFORCEMENT",
+      "rows": 5000,
+      "domain": "health",
+      "keys": [
+        "ADDRESS",
+        "COUNTRY",
+        "ZIP"
+      ]
+    },
+    {
+      "id": "FED_FDIC_ENFORCEMENT",
+      "rows": 14,
+      "domain": "economics",
+      "keys": []
+    },
+    {
+      "id": "FED_FDIC_FAILED_BANKS",
+      "rows": 4115,
+      "domain": "economics",
+      "keys": [
+        "NAME"
+      ]
+    },
+    {
+      "id": "FED_FEDERAL_REGISTER_DOCUMENTS",
+      "rows": 5000,
+      "domain": "governance",
+      "keys": []
+    },
+    {
+      "id": "FED_FJC_IDB",
+      "rows": 4126450,
+      "domain": "justice",
+      "keys": []
+    },
+    {
+      "id": "FED_HHS_OIG_LEIE",
+      "rows": 83464,
+      "domain": "health",
+      "keys": [
+        "ADDRESS",
+        "NAME",
+        "NPI",
+        "ZIP"
+      ]
+    },
+    {
+      "id": "FED_HHS_TAGGS",
+      "rows": 45,
+      "domain": "health",
+      "keys": []
+    },
+    {
+      "id": "FED_MAPPING_INEQUALITY",
+      "rows": 10154,
+      "domain": "housing",
+      "keys": [
+        "GEOM",
+        "LATLON"
+      ]
+    },
+    {
+      "id": "FED_NAAG_MULTISTATE_SETTLEMENTS",
+      "rows": 26,
+      "domain": "justice",
+      "keys": [
+        "NAME"
+      ]
+    },
+    {
+      "id": "FED_NARA_AAD",
+      "rows": 554,
+      "domain": "history",
+      "keys": []
+    },
+    {
+      "id": "FED_NARA_WRA_AAD",
+      "rows": 36,
+      "domain": "history",
+      "keys": []
+    },
+    {
+      "id": "FED_NOAA_AIS",
+      "rows": 7296275,
+      "domain": "maritime",
+      "keys": [
+        "IMO",
+        "LATLON",
+        "MMSI"
+      ]
+    },
+    {
+      "id": "FED_OYEZ",
+      "rows": 25,
+      "domain": "justice",
+      "keys": [
+        "DOCKET",
+        "NAME"
+      ]
+    },
+    {
+      "id": "FED_REVOLVINGDOOR_PROJECT",
+      "rows": 409,
+      "domain": "governance",
+      "keys": [
+        "NAME"
+      ]
+    },
+    {
+      "id": "FED_SCDB",
+      "rows": 83644,
+      "domain": "justice",
+      "keys": [
+        "DOCKET"
+      ]
+    },
+    {
+      "id": "FED_SEC_EDGAR_COMPANY_TICKERS",
+      "rows": 10414,
+      "domain": "economics",
+      "keys": [
+        "CIK"
+      ]
+    },
+    {
+      "id": "FED_SLAVEVOYAGES_INTRAAMERICAN",
+      "rows": 201,
+      "domain": "history",
+      "keys": []
+    },
+    {
+      "id": "FED_TREASURY_AVG_INTEREST_RATES",
+      "rows": 4961,
+      "domain": "economics",
+      "keys": []
+    },
+    {
+      "id": "FED_TREASURY_DEBT_TO_PENNY",
+      "rows": 8329,
+      "domain": "economics",
+      "keys": []
+    },
+    {
+      "id": "FED_USASPENDING_SUBAWARDS",
+      "rows": 5000,
+      "domain": "governance",
+      "keys": []
+    },
+    {
+      "id": "FED_USASPENDING_TOPTIER_AGENCIES",
+      "rows": 111,
+      "domain": "governance",
+      "keys": [
+        "NAME"
+      ]
+    },
+    {
+      "id": "FED_USGS_EARTHQUAKES",
+      "rows": 9890,
+      "domain": "hazards",
+      "keys": [
+        "LATLON"
+      ]
+    },
+    {
+      "id": "FED_WPA_SLAVE_NARRATIVES",
+      "rows": 100,
+      "domain": "history",
+      "keys": []
+    },
+    {
+      "id": "INTL_CH_ZEFIX",
+      "rows": 18,
+      "domain": "corporate_registry",
+      "keys": [
+        "ADDRESS",
+        "COUNTRY",
+        "NAME"
+      ]
+    },
+    {
+      "id": "INTL_EC_SERCOP",
+      "rows": 132995,
+      "domain": "corporate_registry",
+      "keys": [
+        "NAME"
+      ]
+    },
+    {
+      "id": "INTL_EMBER_ELEC",
+      "rows": 369264,
+      "domain": "economics",
+      "keys": [
+        "COUNTRY"
+      ]
+    },
+    {
+      "id": "INTL_ES_BORME",
+      "rows": 25,
+      "domain": "corporate_registry",
+      "keys": [
+        "COUNTRY"
+      ]
+    },
+    {
+      "id": "INTL_GR_GEMI",
+      "rows": 40,
+      "domain": "corporate_registry",
+      "keys": [
+        "NAME"
+      ]
+    },
+    {
+      "id": "INTL_HUDOC",
+      "rows": 2000,
+      "domain": "justice",
+      "keys": [
+        "COUNTRY",
+        "NAME"
+      ]
+    },
+    {
+      "id": "INTL_IE_CRO",
+      "rows": 3,
+      "domain": "corporate_registry",
+      "keys": [
+        "COUNTRY",
+        "NAME"
+      ]
+    },
+    {
+      "id": "INTL_IT_ISTAT",
+      "rows": 213284,
+      "domain": "economics",
+      "keys": []
+    },
+    {
+      "id": "PORTAL_SOC_COLOMBIA_NATIONAL_OPEN_BTSG_JTQH",
+      "rows": 500,
+      "domain": "other",
+      "keys": [
+        "GEOM"
+      ]
+    },
+    {
+      "id": "PORTAL_SOC_COLOMBIA_NATIONAL_OPEN_BUTW_9J6D",
+      "rows": 500,
+      "domain": "other",
+      "keys": [
+        "GEOM"
+      ]
+    },
+    {
+      "id": "PORTAL_SOC_COLOMBIA_NATIONAL_OPEN_BWMX_M4UG",
+      "rows": 500,
+      "domain": "other",
+      "keys": [
+        "GEOM"
+      ]
+    },
+    {
+      "id": "PORTAL_SOC_COLOMBIA_NATIONAL_OPEN_BXHG_NBD8",
+      "rows": 500,
+      "domain": "other",
+      "keys": [
+        "GEOM"
+      ]
+    },
+    {
+      "id": "PORTAL_SOC_COLOMBIA_NATIONAL_OPEN_C7QW_4MCK",
+      "rows": 500,
+      "domain": "other",
+      "keys": [
+        "GEOM"
+      ]
+    },
+    {
+      "id": "XC_BIORXIV_MEDRXIV",
+      "rows": 432,
+      "domain": "history",
+      "keys": []
+    },
+    {
+      "id": "XC_WAYBACK_DOJ_EPSTEIN",
+      "rows": 1537352,
+      "domain": "justice",
+      "keys": []
+    },
+    {
+      "id": "XC_WAYBACK_REPLAY_DOJ_DEEP_PAGES",
+      "rows": 2542,
+      "domain": "justice",
+      "keys": []
+    },
+    {
+      "id": "XC_WAYBACK_REPLAY_DOJ_LISTING",
+      "rows": 24897,
+      "domain": "justice",
+      "keys": []
+    },
+    {
+      "id": "XC_WIKIPEDIA_LARGEST_US_COMPANIES",
+      "rows": 100,
+      "domain": "history",
+      "keys": [
+        "NAME"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "a": "FED_CMS_NPPES",
+      "b": "FED_HHS_OIG_LEIE",
+      "key": "NPI",
+      "tier": "STEEL",
+      "a_col": "NPI",
+      "b_col": "NPI",
+      "mode": "value",
+      "matched": 8503,
+      "a_distinct": 9606683,
+      "b_distinct": 8503,
+      "match_rate": 100.0,
+      "sample": [
+        "1003005315",
+        "1003011644",
+        "1003016742",
+        "1003027665",
+        "1003035395",
+        "1003035924"
+      ]
+    },
+    {
+      "a": "FED_CMS_NURSING_HOME",
+      "b": "FED_HHS_OIG_LEIE",
+      "key": "ZIP",
+      "tier": "GEO",
+      "a_col": "ZIP_CODE",
+      "b_col": "ZIP",
+      "mode": "value",
+      "matched": 7495,
+      "a_distinct": 8927,
+      "b_distinct": 17903,
+      "match_rate": 84.0,
+      "sample": [
+        "00660",
+        "00683",
+        "00717",
+        "00792",
+        "00926",
+        "01001"
+      ]
+    },
+    {
+      "a": "FED_CMS_HCRIS",
+      "b": "FED_HHS_OIG_LEIE",
+      "key": "ZIP",
+      "tier": "GEO",
+      "a_col": "ZIP_CODE",
+      "b_col": "ZIP",
+      "mode": "value",
+      "matched": 3687,
+      "a_distinct": 5134,
+      "b_distinct": 17903,
+      "match_rate": 71.8,
+      "sample": [
+        "00614",
+        "00623",
+        "00641",
+        "00646",
+        "00674",
+        "00678"
+      ]
+    },
+    {
+      "a": "FED_CMS_HCRIS",
+      "b": "FED_CMS_NURSING_HOME",
+      "key": "ZIP",
+      "tier": "GEO",
+      "a_col": "ZIP_CODE",
+      "b_col": "ZIP_CODE",
+      "mode": "value",
+      "matched": 3276,
+      "a_distinct": 5134,
+      "b_distinct": 8927,
+      "match_rate": 63.8,
+      "sample": [
+        "00683",
+        "00693",
+        "00792",
+        "00910",
+        "00926",
+        "00928"
+      ]
+    },
+    {
+      "a": "FED_CMS_NURSING_HOME",
+      "b": "FED_MAPPING_INEQUALITY",
+      "key": "GEO_IN",
+      "tier": "GEO",
+      "a_col": "LATITUDE/LONGITUDE",
+      "b_col": "GEOMETRY",
+      "mode": "spatial",
+      "matched": 1518,
+      "a_distinct": 14700,
+      "b_distinct": 10153,
+      "match_rate": 10.3,
+      "sample": []
+    },
+    {
+      "a": "FED_FARA_BULK",
+      "b": "FED_HHS_OIG_LEIE",
+      "key": "ZIP",
+      "tier": "GEO",
+      "a_col": "ZIP",
+      "b_col": "ZIP",
+      "mode": "value",
+      "matched": 1019,
+      "a_distinct": 1598,
+      "b_distinct": 17903,
+      "match_rate": 63.8,
+      "sample": [
+        "00000",
+        "00907",
+        "00915",
+        "01581",
+        "01603",
+        "01701"
+      ]
+    },
+    {
+      "a": "FED_CMS_NURSING_HOME",
+      "b": "FED_FARA_BULK",
+      "key": "ZIP",
+      "tier": "GEO",
+      "a_col": "ZIP_CODE",
+      "b_col": "ZIP",
+      "mode": "value",
+      "matched": 571,
+      "a_distinct": 8927,
+      "b_distinct": 1598,
+      "match_rate": 35.7,
+      "sample": [
+        "01240",
+        "01581",
+        "01603",
+        "01701",
+        "01742",
+        "01810"
+      ]
+    },
+    {
+      "a": "FED_CMS_HCRIS",
+      "b": "FED_FARA_BULK",
+      "key": "ZIP",
+      "tier": "GEO",
+      "a_col": "ZIP_CODE",
+      "b_col": "ZIP",
+      "mode": "value",
+      "matched": 316,
+      "a_distinct": 5134,
+      "b_distinct": 1598,
+      "match_rate": 19.8,
+      "sample": [
+        "01581",
+        "01742",
+        "01841",
+        "01890",
+        "02111",
+        "02114"
+      ]
+    },
+    {
+      "a": "FED_CFPB_COMPLAINTS",
+      "b": "FED_HHS_OIG_LEIE",
+      "key": "ZIP",
+      "tier": "GEO",
+      "a_col": "ZIP_CODE",
+      "b_col": "ZIP",
+      "mode": "value",
+      "matched": 246,
+      "a_distinct": 265,
+      "b_distinct": 17903,
+      "match_rate": 92.8,
+      "sample": [
+        "02346",
+        "06457",
+        "06614",
+        "07002",
+        "07018",
+        "07036"
+      ]
+    },
+    {
+      "a": "FED_CMS_HCRIS",
+      "b": "FED_CMS_NURSING_HOME",
+      "key": "ADDRESS",
+      "tier": "PROBABILISTIC",
+      "a_col": "STREET_ADDRESS",
+      "b_col": "PROVIDER_ADDRESS",
+      "mode": "value",
+      "matched": 207,
+      "a_distinct": 5934,
+      "b_distinct": 14675,
+      "match_rate": 3.5,
+      "sample": [
+        "1 HEALTHY WAY",
+        "1 MEDICAL PARK DRIVE",
+        "1 MEDICAL VILLAGE DRIVE",
+        "100 FAIRFIELD DRIVE",
+        "100 KEOKEA PLACE",
+        "100 MEDICAL CENTER DRIVE"
+      ]
+    },
+    {
+      "a": "FED_FARA_BULK",
+      "b": "INTL_EMBER_ELEC",
+      "key": "COUNTRY",
+      "tier": "GEO",
+      "a_col": "COUNTRY_LOCATION_REPRESENTED",
+      "b_col": "COUNTRY_OR_REGION",
+      "mode": "value",
+      "matched": 169,
+      "a_distinct": 265,
+      "b_distinct": 226,
+      "match_rate": 74.8,
+      "sample": [
+        "AFGHANISTAN",
+        "ALGERIA",
+        "ANGOLA",
+        "ARGENTINA",
+        "ARMENIA",
+        "ARUBA"
+      ]
+    },
+    {
+      "a": "FED_CFPB_COMPLAINTS",
+      "b": "FED_CMS_NURSING_HOME",
+      "key": "ZIP",
+      "tier": "GEO",
+      "a_col": "ZIP_CODE",
+      "b_col": "ZIP_CODE",
+      "mode": "value",
+      "matched": 156,
+      "a_distinct": 265,
+      "b_distinct": 8927,
+      "match_rate": 58.9,
+      "sample": [
+        "02346",
+        "06457",
+        "06614",
+        "07002",
+        "07018",
+        "07036"
+      ]
+    },
+    {
+      "a": "FED_CFPB_COMPLAINTS",
+      "b": "FED_CMS_HCRIS",
+      "key": "ZIP",
+      "tier": "GEO",
+      "a_col": "ZIP_CODE",
+      "b_col": "ZIP_CODE",
+      "mode": "value",
+      "matched": 80,
+      "a_distinct": 265,
+      "b_distinct": 5134,
+      "match_rate": 30.2,
+      "sample": [
+        "06457",
+        "07002",
+        "07018",
+        "08861",
+        "10456",
+        "11691"
+      ]
+    },
+    {
+      "a": "FED_FDA_DRUG_ENFORCEMENT",
+      "b": "FED_HHS_OIG_LEIE",
+      "key": "ZIP",
+      "tier": "GEO",
+      "a_col": "POSTAL_CODE",
+      "b_col": "ZIP",
+      "mode": "value",
+      "matched": 65,
+      "a_distinct": 831,
+      "b_distinct": 17903,
+      "match_rate": 7.8,
+      "sample": [
+        "00725",
+        "00738",
+        "00778",
+        "00976",
+        "02703",
+        "06810"
+      ]
+    },
+    {
+      "a": "FED_CMS_HCRIS",
+      "b": "FED_CMS_NURSING_HOME",
+      "key": "NAME",
+      "tier": "PROBABILISTIC",
+      "a_col": "HOSPITAL_NAME",
+      "b_col": "PROVIDER_NAME",
+      "mode": "value",
+      "matched": 62,
+      "a_distinct": 5730,
+      "b_distinct": 14500,
+      "match_rate": 1.1,
+      "sample": [
+        "ALICE HYDE MEDICAL CENTER",
+        "ASPEN HILLS HEALTHCARE CENTER",
+        "ATRIUM HEALTH NAVICENT BALDWIN",
+        "AURELIA OSBORN FOX MEMORIAL HOSPITAL",
+        "BAPTIST HEALTH HARDIN",
+        "BARNES KASSON COUNTY HOSPITAL"
+      ]
+    },
+    {
+      "a": "FED_FARA_BULK",
+      "b": "FED_HHS_OIG_LEIE",
+      "key": "ADDRESS",
+      "tier": "PROBABILISTIC",
+      "a_col": "ADDRESS_1",
+      "b_col": "ADDRESS",
+      "mode": "value",
+      "matched": 53,
+      "a_distinct": 9804,
+      "b_distinct": 78442,
+      "match_rate": 0.5,
+      "sample": [
+        "116 WOODLAND ROAD",
+        "17 STATE STREET",
+        "25 CENTRAL PARK WEST",
+        "330 MADISON AVENUE",
+        "40 WALL STREET",
+        "411 MAIN STREET"
+      ]
+    },
+    {
+      "a": "FED_CMS_NURSING_HOME",
+      "b": "FED_HHS_OIG_LEIE",
+      "key": "ADDRESS",
+      "tier": "PROBABILISTIC",
+      "a_col": "PROVIDER_ADDRESS",
+      "b_col": "ADDRESS",
+      "mode": "value",
+      "matched": 40,
+      "a_distinct": 14675,
+      "b_distinct": 78442,
+      "match_rate": 0.3,
+      "sample": [
+        "100 SANDERS DRIVE",
+        "101 SOUTH STREET",
+        "120 MAIN STREET",
+        "1250 BROADWAY",
+        "1265 MCLARAN AVENUE",
+        "15 SPRING VALLEY ROAD"
+      ]
+    },
+    {
+      "a": "FED_CMS_NURSING_HOME",
+      "b": "FED_FDA_DRUG_ENFORCEMENT",
+      "key": "ZIP",
+      "tier": "GEO",
+      "a_col": "ZIP_CODE",
+      "b_col": "POSTAL_CODE",
+      "mode": "value",
+      "matched": 34,
+      "a_distinct": 8927,
+      "b_distinct": 831,
+      "match_rate": 4.1,
+      "sample": [
+        "02703",
+        "06810",
+        "07054",
+        "07470",
+        "08807",
+        "08901"
+      ]
+    },
+    {
+      "a": "FED_CFPB_COMPLAINTS",
+      "b": "FED_FARA_BULK",
+      "key": "ZIP",
+      "tier": "GEO",
+      "a_col": "ZIP_CODE",
+      "b_col": "ZIP",
+      "mode": "value",
+      "matched": 32,
+      "a_distinct": 265,
+      "b_distinct": 1598,
+      "match_rate": 12.1,
+      "sample": [
+        "07080",
+        "10458",
+        "10977",
+        "11218",
+        "11552",
+        "11691"
+      ]
+    },
+    {
+      "a": "FED_CMS_HCRIS",
+      "b": "FED_HHS_OIG_LEIE",
+      "key": "ADDRESS",
+      "tier": "PROBABILISTIC",
+      "a_col": "STREET_ADDRESS",
+      "b_col": "ADDRESS",
+      "mode": "value",
+      "matched": 25,
+      "a_distinct": 5934,
+      "b_distinct": 78442,
+      "match_rate": 0.4,
+      "sample": [
+        "1012 S THIRD STREET",
+        "104 7TH STREET",
+        "115 MILL STREET",
+        "1211 MAIN STREET",
+        "125 PARKER HILL AVENUE",
+        "189 PROUTY DRIVE"
+      ]
+    },
+    {
+      "a": "FED_OYEZ",
+      "b": "FED_SCDB",
+      "key": "DOCKET",
+      "tier": "STRONG",
+      "a_col": "DOCKET",
+      "b_col": "DOCKET",
+      "mode": "value",
+      "matched": 22,
+      "a_distinct": 25,
+      "b_distinct": 6806,
+      "match_rate": 88.0,
+      "sample": [
+        "343",
+        "373",
+        "45ORIG",
+        "510",
+        "685009",
+        "694"
+      ]
+    },
+    {
+      "a": "FED_CMS_HCRIS",
+      "b": "FED_FDA_DRUG_ENFORCEMENT",
+      "key": "ZIP",
+      "tier": "GEO",
+      "a_col": "ZIP_CODE",
+      "b_col": "POSTAL_CODE",
+      "mode": "value",
+      "matched": 18,
+      "a_distinct": 5134,
+      "b_distinct": 831,
+      "match_rate": 2.2,
+      "sample": [
+        "02703",
+        "07977",
+        "10550",
+        "23233",
+        "27804",
+        "30076"
+      ]
+    },
+    {
+      "a": "FED_FARA_BULK",
+      "b": "FED_FDA_DRUG_ENFORCEMENT",
+      "key": "ZIP",
+      "tier": "GEO",
+      "a_col": "ZIP",
+      "b_col": "POSTAL_CODE",
+      "mode": "value",
+      "matched": 15,
+      "a_distinct": 1598,
+      "b_distinct": 831,
+      "match_rate": 1.8,
+      "sample": [
+        "07054",
+        "08807",
+        "08901",
+        "10013",
+        "10153",
+        "10550"
+      ]
+    },
+    {
+      "a": "FED_FARA_BULK",
+      "b": "FED_FDA_DRUG_ENFORCEMENT",
+      "key": "COUNTRY",
+      "tier": "GEO",
+      "a_col": "COUNTRY_LOCATION_REPRESENTED",
+      "b_col": "COUNTRY",
+      "mode": "value",
+      "matched": 15,
+      "a_distinct": 265,
+      "b_distinct": 15,
+      "match_rate": 100.0,
+      "sample": [
+        "ARUBA",
+        "CANADA",
+        "CHINA",
+        "CROATIA",
+        "GERMANY",
+        "GUYANA"
+      ]
+    },
+    {
+      "a": "FED_FDA_DRUG_ENFORCEMENT",
+      "b": "INTL_EMBER_ELEC",
+      "key": "COUNTRY",
+      "tier": "GEO",
+      "a_col": "COUNTRY",
+      "b_col": "COUNTRY_OR_REGION",
+      "mode": "value",
+      "matched": 14,
+      "a_distinct": 15,
+      "b_distinct": 226,
+      "match_rate": 93.3,
+      "sample": [
+        "ARUBA",
+        "CANADA",
+        "CHINA",
+        "CROATIA",
+        "GERMANY",
+        "GUYANA"
+      ]
+    },
+    {
+      "a": "FED_USGS_EARTHQUAKES",
+      "b": "FED_MAPPING_INEQUALITY",
+      "key": "GEO_IN",
+      "tier": "GEO",
+      "a_col": "LATITUDE/LONGITUDE",
+      "b_col": "GEOMETRY",
+      "mode": "spatial",
+      "matched": 10,
+      "a_distinct": 9890,
+      "b_distinct": 10153,
+      "match_rate": 0.1,
+      "sample": []
+    },
+    {
+      "a": "FED_CMS_HCRIS",
+      "b": "FED_FARA_BULK",
+      "key": "ADDRESS",
+      "tier": "PROBABILISTIC",
+      "a_col": "STREET_ADDRESS",
+      "b_col": "ADDRESS_1",
+      "mode": "value",
+      "matched": 9,
+      "a_distinct": 5934,
+      "b_distinct": 9804,
+      "match_rate": 0.2,
+      "sample": [
+        "270 PARK AVENUE",
+        "310 SANSOME STREET",
+        "411 MAIN STREET",
+        "525 EAST 68TH STREET",
+        "60 WEST STREET",
+        "747 BROADWAY"
+      ]
+    },
+    {
+      "a": "FED_CLINICALTRIALS",
+      "b": "FED_CMS_HCRIS",
+      "key": "NAME",
+      "tier": "PROBABILISTIC",
+      "a_col": "LEAD_SPONSOR_NAME",
+      "b_col": "HOSPITAL_NAME",
+      "mode": "value",
+      "matched": 7,
+      "a_distinct": 404,
+      "b_distinct": 5730,
+      "match_rate": 1.7,
+      "sample": [
+        "CAMBRIDGE HEALTH ALLIANCE",
+        "CEDARS SINAI MEDICAL CENTER",
+        "DANA FARBER CANCER INSTITUTE",
+        "MASSACHUSETTS EYE AND EAR INFIRMARY",
+        "MASSACHUSETTS GENERAL HOSPITAL",
+        "MEDICAL UNIVERSITY OF SOUTH CAROLINA"
+      ]
+    },
+    {
+      "a": "FED_CMS_NURSING_HOME",
+      "b": "FED_FARA_BULK",
+      "key": "ADDRESS",
+      "tier": "PROBABILISTIC",
+      "a_col": "PROVIDER_ADDRESS",
+      "b_col": "ADDRESS_1",
+      "mode": "value",
+      "matched": 5,
+      "a_distinct": 14675,
+      "b_distinct": 9804,
+      "match_rate": 0.1,
+      "sample": [
+        "1 PARK AVENUE",
+        "115 BROADWAY",
+        "1200 SPRING STREET",
+        "20 PARK AVENUE",
+        "60 WEST STREET"
+      ]
+    },
+    {
+      "a": "FED_CMS_HCRIS",
+      "b": "FED_HHS_OIG_LEIE",
+      "key": "NAME",
+      "tier": "PROBABILISTIC",
+      "a_col": "HOSPITAL_NAME",
+      "b_col": "LASTNAME",
+      "mode": "value",
+      "matched": 4,
+      "a_distinct": 5730,
+      "b_distinct": 31536,
+      "match_rate": 0.1,
+      "sample": [
+        "FAIRBANKS",
+        "HOLZER",
+        "RIDGE",
+        "RYDER"
+      ]
+    },
+    {
+      "a": "FED_CLINICALTRIALS",
+      "b": "XC_WIKIPEDIA_LARGEST_US_COMPANIES",
+      "key": "NAME",
+      "tier": "PROBABILISTIC",
+      "a_col": "LEAD_SPONSOR_NAME",
+      "b_col": "NAME",
+      "mode": "value",
+      "matched": 3,
+      "a_distinct": 404,
+      "b_distinct": 100,
+      "match_rate": 3.0,
+      "sample": [
+        "ABBVIE",
+        "BRISTOL MYERS SQUIBB",
+        "PFIZER"
+      ]
+    },
+    {
+      "a": "FED_CMS_NURSING_HOME",
+      "b": "FED_HHS_OIG_LEIE",
+      "key": "NAME",
+      "tier": "PROBABILISTIC",
+      "a_col": "PROVIDER_NAME",
+      "b_col": "LASTNAME",
+      "mode": "value",
+      "matched": 2,
+      "a_distinct": 14500,
+      "b_distinct": 31536,
+      "match_rate": 0.0,
+      "sample": [
+        "CARRARA",
+        "WESTGATE"
+      ]
+    },
+    {
+      "a": "FED_HHS_OIG_LEIE",
+      "b": "XC_WIKIPEDIA_LARGEST_US_COMPANIES",
+      "key": "NAME",
+      "tier": "PROBABILISTIC",
+      "a_col": "LASTNAME",
+      "b_col": "NAME",
+      "mode": "value",
+      "matched": 2,
+      "a_distinct": 31536,
+      "b_distinct": 100,
+      "match_rate": 2.0,
+      "sample": [
+        "APPLE",
+        "MERCK"
+      ]
+    },
+    {
+      "a": "FED_FARA_BULK",
+      "b": "FED_FDA_DRUG_ENFORCEMENT",
+      "key": "ADDRESS",
+      "tier": "PROBABILISTIC",
+      "a_col": "ADDRESS_1",
+      "b_col": "ADDRESS_1",
+      "mode": "value",
+      "matched": 2,
+      "a_distinct": 9804,
+      "b_distinct": 923,
+      "match_rate": 0.2,
+      "sample": [
+        "235 EAST 42ND STREET",
+        "767 FIFTH AVENUE"
+      ]
+    },
+    {
+      "a": "FED_CFPB_COMPLAINTS",
+      "b": "FED_FDA_DRUG_ENFORCEMENT",
+      "key": "ZIP",
+      "tier": "GEO",
+      "a_col": "ZIP_CODE",
+      "b_col": "POSTAL_CODE",
+      "mode": "value",
+      "matched": 1,
+      "a_distinct": 265,
+      "b_distinct": 831,
+      "match_rate": 0.4,
+      "sample": [
+        "33160"
+      ]
+    },
+    {
+      "a": "FED_FARA_BULK",
+      "b": "INTL_ES_BORME",
+      "key": "COUNTRY",
+      "tier": "GEO",
+      "a_col": "COUNTRY_LOCATION_REPRESENTED",
+      "b_col": "COUNTRY",
+      "mode": "value",
+      "matched": 1,
+      "a_distinct": 265,
+      "b_distinct": 1,
+      "match_rate": 100.0,
+      "sample": [
+        "SPAIN"
+      ]
+    },
+    {
+      "a": "FED_FARA_BULK",
+      "b": "INTL_IE_CRO",
+      "key": "COUNTRY",
+      "tier": "GEO",
+      "a_col": "COUNTRY_LOCATION_REPRESENTED",
+      "b_col": "COUNTRY",
+      "mode": "value",
+      "matched": 1,
+      "a_distinct": 265,
+      "b_distinct": 1,
+      "match_rate": 100.0,
+      "sample": [
+        "IRELAND"
+      ]
+    },
+    {
+      "a": "FED_FDA_DRUG_ENFORCEMENT",
+      "b": "INTL_ES_BORME",
+      "key": "COUNTRY",
+      "tier": "GEO",
+      "a_col": "COUNTRY",
+      "b_col": "COUNTRY",
+      "mode": "value",
+      "matched": 1,
+      "a_distinct": 15,
+      "b_distinct": 1,
+      "match_rate": 100.0,
+      "sample": [
+        "SPAIN"
+      ]
+    },
+    {
+      "a": "INTL_EMBER_ELEC",
+      "b": "INTL_ES_BORME",
+      "key": "COUNTRY",
+      "tier": "GEO",
+      "a_col": "COUNTRY_OR_REGION",
+      "b_col": "COUNTRY",
+      "mode": "value",
+      "matched": 1,
+      "a_distinct": 226,
+      "b_distinct": 1,
+      "match_rate": 100.0,
+      "sample": [
+        "SPAIN"
+      ]
+    },
+    {
+      "a": "INTL_EMBER_ELEC",
+      "b": "INTL_IE_CRO",
+      "key": "COUNTRY",
+      "tier": "GEO",
+      "a_col": "COUNTRY_OR_REGION",
+      "b_col": "COUNTRY",
+      "mode": "value",
+      "matched": 1,
+      "a_distinct": 226,
+      "b_distinct": 1,
+      "match_rate": 100.0,
+      "sample": [
+        "IRELAND"
+      ]
+    },
+    {
+      "a": "FED_CLINICALTRIALS",
+      "b": "FED_HHS_OIG_LEIE",
+      "key": "NAME",
+      "tier": "PROBABILISTIC",
+      "a_col": "LEAD_SPONSOR_NAME",
+      "b_col": "LASTNAME",
+      "mode": "value",
+      "matched": 1,
+      "a_distinct": 404,
+      "b_distinct": 31536,
+      "match_rate": 0.2,
+      "sample": [
+        "BAYER"
+      ]
+    },
+    {
+      "a": "FED_CMS_HCRIS",
+      "b": "FED_FDA_DRUG_ENFORCEMENT",
+      "key": "ADDRESS",
+      "tier": "PROBABILISTIC",
+      "a_col": "STREET_ADDRESS",
+      "b_col": "ADDRESS_1",
+      "mode": "value",
+      "matched": 1,
+      "a_distinct": 5934,
+      "b_distinct": 923,
+      "match_rate": 0.1,
+      "sample": [
+        "1015 BOWLES AVE"
+      ]
+    }
+  ]
+}

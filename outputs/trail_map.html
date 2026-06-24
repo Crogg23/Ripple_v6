@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>The Trail Map — Library Catalog Explorer</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<style>
+:root{
+  --bg:#0a0e14; --bg2:#0f141c; --panel:#10161f; --panel2:#141c27;
+  --line:#1f2935; --line2:#2a3644; --text:#c9d4e0; --dim:#7c8a9a; --dim2:#566373;
+  --accent:#39d0d8; --accent2:#1b2a33;
+  /* tier colors */
+  --t-STEEL:#7fd4ff; --t-STRONG:#5fd98a; --t-GEO:#e0a44f; --t-PROBABILISTIC:#b08fe0; --t-NONE:#697482;
+  /* domain colors */
+  --d-geography:#4a90d9; --d-organizations:#e0a44f; --d-health:#e0556f;
+  --d-justice:#b06fd9; --d-education:#43c9b8; --d-innovation:#d9cf5f; --d-people:#93a4b6;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--text);
+  font-family:'Segoe UI',system-ui,sans-serif;font-size:13px;overflow:hidden}
+.mono{font-family:'JetBrains Mono','Cascadia Code','Consolas','SFMono-Regular',monospace}
+button{font-family:inherit;cursor:pointer}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+#app{display:flex;flex-direction:column;height:100%}
+
+/* ---------- top bar ---------- */
+#topbar{display:flex;align-items:center;gap:14px;padding:8px 14px;
+  background:linear-gradient(180deg,#0d1320,#0a0e14);border-bottom:1px solid var(--line);z-index:30}
+#brand{font-weight:700;letter-spacing:.5px;color:#e7eef6;white-space:nowrap}
+#brand .sub{color:var(--dim);font-weight:400;font-size:11px;margin-left:6px}
+#searchwrap{position:relative;flex:1;max-width:520px}
+#search{width:100%;background:var(--panel2);border:1px solid var(--line2);color:var(--text);
+  padding:7px 10px;border-radius:5px;font-size:13px;outline:none}
+#search:focus{border-color:var(--accent)}
+#searchResults{position:absolute;top:38px;left:0;right:0;background:#0c121b;border:1px solid var(--line2);
+  border-radius:6px;max-height:360px;overflow-y:auto;display:none;z-index:50;box-shadow:0 12px 30px rgba(0,0,0,.6)}
+#searchResults.show{display:block}
+.sr{padding:7px 10px;border-bottom:1px solid var(--line);cursor:pointer;display:flex;gap:8px;align-items:center}
+.sr:hover{background:var(--accent2)}
+.sr .srt{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sr .srp{color:var(--dim);font-size:10px;white-space:nowrap}
+.srhead{padding:6px 10px;color:var(--dim);font-size:11px;border-bottom:1px solid var(--line2);background:#0a0f17}
+#stats{color:var(--dim);font-size:11px;white-space:nowrap}
+.topbtn{background:var(--panel2);border:1px solid var(--line2);color:var(--text);padding:6px 11px;border-radius:5px;font-size:12px}
+.topbtn:hover{border-color:var(--accent);color:#fff}
+.topbtn.on{background:var(--accent);color:#04121a;border-color:var(--accent);font-weight:600}
+
+/* ---------- breadcrumb ---------- */
+#trailbar{display:flex;align-items:center;gap:6px;padding:6px 14px;background:#0b1018;
+  border-bottom:1px solid var(--line);min-height:33px;overflow-x:auto;white-space:nowrap;z-index:20}
+#trailbar .tlabel{color:var(--dim2);font-size:11px;margin-right:4px}
+.crumb{background:var(--panel2);border:1px solid var(--line2);border-radius:4px;padding:3px 9px;
+  font-size:11px;color:var(--text);cursor:pointer;max-width:200px;overflow:hidden;text-overflow:ellipsis}
+.crumb:hover{border-color:var(--accent)}
+.crumb.cur{border-color:var(--accent);color:#fff;background:var(--accent2)}
+.crumb .tdot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;vertical-align:middle}
+.crumbsep{color:var(--dim2)}
+
+/* ---------- main ---------- */
+#main{flex:1;display:flex;min-height:0;position:relative}
+#graphwrap{flex:1;position:relative;min-width:0}
+svg{width:100%;height:100%;display:block;background:
+  radial-gradient(1200px 700px at 60% 40%, #0d1421 0%, #0a0e14 70%)}
+
+/* ---------- side panel ---------- */
+#side{width:340px;background:var(--panel);border-left:1px solid var(--line);
+  display:flex;flex-direction:column;min-height:0}
+#sideTabs{display:flex;border-bottom:1px solid var(--line)}
+.tab{flex:1;text-align:center;padding:9px;font-size:12px;color:var(--dim);cursor:pointer;border-bottom:2px solid transparent}
+.tab.active{color:#fff;border-bottom-color:var(--accent)}
+.tab .badge{display:inline-block;min-width:16px;background:var(--accent);color:#04121a;border-radius:9px;
+  font-size:10px;padding:0 5px;margin-left:5px;font-weight:700}
+#sideBody{flex:1;overflow-y:auto;padding:0}
+.pane{display:none;padding:14px}
+.pane.active{display:block}
+
+/* detail pane */
+#d_title{font-size:15px;font-weight:600;color:#eef4fa;line-height:1.3;margin-bottom:6px}
+#d_meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px}
+.badge-tier{font-size:10px;font-weight:700;padding:2px 7px;border-radius:3px;letter-spacing:.5px}
+.kv{color:var(--dim);font-size:12px;margin:3px 0}
+.kv b{color:var(--text);font-weight:500}
+.sec{margin-top:14px}
+.sec h4{font-size:11px;text-transform:uppercase;letter-spacing:.7px;color:var(--dim);margin:0 0 7px}
+.chiprow{display:flex;flex-wrap:wrap;gap:5px}
+.keychip{font-size:11px;padding:2px 8px;border-radius:3px;border:1px solid;font-weight:600}
+.colchip{font-size:11px;padding:2px 7px;border-radius:3px;background:var(--panel2);border:1px solid var(--line2);color:var(--dim)}
+.colscroll{max-height:200px;overflow-y:auto;padding-right:4px}
+#d_connects .cn{display:flex;align-items:center;gap:8px;padding:6px 7px;border:1px solid var(--line);
+  border-radius:5px;margin-bottom:5px;cursor:pointer;background:var(--bg2)}
+#d_connects .cn:hover{border-color:var(--accent);background:var(--accent2)}
+#d_connects .cnt{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px}
+#d_connects .cnk{font-size:10px;font-weight:600}
+.starbtn{background:none;border:1px solid var(--line2);border-radius:4px;color:var(--dim);
+  padding:4px 9px;font-size:12px}
+.starbtn.on{color:#ffd45e;border-color:#7a6320}
+.linkbtn{background:var(--accent2);border:1px solid var(--line2);border-radius:4px;color:var(--accent);padding:4px 9px;font-size:11px}
+
+/* pull pane */
+.pull-actions{display:flex;gap:6px;margin-bottom:10px}
+.pull-actions button{flex:1;background:var(--panel2);border:1px solid var(--line2);color:var(--text);padding:7px;border-radius:5px;font-size:11px}
+.pull-actions button:hover{border-color:var(--accent)}
+.pullrow{display:flex;align-items:center;gap:8px;padding:7px;border:1px solid var(--line);border-radius:5px;margin-bottom:5px;background:var(--bg2)}
+.pullrow .pt{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;cursor:pointer}
+.pullrow .px{color:var(--dim2);cursor:pointer;font-size:14px;padding:0 4px}
+.pullrow .px:hover{color:#e0556f}
+.empty{color:var(--dim2);font-size:12px;text-align:center;padding:30px 10px}
+
+/* filters pane */
+.filt{display:flex;align-items:center;gap:9px;padding:9px;border:1px solid var(--line);border-radius:6px;margin-bottom:7px;cursor:pointer}
+.filt:hover{border-color:var(--line2)}
+.filt .sw{width:13px;height:13px;border-radius:3px}
+.filt .fc{margin-left:auto;color:var(--dim);font-size:11px}
+.filt.off{opacity:.42}
+#landingCtl{margin-top:14px}
+#landingCtl input[type=range]{width:100%}
+
+/* ---------- graph node visuals ---------- */
+.node{cursor:pointer}
+.dot{stroke:#0a0e14;stroke-width:1.5px}
+.dot.center{stroke:#fff;stroke-width:2px}
+.nodelabel{fill:var(--dim);font-size:9px;pointer-events:none;text-anchor:middle}
+.edge{fill:none;stroke-opacity:.5}
+.edge.faded{stroke-opacity:.12}
+.edgelabel{font-size:8px;fill:var(--dim);pointer-events:none}
+
+/* ER card (inside foreignObject) */
+.card{width:100%;height:100%;background:#0e1620;border:1px solid var(--line2);border-radius:7px;
+  overflow:hidden;display:flex;flex-direction:column;box-shadow:0 6px 20px rgba(0,0,0,.45)}
+.card.center{border-color:#fff;box-shadow:0 0 0 1px rgba(255,255,255,.25),0 8px 26px rgba(0,0,0,.6)}
+.card-h{height:38px;display:flex;align-items:center;gap:6px;padding:0 8px;cursor:grab;
+  border-bottom:1px solid var(--line2);background:#121b27;flex-shrink:0}
+.card-h .ct{flex:1;font-size:11px;font-weight:600;color:#eef4fa;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card-h .cstar{font-size:12px;color:var(--dim);background:none;border:none;padding:0 2px}
+.card-h .cstar.on{color:#ffd45e}
+.card-tdot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.card-keys{flex-shrink:0}
+.krow{height:19px;display:flex;align-items:center;padding:0 8px;font-size:10.5px;font-weight:600;
+  border-left:3px solid;background:#101a24}
+.krow .kn{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.krow .kf{color:var(--dim2);font-size:9px;font-weight:400}
+.card-colh{height:18px;display:flex;align-items:center;padding:0 8px;font-size:9px;letter-spacing:.5px;
+  text-transform:uppercase;color:var(--dim2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#0b1119;flex-shrink:0}
+.card-cols{flex:1;overflow-y:auto;padding:3px 8px}
+.card-cols .cc{font-size:10px;color:var(--dim);line-height:1.55;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* zoom hint + key anchor pips */
+.keypip{stroke-width:0}
+
+/* ---------- overlay / loader ---------- */
+#overlay{position:absolute;inset:0;background:rgba(8,11,16,.93);display:flex;align-items:center;justify-content:center;z-index:100}
+#overlay.hide{display:none}
+.ldr{text-align:center;max-width:440px}
+.ldr h1{font-size:20px;color:#e7eef6;margin:0 0 4px;letter-spacing:.5px}
+.ldr p{color:var(--dim);margin:6px 0 18px;font-size:12px;line-height:1.5}
+.spin{width:30px;height:30px;border:3px solid var(--line2);border-top-color:var(--accent);border-radius:50%;
+  margin:14px auto;animation:sp 1s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+#fileBtn{display:inline-block;background:var(--accent);color:#04121a;font-weight:600;padding:9px 18px;border-radius:6px;border:none;font-size:13px}
+#status{color:var(--dim);font-size:11px;margin-top:12px;min-height:16px}
+.hint{position:absolute;bottom:10px;left:14px;color:var(--dim2);font-size:10px;pointer-events:none}
+.legend{position:absolute;bottom:10px;right:14px;background:rgba(12,18,27,.85);border:1px solid var(--line);
+  border-radius:6px;padding:8px 10px;font-size:10px;display:flex;flex-direction:column;gap:3px}
+.legend .lr{display:flex;align-items:center;gap:6px;color:var(--dim)}
+.legend .ls{width:10px;height:10px;border-radius:2px}
+::-webkit-scrollbar{width:9px;height:9px}
+::-webkit-scrollbar-thumb{background:#243140;border-radius:5px}
+::-webkit-scrollbar-track{background:transparent}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#142230;border:1px solid var(--accent);
+  color:#dff;padding:8px 16px;border-radius:6px;font-size:12px;z-index:200;opacity:0;transition:opacity .2s}
+.toast.show{opacity:1}
+
+/* ====================== v2 — the corkboard layer ====================== */
+:root{ --pill-bg:#0c1420; }
+/* detail: tier meaning + clickable key chips */
+.tier-meaning{color:var(--dim);font-size:11px;margin:-4px 0 10px;font-style:italic}
+.keychip,.cnkey{cursor:pointer}
+.cnkey:hover{text-decoration:underline}
+.keychip .kchip-name{font-weight:400;font-size:10px;opacity:.85}
+/* case note (the detective's note pinned to the card) */
+.casenote{background:var(--bg2);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:5px;padding:9px 11px;margin:0 0 12px;font-size:12px;line-height:1.5;color:var(--text)}
+.casenote p{margin:0 0 7px}.casenote p:last-child{margin:0}
+.casenote b{color:#eef4fa;font-weight:600}
+.cn-why{font-size:10px;color:var(--dim2);margin-top:2px;width:100%;line-height:1.3}
+#d_connects .cn{flex-wrap:wrap}
+/* filter rows: explanatory */
+.filt{align-items:flex-start}
+.filt-txt{display:flex;flex-direction:column;gap:1px;flex:1}
+.filt-name{color:var(--dim);font-weight:400;font-size:11px;margin-left:5px}
+.filt-one{color:var(--dim2);font-size:10px;line-height:1.3}
+.filt .fc{align-self:flex-start}
+/* guide pane (the dictionary) */
+.gintro{font-size:12px;color:var(--dim);line-height:1.5;margin-bottom:14px;
+  background:var(--bg2);border:1px solid var(--line);border-radius:5px;padding:9px 11px}
+.gintro b{color:var(--text)}
+.gsec{margin-bottom:16px}
+.gsec h4{font-size:11px;text-transform:uppercase;letter-spacing:.7px;margin:0 0 8px}
+.grow{display:flex;gap:9px;align-items:flex-start;padding:5px 0}
+.gsw{width:12px;height:12px;border-radius:50%;flex-shrink:0;margin-top:2px}
+.gone{font-size:11px;color:var(--dim);line-height:1.35}
+.gcat{font-size:10px;color:var(--dim2);margin-top:1px}
+.kdef{display:flex;gap:9px;align-items:flex-start;padding:7px 0;border-top:1px solid var(--line);cursor:pointer}
+.kdef:hover{background:var(--accent2)}
+.kdef.kdflash{background:var(--accent2);outline:1px solid var(--accent);border-radius:4px}
+.kdcode{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;border:1px solid;border-radius:3px;
+  padding:1px 5px;flex-shrink:0;margin-top:1px}
+.kdbody b{color:#eef4fa;font-size:12px}
+.kdblurb{font-size:11px;color:var(--dim);line-height:1.35}
+.kdlinks{color:var(--dim2)}
+.kdfreq{font-size:10px;color:var(--dim2);margin-top:2px}
+/* onboarding overlay (separate from the loader #overlay) */
+#onboard{position:absolute;inset:0;background:rgba(8,11,16,.94);display:flex;align-items:center;justify-content:center;z-index:101}
+#onboard.hide{display:none}
+.ob-card{position:relative;max-width:490px;background:#0e1620;border:1px solid var(--line2);border-radius:10px;
+  padding:24px 26px;box-shadow:0 16px 50px rgba(0,0,0,.6)}
+.ob-card h1{font-size:19px;color:#e7eef6;margin:0 0 12px;letter-spacing:.5px}
+.ob-card p{color:var(--text);font-size:13px;line-height:1.55;margin:0 0 11px}
+.ob-card p b{color:#eef4fa}
+.ob-x{position:absolute;top:10px;right:12px;background:none;border:none;color:var(--dim2);font-size:15px}
+.ob-x:hover{color:#fff}
+.ob-ladder{margin:14px 0 16px;border-top:1px solid var(--line);padding-top:12px}
+.ladrow{display:flex;align-items:center;gap:9px;margin:5px 0;font-size:12px}
+.ladsw{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+.ladone{color:var(--dim)}
+.ob-go{background:var(--accent);color:#04121a;font-weight:700;border:none;border-radius:6px;padding:9px 18px;font-size:13px}
+/* on-canvas context */
+.canvas-cap{position:absolute;top:12px;left:50%;transform:translateX(-50%);max-width:72%;text-align:center;
+  background:rgba(12,18,27,.82);border:1px solid var(--line);border-radius:6px;padding:7px 14px;
+  font-size:11.5px;color:var(--dim);pointer-events:none;line-height:1.45;z-index:10}
+.canvas-cap b{color:var(--text)}
+.canvas-cap.hide{display:none}
+.canvas-mid{position:absolute;top:46%;left:50%;transform:translate(-50%,-50%);text-align:center;max-width:330px;
+  background:rgba(12,18,27,.9);border:1px solid var(--line2);border-radius:8px;padding:14px 18px;
+  font-size:12px;color:var(--dim);pointer-events:none;line-height:1.5;z-index:10}
+.canvas-mid.hide{display:none}
+.canvas-mid b{color:var(--text)}
+/* dual legend (dot=tier, string=domain) */
+.legend{max-height:48vh;overflow-y:auto;max-width:210px}
+.legend .lh{color:#cdd8e3;font-weight:700;margin:6px 0 2px;font-size:9.5px;letter-spacing:.4px}
+.legend .lh:first-child{margin-top:0}
+.legend .lsub{color:var(--dim2);font-weight:400;font-size:8.5px;display:block;margin:0 0 3px;line-height:1.3}
+/* edge "red-string" pills */
+.edgepill{stroke-width:1px}
+.edgepilltext{font-size:9px;font-weight:700;fill:var(--text);font-family:'JetBrains Mono',monospace}
+.edgelab{pointer-events:none}
+/* sector heading pills */
+.sectorpill{stroke-width:1.5px;fill:var(--pill-bg)}
+.sectorpilltext{font-weight:700;font-family:'JetBrains Mono',monospace}
+.focuslabel{fill:var(--accent);font-size:9px;font-weight:700;text-anchor:middle;letter-spacing:1.5px;pointer-events:none}
+/* pushpin head on card header (tier-colored, domed — replaces the flat tier dot) */
+.cpin{width:11px;height:11px;border-radius:50%;flex-shrink:0;
+  box-shadow:inset -1.5px -1.5px 2px rgba(0,0,0,.45), inset 1px 1px 1.5px rgba(255,255,255,.4), 0 1px 2px rgba(0,0,0,.5)}
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="topbar">
+    <div id="brand">◢ THE TRAIL MAP<span class="sub">catalog cascade explorer</span></div>
+    <div id="searchwrap">
+      <input id="search" class="mono" placeholder="search 78k datasets — title, column, or join key…" autocomplete="off"/>
+      <div id="searchResults"></div>
+    </div>
+    <button class="topbtn" id="homeBtn" title="Return to the landing constellation">⌂ Constellation</button>
+    <button class="topbtn" id="helpBtn" title="What is this? — the corkboard explained">?</button>
+    <div id="stats"></div>
+  </div>
+
+  <div id="trailbar"><span class="tlabel">TRAIL:</span><span id="crumbs" style="display:flex;gap:6px;align-items:center"></span></div>
+
+  <div id="main">
+    <div id="graphwrap">
+      <svg id="svg"></svg>
+      <div id="landingCap" class="canvas-cap hide"></div>
+      <div id="emptyBloom" class="canvas-mid hide"></div>
+      <div class="hint">scroll = zoom · drag bg = pan · drag card header = move · click a card to bloom its trail</div>
+      <div class="legend" id="legend"></div>
+      <div id="overlay">
+        <div class="ldr">
+          <h1>◢ THE TRAIL MAP</h1>
+          <p>Loading the catalog index. If it doesn't auto-load (browsers block <span class="mono">file://</span> fetches), pick <span class="mono">portal_index.json</span> by hand.</p>
+          <div class="spin" id="spin"></div>
+          <button id="fileBtn">⬆ Load portal_index.json</button>
+          <input type="file" id="fileInput" accept=".json,application/json" style="display:none"/>
+          <div id="status">trying ./portal_index.json …</div>
+        </div>
+      </div>
+      <div id="onboard" class="hide">
+        <div class="ob-card">
+          <button class="ob-x" id="obClose" title="close">✕</button>
+          <h1>◢ The corkboard</h1>
+          <p>Every <b>card is a public dataset</b>. A <b>string between two cards</b> means they share an identifier — the same EIN, the same county FIPS, the same court docket. Pull a string and you can actually join those two datasets.</p>
+          <p>The <b>rarer the shared key, the stronger the lead</b>: an EIN ties two records to one exact business; a ZIP just means "same neighborhood." <b>Bright Steel cards are your most trustworthy starting points.</b></p>
+          <p><b>Click a card and the board re-pins around it</b> — that card moves to center and its strongest connections fan out, grouped by the key they share. Each card you open drops a <b>breadcrumb</b> up top; click back to retrace or branch.</p>
+          <p><b>Found one worth chasing?</b> Pin it (★) to your <b>Pull List</b> — your evidence pile, exportable as TSV or JSON.</p>
+          <div class="ob-ladder" id="obLadder"></div>
+          <button class="ob-go" id="obGo">Start investigating →</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="side">
+      <div id="sideTabs">
+        <div class="tab active" data-pane="detail">Detail</div>
+        <div class="tab" data-pane="pulls">Pull List<span class="badge" id="pullCount">0</span></div>
+        <div class="tab" data-pane="filters">Filters</div>
+        <div class="tab" data-pane="guide">Guide</div>
+      </div>
+      <div id="sideBody">
+        <div class="pane active" id="pane-detail">
+          <div class="empty">Click any node to inspect it.<br/>Search above to fly anywhere across all 78,651 datasets.</div>
+        </div>
+        <div class="pane" id="pane-pulls">
+          <div class="pull-actions">
+            <button id="copyTSV">⧉ Copy TSV</button>
+            <button id="copyJSON">⧉ Copy JSON</button>
+            <button id="clearPulls">✕ Clear</button>
+          </div>
+          <div id="pullList"></div>
+        </div>
+        <div class="pane" id="pane-filters">
+          <div id="filterList"></div>
+          <div id="landingCtl">
+            <div class="kv"><b>Constellation size:</b> <span id="landSizeLbl">200</span></div>
+            <input type="range" id="landSize" min="40" max="500" step="10" value="200"/>
+            <div class="kv" style="margin-top:4px">All STEEL first, then STRONG, then most-connected.</div>
+          </div>
+        </div>
+        <div class="pane" id="pane-guide"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+"use strict";
+/* ============================================================
+   THE TRAIL MAP  —  self-contained catalog cascade explorer
+   Data: outputs/portal_index.json (78,651 datasets)
+   ============================================================ */
+
+// ---- card geometry constants (SVG anchor math MUST match foreignObject CSS) ----
+const CARD_W = 230, HEADER_H = 38, KEY_ROW_H = 19, COLS_HEADER_H = 18, COLS_AREA_H = 116;
+const CARD_BORDER = 1;   // .card has border:1px with box-sizing:border-box -> content starts 1px down
+const cardHeight = d => HEADER_H + (d.join_keys.length * KEY_ROW_H) + COLS_HEADER_H + COLS_AREA_H;
+const CARD_ZOOM = 0.5;          // zoom scale at/above which cluster nodes render as ER cards
+const NEI_CAP = 24;             // neighbors shown in a bloom (detail panel lists all)
+const DOT_R = 6;
+
+// ---- tiers ----
+const TIERS = ['STEEL','STRONG','GEO','PROBABILISTIC','NONE'];
+const TIER_RANK = {STEEL:4, STRONG:3, GEO:2, PROBABILISTIC:1, NONE:0};
+const tierColor = t => getComputedStyle(document.documentElement).getPropertyValue('--t-'+t).trim() || '#888';
+
+// ---- key -> domain map (built over the REAL 17 keys in this dataset) ----
+const KEY_DOMAIN = {
+  GEOM:'geography', LATLON:'geography', FIPS:'geography', ZIP:'geography', ADDRESS:'geography', COUNTRY:'geography',
+  EIN:'organizations', UEI:'organizations', DUNS:'organizations', NAICS:'organizations', SIC:'organizations',
+  NPI:'health', CCN:'health',
+  DOCKET:'justice',
+  NCES:'education',
+  PATENT:'innovation',
+  NAME:'people'
+};
+const domainColor = dom => getComputedStyle(document.documentElement).getPropertyValue('--d-'+dom).trim() || '#888';
+const keyColor = k => domainColor(KEY_DOMAIN[k] || 'people');
+// "noise" keys = everything FIPS-frequency or more common (== exactly the GEO + PROBABILISTIC keys).
+// Used for the "strong links" stat: a link is "strong" if it shares >=1 STEEL-or-STRONG key.
+const NOISE_KEYS = new Set(['GEOM','NAME','ADDRESS','ZIP','LATLON','FIPS','COUNTRY']);
+
+// ===== GLOSSARY backbone — every explanatory feature reads from here =====
+// grade is copied VERBATIM from portal_recon/tag_portal_index.py (KEY_TOKENS). A wrong grade makes the
+// case notes lie, so do not paraphrase. blurb = what it is; links = what it connects you to.
+const KEY_INFO = {
+  EIN:    {label:'Employer ID Number',         grade:'STEEL', blurb:'An IRS tax ID for a US business or nonprofit.',       links:'US businesses & nonprofits',          example:'52-1693387'},
+  NPI:    {label:'National Provider Identifier',grade:'STEEL', blurb:'A CMS ID for a US healthcare provider.',              links:'US healthcare providers',             example:'1234567893'},
+  CCN:    {label:'CMS Certification Number',    grade:'STEEL', blurb:'A Medicare facility ID.',                            links:'hospitals, dialysis & surgical centers', example:'050441'},
+  UEI:    {label:'Unique Entity Identifier',    grade:'STEEL', blurb:'A SAM.gov ID for a federal contractor or grantee.',  links:'US federal contractors & grantees',   example:'ABC1DEF2GHI3'},
+  DUNS:   {label:'D&B Number',                  grade:'STEEL', blurb:'A Dun & Bradstreet business ID.',                    links:'businesses worldwide',                example:'150483782'},
+  PATENT: {label:'US Patent Number',            grade:'STEEL', blurb:'A granted US patent.',                              links:'patents & their assignees',           example:'US10000000B2'},
+  NAICS:  {label:'NAICS Industry Code',         grade:'STRONG', blurb:'A modern industry-classification code.',            links:'businesses by industry',              example:'541511'},
+  SIC:    {label:'SIC Industry Code',           grade:'STRONG', blurb:'A legacy industry-classification code.',            links:'businesses by industry (legacy)',     example:'7372'},
+  DOCKET: {label:'Court Docket Number',         grade:'STRONG', blurb:'A court case docket number.',                       links:'court cases',                         example:'1:21-cv-02587'},
+  NCES:   {label:'NCES ID',                     grade:'STRONG', blurb:'A National Center for Education Statistics ID.',     links:'schools & districts',                 example:'062271'},
+  FIPS:   {label:'FIPS Geographic Code',        grade:'GEO',    blurb:'A US Census state/county code.',                    links:'almost everything US, by place',      example:'06037'},
+  ZIP:    {label:'ZIP Code',                    grade:'GEO',    blurb:'A US postal code.',                                links:'anything with a US postal address',   example:'90210'},
+  LATLON: {label:'Latitude / Longitude',        grade:'GEO',    blurb:'A point coordinate.',                              links:'anything mappable',                   example:'34.05, -118.24'},
+  COUNTRY:{label:'Country (ISO)',               grade:'GEO',    blurb:'An ISO country code or name.',                     links:'international datasets',              example:'US / USA'},
+  GEOM:   {label:'GIS Geometry',                grade:'GEO',    blurb:'A shape or boundary — the most common key here.',   links:'maps & boundaries',                   example:'POLYGON((…))'},
+  NAME:   {label:'Entity Name',                 grade:'PROBABILISTIC', blurb:'An org/person/place name — fuzzy, never exact.', links:'others by name (fuzzy match)',    example:'"Acme Corp"'},
+  ADDRESS:{label:'Street / Mailing Address',    grade:'PROBABILISTIC', blurb:'A street or mailing address — fuzzy.',       links:'others by address (fuzzy match)',     example:'1600 Pennsylvania Ave'},
+};
+const TIER_INFO = {
+  STEEL:        {label:'Steel',         oneLine:'Precise, globally-unique entity ID — a join you can trust.',
+                 blurb:'Carries a hard entity ID (EIN, NPI, CCN, UEI, DUNS, PATENT). Two Steel datasets sharing one line up exactly — the safest place to start a trail.'},
+  STRONG:       {label:'Strong',        oneLine:'Domain-specific code — reliable inside its own world.',
+                 blurb:'Carries an industry/court/school code (NAICS, SIC, DOCKET, NCES). Clean within its domain, not a universal key.'},
+  GEO:          {label:'Geographic',    oneLine:'A location key — coarse; many things share a place.',
+                 blurb:'Joins on place (FIPS, ZIP, lat/lon, country, geometry). Great for "what else is here," but a county holds thousands of records.'},
+  PROBABILISTIC:{label:'Probabilistic', oneLine:'Name or address only — fuzzy, never exact.',
+                 blurb:'Only a name/address to match on. Useful leads, but every match needs confirming by hand.'},
+  NONE:         {label:'No key',        oneLine:'Columns are known, but nothing joinable.',
+                 blurb:'We can read its columns but found no join key — an island on the board until one is added.'},
+};
+const TIER_CATALOG_FREQ = {STEEL:185, STRONG:563, GEO:47438, PROBABILISTIC:9834, NONE:20631}; // full catalog
+
+const keyInfo  = k => KEY_INFO[k]  || {label:k, grade:'GEO', blurb:'', links:'', example:''};
+const tierInfo = t => TIER_INFO[t] || {label:t, oneLine:'', blurb:''};
+const keyTip   = k => { const z=keyInfo(k); return `${k} — ${z.label}. ${z.blurb}${z.links?` Links to ${z.links}.`:''}`; };
+
+// ---- global state ----
+let DATA = [];                 // the 78,651 records
+let N = 0;
+let keyIndex = new Map();      // key -> [dataset indices]
+let keyFreq = new Map();       // key -> count
+let keyWeight = new Map();     // key -> 1/log2(freq+2)
+let titlesLower = [];          // pre-lowercased titles for search
+let connScoreArr = [];         // per-node weighted-connectivity (for landing fill)
+let landingIdx = [];           // current landing constellation indices
+
+let trail = [];                // breadcrumb: array of node indices
+let centerIdx = null;          // currently bloomed center (null = landing mode)
+let selectedIdx = null;        // node shown in detail panel
+let mode = 'landing';          // 'landing' | 'bloom'
+let zoomK = 1;
+let draggingNode = false;      // suppress settle-lock pinning mid-drag
+let wasCard = false;           // last card-vs-dot state, to detect dot->card transition
+
+const tierOn = {STEEL:true, STRONG:true, GEO:true, PROBABILISTIC:true, NONE:true};
+let landSize = 200;
+
+let pulls = loadPulls();       // Map<signature, record>
+
+// =====================================================================
+// INDEX  (mirrors the Node-validated core exactly)
+// =====================================================================
+function buildIndex(){
+  keyIndex = new Map(); keyFreq = new Map(); keyWeight = new Map();
+  titlesLower = new Array(N); connScoreArr = new Array(N);
+  for (let i=0;i<N;i++){
+    const d = DATA[i];
+    if (!Array.isArray(d.join_keys)) d.join_keys = [];
+    if (!Array.isArray(d.columns)) d.columns = [];
+    titlesLower[i] = (d.title||'').toLowerCase();
+    for (const k of d.join_keys){
+      let arr = keyIndex.get(k); if (!arr){ arr=[]; keyIndex.set(k,arr); }
+      arr.push(i);
+    }
+  }
+  for (const [k,arr] of keyIndex){
+    keyFreq.set(k, arr.length);
+    keyWeight.set(k, 1/Math.log2(arr.length+2));
+  }
+  for (let i=0;i<N;i++){
+    let s=0;
+    for (const k of DATA[i].join_keys){
+      const reach = Math.max(0,(keyFreq.get(k)||0)-1);   // other datasets reachable via k
+      s += reach * (keyWeight.get(k)||0);                 // weight reach by key rarity
+    }
+    connScoreArr[i]=s;                                    // reach-weighted connectivity ("most-connected" fill)
+  }
+  _rnCache.clear();                                       // neighbor cache invalidated on (re)index
+}
+
+let _rnCache = new Map();   // i -> {total, strong, arr} ; cleared in buildIndex (DATA/keyIndex immutable after)
+
+// connection strength between two datasets = sum over shared keys of rarity weight
+function neighborMap(i){
+  const keys = DATA[i].join_keys;
+  const acc = new Map();   // j -> {strength, keys:[]}
+  for (const k of keys){
+    const w = keyWeight.get(k); const post = keyIndex.get(k);
+    for (let p=0;p<post.length;p++){
+      const j = post[p]; if (j===i) continue;
+      let e = acc.get(j); if (!e){ e={strength:0, keys:[]}; acc.set(j,e); }
+      e.strength += w; e.keys.push(k);
+    }
+  }
+  return acc;
+}
+
+function rankedNeighbors(i, cap){
+  let full = _rnCache.get(i);
+  if (!full){
+    const acc = neighborMap(i);
+    let total = 0, strong = 0;
+    const arr = [];
+    for (const [j,e] of acc){
+      total++;
+      const hasRare = e.keys.some(k=>!NOISE_KEYS.has(k));
+      if (hasRare) strong++;
+      arr.push({j, strength:e.strength, keys:e.keys, hasRare});
+    }
+    arr.sort((a,b)=> b.strength-a.strength
+          || TIER_RANK[DATA[b.j].confidence_tier]-TIER_RANK[DATA[a.j].confidence_tier]
+          || a.j-b.j);
+    full = {total, strong, arr};
+    _rnCache.set(i, full);
+  }
+  return {total: full.total, strong: full.strong,
+          list: cap?full.arr.slice(0,cap):full.arr, full: full.arr};
+}
+
+// landing constellation: all STEEL, then STRONG, then most-connected — capped, tier-filtered
+function buildLanding(){
+  const cand = [];
+  for (let i=0;i<N;i++){
+    const d = DATA[i];
+    if (d.join_keys.length===0) continue;          // unwired can't connect
+    if (!tierOn[d.confidence_tier]) continue;
+    cand.push(i);
+  }
+  cand.sort((a,b)=>
+      (TIER_RANK[DATA[b].confidence_tier]-TIER_RANK[DATA[a].confidence_tier])
+      || (connScoreArr[b]-connScoreArr[a]) || a-b);
+  landingIdx = cand.slice(0, landSize);
+}
+
+// =====================================================================
+// PULL LIST (localStorage; keyed by stable signature so it survives reloads)
+// =====================================================================
+function sig(d){ return (d.title||'')+'§'+(d.url||''); }
+function loadPulls(){
+  try{
+    const raw = localStorage.getItem('trailmap.pulls');
+    if (!raw) return new Map();
+    return new Map(Object.entries(JSON.parse(raw)));
+  }catch(e){ return new Map(); }
+}
+function savePulls(){
+  try{ localStorage.setItem('trailmap.pulls', JSON.stringify(Object.fromEntries(pulls))); }catch(e){}
+}
+function isPulled(i){ return pulls.has(sig(DATA[i])); }
+function togglePull(i){
+  const d = DATA[i], s = sig(d);
+  if (pulls.has(s)) pulls.delete(s);
+  else pulls.set(s, {title:d.title, portal:d.portal, tier:d.confidence_tier, url:d.url, rows:d.row_count});
+  savePulls(); renderPulls(); refreshStars();
+}
+
+// =====================================================================
+// LOADING
+// =====================================================================
+const $ = sel => document.querySelector(sel);
+function setStatus(t){ $('#status').textContent = t; }
+
+function ingest(arr){
+  if (!Array.isArray(arr)) throw new Error('JSON is not an array');
+  DATA = arr; N = arr.length;
+  setStatus('indexing '+N.toLocaleString()+' datasets…');
+  buildIndex();
+  $('#stats').textContent = N.toLocaleString()+' datasets · '+keyIndex.size+' join keys';
+  buildFilters(); buildLegend(); buildGuide(); renderPulls();
+  $('#overlay').classList.add('hide');
+  goLanding();   // goLanding() rebuilds landingIdx itself; no separate buildLanding() needed
+  try{ if(!localStorage.getItem('trailmap.onboarded')) showOnboard(); }catch(e){ showOnboard(); }
+}
+
+function tryFetch(){
+  fetch('portal_index.json')
+    .then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); setStatus('parsing JSON…'); return r.json(); })
+    .then(arr=>ingest(arr))
+    .catch(err=>{
+      $('#spin').style.display='none';
+      setStatus('Auto-load blocked ('+err.message+'). Use the button, or run:  python -m http.server  then open http://localhost:8000/outputs/trail_map.html');
+    });
+}
+$('#fileBtn').addEventListener('click', ()=>$('#fileInput').click());
+$('#fileInput').addEventListener('change', e=>{
+  const f = e.target.files[0]; if(!f) return;
+  $('#spin').style.display='block'; setStatus('reading '+f.name+' ('+(f.size/1048576).toFixed(0)+' MB)…');
+  const rd = new FileReader();
+  rd.onload = ()=>{ try{ ingest(JSON.parse(rd.result)); }catch(err){ $('#spin').style.display='none'; setStatus('Parse failed: '+err.message); } };
+  rd.onerror = ()=>{ $('#spin').style.display='none'; setStatus('File read failed.'); };
+  rd.readAsText(f);
+});
+
+// =====================================================================
+// SVG / FORCE GRAPH
+// =====================================================================
+const svg = d3.select('#svg');
+let W = 0, Hh = 0;
+const gZoom = svg.append('g');
+const gEdges = gZoom.append('g');     // strings (+ their pills) — bottom, tucked behind cards
+const gSectors = gZoom.append('g');   // sector heading pills — over strings, under cards
+const gNodes = gZoom.append('g');     // dots / ER cards — top
+
+const zoom = d3.zoom().scaleExtent([0.08, 4]).on('zoom', ev=>{
+  gZoom.attr('transform', ev.transform);
+  if (Math.abs(ev.transform.k - zoomK) > 0.001){
+    zoomK = ev.transform.k;
+    updateCardState();   // semantic zoom: dots <-> cards
+  }
+});
+svg.call(zoom);
+
+function sizeSvg(){
+  const r = $('#graphwrap').getBoundingClientRect();
+  W = r.width; Hh = r.height;
+}
+window.addEventListener('resize', ()=>{
+  sizeSvg();
+  if (mode==='bloom' && nodes.length){
+    nodes[0].fx=W/2; nodes[0].fy=Hh/2;                  // re-pin center to the new viewport center
+    const R=Math.min(W,Hh)*0.30, single=bloomGroups.length===1;
+    for (const grp of bloomGroups){ grp.cx=single?W/2:W/2+Math.cos(grp.amid)*R; grp.cy=single?Hh/2:Hh/2+Math.sin(grp.amid)*R; }
+    for (const n of nodes){ if(!n.isCenter){ n.fx=null; n.fy=null; } }   // release neighbors to re-settle
+  }
+  if(sim) sim.alpha(0.3).restart();
+});
+
+let sim = null;
+let nodes = [];     // {i, x, y, isCenter, grp}
+let edges = [];     // {source, target, keys:[], strength}
+let bloomGroups = [];   // [{key, grade, color, members, cx, cy, amid}] for the grouped-sector bloom
+
+function nodeById(i){ return nodes.find(n=>n.i===i); }
+
+// ---------- LANDING MODE ----------
+function goLanding(){
+  mode='landing'; centerIdx=null;
+  buildLanding();
+  // Build within-set edges, degree-capped, ranked by strength.
+  // Adjacency is computed ONLY across landing-set co-members — NO global posting scan
+  // (the old neighborMap(i) per node scanned ~9-30M postings and froze on slider drag).
+  const setArr = landingIdx;
+  const DEG_CAP = 5;
+  // local key index over ONLY the landing set
+  const setKeys = new Map();   // key -> [set member indices]
+  for (const i of setArr){
+    for (const k of DATA[i].join_keys){
+      let a = setKeys.get(k); if (!a){ a=[]; setKeys.set(k,a); }
+      a.push(i);
+    }
+  }
+  // within-set adjacency: i -> Map(j -> {strength, keys})
+  const adj = new Map(setArr.map(i=>[i, new Map()]));
+  for (const [k,members] of setKeys){
+    const w = keyWeight.get(k)||0;
+    for (let x=0;x<members.length;x++) for (let y=x+1;y<members.length;y++){
+      const i=members[x], j=members[y];
+      let e=adj.get(i).get(j);
+      if (!e){ e={strength:0, keys:[]}; adj.get(i).set(j,e); adj.get(j).set(i,e); }
+      e.strength+=w; e.keys.push(k);
+    }
+  }
+  // per-node greedy degree cap, strongest edges win the slots (no clique blowup)
+  const edgeMap = new Map();   // "a|b" -> {a,b,keys,strength}
+  const degree = new Map(setArr.map(i=>[i,0]));
+  for (const i of setArr){
+    const cands = [...adj.get(i).entries()].map(([j,e])=>({j, strength:e.strength, keys:e.keys}));
+    cands.sort((a,b)=>b.strength-a.strength);
+    let added=0;
+    for (const c of cands){
+      if (added>=DEG_CAP) break;
+      if ((degree.get(i)||0)>=DEG_CAP || (degree.get(c.j)||0)>=DEG_CAP) continue;
+      const a=Math.min(i,c.j), b=Math.max(i,c.j), key=a+'|'+b;
+      if (edgeMap.has(key)) continue;
+      edgeMap.set(key, {a, b, keys:c.keys, strength:c.strength});
+      degree.set(i,(degree.get(i)||0)+1); degree.set(c.j,(degree.get(c.j)||0)+1);
+      added++;
+    }
+  }
+  nodes = setArr.map(i=>({i, isCenter:false}));
+  const idmap = new Map(nodes.map(n=>[n.i,n]));
+  edges = [...edgeMap.values()].map(e=>({source:idmap.get(e.a), target:idmap.get(e.b), keys:e.keys, strength:e.strength}));
+  trail = [];
+  renderTrail();
+  $('#landingCap').innerHTML = `<b>The ${landingIdx.length} most-connectable datasets</b> of ${N.toLocaleString()} — your brightest starting points. Search to reach any of the rest, or click a card to open its board.`;
+  $('#landingCap').classList.remove('hide');
+  $('#emptyBloom').classList.add('hide');
+  bloomGroups = [];
+  layout(true);
+  resetZoom(0.55);
+}
+
+// ---------- grouping: cluster a bloom's neighbors by their connecting key ----------
+function primaryKey(keys){
+  let best=keys[0], bw=keyWeight.get(best)||0;
+  for (const k of keys){ const w=keyWeight.get(k)||0; if (w>bw){ bw=w; best=k; } }
+  return best;
+}
+// order groups by grade (Steel>Strong>Geo>Prob) then rarity; cap to MAXG, merge the tail into "mixed"
+function groupBloom(rn){
+  const g=new Map();
+  for (const nb of rn){
+    const pk=primaryKey(nb.keys);
+    let e=g.get(pk); if (!e){ e={key:pk, grade:keyInfo(pk).grade, color:keyColor(pk), members:[]}; g.set(pk,e); }
+    e.members.push(nb);
+  }
+  let groups=[...g.values()];
+  groups.sort((a,b)=> (TIER_RANK[b.grade]-TIER_RANK[a.grade])
+                   || ((keyWeight.get(b.key)||0)-(keyWeight.get(a.key)||0))
+                   || (b.members.length-a.members.length));
+  const MAXG=6;
+  if (groups.length>MAXG){
+    const isStrong=x=>x.grade==='STEEL'||x.grade==='STRONG';
+    const strong=groups.filter(isStrong), weak=groups.filter(x=>!isStrong(x));
+    const keepWeak=Math.max(0, MAXG-1-strong.length);
+    const tail=weak.slice(keepWeak);
+    if (tail.length){
+      const mixed={key:'·', grade:'GEO', color:'#7c8a9a', mixed:true, members:[].concat(...tail.map(t=>t.members))};
+      groups=strong.concat(weak.slice(0,keepWeak), [mixed]);   // every Steel/Strong sector survives; only the weak tail merges
+    } else {
+      groups=strong.concat(weak);
+    }
+  }
+  return groups;
+}
+// sector heading pills ("via CCN · 8"), positioned just beyond each group's member centroid.
+// Steel/Strong sectors brighter + 🔩; rendered on bloom / zoom / settle, never per tick.
+function drawSectorHeads(){
+  const show = mode==='bloom' && zoomK>=CARD_ZOOM && bloomGroups.length>1;
+  const data = show ? bloomGroups : [];
+  const sel = gSectors.selectAll('g.sechead').data(data, d=>d.key);
+  sel.exit().remove();
+  const ent = sel.enter().append('g').attr('class','sechead');
+  ent.append('rect').attr('class','sectorpill');
+  ent.append('text').attr('class','sectorpilltext').attr('text-anchor','middle').attr('dy','0.32em');
+  ent.append('title');
+  ent.merge(sel).each(function(d){
+    const g=d3.select(this);
+    let mx=0,my=0,n=0;
+    for (const nb of d.members){ const node=nodeById(nb.j); if(node){ mx+=node.x; my+=node.y; n++; } }
+    if (!n){ g.attr('opacity',0); return; }
+    mx/=n; my/=n;
+    const cx=W/2, cy=Hh/2; let dx=mx-cx, dy=my-cy; const len=Math.hypot(dx,dy)||1;
+    const hx=cx+dx/len*(len+30), hy=cy+dy/len*(len+30);
+    const strong = d.grade==='STEEL'||d.grade==='STRONG';
+    const label = d.mixed ? `+ mixed · ${d.members.length}` : `${strong?'🔩 ':''}via ${d.key} · ${d.members.length}`;
+    const fs = strong?11:10;
+    const w = label.length*(fs*0.6)+16;
+    g.attr('transform',`translate(${hx},${hy})`).attr('opacity', strong?1:0.72);
+    g.select('rect.sectorpill').attr('x',-w/2).attr('y',-10).attr('width',w).attr('height',20).attr('rx',10).attr('stroke',d.color);
+    g.select('text.sectorpilltext').attr('font-size',fs).attr('fill',d.color).text(label);
+    g.select('title').text(d.mixed?'Smaller groups, merged':keyTip(d.key));
+  });
+}
+// post-settle 1-D vertical declutter so overlapping string pills don't stack
+function declutterPills(){
+  const items=[];
+  gEdges.selectAll('g.edgeg').each(function(){
+    const lab=d3.select(this).select('.edgelab');
+    if (lab.attr('display')==='none') return;
+    const tr=lab.attr('transform'); if(!tr) return;
+    const m=/translate\(([-\d.]+),([-\d.]+)\)/.exec(tr); if(!m) return;
+    items.push({lab, x:+m[1], y:+m[2]});
+  });
+  items.sort((a,b)=>a.y-b.y);
+  const GAP=15;
+  for (let i=1;i<items.length;i++){
+    if (items[i].y-items[i-1].y<GAP && Math.abs(items[i].x-items[i-1].x)<42){
+      items[i].y=items[i-1].y+GAP;
+      items[i].lab.attr('transform',`translate(${items[i].x},${items[i].y})`);
+    }
+  }
+}
+
+// ---------- BLOOM MODE ----------
+function bloom(i, pushTrail=true){
+  mode='bloom'; centerIdx=i;
+  const rn = rankedNeighbors(i).full.filter(n=>tierOn[DATA[n.j].confidence_tier]).slice(0, NEI_CAP);
+  nodes = [{i, isCenter:true}];
+  const idmap = new Map([[i, nodes[0]]]);
+  for (const nb of rn){
+    const node = {i:nb.j, isCenter:false};
+    nodes.push(node); idmap.set(nb.j, node);
+  }
+  edges = rn.map(nb=>({source:idmap.get(i), target:idmap.get(nb.j), keys:nb.keys, strength:nb.strength}));
+  // breadcrumb
+  if (pushTrail){
+    if (trail[trail.length-1]!==i) trail.push(i);
+  }
+  renderTrail();
+
+  // ----- grouped-sector seeding: center pinned, neighbors fanned into per-key wedges -----
+  sizeSvg();
+  const cx=W/2, cy=Hh/2;
+  nodes[0].x=cx; nodes[0].y=cy; nodes[0].fx=cx; nodes[0].fy=cy;
+  const R = Math.min(W,Hh)*0.30;                  // ≈ bloom link distance (reduces force tug-of-war)
+  bloomGroups = groupBloom(rn);
+  // wedge size damped by sqrt(count) so a 2-member Steel sector stays visible beside a 40-member Geo one
+  const weights = bloomGroups.map(g=>Math.sqrt(g.members.length));
+  const wsum = weights.reduce((a,b)=>a+b,0) || 1;
+  let acc=0;
+  const single = bloomGroups.length===1;     // lone group -> center it (uniform ring), don't pull to one side
+  bloomGroups.forEach((grp,gi)=>{
+    const frac=weights[gi]/wsum;
+    const a0=acc*2*Math.PI, a1=(acc+frac)*2*Math.PI; acc+=frac;
+    grp.amid=(a0+a1)/2;
+    grp.cx=single?cx:cx+Math.cos(grp.amid)*R; grp.cy=single?cy:cy+Math.sin(grp.amid)*R;
+    const m=grp.members.length;
+    grp.members.forEach((nb,k)=>{
+      const node=idmap.get(nb.j);
+      const t = m>1 ? k/(m-1) : 0.5;
+      const ang = a0 + 0.12*(a1-a0) + t*0.76*(a1-a0);          // keep inside the wedge (12% margins)
+      const ring = R*(0.78 + 0.34*((k*0.6180339887)%1));        // golden-ratio scatter -> multi-ring packing
+      node.x=cx+Math.cos(ang)*ring; node.y=cy+Math.sin(ang)*ring;
+      node.grp=grp;
+    });
+  });
+
+  // ----- canvas context -----
+  $('#landingCap').classList.add('hide');
+  if (rn.length===0){
+    const isle = DATA[i].join_keys.length===0;
+    $('#emptyBloom').innerHTML = isle
+      ? `<b>No shared keys here.</b><br/>This dataset is an island — nothing on the board joins to it. Search, or step back in the trail.`
+      : `<b>No connections visible.</b><br/>All of this dataset's links are hidden by the current tier filters. Re-enable a tier, or step back.`;
+    $('#emptyBloom').classList.remove('hide');
+  } else { $('#emptyBloom').classList.add('hide'); }
+
+  layout(false);
+  select(i);
+  resetZoom(0.9);
+  try{ if(!localStorage.getItem('trailmap.sawBloom')){ localStorage.setItem('trailmap.sawBloom','1');
+    toast('Re-pinned around this card — neighbors are grouped by the key they share. Click one to walk on.'); } }catch(e){}
+}
+
+function layout(isLanding){
+  sizeSvg();
+  if (sim) sim.stop();
+  const linkDist = isLanding ? 70 : 230;
+  const charge = isLanding ? -110 : -900;
+  const linkStr = isLanding ? 0.35 : 0.12;     // weaker links in bloom so the sector force positions cleanly
+  sim = d3.forceSimulation(nodes)
+    .force('link', d3.forceLink(edges).distance(d=>linkDist/(0.4+d.strength)).strength(linkStr))
+    .force('charge', d3.forceManyBody().strength(charge).distanceMax(isLanding?420:1400))
+    .force('collide', d3.forceCollide().radius(d=> nodeIsCard(d)?CARD_W*0.42 : DOT_R+5).iterations(2))
+    .force('center', isLanding ? d3.forceCenter(W/2, Hh/2) : null)
+    .force('x', isLanding ? null : d3.forceX(d=> d.grp?d.grp.cx:W/2).strength(0.08))   // pull to sector centroid
+    .force('y', isLanding ? null : d3.forceY(d=> d.grp?d.grp.cy:Hh/2).strength(0.08))
+    .alpha(1).alphaDecay(isLanding?0.028:0.045).velocityDecay(isLanding?0.4:0.45)
+    .on('tick', ticked)
+    .on('end', onSimEnd);
+  drawNodes(); drawEdges(); drawSectorHeads();
+}
+// settle-and-lock: freeze the corkboard once it stops, but only in card view (fix: never lock at dot spacing)
+function onSimEnd(){
+  if (mode==='bloom' && !draggingNode){
+    for (const n of nodes){ if (!n.isCenter && nodeIsCard(n)){ n.fx=n.x; n.fy=n.y; } }
+  }
+  drawSectorHeads(); declutterPills();
+}
+
+function resetZoom(k){
+  sizeSvg();
+  const t = d3.zoomIdentity.translate(W/2,Hh/2).scale(k).translate(-W/2,-Hh/2);
+  svg.transition().duration(500).call(zoom.transform, t);
+}
+
+// ---------- card-vs-dot decision (semantic zoom) ----------
+function nodeIsCard(d){ return mode==='bloom' && zoomK>=CARD_ZOOM; }
+function updateCardState(){
+  if (!nodes.length) return;
+  const isCard = mode==='bloom' && zoomK>=CARD_ZOOM;
+  drawNodes();
+  if (!isCard) gEdges.selectAll('g.edgeg').select('.edgelab').attr('display','none');   // leaving card view -> hide pills (ticked no longer hides per-frame)
+  if (sim){
+    sim.force('collide').radius(d=> nodeIsCard(d)?CARD_W*0.42 : DOT_R+5);
+    if (isCard && !wasCard){               // entering card view: release locks so cards re-spread (no overlap)
+      for (const n of nodes){ if (!n.isCenter){ n.fx=null; n.fy=null; } }
+    }
+    sim.alpha(Math.max(sim.alpha(),0.2)).restart();
+  }
+  wasCard = isCard;
+  drawSectorHeads();
+}
+
+// =====================================================================
+// RENDER NODES (dot or ER card)
+// =====================================================================
+function drawNodes(){
+  const sel = gNodes.selectAll('g.node').data(nodes, d=>d.i);
+  sel.exit().remove();
+  const ent = sel.enter().append('g').attr('class','node')
+    .on('click', (ev,d)=>{ ev.stopPropagation(); onNodeClick(d); });
+
+  const all = ent.merge(sel);
+  all.each(function(d){
+    const g = d3.select(this);
+    const asCard = nodeIsCard(d);
+    g.classed('iscard', asCard);
+    // ----- DOT -----
+    let dot = g.select('circle.dot');
+    if (dot.empty()) dot = g.append('circle').attr('class','dot');
+    dot.attr('r', d.isCenter?9:DOT_R)
+       .attr('fill', tierColor(DATA[d.i].confidence_tier))
+       .classed('center', d.isCenter)
+       .style('display', asCard?'none':null);
+    // small label for dots (center always; others when zoomed in a bit)
+    let lbl = g.select('text.nodelabel');
+    if (lbl.empty()) lbl = g.append('text').attr('class','nodelabel').attr('dy', -11);
+    lbl.text(()=> (d.isCenter || zoomK>0.9) ? truncate(DATA[d.i].title, 22) : '')
+       .style('display', asCard?'none':null);
+    // ----- CARD -----
+    let fo = g.select('foreignObject.cardfo');
+    if (asCard){
+      if (fo.empty()){
+        fo = g.append('foreignObject').attr('class','cardfo');
+        fo.html(cardHTML(d));
+      }
+      wireCardScroll(fo);                                 // attach scroll-guards ONCE (idempotent)
+      rewireCardDrag(fo, d);                              // (re)bind drag + star to the CURRENT datum every draw
+      fo.select('.card').classed('center', d.isCenter);   // keep "you are here" border in sync on reuse
+      const h = cardHeight(DATA[d.i]);
+      fo.attr('width', CARD_W).attr('height', h).attr('x', -CARD_W/2).attr('y', -h/2)
+        .style('display', null);
+    } else if (!fo.empty()){
+      fo.style('display','none');
+    }
+    // ----- FOCUS label above the center card -----
+    let fl = g.select('text.focuslabel');
+    if (d.isCenter && asCard){
+      if (fl.empty()) fl = g.append('text').attr('class','focuslabel');
+      fl.attr('y', -(cardHeight(DATA[d.i])/2) - 7).text('◎ FOCUS').style('display',null);
+    } else if (!fl.empty()){
+      fl.style('display','none');
+    }
+  });
+  refreshStars();
+}
+
+function cardHTML(d){
+  const ds = DATA[d.i];
+  const keysHTML = ds.join_keys.map(k=>{
+    const col = keyColor(k);
+    // title= + data-key ONLY — never alter .krow height/box model (anchor() depends on KEY_ROW_H)
+    return `<div class="krow" style="border-left-color:${col}" data-key="${esc(k)}" title="${esc(keyTip(k))}">
+      <span class="kn" style="color:${col}">⚿ ${esc(k)}</span>
+      <span class="kf">${(keyFreq.get(k)||0).toLocaleString()}</span></div>`;
+  }).join('');   // no fallback row -> cardHeight()'s key region stays exact (0 keys = 0px)
+  const colsHTML = ds.columns.length
+    ? ds.columns.map(c=>`<div class="cc" title="${esc(c)}">${esc(c)}</div>`).join('')
+    : `<div class="cc">(no columns listed)</div>`;
+  const tcol = tierColor(ds.confidence_tier);
+  const starOn = isPulled(d.i)?'on':'';
+  const tt = tierInfo(ds.confidence_tier);
+  return `<div class="card ${d.isCenter?'center':''}">
+    <div class="card-h" title="${esc(tt.label+' — '+tt.oneLine)}">
+      <span class="cpin" style="background:${tcol}"></span>
+      <span class="ct" title="${esc(ds.title)}">${esc(ds.title)}</span>
+      <button class="cstar ${starOn}" title="pull">★</button>
+    </div>
+    <div class="card-keys">${keysHTML}</div>
+    <div class="card-colh">columns · ${ds.columns.length}</div>
+    <div class="card-cols">${colsHTML}</div>
+  </div>`;
+}
+
+// scroll-guards use raw addEventListener (would stack on redraw) -> attach exactly once per foreignObject
+function wireCardScroll(fo){
+  const node = fo.node();
+  if (node.__scrollWired) return;
+  node.__scrollWired = true;
+  const cols = node.querySelector('.card-cols');
+  if (cols) ['pointerdown','mousedown','wheel','touchstart'].forEach(evt=>
+    cols.addEventListener(evt, e=>e.stopPropagation()));
+}
+// drag + star use d3 .on() (replace-semantics) -> safe to rebind every draw against the live datum.
+// A card's <g> is reused across blooms (keyed by d.i), so the closure MUST point at the current node object.
+function rewireCardDrag(fo, d){
+  const node = fo.node();
+  d3.select(node).select('.cstar').on('click', ev=>{ ev.stopPropagation(); togglePull(d.i); });
+  const header = node.querySelector('.card-h');
+  if (header){
+    d3.select(header).call(d3.drag()
+      .on('start',ev=>{ draggingNode=true; if(!ev.active) sim.alphaTarget(0.2).restart(); d.fx=d.x; d.fy=d.y; })
+      .on('drag', ev=>{ d.fx=ev.x; d.fy=ev.y; })
+      .on('end',  ev=>{ draggingNode=false; if(!ev.active) sim.alphaTarget(0); if(mode!=='bloom' && !d.isCenter){ d.fx=null; d.fy=null; } }));   // bloom: pin in place (corkboard); landing: stay fluid
+  }
+}
+
+// dot drag (whole group when in dot state)
+function dotDrag(){
+  return d3.drag()
+    .on('start',(ev,d)=>{ draggingNode=true; if(!ev.active) sim.alphaTarget(0.25).restart(); d.fx=d.x; d.fy=d.y; })
+    .on('drag', (ev,d)=>{ d.fx=ev.x; d.fy=ev.y; })
+    .on('end', (ev,d)=>{ draggingNode=false; if(!ev.active) sim.alphaTarget(0); if(mode!=='bloom' && !d.isCenter){ d.fx=null; d.fy=null; } });
+}
+
+// =====================================================================
+// RENDER EDGES (key-row anchored connectors when both ends are cards)
+// =====================================================================
+function drawEdges(){
+  const flat = [];
+  for (const e of edges){
+    // one connector per shared key (cap 3 to keep readable), strongest-weighted first
+    const ks = [...e.keys].sort((a,b)=>(keyWeight.get(b)||0)-(keyWeight.get(a)||0)).slice(0,3);
+    for (const k of ks) flat.push({e, k});
+  }
+  // each string is a <g class=edgeg> = path + a midpoint "red-string" pill (key tag)
+  const sel = gEdges.selectAll('g.edgeg').data(flat, d=>d.e.source.i+'|'+d.e.target.i+'|'+d.k);
+  sel.exit().remove();
+  const ent = sel.enter().append('g').attr('class','edgeg');
+  ent.append('path').attr('class','edge');
+  const lab = ent.append('g').attr('class','edgelab').attr('display','none');   // hidden until card view (no per-tick hide in landing)
+  lab.append('rect').attr('class','edgepill');
+  lab.append('text').attr('class','edgepilltext').attr('text-anchor','middle').attr('dy','0.32em');
+  const all = ent.merge(sel);
+  all.select('path.edge')
+    .attr('stroke', d=>keyColor(d.k))
+    .attr('stroke-width', d=> 0.8 + Math.min(3, (keyWeight.get(d.k)||0)*4));
+  all.select('text.edgepilltext').text(d=>d.k).attr('fill', d=>keyColor(d.k));
+  edgePaths = gEdges.selectAll('g.edgeg');   // now selects GROUPS, not paths (ticked() reads children)
+}
+let edgePaths = null;
+
+function anchor(node, key, towardX){
+  const ds = DATA[node.i];
+  if (nodeIsCard(node)){
+    const h = cardHeight(ds);
+    const ki = ds.join_keys.indexOf(key);
+    const rowY = (ki>=0)
+      ? (node.y - h/2 + CARD_BORDER + HEADER_H + ki*KEY_ROW_H + KEY_ROW_H/2)
+      : node.y;                                   // key not on card -> content center (already node.y; no +border)
+    const side = (towardX>=node.x) ? CARD_W/2 : -CARD_W/2;
+    return {x: node.x + side, y: rowY};
+  }
+  // dot: anchor on the rim toward the other node
+  const dx = towardX - node.x;
+  const r = node.isCenter?9:DOT_R;
+  return {x: node.x + Math.sign(dx)*r, y: node.y};
+}
+
+function ticked(){
+  if (edgePaths){
+    const showPills = nodeIsCard();   // bloom-only chrome, arg-independent -> evaluate once; landing/dot view skips it
+    edgePaths.each(function(d){
+      const g=d3.select(this), s=d.e.source, t=d.e.target;
+      const a = anchor(s, d.k, t.x), b = anchor(t, d.k, s.x);
+      const mx=(a.x+b.x)/2;
+      g.select('path.edge').attr('d', `M${a.x},${a.y} C${mx},${a.y} ${mx},${b.y} ${b.x},${b.y}`);
+      if (!showPills) return;          // landing keeps only the path 'd' write; pills stay hidden from creation
+      const midx=0.125*(a.x+b.x)+0.75*mx, midy=0.5*(a.y+b.y);   // analytic Bézier midpoint
+      const w=d.k.length*6.4+10;
+      g.select('.edgelab').attr('display',null).attr('transform',`translate(${midx},${midy})`);
+      g.select('rect.edgepill').attr('x',-w/2).attr('y',-8).attr('width',w).attr('height',16).attr('rx',8)
+        .attr('fill','var(--pill-bg)').attr('stroke',keyColor(d.k));
+    });
+  }
+  gNodes.selectAll('g.node').attr('transform', d=>`translate(${d.x},${d.y})`);
+}
+
+// reattach dot-drag each draw (cards use header drag)
+function applyDotDrag(){
+  gNodes.selectAll('g.node').filter(d=>nodeIsCard(d)).on('.drag', null);
+  gNodes.selectAll('g.node').filter(d=>!nodeIsCard(d)).call(dotDrag());
+}
+
+// =====================================================================
+// INTERACTION
+// =====================================================================
+function onNodeClick(d){
+  select(d.i);
+  if (mode==='landing'){ bloom(d.i); }
+  else {
+    if (d.i===centerIdx){ select(d.i); }   // re-click center = just inspect
+    else bloom(d.i);                        // walk the trail
+  }
+}
+svg.on('click', ()=>{ /* bg click: keep selection */ });
+
+const _origDrawNodes = drawNodes;
+
+// =====================================================================
+// DETAIL PANEL
+// =====================================================================
+// one-line "why are these two pinned together" (shared keys, plain English)
+function whyPinned(keys){
+  const ks=[...keys].sort((a,b)=>(keyWeight.get(b)||0)-(keyWeight.get(a)||0));
+  const top=ks.slice(0,2).map(k=>keyInfo(k).label);
+  const more=ks.length>2?` (+${ks.length-2} more)`:'';
+  const grade=tierInfo(keyInfo(ks[0]).grade).label.toLowerCase();
+  return `Pinned together by ${top.join(' & ')}${more} — a ${grade} link.`;
+}
+// auto-written plain-English case note for the focused dataset (template, no LLM)
+function caseNote(i, rn){
+  const ds=DATA[i], ti=tierInfo(ds.confidence_tier), keys=ds.join_keys;
+  const tierName=`<b style="color:${tierColor(ds.confidence_tier)}">${ds.confidence_tier}</b>`;
+  const rows = ds.row_count==null ? '' : ` It holds <b>${Number(ds.row_count).toLocaleString()}</b> rows.`;
+  if (!keys.length){
+    return `<div class="casenote"><p>This is a ${tierName} dataset — ${esc(ti.oneLine)}${rows}</p>
+      <p>It carries <b>no join key</b>, so there's nothing to pin it to — an <b>island</b> on the board. Worth pulling only on its own merits.</p></div>`;
+  }
+  const targets=[...new Set(keys.map(k=>keyInfo(k).links).filter(Boolean))];
+  const targetsTxt = targets.slice(0,3).join('; ') + (targets.length>3?`; and ${targets.length-3} more`:'');
+  // strongest lead must come from the SAME tier-filtered set the canvas shows
+  const flead = rankedNeighbors(i).full.filter(n=>tierOn[DATA[n.j].confidence_tier])[0];
+  let leadTxt;
+  if (flead){
+    const nd=DATA[flead.j];
+    const shared=[...flead.keys].sort((a,b)=>(keyWeight.get(b)||0)-(keyWeight.get(a)||0));
+    const sharedTxt=shared.slice(0,2).map(k=>`${esc(k)} (${esc(keyInfo(k).label)})`).join(' + ');
+    leadTxt=` Its strongest lead is <b>${esc(truncate(nd.title,56))}</b>, linked by ${sharedTxt}.`;
+  } else {
+    leadTxt = rn.total===0
+      ? ' No other dataset on the board shares any of its keys — effectively an island despite carrying keys.'
+      : ' None of its connections are visible under the current tier filters.';
+  }
+  const strongTxt = rn.strong ? `, <b style="color:var(--accent)">${rn.strong.toLocaleString()}</b> of them through strong, trustworthy (Steel or Strong) keys` : '';
+  return `<div class="casenote">
+    <p>This is a ${tierName} dataset — ${esc(ti.oneLine)}${rows}</p>
+    <p>Its keys let it join to <b>${esc(targetsTxt)}</b>.</p>
+    <p>It touches <b>${rn.total.toLocaleString()}</b> other datasets${strongTxt}.${leadTxt}</p>
+  </div>`;
+}
+
+function select(i){
+  selectedIdx = i;
+  const ds = DATA[i];
+  const tcol = tierColor(ds.confidence_tier);
+  const rn = rankedNeighbors(i, 60);
+  const rows = ds.row_count==null ? '—' : Number(ds.row_count).toLocaleString();
+
+  const keychips = ds.join_keys.length
+    ? ds.join_keys.map(k=>{
+        const c=keyColor(k);
+        return `<span class="keychip" data-key="${esc(k)}" style="color:${c};border-color:${c}" title="${esc(keyTip(k))}">${esc(k)} <span class="kchip-name">${esc(keyInfo(k).label)}</span> · ${(keyFreq.get(k)||0).toLocaleString()}</span>`;
+      }).join('')
+    : '<span class="colchip">no join keys (unwired)</span>';
+
+  const colchips = ds.columns.length
+    ? ds.columns.map(c=>`<span class="colchip">${esc(c)}</span>`).join('')
+    : '<span class="colchip">none</span>';
+
+  const conn = rn.list.map((nb,idx)=>{
+    const nd = DATA[nb.j]; const c = tierColor(nd.confidence_tier);
+    const kk = nb.keys.slice().sort((a,b)=>(keyWeight.get(b)||0)-(keyWeight.get(a)||0));
+    const keyspan = kk.map(k=>`<span class="cnkey" data-key="${esc(k)}" style="color:${keyColor(k)}" title="${esc(keyTip(k))}">${esc(k)}</span>`).join(' ');
+    const why = idx<3 ? `<div class="cn-why">${esc(whyPinned(nb.keys))}</div>` : '';
+    return `<div class="cn" data-j="${nb.j}" title="${esc(whyPinned(nb.keys))}">
+        <span class="card-tdot" style="background:${c};width:8px;height:8px;border-radius:50%"></span>
+        <span class="cnt" title="${esc(nd.title)}">${esc(nd.title)}</span>
+        <span class="cnk">${keyspan}</span>
+        ${why}
+      </div>`;
+  }).join('');
+
+  const starOn = isPulled(i)?'on':'';
+  const okUrl = /^https?:\/\//i.test(ds.url||'');   // reject javascript:/data:/etc before making it a live href
+  $('#pane-detail').innerHTML = `
+    <div id="d_title">${esc(ds.title)}</div>
+    <div id="d_meta">
+      <span class="badge-tier" style="background:${tcol}22;color:${tcol};border:1px solid ${tcol}" title="${esc(tierInfo(ds.confidence_tier).blurb)}">${ds.confidence_tier} · ${esc(tierInfo(ds.confidence_tier).label)}</span>
+      <button class="starbtn ${starOn}" id="d_star">★ ${isPulled(i)?'pulled':'pull'}</button>
+      ${okUrl?`<a class="linkbtn" href="${esc(ds.url)}" target="_blank" rel="noopener noreferrer">open source ↗</a>`:''}
+    </div>
+    <div class="tier-meaning">${esc(tierInfo(ds.confidence_tier).oneLine)}</div>
+    ${caseNote(i, rn)}
+    <div class="kv"><b>Portal:</b> ${esc(ds.portal)}</div>
+    <div class="kv"><b>Rows:</b> ${rows}</div>
+    <div class="sec">
+      <h4>Join keys (foreign keys) — ${ds.join_keys.length}</h4>
+      <div class="chiprow mono">${keychips}</div>
+    </div>
+    <div class="sec">
+      <h4 title="A 'strong' link shares a Steel or Strong key — a precise, trustworthy join. The rest share only geographic or name/address keys.">Connects to — ${rn.total.toLocaleString()} total · <span style="color:var(--accent)">${rn.strong.toLocaleString()} via strong keys</span></h4>
+      <div id="d_connects">${conn || '<div class="empty">No connections (unwired).</div>'}</div>
+      ${rn.total>rn.list.length?`<div class="kv" style="margin-top:6px">…showing top ${rn.list.length} of ${rn.total.toLocaleString()}</div>`:''}
+    </div>
+    <div class="sec">
+      <h4>Columns — ${ds.columns.length}</h4>
+      <div class="chiprow mono colscroll">${colchips}</div>
+    </div>`;
+
+  $('#d_star').addEventListener('click', ()=>togglePull(i));
+  $('#pane-detail').querySelectorAll('.cn').forEach(el=>
+    el.addEventListener('click', ()=>{ const j=+el.dataset.j; bloom(j); }));   // bloom() selects internally
+  activateTab('detail');
+  refreshStars();
+}
+
+// =====================================================================
+// TRAIL / BREADCRUMB
+// =====================================================================
+function renderTrail(){
+  const c = $('#crumbs'); c.innerHTML='';
+  if (!trail.length){ c.innerHTML='<span style="color:var(--dim2);font-size:11px">— landing constellation —</span>'; return; }
+  trail.forEach((i,idx)=>{
+    const ds=DATA[i];
+    const chip=document.createElement('span');
+    chip.className='crumb mono'+(idx===trail.length-1?' cur':'');
+    chip.innerHTML=`<span class="tdot" style="background:${tierColor(ds.confidence_tier)}"></span>${esc(truncate(ds.title,24))}`;
+    chip.title=ds.title;
+    chip.addEventListener('click', ()=>{ trail=trail.slice(0,idx+1); bloom(i,false); });
+    c.appendChild(chip);
+    if (idx<trail.length-1){ const sep=document.createElement('span'); sep.className='crumbsep'; sep.textContent='→'; c.appendChild(sep); }
+  });
+}
+
+// =====================================================================
+// SEARCH (all 78,651; title OR column OR join key; debounced)
+// =====================================================================
+let searchTimer=null;
+$('#search').addEventListener('input', e=>{
+  clearTimeout(searchTimer);
+  const q = e.target.value.trim().toLowerCase();
+  searchTimer = setTimeout(()=>runSearch(q), 110);
+});
+$('#search').addEventListener('focus', ()=>{ if($('#searchResults').innerHTML) $('#searchResults').classList.add('show'); });
+document.addEventListener('click', e=>{ if(!$('#searchwrap').contains(e.target)) $('#searchResults').classList.remove('show'); });
+
+function runSearch(q){
+  const box=$('#searchResults');
+  if (q.length<2 || !N){ box.classList.remove('show'); box.innerHTML=''; return; }
+  const hits=[]; let total=0; const CAP=60;
+  for (let i=0;i<N;i++){
+    if (!tierOn[DATA[i].confidence_tier]) continue;
+    let m = titlesLower[i].includes(q);
+    if (!m){ for (const k of DATA[i].join_keys){ if (k.toLowerCase().includes(q)){ m=true; break; } } }
+    if (!m){ for (const c of DATA[i].columns){ if (c.toLowerCase().includes(q)){ m=true; break; } } }
+    if (m){ total++; if (hits.length<CAP) hits.push(i); }
+  }
+  let html=`<div class="srhead">${total.toLocaleString()} match${total===1?'':'es'}${total>CAP?` · showing ${CAP}`:''}</div>`;
+  html += hits.map(i=>{
+    const ds=DATA[i];
+    return `<div class="sr" data-i="${i}">
+      <span class="card-tdot" style="background:${tierColor(ds.confidence_tier)};width:8px;height:8px;border-radius:50%"></span>
+      <span class="srt mono">${esc(ds.title)}</span>
+      <span class="srp">${esc(ds.portal)}</span></div>`;
+  }).join('') || '<div class="sr">no matches</div>';
+  box.innerHTML=html;
+  box.classList.add('show');
+  box.querySelectorAll('.sr[data-i]').forEach(el=>el.addEventListener('click',()=>{
+    clearTimeout(searchTimer);                 // cancel any pending debounce so the dropdown can't re-open
+    const i=+el.dataset.i; box.classList.remove('show'); $('#search').value='';
+    flyTo(i);
+  }));
+}
+function flyTo(i){ trail=[]; bloom(i); }   // a search/pull jump starts a fresh trail; bloom() selects
+
+// =====================================================================
+// PULL PANE
+// =====================================================================
+function renderPulls(){
+  const list=$('#pullList'); const arr=[...pulls.entries()];
+  $('#pullCount').textContent=arr.length;
+  if (!arr.length){ list.innerHTML='<div class="empty">No datasets pulled yet.<br/>This is your <b>research worklist</b> — hit ★ on any card to pin it here, then export as TSV or JSON.</div>'; return; }
+  list.innerHTML=arr.map(([s,r])=>`
+    <div class="pullrow" data-sig="${esc(s)}">
+      <span class="card-tdot" style="background:${tierColor(r.tier)};width:8px;height:8px;border-radius:50%"></span>
+      <span class="pt mono" title="${esc(r.title)}">${esc(r.title)}</span>
+      <span class="px" title="remove">✕</span>
+    </div>`).join('');
+  list.querySelectorAll('.pullrow').forEach(el=>{
+    const s=el.dataset.sig;
+    el.querySelector('.px').addEventListener('click',ev=>{ ev.stopPropagation(); pulls.delete(s); savePulls(); renderPulls(); refreshStars(); });
+    el.querySelector('.pt').addEventListener('click',()=>{
+      // find index by signature in the currently loaded dataset
+      let found=false;
+      for (let i=0;i<N;i++){ if (sig(DATA[i])===s){ found=true; flyTo(i); break; } }
+      if (!found) toast('Not in the currently loaded dataset');
+    });
+  });
+}
+$('#copyTSV').addEventListener('click', ()=>{
+  const rows=[['title','portal','tier','url'].join('\t')];
+  for (const [,r] of pulls) rows.push([r.title,r.portal,r.tier,r.url].join('\t'));
+  copy(rows.join('\n'), pulls.size+' rows copied as TSV');
+});
+$('#copyJSON').addEventListener('click', ()=>{
+  copy(JSON.stringify([...pulls.values()],null,2), pulls.size+' rows copied as JSON');
+});
+$('#clearPulls').addEventListener('click', ()=>{
+  if (!pulls.size) return;
+  pulls.clear(); savePulls(); renderPulls(); refreshStars();
+});
+function copy(text,msg){
+  navigator.clipboard.writeText(text).then(()=>toast(msg)).catch(()=>{
+    const ta=document.createElement('textarea'); ta.value=text; document.body.appendChild(ta); ta.select();
+    try{document.execCommand('copy'); toast(msg);}catch(e){toast('copy failed');} ta.remove();
+  });
+}
+
+function refreshStars(){
+  // detail star
+  const ds=$('#d_star'); if (ds && selectedIdx!=null){ ds.classList.toggle('on',isPulled(selectedIdx)); ds.textContent='★ '+(isPulled(selectedIdx)?'pulled':'pull'); }
+  // card stars
+  gNodes.selectAll('foreignObject.cardfo').each(function(d){
+    const b=this.querySelector('.cstar'); if (b) b.classList.toggle('on', isPulled(d.i));
+  });
+}
+
+// =====================================================================
+// FILTERS / LEGEND
+// =====================================================================
+function buildFilters(){
+  const counts={}; TIERS.forEach(t=>counts[t]=0);
+  for (let i=0;i<N;i++) counts[DATA[i].confidence_tier]++;
+  $('#filterList').innerHTML = TIERS.map(t=>`
+    <div class="filt ${tierOn[t]?'':'off'}" data-tier="${t}" title="${esc(tierInfo(t).blurb)}">
+      <span class="sw" style="background:${tierColor(t)}"></span>
+      <span class="filt-txt"><b>${t}</b><span class="filt-name">${esc(tierInfo(t).label)}</span>
+        <span class="filt-one">${esc(tierInfo(t).oneLine)}</span></span>
+      <span class="fc">${counts[t].toLocaleString()}</span>
+    </div>`).join('');
+  $('#filterList').querySelectorAll('.filt').forEach(el=>el.addEventListener('click',()=>{
+    const t=el.dataset.tier; tierOn[t]=!tierOn[t]; el.classList.toggle('off',!tierOn[t]);
+    if (mode==='landing') goLanding();
+    else if (centerIdx!=null){
+      if (!tierOn[DATA[centerIdx].confidence_tier]) goLanding();   // center's own tier hidden -> leave bloom
+      else bloom(centerIdx,false);
+    }
+  }));
+  let landTimer=null;
+  $('#landSize').addEventListener('input',e=>{
+    landSize=+e.target.value; $('#landSizeLbl').textContent=landSize;   // label updates live
+    clearTimeout(landTimer);
+    landTimer=setTimeout(()=>{ if(mode==='landing') goLanding(); }, 150);   // debounce the heavy rebuild
+  });
+}
+// dual legend: DOT color = tier (trust), STRING color = key domain (topic) — neither was explained on-canvas before
+function buildLegend(){
+  const doms=['geography','organizations','health','justice','education','innovation','people'];
+  const tierRows = TIERS.map(t=>`<div class="lr" title="${esc(tierInfo(t).blurb)}"><span class="ls" style="background:${tierColor(t)};border-radius:50%"></span>${tierInfo(t).label}</div>`).join('');
+  const domRows = doms.map(dn=>`<div class="lr"><span class="ls" style="background:${domainColor(dn)}"></span>${dn}</div>`).join('');
+  $('#legend').innerHTML =
+    `<div class="lh">DOT = TRUST GRADE<span class="lsub">how trustworthy the dataset's keys are</span></div>`+tierRows+
+    `<div class="lh">STRING = KEY DOMAIN<span class="lsub">what kind of thing the shared key is</span></div>`+domRows;
+}
+// onboarding tier ladder
+function tierLadderHTML(){
+  return TIERS.map(t=>`<div class="ladrow" title="${esc(tierInfo(t).blurb)}">
+    <span class="ladsw" style="background:${tierColor(t)}"></span>
+    <b style="color:${tierColor(t)}">${t}</b>
+    <span class="ladone">${esc(tierInfo(t).oneLine)}</span></div>`).join('');
+}
+// Guide tab: tier ladder + key dictionary grouped by grade
+function buildGuide(){
+  const ladder = TIERS.map(t=>`<div class="grow" title="${esc(tierInfo(t).blurb)}">
+      <span class="gsw" style="background:${tierColor(t)}"></span>
+      <div><b style="color:${tierColor(t)}">${t} · ${tierInfo(t).label}</b>
+        <div class="gone">${esc(tierInfo(t).oneLine)}</div>
+        <div class="gcat">${(TIER_CATALOG_FREQ[t]||0).toLocaleString()} datasets in the full catalog</div></div></div>`).join('');
+  const byGrade={}; for (const k of Object.keys(KEY_INFO)){ const g=KEY_INFO[k].grade; (byGrade[g]||(byGrade[g]=[])).push(k); }
+  const dict = TIERS.filter(t=>byGrade[t]).map(t=>{
+    const rows = byGrade[t].sort((a,b)=>(keyFreq.get(b)||0)-(keyFreq.get(a)||0)).map(k=>{
+      const z=keyInfo(k), c=keyColor(k);
+      return `<div class="kdef" data-key="${esc(k)}" title="${esc(keyTip(k))}">
+        <span class="kdcode" style="color:${c};border-color:${c}">${k}</span>
+        <div class="kdbody"><b>${esc(z.label)}</b>
+          <div class="kdblurb">${esc(z.blurb)} <span class="kdlinks">Links to ${esc(z.links)}.</span></div>
+          <div class="kdfreq">${(keyFreq.get(k)||0).toLocaleString()} in this catalog · e.g. ${esc(z.example)}</div></div></div>`;
+    }).join('');
+    return `<div class="gsec"><h4 style="color:${tierColor(t)}">${tierInfo(t).label} keys</h4>${rows}</div>`;
+  }).join('');
+  $('#pane-guide').innerHTML =
+    `<div class="gintro">A dataset's <b>tier</b> is its join strength — the rarest key it carries. A <b>key</b> is the actual shared column you'd join on. Click any key code in the app to jump here.</div>
+     <div class="gsec"><h4 style="color:var(--text)">The tier ladder</h4>${ladder}</div>
+     <div class="gsec"><h4 style="color:var(--text)">Key dictionary</h4>${dict}</div>`;
+}
+function showOnboard(){ $('#obLadder').innerHTML=tierLadderHTML(); $('#onboard').classList.remove('hide'); }
+function hideOnboard(){ $('#onboard').classList.add('hide'); try{localStorage.setItem('trailmap.onboarded','1');}catch(e){} }
+$('#obClose').addEventListener('click', hideOnboard);
+$('#obGo').addEventListener('click', hideOnboard);
+$('#helpBtn').addEventListener('click', showOnboard);
+
+// =====================================================================
+// TABS
+// =====================================================================
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>activateTab(t.dataset.pane)));
+function activateTab(name){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.pane===name));
+  document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('active',p.id==='pane-'+name));
+}
+$('#homeBtn').addEventListener('click', goLanding);
+
+// ---- click any key code -> open the Guide at that key (capture phase: pre-empts bloom / node click) ----
+function openGuideForKey(k){
+  $('#searchResults').classList.remove('show');   // capture-phase stopPropagation eats the outside-click closer; close it explicitly
+  activateTab('guide');
+  const el = $('#pane-guide').querySelector(`.kdef[data-key="${k}"]`);
+  if (el){ el.scrollIntoView({block:'center'}); el.classList.add('kdflash'); setTimeout(()=>el.classList.remove('kdflash'),1200); }
+}
+function keyClickDelegate(ev){
+  const el = ev.target.closest && ev.target.closest('[data-key]');
+  if (el && el.getAttribute('data-key')){ ev.stopPropagation(); ev.preventDefault(); openGuideForKey(el.getAttribute('data-key')); }
+}
+$('#side').addEventListener('click', keyClickDelegate, true);        // detail chips, connect-row keys, guide dict
+$('#graphwrap').addEventListener('click', keyClickDelegate, true);   // card key rows (inside foreignObject)
+
+// =====================================================================
+// HELPERS + draw wrapper that re-applies dot drag
+// =====================================================================
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function truncate(s,n){ s=String(s==null?'':s); return s.length>n?s.slice(0,n-1)+'…':s; }
+let toastTimer=null;
+function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove('show'),1800); }
+
+// wrap drawNodes to always reattach dot-drag after (and edges after node redraw)
+drawNodes = function(){ _origDrawNodes(); applyDotDrag(); };
+
+// =====================================================================
+// BOOT
+// =====================================================================
+sizeSvg();
+tryFetch();
+</script>
+</body>
+</html>
