@@ -58,10 +58,93 @@ def candidates(conn, platform=None, with_key=False, min_rows=1, max_rows=200_000
                row_count, top_tier, join_keys
         FROM {INDEX}
         WHERE {' AND '.join(where)}
-        ORDER BY top_tier, row_count NULLS LAST
+        ORDER BY CASE top_tier WHEN 'STEEL' THEN 0 WHEN 'STRONG' THEN 1
+                               WHEN 'GEO' THEN 2 ELSE 3 END, row_count NULLS LAST
         LIMIT {int(limit)}
     """
     return db.dicts(conn, q)
+
+
+# Entity keys where a shared key TYPE strongly implies a real, joinable connection
+# (unlike GEO/NAME, where a type match can still overlap nothing).
+ENTITY_KEYS = ["EIN", "NPI", "CIK", "UEI", "DUNS", "LEI", "IMO", "MMSI",
+               "PATENT", "CCN", "DOCKET", "NAICS", "NCES", "SIC"]
+
+
+def live_key_types(entity_only: bool = True) -> set[str]:
+    """Key types the EXISTING landed Library carries (excludes already-bulk-loaded
+    portal_* tables). These are what new datasets can wire into."""
+    from .fingerprint import OUT as FP_PATH
+    try:
+        data = json.loads(FP_PATH.read_text())
+    except FileNotFoundError:
+        return set()
+    keys = set()
+    for t, info in data.items():
+        if t.startswith("PORTAL_"):
+            continue
+        for k in info["keys"]:
+            if k["populated_pct"] > 0:
+                keys.add(k["key"])
+    return (keys & set(ENTITY_KEYS)) if entity_only else keys
+
+
+def connectable_candidates(conn, limit=50, size_cap=2_000_000) -> list[dict]:
+    """Datasets carrying an ENTITY key — wide net, but ordered so the ones that
+    share a key with data you ALREADY hold come first (they wire in immediately)."""
+    live = live_key_types() or {"NPI"}
+    net = ", ".join(f"'{k}'" for k in ENTITY_KEYS)
+    live_arr = ", ".join(f"'{k}'" for k in live)
+    q = f"""
+        SELECT platform, portal_name, dataset_id, dataset_title, source_url,
+               row_count, top_tier, join_keys,
+               ARRAYS_OVERLAP(join_keys, ARRAY_CONSTRUCT({live_arr})) AS hits_live
+        FROM {INDEX}
+        WHERE ARRAY_SIZE(column_names) > 0 AND NULLIF(TRIM(source_url),'') IS NOT NULL
+          AND platform IN ('SOCRATA','ARCGIS')
+          AND ARRAYS_OVERLAP(join_keys, ARRAY_CONSTRUCT({net}))
+          AND (row_count IS NULL OR row_count <= {size_cap})
+        ORDER BY hits_live DESC,
+                 CASE top_tier WHEN 'STEEL' THEN 0 WHEN 'STRONG' THEN 1 ELSE 2 END,
+                 row_count NULLS LAST
+        LIMIT {int(limit)}
+    """
+    return db.dicts(conn, q)
+
+
+def verify_connections(conn, new_tables: list[str]) -> list[dict]:
+    """For each freshly-loaded table, do its entity keys ACTUALLY overlap an
+    existing source? Honest check — turns 'carries a key' into 'joins on N rows'."""
+    from .fingerprint import OUT as FP_PATH, fingerprint_table
+    from .keys import normalize_sql  # noqa
+    from .overlap import value_overlap
+
+    existing = {t: info for t, info in json.loads(FP_PATH.read_text()).items()
+                if not t.startswith("PORTAL_")}
+    # best existing column per entity key
+    holders: dict[str, tuple] = {}
+    for t, info in existing.items():
+        for k in info["keys"]:
+            if k["key"] in ENTITY_KEYS and k["populated_pct"] > 0:
+                if k["key"] not in holders or k["distinct"] > holders[k["key"]][2]:
+                    holders[k["key"]] = (t, k["column"], k["distinct"])
+
+    found = []
+    for nt in new_tables:
+        fp = fingerprint_table(conn, nt)
+        for k in fp["keys"]:
+            key = k["key"]
+            if key in holders and k["mode"] == "value" and k["populated_pct"] > 0:
+                et, ecol, _ = holders[key]
+                try:
+                    ov = value_overlap(conn, nt, k["column"], et, ecol, key)
+                except Exception:
+                    continue
+                if ov["matched"] > 0:
+                    found.append({"new": nt, "key": key, "existing": et,
+                                  "matched": ov["matched"], "rate": ov["match_rate"]})
+                    print(f"    + {nt[:34]} -{key}-> {et}: {ov['matched']:,} matched ({ov['match_rate']}%)")
+    return found
 
 
 # --------------------------------------------------------------------------- #
@@ -198,14 +281,20 @@ def load_one(conn, rec: dict, max_rows: int, force: bool = False) -> dict:
 
 
 def run(platform=None, with_key=False, limit=10, max_rows=500, do_run=False,
-        force=False) -> list[dict]:
+        force=False, connectable=False, verify=False) -> list[dict]:
     conn = db.connect()
     try:
-        cands = candidates(conn, platform=platform, with_key=with_key,
-                           max_rows=max_rows if max_rows > 200_000 else 200_000,
-                           limit=limit)
-        print(f"selected {len(cands)} candidate datasets "
-              f"(platform={platform or 'SOCRATA+ARCGIS'}, with_key={with_key})")
+        if connectable:
+            cands = connectable_candidates(conn, limit=limit)
+            live = live_key_types()
+            print(f"selected {len(cands)} CONNECTABLE candidates "
+                  f"(entity-key datasets; your live keys: {sorted(live)})")
+        else:
+            cands = candidates(conn, platform=platform, with_key=with_key,
+                               max_rows=max_rows if max_rows > 200_000 else 200_000,
+                               limit=limit)
+            print(f"selected {len(cands)} candidate datasets "
+                  f"(platform={platform or 'SOCRATA+ARCGIS'}, with_key={with_key})")
         if not do_run:
             for c in cands:
                 print(f"  PREVIEW {c['PLATFORM']:<8} {source_id_for(c)}  "
@@ -222,6 +311,13 @@ def run(platform=None, with_key=False, limit=10, max_rows=500, do_run=False,
             results.append(res)
         landed = [r for r in results if r["status"] == "loaded"]
         print(f"\n{len(landed)}/{len(results)} loaded, {sum(r['rows'] for r in landed):,} rows total.")
+
+        if verify and landed:
+            print(f"\nverifying real connections for {len(landed)} new tables ...")
+            conns = verify_connections(conn, [r["source_id"].upper() for r in landed])
+            wired = {c["new"] for c in conns}
+            print(f"\n{len(wired)}/{len(landed)} new tables wired into existing data "
+                  f"({len(conns)} real connections).")
         return results
     finally:
         conn.close()

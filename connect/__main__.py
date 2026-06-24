@@ -32,6 +32,9 @@ def main() -> int:
     h = sub.add_parser("harvest", help="bulk-load datasets from the portal index (no LLM)")
     h.add_argument("--platform", choices=["SOCRATA", "ARCGIS"], default=None)
     h.add_argument("--with-key", action="store_true", help="only datasets that carry a join key")
+    h.add_argument("--connectable", action="store_true",
+                   help="target ENTITY-key datasets, ordered to wire into data you already hold (#3)")
+    h.add_argument("--verify", action="store_true", help="after load, check which new tables really connect")
     h.add_argument("--limit", type=int, default=10, help="max datasets this run")
     h.add_argument("--max-rows", type=int, default=500, help="row cap per dataset")
     h.add_argument("--run", action="store_true", help="actually load (default previews only)")
@@ -63,7 +66,8 @@ def main() -> int:
         from . import portal_loader
         portal_loader.run(platform=args.platform, with_key=args.with_key,
                           limit=args.limit, max_rows=args.max_rows,
-                          do_run=args.run, force=args.force)
+                          do_run=args.run, force=args.force,
+                          connectable=args.connectable, verify=args.verify)
     return 0
 
 

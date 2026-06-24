@@ -1363,6 +1363,4120 @@
     "rows": 213284,
     "keys": []
   },
+  "PORTAL_ARC_CLEVELAND_OPEN_DATA_PO_F5F33BD5B74849798EA6A7BCA6D1A5F9_0": {
+    "rows": 34,
+    "keys": [
+      {
+        "column": "NPI_SII",
+        "key": "NPI",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 11,
+        "distinct": 7,
+        "populated_pct": 32.4
+      },
+      {
+        "column": "SHAPE__AREA",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 34,
+        "distinct": 34,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "SHAPE__LENGTH",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 34,
+        "distinct": 34,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 34,
+        "distinct": 34,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_HARRIS_COUNTY_OPEN_DAT_1A4ABA8CC51F4886BABFECF0B8322A07_0": {
+    "rows": 526,
+    "keys": [
+      {
+        "column": "MATCH_ADDR",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 526,
+        "distinct": 515,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDR_TYPE",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 523,
+        "distinct": 3,
+        "populated_pct": 99.4
+      },
+      {
+        "column": "PLACE_ADDR",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 523,
+        "distinct": 512,
+        "populated_pct": 99.4
+      },
+      {
+        "column": "COUNTRY",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 523,
+        "distinct": 1,
+        "populated_pct": 99.4
+      },
+      {
+        "column": "IN_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 526,
+        "distinct": 521,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "IN_COUNTRYCODE",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "USER_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 526,
+        "distinct": 524,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 526,
+        "distinct": 332,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 526,
+        "distinct": 521,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 526,
+        "distinct": 244,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_MAILING_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 526,
+        "distinct": 496,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_MAILING_ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 526,
+        "distinct": 261,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 526,
+        "distinct": 511,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_HARRIS_COUNTY_OPEN_DAT_1A4ABA8CC51F4886BABFECF0B8322A07_1": {
+    "rows": 96,
+    "keys": [
+      {
+        "column": "MATCH_ADDR",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 96,
+        "distinct": 93,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDR_TYPE",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 95,
+        "distinct": 3,
+        "populated_pct": 99.0
+      },
+      {
+        "column": "PLACE_ADDR",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 95,
+        "distinct": 92,
+        "populated_pct": 99.0
+      },
+      {
+        "column": "COUNTRY",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 95,
+        "distinct": 1,
+        "populated_pct": 99.0
+      },
+      {
+        "column": "IN_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 96,
+        "distinct": 97,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "IN_COUNTRYCODE",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "USER_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 96,
+        "distinct": 94,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 96,
+        "distinct": 55,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 96,
+        "distinct": 97,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 96,
+        "distinct": 49,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_MAILING_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 96,
+        "distinct": 96,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_MAILING_ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 96,
+        "distinct": 54,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 96,
+        "distinct": 89,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_HARRIS_COUNTY_OPEN_DAT_1A4ABA8CC51F4886BABFECF0B8322A07_10": {
+    "rows": 77,
+    "keys": [
+      {
+        "column": "MATCH_ADDR",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 77,
+        "distinct": 77,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDR_TYPE",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 77,
+        "distinct": 4,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "PLACE_ADDR",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 77,
+        "distinct": 77,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "COUNTRY",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 77,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "IN_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 77,
+        "distinct": 77,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "IN_COUNTRYCODE",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "USER_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 77,
+        "distinct": 76,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 77,
+        "distinct": 54,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 77,
+        "distinct": 77,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 77,
+        "distinct": 35,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_MAILING_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 77,
+        "distinct": 71,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_MAILING_ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 77,
+        "distinct": 35,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 77,
+        "distinct": 75,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_HARRIS_COUNTY_OPEN_DAT_1A4ABA8CC51F4886BABFECF0B8322A07_11": {
+    "rows": 642,
+    "keys": [
+      {
+        "column": "MATCH_ADDR",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 642,
+        "distinct": 622,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDR_TYPE",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 641,
+        "distinct": 6,
+        "populated_pct": 99.8
+      },
+      {
+        "column": "PLACE_ADDR",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 641,
+        "distinct": 623,
+        "populated_pct": 99.8
+      },
+      {
+        "column": "COUNTRY",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 642,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "IN_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 642,
+        "distinct": 643,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "IN_COUNTRYCODE",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "USER_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 642,
+        "distinct": 635,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 642,
+        "distinct": 492,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 642,
+        "distinct": 643,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 642,
+        "distinct": 398,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_MAILING_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 642,
+        "distinct": 555,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_MAILING_ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 642,
+        "distinct": 377,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 642,
+        "distinct": 620,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_HARRIS_COUNTY_OPEN_DAT_1A4ABA8CC51F4886BABFECF0B8322A07_14": {
+    "rows": 56,
+    "keys": [
+      {
+        "column": "MATCH_ADDR",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 56,
+        "distinct": 53,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDR_TYPE",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 56,
+        "distinct": 3,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "PLACE_ADDR",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 56,
+        "distinct": 53,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "COUNTRY",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 56,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "IN_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 56,
+        "distinct": 56,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "IN_COUNTRYCODE",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "USER_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 56,
+        "distinct": 56,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 56,
+        "distinct": 49,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 56,
+        "distinct": 56,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 56,
+        "distinct": 49,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_MAILING_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 56,
+        "distinct": 52,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_MAILING_ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 56,
+        "distinct": 46,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 56,
+        "distinct": 56,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_HARRIS_COUNTY_OPEN_DAT_1A4ABA8CC51F4886BABFECF0B8322A07_2": {
+    "rows": 526,
+    "keys": [
+      {
+        "column": "MATCH_ADDR",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 526,
+        "distinct": 515,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDR_TYPE",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 523,
+        "distinct": 3,
+        "populated_pct": 99.4
+      },
+      {
+        "column": "PLACE_ADDR",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 523,
+        "distinct": 512,
+        "populated_pct": 99.4
+      },
+      {
+        "column": "COUNTRY",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 523,
+        "distinct": 1,
+        "populated_pct": 99.4
+      },
+      {
+        "column": "IN_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 526,
+        "distinct": 521,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "IN_COUNTRYCODE",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "USER_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 526,
+        "distinct": 524,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 526,
+        "distinct": 332,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 526,
+        "distinct": 521,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 526,
+        "distinct": 244,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_MAILING_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 526,
+        "distinct": 496,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_MAILING_ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 526,
+        "distinct": 261,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 526,
+        "distinct": 511,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_HARRIS_COUNTY_OPEN_DAT_1A4ABA8CC51F4886BABFECF0B8322A07_7": {
+    "rows": 755,
+    "keys": [
+      {
+        "column": "MATCH_ADDR",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 755,
+        "distinct": 744,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDR_TYPE",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 746,
+        "distinct": 4,
+        "populated_pct": 98.8
+      },
+      {
+        "column": "PLACE_ADDR",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 746,
+        "distinct": 734,
+        "populated_pct": 98.8
+      },
+      {
+        "column": "COUNTRY",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 746,
+        "distinct": 1,
+        "populated_pct": 98.8
+      },
+      {
+        "column": "IN_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 755,
+        "distinct": 772,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "IN_COUNTRYCODE",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "USER_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 755,
+        "distinct": 748,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 755,
+        "distinct": 676,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 755,
+        "distinct": 772,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 755,
+        "distinct": 441,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_MAILING_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 755,
+        "distinct": 354,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "USER_MAILING_ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 755,
+        "distinct": 262,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 755,
+        "distinct": 746,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_HARRIS_COUNTY_OPEN_DAT_23EA07E5F7964BA28BB5F01726635605_2": {
+    "rows": 513,
+    "keys": [
+      {
+        "column": "NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 513,
+        "distinct": 288,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 513,
+        "distinct": 347,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 513,
+        "distinct": 91,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 427,
+        "distinct": 116,
+        "populated_pct": 83.2
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 513,
+        "distinct": 325,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_HARRIS_COUNTY_OPEN_DAT_87B723B174994B1BB62FC8A89DD190E8_0": {
+    "rows": 526,
+    "keys": [
+      {
+        "column": "LOC_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 524,
+        "distinct": 1,
+        "populated_pct": 99.6
+      },
+      {
+        "column": "MATCH_ADDR",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 524,
+        "distinct": 515,
+        "populated_pct": 99.6
+      },
+      {
+        "column": "ADDR_TYPE",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 524,
+        "distinct": 3,
+        "populated_pct": 99.6
+      },
+      {
+        "column": "PLACE_ADDR",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 524,
+        "distinct": 515,
+        "populated_pct": 99.6
+      },
+      {
+        "column": "COUNTRY",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 524,
+        "distinct": 1,
+        "populated_pct": 99.6
+      },
+      {
+        "column": "ARC_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 526,
+        "distinct": 521,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ARC_COUNTRYCODE",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 521,
+        "distinct": 1,
+        "populated_pct": 99.0
+      },
+      {
+        "column": "NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 526,
+        "distinct": 524,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 526,
+        "distinct": 332,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "CCN_X",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 526,
+        "distinct": 322,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "CCN_Y",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 526,
+        "distinct": 323,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 526,
+        "distinct": 521,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 526,
+        "distinct": 240,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "MAILING_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 526,
+        "distinct": 496,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "MAILING_ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 526,
+        "distinct": 249,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 526,
+        "distinct": 511,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_HARRIS_COUNTY_OPEN_DAT_87B723B174994B1BB62FC8A89DD190E8_10": {
+    "rows": 77,
+    "keys": [
+      {
+        "column": "LOC_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 77,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "MATCH_ADDR",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 77,
+        "distinct": 77,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDR_TYPE",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 77,
+        "distinct": 4,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "PLACE_ADDR",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 77,
+        "distinct": 77,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "COUNTRY",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 77,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ARC_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 77,
+        "distinct": 77,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ARC_COUNTRYCODE",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 76,
+        "distinct": 1,
+        "populated_pct": 98.7
+      },
+      {
+        "column": "NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 77,
+        "distinct": 76,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 77,
+        "distinct": 54,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 77,
+        "distinct": 77,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 77,
+        "distinct": 35,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "MAILING_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 77,
+        "distinct": 71,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "MAILING_ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 77,
+        "distinct": 35,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 77,
+        "distinct": 75,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_HARRIS_COUNTY_OPEN_DAT_87B723B174994B1BB62FC8A89DD190E8_11": {
+    "rows": 642,
+    "keys": [
+      {
+        "column": "LOC_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 640,
+        "distinct": 1,
+        "populated_pct": 99.7
+      },
+      {
+        "column": "MATCH_ADDR",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 640,
+        "distinct": 622,
+        "populated_pct": 99.7
+      },
+      {
+        "column": "ADDR_TYPE",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 640,
+        "distinct": 5,
+        "populated_pct": 99.7
+      },
+      {
+        "column": "PLACE_ADDR",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 640,
+        "distinct": 621,
+        "populated_pct": 99.7
+      },
+      {
+        "column": "COUNTRY",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 640,
+        "distinct": 1,
+        "populated_pct": 99.7
+      },
+      {
+        "column": "ARC_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 642,
+        "distinct": 642,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ARC_COUNTRYCODE",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 628,
+        "distinct": 1,
+        "populated_pct": 97.8
+      },
+      {
+        "column": "NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 642,
+        "distinct": 635,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 642,
+        "distinct": 492,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 642,
+        "distinct": 643,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 642,
+        "distinct": 398,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "MAILING_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 642,
+        "distinct": 555,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "MAILING_ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 642,
+        "distinct": 384,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 642,
+        "distinct": 620,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_HARRIS_COUNTY_OPEN_DAT_87B723B174994B1BB62FC8A89DD190E8_14": {
+    "rows": 56,
+    "keys": [
+      {
+        "column": "LOC_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 56,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "MATCH_ADDR",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 56,
+        "distinct": 53,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDR_TYPE",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 56,
+        "distinct": 3,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "PLACE_ADDR",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 56,
+        "distinct": 53,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "COUNTRY",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 56,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ARC_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 56,
+        "distinct": 56,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ARC_COUNTRYCODE",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 55,
+        "distinct": 1,
+        "populated_pct": 98.2
+      },
+      {
+        "column": "NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 56,
+        "distinct": 56,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 56,
+        "distinct": 49,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 56,
+        "distinct": 56,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 56,
+        "distinct": 49,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "MAILING_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 56,
+        "distinct": 52,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "MAILING_ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 56,
+        "distinct": 46,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 56,
+        "distinct": 56,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_HARRIS_COUNTY_OPEN_DAT_87B723B174994B1BB62FC8A89DD190E8_7": {
+    "rows": 755,
+    "keys": [
+      {
+        "column": "LOC_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 753,
+        "distinct": 1,
+        "populated_pct": 99.7
+      },
+      {
+        "column": "MATCH_ADDR",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 753,
+        "distinct": 744,
+        "populated_pct": 99.7
+      },
+      {
+        "column": "ADDR_TYPE",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 753,
+        "distinct": 5,
+        "populated_pct": 99.7
+      },
+      {
+        "column": "PLACE_ADDR",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 753,
+        "distinct": 744,
+        "populated_pct": 99.7
+      },
+      {
+        "column": "COUNTRY",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 753,
+        "distinct": 1,
+        "populated_pct": 99.7
+      },
+      {
+        "column": "ARC_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 755,
+        "distinct": 772,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ARC_COUNTRYCODE",
+        "key": "COUNTRY",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 743,
+        "distinct": 1,
+        "populated_pct": 98.4
+      },
+      {
+        "column": "NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 755,
+        "distinct": 748,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 755,
+        "distinct": 676,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 755,
+        "distinct": 772,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 755,
+        "distinct": 434,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "MAILING_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 755,
+        "distinct": 354,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "MAILING_ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 755,
+        "distinct": 255,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 755,
+        "distinct": 746,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_HARRIS_COUNTY_OPEN_DAT_BB9013E5A3D44D99A04F55DEF1527FBA_93": {
+    "rows": 1128,
+    "keys": [
+      {
+        "column": "NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 1128,
+        "distinct": 576,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "NPI",
+        "key": "NPI",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 1128,
+        "distinct": 1137,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 1128,
+        "distinct": 1115,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 1128,
+        "distinct": 697,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LATITUDE",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 1128,
+        "distinct": 1074,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LONGITUDE",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 1128,
+        "distinct": 1074,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 1128,
+        "distinct": 1076,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_HARRIS_COUNTY_OPEN_DAT_FAEFADDA90E248AAAE6FCAAC7305ADEF_93": {
+    "rows": 1128,
+    "keys": [
+      {
+        "column": "NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 1128,
+        "distinct": 576,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "NPI",
+        "key": "NPI",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 1128,
+        "distinct": 1137,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 1128,
+        "distinct": 1115,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 1128,
+        "distinct": 697,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LATITUDE",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 1128,
+        "distinct": 1074,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LONGITUDE",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 1128,
+        "distinct": 1074,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 1128,
+        "distinct": 1076,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_LA_COUNTY_OPEN_DATA_PO_7F1D80AE47934F568C2D2BF83925408F_0": {
+    "rows": 777,
+    "keys": [
+      {
+        "column": "CENTER_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 777,
+        "distinct": 322,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "NPI",
+        "key": "NPI",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 777,
+        "distinct": 235,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "PROVIDER_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 777,
+        "distinct": 218,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "BUSINESS_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 777,
+        "distinct": 245,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS_LINE_1",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 777,
+        "distinct": 255,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS_LINE_2",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 777,
+        "distinct": 59,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIP_CODE",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 777,
+        "distinct": 262,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 777,
+        "distinct": 255,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_LA_COUNTY_OPEN_DATA_PO_7F1D80AE47934F568C2D2BF83925408F_1": {
+    "rows": 8,
+    "keys": [
+      {
+        "column": "CENTER_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 8,
+        "distinct": 6,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "NPI",
+        "key": "NPI",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 6,
+        "distinct": 6,
+        "populated_pct": 75.0
+      },
+      {
+        "column": "PROVIDER_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 8,
+        "distinct": 7,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "BUSINESS_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 8,
+        "distinct": 7,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS_LINE_1",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 8,
+        "distinct": 6,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS_LINE_2",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 2,
+        "distinct": 2,
+        "populated_pct": 25.0
+      },
+      {
+        "column": "ZIP_CODE",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 8,
+        "distinct": 6,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_LA_COUNTY_OPEN_DATA_PO_A23085DA450E4503AAB4403B347AE4C6_0": {
+    "rows": 225,
+    "keys": [
+      {
+        "column": "BUSINESS_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 225,
+        "distinct": 77,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "CENTER_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 225,
+        "distinct": 96,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS_LINE_1",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 225,
+        "distinct": 74,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS_LINE_2",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 225,
+        "distinct": 21,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIP_CODE",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 225,
+        "distinct": 73,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "NPI",
+        "key": "NPI",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 225,
+        "distinct": 73,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 225,
+        "distinct": 73,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_LA_COUNTY_OPEN_DATA_PO_A23085DA450E4503AAB4403B347AE4C6_1": {
+    "rows": 2,
+    "keys": [
+      {
+        "column": "BUSINESS_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 2,
+        "distinct": 2,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "CENTER_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 2,
+        "distinct": 2,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS_LINE_1",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 2,
+        "distinct": 2,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS_LINE_2",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "ZIP_CODE",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 2,
+        "distinct": 2,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "NPI",
+        "key": "NPI",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 2,
+        "distinct": 2,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_LA_COUNTY_OPEN_DATA_PO_A47E228A07AD4D26A613D90491C5DC17_0": {
+    "rows": 2000,
+    "keys": [
+      {
+        "column": "NPI",
+        "key": "NPI",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 968,
+        "distinct": 965,
+        "populated_pct": 48.4
+      },
+      {
+        "column": "ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 2000,
+        "distinct": 1677,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 2000,
+        "distinct": 244,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LATITUDE",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 2000,
+        "distinct": 1743,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LONGITUDE",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 2000,
+        "distinct": 1747,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "CCLHO_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 2000,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "FIPS_COUNT",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 2000,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 2000,
+        "distinct": 1777,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_LA_COUNTY_OPEN_DATA_PO_C5A91C789041455485DE39A45D0AAE0C_2": {
+    "rows": 93,
+    "keys": [
+      {
+        "column": "ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 93,
+        "distinct": 74,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 93,
+        "distinct": 87,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "NPI",
+        "key": "NPI",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 93,
+        "distinct": 80,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "AO_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 93,
+        "distinct": 5,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 93,
+        "distinct": 90,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "COUNTY_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 93,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "DISTRICT_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 93,
+        "distinct": 2,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "BUSINESS_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 93,
+        "distinct": 67,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LATITUDE",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 93,
+        "distinct": 90,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LONGITUDE",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 93,
+        "distinct": 90,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "CCLHO_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 93,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "FIPS_COUNTY_CODE",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 93,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 93,
+        "distinct": 90,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_LA_COUNTY_OPEN_DATA_PO_CDF9A8F0956248158E179F125095EDE3_0": {
+    "rows": 187,
+    "keys": [
+      {
+        "column": "NPI",
+        "key": "NPI",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 187,
+        "distinct": 181,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LEGAL_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 187,
+        "distinct": 143,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "BUSINESS_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 187,
+        "distinct": 175,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS_LINE_1",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 187,
+        "distinct": 186,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS_LINE_2",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 187,
+        "distinct": 6,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIP_CODE",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 187,
+        "distinct": 185,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 187,
+        "distinct": 186,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_LA_COUNTY_OPEN_DATA_PO_CDF9A8F0956248158E179F125095EDE3_1": {
+    "rows": 5,
+    "keys": [
+      {
+        "column": "NPI",
+        "key": "NPI",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 5,
+        "distinct": 5,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LEGAL_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 5,
+        "distinct": 5,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "BUSINESS_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 5,
+        "distinct": 5,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS_LINE_1",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 5,
+        "distinct": 5,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS_LINE_2",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "ZIP_CODE",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 5,
+        "distinct": 5,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_LOUISVILLE_OPEN_DATA_P_396AAB7F57E34FCF8DE6821EBE6EAF64_0": {
+    "rows": 11,
+    "keys": [
+      {
+        "column": "ORGNAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 11,
+        "distinct": 10,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 11,
+        "distinct": 2,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_OPEN_BALTIMORE_0706FB49DB074FCABBCEEC3B74156371_0": {
+    "rows": 62,
+    "keys": [
+      {
+        "column": "FACILITY_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 62,
+        "distinct": 62,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "FACILITY_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 62,
+        "distinct": 60,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "FACILITY_ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 62,
+        "distinct": 52,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 62,
+        "distinct": 58,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 62,
+        "distinct": 62,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_OPEN_BALTIMORE_354595606EA7464DA286553B95B0F4B4_0": {
+    "rows": 21,
+    "keys": [
+      {
+        "column": "LOC_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 21,
+        "distinct": 3,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "MATCH_ADDR",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 21,
+        "distinct": 21,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDR_TYPE",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 21,
+        "distinct": 2,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ARC_STREET",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 21,
+        "distinct": 21,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ARC_ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 21,
+        "distinct": 17,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 21,
+        "distinct": 21,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 21,
+        "distinct": 21,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_OPEN_DATA_DC_0088EAFA521F42EE8A487A79C4063CB6_0": {
+    "rows": 2,
+    "keys": [
+      {
+        "column": "CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 2,
+        "distinct": 2,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 2,
+        "distinct": 1,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_OPEN_DATA_DC_1659A44FBFB240E59B4461CC4D738331_0": {
+    "rows": 2000,
+    "keys": [
+      {
+        "column": "BSTP_LON",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 2000,
+        "distinct": 1946,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "BSTP_LAT",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 2000,
+        "distinct": 1963,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "BSTP_LAT_LON_TCD",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 1913,
+        "distinct": 3,
+        "populated_pct": 95.7
+      },
+      {
+        "column": "BSTP_PDP_HAS_CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 2000,
+        "distinct": 4,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "BSTP_SWK_HAS_CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 2000,
+        "distinct": 4,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "CITY_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 2000,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 2000,
+        "distinct": 2000,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_OPEN_DATA_DC_33B29A70657443C8AD5B42097AEC1DC6_0": {
+    "rows": 2,
+    "keys": [
+      {
+        "column": "CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 2,
+        "distinct": 2,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 2,
+        "distinct": 1,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_OPEN_DATA_DC_3B31EC64F90B43F698ECC573A5B1FE5F_0": {
+    "rows": 1915,
+    "keys": [
+      {
+        "column": "CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 1915,
+        "distinct": 1877,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 1915,
+        "distinct": 549,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LATITUDE",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 1915,
+        "distinct": 632,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LONGITUDE",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 1915,
+        "distinct": 638,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "MAR_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 1915,
+        "distinct": 416,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 1915,
+        "distinct": 1537,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_OPEN_DATA_DC_4EE45E7CA08147DCADDB06633CE7EE63_303": {
+    "rows": 204,
+    "keys": [
+      {
+        "column": "STATE_FIPS",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 204,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "COUNTY_FIPS",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 204,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "TRACT_FIPS",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 204,
+        "distinct": 207,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "FIPS",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 204,
+        "distinct": 206,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "TRACT_FIPS_1",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 204,
+        "distinct": 207,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "SUM_CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 204,
+        "distinct": 168,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "SHAPE__AREA",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 204,
+        "distinct": 204,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "SHAPE__LENGTH",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 204,
+        "distinct": 204,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 204,
+        "distinct": 204,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_OPEN_DATA_DC_57CC41F7A0CF45D988DC5E0F7034FBEB_50": {
+    "rows": 9,
+    "keys": [
+      {
+        "column": "CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 9,
+        "distinct": 9,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 9,
+        "distinct": 9,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LATITUDE",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 9,
+        "distinct": 9,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LONGITUDE",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 9,
+        "distinct": 9,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "MAR_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 9,
+        "distinct": 9,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 9,
+        "distinct": 9,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_OPEN_DATA_DC_6DBD23CD2C174BB8A6BC94D48E51E04B_0": {
+    "rows": 133,
+    "keys": [
+      {
+        "column": "CCN_REV",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 131,
+        "distinct": 125,
+        "populated_pct": 98.5
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 133,
+        "distinct": 118,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_OPEN_DATA_DC_724433C621C740128E6E346E7599DFD7_8": {
+    "rows": 437,
+    "keys": [
+      {
+        "column": "CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 437,
+        "distinct": 438,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 437,
+        "distinct": 135,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LATITUDE",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 437,
+        "distinct": 153,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LONGITUDE",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 437,
+        "distinct": 158,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "MAR_ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 437,
+        "distinct": 123,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 437,
+        "distinct": 364,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_OPEN_DATA_DC_B2852E6FEC694EDB82194F0D37A85BE4_0": {
+    "rows": 133,
+    "keys": [
+      {
+        "column": "CCN_REV",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 131,
+        "distinct": 125,
+        "populated_pct": 98.5
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 133,
+        "distinct": 118,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_OPEN_DATA_MINNEAPOLIS_DDA28CCD6EF54114967D88F7C701F91C_0": {
+    "rows": 110,
+    "keys": [
+      {
+        "column": "CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 110,
+        "distinct": 112,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 110,
+        "distinct": 105,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIPCODE",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 110,
+        "distinct": 18,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LAT",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 110,
+        "distinct": 106,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 110,
+        "distinct": 107,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_OPEN_DATA_MINNEAPOLIS_DEF27B2E37AE43ECA65A59741BF93151_0": {
+    "rows": 25,
+    "keys": [
+      {
+        "column": "CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 25,
+        "distinct": 25,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 25,
+        "distinct": 25,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIPCODE",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 24,
+        "distinct": 11,
+        "populated_pct": 96.0
+      },
+      {
+        "column": "LAT",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 25,
+        "distinct": 25,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 25,
+        "distinct": 25,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_WISCONSIN_OPEN_DATA_FR_1A02BB506F954F68B2D524B804460A9D_1": {
+    "rows": 8,
+    "keys": [
+      {
+        "column": "NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 8,
+        "distinct": 8,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "FACILITY_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 8,
+        "distinct": 8,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 8,
+        "distinct": 8,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS_2",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 8,
+        "distinct": 7,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIP_4",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "STATE_FIPS",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 8,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "COUNTY_FIPS",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 8,
+        "distinct": 5,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LAT",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 8,
+        "distinct": 8,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LON",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 8,
+        "distinct": 8,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "NPI_ID",
+        "key": "NPI",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 8,
+        "distinct": 2,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "WITRAC_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 8,
+        "distinct": 8,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 8,
+        "distinct": 8,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_WISCONSIN_OPEN_DATA_FR_3601C216FBC1461D96B859E9E3B6249A_0": {
+    "rows": 2,
+    "keys": [
+      {
+        "column": "NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 2,
+        "distinct": 2,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "FACILITY_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 2,
+        "distinct": 2,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 2,
+        "distinct": 2,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS_2",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 2,
+        "distinct": 2,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIP_4",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "STATE_FIPS",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 2,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "COUNTY_FIPS",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 2,
+        "distinct": 2,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LAT",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 2,
+        "distinct": 2,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LON",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 2,
+        "distinct": 2,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "NPI_ID",
+        "key": "NPI",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "WITRAC_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 2,
+        "distinct": 2,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 2,
+        "distinct": 2,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_WISCONSIN_OPEN_DATA_FR_3601C216FBC1461D96B859E9E3B6249A_1": {
+    "rows": 2,
+    "keys": [
+      {
+        "column": "NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 2,
+        "distinct": 2,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "FACILITY_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 2,
+        "distinct": 2,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 2,
+        "distinct": 2,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS_2",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 2,
+        "distinct": 2,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIP_4",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "STATE_FIPS",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 2,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "COUNTY_FIPS",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 2,
+        "distinct": 2,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LAT",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 2,
+        "distinct": 2,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LON",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 2,
+        "distinct": 2,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "NPI_ID",
+        "key": "NPI",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 2,
+        "distinct": 2,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "WITRAC_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 2,
+        "distinct": 2,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 2,
+        "distinct": 2,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_WISCONSIN_OPEN_DATA_FR_3601C216FBC1461D96B859E9E3B6249A_2": {
+    "rows": 9,
+    "keys": [
+      {
+        "column": "NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 9,
+        "distinct": 9,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "FACILITY_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 9,
+        "distinct": 9,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 9,
+        "distinct": 9,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS_2",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 9,
+        "distinct": 2,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 9,
+        "distinct": 9,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIP_4",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "STATE_FIPS",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 9,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "COUNTY_FIPS",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 9,
+        "distinct": 8,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LAT",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 9,
+        "distinct": 9,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LON",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 9,
+        "distinct": 9,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "NPI_ID",
+        "key": "NPI",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 9,
+        "distinct": 2,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "WITRAC_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 9,
+        "distinct": 9,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 9,
+        "distinct": 9,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_WISCONSIN_OPEN_DATA_FR_3601C216FBC1461D96B859E9E3B6249A_3": {
+    "rows": 1,
+    "keys": [
+      {
+        "column": "NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 1,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "FACILITY_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 1,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 1,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS_2",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 1,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIP_4",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "STATE_FIPS",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 1,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "COUNTY_FIPS",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 1,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LAT",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 1,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LON",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 1,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "NPI_ID",
+        "key": "NPI",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "WITRAC_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 1,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 1,
+        "distinct": 1,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_WISCONSIN_OPEN_DATA_FR_3601C216FBC1461D96B859E9E3B6249A_4": {
+    "rows": 42,
+    "keys": [
+      {
+        "column": "NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 42,
+        "distinct": 42,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "FACILITY_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 42,
+        "distinct": 41,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 42,
+        "distinct": 42,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS_2",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 42,
+        "distinct": 40,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIP_4",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "STATE_FIPS",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 42,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "COUNTY_FIPS",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 42,
+        "distinct": 27,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LAT",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 42,
+        "distinct": 42,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LON",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 42,
+        "distinct": 42,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "NPI_ID",
+        "key": "NPI",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 42,
+        "distinct": 2,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "WITRAC_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 42,
+        "distinct": 42,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 42,
+        "distinct": 42,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_WISCONSIN_OPEN_DATA_FR_3601C216FBC1461D96B859E9E3B6249A_5": {
+    "rows": 56,
+    "keys": [
+      {
+        "column": "NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 56,
+        "distinct": 54,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "FACILITY_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 56,
+        "distinct": 55,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 56,
+        "distinct": 56,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS_2",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 56,
+        "distinct": 2,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 56,
+        "distinct": 56,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIP_4",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "STATE_FIPS",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 56,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "COUNTY_FIPS",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 56,
+        "distinct": 38,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LAT",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 56,
+        "distinct": 56,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LON",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 56,
+        "distinct": 56,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "NPI_ID",
+        "key": "NPI",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 56,
+        "distinct": 2,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "WITRAC_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 56,
+        "distinct": 55,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 56,
+        "distinct": 56,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_WISCONSIN_OPEN_DATA_FR_3601C216FBC1461D96B859E9E3B6249A_6": {
+    "rows": 14,
+    "keys": [
+      {
+        "column": "NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 14,
+        "distinct": 14,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "FACILITY_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 14,
+        "distinct": 13,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 14,
+        "distinct": 14,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS_2",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 14,
+        "distinct": 14,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIP_4",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "STATE_FIPS",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 14,
+        "distinct": 1,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "COUNTY_FIPS",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 14,
+        "distinct": 14,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LAT",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 14,
+        "distinct": 14,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LON",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 14,
+        "distinct": 14,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "NPI_ID",
+        "key": "NPI",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 14,
+        "distinct": 2,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "WITRAC_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 14,
+        "distinct": 14,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 14,
+        "distinct": 14,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "PORTAL_ARC_WISCONSIN_OPEN_DATA_FR_3601C216FBC1461D96B859E9E3B6249A_7": {
+    "rows": 604,
+    "keys": [
+      {
+        "column": "NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "FACILITY_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 604,
+        "distinct": 584,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 604,
+        "distinct": 603,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS_2",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 604,
+        "distinct": 15,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIP",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 604,
+        "distinct": 554,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIP_4",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "STATE_FIPS",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 604,
+        "distinct": 4,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "COUNTY_FIPS",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 604,
+        "distinct": 102,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LAT",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 604,
+        "distinct": 603,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "LON",
+        "key": "LATLON",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 604,
+        "distinct": 603,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "NPI_ID",
+        "key": "NPI",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "WITRAC_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "GEOMETRY",
+        "key": "GEOM",
+        "tier": "GEO",
+        "mode": "spatial",
+        "nonnull": 604,
+        "distinct": 603,
+        "populated_pct": 100.0
+      }
+    ]
+  },
   "PORTAL_SOC_COLOMBIA_NATIONAL_OPEN_BTSG_JTQH": {
     "rows": 500,
     "keys": [
