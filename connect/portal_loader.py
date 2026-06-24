@@ -65,10 +65,8 @@ def candidates(conn, platform=None, with_key=False, min_rows=1, max_rows=200_000
     return db.dicts(conn, q)
 
 
-# Entity keys where a shared key TYPE strongly implies a real, joinable connection
-# (unlike GEO/NAME, where a type match can still overlap nothing).
-ENTITY_KEYS = ["EIN", "NPI", "CIK", "UEI", "DUNS", "LEI", "IMO", "MMSI",
-               "PATENT", "CCN", "DOCKET", "NAICS", "NCES", "SIC"]
+# Entity keys (STEEL/STRONG) come from the shared tagger -- single source of truth.
+from .keys import ENTITY_KEYS  # noqa: E402
 
 
 def live_key_types(entity_only: bool = True) -> set[str]:

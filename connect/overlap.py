@@ -69,51 +69,57 @@ def _state_col(columns: list[str]) -> str | None:
 
 
 def spatial_overlap(conn, pt_tbl: str, lat_col: str, lon_col: str,
-                    poly_tbl: str, geom_col: str,
-                    pt_state: str | None = None, poly_state: str | None = None,
-                    sample: int = 6) -> dict:
-    """How many points in pt_tbl fall inside a geometry in poly_tbl?
+                    poly_tbl: str, geom_col: str, sample: int = 6) -> dict:
+    """How many DISTINCT points in pt_tbl fall inside a geometry in poly_tbl?
 
-    Prunes by a shared state column when both sides have one (turns a 14.7k x 10k
-    cross-join into per-state work). TRY_TO_GEOGRAPHY skips unparseable geometries.
+    No state-prune: ST_CONTAINS fully determines geography, and a string-equality
+    state filter could only DROP rows it accepted (CA != California != 06) -- a
+    correctness loss. The point side is row-capped upstream, so the join is bounded.
+    Rate is distinct-points-inside / distinct-points-total (same unit as value mode),
+    so it's 0-100% and rankable in the same graph. TRY_TO_GEOGRAPHY skips bad geom.
     """
     P, G = db.fqn(pt_tbl), db.fqn(poly_tbl)
     lat = f"TRY_TO_DOUBLE(TO_VARCHAR({quote_ident(lat_col)}))"
     lon = f"TRY_TO_DOUBLE(TO_VARCHAR({quote_ident(lon_col)}))"
 
-    prune = ""
-    if pt_state and poly_state:
-        prune = (f"AND UPPER(TRIM(p.{quote_ident(pt_state)})) "
-                 f"= UPPER(TRIM(g.{quote_ident(poly_state)}))")
-
     q = f"""
     WITH pts AS (
-      SELECT {lat} AS lat, {lon} AS lon,
-             {('p.' + quote_ident(pt_state)) if pt_state else 'NULL'} AS st
-      FROM {P} p WHERE {lat} IS NOT NULL AND {lon} IS NOT NULL
+      SELECT DISTINCT {lat} AS lat, {lon} AS lon
+      FROM {P} WHERE {lat} IS NOT NULL AND {lon} IS NOT NULL
     ),
-    pt AS (SELECT *, ST_MAKEPOINT(lon, lat) AS geom FROM pts),
     poly AS (
-      SELECT TRY_TO_GEOGRAPHY({quote_ident(geom_col)}) AS g,
-             {('' + quote_ident(poly_state)) if poly_state else 'NULL'} AS st
-      FROM {G} g WHERE TRY_TO_GEOGRAPHY({quote_ident(geom_col)}) IS NOT NULL
+      SELECT TRY_TO_GEOGRAPHY({quote_ident(geom_col)}) AS g
+      FROM {G} WHERE TRY_TO_GEOGRAPHY({quote_ident(geom_col)}) IS NOT NULL
+    ),
+    hits AS (
+      SELECT DISTINCT pts.lat, pts.lon
+      FROM pts JOIN poly ON ST_CONTAINS(poly.g, ST_MAKEPOINT(pts.lon, pts.lat))
     )
-    SELECT
-      (SELECT COUNT(*) FROM pt)                                   AS a_points,
-      (SELECT COUNT(*) FROM poly)                                 AS b_polys,
-      COUNT(DISTINCT pt.lat || ',' || pt.lon)                     AS matched
-    FROM pt JOIN poly
-      ON {('UPPER(TRIM(pt.st)) = UPPER(TRIM(poly.st)) AND ' if (pt_state and poly_state) else '')}
-         ST_CONTAINS(poly.g, pt.geom)
+    SELECT (SELECT COUNT(*) FROM pts)  AS a_distinct,
+           (SELECT COUNT(*) FROM poly) AS b_polys,
+           (SELECT COUNT(*) FROM hits) AS matched
     """
     r = db.dicts(conn, q)[0]
-    a_p, b_p, m = int(r["A_POINTS"]), int(r["B_POLYS"]), int(r["MATCHED"])
-    denom = a_p or 1
+    a_d, b_p, m = int(r["A_DISTINCT"]), int(r["B_POLYS"]), int(r["MATCHED"])
+
+    samp = []
+    if m:
+        sq = f"""
+        WITH pts AS (SELECT DISTINCT {lat} AS lat, {lon} AS lon FROM {P}
+                     WHERE {lat} IS NOT NULL AND {lon} IS NOT NULL),
+             poly AS (SELECT TRY_TO_GEOGRAPHY({quote_ident(geom_col)}) AS g FROM {G}
+                      WHERE TRY_TO_GEOGRAPHY({quote_ident(geom_col)}) IS NOT NULL)
+        SELECT DISTINCT ROUND(pts.lat,4) || ',' || ROUND(pts.lon,4)
+        FROM pts JOIN poly ON ST_CONTAINS(poly.g, ST_MAKEPOINT(pts.lon, pts.lat))
+        LIMIT {int(sample)}
+        """
+        samp = [row[0] for row in db.rows(conn, sq)]
+
     return {
         "mode": "spatial",
-        "a_distinct": a_p,
+        "a_distinct": a_d,
         "b_distinct": b_p,
         "matched": m,
-        "match_rate": round(m / denom * 100, 1),   # % of points that land in a polygon
-        "sample": [],
+        "match_rate": round(m / (a_d or 1) * 100, 1),   # % of distinct points inside a polygon
+        "sample": samp,
     }

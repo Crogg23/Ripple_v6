@@ -22,7 +22,7 @@ from pathlib import Path
 from . import db
 from .fingerprint import OUT as FP_PATH
 from .keys import TIER_RANK
-from .overlap import _is_lon, _state_col, spatial_overlap, value_overlap
+from .overlap import _is_lon, spatial_overlap, value_overlap
 
 GRAPH_OUT = Path(__file__).resolve().parents[1] / "outputs" / "connect_graph.json"
 
@@ -30,6 +30,45 @@ MIN_POP_PCT = 1.0          # a key must be at least this populated to count as l
 NAME_MAX_ROWS = 300_000    # skip name/address joins when EITHER table exceeds this
 SPATIAL_POINT_MAX = 100_000  # skip point-in-polygon when the point table exceeds this
 PROBABILISTIC = {"NAME", "ADDRESS"}
+
+# --- confidence: refuse to draw a fluke. A connection isn't real just because one
+# normalized value coincided. Require an absolute floor AND that the match count
+# beats what random collision would produce over the key's value space. This is
+# what kills the Alabama/Puerto-Rico-style phantom STEEL edge.
+MIN_MATCH = 3            # value joins: at least this many matched distinct keys
+MIN_MATCH_PROB = 5       # name/address: stricter (common-name noise)
+COLLISION_MULT = 5.0     # matched must beat expected-by-chance by this factor
+KEY_DOMAIN = {           # ~size of each key's value space, for the collision math
+    "NPI": 10**10, "EIN": 10**9, "CIK": 10**7, "DUNS": 10**9, "PATENT": 10**8,
+    "IMO": 10**7, "MMSI": 10**9, "UEI": 36**12, "LEI": 36**20,
+    "CCN": 10**6, "NAICS": 10**6, "NCES": 10**7, "DOCKET": 10**6, "SIC": 10**4,
+    "FIPS": 10**5, "ZIP": 10**5, "COUNTRY": 300,
+}
+
+
+def confidence(key, tier, a_distinct, b_distinct, matched):
+    """Return (score 0-1, keep?). A coincidental handful of matches on a short
+    numeric key scores ~0 and is dropped; a dense overlap on a hard ID scores ~1."""
+    if matched <= 0:
+        return 0.0, False
+    floor = MIN_MATCH_PROB if tier == "PROBABILISTIC" else MIN_MATCH
+    if matched < floor:
+        return 0.0, False
+    cover = matched / (min(a_distinct, b_distinct) or 1)    # coverage of the smaller set
+    dom = KEY_DOMAIN.get(key)
+    if dom:
+        expected = (a_distinct * b_distinct) / dom          # ~random collisions over the value space
+        if matched < COLLISION_MULT * expected:             # indistinguishable from chance -> drop
+            return round(matched / (matched + expected + 1e-9), 3), False
+        chance_free = matched / (matched + expected)        # fraction of matches not explained by chance
+    elif key in PROBABILISTIC:
+        chance_free = 0.5                                   # name/address: unscored -> medium-low
+    else:
+        chance_free = 0.9                                   # spatial: geometry already verifies it
+    score = chance_free * (0.4 + 0.6 * min(cover, 1.0))     # reward covering the smaller set (subset joins)
+    if tier == "PROBABILISTIC":
+        score *= 0.5
+    return round(min(score, 1.0), 3), True
 
 # table -> investigation domain (drives node color in the explorer). Prefix fallback.
 DOMAIN_KEYWORDS = [
@@ -75,7 +114,7 @@ def _geom_col(keys: list[dict]) -> str | None:
 def run(name_max_rows: int = NAME_MAX_ROWS, write: bool = True) -> dict:
     fp = json.loads(FP_PATH.read_text())
     conn = db.connect()
-    tested = skipped = 0
+    tested = skipped = gated = 0
     edges: list[dict] = []
 
     try:
@@ -105,8 +144,12 @@ def run(name_max_rows: int = NAME_MAX_ROWS, write: bool = True) -> dict:
                     print(f"  [err] {ta} x {tb} on {key}: {str(e)[:80]}")
                     continue
                 if ov["matched"] > 0:
-                    edges.append(_edge(ta, tb, key, _tier(fp, key), ca["column"], cb["column"], ov))
-                    print(f"  [edge] {key:<8} {ta} x {tb}: {ov['matched']:,} matched ({ov['match_rate']}%)")
+                    conf, keep = confidence(key, _tier(fp, key), ov["a_distinct"], ov["b_distinct"], ov["matched"])
+                    if keep:
+                        edges.append(_edge(ta, tb, key, _tier(fp, key), ca["column"], cb["column"], ov, conf))
+                        print(f"  [edge {conf:.2f}] {key:<8} {ta} x {tb}: {ov['matched']:,} ({ov['match_rate']}%)")
+                    else:
+                        gated += 1
 
         # ---- spatial connections (point-in-polygon) ------------------------
         pt_tables = {t: ll for t, info in fp.items()
@@ -122,18 +165,18 @@ def run(name_max_rows: int = NAME_MAX_ROWS, write: bool = True) -> dict:
                 if pt == poly:
                     continue
                 tested += 1
-                pt_cols = [k["column"] for k in fp[pt]["keys"]] + _all_cols(fp, pt)
-                poly_cols = [k["column"] for k in fp[poly]["keys"]] + _all_cols(fp, poly)
                 try:
-                    ov = spatial_overlap(conn, pt, lat, lon, poly, geom,
-                                         pt_state=_state_col(pt_cols),
-                                         poly_state=_state_col(poly_cols))
+                    ov = spatial_overlap(conn, pt, lat, lon, poly, geom)
                 except Exception as e:
                     print(f"  [err] spatial {pt} in {poly}: {str(e)[:80]}")
                     continue
                 if ov["matched"] > 0:
-                    edges.append(_edge(pt, poly, "GEO_IN", "GEO", f"{lat}/{lon}", geom, ov))
-                    print(f"  [edge] SPATIAL  {pt} in {poly}: {ov['matched']:,} points ({ov['match_rate']}%)")
+                    conf, keep = confidence("GEO_IN", "GEO", ov["a_distinct"], ov["b_distinct"], ov["matched"])
+                    if keep:
+                        edges.append(_edge(pt, poly, "GEO_IN", "GEO", f"{lat}/{lon}", geom, ov, conf))
+                        print(f"  [edge {conf:.2f}] SPATIAL {pt} in {poly}: {ov['matched']:,} ({ov['match_rate']}%)")
+                    else:
+                        gated += 1
     finally:
         conn.close()
 
@@ -145,12 +188,13 @@ def run(name_max_rows: int = NAME_MAX_ROWS, write: bool = True) -> dict:
     } for t, info in fp.items()]
 
     graph = {
-        "meta": {"pairs_tested": tested, "pairs_skipped": skipped, "edges": len(edges),
-                 "name_max_rows": name_max_rows},
+        "meta": {"pairs_tested": tested, "pairs_skipped": skipped, "gated_out": gated,
+                 "edges": len(edges), "name_max_rows": name_max_rows},
         "nodes": nodes,
-        "edges": sorted(edges, key=lambda e: (-e["matched"])),
+        "edges": sorted(edges, key=lambda e: (-e.get("confidence", 0), -e["matched"])),
     }
-    print(f"\n{len(edges)} real connections from {tested} pairs tested ({skipped} name-pairs skipped).")
+    print(f"\n{len(edges)} real connections kept ({gated} flukes gated out) "
+          f"from {tested} pairs tested ({skipped} skipped).")
     if write:
         GRAPH_OUT.write_text(json.dumps(graph, indent=2))
         print(f"wrote {GRAPH_OUT}")
@@ -158,25 +202,19 @@ def run(name_max_rows: int = NAME_MAX_ROWS, write: bool = True) -> dict:
 
 
 # --- small helpers ---------------------------------------------------------- #
-_FP_CACHE: dict = {}
-
-
-def _all_cols(fp: dict, table: str) -> list[str]:
-    return [k["column"] for k in fp[table]["keys"]]
-
-
 def _tier(fp: dict, key: str) -> str:
     from .keys import KEY_TOKENS
     return KEY_TOKENS.get(key, ("PROBABILISTIC",))[0]
 
 
-def _edge(a, b, key, tier, a_col, b_col, ov) -> dict:
+def _edge(a, b, key, tier, a_col, b_col, ov, conf) -> dict:
     return {
         "a": a, "b": b, "key": key, "tier": tier,
         "a_col": a_col, "b_col": b_col,
         "mode": ov["mode"], "matched": ov["matched"],
         "a_distinct": ov["a_distinct"], "b_distinct": ov["b_distinct"],
-        "match_rate": ov["match_rate"], "sample": ov.get("sample", []),
+        "match_rate": ov["match_rate"], "confidence": conf,
+        "sample": ov.get("sample", []),
     }
 
 
