@@ -2,6 +2,60 @@
 Last updated: 2026-06-24
 
 ## CURRENT FOCUS
+**Session 2026-06-24 (cont.) — ACTIVATED the bridge layer. Poured a real CCN↔NPI crosswalk + 7 CCN
+facility sets; bridge edges 14 → 59, graph 13,321 → 14,694.**
+
+**The premise in the prior build-state was WRONG (verified live).** It said the bridge was "fuel-gated:
+the 1.9M-pair NPPES NPI↔EIN crosswalk fires zero because non-NPPES EINs don't overlap it." Reality:
+`FED_CMS_NPPES.EMPLOYER_IDENTIFICATION_NUMBER__EIN` = **`<UNAVAIL>` only, 1 distinct over 9.6M rows** —
+CMS masks the EIN in the public NPPES file (so does `PARENT_ORGANIZATION_TIN`). **The crown-jewel NPI↔EIN
+crosswalk never existed.** A public NPI↔EIN *hard* crosswalk mostly doesn't exist (EIN is PII-masked
+everywhere: NPPES, PPP, SAM all redact it) — that linkage is really an entity-resolution job for the
+corroboration layer. The achievable, high-value bridge is **CCN↔NPI**.
+
+**What shipped:**
+- **12-agent research workflow** verified the exact fuel against live CMS/IRS docs (each agent downloaded
+  real files + checked for masking). Winner: **CMS Doctors & Clinicians "Facility Affiliation"** (dataset
+  `27ea-46a8`) — a CURRENT, national, **2.24M-row CCN↔NPI crosswalk, 0 masked** (938k NPIs × 41k CCNs).
+- **`scripts/bridge_fuel_load.py` + `scripts/bridge_fuel_specs.py`** — a deterministic LLM-free bulk loader
+  (reuses `ingest.py`/`register.py`: all-TEXT landing + provenance + INGEST_RUNS + registry upsert). Built
+  because **`ANTHROPIC_API_KEY` is MISSING from `library-onboarding/.env`** so the LLM onboard agent can't
+  run — but I'm the LLM, so for known-shape sources a deterministic loader is cleaner anyway. Features:
+  per-source key-column **aliasing** (renames verified id cols → canonical `CCN`/`NPI` so the tagger detects
+  them — the tagger only matches the literal `ccn`/`npi` token; per-source aliasing avoids touching the
+  global tagger / risking false positives on the existing 638 tables), row `filter`, metastore URL
+  resolution (CMS dated URLs rotate), chunked streaming, UTF-8 stdout.
+- **8 sources poured LLM-free (+2,318,145 rows; Library now 646 tables):** the crosswalk
+  `FED_CMS_FACILITY_AFFILIATION` (2,239,952) + 7 CCN facility endpoints — `FED_CMS_POS_OTHER` (44,429),
+  `FED_CMS_HOSPITAL_GENERAL` (5,432), `FED_CMS_HOSPICE` (6,852), `FED_CMS_HOME_HEALTH` (12,392),
+  `FED_CMS_IRF` (1,222), `FED_CMS_LTCH` (311), `FED_CMS_DIALYSIS` (7,557). All `INCLUDE=Y`.
+
+**Bridge yield (after re-`discover`): every facility type now bridges to NPPES (9.6M providers) via CCN→NPI:**
+HOME_HEALTH↔NPPES 60,526 matched · NURSING_HOME↔NPPES 35,813 · HOSPICE 26,354 · DIALYSIS 21,212 · POS
+16,835 · HCRIS 15,573 · HOSPITAL 11,239 · IRF 6,486 · LTCH 2,638. **NPPES went from ~0 useful bridge
+partners to 21.** Tier deltas: STEEL 202→278, GEO 4161→5114, CORROBORATED 503→587, PROBABILISTIC
+2401→2616, **BRIDGE 14→59**, TOTAL 13,321→**14,694**.
+
+**Flagship "banned but still operating" — ground-truthed (adversarial check PASSED):** the crosswalk
+directly connects to `FED_HHS_OIG_LEIE` on NPI (STEEL, 11 banned providers). A targeted crosswalk×LEIE
+query surfaced **38 facility affiliations of 11 OIG-excluded providers** — the provider NAME in LEIE matches
+the provider NAME in the crosswalk for every one (a 10-digit-NPI coincidence could never also match on name
+→ real, not fluke). Several excluded in the last 60 days (RAJIVE DAS 2026-04-20, SADYE DEXTER 2026-06-18,
+AMIT SHAH 2026-05-20); ALEXANDER FRANK (patient-abuse, 1128a2) spans 15 facilities incl. 4 nursing homes.
+Precise claim: "affiliated in CMS's current Facility Affiliation file" (billing history) — a strong lead, not
+proof of active employment today.
+
+**ENGINE NUANCE found (why facility↔LEIE BRIDGE edges don't show in the graph):** (1) the fanout guard
+drops banned providers' large-hospital CCNs (>40 affiliated NPIs) — 21 of 38 gated; (2) the surviving
+nursing-home CCNs' bridge is **deduped because facility↔LEIE already has a weak DIRECT ZIP/GEO edge** (e.g.
+DIALYSIS↔LEIE shares 4,872 ZIPs). The dedup-vs-direct rule lets a low-value GEO/ZIP edge suppress a
+high-value entity bridge. So the "banned but operating" story lives in the **targeted query**, not a graph
+edge — see PARKED IDEAS for the tier-aware-dedup fix. **NBER 2nd crosswalk deferred** (NBER hard-blocks bot
+downloads, 403; it was frozen-2017 anyway — Facility Affiliation is the better, current primary).
+**EIN bridges remain blocked** (no public NPI↔EIN / CCN↔EIN hard crosswalk; EIN masked in NPPES/PPP/SAM).
+**Blocked on: nothing.**
+
+## PRIOR FOCUS (2026-06-23/24 — connect engine build)
 **Session 2026-06-23/24 — built the CONNECT + EXPLORE layer and scaled the Library 45 → 638 sources.**
 A new `connect/` package (the connection engine) was added and the Library jumped from 45 to 638 landing
 tables. All on branch `claude/connect-engine-and-bulk-loader`, merged to `main`.
@@ -471,6 +525,20 @@ Fresh ephemeral container, **no new sources** — got the stack live again and c
   lives only in the gitignored `.env` — never committed (verified absent from git history). Rotate by ~2026-07-05.
 
 ## PARKED IDEAS
+- [IDEA — HOT] **Tier-aware bridge dedup.** `bridge.discover_bridged` drops a transitive edge whenever the
+  pair has ANY direct edge — so a weak GEO/ZIP edge suppresses a strong CCN→NPI entity bridge (this is why
+  facility↔LEIE "banned but operating" edges vanish). Fix: only dedup a bridge against a direct edge of
+  EQUAL-OR-STRONGER tier (STEEL/STRONG). | WHY: surfaces the flagship lens as a first-class graph edge. | LAYER: Library
+- [IDEA — HOT] **Per-watchlist fanout relax.** The fanout guard (FANOUT_MAX=40) correctly kills junk but also
+  drops a big hospital's CCN before it can bridge to a banned provider. For a SMALL high-value watchlist
+  endpoint (LEIE 8,775 banned NPIs), a hospital→banned-provider hop matters even at high fanout. Allow a
+  higher/disabled fanout when one endpoint is a curated watchlist. | LAYER: Library
+- [IDEA — HOT] **Materialize `connect__banned_but_operating` dbt mart** from the crosswalk×LEIE join (the
+  38-affiliation query): banned provider → exclusion type/date → affiliated facility (CCN, name, type). First
+  shippable story from the connected Library. | LAYER: Library/Publishing
+- [IDEA — SOMEDAY] **Pour IRS EO BMF** (1.97M nonprofit EINs, `https://www.irs.gov/pub/irs-soi/eo_<st>.csv`)
+  as the EIN endpoint for the follow-the-money side. Lights NO bridge alone (no public EIN crosswalk) but
+  anchors future EIN crosswalks + NAME@ZIP corroboration with nonprofit hospitals. | LAYER: Library
 - [DONE 2026-06-17] Drive the queue from `SOURCE_REGISTRY` (by `PRIORITY_TIER`) instead of the static list.
   → `registry_queue.py` + `registry_batch.py`; proven with `xc_biorxiv_medrxiv`.
 - [DONE 2026-06-17 — C2] Incremental load path (append-only landing + watermark + staging dedup). Built in
@@ -493,17 +561,22 @@ Fresh ephemeral container, **no new sources** — got the stack live again and c
   (+ `LIBRARY_STAGING`/`LIBRARY_MARTS` for dbt) would be safer for routine onboarding.
 
 ## NEXT ACTION
-**The connect engine + bulk loader are built, hardened, and merged to `main`; the Library is at 638 tables /
-12,804 real connections.** Best next moves (Chris to pick):
-1. **Make the explorer usable at scale** — it's 15MB / 12,804 edges and sluggish. Default to high-confidence
-   + federal edges, expand on click (the deferred top-N/filter polish). Highest near-term value.
-2. **Mine the gold** — filter to STEEL/entity edges + the 730 portal↔federal connections and chase a real
-   story (e.g. banned providers ↔ where they still operate); uncap those specific high-value source threads
-   (most portal data is a 2,000-row sample right now).
-3. **Crosswalk/bridge layer** — load NPI↔CCN, CIK↔EIN, FIPS↔ZIP so datasets that don't share a key directly
-   connect through a hop (multiplies the graph without more sources).
-4. **Pour more** — the connectable net was ~679; the full loadable universe is ~78k ArcGIS/Socrata datasets.
-5. (Ops) PAT rotates ~2026-07-05. dbt reads OS env not `.env` — `source ../.env` before any dbt command.
+**Bridge layer is ACTIVATED — 646 tables, 14,694 connections, 59 bridges; every CMS facility type now reaches
+NPPES + LEIE on entity keys.** Uncommitted: the 8 new landings are live in Snowflake; `scripts/bridge_fuel_*`,
+the merged fingerprint, and the rebuilt graph/explorer are on disk (not yet committed/PR'd). Best next moves
+(Chris to pick):
+1. **Ship the first story** — materialize `connect__banned_but_operating` (the crosswalk×LEIE 38-affiliation
+   query: banned provider → exclusion → affiliated facility). Highest-value, lowest-effort; it's a real lead set.
+2. **Tier-aware bridge dedup + watchlist fanout** (both HOT in PARKED) — so facility↔LEIE shows as a
+   first-class graph edge instead of being masked by a weak ZIP edge / fanout-gated. Makes the flagship lens
+   visible in the explorer, not just a query.
+3. **Commit + PR** the 8 sources + loader + the corrected bridge premise.
+4. **EIN/follow-the-money** — pour IRS EO BMF (1.97M nonprofit EINs) as the EIN endpoint; lights no bridge
+   alone but seeds corroboration with nonprofit hospitals (NAME@ZIP) and any future EIN crosswalk.
+5. (Ops) `ANTHROPIC_API_KEY` is MISSING from `.env` — the LLM onboard agent can't run until it's added (the
+   deterministic `bridge_fuel_load.py` sidesteps it for known-shape sources). PAT rotates ~2026-07-05; dbt
+   reads OS env not `.env` — `source library-onboarding/.env` before any dbt command.
 
-**Re-run the map any time:** `python -m connect all` (rebuilds from scratch — slow at 638 tables until the
-deferred incremental-cache is built; `python -m connect explore` alone is instant if data hasn't changed).
+**Re-run the map any time:** `python -m connect discover` then `explore` (full rebuild is slow at 646 tables
+until the deferred incremental-cache is built). **Load more known-shape fuel:** add a dict to
+`scripts/bridge_fuel_specs.py` and `python scripts/bridge_fuel_load.py --spec <id> --run`.
