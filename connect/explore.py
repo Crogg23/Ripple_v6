@@ -213,7 +213,9 @@ def render(graph: dict | None = None, open_browser: bool = True) -> Path:
 ({m.get('gated_out', 0)} flukes gated out, {m['pairs_skipped']} skipped). Edge = rows that actually join, scored by confidence (0–1). Hover the map; sort/filter the table.</p>
 {plot_div}
 <h1 style="font-size:17px;margin-top:26px">Every connection, ranked</h1>
-<p class="sub">Type to filter (dataset, key, tier). Click a header to sort.</p>
+<p class="sub">Type to filter (dataset, key, tier). Click a header to sort.
+Looking for a specific person/company/facility? Resolve it with
+<code>python -m connect dossier --q "name"</code> (or <code>--npi/--ccn/--ein</code>).</p>
 <input id="q" placeholder="filter… e.g. NPI, LEIE, STEEL">
 <table id="t"><thead><tr>
   <th>Tier</th><th>Key</th><th>Connection</th><th class="num">Matched</th><th class="num">Rate</th><th class="num">Conf</th><th>Sample</th>

@@ -23,7 +23,8 @@ def main() -> int:
     d.add_argument("--no-bridge", action="store_true", help="skip the transitive crosswalk/bridge pass (#2)")
     d.add_argument("--fanout-max", type=int, default=40, help="drop crosswalk values mapping to > this many targets")
     sub.add_parser("explore", help="render the interactive map")
-    a = sub.add_parser("all", help="fingerprint -> discover -> explore")
+    sub.add_parser("spine", help="build the persisted entity spine (who's who)")
+    a = sub.add_parser("all", help="fingerprint -> discover -> spine -> explore")
     a.add_argument("--name-max-rows", type=int, default=None)
     a.add_argument("--no-bridge", action="store_true")
     a.add_argument("--fanout-max", type=int, default=40)
@@ -32,6 +33,30 @@ def main() -> int:
     p.add_argument("--a", required=True); p.add_argument("--akey", required=True)
     p.add_argument("--b", required=True); p.add_argument("--bkey", required=True)
     p.add_argument("--key", required=True, help="key type, e.g. NPI / CCN / ZIP / NAME")
+
+    sub.add_parser("entity-index", help="rebuild the entity search/dossier index")
+
+    ds = sub.add_parser("dossier", help="every cross-domain row for one entity (name or id)")
+    ds.add_argument("--npi"); ds.add_argument("--ccn"); ds.add_argument("--ein")
+    ds.add_argument("--id", dest="entity_id", help="entity_id directly")
+    ds.add_argument("--q", help="name search")
+    ds.add_argument("--json", action="store_true", help="write outputs/dossier_<id>.json")
+    ds.add_argument("--html", action="store_true", help="write outputs/dossier_<id>.html")
+
+    ld = sub.add_parser("leads", help="run codified cross-domain lead jobs -> ranked LEADS table")
+    ld.add_argument("--job", default="all", help="job name (e.g. banned_but_operating) or 'all'")
+    ld.add_argument("--run", action="store_true", help="write to LIBRARY_META.CONNECT.LEADS (default previews only)")
+    ld.add_argument("--top", type=int, default=20, help="how many leads to print")
+
+    rs = sub.add_parser("resolve", help="fuzzy record linkage (GATED: writes ENTITY_LINKS, never the spine)")
+    rs.add_argument("--pair", default="leie_nppes", help="recipe name")
+    rs.add_argument("--write", action="store_true", help="persist ENTITY_LINKS (default previews only)")
+    rs.add_argument("--min-score", type=float, default=0.80)
+    rs.add_argument("--top", type=int, default=25)
+
+    ev = sub.add_parser("eval", help="precision/recall sweep of the fuzzy resolver (the gate)")
+    ev.add_argument("--pair", default="leie_nppes")
+    ev.add_argument("--target", type=float, default=0.99, help="precision target for the HIGH bar")
 
     h = sub.add_parser("harvest", help="bulk-load datasets from the portal index (no LLM)")
     h.add_argument("--platform", choices=["SOCRATA", "ARCGIS"], default=None)
@@ -57,6 +82,9 @@ def main() -> int:
         if getattr(args, "name_max_rows", None):
             kw["name_max_rows"] = args.name_max_rows
         discover.run(**kw)
+    if args.cmd in ("spine", "all"):
+        from . import spine
+        spine.run()
     if args.cmd in ("explore", "all"):
         from . import explore
         explore.render()
@@ -68,6 +96,22 @@ def main() -> int:
             print(value_overlap(conn, args.a, args.akey, args.b, args.bkey, args.key))
         finally:
             conn.close()
+    if args.cmd == "entity-index":
+        from . import entity_index
+        entity_index.run()
+    if args.cmd == "dossier":
+        from . import dossier
+        dossier.run(npi=args.npi, ccn=args.ccn, ein=args.ein, entity_id=args.entity_id,
+                    q=args.q, as_json=args.json, as_html=args.html)
+    if args.cmd == "leads":
+        from . import leads
+        leads.run(job=args.job, dry_run=not args.run, top=args.top)
+    if args.cmd == "resolve":
+        from . import resolve
+        resolve.run(pair=args.pair, write=args.write, top=args.top, min_score=args.min_score)
+    if args.cmd == "eval":
+        from . import evaluate
+        evaluate.run(pair=args.pair, target=args.target)
     if args.cmd == "harvest":
         from . import portal_loader
         portal_loader.run(platform=args.platform, with_key=args.with_key,

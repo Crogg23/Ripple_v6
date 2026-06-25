@@ -89,12 +89,51 @@ NORM_RULES: dict[str, tuple[str, int]] = {
     "UEI": ("fixed", 12), "LEI": ("fixed", 20),
     "NAICS": ("code", 0), "SIC": ("code", 0), "NCES": ("code", 0),
     "DOCKET": ("code", 0), "PATENT": ("code", 0), "FIPS": ("code", 0), "ZIP": ("code", 0),
-    "COUNTRY": ("country", 0), "NAME": ("name", 0), "ADDRESS": ("name", 0),
+    "COUNTRY": ("country", 0),
+    # Names: token-SORT + strip legal-suffix / credential noise, so 'SMITH, JOHN MD'
+    # == 'JOHN SMITH' and 'Memorial Health Inc' == 'HEALTH MEMORIAL'. PERSON is a
+    # distinct key (person-name columns) but shares the canonicalizer for now.
+    "NAME": ("name_canon", 0), "PERSON": ("name_canon", 0),
+    # Address: standardize street-type abbreviations; do NOT sort (order matters).
+    "ADDRESS": ("address", 0),
 }
+
+# tokens dropped from a name before matching (legal suffixes + person credentials +
+# a few stopwords). Sorted set so the generated SQL is stable across runs.
+_NAME_NOISE = sorted({
+    "INC", "INCORPORATED", "LLC", "LLP", "LP", "LTD", "CO", "CORP", "CORPORATION",
+    "COMPANY", "PC", "PLLC", "PA", "PLC", "GROUP", "HOLDINGS", "THE", "AND", "OF",
+    "MD", "DO", "DDS", "DMD", "RN", "NP", "PHD", "ESQ", "JR", "SR", "II", "III", "IV",
+    "MR", "MRS", "MS", "DR",
+})
+
+# street-type abbreviations (longest forms -> USPS short forms)
+_ADDR_ABBR = [
+    ("STREET", "ST"), ("AVENUE", "AVE"), ("BOULEVARD", "BLVD"), ("ROAD", "RD"),
+    ("DRIVE", "DR"), ("LANE", "LN"), ("COURT", "CT"), ("PLACE", "PL"),
+    ("SUITE", "STE"), ("APARTMENT", "APT"), ("BUILDING", "BLDG"),
+    ("NORTH", "N"), ("SOUTH", "S"), ("EAST", "E"), ("WEST", "W"),
+]
 
 
 def _alnum(col: str) -> str:
     return f"UPPER(REGEXP_REPLACE(TO_VARCHAR({col}), '[^0-9A-Za-z]', ''))"
+
+
+def _name_canon(col: str) -> str:
+    """Token-sorted, noise-stripped name: order- and suffix-insensitive matching."""
+    base = f"TRIM(REGEXP_REPLACE(UPPER(TO_VARCHAR({col})), '[^A-Z0-9]+', ' '))"
+    noise = ", ".join(f"'{t}'" for t in _NAME_NOISE)
+    return (f"NULLIF(ARRAY_TO_STRING(ARRAY_SORT(ARRAY_EXCEPT("
+            f"SPLIT({base}, ' '), ARRAY_CONSTRUCT({noise}))), ' '), '')")
+
+
+def _addr_canon(col: str) -> str:
+    """Standardize street-type words on a space-padded string, then collapse."""
+    expr = f"' ' || REGEXP_REPLACE(UPPER(TO_VARCHAR({col})), '[^A-Z0-9]+', ' ') || ' '"
+    for long, short in _ADDR_ABBR:
+        expr = f"REPLACE({expr}, ' {long} ', ' {short} ')"
+    return f"NULLIF(TRIM(REGEXP_REPLACE({expr}, ' +', ' ')), '')"
 
 
 def normalize_sql(key: str, col: str) -> str:
@@ -106,6 +145,10 @@ def normalize_sql(key: str, col: str) -> str:
     if key not in NORM_RULES:
         raise KeyError(f"No NORM_RULES entry for key '{key}'. Add one before joining on it.")
     mode, width = NORM_RULES[key]
+    if mode == "name_canon":
+        return _name_canon(col)
+    if mode == "address":
+        return _addr_canon(col)
     clean = _alnum(col)
     if mode == "pad":
         return (f"CASE WHEN LENGTH({clean}) = 0 OR LENGTH({clean}) > {width} THEN NULL "
@@ -116,7 +159,7 @@ def normalize_sql(key: str, col: str) -> str:
         return f"NULLIF({clean}, '')"
     if mode == "country":
         return f"NULLIF(UPPER(REGEXP_REPLACE(TO_VARCHAR({col}), '[^A-Za-z]', '')), '')"
-    return f"NULLIF(TRIM(REGEXP_REPLACE(UPPER(TO_VARCHAR({col})), '[^A-Z0-9]+', ' ')), '')"
+    raise KeyError(f"Unknown norm mode '{mode}' for key '{key}'.")
 
 
 def quote_ident(name: str) -> str:

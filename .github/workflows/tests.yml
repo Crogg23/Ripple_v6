@@ -1,0 +1,28 @@
+name: tests
+
+# The repo's first CI. Runs the OFFLINE test suite (no Snowflake) on every push /
+# PR — it asserts the SQL the engine generates and the pure-Python logic. The
+# @pytest.mark.snowflake tests need a live PAT and are skipped here.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  offline-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install deps
+        # runtime libs (pandas, snowflake-connector — imported by the modules under
+        # test) + the test-only deps. The snowflake-marked tests still skip: they
+        # need a live PAT, which CI doesn't have.
+        run: |
+          pip install -r library-onboarding/requirements.txt
+          pip install -r requirements-dev.txt
+      - name: Run offline tests
+        run: pytest -q -m "not snowflake"
