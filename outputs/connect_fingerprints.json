@@ -44975,5 +44975,450 @@
         "populated_pct": 100.0
       }
     ]
+  },
+  "FED_CMS_FACILITY_AFFILIATION": {
+    "rows": 2239952,
+    "keys": [
+      {
+        "column": "NPI",
+        "key": "NPI",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 2239952,
+        "distinct": 912086,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "PROVIDER_LAST_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 2239952,
+        "distinct": 226396,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "PROVIDER_FIRST_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 2239952,
+        "distinct": 76417,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "PROVIDER_MIDDLE_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 1477230,
+        "distinct": 35401,
+        "populated_pct": 65.9
+      },
+      {
+        "column": "CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 2239952,
+        "distinct": 41355,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "FED_CMS_POS_OTHER": {
+    "rows": 44429,
+    "keys": [
+      {
+        "column": "CITY_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 44429,
+        "distinct": 7751,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "FAC_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 44429,
+        "distinct": 35372,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 44429,
+        "distinct": 43797,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIP_CD",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 44159,
+        "distinct": 13707,
+        "populated_pct": 99.4
+      },
+      {
+        "column": "FIPS_STATE_CD",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 44113,
+        "distinct": 55,
+        "populated_pct": 99.3
+      },
+      {
+        "column": "FIPS_CNTY_CD",
+        "key": "FIPS",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 44113,
+        "distinct": 323,
+        "populated_pct": 99.3
+      },
+      {
+        "column": "MLT_FAC_ORG_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      }
+    ]
+  },
+  "FED_CMS_HOSPITAL_GENERAL": {
+    "rows": 5432,
+    "keys": [
+      {
+        "column": "CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 5432,
+        "distinct": 5394,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "FACILITY_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 5432,
+        "distinct": 5197,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 5432,
+        "distinct": 5380,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIP_CODE",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 5432,
+        "distinct": 4872,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "FED_CMS_HOSPICE": {
+    "rows": 6852,
+    "keys": [
+      {
+        "column": "CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 6852,
+        "distinct": 6795,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "FACILITY_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 6852,
+        "distinct": 5886,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS_LINE_1",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 6852,
+        "distinct": 6997,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS_LINE_2",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "ZIP_CODE",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 6852,
+        "distinct": 3233,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "FED_CMS_HOME_HEALTH": {
+    "rows": 12392,
+    "keys": [
+      {
+        "column": "CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 12392,
+        "distinct": 12751,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "PROVIDER_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 12392,
+        "distinct": 10382,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 12392,
+        "distinct": 12671,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ZIP_CODE",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 12392,
+        "distinct": 4777,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "NUMERATOR_FOR_HOW_OFTEN_PHYSICIAN_RECOMMENDED_ACTIONS_TO_ADDRESS_MEDICATION_ISSUES_WERE_COMPLETELY_TIMELY",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 8644,
+        "distinct": 2346,
+        "populated_pct": 69.8
+      },
+      {
+        "column": "DENOMINATOR_FOR_HOW_OFTEN_PHYSICIAN_RECOMMENDED_ACTIONS_TO_ADDRESS_MEDICATION_ISSUES_WERE_COMPLETELY_TIMELY",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 8644,
+        "distinct": 2427,
+        "populated_pct": 69.8
+      },
+      {
+        "column": "HOW_OFTEN_PHYSICIAN_RECOMMENDED_ACTIONS_TO_ADDRESS_MEDICATION_ISSUES_WERE_COMPLETELY_TIMELY",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 8644,
+        "distinct": 2295,
+        "populated_pct": 69.8
+      },
+      {
+        "column": "FOOTNOTE_FOR_HOW_OFTEN_PHYSICIAN_RECOMMENDED_ACTIONS_TO_ADDRESS_MEDICATION_ISSUES_WERE_COMPLETELY_TIMELY",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 3755,
+        "distinct": 4,
+        "populated_pct": 30.3
+      }
+    ]
+  },
+  "FED_CMS_IRF": {
+    "rows": 1222,
+    "keys": [
+      {
+        "column": "CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 1222,
+        "distinct": 1221,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "PROVIDER_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 1222,
+        "distinct": 1210,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS_LINE_1",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 1222,
+        "distinct": 1223,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS_LINE_2",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 69,
+        "distinct": 68,
+        "populated_pct": 5.6
+      },
+      {
+        "column": "ZIP_CODE",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 1222,
+        "distinct": 1140,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "FED_CMS_LTCH": {
+    "rows": 311,
+    "keys": [
+      {
+        "column": "CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 311,
+        "distinct": 317,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "PROVIDER_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 311,
+        "distinct": 319,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS_LINE_1",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 311,
+        "distinct": 316,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS_LINE_2",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 0,
+        "distinct": 0,
+        "populated_pct": 0.0
+      },
+      {
+        "column": "ZIP_CODE",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 311,
+        "distinct": 308,
+        "populated_pct": 100.0
+      }
+    ]
+  },
+  "FED_CMS_DIALYSIS": {
+    "rows": 7557,
+    "keys": [
+      {
+        "column": "CCN",
+        "key": "CCN",
+        "tier": "STEEL",
+        "mode": "value",
+        "nonnull": 7557,
+        "distinct": 7602,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "FACILITY_NAME",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 7557,
+        "distinct": 7635,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS_LINE_1",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 7557,
+        "distinct": 7449,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "ADDRESS_LINE_2",
+        "key": "ADDRESS",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 1266,
+        "distinct": 609,
+        "populated_pct": 16.8
+      },
+      {
+        "column": "ZIP_CODE",
+        "key": "ZIP",
+        "tier": "GEO",
+        "mode": "value",
+        "nonnull": 7557,
+        "distinct": 5361,
+        "populated_pct": 100.0
+      },
+      {
+        "column": "CHAIN_ORGANIZATION",
+        "key": "NAME",
+        "tier": "PROBABILISTIC",
+        "mode": "value",
+        "nonnull": 7557,
+        "distinct": 31,
+        "populated_pct": 100.0
+      }
+    ]
   }
 }

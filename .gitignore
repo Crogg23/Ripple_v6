@@ -1,2 +1,6 @@
 # transient run logs (tee'd output from connect/onboarding runs)
 outputs/_*.log
+
+# python bytecode
+__pycache__/
+*.pyc
