@@ -1,7 +1,51 @@
 # Build State
-Last updated: 2026-06-24
+Last updated: 2026-06-25
 
 ## CURRENT FOCUS
+**Session 2026-06-25 — BUILT THE ENTITY LAYER (the 5 audit gaps) on branch `claude/entity-layer`.**
+Turned the wired table-graph into a queryable "who's who" + dossiers + a self-surfacing leads list +
+a gated fuzzy matcher. All in `connect/`, all verified live. NOT yet committed/PR'd.
+
+**What shipped (6 phases, all on the health/provider slice — NPPES, OIG-LEIE, Facility-Affiliation
+crosswalk, 7 CCN rosters):**
+- **Phase 1 — flagship LEADS (`connect leads`).** `connect/leads.py` + `leads_specs.py` compile a
+  declarative job to targeted SQL, score, and MERGE into `LIBRARY_META.CONNECT.LEADS` (FIRST_SEEN /
+  LAST_SEEN, stable LEAD_ID). `banned_but_operating` = **11 OIG-excluded providers / 38 facility
+  affiliations**, surname-corroborated, ranked (ALEXANDER FRANK @ 12 facilities top). Runs OWN SQL,
+  never imports `connect.bridge` (the FANOUT_MAX/dedup guards gated 21/38 — that's why).
+- **Phase 2 — entity spine (`connect spine`).** `connect/spine.py`: hard-ID-only resolution (same
+  NPI/CCN/… value across sources = one entity; **zero false-merge**). **9,678,735 entities (952,930
+  multi-source)**, content-addressed stable `ENTITY_ID` (rebuild renumbers no one — proven), golden
+  record via authority ladder (NPPES>…>LEIE). Tables: `ENTITY_MAP`, `ENTITY_GOLDEN`, `CONNECT_NODES`,
+  `MATCH_PAIRS`. Backfills `LEADS.LEFT_ENTITY_ID`. **CORRECTION to the plan:** dropped label-prop
+  cross-key clustering — NPI↔CCN is a *relationship* (works-at), not identity; fusing would merge
+  doctors with hospitals. Cross-ID-type identity is the fuzzy frontier (Phase 5), correctly gated.
+- **Phase 3 — dossier + search (`connect dossier`).** `entity_index.py` builds `ENTITY_INDEX`
+  (per-entity×source). `dossier.py` resolves `--npi/--ccn/--ein/--id/--q` → cross-domain rollup +
+  affiliated facilities; prints / `--json` / `--html`. Disambiguates multi-hit names.
+- **Phase 4 — name/address normalization.** `keys.py` NAME/PERSON → token-sort + legal-suffix/credential
+  strip ('SMITH, JOHN MD' == 'JOHN SMITH'); ADDRESS → USPS abbrev (no sort). Makes dossier search
+  order-insensitive. Nickname seed at `ripple_dbt/seeds/connect/nickname_map.csv`. (Lift on same-order
+  federal pairs is ~neutral; real win is search + cross-order matching. **`connect discover` graph
+  refresh with the new NAME norm is DEFERRED** — slow at 646 tables; spine/dossier already use it.)
+- **Phase 5 — fuzzy linkage, BUILT BUT GATED (`connect resolve`).** `resolve.py`: SOUNDEX(last)+ZIP
+  blocking, in-warehouse JAROWINKLER+EDITDISTANCE scoring, nickname expansion → `ENTITY_LINKS` (AUTO/
+  REVIEW bands). **Never touches the spine.** `leie_nppes` recipe: 40,329 candidate links.
+- **Phase 6 — eval harness + the repo's FIRST tests (`connect eval`).** `evaluate.py` sweeps
+  thresholds vs hard-ID ground truth → `outputs/resolve_eval.json` + `GOLD_PAIRS` + a frozen fixture.
+  **Result: precision tops out ~0.77 even at score 0.99** → name+ZIP fuzzy is a lead generator, NOT
+  safe for auto-merge → recommend `HIGH=None`, keep gated. `tests/` (19 tests, 15 offline + 4 live,
+  all green) + `pytest.ini` + `requirements-dev.txt` + `.github/workflows/tests.yml` (first CI).
+
+**New CLI verbs:** `spine`, `entity-index`, `dossier`, `leads`, `resolve`, `eval` (in `connect all`:
+fingerprint → discover → spine → explore). **New schema `LIBRARY_META.CONNECT`** (persisted; was
+file-only before). Plan file: `~/.claude/plans/come-up-with-a-foamy-rabbit.md`.
+
+**Next:** commit + PR the branch; optionally re-run `connect discover` to refresh the graph with the
+new NAME normalization; pour IRS EO BMF to extend fuzzy to org names; consider DOB/address features to
+lift fuzzy precision toward an auto-merge bar.
+
+## PRIOR FOCUS (2026-06-24 — bridge layer)
 **Session 2026-06-24 (cont.) — ACTIVATED the bridge layer. Poured a real CCN↔NPI crosswalk + 7 CCN
 facility sets; bridge edges 14 → 59, graph 13,321 → 14,694.**
 

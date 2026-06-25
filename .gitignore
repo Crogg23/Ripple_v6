@@ -1,6 +1,12 @@
 # transient run logs (tee'd output from connect/onboarding runs)
 outputs/_*.log
 
+# per-query dossiers generated on demand by `connect dossier --html`
+outputs/dossier_*.html
+
 # python bytecode
 __pycache__/
 *.pyc
+
+# dev/test caches
+.pytest_cache/

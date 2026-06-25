@@ -1,0 +1,4 @@
+# Dev/test deps for the connect entity layer (the repo's first test suite).
+# Runtime deps live in library-onboarding/requirements.txt.
+pytest>=8.0
+rapidfuzz>=3.0   # offline Jaro-Winkler mirror for the match-quality eval (test-only)
