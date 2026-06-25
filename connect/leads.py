@@ -27,7 +27,7 @@ import uuid
 import pandas as pd
 from snowflake.connector.pandas_tools import write_pandas
 
-from . import db, store
+from . import db, safety, store
 from .keys import normalize_sql, quote_ident
 from .leads_specs import JOBS
 
@@ -194,9 +194,15 @@ def run_job(conn, spec: dict, run_id: str) -> pd.DataFrame:
     return pd.DataFrame(recs)
 
 
+def _ensure_leads_table(conn) -> None:
+    db.rows(conn, LEADS_DDL)
+    # STATUS marks staleness: a lead absent from the latest run is expired, so a person cleared by
+    # the source drops out of publication. Added in place so the live table gains the column.
+    db.rows(conn, f"ALTER TABLE {LEADS_FQN} ADD COLUMN IF NOT EXISTS STATUS STRING")
+
+
 def _merge_leads(conn, df: pd.DataFrame) -> None:
     """Stage the run's leads, then MERGE — preserving FIRST_SEEN, bumping LAST_SEEN."""
-    db.rows(conn, LEADS_DDL)
     write_pandas(conn, df, table_name="LEADS_STAGE", database=store.CONNECT_DB,
                  schema=store.CONNECT_SCHEMA, auto_create_table=True, overwrite=True,
                  quote_identifiers=False)
@@ -215,6 +221,24 @@ def _merge_leads(conn, df: pd.DataFrame) -> None:
              CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), s.RUN_ID)
     """)
     db.rows(conn, f"DROP TABLE IF EXISTS {STAGE_FQN}")
+
+
+def _expire_rule(conn, rule: str, run_id: str) -> None:
+    """Mark this rule's leads active if they reappeared in THIS run, else stale — so a lead whose
+    supporting rows vanished drops out of publication EVEN WHEN the rule now returns zero leads."""
+    db.rows(conn, f"UPDATE {LEADS_FQN} SET STATUS = IFF(RUN_ID = %s, 'active', 'stale') "
+                  f"WHERE RULE_NAME = %s", (run_id, rule))
+
+
+def published(conn, rule: str | None = None) -> list[dict]:
+    """Canonical PUBLISH read: persisted leads that are active (not stale) AND not review-suppressed.
+    STATUS is the staleness surface; safety.DECISIONS is the review surface — both must pass."""
+    _ensure_leads_table(conn)
+    sup = safety.suppressed(conn, "lead")
+    where = "WHERE COALESCE(STATUS, 'active') = 'active'"
+    rows = db.dicts(conn, f"SELECT * FROM {LEADS_FQN} {where} ORDER BY SCORE DESC", ())
+    rows = [r for r in rows if (rule is None or r["RULE_NAME"] == rule) and r["LEAD_ID"] not in sup]
+    return rows
 
 
 def _print_leads(df: pd.DataFrame, top: int) -> None:
@@ -237,14 +261,22 @@ def run(job: str = "all", dry_run: bool = True, top: int = 20) -> dict:
     conn = db.connect()
     try:
         store.ensure_schema(conn)
+        if not dry_run:
+            _ensure_leads_table(conn)
+        sup = safety.suppressed(conn, "lead")   # rejected/retracted -> never shown as fact
         for name in names:
             spec = JOBS[name]
             df = run_job(conn, spec, run_id)
-            print(f"\n[{name}] {len(df)} leads  ({'DRY-RUN' if dry_run else 'writing'})")
-            _print_leads(df, top)
-            if not dry_run and len(df):
-                _merge_leads(conn, df)
-                print(f"  merged {len(df)} leads into {LEADS_FQN} (run {run_id})")
+            shown = df[~df["LEAD_ID"].isin(sup)] if len(df) else df
+            hidden = len(df) - len(shown)
+            print(f"\n[{name}] {len(shown)} leads  ({'DRY-RUN' if dry_run else 'writing'})"
+                  + (f" — {hidden} hidden by review/retraction" if hidden else ""))
+            _print_leads(shown, top)
+            if not dry_run:
+                if len(df):
+                    _merge_leads(conn, df)
+                _expire_rule(conn, name, run_id)   # fires even when the rule returned ZERO leads
+                print(f"  merged {len(df)} into {LEADS_FQN}; staleness swept (run {run_id})")
             out[name] = len(df)
     finally:
         conn.close()

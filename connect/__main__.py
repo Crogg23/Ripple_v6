@@ -58,6 +58,22 @@ def main() -> int:
     ev.add_argument("--pair", default="leie_nppes")
     ev.add_argument("--target", type=float, default=0.99, help="precision target for the HIGH bar")
 
+    mt = sub.add_parser("match", help="Fellegi-Sunter match-weight scorer (the confidence ladder)")
+    mt.add_argument("--pair", default="leie_nppes")
+
+    cb = sub.add_parser("calibrate", help="estimate m/u from ground truth + set held-out tiers")
+    cb.add_argument("--pair", default="leie_nppes")
+
+    rv = sub.add_parser("review", help="record a human verdict on a claim (the safety spine)")
+    rv.add_argument("--kind", default="lead", choices=["lead", "link", "entity"])
+    rv.add_argument("--id", dest="target_id", required=True, help="stable id of the claim (e.g. LEAD_xxxx)")
+    rv.add_argument("--decision", required=True, choices=["confirmed", "rejected", "retracted", "stale"])
+    rv.add_argument("--by", dest="reviewer", default="")
+    rv.add_argument("--reason", default="")
+
+    sf = sub.add_parser("safety", help="show recorded review / suppression decisions")
+    sf.add_argument("--kind", default=None, choices=["lead", "link", "entity"])
+
     h = sub.add_parser("harvest", help="bulk-load datasets from the portal index (no LLM)")
     h.add_argument("--platform", choices=["SOCRATA", "ARCGIS"], default=None)
     h.add_argument("--with-key", action="store_true", help="only datasets that carry a join key")
@@ -112,6 +128,33 @@ def main() -> int:
     if args.cmd == "eval":
         from . import evaluate
         evaluate.run(pair=args.pair, target=args.target)
+    if args.cmd == "match":
+        from . import match
+        match.run(pair=args.pair)
+    if args.cmd == "calibrate":
+        from . import calibrate
+        calibrate.run(pair=args.pair)
+    if args.cmd == "review":
+        from . import db, safety
+        conn = db.connect()
+        try:
+            safety.record(conn, args.kind, args.target_id, args.decision,
+                          reviewer=args.reviewer, reason=args.reason)
+            print(f"recorded: {args.kind} {args.target_id} -> {args.decision}"
+                  + (f" (by {args.reviewer})" if args.reviewer else ""))
+        finally:
+            conn.close()
+    if args.cmd == "safety":
+        from . import db, safety
+        conn = db.connect()
+        try:
+            rows = safety.status(conn, args.kind)
+            if not rows:
+                print("no review decisions recorded yet.")
+            for r in rows:
+                print(f"  {r['TARGET_KIND']:>7} {r['DECISION']:>10}  {r['N']}")
+        finally:
+            conn.close()
     if args.cmd == "harvest":
         from . import portal_loader
         portal_loader.run(platform=args.platform, with_key=args.with_key,

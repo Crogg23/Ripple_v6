@@ -1,0 +1,71 @@
+{
+  "pair": "leie_nppes",
+  "model_version": "fs_emp_95b289e0",
+  "persisted": true,
+  "surname_mode": "tf",
+  "start_bits": -10.592,
+  "test_positives": 3350,
+  "model": {
+    "surname": {
+      "m": 0.9997,
+      "u": 0.5081
+    },
+    "first": {
+      "m": 0.9898,
+      "u": 0.06753
+    },
+    "zip": {
+      "m": 0.2477,
+      "u": 0.00336
+    },
+    "address": {
+      "m": 0.1668,
+      "u": 0.00017
+    },
+    "middle": {
+      "m": 0.9869,
+      "u": 0.07815
+    }
+  },
+  "rungs": [
+    {
+      "rung": "CONFIRMED",
+      "bar": 0.85,
+      "min_M": 11.0,
+      "precision": 0.8764,
+      "precision_lo95": 0.8602,
+      "coverage_recall": 0.4615,
+      "n": 1764
+    },
+    {
+      "rung": "STRONG",
+      "bar": 0.5,
+      "min_M": 8.0,
+      "precision": 0.5769,
+      "precision_lo95": 0.5622,
+      "coverage_recall": 0.7606,
+      "n": 4417
+    },
+    {
+      "rung": "LEAD",
+      "bar": 0.1,
+      "min_M": 0.0,
+      "precision": 0.1186,
+      "precision_lo95": 0.1148,
+      "coverage_recall": 0.9913,
+      "n": 28008
+    }
+  ],
+  "precision_at_recall": {
+    "tf": {
+      "0.5": 0.847,
+      "0.3": 0.9173,
+      "0.2": 0.9634
+    },
+    "flat": {
+      "0.5": 0.511,
+      "0.3": 0.511,
+      "0.2": 0.9803
+    }
+  }
+}

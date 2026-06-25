@@ -2,6 +2,128 @@
 Last updated: 2026-06-25
 
 ## CURRENT FOCUS
+**Session 2026-06-25 (cont.) — DESIGNED the confidence ladder, HARDENED it via a 6-lens
+adversarial review, and ran Build 1 (foundation clean-up + honest re-baseline).** Strategy turn
+with Chris: the goal is to make the engine "a beast" — wider + deeper — before any UI/publishing.
+
+**The design — `connect/design-confidence-ladder.md` (v2).** The unified model for how Ripple
+scores every record-to-record link on ONE scale: a Fellegi-Sunter match weight (bits of evidence),
+from "shared hard ID = certain" down to "rare name + place = circumstantial but powerful," with
+NOTHING excluded. Core rule: keep every CONNECTION at every rung (with receipts); only ever fuse
+IDENTITY on a hard ID (a false merge is the one poison). Rarity weighting (u = term frequency) is
+the lever that climbs weak signals up the ladder. This IS the architecture going forward.
+
+**The review (workflow `harden-confidence-ladder`, 6 agents, ~30 findings).** Killed the original
+plan ("build the FS scorer, watch 0.77 → 0.95"). Caught: the 3-state NULL bug (the #1 FS bug),
+NPI label-leakage (answer key used as a feature), don't-score-the-blocker (ZIP is the block key →
+0 info), single-rare-name merges, the uncapped SOUNDEX+ZIP self-join, LOG/NULL/unit SQL traps, and
+an entire missing SAFETY layer (retraction, model versioning, source-trust gating of the TF corpus
++ spine, transitivity, review-queue ownership, lead staleness). All folded into v2 of the doc.
+
+**Build 1 — DONE (foundation clean-up + honest re-baseline), branch `claude/entity-layer`, uncommitted.**
+- `connect/resolve.py`: blocking now drops blank-surname rows (`last_n <> ''`) — ~2.28M NPPES
+  type-2 ORG rows were collapsing into one `SOUNDEX('')` mega-block of false-positive fuel. The
+  person matcher now only sees individuals (orgs → a future name+EIN matcher).
+- `connect/evaluate.py`: hardened — NPI is label-only (no leakage); added a Wilson-CI lower bound
+  + an `n>=300` floor on the auto-merge bar; precision-at-recall-floor (un-gameable); a
+  **blocking-recall** metric (the recall ceiling the scorer can't touch); a seeded, prevalence-
+  honest fixture. 19 tests green.
+- **HONEST RE-BASELINE (full population, blank-org garbage removed):**
+  - Precision (name-only) tops out ~**0.765** — CONFIRMED real, NOT a blank-org artifact (the junk
+    scored <0.80, so it never touched operating-threshold precision; it only bloated the negative
+    count 611k→72k and the fixture). The ceiling is name-twins-in-ZIP, exactly as the review said.
+  - **THE finding: blocking recall = 23.7%** (1,675 of 7,066 findable true matches even reach a
+    block). The OLD eval HID this — its "recall ~0.84" was scorer-recall-among-blocked, the wrong
+    denominator. **End-to-end recall is ~0.23, not 0.84.** ZIP-based single-pass blocking throws
+    away ~76% of matches BEFORE scoring. `recommend_HIGH` stays None (auto-merge correctly off).
+- **Reprioritization (confirmed):** the bottleneck was candidate generation (recall), not scoring.
+
+**Build 2 — DONE (multi-pass blocking + block-size cap), branch `claude/entity-layer`, uncommitted.**
+- `connect/resolve.py`: blocking now runs 3 passes UNIONed (a record lands in several blocks):
+  `z` surname-sound + ZIP (same place), `i` surname-sound + first-initial (ANY place — catches a
+  moved person), `n` exact full name (ANY place). Added a `PAIR_BUDGET=100k` block-size cap that
+  drops + LOGS quadratic mega-blocks (this run dropped 83, ~15.3M pairs; densest `i#S530~J` =
+  82×6,267), pair dedup via QUALIFY, and a `TEMPORARY` scratch (auto-clean). Flows into the eval too.
+- **RESULT — blocking recall 23.7% → 95.9%** (6,774 of 7,066 findable matches now reach a block).
+  Candidate generation essentially solved. Runtime ~1m52s, 6.5M labeled pairs.
+- **The flip side, BY DESIGN:** name-only precision @ top collapsed 0.765 → **0.037** — removing ZIP
+  from blocking floods the set with name-twins (same name, different city, different person), and the
+  current name-only score can't tell them apart. This ISOLATES precision as the scorer's job and —
+  key — **ZIP is now a FEATURE, not the blocker**, so the FS scorer finally has a real discriminator.
+**Build 3 — DONE (the Fellegi-Sunter scorer — `connect/match.py`), branch `claude/entity-layer`, uncommitted.**
+First real test of the confidence ladder, and it holds. Scores each pair as a match weight M (bits) =
+start + surname (TF-rarity) + first (nickname-aware) + ZIP — all three-state + LOG-guarded; hand-set v1
+m/u (graduate to a MATCH_MODEL table + EM later). New CLI verb `match`. NPI label-only; head-to-head vs
+the name-only score on the IDENTICAL candidate set at fixed recall.
+- **RESULT — the scorer manufactures a high-confidence TIER that name-only cannot:** at **M>=10,
+  precision 0.836 (lo95 0.817), ~1,500 pairs, recall 0.19** — a clean CONFIRMED-ish band. Name-only is
+  flat ~0.036 at EVERY threshold (it can't separate name-twins at all). Head-to-head precision at fixed
+  recall: name-only 0.036 vs FS — 0.067 @rec0.8, 0.087 @rec0.7, 0.178 @rec0.5 (~5x at the useful end).
+- **The lever is ZIP-as-a-feature** (unlocked by multi-pass blocking): same name + same ZIP corroborates
+  → the M>=10 tier. recommend_HIGH still None (0.84 < 0.99 → no auto-merge, correct), but 0.84 is a strong
+  human-review/CONFIRMED tier. Runtime ~1m15s. Output `outputs/match_eval.json`.
+- **The ceiling then:** the movers (different ZIP) stayed buried — addressed in Build 4.
+
+**Build 4 — DONE (address + middle-initial features + ground-truth verification), branch `claude/entity-layer`, uncommitted.**
+- Schema scan: NPPES carries a clean street address (mailing line1, 96% pop) + middle name (54%); LEIE
+  has address (100%) + middle (74%). **DOB is a dead end** (LEIE has it, NPPES has none → nothing to
+  compare). Added two features: street **address** (USPS-normalized, JW agree) and **middle initial**
+  (the move-stable disambiguator — survives a relocation, unlike ZIP/address). `resolve.py` extracts both
+  into the scratch (new ADDR/MID cols); `connect/match.py` v2 scores them three-state + LOG-guarded.
+- **3-WAY HEAD-TO-HEAD (identical candidate set, NPI label-only), precision at fixed recall:**
+  recall0.5: name-only 0.036 / name+ZIP 0.178 / **+addr+mid 0.298**; recall0.3: 0.036 / 0.178 / **0.657**;
+  recall0.2: 0.036 / 0.495 / **0.762**. Each feature adds isolated, monotonic precision; address+middle
+  ~doubled-to-quadrupled it. Top tier M>=20: precision 0.874. Runtime ~1m20s.
+- **VERIFIED vs ground truth (empirical agree-rates by label = m/u):** m_zip predicted 0.25, MEASURED
+  0.246 — the FS framework is calibrated to reality. **Group-practice address leakage is negligible:
+  u_address = 0.0002** (2 in 10,000 different-person pairs falsely agree on address — the review's worry
+  is quantitatively tiny). Empirical m for first/middle/address run HIGHER than the hand-set params, so
+  **the current numbers are a conservative FLOOR.** Output `outputs/match_eval.json`.
+**Build 5 — DONE (calibration — `connect/calibrate.py`), branch `claude/entity-layer`, uncommitted.**
+Estimated m/u from ground truth with two integrity rails: (1) TRAIN/TEST split BY PERSON (hash of the
+LEIE NPI) — every reported number is measured OUT-OF-SAMPLE; (2) tier labels set from MEASURED held-out
+precision (Wilson lower bound), not the model's self-opinion. New CLI verb `calibrate`. Persists
+versioned `LIBRARY_META.CONNECT.MATCH_MODEL` + `MATCH_RUNGS` (MERGE-style, survive a rebuild).
+- **Settled the surname-TF question out-of-sample:** TF-rarity BEATS flat 0.916 vs 0.511 precision @
+  recall0.3 — the rare-name weight is real signal, NOT double-counting the soundex blocking key.
+- **Empirical m/u (vs my conservative hand-set):** address m 0.167/u 0.0002, first m 0.99/u 0.067,
+  zip m 0.247/u 0.0034 (predicted 0.25 AGAIN), middle m 0.986/u 0.077, surname m 0.9997. The strong
+  empirical DISAGREE weights on first (−6.5b) and middle (−6.0b) are what clear name-twins out.
+- **CALIBRATED TIERS (held-out, measured — what "confident" now MEANS):**
+  CONFIRMED M>=11 → **precision 0.876 (lo95 0.860), coverage 0.463** (n=1,770);
+  STRONG M>=8 → precision 0.576, coverage 0.761; LEAD M>=0 → precision 0.118, coverage 0.992.
+  Calibration lifted precision@recall0.3 from the hand-set ~0.66 floor to **0.92 out-of-sample.**
+- **Where the ladder stands:** name-only 0.04 (flat, useless) → a measured, held-out **CONFIRMED tier at
+  ~88% precision covering ~46% of all banned-doctor matches.** A reviewer handed CONFIRMED is right ~9/10.
+**Build 6 — DONE (the safety layer — `connect/safety.py`), branch `claude/entity-layer`.** The publish-safety
+spine, §9 of the design. `safety.py`: a rebuild-surviving `DECISIONS` audit log + `record` / `latest` /
+`suppressed` / `gate_rows` (pure, unit-tested) / `status` / `trusted_source_predicate`. Guarantees:
+retraction that STICKS (verdicts in a separate table a rebuild can't touch), staleness expiry
+(`leads._expire_rule` marks leads absent from the latest run 'stale' — fires even on a zero-result rule),
+review-as-recorded-act, and a source-trust hook. New CLI: `review`, `safety`; `leads.published()` = the
+canonical publish read (active AND not suppressed). LIVE SMOKE PASSED (rejected Alexander Frank → vanished).
+
+**COMMIT AUDIT + FIXES (pre-commit, 6-lens adversarial workflow `audit-entity-layer-session`).** No
+blockers; fixed all majors before committing:
+- `calibrate.py`: **three-state bug** (NULL surname/first scored as DISAGREE) → fixed to match.py's
+  neutral-0; robust `_estimate` (guards one-label-class + all-NULL field); **content-addressed
+  MODEL_VERSION** (append-versioned, was a constant); **atomic persist** (DELETE+INSERT in a transaction).
+  Re-ran: CONFIRMED unchanged at **M>=11 → 0.876 / coverage 0.462** (version `fs_emp_95b289e0`); TF wins.
+- `leads.py`: **staleness now fires on zero-result rules** (`_expire_rule` moved to run(), per executed
+  rule); added `published()` so STATUS='stale' AND review-suppression are both enforced at the publish read.
+- `match.py`: MODEL flagged as a pre-calibration SEED (operating model = calibrate's persisted MATCH_MODEL).
+- `evaluate.py`: renamed the "blocking recall" metric to **candidate-recall** (it includes the size-cap +
+  editdistance prune, not blocking alone). `safety.py`: %-literal caveat. Design doc: a "code vs doc"
+  reconciliation note (rungs, seed-vs-operating, surname normalizer). Live: leads --run write path, STATUS,
+  imports, review/safety CLI — all green. **25 tests green.** Orphaned persistent RESOLVE_SCRATCH dropped.
+- NOTE: multi-pass blocking moved the eval universe — `resolve_eval.json` positives 1983→6774, candidate
+  ceiling now ~0.959; all prior-quoted resolve precision/recall figures are superseded.
+
+**Engine status: the confidence ladder + its safety half are BUILT, AUDITED, and proven end to end.**
+Next (Chris's fork): BREADTH — auto-spine to widen the who's-who past health; land the EIN/CIK money
+anchors. Or polish toward a published story.
+
+## PRIOR FOCUS (2026-06-25 — entity layer)
 **Session 2026-06-25 — BUILT THE ENTITY LAYER (the 5 audit gaps) on branch `claude/entity-layer`.**
 Turned the wired table-graph into a queryable "who's who" + dossiers + a self-surfacing leads list +
 a gated fuzzy matcher. All in `connect/`, all verified live. NOT yet committed/PR'd.
