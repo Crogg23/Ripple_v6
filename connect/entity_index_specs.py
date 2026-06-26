@@ -66,9 +66,32 @@ DISPLAY_SPECS: dict[str, dict] = {
         "key": "CCN", "key_col": "CCN", "org": "FAC_NAME",
         "city": "CITY_NAME", "state": "STATE_CD", "zip": "ZIP_CD", "authority": 3,
     },
+
+    # --- money / maritime / corporate (2026-06-26: unhealth the spine) ---
+    # keys.py already normalizes UEI/CIK/IMO; ENTITY_TYPE_BY_KEY maps them to
+    # organization/vessel. Adding these makes a debarred-and-funded UEI, a
+    # sanctioned-and-broadcasting IMO, and a SEC CIK first-class multi-source entities.
+    "FED_USASPENDING_CONTRACTS": {            # UEI organization (the money anchor, 6.3M rows)
+        "key": "UEI", "key_col": "RECIPIENT_UEI", "org": "RECIPIENT_NAME",
+        "city": "RECIPIENT_CITY_NAME", "state": "RECIPIENT_STATE_CODE",
+        "zip": "RECIPIENT_ZIP_4_CODE", "authority": 4,
+    },
+    "FED_SAM_EXCLUSIONS": {                   # UEI organization (the federal debarment flag)
+        "key": "UEI", "key_col": "UEI", "org": "ENTITY_NAME",
+        "city": "CITY", "state": "STATE", "zip": "ZIP", "authority": 5,
+    },
+    "FED_SEC_EDGAR_COMPANY_TICKERS": {        # CIK organization (public-company spine)
+        "key": "CIK", "key_col": "CIK_STR", "org": "TITLE", "authority": 5,
+    },
+    "FED_OFAC_SDN": {                         # IMO vessel (sanctioned hull) — OFAC name wins
+        "key": "IMO", "key_col": "IMO", "org": "SDN_NAME", "authority": 4,
+    },
+    "FED_NOAA_AIS": {                         # IMO vessel (broadcasting hull, 7.3M rows)
+        "key": "IMO", "key_col": "IMO", "org": "VESSELNAME", "authority": 6,
+    },
 }
 
-# v1 spine scope = the health/provider slice (every entity here is nameable).
+# spine scope = every table with a nameable hard key (health + money/maritime/corporate).
 SPINE_TABLES = list(DISPLAY_SPECS)
 
 # entity type from its hard key
