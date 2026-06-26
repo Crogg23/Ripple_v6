@@ -89,4 +89,33 @@ JOBS: dict[str, dict] = {
         "score": {"breadth_w": 1.0, "breadth_div": 200.0},
         "no_fanout_guard": True,
     },
+
+    # SANCTIONS × SPENDING on UEI — a federally-debarred entity still holding federal
+    # contract awards. UEI is a 12-char hard ID (keys.py 'fixed' mode), so a hit means
+    # the SAME legal entity SAM excluded is the one USASpending paid — FACT-grade. SAM
+    # carries UEI on the org exclusions only (individuals have a name, no UEI), so this
+    # surfaces debarred FIRMS; breadth = how many award rows that UEI pulled. ENTITY_NAME
+    # (left) vs RECIPIENT_NAME (right, in evidence) lets a human eyeball that the UEI
+    # match is corroborated by name — a 12-char coincidence can't also match the name.
+    # NB: SAM ACTIVATION_DATE is blank in the source, so there's no recency component and
+    # no "awarded AFTER the debarment date" framing yet — that unlocks when SAM lands fully.
+    "debarred_but_funded": {
+        "rule_name": "debarred_but_funded",
+        "title_template": ("{l_name} — federally debarred ({classification}, {exclusion_type}) "
+                           "by {excluding_agency}; {count} federal contract awards"),
+        "left": {
+            "table": "FED_SAM_EXCLUSIONS",
+            "key": "UEI", "key_col": "UEI",
+            "name_col": "ENTITY_NAME",
+            "carry": {"CLASSIFICATION": "CLASSIFICATION", "EXCLUSION_TYPE": "EXCLUSION_TYPE",
+                      "EXCLUDING_AGENCY": "EXCLUDING_AGENCY"},
+        },
+        "right": {
+            "table": "FED_USASPENDING_CONTRACTS",
+            "key": "UEI", "key_col": "RECIPIENT_UEI",
+            "carry": {"AWARDING_AGENCY": "AWARDING_AGENCY_NAME", "RECIPIENT_NAME": "RECIPIENT_NAME"},
+        },
+        "score": {"breadth_w": 1.0, "breadth_div": 100.0},
+        "no_fanout_guard": True,
+    },
 }
