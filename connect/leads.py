@@ -65,38 +65,78 @@ def _norm(key: str, col: str) -> str:
 # Shape: left ⋈ right on a shared key, optional enrich-name lookup, optional
 # surname corroboration, aggregate to one lead per LEFT entity, score.
 # --------------------------------------------------------------------------- #
+def _names_of(side: dict):
+    """How a side carries a display/corroboration name.
+
+    ('person', [last,first])  person columns — used for surname corroboration + display
+    ('single', col)           one org/vessel name — display only (never corroborate)
+    (None, None)              no name on this side
+    Accepts the legacy last_col/first_col shape as 'person'.
+    """
+    if side.get("name_cols"):
+        return "person", side["name_cols"]
+    if side.get("last_col"):                       # legacy shape
+        return "person", [side["last_col"], side["first_col"]]
+    if side.get("name_col"):
+        return "single", side["name_col"]
+    return None, None
+
+
 def compile_sql(spec: dict) -> str:
+    """Compile a JobSpec to ONE targeted SQL query.
+
+    The general shape is a hard-key INTERSECTION: a LEFT "flag" list (sanctions /
+    exclusions / debarment) ⋈ a RIGHT "active" list (affiliations / broadcasts /
+    awards) on a shared normalized key, aggregated to one lead per LEFT entity.
+    Person names (optional) add surname corroboration; org/vessel names are display
+    only. This is domain-agnostic: NPI doctors, IMO vessels, UEI contractors all
+    compile from config — only the spec changes, never this function.
+    """
     L, R = spec["left"], spec["right"]
     jk = L["key"]
     if R["key"] != jk:
         raise ValueError(f"{spec['rule_name']}: left/right join keys differ ({jk} vs {R['key']})")
 
-    l_npi, r_npi = _norm(jk, L["key_col"]), _norm(jk, R["key_col"])
-    en = spec.get("enrich_name")
-    ek = R.get("enrich_key")
-    r_enrich = _norm(ek, R["enrich_key_col"]) if ek else "NULL"
-
-    l_carry = "".join(f", {quote_ident(c)} AS {a}" for a, c in L.get("carry", {}).items())
-    r_carry = "".join(f", {quote_ident(c)} AS {a}" for a, c in R.get("carry", {}).items())
+    lkey, rkey = _norm(jk, L["key_col"]), _norm(jk, R["key_col"])
+    lkind, lname = _names_of(L)
+    rkind, rname = _names_of(R)
+    person_pair = lkind == "person" and rkind == "person"
 
     # NULLIF blank names: a blank surname must NOT satisfy the require_surname gate
     # ('' = '' is TRUE in SQL), and a blank first name must not score as a match.
     def _nm(col):
         return f"NULLIF(UPPER(TRIM({quote_ident(col)})), '')"
 
-    leie = (f"SELECT {l_npi} AS NPI_N, "
-            f"{_nm(L['last_col'])} AS L_LAST, {_nm(L['first_col'])} AS L_FIRST{l_carry} "
-            f"FROM {db.fqn(L['table'])} WHERE {l_npi} IS NOT NULL")
+    en = spec.get("enrich_name")
+    ek = R.get("enrich_key")
+    r_enrich = _norm(ek, R["enrich_key_col"]) if ek else "NULL"
 
-    aff = (f"SELECT {r_npi} AS NPI_N, {r_enrich} AS ENRICH_N, "
-           f"{_nm(R['last_col'])} AS R_LAST, {_nm(R['first_col'])} AS R_FIRST{r_carry} "
-           f"FROM {db.fqn(R['table'])} WHERE {r_npi} IS NOT NULL")
+    # ----- LEFT (the "flag" list): key + optional name + carry + recency col -----
+    l_sel = [f"{lkey} AS K_N"]
+    if lkind == "person":
+        l_sel += [f"{_nm(lname[0])} AS L_LAST", f"{_nm(lname[1])} AS L_FIRST"]
+    elif lkind == "single":
+        l_sel.append(f"{_nm(lname)} AS L_NAME")
+    for alias, col in L.get("carry", {}).items():
+        l_sel.append(f"{quote_ident(col)} AS L_{alias}")
+    rec = L.get("recency")
+    if rec:
+        l_sel.append(f"{quote_ident(rec['col'])} AS L_RECENCY")
+    lft = f"SELECT {', '.join(l_sel)} FROM {db.fqn(L['table'])} WHERE {lkey} IS NOT NULL"
 
-    # CCN -> human facility name. DEDUPED to one name per CCN: the rosters are a
-    # UNION ALL, so without this the LEFT JOIN fans out a CCN that appears in
-    # multiple rosters, silently re-weighting AVG(name_match) before the GROUP BY.
+    # ----- RIGHT (the "active" list): key + enrich + optional name + carry -----
+    r_sel = [f"{rkey} AS K_N", f"{r_enrich} AS ENRICH_N"]
+    if rkind == "person":
+        r_sel += [f"{_nm(rname[0])} AS R_LAST", f"{_nm(rname[1])} AS R_FIRST"]
+    for alias, col in R.get("carry", {}).items():
+        r_sel.append(f"{quote_ident(col)} AS R_{alias}")
+    rgt = f"SELECT {', '.join(r_sel)} FROM {db.fqn(R['table'])} WHERE {rkey} IS NOT NULL"
+
+    # enrich-key -> human label (e.g. CCN -> facility name). DEDUPED to one name per
+    # key: the rosters are a UNION ALL, so without this the LEFT JOIN fans out a key
+    # that appears in multiple rosters, silently re-weighting AVG(name_match).
     if en:
-        ne = _norm(en["key"], en["key"])  # rosters all carry a `CCN` column
+        ne = _norm(en["key"], en["key"])
         union = " UNION ALL ".join(
             f"SELECT {ne} AS ENRICH_N, UPPER(TRIM({quote_ident(name)})) AS FAC_NAME "
             f"FROM {db.fqn(tbl)} WHERE {ne} IS NOT NULL"
@@ -104,51 +144,73 @@ def compile_sql(spec: dict) -> str:
         fac_cte = f"SELECT ENRICH_N, ANY_VALUE(FAC_NAME) AS FAC_NAME FROM ( {union} ) GROUP BY ENRICH_N"
     else:
         fac_cte = "SELECT NULL AS ENRICH_N, NULL AS FAC_NAME WHERE 1=0"
-
-    require = "AND l.L_LAST = a.R_LAST" if spec.get("require_surname") else ""
-    name_match = ("IFF(l.L_FIRST = a.R_FIRST, 1.0, "
-                  "IFF(LEFT(l.L_FIRST, 1) = LEFT(a.R_FIRST, 1), 0.85, 0.6))")
     fac_join = "LEFT JOIN fac f ON f.ENRICH_N = a.ENRICH_N" if en else ""
 
-    # evidence object: ccn + facility name + any right-carry fields (e.g. facility type)
-    ev = ["'ccn', a.ENRICH_N"]
-    if en:
-        ev.append("'facility', f.FAC_NAME")
-    for alias in R.get("carry", {}):
-        ev.append(f"'{alias.lower()}', a.{alias}")
-    evidence = (f"TO_JSON(ARRAY_SLICE(ARRAY_AGG(DISTINCT "
-                f"OBJECT_CONSTRUCT({', '.join(ev)})), 0, 50))")
+    # surname corroboration + name score only make sense person-vs-person
+    require = "AND l.L_LAST = a.R_LAST" if (spec.get("require_surname") and person_pair) else ""
+    if person_pair:
+        name_match = ("IFF(l.L_FIRST = a.R_FIRST, 1.0, "
+                      "IFF(LEFT(l.L_FIRST, 1) = LEFT(a.R_FIRST, 1), 0.85, 0.6))")
+        name_agg = f"AVG({name_match})"
+    else:
+        name_agg = "1.0"
+
+    # breadth = how many distinct active records the flagged entity reaches
+    breadth = "COUNT(DISTINCT a.ENRICH_N)" if ek else "COUNT(*)"
 
     rec = L.get("recency")
     if rec:
-        rexpr = f"TRY_TO_DATE(MAX({quote_ident(rec['col'])}), '{rec['format']}')"
+        rexpr = f"TRY_TO_DATE(MAX(l.L_RECENCY), '{rec['format']}')"
         recency = f"IFF({rexpr} >= DATEADD('month', -{int(rec['months'])}, CURRENT_DATE), 1.0, 0.4)"
     else:
-        recency = "0.7"
+        recency = "1.0"
+
+    # evidence object: enrich key + its label + any right-carry fields. Keys named
+    # so the flagship's downstream stays stable ('ccn'/'facility'/'facility_type').
+    ev = []
+    if ek:
+        ev.append(f"'{ek.lower()}', a.ENRICH_N")
+    if en:
+        ev.append(f"'{en.get('label', 'facility')}', f.FAC_NAME")
+    for alias in R.get("carry", {}):
+        ev.append(f"'{alias.lower()}', a.R_{alias}")
+    if not ev:
+        ev.append("'matched', TRUE")
+    evidence = (f"TO_JSON(ARRAY_SLICE(ARRAY_AGG(DISTINCT "
+                f"OBJECT_CONSTRUCT({', '.join(ev)})), 0, 50))")
+
+    # left display fields -> a generic object the title template formats from
+    tf = []
+    if lkind == "person":
+        tf += ["'l_last', ANY_VALUE(l.L_LAST)", "'l_first', ANY_VALUE(l.L_FIRST)"]
+    elif lkind == "single":
+        tf.append("'l_name', ANY_VALUE(l.L_NAME)")
+    for alias in L.get("carry", {}):
+        tf.append(f"'{alias.lower()}', ANY_VALUE(l.L_{alias})")
+    title_fields = f"OBJECT_CONSTRUCT_KEEP_NULL({', '.join(tf)})" if tf else "OBJECT_CONSTRUCT()"
 
     sc = spec["score"]
     return f"""
-WITH leie AS ( {leie} ),
-aff  AS ( {aff} ),
-fac  AS ( {fac_cte} ),
+WITH lft AS ( {lft} ),
+rgt AS ( {rgt} ),
+fac AS ( {fac_cte} ),
 matched AS (
-  SELECT l.NPI_N AS LEFT_KEY_VALUE,
-         ANY_VALUE(l.L_LAST) AS L_LAST, ANY_VALUE(l.L_FIRST) AS L_FIRST,
-         ANY_VALUE(l.EXCLTYPE) AS EXCLTYPE, MAX(l.EXCLDATE) AS EXCLDATE,
-         AVG({name_match}) AS NAME_SCORE,
+  SELECT l.K_N AS LEFT_KEY_VALUE,
+         {name_agg} AS NAME_SCORE,
          {recency} AS RECENCY_SCORE,
-         COUNT(DISTINCT a.ENRICH_N) AS FAC_COUNT,
+         {breadth} AS BREADTH,
+         {title_fields} AS TITLE_FIELDS,
          {evidence} AS EVIDENCE_JSON
-  FROM leie l
-  JOIN aff a ON a.NPI_N = l.NPI_N {require}
+  FROM lft l
+  JOIN rgt a ON a.K_N = l.K_N {require}
   {fac_join}
-  GROUP BY l.NPI_N )
-SELECT LEFT_KEY_VALUE, L_LAST, L_FIRST, EXCLTYPE, EXCLDATE, FAC_COUNT, EVIDENCE_JSON,
-       ROUND({sc['name_w']} * NAME_SCORE
-           + {sc['recency_w']} * RECENCY_SCORE
-           + {sc['breadth_w']} * LEAST(FAC_COUNT / {sc['breadth_div']}, 1.0), 3) AS SCORE
+  GROUP BY l.K_N )
+SELECT LEFT_KEY_VALUE, BREADTH, TITLE_FIELDS, EVIDENCE_JSON,
+       ROUND({sc.get('name_w', 0)} * NAME_SCORE
+           + {sc.get('recency_w', 0)} * RECENCY_SCORE
+           + {sc.get('breadth_w', 0)} * LEAST(BREADTH / {sc.get('breadth_div', 1)}, 1.0), 3) AS SCORE
 FROM matched
-ORDER BY SCORE DESC, FAC_COUNT DESC
+ORDER BY SCORE DESC, BREADTH DESC
 """
 
 
@@ -161,14 +223,23 @@ def _fmt_date(v) -> str:
     return f"{s[:4]}-{s[4:6]}-{s[6:8]}" if len(s) == 8 and s.isdigit() else s
 
 
-def _title(spec: dict, r: dict) -> str:
-    cnt = int(r["FAC_COUNT"])
-    return spec["title_template"].format(
-        l_first=(r.get("L_FIRST") or "").title(),
-        l_last=(r.get("L_LAST") or "").title(),
-        excltype=r.get("EXCLTYPE") or "?",
-        excldate=_fmt_date(r.get("EXCLDATE")),
-        count=cnt, plural=("y" if cnt == 1 else "ies"))
+class _SafeDict(dict):
+    """format_map helper: a missing {field} renders empty instead of raising."""
+
+    def __missing__(self, key):
+        return ""
+
+
+def _title(spec: dict, fields: dict, count: int) -> str:
+    f = {k: ("" if v is None else v) for k, v in (fields or {}).items()}
+    for k in spec.get("title_titlecase", []):       # nice-case raw UPPER source names
+        if f.get(k):
+            f[k] = str(f[k]).title()
+    for k in spec.get("title_dates", []):           # YYYYMMDD -> YYYY-MM-DD
+        f[k] = _fmt_date(f.get(k))
+    f["count"] = count
+    f["plural"] = "y" if count == 1 else "ies"
+    return spec["title_template"].format_map(_SafeDict(f))
 
 
 def run_job(conn, spec: dict, run_id: str) -> pd.DataFrame:
@@ -180,15 +251,18 @@ def run_job(conn, spec: dict, run_id: str) -> pd.DataFrame:
     recs = []
     for r in rows:
         evidence = r["EVIDENCE_JSON"] or "[]"
+        tf = r.get("TITLE_FIELDS")
+        fields = json.loads(tf) if isinstance(tf, str) else (tf or {})
+        count = int(r["BREADTH"] or 0)
         recs.append({
             "LEAD_ID": _lead_id(spec["rule_name"], jk, r["LEFT_KEY_VALUE"]),
             "RULE_NAME": spec["rule_name"],
             "LEFT_KEY_TYPE": jk,
             "LEFT_KEY_VALUE": r["LEFT_KEY_VALUE"],
-            "TITLE": _title(spec, r),
+            "TITLE": _title(spec, fields, count),
             "SCORE": float(r["SCORE"]),
             "EVIDENCE": evidence,
-            "EVIDENCE_COUNT": len(json.loads(evidence)),  # actual array length, not distinct-CCN
+            "EVIDENCE_COUNT": len(json.loads(evidence)),  # actual array length
             "RUN_ID": run_id,
         })
     return pd.DataFrame(recs)
@@ -243,8 +317,17 @@ def published(conn, rule: str | None = None) -> list[dict]:
 
 def _print_leads(df: pd.DataFrame, top: int) -> None:
     for i, r in enumerate(df.head(top).itertuples(index=False), 1):
-        facs = [e.get("facility") for e in json.loads(r.EVIDENCE) if e.get("facility")]
-        shown = ", ".join(facs[:4]) + (" …" if len(facs) > 4 else "")
+        ev = json.loads(r.EVIDENCE)
+        # prefer the human label ('facility'); else the first non-id string per item
+        labels = [e.get("facility") for e in ev if e.get("facility")]
+        if not labels:
+            for e in ev:
+                for k, v in e.items():
+                    if isinstance(v, str) and v and k not in ("ccn", "key"):
+                        labels.append(v)
+                        break
+        labels = list(dict.fromkeys(labels))  # dedupe, keep order
+        shown = ", ".join(labels[:4]) + (" …" if len(labels) > 4 else "")
         print(f"  {i:>2}. [{r.SCORE:.3f}] {r.TITLE}")
         if shown:
             print(f"      ↳ {shown}")

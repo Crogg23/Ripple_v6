@@ -78,6 +78,8 @@ def join_mode(key: str) -> str:
 #
 # rule = (mode, width)
 #   pad   N : alnum, upper, LPAD to width N; NULL if longer than N (dirty)
+#   imo   N : digits only (tolerates an 'IMO' prefix, e.g. AIS 'IMO9187629');
+#             keep iff exactly N digits and not the all-zero placeholder
 #   fixed N : alnum, upper, keep ONLY if exactly N chars (UEI/LEI), else NULL
 #   code    : keep leading zeros, strip punctuation, upper (FIPS/ZIP/NAICS/docket)
 #   country : upper letters only (ISO)
@@ -85,7 +87,7 @@ def join_mode(key: str) -> str:
 # --------------------------------------------------------------------------- #
 NORM_RULES: dict[str, tuple[str, int]] = {
     "NPI": ("pad", 10), "EIN": ("pad", 9), "DUNS": ("pad", 9), "CIK": ("pad", 10),
-    "CCN": ("pad", 6), "IMO": ("pad", 7), "MMSI": ("pad", 9),
+    "CCN": ("pad", 6), "IMO": ("imo", 7), "MMSI": ("pad", 9),
     "UEI": ("fixed", 12), "LEI": ("fixed", 20),
     "NAICS": ("code", 0), "SIC": ("code", 0), "NCES": ("code", 0),
     "DOCKET": ("code", 0), "PATENT": ("code", 0), "FIPS": ("code", 0), "ZIP": ("code", 0),
@@ -149,6 +151,13 @@ def normalize_sql(key: str, col: str) -> str:
         return _name_canon(col)
     if mode == "address":
         return _addr_canon(col)
+    if mode == "imo":
+        # AIS broadcasts 'IMO9187629'; OFAC stores bare '9187629' — both are the same
+        # hull. Take digits only (the 'IMO' letters drop out), keep iff exactly N
+        # digits and not the all-zero non-IMO placeholder. No leading-zero stripping.
+        digits = f"REGEXP_REPLACE(TO_VARCHAR({col}), '[^0-9]', '')"
+        return (f"CASE WHEN LENGTH({digits}) <> {width} OR {digits} = REPEAT('0', {width}) "
+                f"THEN NULL ELSE {digits} END")
     clean = _alnum(col)
     if mode == "pad":
         return (f"CASE WHEN LENGTH({clean}) = 0 OR LENGTH({clean}) > {width} THEN NULL "
