@@ -2,6 +2,63 @@
 Last updated: 2026-06-25
 
 ## CURRENT FOCUS
+**Session 2026-06-25 (later) — WIDE-NET EXPANSION: money + maritime domains, and a
+GENERALIZED detector engine.** Strategy turn with Chris reframed the goal: this is HIS
+investigative tool (NOT a product, for now), and the instinct is a WIDE NET — pour in
+sources that CONNECT by shared hard IDs, with a small set of GENERAL "smells" that sweep
+every domain at once (not bespoke detectors per story).
+
+**The engineering win: the "banned-but-active" pattern is now ONE general rule.**
+`connect/leads.py` `compile_sql` was hardwired to the doctor case (NPI join, surname gate,
+CCN facility enrichment). Generalized it to a domain-agnostic hard-key INTERSECTION (a LEFT
+"flag" list ⋈ a RIGHT "active" list on a shared normalized key; optional person-name
+corroboration; org/vessel single-name display; generic carry→evidence + a TITLE_FIELDS
+object). Adding a smell in a new domain = one JobSpec dict in `leads_specs.py`. The flagship
+`banned_but_operating` output is byte-identical after migration; 19 offline tests green.
+
+**Domains shipped today:**
+- **MARITIME × SANCTIONS (new):** landed `FED_OFAC_SDN` (19,115 OFAC SDN rows; 2,030 hulls
+  carry a derived 7-digit IMO regex-extracted from REMARKS; loader `scripts/ofac_load.py`).
+  Fixed a real engine bug: the IMO normalizer (`connect/keys.py`) nulled every AIS hull
+  because AIS broadcasts `IMO9187629` (prefix) while OFAC stores bare `9187629` — added a
+  dedicated `imo` norm mode (digits-only, tolerates the prefix, rejects the 0000000
+  placeholder). New detector `sanctioned_vessel_broadcasting` (OFAC IMO × NOAA AIS IMO):
+  **2 live hits** — Iran-sanctioned tankers broadcasting AIS in the Gulf, caught by hull ID
+  even though they sail under changed names (EDOR→FEDOR, LAFIT→ADVANTAGE VIRTUE).
+- **MONEY (in progress):** `scripts/usaspending_load.py` — USASpending bulk-download API,
+  curated 36-col subset (UEI/DUNS/CAGE, parent, geography, NAICS, exec comp, permalink),
+  month-by-month (a full-year request times out server-side). FY2025 prime contracts loading
+  (~5-6M rows, 100% UEI). `scripts/sam_exclusions_load.py` — SAM Exclusions API (167,573
+  records; each carries UEI + CAGE + NPI → bridges money AND health); incremental + fault-
+  tolerant (lands every 20 pages, retries 6×, skips dead pages — the SAM API 503s often).
+  NEXT: `debarred_but_funded` detector (SAM UEI × USASpending UEI) is config-only once both
+  land; bonus `excluded_provider` cross-check is NPI × NPPES/LEIE.
+
+**Operational (this machine):** `library-onboarding/.env` was ABSENT — recreated with a fresh
+PAT (works as password), warehouse `RIPPLE_WH`, and `SAM_API_KEY` (expires ~89 days from
+2026-06-25). Installed `pyarrow` (the Snowflake pandas-writer dep was missing — why landing
+never worked here; should go in requirements). Set an account resource monitor **`RIPPLE_BUDGET`
+= 15 credits/month** (~$45 compute ceiling; actual rate $3/credit), notify 75% / suspend 90% /
+hard-stop 100%; tightened COMPUTE_WH auto-suspend to 60s.
+
+**Strategy decisions (Chris):**
+- WIDE NET, but CONNECTED — pick sources by whether they carry a join key.
+- Hard-ID joins = FACT-grade (publishable). Cross-ID-type / name-based links = LEAD-grade
+  (human-review only, never auto-published — libel risk). EIN masking keeps health↔money
+  structurally fuzzy unless a shared hard ID exists (SAM exclusions' UEI+NPI is the exception).
+- DETECTORS (discovery) are the moat; DOSSIERS (lookup) are partly commodity.
+- Personal tool for now, not a product. Storage is a non-issue (~12 GB, ~$0.50/mo); compute is
+  the only real cost and it's capped. Plan of record: `~/.claude/plans/plan-out-how-to-hidden-moon.md`.
+
+## NEXT ACTION
+When the USASpending + SAM loads finish: add the `debarred_but_funded` JobSpec (UEI: SAM
+exclusions × USASpending contracts) and run it; then the `excluded_provider` NPI cross-check.
+Both are config-only on the generalized engine. Then keep pouring connectable sources
+(SAM entity registrations, GLEIF, SEC EDGAR, CourtListener, county property).
+
+---
+
+## PRIOR FOCUS — confidence ladder (earlier 2026-06-25)
 **Session 2026-06-25 (cont.) — DESIGNED the confidence ladder, HARDENED it via a 6-lens
 adversarial review, and ran Build 1 (foundation clean-up + honest re-baseline).** Strategy turn
 with Chris: the goal is to make the engine "a beast" — wider + deeper — before any UI/publishing.
