@@ -144,7 +144,7 @@ def _register(conn, rows: int) -> None:
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description="LLM-free loader for SAM exclusions")
     ap.add_argument("--run", action="store_true")
-    ap.add_argument("--flush-pages", type=int, default=20, help="land every N pages (durable progress)")
+    ap.add_argument("--flush-pages", type=int, default=10, help="land every N pages (durable progress)")
     args = ap.parse_args(argv)
 
     key = os.getenv("SAM_API_KEY", "").strip()
@@ -166,16 +166,21 @@ def main(argv=None) -> int:
     run_id = str(uuid.uuid4())
     conn = snow.connect()
     snow.execute(conn, f'CREATE SCHEMA IF NOT EXISTS "{settings.raw_database}"."{settings.raw_schema}"')
-    buf, total, skipped, page, tot, first = [], 0, [], 0, None, True
+    buf, total, skipped, page, tot, first, consec = [], 0, [], 0, None, True, 0
     try:
         while True:
             j = _fetch_page(key, page)
-            if j is None:                       # gave up on this page — skip, keep going
+            if j is None:                       # gave up on this page after retries
                 skipped.append(page)
+                consec += 1
+                if consec >= 5:                 # sustained throttle/quota — stop, keep what we have
+                    print(f"    {consec} consecutive failures — SAM throttled; landing what we have", flush=True)
+                    break
                 page += 1
                 if tot and page * PAGE_SIZE >= tot:
                     break
                 continue
+            consec = 0
             if tot is None:
                 tot = j.get("totalRecords")
                 print(f"    total exclusions: {tot:,}", flush=True)
@@ -191,7 +196,7 @@ def main(argv=None) -> int:
                 print(f"    -> flushed (landed {total:,})", flush=True)
             if tot and page * PAGE_SIZE >= tot:
                 break
-            time.sleep(0.5)
+            time.sleep(3)                        # gentle pace — stay under SAM's throttle
         if buf:
             _land(conn, buf, overwrite=first, run_id=run_id, started=started)
             total += len(buf)
