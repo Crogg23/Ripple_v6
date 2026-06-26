@@ -1,7 +1,70 @@
 # Build State
-Last updated: 2026-06-25
+Last updated: 2026-06-26
 
 ## CURRENT FOCUS
+**Session 2026-06-26 — AUDITED the faceted catalog, prepped hygiene fixes, ideated next builds
+(11-agent judge panel).** Catalog is structurally HEALTHY (lifecycle dist unchanged: scouted 853 /
+sampled 595 / failed 59 / modeled 34 / empty 28 / landed 20 / stale 3; registry 1506 + 86 run-orphans
+= 1592). Moat intact (STEEL 173 sources; IMO 2 landed = OFAC+NOAA-AIS; 7 MMSI vessel feeds scouted).
+Post-catalog money/maritime sources ARE catalogued with facets (USASpending contracts 6.3M, OFAC-SDN
+19k, SAM-exclusions). But the audit found **drift + 3 structural issues**:
+
+**AUDIT FINDINGS (all query-proven this session):**
+1. **The "3 broken dbt marts" are a DATA problem, not dbt — build-state misdiagnosed them.** `fed_fjc_idb`
+   = 4.1M rows, **100% empty** across all 20 cols (parse failure); `fed_slavevoyages` = 201 rows of
+   `DOCTYPE_HTML` (landed an HTML page); `fed_hhs_taggs` scraped 1 of 19 cols. The dbt marts collapse to
+   1 row as a SYMPTOM of blank dedup keys — the models are correct. **Fix = RE-INGESTION, not mart rebuild.**
+   10 marts total are ≤3-row stubs (see #3).
+2. **1 vocab offender** (was 0): `fed_sam_exclusions.JURISDICTION='US'` — the post-catalog SAM load bypassed
+   the naming.py US→federal guard. Fix ready: `scripts/propose_catalog_hygiene_fixes.py`.
+3. **Stub-mart gate has a FLOOR HOLE.** CATALOG view gates a stub as `(mart≤3 AND land>100)` — the `>100`
+   floor lets 7 small broken marts (hhs_taggs 45→1, naag 26→1, gemi 40→1, zefix 18→1, fdic_enf 14→1,
+   nara_wra 36→1, borme 25→3) read as **'modeled'** falsely. Fix ready (ratio rule `land > mart*4`) in the
+   same script.
+4. **'epstein' is the ONLY theme in the system and it's massively OVER-APPLIED** — on 193 sources incl.
+   NPPES (9.6M), NOAA-AIS (7.3M), SEC-EDGAR, bioRxiv, earthquakes (zero Epstein connection). ENTITY_TYPES
+   axis was 100% empty (0 sources).
+5. `fed_sam_exclusions` only **1000 of ~167k** rows landed (load incomplete → blocks debarred_but_funded).
+6. `fed_ofac_sdn` registry join_keys = `[IMO]` only — missing NAME (the sanctions payload).
+7. NEW unmodeled asset: 4 DOJ/Epstein **wayback corpora** (`xc_wayback_doj_epstein` = 1.5M rows, single
+   TEXT col) — landed, deg=0, not in build-state ledger.
+8. Portal classifications (367 heuristic/low) ~90% correct; misfires correctly quarantined in V_REVIEW_QUEUE
+   (593). 226 genuinely-ambiguous + 248 deliberately-portal = 474 still `open_data_portal` (reconciled, fine).
+
+**ARTIFACTS PRODUCED (all SAFE, preview-by-default — nothing mutated; the auto-mode classifier blocked
+direct catalog writes, so everything is handed to Chris to --apply):**
+- `scripts/propose_catalog_hygiene_fixes.py` — FIX 1 vocab offender + FIX 2 stub-gate ratio (rollback-snapshotted). Preview verified: catches exactly the 7 false-modeled, no collateral.
+- `scripts/propose_entity_theme_tags.py` — reviewed ENTITY_TYPES + THEMES for all 54 landed/modeled sources
+  (vocab-conformant). Run with `--apply`: 52 get entity_types, 46 get themes, **25 bogus 'epstein' tags
+  cleaned** off the landed set (kept only on the 4 real corpora). The ~140 non-landed epstein tags are
+  out of scope — separate cleanup.
+
+**NEXT-BUILD RECOMMENDATION (judge panel of 5 generators × 3 judges; #0 won unanimously, 57/60):**
+- **#1 ✅ SHIPPED — `debarred_but_funded` detector** (added to `connect/leads_specs.py`: SAM-exclusions
+  UEI × USASpending contracts UEI, org-vs-org single-name, breadth=award count). Ran + persisted 2 leads
+  into `LIBRARY_META.CONNECT.LEADS` (run 8b2e5f42, both active). Flagship **BELLA MIA DONNA LLC** — DLA-
+  debarred (Firm, Ineligible), **222 distinct DoD contracts / $1,289,771.86 obligated**, all FY2025
+  (2024-10-01→2025-09-29). FACT-grade (UEI hard-key). Scales with every additional SAM row. NB: SAM
+  ACTIVATION_DATE is blank in-source, so no "awarded-after-debarment" framing yet (unlocks at full SAM load;
+  UEI populated on only 187/1000 landed SAM rows — most exclusions are individuals w/ no UEI).
+- **#2 THEN — load-time density gate + DENSITY_PCT on CATALOG** (`ingest.py`): makes 'landed' mean "real
+  data is in it", re-grades the empty/HTML fakes, prevents recurrence before the next 800 sources. Cheap.
+- **#3 COMPOUNDING — promote money/maritime into the entity spine** (`connect/spine.py` is health-only;
+  keys.py already normalizes UEI/CIK/EIN/IMO/MMSI): USASpending/SEC-EDGAR/OFAC/NOAA-AIS are deg=0 islands
+  today. Makes every flagship already paid-for actually connect.
+- Publishing ceiling (Ghost-Tankers Plotly map of the 2 sanctioned tankers + a reusable `connect/publish.py`)
+  is the natural follow-on once a detector or two is firing — data already in hand.
+
+## NEXT ACTION
+`debarred_but_funded` is SHIPPED + persisted. Remaining: (1) run the two proposed scripts
+(`propose_catalog_hygiene_fixes.py --apply`, `propose_entity_theme_tags.py --apply`) to bank the catalog
+cleanup; (2) re-run `scripts/sam_exclusions_load.py` to full 167k to scale the detector + unlock the
+temporal angle; (3) next build = density gate (#2) then entity-spine promotion (#3). Pass 0h grants
+(`scripts/grant_mcp_readonly_catalog.py`) STILL pending — agent is classifier-blocked from grants, Chris's.
+
+---
+
+## PRIOR FOCUS — faceted catalog
 **Session 2026-06-25 (latest) — ORGANIZED THE LIBRARY: built a faceted CATALOG over
 SOURCE_REGISTRY as a backend navigation tool.** The registry had 593 blank-CATEGORY rows + 165
 inconsistent labels — unnavigable. Reframed organization as a FACETED catalog (tag every source on

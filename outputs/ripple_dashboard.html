@@ -1,0 +1,683 @@
+<!doctype html><html><head><meta charset="utf-8">
+<title>Ripple — backend</title>
+<style>
+:root{--bg:#0d1117;--panel:#161b22;--line:#21262d;--tx:#c9d1d9;--mut:#6e7681;--ac:#2f81f7;--ok:#3fb950;--warn:#d29922;--bad:#f85149}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--tx);font:14px/1.5 -apple-system,Segoe UI,Helvetica,Arial,sans-serif}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 20px 80px}
+h1{font-size:22px;margin:0 0 2px} h2{font-size:15px;margin:34px 0 10px;color:#fff}
+.sub{color:var(--mut);font-size:12px;margin-bottom:18px}
+.tiles{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0}
+.tile{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 18px;min-width:150px}
+.tile .n{font-size:26px;font-weight:700;color:#fff} .tile .l{color:var(--mut);font-size:12px}
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top;font-size:13px}
+th{color:var(--mut);font-weight:600;cursor:pointer;user-select:none;position:sticky;top:0;background:var(--panel)}
+tr:last-child td{border-bottom:none} tr:hover td{background:#1b2230}
+.t{color:#e6edf3} .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.muted{color:var(--mut);font-size:12px} .ev{color:#adbac7;font-size:12px;max-width:330px}
+.vk{white-space:nowrap} a{color:var(--ac);text-decoration:none} a:hover{text-decoration:underline}
+.bar{display:inline-block;width:60px;height:6px;background:#30363d;border-radius:3px;overflow:hidden;vertical-align:middle;margin-right:6px}
+.fill{height:100%;background:var(--ac)}
+.tag{display:inline-block;padding:1px 7px;border-radius:20px;font-size:11px;font-weight:600}
+.tag.ok{background:rgba(63,185,80,.15);color:var(--ok)} .tag.warn{background:rgba(210,153,34,.15);color:var(--warn)}
+.tag.bad{background:rgba(248,81,73,.15);color:var(--bad)} .tag.stale{background:rgba(210,153,34,.15);color:var(--warn)}
+.tag.muted{background:#21262d;color:var(--mut)}
+.chip{display:inline-block;padding:2px 9px;border-radius:6px;font-size:11px;font-weight:600;color:#fff}
+.c-banned_but_operating{background:#8957e5} .c-sanctioned_vessel_broadcasting{background:#1f6feb} .c-debarred_but_funded{background:#bb4a1d}
+.dbar{position:relative;height:14px;background:#21262d;border-radius:4px}
+.dfill{position:absolute;left:0;top:0;height:100%;background:#30475e;border-radius:4px} .dfill.ld{background:var(--ok)}
+input.f{background:var(--panel);border:1px solid var(--line);color:var(--tx);border-radius:8px;padding:7px 11px;width:280px;margin-bottom:10px;font-size:13px}
+.note{color:var(--mut);font-size:12px;margin:6px 0 0}
+</style></head><body><div class="wrap">
+<h1>Ripple — your backend, at a glance</h1>
+<div class="sub">as of 2026-06-26 · regenerate any time with <code>python3 scripts/build_dashboard.py</code> · every insight links out so you can check it yourself</div>
+
+<div class="tiles">
+  <div class="tile"><div class="n">15</div><div class="l">live insights (detector hits)</div></div>
+  <div class="tile"><div class="n">37</div><div class="l">sources with real data</div></div>
+  <div class="tile"><div class="n" style="color:var(--bad)">17</div><div class="l">loaded but empty/partial</div></div>
+  <div class="tile"><div class="n">17,097,171</div><div class="l">real rows behind them</div></div>
+</div>
+
+<h2>① Your insights — what the detectors found</h2>
+<div class="note">Each row is a cross-dataset hit on a hard ID (no name-guessing). Click <b>verify</b> to check it at the source.</div>
+<input class="f" placeholder="filter insights… (e.g. hospital, vessel, debarred)" onkeyup="flt(this,'tIns')">
+<table id="tIns"><thead><tr><th>Detector</th><th>Finding</th><th>Score</th><th>Evidence</th><th>Verify</th></tr></thead>
+<tbody><tr data-rule="banned_but_operating">
+      <td><span class="chip c-banned_but_operating">Banned providers still on hospital rosters</span></td>
+      <td class="t">Alexander Frank — OIG-excluded (1128a2, 2025-08-20); affiliated with 12 CMS facilities</td>
+      <td><div class="bar"><div class="fill" style="width:100%"></div></div><span class="muted">1.00</span></td>
+      <td class="ev">UNIVERSAL HEALTHCARE · FAITH HOME CARE SERVICES, L.L.C. · ALLIANCEHEALTH DURANT · MEMORIAL HEALTH · Nursing home · COMPLETE HOSPICE CARE OF SOUTHERN OKLAHOMA  (+6 more)</td>
+      <td class="vk"><span class="muted">NPI: 1164450573</span><br><a href="https://npiregistry.cms.hhs.gov/provider-view/1164450573" target="_blank">verify ↗</a></td>
+    </tr><tr data-rule="banned_but_operating">
+      <td><span class="chip c-banned_but_operating">Banned providers still on hospital rosters</span></td>
+      <td class="t">Domingo Barrientos — OIG-excluded (1128a1, 2025-11-20); affiliated with 7 CMS facilities</td>
+      <td><div class="bar"><div class="fill" style="width:94%"></div></div><span class="muted">0.94</span></td>
+      <td class="ev">GENERATIONS HOSPICE AND PALLIATIVE CARE, INC · DOCTORS PREFERRED HOSPICE, INC · DHS HOSPICE CARE · DAILY SUPPORT HOSPICE, INC. · INTENSIVE HOSPICE CARE, INC. · EMPATHY CARE, INC.  (+1 more)</td>
+      <td class="vk"><span class="muted">NPI: 1184685281</span><br><a href="https://npiregistry.cms.hhs.gov/provider-view/1184685281" target="_blank">verify ↗</a></td>
+    </tr><tr data-rule="banned_but_operating">
+      <td><span class="chip c-banned_but_operating">Banned providers still on hospital rosters</span></td>
+      <td class="t">Earl Maes — OIG-excluded (1128a1, 2025-12-18); affiliated with 5 CMS facilities</td>
+      <td><div class="bar"><div class="fill" style="width:90%"></div></div><span class="muted">0.90</span></td>
+      <td class="ev">LAKE BUTLER HOSPITAL · UNIVERSITY HEALTH TRUMAN MEDICAL CENTER · BAPTIST BEAUMONT HOSPITAL · SOUTHEAST HEALTH MEDICAL CENTER · CARROLLTON REGIONAL MEDICAL CENTER</td>
+      <td class="vk"><span class="muted">NPI: 1699717363</span><br><a href="https://npiregistry.cms.hhs.gov/provider-view/1699717363" target="_blank">verify ↗</a></td>
+    </tr><tr data-rule="banned_but_operating">
+      <td><span class="chip c-banned_but_operating">Banned providers still on hospital rosters</span></td>
+      <td class="t">Gamal Zaki — OIG-excluded (1128a3, 2026-02-19); affiliated with 2 CMS facilities</td>
+      <td><div class="bar"><div class="fill" style="width:84%"></div></div><span class="muted">0.84</span></td>
+      <td class="ev">HENRY FORD ROCHESTER HOSPITAL · COREWELL HEALTH BEAUMONT TROY HOSPITAL</td>
+      <td class="vk"><span class="muted">NPI: 1780674218</span><br><a href="https://npiregistry.cms.hhs.gov/provider-view/1780674218" target="_blank">verify ↗</a></td>
+    </tr><tr data-rule="banned_but_operating">
+      <td><span class="chip c-banned_but_operating">Banned providers still on hospital rosters</span></td>
+      <td class="t">Sadye Dexter — OIG-excluded (1128b4, 2026-06-18); affiliated with 2 CMS facilities</td>
+      <td><div class="bar"><div class="fill" style="width:84%"></div></div><span class="muted">0.84</span></td>
+      <td class="ev">ADVENTHEALTH NEW SMYRNA BEACH · ADVENTHEALTH DAYTONA BEACH</td>
+      <td class="vk"><span class="muted">NPI: 1831714906</span><br><a href="https://npiregistry.cms.hhs.gov/provider-view/1831714906" target="_blank">verify ↗</a></td>
+    </tr><tr data-rule="banned_but_operating">
+      <td><span class="chip c-banned_but_operating">Banned providers still on hospital rosters</span></td>
+      <td class="t">Mike Rostami — OIG-excluded (1128a1, 2026-01-20); affiliated with 2 CMS facilities</td>
+      <td><div class="bar"><div class="fill" style="width:84%"></div></div><span class="muted">0.84</span></td>
+      <td class="ev">HOLLYWOOD PRESBYTERIAN MEDICAL CENTER · CALIPSO HOME HEALTH CARE INC</td>
+      <td class="vk"><span class="muted">NPI: 1720135726</span><br><a href="https://npiregistry.cms.hhs.gov/provider-view/1720135726" target="_blank">verify ↗</a></td>
+    </tr><tr data-rule="banned_but_operating">
+      <td><span class="chip c-banned_but_operating">Banned providers still on hospital rosters</span></td>
+      <td class="t">William Stephan — OIG-excluded (1128a3, 2026-05-20); affiliated with 1 CMS facility</td>
+      <td><div class="bar"><div class="fill" style="width:82%"></div></div><span class="muted">0.82</span></td>
+      <td class="ev">KALEIDA HEALTH</td>
+      <td class="vk"><span class="muted">NPI: 1952370173</span><br><a href="https://npiregistry.cms.hhs.gov/provider-view/1952370173" target="_blank">verify ↗</a></td>
+    </tr><tr data-rule="banned_but_operating">
+      <td><span class="chip c-banned_but_operating">Banned providers still on hospital rosters</span></td>
+      <td class="t">Rajive Das — OIG-excluded (1128b4, 2026-04-20); affiliated with 1 CMS facility</td>
+      <td><div class="bar"><div class="fill" style="width:82%"></div></div><span class="muted">0.82</span></td>
+      <td class="ev">HOLMES REGIONAL MEDICAL CENTER</td>
+      <td class="vk"><span class="muted">NPI: 1659348548</span><br><a href="https://npiregistry.cms.hhs.gov/provider-view/1659348548" target="_blank">verify ↗</a></td>
+    </tr><tr data-rule="banned_but_operating">
+      <td><span class="chip c-banned_but_operating">Banned providers still on hospital rosters</span></td>
+      <td class="t">Amit Shah — OIG-excluded (1128a3, 2026-05-20); affiliated with 1 CMS facility</td>
+      <td><div class="bar"><div class="fill" style="width:82%"></div></div><span class="muted">0.82</span></td>
+      <td class="ev">JACOBI MEDICAL CENTER</td>
+      <td class="vk"><span class="muted">NPI: 1396067682</span><br><a href="https://npiregistry.cms.hhs.gov/provider-view/1396067682" target="_blank">verify ↗</a></td>
+    </tr><tr data-rule="banned_but_operating">
+      <td><span class="chip c-banned_but_operating">Banned providers still on hospital rosters</span></td>
+      <td class="t">Festus Ebonka — OIG-excluded (1128a1, 2025-09-18); affiliated with 1 CMS facility</td>
+      <td><div class="bar"><div class="fill" style="width:82%"></div></div><span class="muted">0.82</span></td>
+      <td class="ev">EAGLE HOME HEALTH AGENCY, INC</td>
+      <td class="vk"><span class="muted">NPI: 1932241007</span><br><a href="https://npiregistry.cms.hhs.gov/provider-view/1932241007" target="_blank">verify ↗</a></td>
+    </tr><tr data-rule="banned_but_operating">
+      <td><span class="chip c-banned_but_operating">Banned providers still on hospital rosters</span></td>
+      <td class="t">Eduardo Miranda — OIG-excluded (1128a1, 2015-06-18); affiliated with 4 CMS facilities</td>
+      <td><div class="bar"><div class="fill" style="width:70%"></div></div><span class="muted">0.70</span></td>
+      <td class="ev">FORT DUNCAN MEDICAL CENTER · DIMMIT REGIONAL HOSPITAL · DOCTORS HOSPITAL OF LAREDO · UVALDE MEMORIAL HOSPITAL</td>
+      <td class="vk"><span class="muted">NPI: 1285673012</span><br><a href="https://npiregistry.cms.hhs.gov/provider-view/1285673012" target="_blank">verify ↗</a></td>
+    </tr><tr data-rule="debarred_but_funded">
+      <td><span class="chip c-debarred_but_funded">Debarred firms still winning federal contracts</span></td>
+      <td class="t">BELLA MIA DONNA LLC — federally debarred (Firm, Ineligible (Proceedings Complete)) by DEFENSE LOGISTICS AGENCY; 257 federal contract awards</td>
+      <td><div class="bar"><div class="fill" style="width:100%"></div></div><span class="muted">1.00</span></td>
+      <td class="ev">BELLA MIA DONNA LLC</td>
+      <td class="vk"><span class="muted">UEI: N2EDPB1SMN55</span><br><a href="https://sam.gov/search/?keywords=N2EDPB1SMN55" target="_blank">verify ↗</a></td>
+    </tr><tr data-rule="debarred_but_funded">
+      <td><span class="chip c-debarred_but_funded">Debarred firms still winning federal contracts</span></td>
+      <td class="t">JANOUSEK TECHNOLOGY — federally debarred (Firm, Ineligible (Proceedings Completed)) by DEFENSE LOGISTICS AGENCY; 1 federal contract awards</td>
+      <td><div class="bar"><div class="fill" style="width:1%"></div></div><span class="muted">0.01</span></td>
+      <td class="ev">JANOUSEK TECHNOLOGY INC</td>
+      <td class="vk"><span class="muted">UEI: RN1USJWZYXH5</span><br><a href="https://sam.gov/search/?keywords=RN1USJWZYXH5" target="_blank">verify ↗</a></td>
+    </tr><tr data-rule="sanctioned_vessel_broadcasting">
+      <td><span class="chip c-sanctioned_vessel_broadcasting">Sanctioned ships still broadcasting AIS</span></td>
+      <td class="t">EDOR — OFAC-sanctioned (IRAN-EO13902, flag Marshall Islands); broadcasting AIS in 514 position reports</td>
+      <td><div class="bar"><div class="fill" style="width:100%"></div></div><span class="muted">1.00</span></td>
+      <td class="ev">FEDOR</td>
+      <td class="vk"><span class="muted">IMO: 9259317</span><br><a href="https://www.marinetraffic.com/en/ais/details/ships/imo:9259317" target="_blank">verify ↗</a></td>
+    </tr><tr data-rule="sanctioned_vessel_broadcasting">
+      <td><span class="chip c-sanctioned_vessel_broadcasting">Sanctioned ships still broadcasting AIS</span></td>
+      <td class="t">LAFIT — OFAC-sanctioned (IRAN-EO13902, flag Sao Tome &amp; Principe); broadcasting AIS in 133 position reports</td>
+      <td><div class="bar"><div class="fill" style="width:66%"></div></div><span class="muted">0.67</span></td>
+      <td class="ev">ADVANTAGE VIRTUE</td>
+      <td class="vk"><span class="muted">IMO: 9379698</span><br><a href="https://www.marinetraffic.com/en/ais/details/ships/imo:9379698" target="_blank">verify ↗</a></td>
+    </tr></tbody></table>
+
+<h2>② Your library — what data is actually in there</h2>
+<div class="note"><span class="tag ok">OK</span> real data · <span class="tag warn">PARTIAL</span> some columns missing · <span class="tag bad">EMPTY</span> looks loaded but isn't (re-ingest). Sampled live.</div>
+<input class="f" placeholder="filter sources… (e.g. cms, sanctions, vessel)" onkeyup="flt(this,'tLib')">
+<table id="tLib"><thead><tr><th>Domain</th><th>Source</th><th>State</th><th>Rows</th><th>Data quality</th><th>Join keys</th></tr></thead>
+<tbody><tr>
+      <td>health_medicine</td>
+      <td class="t">NPPES National Plan and Provider Enumeration System<br><span class="muted">fed_cms_nppes</span></td>
+      <td>modeled</td>
+      <td class="num">9,606,683</td>
+      <td><span class="tag warn">PARTIAL</span> <span class="muted">146/330 cols</span></td>
+      <td class="muted">EIN, NAME, NPI, ZIP</td>
+    </tr><tr>
+      <td>transport_movement</td>
+      <td class="t">NOAA Marine Cadastre Nationwide AIS<br><span class="muted">fed_noaa_ais</span></td>
+      <td>modeled</td>
+      <td class="num">7,296,275</td>
+      <td><span class="tag ok">OK</span> <span class="muted">18/19 cols</span></td>
+      <td class="muted">IMO, LATLON, MMSI</td>
+    </tr><tr>
+      <td>spending_budget</td>
+      <td class="t">USASpending — Federal Prime Contract Awards<br><span class="muted">fed_usaspending_contracts</span></td>
+      <td>landed</td>
+      <td class="num">6,325,622</td>
+      <td><span class="tag ok">OK</span> <span class="muted">35/36 cols</span></td>
+      <td class="muted">DUNS, FIPS, NAICS, UEI</td>
+    </tr><tr>
+      <td>justice_courts</td>
+      <td class="t">FJC Integrated Database — Federal Court Cases<br><span class="muted">fed_fjc_idb</span></td>
+      <td>landed</td>
+      <td class="num">4,126,450</td>
+      <td><span class="tag bad">EMPTY</span> <span class="muted">0/20 cols</span></td>
+      <td class="muted"></td>
+    </tr><tr>
+      <td>health_medicine</td>
+      <td class="t">CMS Doctors &amp; Clinicians — Facility Affiliation (NPI↔CCN crosswalk)<br><span class="muted">fed_cms_facility_affiliation</span></td>
+      <td>landed</td>
+      <td class="num">2,239,952</td>
+      <td><span class="tag ok">OK</span> <span class="muted">9/9 cols</span></td>
+      <td class="muted">CCN, NAME, NPI</td>
+    </tr><tr>
+      <td>open_data_portal</td>
+      <td class="t">Wayback CDX Census — DOJ Epstein Library Listing Pages<br><span class="muted">xc_wayback_doj_epstein</span></td>
+      <td>landed</td>
+      <td class="num">1,537,352</td>
+      <td><span class="tag warn">PARTIAL</span> <span class="muted">1/1 cols</span></td>
+      <td class="muted"></td>
+    </tr><tr>
+      <td>energy_environment</td>
+      <td class="t">Ember Yearly and Monthly Electricity Data<br><span class="muted">intl_ember_elec</span></td>
+      <td>modeled</td>
+      <td class="num">369,264</td>
+      <td><span class="tag ok">OK</span> <span class="muted">18/18 cols</span></td>
+      <td class="muted">COUNTRY</td>
+    </tr><tr>
+      <td>money_in_politics</td>
+      <td class="t">FARA eFile Bulk Data<br><span class="muted">fed_fara_bulk</span></td>
+      <td>modeled</td>
+      <td class="num">221,900</td>
+      <td><span class="tag ok">OK</span> <span class="muted">28/28 cols</span></td>
+      <td class="muted">ADDRESS, COUNTRY, NAME, ZIP</td>
+    </tr><tr>
+      <td>economy_labor_trade</td>
+      <td class="t">Italy ISTAT Statistics API (IstatData/SDMX)<br><span class="muted">intl_it_istat</span></td>
+      <td>modeled</td>
+      <td class="num">213,284</td>
+      <td><span class="tag ok">OK</span> <span class="muted">8/10 cols</span></td>
+      <td class="muted">COUNTRY</td>
+    </tr><tr>
+      <td>spending_budget</td>
+      <td class="t">Ecuador SERCOP Public Procurement OCDS<br><span class="muted">intl_ec_sercop</span></td>
+      <td>modeled</td>
+      <td class="num">132,995</td>
+      <td><span class="tag ok">OK</span> <span class="muted">29/30 cols</span></td>
+      <td class="muted">NAME</td>
+    </tr><tr>
+      <td>justice_courts</td>
+      <td class="t">Supreme Court Database (SCDB)<br><span class="muted">fed_scdb</span></td>
+      <td>modeled</td>
+      <td class="num">83,644</td>
+      <td><span class="tag ok">OK</span> <span class="muted">61/61 cols</span></td>
+      <td class="muted">DOCKET</td>
+    </tr><tr>
+      <td>health_medicine</td>
+      <td class="t">List of Excluded Individuals and Entities (LEIE)<br><span class="muted">fed_hhs_oig_leie</span></td>
+      <td>landed</td>
+      <td class="num">83,464</td>
+      <td><span class="tag ok">OK</span> <span class="muted">17/18 cols</span></td>
+      <td class="muted">ADDRESS, EIN, NAME, NPI, ZIP</td>
+    </tr><tr>
+      <td>health_medicine</td>
+      <td class="t">CMS Provider of Services — Hospital &amp; Non-Hospital Facilities<br><span class="muted">fed_cms_pos_other</span></td>
+      <td>landed</td>
+      <td class="num">44,429</td>
+      <td><span class="tag warn">PARTIAL</span> <span class="muted">191/473 cols</span></td>
+      <td class="muted">CCN, FIPS, NAME, ZIP</td>
+    </tr><tr>
+      <td>targeted_investigation</td>
+      <td class="t">XC_WAYBACK_REPLAY_DOJ_LISTING<br><span class="muted">xc_wayback_replay_doj_listing</span></td>
+      <td>landed</td>
+      <td class="num">24,897</td>
+      <td><span class="tag warn">PARTIAL</span> <span class="muted">1/1 cols</span></td>
+      <td class="muted"></td>
+    </tr><tr>
+      <td>sanctions_enforcement</td>
+      <td class="t">OFAC Specially Designated Nationals (SDN) List<br><span class="muted">fed_ofac_sdn</span></td>
+      <td>landed</td>
+      <td class="num">19,115</td>
+      <td><span class="tag ok">OK</span> <span class="muted">13/13 cols</span></td>
+      <td class="muted">IMO</td>
+    </tr><tr>
+      <td>health_medicine</td>
+      <td class="t">CMS Nursing Home Care Compare Datasets<br><span class="muted">fed_cms_nursing_home</span></td>
+      <td>modeled</td>
+      <td class="num">14,700</td>
+      <td><span class="tag ok">OK</span> <span class="muted">98/109 cols</span></td>
+      <td class="muted">ADDRESS, CCN, FIPS, LATLON, NAME, NPI, ZIP</td>
+    </tr><tr>
+      <td>health_medicine</td>
+      <td class="t">CMS Care Compare — Home Health Agencies<br><span class="muted">fed_cms_home_health</span></td>
+      <td>landed</td>
+      <td class="num">12,392</td>
+      <td><span class="tag ok">OK</span> <span class="muted">96/96 cols</span></td>
+      <td class="muted">ADDRESS, CCN, NAME, ZIP</td>
+    </tr><tr>
+      <td>corporate_entities</td>
+      <td class="t">SEC EDGAR Company Tickers<br><span class="muted">fed_sec_edgar_company_tickers</span></td>
+      <td>modeled</td>
+      <td class="num">10,414</td>
+      <td><span class="tag ok">OK</span> <span class="muted">4/4 cols</span></td>
+      <td class="muted">CIK</td>
+    </tr><tr>
+      <td>housing_social</td>
+      <td class="t">Mapping Inequality: Redlining in New Deal America v3<br><span class="muted">fed_mapping_inequality</span></td>
+      <td>modeled</td>
+      <td class="num">10,154</td>
+      <td><span class="tag ok">OK</span> <span class="muted">7/12 cols</span></td>
+      <td class="muted">FIPS, GEOM, LATLON</td>
+    </tr><tr>
+      <td>science_research</td>
+      <td class="t">USGS Earthquake Catalog API (FDSN)<br><span class="muted">fed_usgs_earthquakes</span></td>
+      <td>landed</td>
+      <td class="num">9,890</td>
+      <td><span class="tag ok">OK</span> <span class="muted">22/22 cols</span></td>
+      <td class="muted">FIPS, LATLON</td>
+    </tr><tr>
+      <td>economy_labor_trade</td>
+      <td class="t">Treasury Debt to the Penny<br><span class="muted">fed_treasury_debt_to_penny</span></td>
+      <td>modeled</td>
+      <td class="num">8,329</td>
+      <td><span class="tag ok">OK</span> <span class="muted">11/15 cols</span></td>
+      <td class="muted"></td>
+    </tr><tr>
+      <td>health_medicine</td>
+      <td class="t">CMS Care Compare — Dialysis Facility Listing<br><span class="muted">fed_cms_dialysis</span></td>
+      <td>landed</td>
+      <td class="num">7,557</td>
+      <td><span class="tag ok">OK</span> <span class="muted">142/142 cols</span></td>
+      <td class="muted">ADDRESS, CCN, NAME, ZIP</td>
+    </tr><tr>
+      <td>health_medicine</td>
+      <td class="t">CMS Care Compare — Hospice General Information<br><span class="muted">fed_cms_hospice</span></td>
+      <td>landed</td>
+      <td class="num">6,852</td>
+      <td><span class="tag ok">OK</span> <span class="muted">11/12 cols</span></td>
+      <td class="muted">ADDRESS, CCN, NAME, ZIP</td>
+    </tr><tr>
+      <td>health_medicine</td>
+      <td class="t">Healthcare Provider Cost Reporting Information System (HCRIS)<br><span class="muted">fed_cms_hcris</span></td>
+      <td>modeled</td>
+      <td class="num">6,103</td>
+      <td><span class="tag ok">OK</span> <span class="muted">117/117 cols</span></td>
+      <td class="muted">ADDRESS, CCN, NAME, NPI, ZIP</td>
+    </tr><tr>
+      <td>health_medicine</td>
+      <td class="t">CMS Care Compare — Hospital General Information<br><span class="muted">fed_cms_hospital_general</span></td>
+      <td>landed</td>
+      <td class="num">5,432</td>
+      <td><span class="tag ok">OK</span> <span class="muted">38/38 cols</span></td>
+      <td class="muted">ADDRESS, CCN, NAME, ZIP</td>
+    </tr><tr>
+      <td>health_medicine</td>
+      <td class="t">FDA Drug Enforcement Reports (Recalls)<br><span class="muted">fed_fda_drug_enforcement</span></td>
+      <td>modeled</td>
+      <td class="num">5,000</td>
+      <td><span class="tag ok">OK</span> <span class="muted">24/25 cols</span></td>
+      <td class="muted">ADDRESS, COUNTRY, ZIP</td>
+    </tr><tr>
+      <td>government_power</td>
+      <td class="t">Federal Register Documents<br><span class="muted">fed_federal_register_documents</span></td>
+      <td>modeled</td>
+      <td class="num">5,000</td>
+      <td><span class="tag warn">PARTIAL</span> <span class="muted">9/29 cols</span></td>
+      <td class="muted"></td>
+    </tr><tr>
+      <td>economy_labor_trade</td>
+      <td class="t">Treasury Average Interest Rates<br><span class="muted">fed_treasury_avg_interest_rates</span></td>
+      <td>modeled</td>
+      <td class="num">4,961</td>
+      <td><span class="tag ok">OK</span> <span class="muted">11/11 cols</span></td>
+      <td class="muted"></td>
+    </tr><tr>
+      <td>economy_labor_trade</td>
+      <td class="t">FDIC Failed Banks<br><span class="muted">fed_fdic_failed_banks</span></td>
+      <td>modeled</td>
+      <td class="num">4,115</td>
+      <td><span class="tag ok">OK</span> <span class="muted">33/39 cols</span></td>
+      <td class="muted">FIPS, NAME</td>
+    </tr><tr>
+      <td>targeted_investigation</td>
+      <td class="t">XC_WAYBACK_REPLAY_DOJ_DEEP_PAGES<br><span class="muted">xc_wayback_replay_doj_deep_pages</span></td>
+      <td>landed</td>
+      <td class="num">2,542</td>
+      <td><span class="tag warn">PARTIAL</span> <span class="muted">1/1 cols</span></td>
+      <td class="muted"></td>
+    </tr><tr>
+      <td>justice_courts</td>
+      <td class="t">HUDOC — ECHR Case-Law Database<br><span class="muted">intl_hudoc</span></td>
+      <td>modeled</td>
+      <td class="num">2,000</td>
+      <td><span class="tag ok">OK</span> <span class="muted">18/18 cols</span></td>
+      <td class="muted">COUNTRY, NAME</td>
+    </tr><tr>
+      <td>health_medicine</td>
+      <td class="t">CMS Care Compare — Inpatient Rehabilitation Facility General Information<br><span class="muted">fed_cms_irf</span></td>
+      <td>landed</td>
+      <td class="num">1,222</td>
+      <td><span class="tag ok">OK</span> <span class="muted">12/12 cols</span></td>
+      <td class="muted">ADDRESS, CCN, NAME, ZIP</td>
+    </tr><tr>
+      <td>government_power</td>
+      <td class="t">DOJ Epstein Library — File Manifest<br><span class="muted">fed_doj_epstein_library</span></td>
+      <td>landed</td>
+      <td class="num">777</td>
+      <td><span class="tag warn">PARTIAL</span> <span class="muted">1/1 cols</span></td>
+      <td class="muted"></td>
+    </tr><tr>
+      <td>history_culture</td>
+      <td class="t">NARA Access to Archival Databases (AAD)<br><span class="muted">fed_nara_aad</span></td>
+      <td>modeled</td>
+      <td class="num">554</td>
+      <td><span class="tag warn">PARTIAL</span> <span class="muted">3/10 cols</span></td>
+      <td class="muted">FIPS</td>
+    </tr><tr>
+      <td>health_medicine</td>
+      <td class="t">ClinicalTrials.gov API + AACT<br><span class="muted">fed_clinicaltrials</span></td>
+      <td>modeled</td>
+      <td class="num">500</td>
+      <td><span class="tag ok">OK</span> <span class="muted">35/35 cols</span></td>
+      <td class="muted">NAME, NPI</td>
+    </tr><tr>
+      <td>money_finance</td>
+      <td class="t">CFPB Consumer Complaints<br><span class="muted">fed_cfpb_complaints</span></td>
+      <td>modeled</td>
+      <td class="num">500</td>
+      <td><span class="tag ok">OK</span> <span class="muted">16/17 cols</span></td>
+      <td class="muted">NAME, ZIP</td>
+    </tr><tr>
+      <td>science_research</td>
+      <td class="t">bioRxiv / medRxiv API<br><span class="muted">xc_biorxiv_medrxiv</span></td>
+      <td>modeled</td>
+      <td class="num">432</td>
+      <td><span class="tag ok">OK</span> <span class="muted">24/41 cols</span></td>
+      <td class="muted"></td>
+    </tr><tr>
+      <td>government_power</td>
+      <td class="t">Revolving Door Project Personnel Map and Trump Administration Trackers<br><span class="muted">fed_revolvingdoor_project</span></td>
+      <td>modeled</td>
+      <td class="num">409</td>
+      <td><span class="tag ok">OK</span> <span class="muted">37/37 cols</span></td>
+      <td class="muted">NAME</td>
+    </tr><tr>
+      <td>health_medicine</td>
+      <td class="t">CMS Care Compare — Long-Term Care Hospital General Information<br><span class="muted">fed_cms_ltch</span></td>
+      <td>landed</td>
+      <td class="num">311</td>
+      <td><span class="tag ok">OK</span> <span class="muted">13/13 cols</span></td>
+      <td class="muted">ADDRESS, CCN, NAME, ZIP</td>
+    </tr><tr>
+      <td>history_culture</td>
+      <td class="t">Intra-American Slave Trade Database (SlaveVoyages)<br><span class="muted">fed_slavevoyages_intraamerican</span></td>
+      <td>landed</td>
+      <td class="num">201</td>
+      <td><span class="tag warn">PARTIAL</span> <span class="muted">1/14 cols</span></td>
+      <td class="muted">COUNTRY, FIPS</td>
+    </tr><tr>
+      <td>spending_budget</td>
+      <td class="t">USAspending Top-Tier Federal Agencies<br><span class="muted">fed_usaspending_toptier_agencies</span></td>
+      <td>landed</td>
+      <td class="num">111</td>
+      <td><span class="tag ok">OK</span> <span class="muted">13/13 cols</span></td>
+      <td class="muted">NAME</td>
+    </tr><tr>
+      <td>corporate_entities</td>
+      <td class="t">XC_WIKIPEDIA_LARGEST_US_COMPANIES<br><span class="muted">xc_wikipedia_largest_us_companies</span></td>
+      <td>landed</td>
+      <td class="num">100</td>
+      <td><span class="tag ok">OK</span> <span class="muted">7/7 cols</span></td>
+      <td class="muted">NAME</td>
+    </tr><tr>
+      <td>history_culture</td>
+      <td class="t">Born in Slavery: Slave Narratives from the Federal Writers&#x27; Project, 1936–1938<br><span class="muted">fed_wpa_slave_narratives</span></td>
+      <td>modeled</td>
+      <td class="num">100</td>
+      <td><span class="tag ok">OK</span> <span class="muted">10/13 cols</span></td>
+      <td class="muted">FIPS</td>
+    </tr><tr>
+      <td>spending_budget</td>
+      <td class="t">TAGGS — Tracking Accountability in Government Grants System<br><span class="muted">fed_hhs_taggs</span></td>
+      <td>modeled</td>
+      <td class="num">45</td>
+      <td><span class="tag warn">PARTIAL</span> <span class="muted">1/19 cols</span></td>
+      <td class="muted">EIN, FIPS, ZIP</td>
+    </tr><tr>
+      <td>corporate_entities</td>
+      <td class="t">Greece General Electronic Commercial Registry (GEMI)<br><span class="muted">intl_gr_gemi</span></td>
+      <td>modeled</td>
+      <td class="num">40</td>
+      <td><span class="tag warn">PARTIAL</span> <span class="muted">1/14 cols</span></td>
+      <td class="muted">NAME</td>
+    </tr><tr>
+      <td>history_culture</td>
+      <td class="t">Records About Japanese Americans Relocated During World War II (NARA AAD Series 623)<br><span class="muted">fed_nara_wra_aad</span></td>
+      <td>modeled</td>
+      <td class="num">36</td>
+      <td><span class="tag warn">PARTIAL</span> <span class="muted">2/12 cols</span></td>
+      <td class="muted">FIPS</td>
+    </tr><tr>
+      <td>justice_courts</td>
+      <td class="t">NAAG Multistate Settlements Database<br><span class="muted">fed_naag_multistate_settlements</span></td>
+      <td>modeled</td>
+      <td class="num">26</td>
+      <td><span class="tag warn">PARTIAL</span> <span class="muted">3/10 cols</span></td>
+      <td class="muted">NAME</td>
+    </tr><tr>
+      <td>justice_courts</td>
+      <td class="t">Oyez Project<br><span class="muted">fed_oyez</span></td>
+      <td>modeled</td>
+      <td class="num">25</td>
+      <td><span class="tag ok">OK</span> <span class="muted">15/19 cols</span></td>
+      <td class="muted">DOCKET, NAME</td>
+    </tr><tr>
+      <td>corporate_entities</td>
+      <td class="t">Spain BORME (Boletín Oficial del Registro Mercantil)<br><span class="muted">intl_es_borme</span></td>
+      <td>modeled</td>
+      <td class="num">25</td>
+      <td><span class="tag ok">OK</span> <span class="muted">6/11 cols</span></td>
+      <td class="muted">COUNTRY</td>
+    </tr><tr>
+      <td>justice_courts</td>
+      <td class="t">DOJ False Claims Act Settlements and Judgments<br><span class="muted">fed_doj_fca_settlements</span></td>
+      <td>modeled</td>
+      <td class="num">19</td>
+      <td><span class="tag ok">OK</span> <span class="muted">9/15 cols</span></td>
+      <td class="muted"></td>
+    </tr><tr>
+      <td>corporate_entities</td>
+      <td class="t">Switzerland Zefix Central Business Name Index<br><span class="muted">intl_ch_zefix</span></td>
+      <td>modeled</td>
+      <td class="num">18</td>
+      <td><span class="tag warn">PARTIAL</span> <span class="muted">4/17 cols</span></td>
+      <td class="muted">ADDRESS, COUNTRY, NAME</td>
+    </tr><tr>
+      <td>justice_courts</td>
+      <td class="t">FDIC Enforcement Decisions and Orders<br><span class="muted">fed_fdic_enforcement</span></td>
+      <td>modeled</td>
+      <td class="num">14</td>
+      <td><span class="tag warn">PARTIAL</span> <span class="muted">2/2 cols</span></td>
+      <td class="muted"></td>
+    </tr><tr>
+      <td>corporate_entities</td>
+      <td class="t">Ireland CRO Open Data Portal<br><span class="muted">intl_ie_cro</span></td>
+      <td>modeled</td>
+      <td class="num">3</td>
+      <td><span class="tag ok">OK</span> <span class="muted">5/9 cols</span></td>
+      <td class="muted">COUNTRY, NAME</td>
+    </tr><tr>
+      <td>justice_courts</td>
+      <td class="t">DOJ Civil Rights Division Cases and Settlements Database<br><span class="muted">fed_doj_crt_cases</span></td>
+      <td>modeled</td>
+      <td class="num">1</td>
+      <td><span class="tag warn">PARTIAL</span> <span class="muted">3/10 cols</span></td>
+      <td class="muted"></td>
+    </tr></tbody></table>
+
+<h2>③ Your domains — coverage by topic</h2>
+<div class="note">Bar = sources scouted/tagged; green = actually loaded.</div>
+<table id="tDom"><thead><tr><th>Domain</th><th>Coverage</th><th>Sources</th><th>Loaded</th><th>Rows</th></tr></thead>
+<tbody><tr>
+      <td class="t">health_medicine</td>
+      <td style="width:55%"><div class="dbar"><div class="dfill" style="width:100%"></div>
+        <div class="dfill ld" style="width:11%"></div></div></td>
+      <td class="num">117 <span class="muted">src</span></td>
+      <td class="num">14 <span class="muted">loaded</span></td>
+      <td class="num muted">12,078,668 rows</td>
+    </tr><tr>
+      <td class="t">economy_labor_trade</td>
+      <td style="width:55%"><div class="dbar"><div class="dfill" style="width:92%"></div>
+        <div class="dfill ld" style="width:7%"></div></div></td>
+      <td class="num">108 <span class="muted">src</span></td>
+      <td class="num">9 <span class="muted">loaded</span></td>
+      <td class="num muted">275,581 rows</td>
+    </tr><tr>
+      <td class="t">justice_courts</td>
+      <td style="width:55%"><div class="dbar"><div class="dfill" style="width:57%"></div>
+        <div class="dfill ld" style="width:6%"></div></div></td>
+      <td class="num">67 <span class="muted">src</span></td>
+      <td class="num">8 <span class="muted">loaded</span></td>
+      <td class="num muted">4,212,179 rows</td>
+    </tr><tr>
+      <td class="t">corporate_entities</td>
+      <td style="width:55%"><div class="dbar"><div class="dfill" style="width:72%"></div>
+        <div class="dfill ld" style="width:5%"></div></div></td>
+      <td class="num">85 <span class="muted">src</span></td>
+      <td class="num">6 <span class="muted">loaded</span></td>
+      <td class="num muted">36,422 rows</td>
+    </tr><tr>
+      <td class="t">government_power</td>
+      <td style="width:55%"><div class="dbar"><div class="dfill" style="width:42%"></div>
+        <div class="dfill ld" style="width:3%"></div></div></td>
+      <td class="num">50 <span class="muted">src</span></td>
+      <td class="num">4 <span class="muted">loaded</span></td>
+      <td class="num muted">6,688 rows</td>
+    </tr><tr>
+      <td class="t">spending_budget</td>
+      <td style="width:55%"><div class="dbar"><div class="dfill" style="width:36%"></div>
+        <div class="dfill ld" style="width:3%"></div></div></td>
+      <td class="num">43 <span class="muted">src</span></td>
+      <td class="num">4 <span class="muted">loaded</span></td>
+      <td class="num muted">6,469,179 rows</td>
+    </tr><tr>
+      <td class="t">history_culture</td>
+      <td style="width:55%"><div class="dbar"><div class="dfill" style="width:30%"></div>
+        <div class="dfill ld" style="width:3%"></div></div></td>
+      <td class="num">36 <span class="muted">src</span></td>
+      <td class="num">4 <span class="muted">loaded</span></td>
+      <td class="num muted">891 rows</td>
+    </tr><tr>
+      <td class="t">sanctions_enforcement</td>
+      <td style="width:55%"><div class="dbar"><div class="dfill" style="width:5%"></div>
+        <div class="dfill ld" style="width:3%"></div></div></td>
+      <td class="num">6 <span class="muted">src</span></td>
+      <td class="num">4 <span class="muted">loaded</span></td>
+      <td class="num muted">20,115 rows</td>
+    </tr><tr>
+      <td class="t">science_research</td>
+      <td style="width:55%"><div class="dbar"><div class="dfill" style="width:62%"></div>
+        <div class="dfill ld" style="width:1%"></div></div></td>
+      <td class="num">73 <span class="muted">src</span></td>
+      <td class="num">2 <span class="muted">loaded</span></td>
+      <td class="num muted">10,322 rows</td>
+    </tr><tr>
+      <td class="t">energy_environment</td>
+      <td style="width:55%"><div class="dbar"><div class="dfill" style="width:47%"></div>
+        <div class="dfill ld" style="width:1%"></div></div></td>
+      <td class="num">55 <span class="muted">src</span></td>
+      <td class="num">2 <span class="muted">loaded</span></td>
+      <td class="num muted">400,405 rows</td>
+    </tr><tr>
+      <td class="t">money_finance</td>
+      <td style="width:55%"><div class="dbar"><div class="dfill" style="width:25%"></div>
+        <div class="dfill ld" style="width:1%"></div></div></td>
+      <td class="num">30 <span class="muted">src</span></td>
+      <td class="num">2 <span class="muted">loaded</span></td>
+      <td class="num muted">500 rows</td>
+    </tr><tr>
+      <td class="t">targeted_investigation</td>
+      <td style="width:55%"><div class="dbar"><div class="dfill" style="width:1%"></div>
+        <div class="dfill ld" style="width:1%"></div></div></td>
+      <td class="num">2 <span class="muted">src</span></td>
+      <td class="num">2 <span class="muted">loaded</span></td>
+      <td class="num muted">27,439 rows</td>
+    </tr><tr>
+      <td class="t">housing_social</td>
+      <td style="width:55%"><div class="dbar"><div class="dfill" style="width:82%"></div>
+        <div class="dfill ld" style="width:0%"></div></div></td>
+      <td class="num">97 <span class="muted">src</span></td>
+      <td class="num">1 <span class="muted">loaded</span></td>
+      <td class="num muted">115,327 rows</td>
+    </tr><tr>
+      <td class="t">transport_movement</td>
+      <td style="width:55%"><div class="dbar"><div class="dfill" style="width:76%"></div>
+        <div class="dfill ld" style="width:0%"></div></div></td>
+      <td class="num">89 <span class="muted">src</span></td>
+      <td class="num">1 <span class="muted">loaded</span></td>
+      <td class="num muted">7,364,839 rows</td>
+    </tr><tr>
+      <td class="t">money_in_politics</td>
+      <td style="width:55%"><div class="dbar"><div class="dfill" style="width:34%"></div>
+        <div class="dfill ld" style="width:0%"></div></div></td>
+      <td class="num">40 <span class="muted">src</span></td>
+      <td class="num">1 <span class="muted">loaded</span></td>
+      <td class="num muted">221,900 rows</td>
+    </tr><tr>
+      <td class="t">education</td>
+      <td style="width:55%"><div class="dbar"><div class="dfill" style="width:45%"></div>
+        <div class="dfill ld" style="width:0%"></div></div></td>
+      <td class="num">53 <span class="muted">src</span></td>
+      <td class="num">0 <span class="muted">loaded</span></td>
+      <td class="num muted">26,857 rows</td>
+    </tr><tr>
+      <td class="t">procurement_intl</td>
+      <td style="width:55%"><div class="dbar"><div class="dfill" style="width:23%"></div>
+        <div class="dfill ld" style="width:0%"></div></div></td>
+      <td class="num">27 <span class="muted">src</span></td>
+      <td class="num">0 <span class="muted">loaded</span></td>
+      <td class="num muted">0 rows</td>
+    </tr><tr>
+      <td class="t">crime_security</td>
+      <td style="width:55%"><div class="dbar"><div class="dfill" style="width:21%"></div>
+        <div class="dfill ld" style="width:0%"></div></div></td>
+      <td class="num">25 <span class="muted">src</span></td>
+      <td class="num">0 <span class="muted">loaded</span></td>
+      <td class="num muted">18,734 rows</td>
+    </tr><tr>
+      <td class="t">geo_demographics</td>
+      <td style="width:55%"><div class="dbar"><div class="dfill" style="width:18%"></div>
+        <div class="dfill ld" style="width:0%"></div></div></td>
+      <td class="num">22 <span class="muted">src</span></td>
+      <td class="num">0 <span class="muted">loaded</span></td>
+      <td class="num muted"> rows</td>
+    </tr><tr>
+      <td class="t">elections_voting</td>
+      <td style="width:55%"><div class="dbar"><div class="dfill" style="width:4%"></div>
+        <div class="dfill ld" style="width:0%"></div></div></td>
+      <td class="num">5 <span class="muted">src</span></td>
+      <td class="num">0 <span class="muted">loaded</span></td>
+      <td class="num muted">15 rows</td>
+    </tr><tr>
+      <td class="t">immigration_migration</td>
+      <td style="width:55%"><div class="dbar"><div class="dfill" style="width:1%"></div>
+        <div class="dfill ld" style="width:0%"></div></div></td>
+      <td class="num">2 <span class="muted">src</span></td>
+      <td class="num">0 <span class="muted">loaded</span></td>
+      <td class="num muted">0 rows</td>
+    </tr></tbody></table>
+
+<script>
+function flt(inp,id){var q=inp.value.toLowerCase();document.querySelectorAll('#'+id+' tbody tr').forEach(function(r){r.style.display=r.innerText.toLowerCase().indexOf(q)>-1?'':'none';});}
+document.querySelectorAll('th').forEach(function(th){th.addEventListener('click',function(){
+ var tb=th.closest('table').querySelector('tbody'),i=[...th.parentNode.children].indexOf(th),
+ rs=[...tb.rows],asc=th._asc=!th._asc;
+ rs.sort(function(a,b){var x=a.cells[i].innerText.replace(/[,$]/g,''),y=b.cells[i].innerText.replace(/[,$]/g,'');
+ var nx=parseFloat(x),ny=parseFloat(y);if(!isNaN(nx)&&!isNaN(ny))return asc?nx-ny:ny-nx;
+ return asc?x.localeCompare(y):y.localeCompare(x);});rs.forEach(function(r){tb.appendChild(r);});});});
+</script>
+</div></body></html>
