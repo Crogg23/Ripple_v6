@@ -2,6 +2,78 @@
 Last updated: 2026-06-25
 
 ## CURRENT FOCUS
+**Session 2026-06-25 (latest) — ORGANIZED THE LIBRARY: built a faceted CATALOG over
+SOURCE_REGISTRY as a backend navigation tool.** The registry had 593 blank-CATEGORY rows + 165
+inconsistent labels — unnavigable. Reframed organization as a FACETED catalog (tag every source on
+independent axes, not one folder tree) after a 3-scheme design bake-off (faceted beat subject-first /
+investigation-first, 45 vs 39/39). Stress-tested the design via an 11-agent adversarial workflow
+(85 raw defects / ~20 distinct root issues, 15+ critical — RUN_TS dead column, a magic-5000 lifecycle
+threshold that mislabeled 27 complete loads as 'sampled', marts case-mismatch, Python-list-can't-bind-as-
+ARRAY, a 39%-coverage crosswalk; all folded into `outputs/library_org_BUILD_SPEC_2026-06-25.md`), gated
+GO-WITH-FIXES on a live dry-run, and BUILT it. Snapshot `_SOURCE_REGISTRY_BAK_20260625` taken FIRST;
+additive-only, idempotent, per-pass verify.
+
+**Live in `LIBRARY_META.REGISTRY` (verified — all invariants pass, 0 vocab offenders):**
+- 11 new facet columns on SOURCE_REGISTRY: DOMAIN_PRIMARY, DOMAIN_SECONDARY[], ENTITY_TYPES[],
+  JOIN_KEYS_STD[], JOIN_KEY_TIER, JOIN_KEY_TIER_PROVISIONAL, THEMES[], HAS_EVENTS, DOMAIN_SOURCE,
+  DOMAIN_CONFIDENCE, NEEDS_TOPIC.
+- **`CATALOG`** (view, v2 post-audit) — the one-stop query: every source × facets + DERIVED LIFECYCLE
+  (scouted 853 / sampled 595 / failed 59 / modeled 34 / empty 28 / landed 20 / stale 3) + TRUST_LAYER +
+  LANDING_FQN + IS_ORPHAN + MART_ROW_COUNT + IS_SAMPLE. 1592 rows (1506 registry + 86 run-orphans).
+- 3 FLATTEN bridges (`V_SOURCE_DOMAIN/_THEME/_KEY`), `V_DOMAIN_SUMMARY` (browse menu by data volume),
+  `V_REVIEW_QUEUE` (596 to topic-tag/classify). `FACET_VOCAB` (71 controlled values) +
+  `FACET_CROSSWALK` (all 165 raw categories → 22 domains).
+- Facets filled: JURISDICTION from prefix (0 US/blank); JOIN_KEYS_STD = column fingerprint (646
+  MEASURED, PROVISIONAL=FALSE) + free-text-derived (518 CLAIMED, PROVISIONAL=TRUE); DOMAIN via the
+  crosswalk (every source classified, 0 NULL); 593 portals → open_data_portal (NEEDS_TOPIC=TRUE);
+  epstein THEME (191). Other 9 themes + ENTITY_TYPES are agent-assigned later (landed-first).
+- Onboarding wired FORWARD: `register.py` writes the new facets, ARRAY-safe via `PARSE_JSON(%s)` +
+  `json.dumps` (the load-bearing fix — a naked Python list silently SPLATTED into adjacent columns,
+  corrupting every onboarded row); `prompts/generate_catalog.txt` emits the vocab tokens; `naming.py`
+  `normalize_jurisdiction` kills US→federal at the source. dbt vocab guard STAGED
+  (`ripple_dbt/seeds/facet_vocab_*.csv` + `models/registry/_meta.yml`, relationships tests @ warn) —
+  dbt not installed here, but SQL vocab conformance already verified 0 offenders across all 6 facets.
+
+**Moat now queryable (impossible before):** "everything carrying a vessel ID (IMO/MMSI)" = OFAC SDN +
+8 ship feeds in one WHERE; STEEL-key sources (NPI/UEI/CIK/CCN/IMO) as a filter; THEME=epstein as a column.
+
+**Process (all logged):** design workflow (9 agents) → stress-test workflow (11 agents, GO-WITH-FIXES
+gate w/ live dry-run) → 6 build passes w/ per-pass verify → independent audit workflow (5 agents, 32
+confirmed findings, 11 must-fix) → ROUND-2 FIXES. Artifacts in `outputs/`:
+`library_organization_design_2026-06-25.md`, `library_org_BUILD_SPEC_2026-06-25.md`,
+`library_inventory_2026-06-25.xlsx`.
+
+**Round-2 (audit fixes) — DONE:** (1) STUB-MART GATE: a mart ≤3 rows over landing >100 no longer reads
+as 'modeled' — `fed_fjc_idb` (4.1M court rows, 1-row broken mart) + slavevoyages demoted modeled→landed.
+(2) JOIN-KEY UNION+GATING: re-derived JOIN_KEYS_STD = fingerprint ∪ free-text (my Pass 2 had REPLACED, so
+flagship moat sources showed []); domain-gated PATENT/CCN/DOCKET (Utah land-patents 14→0, parcel dockets
+110→15, bus-stop CCN gated to the 10 real health sources); added NOAA AIS `IMO` (IMO moat 1→2 sources).
+(3) LIFECYCLE: split `failed`(59) from `stale`(3); added `IS_SAMPLE` + `MART_ROW_COUNT`. (4) 16 domain
+misfiles corrected `DOMAIN_SOURCE='human'` (SAM→sanctions, USASpending contracts→spending, company
+registries GLEIF/OpenCorporates/Zefix/CRO/GEMI/BORME/SEC-EDGAR→corporate, FCC→government, basemaps→geo,
+3 UNCLASSIFIED stubs). Audit-clean confirmed: bridge views, tier math, vocab (0 offenders), V_DOMAIN_SUMMARY
+math, IS_ORPHAN logic.
+
+**Round-3 (taxonomy + portals) — DONE:** #17 earthquakes/seismic/elevation → science_research (unified
+earth-science monitoring); #21 FBI crime data → crime_security; #6 keyword-re-domained 367 of the 593
+NEEDS_TOPIC portals off their real titles (housing 83 / economy 67 / health 63 / transport 49 / education
+42 / …) at DOMAIN_CONFIDENCE='low' (stay in V_REVIEW_QUEUE) — 226 genuinely-ambiguous stay open_data_portal.
+Browse menu now real: health 117 / economy 108 / housing 97 / transport 89 / corporate 85 sources.
+**STILL DEFERRED (Chris):** broken dbt mart REBUILDS (fjc_idb/slavevoyages/hhs_taggs — catalog correctly
+distrusts them via the stub gate, but the marts themselves need rebuilding in dbt); 2 legit USPTO PATENT
+sources gated out with the Utah land-patents (re-add if the PATENT moat matters); confirm the 226
+low-confidence portal domains; Pass 0h grants (run scripts/grant_mcp_readonly_catalog.py).
+
+## NEXT ACTION
+**Pass 0h grants** is the only build step left — grant read role `CLAUDE_MCP_READONLY` SELECT on
+LANDING + REGISTRY views + MARTS so the MCP server can query the catalog. The agent is classifier-blocked
+from running grants AND from self-editing permissions, so this one is Chris's: run
+`python3 scripts/grant_mcp_readonly_catalog.py` (idempotent, read-only, has an as-role verify), or add a
+Bash allow-rule for it. Then: fold in audit-workflow findings; agent-assign the other 9 THEMES +
+ENTITY_TYPES at the REGISTRY checkpoint (landed-first); topic-tag the 593 NEEDS_TOPIC portals; install dbt
+→ run vocab tests → promote warn→error. (Money/maritime detector work below is PRIOR focus — resume after.)
+
+## PRIOR FOCUS — money + maritime layer
 **Session 2026-06-25 (later) — WIDE-NET EXPANSION: money + maritime domains, and a
 GENERALIZED detector engine.** Strategy turn with Chris reframed the goal: this is HIS
 investigative tool (NOT a product, for now), and the instinct is a WIDE NET — pour in

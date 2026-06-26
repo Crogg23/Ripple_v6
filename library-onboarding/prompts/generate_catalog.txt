@@ -14,7 +14,13 @@ Return STRICT JSON only with exactly these keys:
 {
   "accountability_relevance": "2-3 sentences: what this source lets an investigator do, its grain, and how it connects to other sources via the join keys",
   "epstein_relevant": "yes | no | maybe -- is this directly useful to the Epstein-related investigations?",
-  "notes": "any caveats, quirks, or data-quality warnings worth recording"
+  "notes": "any caveats, quirks, or data-quality warnings worth recording",
+  "domain_primary": "exactly ONE of: money_finance spending_budget government_power money_in_politics justice_courts health_medicine sanctions_enforcement corporate_entities energy_environment geo_demographics crime_security economy_labor_trade history_culture transport_movement housing_social science_research procurement_intl education elections_voting immigration_migration open_data_portal targeted_investigation",
+  "domain_secondary": ["array, 0-3 more of the domain tokens above, excluding domain_primary"],
+  "entity_types": ["array, 0+ of: person company organization vessel aircraft facility place payment filing case asset event"],
+  "themes": ["array, 0+ of: follow_the_money power_who_holds_it harm_to_people sanctions_illicit revolving_door corporate_ownership enforcement_actions public_health_safety civil_rights_history epstein"],
+  "domain_confidence": "high | low -- how sure are you about domain_primary"
 }
 
+Pick domain_primary from the list ONLY -- never invent a token. If nothing fits, use "UNCLASSIFIED" and set domain_confidence to "low".
 Be factual and concrete. If you don't know, say so rather than speculating.

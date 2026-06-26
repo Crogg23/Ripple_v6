@@ -10,3 +10,6 @@ __pycache__/
 
 # dev/test caches
 .pytest_cache/
+
+# office lock/temp files (created while an .xlsx is open)
+~$*

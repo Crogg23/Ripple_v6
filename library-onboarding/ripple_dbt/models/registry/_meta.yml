@@ -1,0 +1,68 @@
+# Faceted-catalog vocab enforcement. SOURCE_REGISTRY is not a dbt model, so we
+# declare it (and the bridge views) as a dbt SOURCE and test facet columns with
+# `relationships` against the facet_vocab_* seeds -- the real single-source-of-truth.
+# Tests start at severity:warn; promote to error once Passes 1-5 verify clean
+# (see outputs/library_org_BUILD_SPEC_2026-06-25.md, Pass 6).
+version: 2
+
+sources:
+  - name: ripple_meta
+    database: LIBRARY_META
+    schema: REGISTRY
+    tables:
+      - name: SOURCE_REGISTRY
+        columns:
+          - name: DOMAIN_PRIMARY
+            data_tests:
+              - relationships:
+                  to: ref('facet_vocab_domain')
+                  field: VALUE
+                  config: { severity: warn }
+          - name: JURISDICTION
+            data_tests:
+              - relationships:
+                  to: ref('facet_vocab_jurisdiction')
+                  field: VALUE
+                  config: { severity: warn }
+      - name: V_SOURCE_THEME
+        columns:
+          - name: THEME
+            data_tests:
+              - relationships:
+                  to: ref('facet_vocab_theme')
+                  field: VALUE
+                  config: { severity: warn }
+      - name: V_SOURCE_KEY
+        columns:
+          - name: JOIN_KEY
+            data_tests:
+              - relationships:
+                  to: ref('facet_vocab_joinkey')
+                  field: VALUE
+                  config: { severity: warn }
+      - name: V_SOURCE_DOMAIN
+        columns:
+          - name: DOMAIN
+            data_tests:
+              - relationships:
+                  to: ref('facet_vocab_domain')
+                  field: VALUE
+                  config: { severity: warn }
+
+seeds:
+  - name: facet_vocab_domain
+    columns:
+      - name: VALUE
+        data_tests: [not_null, unique]
+  - name: facet_vocab_jurisdiction
+    columns:
+      - name: VALUE
+        data_tests: [not_null, unique]
+  - name: facet_vocab_theme
+    columns:
+      - name: VALUE
+        data_tests: [not_null, unique]
+  - name: facet_vocab_joinkey
+    columns:
+      - name: VALUE
+        data_tests: [not_null, unique]

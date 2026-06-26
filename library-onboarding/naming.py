@@ -55,6 +55,24 @@ def prefix_for(jurisdiction: str) -> str:
     return JURISDICTION_PREFIX.get((jurisdiction or "").strip().lower(), "xc")
 
 
+# Inbound jurisdiction aliases -> the five canonical full words. Pass 1 of the
+# faceted-catalog build cleaned the stray 'US' rows; this guard stops loaders
+# from reintroducing them.
+_JURISDICTION_ALIASES = {
+    "us": "federal", "usa": "federal", "u.s.": "federal", "u.s": "federal",
+    "fed": "federal", "intl": "international", "xc": "cross-cutting",
+    "loc": "local", "st": "state",
+}
+
+
+def normalize_jurisdiction(jurisdiction: str) -> str:
+    """Collapse loose/legacy jurisdiction values to a canonical full word."""
+    j = (jurisdiction or "").strip().lower()
+    if j in JURISDICTION_PREFIX:  # already canonical (federal/international/...)
+        return j
+    return _JURISDICTION_ALIASES.get(j, j)
+
+
 def source_id(name: str, jurisdiction: str) -> str:
     """Derive a conforming SOURCE_ID: ``<prefix>_<slug(name)>``.
 

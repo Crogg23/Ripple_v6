@@ -356,14 +356,30 @@ Load from `.env` (full list: `library-onboarding/.env.example`). Never commit se
 
 ## Already in the Library
 
-Source of truth is the registry — check `LIBRARY_META.REGISTRY.SOURCE_REGISTRY` (rows with `INCLUDE='Y'`) and `LIBRARY_RAW.LANDING` before onboarding; don't re-onboard what's there.
+**Source of truth is the faceted catalog: `LIBRARY_META.REGISTRY.CATALOG`** (a view over
+`SOURCE_REGISTRY`, built 2026-06-25). Query it before onboarding — don't re-onboard what's there.
+Every source carries: `DOMAIN_PRIMARY` (one of 22, e.g. `health_medicine`, `money_finance`),
+`DOMAIN_SECONDARY[]`, `JURISDICTION`, `ENTITY_TYPES[]`, `JOIN_KEYS_STD[]` + `JOIN_KEY_TIER`
+(STEEL/STRONG/GEO/PROBABILISTIC; `JOIN_KEY_TIER_PROVISIONAL=FALSE` means measured from real columns),
+`THEMES[]`, and a DERIVED `LIFECYCLE` (`scouted`/`queued`/`sampled`/`landed`/`modeled`/`stale`/`empty`)
++ `TRUST_LAYER` + `LANDING_FQN`. Vocab is governed by `FACET_VOCAB`.
 
-Currently landed in `LIBRARY_RAW.LANDING`:
-- `FED_USGS_EARTHQUAKES` — USGS earthquake feed (rolling 30-day)
-- `FED_HHS_OIG_LEIE` — HHS-OIG List of Excluded Individuals/Entities
-- `FED_USASPENDING_SUBAWARDS` — USAspending subawards (proof slice)
-- `FED_DOJ_EPSTEIN_LIBRARY` — DOJ Epstein Library listing
-- `XC_WAYBACK_DOJ_EPSTEIN` / `XC_WAYBACK_REPLAY_DOJ_LISTING` / `XC_WAYBACK_REPLAY_DOJ_DEEP_PAGES` — Internet Archive captures + replays
+```sql
+-- what's actually landed, by domain
+SELECT domain_primary, COUNT(*) FROM LIBRARY_META.REGISTRY.CATALOG
+WHERE lifecycle IN ('landed','modeled') GROUP BY 1 ORDER BY 2 DESC;
+-- the browse menu (real domains by data volume)
+SELECT * FROM LIBRARY_META.REGISTRY.V_DOMAIN_SUMMARY;
+-- moat: filter on any axis -- e.g. everything carrying a vessel ID
+SELECT c.source_id, c.domain_primary FROM LIBRARY_META.REGISTRY.CATALOG c
+JOIN LIBRARY_META.REGISTRY.V_SOURCE_KEY k USING (source_id) WHERE k.join_key IN ('IMO','MMSI');
+```
+
+Scale as of 2026-06-25: **1,506 sources cataloged · 54 with full data (18 landed + 36 modeled) · 594
+sampled (mostly the 593 open-data portals) · 854 scouted.** The bridge views (`V_SOURCE_DOMAIN`,
+`V_SOURCE_THEME`, `V_SOURCE_KEY`) let you filter by `=` instead of array functions; `V_REVIEW_QUEUE`
+holds what still needs a human topic/classification call. Helper script + design/build docs:
+`scripts/grant_mcp_readonly_catalog.py`, `outputs/library_org_BUILD_SPEC_2026-06-25.md`.
 
 ---
 
