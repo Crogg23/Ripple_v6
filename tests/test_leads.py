@@ -28,6 +28,30 @@ def test_compiled_sql_covers_all_sources():
         assert roster in sql
 
 
+# ---- publish-safety wiring (the gate is now ON the canonical read) -------------
+
+def test_auto_publish_tier_is_off_by_default():
+    """No lead auto-publishes on its uncalibrated SCORE — naming a real person as fact
+    requires an explicit human verdict (or a future calibrated tier wired in _auto_publishable)."""
+    assert leads._auto_publishable({"LEAD_ID": "x", "SCORE": 0.99}) is False
+
+
+def test_gate_marks_unreviewed_pending_not_published():
+    rows = [{"LEAD_ID": "a", "TITLE": "someone"}, {"LEAD_ID": "b", "TITLE": "another"}]
+    out = {r["LEAD_ID"]: r for r in leads._gate(rows, {"a": "confirmed"})}
+    assert out["a"]["REVIEW_STATE"] == "confirmed" and out["a"]["PUBLISHED"] is True
+    assert out["b"]["REVIEW_STATE"] == "pending" and out["b"]["PUBLISHED"] is False  # unreviewed != fact
+
+
+def test_gate_drops_rejected_and_only_publishable_keeps_confirmed():
+    rows = [{"LEAD_ID": x} for x in "abc"]
+    decisions = {"a": "confirmed", "b": "rejected"}      # c is unreviewed
+    survivors = {r["LEAD_ID"] for r in leads._gate(rows, decisions)}
+    assert survivors == {"a", "c"}                       # rejected 'b' is gone
+    strict = leads._gate([{"LEAD_ID": x} for x in "abc"], decisions, only_publishable=True)
+    assert {r["LEAD_ID"] for r in strict} == {"a"}       # only the human-confirmed publishes
+
+
 def test_run_job_refuses_without_guard():
     spec = {k: v for k, v in JOBS["banned_but_operating"].items() if k != "no_fanout_guard"}
     with pytest.raises(ValueError):

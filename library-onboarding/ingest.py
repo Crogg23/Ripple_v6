@@ -32,6 +32,149 @@ META_SOURCE_RUN_ID = "_SOURCE_RUN_ID"
 META_SRC_SHA256 = "_SRC_SHA256"
 SAMPLE_ROWS = 5
 
+# Provenance/meta columns we stamp onto every landed frame. The density gate must
+# IGNORE these -- they're always 100% populated and would mask an empty source.
+_META_COLS = frozenset({META_INGESTED_AT, META_SOURCE_RUN_ID, META_SRC_SHA256})
+
+# ---------------------------------------------------------------------------
+# Density gate (P0-1) -- the load-time trust fix
+# ---------------------------------------------------------------------------
+# The systemic gap: FED_FJC_IDB landed 4.1M rows, logged STATUS='success', and rode
+# into the catalog as a 'modeled' mart -- while being 100% EMPTY across every column
+# (a parse failure where the source columns all collapsed to a single blank value).
+# A "success" with no actual data is a false positive that poisons the catalog.
+#
+# This gate measures how much real data a frame carries, at load time, and DEMOTES
+# an effectively-empty load to a new STATUS ('empty') instead of 'success'. Healthy
+# loads are untouched: they keep STATUS='success' with identical behaviour.
+#
+# Pure + importable + offline-testable (no Snowflake, no I/O) on purpose.
+
+# DEFENSIBLE FLOOR: a frame must populate at least this fraction of its (source-
+# column) cells. 1% sits FAR below any legitimate table and FAR above a broken one:
+#   * A real wide table fills its key/identifier columns on every row plus a spread
+#     of optional fields, so even a sparse 200-column frame clears 1% comfortably
+#     (2 always-filled key columns alone = 1.0%). We don't false-demote real data.
+#   * The FJC_IDB failure mode is ~0% -- literally every source cell blank.
+# So 1% cleanly separates "a real but sparse table" from "a parse that produced no
+# data". We also demote on a STRUCTURAL signal (below), independent of the fraction.
+DENSITY_MIN_POPULATED_FRACTION = 0.01
+
+# Cap the rows we scan so the gate is cheap on a multi-million-row frame. A uniform
+# head sample is representative for density (a parse failure is uniform across rows).
+DENSITY_SAMPLE_ROWS = 2000
+
+
+def _is_blank(v) -> bool:
+    """A cell carries no data: None/NaN, or empty/whitespace-only after strip."""
+    if v is None:
+        return True
+    # pandas NaN (and pd.NA) are not None but compare unequal to themselves.
+    try:
+        if v != v:  # NaN
+            return True
+    except Exception:
+        pass
+    return str(v).strip() == ""
+
+
+def assess_density(df, sample_rows: int = DENSITY_SAMPLE_ROWS) -> dict:
+    """Measure how much real data a frame carries. PURE -- no I/O, no Snowflake.
+
+    Looks only at SOURCE columns (the provenance/meta stamps are excluded, since
+    they're always populated and would otherwise mask an empty source). Returns a
+    dict describing the frame's density and whether it should be DEMOTED.
+
+    Keys:
+      populated_fraction   -- non-blank cells / total cells (source columns, sample)
+      all_blank_cols       -- count of source columns that are entirely blank
+      source_cols          -- count of source columns considered
+      single_distinct_blank-- True if EVERY source column collapses to one blank value
+      rows_sampled         -- rows actually scanned
+      empty                -- True => demote this load (record STATUS='empty')
+      reason               -- human-readable why (for the INGEST_RUNS message)
+    """
+    cols = [c for c in getattr(df, "columns", []) if c not in _META_COLS]
+    n_rows = int(len(df))
+    n_cols = len(cols)
+
+    # Degenerate shapes are empty by definition.
+    if n_cols == 0 or n_rows == 0:
+        return {
+            "populated_fraction": 0.0, "all_blank_cols": n_cols, "source_cols": n_cols,
+            "single_distinct_blank": True, "rows_sampled": 0, "empty": True,
+            "reason": "no source columns" if n_cols == 0 else "no rows",
+        }
+
+    sample = df.head(sample_rows) if sample_rows and n_rows > sample_rows else df
+    rows_sampled = int(len(sample))
+
+    populated_cells = 0
+    all_blank_cols = 0
+    single_distinct_blank_cols = 0
+    for col in cols:
+        series = sample[col]
+        blank_mask = series.map(_is_blank)
+        n_blank = int(blank_mask.sum())
+        populated_cells += rows_sampled - n_blank
+        if n_blank == rows_sampled:
+            all_blank_cols += 1
+        # The FJC_IDB tell: the column has exactly ONE distinct value and it's blank.
+        try:
+            distinct = series.dropna().map(lambda v: str(v).strip()).unique()
+        except Exception:
+            distinct = []
+        if len(distinct) <= 1 and (len(distinct) == 0 or distinct[0] == ""):
+            single_distinct_blank_cols += 1
+
+    total_cells = rows_sampled * n_cols
+    populated_fraction = (populated_cells / total_cells) if total_cells else 0.0
+    single_distinct_blank = single_distinct_blank_cols == n_cols
+
+    # DEMOTE when the data is effectively absent. Two triggers, EITHER sufficient:
+    #
+    #  (a) FLOOR  -- the populated-cell fraction is below the floor. This is the
+    #      primary, numeric signal and it alone catches FED_FJC_IDB (~0% populated)
+    #      and the "one stray cell in a huge blank frame" case (1/50_000 << 1%).
+    #
+    #  (b) STRUCTURAL collapse -- EVERY source column collapses to a single blank
+    #      distinct value (the literal FJC_IDB shape). This is a 0%-density condition
+    #      by definition, so it can only be true when (a) is already true; it stays as
+    #      an explicit, named catch for clarity in the logged reason.
+    #
+    # We deliberately do NOT demote on "most columns are blank" alone: a legitimate
+    # wide table can carry its data in a few always-full key columns (e.g. 2 full key
+    # cols + 198 optional-blank cols == exactly the floor) and that is REAL data. The
+    # floor -- not the blank-column count -- decides, so such a table is NOT demoted.
+    below_floor = populated_fraction < DENSITY_MIN_POPULATED_FRACTION
+    empty = below_floor or single_distinct_blank
+
+    if not empty:
+        reason = ""
+    elif single_distinct_blank:
+        reason = "every source column collapsed to a single blank value"
+    else:
+        reason = (f"populated-cell fraction {populated_fraction:.2%} below the "
+                  f"{DENSITY_MIN_POPULATED_FRACTION:.0%} floor "
+                  f"({all_blank_cols}/{n_cols} source columns entirely blank)")
+
+    return {
+        "populated_fraction": round(populated_fraction, 6),
+        "all_blank_cols": all_blank_cols,
+        "source_cols": n_cols,
+        "single_distinct_blank": single_distinct_blank,
+        "rows_sampled": rows_sampled,
+        "empty": empty,
+        "reason": reason,
+    }
+
+
+def _density_note(d: dict) -> str:
+    """One-line density summary for the INGEST_RUNS message (the JSON-ish field)."""
+    return (f"density={d['populated_fraction']:.2%} "
+            f"(source_cols={d['source_cols']}, all_blank_cols={d['all_blank_cols']}, "
+            f"rows_sampled={d['rows_sampled']})")
+
 
 # ---------------------------------------------------------------------------
 # Checkpoint 2 -- generate the ingestion script
@@ -161,8 +304,29 @@ def run_ingest(config: dict, code: str) -> dict:
         try:
             _load_landing(conn, df, table, overwrite=not incremental)
             ended = _utcnow()
+            # DENSITY GATE: the load landed, but did it carry real data? An
+            # effectively-empty frame (the FED_FJC_IDB failure: 4.1M rows, every
+            # source column blank) is recorded as STATUS='empty' -- NOT 'success' --
+            # so it can't ride into the catalog as a real source. Healthy frames
+            # clear the gate and keep STATUS='success' with identical behaviour.
+            density = assess_density(df)
+            result["density"] = density["populated_fraction"]
+            if density["empty"]:
+                _log_run(conn, source_id, run_id, "empty", len(df), file_bytes, sha, url,
+                         started, ended,
+                         f"EMPTY LOAD -- {density['reason']}. {_density_note(density)}. "
+                         f"Landed {len(df):,} rows into LIBRARY_RAW.LANDING.{table} but the "
+                         "frame carries no real data (likely parse failure / schema drift). "
+                         "Not counted as a successful source.")
+                result["status"] = (
+                    f"EMPTY -- landed {len(df):,} rows into LIBRARY_RAW.LANDING.{table} but "
+                    f"{density['reason']} ({_density_note(density)}); logged STATUS='empty'."
+                )
+                result["empty"] = True
+                return result
             _log_run(conn, source_id, run_id, "success", len(df), file_bytes, sha, url,
-                     started, ended, _auto_message(config, len(df)))
+                     started, ended,
+                     f"{_auto_message(config, len(df))} {_density_note(density)}.")
             if incremental:
                 result["status"] = (
                     f"Appended {len(df):,} rows (incremental since {since or 'start'}) "
@@ -225,17 +389,37 @@ def _run_chunked(config: dict, code: str, run_id: str, started, source_id: str,
 
     conn = snow.connect()
     try:
-        appended, manifest_sha, file_bytes, columns, sample = _load_landing_chunked(
+        appended, manifest_sha, file_bytes, columns, sample, density = _load_landing_chunked(
             conn, chunk_iter, table, run_id, started,
             resume_from_row=resume_from, fresh=not resume, max_rows=max_rows,
         )
         ended = _utcnow()
         total = resume_from + appended
+        # DENSITY GATE (chunked): the stream landed, but is it real data? An
+        # effectively-empty stream is logged STATUS='empty', not 'success', so it
+        # can't masquerade as a real source. Healthy streams are untouched.
+        if density["empty"]:
+            _log_run(conn, source_id, run_id, "empty", appended, file_bytes, manifest_sha,
+                     url, started, ended,
+                     f"EMPTY LOAD -- {density['reason']}. {_density_note(density)}. "
+                     f"Chunked-streamed {appended:,} rows into LIBRARY_RAW.LANDING.{table} "
+                     "but the frame carries no real data (likely parse failure / schema "
+                     "drift). Not counted as a successful source. "
+                     f"Manifest sha {manifest_sha[:12]}.")
+            return {
+                "run_id": run_id, "sha256": manifest_sha, "file_bytes": file_bytes,
+                "rows": appended, "load_mode": "chunked", "resumed_from": resume_from,
+                "columns": ", ".join(map(str, columns)), "sample_rows": sample,
+                "density": density["populated_fraction"], "empty": True,
+                "status": (f"EMPTY -- streamed {appended:,} rows into "
+                           f"LIBRARY_RAW.LANDING.{table} but {density['reason']} "
+                           f"({_density_note(density)}); logged STATUS='empty'."),
+            }
         verb = f"resumed from row {resume_from:,}; appended" if resume else "streamed"
         msg = (f"Chunked load: {verb} {appended:,} rows in batches of {chunk_rows:,} "
                f"-> LIBRARY_RAW.LANDING.{table} (table now {total:,} rows"
                + (f"; capped at {max_rows:,}/run)." if max_rows else ").")
-               + f" Manifest sha {manifest_sha[:12]}.")
+               + f" Manifest sha {manifest_sha[:12]}. {_density_note(density)}.")
         _log_run(conn, source_id, run_id, "success", appended, file_bytes, manifest_sha,
                  url, started, ended, msg)
         status = (f"Streamed {appended:,} rows in {chunk_rows:,}-row chunks "
@@ -245,6 +429,7 @@ def _run_chunked(config: dict, code: str, run_id: str, started, source_id: str,
             "run_id": run_id, "sha256": manifest_sha, "file_bytes": file_bytes,
             "rows": appended, "load_mode": "chunked", "resumed_from": resume_from,
             "columns": ", ".join(map(str, columns)), "sample_rows": sample,
+            "density": density["populated_fraction"],
             "status": status,
         }
     except Exception as exc:
@@ -327,6 +512,8 @@ def _load_landing_chunked(conn, chunk_iter, table: str, run_id: str, started,
     chunk_shas: list[str] = []
     columns: list = []
     sample: list = []
+    density_frames: list = []  # bounded row sample (across chunks) for the density gate
+    density_rows = 0
     n = 0
     # Resume is enforced HERE, not in the generated code: a resumed fetch re-yields
     # the file from the start, and we drop the rows already landed. This is dup-safe
@@ -367,6 +554,13 @@ def _load_landing_chunked(conn, chunk_iter, table: str, run_id: str, started,
         if n == 0:
             columns = list(out.columns)
             sample = out.head(SAMPLE_ROWS).astype(str).to_dict(orient="records")
+        # Accumulate a bounded row sample for the density gate. The whole file is
+        # never in memory, so we sample the leading rows across chunks (a parse
+        # failure is uniform, so the head is representative).
+        if density_rows < DENSITY_SAMPLE_ROWS:
+            take = out.head(DENSITY_SAMPLE_ROWS - density_rows)
+            density_frames.append(take)
+            density_rows += len(take)
         appended += len(chunk)
         n += 1
         print(f"  chunk {n}: +{len(chunk):,} rows "
@@ -382,7 +576,19 @@ def _load_landing_chunked(conn, chunk_iter, table: str, run_id: str, started,
             "wrong format?)."
         )
     manifest_sha = hashlib.sha256("".join(chunk_shas).encode("utf-8")).hexdigest()
-    return appended, manifest_sha, file_bytes, columns, sample
+    # Density over the bounded leading-row sample (meta stamps excluded by the gate).
+    if density_frames:
+        import pandas as pd
+        density = assess_density(pd.concat(density_frames, ignore_index=True))
+    else:
+        density = assess_density(_empty_like(columns))
+    return appended, manifest_sha, file_bytes, columns, sample, density
+
+
+def _empty_like(columns: list):
+    """A 0-row frame with the given columns (for assessing a no-data chunked load)."""
+    import pandas as pd
+    return pd.DataFrame(columns=list(columns) or ["COL"])
 
 
 def _landing_count(conn, table: str) -> int:
