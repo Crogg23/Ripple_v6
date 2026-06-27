@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 scripts/bridge_fuel_load.py:*)",
+      "Bash(python3 -m connect leads:*)",
+      "Bash(python3 -m connect harvest:*)",
+      "Bash(python3 -m connect fingerprint:*)",
+      "Bash(python3 -m connect discover:*)",
+      "Bash(python3 scripts/lead_receipt.py:*)"
+    ]
+  }
+}

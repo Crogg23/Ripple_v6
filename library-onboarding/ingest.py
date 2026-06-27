@@ -486,12 +486,36 @@ def _stringify(df):
     return df
 
 
+# Snowflake reserved words that are INVALID as unquoted identifiers. Landing
+# columns are created unquoted (write_pandas quote_identifiers=False), so a source
+# column literally named one of these (e.g. a portal "group"/"order"/"values"
+# column) crashes the CREATE TABLE with "unexpected 'GROUP'". Prefix to dodge it.
+# (Only columns that would otherwise FAIL are touched -- no working load regresses.)
+_SF_RESERVED = frozenset({
+    "ACCOUNT", "ALL", "ALTER", "AND", "ANY", "AS", "BETWEEN", "BY", "CASE", "CAST",
+    "CHECK", "COLUMN", "CONNECT", "CONNECTION", "CONSTRAINT", "CREATE", "CROSS",
+    "CURRENT", "CURRENT_DATE", "CURRENT_TIME", "CURRENT_TIMESTAMP", "CURRENT_USER",
+    "DATABASE", "DELETE", "DISTINCT", "DROP", "ELSE", "EXISTS", "FALSE", "FOLLOWING",
+    "FOR", "FROM", "FULL", "GRANT", "GROUP", "GSCLUSTER", "HAVING", "ILIKE", "IN",
+    "INCREMENT", "INNER", "INSERT", "INTERSECT", "INTO", "IS", "ISSUE", "JOIN",
+    "LATERAL", "LEFT", "LIKE", "LOCALTIME", "LOCALTIMESTAMP", "MINUS", "NATURAL",
+    "NOT", "NULL", "OF", "ON", "OR", "ORDER", "ORGANIZATION", "QUALIFY", "REGEXP",
+    "REVOKE", "RIGHT", "RLIKE", "ROW", "ROWS", "SAMPLE", "SCHEMA", "SELECT", "SET",
+    "SOME", "START", "TABLE", "TABLESAMPLE", "THEN", "TO", "TRIGGER", "TRUE",
+    "TRY_CAST", "UNION", "UNIQUE", "UPDATE", "USING", "VALUES", "VIEW", "WHEN",
+    "WHENEVER", "WHERE", "WITH",
+})
+
+
 def _sf_col(name) -> str:
     """Sanitize to an unquoted, uppercase Snowflake identifier (matches LANDING)."""
     clean = re.sub(r"[^0-9A-Za-z_]+", "_", str(name)).strip("_") or "COL"
     if clean[0].isdigit():
         clean = "C_" + clean
-    return clean.upper()
+    clean = clean.upper()
+    if clean in _SF_RESERVED:
+        clean = "C_" + clean
+    return clean
 
 
 def _df_bytes(df) -> bytes:

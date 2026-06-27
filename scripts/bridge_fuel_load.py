@@ -68,8 +68,14 @@ UA = {"User-Agent": "Mozilla/5.0 (ripple-bridge-fuel-loader)"}
 # dicts (no import of this module → no cycle). Loaded lazily in main().
 # --------------------------------------------------------------------------- #
 def _load_specs() -> dict[str, dict]:
-    import bridge_fuel_specs  # scripts/bridge_fuel_specs.py
-    return {d["source_id"]: d for d in bridge_fuel_specs.SPECS}
+    import bridge_fuel_specs  # scripts/bridge_fuel_specs.py (curated crosswalk + payload specs)
+    specs = {d["source_id"]: d for d in bridge_fuel_specs.SPECS}
+    try:  # auto-generated, live-verified backfill batch (scripts/backfill_specs.py)
+        import backfill_specs
+        specs.update({d["source_id"]: d for d in backfill_specs.SPECS})
+    except ModuleNotFoundError:
+        pass
+    return specs
 
 
 # --------------------------------------------------------------------------- #
@@ -383,13 +389,27 @@ def _load_chunked(conn, s, src, opts, table, run_id, started, sid, do_run) -> di
 
 
 # --------------------------------------------------------------------------- #
+def _run_one(s: dict, args) -> dict:
+    """Load one spec, catching its own errors so one failure can't kill a batch."""
+    try:
+        return load_spec(s, do_run=args.run, force=args.force, refresh=args.refresh)
+    except Exception as e:  # noqa: BLE001
+        print(f"    [{s['source_id']}] ERROR: {str(e)[:160]}")
+        return {"source_id": s["source_id"], "status": f"ERROR: {str(e)[:90]}"}
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description="LLM-free bulk loader for known bridge-fuel sources")
-    ap.add_argument("--spec", help="source_id to load, or 'all'")
+    ap.add_argument("--spec", help="source_id, comma-list of source_ids, or 'all'")
     ap.add_argument("--list", action="store_true", help="list known specs")
     ap.add_argument("--run", action="store_true", help="actually land (default previews)")
     ap.add_argument("--force", action="store_true", help="reload even if already landed")
     ap.add_argument("--refresh", action="store_true", help="re-fetch; skip if content sha unchanged")
+    ap.add_argument("--workers", type=int, default=1,
+                    help="parallel loads (each gets its own Snowflake connection). The warehouse "
+                         "runs concurrent COPYs at no extra credit cost — uptime is billed, not "
+                         "queries — so N>1 is near-free speedup for a many-source backfill. Keep "
+                         "modest (4-8): local download bandwidth + disk, not the warehouse, is the cap.")
     args = ap.parse_args(argv)
 
     try:
@@ -404,16 +424,29 @@ def main(argv=None) -> int:
             print(f"  {k:36} keys={v.get('join_keys','')!r:24} {v.get('name','')[:50]}")
         return 0
 
-    targets = list(specs.values()) if args.spec == "all" else [specs[args.spec]]
-    results = []
-    for s in targets:
-        try:
-            results.append(load_spec(s, do_run=args.run, force=args.force, refresh=args.refresh))
-        except Exception as e:  # noqa: BLE001
-            print(f"    ERROR: {str(e)[:160]}")
-            results.append({"source_id": s["source_id"], "status": f"ERROR: {str(e)[:90]}"})
+    if args.spec == "all":
+        targets = list(specs.values())
+    else:                                   # single id or comma-separated list
+        ids = [s.strip() for s in args.spec.split(",") if s.strip()]
+        missing = [i for i in ids if i not in specs]
+        if missing:
+            raise SystemExit(f"unknown spec(s): {missing}. known: {list(specs)}")
+        targets = [specs[i] for i in ids]
+
+    workers = max(1, min(args.workers, len(targets)))
+    if workers > 1:
+        print(f"running {len(targets)} specs across {workers} workers "
+              f"({'LANDING' if args.run else 'PREVIEW'})…")
+        import concurrent.futures as cf
+        with cf.ThreadPoolExecutor(max_workers=workers) as ex:
+            results = list(ex.map(lambda s: _run_one(s, args), targets))
+    else:
+        results = [_run_one(s, args) for s in targets]
+
     landed = [r for r in results if r.get("status") == "loaded"]
-    print(f"\n{len(landed)}/{len(results)} loaded, {sum(r.get('rows', 0) for r in landed):,} rows.")
+    errored = [r for r in results if str(r.get("status", "")).startswith("ERROR")]
+    print(f"\n{len(landed)}/{len(results)} loaded, {sum(r.get('rows', 0) for r in landed):,} rows."
+          + (f" {len(errored)} errored: {[r['source_id'] for r in errored]}" if errored else ""))
     return 0
 
 

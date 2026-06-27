@@ -118,4 +118,37 @@ JOBS: dict[str, dict] = {
         "score": {"breadth_w": 1.0, "breadth_div": 100.0},
         "no_fanout_guard": True,
     },
+
+    # HEALTH × MONEY on NPI — an OIG-excluded provider still receiving pharma/device
+    # payments (CMS Open Payments / Sunshine Act). NPI is a 10-char STEEL key, so a hit
+    # is the SAME provider OIG excluded; require_surname corroborates against a fat-finger
+    # NPI. breadth = number of Open Payments records that NPI pulled. NEUTRAL phrasing
+    # ("appears in N records") on purpose: co-occurrence on NPI is FACT-grade, but
+    # "paid WHILE excluded" only holds when EXCLDATE precedes the payment year — that
+    # timeline lives in the evidence (excldate), not the title, so the title never
+    # overclaims for the later-excluded cases (e.g. paid in 2024, excluded 2025).
+    "banned_but_paid": {
+        "rule_name": "banned_but_paid",
+        "title_template": ("{l_first} {l_last} — OIG-excluded ({excltype}, {excldate}); "
+                           "appears in {count} CMS Open Payments record(s)"),
+        "left": {
+            "table": "FED_HHS_OIG_LEIE",
+            "key": "NPI", "key_col": "NPI",
+            "name_cols": ["LASTNAME", "FIRSTNAME"],
+            "carry": {"EXCLTYPE": "EXCLTYPE", "EXCLDATE": "EXCLDATE",
+                      "CITY": "CITY", "STATE": "STATE"},
+        },
+        "right": {
+            "table": "FED_CMS_OPEN_PAYMENTS",
+            "key": "NPI", "key_col": "NPI",
+            "name_cols": ["COVERED_RECIPIENT_LAST_NAME", "COVERED_RECIPIENT_FIRST_NAME"],
+            "carry": {"PAYER": "APPLICABLE_MANUFACTURER_OR_APPLICABLE_GPO_MAKING_PAYMENT_NAME",
+                      "NATURE": "NATURE_OF_PAYMENT_OR_TRANSFER_OF_VALUE"},
+        },
+        "require_surname": True,
+        "score": {"name_w": 0.4, "breadth_w": 0.6, "breadth_div": 50.0},
+        "title_titlecase": ["l_first", "l_last"],
+        "title_dates": ["excldate"],
+        "no_fanout_guard": True,
+    },
 }

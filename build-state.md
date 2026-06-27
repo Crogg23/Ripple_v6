@@ -1,7 +1,62 @@
 # Build State
 Last updated: 2026-06-26
 
-## CURRENT FOCUS
+## CURRENT FOCUS — MOVE #2: PORTAL FIREHOSE (2026-06-26, latest)
+**Ran the LLM-free portal harvester to bulk-load key-overlapping datasets, then re-measured the
+connection graph BEFORE vs AFTER. Net: +63 connected sources, +4,851 connections, +124,807 rows —
+but the headline finding is that the connectable pool is ~drained and `discover` (not the harvest)
+is the real cost hog.**
+
+**WHAT HAPPENED (all query-proven):**
+- Harvester verified live first (both Socrata + ArcGIS fetch templates still work — no drift since June).
+- **Connectable pool = 731 entity-key portal datasets, but 593 were ALREADY landed (June harvest).**
+  Only **138 were new.** `--connectable --limit N` re-selects the same top-ranked pool every run and
+  skips already-landed, so --limit never paginates to the new tail — loaded the 138 via a Python-side
+  filter (`scratchpad/load_new_connectable.py`: select connectable, diff vs existing LANDING, load_one each).
+- **Loaded 62 / 138** (124,807 rows). 28 empty, 48 errors — the leftovers are mostly dead endpoints
+  (gov ArcGIS 400/500, "no FeatureServer url"); June already creamed the healthy ones.
+- **FIXED a real shared-loader bug** (`library-onboarding/ingest.py._sf_col`, UNCOMMITTED): landing
+  columns are created UNQUOTED (write_pandas `quote_identifiers=False`), so a source column literally
+  named a Snowflake reserved word (`group`/`order`/`values`/…) crashed CREATE TABLE with
+  `unexpected 'GROUP'`. Added a reserved-word guard (prefix `C_`). Only touches columns that ALREADY
+  failed → no regression. This rescued ~all 62 loads (Utah/CT/CO/WA Socrata were the 'GRO' victims).
+
+**BEFORE → AFTER (full `fingerprint`+`discover`, identical settings both passes):**
+| metric | BEFORE | AFTER | Δ |
+|---|---|---|---|
+| total connections | 15,845 | 20,696 | +4,851 |
+| connected sources | 575 | 638 | +63 |
+| STEEL (hard-ID) | 336 | 350 | +14 |
+| STRONG (NAICS/SIC/docket) | 6,215 | 9,396 | +3,181 |
+| GEO | 5,386 | 5,633 | +247 |
+| name+place / fuzzy | 3,775 | 5,184 | +1,409 |
+
+**THE FIND:** of the 62 new tables' 4,851 edges, **178 reach into the existing federal spine**. Best:
+state business/licensing datasets (Utah-heavy) whose **EIN hard-matches `FED_IRS_REVOCATION`** (STEEL,
+~2,230 matched across 2 tables) + NAME@ZIP corroboration (763) — a FACT-grade follow-the-money thread
+(orgs in state registries that the IRS auto-revoked). Also NAICS→`FED_EPA_ECHO` (polluters by industry,
+~1,650), ZIP→CMS facility spine (nursing/dialysis/hospital/hospice, 900-1,700 each), DOCKET (342).
+
+**Detectors re-run (`connect leads --run`, run f44514d4): UNCHANGED — 353 total** (banned_but_paid 338 /
+banned_but_operating 11 / debarred_but_funded 2 / sanctioned_vessel 2). Expected: this harvest added
+EIN/NAICS/DOCKET data, but all 4 live detectors key on NPI/UEI/IMO. **No new detector fires without a
+new EIN JobSpec.**
+
+**BUDGET:** 7.97 → 12.57 of 15 this session (~4.6cr). **The cost hog was `discover`'s spatial phase
+(1500 point-in-polygon pairs, re-scans the giants every run), NOT the harvest** (62 loads + leads ≈ 0.3cr).
+2.43cr remaining; never tripped the 13.5 suspend line. Added allow-rules: harvest/fingerprint/discover.
+
+**NEXT (Chris's pick):**
+1. **EIN detector** — new `revoked_org_registered` JobSpec (new portal EIN × `FED_IRS_REVOCATION`) turns
+   today's biggest find into leads. Config-only, ~0.2cr. (Stronger once IRS 990/EO BMF land — Load #2.)
+2. **Harvester `--new-only`** — fold the already-landed filter into `connectable_candidates` so `--limit`
+   paginates to genuinely-new datasets (the scratchpad runner proves it; pool is ~drained on entity keys,
+   so the next net is GEO/FIPS — thousands, coarser — or the build-plan LLM-agent loads).
+3. **Incremental `discover`** — it re-scans NPPES/OpenPayments/USASpending/AIS every run to rebuild
+   keysets; cache the unchanged big-table keysets. This is the lever if we keep harvesting (deferred in
+   the original design until ~tens-of-thousands of tables, but the spatial+keyset cost is biting now).
+
+## PRIOR FOCUS — audit + hygiene (2026-06-26)
 **Session 2026-06-26 — AUDITED the faceted catalog, prepped hygiene fixes, ideated next builds
 (11-agent judge panel).** Catalog is structurally HEALTHY (lifecycle dist unchanged: scouted 853 /
 sampled 595 / failed 59 / modeled 34 / empty 28 / landed 20 / stale 3; registry 1506 + 86 run-orphans
@@ -61,6 +116,91 @@ direct catalog writes, so everything is handed to Chris to --apply):**
 cleanup; (2) re-run `scripts/sam_exclusions_load.py` to full 167k to scale the detector + unlock the
 temporal angle; (3) next build = density gate (#2) then entity-spine promotion (#3). Pass 0h grants
 (`scripts/grant_mcp_readonly_catalog.py`) STILL pending — agent is classifier-blocked from grants, Chris's.
+
+---
+
+## NEXT BUILD — MISSING-DATA LOAD QUEUE (2026-06-26, later)
+**Ran a 12-cluster research workflow (`wf_2484c50a-6b4`) to map what data Ripple is missing, grounded
+against the live catalog. Core finding: it's a LOADING problem, not a scouting one — 1,506 sources
+scouted / 54 landed (~3.5%). Almost every high-value accountability genre is ALREADY a `scouted`
+catalog row that was never poured in.** Full ordered program: `outputs/missing_data_BUILD_PLAN_2026-06-26.md`.
+
+**The 5 jump-outs:** (1) CIK is a map with no territory (ticker↔CIK modeled, zero filings behind it);
+(2) EIN is a phantom key (81 sources tagged, 3 landed carry it, 0 nonprofit); (3) 100% federal — 223
+`st_`/`loc_` rows, 0 landed; (4) catalog is richer than cluster scans implied — 5 "absent" calls were
+actually scouted, and ≥1 row mis-domained (`xc_propublica_nonprofit` → history_culture); (5) detector
+moat is dangerously single-vertical (everything rides NPI; maritime/UEI are thin; aviation has no key).
+
+**Ranking lens (Chris):** maximize connections onto an already-LANDED spine.
+
+**Artifacts shipped this session (all SAFE / preview-by-default — nothing loaded, nothing mutated):**
+- `outputs/missing_data_BUILD_PLAN_2026-06-26.md` — the full Phase 0–4 program (every item, gated).
+- `scripts/bridge_fuel_specs.py` — added `fed_cms_open_payments` spec (zip_csv, chunked, NPI+CCN
+  aliased). VERIFY-BEFORE-RUN: the bulk ZIP P-stamp rotates; preview first. Load #1, LLM-free.
+- `scripts/propose_catalog_domaining_fixes.py` — preview/`--apply` domain-fix tool (rollback-
+  snapshotted). Preview verified: catches `xc_propublica_nonprofit` history_culture→corporate_entities.
+
+**KEY INSIGHT that orders the queue:** raw LOAD needs no join-key infra (landing is all-TEXT). So every
+Phase-1 load uses keys the tagger already knows (NPI/CCN/UEI/CIK/EIN/IMO/MMSI) and connects the day it
+lands. Only the aviation/crime/elections vertical needs NEW keys (TAIL_NUMBER/ICAO24/FRS/ORI/FEC IDs) —
+gated behind a careful tagger extension (Step K in the plan; ORI/TAIL are false-positive-prone, verify
+against the live graph first). Do NOT broaden the global tagger casually.
+
+**RECOMMENDED OPENING RUN (each = one GO checkpoint, runs on RIPPLE_WH under the 15-credit monitor):**
+1. `fed_cms_open_payments` — NPI into NPPES 9.6M + LEIE; ships **banned-but-PAID** detector day one.
+   Run: `python scripts/bridge_fuel_load.py --spec fed_cms_open_payments` (preview) then `--run`.
+2. `fed_irs_990` + `fed_irs_eo_bmf` — makes the EIN key real (follow-the-money backbone). Needs specs.
+3. `fed_faa_registry` + `xc_opensky_network` — needs Step K (key infra) first; breaks single-vertical
+   risk + gives the Epstein theme its missing spine (hidden-but-flying detector).
+
+**NEW DETECTORS the queue unlocks** (config-only on `connect/leads_specs.py` once both legs land):
+banned-but-PAID (NPI) · excluded-but-billing-Medicare (NPI) · debarred-but-funded-defense (UEI) ·
+revoked-but-funded (EIN) · adverse-audit-but-funded (EIN+UEI) · penalized-polluter-but-funded (EIN) ·
+wage-theft-but-funded (EIN) · detained-but-sailing (IMO) · hidden-but-flying (tail/ICAO24) ·
+insider-trade-on-events (CIK).
+
+### LOAD #1 DONE — `fed_cms_open_payments` landed + detector fired (2026-06-26)
+- **Landed 15,385,047 rows** (PY2024 general payments, ~91 cols) → `LIBRARY_RAW.LANDING.FED_CMS_OPEN_PAYMENTS`,
+  registered INCLUDE=Y, chunked (77 chunks @ 200k), ~31 min on RIPPLE_WH (XS). Spec URL had to be
+  re-resolved live (the guessed ZIP 404'd → it's a DIRECT CSV; resolved 2024 stem from the DKAN metastore).
+- **banned-but-PAID detector (LEIE × Open Payments on NPI+surname):** **338 OIG-excluded providers** took
+  pharma/device payments in 2024 (3,424 records, **$3.83M**); **185 were excluded BEFORE 2024** = the
+  FACT-grade "paid while banned" set. Standouts: EDUARDO MIRANDA (excl 2015, 201 Pfizer payments 2024),
+  HECTOR MOLINA (excl 2019, $114k). NB: top-$ ALEXANDER FRANK ($3.08M) was excluded 2025 (AFTER payment) =
+  later-excluded, weaker timeline (title says "appears in N records", never overclaims "while excluded").
+- **DETECTOR PERSISTED:** `banned_but_paid` JobSpec added to `connect/leads_specs.py` (HEALTH×MONEY on
+  NPI, require_surname, breadth=payment records). Engine reproduced the 338 exactly; **MERGEd 338 leads
+  into `LIBRARY_META."CONNECT".LEADS`** (run d0b853ae). Re-run: `connect leads --job banned_but_paid --run`.
+  LEADS now holds 4 rules: banned_but_paid 338 / banned_but_operating 11 / debarred_but_funded 2 /
+  sanctioned_vessel_broadcasting 2.
+
+### RECEIPTS / VERIFICATION (2026-06-26) — Chris asked "how do we know it's not a clerical error?"
+Triangulated the 338 banned_but_paid leads against NPPES (the 9.6M registry) as an independent THIRD
+source. Honest confidence tiering (NPI is unique → the match IS the identity; name agreement corroborates):
+- **327 FACT-grade** — surname agrees across all 3 federal sources (NPPES + LEIE + Open Payments).
+- **13 held — registry blank/deactivated** (NPPES NPI row exists but empty; 2-source LEIE+OP only) → manual check.
+- **1 held — genuine surname CONFLICT** (NPPES surname differs → possible corrupted NPI) → must verify.
+- Timeline: **206 paid ON/AFTER the exclusion date** (per-payment dates) = "paid while banned"; 185 excluded
+  before all of 2024. The method CATCHES its own weak ones — that's the point.
+- TOOL: **`scripts/lead_receipt.py`** (`--npi` / `--name` / `--top N`) prints the 3-source receipt per
+  provider in plain English (NPPES owner / LEIE ban+reason-decoded / Open Payments money), a TIMELINE
+  verdict, a CONFIDENCE tier (FACT / CONFLICT / 2-SOURCE), and verify-yourself URLs (OIG + Open Payments).
+  Flagship receipt: EDUARDO MIRANDA (NPI 1285673012) — excluded 2015, paid by pharma through 2024, 3-source.
+
+### BACKFILL ENGINE (2026-06-26) — Chris asked "can we pay to go faster?"
+Honest answer documented in the build plan: warehouse size is NOT the main lever (loader is client/
+download-bound, serial write_pandas). ROI order: parallelism → COPY-stage rework → then size.
+- **DONE:** `bridge_fuel_load.py --workers N` (concurrent loads, own connection each; warehouse bills
+  uptime not queries → near-free) + comma-list `--spec a,b,c` + per-spec error isolation. Verified
+  (compiles, --list, unknown-spec guard).
+- **NEXT (designed, not built):** PUT-many → single `COPY INTO` (thread-bound; THIS is what makes a
+  bigger warehouse pay off). ⚠️ raise `RIPPLE_BUDGET` (15cr) before any real backfill or it auto-suspends.
+
+## NEXT ACTION (this thread)
+Load #1 + detector SHIPPED; parallel loader in. Open forks (Chris's pick): (1) **Load #2 = IRS 990 +
+EO BMF** specs → make the EIN key real (unlocks revoked-but-funded); (2) **COPY-stage loader rework** →
+the real backfill-speed unlock; (3) **Step K key infra** → opens the aviation vertical (FAA × OpenSky).
+Catalog domain fix (`propose_catalog_domaining_fixes.py --apply`) is a 1-row cleanup, bank anytime.
 
 ---
 
