@@ -1,4 +1,8 @@
-# Dev/test deps for the connect entity layer (the repo's first test suite).
-# Runtime deps live in library-onboarding/requirements.txt.
-pytest>=8.0
-rapidfuzz>=3.0   # offline Jaro-Winkler mirror for the match-quality eval (test-only)
+# Dev/test deps for the connect entity layer (the repo's test suite).
+# Runtime deps live in the top-level requirements.txt -- install that first:
+#   pip install -r requirements.txt
+#   pip install -r requirements-dev.txt
+pytest==8.4.2
+rapidfuzz==9.0.0   # offline Jaro-Winkler mirror for the match-quality eval (test-only)
+                  #   NOTE: not installed locally; pinned to a recent known-good
+                  #   release. The two tests that use it skip when it's absent.

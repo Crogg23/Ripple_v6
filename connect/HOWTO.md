@@ -8,11 +8,19 @@ No code knowledge needed. You run one command, a map pops up, you poke at it.
 
 **1. Open a terminal in the project.**
 In VS Code: top menu → **Terminal → New Terminal**. A box opens at the bottom.
-Make sure the path on the left says `…\Ripple_v6` (the project folder). If it
+Make sure the path on the left says `…/Ripple_v6` (the project folder). If it
 doesn't, type this and hit Enter:
 ```
-cd C:\Code\Ripple_v6
+cd ~/Documents/GitHub/Ripple_v6
 ```
+
+**1a. First clone only — install the dependencies (once).**
+If this is a fresh checkout, the tool needs its Python packages (plotly,
+snowflake-connector, pandas, …) before it'll run. Do this one time:
+```
+python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt
+```
+On later runs you just re-activate the venv: `source .venv/bin/activate`.
 
 **2. Run the tool.** Type this, hit Enter:
 ```
@@ -82,8 +90,10 @@ Prints the match count + a sample. Keys you can pass: `NPI`, `CCN`, `CIK`, `EIN`
 
 - **"Programmatic access token is invalid" / login errors** → the Snowflake token
   expired (it's due to die ~**July 5, 2026**). Drop a fresh one into
-  `library-onboarding\.env` (the `SNOWFLAKE_PAT=` line) and run it again.
-- **"python is not recognized"** → you're not in the project folder or Python isn't on
-  PATH. Re-do step 1 (`cd C:\Code\Ripple_v6`).
+  `library-onboarding/.env` (the `SNOWFLAKE_PAT=` line) and run it again.
+- **"No module named plotly" (or pandas / snowflake)** → the dependencies aren't
+  installed. Do step 1a once: `pip install -r requirements.txt` (with the venv active).
+- **"python: command not found"** → you're not in the project folder or Python isn't on
+  PATH. Re-do step 1 (`cd ~/Documents/GitHub/Ripple_v6`), and `source .venv/bin/activate`.
 - **Map didn't pop open** → open it by hand:
-  `C:\Code\Ripple_v6\outputs\connection_explorer.html` (double-click it).
+  `~/Documents/GitHub/Ripple_v6/outputs/connection_explorer.html` (double-click it).

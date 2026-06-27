@@ -62,12 +62,17 @@ SHA-256 matches its last successful run, the reload is skipped
 
 ## Setup
 
+Install the repo's runtime deps from the **top-level** `requirements.txt` (it's the
+complete, pinned set — covers this agent *and* the connect engine). From the repo root:
+
 ```bash
-cd library-onboarding
-python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-cp .env.example .env                       # then fill in the blanks
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt            # ../requirements.txt from here
+cp library-onboarding/.env.example library-onboarding/.env   # then fill in the blanks
 ```
+
+(`library-onboarding/requirements.txt` still exists as the agent's own minimal,
+unpinned subset, but the top-level file is the source of truth — use that.)
 
 Minimum to fill in:
 
