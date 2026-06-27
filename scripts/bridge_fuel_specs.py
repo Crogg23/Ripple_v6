@@ -165,4 +165,42 @@ SPECS = [
         "priority_tier": "2",
         "notes": "CCN-only endpoint.",
     },
+    # ---- PAYLOAD SOURCES (not crosswalks — they LIGHT an existing spine) -----
+    # CMS Open Payments (Sunshine Act): pharma/device payments to clinicians, keyed
+    # on covered_recipient_npi -> joins straight into the landed NPPES (9.6M) + LEIE
+    # spine. Unlocks the 'banned_but_PAID' detector (LEIE-excluded docs x payments).
+    # NOTE: the bulk ZIP filename embeds a publication date (P-stamp) that ROTATES
+    # each refresh, so PREVIEW (no --run) first to confirm the URL resolves before
+    # landing — same discipline as the dated CMS provider-data URLs above. If the
+    # P-stamp moved, update download_url; the loader fails loudly in preview, never
+    # lands junk. General-payment detail file ~15M rows/yr, ~75 cols -> chunked.
+    {
+        "source_id": "fed_cms_open_payments",
+        "name": "CMS Open Payments — General Payments detail (PY2024)",
+        "publisher": "CMS — Open Payments",
+        "url": "https://openpaymentsdata.cms.gov/datasets",
+        # Direct CSV (not a ZIP). The P-stamp dir (P01232026_01102026) rotates each
+        # refresh; resolved live 2026-06-26 from the openpaymentsdata.cms.gov DKAN
+        # metastore: api/1/metastore/schemas/dataset/items. Re-resolve there if it 404s.
+        "download_url": "https://download.cms.gov/openpayments/PGYR2024_P01232026_01102026/OP_DTL_GNRL_PGYR2024_P01232026_01102026.csv",
+        "kind": "csv",
+        "chunked": True,
+        "chunk_rows": 200_000,
+        "csv_opts": {"encoding": "latin-1"},
+        "key_cols": [
+            {"col": "Covered_Recipient_NPI", "as": "NPI"},
+            {"col": "Teaching_Hospital_CCN", "as": "CCN"},
+        ],
+        "join_keys": "NPI, CCN",
+        "category": "Health",
+        "subcategory": "Provider Payments",
+        "jurisdiction": "US",
+        "unit_of_observation": "one row = one reported payment to a covered recipient",
+        "temporal_coverage": "Program Year 2024 (2024-01-01..2024-12-31)",
+        "update_cadence": "annual",
+        "volume": "~14-15M general-payment records / program year, ~91 cols",
+        "accountability_relevance": "Pharma/device payments to clinicians on NPI -> lights the NPPES (9.6M) + OIG-LEIE spine; enables 'banned-but-PAID' (LEIE-excluded providers still taking manufacturer money) and pharma-paid-prescriber cross-checks. Steel NPI = FACT-grade.",
+        "priority_tier": "1",
+        "notes": "Sunshine Act general payments PY2024 (~15M rows, ~91 cols). Direct CSV (chunked). NPI col='Covered_Recipient_NPI', CCN='Teaching_Hospital_CCN' aliased. P-stamp dir rotates; re-resolve from the DKAN metastore if 404. One program year per load; add earlier years later. Loaded LLM-free (bridge_fuel_load).",
+    },
 ]
