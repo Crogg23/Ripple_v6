@@ -304,15 +304,51 @@ def _expire_rule(conn, rule: str, run_id: str) -> None:
                   f"WHERE RULE_NAME = %s", (run_id, rule))
 
 
-def published(conn, rule: str | None = None) -> list[dict]:
-    """Canonical PUBLISH read: persisted leads that are active (not stale) AND not review-suppressed.
-    STATUS is the staleness surface; safety.DECISIONS is the review surface — both must pass."""
+def _auto_publishable(row: dict) -> bool:
+    """Auto-confirm hook: may a lead publish WITHOUT a human review?
+
+    Only if it clears a CALIBRATED high-confidence bar. Leads today carry an UNCALIBRATED
+    composite SCORE, and minting a "fact" from it is exactly the overreach this safety
+    layer exists to stop — so this returns False: nothing about a named person reads as
+    published fact until a human confirms it (`connect review lead <LEAD_ID> confirmed`).
+    When leads gain a held-out precision tier (mirror the matcher's MATCH_RUNGS), gate it
+    here, e.g. `return row.get("CONF_TIER") == "CONFIRMED"`.
+    """
+    return False
+
+
+def _gate(rows: list[dict], decisions: dict[str, str],
+          only_publishable: bool = False) -> list[dict]:
+    """Apply the publish-safety gate to lead rows. PURE (no DB) so it is offline-testable.
+
+    Drops review-suppressed leads (rejected / retracted / stale verdict) and stamps every
+    survivor with REVIEW_STATE + PUBLISHED via safety.gate_rows. PUBLISHED is true only for
+    a human-confirmed lead or one clearing the (currently off) auto-confirm tier.
+    only_publishable keeps just the PUBLISHED=True set — the strict 'safe as fact' read.
+    """
+    for r in rows:
+        r.setdefault("auto_ok", _auto_publishable(r))
+    gated = safety.gate_rows(rows, decisions)
+    return [r for r in gated if r["PUBLISHED"]] if only_publishable else gated
+
+
+def published(conn, rule: str | None = None, only_publishable: bool = False) -> list[dict]:
+    """Canonical PUBLISH read: active leads, gated by the safety spine.
+
+    Two surfaces must BOTH pass. STATUS handles staleness (a lead whose supporting rows
+    vanished is 'stale' and filtered here). safety.DECISIONS handles review: rejected /
+    retracted / stale verdicts are dropped, and only a human-CONFIRMED lead (or the auto
+    tier, off today) reads PUBLISHED=True. Every returned row carries REVIEW_STATE +
+    PUBLISHED, so a caller can never mistake an unreviewed 'pending' lead for fact. Pass
+    only_publishable=True for the strict set that is safe to present as established fact.
+    """
     _ensure_leads_table(conn)
-    sup = safety.suppressed(conn, "lead")
-    where = "WHERE COALESCE(STATUS, 'active') = 'active'"
-    rows = db.dicts(conn, f"SELECT * FROM {LEADS_FQN} {where} ORDER BY SCORE DESC", ())
-    rows = [r for r in rows if (rule is None or r["RULE_NAME"] == rule) and r["LEAD_ID"] not in sup]
-    return rows
+    decisions = safety.latest(conn, "lead")
+    rows = db.dicts(conn, f"SELECT * FROM {LEADS_FQN} "
+                          f"WHERE COALESCE(STATUS, 'active') = 'active' ORDER BY SCORE DESC", ())
+    if rule is not None:
+        rows = [r for r in rows if r["RULE_NAME"] == rule]
+    return _gate(rows, decisions, only_publishable)
 
 
 def _print_leads(df: pd.DataFrame, top: int) -> None:
@@ -361,6 +397,10 @@ def run(job: str = "all", dry_run: bool = True, top: int = 20) -> dict:
                 _expire_rule(conn, name, run_id)   # fires even when the rule returned ZERO leads
                 print(f"  merged {len(df)} into {LEADS_FQN}; staleness swept (run {run_id})")
             out[name] = len(df)
+        if not dry_run:
+            print("\n  ⚑ these leads are UNREVIEWED — none read as PUBLISHED fact until a human "
+                  "confirms:\n     `connect review lead <LEAD_ID> confirmed --by <you>`  "
+                  "(`connect safety` shows the ledger)")
     finally:
         conn.close()
     return out
