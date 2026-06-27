@@ -1,7 +1,78 @@
 # Build State
-Last updated: 2026-06-26
+Last updated: 2026-06-27
 
-## CURRENT FOCUS — MOVE #2: PORTAL FIREHOSE (2026-06-26, latest)
+## CURRENT FOCUS — BACKEND READINESS AUDIT + P0 BUILD (2026-06-27, latest)
+**Ran a 37-agent multi-perspective audit (find → adversarial-verify → synthesize) of the whole backend,
+then a build workflow that shipped 4 P0 fixes. Verdict: the engineering is portfolio-grade; the TRUST
+CHAIN was broken. Readiness = 2 of 8 criteria at audit time.**
+
+**THE SYSTEMIC FINDING:** nothing verified data was REAL. `FED_FJC_IDB` (4.1M rows, 100% empty) logged
+`STATUS='success'` and rode into the catalog as a `modeled` mart. No density gate existed, and the CATALOG
+lifecycle/TRUST_LAYER assigned `modeled` on mart-FILE-existence alone → 9 one-row stub marts read as top
+trust. Two safety layers exist but never run (publish-safety `gate_rows()` is dead code, `DECISIONS`=0).
+
+**SHIPPED TODAY (real edits in main working tree · tests 38 passed / 2 skipped · NO warehouse mutations):**
+- **P0-2 reproducibility** — top-level `requirements.txt` (pinned; plotly/snowflake/pyarrow/dbt-snowflake
+  were in NO requirements file, so `python -m connect all` crashed on a clean clone with `ImportError:
+  plotly`). + one-command bootstrap in README/HOWTO/onboarding-README; fixed HOWTO Windows paths.
+- **P0-1 density gate** — `library-onboarding/ingest.py` `assess_density()` (pure, importable, tested):
+  measures populated-cell fraction over SOURCE columns (excludes the provenance stamps), demotes
+  effectively-empty loads to `STATUS='empty'` instead of `'success'`. Floor = 1% (strict `<`) + a
+  structural single-distinct-blank catch. `tests/test_density_gate.py` (15 cases). Known edge: a
+  pathologically wide+sparse table could be flagged `empty` for review — documented, reversible.
+- **Whiteboard #1 — Live Leads Overlay** — `connect/cache_layout.py` caches x/y into
+  `outputs/connect_graph.json` (kills the 17MB SVG recompute) + `connect/leads_overlay.py` →
+  `outputs/leads_overlay.html`. REBUILT BASIC (the 720-node Scattergl version was an unreadable hairball
+  — row-count-sized nodes + spring layout = a blob that buried every edge): now a fixed 2-column diagram
+  (13K) of just the 4 detectors, flag-registry → activity-source, edge width = live lead count, colored by
+  the bridging key (NPI/IMO/UEI). Verified visually via headless-Chrome screenshot. THE FINDING IT DRAWS:
+  **338/353 leads sit on ONE edge** (LEIE↔Open Payments); 37 STEEL /
+  39 CCN~NPI / 21 NPI / 1 CIK hard-ID edges have **zero detectors**; `FED_NOAA_AIS` is a degree-0 island
+  (holds IMO+MMSI) whose OFAC↔AIS sanctioned-vessel bridge was never emitted.
+
+**HANDED TO CHRIS (preview-by-default · `--apply` gated · rollback-snapshotted — the auto classifier blocks
+agent catalog writes):**
+- `scripts/propose_catalog_trust_gate.py --apply` (P0-4) — re-gates CATALOG `modeled`/`landed` on row
+  density. PREVIEW PROVEN on live data: demotes exactly **9 stub marts** (doj_crt_cases, fdic_enforcement,
+  hhs_taggs, naag, nara_wra, zefix, borme, gemi, cro) + **2 empty husks** (fjc_idb + hhs_taggs, density
+  0.000); **42 healthy sources untouched** (NPPES 9.6M, AIS 7.3M, the 36 dense `landed` all kept). apply()
+  HARDENED with a drift-abort guard (`_require_replace`) — validated against the live DDL (3811→4207 chars).
+  Rollback DDL snapshotted to `outputs/_rollback_CATALOG_view_trustgate.sql`. Just needs Chris's `--apply`.
+- `scripts/regrade_empty_loads.py --apply` — re-grades existing INGEST_RUNS (flags FED_FJC_IDB `empty`).
+
+**READINESS PUNCH LIST (from the audit):**
+- **P0 — DONE (2026-06-27):** (a) catalog trust-gate `--apply` RAN (Chris authorized "redefine the live
+  CATALOG view") — modeled 34→25, the 9 stubs + 2 husks demoted, 42 healthy untouched, verified live;
+  (b) **publish-safety WIRED** — `leads.published()` now routes through `safety.gate_rows()` (via pure
+  `leads._gate` + `_auto_publishable` hook, auto-tier OFF: uncalibrated SCORE never auto-publishes). Live
+  read-only proof: all 353 leads = `pending`/`PUBLISHED=False`, `only_publishable=True` → 0. Nothing about
+  a named person reads as fact until `connect review lead <LEAD_ID> confirmed`. +3 tests (41 pass / 2 skip).
+- **P0 still open:** `regrade_empty_loads.py --apply` (re-grade existing INGEST_RUNS; script is correct but
+  SLOW — re-samples all 730 success-runs serially, worth a perf pass or just let it run).
+- **P1:** dbt compile+test in CI + commit manifest (73 models never run anywhere); run the 3 catalog
+  hygiene `--apply` scripts (THEME is epstein-only on 192 sources, ENTITY_TYPES 100% empty); reconcile
+  CLAUDE.md/OVERVIEW scale numbers; ingest unit tests (partly done today); **fix SEC EDGAR Mozilla UA →
+  403** (kills the CIK/EIN corporate-money spine sources); codify infra-as-DDL (RIPPLE_BUDGET monitor +
+  registry/INGEST_RUNS base tables exist ONLY as live Snowflake state — DR hole); rotate PAT + expiry check.
+- **P2:** scratch tables `TRANSIENT`→`TEMPORARY` + drop `KEYSET_SCRATCH` 30.2M / `CROSSWALK_SCRATCH` 4.2M;
+  `LIBRARY_WRITER` least-priv role (writes run as ACCOUNTADMIN today); `chmod 600 .env`; prune ~16 merged
+  branches; `empty`/`partial` as first-class re-queue + full SAM 167k reload; EIN/CIK detectors (all 4 live
+  detectors key on NPI/UEI/IMO); model the big unmodeled landings (Open Payments 15.4M, USASpending, etc.).
+
+**STALE-CLAIM CORRECTION (this file was lying):** all the "uncommitted / NOT yet PR'd" work below IS merged
+to main (entity layer PR #29, reserved-word fix `988bfcf`, money/maritime, bridge, faceted catalog, portal
+firehose). Canonical LIVE scale: **~63 first-class sources** (29 landed + 34 modeled, ~9 of `modeled` are
+broken stubs) · **720 physical LANDING tables** · **20,696 connections** · **~1,533 catalog rows**.
+OVERVIEW.md still says 12,804 connections (wrong). Tests = **38 passed / 2 skipped** (live-only), not "25 green".
+
+## NEXT ACTION
+Preview then run `propose_catalog_trust_gate.py --apply` + `regrade_empty_loads.py --apply`, then **wire
+publish-safety**. Whiteboard #2 (Lead Corkboard) + #3 (Living Constellation w/ path-finder) are spec'd and
+ready to build on the now-cached `connect_graph.json`.
+
+---
+
+## PRIOR FOCUS — MOVE #2: PORTAL FIREHOSE (2026-06-26)
 **Ran the LLM-free portal harvester to bulk-load key-overlapping datasets, then re-measured the
 connection graph BEFORE vs AFTER. Net: +63 connected sources, +4,851 connections, +124,807 rows —
 but the headline finding is that the connectable pool is ~drained and `discover` (not the harvest)
