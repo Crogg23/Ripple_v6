@@ -23,6 +23,7 @@ def main() -> int:
     d.add_argument("--no-bridge", action="store_true", help="skip the transitive crosswalk/bridge pass (#2)")
     d.add_argument("--fanout-max", type=int, default=40, help="drop crosswalk values mapping to > this many targets")
     sub.add_parser("explore", help="render the interactive map")
+    sub.add_parser("plane", help="render The Plane — Google-Earth flythrough of the warehouse")
     sub.add_parser("spine", help="build the persisted entity spine (who's who)")
     a = sub.add_parser("all", help="fingerprint -> discover -> spine -> explore")
     a.add_argument("--name-max-rows", type=int, default=None)
@@ -104,6 +105,9 @@ def main() -> int:
     if args.cmd in ("explore", "all"):
         from . import explore
         explore.render()
+    if args.cmd == "plane":
+        from . import plane
+        plane.render()
     if args.cmd == "probe":
         from . import db
         from .overlap import value_overlap
