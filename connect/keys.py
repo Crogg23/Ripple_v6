@@ -178,7 +178,12 @@ def normalize_sql(key: str, col: str) -> str:
         # explicitly and the two can diverge later without a silent behaviour change.)
         return f"NULLIF({clean}, '')"
     if mode == "pad":
-        return (f"CASE WHEN LENGTH({clean}) = 0 OR LENGTH({clean}) > {width} THEN NULL "
+        # NULL the all-zero placeholder too (e.g. LEIE NPI '0000000000' on ~90% of
+        # rows, discovery sweep #1): a zero-filled ID is never a real entity, and
+        # left unguarded it fans out -- one placeholder on the active side would
+        # match every placeholder on the flag side. Width-padded so '0','00',... all collapse.
+        return (f"CASE WHEN LENGTH({clean}) = 0 OR LENGTH({clean}) > {width} "
+                f"OR LPAD({clean}, {width}, '0') = REPEAT('0', {width}) THEN NULL "
                 f"ELSE LPAD({clean}, {width}, '0') END")
     if mode == "fixed":
         return f"CASE WHEN LENGTH({clean}) = {width} THEN {clean} ELSE NULL END"

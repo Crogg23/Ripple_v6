@@ -15,12 +15,20 @@ models:
   - name: stg_intl_ember_elec__yearly_electricity
     description: >
       Staging model for Ember yearly electricity data. Renames columns to
-      snake_case, casts to appropriate types, and deduplicates on the
-      natural key (country, date, variable) keeping the latest ingestion.
+      snake_case, casts to appropriate types, and deduplicates on the full
+      natural key (country, date, category, subcategory, variable, unit)
+      keeping the latest ingestion. NOTE: the same country x year x variable
+      legitimately recurs across category (generation / capacity / emissions /
+      demand / imports) and unit (TWh / % / GW / mtCO2 / ...), so all six
+      columns are required for the grain to be unique.
+
+      VALUE / YOY measures are scrubbed of Ember's literal 'nan' strings via
+      null_sentinel before the numeric cast: try_to_double('nan') returns IEEE
+      NaN (not NULL) and would otherwise poison downstream aggregates (finding #41).
     columns:
 
       - name: country
-        description: Country or region name as provided by Ember.
+        description: Country or region name as provided by Ember. Part of the natural key.
         data_tests:
           - not_null
 
@@ -28,15 +36,15 @@ models:
         description: ISO 3166-1 alpha-3 country code.
 
       - name: date
-        description: Year of the observation cast to a DATE (YYYY-01-01).
+        description: Year of the observation cast to a DATE (YYYY-01-01). Part of the natural key.
         data_tests:
           - not_null
 
       - name: area_type
-        description: Indicates whether the row represents a country or a region aggregate.
+        description: Indicates whether the row represents a country/economy or a region aggregate.
         data_tests:
           - accepted_values:
-              values: ['Country', 'Region']
+              values: ['Country or economy', 'Region']
               quote: true
               config:
                 severity: warn
@@ -62,33 +70,48 @@ models:
         description: Boolean flag – true if the country is an ASEAN member.
 
       - name: category
-        description: High-level metric category (e.g. Electricity generation).
+        description: High-level metric category (e.g. Electricity generation, Capacity, Power sector emissions). Part of the natural key.
+        data_tests:
+          - not_null
 
       - name: subcategory
-        description: Sub-category beneath the main category.
+        description: Sub-category beneath the main category (e.g. Fuel, Aggregate fuel, Total). Part of the natural key.
+        data_tests:
+          - not_null
 
       - name: variable
-        description: Specific electricity variable being measured (e.g. Solar, Wind).
+        description: Specific electricity variable being measured (e.g. Solar, Wind). Part of the natural key.
         data_tests:
           - not_null
 
       - name: unit
-        description: Unit of measurement for the value column (e.g. TWh, %).
+        description: Unit of measurement for the value column (e.g. TWh, %, GW, mtCO2). Part of the natural key.
+        data_tests:
+          - not_null
 
       - name: value
-        description: Numeric value of the observation.
+        description: >
+          Numeric value of the observation. Literal 'nan' strings (8,418 rows,
+          2.3%) are nulled by null_sentinel BEFORE the try_to_double cast, so a
+          NaN can never enter this column (finding #41). No NaN-guard test is
+          needed -- and Snowflake evaluates NaN = NaN as TRUE, so the usual
+          `value != value` IEEE guard is a silent no-op here anyway.
 
       - name: yoy_absolute_change
-        description: Year-over-year absolute change in the value.
+        description: Year-over-year absolute change in the value. 'nan' strings nulled before cast.
 
       - name: yoy_pct_change
-        description: Year-over-year percentage change in the value.
+        description: Year-over-year percentage change in the value. 'nan' strings nulled before cast.
 
       - name: _ingested_at
         description: Timestamp when the row was ingested into the landing table.
 
       - name: _source_run_id
         description: Pipeline run identifier that produced this row.
+
+    data_tests:
+      - unique:
+          column_name: "country || '|' || date::varchar || '|' || category || '|' || subcategory || '|' || variable || '|' || unit"
 
   - name: energy__intl_ember_elec
     description: >

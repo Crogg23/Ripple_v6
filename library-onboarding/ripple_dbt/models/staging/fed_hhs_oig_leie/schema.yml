@@ -1,0 +1,181 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_HHS_OIG_LEIE
+        description: >
+          Raw landing table for the HHS OIG LEIE (List of Excluded Individuals
+          and Entities) -- the federal healthcare-fraud exclusion list. This is
+          the CURRENT-exclusions snapshot (reinstated parties are dropped, so
+          REINDATE is '00000000' on every row). All columns are TEXT as ingested.
+          Two known traps: EXCLDATE/REINDATE/WAIVERDATE are 'YYYYMMDD' text (a
+          plain CAST to DATE collapses them to garbage 1970 values), and NPI is
+          the placeholder '0000000000' on 89.6% of rows.
+
+models:
+
+  - name: stg_fed_hhs_oig_leie__exclusions
+    description: >
+      Staging model for the OIG LEIE exclusion list. Parses the YYYYMMDD date
+      columns with parse_yyyymmdd (TO_DATE), nulls the placeholder NPI
+      '0000000000' with clean_npi, and exposes a npi_is_real flag: only ~10.4%
+      of rows (8,684 / 83,464; 8,503 distinct NPIs) carry a real NPI usable for
+      FACT-grade hard-ID joins. Rows where npi_is_real = FALSE can only be
+      name/EIN/address matched downstream (LEAD-grade joins only). LEIE has no
+      native unique key, so exclusion_sk is a surrogate hash over the business
+      key (NPI + LASTNAME + FIRSTNAME + BUSNAME + EXCLDATE); the model is
+      deduplicated on that key, keeping the most-recently-ingested copy. WVRSTATE
+      and waiver fields are carried through so downstream stays waiver-aware.
+    columns:
+
+      - name: exclusion_sk
+        description: >
+          Surrogate primary key -- md5 hash over the business key
+          (npi + last_name + first_name + business_name + exclusion_date_raw).
+          Unique after deduplication.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: npi
+        description: >
+          National Provider Identifier, cleaned via clean_npi -- NULL where the
+          source carried the placeholder '0000000000' (89.6% of rows) or blank.
+          A non-null value is a real 10-digit NPI safe for hard-ID joins.
+        data_tests:
+          # A real NPI is exactly 10 digits. Column-level expression_is_true
+          # compiles to `not(<column> <expression>)`, so the expression is the
+          # infix predicate applied to npi (Snowflake RLIKE), not a standalone clause.
+          - dbt_utils.expression_is_true:
+              expression: "rlike '^[0-9]{10}$'"
+              config:
+                where: "npi is not null"
+                severity: warn
+
+      - name: npi_is_real
+        description: >
+          TRUE only when npi is a real (non-placeholder, non-blank) NPI. FALSE
+          means name/EIN/address matching only -- do NOT join on npi downstream.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+
+      - name: last_name
+        description: Individual's last name (NULL for entity/business rows).
+
+      - name: first_name
+        description: Individual's first name (NULL for entity/business rows).
+
+      - name: middle_name
+        description: Individual's middle name, if provided.
+
+      - name: business_name
+        description: Excluded business/entity name (NULL for individual rows).
+
+      - name: general_category
+        description: >
+          OIG general category of the excluded party (e.g. 'NURSING PROFESSION',
+          'PHARMACY', 'OTHER BUSINESS'). Source values are truncated free text.
+
+      - name: specialty
+        description: Provider specialty as recorded by OIG (truncated free text).
+
+      - name: upin
+        description: Unique Physician Identification Number (legacy pre-NPI ID).
+
+      - name: date_of_birth_raw
+        description: >
+          Individual's date of birth as raw TEXT from source (left untyped --
+          format is inconsistent; not parsed in staging).
+
+      - name: address
+        description: Street address of the excluded party.
+
+      - name: city
+        description: City of the excluded party.
+
+      - name: state
+        description: Two-letter US state abbreviation of the excluded party.
+
+      - name: zip
+        description: ZIP code of the excluded party.
+
+      - name: exclusion_type
+        description: >
+          Statutory authority for the exclusion (SSA section code, e.g. '1128a1',
+          '1128b4'). Parsed from EXCLTYPE.
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+          - accepted_values:
+              values:
+                - '1128a1'
+                - '1128a2'
+                - '1128a3'
+                - '1128a4'
+                - '1128b1'
+                - '1128b2'
+                - '1128b3'
+                - '1128b4'
+                - '1128b5'
+                - '1128b6'
+                - '1128b7'
+                - '1128b8'
+                - '1128b11'
+                - '1128b12'
+                - '1128b14'
+                - '1128b15'
+                - '1128b16'
+                - '1128Aa'
+                - '1156'
+                - '1160'
+                - 'BRCH SA'
+                - 'BRCH CIA'
+              quote: true
+              config:
+                severity: warn
+
+      - name: exclusion_date
+        description: >
+          Date the exclusion took effect, parsed from EXCLDATE via parse_yyyymmdd
+          (TO_DATE, NOT a plain CAST which would collapse to 1970).
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+
+      - name: reinstatement_date
+        description: >
+          Date of reinstatement, parsed from REINDATE. Always NULL in this
+          current-exclusions snapshot (source value is '00000000' on every row).
+
+      - name: waiver_date
+        description: >
+          Date a waiver was granted, parsed from WAIVERDATE. Real on only ~3
+          rows; NULL otherwise.
+
+      - name: waiver_state
+        description: >
+          State that requested a waiver (WVRSTATE). Set on only ~4 rows; NULL
+          otherwise. Carried through for waiver-aware downstream logic.
+
+      - name: has_waiver
+        description: TRUE when a waiver_date or waiver_state is present for the row.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+
+      - name: exclusion_date_raw
+        description: Raw YYYYMMDD exclusion date text, retained as a business-key part.
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier for lineage tracking.

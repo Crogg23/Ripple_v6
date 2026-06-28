@@ -1,0 +1,162 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_USASPENDING_CONTRACTS
+        description: >
+          Raw landing table for USASpending federal contract spending. All
+          columns are TEXT as ingested. GRAIN TRAP: one row per TRANSACTION
+          (base award + each modification action), NOT one row per contract --
+          CONTRACT_AWARD_UNIQUE_KEY repeats up to 174x and ~9.6% of the
+          6,325,622 rows are excess against 5,719,566 distinct awards. The
+          cumulative *_TO_DATE columns (CURRENT_TOTAL_VALUE_OF_AWARD,
+          TOTAL_DOLLARS_OBLIGATED) must never be summed across these rows;
+          only FEDERAL_ACTION_OBLIGATION is incremental and sums correctly.
+
+models:
+
+  - name: int_fed_usaspending__awards
+    description: >
+      Intermediate model that rolls USASpending federal contract TRANSACTIONS
+      up to AWARD grain (one row per CONTRACT_AWARD_UNIQUE_KEY), neutralizing
+      the transaction-vs-award grain trap (discovery finding #10). total_obligation
+      is the SUM of the incremental FEDERAL_ACTION_OBLIGATION ONLY -- the
+      cumulative current_total_value_of_award and total_dollars_obligated are
+      carried via MAX and must never be summed. Negative obligations
+      (de-obligations, 267,515 rows) are kept on purpose, so total_obligation is
+      a NET figure. CRITICAL CAVEAT: recipient_parent_uei is itself fragmented
+      (Lockheed Martin spans 26 distinct parent UEIs; finding #5), so it is NOT
+      a clean single rollup key -- any downstream ranking or concentration
+      measure by parent UEI is a FLOOR, not a ceiling. recipient_parent_name is
+      upper+trim normalized but still carries multiple spellings per real entity.
+      Materialized as a view.
+    columns:
+
+      - name: contract_award_unique_key
+        description: >
+          Award-grain primary key (rolled up from one-row-per-transaction
+          landing). Unique by construction of the GROUP BY; landing has zero
+          null/blank keys.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: total_obligation
+        description: >
+          NET sum of the incremental FEDERAL_ACTION_OBLIGATION across all
+          transactions for the award. The only column safe to sum. Net of
+          de-obligations (kept negatives), so can be zero or negative.
+
+      - name: current_total_value_of_award
+        description: >
+          Cumulative current total value of the award (award-level snapshot,
+          carried via MAX). NEVER sum this across rows -- doing so overcounts
+          ~90x.
+
+      - name: total_dollars_obligated
+        description: >
+          Cumulative total dollars obligated on the award (award-level snapshot,
+          carried via MAX). NEVER sum across transactions.
+
+      - name: transaction_count
+        description: >
+          Number of landing transactions that rolled up into this award (base
+          award + modification actions). >1 means the award had mods.
+        data_tests:
+          - not_null
+
+      - name: first_action_date
+        description: Earliest transaction ACTION_DATE for the award.
+      - name: last_action_date
+        description: Latest transaction ACTION_DATE for the award.
+      - name: pop_start_date
+        description: Earliest period-of-performance start date across transactions.
+      - name: pop_current_end_date
+        description: Latest period-of-performance current end date across transactions.
+
+      - name: award_id_piid
+        description: Procurement Instrument Identifier (PIID) for the award.
+
+      - name: recipient_uei
+        description: >
+          Recipient Unique Entity Identifier (HARD ID, primary contractor join
+          key). Landing has zero blank UEIs; soft not_null guard.
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+
+      - name: recipient_duns
+        description: Legacy DUNS number of the recipient (deprecated identifier).
+      - name: cage_code
+        description: Commercial and Government Entity (CAGE) code of the recipient.
+      - name: recipient_name
+        description: Recipient (contractor) legal name as filed; not entity-resolved.
+
+      - name: recipient_parent_uei
+        description: >
+          UEI of the recipient's ultimate parent. CAVEAT: fragmented -- a single
+          real parent (e.g. Lockheed Martin) maps to many parent UEIs (26), so
+          this is NOT a clean single rollup key. Rankings by this column are a
+          floor, not a ceiling.
+      - name: recipient_parent_name
+        description: >
+          Parent company name, upper+trim normalized. Still carries multiple
+          spellings per real entity (e.g. 6 spellings for Lockheed Martin), so
+          name-based rollups also undercount concentration.
+
+      - name: recipient_city_name
+        description: Recipient city.
+      - name: recipient_state_code
+        description: Recipient US state code.
+      - name: recipient_zip_4_code
+        description: Recipient ZIP+4 code.
+      - name: recipient_country_name
+        description: >
+          Recipient address country name. CAVEAT (finding #18): ~85% of
+          foreign-OWNED contract dollars sit behind a US recipient address, so
+          filtering on this column alone misses most foreign-owned spend -- use
+          foreign_owned for that question.
+
+      - name: pop_state_code
+        description: Primary place-of-performance state code.
+      - name: pop_city_name
+        description: Primary place-of-performance city name.
+
+      - name: awarding_agency_name
+        description: Top-level agency that awarded the contract.
+      - name: awarding_sub_agency_name
+        description: Sub-agency that awarded the contract.
+      - name: funding_agency_name
+        description: Agency that funded the contract.
+
+      - name: award_type
+        description: Type of contract award instrument.
+      - name: naics_code
+        description: NAICS industry code of the award.
+      - name: naics_description
+        description: NAICS industry description.
+      - name: product_or_service_description
+        description: Product or service code (PSC) description.
+
+      - name: foreign_owned
+        description: >
+          Derived flag: 't' if recipient is foreign-owned, 'f' otherwise. Lines
+          up with foreign PARENT companies (finding #18).
+        data_tests:
+          - accepted_values:
+              values: ['f', 't']
+              quote: true
+              config:
+                severity: warn
+
+      - name: usaspending_permalink
+        description: USASpending.gov permalink for the award.
+
+      - name: _ingested_at
+        description: Timestamp the source rows were ingested into landing (latest wins).
+      - name: _source_run_id
+        description: Pipeline run identifier for lineage tracking (latest wins).

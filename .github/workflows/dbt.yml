@@ -1,0 +1,42 @@
+name: dbt
+
+# Validates the ripple_dbt project on every push / PR. `dbt parse` is a pure
+# structural check (no warehouse): it catches broken refs, bad macros, and invalid
+# schema.yml -- the 73-models-never-run-in-CI gap the discovery sweep flagged.
+# The full build+test runs only when the SNOWFLAKE_PAT secret is configured.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  dbt:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: library-onboarding/ripple_dbt
+    env:
+      DBT_PROFILES_DIR: ${{ github.workspace }}/library-onboarding/ripple_dbt
+      # Profile resolves these via env_var(); `dbt parse` never connects, so empty
+      # secrets are fine for the structural check.
+      SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+      SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
+      SNOWFLAKE_PAT: ${{ secrets.SNOWFLAKE_PAT }}
+      SNOWFLAKE_ROLE: ACCOUNTADMIN
+      SNOWFLAKE_WAREHOUSE: RIPPLE_WH
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dbt
+        run: pip install "dbt-snowflake==1.8.4"
+      - name: dbt deps
+        run: dbt deps
+      - name: dbt parse (structural validation -- no warehouse)
+        run: dbt parse
+      - name: dbt build + test (staging + intermediate)
+        # Only when a live PAT secret is present (set SNOWFLAKE_PAT in repo secrets).
+        if: ${{ env.SNOWFLAKE_PAT != '' }}
+        run: dbt build --select staging intermediate

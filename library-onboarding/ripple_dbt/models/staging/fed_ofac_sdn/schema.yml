@@ -1,0 +1,95 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_OFAC_SDN
+        description: >
+          Raw landing table for the OFAC SDN (Specially Designated Nationals)
+          sanctions list. One row per sanctioned entity. All columns are TEXT as
+          ingested. OFAC's CSV uses '-0- ' (with a trailing space) as its null
+          token across SDN_TYPE, TITLE, REMARKS, VESS_TYPE, VESS_FLAG and others.
+
+models:
+
+  - name: stg_fed_ofac_sdn__sdn_entities
+    description: >
+      Staging model for the OFAC SDN sanctions list. Renames to snake_case, casts
+      types, and neutralizes OFAC's '-0- ' (trailing-space) null token via
+      clean_ofac_token() on every affected column. Derives entity_kind, where a
+      cleaned-null SDN_TYPE resolves to 'organization' (the 9,785 '-0-' rows are
+      sanctioned orgs). Normalizes IMO via normalize_imo(). Deduplicates on
+      ent_num keeping the most-recently-ingested record.
+    columns:
+
+      - name: ent_num
+        description: OFAC SDN entity number -- the natural primary key (verified unique, 19,115 distinct, no blanks).
+        data_tests:
+          - unique
+          - not_null
+
+      - name: sdn_name
+        description: Name of the sanctioned entity (person, organization, vessel, or aircraft).
+        data_tests:
+          - not_null
+
+      - name: sdn_type
+        description: >
+          Raw OFAC SDN type with the '-0- ' null token cleaned to NULL. A NULL
+          here means the entity is an organization (see entity_kind).
+        data_tests:
+          - accepted_values:
+              values: ['individual', 'vessel', 'aircraft']
+              quote: true
+              config:
+                severity: warn
+
+      - name: entity_kind
+        description: >
+          Derived entity classification -- coalesce(cleaned sdn_type,
+          'organization'). The '-0-'/null SDN_TYPE rows are sanctioned orgs.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['individual', 'vessel', 'aircraft', 'organization']
+              quote: true
+
+      - name: program
+        description: OFAC sanctions program code(s) the entity falls under ('-0- ' token cleaned).
+
+      - name: title
+        description: Title/role of an individual ('-0- ' token cleaned; real titles exist for ~1,215 individuals).
+
+      - name: call_sign
+        description: Vessel/aircraft call sign ('-0- ' token cleaned).
+
+      - name: vessel_type
+        description: Vessel type ('-0- ' token cleaned).
+
+      - name: tonnage
+        description: Vessel tonnage (cast to double from cleaned text).
+
+      - name: gross_registered_tonnage
+        description: Vessel gross registered tonnage (cast to double from cleaned text).
+
+      - name: vessel_flag
+        description: Vessel flag state ('-0- ' token cleaned).
+
+      - name: vessel_owner
+        description: Vessel owner ('-0- ' token cleaned).
+
+      - name: imo_number
+        description: >
+          IMO vessel identifier, normalized via normalize_imo() -- strips any
+          'IMO' prefix and keeps only a valid 7-digit value, else NULL.
+
+      - name: remarks
+        description: Free-text remarks ('-0- ' token cleaned).
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested (converted from micro-epoch NUMBER).
+
+      - name: _source_run_id
+        description: Pipeline run identifier for lineage tracking.

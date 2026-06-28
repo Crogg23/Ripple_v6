@@ -139,11 +139,16 @@ JOBS: dict[str, dict] = {
                       "CITY": "CITY", "STATE": "STATE"},
         },
         "right": {
-            "table": "FED_CMS_OPEN_PAYMENTS",
+            # All-years union (2023 + 2024), NOT the unsuffixed 2024-only landing table
+            # (discovery sweep #23: the bare name is a half-the-data trap, and 338/353
+            # leads ride this edge). The int view is a SELECT * passthrough so column
+            # names are unchanged; the engine reads it via the fully-qualified name.
+            "table": "LIBRARY_STAGING.DBT_CROGERS.INT_OPEN_PAYMENTS_ALL_YEARS",
             "key": "NPI", "key_col": "NPI",
             "name_cols": ["COVERED_RECIPIENT_LAST_NAME", "COVERED_RECIPIENT_FIRST_NAME"],
             "carry": {"PAYER": "APPLICABLE_MANUFACTURER_OR_APPLICABLE_GPO_MAKING_PAYMENT_NAME",
-                      "NATURE": "NATURE_OF_PAYMENT_OR_TRANSFER_OF_VALUE"},
+                      "NATURE": "NATURE_OF_PAYMENT_OR_TRANSFER_OF_VALUE",
+                      "YEAR": "PROGRAM_YEAR"},
         },
         "require_surname": True,
         "score": {"name_w": 0.4, "breadth_w": 0.6, "breadth_div": 50.0},
@@ -151,4 +156,80 @@ JOBS: dict[str, dict] = {
         "title_dates": ["excldate"],
         "no_fanout_guard": True,
     },
+
+    # HEALTH × HEALTH on NPI — an OIG-excluded provider still billing Medicare Part D
+    # (discovery sweep #27). 243 excluded providers carry a real NPI that appears in the
+    # Part D prescriber file. NEUTRAL phrasing ("appears in N records") on purpose: the
+    # engine can't date-gate, so "billed WHILE excluded" only holds where EXCLDATE precedes
+    # the Part D program year — that timeline lives in the evidence (excldate), not the
+    # title. WVRSTATE is carried so a reviewer sees the waiver (the one known survivor,
+    # NPI 1285673012, has an OIG waiver -> human-review LEAD, never auto-FACT). All leads
+    # default pending/unpublished via the safety gate, so this is review-only by design.
+    "excluded_but_billing": {
+        "rule_name": "excluded_but_billing",
+        "title_template": ("{l_first} {l_last} — OIG-excluded ({excltype}, {excldate}); "
+                           "appears in {count} Medicare Part D prescriber record(s)"),
+        "left": {
+            "table": "FED_HHS_OIG_LEIE",
+            "key": "NPI", "key_col": "NPI",
+            "name_cols": ["LASTNAME", "FIRSTNAME"],
+            "carry": {"EXCLTYPE": "EXCLTYPE", "EXCLDATE": "EXCLDATE",
+                      "WVRSTATE": "WVRSTATE", "STATE": "STATE"},
+            "recency": {"col": "EXCLDATE", "format": "YYYYMMDD", "months": 24},
+        },
+        "right": {
+            "table": "FED_CMS_PART_D_PRESCRIBERS",
+            "key": "NPI", "key_col": "NPI",
+            "name_cols": ["PRSCRBR_LAST_ORG_NAME", "PRSCRBR_FIRST_NAME"],
+            "carry": {"DRUG_COST": "TOT_DRUG_CST", "OPIOID_COST": "OPIOID_TOT_DRUG_CST"},
+        },
+        "require_surname": True,
+        "score": {"name_w": 0.5, "recency_w": 0.2, "breadth_w": 0.3, "breadth_div": 5.0},
+        "title_titlecase": ["l_first", "l_last"],
+        "title_dates": ["excldate"],
+        "no_fanout_guard": True,
+    },
+
+    # SANCTIONS × MARITIME on IMO, v2 — left is now OFAC SDN ∪ OpenSanctions vessels
+    # (int_sanctioned_vessels), NOT OFAC alone: OpenSanctions catches ~3x the broadcasting
+    # hulls and only 1,486 of OFAC's 1,942 vessel IMOs overlap (#16/#17). 2,449 distinct
+    # sanctioned IMOs now vs 1,942. The vessel can repaint its broadcast name, so AIS_NAME
+    # (carried into evidence) vs the sanctions VESSEL_NAME (title) is a shadow-fleet-rename
+    # tell — the IMO hull number can't change, so the hard-key join catches it regardless.
+    # (An explicit name_mismatch score would need a small engine add; both names are already
+    # surfaced in the lead for the human reviewer.)
+    "sanctioned_vessel_broadcasting_v2": {
+        "rule_name": "sanctioned_vessel_broadcasting_v2",
+        "title_template": ("{l_name} — sanctioned vessel ({sanction_source}, {program}); "
+                           "broadcasting AIS in {count} position report(s)"),
+        "left": {
+            "table": "LIBRARY_STAGING.DBT_CROGERS.INT_SANCTIONED_VESSELS",
+            "key": "IMO", "key_col": "IMO",
+            "name_col": "VESSEL_NAME",
+            "carry": {"SANCTION_SOURCE": "SANCTION_SOURCE", "PROGRAM": "PROGRAM", "FLAG": "FLAG"},
+        },
+        "right": {
+            "table": "FED_NOAA_AIS",
+            "key": "IMO", "key_col": "IMO",
+            "carry": {"AIS_NAME": "VESSELNAME"},
+        },
+        "score": {"breadth_w": 1.0, "breadth_div": 200.0},
+        "no_fanout_guard": True,
+    },
 }
+
+# --------------------------------------------------------------------------- #
+# BLOCKED -- ready to enable once Phase 3 lands the IRS BMF / Form 990 file.
+# EIN bridge (#50): SEC EDGAR (carries EIN) ⋈ IRS exempt-org file on the 9-digit
+# EIN -- Caterpillar & VF Corp already proved the bridge on the IRS revocation list
+# (n=2). Add to JOBS once an EIN-bearing SEC table AND the IRS BMF are landed:
+#
+# "ein_bridge_sec_irs": {
+#     "rule_name": "ein_bridge_sec_irs",
+#     "title_template": "{l_name} — SEC filer (CIK {cik}) also on the IRS exempt-org file (EIN {ein}); {count} record(s)",
+#     "left":  {"table": "<SEC_TABLE_WITH_EIN>", "key": "EIN", "key_col": "EIN", "name_col": "<NAME>"},
+#     "right": {"table": "<IRS_BMF_OR_990>",     "key": "EIN", "key_col": "EIN", "carry": {...}},
+#     "score": {"breadth_w": 1.0, "breadth_div": 10.0},
+#     "no_fanout_guard": True,
+# },
+# --------------------------------------------------------------------------- #

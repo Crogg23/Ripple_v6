@@ -1,0 +1,136 @@
+version: 2
+
+models:
+
+  - name: justice__racial_jail_disparity
+    description: >
+      Black/White JAIL-rate disparity panel, one row per county-year, built from
+      Vera's published per-race jail-rate columns
+      (stg_xc_vera_incarceration_trends__county_year). Each rate is the
+      point-in-time jail population per 100,000 working-age (15-64) residents of
+      that race. The core signal is bw_ratio = black_jail_rate / white_jail_rate.
+
+      Headline reproduced (finding #54, 2019 canonical cross-section, measurable
+      cohort = is_measurable_cohort): Black residents are jailed at a higher rate
+      than White in 612 of 637 counties (96%) with >= 5,000 Black working-age
+      residents; median Black/White jail-rate ratio = 3.16x. All years (1970-2026)
+      are retained; is_canonical_year flags 2019 (the most complete Vera year).
+
+      Caveat: jail rate uses point-in-time held population over county-resident
+      race denominators; for centralized-jail jurisdictions (e.g. NYC boroughs)
+      the held population may not map 1:1 to county residents, which inflates the
+      most extreme borough ratios. Direction is unambiguous; frame extremes
+      carefully.
+    columns:
+
+      - name: county_year_key
+        description: >
+          Primary key. Concatenation of county_fips and year
+          (e.g. '36085-2019'). One row = one county x one year.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: fips
+        description: County FIPS code (5-digit). GEO join key to other county-level sources.
+        data_tests:
+          - not_null
+
+      - name: year
+        description: Calendar year of the observation.
+        data_tests:
+          - not_null
+
+      - name: county_name
+        description: County name as reported by Vera.
+
+      - name: state_abbr
+        description: Two-letter state abbreviation.
+
+      - name: state_fips
+        description: State FIPS code.
+
+      - name: region
+        description: Census region.
+
+      - name: division
+        description: Census division.
+
+      - name: urbanicity
+        description: Vera urbanicity classification of the county.
+
+      - name: is_stub_year
+        description: Vera flag indicating an imputed/interpolated ("stub") year.
+
+      - name: black_jail_rate
+        description: Black jail population per 100,000 Black working-age (15-64) residents (BLACK_JAIL_POP_RATE).
+
+      - name: white_jail_rate
+        description: White jail population per 100,000 White working-age (15-64) residents (WHITE_JAIL_POP_RATE).
+
+      - name: latinx_jail_rate
+        description: Latinx jail population per 100,000 Latinx working-age (15-64) residents.
+
+      - name: total_jail_rate
+        description: Total jail population per 100,000 working-age (15-64) residents.
+
+      - name: bw_ratio
+        description: >
+          Black-to-White jail-rate ratio (black_jail_rate / white_jail_rate),
+          null when white_jail_rate is 0 or null. The core disparity signal.
+          Median over the measurable cohort in 2019 = 3.16x.
+
+      - name: is_black_rate_higher
+        description: >
+          TRUE when the Black jail rate exceeds the White jail rate, FALSE when
+          it does not, null when either rate is missing. TRUE for 612 of 637
+          measurable counties (96%) in 2019.
+
+      - name: bw_rate_gap
+        description: Absolute gap, Black minus White jail rate, per 100,000.
+
+      - name: black_working_age_pop
+        description: Black working-age (15-64) population — denominator of the Black jail rate (BLACK_POP_15TO64).
+
+      - name: white_working_age_pop
+        description: White working-age (15-64) population — denominator of the White jail rate (WHITE_POP_15TO64).
+
+      - name: latinx_working_age_pop
+        description: Latinx working-age (15-64) population.
+
+      - name: total_working_age_pop
+        description: Total working-age (15-64) population of the county.
+
+      - name: black_jail_pop
+        description: Raw point-in-time Black jail population count.
+
+      - name: white_jail_pop
+        description: Raw point-in-time White jail population count.
+
+      - name: total_jail_pop
+        description: Raw point-in-time total jail population count.
+
+      - name: is_measurable_cohort
+        description: >
+          TRUE when black_working_age_pop >= 5000 and both race rates are > 0 —
+          the cohort large enough that the ratio is not a small-number artifact.
+          The 2019 measurable cohort is the 637-county headline set.
+        data_tests:
+          - accepted_values:
+              values: [true, false]
+              quote: false
+
+      - name: is_canonical_year
+        description: >
+          TRUE for year = 2019, the most complete Vera reporting year used as the
+          canonical cross-section for the headline finding.
+        data_tests:
+          - accepted_values:
+              values: [true, false]
+              quote: false
+
+      - name: _ingested_at
+        description: Timestamp when the underlying record was ingested into the landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier for lineage tracking.

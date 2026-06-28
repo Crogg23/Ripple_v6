@@ -1,0 +1,140 @@
+version: 2
+
+models:
+
+  - name: health__pharma_meal_cap_fingerprint
+    description: >
+      The "meal-cap fingerprint" mart: manufacturer-level share of CMS Open
+      Payments Food & Beverage transfers priced JUST BELOW the $125 per-meal /
+      disclosure cap, one row per payment-making manufacturer (or GPO) per
+      program year.
+
+      Discovery sweep 2026-06-27 (findings #8 / #40 / #75): Open Payments F&B
+      transfers cluster hard one cent under $125. The value $124.99 alone appears
+      20,733 times in program year 2024 (19,883 in 2023), and transfers in the
+      just-BELOW band [124.00, 124.99] outnumber the just-ABOVE band
+      (125.00, 126.00] by roughly 4-10x industry-wide -- a meal priced to sit
+      under a cap. This mart turns that into a panel: for each manufacturer-year
+      it exposes the meal-cap SHARE (how much of their F&B spend hugs the cap)
+      and the CLIFF RATIO (just-below vs just-above), so payers that systematically
+      price meals to clear the threshold surface to the top.
+
+      Source: int_open_payments_all_years (Open Payments 2023 + 2024 union).
+      Filtered to NATURE_OF_PAYMENT_OR_TRANSFER_OF_VALUE = 'Food and Beverage'.
+      Volume floor: only manufacturers with >= 100 F&B payments in the year are
+      kept (below that the share is noise).
+    columns:
+
+      - name: meal_cap_key
+        description: >
+          Surrogate primary key for the grain -- one row per (manufacturer name,
+          program year). Hash of payment_maker_name + program_year.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: payment_maker_name
+        description: >
+          Applicable manufacturer or GPO making the payment
+          (APPLICABLE_MANUFACTURER_OR_APPLICABLE_GPO_MAKING_PAYMENT_NAME).
+          Trimmed; blanks treated as null and excluded.
+        data_tests:
+          - not_null
+
+      - name: payment_maker_id
+        description: >
+          Representative manufacturer/GPO id for the maker
+          (APPLICABLE_MANUFACTURER_OR_APPLICABLE_GPO_MAKING_PAYMENT_ID),
+          min() per maker-year. Cross-source join key into other Open Payments
+          surfaces.
+
+      - name: program_year
+        description: Open Payments program year (2022, 2023, or 2024 since the 2022 backfill).
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [2022, 2023, 2024]
+
+      - name: total_fb_payments
+        description: >
+          Count of Food & Beverage transfers attributed to this manufacturer in
+          the program year. The denominator for meal_cap_share. Always >= 100
+          (volume floor).
+        data_tests:
+          - not_null
+
+      - name: total_fb_amount_usd
+        description: Total US-dollar value of this manufacturer's F&B transfers in the year.
+
+      - name: avg_fb_amount_usd
+        description: Mean US-dollar value of this manufacturer's F&B transfers in the year.
+
+      - name: median_fb_amount_usd
+        description: Median US-dollar value of this manufacturer's F&B transfers in the year.
+
+      - name: n_meal_cap
+        description: >
+          Count of F&B transfers in the just-BELOW band [124.00, 124.99]
+          (the meal-cap band). Numerator for meal_cap_share.
+        data_tests:
+          - not_null
+
+      - name: n_exactly_124_99
+        description: >
+          Count of F&B transfers at exactly $124.99 -- the spike itself. Summed
+          across all manufacturers this reproduces the headline (20,733 in 2024,
+          19,883 in 2023).
+        data_tests:
+          - not_null
+
+      - name: n_just_above
+        description: >
+          Count of F&B transfers in the just-ABOVE band (125.00, 126.00].
+          Denominator for cliff_ratio.
+        data_tests:
+          - not_null
+
+      - name: n_exactly_125_00
+        description: >
+          Count of F&B transfers at exactly $125.00 -- the round-number twin of
+          the $124.99 spike.
+        data_tests:
+          - not_null
+
+      - name: meal_cap_share
+        description: >
+          n_meal_cap / total_fb_payments. Fraction of this manufacturer's F&B
+          spend priced just below the $125 cap. The headline ranking signal:
+          high share = a payer pricing meals to clear the threshold.
+        data_tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: 1
+              inclusive: true
+
+      - name: cliff_ratio
+        description: >
+          n_meal_cap / nullif(n_just_above, 0). Just-below vs just-above the cap.
+          >1 means meals cluster under the threshold; industry-wide this runs
+          ~4-10x. Null when the manufacturer has nothing in the just-above band.
+
+      - name: exactly_124_99_share
+        description: >
+          n_exactly_124_99 / total_fb_payments. Fraction of F&B spend sitting on
+          the single $124.99 spike (the tightest read of the fingerprint).
+        data_tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: 1
+              inclusive: true
+
+      - name: is_pronounced_fingerprint
+        description: >
+          True when the manufacturer shows a pronounced meal-cap pattern:
+          >= 2% of F&B spend at the cap AND a real cliff (>= 3x just-above, or
+          nothing just-above while still hitting the cap).
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]

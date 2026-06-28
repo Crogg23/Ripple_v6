@@ -1,0 +1,123 @@
+version: 2
+
+models:
+
+  - name: justice__county_double_burden
+    description: >
+      County-grain "double burden" mart from the 2026-06-27 discovery sweep.
+      One row per US county (FIPS). Crosses two independent county-level
+      signals and flags counties in the top decile of BOTH:
+
+        Axis A -- drug-overdose intensity, from
+        stg_fed_cdc_drug_poisoning_county__rates. The CDC publishes the
+        county death rate as a binned TEXT band; we rank on the band ordinal
+        (1=lowest .. 16='>30'=highest), collapsing the source's duplicate
+        rows to the MAX (peak) band per county.
+
+        Axis B -- jail incarceration rate, from
+        stg_xc_vera_incarceration_trends__county_year. We take the latest
+        valid jail-rate year per county (jail series valid through 2024),
+        excluding stub years and null/zero rates.
+
+      The rule is reusable: percent_rank() per axis within the joined county
+      universe, then double_burden = (overdose_pctile >= 0.9 AND
+      jail_pctile >= 0.9).
+
+      Reproduces finding #20 (Eastern Kentucky is the overdose+jail
+      double-extreme epicenter -- KY is ~4% of joined counties but ~24% of
+      the double-burden set, ~6x over-represented and the #1 state) and
+      finding #7 (West Virginia is the mirror -- essentially the same worst
+      overdose intensity as KY but ~half the jail rate, so it barely lands
+      in the double-extreme set).
+    columns:
+
+      - name: fips
+        description: 5-digit county FIPS code (primary key; one row = one county).
+        data_tests:
+          - unique
+          - not_null
+
+      - name: state_abbr
+        description: Two-letter US state abbreviation.
+        data_tests:
+          - not_null
+
+      - name: state_name
+        description: Full state name (from the CDC source where available).
+
+      - name: county_name
+        description: County name label.
+
+      - name: overdose_rate_band
+        description: >
+          CDC drug-poisoning death-rate band as a TEXT bin (e.g. '14.1-16',
+          '>30'). Peak (max ordinal) band observed for the county.
+
+      - name: overdose_metric
+        description: >
+          Overdose intensity ranking metric -- the ordinal of the rate band
+          (1=lowest .. 16='>30'=highest). This is the axis-A rank input.
+        data_tests:
+          - not_null
+
+      - name: overdose_pctile
+        description: >
+          percent_rank() of overdose_metric within the joined county universe
+          (0..1). Tied ordinal bands inherit the percentile of the lowest
+          member, so only genuinely top-decile bands clear 0.9.
+        data_tests:
+          - not_null
+
+      - name: jail_rate
+        description: >
+          Jail population per 100k residents aged 15-64, from the latest
+          valid (non-stub, positive) Vera year for the county.
+        data_tests:
+          - not_null
+
+      - name: jail_rate_year
+        description: The Vera panel year the jail_rate is drawn from (<= 2024).
+        data_tests:
+          - not_null
+
+      - name: jail_population
+        description: Total jail population count for the latest valid year.
+
+      - name: black_jail_rate
+        description: Black jail population rate per 100k (Vera), latest valid year.
+
+      - name: white_jail_rate
+        description: White jail population rate per 100k (Vera), latest valid year.
+
+      - name: jail_pctile
+        description: >
+          percent_rank() of jail_rate within the joined county universe (0..1).
+        data_tests:
+          - not_null
+
+      - name: is_overdose_top_decile
+        description: Boolean -- overdose_pctile >= 0.9.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+              quote: false
+
+      - name: is_jail_top_decile
+        description: Boolean -- jail_pctile >= 0.9.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+              quote: false
+
+      - name: double_burden
+        description: >
+          Boolean -- the headline flag. True when the county is in the top
+          decile of BOTH overdose intensity and jail rate
+          (overdose_pctile >= 0.9 AND jail_pctile >= 0.9).
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+              quote: false
