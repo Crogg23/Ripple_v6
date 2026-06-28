@@ -32,20 +32,30 @@ from tag_portal_index import (  # noqa: E402
 def detect_key(column_name: str) -> tuple[str | None, str | None]:
     """Return (key_label, tier) for a single column, or (None, None).
 
-    Strongest tier wins (KEY_TOKENS is ordered STEEL-first). Mirrors the set
-    logic in tag_portal_index.tag_columns, but per-column so we can pin which
-    physical column carries the key.
+    STRONGEST tier wins, computed explicitly via TIER_RANK -- NOT by relying on
+    KEY_TOKENS insertion order. (A new STEEL key APPENDED to KEY_TOKENS during a
+    Step-K key add would otherwise lose a first-match race to an earlier GEO/
+    PROBABILISTIC token on an overlapping column. This makes selection order-
+    independent.) Mirrors tag_columns' tier-sort, but per-column so we can pin
+    which physical column carries the key.
     """
     tk = tokens(column_name)
     if not tk:
         return None, None
+    best_key, best_tier = None, None
     for key, (tier, toks) in KEY_TOKENS.items():
-        if tk & toks:
-            return key, tier
+        if (tk & toks) and (best_tier is None or TIER_RANK[tier] < TIER_RANK[best_tier]):
+            best_key, best_tier = key, tier
+    if best_key is not None:
+        return best_key, best_tier
+    # No single-token match -> fall back to PAIR_RULES (e.g. postal+code -> ZIP),
+    # again taking the strongest tier if several pair rules hit.
     for key, (a, b) in PAIR_RULES:
         if a in tk and b in tk:
-            return key, KEY_TOKENS[key][0]
-    return None, None
+            tier = KEY_TOKENS[key][0]
+            if best_tier is None or TIER_RANK[tier] < TIER_RANK[best_tier]:
+                best_key, best_tier = key, tier
+    return best_key, best_tier
 
 
 # --------------------------------------------------------------------------- #
@@ -159,6 +169,14 @@ def normalize_sql(key: str, col: str) -> str:
         return (f"CASE WHEN LENGTH({digits}) <> {width} OR {digits} = REPEAT('0', {width}) "
                 f"THEN NULL ELSE {digits} END")
     clean = _alnum(col)
+    if mode == "alnum_upper":
+        # Variable-length alphanumeric entity IDs: BIOGUIDE ('S000148'), TAIL_NUMBER
+        # ('N12345'), ICAO24 (hex), ORI. Strip punctuation, upper-case, NO width
+        # constraint and NO leading-zero stripping. (Canonicalization matches 'code'
+        # today, but it's a DISTINCT named mode on purpose -- an opaque ID, not a
+        # zero-significant numeric code -- so Step-K NORM_RULES can declare it
+        # explicitly and the two can diverge later without a silent behaviour change.)
+        return f"NULLIF({clean}, '')"
     if mode == "pad":
         return (f"CASE WHEN LENGTH({clean}) = 0 OR LENGTH({clean}) > {width} THEN NULL "
                 f"ELSE LPAD({clean}, {width}, '0') END")

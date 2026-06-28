@@ -219,6 +219,37 @@ def _read_full(path, opts: dict) -> pd.DataFrame:
     return pd.read_csv(path, **{**_READ_DEFAULTS, **(opts or {})})
 
 
+def _read_multi(s: dict, tmp: Path, opts: dict, preview: bool = False) -> pd.DataFrame:
+    """Download + read several SAME-SCHEMA CSVs and concat into ONE frame.
+
+    For sources published as regional/territory partitions that together form one
+    dataset/table -- e.g. IRS EO BMF (eo1-4 + eo_xx + eo_pr). Fails LOUD on a column
+    mismatch between parts: a drifted partition must NOT silently corrupt the concat
+    (pandas would otherwise union columns and NaN-fill, masking the drift). In preview
+    mode only the first file is fetched (cheap shape check, not a full multi-GB pull).
+    """
+    urls = list(s.get("urls") or [])
+    if not urls:
+        raise RuntimeError(f"{s['source_id']}: 'urls' is empty for a multi-file spec")
+    if preview:
+        urls = urls[:1]
+    frames = []
+    for i, url in enumerate(urls):
+        dest = _download(url, tmp / f"part_{i}.csv")
+        frames.append(_read_full(dest, opts))
+    cols0 = list(frames[0].columns)
+    for j, f in enumerate(frames[1:], 1):
+        if list(f.columns) != cols0:
+            raise RuntimeError(
+                f"{s['source_id']}: part {j} columns {list(f.columns)[:8]} != "
+                f"part 0 {cols0[:8]} -- refusing to concat mismatched schemas")
+    out = pd.concat(frames, ignore_index=True) if len(frames) > 1 else frames[0]
+    print(f"    multi-file: read {len(urls)} file(s)"
+          + (" [PREVIEW: first file only]" if preview else "")
+          + f" -> {len(out):,} rows x {len(out.columns)} cols")
+    return out
+
+
 def _iter_chunks(path, opts: dict, chunk_rows: int):
     yield from pd.read_csv(path, chunksize=chunk_rows, **{**_READ_DEFAULTS, **(opts or {})})
 
@@ -258,13 +289,21 @@ def _register(conn, s: dict) -> None:
 # --------------------------------------------------------------------------- #
 # Load one spec
 # --------------------------------------------------------------------------- #
-def _already_landed(conn, table: str) -> bool:
-    n = snow.fetch_scalar(
-        conn,
-        f"SELECT COUNT(*) FROM {settings.raw_database}.INFORMATION_SCHEMA.TABLES "
-        f"WHERE TABLE_SCHEMA='{settings.raw_schema}' AND TABLE_NAME='{table}'",
-    )
-    return bool(n)
+def _has_success(conn, sid: str) -> bool:
+    """True iff this source has EVER landed cleanly (any STATUS='success' run).
+
+    Gating the skip on this -- NOT on table existence -- is what makes the loader
+    safe to re-run. A source that has never cleanly succeeded (a partial table left
+    by a crashed chunked load, or a first load demoted to STATUS='empty'/'failed')
+    is NOT 'already landed', so a default re-run RETRIES it instead of skipping a
+    half/junk table as done. (Idempotency keys on INGEST_RUNS, the source of truth.)
+
+    Note: a source that succeeded once and was LATER demoted to 'empty' still reads
+    as landed and is skipped by default -- re-pull it with --refresh (sha-checked) or
+    --force. The skip-gate's job is "don't re-pull what already landed clean once",
+    not "chase a source that went bad"; that's --refresh's job.
+    """
+    return ingest._latest_success_sha(conn, sid) is not None
 
 
 def load_spec(s: dict, do_run: bool = False, force: bool = False, refresh: bool = False) -> dict:
@@ -275,7 +314,7 @@ def load_spec(s: dict, do_run: bool = False, force: bool = False, refresh: bool 
 
     conn = snow.connect()
     try:
-        landed = _already_landed(conn, table)
+        landed = _has_success(conn, sid)
         if landed and not force and not refresh and do_run:
             print("    already landed — skipping (use --force to reload)")
             return {"source_id": sid, "status": "skip (already landed)", "rows": 0}
@@ -284,13 +323,18 @@ def load_spec(s: dict, do_run: bool = False, force: bool = False, refresh: bool 
         run_id = str(uuid.uuid4())
         with tempfile.TemporaryDirectory(prefix="bridgefuel_") as td:
             tmp = Path(td)
-            src = _open_csv_source(s, tmp)
             opts = s.get("csv_opts", {})
 
-            if s.get("chunked"):
-                return _load_chunked(conn, s, src, opts, table, run_id, started, sid, do_run)
-
-            df = _read_full(src, opts)
+            if s.get("urls"):
+                # Multi-file: several same-schema partitions -> one table (e.g. IRS
+                # EO BMF eo1-4 + eo_xx + eo_pr). Goes through the full (non-chunked)
+                # path, so the density gate applies. Preview reads only the first file.
+                df = _read_multi(s, tmp, opts, preview=not do_run)
+            else:
+                src = _open_csv_source(s, tmp)
+                if s.get("chunked"):
+                    return _load_chunked(conn, s, src, opts, table, run_id, started, sid, do_run)
+                df = _read_full(src, opts)
             df = _prepare(df, s)
             n_raw = len(df)
             cap = int(s.get("max_rows") or 0)
@@ -315,16 +359,33 @@ def load_spec(s: dict, do_run: bool = False, force: bool = False, refresh: bool 
             out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
             out[ingest.META_SOURCE_RUN_ID] = run_id
             out[ingest.META_SRC_SHA256] = sha
+            url = s.get("url", s["download_url"])
             try:
                 ingest._load_landing(conn, out, table, overwrite=True)
                 ended = ingest._utcnow()
+                # DENSITY GATE: did this carry real data, or is it an empty/parse-
+                # failure husk (the FED_FJC_IDB failure: rows landed, every source
+                # column blank)? An effectively-empty frame is logged STATUS='empty'
+                # and NOT registered -- it must never ride into the catalog as a source.
+                density = ingest.assess_density(out)
+                if density["empty"]:
+                    ingest._log_run(conn, sid, run_id, "empty", len(out), len(df_bytes),
+                                    sha, url, started, ended,
+                                    f"EMPTY LOAD -- {density['reason']}. "
+                                    f"{ingest._density_note(density)}. Landed {len(out):,} rows "
+                                    f"into LIBRARY_RAW.LANDING.{table} but the frame carries no "
+                                    "real data; NOT registered as a source.")
+                    print(f"    EMPTY -- {density['reason']}; logged STATUS='empty', not registered.")
+                    return {"source_id": sid, "status": "empty", "rows": len(out),
+                            "density": density["populated_fraction"]}
                 ingest._log_run(conn, sid, run_id, "success", len(out),
-                                len(df_bytes), sha, s.get("url", s["download_url"]),
-                                started, ended,
-                                f"{s.get('name', sid)}. Bulk LLM-free load of {len(out):,} rows.")
+                                len(df_bytes), sha, url, started, ended,
+                                f"{s.get('name', sid)}. Bulk LLM-free load of {len(out):,} rows. "
+                                f"{ingest._density_note(density)}.")
                 _register(conn, s)
                 print(f"    LOADED {len(out):,} rows -> LIBRARY_RAW.LANDING.{table}; registered INCLUDE=Y")
-                return {"source_id": sid, "status": "loaded", "rows": len(out)}
+                return {"source_id": sid, "status": "loaded", "rows": len(out),
+                        "density": density["populated_fraction"]}
             except Exception as exc:
                 ended = ingest._utcnow()
                 try:
@@ -352,40 +413,87 @@ def _load_chunked(conn, s, src, opts, table, run_id, started, sid, do_run) -> di
 
     database, schema = settings.raw_database, settings.raw_schema
     snow.execute(conn, f'CREATE SCHEMA IF NOT EXISTS "{database}"."{schema}"')
+    url = s.get("url", s["download_url"])
     appended, n, chunk_shas, columns = 0, 0, [], []
-    for chunk in _iter_chunks(src, opts, chunk_rows):
-        chunk = _prepare(chunk, s)
-        if len(chunk) == 0:
-            continue  # filtered to nothing (e.g. NBER othpidty!=06) — skip
-        if cap and appended >= cap:
-            break
-        if cap and appended + len(chunk) > cap:
-            chunk = chunk.head(cap - appended)
-        csv_bytes = chunk.to_csv(index=False).encode("utf-8")
-        csha = hashlib.sha256(csv_bytes).hexdigest()
-        chunk_shas.append(csha)
-        out = ingest._stringify(chunk)
-        out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
-        out[ingest.META_SOURCE_RUN_ID] = run_id
-        out[ingest.META_SRC_SHA256] = csha
-        ok, _c, _r, _ = write_pandas(conn, out, table_name=table, database=database,
-                                     schema=schema, auto_create_table=True,
-                                     overwrite=(n == 0), quote_identifiers=False)
-        if not ok:
-            raise RuntimeError(f"write_pandas failed on chunk {n + 1}")
-        if n == 0:
-            columns = list(out.columns)
-        appended += len(chunk)
-        n += 1
-        print(f"    chunk {n}: +{len(chunk):,} (total {appended:,})", flush=True)
+    density_frames, density_rows = [], 0   # bounded leading-row sample for the gate
+    try:
+        for chunk in _iter_chunks(src, opts, chunk_rows):
+            chunk = _prepare(chunk, s)
+            if len(chunk) == 0:
+                continue  # filtered to nothing (e.g. NBER othpidty!=06) — skip
+            if cap and appended >= cap:
+                break
+            if cap and appended + len(chunk) > cap:
+                chunk = chunk.head(cap - appended)
+            csv_bytes = chunk.to_csv(index=False).encode("utf-8")
+            csha = hashlib.sha256(csv_bytes).hexdigest()
+            chunk_shas.append(csha)
+            out = ingest._stringify(chunk)
+            out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
+            out[ingest.META_SOURCE_RUN_ID] = run_id
+            out[ingest.META_SRC_SHA256] = csha
+            ok, _c, _r, _ = write_pandas(conn, out, table_name=table, database=database,
+                                         schema=schema, auto_create_table=True,
+                                         overwrite=(n == 0), quote_identifiers=False)
+            if not ok:
+                raise RuntimeError(f"write_pandas failed on chunk {n + 1}")
+            if n == 0:
+                columns = list(out.columns)
+            # Bounded leading-row sample for the density gate (the whole file is never
+            # in memory; a parse failure is uniform, so the head is representative).
+            if density_rows < ingest.DENSITY_SAMPLE_ROWS:
+                take = out.head(ingest.DENSITY_SAMPLE_ROWS - density_rows)
+                density_frames.append(take)
+                density_rows += len(take)
+            appended += len(chunk)
+            n += 1
+            print(f"    chunk {n}: +{len(chunk):,} (total {appended:,})", flush=True)
+    except Exception as exc:
+        # A chunked load is NOT atomic (chunk 0 REPLACED the table, later chunks
+        # APPENDED), so a crash mid-stream leaves a PARTIAL table. Drop it + log
+        # 'failed' so it can't read as 'landed' and a re-run starts clean.
+        ended = ingest._utcnow()
+        try:
+            snow.execute(conn, f'DROP TABLE IF EXISTS "{database}"."{schema}"."{table}"')
+        except Exception:
+            pass
+        try:
+            ingest._log_run(conn, sid, run_id, "failed", None, None, "", url, started, ended,
+                            f"Chunked load failed after {appended:,} rows "
+                            f"(partial table dropped, resume from scratch): {exc}")
+        except Exception:
+            pass
+        raise
+
+    if appended == 0:
+        # Loudly fail an all-empty stream (bad URL / parse / over-aggressive filter)
+        # rather than registering a 0-row source as a clean success.
+        raise RuntimeError(
+            f"chunked load produced 0 rows for {sid} (bad URL / parse / filter removed all?)")
+
     manifest = hashlib.sha256("".join(chunk_shas).encode()).hexdigest()
     ended = ingest._utcnow()
-    ingest._log_run(conn, sid, run_id, "success", appended, None, manifest,
-                    s.get("url", s["download_url"]), started, ended,
-                    f"{s.get('name', sid)}. Chunked LLM-free load of {appended:,} rows.")
+    # DENSITY GATE (chunked): an empty/parse-failure stream is logged STATUS='empty'
+    # and NOT registered, so it can't masquerade as a real source.
+    if density_frames:
+        density = ingest.assess_density(pd.concat(density_frames, ignore_index=True))
+    else:
+        density = ingest.assess_density(pd.DataFrame(columns=list(columns) or ["COL"]))
+    if density["empty"]:
+        ingest._log_run(conn, sid, run_id, "empty", appended, None, manifest, url, started, ended,
+                        f"EMPTY LOAD -- {density['reason']}. {ingest._density_note(density)}. "
+                        f"Chunked-streamed {appended:,} rows into LIBRARY_RAW.LANDING.{table} "
+                        "but the frame carries no real data; NOT registered.")
+        print(f"    EMPTY -- {density['reason']}; logged STATUS='empty', not registered.")
+        return {"source_id": sid, "status": "empty", "rows": appended,
+                "density": density["populated_fraction"]}
+    ingest._log_run(conn, sid, run_id, "success", appended, None, manifest, url, started, ended,
+                    f"{s.get('name', sid)}. Chunked LLM-free load of {appended:,} rows. "
+                    f"{ingest._density_note(density)}.")
     _register(conn, s)
     print(f"    LOADED {appended:,} rows (chunked) -> LIBRARY_RAW.LANDING.{table}; registered INCLUDE=Y")
-    return {"source_id": sid, "status": "loaded", "rows": appended}
+    return {"source_id": sid, "status": "loaded", "rows": appended,
+            "density": density["populated_fraction"]}
 
 
 # --------------------------------------------------------------------------- #

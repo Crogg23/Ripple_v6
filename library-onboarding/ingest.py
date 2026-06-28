@@ -378,10 +378,15 @@ def _run_chunked(config: dict, code: str, run_id: str, started, source_id: str,
     conn0 = snow.connect()
     try:
         existing = _landing_count(conn0, table)
-        had_success = _latest_success_sha(conn0, source_id) is not None
+        last_status = _latest_status(conn0, source_id)
     finally:
         conn0.close()
-    resume = existing > 0 and not had_success
+    # Resume ONLY a genuine crash: rows already landed AND the last run logged
+    # 'failed' (the except below leaves partial rows in place + logs 'failed'). A
+    # prior 'empty' (a COMPLETED determination that the stream was junk) or 'success'
+    # must NOT resume -- it starts fresh so chunk 0 REPLACES the table, never appends
+    # onto stale/garbage rows. (Defaulting to fresh is always safe; it just re-streams.)
+    resume = existing > 0 and last_status == "failed"
     resume_from = existing if resume else 0
 
     chunk_iter = _execute_fetch_chunks(config, code, resume_from_row=resume_from,
@@ -768,6 +773,22 @@ def _latest_success_sha(conn, source_id: str) -> Optional[str]:
     return snow.fetch_scalar(
         conn,
         f"SELECT SHA256 FROM {fqt} WHERE SOURCE_ID=%s AND STATUS='success' "
+        "ORDER BY STARTED_AT DESC LIMIT 1",
+        (source_id,),
+    )
+
+
+def _latest_status(conn, source_id: str) -> Optional[str]:
+    """STATUS of the MOST RECENT run for this source (or None if never run).
+
+    Used to decide chunked resume: only a logged 'failed' (a genuine mid-stream
+    crash that left partial rows) may resume-append; a prior 'empty' or 'success'
+    must start fresh so chunk 0 REPLACES the table instead of stacking onto it.
+    """
+    fqt = f'"{settings.meta_database}"."{settings.ingest_log_schema}"."{settings.ingest_log_table}"'
+    return snow.fetch_scalar(
+        conn,
+        f"SELECT STATUS FROM {fqt} WHERE SOURCE_ID=%s "
         "ORDER BY STARTED_AT DESC LIMIT 1",
         (source_id,),
     )
