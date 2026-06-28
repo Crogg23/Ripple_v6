@@ -1,7 +1,73 @@
 # Build State
 Last updated: 2026-06-27
 
-## CURRENT FOCUS — BACKEND READINESS AUDIT + P0 BUILD (2026-06-27, latest)
+## CURRENT FOCUS — 75-ISSUE COVERAGE MAP + ONBOARDING QUEUE (2026-06-27, latest)
+**Compared the live Library to a "World's Top 75 Issues 2026" list (50 global + 25 US). Ran TWO
+independent passes — a 75-agent catalog-aware web-recon workflow (`wf_2bbc195c-9fd`; 75/75 ok, 2.4M
+tokens, 1,134 web calls) + a claude.ai Opus deep-research pass on the 29 gaps — and reconciled them.
+Then started loading the clean wins.**
+
+**COVERAGE VERDICT (75 issues matched against 1,647 catalog rows / 61 with real data):**
+- **3 HAVE** (real data already serving it): #9 exec power (Federal Register + Revolving Door modeled),
+  #32 healthcare access (10 CMS provider sets landed), #57 SCOTUS (SCDB + Oyez modeled).
+- **5 PARTIAL:** #38 corruption (FARA), #45 housing (redlining), #60 campaign finance (FEC cmte master),
+  #61 racial wealth (redlining + CRT cases), #63 drug pricing (Part D prescribers).
+- **38 SCOUTED→LOAD** — already in the registry as `scouted`, just need the loader run (ATF guns, DEA
+  ARCOS, BOP, EAC voting, CFPB HMDA, NCES, HUD, EIA, USGS water, NASS, SSA, SAMHSA, UN Comtrade, V-Dem…).
+- **29 GAP** — fresh-scouted; **26 onboardable now.** Only ~3 have no clean feed (live IAEA Iran
+  stockpile #s, UN MRM child grave-violations counts, mil recruiting goals-vs-actuals by service).
+
+**RECONCILIATION — both passes converged on the flagship source for nearly every gap (= high confidence):**
+UCDP GED (conflict backbone, chosen OVER redistribution-restricted ACLED), Harvard "Russian Operations
+Against Europe" (DOI 10.7910/DVN/TQ0FMQ), CNS/NTI NK missile DB (frozen Apr 2026), AI Incident Database,
+EUvsDisinfo Zenodo (rec 10514307, CC BY-SA), CISA KEV (CC0), CTDC trafficking, WID.world, Guttmacher +
+#WeCount, LegiScan-backed LGBTQ/trans trackers, PEN America book bans, UNICEF JME. **In-house found a
+BETTER onboardable pick on 5:** PNNL IM3 Data Center Atlas (#18, vs IEA login/projections), 2022 Economic
+Census HHI concentration (#36, vs StatCounter), WHO GHO AMR OData API (#29, vs ECDC EU-only), Open States
+bulk (#74, vs NCSL scrape), DoD recruits-by-ZIP (#71, vs "press-release only").
+
+**ARTIFACTS (outputs/):** `issue_coverage_SUMMARY_2026-06-27.md` (matrix + reconciliation + load-first
+queue + caveats — the readable one), `issue_scout_DETAIL_2026-06-27.md` (full per-issue recon, all 75:
+URLs/access/license/join-keys/quirks), `deep_research_prompt_GAPS_2026-06-27.md` (the gaps prompt).
+
+**⚠️ BEFORE BULK LOAD:** ACLED raw rows are **non-redistributable** (both passes flag) — add a
+`redistribution_restricted` flag to the registry and default to UCDP GED for any public output. EUvsDisinfo
+= CC BY-SA copyleft (ShareAlike). Cleanest licenses to lead with: UCDP GED / CISA KEV (CC0) / UNICEF JME
+(CC-BY 3.0 IGO) / all US-gov sources. **117 keyless+EASY candidates total** across the 75 issues.
+
+**LOADED THIS SESSION — 40 sources, ~4.92M rows (Library 61 → 101 landed/modeled, +66%):**
+- **Bespoke loaders:** `fed_cisa_kev` (1,629 CVEs, CC0), `intl_ucdp_ged` (385,918 conflict events, CC-BY).
+- **`scripts/issue_batch_load.py` (generic: csv / zip_csv / gz_csv / xlsx / json):** xc_owid_nuclear_warheads,
+  intl_owid_milspend, xc_owid_ai_incidents_annual, xc_ransomwarelive_victims, fed_fhfa_hpi (184,807),
+  xc_wapo_fatal_force, xc_guttmacher_monthly_abortion, intl_nti_cns_dprk_missile_tests,
+  xc_nagix_dprk_missile_tests, intl_fao_faostat_food_security (279,470), intl_freedomhouse, fed_fbi_nics_checks.
+- **`scripts/issue_batch_load2.py` (adds a Harvard Dataverse fetcher):** 10 OWID indicators (co2, temp_anomaly,
+  gini, refugees, fertility, cpi, terrorism_deaths, fossil_share, life_expectancy, homicide),
+  xc_vera_incarceration_trends (128,507), intl_leiden_russian_ops_europe, **intl_voeten_unga_votes (1.82M)**,
+  st_cannabis_policy_bundles. → ~25 of the 75 issues now carry real data.
+- **All loaded as `domain=UNCLASSIFIED`, `category='Issue-coverage'`** — needs a batch domain-tag pass.
+
+**BUDGET:** hit `RIPPLE_BUDGET` (15 cr) at 90% mid-session → Chris raised it to 30 (the agent's own
+`ALTER RESOURCE MONITOR` was classifier-blocked — the spend guard is correctly Chris's). **All 40 loads cost
+~0.14 cr total** (used 13.58 → 13.72) — loads are nearly free; the month's burn is prior discover/spatial scans.
+Post-raise, tranche-3/4/5 landed: `intl_wb_ids` (debt #14), `fed_cms_nadac` (1.5M drug prices #63),
+`intl_ipc_food_insecurity_global` (famine #3/#20), `fed_noaa_storm_events` (#24); CDC Socrata (overdose,
+drug-poisoning-county, suicide-rates, anxiety/depression, injury+violence-county, health-insurance #31/#48/#51/#32);
+VA suicide + all-cause mortality appendices (#70). Misfires flagged: `intl_ti_cpi` (xlsx multi-header → superseded
+by `xc_owid_cpi`); CTDC #49 (Cloudflare 403); EIA bulk (NDJSON, needs handler). Vera path fixed (→ `_county.csv`).
+
+## NEXT ACTION
+Keyless single-file pool is largely harvested (40 in). Remaining needs: (1) **free API keys**
+(Census/BLS/EIA/NASS/LegiScan/College-Scorecard) → ~10 more issues; (2) bespoke parsers for HUD XLSB / SAMHSA /
+SEC financial statements / EOIR / big WDI / DEA ARCOS / CFPB HMDA; (3) `redistribution_restricted` registry flag
+before ACLED; (4) **batch domain-tag the 40 UNCLASSIFIED loads** (all landed as domain=UNCLASSIFIED,
+category='Issue-coverage'). Loaders: `scripts/cisa_kev_load.py`, `ucdp_ged_load.py`, `issue_batch_load.py`
+(csv/zip/gz/xlsx/json), `issue_batch_load2.py` (+ Dataverse + Socrata). Full plan + per-issue recon in
+`outputs/issue_coverage_SUMMARY_2026-06-27.md` + `_DETAIL_`. (Older readiness punch-list below.)
+
+---
+
+## PRIOR FOCUS — BACKEND READINESS AUDIT + P0 BUILD (2026-06-27)
 **Ran a 37-agent multi-perspective audit (find → adversarial-verify → synthesize) of the whole backend,
 then a build workflow that shipped 4 P0 fixes. Verdict: the engineering is portfolio-grade; the TRUST
 CHAIN was broken. Readiness = 2 of 8 criteria at audit time.**
