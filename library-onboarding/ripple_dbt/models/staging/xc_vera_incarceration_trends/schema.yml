@@ -1,0 +1,161 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: XC_VERA_INCARCERATION_TRENDS
+        description: >
+          Raw landing table for the Vera Institute "Incarceration Trends"
+          county-year panel (3,075 US counties, 1970-2026). One row per
+          (year, county). All columns land as TEXT.
+
+          KNOWN TRAPS (verified 2026-06-27): the prison + total-incarceration
+          series DEAD-END at 2019 -- every year >= 2020 stores BLANK (= missing,
+          NOT zero) for prison populations and rates. The jail series is usable
+          through 2024. Years 2025-2026 are population-only placeholder stubs
+          drawn from a self-selecting 5-11 state subset, not a national census.
+
+models:
+
+  - name: stg_xc_vera_incarceration_trends__county_year
+    description: >
+      Staging model for the Vera incarceration county-year panel. Renames to
+      snake_case, casts counts/rates with try_to_double (genuine blanks stay
+      NULL, never coerced to 0), and deduplicates on (year, county_fips) keeping
+      the most-recently ingested record.
+
+      Trap neutralization: the entire PRISON + TOTAL-INCARCERATION block (pops
+      and rates) is hard-NULLed for year > 2019, because the source's blank
+      strings there mean MISSING, not zero -- this prevents any downstream
+      COALESCE/aggregate from misreading the 2019 prison cliff as
+      decarceration-to-zero. The JAIL series is left intact (usable through
+      2024). An is_stub_year flag marks the 2025-2026 placeholder rows so a
+      racial-disparity mart can filter them.
+    columns:
+
+      - name: year_county_fips
+        description: >
+          Surrogate primary key, 'YEAR|COUNTY_FIPS'. The composite natural key
+          (year, county_fips) is unique across all 128,507 rows.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: year
+        description: Observation year (1970-2026), cast from TEXT.
+        data_tests:
+          - not_null
+
+      - name: county_fips
+        description: 5-digit county FIPS code. Geographic join key.
+        data_tests:
+          - not_null
+
+      - name: county_name
+        description: County name.
+
+      - name: state_abbr
+        description: Two-letter US state abbreviation.
+
+      - name: state_fips
+        description: 2-digit state FIPS code.
+
+      - name: urbanicity
+        description: Vera urbanicity classification (rural/small-mid/suburban/urban).
+
+      - name: region
+        description: Census region.
+
+      - name: division
+        description: Census division.
+
+      - name: is_stub_year
+        description: >
+          TRUE for 2025-2026 population-only placeholder rows (no usable
+          jail/prison data, blank population, 5-11 self-selecting states only).
+          A racial-disparity mart should filter these out.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+
+      - name: total_pop_15to64
+        description: >
+          Total working-age (15-64) county population, the rate denominator.
+          Blank (NULL) for the 2025-2026 stub years.
+
+      - name: black_pop_15to64
+        description: Black working-age (15-64) population. Disparity-mart denominator.
+
+      - name: white_pop_15to64
+        description: White working-age (15-64) population. Disparity-mart denominator.
+
+      - name: latinx_pop_15to64
+        description: Latinx working-age (15-64) population.
+
+      - name: total_jail_pop
+        description: >
+          Total county jail population (point-in-time). Usable through 2024;
+          blank (NULL) for 2025-2026 stub years.
+
+      - name: black_jail_pop
+        description: Black jail population.
+
+      - name: white_jail_pop
+        description: White jail population.
+
+      - name: total_jail_pop_rate
+        description: Total jail incarceration rate per 100k (15-64). Usable through 2024.
+
+      - name: black_jail_pop_rate
+        description: >
+          Black jail incarceration rate per 100k Black (15-64). Disparity-mart
+          numerator (Black side). Usable through 2024.
+
+      - name: white_jail_pop_rate
+        description: >
+          White jail incarceration rate per 100k White (15-64). Disparity-mart
+          numerator (White side). Usable through 2024.
+
+      - name: latinx_jail_pop_rate
+        description: Latinx jail incarceration rate per 100k Latinx (15-64).
+
+      - name: total_prison_pop
+        description: >
+          Total county prison population. TRAP-FIXED: hard-NULLed for year > 2019
+          because the source stores BLANK (= missing) there, never zero. Valid
+          only 2019 and earlier.
+
+      - name: black_prison_pop
+        description: Black prison population. Hard-NULLed for year > 2019 (see total_prison_pop).
+
+      - name: white_prison_pop
+        description: White prison population. Hard-NULLed for year > 2019 (see total_prison_pop).
+
+      - name: total_prison_pop_rate
+        description: Total prison rate per 100k (15-64). Hard-NULLed for year > 2019.
+
+      - name: black_prison_pop_rate
+        description: Black prison rate per 100k Black (15-64). Hard-NULLed for year > 2019.
+
+      - name: white_prison_pop_rate
+        description: White prison rate per 100k White (15-64). Hard-NULLed for year > 2019.
+
+      - name: total_incarceration
+        description: >
+          Total incarcerated population (jail + prison). TRAP-FIXED: hard-NULLed
+          for year > 2019 (source blank = missing, not zero). Valid only through 2019.
+
+      - name: total_incarceration_rate
+        description: >
+          Total incarceration rate per 100k (15-64). Hard-NULLed for year > 2019.
+          Any post-2019 "incarceration rate" from this source is empty by
+          construction -- do not chart it.
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier for lineage tracking.

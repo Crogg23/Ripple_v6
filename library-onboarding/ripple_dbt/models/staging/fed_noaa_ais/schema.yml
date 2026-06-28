@@ -9,35 +9,59 @@ sources:
         description: >
           Raw landing table for NOAA Marine Cadastre Nationwide AIS vessel
           position data. All columns arrive as TEXT from the ingestion pipeline.
+          SINGLE-DAY SNAPSHOT: 100% of the 7.3M rows are DATE = '2024-01-01'
+          (one daily file, AIS_2024_01_01.zip) -- a spatial cross-section, not a
+          time series.
 
 models:
 
   - name: stg_fed_noaa_ais__ais_vessel_positions
     description: >
-      Staging view for NOAA AIS vessel position records. Renames columns to
-      snake_case, casts to appropriate types, and deduplicates on the natural
-      key (mmsi, imo_number, date, base_datetime).
+      Staging view for NOAA AIS vessel position records. SINGLE-DAY SNAPSHOT:
+      every row is 2024-01-01 (one NOAA Marine Cadastre daily file) -- usable as
+      a spatial cross-section only, NOT a vessel-movement-over-time panel.
+      Renames columns to snake_case, casts to appropriate types, and deduplicates
+      on the natural key (mmsi, imo_number, date, base_datetime).
+      Trap fixes: (1) imo_normalized is the cross-source join key -- AIS stores
+      100% 'IMO'-prefixed values plus 2.24M placeholder/junk pings, OFAC stores
+      bare 7-digit, so a naive string join returns 0 matches; (2) heading nulls
+      the AIS '511' ('not available') sentinel present on 52% of rows. MMSI is the
+      PRIMARY vessel key; raw imo_number is junk-heavy and kept for lineage only.
+      One row = one AIS position ping (not one vessel), so no unique test applies.
     columns:
 
       - name: mmsi
-        description: Maritime Mobile Service Identity – primary vessel radio identifier.
+        description: >
+          Maritime Mobile Service Identity -- PRIMARY vessel radio identifier.
+          Reliable: present on every ping (14,868 distinct vessels). Repeats
+          across pings, so not unique at the row grain.
         data_tests:
           - not_null
 
       - name: imo_number
-        description: International Maritime Organization vessel number.
-        data_tests:
-          - not_null
+        description: >
+          Raw AIS IMO number, kept for lineage. Carries the 'IMO' prefix and is
+          junk-heavy (2.24M placeholder/blank pings, dominant 'IMO0000000').
+          DO NOT join on this -- use imo_normalized instead. Often blank.
+
+      - name: imo_normalized
+        description: >
+          Cross-source IMO join key (via normalize_imo): the bare valid 7-digit
+          IMO with the 'IMO' prefix stripped, else NULL. Joins to OFAC /
+          OpenSanctions / GLEIF. Mostly NULL because most AIS pings carry
+          placeholder IMOs.
 
       - name: date
-        description: Calendar date of the AIS transmission (cast from raw DATE column).
+        description: Calendar date of the AIS transmission (always 2024-01-01 in this snapshot).
         data_tests:
           - not_null
 
       - name: base_datetime
-        description: Full UTC timestamp of the AIS position report.
+        description: Full UTC timestamp of the AIS position report (cast via try_to_timestamp).
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
 
       - name: latitude
         description: Vessel latitude in decimal degrees (WGS-84).
@@ -52,13 +76,13 @@ models:
         description: Course over ground in degrees (0–359.9).
 
       - name: heading
-        description: True heading in degrees (0–359); 511 indicates not available.
+        description: >
+          True heading in degrees (0–359). The AIS '511' ('not available')
+          sentinel and any value >= 360 are nulled by clean_heading -- 52% of raw
+          rows carry 511, so an unfiltered AVG is garbage (~357 vs true ~187).
 
       - name: vessel_name
         description: Vessel name as broadcast by the AIS transponder.
-
-      - name: imo_number
-        description: IMO vessel number (may be 0 or null for non-IMO vessels).
 
       - name: call_sign
         description: Radio call sign of the vessel.
@@ -82,15 +106,17 @@ models:
         description: Cargo type / hazard classification code.
 
       - name: transceiver_class
-        description: AIS transceiver class (A or B).
+        description: >
+          AIS transceiver class (A or B). NOTE: blank on 100% of rows in this
+          snapshot, so '' is an accepted value.
         data_tests:
           - accepted_values:
-              values: ['A', 'B']
+              values: ['A', 'B', '']
               quote: true
               config:
                 severity: warn
       - name: source_file
-        description: Name of the source file from which this record was ingested.
+        description: Name of the source file from which this record was ingested (AIS_2024_01_01.zip).
 
       - name: _ingested_at
         description: Pipeline audit timestamp – when the record landed in the raw table.

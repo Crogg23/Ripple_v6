@@ -1,0 +1,100 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: INTL_OWID_MILSPEND
+        description: >
+          Raw landing table for the Our World in Data military-expenditure
+          panel (sourced from SIPRI). 9,112 rows, 1949-2025. All columns are
+          TEXT as ingested. One row = one (entity, year). The expenditure
+          column is absolute current US$. Audit columns landed WITHOUT a
+          leading underscore (INGESTED_AT, SOURCE_RUN_ID, SRC_SHA256).
+
+models:
+
+  - name: stg_intl_owid_milspend__military_spending
+    description: >
+      Staging model for the OWID/SIPRI military-expenditure panel. Renames to
+      snake_case, casts types (try_to_* so bad text -> NULL), and deduplicates
+      on (country, year) keeping the most-recently ingested record.
+
+
+      TRAP 1 -- non-country aggregates (finding #74): 771 of 9,112 rows are NOT
+      real countries and will double-/triple-count if summed. They come in two
+      flavors and blank CODE alone does NOT isolate them: 644 SIPRI regional
+      rows carry a blank CODE, and 127 OWID pseudo-code rows (CODE LIKE 'OWID_%')
+      include 'World' (the table max, 2.77e12) plus historical states (USSR,
+      Czechoslovakia, East Germany, Yemen Arab Republic) and Kosovo. The
+      `is_aggregate` flag is TRUE for both flavors, and `iso_code` is NULL on
+      every aggregate row. DOWNSTREAM RULE: any cross-country SUM or correlation
+      MUST filter `where not is_aggregate` (equivalently `iso_code is not null`)
+      or the total inflates.
+
+
+      TRAP 2 -- needs per-GDP / per-capita normalization (finding #90):
+      `military_expenditure_usd` is absolute current US$ with NO GDP or
+      population column in this source. Raw cross-country correlations against it
+      are economy-SIZE artifacts (CORR with life-expectancy is ~0.055), not
+      guns-vs-butter signal. Normalize by GDP or population (join an external
+      denominator) before any cross-country comparison. Genuine demilitarized
+      zeros exist (Costa Rica, Iceland) and are kept as real 0s, not nulled.
+    columns:
+
+      - name: country
+        description: >
+          Entity name (OWID ENTITY). Natural key partner with year; present and
+          unique-per-year on every row, including aggregate rows. For aggregate
+          rows this is a region name (e.g. 'Africa (SIPRI)') or 'World'.
+        data_tests:
+          - not_null
+
+      - name: year
+        description: Calendar year of the observation (1949-2025), cast from TEXT.
+        data_tests:
+          - not_null
+
+      - name: iso_code
+        description: >
+          Real 3-letter ISO3 country code, UPPER. NULL on every aggregate row
+          (blank-code SIPRI regions AND OWID_%-pseudo codes such as World, USSR,
+          Czechoslovakia, East Germany, Kosovo). iso_code IS NOT NULL is the
+          clean test for a real present-day country row.
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+
+      - name: owid_code
+        description: >
+          Raw OWID code kept for lineage. Carries blank (SIPRI regions) and
+          OWID_%-pseudo codes; do NOT use as a country join key -- use iso_code.
+
+      - name: military_expenditure_usd
+        description: >
+          Military expenditure in ABSOLUTE current US$ (NOT %GDP, NOT
+          per-capita). Verified 0 uncastable rows; 180 genuine '0' values
+          retained (real demilitarized states). Requires per-GDP or per-capita
+          normalization before any cross-country comparison.
+
+      - name: world_region
+        description: OWID world-region grouping. NULL on most aggregate rows.
+
+      - name: is_aggregate
+        description: >
+          TRUE when the row is a non-country aggregate -- either a blank-code
+          SIPRI region OR an OWID_%-pseudo code (World + historical states +
+          Kosovo). Downstream cross-country SUM/correlation MUST exclude these.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+              quote: false
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested (from epoch-micros INGESTED_AT).
+
+      - name: _source_run_id
+        description: Pipeline run identifier for lineage tracking (from SOURCE_RUN_ID).

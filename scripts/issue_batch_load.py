@@ -52,10 +52,14 @@ SPECS = [
     ("xc_wapo_fatal_force",           "https://raw.githubusercontent.com/washingtonpost/data-police-shootings/master/v2/fatal-police-shootings-data.csv", "csv"),
     ("xc_vera_incarceration_trends",  "https://raw.githubusercontent.com/vera-institute/incarceration-trends/master/incarceration_trends.csv", "csv"),
     ("xc_guttmacher_monthly_abortion","https://osf.io/download/kqb9n/", "csv"),
-    ("intl_nti_cns_dprk_missile_tests","https://www.nti.org/wp-content/uploads/2021/10/north_korea_missile_test_database.xlsx", "xlsx"),
-    ("xc_nagix_dprk_missile_tests",   "https://raw.githubusercontent.com/nagix/nk-missile-tests/master/data/test.en.json", "json"),
+    # NTI #109: blank row 0, real 19-col header on row 1 of the 'Missile Tests' sheet (305 rows).
+    ("intl_nti_cns_dprk_missile_tests","https://www.nti.org/wp-content/uploads/2021/10/north_korea_missile_test_database.xlsx", "xlsx", {"sheet": "Missile Tests", "header": 1}),
+    # Nagix #45: JSON is {"timeBins":[{"data":[<launch>,...]}, ...]} -- explode to one row per launch event.
+    ("xc_nagix_dprk_missile_tests",   "https://raw.githubusercontent.com/nagix/nk-missile-tests/master/data/test.en.json", "json", {"json_explode": "timeBins.data"}),
     ("intl_fao_faostat_food_security","https://bulks-faostat.fao.org/production/Food_Security_Data_E_All_Data_(Normalized).zip", "zip_csv"),
-    ("intl_freedomhouse",             "https://freedomhouse.org/sites/default/files/2025-02/All_data_FIW_2013-2024.xlsx", "xlsx"),
+    # FreedomHouse #62: row 0 is the title "Freedom in the World ... Raw Data"; the real
+    # 44-field header is row 1 of the 'FIW13-25' sheet.
+    ("intl_freedomhouse",             "https://freedomhouse.org/sites/default/files/2025-02/All_data_FIW_2013-2024.xlsx", "xlsx", {"sheet": "FIW13-25", "header": 1}),
     ("intl_ti_cpi",                   "https://images.transparencycdn.org/images/CPI2024-Results-and-trends.xlsx", "xlsx"),
     # --- tranche 3 (resolved gov-bulk URLs) ---
     ("intl_wb_ids",                   "https://databank.worldbank.org/data/download/IDS_CSV.zip", "zip_csv"),
@@ -78,26 +82,50 @@ def _juris(sid: str) -> str:
             "st": "state", "loc": "local"}.get(sid.split("_", 1)[0], "cross-cutting")
 
 
-def _to_df(content: bytes, fmt: str) -> pd.DataFrame:
+def _to_df(content: bytes, fmt: str, opts: dict | None = None) -> pd.DataFrame:
+    """Parse raw bytes into an all-TEXT DataFrame.
+
+    `opts` (optional 4th SPEC element) overrides pandas defaults for the sources
+    whose real header/data is not where pandas guesses (discovery-sweep fixes):
+      header       header row index for csv/xlsx (FreedomHouse #62, NTI #109 -> 1)
+      skiprows     rows to skip before the header (csv/xlsx)
+      sheet        explicit xlsx sheet name (else largest sheet wins)
+      json_explode "<container>.<child>": take obj[container], then concat each
+                   element's [child] list -> the real event grain (Nagix #45).
+    """
+    opts = opts or {}
     if fmt == "csv":
-        return pd.read_csv(io.BytesIO(content), dtype=str, keep_default_na=False, low_memory=False)
+        return pd.read_csv(io.BytesIO(content), dtype=str, keep_default_na=False, low_memory=False,
+                           header=opts.get("header", 0), skiprows=opts.get("skiprows"))
     if fmt == "zip_csv":
         zf = zipfile.ZipFile(io.BytesIO(content))
         csvs = [n for n in zf.namelist() if n.lower().endswith(".csv")]
         name = max(csvs, key=lambda n: zf.getinfo(n).file_size)
         with zf.open(name) as fh:
-            return pd.read_csv(fh, dtype=str, keep_default_na=False, low_memory=False, encoding_errors="replace")
+            return pd.read_csv(fh, dtype=str, keep_default_na=False, low_memory=False, encoding_errors="replace",
+                               header=opts.get("header", 0), skiprows=opts.get("skiprows"))
     if fmt == "gz_csv":
         import gzip
         return pd.read_csv(gzip.GzipFile(fileobj=io.BytesIO(content)), dtype=str,
-                           keep_default_na=False, low_memory=False, encoding_errors="replace")
+                           keep_default_na=False, low_memory=False, encoding_errors="replace",
+                           header=opts.get("header", 0), skiprows=opts.get("skiprows"))
     if fmt == "xlsx":
-        sheets = pd.read_excel(io.BytesIO(content), sheet_name=None, dtype=str)
-        name = max(sheets, key=lambda s: len(sheets[s]))   # largest sheet = the data
-        df = sheets[name]
+        header = opts.get("header", 0)
+        sheet = opts.get("sheet")
+        if sheet is not None:
+            df = pd.read_excel(io.BytesIO(content), sheet_name=sheet, dtype=str, header=header)
+        else:
+            sheets = pd.read_excel(io.BytesIO(content), sheet_name=None, dtype=str, header=header)
+            df = sheets[max(sheets, key=lambda s: len(sheets[s]))]   # largest sheet = the data
         return df.fillna("")
     if fmt == "json":
         obj = json.loads(content)
+        explode = opts.get("json_explode")
+        if explode:
+            container, child = explode.split(".", 1)
+            bins = obj[container] if isinstance(obj, dict) else obj
+            rows = [rec for b in bins for rec in (b.get(child) or [])]
+            return pd.json_normalize(rows).astype(str)
         if isinstance(obj, dict):
             lists = [v for v in obj.values() if isinstance(v, list)]
             obj = max(lists, key=len) if lists else [obj]
@@ -136,10 +164,10 @@ def _register(conn, sid, rows, url) -> None:
     snow.execute(conn, *register._merge_sql(register._build_row(cfg, {})))
 
 
-def _load_one(conn, sid, url, fmt) -> tuple[bool, str]:
+def _load_one(conn, sid, url, fmt, opts=None) -> tuple[bool, str]:
     try:
         content = _fetch(url)
-        df = _to_df(content, fmt)
+        df = _to_df(content, fmt, opts)
         if df.empty:
             return False, "empty dataframe"
         # blank-name columns -> positional
@@ -179,7 +207,7 @@ def main(argv=None) -> int:
 
     if args.probe or not args.run:
         print("=== PROBE ===", flush=True)
-        for sid, url, fmt in specs:
+        for sid, url, fmt, *rest in specs:
             try:
                 r = requests.get(url, headers=UA, timeout=60, stream=True)
                 ct = r.headers.get("content-type", "?")[:30]
@@ -197,8 +225,8 @@ def main(argv=None) -> int:
     ok = fail = 0
     try:
         snow.execute(conn, f'CREATE SCHEMA IF NOT EXISTS "{settings.raw_database}"."{settings.raw_schema}"')
-        for sid, url, fmt in specs:
-            good, msg = _load_one(conn, sid, url, fmt)
+        for sid, url, fmt, *rest in specs:
+            good, msg = _load_one(conn, sid, url, fmt, rest[0] if rest else {})
             print(f"  {'✓' if good else '✗'} {sid:32} {msg}", flush=True)
             ok += good; fail += (not good)
     finally:

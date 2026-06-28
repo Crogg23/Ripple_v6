@@ -1,0 +1,144 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: INTL_WB_IDS
+        description: >
+          Raw landing table for World Bank International Debt Statistics (IDS),
+          long-by-series / wide-by-year format. One row per
+          (country, counterpart-area, series); year columns run C_1970..C_2032,
+          all stored as TEXT. The future-year columns (> 2026) carry real
+          forward-looking, contractually-scheduled debt-service obligations
+          (Total Debt Service TDS, Principal AMT, Interest INT) -- not estimates
+          or fill-forward artifacts. Cast inline with try_to_* in the mart.
+
+models:
+
+  - name: money__debt_repayment_cliff
+    description: >
+      Forward-looking external-debt repayment SCHEDULE panel from World Bank IDS,
+      out to 2032 -- the "repayment cliff finder". Isolates the three canonical
+      TOTAL external-debt-service flow series (World counterpart) --
+      DT.TDS.DECT.CD (total debt service), DT.AMT.DLXF.CD (principal, long-term),
+      DT.INT.DLXF.CD (interest, long-term) -- unpivots the future-year columns to
+      long, pivots the flow types side-by-side, and adds a year-over-year jump
+      signal flagging scheduled repayment cliffs. Grain: one row per
+      (country_code, data_year) for data_year >= 2026. 134 country/aggregate
+      entities x 7 future years (2026-2032) = 938 rows. Reproduces discovery
+      finding #25: the headline TDS/AMT/INT series each carry 134 fully-populated
+      country rows through 2030/2032 (e.g. China's 2030 bullet repayment at
+      ~203B, +182% YoY; Pakistan's declining 2025->2032 schedule). All amounts in
+      current US dollars. NOTE: the 134 entities include regional / income-group
+      AGGREGATES alongside sovereigns -- use is_aggregate to filter to countries.
+    columns:
+
+      - name: country_year_id
+        description: >
+          Primary key. country_code concatenated with data_year
+          (e.g. "CHN_2030"). One row = one country-year scheduled debt-service
+          point.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: country_code
+        description: >
+          World Bank country / aggregate code (mostly ISO3 for sovereigns,
+          non-ISO for aggregates such as LMY, EAP, IDA, WLD). Cross-source join key.
+        data_tests:
+          - not_null
+
+      - name: country_name
+        description: Country or aggregate name as published by the World Bank.
+        data_tests:
+          - not_null
+
+      - name: data_year
+        description: >
+          Projection year of the scheduled debt-service obligation. Restricted to
+          future years (>= 2026). Range 2026-2032.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [2026, 2027, 2028, 2029, 2030, 2031, 2032]
+              quote: false
+
+      - name: total_debt_service_usd
+        description: >
+          Scheduled total debt service on external debt (TDS, DT.TDS.DECT.CD),
+          current US dollars. Equals principal + interest.
+
+      - name: principal_repayment_usd
+        description: >
+          Scheduled principal repayments on long-term external debt
+          (AMT, DT.AMT.DLXF.CD), current US dollars.
+
+      - name: interest_payment_usd
+        description: >
+          Scheduled interest payments on long-term external debt
+          (INT, DT.INT.DLXF.CD), current US dollars.
+
+      - name: total_debt_service_usd_bn
+        description: Total debt service in billions of US dollars, rounded to 3 decimals.
+
+      - name: principal_repayment_usd_bn
+        description: Principal repayment in billions of US dollars, rounded to 3 decimals.
+
+      - name: interest_payment_usd_bn
+        description: Interest payment in billions of US dollars, rounded to 3 decimals.
+
+      - name: principal_share_of_service
+        description: >
+          Principal as a fraction of total debt service for the year (0-1+).
+          High values flag bullet-repayment / principal-heavy years.
+
+      - name: prev_year_total_debt_service_usd
+        description: >
+          Prior scheduled year's total debt service (LAG over data_year within
+          country). Null for a country's first year in scope; for 2026 the
+          baseline is the 2025 scheduled value (carried solely as a YoY baseline,
+          then dropped from output).
+
+      - name: yoy_change_usd
+        description: >
+          Year-over-year change in total debt service (this year minus prior
+          scheduled year), current US dollars.
+
+      - name: yoy_change_pct
+        description: >
+          Year-over-year change in total debt service as a fraction of the prior
+          scheduled year (0.50 = +50%). Null when no positive prior-year baseline.
+
+      - name: is_repayment_cliff
+        description: >
+          TRUE when scheduled total debt service jumps >= 50% over the prior
+          scheduled year -- the repayment-cliff signal.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+              quote: false
+
+      - name: is_peak_service_year
+        description: >
+          TRUE when this year is the single peak total-debt-service year in the
+          country's 2026-2032 window.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+              quote: false
+
+      - name: is_aggregate
+        description: >
+          TRUE when the entity is a World Bank regional / income-group aggregate
+          (e.g. "Low & middle income", "East Asia & Pacific") rather than a
+          single sovereign. Filter to FALSE for country-level analysis.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+              quote: false

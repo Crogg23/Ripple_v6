@@ -1,0 +1,129 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CDC_INJURY_VIOLENCE_COUNTY
+        description: >
+          Raw landing table for the CDC injury & violence county death-rate
+          panel (132k rows). One row per county (GEOID) x intent x period.
+          All columns land as TEXT. Known traps: RATE carries CDC's -999
+          suppression sentinel on 6,549 rows (the full-precision string
+          '-999.0000000000000'), always paired with COUNT_SUP='1-9'; COUNT_SUP
+          is itself a mix of plain integers and the privacy-suppression range
+          strings '1-9' (53%) and '10-50'; RATE_M_CI carries the literal '-999'
+          on the same suppressed rows.
+
+models:
+
+  - name: stg_fed_cdc_injury_violence_county__rates
+    description: >
+      Staging model for CDC injury/violence county death rates. Renames to
+      snake_case, casts types, and neutralizes the -999 suppression sentinel in
+      RATE (and RATE_M_CI) BEFORE casting so summary stats are honest (naive
+      AVG(RATE) is -38.5 vs +11.6 clean). Keeps COUNT_SUP as a TEXT
+      count_suppression_flag (the '1-9' / '10-50' low-count ranges are not
+      numbers) and exposes numeric_count only for the rows whose flag is a plain
+      integer. Natural key (verified unique 132,000/132,000) is
+      fips_county + intent + period; deduped on that key keeping the most-
+      recently ingested record.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - fips_county
+            - intent
+            - period
+    columns:
+
+      - name: fips_county
+        description: >
+          5-digit county FIPS code (from GEOID), already zero-padded. Primary
+          geographic join key to almost any US county dataset.
+        data_tests:
+          - not_null
+
+      - name: fips_state
+        description: 2-digit state FIPS code (from ST_GEOID).
+        data_tests:
+          - not_null
+
+      - name: county_name
+        description: County name (from NAME).
+
+      - name: state_name
+        description: State name (from ST_NAME).
+
+      - name: intent
+        description: >
+          Injury/violence intent category. Six values across firearm and
+          all-cause suicide/homicide plus drug overdose deaths.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - 'Drug_OD'
+                - 'All_Homicide'
+                - 'FA_Homicide'
+                - 'All_Suicide'
+                - 'FA_Suicide'
+                - 'FA_Deaths'
+              quote: true
+
+      - name: period
+        description: >
+          Reporting period: a calendar year (2019-2024) or 'TTM' (trailing
+          twelve months).
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['2019', '2020', '2021', '2022', '2023', '2024', 'TTM']
+              quote: true
+
+      - name: count_suppression_flag
+        description: >
+          Raw COUNT_SUP value, kept as TEXT. A mix of plain integer counts and
+          the CDC small-cell privacy-suppression range markers '1-9' (53% of
+          rows) and '10-50'. NEVER cast this whole column to a number.
+
+      - name: numeric_count
+        description: >
+          Numeric death count, populated ONLY for rows whose COUNT_SUP is a plain
+          integer. NULL for the '1-9' / '10-50' suppression-range rows by design.
+
+      - name: rate
+        description: >
+          Age-adjusted death rate per 100k. The CDC -999 suppression sentinel
+          (6,549 rows, landed as '-999.0000000000000') is nulled BEFORE the cast,
+          so this column never includes the placeholder. Genuine zeros are
+          preserved.
+
+      - name: rate_modeled_flag
+        description: >
+          RATE_M indicator (1 = a modeled/age-adjusted rate is present,
+          0 = crude or zero). Cast to double from TEXT.
+        data_tests:
+          - accepted_values:
+              values: [0, 1]
+              config:
+                severity: warn
+
+      - name: rate_modeled_ci
+        description: >
+          Confidence-interval text for the modeled rate (a 'lo-hi' range string).
+          The literal '-999' suppression sentinel is nulled.
+
+      - name: data_as_of
+        description: CDC data-as-of timestamp (cast from TEXT via try_to_timestamp).
+
+      - name: ttm_date_range
+        description: >
+          Human-readable trailing-twelve-month coverage window (populated only
+          for the TTM-style rows; blank elsewhere -> NULL).
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier for lineage tracking.

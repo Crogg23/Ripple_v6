@@ -52,9 +52,12 @@ renamed as (
         trim(UNIT)                                       as unit,
 
         -- measures
-        try_to_double(VALUE)                             as value,
-        try_to_double(YOY_ABSOLUTE_CHANGE)               as yoy_absolute_change,
-        try_to_double(YOY___CHANGE)                      as yoy_pct_change,
+        -- TRAP (#41): VALUE carries 8,418 literal 'nan' strings. try_to_double('nan')
+        -- returns IEEE NaN (NOT null), which then poisons every downstream aggregate.
+        -- null_sentinel maps the trimmed 'nan' token -> NULL *before* the cast.
+        try_to_double({{ null_sentinel('VALUE', 'nan') }})              as value,
+        try_to_double({{ null_sentinel('YOY_ABSOLUTE_CHANGE', 'nan') }}) as yoy_absolute_change,
+        try_to_double({{ null_sentinel('YOY___CHANGE', 'nan') }})        as yoy_pct_change,
 
         -- metadata
         _ingested_at,
@@ -68,8 +71,13 @@ deduped as (
 
     select *
     from renamed
+    -- Full natural key. Ember repeats a country x year x variable across
+    -- category (generation / capacity / emissions / demand / imports) AND unit
+    -- (TWh / % / GW / mtCO2 / ...). Partitioning on (country, date, variable)
+    -- alone collapsed 369,264 distinct rows down to 118,463 -- a ~68% data loss.
+    -- The verified unique grain is country + date + category + subcategory + variable + unit.
     qualify row_number() over (
-        partition by country, date, variable
+        partition by country, date, category, subcategory, variable, unit
         order by _ingested_at desc
     ) = 1
 

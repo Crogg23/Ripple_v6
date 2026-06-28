@@ -25,6 +25,9 @@ models:
     staging:
       +materialized: view
       +database: LIBRARY_STAGING
+    intermediate:
+      +materialized: view
+      +database: LIBRARY_STAGING
     marts:
       +materialized: table
       +database: LIBRARY_MARTS

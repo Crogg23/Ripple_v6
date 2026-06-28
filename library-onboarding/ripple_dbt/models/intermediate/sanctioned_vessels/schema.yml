@@ -1,0 +1,43 @@
+version: 2
+
+sources:
+  # FED_OFAC_SDN is already declared in models/staging/fed_ofac_sdn/schema.yml --
+  # sources are global, so only the not-yet-declared OpenSanctions table goes here
+  # (dbt errors on a duplicate source+table across files).
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: INTL_OPENSANCTIONS
+        description: Raw OpenSanctions consolidated targets landing table (all TEXT).
+
+models:
+  - name: int_sanctioned_vessels
+    description: >
+      OFAC SDN ∪ OpenSanctions sanctioned vessels, keyed on a clean 7-digit IMO.
+      The left side of the sanctioned_vessel_broadcasting v2 lead job. One row per
+      (source, sanctioned-vessel) -- the same hull can appear from both feeds (the
+      ~1,486 IMO overlap), which is fine: the leads engine groups to one lead per IMO.
+    columns:
+      - name: sanction_source
+        description: Which feed flagged this hull -- ofac or opensanctions.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['ofac', 'opensanctions']
+      - name: source_id
+        description: The source feed's own entity id (OFAC ENT_NUM / OpenSanctions ID).
+      - name: vessel_name
+        description: Sanctioned vessel name as listed (may differ from the AIS broadcast name).
+      - name: program
+        description: Sanctions program(s) the vessel is listed under.
+      - name: flag
+        description: Vessel flag state (OFAC only; null for OpenSanctions).
+      - name: imo
+        description: Normalized 7-digit IMO hull number -- the join key to AIS.
+        data_tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: "rlike '^[0-9]{7}$'"
+              config:
+                severity: warn

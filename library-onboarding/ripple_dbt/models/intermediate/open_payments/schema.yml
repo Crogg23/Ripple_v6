@@ -1,0 +1,96 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CMS_OPEN_PAYMENTS
+        description: >
+          CMS Open Payments general payments -- PROGRAM YEAR 2024 ONLY
+          (15,385,047 rows, 100% PROGRAM_YEAR=2024). Despite the unsuffixed name
+          this is NOT an all-years table; it is the 2024 file. All columns TEXT
+          as landed. RECORD_ID is the CMS unique payment key.
+      - name: FED_CMS_OPEN_PAYMENTS_2023
+        description: >
+          CMS Open Payments general payments -- PROGRAM YEAR 2023 ONLY
+          (14,700,786 rows, 100% PROGRAM_YEAR=2023). Identical 94-column schema
+          to FED_CMS_OPEN_PAYMENTS; record-disjoint by RECORD_ID. All columns
+          TEXT as landed.
+      - name: FED_CMS_OPEN_PAYMENTS_2022
+        description: >
+          CMS Open Payments general payments -- PROGRAM YEAR 2022 ONLY
+          (backfilled 2026-06-28 from the latest CMS republication
+          PGYR2022_P01232026). Identical 94-column schema to its 2023/2024
+          siblings; record-disjoint by RECORD_ID. All columns TEXT as landed.
+
+models:
+
+  - name: int_open_payments_all_years
+    description: >
+      CANONICAL all-years CMS Open Payments general-payments model. UNION ALL of
+      the 2024-only landing table (FED_CMS_OPEN_PAYMENTS), the 2023-only landing
+      table (FED_CMS_OPEN_PAYMENTS_2023), and the 2022-only landing table
+      (FED_CMS_OPEN_PAYMENTS_2022, backfilled 2026-06-28). All three are
+      record-disjoint by RECORD_ID (RECORD_ID globally unique across years), so
+      the union is double-count-safe and RECORD_ID remains a true primary key.
+      Thin passthrough view -- columns stay TEXT exactly as landed; detectors
+      cast as needed. This is the model every Open Payments detector should point
+      at instead of the half-the-data unsuffixed landing table. PROGRAM_YEAR
+      ('2022' / '2023' / '2024') distinguishes the years -- now a true 3-year
+      time series.
+    columns:
+
+      - name: record_id
+        description: >
+          CMS unique payment key (RECORD_ID). Globally unique across all three
+          program years (2024 + 2023 + 2022), zero overlap between the per-year
+          landing tables. Primary key of this unioned model.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: program_year
+        description: >
+          Program year the payment was reported for. Reliable year partition key
+          (DATE_OF_PAYMENT carries 73 garbage values like '11/30/0002' and is
+          NOT reliable). One of '2022', '2023', or '2024'.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['2022', '2023', '2024']
+              quote: true
+
+      - name: npi
+        description: >
+          National Provider Identifier of the covered recipient. NULL/blank for
+          non-physician recipients (teaching hospitals, non-covered recipients),
+          so deliberately NOT tested for not_null. Cast/clean downstream
+          (clean_npi) before joining to NPPES/LEIE.
+
+      - name: covered_recipient_profile_id
+        description: CMS covered-recipient profile identifier.
+
+      - name: total_amount_of_payment_usdollars
+        description: >
+          Payment amount in USD, stored as TEXT. 100% castable to DOUBLE with 0
+          blanks in both tables; cast via try_to_double downstream. Heavy
+          clustering on meal caps ($125 / $124.99 -- Food & Beverage) lives here.
+
+      - name: date_of_payment
+        description: >
+          Date the payment was made, stored as TEXT. UNRELIABLE -- carries 73
+          garbage values like '11/30/0002' in the 2024 file. Use PROGRAM_YEAR for
+          year partitioning, not this column.
+
+      - name: nature_of_payment_or_transfer_of_value
+        description: Category of the payment / transfer of value (e.g. Food and Beverage, Consulting Fee).
+
+      - name: applicable_manufacturer_or_applicable_gpo_making_payment_name
+        description: Name of the manufacturer or GPO that made the payment.
+
+      - name: _ingested_at
+        description: Timestamp (epoch micros) when the record was ingested into the landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier for lineage tracking.

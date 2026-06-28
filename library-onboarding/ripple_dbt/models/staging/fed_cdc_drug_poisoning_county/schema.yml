@@ -1,0 +1,115 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CDC_DRUG_POISONING_COUNTY
+        description: >
+          Raw landing table for the CDC/NCHS drug-poisoning mortality by US
+          county-year file (~53k rows, 1999-2015). All columns TEXT as ingested.
+          TRAP: the rate column
+          ESTIMATED_AGE_ADJUSTED_DEATH_RATE_11_CATEGORIES_IN_RANGES is a binned
+          text range (16 ordinal bins), NOT a numeric rate -- never cast it.
+
+models:
+
+  - name: stg_fed_cdc_drug_poisoning_county__rates
+    description: >
+      Staging model for CDC drug-poisoning mortality by county-year. Renames to
+      snake_case, casts the genuinely-numeric columns (year, population), and
+      preserves the age-adjusted death rate as an ORDINAL TEXT BAND (rate_band)
+      plus a 1..16 rate_band_ordinal -- it is a binned range, not a number.
+      Deduplicated on (fips, year), the verified natural key, keeping the most
+      recently ingested record.
+    columns:
+
+      - name: fips
+        description: 5-digit county FIPS code. Join key. ~3 counties wobble across
+          years (08014 Broomfield CO, 51515 Bedford city VA, 02068 Denali AK) due
+          to FIPS-lifecycle boundary changes, NOT suppression.
+        data_tests:
+          - not_null
+
+      - name: year
+        description: Calendar year of the county death-rate observation (1999-2015).
+        data_tests:
+          - not_null
+
+      - name: state_name
+        description: Full US state name.
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+
+      - name: state_abbr
+        description: Two-letter US state abbreviation.
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+
+      - name: fips_state
+        description: State-level FIPS code (1-2 digits).
+
+      - name: county_name
+        description: County name as published (e.g. 'Broomfield County, CO').
+
+      - name: population
+        description: County population for the year (genuinely numeric; cast from TEXT).
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+
+      - name: rate_band
+        description: >
+          Age-adjusted drug-poisoning death rate as an ORDINAL TEXT BAND (one of
+          16 ranges). This is the source's only rate representation -- it is NOT
+          a numeric rate and must not be cast to a number.
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+          - accepted_values:
+              values:
+                - '0-2'
+                - '2.1-4'
+                - '4.1-6'
+                - '6.1-8'
+                - '8.1-10'
+                - '10.1-12'
+                - '12.1-14'
+                - '14.1-16'
+                - '16.1-18'
+                - '18.1-20'
+                - '20.1-22'
+                - '22.1-24'
+                - '24.1-26'
+                - '26.1-28'
+                - '28.1-30'
+                - '>30'
+              quote: true
+
+      - name: rate_band_ordinal
+        description: >
+          Integer rank (1..16) of rate_band in natural low-to-high order, for
+          sorting/ordinal analysis without implying a continuous numeric rate.
+        data_tests:
+          - accepted_values:
+              values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+              quote: false
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier for lineage tracking.
+
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - fips
+            - year
