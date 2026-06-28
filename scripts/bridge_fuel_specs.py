@@ -203,4 +203,49 @@ SPECS = [
         "priority_tier": "1",
         "notes": "Sunshine Act general payments PY2024 (~15M rows, ~91 cols). Direct CSV (chunked). NPI col='Covered_Recipient_NPI', CCN='Teaching_Hospital_CCN' aliased. P-stamp dir rotates; re-resolve from the DKAN metastore if 404. One program year per load; add earlier years later. Loaded LLM-free (bridge_fuel_load).",
     },
+    # ---- TIER-A CROSSWALK: the EIN spine (de-silo Wave 1, first GO) ----------
+    # IRS Exempt Organizations Business Master File. ~1.97M tax-exempt orgs, each
+    # carrying EIN + NAME + STREET/CITY/STATE/ZIP + NTEE_CD. This is the file that
+    # puts REAL DATA behind Ripple's phantom EIN key (27 datasets tag EIN, ~0 real
+    # edges). Columns are CANONICALLY named (EIN/NAME/ZIP) so the connect tagger
+    # auto-detects them -- no key_cols aliasing needed. Multi-file: published as 4
+    # regional + intl + PR CSVs that together form ONE table (same schema) -> the
+    # loader's `urls` concat mode. Verified live 2026-06-27 (1,966,267 orgs).
+    {
+        "source_id": "xc_irs_eo_bmf",
+        "name": "IRS Exempt Organizations Business Master File (EO BMF)",
+        "publisher": "IRS — Statistics of Income / Tax Exempt & Government Entities",
+        "url": "https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf",
+        # representative member (used for prints/registry URL); full set in `urls`.
+        "download_url": "https://www.irs.gov/pub/irs-soi/eo1.csv",
+        "kind": "csv_multi",
+        "urls": [
+            "https://www.irs.gov/pub/irs-soi/eo1.csv",   # Northeast
+            "https://www.irs.gov/pub/irs-soi/eo2.csv",   # Mid-Atlantic / Great Lakes
+            "https://www.irs.gov/pub/irs-soi/eo3.csv",   # Gulf Coast / Pacific
+            "https://www.irs.gov/pub/irs-soi/eo4.csv",   # All other areas
+            "https://www.irs.gov/pub/irs-soi/eo_xx.csv",  # International
+            "https://www.irs.gov/pub/irs-soi/eo_pr.csv",  # Puerto Rico
+        ],
+        # EIN/NAME/ZIP columns are already canonically named -> tagger auto-detects;
+        # declare the measured key so the registry row carries it (provisional until
+        # the fingerprint MEASURES it from real cells in the wire step).
+        "join_keys": "EIN, NAME, ZIP",
+        "join_keys_std": ["EIN"],
+        "join_key_tier": "STEEL",
+        "join_key_tier_provisional": True,
+        "jurisdiction": "US",
+        "category": "Civil Society",
+        "subcategory": "Nonprofit Registry",
+        "unit_of_observation": "one row = one tax-exempt organization (EIN)",
+        "geographic_scope": "United States + territories",
+        "temporal_coverage": "current master file (monthly snapshot)",
+        "update_cadence": "monthly",
+        "volume": "~1.97M organizations across 6 regional/territory files",
+        "format": "csv",
+        "license_terms": "Public domain (US Gov)",
+        "accountability_relevance": "Puts ~2M real EIN records (name/address/NTEE) behind the phantom EIN key — wires nonprofits to federal contractors (UEI/SAM), SEC filers (via the SEC SUB CIK↔EIN crosswalk), state business registries, and the IRS auto-revocation list. The single cheapest activation of a key already tagged across the warehouse.",
+        "priority_tier": "1",
+        "notes": "6 same-schema CSVs (eo1-4 + eo_xx + eo_pr) concatenated via the loader's multi-file `urls` mode. EIN/NAME/ZIP canonically named (no aliasing). EIN normalizer pads to 9. Activates the EIN spine — the de-silo Wave-1 / first-GO source. Loaded LLM-free (bridge_fuel_load).",
+    },
 ]

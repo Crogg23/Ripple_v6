@@ -52,6 +52,39 @@ KEY_DOMAIN = {           # ~size of each key's value space, for the collision ma
 }
 
 
+def validate_key_config() -> None:
+    """Fail LOUD if a value key is half-configured -- the Step-K footgun.
+
+    Adding a new join key takes coordinated edits in several files. Miss the
+    KEY_DOMAIN entry here and ``confidence()`` silently falls through to the
+    ``chance_free = 0.9`` branch (meant for spatial, where geometry already
+    verifies the match) -- so the new key would pass random collisions as
+    high-confidence STEEL edges. Miss the NORM_RULES entry and ``normalize_sql``
+    raises mid-run. Catch both up front, before any Snowflake work.
+
+    Every STEEL/STRONG value key MUST have a NORM_RULES entry (to canonicalize)
+    AND a KEY_DOMAIN entry (so the collision math runs). PROBABILISTIC keys
+    (NAME/ADDRESS) are intentionally exempt -- they're scored separately and never
+    use the value-space collision model. Spatial keys (LATLON/GEOM) don't reach
+    this path. Run at the top of run().
+    """
+    from .keys import KEY_TOKENS, NORM_RULES
+    SPATIAL = {"LATLON", "GEOM"}
+    missing: list[str] = []
+    for key, (tier, _toks) in KEY_TOKENS.items():
+        if tier not in ("STEEL", "STRONG") or key in SPATIAL:
+            continue
+        if key not in NORM_RULES:
+            missing.append(f"{key} ({tier}): no NORM_RULES entry in connect/keys.py")
+        if key not in KEY_DOMAIN:
+            missing.append(f"{key} ({tier}): no KEY_DOMAIN entry in connect/discover.py "
+                           "(would silently get chance_free=0.9 with no collision guard)")
+    if missing:
+        raise ValueError(
+            "Join-key config is incomplete -- finish the Step-K edits before wiring:\n  "
+            + "\n  ".join(missing))
+
+
 def confidence(key, tier, a_distinct, b_distinct, matched):
     """Return (score 0-1, keep?). A coincidental handful of matches on a short
     numeric key scores ~0 and is dropped; a dense overlap on a hard ID scores ~1."""
@@ -72,7 +105,10 @@ def confidence(key, tier, a_distinct, b_distinct, matched):
     elif key in PROBABILISTIC:
         chance_free = 0.5                                   # name/address alone: unscored -> medium-low
     else:
-        chance_free = 0.9                                   # spatial: geometry already verifies it
+        # Spatial only (GEO_IN): geometry already verifies the match. A VALUE key can
+        # never reach here un-domained -- validate_key_config() refuses to run() with a
+        # STEEL/STRONG key missing from KEY_DOMAIN, so it'd be caught long before this.
+        chance_free = 0.9
     score = chance_free * (0.4 + 0.6 * min(cover, 1.0))     # reward covering the smaller set (subset joins)
     if tier == "PROBABILISTIC":
         score *= 0.5
@@ -143,6 +179,7 @@ def _wgs84_poly_tables(conn, poly_raw: dict) -> dict:
 
 def run(name_max_rows: int = NAME_MAX_ROWS, write: bool = True,
         bridge_on: bool = True, fanout_max: int = 40) -> dict:
+    validate_key_config()   # fail loud on a half-added Step-K key BEFORE any Snowflake work
     fp = json.loads(FP_PATH.read_text())
     conn = db.connect()
     tested = skipped = gated = 0

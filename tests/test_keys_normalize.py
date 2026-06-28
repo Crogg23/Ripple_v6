@@ -2,7 +2,8 @@
 
 import pytest
 
-from connect.keys import normalize_sql
+from connect import keys
+from connect.keys import detect_key, normalize_sql
 
 
 # ---- offline: the SQL the normalizer emits -------------------------------- #
@@ -30,6 +31,37 @@ def test_npi_pads_to_ten_never_strips():
 def test_unknown_key_fails_loud():
     with pytest.raises(KeyError):
         normalize_sql("NOT_A_KEY", "X")
+
+
+# ---- alnum_upper mode (Step-K enabler: was a KeyError before) -------------- #
+def test_alnum_upper_mode_emits_clean_id_sql(monkeypatch):
+    # A Step-K key declares ("alnum_upper", 0). Before the fix this raised
+    # "Unknown norm mode". Now it canonicalizes: alnum + upper + NULLIF empty,
+    # with NO width pad and NO leading-zero stripping (opaque IDs like TAIL/BIOGUIDE).
+    monkeypatch.setitem(keys.NORM_RULES, "TAILX", ("alnum_upper", 0))
+    sql = normalize_sql("TAILX", '"N_NUMBER"')
+    assert "UPPER" in sql and "NULLIF" in sql
+    assert "LPAD" not in sql          # not width-padded
+    assert "ARRAY_SORT" not in sql    # not a name
+
+
+# ---- detect_key picks the STRONGEST tier, order-independently -------------- #
+def test_detect_key_basic_single_match():
+    assert detect_key("ein_number") == ("EIN", "STEEL")
+    assert detect_key("the_geom") == ("GEOM", "GEO")
+    assert detect_key("nothing_here") == (None, None)
+
+
+def test_detect_key_strongest_tier_even_when_appended_last(monkeypatch):
+    # Simulate a Step-K add: a NEW STEEL key appended to the END of KEY_TOKENS
+    # (after the GEO/PROBABILISTIC keys) whose token also matches a column that
+    # hits a weaker key. The OLD first-match-in-dict-order code returned the weaker
+    # GEO key; detect_key must now return the STEEL one regardless of position.
+    patched = dict(keys.KEY_TOKENS)
+    patched["ZIPSTEEL"] = ("STEEL", {"zip"})   # 'zip' also matches the GEO key ZIP
+    monkeypatch.setattr(keys, "KEY_TOKENS", patched)
+    key, tier = detect_key("zip")
+    assert tier == "STEEL" and key == "ZIPSTEEL"
 
 
 # ---- live: real Snowflake canonicalization -------------------------------- #
