@@ -183,6 +183,15 @@ def run(write: bool = True) -> dict:
         idx_rows = entity_index.build(conn, run_id)
         backfilled = _backfill_leads(conn)
         stats = _summarize(conn)
+        # Keep the incremental state coherent with this full rebuild: refresh the
+        # persisted keyset twins + re-pin every table's content-key. Fail-safe — a
+        # problem here must never break the backstop rebuild itself.
+        try:
+            from .incremental import sync_after_rebuild
+            sync_after_rebuild(conn, reseed=True)
+            print("  synced incremental state (SPINE_KEYSET_LIVE + CONNECT_WATERMARK)")
+        except Exception as ex:
+            print(f"  [warn] incremental state sync skipped: {str(ex)[:120]}")
     finally:
         conn.close()
     tier = ", ".join(f"{k}={v:,}" for k, v in stats["by_type"].items())

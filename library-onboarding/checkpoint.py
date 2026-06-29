@@ -34,6 +34,7 @@ _CHECKPOINTS = {
     3: "LOAD",
     4: "DBT",
     5: "REGISTRY",
+    6: "CONNECT",
 }
 
 
@@ -225,6 +226,24 @@ def render_registry(config: dict, result: dict, position=None) -> None:
     preview = result.get("preview")
     if preview:
         _print("[dim]Row preview:[/dim] " + ", ".join(f"{k}={v}" for k, v in preview.items()))
+
+
+def render_connect(config: dict, result: dict, position=None) -> None:
+    banner(6, position)
+    result = result or {}
+    detail = result.get("detail", {}) or {}
+    rows = [
+        ("Landing:", config.get("landing_table", "")),
+        ("Mode:", result.get("mode") or detail.get("mode", "")),
+    ]
+    if "affected" in detail:
+        rows.append(("Affected keys:", f"{detail.get('affected', 0):,}"))
+    if "edges_kept" in detail:
+        rows.append(("Edges kept:", detail.get("edges_kept")))
+    rows.append(("Status:", result.get("status", "")))
+    _kv_table(rows)
+    if not result.get("ok", True):
+        warn("CONNECT did not finish cleanly — `connect connect-changed` will retry it.")
 
 
 # ---------------------------------------------------------------------------

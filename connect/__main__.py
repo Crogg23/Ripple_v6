@@ -30,6 +30,18 @@ def main() -> int:
     a.add_argument("--no-bridge", action="store_true")
     a.add_argument("--fanout-max", type=int, default=40)
 
+    # --- incremental engine (additive; full rebuild above stays the backstop) ---
+    si = sub.add_parser("seed", help="incremental: init persisted keyset twins + watermark (run AFTER a full rebuild)")
+    si.add_argument("--reseed", action="store_true", help="overwrite the twins from the current backstop output")
+    c1 = sub.add_parser("connect-one", help="incremental: link ONE just-landed table into the spine/graph")
+    c1.add_argument("--source", required=True, help="source_id or landing table")
+    c1.add_argument("--dry-run", action="store_true")
+    cch = sub.add_parser("connect-changed", help="incremental: reslice every table whose content-key moved (the heartbeat)")
+    cch.add_argument("--scope", choices=["spine", "all"], default="spine")
+    cch.add_argument("--dry-run", action="store_true")
+    vi = sub.add_parser("validate-incremental", help="non-destructive proof incremental == full rebuild")
+    vi.add_argument("--table", default=None)
+
     p = sub.add_parser("probe", help="overlap of one ad-hoc pair")
     p.add_argument("--a", required=True); p.add_argument("--akey", required=True)
     p.add_argument("--b", required=True); p.add_argument("--bkey", required=True)
@@ -108,6 +120,19 @@ def main() -> int:
     if args.cmd in ("spine", "all"):
         from . import spine
         spine.run()
+    if args.cmd == "seed":
+        from . import incremental
+        incremental.seed(reseed=getattr(args, "reseed", False))
+    if args.cmd == "connect-one":
+        from . import incremental
+        incremental.connect_one(args.source, dry_run=getattr(args, "dry_run", False))
+    if args.cmd == "connect-changed":
+        from . import incremental
+        incremental.connect_changed(scope=getattr(args, "scope", "spine"),
+                                    dry_run=getattr(args, "dry_run", False))
+    if args.cmd == "validate-incremental":
+        from . import incremental
+        incremental.validate(table=getattr(args, "table", None))
     if args.cmd in ("explore", "all"):
         from . import explore
         explore.render()

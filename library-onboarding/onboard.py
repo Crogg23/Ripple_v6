@@ -185,6 +185,24 @@ def onboard_source(source: dict, position=None) -> dict:
     if action != GO:
         return _record(action)
 
+    # --- Checkpoint 6: CONNECT (incremental link of the just-landed table) -----
+    # The source is already onboarded + registered; linking is BEST-EFFORT and
+    # never downgrades it. Fire only when the load actually changed the table:
+    # live, not a skip/dry-run, not demoted-empty, and rows > 0.
+    _lr = load_result or {}
+    _landed = bool(_lr) and not _lr.get("skipped") and not _lr.get("empty") and (_lr.get("rows") or 0) > 0
+    if _landed:
+        def _connect(fb):
+            from connect_hook import connect_one
+            return connect_one(config["source_id"], config["landing_table"])
+        # Run through the normal stage UX, but IGNORE the action — a non-GO here
+        # must not mark an already-registered source incomplete.
+        _run_stage(
+            _connect,
+            lambda r: cp.render_connect(config, r, position),
+            error_hint="Check LIBRARY_META.CONNECT perms; `connect connect-changed` will retry.",
+        )
+
     cp.success(f"{name} onboarded -> SOURCE_ID {config['source_id']} ({config['landing_table']})")
     return {
         "status": "complete",
