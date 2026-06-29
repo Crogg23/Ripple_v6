@@ -13,3 +13,6 @@ __pycache__/
 
 # office lock/temp files (created while an .xlsx is open)
 ~$*
+
+# DR exports of the control plane (scripts/export_control_plane.py) — backups, never commit
+backups/
