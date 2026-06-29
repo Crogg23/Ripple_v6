@@ -84,3 +84,60 @@ models:
           - not_null
           - accepted_values:
               values: [true, false]
+
+  # --- Phase 2: the FEC money spine -----------------------------------------
+  - name: politics__fec_candidate
+    description: FEC candidate identity, keyed (cand_id, cycle). From the cn bulk file.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: [cand_id, cycle]
+    columns:
+      - name: cand_id
+        description: FEC candidate ID (governed JOIN_KEY FEC_CAND_ID).
+        data_tests: [not_null]
+      - name: cycle
+        description: Election cycle ('2024' / '2026') -- the grain partner. Never drop it.
+        data_tests: [not_null]
+
+  - name: politics__fec_cand_cmte_link
+    description: Candidate<->committee linkage bridge, keyed (cand_id, cmte_id, cycle). From ccl.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: [cand_id, cmte_id, cycle]
+    columns:
+      - name: cand_id
+        description: FEC candidate ID.
+        data_tests: [not_null]
+      - name: cmte_id
+        description: FEC committee ID -- joins to fed_fec_bulk.FEC_CMTE_ID (committee master).
+        data_tests: [not_null]
+
+  - name: politics__fec_candidate_summary
+    description: Candidate financial summary, keyed (cand_id, cycle). The only $ source (weball).
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: [cand_id, cycle]
+    columns:
+      - name: cand_id
+        description: FEC candidate ID.
+        data_tests: [not_null]
+      - name: net_receipts
+        description: Money raised net of inter-committee transfers (TTL_RECEIPTS - TRANS_FROM_AUTH).
+
+  - name: politics__member_money_raised
+    description: >
+      THE STAT: money raised per sitting member per cycle, keyed (bioguide, cycle).
+      money_raised_net sums net_receipts (net of inter-committee transfers); the join
+      on (cand_id, cycle) restricts to the member's cycle-active candidate IDs.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: [bioguide, cycle]
+    columns:
+      - name: bioguide
+        description: Member primary key (governed JOIN_KEY BIOGUIDE).
+        data_tests: [not_null]
+      - name: cycle
+        description: Election cycle.
+        data_tests: [not_null]
+      - name: money_raised_net
+        description: Headline stat -- total receipts net of inter-committee transfers, summed over cycle-active CAND_IDs.

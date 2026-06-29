@@ -18,6 +18,19 @@ sources:
         description: >
           Voteview HSall_members: one row per member-congress with DW-NOMINATE
           ideology (nominate_dim1/dim2), keyed by ICPSR, with BIOGUIDE_ID. All TEXT.
+      - name: FED_FEC_BULK_CANDIDATES
+        description: >
+          FEC candidate master (cn), cycles 2024 + 2026. A CYCLE column is added at
+          load so the (CAND_ID, CYCLE) grain is preserved. All TEXT.
+      - name: FED_FEC_BULK_LINKAGES
+        description: >
+          FEC candidate-committee linkage (ccl), cycles 2024 + 2026. The official
+          CAND_ID<->CMTE_ID bridge. CYCLE added at load. All TEXT.
+      - name: FED_FEC_BULK_SUMMARY
+        description: >
+          FEC all-candidates financial summary (weball), cycles 2024 + 2026 -- the
+          ONLY FEC bulk file carrying dollar amounts (TTL_RECEIPTS etc.). CYCLE added
+          at load. All TEXT.
 
 models:
   - name: stg_fed_congress_legislators__members
@@ -46,3 +59,31 @@ models:
           - not_null:
               config:
                 severity: warn
+
+  - name: stg_fed_fec_bulk_candidates__candidates
+    description: Cleaned FEC candidate master. One row per source row; mart dedups to (cand_id, cycle).
+    columns:
+      - name: cand_id
+        description: FEC candidate ID (governed JOIN_KEY FEC_CAND_ID).
+        data_tests:
+          - not_null
+  - name: stg_fed_fec_bulk_linkages__linkages
+    description: Cleaned FEC candidate-committee linkage.
+    columns:
+      - name: cand_id
+        description: FEC candidate ID.
+        data_tests:
+          - not_null
+      - name: cmte_id
+        description: FEC committee ID (governed JOIN_KEY FEC_CMTE_ID).
+        data_tests:
+          - not_null
+  - name: stg_fed_fec_bulk_summary__candidate_summary
+    description: Cleaned + typed FEC financial summary (weball). net_receipts strips inter-committee transfers.
+    columns:
+      - name: cand_id
+        description: FEC candidate ID.
+        data_tests:
+          - not_null
+      - name: net_receipts
+        description: TTL_RECEIPTS minus TRANS_FROM_AUTH (money raised, net of inter-committee transfers).

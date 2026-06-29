@@ -195,6 +195,27 @@ SOURCES = [
         JOIN_KEY_TIER_PROVISIONAL=True, THEMES=["follow_the_money"],
         NOTES="Phase 2 (large). EMPLOYER/INDUSTRY are dirty free-text, never clean join keys. " + _KEYFLAG,
     ),
+    dict(
+        SOURCE_ID="fed_fec_bulk_summary",
+        NAME="FEC Bulk Data -- All Candidates Financial Summary (weball)",
+        PUBLISHER="Federal Election Commission",
+        DESCRIPTION="Per-candidate-per-cycle financial summary: total receipts (money raised), disbursements, "
+                    "cash-on-hand, transfers from/to authorized committees, individual contributions, loans, "
+                    "debts. The ONLY FEC bulk file carrying dollar amounts -- the source of the money-raised stat.",
+        UNIT_OF_OBSERVATION="one row = one candidate-cycle financial summary",
+        TEMPORAL_COVERAGE="per cycle (2024 + 2026 landed)", ACCESS_METHOD="bulk_download",
+        FORMAT="pipe-delimited txt", AUTH_REQUIRED="none", COST="free", UPDATE_CADENCE="per reporting calendar",
+        VOLUME="~5-8k candidates/cycle", LICENSE_TERMS="Public domain (US Gov)",
+        URL="https://www.fec.gov/files/bulk-downloads/2024/weball24.zip",
+        JOIN_KEYS="fec_cand_id (PK with cycle)",
+        ACCOUNTABILITY_RELEVANCE="The dollars behind the politician -- money raised per cycle, computed NET of "
+                                 "inter-committee transfers (the first objective box-score stat).",
+        PRIORITY_TIER="1", DOMAIN_PRIMARY="money_in_politics", ENTITY_TYPES=["filing", "payment"],
+        JOIN_KEYS_STD=["FEC_CAND_ID"], JOIN_KEY_TIER="STEEL", JOIN_KEY_TIER_PROVISIONAL=False,
+        THEMES=["follow_the_money", "power_who_holds_it"],
+        NOTES="weball all-candidates summary. Money-raised = TTL_RECEIPTS - TRANS_FROM_AUTH (net of "
+              "inter-committee transfers, avoids double-count). Cycle grain: keyed (FEC_CAND_ID, CYCLE).",
+    ),
 
     # === TIER 2 -- PERSONAL MONEY (PDF hell -- net worth + stock trades) =======
     dict(
