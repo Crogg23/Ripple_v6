@@ -141,3 +141,55 @@ models:
         data_tests: [not_null]
       - name: money_raised_net
         description: Headline stat -- total receipts net of inter-committee transfers, summed over cycle-active CAND_IDs.
+
+  # --- Phase 3: the votes leg -----------------------------------------------
+  - name: politics__voteview_votes
+    description: Voteview cast matrix, keyed (congress, chamber, rollnumber, icpsr). 118th + 119th.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: [congress, chamber, rollnumber, icpsr]
+    columns:
+      - name: icpsr
+        description: Voteview member id.
+        data_tests: [not_null]
+      - name: vote_position
+        description: Derived from cast_code.
+        data_tests:
+          - accepted_values:
+              values: ['yea', 'nay', 'present', 'not_voting', 'not_member', 'other']
+
+  - name: politics__voteview_rollcalls
+    description: Voteview roll-call metadata, keyed (congress, chamber, rollnumber).
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: [congress, chamber, rollnumber]
+    columns:
+      - name: rollnumber
+        description: Roll-call number.
+        data_tests: [not_null]
+
+  - name: politics__member_voting_record
+    description: >
+      THE STAT GROUP: votes cast / missed-vote % / party unity, keyed (bioguide, congress).
+      Definition-bound (reconciled to GovTrack 118th to ~0.1pp). 119th is partial.
+      missed_vote_pct denominator = eligible roll-calls (cast_code <> 0).
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: [bioguide, congress]
+    columns:
+      - name: bioguide
+        description: Member primary key (governed JOIN_KEY BIOGUIDE).
+        data_tests: [not_null]
+      - name: congress
+        description: Congress number (118 or 119; 119 = partial).
+        data_tests: [not_null]
+      - name: missed_vote_pct
+        description: 100 * missed_votes / votes_eligible (eligible = cast_code <> 0). Definition-bound.
+      - name: party_unity_pct
+        description: Share of yea/nay votes cast with own-party majority on party-unity roll-calls (CQ definition).
+      - name: congress_partial
+        description: TRUE for the 119th (in progress) -- counts are mid-cycle.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]

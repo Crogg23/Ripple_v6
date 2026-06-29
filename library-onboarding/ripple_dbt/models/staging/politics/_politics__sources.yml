@@ -31,6 +31,15 @@ sources:
           FEC all-candidates financial summary (weball), cycles 2024 + 2026 -- the
           ONLY FEC bulk file carrying dollar amounts (TTL_RECEIPTS etc.). CYCLE added
           at load. All TEXT.
+      - name: FED_VOTEVIEW_ROLLCALLS
+        description: >
+          Voteview member-by-member VOTES MATRIX (the fed_voteview_rollcalls source =
+          HSall_votes.csv), 118th + 119th congresses. One row per member-rollcall with
+          cast_code. All TEXT. (Roll-call metadata is the separate _ROLLCALL_META table.)
+      - name: FED_VOTEVIEW_ROLLCALL_META
+        description: >
+          Voteview roll-call METADATA (HSall_rollcalls.csv), 118th + 119th. One row per
+          roll-call: date, yea/nay counts, result, question, bill number. All TEXT.
 
 models:
   - name: stg_fed_congress_legislators__members
@@ -87,3 +96,20 @@ models:
           - not_null
       - name: net_receipts
         description: TTL_RECEIPTS minus TRANS_FROM_AUTH (money raised, net of inter-committee transfers).
+
+  - name: stg_fed_voteview_rollcalls__votes
+    description: Cleaned Voteview votes matrix (cast_code per member-rollcall). Mart dedups to (congress,chamber,rollnumber,icpsr).
+    columns:
+      - name: icpsr
+        description: Voteview member id -- joins to the members file for bioguide + party.
+        data_tests:
+          - not_null
+      - name: cast_code
+        description: How the member voted (1/2/3 yea, 4/5/6 nay, 7/8 present, 9 not-voting, 0 not-member).
+  - name: stg_fed_voteview_rollcall_meta__rollcalls
+    description: Cleaned Voteview roll-call metadata (date, yea/nay counts, question, bill).
+    columns:
+      - name: rollnumber
+        description: Roll-call number within the congress/chamber.
+        data_tests:
+          - not_null

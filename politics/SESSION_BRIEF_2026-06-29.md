@@ -1,9 +1,57 @@
 # Session Brief — The Political Domain ("The Stat Line") — 2026-06-29
 
 **Branch:** `politics-domain` (cut from `main`; NOT merged — left for Chris to review/merge).
-**Status:** Phases 0, 1, and **2** complete — additively, each independently verified PASS
-on 4 adversarial dimensions. The vote↔money join is closed AND the first box-score stat
-(money raised) is live and matches FEC.gov to the penny.
+**Status:** Phases 0–**3** complete — additively, each independently verified PASS on 4
+adversarial dimensions. Both halves of the thesis are now live on one member: **money**
+(raised per cycle, FEC-verified) AND **votes** (cast / missed / party unity, GovTrack-verified).
+
+---
+
+## PHASE 3 — THE VOTES LEG (latest)
+
+**The "what they did" leg is live: votes cast / missed votes / party unity per member per
+congress, keyed to the spine via icpsr.** Verified PASS on all 4 adversarial dimensions;
+reconciled to GovTrack's 118th figures to ~0.1pp. **Fully additive — no Fix-B-style
+exception this phase.**
+
+### Landed (118th + 119th per-congress files — NOT the 700MB full history) + built
+| Object | Rows |
+|---|---|
+| `LANDING.FED_VOTEVIEW_ROLLCALLS` (the votes MATRIX) | 945,523 |
+| `LANDING.FED_VOTEVIEW_ROLLCALL_META` (roll-call metadata) | 3,364 |
+| `MARTS.POLITICS.POLITICS__VOTEVIEW_VOTES` (congress, chamber, rollnumber, icpsr) | 945,523 |
+| `MARTS.POLITICS.POLITICS__VOTEVIEW_ROLLCALLS` (congress, chamber, rollnumber) | 3,364 |
+| `MARTS.POLITICS.POLITICS__MEMBER_VOTING_RECORD` (bioguide, congress) | 1,105 |
+
++1 registry row (`fed_voteview_rollcall_meta`, append-only). **Zero existing rows or vocab
+touched.** dbt models + tests scaffolded. 635 members across the two congresses.
+
+### The stat group — per (bioguide, congress)
+- **votes_cast / missed_votes / missed_vote_pct** — objective. Denominator = eligible
+  roll-calls (`cast_code <> 0`). 118th avg 4.14% missed.
+- **party_unity_pct** — judgment-tier (CQ definition: member sides with own-party majority
+  on roll-calls where the party majorities oppose). Major parties only (D/R). 118th avg 94.78%.
+
+### Definitional choices (the labels)
+- **Missed-vote denominator = eligible roll-calls** (`cast_code <> 0`). **Delegates**
+  (AS/GU/PR/VI/MP/DC) carry ~538 eligible vs ~1235 for full members (they can't vote on final
+  passage) — correct, not a bug.
+- **President excluded** — Biden/Trump have recorded positions in the raw matrix (icpsr
+  99913/99912) but aren't voting members → excluded from the record (478 votes, accounted for).
+- **Party switchers collapsed** — a member with 2 icpsr in one congress (e.g. Manchin) = one row.
+- **119th is PARTIAL** (`congress_partial=TRUE`) — mid-cycle counts; don't compare externally.
+
+### Smoke test — PASS, reconciled to GovTrack
+Missed-vote% vs GovTrack's 118th: Grijalva 39.19 vs 39.08, Jackson Lee 38.12 vs 38.0, Guthrie
+0.08 vs 0.08. Audit independently confirmed AOC (3.08 vs 3.06) and MTG (5.75 vs 5.72) — missed
+**counts match exactly**; the ~0.1pp residual is a named ~6-vote difference between Voteview's
+roll-call set and the House Clerk's (GovTrack's source). Reconciled by definition, not decimals.
+
+### Known scope notes
+- `fed_voteview_rollcalls` registry row keeps its Phase-0 metadata (still says "Deferred",
+  `JOIN_KEYS_STD=[]`) because additive-only forbids updating it; the matrix DID land into its
+  table (lifecycle now 'landed'). A future authorized one-row tidy-up could set `['ICPSR']`.
+- Party unity excludes independents from the stat by design (they still get votes/missed).
 
 ---
 
@@ -115,23 +163,24 @@ the political keys become first-class.
 ---
 
 ## THE SINGLE NEXT ACTION
-**Land the Voteview full roll-call matrix** (`fed_voteview_rollcalls`, already registered,
-public-domain, no key — `HSall_votes.csv` + `HSall_rollcalls.csv`). It keys to the spine via
-`icpsr` (already in `MEMBER_SPINE`) and produces the **second objective box-score stat: votes
-cast / missed votes / party-unity** — pairing the "votes" leg with the "money" leg now live.
-Same loader pattern as `build_money_spine.py`, with the same grain discipline: key marts on
-(icpsr, congress, rollnumber); the votes file is large, so chunk or filter to recent congresses
-first (exactly like the FEC cycle scoping).
+**Bills sponsored & cosponsored (legislative output) — the last clean objective box-score
+stat.** From `unitedstates/congress` bulk or the congress.gov API (free data.gov key),
+keyed on `bioguide` (no fuzzy matching, joins straight to the spine). Produces
+`POLITICS__MEMBER_BILLS` (bioguide, congress): bills sponsored, cosponsored, enacted —
+completing the core box score (ideology + money + votes + **bills**) before the fuzzy/heavy
+legs. Same loader + grain pattern; scope to the 118th + 119th like the votes leg.
 
-*(Then: congress.gov official votes via bioguide (free data.gov key); FEC contribution detail
-`fed_fec_bulk_contributions` for money-IN-by-industry — the headline chain's first leg; the
-2026 committee master `cm26` to close 2026 linkage resolution; USAspending-by-district.)*
+*(Then, the harder legs of the headline chain: FEC contribution detail
+`fed_fec_bulk_contributions` (itcont) for money-IN-by-industry — ties the money leg to the
+votes leg, but employer→industry is fuzzy + the file is huge (chunked load); STOCK Act PTRs
+(member stock trades — PDF hell, high public interest); Senate LDA lobbying; the 2026
+committee-master `cm26` refresh to close 2026 FEC linkage resolution; USAspending-by-district.)*
 
 ---
 
 ## How to resume / rebuild
 ```bash
-# Phase 0/1
+# Phase 0/1 (skeleton: members + ideology)
 python politics/registry/register_political_sources.py --apply   # idempotent, no-ops if present
 python politics/loaders/build_skeleton.py                        # fetch + land + build
 python politics/loaders/smoke_test.py                            # prove votes<->ideology+fec
@@ -139,6 +188,9 @@ python politics/loaders/smoke_test.py                            # prove votes<-
 python politics/registry/promote_keys_and_fix_domain.py --apply  # Fix A (vocab) + Fix B (1 row)
 python politics/loaders/build_money_spine.py                     # land FEC + build money marts
 python politics/loaders/smoke_money.py                           # money raised vs FEC.gov
+# Phase 3 (votes leg)
+python politics/loaders/build_votes_leg.py                       # land Voteview 118+119 + voting marts
+python politics/loaders/smoke_votes.py                           # missed-vote% vs GovTrack
 ```
-Verification workflows (read-only): Phase 1 `wf_6b3b65a4-53d`, Phase 2 `wf_4222b021-528`.
-See `politics/README.md`.
+Verification workflows (read-only): Phase 1 `wf_6b3b65a4-53d`, Phase 2 `wf_4222b021-528`,
+Phase 3 `wf_1d283e03-750`. See `politics/README.md`.

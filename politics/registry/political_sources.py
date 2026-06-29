@@ -134,7 +134,30 @@ SOURCES = [
         ACCOUNTABILITY_RELEVANCE="Objective box-score votes (missed votes, party unity, head-to-head).",
         PRIORITY_TIER="1", DOMAIN_PRIMARY="government_power", ENTITY_TYPES=["event"], HAS_EVENTS=True,
         JOIN_KEYS_STD=[], JOIN_KEY_TIER="STEEL", JOIN_KEY_TIER_PROVISIONAL=True, THEMES=["power_who_holds_it"],
+        # NB: live registry row keeps these Phase-0 values (append-only; not updated). In Phase 3 the VOTES
+        # MATRIX (this source's URL=HSall_votes.csv) was landed into FED_VOTEVIEW_ROLLCALLS for the 118th+119th
+        # -> lifecycle is now 'landed'. Roll-call metadata is the separate fed_voteview_rollcall_meta source.
         NOTES="Phase 2 (large). Deferred this session. " + _KEYFLAG,
+    ),
+    dict(
+        SOURCE_ID="fed_voteview_rollcall_meta",
+        NAME="Voteview -- Roll-Call Metadata",
+        PUBLISHER="Voteview / UCLA (Lewis et al.)",
+        DESCRIPTION="Per-roll-call metadata (one row per roll-call): date, session, yea/nay counts, result, "
+                    "vote question, bill number. The denominator + context for the votes matrix.",
+        UNIT_OF_OBSERVATION="one row = one roll-call vote",
+        TEMPORAL_COVERAGE="118th + 119th Congress (this session)", ACCESS_METHOD="bulk_download", FORMAT="csv",
+        AUTH_REQUIRED="none", COST="free", UPDATE_CADENCE="per-congress",
+        VOLUME="~2-3k roll-calls per congress",
+        LICENSE_TERMS="Free for research/public use (cite voteview.com)",
+        URL="https://voteview.com/static/data/out/rollcalls/HSall_rollcalls.csv",
+        JOIN_KEYS="congress, chamber, rollnumber (PK)",
+        ACCOUNTABILITY_RELEVANCE="Party-unity definition + a clean missed-vote denominator come from here.",
+        PRIORITY_TIER="1", DOMAIN_PRIMARY="government_power", ENTITY_TYPES=["event"], HAS_EVENTS=True,
+        JOIN_KEYS_STD=[], JOIN_KEY_TIER="STRONG", JOIN_KEY_TIER_PROVISIONAL=True,
+        THEMES=["power_who_holds_it"],
+        NOTES="Phase 3 (NEW). Roll-call metadata (HSall_rollcalls.csv), landed for 118th+119th into "
+              "FED_VOTEVIEW_ROLLCALL_META. Pairs with the votes matrix (fed_voteview_rollcalls).",
     ),
 
     # === TIER 1 -- MONEY-IN (FEC raw bulk; committee master already landed) ====

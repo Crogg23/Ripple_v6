@@ -21,6 +21,8 @@ politics/
     smoke_test.py                   # Phase 1 must-pass join proof (votes<->ideology+fec)
     build_money_spine.py            # Phase 2: land FEC cn/ccl/weball -> money marts
     smoke_money.py                  # Phase 2 must-pass proof (money raised vs FEC.gov)
+    build_votes_leg.py              # Phase 3: land Voteview votes+rollcalls -> voting marts
+    smoke_votes.py                  # Phase 3 must-pass proof (missed-vote% vs GovTrack)
   registry/
     promote_keys_and_fix_domain.py  # Phase 2 Fix A (vocab) + Fix B (fed_fec_bulk one-row)
   SESSION_BRIEF_2026-06-29.md       # session-end brief (start here next session)
@@ -48,8 +50,12 @@ python politics/loaders/smoke_test.py                            # votes <-> ide
 # Phase 2 -- the money spine
 python politics/registry/promote_keys_and_fix_domain.py --apply  # Fix A (vocab) + Fix B (1 row)
 python politics/loaders/build_money_spine.py                     # land FEC + build money marts
-python politics/loaders/build_money_spine.py --skip-fetch        # rebuild marts only
 python politics/loaders/smoke_money.py                           # money raised vs FEC.gov
+
+# Phase 3 -- the votes leg
+python politics/loaders/build_votes_leg.py                       # land Voteview 118+119 + build voting marts
+python politics/loaders/build_votes_leg.py --skip-fetch          # rebuild marts only
+python politics/loaders/smoke_votes.py                           # missed-vote% vs GovTrack
 ```
 
 dbt models mirror the Python-built marts (canonical tables are Python-built into
@@ -79,6 +85,17 @@ dbt models mirror the Python-built marts (canonical tables are Python-built into
 | `MARTS.POLITICS.POLITICS__MEMBER_MONEY_RAISED` | 1,050 | **the stat** — money raised/sitting member/cycle (533 members) |
 
 The identity graph is now closed: `bioguide → fec_cand_id → CAND_ID (candidate) → linkage → CMTE_ID → committee master (fed_fec_bulk)`. **Money raised is net of inter-committee transfers** (`TTL_RECEIPTS − TRANS_FROM_AUTH`).
+
+**Phase 3 — the votes leg** (Voteview per-congress files, 118th + 119th)
+| Object | Rows | What |
+|---|---|---|
+| `LANDING.FED_VOTEVIEW_ROLLCALLS` | 945,523 | the member×rollcall VOTES MATRIX (cast codes) |
+| `LANDING.FED_VOTEVIEW_ROLLCALL_META` | 3,364 | roll-call metadata (date, counts, question, bill) |
+| `MARTS.POLITICS.POLITICS__VOTEVIEW_VOTES` | 945,523 | cast matrix, keyed (congress, chamber, rollnumber, icpsr) |
+| `MARTS.POLITICS.POLITICS__VOTEVIEW_ROLLCALLS` | 3,364 | roll-call metadata, keyed (congress, chamber, rollnumber) |
+| `MARTS.POLITICS.POLITICS__MEMBER_VOTING_RECORD` | 1,105 | **the stat** — votes cast / missed-vote% / party unity, per (bioguide, congress) |
+
+Voting stats are **definition-bound** (reconciled to GovTrack's 118th figures to ~0.1pp, not penny-exact). `missed_vote_pct` denominator = eligible roll-calls (`cast_code <> 0`); `party_unity` = CQ definition (member sides with own-party majority on votes where party majorities oppose). The 119th is **partial** (in progress).
 
 ## The join spine — clean vs fuzzy (be honest)
 
