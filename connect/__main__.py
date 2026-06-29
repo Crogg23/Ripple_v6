@@ -49,6 +49,12 @@ def main() -> int:
     ld.add_argument("--run", action="store_true", help="write to LIBRARY_META.CONNECT.LEADS (default previews only)")
     ld.add_argument("--top", type=int, default=20, help="how many leads to print")
 
+    rc = sub.add_parser("receipt", help="the run-it-yourself proof for one lead (frozen SQL + data snapshot)")
+    rc.add_argument("--id", dest="lead_id", required=True, help="LEAD_xxxx")
+    rc.add_argument("--sql", action="store_true", help="print ONLY the runnable SQL (pipe to a worksheet)")
+    rc.add_argument("--json", action="store_true", help="emit the receipt as JSON")
+    rc.add_argument("--check", action="store_true", help="re-run the stored SQL read-only and confirm the entity reproduces")
+
     rs = sub.add_parser("resolve", help="fuzzy record linkage (GATED: writes ENTITY_LINKS, never the spine)")
     rs.add_argument("--pair", default="leie_nppes", help="recipe name")
     rs.add_argument("--write", action="store_true", help="persist ENTITY_LINKS (default previews only)")
@@ -126,6 +132,9 @@ def main() -> int:
     if args.cmd == "leads":
         from . import leads
         leads.run(job=args.job, dry_run=not args.run, top=args.top)
+    if args.cmd == "receipt":
+        from . import receipt
+        receipt.run(args.lead_id, sql_only=args.sql, as_json=args.json, check=args.check)
     if args.cmd == "resolve":
         from . import resolve
         resolve.run(pair=args.pair, write=args.write, top=args.top, min_score=args.min_score)

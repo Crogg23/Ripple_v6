@@ -22,12 +22,14 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 import uuid
+from datetime import date
 
 import pandas as pd
 from snowflake.connector.pandas_tools import write_pandas
 
-from . import db, safety, store
+from . import db, receipt, safety, store
 from .keys import normalize_sql, quote_ident
 from .leads_specs import JOBS
 
@@ -50,9 +52,20 @@ CREATE TABLE IF NOT EXISTS {LEADS_FQN} (
     EVIDENCE_COUNT  INTEGER,
     FIRST_SEEN      TIMESTAMP_NTZ,
     LAST_SEEN       TIMESTAMP_NTZ,
-    RUN_ID          STRING
+    RUN_ID          STRING,
+    -- the receipt: the run-it-yourself proof that travels with every lead
+    COMPILED_SQL    STRING,          -- the EXACT query this lead was produced by (clock frozen)
+    SQL_SHA256      STRING,          -- content hash of COMPILED_SQL (skeptic re-hashes + runs)
+    AS_OF_DATE      DATE,            -- the frozen wall-clock baked into the SQL -> reproducible
+    SOURCE_SNAPSHOTS VARIANT         -- per source: _SOURCE_RUN_ID + INGEST_RUNS SHA256 + status
 )
 """
+
+# the receipt columns added to a pre-existing LEADS table, in order (idempotent ALTERs)
+_RECEIPT_COLS = [
+    ("COMPILED_SQL", "STRING"), ("SQL_SHA256", "STRING"),
+    ("AS_OF_DATE", "DATE"), ("SOURCE_SNAPSHOTS", "VARIANT"),
+]
 
 
 def _norm(key: str, col: str) -> str:
@@ -82,7 +95,7 @@ def _names_of(side: dict):
     return None, None
 
 
-def compile_sql(spec: dict) -> str:
+def compile_sql(spec: dict, as_of: str | None = None) -> str:
     """Compile a JobSpec to ONE targeted SQL query.
 
     The general shape is a hard-key INTERSECTION: a LEFT "flag" list (sanctions /
@@ -91,9 +104,19 @@ def compile_sql(spec: dict) -> str:
     Person names (optional) add surname corroboration; org/vessel names are display
     only. This is domain-agnostic: NPI doctors, IMO vessels, UEI contractors all
     compile from config — only the spec changes, never this function.
+
+    ``as_of`` (ISO 'YYYY-MM-DD') FREEZES the clock: the recency window is computed
+    against ``DATE '<as_of>'`` instead of ``CURRENT_DATE``, so the emitted SQL string
+    is reproducible forever (re-running it later yields the same RECENCY_SCORE, the
+    same lead). This is the receipt's load-bearing property — without it a published
+    number silently drifts as the wall clock crosses each recency boundary. ``as_of``
+    omitted keeps ``CURRENT_DATE`` (legacy / ad-hoc preview only; never persisted).
     """
     L, R = spec["left"], spec["right"]
     jk = L["key"]
+    if as_of is not None and not re.match(r"^\d{4}-\d{2}-\d{2}$", as_of):
+        raise ValueError(f"as_of must be ISO 'YYYY-MM-DD', got {as_of!r}")
+    today = f"DATE '{as_of}'" if as_of else "CURRENT_DATE"
     if R["key"] != jk:
         raise ValueError(f"{spec['rule_name']}: left/right join keys differ ({jk} vs {R['key']})")
 
@@ -161,7 +184,7 @@ def compile_sql(spec: dict) -> str:
     rec = L.get("recency")
     if rec:
         rexpr = f"TRY_TO_DATE(MAX(l.L_RECENCY), '{rec['format']}')"
-        recency = f"IFF({rexpr} >= DATEADD('month', -{int(rec['months'])}, CURRENT_DATE), 1.0, 0.4)"
+        recency = f"IFF({rexpr} >= DATEADD('month', -{int(rec['months'])}, {today}), 1.0, 0.4)"
     else:
         recency = "1.0"
 
@@ -242,12 +265,20 @@ def _title(spec: dict, fields: dict, count: int) -> str:
     return spec["title_template"].format_map(_SafeDict(f))
 
 
-def run_job(conn, spec: dict, run_id: str) -> pd.DataFrame:
+def run_job(conn, spec: dict, run_id: str, dry_run: bool = False) -> pd.DataFrame:
     if not spec.get("no_fanout_guard"):
         raise ValueError(f"{spec['rule_name']}: lead jobs must set no_fanout_guard=True "
                          "(they run targeted SQL, never the bridge engine).")
     jk = spec["left"]["key"]
-    rows = db.dicts(conn, compile_sql(spec))
+    # FREEZE the clock, then run the EXACT SQL we will store: the persisted COMPILED_SQL must be
+    # byte-identical to what produced these rows, or the receipt's "run it yourself" is a lie.
+    as_of = date.today().isoformat()
+    sql = compile_sql(spec, as_of=as_of)
+    sha = receipt.sql_sha256(sql)
+    # Pin each source's data version — but only when persisting (resolve hits the warehouse;
+    # a dry-run preview stays free). The SQL + hash are computed offline, so previews still show them.
+    snapshots = json.dumps([] if dry_run else receipt.resolve_snapshots(conn, spec))
+    rows = db.dicts(conn, sql)
     recs = []
     for r in rows:
         evidence = r["EVIDENCE_JSON"] or "[]"
@@ -264,6 +295,10 @@ def run_job(conn, spec: dict, run_id: str) -> pd.DataFrame:
             "EVIDENCE": evidence,
             "EVIDENCE_COUNT": len(json.loads(evidence)),  # actual array length
             "RUN_ID": run_id,
+            "COMPILED_SQL": sql,            # the receipt: run-it-yourself proof
+            "SQL_SHA256": sha,
+            "AS_OF_DATE": as_of,
+            "SOURCE_SNAPSHOTS": snapshots,
         })
     return pd.DataFrame(recs)
 
@@ -273,6 +308,9 @@ def _ensure_leads_table(conn) -> None:
     # STATUS marks staleness: a lead absent from the latest run is expired, so a person cleared by
     # the source drops out of publication. Added in place so the live table gains the column.
     db.rows(conn, f"ALTER TABLE {LEADS_FQN} ADD COLUMN IF NOT EXISTS STATUS STRING")
+    # receipt columns — additive + idempotent, so an existing live LEADS table gains them in place.
+    for col, typ in _RECEIPT_COLS:
+        db.rows(conn, f"ALTER TABLE {LEADS_FQN} ADD COLUMN IF NOT EXISTS {col} {typ}")
 
 
 def _merge_leads(conn, df: pd.DataFrame) -> None:
@@ -286,13 +324,19 @@ def _merge_leads(conn, df: pd.DataFrame) -> None:
             t.RULE_NAME = s.RULE_NAME, t.LEFT_KEY_TYPE = s.LEFT_KEY_TYPE,
             t.LEFT_KEY_VALUE = s.LEFT_KEY_VALUE, t.TITLE = s.TITLE, t.SCORE = s.SCORE,
             t.EVIDENCE = PARSE_JSON(s.EVIDENCE), t.EVIDENCE_COUNT = s.EVIDENCE_COUNT,
-            t.LAST_SEEN = CURRENT_TIMESTAMP(), t.RUN_ID = s.RUN_ID
+            t.LAST_SEEN = CURRENT_TIMESTAMP(), t.RUN_ID = s.RUN_ID,
+            t.COMPILED_SQL = s.COMPILED_SQL, t.SQL_SHA256 = s.SQL_SHA256,
+            t.AS_OF_DATE = TO_DATE(s.AS_OF_DATE, 'YYYY-MM-DD'),
+            t.SOURCE_SNAPSHOTS = PARSE_JSON(s.SOURCE_SNAPSHOTS)
         WHEN NOT MATCHED THEN INSERT
             (LEAD_ID, RULE_NAME, LEFT_KEY_TYPE, LEFT_KEY_VALUE, TITLE, SCORE,
-             EVIDENCE, EVIDENCE_COUNT, FIRST_SEEN, LAST_SEEN, RUN_ID)
+             EVIDENCE, EVIDENCE_COUNT, FIRST_SEEN, LAST_SEEN, RUN_ID,
+             COMPILED_SQL, SQL_SHA256, AS_OF_DATE, SOURCE_SNAPSHOTS)
             VALUES (s.LEAD_ID, s.RULE_NAME, s.LEFT_KEY_TYPE, s.LEFT_KEY_VALUE, s.TITLE,
              s.SCORE, PARSE_JSON(s.EVIDENCE), s.EVIDENCE_COUNT,
-             CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), s.RUN_ID)
+             CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), s.RUN_ID,
+             s.COMPILED_SQL, s.SQL_SHA256, TO_DATE(s.AS_OF_DATE, 'YYYY-MM-DD'),
+             PARSE_JSON(s.SOURCE_SNAPSHOTS))
     """)
     db.rows(conn, f"DROP TABLE IF EXISTS {STAGE_FQN}")
 
@@ -385,7 +429,7 @@ def run(job: str = "all", dry_run: bool = True, top: int = 20) -> dict:
         sup = safety.suppressed(conn, "lead")   # rejected/retracted -> never shown as fact
         for name in names:
             spec = JOBS[name]
-            df = run_job(conn, spec, run_id)
+            df = run_job(conn, spec, run_id, dry_run=dry_run)
             shown = df[~df["LEAD_ID"].isin(sup)] if len(df) else df
             hidden = len(df) - len(shown)
             print(f"\n[{name}] {len(shown)} leads  ({'DRY-RUN' if dry_run else 'writing'})"
