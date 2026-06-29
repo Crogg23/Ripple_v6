@@ -39,7 +39,7 @@ on a key (not just "both have an ID-shaped column"). Read **`connect/HOWTO.md`**
 ---
 
 ## 🏢 The warehouse (Snowflake — what all this *builds*)
-- **`LIBRARY_RAW.LANDING`** — the raw catch: **638 tables, ~24.3M rows** (everything stored as plain text).
+- **`LIBRARY_RAW.LANDING`** — the raw catch: **720 tables, ~24.3M rows** (everything stored as plain text).
 - **`LIBRARY_META`** — the catalog: source registry + load logs + the 338k portal index + the connection edges.
 - **`LIBRARY_STAGING` / `LIBRARY_MARTS`** — cleaned-up dbt output.
 - **`LIBRARY_TOOLS`** — just hosts the read-only query connection (no data).
@@ -47,7 +47,7 @@ on a key (not just "both have an ID-shaped column"). Read **`connect/HOWTO.md`**
 ---
 
 ## Where things stand
-- **638 datasets, 12,804 real connections** (547 datasets wired together), each confidence-scored.
+- **720 datasets, 20,696 real connections** (638 datasets wired together), each confidence-scored.
 - Strongest example: the federal **provider registry ↔ banned-providers list** match on NPI (8,503 exact matches).
 - It's an **exploration / lead-generation** layer: it shows you *where* the stories are; pulling the full story
   (uncapping a thread, deeper analysis) is the move after.

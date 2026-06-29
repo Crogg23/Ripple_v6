@@ -375,7 +375,7 @@ SELECT c.source_id, c.domain_primary FROM LIBRARY_META.REGISTRY.CATALOG c
 JOIN LIBRARY_META.REGISTRY.V_SOURCE_KEY k USING (source_id) WHERE k.join_key IN ('IMO','MMSI');
 ```
 
-Scale as of 2026-06-25: **1,506 sources cataloged · 54 with full data (18 landed + 36 modeled) · 594
+Scale as of 2026-06-27: **~1,647 sources cataloged · ~101 with full data (76 landed + 25 modeled) · 594
 sampled (mostly the 593 open-data portals) · 854 scouted.** The bridge views (`V_SOURCE_DOMAIN`,
 `V_SOURCE_THEME`, `V_SOURCE_KEY`) let you filter by `=` instead of array functions; `V_REVIEW_QUEUE`
 holds what still needs a human topic/classification call. Helper script + design/build docs:

@@ -122,14 +122,14 @@ agent catalog writes):**
   registry/INGEST_RUNS base tables exist ONLY as live Snowflake state — DR hole); rotate PAT + expiry check.
 - **P2:** scratch tables `TRANSIENT`→`TEMPORARY` + drop `KEYSET_SCRATCH` 30.2M / `CROSSWALK_SCRATCH` 4.2M;
   `LIBRARY_WRITER` least-priv role (writes run as ACCOUNTADMIN today); `chmod 600 .env`; prune ~16 merged
-  branches; `empty`/`partial` as first-class re-queue + full SAM 167k reload; EIN/CIK detectors (all 4 live
+  branches; `empty`/`partial` as first-class re-queue + full SAM 167k reload; EIN/CIK detectors (all 6 live
   detectors key on NPI/UEI/IMO); model the big unmodeled landings (Open Payments 15.4M, USASpending, etc.).
 
 **STALE-CLAIM CORRECTION (this file was lying):** all the "uncommitted / NOT yet PR'd" work below IS merged
 to main (entity layer PR #29, reserved-word fix `988bfcf`, money/maritime, bridge, faceted catalog, portal
 firehose). Canonical LIVE scale: **~63 first-class sources** (29 landed + 34 modeled, ~9 of `modeled` are
-broken stubs) · **720 physical LANDING tables** · **20,696 connections** · **~1,533 catalog rows**.
-OVERVIEW.md still says 12,804 connections (wrong). Tests = **38 passed / 2 skipped** (live-only), not "25 green".
+broken stubs) · **720 physical LANDING tables** · **20,696 connections** · **~1,647 catalog rows**.
+OVERVIEW.md / CLAUDE.md / README reconciled to these figures 2026-06-28. Python tests = **60 collected** (38 passed / 2 skipped on the last live run); dbt data tests = **774**.
 
 ## NEXT ACTION
 Preview then run `propose_catalog_trust_gate.py --apply` + `regrade_empty_loads.py --apply`, then **wire

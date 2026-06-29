@@ -37,6 +37,6 @@ python library-onboarding/onboard.py --batch   # onboard new sources into the Li
 - **`library-onboarding/`** — the 5-checkpoint source-onboarding agent. See
   `library-onboarding/README.md`.
 
-> Note: `dbt-snowflake` is listed in `requirements.txt` (it runs/tests the 73 dbt
+> Note: `dbt-snowflake` is listed in `requirements.txt` (it runs/tests the 86 dbt
 > models in `library-onboarding/ripple_dbt`) but is **not** installed in the dev
 > environment by default — install it when you need to `dbt run` / `dbt test`.

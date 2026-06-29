@@ -156,7 +156,7 @@ Nothing below CERTAIN changes identity. The bottom rung is stored, not shown. *W
   a **new** `match_weight`/`rung` field alongside the legacy `confidence`, behind a flag
   (`scorer='fs_v1'`). Snapshot-diff edge counts vs `connect_graph.json` before any cutover.
 - **Tier vocabulary. [major]** `CORROBORATED` and `BRIDGE` have no `TIER_RANK` entry; any
-  `TIER_RANK[edge_tier]` KeyErrors on ~600 edges. Define a **separate `LADDER_RANK`** covering
+  `TIER_RANK[edge_tier]` KeyErrors on ~900 edges. Define a **separate `LADDER_RANK`** covering
   all 6 legacy tiers + the rungs; never reuse the 4-tier tagger `TIER_RANK` for edges. Add an
   assertion that every emitted tier string has a rank.
 - **One normalizer. [major]** The engine canonicalizes names via `keys.normalize_sql` (token-
