@@ -1,0 +1,48 @@
+version: 2
+
+# Raw landing sources for the political domain ("The Stat Line"). Landed by
+# politics/loaders/build_skeleton.py via the shared ingest helpers.
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CONGRESS_LEGISLATORS
+        description: >
+          unitedstates/congress-legislators (CC0): current + historical members of
+          Congress and executives (presidents/VPs), denormalized to one row per
+          legislator. Carries the master ID crosswalk (bioguide/icpsr/fec/govtrack/
+          opensecrets/votesmart/...) plus bio and most-recent term. FEC_IDS is a
+          JSON array string (a member can have several FEC candidate IDs). All TEXT.
+      - name: FED_VOTEVIEW_MEMBERS
+        description: >
+          Voteview HSall_members: one row per member-congress with DW-NOMINATE
+          ideology (nominate_dim1/dim2), keyed by ICPSR, with BIOGUIDE_ID. All TEXT.
+
+models:
+  - name: stg_fed_congress_legislators__members
+    description: >
+      Cleaned member crosswalk + bio + most-recent term, one row per source row.
+      bioguide may be NULL for some executives (keyed downstream on the surrogate
+      member_key). fec_ids is parsed to a JSON array.
+    columns:
+      - name: bioguide
+        description: Bioguide ID -- the primary politician key (NULL for some executives).
+        data_tests:
+          - unique:
+              config:
+                severity: warn   # 13 null-bioguide executives expected; nulls excluded
+      - name: icpsr
+        description: ICPSR number -- the Voteview join key (may be NULL for very old / executive records).
+
+  - name: stg_fed_voteview_members__ideology
+    description: >
+      Cleaned Voteview member-by-congress ideology. nominate_dim1 is the standard
+      left(-)/right(+) DW-NOMINATE score.
+    columns:
+      - name: icpsr
+        description: ICPSR number (join key to the crosswalk). Not unique here (one row per congress).
+        data_tests:
+          - not_null:
+              config:
+                severity: warn

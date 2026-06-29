@@ -1,0 +1,86 @@
+version: 2
+
+# Political-domain marts (LIBRARY_MARTS.POLITICS). The keystone crosswalk + the
+# 1:many FEC bridge + the bioguide-keyed member spine with ideology. Canonical
+# tables are built by politics/loaders/build_skeleton.py; these dbt models mirror
+# that build and add the tests. Run: dbt build --select marts.politics+
+models:
+
+  - name: politics__member_crosswalk
+    description: >
+      DELIVERABLE #1 (keystone): one row per member, keyed on bioguide, carrying
+      every alternate ID (icpsr/fec/govtrack/opensecrets/votesmart/...). member_key
+      is a never-null surrogate (bioguide, else govtrack/opensecrets/name).
+    columns:
+      - name: member_key
+        description: Never-null surrogate member key (= bioguide where present).
+        data_tests:
+          - unique
+          - not_null
+      - name: bioguide
+        description: >
+          Bioguide ID -- the politician primary key. Unique among non-null values
+          (nulls are the ~13 executives with no Bioguide entry; they key on member_key).
+        data_tests:
+          - unique
+      - name: icpsr
+        description: ICPSR number -- the Voteview join key.
+      - name: fec_ids
+        description: JSON array of the member's FEC candidate IDs (1:many; flattened in the bridge).
+
+  - name: politics__member_fec_id
+    description: >
+      DELIVERABLE #1 (bridge): one row per (member, fec_id). Preserves the
+      one-to-many fec relationship; join fec_id -> FED_FEC_BULK.FEC_CAND_ID.
+    columns:
+      - name: member_key
+        description: FK to politics__member_crosswalk.member_key.
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('politics__member_crosswalk')
+              field: member_key
+      - name: fec_id
+        description: FEC candidate ID. Joins to the FEC candidate/committee data.
+        data_tests:
+          - not_null
+
+  - name: politics__member_spine
+    description: >
+      DELIVERABLE #2 (spine): bioguide-keyed member table with DW-NOMINATE ideology
+      (crosswalk JOIN Voteview on icpsr). has_ideology = false where no Voteview match.
+    columns:
+      - name: member_key
+        description: FK to politics__member_crosswalk.member_key; unique (one row per member).
+        data_tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('politics__member_crosswalk')
+              field: member_key
+      - name: bioguide
+        description: Bioguide ID (NULL for the ~13 executives without one).
+        data_tests:
+          - unique
+      - name: dw_nominate_dim1
+        description: DW-NOMINATE first-dimension ideology (negative = left, positive = right).
+      - name: ideology_label
+        description: Human-readable ideology bucket derived from dw_nominate_dim1.
+        data_tests:
+          - accepted_values:
+              values: ['left/liberal', 'right/conservative', 'centrist', 'unknown']
+      - name: has_voteview_match
+        description: TRUE when the member matched a Voteview member row by icpsr (may still lack a score).
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+      - name: has_ideology
+        description: >
+          TRUE only when a USABLE DW-NOMINATE score (dw_nominate_dim1) is present.
+          177 members match Voteview but carry a null score (Voteview source sparsity)
+          -- those are has_voteview_match=TRUE, has_ideology=FALSE, ideology_label='unknown'.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
