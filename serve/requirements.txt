@@ -1,0 +1,11 @@
+# Ripple Reading Room — Phase 1 SERVE layer (local Streamlit).
+# Stack is non-negotiable: Python / Snowflake / Plotly. No off-stack stores.
+streamlit>=1.36          # needs st.plotly_chart(on_select=...) + st.query_params
+plotly>=5.20             # scattergl (WebGL) edge/node traces
+pandas>=2.0
+snowflake-connector-python>=3.7
+python-dotenv>=1.0       # reads library-onboarding/.env (PAT-as-password)
+
+# Streamlit-in-Snowflake (Phase 2) provides these itself — uncomment only if you
+# want to test the SiS code path locally:
+# snowflake-snowpark-python>=1.18

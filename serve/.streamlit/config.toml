@@ -1,0 +1,15 @@
+# Dark, investigative reading-room theme (matches the connect dashboards).
+[theme]
+base = "dark"
+primaryColor = "#f4a23a"
+backgroundColor = "#0d1117"
+secondaryBackgroundColor = "#161b22"
+textColor = "#e6edf3"
+font = "sans serif"
+
+[server]
+headless = true
+runOnSave = true
+
+[browser]
+gatherUsageStats = false
