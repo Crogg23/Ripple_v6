@@ -1,0 +1,152 @@
+version: 2
+
+# Raw landing sources for the political domain ("The Stat Line"). Landed by
+# politics/loaders/build_skeleton.py via the shared ingest helpers.
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CONGRESS_LEGISLATORS
+        description: >
+          unitedstates/congress-legislators (CC0): current + historical members of
+          Congress and executives (presidents/VPs), denormalized to one row per
+          legislator. Carries the master ID crosswalk (bioguide/icpsr/fec/govtrack/
+          opensecrets/votesmart/...) plus bio and most-recent term. FEC_IDS is a
+          JSON array string (a member can have several FEC candidate IDs). All TEXT.
+      - name: FED_VOTEVIEW_MEMBERS
+        description: >
+          Voteview HSall_members: one row per member-congress with DW-NOMINATE
+          ideology (nominate_dim1/dim2), keyed by ICPSR, with BIOGUIDE_ID. All TEXT.
+      - name: FED_FEC_BULK_CANDIDATES
+        description: >
+          FEC candidate master (cn), cycles 2024 + 2026. A CYCLE column is added at
+          load so the (CAND_ID, CYCLE) grain is preserved. All TEXT.
+      - name: FED_FEC_BULK_LINKAGES
+        description: >
+          FEC candidate-committee linkage (ccl), cycles 2024 + 2026. The official
+          CAND_ID<->CMTE_ID bridge. CYCLE added at load. All TEXT.
+      - name: FED_FEC_BULK_SUMMARY
+        description: >
+          FEC all-candidates financial summary (weball), cycles 2024 + 2026 -- the
+          ONLY FEC bulk file carrying dollar amounts (TTL_RECEIPTS etc.). CYCLE added
+          at load. All TEXT.
+      - name: FED_VOTEVIEW_ROLLCALLS
+        description: >
+          Voteview member-by-member VOTES MATRIX (the fed_voteview_rollcalls source =
+          HSall_votes.csv), 118th + 119th congresses. One row per member-rollcall with
+          cast_code. All TEXT. (Roll-call metadata is the separate _ROLLCALL_META table.)
+      - name: FED_VOTEVIEW_ROLLCALL_META
+        description: >
+          Voteview roll-call METADATA (HSall_rollcalls.csv), 118th + 119th. One row per
+          roll-call: date, yea/nay counts, result, question, bill number. All TEXT.
+      - name: FED_GOVINFO_BILLSTATUS
+        description: >
+          GovInfo BILLSTATUS (official GPO bill-status XML), 118th + 119th, all bill types.
+          One row per bill: type/number/congress, sponsor bioguideId, introduced date, title,
+          the <laws> public-law number (present only when enacted), the pipe-delimited DISTINCT
+          set of GPO action types, latest action, and the raw cosponsor count. All TEXT.
+      - name: FED_GOVINFO_BILL_COSPONSORS
+        description: >
+          GovInfo BILLSTATUS cosponsor extract, 118th + 119th. One row per (bill, cosponsor
+          bioguide): isOriginalCosponsor, sponsorshipDate, and sponsorshipWithdrawnDate (present
+          only when withdrawn). Kept off the bill grain so the list never inflates it. All TEXT.
+
+models:
+  - name: stg_fed_congress_legislators__members
+    description: >
+      Cleaned member crosswalk + bio + most-recent term, one row per source row.
+      bioguide may be NULL for some executives (keyed downstream on the surrogate
+      member_key). fec_ids is parsed to a JSON array.
+    columns:
+      - name: bioguide
+        description: Bioguide ID -- the primary politician key (NULL for some executives).
+        data_tests:
+          - unique:
+              config:
+                severity: warn   # 13 null-bioguide executives expected; nulls excluded
+      - name: icpsr
+        description: ICPSR number -- the Voteview join key (may be NULL for very old / executive records).
+
+  - name: stg_fed_voteview_members__ideology
+    description: >
+      Cleaned Voteview member-by-congress ideology. nominate_dim1 is the standard
+      left(-)/right(+) DW-NOMINATE score.
+    columns:
+      - name: icpsr
+        description: ICPSR number (join key to the crosswalk). Not unique here (one row per congress).
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+
+  - name: stg_fed_fec_bulk_candidates__candidates
+    description: Cleaned FEC candidate master. One row per source row; mart dedups to (cand_id, cycle).
+    columns:
+      - name: cand_id
+        description: FEC candidate ID (governed JOIN_KEY FEC_CAND_ID).
+        data_tests:
+          - not_null
+  - name: stg_fed_fec_bulk_linkages__linkages
+    description: Cleaned FEC candidate-committee linkage.
+    columns:
+      - name: cand_id
+        description: FEC candidate ID.
+        data_tests:
+          - not_null
+      - name: cmte_id
+        description: FEC committee ID (governed JOIN_KEY FEC_CMTE_ID).
+        data_tests:
+          - not_null
+  - name: stg_fed_fec_bulk_summary__candidate_summary
+    description: Cleaned + typed FEC financial summary (weball). net_receipts strips inter-committee transfers.
+    columns:
+      - name: cand_id
+        description: FEC candidate ID.
+        data_tests:
+          - not_null
+      - name: net_receipts
+        description: TTL_RECEIPTS minus TRANS_FROM_AUTH (money raised, net of inter-committee transfers).
+
+  - name: stg_fed_voteview_rollcalls__votes
+    description: Cleaned Voteview votes matrix (cast_code per member-rollcall). Mart dedups to (congress,chamber,rollnumber,icpsr).
+    columns:
+      - name: icpsr
+        description: Voteview member id -- joins to the members file for bioguide + party.
+        data_tests:
+          - not_null
+      - name: cast_code
+        description: How the member voted (1/2/3 yea, 4/5/6 nay, 7/8 present, 9 not-voting, 0 not-member).
+  - name: stg_fed_voteview_rollcall_meta__rollcalls
+    description: Cleaned Voteview roll-call metadata (date, yea/nay counts, question, bill).
+    columns:
+      - name: rollnumber
+        description: Roll-call number within the congress/chamber.
+        data_tests:
+          - not_null
+
+  - name: stg_fed_govinfo_billstatus__bills
+    description: >
+      Cleaned BILLSTATUS bills, one row per (congress, bill_type, bill_number). Casts types,
+      UPPERs bill_type, splits action_types into an array, dedups to the bill grain. All
+      derivation (law-eligibility, became_law, advanced_past_committee, latest_stage) is in
+      the mart (politics__bills), not here.
+    columns:
+      - name: bill_number
+        description: Bill number within the congress + bill_type.
+        data_tests:
+          - not_null
+      - name: bill_type
+        description: Bill type, UPPER (HR/S/HJRES/SJRES/HCONRES/SCONRES/HRES/SRES).
+        data_tests:
+          - not_null
+  - name: stg_fed_govinfo_bill_cosponsors__cosponsors
+    description: >
+      Cleaned BILLSTATUS cosponsor extract, one row per (congress, bill_type, bill_number,
+      cosponsor_bioguide). is_withdrawn flags withdrawn cosponsorships; a withdraw-then-rejoin
+      collapses to one row preferring the not-withdrawn state.
+    columns:
+      - name: cosponsor_bioguide
+        description: Cosponsor bioguide -- joins straight to the member spine.
+        data_tests:
+          - not_null

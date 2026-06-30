@@ -1,0 +1,283 @@
+version: 2
+
+# Political-domain marts (LIBRARY_MARTS.POLITICS). The keystone crosswalk + the
+# 1:many FEC bridge + the bioguide-keyed member spine with ideology. Canonical
+# tables are built by politics/loaders/build_skeleton.py; these dbt models mirror
+# that build and add the tests. Run: dbt build --select marts.politics+
+models:
+
+  - name: politics__member_crosswalk
+    description: >
+      DELIVERABLE #1 (keystone): one row per member, keyed on bioguide, carrying
+      every alternate ID (icpsr/fec/govtrack/opensecrets/votesmart/...). member_key
+      is a never-null surrogate (bioguide, else govtrack/opensecrets/name).
+    columns:
+      - name: member_key
+        description: Never-null surrogate member key (= bioguide where present).
+        data_tests:
+          - unique
+          - not_null
+      - name: bioguide
+        description: >
+          Bioguide ID -- the politician primary key. Unique among non-null values
+          (nulls are the ~13 executives with no Bioguide entry; they key on member_key).
+        data_tests:
+          - unique
+      - name: icpsr
+        description: ICPSR number -- the Voteview join key.
+      - name: fec_ids
+        description: JSON array of the member's FEC candidate IDs (1:many; flattened in the bridge).
+
+  - name: politics__member_fec_id
+    description: >
+      DELIVERABLE #1 (bridge): one row per (member, fec_id). Preserves the
+      one-to-many fec relationship; join fec_id -> FED_FEC_BULK.FEC_CAND_ID.
+    columns:
+      - name: member_key
+        description: FK to politics__member_crosswalk.member_key.
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('politics__member_crosswalk')
+              field: member_key
+      - name: fec_id
+        description: FEC candidate ID. Joins to the FEC candidate/committee data.
+        data_tests:
+          - not_null
+
+  - name: politics__member_spine
+    description: >
+      DELIVERABLE #2 (spine): bioguide-keyed member table with DW-NOMINATE ideology
+      (crosswalk JOIN Voteview on icpsr). has_ideology = false where no Voteview match.
+    columns:
+      - name: member_key
+        description: FK to politics__member_crosswalk.member_key; unique (one row per member).
+        data_tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('politics__member_crosswalk')
+              field: member_key
+      - name: bioguide
+        description: Bioguide ID (NULL for the ~13 executives without one).
+        data_tests:
+          - unique
+      - name: dw_nominate_dim1
+        description: DW-NOMINATE first-dimension ideology (negative = left, positive = right).
+      - name: ideology_label
+        description: Human-readable ideology bucket derived from dw_nominate_dim1.
+        data_tests:
+          - accepted_values:
+              values: ['left/liberal', 'right/conservative', 'centrist', 'unknown']
+      - name: has_voteview_match
+        description: TRUE when the member matched a Voteview member row by icpsr (may still lack a score).
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+      - name: has_ideology
+        description: >
+          TRUE only when a USABLE DW-NOMINATE score (dw_nominate_dim1) is present.
+          177 members match Voteview but carry a null score (Voteview source sparsity)
+          -- those are has_voteview_match=TRUE, has_ideology=FALSE, ideology_label='unknown'.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+
+  # --- Phase 2: the FEC money spine -----------------------------------------
+  - name: politics__fec_candidate
+    description: FEC candidate identity, keyed (cand_id, cycle). From the cn bulk file.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: [cand_id, cycle]
+    columns:
+      - name: cand_id
+        description: FEC candidate ID (governed JOIN_KEY FEC_CAND_ID).
+        data_tests: [not_null]
+      - name: cycle
+        description: Election cycle ('2024' / '2026') -- the grain partner. Never drop it.
+        data_tests: [not_null]
+
+  - name: politics__fec_cand_cmte_link
+    description: Candidate<->committee linkage bridge, keyed (cand_id, cmte_id, cycle). From ccl.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: [cand_id, cmte_id, cycle]
+    columns:
+      - name: cand_id
+        description: FEC candidate ID.
+        data_tests: [not_null]
+      - name: cmte_id
+        description: FEC committee ID -- joins to fed_fec_bulk.FEC_CMTE_ID (committee master).
+        data_tests: [not_null]
+
+  - name: politics__fec_candidate_summary
+    description: Candidate financial summary, keyed (cand_id, cycle). The only $ source (weball).
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: [cand_id, cycle]
+    columns:
+      - name: cand_id
+        description: FEC candidate ID.
+        data_tests: [not_null]
+      - name: net_receipts
+        description: Money raised net of inter-committee transfers (TTL_RECEIPTS - TRANS_FROM_AUTH).
+
+  - name: politics__member_money_raised
+    description: >
+      THE STAT: money raised per sitting member per cycle, keyed (bioguide, cycle).
+      money_raised_net sums net_receipts (net of inter-committee transfers); the join
+      on (cand_id, cycle) restricts to the member's cycle-active candidate IDs.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: [bioguide, cycle]
+    columns:
+      - name: bioguide
+        description: Member primary key (governed JOIN_KEY BIOGUIDE).
+        data_tests: [not_null]
+      - name: cycle
+        description: Election cycle.
+        data_tests: [not_null]
+      - name: money_raised_net
+        description: Headline stat -- total receipts net of inter-committee transfers, summed over cycle-active CAND_IDs.
+
+  # --- Phase 3: the votes leg -----------------------------------------------
+  - name: politics__voteview_votes
+    description: Voteview cast matrix, keyed (congress, chamber, rollnumber, icpsr). 118th + 119th.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: [congress, chamber, rollnumber, icpsr]
+    columns:
+      - name: icpsr
+        description: Voteview member id.
+        data_tests: [not_null]
+      - name: vote_position
+        description: Derived from cast_code.
+        data_tests:
+          - accepted_values:
+              values: ['yea', 'nay', 'present', 'not_voting', 'not_member', 'other']
+
+  - name: politics__voteview_rollcalls
+    description: Voteview roll-call metadata, keyed (congress, chamber, rollnumber).
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: [congress, chamber, rollnumber]
+    columns:
+      - name: rollnumber
+        description: Roll-call number.
+        data_tests: [not_null]
+
+  - name: politics__member_voting_record
+    description: >
+      THE STAT GROUP: votes cast / missed-vote % / party unity, keyed (bioguide, congress).
+      Definition-bound (reconciled to GovTrack 118th to ~0.1pp). 119th is partial.
+      missed_vote_pct denominator = eligible roll-calls (cast_code <> 0).
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: [bioguide, congress]
+    columns:
+      - name: bioguide
+        description: Member primary key (governed JOIN_KEY BIOGUIDE).
+        data_tests: [not_null]
+      - name: congress
+        description: Congress number (118 or 119; 119 = partial).
+        data_tests: [not_null]
+      - name: missed_vote_pct
+        description: 100 * missed_votes / votes_eligible (eligible = cast_code <> 0). Definition-bound.
+      - name: party_unity_pct
+        description: Share of yea/nay votes cast with own-party majority on party-unity roll-calls (CQ definition).
+      - name: congress_partial
+        description: TRUE for the 119th (in progress) -- counts are mid-cycle.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+
+  # --- Phase 4: the bills leg -----------------------------------------------
+  - name: politics__bills
+    description: >
+      One row per bill (congress, bill_type, bill_number). became_law from the <laws>
+      element (public-law number), NOT a status string. advanced_past_committee + latest_stage
+      derived from the GPO action-type taxonomy (documented rule in the model header).
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: [congress, bill_type, bill_number]
+    columns:
+      - name: bill_number
+        description: Bill number within congress + bill_type.
+        data_tests: [not_null]
+      - name: bill_type
+        description: Bill type, UPPER.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['HR','S','HJRES','SJRES','HCONRES','SCONRES','HRES','SRES']
+      - name: is_law_eligible
+        description: TRUE for HR/S/HJRES/SJRES (can become law). The enacted-rate denominator class.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+      - name: bill_class
+        description: bill / joint_resolution / concurrent_resolution / simple_resolution.
+        data_tests:
+          - accepted_values:
+              values: ['bill','joint_resolution','concurrent_resolution','simple_resolution','other']
+      - name: became_law
+        description: TRUE iff a <laws> public-law number is present. Objective enacted signal.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+      - name: latest_stage
+        description: Coarse stage ladder from the GPO action-type taxonomy.
+        data_tests:
+          - accepted_values:
+              values: ['became_law','passed_both_to_president','reached_floor','committee_action','introduced','unknown']
+
+  - name: politics__bill_cosponsors
+    description: >
+      One row per (congress, bill_type, bill_number, cosponsor_bioguide). Separate table so the
+      cosponsor list never inflates the bill grain. is_withdrawn marks withdrawn cosponsorships.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: [congress, bill_type, bill_number, cosponsor_bioguide]
+    columns:
+      - name: cosponsor_bioguide
+        description: Cosponsor bioguide (governed JOIN_KEY BIOGUIDE) -> spine.
+        data_tests: [not_null]
+      - name: is_withdrawn
+        description: TRUE when the cosponsorship was withdrawn (excluded from cosponsored_count).
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+
+  - name: politics__member_bill_record
+    description: >
+      THE STAT GROUP: legislative output per (bioguide, congress). bills_sponsored never shown
+      alone -- ships with the type split, bills_enacted + enacted_rate (law-eligible denominator),
+      advanced_past_committee, and a SEPARATE cosponsored_count (withdrawn excluded). 119th partial.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: [bioguide, congress]
+    columns:
+      - name: bioguide
+        description: Member primary key (governed JOIN_KEY BIOGUIDE).
+        data_tests: [not_null]
+      - name: congress
+        description: Congress number (118 or 119; 119 = partial).
+        data_tests: [not_null]
+      - name: bills_sponsored_substantive
+        description: Sponsored law-eligible bills (HR/S/HJRES/SJRES) -- the enacted-rate denominator.
+      - name: enacted_rate
+        description: 100 * bills_enacted / bills_sponsored_substantive (resolutions excluded; NULL if 0).
+      - name: cosponsored_count
+        description: Bills cosponsored (withdrawn excluded). NEVER summed into sponsored.
+      - name: congress_partial
+        description: TRUE for the 119th (in progress).
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
