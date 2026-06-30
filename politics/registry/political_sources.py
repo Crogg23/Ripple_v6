@@ -323,6 +323,103 @@ SOURCES = [
               "are governed (Phase 2 Fix A) so JOIN_KEYS_STD is non-provisional STEEL.",
     ),
 
+    # === TIER 1 -- MONEY-IN, this-session loads (pas2 / IE / itcont firehose) ===
+    dict(
+        SOURCE_ID="fed_fec_committee_to_candidate",
+        NAME="FEC Bulk Data -- Committee-to-Candidate (pas2/itpas2)",
+        PUBLISHER="Federal Election Commission",
+        DESCRIPTION="Committee contributions TO (and independent expenditures for/against) candidates: "
+                    "PAC/party money to a candidate, by transaction type. Carries CAND_ID + CMTE_ID + CYCLE. "
+                    "The PAC-money leg of the box score.",
+        UNIT_OF_OBSERVATION="one row = one committee->candidate transaction",
+        TEMPORAL_COVERAGE="2024 + 2026 cycles", ACCESS_METHOD="bulk_download", FORMAT="pipe-delimited txt",
+        AUTH_REQUIRED="none", COST="free", UPDATE_CADENCE="weekly (cycle)", VOLUME="866,730 rows",
+        LICENSE_TERMS="Public domain (US Gov)",
+        URL="https://www.fec.gov/files/bulk-downloads/2024/pas224.zip",
+        JOIN_KEYS="fec_cmte_id (giver), fec_cand_id (recipient), transaction_tp, cycle",
+        ACCOUNTABILITY_RELEVANCE="PAC->candidate money + outside spending (24A/24E) -> POLITICS__MEMBER_PAC_MONEY. "
+                                 "Transaction-type buckets: contributions 24K/24Z/24C/24R, ad-FOR 24E/24F, ad-AGAINST 24A/24N.",
+        PRIORITY_TIER="1", DOMAIN_PRIMARY="money_in_politics", DOMAIN_SECONDARY=["elections_voting"],
+        ENTITY_TYPES=["payment"], HAS_EVENTS=True,
+        JOIN_KEYS_STD=["FEC_CMTE_ID", "FEC_CAND_ID"], JOIN_KEY_TIER="STEEL", JOIN_KEY_TIER_PROVISIONAL=False,
+        THEMES=["follow_the_money", "power_who_holds_it"],
+        NOTES="Loaded this session (scripts/fec_pas2_load.py) -> LANDING.FED_FEC_COMMITTEE_TO_CANDIDATE. "
+              "Built into POLITICS__MEMBER_PAC_MONEY. pas2 is a SUBSET of oth; never sum 24A+24E.",
+    ),
+    dict(
+        SOURCE_ID="fed_fec_independent_expenditures",
+        NAME="FEC Bulk Data -- Independent Expenditures (Schedule E)",
+        PUBLISHER="Federal Election Commission",
+        DESCRIPTION="Outside spending FOR or AGAINST candidates (Schedule E independent expenditures): who spent, "
+                    "how much, supporting or opposing which candidate. SUP_OPP flags the direction. The "
+                    "source-of-truth for outside for/against (never derived by summing pas2 24A/24E).",
+        UNIT_OF_OBSERVATION="one row = one independent expenditure",
+        TEMPORAL_COVERAGE="2024 + 2026 cycles", ACCESS_METHOD="bulk_download", FORMAT="csv (header)",
+        AUTH_REQUIRED="none", COST="free", UPDATE_CADENCE="weekly (cycle)", VOLUME="83,468 rows",
+        LICENSE_TERMS="Public domain (US Gov)",
+        URL="https://www.fec.gov/files/bulk-downloads/2024/independent_expenditure_2024.csv",
+        JOIN_KEYS="fec_cand_id (target), fec_cmte_id (spender), sup_opp",
+        ACCOUNTABILITY_RELEVANCE="The Super-PAC outside-money lens: who is being boosted/attacked and by whom; "
+                                 "carry support_amount / oppose_amount SEPARATELY.",
+        PRIORITY_TIER="1", DOMAIN_PRIMARY="money_in_politics", DOMAIN_SECONDARY=["elections_voting"],
+        ENTITY_TYPES=["payment"], HAS_EVENTS=True,
+        JOIN_KEYS_STD=["FEC_CMTE_ID", "FEC_CAND_ID"], JOIN_KEY_TIER="STEEL", JOIN_KEY_TIER_PROVISIONAL=False,
+        THEMES=["follow_the_money", "power_who_holds_it"],
+        NOTES="Loaded this session (scripts/fec_independent_expenditure_load.py) -> "
+              "LANDING.FED_FEC_INDEPENDENT_EXPENDITURES. This CSV (SUP_OPP) is the source of truth for "
+              "for/against; pas2/oth 24A/24E are coverage cross-check only.",
+    ),
+    dict(
+        SOURCE_ID="fed_fec_indiv_contributions",
+        NAME="FEC Bulk Data -- Itemized Individual Contributions (itcont) -- the 84M-row firehose",
+        PUBLISHER="Federal Election Commission",
+        DESCRIPTION="Every itemized (>$200 aggregate) individual contribution to a federal committee: donor name, "
+                    "city/state/ZIP, EMPLOYER + OCCUPATION (free-text), amount, date, recipient committee, and the "
+                    "conduit (OTHER_ID) for earmarked gifts. 84.2M rows, cycles 2024+2026. NO cycle column (the "
+                    "loader merged indiv24+indiv26) -- cycle is derived from TRANSACTION_DT (MMDDYYYY).",
+        UNIT_OF_OBSERVATION="one row = one itemized individual contribution",
+        TEMPORAL_COVERAGE="2024 + 2026 cycles (2023-2026 transaction dates)", ACCESS_METHOD="bulk_download",
+        FORMAT="pipe-delimited txt", AUTH_REQUIRED="none", COST="free", UPDATE_CADENCE="weekly (cycle)",
+        VOLUME="84,172,112 rows (~30-40GB uncompressed/cycle)", LICENSE_TERMS="Public domain (US Gov)",
+        URL="https://www.fec.gov/files/bulk-downloads/2024/indiv24.zip",
+        JOIN_KEYS="fec_cmte_id (recipient, STEEL), other_id (conduit), contributor name+employer (FUZZY -> EIN), ZIP",
+        ACCOUNTABILITY_RELEVANCE="The donor firehose -> POLITICS__MEMBER_INDIV_DONATIONS (itemized individual money "
+                                 "per member, referee-reconciled to OpenFEC within 0.54%). The employer free-text is "
+                                 "the (separate, fuzzy) bridge to industry/EIN.",
+        PRIORITY_TIER="1", DOMAIN_PRIMARY="money_in_politics", DOMAIN_SECONDARY=["money_finance"],
+        ENTITY_TYPES=["payment"], HAS_EVENTS=True,
+        JOIN_KEYS_STD=["FEC_CMTE_ID", "ZIP"], JOIN_KEY_TIER="STEEL", JOIN_KEY_TIER_PROVISIONAL=False,
+        THEMES=["follow_the_money", "power_who_holds_it"],
+        NOTES="Loaded this session (scripts/fec_itcont_load.py, bounded-memory stream) -> "
+              "LANDING.FED_FEC_INDIV_CONTRIBUTIONS. DEFINITION (locked by smoke_itcont.py referee): itemized "
+              "individual = SUM(tp 15+15E), MEMO_CD<>'X', NET of reattributions (all signs -- amt>0 OVERSTATES), "
+              "restricted to a member's authorized (P/A) committees (conduits ActBlue C00401224 / WinRed C00694323 "
+              "live under their own CMTE_ID, never an authorized cmte -> no earmark double-count). cycle-by-date is "
+              "accurate for on-cycle members; off-cycle per-cycle split has ~0.5% noise. EMPLOYER/OCCUPATION are "
+              "dirty free-text, never clean keys. See outputs/POLITICS_BUILD_RUNBOOK.md (Phase 5).",
+    ),
+    dict(
+        SOURCE_ID="fed_congress_committee_membership",
+        NAME="Congress -- Committee Membership (who chairs/sits on what)",
+        PUBLISHER="@unitedstates project (congress-legislators, public domain)",
+        DESCRIPTION="Current committee + subcommittee membership for Congress: which member sits on / chairs which "
+                    "committee, with rank and role. bioguide-keyed (joins straight to the member spine).",
+        UNIT_OF_OBSERVATION="one row = one (member, committee) assignment",
+        TEMPORAL_COVERAGE="119th Congress (current)", ACCESS_METHOD="bulk_download", FORMAT="yaml",
+        AUTH_REQUIRED="none", COST="free", UPDATE_CADENCE="continuous (git)", VOLUME="3,879 rows",
+        LICENSE_TERMS="CC0 1.0 (public domain)",
+        URL="https://github.com/unitedstates/congress-legislators",
+        JOIN_KEYS="bioguide, thomas_id (committee), rank, role",
+        ACCOUNTABILITY_RELEVANCE="The committee-power leg: who controls the gavels (chairs) and which members can "
+                                 "act on which industries -- the jurisdiction overlay for money/lobbying threads.",
+        PRIORITY_TIER="1", DOMAIN_PRIMARY="government_power", DOMAIN_SECONDARY=["money_in_politics"],
+        ENTITY_TYPES=["person", "organization"],
+        JOIN_KEYS_STD=["BIOGUIDE"], JOIN_KEY_TIER="STEEL", JOIN_KEY_TIER_PROVISIONAL=False,
+        THEMES=["power_who_holds_it"],
+        NOTES="Loaded this session (scripts/congress_committee_membership_load.py) -> "
+              "LANDING.FED_CONGRESS_COMMITTEE_MEMBERSHIP. bioguide join-rate ~100% to the member spine. " + _KEYFLAG,
+    ),
+
     # === TIER 2 -- PERSONAL MONEY (PDF hell -- net worth + stock trades) =======
     dict(
         SOURCE_ID="fed_house_clerk_ptr",
