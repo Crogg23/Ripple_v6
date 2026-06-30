@@ -295,6 +295,33 @@ SOURCES = [
         NOTES="weball all-candidates summary. Money-raised = TTL_RECEIPTS - TRANS_FROM_AUTH (net of "
               "inter-committee transfers, avoids double-count). Cycle grain: keyed (FEC_CAND_ID, CYCLE).",
     ),
+    dict(
+        SOURCE_ID="fed_fec_bulk_committees",
+        NAME="FEC Bulk Data -- Committee Master (cm.txt), 2026 refresh",
+        PUBLISHER="Federal Election Commission",
+        DESCRIPTION="Every FEC-registered committee: committee ID, name, treasurer, address, designation, type, "
+                    "party, filing frequency, connected org, and linked candidate ID -- by cycle. The committee "
+                    "dimension the candidate->committee linkages resolve against. This is the 2026 (cm26) cycle "
+                    "snapshot, landed additively beside the existing 2024 committee master (fed_fec_bulk) to "
+                    "close the Phase-2 2026 linkage-resolution gap (2026 resolved only ~57% vs ~98% for 2024).",
+        UNIT_OF_OBSERVATION="one row = one committee-cycle",
+        TEMPORAL_COVERAGE="2026 cycle (this refresh); per cycle", ACCESS_METHOD="bulk_download",
+        FORMAT="pipe-delimited txt", AUTH_REQUIRED="none", COST="free", UPDATE_CADENCE="weekly (cycle)",
+        VOLUME="~17-22k committees/cycle", LICENSE_TERMS="Public domain (US Gov)",
+        URL="https://www.fec.gov/files/bulk-downloads/2026/cm26.zip",
+        JOIN_KEYS="fec_cmte_id (PK with cycle), fec_cand_id (linked candidate), ZIP",
+        ACCOUNTABILITY_RELEVANCE="The committee dimension behind the money leg -- resolves a candidate's linked "
+                                 "committees to names/types/treasurers; the cycle-aware refresh that fixes 2026 "
+                                 "linkage resolution from ~57% to ~98%.",
+        PRIORITY_TIER="1", DOMAIN_PRIMARY="money_in_politics", DOMAIN_SECONDARY=["elections_voting"],
+        ENTITY_TYPES=["organization", "filing"],
+        JOIN_KEYS_STD=["FEC_CMTE_ID", "FEC_CAND_ID"], JOIN_KEY_TIER="STEEL", JOIN_KEY_TIER_PROVISIONAL=False,
+        THEMES=["follow_the_money", "power_who_holds_it"],
+        NOTES="cm26 maintenance refresh 2026-06-29. Landed cycle-keyed into FED_FEC_BULK_COMMITTEES (CYCLE='2026') "
+              "alongside the verified 2024 snapshot fed_fec_bulk (single-snapshot, no cycle col -- NOT overwritten). "
+              "Cycle-aware union mart: LIBRARY_MARTS.POLITICS.POLITICS__FEC_COMMITTEE (CMTE_ID, CYCLE). FEC keys "
+              "are governed (Phase 2 Fix A) so JOIN_KEYS_STD is non-provisional STEEL.",
+    ),
 
     # === TIER 2 -- PERSONAL MONEY (PDF hell -- net worth + stock trades) =======
     dict(

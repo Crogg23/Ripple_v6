@@ -1,13 +1,67 @@
 # Session Brief — The Political Domain ("The Stat Line") — 2026-06-29
 
 **Branch:** `politics-domain` (cut from `main`; NOT merged — left for Chris to review/merge).
-**Status:** Phases 0–**4** complete — additively, each independently verified PASS on 4
-adversarial dimensions. **The clean box score is now whole on one member: ideology + money
-+ votes + bills**, all bioguide-keyed. Bills was the last leg with no fuzzy matching.
+**Status:** Phases 0–**4** complete + the **cm26 committee-master refresh** (maintenance) done —
+additively, each independently verified PASS. **The clean box score is whole on one member:
+ideology + money + votes + bills**, all bioguide-keyed. Bills was the last leg with no fuzzy matching.
 
 ---
 
-## PHASE 4 — THE BILLS LEG (latest)
+## MAINTENANCE PASS — cm26 COMMITTEE-MASTER REFRESH (latest)
+
+**The Phase-2 2026 linkage-resolution gap is CLOSED.** Phase 2 landed the FEC committee
+master from a 2024 snapshot, so 2026 candidate→committee links resolved only ~57%. Re-landed
+the committee master at the current 2026 (cm26) snapshot and re-resolved — additive, 2024
+left byte-for-byte intact. Verified PASS on every clause.
+
+### Before → after (resolution = share of cycle's CAND_ID→CMTE_ID links resolving to the master)
+| Population | 2026 BEFORE | 2026 AFTER | 2024 (untouched) |
+|---|---|---|---|
+| All link rows | **57.10%** | **98.00%** | 98.16% (unchanged) |
+| Sitting members only | 97.82% | **100.00%** (597/597) | 99.84% (unchanged) |
+
+### What landed / built (additive — 0 existing objects touched)
+| Object | Rows | Note |
+|---|---|---|
+| `LANDING.FED_FEC_BULK_COMMITTEES` (cm26, **CYCLE='2026'**) | 20,007 | NEW landing object; the 2024 `FED_FEC_BULK` was **not** written |
+| `MARTS.POLITICS.POLITICS__FEC_COMMITTEE` (cmte_id, **cycle**) | 40,945 | NEW cycle-aware union mart = 2024 (20,938, from untouched `FED_FEC_BULK`) ⊕ 2026 (20,007); 0 dup key |
+
+**+1 registry row** (`fed_fec_bulk_committees`, append-only `WHERE NOT EXISTS`; `money_in_politics`,
+`JOIN_KEYS_STD=[FEC_CMTE_ID,FEC_CAND_ID]` non-provisional STEEL). Idempotent (re-run inserts 0).
+
+### Why the committee master is a SEPARATE landing object (not an overwrite)
+`FED_FEC_BULK` is a **single 2024 snapshot with no cycle column** (20,938 rows, one SHA). Per the
+handoff's single-snapshot rule, it was preserved untouched and 2026 landed as its own cycle-keyed
+object; the cycle-aware **union** happens in the new `POLITICS__FEC_COMMITTEE` mart, which is what
+the linkages now re-resolve against (`ON cmte_id AND cycle`).
+
+### The residual 2% — expected, benign
+153 unresolved 2026 links = **49 distinct committees**, **0 of them present in the 2024 master
+either** (so it is NOT a cycle-matching artifact) and **0 tied to any sitting member**. These are
+the normal independent-snapshot churn between the `ccl26` linkage file and the `cm26` committee
+file (committees terminated/withdrawn/not-yet-active in the cm snapshot). The member-relevant
+money leg is at 100%. Not closeable by another cm load — it's cross-file timing, not staleness.
+
+### Verification — PASS (read-only `verify_cm26.py`)
+- **Check A (resolution jumps):** 2026 57.10% → **98.00%** (≥95% target met); 2024 unchanged 98.16%.
+- **Check B (2024 untouched):** `FED_FEC_BULK` byte-for-byte — count 20,938 ✓, single SHA
+  `cfebda3f…` ✓, content `HASH_AGG` `-2455869316121402723` ✓. 2024 money figures byte-for-byte —
+  Cruz $68,867,157.35 / Sanders $8,207,886.33 / Warren $8,840,571.03 ✓; 2024 fingerprint
+  (n=519, sum_net 2,155,305,330.58, hash `-2513935030619334787`) ✓.
+- **Audit:** additive (only the new landing + new mart exist; 2024 slice == 20,938, no mutation),
+  grain (0 dup `(cmte_id, cycle)`; 2026 linkage bridge 0 dup), registry append-only (1 row).
+
+### How to resume / rebuild (cm26)
+```bash
+python politics/registry/register_political_sources.py --apply  # +1 row (fed_fec_bulk_committees), append-only
+python politics/loaders/build_cm26_refresh.py                   # land cm26 + build union mart + re-resolve
+python politics/loaders/build_cm26_refresh.py --skip-fetch      # rebuild the union mart only
+python politics/loaders/verify_cm26.py                          # Check A/B + audit, PASS/FAIL
+```
+
+---
+
+## PHASE 4 — THE BILLS LEG
 
 **The last clean objective leg is live: bills sponsored / cosponsored / enacted per member
 per congress, keyed bioguide → spine directly (sponsor AND cosponsor carry bioguide).**
@@ -250,21 +304,20 @@ the political keys become first-class.
 ---
 
 ## THE SINGLE NEXT ACTION
-**The clean box score is DONE (ideology + money + votes + bills).** The next legs step up in
-difficulty and editorial care — they are no longer pure bioguide joins. Recommended first:
-the **2026 committee-master `cm26` refresh** (one bulk file, no fuzzy matching) to close the
-2026 FEC linkage resolution gap from Phase 2 (2026 committee IDs resolve only ~57% vs 98% for
-2024) — a quick, clean win that strengthens the existing money leg before the hard stuff.
+**The clean box score is DONE (ideology + money + votes + bills) and the cm26 refresh closed the
+last Phase-2 loose end (2026 linkage resolution 57% → 98%).** The next leg is **the money→votes
+leg — the fuzzy one: FEC contribution detail** (`fed_fec_bulk_contributions`, itcont) —
+money-IN-by-industry that ties money↔votes. **MAP IT BEFORE BUILDING:** employer→EIN is a
+low-confidence fuzzy chain (never a clean key) and the file is huge (chunked, streamed load).
+This is where the work stops being pure bioguide joins — so the first move is a mapping/design
+pass (the join chain, the EIN-resolution confidence model, the chunking plan), not a loader.
 
-*(Then the harder legs, in rising order of fuzziness / editorial weight:*
-- ***FEC contribution detail** `fed_fec_bulk_contributions` (itcont) — money-IN-by-industry,
-  ties money↔votes, but employer→EIN is fuzzy + the file is huge (chunked load).*
+*(Then, in rising order of fuzziness / editorial weight:*
 - ***STOCK Act PTRs** (member stock trades) — PDF parsing, high public interest, name-match to bioguide.*
 - ***Senate LDA lobbying** — org→EIN fuzzy.*
 - *USAspending-by-district.)*
 
 ### Still-open / parked items
-- **`cm26`** 2026 committee-master refresh (above) — parked since Phase 2.
 - **"Money raised" card-labeling decision** — how to present gross vs net on the stat card (parked).
 - **Voting-stat definitions** — party-unity / missed-vote labels for the card (parked from Phase 3).
 - **Phase-1 member sources' `JOIN_KEYS_STD` back-fill** — existing-row UPDATE, deferred (additive-only).
