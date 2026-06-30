@@ -56,6 +56,12 @@ python politics/loaders/smoke_money.py                           # money raised 
 python politics/loaders/build_votes_leg.py                       # land Voteview 118+119 + build voting marts
 python politics/loaders/build_votes_leg.py --skip-fetch          # rebuild marts only
 python politics/loaders/smoke_votes.py                           # missed-vote% vs GovTrack
+
+# Phase 4 -- the bills leg (legislative output)
+python politics/registry/register_political_sources.py --apply   # +2 rows (billstatus + cosponsors), append-only
+python politics/loaders/build_bills_leg.py                       # land GovInfo BILLSTATUS 118+119 + build bill marts
+python politics/loaders/build_bills_leg.py --skip-fetch          # rebuild marts only
+python politics/loaders/smoke_bills.py                           # sponsored/enacted/cosponsored vs GovTrack 118th
 ```
 
 dbt models mirror the Python-built marts (canonical tables are Python-built into
@@ -96,6 +102,17 @@ The identity graph is now closed: `bioguide → fec_cand_id → CAND_ID (candida
 | `MARTS.POLITICS.POLITICS__MEMBER_VOTING_RECORD` | 1,105 | **the stat** — votes cast / missed-vote% / party unity, per (bioguide, congress) |
 
 Voting stats are **definition-bound** (reconciled to GovTrack's 118th figures to ~0.1pp, not penny-exact). `missed_vote_pct` denominator = eligible roll-calls (`cast_code <> 0`); `party_unity` = CQ definition (member sides with own-party majority on votes where party majorities oppose). The 119th is **partial** (in progress).
+
+**Phase 4 — the bills leg** (GovInfo BILLSTATUS XML, 118th + 119th, all bill types)
+| Object | Rows | What |
+|---|---|---|
+| `LANDING.FED_GOVINFO_BILLSTATUS` | 36,465 | one row per bill (sponsor bioguide, action types, `<laws>`, latest action) |
+| `LANDING.FED_GOVINFO_BILL_COSPONSORS` | 367,742 | one row per (bill × cosponsor); withdrawn flagged |
+| `MARTS.POLITICS.POLITICS__BILLS` | 36,465 | one row per (congress, bill_type, bill_number); became_law, advanced, stage |
+| `MARTS.POLITICS.POLITICS__BILL_COSPONSORS` | 367,735 | one row per (bill, cosponsor_bioguide); is_original / is_withdrawn |
+| `MARTS.POLITICS.POLITICS__MEMBER_BILL_RECORD` | 1,104 | **the stat** — sponsored / enacted / advanced / cosponsored, per (bioguide, congress) |
+
+This **completes the clean box score: ideology + money + votes + bills**, all bioguide-keyed. The headline-trap stat (`bills_sponsored`) ships only with its qualifiers — the type split (substantive vs resolutions), `bills_enacted` + `enacted_rate` (**law-eligible denominator** — resolutions can't become law), `advanced_past_committee`, and a **separate** `cosponsored_count` (withdrawn excluded; authoring ≠ signing on). `became_law` comes from the `<laws>` element (public-law number), not a status-string match. Reconciled to GovTrack's 118th report card: **sponsored + cosponsored match to the integer** across 3 members (incl. Biggs's 612-bill spam outlier); `became_law` is ours (standalone `<laws>`) = GovTrack − {0,1} (GovTrack also counts text incorporated into other enacted bills).
 
 ## The join spine — clean vs fuzzy (be honest)
 

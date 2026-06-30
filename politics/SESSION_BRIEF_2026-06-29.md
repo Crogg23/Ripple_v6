@@ -1,13 +1,100 @@
 # Session Brief — The Political Domain ("The Stat Line") — 2026-06-29
 
 **Branch:** `politics-domain` (cut from `main`; NOT merged — left for Chris to review/merge).
-**Status:** Phases 0–**3** complete — additively, each independently verified PASS on 4
-adversarial dimensions. Both halves of the thesis are now live on one member: **money**
-(raised per cycle, FEC-verified) AND **votes** (cast / missed / party unity, GovTrack-verified).
+**Status:** Phases 0–**4** complete — additively, each independently verified PASS on 4
+adversarial dimensions. **The clean box score is now whole on one member: ideology + money
++ votes + bills**, all bioguide-keyed. Bills was the last leg with no fuzzy matching.
 
 ---
 
-## PHASE 3 — THE VOTES LEG (latest)
+## PHASE 4 — THE BILLS LEG (latest)
+
+**The last clean objective leg is live: bills sponsored / cosponsored / enacted per member
+per congress, keyed bioguide → spine directly (sponsor AND cosponsor carry bioguide).**
+This **completes the core box score (ideology + money + votes + bills).** Verified PASS on
+all 4 adversarial dimensions. Fully additive — 0 existing rows/objects touched.
+
+### Landed (GovInfo BILLSTATUS XML, 118th + 119th, all 8 bill types) + built
+| Object | Rows |
+|---|---|
+| `LANDING.FED_GOVINFO_BILLSTATUS` (one row per bill) | 36,465 |
+| `LANDING.FED_GOVINFO_BILL_COSPONSORS` (one row per bill × cosponsor, raw) | 367,742 |
+| `MARTS.POLITICS.POLITICS__BILLS` (congress, bill_type, bill_number) | 36,465 |
+| `MARTS.POLITICS.POLITICS__BILL_COSPONSORS` (…, cosponsor_bioguide) | 367,735 |
+| `MARTS.POLITICS.POLITICS__MEMBER_BILL_RECORD` (bioguide, congress) | 1,104 |
+
+**+2 registry rows** (`fed_govinfo_billstatus`, `fed_govinfo_bill_cosponsors`, append-only,
+both `JOIN_KEYS_STD=[BIOGUIDE]` STEEL non-provisional). 635 members across the two congresses.
+dbt staging + marts + tests scaffolded. **New parse pattern:** BILLSTATUS is **XML** (first XML
+loader) — `lxml`/`xml.etree`, per-(congress, bill_type) bulk ZIP, one XML file per bill.
+
+### The stat group — per (bioguide, congress) — headline-trap-proof by construction
+- **bills_sponsored** — total; **never shown alone** (a raw count rewards spam — see Biggs below).
+- **bills_sponsored_substantive vs resolutions_sponsored** — the mandatory type split
+  (HR/S/HJRES/SJRES vs HRES/SRES/HCONRES/SCONRES).
+- **bills_enacted** — sponsored bills with a `<laws>` element (became Public Law). 118th = 274 laws.
+- **enacted_rate** = bills_enacted / **bills_sponsored_substantive** (law-eligible denominator —
+  resolutions excluded; **NULL, not 0**, for the 12 resolution-only sponsors).
+- **advanced_past_committee_count (+ advanced_rate)** — see the documented rule below.
+- **cosponsored_count** — **separate** figure, withdrawn excluded; never summed into "bills".
+
+### Definitional choices (the labels)
+- **`became_law` = the `<laws>` element (public-law number)** — NOT a status-string match. The
+  cleanest enacted signal; confirmed live before building.
+- **Law-eligible = HR/S/HJRES/SJRES.** Resolutions (HRES/SRES/HCONRES/SCONRES) **cannot become
+  law** → excluded from the enacted-rate denominator (the silent-bug guard). Verified: 0 enacted
+  resolutions.
+- **`advanced_past_committee` (DOCUMENTED RULE):** TRUE iff the bill's action history carries any
+  GPO action type beyond introduce-and-refer — i.e. type ∈ {Committee, Calendars, Discharge,
+  Floor, President, ResolvingDifferences, Veto, BecameLaw}. Counts a committee report/markup/
+  **hearing** OR any later floor/calendar/presidential/enactment action (IntroReferral alone =
+  died in committee). **Slightly generous** (includes hearings, not strictly reported-out) — stated
+  plainly, computed off the action-`type` taxonomy (no fragile text matching).
+- **Withdrawn cosponsorships EXCLUDED** from `cosponsored_count` (650 withdrawn rows; flagged
+  `sponsorshipWithdrawnDate`) — matches GovTrack / the current congress.gov API. Including them
+  would change 117 members (audit-confirmed material).
+- **119th is PARTIAL** (`congress_partial=TRUE`) — mid-cycle, fewer enacted laws (101 vs 274);
+  don't compare externally.
+
+### Smoke test — PASS, reconciled to GovTrack's 118th report card
+GovTrack's `/report-card/2024` page summarizes the whole 118th. **Sponsored + cosponsored match
+to the integer** across all 3 members:
+| Member | introduced | enacted | cosponsored |
+|---|---|---|---|
+| **Biggs** (high-vol / spam) | 612 = 612 ✓ | 0 vs 1 | 409 = 409 ✓ |
+| **Graves** (high-enact / low-vol) | 21 = 21 ✓ | 4 vs 5 | 127 = 127 ✓ |
+| **AOC** (mid control) | 11 = 11 ✓ | 0 = 0 ✓ | 378 = 378 ✓ |
+
+The named divergence: `became_law` is ours (standalone `<laws>`) = GovTrack − {0,1}; GovTrack also
+counts text **incorporated into other enacted bills**, ours counts only a bill's own public-law
+element (cleaner, more conservative; ours never exceeds GovTrack). **Biggs is the headline-trap
+case validated by real data:** 612 sponsored (many identical "limitation on availability of funds"
+messaging bills), 0 enacted, 0.00% rate — exactly why bills_sponsored is never headlined alone.
+
+### Audit (4 adversarial dimensions, read-only workflow `wf_16535469-3f9`) — PASS
+- **Additive safety — PASS:** Phase 1-3 marts byte-for-byte unchanged (12,794 / 1,050 / 1,105 /
+  12,794); registry +2 (politics_domain 20→22); no existing politics row re-stamped; clean ingest runs.
+- **Grain integrity — PASS (after one fix):** 0 dup keys in all 3 marts; cosponsor list does NOT
+  inflate bills. The auditor caught that `n_cosponsors` was a **raw pre-dedup count** (the source
+  double-lists a member as cosponsor on 7 bills, e.g. 118 HR 6116 = 30 items / 27 distinct).
+  **Fixed:** `n_cosponsors` now = DISTINCT cosponsors, so SUM over bills = cosponsor-mart rows
+  EXACTLY (367,735; reconciliation closes to 0).
+- **Stat correctness + GovTrack — PASS:** enacted only on law-eligible; enacted_rate denominator =
+  substantive (NULL when 0); withdrawn excluded (material); GovTrack reconciliation holds.
+- **Vocab/registry — PASS:** both rows `government_power` + `BIOGUIDE` (governed STEEL); landing
+  table = UPPER(source_id); catalog lifecycle='landed'.
+
+### How to resume / rebuild (Phase 4)
+```bash
+python politics/registry/register_political_sources.py --apply  # +2 rows, append-only, idempotent
+python politics/loaders/build_bills_leg.py                      # land BILLSTATUS 118+119 + build marts
+python politics/loaders/build_bills_leg.py --skip-fetch         # rebuild marts only
+python politics/loaders/smoke_bills.py                          # sponsored/enacted/cosponsored vs GovTrack
+```
+
+---
+
+## PHASE 3 — THE VOTES LEG
 
 **The "what they did" leg is live: votes cast / missed votes / party unity per member per
 congress, keyed to the spine via icpsr.** Verified PASS on all 4 adversarial dimensions;
@@ -163,18 +250,25 @@ the political keys become first-class.
 ---
 
 ## THE SINGLE NEXT ACTION
-**Bills sponsored & cosponsored (legislative output) — the last clean objective box-score
-stat.** From `unitedstates/congress` bulk or the congress.gov API (free data.gov key),
-keyed on `bioguide` (no fuzzy matching, joins straight to the spine). Produces
-`POLITICS__MEMBER_BILLS` (bioguide, congress): bills sponsored, cosponsored, enacted —
-completing the core box score (ideology + money + votes + **bills**) before the fuzzy/heavy
-legs. Same loader + grain pattern; scope to the 118th + 119th like the votes leg.
+**The clean box score is DONE (ideology + money + votes + bills).** The next legs step up in
+difficulty and editorial care — they are no longer pure bioguide joins. Recommended first:
+the **2026 committee-master `cm26` refresh** (one bulk file, no fuzzy matching) to close the
+2026 FEC linkage resolution gap from Phase 2 (2026 committee IDs resolve only ~57% vs 98% for
+2024) — a quick, clean win that strengthens the existing money leg before the hard stuff.
 
-*(Then, the harder legs of the headline chain: FEC contribution detail
-`fed_fec_bulk_contributions` (itcont) for money-IN-by-industry — ties the money leg to the
-votes leg, but employer→industry is fuzzy + the file is huge (chunked load); STOCK Act PTRs
-(member stock trades — PDF hell, high public interest); Senate LDA lobbying; the 2026
-committee-master `cm26` refresh to close 2026 FEC linkage resolution; USAspending-by-district.)*
+*(Then the harder legs, in rising order of fuzziness / editorial weight:*
+- ***FEC contribution detail** `fed_fec_bulk_contributions` (itcont) — money-IN-by-industry,
+  ties money↔votes, but employer→EIN is fuzzy + the file is huge (chunked load).*
+- ***STOCK Act PTRs** (member stock trades) — PDF parsing, high public interest, name-match to bioguide.*
+- ***Senate LDA lobbying** — org→EIN fuzzy.*
+- *USAspending-by-district.)*
+
+### Still-open / parked items
+- **`cm26`** 2026 committee-master refresh (above) — parked since Phase 2.
+- **"Money raised" card-labeling decision** — how to present gross vs net on the stat card (parked).
+- **Voting-stat definitions** — party-unity / missed-vote labels for the card (parked from Phase 3).
+- **Phase-1 member sources' `JOIN_KEYS_STD` back-fill** — existing-row UPDATE, deferred (additive-only).
+- **`fed_voteview_rollcalls` one-row tidy-up** (set `['ICPSR']`) — deferred (additive-only).
 
 ---
 
@@ -191,6 +285,9 @@ python politics/loaders/smoke_money.py                           # money raised 
 # Phase 3 (votes leg)
 python politics/loaders/build_votes_leg.py                       # land Voteview 118+119 + voting marts
 python politics/loaders/smoke_votes.py                           # missed-vote% vs GovTrack
+# Phase 4 (bills leg)
+python politics/loaders/build_bills_leg.py                       # land GovInfo BILLSTATUS 118+119 + bill marts
+python politics/loaders/smoke_bills.py                           # sponsored/enacted/cosponsored vs GovTrack 118th
 ```
 Verification workflows (read-only): Phase 1 `wf_6b3b65a4-53d`, Phase 2 `wf_4222b021-528`,
-Phase 3 `wf_1d283e03-750`. See `politics/README.md`.
+Phase 3 `wf_1d283e03-750`, Phase 4 `wf_16535469-3f9`. See `politics/README.md`.

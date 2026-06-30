@@ -160,6 +160,62 @@ SOURCES = [
               "FED_VOTEVIEW_ROLLCALL_META. Pairs with the votes matrix (fed_voteview_rollcalls).",
     ),
 
+    # === TIER 1 -- LEGISLATIVE OUTPUT (bills sponsored/cosponsored/enacted) =====
+    dict(
+        SOURCE_ID="fed_govinfo_billstatus",
+        NAME="GovInfo BILLSTATUS -- Bill Status XML (sponsor, cosponsors, actions, laws)",
+        PUBLISHER="U.S. Government Publishing Office (GovInfo, official)",
+        DESCRIPTION="Official bill-status records for every measure: bill type/number, congress, sponsor "
+                    "(bioguideId), cosponsor list, full action history, latest action, and the <laws> element "
+                    "present ONLY when the bill became law (public-law number). One XML file per bill, bulk by "
+                    "congress. The clean legislative-output leg -- sponsor AND cosponsor carry bioguide, so it "
+                    "joins straight to the member spine with no fuzzy matching.",
+        UNIT_OF_OBSERVATION="one row = one bill (congress, bill_type, bill_number)",
+        TEMPORAL_COVERAGE="113th-present (118th + 119th landed this session; 119th partial)",
+        ACCESS_METHOD="bulk_download", FORMAT="xml", AUTH_REQUIRED="none", COST="free",
+        UPDATE_CADENCE="daily", VOLUME="~15-20k measures per congress",
+        LICENSE_TERMS="Public domain (US Gov) -- GovInfo official primary source",
+        URL="https://www.govinfo.gov/bulkdata/BILLSTATUS",
+        JOIN_KEYS="bioguide (sponsor + cosponsor), congress, bill_type, bill_number, law_number",
+        ACCOUNTABILITY_RELEVANCE="The legislative-output box score: bills sponsored (with the type split), "
+                                 "enacted + enacted_rate (law-eligible denominator), advanced-past-committee. The "
+                                 "last clean objective leg -- sponsor/cosponsor bioguide joins straight to the spine.",
+        PRIORITY_TIER="1", DOMAIN_PRIMARY="government_power", DOMAIN_SECONDARY=["elections_voting"],
+        ENTITY_TYPES=["filing", "event"], HAS_EVENTS=True,
+        JOIN_KEYS_STD=["BIOGUIDE"], JOIN_KEY_TIER="STEEL", JOIN_KEY_TIER_PROVISIONAL=False,
+        THEMES=["power_who_holds_it"],
+        NOTES="Phase 4 (NEW). GovInfo BILLSTATUS bulk (govinfo.gov/bulkdata/BILLSTATUS/{congress}/{billtype}). "
+              "DISTINCT from fed_congress_govinfo_bills (BILLS = full bill TEXT) and fed_govinfo_bulk (umbrella "
+              "repo). became_law derives from the <laws> element (public-law number), NOT a status-string match. "
+              "Cosponsor list -> child extract fed_govinfo_bill_cosponsors (kept off the bill grain). "
+              "Law-eligible types = HR/S/HJRES/SJRES (the enacted-rate denominator); HRES/SRES/HCONRES/SCONRES "
+              "are resolutions and cannot become law. Landed 118th + 119th into FED_GOVINFO_BILLSTATUS.",
+    ),
+    dict(
+        SOURCE_ID="fed_govinfo_bill_cosponsors",
+        NAME="GovInfo BILLSTATUS -- Cosponsor Extract",
+        PUBLISHER="U.S. Government Publishing Office (GovInfo, official)",
+        DESCRIPTION="The cosponsor list flattened out of GovInfo BILLSTATUS: one row per (bill, cosponsor "
+                    "bioguide) with the original-cosponsor flag, sponsorship date, and the withdrawn date "
+                    "(present only when a cosponsorship was withdrawn). Kept as a separate table so the list "
+                    "never inflates the one-row-per-bill grain.",
+        UNIT_OF_OBSERVATION="one row = one (congress, bill_type, bill_number, cosponsor_bioguide)",
+        TEMPORAL_COVERAGE="118th + 119th landed this session", ACCESS_METHOD="bulk_download", FORMAT="xml",
+        AUTH_REQUIRED="none", COST="free", UPDATE_CADENCE="daily",
+        VOLUME="~1-2M cosponsorships per congress",
+        LICENSE_TERMS="Public domain (US Gov) -- GovInfo official primary source",
+        URL="https://www.govinfo.gov/bulkdata/BILLSTATUS",
+        JOIN_KEYS="bioguide (cosponsor), congress, bill_type, bill_number",
+        ACCOUNTABILITY_RELEVANCE="cosponsored_count per member per congress -- kept SEPARATE from sponsored "
+                                 "(authoring a bill != signing on to one). Withdrawn cosponsorships excluded.",
+        PRIORITY_TIER="1", DOMAIN_PRIMARY="government_power", ENTITY_TYPES=["event"], HAS_EVENTS=True,
+        JOIN_KEYS_STD=["BIOGUIDE"], JOIN_KEY_TIER="STEEL", JOIN_KEY_TIER_PROVISIONAL=False,
+        THEMES=["power_who_holds_it"],
+        NOTES="Phase 4 (NEW). Child extract of fed_govinfo_billstatus -> FED_GOVINFO_BILL_COSPONSORS. Withdrawn "
+              "cosponsorships flagged (sponsorshipWithdrawnDate) and EXCLUDED from cosponsored_count to match "
+              "GovTrack / the current congress.gov API behavior. is_original = isOriginalCosponsor flag.",
+    ),
+
     # === TIER 1 -- MONEY-IN (FEC raw bulk; committee master already landed) ====
     dict(
         SOURCE_ID="fed_fec_bulk_candidates",

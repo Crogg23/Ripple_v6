@@ -40,6 +40,17 @@ sources:
         description: >
           Voteview roll-call METADATA (HSall_rollcalls.csv), 118th + 119th. One row per
           roll-call: date, yea/nay counts, result, question, bill number. All TEXT.
+      - name: FED_GOVINFO_BILLSTATUS
+        description: >
+          GovInfo BILLSTATUS (official GPO bill-status XML), 118th + 119th, all bill types.
+          One row per bill: type/number/congress, sponsor bioguideId, introduced date, title,
+          the <laws> public-law number (present only when enacted), the pipe-delimited DISTINCT
+          set of GPO action types, latest action, and the raw cosponsor count. All TEXT.
+      - name: FED_GOVINFO_BILL_COSPONSORS
+        description: >
+          GovInfo BILLSTATUS cosponsor extract, 118th + 119th. One row per (bill, cosponsor
+          bioguide): isOriginalCosponsor, sponsorshipDate, and sponsorshipWithdrawnDate (present
+          only when withdrawn). Kept off the bill grain so the list never inflates it. All TEXT.
 
 models:
   - name: stg_fed_congress_legislators__members
@@ -111,5 +122,31 @@ models:
     columns:
       - name: rollnumber
         description: Roll-call number within the congress/chamber.
+        data_tests:
+          - not_null
+
+  - name: stg_fed_govinfo_billstatus__bills
+    description: >
+      Cleaned BILLSTATUS bills, one row per (congress, bill_type, bill_number). Casts types,
+      UPPERs bill_type, splits action_types into an array, dedups to the bill grain. All
+      derivation (law-eligibility, became_law, advanced_past_committee, latest_stage) is in
+      the mart (politics__bills), not here.
+    columns:
+      - name: bill_number
+        description: Bill number within the congress + bill_type.
+        data_tests:
+          - not_null
+      - name: bill_type
+        description: Bill type, UPPER (HR/S/HJRES/SJRES/HCONRES/SCONRES/HRES/SRES).
+        data_tests:
+          - not_null
+  - name: stg_fed_govinfo_bill_cosponsors__cosponsors
+    description: >
+      Cleaned BILLSTATUS cosponsor extract, one row per (congress, bill_type, bill_number,
+      cosponsor_bioguide). is_withdrawn flags withdrawn cosponsorships; a withdraw-then-rejoin
+      collapses to one row preferring the not-withdrawn state.
+    columns:
+      - name: cosponsor_bioguide
+        description: Cosponsor bioguide -- joins straight to the member spine.
         data_tests:
           - not_null
