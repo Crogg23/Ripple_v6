@@ -1,0 +1,39 @@
+{
+  "_README": [
+    "ACQUIRE recipe registry — the source_id -> deterministic re-ingest map the heartbeat needs.",
+    "onboard.py has NO per-source-id re-ingest entrypoint (it matches only 37 human queue names and",
+    "re-runs full LLM recon+codegen every time), so the heartbeat NEVER auto-ingests a source unless it",
+    "has an ENABLED recipe here. Adding (and enabling) a source below is the explicit OPT-IN act.",
+    "",
+    "Schema per recipe:",
+    "  enabled:           bool. false => heartbeat SKIPS the source and surfaces 'needs a human'.",
+    "  kind:              'script' (a deterministic LLM-free loader in scripts/) or 'onboard' (LLM path).",
+    "  cmd:               argv. cmd[0] ending in .py is resolved against the repo root + run with python3.",
+    "                     Tokens {TODAY} {TOMORROW} {YESTERDAY} expand at run time (ISO dates).",
+    "  cwd:               'repo' (default) or 'lib' (library-onboarding/).",
+    "  cost_estimate_cr:  rough credit cost. heartbeat refuses the source if spendable < 2x this.",
+    "  note:              why it is (or isn't) safe to automate.",
+    "",
+    "SAFE recipes are LLM-free, snapshot-replace (idempotent), and SHA-skip an unchanged reload.",
+    "Do NOT enable scrape/auth/incremental-append/huge-chunked sources here without a human review —",
+    "those are the tiers that double-append, brittle-break, or blow the budget."
+  ],
+  "recipes": {
+    "fed_cisa_kev": {
+      "enabled": true,
+      "kind": "script",
+      "cmd": ["scripts/cisa_kev_load.py", "--run"],
+      "cwd": "repo",
+      "cost_estimate_cr": 0.1,
+      "note": "VERIFIED SAFE: single CC0 JSON, snapshot-replace (overwrite=True) => idempotent, and SHA-SKIPs an unchanged reload (compares the freshly-computed source SHA-256 to the last successful INGEST_RUNS.SHA256 for this source_id; equal => no warehouse write). Daily cadence. ~tiny. The reference auto-ACQUIRE recipe."
+    },
+    "fed_usgs_earthquakes": {
+      "enabled": false,
+      "kind": "script",
+      "cmd": ["scripts/usgs_quake_backfill.py", "--run", "--end", "{TOMORROW}"],
+      "cwd": "repo",
+      "cost_estimate_cr": 1.5,
+      "note": "DISABLED: usgs_quake_backfill.py TRUNCATEs then reloads ALL quakes since 2010 every run (a narrow window would DELETE history). Needs a delta-refresh loader before it is safe to automate. Left here as the disabled-recipe example."
+    }
+  }
+}

@@ -112,6 +112,22 @@ def main(argv=None) -> int:
     sha = hashlib.sha256(df.to_csv(index=False).encode("utf-8")).hexdigest()
     conn = snow.connect()
     try:
+        # SHA-SKIP (the ACQUIRE 'skip an unchanged reload' pillar). If the freshly-computed
+        # source hash matches this source's LAST SUCCESSFUL run, the upstream JSON is
+        # byte-identical to what we already hold -> skip the warehouse WRITE entirely (a
+        # snapshot-replace would just rewrite identical rows and recompute the same SHA,
+        # spending credits for nothing). `sha` above is hashed over df.to_csv(index=False)
+        # BEFORE the provenance stamps, exactly as ingest.run_ingest hashes the snapshot
+        # path and exactly as the prior run stored it in INGEST_RUNS.SHA256 — so the
+        # comparison is apples-to-apples. ingest._latest_success_sha reads the SHA256 of the
+        # latest STATUS='success' INGEST_RUNS row for this source_id.
+        if settings.skip_if_unchanged:
+            last_sha = ingest._latest_success_sha(conn, SID)
+            if last_sha == sha:
+                print(f"\nskip (sha unchanged) -- sha {sha[:12]} matches last successful run; "
+                      f"no reload, no warehouse write (set ONBOARD_SKIP_IF_UNCHANGED=0 to force).",
+                      flush=True)
+                return 0
         from snowflake.connector.pandas_tools import write_pandas
         snow.execute(conn, f'CREATE SCHEMA IF NOT EXISTS "{settings.raw_database}"."{settings.raw_schema}"')
         out = ingest._stringify(df)

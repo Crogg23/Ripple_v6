@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Ripple heartbeat — ACQUIRE variant (OPT-IN, the riskiest tier: unattended re-ingestion).
+
+  DO NOT LOAD THIS until ALL of:
+    1. budget has headroom (a `heartbeat.py --status` showing band=GREEN; below GREEN the
+       runner down-scopes by band and ACQUIRE correctly no-ops),
+    2. you have vetted scripts/acquire_recipes.json and enabled only loaders you trust,
+    3. you actually want unattended re-ingestion running.
+
+  This runs the SAME planner as the main agent but with --acquire-optin, so ACQUIRE fires when
+  its 24h cadence is due AND budget is GREEN, bounded to --max-sources. The runner LOCK prevents
+  it from overlapping the main agent. It is a SEPARATE label, so you may run it ALONGSIDE the
+  main plist; the lock serialises them. (Bounded to 2 sources/run here — raise deliberately.)
+
+  Install:
+    cp infra/launchd/com.ripple.heartbeat.acquire.plist ~/Library/LaunchAgents/
+    launchctl load -w ~/Library/LaunchAgents/com.ripple.heartbeat.acquire.plist
+  Stop:
+    launchctl unload -w ~/Library/LaunchAgents/com.ripple.heartbeat.acquire.plist
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.ripple.heartbeat.acquire</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/python3</string>
+        <string>/Users/chrisr./Documents/GitHub/Ripple_v6/scripts/heartbeat.py</string>
+        <string>--run</string>
+        <string>--acquire-optin</string>
+        <string>--max-sources</string>
+        <string>2</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/chrisr./Documents/GitHub/Ripple_v6</string>
+
+    <!-- tick every 4h; run-if-overdue gates ACQUIRE to once/day -->
+    <key>StartInterval</key>
+    <integer>14400</integer>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>ThrottleInterval</key>
+    <integer>300</integer>
+
+    <key>StandardOutPath</key>
+    <string>/Users/chrisr./Documents/GitHub/Ripple_v6/outputs/_heartbeat.launchd.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/chrisr./Documents/GitHub/Ripple_v6/outputs/_heartbeat.launchd.log</string>
+
+    <key>ProcessType</key>
+    <string>Background</string>
+    <key>LowPriorityIO</key>
+    <true/>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin</string>
+    </dict>
+</dict>
+</plist>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Ripple heartbeat — MAIN agent (LINK + MEASURE, weekly RECONCILE). ACQUIRE stays OFF.
+
+  Cadence lives in the RUNNER (run-if-overdue), not here: this just ticks often. The Mac
+  sleeps and launchd silently MISSES StartCalendarInterval ticks while asleep and does not
+  reliably re-fire on wake — so we use a frequent StartInterval + RunAtLoad for boot/login
+  catch-up, and the runner decides what is actually due.
+
+  Install (Chris, NOT the agent):
+    cp infra/launchd/com.ripple.heartbeat.plist ~/Library/LaunchAgents/
+    launchctl load -w ~/Library/LaunchAgents/com.ripple.heartbeat.plist
+  Stop:
+    launchctl unload -w ~/Library/LaunchAgents/com.ripple.heartbeat.plist
+
+  EDIT BEFORE INSTALL if your paths differ: python3 path, repo path (both absolute below).
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.ripple.heartbeat</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/python3</string>
+        <string>/Users/chrisr./Documents/GitHub/Ripple_v6/scripts/heartbeat.py</string>
+        <string>--run</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/chrisr./Documents/GitHub/Ripple_v6</string>
+
+    <!-- tick every 2h; the runner no-ops unless a tier is overdue -->
+    <key>StartInterval</key>
+    <integer>7200</integer>
+
+    <!-- catch up immediately on boot / login (the laptop-was-asleep fix) -->
+    <key>RunAtLoad</key>
+    <true/>
+
+    <!-- don't let a flapping job hammer the warehouse; min 5 min between starts -->
+    <key>ThrottleInterval</key>
+    <integer>300</integer>
+
+    <key>StandardOutPath</key>
+    <string>/Users/chrisr./Documents/GitHub/Ripple_v6/outputs/_heartbeat.launchd.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/chrisr./Documents/GitHub/Ripple_v6/outputs/_heartbeat.launchd.log</string>
+
+    <key>ProcessType</key>
+    <string>Background</string>
+    <key>LowPriorityIO</key>
+    <true/>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin</string>
+    </dict>
+</dict>
+</plist>
