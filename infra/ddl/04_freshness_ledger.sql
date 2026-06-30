@@ -22,8 +22,7 @@ WITH last_run AS (
         RUN_ID                                     AS LAST_RUN_ID,
         STATUS                                     AS LAST_RUN_STATUS,
         COALESCE(ENDED_AT, STARTED_AT, _LOADED_AT) AS LAST_RUN_AT,
-        ROW_COUNT                                  AS LAST_RUN_ROWS,
-        SHA256                                     AS LAST_RUN_SHA256
+        ROW_COUNT                                  AS LAST_RUN_ROWS
     FROM LIBRARY_META.INGEST_LOGS.INGEST_RUNS
     QUALIFY ROW_NUMBER() OVER (
         PARTITION BY SOURCE_ID

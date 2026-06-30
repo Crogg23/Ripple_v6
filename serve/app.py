@@ -16,6 +16,8 @@ Run:  streamlit run serve/app.py     (see serve/README.md)
 
 from __future__ import annotations
 
+import math
+
 import streamlit as st
 
 import serve_queries as q
@@ -27,11 +29,27 @@ st.set_page_config(page_title="Ripple — Reading Room", page_icon="📖", layou
 # --------------------------------------------------------------------------- #
 # Freshness badge vocabulary
 # --------------------------------------------------------------------------- #
+# NOTE: 'static' is forward-compat only — the freshness ledger collapses static-cadence
+# sources to 'fresh' (build_freshness_ledger.freshness_state + V_SOURCE_FRESHNESS), so
+# state never actually arrives as 'static' today; kept so the badge is ready if it does.
 _BADGE = {
     "fresh": ("🟢", "fresh"), "static": ("🔵", "static"), "due": ("🟡", "due"),
     "overdue": ("🟠", "overdue"), "stale": ("🔴", "stale"), "dead": ("⚫", "dead"),
     "unknown": ("⚪", "recency unverified"),
 }
+
+
+def _int(x, default=0):
+    """NaN/None-safe int(). A mixed int+NULL column from pd.DataFrame(cur.fetchall())
+    arrives as float64 with float('nan'); `nan is not None` is True and `nan or 0` is
+    nan, so a bare int(x) raises ValueError on the NULL rows. Route every nullable
+    numeric through this so the NULL path falls back instead of crashing the render."""
+    try:
+        if x is None or (isinstance(x, float) and math.isnan(x)):
+            return default
+        return int(x)
+    except (TypeError, ValueError):
+        return default
 
 
 def goto(**params):
@@ -139,13 +157,13 @@ def render_search():
                     r = df.iloc[0]
                     st.success(f"Exact match on {kind}.")
                     if st.button(f"Open dossier → **{r['KEY_VALUE']}** "
-                                 f"({int(r['SOURCE_COUNT'] or 0)} sources)",
+                                 f"({_int(r['SOURCE_COUNT'])} sources)",
                                  key="hit", use_container_width=True):
                         goto(view="dossier", eid=r["ENTITY_ID"])
                 else:
                     for _, r in df.iterrows():
                         if st.button(f"{r['KEY_VALUE']} · {r['ENTITY_TYPE']} · "
-                                     f"{int(r['SOURCE_COUNT'] or 0)} sources",
+                                     f"{_int(r['SOURCE_COUNT'])} sources",
                                      key=f"h{r['ENTITY_ID']}", use_container_width=True):
                             goto(view="dossier", eid=r["ENTITY_ID"])
         else:
@@ -155,7 +173,7 @@ def render_search():
             else:
                 st.caption(f"{len(df)} candidate(s) — multi-source entities first.")
                 for _, r in df.iterrows():
-                    sc = int(r["SOURCE_COUNT"]) if r["SOURCE_COUNT"] is not None else 0
+                    sc = _int(r["SOURCE_COUNT"])
                     label = (f"**{r['CANONICAL_NAME']}** · {r['ENTITY_TYPE']} · "
                              f"{r['KEY_TYPE']}={r['KEY_VALUE']} · {sc} sources")
                     if st.button(label, key=f"n{r['ENTITY_ID']}", use_container_width=True):
@@ -171,7 +189,8 @@ def render_search():
             dec = q.decorations_for(tuple(sdf["SOURCE_ID"].tolist()))
             for _, r in sdf.iterrows():
                 with st.container(border=True):
-                    rc = f"{int(r['LANDED_ROW_COUNT']):,} rows" if r["LANDED_ROW_COUNT"] is not None else ""
+                    _rc = _int(r["LANDED_ROW_COUNT"], None)
+                    rc = f"{_rc:,} rows" if _rc is not None else ""
                     st.markdown(f"**{r['NAME']}**  \n`{r['SOURCE_ID']}` · "
                                 f"{r['DOMAIN_PRIMARY']} · {rc}")
                     render_decorated_source(r["SOURCE_ID"], dec)
@@ -192,7 +211,7 @@ def render_dossier(eid: str):
     g = golden.iloc[0]
     m = emap.iloc[0].to_dict() if not emap.empty else {}
     member_tables = q.safe_json(m.get("MEMBER_TABLES")) or []
-    src_count = int(m.get("SOURCE_COUNT") or len(sources))
+    src_count = _int(m.get("SOURCE_COUNT")) or len(sources)
 
     if st.button("← Back to search", key="back_dossier"):
         goto(view="search")
@@ -227,8 +246,8 @@ def render_dossier(eid: str):
             last_dom = dom
         with st.container(border=True):
             head = f"**{s['SOURCE_TABLE']}**"
-            if s["ROW_COUNT"] and int(s["ROW_COUNT"]) > 1:
-                head += f"  ·  {int(s['ROW_COUNT'])} rows"
+            if _int(s["ROW_COUNT"]) > 1:
+                head += f"  ·  {_int(s['ROW_COUNT'])} rows"
             if s.get("DISPLAY_LABEL"):
                 head += f"  ·  {s['DISPLAY_LABEL']}"
             st.markdown(head)
@@ -283,8 +302,8 @@ def render_source(src: str):
                 f"{r.get('JURISDICTION')} · {r.get('PUBLISHER') or ''}")
     cols = st.columns(4)
     cols[0].metric("Lifecycle", str(r.get("LIFECYCLE")))
-    cols[1].metric("Landed rows",
-                   f"{int(r['LANDED_ROW_COUNT']):,}" if r.get("LANDED_ROW_COUNT") is not None else "—")
+    _lrc = _int(r.get("LANDED_ROW_COUNT"), None)
+    cols[1].metric("Landed rows", f"{_lrc:,}" if _lrc is not None else "—")
     cols[2].metric("Key tier", str(r.get("JOIN_KEY_TIER") or "—"))
     cols[3].metric("Sample?", "yes" if r.get("IS_SAMPLE") else "no")
     keys = q.safe_json(r.get("JOIN_KEYS_STD")) or r.get("JOIN_KEYS_STD")
@@ -337,7 +356,7 @@ def render_graph():
                                help="STEEL/STRONG/BRIDGE are the hard-ID spine. GEO/"
                                     "PROBABILISTIC are weaker — off by default.")
     include_samples = top[1].toggle("Include portal samples", value=bool(focus),
-                                    help="655/720 nodes are open-data-portal samples; "
+                                    help="655/764 nodes are open-data-portal samples; "
                                          "hidden by default so the core library shows.")
     if focus:
         if top[2].button("✕ Clear focus / show full graph"):

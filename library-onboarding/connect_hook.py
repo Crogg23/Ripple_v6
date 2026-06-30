@@ -14,7 +14,7 @@ linking is a bonus that the heartbeat (`connect connect-changed`) will retry.
 
 from __future__ import annotations
 
-import json
+import ast
 import subprocess
 import sys
 from pathlib import Path
@@ -37,7 +37,7 @@ def connect_one(source_id: str, landing_table: str | None = None, timeout: int =
     detail = {}
     if ":" in summary and "{" in summary:
         try:
-            detail = json.loads(summary[summary.index("{"):].replace("'", '"'))
+            detail = ast.literal_eval(summary[summary.index("{"):])
         except Exception:
             detail = {}
     return {

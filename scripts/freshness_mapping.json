@@ -4,713 +4,713 @@
   "recency_col": "TIME_PERIOD_END_DATE",
   "recency_kind": "date",
   "cadence_bucket": "monthly",
-  "data_through_expected": "2024-09-16"
+  "_data_through_expected": "2024-09-16"
  },
  {
   "source_id": "fed_cdc_drug_poisoning_county",
   "recency_col": "YEAR",
   "recency_kind": "year_text",
   "cadence_bucket": "annual",
-  "data_through_expected": "2015"
+  "_data_through_expected": "2015"
  },
  {
   "source_id": "fed_cdc_health_insurance",
   "recency_col": "TIME_PERIOD_END_DATE",
   "recency_kind": "timestamp",
   "cadence_bucket": "irregular",
-  "data_through_expected": "2024-09-16"
+  "_data_through_expected": "2024-09-16"
  },
  {
   "source_id": "fed_cdc_injury_violence_county",
   "recency_col": "PERIOD",
   "recency_kind": "mixed",
   "cadence_bucket": "annual",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_cdc_overdose",
   "recency_col": "YEAR + MONTH (12-month-ending period end)",
   "recency_kind": "mixed",
   "cadence_bucket": "monthly",
-  "data_through_expected": "2026-01-01"
+  "_data_through_expected": "2026-01-01"
  },
  {
   "source_id": "fed_cdc_suicide_rates",
   "recency_col": "YEAR",
   "recency_kind": "year_text",
   "cadence_bucket": "annual",
-  "data_through_expected": "2018"
+  "_data_through_expected": "2018"
  },
  {
   "source_id": "fed_cfpb_complaints",
   "recency_col": "DATE_RECEIVED",
   "recency_kind": "timestamp",
   "cadence_bucket": "daily",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_cisa_kev",
   "recency_col": "DATE_ADDED",
   "recency_kind": "date",
   "cadence_bucket": "daily",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_clinicaltrials",
   "recency_col": "LAST_UPDATE_POSTED_DATE",
   "recency_kind": "date",
   "cadence_bucket": "daily",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_cms_dialysis",
   "recency_col": "CLAIMS_DATE",
   "recency_kind": "mixed",
   "cadence_bucket": "quarterly",
-  "data_through_expected": "2025-06-30"
+  "_data_through_expected": "2025-06-30"
  },
  {
   "source_id": "fed_cms_facility_affiliation",
   "recency_col": null,
   "recency_kind": "none",
   "cadence_bucket": "monthly",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_cms_hcris",
   "recency_col": "FISCAL_YEAR_END_DATE",
   "recency_kind": "date",
   "cadence_bucket": "annual",
-  "data_through_expected": "2024-09-30"
+  "_data_through_expected": "2024-09-30"
  },
  {
   "source_id": "fed_cms_home_health",
   "recency_col": "CERTIFICATION_DATE",
   "recency_kind": "date",
   "cadence_bucket": "monthly",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_cms_hospice",
   "recency_col": "CERTIFICATION_DATE",
   "recency_kind": "date",
   "cadence_bucket": "monthly",
-  "data_through_expected": "2025-10-15"
+  "_data_through_expected": "2025-10-15"
  },
  {
   "source_id": "fed_cms_hospital_general",
   "recency_col": null,
   "recency_kind": "none",
   "cadence_bucket": "monthly",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_cms_irf",
   "recency_col": "CERTIFICATION_DATE",
   "recency_kind": "date",
   "cadence_bucket": "quarterly",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_cms_ltch",
   "recency_col": "CERTIFICATION_DATE",
   "recency_kind": "date",
   "cadence_bucket": "quarterly",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_cms_medicare_provider",
   "recency_col": null,
   "recency_kind": "none",
   "cadence_bucket": "annual",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_cms_nadac",
   "recency_col": "EFFECTIVE_DATE",
   "recency_kind": "date",
   "cadence_bucket": "weekly",
-  "data_through_expected": "2024-12-25"
+  "_data_through_expected": "2024-12-25"
  },
  {
   "source_id": "fed_cms_nppes",
   "recency_col": "LAST_UPDATE_DATE",
   "recency_kind": "date",
   "cadence_bucket": "monthly",
-  "data_through_expected": "2026-06-08"
+  "_data_through_expected": "2026-06-08"
  },
  {
   "source_id": "fed_cms_nursing_home",
   "recency_col": "PROCESSING_DATE",
   "recency_kind": "date",
   "cadence_bucket": "monthly",
-  "data_through_expected": "2026-05-01"
+  "_data_through_expected": "2026-05-01"
  },
  {
   "source_id": "fed_cms_open_payments",
   "recency_col": "DATE_OF_PAYMENT",
   "recency_kind": "date",
   "cadence_bucket": "annual",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_cms_open_payments_2023",
   "recency_col": "DATE_OF_PAYMENT",
   "recency_kind": "date",
   "cadence_bucket": "annual",
-  "data_through_expected": "2023-12-31"
+  "_data_through_expected": "2023-12-31"
  },
  {
   "source_id": "fed_cms_part_d_prescribers",
   "recency_col": null,
   "recency_kind": "none",
   "cadence_bucket": "annual",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_cms_pos_other",
   "recency_col": "CRTFCTN_DT",
   "recency_kind": "yyyymmdd_text",
   "cadence_bucket": "quarterly",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_doj_crt_cases",
   "recency_col": null,
   "recency_kind": "none",
   "cadence_bucket": "irregular",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_doj_epstein_library",
   "recency_col": "RECORD:fetched_at_utc",
   "recency_kind": "timestamp",
   "cadence_bucket": "monthly",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_doj_fca_settlements",
   "recency_col": "SETTLEMENT_DATE",
   "recency_kind": "date",
   "cadence_bucket": "irregular",
-  "data_through_expected": "2026-06-16"
+  "_data_through_expected": "2026-06-16"
  },
  {
   "source_id": "fed_epa_echo",
   "recency_col": "FAC_DATE_LAST_INSPECTION",
   "recency_kind": "date",
   "cadence_bucket": "weekly",
-  "data_through_expected": "2026-06-19"
+  "_data_through_expected": "2026-06-19"
  },
  {
   "source_id": "fed_fara_bulk",
   "recency_col": "DATE_STAMPED",
   "recency_kind": "date",
   "cadence_bucket": "daily",
-  "data_through_expected": "2026-06-16"
+  "_data_through_expected": "2026-06-16"
  },
  {
   "source_id": "fed_fbi_nics_checks",
   "recency_col": "MONTH",
   "recency_kind": "mixed",
   "cadence_bucket": "monthly",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_fda_drug_enforcement",
   "recency_col": "REPORT_DATE",
   "recency_kind": "yyyymmdd_text",
   "cadence_bucket": "daily",
-  "data_through_expected": "2026-06-10"
+  "_data_through_expected": "2026-06-10"
  },
  {
   "source_id": "fed_fdic_enforcement",
   "recency_col": null,
   "recency_kind": "none",
   "cadence_bucket": "irregular",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_fdic_failed_banks",
   "recency_col": "FAILDATE",
   "recency_kind": "date",
   "cadence_bucket": "irregular",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_fec_bulk",
   "recency_col": null,
   "recency_kind": "none",
   "cadence_bucket": "daily",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_federal_register_documents",
   "recency_col": "PUBLICATION_DATE",
   "recency_kind": "date",
   "cadence_bucket": "daily",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_fhfa_hpi",
   "recency_col": "YR",
   "recency_kind": "mixed",
   "cadence_bucket": "monthly",
-  "data_through_expected": "2026-03-01"
+  "_data_through_expected": "2026-03-01"
  },
  {
   "source_id": "fed_hhs_oig_leie",
   "recency_col": "EXCLDATE",
   "recency_kind": "yyyymmdd_text",
   "cadence_bucket": "monthly",
-  "data_through_expected": "2026-06-18"
+  "_data_through_expected": "2026-06-18"
  },
  {
   "source_id": "fed_irs_bmf",
   "recency_col": "TAX_PERIOD",
   "recency_kind": "yyyymmdd_text",
   "cadence_bucket": "monthly",
-  "data_through_expected": "2026-05-01"
+  "_data_through_expected": "2026-05-01"
  },
  {
   "source_id": "fed_irs_revocation",
   "recency_col": "REVOCATION_POSTING_DATE",
   "recency_kind": "date",
   "cadence_bucket": "monthly",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_mapping_inequality",
   "recency_col": null,
   "recency_kind": "none",
   "cadence_bucket": "static",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_naag_multistate_settlements",
   "recency_col": "DATERESOLVED",
   "recency_kind": "date",
   "cadence_bucket": "irregular",
-  "data_through_expected": "2021-07-23"
+  "_data_through_expected": "2021-07-23"
  },
  {
   "source_id": "fed_nara_aad",
   "recency_col": null,
   "recency_kind": "none",
   "cadence_bucket": "irregular",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_nara_wra_aad",
   "recency_col": null,
   "recency_kind": "none",
   "cadence_bucket": "static",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_noaa_ais",
   "recency_col": "BASEDATETIME",
   "recency_kind": "timestamp",
   "cadence_bucket": "daily",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_noaa_storm_events",
   "recency_col": "BEGIN_YEARMONTH",
   "recency_kind": "yyyymmdd_text",
   "cadence_bucket": "monthly",
-  "data_through_expected": "2025-12-01"
+  "_data_through_expected": "2025-12-01"
  },
  {
   "source_id": "fed_ofac_sdn",
   "recency_col": null,
   "recency_kind": "none",
   "cadence_bucket": "daily",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_oyez",
   "recency_col": "DECISION_DATE",
   "recency_kind": "date",
   "cadence_bucket": "irregular",
-  "data_through_expected": "1973-01-22"
+  "_data_through_expected": "1973-01-22"
  },
  {
   "source_id": "fed_revolvingdoor_project",
   "recency_col": null,
   "recency_kind": "none",
   "cadence_bucket": "irregular",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_scdb",
   "recency_col": "DATEDECISION",
   "recency_kind": "date",
   "cadence_bucket": "annual",
-  "data_through_expected": "2025-06-30"
+  "_data_through_expected": "2025-06-30"
  },
  {
   "source_id": "fed_sec_edgar_company_tickers",
   "recency_col": null,
   "recency_kind": "none",
   "cadence_bucket": "daily",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_sec_edgar_financials",
   "recency_col": "FILED",
   "recency_kind": "yyyymmdd_text",
   "cadence_bucket": "quarterly",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_slavevoyages_intraamerican",
   "recency_col": "YEARAM",
   "recency_kind": "year_text",
   "cadence_bucket": "static",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_treasury_avg_interest_rates",
   "recency_col": "RECORD_DATE",
   "recency_kind": "date",
   "cadence_bucket": "monthly",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_treasury_debt_to_penny",
   "recency_col": "RECORD_DATE",
   "recency_kind": "date",
   "cadence_bucket": "daily",
-  "data_through_expected": "2026-06-15"
+  "_data_through_expected": "2026-06-15"
  },
  {
   "source_id": "fed_usaspending_contracts",
   "recency_col": "ACTION_DATE",
   "recency_kind": "date",
   "cadence_bucket": "daily",
-  "data_through_expected": "2025-09-30"
+  "_data_through_expected": "2025-09-30"
  },
  {
   "source_id": "fed_usaspending_toptier_agencies",
   "recency_col": "ACTIVE_FY",
   "recency_kind": "year_text",
   "cadence_bucket": "daily",
-  "data_through_expected": "2026"
+  "_data_through_expected": "2026"
  },
  {
   "source_id": "fed_usgs_earthquakes",
   "recency_col": "TIME",
   "recency_kind": "timestamp",
   "cadence_bucket": "real_time",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_va_allcause_mortality",
   "recency_col": null,
   "recency_kind": "none",
   "cadence_bucket": "annual",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "fed_va_suicide_appendix",
   "recency_col": "VETERAN_DEATHS_BY_SUICIDE_UNADJUSTED_AND_ADJUSTED_RATES_BY_SEX_2001_23",
   "recency_kind": "year_text",
   "cadence_bucket": "annual",
-  "data_through_expected": "2023"
+  "_data_through_expected": "2023"
  },
  {
   "source_id": "fed_wpa_slave_narratives",
   "recency_col": "INTERVIEW_DATE",
   "recency_kind": "date",
   "cadence_bucket": "static",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "intl_ch_zefix",
   "recency_col": null,
   "recency_kind": "none",
   "cadence_bucket": "real_time",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "intl_ec_sercop",
   "recency_col": "DATE",
   "recency_kind": "timestamp",
   "cadence_bucket": "daily",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "intl_ember_elec",
   "recency_col": "DATE",
   "recency_kind": "year_text",
   "cadence_bucket": "annual",
-  "data_through_expected": "2025"
+  "_data_through_expected": "2025"
  },
  {
   "source_id": "intl_es_borme",
   "recency_col": "DATE",
   "recency_kind": "date",
   "cadence_bucket": "daily",
-  "data_through_expected": "2026-06-01"
+  "_data_through_expected": "2026-06-01"
  },
  {
   "source_id": "intl_fao_faostat_food_security",
   "recency_col": "YEAR",
   "recency_kind": "year_text",
   "cadence_bucket": "annual",
-  "data_through_expected": "2025"
+  "_data_through_expected": "2025"
  },
  {
   "source_id": "intl_freedomhouse",
   "recency_col": "EDITION",
   "recency_kind": "year_text",
   "cadence_bucket": "annual",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "intl_gr_gemi",
   "recency_col": null,
   "recency_kind": "none",
   "cadence_bucket": "real_time",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "intl_hudoc",
   "recency_col": "DATE",
   "recency_kind": "timestamp",
   "cadence_bucket": "daily",
-  "data_through_expected": "2026-06-16"
+  "_data_through_expected": "2026-06-16"
  },
  {
   "source_id": "intl_ie_cro",
   "recency_col": null,
   "recency_kind": "none",
   "cadence_bucket": "irregular",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "intl_ipc_food_insecurity_global",
   "recency_col": "DATE_OF_ANALYSIS",
   "recency_kind": "date",
   "cadence_bucket": "irregular",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "intl_it_istat",
   "recency_col": "DATE",
   "recency_kind": "mixed",
   "cadence_bucket": "irregular",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "intl_leiden_russian_ops_europe",
   "recency_col": "INCIDENTDATESTART",
   "recency_kind": "timestamp",
   "cadence_bucket": "irregular",
-  "data_through_expected": "2025-10-01"
+  "_data_through_expected": "2025-10-01"
  },
  {
   "source_id": "intl_nti_cns_dprk_missile_tests",
   "recency_col": "DATE",
   "recency_kind": "timestamp",
   "cadence_bucket": "irregular",
-  "data_through_expected": "2024-11-04"
+  "_data_through_expected": "2024-11-04"
  },
  {
   "source_id": "intl_opensanctions",
   "recency_col": "LAST_CHANGE",
   "recency_kind": "timestamp",
   "cadence_bucket": "daily",
-  "data_through_expected": "2026-06-26"
+  "_data_through_expected": "2026-06-26"
  },
  {
   "source_id": "intl_owid_milspend",
   "recency_col": "YEAR",
   "recency_kind": "year_text",
   "cadence_bucket": "annual",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "intl_ucdp_ged",
   "recency_col": "DATE_START",
   "recency_kind": "timestamp",
   "cadence_bucket": "annual",
-  "data_through_expected": "2024-12-31"
+  "_data_through_expected": "2024-12-31"
  },
  {
   "source_id": "intl_voeten_unga_votes",
   "recency_col": "YEAR",
   "recency_kind": "year_text",
   "cadence_bucket": "annual",
-  "data_through_expected": "2024"
+  "_data_through_expected": "2024"
  },
  {
   "source_id": "intl_wb_ids",
   "recency_col": "C_2024",
   "recency_kind": "year_int",
   "cadence_bucket": "annual",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "st_cannabis_policy_bundles",
   "recency_col": "YEAR",
   "recency_kind": "year_text",
   "cadence_bucket": "static",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "xc_biorxiv_medrxiv",
   "recency_col": "DATE",
   "recency_kind": "date",
   "cadence_bucket": "real_time",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "xc_guttmacher_monthly_abortion",
   "recency_col": "MONTH",
   "recency_kind": "date",
   "cadence_bucket": "monthly",
-  "data_through_expected": "2026-03-15"
+  "_data_through_expected": "2026-03-15"
  },
  {
   "source_id": "xc_nagix_dprk_missile_tests",
   "recency_col": "DATE",
   "recency_kind": "mixed",
   "cadence_bucket": "irregular",
-  "data_through_expected": "2026-05-26"
+  "_data_through_expected": "2026-05-26"
  },
  {
   "source_id": "xc_owid_ai_incidents_annual",
   "recency_col": "YEAR",
   "recency_kind": "year_text",
   "cadence_bucket": "annual",
-  "data_through_expected": "2025"
+  "_data_through_expected": "2025"
  },
  {
   "source_id": "xc_owid_co2",
   "recency_col": "YEAR",
   "recency_kind": "year_text",
   "cadence_bucket": "annual",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "xc_owid_cpi",
   "recency_col": "YEAR",
   "recency_kind": "year_text",
   "cadence_bucket": "annual",
-  "data_through_expected": "2024"
+  "_data_through_expected": "2024"
  },
  {
   "source_id": "xc_owid_fertility",
   "recency_col": "YEAR",
   "recency_kind": "year_text",
   "cadence_bucket": "annual",
-  "data_through_expected": "2023"
+  "_data_through_expected": "2023"
  },
  {
   "source_id": "xc_owid_fossil_share",
   "recency_col": "YEAR",
   "recency_kind": "year_text",
   "cadence_bucket": "annual",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "xc_owid_gini",
   "recency_col": "YEAR",
   "recency_kind": "year_text",
   "cadence_bucket": "annual",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "xc_owid_homicide",
   "recency_col": "YEAR",
   "recency_kind": "year_text",
   "cadence_bucket": "annual",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "xc_owid_life_expectancy",
   "recency_col": "YEAR",
   "recency_kind": "year_text",
   "cadence_bucket": "annual",
-  "data_through_expected": "2023"
+  "_data_through_expected": "2023"
  },
  {
   "source_id": "xc_owid_nuclear_warheads",
   "recency_col": "YEAR",
   "recency_kind": "year_text",
   "cadence_bucket": "annual",
-  "data_through_expected": "2026"
+  "_data_through_expected": "2026"
  },
  {
   "source_id": "xc_owid_refugees",
   "recency_col": "YEAR",
   "recency_kind": "year_text",
   "cadence_bucket": "annual",
-  "data_through_expected": "2024"
+  "_data_through_expected": "2024"
  },
  {
   "source_id": "xc_owid_temp_anomaly",
   "recency_col": "YEAR",
   "recency_kind": "year_text",
   "cadence_bucket": "annual",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "xc_owid_terrorism_deaths",
   "recency_col": "YEAR",
   "recency_kind": "year_text",
   "cadence_bucket": "annual",
-  "data_through_expected": "2021"
+  "_data_through_expected": "2021"
  },
  {
   "source_id": "xc_ransomwarelive_victims",
   "recency_col": "DISCOVERED",
   "recency_kind": "timestamp",
   "cadence_bucket": "daily",
-  "data_through_expected": "2026-06-27"
+  "_data_through_expected": "2026-06-27"
  },
  {
   "source_id": "xc_vera_incarceration_trends",
   "recency_col": "YEAR",
   "recency_kind": "year_text",
   "cadence_bucket": "annual",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "xc_wapo_fatal_force",
   "recency_col": "DATE",
   "recency_kind": "date",
   "cadence_bucket": "weekly",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "xc_wayback_doj_epstein",
   "recency_col": "RECORD:timestamp",
   "recency_kind": "yyyymmdd_text",
   "cadence_bucket": "monthly",
-  "data_through_expected": null
+  "_data_through_expected": null
  },
  {
   "source_id": "xc_wayback_replay_doj_deep_pages",
   "recency_col": "RECORD:capture_timestamp",
   "recency_kind": "yyyymmdd_text",
   "cadence_bucket": "irregular",
-  "data_through_expected": "2026-06-04"
+  "_data_through_expected": "2026-06-04"
  },
  {
   "source_id": "xc_wayback_replay_doj_listing",
   "recency_col": "RECORD:capture_timestamp",
   "recency_kind": "timestamp",
   "cadence_bucket": "irregular",
-  "data_through_expected": "2026-06-03"
+  "_data_through_expected": "2026-06-03"
  },
  {
   "source_id": "xc_wikipedia_largest_us_companies",
   "recency_col": null,
   "recency_kind": "none",
   "cadence_bucket": "irregular",
-  "data_through_expected": null
+  "_data_through_expected": null
  }
 ]

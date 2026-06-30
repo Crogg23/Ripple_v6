@@ -57,7 +57,7 @@ GRACE = {
     "annual":    (400, 425, 450),
     "irregular": (270, 455, 730),  # generous — irregular feeds legitimately go quiet for months
 }
-STATE_ORDER = {"dead": 0, "stale": 1, "overdue": 2, "due": 3, "unknown": 4, "fresh": 5, "static": 5}
+STATE_ORDER = {"dead": 0, "stale": 1, "overdue": 2, "due": 3, "unknown": 4, "fresh": 5}
 
 
 def recency_expr(col: str, kind: str) -> str:
@@ -122,8 +122,11 @@ def measure(conn, mapping: list[dict]) -> list[dict]:
         note = m.get("note", "")
         data_through = None
         row_count = None
+        # one default, used for BOTH the SQL expr and the recorded row so they can never diverge:
+        # col present -> 'mixed' (matches recency_expr's own fallback); col absent -> 'none' (no recency measure)
+        kind = m.get("recency_kind", "mixed" if col else "none")
         try:
-            sel = recency_expr(col, m.get("recency_kind", "mixed")) if col else "NULL"
+            sel = recency_expr(col, kind) if col else "NULL"
             cur.execute(f"SELECT {sel} AS data_through, COUNT(*) AS n FROM {fqn}")
             r = cur.fetchone()
             data_through = r[0]  # snowflake returns a datetime.date or None
@@ -141,7 +144,7 @@ def measure(conn, mapping: list[dict]) -> list[dict]:
             "source_id": sid,
             "landing_fqn": fqn,
             "recency_col": col,
-            "recency_kind": m.get("recency_kind", "none"),
+            "recency_kind": kind,
             "data_through": data_through.isoformat() if data_through else None,
             "row_count": row_count,
             "cadence_bucket": m.get("cadence_bucket", "unknown"),

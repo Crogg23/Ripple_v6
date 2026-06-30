@@ -99,6 +99,9 @@ def apply(cur) -> int:
                     "FILE_FORMAT = (TYPE = PARQUET) HEADER = TRUE OVERWRITE = TRUE MAX_FILE_SIZE = 268435456")
         cur.execute(f"GET '{path}' 'file://{dest}/{folder}/'")
         got = cur.fetchall()
+        # local copy is downloaded; clear the stage so the off-platform DR backup
+        # doesn't linger on-platform (unbounded stage-storage growth each --apply).
+        cur.execute(f"REMOVE '{path}'")
         manifest["tables"].append({"table": table, "rows": n, "files": len(got)})
         print(f"  ok    {table:<46} {n:>12,} rows -> backups/dr/{ts}/{folder}/")
     (dest / "manifest.json").write_text(json.dumps(manifest, indent=2))

@@ -18,6 +18,7 @@ Graph nodes are SOURCE tables, so a node click opens that source's page.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import numbers
 import os
@@ -67,7 +68,9 @@ def load_graph():
 def _domain_color(domain: str) -> str:
     if not domain:
         return "#6e7681"
-    return _PALETTE[hash(domain) % len(_PALETTE)]
+    # Stable across process restarts: built-in hash() is salted per PYTHONHASHSEED,
+    # which would reshuffle the legend colors on every app restart.
+    return _PALETTE[int(hashlib.md5(domain.encode()).hexdigest(), 16) % len(_PALETTE)]
 
 
 def build_figure(graph: dict, *, tiers, include_samples: bool,
@@ -100,6 +103,11 @@ def build_figure(graph: dict, *, tiers, include_samples: bool,
         if n.get("x") is not None and n.get("y") is not None:
             pos[nid] = (n["x"], n["y"])
     placed = list(pos.values())
+    # No baked x/y on any visible node -> the artifact shipped without a cached
+    # layout. Surface it loudly instead of silently stacking all 764 nodes in the
+    # gutter column (which reads as one vertical line, not a graph).
+    if not placed:
+        st.warning("Graph layout not cached — run: python3 -m connect.cache_layout")
     if placed:
         xs = [p[0] for p in placed]; ys = [p[1] for p in placed]
         minx, maxx, miny, maxy = min(xs), max(xs), min(ys), max(ys)

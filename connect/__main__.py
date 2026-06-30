@@ -39,6 +39,7 @@ def main() -> int:
     cch = sub.add_parser("connect-changed", help="incremental: reslice every table whose content-key moved (the heartbeat)")
     cch.add_argument("--scope", choices=["spine", "all"], default="spine")
     cch.add_argument("--dry-run", action="store_true")
+    # `validate-incremental` here == the module CLI's `validate` verb (incremental.py:915); both dispatch to incremental.validate()
     vi = sub.add_parser("validate-incremental", help="non-destructive proof incremental == full rebuild")
     vi.add_argument("--table", default=None)
 

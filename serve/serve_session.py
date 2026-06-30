@@ -89,10 +89,10 @@ def _handle():
         sess = get_active_session()
         # Best-effort pin (SiS usually pins these already; never fatal here).
         if not _try(sess, f"USE ROLE {SERVE_ROLE}", True):
-            BOOT_NOTES.append(f"role pin skipped (SiS owner role in effect)")
+            BOOT_NOTES.append("role pin skipped (SiS owner role in effect)")
         serve_ok = _try(sess, f"USE WAREHOUSE {SERVE_WH}", True)
         BOOT_NOTES.append("mode: streamlit-in-snowflake")
-        BOOT_NOTES.append(f"serve_wh: {'SERVE_WH' if serve_ok else 'session default'}")
+        BOOT_NOTES.append(f"serve_wh: {SERVE_WH if serve_ok else 'session default'}")
         return ("snowpark", _connector_conn_from_snowpark(sess))
     except Exception:
         pass  # not in SiS -> fall through to local
@@ -117,9 +117,9 @@ def _handle():
         if _try(cur, f"USE ROLE {SERVE_ROLE}", False):
             BOOT_NOTES.append(f"role: {SERVE_ROLE}")
         else:
-            BOOT_NOTES.append(f"role pin FAILED (still default role) — check grants")
+            BOOT_NOTES.append("role pin FAILED (still default role) — check grants")
         if _try(cur, f"USE WAREHOUSE {SERVE_WH}", False):
-            BOOT_NOTES.append("serve_wh: SERVE_WH (isolated)")
+            BOOT_NOTES.append(f"serve_wh: {SERVE_WH} (isolated)")
         else:
             # SERVE_WH not created yet (run serve_wh.sql) -> stay on whatever the
             # role can use so the app still boots; nudge to create it.
@@ -140,7 +140,7 @@ def _is_conn_error(exc: Exception) -> bool:
 
 
 def _run(sql: str, params):
-    mode, conn = _handle()
+    _, conn = _handle()
     with _LOCK:  # serialize cursors on the shared cached connection
         cur = conn.cursor()
         try:

@@ -1,6 +1,12 @@
 # transient run logs (tee'd output from connect/onboarding runs)
 outputs/_*.log
 
+# heartbeat runtime state + lock (scripts/heartbeat.py) — machine-local, never commit
+outputs/_heartbeat_state.json
+outputs/_heartbeat.lock
+outputs/_heartbeat_selftest*.lock
+outputs/_heartbeat_selftest*.pid
+
 # per-query dossiers generated on demand by `connect dossier --html`
 outputs/dossier_*.html
 
@@ -16,3 +22,14 @@ __pycache__/
 
 # DR exports of the control plane (scripts/export_control_plane.py) — backups, never commit
 backups/
+
+# Secrets — never commit (belt-and-suspenders; the live .env lives in library-onboarding/)
+.env
+*.env
+!.env.example
+
+# Wholesale-regenerated CONNECT artifacts — rebuilt by `python -m connect all`;
+# don't churn 30MB+ through git (the reading room reads connect_graph.json off disk).
+outputs/connect_graph.json
+outputs/connect_fingerprints.json
+outputs/connection_explorer.html

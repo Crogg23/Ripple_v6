@@ -52,7 +52,13 @@ CREATE RESOURCE MONITOR IF NOT EXISTS RIPPLE_BUDGET
     ON 90 PERCENT DO SUSPEND
     ON 100 PERCENT DO SUSPEND_IMMEDIATE;
 
--- Bind it to the account (matches level = ACCOUNT in SHOW RESOURCE MONITORS):
+-- Bind it to the account (matches level = ACCOUNT in SHOW RESOURCE MONITORS).
+-- CAUTION: unlike the CREATE ... IF NOT EXISTS statements above, this is an
+-- UNCONDITIONAL, ACCOUNT-WIDE side effect. It rebinds the account's resource
+-- monitor and re-imposes the 30-credit/month cap that SUSPENDs warehouses at
+-- 90% (and SUSPEND_IMMEDIATE at 100%) — re-running it can halt live ETL if the
+-- account is already near the cap. This file has no USE ROLE (unlike
+-- 05_serve_wh.sql), so it must be run as ACCOUNTADMIN.
 ALTER ACCOUNT SET RESOURCE_MONITOR = RIPPLE_BUDGET;
 
 -- CLAUDE_MCP_READONLY (role)

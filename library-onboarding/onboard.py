@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Source Onboarding Agent -- entry point.
 
-Onboards a data source into the Library end to end through five foreman-approved
-checkpoints: RECON -> SCRIPT -> LOAD -> DBT -> CATALOG.
+Onboards a data source into the Library end to end through six foreman-approved
+checkpoints: RECON -> SCRIPT -> LOAD -> DBT -> REGISTRY -> CONNECT (CONNECT is
+best-effort and never downgrades an onboarded source).
 
     # Single source
     python onboard.py --url https://fred.stlouisfed.org/docs/api/fred/
@@ -115,7 +116,7 @@ def _run_stage(
 
 
 # ---------------------------------------------------------------------------
-# The 5-checkpoint flow for one source
+# The 6-checkpoint flow for one source
 # ---------------------------------------------------------------------------
 def onboard_source(source: dict, position=None) -> dict:
     """Run the full flow for one source. Returns a log record."""
@@ -279,7 +280,7 @@ def source_from_args(url: Optional[str], name: Optional[str]) -> Optional[dict]:
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         prog="onboard.py",
-        description="Onboard data sources into the Library through 5 approved checkpoints.",
+        description="Onboard data sources into the Library through 6 approved checkpoints.",
     )
     p.add_argument("--url", help="Documentation URL of a single source to onboard.")
     p.add_argument("--name", help="Source name (looks up the queue, or labels a --url).")
