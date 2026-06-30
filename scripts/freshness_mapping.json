@@ -29,8 +29,9 @@
  },
  {
   "source_id": "fed_cdc_overdose",
-  "recency_col": "YEAR + MONTH (12-month-ending period end)",
-  "recency_kind": "mixed",
+  "recency_col": null,
+  "recency_kind": "none",
+  "note": "recency = derived YEAR+MONTH period, not a single column; unmeasured",
   "cadence_bucket": "monthly",
   "_data_through_expected": "2026-01-01"
  },
@@ -547,8 +548,9 @@
  },
  {
   "source_id": "intl_wb_ids",
-  "recency_col": "C_2024",
-  "recency_kind": "year_int",
+  "recency_col": null,
+  "recency_kind": "none",
+  "note": "wide-format value column (C_2024 is a value, not a date axis); unmeasured",
   "cadence_bucket": "annual",
   "_data_through_expected": null
  },
@@ -702,7 +704,7 @@
  {
   "source_id": "xc_wayback_replay_doj_listing",
   "recency_col": "RECORD:capture_timestamp",
-  "recency_kind": "timestamp",
+  "recency_kind": "yyyymmdd_text",
   "cadence_bucket": "irregular",
   "_data_through_expected": "2026-06-03"
  },

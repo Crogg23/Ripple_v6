@@ -57,11 +57,18 @@ TARGETS = [
 
 
 def row_count(cur, table: str):
+    """Row count, or None if the table is genuinely absent. A transient/permission/timeout
+    error is surfaced LOUDLY (not silently treated as 'absent'), so a DR backup never quietly
+    skips a real control-plane table because of a hiccup."""
     try:
         cur.execute(f"SELECT COUNT(*) FROM {table}")
         return cur.fetchone()[0]
-    except Exception:
-        return None  # absent
+    except Exception as exc:
+        msg = str(exc).lower()
+        if "does not exist" in msg or "not authorized" in msg:
+            return None  # object truly absent
+        print(f"  [WARN] row_count({table}) failed — NOT an absence: {str(exc)[:120]}")
+        return None
 
 
 def preview(cur) -> None:

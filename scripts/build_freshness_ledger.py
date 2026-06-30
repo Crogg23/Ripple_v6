@@ -31,6 +31,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from datetime import date, timedelta
 from pathlib import Path
@@ -60,21 +61,39 @@ GRACE = {
 STATE_ORDER = {"dead": 0, "stale": 1, "overdue": 2, "due": 3, "unknown": 4, "fresh": 5}
 
 
-def recency_expr(col: str, kind: str) -> str:
+def col_ref(col: str) -> str | None:
+    """A valid SQL TEXT reference for a recency column, or None if the mapping value
+    isn't a usable column. Landing columns are TEXT; a few sources land a VARIANT
+    ``RECORD`` blob, so a ``base:path`` mapping is a VARIANT extract cast back to text.
+    Prose / derived expressions (spaces, not an identifier) return None -> recency unmeasured."""
+    col = (col or "").strip()
+    if re.match(r"^[A-Za-z_][A-Za-z0-9_$]*$", col):                       # plain identifier
+        return '"' + col + '"'
+    m = re.match(r"^([A-Za-z_][A-Za-z0-9_$]*):([A-Za-z0-9_$.\[\]:]+)$", col)
+    if m:                                                                 # VARIANT path RECORD:field
+        return f'"{m.group(1)}":{m.group(2)}::STRING'
+    return None                                                          # prose / derived / unusable
+
+
+def recency_expr(col: str, kind: str) -> str | None:
     """Parse a TEXT column to a DATE, driven by the per-source RECENCY_KIND the measurement agents found.
+    Returns None when ``col`` is not a usable column reference (caller then records recency as unmeasured).
 
     EPOCH TRAP: TRY_TO_DATE/TRY_TO_TIMESTAMP read a BARE NUMBER as seconds-since-epoch, so a year '2023'
     or a 'YYYYMMDD' like '20240108' silently parses to 1970. Every branch here is therefore guarded:
     date/timestamp parses require a separator (- / :); numeric shapes are matched by exact pattern; bare
     years must look like 19xx/20xx and not exceed next year. A wrong guess yields NULL, never a false date.
     """
-    c = '"' + col.replace('"', '') + '"'
+    c = col_ref(col)
+    if c is None:
+        return None
     t = f"TRIM({c})"
     sep = f"({t} LIKE '%-%' OR {t} LIKE '%/%' OR {t} LIKE '%:%')"
     dt = f"IFF({sep},TRY_TO_DATE(NULLIF({t},'')),NULL)"                                   # separated date
     ts = f"IFF({sep},TRY_TO_TIMESTAMP(NULLIF({t},''))::DATE,NULL)"                        # timestamp
     ymd8 = f"IFF(REGEXP_LIKE({t},'^[0-9]{{8}}$'),TRY_TO_DATE({t},'YYYYMMDD'),NULL)"       # yyyymmdd
     ymd6 = f"IFF(REGEXP_LIKE({t},'^[0-9]{{6}}$'),TRY_TO_DATE({t}||'01','YYYYMMDD'),NULL)" # yyyymm -> 1st
+    ymd14 = f"IFF(REGEXP_LIKE({t},'^[0-9]{{14}}$'),TRY_TO_DATE(SUBSTR({t},1,8),'YYYYMMDD'),NULL)"  # YYYYMMDDHHMMSS (wayback)
     yr = (f"IFF(REGEXP_LIKE({t},'^(19|20)[0-9]{{2}}') "
           f"AND TO_NUMBER(SUBSTR({t},1,4))<=YEAR(CURRENT_DATE())+1,"
           f"DATE_FROM_PARTS(TO_NUMBER(SUBSTR({t},1,4)),12,31),NULL)")                     # year -> Dec 31
@@ -83,11 +102,11 @@ def recency_expr(col: str, kind: str) -> str:
     elif kind == "timestamp":
         inner = ts
     elif kind == "yyyymmdd_text":
-        inner = f"COALESCE({ymd8},{ymd6})"
+        inner = f"COALESCE({ymd14},{ymd8},{ymd6})"
     elif kind in ("year_text", "year_int"):
         inner = yr
     else:  # 'mixed' / fallback — every branch guarded, so still epoch-safe
-        inner = f"COALESCE({dt},{ts},{ymd8},{ymd6},{yr})"
+        inner = f"COALESCE({dt},{ts},{ymd14},{ymd8},{ymd6},{yr})"
     return f"MAX({inner})"
 
 
@@ -125,20 +144,30 @@ def measure(conn, mapping: list[dict]) -> list[dict]:
         # one default, used for BOTH the SQL expr and the recorded row so they can never diverge:
         # col present -> 'mixed' (matches recency_expr's own fallback); col absent -> 'none' (no recency measure)
         kind = m.get("recency_kind", "mixed" if col else "none")
+        # Row count on its OWN query: a recency-parse failure must never blow away the
+        # count and mislabel a live source as 'dead' (freshness_state -> dead when not row_count).
         try:
-            sel = recency_expr(col, kind) if col else "NULL"
-            cur.execute(f"SELECT {sel} AS data_through, COUNT(*) AS n FROM {fqn}")
-            r = cur.fetchone()
-            data_through = r[0]  # snowflake returns a datetime.date or None
-            row_count = int(r[1]) if r[1] is not None else 0
-            # sanity clamp: a date far in the future (or absurdly old) is a parse artifact, not data
-            if data_through is not None and (
-                data_through > date.today() + timedelta(days=550) or data_through.year < 1900
-            ):
-                note = (note + " | " if note else "") + f"dropped suspect parse {data_through.isoformat()}"
-                data_through = None
-        except Exception as exc:  # table missing / column gone / parse blew up
-            note = (note + " | " if note else "") + f"MEASURE ERROR: {str(exc)[:120]}"
+            cur.execute(f"SELECT COUNT(*) AS n FROM {fqn}")
+            row_count = int(cur.fetchone()[0])
+        except Exception as exc:  # table missing / unreadable
+            note = (note + " | " if note else "") + f"COUNT ERROR: {str(exc)[:120]}"
+        # Recency: best-effort and DECOUPLED. Only when the table has rows and the mapping
+        # points at a usable column; a failure here leaves row_count intact (state -> unknown, not dead).
+        sel = recency_expr(col, kind) if col else None
+        if col and sel is None:
+            note = (note + " | " if note else "") + f"recency_col {col!r} not a usable column; recency unmeasured"
+        elif sel is not None and row_count:
+            try:
+                cur.execute(f"SELECT {sel} AS data_through FROM {fqn}")
+                data_through = cur.fetchone()[0]  # snowflake returns a datetime.date or None
+                # sanity clamp: a date far in the future (or absurdly old) is a parse artifact, not data
+                if data_through is not None and (
+                    data_through > date.today() + timedelta(days=550) or data_through.year < 1900
+                ):
+                    note = (note + " | " if note else "") + f"dropped suspect parse {data_through.isoformat()}"
+                    data_through = None
+            except Exception as exc:  # column gone / parse blew up — recency only, count survives
+                note = (note + " | " if note else "") + f"RECENCY ERROR: {str(exc)[:120]}"
         state, age = freshness_state(m.get("cadence_bucket", "unknown"), data_through, row_count)
         rows.append({
             "source_id": sid,
