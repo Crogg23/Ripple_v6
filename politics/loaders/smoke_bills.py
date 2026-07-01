@@ -26,7 +26,9 @@ import re
 import sys
 import requests
 
-sys.path.insert(0, r"c:\Code\Ripple_v6\library-onboarding")
+from pathlib import Path as _RepoPath
+_REPO = _RepoPath(__file__).resolve().parents[2]
+sys.path.insert(0, str(_REPO / "library-onboarding"))
 import snow  # noqa: E402
 
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "

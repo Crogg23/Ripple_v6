@@ -778,6 +778,24 @@ def _latest_success_sha(conn, source_id: str) -> Optional[str]:
     )
 
 
+def _latest_success_rows(conn, source_id: str) -> Optional[int]:
+    """ROW_COUNT of this source's most recent SUCCESSFUL run (None if never run).
+
+    Powers the never-shrink floor: a snapshot-replace load that suddenly carries
+    far fewer rows than the last good run is a truncated/partial pull (the SAM
+    exclusions failure: 1k landed of ~167k, logged 'success'). Callers refuse to
+    overwrite a healthy table when the new frame falls below this count.
+    """
+    val = snow.fetch_scalar(
+        conn,
+        f'SELECT ROW_COUNT FROM "{settings.meta_database}"."{settings.ingest_log_schema}".'
+        f'"{settings.ingest_log_table}" WHERE SOURCE_ID=%s AND STATUS=\'success\' '
+        "ORDER BY STARTED_AT DESC LIMIT 1",
+        (source_id,),
+    )
+    return int(val) if val is not None else None
+
+
 def _latest_status(conn, source_id: str) -> Optional[str]:
     """STATUS of the MOST RECENT run for this source (or None if never run).
 

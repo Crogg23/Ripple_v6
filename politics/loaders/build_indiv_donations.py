@@ -58,13 +58,15 @@ from __future__ import annotations
 
 import sys
 
-sys.path.insert(0, r"c:\Code\Ripple_v6")
-sys.path.insert(0, r"c:\Code\Ripple_v6\library-onboarding")
-sys.path.insert(0, r"c:\Code\Ripple_v6\politics\loaders")
+from pathlib import Path as _RepoPath
+_REPO = _RepoPath(__file__).resolve().parents[2]
+sys.path.insert(0, str(_REPO))
+sys.path.insert(0, str(_REPO / "library-onboarding"))
+sys.path.insert(0, str(_REPO / "politics" / "loaders"))
 
 from dotenv import load_dotenv  # noqa: E402
 
-load_dotenv(r"c:\Code\Ripple_v6\library-onboarding\.env", override=True)
+load_dotenv(str(_REPO / "library-onboarding" / ".env"), override=True)
 
 import snow  # noqa: E402
 
