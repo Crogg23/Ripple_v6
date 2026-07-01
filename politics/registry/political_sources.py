@@ -323,6 +323,187 @@ SOURCES = [
               "are governed (Phase 2 Fix A) so JOIN_KEYS_STD is non-provisional STEEL.",
     ),
 
+    # === TIER 1 -- MONEY-IN, this-session loads (pas2 / IE / itcont firehose) ===
+    dict(
+        SOURCE_ID="fed_fec_committee_to_candidate",
+        NAME="FEC Bulk Data -- Committee-to-Candidate (pas2/itpas2)",
+        PUBLISHER="Federal Election Commission",
+        DESCRIPTION="Committee contributions TO (and independent expenditures for/against) candidates: "
+                    "PAC/party money to a candidate, by transaction type. Carries CAND_ID + CMTE_ID + CYCLE. "
+                    "The PAC-money leg of the box score.",
+        UNIT_OF_OBSERVATION="one row = one committee->candidate transaction",
+        TEMPORAL_COVERAGE="2024 + 2026 cycles", ACCESS_METHOD="bulk_download", FORMAT="pipe-delimited txt",
+        AUTH_REQUIRED="none", COST="free", UPDATE_CADENCE="weekly (cycle)", VOLUME="866,730 rows",
+        LICENSE_TERMS="Public domain (US Gov)",
+        URL="https://www.fec.gov/files/bulk-downloads/2024/pas224.zip",
+        JOIN_KEYS="fec_cmte_id (giver), fec_cand_id (recipient), transaction_tp, cycle",
+        ACCOUNTABILITY_RELEVANCE="PAC->candidate money + outside spending (24A/24E) -> POLITICS__MEMBER_PAC_MONEY. "
+                                 "Transaction-type buckets: contributions 24K/24Z/24C/24R, ad-FOR 24E/24F, ad-AGAINST 24A/24N.",
+        PRIORITY_TIER="1", DOMAIN_PRIMARY="money_in_politics", DOMAIN_SECONDARY=["elections_voting"],
+        ENTITY_TYPES=["payment"], HAS_EVENTS=True,
+        JOIN_KEYS_STD=["FEC_CMTE_ID", "FEC_CAND_ID"], JOIN_KEY_TIER="STEEL", JOIN_KEY_TIER_PROVISIONAL=False,
+        THEMES=["follow_the_money", "power_who_holds_it"],
+        NOTES="Loaded this session (scripts/fec_pas2_load.py) -> LANDING.FED_FEC_COMMITTEE_TO_CANDIDATE. "
+              "Built into POLITICS__MEMBER_PAC_MONEY. pas2 is a SUBSET of oth; never sum 24A+24E.",
+    ),
+    dict(
+        SOURCE_ID="fed_fec_independent_expenditures",
+        NAME="FEC Bulk Data -- Independent Expenditures (Schedule E)",
+        PUBLISHER="Federal Election Commission",
+        DESCRIPTION="Outside spending FOR or AGAINST candidates (Schedule E independent expenditures): who spent, "
+                    "how much, supporting or opposing which candidate. SUP_OPP flags the direction. The "
+                    "source-of-truth for outside for/against (never derived by summing pas2 24A/24E).",
+        UNIT_OF_OBSERVATION="one row = one independent expenditure",
+        TEMPORAL_COVERAGE="2024 + 2026 cycles", ACCESS_METHOD="bulk_download", FORMAT="csv (header)",
+        AUTH_REQUIRED="none", COST="free", UPDATE_CADENCE="weekly (cycle)", VOLUME="83,468 rows",
+        LICENSE_TERMS="Public domain (US Gov)",
+        URL="https://www.fec.gov/files/bulk-downloads/2024/independent_expenditure_2024.csv",
+        JOIN_KEYS="fec_cand_id (target), fec_cmte_id (spender), sup_opp",
+        ACCOUNTABILITY_RELEVANCE="The Super-PAC outside-money lens: who is being boosted/attacked and by whom; "
+                                 "carry support_amount / oppose_amount SEPARATELY.",
+        PRIORITY_TIER="1", DOMAIN_PRIMARY="money_in_politics", DOMAIN_SECONDARY=["elections_voting"],
+        ENTITY_TYPES=["payment"], HAS_EVENTS=True,
+        JOIN_KEYS_STD=["FEC_CMTE_ID", "FEC_CAND_ID"], JOIN_KEY_TIER="STEEL", JOIN_KEY_TIER_PROVISIONAL=False,
+        THEMES=["follow_the_money", "power_who_holds_it"],
+        NOTES="Loaded this session (scripts/fec_independent_expenditure_load.py) -> "
+              "LANDING.FED_FEC_INDEPENDENT_EXPENDITURES. This CSV (SUP_OPP) is the source of truth for "
+              "for/against; pas2/oth 24A/24E are coverage cross-check only.",
+    ),
+    dict(
+        SOURCE_ID="fed_fec_indiv_contributions",
+        NAME="FEC Bulk Data -- Itemized Individual Contributions (itcont) -- the 84M-row firehose",
+        PUBLISHER="Federal Election Commission",
+        DESCRIPTION="Every itemized (>$200 aggregate) individual contribution to a federal committee: donor name, "
+                    "city/state/ZIP, EMPLOYER + OCCUPATION (free-text), amount, date, recipient committee, and the "
+                    "conduit (OTHER_ID) for earmarked gifts. 84.2M rows, cycles 2024+2026. NO cycle column (the "
+                    "loader merged indiv24+indiv26) -- cycle is derived from TRANSACTION_DT (MMDDYYYY).",
+        UNIT_OF_OBSERVATION="one row = one itemized individual contribution",
+        TEMPORAL_COVERAGE="2024 + 2026 cycles (2023-2026 transaction dates)", ACCESS_METHOD="bulk_download",
+        FORMAT="pipe-delimited txt", AUTH_REQUIRED="none", COST="free", UPDATE_CADENCE="weekly (cycle)",
+        VOLUME="84,172,112 rows (~30-40GB uncompressed/cycle)", LICENSE_TERMS="Public domain (US Gov)",
+        URL="https://www.fec.gov/files/bulk-downloads/2024/indiv24.zip",
+        JOIN_KEYS="fec_cmte_id (recipient, STEEL), other_id (conduit), contributor name+employer (FUZZY -> EIN), ZIP",
+        ACCOUNTABILITY_RELEVANCE="The donor firehose -> POLITICS__MEMBER_INDIV_DONATIONS (itemized individual money "
+                                 "per member, referee-reconciled to OpenFEC within 0.54%). The employer free-text is "
+                                 "the (separate, fuzzy) bridge to industry/EIN.",
+        PRIORITY_TIER="1", DOMAIN_PRIMARY="money_in_politics", DOMAIN_SECONDARY=["money_finance"],
+        ENTITY_TYPES=["payment"], HAS_EVENTS=True,
+        JOIN_KEYS_STD=["FEC_CMTE_ID", "ZIP"], JOIN_KEY_TIER="STEEL", JOIN_KEY_TIER_PROVISIONAL=False,
+        THEMES=["follow_the_money", "power_who_holds_it"],
+        NOTES="Loaded this session (scripts/fec_itcont_load.py, bounded-memory stream) -> "
+              "LANDING.FED_FEC_INDIV_CONTRIBUTIONS. DEFINITION (locked by smoke_itcont.py referee): itemized "
+              "individual = SUM(tp 15+15E), MEMO_CD<>'X', NET of reattributions (all signs -- amt>0 OVERSTATES), "
+              "restricted to a member's authorized (P/A) committees (conduits ActBlue C00401224 / WinRed C00694323 "
+              "live under their own CMTE_ID, never an authorized cmte -> no earmark double-count). cycle-by-date is "
+              "accurate for on-cycle members; off-cycle per-cycle split has ~0.5% noise. EMPLOYER/OCCUPATION are "
+              "dirty free-text, never clean keys. See outputs/POLITICS_BUILD_RUNBOOK.md (Phase 5).",
+    ),
+    dict(
+        SOURCE_ID="fed_congress_committee_membership",
+        NAME="Congress -- Committee Membership (who chairs/sits on what)",
+        PUBLISHER="@unitedstates project (congress-legislators, public domain)",
+        DESCRIPTION="Current committee + subcommittee membership for Congress: which member sits on / chairs which "
+                    "committee, with rank and role. bioguide-keyed (joins straight to the member spine).",
+        UNIT_OF_OBSERVATION="one row = one (member, committee) assignment",
+        TEMPORAL_COVERAGE="119th Congress (current)", ACCESS_METHOD="bulk_download", FORMAT="yaml",
+        AUTH_REQUIRED="none", COST="free", UPDATE_CADENCE="continuous (git)", VOLUME="3,879 rows",
+        LICENSE_TERMS="CC0 1.0 (public domain)",
+        URL="https://github.com/unitedstates/congress-legislators",
+        JOIN_KEYS="bioguide, thomas_id (committee), rank, role",
+        ACCOUNTABILITY_RELEVANCE="The committee-power leg: who controls the gavels (chairs) and which members can "
+                                 "act on which industries -- the jurisdiction overlay for money/lobbying threads.",
+        PRIORITY_TIER="1", DOMAIN_PRIMARY="government_power", DOMAIN_SECONDARY=["money_in_politics"],
+        ENTITY_TYPES=["person", "organization"],
+        JOIN_KEYS_STD=["BIOGUIDE"], JOIN_KEY_TIER="STEEL", JOIN_KEY_TIER_PROVISIONAL=False,
+        THEMES=["power_who_holds_it"],
+        NOTES="Loaded this session (scripts/congress_committee_membership_load.py) -> "
+              "LANDING.FED_CONGRESS_COMMITTEE_MEMBERSHIP. bioguide join-rate ~100% to the member spine. " + _KEYFLAG,
+    ),
+
+    # === TIER 1 -- ELECTION OUTCOMES ("who won"), MEDSL constituency returns =====
+    # REALITY CHECK (verified against the data 2026-06-30): the constituency files do NOT
+    # carry FEC_candidate_id or ICPSR (the scouting brief was wrong) -- candidate is a NAME
+    # only. So the winner->member join is name+state+chamber (PROBABILISTIC, ~93-98% on
+    # recent cycles, measured), NOT a steel key. FIPS/state is the reliable GEO join.
+    dict(
+        SOURCE_ID="fed_medsl_senate_returns",
+        NAME="MEDSL -- U.S. Senate constituency returns (1976-2024)",
+        PUBLISHER="MIT Election Data + Science Lab (Harvard Dataverse)",
+        DESCRIPTION="State-level U.S. Senate general-election returns, one row per candidate-per-race-per-year: "
+                    "votes, total votes, party, special-election flag, runoff stage. The cleaned canonical "
+                    "'who won the Senate' source. NO FEC/ICPSR in the file -- winner joins to the member spine "
+                    "by name+state (fuzzy).",
+        UNIT_OF_OBSERVATION="one row = one candidate, one Senate race, one year",
+        TEMPORAL_COVERAGE="1976-2024 (complete -- Dataverse, ungated)",
+        GEOGRAPHIC_SCOPE="United States (50 states)",
+        ACCESS_METHOD="bulk_download", FORMAT="tab/csv", AUTH_REQUIRED="none", COST="free",
+        UPDATE_CADENCE="per election cycle", VOLUME="~3,945 candidate-rows",
+        LICENSE_TERMS="Attribution (cite MEDSL); see dataset terms",
+        URL="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/PEJ5QU",
+        JOIN_KEYS="candidate NAME + state_po (-> bioguide, PROBABILISTIC); state_fips (GEO); office; year",
+        ACCOUNTABILITY_RELEVANCE="Closes the 'money-in but not who-won' gap: a Senate winner's vote total + "
+                                 "margin joins (via name->bioguide) to FEC money raised, votes, and ideology. "
+                                 "-> POLITICS__WHO_WON.",
+        PRIORITY_TIER="1", DOMAIN_PRIMARY="elections_voting", DOMAIN_SECONDARY=["government_power"],
+        ENTITY_TYPES=["event", "person"], HAS_EVENTS=True,
+        JOIN_KEYS_STD=["FIPS"], JOIN_KEY_TIER="GEO", JOIN_KEY_TIER_PROVISIONAL=True,
+        THEMES=["power_who_holds_it"],
+        NOTES="Loaded this session (politics/loaders/build_who_won.py, Dataverse doi:10.7910/DVN/PEJ5QU file "
+              "1976-2024-senate-state.tab) -> LANDING.FED_MEDSL_SENATE_RETURNS. NO FEC_candidate_id/ICPSR in "
+              "source (brief was wrong) -> name+state spine join is PROBABILISTIC (2024 Senate matched 35/35). "
+              "Mode/stage casing differs old(lowercase) vs 2022+(uppercase) -- filter case-insensitively. " + _KEYFLAG,
+    ),
+    dict(
+        SOURCE_ID="fed_medsl_house_returns",
+        NAME="MEDSL -- U.S. House constituency returns (district level)",
+        PUBLISHER="MIT Election Data + Science Lab (Harvard Dataverse / GitHub)",
+        DESCRIPTION="District-level U.S. House general-election returns, one row per candidate-per-district-per-year. "
+                    "The 'who won the House' source. NO FEC/ICPSR -- winner joins to member by name+state+district.",
+        UNIT_OF_OBSERVATION="one row = one candidate, one House district race, one year",
+        TEMPORAL_COVERAGE="1976-2018 landed (ungated GitHub mirror); 1976-2024 available via a free Harvard "
+                          "Dataverse API token (MEDSL_DV_TOKEN) -- the Dataverse file is guestbook-gated",
+        GEOGRAPHIC_SCOPE="United States (435 districts)",
+        ACCESS_METHOD="bulk_download", FORMAT="tab/csv", AUTH_REQUIRED="none (GitHub) / token (full Dataverse)",
+        COST="free", UPDATE_CADENCE="per election cycle", VOLUME="~29,636 candidate-rows (1976-2018)",
+        LICENSE_TERMS="Attribution (cite MEDSL)",
+        URL="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/IG0UN2",
+        JOIN_KEYS="candidate NAME + state_po + district (-> bioguide, PROBABILISTIC); state_fips + district (GEO); year",
+        ACCOUNTABILITY_RELEVANCE="House 'who won + by how much' -> POLITICS__WHO_WON; joins to money/votes/ideology "
+                                 "by name->bioguide.",
+        PRIORITY_TIER="1", DOMAIN_PRIMARY="elections_voting", DOMAIN_SECONDARY=["government_power"],
+        ENTITY_TYPES=["event", "person"], HAS_EVENTS=True,
+        JOIN_KEYS_STD=["FIPS"], JOIN_KEY_TIER="GEO", JOIN_KEY_TIER_PROVISIONAL=True,
+        THEMES=["power_who_holds_it"],
+        NOTES="Loaded this session -> LANDING.FED_MEDSL_HOUSE_RETURNS (1976-2018 via GitHub MEDSL/"
+              "constituency-returns -- ungated). The complete 1976-2024 Dataverse file (doi:10.7910/DVN/IG0UN2) is "
+              "GUESTBOOK-GATED: set MEDSL_DV_TOKEN (free Harvard Dataverse account) and re-run to refresh to 2024. " + _KEYFLAG,
+    ),
+    dict(
+        SOURCE_ID="fed_medsl_president_returns",
+        NAME="MEDSL -- U.S. President state-level returns",
+        PUBLISHER="MIT Election Data + Science Lab (Harvard Dataverse / GitHub)",
+        DESCRIPTION="State-level U.S. presidential returns, one row per candidate-per-state-per-year. The "
+                    "'who won each state' geographic layer (no member-of-Congress join -- president is not in the "
+                    "bioguide spine).",
+        UNIT_OF_OBSERVATION="one row = one candidate, one state, one presidential year",
+        TEMPORAL_COVERAGE="1976-2016 landed (ungated GitHub mirror); 1976-2024 via MEDSL_DV_TOKEN (gated)",
+        GEOGRAPHIC_SCOPE="United States (50 states + DC)",
+        ACCESS_METHOD="bulk_download", FORMAT="tab/csv", AUTH_REQUIRED="none (GitHub) / token (full Dataverse)",
+        COST="free", UPDATE_CADENCE="every 4 years", VOLUME="~3,740 candidate-rows (1976-2016)",
+        LICENSE_TERMS="Attribution (cite MEDSL)",
+        URL="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/42MVDX",
+        JOIN_KEYS="state_fips (GEO); candidate NAME; year",
+        ACCOUNTABILITY_RELEVANCE="State-level presidential outcome -- the GEO layer that joins to county results, "
+                                 "CVAP demographics, and federal spending by FIPS (places, not people).",
+        PRIORITY_TIER="2", DOMAIN_PRIMARY="elections_voting", DOMAIN_SECONDARY=["government_power"],
+        ENTITY_TYPES=["event"], HAS_EVENTS=True,
+        JOIN_KEYS_STD=["FIPS"], JOIN_KEY_TIER="GEO", JOIN_KEY_TIER_PROVISIONAL=True,
+        THEMES=["power_who_holds_it"],
+        NOTES="Loaded this session -> LANDING.FED_MEDSL_PRESIDENT_RETURNS (1976-2016 via GitHub -- ungated). "
+              "Full 1976-2024 Dataverse file (doi:10.7910/DVN/42MVDX) is GUESTBOOK-GATED: set MEDSL_DV_TOKEN to "
+              "refresh. State-level only; no person join to the member spine.",
+    ),
+
     # === TIER 2 -- PERSONAL MONEY (PDF hell -- net worth + stock trades) =======
     dict(
         SOURCE_ID="fed_house_clerk_ptr",
