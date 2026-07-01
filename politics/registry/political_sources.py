@@ -699,6 +699,53 @@ SOURCES = [
         THEMES=["power_who_holds_it"],
         NOTES="ACCESS-FLAG: verify license/reuse terms; rhetoric for the say-vs-do moonshot. " + _KEYFLAG,
     ),
+
+    # === FJC judiciary spine (post-Phase-0: judiciary expansion, landed) =======
+    dict(
+        SOURCE_ID="fed_fjc_judges",
+        NAME="FJC Biographical Directory of Article III Federal Judges -- Judges",
+        PUBLISHER="Federal Judicial Center",
+        DESCRIPTION="The authoritative directory of every Article III federal judge (district, circuit, "
+                    "Supreme Court), 1789-present: name, demographics (gender, race/ethnicity), birth/death, "
+                    "keyed on the FJC nid. The judge dimension of the judiciary spine.",
+        UNIT_OF_OBSERVATION="one row = one Article III federal judge",
+        TEMPORAL_COVERAGE="1789-present",
+        ACCESS_METHOD="bulk_download", FORMAT="csv", AUTH_REQUIRED="none", COST="free",
+        UPDATE_CADENCE="continuous (nightly export)", VOLUME="~4,067 judges",
+        LICENSE_TERMS="Public domain (US Government work) -- non-binding citation requested",
+        URL="https://www.fjc.gov/history/judges",
+        JOIN_KEYS="nid (FJC judge PK); name (-> SCDB justice_name / JCS, name-match)",
+        ACCOUNTABILITY_RELEVANCE="The federal-judiciary person spine: who the judges are, and the base table for "
+                                 "recusal/conflict, appointment-pattern, and ideology (JCS) analysis.",
+        PRIORITY_TIER="2", DOMAIN_PRIMARY="government_power", DOMAIN_SECONDARY=[],
+        ENTITY_TYPES=["person"], JOIN_KEYS_STD=[], JOIN_KEY_TIER="STRONG", JOIN_KEY_TIER_PROVISIONAL=False,
+        NOTES="Landed via politics/loaders/build_fjc_judges.py. Marts: POLITICS__FJC_JUDGE (nid PK) + "
+              "POLITICS__FJC_SCOTUS_CROSSWALK (nid<->SCDB justice_name; 40/40 modern justices matched, with "
+              "match_method+confidence). Companion appointment file: fed_fjc_service. nid is the FJC person PK "
+              "(STRONG, measured); cross-source join to SCDB/JCS is name-match (PROBABILISTIC).",
+    ),
+    dict(
+        SOURCE_ID="fed_fjc_service",
+        NAME="FJC Biographical Directory of Article III Federal Judges -- Federal Judicial Service",
+        PUBLISHER="Federal Judicial Center",
+        DESCRIPTION="Normalized appointment records for every Article III judgeship: Court Type/Name, Appointing "
+                    "President + party, nomination/confirmation dates, Senate Ayes/Nays, commission and "
+                    "termination. One row per (nid, appointment sequence).",
+        UNIT_OF_OBSERVATION="one row = one judicial appointment (nid, sequence)",
+        TEMPORAL_COVERAGE="1789-present",
+        ACCESS_METHOD="bulk_download", FORMAT="csv", AUTH_REQUIRED="none", COST="free",
+        UPDATE_CADENCE="continuous (nightly export)", VOLUME="~4,766 appointments",
+        LICENSE_TERMS="Public domain (US Government work) -- non-binding citation requested",
+        URL="https://www.fjc.gov/history/judges",
+        JOIN_KEYS="nid (-> fed_fjc_judges / POLITICS__FJC_JUDGE)",
+        ACCOUNTABILITY_RELEVANCE="Who appointed each judge, the Senate confirmation vote, and tenure -- the "
+                                 "appointment/confirmation record behind the judiciary spine.",
+        PRIORITY_TIER="2", DOMAIN_PRIMARY="government_power", DOMAIN_SECONDARY=[],
+        ENTITY_TYPES=["person"], JOIN_KEYS_STD=[], JOIN_KEY_TIER="STRONG", JOIN_KEY_TIER_PROVISIONAL=False,
+        NOTES="Landed via politics/loaders/build_fjc_judges.py. Mart: POLITICS__FJC_APPOINTMENT. Carries the "
+              "Supreme Court appointment rows (Court Type='Supreme Court', 121 rows) used to build "
+              "POLITICS__FJC_SCOTUS_CROSSWALK.",
+    ),
 ]
 
 # ---------------------------------------------------------------------------
