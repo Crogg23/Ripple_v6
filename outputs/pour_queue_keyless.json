@@ -1131,15 +1131,6 @@
   ]
  },
  {
-  "name": "ACLED \u2014 Armed Conflict Location and Event Data",
-  "url": "https://acleddata.com/conflict-data/download-data",
-  "source_id": "intl_acled",
-  "jurisdiction": "international",
-  "identifiers": [
-   "COUNTRY"
-  ]
- },
- {
   "name": "ADB Data Library \u2014 Projects and Economic Indicators",
   "url": "https://data.adb.org/",
   "source_id": "intl_adb_data",

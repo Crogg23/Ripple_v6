@@ -39,3 +39,4 @@ library-onboarding/*.log
 # Scheduled-task heartbeat state (runtime, machine-local)
 outputs/_task_*_LAST.json
 outputs/_task_*_out.txt
+.dbt-venv/
