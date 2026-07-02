@@ -33,3 +33,6 @@ backups/
 outputs/connect_graph.json
 outputs/connect_fingerprints.json
 outputs/connection_explorer.html
+
+# Pour run logs — append-only console output, 50k+ lines per run; never track
+library-onboarding/*.log
