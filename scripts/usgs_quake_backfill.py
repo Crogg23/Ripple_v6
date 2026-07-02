@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Full-history backfill for USGS earthquakes (discovery sweep Phase 3 #46:
+"""DEPRECATED (2026-07-02) — one-off, NON-ATOMIC backfill. Kept for provenance only.
+Snapshot-replaces the live table in place (a mid-run crash leaves a partial rebuild).
+For any new or repeat bulk load use scripts/bridge_fuel_load.py, which lands through
+a staging table + atomic swap, density-gates, and guards the registry.
+
+Full-history backfill for USGS earthquakes (discovery sweep Phase 3 #46:
 FED_USGS_EARTHQUAKES is a 30-day rolling snapshot -- the whole table only ever
 sees the last month, so any "earthquakes over time" question is impossible). This
 turns the snapshot into a real ~16.5-year time series.
@@ -58,7 +63,7 @@ SID = "fed_usgs_earthquakes"
 BASE = "https://earthquake.usgs.gov/fdsnws/event/1"
 MIN_MAG = "2.5"
 UA = {"User-Agent": "Ripple-Library/1.0 (data onboarding; w.rogers9999@gmail.com)"}
-SCRATCH = Path("/private/tmp/claude-501/-Users-chrisr--Documents-GitHub-Ripple-v6/"
+SCRATCH = Path("c:/Code/Ripple_v6/.scratch/"
                "e8eac5fb-de36-4362-9440-da24a904b9b4/scratchpad")
 CAP = 20_000  # FDSNWS hard cap per query; we monitor to never silently truncate
 

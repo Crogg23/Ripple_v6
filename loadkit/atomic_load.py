@@ -39,9 +39,14 @@ def execute_swap(conn, table: str, *, database: str, schema: str) -> str:  # pra
     from snow import execute, fetch_scalar  # noqa: E402
 
     plan = swap_plan(table, database=database, schema=schema)
+    # Qualify INFORMATION_SCHEMA with the target database: unqualified it resolves
+    # against the SESSION's current database, which only happens to be LIBRARY_RAW
+    # today. A session parked elsewhere would see "table absent", take the rename
+    # path, and error (or worse, rename over nothing) — so pin it explicitly.
     exists = fetch_scalar(
         conn,
-        "SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = %s AND TABLE_NAME = %s",
+        f'SELECT COUNT(*) FROM "{database}".INFORMATION_SCHEMA.TABLES '
+        "WHERE TABLE_SCHEMA = %s AND TABLE_NAME = %s",
         (schema, table),
     )
     if exists:

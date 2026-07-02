@@ -1,0 +1,99 @@
+create or replace view CATALOG(
+	SOURCE_ID,
+	NAME,
+	DOMAIN_PRIMARY,
+	DOMAIN_SECONDARY,
+	JURISDICTION,
+	ENTITY_TYPES,
+	JOIN_KEYS_STD,
+	JOIN_KEY_TIER,
+	JOIN_KEY_TIER_PROVISIONAL,
+	THEMES,
+	HAS_EVENTS,
+	PRIORITY_TIER,
+	_REAL_MART,
+	LIFECYCLE,
+	LANDED_ROW_COUNT,
+	MART_ROW_COUNT,
+	RUN_ROWS,
+	IS_SAMPLE,
+	TRUST_LAYER,
+	LANDING_FQN,
+	IS_ORPHAN,
+	URL,
+	PUBLISHER,
+	DESCRIPTION
+) as
+WITH latest_run AS (
+    SELECT SOURCE_ID, STATUS, ROW_COUNT AS run_rows, MESSAGE, ENDED_AT
+    FROM LIBRARY_META.INGEST_LOGS.INGEST_RUNS
+    QUALIFY ROW_NUMBER() OVER (PARTITION BY SOURCE_ID ORDER BY ENDED_AT DESC, _LOADED_AT DESC) = 1
+),
+landed AS (
+    SELECT LOWER(TABLE_NAME) AS sid, TABLE_NAME, ROW_COUNT AS land_rows
+    FROM LIBRARY_RAW.INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='LANDING'
+),
+marts AS (
+    SELECT LOWER(SPLIT_PART(TABLE_NAME,'__',2)) AS sid, SUM(ROW_COUNT) AS mart_rows
+    FROM LIBRARY_MARTS.INFORMATION_SCHEMA.TABLES
+    WHERE POSITION('__' IN TABLE_NAME) > 0 AND TABLE_SCHEMA <> 'INFORMATION_SCHEMA'
+    GROUP BY 1
+),
+staging AS (
+    SELECT DISTINCT LOWER(SPLIT_PART(REGEXP_REPLACE(TABLE_NAME,'^STG_',''),'__',1)) AS sid
+    FROM LIBRARY_STAGING.INFORMATION_SCHEMA.TABLES
+    WHERE TABLE_NAME LIKE 'STG_%' AND POSITION('__' IN TABLE_NAME) > 0 AND TABLE_SCHEMA <> 'INFORMATION_SCHEMA'
+),
+ids AS (
+    SELECT SOURCE_ID FROM LIBRARY_META.REGISTRY.SOURCE_REGISTRY
+    UNION SELECT SOURCE_ID FROM latest_run
+    UNION SELECT sid AS SOURCE_ID FROM landed
+)
+SELECT
+    i.SOURCE_ID,
+    COALESCE(r.NAME, UPPER(i.SOURCE_ID)) AS NAME,
+    r.DOMAIN_PRIMARY, r.DOMAIN_SECONDARY, r.JURISDICTION,
+    r.ENTITY_TYPES, r.JOIN_KEYS_STD, r.JOIN_KEY_TIER, r.JOIN_KEY_TIER_PROVISIONAL,
+    r.THEMES, r.HAS_EVENTS, r.PRIORITY_TIER,
+    -- a mart counts as 'real' only if it isn't a 1-3 row stub over a non-trivial landing
+    (m.sid IS NOT NULL AND NOT (COALESCE(m.mart_rows,0) <= 1 OR (COALESCE(m.mart_rows,0) <= 3 AND COALESCE(l.land_rows,0) > COALESCE(m.mart_rows,0) * 4))) AS _real_mart,
+    CASE
+        WHEN (m.sid IS NOT NULL AND NOT (COALESCE(m.mart_rows,0) <= 1 OR (COALESCE(m.mart_rows,0) <= 3 AND COALESCE(l.land_rows,0) > COALESCE(m.mart_rows,0) * 4))) THEN 'modeled'
+        WHEN lr.STATUS='success' AND l.land_rows IS NULL THEN 'stale'
+        WHEN lr.STATUS='success' AND (
+                 LOWER(lr.MESSAGE) LIKE '%proof slice%'
+              OR LOWER(lr.MESSAGE) LIKE 'bulk portal load%of % rows.'
+              OR LOWER(lr.MESSAGE) LIKE '% sample%'
+              OR lr.run_rows IN (500,1000,2000,5000,10000,25000,50000,100000)
+             ) THEN 'sampled'
+        WHEN lr.STATUS='success' AND dp.NONEMPTY_RATIO IS NOT NULL AND dp.NONEMPTY_RATIO < 0.02 THEN 'empty'
+        WHEN lr.STATUS='success' THEN 'landed'
+        WHEN lr.SOURCE_ID IS NULL AND l.land_rows IS NOT NULL THEN 'landed'
+        WHEN lr.STATUS='failed' THEN 'failed'
+        WHEN lr.STATUS='empty' THEN 'empty'
+        WHEN r.INCLUDE='Y' THEN 'queued'
+        ELSE 'scouted'
+    END AS LIFECYCLE,
+    l.land_rows AS LANDED_ROW_COUNT,
+    m.mart_rows AS MART_ROW_COUNT,
+    lr.run_rows AS RUN_ROWS,
+    -- advisory: data is a capped/proof sample even if it has a mart
+    (lr.STATUS='success' AND (
+         LOWER(lr.MESSAGE) LIKE '%proof slice%' OR LOWER(lr.MESSAGE) LIKE '% sample%'
+      OR lr.run_rows IN (500,1000,2000,5000,10000,25000,50000,100000))) AS IS_SAMPLE,
+    CASE
+        WHEN (m.sid IS NOT NULL AND NOT (COALESCE(m.mart_rows,0) <= 1 OR (COALESCE(m.mart_rows,0) <= 3 AND COALESCE(l.land_rows,0) > COALESCE(m.mart_rows,0) * 4))) THEN 'mart'
+        WHEN s.sid IS NOT NULL THEN 'staging'
+        WHEN l.land_rows IS NOT NULL THEN 'raw'
+        ELSE 'none'
+    END AS TRUST_LAYER,
+    'LIBRARY_RAW.LANDING.' || UPPER(i.SOURCE_ID) AS LANDING_FQN,
+    IFF(r.SOURCE_ID IS NULL, TRUE, FALSE) AS IS_ORPHAN,
+    r.URL, r.PUBLISHER, r.DESCRIPTION
+FROM ids i
+LEFT JOIN LIBRARY_META.REGISTRY.SOURCE_REGISTRY r ON r.SOURCE_ID = i.SOURCE_ID
+LEFT JOIN latest_run lr ON lr.SOURCE_ID = i.SOURCE_ID
+LEFT JOIN landed l ON l.sid = i.SOURCE_ID
+    LEFT JOIN LIBRARY_META.REGISTRY.LANDING_DENSITY_PROBE dp ON dp.SOURCE_ID = i.SOURCE_ID
+LEFT JOIN marts m ON m.sid = i.SOURCE_ID
+LEFT JOIN staging s ON s.sid = i.SOURCE_ID;

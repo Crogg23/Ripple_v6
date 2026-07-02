@@ -135,14 +135,23 @@ def extract_json(text: str) -> dict:
         raise ValueError(f"Could not parse JSON ({exc}) from response:\n{text[:500]}")
 
 
-def extract_code(text: str, language: str = "python") -> str:
-    """Pull a fenced code block (defaulting to python) out of a response."""
+def extract_code_fenced(text: str, language: str = "python") -> Optional[str]:
+    """STRICT fence extraction: the fenced code block, or None if there isn't one.
+
+    ``extract_code`` below stays the forgiving parser (fence or whole-text
+    fallback). Callers that need to KNOW whether the model actually fenced its
+    code -- so they can re-ask instead of exec'ing prose -- use this one.
+    """
     fenced = re.search(
         rf"```(?:{language})?\s*(.*?)```", text, re.DOTALL | re.IGNORECASE
     )
-    if fenced:
-        return fenced.group(1).strip()
-    return text.strip()
+    return fenced.group(1).strip() if fenced else None
+
+
+def extract_code(text: str, language: str = "python") -> str:
+    """Pull a fenced code block (defaulting to python) out of a response."""
+    fenced = extract_code_fenced(text, language)
+    return fenced if fenced is not None else text.strip()
 
 
 # ---------------------------------------------------------------------------

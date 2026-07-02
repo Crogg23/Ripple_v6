@@ -49,8 +49,11 @@ class Config:
 
     # --- Anthropic ------------------------------------------------------
     anthropic_api_key: str = field(default_factory=lambda: os.getenv("ANTHROPIC_API_KEY", ""))
+    # Coalesce a PRESENT-BUT-BLANK env var (e.g. a bare `ANTHROPIC_MODEL=` line in
+    # .env, which load_dotenv sets to "") to the default -- otherwise model=""
+    # reaches the SDK and every call 400s.
     anthropic_model: str = field(
-        default_factory=lambda: os.getenv("ANTHROPIC_MODEL", "claude-sonnet-4-6")
+        default_factory=lambda: (os.getenv("ANTHROPIC_MODEL") or "").strip() or "claude-sonnet-4-6"
     )
 
     # --- Snowflake connection ------------------------------------------
@@ -93,6 +96,19 @@ class Config:
     # Unattended (auto-approve) self-repair: how many times to feed a stage error
     # back to Claude as feedback and retry before giving up on the source.
     auto_repair: int = field(default_factory=lambda: _int_env("ONBOARD_AUTO_REPAIR", 3))
+    # Quarantine: skip a source in --batch after this many FAILED attempts across
+    # re-runs, so a permanently-dead URL doesn't burn LLM spend every pour. Delete
+    # the source's onboarding_log.json entry to force a retry.
+    max_attempts: int = field(default_factory=lambda: _int_env("ONBOARD_MAX_ATTEMPTS", 3))
+
+    # --- Pour safety nets ----------------------------------------------
+    # Socket READ timeout applied around a generated fetch (snapshot + chunked) so a
+    # stalled/hung download can't stall an unattended pour. Per-read (idle) timeout,
+    # not total wall-clock -- a slow-but-progressing big download is fine (0 = no cap).
+    fetch_timeout_s: int = field(default_factory=lambda: _int_env("ONBOARD_FETCH_TIMEOUT_S", 1800))
+    # Snowflake session statement timeout, applied in snow.connect(). Stops a hung
+    # COPY/query from holding (and billing) the warehouse for the account default 48h.
+    statement_timeout_s: int = field(default_factory=lambda: _int_env("ONBOARD_STATEMENT_TIMEOUT_S", 3600))
 
     # --- Chunked load (C3 -- large files that won't fit in memory) ------
     # Rows per chunk written to Snowflake. The streamed download never holds more
@@ -116,12 +132,13 @@ class Config:
     browser_wait_until: str = field(
         default_factory=lambda: os.getenv("ONBOARD_BROWSER_WAIT_UNTIL", "domcontentloaded").strip()
     )
-    # Accept untrusted TLS certs. Default ON: this agent commonly runs behind a
-    # TLS-intercepting proxy whose CA the bundled Chromium does not trust, and the
-    # raw layer keeps a SHA-256 of every payload regardless.
+    # Accept untrusted TLS certs. Default OFF: this is an evidence platform, so the
+    # browser must not silently trust a forged/intercepted cert. Set
+    # ONBOARD_BROWSER_IGNORE_HTTPS_ERRORS=1 ONLY when you're knowingly behind a
+    # TLS-intercepting proxy whose CA the bundled Chromium doesn't trust (the raw
+    # layer still keeps a SHA-256 of every payload).
     browser_ignore_https_errors: bool = field(
-        default_factory=lambda: os.getenv("ONBOARD_BROWSER_IGNORE_HTTPS_ERRORS", "1").strip().lower()
-        not in ("0", "false", "no", "off")
+        default_factory=lambda: _flag("ONBOARD_BROWSER_IGNORE_HTTPS_ERRORS")
     )
 
     # ------------------------------------------------------------------

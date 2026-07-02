@@ -49,6 +49,10 @@ KEY_DOMAIN = {           # ~size of each key's value space, for the collision ma
     "IMO": 10**7, "MMSI": 10**9, "UEI": 36**12, "LEI": 36**20,
     "CCN": 10**6, "NAICS": 10**6, "NCES": 10**7, "DOCKET": 10**6, "SIC": 10**4,
     "FIPS": 10**5, "ZIP": 10**5, "COUNTRY": 300,
+    # Politician IDs (Step-K politics). BIOGUIDE = 1 letter + 6 digits -> 26 * 10^6.
+    # ICPSR = a small integer member number (live values up to ~40k; historical span
+    # comfortably inside 10^6). Honest value-space sizes so the collision math runs.
+    "BIOGUIDE": 26 * 10**6, "ICPSR": 10**6,
 }
 
 

@@ -3,22 +3,18 @@ SELECT on the data the CATALOG view points at, so the Snowflake MCP server can a
 Read-only grants only. Idempotent. Run as a role with MANAGE GRANTS / ACCOUNTADMIN.
 
     python3 scripts/grant_mcp_readonly_catalog.py
+
+All work lives in main() behind a __main__ guard — merely IMPORTING this module must
+never touch Snowflake (it used to GRANT at import time, which meant any tool that
+imported it for inspection silently ran DDL).
 """
-import sys, warnings
+import sys
+import warnings
+
 warnings.filterwarnings("ignore")
-sys.path.insert(0, "/Users/chrisr./Documents/GitHub/Ripple_v6/library-onboarding")
-from snow import connect
+sys.path.insert(0, "c:/Code/Ripple_v6/library-onboarding")
 
-conn = connect(); cur = conn.cursor()
-def ex(sql): cur.execute(sql)
-def scalar(sql):
-    cur.execute(sql); r = cur.fetchone(); return r[0] if r else None
-
-cur.execute("SHOW ROLES LIKE 'CLAUDE_MCP_READONLY'")
-if not cur.fetchall():
-    print("[SKIP] role CLAUDE_MCP_READONLY not found"); conn.close(); sys.exit(0)
-
-grants = [
+GRANTS = [
     "GRANT USAGE ON DATABASE LIBRARY_RAW TO ROLE CLAUDE_MCP_READONLY",
     "GRANT USAGE ON SCHEMA LIBRARY_RAW.LANDING TO ROLE CLAUDE_MCP_READONLY",
     "GRANT SELECT ON ALL TABLES IN SCHEMA LIBRARY_RAW.LANDING TO ROLE CLAUDE_MCP_READONLY",
@@ -37,22 +33,52 @@ grants = [
     "GRANT SELECT ON ALL VIEWS IN DATABASE LIBRARY_MARTS TO ROLE CLAUDE_MCP_READONLY",
     "GRANT SELECT ON FUTURE VIEWS IN DATABASE LIBRARY_MARTS TO ROLE CLAUDE_MCP_READONLY",
 ]
-ok = 0
-for g in grants:
-    try: ex(g); ok += 1
-    except Exception as e: print(f"  ERR {g[:60]}... -> {e}")
-print(f"[{'PASS' if ok==len(grants) else 'WARN'}] {ok}/{len(grants)} grants applied")
 
-try:
-    ex("USE ROLE CLAUDE_MCP_READONLY")
-    n1 = scalar("SELECT COUNT(*) FROM LIBRARY_RAW.LANDING.FED_OYEZ")
-    n2 = scalar("SELECT COUNT(*) FROM LIBRARY_META.REGISTRY.CATALOG")
-    n3 = scalar("SELECT COUNT(*) FROM LIBRARY_META.REGISTRY.V_SOURCE_KEY WHERE JOIN_KEY='IMO'")
-    print(f"[{'PASS' if all(x is not None for x in (n1,n2,n3)) else 'FAIL'}] read-role can query: "
-          f"OYEZ={n1}, CATALOG={n2}, vessel-key rows={n3}")
-except Exception as e:
-    print(f"[FAIL] read-role verify: {e}")
-finally:
-    ex("USE ROLE ACCOUNTADMIN")
-conn.close()
-print("PASS 0h COMPLETE")
+
+def main() -> int:
+    from snow import connect
+
+    conn = connect()
+    cur = conn.cursor()
+
+    def ex(sql):
+        cur.execute(sql)
+
+    def scalar(sql):
+        cur.execute(sql)
+        r = cur.fetchone()
+        return r[0] if r else None
+
+    cur.execute("SHOW ROLES LIKE 'CLAUDE_MCP_READONLY'")
+    if not cur.fetchall():
+        print("[SKIP] role CLAUDE_MCP_READONLY not found")
+        conn.close()
+        return 0
+
+    ok = 0
+    for g in GRANTS:
+        try:
+            ex(g)
+            ok += 1
+        except Exception as e:
+            print(f"  ERR {g[:60]}... -> {e}")
+    print(f"[{'PASS' if ok == len(GRANTS) else 'WARN'}] {ok}/{len(GRANTS)} grants applied")
+
+    try:
+        ex("USE ROLE CLAUDE_MCP_READONLY")
+        n1 = scalar("SELECT COUNT(*) FROM LIBRARY_RAW.LANDING.FED_OYEZ")
+        n2 = scalar("SELECT COUNT(*) FROM LIBRARY_META.REGISTRY.CATALOG")
+        n3 = scalar("SELECT COUNT(*) FROM LIBRARY_META.REGISTRY.V_SOURCE_KEY WHERE JOIN_KEY='IMO'")
+        print(f"[{'PASS' if all(x is not None for x in (n1, n2, n3)) else 'FAIL'}] read-role can query: "
+              f"OYEZ={n1}, CATALOG={n2}, vessel-key rows={n3}")
+    except Exception as e:
+        print(f"[FAIL] read-role verify: {e}")
+    finally:
+        ex("USE ROLE ACCOUNTADMIN")
+    conn.close()
+    print("PASS 0h COMPLETE")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

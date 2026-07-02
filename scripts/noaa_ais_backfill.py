@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Chunked, incremental multi-day backfill for NOAA AIS vessel positions
+"""DEPRECATED (2026-07-02) — one-off, NON-ATOMIC backfill. Kept for provenance only.
+Appends directly to the live table (a mid-run crash leaves a partial day). For any
+new or repeat bulk load use scripts/bridge_fuel_load.py, which lands through a
+staging table + atomic swap, density-gates, and guards the registry.
+
+Chunked, incremental multi-day backfill for NOAA AIS vessel positions
 (discovery sweep #4: FED_NOAA_AIS is a single 24h snapshot, 2024-01-01 only --
 the entire OFAC/OpenSanctions <-> AIS bridge sees one calendar day). Each extra
 day turns the snapshot into a surveillance time series and unlocks loitering /
@@ -52,7 +57,7 @@ TABLE = "FED_NOAA_AIS"
 SID = "fed_noaa_ais"
 UA = {"User-Agent": "Ripple-Library/1.0 (data onboarding; w.rogers9999@gmail.com)"}
 CHUNK = 500_000
-SCRATCH = Path("/private/tmp/claude-501/-Users-chrisr--Documents-GitHub-Ripple-v6/"
+SCRATCH = Path("c:/Code/Ripple_v6/.scratch/"
                "e8eac5fb-de36-4362-9440-da24a904b9b4/scratchpad")
 
 # marinecadastre CSV header -> landing column. Their casing is CamelCase; the table

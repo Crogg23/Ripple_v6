@@ -49,10 +49,15 @@ python -m connect eval           # precision/recall of the fuzzy resolver (the m
 | `resolve.py` | fuzzy name+place linkage (blocking + Jaro-Winkler), **gated** | `ENTITY_LINKS` |
 | `evaluate.py` | P/R/F1 of the resolver vs hard-ID ground truth | `GOLD_PAIRS` |
 
-**Why fuzzy is gated:** `connect eval` shows name+ZIP fuzzy matching tops out ~0.77
-precision (two different "JOHN SMITH"s in one ZIP both score 1.0) — a lead generator,
-not safe for auto-merge. So `resolve` only writes `ENTITY_LINKS` (REVIEW band); it never
-touches the spine. Promoting links is a deliberate post-eval step.
+**Why fuzzy is gated:** the resolver is calibrated against held-out hard-ID ground truth
+(`connect eval` / `calibrate.py`, multi-pass blocking; rung cut-points come from MEASURED
+precision, not the model's self-opinion). Current reality: the top **CONFIRMED rung measures
+0.876 precision at 0.46 recall** — even the best rung is wrong about 1 match in 8, and it
+only reaches about half the true pairs. And that's measured on a single population (health
+providers); don't assume it transfers to other domains. So fuzzy is a lead generator, not
+safe for auto-merge: `resolve` only writes `ENTITY_LINKS` (REVIEW band); it never touches
+the spine. Promoting links is a deliberate post-eval step, and anything that surfaces a
+rung label must show its measured precision next to it.
 
 ## How it works
 

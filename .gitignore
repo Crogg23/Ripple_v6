@@ -33,3 +33,13 @@ backups/
 outputs/connect_graph.json
 outputs/connect_fingerprints.json
 outputs/connection_explorer.html
+
+# Pour run logs — append-only console output, 50k+ lines per run; never track
+library-onboarding/*.log
+# Scheduled-task heartbeat state (runtime, machine-local)
+outputs/_task_*_LAST.json
+outputs/_task_*_out.txt
+.dbt-venv/
+# ripple CLI runtime state (machine-local)
+outputs/_ripple_state.json
+outputs/_ripple_domain_approvals.json

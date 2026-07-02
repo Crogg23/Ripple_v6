@@ -31,3 +31,38 @@ models:
     marts:
       +materialized: table
       +database: LIBRARY_MARTS
+      # Disabled 2026-07-01 (housekeeping): broken 1-row / degenerate stubs from
+      # failed source ingestion. The tables were dropped and snapshotted to
+      # LIBRARY_MARTS._RESTORE_20260701 by scripts/housekeeping_cleanup.py.
+      # Re-enable (flip to true, dbt run) once the underlying source is re-ingested
+      # correctly. Rationale: outputs/housekeeping_HARDENED_2026-07-01.md (B5).
+      civil_rights:
+        civil_rights__fed_nara_wra_aad:
+          +enabled: false
+      corporate_registry:
+        corporate_registry__intl_ie_cro:
+          +enabled: false
+      economics:
+        economics__fed_hhs_taggs:
+          +enabled: false
+        economics__intl_ch_zefix:
+          +enabled: false
+        economics__intl_gr_gemi:
+          +enabled: false
+      government_records:
+        government_records__fed_nara_aad:
+          +enabled: false
+      historical_records:
+        historical_records__fed_slavevoyages_intraamerican:
+          +enabled: false
+      justice:
+        justice__fed_doj_crt_cases:
+          +enabled: false
+        justice__fed_fjc_idb:
+          +enabled: false
+      legal_enforcement:
+        legal_enforcement__fed_naag_multistate_settlements:
+          +enabled: false
+      regulation:
+        regulation__fed_fdic_enforcement:
+          +enabled: false

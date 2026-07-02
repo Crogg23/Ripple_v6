@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
-"""Year-by-year backfill for NOAA NCEI Storm Events (discovery sweep #77:
+"""DEPRECATED (2026-07-02) — one-off, NON-ATOMIC backfill. Kept for provenance only.
+Appends directly to the live table (a mid-run crash leaves a partial year). For any
+new or repeat bulk load use scripts/bridge_fuel_load.py, which lands through a
+staging table + atomic swap, density-gates, and guards the registry.
+Provenance fix 2026-07-02: the meta column is now _INGESTED_AT stamped TIMESTAMP_NTZ
+(was underscore-less INGESTED_AT epoch-micros NUMBER) — if the live table still
+carries the old column, migrate it before re-running (the strict column selection
+below will otherwise fail loudly, never mis-stamp).
+
+Year-by-year backfill for NOAA NCEI Storm Events (discovery sweep #77:
 FED_NOAA_STORM_EVENTS was a single-year SNAPSHOT -- 2025 only, 72,360 rows --
 so every "storms over time" question saw one year). This appends the modern,
 event-type-consistent era (1996-2024) and turns the snapshot into a ~29-year
@@ -20,9 +29,10 @@ Each year is a small .csv.gz (a few MB; ~50k-80k rows). This STREAMS each gz to
 the scratchpad, reads it in chunks, and APPENDS (overwrite=False) to
 LIBRARY_RAW.LANDING.FED_NOAA_STORM_EVENTS matching its existing schema:
   - 51 data cols = the CSV header verbatim (BEGIN_YEARMONTH ... DATA_SOURCE)
-  - 3 meta cols  = INGESTED_AT (NUMBER, epoch microseconds), SOURCE_RUN_ID, SRC_SHA256
-    (NOTE: this table's meta cols have NO leading underscore and INGESTED_AT is a
-    NUMBER epoch-us, matching how the original template loader wrote 2025.)
+  - 3 meta cols  = _INGESTED_AT (TIMESTAMP_NTZ), SOURCE_RUN_ID, SRC_SHA256
+    (HISTORY: the original template loader wrote 2025 with an underscore-less
+    INGESTED_AT as NUMBER epoch-us; fixed to the shared contract 2026-07-02 —
+    see the DEPRECATED header for the migration caveat.)
 
 Idempotent: a YEAR already present in the table is skipped, so re-running never
 duplicates. Per-year SHA-256 is computed from the raw gz bytes for provenance.
@@ -71,14 +81,14 @@ SID = "fed_noaa_storm_events"
 BASE = "https://www.ncei.noaa.gov/pub/data/swdi/stormevents/csvfiles/"
 UA = {"User-Agent": "Ripple-Library/1.0 (data onboarding; w.rogers9999@gmail.com)"}
 CHUNK = 250_000
-SCRATCH = Path("/private/tmp/claude-501/-Users-chrisr--Documents-GitHub-Ripple-v6/"
+SCRATCH = Path("c:/Code/Ripple_v6/.scratch/"
                "e8eac5fb-de36-4362-9440-da24a904b9b4/scratchpad")
 
 ERA_START, ERA_END = 1996, 2024  # modern, full event-type taxonomy; 2025 = snapshot already loaded
 
 # The 51 data columns, in table order, are the CSV header verbatim. We pull them
 # straight from each file's header (defensive: NCEI has been stable here for years).
-META_INGESTED_AT = "INGESTED_AT"      # NUMBER, epoch microseconds (matches existing 2025 rows)
+META_INGESTED_AT = "_INGESTED_AT"     # TIMESTAMP_NTZ — the shared provenance contract
 META_SOURCE_RUN_ID = "SOURCE_RUN_ID"
 META_SRC_SHA256 = "SRC_SHA256"
 
@@ -143,7 +153,9 @@ def _load_year(conn, year: int, fn: str, table_cols: list[str], run_id: str) -> 
         sha = hashlib.sha256(tmp.read_bytes()).hexdigest()
         size = tmp.stat().st_size
         started = ingest._utcnow()
-        ingested_us = int(started.timestamp() * 1_000_000)  # epoch microseconds (table is NUMBER)
+        # TIMESTAMP_NTZ like every other loader (was epoch-micros NUMBER — the
+        # provenance type drift the 2026-07-02 audit flagged).
+        ingested_at = started.replace(tzinfo=None)
         data_cols = [c for c in table_cols
                      if c not in {META_INGESTED_AT, META_SOURCE_RUN_ID, META_SRC_SHA256}]
         appended = 0
@@ -155,7 +167,7 @@ def _load_year(conn, year: int, fn: str, table_cols: list[str], run_id: str) -> 
                 if c not in chunk.columns:
                     chunk[c] = ""  # defensive against header drift
             out = chunk[data_cols].copy()
-            out[META_INGESTED_AT] = ingested_us
+            out[META_INGESTED_AT] = ingested_at
             out[META_SOURCE_RUN_ID] = run_id
             out[META_SRC_SHA256] = sha
             out = out[table_cols]  # exact table order

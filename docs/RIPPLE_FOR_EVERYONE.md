@@ -6,7 +6,7 @@
 
 ## Start with a true story
 
-A few weeks ago, this system found **773 doctors who had been officially banned from the U.S. healthcare system — but were still cashing checks from pharmaceutical companies.**
+A few weeks ago, this system flagged **773 providers who had been officially banned from the U.S. healthcare system — and who nonetheless appear in pharmaceutical payment records.** Each one is a lead waiting for a human to review; some of the payments may predate the ban. But every single one is a thread worth pulling.
 
 It found them in about five minutes.
 
@@ -38,7 +38,7 @@ Ripple does four things, in order. Four simple verbs:
 
 1. **🔭 SCOUT** — It crawls the internet and catalogs hundreds of thousands of public datasets, noting what's in each one. (Like walking every aisle of the world's biggest library and writing down what's on every shelf.)
 
-2. **📥 COLLECT** — It picks a dataset and carefully copies it into one organized warehouse — cleaning up the mess as it goes. A human checks the work at five points along the way. Nothing happens automatically without a thumbs-up.
+2. **📥 COLLECT** — It picks a dataset and carefully copies it into one organized warehouse — cleaning up the mess as it goes. A human checks the work at six points along the way. Nothing happens automatically without a thumbs-up.
 
 3. **🔗 CONNECT** — This is the magic. It looks across all the cleaned-up data and finds the *same real thing* showing up in two places it shouldn't. The same doctor. The same company. The same ship.
 

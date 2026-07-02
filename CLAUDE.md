@@ -9,7 +9,7 @@ Everything Claude Code needs to work with Chris on this repo. Read this before t
 Three layers. Every decision maps to one of them:
 
 - **The Library** — Snowflake data warehouse ingesting public + paid data across any domain. This repo builds and maintains it.
-- **The Catalog** — Source registry + connection map, Snowflake-native in `LIBRARY_META` (`REGISTRY.SOURCE_REGISTRY`, ~900 sources; `INGEST_LOGS.INGEST_RUNS` logs every load). Shows how datasets relate across domains.
+- **The Catalog** — Source registry + connection map, Snowflake-native in `LIBRARY_META` (`REGISTRY.SOURCE_REGISTRY`; `INGEST_LOGS.INGEST_RUNS` logs every load). Shows how datasets relate across domains.
 - **The Publishing Layer** — Website where findings become stories told through data viz. Not this repo's concern yet.
 
 **Stack is non-negotiable:** Python, Snowflake, dbt, Plotly. Never suggest something outside it.
@@ -26,19 +26,38 @@ A source onboarding agent that takes a URL (or runs a full batch) and fully onbo
 
 ```
 python onboard.py --url https://some-data-source.gov/api
-python onboard.py --batch   # runs all 37 sources in sources_queue.py
+python onboard.py --batch --queue outputs/pour_queue_keyless.json   # the real batch mechanism
+python onboard.py --batch   # legacy demo queue (sources_queue.py) — kept for smoke tests
 ```
 
-**Five checkpoints per source:**
+`--queue <file.json>` is how real pours run: a JSON list of `{name, url, source_id,
+jurisdiction, identifiers}` entries. It implies `--batch`, resumes via `onboarding_log.json`,
+and composes with `--yes` (unattended), `--skip-dbt` (land-only), `--limit N` (wave pacing),
+and `--repair N` (auto-repair cap). `sources_queue.py` is the original built-in demo queue —
+still what bare `--batch` runs, but not how the Library gets filled anymore.
+
+**Six checkpoints per source:**
 ```
 [1] RECON    → Claude reads the source, extracts schema + access pattern
 [2] SCRIPT   → Claude writes the ingestion script
 [3] LOAD     → Script runs, lands in LIBRARY_RAW.LANDING (+ logs the run), shows row counts + sample
 [4] DBT      → Claude generates staging + mart models, writes to dbt project
 [5] REGISTRY → Upserts the source into LIBRARY_META.REGISTRY.SOURCE_REGISTRY
+[6] CONNECT  → Incrementally links the just-landed table into the connection graph
 ```
 
 Chris approves each checkpoint before anything executes. `go` / `edit [feedback]` / `skip` / `abort`.
+
+A batch entry can finish in more states than done/failed. The log statuses that matter:
+
+- `complete` — all checkpoints ran, data is real.
+- `failed` — auto-repair exhausted or a crash; retried on the next run (up to the quarantine cap).
+- `empty` — it loaded, but the density gate says there's no real data in it. Counts as an
+  attempt, never registers as a live source.
+- `needs_key` — recon found the source needs an API key that isn't in `.env`. Skipped before
+  codegen (no LLM burn); retried automatically once the key shows up.
+- `already_cataloged` — the minted SOURCE_ID already has landed data in the Library. Terminal —
+  pin a different `source_id` in the queue if it's genuinely a new source.
 
 **Snowflake (the live Ripple v6 stack):**
 - Account: `ONEAFDA-UMB20733` · User: `CROGG23`
@@ -232,7 +251,7 @@ Without the registry row, the Library is just a pile of tables nobody can naviga
 
 When asked to research a data source before building:
 
-1. **Check what's already in the Library first.** Query `LIBRARY_META.REGISTRY.SOURCE_REGISTRY` (~900 sources cataloged) and `LIBRARY_RAW.LANDING` — don't re-scout what exists.
+1. **Check what's already in the Library first.** Query `LIBRARY_META.REGISTRY.CATALOG` (the faceted view over `SOURCE_REGISTRY`) and `LIBRARY_RAW.LANDING` — don't re-scout what exists.
 2. **Use web search.** Sources change. Don't rely on training data.
 3. **Pull live metadata where APIs self-describe:**
    - Census: `https://api.census.gov/data.json`
@@ -375,8 +394,10 @@ SELECT c.source_id, c.domain_primary FROM LIBRARY_META.REGISTRY.CATALOG c
 JOIN LIBRARY_META.REGISTRY.V_SOURCE_KEY k USING (source_id) WHERE k.join_key IN ('IMO','MMSI');
 ```
 
-Scale as of 2026-06-27: **~1,647 sources cataloged · ~101 with full data (76 landed + 25 modeled) · 594
-sampled (mostly the 593 open-data portals) · 854 scouted.** The bridge views (`V_SOURCE_DOMAIN`,
+**Scale changes constantly — never trust a number written in prose (including this file).** The
+canonical live counts are `LIBRARY_META.REGISTRY.V_STATE` (one row per metric: sources by lifecycle,
+landing tables/rows, leads, edges, drift flags) or a direct `CATALOG` query like the ones above.
+If a doc and V_STATE disagree, V_STATE wins. The bridge views (`V_SOURCE_DOMAIN`,
 `V_SOURCE_THEME`, `V_SOURCE_KEY`) let you filter by `=` instead of array functions; `V_REVIEW_QUEUE`
 holds what still needs a human topic/classification call. Helper script + design/build docs:
 `scripts/grant_mcp_readonly_catalog.py`, `outputs/library_org_BUILD_SPEC_2026-06-25.md`.

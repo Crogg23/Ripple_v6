@@ -62,6 +62,9 @@ def fetch_candidates(
     conds = [
         "URL IS NOT NULL AND TRIM(URL) <> ''",
         "REGEXP_LIKE(SOURCE_ID, '^(fed|intl|xc|loc|st)_.*')",
+        # License guard: sources whose raw rows may not be redistributed (ACLED et al.)
+        # never enter an unattended queue — landing them is a policy decision, not a pour.
+        "COALESCE(REDISTRIBUTION_RESTRICTED, FALSE) = FALSE",
     ]
     params: dict = {"limit": int(limit)}
 
