@@ -34,6 +34,7 @@ RULE_LABEL = {
     "sanctioned_vessel_broadcasting":    "Sanctioned ships in the AIS archive",
     "sanctioned_vessel_broadcasting_v2": "Sanctioned ships in the AIS archive (OFAC ∪ OpenSanctions)",
     "debarred_but_funded":               "Debarred firms holding federal contract awards",
+    "sec_filer_in_irs_bmf":              "SEC filers whose EIN appears in the IRS exempt-org roster",
 }
 # story-relevant columns for each detector's drill-in (left = the flag, right = the active
 # rows). Rules whose right side is a staging view fall back to SELECT * (the column check
@@ -63,6 +64,9 @@ DETAIL = {
         "left":  ["ENTITY_NAME", "CLASSIFICATION", "EXCLUSION_TYPE", "EXCLUDING_AGENCY", "UEI"],
         "right": ["RECIPIENT_NAME", "AWARDING_AGENCY_NAME", "FEDERAL_ACTION_OBLIGATION",
                   "ACTION_DATE", "AWARD_ID_PIID", "RECIPIENT_UEI"], "rlimit": 300},
+    "sec_filer_in_irs_bmf": {
+        "left":  ["NAME", "CIK", "SIC", "FORM", "EIN"],
+        "right": ["NAME", "CITY", "STATE", "SUBSECTION", "NTEE_CD", "EIN"], "rlimit": 300},
 }
 
 # ----------------------------------------------------------------- db (1 conn + lock)

@@ -90,6 +90,15 @@ KEY_TOKENS: dict[str, tuple[str, set[str]]] = {
     "CIK":    ("STEEL", {"cik"}),
     "UEI":    ("STEEL", {"uei"}),
     "DUNS":   ("STEEL", {"duns"}),
+    # BIOGUIDE — the Congressional member ID (1 letter + 6 digits, e.g. 'S000148').
+    # 'bioguide' is a distinctive whole-token (no false friend anywhere), so a bare
+    # token match is safe. Makes every legislator a first-class spine entity.
+    "BIOGUIDE": ("STEEL", {"bioguide"}),
+    # ICPSR — the Voteview/ICPSR member number (small integer, e.g. '40305'). The
+    # 'icpsr' token has ONE dangerous false friend: STATE_ICPSR (a STATE code, tokens
+    # -> {icpsr, state}). So ICPSR matches 'icpsr' UNLESS 'state' co-occurs on the
+    # same column -- the EXCLUDE set below. (See KEY_EXCLUDE + tokens() matching.)
+    "ICPSR":  ("STEEL", {"icpsr"}),
     # DOI (digital object identifier) is DELIBERATELY EXCLUDED. Auditing the 8
     # datasets a 'doi' token matched showed 0 real DOIs — every hit was "Date Of
     # Injury" (median_days_doi_to_order...) or an env-justice "Demographic Index"
@@ -127,6 +136,15 @@ PAIR_RULES: list[tuple[str, tuple[str, str]]] = [
     ("ZIP", ("postal", "code")),
 ]
 
+# Exclusion tokens: a key matches its KEY_TOKENS only if NONE of these co-occur in
+# the SAME token set. This is how we disambiguate a false friend that shares a
+# token with a real key -- e.g. STATE_ICPSR (a state code, tokens {icpsr, state})
+# must NOT tag as the member key ICPSR. The 'state' token vetoes the ICPSR match.
+# (The DOI note above wanted exactly this kind of disambiguating co-token guard.)
+KEY_EXCLUDE: dict[str, set[str]] = {
+    "ICPSR": {"state"},
+}
+
 import re
 
 _CAMEL = re.compile(r"(?<=[a-z0-9])(?=[A-Z])")
@@ -158,7 +176,7 @@ def tag_columns(columns) -> tuple[list[str] | None, str | None]:
 
     matched: list[str] = []
     for key, (_tier, toks) in KEY_TOKENS.items():
-        if all_tokens & toks:
+        if (all_tokens & toks) and not (all_tokens & KEY_EXCLUDE.get(key, set())):
             matched.append(key)
     for key, (a, b) in PAIR_RULES:
         if key not in matched and a in all_tokens and b in all_tokens:
@@ -357,10 +375,16 @@ def cmd_selftest() -> int:
         (["naics_code", "company"], {"NAICS", "NAME"}, "STRONG"),
         (["country", "iso3"], {"COUNTRY"}, "GEO"),
         (["full_name", "address"], {"NAME", "ADDRESS"}, "PROBABILISTIC"),
+        # politician IDs (Step-K politics) — first-class STEEL member keys
+        (["bioguide", "name_last"], {"BIOGUIDE", "NAME"}, "STEEL"),
+        (["icpsr", "party_code"], {"ICPSR"}, "STEEL"),
+        (["icpsr_id", "congress"], {"ICPSR"}, "STEEL"),
         # honest non-matches: generic columns are NOT keys
         (["id", "value", "date"], set(), "NONE"),
         (["protein", "weight"], set(), "NONE"),     # 'protein' must NOT match EIN
         (["description", "status"], set(), "NONE"),
+        (["state_icpsr", "party_code"], set(), "NONE"),  # STATE_ICPSR is a STATE code, NOT member ICPSR
+        (["fec_case_ids", "status"], set(), "NONE"),     # EPA Formal-Enforcement-Case, NOT an FEC key
         ([], None, None),                            # empty -> unassessable
         (None, None, None),                          # unknown -> unassessable
     ]

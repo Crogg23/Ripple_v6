@@ -41,6 +41,7 @@ GOLDEN_SQL_SHA256 = {
     "banned_but_paid": "3d4a4b56892bf11e07d2493c789c74079028445344990498820efbd856e4e4fc",
     "excluded_but_billing": "4119e84c250089fbdaf1d18f21e3bae86339d15ac075700f81f0d05a4b238120",
     "sanctioned_vessel_broadcasting_v2": "4339d5c832a1e26c145ab600194bfc8284cbe9e8f6e53673573249ecc04ecd7e",
+    "sec_filer_in_irs_bmf": "fb99366bd1849ba4d77024dcbdc8e9470f56c52e17fc033778bcd6268a7e480b",
 }
 
 
@@ -261,3 +262,52 @@ def test_rung_display_carries_measured_precision():
 def test_rung_display_without_measurement_never_implies_confidence():
     s = leads.rung_display("STRONG")
     assert "no measured precision" in s and "uncalibrated" in s
+
+
+# ---- EIN detector: SEC filer ⋈ IRS exempt-org master file (Wave-6 lever) --------------
+
+def test_ein_spec_compiles_as_ein_intersection():
+    """The EIN detector is a hard-key intersection on the 9-digit EIN — both sides
+    normalized pad-9, joined on the canonical key K_N."""
+    spec = JOBS["sec_filer_in_irs_bmf"]
+    sql = leads.compile_sql(spec, as_of="2026-01-01")
+    # EIN pad-9 normalization (keys.py 'pad' 9 -> LPAD to 9) on BOTH sides, joined on K_N
+    assert "LPAD" in sql and "9, '0'" in sql
+    assert "a.K_N = l.K_N" in sql
+    # right table is the IRS BMF; left is the GOOD SEC financials table
+    assert "LIBRARY_RAW.LANDING.FED_SEC_EDGAR_FINANCIALS" in sql
+    assert "LIBRARY_RAW.LANDING.FED_IRS_BMF" in sql
+
+
+def test_ein_spec_never_touches_the_poisoned_sec_table():
+    """FED_US_SEC_EDGAR's EIN column is junk (25 distinct EINs on 48,990 rows) — the
+    detector must use FED_SEC_EDGAR_FINANCIALS instead, never the poisoned table."""
+    spec = JOBS["sec_filer_in_irs_bmf"]
+    assert spec["left"]["table"] != "FED_US_SEC_EDGAR"
+    sql = leads.compile_sql(spec, as_of="2026-01-01")
+    assert "FED_US_SEC_EDGAR" not in sql
+
+
+def test_ein_spec_uses_org_display_no_surname_gate():
+    """Both sides are org lists -> single-name display; require_surname is person-only,
+    so no surname corroboration predicate must appear."""
+    spec = JOBS["sec_filer_in_irs_bmf"]
+    assert "name_col" in spec["left"] and "name_cols" not in spec["left"]
+    assert not spec.get("require_surname")
+    sql = leads.compile_sql(spec, as_of="2026-01-01")
+    assert "L_NAME" in sql            # org single-name display
+    assert "R_LAST" not in sql        # no person columns on the right
+    assert "l.L_LAST = a.R_LAST" not in sql   # no surname gate
+
+
+def test_ein_spec_carries_evidence_and_neutral_title():
+    """Evidence carries SEC CIK (left) + IRS name/state/ntee (right); the title is a
+    neutral co-occurrence claim, never a violation assertion."""
+    spec = JOBS["sec_filer_in_irs_bmf"]
+    sql = leads.compile_sql(spec, as_of="2026-01-01")
+    assert "'cik'" in sql                                   # left CIK in title fields
+    assert "'irs_name'" in sql and "'state'" in sql and "'ntee'" in sql
+    t = spec["title_template"]
+    assert "also appears in" in t                           # co-occurrence phrasing
+    for banned in ("violat", "illegal", "fraud", "banned", "crime"):
+        assert banned not in t.lower(), f"title overclaims: {banned!r}"

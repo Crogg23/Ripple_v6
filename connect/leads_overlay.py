@@ -60,6 +60,8 @@ LABEL = {
     "FED_CMS_PART_D_PRESCRIBERS":  "Medicare Part D\nprescribers",
     "FED_NOAA_AIS":                "NOAA AIS archive\n(ship tracks)",
     "FED_USASPENDING_CONTRACTS":   "USASpending\ncontracts",
+    "FED_SEC_EDGAR_FINANCIALS":    "SEC EDGAR\nfinancial filers",
+    "FED_IRS_BMF":                 "IRS exempt-org\nmaster file (BMF)",
 }
 
 # hand-tuned vertical ORDER for the tables we know (top -> bottom per column).
@@ -82,6 +84,7 @@ ROWS = {
     "FED_HHS_OIG_LEIE": 83464, "FED_OFAC_SDN": 19115, "FED_SAM_EXCLUSIONS": 1000,
     "FED_CMS_OPEN_PAYMENTS": 15385047, "FED_CMS_FACILITY_AFFILIATION": 2239952,
     "FED_NOAA_AIS": 7296275, "FED_USASPENDING_CONTRACTS": 6325622,
+    "FED_SEC_EDGAR_FINANCIALS": 55635, "FED_IRS_BMF": 1974830,
 }
 
 # fallback lead counts if the warehouse is unreachable — one entry per rule in JOBS
@@ -89,7 +92,7 @@ ROWS = {
 FALLBACK_COUNTS = {
     "banned_but_paid": 773, "excluded_but_billing": 236, "banned_but_operating": 11,
     "sanctioned_vessel_broadcasting_v2": 6, "sanctioned_vessel_broadcasting": 2,
-    "debarred_but_funded": 2,
+    "debarred_but_funded": 2, "sec_filer_in_irs_bmf": 3,
 }
 
 BG = "#0d1117"

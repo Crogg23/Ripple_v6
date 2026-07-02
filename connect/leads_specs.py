@@ -230,20 +230,51 @@ JOBS: dict[str, dict] = {
         "score": {"breadth_w": 1.0, "breadth_div": 200.0},
         "no_fanout_guard": True,
     },
-}
 
-# --------------------------------------------------------------------------- #
-# BLOCKED -- ready to enable once Phase 3 lands the IRS BMF / Form 990 file.
-# EIN bridge (#50): SEC EDGAR (carries EIN) ⋈ IRS exempt-org file on the 9-digit
-# EIN -- Caterpillar & VF Corp already proved the bridge on the IRS revocation list
-# (n=2). Add to JOBS once an EIN-bearing SEC table AND the IRS BMF are landed:
-#
-# "ein_bridge_sec_irs": {
-#     "rule_name": "ein_bridge_sec_irs",
-#     "title_template": "{l_name} — SEC filer (CIK {cik}) also on the IRS exempt-org file (EIN {ein}); {count} record(s)",
-#     "left":  {"table": "<SEC_TABLE_WITH_EIN>", "key": "EIN", "key_col": "EIN", "name_col": "<NAME>"},
-#     "right": {"table": "<IRS_BMF_OR_990>",     "key": "EIN", "key_col": "EIN", "carry": {...}},
-#     "score": {"breadth_w": 1.0, "breadth_div": 10.0},
-#     "no_fanout_guard": True,
-# },
-# --------------------------------------------------------------------------- #
+    # MONEY × MONEY on EIN — a company that files financials with the SEC whose EIN
+    # ALSO appears in the IRS exempt-org (tax-exempt) master file. EIN is a 9-digit
+    # STEEL key (keys.py 'pad' 9), so a hit is the SAME legal entity's tax ID on both
+    # rosters — a hard, non-coincidental co-occurrence. This is the biggest lever
+    # against the single-vertical concentration: it opens MONEY/finance as a second
+    # world beyond the health-provider verticals that carry ~all leads today. Both
+    # sides are ORG lists -> single-name display, NO surname gate (require_surname is
+    # person-vs-person only; org-vs-org would never corroborate). LEFT is the SEC
+    # financial-statement filer list (FED_SEC_EDGAR_FINANCIALS: 55,635 rows / 5,773
+    # distinct EINs, carries NAME + CIK) — deliberately NOT FED_US_SEC_EDGAR, whose EIN
+    # column is junk (48,990 rows collapse to 25 distinct EINs). RIGHT is the IRS BMF
+    # (FED_IRS_BMF: 1.97M distinct EINs, the registered tax-exempt roster).
+    #
+    # NEUTRAL, co-occurrence phrasing on purpose: the title states the two rosters share
+    # an EIN — it is NOT a violation claim. A commercial SEC filer legitimately sharing a
+    # tax ID with an exempt entity (foundation, pension trust, related nonprofit) is a
+    # thread to PULL, not a finding to assert; the human reviewer + evidence (SEC NAME/CIK
+    # vs IRS NAME/STATE/NTEE) decides what it means.
+    #
+    # YIELD: ~3 leads today (measured 2026-07-02: 3 distinct EINs overlap both rosters,
+    # normalized pad-9). The value is the CAPABILITY + the new vertical, not the count —
+    # the overlap grows as more EIN-bearing SEC/IRS sources land.
+    #
+    # RECEIPT CAVEAT (documented, NOT fixed here): FED_IRS_BMF's provenance columns lack
+    # the underscore prefix (it carries INGESTED_AT / SOURCE_RUN_ID / SRC_SHA256, not the
+    # standard _-prefixed trio). receipt.resolve_snapshots SELECTs _SOURCE_RUN_ID, so the
+    # IRS-BMF leg records 'unresolved' until BMF is re-landed with standard provenance —
+    # honest-but-hollow on that one leg, acceptable for now.
+    "sec_filer_in_irs_bmf": {
+        "rule_name": "sec_filer_in_irs_bmf",
+        "title_template": ("{l_name} — SEC filer (CIK {cik}) EIN also appears in the IRS "
+                           "exempt-org roster ({count} record(s))"),
+        "left": {
+            "table": "FED_SEC_EDGAR_FINANCIALS",
+            "key": "EIN", "key_col": "EIN",
+            "name_col": "NAME",
+            "carry": {"CIK": "CIK"},
+        },
+        "right": {
+            "table": "FED_IRS_BMF",
+            "key": "EIN", "key_col": "EIN",
+            "carry": {"IRS_NAME": "NAME", "STATE": "STATE", "NTEE": "NTEE_CD"},
+        },
+        "score": {"breadth_w": 1.0, "breadth_div": 10.0},
+        "no_fanout_guard": True,
+    },
+}
