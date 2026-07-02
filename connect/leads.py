@@ -111,6 +111,21 @@ def compile_sql(spec: dict, as_of: str | None = None) -> str:
     same lead). This is the receipt's load-bearing property — without it a published
     number silently drifts as the wall clock crosses each recency boundary. ``as_of``
     omitted keeps ``CURRENT_DATE`` (legacy / ad-hoc preview only; never persisted).
+
+    OPTIONAL date gate (``date_mode`` + ``left_date_field`` + ``right_date_field`` or
+    ``right_year_field``): the "flagged AND active" intersection alone can't say the
+    activity happened AFTER the flag — that timeline is the difference between
+    "appears in the data" and "did it while banned". Two modes:
+      'gate'      adds the predicate right_date >= left_date to the join, so only
+                  post-flag activity survives into the lead at all.
+      'annotate'  adds NO predicate; both raw dates ride into each evidence item
+                  under a 'timeline' key so a human reviewer can rank on it.
+    Date fields are a bare column name (Snowflake auto-parses) or
+    ``{"col": ..., "format": ...}`` (TRY_TO_DATE format, e.g. 'YYYYMMDD').
+    ``right_year_field`` compares a bare year column against YEAR(left_date).
+    A spec WITHOUT these fields compiles to BYTE-IDENTICAL SQL as before this
+    capability existed — persisted SQL_SHA256 receipts must never churn for the
+    rules that don't use it (tests pin the hashes).
     """
     L, R = spec["left"], spec["right"]
     jk = L["key"]
@@ -134,6 +149,27 @@ def compile_sql(spec: dict, as_of: str | None = None) -> str:
     ek = R.get("enrich_key")
     r_enrich = _norm(ek, R["enrich_key_col"]) if ek else "NULL"
 
+    # ----- optional date gate / timeline (see docstring) -----
+    # Everything below is guarded on date_mode so a spec without it contributes ZERO
+    # bytes to the compiled SQL (receipt hashes for the existing rules must not churn).
+    dmode = spec.get("date_mode")
+    ldf, rdf, ryf = (spec.get("left_date_field"), spec.get("right_date_field"),
+                     spec.get("right_year_field"))
+    if dmode is not None:
+        if dmode not in ("gate", "annotate"):
+            raise ValueError(f"{spec['rule_name']}: date_mode must be 'gate' or "
+                             f"'annotate', got {dmode!r}")
+        if not ldf or not (rdf or ryf):
+            raise ValueError(f"{spec['rule_name']}: date_mode needs left_date_field and "
+                             "right_date_field (or right_year_field)")
+
+    def _dcol(field) -> str:
+        return field["col"] if isinstance(field, dict) else field
+
+    def _dexpr(field, aliased: str) -> str:
+        fmt = field.get("format") if isinstance(field, dict) else None
+        return f"TRY_TO_DATE({aliased}, '{fmt}')" if fmt else f"TRY_TO_DATE({aliased})"
+
     # ----- LEFT (the "flag" list): key + optional name + carry + recency col -----
     l_sel = [f"{lkey} AS K_N"]
     if lkind == "person":
@@ -145,6 +181,8 @@ def compile_sql(spec: dict, as_of: str | None = None) -> str:
     rec = L.get("recency")
     if rec:
         l_sel.append(f"{quote_ident(rec['col'])} AS L_RECENCY")
+    if dmode is not None:
+        l_sel.append(f"{quote_ident(_dcol(ldf))} AS L_DATEGATE")
     lft = f"SELECT {', '.join(l_sel)} FROM {db.fqn(L['table'])} WHERE {lkey} IS NOT NULL"
 
     # ----- RIGHT (the "active" list): key + enrich + optional name + carry -----
@@ -153,6 +191,8 @@ def compile_sql(spec: dict, as_of: str | None = None) -> str:
         r_sel += [f"{_nm(rname[0])} AS R_LAST", f"{_nm(rname[1])} AS R_FIRST"]
     for alias, col in R.get("carry", {}).items():
         r_sel.append(f"{quote_ident(col)} AS R_{alias}")
+    if dmode is not None:
+        r_sel.append(f"{quote_ident(_dcol(rdf or ryf))} AS R_DATEGATE")
     rgt = f"SELECT {', '.join(r_sel)} FROM {db.fqn(R['table'])} WHERE {rkey} IS NOT NULL"
 
     # enrich-key -> human label (e.g. CCN -> facility name). DEDUPED to one name per
@@ -171,6 +211,13 @@ def compile_sql(spec: dict, as_of: str | None = None) -> str:
 
     # surname corroboration + name score only make sense person-vs-person
     require = "AND l.L_LAST = a.R_LAST" if (spec.get("require_surname") and person_pair) else ""
+    # 'gate' mode: only activity dated ON/AFTER the flag date survives the join. A year-only
+    # right column compares against YEAR(left_date) — the coarsest honest comparison.
+    dategate = ""
+    if dmode == "gate":
+        lexpr = _dexpr(ldf, "l.L_DATEGATE")
+        dategate = (f" AND TRY_TO_NUMBER(a.R_DATEGATE) >= YEAR({lexpr})" if ryf
+                    else f" AND {_dexpr(rdf, 'a.R_DATEGATE')} >= {lexpr}")
     if person_pair:
         name_match = ("IFF(l.L_FIRST = a.R_FIRST, 1.0, "
                       "IFF(LEFT(l.L_FIRST, 1) = LEFT(a.R_FIRST, 1), 0.85, 0.6))")
@@ -197,6 +244,11 @@ def compile_sql(spec: dict, as_of: str | None = None) -> str:
         ev.append(f"'{en.get('label', 'facility')}', f.FAC_NAME")
     for alias in R.get("carry", {}):
         ev.append(f"'{alias.lower()}', a.R_{alias}")
+    if dmode is not None:
+        # both raw date values ride with every evidence item (both modes: even a gated
+        # lead should SHOW its timeline, not just imply it survived the predicate)
+        ev.append("'timeline', OBJECT_CONSTRUCT('left_date', l.L_DATEGATE, "
+                  "'right_date', a.R_DATEGATE)")
     if not ev:
         ev.append("'matched', TRUE")
     evidence = (f"TO_JSON(ARRAY_SLICE(ARRAY_AGG(DISTINCT "
@@ -225,7 +277,7 @@ matched AS (
          {title_fields} AS TITLE_FIELDS,
          {evidence} AS EVIDENCE_JSON
   FROM lft l
-  JOIN rgt a ON a.K_N = l.K_N {require}
+  JOIN rgt a ON a.K_N = l.K_N {require}{dategate}
   {fac_join}
   GROUP BY l.K_N )
 SELECT LEFT_KEY_VALUE, BREADTH, TITLE_FIELDS, EVIDENCE_JSON,
@@ -303,7 +355,15 @@ def run_job(conn, spec: dict, run_id: str, dry_run: bool = False) -> pd.DataFram
     return pd.DataFrame(recs)
 
 
+# The dashboard read path calls _ensure_leads_table per request; the CREATE/ALTERs are
+# idempotent but they're still DDL round-trips on every page load. Run them once per process.
+_LEADS_TABLE_READY = False
+
+
 def _ensure_leads_table(conn) -> None:
+    global _LEADS_TABLE_READY
+    if _LEADS_TABLE_READY:
+        return
     db.rows(conn, LEADS_DDL)
     # STATUS marks staleness: a lead absent from the latest run is expired, so a person cleared by
     # the source drops out of publication. Added in place so the live table gains the column.
@@ -311,6 +371,7 @@ def _ensure_leads_table(conn) -> None:
     # receipt columns — additive + idempotent, so an existing live LEADS table gains them in place.
     for col, typ in _RECEIPT_COLS:
         db.rows(conn, f"ALTER TABLE {LEADS_FQN} ADD COLUMN IF NOT EXISTS {col} {typ}")
+    _LEADS_TABLE_READY = True   # only after every statement succeeded
 
 
 def _merge_leads(conn, df: pd.DataFrame) -> None:
@@ -393,6 +454,23 @@ def published(conn, rule: str | None = None, only_publishable: bool = False) -> 
     if rule is not None:
         rows = [r for r in rows if r["RULE_NAME"] == rule]
     return _gate(rows, decisions, only_publishable)
+
+
+def rung_display(rung: str, measured_precision: float | None = None,
+                 calibration: str = "health-provider calibration only") -> str:
+    """Human display for a MATCH_RUNGS tier name — never show the bare word.
+
+    'CONFIRMED' measured at 87.6% precision is wrong roughly 1 in 8 times; printing the
+    bare tier name to a reader overclaims exactly the way the safety layer forbids. Any
+    surface that shows a rung (dossier, receipts, serve) must route through this so the
+    measured number travels WITH the label. Pass the MEASURED_PRECISION from the
+    MATCH_RUNGS row for the model version that scored the link; without one the label
+    must say so instead of implying confidence. DB rung names are unchanged — this is
+    display only.
+    """
+    if measured_precision is None:
+        return f"{rung} (no measured precision on file — treat as uncalibrated)"
+    return f"{rung} ({measured_precision * 100:.1f}% measured precision, {calibration})"
 
 
 def _print_leads(df: pd.DataFrame, top: int) -> None:

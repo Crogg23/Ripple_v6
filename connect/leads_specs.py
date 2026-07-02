@@ -21,6 +21,13 @@ JobSpec shape:
   require_surname  drop pairs whose surnames disagree (person-vs-person only)
   score            {name_w?, recency_w?, breadth_w?, breadth_div?}  (absent weight = 0)
   title_titlecase / title_dates   field names to nice-case / date-format in the title
+  date_mode        OPTIONAL 'gate' | 'annotate' + left_date_field and right_date_field
+                   (or right_year_field). 'gate' keeps only activity dated on/after the
+                   flag date; 'annotate' adds no predicate but carries both dates into
+                   each evidence item under 'timeline'. Date fields are a bare column
+                   name or {"col":..., "format":...} (TRY_TO_DATE format). A spec
+                   WITHOUT these compiles byte-identically to the pre-feature SQL, so
+                   existing SQL_SHA256 receipts never churn. No live rule uses it yet.
   no_fanout_guard  MUST be True: lead jobs run their own SQL, never connect.bridge
                    (its FANOUT_MAX / dedup would silently drop high-value leads).
 """
@@ -68,13 +75,18 @@ JOBS: dict[str, dict] = {
         "no_fanout_guard": True,
     },
 
-    # SANCTIONS × MARITIME on IMO — an OFAC-sanctioned hull still broadcasting AIS.
-    # The vessel can repaint its name (AIS name often differs from the OFAC name);
-    # the IMO hull number can't change, so the hard-key join catches it anyway.
+    # SANCTIONS × MARITIME on IMO — an OFAC-sanctioned hull appearing in the NOAA AIS
+    # archive. The vessel can repaint its name (AIS name often differs from the OFAC
+    # name); the IMO hull number can't change, so the hard-key join catches it anyway.
+    # ARCHIVE-HONEST title on purpose: NOAA AIS is a US-coastal ARCHIVE, not a live
+    # feed, so "broadcasting" would overclaim — the data shows the hull APPEARED, not
+    # that it's transmitting today. Safe to rephrase in place: LEAD_ID is md5 of
+    # rule + key value (title-independent), so the MERGE just updates titles next run.
     "sanctioned_vessel_broadcasting": {
         "rule_name": "sanctioned_vessel_broadcasting",
         "title_template": ("{l_name} — OFAC-sanctioned ({program}, flag {flag}); "
-                           "broadcasting AIS in {count} position reports"),
+                           "appears in {count} AIS position reports (US-coastal "
+                           "archive; not evidence of current broadcasting)"),
         "left": {
             "table": "FED_OFAC_SDN",
             "key": "IMO", "key_col": "IMO",
@@ -197,11 +209,13 @@ JOBS: dict[str, dict] = {
     # (carried into evidence) vs the sanctions VESSEL_NAME (title) is a shadow-fleet-rename
     # tell — the IMO hull number can't change, so the hard-key join catches it regardless.
     # (An explicit name_mismatch score would need a small engine add; both names are already
-    # surfaced in the lead for the human reviewer.)
+    # surfaced in the lead for the human reviewer.) Title is archive-honest like v1: the
+    # AIS data is a US-coastal archive, so "appears in" — never "broadcasting".
     "sanctioned_vessel_broadcasting_v2": {
         "rule_name": "sanctioned_vessel_broadcasting_v2",
         "title_template": ("{l_name} — sanctioned vessel ({sanction_source}, {program}); "
-                           "broadcasting AIS in {count} position report(s)"),
+                           "appears in {count} AIS position report(s) (US-coastal "
+                           "archive; not evidence of current broadcasting)"),
         "left": {
             "table": "LIBRARY_STAGING.DBT_CROGERS.INT_SANCTIONED_VESSELS",
             "key": "IMO", "key_col": "IMO",

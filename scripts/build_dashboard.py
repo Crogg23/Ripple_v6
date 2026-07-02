@@ -13,22 +13,32 @@ import sys, warnings, json, html
 warnings.filterwarnings("ignore")
 sys.path.insert(0, "c:/Code/Ripple_v6")
 from connect import db
+from connect import leads as leads_engine
 
 OUT = "c:/Code/Ripple_v6/outputs/ripple_dashboard.html"
 META = {"_INGESTED_AT", "_SOURCE_RUN_ID", "_SRC_SHA256"}
 c = db.connect()
 
 # ---------------------------------------------------------------- INSIGHTS (LEADS)
-leads = db.dicts(c, """
-    SELECT RULE_NAME, LEFT_KEY_TYPE, LEFT_KEY_VALUE, TITLE, SCORE,
-           TO_JSON(EVIDENCE) EV, EVIDENCE_COUNT, COALESCE(STATUS,'active') STATUS,
-           TO_CHAR(LAST_SEEN,'YYYY-MM-DD') SEEN
-    FROM LIBRARY_META."CONNECT".LEADS ORDER BY RULE_NAME, SCORE DESC""")
+# THE safety chokepoint: leads.published() = STATUS='active' + the DECISIONS anti-join,
+# so a rejected / retracted / stale lead can never land on this page. Never query the
+# LEADS table directly here.
+leads = sorted(leads_engine.published(c),
+               key=lambda r: (r["RULE_NAME"], -float(r["SCORE"] or 0)))
+for L in leads:
+    L["EV"] = L.get("EVIDENCE") or "[]"
+    L["SEEN"] = str(L.get("LAST_SEEN") or "")[:10]
+    L["STATUS"] = L.get("STATUS") or "active"
 
+# One label per rule in leads_specs.JOBS. Archive-honest copy: the AIS data is a
+# US-coastal ARCHIVE, so "appears in" — never "still broadcasting".
 RULE_LABEL = {
-    "banned_but_operating":          ("Banned providers still on hospital rosters", "OIG-excluded provider × CMS facility roster, joined on NPI"),
-    "sanctioned_vessel_broadcasting":("Sanctioned ships still broadcasting AIS",     "OFAC-sanctioned hull × NOAA AIS pings, joined on IMO"),
-    "debarred_but_funded":           ("Debarred firms still winning federal contracts","SAM debarment × USASpending awards, joined on UEI"),
+    "banned_but_operating":              ("Banned providers on facility rosters", "OIG-excluded provider × CMS facility roster, joined on NPI"),
+    "banned_but_paid":                   ("Banned providers in Open Payments records", "OIG-excluded provider × CMS Open Payments (all years), joined on NPI"),
+    "excluded_but_billing":              ("Banned providers in Part D prescriber records", "OIG-excluded provider × Medicare Part D prescribers, joined on NPI"),
+    "sanctioned_vessel_broadcasting":    ("Sanctioned ships in the AIS archive", "OFAC-sanctioned hull × NOAA AIS archive (US-coastal), joined on IMO"),
+    "sanctioned_vessel_broadcasting_v2": ("Sanctioned ships in the AIS archive (OFAC ∪ OpenSanctions)", "Sanctioned hull (OFAC ∪ OpenSanctions) × NOAA AIS archive (US-coastal), joined on IMO"),
+    "debarred_but_funded":               ("Debarred firms holding federal contract awards", "SAM debarment × USASpending awards, joined on UEI"),
 }
 
 def verify_url(ktype, kval):
@@ -178,6 +188,7 @@ tr:last-child td{{border-bottom:none}} tr:hover td{{background:#1b2230}}
 .tag.muted{{background:#21262d;color:var(--mut)}}
 .chip{{display:inline-block;padding:2px 9px;border-radius:6px;font-size:11px;font-weight:600;color:#fff}}
 .c-banned_but_operating{{background:#8957e5}} .c-sanctioned_vessel_broadcasting{{background:#1f6feb}} .c-debarred_but_funded{{background:#bb4a1d}}
+.c-banned_but_paid{{background:#2da44e}} .c-excluded_but_billing{{background:#d29922}} .c-sanctioned_vessel_broadcasting_v2{{background:#1a7f8e}}
 .dbar{{position:relative;height:14px;background:#21262d;border-radius:4px}}
 .dfill{{position:absolute;left:0;top:0;height:100%;background:#30475e;border-radius:4px}} .dfill.ld{{background:var(--ok)}}
 input.f{{background:var(--panel);border:1px solid var(--line);color:var(--tx);border-radius:8px;padding:7px 11px;width:280px;margin-bottom:10px;font-size:13px}}
