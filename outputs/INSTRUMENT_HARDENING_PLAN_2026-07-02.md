@@ -109,6 +109,81 @@ deferred — but every *capability* they need gets built.
 2. Live acceptance queries: V_STATE returns; NPPES landing ≈9.6M = mart; CONNECT_EDGES > 0; DECISIONS gate query; DR_STAGE has files; ledger deployed.
 3. Logical commits per wave; push; PR to main via gh with full description.
 
+## STRESS-TEST AMENDMENTS (v2, 2026-07-02 — 8-lens adversarial review, 39 blockers/corrections folded in)
+- **Ship strategy:** work on current branch with per-wave commits; at ship time replay trees onto a fresh
+  `instrument-hardening` branch off main via `git commit-tree` (zero working-tree disturbance, keeps
+  ee1cb55's 51k-line log blobs out of main's history). Never stage onboarding_log.json or *.log.
+- **Pour stop procedure (the restart IS load-bearing):** watch pour_keyless.log for an inter-source
+  boundary, Ctrl+C there (handled cleanly, log saved), validate onboarding_log.json parses, restart same
+  command. Deadline: before queue entry ~110 (ACLED at 118, ~3.5-4.5h from 08:04 start). Wave 1 adds
+  atomic save_log + fail-loud load_log so a bad kill can't wipe resume state.
+- **1.2 auth gate:** recon prompt must emit `auth.env_var` (recon returns only {type,notes} today — the
+  env-key name doesn't exist post-RECON); gate lives in onboard_source (non-raising), NOT _resolve;
+  writeback = targeted UPDATE, never register MERGE; bypass under fake_llm.
+- **1.3 collision gate:** gate on LANDED EVIDENCE (INGEST_RUNS success / lifecycle landed|modeled), not
+  registry existence (854 scouted rows would false-skip); applies to pinned sids too (with
+  --include-landed escape); near-family prefix check = warn-only.
+- **1.1/1.2 resume semantics:** quarantine check + attempts increment must include 'empty' (both
+  onboard.py:299 and :316); 'needs_key' skips on resume UNLESS its env key is now present;
+  'already_cataloged' terminal. Exit code from THIS run's counters only (shared log poisons it);
+  needs_key does NOT force nonzero. Update test_onboard_smoke rc==0 assertion.
+- **1.4:** blocklist BOTH exec sites (ingest.py:488 AND :664); anchored patterns (prefix SNOWFLAKE_/
+  ANTHROPIC_/GITHUB_/GH_/AWS_, suffix _PAT/_PASSWORD, substring _SECRET) — naive '_PAT' strips PATH;
+  _TOKEN stays allowed (COURTLISTENER_TOKEN is a data key).
+- **1.6:** fence-retry lives in generate_ingest_script (extract_code is a pure parser); compile() check
+  there too so it feeds auto-repair; gates must live in onboard_source (registry_batch/live_batch bypass
+  run_batch).
+- **1.7:** validate watermark AFTER ingest.py:243-251's blanket except (inside it, the error is swallowed
+  → since=None → duplicate-append corruption).
+- **3.2 retrofit ordering (pinned):** chunks → __STAGING; except handler drops STAGING ONLY (today it
+  DROPs the LIVE table — a failed re-land would delete the surviving 700K NPPES rows); density gate on
+  staging → empty: drop staging + log 'empty', live untouched → execute_swap → THEN log 'success' →
+  register last. Qualify atomic_load's INFORMATION_SCHEMA check; add repo-root sys.path.
+- **3.x bridge_fuel _register clobber:** skip _register when a registry row already exists — otherwise a
+  re-land/weekly-refresh wipes curated facets (MERGE overwrites non-null defaults: UNCLASSIFIED/NONE/[]).
+- **Wave 5:** re-land needs `--force` (a 2026-06-17 success row makes default --run skip); spec = NO
+  key_cols aliasing (333 live column names are the dbt/connect contract), member regex
+  npidata_pfile_\d{8}-\d{8}\.csv, chunk_rows 50k, NPI_Files.html resolver (download.cms.gov rotates
+  monthly); realistic wall time 1.5-3h; run on COMPUTE_WH to avoid pour contention. dbt: pip
+  dbt-snowflake==1.8.4 in a venv (installed dbt-fusion preview REFUSES this project — 208 errors);
+  run from inside ripple_dbt (a stale ~/.dbt 'ripple' profile targets the dead RIPPLE db); selectors are
+  `stg_fed_cms_nppes__npi_providers+ stg_fed_noaa_ais__ais_vessel_positions+`; politics = `dbt test
+  --select marts.politics` ONLY (dbt build would CREATE OR REPLACE the Python-built canon).
+- **Wave 4:** ONE canonical edge store — create CONNECT_EDGES shell via DDL now (V_STATE view compiles),
+  discover full-rebuild replaces it, incremental retargets into it (Wave 6 verifies shape match);
+  export_control_plane needs dest.as_posix() in the GET (backslashes corrupt the quoted SQL path) +
+  re-raise on row_count errors (silent-skip = partial backup that looks complete) + smoke-test on
+  FACET_VOCAB first; mart-drift lives in V_STATE (INFORMATION_SCHEMA LAST_ALTERED w/ CONVERT_TIMEZONE,
+  exclude _RESTORE%), NOT the ledger view (daily rebuild would revert it — or land it in BOTH VIEW_DDL
+  copies same commit); regrade --apply DEFERRED post-pour (sampling race vs live loads + warehouse
+  contention); run ledger build/export on COMPUTE_WH.
+- **Wave 6:** making a key first-class = 5 files (tag_portal_index KEY_TOKENS, discover KEY_DOMAIN,
+  keys NORM_RULES ['alnum_upper' mode pre-built for this], entity_index_specs.ENTITY_TYPE_BY_KEY,
+  spine._ENTITY_TYPE_SQL + incremental._entity_type_sql) as ONE atomic commit; compound tokens only —
+  bare 'fec' matches EPA's Formal-Enforcement-Case columns, bare 'icpsr' matches STATE_ICPSR; do NOT put
+  the 84M itcont in DISPLAY_SPECS (spine scan cost) — route member↔candidate via BIOGUIDE + FEC bulk
+  tables (FEC_IDS on legislators is a JSON-array string, unusable as key_col); EIN spec must be AUTHORED
+  (the stub is a skeleton): FED_SEC_EDGAR_FINANCIALS.EIN (5,773 distinct; NOT the poisoned FED_US_SEC_EDGAR)
+  × FED_IRS_BMF.EIN (1.97M) — expected yield ~3 leads (capability > count); BMF provenance cols lack the
+  underscore prefix → EIN receipts resolve 'unresolved' until BMF re-lands (accepted + documented).
+  **Full rebuild (6.3) DEFERRED to post-pour** — it would be stale for the pour tail the moment it
+  finished; keys.py edit makes checkpoint-6 refuse (gracefully) for the pour remainder; post-pour rebuild
+  + connect-changed sweep re-links everything. `connect leads --run` IS safe today (independent of the
+  fingerprint guard) → run after title fix + EIN spec so live titles update and the EIN rule fires.
+- **Wave 7:** heartbeat port MUST replace _alive's os.kill(pid,0) — on Windows that TERMINATES the probed
+  process (verified empirically) — with ctypes OpenProcess; stdlib-only (no psutil — not installed);
+  taskkill /T /F for tree kill; selftest spawns its own child (2**22 can be a real PID). Scheduler via
+  Register-ScheduledTask with -StartWhenAvailable (schtasks.exe can't express it; sleeping laptop misses
+  every trigger silently) + S4U logon; add an hourly `heartbeat --run` task (else LINK/RECONCILE never
+  run) with a Win32_Process CommandLine check for a live onboard.py (tasklist can't see it); every
+  wrapper writes outputs/_task_<name>_LAST.json + a daily nag surfaces stale/failed ones. PAT verified a
+  decodable JWT (exp=2026-09-20T14:58:55Z) — live_pat_expiry is zero-network; keep pat_check untouched
+  (different, tested semantics) — new pure check alongside.
+- **Deferred to post-pour session (explicit):** full connect rebuild + CONNECT_EDGES population + spine/
+  entity-index refresh + connect-changed sweep; regrade_empty_loads --apply; portal-ranked pour; THE_LIBRARY
+  refresh; LDA load execution (loader script ships today, run deferred); itcont donor-ER recipe (needs its
+  own calibration session); git history rewrite for pack size.
+
 ## Sequencing / risk register (stress-test seeds)
 - R1: pour running — file edits safe (process has old code in memory); onboarding_log.json untouchable; restart note to Chris.
 - R2: dbt build before NPPES re-land nukes the mart → hard ordering (Wave 5).
