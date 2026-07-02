@@ -1,7 +1,32 @@
 # Build State
-Last updated: 2026-07-01
+Last updated: 2026-07-02
 
-## CURRENT FOCUS — POUR-READINESS: WIRE UP THE INGESTION PIPELINE (2026-07-01, latest)
+## CURRENT FOCUS — FABLE AUDIT → INSTRUMENT-HARDENING SESSION (2026-07-02, latest)
+**A full-repo Fable audit (→ `outputs/FABLE_AUDIT_2026-07-02.md`, being written this session) fed a
+single hardening session: every BAD finding + instrument-side COULD-BE fixed in one pass. The plan —
+waves, owners, and the adversarial stress-test amendments that constrain each fix — is
+`outputs/INSTRUMENT_HARDENING_PLAN_2026-07-02.md`. Read the STRESS-TEST AMENDMENTS section before
+touching anything it covers.**
+
+**Live constraint: the keyless pour is RUNNING** (PID 1720, `onboard.py --batch --yes --skip-dbt
+--repair 1 --queue pour_queue_keyless.json`, started 08:04). Never touch
+`library-onboarding/onboarding_log.json`, never kill the process; code edits are safe (the running
+process holds old code in memory) and take effect on the planned restart (before queue entry ~110,
+ahead of ACLED at ~118 — the license guard must be policy, not luck).
+
+**In flight this session (per the plan):** pour guards (empty/auth/collision gates, exec-env
+blocklist, real exit codes), the safety chokepoint (dashboard reads through the libel firewall),
+loader repair (atomic swaps, no empty registration), the warehouse truth layer
+(`LIBRARY_META.REGISTRY.V_STATE` — the one place scale numbers live from now on; prose numbers are
+banned), NPPES re-land, keep-alive Windows port, and this docs reconciliation.
+
+**Credentials: the PAT is ROTATED (exp 2026-09-20).** Canonical credential expiries live in
+`infra/keys_ledger.json` (checked by preflight) — every "expires 2026-07-05" alarm in older docs
+below is historical.
+
+---
+
+## PRIOR FOCUS — POUR-READINESS: WIRE UP THE INGESTION PIPELINE (2026-07-01)
 **Goal: get the repo to where Chris says "go" and data POURS in unattended, resumably, without
 babysitting. Ran a 64-agent whole-repo stress-test (8 lenses -> verify -> synth), then FIXED all
 7 code-side blockers + key safety nets. Verdict was NOT-READY; now the code side is ready + tested
@@ -1289,6 +1314,7 @@ Fresh ephemeral container, **no new sources** — got the stack live again and c
 - **`.env` is the source of truth (2026-06-20).** `config.py` loads it with `override=True` so a fresh
   container's stale/injected env can't shadow it (dead `SNOWFLAKE_PAT`, empty `SNOWFLAKE_WAREHOUSE`). The PAT
   lives only in the gitignored `.env` — never committed (verified absent from git history). Rotate by ~2026-07-05.
+  [SUPERSEDED 2026-07-02 — PAT rotated, exp 2026-09-20; see top section + `infra/keys_ledger.json`]
 
 ## PARKED IDEAS
 - [IDEA — HOT] **Tier-aware bridge dedup.** `bridge.discover_bridged` drops a transitive edge whenever the
@@ -1327,6 +1353,8 @@ Fresh ephemeral container, **no new sources** — got the stack live again and c
   (+ `LIBRARY_STAGING`/`LIBRARY_MARTS` for dbt) would be safer for routine onboarding.
 
 ## NEXT ACTION
+[SUPERSEDED 2026-07-02 — this is the 2026-06-24 bridge-era plan, kept for history; PAT rotated,
+exp 2026-09-20; the live focus + next actions are the top section of this file]
 **Bridge layer is ACTIVATED — 646 tables, 14,694 connections, 59 bridges; every CMS facility type now reaches
 NPPES + LEIE on entity keys.** Uncommitted: the 8 new landings are live in Snowflake; `scripts/bridge_fuel_*`,
 the merged fingerprint, and the rebuilt graph/explorer are on disk (not yet committed/PR'd). Best next moves

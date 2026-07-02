@@ -11,16 +11,19 @@ In VS Code: top menu → **Terminal → New Terminal**. A box opens at the botto
 Make sure the path on the left says `…/Ripple_v6` (the project folder). If it
 doesn't, type this and hit Enter:
 ```
-cd ~/Documents/GitHub/Ripple_v6
+cd ~/Documents/GitHub/Ripple_v6        # Mac
+cd C:\Code\Ripple_v6                   # Windows
 ```
 
 **1a. First clone only — install the dependencies (once).**
 If this is a fresh checkout, the tool needs its Python packages (plotly,
 snowflake-connector, pandas, …) before it'll run. Do this one time:
 ```
-python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt
+python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt   # Mac
+py -m venv .venv; .venv\Scripts\activate; pip install -r requirements.txt               # Windows
 ```
-On later runs you just re-activate the venv: `source .venv/bin/activate`.
+On later runs you just re-activate the venv: `source .venv/bin/activate` (Mac)
+or `.venv\Scripts\activate` (Windows).
 
 **2. Run the tool.** Type this, hit Enter:
 ```
@@ -89,11 +92,14 @@ Prints the match count + a sample. Keys you can pass: `NPI`, `CCN`, `CIK`, `EIN`
 ## If it breaks
 
 - **"Programmatic access token is invalid" / login errors** → the Snowflake token
-  expired (it's due to die ~**July 5, 2026**). Drop a fresh one into
+  expired (current one is good to ~**Sept 20, 2026** — expiries are tracked in
+  `infra/keys_ledger.json`). Drop a fresh one into
   `library-onboarding/.env` (the `SNOWFLAKE_PAT=` line) and run it again.
 - **"No module named plotly" (or pandas / snowflake)** → the dependencies aren't
   installed. Do step 1a once: `pip install -r requirements.txt` (with the venv active).
 - **"python: command not found"** → you're not in the project folder or Python isn't on
-  PATH. Re-do step 1 (`cd ~/Documents/GitHub/Ripple_v6`), and `source .venv/bin/activate`.
-- **Map didn't pop open** → open it by hand:
-  `~/Documents/GitHub/Ripple_v6/outputs/connection_explorer.html` (double-click it).
+  PATH. Re-do step 1 (`cd ~/Documents/GitHub/Ripple_v6` on Mac, `cd C:\Code\Ripple_v6` on
+  Windows), and re-activate the venv (`source .venv/bin/activate` / `.venv\Scripts\activate`).
+- **Map didn't pop open** → open it by hand — double-click
+  `outputs/connection_explorer.html` inside the project folder
+  (`~/Documents/GitHub/Ripple_v6` on Mac, `C:\Code\Ripple_v6` on Windows).

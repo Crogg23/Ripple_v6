@@ -54,7 +54,8 @@ Every loader in this build imports loadkit; none reinvents these.
 The agent **cannot** do these (classifier-blocked from `ALTER USER` / `ALTER RESOURCE MONITOR`). Chris does
 them once, then the build runs unattended:
 
-1. **Rotate the Snowflake PAT** to a fresh ≥90-day token (current expires **2026-07-05**). Update
+1. **Rotate the Snowflake PAT** to a fresh ≥90-day token. *(DONE 2026-07-02 — current PAT expires
+   **2026-09-20**; expiries tracked in `infra/keys_ledger.json`.)* Update
    `library-onboarding/.env`. *Until this is done, `preflight.pat_check` blocks every load — by design.*
 2. **Confirm month-to-date budget headroom** > the batch's estimated uptime-credits (`SHOW RESOURCE MONITORS`
    → `RIPPLE_BUDGET`). Loads are ~free per-row; the gate is leftover monthly headroom. If tight, raise the

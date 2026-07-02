@@ -3,7 +3,10 @@ version: 2
 # Political-domain marts (LIBRARY_MARTS.POLITICS). The keystone crosswalk + the
 # 1:many FEC bridge + the bioguide-keyed member spine with ideology. Canonical
 # tables are built by politics/loaders/build_skeleton.py; these dbt models mirror
-# that build and add the tests. Run: dbt build --select marts.politics+
+# that build and add the tests.
+# Run: dbt test --select marts.politics
+# NEVER dbt build here — these models MIRROR Python-built canonical tables;
+# build would CREATE OR REPLACE them and wipe the canon.
 models:
 
   - name: politics__member_crosswalk
