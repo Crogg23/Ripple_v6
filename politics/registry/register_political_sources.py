@@ -16,10 +16,12 @@ from __future__ import annotations
 import json
 import sys
 
-sys.path.insert(0, r"c:\Code\Ripple_v6\library-onboarding")
+from pathlib import Path as _RepoPath
+_REPO = _RepoPath(__file__).resolve().parents[2]
+sys.path.insert(0, str(_REPO / "library-onboarding"))
 import snow  # noqa: E402
 
-sys.path.insert(0, r"c:\Code\Ripple_v6\politics\registry")
+sys.path.insert(0, str(_REPO / "politics" / "registry"))
 import political_sources as cat  # noqa: E402
 
 FQT = '"LIBRARY_META"."REGISTRY"."SOURCE_REGISTRY"'

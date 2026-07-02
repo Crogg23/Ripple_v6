@@ -34,7 +34,9 @@ import pandas as pd
 import requests
 import yaml
 
-sys.path.insert(0, r"c:\Code\Ripple_v6\library-onboarding")
+from pathlib import Path as _RepoPath
+_REPO = _RepoPath(__file__).resolve().parents[2]
+sys.path.insert(0, str(_REPO / "library-onboarding"))
 import ingest  # noqa: E402  (reuse _stringify/_load_landing/_log_run/assess_density)
 import snow    # noqa: E402
 
@@ -104,9 +106,23 @@ def fetch_voteview():
     return df, r.content
 
 
-def land(df: pd.DataFrame, source_id: str, url: str, message: str) -> dict:
+def land(df: pd.DataFrame, source_id: str, url: str, message: str,
+         expect_rows: int | None = None, min_rows: int | None = None,
+         shrink_floor: float = 0.98) -> dict:
     """Land a frame exactly like the onboarding agent: TEXT mirror + provenance
-    stamps + INGEST_RUNS row + density gate. Snapshot-replace (idempotent)."""
+    stamps + INGEST_RUNS row + density gate. Snapshot-replace (idempotent).
+
+    COMPLETENESS REFEREE (B4) -- closes the SAM-class silent partial, where 1,000
+    of ~167,000 rows landed and still logged STATUS='success':
+      * expect_rows / min_rows -- a load that falls short of the declared floor is
+        logged STATUS='partial', never 'success'. Pass the source's known/declared
+        row count (e.g. an API envelope total) as expect_rows.
+      * never-shrink floor -- if a prior SUCCESSFUL run exists and this frame is
+        below (last_success_rows * shrink_floor), the existing table is LEFT INTACT
+        (not overwritten) and the run is logged 'partial'. Guards a healthy table
+        from being clobbered by a truncated pull. Pass expect_rows=0 to authorize a
+        legitimate shrink (a source that really did get smaller).
+    """
     run_id = str(uuid.uuid4())
     started = dt.datetime.now(dt.timezone.utc)
     table = source_id.upper()
@@ -116,19 +132,45 @@ def land(df: pd.DataFrame, source_id: str, url: str, message: str) -> dict:
     out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
     out[ingest.META_SOURCE_RUN_ID] = run_id
     out[ingest.META_SRC_SHA256] = sha
+    n = len(out)
+    authorized_shrink = expect_rows == 0
+    floor = expect_rows if expect_rows else min_rows  # positive declared floor, if any
     conn = snow.connect()
     try:
+        # NEVER-SHRINK: refuse to overwrite a healthy table with a truncated pull.
+        prior = ingest._latest_success_rows(conn, source_id)
+        if prior and not authorized_shrink and n < prior * shrink_floor:
+            ended = dt.datetime.now(dt.timezone.utc)
+            guard = int(prior * shrink_floor)
+            ingest._log_run(
+                conn, source_id, run_id, "partial", n, len(payload), sha, url, started, ended,
+                f"PARTIAL -- {n:,} rows is below the never-shrink floor "
+                f"({prior:,} last success x {shrink_floor:.2f} = {guard:,}). Existing table "
+                f"LEFT INTACT (not overwritten). {message} Pass expect_rows=0 to authorize a "
+                "real shrink.")
+            print(f"  REFUSED  {table:<28} {n:>6} rows < floor {guard:,} (prior {prior:,}) "
+                  "-- table kept, status=partial")
+            return {"rows": n, "status": "partial", "kept_existing": True, "prior_rows": prior}
+
         ingest._load_landing(conn, out, table, overwrite=True)
         ended = dt.datetime.now(dt.timezone.utc)
         density = ingest.assess_density(out)
-        status = "empty" if density["empty"] else "success"
-        ingest._log_run(conn, source_id, run_id, status, len(out), len(payload), sha, url,
-                        started, ended, f"{message} {ingest._density_note(density)}.")
+        if density["empty"]:
+            status = "empty"
+        elif floor and n < floor:
+            status = "partial"
+        else:
+            status = "success"
+        note = f"{message} {ingest._density_note(density)}."
+        if status == "partial":
+            note = f"PARTIAL -- landed {n:,} rows, below the declared floor of {floor:,}. {note}"
+        ingest._log_run(conn, source_id, run_id, status, n, len(payload), sha, url,
+                        started, ended, note)
     finally:
         conn.close()
-    print(f"  landed {table:<28} {len(out):>6} rows  status={status}  "
+    print(f"  landed {table:<28} {n:>6} rows  status={status}  "
           f"density={density['populated_fraction']:.1%}")
-    return {"rows": len(out), "status": status, "density": density["populated_fraction"]}
+    return {"rows": n, "status": status, "density": density["populated_fraction"]}
 
 
 # ---------------------------------------------------------------------------

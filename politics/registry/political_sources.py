@@ -699,6 +699,114 @@ SOURCES = [
         THEMES=["power_who_holds_it"],
         NOTES="ACCESS-FLAG: verify license/reuse terms; rhetoric for the say-vs-do moonshot. " + _KEYFLAG,
     ),
+
+    # === FJC judiciary spine (post-Phase-0: judiciary expansion, landed) =======
+    dict(
+        SOURCE_ID="fed_fjc_judges",
+        NAME="FJC Biographical Directory of Article III Federal Judges -- Judges",
+        PUBLISHER="Federal Judicial Center",
+        DESCRIPTION="The authoritative directory of every Article III federal judge (district, circuit, "
+                    "Supreme Court), 1789-present: name, demographics (gender, race/ethnicity), birth/death, "
+                    "keyed on the FJC nid. The judge dimension of the judiciary spine.",
+        UNIT_OF_OBSERVATION="one row = one Article III federal judge",
+        TEMPORAL_COVERAGE="1789-present",
+        ACCESS_METHOD="bulk_download", FORMAT="csv", AUTH_REQUIRED="none", COST="free",
+        UPDATE_CADENCE="continuous (nightly export)", VOLUME="~4,067 judges",
+        LICENSE_TERMS="Public domain (US Government work) -- non-binding citation requested",
+        URL="https://www.fjc.gov/history/judges",
+        JOIN_KEYS="nid (FJC judge PK); name (-> SCDB justice_name / JCS, name-match)",
+        ACCOUNTABILITY_RELEVANCE="The federal-judiciary person spine: who the judges are, and the base table for "
+                                 "recusal/conflict, appointment-pattern, and ideology (JCS) analysis.",
+        PRIORITY_TIER="2", DOMAIN_PRIMARY="government_power", DOMAIN_SECONDARY=[],
+        ENTITY_TYPES=["person"], JOIN_KEYS_STD=[], JOIN_KEY_TIER="STRONG", JOIN_KEY_TIER_PROVISIONAL=False,
+        NOTES="Landed via politics/loaders/build_fjc_judges.py. Marts: POLITICS__FJC_JUDGE (nid PK) + "
+              "POLITICS__FJC_SCOTUS_CROSSWALK (nid<->SCDB justice_name; 40/40 modern justices matched, with "
+              "match_method+confidence). Companion appointment file: fed_fjc_service. nid is the FJC person PK "
+              "(STRONG, measured); cross-source join to SCDB/JCS is name-match (PROBABILISTIC).",
+    ),
+    dict(
+        SOURCE_ID="fed_fjc_service",
+        NAME="FJC Biographical Directory of Article III Federal Judges -- Federal Judicial Service",
+        PUBLISHER="Federal Judicial Center",
+        DESCRIPTION="Normalized appointment records for every Article III judgeship: Court Type/Name, Appointing "
+                    "President + party, nomination/confirmation dates, Senate Ayes/Nays, commission and "
+                    "termination. One row per (nid, appointment sequence).",
+        UNIT_OF_OBSERVATION="one row = one judicial appointment (nid, sequence)",
+        TEMPORAL_COVERAGE="1789-present",
+        ACCESS_METHOD="bulk_download", FORMAT="csv", AUTH_REQUIRED="none", COST="free",
+        UPDATE_CADENCE="continuous (nightly export)", VOLUME="~4,766 appointments",
+        LICENSE_TERMS="Public domain (US Government work) -- non-binding citation requested",
+        URL="https://www.fjc.gov/history/judges",
+        JOIN_KEYS="nid (-> fed_fjc_judges / POLITICS__FJC_JUDGE)",
+        ACCOUNTABILITY_RELEVANCE="Who appointed each judge, the Senate confirmation vote, and tenure -- the "
+                                 "appointment/confirmation record behind the judiciary spine.",
+        PRIORITY_TIER="2", DOMAIN_PRIMARY="government_power", DOMAIN_SECONDARY=[],
+        ENTITY_TYPES=["person"], JOIN_KEYS_STD=[], JOIN_KEY_TIER="STRONG", JOIN_KEY_TIER_PROVISIONAL=False,
+        NOTES="Landed via politics/loaders/build_fjc_judges.py. Mart: POLITICS__FJC_APPOINTMENT. Carries the "
+              "Supreme Court appointment rows (Court Type='Supreme Court', 121 rows) used to build "
+              "POLITICS__FJC_SCOTUS_CROSSWALK.",
+    ),
+
+    # === Judicial Common Space -- DW-NOMINATE-scale judge ideology (landed) =====
+    dict(
+        SOURCE_ID="xc_jcs_scotus",
+        NAME="Judicial Common Space -- SCOTUS justice ideology",
+        PUBLISHER="Epstein, Martin, Segal & Westerland (Washington U. in St. Louis)",
+        DESCRIPTION="DW-NOMINATE-scale ideology (JCS) for every Supreme Court justice by term, 1937-2022. "
+                    "One row per (justice, term).",
+        UNIT_OF_OBSERVATION="one row = one (justice, term) ideology score",
+        TEMPORAL_COVERAGE="1937-2022",
+        ACCESS_METHOD="bulk_download", FORMAT="csv (zip)", AUTH_REQUIRED="none", COST="free",
+        UPDATE_CADENCE="periodic (annual editions)", VOLUME="~782 justice-terms (49 justices)",
+        LICENSE_TERMS="CC0 (Harvard Dataverse mirror hdl:1902.1/10333); 2024 WUSTL zip implicit CC0",
+        URL="https://epstein.wustl.edu/s/JCS2024.zip",
+        JOIN_KEYS="justiceName (Spaeth; identity -> POLITICS__SCOTUS_JUSTICE / SCDB / FJC crosswalk)",
+        ACCOUNTABILITY_RELEVANCE="Places SCOTUS justices on the SAME ideological scale as DW-NOMINATE -- "
+                                 "'how extreme is this justice vs Congress / the president'.",
+        PRIORITY_TIER="2", DOMAIN_PRIMARY="government_power", DOMAIN_SECONDARY=[],
+        ENTITY_TYPES=["person"], JOIN_KEYS_STD=[], JOIN_KEY_TIER="STEEL", JOIN_KEY_TIER_PROVISIONAL=False,
+        NOTES="Landed via politics/loaders/build_judicial_common_space.py. Mart: POLITICS__JUDGE_IDEOLOGY_SCOTUS "
+              "(justice_name+term+jcs, wired to justice_code + fjc_nid; 40/40 modern justices, 750 rows fully "
+              "wired). Single-maintainer WUSTL Squarespace -- archived on land.",
+    ),
+    dict(
+        SOURCE_ID="xc_jcs_coa",
+        NAME="Judicial Common Space -- Courts of Appeals judge ideology",
+        PUBLISHER="Epstein, Martin, Segal & Westerland (Washington U. in St. Louis)",
+        DESCRIPTION="JCS lifetime ideology score for US Courts of Appeals judges, by circuit.",
+        UNIT_OF_OBSERVATION="one row = one Court of Appeals judge (lifetime jcs)",
+        TEMPORAL_COVERAGE="1937-2022",
+        ACCESS_METHOD="bulk_download", FORMAT="csv (zip)", AUTH_REQUIRED="none", COST="free",
+        UPDATE_CADENCE="periodic (annual editions)", VOLUME="~705 CoA judges",
+        LICENSE_TERMS="CC0 (Dataverse mirror); 2024 WUSTL zip implicit CC0",
+        URL="https://epstein.wustl.edu/s/JCS2024.zip",
+        JOIN_KEYS="name ('Last, First') + circuit (-> FJC nid, PROBABILISTIC follow-on)",
+        ACCOUNTABILITY_RELEVANCE="Circuit-judge ideology on the common scale -- the appellate layer beneath SCOTUS.",
+        PRIORITY_TIER="2", DOMAIN_PRIMARY="government_power", DOMAIN_SECONDARY=[],
+        ENTITY_TYPES=["person"], JOIN_KEYS_STD=[], JOIN_KEY_TIER="PROBABILISTIC", JOIN_KEY_TIER_PROVISIONAL=True,
+        NOTES="Landed via politics/loaders/build_judicial_common_space.py. Mart: POLITICS__JUDGE_IDEOLOGY_COA. "
+              "FJC-nid match (name+circuit; 66 surname collisions) is a deliberate follow-on, not built.",
+    ),
+    dict(
+        SOURCE_ID="xc_jcs_medians",
+        NAME="Judicial Common Space -- court/institution ideology medians",
+        PUBLISHER="Epstein, Martin, Segal & Westerland (Washington U. in St. Louis)",
+        DESCRIPTION="Yearly median-ideology series for SCOTUS, each circuit, House, Senate and president on the "
+                    "common scale (the 'where is the median voter across institutions' series).",
+        UNIT_OF_OBSERVATION="one row = one year (institution medians)",
+        TEMPORAL_COVERAGE="1924-2022",
+        ACCESS_METHOD="bulk_download", FORMAT="csv (zip)", AUTH_REQUIRED="none", COST="free",
+        UPDATE_CADENCE="periodic (annual editions)", VOLUME="~102 years",
+        LICENSE_TERMS="CC0 (Dataverse mirror); 2024 WUSTL zip implicit CC0",
+        URL="https://epstein.wustl.edu/s/JCS2024.zip",
+        JOIN_KEYS="year; congress",
+        ACCOUNTABILITY_RELEVANCE="Cross-institution median ideology over time -- lets you place the Court's median "
+                                 "against Congress and the president in the same units.",
+        PRIORITY_TIER="2", DOMAIN_PRIMARY="government_power", DOMAIN_SECONDARY=[],
+        ENTITY_TYPES=[], JOIN_KEYS_STD=[], JOIN_KEY_TIER="NONE", JOIN_KEY_TIER_PROVISIONAL=True,
+        NOTES="Landed via politics/loaders/build_judicial_common_space.py. Mart: POLITICS__JCS_MEDIANS. "
+              "The 'president' column is an ideology SCORE, not a name.",
+    ),
 ]
 
 # ---------------------------------------------------------------------------

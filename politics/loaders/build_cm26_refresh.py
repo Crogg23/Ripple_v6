@@ -28,8 +28,10 @@ import zipfile
 
 import requests
 
-sys.path.insert(0, r"c:\Code\Ripple_v6\library-onboarding")
-sys.path.insert(0, r"c:\Code\Ripple_v6\politics\loaders")
+from pathlib import Path as _RepoPath
+_REPO = _RepoPath(__file__).resolve().parents[2]
+sys.path.insert(0, str(_REPO / "library-onboarding"))
+sys.path.insert(0, str(_REPO / "politics" / "loaders"))
 import snow  # noqa: E402
 from build_skeleton import land  # noqa: E402  (the first-class land() helper)
 from build_money_spine import read_fec  # noqa: E402  (the pipe-delimited FEC parser)

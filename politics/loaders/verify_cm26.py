@@ -17,7 +17,9 @@ Baselines are the figures captured BEFORE the refresh (scratchpad inspection).
 """
 from __future__ import annotations
 import sys
-sys.path.insert(0, r"c:\Code\Ripple_v6\library-onboarding")
+from pathlib import Path as _RepoPath
+_REPO = _RepoPath(__file__).resolve().parents[2]
+sys.path.insert(0, str(_REPO / "library-onboarding"))
 import snow  # noqa: E402
 
 # --- baselines captured before the refresh (the things that must NOT move) ----
