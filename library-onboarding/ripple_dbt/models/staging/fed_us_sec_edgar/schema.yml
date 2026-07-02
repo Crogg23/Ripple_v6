@@ -1,0 +1,210 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_US_SEC_EDGAR
+        description: >
+          Raw landing table for SEC EDGAR filings sourced from the Ripple
+          data pipeline (source_id: fed_us_sec_edgar). All columns are TEXT.
+
+models:
+
+  - name: stg_fed_us_sec_edgar__edgar_filings
+    description: >
+      Staging model for SEC EDGAR filings. Casts TEXT columns to appropriate
+      types, snake_cases column names, and deduplicates on accession_number
+      keeping the most recently ingested record.
+    columns:
+
+      - name: accession_number
+        description: SEC-assigned unique accession number for the filing (primary key).
+        data_tests:
+          - unique
+          - not_null
+
+      - name: cik
+        description: SEC Central Index Key for the filing entity.
+        data_tests:
+          - not_null
+
+      - name: ticker
+        description: Stock ticker symbol associated with the filing entity.
+        data_tests:
+          - not_null
+
+      - name: isin
+        description: International Securities Identification Number.
+        data_tests:
+          - not_null
+
+      - name: ein
+        description: Employer Identification Number of the filing entity.
+        data_tests:
+          - not_null
+
+      - name: entity_name
+        description: Legal name of the entity that submitted the filing.
+
+      - name: form_type
+        description: SEC form type (e.g. 10-K, 10-Q, 8-K, S-1).
+
+      - name: sic_code
+        description: Standard Industrial Classification code for the entity.
+
+      - name: state_of_incorporation
+        description: US state (or country) where the entity is incorporated.
+
+      - name: business_address
+        description: Principal business address of the filing entity.
+
+      - name: filed_at
+        description: Date the filing was submitted to the SEC.
+
+      - name: period_of_report
+        description: Reporting period end date covered by the filing.
+
+      - name: filing_url
+        description: URL to the SEC EDGAR filing index page.
+
+      - name: document_url
+        description: Direct URL to the primary filing document.
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this record.
+
+  - name: economics__fed_us_sec_edgar
+    description: >
+      Analytics-ready mart table for SEC EDGAR filings. Exposes all key
+      identifiers (CIK, ticker, ISIN, EIN) for cross-source joins and adds
+      derived boolean flags for common filing-type categories.
+    columns:
+
+      - name: accession_number
+        description: SEC-assigned unique accession number for the filing (primary key).
+        data_tests:
+          - unique
+          - not_null
+
+      - name: cik
+        description: SEC Central Index Key for the filing entity.
+        data_tests:
+          - not_null
+
+      - name: ticker
+        description: Stock ticker symbol associated with the filing entity.
+        data_tests:
+          - not_null
+
+      - name: isin
+        description: International Securities Identification Number.
+        data_tests:
+          - not_null
+
+      - name: ein
+        description: Employer Identification Number of the filing entity.
+        data_tests:
+          - not_null
+
+      - name: entity_name
+        description: Legal name of the entity that submitted the filing.
+
+      - name: form_type
+        description: SEC form type (e.g. 10-K, 10-Q, 8-K, S-1).
+        data_tests:
+          - accepted_values:
+              values:
+                - 10-K
+                - 10-K/A
+                - 10-Q
+                - 10-Q/A
+                - 8-K
+                - 8-K/A
+                - 20-F
+                - 20-F/A
+                - 40-F
+                - 40-F/A
+                - S-1
+                - S-1/A
+                - S-3
+                - S-3/A
+                - S-4
+                - S-4/A
+                - F-1
+                - F-1/A
+                - F-3
+                - F-3/A
+                - 424B1
+                - 424B2
+                - 424B3
+                - 424B4
+                - 424B5
+                - 424B7
+                - 424B8
+                - DEF 14A
+                - DEFA14A
+                - SC 13G
+                - SC 13G/A
+                - SC 13D
+                - SC 13D/A
+                - 4
+                - 4/A
+                - 3
+                - 5
+                - 6-K
+              quote: true
+              severity: warn
+
+      - name: sic_code
+        description: Standard Industrial Classification code for the entity.
+
+      - name: state_of_incorporation
+        description: US state (or country) where the entity is incorporated.
+
+      - name: business_address
+        description: Principal business address of the filing entity.
+
+      - name: filed_at
+        description: Date the filing was submitted to the SEC.
+
+      - name: period_of_report
+        description: Reporting period end date covered by the filing.
+
+      - name: filed_year
+        description: Calendar year extracted from filed_at.
+
+      - name: filed_month
+        description: Calendar month extracted from filed_at.
+
+      - name: filing_url
+        description: URL to the SEC EDGAR filing index page.
+
+      - name: document_url
+        description: Direct URL to the primary filing document.
+
+      - name: is_registration_or_prospectus
+        description: True when the form_type indicates a registration statement or prospectus.
+
+      - name: is_annual_report
+        description: True when the form_type is an annual report (10-K, 20-F, 40-F family).
+
+      - name: is_quarterly_report
+        description: True when the form_type is a quarterly report (10-Q family).
+
+      - name: source_id
+        description: Constant identifier for this data source (fed_us_sec_edgar).
+        data_tests:
+          - accepted_values:
+              values:
+                - fed_us_sec_edgar
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this record.

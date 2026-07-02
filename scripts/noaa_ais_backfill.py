@@ -52,7 +52,7 @@ TABLE = "FED_NOAA_AIS"
 SID = "fed_noaa_ais"
 UA = {"User-Agent": "Ripple-Library/1.0 (data onboarding; w.rogers9999@gmail.com)"}
 CHUNK = 500_000
-SCRATCH = Path("/private/tmp/claude-501/-Users-chrisr--Documents-GitHub-Ripple-v6/"
+SCRATCH = Path("c:/Code/Ripple_v6/.scratch/"
                "e8eac5fb-de36-4362-9440-da24a904b9b4/scratchpad")
 
 # marinecadastre CSV header -> landing column. Their casing is CamelCase; the table

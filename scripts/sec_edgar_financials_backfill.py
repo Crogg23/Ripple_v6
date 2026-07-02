@@ -59,7 +59,7 @@ TABLE = "FED_SEC_EDGAR_FINANCIALS"
 SID = "fed_sec_edgar_financials"
 UA = {"User-Agent": "Ripple-Library w.rogers9999@gmail.com"}
 CHUNK = 250_000
-SCRATCH = Path("/private/tmp/claude-501/-Users-chrisr--Documents-GitHub-Ripple-v6/"
+SCRATCH = Path("c:/Code/Ripple_v6/.scratch/"
                "e8eac5fb-de36-4362-9440-da24a904b9b4/scratchpad")
 
 # the 36 sub.txt columns, in file order == landing column order (UPPER).

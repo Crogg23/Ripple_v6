@@ -58,7 +58,7 @@ SID = "fed_usgs_earthquakes"
 BASE = "https://earthquake.usgs.gov/fdsnws/event/1"
 MIN_MAG = "2.5"
 UA = {"User-Agent": "Ripple-Library/1.0 (data onboarding; w.rogers9999@gmail.com)"}
-SCRATCH = Path("/private/tmp/claude-501/-Users-chrisr--Documents-GitHub-Ripple-v6/"
+SCRATCH = Path("c:/Code/Ripple_v6/.scratch/"
                "e8eac5fb-de36-4362-9440-da24a904b9b4/scratchpad")
 CAP = 20_000  # FDSNWS hard cap per query; we monitor to never silently truncate
 

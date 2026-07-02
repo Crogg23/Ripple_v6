@@ -20,6 +20,28 @@ from llm import call_claude, extract_json, render_prompt
 USER_AGENT = "RippleOnboardingAgent/1.0 (+https://github.com/Crogg23/Ripple_v6)"
 MAX_PAGE_CHARS = 18_000
 
+def _looks_large(volume) -> bool:
+    """POSITIVE large-signal only -> upgrade snapshot to chunked STREAMING so a big
+    source can't be pulled whole-frame into memory and OOM the pour. An explicit
+    size/count hint (gb/tb/million/billion/bulk/huge/large, or a parsed count
+    >= 1,000,000) qualifies. Unknown / blank volume does NOT -- it stays snapshot
+    (the idempotent, SHA-skip, full-frame-density default); only a clear signal
+    upgrades. Word-boundary matched so 'gb' doesn't fire on unrelated substrings."""
+    import re as _re
+
+    v = str(volume or "").strip().lower()
+    if not v or v == "unknown":
+        return False
+    if _re.search(r"\b(gb|tb|million|billion|bulk|huge|large)\b", v):
+        return True
+    for n in _re.findall(r"[\d,]{4,}", v):  # any explicit count >= 1,000,000
+        try:
+            if int(n.replace(",", "")) >= 1_000_000:
+                return True
+        except ValueError:
+            pass
+    return False
+
 
 def fetch_page(url: str, timeout: int = 30) -> tuple[str, bool]:
     """Fetch a URL and return ``(readable_text, browser_required)``.
@@ -148,6 +170,16 @@ def _resolve(source: dict, extracted: dict, fetch_error: Optional[str],
     if isinstance(auth, str):
         auth = {"type": auth, "notes": ""}
 
+    # OOM guard: a snapshot load holds the whole frame in memory. If the source is
+    # large or of unknown size and the foreman didn't pin a mode, fail toward chunked
+    # STREAMING so a multi-GB / multi-million-row source can't OOM the pour. (Chunked
+    # safely handles small sources too -- a non-streaming fetch is treated as one
+    # chunk. Incremental is never touched.)
+    volume = extracted.get("est_volume", extracted.get("volume", "unknown"))
+    load_mode = (source.get("load_mode") or extracted.get("load_mode") or "snapshot").strip().lower()
+    if load_mode == "snapshot" and not source.get("load_mode") and _looks_large(volume):
+        load_mode = "chunked"
+
     # access_pattern: a foreman pin wins; otherwise recon's guess. But if fetching
     # the page EMPIRICALLY required a headless browser (the static GET was a
     # bot-challenge / empty JS shell), that's ground truth, not a guess -- force
@@ -179,7 +211,7 @@ def _resolve(source: dict, extracted: dict, fetch_error: Optional[str],
         "auth": {"type": auth.get("type", "none"), "notes": auth.get("notes", "")},
         "cost": extracted.get("cost", ""),
         "update_cadence": extracted.get("update_cadence", "unknown"),
-        "volume": extracted.get("est_volume", extracted.get("volume", "unknown")),
+        "volume": volume,
         "license_terms": extracted.get("license_terms", ""),
         "key_identifiers": identifiers,
         "join_keys": ", ".join(identifiers),
@@ -187,9 +219,9 @@ def _resolve(source: dict, extracted: dict, fetch_error: Optional[str],
         "priority_tier": str(extracted.get("priority_tier", "2")),
         # ingest + dbt
         "access_pattern": access_pattern,
-        # Incremental load (huge / daily-growing sources): a foreman-pinned value
-        # wins; else recon's guess; else snapshot (the default mirror).
-        "load_mode": (source.get("load_mode") or extracted.get("load_mode") or "snapshot").strip().lower(),
+        # Load mode: foreman pin > recon guess > snapshot, with an OOM guard that
+        # upgrades a large/unknown snapshot to chunked streaming (computed above).
+        "load_mode": load_mode,
         "cursor_field": source.get("cursor_field") or extracted.get("cursor_field") or "",
         "primary_key": source.get("primary_key") or extracted.get("primary_key") or "",
         "rate_limits": extracted.get("rate_limits", "unspecified"),

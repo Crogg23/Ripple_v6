@@ -1,0 +1,6115 @@
+[
+ {
+  "name": "BEA Data API",
+  "url": "https://apps.bea.gov/API/docs/index.htm",
+  "source_id": "fed_bea_api",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "BIA Open Data Geospatial Portal",
+  "url": "https://opendata-1-bia-geospatial.hub.arcgis.com/",
+  "source_id": "fed_bia_tribal_geo",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "BJS Data Collections and APIs",
+  "url": "https://bjs.ojp.gov/data",
+  "source_id": "fed_bjs_data",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Quarterly Census of Employment and Wages (QCEW)",
+  "url": "https://www.bls.gov/cew/downloadable-data.php",
+  "source_id": "fed_bls_qcew",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "BOP Inmate Statistics",
+  "url": "https://www.bop.gov/about/statistics/",
+  "source_id": "fed_bop_statistics",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "CBP Nationwide Encounters Data",
+  "url": "https://www.cbp.gov/newsroom/stats/nationwide-encounters",
+  "source_id": "fed_cbp_encounters",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "CDC Open Data Portal (data.cdc.gov)",
+  "url": "https://data.cdc.gov/",
+  "source_id": "fed_cdc_data_portal",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "CDC WONDER",
+  "url": "https://wonder.cdc.gov/wonder/help/wonder-api.html",
+  "source_id": "fed_cdc_wonder",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "American Community Survey (ACS) API",
+  "url": "https://www.census.gov/data/developers/data-sets/acs-1year.html",
+  "source_id": "fed_census_acs",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "COUNTRY",
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "County Business Patterns API",
+  "url": "https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp.html",
+  "source_id": "fed_census_business_patterns",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN",
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Decennial Census API (2020, 2010, 2000)",
+  "url": "https://www.census.gov/data/developers/data-sets/decennial-census.html",
+  "source_id": "fed_census_decennial",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Economic Census API (2022)",
+  "url": "https://www.census.gov/data/developers/data-sets/economic-census/2022.html",
+  "source_id": "fed_census_economic",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN",
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Census International Trade API",
+  "url": "https://www.census.gov/foreign-trade/reference/products/catalog/api.html",
+  "source_id": "fed_census_international_trade",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "COUNTRY",
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Census Population Estimates API",
+  "url": "https://www.census.gov/data/developers/data-sets/popest-popproj/popest.html",
+  "source_id": "fed_census_popest",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Survey of Business Owners (SBO) / Annual Business Survey (ABS)",
+  "url": "https://www.census.gov/programs-surveys/abs.html",
+  "source_id": "fed_census_subbiz",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN",
+   "FIPS"
+  ]
+ },
+ {
+  "name": "HMDA (Home Mortgage Disclosure Act) Data",
+  "url": "https://ffiec.cfpb.gov/data-browser/",
+  "source_id": "fed_cfpb_hmda",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN",
+   "FIPS",
+   "LEI",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Chronicling America Historic Newspapers",
+  "url": "https://chroniclingamerica.loc.gov/about/api/",
+  "source_id": "fed_chronicling_america",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Hospital Compare / Provider Data Catalog",
+  "url": "https://data.cms.gov/provider-data/docs",
+  "source_id": "fed_cms_hospital_compare",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS",
+   "NPI",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Hospital Price Transparency Machine-Readable Files",
+  "url": "https://github.com/CMSgov/hospital-price-transparency",
+  "source_id": "fed_cms_hpt_mrf",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "NPI"
+  ]
+ },
+ {
+  "name": "Medicare Advantage and Part D Contract and Enrollment Data",
+  "url": "https://www.cms.gov/data-research/statistics-trends-and-reports/medicare-advantagepart-d-contract-and-enrollment-data",
+  "source_id": "fed_cms_ma_enrollment",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "CMS Data Portal (data.cms.gov)",
+  "url": "https://data.cms.gov/api-docs",
+  "source_id": "fed_cms_main",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS",
+   "NPI",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "CourtListener / RECAP API",
+  "url": "https://www.courtlistener.com/help/api/rest/",
+  "source_id": "fed_courtlistener",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "DOCKET"
+  ]
+ },
+ {
+  "name": "David Rumsey Historical Map Collection (IIIF + LUNA API)",
+  "url": "https://iiif.io/guides/guides/davidrumsey.com/",
+  "source_id": "fed_david_rumsey",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "ARCOS Retail Drug Summary Reports",
+  "url": "https://www.deadiversion.usdoj.gov/arcos/retail_drug_summary/arcos-drug-summary-reports.html",
+  "source_id": "fed_dea_arcos",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Densho Digital Repository (DDR)",
+  "url": "https://ddr.densho.org/",
+  "source_id": "fed_densho_ddr",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Homeland Infrastructure Foundation-Level Data (HIFLD)",
+  "url": "https://hifld-geoplatform.hub.arcgis.com/",
+  "source_id": "fed_dhs_hifld",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "DHS OHSS Immigration Enforcement Data",
+  "url": "https://ohss.dhs.gov/topics/immigration/immigration-enforcement/monthly-tables",
+  "source_id": "fed_dhs_ohss",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "DHS Yearbook of Immigration Statistics",
+  "url": "https://ohss.dhs.gov/topics/immigration/yearbook",
+  "source_id": "fed_dhs_yearbook",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Documenting the American South (DocSouth)",
+  "url": "https://docsouth.unc.edu/docsouthdata/",
+  "source_id": "fed_docsouth",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Form 5500 Annual Return/Report Datasets",
+  "url": "https://www.dol.gov/agencies/ebsa/about-ebsa/our-activities/public-disclosure/foia/form-5500-datasets",
+  "source_id": "fed_dol_form5500",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN"
+  ]
+ },
+ {
+  "name": "MSHA Mine Safety Data",
+  "url": "https://arlweb.msha.gov/OpenGovernmentData/OGIMSHA.asp",
+  "source_id": "fed_dol_mine_safety",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN",
+   "FIPS"
+  ]
+ },
+ {
+  "name": "OFLC Foreign Labor Certification Disclosure Data",
+  "url": "https://www.dol.gov/agencies/eta/foreign-labor/performance",
+  "source_id": "fed_dol_oflc",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN"
+  ]
+ },
+ {
+  "name": "OSHA Enforcement Data",
+  "url": "https://www.osha.gov/opengov/hazardoussubstance",
+  "source_id": "fed_dol_osha_inspections",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN",
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "DOL Wage and Hour Enforcement Data",
+  "url": "https://enforcedata.dol.gov/",
+  "source_id": "fed_dol_wage_hour",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN",
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "BTS TranStats Data Portal",
+  "url": "https://www.transtats.bts.gov/DataIndex.asp",
+  "source_id": "fed_dot_bts",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Election Administration and Voting Survey (EAVS)",
+  "url": "https://www.eac.gov/research-and-data/datasets-codebooks-and-surveys-old",
+  "source_id": "fed_eac_eavs",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Civil Rights Data Collection (CRDC)",
+  "url": "https://civilrightsdata.ed.gov/",
+  "source_id": "fed_ed_crdc",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "EDFacts",
+  "url": "https://www.ed.gov/data/edfacts-initiative",
+  "source_id": "fed_ed_edfacts",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "FSA Data Center \u2013 Student Loan Portfolio",
+  "url": "https://studentaid.gov/data-center",
+  "source_id": "fed_ed_fsa_datacenter",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN"
+  ]
+ },
+ {
+  "name": "EIA Open Data API v2",
+  "url": "https://www.eia.gov/opendata/documentation.php",
+  "source_id": "fed_eia_api",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "EOIR Immigration Court Case Data",
+  "url": "https://www.justice.gov/eoir/foia-library-0",
+  "source_id": "fed_eoir_case_data",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "AirNow Air Quality API",
+  "url": "https://docs.airnowapi.org/",
+  "source_id": "fed_epa_airnow",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "EPA Envirofacts Data Service API",
+  "url": "https://www.epa.gov/enviro/envirofacts-data-service-api",
+  "source_id": "fed_epa_envirofacts",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Safe Drinking Water Information System (SDWIS) via ECHO",
+  "url": "https://echo.epa.gov/tools/data-downloads/sdwa-download-summary",
+  "source_id": "fed_epa_sdwa",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "EPA Toxics Release Inventory (TRI)",
+  "url": "https://www.epa.gov/toxics-release-inventory-tri-program/tri-toolbox",
+  "source_id": "fed_epa_tri",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN",
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "FAA Data Portal (data.faa.gov)",
+  "url": "https://www.faa.gov/data",
+  "source_id": "fed_faa_data_portal",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "FAA Civil Aircraft Registry",
+  "url": "https://www.faa.gov/licenses_certificates/aircraft_certification/aircraft_registry/releasable_aircraft_download",
+  "source_id": "fed_faa_registry",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "FARA Foreign Agents Registration Act Database",
+  "url": "https://www.justice.gov/nsd-fara",
+  "source_id": "fed_fara",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "COUNTRY",
+   "EIN"
+  ]
+ },
+ {
+  "name": "FBI Crime Data Explorer (NIBRS/UCR)",
+  "url": "https://cde.ucr.cjis.gov/",
+  "source_id": "fed_fbi_cde",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "FCC National Broadband Map Data",
+  "url": "https://broadbandmap.fcc.gov/data-download",
+  "source_id": "fed_fcc_broadband",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "FCC Universal Licensing System (ULS)",
+  "url": "https://www.fcc.gov/uls/index.htm",
+  "source_id": "fed_fcc_licensing",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "FDIC BankFind Suite API",
+  "url": "https://banks.data.fdic.gov/docs/",
+  "source_id": "fed_fdic_bank_data",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "OpenFEC Campaign Finance API",
+  "url": "https://api.open.fec.gov/developers/",
+  "source_id": "fed_fec_api",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "CIK",
+   "EIN",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "OpenFEMA Disaster Declarations and Assistance",
+  "url": "https://www.fema.gov/about/openfema/api",
+  "source_id": "fed_fema_openfema",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "FERC Data Portal (data.ferc.gov)",
+  "url": "https://data.ferc.gov/",
+  "source_id": "fed_ferc_data",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN",
+   "LEI"
+  ]
+ },
+ {
+  "name": "FFIEC Bank Call Reports (CDR)",
+  "url": "https://cdr.ffiec.gov/public/PWS/DownloadBulkData.aspx",
+  "source_id": "fed_ffiec_call_reports",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN"
+  ]
+ },
+ {
+  "name": "National Mortgage Database (NMDB) Public Use File",
+  "url": "https://www.fhfa.gov/data/nmdb",
+  "source_id": "fed_fhfa_nmdb",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Beneficial Ownership Information Registry",
+  "url": "https://www.fincen.gov/boi",
+  "source_id": "fed_fincen_boi",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN"
+  ]
+ },
+ {
+  "name": "ForeignAssistance.gov",
+  "url": "https://foreignassistance.gov/api-docs",
+  "source_id": "fed_foreignassistance",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "COUNTRY",
+   "EIN"
+  ]
+ },
+ {
+  "name": "Federal Procurement Data System (FPDS-NG)",
+  "url": "https://www.fpds.gov/fpdsng_cms/index.php/en/",
+  "source_id": "fed_fpds",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "DUNS",
+   "FIPS",
+   "UEI",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "FRA Safety Data API",
+  "url": "https://safetydata.fra.dot.gov/MasterWebService/FRASafetyDataAPIs.aspx",
+  "source_id": "fed_fra_safety",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "FTC Enforcement Actions and Data Sets",
+  "url": "https://www.ftc.gov/developer",
+  "source_id": "fed_ftc_datasets",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN"
+  ]
+ },
+ {
+  "name": "Grants.gov Opportunity Search API",
+  "url": "https://www.grants.gov/api/api-guide",
+  "source_id": "fed_grants_gov",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN"
+  ]
+ },
+ {
+  "name": "House Lobbying Disclosure (lobbyingdisclosure.house.gov)",
+  "url": "https://lobbyingdisclosure.house.gov/",
+  "source_id": "fed_house_lda",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN"
+  ]
+ },
+ {
+  "name": "Health Professional Shortage Areas (HPSA) Data",
+  "url": "https://data.hrsa.gov/topics/health-workforce/shortage-areas",
+  "source_id": "fed_hrsa_shortage_areas",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "HUD Open Data (huduser.gov)",
+  "url": "https://www.huduser.gov/portal/datasets/pdrdatas.html",
+  "source_id": "fed_hud_data",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN",
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "HUD Fair Market Rents and Income Limits",
+  "url": "https://www.huduser.gov/portal/dataset/fmr-api.html",
+  "source_id": "fed_hud_fmr",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "ICE Enforcement and Removal Operations Statistics",
+  "url": "https://www.ice.gov/statistics",
+  "source_id": "fed_ice_statistics",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "IRS Form 990 Bulk Data & Exempt Org Search",
+  "url": "https://www.irs.gov/charities-non-profits/form-990-series-downloads",
+  "source_id": "fed_irs_990",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "IRS Exempt Organizations Business Master File (EO BMF)",
+  "url": "https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf",
+  "source_id": "fed_irs_eo_bmf",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "IRS Statistics of Income (SOI)",
+  "url": "https://www.irs.gov/statistics/soi-tax-stats-statistics-of-income",
+  "source_id": "fed_irs_soi",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Mapping Prejudice Racial Covenants Dataset",
+  "url": "https://mappingprejudice.umn.edu/racial-covenants/maps-data",
+  "source_id": "fed_mapping_prejudice",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "NASA Open APIs & Data Portal",
+  "url": "https://api.nasa.gov/",
+  "source_id": "fed_nasa_open_data",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "NASS Quick Stats API",
+  "url": "https://quickstats.nass.usda.gov/api",
+  "source_id": "fed_nass_quickstats",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Common Core of Data (CCD)",
+  "url": "https://nces.ed.gov/ccd/files.asp",
+  "source_id": "fed_nces_ccd",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "National Assessment of Educational Progress (NAEP)",
+  "url": "https://www.nationsreportcard.gov/ndecore/xplore/NDE",
+  "source_id": "fed_nces_naep",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Credit Union Call Report Quarterly Data",
+  "url": "https://ncua.gov/analysis/credit-union-corporate-call-report-data/quarterly-data",
+  "source_id": "fed_ncua_call_reports",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN"
+  ]
+ },
+ {
+  "name": "NEA Grants Database",
+  "url": "https://apps.nea.gov/grantsearch/",
+  "source_id": "fed_nea_grants",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN"
+  ]
+ },
+ {
+  "name": "NEH Grants Database",
+  "url": "https://www.neh.gov/grants",
+  "source_id": "fed_neh_grants",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN"
+  ]
+ },
+ {
+  "name": "Atlas of Historical County Boundaries (AHCB)",
+  "url": "https://publications.newberry.org/ahcb/downloads/index.html",
+  "source_id": "fed_newberry_ahcb",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "FARS Crash Data API (Fatality Analysis Reporting System)",
+  "url": "https://crashviewer.nhtsa.dot.gov/CrashAPI",
+  "source_id": "fed_nhtsa_fars",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "NIH RePORTER API",
+  "url": "https://api.reporter.nih.gov/",
+  "source_id": "fed_nih_reporter",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN"
+  ]
+ },
+ {
+  "name": "NOAA ERDDAP Ocean Data Server",
+  "url": "https://www.ncei.noaa.gov/erddap/griddap/documentation.html",
+  "source_id": "fed_noaa_erddap",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "NOAA NCEI Climate Data Online (CDO) API",
+  "url": "https://www.ncei.noaa.gov/cdo-web/webservices/v2",
+  "source_id": "fed_noaa_ncei",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Weather.gov API (National Weather Service)",
+  "url": "https://www.weather.gov/documentation/services-web-api",
+  "source_id": "fed_noaa_weather_api",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "NPDB Public Use Data File",
+  "url": "https://www.npdb.hrsa.gov/resources/publicData.jsp",
+  "source_id": "fed_npdb_puf",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "NPI"
+  ]
+ },
+ {
+  "name": "NSF Award Search API",
+  "url": "https://www.nsf.gov/awardsearch/",
+  "source_id": "fed_nsf_awards",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "NTSB CAROL Accident Database",
+  "url": "https://developer.ntsb.gov/apis",
+  "source_id": "fed_ntsb_carol",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "NursingHome411 State-Level Nursing Home Data",
+  "url": "https://nursinghome411.org/data/ratings-info/",
+  "source_id": "fed_nursinghome411",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS",
+   "NPI"
+  ]
+ },
+ {
+  "name": "OLMS Union Financial Reports (LM-2/LM-3/LM-4)",
+  "url": "https://olmsapps.dol.gov/olpdr/",
+  "source_id": "fed_olms_lm_reports",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN"
+  ]
+ },
+ {
+  "name": "DOJ OJP Open Data Catalog",
+  "url": "https://data.ojp.usdoj.gov/stories/s/Welcome-to-the-DOJ-OJP-Open-Data-Catalog/vjws-vrzh/",
+  "source_id": "fed_openspending_ojp",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN",
+   "FIPS"
+  ]
+ },
+ {
+  "name": "PACER Federal Court Dockets",
+  "url": "https://www.pacer.gov/cmecf/developer/",
+  "source_id": "fed_pacer",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "DOCKET"
+  ]
+ },
+ {
+  "name": "PBGC Pension Insurance Data",
+  "url": "https://www.pbgc.gov/about/reports/pension-insurance-data",
+  "source_id": "fed_pbgc_data",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN"
+  ]
+ },
+ {
+  "name": "SAM.gov Entity Management API",
+  "url": "https://open.gsa.gov/api/entity-api/",
+  "source_id": "fed_sam_entity",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "DUNS",
+   "EIN",
+   "FIPS",
+   "UEI",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "SAM.gov Contract Opportunities API",
+  "url": "https://open.gsa.gov/api/get-opportunities-public-api/",
+  "source_id": "fed_sam_opportunities",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "DUNS",
+   "FIPS",
+   "UEI",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "TEDS Treatment Episode Data Set",
+  "url": "https://www.samhsa.gov/data/data-we-collect",
+  "source_id": "fed_samhsa_teds",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "ZIP"
+  ]
+ },
+ {
+  "name": "SBA 7(a) and 504 Loan FOIA Data",
+  "url": "https://data.sba.gov/en/dataset/7-a-504-foia",
+  "source_id": "fed_sba_loans",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN",
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Paycheck Protection Program (PPP) Loan Data",
+  "url": "https://www.sba.gov/funding-programs/loans/covid-19-relief-options/paycheck-protection-program/ppp-data",
+  "source_id": "fed_sba_ppp",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN",
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "SEC EDGAR Filing Database (data.sec.gov API)",
+  "url": "https://www.sec.gov/search-filings/edgar-application-programming-interfaces",
+  "source_id": "fed_sec_edgar",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "CIK",
+   "EIN"
+  ]
+ },
+ {
+  "name": "SEC EDGAR Forms 3/4/5 \u2014 Insider Trading Reports",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&type=4&dateb=&owner=include&count=40",
+  "source_id": "fed_sec_edgar_insiders",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "CIK"
+  ]
+ },
+ {
+  "name": "SEC EDGAR Full-Text Search API (efts.sec.gov)",
+  "url": "https://efts.sec.gov/LATEST/search-index",
+  "source_id": "fed_sec_efts",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "CIK"
+  ]
+ },
+ {
+  "name": "Senate Lobbying Disclosure Act (LDA) Database",
+  "url": "https://lda.senate.gov/api/",
+  "source_id": "fed_senate_lda",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN"
+  ]
+ },
+ {
+  "name": "Senate Downloadable Lobbying Database (XML Bulk)",
+  "url": "https://www.senate.gov/legislative/Public_Disclosure/database_download.htm",
+  "source_id": "fed_senate_lda_bulk",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN"
+  ]
+ },
+ {
+  "name": "USAID Development Data Library (DDL)",
+  "url": "https://data.usaid.gov/",
+  "source_id": "fed_usaid_ddl",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "USAspending.gov Award Data (API + Bulk)",
+  "url": "https://api.usaspending.gov/",
+  "source_id": "fed_usaspending",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "CIK",
+   "COUNTRY",
+   "DUNS",
+   "EIN",
+   "FIPS",
+   "UEI",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "USAspending.gov Bulk Award Data Archive",
+  "url": "https://www.usaspending.gov/download_center/award_data_archive",
+  "source_id": "fed_usaspending_bulk",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "DUNS",
+   "EIN",
+   "FIPS",
+   "UEI",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "USCIS Immigration and Citizenship Data",
+  "url": "https://www.uscis.gov/tools/reports-and-studies/immigration-and-citizenship-data",
+  "source_id": "fed_uscis_data",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "U.S. Courts Caseload Statistics Data Tables",
+  "url": "https://www.uscourts.gov/statistics-reports/caseload-statistics-data-tables",
+  "source_id": "fed_uscourts_stats",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "USDA ERS Data APIs",
+  "url": "https://www.ers.usda.gov/developer/data-apis/",
+  "source_id": "fed_usda_ers",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "COUNTRY",
+   "FIPS"
+  ]
+ },
+ {
+  "name": "USDA Food Environment Atlas",
+  "url": "https://www.ers.usda.gov/data-products/food-environment-atlas/data-access-and-documentation-downloads",
+  "source_id": "fed_usda_food_environment",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "SSURGO - Soil Survey Geographic Database",
+  "url": "https://sdmdataaccess.nrcs.usda.gov/",
+  "source_id": "fed_usda_ssurgo",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "USGS 3DEP - 3D Elevation Program",
+  "url": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer",
+  "source_id": "fed_usgs_3dep",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "USGS Mineral Resources Data",
+  "url": "https://www.usgs.gov/centers/national-minerals-information-center",
+  "source_id": "fed_usgs_minerals",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "COUNTRY",
+   "FIPS"
+  ]
+ },
+ {
+  "name": "USGS Historical Topographic Map Collection (topoView + TNM API)",
+  "url": "https://tnmaccess.nationalmap.gov/api/v1/docs",
+  "source_id": "fed_usgs_topoview",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "USGS Water Data APIs",
+  "url": "https://www.usgs.gov/tools/usgs-water-data-apis",
+  "source_id": "fed_usgs_water",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "USITC DataWeb Trade and Tariff Data",
+  "url": "https://dataweb.usitc.gov/",
+  "source_id": "fed_usitc_dataweb",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "USPTO Trademark Bulk Data",
+  "url": "https://www.uspto.gov/trademarks/apply/check-status-view-documents/trademark-bulk-data",
+  "source_id": "fed_uspto_trademarks",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN"
+  ]
+ },
+ {
+  "name": "ACLED \u2014 Armed Conflict Location and Event Data",
+  "url": "https://acleddata.com/conflict-data/download-data",
+  "source_id": "intl_acled",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "ADB Data Library \u2014 Projects and Economic Indicators",
+  "url": "https://data.adb.org/",
+  "source_id": "intl_adb_data",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "AfDB Africa Information Highway \u2014 Socio-Economic Data",
+  "url": "https://dataportal.opendataforafrica.org/",
+  "source_id": "intl_afdb_data",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Argentina National Open Data Portal (datos.gob.ar)",
+  "url": "https://datos.gob.ar/apis",
+  "source_id": "intl_ar_datosgob",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Austria National Open Data Portal (data.gv.at)",
+  "url": "https://www.data.gv.at/startseite/",
+  "source_id": "intl_at_datagvat",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "data.gov.au",
+  "url": "https://data.gov.au/",
+  "source_id": "intl_au_data_gov",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "AustLII / WorldLII \u2014 Australasian and Global Legal Databases",
+  "url": "https://www.austlii.edu.au/",
+  "source_id": "intl_austlii",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Bangladesh Open Government Data Portal (data.gov.bd)",
+  "url": "https://data.gov.bd/",
+  "source_id": "intl_bd_datagov",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Bulgaria National Open Data Portal (opendata.government.bg)",
+  "url": "https://opendata.government.bg/en/",
+  "source_id": "intl_bg_opendata",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Bahrain Open Data Portal (data.gov.bh)",
+  "url": "https://data.gov.bh/",
+  "source_id": "intl_bh_opendata",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "BIS Data Portal \u2014 International Banking and Financial Statistics",
+  "url": "https://data.bis.org/",
+  "source_id": "intl_bis_stats",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "dados.gov.br",
+  "url": "https://dados.gov.br/",
+  "source_id": "intl_br_dados_gov",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Open Government Portal Canada (open.canada.ca)",
+  "url": "https://open.canada.ca/data/",
+  "source_id": "intl_ca_open_canada",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Statistics Canada Web Data Service (WDS) API",
+  "url": "https://www.statcan.gc.ca/en/developers",
+  "source_id": "intl_ca_statscan",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Switzerland Open Government Data Portal (opendata.swiss)",
+  "url": "https://handbook.opendata.swiss/de/content/nutzen/api-nutzen.html",
+  "source_id": "intl_ch_opendataswiss",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Chile National Open Data Portal (datos.gob.cl)",
+  "url": "https://datos.gob.cl/",
+  "source_id": "intl_cl_datosgob",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Colombia National Open Data Portal (datos.gov.co)",
+  "url": "https://www.datos.gov.co/",
+  "source_id": "intl_co_datosgov",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Cyprus National Open Data Portal",
+  "url": "https://dateno.io/registry/catalog/cdi00000396/",
+  "source_id": "intl_cy_opendata",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Czechia ARES Business Register (Administrative Register of Economic Entities)",
+  "url": "https://ares.gov.cz/",
+  "source_id": "intl_cz_ares",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Czechia National Open Data Catalog (NKOD) (data.gov.cz)",
+  "url": "https://data.gov.cz/english/",
+  "source_id": "intl_cz_nkod",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "GovData.de",
+  "url": "https://www.govdata.de/",
+  "source_id": "intl_de_govdata",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Digital Bodleian IIIF & Data API",
+  "url": "https://digital.bodleian.ox.ac.uk/developer/iiif/",
+  "source_id": "intl_digital_bodleian",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Egypt Data Portal (opendataforafrica.org/Egypt)",
+  "url": "https://egypt.opendataforafrica.org/",
+  "source_id": "intl_eg_capmas",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "EITI Open Data \u2014 Extractive Industries Transparency",
+  "url": "https://eiti.org/open-data",
+  "source_id": "intl_eiti_data",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Ensembl Genome Browser & REST API",
+  "url": "https://rest.ensembl.org/",
+  "source_id": "intl_embl_ensembl",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Spain National Open Data Portal (datos.gob.es)",
+  "url": "https://datos.gob.es/en/apidata",
+  "source_id": "intl_es_datosgob",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "European Data Portal (data.europa.eu)",
+  "url": "https://data.europa.eu/data/",
+  "source_id": "intl_eu_data_europa",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "EU Consolidated Financial Sanctions List",
+  "url": "https://data.europa.eu/data/datasets/consolidated-list-of-persons-groups-and-entities-subject-to-eu-financial-sanctions?locale=en",
+  "source_id": "intl_eu_sanctions",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "EU-SOCTA and IOCTA \u2014 Organized and Cybercrime Assessments",
+  "url": "https://www.europol.europa.eu/publication-events/main-reports/changing-dna-of-serious-and-organised-crime",
+  "source_id": "intl_eu_socta_europol",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "TED \u2014 Tenders Electronic Daily",
+  "url": "https://docs.ted.europa.eu/api/latest/index.html",
+  "source_id": "intl_eu_ted",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "EUR-Lex CELLAR \u2014 SPARQL/REST API",
+  "url": "https://eur-lex.europa.eu/content/help/data-reuse/reuse-contents-eurlex-details.html",
+  "source_id": "intl_eurlex_cellar",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Eurostat SDMX Dissemination API",
+  "url": "https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1/",
+  "source_id": "intl_eurostat",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "FAOSTAT",
+  "url": "https://www.fao.org/faostat/",
+  "source_id": "intl_fao_faostat",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "FATF Consolidated Assessment Ratings",
+  "url": "https://www.fatf-gafi.org/en/publications/Mutualevaluations/Assessment-ratings.html",
+  "source_id": "intl_fatf_ratings",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Finland PRH/YTJ Business Information System Open Data",
+  "url": "https://avoindata.prh.fi/en",
+  "source_id": "intl_fi_ytj",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "data.gouv.fr",
+  "url": "https://www.data.gouv.fr/",
+  "source_id": "intl_fr_data_gouv",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "France INSEE Statistics APIs",
+  "url": "https://www.insee.fr/fr/information/8184146",
+  "source_id": "intl_fr_insee",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "GDELT 2.0 Global Events Database",
+  "url": "http://data.gdeltproject.org/gdeltv2/masterfilelist.txt",
+  "source_id": "intl_gdelt",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Georgia National Open Data Portal (data.gov.ge)",
+  "url": "https://www.opengovpartnership.org/members/georgia/commitments/GE0019/",
+  "source_id": "intl_ge_datagov",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "GEM Global Seismic Hazard Model (OpenQuake Mosaic)",
+  "url": "https://hazard.openquake.org/gem/",
+  "source_id": "intl_gem_hazard",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY",
+   "FIPS"
+  ]
+ },
+ {
+  "name": "GFI Trade-Related Illicit Financial Flows Data",
+  "url": "https://gfintegrity.org/iif-data-by-country/",
+  "source_id": "intl_gfi_trade",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Ghana Open Data Initiative (data.gov.gh)",
+  "url": "https://data.gov.gh/",
+  "source_id": "intl_gh_datagovgh",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "GLEIF LEI Concatenated Files & Golden Copy API",
+  "url": "https://www.gleif.org/en/lei-data/gleif-concatenated-file/download-the-concatenated-file",
+  "source_id": "intl_gleif",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY",
+   "LEI"
+  ]
+ },
+ {
+  "name": "Global Witness \u2014 Land and Environmental Defenders Database",
+  "url": "https://globalwitness.org/en/campaigns/land-and-environmental-defenders/",
+  "source_id": "intl_global_witness_defenders",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Greece National Open Data Portal (data.gov.gr)",
+  "url": "https://data.gov.gr/",
+  "source_id": "intl_gr_datagov",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Humanitarian Data Exchange (HDX) CKAN API",
+  "url": "https://data.humdata.org/api/",
+  "source_id": "intl_hdx",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY",
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Hong Kong Open Data Portal (data.gov.hk)",
+  "url": "https://data.gov.hk/en/",
+  "source_id": "intl_hk_datagov",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Croatia National Open Data Portal (data.gov.hr)",
+  "url": "https://data.gov.hr/",
+  "source_id": "intl_hr_datagov",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Hungary National Open Data Portal (opendata.hu)",
+  "url": "https://opendata.hu/",
+  "source_id": "intl_hu_opendata",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "SUMMA \u2014 Inter-American Case Law Database",
+  "url": "https://summa.cejil.org/en",
+  "source_id": "intl_iachr_summa",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "IDB Open Data Catalog",
+  "url": "https://data.iadb.org/",
+  "source_id": "intl_iadb_data",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "IATI Datastore \u2014 International Aid Transparency Initiative",
+  "url": "https://docs.datastore.iatistandard.org/en/latest/",
+  "source_id": "intl_iati_datastore",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "ICC Legal Tools Database \u2014 Case Law",
+  "url": "https://www.legal-tools.org/cld",
+  "source_id": "intl_icc_legal_tools",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "ICIJ Offshore Leaks Database",
+  "url": "https://offshoreleaks.icij.org/pages/database",
+  "source_id": "intl_icij_offshore",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "ICJ Decisions Database",
+  "url": "https://icj-cij.org/decisions",
+  "source_id": "intl_icj",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Corpus of Decisions: International Court of Justice (CD-ICJ)",
+  "url": "https://github.com/SeanFobbe/cd-icj",
+  "source_id": "intl_icj_corpus",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Ireland National Open Data Portal (data.gov.ie)",
+  "url": "https://data.gov.ie/developers",
+  "source_id": "intl_ie_datagovie",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Israel National Open Data Portal (data.gov.il)",
+  "url": "https://data.gov.il/",
+  "source_id": "intl_il_datagov",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "ILOSTAT \u2014 ILO Labour Statistics",
+  "url": "https://ilostat.ilo.org/data/bulk/",
+  "source_id": "intl_ilo_ilostat",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "IMF SDMX Central API",
+  "url": "https://data.imf.org/en/Resource-Pages/IMF-API",
+  "source_id": "intl_imf",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Open Government Data Platform India (data.gov.in)",
+  "url": "https://www.data.gov.in/",
+  "source_id": "intl_in_data_gov",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Unified Court Records (UCR) \u2014 ICTY/ICTR/IRMCT",
+  "url": "https://ucr.irmct.org/",
+  "source_id": "intl_irmct_ucr",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Italy National Open Data Portal (dati.gov.it)",
+  "url": "https://www.dati.gov.it/api",
+  "source_id": "intl_it_datigovit",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Jamaica Open Data Portal (data.gov.jm)",
+  "url": "https://data.gov.jm/",
+  "source_id": "intl_jm_opendata",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Jordan Open Government Data Portal (opendata.gov.jo)",
+  "url": "https://www.opendata.gov.jo/",
+  "source_id": "intl_jo_opendata",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Japan National Open Data Portal (data.go.jp)",
+  "url": "https://www.data.go.jp/",
+  "source_id": "intl_jp_datagojp",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Japan NTA Corporate Number Publication Site",
+  "url": "https://www.houjin-bangou.nta.go.jp/en/index.html",
+  "source_id": "intl_jp_nta_houjin",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Kenya Open Data Initiative (opendata.go.ke)",
+  "url": "https://www.opendata.go.ke/",
+  "source_id": "intl_ke_opendata",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Sri Lanka Open Data Portal (data.gov.lk)",
+  "url": "https://data.gov.lk",
+  "source_id": "intl_lk_datagov",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Lithuania National Open Data Portal (data.gov.lt)",
+  "url": "https://data.gov.lt/?lang=en",
+  "source_id": "intl_lt_datagov",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Morocco National Open Data Portal (data.gov.ma)",
+  "url": "https://dataportals.org/portal/morocco/",
+  "source_id": "intl_ma_opendata",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Moldova National Open Data Portal (data.gov.md)",
+  "url": "https://data.gov.md/en/",
+  "source_id": "intl_md_datagov",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "datos.gob.mx",
+  "url": "https://www.datos.gob.mx/",
+  "source_id": "intl_mx_datos_gob",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Malaysia National Open Data Portal (data.gov.my)",
+  "url": "https://data.gov.my/",
+  "source_id": "intl_my_datagov",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Nigeria Open Data Portal (data.gov.ng)",
+  "url": "http://www.data.gov.ng/",
+  "source_id": "intl_ng_datagov",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Netherlands National Data Register (data.overheid.nl)",
+  "url": "https://data.overheid.nl/en/ondersteuning/data-publiceren/api",
+  "source_id": "intl_nl_overheid",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Norway National Data Portal (data.norge.no)",
+  "url": "https://data.norge.no/en",
+  "source_id": "intl_no_norgeno",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Open Data Nepal Portal (opendatanepal.com)",
+  "url": "https://opendatanepal.com/",
+  "source_id": "intl_np_opendata",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "New Zealand Government Open Data Catalog (data.govt.nz)",
+  "url": "https://data.govt.nz/catalogue-guide/using-data-govt-nz-apis",
+  "source_id": "intl_nz_datagovtnz",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "OBIS - Ocean Biodiversity Information System",
+  "url": "https://obis.org/data/access/",
+  "source_id": "intl_obis",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "OCP Data Registry \u2014 Global OCDS Procurement Data",
+  "url": "https://data.open-contracting.org/",
+  "source_id": "intl_ocp_data_registry",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "OECD SDMX REST API",
+  "url": "https://sdmx.oecd.org/public/rest/data/",
+  "source_id": "intl_oecd",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "OGP Data Dashboard \u2014 Government Commitments",
+  "url": "https://www.opengovpartnership.org/data-dashboard/",
+  "source_id": "intl_ogp_dashboard",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Oman National Open Data Portal (oman.om open data)",
+  "url": "https://oman.om/en/home-top-level/National-Open-Data-Portal",
+  "source_id": "intl_om_opendata",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "OpenCorporates Company Registry API",
+  "url": "https://api.opencorporates.com/documentation/API-Reference",
+  "source_id": "intl_opencorporates",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY",
+   "LEI"
+  ]
+ },
+ {
+  "name": "Our World in Data Catalog API",
+  "url": "https://docs.owid.io/projects/etl/api/",
+  "source_id": "intl_owid",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Peru National Open Data Platform (datosabiertos.gob.pe)",
+  "url": "https://www.datosabiertos.gob.pe/",
+  "source_id": "intl_pe_datosabiertos",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Philippines Open Data Portal (data.gov.ph)",
+  "url": "https://data.gov.ph/",
+  "source_id": "intl_ph_datagovph",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Poland National Open Data Portal (dane.gov.pl)",
+  "url": "https://api.dane.gov.pl/doc",
+  "source_id": "intl_pl_danegov",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Portugal Open Data Portal (dados.gov.pt)",
+  "url": "https://dados.gov.pt/en/docapi/",
+  "source_id": "intl_pt_dadosgov",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Qatar National Open Data Portal (data.gov.qa)",
+  "url": "https://www.data.gov.qa/",
+  "source_id": "intl_qa_datagov",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Romania National Open Data Portal (data.gov.ro)",
+  "url": "https://data.gov.ro/",
+  "source_id": "intl_ro_datagov",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Serbia National Open Data Portal (data.gov.rs)",
+  "url": "https://www.ite.gov.rs/tekst/en/30/open-data-portal.php",
+  "source_id": "intl_rs_opendata",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Runaway Slaves in Britain Database",
+  "url": "https://www.runaways.gla.ac.uk/database/",
+  "source_id": "intl_runaway_slaves_britain",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Sweden National Data Portal (dataportal.se)",
+  "url": "https://www.dataportal.se/en",
+  "source_id": "intl_se_dataportal",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "data.gov.sg",
+  "url": "https://data.gov.sg/",
+  "source_id": "intl_sg_data_gov",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Slovenia Open Data Portal (podatki.gov.si)",
+  "url": "https://nio.gov.si/nio/asset/portal+odprti+podatki+slovenije-744?lang=en",
+  "source_id": "intl_si_datagov",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "SIPRI Arms Transfers Database",
+  "url": "https://www.sipri.org/databases/armstransfers",
+  "source_id": "intl_sipri_arms",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "SIPRI Military Expenditure Database",
+  "url": "https://www.sipri.org/databases/milex",
+  "source_id": "intl_sipri_milex",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Slovakia National Open Data Portal (data.gov.sk)",
+  "url": "https://data.gov.sk/",
+  "source_id": "intl_sk_datagov",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Senegal Data Portal (opendataforafrica.org/Senegal)",
+  "url": "https://senegal.opendataforafrica.org/",
+  "source_id": "intl_sn_opendata",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Corporate Tax Haven Index",
+  "url": "https://data.taxjustice.net/",
+  "source_id": "intl_taxjustice_cthi",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Financial Secrecy Index (FSI)",
+  "url": "https://fsi.taxjustice.net/",
+  "source_id": "intl_taxjustice_fsi",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Corruption Perceptions Index (CPI)",
+  "url": "https://www.transparency.org/en/cpi/2025",
+  "source_id": "intl_ti_cpi",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Global Corruption Barometer \u2014 Public Survey Data",
+  "url": "https://www.transparency.org/en/gcb",
+  "source_id": "intl_ti_gcb",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Taiwan Government Open Data Platform (data.gov.tw)",
+  "url": "https://data.gov.tw/en",
+  "source_id": "intl_tw_datagov",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Ukraine National Open Data Portal (data.gov.ua)",
+  "url": "https://data.gov.ua/en/stats2/api",
+  "source_id": "intl_ua_datagov",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "UCDP \u2014 Uppsala Conflict Data Program",
+  "url": "https://ucdp.uu.se/downloads/",
+  "source_id": "intl_ucdp",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "UK Contracts Finder",
+  "url": "https://www.contractsfinder.service.gov.uk/apidocumentation",
+  "source_id": "intl_uk_contracts_finder",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "UK National Data Library (data.gov.uk)",
+  "url": "https://www.data.gov.uk/",
+  "source_id": "intl_uk_data_gov",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "UK Find a Tender Service (FTS)",
+  "url": "https://www.find-tender.service.gov.uk/Developer/Documentation",
+  "source_id": "intl_uk_find_a_tender",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "UK ONS Statistics API",
+  "url": "https://developer.ons.gov.uk/",
+  "source_id": "intl_uk_ons",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "UN Comtrade Plus API",
+  "url": "https://comtradedeveloper.un.org/",
+  "source_id": "intl_un_comtrade",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "UN Security Council Consolidated Sanctions List",
+  "url": "https://main.un.org/securitycouncil/en/content/un-sc-consolidated-list",
+  "source_id": "intl_un_sanctions",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "UN SDG Global Database API",
+  "url": "https://unstats.un.org/sdgs/dataportal/database",
+  "source_id": "intl_un_sdg",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "UNCTADstat Data Centre",
+  "url": "https://unctadstat.unctad.org/datacentre/",
+  "source_id": "intl_unctadstat",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "UNdata SDMX API",
+  "url": "http://data.un.org/Host.aspx?Content=API",
+  "source_id": "intl_undata",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "UIS Data Browser \u2014 UNESCO Education and R&D Statistics",
+  "url": "https://databrowser.uis.unesco.org/resources",
+  "source_id": "intl_unesco_uis",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "UNHCR Refugee Data Finder",
+  "url": "https://api.unhcr.org/docs/refugee-statistics.html",
+  "source_id": "intl_unhcr_refugee",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "UNODC Data Portal \u2014 Drugs, Crime, and Criminal Justice",
+  "url": "https://dataunodc.un.org/home",
+  "source_id": "intl_unodc_data",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "UN Treaty Collection \u2014 UNTS",
+  "url": "https://treaties.un.org/",
+  "source_id": "intl_untreaty",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Uruguay Open Data Platform (datos.gub.uy)",
+  "url": "https://datos.gub.uy/",
+  "source_id": "intl_uy_datos",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "V-Dem \u2014 Varieties of Democracy Dataset",
+  "url": "https://www.v-dem.net/data/the-v-dem-dataset/",
+  "source_id": "intl_vdem",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "World Digital Library Collection (now at LOC)",
+  "url": "https://www.loc.gov/collections/world-digital-library/about-this-collection/",
+  "source_id": "intl_wdl_loc",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "WHO Global Health Observatory OData API",
+  "url": "https://www.who.int/data/gho/info/gho-odata-api",
+  "source_id": "intl_who_gho",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "WJP Rule of Law Index",
+  "url": "https://worldjusticeproject.org/rule-of-law-index/",
+  "source_id": "intl_wjp_roli",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "World Bank Open Data Indicators API",
+  "url": "https://api.worldbank.org/v2/",
+  "source_id": "intl_worldbank",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "WTO Stats and Trade Data Portal",
+  "url": "https://apiportal.wto.org/",
+  "source_id": "intl_wto_stats",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "South Africa National Data Portal (data.gov.za)",
+  "url": "http://data.gov.za/",
+  "source_id": "intl_za_datagov",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Akron Open Data",
+  "url": "https://akron-open-data-government.hub.arcgis.com/",
+  "source_id": "loc_akron_oh_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Albany Open Data Portal",
+  "url": "https://data.albanyny.gov/",
+  "source_id": "loc_albany_ny_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "ZIP"
+  ]
+ },
+ {
+  "name": "ABQ Data Open Data Portal",
+  "url": "https://opendata.cabq.gov/",
+  "source_id": "loc_albuquerque_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "WPRDC Allegheny County Data",
+  "url": "https://data.wprdc.org/organization/allegheny-county",
+  "source_id": "loc_alleghenycounty_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Ann Arbor Open Data Portal",
+  "url": "https://data.a2gov.org/",
+  "source_id": "loc_ann_arbor_mi_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "ZIP"
+  ]
+ },
+ {
+  "name": "ARC Open Data and Mapping Hub",
+  "url": "https://opendata.atlantaregional.com/",
+  "source_id": "loc_arc_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Asheville Open Data Portal",
+  "url": "https://data-avl.opendata.arcgis.com/",
+  "source_id": "loc_asheville_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Atlanta DataAtlanta / City Planning GIS Open Data Hub",
+  "url": "https://dpcd-coaplangis.opendata.arcgis.com/",
+  "source_id": "loc_atlanta_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Austin Open Data",
+  "url": "https://data.austintexas.gov/",
+  "source_id": "loc_austin_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Open Baltimore",
+  "url": "https://data.baltimorecity.gov/",
+  "source_id": "loc_baltimore_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Open Data BR",
+  "url": "https://data.brla.gov/",
+  "source_id": "loc_baton_rouge_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "City of Berkeley Open Data Portal",
+  "url": "https://data.cityofberkeley.info/",
+  "source_id": "loc_berkeley_ca_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Birmingham Open Data Portal",
+  "url": "https://data.birminghamal.gov/",
+  "source_id": "loc_birmingham_al_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Bloomington Open Data Portal",
+  "url": "https://data.bloomington.in.gov/",
+  "source_id": "loc_bloomington_in_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "ZIP"
+  ]
+ },
+ {
+  "name": "City of Boise Open Data Portal",
+  "url": "https://opendata.cityofboise.org/",
+  "source_id": "loc_boise_id_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Analyze Boston",
+  "url": "https://data.boston.gov/",
+  "source_id": "loc_boston_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "City of Boulder Open Data",
+  "url": "https://open-data.bouldercolorado.gov/",
+  "source_id": "loc_boulder_co_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "OpenData Buffalo",
+  "url": "https://data.buffalony.gov/",
+  "source_id": "loc_buffalo_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Cambridge Open Data Portal",
+  "url": "https://data.cambridgema.gov/",
+  "source_id": "loc_cambridge_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Chandler Open Data Hub",
+  "url": "https://share-open-data-changis.hub.arcgis.com/",
+  "source_id": "loc_chandler_az_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Charlotte Open Data Portal",
+  "url": "https://data.charlottenc.gov/",
+  "source_id": "loc_charlotte_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Chattanooga Open Data Portal",
+  "url": "https://data.chattanooga.gov/",
+  "source_id": "loc_chattanooga_tn_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Chicago Data Portal",
+  "url": "https://data.cityofchicago.org/",
+  "source_id": "loc_chicago_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Open Data Cincinnati",
+  "url": "https://data.cincinnati-oh.gov/",
+  "source_id": "loc_cincinnati_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Cleveland Open Data Portal",
+  "url": "https://data.clevelandohio.gov/",
+  "source_id": "loc_cleveland_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "CMAP Data Hub",
+  "url": "https://datahub.cmap.illinois.gov/",
+  "source_id": "loc_cmap_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Columbus GIS Open Data",
+  "url": "https://opendata.columbus.gov/",
+  "source_id": "loc_columbus_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Cook County Open Data Portal",
+  "url": "https://datacatalog.cookcountyil.gov/",
+  "source_id": "loc_cookcounty_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Chicago Public Schools Open Data",
+  "url": "https://www.cps.edu/about/district-data/",
+  "source_id": "loc_cps_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Dallas OpenData",
+  "url": "https://www.dallasopendata.com/",
+  "source_id": "loc_dallas_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Dayton Transparency Portal",
+  "url": "https://dayton-transparency-portal-1-daytonohio.hub.arcgis.com/",
+  "source_id": "loc_dayton_oh_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Open Data DC",
+  "url": "https://opendata.dc.gov/",
+  "source_id": "loc_dc_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Denver Open Data Catalog",
+  "url": "https://denvergov.org/opendata",
+  "source_id": "loc_denver_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Des Moines Open Data Portal",
+  "url": "https://data.dsm.city/",
+  "source_id": "loc_des_moines_ia_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Detroit Open Data Portal",
+  "url": "https://data.detroitmi.gov/",
+  "source_id": "loc_detroit_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Durham Open Data Portal",
+  "url": "https://live-durhamnc.opendata.arcgis.com/",
+  "source_id": "loc_durham_nc_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "DVRPC Data Products and GIS Portal",
+  "url": "https://www.dvrpc.org/data/",
+  "source_id": "loc_dvrpc_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Fairfax County GIS Open Data Site",
+  "url": "https://data-fairfaxcountygis.opendata.arcgis.com/",
+  "source_id": "loc_fairfaxcounty_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "OpenData Fort Collins",
+  "url": "https://opendata.fcgov.com/",
+  "source_id": "loc_fort_collins_co_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Fort Worth Open Data",
+  "url": "https://data.fortworthtexas.gov/",
+  "source_id": "loc_fortworth_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "DataGNV Gainesville Open Data Portal",
+  "url": "https://data.cityofgainesville.org/",
+  "source_id": "loc_gainesville_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "GRData \u2013 Grand Rapids Open Data",
+  "url": "https://grdata-grandrapids.opendata.arcgis.com/",
+  "source_id": "loc_grand_rapids_mi_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Open Gate City \u2013 Greensboro Open Data",
+  "url": "https://data.greensboro-nc.gov/",
+  "source_id": "loc_greensboro_nc_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Harris County Open Data / Dashboards & Datasets Hub",
+  "url": "https://geo-harriscounty.opendata.arcgis.com/",
+  "source_id": "loc_harriscounty_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Open Data Hartford",
+  "url": "https://data.hartford.gov/",
+  "source_id": "loc_hartford_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Henderson Open Data Portal",
+  "url": "https://opendata.cityofhenderson.com/",
+  "source_id": "loc_henderson_nv_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Houston Open Data",
+  "url": "https://data.houstontx.gov/",
+  "source_id": "loc_houston_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "HUD Open Data Site and Data Catalog",
+  "url": "https://data.hud.gov/",
+  "source_id": "loc_hud_open_data",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Open Indy Data Portal",
+  "url": "https://data.indy.gov/",
+  "source_id": "loc_indianapolis_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Open Data KC",
+  "url": "https://data.kcmo.org/",
+  "source_id": "loc_kcmo_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "King County Open Data",
+  "url": "https://data.kingcounty.gov/",
+  "source_id": "loc_kingcounty_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Knoxville Open Data",
+  "url": "https://www.knoxvilletn.gov/government/opendata",
+  "source_id": "loc_knoxville_tn_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "ZIP"
+  ]
+ },
+ {
+  "name": "DataLA \u2014 Los Angeles Open Data",
+  "url": "https://data.lacity.org/",
+  "source_id": "loc_la_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "LA County Open Data Portal",
+  "url": "https://data.lacounty.gov/",
+  "source_id": "loc_lacounty_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Las Vegas Open Data Portal",
+  "url": "https://opendata.lasvegasnevada.gov/",
+  "source_id": "loc_lasvegas_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "LAUSD Open Data Portal",
+  "url": "https://opendata.lausd.org/",
+  "source_id": "loc_lausd_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Lexington Data Hub",
+  "url": "https://data.lexingtonky.gov/",
+  "source_id": "loc_lexington_ky_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Little Rock Open Data Portal",
+  "url": "https://data.littlerock.gov/",
+  "source_id": "loc_little_rock_ar_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Long Beach Open Data Portal",
+  "url": "https://data.longbeach.gov/",
+  "source_id": "loc_longbeach_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Louisville Open Data Portal",
+  "url": "https://data.louisvilleky.gov/",
+  "source_id": "loc_louisville_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "City of Madison Open Data",
+  "url": "https://data-cityofmadison.opendata.arcgis.com/",
+  "source_id": "loc_madison_wi_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Maricopa County GIS Open Data",
+  "url": "https://data-maricopa.opendata.arcgis.com/",
+  "source_id": "loc_maricopacounty_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Mecklenburg County GIS Open Data Portal",
+  "url": "https://data.mecknc.gov/",
+  "source_id": "loc_mecklenburgcounty_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Memphis Open Data Hub",
+  "url": "https://data.memphistn.gov/",
+  "source_id": "loc_memphis_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Mesa City Data Hub",
+  "url": "https://data.mesaaz.gov/",
+  "source_id": "loc_mesa_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Miami Open Data Portal",
+  "url": "https://data.miamigov.com/",
+  "source_id": "loc_miami_city_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Miami-Dade County Open Data Hub",
+  "url": "https://opendata.miamidade.gov/",
+  "source_id": "loc_miamidade_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Open Data Minneapolis",
+  "url": "https://opendata.minneapolismn.gov/",
+  "source_id": "loc_minneapolis_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "dataMontgomery Open Data Portal",
+  "url": "https://data.montgomerycountymd.gov/",
+  "source_id": "loc_montgomerycounty_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Nashville Open Data",
+  "url": "https://data.nashville.gov/",
+  "source_id": "loc_nashville_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Norfolk Open Data Portal",
+  "url": "https://data.norfolk.gov/",
+  "source_id": "loc_norfolk_va_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "ZIP"
+  ]
+ },
+ {
+  "name": "NYC DOE InfoHub",
+  "url": "https://infohub.nyced.org/",
+  "source_id": "loc_nyc_doe_infohub",
+  "jurisdiction": "local",
+  "identifiers": [
+   "ZIP"
+  ]
+ },
+ {
+  "name": "NYC Open Data",
+  "url": "https://opendata.cityofnewyork.us/",
+  "source_id": "loc_nyc_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Palm Beach County Open Data",
+  "url": "https://opendata2-pbcgov.opendata.arcgis.com/",
+  "source_id": "loc_nyc_palmbeach",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "NYCHA Metrics and Open Data",
+  "url": "https://eapps.nycha.info/NychaMetrics/",
+  "source_id": "loc_nycha_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Oakland Open Data Portal",
+  "url": "https://data.oaklandca.gov/",
+  "source_id": "loc_oakland_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Omaha/Douglas County Open Data Portal",
+  "url": "https://data.dogis.org/",
+  "source_id": "loc_omaha_ne_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Orange County Open GIS Data Portal",
+  "url": "https://data-ocpw.opendata.arcgis.com/",
+  "source_id": "loc_orangecounty_ca_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Orlando Open Data Portal",
+  "url": "https://data.cityoforlando.net/",
+  "source_id": "loc_orlando_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "PHA Housing Sites \u2013 OpenDataPhilly",
+  "url": "https://opendataphilly.org/organizations/philadelphia-housing-authority/",
+  "source_id": "loc_pha_philly_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "OpenDataPhilly",
+  "url": "https://opendataphilly.org/",
+  "source_id": "loc_philadelphia_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Phoenix Open Data Portal",
+  "url": "https://data.phoenix.gov/",
+  "source_id": "loc_phoenix_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Western Pennsylvania Regional Data Center (WPRDC) - Pittsburgh Data",
+  "url": "https://data.wprdc.org/organization/city-of-pittsburgh",
+  "source_id": "loc_pittsburgh_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Portland Open Data",
+  "url": "https://www.portland.gov/open-data-statistics-and-maps",
+  "source_id": "loc_portland_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Providence GIS Hub",
+  "url": "https://providence-gis-hub-pvdgis.hub.arcgis.com/",
+  "source_id": "loc_providence_ri_gis",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Providence Open Data Portal",
+  "url": "https://data.providenceri.gov/",
+  "source_id": "loc_providence_ri_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "ZIP"
+  ]
+ },
+ {
+  "name": "PSRC Data Portal",
+  "url": "https://psrc-psregcncl.hub.arcgis.com/",
+  "source_id": "loc_psrc_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Open Data Raleigh",
+  "url": "https://data.raleighnc.gov/",
+  "source_id": "loc_raleigh_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Richmond Open Data Portal",
+  "url": "https://data.richmondgov.com/",
+  "source_id": "loc_richmond_va_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "ZIP"
+  ]
+ },
+ {
+  "name": "DataROC \u2013 Rochester Open Data Portal",
+  "url": "https://data.cityofrochester.gov/",
+  "source_id": "loc_rochester_ny_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Sacramento Open Data Portal",
+  "url": "https://data.cityofsacramento.org/",
+  "source_id": "loc_sacramento_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Salt Lake City Open Data",
+  "url": "https://data.slc.gov/",
+  "source_id": "loc_salt_lake_city_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Open Data SA",
+  "url": "https://data.sanantonio.gov/",
+  "source_id": "loc_sanantonio_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "San Diego Open Data Portal",
+  "url": "https://data.sandiego.gov/",
+  "source_id": "loc_sandiego_city_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "San Diego County Open Data Portal",
+  "url": "https://data.sandiegocounty.gov/",
+  "source_id": "loc_sandiegocounty_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "San Jose Open Data Portal",
+  "url": "https://data.sanjoseca.gov/",
+  "source_id": "loc_sanjose_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Santa Monica Open Data",
+  "url": "https://data.smgov.net/",
+  "source_id": "loc_santa_monica_ca_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Santa Clara County Open Data Portal",
+  "url": "https://data.sccgov.org/",
+  "source_id": "loc_santaclara_county_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Open Data Scottsdale",
+  "url": "https://data.scottsdaleaz.gov/",
+  "source_id": "loc_scottsdale_az_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Seattle Open Data",
+  "url": "https://data.seattle.gov/",
+  "source_id": "loc_seattle_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "SF OpenData (DataSF)",
+  "url": "https://data.sfgov.org/",
+  "source_id": "loc_sf_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Spokane Open Data",
+  "url": "https://data-spokane.opendata.arcgis.com/",
+  "source_id": "loc_spokane_wa_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "St. Louis City Open Data",
+  "url": "https://www.stlouis-mo.gov/data/index.cfm",
+  "source_id": "loc_stlouis_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Open Data Syracuse (DataCuse)",
+  "url": "https://data.syr.gov/",
+  "source_id": "loc_syracuse_ny_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Tacoma Open Data",
+  "url": "https://data.cityoftacoma.org/",
+  "source_id": "loc_tacoma_wa_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "GeoData Hub Tallahassee-Leon County GIS",
+  "url": "https://geodata-tlcgis.opendata.arcgis.com/",
+  "source_id": "loc_tallahassee_fl_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Tampa Open Data Portal",
+  "url": "https://opendata.tampa.gov/",
+  "source_id": "loc_tampa_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Tempe Open Data Catalog",
+  "url": "https://data.tempe.gov/",
+  "source_id": "loc_tempe_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Tucson Open Data",
+  "url": "https://gisdata.tucsonaz.gov/",
+  "source_id": "loc_tucson_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Open Tulsa Data Portal",
+  "url": "https://gis2-cityoftulsa.opendata.arcgis.com/",
+  "source_id": "loc_tulsa_ok_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Wake County Open Data",
+  "url": "https://data.wake.gov/",
+  "source_id": "loc_wakecounty_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "City of Wichita Open Data Portal",
+  "url": "https://data-cityofwichita.hub.arcgis.com/",
+  "source_id": "loc_wichita_ks_open",
+  "jurisdiction": "local",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Alaska Open Data Portal",
+  "url": "https://data.alaska.gov/",
+  "source_id": "st_ak_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "All 50 States \u2014 Secretary of State Business Entity Search Systems",
+  "url": "https://www.llcuniversity.com/50-secretary-of-state-sos-business-entity-search/",
+  "source_id": "st_all_biz_summary",
+  "jurisdiction": "state",
+  "identifiers": [
+   "EIN"
+  ]
+ },
+ {
+  "name": "U.S. Property & Parcel Data \u2014 County-Level Fragmented Systems",
+  "url": "https://regrid.com/",
+  "source_id": "st_all_parcel_summary",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Arkansas Open Data (GIS/fragmented)",
+  "url": "https://gis.arkansas.gov/",
+  "source_id": "st_ar_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "BizFile Online \u2014 California Business Entity Search",
+  "url": "https://bizfileonline.sos.ca.gov/search/business",
+  "source_id": "st_ca_biz",
+  "jurisdiction": "state",
+  "identifiers": [
+   "EIN"
+  ]
+ },
+ {
+  "name": "CAL-ACCESS \u2014 California Campaign Finance & Lobbying",
+  "url": "https://cal-access.sos.ca.gov/Campaign/",
+  "source_id": "st_ca_cf",
+  "jurisdiction": "state",
+  "identifiers": [
+   "EIN"
+  ]
+ },
+ {
+  "name": "California Open Data Portal",
+  "url": "https://data.ca.gov/",
+  "source_id": "st_ca_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Open FI$Cal \u2014 California Expenditures",
+  "url": "https://open.fiscal.ca.gov/",
+  "source_id": "st_ca_spend",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Colorado Information Marketplace",
+  "url": "https://data.colorado.gov/",
+  "source_id": "st_co_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "U.S. State Courts \u2014 50 Fragmented Systems",
+  "url": "https://www.courtlistener.com/",
+  "source_id": "st_courts_general",
+  "jurisdiction": "state",
+  "identifiers": [
+   "DOCKET"
+  ]
+ },
+ {
+  "name": "Connecticut Open Data Portal",
+  "url": "https://data.ct.gov/",
+  "source_id": "st_ct_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Delaware Business Entity Search (DCIS)",
+  "url": "https://icis.corp.delaware.gov/ecorp/entitysearch/namesearch.aspx",
+  "source_id": "st_de_biz",
+  "jurisdiction": "state",
+  "identifiers": [
+   "EIN"
+  ]
+ },
+ {
+  "name": "Delaware Open Data Portal",
+  "url": "https://data.delaware.gov/",
+  "source_id": "st_de_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Sunbiz \u2014 Florida Business Entity Search",
+  "url": "https://dos.fl.gov/sunbiz/",
+  "source_id": "st_fl_biz",
+  "jurisdiction": "state",
+  "identifiers": [
+   "EIN"
+  ]
+ },
+ {
+  "name": "Florida Courts E-Filing Portal / MyFLCourtAccess",
+  "url": "https://www.myflcourtaccess.com/",
+  "source_id": "st_fl_courts",
+  "jurisdiction": "state",
+  "identifiers": [
+   "DOCKET"
+  ]
+ },
+ {
+  "name": "Florida Open Data (no unified portal \u2014 agency-fragmented)",
+  "url": "https://geodata.floridagio.gov/",
+  "source_id": "st_fl_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Florida Public Food Service Establishment Inspections",
+  "url": "https://www2.myfloridalicense.com/hotels-restaurants/public-records/",
+  "source_id": "st_fl_restaurant_inspections",
+  "jurisdiction": "state",
+  "identifiers": [
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Georgia Open Data (GDAC)",
+  "url": "https://gdac.georgia.gov/",
+  "source_id": "st_ga_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Hawaii Open Data Portal",
+  "url": "https://data.hawaii.gov/",
+  "source_id": "st_hi_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Iowa Data Hub",
+  "url": "https://data.iowa.gov/",
+  "source_id": "st_ia_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Idaho Open Data (GIS-focused)",
+  "url": "https://gis.idaho.gov/",
+  "source_id": "st_id_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Illinois Open Data Portal",
+  "url": "https://data.illinois.gov/",
+  "source_id": "st_il_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Illinois Professional Licensing Open Data",
+  "url": "https://data.illinois.gov/Business-and-Workforce/Professional-Licensing/pzzh-kp68",
+  "source_id": "st_il_prof_licensing",
+  "jurisdiction": "state",
+  "identifiers": [
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Illinois OpenBook / ITAP",
+  "url": "https://openbook.illinoiscomptroller.gov/",
+  "source_id": "st_il_spend",
+  "jurisdiction": "state",
+  "identifiers": [
+   "EIN"
+  ]
+ },
+ {
+  "name": "Indiana Data Hub",
+  "url": "https://hub.mph.in.gov/",
+  "source_id": "st_in_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Indiana Professional License Verification API & Bulk Download",
+  "url": "https://www.in.gov/pla/license/verification-api/",
+  "source_id": "st_in_prof_licensing",
+  "jurisdiction": "state",
+  "identifiers": [
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Kentucky Open GIS Data",
+  "url": "https://opengisdata.ky.gov/",
+  "source_id": "st_ky_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Massachusetts Data Hub",
+  "url": "https://data.mass.gov/",
+  "source_id": "st_ma_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Massachusetts Professional Licensing API",
+  "url": "https://www.mass.gov/info-details/ma-professional-licensing-api",
+  "source_id": "st_ma_prof_licensing",
+  "jurisdiction": "state",
+  "identifiers": [
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Maryland Open Data Portal",
+  "url": "https://opendata.maryland.gov/",
+  "source_id": "st_md_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Michigan Open Data Portal",
+  "url": "https://data.michigan.gov/",
+  "source_id": "st_mi_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Minnesota Geospatial Commons / TransparencyMN",
+  "url": "https://gisdata.mn.gov/",
+  "source_id": "st_mn_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Missouri Open Data Portal",
+  "url": "https://data.mo.gov/",
+  "source_id": "st_mo_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Mississippi GIS Open Data",
+  "url": "https://opendata.gis.ms.gov/",
+  "source_id": "st_ms_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Montana Data Portal",
+  "url": "https://data.mt.gov/",
+  "source_id": "st_mt_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "NC LINC / NC OSBM Open Data",
+  "url": "https://linc.osbm.nc.gov/",
+  "source_id": "st_nc_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Nebraska Open Data / StateSpending",
+  "url": "https://www.nebraska.gov/government/open-data/",
+  "source_id": "st_ne_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "New Hampshire Geodata Portal",
+  "url": "https://new-hampshire-geodata-portal-1-nhgranit.hub.arcgis.com/",
+  "source_id": "st_nh_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "NJ Open Data Center",
+  "url": "https://data.nj.gov/",
+  "source_id": "st_nj_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "New Mexico Open Data (fragmented \u2014 agency-level)",
+  "url": "https://data-nmenv.opendata.arcgis.com/",
+  "source_id": "st_nm_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "New York Business Entity Search",
+  "url": "https://apps.dos.ny.gov/publicInquiry/",
+  "source_id": "st_ny_biz",
+  "jurisdiction": "state",
+  "identifiers": [
+   "EIN"
+  ]
+ },
+ {
+  "name": "NYSCEF \u2014 New York State Courts Electronic Filing",
+  "url": "https://iapps.courts.state.ny.us/nyscef/CaseSearch",
+  "source_id": "st_ny_courts",
+  "jurisdiction": "state",
+  "identifiers": [
+   "DOCKET"
+  ]
+ },
+ {
+  "name": "New York State Open Data",
+  "url": "https://data.ny.gov/",
+  "source_id": "st_ny_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "NY State Food Service Establishment Inspections",
+  "url": "https://health.data.ny.gov/Health/Restaurant-Inspections/hjxk-iw5g",
+  "source_id": "st_ny_restaurant_inspections",
+  "jurisdiction": "state",
+  "identifiers": [
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Open Book New York",
+  "url": "https://www.osc.ny.gov/open-book-new-york",
+  "source_id": "st_ny_spend",
+  "jurisdiction": "state",
+  "identifiers": [
+   "EIN"
+  ]
+ },
+ {
+  "name": "DataOhio",
+  "url": "https://data.ohio.gov/wps/portal/gov/data/",
+  "source_id": "st_oh_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Oklahoma Open Data Portal",
+  "url": "https://data.ok.gov/",
+  "source_id": "st_ok_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Oregon Open Data Portal",
+  "url": "https://data.oregon.gov/",
+  "source_id": "st_or_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "PA Open Data Portal",
+  "url": "https://data.pa.gov/",
+  "source_id": "st_pa_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "OpenBookPA",
+  "url": "https://www.patreasury.gov/newsroom/archive/2025/09-10-OpenBookPA.html",
+  "source_id": "st_pa_spend",
+  "jurisdiction": "state",
+  "identifiers": [
+   "EIN"
+  ]
+ },
+ {
+  "name": "TN DATA / Tennessee Geospatial Portal",
+  "url": "https://geodata.tn.gov/",
+  "source_id": "st_tn_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Texas Open Data Portal",
+  "url": "https://data.texas.gov/",
+  "source_id": "st_tx_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Utah Open Data Portal",
+  "url": "https://opendata.utah.gov/",
+  "source_id": "st_ut_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Virginia Open Data Portal",
+  "url": "https://data.virginia.gov/",
+  "source_id": "st_va_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Vermont Open Geodata / Open Data",
+  "url": "https://geodata.vermont.gov/",
+  "source_id": "st_vt_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Washington State Open Data Portal",
+  "url": "https://data.wa.gov/",
+  "source_id": "st_wa_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Wisconsin Open Data (fragmented \u2014 no unified portal)",
+  "url": "https://data.dhsgis.wi.gov/",
+  "source_id": "st_wi_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "West Virginia Open Data (fragmented \u2014 GIS-focused)",
+  "url": "https://data-wvdot.opendata.arcgis.com/",
+  "source_id": "st_wv_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Wyoming GeoHub",
+  "url": "https://wyogeo.org/",
+  "source_id": "st_wy_open",
+  "jurisdiction": "state",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Azure Open Datasets",
+  "url": "https://learn.microsoft.com/en-us/azure/open-datasets/dataset-catalog",
+  "source_id": "xc_azure_open_datasets",
+  "jurisdiction": "cross-cutting",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Ballotpedia \u2014 Federal, State, and Local Officials and Election Data",
+  "url": "https://developer.ballotpedia.org/",
+  "source_id": "xc_ballotpedia",
+  "jurisdiction": "cross-cutting",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Berkeley Earth Global Temperature Analysis",
+  "url": "https://berkeleyearth.org/data/",
+  "source_id": "xc_berkeley_earth",
+  "jurisdiction": "cross-cutting",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "DataPortals.org",
+  "url": "https://dataportals.org/",
+  "source_id": "xc_dataportals_org",
+  "jurisdiction": "cross-cutting",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Digital Commonwealth API (IIIF + JSON)",
+  "url": "https://www.digitalcommonwealth.org/",
+  "source_id": "xc_digital_commonwealth",
+  "jurisdiction": "cross-cutting",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "DoltHub hospital-price-transparency",
+  "url": "https://www.dolthub.com/repositories/dolthub/transparency-in-pricing",
+  "source_id": "xc_dolthub_hpt",
+  "jurisdiction": "cross-cutting",
+  "identifiers": [
+   "NPI"
+  ]
+ },
+ {
+  "name": "Enslaved.org: Peoples of the Historical Slave Trade",
+  "url": "https://docs.enslaved.org/lod/",
+  "source_id": "xc_enslaved_org",
+  "jurisdiction": "cross-cutting",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Eviction Lab National Database",
+  "url": "https://evictionlab.org/get-the-data/",
+  "source_id": "xc_eviction_lab",
+  "jurisdiction": "cross-cutting",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Fatal Encounters Database",
+  "url": "https://fatalencounters.org/spreadsheets/",
+  "source_id": "xc_fatal_encounters",
+  "jurisdiction": "cross-cutting",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "FollowTheMoney State Campaign Finance API",
+  "url": "https://www.followthemoney.org/our-data/apis/documentation",
+  "source_id": "xc_followthemoney",
+  "jurisdiction": "cross-cutting",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Gun Violence Archive",
+  "url": "https://www.gunviolencearchive.org/reports",
+  "source_id": "xc_gun_violence_archive",
+  "jurisdiction": "cross-cutting",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Harvard Election Data Archive",
+  "url": "https://dataverse.harvard.edu/dataverse/eda",
+  "source_id": "xc_harvard_eda",
+  "jurisdiction": "cross-cutting",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "ICPSR Data Archive",
+  "url": "https://www.icpsr.umich.edu/web/pages/ICPSR/index.html",
+  "source_id": "xc_icpsr",
+  "jurisdiction": "cross-cutting",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "IPUMS",
+  "url": "https://developer.ipums.org/",
+  "source_id": "xc_ipums",
+  "jurisdiction": "cross-cutting",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Justia Law \u2014 US Case Law and Codes",
+  "url": "https://law.justia.com/",
+  "source_id": "xc_justia",
+  "jurisdiction": "cross-cutting",
+  "identifiers": [
+   "DOCKET"
+  ]
+ },
+ {
+  "name": "KFF State Health Facts",
+  "url": "https://www.kff.org/statedata/",
+  "source_id": "xc_kff_state_health",
+  "jurisdiction": "cross-cutting",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Mapping Police Violence Database",
+  "url": "https://mappingpoliceviolence.us/aboutthedata",
+  "source_id": "xc_mapping_police_violence",
+  "jurisdiction": "cross-cutting",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "MIT Election Data and Science Lab \u2014 Election Returns",
+  "url": "https://dataverse.harvard.edu/dataverse/medsl_election_returns",
+  "source_id": "xc_medsl_mit",
+  "jurisdiction": "cross-cutting",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Natural Earth",
+  "url": "https://www.naturalearthdata.com/downloads/",
+  "source_id": "xc_natural_earth",
+  "jurisdiction": "cross-cutting",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "OCCRP Aleph / Aleph Pro",
+  "url": "https://aleph.occrp.org/",
+  "source_id": "xc_occrp_aleph",
+  "jurisdiction": "cross-cutting",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Open Data Inception",
+  "url": "https://opendatainception.io/",
+  "source_id": "xc_open_data_inception",
+  "jurisdiction": "cross-cutting",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "OpenHistoricalMap Database and Overpass API",
+  "url": "https://www.openhistoricalmap.org/about",
+  "source_id": "xc_openhistoricalmap",
+  "jurisdiction": "cross-cutting",
+  "identifiers": [
+   "COUNTRY",
+   "FIPS"
+  ]
+ },
+ {
+  "name": "OpenSecrets Bulk Data Download",
+  "url": "https://www.opensecrets.org/bulk-data",
+  "source_id": "xc_opensecrets_bulk",
+  "jurisdiction": "cross-cutting",
+  "identifiers": [
+   "CIK",
+   "EIN"
+  ]
+ },
+ {
+  "name": "PatientRightsAdvocate Hospital Pricing Files",
+  "url": "https://www.patientrightsadvocate.org/pra-reports",
+  "source_id": "xc_patientrightsadvocate_hpt",
+  "jurisdiction": "cross-cutting",
+  "identifiers": [
+   "NPI"
+  ]
+ },
+ {
+  "name": "ProPublica Nonprofit Explorer API v2",
+  "url": "https://projects.propublica.org/nonprofits/api",
+  "source_id": "xc_propublica_nonprofit",
+  "jurisdiction": "cross-cutting",
+  "identifiers": [
+   "EIN"
+  ]
+ },
+ {
+  "name": "re3data.org (Registry of Research Data Repositories)",
+  "url": "https://www.re3data.org/api/doc/",
+  "source_id": "xc_re3data",
+  "jurisdiction": "cross-cutting",
+  "identifiers": [
+   "COUNTRY"
+  ]
+ },
+ {
+  "name": "Data.gov Tribal Nations Climate and Environmental Data",
+  "url": "https://data.gov/climate/tribal-nations/tribal-nations-data/",
+  "source_id": "xc_tribal_datagov",
+  "jurisdiction": "cross-cutting",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Urban Institute Data Catalog",
+  "url": "https://datacatalog.urban.org/",
+  "source_id": "xc_urban_institute",
+  "jurisdiction": "cross-cutting",
+  "identifiers": [
+   "EIN",
+   "FIPS"
+  ]
+ },
+ {
+  "name": "USAFacts \u2014 Government Spending and Revenue Data",
+  "url": "https://usafacts.org/our-data/",
+  "source_id": "xc_usafacts",
+  "jurisdiction": "cross-cutting",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "VEST Precinct-Level Election Returns with Shapefiles",
+  "url": "https://dataverse.harvard.edu/dataverse/electionscience",
+  "source_id": "xc_vest_precinct",
+  "jurisdiction": "cross-cutting",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Washington Post Fatal Force \u2014 Police Shootings Database",
+  "url": "https://github.com/washingtonpost/data-police-shootings",
+  "source_id": "xc_wapo_fatalforce",
+  "jurisdiction": "cross-cutting",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "Wikidata SPARQL Endpoint & Bulk Dumps",
+  "url": "https://query.wikidata.org/sparql",
+  "source_id": "xc_wikidata",
+  "jurisdiction": "cross-cutting",
+  "identifiers": [
+   "CIK",
+   "COUNTRY",
+   "FIPS",
+   "LEI"
+  ]
+ },
+ {
+  "name": "ACF Program Data (TANF, Head Start, Child Care)",
+  "url": "https://www.acf.hhs.gov/opre/data",
+  "source_id": "fed_acf_welfare",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "National Healthcare Quality and Disparities Report Data",
+  "url": "https://datatools.ahrq.gov/nhqdr/",
+  "source_id": "fed_ahrq_nhqdr",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "ALFRED (Archival FRED)",
+  "url": "https://alfred.stlouisfed.org/",
+  "source_id": "fed_alfred",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "arXiv Preprint Repository",
+  "url": "https://info.arxiv.org/help/bulk_data.html",
+  "source_id": "fed_arxiv",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "ATF Firearms Commerce Report",
+  "url": "https://www.atf.gov/resource-center/data-statistics",
+  "source_id": "fed_atf_commerce",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "ATF Firearms Trace Data",
+  "url": "https://www.atf.gov/resource-center/data-statistics/firearms-trace-data-reports",
+  "source_id": "fed_atf_firearms_trace",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "BLS Public Data API",
+  "url": "https://www.bls.gov/developers/home.htm",
+  "source_id": "fed_bls_api",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "BOP Federal Inmate Locator",
+  "url": "https://www.bop.gov/inmateloc/",
+  "source_id": "fed_bop_inmate",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "California OpenJustice \u2014 Criminal Justice Open Data",
+  "url": "https://openjustice.doj.ca.gov/exploration",
+  "source_id": "fed_ca_openjustice",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "CBO Budget and Economic Data",
+  "url": "https://www.cbo.gov/data/budget-economic-data",
+  "source_id": "fed_cbo_data",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "National Notifiable Diseases Surveillance System (NNDSS)",
+  "url": "https://www.cdc.gov/nndss/infectious-disease/weekly-and-annual-disease-data-tables.html",
+  "source_id": "fed_cdc_nndss",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "ACS Public Use Microdata Sample (PUMS)",
+  "url": "https://www.census.gov/programs-surveys/acs/microdata/access.html",
+  "source_id": "fed_census_acs_pums",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "Electronic CFR Bulk Data (eCFR)",
+  "url": "https://www.govinfo.gov/bulkdata/ECFR",
+  "source_id": "fed_cfr_ecfr",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "Commitments of Traders (COT) Reports",
+  "url": "https://publicreporting.cftc.gov/stories/s/Commitments-of-Traders/r4w3-av2u/",
+  "source_id": "fed_cftc_cot",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "CFTC Weekly Swaps Report",
+  "url": "https://www.cftc.gov/data",
+  "source_id": "fed_cftc_swaps",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "ClinVar - Clinical Variant Database",
+  "url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/programmatic_access/",
+  "source_id": "fed_clinvar",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "Medicaid Managed Care Enrollment Report",
+  "url": "https://data.medicaid.gov/dataset/52ed908b-0cb8-5dd2-846d-99d4af12b369",
+  "source_id": "fed_cms_medicaid_mc",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "Medicare Part D Spending by Drug",
+  "url": "https://data.cms.gov/summary-statistics-on-use-and-payments/medicare-medicaid-spending-by-drug/medicare-part-d-spending-by-drug",
+  "source_id": "fed_cms_part_d_spending",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "Congress.gov API (v3)",
+  "url": "https://api.congress.gov/",
+  "source_id": "fed_congress_api",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "Congressional Bills Full-Text Bulk Data",
+  "url": "https://www.govinfo.gov/bulkdata/BILLS",
+  "source_id": "fed_congress_govinfo_bills",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "Congressional Record Bulk Data (CREC)",
+  "url": "https://www.govinfo.gov/bulkdata/CREC",
+  "source_id": "fed_congress_govinfo_crec",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "BLS Consumer Price Index (CPI)",
+  "url": "https://www.bls.gov/cpi/",
+  "source_id": "fed_cpi_bls",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "CPSC Recalls API",
+  "url": "https://www.cpsc.gov/Recalls/CPSC-Recalls-Application-Program-Interface-API-Information",
+  "source_id": "fed_cpsc_recalls",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "SaferProducts.gov Consumer Incident Database",
+  "url": "https://www.saferproducts.gov/FAQs/FrequentlyAskedQuestions11",
+  "source_id": "fed_cpsc_saferproducts",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "Congressional Research Service Reports",
+  "url": "https://api.congress.gov/",
+  "source_id": "fed_crs_reports",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "Data.gov Catalog API",
+  "url": "https://open.gsa.gov/api/datadotgov/",
+  "source_id": "fed_datagov_catalog",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "DOJ News API (Office of Public Affairs)",
+  "url": "https://www.justice.gov/developer/api-documentation/api_v1",
+  "source_id": "fed_doj_news",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "DOJ OIG Reports Database",
+  "url": "https://oig.justice.gov/reports",
+  "source_id": "fed_doj_oig",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "Unemployment Insurance Weekly Claims Data",
+  "url": "https://oui.doleta.gov/unemploy/DataDownloads.asp",
+  "source_id": "fed_dol_ui",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "EarthScope / NSF SAGE Seismic Waveform Archive",
+  "url": "https://service.earthscope.org/fdsnws/dataselect/1/",
+  "source_id": "fed_earthscope_seismic",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "College Scorecard API",
+  "url": "https://collegescorecard.ed.gov/data/api-documentation/",
+  "source_id": "fed_ed_college_scorecard",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "EEOC Charge Statistics",
+  "url": "https://www.eeoc.gov/data/enforcement-and-litigation-statistics-0",
+  "source_id": "fed_eeoc_charges",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "EPA eGRID (Emissions and Generation Resource Integrated Database)",
+  "url": "https://www.epa.gov/egrid/detailed-data",
+  "source_id": "fed_epa_egrid",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "NASA Exoplanet Archive",
+  "url": "https://exoplanetarchive.ipac.caltech.edu/docs/program_interfaces.html",
+  "source_id": "fed_exoplanet_archive",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "Federal Register API",
+  "url": "https://www.federalregister.gov/developers/documentation/api/v1",
+  "source_id": "fed_federal_register",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "SAR Stats (Suspicious Activity Report Statistics)",
+  "url": "https://www.fincen.gov/reports/sar-stats",
+  "source_id": "fed_fincen_sar_stats",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "Treasury Debt to the Penny Dataset",
+  "url": "https://fiscaldata.treasury.gov/datasets/debt-to-the-penny/",
+  "source_id": "fed_fiscaldata_debt",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "Daily Treasury Statement (DTS)",
+  "url": "https://fiscaldata.treasury.gov/datasets/daily-treasury-statement/",
+  "source_id": "fed_fiscaldata_dts",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "Monthly Treasury Statement (MTS)",
+  "url": "https://fiscaldata.treasury.gov/datasets/monthly-treasury-statement/",
+  "source_id": "fed_fiscaldata_mts",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "Treasury Fiscal Data API",
+  "url": "https://fiscaldata.treasury.gov/api-documentation/",
+  "source_id": "fed_fiscaldata_treasury",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "FMCSA SMS Safety Measurement System Data",
+  "url": "https://ai.fmcsa.dot.gov/SMS/Tools/Downloads.aspx",
+  "source_id": "fed_fmcsa_sms",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "FOIA.gov Request Portal and Agency API",
+  "url": "https://www.foia.gov/developer/",
+  "source_id": "fed_foia_gov",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "H.6 Money Stock Measures (M1, M2)",
+  "url": "https://www.federalreserve.gov/releases/h6/",
+  "source_id": "fed_frb_g10",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "G.19 Consumer Credit",
+  "url": "https://www.federalreserve.gov/releases/g19/",
+  "source_id": "fed_frb_g19",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "H.15 Selected Interest Rates",
+  "url": "https://www.federalreserve.gov/datadownload/Choose.aspx?rel=H15",
+  "source_id": "fed_frb_h15",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "H.4.1 Federal Reserve Balance Sheet",
+  "url": "https://www.federalreserve.gov/releases/h41/current/",
+  "source_id": "fed_frb_h41",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "H.8 Assets and Liabilities of Commercial Banks",
+  "url": "https://www.federalreserve.gov/feeds/h8.html",
+  "source_id": "fed_frb_h8",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "Senior Loan Officer Opinion Survey (SLOOS)",
+  "url": "https://www.federalreserve.gov/data/sloos.htm",
+  "source_id": "fed_frb_sloos",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "Z.1 Financial Accounts of the United States (Flow of Funds)",
+  "url": "https://www.federalreserve.gov/releases/z1/",
+  "source_id": "fed_frb_z1",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "FRED Economic Data API",
+  "url": "https://fred.stlouisfed.org/docs/api/fred/",
+  "source_id": "fed_fred_api",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "FRED Bulk Data Downloads",
+  "url": "https://fred.stlouisfed.org/docs/api/fred/",
+  "source_id": "fed_fred_bulk",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "FSIS Meat and Poultry Recall Data",
+  "url": "https://www.fsis.usda.gov/food-safety/recalls-public-health-alerts/annual-recall-summaries",
+  "source_id": "fed_fsis_recalls",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "GAO Reports and Recommendations Database",
+  "url": "https://www.gao.gov/reports-testimonies/recommendations-database",
+  "source_id": "fed_gao_reports",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "GovInfo Bulk Data Repository",
+  "url": "https://www.govinfo.gov/developers",
+  "source_id": "fed_govinfo_bulk",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "GovInfo \u2014 Supreme Court Decisions 1937\u20131975 (FLITE Bulk)",
+  "url": "https://www.govinfo.gov/help/scd",
+  "source_id": "fed_govinfo_scotus_historical",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "HealthData.gov / HHS Open Data",
+  "url": "https://healthdata.gov/",
+  "source_id": "fed_hhs_healthdata",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "House Member Financial Disclosure Reports",
+  "url": "https://disclosures-clerk.house.gov/FinancialDisclosure",
+  "source_id": "fed_house_financialdisclosure",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "NASA/IPAC Infrared Science Archive (IRSA)",
+  "url": "https://irsa.ipac.caltech.edu/docs/program_interface/TAP.html",
+  "source_id": "fed_irsa_ipac",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "Data.gov Archive (LIL)",
+  "url": "https://lil.law.harvard.edu/data-gov-archive/",
+  "source_id": "fed_lil_datagov",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "Library of Congress JSON/YAML API",
+  "url": "https://www.loc.gov/apis/json-and-yaml/",
+  "source_id": "fed_loc_json_api",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "US Reports Digital Collection (LOC)",
+  "url": "https://www.loc.gov/collections/united-states-reports/",
+  "source_id": "fed_loc_usreports",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "Library of Congress Web Archive Datasets",
+  "url": "https://www.loc.gov/programs/web-archiving/for-researchers/web-archive-datasets/",
+  "source_id": "fed_loc_web_archive",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "NARA Catalog API v2",
+  "url": "https://www.archives.gov/research/catalog/help/api",
+  "source_id": "fed_nara_catalog",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "NASA GISS Surface Temperature Analysis (GISTEMP v4)",
+  "url": "https://data.giss.nasa.gov/gistemp/",
+  "source_id": "fed_nasa_giss_gistemp",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "Integrated Postsecondary Education Data System (IPEDS)",
+  "url": "https://nces.ed.gov/ipeds/use-the-data",
+  "source_id": "fed_nces_ipeds",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "NHTSA Consumer Complaints API",
+  "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis",
+  "source_id": "fed_nhtsa_complaints",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "NHTSA Vehicle Safety Recalls API",
+  "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis",
+  "source_id": "fed_nhtsa_recalls",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "NLRB Case Data (NxGen)",
+  "url": "https://www.nlrb.gov/advanced-search",
+  "source_id": "fed_nlrb_cases",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "NOAA Open Data Dissemination (NODD) Program",
+  "url": "https://www.noaa.gov/nodd/datasets",
+  "source_id": "fed_noaa_nodd",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "NOAA World Ocean Database (WOD)",
+  "url": "https://www.ncei.noaa.gov/products/world-ocean-database",
+  "source_id": "fed_noaa_wod",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "OCC Enforcement Actions Database",
+  "url": "https://apps.occ.gov/EASearch",
+  "source_id": "fed_occ_enforcement",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "OMB President's Budget Historical Tables",
+  "url": "https://www.whitehouse.gov/omb/information-resources/budget/historical-tables/",
+  "source_id": "fed_omb_budget",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "openFDA Drug Adverse Events API",
+  "url": "https://open.fda.gov/apis/drug/event/",
+  "source_id": "fed_openfda_adverse_events",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "openFDA Medical Device API",
+  "url": "https://open.fda.gov/apis/device/",
+  "source_id": "fed_openfda_devices",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "openFDA Drug Labels & Enforcement API",
+  "url": "https://open.fda.gov/apis/drug/",
+  "source_id": "fed_openfda_drugs",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "openFDA Food Safety API",
+  "url": "https://open.fda.gov/apis/food/",
+  "source_id": "fed_openfda_food",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "Federal Workforce Data (FedScope / FWD)",
+  "url": "https://www.opm.gov/data/datasets/",
+  "source_id": "fed_opm_fedscope",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "OPM Federal Workforce Data (FedScope / EHRI)",
+  "url": "https://data.opm.gov/",
+  "source_id": "fed_opm_fedworkforce",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "Oversight.gov Federal IG Reports Portal",
+  "url": "https://www.oversight.gov/reports/federal",
+  "source_id": "fed_oversight_gov",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "BLS Producer Price Index (PPI)",
+  "url": "https://www.bls.gov/ppi/",
+  "source_id": "fed_ppi_bls",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "PubChem - Chemical Information Database",
+  "url": "https://pubchem.ncbi.nlm.nih.gov/docs/pug-rest",
+  "source_id": "fed_pubchem",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "OIRA Unified Agenda and Regulatory Plan",
+  "url": "https://www.reginfo.gov/public/do/eAgendaMain",
+  "source_id": "fed_reginfo_unified_agenda",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "Regulations.gov API (v4)",
+  "url": "https://open.gsa.gov/api/regulationsgov/",
+  "source_id": "fed_regulations_gov",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "RxNorm - Drug Nomenclature and Concept API",
+  "url": "https://lhncbc.nlm.nih.gov/RxNav/APIs/RxNormAPIs.html",
+  "source_id": "fed_rxnorm",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "NSDUH Public Use Files",
+  "url": "https://www.samhsa.gov/data/data-we-collect/nsduh-national-survey-drug-use-and-health/datafiles",
+  "source_id": "fed_samhsa_nsduh",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "Senate Electronic Financial Disclosure System (eFDS)",
+  "url": "https://efdsearch.senate.gov/",
+  "source_id": "fed_senate_financialdisclosure",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "Smithsonian Open Access Collections",
+  "url": "https://edan.si.edu/openaccess/docs/",
+  "source_id": "fed_smithsonian_openaccess",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "SSA Annual Statistical Supplement and Public-Use Files",
+  "url": "https://www.ssa.gov/policy/docs/data/index.html",
+  "source_id": "fed_ssa_statistics",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "Treasury Direct Auction Data",
+  "url": "https://www.treasurydirect.gov/auctions/auction-query/",
+  "source_id": "fed_treas_tdf",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "USAJOBS API",
+  "url": "https://developer.usajobs.gov/",
+  "source_id": "fed_usajobs_api",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "United States Code \u2014 Bulk XML",
+  "url": "https://uscode.house.gov/download/download.shtml",
+  "source_id": "fed_uscode_bulk",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "USDA FoodData Central",
+  "url": "https://fdc.nal.usda.gov/api-guide/",
+  "source_id": "fed_usda_fooddata",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "PatentsView Patent Data",
+  "url": "https://search.patentsview.org/docs/",
+  "source_id": "fed_uspto_patentsview",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "ACDC Illicit Finance Data Lab",
+  "url": "https://www.occrp.org/en/announcement/occrp-and-anti-corruption-data-collective-launch-new-initiative-to-fight-transnational-corruption",
+  "source_id": "intl_acdc_data",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Argo Global Data Assembly Centre (GDAC)",
+  "url": "https://argo.ucsd.edu/data/data-from-gdacs/",
+  "source_id": "intl_argo_gdac",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "ASIC Company Dataset (data.gov.au)",
+  "url": "https://data.gov.au/data/dataset/asic-companies",
+  "source_id": "intl_au_asic_companies",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "BAILII \u2014 UK and Irish Courts Case Law",
+  "url": "https://www.bailii.org/",
+  "source_id": "intl_bailii",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Bulgaria Public Procurement Portal (AOP)",
+  "url": "https://www2.aop.bg/en/home/",
+  "source_id": "intl_bg_aop",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Bahrain Sijilat Commercial Registry",
+  "url": "https://www.sijilat.bh/",
+  "source_id": "intl_bh_sijilat",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "BODS Data Analysis Tools (bods-data.openownership.org)",
+  "url": "https://bods-data.openownership.org/",
+  "source_id": "intl_bods_openownership_tools",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Corporations Canada Beneficial Ownership Registry",
+  "url": "https://ised-isde.canada.ca/site/corporations-canada/en",
+  "source_id": "intl_ca_corporations_canada",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "CERN Open Data Portal - LHC Particle Physics Data",
+  "url": "https://opendata.cern.ch/",
+  "source_id": "intl_cern_opendata",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "ChEMBL Drug Bioactivity Database",
+  "url": "https://www.ebi.ac.uk/chembl/api/data/docs",
+  "source_id": "intl_chembl",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Costa Rica SICOP Procurement OCDS",
+  "url": "https://data.open-contracting.org/en/publication/16",
+  "source_id": "intl_cr_sicop",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "InfoCuria \u2014 CJEU Case-Law Database",
+  "url": "https://infocuria.curia.europa.eu/",
+  "source_id": "intl_curia",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Cyprus Companies Registry",
+  "url": "https://www.companies.gov.cy/en/21-eservices/esearch-in-business-entity-s-registry",
+  "source_id": "intl_cy_companies",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Germany Transparenzregister (Beneficial Ownership)",
+  "url": "https://www.transparenzregister.de/",
+  "source_id": "intl_de_transparenzregister",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Germany Unternehmensregister",
+  "url": "https://www.unternehmensregister.de/en",
+  "source_id": "intl_de_unternehmensregister",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Denmark CVR \u2014 Central Business Register",
+  "url": "https://datacvr.virk.dk/",
+  "source_id": "intl_denmark_cvr",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Dominican Republic DGCP Public Procurement OCDS",
+  "url": "https://data.open-contracting.org/en/publication/22",
+  "source_id": "intl_do_dgcp",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "European Parliament Open Data Portal",
+  "url": "https://data.europarl.europa.eu/en/home",
+  "source_id": "intl_eu_parliament_data",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "EU Transparency Register",
+  "url": "https://transparency-register.europa.eu/index_en",
+  "source_id": "intl_eu_transparency_register",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "France Annuaire des Entreprises (API Entreprise)",
+  "url": "https://annuaire-entreprises.data.gouv.fr/donnees/api-entreprises",
+  "source_id": "intl_fr_annuaire_entreprises",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "France RNE \u2014 Registre National des Entreprises",
+  "url": "https://data.inpi.fr/",
+  "source_id": "intl_fr_inpi_rne",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "ESA Gaia Archive (DR3)",
+  "url": "https://gea.esac.esa.int/archive/",
+  "source_id": "intl_gaia_esa",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Georgia State Procurement Agency OCDS API",
+  "url": "https://odapi.spa.ge/publication-policy",
+  "source_id": "intl_ge_spa_procurement",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Guatemala Guatecompras Public Procurement System",
+  "url": "https://data.open-contracting.org/en/publication/142",
+  "source_id": "intl_gt_minfin",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Hong Kong Companies Registry",
+  "url": "https://www.cr.gov.hk/",
+  "source_id": "intl_hk_cr",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Croatia Electronic Public Procurement Notices (EOJN) OCDS Data",
+  "url": "https://data.open-contracting.org/en/publication/80",
+  "source_id": "intl_hr_eojn",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Hungary Company Register (e-cegjegyzek.hu)",
+  "url": "https://www.e-cegjegyzek.hu/",
+  "source_id": "intl_hu_cegjegyzek",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Hungary Public Procurement Portal (OCDS via OpenTender)",
+  "url": "https://data.open-contracting.org/en/publication/56",
+  "source_id": "intl_hu_procurement",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Israel Corporations Authority Company Registry",
+  "url": "https://www.justice.gov.il/En/Units/IsraeliCorporations/CompaniesRegistrar/OnlineServices/Pages/DataBaseRegisteredCompaniesVoluntarilyLiquidatedCompanies.aspx",
+  "source_id": "intl_il_ica",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "ISRIC SoilGrids 2.0 - Global Gridded Soil Information",
+  "url": "https://rest.isric.org/",
+  "source_id": "intl_isric_soilgrids",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Jordan Companies Control Department Registry",
+  "url": "https://opendata.gov.jo/en/organization/ccdgov-migrated_2041",
+  "source_id": "intl_jo_ccd",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "legislation.gov.uk API",
+  "url": "https://github.com/legislation/data-documentation",
+  "source_id": "intl_legislation_gov_uk",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Sri Lanka Company Registry (DRC / eRoc)",
+  "url": "https://eroc.drc.gov.lk/home/search",
+  "source_id": "intl_lk_drc",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Lithuania Public Procurement OCDS (OpenTender)",
+  "url": "https://data.open-contracting.org/en/publication/68",
+  "source_id": "intl_lt_procurement",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "LwMDB: Living with Machines Newspaper Metadata Database",
+  "url": "https://openhumanitiesdata.metajnl.com/articles/10.5334/johd.304",
+  "source_id": "intl_lwm_newspapers",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Morocco Central Trade Registry (OMPIC / Registre Central du Commerce)",
+  "url": "https://www.ompic.org.ma/en/content/research-ompic-databases",
+  "source_id": "intl_ma_ompic",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Moldova Company Registry (idno.md)",
+  "url": "https://idno.md/",
+  "source_id": "intl_md_companies",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Moldova MTender Open Contracting Portal",
+  "url": "https://mtender.gov.md/en/public/open-data",
+  "source_id": "intl_md_mtender",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Mongolia State Company Registry (burtgel.gov.mn)",
+  "url": "http://eng.burtgel.gov.mn/home",
+  "source_id": "intl_mn_burtgel",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Minor Planet Center (MPC) Orbital Database",
+  "url": "https://www.minorplanetcenter.net/data",
+  "source_id": "intl_mpc_asteroids",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "KVK Netherlands Company Register \u2014 Open Dataset",
+  "url": "https://developers.kvk.nl/documentation/open-dataset-basis-bedrijfsgegevens-api",
+  "source_id": "intl_netherlands_kvk",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "LobbyFacts \u2014 Enhanced EU Lobbying Data",
+  "url": "https://www.lobbyfacts.eu/",
+  "source_id": "intl_ngo_lobbyfacts",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "NLS Data Foundry",
+  "url": "https://data.nls.uk/data/",
+  "source_id": "intl_nls_data_foundry",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Norway Br\u00f8nn\u00f8ysund Register \u2014 Company and Roles Data",
+  "url": "https://www.brreg.no/en/use-of-data-from-the-bronnoysund-register-centre/datasets-and-api/",
+  "source_id": "intl_norway_brreg",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Open Ownership Register (BODS)",
+  "url": "https://register.openownership.org/",
+  "source_id": "intl_open_ownership",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Panama DGCP Public Procurement OCDS",
+  "url": "https://data.open-contracting.org/en/publication/120",
+  "source_id": "intl_pa_dgcp",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "RCSB Protein Data Bank (PDB)",
+  "url": "https://data.rcsb.org/",
+  "source_id": "intl_pdb",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Pakistan SECP Company Registry",
+  "url": "https://eservices.secp.gov.pk/eServices/NameSearch.jsp",
+  "source_id": "intl_pk_secp",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Paraguay DNCP Public Procurement OCDS",
+  "url": "https://data.open-contracting.org/en/publication/63",
+  "source_id": "intl_py_dncp",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Serbia Public Procurement OCDS (OpenTender)",
+  "url": "https://data.open-contracting.org/en/publication/139",
+  "source_id": "intl_rs_procurement",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Rwanda Umucyo Open Contracting Portal (OCDS)",
+  "url": "https://ocds.umucyo.gov.rw/",
+  "source_id": "intl_rw_ocds",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "SDSS DR17 - Sloan Digital Sky Survey Data Release 17",
+  "url": "https://www.sdss4.org/dr17/data_access/",
+  "source_id": "intl_sdss_dr17",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Singapore ACRA \u2014 Business Registration Open Data",
+  "url": "https://www.acra.gov.sg/about-bizfile/updates-and-innovations/acra-s-open-data-initiative",
+  "source_id": "intl_sgx_acra_singapore",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Slovenia Public Procurement OCDS Data",
+  "url": "https://data.open-contracting.org/en/publication/82",
+  "source_id": "intl_si_procurement",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Slovakia Business Register (Obchodn\u00fd Register / orsr.sk)",
+  "url": "https://www.orsr.sk/Default.asp?lan=en",
+  "source_id": "intl_sk_orsr",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Taiwan Company Registry (GCIS / data.gcis.nat.gov.tw)",
+  "url": "https://data.gcis.nat.gov.tw/",
+  "source_id": "intl_tw_gcis",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Tanzania National e-Procurement System (NeST) OCDS",
+  "url": "https://data.open-contracting.org/en/publication/152",
+  "source_id": "intl_tz_nest",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Ukraine Prozorro Public Procurement System",
+  "url": "https://public-api.prozorro.gov.ua/api/2.5",
+  "source_id": "intl_ua_prozorro",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Uganda E-Procurement Portal (OCDS)",
+  "url": "https://data.open-contracting.org/en/publication/130",
+  "source_id": "intl_ug_procurement",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "UK Companies House \u2014 Company and PSC Data",
+  "url": "https://developer.company-information.service.gov.uk/",
+  "source_id": "intl_uk_companies_house",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "UK PSC (Persons with Significant Control) Bulk Data",
+  "url": "https://download.companieshouse.gov.uk/en_pscdata.html",
+  "source_id": "intl_uk_companies_psc",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "UK Parliament Data Platform \u2014 Votes, Debates, and MP Data",
+  "url": "https://developer.parliament.uk/",
+  "source_id": "intl_uk_parliament",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Uruguay ARCE Public Procurement OCDS API",
+  "url": "https://data.open-contracting.org/en/publication/43",
+  "source_id": "intl_uy_arce",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Vietnam National Business Registration Portal (dangkykinhdoanh.gov.vn)",
+  "url": "https://dangkykinhdoanh.gov.vn/en/Pages/default.aspx",
+  "source_id": "intl_vn_nbr",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Global Power Plant Database",
+  "url": "https://datasets.wri.org/datasets/global-power-plant-database",
+  "source_id": "intl_wri_gppd",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "BART Developer Open Data",
+  "url": "https://www.bart.gov/about/developers",
+  "source_id": "loc_bart_gtfs",
+  "jurisdiction": "local",
+  "identifiers": []
+ },
+ {
+  "name": "CHA Data and Impact Hub",
+  "url": "https://www.thecha.org/transparency-action-cha-data-impact-hub",
+  "source_id": "loc_cha_open",
+  "jurisdiction": "local",
+  "identifiers": []
+ },
+ {
+  "name": "King County Metro Developer Resources \u2013 GTFS",
+  "url": "https://data.kingcounty.gov/Transportation-Roads/King-County-Metro-Developer-Resources/xq7p-aqca",
+  "source_id": "loc_kingcounty_metro_gtfs",
+  "jurisdiction": "local",
+  "identifiers": []
+ },
+ {
+  "name": "Metro Transit Developer API and GTFS",
+  "url": "https://svc.metrotransit.org/",
+  "source_id": "loc_metrotransit_mn_gtfs",
+  "jurisdiction": "local",
+  "identifiers": []
+ },
+ {
+  "name": "Miami-Dade Transit Open Data Feeds",
+  "url": "https://www.miamidade.gov/global/transportation/open-data-feeds.page",
+  "source_id": "loc_miamidade_transit_gtfs",
+  "jurisdiction": "local",
+  "identifiers": []
+ },
+ {
+  "name": "Denver RTD Open Spatial Data and GTFS",
+  "url": "https://www.rtd-denver.com/open-records/open-spatial-information/gtfs",
+  "source_id": "loc_rtd_denver_gtfs",
+  "jurisdiction": "local",
+  "identifiers": []
+ },
+ {
+  "name": "SEPTA Open Data and GTFS",
+  "url": "https://www3.septa.org/developer/",
+  "source_id": "loc_septa_gtfs",
+  "jurisdiction": "local",
+  "identifiers": []
+ },
+ {
+  "name": "Sound Transit Open Transit Data",
+  "url": "https://www.soundtransit.org/help-contacts/business-information/open-transit-data-otd",
+  "source_id": "loc_soundtransit_gtfs",
+  "jurisdiction": "local",
+  "identifiers": []
+ },
+ {
+  "name": "All 50 States \u2014 Campaign Finance & Lobbying Disclosure Systems",
+  "url": "https://www.followthemoney.org/resources/state-disclosure-agencies",
+  "source_id": "st_all_cf_summary",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "Arizona Financial Transparency Portal",
+  "url": "https://openbooks.az.gov/",
+  "source_id": "st_az_spend",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "California CAL-ACCESS Lobbying Module",
+  "url": "https://www.sos.ca.gov/campaign-lobbying/helpful-resources/raw-data-campaign-finance-and-lobbying-activity",
+  "source_id": "st_ca_calaccess_lobby",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "Cal eProcure State Procurement Portal",
+  "url": "https://caleprocure.ca.gov/",
+  "source_id": "st_ca_procurement_eprocure",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "Colorado Lobby Disclosure System Data Reports",
+  "url": "https://www.sos.state.co.us/pubs/lobby/reports.html",
+  "source_id": "st_co_lobby",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "Florida Campaign Finance Database",
+  "url": "https://dos.elections.myflorida.com/campaign-finance/contributions/",
+  "source_id": "st_fl_cf",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "Florida Lobbyist Registration and Compensation Reporting System",
+  "url": "https://www.floridalobbyist.gov/",
+  "source_id": "st_fl_lobby",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "Florida Transparency / MyFloridaCFO",
+  "url": "https://myfloridacfo.com/transparency/",
+  "source_id": "st_fl_spend",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "Georgia Lobbyist Disclosure Database",
+  "url": "https://media.ethics.ga.gov/search/Lobbyist/Lobbyist_ByGroup.aspx",
+  "source_id": "st_ga_lobby",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "Illinois Campaign Disclosure / Illinois Sunshine",
+  "url": "https://elections.il.gov/CampaignDisclosure/CandidateSearch.aspx",
+  "source_id": "st_il_cf",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "Illinois Lobbyist Registration and Expenditure Reporting System",
+  "url": "https://apps.ilsos.gov/lobbyistsearch/",
+  "source_id": "st_il_lobby",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "Kansas Open Gov",
+  "url": "https://kansasopengov.org/",
+  "source_id": "st_ks_open",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "Louisiana Checkbook",
+  "url": "https://checkbook.la.gov/",
+  "source_id": "st_la_spend",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "Massachusetts Lobbyist Public Search",
+  "url": "https://www.sec.state.ma.us/lobbyistpublicsearch/",
+  "source_id": "st_ma_lobby",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "Maine Open Data",
+  "url": "https://www.maine.gov/dafs/ocp/open-data",
+  "source_id": "st_me_open",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "Open Michigan Transparency",
+  "url": "https://transparency.michigan.gov/",
+  "source_id": "st_mi_spend",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "Minnesota CFB Lobbying Search Tool",
+  "url": "https://cfb.mn.gov/reports-and-data/viewers/lobbying/lobbyists/",
+  "source_id": "st_mn_lobby",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "TransparencyMN",
+  "url": "https://mn.gov/mmb/transparency-mn/",
+  "source_id": "st_mn_spend",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "North Dakota Open Data (fragmented)",
+  "url": "https://www.nd.gov/",
+  "source_id": "st_nd_open",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "New Jersey ELEC Governmental Affairs Agent Disclosure",
+  "url": "https://www.elec.nj.gov/publicinformation/gaa_annual.htm",
+  "source_id": "st_nj_elec_lobby",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "Nevada Open Data Portal",
+  "url": "https://open.nv.gov/",
+  "source_id": "st_nv_open",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "NYSBOE Public Reporting System",
+  "url": "https://publicreporting.elections.ny.gov/DownloadCampaignFinanceData/DownloadCampaignFinanceData",
+  "source_id": "st_ny_cf",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "New York State Lobbying Disclosure (Ethics Commission)",
+  "url": "https://ethics.ny.gov/lobbying-data-0",
+  "source_id": "st_ny_ethics_lobby",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "Ohio Lobbying Activity Center (OLAC)",
+  "url": "https://www2.jlec-olig.state.oh.us/olac/",
+  "source_id": "st_oh_lobby",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "PA Lobbying Services Online",
+  "url": "https://www.palobbyingservices.pa.gov/",
+  "source_id": "st_pa_lobby",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "Rhode Island Open Data Portal",
+  "url": "https://www.ri.gov/data/",
+  "source_id": "st_ri_open",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "South Carolina Data and Transparency",
+  "url": "https://sc.gov/data-and-transparency",
+  "source_id": "st_sc_open",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "Open SD \u2014 Financial Transparency",
+  "url": "https://open.sd.gov/",
+  "source_id": "st_sd_spend",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "Texas Ethics Commission Campaign Finance Data",
+  "url": "https://www.ethics.state.tx.us/search/cf/",
+  "source_id": "st_tx_cf",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "Texas Ethics Commission Lobbying Data",
+  "url": "https://www.ethics.state.tx.us/search/lobby/",
+  "source_id": "st_tx_ethics_lobby",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "Texas Electronic State Business Daily (ESBD)",
+  "url": "https://www.txsmartbuy.gov/esbd",
+  "source_id": "st_tx_procurement_esbd",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "Texas Transparency \u2014 State Revenue and Spending",
+  "url": "https://comptroller.texas.gov/transparency/",
+  "source_id": "st_tx_spend",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "Virginia Lobbyist Registration Database and VPAP",
+  "url": "https://www.commonwealth.virginia.gov/va-government/lobbyists/lobbyist-registration-database/",
+  "source_id": "st_va_lobby",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "Washington PDC Open Data",
+  "url": "https://www.pdc.wa.gov/political-disclosure-reporting-data/open-data",
+  "source_id": "st_wa_cf",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "Washington PDC Open Data \u2013 Lobbyist Disclosures",
+  "url": "https://www.pdc.wa.gov/political-disclosure-reporting-data/open-data",
+  "source_id": "st_wa_pdc_lobby",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "Wisconsin Eye on Lobbying (lobbying.wi.gov)",
+  "url": "https://lobbying.wi.gov/home/welcome",
+  "source_id": "st_wi_lobby",
+  "jurisdiction": "state",
+  "identifiers": []
+ },
+ {
+  "name": "ADS-B Exchange \u2014 Unfiltered Global Flight Tracking",
+  "url": "https://www.adsbexchange.com/data/",
+  "source_id": "xc_adsb_exchange",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "American Legal Publishing Code Library",
+  "url": "https://codelibrary.amlegal.com/",
+  "source_id": "xc_american_legal_pub",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Archive Team Projects",
+  "url": "https://wiki.archiveteam.org/index.php/Projects",
+  "source_id": "xc_archive_team",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Registry of Open Data on AWS",
+  "url": "https://registry.opendata.aws/",
+  "source_id": "xc_aws_opendata",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Big Local News",
+  "url": "https://biglocalnews.org/",
+  "source_id": "xc_biglocalnews",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Caselaw Access Project \u2014 Hugging Face Mirror",
+  "url": "https://huggingface.co/datasets/free-law/Caselaw_Access_Project",
+  "source_id": "xc_cap_hf_mirror",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Common Crawl",
+  "url": "https://commoncrawl.org/get-started",
+  "source_id": "xc_common_crawl",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Cornell LII \u2014 US Law Portal",
+  "url": "https://www.law.cornell.edu/",
+  "source_id": "xc_cornell_lii",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "CRFB \u2014 Federal Budget Analyses and Projections",
+  "url": "https://www.crfb.org/issue-area/budgets-projections",
+  "source_id": "xc_crfb",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Crossref Metadata REST API",
+  "url": "https://www.crossref.org/documentation/retrieve-metadata/rest-api/",
+  "source_id": "xc_crossref",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Crossref Open Funder Registry",
+  "url": "https://www.crossref.org/documentation/funder-registry/",
+  "source_id": "xc_crossref_funders",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Data Rescue Project",
+  "url": "https://www.datarescueproject.org/",
+  "source_id": "xc_data_rescue_project",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "data.world",
+  "url": "https://developer.data.world/docs/api-reference",
+  "source_id": "xc_data_world",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "DataRefuge",
+  "url": "https://www.datarefuge.org/",
+  "source_id": "xc_datarefuge",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "The Dataverse Project (open-source software)",
+  "url": "https://dataverse.org/",
+  "source_id": "xc_dataverse_project",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Directory of Open Access Journals (DOAJ)",
+  "url": "https://doaj.org/api/v4/docs",
+  "source_id": "xc_doaj",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "DocumentCloud",
+  "url": "https://www.documentcloud.org/help/api/",
+  "source_id": "xc_documentcloud",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Dryad",
+  "url": "https://datadryad.org/api/v2/docs/",
+  "source_id": "xc_dryad",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "EDGI Government Data Archiving",
+  "url": "https://github.com/edgi-govdata-archiving",
+  "source_id": "xc_edgi_archive",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Environmental Data Initiative (EDI) Repository",
+  "url": "https://edirepository.org/",
+  "source_id": "xc_edi_repository",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "End of Term Web Archive",
+  "url": "https://registry.opendata.aws/eot-web-archive/",
+  "source_id": "xc_eot_archive",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Europe PMC",
+  "url": "https://europepmc.org/RestfulWebService",
+  "source_id": "xc_europe_pmc",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Fatcat.wiki Scholarly Works Catalog",
+  "url": "https://guide.fatcat.wiki/",
+  "source_id": "xc_fatcat_wiki",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "figshare",
+  "url": "https://docs.figshare.com/",
+  "source_id": "xc_figshare",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "FlightAware AeroAPI \u2014 Historical Flight Tracking by Tail Number",
+  "url": "https://www.flightaware.com/commercial/aeroapi",
+  "source_id": "xc_flightaware_aeroapi",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Google Cloud Public Datasets",
+  "url": "https://cloud.google.com/datasets",
+  "source_id": "xc_gcp_public_datasets",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Google Dataset Search",
+  "url": "https://datasetsearch.research.google.com/",
+  "source_id": "xc_google_dataset_search",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Google Books Ngrams Dataset v3",
+  "url": "https://storage.googleapis.com/books/ngrams/books/datasetsv3.html",
+  "source_id": "xc_google_ngrams",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "GovTrack \u2014 U.S. Congress Tracking",
+  "url": "https://www.govtrack.us/about-our-data",
+  "source_id": "xc_govtrack",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Harvard Dataverse",
+  "url": "https://dataverse.harvard.edu/",
+  "source_id": "xc_harvard_dataverse",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Homeland Security Digital Library (HSDL)",
+  "url": "https://www.hsdl.org/c/access/",
+  "source_id": "xc_hsdl",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Hugging Face Datasets Hub",
+  "url": "https://huggingface.co/docs/hub/datasets-downloading",
+  "source_id": "xc_huggingface_datasets",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Internet Archive S3-like API and Collections",
+  "url": "https://archive.org/developers/ias3.html",
+  "source_id": "xc_ia_s3",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Internet Archive Scholar (IA Scholar)",
+  "url": "https://scholar.archive.org/help",
+  "source_id": "xc_ia_scholar",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Kaggle Datasets",
+  "url": "https://www.kaggle.com/docs/api",
+  "source_id": "xc_kaggle_datasets",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "LegiScan National State Bill Tracking",
+  "url": "https://legiscan.com/legiscan",
+  "source_id": "xc_legiscan",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "LegiStorm \u2014 Congressional Staff Salaries and Bios",
+  "url": "https://www.legistorm.com/salaries.html",
+  "source_id": "xc_legistorm",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "The Marshall Project Criminal Justice Data",
+  "url": "https://www.themarshallproject.org/records/9158-data",
+  "source_id": "xc_marshall_project",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "MuckRock FOIA Database",
+  "url": "https://www.muckrock.com/api/",
+  "source_id": "xc_muckrock",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Municode Library \u2014 Municipal Ordinances",
+  "url": "https://library.municode.com/",
+  "source_id": "xc_municode",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "NICAR Database Library \u2014 Cleaned Federal Enforcement Data",
+  "url": "https://www.ire.org/nicar-database-library-online-store-open/",
+  "source_id": "xc_nicar_data_library",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Open Environmental Data Project",
+  "url": "https://www.openenvironmentaldata.org/",
+  "source_id": "xc_oedp",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Open Library API & Data Dumps",
+  "url": "https://openlibrary.org/developers/api",
+  "source_id": "xc_open_library",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "OpenSky Network \u2014 Crowdsourced ADS-B Historical Archive",
+  "url": "https://openskynetwork.github.io/opensky-api/",
+  "source_id": "xc_opensky_network",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Open States / Plural \u2014 State Legislative Data",
+  "url": "https://docs.openstates.org/api-v3/",
+  "source_id": "xc_openstates_plural",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "OpenStreetMap (Planet + Overpass API)",
+  "url": "https://wiki.openstreetmap.org/wiki/Overpass_API",
+  "source_id": "xc_openstreetmap",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "OpenTrials",
+  "url": "https://opentrials.net/api.html",
+  "source_id": "xc_opentrials",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Open Science Framework (OSF)",
+  "url": "https://developer.osf.io/",
+  "source_id": "xc_osf",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Public Environmental Data Partners Archive",
+  "url": "https://www.publicenvirodata.org/",
+  "source_id": "xc_pedp",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Perma.cc",
+  "url": "https://perma.cc/docs/developer",
+  "source_id": "xc_permacc",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Pew Research Center Public Datasets",
+  "url": "https://www.pewresearch.org/datasets/",
+  "source_id": "xc_pew_datasets",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Pile of Law",
+  "url": "https://huggingface.co/datasets/pile-of-law/pile-of-law",
+  "source_id": "xc_pile_of_law",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Prison Policy Initiative Data Toolbox",
+  "url": "https://www.prisonpolicy.org/data/",
+  "source_id": "xc_prison_policy",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "ProPublica Congress API (Historical Reference Only)",
+  "url": "https://projects.propublica.org/api-docs/congress-api/",
+  "source_id": "xc_propublica_congress",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Public.Resource.Org",
+  "url": "https://public.resource.org/",
+  "source_id": "xc_public_resource",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "PUDL (Public Utility Data Liberation Project)",
+  "url": "https://catalyst.coop/pudl/",
+  "source_id": "xc_pudl",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Research Organization Registry (ROR)",
+  "url": "https://ror.readme.io/docs/basics",
+  "source_id": "xc_ror",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Source Cooperative",
+  "url": "https://source.coop/",
+  "source_id": "xc_source_coop",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Stanford Open Policing Project Traffic Stop Data",
+  "url": "https://openpolicing.stanford.edu/data/",
+  "source_id": "xc_stanford_opp",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "US State Lobbying Disclosure Systems (50-state)",
+  "url": "https://www.opensecrets.org/federal-lobbying/federal-and-state",
+  "source_id": "xc_state_lobby_summary",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "State Litigation and AG Activity Database",
+  "url": "https://attorneysgeneral.org/settlements-and-enforcement-actions/",
+  "source_id": "xc_stateag_litigation_db",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "AG Actions Database \u2014 Environmental",
+  "url": "https://stateimpactcenter.org/ag-work/ag-actions",
+  "source_id": "xc_stateimpact_ag_actions",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Tax Foundation \u2014 State and Federal Tax Data",
+  "url": "https://github.com/TaxFoundation/data",
+  "source_id": "xc_tax_foundation",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "The Markup \u2014 Investigation Data and Methodology Repos",
+  "url": "https://github.com/the-markup",
+  "source_id": "xc_the_markup",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "TRAC Immigration and Federal Enforcement Data",
+  "url": "https://tracreports.org/immigration/tools/",
+  "source_id": "xc_trac_syracuse",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "unitedstates/congress \u2014 Public Domain Congressional Data Scrapers",
+  "url": "https://github.com/unitedstates/congress",
+  "source_id": "xc_unitedstates_congress",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "VoteSmart \u2014 Candidate Voting Records and Interest Group Ratings",
+  "url": "https://api.votesmart.org/docs/",
+  "source_id": "xc_votesmart",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Wayback Machine CDX API",
+  "url": "https://github.com/internetarchive/wayback/tree/master/wayback-cdx-server",
+  "source_id": "xc_wayback_cdx",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ },
+ {
+  "name": "Zenodo",
+  "url": "https://zenodo.org/",
+  "source_id": "xc_zenodo",
+  "jurisdiction": "cross-cutting",
+  "identifiers": []
+ }
+]

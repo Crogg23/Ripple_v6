@@ -22,7 +22,7 @@ Array binding uses PARSE_JSON(json.dumps(list)) — the load-bearing register.py
 """
 import sys, json, warnings
 warnings.filterwarnings("ignore")
-sys.path.insert(0, "/Users/chrisr./Documents/GitHub/Ripple_v6/library-onboarding")
+sys.path.insert(0, "c:/Code/Ripple_v6/library-onboarding")
 from snow import connect
 
 # entity_types vocab: aircraft asset case company event facility filing organization payment person place vessel

@@ -1,0 +1,3111 @@
+Unattended mode (--yes): every checkpoint auto-approves.
+Budget: 30.5/60 credits used; ~23.5 to the 90% suspend line.
+Batch mode: 37 sources in the queue.
+
+Onboarding FRED — https://fred.stlouisfed.org/docs/api/fred/
+! This source needs free API key. Register for a free API key at 
+https://fred.stlouisfed.org/docs/api/api_key.html; no cost, immediate issuance 
+Set the key in .env before the LOAD checkpoint.
+
+====================================================
+CHECKPOINT 1 - RECON   [1 of 37]
+====================================================
+Source:        FRED (FRED API providing access to hundreds of thousands of      
+               economic data series from dozens of national and international   
+               sources via REST endpoints.)                                     
+SOURCE_ID:     fed_fred_economic_series                                         
+URL:           https://fred.stlouisfed.org/docs/api/fred/                       
+Jurisdiction:  federal                                                          
+Category:      Economy / Macroeconomic & Financial Data Series                  
+Publisher:     Federal Reserve Bank of St. Louis                                
+Access:        API + bulk download                                              
+Auth:          free API key (Register for a free API key at                     
+               https://fred.stlouisfed.org/docs/api/api_key.html; no cost,      
+               immediate issuance)                                              
+Format:        JSON                                                             
+Volume:        ~800,000+ series; millions of individual observations across all 
+               series                                                           
+Update:        daily                                                            
+Key IDs:       series_id, FIPS, country_ISO                                     
+Priority:      tier 1                                                           
+Landing:       LIBRARY_RAW.LANDING.FED_FRED_ECONOMIC_SERIES                     
+Staging:       stg_fed_fred_economic_series__fred_observations                  
+Mart:          economics__fed_fred_economic_series                              
+Joins to:      census_acs (FIPS), bls_employment (series_id or FIPS),           
+               usaspending (country_ISO)                                        
+
+Why it matters: Provides authoritative macroeconomic indicators (GDP, 
+unemployment, interest rates, government spending) essential for contextualizing
+financial flows and government fiscal policy in investigative reporting.
+
+Schema (17 fields):
+  series_id TEXT  Unique identifier for the economic data series (e.g. GNPCA, 
+UNRATE)
+  observation_date DATE  Date of the data observation
+  value TEXT  Observed data value (may be '.' for missing); cast to FLOAT in 
+staging
+  realtime_start DATE  Start of the real-time period (ALFRED vintage support)
+  realtime_end DATE  End of the real-time period (ALFRED vintage support)
+  series_title TEXT  Human-readable title of the series
+  frequency TEXT  Observation frequency (e.g. Daily, Monthly, Annual)
+  units TEXT  Units of measurement for the series values
+  seasonal_adjustment TEXT  Seasonal adjustment descriptor
+  last_updated TEXT  Timestamp when the series was last updated on FRED servers
+  popularity TEXT  FRED popularity score for the series
+  notes TEXT  Free-text notes or methodology notes for the series
+  category_id TEXT  FRED category identifier associated with the series
+  release_id TEXT  FRED release identifier associated with the series
+  source_id_fred TEXT  FRED source identifier for the originating data source
+  ... and 2 more
+-> go / edit  / skip / abort
+(auto-approve: go)
+
+====================================================
+CHECKPOINT 2 - SCRIPT   [1 of 37]
+====================================================
+Ingestion script for FRED (paginated_api)
+Target: LIBRARY_RAW.LANDING.FED_FRED_ECONOMIC_SERIES
+
+    1 import time
+    2 import json
+    3 import requests
+    4 import pandas as pd
+    5 
+    6 def fetch_data(context):
+    7     api_key = context["env"].get("FRED_API_KEY")
+    8     if not api_key:
+    9         raise RuntimeError("Missing required environment variable: FRED_AP
+   10 
+   11     base_url = "https://fred.stlouisfed.org/graph/api"
+   12     fred_api_base = "https://api.stlouisfed.org/fred"
+   13 
+   14     headers = {
+   15         "User-Agent": "Ripple Onboarding Agent (contact: ripple-data@examp
+   16     }
+   17 
+   18     # We'll fetch a bounded set of popular series from FRED
+   19     # Strategy: pull a popular category's series, then fetch observations 
+   20 
+   21     # Step 1: Get a bounded set of series (search by popularity, limit to 
+   22     series_limit = 50
+   23     series_offset = 0
+   24 
+   25     series_search_url = f"{fred_api_base}/series/search"
+   26     params = {
+   27         "api_key": api_key,
+   28         "file_type": "json",
+   29         "search_text": "united states",
+   30         "limit": series_limit,
+   31         "offset": series_offset,
+   32         "order_by": "popularity",
+   33         "sort_order": "desc",
+   34     }
+   35 
+   36     resp = requests.get(series_search_url, params=params, headers=headers,
+   37     if resp.status_code != 200:
+   38         raise RuntimeError(f"FRED series search failed: {resp.status_code}
+   39 
+   40     raw_bytes_parts = [resp.content]
+   41     search_data = resp.json()
+   42     series_list = search_data.get("seriess", [])
+   43 
+   44     if not series_list:
+   45         raise RuntimeError("No series returned from FRED series search. Ch
+   46 
+   47     # Build a lookup of series metadata
+   48     series_meta = {}
+   49     for s in series_list:
+   50         sid = s.get("id", "")
+   51         series_meta[sid] = {
+   52             "series_title": str(s.get("title", "")),
+   53             "frequency": str(s.get("frequency", "")),
+   54             "units": str(s.get("units", "")),
+   55             "seasonal_adjustment": str(s.get("seasonal_adjustment", "")),
+   56             "last_updated": str(s.get("last_updated", "")),
+   57             "popularity": str(s.get("popularity", "")),
+   58             "notes": str(s.get("notes", "")),
+   59         }
+   60 
+   61     # Step 2: For each series, fetch observations (limited to recent 20 ob
+   62     # and supplementary info (categories, releases, sources)
+   63     all_records = []
+   64     obs_limit = 20  # bounded per series
+   65 
+   66     for sid, meta in series_meta.items():
+   67         time.sleep(0.1)  # gentle rate limiting
+   68 
+   69         # Fetch observations
+   70         obs_url = f"{fred_api_base}/series/observations"
+   71         obs_params = {
+   72             "api_key": api_key,
+   73             "file_type": "json",
+   74             "series_id": sid,
+   75             "limit": obs_limit,
+   76             "sort_order": "desc",  # most recent first
+   77         }
+   78         obs_resp = requests.get(obs_url, params=obs_params, headers=header
+   79         if obs_resp.status_code != 200:
+   80             # Skip this series on error
+   81             continue
+   82         raw_bytes_parts.append(obs_resp.content)
+   83         obs_data = obs_resp.json()
+   84         observations = obs_data.get("observations", [])
+   85 
+   86         # Fetch category info (use first category)
+   87         category_id = ""
+   88         try:
+   89             time.sleep(0.05)
+   90             cat_url = f"{fred_api_base}/series/categories"
+   91             cat_params = {"api_key": api_key, "file_type": "json", "series
+   92             cat_resp = requests.get(cat_url, params=cat_params, headers=he
+   93             raw_bytes_parts.append(cat_resp.content)
+   94             if cat_resp.status_code == 200:
+   95                 cats = cat_resp.json().get("categories", [])
+   96                 if cats:
+   97                     category_id = str(cats[0].get("id", ""))
+   98         except Exception:
+   99             pass
+  100 
+  101         # Fetch release info
+  102         release_id = ""
+  103         try:
+  104             time.sleep(0.05)
+  105             rel_url = f"{fred_api_base}/series/release"
+  106             rel_params = {"api_key": api_key, "file_type": "json", "series
+  107             rel_resp = requests.get(rel_url, params=rel_params, headers=he
+  108             raw_bytes_parts.append(rel_resp.content)
+  109             if rel_resp.status_code == 200:
+  110                 releases = rel_resp.json().get("releases", [])
+  111                 if releases:
+  112                     release_id = str(releases[0].get("id", ""))
+  113         except Exception:
+  114             pass
+  115 
+  116         # Fetch source info
+  117         source_id_fred = ""
+  118         try:
+  119             if release_id:
+  120                 time.sleep(0.05)
+  121                 src_url = f"{fred_api_base}/release/sources"
+  122                 src_params = {"api_key": api_key, "file_type": "json", "re
+  123                 src_resp = requests.get(src_url, params=src_params, header
+  124                 raw_bytes_parts.append(src_resp.content)
+  125                 if src_resp.status_code == 200:
+  126                     sources = src_resp.json().get("sources", [])
+  127                     if sources:
+  128                         source_id_fred = str(sources[0].get("id", ""))
+  129         except Exception:
+  130             pass
+  131 
+  132         # Fetch geographic info (tags) -- attempt to derive FIPS/ISO from 
+  133         geography_fips = ""
+  134         country_iso = ""
+  135         try:
+  136             time.sleep(0.05)
+  137             tags_url = f"{fred_api_base}/series/tags"
+  138             tags_params = {"api_key": api_key, "file_type": "json", "serie
+  139             tags_resp = requests.get(tags_url, params=tags_params, headers
+  140             raw_bytes_parts.append(tags_resp.content)
+  141             if tags_resp.status_code == 200:
+  142                 tags = tags_resp.json().get("tags", [])
+  143                 for tag in tags:
+  144                     tag_name = tag.get("name", "")
+  145                     tag_group = tag.get("group_id", "")
+  146                     # geo tags often have group_id 'geo'
+  147                     if tag_group == "geo":
+  148                         # attempt FIPS / ISO assignment heuristically
+  149                         if len(tag_name) == 2 and tag_name.isalpha() and t
+  150                             country_iso = tag_name
+  151                         elif tag_name.isdigit():
+  152                             geography_fips = tag_name
+  153         except Exception:
+  154             pass
+  155 
+  156         # Build one row per observation
+  157         for obs in observations:
+  158             record = {
+  159                 "series_id": str(sid),
+  160                 "observation_date": str(obs.get("date", "")),
+  161                 "value": str(obs.get("value", "")),
+  162                 "realtime_start": str(obs.get("realtime_start", "")),
+  163                 "realtime_end": str(obs.get("realtime_end", "")),
+  164                 "series_title": meta["series_title"],
+  165                 "frequency": meta["frequency"],
+  166                 "units": meta["units"],
+  167                 "seasonal_adjustment": meta["seasonal_adjustment"],
+  168                 "last_updated": meta["last_updated"],
+  169                 "popularity": meta["popularity"],
+  170                 "notes": meta["notes"],
+  171                 "category_id": category_id,
+  172                 "release_id": release_id,
+  173                 "source_id_fred": source_id_fred,
+  174                 "geography_fips": geography_fips,
+  175                 "country_iso": country_iso,
+  176             }
+  177             all_records.append(record)
+  178 
+  179     if not all_records:
+  180         raise RuntimeError("No observation records retrieved from FRED. Ve
+  181 
+  182     # Accumulate raw bytes for provenance / SHA-256
+  183     context["source_bytes"] = b"\n".join(raw_bytes_parts)
+  184 
+  185     df = pd.DataFrame(all_records)
+  186     df = df.astype(str)
+  187     return df
+-> go / edit  / skip / abort
+(auto-approve: go)
+x Missing required environment variable: FRED_API_KEY
+! Check Snowflake credentials / source schema, then edit or retry.
+! Auto-repair 1/3 — feeding the error back to Claude.
+
+====================================================
+CHECKPOINT 2 - SCRIPT   [1 of 37]
+====================================================
+Ingestion script for FRED (paginated_api)
+Target: LIBRARY_RAW.LANDING.FED_FRED_ECONOMIC_SERIES
+
+    1 import time
+    2 import json
+    3 import requests
+    4 import pandas as pd
+    5 
+    6 def fetch_data(context):
+    7     api_key = context["env"].get("FRED_API_KEY")
+    8     if not api_key:
+    9         raise RuntimeError("Missing required environment variable: FRED_AP
+   10 
+   11     base_url = "https://api.stlouisfed.org/fred"
+   12     headers = {"User-Agent": "Ripple Onboarding Agent (contact: ripple-dat
+   13 
+   14     # Fetch a bounded set of popular series from FRED
+   15     # We'll get series from a few key categories to build a representative
+   16     series_limit = 100  # bounded snapshot
+   17 
+   18     # Step 1: Search for popular series
+   19     search_url = f"{base_url}/series/search"
+   20     search_params = {
+   21         "api_key": api_key,
+   22         "file_type": "json",
+   23         "search_text": "united states",
+   24         "limit": series_limit,
+   25         "sort_by": "popularity",
+   26         "order_by": "desc",
+   27         "filter_variable": "frequency",
+   28         "filter_value": "Monthly",
+   29     }
+   30 
+   31     resp = requests.get(search_url, params=search_params, headers=headers,
+   32     resp.raise_for_status()
+   33     raw_bytes = resp.content
+   34 
+   35     search_data = resp.json()
+   36     series_list = search_data.get("seriess", [])
+   37 
+   38     if not series_list:
+   39         raise RuntimeError("No series returned from FRED series search.")
+   40 
+   41     all_rows = []
+   42     all_bytes = [raw_bytes]
+   43 
+   44     # Step 2: For each series, fetch observations
+   45     for series_info in series_list:
+   46         sid = series_info.get("id", "")
+   47         series_title = series_info.get("title", "")
+   48         frequency = series_info.get("frequency", "")
+   49         units = series_info.get("units", "")
+   50         seasonal_adjustment = series_info.get("seasonal_adjustment", "")
+   51         last_updated = series_info.get("last_updated", "")
+   52         popularity = str(series_info.get("popularity", ""))
+   53         notes = series_info.get("notes", "")
+   54 
+   55         # Fetch observations for this series (bounded: limit=10 recent obs
+   56         obs_url = f"{base_url}/series/observations"
+   57         obs_params = {
+   58             "api_key": api_key,
+   59             "file_type": "json",
+   60             "series_id": sid,
+   61             "limit": 10,
+   62             "sort_order": "desc",
+   63         }
+   64 
+   65         try:
+   66             obs_resp = requests.get(obs_url, params=obs_params, headers=he
+   67             obs_resp.raise_for_status()
+   68             all_bytes.append(obs_resp.content)
+   69             obs_data = obs_resp.json()
+   70             observations = obs_data.get("observations", [])
+   71         except Exception:
+   72             time.sleep(0.5)
+   73             continue
+   74 
+   75         # Fetch category for this series
+   76         cat_url = f"{base_url}/series/categories"
+   77         cat_params = {
+   78             "api_key": api_key,
+   79             "file_type": "json",
+   80             "series_id": sid,
+   81         }
+   82         category_id = ""
+   83         try:
+   84             cat_resp = requests.get(cat_url, params=cat_params, headers=he
+   85             cat_resp.raise_for_status()
+   86             all_bytes.append(cat_resp.content)
+   87             cat_data = cat_resp.json()
+   88             cats = cat_data.get("categories", [])
+   89             if cats:
+   90                 category_id = str(cats[0].get("id", ""))
+   91         except Exception:
+   92             pass
+   93 
+   94         # Fetch release for this series
+   95         rel_url = f"{base_url}/series/release"
+   96         rel_params = {
+   97             "api_key": api_key,
+   98             "file_type": "json",
+   99             "series_id": sid,
+  100         }
+  101         release_id = ""
+  102         source_id_fred = ""
+  103         try:
+  104             rel_resp = requests.get(rel_url, params=rel_params, headers=he
+  105             rel_resp.raise_for_status()
+  106             all_bytes.append(rel_resp.content)
+  107             rel_data = rel_resp.json()
+  108             releases = rel_data.get("releases", [])
+  109             if releases:
+  110                 release_id = str(releases[0].get("id", ""))
+  111         except Exception:
+  112             pass
+  113 
+  114         # Build rows from observations
+  115         for obs in observations:
+  116             row = {
+  117                 "series_id": str(sid),
+  118                 "observation_date": str(obs.get("date", "")),
+  119                 "value": str(obs.get("value", "")),
+  120                 "realtime_start": str(obs.get("realtime_start", "")),
+  121                 "realtime_end": str(obs.get("realtime_end", "")),
+  122                 "series_title": str(series_title),
+  123                 "frequency": str(frequency),
+  124                 "units": str(units),
+  125                 "seasonal_adjustment": str(seasonal_adjustment),
+  126                 "last_updated": str(last_updated),
+  127                 "popularity": str(popularity),
+  128                 "notes": str(notes),
+  129                 "category_id": str(category_id),
+  130                 "release_id": str(release_id),
+  131                 "source_id_fred": str(source_id_fred),
+  132                 "geography_fips": "",
+  133                 "country_iso": "",
+  134             }
+  135             all_rows.append(row)
+  136 
+  137         # Respect rate limits
+  138         time.sleep(0.2)
+  139 
+  140     if not all_rows:
+  141         raise RuntimeError("No observation data fetched from FRED.")
+  142 
+  143     context["source_bytes"] = b"\n".join(all_bytes)
+  144 
+  145     df = pd.DataFrame(all_rows)
+  146     df = df.astype(str)
+  147     return df
+x Missing required environment variable: FRED_API_KEY
+! Check Snowflake credentials / source schema, then edit or retry.
+! Auto-repair 2/3 — feeding the error back to Claude.
+
+====================================================
+CHECKPOINT 2 - SCRIPT   [1 of 37]
+====================================================
+Ingestion script for FRED (paginated_api)
+Target: LIBRARY_RAW.LANDING.FED_FRED_ECONOMIC_SERIES
+
+    1 import time
+    2 import json
+    3 import requests
+    4 import pandas as pd
+    5 
+    6 def fetch_data(context):
+    7     api_key = context["env"].get("FRED_API_KEY")
+    8     if not api_key:
+    9         raise RuntimeError(
+   10             "Missing required environment variable: FRED_API_KEY. "
+   11             "Register for a free API key at https://fred.stlouisfed.org/do
+   12         )
+   13 
+   14     base_url = "https://fred.stlouisfed.org/graph/fredgraph.csv"
+   15     api_base = "https://api.stlouisfed.org/fred"
+   16 
+   17     headers = {
+   18         "User-Agent": "Ripple Onboarding Agent (contact: ripple-data@examp
+   19     }
+   20 
+   21     # Fetch a curated set of popular/important FRED series IDs
+   22     # We'll use the series search endpoint to get a bounded set
+   23     SERIES_LIMIT = 50  # Bounded snapshot
+   24     OBSERVATIONS_LIMIT = 10  # Latest N observations per series
+   25 
+   26     all_raw_bytes = []
+   27     all_rows = []
+   28 
+   29     # Step 1: Fetch a bounded list of series using the FRED series search 
+   30     search_url = f"{api_base}/series/search"
+   31     search_params = {
+   32         "search_text": "united states",
+   33         "api_key": api_key,
+   34         "file_type": "json",
+   35         "limit": SERIES_LIMIT,
+   36         "offset": 0,
+   37         "order_by": "popularity",
+   38         "sort_order": "desc",
+   39     }
+   40 
+   41     resp = requests.get(search_url, params=search_params, headers=headers,
+   42     resp.raise_for_status()
+   43     all_raw_bytes.append(resp.content)
+   44 
+   45     search_data = resp.json()
+   46     series_list = search_data.get("seriess", [])
+   47 
+   48     if not series_list:
+   49         raise RuntimeError("No series returned from FRED series search end
+   50 
+   51     # Step 2: For each series, fetch metadata + recent observations
+   52     for series_info in series_list:
+   53         series_id = series_info.get("id", "")
+   54         series_title = series_info.get("title", "")
+   55         frequency = series_info.get("frequency", "")
+   56         units = series_info.get("units", "")
+   57         seasonal_adjustment = series_info.get("seasonal_adjustment", "")
+   58         last_updated = series_info.get("last_updated", "")
+   59         popularity = str(series_info.get("popularity", ""))
+   60         notes = series_info.get("notes", "")
+   61 
+   62         if not series_id:
+   63             continue
+   64 
+   65         # Step 3: Fetch category for this series
+   66         category_id = ""
+   67         try:
+   68             cat_url = f"{api_base}/series/categories"
+   69             cat_params = {
+   70                 "series_id": series_id,
+   71                 "api_key": api_key,
+   72                 "file_type": "json",
+   73             }
+   74             cat_resp = requests.get(cat_url, params=cat_params, headers=he
+   75             all_raw_bytes.append(cat_resp.content)
+   76             if cat_resp.ok:
+   77                 cat_data = cat_resp.json()
+   78                 cats = cat_data.get("categories", [])
+   79                 if cats:
+   80                     category_id = str(cats[0].get("id", ""))
+   81         except Exception:
+   82             pass
+   83         time.sleep(0.1)
+   84 
+   85         # Step 4: Fetch release for this series
+   86         release_id = ""
+   87         try:
+   88             rel_url = f"{api_base}/series/release"
+   89             rel_params = {
+   90                 "series_id": series_id,
+   91                 "api_key": api_key,
+   92                 "file_type": "json",
+   93             }
+   94             rel_resp = requests.get(rel_url, params=rel_params, headers=he
+   95             all_raw_bytes.append(rel_resp.content)
+   96             if rel_resp.ok:
+   97                 rel_data = rel_resp.json()
+   98                 releases = rel_data.get("releases", [])
+   99                 if releases:
+  100                     release_id = str(releases[0].get("id", ""))
+  101         except Exception:
+  102             pass
+  103         time.sleep(0.1)
+  104 
+  105         # Step 5: Fetch source for this series via release
+  106         source_id_fred = ""
+  107         if release_id:
+  108             try:
+  109                 src_url = f"{api_base}/release/sources"
+  110                 src_params = {
+  111                     "release_id": release_id,
+  112                     "api_key": api_key,
+  113                     "file_type": "json",
+  114                 }
+  115                 src_resp = requests.get(src_url, params=src_params, header
+  116                 all_raw_bytes.append(src_resp.content)
+  117                 if src_resp.ok:
+  118                     src_data = src_resp.json()
+  119                     sources = src_data.get("sources", [])
+  120                     if sources:
+  121                         source_id_fred = str(sources[0].get("id", ""))
+  122             except Exception:
+  123                 pass
+  124             time.sleep(0.1)
+  125 
+  126         # Step 6: Fetch recent observations for this series
+  127         obs_url = f"{api_base}/series/observations"
+  128         obs_params = {
+  129             "series_id": series_id,
+  130             "api_key": api_key,
+  131             "file_type": "json",
+  132             "sort_order": "desc",
+  133             "limit": OBSERVATIONS_LIMIT,
+  134             "output_type": 1,  # standard observations
+  135         }
+  136 
+  137         try:
+  138             obs_resp = requests.get(obs_url, params=obs_params, headers=he
+  139             obs_resp.raise_for_status()
+  140             all_raw_bytes.append(obs_resp.content)
+  141             obs_data = obs_resp.json()
+  142             observations = obs_data.get("observations", [])
+  143         except Exception:
+  144             observations = []
+  145         time.sleep(0.1)
+  146 
+  147         # Step 7: Build rows — one per observation
+  148         for obs in observations:
+  149             row = {
+  150                 "series_id": str(series_id),
+  151                 "observation_date": str(obs.get("date", "")),
+  152                 "value": str(obs.get("value", "")),
+  153                 "realtime_start": str(obs.get("realtime_start", "")),
+  154                 "realtime_end": str(obs.get("realtime_end", "")),
+  155                 "series_title": str(series_title),
+  156                 "frequency": str(frequency),
+  157                 "units": str(units),
+  158                 "seasonal_adjustment": str(seasonal_adjustment),
+  159                 "last_updated": str(last_updated),
+  160                 "popularity": str(popularity),
+  161                 "notes": str(notes),
+  162                 "category_id": str(category_id),
+  163                 "release_id": str(release_id),
+  164                 "source_id_fred": str(source_id_fred),
+  165                 "geography_fips": "",   # Requires Maps API; not fetched h
+  166                 "country_iso": "",      # Not directly available in standa
+  167             }
+  168             all_rows.append(row)
+  169 
+  170     if not all_rows:
+  171         raise RuntimeError("No observation rows collected from FRED API.")
+  172 
+  173     # Accumulate raw bytes for SHA-256 provenance
+  174     context["source_bytes"] = b"\n".join(all_raw_bytes)
+  175 
+  176     df = pd.DataFrame(all_rows)
+  177     df = df.astype(str)
+  178     return df
+x Missing required environment variable: FRED_API_KEY. Register for a free API 
+key at https://fred.stlouisfed.org/docs/api/api_key.html
+! Check Snowflake credentials / source schema, then edit or retry.
+! Auto-repair 3/3 — feeding the error back to Claude.
+
+====================================================
+CHECKPOINT 2 - SCRIPT   [1 of 37]
+====================================================
+Ingestion script for FRED (paginated_api)
+Target: LIBRARY_RAW.LANDING.FED_FRED_ECONOMIC_SERIES
+
+    1 import os
+    2 import time
+    3 import json
+    4 import requests
+    5 import pandas as pd
+    6 from typing import Optional
+    7 
+    8 def fetch_data(context: dict) -> pd.DataFrame:
+    9     # --- Auth ---
+   10     api_key = context.get("env", {}).get("FRED_API_KEY")
+   11     if not api_key:
+   12         # Try os.environ as fallback
+   13         api_key = os.environ.get("FRED_API_KEY")
+   14     if not api_key:
+   15         raise RuntimeError(
+   16             "Missing required environment variable: FRED_API_KEY. "
+   17             "Register for a free API key at https://fred.stlouisfed.org/do
+   18         )
+   19 
+   20     base_url = "https://fred.stlouisfed.org/graph/api"
+   21     fred_api_base = "https://api.stlouisfed.org/fred"
+   22 
+   23     headers = {
+   24         "User-Agent": "Ripple Onboarding Agent (contact: ripple-data@examp
+   25     }
+   26 
+   27     # We'll fetch a bounded set of popular FRED series with their observat
+   28     # Strategy:
+   29     # 1. Fetch a list of series (bounded to ~50) from a popular FRED categ
+   30     # 2. For each series, fetch observations
+   31     # 3. Join metadata to observations
+   32 
+   33     # Step 1: Fetch series list via fred/series/search (bounded)
+   34     SERIES_LIMIT = 20  # bounded snapshot
+   35 
+   36     series_search_url = f"{fred_api_base}/series/search"
+   37     series_params = {
+   38         "api_key": api_key,
+   39         "file_type": "json",
+   40         "search_text": "united states",
+   41         "limit": SERIES_LIMIT,
+   42         "order_by": "popularity",
+   43         "sort_order": "desc",
+   44     }
+   45 
+   46     all_raw_bytes = []
+   47     session = requests.Session()
+   48     session.headers.update(headers)
+   49 
+   50     resp = session.get(series_search_url, params=series_params, timeout=30
+   51     if resp.status_code == 403:
+   52         raise RuntimeError(f"Auth error fetching FRED series list: {resp.s
+   53     resp.raise_for_status()
+   54     all_raw_bytes.append(resp.content)
+   55 
+   56     series_data = resp.json()
+   57     series_list = series_data.get("seriess", [])
+   58     if not series_list:
+   59         raise RuntimeError("FRED API returned no series. Check API key or 
+   60 
+   61     # Build a dict of series metadata keyed by series_id
+   62     series_meta = {}
+   63     for s in series_list:
+   64         series_meta[s.get("id", "")] = s
+   65 
+   66     # Step 2: For each series, get release, source, category, and observat
+   67     records = []
+   68 
+   69     for series_id, meta in series_meta.items():
+   70         time.sleep(0.1)  # be polite to the API
+   71 
+   72         # Fetch observations for this series (bounded)
+   73         obs_url = f"{fred_api_base}/series/observations"
+   74         obs_params = {
+   75             "api_key": api_key,
+   76             "file_type": "json",
+   77             "series_id": series_id,
+   78             "limit": 10,  # bounded per series
+   79             "sort_order": "desc",
+   80             "output_type": 1,  # observations by real-time period
+   81         }
+   82         obs_resp = session.get(obs_url, params=obs_params, timeout=30)
+   83         if obs_resp.status_code in (429, 503):
+   84             time.sleep(2)
+   85             obs_resp = session.get(obs_url, params=obs_params, timeout=30)
+   86         if not obs_resp.ok:
+   87             # Skip problematic series
+   88             continue
+   89         all_raw_bytes.append(obs_resp.content)
+   90         obs_data = obs_resp.json()
+   91         observations = obs_data.get("observations", [])
+   92 
+   93         # --- Optionally fetch release_id ---
+   94         release_id = ""
+   95         try:
+   96             rel_url = f"{fred_api_base}/series/release"
+   97             rel_params = {"api_key": api_key, "file_type": "json", "series
+   98             rel_resp = session.get(rel_url, params=rel_params, timeout=20)
+   99             if rel_resp.ok:
+  100                 all_raw_bytes.append(rel_resp.content)
+  101                 rel_data = rel_resp.json()
+  102                 releases = rel_data.get("releases", [])
+  103                 if releases:
+  104                     release_id = str(releases[0].get("id", ""))
+  105             time.sleep(0.05)
+  106         except Exception:
+  107             pass
+  108 
+  109         # --- Optionally fetch source_id ---
+  110         source_id_fred = ""
+  111         if release_id:
+  112             try:
+  113                 src_url = f"{fred_api_base}/release/sources"
+  114                 src_params = {"api_key": api_key, "file_type": "json", "re
+  115                 src_resp = session.get(src_url, params=src_params, timeout
+  116                 if src_resp.ok:
+  117                     all_raw_bytes.append(src_resp.content)
+  118                     src_data = src_resp.json()
+  119                     sources = src_data.get("sources", [])
+  120                     if sources:
+  121                         source_id_fred = str(sources[0].get("id", ""))
+  122                 time.sleep(0.05)
+  123             except Exception:
+  124                 pass
+  125 
+  126         # --- Optionally fetch category_id ---
+  127         category_id = ""
+  128         try:
+  129             cat_url = f"{fred_api_base}/series/categories"
+  130             cat_params = {"api_key": api_key, "file_type": "json", "series
+  131             cat_resp = session.get(cat_url, params=cat_params, timeout=20)
+  132             if cat_resp.ok:
+  133                 all_raw_bytes.append(cat_resp.content)
+  134                 cat_data = cat_resp.json()
+  135                 categories = cat_data.get("categories", [])
+  136                 if categories:
+  137                     category_id = str(categories[0].get("id", ""))
+  138             time.sleep(0.05)
+  139         except Exception:
+  140             pass
+  141 
+  142         # Build one row per observation
+  143         for obs in observations:
+  144             row = {
+  145                 "series_id": str(series_id),
+  146                 "observation_date": str(obs.get("date", "")),
+  147                 "value": str(obs.get("value", "")),
+  148                 "realtime_start": str(obs.get("realtime_start", "")),
+  149                 "realtime_end": str(obs.get("realtime_end", "")),
+  150                 "series_title": str(meta.get("title", "")),
+  151                 "frequency": str(meta.get("frequency", "")),
+  152                 "units": str(meta.get("units", "")),
+  153                 "seasonal_adjustment": str(meta.get("seasonal_adjustment",
+  154                 "last_updated": str(meta.get("last_updated", "")),
+  155                 "popularity": str(meta.get("popularity", "")),
+  156                 "notes": str(meta.get("notes", "")),
+  157                 "category_id": category_id,
+  158                 "release_id": release_id,
+  159                 "source_id_fred": source_id_fred,
+  160                 "geography_fips": "",   # Maps API – not fetched in this b
+  161                 "country_iso": "",      # International series mapping – n
+  162             }
+  163             records.append(row)
+  164 
+  165     if not records:
+  166         raise RuntimeError(
+  167             "No observations returned from FRED API. "
+  168             "Check API key validity and network connectivity."
+  169         )
+  170 
+  171     # Accumulate raw bytes for provenance / SHA-256
+  172     context["source_bytes"] = b"\n".join(all_raw_bytes)
+  173 
+  174     df = pd.DataFrame(records, columns=[
+  175         "series_id",
+  176         "observation_date",
+  177         "value",
+  178         "realtime_start",
+  179         "realtime_end",
+  180         "series_title",
+  181         "frequency",
+  182         "units",
+  183         "seasonal_adjustment",
+  184         "last_updated",
+  185         "popularity",
+  186         "notes",
+  187         "category_id",
+  188         "release_id",
+  189         "source_id_fred",
+  190         "geography_fips",
+  191         "country_iso",
+  192     ])
+  193 
+  194     df = df.astype(str)
+  195     return df
+x Missing required environment variable: FRED_API_KEY. Register for a free API 
+key at https://fred.stlouisfed.org/docs/api/api_key.html
+! Check Snowflake credentials / source schema, then edit or retry.
+x Giving up after 3 auto-repair attempts.
+! Source failed.
+
+Onboarding USASpending — https://api.usaspending.gov/docs/endpoints
+
+====================================================
+CHECKPOINT 1 - RECON   [2 of 37]
+====================================================
+Source:        USASpending (Comprehensive federal spending data including       
+               awards, contracts, grants, loans, IDVs, agency budgets, and      
+               disaster/emergency funding via the USAspending REST API.)        
+SOURCE_ID:     fed_us_usaspending_api                                           
+URL:           https://api.usaspending.gov/docs/endpoints                       
+Jurisdiction:  federal                                                          
+Category:      Spending & Budget / Federal Awards, Contracts & Grants           
+Publisher:     U.S. Department of the Treasury / Office of Management and Budget
+Access:        API + bulk download                                              
+Auth:          none (No API key or registration required; endpoints are publicly
+               accessible.)                                                     
+Format:        JSON                                                             
+Volume:        100M+ award transactions historically; agency/account endpoints  
+               in thousands to millions of rows                                 
+Update:        monthly                                                          
+Key IDs:       UEI, FIPS, EIN, NAICS, AWARD_ID, DUNS, CFDA, TAS,                
+               TOPTIER_AGENCY_CODE                                              
+Priority:      tier 1                                                           
+Landing:       LIBRARY_RAW.LANDING.FED_US_USASPENDING_API                       
+Staging:       stg_fed_us_usaspending_api__federal_awards                       
+Mart:          economics__fed_us_usaspending_api                                
+Joins to:      us_census_cbp (NAICS), us_irs_exempt_orgs (EIN),                 
+               us_census_geography (FIPS), us_sam_gov (UEI)                     
+
+Why it matters: Tracks every dollar of federal contract, grant, loan, and other 
+financial assistance awarded, enabling journalists to follow government spending
+to specific recipients, agencies, and geographies.
+
+Schema (31 fields):
+  award_id TEXT  Unique identifier for the federal award
+  generated_unique_award_id TEXT  System-generated unique award identifier
+  recipient_name TEXT  Name of the award recipient entity
+  recipient_uei TEXT  Unique Entity Identifier (UEI) of recipient
+  recipient_duns TEXT  DUNS number of recipient (legacy identifier)
+  recipient_ein TEXT  Employer Identification Number of recipient
+  awarding_agency_name TEXT  Name of the agency awarding the funds
+  awarding_agency_code TEXT  Toptier agency code for awarding agency
+  funding_agency_name TEXT  Name of the agency providing the funding
+  award_type TEXT  Type of award (contract, grant, loan, IDV, etc.)
+  total_obligation TEXT  Total obligated dollar amount of the award
+  total_outlay TEXT  Total outlayed dollar amount of the award
+  award_amount TEXT  Face value or ceiling of the award
+  start_date TEXT  Award period of performance start date
+  end_date TEXT  Award period of performance end date
+  ... and 16 more
+-> go / edit  / skip / abort
+(auto-approve: go)
+
+====================================================
+CHECKPOINT 2 - SCRIPT   [2 of 37]
+====================================================
+Ingestion script for USASpending (paginated_api)
+Target: LIBRARY_RAW.LANDING.FED_US_USASPENDING_API
+
+    1 import requests
+    2 import pandas as pd
+    3 import json
+    4 import time
+    5 import io
+    6 
+    7 def fetch_data(context):
+    8     """
+    9     Fetches federal award data from the USASpending API.
+   10     Uses the /api/v2/awards/search/ endpoint with pagination.
+   11     Returns a pandas DataFrame with all values as strings.
+   12     """
+   13 
+   14     BASE_URL = "https://api.usaspending.gov/api/v2/awards/search/"
+   15     PAGE_SIZE = 100
+   16     MAX_PAGES = 5  # Bounded snapshot to avoid deep pagination issues
+   17 
+   18     headers = {
+   19         "User-Agent": "Ripple Onboarding Agent (contact: ripple-data@examp
+   20         "Content-Type": "application/json",
+   21     }
+   22 
+   23     all_records = []
+   24     raw_bytes_parts = []
+   25 
+   26     # Build base payload for the search endpoint
+   27     payload = {
+   28         "filters": {
+   29             "award_type_codes": ["A", "B", "C", "D", "02", "03", "04", "05
+   30         },
+   31         "fields": [
+   32             "Award ID",
+   33             "generated_unique_award_id",
+   34             "Recipient Name",
+   35             "recipient_uei",
+   36             "recipient_duns",
+   37             "recipient_ein",
+   38             "Awarding Agency",
+   39             "awarding_agency_code",
+   40             "Funding Agency",
+   41             "Award Type",
+   42             "Total Obligations",
+   43             "total_outlay",
+   44             "Award Amount",
+   45             "Start Date",
+   46             "End Date",
+   47             "Last Modified Date",
+   48             "Fiscal Year",
+   49             "NAICS Code",
+   50             "NAICS Description",
+   51             "CFDA Number",
+   52             "CFDA Title",
+   53             "Place of Performance State Code",
+   54             "place_of_performance_fips",
+   55             "Place of Performance City Name",
+   56             "recipient_location_state_code",
+   57             "recipient_location_fips",
+   58             "federal_account_code",
+   59             "treasury_account_symbol",
+   60             "def_code",
+   61             "transaction_count",
+   62             "subaward_count",
+   63         ],
+   64         "page": 1,
+   65         "limit": PAGE_SIZE,
+   66         "sort": "Total Obligations",
+   67         "order": "desc",
+   68     }
+   69 
+   70     session = requests.Session()
+   71     session.headers.update(headers)
+   72 
+   73     for page_num in range(1, MAX_PAGES + 1):
+   74         payload["page"] = page_num
+   75 
+   76         resp = session.post(BASE_URL, json=payload, timeout=60)
+   77         resp.raise_for_status()
+   78 
+   79         raw_bytes_parts.append(resp.content)
+   80         data = resp.json()
+   81 
+   82         results = data.get("results", [])
+   83         if not results:
+   84             break
+   85 
+   86         for award in results:
+   87             record = {
+   88                 "award_id": str(award.get("Award ID", "") or ""),
+   89                 "generated_unique_award_id": str(award.get("generated_uniq
+   90                 "recipient_name": str(award.get("Recipient Name", "") or "
+   91                 "recipient_uei": str(award.get("recipient_uei", "") or "")
+   92                 "recipient_duns": str(award.get("recipient_duns", "") or "
+   93                 "recipient_ein": str(award.get("recipient_ein", "") or "")
+   94                 "awarding_agency_name": str(award.get("Awarding Agency", "
+   95                 "awarding_agency_code": str(award.get("awarding_agency_cod
+   96                 "funding_agency_name": str(award.get("Funding Agency", "")
+   97                 "award_type": str(award.get("Award Type", "") or ""),
+   98                 "total_obligation": str(award.get("Total Obligations", "")
+   99                 "total_outlay": str(award.get("total_outlay", "") or ""),
+  100                 "award_amount": str(award.get("Award Amount", "") or ""),
+  101                 "start_date": str(award.get("Start Date", "") or ""),
+  102                 "end_date": str(award.get("End Date", "") or ""),
+  103                 "last_modified_date": str(award.get("Last Modified Date", 
+  104                 "fiscal_year": str(award.get("Fiscal Year", "") or ""),
+  105                 "naics_code": str(award.get("NAICS Code", "") or ""),
+  106                 "naics_description": str(award.get("NAICS Description", ""
+  107                 "cfda_number": str(award.get("CFDA Number", "") or ""),
+  108                 "cfda_title": str(award.get("CFDA Title", "") or ""),
+  109                 "place_of_performance_state": str(award.get("Place of Perf
+  110                 "place_of_performance_fips": str(award.get("place_of_perfo
+  111                 "place_of_performance_city": str(award.get("Place of Perfo
+  112                 "recipient_location_state": str(award.get("recipient_locat
+  113                 "recipient_location_fips": str(award.get("recipient_locati
+  114                 "federal_account_code": str(award.get("federal_account_cod
+  115                 "treasury_account_symbol": str(award.get("treasury_account
+  116                 "def_code": str(award.get("def_code", "") or ""),
+  117                 "transaction_count": str(award.get("transaction_count", ""
+  118                 "subaward_count": str(award.get("subaward_count", "") or "
+  119             }
+  120             all_records.append(record)
+  121 
+  122         # Check if there are more pages
+  123         total_pages = data.get("page_metadata", {}).get("total", 0)
+  124         has_next = data.get("page_metadata", {}).get("hasNext", False)
+  125 
+  126         if not has_next:
+  127             break
+  128 
+  129         # Polite delay between requests
+  130         time.sleep(0.5)
+  131 
+  132     if not all_records:
+  133         raise RuntimeError(
+  134             "USASpending API returned no results. "
+  135             "Check the endpoint or filter parameters."
+  136         )
+  137 
+  138     # Accumulate raw bytes for provenance/hashing
+  139     context["source_bytes"] = b"\n".join(raw_bytes_parts)
+  140 
+  141     df = pd.DataFrame(all_records)
+  142     df = df.astype(str)
+  143 
+  144     return df
+-> go / edit  / skip / abort
+(auto-approve: go)
+x 404 Client Error: Not Found for url: 
+https://api.usaspending.gov/api/v2/awards/search/
+! Check Snowflake credentials / source schema, then edit or retry.
+! Auto-repair 1/3 — feeding the error back to Claude.
+
+====================================================
+CHECKPOINT 2 - SCRIPT   [2 of 37]
+====================================================
+Ingestion script for USASpending (paginated_api)
+Target: LIBRARY_RAW.LANDING.FED_US_USASPENDING_API
+
+    1 import requests
+    2 import pandas as pd
+    3 import time
+    4 import json
+    5 
+    6 def fetch_data(context):
+    7     """
+    8     Fetches federal award data from USASpending API.
+    9     Uses the /api/v2/search/spending_by_award/ endpoint with pagination.
+   10     Returns a bounded snapshot as a pandas DataFrame with all values as st
+   11     """
+   12     
+   13     headers = {
+   14         "User-Agent": "Ripple Onboarding Agent (contact: ripple-data@examp
+   15         "Content-Type": "application/json"
+   16     }
+   17     
+   18     # The correct endpoint for searching awards
+   19     search_url = "https://api.usaspending.gov/api/v2/search/spending_by_aw
+   20     
+   21     # Fields to request from the API
+   22     fields = [
+   23         "Award ID",
+   24         "Recipient Name",
+   25         "Start Date",
+   26         "End Date",
+   27         "Award Amount",
+   28         "Total Outlays",
+   29         "Awarding Agency",
+   30         "Awarding Sub Agency",
+   31         "Contract Award Type",
+   32         "Award Type",
+   33         "Funding Agency",
+   34         "Funding Sub Agency",
+   35         "Place of Performance City Code",
+   36         "Place of Performance State Code",
+   37         "Place of Performance Zip5",
+   38         "NAICS Code",
+   39         "NAICS Description",
+   40         "CFDA Number",
+   41         "CFDA Title",
+   42         "Recipient DUNS Number",
+   43         "Recipient UEI",
+   44         "generated_unique_award_id",
+   45         "Last Modified Date",
+   46         "Fiscal Year",
+   47         "def_codes",
+   48         "COVID-19 Obligations",
+   49         "COVID-19 Outlays",
+   50         "Infrastructure Obligations",
+   51         "Infrastructure Outlays",
+   52     ]
+   53     
+   54     # Bounded snapshot: fetch up to 3 pages of results (max 100 records pe
+   55     MAX_PAGES = 3
+   56     PAGE_SIZE = 100
+   57     
+   58     all_records = []
+   59     raw_bytes_parts = []
+   60     
+   61     # Search filters - broad filter to get recent awards
+   62     payload = {
+   63         "filters": {
+   64             "time_period": [
+   65                 {
+   66                     "start_date": "2023-10-01",
+   67                     "end_date": "2024-09-30"
+   68                 }
+   69             ],
+   70             "award_type_codes": ["A", "B", "C", "D", "02", "03", "04", "05
+   71         },
+   72         "fields": fields,
+   73         "page": 1,
+   74         "limit": PAGE_SIZE,
+   75         "sort": "Last Modified Date",
+   76         "order": "desc",
+   77         "subawards": False
+   78     }
+   79     
+   80     for page_num in range(1, MAX_PAGES + 1):
+   81         payload["page"] = page_num
+   82         
+   83         try:
+   84             resp = requests.post(
+   85                 search_url,
+   86                 headers=headers,
+   87                 json=payload,
+   88                 timeout=60
+   89             )
+   90             resp.raise_for_status()
+   91         except requests.exceptions.HTTPError as e:
+   92             if page_num == 1:
+   93                 raise RuntimeError(f"Failed to fetch USASpending data: {e}
+   94             else:
+   95                 # If subsequent pages fail, stop gracefully
+   96                 break
+   97         
+   98         raw_bytes_parts.append(resp.content)
+   99         
+  100         try:
+  101             data = resp.json()
+  102         except Exception as e:
+  103             raise RuntimeError(f"Failed to parse JSON response: {e}") from
+  104         
+  105         results = data.get("results", [])
+  106         if not results:
+  107             break
+  108         
+  109         for record in results:
+  110             row = {
+  111                 "award_id": str(record.get("Award ID") or ""),
+  112                 "generated_unique_award_id": str(record.get("generated_uni
+  113                 "recipient_name": str(record.get("Recipient Name") or ""),
+  114                 "recipient_uei": str(record.get("Recipient UEI") or ""),
+  115                 "recipient_duns": str(record.get("Recipient DUNS Number") 
+  116                 "recipient_ein": str(record.get("recipient_ein") or ""),
+  117                 "awarding_agency_name": str(record.get("Awarding Agency") 
+  118                 "awarding_agency_code": str(record.get("awarding_agency_co
+  119                 "funding_agency_name": str(record.get("Funding Agency") or
+  120                 "award_type": str(record.get("Award Type") or record.get("
+  121                 "total_obligation": str(record.get("total_obligation") or 
+  122                 "total_outlay": str(record.get("Total Outlays") or ""),
+  123                 "award_amount": str(record.get("Award Amount") or ""),
+  124                 "start_date": str(record.get("Start Date") or ""),
+  125                 "end_date": str(record.get("End Date") or ""),
+  126                 "last_modified_date": str(record.get("Last Modified Date")
+  127                 "fiscal_year": str(record.get("Fiscal Year") or ""),
+  128                 "naics_code": str(record.get("NAICS Code") or ""),
+  129                 "naics_description": str(record.get("NAICS Description") o
+  130                 "cfda_number": str(record.get("CFDA Number") or ""),
+  131                 "cfda_title": str(record.get("CFDA Title") or ""),
+  132                 "place_of_performance_state": str(record.get("Place of Per
+  133                 "place_of_performance_fips": str(record.get("Place of Perf
+  134                 "place_of_performance_city": str(record.get("Place of Perf
+  135                 "recipient_location_state": str(record.get("recipient_loca
+  136                 "recipient_location_fips": str(record.get("recipient_locat
+  137                 "federal_account_code": str(record.get("federal_account_co
+  138                 "treasury_account_symbol": str(record.get("treasury_accoun
+  139                 "def_code": str(record.get("def_codes") or ""),
+  140                 "transaction_count": str(record.get("transaction_count") o
+  141                 "subaward_count": str(record.get("subaward_count") or ""),
+  142             }
+  143             all_records.append(row)
+  144         
+  145         # Check if there are more pages
+  146         page_metadata = data.get("page_metadata", {})
+  147         has_next = page_metadata.get("hasNext", False)
+  148         if not has_next:
+  149             break
+  150         
+  151         # Polite delay between requests
+  152         time.sleep(0.5)
+  153     
+  154     if not all_records:
+  155         raise RuntimeError(
+  156             "USASpending API returned no results. "
+  157             "Check endpoint availability and filter parameters."
+  158         )
+  159     
+  160     # Accumulate raw bytes for provenance/hashing
+  161     context["source_bytes"] = b"\n".join(raw_bytes_parts)
+  162     
+  163     df = pd.DataFrame(all_records)
+  164     df = df.astype(str)
+  165     
+  166     return df
+x Failed to fetch USASpending data: 422 Client Error: Unprocessable Entity for 
+url: https://api.usaspending.gov/api/v2/search/spending_by_award/
+! Check Snowflake credentials / source schema, then edit or retry.
+! Auto-repair 2/3 — feeding the error back to Claude.
+
+====================================================
+CHECKPOINT 2 - SCRIPT   [2 of 37]
+====================================================
+Ingestion script for USASpending (paginated_api)
+Target: LIBRARY_RAW.LANDING.FED_US_USASPENDING_API
+
+    1 import requests
+    2 import pandas as pd
+    3 import json
+    4 import time
+    5 
+    6 def fetch_data(context):
+    7     """
+    8     Fetch federal award data from USASpending.gov API.
+    9     Uses the /api/v2/search/spending_by_award/ endpoint with a valid reque
+   10     """
+   11     
+   12     base_url = "https://api.usaspending.gov/api/v2/search/spending_by_awar
+   13     
+   14     headers = {
+   15         "User-Agent": "Ripple Onboarding Agent (contact: ripple-data@examp
+   16         "Content-Type": "application/json",
+   17         "Accept": "application/json"
+   18     }
+   19     
+   20     # Fields to request - mapping to our schema columns
+   21     fields = [
+   22         "Award ID",
+   23         "Recipient Name",
+   24         "recipient_uei",
+   25         "recipient_duns",
+   26         "Awarding Agency",
+   27         "Awarding Agency Code",
+   28         "Funding Agency",
+   29         "Award Type",
+   30         "Award Amount",
+   31         "Total Outlays",
+   32         "Start Date",
+   33         "End Date",
+   34         "Last Modified Date",
+   35         "Fiscal Year",
+   36         "NAICS Code",
+   37         "NAICS Description",
+   38         "CFDA Number",
+   39         "CFDA Title",
+   40         "Place of Performance State Code",
+   41         "Place of Performance Zip5",
+   42         "Place of Performance City Name",
+   43         "Recipient State",
+   44         "Federal Account",
+   45         "Recipient Location State Code",
+   46         "Award Base Action Date",
+   47         "generated_unique_award_id"
+   48     ]
+   49     
+   50     # Valid award types for spending_by_award endpoint
+   51     award_types = ["A", "B", "C", "D", "02", "03", "04", "05", "06", "07",
+   52     
+   53     page = 1
+   54     page_size = 100
+   55     max_pages = 5  # Bounded snapshot - don't page through millions of rec
+   56     
+   57     all_records = []
+   58     raw_bytes_list = []
+   59     
+   60     while page <= max_pages:
+   61         request_body = {
+   62             "filters": {
+   63                 "award_type_codes": award_types,
+   64                 "time_period": [
+   65                     {
+   66                         "start_date": "2023-10-01",
+   67                         "end_date": "2024-09-30"
+   68                     }
+   69                 ]
+   70             },
+   71             "fields": fields,
+   72             "page": page,
+   73             "limit": page_size,
+   74             "sort": "Award Amount",
+   75             "order": "desc",
+   76             "subawards": False
+   77         }
+   78         
+   79         try:
+   80             resp = requests.post(
+   81                 base_url,
+   82                 headers=headers,
+   83                 json=request_body,
+   84                 timeout=60
+   85             )
+   86             resp.raise_for_status()
+   87         except requests.exceptions.HTTPError as e:
+   88             raise RuntimeError(f"Failed to fetch USASpending data: {e}\nRe
+   89         
+   90         raw_bytes_list.append(resp.content)
+   91         
+   92         data = resp.json()
+   93         
+   94         results = data.get("results", [])
+   95         if not results:
+   96             break
+   97         
+   98         for record in results:
+   99             row = {
+  100                 "award_id": str(record.get("Award ID", "") or ""),
+  101                 "generated_unique_award_id": str(record.get("generated_uni
+  102                 "recipient_name": str(record.get("Recipient Name", "") or 
+  103                 "recipient_uei": str(record.get("recipient_uei", "") or ""
+  104                 "recipient_duns": str(record.get("recipient_duns", "") or 
+  105                 "recipient_ein": str(record.get("recipient_ein", "") or ""
+  106                 "awarding_agency_name": str(record.get("Awarding Agency", 
+  107                 "awarding_agency_code": str(record.get("Awarding Agency Co
+  108                 "funding_agency_name": str(record.get("Funding Agency", ""
+  109                 "award_type": str(record.get("Award Type", "") or ""),
+  110                 "total_obligation": str(record.get("Award Amount", "") or 
+  111                 "total_outlay": str(record.get("Total Outlays", "") or "")
+  112                 "award_amount": str(record.get("Award Amount", "") or ""),
+  113                 "start_date": str(record.get("Start Date", "") or ""),
+  114                 "end_date": str(record.get("End Date", "") or ""),
+  115                 "last_modified_date": str(record.get("Last Modified Date",
+  116                 "fiscal_year": str(record.get("Fiscal Year", "") or ""),
+  117                 "naics_code": str(record.get("NAICS Code", "") or ""),
+  118                 "naics_description": str(record.get("NAICS Description", "
+  119                 "cfda_number": str(record.get("CFDA Number", "") or ""),
+  120                 "cfda_title": str(record.get("CFDA Title", "") or ""),
+  121                 "place_of_performance_state": str(record.get("Place of Per
+  122                 "place_of_performance_fips": str(record.get("Place of Perf
+  123                 "place_of_performance_city": str(record.get("Place of Perf
+  124                 "recipient_location_state": str(record.get("Recipient Loca
+  125                 "recipient_location_fips": str(record.get("recipient_locat
+  126                 "federal_account_code": str(record.get("Federal Account", 
+  127                 "treasury_account_symbol": str(record.get("treasury_accoun
+  128                 "def_code": str(record.get("def_code", "") or ""),
+  129                 "transaction_count": str(record.get("transaction_count", "
+  130                 "subaward_count": str(record.get("subaward_count", "") or 
+  131             }
+  132             all_records.append(row)
+  133         
+  134         # Check if there are more pages
+  135         page_metadata = data.get("page_metadata", {})
+  136         has_next = page_metadata.get("hasNext", False)
+  137         
+  138         if not has_next:
+  139             break
+  140         
+  141         page += 1
+  142         time.sleep(0.5)  # Be polite to the API
+  143     
+  144     # Accumulate raw bytes for provenance
+  145     context["source_bytes"] = b"\n".join(raw_bytes_list)
+  146     
+  147     if not all_records:
+  148         raise RuntimeError("No records returned from USASpending API. Chec
+  149     
+  150     df = pd.DataFrame(all_records)
+  151     df = df.astype(str)
+  152     
+  153     return df
+x Failed to fetch USASpending data: 422 Client Error: Unprocessable Entity for 
+url: https://api.usaspending.gov/api/v2/search/spending_by_award/
+Response body: {"message":"'award_type_codes' must only contain types from one 
+group.","award_type_groups":{"contracts":{"A":"BPA Call","B":"Purchase 
+Order","C":"Delivery Order","D":"Definitive Contract"},"loans":{"07":"Direct 
+Loan","08":"Guaranteed/Insured Loan","F003":"Direct Loan","F004":"Loan 
+Guarantee"},"idvs":{"IDV_A":"GWAC Government Wide Acquisition 
+Contract","IDV_B":"IDC Multi-Agency Contract, Other Indefinite Delivery 
+Contract","IDV_B_A":"IDC Indefinite Delivery Contract / 
+Requirements","IDV_B_B":"ID
+! Check Snowflake credentials / source schema, then edit or retry.
+! Auto-repair 3/3 — feeding the error back to Claude.
+
+====================================================
+CHECKPOINT 2 - SCRIPT   [2 of 37]
+====================================================
+Ingestion script for USASpending (paginated_api)
+Target: LIBRARY_RAW.LANDING.FED_US_USASPENDING_API
+
+    1 import time
+    2 import json
+    3 import requests
+    4 import pandas as pd
+    5 
+    6 def fetch_data(context):
+    7     """
+    8     Fetch federal awards data from USASpending API.
+    9     Fetches a single bounded page per award type group to avoid 422 errors
+   10     """
+   11     base_url = "https://api.usaspending.gov/api/v2/search/spending_by_awar
+   12     
+   13     headers = {
+   14         "User-Agent": "Ripple Onboarding Agent (contact: ripple-data@examp
+   15         "Content-Type": "application/json",
+   16     }
+   17     
+   18     # Award type codes must come from ONE group at a time per the API cons
+   19     # We'll fetch from each group separately and combine results.
+   20     award_type_groups = {
+   21         "contracts": ["A", "B", "C", "D"],
+   22         "grants":    ["02", "03", "04", "05"],
+   23         "loans":     ["07", "08"],
+   24         "idvs":      ["IDV_A", "IDV_B", "IDV_B_A", "IDV_B_B", "IDV_C"],
+   25         "other":     ["06", "10", "09"],
+   26     }
+   27     
+   28     fields = [
+   29         "Award ID",
+   30         "Generated Internal ID",
+   31         "Recipient Name",
+   32         "recipient_uei",
+   33         "recipient_duns",
+   34         "Recipient DUNS Number",
+   35         "Awarding Agency",
+   36         "Awarding Agency Code",
+   37         "Funding Agency",
+   38         "Award Type",
+   39         "Total Obligated Amount",
+   40         "Total Outlayed Amount",
+   41         "Award Amount",
+   42         "Start Date",
+   43         "End Date",
+   44         "Last Modified Date",
+   45         "Fiscal Year",
+   46         "NAICS Code",
+   47         "NAICS Description",
+   48         "CFDA Number",
+   49         "CFDA Title",
+   50         "Place of Performance State Code",
+   51         "Place of Performance State FIPS",
+   52         "Place of Performance City Name",
+   53         "Recipient Location State Code",
+   54         "Recipient Location State FIPS",
+   55         "Federal Account",
+   56         "Treasury Account Symbol",
+   57         "Disaster Emergency Fund Code",
+   58         "Number of Transactions",
+   59         "Sub-Award Count",
+   60     ]
+   61     
+   62     page_size = 100  # bounded snapshot per group
+   63     all_records = []
+   64     all_raw_bytes = []
+   65     
+   66     for group_name, type_codes in award_type_groups.items():
+   67         payload = {
+   68             "filters": {
+   69                 "award_type_codes": type_codes,
+   70                 "time_period": [
+   71                     {"start_date": "2023-10-01", "end_date": "2024-09-30"}
+   72                 ],
+   73             },
+   74             "fields": fields,
+   75             "page": 1,
+   76             "limit": page_size,
+   77             "sort": "Award Amount",
+   78             "order": "desc",
+   79             "subawards": False,
+   80         }
+   81         
+   82         try:
+   83             resp = requests.post(
+   84                 base_url,
+   85                 headers=headers,
+   86                 json=payload,
+   87                 timeout=60,
+   88             )
+   89             resp.raise_for_status()
+   90         except requests.exceptions.HTTPError as e:
+   91             # Some groups may not return results; log and continue
+   92             print(f"Warning: failed for group '{group_name}': {e} — skippi
+   93             continue
+   94         
+   95         raw_bytes = resp.content
+   96         all_raw_bytes.append(raw_bytes)
+   97         
+   98         data = resp.json()
+   99         results = data.get("results", [])
+  100         
+  101         for record in results:
+  102             row = {
+  103                 "award_id":                    str(record.get("Award ID") 
+  104                 "generated_unique_award_id":   str(record.get("Generated I
+  105                 "recipient_name":              str(record.get("Recipient N
+  106                 "recipient_uei":               str(record.get("recipient_u
+  107                 "recipient_duns":              str(record.get("recipient_d
+  108                 "recipient_ein":               str(record.get("recipient_e
+  109                 "awarding_agency_name":        str(record.get("Awarding Ag
+  110                 "awarding_agency_code":        str(record.get("Awarding Ag
+  111                 "funding_agency_name":         str(record.get("Funding Age
+  112                 "award_type":                  str(record.get("Award Type"
+  113                 "total_obligation":            str(record.get("Total Oblig
+  114                 "total_outlay":                str(record.get("Total Outla
+  115                 "award_amount":                str(record.get("Award Amoun
+  116                 "start_date":                  str(record.get("Start Date"
+  117                 "end_date":                    str(record.get("End Date") 
+  118                 "last_modified_date":          str(record.get("Last Modifi
+  119                 "fiscal_year":                 str(record.get("Fiscal Year
+  120                 "naics_code":                  str(record.get("NAICS Code"
+  121                 "naics_description":           str(record.get("NAICS Descr
+  122                 "cfda_number":                 str(record.get("CFDA Number
+  123                 "cfda_title":                  str(record.get("CFDA Title"
+  124                 "place_of_performance_state":  str(record.get("Place of Pe
+  125                 "place_of_performance_fips":   str(record.get("Place of Pe
+  126                 "place_of_performance_city":   str(record.get("Place of Pe
+  127                 "recipient_location_state":    str(record.get("Recipient L
+  128                 "recipient_location_fips":     str(record.get("Recipient L
+  129                 "federal_account_code":        str(record.get("Federal Acc
+  130                 "treasury_account_symbol":     str(record.get("Treasury Ac
+  131                 "def_code":                    str(record.get("Disaster Em
+  132                 "transaction_count":           str(record.get("Number of T
+  133                 "subaward_count":              str(record.get("Sub-Award C
+  134             }
+  135             all_records.append(row)
+  136         
+  137         # Respect rate limits — sleep briefly between group requests
+  138         time.sleep(0.5)
+  139     
+  140     if not all_records:
+  141         raise RuntimeError("No records returned from USASpending API acros
+  142     
+  143     # Accumulate raw bytes for provenance/hashing
+  144     context["source_bytes"] = b"\n".join(all_raw_bytes)
+  145     
+  146     df = pd.DataFrame(all_records)
+  147     df = df.astype(str)
+  148     
+  149     return df
+Warning: failed for group 'loans': 400 Client Error: Bad Request for url: https://api.usaspending.gov/api/v2/search/spending_by_award/ — skipping
+Warning: failed for group 'other': 422 Client Error: Unprocessable Entity for url: https://api.usaspending.gov/api/v2/search/spending_by_award/ — skipping
+
+====================================================
+CHECKPOINT 3 - LOAD   [2 of 37]
+====================================================
+Landing:          LIBRARY_RAW.LANDING.FED_US_USASPENDING_API                    
+Run ID:           fe6dd2fe-1781-4e47-83bc-16975dd9af09                          
+Content SHA-256:  1c52aa22f33682ecaab9afa6…                                     
+Source bytes:     332,741                                                       
+Rows loaded:      300                                                           
+Columns:          AWARD_ID, GENERATED_UNIQUE_AWARD_ID, RECIPIENT_NAME,          
+                  RECIPIENT_UEI, RECIPIENT_DUNS, RECIPIENT_EIN,                 
+                  AWARDING_AGENCY_NAME, AWARDING_AGENCY_CODE,                   
+                  FUNDING_AGENCY_NAME, AWARD_TYPE, TOTAL_OBLIGATION,            
+                  TOTAL_OUTLAY, AWARD_AMOUNT, START_DATE, END_DATE,             
+                  LAST_MODIFIED_DATE, FISCAL_YEAR, NAICS_CODE,                  
+                  NAICS_DESCRIPTION, CFDA_NUMBER, CFDA_TITLE,                   
+                  PLACE_OF_PERFORMANCE_STATE, PLACE_OF_PERFORMANCE_FIPS,        
+                  PLACE_OF_PERFORMANCE_CITY, RECIPIENT_LOCATION_STATE,          
+                  RECIPIENT_LOCATION_FIPS, FEDERAL_ACCOUNT_CODE,                
+                  TREASURY_ACCOUNT_SYMBOL, DEF_CODE, TRANSACTION_COUNT,         
+                  SUBAWARD_COUNT, _INGESTED_AT, _SOURCE_RUN_ID, _SRC_SHA256     
+Status:           Appended 300 rows (incremental since start) ->                
+                  LIBRARY_RAW.LANDING.FED_US_USASPENDING_API                    
+
+Sample rows (5):
+                       …    …    …    …    …    …    …    …    …    …    …    … 
+                            …    …              …                        …    … 
+                                 …                                       …      
+                            …    …              …                        …    … 
+                                 …                                       …      
+                            …    …              …                        …    … 
+                                 …                                       …      
+                            …    …              …                        …    … 
+                                 …                                       …      
+                            …    …              …                        …    … 
+                                 …                                       …      
+-> go / edit  / skip / abort
+(auto-approve: go)
+
+====================================================
+CHECKPOINT 4 - DBT   [2 of 37]
+====================================================
+Generated dbt models:
+OK 
+c:\Code\Ripple_v6\library-onboarding\ripple_dbt\models\staging\fed_us_usaspendin
+g_api\stg_fed_us_usaspending_api__federal_awards.sql
+OK 
+c:\Code\Ripple_v6\library-onboarding\ripple_dbt\models\staging\fed_us_usaspendin
+g_api\schema.yml
+OK 
+c:\Code\Ripple_v6\library-onboarding\ripple_dbt\models\marts\economics\economics
+__fed_us_usaspending_api.sql
+
+── Staging ──
+{{ config(materialized='view') }}
+
+with source as (
+
+    select *
+    from {{ source('ripple_raw', 'FED_US_USASPENDING_API') }}
+
+),
+
+renamed as (
+
+    select
+
+        -- Primary key
+        AWARD_ID                                                        as award
+
+        -- Identifiers
+        GENERATED_UNIQUE_AWARD_ID                                       as gener
+        RECIPIENT_UEI                                                   as recip
+        RECIPIENT_DUNS                                                  as recip
+        RECIPIENT_EIN                                                   as recip
+        NAICS_CODE                                                      as naics
+        CFDA_NUMBER                                                     as cfda_
+        TREASURY_ACCOUNT_SYMBOL                                         as treas
+        FEDERAL_ACCOUNT_CODE                                            as feder
+        AWARDING_AGENCY_CODE                                            as award
+        PLACE_OF_PERFORMANCE_FIPS                                       as place
+        RECIPIENT_LOCATION_FIPS                                         as recip
+
+        -- Descriptive text
+        RECIPIENT_NAME                                                  as recip
+        AWARDING_AGENCY_NAME                                            as award
+        FUNDING_AGENCY_NAME                                             as fundi
+        AWARD_TYPE                                                      as award
+        NAICS_DESCRIPTION                                               as naics
+        CFDA_TITLE                                                      as cfda_
+        PLACE_OF_PERFORMANCE_STATE                                      as place
+        PLACE_OF_PERFORMANCE_CITY                                       as place
+        RECIPIENT_LOCATION_STATE                                        as recip
+        DEF_CODE                                                        as def_c
+
+        -- Numeric financials
+        try_to_double(TOTAL_OBLIGATION)                                 as total
+        try_to_double(TOTAL_OUTLAY)                                     as total
+        try_to_double(AWARD_AMOUNT)                                     as award
+
+        -- Integer counts
+        try_to_number(TRANSACTION_COUNT)                                as trans
+        try_to_number(SUBAWARD_COUNT)                                   as subaw
+        try_to_number(FISCAL_YEAR)                                      as fisca
+
+        -- Dates
+        try_to_date(START_DATE)                                         as start
+        try_to_date(END_DATE)                                           as end_d
+        try_to_date(LAST_MODIFIED_DATE)                                 as last_
+
+        -- Metadata
+        _ingested_at,
+        _source_run_id
+
+    from source
+    qualify row_number() over (
+        partition by AWARD_ID
+        order by try_to_date(LAST_MODIFIED_DATE) desc nulls last, _ingested_at d
+    ) = 1
+
+)
+
+select * from renamed
+
+── Mart ──
+{{ config(materialized='table') }}
+
+with base as (
+
+    select *
+    from {{ ref('stg_fed_us_usaspending_api__federal_awards') }}
+
+),
+
+final as (
+
+    select
+
+        -- -------------------------------------------------------
+        -- Key identifiers (exposed for cross-source joins)
+        -- -------------------------------------------------------
+        award_id,
+        generated_unique_award_id,
+        recipient_uei,
+        recipient_duns,
+        recipient_ein,
+        naics_code,
+        cfda_number,
+        treasury_account_symbol,
+        federal_account_code,
+        awarding_agency_code                                    as toptier_agenc
+        place_of_performance_fips,
+        recipient_location_fips,
+
+        -- -------------------------------------------------------
+        -- Recipient & agency descriptors
+        -- -------------------------------------------------------
+        recipient_name,
+        awarding_agency_name,
+        funding_agency_name,
+        naics_description,
+        cfda_title,
+
+        -- -------------------------------------------------------
+        -- Award classification
+        -- -------------------------------------------------------
+        award_type,
+        def_code,
+        fiscal_year,
+
+        -- -------------------------------------------------------
+        -- Geography
+        -- -------------------------------------------------------
+        place_of_performance_state,
+        place_of_performance_city,
+        recipient_location_state,
+
+        -- -------------------------------------------------------
+        -- Financials
+        -- -------------------------------------------------------
+        total_obligation,
+        total_outlay,
+        award_amount,
+
+        -- -------------------------------------------------------
+        -- Counts
+        -- -------------------------------------------------------
+        transaction_count,
+        subaward_count,
+
+        -- -------------------------------------------------------
+        -- Dates
+        -- -------------------------------------------------------
+        start_date,
+        end_date,
+        last_modified_date,
+
+        -- -------------------------------------------------------
+        -- Derived helper columns
+        -- -------------------------------------------------------
+        datediff('day', start_date, end_date)                   as award_duratio
+        case
+            when award_amount >= 10000000  then 'Large (>=10M)'
+            when award_amount >= 1000000   then 'Medium (1M-10M)'
+            when award_amount >= 100000    then 'Small (100K-1M)'
+            when award_amount >= 0         then 'Micro (<100K)'
+            else 'Unknown'
+        end                                                      as award_size_b
+
+        -- -------------------------------------------------------
+        -- Metadata
+        -- -------------------------------------------------------
+        _ingested_at,
+        _source_run_id
+
+    from base
+
+)
+
+select * from final
+
+── schema.yml ──
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_US_USASPENDING_API
+        description: >-
+          Raw landing table for USASpending federal awards data ingested via
+          the fed_us_usaspending_api source connector. All columns are TEXT.
+
+models:
+
+  - name: stg_fed_us_usaspending_api__federal_awards
+    description: >-
+      Staging view for USASpending federal awards. Renames columns to
+      snake_case, casts TEXT columns to appropriate types, and deduplicates
+      on award_id keeping the most-recently modified record.
+    columns:
+
+      - name: award_id
+        description: Primary key — unique identifier for each federal award.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: generated_unique_award_id
+        description: System-generated unique award identifier from USASpending.
+        data_tests:
+          - not_null
+
+      - name: recipient_uei
+        description: Unique Entity Identifier (UEI) for the award recipient.
+        data_tests:
+          - not_null
+
+      - name: recipient_duns
+        description: DUNS number for the award recipient (legacy identifier).
+        data_tests:
+          - not_null
+
+      - name: recipient_ein
+        description: Employer Identification Number (EIN) for the award recipien
+        data_tests:
+          - not_null
+
+      - name: naics_code
+        description: NAICS code classifying the award recipient's industry.
+        data_tests:
+          - not_null
+
+      - name: cfda_number
+        description: Catalog of Federal Domestic Assistance (CFDA) number.
+        data_tests:
+          - not_null
+
+      - name: treasury_account_symbol
+        description: Treasury Account Symbol (TAS) associated with the award.
+        data_tests:
+          - not_null
+
+      - name: federal_account_code
+        description: Federal account code linked to the award's appropriation.
+
+      - name: awarding_agency_code
+        description: Toptier agency code for the awarding agency.
+        data_tests:
+          - not_null
+
+      - name: place_of_performance_fips
+        description: FIPS code for the place of performance.
+        data_tests:
+          - not_null
+
+      - name: recipient_location_fips
+        description: FIPS code for the recipient's primary location.
+        data_tests:
+          - not_null
+
+      - name: recipient_name
+        description: Legal name of the award recipient.
+
+      - name: awarding_agency_name
+        description: Name of the agency that awarded the contract or grant.
+
+      - name: funding_agency_name
+        description: Name of the agency providing the funding.
+
+      - name: award_type
+        description: Type of award (e.g., Contract, Grant, Loan, Direct Payment)
+        data_tests:
+          - accepted_values:
+              values:
+                - 'A'
+                - 'B'
+                - 'C'
+                - 'D'
+                - '02'
+                - '03'
+                - '04'
+                - '05'
+                - '06'
+                - '07'
+                - '08'
+                - '09'
+                - '10'
+                - '11'
+                - 'IDV_A'
+                - 'IDV_B'
+                - 'IDV_B_A'
+                - 'IDV_B_B'
+                - 'IDV_B_C'
+                - 'IDV_C'
+                - 'IDV_D'
+                - 'IDV_E'
+              quote: true
+              severity: warn
+
+      - name: naics_description
+        description: Human-readable description of the NAICS code.
+
+      - name: cfda_title
+        description: Title of the CFDA program.
+
+      - name: place_of_performance_state
+        description: State abbreviation for the place of performance.
+
+      - name: place_of_performance_city
+        description: City for the place of performance.
+
+      - name: recipient_location_state
+        description: State abbreviation for the recipient's primary location.
+
+      - name: def_code
+        description: Disaster Emergency Fund Code (DEFC) associated with the awa
+
+      - name: total_obligation
+        description: Total obligated amount in USD.
+
+      - name: total_outlay
+        description: Total outlayed (disbursed) amount in USD.
+
+      - name: award_amount
+        description: Base award amount in USD.
+
+      - name: transaction_count
+        description: Number of transactions associated with the award.
+
+      - name: subaward_count
+        description: Number of subawards associated with the award.
+
+      - name: fiscal_year
+        description: Federal fiscal year in which the award was made.
+
+      - name: start_date
+        description: Award period of performance start date.
+
+      - name: end_date
+        description: Award period of performance end date.
+
+      - name: last_modified_date
+        description: Date the award record was last modified in USASpending.
+
+      - name: _ingested_at
+        description: Timestamp when the record was loaded into the landing table
+
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this record.
+
+  - name: economics__fed_us_usaspending_api
+    description: >-
+      Analytics-ready mart table for USASpending federal awards. Exposes all
+      key identifiers for cross-source joins, adds derived columns (award
+      duration, size band), and is materialized as a table for query
+      performance.
+    columns:
+
+      - name: award_id
+        description: Primary key — unique identifier for each federal award.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: generated_unique_award_id
+        description: System-generated unique award identifier from USASpending.
+        data_tests:
+          - not_null
+
+      - name: recipient_uei
+        description: Unique Entity Identifier (UEI) for the award recipient.
+        data_tests:
+          - not_null
+
+      - name: recipient_duns
+        description: DUNS number for the award recipient (legacy identifier).
+        data_tests:
+          - not_null
+
+      - name: recipient_ein
+        description: Employer Identification Number (EIN) for the award recipien
+        data_tests:
+          - not_null
+
+      - name: naics_code
+        description: NAICS code classifying the award recipient's industry.
+        data_tests:
+          - not_null
+
+      - name: cfda_number
+        description: Catalog of Federal Domestic Assistance (CFDA) number.
+        data_tests:
+          - not_null
+
+      - name: treasury_account_symbol
+        description: Treasury Account Symbol (TAS) associated with the award.
+        data_tests:
+          - not_null
+
+      - name: federal_account_code
+        description: Federal account code linked to the award's appropriation.
+
+      - name: toptier_agency_code
+        description: >-
+          Toptier agency code (sourced from awarding_agency_code). Used as the
+          TOPTIER_AGENCY_CODE key identifier for cross-source joins.
+        data_tests:
+          - not_null
+
+      - name: place_of_performance_fips
+        description: FIPS code for the place of performance.
+        data_tests:
+          - not_null
+
+      - name: recipient_location_fips
+        description: FIPS code for the recipient's primary location.
+        data_tests:
+          - not_null
+
+      - name: recipient_name
+        description: Legal name of the award recipient.
+
+      - name: awarding_agency_name
+        description: Name of the agency that awarded the contract or grant.
+
+      - name: funding_agency_name
+        description: Name of the agency providing the funding.
+
+      - name: naics_description
+        description: Human-readable description of the NAICS code.
+
+      - name: cfda_title
+        description: Title of the CFDA program.
+
+      - name: award_type
+        description: Type of award (e.g., Contract, Grant, Loan, Direct Payment)
+
+      - name: def_code
+        description: Disaster Emergency Fund Code (DEFC) associated with the awa
+
+      - name: fiscal_year
+        description: Federal fiscal year in which the award was made.
+
+      - name: place_of_performance_state
+        description: State abbreviation for the place of performance.
+
+      - name: place_of_performance_city
+        description: City for the place of performance.
+
+      - name: recipient_location_state
+        description: State abbreviation for the recipient's primary location.
+
+      - name: total_obligation
+        description: Total obligated amount in USD.
+
+      - name: total_outlay
+        description: Total outlayed (disbursed) amount in USD.
+
+      - name: award_amount
+        description: Base award amount in USD.
+
+      - name: transaction_count
+        description: Number of transactions associated with the award.
+
+      - name: subaward_count
+        description: Number of subawards associated with the award.
+
+      - name: start_date
+        description: Award period of performance start date.
+
+      - name: end_date
+        description: Award period of performance end date.
+
+      - name: last_modified_date
+        description: Date the award record was last modified in USASpending.
+
+      - name: award_duration_days
+        description: >-
+          Derived — number of calendar days between start_date and end_date.
+
+      - name: award_size_band
+        description: >-
+          Derived — bucketed label based on award_amount:
+          Micro (<100K), Small (100K-1M), Medium (1M-10M), Large (>=10M).
+        data_tests:
+          - accepted_values:
+              values:
+                - 'Large (>=10M)'
+                - 'Medium (1M-10M)'
+                - 'Small (100K-1M)'
+                - 'Micro (<100K)'
+                - 'Unknown'
+              quote: true
+
+      - name: _ingested_at
+        description: Timestamp when the record was loaded into the landing table
+
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this record.
+
+-> go / edit  / skip / abort
+(auto-approve: go)
+
+====================================================
+CHECKPOINT 5 - REGISTRY   [2 of 37]
+====================================================
+SOURCE_ID:  fed_us_usaspending_api                                              
+Registry:   LIBRARY_META.REGISTRY.SOURCE_REGISTRY                               
+Join keys:  UEI, FIPS, EIN, NAICS, AWARD_ID, DUNS, CFDA, TAS,                   
+            TOPTIER_AGENCY_CODE                                                 
+Status:     Registry row inserted for SOURCE_ID 'fed_us_usaspending_api'        
+-> go / edit  / skip / abort
+(auto-approve: go)
+
+====================================================
+CHECKPOINT 6 - CONNECT   [2 of 37]
+====================================================
+Landing:     FED_US_USASPENDING_API                                             
+Mode:        linked                                                             
+Edges kept:  2                                                                  
+Status:      connect-one FED_US_USASPENDING_API: {'table':                      
+             'FED_US_USASPENDING_API', 'key_partitions': ['NAME'], 'edges_kept':
+             2, 'candidates': 12, 'mode': 'linked'}                             
+-> go / edit  / skip / abort
+(auto-approve: go)
+OK USASpending onboarded -> SOURCE_ID fed_us_usaspending_api 
+(FED_US_USASPENDING_API)
+
+Onboarding SEC EDGAR — 
+https://www.sec.gov/search-filings/edgar-application-programming-interfaces
+
+====================================================
+CHECKPOINT 1 - RECON   [3 of 37]
+====================================================
+Source:        SEC EDGAR (SEC EDGAR full-text search and REST APIs providing    
+               access to company filings, financial statements, and corporate   
+               entity data submitted to the SEC.)                               
+SOURCE_ID:     fed_us_sec_edgar                                                 
+URL:           https://www.sec.gov/search-filings/edgar-application-programming…
+Jurisdiction:  federal                                                          
+Category:      Economy / Corporate Filings & Disclosures                        
+Publisher:     U.S. Securities and Exchange Commission (SEC)                    
+Access:        API + bulk download                                              
+Auth:          none (No API key required; SEC requests a descriptive User-Agent 
+               header identifying the requester per their fair-access policy    
+               (e.g. 'MyApp/1.0 contact@example.com'). Rate limit ~10           
+               requests/second.)                                                
+Format:        JSON                                                             
+Volume:        35M+ filings; ~700K+ registered entities; growing daily          
+Update:        daily                                                            
+Key IDs:       CIK, ticker, ISIN, EIN                                           
+Priority:      tier 1                                                           
+Landing:       LIBRARY_RAW.LANDING.FED_US_SEC_EDGAR                             
+Staging:       stg_fed_us_sec_edgar__edgar_filings                              
+Mart:          economics__fed_us_sec_edgar                                      
+Joins to:      us_fec_contributions (EIN or entity_name), us_irs_exempt_orgs    
+               (EIN), us_sam_contractors (EIN or entity_name)                   
+
+Why it matters: Primary source for tracking corporate financial disclosures, 
+executive compensation, lobbying expenditures, ownership changes, and political 
+donations by public companies and their insiders.
+
+Schema (14 fields):
+  accession_number TEXT  Unique filing identifier (e.g. 0001234567-23-000001)
+  cik TEXT  SEC Central Index Key for the filer
+  entity_name TEXT  Name of the filing entity
+  ticker TEXT  Stock ticker symbol if applicable
+  form_type TEXT  SEC form type (e.g. 10-K, 10-Q, 8-K, DEF 14A, SC 13G)
+  filed_at DATE  Date the filing was submitted to EDGAR
+  period_of_report DATE  Reporting period end date covered by the filing
+  filing_url TEXT  URL to the filing index on EDGAR
+  document_url TEXT  URL to the primary document within the filing
+  sic_code TEXT  Standard Industrial Classification code of the filer
+  state_of_incorporation TEXT  State where the entity is incorporated
+  business_address TEXT  Principal business address of the filer
+  isin TEXT  International Securities Identification Number if available
+  ein TEXT  Employer Identification Number if disclosed in filing
+! Page fetch issue: 403 Client Error: Forbidden for url: 
+https://www.sec.gov/search-filings/edgar-application-programming-interfaces 
+(recon proceeded anyway)
+-> go / edit  / skip / abort
+(auto-approve: go)
+
+====================================================
+CHECKPOINT 2 - SCRIPT   [3 of 37]
+====================================================
+Ingestion script for SEC EDGAR (paginated_api)
+Target: LIBRARY_RAW.LANDING.FED_US_SEC_EDGAR
+
+    1 import time
+    2 import json
+    3 import requests
+    4 import pandas as pd
+    5 
+    6 def fetch_data(context):
+    7     """
+    8     Fetch SEC EDGAR filings data from the EDGAR full-text search / company
+    9     Returns a pandas DataFrame with all values as strings.
+   10     """
+   11     headers = {
+   12         "User-Agent": "Ripple Onboarding Agent (contact: ripple-data@examp
+   13         "Accept": "application/json",
+   14     }
+   15 
+   16     # Rate limit: ~10 req/sec, so sleep 0.12s between requests to be safe
+   17     SLEEP_BETWEEN = 0.12
+   18 
+   19     # We'll use the EDGAR submissions endpoint to get recent filings.
+   20     # Fetch a bounded set of popular/large filers by pulling the company t
+   21     # and then sampling a small number of them.
+   22 
+   23     base_url = "https://data.sec.gov"
+   24     tickers_url = f"{base_url}/submissions/CIK{{cik}}.json"
+   25 
+   26     # Step 1: Get the company tickers mapping (a single JSON with all CIKs
+   27     company_tickers_url = "https://www.sec.gov/files/company_tickers.json"
+   28 
+   29     resp = requests.get(company_tickers_url, headers=headers, timeout=30)
+   30     resp.raise_for_status()
+   31     time.sleep(SLEEP_BETWEEN)
+   32 
+   33     raw_bytes_parts = [resp.content]
+   34 
+   35     tickers_data = resp.json()
+   36 
+   37     # Bound the crawl: take up to 25 companies to keep it manageable
+   38     MAX_COMPANIES = 25
+   39     company_list = list(tickers_data.values())[:MAX_COMPANIES]
+   40 
+   41     records = []
+   42 
+   43     for company in company_list:
+   44         cik_raw = str(company.get("cik_str", "")).zfill(10)
+   45         ticker = str(company.get("ticker", ""))
+   46         entity_name = str(company.get("title", ""))
+   47 
+   48         sub_url = f"{base_url}/submissions/CIK{cik_raw}.json"
+   49         try:
+   50             sub_resp = requests.get(sub_url, headers=headers, timeout=30)
+   51             sub_resp.raise_for_status()
+   52             time.sleep(SLEEP_BETWEEN)
+   53         except Exception:
+   54             continue
+   55 
+   56         raw_bytes_parts.append(sub_resp.content)
+   57 
+   58         sub_data = sub_resp.json()
+   59 
+   60         # Extract entity-level fields
+   61         sic_code = str(sub_data.get("sic", "") or "")
+   62         state_of_inc = str(sub_data.get("stateOfIncorporation", "") or "")
+   63         ein = str(sub_data.get("ein", "") or "")
+   64 
+   65         # Business address
+   66         addresses = sub_data.get("addresses", {})
+   67         biz_addr = addresses.get("business", {})
+   68         address_parts = [
+   69             str(biz_addr.get("street1", "") or ""),
+   70             str(biz_addr.get("street2", "") or ""),
+   71             str(biz_addr.get("city", "") or ""),
+   72             str(biz_addr.get("stateOrCountry", "") or ""),
+   73             str(biz_addr.get("zipCode", "") or ""),
+   74         ]
+   75         business_address = ", ".join(p for p in address_parts if p)
+   76 
+   77         # Recent filings
+   78         filings = sub_data.get("filings", {}).get("recent", {})
+   79         if not filings:
+   80             continue
+   81 
+   82         accession_numbers = filings.get("accessionNumber", [])
+   83         form_types = filings.get("form", [])
+   84         filed_dates = filings.get("filingDate", [])
+   85         report_dates = filings.get("reportDate", [])
+   86         primary_documents = filings.get("primaryDocument", [])
+   87 
+   88         num_filings = len(accession_numbers)
+   89 
+   90         for i in range(num_filings):
+   91             acc_num = str(accession_numbers[i]) if i < len(accession_numbe
+   92             form_type = str(form_types[i]) if i < len(form_types) else ""
+   93             filed_at = str(filed_dates[i]) if i < len(filed_dates) else ""
+   94             period_of_report = str(report_dates[i]) if i < len(report_date
+   95             primary_doc = str(primary_documents[i]) if i < len(primary_doc
+   96 
+   97             # Build filing URL and document URL
+   98             # accession number format: 0001234567-23-000001 -> 00012345672
+   99             acc_num_clean = acc_num.replace("-", "")
+  100             filing_url = (
+  101                 f"https://www.sec.gov/cgi-bin/browse-edgar?action=getcompa
+  102                 f"&CIK={cik_raw}&type={form_type}&dateb=&owner=include&cou
+  103                 if not acc_num_clean
+  104                 else f"https://www.sec.gov/Archives/edgar/data/{int(cik_ra
+  105             )
+  106             document_url = (
+  107                 f"https://www.sec.gov/Archives/edgar/data/{int(cik_raw)}/{
+  108                 if acc_num_clean and primary_doc
+  109                 else ""
+  110             )
+  111 
+  112             records.append({
+  113                 "accession_number": acc_num,
+  114                 "cik": cik_raw,
+  115                 "entity_name": entity_name,
+  116                 "ticker": ticker,
+  117                 "form_type": form_type,
+  118                 "filed_at": filed_at,
+  119                 "period_of_report": period_of_report,
+  120                 "filing_url": filing_url,
+  121                 "document_url": document_url,
+  122                 "sic_code": sic_code,
+  123                 "state_of_incorporation": state_of_inc,
+  124                 "business_address": business_address,
+  125                 "isin": "",   # Not directly available in submissions JSON
+  126                 "ein": ein,
+  127             })
+  128 
+  129     if not records:
+  130         raise RuntimeError(
+  131             "SEC EDGAR fetch returned no records. "
+  132             "Check network access and that data.sec.gov is reachable."
+  133         )
+  134 
+  135     # Accumulate raw bytes for provenance / SHA-256
+  136     context["source_bytes"] = b"\n".join(raw_bytes_parts)
+  137     context["source_file"] = "sec_edgar_submissions.json"
+  138 
+  139     df = pd.DataFrame(records, columns=[
+  140         "accession_number",
+  141         "cik",
+  142         "entity_name",
+  143         "ticker",
+  144         "form_type",
+  145         "filed_at",
+  146         "period_of_report",
+  147         "filing_url",
+  148         "document_url",
+  149         "sic_code",
+  150         "state_of_incorporation",
+  151         "business_address",
+  152         "isin",
+  153         "ein",
+  154     ])
+  155 
+  156     df = df.astype(str)
+  157     return df
+-> go / edit  / skip / abort
+(auto-approve: go)
+
+====================================================
+CHECKPOINT 3 - LOAD   [3 of 37]
+====================================================
+Landing:          LIBRARY_RAW.LANDING.FED_US_SEC_EDGAR                          
+Run ID:           d124f698-ff64-462e-803c-9cc544751043                          
+Content SHA-256:  d70ee4b6aa808882e62d2076…                                     
+Source bytes:     9,137,057                                                     
+Rows loaded:      48,990                                                        
+Columns:          ACCESSION_NUMBER, CIK, ENTITY_NAME, TICKER, FORM_TYPE,        
+                  FILED_AT, PERIOD_OF_REPORT, FILING_URL, DOCUMENT_URL,         
+                  SIC_CODE, STATE_OF_INCORPORATION, BUSINESS_ADDRESS, ISIN, EIN,
+                  _INGESTED_AT, _SOURCE_RUN_ID, _SRC_SHA256                     
+Status:           Appended 48,990 rows (incremental since start) ->             
+                  LIBRARY_RAW.LANDING.FED_US_SEC_EDGAR                          
+
+Sample rows (5):
+ AC…  CIK  EN…  TI…  FO…  FI…  PE…  F…  DO…  S…  ST…  B…  IS…  E…  _I…  _…  _S… 
+ 00…  00…  NV…  NV…  8-K  20…  20…  h…  ht…  3…  DE   2…       9…  20…  d…  d7… 
+           CO…                                        S…           20…          
+                                                      T…                        
+                                                      E…                        
+                                                      S…                        
+                                                      C…                        
+                                                      C…                        
+                                                      9…                        
+ 00…  00…  NV…  NV…  4    20…  20…  h…  ht…  3…  DE   2…       9…  20…  d…  d7… 
+           CO…                                        S…           20…          
+                                                      T…                        
+                                                      E…                        
+                                                      S…                        
+                                                      C…                        
+                                                      C…                        
+                                                      9…                        
+ 00…  00…  NV…  NV…  4    20…  20…  h…  ht…  3…  DE   2…       9…  20…  d…  d7… 
+           CO…                                        S…           20…          
+                                                      T…                        
+                                                      E…                        
+                                                      S…                        
+                                                      C…                        
+                                                      C…                        
+                                                      9…                        
+ 00…  00…  NV…  NV…  4    20…  20…  h…  ht…  3…  DE   2…       9…  20…  d…  d7… 
+           CO…                                        S…           20…          
+                                                      T…                        
+                                                      E…                        
+                                                      S…                        
+                                                      C…                        
+                                                      C…                        
+                                                      9…                        
+ 00…  00…  NV…  NV…  4    20…  20…  h…  ht…  3…  DE   2…       9…  20…  d…  d7… 
+           CO…                                        S…           20…          
+                                                      T…                        
+                                                      E…                        
+                                                      S…                        
+                                                      C…                        
+                                                      C…                        
+                                                      9…                        
+-> go / edit  / skip / abort
+(auto-approve: go)
+
+====================================================
+CHECKPOINT 4 - DBT   [3 of 37]
+====================================================
+Generated dbt models:
+OK 
+c:\Code\Ripple_v6\library-onboarding\ripple_dbt\models\staging\fed_us_sec_edgar\
+stg_fed_us_sec_edgar__edgar_filings.sql
+OK 
+c:\Code\Ripple_v6\library-onboarding\ripple_dbt\models\staging\fed_us_sec_edgar\
+schema.yml
+OK 
+c:\Code\Ripple_v6\library-onboarding\ripple_dbt\models\marts\economics\economics
+__fed_us_sec_edgar.sql
+
+── Staging ──
+{{ config(materialized='view') }}
+
+with source as (
+
+    select *
+    from {{ source('ripple_raw', 'FED_US_SEC_EDGAR') }}
+
+),
+
+renamed as (
+
+    select
+
+        -- primary key
+        accession_number                                        as accession_num
+
+        -- identifiers
+        cik                                                     as cik,
+        ticker                                                  as ticker,
+        isin                                                    as isin,
+        ein                                                     as ein,
+
+        -- entity attributes
+        entity_name                                             as entity_name,
+        form_type                                               as form_type,
+        sic_code                                                as sic_code,
+        state_of_incorporation                                  as state_of_inco
+        business_address                                        as business_addr
+
+        -- dates
+        try_to_date(filed_at)                                   as filed_at,
+        try_to_date(period_of_report)                           as period_of_rep
+
+        -- urls
+        filing_url                                              as filing_url,
+        document_url                                            as document_url,
+
+        -- metadata
+        _ingested_at,
+        _source_run_id
+
+    from source
+
+),
+
+deduped as (
+
+    select *
+    from (
+        select
+            *,
+            row_number() over (
+                partition by accession_number
+                order by _ingested_at desc
+            ) as _row_num
+        from renamed
+    )
+    where _row_num = 1
+
+)
+
+select
+    accession_number,
+    cik,
+    ticker,
+    isin,
+    ein,
+    entity_name,
+    form_type,
+    sic_code,
+    state_of_incorporation,
+    business_address,
+    filed_at,
+    period_of_report,
+    filing_url,
+    document_url,
+    _ingested_at,
+    _source_run_id
+from deduped
+
+
+── Mart ──
+{{ config(materialized='table') }}
+
+with base as (
+
+    select *
+    from {{ ref('stg_fed_us_sec_edgar__edgar_filings') }}
+
+),
+
+final as (
+
+    select
+
+        -- surrogate / primary key
+        accession_number,
+
+        -- cross-source join identifiers
+        cik,
+        ticker,
+        isin,
+        ein,
+
+        -- entity attributes
+        entity_name,
+        form_type,
+        sic_code,
+        state_of_incorporation,
+        business_address,
+
+        -- dates
+        filed_at,
+        period_of_report,
+        year(filed_at)                                          as filed_year,
+        month(filed_at)                                         as filed_month,
+
+        -- urls
+        filing_url,
+        document_url,
+
+        -- derived flags
+        case
+            when form_type ilike 'S-%'
+                 or form_type ilike 'F-%'
+                 or form_type in ('424B1','424B2','424B3','424B4',
+                                  '424B5','424B7','424B8')
+            then true
+            else false
+        end                                                     as is_registrati
+
+        case
+            when form_type in ('10-K','10-K/A','20-F','20-F/A','40-F','40-F/A')
+            then true
+            else false
+        end                                                     as is_annual_rep
+
+        case
+            when form_type in ('10-Q','10-Q/A')
+            then true
+            else false
+        end                                                     as is_quarterly_
+
+        -- source metadata
+        'fed_us_sec_edgar'                                      as source_id,
+        _ingested_at,
+        _source_run_id
+
+    from base
+
+)
+
+select * from final
+
+
+── schema.yml ──
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_US_SEC_EDGAR
+        description: >
+          Raw landing table for SEC EDGAR filings sourced from the Ripple
+          data pipeline (source_id: fed_us_sec_edgar). All columns are TEXT.
+
+models:
+
+  - name: stg_fed_us_sec_edgar__edgar_filings
+    description: >
+      Staging model for SEC EDGAR filings. Casts TEXT columns to appropriate
+      types, snake_cases column names, and deduplicates on accession_number
+      keeping the most recently ingested record.
+    columns:
+
+      - name: accession_number
+        description: SEC-assigned unique accession number for the filing (primar
+        data_tests:
+          - unique
+          - not_null
+
+      - name: cik
+        description: SEC Central Index Key for the filing entity.
+        data_tests:
+          - not_null
+
+      - name: ticker
+        description: Stock ticker symbol associated with the filing entity.
+        data_tests:
+          - not_null
+
+      - name: isin
+        description: International Securities Identification Number.
+        data_tests:
+          - not_null
+
+      - name: ein
+        description: Employer Identification Number of the filing entity.
+        data_tests:
+          - not_null
+
+      - name: entity_name
+        description: Legal name of the entity that submitted the filing.
+
+      - name: form_type
+        description: SEC form type (e.g. 10-K, 10-Q, 8-K, S-1).
+
+      - name: sic_code
+        description: Standard Industrial Classification code for the entity.
+
+      - name: state_of_incorporation
+        description: US state (or country) where the entity is incorporated.
+
+      - name: business_address
+        description: Principal business address of the filing entity.
+
+      - name: filed_at
+        description: Date the filing was submitted to the SEC.
+
+      - name: period_of_report
+        description: Reporting period end date covered by the filing.
+
+      - name: filing_url
+        description: URL to the SEC EDGAR filing index page.
+
+      - name: document_url
+        description: Direct URL to the primary filing document.
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing tab
+
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this record.
+
+  - name: economics__fed_us_sec_edgar
+    description: >
+      Analytics-ready mart table for SEC EDGAR filings. Exposes all key
+      identifiers (CIK, ticker, ISIN, EIN) for cross-source joins and adds
+      derived boolean flags for common filing-type categories.
+    columns:
+
+      - name: accession_number
+        description: SEC-assigned unique accession number for the filing (primar
+        data_tests:
+          - unique
+          - not_null
+
+      - name: cik
+        description: SEC Central Index Key for the filing entity.
+        data_tests:
+          - not_null
+
+      - name: ticker
+        description: Stock ticker symbol associated with the filing entity.
+        data_tests:
+          - not_null
+
+      - name: isin
+        description: International Securities Identification Number.
+        data_tests:
+          - not_null
+
+      - name: ein
+        description: Employer Identification Number of the filing entity.
+        data_tests:
+          - not_null
+
+      - name: entity_name
+        description: Legal name of the entity that submitted the filing.
+
+      - name: form_type
+        description: SEC form type (e.g. 10-K, 10-Q, 8-K, S-1).
+        data_tests:
+          - accepted_values:
+              values:
+                - 10-K
+                - 10-K/A
+                - 10-Q
+                - 10-Q/A
+                - 8-K
+                - 8-K/A
+                - 20-F
+                - 20-F/A
+                - 40-F
+                - 40-F/A
+                - S-1
+                - S-1/A
+                - S-3
+                - S-3/A
+                - S-4
+                - S-4/A
+                - F-1
+                - F-1/A
+                - F-3
+                - F-3/A
+                - 424B1
+                - 424B2
+                - 424B3
+                - 424B4
+                - 424B5
+                - 424B7
+                - 424B8
+                - DEF 14A
+                - DEFA14A
+                - SC 13G
+                - SC 13G/A
+                - SC 13D
+                - SC 13D/A
+                - 4
+                - 4/A
+                - 3
+                - 5
+                - 6-K
+              quote: true
+              severity: warn
+
+      - name: sic_code
+        description: Standard Industrial Classification code for the entity.
+
+      - name: state_of_incorporation
+        description: US state (or country) where the entity is incorporated.
+
+      - name: business_address
+        description: Principal business address of the filing entity.
+
+      - name: filed_at
+        description: Date the filing was submitted to the SEC.
+
+      - name: period_of_report
+        description: Reporting period end date covered by the filing.
+
+      - name: filed_year
+        description: Calendar year extracted from filed_at.
+
+      - name: filed_month
+        description: Calendar month extracted from filed_at.
+
+      - name: filing_url
+        description: URL to the SEC EDGAR filing index page.
+
+      - name: document_url
+        description: Direct URL to the primary filing document.
+
+      - name: is_registration_or_prospectus
+        description: True when the form_type indicates a registration statement 
+
+      - name: is_annual_report
+        description: True when the form_type is an annual report (10-K, 20-F, 40
+
+      - name: is_quarterly_report
+        description: True when the form_type is a quarterly report (10-Q family)
+
+      - name: source_id
+        description: Constant identifier for this data source (fed_us_sec_edgar)
+        data_tests:
+          - accepted_values:
+              values:
+                - fed_us_sec_edgar
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing tab
+
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this record.
+
+-> go / edit  / skip / abort
+(auto-approve: go)
+
+====================================================
+CHECKPOINT 5 - REGISTRY   [3 of 37]
+====================================================
+SOURCE_ID:  fed_us_sec_edgar                                      
+Registry:   LIBRARY_META.REGISTRY.SOURCE_REGISTRY                 
+Join keys:  CIK, ticker, ISIN, EIN                                
+Status:     Registry row inserted for SOURCE_ID 'fed_us_sec_edgar'
+-> go / edit  / skip / abort
+(auto-approve: go)
+
+====================================================
+CHECKPOINT 6 - CONNECT   [3 of 37]
+====================================================
+Landing:     FED_US_SEC_EDGAR                                                   
+Mode:        linked                                                             
+Edges kept:  29                                                                 
+Status:      connect-one FED_US_SEC_EDGAR: {'table': 'FED_US_SEC_EDGAR',        
+             'key_partitions': ['CIK', 'NAME', 'SIC', 'ADDRESS', 'EIN'],        
+             'edges_kept': 29, 'candidates': 32, 'mode': 'linked'}              
+-> go / edit  / skip / abort
+(auto-approve: go)
+OK SEC EDGAR onboarded -> SOURCE_ID fed_us_sec_edgar (FED_US_SEC_EDGAR)
+
+Onboarding CMS NPPES — https://download.cms.gov/nppes/NPI_Files.html
+
+====================================================
+CHECKPOINT 1 - RECON   [4 of 37]
+====================================================
+Source:        CMS NPPES (National Provider Identifier (NPI) registry containing
+               all enumerated US healthcare providers, including names,         
+               addresses, taxonomy codes, and practice locations.)              
+SOURCE_ID:     fed_cms_nppes                                                    
+URL:           https://download.cms.gov/nppes/NPI_Files.html                    
+Jurisdiction:  federal                                                          
+Category:      Healthcare / Provider Identifiers & Credentialing                
+Publisher:     Centers for Medicare & Medicaid Services (CMS)                   
+Access:        bulk download                                                    
+Auth:          none (No registration or API key required; files are publicly    
+               available for direct download.)                                  
+Format:        CSV                                                              
+Volume:        ~8 million+ NPI records (full monthly file ~1 GB compressed,     
+               multi-GB uncompressed)                                           
+Update:        monthly                                                          
+Key IDs:       NPI, FIPS                                                        
+Priority:      tier 1                                                           
+Landing:       LIBRARY_RAW.LANDING.FED_CMS_NPPES                                
+Staging:       stg_fed_cms_nppes__npi_providers                                 
+Mart:          health__fed_cms_nppes                                            
+Joins to:      fed_cms_medicare_claims (NPI), fed_cms_open_payments (NPI),      
+               fed_cms_provider_enrollment (NPI)                                
+
+Why it matters: Links every licensed/enumerated US healthcare provider to a 
+unique NPI, enabling tracking of billing entities, ownership structures, and 
+provider networks in Medicare/Medicaid spending investigations.
+
+Schema (37 fields):
+  NPI TEXT  National Provider Identifier (10-digit unique provider ID)
+  Entity_Type_Code TEXT  1 = Individual (Type 1), 2 = Organization (Type 2)
+  Replacement_NPI TEXT  If NPI was replaced, the new NPI number
+  Employer_Identification_Number_EIN TEXT  EIN for Type 2 (organization) 
+providers
+  Provider_Organization_Name_Legal_Business_Name TEXT  Legal business name for 
+Type 2 NPIs
+  Provider_Last_Name_Legal_Name TEXT  Last name for Type 1 (individual) 
+providers
+  Provider_First_Name TEXT  First name for Type 1 providers (extended length in 
+V.2)
+  Provider_Middle_Name TEXT  Middle name for Type 1 providers
+  Provider_Name_Prefix_Text TEXT  Name prefix (e.g., Dr.)
+  Provider_Name_Suffix_Text TEXT  Name suffix (e.g., Jr., MD)
+  Provider_Credential_Text TEXT  Credential text (e.g., MD, RN, PhD)
+  Provider_Other_Organization_Name TEXT  Other/DBA name for organization
+  Provider_First_Line_Business_Mailing_Address TEXT  Primary mailing address 
+line 1
+  Provider_Second_Line_Business_Mailing_Address TEXT  Primary mailing address 
+line 2
+  Provider_Business_Mailing_Address_City_Name TEXT  Mailing address city
+  ... and 22 more
+-> go / edit  / skip / abort
+(auto-approve: go)
+
+====================================================
+CHECKPOINT 2 - SCRIPT   [4 of 37]
+====================================================
+Ingestion script for CMS NPPES (bulk_zip)
+Target: LIBRARY_RAW.LANDING.FED_CMS_NPPES
+
+    1 import io
+    2 import os
+    3 import re
+    4 import tempfile
+    5 import time
+    6 import zipfile
+    7 
+    8 import pandas as pd
+    9 import requests
+   10 from bs4 import BeautifulSoup
+   11 
+   12 HEADERS = {
+   13     "User-Agent": "Ripple Onboarding Agent (contact: ripple-data@example.c
+   14 }
+   15 
+   16 CHUNK_ROWS = 50_000  # default chunk size if not provided in context
+   17 
+   18 
+   19 def fetch_data(context):
+   20     """
+   21     Chunked generator for CMS NPPES full replacement monthly file.
+   22     Scrapes the NPI_Files.html page to find the latest full-replacement ZI
+   23     streams it to a temp file, then yields DataFrames of dtype=str in chun
+   24     """
+   25     listing_url = context["url"]  # https://download.cms.gov/nppes/NPI_Fil
+   26     chunk_rows = context.get("chunk_rows", CHUNK_ROWS)
+   27     chunk_max_rows = context.get("chunk_max_rows", 0)
+   28 
+   29     # ------------------------------------------------------------------
+   30     # 1. Scrape the listing page to find the full-replacement ZIP link
+   31     # ------------------------------------------------------------------
+   32     resp = requests.get(listing_url, headers=HEADERS, timeout=60)
+   33     resp.raise_for_status()
+   34 
+   35     soup = BeautifulSoup(resp.text, "html.parser")
+   36 
+   37     zip_url = None
+   38     zip_filename = None
+   39 
+   40     # The page lists links to various ZIP files.
+   41     # The full replacement file name pattern is like:
+   42     #   NPPES_Data_Dissemination_<Month>_<Year>.zip
+   43     # We look for the link whose text/href indicates a full-replacement fi
+   44     for a in soup.find_all("a", href=True):
+   45         href = a["href"]
+   46         # Match the full replacement dissemination ZIP (not the deactivati
+   47         if re.search(r"NPPES_Data_Dissemination.*\.zip$", href, re.IGNOREC
+   48             # Prefer "full replacement" -- skip deactivation files
+   49             if re.search(r"deactivat", href, re.IGNORECASE):
+   50                 continue
+   51             # Build absolute URL if needed
+   52             if href.startswith("http"):
+   53                 zip_url = href
+   54             else:
+   55                 zip_url = "https://download.cms.gov/nppes/" + href.lstrip(
+   56             zip_filename = href.split("/")[-1]
+   57             break  # take the first (most prominent) match
+   58 
+   59     if zip_url is None:
+   60         raise RuntimeError(
+   61             "Could not find a NPPES full-replacement ZIP link on "
+   62             f"{listing_url}. Page structure may have changed."
+   63         )
+   64 
+   65     context["source_file"] = zip_filename
+   66 
+   67     # ------------------------------------------------------------------
+   68     # 2. Stream the ZIP to a temp file (file is multi-GB; avoid RAM)
+   69     # ------------------------------------------------------------------
+   70     with tempfile.TemporaryDirectory() as tmpdir:
+   71         zip_path = os.path.join(tmpdir, zip_filename)
+   72 
+   73         with requests.get(zip_url, headers=HEADERS, stream=True, timeout=3
+   74             dl.raise_for_status()
+   75             with open(zip_path, "wb") as fh:
+   76                 for chunk in dl.iter_content(chunk_size=1 << 20):  # 1 MB 
+   77                     if chunk:
+   78                         fh.write(chunk)
+   79 
+   80         # ----------------------------------------------------------------
+   81         # 3. Identify the main NPI CSV inside the ZIP
+   82         # ----------------------------------------------------------------
+   83         with zipfile.ZipFile(zip_path, "r") as zf:
+   84             members = zf.namelist()
+   85 
+   86             # The main data file matches npidata_pfile_*.csv (not "FileHea
+   87             csv_member = None
+   88             for name in members:
+   89                 if (
+   90                     re.search(r"npidata_pfile.*\.csv$", name, re.IGNORECAS
+   91                     and "fileheader" not in name.lower()
+   92                 ):
+   93                     csv_member = name
+   94                     break
+   95 
+   96             if csv_member is None:
+   97                 raise RuntimeError(
+   98                     f"Could not find the main npidata CSV inside {zip_file
+   99                     f"Members found: {members}"
+  100                 )
+  101 
+  102             context["source_file"] = csv_member  # override with inner CSV
+  103 
+  104             # ------------------------------------------------------------
+  105             # 4. Yield chunks
+  106             # ------------------------------------------------------------
+  107             total_yielded = 0
+  108 
+  109             with zf.open(csv_member) as csv_fh:
+  110                 reader = pd.read_csv(
+  111                     csv_fh,
+  112                     dtype=str,
+  113                     chunksize=chunk_rows,
+  114                     low_memory=False,
+  115                     encoding="utf-8",
+  116                     on_bad_lines="warn",
+  117                 )
+  118 
+  119                 for chunk_df in reader:
+  120                     chunk_df = chunk_df.astype(str)
+  121 
+  122                     if chunk_max_rows > 0:
+  123                         remaining = chunk_max_rows - total_yielded
+  124                         if remaining <= 0:
+  125                             return
+  126                         if len(chunk_df) > remaining:
+  127                             chunk_df = chunk_df.iloc[:remaining]
+  128 
+  129                     total_yielded += len(chunk_df)
+  130                     yield chunk_df
+  131 
+  132                     if chunk_max_rows > 0 and total_yielded >= chunk_max_r
+  133                         return
+-> go / edit  / skip / abort
+(auto-approve: go)
+C:\Code\Ripple_v6\library-onboarding\ingest.py:553: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_INGESTED_AT] = ingested_at
+C:\Code\Ripple_v6\library-onboarding\ingest.py:554: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\library-onboarding\ingest.py:555: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_SRC_SHA256] = chunk_sha  # per-chunk provenance
+  chunk 1: +50,000 rows (run 50,000, table 50,000)
+C:\Code\Ripple_v6\library-onboarding\ingest.py:553: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_INGESTED_AT] = ingested_at
+C:\Code\Ripple_v6\library-onboarding\ingest.py:554: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\library-onboarding\ingest.py:555: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_SRC_SHA256] = chunk_sha  # per-chunk provenance
+C:\Code\Ripple_v6\library-onboarding\ingest.py:558: UserWarning: Pandas Dataframe has non-standard index of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _chunks, _nrows, _ = write_pandas(
+  chunk 2: +50,000 rows (run 100,000, table 100,000)
+C:\Code\Ripple_v6\library-onboarding\ingest.py:553: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_INGESTED_AT] = ingested_at
+C:\Code\Ripple_v6\library-onboarding\ingest.py:554: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\library-onboarding\ingest.py:555: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_SRC_SHA256] = chunk_sha  # per-chunk provenance
+C:\Code\Ripple_v6\library-onboarding\ingest.py:558: UserWarning: Pandas Dataframe has non-standard index of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _chunks, _nrows, _ = write_pandas(
+  chunk 3: +50,000 rows (run 150,000, table 150,000)
+C:\Code\Ripple_v6\library-onboarding\ingest.py:553: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_INGESTED_AT] = ingested_at
+C:\Code\Ripple_v6\library-onboarding\ingest.py:554: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\library-onboarding\ingest.py:555: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_SRC_SHA256] = chunk_sha  # per-chunk provenance
+C:\Code\Ripple_v6\library-onboarding\ingest.py:558: UserWarning: Pandas Dataframe has non-standard index of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _chunks, _nrows, _ = write_pandas(
+  chunk 4: +50,000 rows (run 200,000, table 200,000)
+C:\Code\Ripple_v6\library-onboarding\ingest.py:553: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_INGESTED_AT] = ingested_at
+C:\Code\Ripple_v6\library-onboarding\ingest.py:554: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\library-onboarding\ingest.py:555: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_SRC_SHA256] = chunk_sha  # per-chunk provenance
+C:\Code\Ripple_v6\library-onboarding\ingest.py:558: UserWarning: Pandas Dataframe has non-standard index of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _chunks, _nrows, _ = write_pandas(
+  chunk 5: +50,000 rows (run 250,000, table 250,000)
+C:\Code\Ripple_v6\library-onboarding\ingest.py:553: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_INGESTED_AT] = ingested_at
+C:\Code\Ripple_v6\library-onboarding\ingest.py:554: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\library-onboarding\ingest.py:555: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_SRC_SHA256] = chunk_sha  # per-chunk provenance
+C:\Code\Ripple_v6\library-onboarding\ingest.py:558: UserWarning: Pandas Dataframe has non-standard index of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _chunks, _nrows, _ = write_pandas(
+  chunk 6: +50,000 rows (run 300,000, table 300,000)
+C:\Code\Ripple_v6\library-onboarding\ingest.py:553: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_INGESTED_AT] = ingested_at
+C:\Code\Ripple_v6\library-onboarding\ingest.py:554: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\library-onboarding\ingest.py:555: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_SRC_SHA256] = chunk_sha  # per-chunk provenance
+C:\Code\Ripple_v6\library-onboarding\ingest.py:558: UserWarning: Pandas Dataframe has non-standard index of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _chunks, _nrows, _ = write_pandas(
+  chunk 7: +50,000 rows (run 350,000, table 350,000)
+C:\Code\Ripple_v6\library-onboarding\ingest.py:553: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_INGESTED_AT] = ingested_at
+C:\Code\Ripple_v6\library-onboarding\ingest.py:554: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\library-onboarding\ingest.py:555: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_SRC_SHA256] = chunk_sha  # per-chunk provenance
+C:\Code\Ripple_v6\library-onboarding\ingest.py:558: UserWarning: Pandas Dataframe has non-standard index of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _chunks, _nrows, _ = write_pandas(
+  chunk 8: +50,000 rows (run 400,000, table 400,000)
+C:\Code\Ripple_v6\library-onboarding\ingest.py:553: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_INGESTED_AT] = ingested_at
+C:\Code\Ripple_v6\library-onboarding\ingest.py:554: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\library-onboarding\ingest.py:555: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_SRC_SHA256] = chunk_sha  # per-chunk provenance
+C:\Code\Ripple_v6\library-onboarding\ingest.py:558: UserWarning: Pandas Dataframe has non-standard index of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _chunks, _nrows, _ = write_pandas(
+  chunk 9: +50,000 rows (run 450,000, table 450,000)
+C:\Code\Ripple_v6\library-onboarding\ingest.py:553: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_INGESTED_AT] = ingested_at
+C:\Code\Ripple_v6\library-onboarding\ingest.py:554: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\library-onboarding\ingest.py:555: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_SRC_SHA256] = chunk_sha  # per-chunk provenance
+C:\Code\Ripple_v6\library-onboarding\ingest.py:558: UserWarning: Pandas Dataframe has non-standard index of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _chunks, _nrows, _ = write_pandas(
+  chunk 10: +50,000 rows (run 500,000, table 500,000)
+C:\Code\Ripple_v6\library-onboarding\ingest.py:553: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_INGESTED_AT] = ingested_at
+C:\Code\Ripple_v6\library-onboarding\ingest.py:554: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\library-onboarding\ingest.py:555: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_SRC_SHA256] = chunk_sha  # per-chunk provenance
+C:\Code\Ripple_v6\library-onboarding\ingest.py:558: UserWarning: Pandas Dataframe has non-standard index of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _chunks, _nrows, _ = write_pandas(
+  chunk 11: +50,000 rows (run 550,000, table 550,000)
+C:\Code\Ripple_v6\library-onboarding\ingest.py:553: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_INGESTED_AT] = ingested_at
+C:\Code\Ripple_v6\library-onboarding\ingest.py:554: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\library-onboarding\ingest.py:555: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_SRC_SHA256] = chunk_sha  # per-chunk provenance
+C:\Code\Ripple_v6\library-onboarding\ingest.py:558: UserWarning: Pandas Dataframe has non-standard index of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _chunks, _nrows, _ = write_pandas(
+  chunk 12: +50,000 rows (run 600,000, table 600,000)
+C:\Code\Ripple_v6\library-onboarding\ingest.py:553: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_INGESTED_AT] = ingested_at
+C:\Code\Ripple_v6\library-onboarding\ingest.py:554: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\library-onboarding\ingest.py:555: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_SRC_SHA256] = chunk_sha  # per-chunk provenance
+C:\Code\Ripple_v6\library-onboarding\ingest.py:558: UserWarning: Pandas Dataframe has non-standard index of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _chunks, _nrows, _ = write_pandas(
+  chunk 13: +50,000 rows (run 650,000, table 650,000)
+C:\Code\Ripple_v6\library-onboarding\ingest.py:553: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_INGESTED_AT] = ingested_at
+C:\Code\Ripple_v6\library-onboarding\ingest.py:554: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\library-onboarding\ingest.py:555: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[META_SRC_SHA256] = chunk_sha  # per-chunk provenance
+C:\Code\Ripple_v6\library-onboarding\ingest.py:558: UserWarning: Pandas Dataframe has non-standard index of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _chunks, _nrows, _ = write_pandas(

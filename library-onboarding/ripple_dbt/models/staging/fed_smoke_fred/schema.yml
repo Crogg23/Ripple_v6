@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: stg_fed_smoke_fred__series
+    description: '[FAKE_LLM fixture] staged rows.'
+    columns:
+      - name: series_id
+        description: Series identifier.
+        data_tests: [not_null]

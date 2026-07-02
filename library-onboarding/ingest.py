@@ -75,7 +75,10 @@ def _is_blank(v) -> bool:
             return True
     except Exception:
         pass
-    return str(v).strip() == ""
+    s = str(v).strip()
+    # Treat pandas null-string tokens as blank, so a stray loader that emitted them
+    # as text can't sneak past the density gate as "populated".
+    return s == "" or s.lower() in ("nan", "nat", "none", "<na>")
 
 
 def assess_density(df, sample_rows: int = DENSITY_SAMPLE_ROWS) -> dict:
@@ -113,18 +116,20 @@ def assess_density(df, sample_rows: int = DENSITY_SAMPLE_ROWS) -> dict:
     all_blank_cols = 0
     single_distinct_blank_cols = 0
     for col in cols:
-        series = sample[col]
-        blank_mask = series.map(_is_blank)
+        # Vectorized blank detection -- cheap even on multi-million-row frames, so
+        # we can afford to scan the WHOLE frame (no head-sampling false-demotes when
+        # a real source has blank-leading rows). Cast to pandas 'string' so nulls
+        # become <NA>; a null OR whitespace-only value counts as blank.
+        try:
+            ss = sample[col].astype("string")
+            blank_mask = ss.isna() | (ss.str.strip() == "")
+        except Exception:
+            blank_mask = sample[col].map(_is_blank)
         n_blank = int(blank_mask.sum())
         populated_cells += rows_sampled - n_blank
         if n_blank == rows_sampled:
             all_blank_cols += 1
-        # The FJC_IDB tell: the column has exactly ONE distinct value and it's blank.
-        try:
-            distinct = series.dropna().map(lambda v: str(v).strip()).unique()
-        except Exception:
-            distinct = []
-        if len(distinct) <= 1 and (len(distinct) == 0 or distinct[0] == ""):
+            # A fully-blank column is the FJC_IDB tell (one distinct value, blank).
             single_distinct_blank_cols += 1
 
     total_cells = rows_sampled * n_cols
@@ -222,6 +227,7 @@ def run_ingest(config: dict, code: str) -> dict:
     url = config["url"]
     load_mode = (config.get("load_mode") or "snapshot").strip().lower()
     live = not (settings.fake_llm or not settings.snowflake_ready())
+    _apply_fetch_socket_timeout()  # bound network reads for BOTH snapshot + chunked
 
     # Chunked: a single very large file streamed in row-batches (separate path, so the
     # snapshot/incremental logic below is untouched). Same landing table + provenance.
@@ -309,7 +315,7 @@ def run_ingest(config: dict, code: str) -> dict:
             # source column blank) is recorded as STATUS='empty' -- NOT 'success' --
             # so it can't ride into the catalog as a real source. Healthy frames
             # clear the gate and keep STATUS='success' with identical behaviour.
-            density = assess_density(df)
+            density = assess_density(df, sample_rows=None)  # scan the WHOLE frame
             result["density"] = density["populated_fraction"]
             if density["empty"]:
                 _log_run(conn, source_id, run_id, "empty", len(df), file_bytes, sha, url,
@@ -608,6 +614,26 @@ def _landing_count(conn, table: str) -> int:
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
+def _apply_fetch_socket_timeout() -> None:
+    """Bound every network READ in a generated fetch -- snapshot AND chunked -- at the
+    socket level, so a hung/stalled download can't stall an unattended pour. Unlike a
+    worker-thread wall-clock cap this needs NO thread (which would block process exit
+    at shutdown and break sync-Playwright) and it actually unblocks the stuck read: a
+    socket idle longer than the cap raises socket.timeout -> the stage error path
+    (auto-repair / skip-and-continue) fires. Generated code that passes its own
+    requests timeout= overrides this. Set once per load; harmless to Snowflake (whose
+    per-read ops are far under the cap). Covers the chunked stream too since the pulls
+    happen on sockets created after this runs."""
+    import socket
+
+    t = settings.fetch_timeout_s
+    if t and t > 0:
+        try:
+            socket.setdefaulttimeout(float(t))
+        except Exception:
+            pass
+
+
 def _execute_fetch(config: dict, code: str, since: Optional[str] = None,
                    allow_empty: bool = False) -> Tuple[object, Optional[bytes], str]:
     """Run Claude-generated code and return (DataFrame, raw_bytes, source_file).
@@ -688,12 +714,73 @@ def _reject_html(df) -> None:
         )
 
 
+# Null-string tokens: what pandas/loaders render a null AS when they str()/astype(str)
+# a null-bearing frame BEFORE we see it. Treated as blank so they can't land as real
+# text (data corruption) or defeat the density gate.
+_NULL_TOKENS = frozenset({"nan", "nat", "none", "<na>"})
+
+
+def _dedupe_cols(cols):
+    """Make sanitized column names unique, so two source headers that reduce to the
+    same Snowflake identifier don't crash CREATE TABLE or silently drop a column. A
+    generated suffix that would ITSELF collide (source already has that name) is
+    bumped until unique."""
+    seen: set = set()
+    out = []
+    for c in cols:
+        name = c
+        i = 1
+        while name in seen:
+            i += 1
+            name = f"{c}_{i}"
+        seen.add(name)
+        out.append(name)
+    return out
+
+
 def _stringify(df):
-    """Coerce every source column to text (the raw landing convention)."""
-    df = df.where(df.notna(), None)
-    df.columns = [_sf_col(c) for c in df.columns]
+    """Coerce every source column to text (the raw landing convention).
+
+    Null-aware: None / NaN / NaT / pd.NA AND the null STRING tokens 'nan'/'nat'/'none'/
+    '<na>' (what a loader's df.astype(str) turns a null into before we see it) all -> ''
+    -- so a null never lands as literal text (which corrupts data AND defeats the
+    density gate). Integer-valued float COLUMNS (float only because they carry a null)
+    render as '1' not '1.0' so integer join keys (FIPS/EIN/CIK/NPI) survive; genuine
+    decimal columns keep their decimals (no mixed '2'/'2.5' within a column). Colliding
+    sanitized column names are de-duplicated.
+    """
+    import math
+
+    import pandas as pd
+
+    df = df.copy()
+    df.columns = _dedupe_cols([_sf_col(c) for c in df.columns])
+
+    def _cell(v, as_int):
+        if v is None:
+            return ""
+        if isinstance(v, float):
+            if math.isnan(v):
+                return ""
+            return str(int(v)) if (as_int and v.is_integer()) else str(v)
+        try:
+            if v != v:  # pandas NA / NaN-like
+                return ""
+        except Exception:
+            pass
+        s = str(v)
+        return "" if s.strip().lower() in _NULL_TOKENS else s
+
     for col in df.columns:
-        df[col] = df[col].map(lambda v: "" if v is None else str(v))
+        s = df[col]
+        as_int = False  # whole-number float column -> render as int (protects join keys)
+        try:
+            if pd.api.types.is_float_dtype(s):
+                nn = s.dropna()
+                as_int = len(nn) > 0 and bool(((nn % 1) == 0).all())
+        except Exception:
+            as_int = False
+        df[col] = s.map(lambda v, ai=as_int: _cell(v, ai))
     return df
 
 

@@ -6,7 +6,7 @@ Read-only grants only. Idempotent. Run as a role with MANAGE GRANTS / ACCOUNTADM
 """
 import sys, warnings
 warnings.filterwarnings("ignore")
-sys.path.insert(0, "/Users/chrisr./Documents/GitHub/Ripple_v6/library-onboarding")
+sys.path.insert(0, "c:/Code/Ripple_v6/library-onboarding")
 from snow import connect
 
 conn = connect(); cur = conn.cursor()

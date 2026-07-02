@@ -1,7 +1,138 @@
 # Build State
-Last updated: 2026-06-27
+Last updated: 2026-07-01
 
-## CURRENT FOCUS — 75-ISSUE COVERAGE MAP + ONBOARDING QUEUE (2026-06-27, latest)
+## CURRENT FOCUS — POUR-READINESS: WIRE UP THE INGESTION PIPELINE (2026-07-01, latest)
+**Goal: get the repo to where Chris says "go" and data POURS in unattended, resumably, without
+babysitting. Ran a 64-agent whole-repo stress-test (8 lenses -> verify -> synth), then FIXED all
+7 code-side blockers + key safety nets. Verdict was NOT-READY; now the code side is ready + tested
+(104 tests green). Remaining gaps are Chris's (secrets/deps/budget) + a second tier of hardening.**
+
+**Stress-test:** `outputs/pour_readiness_REPORT_2026-07-01.md` (55 findings, 16 blockers: 39 agent /
+16 chris). The loader ENGINE was sound; the gaps were the pour ENTRYPOINT's config (4 blank env
+values + missing deps) and batch RESILIENCE (one bad source killed the whole queue) + a few
+silent-corruption traps.
+
+**FIXED (agent side, all verified) — commits pending on branch:**
+- **B6 data integrity** `ingest.py`: `_stringify` now null-aware (None/NaN/NaT -> '' not the literal
+  'nan'; was corrupting data AND defeating the density gate) + integer-valued floats -> '1' not '1.0'
+  (FIPS/EIN/CIK join keys survive) + column-collision dedup (`_2/_3`). `_is_blank` treats nan/nat
+  tokens as blank. `assess_density` vectorized + scans the WHOLE frame (no head-sample false-demotes).
+- **B5 batch resilience** `onboard.py`+`checkpoint.py`: new `FAILED` sentinel (auto-repair exhaustion
+  = skip source, distinct from human ABORT) + `run_batch` try/except so a crash/one bad source
+  SKIPS-AND-CONTINUES instead of aborting the pour; re-run retries `failed`/`pending`.
+- **B4 unattended** `onboard.py`: `--yes/--auto` flag (sets auto-approve at runtime) + non-TTY
+  fail-fast + fail-fast ANTHROPIC_API_KEY preflight before the loop.
+- **B7 Windows crash** `checkpoint.py`: UTF-8 stdout/stderr reconfigure + `Console(legacy_windows=False)`
+  + ASCII banner/arrow glyphs (redirected stdout no longer cp1252-crashes the pour).
+- **B2 config** `config.py`: blank `ANTHROPIC_MODEL` now coalesces to default (was sending model='').
+- **Safety nets:** `fetch_timeout_s` (1800s wall-clock cap on generated fetch, `ingest._run_with_timeout`);
+  `statement_timeout_s` (3600s) + `ABORT_DETACHED_QUERY` clamped in `snow.connect`; `register._encode`
+  coerces bad array facets instead of asserting; budget-visibility preflight wired into `run_batch`
+  (`loadkit.preflight.live_budget_credits`) warns before a low-headroom pour.
+- **Tests:** `tests/test_onboard_smoke.py` (4 new: batch-continues-past-crash, halts-on-abort,
+  auto-repair->FAILED, blank-model-coalesce). Full suite 104 passed.
+
+**CHRIS'S GO-CHECKLIST -> `outputs/POUR_GO_CHECKLIST.md`.** Hard prereqs shrank to 4 (model +
+auto-approve are now code-handled): (1) real `ANTHROPIC_API_KEY` in .env; (2)
+`pip install -r library-onboarding/requirements.txt` (tenacity/bs4/lxml missing); (3) raise
+`RIPPLE_BUDGET` quota (agent classifier-blocked from ALTER); (4) data-source API keys for key-gated
+sources. Canonical pour: `python onboard.py --batch --yes > pour.log 2>&1` (resumable). Post-pour:
+`thelibrary_inventory.py && thelibrary_build.py --apply` to refresh the reading room.
+
+**SECOND TIER — DONE (2026-07-01, all verified, 106 tests green):**
+- **Snapshot OOM guard** `recon.py`: `_looks_large(volume)` upgrades a large/unknown snapshot to
+  chunked STREAMING (foreman pin + incremental untouched) so a multi-GB source can't be held
+  whole-frame and OOM the pour. Tested.
+- **SEC EDGAR 403** `prompts/generate_ingest.txt`: mandate a descriptive contact User-Agent on all
+  requests (gov APIs 403 a missing/generic UA); scrape pages still use a browser UA.
+- **Dead-source quarantine** `onboard.py`+`config.py`: `--batch` tracks a per-source `attempts` count
+  and skips a source after `ONBOARD_MAX_ATTEMPTS` (default 3) failures, so re-runs don't burn LLM
+  spend on a permanently-dead URL (delete its onboarding_log.json entry to retry). Tested.
+- **Windows paths**: swept the macOS `/Users/chrisr.` + `/private/tmp/claude-501` hardcodes out of
+  14 scripts/*.py (grant/dashboard/propose/regrade/backfill loaders) -> Windows repo root; all compile.
+- **Post-pour helper** `scripts/thelibrary_refresh.py`: one command (inventory + build) to rebuild
+  FRIENDLY_LAYER + THE_LIBRARY after a pour.
+
+**FINAL QA ROUND (2026-07-01) — 25-agent stress-test of the fixes themselves; GO-WITH-FIXES ->
+fixes applied, 111 tests green.** The QA caught that round-1 fixes composed adversarially and closed
+them: (1) the fetch wall-clock wrapper leaked a non-daemon thread (blocked process exit) AND missed
+the chunked path -> replaced with a SOCKET read timeout (no thread, covers snapshot+chunked+Playwright);
+(2) OOM guard's unknown->chunked was over-aggressive (lost SHA-skip + full-frame density) -> now
+upgrades only on a POSITIVE size signal, unknown stays snapshot; (3) the null-token fix was DEAD
+(loaders astype(str) turn nulls into 'nan' text before _stringify) -> `_stringify` now blanks
+nan/nat/none/<na> tokens, restoring the density gate; (4) `_dedupe_cols` residual collision ->
+unique; (5) int-float mixed decimals -> per-column; (6) register encode -> numpy-safe. Regression
+tests added for each. Report: `outputs/pour_final_qa_2026-07-01.md`. Known-open (narrow, documented):
+chunked density still head-samples (positively-huge sources only); chunked re-pours not SHA-idempotent
+(by design). TAP CENSUS (live catalog): 124 taps ON (99 landed + 25 modeled); ~1,516 turn-on-able
+(852 scouted + 7 queued + 657 sampled); ~1,386 keyless / ~129 free-key / ~21 paid; 1,090 carry a
+join key; 20 hand-written loaders fire today.
+
+**STILL DEFERRED (minor, low pour-impact):** `sources_queue.py` explicit pins (largely moot now --
+OOM guard covers load_mode, layer->jurisdiction already derives jurisdiction); portal-harvester tail
+progress (separate harvester script, not the onboard pour path); `live_pat_expiry` reader for the
+preflight PAT gate (PAT good to ~2026-09-20); the `/private/tmp` SCRATCH dirs in 5 one-off backfill
+scripts now point at `c:/Code/Ripple_v6/.scratch` (created on demand).
+
+---
+
+## PRIOR FOCUS — SNOWFLAKE HOUSEKEEPING + "THE_LIBRARY" READING ROOM (2026-07-01)
+**Made Snowflake navigable for a human WITHOUT breaking the machine. Stress-tested the plan first
+(50-agent adversarial workflow, 2 blockers caught + fixed), then built it in three workstreams.
+Everything additive is regenerable; everything destructive was snapshotted first.**
+
+**Plan + hardening:** `outputs/housekeeping_PLAN_2026-07-01.md` (original) →
+`outputs/housekeeping_HARDENED_2026-07-01.md` (build spec after stress-test; verdict + blockers +
+per-step fixes + acceptance tests). The stress-test caught the load-bearing flaw: the Reading Room
+could NOT be driven off CATALOG (no mart-FQN column; CATALOG saw only 25 of 73 marts) → fixed by
+building off a physical mart walk into a `FRIENDLY_LAYER` table.
+
+**B — CLEANUP (done, snapshot-first).** `scripts/housekeeping_cleanup.py` (preview/apply):
+- Dropped mounts `SNOWFLAKE_SAMPLE_DATA` + `SNOWFLAKE_PUBLIC_DATA_PAID` (expired trial). DBs now 7:
+  the 5 LIBRARY_* + SNOWFLAKE (system) + USER$CROGG23 (empty, can't remove).
+- Snapshotted + dropped **12 broken marts** → `LIBRARY_MARTS._RESTORE_20260701` (10 one-row stubs +
+  NARA_AAD 9-row + EPSTEIN ledger 3-row). Kept BORME (thin-but-real). Disabled the 11 dbt models in
+  `ripple_dbt/dbt_project.yml` (`+enabled: false`) so `dbt run` can't resurrect them.
+- Rotated registry backup → `_SOURCE_REGISTRY_BAK_20260701` (1645=1645), dropped stale `_BAK_20260625`.
+- Scratch tables (KEYSET_SCRATCH/CROSSWALK_SCRATCH/SPINE_KEYSET) LEFT ALONE — they're live pipeline
+  TRANSIENTs (rebuilt by `connect discover`), NOT orphans. B4 = deliberate no-op.
+
+**A — PLAIN-ENGLISH COMMENTS (done).** Voice = "explain it so anyone gets it" (Chris-approved; plain,
+concrete, says why, flags samples, no gimmicks). `scripts/thelibrary_a1_comments.py` (DB+schema) +
+generated table comments via workflow. Applied to: 5 DBs, 13 schemas, 61 marts, 779 landing tables
+(incl. 655 PORTAL_ templated). Pre-change comments snapshotted → `outputs/_rollback_comments_20260701.sql`.
+
+**C — THE_LIBRARY READING ROOM (done). The front door: open ONE database, browse by topic, plain names.**
+- Added `CATALOG.LAST_INGESTED_AT` (freshness; rollback `outputs/_rollback_CATALOG_view_20260701.sql`).
+- C0 `scripts/thelibrary_c0_tag_domains.py`: tagged all 52 UNCLASSIFIED landed/modeled sources
+  (abort-if-unmapped; gate UNCLASSIFIED=0 PASS).
+- `scripts/thelibrary_inventory.py` → 160 datasets (61 marts + 99 mart-less landing) as JSON.
+- Content workflow (12 agents, 66s) → friendly name + one-liner + Cox-voice comment per dataset →
+  `outputs/thelibrary_content.json`.
+- `scripts/thelibrary_build.py` (idempotent, preview/apply, per-schema reconcile + prune) built:
+  `LIBRARY_META.REGISTRY.FRIENDLY_LAYER` (source of truth, 160 rows) · **`THE_LIBRARY` database, 21
+  topic schemas, 160 friendly VIEWS** (e.g. `THE_LIBRARY.HEALTH.HEALTHCARE_PROVIDERS` → 9.6M) ·
+  `THE_LIBRARY.PUBLIC.START_HERE` (the card-catalog index). Views are read-only over the real tables →
+  ZERO pipeline breakage. C4 granted `CLAUDE_MCP_READONLY` USAGE/SELECT on THE_LIBRARY (grants applied;
+  PAT session can't `USE ROLE` to self-verify — MCP server runs as that role).
+- ACCEPTANCE (all pass): UNCLASSIFIED=0 · 61/61 marts covered · 161 views = 160+START_HERE · 0 broken
+  views · every friendly schema exists · registry backup=live · scratch tables present+TRANSIENT.
+
+**MAINTENANCE / GOING FORWARD:** the friendly layer regenerates from the catalog — re-run
+`thelibrary_inventory.py` → content workflow → `thelibrary_build.py --apply` after new sources land.
+Append that regeneration to the dbt orchestration (SELECT * views freeze columns until regenerated).
+
+**KNOWN POLISH ITEMS (Chris's call, non-blocking):**
+- A few raw-vs-cleaned DUPLICATES got ugly collision suffixes (e.g. `CAMPAIGN_FINANCE.FEC_CANDIDATES`
+  AND `FEC_CANDIDATES_FED_FEC_BULK_CANDIDATES`). Both objects are real (cleaned mart vs raw landing) —
+  consider showing only the cleaned mart in the Reading Room when both exist, or better disambiguation.
+- Paid mount dropped per decision; if any Marketplace subscription lingers it must be cancelled in
+  Snowsight (DROP DATABASE only unmounts). It was an expired trial, so likely nothing to cancel.
+- `LIBRARY_MARTS._RESTORE_20260701` (12 snapshots) — delete once confident nothing needs restoring.
+
+---
+
+## PRIOR FOCUS — 75-ISSUE COVERAGE MAP + ONBOARDING QUEUE (2026-06-27, latest)
 **Compared the live Library to a "World's Top 75 Issues 2026" list (50 global + 25 US). Ran TWO
 independent passes — a 75-agent catalog-aware web-recon workflow (`wf_2bbc195c-9fd`; 75/75 ok, 2.4M
 tokens, 1,134 web calls) + a claude.ai Opus deep-research pass on the 29 gaps — and reconciled them.

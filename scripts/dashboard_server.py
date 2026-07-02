@@ -16,7 +16,7 @@ import sys, json, threading, webbrowser, math
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlparse, parse_qs
 
-sys.path.insert(0, "/Users/chrisr./Documents/GitHub/Ripple_v6")
+sys.path.insert(0, "c:/Code/Ripple_v6")
 from connect import db
 from connect.keys import normalize_sql, quote_ident, NORM_RULES
 from connect.leads_specs import JOBS

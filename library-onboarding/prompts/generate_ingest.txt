@@ -34,6 +34,12 @@ REQUIREMENTS
     read API keys from here, e.g. context["env"].get("FRED_API_KEY")).
   - Use `requests` for HTTP. Loop for pagination. Respect rate limits with
     time.sleep() derived from the documented limit.
+  - User-Agent: ALWAYS set a descriptive User-Agent header on every request. Some
+    government sources REQUIRE it and return 403 without a real contact UA -- SEC
+    EDGAR (www.sec.gov / data.sec.gov) is the classic case: it rejects a missing or
+    generic agent. Use e.g. {"User-Agent": "Ripple Onboarding Agent (contact:
+    ripple-data@example.com)"} for APIs and bulk files. (For bot-protected SCRAPE
+    pages a browser-like "Mozilla/5.0 ..." UA is the right choice instead.)
   - Bounded snapshot: if the source is huge or effectively unbounded (a search API
     over millions of rows, an Elasticsearch from/size endpoint, etc.), do NOT page
     through the whole dataset. Respect the limit/size/page already in the URL and

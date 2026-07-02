@@ -20,7 +20,7 @@ fixes only make the catalog tell the truth about them.
 """
 import sys, warnings
 warnings.filterwarnings("ignore")
-sys.path.insert(0, "/Users/chrisr./Documents/GitHub/Ripple_v6/library-onboarding")
+sys.path.insert(0, "c:/Code/Ripple_v6/library-onboarding")
 from snow import connect
 
 apply = "--apply" in sys.argv
@@ -69,7 +69,7 @@ if apply and n == 3:
     new = old.replace("COALESCE(l.land_rows,0) > 100", "COALESCE(l.land_rows,0) > COALESCE(m.mart_rows,0) * 4")
     new = new.replace("create or replace view CATALOG(",
                       "create or replace view LIBRARY_META.REGISTRY.CATALOG(", 1)
-    roll = "/Users/chrisr./Documents/GitHub/Ripple_v6/outputs/_rollback_CATALOG_view.sql"
+    roll = "c:/Code/Ripple_v6/outputs/_rollback_CATALOG_view.sql"
     with open(roll, "w") as f: f.write(old)
     cur.execute(new)
     print(f"       applied (rollback DDL saved to {roll}).")

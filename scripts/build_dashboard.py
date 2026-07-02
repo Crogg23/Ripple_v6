@@ -11,10 +11,10 @@ against the 15-credit cap.
 """
 import sys, warnings, json, html
 warnings.filterwarnings("ignore")
-sys.path.insert(0, "/Users/chrisr./Documents/GitHub/Ripple_v6")
+sys.path.insert(0, "c:/Code/Ripple_v6")
 from connect import db
 
-OUT = "/Users/chrisr./Documents/GitHub/Ripple_v6/outputs/ripple_dashboard.html"
+OUT = "c:/Code/Ripple_v6/outputs/ripple_dashboard.html"
 META = {"_INGESTED_AT", "_SOURCE_RUN_ID", "_SRC_SHA256"}
 c = db.connect()
 

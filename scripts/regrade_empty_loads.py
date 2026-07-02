@@ -41,7 +41,7 @@ import warnings
 
 warnings.filterwarnings("ignore")
 
-REPO = "/Users/chrisr./Documents/GitHub/Ripple_v6"
+REPO = "c:/Code/Ripple_v6"
 sys.path.insert(0, f"{REPO}/library-onboarding")
 
 import pandas as pd  # noqa: E402
