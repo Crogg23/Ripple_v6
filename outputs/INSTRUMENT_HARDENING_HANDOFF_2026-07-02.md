@@ -44,14 +44,14 @@ are on disk and take effect on restart. Stop procedure (from the stress-test):
 `python scripts/reconcile_op2022.py --apply` (from a normal shell, not the agent's auto-mode). Flips the
 mislogged 13.25M-row `fed_cms_open_payments_2022` from lifecycle `scouted` → `landed`.
 
-### 3. Finish NPPES + rebuild the two drifted marts (status depends on the background load)
-NPPES is re-landing via `bridge_fuel_load.py --spec fed_cms_nppes --run --force` (atomic staging→swap).
-- If it finished: `FED_CMS_NPPES` landing should be ~9.6M again. Verify: `SELECT COUNT(*) FROM LIBRARY_RAW.LANDING.FED_CMS_NPPES;`
-- If interrupted: re-run the same command (`--force`; staging is preserved, but the download re-runs).
-- THEN rebuild the two drifted marts (dbt-core venv, from inside `library-onboarding/ripple_dbt`, env sourced):
-  `dbt build --select stg_fed_cms_nppes__npi_providers+ stg_fed_noaa_ais__ais_vessel_positions+`
-  (This is the ONLY safe order — building before the re-land would nuke the mart to 700K.)
-- Do NOT `dbt build` the politics models — they mirror Python-built canon; `dbt test --select marts.politics` only.
+### 3. NPPES — DONE live this session (✅). AIS mart rebuild is the only remainder.
+NPPES re-landed clean via the atomic loader: **9,606,683 rows** swapped over the wiped 700K landing,
+the facet-clobber guard preserved the curated registry row. NPPES landing now == its 9.6M mart — that
+drift is closed, no dbt rebuild needed for it. **Remaining (optional, lower priority):** the AIS mart is
+still frozen at 7.3M vs a 58.1M landing. To rebuild it (dbt-core venv `.dbt-venv`, from inside
+`library-onboarding/ripple_dbt`, env sourced): `dbt build --select stg_fed_noaa_ais__ais_vessel_positions+`
+— an 8x mart over 58M rows, so run it on COMPUTE_WH when the pour is quiet. Do NOT `dbt build` the
+politics models (they mirror Python-built canon; `dbt test --select marts.politics` only).
 
 ### 4. Post-pour session (deferred by design — needs the pour finished + quiet warehouse)
 - Full connect rebuild over the complete poured landing zone: `python -m connect discover` (populates
@@ -61,6 +61,18 @@ NPPES is re-landing via `bridge_fuel_load.py --spec fed_cms_nppes --run --force`
 - `python scripts/regrade_empty_loads.py --apply` (safe once the pour is done — it samples live landing tables).
 - One elevated re-run of `scripts/register_windows_tasks.ps1` upgrades the 3 worker tasks to S4U logon.
 - After the pour: `python scripts/budget_sprint.py --restore` (drop the 300-credit sprint quota back to 15).
+
+## Bonus this session — the `ripple` CLI (5 quality-of-life optimizations)
+One front door instead of 54 scripts. `python -m ripple <verb>` (or `python ripple.py <verb>`):
+- **`ripple status`** — the Morning Deck: live pour + scale + freshness (worst rotting sources) + your
+  to-do queues (1,030 leads / 661 domains) + since-last-time deltas + budget + health, one screen.
+- **`ripple review leads|domains`** — the batch cockpit: agent pre-fills a date-gated recommendation,
+  you decide N-at-a-time, verdicts write through the safety spine (never auto-confirms a named person).
+- **`ripple pour watch|plan|run`** — live meter (no more grepping the log) + deterministic-first router
+  (93 of 719 sources land LLM-free; only 626 novel shapes pay for the agent).
+- **`ripple doctor`** — one GREEN/RED go/no-go (PAT, deps, keys, tasks, DR age, freshness, budget).
+All read through COMPUTE_WH so they never fight the pour; writers refuse while a pour holds the log.
++106 tests, verified live. Run `ripple doctor` at the start of every session; `ripple status` to see where you are.
 
 ## Ship note
 This branch (`politics-itcont-money-mart`) carries `ee1cb55` with 51k-line pour-log blobs in history.
