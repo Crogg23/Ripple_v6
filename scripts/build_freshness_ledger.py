@@ -274,11 +274,15 @@ def apply(conn, rows: list[dict]) -> int:
     cur.execute(TABLE_DDL)
     cur.execute(VIEW_DDL)
     cur.execute("DELETE FROM LIBRARY_META.REGISTRY.SOURCE_FRESHNESS")
+    # Direct bind into the DATE column: data_through is an ISO string or None, and the
+    # connector's server-side binding turns TRY_TO_DATE(%s) into TRY_CAST(NULL AS DATE)
+    # for the None rows — a compilation error (hit live 2026-07-02). Snowflake coerces
+    # an ISO string to DATE on insert; None binds as plain NULL.
     cur.executemany(
         "INSERT INTO LIBRARY_META.REGISTRY.SOURCE_FRESHNESS "
         "(SOURCE_ID, LANDING_FQN, RECENCY_COL, RECENCY_KIND, DATA_THROUGH_ISO, ROW_COUNT, "
         " CADENCE_BUCKET, FRESHNESS_STATE, NOTE) "
-        "VALUES (%s, %s, %s, %s, TRY_TO_DATE(%s), %s, %s, %s, %s)",
+        "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
         [(r["source_id"], r["landing_fqn"], r["recency_col"], r["recency_kind"], r["data_through"],
           r["row_count"], r["cadence_bucket"], r["freshness_state"], r["note"][:4000]) for r in rows],
     )
