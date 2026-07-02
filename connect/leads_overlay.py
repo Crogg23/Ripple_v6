@@ -26,9 +26,10 @@ import json
 import math
 from pathlib import Path
 
-import plotly.graph_objects as go
-
 from .leads_specs import JOBS
+
+# plotly is a runtime viz dep, not a test dep — import it lazily inside build_figure()
+# so the pure DETECTORS-from-JOBS logic (and its tests) import without plotly installed.
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "outputs" / "leads_overlay.html"
@@ -174,7 +175,8 @@ def _load_graph_rows() -> None:
         pass
 
 
-def build_figure(counts: dict[str, int]) -> go.Figure:
+def build_figure(counts: dict[str, int]) -> "go.Figure":
+    import plotly.graph_objects as go  # lazy: only the render path needs plotly
     fig = go.Figure()
     pos, flags = _layout(DETECTORS)
 

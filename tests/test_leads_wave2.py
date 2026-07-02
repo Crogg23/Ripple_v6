@@ -201,6 +201,7 @@ def test_overlay_fallback_counts_cover_all_rules():
 
 
 def test_overlay_builds_figure_for_all_rules():
+    pytest.importorskip("plotly")  # rendering needs the viz dep; pure logic tests below don't
     fig = ov.build_figure(dict(ov.FALLBACK_COUNTS))
     # one line trace per firing rule + 2 node traces + legend traces
     n_edges = sum(1 for t in fig.data if t.mode == "lines" and t.x and t.x[0] is not None)
@@ -208,6 +209,7 @@ def test_overlay_builds_figure_for_all_rules():
 
 
 def test_overlay_unknown_table_autostacks_instead_of_keyerror(monkeypatch):
+    pytest.importorskip("plotly")  # rendering needs the viz dep
     fake = ov.DETECTORS + [("brand_new_rule", "FED_NEVER_SEEN_FLAGS",
                             "FED_NEVER_SEEN_ACTIVITY", "EIN")]
     monkeypatch.setattr(ov, "DETECTORS", fake)
