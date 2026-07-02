@@ -16,6 +16,9 @@ hard prerequisites shrank to **4 things**.
       Cost is no object for a one-time pour, so give big headroom:
       `ALTER RESOURCE MONITOR RIPPLE_BUDGET SET CREDIT_QUOTA = 300;`
       (optional: `ALTER RESOURCE MONITOR RIPPLE_BUDGET SET NOTIFY_USERS = (CROGG23);` for alerts)
+      **This is a SPRINT setting, not a new normal** — the "AFTER THE POUR" section below
+      drops it back via `budget_sprint.py --restore`. Policy: sprint ceiling 100, steady-state 15;
+      300 is the one-time pour exception. Don't leave it there.
 - [ ] **Data-source API keys** — only for the key-gated sources you actually want to pour.
       Add to `.env` as needed: `FRED_API_KEY`, `FEC_API_KEY`, `EIA_API_KEY`, `CENSUS_API_KEY`,
       `BLS_API_KEY`, `PROPUBLICA_API_KEY` (SAM_API_KEY is already set). Keyless sources pour without these.
@@ -46,3 +49,13 @@ python onboard.py --batch --yes
 python scripts/thelibrary_inventory.py && python scripts/thelibrary_build.py --apply
 ```
 (`CATALOG` self-updates; `THE_LIBRARY` + `FRIENDLY_LAYER` are snapshots that need this.)
+
+## AFTER THE POUR — drop the budget back (don't leave the sprint ceiling armed)
+
+```bash
+python scripts/budget_sprint.py --restore     # RIPPLE_BUDGET back to steady-state 15 credits
+```
+Policy (Chris's call, 2026-06-27): **sprint ceiling 100, steady-state 15.** A pour-sized
+quota left in place means a runaway job can burn hundreds of credits before anything
+suspends — the whole point of the monitor. Verify with `python scripts/heartbeat.py --status`
+(shows the live band + spendable headroom).

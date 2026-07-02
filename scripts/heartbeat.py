@@ -40,6 +40,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import platform
 import signal
 import subprocess
 import sys
@@ -149,7 +150,18 @@ def _snow_connect():
     if str(LIB) not in sys.path:
         sys.path.insert(0, str(LIB))
     import snow  # library-onboarding/snow.py (PAT-as-password, ACCOUNTADMIN)
-    return snow.connect()
+    conn = snow.connect()
+    # Scheduled-task wrapper sets RIPPLE_TASK_WAREHOUSE (COMPUTE_WH) so unattended
+    # heartbeat work never contends with a live pour on RIPPLE_WH. SNOWFLAKE_WAREHOUSE
+    # can't carry this: the load_dotenv(override=True) above clobbers a wrapper-set
+    # value with .env's. Same convention as scripts/export_control_plane.py.
+    task_wh = os.environ.get("RIPPLE_TASK_WAREHOUSE", "").strip()
+    if task_wh and task_wh.replace("_", "").isalnum():
+        try:
+            conn.cursor().execute(f"USE WAREHOUSE {task_wh}")  # USE takes no binds; name validated
+        except Exception:
+            pass   # fall back to the .env warehouse rather than brick the tick
+    return conn
 
 
 def _with_timeout(fn, seconds: float, default):
@@ -292,9 +304,11 @@ def _ensure_warehouse_timeout(cap_s: int) -> dict:
 
 # =========================================================================== #
 # LOCK — flock (kernel-enforced, auto-released on death) + pidfile (auditable
-# stale detection via os.kill(pid,0)). flock alone already prevents stale locks
-# from our own crashes; the pidfile makes 'who holds it' visible and lets us
-# reclaim on a filesystem where flock is unsupported.
+# stale detection via a PID-alive probe: OpenProcess on Windows, os.kill(pid,0)
+# on POSIX). flock alone already prevents stale locks from our own crashes; the
+# pidfile makes 'who holds it' visible and lets us reclaim on a filesystem where
+# flock is unsupported. On Windows there is no fcntl at all — the ImportError
+# path drops us to the pure pidfile fallback, which is the whole lock there.
 # =========================================================================== #
 class HeartbeatLock:
     def __init__(self, path: Path):
@@ -306,8 +320,29 @@ class HeartbeatLock:
     def _alive(pid: int) -> bool:
         if not pid:
             return False
+        if os.name == "nt":
+            # Windows: NEVER os.kill(pid, 0) here — on Windows that call TERMINATES
+            # the probed process (verified empirically; CPython maps it to
+            # TerminateProcess, there is no harmless signal-0 probe). Ask the kernel
+            # instead: OpenProcess + GetExitCodeProcess, stdlib ctypes only (psutil
+            # is not installed on this machine).
+            import ctypes
+            PROCESS_QUERY_LIMITED_INFORMATION = 0x1000
+            STILL_ACTIVE = 259
+            k32 = ctypes.windll.kernel32
+            h = k32.OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION, False, int(pid))
+            if not h:
+                # ERROR_ACCESS_DENIED (5) => the process exists, just not ours to query.
+                return k32.GetLastError() == 5
+            try:
+                code = ctypes.c_ulong()
+                if not k32.GetExitCodeProcess(h, ctypes.byref(code)):
+                    return False
+                return code.value == STILL_ACTIVE
+            finally:
+                k32.CloseHandle(h)
         try:
-            os.kill(pid, 0)
+            os.kill(pid, 0)   # POSIX only: signal 0 is the standard harmless probe
             return True
         except ProcessLookupError:
             return False
@@ -323,7 +358,9 @@ class HeartbeatLock:
             return {}
 
     def _write_meta(self, tier: str) -> None:
-        meta = {"pid": os.getpid(), "host": os.uname().nodename,
+        # platform.node() instead of os.uname().nodename — os.uname does not exist
+        # on Windows; platform is the cross-OS equivalent.
+        meta = {"pid": os.getpid(), "host": platform.node(),
                 "started_at": iso_now(), "tier": tier}
         os.ftruncate(self._fd, 0)
         os.lseek(self._fd, 0, os.SEEK_SET)
@@ -446,7 +483,25 @@ def tier_due(state: dict, tier: str) -> bool:
 # straight to a per-run log file (no pipe to drain => no deadlock).
 # =========================================================================== #
 def _kill_group(p) -> bool:
-    """SIGTERM the child's process group, grace, then SIGKILL. Kills the WHOLE tree."""
+    """Kill the child's WHOLE process tree.
+
+    POSIX: SIGTERM the process group, grace, then SIGKILL.
+    Windows: no killpg/process groups worth the name — shell out to
+    `taskkill /PID <pid> /T /F`, the OS-native tree kill (walks descendants and
+    force-terminates the lot, including the snowflake driver child)."""
+    if os.name == "nt":
+        if p.poll() is not None:
+            return False   # already dead — mirror the POSIX ProcessLookupError path
+        try:
+            subprocess.run(["taskkill", "/PID", str(p.pid), "/T", "/F"],
+                           capture_output=True, timeout=30)
+        except Exception:
+            pass
+        try:
+            p.wait(timeout=10)
+        except Exception:
+            pass
+        return True
     try:
         pgid = os.getpgid(p.pid)
     except ProcessLookupError:
@@ -493,12 +548,19 @@ def run_guarded(tier: str, cmd: list, cwd: Path, soft_s: int, hard_s: int,
                      f"{bk.get('action', bk.get('reason'))} -> {bk.get('set_to')}s "
                      f"on warehouse {bk.get('warehouse')}\n")
         lf.flush()
+        # Own group/session so the hang guard can kill the whole tree. On Windows,
+        # start_new_session is SILENTLY IGNORED — CREATE_NEW_PROCESS_GROUP is the
+        # real equivalent there (and taskkill /T does the tree walk regardless).
+        if os.name == "nt":
+            spawn_kw = {"creationflags": subprocess.CREATE_NEW_PROCESS_GROUP}
+        else:
+            spawn_kw = {"start_new_session": True}      # new process group => killpg the whole tree
         try:
             p = subprocess.Popen(
                 cmd, cwd=str(cwd),
                 stdout=lf, stderr=subprocess.STDOUT,
-                start_new_session=True,                 # new process group => killpg the whole tree
                 env=os.environ.copy(),
+                **spawn_kw,
             )
         except Exception as e:
             return {"tier": tier, "status": "spawn_error", "rc": None, "dur_s": 0,
@@ -531,6 +593,42 @@ def run_guarded(tier: str, cmd: list, cwd: Path, soft_s: int, hard_s: int,
         tail = _tail(logpath, 1)
         return {"tier": tier, "status": "ok" if rc == 0 else "failed", "rc": rc,
                 "dur_s": dur, "log": str(logpath), "note": tail}
+
+
+def pour_running() -> str:
+    """Return the command line of a live onboard.py pour, or '' when none is running.
+
+    The heavy tiers (ACQUIRE re-ingest, RECONCILE full rebuild) must never contend
+    with a live pour — shared onboarding_log.json, warehouse contention, and a
+    mid-chunk collision is exactly what wiped NPPES. On Windows `tasklist` only
+    shows python.exe, so the command line needs a Win32_Process CIM query; POSIX
+    gets pgrep -f. Fail-open to '' on probe error (budget + lock guards still
+    apply) — a broken probe must not brick the heartbeat forever."""
+    try:
+        if os.name == "nt":
+            ps = ("Get-CimInstance Win32_Process -Filter \"Name LIKE 'python%'\" | "
+                  "Where-Object { $_.CommandLine -match 'onboard\\.py' } | "
+                  "Select-Object -First 1 -ExpandProperty CommandLine")
+            r = subprocess.run(
+                ["powershell", "-NoProfile", "-NonInteractive", "-Command", ps],
+                capture_output=True, text=True, timeout=60)
+            return (r.stdout or "").strip()
+        r = subprocess.run(["pgrep", "-fal", "onboard.py"],
+                           capture_output=True, text=True, timeout=30)
+        lines = (r.stdout or "").strip().splitlines()
+        return lines[0] if lines else ""
+    except Exception:
+        return ""
+
+
+def _skip_if_pour(tier: str) -> dict:
+    """Shared guard for the heavy tiers: skip with a logged reason when a pour is live."""
+    pour = pour_running()
+    if pour:
+        mlog(event="pour_detected", tier=tier, cmdline=pour[:200])
+        return {"tier": tier, "status": "skipped_pour",
+                "note": f"live onboard.py pour detected — refusing to contend: {pour[:160]}"}
+    return {}
 
 
 def _tail(path: Path, n: int) -> str:
@@ -579,6 +677,9 @@ def tier_reconcile(run: bool, budget: dict) -> dict:
     if not run:
         return _planned("reconcile", cmd, REPO,
                         "FULL rebuild fingerprint->discover->spine->explore + reseed twins (~85min, geo HANG-RISK)")
+    skip = _skip_if_pour("reconcile")
+    if skip:
+        return skip
     ok, why = tier_budget_ok("reconcile", budget)
     if not ok:
         return {"tier": "reconcile", "status": "skipped_budget", "note": why}
@@ -660,6 +761,9 @@ def tier_acquire(run: bool, budget: dict, max_sources: int, optin: bool) -> dict
     if not optin:
         return {"tier": "acquire", "status": "disabled",
                 "note": "ACQUIRE is opt-in — pass --acquire-optin (unattended scheduler never enables it)"}
+    skip = _skip_if_pour("acquire")
+    if skip:
+        return skip
     max_sources = max(1, min(int(max_sources), ACQUIRE_MAX_CAP))
     recipes = _load_recipes()
     cands = _acquire_candidates(max_sources * 4)
@@ -759,6 +863,20 @@ def run_tick(args) -> int:
          band=budget.get("band"), spendable=budget.get("spendable"),
          used=budget.get("used"), quota=budget.get("quota"),
          budget_ok=budget.get("ok"), reason=budget.get("reason", ""))
+
+    # PAT calendar gate (Wave 7.1) — zero-network: decodes the token's own JWT exp
+    # locally. A dying PAT doesn't stop the tick (read paths keep working right up
+    # to expiry), but it must be LOUD in the log every hour so it's impossible to
+    # miss before the token dies mid-week. Never logs the token itself.
+    try:
+        if str(REPO) not in sys.path:
+            sys.path.insert(0, str(REPO))
+        from loadkit.preflight import live_pat_expiry, pat_expiry_check
+        chk = pat_expiry_check(live_pat_expiry(), datetime.now(timezone.utc))
+        if not chk.ok or chk.warn:
+            mlog(event="pat_expiry", level=("BLOCK" if not chk.ok else "WARN"), note=chk.detail)
+    except Exception:
+        pass   # advisory only — a broken import must never stop the heartbeat
 
     if budget.get("band") == "RED" and args.run and not args.tier:
         # Clean no-op: in RED every tier's band gate fails (link/measure are GREEN/YELLOW,
@@ -921,7 +1039,13 @@ def selftest() -> int:
     contend_pass = ok_a and not ok_b and holder is not None
     a.release()
     # stale: write a dead PID into the file, then a fresh acquire must reclaim it.
-    p.write_text(json.dumps({"pid": 2 ** 22, "host": "x", "started_at": iso_now(), "tier": "dead"}))
+    # Spawn-and-reap our OWN child to get a GUARANTEED-dead PID — a fixed constant
+    # like 2**22 can be a live PID on Windows (PIDs there are large and recycled),
+    # which would make this check flaky-fail on somebody else's process.
+    dead = subprocess.Popen([PY, "-c", "pass"],
+                            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    dead.wait(timeout=60)
+    p.write_text(json.dumps({"pid": dead.pid, "host": "x", "started_at": iso_now(), "tier": "dead"}))
     c = HeartbeatLock(p)
     ok_c, _ = c.acquire("C", force=False)
     c.release()
