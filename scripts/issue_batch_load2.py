@@ -191,6 +191,9 @@ def _load_one(conn, s):
         sha = hashlib.sha256(df.to_csv(index=False).encode("utf-8", "replace")).hexdigest()
         from snowflake.connector.pandas_tools import write_pandas
         out = ingest._stringify(df)
+        # Density measured AFTER _stringify (null tokens -> '') and BEFORE the meta
+        # stamps land — the always-populated provenance cols would mask an empty source.
+        dens = ingest.assess_density(out)
         out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
         out[ingest.META_SOURCE_RUN_ID] = run_id
         out[ingest.META_SRC_SHA256] = sha
@@ -201,12 +204,20 @@ def _load_one(conn, s):
         if not ok:
             return False, "write_pandas failed"
         ended = ingest._utcnow()
-        dens = ingest.assess_density(df)
-        status = "success" if dens.get("populated_fraction", 0) >= 0.01 else "empty"
-        ingest._log_run(conn, s["sid"], run_id, status, len(df), None, sha, url, started, ended,
-                        f"tranche2; {len(df):,} rows x {len(df.columns)} cols; density {dens.get('populated_fraction')}")
+        # EMPTY GATE: trust assess_density's VERDICT (its multi-signal 'empty' call),
+        # not a re-derived populated_fraction threshold — and never register a husk
+        # (aligned with bridge_fuel_load: an empty load must not enter the catalog).
+        if dens["empty"]:
+            ingest._log_run(conn, s["sid"], run_id, "empty", len(df), None, sha, url, started, ended,
+                            f"EMPTY LOAD -- {dens['reason']}. {ingest._density_note(dens)}. "
+                            f"tranche2 landed {len(df):,} rows but the frame carries no real "
+                            "data; NOT registered as a source.")
+            return False, f"EMPTY ({dens['reason']}); logged STATUS='empty', registration refused"
+        ingest._log_run(conn, s["sid"], run_id, "success", len(df), None, sha, url, started, ended,
+                        f"tranche2; {len(df):,} rows x {len(df.columns)} cols; "
+                        f"{ingest._density_note(dens)}")
         _register(conn, s, len(df), url)
-        return True, f"{len(df):,} rows x {len(df.columns)} cols ({status})"
+        return True, f"{len(df):,} rows x {len(df.columns)} cols (success)"
     except Exception as ex:  # noqa: BLE001
         return False, f"{type(ex).__name__}: {str(ex)[:120]}"
 

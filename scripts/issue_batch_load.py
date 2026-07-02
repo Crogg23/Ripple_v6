@@ -177,6 +177,9 @@ def _load_one(conn, sid, url, fmt, opts=None) -> tuple[bool, str]:
         sha = hashlib.sha256(content).hexdigest()
         from snowflake.connector.pandas_tools import write_pandas
         out = ingest._stringify(df)
+        # Density measured AFTER _stringify (null tokens -> '') and BEFORE the meta
+        # stamps land — the always-populated provenance cols would mask an empty source.
+        dens = ingest.assess_density(out)
         out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
         out[ingest.META_SOURCE_RUN_ID] = run_id
         out[ingest.META_SRC_SHA256] = sha
@@ -187,12 +190,20 @@ def _load_one(conn, sid, url, fmt, opts=None) -> tuple[bool, str]:
         if not ok:
             return False, "write_pandas failed"
         ended = ingest._utcnow()
-        dens = ingest.assess_density(df)
-        status = "success" if dens.get("populated_fraction", 0) >= 0.01 else "empty"
-        ingest._log_run(conn, sid, run_id, status, len(df), len(content), sha, url, started, ended,
-                        f"first-wave batch; {len(df):,} rows x {len(df.columns)} cols; density {dens.get('populated_fraction')}")
+        # EMPTY GATE: trust assess_density's VERDICT (its multi-signal 'empty' call),
+        # not a re-derived populated_fraction threshold — and never register a husk
+        # (aligned with bridge_fuel_load: an empty load must not enter the catalog).
+        if dens["empty"]:
+            ingest._log_run(conn, sid, run_id, "empty", len(df), len(content), sha, url, started, ended,
+                            f"EMPTY LOAD -- {dens['reason']}. {ingest._density_note(dens)}. "
+                            f"first-wave batch landed {len(df):,} rows but the frame carries "
+                            "no real data; NOT registered as a source.")
+            return False, f"EMPTY ({dens['reason']}); logged STATUS='empty', registration refused"
+        ingest._log_run(conn, sid, run_id, "success", len(df), len(content), sha, url, started, ended,
+                        f"first-wave batch; {len(df):,} rows x {len(df.columns)} cols; "
+                        f"{ingest._density_note(dens)}")
         _register(conn, sid, len(df), url)
-        return True, f"{len(df):,} rows x {len(df.columns)} cols (status={status})"
+        return True, f"{len(df):,} rows x {len(df.columns)} cols (status=success)"
     except Exception as ex:  # noqa: BLE001
         return False, f"{type(ex).__name__}: {str(ex)[:120]}"
 

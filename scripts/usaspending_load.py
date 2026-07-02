@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Deterministic loader for USASpending prime contract awards (the 'who got federal
+"""DEPRECATED (2026-07-02) — one-off, NON-ATOMIC loader. Kept for provenance only.
+Writes directly on the live table (a mid-run crash leaves a partial table). For any
+new or repeat bulk load use scripts/bridge_fuel_load.py, which lands through a
+staging table + atomic swap, density-gates, and guards the registry.
+
+Deterministic loader for USASpending prime contract awards (the 'who got federal
 money' side of the money layer).
 
 USASpending's bulk-download API (free, no key) returns transaction-level prime

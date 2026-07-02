@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Backfill CMS Open Payments GENERAL payments detail for PROGRAM YEAR 2022
+"""DEPRECATED (2026-07-02) — one-off, NON-ATOMIC backfill. Kept for provenance only.
+Replaces/appends directly on the live table (a mid-run crash leaves a partial year).
+For any new or repeat bulk load use scripts/bridge_fuel_load.py, which lands through
+a staging table + atomic swap, density-gates, and guards the registry.
+
+Backfill CMS Open Payments GENERAL payments detail for PROGRAM YEAR 2022
 (discovery sweep #23: the FED_CMS_OPEN_PAYMENTS union currently spans only
 2024 [unsuffixed table] + 2023 [_2023 table]. 2022 is the missing year -- adding
 it turns the "is this normal?" snapshot into a real 3-year time series, which the

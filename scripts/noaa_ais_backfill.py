@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Chunked, incremental multi-day backfill for NOAA AIS vessel positions
+"""DEPRECATED (2026-07-02) — one-off, NON-ATOMIC backfill. Kept for provenance only.
+Appends directly to the live table (a mid-run crash leaves a partial day). For any
+new or repeat bulk load use scripts/bridge_fuel_load.py, which lands through a
+staging table + atomic swap, density-gates, and guards the registry.
+
+Chunked, incremental multi-day backfill for NOAA AIS vessel positions
 (discovery sweep #4: FED_NOAA_AIS is a single 24h snapshot, 2024-01-01 only --
 the entire OFAC/OpenSanctions <-> AIS bridge sees one calendar day). Each extra
 day turns the snapshot into a surveillance time series and unlocks loitering /

@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Quarterly backfill for SEC EDGAR Financial Statement Data Sets -- submissions
+"""DEPRECATED (2026-07-02) — one-off, NON-ATOMIC backfill. Kept for provenance only.
+Appends directly to the live table (a mid-run crash leaves a partial quarter). For
+any new or repeat bulk load use scripts/bridge_fuel_load.py, which lands through a
+staging table + atomic swap, density-gates, and guards the registry.
+
+Quarterly backfill for SEC EDGAR Financial Statement Data Sets -- submissions
 (discovery sweep Phase 3 #42: FED_SEC_EDGAR_FINANCIALS is ONE quarter's sub.txt --
 6,491 rows == 2024q4 exactly. "Looks like a panel, is a snapshot." Each extra
 quarter turns the single-quarter submissions snapshot into a real filing time

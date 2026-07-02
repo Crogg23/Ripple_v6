@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Full-history backfill for USGS earthquakes (discovery sweep Phase 3 #46:
+"""DEPRECATED (2026-07-02) — one-off, NON-ATOMIC backfill. Kept for provenance only.
+Snapshot-replaces the live table in place (a mid-run crash leaves a partial rebuild).
+For any new or repeat bulk load use scripts/bridge_fuel_load.py, which lands through
+a staging table + atomic swap, density-gates, and guards the registry.
+
+Full-history backfill for USGS earthquakes (discovery sweep Phase 3 #46:
 FED_USGS_EARTHQUAKES is a 30-day rolling snapshot -- the whole table only ever
 sees the last month, so any "earthquakes over time" question is impossible). This
 turns the snapshot into a real ~16.5-year time series.

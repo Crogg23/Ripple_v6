@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
-"""Federal Register documents backfill (discovery sweep #58/#73: looks like a panel,
+"""DEPRECATED (2026-07-02) — one-off, NON-ATOMIC backfill. Kept for provenance only.
+Writes append/replace directly on the live table (a mid-run crash leaves a partial
+table). For any new or repeat bulk load use scripts/bridge_fuel_load.py, which lands
+through a staging table + atomic swap, density-gates, and guards the registry.
+Provenance fix 2026-07-02: _INGESTED_AT now stamps TIMESTAMP_NTZ (was epoch-micros
+INTEGER) — if the live table still carries a NUMBER _INGESTED_AT from the original
+run, migrate the column before re-running.
+
+Federal Register documents backfill (discovery sweep #58/#73: looks like a panel,
 is a snapshot). FED_FEDERAL_REGISTER_DOCUMENTS is currently the API's most-recent
 5,000 documents -- a ~9.5-week window (2026-04-10 .. 2026-06-16). That makes the
 "track federal rulemaking over time" promise a lie: there's no time to track.
@@ -242,7 +250,9 @@ def main() -> int:
             # stable provenance hash over the document numbers + dates in this window
             sha.update(("|".join(sorted(
                 (str(x) for x in df["DOCUMENT_NUMBER"].tolist()))) + a + b).encode("utf-8"))
-            df[ingest.META_INGESTED_AT] = int(started.timestamp() * 1_000_000)  # epoch micros (INTEGER col)
+            # TIMESTAMP_NTZ like every other loader (was epoch-micros INTEGER — the
+            # provenance type drift the 2026-07-02 audit flagged).
+            df[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
             df[ingest.META_SOURCE_RUN_ID] = run_id
             df[ingest.META_SRC_SHA256] = ""  # set after full hash known; placeholder keeps schema
             df = df[TABLE_COLS]
