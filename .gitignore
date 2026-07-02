@@ -40,3 +40,6 @@ library-onboarding/*.log
 outputs/_task_*_LAST.json
 outputs/_task_*_out.txt
 .dbt-venv/
+# ripple CLI runtime state (machine-local)
+outputs/_ripple_state.json
+outputs/_ripple_domain_approvals.json
