@@ -25,7 +25,7 @@ from typing import Optional, Tuple
 import browser
 import snow
 from config import ConfigError, settings
-from llm import call_claude, extract_code, render_prompt
+from llm import call_claude, extract_code, extract_code_fenced, render_prompt
 
 META_INGESTED_AT = "_INGESTED_AT"
 META_SOURCE_RUN_ID = "_SOURCE_RUN_ID"
@@ -35,6 +35,33 @@ SAMPLE_ROWS = 5
 # Provenance/meta columns we stamp onto every landed frame. The density gate must
 # IGNORE these -- they're always 100% populated and would mask an empty source.
 _META_COLS = frozenset({META_INGESTED_AT, META_SOURCE_RUN_ID, META_SRC_SHA256})
+
+# ---------------------------------------------------------------------------
+# Env blocklist for generated code
+# ---------------------------------------------------------------------------
+# Generated fetch code gets context["env"] so it can read DATA-source keys
+# (FRED_API_KEY, COURTLISTENER_TOKEN, ...). It must NOT get the platform's own
+# credentials -- the code is written by an LLM that just read an arbitrary web
+# page, i.e. it's prompt-injectable. Blocklist (not allowlist) so unknown data
+# keys keep working. Matching is ANCHORED on purpose: a naive '_PAT' substring
+# test would strip PATH and DBT_PROJECT_PATH. _TOKEN stays allowed -- those are
+# data-source keys (COURTLISTENER_TOKEN etc.), not platform secrets.
+_ENV_BLOCK_PREFIXES = ("SNOWFLAKE_", "ANTHROPIC_", "GITHUB_", "GH_", "AWS_")
+_ENV_BLOCK_SUFFIXES = ("_PAT", "_PASSWORD")
+_ENV_BLOCK_SUBSTRINGS = ("_SECRET",)
+
+
+def _safe_env() -> dict:
+    """A copy of os.environ with the platform's own credentials stripped."""
+    out = {}
+    for k, v in os.environ.items():
+        ku = str(k).upper()
+        if ku.startswith(_ENV_BLOCK_PREFIXES) or ku.endswith(_ENV_BLOCK_SUFFIXES):
+            continue
+        if any(s in ku for s in _ENV_BLOCK_SUBSTRINGS):
+            continue
+        out[k] = v
+    return out
 
 # ---------------------------------------------------------------------------
 # Density gate (P0-1) -- the load-time trust fix
@@ -197,23 +224,44 @@ def generate_ingest_script(config: dict, feedback: Optional[str] = None) -> str:
         access_pattern=config.get("access_pattern", "unknown"),
         auth_type=config.get("auth", {}).get("type", "none"),
         auth_notes=config.get("auth", {}).get("notes", ""),
+        auth_env_var=config.get("auth", {}).get("env_var", "") or "(none)",
         data_format=config.get("format", "unknown"),
         rate_limits=config.get("rate_limits", "unspecified"),
         schema=schema_repr,
         feedback=feedback or "(none)",
     )
-    raw = call_claude(
-        user=prompt,
-        system=(
-            "You write robust Python data-ingestion functions for a raw landing "
-            "zone. Output ONLY a Python code block defining `def fetch_data(context):` "
-            "that returns a pandas.DataFrame of strings. No Snowflake code."
-        ),
-        kind="ingest",
-        fake_context=config,
-        max_tokens=4096,
+    system = (
+        "You write robust Python data-ingestion functions for a raw landing "
+        "zone. Output ONLY a Python code block defining `def fetch_data(context):` "
+        "that returns a pandas.DataFrame of strings. No Snowflake code."
     )
-    return extract_code(raw, "python")
+    # 8192 (was 4096): the live pour truncated 5 long scripts mid-generation --
+    # a ceiling, not a target, so short scripts cost the same.
+    raw = call_claude(user=prompt, system=system, kind="ingest",
+                      fake_context=config, max_tokens=8192)
+    code = extract_code_fenced(raw, "python")
+    if code is None:
+        # No fenced block: prose-parsing a chatty answer produced 'invalid syntax
+        # line 1' failures at LOAD time in the live pour. One targeted re-ask
+        # first; only then fall back to the forgiving whole-text parse.
+        raw = call_claude(
+            user=prompt + "\n\nReturn ONLY a fenced python code block.",
+            system=system, kind="ingest", fake_context=config, max_tokens=8192,
+        )
+        code = extract_code_fenced(raw, "python")
+        if code is None:
+            code = extract_code(raw, "python")
+    # Compile NOW so a truncated/garbled script fails at SCRIPT time, where the
+    # auto-repair loop gets a real error message -- not at LOAD time as a bare
+    # 'invalid syntax' after the checkpoint already approved it.
+    try:
+        compile(code, "<generated_ingest>", "exec")
+    except SyntaxError as exc:
+        raise RuntimeError(
+            f"Generated ingest script does not compile ({exc}). Regenerate it: "
+            "return ONE complete fenced python block defining fetch_data(context)."
+        ) from exc
+    return code
 
 
 # ---------------------------------------------------------------------------
@@ -249,6 +297,19 @@ def run_ingest(config: dict, code: str) -> dict:
                 wm_conn.close()
         except Exception:
             since = None
+
+    # Validate AFTER the read above -- raising inside _watermark would be swallowed
+    # by that except, silently turning a bad cursor into since=None and duplicate-
+    # appending the whole backfill. A TEXT MAX() is only a real high-water mark when
+    # the column sorts chronologically AS TEXT (ISO date/timestamp prefix, or a pure
+    # epoch number). Anything else (MM/DD/YYYY, '13-JAN-2024') is silently wrong.
+    if since is not None and not _watermark_orderable(since):
+        raise RuntimeError(
+            f"Incremental watermark for cursor_field '{cursor_field}' is not "
+            f"ISO-orderable text ({since!r}). MAX() over that column sorts "
+            "lexicographically, so the append window would be silently wrong. "
+            "Pick an ISO date/timestamp (or epoch) cursor_field instead."
+        )
 
     # allow_empty only on a CONTINUING incremental run (we already hold a watermark):
     # then "0 new rows" is a legit no-op. On the FIRST incremental run (since is None,
@@ -485,7 +546,7 @@ def _execute_fetch_chunks(config: dict, code: str, resume_from_row: int,
         "url": config["url"],
         "source_name": config["name"],
         "auth_type": config.get("auth", {}).get("type", "none"),
-        "env": dict(os.environ),
+        "env": _safe_env(),  # data keys only -- platform credentials stripped
         "render": browser.render,
         # chunked controls the generated fetch honours:
         "load_mode": "chunked",
@@ -661,7 +722,7 @@ def _execute_fetch(config: dict, code: str, since: Optional[str] = None,
         "source_name": config["name"],
         "auth_type": config.get("auth", {}).get("type", "none"),
         "since": since,  # incremental high-water mark (or None on first/snapshot run)
-        "env": dict(os.environ),
+        "env": _safe_env(),  # data keys only -- platform credentials stripped
         "source_bytes": None,
         "source_file": "",
         # Headless-browser renderer (C1b). Generated scrape_js code calls
@@ -837,6 +898,19 @@ def _load_landing(conn, df, table: str, overwrite: bool = True) -> None:
     )
     if not ok:
         raise RuntimeError(f"write_pandas reported failure loading {table}.")
+
+
+def _watermark_orderable(value) -> bool:
+    """Does this cursor value sort chronologically AS TEXT?
+
+    True for an ISO date/timestamp prefix (YYYY-MM-DD...) or a purely numeric
+    epoch. False for MM/DD/YYYY, '13-JAN-2024', etc. -- lexicographic MAX() over
+    those is silently wrong, which corrupts the incremental append window.
+    """
+    s = str(value).strip()
+    if re.match(r"^\d{4}-\d{2}-\d{2}", s):
+        return True
+    return bool(re.fullmatch(r"\d+(\.\d+)?", s))
 
 
 def _watermark(conn, table: str, cursor_field: str) -> Optional[str]:

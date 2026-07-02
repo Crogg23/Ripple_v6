@@ -208,7 +208,14 @@ def _resolve(source: dict, extracted: dict, fetch_error: Optional[str],
         "geographic_scope": extracted.get("geographic_scope", "unknown"),
         "access_method": extracted.get("access_method", "unknown"),
         "format": extracted.get("format", "unknown"),
-        "auth": {"type": auth.get("type", "none"), "notes": auth.get("notes", "")},
+        "auth": {
+            "type": auth.get("type", "none"),
+            # Conventional env-var name for the key (e.g. CENSUS_API_KEY). New in
+            # the recon prompt -- older recon outputs simply lack it, and a blank
+            # value means the auth gate can't (and won't) check for a key.
+            "env_var": str(auth.get("env_var") or "").strip(),
+            "notes": auth.get("notes", ""),
+        },
         "cost": extracted.get("cost", ""),
         "update_cadence": extracted.get("update_cadence", "unknown"),
         "volume": volume,

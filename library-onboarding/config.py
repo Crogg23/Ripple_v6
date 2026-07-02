@@ -132,12 +132,13 @@ class Config:
     browser_wait_until: str = field(
         default_factory=lambda: os.getenv("ONBOARD_BROWSER_WAIT_UNTIL", "domcontentloaded").strip()
     )
-    # Accept untrusted TLS certs. Default ON: this agent commonly runs behind a
-    # TLS-intercepting proxy whose CA the bundled Chromium does not trust, and the
-    # raw layer keeps a SHA-256 of every payload regardless.
+    # Accept untrusted TLS certs. Default OFF: this is an evidence platform, so the
+    # browser must not silently trust a forged/intercepted cert. Set
+    # ONBOARD_BROWSER_IGNORE_HTTPS_ERRORS=1 ONLY when you're knowingly behind a
+    # TLS-intercepting proxy whose CA the bundled Chromium doesn't trust (the raw
+    # layer still keeps a SHA-256 of every payload).
     browser_ignore_https_errors: bool = field(
-        default_factory=lambda: os.getenv("ONBOARD_BROWSER_IGNORE_HTTPS_ERRORS", "1").strip().lower()
-        not in ("0", "false", "no", "off")
+        default_factory=lambda: _flag("ONBOARD_BROWSER_IGNORE_HTTPS_ERRORS")
     )
 
     # ------------------------------------------------------------------

@@ -6,6 +6,7 @@ SOURCE
   URL:            {url}
   Access pattern: {access_pattern}
   Auth:           {auth_type} ({auth_notes})
+  Auth env var:   {auth_env_var}
   Format:         {data_format}
   Rate limits:    {rate_limits}
   Schema:
@@ -32,6 +33,11 @@ REQUIREMENTS
     context["source_bytes"] so the SHA-256 reflects the real payload.
   - `context` also has: "url", "source_name", "auth_type", and "env" (a dict --
     read API keys from here, e.g. context["env"].get("FRED_API_KEY")).
+  - When auth is required, read the key from EXACTLY the env var named on the
+    "Auth env var" line in SOURCE: context["env"].get("<that name>"). Do not
+    invent a different variable name. If that line is blank, "(none)", or an
+    un-filled template token, fall back to the conventional name implied by the
+    auth notes.
   - Use `requests` for HTTP. Loop for pagination. Respect rate limits with
     time.sleep() derived from the documented limit.
   - User-Agent: ALWAYS set a descriptive User-Agent header on every request. Some

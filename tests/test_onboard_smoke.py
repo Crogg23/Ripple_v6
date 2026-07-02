@@ -7,8 +7,11 @@ clobber an env override.
 """
 from __future__ import annotations
 
+import json
 import sys
 from pathlib import Path
+
+import pytest
 
 _LIB = Path(__file__).resolve().parents[1] / "library-onboarding"
 sys.path.insert(0, str(_LIB))
@@ -17,6 +20,22 @@ import config  # noqa: E402
 import ingest  # noqa: E402
 import onboard  # noqa: E402
 import recon  # noqa: E402
+import scaffold_dbt  # noqa: E402
+
+
+def _cfg(sid: str = "xc_test", auth: dict | None = None) -> dict:
+    """Minimal recon profile shaped like _resolve's output (what the gates and
+    later checkpoints actually read)."""
+    return {
+        "name": "Test Source",
+        "url": "http://x",
+        "source_id": sid,
+        "landing_table": sid.upper(),
+        "entity": "records",
+        "staging_model": f"stg_{sid}__records",
+        "mart_model": f"gov__{sid}",
+        "auth": auth or {"type": "none", "env_var": "", "notes": ""},
+    }
 
 
 def test_blank_model_coalesces_to_default(monkeypatch):
@@ -45,7 +64,7 @@ def test_batch_continues_past_a_crashing_source(monkeypatch, tmp_path):
     monkeypatch.setattr(onboard, "onboard_source", fake_onboard)
     rc = onboard.run_batch()
 
-    assert rc == 0
+    assert rc == 1  # a source FAILED this run -> nonzero exit (but the pour continued)
     assert seen == ["S0", "S1", "S2"]  # did not stop at the crash
     log = onboard.load_log()
     assert log["S0"]["status"] == "complete"
@@ -199,3 +218,352 @@ def test_load_queue_validates(tmp_path):
     assert onboard._load_queue(write(good)) == good
     with pytest.raises(SystemExit):
         onboard._load_queue(str(tmp_path / "nope.json"))                 # missing file
+    with pytest.raises(SystemExit):
+        onboard._load_queue(write([{"name": "a", "url": "u", "source_id": "xc_a"},
+                                   {"name": "b", "url": "u2", "source_id": "xc_a"}]))  # dup sid
+
+
+# ---------------------------------------------------------------------------
+# Wave 1 hardening: gates, resume semantics, exit codes, log keying
+# ---------------------------------------------------------------------------
+def test_empty_gate_skips_dbt_and_registry(monkeypatch):
+    """A density-demoted load must NOT ride into DBT/REGISTRY as 'complete'."""
+    monkeypatch.setattr(onboard.settings, "auto_approve", True)
+    monkeypatch.setattr(onboard.settings, "fake_llm", True)  # bypass the SF gates
+    monkeypatch.setattr(onboard, "run_recon", lambda source, feedback=None: _cfg())
+    monkeypatch.setattr(onboard, "generate_ingest_script", lambda config, feedback=None: "code")
+    monkeypatch.setattr(onboard, "run_ingest",
+                        lambda config, code: {"empty": True, "run_id": "r1", "rows": 5,
+                                              "status": "EMPTY -- all source columns blank"})
+    called = []
+    monkeypatch.setattr(onboard, "generate_dbt_models", lambda *a, **k: called.append("dbt"))
+    monkeypatch.setattr(onboard, "register_source", lambda *a, **k: called.append("registry"))
+
+    rec = onboard.onboard_source({"name": "T", "url": "http://x"})
+    assert rec["status"] == "empty"
+    assert rec["run_id"] == "r1"
+    assert "blank" in rec["message"]
+    assert called == []  # neither DBT nor REGISTRY ran
+
+
+def test_empty_counts_toward_quarantine(monkeypatch, tmp_path):
+    """'empty' retries like 'failed' and quarantines at max_attempts; empty alone
+    does NOT force a nonzero exit."""
+    monkeypatch.setattr(onboard, "LOG_PATH", tmp_path / "log.json")
+    monkeypatch.setattr(onboard.settings, "auto_approve", True)
+    monkeypatch.setattr(onboard.settings, "max_attempts", 2)
+    monkeypatch.setattr(onboard, "_budget_preflight", lambda: None)
+    q = [{"name": "E", "url": "http://x"}]
+    seen = []
+    monkeypatch.setattr(onboard, "onboard_source",
+                        lambda source, position=None: seen.append(1) or {"status": "empty"})
+
+    assert onboard.run_batch(sources=q) == 0
+    assert onboard.load_log()["E"]["attempts"] == 1
+    onboard.run_batch(sources=q)
+    assert onboard.load_log()["E"]["attempts"] == 2
+    onboard.run_batch(sources=q)  # at max_attempts now -> quarantined
+    assert len(seen) == 2
+
+
+def test_auth_gate_skips_before_codegen(monkeypatch):
+    """Missing key -> needs_key BEFORE any codegen burn, recording the env var."""
+    monkeypatch.setattr(onboard.settings, "auto_approve", True)
+    monkeypatch.setattr(onboard.settings, "fake_llm", False)
+    monkeypatch.setattr(onboard.settings, "snowflake_ready", lambda: False)  # writeback no-op
+    cfg = _cfg(auth={"type": "free API key", "env_var": "RIPPLE_TEST_FAKE_KEY", "notes": ""})
+    monkeypatch.setattr(onboard, "run_recon", lambda source, feedback=None: cfg)
+    monkeypatch.delenv("RIPPLE_TEST_FAKE_KEY", raising=False)
+    burned = []
+    monkeypatch.setattr(onboard, "generate_ingest_script",
+                        lambda *a, **k: burned.append(1) or "code")
+
+    rec = onboard.onboard_source({"name": "K", "url": "http://x"})
+    assert rec["status"] == "needs_key"
+    assert rec["needs_env_var"] == "RIPPLE_TEST_FAKE_KEY"
+    assert burned == []
+
+    # Key present -> the gate passes and the flow proceeds to SCRIPT.
+    monkeypatch.setenv("RIPPLE_TEST_FAKE_KEY", "sekrit")
+    monkeypatch.setattr(onboard, "run_ingest",
+                        lambda config, code: {"rows": 0, "run_id": "r", "status": "ok"})
+    monkeypatch.setattr(onboard, "SKIP_DBT", True)
+    monkeypatch.setattr(onboard, "register_source", lambda config: {"ok": True})
+    rec = onboard.onboard_source({"name": "K", "url": "http://x"})
+    assert rec["status"] == "complete"
+    assert burned == [1]
+
+
+def test_needs_key_resume_retries_only_when_key_present(monkeypatch, tmp_path):
+    logp = tmp_path / "log.json"
+    logp.write_text(json.dumps(
+        {"K": {"status": "needs_key", "needs_env_var": "RIPPLE_TEST_FAKE_KEY"}}),
+        encoding="utf-8")
+    monkeypatch.setattr(onboard, "LOG_PATH", logp)
+    monkeypatch.setattr(onboard.settings, "auto_approve", True)
+    monkeypatch.setattr(onboard, "_budget_preflight", lambda: None)
+    seen = []
+    monkeypatch.setattr(onboard, "onboard_source",
+                        lambda source, position=None: seen.append(source["name"]) or {"status": "complete"})
+    q = [{"name": "K", "url": "http://x"}]
+
+    monkeypatch.delenv("RIPPLE_TEST_FAKE_KEY", raising=False)
+    assert onboard.run_batch(sources=q) == 0  # needs_key does NOT force nonzero
+    assert seen == []                          # key absent -> still skipped
+
+    monkeypatch.setenv("RIPPLE_TEST_FAKE_KEY", "sekrit")
+    onboard.run_batch(sources=q)
+    assert seen == ["K"]                       # key present -> retried
+
+
+class _FakeCur:
+    def __init__(self, rows=None):
+        self._rows = rows or []
+    def execute(self, *a, **k):
+        pass
+    def fetchall(self):
+        return self._rows
+    def close(self):
+        pass
+
+
+class _FakeConn:
+    def __init__(self, rows=None):
+        self._rows = rows
+    def cursor(self):
+        return _FakeCur(self._rows)
+    def close(self):
+        pass
+
+
+def test_collision_gate_skips_landed_sid_and_include_landed_escapes(monkeypatch):
+    monkeypatch.setattr(onboard.settings, "auto_approve", True)
+    monkeypatch.setattr(onboard.settings, "fake_llm", False)
+    monkeypatch.setattr(onboard.settings, "snowflake_ready", lambda: True)
+    monkeypatch.setattr(onboard, "run_recon", lambda source, feedback=None: _cfg("fed_dupe_data"))
+    monkeypatch.setattr(onboard.snow, "connect", lambda: _FakeConn())
+    monkeypatch.setattr(onboard.snow, "fetch_scalar", lambda conn, sql, params=None: 1)
+    scripted = []
+    monkeypatch.setattr(onboard, "generate_ingest_script",
+                        lambda *a, **k: scripted.append(1) or "code")
+
+    rec = onboard.onboard_source({"name": "D", "url": "http://x"})
+    assert rec["status"] == "already_cataloged"
+    assert rec["source_id"] == "fed_dupe_data"
+    assert scripted == []  # skipped BEFORE SCRIPT
+
+    # --include-landed escape: the gate stands down for a deliberate re-land.
+    monkeypatch.setattr(onboard, "INCLUDE_LANDED", True)
+    monkeypatch.setattr(onboard, "run_ingest",
+                        lambda config, code: {"rows": 0, "run_id": "r", "status": "ok"})
+    monkeypatch.setattr(onboard, "SKIP_DBT", True)
+    monkeypatch.setattr(onboard, "register_source", lambda config: {"ok": True})
+    rec = onboard.onboard_source({"name": "D", "url": "http://x"})
+    assert rec["status"] == "complete"
+
+
+def test_collision_gate_is_non_raising(monkeypatch):
+    """A broken collision check must let the source PROCEED, not crash the pour."""
+    monkeypatch.setattr(onboard.settings, "fake_llm", False)
+    monkeypatch.setattr(onboard.settings, "snowflake_ready", lambda: True)
+    def _boom():
+        raise RuntimeError("warehouse offline")
+    monkeypatch.setattr(onboard.snow, "connect", _boom)
+    assert onboard._collision_gate({"name": "X"}, _cfg("xc_x")) is None
+
+
+def test_already_cataloged_is_terminal_on_resume(monkeypatch, tmp_path):
+    logp = tmp_path / "log.json"
+    logp.write_text(json.dumps({"A": {"status": "already_cataloged"}}), encoding="utf-8")
+    monkeypatch.setattr(onboard, "LOG_PATH", logp)
+    monkeypatch.setattr(onboard.settings, "auto_approve", True)
+    monkeypatch.setattr(onboard, "_budget_preflight", lambda: None)
+    seen = []
+    monkeypatch.setattr(onboard, "onboard_source",
+                        lambda source, position=None: seen.append(1) or {"status": "complete"})
+    onboard.run_batch(sources=[{"name": "A", "url": "http://x"}])
+    assert seen == []  # never re-attempted
+
+
+def test_exit_code_reflects_this_run_only(monkeypatch, tmp_path):
+    """Old failures in the shared log (skipped this run) must not poison the rc."""
+    logp = tmp_path / "log.json"
+    logp.write_text(json.dumps({"Old": {"status": "failed", "attempts": 9}}), encoding="utf-8")
+    monkeypatch.setattr(onboard, "LOG_PATH", logp)
+    monkeypatch.setattr(onboard.settings, "auto_approve", True)
+    monkeypatch.setattr(onboard.settings, "max_attempts", 3)
+    monkeypatch.setattr(onboard, "_budget_preflight", lambda: None)
+    q = [{"name": "Old", "url": "http://x"}, {"name": "New", "url": "http://y"}]
+
+    monkeypatch.setattr(onboard, "onboard_source",
+                        lambda source, position=None: {"status": "complete"})
+    assert onboard.run_batch(sources=q) == 0  # Old quarantined, New complete -> 0
+
+    # needs_key + empty this run -> still 0 (actionable outcomes, not breakage)
+    (tmp_path / "log.json").write_text("{}", encoding="utf-8")
+    outcomes = iter([{"status": "needs_key", "needs_env_var": "X_KEY"}, {"status": "empty"}])
+    monkeypatch.setattr(onboard, "onboard_source",
+                        lambda source, position=None: next(outcomes))
+    assert onboard.run_batch(sources=q) == 0
+
+    # a real failure this run -> 1
+    (tmp_path / "log.json").write_text("{}", encoding="utf-8")
+    monkeypatch.setattr(onboard, "onboard_source",
+                        lambda source, position=None: {"status": "failed"})
+    assert onboard.run_batch(sources=q) == 1
+
+
+def test_failed_record_carries_truncated_error_text(monkeypatch):
+    monkeypatch.setattr(onboard.settings, "auto_approve", True)
+    monkeypatch.setattr(onboard.settings, "auto_repair", 0)
+    def boom(source, feedback=None):
+        raise RuntimeError("recon exploded: " + "x" * 600)
+    monkeypatch.setattr(onboard, "run_recon", boom)
+    rec = onboard.onboard_source({"name": "B", "url": "http://x"})
+    assert rec["status"] == "failed"
+    assert rec["error"].startswith("recon exploded")
+    assert len(rec["error"]) <= 500
+
+
+def test_safe_env_blocklist_is_anchored(monkeypatch):
+    """Platform creds stripped; PATH/DBT_PROJECT_PATH/data tokens survive."""
+    for k in ("SNOWFLAKE_PAT", "ANTHROPIC_API_KEY", "GH_TOKEN", "GITHUB_TOKEN",
+              "AWS_ACCESS_KEY_ID", "MY_APP_PASSWORD", "CLIENT_SECRET_KEY"):
+        monkeypatch.setenv(k, "s3cret")
+    monkeypatch.setenv("COURTLISTENER_TOKEN", "data-key")
+    monkeypatch.setenv("DBT_PROJECT_PATH", "c:/somewhere")
+
+    env = ingest._safe_env()
+    assert "PATH" in env                    # '_PAT' suffix match must NOT strip PATH
+    assert "DBT_PROJECT_PATH" in env
+    assert "COURTLISTENER_TOKEN" in env     # _TOKEN is a data key, stays allowed
+    for k in ("SNOWFLAKE_PAT", "ANTHROPIC_API_KEY", "GH_TOKEN", "GITHUB_TOKEN",
+              "AWS_ACCESS_KEY_ID", "MY_APP_PASSWORD", "CLIENT_SECRET_KEY"):
+        assert k not in env, k
+
+
+def test_codegen_fence_retry_then_success(monkeypatch):
+    """No fence -> ONE re-ask demanding a fenced block; second answer is used."""
+    calls = []
+    answers = [
+        "Sure! Here's an outline of what I'd do...",  # chatty, no fence
+        "```python\nimport pandas as pd\n\ndef fetch_data(context):\n    return pd.DataFrame()\n```",
+    ]
+    def fake_call(user, system="", kind="", fake_context=None, max_tokens=0):
+        calls.append({"user": user, "max_tokens": max_tokens})
+        return answers[len(calls) - 1]
+    monkeypatch.setattr(ingest, "call_claude", fake_call)
+
+    code = ingest.generate_ingest_script({"name": "X", "url": "http://x"})
+    assert "def fetch_data" in code
+    assert len(calls) == 2
+    assert "Return ONLY a fenced python code block." in calls[1]["user"]
+    assert calls[0]["max_tokens"] == 8192  # truncation headroom bump
+
+
+def test_codegen_syntax_error_fails_at_script_time(monkeypatch):
+    """Truncated/garbled code raises HERE (feeding auto-repair), not at LOAD."""
+    bad = "```python\ndef fetch_data(context:\n    return None\n```"
+    monkeypatch.setattr(ingest, "call_claude",
+                        lambda user, system="", kind="", fake_context=None, max_tokens=0: bad)
+    with pytest.raises(RuntimeError, match="does not compile"):
+        ingest.generate_ingest_script({"name": "X", "url": "http://x"})
+
+
+def test_watermark_orderable():
+    assert ingest._watermark_orderable("2024-01-02") is True
+    assert ingest._watermark_orderable("2024-01-02T10:00:00Z") is True
+    assert ingest._watermark_orderable("1717171717") is True       # epoch
+    assert ingest._watermark_orderable("1717171717.5") is True
+    assert ingest._watermark_orderable("07/01/2024") is False       # MM/DD/YYYY
+    assert ingest._watermark_orderable("13-JAN-2024") is False
+    assert ingest._watermark_orderable("") is False
+
+
+def test_run_ingest_rejects_non_iso_watermark(monkeypatch):
+    """A lexicographically-wrong TEXT watermark must fail LOUDLY, not mis-append."""
+    monkeypatch.setattr(ingest.settings, "fake_llm", False)
+    monkeypatch.setattr(ingest.settings, "snowflake_ready", lambda: True)
+    monkeypatch.setattr(ingest.snow, "connect", lambda: _FakeConn())
+    monkeypatch.setattr(ingest, "_watermark", lambda conn, table, cursor_field: "07/01/2024")
+    cfg = {"source_id": "xc_t", "landing_table": "XC_T", "url": "http://x",
+           "load_mode": "incremental", "cursor_field": "date"}
+    with pytest.raises(RuntimeError, match="ISO-orderable"):
+        ingest.run_ingest(cfg, "def fetch_data(context):\n    return None")
+
+
+def test_save_log_atomic_and_corrupt_load_fails_loudly(monkeypatch, tmp_path):
+    logp = tmp_path / "log.json"
+    monkeypatch.setattr(onboard, "LOG_PATH", logp)
+
+    onboard.save_log({"a": {"status": "complete"}})
+    assert json.loads(logp.read_text(encoding="utf-8")) == {"a": {"status": "complete"}}
+    assert not list(tmp_path.glob("*.tmp"))  # temp file replaced, not left behind
+
+    logp.write_text("{this is not json", encoding="utf-8")
+    with pytest.raises(RuntimeError, match="corrupt"):
+        onboard.load_log()
+    assert not logp.exists()                          # moved aside, not deleted
+    assert (tmp_path / "log.json.corrupt").exists()   # evidence preserved
+
+
+def test_log_keys_on_pinned_sid_with_name_fallback_and_carryover(monkeypatch, tmp_path):
+    """New entries key on the queue-pinned sid; a legacy name-keyed entry still
+    drives resume decisions and its attempts carry over to the sid key."""
+    logp = tmp_path / "log.json"
+    logp.write_text(json.dumps({"Foo Portal": {"status": "failed", "attempts": 2}}),
+                    encoding="utf-8")
+    monkeypatch.setattr(onboard, "LOG_PATH", logp)
+    monkeypatch.setattr(onboard.settings, "auto_approve", True)
+    monkeypatch.setattr(onboard.settings, "max_attempts", 5)
+    monkeypatch.setattr(onboard, "_budget_preflight", lambda: None)
+    q = [{"name": "Foo Portal", "url": "http://x", "source_id": "xc_foo"}]
+
+    monkeypatch.setattr(onboard, "onboard_source",
+                        lambda source, position=None: {"status": "failed"})
+    onboard.run_batch(sources=q)
+    log = onboard.load_log()
+    assert log["xc_foo"]["attempts"] == 3        # carried over from the name key
+    assert log["Foo Portal"]["attempts"] == 2    # legacy entry left untouched
+
+    # Next run must read the sid-keyed entry (attempts=3 >= max 3 -> quarantined).
+    monkeypatch.setattr(onboard.settings, "max_attempts", 3)
+    seen = []
+    monkeypatch.setattr(onboard, "onboard_source",
+                        lambda source, position=None: seen.append(1) or {"status": "complete"})
+    onboard.run_batch(sources=q)
+    assert seen == []
+
+
+def test_resolve_carries_auth_env_var():
+    src = {"name": "X", "url": "http://x", "layer": "us_federal", "identifiers": []}
+    out = recon._resolve(
+        src, {"auth": {"type": "free API key", "env_var": "CENSUS_API_KEY", "notes": "n"}}, None)
+    assert out["auth"]["env_var"] == "CENSUS_API_KEY"
+    # Old recon outputs (no env_var) keep working -- the gate sees "" and passes.
+    out = recon._resolve(src, {"auth": {"type": "free API key", "notes": "n"}}, None)
+    assert out["auth"]["env_var"] == ""
+
+
+def test_browser_https_errors_default_off(monkeypatch):
+    """Evidence platform: untrusted TLS is opt-in, never the default."""
+    monkeypatch.delenv("ONBOARD_BROWSER_IGNORE_HTTPS_ERRORS", raising=False)
+    assert config.Config().browser_ignore_https_errors is False
+    monkeypatch.setenv("ONBOARD_BROWSER_IGNORE_HTTPS_ERRORS", "1")
+    assert config.Config().browser_ignore_https_errors is True
+
+
+def test_fake_llm_dbt_writes_go_to_temp(monkeypatch, tmp_path):
+    """FAKE_LLM can never scaffold into the real dbt project (env guards can't
+    protect it -- .env sets DBT_PROJECT_PATH with override=True)."""
+    import tempfile
+    monkeypatch.setattr(scaffold_dbt.settings, "fake_llm", True)
+    monkeypatch.setattr(scaffold_dbt.settings, "dbt_project_path", str(tmp_path / "real_dbt"))
+    models = {"staging_sql": "select 1", "intermediate_sql": "",
+              "mart_sql": "select 1", "schema_yml": "version: 2"}
+
+    out = scaffold_dbt.write_dbt_models(_cfg("xc_fake_demo"), models)
+    temp_root = str(Path(tempfile.gettempdir()) / "ripple_fake_dbt")
+    assert out["written"], "fake mode should still exercise the file writes"
+    assert all(p.startswith(temp_root) for p in out["written"]), out["written"]
+    assert not (tmp_path / "real_dbt").exists()  # the real project was never touched
