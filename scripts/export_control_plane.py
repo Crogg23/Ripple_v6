@@ -67,8 +67,10 @@ def row_count(cur, table: str):
         msg = str(exc).lower()
         if "does not exist" in msg or "not authorized" in msg:
             return None  # object truly absent
-        print(f"  [WARN] row_count({table}) failed — NOT an absence: {str(exc)[:120]}")
-        return None
+        # Anything else (timeout, warehouse hiccup, network) must ABORT the export:
+        # a backup that silently omits a real control-plane table looks complete and isn't.
+        raise RuntimeError(f"row_count({table}) failed with a non-absence error — aborting the "
+                           f"export rather than writing a partial backup: {exc}") from exc
 
 
 def preview(cur) -> None:
@@ -104,7 +106,17 @@ def apply(cur) -> int:
         path = f"@{STAGE}/{ts}/{folder}/"
         cur.execute(f"COPY INTO {path} FROM {table} "
                     "FILE_FORMAT = (TYPE = PARQUET) HEADER = TRUE OVERWRITE = TRUE MAX_FILE_SIZE = 268435456")
-        cur.execute(f"GET '{path}' 'file://{dest}/{folder}/'")
+        unloaded = cur.fetchone()
+        if not unloaded or int(unloaded[0]) == 0:
+            # An EMPTY table (e.g. DECISIONS before any human verdict) unloads zero files —
+            # a GET would die on 'file does not exist'. Empty is a legitimate, recorded state.
+            manifest["tables"].append({"table": table, "rows": 0, "files": 0})
+            print(f"  ok    {table:<46} {0:>12,} rows (empty — nothing to fetch)")
+            continue
+        # as_posix(): a Windows backslash path inside the quoted SQL literal gets eaten as
+        # escape sequences and corrupts the local target — GET needs forward slashes.
+        (dest / folder).mkdir(parents=True, exist_ok=True)
+        cur.execute(f"GET '{path}' 'file://{dest.as_posix()}/{folder}/'")
         got = cur.fetchall()
         # local copy is downloaded; clear the stage so the off-platform DR backup
         # doesn't linger on-platform (unbounded stage-storage growth each --apply).
@@ -125,6 +137,15 @@ def main(argv=None) -> int:
     conn = snow.connect()
     try:
         cur = conn.cursor()
+        # Scheduled/wrapper runs set RIPPLE_TASK_WAREHOUSE so DR exports never contend with a
+        # live pour on RIPPLE_WH. (SNOWFLAKE_WAREHOUSE can't be used for this — config.py loads
+        # .env with override=True, which clobbers a wrapper-set value.)
+        import os
+        task_wh = os.environ.get("RIPPLE_TASK_WAREHOUSE", "").strip()
+        if task_wh:
+            if not task_wh.replace("_", "").isalnum():
+                raise SystemExit(f"RIPPLE_TASK_WAREHOUSE looks malformed: {task_wh!r}")
+            cur.execute(f"USE WAREHOUSE {task_wh}")  # USE takes no bind params; name validated above
         if args.apply:
             return apply(cur)
         preview(cur)

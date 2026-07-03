@@ -3,6 +3,6 @@
 #   pip install -r requirements.txt
 #   pip install -r requirements-dev.txt
 pytest==8.4.2
-rapidfuzz==9.0.0   # offline Jaro-Winkler mirror for the match-quality eval (test-only)
-                  #   NOTE: not installed locally; pinned to a recent known-good
-                  #   release. The two tests that use it skip when it's absent.
+rapidfuzz==3.14.5  # offline Jaro-Winkler mirror for the match-quality eval (test-only)
+                  #   NOTE: 9.0.0 was a hallucinated pin (no such release) that kept
+                  #   CI red for 14 straight runs — verify against PyPI before bumping.

@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Backfill CMS Open Payments GENERAL payments detail for PROGRAM YEAR 2022
+"""DEPRECATED (2026-07-02) — one-off, NON-ATOMIC backfill. Kept for provenance only.
+Replaces/appends directly on the live table (a mid-run crash leaves a partial year).
+For any new or repeat bulk load use scripts/bridge_fuel_load.py, which lands through
+a staging table + atomic swap, density-gates, and guards the registry.
+
+Backfill CMS Open Payments GENERAL payments detail for PROGRAM YEAR 2022
 (discovery sweep #23: the FED_CMS_OPEN_PAYMENTS union currently spans only
 2024 [unsuffixed table] + 2023 [_2023 table]. 2022 is the missing year -- adding
 it turns the "is this normal?" snapshot into a real 3-year time series, which the
@@ -15,8 +20,10 @@ Source (resolved live via the OpenPayments metastore API, 2026-06-28):
   https://download.cms.gov/openpayments/PGYR2022_P01232026_01102026/OP_DTL_GNRL_PGYR2022_P01232026_01102026.csv
   ~7.43 GB uncompressed CSV, 91 source columns, ~12-13M rows. This is the latest
   CMS republication (P01232026 = published 2026-01-23). It's a direct CSV (not a
-  zip), so we STREAM it line-by-line into pandas in chunks and APPEND
-  (overwrite=False) -- the whole 7.4 GB is NEVER held in memory.
+  zip). We DOWNLOAD it to a local temp file (iter_content, 1 MB blocks) then parse
+  the file in row chunks and APPEND -- the whole 7.4 GB is NEVER held in memory, and
+  decoupling the transfer from the parse avoids the EOF socket-close that mislogged
+  the 2026-06-28 run (a complete load reported as error/0). Temp file is cleaned up.
 
 Idempotent: snapshot-replace. The first chunk REPLACES the table (overwrite=True),
 every later chunk APPENDS -- a full re-run rebuilds the year cleanly, no dupes.
@@ -65,7 +72,7 @@ URL = ("https://download.cms.gov/openpayments/PGYR2022_P01232026_01102026/"
        "OP_DTL_GNRL_PGYR2022_P01232026_01102026.csv")
 UA = {"User-Agent": "Ripple-Library/1.0 (data onboarding; w.rogers9999@gmail.com)"}
 CHUNK = 250_000
-SCRATCH = Path("/private/tmp/claude-501/-Users-chrisr--Documents-GitHub-Ripple-v6/"
+SCRATCH = Path("c:/Code/Ripple_v6/.scratch/"
                "e8eac5fb-de36-4362-9440-da24a904b9b4/scratchpad")
 
 # The 94 landing columns, in ordinal order, taken from FED_CMS_OPEN_PAYMENTS_2023.
@@ -160,57 +167,74 @@ def _ensure_table(conn) -> None:
                  f'LIKE {fq}."{TEMPLATE_TABLE}"')
 
 
-def _stream_load(conn, run_id: str) -> tuple[int, int, str]:
-    """Stream the 7.4 GB CSV, append chunked. Returns (rows, file_bytes, manifest_sha)."""
+def _download_to_disk(dest: Path) -> int:
+    """Stream the CSV to a LOCAL temp file with iter_content (bounded memory, 1 MB
+    blocks). Returns bytes written. This DECOUPLES the network transfer from the
+    parse -- the fec_itcont-proven idiom. Reading requests' r.raw live during a
+    multi-GB parse is fragile: urllib3 auto-closes the socket at content-length EOF,
+    so pandas' final read raised 'I/O operation on closed file' *after* every row was
+    already written (the 2026-06-28 mislog: a complete 13.25M-row load logged as
+    error/0). Parsing a finished local file cannot hit that."""
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    nbytes = 0
+    with requests.get(URL, headers=UA, stream=True, timeout=900) as r:
+        r.raise_for_status()
+        with open(dest, "wb") as f:
+            for block in r.iter_content(1024 * 1024):
+                if block:
+                    f.write(block)
+                    nbytes += len(block)
+    return nbytes
+
+
+def _stream_load(conn, run_id: str, csv_path: Path, progress: dict) -> tuple[int, int, str]:
+    """Parse the LOCAL CSV in row chunks and append to Snowflake, bounded memory.
+    Returns (rows, file_bytes, manifest_sha). ``progress['rows']`` is updated after
+    every chunk so the caller's error path logs the REAL landed count, not a
+    hardcoded 0 (the other half of the 2026-06-28 mislog)."""
     started = ingest._utcnow()
     ingested_at = started.replace(tzinfo=None)
     appended = 0
-    file_bytes = 0
+    file_bytes = csv_path.stat().st_size
     chunk_shas: list[str] = []
     n = 0
 
-    with requests.get(URL, headers=UA, stream=True, timeout=900) as r:
-        r.raise_for_status()
-        file_bytes = int(r.headers.get("Content-Length") or 0)
-        # Decode the byte stream to a text stream for pandas; read in row chunks.
-        raw = r.raw
-        raw.decode_content = True  # honour gzip/deflate transfer encoding if any
-        text = io.TextIOWrapper(raw, encoding="utf-8", errors="replace", newline="")
-        reader = pd.read_csv(
-            text, dtype=str, keep_default_na=False, na_filter=False,
-            chunksize=CHUNK, low_memory=False, header=0,
-        )
-        for chunk in reader:
-            if chunk.shape[1] != len(DATA_COLS):
-                raise RuntimeError(
-                    f"chunk has {chunk.shape[1]} cols, expected {len(DATA_COLS)} "
-                    f"-- CMS header drift; aborting before a misaligned write.")
-            # Rename BY POSITION to the landing column names (drift-proof).
-            chunk.columns = DATA_COLS
-            csv_bytes = chunk.to_csv(index=False).encode("utf-8")
-            chunk_sha = hashlib.sha256(csv_bytes).hexdigest()
-            chunk_shas.append(chunk_sha)
+    reader = pd.read_csv(
+        csv_path, dtype=str, keep_default_na=False, na_filter=False,
+        chunksize=CHUNK, low_memory=False, header=0,
+    )
+    for chunk in reader:
+        if chunk.shape[1] != len(DATA_COLS):
+            raise RuntimeError(
+                f"chunk has {chunk.shape[1]} cols, expected {len(DATA_COLS)} "
+                f"-- CMS header drift; aborting before a misaligned write.")
+        # Rename BY POSITION to the landing column names (drift-proof).
+        chunk.columns = DATA_COLS
+        csv_bytes = chunk.to_csv(index=False).encode("utf-8")
+        chunk_sha = hashlib.sha256(csv_bytes).hexdigest()
+        chunk_shas.append(chunk_sha)
 
-            out = chunk.copy()
-            out[ingest.META_INGESTED_AT] = ingested_at
-            out[ingest.META_SOURCE_RUN_ID] = run_id
-            out[ingest.META_SRC_SHA256] = chunk_sha
-            out = out[TABLE_COLS]
-            overwrite = (n == 0)  # snapshot-replace: first chunk wipes, rest append
-            ok, _c, _nrows, _ = write_pandas(
-                conn, out, table_name=TABLE,
-                database=settings.raw_database, schema=settings.raw_schema,
-                auto_create_table=False, overwrite=overwrite, quote_identifiers=False,
-            )
-            if not ok:
-                raise RuntimeError(f"write_pandas failed on chunk {n + 1} "
-                                   f"(after {appended:,} rows)")
-            appended += len(out)
-            n += 1
-            print(f"  chunk {n}: +{len(out):,} rows (total {appended:,})", flush=True)
+        out = chunk.copy()
+        out[ingest.META_INGESTED_AT] = ingested_at
+        out[ingest.META_SOURCE_RUN_ID] = run_id
+        out[ingest.META_SRC_SHA256] = chunk_sha
+        out = out[TABLE_COLS]
+        overwrite = (n == 0)  # snapshot-replace: first chunk wipes, rest append
+        ok, _c, _nrows, _ = write_pandas(
+            conn, out, table_name=TABLE,
+            database=settings.raw_database, schema=settings.raw_schema,
+            auto_create_table=False, overwrite=overwrite, quote_identifiers=False,
+        )
+        if not ok:
+            raise RuntimeError(f"write_pandas failed on chunk {n + 1} "
+                               f"(after {appended:,} rows)")
+        appended += len(out)
+        progress["rows"] = appended
+        n += 1
+        print(f"  chunk {n}: +{len(out):,} rows (total {appended:,})", flush=True)
 
     if appended == 0:
-        raise RuntimeError("streamed 0 rows -- bad URL / parse / empty file")
+        raise RuntimeError("parsed 0 rows -- bad file / parse / empty file")
     manifest_sha = hashlib.sha256("".join(chunk_shas).encode("utf-8")).hexdigest()
     return appended, file_bytes, manifest_sha
 
@@ -287,16 +311,23 @@ def main() -> int:
         raise SystemExit(f"ABORT: file is {gb:.1f} GB (expected ~7.4) -- refusing to load blind.")
 
     conn = snow.connect()
+    csv_path = SCRATCH / "OP_DTL_GNRL_PGYR2022.csv"
+    progress = {"rows": 0}
     try:
         _ensure_table(conn)
         run_id = uuid.uuid4().hex[:16]
         started = ingest._utcnow()
         try:
-            rows, file_bytes, sha = _stream_load(conn, run_id)
+            print("Downloading to local temp file (bounded memory; decouples net from parse) ...", flush=True)
+            dl_bytes = _download_to_disk(csv_path)
+            print(f"  downloaded {dl_bytes/1e9:.2f} GB -> {csv_path}", flush=True)
+            rows, file_bytes, sha = _stream_load(conn, run_id, csv_path, progress)
         except Exception as ex:
             ended = ingest._utcnow()
-            ingest._log_run(conn, SID, run_id, "error", 0, 0, "", URL,
-                            started, ended, f"PY2022 load failed: {type(ex).__name__}: {str(ex)[:160]}")
+            ingest._log_run(conn, SID, run_id, "error", progress["rows"], 0, "", URL,
+                            started, ended,
+                            f"PY2022 load failed after {progress['rows']:,} rows: "
+                            f"{type(ex).__name__}: {str(ex)[:140]}")
             raise
         ended = ingest._utcnow()
         ingest._log_run(conn, SID, run_id, "success", rows, file_bytes, sha, URL,
@@ -316,6 +347,11 @@ def main() -> int:
             print(f"  {yr}: {c:,}")
         return 0
     finally:
+        try:
+            if csv_path.exists():
+                csv_path.unlink()  # remove the ~7.4 GB temp regardless of outcome
+        except Exception:
+            pass
         conn.close()
 
 

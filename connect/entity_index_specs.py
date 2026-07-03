@@ -89,6 +89,24 @@ DISPLAY_SPECS: dict[str, dict] = {
     "FED_NOAA_AIS": {                         # IMO vessel (broadcasting hull, 7.3M rows)
         "key": "IMO", "key_col": "IMO", "org": "VESSELNAME", "authority": 6,
     },
+
+    # --- politics (2026-07-02: make legislators first-class spine entities) ---
+    # BIOGUIDE + ICPSR are now hard keys (keys.py NORM_RULES / discover KEY_DOMAIN).
+    # These specs make each member a 'person' entity the graph/dossier can see. The
+    # golden source is FED_CONGRESS_LEGISLATORS (BIOGUIDE + split first/last names,
+    # most authoritative). Voteview anchors the ICPSR entity with its single BIONAME.
+    # The 84M-row itcont table is DELIBERATELY excluded (spine-scan cost); member↔
+    # candidate routing is a follow-up via FEC bulk tables.
+    "FED_CONGRESS_LEGISLATORS": {             # BIOGUIDE person (golden legislator source)
+        "key": "BIOGUIDE", "key_col": "BIOGUIDE",
+        "person": ["NAME_LAST", "NAME_FIRST"], "authority": 1,
+    },
+    "FED_CONGRESS_COMMITTEE_MEMBERSHIP": {    # BIOGUIDE person (committee seats)
+        "key": "BIOGUIDE", "key_col": "BIOGUIDE", "org": "MEMBER_NAME", "authority": 3,
+    },
+    "FED_VOTEVIEW_MEMBERS": {                 # ICPSR person (roll-call member; BIONAME)
+        "key": "ICPSR", "key_col": "ICPSR", "org": "BIONAME", "authority": 2,
+    },
 }
 
 # spine scope = every table with a nameable hard key (health + money/maritime/corporate).
@@ -100,4 +118,5 @@ ENTITY_TYPE_BY_KEY = {
     "EIN": "organization", "CIK": "organization", "DUNS": "organization",
     "LEI": "organization", "UEI": "organization",
     "IMO": "vessel", "MMSI": "vessel",
+    "BIOGUIDE": "person", "ICPSR": "person",   # politicians (Step-K politics)
 }

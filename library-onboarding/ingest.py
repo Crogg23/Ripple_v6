@@ -25,7 +25,7 @@ from typing import Optional, Tuple
 import browser
 import snow
 from config import ConfigError, settings
-from llm import call_claude, extract_code, render_prompt
+from llm import call_claude, extract_code, extract_code_fenced, render_prompt
 
 META_INGESTED_AT = "_INGESTED_AT"
 META_SOURCE_RUN_ID = "_SOURCE_RUN_ID"
@@ -35,6 +35,33 @@ SAMPLE_ROWS = 5
 # Provenance/meta columns we stamp onto every landed frame. The density gate must
 # IGNORE these -- they're always 100% populated and would mask an empty source.
 _META_COLS = frozenset({META_INGESTED_AT, META_SOURCE_RUN_ID, META_SRC_SHA256})
+
+# ---------------------------------------------------------------------------
+# Env blocklist for generated code
+# ---------------------------------------------------------------------------
+# Generated fetch code gets context["env"] so it can read DATA-source keys
+# (FRED_API_KEY, COURTLISTENER_TOKEN, ...). It must NOT get the platform's own
+# credentials -- the code is written by an LLM that just read an arbitrary web
+# page, i.e. it's prompt-injectable. Blocklist (not allowlist) so unknown data
+# keys keep working. Matching is ANCHORED on purpose: a naive '_PAT' substring
+# test would strip PATH and DBT_PROJECT_PATH. _TOKEN stays allowed -- those are
+# data-source keys (COURTLISTENER_TOKEN etc.), not platform secrets.
+_ENV_BLOCK_PREFIXES = ("SNOWFLAKE_", "ANTHROPIC_", "GITHUB_", "GH_", "AWS_")
+_ENV_BLOCK_SUFFIXES = ("_PAT", "_PASSWORD")
+_ENV_BLOCK_SUBSTRINGS = ("_SECRET",)
+
+
+def _safe_env() -> dict:
+    """A copy of os.environ with the platform's own credentials stripped."""
+    out = {}
+    for k, v in os.environ.items():
+        ku = str(k).upper()
+        if ku.startswith(_ENV_BLOCK_PREFIXES) or ku.endswith(_ENV_BLOCK_SUFFIXES):
+            continue
+        if any(s in ku for s in _ENV_BLOCK_SUBSTRINGS):
+            continue
+        out[k] = v
+    return out
 
 # ---------------------------------------------------------------------------
 # Density gate (P0-1) -- the load-time trust fix
@@ -75,7 +102,10 @@ def _is_blank(v) -> bool:
             return True
     except Exception:
         pass
-    return str(v).strip() == ""
+    s = str(v).strip()
+    # Treat pandas null-string tokens as blank, so a stray loader that emitted them
+    # as text can't sneak past the density gate as "populated".
+    return s == "" or s.lower() in ("nan", "nat", "none", "<na>")
 
 
 def assess_density(df, sample_rows: int = DENSITY_SAMPLE_ROWS) -> dict:
@@ -113,18 +143,20 @@ def assess_density(df, sample_rows: int = DENSITY_SAMPLE_ROWS) -> dict:
     all_blank_cols = 0
     single_distinct_blank_cols = 0
     for col in cols:
-        series = sample[col]
-        blank_mask = series.map(_is_blank)
+        # Vectorized blank detection -- cheap even on multi-million-row frames, so
+        # we can afford to scan the WHOLE frame (no head-sampling false-demotes when
+        # a real source has blank-leading rows). Cast to pandas 'string' so nulls
+        # become <NA>; a null OR whitespace-only value counts as blank.
+        try:
+            ss = sample[col].astype("string")
+            blank_mask = ss.isna() | (ss.str.strip() == "")
+        except Exception:
+            blank_mask = sample[col].map(_is_blank)
         n_blank = int(blank_mask.sum())
         populated_cells += rows_sampled - n_blank
         if n_blank == rows_sampled:
             all_blank_cols += 1
-        # The FJC_IDB tell: the column has exactly ONE distinct value and it's blank.
-        try:
-            distinct = series.dropna().map(lambda v: str(v).strip()).unique()
-        except Exception:
-            distinct = []
-        if len(distinct) <= 1 and (len(distinct) == 0 or distinct[0] == ""):
+            # A fully-blank column is the FJC_IDB tell (one distinct value, blank).
             single_distinct_blank_cols += 1
 
     total_cells = rows_sampled * n_cols
@@ -192,23 +224,44 @@ def generate_ingest_script(config: dict, feedback: Optional[str] = None) -> str:
         access_pattern=config.get("access_pattern", "unknown"),
         auth_type=config.get("auth", {}).get("type", "none"),
         auth_notes=config.get("auth", {}).get("notes", ""),
+        auth_env_var=config.get("auth", {}).get("env_var", "") or "(none)",
         data_format=config.get("format", "unknown"),
         rate_limits=config.get("rate_limits", "unspecified"),
         schema=schema_repr,
         feedback=feedback or "(none)",
     )
-    raw = call_claude(
-        user=prompt,
-        system=(
-            "You write robust Python data-ingestion functions for a raw landing "
-            "zone. Output ONLY a Python code block defining `def fetch_data(context):` "
-            "that returns a pandas.DataFrame of strings. No Snowflake code."
-        ),
-        kind="ingest",
-        fake_context=config,
-        max_tokens=4096,
+    system = (
+        "You write robust Python data-ingestion functions for a raw landing "
+        "zone. Output ONLY a Python code block defining `def fetch_data(context):` "
+        "that returns a pandas.DataFrame of strings. No Snowflake code."
     )
-    return extract_code(raw, "python")
+    # 8192 (was 4096): the live pour truncated 5 long scripts mid-generation --
+    # a ceiling, not a target, so short scripts cost the same.
+    raw = call_claude(user=prompt, system=system, kind="ingest",
+                      fake_context=config, max_tokens=8192)
+    code = extract_code_fenced(raw, "python")
+    if code is None:
+        # No fenced block: prose-parsing a chatty answer produced 'invalid syntax
+        # line 1' failures at LOAD time in the live pour. One targeted re-ask
+        # first; only then fall back to the forgiving whole-text parse.
+        raw = call_claude(
+            user=prompt + "\n\nReturn ONLY a fenced python code block.",
+            system=system, kind="ingest", fake_context=config, max_tokens=8192,
+        )
+        code = extract_code_fenced(raw, "python")
+        if code is None:
+            code = extract_code(raw, "python")
+    # Compile NOW so a truncated/garbled script fails at SCRIPT time, where the
+    # auto-repair loop gets a real error message -- not at LOAD time as a bare
+    # 'invalid syntax' after the checkpoint already approved it.
+    try:
+        compile(code, "<generated_ingest>", "exec")
+    except SyntaxError as exc:
+        raise RuntimeError(
+            f"Generated ingest script does not compile ({exc}). Regenerate it: "
+            "return ONE complete fenced python block defining fetch_data(context)."
+        ) from exc
+    return code
 
 
 # ---------------------------------------------------------------------------
@@ -222,6 +275,7 @@ def run_ingest(config: dict, code: str) -> dict:
     url = config["url"]
     load_mode = (config.get("load_mode") or "snapshot").strip().lower()
     live = not (settings.fake_llm or not settings.snowflake_ready())
+    _apply_fetch_socket_timeout()  # bound network reads for BOTH snapshot + chunked
 
     # Chunked: a single very large file streamed in row-batches (separate path, so the
     # snapshot/incremental logic below is untouched). Same landing table + provenance.
@@ -243,6 +297,19 @@ def run_ingest(config: dict, code: str) -> dict:
                 wm_conn.close()
         except Exception:
             since = None
+
+    # Validate AFTER the read above -- raising inside _watermark would be swallowed
+    # by that except, silently turning a bad cursor into since=None and duplicate-
+    # appending the whole backfill. A TEXT MAX() is only a real high-water mark when
+    # the column sorts chronologically AS TEXT (ISO date/timestamp prefix, or a pure
+    # epoch number). Anything else (MM/DD/YYYY, '13-JAN-2024') is silently wrong.
+    if since is not None and not _watermark_orderable(since):
+        raise RuntimeError(
+            f"Incremental watermark for cursor_field '{cursor_field}' is not "
+            f"ISO-orderable text ({since!r}). MAX() over that column sorts "
+            "lexicographically, so the append window would be silently wrong. "
+            "Pick an ISO date/timestamp (or epoch) cursor_field instead."
+        )
 
     # allow_empty only on a CONTINUING incremental run (we already hold a watermark):
     # then "0 new rows" is a legit no-op. On the FIRST incremental run (since is None,
@@ -309,7 +376,7 @@ def run_ingest(config: dict, code: str) -> dict:
             # source column blank) is recorded as STATUS='empty' -- NOT 'success' --
             # so it can't ride into the catalog as a real source. Healthy frames
             # clear the gate and keep STATUS='success' with identical behaviour.
-            density = assess_density(df)
+            density = assess_density(df, sample_rows=None)  # scan the WHOLE frame
             result["density"] = density["populated_fraction"]
             if density["empty"]:
                 _log_run(conn, source_id, run_id, "empty", len(df), file_bytes, sha, url,
@@ -479,7 +546,7 @@ def _execute_fetch_chunks(config: dict, code: str, resume_from_row: int,
         "url": config["url"],
         "source_name": config["name"],
         "auth_type": config.get("auth", {}).get("type", "none"),
-        "env": dict(os.environ),
+        "env": _safe_env(),  # data keys only -- platform credentials stripped
         "render": browser.render,
         # chunked controls the generated fetch honours:
         "load_mode": "chunked",
@@ -608,6 +675,26 @@ def _landing_count(conn, table: str) -> int:
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
+def _apply_fetch_socket_timeout() -> None:
+    """Bound every network READ in a generated fetch -- snapshot AND chunked -- at the
+    socket level, so a hung/stalled download can't stall an unattended pour. Unlike a
+    worker-thread wall-clock cap this needs NO thread (which would block process exit
+    at shutdown and break sync-Playwright) and it actually unblocks the stuck read: a
+    socket idle longer than the cap raises socket.timeout -> the stage error path
+    (auto-repair / skip-and-continue) fires. Generated code that passes its own
+    requests timeout= overrides this. Set once per load; harmless to Snowflake (whose
+    per-read ops are far under the cap). Covers the chunked stream too since the pulls
+    happen on sockets created after this runs."""
+    import socket
+
+    t = settings.fetch_timeout_s
+    if t and t > 0:
+        try:
+            socket.setdefaulttimeout(float(t))
+        except Exception:
+            pass
+
+
 def _execute_fetch(config: dict, code: str, since: Optional[str] = None,
                    allow_empty: bool = False) -> Tuple[object, Optional[bytes], str]:
     """Run Claude-generated code and return (DataFrame, raw_bytes, source_file).
@@ -635,7 +722,7 @@ def _execute_fetch(config: dict, code: str, since: Optional[str] = None,
         "source_name": config["name"],
         "auth_type": config.get("auth", {}).get("type", "none"),
         "since": since,  # incremental high-water mark (or None on first/snapshot run)
-        "env": dict(os.environ),
+        "env": _safe_env(),  # data keys only -- platform credentials stripped
         "source_bytes": None,
         "source_file": "",
         # Headless-browser renderer (C1b). Generated scrape_js code calls
@@ -688,12 +775,73 @@ def _reject_html(df) -> None:
         )
 
 
+# Null-string tokens: what pandas/loaders render a null AS when they str()/astype(str)
+# a null-bearing frame BEFORE we see it. Treated as blank so they can't land as real
+# text (data corruption) or defeat the density gate.
+_NULL_TOKENS = frozenset({"nan", "nat", "none", "<na>"})
+
+
+def _dedupe_cols(cols):
+    """Make sanitized column names unique, so two source headers that reduce to the
+    same Snowflake identifier don't crash CREATE TABLE or silently drop a column. A
+    generated suffix that would ITSELF collide (source already has that name) is
+    bumped until unique."""
+    seen: set = set()
+    out = []
+    for c in cols:
+        name = c
+        i = 1
+        while name in seen:
+            i += 1
+            name = f"{c}_{i}"
+        seen.add(name)
+        out.append(name)
+    return out
+
+
 def _stringify(df):
-    """Coerce every source column to text (the raw landing convention)."""
-    df = df.where(df.notna(), None)
-    df.columns = [_sf_col(c) for c in df.columns]
+    """Coerce every source column to text (the raw landing convention).
+
+    Null-aware: None / NaN / NaT / pd.NA AND the null STRING tokens 'nan'/'nat'/'none'/
+    '<na>' (what a loader's df.astype(str) turns a null into before we see it) all -> ''
+    -- so a null never lands as literal text (which corrupts data AND defeats the
+    density gate). Integer-valued float COLUMNS (float only because they carry a null)
+    render as '1' not '1.0' so integer join keys (FIPS/EIN/CIK/NPI) survive; genuine
+    decimal columns keep their decimals (no mixed '2'/'2.5' within a column). Colliding
+    sanitized column names are de-duplicated.
+    """
+    import math
+
+    import pandas as pd
+
+    df = df.copy()
+    df.columns = _dedupe_cols([_sf_col(c) for c in df.columns])
+
+    def _cell(v, as_int):
+        if v is None:
+            return ""
+        if isinstance(v, float):
+            if math.isnan(v):
+                return ""
+            return str(int(v)) if (as_int and v.is_integer()) else str(v)
+        try:
+            if v != v:  # pandas NA / NaN-like
+                return ""
+        except Exception:
+            pass
+        s = str(v)
+        return "" if s.strip().lower() in _NULL_TOKENS else s
+
     for col in df.columns:
-        df[col] = df[col].map(lambda v: "" if v is None else str(v))
+        s = df[col]
+        as_int = False  # whole-number float column -> render as int (protects join keys)
+        try:
+            if pd.api.types.is_float_dtype(s):
+                nn = s.dropna()
+                as_int = len(nn) > 0 and bool(((nn % 1) == 0).all())
+        except Exception:
+            as_int = False
+        df[col] = s.map(lambda v, ai=as_int: _cell(v, ai))
     return df
 
 
@@ -750,6 +898,19 @@ def _load_landing(conn, df, table: str, overwrite: bool = True) -> None:
     )
     if not ok:
         raise RuntimeError(f"write_pandas reported failure loading {table}.")
+
+
+def _watermark_orderable(value) -> bool:
+    """Does this cursor value sort chronologically AS TEXT?
+
+    True for an ISO date/timestamp prefix (YYYY-MM-DD...) or a purely numeric
+    epoch. False for MM/DD/YYYY, '13-JAN-2024', etc. -- lexicographic MAX() over
+    those is silently wrong, which corrupts the incremental append window.
+    """
+    s = str(value).strip()
+    if re.match(r"^\d{4}-\d{2}-\d{2}", s):
+        return True
+    return bool(re.fullmatch(r"\d+(\.\d+)?", s))
 
 
 def _watermark(conn, table: str, cursor_field: str) -> Optional[str]:

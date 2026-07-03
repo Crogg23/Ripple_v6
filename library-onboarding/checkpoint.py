@@ -8,9 +8,20 @@ Every checkpoint shares the same shape: a banner with the step name and a
 
 from __future__ import annotations
 
+import sys
 from typing import Optional, Tuple
 
 from config import settings
+
+# Force UTF-8 on stdout/stderr BEFORE any rich output. On Windows a redirected
+# stdout defaults to cp1252, which can't encode the box/arrow/ellipsis glyphs and
+# would crash the whole pour on the first checkpoint banner. errors='replace' makes
+# it lossless-safe even if a stray glyph slips through.
+for _s in (sys.stdout, sys.stderr):
+    try:
+        _s.reconfigure(encoding="utf-8", errors="replace")  # type: ignore[attr-defined]
+    except Exception:
+        pass
 
 try:
     from rich.console import Console
@@ -18,13 +29,16 @@ try:
     from rich.table import Table
 
     _RICH = True
-    console = Console()
+    # legacy_windows=False keeps rich off the cp1252 code path even under redirection.
+    console = Console(legacy_windows=False)
 except ImportError:  # pragma: no cover - degrade to plain print
     _RICH = False
     console = None  # type: ignore
 
-# Action constants
-GO, EDIT, SKIP, ABORT = "go", "edit", "skip", "abort"
+# Action constants. FAILED = an unattended per-source give-up (auto-repair exhausted
+# or an uncaught error): distinct from ABORT (a real human/Ctrl-C stop), so the batch
+# can skip-and-continue on FAILED but halt on ABORT.
+GO, EDIT, SKIP, ABORT, FAILED = "go", "edit", "skip", "abort", "failed"
 
 _CHECKPOINTS = {
     1: "RECON",
@@ -71,10 +85,10 @@ def error(msg: str) -> None:
 def banner(num: int, position: Optional[Tuple[int, int]] = None) -> None:
     title = _CHECKPOINTS.get(num, "STEP")
     pos = f"   [{position[0]} of {position[1]}]" if position else ""
-    line = "━" * 52
+    line = "=" * 52
     _print()
     _print(f"[bold]{line}[/bold]")
-    _print(f"[bold white]CHECKPOINT {num} — {title}[/bold white][dim]{pos}[/dim]")
+    _print(f"[bold white]CHECKPOINT {num} - {title}[/bold white][dim]{pos}[/dim]")
     _print(f"[bold]{line}[/bold]")
 
 
@@ -252,12 +266,12 @@ def prompt_action(allow_skip: bool = True) -> Tuple[str, Optional[str]]:
     options = "go / edit [feedback]" + (" / skip" if allow_skip else "") + " / abort"
 
     if settings.auto_approve:
-        _print(f"[dim]→ {options}[/dim]")
+        _print(f"[dim]-> {options}[/dim]")
         _print("[dim](auto-approve: go)[/dim]")
         return GO, None
 
     while True:
-        _print(f"\n[bold]→ {options}[/bold]")
+        _print(f"\n[bold]-> {options}[/bold]")
         try:
             raw = input("  ").strip()
         except (EOFError, KeyboardInterrupt):

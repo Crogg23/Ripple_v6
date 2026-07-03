@@ -76,8 +76,21 @@ FROM leie l JOIN op o ON o.npi=l.npi AND o.lname=l.lname
 LEFT JOIN nppes n ON n.npi=l.npi
 {where}
 ORDER BY o.recs DESC, o.total DESC
-LIMIT {limit}
+LIMIT %s
 """
+
+
+def _build_query(npi: str | None, name: str | None, top: int) -> tuple[str, tuple]:
+    """The user filters are BOUND (%s), never interpolated into the SQL text — this
+    script runs with real warehouse privileges, so a quote in --name must land in a
+    parameter, not in the statement. Only the WHERE *shape* is formatted in."""
+    if npi:
+        where, params = "WHERE l.npi = %s", (npi.strip(),)
+    elif name:
+        where, params = "WHERE l.lname = %s", (name.strip().upper(),)
+    else:
+        where, params = "", ()
+    return RECEIPT_SQL.format(where=where), params + (int(top),)
 
 
 def _d(s):
@@ -154,17 +167,12 @@ def main(argv=None) -> int:
     ap.add_argument("--top", type=int, default=5, help="how many (by payment count)")
     args = ap.parse_args(argv)
 
-    where = ""
-    if args.npi:
-        where = f"WHERE l.npi = '{args.npi.strip()}'"
-    elif args.name:
-        where = f"WHERE l.lname = '{args.name.strip().upper()}'"
-    sql = RECEIPT_SQL.format(where=where, limit=int(args.top))
+    sql, params = _build_query(args.npi, args.name, args.top)
 
     conn = snow.connect()
     try:
         cur = conn.cursor()
-        cur.execute(sql)
+        cur.execute(sql, params)
         cols = [d[0] for d in cur.description]
         rows = [dict(zip(cols, r)) for r in cur.fetchall()]
         if not rows:

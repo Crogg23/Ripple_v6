@@ -78,7 +78,7 @@ Read top to bottom, that's the life of a fact: **scouted → collected → conne
 
 ---
 
-## 3. How one dataset becomes data — the 5-checkpoint assembly line
+## 3. How one dataset becomes data — the 6-checkpoint assembly line
 
 This is the heart of COLLECT, and the part you interact with most:
 
@@ -87,7 +87,7 @@ python onboard.py --url https://some-data-source.gov/api
 python onboard.py --batch     # run the whole queue
 ```
 
-Picture an **assembly line with five stations.** Claude is the worker. **You are the quality inspector at every station** — nothing moves on until you say `go` (or `edit [feedback]`, `skip`, `abort`). It's a conversation, not a black box that runs off and does god-knows-what to your warehouse.
+Picture an **assembly line with six stations.** Claude is the worker. **You are the quality inspector at every station** — nothing moves on until you say `go` (or `edit [feedback]`, `skip`, `abort`). It's a conversation, not a black box that runs off and does god-knows-what to your warehouse.
 
 | # | Station | What the worker does | What you approve |
 |---|---|---|---|
@@ -96,6 +96,7 @@ Picture an **assembly line with five stations.** Claude is the worker. **You are
 | **3 — LOAD** | Runs it. Fingerprints the bytes, stamps every row with when/where, lands it, logs the run. | "Counts and sample look right." |
 | **4 — DBT** | Writes the transformation models — cleans the raw mess into analyst-ready tables, with tests. | "Model it that way." |
 | **5 — REGISTRY** | Files the source's "library card" into the catalog so it's findable. | "Catalog it." |
+| **6 — CONNECT** | Wires the just-landed table into the connection graph (incremental — no full rebuild). | "Link it in." |
 
 **The one idea to take from this:** the source ID is the linchpin. When RECON decides a source is `fed_usgs_earthquakes`, that single string deterministically names *everything* downstream — landing table `FED_USGS_EARTHQUAKES`, the catalog row, the logs, the dbt models. One name, threaded through the whole system. That's why reruns never make a mess: it fingerprints with a SHA-256 and skips the reload when nothing changed.
 
@@ -267,9 +268,12 @@ That's the nightmare for an investigative tool: confidently presenting nothing a
 
 The portal firehose is mostly tapped out — ~593 of 731 easy portals are in. **The next 10x comes from a handful of high-value, identified gaps** (IRS 990/BMF, SEC EDGAR, more Open Payments years), not from more crawling.
 
-### 🚨 FIVE-ALARM — rotate the token before 2026-07-05
+### ~~🚨 FIVE-ALARM — rotate the token before 2026-07-05~~ RESOLVED 2026-07-02
 
-**The Snowflake token expires 2026-07-05 — about 7 days out — and every write still runs as ACCOUNTADMIN with no infra-as-code backup.** When that token dies, the read-only MCP server dies with it (same bearer token), and the whole warehouse goes dark. **Before that date: rotate the PAT and stand up the `LIBRARY_WRITER` least-priv role.** This is a 7-day fuse on the entire stack — it is the single most time-sensitive thing in this document. Don't skim past it. *(build-state.md:115, 124)*
+**The PAT was rotated — new expiry 2026-09-20.** Credential expiries now live in one canonical place,
+`infra/keys_ledger.json`, and the pre-flight gate checks it before any long load. What *survives* from
+the original alarm: every write still runs as ACCOUNTADMIN — standing up the `LIBRARY_WRITER`
+least-priv role is still on the list, it's just no longer on a 7-day fuse.
 
 ### Two plays already on the shelf
 
@@ -282,7 +286,7 @@ The portal firehose is mostly tapped out — ~593 of 731 easy portals are in. **
 
 You have a **working investigative engine with a genuine moat and a catalog that audits itself** — not a prototype.
 
-- **Architecture is sound and live:** 5-checkpoint onboarding, a self-honest catalog, a scored 6-tier connection graph, fact-vs-lead discipline, detectors that already found 773 banned doctors taking money.
+- **Architecture is sound and live:** checkpointed onboarding, a self-honest catalog, a scored 6-tier connection graph, fact-vs-lead discipline, detectors that already surfaced 773 excluded providers appearing in pharma payment records — leads pending human review, some payments may predate the exclusion.
 - **The vision is bigger than what's delivered** (300+ sources, cross-domain detectors, a publishing layer that doesn't exist yet) — fine, as long as you use the honest numbers.
 - **Two real exposures:** *lead narrowness* (one edge carries ~75% of findings) and *operational hygiene* (no mart CI, the secrets fuse above, no infra-as-code). Both on the fixable-with-existing-plays list.
 
@@ -290,6 +294,6 @@ The distance between what this is and what you want it to be is **execution, not
 
 ---
 
-**Founder — your next moves, in order.** (1) **Rotate the PAT + stand up `LIBRARY_WRITER` before 2026-07-05** — §9's five-alarm, the only deadline here. (2) Run the **Fix-Everything** play (~2 sessions) to drain catalog debt and wire 3 new detectors. (3) Land one new identifier (EIN or CIK) to break the ~75%-on-one-edge narrowness. Want a deeper staircase on any single piece — the record-linkage math, the dbt layer, the catalog's lifecycle logic — say the word and I'll build it.
+**Founder — your next moves, in order.** (1) ~~Rotate the PAT before 2026-07-05~~ **done 2026-07-02 (new exp 2026-09-20, tracked in `infra/keys_ledger.json`)** — `LIBRARY_WRITER` least-priv role still pending, no longer deadline-driven. (2) Run the **Fix-Everything** play (~2 sessions) to drain catalog debt and wire 3 new detectors. (3) Land one new identifier (EIN or CIK) to break the ~75%-on-one-edge narrowness. Want a deeper staircase on any single piece — the record-linkage math, the dbt layer, the catalog's lifecycle logic — say the word and I'll build it.
 
 *Methodology: built from a multi-agent read of every corner of the repo plus an adversarial skeptic pass over the impressive claims. Structure numbers (graph edges/tiers, dbt models & tests, node counts) are measured directly from repo artifacts — the graph is dated 2026-06-27. Lead counts (773 · ~1,030 · per-detector) and catalog counts (~1,647 cataloged · ~101 with data) are **last-recorded from the 2026-06-28 run, not re-queried from the live warehouse here**. To make every number and artifact agree, re-run `connect leads` and rebuild `connect_graph.json`.*

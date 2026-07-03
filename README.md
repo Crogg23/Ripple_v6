@@ -34,7 +34,7 @@ python library-onboarding/onboard.py --batch   # onboard new sources into the Li
 
 - **`connect/`** — the connection engine (entity resolution, the confidence ladder,
   the graph + connection explorer). See `connect/HOWTO.md`.
-- **`library-onboarding/`** — the 5-checkpoint source-onboarding agent. See
+- **`library-onboarding/`** — the 6-checkpoint source-onboarding agent. See
   `library-onboarding/README.md`.
 
 > Note: `dbt-snowflake` is listed in `requirements.txt` (it runs/tests the 86 dbt

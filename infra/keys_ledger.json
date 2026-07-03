@@ -1,0 +1,48 @@
+{
+  "_about": "Every credential the platform runs on, with its expiry. THE single place expiry lives — preflight (loadkit/preflight.py pat_expiry_check) and scripts/check_keys.py read this. When you rotate a key, update its row HERE in the same sitting. 'expires: null' = no expiry tracked (verify at the provider if it starts failing).",
+  "updated": "2026-07-02",
+  "keys": [
+    {
+      "name": "Snowflake PAT (ACCOUNTADMIN, the one credential everything writes through)",
+      "env_var": "SNOWFLAKE_PAT",
+      "expires": "2026-09-20T14:58:55Z",
+      "renew_note": "Decoded from the live token's JWT exp claim (zero-network). Rotate in Snowsight: Admin > Users > CROGG23 > Programmatic access tokens > generate new; paste into library-onboarding/.env SNOWFLAKE_PAT; update this row. check_keys.py cross-checks this date against the live token and flags drift."
+    },
+    {
+      "name": "SAM.gov entity-extract API key",
+      "env_var": "SAM_API_KEY",
+      "expires": "2026-09-22",
+      "renew_note": "SAM.gov keys live ~90 days from issue (issued ~2026-06-24). Regenerate at sam.gov > Account Details > API Key; update .env + this row."
+    },
+    {
+      "name": "Anthropic API key (recon/codegen LLM path)",
+      "env_var": "ANTHROPIC_API_KEY",
+      "expires": null,
+      "renew_note": "No expiry — Anthropic keys live until revoked at console.anthropic.com. Watch spend limits instead."
+    },
+    {
+      "name": "SEC/FFIEC contact User-Agent (not a secret, but a load fails without it)",
+      "env_var": "RIPPLE_CONTACT_UA",
+      "expires": null,
+      "renew_note": "no expiry tracked — must contain a real email; SEC returns 403 without it."
+    },
+    {
+      "name": "Census ACS API key",
+      "env_var": "CENSUS_API_KEY",
+      "expires": null,
+      "renew_note": "no expiry tracked — Census keys don't expire; re-request at api.census.gov/data/key_signup.html if revoked."
+    },
+    {
+      "name": "CourtListener / RECAP token",
+      "env_var": "COURTLISTENER_TOKEN",
+      "expires": null,
+      "renew_note": "no expiry tracked — manage at courtlistener.com profile > API token."
+    },
+    {
+      "name": "Socrata app token (portal rate limits)",
+      "env_var": "SOCRATA_APP_TOKEN",
+      "expires": null,
+      "renew_note": "no expiry tracked — manage at the Socrata developer portal; only affects rate limits."
+    }
+  ]
+}

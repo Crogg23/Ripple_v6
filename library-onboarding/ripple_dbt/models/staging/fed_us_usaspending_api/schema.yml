@@ -1,0 +1,319 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_US_USASPENDING_API
+        description: >-
+          Raw landing table for USASpending federal awards data ingested via
+          the fed_us_usaspending_api source connector. All columns are TEXT.
+
+models:
+
+  - name: stg_fed_us_usaspending_api__federal_awards
+    description: >-
+      Staging view for USASpending federal awards. Renames columns to
+      snake_case, casts TEXT columns to appropriate types, and deduplicates
+      on award_id keeping the most-recently modified record.
+    columns:
+
+      - name: award_id
+        description: Primary key — unique identifier for each federal award.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: generated_unique_award_id
+        description: System-generated unique award identifier from USASpending.
+        data_tests:
+          - not_null
+
+      - name: recipient_uei
+        description: Unique Entity Identifier (UEI) for the award recipient.
+        data_tests:
+          - not_null
+
+      - name: recipient_duns
+        description: DUNS number for the award recipient (legacy identifier).
+        data_tests:
+          - not_null
+
+      - name: recipient_ein
+        description: Employer Identification Number (EIN) for the award recipient.
+        data_tests:
+          - not_null
+
+      - name: naics_code
+        description: NAICS code classifying the award recipient's industry.
+        data_tests:
+          - not_null
+
+      - name: cfda_number
+        description: Catalog of Federal Domestic Assistance (CFDA) number.
+        data_tests:
+          - not_null
+
+      - name: treasury_account_symbol
+        description: Treasury Account Symbol (TAS) associated with the award.
+        data_tests:
+          - not_null
+
+      - name: federal_account_code
+        description: Federal account code linked to the award's appropriation.
+
+      - name: awarding_agency_code
+        description: Toptier agency code for the awarding agency.
+        data_tests:
+          - not_null
+
+      - name: place_of_performance_fips
+        description: FIPS code for the place of performance.
+        data_tests:
+          - not_null
+
+      - name: recipient_location_fips
+        description: FIPS code for the recipient's primary location.
+        data_tests:
+          - not_null
+
+      - name: recipient_name
+        description: Legal name of the award recipient.
+
+      - name: awarding_agency_name
+        description: Name of the agency that awarded the contract or grant.
+
+      - name: funding_agency_name
+        description: Name of the agency providing the funding.
+
+      - name: award_type
+        description: Type of award (e.g., Contract, Grant, Loan, Direct Payment).
+        data_tests:
+          - accepted_values:
+              values:
+                - 'A'
+                - 'B'
+                - 'C'
+                - 'D'
+                - '02'
+                - '03'
+                - '04'
+                - '05'
+                - '06'
+                - '07'
+                - '08'
+                - '09'
+                - '10'
+                - '11'
+                - 'IDV_A'
+                - 'IDV_B'
+                - 'IDV_B_A'
+                - 'IDV_B_B'
+                - 'IDV_B_C'
+                - 'IDV_C'
+                - 'IDV_D'
+                - 'IDV_E'
+              quote: true
+              severity: warn
+
+      - name: naics_description
+        description: Human-readable description of the NAICS code.
+
+      - name: cfda_title
+        description: Title of the CFDA program.
+
+      - name: place_of_performance_state
+        description: State abbreviation for the place of performance.
+
+      - name: place_of_performance_city
+        description: City for the place of performance.
+
+      - name: recipient_location_state
+        description: State abbreviation for the recipient's primary location.
+
+      - name: def_code
+        description: Disaster Emergency Fund Code (DEFC) associated with the award.
+
+      - name: total_obligation
+        description: Total obligated amount in USD.
+
+      - name: total_outlay
+        description: Total outlayed (disbursed) amount in USD.
+
+      - name: award_amount
+        description: Base award amount in USD.
+
+      - name: transaction_count
+        description: Number of transactions associated with the award.
+
+      - name: subaward_count
+        description: Number of subawards associated with the award.
+
+      - name: fiscal_year
+        description: Federal fiscal year in which the award was made.
+
+      - name: start_date
+        description: Award period of performance start date.
+
+      - name: end_date
+        description: Award period of performance end date.
+
+      - name: last_modified_date
+        description: Date the award record was last modified in USASpending.
+
+      - name: _ingested_at
+        description: Timestamp when the record was loaded into the landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this record.
+
+  - name: economics__fed_us_usaspending_api
+    description: >-
+      Analytics-ready mart table for USASpending federal awards. Exposes all
+      key identifiers for cross-source joins, adds derived columns (award
+      duration, size band), and is materialized as a table for query
+      performance.
+    columns:
+
+      - name: award_id
+        description: Primary key — unique identifier for each federal award.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: generated_unique_award_id
+        description: System-generated unique award identifier from USASpending.
+        data_tests:
+          - not_null
+
+      - name: recipient_uei
+        description: Unique Entity Identifier (UEI) for the award recipient.
+        data_tests:
+          - not_null
+
+      - name: recipient_duns
+        description: DUNS number for the award recipient (legacy identifier).
+        data_tests:
+          - not_null
+
+      - name: recipient_ein
+        description: Employer Identification Number (EIN) for the award recipient.
+        data_tests:
+          - not_null
+
+      - name: naics_code
+        description: NAICS code classifying the award recipient's industry.
+        data_tests:
+          - not_null
+
+      - name: cfda_number
+        description: Catalog of Federal Domestic Assistance (CFDA) number.
+        data_tests:
+          - not_null
+
+      - name: treasury_account_symbol
+        description: Treasury Account Symbol (TAS) associated with the award.
+        data_tests:
+          - not_null
+
+      - name: federal_account_code
+        description: Federal account code linked to the award's appropriation.
+
+      - name: toptier_agency_code
+        description: >-
+          Toptier agency code (sourced from awarding_agency_code). Used as the
+          TOPTIER_AGENCY_CODE key identifier for cross-source joins.
+        data_tests:
+          - not_null
+
+      - name: place_of_performance_fips
+        description: FIPS code for the place of performance.
+        data_tests:
+          - not_null
+
+      - name: recipient_location_fips
+        description: FIPS code for the recipient's primary location.
+        data_tests:
+          - not_null
+
+      - name: recipient_name
+        description: Legal name of the award recipient.
+
+      - name: awarding_agency_name
+        description: Name of the agency that awarded the contract or grant.
+
+      - name: funding_agency_name
+        description: Name of the agency providing the funding.
+
+      - name: naics_description
+        description: Human-readable description of the NAICS code.
+
+      - name: cfda_title
+        description: Title of the CFDA program.
+
+      - name: award_type
+        description: Type of award (e.g., Contract, Grant, Loan, Direct Payment).
+
+      - name: def_code
+        description: Disaster Emergency Fund Code (DEFC) associated with the award.
+
+      - name: fiscal_year
+        description: Federal fiscal year in which the award was made.
+
+      - name: place_of_performance_state
+        description: State abbreviation for the place of performance.
+
+      - name: place_of_performance_city
+        description: City for the place of performance.
+
+      - name: recipient_location_state
+        description: State abbreviation for the recipient's primary location.
+
+      - name: total_obligation
+        description: Total obligated amount in USD.
+
+      - name: total_outlay
+        description: Total outlayed (disbursed) amount in USD.
+
+      - name: award_amount
+        description: Base award amount in USD.
+
+      - name: transaction_count
+        description: Number of transactions associated with the award.
+
+      - name: subaward_count
+        description: Number of subawards associated with the award.
+
+      - name: start_date
+        description: Award period of performance start date.
+
+      - name: end_date
+        description: Award period of performance end date.
+
+      - name: last_modified_date
+        description: Date the award record was last modified in USASpending.
+
+      - name: award_duration_days
+        description: >-
+          Derived — number of calendar days between start_date and end_date.
+
+      - name: award_size_band
+        description: >-
+          Derived — bucketed label based on award_amount:
+          Micro (<100K), Small (100K-1M), Medium (1M-10M), Large (>=10M).
+        data_tests:
+          - accepted_values:
+              values:
+                - 'Large (>=10M)'
+                - 'Medium (1M-10M)'
+                - 'Small (100K-1M)'
+                - 'Micro (<100K)'
+                - 'Unknown'
+              quote: true
+
+      - name: _ingested_at
+        description: Timestamp when the record was loaded into the landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this record.

@@ -9,7 +9,8 @@ atomic_load), so a crash leaves the live table untouched and nothing to clean up
 Parsing is fail-loud (loadkit.fec_parse): a row whose embedded pipe shifts the
 columns is quarantined, never landed mis-shaped.
 
-  python scripts/fec_itcont_load.py --max-rows 500000   # capped smoke
+  python scripts/fec_itcont_load.py --max-rows 500000   # capped smoke (NO swap;
+                                                        #  leaves __STAGING, logs status='smoke')
   python scripts/fec_itcont_load.py                      # full load (hours)
 """
 from __future__ import annotations
@@ -127,12 +128,42 @@ def main(argv=None) -> int:
             if args.max_rows and total >= args.max_rows:
                 break
 
-        atomic_load.execute_swap(conn, TABLE, database=settings.raw_database, schema=settings.raw_schema)
         ended = ingest._utcnow()
+        if args.max_rows:
+            # SMOKE RUN: the cap truncated the stream, so the staging table holds a
+            # PARTIAL dataset. Swapping it over the live table would replace ~84M
+            # real rows with the capped slice — so we never swap on a capped run.
+            # The __STAGING table is left in place for inspection (the next run's
+            # overwrite=True first chunk self-cleans it), and the run is logged with
+            # its own status ('smoke') so INGEST_RUNS consumers that whitelist
+            # 'success' never mistake it for a real load.
+            ingest._log_run(conn, SID, run_id, "smoke", total, None, "",
+                            "https://www.fec.gov/files/bulk-downloads/", started, ended,
+                            f"--max-rows={args.max_rows} smoke: {total:,} rows landed in "
+                            f"LIBRARY_RAW.LANDING.{STG} (quarantined {bad}); live {TABLE} "
+                            "untouched, NO swap performed.")
+            print(f"\nSMOKE -> {total:,} rows in LIBRARY_RAW.LANDING.{STG}; "
+                  f"live {TABLE} untouched (no swap on a capped run)", flush=True)
+            return 0
+
+        atomic_load.execute_swap(conn, TABLE, database=settings.raw_database, schema=settings.raw_schema)
         ingest._log_run(conn, SID, run_id, "success", total, None, "",
                         "https://www.fec.gov/files/bulk-downloads/", started, ended,
                         f"itcont streamed {total:,} rows (quarantined {bad}); cycles {'+'.join(CYCLES)}.")
         print(f"\nDONE -> LIBRARY_RAW.LANDING.{TABLE}: {total:,} rows (quarantined {bad})", flush=True)
+    except Exception as exc:
+        # A crashed run must leave a trace: without this, a mid-stream death (PAT
+        # expiry, OOM, network) leaves NO INGEST_RUNS row at all and the failure is
+        # invisible to the freshness ledger. The live table is safe either way (we
+        # only ever wrote to __STAGING), so log 'failed' and re-raise.
+        try:
+            ingest._log_run(conn, SID, run_id, "failed", total, None, "",
+                            "https://www.fec.gov/files/bulk-downloads/", started, ingest._utcnow(),
+                            f"itcont load FAILED after {total:,} rows (staging only, live "
+                            f"{TABLE} untouched): {str(exc)[:500]}")
+        except Exception:
+            pass  # logging must never mask the original error
+        raise
     finally:
         conn.close()
         if not args.max_rows:                      # keep the cached zips for a capped smoke; clean after a full run

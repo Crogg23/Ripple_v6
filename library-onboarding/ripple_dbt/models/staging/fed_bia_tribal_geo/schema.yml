@@ -1,0 +1,103 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_BIA_TRIBAL_GEO
+        description: >
+          Raw landing table for the BIA Open Data Geospatial Portal.
+          All columns are loaded as TEXT from the source system.
+
+models:
+
+  - name: stg_fed_bia_tribal_geo__bia_geospatial_features
+    description: >
+      Staging model for BIA geospatial features. Renames columns to snake_case,
+      casts TEXT columns to appropriate types, and deduplicates on FIPS (most
+      recent record wins).
+    columns:
+
+      - name: fips
+        description: Federal Information Processing Standard code — primary key for this entity.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: object_id
+        description: Internal object identifier from the source system.
+        data_tests:
+          - not_null
+
+      - name: layer_name
+        description: Name of the GIS layer this feature belongs to.
+
+      - name: feature_name
+        description: Human-readable name of the tribal geospatial feature.
+
+      - name: state
+        description: US state abbreviation or name associated with the feature.
+
+      - name: area_sqmi
+        description: Area of the feature in square miles (cast from TEXT).
+
+      - name: geometry
+        description: Raw geometry representation (WKT or GeoJSON string).
+
+      - name: data_source
+        description: Originating data source identifier.
+
+      - name: last_updated
+        description: Date the record was last updated in the source system.
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing layer.
+
+      - name: _source_run_id
+        description: Pipeline run identifier for traceability.
+
+  - name: land_and_territory__fed_bia_tribal_geo
+    description: >
+      Analytics-ready mart table for BIA tribal geospatial features. Exposes
+      key identifiers for cross-source joins and presents clean, typed columns
+      suitable for downstream analysis and mapping.
+    columns:
+
+      - name: fips
+        description: Federal Information Processing Standard code — primary key for this entity.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: object_id
+        description: Internal object identifier from the source system.
+        data_tests:
+          - not_null
+
+      - name: layer_name
+        description: Name of the GIS layer this feature belongs to.
+
+      - name: feature_name
+        description: Human-readable name of the tribal geospatial feature.
+
+      - name: state
+        description: US state abbreviation or name associated with the feature.
+
+      - name: area_sqmi
+        description: Area of the feature in square miles.
+
+      - name: geometry
+        description: Raw geometry representation (WKT or GeoJSON string).
+
+      - name: data_source
+        description: Originating data source identifier.
+
+      - name: last_updated
+        description: Date the record was last updated in the source system.
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing layer.
+
+      - name: _source_run_id
+        description: Pipeline run identifier for traceability.

@@ -168,6 +168,8 @@ changes.
 
 ## Heads-up
 
-The Snowflake PAT in `library-onboarding/.env` expires ~**July 5, 2026**. After that the
-heartbeat fails auth loudly (`budget read -> RED, reason=connect_error`) and no-ops rather
-than silently doing nothing wrong. Rotate the token to keep it alive.
+The Snowflake PAT in `library-onboarding/.env` was rotated 2026-07-02 — current expiry
+**2026-09-20**. Canonical credential expiries live in `infra/keys_ledger.json` (the preflight
+gate reads it). If the token ever does die, the heartbeat fails auth loudly
+(`budget read -> RED, reason=connect_error`) and no-ops rather than silently doing nothing
+wrong. Rotate the token to keep it alive.

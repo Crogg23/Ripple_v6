@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Quarterly backfill for SEC EDGAR Financial Statement Data Sets -- submissions
+"""DEPRECATED (2026-07-02) — one-off, NON-ATOMIC backfill. Kept for provenance only.
+Appends directly to the live table (a mid-run crash leaves a partial quarter). For
+any new or repeat bulk load use scripts/bridge_fuel_load.py, which lands through a
+staging table + atomic swap, density-gates, and guards the registry.
+
+Quarterly backfill for SEC EDGAR Financial Statement Data Sets -- submissions
 (discovery sweep Phase 3 #42: FED_SEC_EDGAR_FINANCIALS is ONE quarter's sub.txt --
 6,491 rows == 2024q4 exactly. "Looks like a panel, is a snapshot." Each extra
 quarter turns the single-quarter submissions snapshot into a real filing time
@@ -59,7 +64,7 @@ TABLE = "FED_SEC_EDGAR_FINANCIALS"
 SID = "fed_sec_edgar_financials"
 UA = {"User-Agent": "Ripple-Library w.rogers9999@gmail.com"}
 CHUNK = 250_000
-SCRATCH = Path("/private/tmp/claude-501/-Users-chrisr--Documents-GitHub-Ripple-v6/"
+SCRATCH = Path("c:/Code/Ripple_v6/.scratch/"
                "e8eac5fb-de36-4362-9440-da24a904b9b4/scratchpad")
 
 # the 36 sub.txt columns, in file order == landing column order (UPPER).

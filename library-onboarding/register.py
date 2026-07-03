@@ -47,10 +47,21 @@ def _src_expr(c: str) -> str:
 
 def _encode(c: str, v):
     if c in _ARRAY_COLUMNS:
-        # Encode exactly once at the boundary. Never re-dump an already-serialized str.
-        assert v is None or isinstance(v, (list, tuple)), \
-            f"{c} must be a list/None, got {type(v)}"
-        return json.dumps(list(v) if v is not None else [])
+        # Encode exactly once at the boundary. Coerce a bad LLM/config shape into a
+        # valid array rather than asserting -- one malformed facet must not abort the
+        # whole pour. (Never re-dump an already-serialized str: a str is split, not
+        # wrapped, so a JSON-ish string doesn't become a one-element array of JSON.)
+        if isinstance(v, (list, tuple)):
+            items = list(v)
+        elif hasattr(v, "tolist"):                 # numpy array / pandas Series
+            items = list(v.tolist())
+        elif v is None or (isinstance(v, str) and v.strip() == ""):
+            items = []
+        elif isinstance(v, str):
+            items = [p.strip() for p in v.split(",") if p.strip()]
+        else:
+            items = [v]
+        return json.dumps(items)
     return v
 
 

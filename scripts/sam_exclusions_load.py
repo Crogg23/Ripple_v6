@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Deterministic loader for the SAM.gov Exclusions list (the federal "banned from
+"""DEPRECATED (2026-07-02) — one-off, NON-ATOMIC loader. Kept for provenance only.
+Writes directly on the live table (a mid-run crash leaves a partial table). For any
+new or repeat bulk load use scripts/bridge_fuel_load.py, which lands through a
+staging table + atomic swap, density-gates, and guards the registry.
+
+Deterministic loader for the SAM.gov Exclusions list (the federal "banned from
 doing business" list — the bad-list side of the money + health detectors).
 
 SAM's Entity Management API (api.sam.gov) returns exclusions as nested JSON,

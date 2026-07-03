@@ -21,6 +21,13 @@ JobSpec shape:
   require_surname  drop pairs whose surnames disagree (person-vs-person only)
   score            {name_w?, recency_w?, breadth_w?, breadth_div?}  (absent weight = 0)
   title_titlecase / title_dates   field names to nice-case / date-format in the title
+  date_mode        OPTIONAL 'gate' | 'annotate' + left_date_field and right_date_field
+                   (or right_year_field). 'gate' keeps only activity dated on/after the
+                   flag date; 'annotate' adds no predicate but carries both dates into
+                   each evidence item under 'timeline'. Date fields are a bare column
+                   name or {"col":..., "format":...} (TRY_TO_DATE format). A spec
+                   WITHOUT these compiles byte-identically to the pre-feature SQL, so
+                   existing SQL_SHA256 receipts never churn. No live rule uses it yet.
   no_fanout_guard  MUST be True: lead jobs run their own SQL, never connect.bridge
                    (its FANOUT_MAX / dedup would silently drop high-value leads).
 """
@@ -68,13 +75,18 @@ JOBS: dict[str, dict] = {
         "no_fanout_guard": True,
     },
 
-    # SANCTIONS × MARITIME on IMO — an OFAC-sanctioned hull still broadcasting AIS.
-    # The vessel can repaint its name (AIS name often differs from the OFAC name);
-    # the IMO hull number can't change, so the hard-key join catches it anyway.
+    # SANCTIONS × MARITIME on IMO — an OFAC-sanctioned hull appearing in the NOAA AIS
+    # archive. The vessel can repaint its name (AIS name often differs from the OFAC
+    # name); the IMO hull number can't change, so the hard-key join catches it anyway.
+    # ARCHIVE-HONEST title on purpose: NOAA AIS is a US-coastal ARCHIVE, not a live
+    # feed, so "broadcasting" would overclaim — the data shows the hull APPEARED, not
+    # that it's transmitting today. Safe to rephrase in place: LEAD_ID is md5 of
+    # rule + key value (title-independent), so the MERGE just updates titles next run.
     "sanctioned_vessel_broadcasting": {
         "rule_name": "sanctioned_vessel_broadcasting",
         "title_template": ("{l_name} — OFAC-sanctioned ({program}, flag {flag}); "
-                           "broadcasting AIS in {count} position reports"),
+                           "appears in {count} AIS position reports (US-coastal "
+                           "archive; not evidence of current broadcasting)"),
         "left": {
             "table": "FED_OFAC_SDN",
             "key": "IMO", "key_col": "IMO",
@@ -197,11 +209,13 @@ JOBS: dict[str, dict] = {
     # (carried into evidence) vs the sanctions VESSEL_NAME (title) is a shadow-fleet-rename
     # tell — the IMO hull number can't change, so the hard-key join catches it regardless.
     # (An explicit name_mismatch score would need a small engine add; both names are already
-    # surfaced in the lead for the human reviewer.)
+    # surfaced in the lead for the human reviewer.) Title is archive-honest like v1: the
+    # AIS data is a US-coastal archive, so "appears in" — never "broadcasting".
     "sanctioned_vessel_broadcasting_v2": {
         "rule_name": "sanctioned_vessel_broadcasting_v2",
         "title_template": ("{l_name} — sanctioned vessel ({sanction_source}, {program}); "
-                           "broadcasting AIS in {count} position report(s)"),
+                           "appears in {count} AIS position report(s) (US-coastal "
+                           "archive; not evidence of current broadcasting)"),
         "left": {
             "table": "LIBRARY_STAGING.DBT_CROGERS.INT_SANCTIONED_VESSELS",
             "key": "IMO", "key_col": "IMO",
@@ -216,20 +230,51 @@ JOBS: dict[str, dict] = {
         "score": {"breadth_w": 1.0, "breadth_div": 200.0},
         "no_fanout_guard": True,
     },
-}
 
-# --------------------------------------------------------------------------- #
-# BLOCKED -- ready to enable once Phase 3 lands the IRS BMF / Form 990 file.
-# EIN bridge (#50): SEC EDGAR (carries EIN) ⋈ IRS exempt-org file on the 9-digit
-# EIN -- Caterpillar & VF Corp already proved the bridge on the IRS revocation list
-# (n=2). Add to JOBS once an EIN-bearing SEC table AND the IRS BMF are landed:
-#
-# "ein_bridge_sec_irs": {
-#     "rule_name": "ein_bridge_sec_irs",
-#     "title_template": "{l_name} — SEC filer (CIK {cik}) also on the IRS exempt-org file (EIN {ein}); {count} record(s)",
-#     "left":  {"table": "<SEC_TABLE_WITH_EIN>", "key": "EIN", "key_col": "EIN", "name_col": "<NAME>"},
-#     "right": {"table": "<IRS_BMF_OR_990>",     "key": "EIN", "key_col": "EIN", "carry": {...}},
-#     "score": {"breadth_w": 1.0, "breadth_div": 10.0},
-#     "no_fanout_guard": True,
-# },
-# --------------------------------------------------------------------------- #
+    # MONEY × MONEY on EIN — a company that files financials with the SEC whose EIN
+    # ALSO appears in the IRS exempt-org (tax-exempt) master file. EIN is a 9-digit
+    # STEEL key (keys.py 'pad' 9), so a hit is the SAME legal entity's tax ID on both
+    # rosters — a hard, non-coincidental co-occurrence. This is the biggest lever
+    # against the single-vertical concentration: it opens MONEY/finance as a second
+    # world beyond the health-provider verticals that carry ~all leads today. Both
+    # sides are ORG lists -> single-name display, NO surname gate (require_surname is
+    # person-vs-person only; org-vs-org would never corroborate). LEFT is the SEC
+    # financial-statement filer list (FED_SEC_EDGAR_FINANCIALS: 55,635 rows / 5,773
+    # distinct EINs, carries NAME + CIK) — deliberately NOT FED_US_SEC_EDGAR, whose EIN
+    # column is junk (48,990 rows collapse to 25 distinct EINs). RIGHT is the IRS BMF
+    # (FED_IRS_BMF: 1.97M distinct EINs, the registered tax-exempt roster).
+    #
+    # NEUTRAL, co-occurrence phrasing on purpose: the title states the two rosters share
+    # an EIN — it is NOT a violation claim. A commercial SEC filer legitimately sharing a
+    # tax ID with an exempt entity (foundation, pension trust, related nonprofit) is a
+    # thread to PULL, not a finding to assert; the human reviewer + evidence (SEC NAME/CIK
+    # vs IRS NAME/STATE/NTEE) decides what it means.
+    #
+    # YIELD: ~3 leads today (measured 2026-07-02: 3 distinct EINs overlap both rosters,
+    # normalized pad-9). The value is the CAPABILITY + the new vertical, not the count —
+    # the overlap grows as more EIN-bearing SEC/IRS sources land.
+    #
+    # RECEIPT CAVEAT (documented, NOT fixed here): FED_IRS_BMF's provenance columns lack
+    # the underscore prefix (it carries INGESTED_AT / SOURCE_RUN_ID / SRC_SHA256, not the
+    # standard _-prefixed trio). receipt.resolve_snapshots SELECTs _SOURCE_RUN_ID, so the
+    # IRS-BMF leg records 'unresolved' until BMF is re-landed with standard provenance —
+    # honest-but-hollow on that one leg, acceptable for now.
+    "sec_filer_in_irs_bmf": {
+        "rule_name": "sec_filer_in_irs_bmf",
+        "title_template": ("{l_name} — SEC filer (CIK {cik}) EIN also appears in the IRS "
+                           "exempt-org roster ({count} record(s))"),
+        "left": {
+            "table": "FED_SEC_EDGAR_FINANCIALS",
+            "key": "EIN", "key_col": "EIN",
+            "name_col": "NAME",
+            "carry": {"CIK": "CIK"},
+        },
+        "right": {
+            "table": "FED_IRS_BMF",
+            "key": "EIN", "key_col": "EIN",
+            "carry": {"IRS_NAME": "NAME", "STATE": "STATE", "NTEE": "NTEE_CD"},
+        },
+        "score": {"breadth_w": 1.0, "breadth_div": 10.0},
+        "no_fanout_guard": True,
+    },
+}

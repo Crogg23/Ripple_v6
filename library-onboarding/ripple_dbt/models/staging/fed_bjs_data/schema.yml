@@ -1,0 +1,135 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_BJS_DATA
+        description: >
+          Raw landing table for BJS Data Collections and APIs sourced from the
+          Bureau of Justice Statistics (source_id: fed_bjs_data).
+
+models:
+  - name: stg_fed_bjs_data__bjs_data_collections
+    description: >
+      Staging model for BJS data collections. Renames columns to snake_case,
+      casts types safely, and deduplicates on (fips_code, nacjd_id).
+    columns:
+      - name: fips_code
+        description: FIPS geographic identifier for the data collection record.
+        data_tests:
+          - not_null
+
+      - name: nacjd_id
+        description: National Archive of Criminal Justice Data identifier.
+        data_tests:
+          - not_null
+
+      - name: collection_name
+        description: Name of the BJS data collection.
+        data_tests:
+          - not_null
+
+      - name: topic
+        description: High-level topic area for the data collection.
+
+      - name: description
+        description: Detailed description of the data collection.
+
+      - name: geographic_level
+        description: Geographic granularity of the data (e.g., National, State, County).
+        data_tests:
+          - accepted_values:
+              values: ['National', 'State', 'County', 'Local', 'Tribal', 'Other']
+              severity: warn
+
+      - name: unit_of_enumeration
+        description: The unit being counted or measured in the collection.
+
+      - name: access_level
+        description: Access restriction level for the dataset.
+        data_tests:
+          - accepted_values:
+              values: ['Public', 'Restricted', 'Private', 'NACJD']
+              severity: warn
+
+      - name: download_url
+        description: Direct download URL for the collection data files.
+
+      - name: data_tool_url
+        description: URL for the BJS online data analysis or exploration tool.
+
+      - name: publication_date
+        description: Date the collection or report was published (cast from TEXT).
+
+      - name: years_available
+        description: Range or list of years for which data are available.
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier associated with the ingestion.
+
+  - name: criminal_justice__fed_bjs_data
+    description: >
+      Analytics-ready mart for BJS data collections. Exposes FIPS and NACJD
+      identifiers for cross-source joins within the criminal justice domain.
+    columns:
+      - name: fips
+        description: FIPS geographic identifier — primary key for this mart.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: nacjd_id
+        description: National Archive of Criminal Justice Data identifier.
+        data_tests:
+          - not_null
+
+      - name: collection_name
+        description: Name of the BJS data collection.
+        data_tests:
+          - not_null
+
+      - name: topic
+        description: High-level topic area for the data collection.
+
+      - name: description
+        description: Detailed description of the data collection.
+
+      - name: geographic_level
+        description: Geographic granularity of the data.
+        data_tests:
+          - accepted_values:
+              values: ['National', 'State', 'County', 'Local', 'Tribal', 'Other']
+              severity: warn
+
+      - name: unit_of_enumeration
+        description: The unit being counted or measured in the collection.
+
+      - name: access_level
+        description: Access restriction level for the dataset.
+        data_tests:
+          - accepted_values:
+              values: ['Public', 'Restricted', 'Private', 'NACJD']
+              severity: warn
+
+      - name: publication_date
+        description: Date the collection or report was published.
+
+      - name: years_available
+        description: Range or list of years for which data are available.
+
+      - name: download_url
+        description: Direct download URL for the collection data files.
+
+      - name: data_tool_url
+        description: URL for the BJS online data analysis or exploration tool.
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier associated with the ingestion.

@@ -44,7 +44,29 @@ def connect():
             kwargs["password"] = pat  # PATs work as a password replacement
     else:
         kwargs["password"] = settings.snowflake_password
-    return snowflake.connector.connect(**kwargs)
+    conn = snowflake.connector.connect(**kwargs)
+    _apply_session_guards(conn)
+    return conn
+
+
+def _apply_session_guards(conn) -> None:
+    """Clamp the session so a hung or detached query can't hold (and bill) the
+    warehouse for the account-default 48h during an unattended pour. Best-effort --
+    never fail a connect over it."""
+    try:
+        secs = int(getattr(settings, "statement_timeout_s", 3600) or 0)
+    except Exception:
+        secs = 3600
+    if secs <= 0:
+        return
+    cur = conn.cursor()
+    try:
+        cur.execute(f"ALTER SESSION SET STATEMENT_TIMEOUT_IN_SECONDS = {secs}")
+        cur.execute("ALTER SESSION SET ABORT_DETACHED_QUERY = TRUE")
+    except Exception:
+        pass
+    finally:
+        cur.close()
 
 
 def fetch_scalar(conn, sql: str, params: Optional[tuple] = None):

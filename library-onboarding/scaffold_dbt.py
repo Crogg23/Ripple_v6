@@ -14,6 +14,8 @@ LIBRARY_STAGING / LIBRARY_MARTS via your dbt profile.
 
 from __future__ import annotations
 
+import tempfile
+from pathlib import Path
 from typing import Optional
 
 from config import ConfigError, settings
@@ -123,15 +125,20 @@ def generate_dbt_models(config: dict, feedback: Optional[str] = None) -> dict:
 
 
 def write_dbt_models(config: dict, models: dict) -> dict:
-    if not settings.dbt_project_path.strip():
-        if settings.fake_llm:
-            return {**models, "written": [], "note": "dry run -- DBT_PROJECT_PATH not set"}
-        raise ConfigError(
-            "DBT_PROJECT_PATH is not set. Point it at your dbt project root "
-            "(the directory containing dbt_project.yml)."
-        )
-
-    project = settings.dbt_dir()
+    # FAKE_LLM must NEVER write into the real dbt project. An env-var guard can't
+    # protect it -- .env sets DBT_PROJECT_PATH with override=True, so a smoke run
+    # inherits the real path and scaffolds fixture models next to real ones (the
+    # fed_smoke_fred incident that broke dbt parse at HEAD). Redirect the whole
+    # write to a throwaway temp dir instead; the flow still exercises real file IO.
+    if settings.fake_llm:
+        project = Path(tempfile.gettempdir()) / "ripple_fake_dbt"
+    else:
+        if not settings.dbt_project_path.strip():
+            raise ConfigError(
+                "DBT_PROJECT_PATH is not set. Point it at your dbt project root "
+                "(the directory containing dbt_project.yml)."
+            )
+        project = settings.dbt_dir()
     models_dir = project / "models"
     src = config["source_id"]
     domain = config["mart_model"].split("__")[0]

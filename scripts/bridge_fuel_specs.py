@@ -248,4 +248,48 @@ SPECS = [
         "priority_tier": "1",
         "notes": "6 same-schema CSVs (eo1-4 + eo_xx + eo_pr) concatenated via the loader's multi-file `urls` mode. EIN/NAME/ZIP canonically named (no aliasing). EIN normalizer pads to 9. Activates the EIN spine — the de-silo Wave-1 / first-GO source. Loaded LLM-free (bridge_fuel_load).",
     },
+    # ---- THE SPINE ITSELF: NPPES full re-land (Wave-5 recovery) --------------
+    # The 9.6M-row NPI registry was wiped to ~700K by a mid-chunk kill of the old
+    # non-atomic loader. This spec re-lands it through the STAGING+swap chunked
+    # path, so a crash can never touch the surviving rows again. Re-land needs
+    # --force (a 2026-06-17 success row makes the default --run skip).
+    #
+    # NO key_cols aliasing — deliberately. The 333 landed column names (raw CSV
+    # headers through ingest._stringify/_sf_col) ARE the dbt/connect contract
+    # (stg_fed_cms_nppes__npi_providers + the spine read them); an alias would be
+    # schema drift and the pre-swap column assertion would (rightly) refuse it.
+    {
+        "source_id": "fed_cms_nppes",
+        "name": "CMS NPPES NPI Registry — Full Replacement Monthly file",
+        "publisher": "CMS — National Plan and Provider Enumeration System",
+        "url": "https://download.cms.gov/nppes/NPI_Files.html",
+        # The filename rotates monthly (a hardcoded URL 404s next cycle) — the
+        # loader re-resolves the current monthly zip from NPI_Files.html at run
+        # time (_resolve_nppes_url); this is only the fallback, current 2026-07-02.
+        "download_url": "https://download.cms.gov/nppes/NPPES_Data_Dissemination_June_2026_V2.zip",
+        "kind": "zip_csv",
+        # The zip carries fileheader/othername/pl/endpoint siblings — pick the data
+        # member explicitly. [.]csv right after the digits excludes the
+        # npidata_pfile_..._fileheader.csv variant.
+        "member": "npidata_pfile_[0-9]{8}-[0-9]{8}[.]csv",
+        "chunked": True,
+        "chunk_rows": 50_000,   # 330 wide cols -> keep each write_pandas batch modest
+        "join_keys": "NPI",
+        "join_keys_std": ["NPI"],
+        "join_key_tier": "STEEL",
+        "join_key_tier_provisional": True,
+        "jurisdiction": "US",
+        "category": "Health",
+        "subcategory": "Provider Registry",
+        "unit_of_observation": "one row = one enumerated provider/organization (NPI)",
+        "geographic_scope": "United States + territories",
+        "temporal_coverage": "current full-replacement monthly snapshot",
+        "update_cadence": "monthly",
+        "volume": "~9.6M providers x ~330 cols (~9 GB zip)",
+        "format": "csv (zipped)",
+        "license_terms": "Public domain (US Gov)",
+        "accountability_relevance": "THE provider spine: every NPI-keyed source (LEIE exclusions, Open Payments, facility crosswalks) resolves names/addresses through it — 'banned but still operating' starts here.",
+        "priority_tier": "1",
+        "notes": "Full Replacement Monthly NPI file, chunked 50k through the atomic staging swap. Filename rotates monthly — resolved live from NPI_Files.html. NO key_cols aliasing: the 333 landed column names are the dbt/connect contract. Loaded LLM-free (bridge_fuel_load); re-land needs --force.",
+    },
 ]

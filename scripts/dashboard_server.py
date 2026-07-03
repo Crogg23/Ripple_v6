@@ -16,8 +16,8 @@ import sys, json, threading, webbrowser, math
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlparse, parse_qs
 
-sys.path.insert(0, "/Users/chrisr./Documents/GitHub/Ripple_v6")
-from connect import db
+sys.path.insert(0, "c:/Code/Ripple_v6")
+from connect import db, leads
 from connect.keys import normalize_sql, quote_ident, NORM_RULES
 from connect.leads_specs import JOBS
 
@@ -25,23 +25,48 @@ PORT = 8765
 META = {"_INGESTED_AT", "_SOURCE_RUN_ID", "_SRC_SHA256"}
 HARD = ["NPI", "EIN", "CCN", "UEI", "CIK", "IMO", "MMSI", "LEI", "DUNS"]  # real IDs (skip ZIP/NAME/FIPS)
 
+# One label per rule in leads_specs.JOBS. Archive-honest copy: the AIS data is a
+# US-coastal ARCHIVE, so "appears in" — never "broadcasting" / "still".
 RULE_LABEL = {
-    "banned_but_operating":          "Banned providers on hospital rosters",
-    "sanctioned_vessel_broadcasting":"Sanctioned ships broadcasting AIS",
-    "debarred_but_funded":           "Debarred firms winning federal contracts",
+    "banned_but_operating":              "Banned providers on facility rosters",
+    "banned_but_paid":                   "Banned providers in Open Payments records",
+    "excluded_but_billing":              "Banned providers in Part D prescriber records",
+    "sanctioned_vessel_broadcasting":    "Sanctioned ships in the AIS archive",
+    "sanctioned_vessel_broadcasting_v2": "Sanctioned ships in the AIS archive (OFAC ∪ OpenSanctions)",
+    "debarred_but_funded":               "Debarred firms holding federal contract awards",
+    "sec_filer_in_irs_bmf":              "SEC filers whose EIN appears in the IRS exempt-org roster",
 }
-# story-relevant columns for each detector's drill-in (left = the flag, right = the active rows)
+# story-relevant columns for each detector's drill-in (left = the flag, right = the active
+# rows). Rules whose right side is a staging view fall back to SELECT * (the column check
+# only sees LIBRARY_RAW), which is fine at these row limits.
 DETAIL = {
     "banned_but_operating": {
         "left":  ["LASTNAME", "FIRSTNAME", "EXCLTYPE", "EXCLDATE", "NPI", "STATE"],
         "right": ["PROVIDER_LAST_NAME", "PROVIDER_FIRST_NAME", "CCN", "FACILITY_TYPE"], "rlimit": 200},
+    "banned_but_paid": {
+        "left":  ["LASTNAME", "FIRSTNAME", "EXCLTYPE", "EXCLDATE", "NPI", "STATE"],
+        "right": ["COVERED_RECIPIENT_LAST_NAME", "COVERED_RECIPIENT_FIRST_NAME",
+                  "APPLICABLE_MANUFACTURER_OR_APPLICABLE_GPO_MAKING_PAYMENT_NAME",
+                  "NATURE_OF_PAYMENT_OR_TRANSFER_OF_VALUE",
+                  "TOTAL_AMOUNT_OF_PAYMENT_USDOLLARS", "DATE_OF_PAYMENT", "PROGRAM_YEAR",
+                  "NPI"], "rlimit": 200},
+    "excluded_but_billing": {
+        "left":  ["LASTNAME", "FIRSTNAME", "EXCLTYPE", "EXCLDATE", "WVRSTATE", "NPI", "STATE"],
+        "right": ["PRSCRBR_LAST_ORG_NAME", "PRSCRBR_FIRST_NAME", "TOT_CLMS",
+                  "TOT_DRUG_CST", "OPIOID_TOT_DRUG_CST", "NPI"], "rlimit": 200},
     "sanctioned_vessel_broadcasting": {
         "left":  ["SDN_NAME", "PROGRAM", "VESS_FLAG", "TONNAGE", "IMO"],
+        "right": ["VESSELNAME", "BASEDATETIME", "LAT", "LON", "SOG", "IMO"], "rlimit": 150},
+    "sanctioned_vessel_broadcasting_v2": {
+        "left":  ["VESSEL_NAME", "SANCTION_SOURCE", "PROGRAM", "FLAG", "IMO"],
         "right": ["VESSELNAME", "BASEDATETIME", "LAT", "LON", "SOG", "IMO"], "rlimit": 150},
     "debarred_but_funded": {
         "left":  ["ENTITY_NAME", "CLASSIFICATION", "EXCLUSION_TYPE", "EXCLUDING_AGENCY", "UEI"],
         "right": ["RECIPIENT_NAME", "AWARDING_AGENCY_NAME", "FEDERAL_ACTION_OBLIGATION",
                   "ACTION_DATE", "AWARD_ID_PIID", "RECIPIENT_UEI"], "rlimit": 300},
+    "sec_filer_in_irs_bmf": {
+        "left":  ["NAME", "CIK", "SIC", "FORM", "EIN"],
+        "right": ["NAME", "CITY", "STATE", "SUBSECTION", "NTEE_CD", "EIN"], "rlimit": 300},
 }
 
 # ----------------------------------------------------------------- db (1 conn + lock)
@@ -76,28 +101,44 @@ def cached(key, fn):
     return _cache[key]
 
 # ----------------------------------------------------------------- data
+def _published():
+    """THE safety chokepoint: every insights read routes through leads.published() —
+    STATUS='active' plus the DECISIONS anti-join — so a rejected / retracted / stale
+    lead can never render here. Same retry-once-on-dead-connection dance as q()."""
+    global _conn
+    with _lock:
+        for attempt in (0, 1):
+            try:
+                return leads.published(_c())
+            except Exception:
+                _conn = None
+                if attempt: raise
+
+def _shape_insight(r):
+    """PURE (no DB): one gated LEADS row (UPPER keys, EVIDENCE as JSON text) -> API dict."""
+    try: ev = json.loads(r.get("EVIDENCE") or "[]")
+    except Exception: ev = []
+    labels = []
+    for o in ev[:10]:
+        if isinstance(o, dict):
+            v = o.get("facility") or o.get("recipient_name") or o.get("ais_name")
+            if not v:
+                for kk, vv in o.items():
+                    if isinstance(vv, str) and vv and kk not in ("ccn", "uei", "npi", "imo", "key"):
+                        v = vv; break
+            if v: labels.append(str(v))
+    return {"lead_id": r["LEAD_ID"], "rule": r["RULE_NAME"],
+            "label": RULE_LABEL.get(r["RULE_NAME"], r["RULE_NAME"]),
+            "key_type": r["LEFT_KEY_TYPE"], "key_value": r["LEFT_KEY_VALUE"],
+            "title": r["TITLE"], "score": float(r["SCORE"] or 0),
+            "status": r.get("STATUS") or "active",
+            "review": r.get("REVIEW_STATE", "pending"),
+            "published": bool(r.get("PUBLISHED", False)),
+            "evidence": list(dict.fromkeys(labels))}
+
 def insights():
-    out = []
-    for r in qd("""SELECT LEAD_ID, RULE_NAME, LEFT_KEY_TYPE, LEFT_KEY_VALUE, TITLE, SCORE,
-                          TO_JSON(EVIDENCE) EV, COALESCE(STATUS,'active') STATUS
-                   FROM LIBRARY_META."CONNECT".LEADS ORDER BY RULE_NAME, SCORE DESC"""):
-        try: ev = json.loads(r["EV"] or "[]")
-        except Exception: ev = []
-        labels = []
-        for o in ev[:10]:
-            if isinstance(o, dict):
-                v = o.get("facility") or o.get("recipient_name") or o.get("ais_name")
-                if not v:
-                    for kk, vv in o.items():
-                        if isinstance(vv, str) and vv and kk not in ("ccn", "uei", "npi", "imo", "key"):
-                            v = vv; break
-                if v: labels.append(str(v))
-        out.append({"lead_id": r["LEAD_ID"], "rule": r["RULE_NAME"],
-                    "label": RULE_LABEL.get(r["RULE_NAME"], r["RULE_NAME"]),
-                    "key_type": r["LEFT_KEY_TYPE"], "key_value": r["LEFT_KEY_VALUE"],
-                    "title": r["TITLE"], "score": float(r["SCORE"] or 0), "status": r["STATUS"],
-                    "evidence": list(dict.fromkeys(labels))})
-    return out
+    rows = sorted(_published(), key=lambda r: (r["RULE_NAME"], -float(r["SCORE"] or 0)))
+    return [_shape_insight(r) for r in rows]
 
 def _sel(table, cols):
     have = {c for c, in q(f"""SELECT column_name FROM LIBRARY_RAW.INFORMATION_SCHEMA.COLUMNS
@@ -105,11 +146,18 @@ def _sel(table, cols):
     return [c for c in cols if c in have] or ["*"]
 
 def insight_detail(lead_id):
+    # The libel firewall applies to the drill-in too: a rejected / retracted / stale lead's
+    # detail page must refuse to render — even from cache. The gate is checked FRESH on
+    # every call (verdicts flip between clicks); only a lead that passes gets the cached
+    # row fetch, and the cache key carries the review state so a later verdict flip can
+    # never be served a page cached under the old one.
+    lead = next((r for r in _published() if r["LEAD_ID"] == lead_id), None)
+    if lead is None:
+        return {"error": "lead not available — unpublished, stale, or suppressed by review"}
+    rule, val, title = lead["RULE_NAME"], lead["LEFT_KEY_VALUE"], lead["TITLE"]
+    if rule not in JOBS:
+        return {"error": f"no live spec for rule {rule}"}
     def build():
-        r = qd("""SELECT RULE_NAME, LEFT_KEY_VALUE, TITLE FROM LIBRARY_META."CONNECT".LEADS
-                  WHERE LEAD_ID=%s""", (lead_id,))
-        if not r: return {"error": "not found"}
-        rule, val, title = r[0]["RULE_NAME"], r[0]["LEFT_KEY_VALUE"], r[0]["TITLE"]
         spec, det = JOBS[rule], DETAIL.get(rule, {})
         def side(S, cols, limit):
             tbl, kc, key = S["table"], S["key_col"], S["key"]
@@ -117,10 +165,10 @@ def insight_detail(lead_id):
             pred = f"{normalize_sql(key, quote_ident(kc))} = %s"
             c2, rows = q(f"SELECT {sel} FROM {db.fqn(tbl)} WHERE {pred} LIMIT {limit}", (val,))
             return {"table": tbl, "cols": c2, "rows": [[("" if v is None else str(v)) for v in row] for row in rows]}
-        return {"title": title, "rule": rule,
+        return {"title": title, "rule": rule, "review": lead.get("REVIEW_STATE", "pending"),
                 "left": side(spec["left"], det.get("left"), 10),
                 "right": side(spec["right"], det.get("right"), det.get("rlimit", 100))}
-    return cached(f"ins:{lead_id}", build)
+    return cached(f"ins:{lead_id}:{lead.get('REVIEW_STATE', 'pending')}", build)
 
 def library():
     rows = qd("""SELECT source_id, name, domain_primary, lifecycle, landed_row_count,
@@ -266,6 +314,7 @@ tbody tr{cursor:pointer}tbody tr:hover td{background:#1b2230}.num{text-align:rig
 .ok{background:rgba(63,185,80,.15);color:var(--ok)}.warn{background:rgba(210,153,34,.15);color:var(--warn)}.bad{background:rgba(248,81,73,.15);color:var(--bad)}
 .chip{display:inline-block;padding:2px 9px;border-radius:6px;font-size:11px;font-weight:600;color:#fff}
 .c-banned_but_operating{background:#8957e5}.c-sanctioned_vessel_broadcasting{background:#1f6feb}.c-debarred_but_funded{background:#bb4a1d}
+.c-banned_but_paid{background:#2da44e}.c-excluded_but_billing{background:#d29922}.c-sanctioned_vessel_broadcasting_v2{background:#1a7f8e}
 .bar{display:inline-block;width:54px;height:6px;background:#30363d;border-radius:3px;overflow:hidden;vertical-align:middle;margin-right:6px}.fill{height:100%;background:var(--ac)}
 input.f,select{background:var(--panel);border:1px solid var(--line);color:var(--tx);border-radius:8px;padding:7px 11px;font-size:13px}input.f{width:300px;margin-bottom:10px}
 #ov{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;z-index:9}#mod{position:fixed;top:4%;left:50%;transform:translateX(-50%);width:min(1100px,94vw);max-height:90vh;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;z-index:10;display:none}

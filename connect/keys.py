@@ -21,6 +21,7 @@ if str(_PR) not in sys.path:
 
 # Reuse the canonical tagger + tier reference.
 from tag_portal_index import (  # noqa: E402
+    KEY_EXCLUDE,
     KEY_TOKENS,
     PAIR_RULES,
     TIER_ORDER,
@@ -44,6 +45,10 @@ def detect_key(column_name: str) -> tuple[str | None, str | None]:
         return None, None
     best_key, best_tier = None, None
     for key, (tier, toks) in KEY_TOKENS.items():
+        # A false-friend token vetoes the match (e.g. STATE_ICPSR -> {icpsr,state}
+        # must NOT tag as ICPSR — the 'state' token is in KEY_EXCLUDE['ICPSR']).
+        if tk & KEY_EXCLUDE.get(key, set()):
+            continue
         if (tk & toks) and (best_tier is None or TIER_RANK[tier] < TIER_RANK[best_tier]):
             best_key, best_tier = key, tier
     if best_key is not None:
@@ -102,6 +107,12 @@ NORM_RULES: dict[str, tuple[str, int]] = {
     "NAICS": ("code", 0), "SIC": ("code", 0), "NCES": ("code", 0),
     "DOCKET": ("code", 0), "PATENT": ("code", 0), "FIPS": ("code", 0), "ZIP": ("code", 0),
     "COUNTRY": ("country", 0),
+    # Politician IDs (Step-K politics). Both are opaque member IDs, not zero-
+    # significant numeric codes, so 'alnum_upper': strip punctuation, upper-case, NO
+    # width pad and NO leading-zero stripping. Verified against live values --
+    # BIOGUIDE 'B001261' (1 letter + 6 digits), ICPSR '40305'/'5611' (small integer,
+    # never zero-padded); the empty-string ICPSR placeholder NULLs out via NULLIF.
+    "BIOGUIDE": ("alnum_upper", 0), "ICPSR": ("alnum_upper", 0),
     # Names: token-SORT + strip legal-suffix / credential noise, so 'SMITH, JOHN MD'
     # == 'JOHN SMITH' and 'Memorial Health Inc' == 'HEALTH MEMORIAL'. PERSON is a
     # distinct key (person-name columns) but shares the canonicalizer for now.

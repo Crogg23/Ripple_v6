@@ -2,21 +2,22 @@
 
 A CLI agent that onboards data sources into the **Ripple** Library end to end.
 Give it a URL (or run the batch) and it does recon, writes the ingestion script,
-lands the data in `LIBRARY_RAW`, scaffolds dbt models, and registers the source in
-`LIBRARY_META` — pausing at **five checkpoints** so you (the foreman) approve every
-step before it runs.
+lands the data in `LIBRARY_RAW`, scaffolds dbt models, registers the source in
+`LIBRARY_META`, and wires the new table into the connection graph — pausing at
+**six checkpoints** so you (the foreman) approve every step before it runs.
 
 ```bash
 python onboard.py --url https://earthquake.usgs.gov/fdsnws/event/1/
 python onboard.py --name FRED            # or look one up in the queue by name
-python onboard.py --batch                # the pre-loaded queue, resumable
+python onboard.py --batch --queue my_queue.json   # batch from a JSON queue file, resumable
+python onboard.py --batch                # the built-in demo queue (sources_queue.py)
 ```
 
 At every checkpoint: `go` | `edit <feedback>` | `skip` | `abort`.
 
 ---
 
-## The 5-checkpoint flow
+## The 6-checkpoint flow
 
 ```
 [1] RECON     reads the source docs -> a SOURCE_REGISTRY-shaped profile + SOURCE_ID
@@ -24,10 +25,21 @@ At every checkpoint: `go` | `edit <feedback>` | `skip` | `abort`.
 [3] LOAD      runs it, hashes the source, snapshot-replaces the landing table, logs the run
 [4] DBT       generates staging + (optional) intermediate + mart models, writes them
 [5] REGISTRY  upserts the source into LIBRARY_META.REGISTRY.SOURCE_REGISTRY
+[6] CONNECT   incrementally links the just-landed table into the connection graph
 ```
 
 Nothing executes without your `go`. Batch mode shows a `[3 of 37]` counter and
 tracks state in `onboarding_log.json` so an interrupted run resumes.
+
+A source in the batch log can end in more states than complete/failed:
+
+| Status | Meaning | On the next run |
+|--------|---------|-----------------|
+| `complete` | every checkpoint ran | skipped |
+| `failed` | crash or auto-repair exhausted | retried (until the quarantine cap) |
+| `empty` | loaded, but the density gate found no real data | counts as an attempt; never registered live |
+| `needs_key` | recon says it needs an API key that isn't in `.env` | skipped until the key appears — no LLM burn |
+| `already_cataloged` | the SOURCE_ID already has landed data | terminal — pin a different `source_id` if it's new |
 
 ---
 
@@ -52,7 +64,16 @@ provenance columns:
 |--------|------|---------|
 | `_INGESTED_AT` | TIMESTAMP_NTZ | when the agent loaded the row |
 | `_SOURCE_RUN_ID` | VARCHAR | the run's UUID (joins to `INGEST_RUNS.RUN_ID`) |
-| `_SRC_SHA256` | VARCHAR | SHA-256 of the source payload (joins to `INGEST_RUNS.SHA256`) |
+| `_SRC_SHA256` | VARCHAR | SHA-256 of the payload the row arrived in (see below) |
+
+**The SHA contract depends on the load mode.** For snapshot and incremental loads,
+every row's `_SRC_SHA256` is the hash of the whole source payload and equals
+`INGEST_RUNS.SHA256` — a straight equality join works. For **chunked** streaming
+loads, each row carries the hash of *its own chunk* (the file is never held whole
+in memory), and `INGEST_RUNS.SHA256` is a **manifest hash** — a SHA-256 over the
+concatenated chunk hashes. So on chunked sources the run-level SHA proves the
+run's identity, but it will never equal any row's `_SRC_SHA256`; join those on
+`_SOURCE_RUN_ID` = `RUN_ID` instead.
 
 Loads are **snapshot-replace** → re-running never duplicates. If the source's
 SHA-256 matches its last successful run, the reload is skipped
@@ -117,7 +138,7 @@ In fake mode the LOAD / DBT / REGISTRY steps run as dry runs (they print what th
 
 ```
 onboard.py        entry point: single + batch modes, the checkpoint loop
-sources_queue.py  the pre-loaded source queue
+sources_queue.py  the built-in demo queue (legacy; real pours use --queue <file.json>)
 recon.py          [1] fetch docs + Claude recon -> resolved registry profile
 ingest.py         [2][3] generate script, run it, hash + snapshot-replace + log the run
 scaffold_dbt.py   [4] generate + write staging / intermediate / mart + schema.yml

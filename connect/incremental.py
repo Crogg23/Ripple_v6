@@ -319,7 +319,9 @@ def _entity_type_sql(col_ref: str) -> str:
     """Identical mapping to spine._ENTITY_TYPE_SQL, but with the key_type column
     reference injected so it's unambiguous when joined against _AFFECTED."""
     return (f"CASE {col_ref} WHEN 'NPI' THEN 'provider' WHEN 'CCN' THEN 'facility' "
-            f"WHEN 'IMO' THEN 'vessel' WHEN 'MMSI' THEN 'vessel' ELSE 'organization' END")
+            f"WHEN 'IMO' THEN 'vessel' WHEN 'MMSI' THEN 'vessel' "
+            f"WHEN 'BIOGUIDE' THEN 'person' WHEN 'ICPSR' THEN 'person' "
+            f"ELSE 'organization' END")
 
 
 def _entity_id_sql(key_type_ref: str, val_ref: str) -> str:
@@ -380,6 +382,14 @@ def reslice_spine(conn, table: str, run_id: str, dry_run: bool = False) -> dict:
     db.rows(conn, f"DELETE FROM {SKEYSET_FQN} WHERE TABLE_NAME = '{lit}'")
     db.rows(conn, f"INSERT INTO {SKEYSET_FQN} (TABLE_NAME, KEY_TYPE, VAL) "
                   f"SELECT '{lit}', KEY_TYPE, VAL FROM _NEW")
+
+    # KEYSET_LIVE fix: a spine table ALSO carries a discover KEYSET_LIVE partition
+    # (its FULL key surface — BIOGUIDE + ICPSR + NAME@geo, not just the one spine key).
+    # reslice_spine used to refresh only SPINE_KEYSET_LIVE, leaving that discover
+    # partition stale. Refresh it here from the same fingerprint helper reslice_discover
+    # uses, so both keysets stay coherent after a spine-table reslice.
+    disc_keys = _refresh_discover_keyset(conn, table)
+    stats["discover_key_partitions"] = [k for k, _ in disc_keys]
 
     # membership/retraction = _AFFECTED (a clean no-op when only attributes moved) ---
     stats.update(_merge_entity_map(conn, run_id))
@@ -606,13 +616,16 @@ def _backfill_leads(conn) -> int:
 # This is what "link a brand-new source the moment it lands" means for the ~747
 # tables that aren't in the 15-table spine.
 # =========================================================================== #
-def reslice_discover(conn, table: str, run_id: str, dry_run: bool = False) -> dict:
+def _discover_keyset_inserts(conn, table: str) -> list[tuple[str, str]]:
+    """Derive the (key_label, normalized_sql_expr) list for a table's discover
+    KEYSET_LIVE partition — the full discover key surface (value keys + NAME@geo),
+    NOT just the single spine key. Mirrors discover._build_keysets selection for one
+    table. Factored out so BOTH reslice_discover (non-spine tables) and reslice_spine
+    (spine tables — which ALSO carry a discover partition) refresh the same way."""
     from . import fingerprint
-    lit = table.replace("'", "''")
     fp = fingerprint.fingerprint_table(conn, table)   # reuse the single-table scan
     info_keys = fp["keys"]
 
-    # mirror discover._build_keysets selection for ONE table (value keys + NAME@geo)
     inserts: list[tuple[str, str]] = []   # (key_label, normalized_sql_expr)
     seen: set[str] = set()
     for k in info_keys:
@@ -634,17 +647,35 @@ def reslice_discover(conn, table: str, run_id: str, dry_run: bool = False) -> di
             gexpr = normalize_sql(geo, quote_ident(geo_col["column"]))
             inserts.append((f"NAME@{geo}", f"{nexpr} || '|' || {gexpr}"))
             break
+    return inserts
 
-    if dry_run:
-        return {"table": table, "key_partitions": [k for k, _ in inserts], "mode": "preview"}
 
-    # SEAM #1: replace this table's KEYSET_LIVE partition (DELETE then INSERT).
+def _refresh_discover_keyset(conn, table: str) -> list[tuple[str, str]]:
+    """SEAM #1 for the DISCOVER keyset (KEYSET_LIVE): replace this table's partition
+    (DELETE then per-key INSERT). Returns the inserts list so callers can reason
+    about which keys landed. NEVER derive this partition from a single spine slice --
+    KEYSET_LIVE holds ALL fingerprinted keys per table (~4 partitions/table), so a
+    naive spine-only refresh would wipe the other key partitions."""
+    lit = table.replace("'", "''")
+    inserts = _discover_keyset_inserts(conn, table)
     db.rows(conn, f"DELETE FROM {KEYSET_FQN} WHERE TABLE_NAME = '{lit}'")
     for key, expr in inserts:
         guard = " AND ".join(f"{p} IS NOT NULL" for p in expr.split(" || '|' || ")) \
             if key.startswith("NAME@") else f"{expr} IS NOT NULL"
         db.rows(conn, f"INSERT INTO {KEYSET_FQN} (TABLE_NAME, KEY, VAL) "
                       f"SELECT DISTINCT '{lit}', '{key}', {expr} FROM {db.fqn(table)} WHERE {guard}")
+    return inserts
+
+
+def reslice_discover(conn, table: str, run_id: str, dry_run: bool = False) -> dict:
+    lit = table.replace("'", "''")
+
+    if dry_run:
+        inserts = _discover_keyset_inserts(conn, table)
+        return {"table": table, "key_partitions": [k for k, _ in inserts], "mode": "preview"}
+
+    # SEAM #1: replace this table's KEYSET_LIVE partition (DELETE then INSERT).
+    inserts = _refresh_discover_keyset(conn, table)
 
     # SEAM #4: bounded self-join — new keys (this table) vs the rest of the keyset.
     counts = {(r["TABLE_NAME"], r["KEY"]): int(r["ND"]) for r in db.dicts(conn, f"""
