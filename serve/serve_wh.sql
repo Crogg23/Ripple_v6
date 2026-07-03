@@ -8,7 +8,7 @@
 --     (already verified to SELECT the full backbone + CATALOG + INGEST_RUNS),
 --   • on a dedicated X-Small SERVE_WH that auto-suspends fast,
 --   • capped by its OWN resource monitor so a runaway query can't drain the
---     account-level RIPPLE_BUDGET (30 cr/mo, ~9 left at probe time) and suspend ETL.
+--     account-level RIPPLE_BUDGET (live numbers: SHOW RESOURCE MONITORS - never trust prose) and suspend ETL.
 -- =====================================================================
 
 USE ROLE ACCOUNTADMIN;

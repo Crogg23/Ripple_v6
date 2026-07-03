@@ -1,7 +1,35 @@
 # Build State
-Last updated: 2026-07-02
+Last updated: 2026-07-03
 
-## CURRENT FOCUS — FABLE AUDIT → INSTRUMENT-HARDENING SESSION (2026-07-02, latest)
+## CURRENT FOCUS — THE INVESTIGATOR INSTRUMENT SHIPPED (2026-07-03, latest)
+**Built and live-proven: the plug-and-play, code-visible Plotly instrument over the whole
+Library.** `python ripple.py chart "<SQL>"` → chart in the browser + an editable card
+(`investigations/<slug>/qNN_*.py`). Full handoff: `outputs/INSTRUMENT_BUILD_HANDOFF_2026-07-03.md`;
+manual: `viz/README.md`.
+
+- **viz/ package** (theme·plugs·guard·sqlrun·catalog·safety·card) + `ripple chart` verb +
+  Workbench (5th serve/ view, AppTest-smoke-tested). 89 new offline tests; suite 411 green.
+- **Live-proven on 4 unlike domains** incl. a typed mart with NO catalog row
+  (POLITICS__MEMBER_MONEY_RAISED — the two-arm find() sees marts CATALOG can't) and a
+  zero-wiring growth proof (FED_EOIR_CASE_DATA, landed mid-pour, named in no design doc).
+  Charting cost ~0 credits (42.42/300 before and after).
+- **Safety live**: name-only join → [LEAD] badge baked into the card; raw `"CONNECT".LEADS`
+  read → refused → `V_LEADS_PUBLISHED` (NEW view, created + verified: 1,030 leads all
+  pending/unpublished); DML → refused at first keyword. Classifier is fail-closed and
+  downgrade-only (never certifies "fact").
+- **Read-only lane REALITY (probed)**: the PAT session can't `USE ROLE` (runs as
+  ACCOUNTADMIN) and CLAUDE_MCP_READONLY holds CREATE TABLE — today's wall is the client
+  guard + single-statement execute, and the tool SAYS so on every run. Chris's turn-on:
+  `scripts/instrument_snowflake_setup.sql` (fresh RIPPLE_READER role + role-bound PAT →
+  `SNOWFLAKE_SERVE_PAT`) + `serve/serve_wh.sql` (SERVE_WH/SERVE_MON still don't exist live).
+- **RED FLAG found during proof: `fed_eoir_case_data` is a broken load** — 12.6M rows, ONE
+  column, each cell a full tab-separated record (TSV parsed as single-column; density gate
+  passed it because cells are non-empty). Needs re-land; consider a 1-col+>1M-rows tripwire.
+- Process: 6 readers → design → 8-lens adversarial stress-test (8/8 GO-WITH-FIXES) → build →
+  midpoint live proof → multi-agent diff review. Deliberate v1 cuts: `ripple chart nl`
+  (session loop IS the NL layer), choropleth_county (geojson dep).
+
+## PRIOR FOCUS — FABLE AUDIT → INSTRUMENT-HARDENING SESSION (2026-07-02)
 **A full-repo Fable audit (→ `outputs/FABLE_AUDIT_2026-07-02.md`, being written this session) fed a
 single hardening session: every BAD finding + instrument-side COULD-BE fixed in one pass. The plan —
 waves, owners, and the adversarial stress-test amendments that constrain each fix — is

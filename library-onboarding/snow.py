@@ -11,15 +11,23 @@ from typing import Optional
 from config import ConfigError, settings
 
 
-def connect():
+def connect(*, pat=None, warehouse=None, role=None, session_parameters=None):
     """Open a Snowflake connection. Fails loudly if credentials are missing.
 
     Auth precedence: a Programmatic Access Token (SNOWFLAKE_PAT) is used in place
     of a password when present. By default the PAT is supplied as the password;
     set SNOWFLAKE_AUTHENTICATOR=PROGRAMMATIC_ACCESS_TOKEN to pass it as a token.
+
+    Optional keyword overrides (all default to config settings, so every existing
+    caller is unchanged): `pat` swaps the credential (e.g. a read-only serving PAT),
+    `warehouse`/`role` pin the session, and `session_parameters` are applied AT
+    CONNECT (one round trip) instead of via post-connect ALTER SESSION calls.
+    config.settings freezes env at import, so overrides MUST be parameters here —
+    mutating os.environ after import does nothing.
     """
     settings.require("snowflake_account", "snowflake_user", "snowflake_warehouse")
-    if not (settings.snowflake_pat.strip() or settings.snowflake_password.strip()):
+    pat = (pat or "").strip() or None
+    if not (pat or settings.snowflake_pat.strip() or settings.snowflake_password.strip()):
         raise ConfigError("Set SNOWFLAKE_PAT (programmatic access token) or SNOWFLAKE_PASSWORD.")
     try:
         import snowflake.connector
@@ -31,21 +39,34 @@ def connect():
     kwargs = {
         "account": settings.snowflake_account,
         "user": settings.snowflake_user,
-        "warehouse": settings.snowflake_warehouse,
-        "role": settings.snowflake_role or None,
+        "warehouse": warehouse or settings.snowflake_warehouse,
+        "role": role or settings.snowflake_role or None,
     }
-    pat = settings.snowflake_pat.strip()
+    if session_parameters:
+        # merge, never replace: every session keeps the hung-query guards even
+        # when a caller pins only its own parameters
+        sp = dict(session_parameters)
+        try:
+            secs = int(getattr(settings, "statement_timeout_s", 3600) or 0)
+        except Exception:
+            secs = 3600
+        if secs > 0:
+            sp.setdefault("STATEMENT_TIMEOUT_IN_SECONDS", secs if "STATEMENT_TIMEOUT_IN_SECONDS" not in sp else sp["STATEMENT_TIMEOUT_IN_SECONDS"])
+            sp.setdefault("ABORT_DETACHED_QUERY", True)
+        kwargs["session_parameters"] = sp
+    tok = (pat or settings.snowflake_pat).strip()
     auth = settings.snowflake_authenticator.strip()
-    if pat:
+    if tok:
         if auth:
             kwargs["authenticator"] = auth
-            kwargs["token"] = pat
+            kwargs["token"] = tok
         else:
-            kwargs["password"] = pat  # PATs work as a password replacement
+            kwargs["password"] = tok  # PATs work as a password replacement
     else:
         kwargs["password"] = settings.snowflake_password
     conn = snowflake.connector.connect(**kwargs)
-    _apply_session_guards(conn)
+    if not session_parameters:
+        _apply_session_guards(conn)
     return conn
 
 

@@ -72,6 +72,13 @@ A batch entry can finish in more states than done/failed. The log statuses that 
 
 `SOURCE_ID` (e.g. `fed_usgs_earthquakes`) is the linchpin: landing table = `UPPER(SOURCE_ID)`; registry + logs key on it. Prefix = jurisdiction: `fed_` / `intl_` / `xc_` (cross-cutting) / `loc_` / `st_`.
 
+**The Investigator Instrument (`viz/` + `ripple chart`, 2026-07-03):** ask any table a
+question, get real editable Plotly back — `python ripple.py chart "<SQL>"` → chart + a
+runnable card in `investigations/`. Discovery is live off CATALOG + INFORMATION_SCHEMA
+(never a hardcoded list); ad-hoc SQL runs through the guarded read lane (`viz/sqlrun.py` —
+name-only joins badge as LEAD, raw `"CONNECT".LEADS` reads are refused → use
+`V_LEADS_PUBLISHED`). Manual: `viz/README.md`.
+
 **Never reference OneDrive paths on either machine.**
 
 ---

@@ -8,13 +8,14 @@ from __future__ import annotations
 import argparse
 import sys
 
-from . import deck, doctor, pour, review
+from . import chart, deck, doctor, pour, review
 
 VERBS = {
     "status": (deck, "the Morning Deck — your whole world on one screen"),
     "doctor": (doctor, "one GREEN/RED go/no-go health check"),
     "review": (review, "the batch review cockpit — drain the decision queues"),
     "pour": (pour, "plan / watch / run the onboarding pour (deterministic-first)"),
+    "chart": (chart, "ask the Library a question, get a real editable Plotly chart"),
 }
 
 

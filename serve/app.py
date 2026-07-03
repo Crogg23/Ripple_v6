@@ -108,6 +108,8 @@ def sidebar():
             goto(view="search")
         if st.button("🕸  Connection graph", use_container_width=True):
             goto(view="graph")
+        if st.button("🛠  Workbench", use_container_width=True):
+            goto(view="workbench")
         st.divider()
         with st.expander("System", expanded=False):
             try:
@@ -370,7 +372,7 @@ def render_graph():
     # Node click -> open that source (nodes are SOURCE tables).
     selected = None
     try:
-        ev = st.plotly_chart(fig, use_container_width=True, on_select="rerun",
+        ev = st.plotly_chart(fig, use_container_width=True, theme=None, on_select="rerun",
                              selection_mode="points", key="graph")
         pts = (ev or {}).get("selection", {}).get("points", [])
         if pts:
@@ -379,7 +381,7 @@ def render_graph():
                 selected = selected[0]
     except TypeError:
         # Older Streamlit without on_select — render static.
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, use_container_width=True, theme=None)
 
     st.caption(f"Cached layout as of **{asof}** · {graph['meta']['edges']:,} measured "
                f"edges across {len(graph['nodes'])} source nodes · drag to pan, scroll to zoom. "
@@ -409,6 +411,9 @@ def main():
         render_source(st.query_params["src"])
     elif view == "graph":
         render_graph()
+    elif view == "workbench":
+        from serve_workbench import render_workbench
+        render_workbench()
     else:
         render_search()
 

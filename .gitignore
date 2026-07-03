@@ -43,3 +43,8 @@ outputs/_task_*_out.txt
 # ripple CLI runtime state (machine-local)
 outputs/_ripple_state.json
 outputs/_ripple_domain_approvals.json
+
+# Investigator Instrument: commit the .py chart cards, not the rendered HTML
+investigations/**/*.html
+investigations/**/plotly.min.js
+outputs/_viz_cache.json
