@@ -39,6 +39,7 @@ INDEX = "LIBRARY_META.REGISTRY.PORTAL_DATASET_INDEX"
 UA = {"User-Agent": "Mozilla/5.0 (ripple-portal-loader)"}
 SOC_PAGE = 50_000
 ARC_PAGE = 2_000
+CKAN_PAGE = 10_000  # CKAN DataStore page size (datastore_search limit)
 
 # One shared session + retry on rate-limits / transient 5xx, so a hiccup on page
 # 3 of 10 doesn't discard pages 1-2 and abandon the dataset (the reliability gap a
@@ -254,9 +255,47 @@ def fetch_arcgis(rec: dict, max_rows: int) -> list[dict]:
     return out
 
 
+def _ckan_base(url: str) -> str:
+    p = urlparse(url)
+    return f"{p.scheme}://{p.netloc}"
+
+
+def fetch_ckan(rec: dict, max_rows: int) -> list[dict]:
+    """CKAN DataStore fetch. CKAN is the de-facto standard for national open-data
+    portals worldwide (data.gov.ie, datos.gob.ar, open.canada.ca, dados.gov.br...).
+    SOURCE_URL is the package page ({base}/dataset/{slug}); DATASET_ID is the slug.
+    Resolve the package's datastore-active resource, then page datastore_search --
+    bounded by max_rows and a non-advancing-offset stop, so it can never spin."""
+    base = _ckan_base(rec["SOURCE_URL"])
+    slug = rec["DATASET_ID"]
+    pkg = _get(f"{base}/api/3/action/package_show", params={"id": slug}, timeout=30).json()
+    if not pkg.get("success"):
+        raise RuntimeError(f"CKAN package_show failed for {slug}")
+    resources = pkg["result"].get("resources") or []
+    rid = next((r["id"] for r in resources if r.get("datastore_active")), None)
+    if not rid:
+        raise RuntimeError(f"no datastore-active resource for {slug} "
+                           f"({len(resources)} resources, none queryable)")
+    out, offset = [], 0
+    while len(out) < max_rows:
+        page = min(CKAN_PAGE, max_rows - len(out))
+        res = _get(f"{base}/api/3/action/datastore_search",
+                   params={"resource_id": rid, "limit": page, "offset": offset}).json()
+        recs = (res.get("result") or {}).get("records") or []
+        if not recs:
+            break
+        # drop CKAN's internal bookkeeping cols; flatten nested values to JSON text
+        out.extend({k: _flatten(v) for k, v in row.items()
+                    if k not in ("_id", "_full_text", "rank")} for row in recs)
+        offset += len(recs)
+        if len(recs) < page:
+            break
+    return out
+
+
 # Platform registry -- ONE place to add a platform end to end. The candidate SQL
 # derives its platform filter from these keys, so a new fetcher is never dead code.
-PLATFORMS = {"SOCRATA": fetch_socrata, "ARCGIS": fetch_arcgis}
+PLATFORMS = {"SOCRATA": fetch_socrata, "ARCGIS": fetch_arcgis, "CKAN": fetch_ckan}
 _PLATFORM_SQL = ", ".join(f"'{p}'" for p in PLATFORMS)
 
 

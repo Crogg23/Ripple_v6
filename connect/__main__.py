@@ -95,7 +95,7 @@ def main() -> int:
     sf.add_argument("--kind", default=None, choices=["lead", "link", "entity"])
 
     h = sub.add_parser("harvest", help="bulk-load datasets from the portal index (no LLM)")
-    h.add_argument("--platform", choices=["SOCRATA", "ARCGIS"], default=None)
+    h.add_argument("--platform", choices=["SOCRATA", "ARCGIS", "CKAN"], default=None)
     h.add_argument("--with-key", action="store_true", help="only datasets that carry a join key")
     h.add_argument("--connectable", action="store_true",
                    help="target ENTITY-key datasets, ordered to wire into data you already hold (#3)")
