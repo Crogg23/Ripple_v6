@@ -71,8 +71,8 @@ UA = {"User-Agent": "Ripple-Library/1.0 (data onboarding; w.rogers9999@gmail.com
 PER_PAGE = 1000
 DEFAULT_GTE = "2023-01-01"
 DEFAULT_LTE = "2026-06-16"
-SCRATCH = Path("c:/Code/Ripple_v6/.scratch/"
-               "e8eac5fb-de36-4362-9440-da24a904b9b4/scratchpad")
+SCRATCH = Path(__file__).resolve().parents[1] / ".scratch" / "loader_downloads"
+SCRATCH.mkdir(parents=True, exist_ok=True)
 
 # Landing column  <-  API field. (snake_case API field name)
 # Order matches DESCRIBE TABLE so the frame lines up before write_pandas.

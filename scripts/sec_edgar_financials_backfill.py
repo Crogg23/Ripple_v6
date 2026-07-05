@@ -64,8 +64,8 @@ TABLE = "FED_SEC_EDGAR_FINANCIALS"
 SID = "fed_sec_edgar_financials"
 UA = {"User-Agent": "Ripple-Library w.rogers9999@gmail.com"}
 CHUNK = 250_000
-SCRATCH = Path("c:/Code/Ripple_v6/.scratch/"
-               "e8eac5fb-de36-4362-9440-da24a904b9b4/scratchpad")
+SCRATCH = Path(__file__).resolve().parents[1] / ".scratch" / "loader_downloads"
+SCRATCH.mkdir(parents=True, exist_ok=True)
 
 # the 36 sub.txt columns, in file order == landing column order (UPPER).
 SUB_COLS = [

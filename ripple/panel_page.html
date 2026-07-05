@@ -1,0 +1,1075 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ripple Control Panel</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230d1117'/%3E%3Ccircle cx='16' cy='16' r='4' fill='none' stroke='%232f81f7' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%232f81f7' stroke-width='1.5' opacity='.55'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230d1117'/%3E%3C/svg%3E">
+<script src="/static/plotly.min.js"></script>
+<style>
+:root{
+  --bg:#0d1117; --panel:#161b22; --panel2:#1b2230; --line:#21262d;
+  --tx:#e6edf3; --mut:#8b949e; --dim:#6e7681; --ac:#2f81f7;
+  --ok:#3fb950; --warn:#d29922; --orange:#db6d28; --bad:#f85149;
+}
+*{box-sizing:border-box; margin:0}
+html,body{background:var(--bg); color:var(--tx);
+  font:14px/1.5 system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+a{color:var(--ac); text-decoration:none}
+.wrap{max-width:1280px; margin:0 auto; padding:0 20px 90px}
+
+/* ---------- header ---------- */
+header{position:sticky; top:0; z-index:40; background:rgba(13,17,23,.92);
+  backdrop-filter:blur(6px); border-bottom:1px solid var(--line)}
+.hbar{max-width:1280px; margin:0 auto; padding:12px 20px; display:flex; gap:14px; align-items:center}
+.brand{font-weight:700; font-size:16px; letter-spacing:.4px}
+.brand span{color:var(--ac)}
+.chips{display:flex; gap:8px; flex-wrap:wrap; align-items:center}
+.chip{display:inline-flex; gap:6px; align-items:center; padding:3px 10px; border:1px solid var(--line);
+  border-radius:999px; font-size:12px; color:var(--mut); background:var(--panel)}
+.chip b{color:var(--tx); font-weight:600}
+.dot{width:8px; height:8px; border-radius:50%; background:var(--dim); flex:none}
+.dot.ok{background:var(--ok)} .dot.warn{background:var(--warn)} .dot.bad{background:var(--bad)}
+.spacer{flex:1}
+button{font:inherit; cursor:pointer; border-radius:6px; border:1px solid var(--line);
+  background:var(--panel); color:var(--tx); padding:6px 14px}
+button:hover{background:var(--panel2)}
+button.primary{background:var(--ac); border-color:var(--ac); color:#fff; font-weight:600}
+button.primary:hover{filter:brightness(1.12)}
+button.danger{border-color:var(--bad); color:var(--bad)}
+button:disabled{opacity:.45; cursor:not-allowed}
+
+/* ---------- tabs ---------- */
+nav{display:flex; gap:2px; max-width:1280px; margin:0 auto; padding:0 20px}
+nav button{border:none; background:none; color:var(--mut); padding:10px 14px; border-bottom:2px solid transparent; border-radius:0}
+nav button.on{color:var(--tx); border-bottom-color:var(--ac); font-weight:600}
+nav button:hover{background:none; color:var(--tx)}
+
+/* ---------- layout ---------- */
+section.view{display:none; padding-top:18px}
+section.view.on{display:block}
+h2{font-size:13px; text-transform:uppercase; letter-spacing:1px; color:var(--mut); margin:26px 0 10px}
+.stale{opacity:.55; transition:opacity .2s}
+
+/* tiles */
+.tiles{display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:10px}
+.tile{background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:14px 16px}
+.tile .v{font-size:26px; font-weight:650; margin-top:2px}
+.tile .l{font-size:12px; color:var(--mut)}
+.tile .s{font-size:11px; color:var(--dim); margin-top:4px}
+.tile .v.okc{color:var(--ok)} .tile .v.warnc{color:var(--warn)} .tile .v.badc{color:var(--bad)}
+
+/* connection-problem banner — ONE plain-english banner with the fix, not a toast per request */
+#connBanner{display:none; background:rgba(248,81,73,.10); border-bottom:1px solid rgba(248,81,73,.45)}
+#connBanner.on{display:block}
+#connBanner .inner{max-width:1280px; margin:0 auto; padding:10px 20px; font-size:13px;
+  display:flex; gap:6px 14px; align-items:center; flex-wrap:wrap}
+#connBanner b{color:var(--bad)}
+#connBanner .raw{flex-basis:100%; color:var(--dim); font:11px ui-monospace,SFMono-Regular,Menlo,monospace}
+
+/* headline banner — the one-sentence answer to "how's my data?" */
+#headline{background:var(--panel); border:1px solid var(--line); border-radius:10px;
+  padding:14px 18px; margin-bottom:12px; font-size:17px; line-height:1.45; display:none}
+#headline .sub2{font-size:12.5px; color:var(--mut); margin-top:3px}
+
+/* filter row */
+.frow{display:flex; gap:8px; align-items:center; margin:16px 0 10px; flex-wrap:wrap}
+.frow .preset{padding:4px 12px; border-radius:999px; font-size:12px}
+.frow .preset.on{background:var(--ac); border-color:var(--ac); color:#fff; font-weight:600}
+.frow input[type=search], .frow select{background:var(--panel); border:1px solid var(--line);
+  color:var(--tx); border-radius:6px; padding:6px 10px; font:inherit}
+.frow input[type=search]{min-width:230px}
+.frow label{font-size:12px; color:var(--mut)}
+
+/* cards + charts */
+.cards{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+.card{background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:12px}
+.card.full{grid-column:1/-1}
+.card h3{font-size:13px; color:var(--tx); font-weight:600; margin:2px 4px 8px}
+.card .sub{font-size:11px; color:var(--dim); margin:-6px 4px 8px}
+.chart{width:100%; min-height:240px}
+@media (max-width:900px){.cards{grid-template-columns:1fr}}
+
+/* tables */
+table{width:100%; border-collapse:separate; border-spacing:0; background:var(--panel);
+  border:1px solid var(--line); border-radius:10px; font-size:13px}
+th,td{padding:7px 10px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top}
+th{position:sticky; top:98px; background:var(--panel2); color:var(--mut); font-weight:600; font-size:12px;
+  cursor:pointer; user-select:none; white-space:nowrap}
+tr:hover td{background:var(--panel2)}
+td.num, th.num{text-align:right; font-variant-numeric:tabular-nums}
+td.mut{color:var(--mut)} td.dim{color:var(--dim)}
+.clip{max-width:420px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+tr.click{cursor:pointer}
+
+/* pills */
+.pill{display:inline-block; padding:1px 9px; border-radius:999px; font-size:11px; font-weight:600; white-space:nowrap}
+.p-fresh,.p-success,.p-ok,.p-complete{background:rgba(63,185,80,.15); color:var(--ok)}
+.p-due,.p-empty,.p-warn{background:rgba(210,153,34,.15); color:var(--warn)}
+.p-overdue,.p-error,.p-timeout{background:rgba(219,109,40,.16); color:var(--orange)}
+.p-stale,.p-failed,.p-bad,.p-killed,.p-cancelled,.p-kill_failed{background:rgba(248,81,73,.14); color:var(--bad)}
+.p-dead{background:rgba(125,42,42,.28); color:#f0a0a0}
+.p-unknown,.p-unmeasured,.p-none,.p-static,.p-gray{background:rgba(139,148,158,.14); color:var(--mut)}
+.p-recipe{background:rgba(63,185,80,.13); color:var(--ok); border:1px solid rgba(63,185,80,.4)}
+.p-script{background:rgba(47,129,247,.13); color:#79b8ff; border:1px solid rgba(47,129,247,.4)}
+.p-recipe_disabled{background:rgba(210,153,34,.12); color:var(--warn); border:1px solid rgba(210,153,34,.35)}
+.p-script_broken,.p-script_replace{background:rgba(139,148,158,.12); color:var(--dim); border:1px solid var(--line)}
+.p-llm{background:rgba(144,133,233,.13); color:#a5a0f0; border:1px solid rgba(144,133,233,.4)}
+.p-running{background:rgba(47,129,247,.15); color:var(--ac)}
+
+/* attention lists */
+.two{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+@media (max-width:900px){.two{grid-template-columns:1fr}}
+ul.plain{list-style:none}
+ul.plain li{padding:7px 4px; border-bottom:1px solid var(--line); font-size:13px; display:flex; gap:8px; align-items:baseline}
+ul.plain li:last-child{border-bottom:none}
+ul.plain .when{color:var(--dim); font-size:11px; margin-left:auto; white-space:nowrap}
+
+/* drawer */
+#drawer{position:fixed; top:0; right:-620px; width:600px; max-width:94vw; height:100%; z-index:60;
+  background:var(--panel); border-left:1px solid var(--line); transition:right .18s; overflow-y:auto; padding:18px}
+#drawer.on{right:0}
+#drawer h3{font-size:16px; margin-bottom:2px}
+#drawer .mut{color:var(--mut); font-size:12px}
+.kv{display:grid; grid-template-columns:150px 1fr; gap:4px 10px; font-size:13px; margin:12px 0}
+.kv div:nth-child(odd){color:var(--mut)}
+#overlay{position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:50; display:none}
+#overlay.on{display:block}
+
+/* modal */
+.modal{position:fixed; inset:0; z-index:70; display:none; align-items:center; justify-content:center}
+.modal.on{display:flex}
+.mbox{background:var(--panel); border:1px solid var(--line); border-radius:12px; width:640px; max-width:94vw;
+  max-height:88vh; overflow-y:auto; padding:20px}
+.mbox h3{margin-bottom:10px}
+.mbox .cmd{background:var(--bg); border:1px solid var(--line); border-radius:8px; padding:10px 12px;
+  font:12px ui-monospace,SFMono-Regular,Menlo,monospace; color:#79b8ff; overflow-x:auto; white-space:pre-wrap; word-break:break-all}
+.note{border-left:3px solid var(--warn); background:rgba(210,153,34,.08); padding:8px 12px; margin:10px 0; font-size:12px; border-radius:0 6px 6px 0}
+.note.red{border-color:var(--bad); background:rgba(248,81,73,.08)}
+.note.blue{border-color:var(--ac); background:rgba(47,129,247,.08)}
+.mrow{display:flex; gap:10px; margin-top:16px; justify-content:flex-end}
+.opt{display:block; border:1px solid var(--line); border-radius:10px; padding:12px 14px; margin:8px 0; cursor:pointer}
+.opt:hover{background:var(--panel2)}
+.opt b{display:block}
+.opt .d{font-size:12px; color:var(--mut)}
+.argrow{display:flex; gap:8px; align-items:center; margin:6px 0; font-size:13px}
+.argrow input{background:var(--bg); border:1px solid var(--line); color:var(--tx); border-radius:6px; padding:5px 8px; font:inherit; width:140px}
+.argrow .fl{width:110px; color:var(--mut); font-family:ui-monospace,monospace; font-size:12px}
+
+/* job dock + console */
+#dock{position:fixed; left:0; right:0; bottom:0; z-index:45; background:var(--panel2);
+  border-top:1px solid var(--line); display:none}
+#dock.on{display:block}
+.dockbar{max-width:1280px; margin:0 auto; padding:8px 20px; display:flex; gap:12px; align-items:center; cursor:pointer}
+.console{background:#010409; border:1px solid var(--line); border-radius:8px; padding:10px;
+  font:12px ui-monospace,SFMono-Regular,Menlo,monospace; white-space:pre-wrap; word-break:break-all;
+  max-height:420px; overflow-y:auto; color:#c9d1d9}
+.spin{width:12px;height:12px;border:2px solid var(--line);border-top-color:var(--ac);border-radius:50%;
+  animation:sp 1s linear infinite; flex:none}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+/* toast */
+#toasts{position:fixed; bottom:70px; right:20px; z-index:90; display:flex; flex-direction:column; gap:8px}
+.toast{background:var(--panel); border:1px solid var(--line); border-left:3px solid var(--ac);
+  border-radius:8px; padding:10px 14px; font-size:13px; max-width:420px; box-shadow:0 6px 24px rgba(0,0,0,.4)}
+.toast.err{border-left-color:var(--bad)}
+.toast.ok{border-left-color:var(--ok)}
+.empty{color:var(--dim); padding:18px; text-align:center; font-size:13px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hbar">
+    <div class="brand">RIPPLE <span>CONTROL PANEL</span></div>
+    <div class="chips" id="chips"></div>
+    <div class="spacer"></div>
+    <button id="reloadBtn" title="re-pull the numbers on this page from Snowflake (doesn't download any new data)">&#8635; Re-check numbers</button>
+    <button class="primary" id="refreshBtn">&#9654; Get New Data</button>
+  </div>
+  <nav id="tabs">
+    <button data-tab="overview" class="on">Overview</button>
+    <button data-tab="sources">Sources</button>
+    <button data-tab="runs">Load History</button>
+    <button data-tab="jobs">Jobs</button>
+  </nav>
+  <div id="connBanner"><div class="inner">
+    <b id="connTitle"></b><span id="connSteps"></span>
+    <button id="connRetry">Try again</button>
+    <div class="raw" id="connDetail"></div>
+  </div></div>
+</header>
+
+<div class="wrap">
+
+<section class="view on" id="view-overview">
+  <div style="height:14px"></div>
+  <div id="headline"></div>
+  <div class="tiles" id="tiles">
+    <div class="tile"><div class="l">Connecting to Snowflake…</div>
+      <div class="v" style="font-size:15px;font-weight:400;color:var(--mut)">first load can take
+      ~20 seconds while the warehouse wakes up</div></div>
+  </div>
+
+  <h2>Loading activity</h2>
+  <div class="frow" id="rangeRow">
+    <button class="preset" data-days="7">7d</button>
+    <button class="preset on" data-days="30">30d</button>
+    <button class="preset" data-days="90">90d</button>
+    <button class="preset" data-days="365">1y</button>
+    <label id="asof"></label>
+  </div>
+  <div class="cards">
+    <div class="card"><h3>Data loads per day</h3><div class="sub">every attempt to pull data in, colored by how it went — full list in the Load History tab</div><div class="chart" id="chart-activity"></div></div>
+    <div class="card"><h3>Rows added per day</h3><div class="sub">heads up: some refreshes rewrite a whole table, so a big spike can be the same rows re-written, not new data</div><div class="chart" id="chart-rows"></div></div>
+    <div class="card full"><h3>How up to date is everything?</h3><div class="sub" id="freshSub"></div><div class="chart" id="chart-fresh" style="min-height:110px"></div></div>
+  </div>
+
+  <div class="two" style="margin-top:14px">
+    <div class="card"><h3>Recent failed loads</h3><ul class="plain" id="failList"></ul></div>
+    <div class="card"><h3>Most out-of-date data</h3><ul class="plain" id="overdueList"></ul></div>
+  </div>
+</section>
+
+<section class="view" id="view-sources">
+  <div class="frow">
+    <input type="search" id="srcSearch" placeholder="search by name, id, or topic…">
+    <select id="srcLife">
+      <option value="core">real data (the default view)</option>
+      <option value="landed">has data</option><option value="modeled">has data + models</option>
+      <option value="stale">gone stale</option><option value="empty">empty</option>
+      <option value="sampled">sample slices only</option>
+      <option value="">everything</option>
+    </select>
+    <select id="srcState">
+      <option value="">up to date or not?</option>
+      <option value="fresh">up to date</option><option value="due">due a refresh</option>
+      <option value="overdue">overdue</option><option value="stale">way behind</option>
+      <option value="dead">dead</option><option value="unknown">unknown</option>
+      <option value="unmeasured">not checked</option>
+    </select>
+    <select id="srcTier">
+      <option value="">any refresh type</option>
+      <option value="recipe">one-click refresh</option>
+      <option value="recipe_disabled">one-click, switched off</option>
+      <option value="script">click to top up (only adds rows)</option>
+      <option value="script_replace">manual only (could wipe the table)</option>
+      <option value="script_broken">broken loader</option>
+      <option value="llm">AI rebuild only</option>
+      <option value="none">no way to refresh</option>
+    </select>
+    <label id="srcCount"></label>
+  </div>
+  <table id="srcTable">
+    <thead><tr>
+      <th data-k="source_id">source</th>
+      <th data-k="domain">topic</th>
+      <th data-k="lifecycle">status</th>
+      <th data-k="rows" class="num">rows</th>
+      <th data-k="data_through">data up to</th>
+      <th data-k="data_age_days" class="num">days old</th>
+      <th data-k="freshness_state">up to date?</th>
+      <th data-k="last_run_status">last load</th>
+      <th>refresh</th>
+    </tr></thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+<section class="view" id="view-runs">
+  <div class="frow">
+    <button class="preset" data-rdays="7">7d</button>
+    <button class="preset on" data-rdays="30">30d</button>
+    <button class="preset" data-rdays="90">90d</button>
+    <button class="preset" data-rdays="365">1y</button>
+    <select id="runStatus">
+      <option value="">any result</option>
+      <option value="success">worked</option><option value="failed">failed</option>
+      <option value="empty">no data</option><option value="error">error</option>
+    </select>
+    <input type="search" id="runSearch" placeholder="filter by source…">
+    <label id="runCount"></label>
+  </div>
+  <table id="runTable">
+    <thead><tr>
+      <th>when</th><th>source</th><th>result</th>
+      <th class="num">rows</th><th class="num">size</th><th class="num">took</th><th>what happened</th>
+    </tr></thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+<section class="view" id="view-jobs">
+  <div class="card" id="curJobCard" style="display:none">
+    <h3 id="curJobTitle">Running job</h3>
+    <div class="mut" id="curJobMeta" style="margin:4px 0 8px"></div>
+    <div class="console" id="console"></div>
+    <div class="mrow"><button class="danger" id="cancelBtn">Cancel job</button></div>
+  </div>
+  <div class="empty" id="noJob">Nothing running right now. Hit <b>Get New Data</b> up top, or the refresh button on any source.</div>
+  <h2>Past jobs</h2>
+  <table id="jobTable">
+    <thead><tr><th>started</th><th>job</th><th>result</th><th class="num">exit code</th><th>log</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+</div>
+
+<div id="overlay"></div>
+<aside id="drawer"></aside>
+
+<div class="modal" id="modal"><div class="mbox" id="mbox"></div></div>
+
+<div id="dock"><div class="dockbar" id="dockbar">
+  <div class="spin"></div><b id="dockLabel"></b><span class="mut" id="dockSub"></span>
+  <div class="spacer"></div><span class="mut">click for live log &#8599;</span>
+</div></div>
+
+<div id="toasts"></div>
+
+<script>
+"use strict";
+/* ============================== helpers ============================== */
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+function el(tag, attrs = {}, kids = []) {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === "class") n.className = v;
+    else if (k === "text") n.textContent = v;
+    else if (k.startsWith("on")) n.addEventListener(k.slice(2), v);
+    else n.setAttribute(k, v);
+  }
+  for (const k of [].concat(kids)) if (k != null) n.append(k.nodeType ? k : document.createTextNode(k));
+  return n;
+}
+const _liveToasts = new Set();   // three views failing the same way = ONE toast, not three
+function toast(msg, kind = "") {
+  if (_liveToasts.has(msg)) return;
+  _liveToasts.add(msg);
+  const t = el("div", { class: "toast " + kind, text: msg });
+  $("#toasts").append(t);
+  setTimeout(() => { t.remove(); _liveToasts.delete(msg); }, kind === "err" ? 9000 : 5000);
+}
+async function api(path, opts) {
+  const r = await fetch(path, opts);
+  const j = await r.json().catch(() => ({ error: "bad response" }));
+  if (!r.ok || j.error) {
+    const e = new Error(j.error || r.status);
+    e.kind = j.kind; e.detail = j.detail;   // server classifies connection/auth failures
+    throw e;
+  }
+  return j;
+}
+
+/* ---- connection-problem banner: shown once, cleared on the next good read ---- */
+const CONN_HELP = {
+  token_expired: {
+    t: "Snowflake logged the panel out — the access token expired.",
+    s: "Get a new token on the Snowflake website (your profile → Settings → Authentication → Programmatic access tokens → Generate), paste it into library-onboarding/.env as SNOWFLAKE_PAT, save the file, then hit Try again. No restart needed." },
+  auth: {
+    t: "Snowflake didn't accept the login.",
+    s: "Check SNOWFLAKE_USER and SNOWFLAKE_PAT / SNOWFLAKE_PASSWORD in library-onboarding/.env, save, then hit Try again." },
+  network: {
+    t: "Can't reach Snowflake right now.",
+    s: "Check your internet connection, then hit Try again." },
+};
+const connProblem = e => !!(e && CONN_HELP[e.kind]);
+function showConnBanner(e) {
+  const h = CONN_HELP[e.kind];
+  $("#connTitle").textContent = h.t;
+  $("#connSteps").textContent = h.s;
+  $("#connDetail").textContent = e.detail || "";
+  const b = $("#connRetry"); b.disabled = false; b.textContent = "Try again";
+  $("#connBanner").classList.add("on");
+}
+function hideConnBanner() { $("#connBanner").classList.remove("on"); }
+$("#connRetry").addEventListener("click", () => {
+  const b = $("#connRetry"); b.disabled = true; b.textContent = "trying…";
+  reloadAll();   // success clears the banner; failure re-raises it with the button reset
+});
+const fmtInt = n => n == null ? "—" : Number(n).toLocaleString("en-US");
+const human = n => {
+  if (n == null) return "—";
+  n = Number(n);
+  if (n >= 1e9) return (n / 1e9).toFixed(1) + "B";
+  if (n >= 1e6) return (n / 1e6).toFixed(1) + "M";
+  if (n >= 1e3) return (n / 1e3).toFixed(1) + "K";
+  return String(n);
+};
+const bytesFmt = n => n == null ? "—" : (n >= 1e9 ? (n/1e9).toFixed(1)+" GB" : n >= 1e6 ? (n/1e6).toFixed(1)+" MB" : n >= 1e3 ? (n/1e3).toFixed(0)+" KB" : n + " B");
+const durFmt = s => s == null ? "—" : (s >= 3600 ? (s/3600).toFixed(1)+"h" : s >= 60 ? Math.round(s/60)+"m" : s+"s");
+function ago(iso) {
+  if (!iso) return "—";
+  const s = String(iso);
+  const hasOffset = /([+-]\d{2}:?\d{2}|Z)$/.test(s);  // Snowflake NTZ comes bare = UTC
+  const d = (Date.now() - new Date(hasOffset ? s : s + "Z")) / 1000;
+  if (!isFinite(d)) return s.slice(0, 16);
+  if (d < 90) return Math.max(1, Math.round(d)) + "s ago";
+  if (d < 5400) return Math.round(d / 60) + "m ago";
+  if (d < 129600) return Math.round(d / 3600) + "h ago";
+  return Math.round(d / 86400) + "d ago";
+}
+const pill = (v, cls) => el("span", { class: "pill p-" + (cls || v || "unknown"), text: v == null ? "—" : v });
+function safeHref(url) {  // catalog URLs are untrusted data; only http(s) may become links
+  try { const u = new URL(String(url)); if (u.protocol === "http:" || u.protocol === "https:") return u.href; }
+  catch (e) {}
+  return null;
+}
+
+/* ============================== theme ============================== */
+const C = { bg:"#0d1117", panel:"#161b22", line:"#21262d", tx:"#e6edf3", mut:"#8b949e",
+            ac:"#2f81f7", blue:"#3987e5", ok:"#3fb950", warn:"#d29922", orange:"#db6d28",
+            bad:"#f85149", gray:"#8b949e", dim:"#6e7681" };
+/* chart marks use the CVD-validated darker severity steps (validate_palette.js, dark
+   mode, surface #161b22 — all checks pass); text pills keep the brighter house tokens
+   because there the label, not the color, carries identity */
+const STATUS_COLOR = { success:"#2ea043", empty:"#b08800", failed:"#da3633", error:"#bc4c00" };
+const FRESH_ORDER = ["fresh","due","overdue","stale","dead","unknown","unmeasured"];
+const FRESH_COLOR = { fresh:"#2ea043", due:"#b08800", overdue:"#bc4c00", stale:"#da3633",
+                      dead:"#7d2a2a", unknown:C.gray, unmeasured:C.dim };
+/* plain-english labels shown to the human. The raw keys stay untouched in the data,
+   API filters and CSS pill classes — only what's PRINTED changes. */
+const FRESH_LABEL = { fresh:"up to date", due:"due a refresh", overdue:"overdue", stale:"way behind",
+                      dead:"dead", unknown:"unknown", unmeasured:"not checked" };
+const LIFE_LABEL  = { landed:"has data", modeled:"has data + models", stale:"gone stale",
+                      empty:"empty", sampled:"sample only", scouted:"scouted", queued:"queued" };
+const TIER_LABEL  = { recipe:"one-click", recipe_disabled:"switched off", script:"click to top up",
+                      script_replace:"manual only", script_broken:"broken", llm:"AI rebuild", none:"none" };
+const RUN_LABEL   = { success:"worked", failed:"failed", error:"error", empty:"no data", complete:"done" };
+const JOB_LABEL   = { ok:"done", failed:"failed", running:"running", cancelled:"cancelled",
+                      timeout:"timed out", kill_failed:"won't die", spawn_error:"couldn't start" };
+const fLabel = v => FRESH_LABEL[v] || v || "unknown";
+const lifeCls = l => (l === "landed" || l === "modeled") ? "ok" : l === "sampled" ? "gray"
+                    : l === "empty" ? "warn" : "bad";
+const LAYOUT = {
+  paper_bgcolor:"rgba(0,0,0,0)", plot_bgcolor:"rgba(0,0,0,0)",
+  font:{ family:'system-ui,-apple-system,"Segoe UI",sans-serif', color:C.mut, size:12 },
+  margin:{ l:52, r:16, t:8, b:36 },
+  xaxis:{ gridcolor:C.line, zeroline:false, linecolor:C.line },
+  yaxis:{ gridcolor:C.line, zeroline:false, linecolor:C.line, tickformat:"~s" },
+  hoverlabel:{ bgcolor:C.panel, bordercolor:C.line, font:{ color:C.tx, size:12 } },
+  legend:{ orientation:"h", y:1.16, x:0, bgcolor:"rgba(0,0,0,0)", font:{ color:C.mut } },
+  barmode:"stack", bargap:0.45,
+};
+const PCFG = { displaylogo:false, responsive:true, modeBarButtonsToRemove:["lasso2d","select2d","autoScale2d"] };
+const havePlotly = typeof Plotly !== "undefined";
+
+/* ============================== state ============================== */
+const S = { days:30, runDays:30, overview:null, sources:[], sortK:"source_id", sortDir:1,
+            jobId:null, jobOffset:0, jobTimer:null, chain:[], lastFinished:null, polling:false };
+
+/* ============================== boot ============================== */
+// monotonic tokens: a rapid filter/range change must not let a slow older fetch paint
+// over the newer result. Only the latest in-flight request per view is allowed to render.
+let ovSeq = 0, runSeq = 0;
+async function loadOverview(quiet) {
+  const tok = ++ovSeq;
+  if (!quiet) $("#view-overview").classList.add("stale");
+  try {
+    const data = await api("/api/overview?days=" + S.days);
+    if (tok !== ovSeq) return;         // a newer range change already superseded this
+    S.overview = data;
+    hideConnBanner();                  // a good read means the connection is back
+    renderOverview();
+  } catch (e) {
+    if (tok !== ovSeq) return;
+    if (connProblem(e)) showConnBanner(e);   // even quiet idle refreshes surface this
+    else if (!quiet) toast("couldn't load the overview: " + e.message, "err");
+    if (!S.overview) {   // first load failed: show the reason in-page, not just a toast
+      const tl = $("#tiles"); tl.textContent = "";
+      tl.append(el("div", { class:"tile", style:"grid-column:1/-1" }, [
+        el("div", { class:"l", text:"No connection to Snowflake" }),
+        el("div", { class:"v badc", style:"font-size:15px;font-weight:400",
+          text: connProblem(e) ? "The red banner up top says how to fix it." : String(e.message).slice(0, 300) }),
+        connProblem(e) ? null : el("div", { class:"s", text:"check library-onboarding/.env, then hit Re-check numbers" }),
+      ]));
+    }
+  }
+  if (tok === ovSeq) $("#view-overview").classList.remove("stale");
+}
+async function loadSources(quiet) {
+  try {
+    const j = await api("/api/sources");
+    S.sources = j.sources;
+    renderSources();
+  } catch (e) {
+    if (connProblem(e)) showConnBanner(e);
+    else if (!quiet) toast("couldn't load the sources list: " + e.message, "err");
+  }
+}
+async function loadRuns() {
+  const tok = ++runSeq;
+  const status = $("#runStatus").value, q = $("#runSearch").value.trim();
+  $("#view-runs").classList.add("stale");
+  try {
+    const j = await api(`/api/runs?days=${S.runDays}&status=${encodeURIComponent(status)}&q=${encodeURIComponent(q)}&limit=300`);
+    if (tok !== runSeq) return;        // superseded by a newer filter change
+    renderRuns(j.runs);
+  } catch (e) {
+    if (tok !== runSeq) return;
+    if (connProblem(e)) showConnBanner(e);
+    else toast("couldn't load the load history: " + e.message, "err");
+  }
+  if (tok === runSeq) $("#view-runs").classList.remove("stale");
+}
+function reloadAll() { loadOverview(); loadSources(); loadRuns(); pollJobs(); }
+
+/* ============================== overview ============================== */
+function renderOverview() {
+  const o = S.overview, vs = o.vstate || {};
+  const iv = k => parseInt(vs[k] || "0", 10);
+  const fresh = {}; (o.freshness || []).forEach(r => fresh[r.STATE] = Number(r.N));
+  const attention = (fresh.stale||0) + (fresh.overdue||0) + (fresh.due||0);
+  const fails = (o.daily || []).filter(d => d.STATUS === "failed" || d.STATUS === "error")
+                               .reduce((a, d) => a + Number(d.RUNS), 0);
+  const b = o.budget || {};
+  renderHeadline(fresh, Number(o.unmeasured || 0), fails);
+  const tiles = [
+    { l:"Up to date", v:fmtInt(fresh.fresh || 0), c:"okc", s:"data is as current as the source publishes" },
+    { l:"Needs a refresh", v:fmtInt(attention), c:attention ? "warnc" : "okc", s:`${fresh.due||0} due · ${fresh.overdue||0} overdue · ${fresh.stale||0} way behind` },
+    { l:"Failed loads (" + S.days + "d)", v:fmtInt(fails), c:fails ? "badc" : "okc", s:"details in the Load History tab" },
+    { l:"Not checkable yet", v:fmtInt(o.unmeasured), c:o.unmeasured ? "warnc" : "okc", s:"has data, but no date-check set up" },
+    { l:"Sources with data", v:fmtInt(iv("taps.landed")), s:human(iv("landing.rows")) + " rows · " + fmtInt(iv("taps.modeled")) + " also cleaned into models" },
+    { l:"Credits left to spend", v:(b.spendable ?? "—"), c:b.band === "GREEN" ? "okc" : b.band === "YELLOW" ? "warnc" : "badc", s:"spending light: " + (b.band || "?") + (b.reason ? " — " + b.reason : "") },
+  ];
+  const tl = $("#tiles"); tl.textContent = "";
+  tiles.forEach(t => tl.append(el("div", { class:"tile" }, [
+    el("div", { class:"l", text:t.l }),
+    el("div", { class:"v " + (t.c || ""), text:String(t.v) }),
+    el("div", { class:"s", text:t.s || "" }),
+  ])));
+
+  renderChips(o);
+  $("#asof").textContent = "as of " + new Date(o.generated_at).toLocaleTimeString();
+  renderActivityCharts(o.daily || []);
+  renderFreshChart(fresh, o.unmeasured);
+
+  const fl = $("#failList"); fl.textContent = "";
+  (o.failures || []).forEach(f => fl.append(el("li", {}, [
+    pill(RUN_LABEL[f.STATUS] || f.STATUS, f.STATUS), el("b", { text:f.SOURCE_ID }),
+    el("span", { class:"clip mut", text:f.MESSAGE || "", title:f.MESSAGE || "" }),
+    el("span", { class:"when", text:ago(f.STARTED_AT) }),
+  ])));
+  if (!(o.failures || []).length) fl.append(el("li", { class:"dim", text:"nothing failed in this window — clean" }));
+
+  const ol = $("#overdueList"); ol.textContent = "";
+  (o.overdue || []).forEach(f => ol.append(el("li", {}, [
+    pill(fLabel(f.FRESHNESS_STATE), f.FRESHNESS_STATE), el("b", { text:f.SOURCE_ID }),
+    el("span", { class:"mut", text:(f.CADENCE_BUCKET || "") }),
+    el("span", { class:"when", text:(f.DATA_AGE_DAYS != null ? fmtInt(f.DATA_AGE_DAYS) + " days old" : "age unknown") }),
+  ])));
+  if (!(o.overdue || []).length) ol.append(el("li", { class:"dim", text:"nothing overdue — it's all current" }));
+}
+
+function renderHeadline(fresh, unmeasured, fails) {
+  // the one-sentence answer to "what's the status of all my data?"
+  const up = fresh.fresh || 0, dead = fresh.dead || 0;
+  const behind = (fresh.due || 0) + (fresh.overdue || 0) + (fresh.stale || 0);
+  const checked = up + behind + dead + (fresh.unknown || 0);
+  let main;
+  if (!checked)
+    main = "🤷 Nothing has been date-checked yet — hit Get New Data and pick “Just re-check the dates”.";
+  else if (!behind && !fails)
+    main = `✅ All good — every source that can be checked is up to date (${fmtInt(up)} of ${fmtInt(checked)}).`;
+  else
+    main = `${(fails || behind > checked / 3) ? "⚠️" : "👍"} ${fmtInt(up)} of ${fmtInt(checked)} checked sources are up to date — ` +
+           `${fmtInt(behind)} could use a refresh` +
+           (fails ? `, and ${fmtInt(fails)} loads failed in the last ${S.days} days` : "") + ".";
+  const bits = [];
+  if (dead) bits.push(fmtInt(dead) + " look dead (the source stopped publishing)");
+  if (unmeasured) bits.push(fmtInt(unmeasured) + " have data but no date-check yet");
+  const h = $("#headline"); h.textContent = "";
+  h.append(el("div", { text: main }));
+  if (bits.length) h.append(el("div", { class:"sub2", text: bits.join(" · ") }));
+  h.style.display = "block";
+}
+
+function renderChips(o) {
+  const c = $("#chips"); c.textContent = "";
+  const b = o.budget || {};
+  const bandDot = b.band === "GREEN" ? "ok" : b.band === "YELLOW" ? "warn" : "bad";
+  c.append(el("span", { class:"chip", title:"how many Snowflake credits are left to spend — green light means refreshes are allowed" }, [
+    el("span", { class:"dot " + bandDot }), "credits ", el("b", { text:(b.spendable ?? "?") + " left" })]));
+  const hb = o.heartbeat || {};
+  const hbLive = !!hb.lock;
+  c.append(el("span", { class:"chip", title: hbLive ? "the scheduled background task is running right now" : "when the scheduled background task last ran" }, [
+    el("span", { class:"dot " + (hbLive ? "warn" : "ok") }),
+    hbLive ? "autopilot RUNNING" : "autopilot ran ", hbLive ? "" : el("b", { text: ago(hb.last_tick) })]));
+  if (o.pour_running) c.append(el("span", { class:"chip", title:"a batch of new sources is being onboarded right now" }, [el("span", { class:"dot warn" }), "ONBOARDING BATCH RUNNING"]));
+}
+
+function renderActivityCharts(daily) {
+  if (!havePlotly) return;
+  const days = [...new Set(daily.map(d => d.D))].sort();
+  const statuses = [...new Set(daily.map(d => d.STATUS))]
+      .sort((a, b) => ["success","empty","failed","error"].indexOf(a) - ["success","empty","failed","error"].indexOf(b));
+  const traces = statuses.map(st => ({
+    type:"bar", name:(RUN_LABEL[st] || st), x:days,
+    y:days.map(d => { const r = daily.find(x => x.D === d && x.STATUS === st); return r ? Number(r.RUNS) : 0; }),
+    marker:{ color: STATUS_COLOR[st] || C.gray, line:{ width:0 } },
+    hovertemplate:"%{y} " + (RUN_LABEL[st] || st) + " · %{x}<extra></extra>",
+  }));
+  Plotly.react("chart-activity", traces, { ...LAYOUT, height:250 }, PCFG);
+
+  const rows = days.map(d => daily.filter(x => x.D === d && x.STATUS === "success")
+                                  .reduce((a, x) => a + Number(x.ROWS_LOADED || 0), 0));
+  Plotly.react("chart-rows", [{
+    type:"scatter", mode:"lines", x:days, y:rows, name:"rows added",
+    line:{ color:C.blue, width:2, shape:"spline", smoothing:.6 },
+    fill:"tozeroy", fillcolor:"rgba(57,135,229,0.10)",
+    hovertemplate:"%{y:,} rows · %{x}<extra></extra>",
+  }], { ...LAYOUT, height:250, showlegend:false }, PCFG);
+}
+
+function renderFreshChart(fresh, unmeasured) {
+  if (!havePlotly) return;
+  const items = FRESH_ORDER.map(k => ({ k, n: k === "unmeasured" ? Number(unmeasured || 0) : Number(fresh[k] || 0) }))
+                           .filter(x => x.n > 0);
+  const total = items.reduce((a, x) => a + x.n, 0);
+  $("#freshSub").textContent = total + " sources · \"way behind\" = long overdue · \"dead\" = the source stopped publishing · \"not checked\" = no date-check set up yet — click any source in the Sources tab for details";
+  const traces = items.map(x => ({
+    type:"bar", orientation:"h", name:fLabel(x.k), y:[""], x:[x.n],
+    marker:{ color:FRESH_COLOR[x.k], line:{ width:0 } },
+    text: x.n >= total * 0.04 ? [`${fLabel(x.k)} ${x.n}`] : [""],
+    textposition:"inside", insidetextanchor:"middle",
+    insidetextfont:{ color: x.k === "due" ? "#0d1117" : "#ffffff", size:12 },
+    hovertemplate:`${fLabel(x.k)}: %{x} sources<extra></extra>`,
+  }));
+  Plotly.react("chart-fresh", traces,
+    { ...LAYOUT, height:110, margin:{ l:8, r:8, t:8, b:8 }, barmode:"stack",
+      xaxis:{ visible:false }, yaxis:{ visible:false }, legend:{ ...LAYOUT.legend, y:1.7 } }, PCFG);
+}
+
+/* ============================== sources ============================== */
+function renderSources() {
+  const q = $("#srcSearch").value.trim().toLowerCase();
+  const st = $("#srcState").value, tier = $("#srcTier").value, life = $("#srcLife").value;
+  const CORE = ["landed", "modeled", "stale", "empty"];
+  let rows = S.sources.filter(s =>
+    (!q || (s.source_id + " " + (s.name || "") + " " + (s.domain || "")).toLowerCase().includes(q)) &&
+    (life === "core" ? CORE.includes(s.lifecycle) : (!life || s.lifecycle === life)) &&
+    (!st || s.freshness_state === st) &&
+    (!tier || (s.refresh || {}).tier === tier));
+  const k = S.sortK, dir = S.sortDir;
+  const numeric = k === "rows" || k === "data_age_days";
+  rows.sort((a, b) => {
+    const av = a[k], bv = b[k];
+    if (av == null && bv == null) return 0;
+    if (av == null) return 1;   // nulls last, regardless of direction
+    if (bv == null) return -1;
+    if (numeric) return (Number(av) - Number(bv)) * dir;
+    return (av > bv ? 1 : av < bv ? -1 : 0) * dir;
+  });
+  $("#srcCount").textContent = rows.length + " of " + S.sources.length + " sources";
+  const tb = $("#srcTable tbody"); tb.textContent = "";
+  rows.forEach(s => {
+    const tier = (s.refresh || {}).tier;
+    const canRefresh = ["recipe","recipe_disabled","script","llm"].includes(tier);
+    const WHY = { script_replace: "manual only — one click could wipe the table",
+                  script_broken: "needs a code fix", none: "nothing to refresh with" };
+    const btn = canRefresh
+      ? el("button", { text: tier === "llm" ? "AI rebuild…" : "refresh…", style:"padding:2px 10px;font-size:12px",
+          onclick: ev => { ev.stopPropagation(); openSourceRefresh(s.source_id); } })
+      : el("span", { class:"dim", style:"font-size:11px", text: WHY[tier] || "—",
+          title: s.refresh.note || "" });
+    tb.append(el("tr", { class:"click", onclick: () => openDrawer(s.source_id) }, [
+      el("td", {}, [el("b", { text:s.source_id }), el("div", { class:"dim", style:"font-size:11px", text:(s.name || "").slice(0, 60) })]),
+      el("td", { class:"mut", text:s.domain || "—" }),
+      el("td", {}, [pill(LIFE_LABEL[s.lifecycle] || s.lifecycle, lifeCls(s.lifecycle))]),
+      el("td", { class:"num", text:human(s.rows) }),
+      el("td", { class:"mut", text:(s.data_through || "—").slice(0, 10) }),
+      el("td", { class:"num", text:s.data_age_days == null ? "—" : fmtInt(s.data_age_days) }),
+      el("td", {}, [pill(fLabel(s.freshness_state), s.freshness_state)]),
+      el("td", {}, [s.last_run_status ? pill(RUN_LABEL[s.last_run_status] || s.last_run_status, s.last_run_status) : el("span", { class:"dim", text:"—" }),
+                    el("div", { class:"dim", style:"font-size:11px", text:ago(s.last_run_at) })]),
+      el("td", {}, [el("div", {}, [pill(TIER_LABEL[tier] || tier, tier)]), btn]),
+    ]));
+  });
+}
+$$("#srcTable th[data-k]").forEach(th => th.addEventListener("click", () => {
+  const k = th.dataset.k;
+  if (S.sortK === k) S.sortDir *= -1; else { S.sortK = k; S.sortDir = 1; }
+  renderSources();
+}));
+["srcSearch","srcState","srcTier","srcLife"].forEach(id => $("#" + id).addEventListener("input", renderSources));
+
+/* ============================== drawer ============================== */
+let drawerSeq = 0;
+async function openDrawer(sid) {
+  $("#overlay").classList.add("on"); $("#drawer").classList.add("on");
+  const tok = ++drawerSeq;   // clicking two rows fast: only the LAST fetch may render
+  const d = $("#drawer"); d.textContent = "loading " + sid + "…";
+  try {
+    const j = await api("/api/source?sid=" + encodeURIComponent(sid));
+    if (tok !== drawerSeq) return;
+    const c = j.catalog || {}, f = j.freshness || {}, plan = j.refresh || {};
+    d.textContent = "";
+    d.append(el("h3", { text:sid }));
+    d.append(el("div", { class:"mut", text:(c.NAME || "") + (c.PUBLISHER ? " — " + c.PUBLISHER : "") }));
+    const kv = el("div", { class:"kv" });
+    const add = (k, v) => { kv.append(el("div", { text:k }), el("div", {}, [v == null ? "—" : v])); };
+    add("status", pill(LIFE_LABEL[c.LIFECYCLE] || c.LIFECYCLE, lifeCls(c.LIFECYCLE)));
+    add("topic", c.DOMAIN_PRIMARY);
+    add("rows stored", fmtInt(c.LANDED_ROW_COUNT));
+    add("Snowflake table", c.LANDING_FQN);
+    add("last loaded", c.LAST_INGESTED_AT ? ago(c.LAST_INGESTED_AT) + "  (" + String(c.LAST_INGESTED_AT).slice(0, 19) + ")" : "—");
+    add("up to date?", pill(fLabel(f.FRESHNESS_STATE || "unmeasured"), f.FRESHNESS_STATE || "unmeasured"));
+    add("data goes up to", f.DATA_THROUGH_ISO ? String(f.DATA_THROUGH_ISO).slice(0, 10) + (f.DATA_AGE_DAYS != null ? "  (" + fmtInt(f.DATA_AGE_DAYS) + " days old)" : "") : "not checked yet");
+    add("update rhythm", f.CADENCE_BUCKET);
+    add("refresh type", pill(TIER_LABEL[plan.tier] || plan.tier, plan.tier));
+    if (plan.note) add("note", el("span", { class:"mut", text:plan.note }));
+    const href = safeHref(c.URL);
+    if (href) add("url", el("a", { href, target:"_blank", rel:"noopener noreferrer", text:href.slice(0, 70) }));
+    else if (c.URL) add("url", el("span", { class:"mut", text:String(c.URL).slice(0, 70) }));
+    d.append(kv);
+
+    if (["recipe","recipe_disabled","script","llm"].includes(plan.tier))
+      d.append(el("button", { class:"primary", text: plan.tier === "llm" ? "AI rebuild…" : "Refresh this source…",
+                              onclick: () => openSourceRefresh(sid) }));
+
+    d.append(el("h2", { text:"Load history (last 50)" }));
+    const t = el("table", {}, [el("thead", {}, [el("tr", {}, [
+      el("th", { text:"started" }), el("th", { text:"result" }), el("th", { class:"num", text:"rows" }),
+      el("th", { class:"num", text:"took" }), el("th", { text:"what happened" })])])]);
+    const tb = el("tbody");
+    (j.runs || []).forEach(r => tb.append(el("tr", {}, [
+      el("td", { class:"mut", text:String(r.STARTED_AT || "").slice(0, 16), title:r.RUN_ID }),
+      el("td", {}, [pill(RUN_LABEL[r.STATUS] || r.STATUS, r.STATUS)]),
+      el("td", { class:"num", text:human(r.ROW_COUNT) }),
+      el("td", { class:"num", text:durFmt(r.DUR_S) }),
+      el("td", { class:"clip mut", text:r.MESSAGE || "", title:r.MESSAGE || "" }),
+    ])));
+    if (!(j.runs || []).length) tb.append(el("tr", {}, [el("td", { class:"dim", text:"no loads on record" })]));
+    t.append(tb); d.append(t);
+  } catch (e) {
+    if (tok !== drawerSeq) return;
+    d.textContent = ""; d.append(el("div", { class:"empty", text:"failed: " + e.message }));
+  }
+}
+function closeDrawer() { $("#overlay").classList.remove("on"); $("#drawer").classList.remove("on"); }
+$("#overlay").addEventListener("click", () => { closeDrawer(); closeModal(); });
+document.addEventListener("keydown", e => {   // Escape closes whatever is open, topmost first
+  if (e.key !== "Escape") return;
+  if ($("#modal").classList.contains("on")) closeModal();
+  else if ($("#drawer").classList.contains("on")) closeDrawer();
+});
+
+/* ============================== runs tab ============================== */
+function renderRuns(runs) {
+  $("#runCount").textContent = runs.length + " loads" + (runs.length === 300 ? " (showing the first 300)" : "");
+  const tb = $("#runTable tbody"); tb.textContent = "";
+  runs.forEach(r => tb.append(el("tr", { class:"click", onclick: () => runModal(r) }, [
+    el("td", { class:"mut", text:String(r.STARTED_AT || "").slice(0, 19) }),
+    el("td", {}, [el("b", { text:r.SOURCE_ID })]),
+    el("td", {}, [pill(RUN_LABEL[r.STATUS] || r.STATUS, r.STATUS)]),
+    el("td", { class:"num", text:human(r.ROW_COUNT) }),
+    el("td", { class:"num", text:bytesFmt(r.FILE_BYTES) }),
+    el("td", { class:"num", text:durFmt(r.DUR_S) }),
+    el("td", { class:"clip mut", text:r.MESSAGE || "", title:"click for the full record" }),
+  ])));
+  if (!runs.length) tb.append(el("tr", {}, [el("td", { class:"dim", text:"no loads match" })]));
+}
+function runModal(r) {
+  openModal([
+    el("h3", { text:"Load record — " + r.SOURCE_ID }),
+    el("div", { class:"kv" }, Object.entries({
+      "run id":r.RUN_ID, "result":(RUN_LABEL[r.STATUS] || r.STATUS), "started":r.STARTED_AT, "ended":r.ENDED_AT,
+      "rows":fmtInt(r.ROW_COUNT), "file size":bytesFmt(r.FILE_BYTES),
+      "checksum (sha256)":r.SHA256, "fetched from":r.SOURCE_URL,
+    }).flatMap(([k, v]) => [el("div", { text:k }), el("div", { text:v == null ? "—" : String(v) })])),
+    el("div", { class:"cmd", text:r.MESSAGE || "(nothing logged)" }),
+    el("div", { class:"mrow" }, [el("button", { text:"Close", onclick:closeModal })]),
+  ]);
+}
+$$("#view-runs .preset").forEach(b => b.addEventListener("click", () => {
+  $$("#view-runs .preset").forEach(x => x.classList.remove("on")); b.classList.add("on");
+  S.runDays = Number(b.dataset.rdays); loadRuns();
+}));
+$("#runStatus").addEventListener("change", loadRuns);
+let _rt; $("#runSearch").addEventListener("input", () => { clearTimeout(_rt); _rt = setTimeout(loadRuns, 350); });
+
+/* ============================== modal plumbing ============================== */
+function openModal(kids) { const m = $("#mbox"); m.textContent = ""; kids.forEach(k => m.append(k)); $("#modal").classList.add("on"); }
+function closeModal() { $("#modal").classList.remove("on"); }
+$("#modal").addEventListener("click", e => { if (e.target.id === "modal") closeModal(); });
+
+/* ============================== refresh flows ============================== */
+$("#refreshBtn").addEventListener("click", () => {
+  openModal([
+    el("h3", { text:"Get new data" }),
+    el("div", { class:"mut", text:"Pick one — you'll see the exact command before anything actually runs." }),
+    el("div", { class:"opt", onclick: () => previewJob({ action:"acquire", max_sources:3 }, { chain:["measure"] }) }, [
+      el("b", { text:"The works (recommended)" }),
+      el("span", { class:"d", text:"Grabs fresh data for whatever's due (up to 3 sources), then re-checks everything's dates. Two steps, runs itself." })]),
+    el("div", { class:"opt", onclick: () => previewJob({ action:"measure" }) }, [
+      el("b", { text:"Just re-check the dates" }),
+      el("span", { class:"d", text:"No downloads — just re-reads the tables to work out how current everything is. Quick and cheap." })]),
+    el("div", { class:"opt", onclick: () => previewJob({ action:"acquire", max_sources:3 }) }, [
+      el("b", { text:"Just grab new data" }),
+      el("span", { class:"d", text:"Downloads fresh data for the most overdue sources that have a one-click refresh set up. Needs the spending light to be green." })]),
+    el("div", { class:"mrow" }, [el("button", { text:"Cancel", onclick:closeModal })]),
+  ]);
+});
+
+async function openSourceRefresh(sid) {
+  const s = S.sources.find(x => x.source_id === sid);
+  const plan = s ? s.refresh : null;
+  if (!plan) return toast("unknown source " + sid, "err");
+  if (plan.tier === "llm") {
+    return openModal([
+      el("h3", { text:"AI rebuild — " + sid }),
+      el("div", { class:"note red", text:"There's no saved loader script for this source, so the AI has to rebuild it from scratch: read the source, write the code, run it. That SPENDS real API credits, and the rebuilt loader may not match the original exactly." }),
+      el("div", { class:"mrow" }, [
+        el("button", { text:"Cancel", onclick:closeModal }),
+        el("button", { class:"danger", text:"Preview the command", onclick: () => previewJob({ action:"onboard", source_id:sid }) })]),
+    ]);
+  }
+  // replace-mode / broken / none never reach here (no button); guard anyway
+  if (["script_replace","script_broken","none"].includes(plan.tier))
+    return openModal([
+      el("h3", { text:"Can't refresh — " + sid }),
+      el("div", { class:"note", text:plan.note || "nothing to refresh with" }),
+      el("div", { class:"mrow" }, [el("button", { text:"OK", onclick:closeModal })])]);
+  const body = { action:"source", source_id:sid, args:{} };
+  const loader = plan.loader || {};
+  const kids = [el("h3", { text:"Refresh — " + sid })];
+  if (plan.tier === "recipe_disabled")
+    kids.push(el("div", { class:"note", text:"This one-click refresh is switched off right now (in acquire_recipes.json): " + (plan.note || "no reason on file") }));
+  else if (loader.write_mode === "append")
+    kids.push(el("div", { class:"note blue", text:"Safe to run: this loader only ADDS rows, never wipes anything. Type dates to grab a specific window, or leave the boxes blank for its normal range." }));
+  const argInputs = {}, kinds = loader.flag_kinds || {};
+  // date/year inputs only on the append 'script' tier (recipes run their own vetted argv).
+  // Label + placeholder per the flag's real kind so he never types a value the loader rejects.
+  if (plan.tier === "script") (loader.date_flags || []).forEach(f => {
+    const kind = kinds[f] || "date";
+    const hint = kind === "year" ? "YYYY" : kind === "float" ? "e.g. 2.5" : "YYYY-MM-DD";
+    const inp = el("input", { placeholder:"blank = normal range", spellcheck:"false" });
+    argInputs[f] = inp;
+    kids.push(el("div", { class:"argrow" }, [el("span", { class:"fl", text:f }), inp,
+      el("span", { class:"dim", text:hint })]));
+  });
+  kids.push(el("div", { class:"mrow" }, [
+    el("button", { text:"Cancel", onclick:closeModal }),
+    el("button", { class:"primary", text:"Preview the command", onclick: () => {
+      body.args = {};
+      for (const [f, inp] of Object.entries(argInputs)) if (inp.value.trim()) body.args[f] = inp.value.trim();
+      previewJob(body);
+    }})]));
+  openModal(kids);
+}
+
+async function previewJob(body, opts = {}) {
+  try {
+    const j = await api("/api/refresh", { method:"POST", headers:{ "Content-Type":"application/json" },
+                                          body:JSON.stringify({ ...body, preview:true }) });
+    const pf = j.preflight || {}, blockers = pf.blockers || [];
+    const kids = [
+      el("h3", { text:"Ready to run — " + j.label }),
+      el("div", { class:"mut", text:"This exact command runs on your machine (from " + j.cwd + "):" }),
+      el("div", { class:"cmd", text:j.cmd.join(" ") }),
+    ];
+    if (j.meta?.queue_entry)  // AI rebuild: the queue payload drives the run — show it
+      kids.push(el("div", { class:"cmd", text:"what gets rebuilt: " + JSON.stringify(j.meta.queue_entry) }));
+    if (opts.chain?.length) {  // show the chained command(s) too — nothing runs unseen
+      for (const c of opts.chain) {
+        try {
+          const cj = await api("/api/refresh", { method:"POST", headers:{ "Content-Type":"application/json" },
+                                                 body:JSON.stringify({ action:c, preview:true }) });
+          kids.push(el("div", { class:"note blue" }, [
+            "Then it runs this by itself (" + cj.label + "):",
+            el("div", { class:"cmd", style:"margin-top:6px", text:cj.cmd.join(" ") })]));
+        } catch (e) {
+          kids.push(el("div", { class:"note blue", text:"Then it runs this by itself: " + c }));
+        }
+      }
+    }
+    blockers.forEach(b => kids.push(el("div", { class:"note red", text:"Can't run: " + b })));
+    const budget = pf.budget || {};
+    kids.push(el("div", { class:"mut", style:"margin-top:8px",
+      text:`spending light: ${budget.band || "?"} · ${budget.spendable ?? "?"} credits left · auto-kills itself after ${Math.round(j.hard_s/60)} min · everything gets logged` }));
+    kids.push(el("div", { class:"mrow" }, [
+      el("button", { text:"Back", onclick:closeModal }),
+      el("button", { class: blockers.length ? "" : "primary", text: blockers.length ? "Blocked" : "Run it",
+        // launch by nonce: the server runs EXACTLY the previewed spec, never a re-resolution
+        onclick: blockers.length ? null : () => launchJob({ nonce:j.nonce }, opts) }),
+    ]));
+    openModal(kids);
+  } catch (e) { toast(e.message, "err"); }
+}
+
+async function launchJob(body, opts = {}) {
+  try {
+    const j = await api("/api/refresh", { method:"POST", headers:{ "Content-Type":"application/json" },
+                                          body:JSON.stringify(body) });
+    closeModal(); closeDrawer();      // launching from the drawer must clear it + the overlay
+    S.chain = opts.chain || [];
+    S.jobId = j.job.id; S.jobOffset = 0; S.lastFinished = null;
+    $("#console").textContent = "";
+    switchTab("jobs");
+    toast("started: " + j.job.label, "ok");
+    pollJobs();
+  } catch (e) { toast("couldn't start: " + e.message, "err"); }
+}
+
+/* ============================== jobs ============================== */
+function showJobCard(title, meta) {
+  $("#curJobCard").style.display = ""; $("#noJob").style.display = "none";
+  $("#curJobTitle").textContent = title;
+  $("#curJobMeta").textContent = meta;
+}
+async function pollJobs() {
+  if (S.polling) return;           // no concurrent polls: they'd double-fetch one offset
+  S.polling = true;
+  clearTimeout(S.jobTimer);
+  let j;
+  try { j = await api("/api/jobs"); }
+  catch (e) {                       // one failed fetch must not kill the loop mid-job
+    S.polling = false;
+    if (S.jobId) S.jobTimer = setTimeout(() => pollJobs(), 5000);
+    return;
+  }
+  const cur = j.current && j.current.status === "running" ? j.current : null;
+  renderJobHistory(j.history || []);
+  if (cur) {
+    if (S.jobId !== cur.id) {       // adopting a job this tab didn't launch: clean slate
+      S.jobId = cur.id; S.jobOffset = 0; S.chain = [];
+      $("#console").textContent = "";
+    }
+    S.lastFinished = null;          // a live job supersedes any sticky finished card
+    $("#dock").classList.add("on");
+    $("#dockLabel").textContent = cur.label + (cur.meta && cur.meta.orphan ? "  (recovered)" : "");
+    $("#dockSub").textContent = "started " + ago(cur.started_at);
+    $("#cancelBtn").style.display = "";
+    showJobCard(cur.label, `started ${ago(cur.started_at)} · auto-kills itself after ${Math.round(cur.hard_s/60)} min · log: ${cur.log_path}`);
+    await tailLog(cur.id);
+    S.polling = false;
+    S.jobTimer = setTimeout(() => pollJobs(), 2000);
+    return;
+  }
+  $("#dock").classList.remove("on");
+  const finished = (j.history || [])[0];
+  if (S.jobId && finished && finished.id === S.jobId) {   // OUR job just finished
+    S.jobId = null;
+    await tailLog(finished.id);
+    toast((finished.status === "ok" ? "done: " : "job " + (JOB_LABEL[finished.status] || finished.status) + ": ") + finished.label,
+          finished.status === "ok" ? "ok" : "err");
+    S.lastFinished = finished;
+    if (S.chain.length && finished.status === "ok") {
+      const next = S.chain.shift();
+      toast("next up: " + (next.action || next), "ok");
+      S.polling = false;
+      launchJob({ action:next.action || next }, { chain:S.chain });
+      return;
+    }
+    S.chain = [];
+    // data-only refresh (NOT reloadAll -> that would re-enter pollJobs and blank this card)
+    loadOverview(true); loadSources(true); loadRuns();
+  } else if (S.jobId && !finished) {
+    // our job (an orphan we adopted) vanished without a history row -> just clear it
+    S.jobId = null;
+  }
+  // keep the finished job's card + log visible until a NEW job starts (don't blank it)
+  if (S.lastFinished) {
+    const f = S.lastFinished;
+    $("#cancelBtn").style.display = "none";
+    showJobCard(f.label + " — " + (JOB_LABEL[f.status] || f.status), `finished · exit code ${f.rc} · log: ${f.log_path}`);
+  } else {
+    $("#curJobCard").style.display = "none"; $("#noJob").style.display = "";
+  }
+  S.polling = false;
+}
+async function tailLog(id) {
+  // drain until next_offset catches size — a chunk is capped at 64KB and a chatty
+  // loader can easily write more than that between polls
+  for (let i = 0; i < 40; i++) {
+    let j;
+    try { j = await api(`/api/job?id=${id}&offset=${S.jobOffset}`); } catch (e) { return; }
+    if (j.chunk) {
+      if (S.jobOffset === 0) $("#console").textContent = "";
+      $("#console").textContent += j.chunk;
+      const c = $("#console"); c.scrollTop = c.scrollHeight;
+    }
+    S.jobOffset = j.next_offset != null ? j.next_offset : j.size;
+    if (!j.chunk || S.jobOffset >= j.size) return;
+  }
+}
+function renderJobHistory(hist) {
+  const tb = $("#jobTable tbody"); tb.textContent = "";
+  hist.forEach(h => tb.append(el("tr", { class:"click", title:"click to view this job's log",
+                                         onclick: () => openJobLog(h) }, [
+    el("td", { class:"mut", text:String(h.started_at || "").slice(0, 19).replace("T", " ") }),
+    el("td", {}, [el("b", { text:h.label }), el("div", { class:"dim", style:"font-size:11px", text:(h.cmd || []).join(" ").slice(0, 110) })]),
+    el("td", {}, [pill(JOB_LABEL[h.status] || h.status, h.status === "ok" ? "ok" : h.status === "running" ? "running" : "bad")]),
+    el("td", { class:"num", text:h.rc == null ? "—" : String(h.rc) }),
+    el("td", { class:"dim", text:"view log ›" }),
+  ])));
+  if (!hist.length) tb.append(el("tr", {}, [el("td", { class:"dim", text:"no panel jobs yet" })]));
+}
+async function openJobLog(h) {   // any past job's full log, on demand — never a terminal
+  const con = el("div", { class:"console", text:"loading log…" });
+  openModal([
+    el("h3", { text:h.label + " — " + (JOB_LABEL[h.status] || h.status) }),
+    el("div", { class:"mut", style:"margin-bottom:8px", text:`exit code ${h.rc == null ? "—" : h.rc} · ${h.log_path}` }),
+    con,
+    el("div", { class:"mrow" }, [el("button", { text:"Close", onclick:closeModal })]),
+  ]);
+  let off = 0, out = "";
+  for (let i = 0; i < 60; i++) {
+    let j; try { j = await api(`/api/job?id=${h.id}&offset=${off}`); } catch (e) { break; }
+    out += j.chunk || "";
+    off = j.next_offset != null ? j.next_offset : j.size;
+    if (!j.chunk || off >= j.size) break;
+  }
+  con.textContent = out || "(log file's gone — old logs get cleaned up after 14 days)";
+  con.scrollTop = con.scrollHeight;
+}
+$("#cancelBtn").addEventListener("click", async () => {
+  if (!S.jobId) return;
+  try { await api("/api/job/cancel", { method:"POST", headers:{ "Content-Type":"application/json" },
+                                       body:JSON.stringify({ id:S.jobId }) });
+        toast("cancel sent — the job should stop in a few seconds"); }
+  catch (e) { toast(e.message, "err"); }
+});
+$("#dockbar").addEventListener("click", () => switchTab("jobs"));
+
+/* ============================== tabs + range ============================== */
+function switchTab(name) {
+  if (!$("#view-" + name)) name = "overview";
+  $$("nav button").forEach(b => b.classList.toggle("on", b.dataset.tab === name));
+  $$("section.view").forEach(v => v.classList.toggle("on", v.id === "view-" + name));
+  history.replaceState(null, "", "#" + name);
+}
+$$("nav button").forEach(b => b.addEventListener("click", () => switchTab(b.dataset.tab)));
+$$("#rangeRow .preset").forEach(b => b.addEventListener("click", () => {
+  $$("#rangeRow .preset").forEach(x => x.classList.remove("on")); b.classList.add("on");
+  S.days = Number(b.dataset.days); loadOverview();
+}));
+$("#reloadBtn").addEventListener("click", reloadAll);
+
+/* ============================== idle auto-refresh ============================== */
+// Left open overnight, the panel must not show yesterday's numbers as if they were current.
+// Every 75s (cheap: the server caches reads 120-600s) quietly re-pull the overview + sources
+// so tiles, budget band and freshness stay live — but never while a modal is open (don't
+// disrupt a confirm dialog), a job is running (the job poller owns cadence), or the tab is
+// hidden. loadOverview(quiet) skips the stale flash and the error toast.
+setInterval(() => {
+  if (document.hidden) return;
+  if ($("#modal").classList.contains("on") || $("#drawer").classList.contains("on")) return;
+  if (S.jobId) return;
+  loadOverview(true); loadSources(true);
+}, 75000);
+// coming back to the tab after a while: refresh immediately rather than wait for the tick
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden && !S.jobId && !$("#modal").classList.contains("on")) { loadOverview(true); loadSources(true); }
+});
+
+/* ============================== go ============================== */
+if (!havePlotly) toast("charts couldn't load — everything else still works", "err");
+if (location.hash) switchTab(location.hash.slice(1));
+reloadAll();
+</script>
+</body>
+</html>

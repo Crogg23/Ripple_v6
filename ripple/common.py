@@ -52,17 +52,24 @@ def now_iso() -> str:
 
 
 # --------------------------------------------------------------- Snowflake
-def connect(warehouse: str | None = None):
+def connect(warehouse: str | None = None, pat: str | None = None):
     """A Snowflake connection pinned to COMPUTE_WH (or RIPPLE_TASK_WAREHOUSE / the arg),
-    so ripple never contends with a pour on RIPPLE_WH."""
+    so ripple never contends with a pour on RIPPLE_WH.
+
+    `pat` swaps the credential for this connection only. config.settings freezes the
+    env at import, so a token replaced in .env AFTER startup (PAT expiry) must travel
+    here as a parameter -- long-lived callers like the panel re-read .env and pass it."""
     import snow  # library-onboarding/snow.py
     wh = (warehouse or TASK_WH).strip()
-    conn = snow.connect()
-    if wh and wh.replace("_", "").isalnum():
+    ok = bool(wh) and wh.replace("_", "").isalnum()
+    # pin at session birth -- otherwise the session opens on the .env warehouse
+    # (RIPPLE_WH, the pour lane) and the USE below is a silently-skippable afterthought
+    conn = snow.connect(warehouse=wh if ok else None, pat=pat)
+    if ok:
         try:
             conn.cursor().execute(f"USE WAREHOUSE {wh}")
-        except Exception:  # pragma: no cover — best-effort; a bad WH shouldn't kill a read
-            pass
+        except Exception:  # pragma: no cover
+            print(f"[!!] could not pin warehouse {wh}; session may be on the .env warehouse")
     return conn
 
 

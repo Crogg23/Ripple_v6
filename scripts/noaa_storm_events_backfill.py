@@ -81,8 +81,8 @@ SID = "fed_noaa_storm_events"
 BASE = "https://www.ncei.noaa.gov/pub/data/swdi/stormevents/csvfiles/"
 UA = {"User-Agent": "Ripple-Library/1.0 (data onboarding; w.rogers9999@gmail.com)"}
 CHUNK = 250_000
-SCRATCH = Path("c:/Code/Ripple_v6/.scratch/"
-               "e8eac5fb-de36-4362-9440-da24a904b9b4/scratchpad")
+SCRATCH = Path(__file__).resolve().parents[1] / ".scratch" / "loader_downloads"
+SCRATCH.mkdir(parents=True, exist_ok=True)
 
 ERA_START, ERA_END = 1996, 2024  # modern, full event-type taxonomy; 2025 = snapshot already loaded
 

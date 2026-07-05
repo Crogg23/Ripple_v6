@@ -72,8 +72,8 @@ URL = ("https://download.cms.gov/openpayments/PGYR2022_P01232026_01102026/"
        "OP_DTL_GNRL_PGYR2022_P01232026_01102026.csv")
 UA = {"User-Agent": "Ripple-Library/1.0 (data onboarding; w.rogers9999@gmail.com)"}
 CHUNK = 250_000
-SCRATCH = Path("c:/Code/Ripple_v6/.scratch/"
-               "e8eac5fb-de36-4362-9440-da24a904b9b4/scratchpad")
+SCRATCH = Path(__file__).resolve().parents[1] / ".scratch" / "loader_downloads"
+SCRATCH.mkdir(parents=True, exist_ok=True)
 
 # The 94 landing columns, in ordinal order, taken from FED_CMS_OPEN_PAYMENTS_2023.
 # The 91 SOURCE columns map 1:1 BY POSITION to the first 91 of these (verified:

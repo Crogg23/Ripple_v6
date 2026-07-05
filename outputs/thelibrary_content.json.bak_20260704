@@ -1,0 +1,962 @@
+[
+  {
+    "object_fqn": "LIBRARY_MARTS.CORE.DIM_COUNTY",
+    "friendly_name": "US_COUNTIES",
+    "one_liner": "Every US county (3,222) with FIPS code, name, 2020 population, and center point.",
+    "comment": "The master list of every US county and county-equivalent -- 3,222 of them -- each with its FIPS code (the standard geographic ID that joins to almost any US dataset), state, 2020 population, and a lat/lon population-center point. This is a lookup/reference table: when you have a county code and want a name, population, or a point to map, you land here. Cleaned and analytics-ready."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.CORE.DIM_DATE",
+    "friendly_name": "CALENDAR_DATES",
+    "one_liner": "One row per calendar day (31,411 days) with year, quarter, month, weekday, and fiscal year.",
+    "comment": "A plain calendar table -- one row for every single day across ~86 years -- pre-broken into year, quarter, month, day-of-week, weekend flag, and US fiscal year. It doesn't hold any real-world events; it's the spine you join other data to so you can group by month, filter weekends, or roll up to fiscal year without recomputing dates every time. Standard analytics helper table."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.DBT_CROGERS.JUSTICE__INTL_HUDOC",
+    "friendly_name": "ECHR_COURT_CASES",
+    "one_liner": "European Court of Human Rights rulings: who sued which country, over what right, and who won.",
+    "comment": "Case-law from the European Court of Human Rights -- each row is a judgment or decision naming the person, the respondent country, which Convention article was at stake, and whether the court found a violation. Good for tracking how governments are held to account on human rights. Heads up: this is a thin sample (2,000 rows), not the full HUDOC database -- use it to explore the shape of the data, not to count cases. Keyed by country and case name."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.DBT_CROGERS.SCIENCE_RESEARCH__XC_BIORXIV_MEDRXIV",
+    "friendly_name": "PREPRINTS",
+    "one_liner": "Biology and medical preprints from bioRxiv/medRxiv: authors, funders, and download counts.",
+    "comment": "Metadata for preprint papers -- early research posted on bioRxiv and medRxiv before formal peer review -- including title, authors, correspondence institution, funder, license, and how many times each was viewed or downloaded. Also tracks whether a preprint later got published in a journal and how long that took. Useful for following who funds what science and how fast findings spread. Cleaned and analytics-ready; ~432 rows here."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.EPSTEIN.FCT_WAYBACK_PAGE_CHANGES",
+    "friendly_name": "WEB_PAGE_CHANGES",
+    "one_liner": "203K archived-webpage snapshots flagging when a page appeared, changed, or went dead.",
+    "comment": "A change-log built from Wayback Machine (web archive) captures -- each row is one snapshot of a tracked URL, flagging what happened since the last capture: page added, content changed, went offline (404), or came back. It stores content fingerprints so you can prove a page's text actually changed, and when. Built for the Epstein investigation to catch quietly scrubbed or edited pages. Cleaned and analytics-ready; ~203K rows."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.POLITICS.POLITICS__FEC_CANDIDATE_SUMMARY",
+    "friendly_name": "FEC_CANDIDATE_FINANCES",
+    "one_liner": "Federal candidates' campaign money per cycle: total raised, spent, cash on hand, and debt.",
+    "comment": "One row per federal candidate per election cycle with their campaign's bottom line -- total money raised, total spent, cash left in the bank, debts owed, and how much came from individual donors. It's the summary view of a candidate's war chest, not the individual donations. Great for spotting who's outraising whom and who's drowning in debt. Cleaned and analytics-ready; keyed by FEC candidate ID (CAND_ID) and cycle; ~7,900 rows."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.POLITICS.POLITICS__FJC_APPOINTMENT",
+    "friendly_name": "FEDERAL_JUDGE_APPOINTMENTS",
+    "one_liner": "Every federal judge appointment: who, which court, which president, and the confirmation vote.",
+    "comment": "The full history of federal judicial appointments -- each row is one judge's appointment to one court, with the nominating president and their party, nomination and confirmation dates, the Senate vote tally, and when they left. Follow it to see how presidents reshape the courts over decades. Cleaned and analytics-ready; keyed by the judge's National ID (NID); ~4,766 rows."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.POLITICS.POLITICS__BILLS",
+    "friendly_name": "CONGRESS_BILLS",
+    "one_liner": "Every bill introduced in Congress: sponsor, subject, how far it got, and whether it became law.",
+    "comment": "One row per bill introduced in Congress with its sponsor, title, cosponsor count, latest action, and how far it advanced -- including whether it cleared committee and ultimately became law. This is the legislative pipeline: what got proposed versus what actually passed. Cleaned and analytics-ready; keyed by congress + bill type + bill number, sponsor linked via Bioguide ID; ~36,465 rows."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.POLITICS.POLITICS__BILL_COSPONSORS",
+    "friendly_name": "BILL_COSPONSORS",
+    "one_liner": "367K links between bills and the members of Congress who cosponsored them.",
+    "comment": "The who-backed-what table: each row ties one bill to one member of Congress who signed on as a cosponsor, with their party, state, when they joined, whether they were an original cosponsor, and whether they later withdrew. Cross it with the bills table to map coalitions and bipartisan support. Cleaned and analytics-ready; joins to CONGRESS_BILLS on congress + bill type + number, members via Bioguide ID; ~367K rows."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.POLITICS.POLITICS__FEC_COMMITTEE",
+    "friendly_name": "FEC_COMMITTEES",
+    "one_liner": "Every FEC-registered political committee (PACs, party, campaign) with type and affiliation.",
+    "comment": "One row per federal political committee per cycle -- campaign committees, PACs, party committees -- with its name, treasurer, location, type, party affiliation, and any connected organization or linked candidate. This is the roster of the entities that raise and spend federal political money. Cleaned and analytics-ready; keyed by FEC committee ID (CMTE_ID), links to candidates via CAND_ID; ~40,945 rows."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.DBT_CROGERS.ECONOMICS__FED_SEC_EDGAR_COMPANY_TICKERS",
+    "friendly_name": "SEC_COMPANY_TICKERS",
+    "one_liner": "Every SEC-registered company mapped to its CIK number and stock ticker symbol.",
+    "comment": "A crosswalk from public companies to their SEC identifiers -- each row maps a company name to its CIK (the SEC's permanent filer ID) and its stock ticker. It's small but load-bearing: the CIK is how you jump from a ticker like AAPL to that company's SEC filings and everything else keyed on CIK. Cleaned and analytics-ready; keyed by CIK; ~10,414 rows."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.DBT_CROGERS.ECONOMICS__FED_TREASURY_DEBT_TO_PENNY",
+    "friendly_name": "NATIONAL_DEBT_DAILY",
+    "one_liner": "The US national debt to the exact penny, one row per day, split public vs. intragovernmental.",
+    "comment": "The official daily total of US national debt outstanding, down to the penny, broken into debt held by the public versus intragovernmental holdings (money the government owes itself). One row per business day -- the raw time series behind every 'national debt' chart. Cleaned and analytics-ready; no join key, it's a standalone daily series; ~8,329 rows."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.DBT_CROGERS.HEALTH__FED_CMS_HCRIS",
+    "friendly_name": "HOSPITAL_COST_REPORTS",
+    "one_liner": "Annual financial reports every Medicare hospital files: revenue, costs, beds, charity care, margins.",
+    "comment": "The yearly financial and operational filing every Medicare-participating hospital must submit to CMS -- one row per hospital per fiscal year with hundreds of fields: revenue, total costs, assets and liabilities, bed counts, staffing, charity and uncompensated care, and profit margins. This is how you follow the money inside a hospital's books. Cleaned and analytics-ready; keyed by CCN, also carries NPI, name, address, ZIP; ~6,103 rows."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.DBT_CROGERS.HEALTH__FED_CMS_NURSING_HOME",
+    "friendly_name": "NURSING_HOMES",
+    "one_liner": "Every Medicare/Medicaid nursing home: star ratings, staffing, inspections, fines, and abuse flags.",
+    "comment": "One row per certified nursing home from CMS Care Compare -- overall and category star ratings, staffing hours per resident, ownership and chain, inspection deficiencies, fines, payment denials, and an abuse-icon flag. This is the go-to for spotting understaffed or repeatedly-cited facilities and tracing them up to their parent chains. Cleaned and analytics-ready; keyed by CCN plus NPI, county FIPS, lat/lon, name, address, ZIP; ~14,700 rows."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.DBT_CROGERS.JUSTICE__COUNTY_DOUBLE_BURDEN",
+    "friendly_name": "COUNTY_OVERDOSE_JAIL_BURDEN",
+    "one_liner": "Every US county scored on two crises at once: drug overdose deaths and jail incarceration.",
+    "comment": "Cross-references two county-level crises -- drug overdose rates and jail incarceration rates -- across all 3,029 US counties, flagging the places hit hard by both at the same time (the DOUBLE_BURDEN flag). Includes Black vs white jail rates so you can see the racial gap in who gets locked up. Cleaned and analytics-ready; keyed by county FIPS so it joins to almost any US geographic data."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.DBT_CROGERS.PROCUREMENT__INTL_EC_SERCOP",
+    "friendly_name": "ECUADOR_GOV_CONTRACTS",
+    "one_liner": "Ecuador's government contracts -- 133K records of who bought what, from which company, for how much.",
+    "comment": "Ecuador's national public procurement, 2015 to today: which government agency bought something, which company won it, and the dollar amounts at each stage (tender, award, signed contract). Standard follow-the-money for public spending -- spot the same suppliers winning over and over. Matching to companies is by name only (no clean ID), so cross-source links are probabilistic, not exact."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.DBT_CROGERS.REGULATORY__FED_FEDERAL_REGISTER_DOCUMENTS",
+    "friendly_name": "FEDERAL_REGISTER_DOCUMENTS",
+    "one_liner": "The daily journal of the US government: new rules, proposed rules, notices, and presidential orders.",
+    "comment": "The 5,000 most recent Federal Register documents -- the official record where federal agencies publish new rules, proposed rules, notices, and presidential documents like executive orders. This is where policy actually becomes law, including which agency issued it and when comment windows close. Rolling snapshot of the newest filings, not the full historical archive."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.POLITICS.POLITICS__VOTEVIEW_ROLLCALLS",
+    "friendly_name": "CONGRESSIONAL_ROLLCALL_VOTES",
+    "one_liner": "Every recorded floor vote in Congress: what the question was, the yea/nay count, and whether it passed.",
+    "comment": "3,364 roll-call votes in the US House and Senate -- one row per recorded floor vote, with the yea/nay tallies, the result, the bill number, and a description of what was actually being voted on. From the Voteview project. Pair it with the member-level record to see how any individual legislator voted on each of these."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.POLITICS.POLITICS__WHO_WON",
+    "friendly_name": "ELECTION_WINNERS",
+    "one_liner": "Who won every federal election -- office, year, state, vote share, and the margin over the runner-up.",
+    "comment": "The winner of every US federal election: office, year, state, district, the winner and their party, vote totals, share, and how close it was over the runner-up. Includes BIOGUIDE and ICPSR IDs so a winner links to their voting record and congressional profile. Cleaned outcomes built from MEDSL election data -- great for finding tight races and party flips."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.DBT_CROGERS.HEALTH__FED_FDA_DRUG_ENFORCEMENT",
+    "friendly_name": "DRUG_RECALLS",
+    "one_liner": "FDA drug recalls: which product, made by whom, why it was pulled, and how dangerous it was.",
+    "comment": "FDA drug enforcement reports -- each row is a drug recall with the product, the recalling firm, the reason it was pulled, how far it was distributed, and a danger classification (Class I = could kill you). Keyed to geography (firm address) and drug NDC codes. Heads up: this is a thin 5,000-row sample, not the full source -- good for exploring the shape of the data, not for counting all recalls."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.EPSTEIN.FCT_LIBRARY_SNAPSHOT",
+    "friendly_name": "EPSTEIN_FILES_TRACKER",
+    "one_liner": "A watch-list of Epstein-related document files: which ones exist, and when we first/last saw them.",
+    "comment": "Monitoring table for a targeted Epstein investigation -- 619 document files being tracked across sources, with each file's URL, dataset name, and when it was first and last observed. Its job is to catch when files appear, change, or vanish from the public record. This is a surveillance/provenance ledger of the documents, not the document contents themselves."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.POLITICS.POLITICS__FJC_SCOTUS_CROSSWALK",
+    "friendly_name": "SUPREME_COURT_JUSTICES_CROSSWALK",
+    "one_liner": "A bridge that ties each Supreme Court justice to their official federal-judiciary ID.",
+    "comment": "A crosswalk linking 40 Supreme Court justices between two ID systems: the Supreme Court database's justice code and the Federal Judicial Center's judge ID (FJC_NID). It exists so a justice's voting record can join to their full biographical file. Includes how each match was made and a confidence flag -- a plumbing table, not an analysis in itself."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.POLITICS.POLITICS__MEMBER_VOTING_RECORD",
+    "friendly_name": "MEMBER_VOTING_RECORD",
+    "one_liner": "Each member of Congress scored: how often they show up to vote and how often they toe the party line.",
+    "comment": "One row per member of Congress (1,105 members) summarizing their behavior: votes eligible vs cast, missed-vote percentage, and party-unity stats (how often they vote with their own party). Keyed by BIOGUIDE so it links to election results and profiles. The scorecard for spotting absentee legislators and party mavericks."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.CORE.DIM_STATE",
+    "friendly_name": "US_STATES_REFERENCE",
+    "one_liner": "The master list of US states and territories: FIPS code, postal abbreviation, and full name.",
+    "comment": "The clean reference table for all 56 US states and territories -- FIPS code, two-letter USPS abbreviation, full name, and whether it's a territory. This is a building-block lookup: join it to give any dataset with a state FIPS code a proper state name. Small by design; it's infrastructure, not a story."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.CORE.XWALK_ZCTA_COUNTY",
+    "friendly_name": "ZIP_TO_COUNTY_CROSSWALK",
+    "one_liner": "A bridge from ZIP code areas to counties -- so ZIP-level data can roll up to the right county.",
+    "comment": "A crosswalk mapping ZIP Code Tabulation Areas (ZCTA5) to the counties they fall in -- 46,960 rows because ZIPs often straddle county lines. Its job is to translate anything reported by ZIP into county FIPS so it joins to census, health, and justice data. Core plumbing for making geographic data line up; check the vintage since boundaries shift over time."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.EPSTEIN.FCT_DATASET_SIZE_HISTORY",
+    "friendly_name": "EPSTEIN_FILES_SIZE_HISTORY",
+    "one_liner": "A time-lapse of Epstein document pages: how many files each page held, snapshot by snapshot.",
+    "comment": "History table tracking the size of Epstein-related document collections over time -- 339 captures recording, for each page, how many files it appeared to hold at each moment (from the site's own pager). It exists to detect documents being quietly added or removed. This is change-detection metadata, not the documents; the file counts are estimates read off the page."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.DBT_CROGERS.HISTORY__FED_WPA_SLAVE_NARRATIVES",
+    "friendly_name": "SLAVE_NARRATIVES_1936_1938",
+    "one_liner": "First-person interviews with formerly enslaved Americans, recorded by the WPA in 1936-1938.",
+    "comment": "The Library of Congress 'Born in Slavery' collection: interviews with formerly enslaved people conducted by the Federal Writers' Project, 1936-1938 -- the person's name, the interviewer, the date and state, and the full text of the account. Keyed to state FIPS so it maps geographically. A primary historical record in the people's own words; this table holds 100 items."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.DBT_CROGERS.MONEY__DEBT_REPAYMENT_CLIFF",
+    "friendly_name": "COUNTRY_DEBT_REPAYMENT",
+    "one_liner": "How much each country owes each year in debt payments -- and which years are dangerous repayment spikes.",
+    "comment": "Each country's yearly external debt service: total owed, split into principal vs interest, plus year-over-year change. Flags 'repayment cliffs' -- years where payments spike sharply, the moments a country is most likely to hit a debt crisis. Cleaned and keyed by country and year; some rows are regional aggregates (IS_AGGREGATE), so filter those out when counting individual nations."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.DBT_CROGERS.HOUSING__FED_MAPPING_INEQUALITY",
+    "friendly_name": "REDLINING_MAPS",
+    "one_liner": "1930s federal redlining grades (A-D) for ~200 US cities, with the racist reasons written down.",
+    "comment": "Every neighborhood the government's Home Owners' Loan Corporation graded from A ('best') to D ('hazardous') between 1935-1940 -- roughly 1,155 areas across ~200 cities, digitized and mapped by lat/lon and FIPS. The area descriptions spell out the reasoning, often explicitly racial, that steered mortgage money away from Black and immigrant neighborhoods. Join it to today's health, wealth, and lending data to trace how a line drawn 90 years ago still shows up. Georeferenced by University of Richmond from the original HOLC records."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.DBT_CROGERS.MARITIME__FED_NOAA_AIS",
+    "friendly_name": "SHIP_POSITIONS",
+    "one_liner": "7.3M GPS pings from ships in US waters in 2024 -- where, when, how fast, and what they were carrying.",
+    "comment": "Every AIS broadcast from vessels in US waters across 2024 -- 7.3 million position reports with location, speed, heading, vessel name, type, and cargo. Ships are legally required to broadcast this, so it's the raw movement history of maritime traffic. Keyed by MMSI and IMO, so you can follow a specific ship over time or cross it with sanctions and ownership lists to spot dark or evasive vessels. Published by NOAA's Office for Coastal Management."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.POLITICS.POLITICS__FEC_CANDIDATE",
+    "friendly_name": "FEC_CANDIDATES",
+    "one_liner": "Everyone who ran for federal office per the FEC -- 17,900 candidate-cycle records with party, office, and status.",
+    "comment": "Every candidate for US House, Senate, or President registered with the Federal Election Commission -- 17,900 records across election cycles, with party, office sought, state/district, incumbent-vs-challenger status, and their principal campaign committee. Keyed by CAND_ID, the identifier that ties a candidate to their money. Join it to the committee link and donation tables to follow who bankrolled each run. Cleaned and analytics-ready."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.POLITICS.POLITICS__MEMBER_MONEY_RAISED",
+    "friendly_name": "MEMBER_MONEY_RAISED",
+    "one_liner": "How much each member of Congress raised -- gross receipts, net, and cash on hand, by cycle.",
+    "comment": "One row per sitting member of Congress per cycle (1,050 total) showing total campaign receipts, transfers from other authorized committees, net money raised, and cash on hand at close. Keyed by BIOGUIDE, the standard congressional member ID, so it snaps straight onto their votes, bills, and donor breakdowns. This is the top-line 'how big is their war chest' number. Cleaned and analytics-ready."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.CORE.DIM_TRACT",
+    "friendly_name": "CENSUS_TRACTS",
+    "one_liner": "All 85,391 US census tracts with 2020 population and a center point -- the geographic backbone.",
+    "comment": "Every census tract in the US -- 85,391 small neighborhood-sized areas -- with its GEOID, county and state FIPS, 2020 population, and a population-weighted center point (lat/lon). This is a dimension table: the geographic spine that almost every place-based dataset joins to. Use it to roll neighborhood data up to counties or states, or to map anything that carries a tract ID. Cleaned and analytics-ready."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.DBT_CROGERS.CORPORATE_REGISTRY__INTL_ES_BORME",
+    "friendly_name": "SPAIN_COMPANY_FILINGS",
+    "one_liner": "Heads up: only 3 rows here -- a thin sample of Spain's official corporate registry gazette, not the full source.",
+    "comment": "Spain's Official Mercantile Registry Gazette (BORME) publishes daily corporate acts -- company births, deaths, capital changes, and director appointments -- for Spanish firms. Each row has the company name, province, act type, and a link to the source PDF. Heads up: this table holds only 3 rows, a sample to show the shape of the data, not the full registry. Good for exploring the structure, not for counting Spanish companies. Published by Spain's state gazette agency (AEBOE)."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.DBT_CROGERS.GOVERNANCE__FED_REVOLVINGDOOR_PROJECT",
+    "friendly_name": "REVOLVING_DOOR_APPOINTEES",
+    "one_liner": "406 federal appointees mapped to the industries they came from -- the government-to-industry revolving door.",
+    "comment": "Maps 406 political appointees in the federal executive branch to the corporate sectors they're tied to, flagging which are revolving-door cases (people moving between industry and the regulators that oversee it). Each row lists the person, their agency and role, and up to a dozen economic sectors of interest. Matching is by name only (probabilistic), so treat links as leads to verify, not proof. Compiled by the Revolving Door Project."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.DBT_CROGERS.HEALTH__FED_CMS_NPPES",
+    "friendly_name": "HEALTHCARE_PROVIDERS",
+    "one_liner": "Every US healthcare provider with an NPI -- all 9.6M. The backbone of the health data.",
+    "comment": "Every active healthcare provider in America with an NPI number -- 9.6 million doctors, nurses, clinics, hospitals, and organizations -- with names, addresses, specialties (taxonomy), and license numbers. This is the spine of the health data: payments, bans, and Medicare billing all point back to a provider here. Keyed by NPI, with EIN, name, and ZIP for further joins. If a provider exists, they're in this table. Published monthly by CMS."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.POLITICS.POLITICS__FEC_CAND_CMTE_LINK",
+    "friendly_name": "FEC_CANDIDATE_COMMITTEE_LINK",
+    "one_liner": "The bridge tying candidates to their campaign committees -- 16,229 links between CAND_ID and CMTE_ID.",
+    "comment": "The crosswalk that connects each federal candidate to the committees that raise and spend money for them -- 16,229 links pairing CAND_ID with CMTE_ID by cycle, plus committee type and designation. On its own it's just a lookup; its power is joining candidate records to the committee-level money. This is the hinge that lets you follow the cash from donor to committee to candidate. Cleaned and analytics-ready."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.POLITICS.POLITICS__MEMBER_BILL_RECORD",
+    "friendly_name": "MEMBER_LEGISLATIVE_RECORD",
+    "one_liner": "Each member of Congress's lawmaking scorecard -- bills sponsored, passed, and how far they got.",
+    "comment": "A legislative productivity scorecard for members of Congress (1,104 rows) -- bills and resolutions sponsored, how many were substantive, how many got enacted or advanced past committee, plus cosponsorship counts and an ideology label. Keyed by BIOGUIDE so it lines up with their fundraising and donations. Shows who actually moves legislation versus who just files it. Cleaned and analytics-ready."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.POLITICS.POLITICS__MEMBER_INDIV_DONATIONS",
+    "friendly_name": "MEMBER_INDIVIDUAL_DONATIONS",
+    "one_liner": "Where each member of Congress's individual donor money came from -- direct, earmarked, and self-funded.",
+    "comment": "Breaks down the individual-donor side of each member of Congress's fundraising (1,057 rows) -- itemized giving, direct vs. earmarked (money bundled through groups like ActBlue/WinRed), self-contributions, and reattributions. Keyed by BIOGUIDE. Tells you not just how much a member raised from people, but how they raised it -- grassroots checks or funneled money. Cleaned and analytics-ready."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.DBT_CROGERS.ECONOMICS__INTL_IT_ISTAT",
+    "friendly_name": "ITALY_STATISTICS",
+    "one_liner": "56,096 official Italian statistics -- economy, jobs, trade, population -- pulled from Istat's data feeds.",
+    "comment": "Italy's official statistics as individual observations -- 56,096 data points spanning the economy, labor, trade, demographics, and environment, pulled from Istat's SDMX web services. Each row is one measured value with its dataflow, dimensions, time period, and unit. It's a long, machine-readable time-series store, not a friendly summary table -- you filter by dataflow and dimensions to get a specific indicator. Published by Istat, Italy's national statistics institute."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.POLITICS.POLITICS__SCOTUS_JUSTICE",
+    "friendly_name": "SCOTUS_JUSTICES",
+    "one_liner": "40 Supreme Court justices with their terms and how many cases and votes they've cast.",
+    "comment": "One row per Supreme Court justice (40 total) with their term span, whether they're on the current bench, and counts of votes cast and cases heard. A small dimension table -- the roster you join to detailed vote records to see how each justice ruled. Good starting point for tracking the Court's makeup over time. Cleaned and analytics-ready."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.POLITICS.POLITICS__VOTEVIEW_VOTES",
+    "friendly_name": "CONGRESS_ROLL_CALL_VOTES",
+    "one_liner": "945,523 individual votes cast by members of Congress -- who voted yes, no, or abstained, per roll call.",
+    "comment": "Every recorded vote cast by a member of Congress -- 945,523 rows, one per member per roll call -- with how they voted (yea/nay/abstain) and the ideology probability estimate from the Voteview project. Keyed by ICPSR (the standard legislator ID) plus congress, chamber, and roll-call number. This is the raw voting record behind ideology scores and party-line analysis. Cleaned and analytics-ready."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.DBT_CROGERS.CONSUMER_PROTECTION__FED_CFPB_COMPLAINTS",
+    "friendly_name": "CONSUMER_FINANCE_COMPLAINTS",
+    "one_liner": "Consumer complaints about banks, lenders, and credit companies filed with the federal CFPB.",
+    "comment": "Every gripe a consumer filed with the Consumer Financial Protection Bureau about a financial product -- a mortgage, credit card, debt collector, whatever went wrong. Each row names the company, the product, the issue, and how (or whether) the company responded, so you can spot which firms rack up complaints. Heads up: this is a thin 500-row sample, good for exploring the shape, not for counting totals. Keyed by company name and ZIP."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.DBT_CROGERS.ECONOMICS__FED_TREASURY_AVG_INTEREST_RATES",
+    "friendly_name": "TREASURY_INTEREST_RATES",
+    "one_liner": "Monthly average interest rate the US government pays on its debt, by security type.",
+    "comment": "What it actually costs Uncle Sam to borrow: the average interest rate on US Treasury debt, month by month, broken out by security type (bills, notes, bonds, savings bonds, etc.). Cleaned and analytics-ready, 4,961 rows going back decades. Useful for tracking how the government's interest burden shifts over time. No cross-source join keys -- it's a time series, not an entity table."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.DBT_CROGERS.HEALTH__FED_CLINICALTRIALS",
+    "friendly_name": "CLINICAL_TRIALS",
+    "one_liner": "Registered clinical studies -- who sponsors them, the drug/condition, phase, and whether results were posted.",
+    "comment": "The public registry of clinical studies from ClinicalTrials.gov: each trial's sponsor, the drug or device tested, the condition, the phase, enrollment, and crucially whether (and how late) results ever got posted. Great for spotting sponsors who bury results. Carries an NPI so trials can point back to real providers. Heads up: this is a thin 500-row sample, good for exploring the shape, not for counting the full registry."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.DBT_CROGERS.JUSTICE__FED_DOJ_FCA_SETTLEMENTS",
+    "friendly_name": "FRAUD_SETTLEMENTS",
+    "one_liner": "DOJ False Claims Act settlements -- who defrauded the government, how much they paid back, and the whistleblower.",
+    "comment": "Companies and people who cheated the federal government (mostly Medicare/Medicaid and contracting fraud) and settled with DOJ under the False Claims Act. Each row has the amount paid, the fraud type, the agency defrauded, and -- when it's a qui tam case -- the whistleblower who blew it open and their cut. Cleaned and analytics-ready, but tiny: only 12 rows, a starter set rather than the full history."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.DBT_CROGERS.JUSTICE__FED_SCDB",
+    "friendly_name": "SCOTUS_CASES_AND_VOTES",
+    "one_liner": "Every US Supreme Court case and each justice's vote since 1946, richly coded.",
+    "comment": "The gold-standard Supreme Court Database: one row per justice-vote across every case since 1946, with who won, the legal issue, the direction (liberal/conservative), and who wrote the majority. 83,644 rows, cleaned and analytics-ready. This is how you study how a justice actually voted, not just what they said. Keyed by docket number."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.POLITICS.POLITICS__JCS_MEDIANS",
+    "friendly_name": "GOVERNMENT_IDEOLOGY_MEDIANS",
+    "one_liner": "By year: the ideological midpoint of the President, House, Senate, and Supreme Court on one scale.",
+    "comment": "A single yearly scorecard placing all four power centers -- the President, the median House member, the median Senator, and the median Supreme Court justice -- on one common ideology scale (JCS/DW-NOMINATE style). 102 rows, one per year/term. Lets you see, at a glance, when the Court drifted away from the elected branches. Cleaned and analytics-ready."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.POLITICS.POLITICS__JUDGE_IDEOLOGY_SCOTUS",
+    "friendly_name": "SCOTUS_JUSTICE_IDEOLOGY",
+    "one_liner": "Each Supreme Court justice's ideology score (JCS/Martin-Quinn style) by term.",
+    "comment": "One row per justice per term with their JCS ideology score -- a number that places each justice left-to-right and shows how they drifted over their career. 782 rows. Carries the SCDB justice code and the FJC judge ID so it joins to case votes and judge biographies. Cleaned and analytics-ready."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.POLITICS.POLITICS__MEMBER_PAC_MONEY",
+    "friendly_name": "MEMBER_PAC_MONEY",
+    "one_liner": "Per member of Congress, per cycle: PAC money raised and outside spending for and against them.",
+    "comment": "For each member of Congress each election cycle: how much PAC money they took, how many PACs gave, and how much outside groups spent to help or attack them. 1,258 rows. Keyed to the member via BIOGUIDE so it lines up with the member spine and crosswalk. The follow-the-money view of who's backing (and fighting) each legislator. Cleaned and analytics-ready."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.DBT_CROGERS.ENERGY__INTL_EMBER_ELEC",
+    "friendly_name": "ELECTRICITY_BY_COUNTRY",
+    "one_liner": "Yearly electricity generation, capacity, emissions, and demand for 200+ countries.",
+    "comment": "Ember's global electricity dataset: for 200+ countries and regions, the yearly numbers on how power is generated (coal, gas, wind, solar, etc.), plus capacity, emissions, imports, and demand. 118,463 rows in long format with year-over-year change built in. The go-to for tracking the clean-energy transition country by country. Keyed by country (with ISO codes) for easy geographic joins."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.DBT_CROGERS.FOREIGN_INFLUENCE__FED_FARA_BULK",
+    "friendly_name": "FOREIGN_AGENTS",
+    "one_liner": "Who is legally registered as a lobbyist/agent for a foreign government or entity, and for whom.",
+    "comment": "The Foreign Agents Registration Act filings: everyone required to disclose they're working in the US on behalf of a foreign government, party, or company -- the registrant, the foreign principal, and the country behind it. 21,326 rows from DOJ bulk data, cleaned. This is how you see which foreign powers are paying US lobbyists and PR firms. Keyed by name, address, ZIP, and country."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.POLITICS.POLITICS__MEMBER_SPINE",
+    "friendly_name": "CONGRESS_MEMBERS",
+    "one_liner": "The master list of every member of Congress with party, state, tenure, and ideology score.",
+    "comment": "The backbone table for Congress: one row per member with party, state, chamber, how many terms, first/last term dates, and their DW-NOMINATE ideology score (where they sit left-to-right). 12,794 rows spanning history. This is the spine everything else about a legislator -- votes, money, IDs -- hangs off of. Keyed by MEMBER_KEY and BIOGUIDE. Cleaned and analytics-ready."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.POLITICS.POLITICS__MEMBER_CROSSWALK",
+    "friendly_name": "CONGRESS_MEMBER_ID_CROSSWALK",
+    "one_liner": "The Rosetta Stone linking each member of Congress across every ID system (FEC, ICPSR, Wikidata, etc.).",
+    "comment": "A crosswalk that ties one member of Congress to all their different IDs -- BIOGUIDE, ICPSR, FEC, OpenSecrets, VoteSmart, Wikidata, Ballotpedia and more -- so datasets that use different keys can finally be joined. 12,794 rows. Without this table you can't connect a legislator's votes to their campaign money. Keyed by MEMBER_KEY. Cleaned and analytics-ready."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.POLITICS.POLITICS__MEMBER_FEC_ID",
+    "friendly_name": "MEMBER_TO_FEC_ID",
+    "one_liner": "Bridge from a member of Congress to their FEC candidate ID, unrolled one row per ID.",
+    "comment": "A focused bridge linking each member of Congress to their FEC candidate ID(s) -- the key that unlocks their campaign finance records. 1,715 rows, one per member/FEC-ID pair, with name, party, state, and chamber. This is the join that turns a legislator into their money trail. Keyed by MEMBER_KEY and BIOGUIDE. Cleaned and analytics-ready."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.DBT_CROGERS.HEALTH__PHARMA_MEAL_CAP_FINGERPRINT",
+    "friendly_name": "PHARMA_MEAL_CAP_GAMING",
+    "one_liner": "Drug/device makers whose meals for doctors bunch suspiciously just under the $125 reporting cap.",
+    "comment": "A forensic mart that flags pharma and device companies gaming the meal-cap rule: it counts how many of a company's food-and-beverage payments to doctors land at exactly $124.99 (just under the $125 line) versus $125.00, and scores the 'cliff' as a fingerprint of deliberate cap-dodging. 2,462 rows, one per company/year, from Open Payments data. Keyed by the payment maker. Cleaned and analytics-ready."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.DBT_CROGERS.JUDICIARY__FED_OYEZ",
+    "friendly_name": "SUPREME_COURT_CASES",
+    "one_liner": "U.S. Supreme Court cases: who argued, how each justice voted, the ruling, plus audio/transcripts.",
+    "comment": "Cleaned record of U.S. Supreme Court cases from the Oyez archive -- each row is one case with the parties (petitioner vs. respondent), the lower court, argument and decision dates, the disposition, who wrote the majority, and a per-justice vote breakdown. It also links to the oral-argument audio and full transcript. Keyed by docket number and case name; strong for tracing how a justice ruled across cases. Heads up: this table holds 25 cases -- a slice of the 1955-present archive, good for seeing the shape, not a full census of the Court's docket."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.POLITICS.POLITICS__JUDGE_IDEOLOGY_COA",
+    "friendly_name": "APPEALS_JUDGE_IDEOLOGY_SCORES",
+    "one_liner": "Ideology scores for 703 federal appeals-court judges -- how liberal or conservative each one leans.",
+    "comment": "One row per U.S. Court of Appeals judge with a Judicial Common Space (JCS) score -- a standard academic measure of where a judge sits on the liberal-to-conservative spectrum, derived from who appointed them. Includes the judge's name and circuit. Use it to ask whether a court's makeup tilts the outcomes it hands down; join by judge name to case or biography tables. Cleaned mart, analytics-ready; the score is an estimate, not a self-declared label."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.DBT_CROGERS.ECONOMICS__FED_FDIC_FAILED_BANKS",
+    "friendly_name": "FAILED_BANKS",
+    "one_liner": "Every U.S. bank that has failed since 1934 -- when it collapsed, who bought it, and what it cost.",
+    "comment": "Every FDIC-insured bank failure since 1934 (3,584 of them), one row per collapsed bank. Shows the bank's name and location, the failure date, how long it was insured before dying, the institution that acquired it, and the estimated loss to the federal deposit-insurance fund -- plus assets, deposits, and loss ratios. Cleaned and analytics-ready; keyed by FDIC cert number and county FIPS so you can map failures geographically or tie them to the acquiring bank. The raw follow-the-collapse record for financial crises."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.DBT_CROGERS.JUSTICE__RACIAL_JAIL_DISPARITY",
+    "friendly_name": "JAIL_RACIAL_DISPARITY_BY_COUNTY",
+    "one_liner": "County-by-year jail rates by race -- how much more often Black residents are jailed than white ones.",
+    "comment": "One row per U.S. county per year (128k rows) measuring who gets locked up. It gives jail rates for Black, white, and Latinx working-age residents, the underlying jail and population counts, and the Black-to-white ratio -- so you can see, county by county, how unequal incarceration is and whether the gap is widening. Includes flags for whether a cohort is large enough to measure reliably. Cleaned mart keyed by county FIPS and year; rates are per-population, built to compare places fairly."
+  },
+  {
+    "object_fqn": "LIBRARY_MARTS.POLITICS.POLITICS__FJC_JUDGE",
+    "friendly_name": "FEDERAL_JUDGES",
+    "one_liner": "Every federal judge in U.S. history -- name, birth/death, gender, race -- the who's-who of the bench.",
+    "comment": "The biographical directory of federal judges from the Federal Judicial Center: one row per judge (4,067) with full name, birth and death years, gender, and race or ethnicity. This is the backbone that other court tables point back to -- appointments, ideology scores, and case rulings all identify judges by the IDs (NID/JID) living here. Cleaned and analytics-ready; if a federal judge existed, they're in this table."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.INTL_IPC_FOOD_INSECURITY_GLOBAL",
+    "friendly_name": "FAMINE_FOOD_INSECURITY",
+    "one_liner": "How many people are in famine or emergency-level hunger, by country and analysis period.",
+    "comment": "The official famine-tracking data (IPC): how many people fall into each hunger phase -- from stressed up to Phase 5, Famine -- for a country and analysis window. Each row is one phase for one country/date, with the head count and the share of the population it represents. This is the data behind 'famine confirmed' headlines. Country is an ISO3 code. Raw landing table: every value stored as text, exactly as loaded, so cast the numbers before you do math on them."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.ST_CANNABIS_POLICY_BUNDLES",
+    "friendly_name": "STATE_CANNABIS_LAWS",
+    "one_liner": "State-by-year cannabis law details -- what each state approved and actually implemented, medical and rec.",
+    "comment": "A deep coding of U.S. state marijuana policy by state and year: whether medical and recreational use were approved and implemented, how it happened (ballot measure, legislature, court), plus dozens of fine-grained rules -- home growing, dispensary limits, taxes, testing, possession penalties, caregiver rules. Distinguishes 'approved' from 'implemented' throughout, so you can see the gap between passing a law and enforcing it. Keyed by state and FIPS. Raw landing table: values stored as text (including some scored/z-scored policy indices), and note a couple of unlabeled COL_* placeholder columns from the source."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.XC_OWID_REFUGEES",
+    "friendly_name": "REFUGEES_BY_ORIGIN_COUNTRY",
+    "one_liner": "How many refugees fled each country each year -- the size of every displacement crisis over time.",
+    "comment": "Refugee counts by country of origin and year (Our World in Data / UNHCR): each row says how many people from a given country were living as refugees that year, tagged with world region. It answers 'where are people fleeing from, and how has that grown?' Country is an ISO3 code for joining to other international data. Raw landing table -- values stored as text, so cast the count before summing."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_CDC_ANXIETY_DEPRESSION",
+    "friendly_name": "ANXIETY_DEPRESSION_RATES",
+    "one_liner": "CDC survey estimates of Americans reporting anxiety or depression, by state, group, and time.",
+    "comment": "CDC's Household Pulse tracker of mental-health symptoms: the estimated share of adults reporting anxiety or depression, broken out by state and by subgroup (age, race, gender, etc.) across survey periods since 2020. Includes confidence intervals so you can judge how solid each estimate is. Raw landing table -- every value stored as text, and these are survey-based estimates with margins of error, not exact counts. Cast VALUE before charting trends."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_CDC_OVERDOSE",
+    "friendly_name": "DRUG_OVERDOSE_DEATHS",
+    "one_liner": "CDC provisional drug-overdose death counts by state, month, and drug type -- the epidemic in numbers.",
+    "comment": "CDC's provisional count of U.S. drug-overdose deaths: rows by state, year/month, and indicator (total, or a specific drug class like fentanyl or heroin). Because it's provisional, it also carries how complete the data is and a predicted value that adjusts for reporting lag. This is the running body count of the overdose epidemic. Raw landing table -- values stored as text, and 'provisional' means recent months will revise upward as investigations close."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_CMS_NADAC",
+    "friendly_name": "DRUG_ACQUISITION_COSTS",
+    "one_liner": "What pharmacies actually pay per unit for each drug (by NDC) -- the true-cost benchmark for the markup story.",
+    "comment": "The real acquisition cost of drugs (CMS NADAC): what pharmacies actually pay per unit for each drug, identified by NDC, with the drug description, pricing unit, brand/generic flag, and the matching generic's cost. 1.5M rows. Cross it against what Medicare/Medicaid reimburse and you find the markup -- where the overpayment story lives. NDC is the steel join key to FDA drug data, Part D, and RxNorm. Raw landing table: every value stored as text, so cast prices and dates before comparing."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.XC_OWID_GINI",
+    "friendly_name": "INCOME_INEQUALITY_GINI",
+    "one_liner": "The Gini index by country and year -- one number for how unequal each country's incomes are.",
+    "comment": "Income inequality measured by the Gini index, by country and year (Our World in Data). Gini runs 0 (everyone earns the same) to 1 (one person has it all), so a single row tells you how lopsided a country's income was in a given year, tagged with world region. Country is an ISO3 code for joining. Raw landing table -- values stored as text; cast the coefficient before comparing. Coverage varies by country and year, so it's uneven, not a complete grid."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.XC_OWID_TEMP_ANOMALY",
+    "friendly_name": "GLOBAL_TEMPERATURE_ANOMALY",
+    "one_liner": "How far each year's temperature ran above or below the historical baseline -- the climate-change line.",
+    "comment": "Global temperature anomaly by year (Our World in Data): how much warmer or cooler each year was versus a long-run baseline, with upper and lower uncertainty bounds. This is the classic warming curve -- the closer you get to today, the higher the anomaly. Entity is usually 'World' but region rows exist. Raw landing table -- values stored as text; cast the average and bounds before plotting the trend."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.XC_WAYBACK_REPLAY_DOJ_LISTING",
+    "friendly_name": "DOJ_ARCHIVED_PAGE_SNAPSHOTS",
+    "one_liner": "24,897 Wayback Machine snapshots of DOJ web pages -- an archive trail of what Justice published, and when.",
+    "comment": "A capture of Department of Justice web pages as archived by the Internet Archive's Wayback Machine -- each row is one snapshot record, useful for proving what DOJ said on its site at a given moment and catching pages that were later changed or removed. No documented publisher or URL metadata on this table, and the whole payload sits in a single RECORD column. Raw landing table: stored exactly as scraped (text), so you'll need to parse the RECORD field to pull out URLs and timestamps."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_CDC_SUICIDE_RATES",
+    "friendly_name": "SUICIDE_DEATH_RATES",
+    "one_liner": "US suicide death rates by year, age, sex and race from the CDC -- the national trend line.",
+    "comment": "The CDC's official suicide death rates for the US, sliced by year, age group, sex and race/ethnicity. Good for tracking how suicide has moved over decades and which groups are hit hardest. Raw as loaded (every value stored as text) -- ESTIMATE is a rate, not a count, and rows carry demographic-breakdown labels (STUB_NAME/STUB_LABEL) you filter on. No geography and no join keys, so it stands alone as a trend source."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_CDC_DRUG_POISONING_COUNTY",
+    "friendly_name": "DRUG_OVERDOSE_DEATH_RATES_BY_COUNTY",
+    "one_liner": "Drug-poisoning (overdose) death rates for every US county, year by year, from the CDC.",
+    "comment": "The CDC's county-level overdose death rates -- the map layer of the drug-death crisis, showing which counties got worse and when. Keyed by county FIPS, so it joins to almost any US geographic data. Heads up: the raw death rate here is banded into ranges (a text bucket, not an exact number) to protect small-county privacy -- fine for mapping hotspots, not for precise counts. Raw as loaded (every value stored as text)."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.XC_WAPO_FATAL_FORCE",
+    "friendly_name": "POLICE_FATAL_SHOOTINGS",
+    "one_liner": "Every person US police shot and killed -- who, where, which agency -- the Washington Post's count.",
+    "comment": "The Washington Post's incident-level record of people shot and killed by US police: name, age, race, date, city/county/state, lat/lon, and the agency (via AGENCY_IDS). The standard citable source for police-violence reporting. Heads up: fatal SHOOTINGS only -- it excludes Tasers, in-custody deaths, and vehicle deaths, so it undercounts total police killings. Raw as loaded (text); AGENCY_IDS is a delimited list that needs unnesting to name the agency, and lat/lon are often block-level."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.XC_RANSOMWARELIVE_VICTIMS",
+    "friendly_name": "RANSOMWARE_VICTIMS",
+    "one_liner": "Organizations worldwide hit by ransomware gangs -- victim name, gang, sector, country, date.",
+    "comment": "A global tracker of ransomware attacks: which organization got hit, by which gang, in what sector and country, and when. The broadest worldwide view of who's under attack, including critical infrastructure like healthcare and energy. Heads up: victim names are scraped from criminal leak sites and claimed by the attackers -- unverified, with duplicate/typo'd org names and loosely-mapped sectors, so clean before you count. Raw as loaded (every value stored as text); no firm ID, so cross-source matching is by name."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.XC_OWID_AI_INCIDENTS_ANNUAL",
+    "friendly_name": "AI_INCIDENTS_ANNUAL_COUNT",
+    "one_liner": "Count of reported AI incidents and controversies per year -- one number a year, the trend line.",
+    "comment": "A one-number-per-year tally of reported AI incidents and controversies, from the AI Incident Database via Stanford's AI Index. Just enough to draw the 'AI harms are accelerating' trend line. Heads up: this is a rolled-up annual count (14 rows), not the underlying incidents -- use it as a headline chart or sanity check, not for digging into what actually happened. Raw as loaded (every value stored as text)."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.INTL_OWID_MILSPEND",
+    "friendly_name": "MILITARY_SPENDING_BY_COUNTRY",
+    "one_liner": "Military spending per country per year in constant USD (SIPRI data) -- the arms-race trend line.",
+    "comment": "Annual military spending for every country in constant US dollars, sourced from SIPRI via Our World in Data. Carries ISO-3 country codes, so it joins to any country-keyed source in the Library -- built for comparing spending trajectories (China vs US vs Taiwan, etc). Heads up: some rows are regional aggregates (tagged '(SIPRI)') that you filter out for country-level work, and only this one metric (constant USD) is here -- %GDP and per-capita live in sibling tables. Raw as loaded (every value stored as text)."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_NOAA_STORM_EVENTS",
+    "friendly_name": "STORM_EVENTS",
+    "one_liner": "Every US severe-weather event -- deaths, injuries, property/crop damage, location -- 1.8M records.",
+    "comment": "NOAA's event-by-event record of US extreme weather: what happened (tornado, flood, heat, etc), where (lat/lon and FIPS), and the human and economic toll -- fatalities, injuries, and property/crop damage. The granular impact layer that disaster declarations miss. Heads up: damage amounts are text with K/M/B suffixes ('2.5K', '10.00M') that must be parsed, and CZ_TYPE='Z' rows are NWS forecast zones, not counties -- don't blindly join those to county FIPS. Raw as loaded (every value stored as text)."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_VA_SUICIDE_APPENDIX",
+    "friendly_name": "VETERAN_SUICIDE_RATES",
+    "one_liner": "VA's official veteran suicide death counts and rates by sex, 2001-2023 -- a small summary table.",
+    "comment": "The VA's National Veteran Suicide report appendix: veteran suicide death counts and adjusted rates broken out by sex over 2001-2023. The authoritative federal number on veteran suicide. Heads up: this is a raw spreadsheet dump (144 rows) -- the real column headers are buried in the data (columns are named COL_1..COL_12) and need reshaping in staging before it's usable. Raw as loaded (every value stored as text)."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.INTL_WB_IDS",
+    "friendly_name": "SOVEREIGN_DEBT_BY_CREDITOR",
+    "one_liner": "How much each developing country owes, and to whom -- World Bank external-debt panel, 1970-2032.",
+    "comment": "The World Bank's International Debt Statistics: developing-country external debt -- stocks and debt service -- with a rare creditor-by-creditor breakdown showing who each country actually owes (bilateral, multilateral, private). The core source for the global debt crisis. Keyed by ISO-3 country code plus a counterpart (creditor) code; filter counterpart to WLD for a clean all-creditors country panel. Heads up: only low- and middle-income countries (no G7 debtors), years run wide (1970-2032) and 2025+ are projections/nulls. Wide format -- one column per year. Raw as loaded (text)."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.XC_OWID_FERTILITY",
+    "friendly_name": "FERTILITY_RATE_BY_COUNTRY",
+    "one_liner": "Children born per woman, per country per year -- the birth-rate trend behind aging populations.",
+    "comment": "The total fertility rate (average children born per woman) for every country over time, from Our World in Data. The demographic engine behind aging and population-decline stories. Carries ISO-3 country codes, so it joins to any country-keyed source in the Library. Raw as loaded (every value stored as text) -- includes regional/aggregate 'entity' rows alongside individual countries."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.INTL_NTI_CNS_DPRK_MISSILE_TESTS",
+    "friendly_name": "NORTH_KOREA_MISSILE_TESTS",
+    "one_liner": "Every North Korean missile test since 1984 -- date, missile, range, launch site, outcome.",
+    "comment": "The authoritative chronology of every North Korean missile flight test from 1984 to today: missile name and type (SRBM/ICBM/etc), date and time, geocoded launch facility (lat/lon), apogee, distance, and whether it succeeded. Built for tracking the pace and reach of the DPRK missile program. Heads up: many 'numeric' fields (apogee, distance, landing location) are free text including 'Unknown' -- kept as text here, parse in staging. Raw as loaded (every value stored as text)."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.INTL_LEIDEN_RUSSIAN_OPS_EUROPE",
+    "friendly_name": "RUSSIAN_OPERATIONS_AGAINST_EUROPE",
+    "one_liner": "Catalog of Russian hybrid-warfare operations against Europe -- sabotage, spying, influence ops.",
+    "comment": "An academic dataset (Harvard Dataverse) cataloging Russian covert and hybrid operations against Europe: what happened, where, the event category, the apparent goal, and the target type. The evidence base for Russia-NATO gray-zone conflict reporting. Heads up: 153 hand-coded incidents -- an analyst-curated set, not a comprehensive registry, and the coding categories are judgment calls. Raw as loaded (every value stored as text)."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.XC_VERA_INCARCERATION_TRENDS",
+    "friendly_name": "INCARCERATION_TRENDS_BY_COUNTY",
+    "one_liner": "Jail and prison populations for every US county over time, broken out by race and sex.",
+    "comment": "The Vera Institute's county-level record of who's locked up in America: jail and prison populations, admissions, and rates over decades, split by race and sex. The spine of mass-incarceration reporting. Keyed by county FIPS, so it joins to almost any US geographic data. Heads up: not every county reports every year, so coverage is patchy across the time series. Raw as loaded (every value stored as text) -- and it's very wide, with hundreds of demographic breakdown columns."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.XC_OWID_HOMICIDE",
+    "friendly_name": "HOMICIDE_RATE_BY_COUNTRY",
+    "one_liner": "Homicides per 100,000 people, per country per year (UN data) -- the global violence trend line.",
+    "comment": "The homicide rate (killings per 100,000 people) for every country over time, sourced from UNODC via Our World in Data. The standard way to compare violence across countries and track it over time. Carries ISO-3 country codes, so it joins to any country-keyed source in the Library. Raw as loaded (every value stored as text) -- includes regional/aggregate 'entity' rows alongside individual countries."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.XC_OWID_FOSSIL_SHARE",
+    "friendly_name": "FOSSIL_FUEL_ENERGY_SHARE",
+    "one_liner": "Share of each country's primary energy that comes from fossil fuels, by year.",
+    "comment": "For every country and year, what percent of primary energy came from coal, oil, and gas. The single clearest number for how far off fossil fuels a country still is. Raw as loaded (all text) -- cast the year and percent before charting. From Our World in Data; no join key, matched on country name/code."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.XC_GUTTMACHER_MONTHLY_ABORTION",
+    "friendly_name": "MONTHLY_ABORTION_COUNTS",
+    "one_liner": "Monthly estimated abortion counts by US state, with low/high uncertainty bounds.",
+    "comment": "Guttmacher's monthly estimate of abortions in each US state -- a median plus a lower and upper bound, because these are modeled estimates, not a hard count. The go-to for tracking how state bans shifted where abortions happen. Raw as loaded (all text); no join key, matched on state name. Treat the numbers as estimates with error bars, not exact totals."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_CISA_KEV",
+    "friendly_name": "EXPLOITED_VULNERABILITIES",
+    "one_liner": "The US government's list of software flaws known to be actively exploited by hackers.",
+    "comment": "CISA's authoritative catalog of software vulnerabilities (CVEs) with real evidence of active in-the-wild attacks -- which vendor and product, what it does, whether it's been used in ransomware, and the federal deadline to patch it. The short list of flaws that actually matter right now. Raw as loaded (all text); keyed by CVE_ID. From CISA."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_SEC_EDGAR_FINANCIALS",
+    "friendly_name": "SEC_FILING_SUBMISSIONS",
+    "one_liner": "Header details for company financial filings to the SEC -- who filed, when, and what form.",
+    "comment": "One row per financial statement filing to the SEC: the filer's name, CIK, EIN, industry code (SIC), addresses, fiscal period, and form type (10-K, 10-Q, etc.). The index to public companies' financials -- join out to the actual line-item numbers by accession number (ADSH). Raw as loaded (all text); carries CIK and EIN as join keys. From SEC DERA."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.INTL_VOETEN_UNGA_VOTES",
+    "friendly_name": "UN_VOTE_AGREEMENT_PAIRS",
+    "one_liner": "How often every pair of countries voted the same way at the UN General Assembly -- 1.8M pairs.",
+    "comment": "For each pair of countries and year, how closely they voted together at the UN General Assembly, plus each side's 'ideal point' (where it sits on a global alignment scale). The standard academic measure of who's diplomatically in whose camp. Raw as loaded (all text); countries identified by ccode, no standard join key. Voeten data via Harvard Dataverse."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.XC_OWID_CPI",
+    "friendly_name": "CORRUPTION_PERCEPTIONS_INDEX",
+    "one_liner": "Transparency International's yearly corruption score for each country (0 = worst, 100 = clean).",
+    "comment": "For every country and year, its Corruption Perceptions Index score -- how corrupt its public sector is seen to be by experts and business people. A perception score, not a count of actual crimes, so read it as reputation. Raw as loaded (all text); no join key, matched on country name/code. From Our World in Data / Transparency International."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.INTL_UCDP_GED",
+    "friendly_name": "ARMED_CONFLICT_EVENTS",
+    "one_liner": "Every dated, mapped event of organized violence worldwide since 1989 -- 386K events with death tolls.",
+    "comment": "The gold-standard conflict backbone: individual events of organized violence (war, insurgency, one-sided killings) with a date, lat/lon, the two sides, and best/low/high fatality estimates because exact death counts are uncertain. Map it, count it, or track a war over time. Raw as loaded (all text); has lat/lon for spatial joins, no country ID key. UCDP GED Global v251."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_CDC_INJURY_VIOLENCE_COUNTY",
+    "friendly_name": "INJURY_VIOLENCE_DEATH_RATES",
+    "one_liner": "County-level death rates from injury, overdose, and violence (including guns), by intent.",
+    "comment": "CDC estimates of death and injury rates for each US county, broken out by intent (suicide, homicide, unintentional, etc.) -- the county-level picture of overdose and gun violence. Rates come with margins of error, and small counts are suppressed for privacy. Raw as loaded (all text); GEOID is the county FIPS code -- your join to any other county data. From CDC."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.XC_OWID_LIFE_EXPECTANCY",
+    "friendly_name": "LIFE_EXPECTANCY",
+    "one_liner": "Life expectancy at birth for every country, by year.",
+    "comment": "For each country and year, how many years a newborn can expect to live -- the single best summary of a population's overall health. Great for long-run trends and comparing countries. Raw as loaded (all text); no join key, matched on country name/code. From Our World in Data."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.XC_OWID_TERRORISM_DEATHS",
+    "friendly_name": "TERRORISM_DEATHS",
+    "one_liner": "Annual deaths from terrorism by country, from the Global Terrorism Database.",
+    "comment": "For each country and year, the number of people killed in terrorist attacks. Good for tracking where and when terrorism spikes; what counts as 'terrorism' is a definitional call made by the source, so compare carefully. Raw as loaded (all text); no join key, matched on country name/code. From Our World in Data."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.XC_OWID_CO2",
+    "friendly_name": "CO2_EMISSIONS_ANNUAL",
+    "one_liner": "Total annual CO2 emissions for every country, going back over two centuries.",
+    "comment": "For each country and year, its total annual CO2 emissions -- the core number behind who's driving climate change and how that's shifted over time. Note this is total emissions, not per-person. Raw as loaded (all text); no join key, matched on country name/code. From Our World in Data."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_FBI_NICS_CHECKS",
+    "friendly_name": "GUN_BACKGROUND_CHECKS",
+    "one_liner": "FBI firearm background checks by US state and month since 1998 -- the standard gun-sales proxy.",
+    "comment": "State-by-month counts of FBI firearm background checks, broken out by 24 check types (handgun, long gun, permit, pawn, private sale, etc.). The cleanest available signal for gun demand -- but a check is NOT a sale: permit rechecks and CCW renewals inflate the totals, so treat it as a proxy. Raw as loaded (all text); join on state name (map to FIPS in staging). FBI via the Data Liberation Project mirror."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.XC_NAGIX_DPRK_MISSILE_TESTS",
+    "friendly_name": "NORTH_KOREA_MISSILE_TESTS",
+    "one_liner": "Every known North Korean missile test -- date, missile, apogee, distance, and outcome.",
+    "comment": "A record of North Korean missile flight tests: date, missile type, launch facility, apogee, distance flown, bearing, and whether it succeeded. Good for mapping impact points and tracking escalation. This is a derived/enriched mirror (from CNS/NTI data), not the primary source -- treat missile and facility values as codes needing a lookup. Raw as loaded (all text); no join key."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_VA_ALLCAUSE_MORTALITY",
+    "friendly_name": "VETERAN_MORTALITY_APPENDIX",
+    "one_liner": "VA all-cause death figures for veterans, 2018-2023, as extracted from a report appendix.",
+    "comment": "The all-cause mortality data appendix from a VA mental-health report, covering veteran deaths 2018-2023. Heads up: this is a raw dump of report tables -- generic column names (FIGURES_AND_TABLES, COL_1, COL_2) and only 244 rows, so it needs careful reshaping before it's usable, and it's more a supporting appendix than a clean dataset. Raw as loaded (all text); no join key. From the US Dept of Veterans Affairs."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.XC_OWID_NUCLEAR_WARHEADS",
+    "friendly_name": "NUCLEAR_WARHEAD_STOCKPILES",
+    "one_liner": "How many nuclear warheads each nuclear-armed country holds, year by year.",
+    "comment": "Estimated nuclear warhead counts for the nine weapons states (US, Russia, China, France, UK, India, Pakistan, Israel, North Korea) plus South Africa and a World total, tracked over time. Great scene-setting for the global arsenal race, keyed by country ISO-3 code. Heads up: this is weapons-states only -- Iran is NOT in it, so it's context, not Iran data. Raw landing table, values stored as text."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.XC_WIKIPEDIA_LARGEST_US_COMPANIES",
+    "friendly_name": "LARGEST_US_COMPANIES",
+    "one_liner": "The 100 biggest US companies by revenue -- rank, industry, headcount, HQ.",
+    "comment": "The top 100 US companies ranked by revenue, with industry, revenue growth, employee count, and headquarters. A quick who's-who of American corporate giants, useful as a starting reference to join out to contracts, filings, and lobbying by company name. Heads up: only 100 rows, scraped from Wikipedia, and the only join key is company NAME (fuzzy). Raw landing table, values stored as text."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_CMS_HOSPICE",
+    "friendly_name": "HOSPICES",
+    "one_liner": "Every Medicare-certified hospice in America -- name, address, owner type.",
+    "comment": "All 6,852 hospice providers certified by Medicare, with location, ownership type, and certification date. One row per hospice, keyed by CCN (the Medicare facility ID) so it joins to billing, ownership, and quality data. The end-of-life care leg of the CMS provider spine. Raw landing table, values stored as text."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_CMS_POS_OTHER",
+    "friendly_name": "MEDICARE_FACILITIES",
+    "one_liner": "Master file of every Medicare-certified facility -- beds, staff, services.",
+    "comment": "CMS Provider of Services file: the deep-detail record for ~44,000 hospitals and non-hospital facilities, with hundreds of columns on bed counts, staffing, services offered, ownership changes, and termination status. Keyed by CCN and carrying FIPS geography, it's the backbone reference for what a Medicare facility actually is and does. Raw landing table, values stored as text -- and yes, the column names are cryptic CMS codes."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_CMS_LTCH",
+    "friendly_name": "LONG_TERM_CARE_HOSPITALS",
+    "one_liner": "Every long-term care hospital in America -- name, address, beds, owner.",
+    "comment": "All 311 long-term care hospitals certified by Medicare (facilities treating patients who need extended hospital-level care), with location, ownership type, bed count, and certification date. One row per hospital, keyed by CCN so it joins to billing, ownership, and quality data. Raw landing table, values stored as text."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_CMS_HOME_HEALTH",
+    "friendly_name": "HOME_HEALTH_AGENCIES",
+    "one_liner": "Every Medicare home health agency -- services, ownership, quality ratings.",
+    "comment": "All 12,392 home health agencies certified by Medicare, with services offered, ownership, star ratings, and dozens of patient-outcome measures (how often patients got better, Medicare spending per episode). One row per agency, keyed by CCN so it joins to billing and ownership. Raw landing table, values stored as text."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_CMS_FACILITY_AFFILIATION",
+    "friendly_name": "PROVIDER_FACILITY_LINKS",
+    "one_liner": "Which doctors work at which facilities -- the NPI-to-CCN crosswalk, 2.2M links.",
+    "comment": "The bridge between individual clinicians and the facilities they practice at: 2.2 million rows linking a doctor's NPI to a facility's CCN. This is the crosswalk that lets you follow a named doctor to the hospitals, nursing homes, and dialysis centers they're tied to. Keyed by both NPI and CCN -- rare and valuable connective tissue. Raw landing table, values stored as text."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_USASPENDING_CONTRACTS",
+    "friendly_name": "FEDERAL_CONTRACTS",
+    "one_liner": "Every federal prime contract award for FY2025 -- who got paid, how much, for what.",
+    "comment": "6.3 million federal prime contract transactions (Oct 2024-Sep 2025): the awarding agency, the company (with UEI/DUNS/CAGE IDs and parent company), dollar amounts, work description, industry code, and even top-officer pay. The core follow-the-money table for government spending, keyed by UEI/DUNS/NAICS/FIPS so it joins to companies and places. Raw landing table, values stored as text."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_CMS_HOSPITAL_GENERAL",
+    "friendly_name": "HOSPITALS",
+    "one_liner": "Every hospital in America -- type, ownership, ER, and overall star rating.",
+    "comment": "All 5,432 hospitals in the Medicare system, with type, ownership, whether they have an ER, overall quality rating, and counts of how they score on mortality, safety, and readmissions. One row per hospital, keyed by CCN so it joins to billing, ownership, and the rest of the provider spine. Raw landing table, values stored as text."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_CMS_IRF",
+    "friendly_name": "INPATIENT_REHAB_FACILITIES",
+    "one_liner": "Every inpatient rehab facility in America -- name, address, owner type.",
+    "comment": "All 1,222 inpatient rehabilitation facilities certified by Medicare (where patients recover after strokes, injuries, or surgery), with location, ownership type, and certification date. One row per facility, keyed by CCN so it joins to billing, ownership, and quality data. Raw landing table, values stored as text."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_EPA_ECHO",
+    "friendly_name": "POLLUTION_ENFORCEMENT",
+    "one_liner": "Every EPA-regulated facility -- inspections, violations, and fines, 3.2M sites.",
+    "comment": "EPA's ECHO file: 3.2 million regulated facilities and their enforcement record -- inspections, violations, penalties, and compliance status across air, water, waste, and drinking-water programs. Cross it with who's getting fined vs. who keeps polluting and you find where enforcement breaks down. Carries lat/lon and FIPS for spatial joins. Raw landing table, values stored as text."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_DOJ_EPSTEIN_LIBRARY",
+    "friendly_name": "EPSTEIN_FILE_MANIFEST",
+    "one_liner": "A monthly index of every file the DOJ's Epstein Library lists publicly.",
+    "comment": "A snapshot of every file link the DOJ's public Epstein Library page lists -- names, URLs, link text, and source page. Metadata only, never the documents themselves. Taken over time, snapshots reveal what appeared, what vanished, and what changed on the government's page. Only 777 rows, no join keys. Raw landing table, values stored as text."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_GOVINFO_BILLSTATUS",
+    "friendly_name": "CONGRESSIONAL_BILLS",
+    "one_liner": "Every bill in Congress -- sponsor, cosponsors, action history, and if it became law.",
+    "comment": "Official status records for 36,465 congressional measures: bill number, sponsor, cosponsor list, full action history, and a flag (with public-law number) for the ones that actually became law. Sponsor and cosponsors carry bioguide IDs, so it joins cleanly to the member roster -- follow a lawmaker to everything they've pushed. Raw landing table, values stored as text."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_FEC_INDEPENDENT_EXPENDITURES",
+    "friendly_name": "OUTSIDE_SPENDING",
+    "one_liner": "Money spent FOR or AGAINST candidates by outside groups -- who, how much, which side.",
+    "comment": "FEC Schedule E independent expenditures: 83,468 records of outside groups (super PACs and others) spending to support or oppose a candidate, with a flag for which direction. This is the authoritative source for outside for/against spending, keyed by FEC committee and candidate IDs so it joins to the campaign-finance spine. Raw landing table, values stored as text."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_OFAC_SDN",
+    "friendly_name": "SANCTIONED_PARTIES",
+    "one_liner": "The U.S. Treasury sanctions blacklist: every person, company, and ship Americans are barred from dealing with.",
+    "comment": "The OFAC Specially Designated Nationals list -- 19,115 rows of people, entities, and vessels the U.S. Treasury has sanctioned, plus the program (Iran, Russia, narcotics, terrorism, etc.) that got them listed. Vessel rows carry a 7-digit IMO number, so you can tie a sanctioned ship to its movements. Raw landing: every value is stored as text exactly as published."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_CMS_MEDICARE_PROVIDER",
+    "friendly_name": "MEDICARE_PROVIDER_BILLING",
+    "one_liner": "What every Medicare provider billed and got paid, 1.3M rows -- follow the money by NPI.",
+    "comment": "One row per provider per year showing what they billed Medicare: services rendered, patients seen, charges submitted, and dollars Medicare actually paid, plus patient demographics and chronic-condition mix. 1.3M rows keyed by NPI, so it joins to the provider spine, pharma payments, and the banned-provider list. Raw landing -- every value is text, cast dollar amounts before you sum them."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_FEC_BULK",
+    "friendly_name": "FEC_COMMITTEES",
+    "one_liner": "Every federal political committee registered with the FEC for 2024 -- PACs, party orgs, campaign committees.",
+    "comment": "The FEC committee master: 20,938 registered committees for the 2024 cycle -- name, treasurer, address, type (PAC, party, candidate committee), party affiliation, and any connected organization. Keyed by FEC_CMTE_ID (and FEC_CAND_ID where a committee is tied to a candidate), so it's the lookup that turns cryptic committee codes in the donation firehose into real names. Raw landing, all text."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.INTL_FREEDOMHOUSE",
+    "friendly_name": "COUNTRY_FREEDOM_SCORES",
+    "one_liner": "Freedom House's yearly Free / Partly Free / Not Free grade for every country, with the sub-scores behind it.",
+    "comment": "The annual freedom scorecard: each country rated on political rights and civil liberties (2013-2024), broken into the A1-G4 sub-indicators that build the score -- the standard evidence for a democratic-backsliding story. 2,723 rows (country x year). Heads up: no ISO country code, so you need a name-to-country crosswalk to join it cleanly, and commercial reuse is restricted. Raw landing, all text."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_CMS_DIALYSIS",
+    "friendly_name": "DIALYSIS_FACILITIES",
+    "one_liner": "Every Medicare dialysis center in the U.S. with quality, mortality, and infection stats.",
+    "comment": "All 7,557 Medicare-certified dialysis facilities from CMS Care Compare -- location, ownership (for-profit vs non-profit, and the chain that owns it), star rating, and outcome measures like patient mortality, hospitalization, infection, and transfusion rates. Keyed by CCN, so it joins to other CMS provider data. Great for asking whether for-profit or chain-owned centers have worse patient outcomes. Raw landing, all text."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_IRS_REVOCATION",
+    "friendly_name": "REVOKED_NONPROFITS",
+    "one_liner": "Nonprofits that lost their tax-exempt status -- 1.2M orgs the IRS auto-revoked, keyed by EIN.",
+    "comment": "The IRS auto-revocation list: 1.2M nonprofits stripped of tax-exempt status (usually for failing to file for three straight years), with the revocation date and any later reinstatement. Keyed by EIN, so you can check whether an org still soliciting donations or receiving grants is actually a revoked shell. Raw landing -- every value is text."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_FEC_BULK_LINKAGES",
+    "friendly_name": "FEC_CANDIDATE_COMMITTEE_LINKS",
+    "one_liner": "The official bridge tying FEC candidates to their committees -- which committee raises money for whom.",
+    "comment": "The FEC candidate-to-committee linkage table (ccl.txt): 16,327 rows connecting each candidate ID to the committee IDs authorized by or linked to them, with committee type and designation. This is the clean join that lets you roll individual donations up from a committee to the actual candidate who benefits. Raw landing, all text."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_FEC_INDIV_CONTRIBUTIONS",
+    "friendly_name": "INDIVIDUAL_DONATIONS",
+    "one_liner": "The 84M-row firehose: every itemized donation individuals gave to federal committees. The rawest follow-the-money.",
+    "comment": "Every itemized individual contribution (over $200 aggregate) to a federal committee -- donor name, city/state/ZIP, free-text employer and occupation, amount, date, recipient committee, and the conduit for earmarked gifts. 84.2M rows across the 2024 and 2026 cycles. Gotcha: there's no cycle column (two files were merged), so derive the cycle from TRANSACTION_DT (MMDDYYYY). Raw landing, all text -- cast the amount before summing."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_CONGRESS_COMMITTEE_MEMBERSHIP",
+    "friendly_name": "CONGRESS_COMMITTEE_MEMBERSHIP",
+    "one_liner": "Who sits on and chairs each committee in Congress -- the map of who holds real power.",
+    "comment": "Current committee and subcommittee membership for Congress: which member sits on or chairs which committee, with their party, rank, and role. 3,879 rows keyed by BIOGUIDE, so it joins straight to the member spine -- letting you connect a lawmaker's committee power to the industries donating to them. Raw landing, all text."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_USASPENDING_TOPTIER_AGENCIES",
+    "friendly_name": "FEDERAL_AGENCY_BUDGETS",
+    "one_liner": "The top 111 federal agencies with their budget, obligations, and actual outlays this fiscal year.",
+    "comment": "Every top-tier federal agency from USAspending.gov with current fiscal-year budget authority, dollars obligated, dollars actually paid out (outlays), and each agency's share of the total federal budget. Only 111 rows -- the high-level scoreboard of who controls what money. Joins to detailed spending by agency name. Raw landing, all text."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_NARA_AAD",
+    "friendly_name": "NATIONAL_ARCHIVES_RECORDS",
+    "one_liner": "A catalog of high-value electronic records the National Archives put online -- military, diplomatic, personnel files.",
+    "comment": "An index of selected historical electronic records from NARA's Access to Archival Databases -- dataset and series titles, record IDs, dates, person names, and locations across military, diplomatic, and personnel records. Only 554 rows -- a pointer/catalog layer, not the full underlying record sets. Carries FIPS for geographic joins. Raw landing, all text."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_CMS_OPEN_PAYMENTS",
+    "friendly_name": "PHARMA_PAYMENTS_TO_DOCTORS",
+    "one_liner": "Every payment drug and device makers gave doctors and hospitals in 2024 -- 15.4M records of industry money.",
+    "comment": "CMS Open Payments general-payments detail: 15.4M individual payments and gifts from drug and device companies to physicians and teaching hospitals -- who paid, who got it (with NPI), how much, what it was for (meals, travel, consulting, speaking), and the drug or device involved. Cross it with Medicare prescribing to see whether the money moves the pen. Raw landing, all text -- cast the dollar amount before summing."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_CMS_PART_D_PRESCRIBERS",
+    "friendly_name": "MEDICARE_DRUG_PRESCRIBERS",
+    "one_liner": "What every Medicare Part D prescriber wrote -- 1.4M providers, including opioid prescribing rates.",
+    "comment": "One row per prescriber showing their Medicare Part D prescribing: total claims, drug cost, day supply, brand vs generic split, and dedicated opioid and antibiotic measures including opioid prescribing rate. 1.4M rows keyed by NPI. Pair it with pharma payments to test whether industry money tracks with what doctors prescribe. Raw landing, all text."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.XC_WAYBACK_DOJ_EPSTEIN",
+    "friendly_name": "DOJ_EPSTEIN_PAGE_CAPTURES",
+    "one_liner": "Every archived snapshot of the DOJ Epstein document pages -- proof, by digest, of when the page changed.",
+    "comment": "Every Internet Archive capture of the DOJ Epstein Library listing pages since Nov 2025 -- one row per snapshot with timestamp, HTTP status, and a content digest. When the digest changes between captures, the page changed, attested by a third party -- reconstructing edits from before anyone was actively watching. 1.5M rows, all packed in a single RECORD text column. Raw landing, all text."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.XC_WAYBACK_REPLAY_DOJ_DEEP_PAGES",
+    "friendly_name": "DOJ_ARCHIVED_PAGES",
+    "one_liner": "Raw: 2,542 archived Justice Dept web pages pulled from the Wayback Machine.",
+    "comment": "A grab of 2,542 Department of Justice web pages as they were saved on the Internet Archive's Wayback Machine -- useful for catching what DOJ published and later changed or deleted. Raw landing: each row is one page's captured text in a single RECORD field, no structure or join keys yet. Good for full-text digging, not for clean tabular analysis."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_CONGRESS_LEGISLATORS",
+    "friendly_name": "CONGRESS_MEMBERS",
+    "one_liner": "Every member of Congress, past and present, plus the ID crosswalk that links them everywhere.",
+    "comment": "Every current and historical member of Congress (plus presidents/VPs): name, party, state, district, terms, and birthday. The keystone: it carries the master ID crosswalk (bioguide, icpsr, fec, opensecrets, govtrack, votesmart, wikidata, and more) so a legislator here links to their votes, their money, and their bio anywhere. Raw landing, stored as text; 12,847 rows spanning all of US history."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_FEC_BULK_SUMMARY",
+    "friendly_name": "CANDIDATE_FINANCE_SUMMARY",
+    "one_liner": "How much each federal candidate raised and spent per cycle -- the money-raised stat.",
+    "comment": "One row per federal candidate per election cycle: total money raised, total spent, cash on hand, individual contributions, loans, and debts. This is the ONLY FEC bulk file that carries dollar amounts, so it's the source of every 'candidate raised $X' number. Keyed by FEC candidate ID (CAND_ID) to link back to the campaigns and committees. Raw landing, values stored as text; 7,933 rows."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_MEDSL_PRESIDENT_RETURNS",
+    "friendly_name": "PRESIDENTIAL_RESULTS_BY_STATE",
+    "one_liner": "Who got how many votes for president in each state, each election year.",
+    "comment": "State-level US presidential election results: one row per candidate per state per year, with votes for that candidate and total votes cast. This is the 'who won each state' geographic layer. Keyed by state FIPS so it joins to census and other geographic data -- but note the president is not in the Congress ID spine, so no member-of-Congress link. Raw landing, stored as text; 3,740 rows."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_USGS_EARTHQUAKES",
+    "friendly_name": "EARTHQUAKES",
+    "one_liner": "Every recorded earthquake magnitude 2.5+ worldwide -- 443K events with time, place, and depth.",
+    "comment": "The full USGS catalog of every earthquake magnitude 2.5 and up: when it hit, exactly where (lat/lon), how deep, how strong, and a plain-language place name. 443,274 events across the whole history the survey tracks. Joins to anything geographic by lat/lon. Raw landing, values stored as text; from the US Geological Survey."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_NAAG_MULTISTATE_SETTLEMENTS",
+    "friendly_name": "AG_MULTISTATE_SETTLEMENTS",
+    "one_liner": "Every multistate legal settlement state attorneys general won since 1980 -- who paid and how much.",
+    "comment": "The canonical list of multistate settlements concluded by state Attorneys General from 1980 to today: who the defendants were, total dollars, the split between states and the feds, which AGs led vs. joined (with party breakdown), the industry, and the issue. Follow corporate wrongdoing to the money it cost. Raw landing, stored as text; 882 settlements from NAAG."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_SLAVEVOYAGES_INTRAAMERICAN",
+    "friendly_name": "INTRA_AMERICAN_SLAVE_VOYAGES",
+    "one_liner": "Every documented slaving voyage within the Americas, ~1550-1888 -- 11,521 ships and their human cargo.",
+    "comment": "A voyage-level record of the intra-American slave trade (Americas to Americas), roughly 1550-1888: one row per documented slaving voyage with the ship, captain, ports of embarkation and arrival, and the number of captives loaded and landed. 11,521 voyages, 169 detailed variables. From the SlaveVoyages project (Emory/Harvard). Raw landing, stored as text."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_CDC_HEALTH_INSURANCE",
+    "friendly_name": "HEALTH_INSURANCE_COVERAGE",
+    "one_liner": "CDC estimates of how many Americans have health insurance, by state and demographic group over time.",
+    "comment": "CDC survey indicators of health insurance coverage: the share of people insured, broken out by state, demographic subgroup, and time period, with confidence intervals. Tracks who has coverage and who doesn't across the country. These are survey estimates, not headcounts, so read them with the intervals. Raw landing, stored as text; 16,056 rows from CDC NCHS."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_VOTEVIEW_MEMBERS",
+    "friendly_name": "CONGRESS_IDEOLOGY_SCORES",
+    "one_liner": "A liberal-conservative score for every member of Congress, every Congress -- the DW-NOMINATE stat.",
+    "comment": "The standard ideology measure (DW-NOMINATE) for every member of Congress in every Congress: a two-dimensional score placing each member on the liberal-conservative spectrum, plus basic bio. Keyed by ICPSR ID so it links to the Congress member spine. This is the small member-level file; the full member-by-vote matrix lives separately. Raw landing, stored as text; 51,061 rows from Voteview/UCLA."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_FEC_BULK_COMMITTEES",
+    "friendly_name": "FEC_COMMITTEES_2026",
+    "one_liner": "Every FEC-registered political committee for the 2026 cycle -- name, treasurer, type, linked candidate.",
+    "comment": "Every committee registered with the FEC for the 2026 cycle: committee ID, name, treasurer, address, type, party, and the candidate it's linked to. This is the committee dimension that candidate-to-money links resolve against. Landed alongside the 2024 committee master to close a 2026 gap (2026 linkages resolved only ~57% before this vs. ~98% for 2024). Keyed by FEC committee ID and candidate ID. Raw landing, stored as text; 20,007 rows."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_FHFA_HPI",
+    "friendly_name": "HOUSE_PRICE_INDEX",
+    "one_liner": "The official US house-price trend, free and keyless, down to the census tract -- the price side of affordability.",
+    "comment": "The authoritative US house-price index from the FHFA, tracking how home prices move over time at every geography down to census tract. The price half of housing affordability -- joins by FIPS/ZIP onto redlining, census, and rent data. Heads up: values are unitless index numbers (not dollars) with different base years per series, and the file mixes geographic levels and index types in one table -- split and base-note it before use. Raw landing, stored as text; 184,807 rows."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_FDIC_ENFORCEMENT",
+    "friendly_name": "FDIC_ENFORCEMENT_ACTIONS",
+    "one_liner": "Heads up: a thin 14-row scrape of FDIC enforcement orders against banks -- shape only, not the full source.",
+    "comment": "FDIC enforcement decisions and orders against banks, companies, and individuals -- cease-and-desist orders, money penalties, and removal/prohibition orders. Heads up: this is a thin 14-row sample, just the raw order text and URL, not the full enforcement database -- good for seeing the shape of the data, not for counting or analysis. Raw landing, stored as text."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.INTL_IE_CRO",
+    "friendly_name": "IRELAND_COMPANIES",
+    "one_liner": "Heads up: only 3 rows -- a placeholder peek at Ireland's official company registry.",
+    "comment": "Ireland's official company register (CRO): company ID, name, status, incorporation date, type, and registered address. Meant to be the corporate-entity layer for Ireland, joinable by country + name. Heads up: only 3 rows landed here -- this is a placeholder sample, not the real registry, so use it to understand the columns, not to look up companies. Raw landing, stored as text."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.INTL_OPENSANCTIONS",
+    "friendly_name": "SANCTIONS_TARGETS",
+    "one_liner": "Everyone and everything under sanctions worldwide -- 71K people, companies, and vessels, consolidated.",
+    "comment": "OpenSanctions' consolidated global sanctions list: 71,011 targets -- people, companies, and vessels sanctioned by governments and bodies around the world -- with names, aliases, birth dates, countries, addresses, identifiers, and which sanction programs hit them. The starting point for 'who's blacklisted' and cross-checking who's still doing business. Raw landing, stored as text."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.XC_JCS_MEDIANS",
+    "friendly_name": "INSTITUTION_IDEOLOGY_MEDIANS",
+    "one_liner": "Yearly left-right ideology score for the Supreme Court, every circuit, House, Senate and president since 1937.",
+    "comment": "The academic 'where does the median voter sit' series, one row per year (102 total) on a single common scale so you can compare the Supreme Court to Congress to the White House on the same yardstick. Circuit medians plus standard deviations for all 13 appeals circuits show how liberal or conservative each bench leans over time. Raw landing table (Judicial Common Space, Wash U. St. Louis) -- every value stored as text, cast before you do math."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_DOJ_CRT_CASES",
+    "friendly_name": "DOJ_CIVIL_RIGHTS_CASES",
+    "one_liner": "Heads up: 1-row scrape stub of DOJ Civil Rights Division cases -- not the real dataset yet.",
+    "comment": "Meant to be the DOJ Civil Rights Division's cases and settlements -- housing, voting, disability, employment, police -- with who, what section, status and a link to the filing. But this landing table has only 1 row, so it's a placeholder/failed pull, good only for seeing the intended shape, not for counting or research. Raw text landing; re-ingest before trusting it."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_HHS_OIG_LEIE",
+    "friendly_name": "BANNED_HEALTHCARE_PROVIDERS",
+    "one_liner": "The federal 'banned' list -- 83k people and companies barred from billing Medicare/Medicaid, and why.",
+    "comment": "Every individual and entity currently excluded from Medicare, Medicaid and other federal health programs (83,464 rows), with the exclusion type and the date it started. Cross it with who's still getting paid and you find money going where it shouldn't. Keyed by NPI plus name/address/EIN, so it joins straight to the provider and payment tables. Raw landing (HHS Office of Inspector General) -- values stored as text."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.INTL_CH_ZEFIX",
+    "friendly_name": "SWISS_COMPANIES",
+    "one_liner": "Heads up: thin 18-row sample of Switzerland's official company registry (Zefix) -- shape only, not the full country.",
+    "comment": "Switzerland's central business-name index: registered Swiss companies with their UID number, legal form, status, address and canton. Full source is the whole country, but only 18 rows landed here -- treat it as a preview for exploring the columns, not a count of Swiss firms. Carries name/address/country for probabilistic joins to other corporate data. Raw text landing (Swiss Federal Registry of Commerce)."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_CMS_OPEN_PAYMENTS_2023",
+    "friendly_name": "PHARMA_PAYMENTS_TO_DOCTORS_2023",
+    "one_liner": "Every 2023 payment drug and device makers gave to US doctors and hospitals -- 14.7 million records.",
+    "comment": "CMS Open Payments for 2023: each general payment or gift from a pharma/device company to a physician or teaching hospital -- amount, date, the company, and the drug or device it was tied to (14.7M rows). This is how you see which doctors take money from whom. Carries NPI (doctor) and CCN (hospital) so it links to the provider spine and the banned-provider list. Raw landing -- every field text, one program year (2023) only."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_MEDSL_SENATE_RETURNS",
+    "friendly_name": "SENATE_ELECTION_RESULTS",
+    "one_liner": "Who won every US Senate race, 1976-2024 -- votes per candidate per state per year.",
+    "comment": "State-level Senate general-election returns, one row per candidate per race per year (3,945 rows): votes, total votes, party, plus flags for special elections and runoffs. The cleaned canonical 'who won the Senate' source. Keyed by state FIPS; the winner links to the member spine by name+state (fuzzy -- no FEC ID in the file). Raw text landing (MIT Election Data + Science Lab)."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_FJC_SERVICE",
+    "friendly_name": "FEDERAL_JUDGE_APPOINTMENTS",
+    "one_liner": "Every US federal judge's appointment -- who nominated them, the Senate vote, and when they left.",
+    "comment": "One row per judgeship appointment for every Article III federal judge (4,766 rows): the court, the appointing president and their party, nomination and confirmation dates, the Senate Ayes/Nays, ABA rating, and when service ended. This is how you trace who put a judge on the bench and how contested it was. Keyed by the FJC judge NID. Raw text landing (Federal Judicial Center)."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.INTL_GR_GEMI",
+    "friendly_name": "GREEK_COMPANIES",
+    "one_liner": "Heads up: 40-row sample of Greece's official company registry (GEMI) -- shape only, not the full country.",
+    "comment": "Greece's General Electronic Commercial Registry: registered Greek companies with their GEMI number, tax ID (AFM), legal form, status, and formation/closure dates. Only 40 rows landed, so this is a preview for exploring the columns, not a real count of Greek firms. Joins to other corporate data by company name (probabilistic). Raw text landing (Central Union of Chambers of Greece)."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.INTL_FAO_FAOSTAT_FOOD_SECURITY",
+    "friendly_name": "FOOD_SECURITY_INDICATORS",
+    "one_liner": "Chronic-hunger stats by country over 60+ years -- undernourishment and food-insecurity scales.",
+    "comment": "The FAO's baseline food-security series: prevalence of undernourishment, food-insecurity experience scales, and dietary energy supply, by country and year (279k rows over 60+ years). This is slow-moving structural hunger -- the backdrop that acute famine spikes sit on top of. Country is FAO's M49 'Area Code'; map to ISO3 to join, and filter out the mixed-in aggregate rows ('World', 'Africa'). Raw text landing (FAO)."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_IRS_BMF",
+    "friendly_name": "NONPROFIT_ORGANIZATIONS",
+    "one_liner": "Every US tax-exempt organization -- 1.97 million nonprofits with EIN, type, and finances.",
+    "comment": "The IRS Business Master File: the full roster of US tax-exempt orgs (1,974,830 rows) -- EIN, name, address, NTEE category code, subsection/foundation status, and assets/income/revenue. The IRS side of the EIN bridge, so it links nonprofits to donations, contracts and the banned lists by EIN. Concatenated from the 4 regional extracts. Raw text landing (IRS) -- every value stored as text."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_FEC_BULK_CANDIDATES",
+    "friendly_name": "FEC_CANDIDATES",
+    "one_liner": "Every federal candidate who filed with the FEC -- ID, office, party, state, incumbent or challenger.",
+    "comment": "The FEC candidate master: one row per registered federal candidate per cycle (17,900 rows) -- FEC candidate ID, name, office sought, party, state, district, and incumbent/challenger/open-seat status. The anchor that ties a candidate ID to a name and office across the whole money-in-politics stack. Links to committees and donations via CAND_ID. Raw text landing (FEC bulk cn.txt)."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_VOTEVIEW_ROLLCALL_META",
+    "friendly_name": "CONGRESSIONAL_ROLLCALL_VOTES",
+    "one_liner": "Every recorded House and Senate roll-call vote -- date, question, bill, yea/nay counts, result.",
+    "comment": "One row per congressional roll-call vote (3,364 rows): the chamber, date, the question being voted on, the bill number, yea and nay counts, and whether it passed. This is the context and denominator for the member-by-member vote matrix -- what was voted on and how it came out. Keyed by congress+chamber+roll number. Raw text landing (Voteview / UCLA)."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_FEC_COMMITTEE_TO_CANDIDATE",
+    "friendly_name": "PAC_CONTRIBUTIONS_TO_CANDIDATES",
+    "one_liner": "PAC and party money to (and spent for/against) federal candidates -- 867k transactions.",
+    "comment": "Committee-to-candidate transactions: PAC and party contributions, plus independent expenditures for or against a candidate, one row each (866,730 rows) with amount, date and transaction type. The organized-money leg of follow-the-money in politics. Carries both CMTE_ID (the committee) and CAND_ID (the candidate) so it links committees to candidates by cycle. Raw text landing (FEC bulk pas2)."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_MEDSL_HOUSE_RETURNS",
+    "friendly_name": "HOUSE_ELECTION_RESULTS",
+    "one_liner": "Who won every US House race by district -- votes per candidate per district per year.",
+    "comment": "District-level US House general-election returns, one row per candidate per district per year (29,636 rows): votes, total votes, party, and special/runoff flags. The cleaned 'who won the House' source. Keyed by state FIPS + district; the winner links to the member spine by name+state+district (fuzzy -- no FEC ID in the file). Raw text landing (MIT Election Data + Science Lab)."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.XC_JCS_COA",
+    "friendly_name": "APPEALS_JUDGE_IDEOLOGY",
+    "one_liner": "Ideology score for every US Court of Appeals judge, by circuit -- how left/right they lean.",
+    "comment": "The Judicial Common Space (JCS) lifetime ideology score for US Courts of Appeals judges, placed on the same left-right scale used for Congress. 705 rows, one per judge with name, circuit, and score. Lets you ask whether a case landed before a liberal or conservative bench. Heads up: raw landing (text-as-loaded) with no clean join key -- match to judges by name/circuit."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_NARA_WRA_AAD",
+    "friendly_name": "JAPANESE_INTERNMENT_RECORDS",
+    "one_liner": "Records of Japanese Americans interned in WWII camps -- person, age, camp, county.",
+    "comment": "National Archives records about Japanese Americans forcibly relocated and interned during World War II: name, age, sex, citizenship status, family number, and the relocation camp, tied to a county FIPS. A primary-source window into a government mass-detention program. Heads up: this is a thin 36-row slice, not the full series -- good for seeing the shape, not for counting people."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_VOTEVIEW_ROLLCALLS",
+    "friendly_name": "CONGRESS_ROLLCALL_VOTES",
+    "one_liner": "Every recorded congressional vote, member-by-member -- 945K rows of how each one voted.",
+    "comment": "The full member-by-vote matrix from Voteview: one row per (member, roll-call) with how they voted (cast code), across the whole history of Congress. This is the raw fuel for missed-votes, party-unity, and vote-similarity stats. Members key on ICPSR id. Heads up: raw landing (every value text) -- it's the vote grid, not the bill text or vote descriptions."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_GOVINFO_BILL_COSPONSORS",
+    "friendly_name": "BILL_COSPONSORS",
+    "one_liner": "Who cosponsored which bill in Congress -- 368K links between members and bills.",
+    "comment": "The official GovInfo cosponsor list flattened to one row per (bill, cosponsor): the member's bioguide id, party, state, whether they were an original cosponsor, the date they signed on, and the date they withdrew (if they did). Shows who backed what and who quietly pulled support. Keyed by member BIOGUIDE. Raw landing, stored as text."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.FED_FJC_JUDGES",
+    "friendly_name": "FEDERAL_JUDGES",
+    "one_liner": "Every Article III federal judge since 1789 -- who appointed them, when, and their record.",
+    "comment": "The authoritative directory of all 4,067 federal judges (district, circuit, Supreme Court) from 1789 to today: name, demographics, birth/death, plus who nominated them, the appointing president's party, ABA rating, and confirmation vote for up to six appointments each. The backbone dimension for the judiciary. Keyed on the FJC nid. Raw landing -- wide, text-as-loaded, one column set per appointment."
+  },
+  {
+    "object_fqn": "LIBRARY_RAW.LANDING.XC_JCS_SCOTUS",
+    "friendly_name": "SUPREME_COURT_JUSTICE_IDEOLOGY",
+    "one_liner": "Ideology score for every Supreme Court justice by year, 1937-2022 -- how left/right they leaned.",
+    "comment": "The Judicial Common Space (JCS) ideology score for each Supreme Court justice, on the same DW-NOMINATE scale as Congress, one row per (justice, term) from 1937 to 2022. Tracks how a justice's placement -- and the Court's overall tilt -- shifted over time. 782 rows. Raw landing, stored as text; match to justices by name."
+  }
+]

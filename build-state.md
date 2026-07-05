@@ -1,7 +1,62 @@
 # Build State
-Last updated: 2026-07-03
+Last updated: 2026-07-04
 
-## CURRENT FOCUS — THE INVESTIGATOR INSTRUMENT SHIPPED (2026-07-03, latest)
+## CURRENT FOCUS — RIPPLE CONTROL PANEL SHIPPED (2026-07-04, latest)
+**Built `ripple panel` — the push-button control panel over Library health + refresh.**
+`python3 ripple.py panel` → http://127.0.0.1:8899 (stdlib server, house dark theme, Plotly from
+the installed wheel — no CDN). Files: `ripple/panel.py` (verb) · `ripple/panel_server.py`
+(API + job runner) · `ripple/panel_page.html` (UI). Reads pinned to COMPUTE_WH
+(`ripple/common.py connect()` now pins at session birth — was best-effort-after).
+
+- **Four tabs:** Overview (KPI tiles from V_STATE + freshness strip + runs/rows-per-day charts +
+  recent failures + most-overdue), Sources (233 core + 1,579 sampled behind a lifecycle filter;
+  per-source freshness × last run × refresh path), Runs & Audit (INGEST_RUNS browser w/ date
+  presets/status/search), Jobs (live log tail, cancel, history).
+- **Refresh is honest:** every button previews the EXACT command (nonce-pinned — launch runs the
+  previewed argv, never a re-resolution), budget-gated live (GREEN/YELLOW/RED via RIPPLE_BUDGET),
+  blocked during pours/heartbeat ticks, one job at a time, jobs run heartbeat-style (own process
+  group → log file → kill-group on timeout/cancel; survives-server-restart orphan marker).
+- **Refresh reality (resolver scans scripts/ live):** 1 enabled recipe (fed_cisa_kev) ·
+  1 disabled (usgs, TRUNCATE-all footgun) · ~10 runnable SID-pinned loaders · 4 Windows-broken
+  (incl. BOTH append-safe date-range loaders: noaa_ais + noaa_storm_events) · majority = LLM
+  re-onboard only (button exists, needs ANTHROPIC_API_KEY in .env — currently absent, refuses
+  honestly). Date-range args only offered where the loader appends; replace-mode loaders
+  (usgs/fed_register/usaspending) get a red table-shrink warning.
+- **Hardening (two review rounds, 27 + 17 confirmed findings, ALL fixed):** Host + Content-Type
+  gates (DNS-rebind/CSRF), CSP + nosniff, catalog-URL scheme allowlist (javascript: XSS), nonce-
+  pinned preview→launch, connection POOL (reads no longer serialize / stall job polling), orphan-
+  job recovery (surface + tail + cancel-by-pgid after a restart), request-sequence tokens, idle
+  auto-refresh (no stale overnight numbers), sticky finished-job card + clickable history logs.
+- **CRITICAL footgun closed:** REPLACE-mode loaders (usaspending/federal_register/usgs/irs_bmf/…)
+  no longer get a one-click refresh — `usaspending`'s argparse default is a 1-DAY window +
+  overwrite=True, so "refresh with defaults" would have truncated the whole 6.3M-row contracts
+  table to one day. They now show "manual only". Append loaders keep date/year windows (validated
+  per real arg type — storm_events uses int YEARS not dates).
+- **6 loaders un-Windows-broke'd** (repo-relative `.scratch/loader_downloads`): noaa_ais +
+  noaa_storm_events now runnable/refreshable on the Mac.
+- Verified: live cisa refresh end-to-end, HTTP fuzz (12–19 checks), 40-way concurrent read
+  hammer, Playwright UI drive (0 page/console errors), orphan detect→cancel unit test, pool
+  drain-on-error unit test, headless-Chrome screenshots.
+
+## PRIOR FOCUS — LIBRARY MAP + READING ROOM REFRESH (2026-07-04)
+**Two deliverables: (1) The Library Map — an interactive ER-style artifact over the measured
+connection graph; (2) THE_LIBRARY reading room refreshed 160 → 232 views.**
+
+- **The Library Map** (artifact + `outputs/library_map_2026-07-04.html`, self-contained offline
+  copy): 380 probed tables, 1,074 measured links from `CONNECT_EDGES_INC`, 20,064 columns. Every
+  table is a catalog card (one-row-is, publisher, columns with join-key badges); links grouped by
+  key and colored by trust tier (STEEL/STRONG/CORROBORATED/GEO/PROBABILISTIC-dashed); "solid links
+  only" filter; search covers table names AND column names. Data pull scripts live in the session
+  scratchpad only — rebuild = re-pull `CONNECT_EDGES_INC` + registry + INFORMATION_SCHEMA.
+  PARKED: wire as `ripple map` so it self-refreshes.
+- **Reading room refresh (applied + verified)**: ran `thelibrary_inventory.py` (232 datasets;
+  drift since 07-01 was 72 new mart-less landed sources) → wrote friendly content for all 72
+  (voice rules kept; stubs/probes flagged honestly, e.g. IMMIGRATION_COURT_CASES notes the
+  broken 1-column EOIR load) → `thelibrary_build.py --apply`. Now: **THE_LIBRARY = 22 schemas
+  (EDUCATION new), 233 views (232 + START_HERE), FRIENDLY_LAYER = 232, 0 broken views
+  (all 232 probed)**. Content backup: `outputs/thelibrary_content.json.bak_20260704`.
+
+## PRIOR FOCUS — THE INVESTIGATOR INSTRUMENT SHIPPED (2026-07-03)
 **Built and live-proven: the plug-and-play, code-visible Plotly instrument over the whole
 Library.** `python ripple.py chart "<SQL>"` → chart in the browser + an editable card
 (`investigations/<slug>/qNN_*.py`). Full handoff: `outputs/INSTRUMENT_BUILD_HANDOFF_2026-07-03.md`;

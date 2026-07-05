@@ -57,8 +57,8 @@ TABLE = "FED_NOAA_AIS"
 SID = "fed_noaa_ais"
 UA = {"User-Agent": "Ripple-Library/1.0 (data onboarding; w.rogers9999@gmail.com)"}
 CHUNK = 500_000
-SCRATCH = Path("c:/Code/Ripple_v6/.scratch/"
-               "e8eac5fb-de36-4362-9440-da24a904b9b4/scratchpad")
+SCRATCH = Path(__file__).resolve().parents[1] / ".scratch" / "loader_downloads"
+SCRATCH.mkdir(parents=True, exist_ok=True)
 
 # marinecadastre CSV header -> landing column. Their casing is CamelCase; the table
 # is UPPER with TRANSCEIVER_CLASS underscored.

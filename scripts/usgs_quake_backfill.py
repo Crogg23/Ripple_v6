@@ -63,8 +63,8 @@ SID = "fed_usgs_earthquakes"
 BASE = "https://earthquake.usgs.gov/fdsnws/event/1"
 MIN_MAG = "2.5"
 UA = {"User-Agent": "Ripple-Library/1.0 (data onboarding; w.rogers9999@gmail.com)"}
-SCRATCH = Path("c:/Code/Ripple_v6/.scratch/"
-               "e8eac5fb-de36-4362-9440-da24a904b9b4/scratchpad")
+SCRATCH = Path(__file__).resolve().parents[1] / ".scratch" / "loader_downloads"
+SCRATCH.mkdir(parents=True, exist_ok=True)
 CAP = 20_000  # FDSNWS hard cap per query; we monitor to never silently truncate
 
 # CSV header (lowercase camelCase) -> landing column (UPPER). Order = table order.
