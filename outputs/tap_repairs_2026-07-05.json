@@ -1,0 +1,161 @@
+[
+ {
+  "name": "BJS Data Collections and APIs",
+  "url": "https://api.ojp.gov/bjsdataset/v1/gcuy-rt5g.csv",
+  "source_id": "fed_bjs_data",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "Quarterly Census of Employment and Wages (QCEW)",
+  "url": "https://data.bls.gov/cew/data/files/2022/csv/2022_annual_singlefile.zip",
+  "source_id": "fed_bls_qcew",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS"
+  ]
+ },
+ {
+  "name": "FAA Data Portal (data.faa.gov)",
+  "url": "https://registry.faa.gov/database/ReleasableAircraft.zip",
+  "source_id": "fed_faa_data_portal",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "Paycheck Protection Program (PPP) Loan Data",
+  "url": "https://data.sba.gov/dataset/8aa276e2-6cab-4f86-aca4-a7dde42adf24/resource/c1275a03-c25c-488a-bd95-403c4b2fa036/download/public_150k_plus_240930.csv",
+  "source_id": "fed_sba_ppp",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN",
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "Trans-Atlantic Slave Trade Database (SlaveVoyages)",
+  "url": "https://legacy.slavevoyages.org/documents/download/tastdb-exp-2019.csv",
+  "source_id": "fed_slavevoyages_transatlantic",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "COUNTRY",
+   "FIPS"
+  ]
+ },
+ {
+  "name": "FAOSTAT",
+  "url": "https://bulks-faostat.fao.org/production/datasets_E.json",
+  "source_id": "intl_fao_faostat",
+  "jurisdiction": "international",
+  "identifiers": []
+ },
+ {
+  "name": "Ireland CRO Open Data Portal",
+  "url": "https://opendata.cro.ie/dataset/bf6f837d-0946-4c14-9a99-82cd6980c121/resource/3fef41bc-b8f4-4b10-8434-ce51c29b1bba/download/companies.csv.zip",
+  "source_id": "intl_ie_cro",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY",
+   "NAME"
+  ]
+ },
+ {
+  "name": "CDC WONDER",
+  "url": "https://wonder.cdc.gov/controller/datarequest/D76",
+  "source_id": "fed_cdc_wonder",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "fed_cms_open_payments_2022",
+  "url": "https://download.cms.gov/openpayments/PGYR2022_P01232026_01102026/OP_DTL_GNRL_PGYR2022_P01232026_01102026.csv",
+  "source_id": "fed_cms_open_payments_2022",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "FSA Data Center \u2013 Student Loan Portfolio",
+  "url": "https://studentaid.gov/sites/default/files/fsawg/datacenter/library/PortfolioSummary.xls",
+  "source_id": "fed_ed_fsa_datacenter",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "FJC Integrated Database \u2014 Federal Court Cases",
+  "url": "https://www.fjc.gov/sites/default/files/idb/textfiles/cv88on_0.zip",
+  "source_id": "fed_fjc_idb",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "TAGGS \u2014 Tracking Accountability in Government Grants System",
+  "url": "https://api.usaspending.gov/api/v2/search/spending_by_award/",
+  "source_id": "fed_hhs_taggs",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN",
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "NIH RePORTER API",
+  "url": "https://api.reporter.nih.gov/v2/projects/search",
+  "source_id": "fed_nih_reporter",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "GLEIF LEI Concatenated Files & Golden Copy API",
+  "url": "https://leidata.gleif.org/api/v1/concatenated-files/lei2/latest?format=xml",
+  "source_id": "intl_gleif",
+  "jurisdiction": "international",
+  "identifiers": [
+   "COUNTRY",
+   "LEI"
+  ]
+ },
+ {
+  "name": "DOL Wage and Hour Enforcement Data",
+  "url": "https://apiprod.dol.gov/v4/get/whd/enforcement/csv",
+  "source_id": "fed_dol_wage_hour",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "EIN",
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "FBI Crime Data Explorer (NIBRS/UCR)",
+  "url": "https://api.usa.gov/crime/fbi/cde/",
+  "source_id": "fed_fbi_cde",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "FCC National Broadband Map Data",
+  "url": "https://broadbandmap.fcc.gov/api/public/map/downloads/listAvailabilityData/{as_of_date}",
+  "source_id": "fed_fcc_broadband",
+  "jurisdiction": "federal",
+  "identifiers": [
+   "FIPS",
+   "ZIP"
+  ]
+ },
+ {
+  "name": "FRA Safety Data API",
+  "url": "https://safetydata.fra.dot.gov/MASTERWEBSERVICE/DatadownloadService.asmx?WSDL",
+  "source_id": "fed_fra_safety",
+  "jurisdiction": "federal",
+  "identifiers": []
+ },
+ {
+  "name": "USITC DataWeb Trade and Tariff Data",
+  "url": "https://datawebws.usitc.gov/dataweb/api/v2/report2/runReport",
+  "source_id": "fed_usitc_dataweb",
+  "jurisdiction": "federal",
+  "identifiers": []
+ }
+]

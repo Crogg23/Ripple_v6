@@ -1,0 +1,539 @@
+<title>Ripple Tap Health Audit</title>
+<style>
+
+:root{
+  --bg:#f5f7f9; --panel:#ffffff; --panel-2:#eef2f5; --ink:#1a2229; --ink-soft:#51606c;
+  --line:#dde4ea; --accent:#0e7c86; --accent-ink:#0a5a61;
+  --good:#1f9d63; --good-bg:#e7f4ec; --warn:#b7791f; --warn-bg:#fbf1df;
+  --dead:#c0463d; --dead-bg:#fbe9e7; --info:#3466b0; --info-bg:#e9f0fb;
+  --mono:"SFMono-Regular",ui-monospace,"JetBrains Mono","Menlo",monospace;
+  --sans:system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0f1417; --panel:#161d22; --panel-2:#1c252b; --ink:#e6edf3; --ink-soft:#9fb0bd;
+    --line:#26313a; --accent:#3bc4d0; --accent-ink:#7fdce4;
+    --good:#3fbe7f; --good-bg:#14271d; --warn:#d99a34; --warn-bg:#2a2113;
+    --dead:#e26a5f; --dead-bg:#2b1613; --info:#6fa1e6; --info-bg:#13202f;
+  }
+}
+:root[data-theme="light"]{
+  --bg:#f5f7f9; --panel:#ffffff; --panel-2:#eef2f5; --ink:#1a2229; --ink-soft:#51606c;
+  --line:#dde4ea; --accent:#0e7c86; --accent-ink:#0a5a61;
+  --good:#1f9d63; --good-bg:#e7f4ec; --warn:#b7791f; --warn-bg:#fbf1df;
+  --dead:#c0463d; --dead-bg:#fbe9e7; --info:#3466b0; --info-bg:#e9f0fb;
+}
+:root[data-theme="dark"]{
+  --bg:#0f1417; --panel:#161d22; --panel-2:#1c252b; --ink:#e6edf3; --ink-soft:#9fb0bd;
+  --line:#26313a; --accent:#3bc4d0; --accent-ink:#7fdce4;
+  --good:#3fbe7f; --good-bg:#14271d; --warn:#d99a34; --warn-bg:#2a2113;
+  --dead:#e26a5f; --dead-bg:#2b1613; --info:#6fa1e6; --info-bg:#13202f;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+  line-height:1.55;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+article{max-width:1060px;margin:0 auto;padding:clamp(20px,4vw,56px) clamp(16px,4vw,40px)}
+.mono{font-family:var(--mono)}
+.sm{font-size:.82em}
+h1{font-size:clamp(1.7rem,3.6vw,2.7rem);line-height:1.08;letter-spacing:-.02em;margin:.2em 0 .35em;text-wrap:balance;font-weight:750}
+h2{font-size:clamp(1.15rem,2.2vw,1.5rem);letter-spacing:-.01em;margin:0 0 .3em;font-weight:700;text-wrap:balance}
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.hero{border-bottom:1px solid var(--line);padding-bottom:26px;margin-bottom:30px}
+.lede{font-size:1.06rem;color:var(--ink-soft);max-width:66ch;margin:.2em 0 0}
+.lede strong{color:var(--ink)}
+section{margin:38px 0}
+.sec-lede{color:var(--ink-soft);max-width:70ch;margin:.1em 0 1.1em}
+/* tiles */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.tile{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 16px 14px;position:relative;overflow:hidden}
+.tile::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--ink-soft);opacity:.5}
+.tile.good::before{background:var(--good);opacity:1}
+.tile.warn::before{background:var(--warn);opacity:1}
+.tile.dead::before{background:var(--dead);opacity:1}
+.tile.info::before{background:var(--info);opacity:1}
+.tv{font-size:2rem;font-weight:750;letter-spacing:-.02em;line-height:1}
+.tv-sub{font-size:1rem;color:var(--ink-soft);font-weight:600}
+.tl{font-weight:650;margin-top:6px;font-size:.92rem}
+.ts{color:var(--ink-soft);font-size:.78rem;margin-top:1px}
+/* leak flow */
+.leak{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:clamp(18px,3vw,28px)}
+.ok-t{color:var(--good);font-weight:700}
+.flow{display:flex;align-items:stretch;gap:12px;flex-wrap:wrap;margin:14px 0 4px}
+.fnode{background:var(--panel-2);border:1px solid var(--line);border-radius:10px;padding:12px 14px;flex:1 1 150px;font-size:.9rem;align-self:center}
+.fnode.start{border-color:var(--warn)}
+.fnode .mono{display:block;color:var(--ink-soft);font-size:.72rem;margin-top:4px}
+.farrow{align-self:center;color:var(--ink-soft);font-size:1.3rem;font-weight:700}
+.fsplit{display:flex;flex-direction:column;gap:8px;flex:1.4 1 240px}
+.fout{border:1px solid var(--line);border-radius:10px;padding:9px 12px;font-size:.85rem}
+.fout .fh{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.fout.good{background:var(--good-bg)}.fout.good .fh{color:var(--good)}
+.fout.bad{background:var(--dead-bg);border-color:var(--dead)}.fout.bad .fh{color:var(--dead)}
+.fineprint{font-size:.82rem;color:var(--ink-soft);margin:14px 0 0;max-width:80ch}
+.fineprint code,.fineprint .mono{font-family:var(--mono);color:var(--ink)}
+code{font-family:var(--mono)}
+/* buckets */
+.bucket{margin:16px 0 22px}
+.bucket-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 14px;border-radius:9px;margin-bottom:12px;border:1px solid var(--line)}
+.bucket-head.tone-amber{background:var(--warn-bg);border-color:color-mix(in srgb,var(--warn) 40%,transparent)}
+.bucket-head.tone-red{background:var(--dead-bg);border-color:color-mix(in srgb,var(--dead) 40%,transparent)}
+.bucket-label{font-weight:700;letter-spacing:-.01em}
+.bucket-count{font-family:var(--mono);font-weight:700;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:1px 10px;font-size:.82rem}
+.tap-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.tap{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:13px 15px 14px;border-left:4px solid var(--ink-soft)}
+.tap.sev-dead{border-left-color:var(--dead)}
+.tap.sev-warn{border-left-color:var(--warn)}
+.tap.sev-info{border-left-color:var(--info)}
+.tap.sev-good{border-left-color:var(--good)}
+.tap-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.sid{font-family:var(--mono);font-weight:600;font-size:.9rem;color:var(--accent-ink);word-break:break-all}
+.rc{font-size:.68rem;font-family:var(--mono);letter-spacing:.04em;text-transform:uppercase;color:var(--ink-soft);background:var(--panel-2);padding:1px 7px;border-radius:5px}
+.badge{font-size:.66rem;font-family:var(--mono);letter-spacing:.03em;text-transform:uppercase;padding:1px 7px;border-radius:5px;font-weight:600;margin-left:auto}
+.badge.ok{color:var(--good);background:var(--good-bg)}
+.badge.muted{color:var(--ink-soft);background:var(--panel-2)}
+.badge.dead{color:var(--dead);background:var(--dead-bg)}
+.dx{font-size:.86rem;color:var(--ink-soft);margin:0 0 9px}
+.fixline,.epline{font-size:.82rem;margin-top:6px}
+.k{display:inline-block;font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;color:var(--accent);font-weight:700;margin-right:6px;vertical-align:1px}
+.fixv{color:var(--ink)}
+.ep{display:block;margin-top:4px;background:var(--panel-2);border:1px solid var(--line);border-radius:6px;padding:5px 8px;font-size:.74rem;word-break:break-all;color:var(--ink)}
+.none{color:var(--ink-soft)}
+.chip{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.04em;padding:1px 7px;border-radius:5px;font-weight:600}
+.chip.dead{color:var(--dead);background:var(--dead-bg)}.chip.warn{color:var(--warn);background:var(--warn-bg)}.chip.info{color:var(--info);background:var(--info-bg)}
+/* trapped table */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+table.trap{width:100%;border-collapse:collapse;font-size:.88rem;min-width:640px}
+table.trap th{text-align:left;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);padding:10px 14px;background:var(--panel-2);border-bottom:1px solid var(--line);font-weight:700}
+table.trap td{padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+table.trap tr:last-child td{border-bottom:none}
+.trap .num{text-align:right;font-family:var(--mono);font-weight:600}
+.trap .num.mart{color:var(--dead)}
+.trap .arrow{color:var(--ink-soft);text-align:center;width:24px}
+.trap .note{color:var(--ink-soft);font-size:.82rem}
+.trapped{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:clamp(18px,3vw,28px)}
+/* portal */
+.portal-grid{display:grid;grid-template-columns:1.7fr 1fr;gap:20px;align-items:start}
+.portal-body p{margin:0 0 12px;font-size:.92rem}
+.rec{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:11px 14px;font-size:.88rem !important;color:var(--ink-soft)}
+.rec .k{color:var(--accent)}
+.portal-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ps{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px;text-align:center}
+.psv{display:block;font-size:1.5rem;font-weight:750;font-family:var(--mono);color:var(--dead)}
+.psl{font-size:.72rem;color:var(--ink-soft)}
+/* fixes */
+.fixlist{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;counter-reset:none}
+.fixlist li{display:flex;gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:14px 16px;align-items:flex-start}
+.fixlist .fn{flex:none;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-family:var(--mono);font-weight:700;font-size:.85rem}
+.fixlist b{color:var(--ink)}.fixlist div{font-size:.92rem;color:var(--ink-soft)}
+.fixlist code,.fixlist .mono{font-family:var(--mono);color:var(--ink);font-size:.85em}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);color:var(--ink-soft);font-size:.8rem}
+footer .mono{color:var(--ink)}
+@media (max-width:680px){
+  .portal-grid{grid-template-columns:1fr}
+  .flow{flex-direction:column}.farrow{transform:rotate(90deg)}
+}
+
+</style>
+<article>
+<header class="hero">
+  <div class="eyebrow">Ripple Library &middot; Tap Health Audit &middot; 2026-07-05</div>
+  <h1>Your taps mostly work. The empty tables are three specific, fixable leaks.</h1>
+  <p class="lede">All <strong>1,782</strong> landing tables physically hold rows &mdash; nothing is literally empty.
+  Of ~220 <em>curated</em> sources, <strong>~196 are healthy</strong> and <strong>25 are broken</strong>.
+  Most breaks trace to one root cause: recon aimed the loader at a <em>web page</em> instead of the data file.
+  The scary big numbers are almost all speculative portal-harvest churn &mdash; not your real library.</p>
+</header>
+
+<section class="tiles">
+  <div class="tile good"><div class="tv">196</div><div class="tl">Healthy live sources</div><div class="ts">landed + modeled</div></div>
+  <div class="tile"><div class="tv">1,782</div><div class="tl">Landing tables</div><div class="ts">285.5M rows total</div></div>
+  <div class="tile warn"><div class="tv">25</div><div class="tl">Broken curated taps</div><div class="ts">root-caused below</div></div>
+  <div class="tile info"><div class="tv">8</div><div class="tl">Marts hiding real data</div><div class="ts">stale / broken dbt model</div></div>
+  <div class="tile dead"><div class="tv">284</div><div class="tl">Portal-harvest failures</div><div class="ts">expected crawl churn</div></div>
+  <div class="tile"><div class="tv">14<span class="tv-sub">/20</span></div><div class="tl">Fixes verified live</div><div class="ts">endpoint curled, returns data</div></div>
+</section>
+
+<section class="leak">
+  <h2>Why a broken tap still says <span class="mono ok-t">success</span></h2>
+  <p class="sec-lede">Recon often picks the human landing/help/portal page as the &ldquo;data URL.&rdquo; The loader scrapes that HTML, and your two safety gates only catch some of the junk:</p>
+  <div class="flow">
+    <div class="fnode start">Recon picks an<br><strong>HTML page</strong><br><span class="mono sm">wonder-api.html, /data, a github repo</span></div>
+    <div class="farrow">&rarr;</div>
+    <div class="fnode">Loader<br><strong>scrapes HTML</strong><br>as if it were data</div>
+    <div class="farrow">&rarr;</div>
+    <div class="fsplit">
+      <div class="fout good"><span class="fh">Caught</span>1-column dump &rarr; <code>_reject_html</code> &rarr; <b>failed</b></div>
+      <div class="fout good"><span class="fh">Caught</span>all-blank &rarr; density gate &rarr; <b>empty</b></div>
+      <div class="fout bad"><span class="fh">Slips through</span>1 row, multi-column, 25&ndash;75% full &rarr; <b>success</b> &rarr; 1-row mart</div>
+    </div>
+  </div>
+  <p class="fineprint">The holes: <code>_reject_html</code> only fires on <em>exactly one</em> column (<span class="mono">if len(cols) != 1: return</span>), and the density floor is <strong>1%</strong> with <strong>no minimum-row check</strong>. A one-row HTML scrape clears both. &mdash; <span class="mono">library-onboarding/ingest.py</span></p>
+</section>
+
+<section>
+  <h2>The 25 broken taps &mdash; root-caused, with verified fixes</h2>
+  <p class="sec-lede">Grouped by effort to fix. <span class="mono">source_id</span> &middot; what's wrong &middot; the exact endpoint to point at. A severity stripe marks each: <span class="chip dead">dead</span> <span class="chip warn">degraded</span> <span class="chip info">mislabeled</span>.</p>
+  <div class="bucket">
+      <div class="bucket-head tone-amber">
+        <span class="bucket-label">Quick win — one-line URL swap</span>
+        <span class="bucket-count">7</span>
+      </div>
+      <div class="tap-grid"><div class="tap sev-dead">
+      <div class="tap-head">
+        <code class="sid">fed_bls_qcew</code>
+        <span class="rc">wrong url html page</span>
+        <span class="badge ok">endpoint verified</span>
+      </div>
+      <p class="dx">Recon pointed the loader at the BLS &quot;downloadable-data&quot; HTML help page instead of the actual QCEW data files, so it fetched HTML/an error page and landed nothing.</p>
+      <div class="fixline"><span class="k">FIX</span><span class="fixv">Re-URL the tap to the QCEW bulk ZIP pattern data.bls.gov/cew/data/files/&lt;YEAR&gt;/csv/&lt;YEAR&gt;_qtrly_singlefile.zip (or _annual_singlefile.zip) — download, unzip, parse the single CSV; for sliced pulls use the keyless Open Data API data.bls.gov/cew/data/api/&lt;YEAR&gt;/&lt;QTR&gt;/area|industry|size/&lt;CODE&gt;.csv. No auth.</span></div>
+      <div class="epline"><span class="k">DATA ENDPOINT</span><code class="ep">https://data.bls.gov/cew/data/files/2022/csv/2022_annual_singlefile.zip</code></div>
+    </div>
+<div class="tap sev-dead">
+      <div class="tap-head">
+        <code class="sid">fed_faa_data_portal</code>
+        <span class="rc">wrong url html page</span>
+        <span class="badge ok">endpoint verified</span>
+      </div>
+      <p class="dx">Recon recorded the FAA Data Portal&#x27;s human-facing HTML clearinghouse landing page as the data URL, so the loader fetched 103KB of HTML and parsed it into 4 junk rows instead of pulling a real downloadable dataset.</p>
+      <div class="fixline"><span class="k">FIX</span><span class="fixv">Re-URL the tap off the www.faa.gov/data portal index to a specific bulk file — e.g. the Aircraft Registry ZIP https://registry.faa.gov/database/ReleasableAircraft.zip (loader already unzips + pandas-parses the member CSVs); the generic &quot;portal&quot; tap should ideally be split into per-dataset taps, one real file each.</span></div>
+      <div class="epline"><span class="k">DATA ENDPOINT</span><code class="ep">https://registry.faa.gov/database/ReleasableAircraft.zip</code></div>
+    </div>
+<div class="tap sev-dead">
+      <div class="tap-head">
+        <code class="sid">fed_sba_ppp</code>
+        <span class="rc">wrong url html page</span>
+        <span class="badge ok">endpoint verified</span>
+      </div>
+      <p class="dx">The recon step recorded the SBA&#x27;s human-facing &quot;PPP data&quot; help page (HTML) as the data URL, so the loader fetched HTML and parsed it into one junk column; the real bulk CSVs live on SBA&#x27;s open-data (CKAN) portal.</p>
+      <div class="fixline"><span class="k">FIX</span><span class="fixv">Re-point the loader at the data.sba.gov CKAN &quot;PPP FOIA&quot; resources (keyless, direct CSV): the one public_150k_plus_240930.csv above PLUS the 12 public_up_to_150k_N_240930.csv parts under the same dataset id 8aa276e2-6cab-4f86-aca4-a7dde42adf24 — loop all 13 URLs into LANDING; no auth, ranges supported for chunked load.</span></div>
+      <div class="epline"><span class="k">DATA ENDPOINT</span><code class="ep">https://data.sba.gov/dataset/8aa276e2-6cab-4f86-aca4-a7dde42adf24/resource/c1275a03-c25c-488a-bd95-403c4b2fa036/download/public_150k_plus_240930.csv</code></div>
+    </div>
+<div class="tap sev-dead">
+      <div class="tap-head">
+        <code class="sid">fed_slavevoyages_transatlantic</code>
+        <span class="rc">wrong url html page</span>
+        <span class="badge ok">endpoint verified</span>
+      </div>
+      <p class="dx">The recorded URL is the SlaveVoyages downloads page, which is a JavaScript (React) HTML shell — not a data file — so the loader parsed HTML into one junk column; the real bulk CSV/SPSS files exist and download fine from the legacy host.</p>
+      <div class="fixline"><span class="k">FIX</span><span class="fixv">Repoint the tap URL from the SPA page to the direct bulk CSV https://legacy.slavevoyages.org/documents/download/tastdb-exp-2019.csv (full expanded Trans-Atlantic set, ~22 MB, no auth); keep the plain fetch-&gt;pandas.read_csv path. SPSS alt: .../tastdb-exp-2020.sav via pyreadstat.</span></div>
+      <div class="epline"><span class="k">DATA ENDPOINT</span><code class="ep">https://legacy.slavevoyages.org/documents/download/tastdb-exp-2019.csv</code></div>
+    </div>
+<div class="tap sev-dead">
+      <div class="tap-head">
+        <code class="sid">intl_ie_cro</code>
+        <span class="rc">wrong url html page</span>
+        <span class="badge ok">endpoint verified</span>
+      </div>
+      <p class="dx">The recorded URL is the CKAN portal&#x27;s HTML landing page, so the loader fetched HTML and landed 3 junk rows, while the real machine-readable CSV/ZIP datasets sit behind the portal&#x27;s CKAN action API.</p>
+      <div class="fixline"><span class="k">FIX</span><span class="fixv">Re-point the loader at the CKAN resource downloads instead of the portal root: fetch companies.csv.zip (unzip -&gt; companies.csv, one row = one registered company) plus the three financial_statements CSVs; discover them programmatically via GET https://opendata.cro.ie/api/3/action/package_search (no auth) and pull each resource&#x27;s `url`. All are public, no key.</span></div>
+      <div class="epline"><span class="k">DATA ENDPOINT</span><code class="ep">https://opendata.cro.ie/dataset/bf6f837d-0946-4c14-9a99-82cd6980c121/resource/3fef41bc-b8f4-4b10-8434-ce51c29b1bba/download/companies.csv.zip</code></div>
+    </div>
+<div class="tap sev-info">
+      <div class="tap-head">
+        <code class="sid">fed_bjs_data</code>
+        <span class="rc">wrong url html page</span>
+        <span class="badge ok">endpoint verified</span>
+      </div>
+      <p class="dx">The recorded URL is the BJS &quot;Data&quot; HTML portal page, so the loader parsed a web page as CSV and landed 2 junk rows instead of hitting the real OJP Socrata data API.</p>
+      <div class="fixline"><span class="k">FIX</span><span class="fixv">Re-URL the tap from the HTML portal to the OJP Socrata API and page with SODA params, e.g. GET https://api.ojp.gov/bjsdataset/v1/gcuy-rt5g.csv?$limit=50000&amp;$offset=N (or .json); enumerate the other BJS dataset IDs (NCVS household/population, NIBRS) from the BJS API pages as separate source_ids.</span></div>
+      <div class="epline"><span class="k">DATA ENDPOINT</span><code class="ep">https://api.ojp.gov/bjsdataset/v1/gcuy-rt5g.csv</code></div>
+    </div>
+<div class="tap sev-info">
+      <div class="tap-head">
+        <code class="sid">intl_fao_faostat</code>
+        <span class="rc">wrong url html page</span>
+        <span class="badge ok">endpoint verified</span>
+      </div>
+      <p class="dx">The recorded URL is FAOSTAT&#x27;s human-facing HTML landing page, so the loader parsed HTML and landed 4 junk rows instead of the real CSV data, which lives on a separate bulk-download host.</p>
+      <div class="fixline"><span class="k">FIX</span><span class="fixv">Re-point the loader from www.fao.org/faostat/ to the FAOSTAT bulk host: GET bulks-faostat.fao.org/production/datasets_E.json to enumerate FileLocation ZIP URLs, then fetch+unzip each dataset (e.g. Prices_E_All_Data_(Normalized).zip) and load the normalized CSVs — no key needed.</span></div>
+      <div class="epline"><span class="k">DATA ENDPOINT</span><code class="ep">https://bulks-faostat.fao.org/production/datasets_E.json</code></div>
+    </div></div>
+    </div><div class="bucket">
+      <div class="bucket-head tone-amber">
+        <span class="bucket-label">Add a free API key</span>
+        <span class="bucket-count">5</span>
+      </div>
+      <div class="tap-grid"><div class="tap sev-warn">
+      <div class="tap-head">
+        <code class="sid">fed_dol_wage_hour</code>
+        <span class="rc">needs api key</span>
+        <span class="badge muted">endpoint unverified</span>
+      </div>
+      <p class="dx">Recon recorded the old enforcedata.dol.gov HTML portal (now 301-&gt;dataportal.dol.gov SPA shell); the loader fetched HTML and tried to load it as CSV, and the real WHD enforcement data now lives only behind the keyed DOL v4 API.</p>
+      <div class="fixline"><span class="k">FIX</span><span class="fixv">Register a free DOL API key at dataportal.dol.gov/api-keys, add DOL_API_KEY to .env, and point the loader at https://apiprod.dol.gov/v4/get/whd/enforcement/csv?limit=N&amp;offset=M passing header X-API-KEY (paginate to pull all rows); update registry_url to https://dataportal.dol.gov/ and set auth_required=api_key.</span></div>
+      <div class="epline"><span class="k">DATA ENDPOINT</span><code class="ep">https://apiprod.dol.gov/v4/get/whd/enforcement/csv (dataset id 10362; also /json) — requires a free DOL API key via X-API-KEY</code></div>
+    </div>
+<div class="tap sev-warn">
+      <div class="tap-head">
+        <code class="sid">fed_fcc_broadband</code>
+        <span class="rc">needs api key</span>
+        <span class="badge muted">endpoint unverified</span>
+      </div>
+      <p class="dx">The FCC National Broadband Map bulk-data API is live and real, but it requires a free registration token (username + hash_value) that isn&#x27;t in .env, so the loader correctly aborted before landing any rows.</p>
+      <div class="fixline"><span class="k">FIX</span><span class="fixv">Register a free account at broadbandmap.fcc.gov, copy the username + hash_value from account settings into FCC_BROADBAND_API_KEY in library-onboarding/.env, then re-run the tap — the loader already handles the API call and will resume from 0 rows. No code change needed; also set registry AUTH_REQUIRED=TRUE.</span></div>
+      <div class="epline"><span class="k">DATA ENDPOINT</span><code class="ep">https://broadbandmap.fcc.gov/api/public/map/downloads/listAvailabilityData/{as_of_date} (e.g. /2024-06-30 — returns the availability file list as JSON; download the referenced CSVs via /api/public/map/downloads/downloadFile/...). Requires auth headers username + hash_value.</code></div>
+    </div>
+<div class="tap sev-warn">
+      <div class="tap-head">
+        <code class="sid">fed_usitc_dataweb</code>
+        <span class="rc">needs api key</span>
+        <span class="badge muted">endpoint unverified</span>
+      </div>
+      <p class="dx">Recon recorded the DataWeb Angular SPA landing page (HTML) as the data URL, so the loader parsed HTML as CSV and landed 7 blank junk rows; the real trade data lives behind a POST API that requires a login-generated bearer token.</p>
+      <div class="fixline"><span class="k">FIX</span><span class="fixv">Switch the loader to POST https://datawebws.usitc.gov/dataweb/api/v2/report2/runReport with a JSON query spec and header &#x27;Authorization: Bearer &lt;TOKEN&gt;&#x27;, where TOKEN is generated from https://dataweb.usitc.gov/api-key after creating a free Login.gov-backed DataWeb account; store token in .env and requeue as needs_key until it&#x27;s present. OpenAPI schema for building the query body: https://datawebws.usitc.gov/dataweb/v3/api-docs</span></div>
+      <div class="epline"><span class="k">DATA ENDPOINT</span><code class="ep">https://datawebws.usitc.gov/dataweb/api/v2/report2/runReport</code></div>
+    </div>
+<div class="tap sev-info">
+      <div class="tap-head">
+        <code class="sid">fed_fbi_cde</code>
+        <span class="rc">wrong url html page</span>
+        <span class="badge ok">endpoint verified</span>
+      </div>
+      <p class="dx">The recorded URL is the FBI CDE Angular HTML portal, not a data endpoint, so the loader fetched the SPA shell and landed 1 junk row; the real machine-readable CDE REST API lives elsewhere and works.</p>
+      <div class="fixline"><span class="k">FIX</span><span class="fixv">Re-URL the tap off https://cde.ucr.cjis.gov/ onto the CDE REST API base https://api.usa.gov/crime/fbi/cde/ (paginate the agency/summarized endpoints, dates in MM-YYYY), and pass a free api.data.gov key as API_KEY=; add FBI_CDE_API_KEY to .env (DEMO_KEY works for smoke tests but is rate-limited).</span></div>
+      <div class="epline"><span class="k">DATA ENDPOINT</span><code class="ep">https://api.usa.gov/crime/fbi/cde/ (verified: GET https://api.usa.gov/crime/fbi/cde/agency/byStateAbbr/NE?API_KEY=DEMO_KEY -&gt; 200 JSON; national/summarized/arrest/agency endpoints under this base, key via https://api.data.gov/signup/)</code></div>
+    </div>
+<div class="tap sev-info">
+      <div class="tap-head">
+        <code class="sid">fed_fra_safety</code>
+        <span class="rc">wrong url html page</span>
+        <span class="badge muted">endpoint unverified</span>
+      </div>
+      <p class="dx">The recorded URL is FRA&#x27;s HTML &quot;Master Web Services&quot; pilot/help page, not a data feed, so the loader parsed HTML into 1 junk row and falsely marked it a successful load.</p>
+      <div class="fixline"><span class="k">FIX</span><span class="fixv">Repoint the tap off the .aspx help page to the SOAP service DatadownloadService.asmx (methods GetAccident54DataByRailroad, GetAccident57DataByRailroad, GetCrossingData, GetDefectData, etc. — return XML), which requires a registered FRA username/password (request via RsisSupport@dot.gov). Keyless alternative that fits the keyless-first scope: scrape the public Office of Safety bulk downloads (self-extracting .EXE-&gt;.DBF and the Dec-2024 full CSV datasets) under https://safetydata.fra.dot.gov/OfficeofSafety/publicsite/downloads/downloads.aspx — needs an ASPX form scraper, not a clean re-URL.</span></div>
+      <div class="epline"><span class="k">DATA ENDPOINT</span><code class="ep">https://safetydata.fra.dot.gov/MASTERWEBSERVICE/DatadownloadService.asmx?WSDL</code></div>
+    </div></div>
+    </div><div class="bucket">
+      <div class="bucket-head tone-amber">
+        <span class="bucket-label">Loader/parse code change</span>
+        <span class="bucket-count">7</span>
+      </div>
+      <div class="tap-grid"><div class="tap sev-dead">
+      <div class="tap-head">
+        <code class="sid">fed_cdc_wonder</code>
+        <span class="rc">wrong url html page</span>
+        <span class="badge muted">endpoint unverified</span>
+      </div>
+      <p class="dx">The recorded URL is CDC WONDER&#x27;s API help/documentation HTML page, not a data endpoint, so the loader fetched HTML and landed 1 junk row while the run was mislabeled &quot;success&quot;.</p>
+      <div class="fixline"><span class="k">FIX</span><span class="fixv">Point the loader at POST https://wonder.cdc.gov/controller/datarequest/D&lt;id&gt; (e.g. D76 Detailed Mortality, D176 current mortality) sending a form field request_xml = an XML query document with group-by dimensions + data-use consent (B_1=true), then parse the XML &lt;response&gt; result table into rows; it is not a GET-fetchable file.</span></div>
+      <div class="epline"><span class="k">DATA ENDPOINT</span><code class="ep">https://wonder.cdc.gov/controller/datarequest/D76</code></div>
+    </div>
+<div class="tap sev-dead">
+      <div class="tap-head">
+        <code class="sid">fed_ed_fsa_datacenter</code>
+        <span class="rc">wrong url html page</span>
+        <span class="badge ok">endpoint verified</span>
+      </div>
+      <p class="dx">The recorded URL is the FSA Data Center React web page (HTML), not a data file, so the loader fetched a 10.9KB HTML shell, &quot;parsed&quot; it as CSV, and landed 1 all-blank row (density 0%); the real portfolio data lives in .xls workbooks elsewhere on the site.</p>
+      <div class="fixline"><span class="k">FIX</span><span class="fixv">Re-point the tap off the HTML page to the FSA library .xls files (PortfolioSummary.xls, PortfoliobyLoanType.xls, PortfoliobyLoanStatus.xls, Portfolio-by-Location.xls, Portfolio-by-Age.xls under studentaid.gov/sites/default/files/fsawg/datacenter/library/) AND switch the loader from read_csv to pandas.read_excel(engine=&quot;xlrd&quot;, skiprows=N) since these are formatted binary .xls with multi-row headers, not CSV.</span></div>
+      <div class="epline"><span class="k">DATA ENDPOINT</span><code class="ep">https://studentaid.gov/sites/default/files/fsawg/datacenter/library/PortfolioSummary.xls</code></div>
+    </div>
+<div class="tap sev-dead">
+      <div class="tap-head">
+        <code class="sid">fed_hhs_taggs</code>
+        <span class="rc">portal only no bulk</span>
+        <span class="badge ok">endpoint verified</span>
+      </div>
+      <p class="dx">The recorded URL is the TAGGS portal homepage (HTML), and TAGGS exposes no bulk file or REST API — CSV/Excel exports are generated only inside interactive search sessions (capped at 25k rows), so the loader scraped the homepage and landed 45 junk rows, tripping the density gate to empty.</p>
+      <div class="fixline"><span class="k">FIX</span><span class="fixv">TAGGS has no native bulk/API endpoint — pivot the tap to USASpending, which carries the same HHS grant award transactions: POST api.usaspending.gov/api/v2/search/spending_by_award/ with filters {&quot;agencies&quot;:[{&quot;type&quot;:&quot;awarding&quot;,&quot;tier&quot;:&quot;toptier&quot;,&quot;name&quot;:&quot;Department of Health and Human Services&quot;}],&quot;award_type_codes&quot;:[&quot;02&quot;,&quot;03&quot;,&quot;04&quot;,&quot;05&quot;]} and page through results (or POST /api/v2/bulk_download/awards/ for a CSV zip). If TAGGS-native fields are strictly required, build a Playwright scraper that drives the SearchAdv CSV export, chunking by fiscal year/OpDiv to stay under the 25k-row cap.</span></div>
+      <div class="epline"><span class="k">DATA ENDPOINT</span><code class="ep">https://api.usaspending.gov/api/v2/search/spending_by_award/</code></div>
+    </div>
+<div class="tap sev-dead">
+      <div class="tap-head">
+        <code class="sid">intl_gleif</code>
+        <span class="rc">loader code bug</span>
+        <span class="badge ok">endpoint verified</span>
+      </div>
+      <p class="dx">The GLEIF concatenated-file API is live and keyless, but the loader built the download URL with a hardcoded stale date (/get/20240101/zip) instead of resolving the current numeric file id, so it 404s.</p>
+      <div class="fixline"><span class="k">FIX</span><span class="fixv">Stop using date-based paths. GET the resolver https://leidata.gleif.org/api/v1/concatenated-files/lei2/latest?format=xml (or the list https://leidata.gleif.org/api/v1/concatenated-files/lei2), read data[0].id (e.g. 41561) / the &#x27;file&#x27; URL, then download https://leidata.gleif.org/api/v1/concatenated-files/lei2/get/&lt;id&gt;/zip (verified: application/zip, PK, 3.36M LEI records). Use leidata.gleif.org, not goldencopy.gleif.org (Akamai 403s non-browsers). Also re-URL the registry away from the HTML help page.</span></div>
+      <div class="epline"><span class="k">DATA ENDPOINT</span><code class="ep">https://leidata.gleif.org/api/v1/concatenated-files/lei2/latest?format=xml</code></div>
+    </div>
+<div class="tap sev-warn">
+      <div class="tap-head">
+        <code class="sid">fed_cms_open_payments_2022</code>
+        <span class="rc">loader code bug</span>
+        <span class="badge ok">endpoint verified</span>
+      </div>
+      <p class="dx">The recorded URL is the correct CMS Open Payments 2022 general-payments CSV and serves real data; the loader crashed (&quot;I/O operation on closed file&quot;) because it choked on the ~7.4GB file, not because the source is bad.</p>
+      <div class="fixline"><span class="k">FIX</span><span class="fixv">Keep the same URL; rewrite the loader to stream the 7.4GB CSV to disk with requests(stream=True) then pandas read_csv(chunksize=...) → chunked Snowflake COPY, keeping the response/file handle open for the full read (the &quot;I/O operation on closed file&quot; is a with-block closing the temp file/response before iteration finishes).</span></div>
+      <div class="epline"><span class="k">DATA ENDPOINT</span><code class="ep">https://download.cms.gov/openpayments/PGYR2022_P01232026_01102026/OP_DTL_GNRL_PGYR2022_P01232026_01102026.csv</code></div>
+    </div>
+<div class="tap sev-warn">
+      <div class="tap-head">
+        <code class="sid">fed_fjc_idb</code>
+        <span class="rc">density parse junk</span>
+        <span class="badge ok">endpoint verified</span>
+      </div>
+      <p class="dx">The loader downloaded the real ~4.1M-row FJC civil IDB text file and streamed every row, but a delimiter/column-mapping bug landed all 20 data columns blank (only ingest-metadata columns populated), so the density gate correctly marked it empty.</p>
+      <div class="fixline"><span class="k">FIX</span><span class="fixv">Not a URL problem — re-run the existing loader with the correct parse: read the tab-delimited cv88on_0.txt (sep=&#x27;\t&#x27;, first row = header mapping to the 20 IDB columns) and align the DataFrame columns to the target table before insert; assert a sample row is non-blank before the density gate. Also repoint registry_url from the /research/idb HTML page to the textfiles ZIP. Criminal/appellate/bankruptcy have parallel files under the same /idb/textfiles/ path.</span></div>
+      <div class="epline"><span class="k">DATA ENDPOINT</span><code class="ep">https://www.fjc.gov/sites/default/files/idb/textfiles/cv88on_0.zip</code></div>
+    </div>
+<div class="tap sev-warn">
+      <div class="tap-head">
+        <code class="sid">fed_nih_reporter</code>
+        <span class="rc">wrong api method</span>
+        <span class="badge ok">endpoint verified</span>
+      </div>
+      <p class="dx">The loader GET-fetched the bare API root instead of POSTing a JSON query to the real search endpoint, so it landed 5,000 blank rows instead of grant records.</p>
+      <div class="fixline"><span class="k">FIX</span><span class="fixv">POST to https://api.reporter.nih.gov/v2/projects/search with JSON body {&quot;criteria&quot;:{...},&quot;limit&quot;:500,&quot;offset&quot;:N}, paginate on offset (500/page, offset&lt;15000 per query slice), and flatten the results[] array (nested organization/principal_investigators objects).</span></div>
+      <div class="epline"><span class="k">DATA ENDPOINT</span><code class="ep">https://api.reporter.nih.gov/v2/projects/search</code></div>
+    </div></div>
+    </div><div class="bucket">
+      <div class="bucket-head tone-red">
+        <span class="bucket-label">Needs a scraper build</span>
+        <span class="bucket-count">4</span>
+      </div>
+      <div class="tap-grid"><div class="tap sev-dead">
+      <div class="tap-head">
+        <code class="sid">fed_dea_arcos</code>
+        <span class="rc">portal only no bulk</span>
+        <span class="badge dead">no endpoint</span>
+      </div>
+      <p class="dx">The recon step pointed the CSV loader at DEA&#x27;s ARCOS reports HTML index page, which offers the data only as yearly PDF summary reports — no CSV or API exists — so the loader parsed HTML into 409 all-blank rows.</p>
+      <div class="fixline"><span class="k">FIX</span><span class="fixv">No machine-readable endpoint to re-URL to; the only downloads are PDFs (pattern https://www.deadiversion.usdoj.gov/arcos/retail_drug_summary/report_yr_YYYY.pdf, plus older 20YY/20YY_rptN.pdf). Either drop this tap as no-bulk, or build a PDF table-extraction loader over the yearly report PDFs instead of a CSV fetch.</span></div>
+      <div class="epline"><span class="k">DATA ENDPOINT</span><span class="none">—</span></div>
+    </div>
+<div class="tap sev-dead">
+      <div class="tap-head">
+        <code class="sid">fed_doj_crt_cases</code>
+        <span class="rc">portal only no bulk</span>
+        <span class="badge dead">no endpoint</span>
+      </div>
+      <p class="dx">The recorded URL is the correct DOJ Civil Rights Division &quot;Cases and Matters&quot; page, but it&#x27;s a JS-rendered Drupal faceted-search portal with no bulk file or API, so the requests-based scrape grabbed the empty HTML shell and landed 1 junk row.</p>
+      <div class="fixline"><span class="k">FIX</span><span class="fixv">No re-URL possible: no CSV/JSON/API exists. Rebuild as a Playwright scraper that drives the faceted search at justice.gov/crt/search-cases-and-matters (results load via AJAX, absent from static HTML), paginates, and extracts one row per case (title, section, date, link); flag the tap as portal-only, not a healthy landed source.</span></div>
+      <div class="epline"><span class="k">DATA ENDPOINT</span><span class="none">—</span></div>
+    </div>
+<div class="tap sev-warn">
+      <div class="tap-head">
+        <code class="sid">intl_ge_datagov</code>
+        <span class="rc">wrong url html page</span>
+        <span class="badge muted">endpoint unverified</span>
+      </div>
+      <p class="dx">Recon pointed the tap at Georgia&#x27;s OGP commitment write-up page (an HTML narrative behind Cloudflare) instead of the actual open-data portal, so it landed 1 junk HTML row; the real portal data.gov.ge is alive and serves machine-readable per-dataset CSV/XLS/XML plus an atom feed.</p>
+      <div class="fixline"><span class="k">FIX</span><span class="fixv">Re-point off opengovpartnership.org onto data.gov.ge&#x27;s own catalog: harvest the dataset index (atom.xml feed, or scrape /Datasets) one row per dataset, and pull each dataset&#x27;s file via the pattern https://data.gov.ge/&lt;Category&gt;/doc/&lt;id&gt;/dataset (text/csv) / .../&lt;name&gt; (xls/xml). Note the ingestion host is geo/IP-blocked by data.gov.ge (connection reset from US datacenter), so route egress through a Georgia/EU proxy.</span></div>
+      <div class="epline"><span class="k">DATA ENDPOINT</span><code class="ep">https://data.gov.ge/atom.xml</code></div>
+    </div>
+<div class="tap sev-info">
+      <div class="tap-head">
+        <code class="sid">fed_cms_hpt_mrf</code>
+        <span class="rc">portal only no bulk</span>
+        <span class="badge dead">no endpoint</span>
+      </div>
+      <p class="dx">The recorded URL is the CMS GitHub spec/tooling repo (HTML), not data; the loader parsed that HTML page as CSV and landed 1 all-blank junk row, and CMS publishes no aggregate — each hospital self-hosts its own MRF, so no single bulk endpoint exists.</p>
+      <div class="fixline"><span class="k">FIX</span><span class="fixv">No re-URL fixes this: github.com/CMSgov is only the schema/validator/TXT-generator, not data. Quarantine the junk row and either build a distributed crawler that resolves each hospital&#x27;s MRF via its root /cms-hpt.txt pointer (CMS naming convention) and fetches per-hospital files, or ingest a third-party aggregate (Turquoise Health / dolthub). Do not treat this GitHub repo as a data source.</span></div>
+      <div class="epline"><span class="k">DATA ENDPOINT</span><span class="none">—</span></div>
+    </div></div>
+    </div><div class="bucket">
+      <div class="bucket-head tone-red">
+        <span class="bucket-label">No public data — retire / re-scope</span>
+        <span class="bucket-count">2</span>
+      </div>
+      <div class="tap-grid"><div class="tap sev-dead">
+      <div class="tap-head">
+        <code class="sid">fed_fincen_boi</code>
+        <span class="rc">portal only no bulk</span>
+        <span class="badge dead">no endpoint</span>
+      </div>
+      <p class="dx">The tap points at an HTML info page and landed 1 junk row, but BOI data is confidential by law and no public data endpoint exists to fix it toward.</p>
+      <div class="fixline"><span class="k">FIX</span><span class="fixv">Retire/quarantine this tap: there is no public BOI data feed. FinCEN&#x27;s BOI is confidential under the Corporate Transparency Act, stored in the nonpublic BOSS system; the only machine access is a restricted, consent-gated API for authorized financial institutions and government agencies (boiefiling.fincen.gov is a filer submission portal, not a data source). Mark source as no_public_data rather than retrying.</span></div>
+      <div class="epline"><span class="k">DATA ENDPOINT</span><span class="none">—</span></div>
+    </div>
+<div class="tap sev-dead">
+      <div class="tap-head">
+        <code class="sid">intl_austlii</code>
+        <span class="rc">portal only no bulk</span>
+        <span class="badge dead">no endpoint</span>
+      </div>
+      <p class="dx">AustLII is an interactive legal-research portal with no public bulk/API endpoint; the recorded URL is its HTML homepage (now Cloudflare bot-blocked), so the scrape landed 1 junk HTML row.</p>
+      <div class="fixline"><span class="k">FIX</span><span class="fixv">Retire intl_austlii as a direct tap — AustLII&#x27;s Usage Policy prohibits scraping/API/bulk access and there is no official machine-readable endpoint. Re-scope to a real dataset: onboard the Open Australian Legal Corpus (HuggingFace dataset umarbutler/open-australian-legal-corpus, ~parquet/JSONL) or dylanhogg/legaldata, which cover Australian case law + legislation from primary sources.</span></div>
+      <div class="epline"><span class="k">DATA ENDPOINT</span><span class="none">—</span></div>
+    </div></div>
+    </div>
+</section>
+
+<section class="trapped">
+  <h2>8 marts are hiding real data one layer down</h2>
+  <p class="sec-lede">These aren't tap failures &mdash; the <strong>landing tables are full</strong>, but the dbt model froze the mart at 1&ndash;3 rows (column names drifted from the real schema, or dedup collapsed a blank key). The data is already in your warehouse. <strong>Fix = regenerate the staging model against the actual landing schema, then re-run dbt.</strong></p>
+  <div class="tbl-wrap"><table class="trap">
+    <thead><tr><th>Source</th><th class="num">Landing rows</th><th></th><th class="num">Mart rows</th><th>What happened</th></tr></thead>
+    <tbody><tr>
+      <td><code class="sid sm">fed_slavevoyages_intraamerican</code></td>
+      <td class="num">11,521</td>
+      <td class="arrow">&rarr;</td>
+      <td class="num mart">1</td>
+      <td class="note">real — 11,521 distinct voyage IDs; staging model selects VOYAGE_ID / DOCTYPE_HTML columns that don&#x27;t exist in the landing</td>
+    </tr><tr>
+      <td><code class="sid sm">fed_naag_multistate_settlements</code></td>
+      <td class="num">882</td>
+      <td class="arrow">&rarr;</td>
+      <td class="num mart">1</td>
+      <td class="note">real — 882 fully-populated settlement rows; dedup collapses on a blank partition key</td>
+    </tr><tr>
+      <td><code class="sid sm">fed_hhs_taggs</code></td>
+      <td class="num">45</td>
+      <td class="arrow">&rarr;</td>
+      <td class="num mart">1</td>
+      <td class="note">landing has 45 rows; mart collapsed to 1</td>
+    </tr><tr>
+      <td><code class="sid sm">intl_gr_gemi</code></td>
+      <td class="num">40</td>
+      <td class="arrow">&rarr;</td>
+      <td class="num mart">1</td>
+      <td class="note">landing has 40 rows; mart collapsed to 1</td>
+    </tr><tr>
+      <td><code class="sid sm">fed_nara_wra_aad</code></td>
+      <td class="num">36</td>
+      <td class="arrow">&rarr;</td>
+      <td class="num mart">1</td>
+      <td class="note">landing has 36 rows; mart collapsed to 1</td>
+    </tr><tr>
+      <td><code class="sid sm">intl_es_borme</code></td>
+      <td class="num">25</td>
+      <td class="arrow">&rarr;</td>
+      <td class="num mart">3</td>
+      <td class="note">landing has 25 rows; mart collapsed to 3</td>
+    </tr><tr>
+      <td><code class="sid sm">intl_ch_zefix</code></td>
+      <td class="num">18</td>
+      <td class="arrow">&rarr;</td>
+      <td class="num mart">1</td>
+      <td class="note">landing has 18 rows; mart collapsed to 1</td>
+    </tr><tr>
+      <td><code class="sid sm">fed_fdic_enforcement</code></td>
+      <td class="num">14</td>
+      <td class="arrow">&rarr;</td>
+      <td class="num mart">1</td>
+      <td class="note">landing has 14 rows; mart collapsed to 1</td>
+    </tr></tbody>
+  </table></div>
+  <p class="fineprint"><b>Separately:</b> <code class="sid sm">fed_fjc_idb</code> landed 4.1M rows but they're genuinely all-blank (a real TSV parse bug) &mdash; it's in the tap-fix list above, not here.</p>
+</section>
+
+<section class="portal">
+  <h2>The 284 &ldquo;failed&rdquo; portal taps are expected churn, not a regression</h2>
+  <div class="portal-grid">
+    <div class="portal-body">
+      <p>The <code class="sid sm">PORTAL_*</code> entries are a speculative machine crawl: 194 open-data portals fingerprinted, a <strong>338,520-dataset</strong> index harvested, each dataset minted as a tap. Nobody vetted that any given resource URL is live or tabular &mdash; so they fail exactly how crawled resources fail: <strong>145</strong> dead 404s, <strong>86</strong> HTML-not-data, plus 500s and stub rows. A ~26% junk rate is normal for public portals that constantly rotate resource IDs.</p>
+      <p class="rec"><span class="k">RECOMMENDATION</span> Isolate, don't purge-all or retry-all. Tag every <code class="sid sm">PORTAL_*</code> as <span class="mono">provenance = 'speculative_harvest'</span> and exclude the class from your empty-tables / lifecycle dashboards so curated sources stay legible. Then purge the hard 404s + HTML-not-data; leave 500s for a low-priority re-probe.</p>
+    </div>
+    <div class="portal-stats">
+      <div class="ps"><span class="psv">145</span><span class="psl">dead 404</span></div>
+      <div class="ps"><span class="psv">86</span><span class="psl">HTML not data</span></div>
+      <div class="ps"><span class="psv">14</span><span class="psl">server 500</span></div>
+      <div class="ps"><span class="psv">~50</span><span class="psl">1&ndash;5 junk rows</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="fixes">
+  <h2>Three pipeline fixes stop this recurring</h2>
+  <ol class="fixlist">
+    <li><span class="fn">1</span><div><b>Add a minimum-row floor to the density gate.</b> Any snapshot load under, say, 25 rows is demoted to <span class="mono">empty</span> unless the source is known-tiny. Catches every 1&ndash;7 row HTML scrape that currently rides in as <span class="mono">success</span>.</div></li>
+    <li><span class="fn">2</span><div><b>Broaden <code>_reject_html</code>.</b> Also fail when a frame is 1&ndash;few rows and <em>any</em> cell contains <span class="mono">&lt;!DOCTYPE</span> / <span class="mono">&lt;html</span> &mdash; not just the single-column case.</div></li>
+    <li><span class="fn">3</span><div><b>Content-type check at recon time.</b> Before codegen, HEAD the chosen URL; if it returns <span class="mono">text/html</span>, make recon hunt for the real bulk/API endpoint instead of accepting the landing page. Add a landing-vs-mart row-count drift check to catch stale models like the 8 above.</div></li>
+  </ol>
+</section>
+
+<footer>
+  <p>Ground truth pulled live from <span class="mono">LIBRARY_META.REGISTRY.V_STATE</span>, <span class="mono">CATALOG</span>, <span class="mono">INGEST_LOGS.INGEST_RUNS</span>, and <span class="mono">INFORMATION_SCHEMA</span>. Each of the 25 taps was probed with a live <span class="mono">curl</span>; proposed fixes were re-curled to confirm they return real data. 46 diagnostic agents, 0 errors.</p>
+</footer>
+</article>

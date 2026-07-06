@@ -91,6 +91,15 @@ DENSITY_MIN_POPULATED_FRACTION = 0.01
 # head sample is representative for density (a parse failure is uniform across rows).
 DENSITY_SAMPLE_ROWS = 2000
 
+# A snapshot-replace load with fewer than this many SOURCE rows is not a real dataset:
+# a lone landed row is the fingerprint of a landing/help/portal page that got scraped
+# into a single record (the fed_cdc_wonder / fed_doj_crt_cases / intl_austlii failures
+# -- 1 row, a few populated columns, so they cleared the 1% floor and rode in as
+# 'success'). This is a STRUCTURAL trigger, independent of density. It is OPT-IN via
+# assess_density(min_rows=...) so it applies ONLY to snapshot loads -- an incremental
+# append of a single legit new row must never be demoted -- and it is tunable here.
+DENSITY_MIN_ROWS = 2
+
 
 def _is_blank(v) -> bool:
     """A cell carries no data: None/NaN, or empty/whitespace-only after strip."""
@@ -108,12 +117,16 @@ def _is_blank(v) -> bool:
     return s == "" or s.lower() in ("nan", "nat", "none", "<na>")
 
 
-def assess_density(df, sample_rows: int = DENSITY_SAMPLE_ROWS) -> dict:
+def assess_density(df, sample_rows: int = DENSITY_SAMPLE_ROWS, min_rows: int = 1) -> dict:
     """Measure how much real data a frame carries. PURE -- no I/O, no Snowflake.
 
     Looks only at SOURCE columns (the provenance/meta stamps are excluded, since
     they're always populated and would otherwise mask an empty source). Returns a
     dict describing the frame's density and whether it should be DEMOTED.
+
+    `min_rows` (default 1 = disabled): demote a frame with fewer than this many source
+    rows as structurally-empty. Callers pass DENSITY_MIN_ROWS for SNAPSHOT loads only;
+    incremental appends keep the default so a legit single new row is never demoted.
 
     Keys:
       populated_fraction   -- non-blank cells / total cells (source columns, sample)
@@ -179,16 +192,21 @@ def assess_density(df, sample_rows: int = DENSITY_SAMPLE_ROWS) -> dict:
     # cols + 198 optional-blank cols == exactly the floor) and that is REAL data. The
     # floor -- not the blank-column count -- decides, so such a table is NOT demoted.
     below_floor = populated_fraction < DENSITY_MIN_POPULATED_FRACTION
-    empty = below_floor or single_distinct_blank
+    # STRUCTURAL: too few rows to be a real dataset (opt-in via min_rows; snapshot only).
+    too_few_rows = n_rows < min_rows
+    empty = below_floor or single_distinct_blank or too_few_rows
 
     if not empty:
         reason = ""
     elif single_distinct_blank:
         reason = "every source column collapsed to a single blank value"
-    else:
+    elif below_floor:
         reason = (f"populated-cell fraction {populated_fraction:.2%} below the "
                   f"{DENSITY_MIN_POPULATED_FRACTION:.0%} floor "
                   f"({all_blank_cols}/{n_cols} source columns entirely blank)")
+    else:  # too_few_rows
+        reason = (f"only {n_rows} source row(s) landed -- too few to be a real dataset "
+                  "(a 1-row load is the fingerprint of a landing/help page scraped as data)")
 
     return {
         "populated_fraction": round(populated_fraction, 6),
@@ -376,7 +394,12 @@ def run_ingest(config: dict, code: str) -> dict:
             # source column blank) is recorded as STATUS='empty' -- NOT 'success' --
             # so it can't ride into the catalog as a real source. Healthy frames
             # clear the gate and keep STATUS='success' with identical behaviour.
-            density = assess_density(df, sample_rows=None)  # scan the WHOLE frame
+            # snapshot loads opt into the min-rows floor (min_rows) so a lone scraped
+            # row can't ride in as 'success'; incremental appends never demote on rows.
+            density = assess_density(
+                df, sample_rows=None,
+                min_rows=(1 if incremental else DENSITY_MIN_ROWS),
+            )  # scan the WHOLE frame
             result["density"] = density["populated_fraction"]
             if density["empty"]:
                 _log_run(conn, source_id, run_id, "empty", len(df), file_bytes, sha, url,
@@ -747,32 +770,72 @@ def _execute_fetch(config: dict, code: str, since: Optional[str] = None,
     return df, raw_bytes, context.get("source_file", "") or ""
 
 
+_HTML_DOC_MARKERS = ("<!DOCTYPE", "<HTML", "<HEAD", "<BODY", "<!--", "<?XML")
+
+
 def _reject_html(df) -> None:
     """Fail loudly when an HTML page lands AS DATA (a false "success").
 
     Judge the DataFrame's shape, NOT the raw bytes -- scrape sources legitimately
     fetch an HTML page (raw_bytes is HTML) but parse it into a proper multi-column
-    table, which is fine. The failure we catch is when the HTML itself becomes the
-    data: a docs/landing page parsed into a single bogus column (the
-    fed_cms_hpt_enforcement case: one ``DOCTYPE_HTML`` column of junk rows).
+    table, which is fine. We catch three shapes of "the HTML itself became the data":
+
+      (1) the classic single-column dump -- a docs/landing page parsed into ONE bogus
+          column (the fed_cms_hpt_enforcement case: one ``DOCTYPE_HTML`` column);
+      (2) a MULTI-column frame whose column NAME is itself HTML markup -- a
+          ``DOCTYPE_HTML`` column or a name that starts with ``<`` (headerless HTML
+          parsed as a table, the fed_dol_wage_hour / slavevoyages-staging tell); and
+      (3) any frame with a data CELL that is a raw HTML document (starts with
+          ``<!doctype`` / ``<html`` / ...). This is the gap the old single-column-only
+          check missed: HTML help/landing pages scraped into a few named columns and 1
+          row (fed_cdc_wonder, intl_austlii, fed_fbi_cde) sailed through as 'success'.
+
+    All three are zero-false-positive: real tabular data never names a column with an
+    HTML tag, and never carries a whole HTML document as a cell value. A legit field
+    holding an HTML SNIPPET (``<p>..``) does not start with a document marker, so it
+    passes.
     """
     cols = [str(c) for c in df.columns]
-    if len(cols) != 1:
-        return  # real tabular data (incl. legitimately-scraped tables)
-    name = cols[0].upper()
-    first = ""
-    try:
-        nonnull = df.iloc[:, 0].dropna()
-        if len(nonnull):
-            first = str(nonnull.iloc[0]).lstrip().upper()
-    except Exception:
+
+    # (2) a column NAME that is HTML markup -> headerless-HTML-as-table.
+    for c in cols:
+        if "DOCTYPE" in c.upper() or c.lstrip().startswith("<"):
+            raise RuntimeError(
+                f"fetch_data landed an HTML page as data: column '{c}' is HTML markup, "
+                "not a field -- the fetch likely hit a docs/landing URL. Fix the URL/parse."
+            )
+
+    # (1) the classic single-column HTML dump.
+    if len(cols) == 1:
+        name = cols[0].upper()
         first = ""
-    if ("DOCTYPE" in name or "HTML" in name or name.startswith("<")
-            or first.startswith(("<!DOCTYPE", "<HTML", "<"))):
-        raise RuntimeError(
-            f"fetch_data parsed HTML into a single column ('{df.columns[0]}'), not "
-            "tabular data -- the fetch likely hit a docs/landing URL. Fix the URL/parse."
-        )
+        try:
+            nonnull = df.iloc[:, 0].dropna()
+            if len(nonnull):
+                first = str(nonnull.iloc[0]).lstrip().upper()
+        except Exception:
+            first = ""
+        if "HTML" in name or name.startswith("<") or first.startswith(_HTML_DOC_MARKERS):
+            raise RuntimeError(
+                f"fetch_data parsed HTML into a single column ('{df.columns[0]}'), not "
+                "tabular data -- the fetch likely hit a docs/landing URL. Fix the URL/parse."
+            )
+
+    # (3) any data CELL that is a raw HTML document (bounded head scan; cheap).
+    try:
+        head = df.head(5)
+        for col in head.columns:
+            for v in head[col].dropna():
+                if str(v).lstrip()[:16].upper().startswith(_HTML_DOC_MARKERS):
+                    raise RuntimeError(
+                        f"fetch_data landed raw HTML in a data cell (column '{col}'), not "
+                        "tabular data -- the fetch likely hit a docs/landing URL, not the "
+                        "dataset. Fix the URL/parse."
+                    )
+    except RuntimeError:
+        raise
+    except Exception:
+        pass  # never fail the load over the scan itself
 
 
 # Null-string tokens: what pandas/loaders render a null AS when they str()/astype(str)

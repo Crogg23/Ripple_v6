@@ -13,7 +13,9 @@ import pytest
 
 from ingest import (
     DENSITY_MIN_POPULATED_FRACTION,
+    DENSITY_MIN_ROWS,
     _META_COLS,
+    _reject_html,
     assess_density,
 )
 
@@ -217,3 +219,74 @@ def test_sampling_cap_catches_uniform_empty_in_a_huge_frame():
     d = assess_density(big)
     assert d["rows_sampled"] == 2000
     assert d["empty"] is True
+
+
+# ---------------------------------------------------------------------------
+# MIN-ROWS floor (snapshot-only, opt-in) -- a lone scraped row is not a dataset
+# ---------------------------------------------------------------------------
+def test_one_row_snapshot_is_demoted_with_min_rows():
+    # The silent failure: an HTML help page scraped into a few populated columns and
+    # ONE row. Density is high (clears the 1% floor), so only the row floor catches it.
+    df = pd.DataFrame({"CDC_WONDER": ["mortality"], "YEAR": ["2022"], "RATE": ["12.3"]})
+    d = assess_density(df, min_rows=DENSITY_MIN_ROWS)
+    assert d["empty"] is True
+    assert d["populated_fraction"] == 1.0          # it was NOT low-density...
+    assert "too few" in d["reason"]                # ...the row floor demoted it
+
+
+def test_one_row_frame_passes_when_min_rows_disabled():
+    # Default min_rows=1 (the incremental path) must NOT demote on row count.
+    df = pd.DataFrame({"A": ["x"], "B": ["y"]})
+    d = assess_density(df)                          # default min_rows=1
+    assert d["empty"] is False
+
+
+def test_two_row_snapshot_passes_min_rows_floor():
+    # The floor is < min_rows, so exactly DENSITY_MIN_ROWS rows is fine (real data).
+    df = pd.DataFrame({"A": ["x", "y"], "B": ["1", "2"]})
+    d = assess_density(df, min_rows=DENSITY_MIN_ROWS)
+    assert d["empty"] is False
+
+
+# ---------------------------------------------------------------------------
+# _reject_html -- HTML masquerading as data, all three shapes
+# ---------------------------------------------------------------------------
+def test_reject_html_single_column_dump():
+    df = pd.DataFrame({"DOCTYPE_HTML": ["<html><body>...</body></html>"] * 3})
+    with pytest.raises(RuntimeError, match="HTML"):
+        _reject_html(df)
+
+
+def test_reject_html_multicolumn_with_html_column_name():
+    # A multi-column frame that still has an HTML-tag column name (the gap the old
+    # single-column-only check missed).
+    df = pd.DataFrame({"VOYAGE_ID": ["1"], "DOCTYPE_HTML": ["x"], "PORT": ["p"]})
+    with pytest.raises(RuntimeError, match="HTML markup"):
+        _reject_html(df)
+
+
+def test_reject_html_raw_document_in_a_cell():
+    # A landing page scraped into named columns + one row whose cell is raw HTML.
+    df = pd.DataFrame({"col_a": ["<!DOCTYPE html><html lang=en>"], "col_b": ["nav"]})
+    with pytest.raises(RuntimeError, match="raw HTML"):
+        _reject_html(df)
+
+
+def test_reject_html_passes_real_table():
+    # Real tabular data must NOT be rejected.
+    df = pd.DataFrame({
+        "FIPS": ["06037", "36061"],
+        "NAME": ["Los Angeles", "New York"],
+        "POP": ["10039107", "1628706"],
+    })
+    _reject_html(df)  # no raise
+
+
+def test_reject_html_passes_field_with_html_snippet():
+    # A legit field holding an HTML SNIPPET (not a whole document) must pass -- it does
+    # not start with a document marker.
+    df = pd.DataFrame({
+        "id": ["1", "2"],
+        "description": ["<p>See <a href='x'>details</a></p>", "plain text"],
+    })
+    _reject_html(df)  # no raise
