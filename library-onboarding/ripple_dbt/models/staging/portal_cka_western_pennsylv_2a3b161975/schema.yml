@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_WESTERN_PENNSYLV_2A3B161975
+        description: >
+          Raw landing table for BikePGH's Pittsburgh Bike Map Geographic Data. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_western_pennsylv_2a3b161975__places
+    description: "GRAIN: one row per place (GEOM is unique). SPINE_ENTITY: place."
+    columns:
+      - name: dataspatial_wkb
+        data_tests:
+          - unique
+          - not_null

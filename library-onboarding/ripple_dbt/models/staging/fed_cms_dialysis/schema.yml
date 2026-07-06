@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CMS_DIALYSIS
+        description: >
+          Raw landing table for CMS Care Compare — Dialysis Facility Listing. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_fed_cms_dialysis__facilities
+    description: "GRAIN: one row per facility (CCN is unique). SPINE_ENTITY: facility."
+    columns:
+      - name: ccn
+        data_tests:
+          - unique
+          - not_null

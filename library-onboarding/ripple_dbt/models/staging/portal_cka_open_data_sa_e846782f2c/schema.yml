@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_OPEN_DATA_SA_E846782F2C
+        description: >
+          Raw landing table for Preliminary Plan Reviews. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_open_data_sa_e846782f2c__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (RECORD_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: record_id
+        data_tests:
+          - unique
+          - not_null

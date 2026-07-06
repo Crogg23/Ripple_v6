@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_SOC_TEXAS_OPEN_DATA_B4FDC1DC58
+        description: >
+          Raw landing table for Public Utility Commission of Texas - Water and Sewer Submetering or Allocation. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_soc_texas_open_data_b4fdc1dc58__facilities
+    description: "GRAIN: one row per facility (CCN is unique). SPINE_ENTITY: facility."
+    columns:
+      - name: ccn_no
+        data_tests:
+          - unique
+          - not_null

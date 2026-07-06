@@ -1,0 +1,27 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_ARC_TUCSON_OPEN_DATA_F919285F50
+        description: >
+          Raw landing table for Parcels outside the City - 100+ Acres. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_arc_tucson_open_data_f919285f50__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (DOCKET+LAST_EDITED_DATE unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: docket
+        data_tests:
+          - not_null
+      - name: last_edited_date
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - docket
+            - last_edited_date

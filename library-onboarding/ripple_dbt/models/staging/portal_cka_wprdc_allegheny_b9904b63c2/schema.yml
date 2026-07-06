@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_WPRDC_ALLEGHENY_B9904B63C2
+        description: >
+          Raw landing table for Allegheny County Assets. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_wprdc_allegheny_b9904b63c2__assets
+    description: "GRAIN: one row per asset (ASSET_ID unique). SPINE_ENTITY: asset."
+    columns:
+      - name: asset_id
+        data_tests:
+          - unique
+          - not_null

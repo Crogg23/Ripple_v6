@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_SOC_TEXAS_OPEN_DATA_24C81C0C8A
+        description: >
+          Raw landing table for Texas Commission on Environmental Quality - NOR Waste. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_soc_texas_open_data_24c81c0c8a__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (TWC_ID is unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: twc_id
+        data_tests:
+          - unique
+          - not_null

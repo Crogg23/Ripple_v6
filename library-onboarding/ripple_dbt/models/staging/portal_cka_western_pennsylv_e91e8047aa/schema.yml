@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_WESTERN_PENNSYLV_E91E8047AA
+        description: >
+          Raw landing table for Allegheny County Greenways (2008). All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_western_pennsylv_e91e8047aa__places
+    description: "GRAIN: one row per place (GEOM is unique). SPINE_ENTITY: place."
+    columns:
+      - name: dataspatial_wkb
+        data_tests:
+          - unique
+          - not_null

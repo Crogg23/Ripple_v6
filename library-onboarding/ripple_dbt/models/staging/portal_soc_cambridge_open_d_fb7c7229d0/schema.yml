@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_SOC_CAMBRIDGE_OPEN_D_FB7C7229D0
+        description: >
+          Raw landing table for Non-Profit Corporations. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_soc_cambridge_open_d_fb7c7229d0__organizations
+    description: "GRAIN: one row per organization (EIN is unique). SPINE_ENTITY: organization."
+    columns:
+      - name: ein
+        data_tests:
+          - unique
+          - not_null

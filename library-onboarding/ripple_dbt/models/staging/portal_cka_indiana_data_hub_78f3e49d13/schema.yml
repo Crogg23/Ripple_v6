@@ -1,0 +1,35 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_INDIANA_DATA_HUB_78F3E49D13
+        description: >
+          Raw landing table for COVID-19 Cases by School. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_indiana_data_hub_78f3e49d13__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (FIPS+SCHOOL_YEAR+SUBMISSION_STATUS+SCHOOL_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: county_fips
+        data_tests:
+          - not_null
+      - name: school_year
+        data_tests:
+          - not_null
+      - name: submission_status
+        data_tests:
+          - not_null
+      - name: school_id
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - county_fips
+            - school_year
+            - submission_status
+            - school_id

@@ -1,0 +1,27 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_VIRGINIA_OPEN_DA_3E67A117FB
+        description: >
+          Raw landing table for VDH-COVID-19-PublicUseDataset-Cases  -  RETIRED Dataset. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_virginia_open_da_3e67a117fb__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (FIPS+REPORT_DATE unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: fips
+        data_tests:
+          - not_null
+      - name: report_date
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - fips
+            - report_date

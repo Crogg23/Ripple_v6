@@ -1,0 +1,43 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_SOC_OPEN_DATA_BR_C110D5CF59
+        description: >
+          Raw landing table for ABC_License. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_soc_open_data_br_c110d5cf59__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+NAICS+RESOURCE_TYPE+SUB_RESOURCE_TYPE+BUSINESS_ID+METADATA_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: zip
+        data_tests:
+          - not_null
+      - name: business_naics_code
+        data_tests:
+          - not_null
+      - name: resource_type
+        data_tests:
+          - not_null
+      - name: sub_resource_type
+        data_tests:
+          - not_null
+      - name: business_id
+        data_tests:
+          - not_null
+      - name: metadata_id
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - zip
+            - business_naics_code
+            - resource_type
+            - sub_resource_type
+            - business_id
+            - metadata_id

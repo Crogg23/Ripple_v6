@@ -1,0 +1,39 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_ANALYZE_BOSTON_5288DB6955
+        description: >
+          Raw landing table for Boston Landmarks Commission (BLC) Landmarks. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_analyze_boston_5288db6955__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (GEOM+DATE_DESIGNATED_1+CREATED_DATE+LAST_EDITED_DATE+UNIQUE_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: shape_wkt
+        data_tests:
+          - not_null
+      - name: date_designated_1
+        data_tests:
+          - not_null
+      - name: created_date
+        data_tests:
+          - not_null
+      - name: last_edited_date
+        data_tests:
+          - not_null
+      - name: unique_id
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - shape_wkt
+            - date_designated_1
+            - created_date
+            - last_edited_date
+            - unique_id

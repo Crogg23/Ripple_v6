@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_WPRDC_ALLEGHENY_DA448E7083
+        description: >
+          Raw landing table for Allegheny County Public Swimming Pool, Hot Tub, and Spa Inspections. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_wprdc_allegheny_da448e7083__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (INSPECTION_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: inspection_id
+        data_tests:
+          - unique
+          - not_null

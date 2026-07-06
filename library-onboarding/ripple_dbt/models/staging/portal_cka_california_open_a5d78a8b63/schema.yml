@@ -1,0 +1,35 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_CALIFORNIA_OPEN_A5D78A8B63
+        description: >
+          Raw landing table for DWR Continuous Data Download Links. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_california_open_a5d78a8b63__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (LATLON+LAST_MODIFIED_DATE+DATE_DATA_REFERS_TO+DWR_GW_SITE_CODE unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: latitude
+        data_tests:
+          - not_null
+      - name: last_modified_date
+        data_tests:
+          - not_null
+      - name: date_data_refers_to
+        data_tests:
+          - not_null
+      - name: dwr_gw_site_code
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - latitude
+            - last_modified_date
+            - date_data_refers_to
+            - dwr_gw_site_code

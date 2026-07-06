@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_CALIFORNIA_OPEN_E2CDCDBC2C
+        description: >
+          Raw landing table for Public Piers and Jetties - R7 - CDFW [ds3090]. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_california_open_e2cdcdbc2c__places
+    description: "GRAIN: one row per place (LATLON is unique). SPINE_ENTITY: place."
+    columns:
+      - name: lat_ddm
+        data_tests:
+          - unique
+          - not_null

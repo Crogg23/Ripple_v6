@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_ISRAEL_NATIONAL_DA3CA6DB5D
+        description: >
+          Raw landing table for אתרי בנייה פעילים. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_israel_national_da3ca6db5d__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (WORK_ID is unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: work_id
+        data_tests:
+          - unique
+          - not_null

@@ -1,0 +1,31 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_SOC_UTAH_OPEN_DATA_P_6F5FCC229F
+        description: >
+          Raw landing table for 2015 Toxic Release Inventory Utah. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_soc_utah_open_data_p_6f5fcc229f__facilities
+    description: "GRAIN: one row per facility (TRI_FACILITY_ID+FRS_ID+CAS_COMPOUND_ID unique). SPINE_ENTITY: facility."
+    columns:
+      - name: tri_facility_id
+        data_tests:
+          - not_null
+      - name: frs_id
+        data_tests:
+          - not_null
+      - name: cas_compound_id
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - tri_facility_id
+            - frs_id
+            - cas_compound_id

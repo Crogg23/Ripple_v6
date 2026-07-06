@@ -1,0 +1,27 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_ARC_ATLANTA_DATAATLA_FD3576897B
+        description: >
+          Raw landing table for Fulton public health facilities. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_arc_atlanta_dataatla_fd3576897b__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+INDUSTRY_DESC unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: zip
+        data_tests:
+          - not_null
+      - name: industry_desc
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - zip
+            - industry_desc

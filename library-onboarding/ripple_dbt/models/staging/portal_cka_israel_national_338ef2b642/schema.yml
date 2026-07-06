@@ -1,0 +1,31 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_ISRAEL_NATIONAL_338EF2B642
+        description: >
+          Raw landing table for גמל-נט. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_israel_national_338ef2b642__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (FUND_ID+MANAGING_CORPORATION_LEGAL_ID+REPORT_PERIOD unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: fund_id
+        data_tests:
+          - not_null
+      - name: managing_corporation_legal_id
+        data_tests:
+          - not_null
+      - name: report_period
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - fund_id
+            - managing_corporation_legal_id
+            - report_period

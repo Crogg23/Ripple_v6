@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_WPRDC_ALLEGHENY_7103930983
+        description: >
+          Raw landing table for Ballfields PGH. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_wprdc_allegheny_7103930983__places
+    description: "GRAIN: one row per place (GEOM is unique). SPINE_ENTITY: place."
+    columns:
+      - name: geometry
+        data_tests:
+          - unique
+          - not_null

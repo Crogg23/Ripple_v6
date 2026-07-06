@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_ARC_ORANGE_COUNTY_OP_DD64A3F2B8
+        description: >
+          Raw landing table for SantaA FSE. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_arc_orange_county_op_dd64a3f2b8__facilities
+    description: "GRAIN: one row per facility (FACILITY_ID unique). SPINE_ENTITY: facility."
+    columns:
+      - name: facility_id
+        data_tests:
+          - unique
+          - not_null

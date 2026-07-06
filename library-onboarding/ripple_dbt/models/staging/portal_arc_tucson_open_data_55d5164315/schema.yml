@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_ARC_TUCSON_OPEN_DATA_55D5164315
+        description: >
+          Raw landing table for Schools Rated. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_arc_tucson_open_data_55d5164315__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (SCHOOLS_UNIVERSAL_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: schools_universal_id
+        data_tests:
+          - unique
+          - not_null

@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_ARC_OPEN_DATA_DC_F37F5DDC3D
+        description: >
+          Raw landing table for DC Footfall Business Data ANC. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_arc_open_data_dc_f37f5ddc3d__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ANC_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: anc_id
+        data_tests:
+          - unique
+          - not_null

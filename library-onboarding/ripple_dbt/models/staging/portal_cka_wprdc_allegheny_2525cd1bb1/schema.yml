@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_WPRDC_ALLEGHENY_2525CD1BB1
+        description: >
+          Raw landing table for Allegheny County-Owned Bridges Centerlines. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_wprdc_allegheny_2525cd1bb1__places
+    description: "GRAIN: one row per place (GEOM is unique). SPINE_ENTITY: place."
+    columns:
+      - name: shape_length
+        data_tests:
+          - unique
+          - not_null

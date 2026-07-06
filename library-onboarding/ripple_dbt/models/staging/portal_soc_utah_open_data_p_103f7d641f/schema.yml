@@ -1,0 +1,43 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_SOC_UTAH_OPEN_DATA_P_103F7D641F
+        description: >
+          Raw landing table for Federal Prime Grant Awards to Utah or other Utah entities 2008-2018. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_soc_utah_open_data_p_103f7d641f__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (DUNS+PERIOD_OF_PERFORMANCE_START+PERIOD_OF_PERFORMANCE_CURRENT+LAST_MODIFIED_DATE+AWARD_ID_FAIN+AWARD_ID_URI unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: recipient_duns
+        data_tests:
+          - not_null
+      - name: period_of_performance_start
+        data_tests:
+          - not_null
+      - name: period_of_performance_current
+        data_tests:
+          - not_null
+      - name: last_modified_date
+        data_tests:
+          - not_null
+      - name: award_id_fain
+        data_tests:
+          - not_null
+      - name: award_id_uri
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - recipient_duns
+            - period_of_performance_start
+            - period_of_performance_current
+            - last_modified_date
+            - award_id_fain
+            - award_id_uri

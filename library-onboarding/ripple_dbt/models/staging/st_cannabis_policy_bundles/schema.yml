@@ -1,0 +1,27 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: ST_CANNABIS_POLICY_BUNDLES
+        description: >
+          Raw landing table for US State Cannabis Policy Bundles Dataset. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_st_cannabis_policy_bundles__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (FIPS+YEAR unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: fips
+        data_tests:
+          - not_null
+      - name: year
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - fips
+            - year

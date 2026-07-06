@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_WESTERN_PENNSYLV_0AC79B8EBA
+        description: >
+          Raw landing table for Allegheny County Block Areas. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_western_pennsylv_0ac79b8eba__places
+    description: "GRAIN: one row per place (GEOM is unique). SPINE_ENTITY: place."
+    columns:
+      - name: shape_area
+        data_tests:
+          - unique
+          - not_null

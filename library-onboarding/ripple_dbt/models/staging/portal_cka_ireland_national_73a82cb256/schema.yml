@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_IRELAND_NATIONAL_73A82CB256
+        description: >
+          Raw landing table for Nature Reserves (CDP 2022 - 2028). All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_ireland_national_73a82cb256__places
+    description: "GRAIN: one row per place (GEOM is unique). SPINE_ENTITY: place."
+    columns:
+      - name: shape__length
+        data_tests:
+          - unique
+          - not_null

@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_WESTERN_PENNSYLV_B25E480DFC
+        description: >
+          Raw landing table for Allegheny County Assets. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_western_pennsylv_b25e480dfc__assets
+    description: "GRAIN: one row per asset (ASSET_ID unique). SPINE_ENTITY: asset."
+    columns:
+      - name: asset_id
+        data_tests:
+          - unique
+          - not_null

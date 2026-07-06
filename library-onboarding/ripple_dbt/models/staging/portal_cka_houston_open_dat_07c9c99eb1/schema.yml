@@ -1,0 +1,35 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_HOUSTON_OPEN_DAT_07C9C99EB1
+        description: >
+          Raw landing table for City of Houston Health and Human Services Department Temporary Event Inspections. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_houston_open_dat_07c9c99eb1__events
+    description: "GRAIN: one row per event (TEMP_EVENT_ID+INSPECTION_DATE+ACTIVITY_TYPE+STAFF_CODE unique). SPINE_ENTITY: event."
+    columns:
+      - name: temp_event_id
+        data_tests:
+          - not_null
+      - name: inspection_date
+        data_tests:
+          - not_null
+      - name: activity_type
+        data_tests:
+          - not_null
+      - name: staff_code
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - temp_event_id
+            - inspection_date
+            - activity_type
+            - staff_code

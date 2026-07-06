@@ -1,0 +1,27 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_DHS_YEARBOOK
+        description: >
+          Raw landing table for DHS Yearbook of Immigration Statistics. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_fed_dhs_yearbook__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (COUNTRY+FISCAL_YEAR unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: country_of_last_residence
+        data_tests:
+          - not_null
+      - name: fiscal_year
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - country_of_last_residence
+            - fiscal_year

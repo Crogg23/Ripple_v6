@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: INTL_GE_DATAGOV
+        description: >
+          Raw landing table for Georgia National Open Data Portal (data.gov.ge). All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_intl_ge_datagov__places
+    description: "GRAIN: one row per place (COUNTRY is unique). SPINE_ENTITY: place."
+    columns:
+      - name: country
+        data_tests:
+          - unique
+          - not_null

@@ -1,0 +1,27 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_SOC_TEXAS_OPEN_DATA_D83872D208
+        description: >
+          Raw landing table for Texas Commission on Environmental Quality - Civil Judgments Issued. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_soc_texas_open_data_d83872d208__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (DOCKET+ORDER_DATE unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: district_court_docket_no
+        data_tests:
+          - not_null
+      - name: order_date
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - district_court_docket_no
+            - order_date

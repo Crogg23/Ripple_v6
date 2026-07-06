@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_CALIFORNIA_OPEN_AC6C9E2B47
+        description: >
+          Raw landing table for Periodic Groundwater Level Measurements. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_california_open_ac6c9e2b47__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (STN_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: stn_id
+        data_tests:
+          - unique
+          - not_null

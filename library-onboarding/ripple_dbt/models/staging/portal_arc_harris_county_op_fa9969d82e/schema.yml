@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_ARC_HARRIS_COUNTY_OP_FA9969D82E
+        description: >
+          Raw landing table for Pharmacies. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_arc_harris_county_op_fa9969d82e__providers
+    description: "GRAIN: one row per provider (NPI is unique). SPINE_ENTITY: provider."
+    columns:
+      - name: npi
+        data_tests:
+          - unique
+          - not_null

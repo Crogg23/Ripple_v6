@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_SOC_COLORADO_INFORMA_4BAD70F01F
+        description: >
+          Raw landing table for Colorado Art, Culture and Humanities Non-Profits. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_soc_colorado_informa_4bad70f01f__organizations
+    description: "GRAIN: one row per organization (EIN is unique). SPINE_ENTITY: organization."
+    columns:
+      - name: ein
+        data_tests:
+          - unique
+          - not_null

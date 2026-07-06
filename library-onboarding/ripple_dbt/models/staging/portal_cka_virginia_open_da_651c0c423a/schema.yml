@@ -1,0 +1,39 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_VIRGINIA_OPEN_DA_651C0C423A
+        description: >
+          Raw landing table for Biosolids Site Address Info Table. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_virginia_open_da_651c0c423a__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+STARTING_DATE+EXPIRATION_DATE+INSERTED_DATE+BUFFER_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: zip_code
+        data_tests:
+          - not_null
+      - name: starting_date
+        data_tests:
+          - not_null
+      - name: expiration_date
+        data_tests:
+          - not_null
+      - name: inserted_date
+        data_tests:
+          - not_null
+      - name: buffer_id
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - zip_code
+            - starting_date
+            - expiration_date
+            - inserted_date
+            - buffer_id

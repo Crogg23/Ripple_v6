@@ -1,0 +1,31 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_SOC_CONNECTICUT_OPEN_FF2B86A533
+        description: >
+          Raw landing table for Department of Economic and Community Development (DECD) – Business Assistance Portfolio. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_soc_connecticut_open_ff2b86a533__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+FISCAL_YEAR+CONTRACT_EXECUTION_DATE unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: zip_code
+        data_tests:
+          - not_null
+      - name: fiscal_year
+        data_tests:
+          - not_null
+      - name: contract_execution_date
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - zip_code
+            - fiscal_year
+            - contract_execution_date

@@ -1,0 +1,27 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CONGRESS_COMMITTEE_MEMBERSHIP
+        description: >
+          Raw landing table for Congress -- Committee Membership (who chairs/sits on what). All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_fed_congress_committee_membership__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (BIOGUIDE+COMMITTEE_CODE unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: bioguide
+        data_tests:
+          - not_null
+      - name: committee_code
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - bioguide
+            - committee_code

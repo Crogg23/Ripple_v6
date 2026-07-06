@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_HOUSTON_OPEN_DAT_48B03033D3
+        description: >
+          Raw landing table for City of Houston Business Areas. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_houston_open_dat_48b03033d3__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (BUSINESS_AREA_ID is unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: business_area_id
+        data_tests:
+          - unique
+          - not_null

@@ -1,0 +1,35 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_ARC_ORANGE_COUNTY_OP_644FB9535B
+        description: >
+          Raw landing table for SDR IND.csv. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_arc_orange_county_op_644fb9535b__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+INSPECTION_DATE+OPERATIONAL_STATUS+PROGRAM_ELEMENT unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: zip
+        data_tests:
+          - not_null
+      - name: inspection_date
+        data_tests:
+          - not_null
+      - name: operational_status
+        data_tests:
+          - not_null
+      - name: program_element
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - zip
+            - inspection_date
+            - operational_status
+            - program_element

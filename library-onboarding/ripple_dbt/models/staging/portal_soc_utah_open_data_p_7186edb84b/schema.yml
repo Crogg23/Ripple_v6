@@ -1,0 +1,31 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_SOC_UTAH_OPEN_DATA_P_7186EDB84B
+        description: >
+          Raw landing table for Skilled Nursing Center Costs Utah County 2016_2019. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_soc_utah_open_data_p_7186edb84b__providers
+    description: "GRAIN: one row per provider (CCN+YEAR+FISCAL_YEAR_BEGIN_DATE unique). SPINE_ENTITY: provider."
+    columns:
+      - name: provider_ccn
+        data_tests:
+          - not_null
+      - name: year
+        data_tests:
+          - not_null
+      - name: fiscal_year_begin_date
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - provider_ccn
+            - year
+            - fiscal_year_begin_date

@@ -1,0 +1,35 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_ARC_ATLANTA_DATAATLA_EAD25CBDC7
+        description: >
+          Raw landing table for BusinessLicenses 2024 Revenue. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_arc_atlanta_dataatla_ead25cbdc7__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (LATLON+BUSINESS_LICENSE_YEAR+DATE_OF_OPENING_IN_ATLANTA+PREVIOUS_YEAR_REPORTED_REVENUE unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: longitude
+        data_tests:
+          - not_null
+      - name: business_license_year
+        data_tests:
+          - not_null
+      - name: date_of_opening_in_atlanta
+        data_tests:
+          - not_null
+      - name: previous_year_reported_revenue
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - longitude
+            - business_license_year
+            - date_of_opening_in_atlanta
+            - previous_year_reported_revenue

@@ -1,0 +1,27 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_HOUSTON_OPEN_DAT_19CBD263CC
+        description: >
+          Raw landing table for City of Houston Average Household Size by Tenure. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_houston_open_dat_19cbd263cc__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (GEO_ID+YEAR unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: geo_id
+        data_tests:
+          - not_null
+      - name: year
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - geo_id
+            - year

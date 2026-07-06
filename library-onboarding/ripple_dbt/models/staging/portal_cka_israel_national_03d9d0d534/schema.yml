@@ -1,0 +1,39 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_ISRAEL_NATIONAL_03D9D0D534
+        description: >
+          Raw landing table for סניפים לסליקה. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_israel_national_03d9d0d534__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+OPEN_DATE+CLOSE_DATE+BRANCH_CODE+ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: zipcode
+        data_tests:
+          - not_null
+      - name: open_date
+        data_tests:
+          - not_null
+      - name: close_date
+        data_tests:
+          - not_null
+      - name: branch_code
+        data_tests:
+          - not_null
+      - name: id
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - zipcode
+            - open_date
+            - close_date
+            - branch_code
+            - id

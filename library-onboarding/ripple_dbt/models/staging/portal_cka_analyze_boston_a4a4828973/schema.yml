@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_ANALYZE_BOSTON_A4A4828973
+        description: >
+          Raw landing table for Pedestrian Ramp Inventory. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_analyze_boston_a4a4828973__places
+    description: "GRAIN: one row per place (GEOM is unique). SPINE_ENTITY: place."
+    columns:
+      - name: shape_wkt
+        data_tests:
+          - unique
+          - not_null

@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_WPRDC_ALLEGHENY_B78655DE4F
+        description: >
+          Raw landing table for Allegheny County Farmers Market Nutrition Program. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_wprdc_allegheny_b78655de4f__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (MARKET_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: market_id
+        data_tests:
+          - unique
+          - not_null

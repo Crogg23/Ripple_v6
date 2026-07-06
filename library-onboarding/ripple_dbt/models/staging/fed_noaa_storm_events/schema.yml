@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_NOAA_STORM_EVENTS
+        description: >
+          Raw landing table for NOAA NCEI Storm Events Database (bulk CSV). All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_fed_noaa_storm_events__events
+    description: "GRAIN: one row per event (EVENT_ID unique). SPINE_ENTITY: event."
+    columns:
+      - name: event_id
+        data_tests:
+          - unique
+          - not_null

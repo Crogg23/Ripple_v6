@@ -1,0 +1,35 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_ANALYZE_BOSTON_9FE0838E9F
+        description: >
+          Raw landing table for Certified Business Directory. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_analyze_boston_9fe0838e9f__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+DATE_BUSINESS_ESTABLISHED+BUSINESS_TYPE+COB_CATEGORY_CODES1 unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: zipcode
+        data_tests:
+          - not_null
+      - name: date_business_established
+        data_tests:
+          - not_null
+      - name: business_type
+        data_tests:
+          - not_null
+      - name: cob_category_codes1
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - zipcode
+            - date_business_established
+            - business_type
+            - cob_category_codes1

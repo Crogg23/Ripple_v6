@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_ARC_HARRIS_COUNTY_OP_2D6F9D0DA7
+        description: >
+          Raw landing table for Businesses layers. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_arc_harris_county_op_2d6f9d0da7__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (OBJECT_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: object_id
+        data_tests:
+          - unique
+          - not_null

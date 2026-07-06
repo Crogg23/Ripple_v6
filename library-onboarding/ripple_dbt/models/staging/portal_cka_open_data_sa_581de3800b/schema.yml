@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_OPEN_DATA_SA_581DE3800B
+        description: >
+          Raw landing table for SAPD Bike Patrol Districts. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_open_data_sa_581de3800b__places
+    description: "GRAIN: one row per place (GEOM is unique). SPINE_ENTITY: place."
+    columns:
+      - name: shape__length
+        data_tests:
+          - unique
+          - not_null

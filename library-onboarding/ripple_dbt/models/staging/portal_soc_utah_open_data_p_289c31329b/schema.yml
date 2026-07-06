@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_SOC_UTAH_OPEN_DATA_P_289C31329B
+        description: >
+          Raw landing table for US Dept of Labor, Wage and Hour Violations Company List Utah 1998-2013. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_soc_utah_open_data_p_289c31329b__cases
+    description: "GRAIN: one row per case (CASE_ID unique). SPINE_ENTITY: case."
+    columns:
+      - name: case_id
+        data_tests:
+          - unique
+          - not_null

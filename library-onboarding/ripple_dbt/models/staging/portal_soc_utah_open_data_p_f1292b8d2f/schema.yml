@@ -1,0 +1,31 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_SOC_UTAH_OPEN_DATA_P_F1292B8D2F
+        description: >
+          Raw landing table for Office Of Federal Contract Community Investigations Utah 2004-2013. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_soc_utah_open_data_p_f1292b8d2f__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (DUNS+FISCAL_YEAR+EVALUATION_CLOSED_DATE unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: duns_no
+        data_tests:
+          - not_null
+      - name: fiscal_year
+        data_tests:
+          - not_null
+      - name: evaluation_closed_date
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - duns_no
+            - fiscal_year
+            - evaluation_closed_date

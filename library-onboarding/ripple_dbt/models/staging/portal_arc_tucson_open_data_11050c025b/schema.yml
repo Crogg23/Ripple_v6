@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_ARC_TUCSON_OPEN_DATA_11050C025B
+        description: >
+          Raw landing table for Potentially Ineligible Properties with MSR Removals. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_arc_tucson_open_data_11050c025b__cases
+    description: "GRAIN: one row per case (DOCKET is unique). SPINE_ENTITY: case."
+    columns:
+      - name: docket
+        data_tests:
+          - unique
+          - not_null

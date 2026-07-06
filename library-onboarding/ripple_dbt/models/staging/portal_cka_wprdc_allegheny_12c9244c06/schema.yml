@@ -1,0 +1,27 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_WPRDC_ALLEGHENY_12C9244C06
+        description: >
+          Raw landing table for Allegheny County Schools (Public, Private, Charter, and Career and Technical Centers). All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_wprdc_allegheny_12c9244c06__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+LAST_EDIT_DATE unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: zipcode
+        data_tests:
+          - not_null
+      - name: last_edit_date
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - zipcode
+            - last_edit_date

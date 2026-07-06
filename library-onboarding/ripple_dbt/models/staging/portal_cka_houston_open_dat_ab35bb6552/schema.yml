@@ -1,0 +1,39 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_HOUSTON_OPEN_DAT_AB35BB6552
+        description: >
+          Raw landing table for BARC Dog Intakes for Calendar Years 2011 and 2012. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_houston_open_dat_ab35bb6552__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+IN_DATE+DUE_DATE+OUT_DATE+ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: zip
+        data_tests:
+          - not_null
+      - name: in_date
+        data_tests:
+          - not_null
+      - name: due_date
+        data_tests:
+          - not_null
+      - name: out_date
+        data_tests:
+          - not_null
+      - name: id
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - zip
+            - in_date
+            - due_date
+            - out_date
+            - id

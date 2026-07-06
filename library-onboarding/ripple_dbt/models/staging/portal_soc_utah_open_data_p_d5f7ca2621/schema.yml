@@ -1,0 +1,47 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_SOC_UTAH_OPEN_DATA_P_D5F7CA2621
+        description: >
+          Raw landing table for Utah Toxic Release Spills Inventory 2015-2018 EPA. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_soc_utah_open_data_p_d5f7ca2621__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+C_1_YEAR+C_18_INDUSTRY_SECTOR_CODE+C_19_INDUSTRY_SECTOR+C_35_CAS_COMPOUND_ID+C_36_SRS_ID+C_3_FRS_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: c_9_zip
+        data_tests:
+          - not_null
+      - name: c_1_year
+        data_tests:
+          - not_null
+      - name: c_18_industry_sector_code
+        data_tests:
+          - not_null
+      - name: c_19_industry_sector
+        data_tests:
+          - not_null
+      - name: c_35_cas_compound_id
+        data_tests:
+          - not_null
+      - name: c_36_srs_id
+        data_tests:
+          - not_null
+      - name: c_3_frs_id
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - c_9_zip
+            - c_1_year
+            - c_18_industry_sector_code
+            - c_19_industry_sector
+            - c_35_cas_compound_id
+            - c_36_srs_id
+            - c_3_frs_id

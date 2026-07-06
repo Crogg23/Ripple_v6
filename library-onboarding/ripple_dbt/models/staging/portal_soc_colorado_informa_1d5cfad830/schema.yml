@@ -1,0 +1,51 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_SOC_COLORADO_INFORMA_1D5CFAD830
+        description: >
+          Raw landing table for CDLE - apprenticeship.gov - Apprentices by Program Location. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_soc_colorado_informa_1d5cfad830__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (FIPS+FISCAL_YEAR+START_DATE+EXIT_DATE+STATE_ID+STATE_ID_COPY+APPRENTICE_ID+PROGRAM_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: county_fips
+        data_tests:
+          - not_null
+      - name: fiscal_year
+        data_tests:
+          - not_null
+      - name: start_date
+        data_tests:
+          - not_null
+      - name: exit_date
+        data_tests:
+          - not_null
+      - name: state_id
+        data_tests:
+          - not_null
+      - name: state_id_copy
+        data_tests:
+          - not_null
+      - name: apprentice_id
+        data_tests:
+          - not_null
+      - name: program_id
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - county_fips
+            - fiscal_year
+            - start_date
+            - exit_date
+            - state_id
+            - state_id_copy
+            - apprentice_id
+            - program_id

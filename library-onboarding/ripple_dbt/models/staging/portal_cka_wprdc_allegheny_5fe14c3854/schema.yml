@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_WPRDC_ALLEGHENY_5FE14C3854
+        description: >
+          Raw landing table for Healthy Ride Stations (archived). All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_wprdc_allegheny_5fe14c3854__places
+    description: "GRAIN: one row per place (LATLON is unique). SPINE_ENTITY: place."
+    columns:
+      - name: longitude
+        data_tests:
+          - unique
+          - not_null

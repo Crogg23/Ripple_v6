@@ -1,0 +1,27 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_ANALYZE_BOSTON_0012B002BE
+        description: >
+          Raw landing table for Vision Zero Safety Concerns- CURRENT. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_analyze_boston_0012b002be__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (GEOM+DATE_AND_TIME unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: shape_wkt
+        data_tests:
+          - not_null
+      - name: date_and_time
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - shape_wkt
+            - date_and_time

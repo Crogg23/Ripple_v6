@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_SOC_COLORADO_INFORMA_46101BE391
+        description: >
+          Raw landing table for IRS Filing Information for Charities Operating in Colorado. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_soc_colorado_informa_46101be391__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: id
+        data_tests:
+          - unique
+          - not_null

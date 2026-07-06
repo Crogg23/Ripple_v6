@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_ARC_LA_COUNTY_OPEN_D_2E79EB67C8
+        description: >
+          Raw landing table for Retail Businesses SD2. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_arc_la_county_open_d_2e79eb67c8__places
+    description: "GRAIN: one row per place (SAFEGRAPH_PLACE_ID unique). SPINE_ENTITY: place."
+    columns:
+      - name: safegraph_place_id
+        data_tests:
+          - unique
+          - not_null

@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_ARC_LA_COUNTY_OPEN_D_464355F6D4
+        description: >
+          Raw landing table for CaseStudy TMobile. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_arc_la_county_open_d_464355f6d4__places
+    description: "GRAIN: one row per place (ZIP is unique). SPINE_ENTITY: place."
+    columns:
+      - name: zip
+        data_tests:
+          - unique
+          - not_null

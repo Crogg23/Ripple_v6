@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_WESTERN_PENNSYLV_4C0F4E6C6C
+        description: >
+          Raw landing table for Allegheny County Voting District Boundaries Ward District Labels (archive). All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_western_pennsylv_4c0f4e6c6c__places
+    description: "GRAIN: one row per place (GEOM is unique). SPINE_ENTITY: place."
+    columns:
+      - name: shape_length
+        data_tests:
+          - unique
+          - not_null

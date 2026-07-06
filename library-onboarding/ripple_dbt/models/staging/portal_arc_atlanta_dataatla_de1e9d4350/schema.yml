@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_ARC_ATLANTA_DATAATLA_DE1E9D4350
+        description: >
+          Raw landing table for Revenue BizLicenses 2025. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_arc_atlanta_dataatla_de1e9d4350__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (USER_FORMATTED_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: user_formatted_id
+        data_tests:
+          - unique
+          - not_null

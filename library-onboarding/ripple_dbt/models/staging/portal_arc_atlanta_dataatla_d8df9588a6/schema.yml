@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_ARC_ATLANTA_DATAATLA_D8DF9588A6
+        description: >
+          Raw landing table for BlandtownRezoningCases. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_arc_atlanta_dataatla_d8df9588a6__cases
+    description: "GRAIN: one row per case (DOCKET is unique). SPINE_ENTITY: case."
+    columns:
+      - name: docket_no
+        data_tests:
+          - unique
+          - not_null

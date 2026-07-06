@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_SAN_JOSE_OPEN_DA_2789EF054E
+        description: >
+          Raw landing table for Private Street. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_san_jose_open_da_2789ef054e__places
+    description: "GRAIN: one row per place (GEOM is unique). SPINE_ENTITY: place."
+    columns:
+      - name: shape_length
+        data_tests:
+          - unique
+          - not_null

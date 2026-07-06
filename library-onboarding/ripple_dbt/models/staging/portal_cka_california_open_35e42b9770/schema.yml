@@ -1,0 +1,31 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_CALIFORNIA_OPEN_35E42B9770
+        description: >
+          Raw landing table for Urban Retail Water Supplier - Water Conservation, Supply, and Demand (June 2014 onwards). All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_california_open_35e42b9770__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ORG_ID+WATER_SYSTEM_ID+REPORT_PERIOD_START_DATE unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: org_id
+        data_tests:
+          - not_null
+      - name: water_system_id
+        data_tests:
+          - not_null
+      - name: report_period_start_date
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - org_id
+            - water_system_id
+            - report_period_start_date

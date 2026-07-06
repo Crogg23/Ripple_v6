@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_IRS_BMF
+        description: >
+          Raw landing table for IRS Exempt Organizations Business Master File (EO BMF). All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_fed_irs_bmf__organizations
+    description: "GRAIN: one row per organization (EIN is unique). SPINE_ENTITY: organization."
+    columns:
+      - name: ein
+        data_tests:
+          - unique
+          - not_null

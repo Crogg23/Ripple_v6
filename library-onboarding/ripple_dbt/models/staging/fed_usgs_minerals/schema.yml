@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_USGS_MINERALS
+        description: >
+          Raw landing table for USGS Mineral Resources Data. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_fed_usgs_minerals__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (DEP_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: dep_id
+        data_tests:
+          - unique
+          - not_null

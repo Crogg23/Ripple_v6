@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_INDIANA_DATA_HUB_BD531B17F6
+        description: >
+          Raw landing table for COVID-19 County Categorization Scores. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_indiana_data_hub_bd531b17f6__places
+    description: "GRAIN: one row per place (FIPS is unique). SPINE_ENTITY: place."
+    columns:
+      - name: fips
+        data_tests:
+          - unique
+          - not_null

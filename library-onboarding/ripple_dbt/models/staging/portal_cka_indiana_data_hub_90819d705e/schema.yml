@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_INDIANA_DATA_HUB_90819D705E
+        description: >
+          Raw landing table for COVID-19 Cases By Zip. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_indiana_data_hub_90819d705e__places
+    description: "GRAIN: one row per place (ZIP is unique). SPINE_ENTITY: place."
+    columns:
+      - name: zip_cd
+        data_tests:
+          - unique
+          - not_null

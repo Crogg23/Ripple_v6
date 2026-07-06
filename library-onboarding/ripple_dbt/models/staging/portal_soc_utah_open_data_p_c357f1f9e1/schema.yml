@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_SOC_UTAH_OPEN_DATA_P_C357F1F9E1
+        description: >
+          Raw landing table for Utah Employee Benefits (EBSA) Enforcement Data 2000-2012. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_soc_utah_open_data_p_c357f1f9e1__organizations
+    description: "GRAIN: one row per organization (EIN is unique). SPINE_ENTITY: organization."
+    columns:
+      - name: plan_ein
+        data_tests:
+          - unique
+          - not_null

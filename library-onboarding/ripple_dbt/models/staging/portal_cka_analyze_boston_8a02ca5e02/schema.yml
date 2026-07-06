@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_ANALYZE_BOSTON_8A02CA5E02
+        description: >
+          Raw landing table for Wireless Antenna Installation Requests Approved. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_analyze_boston_8a02ca5e02__places
+    description: "GRAIN: one row per place (LATLON is unique). SPINE_ENTITY: place."
+    columns:
+      - name: lat
+        data_tests:
+          - unique
+          - not_null

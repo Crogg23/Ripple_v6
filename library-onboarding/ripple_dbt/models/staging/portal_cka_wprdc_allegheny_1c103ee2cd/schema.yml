@@ -1,0 +1,39 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_WPRDC_ALLEGHENY_1C103EE2CD
+        description: >
+          Raw landing table for Condemned and Dead-End Properties. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_wprdc_allegheny_1c103ee2cd__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+CREATE_DATE+PROPERTY_TYPE+INSPECTION_STATUS+PARCEL_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: zip_code
+        data_tests:
+          - not_null
+      - name: create_date
+        data_tests:
+          - not_null
+      - name: property_type
+        data_tests:
+          - not_null
+      - name: inspection_status
+        data_tests:
+          - not_null
+      - name: parcel_id
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - zip_code
+            - create_date
+            - property_type
+            - inspection_status
+            - parcel_id

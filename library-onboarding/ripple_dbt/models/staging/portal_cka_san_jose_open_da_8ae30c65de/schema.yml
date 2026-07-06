@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_SAN_JOSE_OPEN_DA_8AE30C65DE
+        description: >
+          Raw landing table for Condo Parcel. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_san_jose_open_da_8ae30c65de__places
+    description: "GRAIN: one row per place (GEOM is unique). SPINE_ENTITY: place."
+    columns:
+      - name: shape_area
+        data_tests:
+          - unique
+          - not_null

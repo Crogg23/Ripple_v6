@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_EPA_ECHO
+        description: >
+          Raw landing table for EPA ECHO Exporter (Facility-level Enforcement & Compliance). All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_fed_epa_echo__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (FRS_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: frs_id
+        data_tests:
+          - unique
+          - not_null

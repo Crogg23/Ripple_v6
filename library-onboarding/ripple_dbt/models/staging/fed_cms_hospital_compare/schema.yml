@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CMS_HOSPITAL_COMPARE
+        description: >
+          Raw landing table for Hospital Compare / Provider Data Catalog. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_fed_cms_hospital_compare__facilities
+    description: "GRAIN: one row per facility (FACILITY_ID unique). SPINE_ENTITY: facility."
+    columns:
+      - name: facility_id
+        data_tests:
+          - unique
+          - not_null

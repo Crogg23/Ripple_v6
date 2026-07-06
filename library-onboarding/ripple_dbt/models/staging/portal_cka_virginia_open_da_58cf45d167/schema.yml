@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_VIRGINIA_OPEN_DA_58CF45D167
+        description: >
+          Raw landing table for VDH PUD HAI Acute Map of Acute Care Hospitals in Virginia. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_virginia_open_da_58cf45d167__places
+    description: "GRAIN: one row per place (LATLON is unique). SPINE_ENTITY: place."
+    columns:
+      - name: longitude
+        data_tests:
+          - unique
+          - not_null

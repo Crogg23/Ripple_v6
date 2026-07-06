@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_SAN_JOSE_OPEN_DA_9EB7D97238
+        description: >
+          Raw landing table for Community Center. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_san_jose_open_da_9eb7d97238__places
+    description: "GRAIN: one row per place (LATLON is unique). SPINE_ENTITY: place."
+    columns:
+      - name: lat
+        data_tests:
+          - unique
+          - not_null

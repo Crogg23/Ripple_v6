@@ -1,0 +1,27 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_ARC_LA_COUNTY_OPEN_D_E034245E05
+        description: >
+          Raw landing table for Review. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_arc_la_county_open_d_e034245e05__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (NPI+SCC_TYPE unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: npi
+        data_tests:
+          - not_null
+      - name: scc_type
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - npi
+            - scc_type

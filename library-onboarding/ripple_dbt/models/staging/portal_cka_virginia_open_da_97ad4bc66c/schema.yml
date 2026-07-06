@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_VIRGINIA_OPEN_DA_97AD4BC66C
+        description: >
+          Raw landing table for Statewide Paving Status Map (Public View) 2026. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_virginia_open_da_97ad4bc66c__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (CORE_PARENT_SYS_ID is unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: core_parent_sys_id
+        data_tests:
+          - unique
+          - not_null

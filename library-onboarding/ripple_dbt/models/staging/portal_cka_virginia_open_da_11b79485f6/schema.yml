@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_VIRGINIA_OPEN_DA_11B79485F6
+        description: >
+          Raw landing table for VWP SSWD. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_virginia_open_da_11b79485f6__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (SSWD_NP_ID is unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: sswd_np_id
+        data_tests:
+          - unique
+          - not_null

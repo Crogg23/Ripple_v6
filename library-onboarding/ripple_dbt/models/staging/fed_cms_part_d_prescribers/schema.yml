@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CMS_PART_D_PRESCRIBERS
+        description: >
+          Raw landing table for Medicare Part D Prescribers - by Provider. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_fed_cms_part_d_prescribers__providers
+    description: "GRAIN: one row per provider (NPI is unique). SPINE_ENTITY: provider."
+    columns:
+      - name: npi
+        data_tests:
+          - unique
+          - not_null

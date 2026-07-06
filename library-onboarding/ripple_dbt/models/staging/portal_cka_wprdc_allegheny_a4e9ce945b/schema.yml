@@ -1,0 +1,27 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_WPRDC_ALLEGHENY_A4E9CE945B
+        description: >
+          Raw landing table for Allegheny County Fatal Accidental Overdoses. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_wprdc_allegheny_a4e9ce945b__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+DEATH_DATE_AND_TIME unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: decedent_zip
+        data_tests:
+          - not_null
+      - name: death_date_and_time
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - decedent_zip
+            - death_date_and_time

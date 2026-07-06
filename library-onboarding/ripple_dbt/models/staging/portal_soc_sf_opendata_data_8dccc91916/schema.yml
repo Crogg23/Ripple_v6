@@ -1,0 +1,31 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_SOC_SF_OPENDATA_DATA_8DCCC91916
+        description: >
+          Raw landing table for Mental Health (MH) and Substance Use Disorder (SUD) Provider Directory - Provider List. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_soc_sf_opendata_data_8dccc91916__providers
+    description: "GRAIN: one row per provider (NPI+PROVIDER_TYPE+SITE_ID unique). SPINE_ENTITY: provider."
+    columns:
+      - name: npi
+        data_tests:
+          - not_null
+      - name: provider_type
+        data_tests:
+          - not_null
+      - name: site_id
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - npi
+            - provider_type
+            - site_id

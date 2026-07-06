@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_INDIANA_DATA_HUB_90C2A3CA78
+        description: >
+          Raw landing table for Opioid Treatment Program Drive Time. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_indiana_data_hub_90c2a3ca78__places
+    description: "GRAIN: one row per place (ZIP is unique). SPINE_ENTITY: place."
+    columns:
+      - name: zcta
+        data_tests:
+          - unique
+          - not_null

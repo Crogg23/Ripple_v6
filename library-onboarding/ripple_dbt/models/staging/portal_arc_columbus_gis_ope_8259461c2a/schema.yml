@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_ARC_COLUMBUS_GIS_OPE_8259461C2A
+        description: >
+          Raw landing table for Charitable Trusts and Organizations. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_arc_columbus_gis_ope_8259461c2a__organizations
+    description: "GRAIN: one row per organization (EIN is unique). SPINE_ENTITY: organization."
+    columns:
+      - name: ein
+        data_tests:
+          - unique
+          - not_null

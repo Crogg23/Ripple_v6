@@ -1,0 +1,31 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_ISRAEL_NATIONAL_E3D369B05F
+        description: >
+          Raw landing table for ארכיון נתונים מטאורולוגיים. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_israel_national_e3d369b05f__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (LATLON+DATE_OPEN+DATE_CLOSE unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: stn_lat
+        data_tests:
+          - not_null
+      - name: date_open
+        data_tests:
+          - not_null
+      - name: date_close
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - stn_lat
+            - date_open
+            - date_close

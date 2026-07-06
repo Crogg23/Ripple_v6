@@ -1,0 +1,31 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: XC_OWID_REFUGEES
+        description: >
+          Raw landing table for OWID — Refugee population by country of origin. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_xc_owid_refugees__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (COUNTRY+YEAR+CODE unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: refugees_by_country_of_origin
+        data_tests:
+          - not_null
+      - name: year
+        data_tests:
+          - not_null
+      - name: code
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - refugees_by_country_of_origin
+            - year
+            - code

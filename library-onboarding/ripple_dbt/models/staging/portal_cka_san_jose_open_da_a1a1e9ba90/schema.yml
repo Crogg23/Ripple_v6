@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_SAN_JOSE_OPEN_DA_A1A1E9BA90
+        description: >
+          Raw landing table for Flood Letter of Map Revision (LOMR). All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_san_jose_open_da_a1a1e9ba90__places
+    description: "GRAIN: one row per place (GEOM is unique). SPINE_ENTITY: place."
+    columns:
+      - name: shape_area
+        data_tests:
+          - unique
+          - not_null

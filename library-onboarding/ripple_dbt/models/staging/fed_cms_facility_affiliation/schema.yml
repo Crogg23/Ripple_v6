@@ -1,0 +1,27 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CMS_FACILITY_AFFILIATION
+        description: >
+          Raw landing table for CMS Doctors & Clinicians — Facility Affiliation (NPI↔CCN crosswalk). All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_fed_cms_facility_affiliation__providers
+    description: "GRAIN: one row per facility-provider relationship (CCN+NPI is unique). SPINE_ENTITY: provider."
+    columns:
+      - name: ccn
+        data_tests:
+          - not_null
+      - name: npi
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - ccn
+            - npi

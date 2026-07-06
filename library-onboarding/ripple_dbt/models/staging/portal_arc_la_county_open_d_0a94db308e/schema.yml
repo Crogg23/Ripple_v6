@@ -1,0 +1,39 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_ARC_LA_COUNTY_OPEN_D_0A94DB308E
+        description: >
+          Raw landing table for Hospitals. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_arc_la_county_open_d_0a94db308e__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (CCN+NPI+PARTICIPATION_DATE+APPROVAL_DATE+START_DATE unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: ccn
+        data_tests:
+          - not_null
+      - name: npi
+        data_tests:
+          - not_null
+      - name: participation_date
+        data_tests:
+          - not_null
+      - name: approval_date
+        data_tests:
+          - not_null
+      - name: start_date
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - ccn
+            - npi
+            - participation_date
+            - approval_date
+            - start_date

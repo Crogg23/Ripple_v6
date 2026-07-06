@@ -1,0 +1,27 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_CALIFORNIA_OPEN_C19A7C8625
+        description: >
+          Raw landing table for CA Urban Retail Water System Water Loss Annual Loss Audit Data. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_california_open_c19a7c8625__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (COUNTRY+SUBMITTED_DATE unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: country
+        data_tests:
+          - not_null
+      - name: submitted_date
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - country
+            - submitted_date

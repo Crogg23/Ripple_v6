@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_SOC_CONNECTICUT_OPEN_DEA6C4224A
+        description: >
+          Raw landing table for Social Equity Council Cannabusiness Revolving Loan Program Fiscal Year 2024-2025. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_soc_connecticut_open_dea6c4224a__places
+    description: "GRAIN: one row per place (ZIP is unique). SPINE_ENTITY: place."
+    columns:
+      - name: zip_code
+        data_tests:
+          - unique
+          - not_null

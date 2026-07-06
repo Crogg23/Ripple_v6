@@ -1,0 +1,39 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_WPRDC_ALLEGHENY_BB0184F847
+        description: >
+          Raw landing table for Allegheny County Asbestos Permits. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_wprdc_allegheny_bb0184f847__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+PERMIT_ISSUE_DATE+PERMIT_EXPIRE_DATE+PROJECT_TYPE+PARCEL_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: zip_code
+        data_tests:
+          - not_null
+      - name: permit_issue_date
+        data_tests:
+          - not_null
+      - name: permit_expire_date
+        data_tests:
+          - not_null
+      - name: project_type
+        data_tests:
+          - not_null
+      - name: parcel_id
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - zip_code
+            - permit_issue_date
+            - permit_expire_date
+            - project_type
+            - parcel_id

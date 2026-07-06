@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_USGS_3DEP
+        description: >
+          Raw landing table for USGS 3DEP - 3D Elevation Program. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_fed_usgs_3dep__places
+    description: "GRAIN: one row per place (GEOM is unique). SPINE_ENTITY: place."
+    columns:
+      - name: shape
+        data_tests:
+          - unique
+          - not_null

@@ -1,0 +1,31 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_SOC_UTAH_OPEN_DATA_P_7A3C73B2FD
+        description: >
+          Raw landing table for Salt Lake County Toxic Release Inventory 1999-2013. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_soc_utah_open_data_p_7a3c73b2fd__facilities
+    description: "GRAIN: one row per facility (TRI_FACILITY_ID+CAS_COMPOUND_ID+YEAR unique). SPINE_ENTITY: facility."
+    columns:
+      - name: tri_facility_id
+        data_tests:
+          - not_null
+      - name: cas_compound_id
+        data_tests:
+          - not_null
+      - name: year
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - tri_facility_id
+            - cas_compound_id
+            - year

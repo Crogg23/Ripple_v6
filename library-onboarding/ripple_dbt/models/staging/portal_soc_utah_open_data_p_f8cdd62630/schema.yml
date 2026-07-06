@@ -1,0 +1,35 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_SOC_UTAH_OPEN_DATA_P_F8CDD62630
+        description: >
+          Raw landing table for 2024 Utah Clinic Quality Comparisons. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_soc_utah_open_data_p_f8cdd62630__providers
+    description: "GRAIN: one row per provider (NPI+REPORTING_PERIOD+ZIP+MEASURE_ID unique). SPINE_ENTITY: provider."
+    columns:
+      - name: provider_npi
+        data_tests:
+          - not_null
+      - name: reporting_period
+        data_tests:
+          - not_null
+      - name: provider_postal_code
+        data_tests:
+          - not_null
+      - name: measure_id
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - provider_npi
+            - reporting_period
+            - provider_postal_code
+            - measure_id

@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_ARC_ATLANTA_DATAATLA_A59DB2E766
+        description: >
+          Raw landing table for ChildCare In ServiceAreas. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_arc_atlanta_dataatla_a59db2e766__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: id
+        data_tests:
+          - unique
+          - not_null

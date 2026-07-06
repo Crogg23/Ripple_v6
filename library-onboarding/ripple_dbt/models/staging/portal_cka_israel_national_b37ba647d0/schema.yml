@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_ISRAEL_NATIONAL_B37BA647D0
+        description: >
+          Raw landing table for מסגרות הרווחה שבפיקוח משרד הרווחה והביטחון החברתי. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_israel_national_b37ba647d0__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (MISGERET_ID is unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: misgeret_id
+        data_tests:
+          - unique
+          - not_null

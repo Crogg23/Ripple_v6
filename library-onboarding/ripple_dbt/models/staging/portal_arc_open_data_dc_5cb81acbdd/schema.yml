@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_ARC_OPEN_DATA_DC_5CB81ACBDD
+        description: >
+          Raw landing table for DC Footfall Business Data Ward. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_arc_open_data_dc_5cb81acbdd__places
+    description: "GRAIN: one row per place (SAFEGRAPH_PLACE_ID unique). SPINE_ENTITY: place."
+    columns:
+      - name: safegraph_place_id
+        data_tests:
+          - unique
+          - not_null

@@ -1,0 +1,27 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_ARC_HARRIS_COUNTY_OP_1966AC023B
+        description: >
+          Raw landing table for High Schools. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_arc_harris_county_op_1966ac023b__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+VAL_DATE unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: zip
+        data_tests:
+          - not_null
+      - name: val_date
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - zip
+            - val_date

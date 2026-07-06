@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_WESTERN_PENNSYLV_11AEBE4994
+        description: >
+          Raw landing table for Sidewalk to Street "Walkability" Ratio. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_western_pennsylv_11aebe4994__places
+    description: "GRAIN: one row per place (FIPS is unique). SPINE_ENTITY: place."
+    columns:
+      - name: geoid
+        data_tests:
+          - unique
+          - not_null

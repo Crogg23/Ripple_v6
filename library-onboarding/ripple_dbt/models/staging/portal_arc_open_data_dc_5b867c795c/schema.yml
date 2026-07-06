@@ -1,0 +1,27 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_ARC_OPEN_DATA_DC_5B867C795C
+        description: >
+          Raw landing table for Fatality Crashes Heat Map. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_arc_open_data_dc_5b867c795c__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (CCN+DATE unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: ccn_rev
+        data_tests:
+          - not_null
+      - name: date
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - ccn_rev
+            - date

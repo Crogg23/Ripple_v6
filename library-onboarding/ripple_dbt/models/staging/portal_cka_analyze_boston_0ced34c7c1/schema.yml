@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_ANALYZE_BOSTON_0CED34C7C1
+        description: >
+          Raw landing table for Boston Police Stations (BPD Only). All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_analyze_boston_0ced34c7c1__places
+    description: "GRAIN: one row per place (ZIP is unique). SPINE_ENTITY: place."
+    columns:
+      - name: zip
+        data_tests:
+          - unique
+          - not_null

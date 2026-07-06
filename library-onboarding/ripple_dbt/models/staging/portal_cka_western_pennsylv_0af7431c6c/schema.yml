@@ -1,0 +1,51 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_WESTERN_PENNSYLV_0AF7431C6C
+        description: >
+          Raw landing table for Allegheny County Toxics Release Inventory. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_western_pennsylv_0af7431c6c__facilities
+    description: "GRAIN: one row per facility (FIPS+REPORTING_YEAR+ZIP+SIC+TRI_FACILITY_ID+EPA_REGISTRY_ID+TRI_CHEM_ID+SRS_ID unique). SPINE_ENTITY: facility."
+    columns:
+      - name: state_county_fips_code
+        data_tests:
+          - not_null
+      - name: reporting_year
+        data_tests:
+          - not_null
+      - name: zip_code
+        data_tests:
+          - not_null
+      - name: primary_sic_code
+        data_tests:
+          - not_null
+      - name: tri_facility_id
+        data_tests:
+          - not_null
+      - name: epa_registry_id
+        data_tests:
+          - not_null
+      - name: tri_chem_id
+        data_tests:
+          - not_null
+      - name: srs_id
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - state_county_fips_code
+            - reporting_year
+            - zip_code
+            - primary_sic_code
+            - tri_facility_id
+            - epa_registry_id
+            - tri_chem_id
+            - srs_id

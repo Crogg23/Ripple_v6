@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: INTL_GR_DATAGOV
+        description: >
+          Raw landing table for Greece National Open Data Portal (data.gov.gr). All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_intl_gr_datagov__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (DATASET_ID is unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: dataset_id
+        data_tests:
+          - unique
+          - not_null

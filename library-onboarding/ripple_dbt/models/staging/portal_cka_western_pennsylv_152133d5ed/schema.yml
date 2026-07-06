@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_WESTERN_PENNSYLV_152133D5ED
+        description: >
+          Raw landing table for Public Water Supplier Service Areas. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_western_pennsylv_152133d5ed__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (WUDS_ID is unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: wuds_id
+        data_tests:
+          - unique
+          - not_null

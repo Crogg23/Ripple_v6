@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_ANALYZE_BOSTON_A6C2B4684A
+        description: >
+          Raw landing table for City of Boston Outline Boundary (Water Included). All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_analyze_boston_a6c2b4684a__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (TOWNS_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: towns_id
+        data_tests:
+          - unique
+          - not_null

@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_ANALYZE_BOSTON_E4C004D662
+        description: >
+          Raw landing table for 311 Service Requests. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_analyze_boston_e4c004d662__cases
+    description: "GRAIN: one row per case (CASE_ID unique). SPINE_ENTITY: case."
+    columns:
+      - name: case_id
+        data_tests:
+          - unique
+          - not_null

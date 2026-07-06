@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_ISRAEL_NATIONAL_7362EBC06F
+        description: >
+          Raw landing table for ספרייה מקצועית - Professional Library. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_israel_national_7362ebc06f__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ITEM_ID is unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: item_id
+        data_tests:
+          - unique
+          - not_null

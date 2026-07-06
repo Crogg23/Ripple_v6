@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_ARC_MEMPHIS_OPEN_DAT_3057D84002
+        description: >
+          Raw landing table for PD Cases WEB. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_arc_memphis_open_dat_3057d84002__cases
+    description: "GRAIN: one row per case (DOCKET is unique). SPINE_ENTITY: case."
+    columns:
+      - name: docket
+        data_tests:
+          - unique
+          - not_null

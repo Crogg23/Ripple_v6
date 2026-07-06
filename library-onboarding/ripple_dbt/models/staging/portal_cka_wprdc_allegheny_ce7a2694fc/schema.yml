@@ -1,0 +1,31 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_WPRDC_ALLEGHENY_CE7A2694FC
+        description: >
+          Raw landing table for City of Pittsburgh Property Tax Abatements. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_wprdc_allegheny_ce7a2694fc__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (LATLON+START_YEAR+APPROVED_DATE unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: latitude
+        data_tests:
+          - not_null
+      - name: start_year
+        data_tests:
+          - not_null
+      - name: approved_date
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - latitude
+            - start_year
+            - approved_date

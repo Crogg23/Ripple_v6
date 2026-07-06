@@ -1,0 +1,43 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_ARC_HARRIS_COUNTY_OP_6CDCF96CA7
+        description: >
+          Raw landing table for Hospitals. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_arc_harris_county_op_6cdcf96ca7__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+VAL_DATE+IN_100_YR_FLOODPLAIN+IN_500_YR_FLOODPLAIN+ID+STATE_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: zip
+        data_tests:
+          - not_null
+      - name: val_date
+        data_tests:
+          - not_null
+      - name: in_100_yr_floodplain
+        data_tests:
+          - not_null
+      - name: in_500_yr_floodplain
+        data_tests:
+          - not_null
+      - name: id
+        data_tests:
+          - not_null
+      - name: state_id
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - zip
+            - val_date
+            - in_100_yr_floodplain
+            - in_500_yr_floodplain
+            - id
+            - state_id

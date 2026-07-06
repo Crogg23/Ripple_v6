@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_OPEN_DATA_SA_D4BC1D6201
+        description: >
+          Raw landing table for Business by Zip Code. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_open_data_sa_d4bc1d6201__places
+    description: "GRAIN: one row per place (ZIP is unique). SPINE_ENTITY: place."
+    columns:
+      - name: zipcode
+        data_tests:
+          - unique
+          - not_null

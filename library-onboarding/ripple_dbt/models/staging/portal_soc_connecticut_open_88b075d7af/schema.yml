@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_SOC_CONNECTICUT_OPEN_88B075D7AF
+        description: >
+          Raw landing table for Connecticut Business Registry - Business Master. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_soc_connecticut_open_88b075d7af__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: id
+        data_tests:
+          - unique
+          - not_null

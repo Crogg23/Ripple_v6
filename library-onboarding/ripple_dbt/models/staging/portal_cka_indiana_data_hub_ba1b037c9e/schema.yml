@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_INDIANA_DATA_HUB_BA1B037C9E
+        description: >
+          Raw landing table for Opioid Treatment Program Locations. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_indiana_data_hub_ba1b037c9e__places
+    description: "GRAIN: one row per place (ZIP is unique). SPINE_ENTITY: place."
+    columns:
+      - name: location_zip
+        data_tests:
+          - unique
+          - not_null

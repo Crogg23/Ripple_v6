@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FEC_INDIV_CONTRIBUTIONS
+        description: >
+          Raw landing table for FEC Bulk Data -- Itemized Individual Contributions (itcont) -- the 84M-row firehose. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_fed_fec_indiv_contributions__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (SUB_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: sub_id
+        data_tests:
+          - unique
+          - not_null

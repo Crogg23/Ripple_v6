@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_DOL_FORM5500
+        description: >
+          Raw landing table for Form 5500 Annual Return/Report Datasets. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_fed_dol_form5500__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ACK_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: ack_id
+        data_tests:
+          - unique
+          - not_null

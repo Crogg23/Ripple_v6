@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_ARC_LA_COUNTY_OPEN_D_E549C7C921
+        description: >
+          Raw landing table for Updated Chromium. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_arc_la_county_open_d_e549c7c921__facilities
+    description: "GRAIN: one row per facility (TRI_FACILITY_ID unique). SPINE_ENTITY: facility."
+    columns:
+      - name: tri_facility_id
+        data_tests:
+          - unique
+          - not_null

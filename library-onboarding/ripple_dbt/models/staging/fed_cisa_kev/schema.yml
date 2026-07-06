@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CISA_KEV
+        description: >
+          Raw landing table for CISA Known Exploited Vulnerabilities (KEV) Catalog. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_fed_cisa_kev__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (CVE_ID is unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: cve_id
+        data_tests:
+          - unique
+          - not_null

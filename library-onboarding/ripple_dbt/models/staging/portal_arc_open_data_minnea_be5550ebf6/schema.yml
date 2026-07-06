@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_ARC_OPEN_DATA_MINNEA_BE5550EBF6
+        description: >
+          Raw landing table for Police Incidents 2014. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_arc_open_data_minnea_be5550ebf6__facilities
+    description: "GRAIN: one row per facility (CCN is unique). SPINE_ENTITY: facility."
+    columns:
+      - name: ccn
+        data_tests:
+          - unique
+          - not_null

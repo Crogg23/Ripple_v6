@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_WESTERN_PENNSYLV_EF682F7E59
+        description: >
+          Raw landing table for PLI Permits. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_western_pennsylv_ef682f7e59__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (PERMIT_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: permit_id
+        data_tests:
+          - unique
+          - not_null

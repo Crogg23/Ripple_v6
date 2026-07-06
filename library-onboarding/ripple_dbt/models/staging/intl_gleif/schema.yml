@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: INTL_GLEIF
+        description: >
+          Raw landing table for GLEIF LEI Concatenated Files & Golden Copy API. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_intl_gleif__organizations
+    description: "GRAIN: one row per organization (LEI is unique). SPINE_ENTITY: organization."
+    columns:
+      - name: lei
+        data_tests:
+          - unique
+          - not_null

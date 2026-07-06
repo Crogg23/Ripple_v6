@@ -1,0 +1,31 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_VIRGINIA_OPEN_DA_CBC7FE8B75
+        description: >
+          Raw landing table for EMS Heat-related Illness Incidents by Locality and Month/Year. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_virginia_open_da_cbc7fe8b75__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (FIPS+INCIDENT_YEAR+INCIDENT_MONTH unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: incident_fips
+        data_tests:
+          - not_null
+      - name: incident_year
+        data_tests:
+          - not_null
+      - name: incident_month
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - incident_fips
+            - incident_year
+            - incident_month

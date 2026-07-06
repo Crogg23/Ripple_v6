@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_ARC_WISCONSIN_OPEN_D_D05399642C
+        description: >
+          Raw landing table for Hospital. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_arc_wisconsin_open_d_d05399642c__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (GIS_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: gis_id
+        data_tests:
+          - unique
+          - not_null

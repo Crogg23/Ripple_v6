@@ -1,0 +1,75 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: INTL_EU_SANCTIONS
+        description: >
+          Raw landing table for EU Consolidated Financial Sanctions List. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_intl_eu_sanctions__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+DATE_FILE+LEBA_PUBLICATION_DATE+NAAL_LEBA_PUBLICATION_DATE+ENTITY_LOGICAL_ID+NAAL_LOGICAL_ID+ENTITY_LOGICAL_ID_1+ENTITY_LOGICAL_ID_2+BIRT_LOGICAL_ID+ENTITY_LOGICAL_ID_3+IDEN_LOGICAL_ID+ENTITY_LOGICAL_ID_4+CITI_LOGICAL_ID+ENTITY_LOGICAL_ID_5 unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: addr_zipcode
+        data_tests:
+          - not_null
+      - name: date_file
+        data_tests:
+          - not_null
+      - name: leba_publication_date
+        data_tests:
+          - not_null
+      - name: naal_leba_publication_date
+        data_tests:
+          - not_null
+      - name: entity_logical_id
+        data_tests:
+          - not_null
+      - name: naal_logical_id
+        data_tests:
+          - not_null
+      - name: entity_logical_id_1
+        data_tests:
+          - not_null
+      - name: entity_logical_id_2
+        data_tests:
+          - not_null
+      - name: birt_logical_id
+        data_tests:
+          - not_null
+      - name: entity_logical_id_3
+        data_tests:
+          - not_null
+      - name: iden_logical_id
+        data_tests:
+          - not_null
+      - name: entity_logical_id_4
+        data_tests:
+          - not_null
+      - name: citi_logical_id
+        data_tests:
+          - not_null
+      - name: entity_logical_id_5
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - addr_zipcode
+            - date_file
+            - leba_publication_date
+            - naal_leba_publication_date
+            - entity_logical_id
+            - naal_logical_id
+            - entity_logical_id_1
+            - entity_logical_id_2
+            - birt_logical_id
+            - entity_logical_id_3
+            - iden_logical_id
+            - entity_logical_id_4
+            - citi_logical_id
+            - entity_logical_id_5

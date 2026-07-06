@@ -1,0 +1,39 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_HOUSTON_OPEN_DAT_A4490182BA
+        description: >
+          Raw landing table for BARC Animal Service Requests. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_houston_open_dat_a4490182ba__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+SR_CREATE_DATE+DUE_DATE+DATE_CLOSED+TAX_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: zipcode
+        data_tests:
+          - not_null
+      - name: sr_create_date
+        data_tests:
+          - not_null
+      - name: due_date
+        data_tests:
+          - not_null
+      - name: date_closed
+        data_tests:
+          - not_null
+      - name: tax_id
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - zipcode
+            - sr_create_date
+            - due_date
+            - date_closed
+            - tax_id

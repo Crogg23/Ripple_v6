@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_CALIFORNIA_OPEN_0BC18BBA68
+        description: >
+          Raw landing table for Sierra Nevada Red Fox (Southern Cascades DPS) Range - CWHR M147d [ds3358]. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_california_open_0bc18bba68__places
+    description: "GRAIN: one row per place (GEOM is unique). SPINE_ENTITY: place."
+    columns:
+      - name: shape__length
+        data_tests:
+          - unique
+          - not_null

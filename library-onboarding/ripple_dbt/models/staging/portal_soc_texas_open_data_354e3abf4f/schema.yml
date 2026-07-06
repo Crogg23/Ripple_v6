@@ -1,0 +1,27 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_SOC_TEXAS_OPEN_DATA_354E3ABF4F
+        description: >
+          Raw landing table for Texas Commission on Environmental Quality - NOR Facilities. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_soc_texas_open_data_354e3abf4f__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+NOR_REGISTRATION_DATE unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: site_zip_cd
+        data_tests:
+          - not_null
+      - name: nor_registration_date
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - site_zip_cd
+            - nor_registration_date

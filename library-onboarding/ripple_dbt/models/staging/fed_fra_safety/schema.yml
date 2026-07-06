@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FRA_SAFETY
+        description: >
+          Raw landing table for FRA Safety Data API. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_fed_fra_safety__places
+    description: "GRAIN: one row per place (FIPS is unique). SPINE_ENTITY: place."
+    columns:
+      - name: county_fips
+        data_tests:
+          - unique
+          - not_null

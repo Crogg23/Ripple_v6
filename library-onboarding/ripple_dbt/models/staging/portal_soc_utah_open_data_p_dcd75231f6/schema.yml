@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_SOC_UTAH_OPEN_DATA_P_DCD75231F6
+        description: >
+          Raw landing table for Utah Hospitals Cost Report 2015. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_soc_utah_open_data_p_dcd75231f6__facilities
+    description: "GRAIN: one row per facility (CCN is unique). SPINE_ENTITY: facility."
+    columns:
+      - name: provider_ccn
+        data_tests:
+          - unique
+          - not_null

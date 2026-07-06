@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_ARC_WISCONSIN_OPEN_D_601E691159
+        description: >
+          Raw landing table for Level II Pediatric Trauma Centers. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_arc_wisconsin_open_d_601e691159__providers
+    description: "GRAIN: one row per provider (NPI is unique). SPINE_ENTITY: provider."
+    columns:
+      - name: npi_id
+        data_tests:
+          - unique
+          - not_null

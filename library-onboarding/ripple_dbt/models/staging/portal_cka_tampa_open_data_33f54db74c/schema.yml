@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_TAMPA_OPEN_DATA_33F54DB74C
+        description: >
+          Raw landing table for solid-waste-dataset. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_tampa_open_data_33f54db74c__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ID is unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: id
+        data_tests:
+          - unique
+          - not_null

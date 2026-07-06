@@ -1,0 +1,27 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_INDIANA_DATA_HUB_83BA6435C2
+        description: >
+          Raw landing table for COVID. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_indiana_data_hub_83ba6435c2__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (LOCATION_ID+DATE unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: location_id
+        data_tests:
+          - not_null
+      - name: date
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - location_id
+            - date

@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FJC_JUDGES
+        description: >
+          Raw landing table for FJC Biographical Directory of Article III Federal Judges -- Judges. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_fed_fjc_judges__people
+    description: "GRAIN: one row per person (SEAT_ID_1 is unique). SPINE_ENTITY: person."
+    columns:
+      - name: seat_id_1
+        data_tests:
+          - unique
+          - not_null

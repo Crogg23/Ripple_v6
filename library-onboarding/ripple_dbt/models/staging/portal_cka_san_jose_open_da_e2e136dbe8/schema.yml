@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_SAN_JOSE_OPEN_DA_E2E136DBE8
+        description: >
+          Raw landing table for Abandoned Sanitary Manholes. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_san_jose_open_da_e2e136dbe8__places
+    description: "GRAIN: one row per place (LATLON is unique). SPINE_ENTITY: place."
+    columns:
+      - name: longitude
+        data_tests:
+          - unique
+          - not_null
