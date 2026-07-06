@@ -11,8 +11,8 @@ sources:
           are cast in the staging layer.
 
 models:
-  - name: stg_portal_soc_connecticut_open_aeb46f6c94__records
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+C_1_YEAR+C_18_INDUSTRY_SECTOR_CODE+C_19_INDUSTRY_SECTOR+C_3_FRS_ID+C_35_CAS_COMPOUND_ID+C_36_SRS_ID unique). SPINE_ENTITY: (not determined)."
+  - name: stg_portal_soc_connecticut_open_aeb46f6c94__places
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+C_1_YEAR+C_18_INDUSTRY_SECTOR_CODE+C_19_INDUSTRY_SECTOR+C_3_FRS_ID+C_35_CAS_COMPOUND_ID+C_36_SRS_ID unique). SPINE_ENTITY: place."
     columns:
       - name: c_9_zip
         data_tests:

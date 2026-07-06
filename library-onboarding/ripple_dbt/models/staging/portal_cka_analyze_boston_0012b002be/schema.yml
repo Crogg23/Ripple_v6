@@ -11,8 +11,8 @@ sources:
           are cast in the staging layer.
 
 models:
-  - name: stg_portal_cka_analyze_boston_0012b002be__records
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (GEOM+DATE_AND_TIME unique). SPINE_ENTITY: (not determined)."
+  - name: stg_portal_cka_analyze_boston_0012b002be__places
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (GEOM+DATE_AND_TIME unique). SPINE_ENTITY: place."
     columns:
       - name: shape_wkt
         data_tests:

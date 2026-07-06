@@ -11,8 +11,8 @@ sources:
           are cast in the staging layer.
 
 models:
-  - name: stg_portal_soc_texas_open_data_d83872d208__records
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (DOCKET+ORDER_DATE unique). SPINE_ENTITY: (not determined)."
+  - name: stg_portal_soc_texas_open_data_d83872d208__cases
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (DOCKET+ORDER_DATE unique). SPINE_ENTITY: case."
     columns:
       - name: district_court_docket_no
         data_tests:

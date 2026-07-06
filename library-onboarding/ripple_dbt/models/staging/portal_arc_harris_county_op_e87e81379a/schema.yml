@@ -11,8 +11,8 @@ sources:
           are cast in the staging layer.
 
 models:
-  - name: stg_portal_arc_harris_county_op_e87e81379a__records
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+VAL_DATE+IN_100_YR_FLOODPLAIN+IN_500_YR_FLOODPLAIN+ID+STATE_ID unique). SPINE_ENTITY: (not determined)."
+  - name: stg_portal_arc_harris_county_op_e87e81379a__places
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+VAL_DATE+IN_100_YR_FLOODPLAIN+IN_500_YR_FLOODPLAIN+ID+STATE_ID unique). SPINE_ENTITY: place."
     columns:
       - name: zip
         data_tests:

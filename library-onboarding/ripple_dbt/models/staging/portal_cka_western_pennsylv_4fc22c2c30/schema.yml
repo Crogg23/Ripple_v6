@@ -11,8 +11,8 @@ sources:
           are cast in the staging layer.
 
 models:
-  - name: stg_portal_cka_western_pennsylv_4fc22c2c30__records
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+PERMIT_ISSUE_DATE+PERMIT_EXPIRE_DATE+PROJECT_TYPE+PARCEL_ID unique). SPINE_ENTITY: (not determined)."
+  - name: stg_portal_cka_western_pennsylv_4fc22c2c30__places
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+PERMIT_ISSUE_DATE+PERMIT_EXPIRE_DATE+PROJECT_TYPE+PARCEL_ID unique). SPINE_ENTITY: place."
     columns:
       - name: zip_code
         data_tests:

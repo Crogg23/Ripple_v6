@@ -11,8 +11,8 @@ sources:
           are cast in the staging layer.
 
 models:
-  - name: stg_intl_eu_sanctions__records
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+DATE_FILE+LEBA_PUBLICATION_DATE+NAAL_LEBA_PUBLICATION_DATE+ENTITY_LOGICAL_ID+NAAL_LOGICAL_ID+ENTITY_LOGICAL_ID_1+ENTITY_LOGICAL_ID_2+BIRT_LOGICAL_ID+ENTITY_LOGICAL_ID_3+IDEN_LOGICAL_ID+ENTITY_LOGICAL_ID_4+CITI_LOGICAL_ID+ENTITY_LOGICAL_ID_5 unique). SPINE_ENTITY: (not determined)."
+  - name: stg_intl_eu_sanctions__places
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+DATE_FILE+LEBA_PUBLICATION_DATE+NAAL_LEBA_PUBLICATION_DATE+ENTITY_LOGICAL_ID+NAAL_LOGICAL_ID+ENTITY_LOGICAL_ID_1+ENTITY_LOGICAL_ID_2+BIRT_LOGICAL_ID+ENTITY_LOGICAL_ID_3+IDEN_LOGICAL_ID+ENTITY_LOGICAL_ID_4+CITI_LOGICAL_ID+ENTITY_LOGICAL_ID_5 unique). SPINE_ENTITY: place."
     columns:
       - name: addr_zipcode
         data_tests:

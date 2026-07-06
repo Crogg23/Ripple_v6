@@ -11,8 +11,8 @@ sources:
           are cast in the staging layer.
 
 models:
-  - name: stg_st_cannabis_policy_bundles__records
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (FIPS+YEAR unique). SPINE_ENTITY: (not determined)."
+  - name: stg_st_cannabis_policy_bundles__places
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (FIPS+YEAR unique). SPINE_ENTITY: place."
     columns:
       - name: fips
         data_tests:

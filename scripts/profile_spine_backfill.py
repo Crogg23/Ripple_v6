@@ -323,6 +323,34 @@ def _entity_from_column_name(col: str) -> str | None:
     return None
 
 
+def entity_for_columns(cols: list[str]) -> str | None:
+    """Deterministic spine_entity for a winning key column set, by NAME only,
+    using the SAME map the base classify() path uses: detect_key / verbose
+    matcher -> SPINE_ENTITY_BY_KEY first, then a spine_entity vocab word literally
+    present in the column name. When several columns each imply an entity, the
+    most-concrete one wins (SPINE_ENTITY_PRIORITY). None if nothing matches.
+
+    Applied to a winning composite/rescue key so e.g. [NPI, YEAR] resolves to
+    'provider' and [COUNTY_FIPS, YEAR] to 'place' -- previously these dropped to
+    unknown because only the vocab-word-in-name check ran here, which never
+    consulted the key->entity map. Pure name inference, no content guess; shared
+    with scripts/propose_spine_entity_backfill.py so both agree."""
+    found = []
+    for c in cols:
+        key, _tier = detect_key(c)
+        if not key:
+            key = _verbose_key_for_column(c)
+        if key and key in SPINE_ENTITY_BY_KEY:
+            found.append(SPINE_ENTITY_BY_KEY[key])
+            continue
+        ent = _entity_from_column_name(c)
+        if ent:
+            found.append(ent)
+    if not found:
+        return None
+    return min(set(found), key=SPINE_ENTITY_PRIORITY.index)
+
+
 def profile_candidate(cur, source_id: str, base_cols: list[str], entity: str | None,
                        columns: list[tuple[str, str]], bridge_entities: list[str] | None = None,
                        extra_id_cols: list[str] | None = None) -> dict:
@@ -388,10 +416,11 @@ def profile_candidate(cur, source_id: str, base_cols: list[str], entity: str | N
         else:
             # A different (usually smaller/cleaner) column set won -- the
             # original base's entity claim (often a weak place fallback) no
-            # longer applies. Re-derive from the winning columns' own names.
-            level_entity = None
-            for c in level_cols:
-                level_entity = level_entity or _entity_from_column_name(c)
+            # longer applies. Re-derive from the winning columns' own names,
+            # consulting the FULL name->entity map (detect_key/verbose ->
+            # SPINE_ENTITY_BY_KEY, then a vocab word in the name), not just the
+            # vocab-word check -- so a winning [NPI, YEAR] keeps 'provider'.
+            level_entity = entity_for_columns(level_cols)
             entity_desc = level_entity or "record (spine_entity not determined -- no registry hint available)"
         key_desc = "+".join(_key_label_for(c) for c in level_cols)
         confidence = "HIGH" if len(level_cols) == len(base_cols) and is_base else "MEDIUM"

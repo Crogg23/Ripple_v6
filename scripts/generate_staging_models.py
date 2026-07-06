@@ -123,16 +123,21 @@ def fetch_sources(cur, source_id: str | None, limit: int | None) -> list[dict]:
     return rows[:limit] if limit else rows
 
 
-def already_declared_source_tables() -> set[str]:
-    """Every ripple_raw table already declared as a dbt source anywhere in the
-    project. dbt errors ("dbt found two sources with the name...") if a table is
-    declared twice -- e.g. the politics/ folder declares several tables in one
-    shared _politics__sources.yml instead of per-source-folder schema.yml, so a
+def already_declared_source_tables() -> dict[str, set[str]]:
+    """{ripple_raw_table_name: {folders whose *.yml declares it}}. dbt errors
+    ("dbt found two sources with the name...") if a table is declared twice --
+    e.g. the politics/ folder declares several tables in one shared
+    _politics__sources.yml instead of per-source-folder schema.yml, so a
     per-folder existence check alone (checked separately, for hand-built .sql
-    files) isn't enough; this catches cross-folder declaration collisions too."""
+    files) isn't enough; this catches cross-folder declaration collisions too.
+
+    Returns the DECLARING FOLDERS (not just a flat set) so the caller can tell a
+    real cross-folder collision from a source's OWN prior schema.yml -- otherwise
+    every already-generated source would falsely skip its own regeneration (e.g.
+    a spine_entity rename records->places could never be applied)."""
     import yaml
 
-    declared = set()
+    declared: dict[str, set[str]] = {}
     for path in DBT_PROJECT.glob("models/**/*.yml"):
         try:
             doc = yaml.safe_load(path.read_text(encoding="utf-8"))
@@ -145,7 +150,7 @@ def already_declared_source_tables() -> set[str]:
                 continue
             for t in src.get("tables") or []:
                 if t.get("name"):
-                    declared.add(t["name"])
+                    declared.setdefault(t["name"], set()).add(str(path.parent))
     return declared
 
 
@@ -323,6 +328,10 @@ def main() -> int:
     ap = argparse.ArgumentParser(description="Generate draft dbt staging models from SOURCE_REGISTRY.")
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--source-id", default=None)
+    ap.add_argument("--source-ids-file", default=None,
+                    help="path to a newline-delimited list of source_ids to regenerate "
+                         "(targets just those -- avoids churning all models when only a "
+                         "handful changed, e.g. after a spine_entity backfill)")
     ap.add_argument("--dry-run", action="store_true", help="print, write nothing")
     ap.add_argument("--force", action="store_true", help="overwrite an existing model file (default: skip)")
     args = ap.parse_args()
@@ -331,15 +340,28 @@ def main() -> int:
     try:
         cur = conn.cursor()
         sources = fetch_sources(cur, args.source_id, args.limit)
+        if args.source_ids_file:
+            wanted = {ln.strip() for ln in Path(args.source_ids_file).read_text().splitlines() if ln.strip()}
+            sources = [s for s in sources if s["source_id"] in wanted]
+            missing = wanted - {s["source_id"] for s in sources}
+            if missing:
+                print(f"  note: {len(missing)} id(s) in the file had no GRAIN/NATURAL_KEY row "
+                      f"and were skipped: {', '.join(sorted(missing))}")
         print(f"{len(sources)} source(s) with GRAIN/NATURAL_KEY/SPINE_ENTITY populated.")
         declared = already_declared_source_tables()
 
         written, skipped = [], []
         for src in sources:
             sid = src["source_id"]
-            if sid.upper() in declared:
-                skipped.append((sid, f"{sid.upper()} already declared as a dbt source elsewhere "
-                                      "(e.g. a shared _sources.yml) -- not adding a duplicate declaration"))
+            own_dir = str(MODELS_DIR / sid)
+            # Skip only if the table is declared in a folder OTHER than this
+            # source's own (a genuine cross-folder collision). A source's own
+            # prior schema.yml must NOT block regenerating itself.
+            other_dirs = declared.get(sid.upper(), set()) - {own_dir}
+            if other_dirs:
+                where = ", ".join(sorted(Path(d).name for d in other_dirs))
+                skipped.append((sid, f"{sid.upper()} already declared as a dbt source in "
+                                      f"another folder ({where}) -- not adding a duplicate declaration"))
                 continue
             columns, ingested_at_column = fetch_columns(cur, sid.upper())
             if not columns:
@@ -386,6 +408,17 @@ def main() -> int:
                 print(f"-- {yml_path}\n{'=' * 78}\n{yml}")
             else:
                 out_dir.mkdir(parents=True, exist_ok=True)
+                # A prior generator run may have written this model under a
+                # DIFFERENT <entity> slug (e.g. spine_entity went NULL->place, so
+                # stg_x__records.sql should become stg_x__places.sql). Remove the
+                # stale generator-produced sibling so the rename doesn't leave two
+                # competing models in the folder. Only ever deletes THIS
+                # generator's own output (never a hand-built model), and never the
+                # file we're about to write.
+                for p in out_dir.glob("stg_*.sql"):
+                    if p != out_path and "Generated by scripts/generate_staging_models.py" \
+                            in p.read_text(encoding="utf-8", errors="ignore"):
+                        p.unlink()
                 out_path.write_text(sql, encoding="utf-8")
                 if not yml_path.exists() or args.force:
                     yml_path.write_text(yml, encoding="utf-8")

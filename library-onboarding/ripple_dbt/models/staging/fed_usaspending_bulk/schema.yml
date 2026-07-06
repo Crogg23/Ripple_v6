@@ -11,8 +11,8 @@ sources:
           are cast in the staging layer.
 
 models:
-  - name: stg_fed_usaspending_bulk__records
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (UEI+ACTION_DATE+ACTION_DATE_FISCAL_YEAR+PERIOD_OF_PERFORMANCE_START_DATE+AWARD_ID_PIID+PARENT_AWARD_AGENCY_ID+PARENT_AWARD_ID_PIID unique). SPINE_ENTITY: (not determined)."
+  - name: stg_fed_usaspending_bulk__organizations
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (UEI+ACTION_DATE+ACTION_DATE_FISCAL_YEAR+PERIOD_OF_PERFORMANCE_START_DATE+AWARD_ID_PIID+PARENT_AWARD_AGENCY_ID+PARENT_AWARD_ID_PIID unique). SPINE_ENTITY: organization."
     columns:
       - name: recipient_uei
         data_tests:

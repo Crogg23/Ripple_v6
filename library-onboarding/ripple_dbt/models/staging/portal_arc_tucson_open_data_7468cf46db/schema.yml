@@ -11,8 +11,8 @@ sources:
           are cast in the staging layer.
 
 models:
-  - name: stg_portal_arc_tucson_open_data_7468cf46db__records
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (DOCKET+LAST_EDITED_DATE unique). SPINE_ENTITY: (not determined)."
+  - name: stg_portal_arc_tucson_open_data_7468cf46db__cases
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (DOCKET+LAST_EDITED_DATE unique). SPINE_ENTITY: case."
     columns:
       - name: docket
         data_tests:

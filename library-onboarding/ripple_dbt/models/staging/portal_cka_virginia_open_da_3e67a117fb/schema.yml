@@ -11,8 +11,8 @@ sources:
           are cast in the staging layer.
 
 models:
-  - name: stg_portal_cka_virginia_open_da_3e67a117fb__records
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (FIPS+REPORT_DATE unique). SPINE_ENTITY: (not determined)."
+  - name: stg_portal_cka_virginia_open_da_3e67a117fb__places
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (FIPS+REPORT_DATE unique). SPINE_ENTITY: place."
     columns:
       - name: fips
         data_tests:
