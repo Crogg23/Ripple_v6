@@ -22,7 +22,8 @@ Array binding uses PARSE_JSON(json.dumps(list)) — the load-bearing register.py
 """
 import sys, json, warnings
 warnings.filterwarnings("ignore")
-sys.path.insert(0, "c:/Code/Ripple_v6/library-onboarding")
+from pathlib import Path as _P
+sys.path.insert(0, str(_P(__file__).resolve().parents[1] / "library-onboarding"))
 from snow import connect
 
 # entity_types vocab: aircraft asset case company event facility filing organization payment person place vessel

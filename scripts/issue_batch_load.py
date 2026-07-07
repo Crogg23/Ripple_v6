@@ -37,8 +37,8 @@ import register      # noqa: E402
 import snow          # noqa: E402
 from config import settings  # noqa: E402
 
-SCOUT = Path("c:/Code/Ripple_v6/.scratch/"
-             "1f0128f4-5c2c-4b54-95f4-72d2ed4e3517/scratchpad/scout_results.json")
+SCOUT = (Path(__file__).resolve().parents[1] / ".scratch"
+         / "1f0128f4-5c2c-4b54-95f4-72d2ed4e3517" / "scratchpad" / "scout_results.json")
 MAX_BYTES = 260_000_000  # skip giant files in autonomous mode
 
 # (sid, direct_fetch_url, fmt)   fmt in {csv, zip_csv, xlsx, json}

@@ -41,7 +41,8 @@ import warnings
 
 warnings.filterwarnings("ignore")
 
-REPO = "c:/Code/Ripple_v6"
+from pathlib import Path as _P
+REPO = str(_P(__file__).resolve().parents[1])
 sys.path.insert(0, f"{REPO}/library-onboarding")
 
 import pandas as pd  # noqa: E402

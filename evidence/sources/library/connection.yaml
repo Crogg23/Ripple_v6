@@ -1,0 +1,15 @@
+# The Library — Snowflake reading room (THE_LIBRARY database).
+# INTERIM LANE: authenticates with the main PAT (ACCOUNTADMIN-restricted) on
+# COMPUTE_WH — same client-guard lane every other surface uses today.
+# After `python3 scripts/apply_read_lane.py --apply` runs, switch to the
+# enforced lane: warehouse: SERVE_WH, role: RIPPLE_READER, and put the
+# SNOWFLAKE_SERVE_PAT secret in connection.options.yaml instead.
+# The password lives in connection.options.yaml (gitignored) — never here.
+name: library
+type: snowflake
+options:
+  account: ONEAFDA-UMB20733
+  username: CROGG23
+  authenticator: snowflake
+  database: THE_LIBRARY
+  warehouse: COMPUTE_WH

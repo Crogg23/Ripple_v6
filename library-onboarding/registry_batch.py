@@ -70,6 +70,12 @@ def main() -> int:
     if args.load_mode:
         for c in candidates:
             c["load_mode"] = args.load_mode
+    # D28: --include-landed must also reach the per-source collision gate, else a
+    # deliberate re-land selects the source, burns recon, then aborts 'already_cataloged'
+    # before SCRIPT. fetch_candidates uses the flag to SELECT; the gate reads it per-source.
+    if args.include_landed:
+        for c in candidates:
+            c["include_landed"] = True
     if not candidates:
         cp.warn("No candidates matched -- the registry queue is drained for these filters.")
         return 0

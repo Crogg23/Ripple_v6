@@ -96,7 +96,8 @@ def join_mode(key: str) -> str:
 #   imo   N : digits only (tolerates an 'IMO' prefix, e.g. AIS 'IMO9187629');
 #             keep iff exactly N digits and not the all-zero placeholder
 #   fixed N : alnum, upper, keep ONLY if exactly N chars (UEI/LEI), else NULL
-#   code    : keep leading zeros, strip punctuation, upper (FIPS/ZIP/NAICS/docket)
+#   code    : keep leading zeros, strip punctuation, upper (FIPS/NAICS/docket)
+#   zip5  N : US ZIP -> first N digits (ZIP+4 collapses to ZIP5); NULL if < N digits
 #   country : upper letters only (ISO)
 #   name    : upper, punctuation -> single space, trim (fuzzy by nature)
 # --------------------------------------------------------------------------- #
@@ -105,7 +106,7 @@ NORM_RULES: dict[str, tuple[str, int]] = {
     "CCN": ("pad", 6), "IMO": ("imo", 7), "MMSI": ("pad", 9),
     "UEI": ("fixed", 12), "LEI": ("fixed", 20),
     "NAICS": ("code", 0), "SIC": ("code", 0), "NCES": ("code", 0),
-    "DOCKET": ("code", 0), "PATENT": ("code", 0), "FIPS": ("code", 0), "ZIP": ("code", 0),
+    "DOCKET": ("code", 0), "PATENT": ("code", 0), "FIPS": ("code", 0), "ZIP": ("zip5", 5),
     "COUNTRY": ("country", 0),
     # Politician IDs (Step-K politics). Both are opaque member IDs, not zero-
     # significant numeric codes, so 'alnum_upper': strip punctuation, upper-case, NO
@@ -200,6 +201,15 @@ def normalize_sql(key: str, col: str) -> str:
         return f"CASE WHEN LENGTH({clean}) = {width} THEN {clean} ELSE NULL END"
     if mode == "code":
         return f"NULLIF({clean}, '')"
+    if mode == "zip5":
+        # D18: US ZIP -> first `width` digits, so a ZIP+4 (NPPES '021151234' or
+        # '02115-1234') equi-joins a ZIP5 (LEIE '02115'). Before this, ZIP used 'code'
+        # (no truncation) so the 8.7M ZIP9 rows in NPPES could never match any ZIP5
+        # store. Digits only; require at least `width` (a numeric ZIP that lost its
+        # leading zero is dropped, never risked as a false 4-digit match).
+        digits = f"REGEXP_REPLACE(TO_VARCHAR({col}), '[^0-9]', '')"
+        return (f"CASE WHEN LENGTH({digits}) >= {width} THEN LEFT({digits}, {width}) "
+                f"ELSE NULL END")
     if mode == "country":
         return f"NULLIF(UPPER(REGEXP_REPLACE(TO_VARCHAR({col}), '[^A-Za-z]', '')), '')"
     raise KeyError(f"Unknown norm mode '{mode}' for key '{key}'.")

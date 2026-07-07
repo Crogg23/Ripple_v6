@@ -7,6 +7,7 @@ ENTITY_TYPE_BY_KEY), the DISPLAY_SPECS entries must be shaped so members become
 'person' entities, validate_key_config must pass with the new keys present, and the
 KEYSET_LIVE refactor must be called from BOTH reslice paths.
 """
+from __future__ import annotations  # D38: `str | None` (PEP 604) needs this under Python 3.9 or pytest aborts collection for the whole suite
 
 import inspect
 import re

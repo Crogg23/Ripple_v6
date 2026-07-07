@@ -11,11 +11,12 @@ against the 15-credit cap.
 """
 import sys, warnings, json, html
 warnings.filterwarnings("ignore")
-sys.path.insert(0, "c:/Code/Ripple_v6")
+from pathlib import Path as _P
+sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
 from connect import db
 from connect import leads as leads_engine
 
-OUT = "c:/Code/Ripple_v6/outputs/ripple_dashboard.html"
+OUT = str(_P(__file__).resolve().parents[1] / "outputs" / "ripple_dashboard.html")
 META = {"_INGESTED_AT", "_SOURCE_RUN_ID", "_SRC_SHA256"}
 c = db.connect()
 

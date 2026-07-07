@@ -31,11 +31,29 @@ _COLUMNS = [
 
 # Columns that must round-trip as a Snowflake ARRAY, not splatted scalars.
 _ARRAY_COLUMNS = {"DOMAIN_SECONDARY", "ENTITY_TYPES", "JOIN_KEYS_STD", "THEMES"}
-# Onboarding must never blank a facet the migration set; COALESCE these on MATCH.
-_COALESCE_ON_MERGE = {
-    "DOMAIN_PRIMARY", "DOMAIN_SECONDARY", "ENTITY_TYPES", "JOIN_KEYS_STD",
-    "JOIN_KEY_TIER", "JOIN_KEY_TIER_PROVISIONAL", "THEMES", "HAS_EVENTS",
-    "DOMAIN_SOURCE", "DOMAIN_CONFIDENCE", "NEEDS_TOPIC",
+# On a MATCHED merge (re-registration of an existing source), onboarding must never
+# downgrade a curated facet back to its default. The old rule was COALESCE(s,t) for every
+# facet, but _build_row gives each a NON-NULL default ('UNCLASSIFIED'/[]/'NONE'/True/False),
+# so s.col was never NULL and the junk default clobbered the curated value every time (D20).
+# Fix: per-facet MATCH expressions that let only a MEANINGFUL incoming value win; a default
+# keeps the target. `None` = don't touch on MATCH (onboard never sets it meaningfully today;
+# the measured-key backfill writes these directly). Columns not listed here overwrite normally
+# (NAME/URL/DESCRIPTION etc. — onboard legitimately refreshes those). {c} = the column name.
+_MATCH_EXPR = {
+    # enrichment-driven — overwrite only with a real (non-default) value
+    "DOMAIN_PRIMARY":   "t.{c}=COALESCE(NULLIF(s.{c},'UNCLASSIFIED'), t.{c})",
+    "DOMAIN_SECONDARY": "t.{c}=IFF(ARRAY_SIZE(s.{c})>0, s.{c}, t.{c})",
+    "ENTITY_TYPES":     "t.{c}=IFF(ARRAY_SIZE(s.{c})>0, s.{c}, t.{c})",
+    "THEMES":           "t.{c}=IFF(ARRAY_SIZE(s.{c})>0, s.{c}, t.{c})",
+    # measured-key facets — a populated value wins, an empty/NONE default keeps the curated one
+    "JOIN_KEYS_STD":    "t.{c}=IFF(ARRAY_SIZE(s.{c})>0, s.{c}, t.{c})",
+    "JOIN_KEY_TIER":    "t.{c}=COALESCE(NULLIF(s.{c},'NONE'), t.{c})",
+    "JOIN_KEY_TIER_PROVISIONAL": None,  # onboard can't measure it -> never clobber
+    "HAS_EVENTS":       None,           # onboard never sets it meaningfully -> keep target
+    "NEEDS_TOPIC":      None,           # curated by the classifier, not onboard -> keep target
+    # genuinely NULL when absent -> plain COALESCE is already correct
+    "DOMAIN_SOURCE":    "t.{c}=COALESCE(s.{c}, t.{c})",
+    "DOMAIN_CONFIDENCE":"t.{c}=COALESCE(s.{c}, t.{c})",
 }
 assert _ARRAY_COLUMNS <= set(_COLUMNS), "array cols must be in _COLUMNS"
 
@@ -149,8 +167,11 @@ def _merge_sql(row: dict):
     for c in _COLUMNS:
         if c == "SOURCE_ID":
             continue
-        if c in _COALESCE_ON_MERGE:
-            set_parts.append(f"t.{c}=COALESCE(s.{c}, t.{c})")  # don't blank a migration facet
+        if c in _MATCH_EXPR:
+            expr = _MATCH_EXPR[c]
+            if expr is None:
+                continue  # keep the curated target value untouched on MATCH
+            set_parts.append(expr.format(c=c))
         else:
             set_parts.append(f"t.{c}=s.{c}")
     update_set = ", ".join(set_parts)

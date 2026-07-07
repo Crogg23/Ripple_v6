@@ -16,7 +16,8 @@ import sys
 import warnings
 
 warnings.filterwarnings("ignore")
-sys.path.insert(0, "c:/Code/Ripple_v6/library-onboarding")
+from pathlib import Path as _P
+sys.path.insert(0, str(_P(__file__).resolve().parents[1] / "library-onboarding"))
 from snow import connect  # noqa: E402
 
 ROLE = "CLAUDE_MCP_READONLY"

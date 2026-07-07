@@ -1,7 +1,113 @@
 # Build State
-Last updated: 2026-07-04
+Last updated: 2026-07-06
 
-## CURRENT FOCUS — RIPPLE CONTROL PANEL SHIPPED (2026-07-04, latest)
+## CURRENT FOCUS — FABLE AUDIT + EVIDENCE.DEV PHASE 0 SHIPPED (2026-07-06, latest)
+**Ran a 54-agent full-repo + live-warehouse stress-test (every defect adversarially
+re-verified — 40 confirmed, 0 refuted), then stood up evidence.dev and proved the Library
+is queryable from it end to end.** Full report: `outputs/FABLE_AUDIT_2026-07-06.md` +
+artifact (defect IDs D01–D40, critic C1–C4, questions Q1–Q9). Goal frame Chris set: real,
+substantial, CONNECTED data queryable from evidence.dev; leads/publishing deferred.
+
+**THE VERDICT:** the engineering is solid (load path, dbt hygiene, connect math, loadkit,
+V_STATE doctrine, reading room all survived hostile review). Four gaps stand between the
+Library and evidence.dev — two closable with SQL files already in the repo:
+1. **Graph dark → LIT UP + REFRESHED (2026-07-06).** `CONNECT_EDGES` 0 → 20,907 (JSON load) →
+   **41,241 edges (fresh `fingerprint`+`discover` rebuild), WITH join columns, queryable.** Fix was
+   "retarget the writer" (store.write_edges + discover wiring), not the incremental backlog. NAICS/
+   SIC/NCES hairball GONE (STRONG tier 9,396→2,224 — NAICS *was* most of STRONG; that's the junk
+   leaving). NEW: 122 EIN hard-ID edges (IRS↔state registries), STEEL 378→473. **CAVEAT: ZIP5 (a
+   correct normalizer) traded the NAICS hairball for a bigger ZIP one — GEO tier is now 53% of the
+   graph (bare ZIP 5,541→21,538, weak geographic-coincidence edges).** It's all TIERED/filterable:
+   the trustworthy core = `WHERE tier IN ('STEEL','STRONG','CORROBORATED')` ≈ 4,308 edges. OPEN
+   DESIGN CALL (Chris): exclude bare ZIP/FIPS from edges like NAICS (keep only NAME@ZIP composites)
+   + re-run to make the raw graph lean — deferred (tier filter suffices today). Still open:
+   incremental config-lock/seed re-pin (on-land connects only). (D01, D02, D17–D19)
+2. **Truth layer lies both ways** — ~31 junk sources read `landed`; NMDB 19M reads
+   `sampled`; OP2022 13.25M invisible; irs_eo_bmf is a 2× dup. (D07, D08, D12–D15)
+3. **Typed layer thin** — all 789 generated staging views all-TEXT; 171/233 reading-room
+   views zero-cast; 95/199 landed sources unstaged. (D05, D06)
+4. **No read lane** — RIPPLE_READER/SERVE_WH unapplied; no Node.js. (D03, D04, D10)
+
+**SHIPPED THIS SESSION (evidence.dev Phase 0 — live-proven via headless-Chrome screenshots):**
+- **Node 22** installed to `~/.local/node22` (user-space, off PATH; `export PATH="$HOME/.local/node22/bin:$PATH"`).
+- **`evidence/`** — full evidence.dev project (official template). Connection: main PAT as
+  password on COMPUTE_WH (interim lane), database THE_LIBRARY. Secret in
+  `evidence/sources/library/connection.options.yaml` (gitignored, base64). `evidence/README.md`
+  has run steps + the enforced-lane upgrade.
+- **7 source queries + 7 pages** — `catalog.sql` (START_HERE, 232 rows) + national debt,
+  banned providers (LEIE), NICS gun checks, WaPo fatal force, FARA foreign agents, SCDB.
+  `npm run sources` extracts all 7 from Snowflake to parquet; `npm run build` succeeds
+  (all routes prerendered). Rendered live: debt line chart to $39.29T, the 232-dataset
+  searchable card catalog, the SCOTUS docket bar chart — all real Snowflake data in-browser.
+- **`scripts/apply_read_lane.py`** (preview/`--apply`) — one command to create SERVE_WH +
+  SERVE_MON + RIPPLE_READER (provably read-only, libel firewall) + a role-restricted 90-day
+  serving PAT → `.env` + keys_ledger. **PENDING CHRIS `--apply`** (infra mutation, classifier-gated).
+
+## PENDING CHRIS — the checklist (fixes D39: no ledger tracked what was applied)
+Run/skip status per handed-over step. `[ ]` = not done, `[x]` = done, `[~]` = superseded.
+**DONE this session (2026-07-06, agent-executed):**
+- [x] **`scripts/apply_read_lane.py --apply`** — SERVE_WH + SERVE_MON + RIPPLE_READER all LIVE
+  and verified read-only (3,212 grants, 0 non-read privileges; libel firewall holds). D03/D04.
+  ONE piece left, needs you: mint the serving PAT in Snowsight (Snowflake forbids a PAT session
+  minting a PAT for the same user) — the script prints the exact steps. Until then evidence.dev
+  runs on the interim admin lane (works).
+- [x] **`scripts/export_control_plane.py --apply`** — 8,626 rows across 7 control-plane tables
+  exported off Snowflake to `backups/dr/20260706_145502/`. Critic C2 CLOSED. (Next: replicate
+  backups/dr/ to cloud storage on a schedule.)
+- [x] **evidence.dev Phase 0** — Node 22, `evidence/` project, 7 sources + 7 pages, live-proven.
+- [x] **Code fixes (all compile, 427 tests pass):** D38 pytest annotation (suite ran ZERO tests
+  before → now 427); D30 c:/Code paths swept from 8 scripts incl. both grant_mcp_readonly_*.py +
+  regrade_empty_loads.py; D28 registry_batch `--include-landed` threaded to the collision gate;
+  D20 register.py facet-clobber guarded (NULLIF/ARRAY_SIZE — re-registration can't downgrade
+  curated facets); D36 usaspending_load.py `--start/--end` now REQUIRED (kills the 1-day truncate).
+
+**ALSO DONE (agent, 2026-07-06):**
+- [x] **`scripts/fix_catalog_lifecycle.py --apply`** — CATALOG lifecycle D13+D14 fixed, LIVE.
+  Surgical (only 2 movers): FED_FHFA_NMDB sampled→landed (19,054,246 rows now visible; the
+  `'% sample%'` message match is now size-gated ≤200k so a source *description* saying "5% national
+  sample" no longer demotes a 19M-row load); FED_CMS_OPEN_PAYMENTS_2022 scouted→failed (an `error`
+  run now reads data-first as `failed`, not "never touched"). Rebuilt with **COPY GRANTS** — proven
+  to preserve RIPPLE_READER SELECT (this is D04's root cause: catalog views were rebuilt without it,
+  stripping the read role each time). Rollback DDL: `outputs/_rollback_CATALOG_view_lifecycle_*.sql`.
+  landed 174→175, scouted 759→758, failed 259→260.
+
+**STILL PENDING (warehouse data/catalog mutations — best done deliberately):**
+- [ ] `scripts/regrade_empty_loads.py --apply` — path now fixed + Mac-runnable; retro-demote
+  pre-gate junk successes (FJC_IDB 4.1M all-empty still `success`). SLOW (re-samples every run
+  serially) but correct. D08.
+- [ ] `scripts/reconcile_op2022.py --apply` — OP2022 now honestly reads `failed`; verify the
+  13.25M rows vs CMS PY2022 count, then re-load to a clean success to make it `landed` (D13).
+- [ ] Dedup fed_irs_eo_bmf (exact 2× of fed_irs_bmf) + pick canonical SIDs for the dup pairs (D15).
+- [x] **The D02 connect rebuild — GRAPH IS LIT UP + QUERYABLE.** The real fix turned out to be
+  simpler than the incremental-backlog dance: `discover.run()` already computes the full ~20.9k-edge
+  graph WITH join columns (a_col/b_col) but only ever wrote it to the gitignored JSON. Fix =
+  **retarget the writer** (audit's own words). Shipped: `connect/store.py:write_edges()` (full-replace
+  CONNECT_EDGES, ALTER-adds A_COL/B_COL in place so grants survive), wired into `discover.run()`
+  (future runs auto-populate), + `scripts/load_connect_graph.py` (light up from a saved JSON with no
+  rebuild). **CONNECT_EDGES: 0 → 20,907 edges, queryable now** (20,751 with join columns; STEEL
+  NPI edges match 1.4M providers). ZIP5 + NAICS/SIC/NCES-demote CODE landed (keys.py zip5 mode,
+  discover.py VOCAB_KEYS). The `fingerprint`+`discover` refresh RAN (exit 0, ~2.5hr; first attempt
+  crashed on a STALE fingerprint — NPPES re-land renamed its EIN col → ALWAYS `fingerprint` before
+  `discover`). CONNECT_EDGES rewritten to **41,241 edges**: NAICS/SIC/NCES GONE (STRONG 9,396→2,224),
+  +122 EIN edges, STEEL 378→473. CAVEAT: ZIP5 quadrupled bare-ZIP edges (5,541→21,538, weak GEO →
+  53% of graph); trustworthy core (tier IN STEEL/STRONG/CORROBORATED) ≈ 4,308. Bare ZIP/FIPS
+  edge-exclusion = open follow-up.
+  - [x] **`scripts/build_v_connections.py --apply` — DONE (Chris authorized).** V_CONNECTIONS
+    (readable edge view w/ domains + runnable join_hint, 20,907 rows) + V_CONNECTION_SUMMARY
+    (domain-pair browse) LIVE in LIBRARY_META."CONNECT", granted RIPPLE_READER. Both are VIEWS over
+    CONNECT_EDGES → they auto-reflect the discover refresh's cleaner edge counts once it writes.
+  - [ ] STILL-DEFERRED (separate from the edge graph): D19 edge columns in the INCREMENTAL path
+    (KEYSET_LIVE is (TABLE_NAME,KEY,VAL) — no column), and the incremental config-lock/seed re-pin
+    (`spine` → `incremental seed` → `connect-changed`) to unlock on-land connects. The batch graph
+    (CONNECT_EDGES) does NOT need these — it carries columns from discover's `members` map.
+- [ ] Measured JOIN_KEYS_STD backfill over all 199 landed (D09) — now safe post-D20.
+- [ ] Revoke straggler PATs (old admin, unrestricted-2027); refresh keys_ledger stale expiry (D33).
+- [ ] Point dbt CI at RIPPLE_INGEST_BOT + RIPPLE_TRANSFORM_RW instead of ACCOUNTADMIN (D34).
+- [~] Streamlit reading room (`serve/`) — SERVE surface is now evidence.dev; serve/ is legacy.
+
+---
+
+## PRIOR FOCUS — RIPPLE CONTROL PANEL SHIPPED (2026-07-04)
 **Built `ripple panel` — the push-button control panel over Library health + refresh.**
 `python3 ripple.py panel` → http://127.0.0.1:8899 (stdlib server, house dark theme, Plotly from
 the installed wheel — no CDN). Files: `ripple/panel.py` (verb) · `ripple/panel_server.py`

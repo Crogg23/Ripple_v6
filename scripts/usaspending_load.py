@@ -180,8 +180,11 @@ def _register(conn, start: str, end: str, rows: int) -> None:
 
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description="LLM-free loader for USASpending prime contracts")
-    ap.add_argument("--start", default="2025-09-29")
-    ap.add_argument("--end", default="2025-09-30")
+    # D36: --start/--end are REQUIRED. The old 1-day defaults meant a bare `--run`
+    # snapshot-replaced the full ~6.3M-row FED_USASPENDING_CONTRACTS table with one day,
+    # logged success, and re-registered. Force the operator to name the window.
+    ap.add_argument("--start", required=True, help="YYYY-MM-DD (required; a full FY is 2024-10-01)")
+    ap.add_argument("--end", required=True, help="YYYY-MM-DD (required; a full FY is 2025-09-30)")
     ap.add_argument("--run", action="store_true", help="actually land (default previews)")
     args = ap.parse_args(argv)
 

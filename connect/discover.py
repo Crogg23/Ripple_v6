@@ -55,6 +55,16 @@ KEY_DOMAIN = {           # ~size of each key's value space, for the collision ma
     "BIOGUIDE": 26 * 10**6, "ICPSR": 10**6,
 }
 
+# D17: classification codes are NOT entity identifiers. NAICS/SIC/NCES describe
+# "same industry / same school district", not "same thing" -- many orgs share one
+# NAICS. Worse, the collision math above uses a THEORETICAL value space (NAICS 10^6)
+# while only ~2,500 codes are actually in use, so any two industry tables overlap far
+# above chance and pass the gate as false STRONG edges (~70% of the headline graph was
+# this vocabulary co-occurrence). They stay tagged + in the keyset (a future
+# "shared dimensions" surface can use them), but they never become graph edges.
+# Mirrors connect/spine_entity.py's _CLASSIFICATION_CODES exclusion from the spine.
+VOCAB_KEYS = {"NAICS", "SIC", "NCES"}
+
 
 def validate_key_config() -> None:
     """Fail LOUD if a value key is half-configured -- the Step-K footgun.
@@ -93,6 +103,8 @@ def confidence(key, tier, a_distinct, b_distinct, matched):
     """Return (score 0-1, keep?). A coincidental handful of matches on a short
     numeric key scores ~0 and is dropped; a dense overlap on a hard ID scores ~1."""
     if matched <= 0:
+        return 0.0, False
+    if key in VOCAB_KEYS:                    # D17: classification code, not an entity link
         return 0.0, False
     floor = MIN_MATCH_PROB if tier in ("PROBABILISTIC", "CORROBORATED") else MIN_MATCH
     if matched < floor:
@@ -268,6 +280,19 @@ def run(name_max_rows: int = NAME_MAX_ROWS, write: bool = True,
     if write:
         GRAPH_OUT.write_text(json.dumps(graph, indent=2))
         print(f"wrote {GRAPH_OUT}")
+        # persist the SAME edges to Snowflake so the graph is queryable from SQL
+        # (and therefore evidence.dev), not just the gitignored JSON projection.
+        # Lazy import: store imports discover, so a top-level import would cycle.
+        import uuid
+        from . import store
+        wconn = db.connect()
+        try:
+            n = store.write_edges(wconn, graph["edges"], uuid.uuid4().hex[:16])
+            print(f"wrote {n:,} edges -> {store.cfqn(store.EDGES_TABLE)}")
+        except Exception as ex:   # never lose the JSON write over a Snowflake hiccup
+            print(f"  [edges] Snowflake write failed (JSON still written): {str(ex)[:160]}")
+        finally:
+            wconn.close()
     return graph
 
 
