@@ -27,6 +27,7 @@ from snow import connect  # noqa: E402
 
 APPLY = "--apply" in sys.argv
 PORTALS = "--portals" in sys.argv
+TYPED = "--typed" in sys.argv          # build landing views with typed projections (reuses thelibrary_typed_views.build_view)
 INV = _ROOT / "outputs" / "thelibrary_inventory.json"
 CONTENT = _ROOT / "outputs" / "thelibrary_content.json"
 
@@ -72,6 +73,27 @@ def run(cur, sql, label=""):
             print(f"      SQL: {sql[:200]}")
 
 
+def load_extras(conn):
+    """Hand-managed reading-room entries (e.g. the giant pre-agg views registered by
+    build_giant_aggs.py) that must SURVIVE a reconcile. Returns rows in the exact shape
+    main() builds from inventory. Empty list if the EXTRAS table doesn't exist yet."""
+    cur = conn.cursor()
+    try:
+        cur.execute("""SELECT OBJECT_FQN,LANDING_FQN,SOURCE_ID,LAYER,FRIENDLY_SCHEMA,FRIENDLY_NAME,
+                       FRIENDLY_DOMAIN,ONE_LINER,COMMENT,IS_SAMPLE,ROW_COUNT
+                       FROM LIBRARY_META.REGISTRY.FRIENDLY_LAYER_EXTRAS""")
+        out = []
+        for r in cur.fetchall():
+            out.append({"object_fqn": r[0], "landing_fqn": r[1], "source_id": r[2], "layer": r[3],
+                        "friendly_schema": r[4], "friendly_name": r[5], "friendly_domain": r[6],
+                        "one_liner": r[7], "comment": r[8], "is_sample": bool(r[9]), "row_count": r[10]})
+        return out
+    except Exception:
+        return []          # table not created yet -- nothing to merge
+    finally:
+        cur.close()
+
+
 def main():
     if not CONTENT.exists():
         print(f"MISSING {CONTENT} -- run the content workflow first."); return
@@ -96,6 +118,15 @@ def main():
             "comment": c.get("comment") or (d.get("description") or d["name"]),
             "is_sample": bool(d.get("is_sample")), "row_count": d.get("row_count"),
         })
+    # ---- merge FRIENDLY_LAYER_EXTRAS (hand-managed views: giant aggs, etc.) ----
+    # These override any inventory row for the same OBJECT_FQN, so a hand-named agg view
+    # wins over the auto-generated one and is never pruned.
+    extras = load_extras(conn)
+    if extras:
+        extra_fqns = {e["object_fqn"] for e in extras}
+        rows = [r for r in rows if r["object_fqn"] not in extra_fqns] + extras
+        print(f"merged {len(extras)} FRIENDLY_LAYER_EXTRAS (hand-managed views kept across reconcile)")
+
     # de-collide within (schema, name): deterministic order, suffix with source stem
     seen = {}
     for r in sorted(rows, key=lambda x: x["object_fqn"]):
@@ -148,17 +179,41 @@ def main():
         run(cur, f"CREATE SCHEMA IF NOT EXISTS {DB}.{sch}", f"schema {sch}")
 
     # ---- C2 views (create-or-replace) + prune orphans -------------------
+    # --typed: landing-backed views get typed projections (TRY_CAST'd dates/numbers, IDs kept
+    # TEXT) via thelibrary_typed_views.build_view, so a reconcile re-types instead of clobbering
+    # back to SELECT *. Falls back to SELECT * on no-gain/error. mart-layer views stay SELECT *.
+    build_typed = None
+    if TYPED:
+        sys.path.insert(0, str(_ROOT / "scripts"))
+        import thelibrary_typed_views as _tv
+        build_typed = _tv.build_view
+        print("   [--typed] landing views will be built with typed projections (profiling ~sec/view)")
     print(f"[{'APPLY' if APPLY else 'PREVIEW'}] C2 {len(rows)} friendly views + prune")
-    target = {}
+    target, typed_n = {}, 0
     for r in rows:
         target.setdefault(r["friendly_schema"], set()).add(r["friendly_name"])
         badge = ""
         if r["is_sample"]:
             badge = f"  [Thin sample: only {r['row_count']:,} rows loaded, not the full source.]" if r["row_count"] else "  [Thin sample -- not the full source.]"
-        vcomment = esc(r["comment"] + badge)
-        run(cur, f'CREATE OR REPLACE VIEW {DB}.{r["friendly_schema"]}.{r["friendly_name"]} '
-                 f"COMMENT='{vcomment}' AS SELECT * FROM {r['object_fqn']}",
-            f'view {r["friendly_name"]}')
+        vfqn = f'{DB}.{r["friendly_schema"]}.{r["friendly_name"]}'
+        typed_ddl = None
+        if build_typed and r["layer"] == "landing" and r.get("object_fqn"):
+            try:
+                res = build_typed(cur, vfqn, r["object_fqn"], r["comment"] + badge)
+                if res:
+                    typed_ddl = res[0]           # typed CREATE OR REPLACE VIEW ... COPY GRANTS
+                    typed_n += 1
+            except Exception as ex:
+                print(f"   typed profiling failed for {r['friendly_name']}: {str(ex)[:90]} -- SELECT * fallback")
+        if typed_ddl:
+            run(cur, typed_ddl, f'typed view {r["friendly_name"]}')
+        else:
+            vcomment = esc(r["comment"] + badge)
+            run(cur, f'CREATE OR REPLACE VIEW {vfqn} '
+                     f"COMMENT='{vcomment}' AS SELECT * FROM {r['object_fqn']}",
+                f'view {r["friendly_name"]}')
+    if TYPED:
+        print(f"   [--typed] {typed_n} landing views typed; the rest are SELECT * (mart layer / no-gain)")
     if APPLY:
         for sch in schemas:
             have = {v["name"] for v in q(cur, f"SHOW VIEWS IN SCHEMA {DB}.{sch}")}

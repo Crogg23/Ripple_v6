@@ -1,7 +1,71 @@
 # Build State
-Last updated: 2026-07-06
+Last updated: 2026-07-07
 
-## CURRENT FOCUS — FABLE AUDIT + EVIDENCE.DEV PHASE 0 SHIPPED (2026-07-06, latest)
+## CURRENT FOCUS — LEVERAGE HUNT → 8 EVIDENCE-READINESS SCRIPTS BUILT (2026-07-07, latest)
+**Ran a 15-agent quantified leverage investigation (7 streams, each adversarially verified) then an
+8-agent parallel build. All 8 scripts are written + PREVIEW-tested clean against live Snowflake; 2
+crown jewels independently re-reviewed by me (code + preview). Everything ships preview/--apply —
+CHRIS runs --apply (classifier-gated). Nothing applied to the warehouse yet.**
+
+THE THESIS (verified): the warehouse splits at evidence's 100k-row parquet cap into two problems with
+two tools — TEXT (89% of THE_LIBRARY) → typed views; TOO-BIG (24 giants) → pre-agg marts. Cost/perf is
+NOT the lever (connect 15-40 cr/mo, WH already optimal, storage 11GB/$0.25/mo — every cost card
+self-downgraded). Full slate + receipts: workflow journals under
+subagents/workflows/wf_c4de16b8-6f7 (investigation) + wf_0541df3f-e88 (build).
+
+**THE 8 SCRIPTS (all scripts/*.py, preview-tested):**
+1. `thelibrary_typed_views.py` — types 123 of 171 landing reading-room views (177 DATE + 2,124 NUMBER;
+   IDs/ZIP/NPI stay TEXT via name-heuristics; epoch-date trap guarded). FIXES the 3 compile-broken views
+   (IRELAND_COMPANIES, DOJ_CRIME_STATS_CATALOG, GLOBAL_FOOD_AGRICULTURE_STATS). COPY GRANTS + re-grant.
+2. `build_giant_aggs.py` — 14 pre-agg marts in LIBRARY_MARTS.PUBLIC (all <100k, max 62,927) + friendly
+   views. Dropped FED_FOREIGNASSISTANCE (3rd broken load: measures 100% empty). COPY GRANTS.
+3. `reconcile_op2022.py` — EXISTING, ready: flips mislogged run → 13.25M OP2022 rows live.
+4. `build_v_connections_core.py` — V_CONNECTIONS_CORE = 4,308 trustworthy edges (STEEL/STRONG/CORROB).
+5. `revoke_straggler_pats.py` — drops 5 stragglers (allow-list, fail-safe), non-destructive ledger add.
+6. `dedup_irs_eo_bmf.py` — 4 live proofs then quarantines the exact 2x dup to LIBRARY_RAW.RETIRED
+   (reversible); --prune-edges optional (140 redundant edges).
+7. `rebuild_frozen_marts.py` — recovers 926k trapped rows (IE_CRO 818k, Fed Register 5k→94,731) from 7
+   frozen/capped marts; flags stale dbt models to disable.
+8. `backfill_join_keys_std.py` — measures join keys for 82 sources (value-gated, D20-guarded).
+9. `gen_evidence_pages.py` — 226 evidence pages (READY:False by design — run AFTER #1+#2 land).
+
+**RUN ORDER (footgun REMOVED by the refinement — thelibrary_build --typed now self-heals):**
+1. free fires: reconcile_op2022 --apply · build_v_connections_core --apply · revoke_straggler_pats --apply
+2. data fixes: dedup_irs_eo_bmf --apply --prune-edges · rebuild_frozen_marts --apply
+3. build_giant_aggs --apply   (creates 14 marts + views AND registers them in FRIENDLY_LAYER_EXTRAS)
+4. python3 scripts/thelibrary_inventory.py && python3 scripts/thelibrary_build.py --apply --typed
+   (ONE atomic pass: reconcile + prune orphans (incl. the retired irs_eo_bmf view) + KEEP the agg
+   views via EXTRAS + TYPE every landing view. Safe to re-run anytime — it re-types, never clobbers.)
+5. backfill_join_keys_std --apply
+6. gen_evidence_pages --apply   (last — needs typed views + agg marts present)
+Note: standalone thelibrary_typed_views.py --apply still exists for typing WITHOUT a full reconcile.
+
+**ONE-COMMAND RUNNER: `bash scripts/apply_evidence_readiness.sh`** — chains all 8 steps above in the
+correct order, stop-on-error, rollback per step. (The agent auto-mode classifier HARD-BLOCKS --apply
+warehouse writes — confirmed 2026-07-07 — so CHRIS runs this; the agent cannot, by design.) Held out of
+the runner (do manually): revoke_straggler_pats.py --apply (irreversible token drops — confirm nothing
+authenticates via the 5 targets first) + the Snowsight serving-PAT mint. Read-lane config staged at
+evidence/sources/library/connection.yaml.serve (cp over connection.yaml after minting the PAT).
+
+**EVIDENCE READ-LANE (Chris's Snowsight step): SERVE_WH + RIPPLE_READER live; NO serving PAT yet.**
+Mint a PAT restricted to RIPPLE_READER (Snowsight, 90d) → set SNOWFLAKE_SERVE_PAT in .env +
+evidence/sources/library/connection.options.yaml (base64) → flip connection.yaml to warehouse: SERVE_WH,
+role: RIPPLE_READER. Until then evidence runs on the interim ACCOUNTADMIN PAT (works, but a page query
+can DROP DATABASE — this is the security finish).
+
+**REFINEMENT SHIPPED (2026-07-07): the reconcile-clobber footgun is fixed.**
+- `thelibrary_build.py --typed` builds landing views with typed projections (reuses
+  thelibrary_typed_views.build_view) instead of SELECT * — so a reconcile RE-TYPES instead of un-typing.
+- New `LIBRARY_META.REGISTRY.FRIENDLY_LAYER_EXTRAS` table: build_giant_aggs.py registers its 14 views
+  there; thelibrary_build merges EXTRAS into FRIENDLY_LAYER (extras win by OBJECT_FQN), so the agg views
+  get first-class friendly names, appear in START_HERE, and are NEVER pruned.
+- Net: `thelibrary_build --apply --typed` is now the idempotent, re-runnable reconcile-and-type command.
+Verified: syntax + build_view import bridge + plain preview (no regression) + load_extras graceful when
+table absent + full `thelibrary_build --typed` preview types 123 landing views (matches the standalone
+generator exactly, 0 errors, 0 fallbacks).
+[[fable-audit-2026-07-06]] [[empty-tables-root-cause]] [[warehouse-query-traps]]
+
+## PRIOR FOCUS — FABLE AUDIT + EVIDENCE.DEV PHASE 0 SHIPPED (2026-07-06)
 **Ran a 54-agent full-repo + live-warehouse stress-test (every defect adversarially
 re-verified — 40 confirmed, 0 refuted), then stood up evidence.dev and proved the Library
 is queryable from it end to end.** Full report: `outputs/FABLE_AUDIT_2026-07-06.md` +

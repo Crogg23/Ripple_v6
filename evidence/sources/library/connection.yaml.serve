@@ -1,0 +1,18 @@
+# ENFORCED READ-LANE variant — swap this in AFTER you mint the serving PAT in Snowsight.
+#   1. Snowsight -> user CROGG23 -> Programmatic access tokens -> Generate
+#        name: SERVE_PAT   role restriction: RIPPLE_READER   expiry: 90 days
+#   2. Put the token (base64-encoded) as `password:` in connection.options.yaml
+#      and as SNOWFLAKE_SERVE_PAT in library-onboarding/.env
+#   3. cp connection.yaml.serve connection.yaml
+#   4. npm --prefix evidence run sources   # confirm it still reads
+# This moves evidence.dev off the ACCOUNTADMIN god-PAT onto a provably read-only role
+# (RIPPLE_READER = SELECT/USAGE only) on the isolated SERVE_WH (5cr/mo SERVE_MON cap).
+name: library
+type: snowflake
+options:
+  account: ONEAFDA-UMB20733
+  username: CROGG23
+  authenticator: snowflake
+  role: RIPPLE_READER
+  database: THE_LIBRARY
+  warehouse: SERVE_WH
