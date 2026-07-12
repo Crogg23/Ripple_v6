@@ -70,18 +70,9 @@ def main() -> int:
                                f"WHERE MODEL_VERSION = '{MODEL_VERSION}'")
         print(f"model {MODEL_VERSION}: mode={mode} start={start:.4f} bits, {len(rungs)} rungs")
 
-        # SCHEMA DRIFT (found 2026-07-12): FED_CMS_NPPES was re-landed with a different
-        # header sanitizer — live column is PROVIDER_LAST_NAME_LEGAL_NAME (single
-        # underscore); connect/resolve.py's PAIRS still says the double-underscore name,
-        # so resolve/calibrate are broken against the live warehouse until that one-line
-        # fix is approved. Patched HERE only, so the fixture builds from live truth.
-        import copy
-        pair = copy.deepcopy(PAIRS["leie_nppes"])
-        pair["right"]["last"] = "PROVIDER_LAST_NAME_LEGAL_NAME"
-
         print("building TEMPORARY scratch (blocking passes) + TF — session-scoped ...")
-        _build_scratch(conn, pair)
-        _build_tf(conn, pair)
+        _build_scratch(conn, PAIRS["leie_nppes"])
+        _build_tf(conn, PAIRS["leie_nppes"])
 
         m_expr = _m_expr(model, start, mode)
 

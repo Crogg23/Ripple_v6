@@ -52,7 +52,7 @@ PAIRS: dict[str, dict] = {
         "desc": "OIG-excluded persons vs NPPES providers (fuzzy name + ZIP)",
         "left":  {"table": "FED_HHS_OIG_LEIE", "last": "LASTNAME", "first": "FIRSTNAME",
                   "zip": "ZIP", "id": "NPI", "addr": "ADDRESS", "mid": "MIDNAME"},
-        "right": {"table": "FED_CMS_NPPES", "last": "PROVIDER_LAST_NAME__LEGAL_NAME",
+        "right": {"table": "FED_CMS_NPPES", "last": "PROVIDER_LAST_NAME_LEGAL_NAME",
                   "first": "PROVIDER_FIRST_NAME",
                   "zip": "PROVIDER_BUSINESS_MAILING_ADDRESS_POSTAL_CODE", "id": "NPI",
                   "addr": "PROVIDER_FIRST_LINE_BUSINESS_MAILING_ADDRESS",
