@@ -1,0 +1,1981 @@
+{
+  "session": {
+    "sql": "SELECT CURRENT_ACCOUNT(), CURRENT_ORGANIZATION_NAME(), CURRENT_ACCOUNT_NAME(), CURRENT_USER(), CURRENT_ROLE(), CURRENT_WAREHOUSE()",
+    "columns": [
+      "CURRENT_ACCOUNT()",
+      "CURRENT_ORGANIZATION_NAME()",
+      "CURRENT_ACCOUNT_NAME()",
+      "CURRENT_USER()",
+      "CURRENT_ROLE()",
+      "CURRENT_WAREHOUSE()"
+    ],
+    "rows": [
+      [
+        "UKB67948",
+        "ONEAFDA",
+        "UMB20733",
+        "CROGG23",
+        "RIPPLE_READER",
+        "SERVE_WH"
+      ]
+    ]
+  },
+  "pats": {
+    "sql": "SHOW USER PROGRAMMATIC ACCESS TOKENS",
+    "columns": [
+      "name",
+      "user_name",
+      "role_restriction",
+      "expires_at",
+      "status",
+      "comment",
+      "created_on",
+      "created_by",
+      "mins_to_bypass_network_policy_requirement",
+      "rotated_to"
+    ],
+    "rows": [
+      [
+        "ripple_loader",
+        "CROGG23",
+        "RIPPLE_ROLE",
+        "2027-05-19 12:05:13.153000-07:00",
+        "ACTIVE",
+        null,
+        "2026-05-19 12:05:13.153000-07:00",
+        "CROGG23",
+        null,
+        null
+      ],
+      [
+        "RIPPLE_LOADER_PAT",
+        "CROGG23",
+        "RIPPLE_LOADER",
+        "2026-08-25 10:17:15.709000-07:00",
+        "ACTIVE",
+        "Ripple pipeline \u2014 least-privilege loader token.",
+        "2026-05-27 10:17:15.709000-07:00",
+        "CROGG23",
+        null,
+        null
+      ],
+      [
+        "RIPPLE_LOADER_PAT2",
+        "CROGG23",
+        "RIPPLE_LOADER",
+        "2026-08-25 10:23:46.579000-07:00",
+        "ACTIVE",
+        null,
+        "2026-05-27 10:23:46.579000-07:00",
+        "CROGG23",
+        null,
+        null
+      ],
+      [
+        "CLAUDE_MCP_RO",
+        "CROGG23",
+        "CLAUDE_MCP_READONLY",
+        "2026-09-16 14:51:52.923000-07:00",
+        "ACTIVE",
+        "Read-only PAT for Claude MCP",
+        "2026-06-18 14:51:52.923000-07:00",
+        "CROGG23",
+        null,
+        null
+      ],
+      [
+        "Ripple_v6",
+        "CROGG23",
+        "",
+        "2027-06-19 10:06:03.294000-07:00",
+        "ACTIVE",
+        null,
+        "2026-06-19 10:06:03.294000-07:00",
+        "CROGG23",
+        null,
+        null
+      ],
+      [
+        "PORTAL_RECON",
+        "CROGG23",
+        "CLAUDE_MCP_READONLY",
+        "2026-09-19 12:01:50.738000-07:00",
+        "ACTIVE",
+        null,
+        "2026-06-21 12:01:50.738000-07:00",
+        "CROGG23",
+        null,
+        null
+      ],
+      [
+        "WAVE3_LOAD",
+        "CROGG23",
+        "CLAUDE_MCP_READONLY",
+        "2026-09-19 16:14:57.804000-07:00",
+        "ACTIVE",
+        null,
+        "2026-06-21 16:14:57.804000-07:00",
+        "CROGG23",
+        null,
+        null
+      ],
+      [
+        "LIBRARY_PAT",
+        "CROGG23",
+        "ACCOUNTADMIN",
+        "2026-09-20 07:58:55.632000-07:00",
+        "ACTIVE",
+        null,
+        "2026-06-22 07:58:55.632000-07:00",
+        "CROGG23",
+        null,
+        null
+      ],
+      [
+        "THE_LIBRARY",
+        "CROGG23",
+        "ACCOUNTADMIN",
+        "2027-07-05 11:22:31.860000-07:00",
+        "ACTIVE",
+        null,
+        "2026-07-05 11:22:31.860000-07:00",
+        "CROGG23",
+        null,
+        null
+      ],
+      [
+        "READER",
+        "CROGG23",
+        "RIPPLE_READER",
+        "2027-07-12 09:39:50.840000-07:00",
+        "ACTIVE",
+        null,
+        "2026-07-12 09:39:50.840000-07:00",
+        "CROGG23",
+        null,
+        null
+      ]
+    ]
+  },
+  "resource_monitors": {
+    "sql": "SHOW RESOURCE MONITORS",
+    "columns": [
+      "name",
+      "credit_quota",
+      "used_credits",
+      "remaining_credits",
+      "level",
+      "frequency",
+      "start_time",
+      "end_time",
+      "notify_at",
+      "suspend_at",
+      "suspend_immediately_at",
+      "created_on",
+      "owner",
+      "comment",
+      "notify_users"
+    ],
+    "rows": [
+      [
+        "RIPPLE_BUDGET",
+        "300.00",
+        "95.72",
+        "204.28",
+        "ACCOUNT",
+        "MONTHLY",
+        "2026-06-25 16:43:39.409000-07:00",
+        null,
+        "75%",
+        "90%",
+        "100%",
+        "2026-06-25 16:43:39.373000-07:00",
+        "ACCOUNTADMIN",
+        null,
+        ""
+      ],
+      [
+        "SERVE_MON",
+        "5.00",
+        "0.02",
+        "4.98",
+        "WAREHOUSE",
+        "MONTHLY",
+        "2026-07-06 14:50:35.830000-07:00",
+        null,
+        "80%",
+        "100%",
+        "110%",
+        "2026-07-06 14:50:35.807000-07:00",
+        "ACCOUNTADMIN",
+        null,
+        ""
+      ]
+    ]
+  },
+  "warehouses": {
+    "sql": "SHOW WAREHOUSES",
+    "columns": [
+      "name",
+      "state",
+      "type",
+      "size",
+      "min_cluster_count",
+      "max_cluster_count",
+      "started_clusters",
+      "running",
+      "queued",
+      "is_default",
+      "is_current",
+      "auto_suspend",
+      "auto_resume",
+      "available",
+      "provisioning",
+      "quiescing",
+      "other",
+      "created_on",
+      "resumed_on",
+      "updated_on",
+      "owner",
+      "comment",
+      "enable_query_acceleration",
+      "query_acceleration_max_scale_factor",
+      "resource_monitor",
+      "actives",
+      "pendings",
+      "failed",
+      "suspended",
+      "uuid",
+      "scaling_policy",
+      "owner_role_type",
+      "resource_constraint",
+      "generation",
+      "query_throughput_multiplier",
+      "max_query_performance_level",
+      "disabled_reasons",
+      "tables"
+    ],
+    "rows": [
+      [
+        "COMPUTE_WH",
+        "SUSPENDED",
+        "STANDARD",
+        "X-Small",
+        "1",
+        "1",
+        "0",
+        "0",
+        "0",
+        "N",
+        "N",
+        "60",
+        "true",
+        "",
+        "",
+        "",
+        "",
+        "2026-03-28 09:08:31.116000-07:00",
+        "2026-07-11 08:23:11.277000-07:00",
+        "2026-07-12 08:00:19.163000-07:00",
+        "ACCOUNTADMIN",
+        "",
+        "false",
+        "8",
+        "null",
+        "0",
+        "0",
+        "0",
+        "1",
+        "653185876",
+        "STANDARD",
+        "ROLE",
+        "STANDARD_GEN_2",
+        "2",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "SERVE_WH",
+        "STARTED",
+        "STANDARD",
+        "X-Small",
+        "1",
+        "1",
+        "1",
+        "0",
+        "0",
+        "N",
+        "Y",
+        "60",
+        "true",
+        " 100",
+        "0",
+        "0",
+        "0",
+        "2026-07-06 14:50:35.539000-07:00",
+        "2026-07-12 10:07:44.886000-07:00",
+        "2026-07-12 10:07:44.887000-07:00",
+        "ACCOUNTADMIN",
+        "Read-only reading-room serving WH; isolates analyst reads from ETL (RIPPLE_WH/DBT_WH).",
+        "true",
+        "2",
+        "SERVE_MON",
+        "1",
+        "0",
+        "0",
+        "0",
+        "167215563157",
+        "STANDARD",
+        "ROLE",
+        "STANDARD_GEN_2",
+        "2",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "SYSTEM$STREAMLIT_NOTEBOOK_WH",
+        "SUSPENDED",
+        "STANDARD",
+        "X-Small",
+        "1",
+        "10",
+        "0",
+        "0",
+        "0",
+        "N",
+        "N",
+        "60",
+        "true",
+        "",
+        "",
+        "",
+        "",
+        "2026-03-28 09:07:40.403000-07:00",
+        "2026-03-28 09:07:40.415000-07:00",
+        "2026-03-28 09:07:40.442000-07:00",
+        "ACCOUNTADMIN",
+        "",
+        "false",
+        "8",
+        "null",
+        "0",
+        "0",
+        "0",
+        "1",
+        "653185796",
+        "STANDARD",
+        "ROLE",
+        "STANDARD_GEN_1",
+        "1",
+        null,
+        null,
+        null,
+        null
+      ]
+    ]
+  },
+  "roles_ripple": {
+    "sql": "SHOW ROLES LIKE 'RIPPLE%'",
+    "columns": [
+      "created_on",
+      "name",
+      "is_default",
+      "is_current",
+      "is_inherited",
+      "assigned_to_users",
+      "granted_to_roles",
+      "granted_roles",
+      "owner",
+      "comment",
+      "is_from_organization_user_group"
+    ],
+    "rows": [
+      [
+        "2026-06-09 13:36:52.357000-07:00",
+        "RIPPLE_INGEST_RW",
+        "N",
+        "N",
+        "N",
+        "1",
+        "1",
+        "0",
+        "ACCOUNTADMIN",
+        "Intake loader: write landing tables + ingest receipts. Least privilege, used by GitHub Actions.",
+        "N"
+      ],
+      [
+        "2026-05-27 10:17:05.503000-07:00",
+        "RIPPLE_LOADER",
+        "N",
+        "N",
+        "N",
+        "1",
+        "0",
+        "0",
+        "ACCOUNTADMIN",
+        "Least-privilege pipeline role: read + append to RIPPLE.RAW + Cortex.",
+        "N"
+      ],
+      [
+        "2026-07-06 14:50:36.420000-07:00",
+        "RIPPLE_READER",
+        "N",
+        "Y",
+        "N",
+        "1",
+        "0",
+        "0",
+        "ACCOUNTADMIN",
+        "Provably read-only serving role. USAGE + SELECT only - never granted a write privilege. If you are about to GRANT CREATE/INSERT/OPERATE on this role: do not.",
+        "N"
+      ],
+      [
+        "2026-04-21 06:11:02.131000-07:00",
+        "RIPPLE_ROLE",
+        "N",
+        "N",
+        "N",
+        "2",
+        "1",
+        "0",
+        "ACCOUNTADMIN",
+        "Application role for Ripple v3 \u2014 ingestion, synthesis, dbt, web app.",
+        "N"
+      ],
+      [
+        "2026-06-10 07:15:14.927000-07:00",
+        "RIPPLE_TRANSFORM_RW",
+        "N",
+        "N",
+        "N",
+        "1",
+        "1",
+        "0",
+        "ACCOUNTADMIN",
+        "dbt transform: read RAW landing + META, build STAGING and MARTS. Least privilege, used by GitHub Actions.",
+        "N"
+      ]
+    ]
+  },
+  "q1_build_schema": {
+    "sql": "SHOW SCHEMAS LIKE 'BUILD' IN DATABASE LIBRARY_META",
+    "columns": [
+      "created_on",
+      "name",
+      "is_default",
+      "is_current",
+      "database_name",
+      "owner",
+      "comment",
+      "options",
+      "retention_time",
+      "owner_role_type",
+      "classification_profile_database",
+      "classification_profile_schema",
+      "classification_profile",
+      "object_visibility"
+    ],
+    "rows": []
+  },
+  "q1_build_tables": {
+    "sql": "SHOW TABLES IN SCHEMA LIBRARY_META.BUILD",
+    "error": "002043 (02000): SQL compilation error:"
+  },
+  "v_state": {
+    "sql": "SELECT * FROM LIBRARY_META.REGISTRY.V_STATE",
+    "columns": [
+      "METRIC",
+      "VALUE",
+      "AS_OF"
+    ],
+    "rows": [
+      [
+        "taps.scouted",
+        "758",
+        "2026-07-12 10:08:32.542000-07:00"
+      ],
+      [
+        "catalog.sources",
+        "2840",
+        "2026-07-12 10:08:32.542000-07:00"
+      ],
+      [
+        "catalog.orphans",
+        "285",
+        "2026-07-12 10:08:32.542000-07:00"
+      ],
+      [
+        "registry.sources",
+        "2555",
+        "2026-07-12 10:08:32.542000-07:00"
+      ],
+      [
+        "landing.tables",
+        "1785",
+        "2026-07-12 10:08:32.542000-07:00"
+      ],
+      [
+        "landing.rows",
+        "288749856",
+        "2026-07-12 10:08:32.542000-07:00"
+      ],
+      [
+        "decisions.total",
+        "0",
+        "2026-07-12 10:08:32.542000-07:00"
+      ],
+      [
+        "connect.edges",
+        "41241",
+        "2026-07-12 10:08:32.542000-07:00"
+      ],
+      [
+        "connect.edges_inc",
+        "1074",
+        "2026-07-12 10:08:32.542000-07:00"
+      ],
+      [
+        "connect.entities",
+        "9788419",
+        "2026-07-12 10:08:32.542000-07:00"
+      ],
+      [
+        "reading_room.views",
+        "233",
+        "2026-07-12 10:08:32.542000-07:00"
+      ],
+      [
+        "marts.stale_vs_landing",
+        "1",
+        "2026-07-12 10:08:32.542000-07:00"
+      ],
+      [
+        "taps.queued",
+        "7",
+        "2026-07-12 10:08:32.542000-07:00"
+      ],
+      [
+        "taps.failed",
+        "260",
+        "2026-07-12 10:08:32.542000-07:00"
+      ],
+      [
+        "taps.empty",
+        "33",
+        "2026-07-12 10:08:32.542000-07:00"
+      ],
+      [
+        "leads.sanctioned_vessel_broadcasting.active",
+        "2",
+        "2026-07-12 10:08:32.542000-07:00"
+      ],
+      [
+        "leads.excluded_but_billing.active",
+        "236",
+        "2026-07-12 10:08:32.542000-07:00"
+      ],
+      [
+        "taps.modeled",
+        "25",
+        "2026-07-12 10:08:32.542000-07:00"
+      ],
+      [
+        "taps.sampled",
+        "1579",
+        "2026-07-12 10:08:32.542000-07:00"
+      ],
+      [
+        "taps.stale",
+        "4",
+        "2026-07-12 10:08:32.542000-07:00"
+      ],
+      [
+        "taps.landed",
+        "174",
+        "2026-07-12 10:08:32.542000-07:00"
+      ],
+      [
+        "leads.banned_but_paid.active",
+        "773",
+        "2026-07-12 10:08:32.542000-07:00"
+      ],
+      [
+        "leads.sanctioned_vessel_broadcasting_v2.active",
+        "6",
+        "2026-07-12 10:08:32.542000-07:00"
+      ],
+      [
+        "leads.debarred_but_funded.active",
+        "2",
+        "2026-07-12 10:08:32.542000-07:00"
+      ],
+      [
+        "leads.banned_but_operating.active",
+        "11",
+        "2026-07-12 10:08:32.542000-07:00"
+      ]
+    ]
+  },
+  "d1a_lifecycle_vs_rows": {
+    "sql": "\n        WITH t AS (SELECT TABLE_NAME, ROW_COUNT FROM LIBRARY_RAW.INFORMATION_SCHEMA.TABLES\n                   WHERE TABLE_SCHEMA='LANDING')\n        SELECT COUNT(*) AS landed_total,\n               SUM(IFF(t.TABLE_NAME IS NULL,1,0)) AS no_physical_table,\n               SUM(IFF(t.ROW_COUNT=0,1,0)) AS zero_rows,\n               SUM(IFF(t.ROW_COUNT BETWEEN 1 AND 3,1,0)) AS rows_1_to_3\n        FROM LIBRARY_META.REGISTRY.CATALOG c\n        LEFT JOIN t ON t.TABLE_NAME = UPPER(c.SOURCE_ID)\n        WHERE c.LIFECYCLE IN ('landed','modeled')",
+    "columns": [
+      "LANDED_TOTAL",
+      "NO_PHYSICAL_TABLE",
+      "ZERO_ROWS",
+      "ROWS_1_TO_3"
+    ],
+    "rows": [
+      [
+        "199",
+        "0",
+        "0",
+        "8"
+      ]
+    ]
+  },
+  "d1a_junk_list": {
+    "sql": "\n        WITH t AS (SELECT TABLE_NAME, ROW_COUNT FROM LIBRARY_RAW.INFORMATION_SCHEMA.TABLES\n                   WHERE TABLE_SCHEMA='LANDING')\n        SELECT c.SOURCE_ID, c.LIFECYCLE, t.ROW_COUNT\n        FROM LIBRARY_META.REGISTRY.CATALOG c\n        LEFT JOIN t ON t.TABLE_NAME = UPPER(c.SOURCE_ID)\n        WHERE c.LIFECYCLE IN ('landed','modeled')\n          AND (t.TABLE_NAME IS NULL OR t.ROW_COUNT <= 3)\n        ORDER BY c.SOURCE_ID",
+    "columns": [
+      "SOURCE_ID",
+      "LIFECYCLE",
+      "ROW_COUNT"
+    ],
+    "rows": [
+      [
+        "fed_cdc_wonder",
+        "landed",
+        "1"
+      ],
+      [
+        "fed_cms_hpt_mrf",
+        "landed",
+        "1"
+      ],
+      [
+        "fed_doj_crt_cases",
+        "landed",
+        "1"
+      ],
+      [
+        "fed_fbi_cde",
+        "landed",
+        "1"
+      ],
+      [
+        "fed_fincen_boi",
+        "landed",
+        "1"
+      ],
+      [
+        "fed_fra_safety",
+        "landed",
+        "1"
+      ],
+      [
+        "intl_austlii",
+        "landed",
+        "1"
+      ],
+      [
+        "intl_ge_datagov",
+        "landed",
+        "1"
+      ]
+    ]
+  },
+  "d1b_fhfa_nmdb": {
+    "sql": "\n        SELECT c.SOURCE_ID, c.LIFECYCLE, t.ROW_COUNT\n        FROM LIBRARY_META.REGISTRY.CATALOG c\n        LEFT JOIN LIBRARY_RAW.INFORMATION_SCHEMA.TABLES t\n          ON t.TABLE_SCHEMA='LANDING' AND t.TABLE_NAME='FED_FHFA_NMDB'\n        WHERE c.SOURCE_ID='fed_fhfa_nmdb'",
+    "columns": [
+      "SOURCE_ID",
+      "LIFECYCLE",
+      "ROW_COUNT"
+    ],
+    "rows": [
+      [
+        "fed_fhfa_nmdb",
+        "landed",
+        "19054246"
+      ]
+    ]
+  },
+  "d1c_op2022_catalog": {
+    "sql": "SELECT SOURCE_ID, LIFECYCLE FROM LIBRARY_META.REGISTRY.CATALOG WHERE SOURCE_ID='fed_cms_open_payments_2022'",
+    "columns": [
+      "SOURCE_ID",
+      "LIFECYCLE"
+    ],
+    "rows": [
+      [
+        "fed_cms_open_payments_2022",
+        "failed"
+      ]
+    ]
+  },
+  "d1c_op2022_run": {
+    "sql": "SELECT * FROM LIBRARY_META.INGEST_LOGS.INGEST_RUNS WHERE RUN_ID='60f19a4a53054596'",
+    "columns": [
+      "SOURCE_ID",
+      "RUN_ID",
+      "STARTED_AT",
+      "ENDED_AT",
+      "STATUS",
+      "ROW_COUNT",
+      "FILE_BYTES",
+      "SHA256",
+      "SOURCE_URL",
+      "MESSAGE",
+      "_LOADED_AT"
+    ],
+    "rows": [
+      [
+        "fed_cms_open_payments_2022",
+        "60f19a4a53054596",
+        "2026-06-28 18:28:02.893630",
+        "2026-06-28 18:50:30.281923",
+        "error",
+        "0",
+        "0",
+        "",
+        "https://download.cms.gov/openpayments/PGYR2022_P01232026_01102026/OP_DTL_GNRL_PGYR2022_P01232026_01102026.csv",
+        "PY2022 load failed: ValueError: I/O operation on closed file.",
+        "2026-06-28 11:50:30.337000"
+      ]
+    ]
+  },
+  "d1c_op2022_rows": {
+    "sql": "SELECT ROW_COUNT FROM LIBRARY_RAW.INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='LANDING' AND TABLE_NAME='FED_CMS_OPEN_PAYMENTS_2022'",
+    "columns": [
+      "ROW_COUNT"
+    ],
+    "rows": [
+      [
+        "13250000"
+      ]
+    ]
+  },
+  "d1d_irs_tables": {
+    "sql": "SELECT TABLE_SCHEMA, TABLE_NAME, ROW_COUNT FROM LIBRARY_RAW.INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME LIKE '%IRS%BMF%' ORDER BY 1,2",
+    "columns": [
+      "TABLE_SCHEMA",
+      "TABLE_NAME",
+      "ROW_COUNT"
+    ],
+    "rows": [
+      [
+        "LANDING",
+        "FED_IRS_BMF",
+        "1974830"
+      ],
+      [
+        "LANDING",
+        "FED_IRS_EO_BMF",
+        "3949660"
+      ]
+    ]
+  },
+  "d1d_irs_dup_scan": {
+    "sql": "\n        SELECT 'FED_IRS_EO_BMF' AS tbl, COUNT(*) AS n, COUNT(DISTINCT EIN) AS distinct_ein\n        FROM LIBRARY_RAW.LANDING.FED_IRS_EO_BMF\n        UNION ALL\n        SELECT 'FED_IRS_BMF', COUNT(*), COUNT(DISTINCT EIN)\n        FROM LIBRARY_RAW.LANDING.FED_IRS_BMF",
+    "columns": [
+      "TBL",
+      "N",
+      "DISTINCT_EIN"
+    ],
+    "rows": [
+      [
+        "FED_IRS_EO_BMF",
+        "3949660",
+        "1974830"
+      ],
+      [
+        "FED_IRS_BMF",
+        "1974830",
+        "1974830"
+      ]
+    ]
+  },
+  "d2a_staging_alltext": {
+    "sql": "\n        SELECT COUNT(*) AS views_total, SUM(IFF(non_text=0,1,0)) AS all_text_views\n        FROM (SELECT TABLE_SCHEMA||'.'||TABLE_NAME AS v,\n                     SUM(IFF(DATA_TYPE<>'TEXT',1,0)) AS non_text\n              FROM LIBRARY_STAGING.INFORMATION_SCHEMA.COLUMNS\n              WHERE TABLE_SCHEMA<>'INFORMATION_SCHEMA' GROUP BY 1)",
+    "columns": [
+      "VIEWS_TOTAL",
+      "ALL_TEXT_VIEWS"
+    ],
+    "rows": [
+      [
+        "1033",
+        "819"
+      ]
+    ]
+  },
+  "d2b_thelibrary_zerocast": {
+    "sql": "\n        SELECT COUNT(*) AS views_total, SUM(IFF(non_text=0,1,0)) AS zero_cast_views\n        FROM (SELECT TABLE_SCHEMA||'.'||TABLE_NAME AS v,\n                     SUM(IFF(DATA_TYPE<>'TEXT',1,0)) AS non_text\n              FROM THE_LIBRARY.INFORMATION_SCHEMA.COLUMNS\n              WHERE TABLE_SCHEMA<>'INFORMATION_SCHEMA' GROUP BY 1)",
+    "columns": [
+      "VIEWS_TOTAL",
+      "ZERO_CAST_VIEWS"
+    ],
+    "rows": [
+      [
+        "233",
+        "3"
+      ]
+    ]
+  },
+  "d2c_unstaged_landed": {
+    "sql": "\n        SELECT COUNT(*) AS landed_modeled,\n               SUM(IFF(s.n IS NULL,1,0)) AS unstaged\n        FROM LIBRARY_META.REGISTRY.CATALOG c\n        LEFT JOIN (SELECT TABLE_NAME, 1 AS n FROM LIBRARY_STAGING.INFORMATION_SCHEMA.VIEWS) s\n          ON s.TABLE_NAME LIKE 'STG_' || UPPER(c.SOURCE_ID) || '%'\n        WHERE c.LIFECYCLE IN ('landed','modeled')",
+    "columns": [
+      "LANDED_MODELED",
+      "UNSTAGED"
+    ],
+    "rows": [
+      [
+        "205",
+        "99"
+      ]
+    ]
+  },
+  "d4_connect_tables": {
+    "sql": "SHOW TABLES IN SCHEMA LIBRARY_META.\"CONNECT\"",
+    "columns": [
+      "created_on",
+      "name",
+      "database_name",
+      "schema_name",
+      "kind",
+      "comment",
+      "cluster_by",
+      "rows",
+      "bytes",
+      "owner",
+      "retention_time",
+      "automatic_clustering",
+      "change_tracking",
+      "search_optimization",
+      "search_optimization_progress",
+      "search_optimization_bytes",
+      "is_external",
+      "enable_schema_evolution",
+      "owner_role_type",
+      "is_event",
+      "is_hybrid",
+      "is_iceberg",
+      "is_dynamic",
+      "is_immutable",
+      "is_interactive",
+      "row_timestamp",
+      "error_logging"
+    ],
+    "rows": [
+      [
+        "2026-07-02 08:48:22.330000-07:00",
+        "CONNECT_EDGES",
+        "LIBRARY_META",
+        "CONNECT",
+        "TABLE",
+        "Canonical persisted connection graph: one row per (table A, table B, key) edge with measured overlap. Full rebuilds replace it; the incremental engine merges into it; outputs/connect_graph.json is a regenerable projection. Added 2026-07-02 so the graph is queryable and survives a fresh checkout.",
+        "",
+        "41241",
+        "2060800",
+        "ACCOUNTADMIN",
+        "1",
+        "OFF",
+        "OFF",
+        "OFF",
+        null,
+        null,
+        "N",
+        "N",
+        "ROLE",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "OFF",
+        "OFF"
+      ],
+      [
+        "2026-06-29 15:43:03.718000-07:00",
+        "CONNECT_EDGES_INC",
+        "LIBRARY_META",
+        "CONNECT",
+        "TABLE",
+        "",
+        "",
+        "1074",
+        "72192",
+        "ACCOUNTADMIN",
+        "1",
+        "OFF",
+        "OFF",
+        "OFF",
+        null,
+        null,
+        "N",
+        "N",
+        "ROLE",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "OFF",
+        "OFF"
+      ],
+      [
+        "2026-07-11 20:53:54.679000-07:00",
+        "CONNECT_NODES",
+        "LIBRARY_META",
+        "CONNECT",
+        "TABLE",
+        "",
+        "",
+        "10769408",
+        "213557760",
+        "ACCOUNTADMIN",
+        "1",
+        "OFF",
+        "OFF",
+        "OFF",
+        null,
+        null,
+        "N",
+        "N",
+        "ROLE",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "OFF",
+        "OFF"
+      ],
+      [
+        "2026-06-29 13:55:56.122000-07:00",
+        "CONNECT_WATERMARK",
+        "LIBRARY_META",
+        "CONNECT",
+        "TABLE",
+        "",
+        "",
+        "839",
+        "70656",
+        "ACCOUNTADMIN",
+        "1",
+        "OFF",
+        "OFF",
+        "OFF",
+        null,
+        null,
+        "N",
+        "N",
+        "ROLE",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "OFF",
+        "OFF"
+      ],
+      [
+        "2026-07-11 20:52:45.564000-07:00",
+        "CROSSWALK_SCRATCH",
+        "LIBRARY_META",
+        "CONNECT",
+        "TRANSIENT",
+        "",
+        "",
+        "4214248",
+        "19408384",
+        "ACCOUNTADMIN",
+        "1",
+        "OFF",
+        "OFF",
+        "OFF",
+        null,
+        null,
+        "N",
+        "N",
+        "ROLE",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "OFF",
+        "OFF"
+      ],
+      [
+        "2026-06-25 12:51:54.715000-07:00",
+        "DECISIONS",
+        "LIBRARY_META",
+        "CONNECT",
+        "TABLE",
+        "",
+        "",
+        "0",
+        "0",
+        "ACCOUNTADMIN",
+        "1",
+        "OFF",
+        "OFF",
+        "OFF",
+        null,
+        null,
+        "N",
+        "N",
+        "ROLE",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "OFF",
+        "OFF"
+      ],
+      [
+        "2026-06-29 15:42:39.756000-07:00",
+        "ENTITY_INDEX",
+        "LIBRARY_META",
+        "CONNECT",
+        "TABLE",
+        "",
+        "",
+        "10741371",
+        "398042624",
+        "ACCOUNTADMIN",
+        "1",
+        "OFF",
+        "OFF",
+        "OFF",
+        null,
+        null,
+        "N",
+        "N",
+        "ROLE",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "OFF",
+        "OFF"
+      ],
+      [
+        "2026-07-11 20:54:03.590000-07:00",
+        "ENTITY_MAP",
+        "LIBRARY_META",
+        "CONNECT",
+        "TABLE",
+        "",
+        "",
+        "9813877",
+        "151866880",
+        "ACCOUNTADMIN",
+        "1",
+        "OFF",
+        "OFF",
+        "OFF",
+        null,
+        null,
+        "N",
+        "N",
+        "ROLE",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "OFF",
+        "OFF"
+      ],
+      [
+        "2026-06-25 11:01:00.257000-07:00",
+        "GOLD_PAIRS",
+        "LIBRARY_META",
+        "CONNECT",
+        "TABLE",
+        "",
+        "",
+        "6538936",
+        "86451712",
+        "ACCOUNTADMIN",
+        "1",
+        "OFF",
+        "OFF",
+        "OFF",
+        null,
+        null,
+        "N",
+        "N",
+        "ROLE",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "OFF",
+        "OFF"
+      ],
+      [
+        "2026-06-29 13:55:57-07:00",
+        "KEYSET_LIVE",
+        "LIBRARY_META",
+        "CONNECT",
+        "TABLE",
+        "",
+        "LINEAR(TABLE_NAME)",
+        "40754911",
+        "324521472",
+        "ACCOUNTADMIN",
+        "1",
+        "ON",
+        "OFF",
+        "OFF",
+        null,
+        null,
+        "N",
+        "N",
+        "ROLE",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "OFF",
+        "OFF"
+      ],
+      [
+        "2026-07-11 21:33:37.600000-07:00",
+        "KEYSET_SCRATCH",
+        "LIBRARY_META",
+        "CONNECT",
+        "TRANSIENT",
+        "",
+        "",
+        "56270928",
+        "516851200",
+        "ACCOUNTADMIN",
+        "1",
+        "OFF",
+        "OFF",
+        "OFF",
+        null,
+        null,
+        "N",
+        "N",
+        "ROLE",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "OFF",
+        "OFF"
+      ],
+      [
+        "2026-06-25 12:43:31.542000-07:00",
+        "MATCH_MODEL",
+        "LIBRARY_META",
+        "CONNECT",
+        "TABLE",
+        "",
+        "",
+        "5",
+        "1536",
+        "ACCOUNTADMIN",
+        "1",
+        "OFF",
+        "OFF",
+        "OFF",
+        null,
+        null,
+        "N",
+        "N",
+        "ROLE",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "OFF",
+        "OFF"
+      ],
+      [
+        "2026-07-11 20:54:00.468000-07:00",
+        "MATCH_PAIRS",
+        "LIBRARY_META",
+        "CONNECT",
+        "TABLE",
+        "",
+        "",
+        "955546",
+        "7048192",
+        "ACCOUNTADMIN",
+        "1",
+        "OFF",
+        "OFF",
+        "OFF",
+        null,
+        null,
+        "N",
+        "N",
+        "ROLE",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "OFF",
+        "OFF"
+      ],
+      [
+        "2026-06-25 12:43:31.861000-07:00",
+        "MATCH_RUNGS",
+        "LIBRARY_META",
+        "CONNECT",
+        "TABLE",
+        "",
+        "",
+        "3",
+        "1536",
+        "ACCOUNTADMIN",
+        "1",
+        "OFF",
+        "OFF",
+        "OFF",
+        null,
+        null,
+        "N",
+        "N",
+        "ROLE",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "OFF",
+        "OFF"
+      ],
+      [
+        "2026-06-25 13:13:55.416000-07:00",
+        "NICKNAME_MAP",
+        "LIBRARY_META",
+        "CONNECT",
+        "TABLE",
+        "",
+        "",
+        "102",
+        "2048",
+        "ACCOUNTADMIN",
+        "1",
+        "OFF",
+        "OFF",
+        "OFF",
+        null,
+        null,
+        "N",
+        "N",
+        "ROLE",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "OFF",
+        "OFF"
+      ],
+      [
+        "2026-07-11 20:53:31.346000-07:00",
+        "SPINE_KEYSET",
+        "LIBRARY_META",
+        "CONNECT",
+        "TRANSIENT",
+        "",
+        "",
+        "10769408",
+        "41465344",
+        "ACCOUNTADMIN",
+        "1",
+        "OFF",
+        "OFF",
+        "OFF",
+        null,
+        null,
+        "N",
+        "N",
+        "ROLE",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "OFF",
+        "OFF"
+      ],
+      [
+        "2026-06-29 13:55:56.580000-07:00",
+        "SPINE_KEYSET_LIVE",
+        "LIBRARY_META",
+        "CONNECT",
+        "TABLE",
+        "",
+        "LINEAR(TABLE_NAME)",
+        "10741371",
+        "42729472",
+        "ACCOUNTADMIN",
+        "1",
+        "ON",
+        "OFF",
+        "OFF",
+        null,
+        null,
+        "N",
+        "N",
+        "ROLE",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "OFF",
+        "OFF"
+      ]
+    ]
+  },
+  "d4_connect_views": {
+    "sql": "SHOW VIEWS IN SCHEMA LIBRARY_META.\"CONNECT\"",
+    "columns": [
+      "created_on",
+      "name",
+      "reserved",
+      "database_name",
+      "schema_name",
+      "owner",
+      "comment",
+      "text",
+      "is_secure",
+      "is_materialized",
+      "owner_role_type",
+      "change_tracking"
+    ],
+    "rows": [
+      [
+        "2026-07-06 17:23:05.512000-07:00",
+        "V_CONNECTIONS",
+        "",
+        "LIBRARY_META",
+        "CONNECT",
+        "ACCOUNTADMIN",
+        "One row per connection-graph edge, human-readable. table_a.col_a = table_b.col_b\nis a runnable join. tier STEEL/STRONG = hard identifier; GEO/CORROBORATED/PROBABILISTIC\nare softer. Built over CONNECT_EDGES; regenerable.",
+        "CREATE OR REPLACE VIEW LIBRARY_META.\"CONNECT\".V_CONNECTIONS COPY GRANTS\ncomment = 'One row per connection-graph edge, human-readable. table_a.col_a = table_b.col_b\\nis a runnable join. tier STEEL/STRONG = hard identifier; GEO/CORROBORATED/PROBABILISTIC\\nare softer. Built over CONNECT_EDGES; regenerable.' AS\nSELECT\n    e.A                         AS table_a,\n    e.A_COL                     AS col_a,\n    e.B                         AS table_b,\n    e.B_COL                     AS col_b,\n    e.KEY                       AS join_key,\n    e.TIER                      AS tier,\n    e.CONFIDENCE                AS confidence,\n    e.MATCHED                   AS matched_values,\n    e.MATCH_RATE                AS match_rate_pct,\n    e.A_DISTINCT                AS a_distinct,\n    e.B_DISTINCT                AS b_distinct,\n    ca.DOMAIN_PRIMARY           AS domain_a,\n    cb.DOMAIN_PRIMARY           AS domain_b,\n    CASE WHEN e.A_COL IS NOT NULL AND e.B_COL IS NOT NULL THEN\n        'SELECT a.*, b.* FROM LIBRARY_RAW.LANDING.' || e.A || ' a '\n        || 'JOIN LIBRARY_RAW.LANDING.' || e.B || ' b '\n        || 'ON a.' || e.A_COL || ' = b.' || e.B_COL\n    END                         AS join_hint,\n    e.\"SAMPLE\"                  AS sample_values,\n    e.BUILT_AT                  AS built_at\nFROM LIBRARY_META.\"CONNECT\".CONNECT_EDGES e\nLEFT JOIN LIBRARY_META.REGISTRY.CATALOG ca ON UPPER(ca.SOURCE_ID) = e.A\nLEFT JOIN LIBRARY_META.REGISTRY.CATALOG cb ON UPPER(cb.SOURCE_ID) = e.B",
+        "false",
+        "false",
+        "ROLE",
+        "OFF"
+      ],
+      [
+        "2026-07-06 17:23:07.076000-07:00",
+        "V_CONNECTION_SUMMARY",
+        "",
+        "LIBRARY_META",
+        "CONNECT",
+        "ACCOUNTADMIN",
+        "Browse menu for the connection graph: edge counts and best overlap per\n(domain_a, domain_b, tier). Which domains connect, and how strongly.",
+        "CREATE OR REPLACE VIEW LIBRARY_META.\"CONNECT\".V_CONNECTION_SUMMARY COPY GRANTS\ncomment = 'Browse menu for the connection graph: edge counts and best overlap per\\n(domain_a, domain_b, tier). Which domains connect, and how strongly.' AS\nSELECT\n    domain_a,\n    domain_b,\n    tier,\n    COUNT(*)                    AS edges,\n    COUNT(DISTINCT table_a)     AS distinct_a_tables,\n    COUNT(DISTINCT table_b)     AS distinct_b_tables,\n    MAX(matched_values)         AS max_overlap,\n    ROUND(AVG(confidence), 3)   AS avg_confidence\nFROM LIBRARY_META.\"CONNECT\".V_CONNECTIONS\nGROUP BY 1, 2, 3",
+        "false",
+        "false",
+        "ROLE",
+        "OFF"
+      ],
+      [
+        "2026-07-03 13:27:24.637000-07:00",
+        "V_LEADS_PUBLISHED",
+        "",
+        "LIBRARY_META",
+        "CONNECT",
+        "ACCOUNTADMIN",
+        "The SAFE way to read leads in SQL: published()-semantics as a view. Drops leads whose latest human verdict is rejected/retracted/stale, drops leads absent from the latest run (STATUS<>active), and stamps every survivor with REVIEW_STATE + PUBLISHED so an unreviewed lead can never read as fact. Built by the Investigator Instrument 2026-07-03; mirrors connect/leads.py published(). Regenerable.",
+        "CREATE OR REPLACE VIEW LIBRARY_META.\"CONNECT\".V_LEADS_PUBLISHED\ncomment = 'The SAFE way to read leads in SQL: published()-semantics as a view. Drops leads whose latest human verdict is rejected/retracted/stale, drops leads absent from the latest run (STATUS<>active), and stamps every survivor with REVIEW_STATE + PUBLISHED so an unreviewed lead can never read as fact. Built by the Investigator Instrument 2026-07-03; mirrors connect/leads.py published(). Regenerable.' \nAS\nWITH latest_verdict AS (\n    SELECT TARGET_ID, DECISION\n    FROM LIBRARY_META.\"CONNECT\".DECISIONS\n    WHERE TARGET_KIND = 'lead'\n    QUALIFY ROW_NUMBER() OVER (PARTITION BY TARGET_ID ORDER BY DECIDED_AT DESC) = 1\n)\nSELECT\n    l.*,\n    COALESCE(v.DECISION, 'pending')                    AS REVIEW_STATE,\n    COALESCE(v.DECISION, 'pending') = 'confirmed'      AS PUBLISHED\nFROM LIBRARY_META.\"CONNECT\".LEADS l\nLEFT JOIN latest_verdict v ON v.TARGET_ID = l.LEAD_ID\nWHERE COALESCE(l.STATUS, 'active') = 'active'\n  AND COALESCE(v.DECISION, 'pending') NOT IN ('rejected', 'retracted', 'stale')",
+        "false",
+        "false",
+        "ROLE",
+        "OFF"
+      ]
+    ]
+  },
+  "d4_edges_columns": {
+    "sql": "DESC TABLE LIBRARY_META.\"CONNECT\".CONNECT_EDGES",
+    "columns": [
+      "name",
+      "type",
+      "kind",
+      "null?",
+      "default",
+      "primary key",
+      "unique key",
+      "check",
+      "expression",
+      "comment",
+      "policy name",
+      "privacy domain",
+      "write default"
+    ],
+    "rows": [
+      [
+        "A",
+        "VARCHAR(16777216)",
+        "COLUMN",
+        "Y",
+        null,
+        "N",
+        "N",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "B",
+        "VARCHAR(16777216)",
+        "COLUMN",
+        "Y",
+        null,
+        "N",
+        "N",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "KEY",
+        "VARCHAR(16777216)",
+        "COLUMN",
+        "Y",
+        null,
+        "N",
+        "N",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "TIER",
+        "VARCHAR(16777216)",
+        "COLUMN",
+        "Y",
+        null,
+        "N",
+        "N",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "MATCHED",
+        "NUMBER(38,0)",
+        "COLUMN",
+        "Y",
+        null,
+        "N",
+        "N",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "A_DISTINCT",
+        "NUMBER(38,0)",
+        "COLUMN",
+        "Y",
+        null,
+        "N",
+        "N",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "B_DISTINCT",
+        "NUMBER(38,0)",
+        "COLUMN",
+        "Y",
+        null,
+        "N",
+        "N",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "MATCH_RATE",
+        "FLOAT",
+        "COLUMN",
+        "Y",
+        null,
+        "N",
+        "N",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "CONFIDENCE",
+        "FLOAT",
+        "COLUMN",
+        "Y",
+        null,
+        "N",
+        "N",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "SAMPLE",
+        "VARIANT",
+        "COLUMN",
+        "Y",
+        null,
+        "N",
+        "N",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "RUN_ID",
+        "VARCHAR(16777216)",
+        "COLUMN",
+        "Y",
+        null,
+        "N",
+        "N",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "BUILT_AT",
+        "TIMESTAMP_NTZ(9)",
+        "COLUMN",
+        "Y",
+        null,
+        "N",
+        "N",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "A_COL",
+        "VARCHAR(16777216)",
+        "COLUMN",
+        "Y",
+        null,
+        "N",
+        "N",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "B_COL",
+        "VARCHAR(16777216)",
+        "COLUMN",
+        "Y",
+        null,
+        "N",
+        "N",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    ]
+  },
+  "d4_edges_by_tier": {
+    "sql": "SELECT TIER, COUNT(*) AS n FROM LIBRARY_META.\"CONNECT\".CONNECT_EDGES GROUP BY 1 ORDER BY 2 DESC",
+    "columns": [
+      "TIER",
+      "N"
+    ],
+    "rows": [
+      [
+        "GEO",
+        "21912"
+      ],
+      [
+        "PROBABILISTIC",
+        "14861"
+      ],
+      [
+        "STRONG",
+        "2224"
+      ],
+      [
+        "CORROBORATED",
+        "1611"
+      ],
+      [
+        "STEEL",
+        "473"
+      ],
+      [
+        "BRIDGE",
+        "160"
+      ]
+    ]
+  },
+  "d4_zip_share": {
+    "sql": "SELECT COUNT(*) AS edges, SUM(IFF(KEY IN ('ZIP','ZIP5','ZIP_CODE'),1,0)) AS zip_edges FROM LIBRARY_META.\"CONNECT\".CONNECT_EDGES",
+    "columns": [
+      "EDGES",
+      "ZIP_EDGES"
+    ],
+    "rows": [
+      [
+        "41241",
+        "21538"
+      ]
+    ]
+  },
+  "d4_v_connections_core_count": {
+    "sql": "SELECT COUNT(*) AS n FROM LIBRARY_META.\"CONNECT\".V_CONNECTIONS_CORE",
+    "error": "002003 (42S02): SQL compilation error:"
+  },
+  "d5_landing_empties": {
+    "sql": "SELECT COUNT(*) AS tables_total, SUM(IFF(ROW_COUNT=0,1,0)) AS zero_rows, SUM(IFF(ROW_COUNT BETWEEN 1 AND 3,1,0)) AS rows_1_to_3 FROM LIBRARY_RAW.INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='LANDING'",
+    "columns": [
+      "TABLES_TOTAL",
+      "ZERO_ROWS",
+      "ROWS_1_TO_3"
+    ],
+    "rows": [
+      [
+        "1785",
+        "0",
+        "49"
+      ]
+    ]
+  },
+  "d6_open_payments_tables": {
+    "sql": "SELECT TABLE_NAME, ROW_COUNT FROM LIBRARY_RAW.INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='LANDING' AND TABLE_NAME LIKE '%OPEN_PAYMENTS%' ORDER BY 1",
+    "columns": [
+      "TABLE_NAME",
+      "ROW_COUNT"
+    ],
+    "rows": [
+      [
+        "FED_CMS_OPEN_PAYMENTS",
+        "15385047"
+      ],
+      [
+        "FED_CMS_OPEN_PAYMENTS_2022",
+        "13250000"
+      ],
+      [
+        "FED_CMS_OPEN_PAYMENTS_2023",
+        "14700786"
+      ]
+    ]
+  },
+  "d6_leie_zero_npi": {
+    "sql": "\n        SELECT COUNT(*) AS n, SUM(IFF(NPI='0000000000',1,0)) AS zero_npi\n        FROM LIBRARY_RAW.LANDING.FED_OIG_LEIE",
+    "error": "002003 (42S02): SQL compilation error:"
+  },
+  "d6_leie_find": {
+    "sql": "SELECT TABLE_NAME, ROW_COUNT FROM LIBRARY_RAW.INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='LANDING' AND TABLE_NAME LIKE '%LEIE%'",
+    "columns": [
+      "TABLE_NAME",
+      "ROW_COUNT"
+    ],
+    "rows": [
+      [
+        "FED_HHS_OIG_LEIE",
+        "83464"
+      ]
+    ]
+  },
+  "d6_ofac_sdn_type": {
+    "sql": "\n        SELECT '[' || SDN_TYPE || ']' AS sdn_type_bracketed, COUNT(*) AS n\n        FROM LIBRARY_RAW.LANDING.INTL_OFAC_SDN GROUP BY 1 ORDER BY 2 DESC LIMIT 10",
+    "error": "002003 (42S02): SQL compilation error:"
+  },
+  "d6_ofac_find": {
+    "sql": "SELECT TABLE_NAME, ROW_COUNT FROM LIBRARY_RAW.INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='LANDING' AND (TABLE_NAME LIKE '%OFAC%' OR TABLE_NAME LIKE '%SDN%')",
+    "columns": [
+      "TABLE_NAME",
+      "ROW_COUNT"
+    ],
+    "rows": [
+      [
+        "FED_OFAC_SDN",
+        "19115"
+      ],
+      [
+        "FED_EPA_ENVIROFACTS",
+        "5000"
+      ]
+    ]
+  },
+  "d6_ais_find": {
+    "sql": "SELECT TABLE_NAME, ROW_COUNT FROM LIBRARY_RAW.INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='LANDING' AND TABLE_NAME LIKE '%AIS%'",
+    "columns": [
+      "TABLE_NAME",
+      "ROW_COUNT"
+    ],
+    "rows": [
+      [
+        "FED_NOAA_AIS",
+        "58106517"
+      ]
+    ]
+  },
+  "d6_ais_daterange": {
+    "sql": "SELECT MIN(BASEDATETIME) AS min_dt, MAX(BASEDATETIME) AS max_dt, COUNT(*) AS n FROM LIBRARY_RAW.LANDING.FED_NOAA_AIS",
+    "columns": [
+      "MIN_DT",
+      "MAX_DT",
+      "N"
+    ],
+    "rows": [
+      [
+        "2024-01-01T00:00:00",
+        "2024-01-08T23:59:59",
+        "58106517"
+      ]
+    ]
+  },
+  "d7_rlike_demo": {
+    "sql": "SELECT 'catalog' RLIKE 'cat' AS unanchored_matches, 'catalog' RLIKE '.*cat.*' AS anchored_matches",
+    "columns": [
+      "UNANCHORED_MATCHES",
+      "ANCHORED_MATCHES"
+    ],
+    "rows": [
+      [
+        "False",
+        "True"
+      ]
+    ]
+  },
+  "d8_politics_marts": {
+    "sql": "SELECT TABLE_SCHEMA, COUNT(*) AS n FROM LIBRARY_MARTS.INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME ILIKE 'POLITICS__%' GROUP BY 1",
+    "columns": [
+      "TABLE_SCHEMA",
+      "N"
+    ],
+    "rows": [
+      [
+        "POLITICS",
+        "24"
+      ]
+    ]
+  },
+  "d10_leads_columns": {
+    "sql": "DESC TABLE LIBRARY_META.\"CONNECT\".LEADS",
+    "error": "002003 (42S02): SQL compilation error:"
+  },
+  "a5_frozen_marts_rowcounts": {
+    "sql": "SELECT TABLE_NAME, ROW_COUNT FROM LIBRARY_MARTS.INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='DBT_CROGERS' AND TABLE_NAME IN ('CORPORATE_REGISTRY__INTL_IE_CRO','REGULATORY__FED_FEDERAL_REGISTER_DOCUMENTS','HISTORY__FED_SLAVEVOYAGES_INTRAAMERICAN','JUSTICE__FED_NAAG_MULTISTATE_SETTLEMENTS','SPENDING__FED_HHS_TAGGS','CORPORATE_REGISTRY__INTL_ES_BORME','JUSTICE__FED_DOJ_FCA_SETTLEMENTS') ORDER BY 1",
+    "columns": [
+      "TABLE_NAME",
+      "ROW_COUNT"
+    ],
+    "rows": [
+      [
+        "CORPORATE_REGISTRY__INTL_ES_BORME",
+        "3"
+      ],
+      [
+        "JUSTICE__FED_DOJ_FCA_SETTLEMENTS",
+        "12"
+      ],
+      [
+        "REGULATORY__FED_FEDERAL_REGISTER_DOCUMENTS",
+        "5000"
+      ]
+    ]
+  },
+  "a6_giant_aggs": {
+    "sql": "SELECT TABLE_NAME, ROW_COUNT FROM LIBRARY_MARTS.INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='PUBLIC' AND TABLE_NAME LIKE '%_AGG' ORDER BY 1",
+    "columns": [
+      "TABLE_NAME",
+      "ROW_COUNT"
+    ],
+    "rows": []
+  },
+  "a8_join_keys_provisional": {
+    "sql": "SELECT COUNT(*) AS landed_modeled, SUM(IFF(TO_BOOLEAN(JOIN_KEY_TIER_PROVISIONAL),1,0)) AS still_provisional FROM LIBRARY_META.REGISTRY.CATALOG WHERE LIFECYCLE IN ('landed','modeled')",
+    "columns": [
+      "LANDED_MODELED",
+      "STILL_PROVISIONAL"
+    ],
+    "rows": [
+      [
+        "199",
+        "142"
+      ]
+    ]
+  },
+  "match_model": {
+    "sql": "SELECT * FROM LIBRARY_META.\"CONNECT\".MATCH_MODEL",
+    "columns": [
+      "MODEL_VERSION",
+      "FIELD",
+      "M",
+      "U",
+      "SURNAME_MODE",
+      "START_BITS",
+      "CREATED_AT"
+    ],
+    "rows": [
+      [
+        "fs_emp_95b289e0",
+        "surname",
+        "0.999708",
+        "0.508104",
+        "tf",
+        "-10.5915",
+        null
+      ],
+      [
+        "fs_emp_95b289e0",
+        "first",
+        "0.989778",
+        "0.067526",
+        "tf",
+        "-10.5915",
+        null
+      ],
+      [
+        "fs_emp_95b289e0",
+        "zip",
+        "0.247664",
+        "0.003356",
+        "tf",
+        "-10.5915",
+        null
+      ],
+      [
+        "fs_emp_95b289e0",
+        "address",
+        "0.166764",
+        "0.000172",
+        "tf",
+        "-10.5915",
+        null
+      ],
+      [
+        "fs_emp_95b289e0",
+        "middle",
+        "0.986928",
+        "0.078147",
+        "tf",
+        "-10.5915",
+        null
+      ]
+    ]
+  },
+  "match_rungs": {
+    "sql": "SELECT * FROM LIBRARY_META.\"CONNECT\".MATCH_RUNGS",
+    "columns": [
+      "MODEL_VERSION",
+      "RUNG",
+      "MIN_M",
+      "MEASURED_PRECISION",
+      "MEASURED_PRECISION_LO95",
+      "COVERAGE_RECALL",
+      "CREATED_AT"
+    ],
+    "rows": [
+      [
+        "fs_emp_95b289e0",
+        "CONFIRMED",
+        "11.0",
+        "0.8764",
+        "0.8602",
+        "0.4615",
+        null
+      ],
+      [
+        "fs_emp_95b289e0",
+        "STRONG",
+        "8.0",
+        "0.5769",
+        "0.5622",
+        "0.7606",
+        null
+      ],
+      [
+        "fs_emp_95b289e0",
+        "LEAD",
+        "0.0",
+        "0.1186",
+        "0.1148",
+        "0.9913",
+        null
+      ]
+    ]
+  }
+}

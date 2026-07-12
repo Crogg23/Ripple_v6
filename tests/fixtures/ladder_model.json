@@ -1,0 +1,62 @@
+{
+  "built_at": "2026-07-12T18:12:13Z",
+  "model_version": "fs_emp_95b289e0",
+  "surname_mode": "tf",
+  "start_bits": -10.5915,
+  "model": {
+    "surname": {
+      "m": 0.999708,
+      "u": 0.508104
+    },
+    "first": {
+      "m": 0.989778,
+      "u": 0.067526
+    },
+    "zip": {
+      "m": 0.247664,
+      "u": 0.003356
+    },
+    "address": {
+      "m": 0.166764,
+      "u": 0.000172
+    },
+    "middle": {
+      "m": 0.986928,
+      "u": 0.078147
+    }
+  },
+  "rungs": [
+    {
+      "RUNG": "CONFIRMED",
+      "MIN_M": 11.0,
+      "MEASURED_PRECISION": 0.8764,
+      "MEASURED_PRECISION_LO95": 0.8602,
+      "COVERAGE_RECALL": 0.4615
+    },
+    {
+      "RUNG": "STRONG",
+      "MIN_M": 8.0,
+      "MEASURED_PRECISION": 0.5769,
+      "MEASURED_PRECISION_LO95": 0.5622,
+      "COVERAGE_RECALL": 0.7606
+    },
+    {
+      "RUNG": "LEAD",
+      "MIN_M": 0.0,
+      "MEASURED_PRECISION": 0.1186,
+      "MEASURED_PRECISION_LO95": 0.1148,
+      "COVERAGE_RECALL": 0.9913
+    }
+  ],
+  "m_floor": -2,
+  "test_pairs_total": 1242526,
+  "test_positives_total": 3349,
+  "blocking": {
+    "universe": 3468,
+    "captured": 3349,
+    "recall": 0.9657,
+    "max_edit_last": 3
+  },
+  "split": "MOD(ABS(HASH(ID_N)),2)=1 \u2014 by person, same as connect calibrate",
+  "pair": "leie_nppes"
+}
