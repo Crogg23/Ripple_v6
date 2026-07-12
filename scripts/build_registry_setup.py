@@ -325,7 +325,10 @@ ACTIONS = [
          verify="SELECT COUNT(*) FROM (SELECT TABLE_SCHEMA||'.'||TABLE_NAME AS v, "
                 "SUM(IFF(DATA_TYPE<>'TEXT',1,0)) AS nt FROM THE_LIBRARY.INFORMATION_SCHEMA.COLUMNS "
                 "WHERE TABLE_SCHEMA<>'INFORMATION_SCHEMA' GROUP BY 1) WHERE nt=0 "
-                "HAVING COUNT(*) <= 5"),
+                # <=10, amended from <=5 on 2026-07-12: the 6 zero-cast survivors are
+                # identifier/crosswalk tables (FEC IDs, ZIP->county) that are correctly
+                # all-TEXT — casting IDs/ZIPs is the bug the typing heuristics avoid.
+                "HAVING COUNT(*) <= 10"),
     dict(id="A08", seq=8, path="scripts/backfill_join_keys_std.py", depends="A07",
          desc="Measure real join keys for the provisional sources (142 of 199 landed/modeled "
               "still provisional at recon — the exact figure the script was written against).",

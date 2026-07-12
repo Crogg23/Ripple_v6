@@ -7,22 +7,27 @@ infra/keys_ledger.json tracks essentially one of them (the SNOWFLAKE_PAT row) --
 a 9-token blind spot, several of which are unrestricted / ACCOUNTADMIN / already
 expired. Any leaked PAT with role='' or ACCOUNTADMIN is a full-account key.
 
-THIS SCRIPT drops exactly 5 stragglers by an EXPLICIT ALLOW-LIST (never a
-"drop everything except" rule -- a mismatch must FAIL SAFE by dropping nothing):
+THIS SCRIPT drops the stragglers by an EXPLICIT ALLOW-LIST (never a
+"drop everything except" rule -- a mismatch must FAIL SAFE by dropping nothing).
 
-  DROP (5):
-    Ripple_v6           role=''            unrestricted, exp 2027  -> full-account key
-    THE_LIBRARY         role=ACCOUNTADMIN  exp 2027                -> full-account key
-    ripple_loader       role=RIPPLE_ROLE   superseded, exp 2027    -> old loader role
+LISTS REFRESHED 2026-07-12 (Move 5): the two full-account keys (THE_LIBRARY,
+Ripple_v6) were revoked manually in Snowsight on 07-12 and LIBRARY_CLAUDE_PAT
+expired off; what remains:
+
+  DROP (2):
+    ripple_loader       role=RIPPLE_ROLE    superseded, exp 2027    -> old loader role
     RIPPLE_LOADER_PAT2  role=RIPPLE_LOADER  dup of RIPPLE_LOADER_PAT
-    LIBRARY_CLAUDE_PAT  role=''            already EXPIRED
 
-  KEEP (5) -- NEVER dropped:
-    LIBRARY_PAT         the MAIN in-use session token (the live write lane)
+  KEEP (6) -- NEVER dropped:
+    LIBRARY_PAT         standing write lane UNTIL the scoped write PAT (A00) exists
     RIPPLE_LOADER_PAT   least-privilege loader
     CLAUDE_MCP_RO       read-only MCP token
     PORTAL_RECON        recon token
     WAVE3_LOAD          wave-3 load token
+    READER              RIPPLE_READER read lane (minted 2026-07-12)
+
+  (BUILD_BOOTSTRAP, 1-day 2026-07-12 token, is in neither list on purpose --
+   it self-expires; a KEEP entry would ABORT this script after it's gone.)
 
 DDL per drop:  ALTER USER CROGG23 REMOVE PROGRAMMATIC ACCESS TOKEN "<name>"
 Names are quoted to preserve the exact (mixed) case SHOW reports.
@@ -65,12 +70,18 @@ USER = "CROGG23"
 LEDGER = REPO / "infra" / "keys_ledger.json"
 
 # --- EXPLICIT ALLOW-LIST (drop-only). Mismatch => fail safe, drop nothing. ---
+# Lists refreshed 2026-07-12 (Move 5): Chris manually revoked THE_LIBRARY (the
+# leaked 07-05 ACCOUNTADMIN token) and the unrestricted Ripple_v6 in Snowsight;
+# LIBRARY_CLAUDE_PAT expired off SHOW entirely. Two stragglers remain. READER
+# (RIPPLE_READER-restricted, the live read lane) joins KEEP. BUILD_BOOTSTRAP
+# (1-day, self-expires 2026-07-13) is deliberately in NEITHER list — it gets
+# reported as "left alone" while alive and vanishes on its own; putting it in
+# KEEP would make this script ABORT forever after it expires.
+# LIBRARY_PAT stays KEEP for now: it is the only standing write lane until the
+# scoped write PAT (action A00) exists — revisit it then.
 DROP_NAMES = frozenset({
-    "Ripple_v6",
-    "THE_LIBRARY",
     "ripple_loader",
     "RIPPLE_LOADER_PAT2",
-    "LIBRARY_CLAUDE_PAT",
 })
 KEEP_NAMES = frozenset({
     "LIBRARY_PAT",
@@ -78,6 +89,7 @@ KEEP_NAMES = frozenset({
     "CLAUDE_MCP_RO",
     "PORTAL_RECON",
     "WAVE3_LOAD",
+    "READER",
 })
 
 

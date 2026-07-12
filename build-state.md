@@ -1,5 +1,5 @@
 <!-- GENERATED FILE. DO NOT EDIT BY HAND.
-     Source: LIBRARY_META.BUILD  |  Generated: 2026-07-12T17:44:36Z
+     Source: LIBRARY_META.BUILD  |  Generated: 2026-07-12T20:58:09Z
      To change anything here, change the row and regenerate:
      python3 scripts/gen_build_state.py --write -->
 
@@ -9,21 +9,21 @@
 
 ## BUILD STATE (V_BUILD_STATE)
 - actions_irreversible_pending: **1**
-- actions_pending: **12**
+- actions_pending: **2**
 - defects_blocker: **1**
-- defects_open: **19**
+- defects_open: **20**
 - defects_unverified_7d: **1**
 - parked_hot: **4**
 
 ## DATA STATE (V_STATE)
-- catalog.orphans: 285
+- catalog.orphans: 284
 - catalog.sources: 2840
-- connect.edges: 41241
+- connect.edges: 41101
 - connect.edges_inc: 1074
 - connect.entities: 9788419
 - decisions.total: 0
-- landing.rows: 291010049
-- landing.tables: 1786
+- landing.rows: 287060389
+- landing.tables: 1785
 - leads.banned_but_operating.active: 11
 - leads.banned_but_paid.active: 773
 - leads.debarred_but_funded.active: 2
@@ -31,12 +31,12 @@
 - leads.sanctioned_vessel_broadcasting.active: 2
 - leads.sanctioned_vessel_broadcasting_v2.active: 6
 - marts.stale_vs_landing: 1
-- reading_room.views: 233
-- registry.sources: 2555
-- taps.empty: 33
-- taps.failed: 260
-- taps.landed: 175
-- taps.modeled: 25
+- reading_room.views: 252
+- registry.sources: 2556
+- taps.empty: 34
+- taps.failed: 258
+- taps.landed: 171
+- taps.modeled: 30
 - taps.queued: 7
 - taps.sampled: 1579
 - taps.scouted: 758
@@ -47,15 +47,16 @@
 | sev | area | defect | last verdict | verified |
 |---|---|---|---|---|
 | blocker | creds | leaked/unrestricted ACCOUNTADMIN PATs still ACTIVE | clear | 2026-07-12 |
-| high | ci | no ladder regression tests (5 named gaps, no holdout fixture) | still_broken | 2026-07-12 |
-| high | creds | evidence.dev read lane is dark (dead interim token) | still_broken | 2026-07-12 |
+| high | ci | no ladder regression tests (5 named gaps, no holdout fixture) | clear | 2026-07-12 |
+| high | creds | evidence.dev read lane is dark (dead interim token) | clear | 2026-07-12 |
 | high | creds | no scoped write lane exists (reader-only PAT) | still_broken | 2026-07-12 |
-| high | truth_layer | FED_IRS_EO_BMF is an exact 2x duplicate of FED_IRS_BMF | still_broken | 2026-07-12 |
-| high | truth_layer | OP-2022 load mislogged: 13.25M rows live, ledger says error/0 | still_broken | 2026-07-12 |
-| high | truth_layer | build-state.md is hand-typed, not generated | still_broken | 2026-07-12 |
+| high | loader | resolve.py PAIRS spec broken by NPPES re-land (column rename) | clear | 2026-07-12 |
+| high | truth_layer | FED_IRS_EO_BMF is an exact 2x duplicate of FED_IRS_BMF | clear | 2026-07-12 |
+| high | truth_layer | OP-2022 load mislogged: 13.25M rows live, ledger says error/0 | clear | 2026-07-12 |
+| high | truth_layer | build-state.md is hand-typed, not generated | clear | 2026-07-12 |
 | medium | creds | keys_ledger.json does not track the live PAT population | still_broken | 2026-07-12 |
 | medium | creds | source API keys still missing from .env | still_broken | 2026-07-12 |
-| medium | graph | V_CONNECTIONS_CORE (trustworthy-core view) does not exist | still_broken | 2026-07-12 |
+| medium | graph | V_CONNECTIONS_CORE (trustworthy-core view) does not exist | clear | 2026-07-12 |
 | medium | loader | append-mode loaders leave silent partial loads on crash | still_broken | 2026-07-12 |
 | medium | politics | politics marts clobberable by selector-less dbt build | never verified | - |
 | medium | truth_layer | FED_FHFA_NMDB (19M rows) misgraded in catalog lifecycle | clear | 2026-07-12 |
@@ -73,17 +74,9 @@ Re-verify: `python3 scripts/verify_defects.py` — 'clear' is a recommendation; 
 | id | seq | action | flags | depends on |
 |---|---|---|---|---|
 | A00 | 0 | `(Snowsight, manual)` | HUMAN | - |
-| A01 | 1 | `scripts/reconcile_op2022.py` | - | A00 |
-| A02 | 2 | `scripts/build_v_connections_core.py` | - | A00 |
 | A03 | 3 | `scripts/revoke_straggler_pats.py` | HUMAN IRREVERSIBLE | A00 |
-| A04 | 4 | `scripts/dedup_irs_eo_bmf.py` | - | A01,A02 |
-| A05 | 5 | `scripts/rebuild_frozen_marts.py` | - | A04 |
-| A06 | 6 | `scripts/build_giant_aggs.py` | - | A05 |
-| A07 | 7 | `scripts/thelibrary_inventory.py && scripts/thelibrary_build.py --typed` | - | A06 |
-| A08 | 8 | `scripts/backfill_join_keys_std.py` | - | A07 |
-| A09 | 9 | `scripts/gen_evidence_pages.py` | - | A07,A08,A11 |
-| A10 | 10 | `scripts/regrade_empty_loads.py` | - | A00 |
-| A11 | 11 | `evidence/sources/library/connection.yaml.serve (manual swap)` | HUMAN | A00 |
+
+Applied: A10 (2026-07-12 by chris (go 2026-07-12), agent-executed on bootstrap token); A09 (2026-07-12 by chris (go 2026-07-12), agent-executed on bootstrap token); A08 (2026-07-12 by chris (go 2026-07-12), agent-executed on bootstrap token); A11 (2026-07-12 by chris (go 2026-07-12), agent-executed on bootstrap token); A07 (2026-07-12 by chris (go 2026-07-12), agent-executed on bootstrap token); A06 (2026-07-12 by chris (go 2026-07-12), agent-executed on bootstrap token); A05 (2026-07-12 by chris (go 2026-07-12), agent-executed on bootstrap token); A04 (2026-07-12 by chris (go 2026-07-12), agent-executed on bootstrap token); A02 (2026-07-12 by chris (go 2026-07-12), agent-executed on bootstrap token); A01 (2026-07-12 by chris (go 2026-07-12), agent-executed on bootstrap token)
 
 ## PARKED IDEAS
 - [IDEA — HOT] Land one new identifier (EIN wired, or CIK via User-Agent fix) | WHY: Breaks the 75%-of-leads-on-one-edge concentration. EIN is LANDED (see already_done row) but not wired into detectors; CIK needs RIPPLE_CONTACT_UA in .env first.
