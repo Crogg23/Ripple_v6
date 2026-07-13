@@ -1,0 +1,5 @@
+# Reading Room — pinned to the versions verified on the build machine
+# (2026-07-12). Install: pip install -r reading_room/requirements.txt
+streamlit==1.50.0
+snowflake-connector-python==3.18.0
+python-dotenv==1.0.1

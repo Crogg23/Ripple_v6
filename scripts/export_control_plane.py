@@ -10,7 +10,7 @@ regenerated from code + raw — if the database is DROPped (a predecessor infra 
   LIBRARY_META.REGISTRY.FACET_CROSSWALK    raw-category -> domain crosswalk
   LIBRARY_META.REGISTRY.SOURCE_FRESHNESS   the freshness ledger (if applied)
   LIBRARY_META."CONNECT".ENTITY_LINKS      gated fuzzy entity-resolution verdicts
-  LIBRARY_META."CONNECT".DECISIONS         human review sign-offs
+  LIBRARY_META."REVIEW"."DECISIONS"        human review sign-offs (moved from CONNECT 2026-07-12)
   LIBRARY_META."CONNECT".LEADS             persisted leads + their review status
 
 A stage INSIDE LIBRARY_META would die with a DROP DATABASE, so this unloads to a stage, then GETs the
@@ -51,7 +51,7 @@ TARGETS = [
     ("LIBRARY_META.REGISTRY.FACET_CROSSWALK", "facet_crosswalk"),
     ("LIBRARY_META.REGISTRY.SOURCE_FRESHNESS", "source_freshness"),
     ('LIBRARY_META."CONNECT".ENTITY_LINKS', "entity_links"),
-    ('LIBRARY_META."CONNECT".DECISIONS', "decisions"),
+    ('LIBRARY_META."REVIEW"."DECISIONS"', "decisions"),
     ('LIBRARY_META."CONNECT".LEADS', "leads"),
 ]
 

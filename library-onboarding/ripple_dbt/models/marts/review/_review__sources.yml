@@ -1,0 +1,48 @@
+version: 2
+
+# Sources used ONLY by the review marts (lead_queue).
+#
+# NOTE: FED_HHS_OIG_LEIE, FED_CMS_NPPES, FED_CMS_PART_D_PRESCRIBERS,
+# FED_NOAA_AIS, FED_OFAC_SDN (staging schema.yml files) and
+# FED_USASPENDING_CONTRACTS (intermediate/usaspending/schema.yml) are ALREADY
+# declared as ripple_raw sources — do not redeclare them here (dbt errors on
+# duplicate source tables). This file adds only the tables no other model has
+# claimed yet, plus the guarded CONNECT view.
+
+sources:
+  - name: library_meta_connect
+    description: >
+      The connect layer's SAFE read surface. "CONNECT" is a reserved word in
+      Snowflake — the quoting flag below is what renders
+      LIBRARY_META."CONNECT".V_LEADS_PUBLISHED correctly. V_LEADS_PUBLISHED is
+      the libel firewall: active leads only, human-suppressed verdicts
+      (rejected/retracted/stale) already dropped, REVIEW_STATE stamped on every
+      row so an unreviewed lead can never read as fact. The review mart reads
+      THIS view, never raw LEADS — same rule the viz guard enforces.
+    database: LIBRARY_META
+    schema: CONNECT
+    quoting:
+      schema: true
+    tables:
+      - name: V_LEADS_PUBLISHED
+
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_SEC_EDGAR_FINANCIALS
+        description: >
+          SEC financial-statement filer list (55,635 rows / 5,773 distinct
+          EINs, carries NAME + CIK) — the EIN-side enrichment for the dormant
+          sec_filer_in_irs_bmf detector. Deliberately NOT FED_US_SEC_EDGAR,
+          whose EIN column is junk (per connect/leads_specs.py).
+      - name: FED_SAM_EXCLUSIONS
+        description: >
+          SAM.gov exclusions (debarments). CAVEAT (verified live 2026-07-12):
+          exactly 1,000 rows — a suspected capped sample load, so
+          debarred_but_funded breadth is a floor. ACTIVATION_DATE is blank on
+          every row, so no debarment-date timeline is possible yet.
+          (FED_USASPENDING_CONTRACTS is declared by
+          intermediate/usaspending/schema.yml — the lead_queue dollar totals
+          sum FEDERAL_ACTION_OBLIGATION, never the cumulative
+          TOTAL_DOLLARS_OBLIGATED, per POLICY trap_usaspending_grain.)

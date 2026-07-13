@@ -267,6 +267,43 @@ DEFECTS = [
               "tables; only convention prevents a bare 'dbt build' from clobbering them. "
               "Needs eyes on whatever guard gets designed — no query can prove absence.",
          method="human"),
+    dict(area="leads", severity="medium", found="READING_ROOM build 2026-07-12",
+         title="banned_but_operating source table dropped; 11 leads' receipts irreproducible",
+         desc="FED_CMS_FACILITY_AFFILIATION is gone from LIBRARY_RAW.LANDING (verified live "
+              "2026-07-12), so the 11 active banned_but_operating leads' stored COMPILED_SQL "
+              "fails with 'does not exist'. The leads stand (hard-NPI joins at detect time, "
+              "facility evidence frozen in EVIDENCE) but cannot be re-run. Clears when the "
+              "roster table is re-landed or the rule is re-pointed at a live source.",
+         sql="SELECT 1 AS broken WHERE NOT EXISTS (SELECT 1 FROM "
+             "LIBRARY_RAW.INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='LANDING' "
+             "AND TABLE_NAME='FED_CMS_FACILITY_AFFILIATION')"),
+    dict(area="truth_layer", severity="medium", found="READING_ROOM build 2026-07-12",
+         title="FED_SAM_EXCLUSIONS holds exactly 1,000 rows (suspected capped sample load)",
+         desc="A suspiciously round count for a file that runs ~100k+ rows at the source; "
+              "debarred_but_funded breadth is a floor, and ACTIVATION_DATE is blank on every "
+              "row so no debarment-date timeline is possible. Clears when SAM lands fully.",
+         sql="SELECT TABLE_NAME FROM LIBRARY_RAW.INFORMATION_SCHEMA.TABLES "
+             "WHERE TABLE_SCHEMA='LANDING' AND TABLE_NAME='FED_SAM_EXCLUSIONS' "
+             "AND ROW_COUNT = 1000"),
+    dict(area="leads", severity="medium", found="READING_ROOM build 2026-07-12",
+         title="tripwire: CONNECT.DECISIONS resurrected by a stale checkout",
+         desc="Decisions moved to LIBRARY_META.REVIEW.DECISIONS (Reading Room, A14) and the "
+              "old stub was retired by rename. A machine on a pre-repoint checkout would "
+              "silently recreate CONNECT.DECISIONS via safety.ensure() and write verdicts "
+              "nobody reads (V_LEADS_PUBLISHED/V_STATE/panel all read REVIEW). This defect "
+              "fires only if that happens; while REVIEW.DECISIONS doesn't exist yet (A14 "
+              "pending) the pre-move stub is expected and this also fires — apply A14.",
+         sql="SELECT 1 AS broken FROM LIBRARY_META.INFORMATION_SCHEMA.TABLES "
+             "WHERE TABLE_SCHEMA='CONNECT' AND TABLE_NAME='DECISIONS'"),
+    dict(area="leads", severity="medium", found="READING_ROOM build 2026-07-12",
+         title="V_LEADS_PUBLISHED lacks the receipt columns (view predates LEADS ALTERs)",
+         desc="The safe view was created 2026-07-03 with l.*; COMPILED_SQL / SQL_SHA256 / "
+              "AS_OF_DATE / SOURCE_SNAPSHOTS were ALTER-added to LEADS later, and a view's "
+              "star-list freezes at creation — so the enforced read lane cannot serve "
+              "receipts and the LEAD_QUEUE mart is blocked. Fix = action A12.",
+         sql="SELECT 1 AS broken WHERE NOT EXISTS (SELECT 1 FROM "
+             "LIBRARY_META.INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA='CONNECT' "
+             "AND TABLE_NAME='V_LEADS_PUBLISHED' AND COLUMN_NAME='COMPILED_SQL')"),
 ]
 
 
@@ -348,12 +385,91 @@ ACTIONS = [
               "+ connection.options.yaml, cp connection.yaml.serve -> connection.yaml, "
               "npm run sources to confirm. Un-darks the reading room.",
          verify=None),
+    dict(id="A12", seq=12, path="scripts/refresh_v_leads_published.sql (Snowsight, manual)",
+         human=True,
+         desc="Recreate V_LEADS_PUBLISHED with COPY GRANTS — same published() semantics, but "
+              "the star-list now picks up the receipt columns ALTER-added to LEADS after the "
+              "view's 2026-07-03 creation. Unblocks the LEAD_QUEUE mart's evidence_sql and "
+              "the evidence smoke test. Idempotent; no new privileges granted.",
+         verify="SELECT 1 FROM LIBRARY_META.INFORMATION_SCHEMA.COLUMNS "
+                "WHERE TABLE_SCHEMA='CONNECT' AND TABLE_NAME='V_LEADS_PUBLISHED' "
+                "AND COLUMN_NAME='COMPILED_SQL'"),
+    dict(id="A13", seq=13,
+         path="dbt build --select marts.review (library-onboarding/ripple_dbt)",
+         depends="A00,A12",
+         desc="Materialize the Reading Room LEAD_QUEUE mart + its full test battery "
+              "(reconciliation, headline guards, total-order, receipt parity, evidence smoke). "
+              "SELECTOR IS MANDATORY (policy no_selectorless_dbt_build).",
+         verify="SELECT 1 FROM LIBRARY_MARTS.INFORMATION_SCHEMA.TABLES "
+                "WHERE TABLE_SCHEMA='DBT_CROGERS' AND TABLE_NAME='LEAD_QUEUE' "
+                "AND ROW_COUNT > 0"),
+    dict(id="A14", seq=14, path="scripts/provision_review_lane.sql (Snowsight, manual)",
+         human=True,
+         desc="Provision the Reading Room write lane: LIBRARY_META.REVIEW.DECISIONS "
+              "(append-only by grant design), role RIPPLE_REVIEW_WRITER (INSERT+SELECT on "
+              "that one table, nothing else), V_LATEST_DECISIONS, and the consumer "
+              "re-points (V_LEADS_PUBLISHED + V_STATE now read REVIEW.DECISIONS; "
+              "SUPERSEDES A12's view refresh if not yet run). Then mint RIPPLE_REVIEW_PAT "
+              "scoped to that role and prove the wall with scripts/verify_review_lane.sql "
+              "(its two PERMISSION DENIEDs are the point).",
+         verify="SELECT 1 FROM LIBRARY_META.INFORMATION_SCHEMA.TABLES "
+                "WHERE TABLE_SCHEMA='REVIEW' AND TABLE_NAME='DECISIONS'"),
 ]
 
 
 # ── PARKED seed — §12, with the rotted one resolved ──────────────────────────
 
 PARKED = [
+    dict(title="Reading Room Phase 3 spec — close the loop (CONFIRM/REJECT/NEEDS_WORK)", heat="hot",
+         note="DESIGN ONLY (Checkpoint 3, 2026-07-12) — build NOTHING until Chris picks. "
+              "3-designer + adversarial-critic panel; critic's 5 violations + 9 gaps absorbed. "
+              "PRECONDITIONS: A14 (review lane) -> A13 (LEAD_QUEUE build); A11 gates any deploy. "
+              "[1] CONFIRM = NOMINATE, twice human-gated. New view LIBRARY_META.REVIEW."
+              "V_NOMINATED_LEADS (COPY GRANTS; ships preview/--apply like A14): V_LATEST_DECISIONS "
+              "WHERE decision='confirmed' JOIN \"CONNECT\".V_LEADS_PUBLISHED — so a later "
+              "retraction drops the nomination automatically. Page fields from QUEUE_SNAPSHOT "
+              "(the exact strings the reviewer confirmed; LEAD_QUEUE drops confirmed rows on "
+              "rebuild) + live receipt cols from the safe view. Confirms recorded WITHOUT a "
+              "snapshot (safety.record/CLI path) surface flagged nomination_blocked='no snapshot' "
+              "and the generator REFUSES them. Page carries: frozen headline, caveat when the "
+              "detector has one (banned_but_paid legitimately has none — render 'no standing "
+              "data caveat' explicitly, never blank), tier + timeline verdict, runnable receipt "
+              "(compiled_sql+sha+as_of), frozen evidence, reviewer/reason/decided_at. Second "
+              "gate = scripts/gen_lead_pages.py --apply (preview default prints plan + ORPHANED "
+              "pages on disk absent from the view = the retraction tripwire); third gate = "
+              "manual evidence.dev sources+build+deploy. gen_evidence_pages.py needs a one-line "
+              "prefix guard reserving leads/ + lead_* source names. Generator runs READER lane. "
+              "Chris decides: named reviewer vs 'human-reviewed <date>' on public pages; "
+              "nominate conflict/missing-tier confirms (rec: yes, tier rendered big); --apply "
+              "deletes orphaned pages (rec: yes). "
+              "[2] REJECT -> detector dampening, floored + visible. detector_feedback CTE in "
+              "lead_queue.sql over V_LATEST_DECISIONS (needs SELECT grant to the future dbt "
+              "transform role — works as ACCOUNTADMIN today): detector from QUEUE_SNAPSHOT "
+              "(:detector — the only policy-compliant surface; raw LEADS.RULE_NAME is fenced; "
+              "NOTE pre-snapshot/CLI rejections carry no detector and silently don't count — "
+              "named honesty gap). damp = IFF(n_decided<10, 1.0, GREATEST(0.5, "
+              "1 - n_rejected/NULLIF(n_decided,0))); n_decided = latest verdict IN "
+              "(confirmed,rejected,retracted) — needs_work/stale excluded (presentation "
+              "complaints and source rot aren't rule false-positives). Multiplies ONLY the "
+              "detector-weight term; tier/receipt/score terms untouched -> a FACT-grade "
+              "paid-after lead keeps >=5.0 at any dampening; reorders rank, never filters or "
+              "publishes. Visible: detector_dampening, detector_rejection_rate, "
+              "n_detector_decided, fixed-template dampening_note columns + snapshot keep-list; "
+              "dbt tests lock damp BETWEEN 0.5 AND 1.0, note NULL iff damp=1.0, n>=10 whenever "
+              "damp<1.0. Chris decides: floor 0.5 (rec) vs 0.4; N=10 (rec) vs 20; retracted in "
+              "numerator (rec: yes). "
+              "[3] NEEDS_WORK routing — Chris decides later; today it already works (non-"
+              "suppressing, stays queued + flagged). Option A (rec, free): reviewer REASON cites "
+              "the systemic DEFECTS row ('defect:leads|<title>') — verify_defects.py already "
+              "re-checks causes; NEVER one defect per lead. Option B (later, if volume): "
+              "rereceipt job re-runs frozen COMPILED_SQL on the READER lane and checks THIS "
+              "lead's key still appears in the result (NOT rowcount-vs-evidence_count — wrong "
+              "grain; NOT sha-vs-stored — that's a tamper check, not drift); appends "
+              "TARGET_KIND='lead_recheck' rows (never 'lead' — a bot must not clobber the human "
+              "verdict; V_STATE decisions.total then needs TARGET_KIND='lead' filter); skips "
+              "banned_but_operating (source dropped by design). Option C alone = flags rot "
+              "silently. Verify (anti-join, expect 0 or explained-by-staleness): needs_work "
+              "decisions with no LEAD_QUEUE row where the lead is still STATUS=active."),
     dict(title="Pour IRS EO BMF (1.97M nonprofit EINs)", heat="someday", status="already_done",
          superseded="defect 'FED_IRS_EO_BMF is an exact 2x duplicate' + action A04",
          note="THE brief's founding receipt: the EINs are already in the Library — twice. "

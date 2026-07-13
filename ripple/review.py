@@ -337,7 +337,7 @@ def _run_leads(args) -> int:
     # Interactive loop -- a human presses a key for every named person. Never auto-confirm.
     if C.pour_running():
         # DECISIONS lives in Snowflake, not the pour's log -- safe to write. Just flag it.
-        print(f"{C.DASH} a pour is live; leads write to CONNECT.DECISIONS (not the pour log) -- ok.\n")
+        print(f"{C.DASH} a pour is live; leads write to REVIEW.DECISIONS (not the pour log) -- ok.\n")
 
     written = 0
     for i, r in enumerate(slice_, 1):
@@ -371,7 +371,7 @@ def _run_leads(args) -> int:
             print(f"  {C.BAD} write failed: {e}")
 
     print(C.hr())
-    print(f"{C.OK} done. {written} verdict(s) recorded to CONNECT.DECISIONS; "
+    print(f"{C.OK} done. {written} verdict(s) recorded to REVIEW.DECISIONS; "
           f"{len(fresh) - written} still pending.")
     return 0
 

@@ -19,28 +19,47 @@ DECISIONS is an append-only audit log (who / when / what / why); the LATEST verd
 
 from __future__ import annotations
 
-from . import db, store
+from . import db, store  # noqa: F401  (store still used by siblings importing through here)
 
-DECISIONS_FQN = store.cfqn("DECISIONS")
+# Decisions moved to the scoped review lane 2026-07-12 (Reading Room):
+# LIBRARY_META.REVIEW.DECISIONS, written in production ONLY via the
+# RIPPLE_REVIEW_WRITER role (INSERT+SELECT, nothing else — append-only is
+# the database's guarantee). This constant is the single switch every
+# consumer follows. The old CONNECT.DECISIONS stub (0 rows) was retired by
+# scripts/provision_review_lane.sql.
+DECISIONS_FQN = '"LIBRARY_META"."REVIEW"."DECISIONS"'
 
 DECISIONS_DDL = f"""
 CREATE TABLE IF NOT EXISTS {DECISIONS_FQN} (
-    TARGET_KIND   STRING NOT NULL,     -- 'lead' | 'link' | 'entity'
-    TARGET_ID     STRING NOT NULL,     -- the stable id of the claim (LEAD_ID, link hash, ...)
-    DECISION      STRING NOT NULL,     -- 'confirmed' | 'rejected' | 'retracted' | 'stale'
-    REASON        STRING,
-    REVIEWER      STRING,
-    MODEL_VERSION STRING,              -- which scoring model produced the claim being judged
-    DECIDED_AT    TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    DECISION_ID    STRING DEFAULT UUID_STRING(),
+    TARGET_KIND    STRING NOT NULL DEFAULT 'lead',  -- 'lead' | 'link' | 'entity'
+    TARGET_ID      STRING NOT NULL,    -- the stable id of the claim (LEAD_ID, link hash, ...)
+    DECISION       STRING NOT NULL,    -- 'confirmed' | 'rejected' | 'retracted' | 'stale' | 'needs_work'
+    REASON         STRING,
+    REVIEWER       STRING,
+    MODEL_VERSION  STRING,             -- which scoring model produced the claim being judged
+    QUEUE_SNAPSHOT VARIANT,            -- what the reviewer was shown at decision time
+    DECIDED_AT     TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
 )
 """
 
-VALID = {"confirmed", "rejected", "retracted", "stale"}
+# needs_work is deliberately NON-suppressing: the claim stays visible
+# (flagged) and unpublished — the Reading Room's third button.
+VALID = {"confirmed", "rejected", "retracted", "stale", "needs_work"}
 SUPPRESS = {"rejected", "retracted", "stale"}   # latest verdict in here -> never shown as fact
 
 
 def ensure(conn) -> None:
-    store.ensure_schema(conn)
+    """Probe-first: the scoped review lane can SELECT but not CREATE, so
+    DDL is attempted only when the table is genuinely absent (bootstrap or
+    admin sessions). In production the table exists — provisioned by
+    scripts/provision_review_lane.sql — and this is a no-op read."""
+    try:
+        db.rows(conn, f"SELECT 1 FROM {DECISIONS_FQN} LIMIT 1")
+        return
+    except Exception:
+        pass
+    db.rows(conn, 'CREATE SCHEMA IF NOT EXISTS "LIBRARY_META"."REVIEW"')
     db.rows(conn, DECISIONS_DDL)
 
 
@@ -57,11 +76,13 @@ def record(conn, kind: str, target_id: str, decision: str,
 
 
 def latest(conn, kind: str) -> dict[str, str]:
-    """The most recent verdict per target id (the audit log keeps the history; this is the view)."""
+    """The most recent verdict per target id (the audit log keeps the history; this is the view).
+    The permanent SMOKE_TEST proof row (planted by verify_review_lane.sql) is filtered here,
+    matching every SQL surface (V_LATEST_DECISIONS, V_STATE)."""
     ensure(conn)
     rows = db.dicts(conn, f"""
         SELECT TARGET_ID, DECISION FROM {DECISIONS_FQN}
-        WHERE TARGET_KIND = %s
+        WHERE TARGET_KIND = %s AND TARGET_ID != 'SMOKE_TEST'
         QUALIFY ROW_NUMBER() OVER (PARTITION BY TARGET_ID ORDER BY DECIDED_AT DESC) = 1""", (kind,))
     return {r["TARGET_ID"]: r["DECISION"] for r in rows}
 
@@ -116,4 +137,6 @@ def status(conn, kind: str | None = None) -> list[dict]:
         WITH cur AS (
           SELECT TARGET_KIND, TARGET_ID, DECISION FROM {DECISIONS_FQN} {where}
           QUALIFY ROW_NUMBER() OVER (PARTITION BY TARGET_KIND, TARGET_ID ORDER BY DECIDED_AT DESC) = 1 )
-        SELECT TARGET_KIND, DECISION, COUNT(*) AS N FROM cur GROUP BY 1, 2 ORDER BY 1, 2""", params)
+        SELECT TARGET_KIND, DECISION, COUNT(*) AS N FROM cur
+        WHERE TARGET_ID != 'SMOKE_TEST'
+        GROUP BY 1, 2 ORDER BY 1, 2""", params)
