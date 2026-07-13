@@ -1,0 +1,119 @@
+version: 2
+
+models:
+  - name: lead_queue
+    description: >
+      The Reading Room triage mart: one row per reviewable lead (REVIEW_STATE
+      pending or needs_work in LIBRARY_META."CONNECT".V_LEADS_PUBLISHED — this
+      model never reads raw LEADS). Rebuilt via
+      `dbt build --select marts.review` — NEVER a selector-less build (POLICY
+      no_selectorless_dbt_build). Zero AI anywhere: headlines are fixed SQL
+      templates (draft v1 pending Checkpoint-1 approval), receipt logic is a
+      SQL port of scripts/lead_receipt.py (the spec — parity proven by
+      tests/test_lead_queue_receipt_parity.py), and priority is the
+      deterministic formula below.
+
+      PRIORITY FORMULA (weights draft v1, Checkpoint-1 approval pending):
+        priority_score =
+            tier weight      (FACT_GRADE_3_SOURCE 3.0 | TWO_SOURCE 2.0 |
+                              HARD_ID_ONLY 1.5 | NPPES_CONFLICT 0.75 |
+                              LEIE_ROW_MISSING 0.5)
+          + receipt weight   (PAID_ON_OR_AFTER_EXCLUSION 2.0 |
+                              NOT_EVALUATED 0.75 | TIMELINE_UNKNOWN 0.75 |
+                              PAYMENTS_PREDATE_EXCLUSION 0.5)
+          + detector weight  (banned_but_operating 1.5 | excluded_but_billing
+                              1.25 | banned_but_paid 1.0 | debarred_but_funded
+                              1.0 | sanctioned_vessel_broadcasting_v2 0.75 |
+                              sec_filer_in_irs_bmf 0.5 |
+                              sanctioned_vessel_broadcasting 0.25 [superseded])
+          + LEAST(detector score, 1.0) * 0.5   (uncalibrated ranking signal,
+                                                tiebreak band only)
+        priority_rank = ROW_NUMBER() OVER (ORDER BY priority_score DESC,
+        lead_id) — the lead_id tiebreak guarantees a total order.
+
+      Activity numbers (counts, dollars, dates) are RECOMPUTED from the same
+      source tables the detectors read, never trusted from the 50-item-capped
+      EVIDENCE array. Known per-detector data traps travel in the caveat
+      column. banned_but_operating's source table was dropped from LANDING
+      (verified 2026-07-12), so its facility evidence is frozen — its stored
+      evidence_sql cannot be re-run.
+    columns:
+      - name: lead_id
+        description: PK, from V_LEADS_PUBLISHED (LEAD_ + md5 of rule|key).
+        data_tests: [unique, not_null]
+      - name: detector
+        description: The detector (RULE_NAME) that produced the lead.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - banned_but_paid
+                - excluded_but_billing
+                - banned_but_operating
+                - debarred_but_funded
+                - sanctioned_vessel_broadcasting
+                - sanctioned_vessel_broadcasting_v2
+                - sec_filer_in_irs_bmf
+      - name: priority_rank
+        description: Total order over the queue; unique proves totality.
+        data_tests: [unique, not_null]
+      - name: priority_score
+        description: Deterministic score per the formula in the model description.
+        data_tests: [not_null]
+      - name: headline
+        description: >
+          Fixed per-detector SQL template, fully COALESCE-guarded. The guard
+          tests forbid the NULL-poisoning tells ('NULL', 'None', '||') from
+          ever reaching an analyst.
+        data_tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: "NOT LIKE '%NULL%'"
+          - dbt_utils.expression_is_true:
+              expression: "NOT LIKE '%None%'"
+          - dbt_utils.expression_is_true:
+              expression: "NOT LIKE '%||%'"
+      - name: confidence_tier
+        description: >
+          The 3-source corroboration verdict (port of lead_receipt.py):
+          FACT_GRADE_3_SOURCE = NPPES registry surname agrees with LEIE;
+          TWO_SOURCE = NPPES blank/deactivated (no third confirmation);
+          NPPES_CONFLICT = registry shows a DIFFERENT surname (verify before
+          use); LEIE_ROW_MISSING = the exclusion row vanished since detection
+          (monthly OIG refresh removes reinstated providers) — no comparison
+          possible, never labeled a conflict; HARD_ID_ONLY = non-NPI
+          detectors (the hard key is the identity; no third registry exists
+          to corroborate).
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [FACT_GRADE_3_SOURCE, TWO_SOURCE, NPPES_CONFLICT, LEIE_ROW_MISSING, HARD_ID_ONLY]
+      - name: receipt_verdict
+        description: >
+          The timeline verdict (port of lead_receipt.py): evaluated only for
+          banned_but_paid, whose activity side carries real payment dates.
+          TIMELINE_UNKNOWN is the honest state for a missing date (the Python
+          spec lumps it into the weaker verdict; the parity test maps both).
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [PAID_ON_OR_AFTER_EXCLUSION, PAYMENTS_PREDATE_EXCLUSION, TIMELINE_UNKNOWN, NOT_EVALUATED]
+      - name: entity_a_key_type
+        description: The hard ID type (NPI/UEI/IMO/EIN) — the join IS the identity.
+        data_tests: [not_null]
+      - name: entity_a_key_value
+        description: The hard ID value.
+        data_tests: [not_null]
+      - name: evidence_sql
+        description: >
+          COMPILED_SQL from the LEADS table — the exact frozen query that
+          produced this lead (the receipt). Smoke-tested by
+          tests/test_lead_queue_evidence_smoke.py; banned_but_operating's is
+          known-irreproducible (source table dropped, see caveat).
+        data_tests: [not_null]
+      - name: review_state
+        description: pending or needs_work at build time (decided leads are excluded).
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [pending, needs_work]

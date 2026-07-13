@@ -267,6 +267,33 @@ DEFECTS = [
               "tables; only convention prevents a bare 'dbt build' from clobbering them. "
               "Needs eyes on whatever guard gets designed — no query can prove absence.",
          method="human"),
+    dict(area="leads", severity="medium", found="READING_ROOM build 2026-07-12",
+         title="banned_but_operating source table dropped; 11 leads' receipts irreproducible",
+         desc="FED_CMS_FACILITY_AFFILIATION is gone from LIBRARY_RAW.LANDING (verified live "
+              "2026-07-12), so the 11 active banned_but_operating leads' stored COMPILED_SQL "
+              "fails with 'does not exist'. The leads stand (hard-NPI joins at detect time, "
+              "facility evidence frozen in EVIDENCE) but cannot be re-run. Clears when the "
+              "roster table is re-landed or the rule is re-pointed at a live source.",
+         sql="SELECT 1 AS broken WHERE NOT EXISTS (SELECT 1 FROM "
+             "LIBRARY_RAW.INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='LANDING' "
+             "AND TABLE_NAME='FED_CMS_FACILITY_AFFILIATION')"),
+    dict(area="truth_layer", severity="medium", found="READING_ROOM build 2026-07-12",
+         title="FED_SAM_EXCLUSIONS holds exactly 1,000 rows (suspected capped sample load)",
+         desc="A suspiciously round count for a file that runs ~100k+ rows at the source; "
+              "debarred_but_funded breadth is a floor, and ACTIVATION_DATE is blank on every "
+              "row so no debarment-date timeline is possible. Clears when SAM lands fully.",
+         sql="SELECT TABLE_NAME FROM LIBRARY_RAW.INFORMATION_SCHEMA.TABLES "
+             "WHERE TABLE_SCHEMA='LANDING' AND TABLE_NAME='FED_SAM_EXCLUSIONS' "
+             "AND ROW_COUNT = 1000"),
+    dict(area="leads", severity="medium", found="READING_ROOM build 2026-07-12",
+         title="V_LEADS_PUBLISHED lacks the receipt columns (view predates LEADS ALTERs)",
+         desc="The safe view was created 2026-07-03 with l.*; COMPILED_SQL / SQL_SHA256 / "
+              "AS_OF_DATE / SOURCE_SNAPSHOTS were ALTER-added to LEADS later, and a view's "
+              "star-list freezes at creation — so the enforced read lane cannot serve "
+              "receipts and the LEAD_QUEUE mart is blocked. Fix = action A12.",
+         sql="SELECT 1 AS broken WHERE NOT EXISTS (SELECT 1 FROM "
+             "LIBRARY_META.INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA='CONNECT' "
+             "AND TABLE_NAME='V_LEADS_PUBLISHED' AND COLUMN_NAME='COMPILED_SQL')"),
 ]
 
 
@@ -348,6 +375,24 @@ ACTIONS = [
               "+ connection.options.yaml, cp connection.yaml.serve -> connection.yaml, "
               "npm run sources to confirm. Un-darks the reading room.",
          verify=None),
+    dict(id="A12", seq=12, path="scripts/refresh_v_leads_published.sql (Snowsight, manual)",
+         human=True,
+         desc="Recreate V_LEADS_PUBLISHED with COPY GRANTS — same published() semantics, but "
+              "the star-list now picks up the receipt columns ALTER-added to LEADS after the "
+              "view's 2026-07-03 creation. Unblocks the LEAD_QUEUE mart's evidence_sql and "
+              "the evidence smoke test. Idempotent; no new privileges granted.",
+         verify="SELECT 1 FROM LIBRARY_META.INFORMATION_SCHEMA.COLUMNS "
+                "WHERE TABLE_SCHEMA='CONNECT' AND TABLE_NAME='V_LEADS_PUBLISHED' "
+                "AND COLUMN_NAME='COMPILED_SQL'"),
+    dict(id="A13", seq=13,
+         path="dbt build --select marts.review (library-onboarding/ripple_dbt)",
+         depends="A00,A12",
+         desc="Materialize the Reading Room LEAD_QUEUE mart + its full test battery "
+              "(reconciliation, headline guards, total-order, receipt parity, evidence smoke). "
+              "SELECTOR IS MANDATORY (policy no_selectorless_dbt_build).",
+         verify="SELECT 1 FROM LIBRARY_MARTS.INFORMATION_SCHEMA.TABLES "
+                "WHERE TABLE_SCHEMA='DBT_CROGERS' AND TABLE_NAME='LEAD_QUEUE' "
+                "AND ROW_COUNT > 0"),
 ]
 
 

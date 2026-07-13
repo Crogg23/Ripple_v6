@@ -7,6 +7,9 @@ prints what each one says, so a clerical error or a name collision can't hide:
   [1] NPPES        — the national registry: who that NPI actually belongs to
   [2] OIG-LEIE     — the exclusion: why they're banned + when
   [3] Open Payments — the money: how many manufacturer payments, total $, who paid
+                      (the ALL-YEARS union view — the unsuffixed landing table is
+                      2024-only, the half-the-data trap in POLICY
+                      trap_open_payments_split; the detector reads the union too)
 
 NPI is a unique national ID that is never reused, so a match on NPI IS the identity; the three-source
 NAME agreement is the corroboration (a typo'd NPI would land on a different registry name → flagged
@@ -62,11 +65,11 @@ op AS (
          ANY_VALUE(COVERED_RECIPIENT_PROFILE_ID) profile_id,
          ARRAY_SLICE(ARRAY_AGG(DISTINCT APPLICABLE_MANUFACTURER_OR_APPLICABLE_GPO_MAKING_PAYMENT_NAME),0,5) payers,
          ARRAY_SLICE(ARRAY_AGG(DISTINCT NATURE_OF_PAYMENT_OR_TRANSFER_OF_VALUE),0,5) natures
-  FROM LIBRARY_RAW.LANDING.FED_CMS_OPEN_PAYMENTS
+  FROM LIBRARY_STAGING.DBT_CROGERS.INT_OPEN_PAYMENTS_ALL_YEARS
   WHERE LENGTH(REGEXP_REPLACE(NPI,'[^0-9]',''))=10
   GROUP BY 1,2),
 nppes AS (
-  SELECT NPI npi, UPPER(TRIM(PROVIDER_LAST_NAME__LEGAL_NAME)) lname, UPPER(TRIM(PROVIDER_FIRST_NAME)) fname,
+  SELECT NPI npi, UPPER(TRIM(PROVIDER_LAST_NAME_LEGAL_NAME)) lname, UPPER(TRIM(PROVIDER_FIRST_NAME)) fname,
          UPPER(TRIM(PROVIDER_CREDENTIAL_TEXT)) cred, ENTITY_TYPE_CODE etype
   FROM LIBRARY_RAW.LANDING.FED_CMS_NPPES)
 SELECT l.npi, l.lname l_l, l.fname l_f, l.excltype, l.excldate, l.city, l.state, l.specialty,
