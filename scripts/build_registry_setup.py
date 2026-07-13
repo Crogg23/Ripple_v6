@@ -286,6 +286,16 @@ DEFECTS = [
              "WHERE TABLE_SCHEMA='LANDING' AND TABLE_NAME='FED_SAM_EXCLUSIONS' "
              "AND ROW_COUNT = 1000"),
     dict(area="leads", severity="medium", found="READING_ROOM build 2026-07-12",
+         title="tripwire: CONNECT.DECISIONS resurrected by a stale checkout",
+         desc="Decisions moved to LIBRARY_META.REVIEW.DECISIONS (Reading Room, A14) and the "
+              "old stub was retired by rename. A machine on a pre-repoint checkout would "
+              "silently recreate CONNECT.DECISIONS via safety.ensure() and write verdicts "
+              "nobody reads (V_LEADS_PUBLISHED/V_STATE/panel all read REVIEW). This defect "
+              "fires only if that happens; while REVIEW.DECISIONS doesn't exist yet (A14 "
+              "pending) the pre-move stub is expected and this also fires — apply A14.",
+         sql="SELECT 1 AS broken FROM LIBRARY_META.INFORMATION_SCHEMA.TABLES "
+             "WHERE TABLE_SCHEMA='CONNECT' AND TABLE_NAME='DECISIONS'"),
+    dict(area="leads", severity="medium", found="READING_ROOM build 2026-07-12",
          title="V_LEADS_PUBLISHED lacks the receipt columns (view predates LEADS ALTERs)",
          desc="The safe view was created 2026-07-03 with l.*; COMPILED_SQL / SQL_SHA256 / "
               "AS_OF_DATE / SOURCE_SNAPSHOTS were ALTER-added to LEADS later, and a view's "
@@ -393,6 +403,17 @@ ACTIONS = [
          verify="SELECT 1 FROM LIBRARY_MARTS.INFORMATION_SCHEMA.TABLES "
                 "WHERE TABLE_SCHEMA='DBT_CROGERS' AND TABLE_NAME='LEAD_QUEUE' "
                 "AND ROW_COUNT > 0"),
+    dict(id="A14", seq=14, path="scripts/provision_review_lane.sql (Snowsight, manual)",
+         human=True,
+         desc="Provision the Reading Room write lane: LIBRARY_META.REVIEW.DECISIONS "
+              "(append-only by grant design), role RIPPLE_REVIEW_WRITER (INSERT+SELECT on "
+              "that one table, nothing else), V_LATEST_DECISIONS, and the consumer "
+              "re-points (V_LEADS_PUBLISHED + V_STATE now read REVIEW.DECISIONS; "
+              "SUPERSEDES A12's view refresh if not yet run). Then mint RIPPLE_REVIEW_PAT "
+              "scoped to that role and prove the wall with scripts/verify_review_lane.sql "
+              "(its two PERMISSION DENIEDs are the point).",
+         verify="SELECT 1 FROM LIBRARY_META.INFORMATION_SCHEMA.TABLES "
+                "WHERE TABLE_SCHEMA='REVIEW' AND TABLE_NAME='DECISIONS'"),
 ]
 
 

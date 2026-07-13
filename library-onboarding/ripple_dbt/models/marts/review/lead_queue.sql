@@ -1,4 +1,4 @@
-{{ config(materialized='table') }}
+{{ config(materialized='table', copy_grants=true) }}
 
 -- ============================================================================
 -- LEAD_QUEUE — the Reading Room triage mart

@@ -187,8 +187,8 @@ def _fetch_queues(conn, vstate):
     active = leads_active_total(vstate)
     try:
         decided = C.scalar(conn,
-                           'SELECT COUNT(DISTINCT TARGET_ID) FROM LIBRARY_META."CONNECT".DECISIONS '
-                           "WHERE TARGET_KIND = %s", ("lead",))
+                           'SELECT COUNT(DISTINCT TARGET_ID) FROM LIBRARY_META."REVIEW"."DECISIONS" '
+                           "WHERE TARGET_KIND = %s AND TARGET_ID != 'SMOKE_TEST'", ("lead",))
         q["leads_pending"] = max(0, active - _int(decided))
     except Exception:
         q["leads_pending"] = active or None

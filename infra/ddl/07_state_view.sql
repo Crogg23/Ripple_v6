@@ -33,7 +33,9 @@ WITH taps AS (
     SELECT 'leads.' || RULE_NAME || '.' || COALESCE(STATUS, 'active') AS metric, COUNT(*)::VARCHAR
     FROM LIBRARY_META."CONNECT".LEADS GROUP BY RULE_NAME, STATUS
 ), decisions AS (
-    SELECT 'decisions.total', COUNT(*)::VARCHAR FROM LIBRARY_META."CONNECT".DECISIONS
+    SELECT 'decisions.total', COUNT(*)::VARCHAR
+    FROM LIBRARY_META.REVIEW.DECISIONS
+    WHERE TARGET_ID != 'SMOKE_TEST'
 ), edges AS (
     -- CONNECT_EDGES is the canonical store (full rebuild replaces, incremental merges);
     -- CONNECT_EDGES_INC reported separately until the incremental writer is retargeted.
