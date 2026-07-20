@@ -238,6 +238,12 @@ def test_lead_gate_refuses_unsigned(monkeypatch):
     assert all(r["REVIEW_STATE"] == "pending" for r in gated)
     assert leads._gate([dict(r) for r in rows], decisions={}, only_publishable=True) == []
 
+    # Two-step gate (2026-07-20): a confirm is a nomination — it must NOT publish.
     confirmed = leads._gate([dict(r) for r in rows], decisions={"L1": "confirmed"})
     by_id = {r["LEAD_ID"]: r for r in confirmed}
+    assert by_id["L1"]["PUBLISHED"] is False and by_id["L2"]["PUBLISHED"] is False
+
+    # Only the explicit 'published' verdict opens the door.
+    published = leads._gate([dict(r) for r in rows], decisions={"L1": "published"})
+    by_id = {r["LEAD_ID"]: r for r in published}
     assert by_id["L1"]["PUBLISHED"] is True and by_id["L2"]["PUBLISHED"] is False

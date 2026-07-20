@@ -18,18 +18,23 @@ def test_retracted_and_stale_are_suppressed():
     assert ids == {"y"}                          # only the confirmed survives
 
 
-def test_confirmed_publishes_pending_does_not():
-    out = {r["LEAD_ID"]: r for r in gate_rows([{"LEAD_ID": "b"}, {"LEAD_ID": "c"}],
-                                              {"b": "confirmed"})}
-    assert out["b"]["REVIEW_STATE"] == "confirmed" and out["b"]["PUBLISHED"] is True
+def test_confirm_nominates_only_publish_verdict_publishes():
+    # Two-step gate (2026-07-20): 'confirmed' is a private nomination —
+    # PUBLISHED needs the explicit 'published' verdict.
+    out = {r["LEAD_ID"]: r for r in gate_rows(
+        [{"LEAD_ID": "a"}, {"LEAD_ID": "b"}, {"LEAD_ID": "c"}],
+        {"a": "published", "b": "confirmed"})}
+    assert out["a"]["REVIEW_STATE"] == "published" and out["a"]["PUBLISHED"] is True
+    assert out["b"]["REVIEW_STATE"] == "confirmed" and out["b"]["PUBLISHED"] is False
     assert out["c"]["REVIEW_STATE"] == "pending" and out["c"]["PUBLISHED"] is False
 
 
-def test_auto_tier_publishes_without_a_human():
+def test_auto_tier_can_no_longer_publish():
+    # Auto-publish is structurally blocked: auto_ok is inert under the two-step gate.
     out = {r["LEAD_ID"]: r["PUBLISHED"]
            for r in gate_rows([{"LEAD_ID": "a", "auto_ok": True},
                                {"LEAD_ID": "b", "auto_ok": False}], {})}
-    assert out["a"] is True and out["b"] is False
+    assert out["a"] is False and out["b"] is False
 
 
 def test_a_later_verdict_can_revive_but_is_explicit():
@@ -41,3 +46,12 @@ def test_a_later_verdict_can_revive_but_is_explicit():
 def test_suppress_is_subset_of_valid():
     assert SUPPRESS <= VALID
     assert "confirmed" in VALID and "confirmed" not in SUPPRESS
+
+
+def test_published_is_not_writable_by_review_lanes():
+    # The review buttons/CLI (record() validates against VALID) can never write
+    # 'published' — the only sanctioned writer is scripts/publish_lead.py.
+    from connect.safety import PUBLISHED_VERDICT
+    assert PUBLISHED_VERDICT == "published"
+    assert PUBLISHED_VERDICT not in VALID
+    assert PUBLISHED_VERDICT not in SUPPRESS

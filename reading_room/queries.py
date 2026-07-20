@@ -36,9 +36,11 @@ VERDICTS = {
 }
 
 # Decided leads drop out of the queue; needs_work stays (flagged).
+# 'published' (two-step gate, 2026-07-20) is decided-and-then-some — it must
+# never re-enter the review queue.
 _QUEUE_FILTER = (
     "COALESCE(d.decision, 'pending') NOT IN "
-    "('confirmed', 'rejected', 'retracted', 'stale')"
+    "('confirmed', 'rejected', 'retracted', 'stale', 'published')"
 )
 
 _QUEUE_SELECT = f"""

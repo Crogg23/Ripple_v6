@@ -300,7 +300,8 @@ DEFECTS = [
          desc="The safe view was created 2026-07-03 with l.*; COMPILED_SQL / SQL_SHA256 / "
               "AS_OF_DATE / SOURCE_SNAPSHOTS were ALTER-added to LEADS later, and a view's "
               "star-list freezes at creation — so the enforced read lane cannot serve "
-              "receipts and the LEAD_QUEUE mart is blocked. Fix = action A12.",
+              "receipts and the LEAD_QUEUE mart is blocked. Fix = action A14 "
+              "(A12 retired 2026-07-20 — its script now opens with a tripwire).",
          sql="SELECT 1 AS broken WHERE NOT EXISTS (SELECT 1 FROM "
              "LIBRARY_META.INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA='CONNECT' "
              "AND TABLE_NAME='V_LEADS_PUBLISHED' AND COLUMN_NAME='COMPILED_SQL')"),
@@ -385,18 +386,20 @@ ACTIONS = [
               "+ connection.options.yaml, cp connection.yaml.serve -> connection.yaml, "
               "npm run sources to confirm. Un-darks the reading room.",
          verify=None),
-    dict(id="A12", seq=12, path="scripts/refresh_v_leads_published.sql (Snowsight, manual)",
+    dict(id="A12", seq=12, path="scripts/refresh_v_leads_published.sql (RETIRED — do not run)",
          human=True,
-         desc="Recreate V_LEADS_PUBLISHED with COPY GRANTS — same published() semantics, but "
-              "the star-list now picks up the receipt columns ALTER-added to LEADS after the "
-              "view's 2026-07-03 creation. Unblocks the LEAD_QUEUE mart's evidence_sql and "
-              "the evidence smoke test. Idempotent; no new privileges granted.",
+         desc="RETIRED 2026-07-20: superseded by A14 (provision_review_lane.sql Part 3b), "
+              "which re-points V_LEADS_PUBLISHED at REVIEW.DECISIONS with the receipt "
+              "columns AND the two-step publish gate (PUBLISHED requires an explicit "
+              "'published' verdict, beta ruling B1). The old script now opens with a "
+              "SELECT 1/0 tripwire; it still encodes the retired one-click semantics. "
+              "Kept only for the audit trail.",
          verify="SELECT 1 FROM LIBRARY_META.INFORMATION_SCHEMA.COLUMNS "
                 "WHERE TABLE_SCHEMA='CONNECT' AND TABLE_NAME='V_LEADS_PUBLISHED' "
                 "AND COLUMN_NAME='COMPILED_SQL'"),
     dict(id="A13", seq=13,
          path="dbt build --select marts.review (library-onboarding/ripple_dbt)",
-         depends="A00,A12",
+         depends="A00,A14",
          desc="Materialize the Reading Room LEAD_QUEUE mart + its full test battery "
               "(reconciliation, headline guards, total-order, receipt parity, evidence smoke). "
               "SELECTOR IS MANDATORY (policy no_selectorless_dbt_build).",

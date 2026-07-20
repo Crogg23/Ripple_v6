@@ -1,0 +1,7 @@
+# SBA cliff-migration page source — FROZEN CSV EXTRACTS, no warehouse contact.
+# Every file here was re-derived live against LIBRARY_RAW.LANDING.FED_SBA_LOANS
+# (2,174,502 rows, ASOFDATE 3/31/2026) on 2026-07-20 and matched the committed
+# finding (SYSTEMIC_FINDING.md) cell-for-cell before freezing. The public build
+# path holds no credential by design: AI at build time, plain files at runtime.
+name: sba
+type: csv

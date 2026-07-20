@@ -1,7 +1,9 @@
 -- ============================================================================
 -- A14 — Provision the Reading Room write lane (CHRIS APPLIES, in Snowsight,
--- as SECURITYADMIN/ACCOUNTADMIN). Run top to bottom; every statement is
--- idempotent or guarded. Reviewed at Reading Room Checkpoint 2.
+-- as ACCOUNTADMIN — NOT SECURITYADMIN: it can't CREATE SCHEMA, so Run All
+-- would die on the first statement with nothing applied). Run top to bottom;
+-- every statement is idempotent or guarded. Reviewed at Reading Room
+-- Checkpoint 2; role + verify glosses corrected 2026-07-20 (checklist audit).
 -- ============================================================================
 -- WHAT THIS BUILDS
 --   Part 1  LIBRARY_META.REVIEW schema + DECISIONS table (append-only home
@@ -24,6 +26,11 @@
 --     'confirmed' | 'rejected' | 'retracted' | 'stale' | 'needs_work'.
 --     needs_work is deliberately NON-suppressing: the lead stays visible in
 --     V_LEADS_PUBLISHED (flagged), exactly the Reading Room's NEEDS_WORK.
+--   * ADDED 2026-07-20 (beta ruling B1 — the two-step publish gate):
+--     'published'. A Confirm click is a private NOMINATION; PUBLISHED=TRUE in
+--     V_LEADS_PUBLISHED now requires a separate, explicit 'published' verdict
+--     row, written via scripts/publish_lead.py (which refuses unless the
+--     latest verdict is 'confirmed'). One click can no longer publish.
 --   * Every CREATE OR REPLACE VIEW carries COPY GRANTS (POLICY
 --     copy_grants_library_meta).
 --
@@ -33,10 +40,13 @@
 -- are the point). The app halts its write path if the PAT is absent — it
 -- never falls back to another credential.
 --
--- VERIFY (expected: one row each):
+-- VERIFY (copy these out and run them by hand — they are comments, so
+-- Run All never executes them):
 --   SELECT 1 FROM LIBRARY_META.INFORMATION_SCHEMA.TABLES
---     WHERE TABLE_SCHEMA='REVIEW' AND TABLE_NAME='DECISIONS';
---   SHOW GRANTS TO ROLE RIPPLE_REVIEW_WRITER;  -- INSERT+SELECT on one table
+--     WHERE TABLE_SCHEMA='REVIEW' AND TABLE_NAME='DECISIONS';   -- exactly 1 row
+--   SHOW GRANTS TO ROLE RIPPLE_REVIEW_WRITER;
+--     -- ~5 rows; the ONLY table privileges must be INSERT+SELECT on
+--     -- REVIEW.DECISIONS — anything more means mis-provisioned
 -- ============================================================================
 
 -- ── Part 1: schema + table ─────────────────────────────────────────────────
@@ -48,7 +58,7 @@ CREATE TABLE IF NOT EXISTS LIBRARY_META.REVIEW.DECISIONS (
     DECISION_ID    STRING        DEFAULT UUID_STRING(),
     TARGET_KIND    STRING        NOT NULL DEFAULT 'lead',  -- 'lead' | 'link' | 'entity'
     TARGET_ID      STRING        NOT NULL,                 -- LEAD_ID for leads
-    DECISION       STRING        NOT NULL,                 -- confirmed|rejected|retracted|stale|needs_work
+    DECISION       STRING        NOT NULL,                 -- confirmed|rejected|retracted|stale|needs_work|published
     REASON         STRING,                                 -- the reviewer's note
     REVIEWER       STRING        NOT NULL,
     MODEL_VERSION  STRING,                                 -- scoring model of the judged claim, if any
@@ -123,7 +133,11 @@ WITH latest_verdict AS (
 SELECT
     l.*,
     COALESCE(v.DECISION, 'pending')                    AS REVIEW_STATE,
-    COALESCE(v.DECISION, 'pending') = 'confirmed'      AS PUBLISHED
+    -- Two-step gate (2026-07-20, beta ruling B1): Confirm = private nomination.
+    -- PUBLISHED needs an explicit 'published' verdict (scripts/publish_lead.py,
+    -- which refuses unless the latest verdict is 'confirmed'). One click can no
+    -- longer place a lead on a public surface.
+    COALESCE(v.DECISION, 'pending') = 'published'      AS PUBLISHED
 FROM LIBRARY_META."CONNECT".LEADS l
 LEFT JOIN latest_verdict v ON v.TARGET_ID = l.LEAD_ID
 WHERE COALESCE(l.STATUS, 'active') = 'active'

@@ -37,19 +37,23 @@ def test_auto_publish_tier_is_off_by_default():
 
 
 def test_gate_marks_unreviewed_pending_not_published():
+    # Two-step gate (2026-07-20): confirmed = nomination, PUBLISHED stays False.
     rows = [{"LEAD_ID": "a", "TITLE": "someone"}, {"LEAD_ID": "b", "TITLE": "another"}]
     out = {r["LEAD_ID"]: r for r in leads._gate(rows, {"a": "confirmed"})}
-    assert out["a"]["REVIEW_STATE"] == "confirmed" and out["a"]["PUBLISHED"] is True
+    assert out["a"]["REVIEW_STATE"] == "confirmed" and out["a"]["PUBLISHED"] is False
     assert out["b"]["REVIEW_STATE"] == "pending" and out["b"]["PUBLISHED"] is False  # unreviewed != fact
 
 
-def test_gate_drops_rejected_and_only_publishable_keeps_confirmed():
+def test_gate_drops_rejected_and_only_publishable_keeps_published():
     rows = [{"LEAD_ID": x} for x in "abc"]
-    decisions = {"a": "confirmed", "b": "rejected"}      # c is unreviewed
+    decisions = {"a": "published", "b": "rejected"}      # c is unreviewed
     survivors = {r["LEAD_ID"] for r in leads._gate(rows, decisions)}
     assert survivors == {"a", "c"}                       # rejected 'b' is gone
     strict = leads._gate([{"LEAD_ID": x} for x in "abc"], decisions, only_publishable=True)
-    assert {r["LEAD_ID"] for r in strict} == {"a"}       # only the human-confirmed publishes
+    assert {r["LEAD_ID"] for r in strict} == {"a"}       # only the explicitly-published lead
+    # a merely-confirmed lead does NOT clear the strict read
+    strict2 = leads._gate([{"LEAD_ID": "a"}], {"a": "confirmed"}, only_publishable=True)
+    assert strict2 == []
 
 
 def test_run_job_refuses_without_guard():

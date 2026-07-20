@@ -412,6 +412,10 @@ def _expire_rule(conn, rule: str, run_id: str) -> None:
 def _auto_publishable(row: dict) -> bool:
     """Auto-confirm hook: may a lead publish WITHOUT a human review?
 
+    NOTE (2026-07-20, two-step gate): even a True here can no longer publish —
+    safety.gate_rows ignores auto_ok, and PUBLISHED requires the explicit
+    'published' verdict. At most this hook could someday auto-NOMINATE.
+
     Only if it clears a CALIBRATED high-confidence bar. Leads today carry an UNCALIBRATED
     composite SCORE, and minting a "fact" from it is exactly the overreach this safety
     layer exists to stop — so this returns False: nothing about a named person reads as
@@ -428,7 +432,8 @@ def _gate(rows: list[dict], decisions: dict[str, str],
 
     Drops review-suppressed leads (rejected / retracted / stale verdict) and stamps every
     survivor with REVIEW_STATE + PUBLISHED via safety.gate_rows. PUBLISHED is true only for
-    a human-confirmed lead or one clearing the (currently off) auto-confirm tier.
+    an explicit 'published' verdict (two-step gate 2026-07-20: confirm = nomination; the
+    auto-confirm tier can no longer publish).
     only_publishable keeps just the PUBLISHED=True set — the strict 'safe as fact' read.
     """
     for r in rows:
@@ -442,9 +447,10 @@ def published(conn, rule: str | None = None, only_publishable: bool = False) -> 
 
     Two surfaces must BOTH pass. STATUS handles staleness (a lead whose supporting rows
     vanished is 'stale' and filtered here). safety.DECISIONS handles review: rejected /
-    retracted / stale verdicts are dropped, and only a human-CONFIRMED lead (or the auto
-    tier, off today) reads PUBLISHED=True. Every returned row carries REVIEW_STATE +
-    PUBLISHED, so a caller can never mistake an unreviewed 'pending' lead for fact. Pass
+    retracted / stale verdicts are dropped, and only an explicitly-PUBLISHED lead (two-step
+    gate 2026-07-20 — confirm is a nomination; scripts/publish_lead.py writes the publish
+    verdict) reads PUBLISHED=True. Every returned row carries REVIEW_STATE + PUBLISHED, so
+    a caller can never mistake an unreviewed 'pending' lead for fact. Pass
     only_publishable=True for the strict set that is safe to present as established fact.
     """
     _ensure_leads_table(conn)
@@ -520,8 +526,9 @@ def run(job: str = "all", dry_run: bool = True, top: int = 20) -> dict:
                 print(f"  merged {len(df)} into {LEADS_FQN}; staleness swept (run {run_id})")
             out[name] = len(df)
         if not dry_run:
-            print("\n  ⚑ these leads are UNREVIEWED — none read as PUBLISHED fact until a human "
-                  "confirms:\n     `connect review lead <LEAD_ID> confirmed --by <you>`  "
+            print("\n  ⚑ these leads are UNREVIEWED — none read as PUBLISHED fact. Two-step gate: "
+                  "a human confirms first\n     `connect review lead <LEAD_ID> confirmed --by <you>`  "
+                  "then publishes explicitly via `python scripts/publish_lead.py`\n     "
                   "(`connect safety` shows the ledger)")
     finally:
         conn.close()

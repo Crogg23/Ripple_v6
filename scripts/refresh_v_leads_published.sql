@@ -1,5 +1,19 @@
 -- ============================================================================
--- A12 — Refresh V_LEADS_PUBLISHED (CHRIS APPLIES, in Snowsight, as the view
+-- A12 — RETIRED 2026-07-20. DO NOT RUN.
+-- ============================================================================
+-- SUPERSEDED by scripts/provision_review_lane.sql Part 3b, which re-points
+-- V_LEADS_PUBLISHED at LIBRARY_META.REVIEW.DECISIONS and carries the two-step
+-- publish gate (beta ruling B1: PUBLISHED requires an explicit 'published'
+-- verdict — 'confirmed' is a nomination). THIS file still encodes the OLD
+-- one-click semantics AND reads the retired CONNECT.DECISIONS stub: re-running
+-- it would clobber the gate (pre-provisioning) or fail (post-provisioning).
+-- The tripwire below makes either case a loud, immediate stop.
+
+SELECT 1/0 AS this_script_is_retired__see_header__use_provision_review_lane_sql;
+
+-- ============================================================================
+-- Original A12 header (kept for the record):
+-- Refresh V_LEADS_PUBLISHED (CHRIS APPLIES, in Snowsight, as the view
 -- owner / ACCOUNTADMIN). Idempotent; run top to bottom.
 -- ============================================================================
 -- WHY: the safe view was created 2026-07-03 with l.* — but COMPILED_SQL,

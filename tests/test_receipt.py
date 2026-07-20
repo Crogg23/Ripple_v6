@@ -96,9 +96,13 @@ def test_assemble_has_the_contract_fields():
     assert "THE QUERY" in text and "HOW TO VERIFY" in text and "1164450573" in text
 
 
-def test_assemble_marks_published_only_when_confirmed():
+def test_assemble_published_flag_and_two_step_fallback():
     base = {"LEAD_ID": "L", "RULE_NAME": "banned_but_operating", "LEFT_KEY_TYPE": "NPI",
             "LEFT_KEY_VALUE": "1", "TITLE": "x", "SCORE": 1.0, "EVIDENCE": "[]",
             "EVIDENCE_COUNT": 0, "COMPILED_SQL": "SELECT 1", "SQL_SHA256": "h", "AS_OF_DATE": "2026-06-28"}
+    # explicit PUBLISHED key always wins
     assert receipt.assemble(_SPEC, {**base, "REVIEW_STATE": "confirmed", "PUBLISHED": True}, [])["published"] is True
     assert receipt.assemble(_SPEC, {**base, "REVIEW_STATE": "pending", "PUBLISHED": False}, [])["published"] is False
+    # two-step gate fallback (no PUBLISHED key): confirmed = nomination, NOT published
+    assert receipt.assemble(_SPEC, {**base, "REVIEW_STATE": "confirmed"}, [])["published"] is False
+    assert receipt.assemble(_SPEC, {**base, "REVIEW_STATE": "published"}, [])["published"] is True

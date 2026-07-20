@@ -107,7 +107,9 @@ def assemble(spec: dict, lead: dict, snapshots: list[dict],
                     "tier is the human review state below",
         },
         "review_state": review,
-        "published": bool(lead.get("PUBLISHED")) if "PUBLISHED" in lead else (review == "confirmed"),
+        # Two-step gate (2026-07-20): the fallback mirrors safety.PUBLISHED_VERDICT —
+        # 'confirmed' is a nomination and must never read as published.
+        "published": bool(lead.get("PUBLISHED")) if "PUBLISHED" in lead else (review == "published"),
     }
 
 

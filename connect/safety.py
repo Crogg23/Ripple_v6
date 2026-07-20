@@ -8,6 +8,9 @@ you can actually publish journalism with. Four guarantees:
       never be resurrected by the next CREATE-OR-REPLACE rebuild of leads / links / the spine.
   REVIEW IS A RECORDED ACT 'confirmed' means a person decided so (or the claim cleared an
       auto-confirm tier) — an unreviewed maybe is carried as 'pending', never shown as fact.
+      Since 2026-07-20 (two-step publish gate, beta ruling B1) confirmation is a private
+      NOMINATION: only a separate explicit 'published' verdict — written by
+      scripts/publish_lead.py, never by the review buttons or CLI — reads as PUBLISHED.
   STALENESS EXPIRES        a claim whose supporting rows vanish from the source is marked stale and
       drops out of publication, so nobody stays publicly accused on data that no longer supports it.
   TRUST-GATED CORPUS       the rarity (TF) corpus and the identity spine should read only trusted
@@ -34,7 +37,7 @@ CREATE TABLE IF NOT EXISTS {DECISIONS_FQN} (
     DECISION_ID    STRING DEFAULT UUID_STRING(),
     TARGET_KIND    STRING NOT NULL DEFAULT 'lead',  -- 'lead' | 'link' | 'entity'
     TARGET_ID      STRING NOT NULL,    -- the stable id of the claim (LEAD_ID, link hash, ...)
-    DECISION       STRING NOT NULL,    -- 'confirmed' | 'rejected' | 'retracted' | 'stale' | 'needs_work'
+    DECISION       STRING NOT NULL,    -- 'confirmed' | 'rejected' | 'retracted' | 'stale' | 'needs_work' | 'published'
     REASON         STRING,
     REVIEWER       STRING,
     MODEL_VERSION  STRING,             -- which scoring model produced the claim being judged
@@ -47,6 +50,13 @@ CREATE TABLE IF NOT EXISTS {DECISIONS_FQN} (
 # (flagged) and unpublished — the Reading Room's third button.
 VALID = {"confirmed", "rejected", "retracted", "stale", "needs_work"}
 SUPPRESS = {"rejected", "retracted", "stale"}   # latest verdict in here -> never shown as fact
+
+# Two-step publish gate (2026-07-20, beta ruling B1). 'published' is a READ
+# state, deliberately absent from VALID: record() — i.e. the Reading Room
+# buttons and the `connect review` CLI — cannot write it. The only sanctioned
+# writer is scripts/publish_lead.py (review-writer PAT, refuses unless the
+# latest verdict is 'confirmed'). Confirm nominates; publish is its own act.
+PUBLISHED_VERDICT = "published"
 
 
 def ensure(conn) -> None:
@@ -97,9 +107,11 @@ def gate_rows(rows: list[dict], decisions: dict[str, str],
     """PURE (no DB) so it is unit-testable: apply the publish gate to a list of claims.
 
     A claim is DROPPED if its latest verdict suppresses it (rejected / retracted / stale).
-    Survivors carry REVIEW_STATE and PUBLISHED — PUBLISHED is true only if a human CONFIRMED it
-    or it cleared an auto-confirm tier (auto_key truthy). An unreviewed claim survives but is
-    marked 'pending' and PUBLISHED=False, so it is never presented as established fact.
+    Survivors carry REVIEW_STATE and PUBLISHED — PUBLISHED is true only for an explicit
+    'published' verdict (two-step gate, 2026-07-20: 'confirmed' is a nomination and reads
+    PUBLISHED=False; auto_key is kept for API compatibility but can no longer publish —
+    auto-publish is structurally blocked). An unreviewed claim survives but is marked
+    'pending' and PUBLISHED=False, so it is never presented as established fact.
     """
     out = []
     for r in rows:
@@ -108,7 +120,7 @@ def gate_rows(rows: list[dict], decisions: dict[str, str],
             continue
         r2 = dict(r)
         r2["REVIEW_STATE"] = d or "pending"
-        r2["PUBLISHED"] = (d == "confirmed") or bool(r.get(auto_key, False))
+        r2["PUBLISHED"] = d == PUBLISHED_VERDICT
         out.append(r2)
     return out
 

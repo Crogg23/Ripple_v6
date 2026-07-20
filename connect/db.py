@@ -33,8 +33,17 @@ RAW_SCHEMA = "LANDING"
 
 
 def connect():
-    """Open a Snowflake connection (PAT-as-password via snow.connect)."""
-    return snow.connect()
+    """Open a Snowflake connection (PAT-as-password via snow.connect).
+
+    Lane pinning (2026-07-20): the spine is BUILD work and must never burn the
+    serving warehouse. When SNOWFLAKE_ETL_WAREHOUSE is set (library-onboarding/
+    .env), every connect() here pins to it; unset, it falls back to the default
+    SNOWFLAKE_WAREHOUSE exactly as before.
+    """
+    import os
+
+    etl_wh = (os.environ.get("SNOWFLAKE_ETL_WAREHOUSE") or "").strip() or None
+    return snow.connect(warehouse=etl_wh)
 
 
 def rows(conn, sql: str, params: Optional[tuple] = None) -> list[tuple]:

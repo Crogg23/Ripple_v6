@@ -11,8 +11,13 @@ ripple:
       account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
       user: "{{ env_var('SNOWFLAKE_USER') }}"
       password: "{{ env_var('SNOWFLAKE_PAT') }}"
-      role: "{{ env_var('SNOWFLAKE_ROLE', 'ACCOUNTADMIN') }}"
-      warehouse: "{{ env_var('SNOWFLAKE_WAREHOUSE', 'RIPPLE_WH') }}"
+      # Role default changed ACCOUNTADMIN -> RIPPLE_TRANSFORM_RW (2026-07-20):
+      # an unexported shell now fails loudly on missing grants instead of
+      # silently running dbt with full account privileges.
+      role: "{{ env_var('SNOWFLAKE_ROLE', 'RIPPLE_TRANSFORM_RW') }}"
+      # Lane pinning (2026-07-20): dbt is BUILD work — prefer the ETL warehouse
+      # when SNOWFLAKE_ETL_WAREHOUSE is set; never default to the serving lane.
+      warehouse: "{{ env_var('SNOWFLAKE_ETL_WAREHOUSE', env_var('SNOWFLAKE_WAREHOUSE', 'RIPPLE_WH')) }}"
       database: LIBRARY_STAGING
       schema: DBT_CROGERS
       threads: 4

@@ -19,18 +19,20 @@ from __future__ import annotations
 DISPLAY_SPECS: dict[str, dict] = {
     "FED_CMS_NPPES": {
         "key": "NPI", "key_col": "NPI",
-        "person": ["PROVIDER_LAST_NAME__LEGAL_NAME", "PROVIDER_FIRST_NAME"],
-        "org": "PROVIDER_ORGANIZATION_NAME__LEGAL_BUSINESS_NAME",
+        # Single-underscore names are the LIVE schema after the 2026-07-12
+        # NPPES re-land (verified against INFORMATION_SCHEMA 2026-07-20; the
+        # old double-underscore names crashed the spine — AUDIT 07-14 §B.2).
+        "person": ["PROVIDER_LAST_NAME_LEGAL_NAME", "PROVIDER_FIRST_NAME"],
+        "org": "PROVIDER_ORGANIZATION_NAME_LEGAL_BUSINESS_NAME",
         "city": "PROVIDER_BUSINESS_MAILING_ADDRESS_CITY_NAME",
         "state": "PROVIDER_BUSINESS_MAILING_ADDRESS_STATE_NAME",
         "zip": "PROVIDER_BUSINESS_MAILING_ADDRESS_POSTAL_CODE",
         "authority": 1,
     },
-    "FED_CMS_FACILITY_AFFILIATION": {
-        "key": "NPI", "key_col": "NPI",
-        "person": ["PROVIDER_LAST_NAME", "PROVIDER_FIRST_NAME"],
-        "authority": 3,
-    },
+    # FED_CMS_FACILITY_AFFILIATION removed 2026-07-20: the landing table was
+    # dropped (verified live — zero columns in INFORMATION_SCHEMA). Its NPIs
+    # stay on the spine via NPPES/LEIE; the banned_but_operating detector's
+    # frozen evidence is unaffected (documented caveat in lead_queue.sql).
     "FED_HHS_OIG_LEIE": {
         "key": "NPI", "key_col": "NPI",
         "person": ["LASTNAME", "FIRSTNAME"], "org": "BUSNAME",
