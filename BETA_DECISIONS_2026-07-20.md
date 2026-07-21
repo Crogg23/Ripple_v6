@@ -10,7 +10,7 @@ This file is the ledger of every call I made under that instruction. Each entry 
 
 **Decision:** a ✅ Confirm in the Reading Room is a private **nomination**. `PUBLISHED=TRUE` now requires a second, explicit `'published'` verdict, written only by `scripts/publish_lead.py` (which refuses unless the latest verdict is `'confirmed'`, previews by default, and requires `--reason` on `--apply`).
 
-**Why this default:** it's the reversible direction. One-click-publish can be restored with a one-line view change; the opposite mistake (a historical Confirm silently going public when the SBA door opens) can't be un-shipped. It also makes the Constitution's "auto-publish is structurally blocked" literal: the auto-confirm hook can no longer publish even in code.
+**Why this default:** it's the reversible direction. One-click-publish can be restored with a one-line view change; the opposite mistake (a historical Confirm silently going public when the SBA door opens) can't be un-shipped. It also makes the Constitution's "auto-publish is structurally blocked" literal: the auto-confirm hook can no longer publish even in codes.
 
 **Built:** `provision_review_lane.sql` (PUBLISHED = 'published'; ran nowhere yet, so zero migration), `connect/safety.py` (+`PUBLISHED_VERDICT`, gate change, 'published' deliberately NOT writable by `record()`), `connect/leads.py` (docstrings + CLI hint), `reading_room/queries.py` (published leads never re-enter the queue), `scripts/publish_lead.py` (new), 4 test files updated — 16/16 offline gate tests pass.
 
@@ -43,3 +43,29 @@ No new sources, no new detectors, no new instruments, frontier stays parked. The
 - **B7 — SBA page runs on a frozen, re-derived extract:** every number was re-derived live TODAY (cell-for-cell match, receipts in `outputs/SPRINT_VERIFY_2026-07-20.md`) and frozen into CSVs under `evidence/sources/sba/`. The page never touches the warehouse at build time — no credential in the public build path, zero runtime cost, and the SQL receipts are printed on the page for re-derivation.
 - **B8 — Nothing went public.** The page is built and proven locally. A stranger-loadable URL is a finding leaving the building — that stays behind your sign-off (and B1's publish step). No exceptions, including in beta mode.
 - **B9 — Honesty-engine writeup (§5.2)** is the next build block after this beta lands, per the sprint's own two-front discipline; not started today to keep WIP honest.
+
+---
+
+## 2026-07-21 FOLLOW-UP (Chris's ordered checks — findings and receipts)
+
+**STEP 0 — commit:** already done by Chris himself, 2026-07-20 15:47 — commit `03577e5`, pushed to origin/main. Nothing left to commit from the beta.
+
+**STEP 1 — the Reading Room credential blocker: DOES NOT EXIST, proven executably.** `reading_room/connections.py` already hard-pins verdict writes to `RIPPLE_REVIEW_PAT` + role `RIPPLE_REVIEW_WRITER` with a no-fallback rule (missing PAT → `RuntimeError`, app runs read-only with a banner; `SNOWFLAKE_PAT`/`SNOWFLAKE_SERVE_PAT` are never used for writes), and clamps `USE SECONDARY ROLES NONE`. No code change was needed. Proof run (connection kwargs intercepted at the `snowflake.connector` boundary with the default lane deliberately set to a fake BUILD PAT — i.e. the mid-checklist Steps 5–7 state):
+
+```
+PROOF 1: PASS — no RIPPLE_REVIEW_PAT -> RuntimeError (no fallback to any other PAT)
+PROOF 2: resolved role='RIPPLE_REVIEW_WRITER' warehouse='SERVE_WH' credential_is_RIPPLE_REVIEW_PAT=True credential_is_build_pat=False
+PROOF 3: reader resolved role='RIPPLE_READER' warehouse='SERVE_WH' rides_swapped_default_PAT=False
+```
+
+(Proof 3: the read lane rides `SNOWFLAKE_SERVE_PAT`, role pinned to `RIPPLE_READER` — also immune to the swap.) A 🟢 reassurance line was added to checklist Step 5.
+
+**STEP 2 — investigations (findings only; nothing built, publish path untouched):**
+
+- **(a) The publish wall is a promise, not a grant.** `RIPPLE_REVIEW_WRITER` holds blanket `INSERT` on `REVIEW.DECISIONS` (`provision_review_lane.sql:77`); Snowflake does not enforce CHECK constraints and has no triggers, so a raw `INSERT … DECISION='published'` with the review PAT walks straight past `publish_lead.py`. And `publish_lead.py` itself runs as the same `RIPPLE_REVIEW_WRITER` (`publish_lead.py:72`) — the database cannot tell the helper from a hand INSERT. What the design does guarantee: any bypass is append-only-recorded with reviewer + timestamp, and neither the Reading Room buttons nor the `connect review` CLI can emit the verdict. A real database wall needs a role/table split (e.g. a dedicated publisher role as the only INSERT path the view trusts for `'published'` rows) — post-sprint design call, deliberately not built.
+- **(b) The SBA page's receipt SQL is internal-only.** It names `LIBRARY_RAW.LANDING.FED_SBA_LOANS`, so a stranger cannot execute it — as printed it proves re-derivability only to someone inside the warehouse. The page links the public FOIA dataset, but carries no public-executable variant of the query. A known gap to close before any public ship; untouched per orders.
+- **(c) DR lands off-account by design, and the credentials do not exist yet.** B2/`DR_SIZING` specify export → download → off-account storage (external). No cloud-storage credential exists anywhere checked this session: `.env` keys are Snowflake/SAM/Anthropic only; no `~/.aws`, `~/.config/gcloud`, or `~/.azure`. A Snowflake **internal** stage would be a second copy in the same building and does not satisfy B2. Acquiring a bucket + keys is part of the GO line.
+
+**STEP 3 — checklist corrections landed:**
+- **Step 6 rewritten.** Verified live: `RIPPLE_TRANSFORM_RW`'s grants are all object-level (no user-management privilege), but `SHOW USER PROGRAMMATIC ACCESS TOKENS` succeeded self-service as `RIPPLE_READER` — all 8 tokens visible, both drop-targets (`ripple_loader`, `RIPPLE_LOADER_PAT2`) present, 6 keepers intact. Self-service `ALTER USER` is unproven, so the default path is now: script **preview** in the terminal (works on any lane) → **drop in Snowsight as ACCOUNTADMIN**.
+- **Step 8 marked OPTIONAL** — the `SERVE_MON` grant only feeds the Atlas budget meter, and the Atlas is post-sprint under B3.

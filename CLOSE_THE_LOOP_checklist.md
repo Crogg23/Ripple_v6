@@ -122,17 +122,27 @@ Expect: it connects as `RIPPLE_TRANSFORM_RW` and prints lead previews.
 - Error on `CREATE SCHEMA` / `CONNECT` ownership → Step 4's first watch-item.
 **Do not proceed to Step 6 until this is clean.**
 
+🟢 **The Reading Room is immune to this swap** (proof run 2026-07-21, appendix in `BETA_DECISIONS_2026-07-20.md`): verdict writes hard-pin `RIPPLE_REVIEW_PAT` + role `RIPPLE_REVIEW_WRITER` and **raise instead of falling back** when that PAT is absent; its read lane rides `SNOWFLAKE_SERVE_PAT` with the role pinned to `RIPPLE_READER`. Nothing about reviewing depends on what `SNOWFLAKE_PAT` holds.
+
 ---
 
-## STEP 6 — A03: revoke the straggler PATs (terminal) 🔒
+## STEP 6 — A03: revoke the straggler PATs (preview in terminal, **drop in Snowsight as ACCOUNTADMIN**) 🔒
 
 Only now that the build lane is proven.
+**Verified 2026-07-21:** `RIPPLE_TRANSFORM_RW`'s 1,832 grants are all object-level — no user-management privilege — but token *viewing* is self-service (`SHOW USER PROGRAMMATIC ACCESS TOKENS` succeeded live as `RIPPLE_READER`; all 8 tokens listed, both drop-targets present). Self-service `ALTER USER` from a scoped lane is **unproven**, so the drop runs in Snowsight by default — don't bet the hour on it.
+
+☐ **Preview** from the terminal (read-only, works on any lane):
 ```
-python scripts/revoke_straggler_pats.py        # preview first
-python scripts/revoke_straggler_pats.py --apply # if the preview is right
+python scripts/revoke_straggler_pats.py
 ```
-☐ 🔒 Irreversible (a metadata snapshot is written to `outputs/` first). It runs on whatever `.env` holds — i.e. the build PAT. If that role can't run `SHOW USER PROGRAMMATIC ACCESS TOKENS` / `ALTER USER`, it fails **safe** (aborts, nothing dropped) — fallback: run the DROP DDL the preview printed, in Snowsight as ACCOUNTADMIN.
-☐ Judge the preview by the **names**: 2 to drop, 6 to keep. The new Step-2/Step-4 PATs will show as "?? (left alone)" — expected. Ignore the script's stale "all 5 …" success wording; those counts predate the current lists.
+Expect exactly **2 to drop** (`ripple_loader`, `RIPPLE_LOADER_PAT2`) and **6 keeps** (`RIPPLE_LOADER_PAT`, `CLAUDE_MCP_RO`, `PORTAL_RECON`, `WAVE3_LOAD`, `LIBRARY_PAT`, `READER`). The new Step-2/Step-4 PATs show as "?? (left alone)" — expected. Ignore the stale "all 5 …" wording.
+☐ 🔒 **Drop in Snowsight, as ACCOUNTADMIN** (irreversible — keep the worksheet as the record, since the script's `outputs/` snapshot only writes under `--apply`):
+```sql
+SHOW USER PROGRAMMATIC ACCESS TOKENS FOR USER CROGG23;
+ALTER USER CROGG23 REMOVE PROGRAMMATIC ACCESS TOKEN ripple_loader;
+ALTER USER CROGG23 REMOVE PROGRAMMATIC ACCESS TOKEN RIPPLE_LOADER_PAT2;
+```
+☐ Re-run the terminal preview: both stragglers should now be gone from the inventory. (`infra/keys_ledger.json` only updates under the script's `--apply` — note the Snowsight drop there by hand if you want the ledger exact.)
 
 ---
 
@@ -152,7 +162,9 @@ Materializes `LIBRARY_MARTS.DBT_CROGERS.LEAD_QUEUE`.
 
 ---
 
-## STEP 8 — let the Atlas see the budget (Snowsight worksheet, as ACCOUNTADMIN) ↩
+## STEP 8 — **OPTIONAL, fine to skip** — budget-meter grant (Snowsight worksheet, as ACCOUNTADMIN) ↩
+
+*This grant exists only to feed the Atlas budget meter, and the Atlas is post-sprint under ruling B3 (the freeze). Nothing in Steps 0–7 or the review depends on it — skip without a second thought, or run it now so it's done when the Atlas wakes.*
 
 ```sql
 GRANT MONITOR ON RESOURCE MONITOR SERVE_MON TO ROLE RIPPLE_READER;
