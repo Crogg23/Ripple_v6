@@ -69,3 +69,17 @@ PROOF 3: reader resolved role='RIPPLE_READER' warehouse='SERVE_WH' rides_swapped
 **STEP 3 — checklist corrections landed:**
 - **Step 6 rewritten.** Verified live: `RIPPLE_TRANSFORM_RW`'s grants are all object-level (no user-management privilege), but `SHOW USER PROGRAMMATIC ACCESS TOKENS` succeeded self-service as `RIPPLE_READER` — all 8 tokens visible, both drop-targets (`ripple_loader`, `RIPPLE_LOADER_PAT2`) present, 6 keepers intact. Self-service `ALTER USER` is unproven, so the default path is now: script **preview** in the terminal (works on any lane) → **drop in Snowsight as ACCOUNTADMIN**.
 - **Step 8 marked OPTIONAL** — the `SERVE_MON` grant only feeds the Atlas budget meter, and the Atlas is post-sprint under B3.
+
+---
+
+## 2026-07-21 (later) — B9 DELIVERED: the honesty engine
+
+Sprint brief §5.2, built and adversarially verified. **`honesty/` package** (~600 lines + 35 offline tests, zero dependencies, zero warehouse contact — reads the committed dbt manifest, writes committed artifacts):
+
+- **The lineage walker** (`python -m honesty`): walks every mart's full dbt DAG + literal-FQN reads, grades `fact` / `lead` / `unverified`, fail-closed. Live result over all 47 marts: **46 fact · 1 lead (`lead_queue`, via its `V_LEADS_PUBLISHED` claim ancestry — exactly right) · 0 unverified.** Artifacts: `honesty/mart_grades.json` (every receipt) + `honesty/MART_GRADES.md`, fingerprinted by the manifest's own `generated_at` (deterministic — a diff means models or rules changed, never the calendar).
+- **The refusal** (`honesty.assert_composable`): refuses at compose time to blend fact-grade and lead-grade rows into one scalar; traps travel as mandatory disclosures; `measure_input_for_mart()` ties labels to the committed grades so callers can't hand-type `fact`.
+- **The trap axis**: the five source-data POLICY traps mirrored verbatim with a drift-tripwire test.
+- **Adversarially verified before trusting it:** 4 hostile auditors hand-walked all 20 joined marts + 8 spot-checks — **all 47 grades confirmed correct**; a 5th agent code-reviewed the walker and proved **5 fail-open holes** (comma/LATERAL joins invisible, jinja-in-ON reading as neutral, `NPI_NAME` upgrading to hard, ghost dependencies vanishing, WHERE-clause identity logic unseen) plus 2 fail-closed bugs. **Every one is fixed and pinned by a test**; grades were re-derived after hardening — unchanged, now with coverage that earns them.
+- **Two repo defects noted by the auditors, not fixed here (out of scope):** `stg_fed_noaa_ais`'s header claims a single-day AIS snapshot while the verified POLICY says 8 days (the policy is receipt-backed; the header is wrong); and out-of-dbt warehouse views are opaque to any manifest walker — `V_LEADS_PUBLISHED` is caught by name, but the limitation is documented in `honesty/README.md`.
+
+**Adjust by:** the taxonomy (one judgment call — hard-anchored composite joins count as fact-compatible) is documented in `honesty/README.md`; say the word and the rule flips with its tests.
