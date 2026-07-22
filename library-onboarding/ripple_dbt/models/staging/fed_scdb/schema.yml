@@ -81,49 +81,50 @@ models:
           (1=orally argued, 2=per curiam, 5=equally divided, 6=unargued, etc.).
         data_tests:
           - accepted_values:
-              values: [1, 2, 3, 4, 5, 6, 7]
-              quote: false
-
+              arguments:
+                values: [1, 2, 3, 4, 5, 6, 7]
+                quote: false
       - name: decision_direction_code
         description: "Direction of the decision: 1=conservative, 2=liberal, 3=unspecifiable."
         data_tests:
           - accepted_values:
-              values: [1, 2, 3]
-              quote: false
-
+              arguments:
+                values: [1, 2, 3]
+                quote: false
       - name: party_winning
         description: "1=petitioner wins, 0=petitioner loses, null=unclear."
         data_tests:
           - accepted_values:
-              values: [0, 1]
-              quote: false
               config:
                 severity: warn
+              arguments:
+                values: [0, 1]
+                quote: false
       - name: majority_code
         description: "1=majority, 2=dissent, 3=concurrence, etc."
         data_tests:
           - accepted_values:
-              values: [1, 2, 3, 4, 5, 6]
-              quote: false
-
+              arguments:
+                values: [1, 2, 3, 4, 5, 6]
+                quote: false
       - name: vote_code
         description: >
           Numeric code for the justice vote
           (1=majority, 2=dissent, 3=regular concurrence, etc.).
         data_tests:
           - accepted_values:
-              values: [1, 2, 3, 4, 5, 6, 7, 8]
-              quote: false
-
+              arguments:
+                values: [1, 2, 3, 4, 5, 6, 7, 8]
+                quote: false
       - name: issue_area_code
         description: >
           Broad issue area code
           (1=Criminal Procedure, 2=Civil Rights, 3=First Amendment, etc.).
         data_tests:
           - accepted_values:
-              values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
-              quote: false
-
+              arguments:
+                values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+                quote: false
       - name: _ingested_at
         description: Timestamp when the record was loaded into the landing table.
 
@@ -202,45 +203,46 @@ models:
         description: Numeric code for the type of decision.
         data_tests:
           - accepted_values:
-              values: [1, 2, 3, 4, 5, 6, 7]
-              quote: false
-
+              arguments:
+                values: [1, 2, 3, 4, 5, 6, 7]
+                quote: false
       - name: decision_direction_code
         description: "Direction of the decision: 1=conservative, 2=liberal, 3=unspecifiable."
         data_tests:
           - accepted_values:
-              values: [1, 2, 3]
-              quote: false
-
+              arguments:
+                values: [1, 2, 3]
+                quote: false
       - name: party_winning
         description: "1=petitioner wins, 0=petitioner loses."
         data_tests:
           - accepted_values:
-              values: [0, 1]
-              quote: false
               config:
                 severity: warn
+              arguments:
+                values: [0, 1]
+                quote: false
       - name: majority_code
         description: Whether the justice voted with the majority or in dissent.
         data_tests:
           - accepted_values:
-              values: [1, 2, 3, 4, 5, 6]
-              quote: false
-
+              arguments:
+                values: [1, 2, 3, 4, 5, 6]
+                quote: false
       - name: vote_code
         description: Numeric code for the justice vote.
         data_tests:
           - accepted_values:
-              values: [1, 2, 3, 4, 5, 6, 7, 8]
-              quote: false
-
+              arguments:
+                values: [1, 2, 3, 4, 5, 6, 7, 8]
+                quote: false
       - name: issue_area_code
         description: Broad issue area code.
         data_tests:
           - accepted_values:
-              values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
-              quote: false
-
+              arguments:
+                values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+                quote: false
       - name: is_petitioner_winning
         description: Boolean flag — true when the petitioner prevailed.
 

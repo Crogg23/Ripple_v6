@@ -52,7 +52,8 @@ models:
         description: Boolean flag indicating whether the case was a qui tam (whistleblower) action.
         data_tests:
           - accepted_values:
-              values: [true, false]
+              arguments:
+                values: [true, false]
 
       - name: relator_name
         description: Name of the qui tam relator (whistleblower), if applicable.
@@ -131,7 +132,8 @@ models:
         description: Boolean flag indicating whether the case was a qui tam action.
         data_tests:
           - accepted_values:
-              values: [true, false]
+              arguments:
+                values: [true, false]
 
       - name: relator_name
         description: Name of the qui tam relator, if applicable.

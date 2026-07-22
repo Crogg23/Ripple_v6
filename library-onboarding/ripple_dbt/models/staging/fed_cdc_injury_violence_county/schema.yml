@@ -31,10 +31,11 @@ models:
       recently ingested record.
     data_tests:
       - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - fips_county
-            - intent
-            - period
+          arguments:
+            combination_of_columns:
+              - fips_county
+              - intent
+              - period
     columns:
 
       - name: fips_county
@@ -62,15 +63,15 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values:
-                - 'Drug_OD'
-                - 'All_Homicide'
-                - 'FA_Homicide'
-                - 'All_Suicide'
-                - 'FA_Suicide'
-                - 'FA_Deaths'
-              quote: true
-
+              arguments:
+                values:
+                  - 'Drug_OD'
+                  - 'All_Homicide'
+                  - 'FA_Homicide'
+                  - 'All_Suicide'
+                  - 'FA_Suicide'
+                  - 'FA_Deaths'
+                quote: true
       - name: period
         description: >
           Reporting period: a calendar year (2019-2024) or 'TTM' (trailing
@@ -78,9 +79,9 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: ['2019', '2020', '2021', '2022', '2023', '2024', 'TTM']
-              quote: true
-
+              arguments:
+                values: ['2019', '2020', '2021', '2022', '2023', '2024', 'TTM']
+                quote: true
       - name: count_suppression_flag
         description: >
           Raw COUNT_SUP value, kept as TEXT. A mix of plain integer counts and
@@ -105,10 +106,11 @@ models:
           0 = crude or zero). Cast to double from TEXT.
         data_tests:
           - accepted_values:
-              values: [0, 1]
               config:
                 severity: warn
 
+              arguments:
+                values: [0, 1]
       - name: rate_modeled_ci
         description: >
           Confidence-interval text for the modeled rate (a 'lo-hi' range string).

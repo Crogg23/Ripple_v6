@@ -117,18 +117,18 @@ models:
           The 2019 measurable cohort is the 637-county headline set.
         data_tests:
           - accepted_values:
-              values: [true, false]
-              quote: false
-
+              arguments:
+                values: [true, false]
+                quote: false
       - name: is_canonical_year
         description: >
           TRUE for year = 2019, the most complete Vera reporting year used as the
           canonical cross-section for the headline finding.
         data_tests:
           - accepted_values:
-              values: [true, false]
-              quote: false
-
+              arguments:
+                values: [true, false]
+                quote: false
       - name: _ingested_at
         description: Timestamp when the underlying record was ingested into the landing table.
 

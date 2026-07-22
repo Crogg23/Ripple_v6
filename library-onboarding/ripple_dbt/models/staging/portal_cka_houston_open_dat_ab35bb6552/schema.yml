@@ -31,9 +31,10 @@ models:
           - not_null
     data_tests:
       - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - zip
-            - in_date
-            - due_date
-            - out_date
-            - id
+          arguments:
+            combination_of_columns:
+              - zip
+              - in_date
+              - due_date
+              - out_date
+              - id

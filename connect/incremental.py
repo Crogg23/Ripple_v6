@@ -59,7 +59,7 @@ from .discover import (
     domain_of,
     validate_key_config,
 )
-from .entity_index_specs import DISPLAY_SPECS
+from .entity_index_specs import DISPLAY_SPECS, table_keys
 from .keys import NORM_RULES, normalize_sql, quote_ident
 from .spine import _addr_expr, _name_expr  # one definition of name/addr, shared
 
@@ -104,6 +104,11 @@ def _reset_caches() -> None:
 # =========================================================================== #
 def _ddl(conn) -> None:
     store.ensure_schema(conn)
+    # A fresh connection has a default DATABASE but no default SCHEMA (verified live:
+    # CURRENT_SCHEMA() = NULL), so every bare (unqualified) CREATE TEMPORARY TABLE
+    # below and in reslice_spine/validate -- _NEW, _OLD, _AFFECTED, _VKEYS, etc. --
+    # fails with "session does not have a current schema". Pin one.
+    db.rows(conn, f'USE SCHEMA "{CONNECT_DB}"."{CONNECT_SCHEMA}"')
     db.rows(conn, f"""
         CREATE TABLE IF NOT EXISTS {WATERMARK_FQN} (
             TABLE_NAME        STRING NOT NULL,   -- UPPER(source_id) == landing table; PK by convention
@@ -303,13 +308,15 @@ def sync_after_rebuild(conn, reseed: bool = True) -> dict:
 
 def _rebuild_spine_keyset_from_landing(conn) -> None:
     """Fallback seed: the transient SPINE_KEYSET is gone, so derive the persisted
-    twin directly from the 15 spec tables (same per-table INSERT the backstop uses)."""
+    twin directly from the spec tables (same per-(table, key) INSERT the backstop
+    uses -- see entity_index_specs.table_keys for tables with more than one key)."""
     db.rows(conn, f"TRUNCATE TABLE {SKEYSET_FQN}")
     for tbl, spec in DISPLAY_SPECS.items():
-        norm = normalize_sql(spec["key"], quote_ident(spec["key_col"]))
-        db.rows(conn, f"INSERT INTO {SKEYSET_FQN} (TABLE_NAME, KEY_TYPE, VAL) "
-                      f"SELECT DISTINCT '{tbl}', '{spec['key']}', {norm} "
-                      f"FROM {db.fqn(tbl)} WHERE {norm} IS NOT NULL")
+        for key, key_col in table_keys(spec):
+            norm = normalize_sql(key, quote_ident(key_col))
+            db.rows(conn, f"INSERT INTO {SKEYSET_FQN} (TABLE_NAME, KEY_TYPE, VAL) "
+                          f"SELECT DISTINCT '{tbl}', '{key}', {norm} "
+                          f"FROM {db.fqn(tbl)} WHERE {norm} IS NOT NULL")
 
 
 # =========================================================================== #
@@ -341,15 +348,19 @@ def _entity_id_sql(key_type_ref: str, val_ref: str) -> str:
 # =========================================================================== #
 def reslice_spine(conn, table: str, run_id: str, dry_run: bool = False) -> dict:
     spec = DISPLAY_SPECS[table]
-    key = spec["key"]
-    norm = normalize_sql(key, quote_ident(spec["key_col"]))
+    keys = table_keys(spec)   # almost always one (key, key_col); a few tables carry two
     landing = db.fqn(table)
     lit = table.replace("'", "''")
 
     # --- the table's NEW normalized-key slice (deterministic, == full rebuild) --
-    db.rows(conn, f"CREATE OR REPLACE TEMPORARY TABLE _NEW AS "
-                  f"SELECT DISTINCT '{key}' AS KEY_TYPE, {norm} AS VAL "
-                  f"FROM {landing} WHERE {norm} IS NOT NULL")
+    # UNION ALL across every key this table carries (e.g. FED_VOTEVIEW_MEMBERS
+    # contributes both an ICPSR row and a BIOGUIDE row per member).
+    new_arms = [
+        f"SELECT DISTINCT '{key}' AS KEY_TYPE, {normalize_sql(key, quote_ident(key_col))} AS VAL "
+        f"FROM {landing} WHERE {normalize_sql(key, quote_ident(key_col))} IS NOT NULL"
+        for key, key_col in keys
+    ]
+    db.rows(conn, f"CREATE OR REPLACE TEMPORARY TABLE _NEW AS " + " UNION ALL ".join(new_arms))
     # --- the table's OLD slice (what the persisted keyset holds right now) ------
     db.rows(conn, f"CREATE OR REPLACE TEMPORARY TABLE _OLD AS "
                   f"SELECT KEY_TYPE, VAL FROM {SKEYSET_FQN} WHERE TABLE_NAME = '{lit}'")
@@ -396,7 +407,8 @@ def reslice_spine(conn, table: str, run_id: str, dry_run: bool = False) -> dict:
     _merge_nodes(conn, table, run_id)
     stats.update(_merge_pairs(conn, table, run_id))
     # attributes = _RECOMPUTE, the table's full current slice (the BLOCKER fix) -------
-    stats["index_rows"] = _merge_index(conn, table, spec, run_id, "_RECOMPUTE")
+    stats["index_rows"] = sum(
+        _merge_index(conn, table, key, key_col, spec, run_id, "_RECOMPUTE") for key, key_col in keys)
     stats.update(_merge_golden(conn, run_id, "_RECOMPUTE"))
     stats["leads_restamped"] = _backfill_leads(conn)
 
@@ -448,15 +460,19 @@ def _merge_nodes(conn, table: str, run_id: str) -> None:
         FROM _NEW n JOIN _AFFECTED a ON a.KEY_TYPE = n.KEY_TYPE AND a.VAL = n.VAL""")
 
 
-def _merge_index(conn, table: str, spec: dict, run_id: str, scope: str = "_AFFECTED") -> int:
-    # ENTITY_INDEX is keyed (ENTITY_ID, SOURCE_TABLE); each row depends ONLY on its own
-    # SOURCE_TABLE's data (no sibling read), so replacing just this table's `scope`
-    # slice is exact. ENTITY_ID is the content hash (no ENTITY_MAP join -> no 9.7M
-    # scan). reslice_spine passes scope=_RECOMPUTE (the full current slice ∪ removed
-    # keys) so an attribute-only refresh re-stamps DISPLAY_LABEL/ROW_COUNT/PREVIEW and a
-    # removed key's stale row is dropped. Mirrors entity_index.build.
-    key = spec["key"]
-    norm = normalize_sql(key, quote_ident(spec["key_col"]))
+def _merge_index(conn, table: str, key: str, key_col: str, spec: dict, run_id: str,
+                  scope: str = "_AFFECTED") -> int:
+    # ENTITY_INDEX is keyed (ENTITY_ID, SOURCE_TABLE, KEY_TYPE); each row depends ONLY
+    # on its own SOURCE_TABLE's data (no sibling read), so replacing just this table's
+    # `scope` slice is exact. ENTITY_ID is the content hash (no ENTITY_MAP join -> no
+    # 9.7M scan). reslice_spine passes scope=_RECOMPUTE (the full current slice ∪
+    # removed keys) so an attribute-only refresh re-stamps DISPLAY_LABEL/ROW_COUNT/
+    # PREVIEW and a removed key's stale row is dropped. Mirrors entity_index.build.
+    # key/key_col are explicit params (not read off spec) because a table can carry
+    # MORE THAN ONE key (see entity_index_specs.table_keys) -- the caller loops once
+    # per key, and `scope` itself may hold rows for several key types at once, so
+    # every clause below is scoped by KEY_TYPE = '{key}', not just SOURCE_TABLE.
+    norm = normalize_sql(key, quote_ident(key_col))
     lit = table.replace("'", "''")
     eid = _entity_id_sql(f"'{key}'", norm)
     preview_pairs = [f"'place', ANY_VALUE({_addr_expr(spec)})"]
@@ -464,8 +480,8 @@ def _merge_index(conn, table: str, spec: dict, run_id: str, scope: str = "_AFFEC
         preview_pairs.append(f"'{label}', ANY_VALUE(TRIM({quote_ident(col)}))")
     preview = f"OBJECT_CONSTRUCT({', '.join(preview_pairs)})"
 
-    db.rows(conn, f"DELETE FROM {INDEX_FQN} WHERE SOURCE_TABLE = '{lit}' "
-                  f"AND KEY_VALUE IN (SELECT VAL FROM {scope})")
+    db.rows(conn, f"DELETE FROM {INDEX_FQN} WHERE SOURCE_TABLE = '{lit}' AND KEY_TYPE = '{key}' "
+                  f"AND KEY_VALUE IN (SELECT VAL FROM {scope} WHERE KEY_TYPE = '{key}')")
     db.rows(conn, f"""
         INSERT INTO {INDEX_FQN}
           (ENTITY_ID, ENTITY_TYPE, KEY_TYPE, KEY_VALUE, SOURCE_TABLE, DOMAIN,
@@ -480,12 +496,12 @@ def _merge_index(conn, table: str, spec: dict, run_id: str, scope: str = "_AFFEC
                  ANY_VALUE({_name_expr(spec)}) AS DISPLAY_LABEL,
                  COUNT(*) AS ROW_COUNT, {preview} AS PREVIEW
           FROM {db.fqn(table)} t
-          WHERE {norm} IS NOT NULL AND {norm} IN (SELECT VAL FROM {scope})
+          WHERE {norm} IS NOT NULL AND {norm} IN (SELECT VAL FROM {scope} WHERE KEY_TYPE = '{key}')
           GROUP BY {eid}
         )""")
     return int(db.scalar(conn, f"SELECT COUNT(*) FROM {INDEX_FQN} "
-                              f"WHERE SOURCE_TABLE = '{lit}' "
-                              f"AND KEY_VALUE IN (SELECT VAL FROM {scope})") or 0)
+                              f"WHERE SOURCE_TABLE = '{lit}' AND KEY_TYPE = '{key}' "
+                              f"AND KEY_VALUE IN (SELECT VAL FROM {scope} WHERE KEY_TYPE = '{key}')") or 0)
 
 
 def _golden_attrs(scope_fqn: str = "_AFFECTED") -> str:
@@ -506,17 +522,18 @@ def _golden_attrs(scope_fqn: str = "_AFFECTED") -> str:
     the gate is a no-op and golden == the full rebuild."""
     arms = []
     for tbl, spec in DISPLAY_SPECS.items():
-        norm = normalize_sql(spec["key"], quote_ident(spec["key_col"]))
         lit = tbl.replace("'", "''")
-        arms.append(
-            f"SELECT '{spec['key']}' AS KEY_TYPE, {norm} AS KEY_VALUE, "
-            f"{_name_expr(spec)} AS NAME, {_addr_expr(spec)} AS ADDR, "
-            f"{spec['authority']} AS AUTH, '{tbl}' AS SRC "
-            f"FROM {db.fqn(tbl)} "
-            f"WHERE {norm} IS NOT NULL "
-            f"AND {norm} IN (SELECT VAL FROM {scope_fqn} WHERE KEY_TYPE = '{spec['key']}') "
-            f"AND {norm} IN (SELECT VAL FROM {SKEYSET_FQN} "
-            f"WHERE TABLE_NAME = '{lit}' AND KEY_TYPE = '{spec['key']}')")
+        for key, key_col in table_keys(spec):
+            norm = normalize_sql(key, quote_ident(key_col))
+            arms.append(
+                f"SELECT '{key}' AS KEY_TYPE, {norm} AS KEY_VALUE, "
+                f"{_name_expr(spec)} AS NAME, {_addr_expr(spec)} AS ADDR, "
+                f"{spec['authority']} AS AUTH, '{tbl}' AS SRC "
+                f"FROM {db.fqn(tbl)} "
+                f"WHERE {norm} IS NOT NULL "
+                f"AND {norm} IN (SELECT VAL FROM {scope_fqn} WHERE KEY_TYPE = '{key}') "
+                f"AND {norm} IN (SELECT VAL FROM {SKEYSET_FQN} "
+                f"WHERE TABLE_NAME = '{lit}' AND KEY_TYPE = '{key}')")
     return " UNION ALL ".join(arms)
 
 
@@ -529,7 +546,7 @@ def _merge_golden(conn, run_id: str, scope: str = "_AFFECTED") -> dict:
                  {_entity_type_sql('a.KEY_TYPE')} AS ENTITY_TYPE,
                  a.KEY_TYPE, a.KEY_VALUE, a.NAME, a.ADDR, a.SRC,
                  ROW_NUMBER() OVER (PARTITION BY a.KEY_TYPE, a.KEY_VALUE
-                     ORDER BY IFF(a.NAME IS NULL, 1, 0), a.AUTH, LENGTH(a.NAME) DESC NULLS LAST) AS RN
+                     ORDER BY IFF(a.NAME IS NULL, 1, 0), a.AUTH, LENGTH(a.NAME) DESC NULLS LAST, a.SRC) AS RN
           FROM attrs a )
         SELECT ENTITY_ID, ENTITY_TYPE, KEY_TYPE, KEY_VALUE,
                NAME AS CANONICAL_NAME, {normalize_sql('NAME', 'NAME')} AS NAME_NORM,
@@ -813,11 +830,12 @@ def validate(table: str | None = None) -> dict:
         #       the recompute is byte-equivalent to the full rebuild.
         spec = DISPLAY_SPECS.get(table)
         if spec:
-            key = spec["key"]
-            norm = normalize_sql(key, quote_ident(spec["key_col"]))
-            db.rows(conn, f"CREATE OR REPLACE TEMPORARY TABLE _VKEYS AS "
-                          f"SELECT DISTINCT '{key}' KEY_TYPE, {norm} VAL "
-                          f"FROM {db.fqn(table)} WHERE {norm} IS NOT NULL")
+            vkey_arms = [
+                f"SELECT DISTINCT '{key}' KEY_TYPE, {normalize_sql(key, quote_ident(key_col))} VAL "
+                f"FROM {db.fqn(table)} WHERE {normalize_sql(key, quote_ident(key_col))} IS NOT NULL"
+                for key, key_col in table_keys(spec)
+            ]
+            db.rows(conn, f"CREATE OR REPLACE TEMPORARY TABLE _VKEYS AS " + " UNION ALL ".join(vkey_arms))
             # --- ENTITY_MAP ---
             db.rows(conn, f"""
                 CREATE OR REPLACE TEMPORARY TABLE _MAP_SHADOW AS
@@ -848,8 +866,8 @@ def validate(table: str | None = None) -> dict:
                 conn,
                 "SELECT KEY_TYPE, KEY_VALUE, TABLE_A, TABLE_B FROM _PAIR_SHADOW",
                 f"SELECT KEY_TYPE, KEY_VALUE, TABLE_A, TABLE_B FROM {PAIRS_FQN} "
-                f"WHERE (TABLE_A = '{lit}' OR TABLE_B = '{lit}') AND KEY_TYPE = '{key}' "
-                f"AND KEY_VALUE IN (SELECT VAL FROM _VKEYS)")
+                f"WHERE (TABLE_A = '{lit}' OR TABLE_B = '{lit}') "
+                f"AND (KEY_TYPE, KEY_VALUE) IN (SELECT KEY_TYPE, VAL FROM _VKEYS)")
             # --- ENTITY_GOLDEN (survivorship over the gated arms, full current slice) ---
             db.rows(conn, f"""
                 CREATE OR REPLACE TEMPORARY TABLE _GOLD_SHADOW AS
@@ -860,7 +878,7 @@ def validate(table: str | None = None) -> dict:
                          a.KEY_TYPE, a.KEY_VALUE, a.NAME, a.ADDR, a.SRC,
                          ROW_NUMBER() OVER (PARTITION BY a.KEY_TYPE, a.KEY_VALUE
                              ORDER BY IFF(a.NAME IS NULL, 1, 0), a.AUTH,
-                                      LENGTH(a.NAME) DESC NULLS LAST) AS RN
+                                      LENGTH(a.NAME) DESC NULLS LAST, a.SRC) AS RN
                   FROM attrs a )
                 SELECT ENTITY_ID, ENTITY_TYPE, KEY_TYPE, KEY_VALUE,
                        NAME AS CANONICAL_NAME, {normalize_sql('NAME', 'NAME')} AS NAME_NORM,

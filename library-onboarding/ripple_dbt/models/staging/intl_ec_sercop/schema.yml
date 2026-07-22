@@ -39,30 +39,32 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values:
-                - planning
-                - planningUpdate
-                - tender
-                - tenderAmendment
-                - tenderUpdate
-                - tenderCancellation
-                - award
-                - awardUpdate
-                - awardCancellation
-                - contract
-                - contractUpdate
-                - contractAmendment
-                - implementation
-                - implementationUpdate
-                - contractTermination
-                - compiled
+              arguments:
+                values:
+                  - planning
+                  - planningUpdate
+                  - tender
+                  - tenderAmendment
+                  - tenderUpdate
+                  - tenderCancellation
+                  - award
+                  - awardUpdate
+                  - awardCancellation
+                  - contract
+                  - contractUpdate
+                  - contractAmendment
+                  - implementation
+                  - implementationUpdate
+                  - contractTermination
+                  - compiled
 
       - name: initiation_type
         description: Mechanism used to initiate the contracting process (e.g. tender).
         data_tests:
           - accepted_values:
-              values:
-                - tender
+              arguments:
+                values:
+                  - tender
 
       - name: language
         description: Language of the release content.
@@ -94,27 +96,29 @@ models:
         description: Current status of the tender.
         data_tests:
           - accepted_values:
-              values:
-                - planning
-                - planned
-                - active
-                - cancelled
-                - unsuccessful
-                - complete
-                - withdrawn
               config:
                 severity: warn
+              arguments:
+                values:
+                  - planning
+                  - planned
+                  - active
+                  - cancelled
+                  - unsuccessful
+                  - complete
+                  - withdrawn
       - name: tender_procurement_method
         description: Method used to solicit offers (e.g. open, selective, limited, direct).
         data_tests:
           - accepted_values:
-              values:
-                - open
-                - selective
-                - limited
-                - direct
               config:
                 severity: warn
+              arguments:
+                values:
+                  - open
+                  - selective
+                  - limited
+                  - direct
       - name: tender_value_amount
         description: Estimated monetary value of the tender.
 
@@ -128,13 +132,14 @@ models:
         description: Current status of the award.
         data_tests:
           - accepted_values:
-              values:
-                - pending
-                - active
-                - cancelled
-                - unsuccessful
               config:
                 severity: warn
+              arguments:
+                values:
+                  - pending
+                  - active
+                  - cancelled
+                  - unsuccessful
       - name: award_value_amount
         description: Monetary value of the award.
 
@@ -222,30 +227,32 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values:
-                - planning
-                - planningUpdate
-                - tender
-                - tenderAmendment
-                - tenderUpdate
-                - tenderCancellation
-                - award
-                - awardUpdate
-                - awardCancellation
-                - contract
-                - contractUpdate
-                - contractAmendment
-                - implementation
-                - implementationUpdate
-                - contractTermination
-                - compiled
+              arguments:
+                values:
+                  - planning
+                  - planningUpdate
+                  - tender
+                  - tenderAmendment
+                  - tenderUpdate
+                  - tenderCancellation
+                  - award
+                  - awardUpdate
+                  - awardCancellation
+                  - contract
+                  - contractUpdate
+                  - contractAmendment
+                  - implementation
+                  - implementationUpdate
+                  - contractTermination
+                  - compiled
 
       - name: initiation_type
         description: Mechanism used to initiate the contracting process.
         data_tests:
           - accepted_values:
-              values:
-                - tender
+              arguments:
+                values:
+                  - tender
 
       - name: language
         description: Language of the release content.
@@ -268,27 +275,29 @@ models:
         description: Status of the tender.
         data_tests:
           - accepted_values:
-              values:
-                - planning
-                - planned
-                - active
-                - cancelled
-                - unsuccessful
-                - complete
-                - withdrawn
               config:
                 severity: warn
+              arguments:
+                values:
+                  - planning
+                  - planned
+                  - active
+                  - cancelled
+                  - unsuccessful
+                  - complete
+                  - withdrawn
       - name: tender_procurement_method
         description: Procurement method used.
         data_tests:
           - accepted_values:
-              values:
-                - open
-                - selective
-                - limited
-                - direct
               config:
                 severity: warn
+              arguments:
+                values:
+                  - open
+                  - selective
+                  - limited
+                  - direct
       - name: tender_value_amount
         description: Estimated tender value.
 
@@ -308,13 +317,14 @@ models:
         description: Status of the award.
         data_tests:
           - accepted_values:
-              values:
-                - pending
-                - active
-                - cancelled
-                - unsuccessful
               config:
                 severity: warn
+              arguments:
+                values:
+                  - pending
+                  - active
+                  - cancelled
+                  - unsuccessful
       - name: award_value_amount
         description: Monetary value of the award.
 

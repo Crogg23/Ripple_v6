@@ -25,7 +25,8 @@ models:
           - not_null
     data_tests:
       - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - refugees_by_country_of_origin
-            - year
-            - code
+          arguments:
+            combination_of_columns:
+              - refugees_by_country_of_origin
+              - year
+              - code

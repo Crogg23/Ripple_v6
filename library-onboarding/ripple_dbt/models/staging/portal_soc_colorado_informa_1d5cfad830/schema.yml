@@ -40,12 +40,13 @@ models:
           - not_null
     data_tests:
       - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - county_fips
-            - fiscal_year
-            - start_date
-            - exit_date
-            - state_id
-            - state_id_copy
-            - apprentice_id
-            - program_id
+          arguments:
+            combination_of_columns:
+              - county_fips
+              - fiscal_year
+              - start_date
+              - exit_date
+              - state_id
+              - state_id_copy
+              - apprentice_id
+              - program_id

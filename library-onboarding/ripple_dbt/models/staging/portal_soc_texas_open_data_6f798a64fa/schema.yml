@@ -28,8 +28,9 @@ models:
           - not_null
     data_tests:
       - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - ein
-            - active_date
-            - appointment_type
-            - naic_id
+          arguments:
+            combination_of_columns:
+              - ein
+              - active_date
+              - appointment_type
+              - naic_id

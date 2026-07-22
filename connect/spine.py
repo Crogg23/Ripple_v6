@@ -28,7 +28,7 @@ from __future__ import annotations
 import uuid
 
 from . import db, store
-from .entity_index_specs import DISPLAY_SPECS
+from .entity_index_specs import DISPLAY_SPECS, table_keys
 from .keys import normalize_sql, quote_ident
 
 KEYSET_FQN = store.cfqn("SPINE_KEYSET")   # transient working set
@@ -70,16 +70,19 @@ def _addr_expr(spec: dict) -> str:
 
 def _build_hard_keyset(conn) -> int:
     """Materialize DISTINCT normalized hard-key values per source into a transient
-    working table. One INSERT per spec'd table; NPPES (~9.6M rows) is the big one."""
+    working table. One INSERT per (table, key) pair -- almost always one per spec'd
+    table, except a table with extra_keys (e.g. FED_VOTEVIEW_MEMBERS: ICPSR +
+    BIOGUIDE) gets one INSERT per key. NPPES (~9.6M rows) is the big single one."""
     db.rows(conn, f"CREATE OR REPLACE TRANSIENT TABLE {KEYSET_FQN} "
                   f"(table_name STRING, key_type STRING, val STRING)")
     n = 0
     for tbl, spec in DISPLAY_SPECS.items():
-        norm = normalize_sql(spec["key"], quote_ident(spec["key_col"]))
-        db.rows(conn, f"INSERT INTO {KEYSET_FQN} "
-                      f"SELECT DISTINCT '{tbl}', '{spec['key']}', {norm} "
-                      f"FROM {db.fqn(tbl)} WHERE {norm} IS NOT NULL")
-        n += 1
+        for key, key_col in table_keys(spec):
+            norm = normalize_sql(key, quote_ident(key_col))
+            db.rows(conn, f"INSERT INTO {KEYSET_FQN} "
+                          f"SELECT DISTINCT '{tbl}', '{key}', {norm} "
+                          f"FROM {db.fqn(tbl)} WHERE {norm} IS NOT NULL")
+            n += 1
     return n
 
 
@@ -120,22 +123,28 @@ def _build_entity_map(conn, run_id: str) -> None:
 
 def _build_golden(conn, run_id: str) -> None:
     """Survivorship: per entity, take name+address from the lowest-authority-rank
-    (= most authoritative) source that actually has a name; tie-break by longest."""
+    (= most authoritative) source that actually has a name; tie-break by longest,
+    then by SRC (alphabetical table name) so a genuine tie -- e.g. the same NPI
+    reported with an identical-length name in two same-authority annual snapshots
+    like FED_CMS_OPEN_PAYMENTS_2022 vs _2023 -- resolves the SAME way every run,
+    not by incidental scan order. incremental.py's _merge_golden and validate()
+    use the IDENTICAL ORDER BY; keep all three in lockstep."""
     attrs = " UNION ALL ".join(
-        f"SELECT '{spec['key']}' AS KEY_TYPE, "
-        f"{normalize_sql(spec['key'], quote_ident(spec['key_col']))} AS KEY_VALUE, "
+        f"SELECT '{key}' AS KEY_TYPE, "
+        f"{normalize_sql(key, quote_ident(key_col))} AS KEY_VALUE, "
         f"{_name_expr(spec)} AS NAME, {_addr_expr(spec)} AS ADDR, "
         f"{spec['authority']} AS AUTH, '{tbl}' AS SRC "
         f"FROM {db.fqn(tbl)} "
-        f"WHERE {normalize_sql(spec['key'], quote_ident(spec['key_col']))} IS NOT NULL"
-        for tbl, spec in DISPLAY_SPECS.items())
+        f"WHERE {normalize_sql(key, quote_ident(key_col))} IS NOT NULL"
+        for tbl, spec in DISPLAY_SPECS.items()
+        for key, key_col in table_keys(spec))
     db.rows(conn, f"""
         CREATE OR REPLACE TABLE {GOLD_FQN} AS
         WITH attrs AS ( {attrs} ),
         ranked AS (
           SELECT e.ENTITY_ID, e.ENTITY_TYPE, a.KEY_TYPE, a.KEY_VALUE, a.NAME, a.ADDR, a.SRC,
                  ROW_NUMBER() OVER (PARTITION BY a.KEY_TYPE, a.KEY_VALUE
-                     ORDER BY IFF(a.NAME IS NULL, 1, 0), a.AUTH, LENGTH(a.NAME) DESC NULLS LAST) AS RN
+                     ORDER BY IFF(a.NAME IS NULL, 1, 0), a.AUTH, LENGTH(a.NAME) DESC NULLS LAST, a.SRC) AS RN
           FROM attrs a
           JOIN {EMAP_FQN} e ON e.KEY_TYPE = a.KEY_TYPE AND e.KEY_VALUE = a.KEY_VALUE )
         SELECT ENTITY_ID, ENTITY_TYPE, KEY_TYPE, KEY_VALUE,

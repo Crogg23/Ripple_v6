@@ -46,14 +46,15 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values:
-                - banned_but_paid
-                - excluded_but_billing
-                - banned_but_operating
-                - debarred_but_funded
-                - sanctioned_vessel_broadcasting
-                - sanctioned_vessel_broadcasting_v2
-                - sec_filer_in_irs_bmf
+              arguments:
+                values:
+                  - banned_but_paid
+                  - excluded_but_billing
+                  - banned_but_operating
+                  - debarred_but_funded
+                  - sanctioned_vessel_broadcasting
+                  - sanctioned_vessel_broadcasting_v2
+                  - sec_filer_in_irs_bmf
       - name: priority_rank
         description: Total order over the queue; unique proves totality.
         data_tests: [unique, not_null]
@@ -68,11 +69,14 @@ models:
         data_tests:
           - not_null
           - dbt_utils.expression_is_true:
-              expression: "NOT LIKE '%NULL%'"
+              arguments:
+                expression: "NOT LIKE '%NULL%'"
           - dbt_utils.expression_is_true:
-              expression: "NOT LIKE '%None%'"
+              arguments:
+                expression: "NOT LIKE '%None%'"
           - dbt_utils.expression_is_true:
-              expression: "NOT LIKE '%||%'"
+              arguments:
+                expression: "NOT LIKE '%||%'"
       - name: confidence_tier
         description: >
           The 3-source corroboration verdict (port of lead_receipt.py):
@@ -87,7 +91,8 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: [FACT_GRADE_3_SOURCE, TWO_SOURCE, NPPES_CONFLICT, LEIE_ROW_MISSING, HARD_ID_ONLY]
+              arguments:
+                values: [FACT_GRADE_3_SOURCE, TWO_SOURCE, NPPES_CONFLICT, LEIE_ROW_MISSING, HARD_ID_ONLY]
       - name: receipt_verdict
         description: >
           The timeline verdict (port of lead_receipt.py): evaluated only for
@@ -97,7 +102,8 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: [PAID_ON_OR_AFTER_EXCLUSION, PAYMENTS_PREDATE_EXCLUSION, TIMELINE_UNKNOWN, NOT_EVALUATED]
+              arguments:
+                values: [PAID_ON_OR_AFTER_EXCLUSION, PAYMENTS_PREDATE_EXCLUSION, TIMELINE_UNKNOWN, NOT_EVALUATED]
       - name: entity_a_key_type
         description: The hard ID type (NPI/UEI/IMO/EIN) — the join IS the identity.
         data_tests: [not_null]
@@ -116,4 +122,5 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: [pending, needs_work]
+              arguments:
+                values: [pending, needs_work]

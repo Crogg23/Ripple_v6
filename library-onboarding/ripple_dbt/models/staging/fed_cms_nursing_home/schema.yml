@@ -63,32 +63,34 @@ models:
         description: Type of CMS-certified provider.
         data_tests:
           - accepted_values:
-              values:
-                - 'Medicare and Medicaid'
-                - 'Medicare'
-                - 'Medicaid'
-              quote: true
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values:
+                  - 'Medicare and Medicaid'
+                  - 'Medicare'
+                  - 'Medicaid'
+                quote: true
       - name: ownership_type
         description: Ownership classification of the facility.
         data_tests:
           - accepted_values:
-              values:
-                - 'For profit - Corporation'
-                - 'For profit - Individual'
-                - 'For profit - Limited Liability company'
-                - 'For profit - Partnership'
-                - 'Government - Federal'
-                - 'Government - Hospital District'
-                - 'Government - Local'
-                - 'Government - State'
-                - 'Non profit - Church related'
-                - 'Non profit - Corporation'
-                - 'Non profit - Other'
-              quote: true
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values:
+                  - 'For profit - Corporation'
+                  - 'For profit - Individual'
+                  - 'For profit - Limited Liability company'
+                  - 'For profit - Partnership'
+                  - 'Government - Federal'
+                  - 'Government - Hospital District'
+                  - 'Government - Local'
+                  - 'Government - State'
+                  - 'Non profit - Church related'
+                  - 'Non profit - Corporation'
+                  - 'Non profit - Other'
+                quote: true
       - name: urban
         description: Urban/rural classification of the facility location.
 
@@ -108,30 +110,34 @@ models:
         description: CMS Five-Star Overall Quality Rating (1–5).
         data_tests:
           - accepted_values:
-              values: [1, 2, 3, 4, 5]
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: [1, 2, 3, 4, 5]
       - name: health_inspection_rating
         description: CMS Five-Star Health Inspection domain rating (1–5).
         data_tests:
           - accepted_values:
-              values: [1, 2, 3, 4, 5]
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: [1, 2, 3, 4, 5]
       - name: quality_measure_rating
         description: CMS Five-Star Quality Measure domain rating (1–5).
         data_tests:
           - accepted_values:
-              values: [1, 2, 3, 4, 5]
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: [1, 2, 3, 4, 5]
       - name: staffing_rating
         description: CMS Five-Star Staffing domain rating (1–5).
         data_tests:
           - accepted_values:
-              values: [1, 2, 3, 4, 5]
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: [1, 2, 3, 4, 5]
       - name: processing_date
         description: Date the CMS data extract was processed.
 
@@ -249,13 +255,13 @@ models:
         description: Derived rating band ('High (4-5 stars)', 'Average (3 stars)', 'Low (1-2 stars)', 'Not Rated').
         data_tests:
           - accepted_values:
-              values:
-                - 'High (4-5 stars)'
-                - 'Average (3 stars)'
-                - 'Low (1-2 stars)'
-                - 'Not Rated'
-              quote: true
-
+              arguments:
+                values:
+                  - 'High (4-5 stars)'
+                  - 'Average (3 stars)'
+                  - 'Low (1-2 stars)'
+                  - 'Not Rated'
+                quote: true
       - name: health_inspection_rating
         description: Health Inspection domain rating (1–5).
 
@@ -285,7 +291,8 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: [true, false]
+              arguments:
+                values: [true, false]
 
       - name: total_number_of_penalties
         description: Total count of CMS enforcement penalties.

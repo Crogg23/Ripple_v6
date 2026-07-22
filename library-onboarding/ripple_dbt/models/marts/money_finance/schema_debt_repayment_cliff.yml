@@ -63,9 +63,9 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: [2026, 2027, 2028, 2029, 2030, 2031, 2032]
-              quote: false
-
+              arguments:
+                values: [2026, 2027, 2028, 2029, 2030, 2031, 2032]
+                quote: false
       - name: total_debt_service_usd
         description: >
           Scheduled total debt service on external debt (TDS, DT.TDS.DECT.CD),
@@ -119,9 +119,9 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: [true, false]
-              quote: false
-
+              arguments:
+                values: [true, false]
+                quote: false
       - name: is_peak_service_year
         description: >
           TRUE when this year is the single peak total-debt-service year in the
@@ -129,9 +129,9 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: [true, false]
-              quote: false
-
+              arguments:
+                values: [true, false]
+                quote: false
       - name: is_aggregate
         description: >
           TRUE when the entity is a World Bank regional / income-group aggregate
@@ -140,5 +140,6 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: [true, false]
-              quote: false
+              arguments:
+                values: [true, false]
+                quote: false

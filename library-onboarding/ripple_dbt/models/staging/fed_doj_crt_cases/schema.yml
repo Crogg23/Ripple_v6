@@ -60,16 +60,17 @@ models:
         description: Current status of the case (e.g. Open, Settled, Closed).
         data_tests:
           - accepted_values:
-              values:
-                - Open
-                - Settled
-                - Closed
-                - Pending
-                - Dismissed
-                - Ongoing
-              quote: true
               config:
                 severity: warn
+              arguments:
+                values:
+                  - Open
+                  - Settled
+                  - Closed
+                  - Pending
+                  - Dismissed
+                  - Ongoing
+                quote: true
       - name: _ingested_at
         description: Timestamp when the record was ingested into the landing table.
 
@@ -125,16 +126,17 @@ models:
         description: Current status of the case.
         data_tests:
           - accepted_values:
-              values:
-                - Open
-                - Settled
-                - Closed
-                - Pending
-                - Dismissed
-                - Ongoing
-              quote: true
               config:
                 severity: warn
+              arguments:
+                values:
+                  - Open
+                  - Settled
+                  - Closed
+                  - Pending
+                  - Dismissed
+                  - Ongoing
+                quote: true
       - name: document_url
         description: URL linking to the official case or settlement document.
 

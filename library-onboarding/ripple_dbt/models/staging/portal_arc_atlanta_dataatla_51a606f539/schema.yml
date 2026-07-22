@@ -28,8 +28,9 @@ models:
           - not_null
     data_tests:
       - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - longitude
-            - business_license_year
-            - date_of_opening_in_atlanta
-            - previous_year_reported_revenue
+          arguments:
+            combination_of_columns:
+              - longitude
+              - business_license_year
+              - date_of_opening_in_atlanta
+              - previous_year_reported_revenue

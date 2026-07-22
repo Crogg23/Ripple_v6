@@ -22,6 +22,7 @@ models:
           - not_null
     data_tests:
       - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - fund_id
-            - report_period
+          arguments:
+            combination_of_columns:
+              - fund_id
+              - report_period

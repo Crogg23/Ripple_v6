@@ -111,10 +111,11 @@ models:
           snapshot, so '' is an accepted value.
         data_tests:
           - accepted_values:
-              values: ['A', 'B', '']
-              quote: true
               config:
                 severity: warn
+              arguments:
+                values: ['A', 'B', '']
+                quote: true
       - name: source_file
         description: Name of the source file from which this record was ingested (AIS_2024_01_01.zip).
 
@@ -206,9 +207,9 @@ models:
         description: Derived speed band (moored / slow / underway / fast).
         data_tests:
           - accepted_values:
-              values: ['moored', 'slow', 'underway', 'fast']
-              quote: true
-
+              arguments:
+                values: ['moored', 'slow', 'underway', 'fast']
+                quote: true
       - name: position_geography
         description: Snowflake GEOGRAPHY POINT object derived from longitude and latitude.
 
@@ -216,10 +217,11 @@ models:
         description: AIS transceiver class (A or B).
         data_tests:
           - accepted_values:
-              values: ['A', 'B']
-              quote: true
               config:
                 severity: warn
+              arguments:
+                values: ['A', 'B']
+                quote: true
       - name: source_file
         description: Source file name.
 
@@ -234,5 +236,6 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: ['fed_noaa_ais']
-              quote: true
+              arguments:
+                values: ['fed_noaa_ais']
+                quote: true

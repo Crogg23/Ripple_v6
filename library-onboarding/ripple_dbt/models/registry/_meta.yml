@@ -15,39 +15,44 @@ sources:
           - name: DOMAIN_PRIMARY
             data_tests:
               - relationships:
-                  to: ref('facet_vocab_domain')
-                  field: VALUE
-                  config: { severity: warn }
+                  config: {severity: warn}
+                  arguments:
+                    to: ref('facet_vocab_domain')
+                    field: VALUE
           - name: JURISDICTION
             data_tests:
               - relationships:
-                  to: ref('facet_vocab_jurisdiction')
-                  field: VALUE
-                  config: { severity: warn }
+                  config: {severity: warn}
+                  arguments:
+                    to: ref('facet_vocab_jurisdiction')
+                    field: VALUE
       - name: V_SOURCE_THEME
         columns:
           - name: THEME
             data_tests:
               - relationships:
-                  to: ref('facet_vocab_theme')
-                  field: VALUE
-                  config: { severity: warn }
+                  config: {severity: warn}
+                  arguments:
+                    to: ref('facet_vocab_theme')
+                    field: VALUE
       - name: V_SOURCE_KEY
         columns:
           - name: JOIN_KEY
             data_tests:
               - relationships:
-                  to: ref('facet_vocab_joinkey')
-                  field: VALUE
-                  config: { severity: warn }
+                  config: {severity: warn}
+                  arguments:
+                    to: ref('facet_vocab_joinkey')
+                    field: VALUE
       - name: V_SOURCE_DOMAIN
         columns:
           - name: DOMAIN
             data_tests:
               - relationships:
-                  to: ref('facet_vocab_domain')
-                  field: VALUE
-                  config: { severity: warn }
+                  config: {severity: warn}
+                  arguments:
+                    to: ref('facet_vocab_domain')
+                    field: VALUE
 
 seeds:
   - name: facet_vocab_domain

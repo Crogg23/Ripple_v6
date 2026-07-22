@@ -26,14 +26,14 @@ models:
         description: Digital Object Identifier for the preprint.
         data_tests:
           - not_null:
-              where: "biorxiv_doi is null and published_doi is null"
-
+              config:
+                where: "biorxiv_doi is null and published_doi is null"
       - name: biorxiv_doi
         description: The preprint DOI on bioRxiv or medRxiv (pubs/pub endpoints).
         data_tests:
           - not_null:
-              where: "doi is null"
-
+              config:
+                where: "doi is null"
       - name: published_doi
         description: DOI of the published journal article.
 
@@ -62,34 +62,36 @@ models:
         description: Type of the submission (e.g. new result, confirmatory result).
         data_tests:
           - accepted_values:
-              values:
-                - new results
-                - confirmatory results
-                - contradictory results
-                - null results
-                - new result
-                - confirmatory result
-                - contradictory result
-                - null result
-                - other
-              quote: true
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values:
+                  - new results
+                  - confirmatory results
+                  - contradictory results
+                  - null results
+                  - new result
+                  - confirmatory result
+                  - contradictory result
+                  - null result
+                  - other
+                quote: true
       - name: license
         description: License under which the preprint is published.
         data_tests:
           - accepted_values:
-              values:
-                - cc_by
-                - cc_by_nc
-                - cc_by_nd
-                - cc_by_nc_nd
-                - cc_no_reuse
-                - cc0
-                - none
-              quote: true
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values:
+                  - cc_by
+                  - cc_by_nc
+                  - cc_by_nd
+                  - cc_by_nc_nd
+                  - cc_no_reuse
+                  - cc0
+                  - none
+                quote: true
       - name: category
         description: Subject category of the preprint.
 
@@ -100,12 +102,13 @@ models:
         description: Server the preprint is hosted on (biorxiv or medrxiv).
         data_tests:
           - accepted_values:
-              values:
-                - biorxiv
-                - medrxiv
-              quote: true
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values:
+                  - biorxiv
+                  - medrxiv
+                quote: true
       - name: jats_xml_path
         description: Path to the JATS XML representation of the manuscript.
 
@@ -208,14 +211,14 @@ models:
         description: Digital Object Identifier for the preprint.
         data_tests:
           - not_null:
-              where: "biorxiv_doi is null and published_doi is null"
-
+              config:
+                where: "biorxiv_doi is null and published_doi is null"
       - name: biorxiv_doi
         description: The preprint DOI on bioRxiv or medRxiv.
         data_tests:
           - not_null:
-              where: "doi is null"
-
+              config:
+                where: "doi is null"
       - name: published_doi
         description: DOI of the published journal article.
 
@@ -256,12 +259,13 @@ models:
         description: Server the preprint is hosted on (biorxiv or medrxiv).
         data_tests:
           - accepted_values:
-              values:
-                - biorxiv
-                - medrxiv
-              quote: true
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values:
+                  - biorxiv
+                  - medrxiv
+                quote: true
       - name: jats_xml_path
         description: Path to the JATS XML file.
 

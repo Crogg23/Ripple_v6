@@ -56,9 +56,10 @@ models:
         description: Charter type of the failed institution.
         data_tests:
           - accepted_values:
-              values: ['NM', 'OI', 'SM', 'SB', 'SL', 'SA', 'NC', 'NA', 'OC']
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: ['NM', 'OI', 'SM', 'SB', 'SL', 'SA', 'NC', 'NA', 'OC']
       - name: acquiring_institution
         description: Name of the acquiring institution, if any.
 
@@ -66,21 +67,23 @@ models:
         description: Supervisory agency code at time of failure.
         data_tests:
           - accepted_values:
-              values: ['OCC', 'FRB', 'FDIC', 'OTS', 'State']
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: ['OCC', 'FRB', 'FDIC', 'OTS', 'State']
       - name: resolution_type
         description: Resolution type (e.g., Deposit Payoff, Purchase & Assumption).
         data_tests:
           - accepted_values:
-              values:
-                - 'Deposit Payoff'
-                - 'Purchase & Assumption'
-                - 'Transfer'
-                - 'Assistance Transaction'
-                - 'Open Bank Assistance'
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values:
+                  - 'Deposit Payoff'
+                  - 'Purchase & Assumption'
+                  - 'Transfer'
+                  - 'Assistance Transaction'
+                  - 'Open Bank Assistance'
       - name: resolution_type_detail
         description: Secondary resolution type detail.
 

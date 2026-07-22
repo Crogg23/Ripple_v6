@@ -40,11 +40,12 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values:
-                - Ongoing
-                - Completed
-                - Terminated
-                - Pending
+              arguments:
+                values:
+                  - Ongoing
+                  - Completed
+                  - Terminated
+                  - Pending
 
       - name: classification
         description: >
@@ -53,21 +54,23 @@ models:
           Class III (unlikely to cause health problems).
         data_tests:
           - accepted_values:
-              values:
-                - Class I
-                - Class II
-                - Class III
+              arguments:
+                values:
+                  - Class I
+                  - Class II
+                  - Class III
 
       - name: voluntary_mandated
         description: Whether the recall was voluntary (firm-initiated) or FDA-mandated.
         data_tests:
           - accepted_values:
-              values:
-                - Voluntary
-                - FDA Mandated
-                - FDA-Mandated
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values:
+                  - Voluntary
+                  - FDA Mandated
+                  - FDA-Mandated
       - name: product_type
         description: Type of product recalled.
 
@@ -164,20 +167,22 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values:
-                - Ongoing
-                - Completed
-                - Terminated
-                - Pending
+              arguments:
+                values:
+                  - Ongoing
+                  - Completed
+                  - Terminated
+                  - Pending
 
       - name: classification
         description: Recall classification (Class I / II / III).
         data_tests:
           - accepted_values:
-              values:
-                - Class I
-                - Class II
-                - Class III
+              arguments:
+                values:
+                  - Class I
+                  - Class II
+                  - Class III
 
       - name: classification_severity_rank
         description: >
@@ -188,12 +193,13 @@ models:
         description: Whether the recall was voluntary or FDA-mandated.
         data_tests:
           - accepted_values:
-              values:
-                - Voluntary
-                - FDA Mandated
-                - FDA-Mandated
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values:
+                  - Voluntary
+                  - FDA Mandated
+                  - FDA-Mandated
       - name: initial_firm_notification
         description: Method used by the firm to first notify the public or trade.
 

@@ -58,9 +58,9 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: ['2022', '2023', '2024']
-              quote: true
-
+              arguments:
+                values: ['2022', '2023', '2024']
+                quote: true
       - name: npi
         description: >
           National Provider Identifier of the covered recipient. NULL/blank for

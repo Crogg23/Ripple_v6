@@ -72,6 +72,7 @@ models:
         description: Identifier for the ingestion run that produced this record.
     data_tests:
       - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - cik
-            - ticker
+          arguments:
+            combination_of_columns:
+              - cik
+              - ticker

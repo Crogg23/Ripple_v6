@@ -37,11 +37,12 @@ models:
           - not_null
     data_tests:
       - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - recipient_uei
-            - action_date
-            - action_date_fiscal_year
-            - period_of_performance_start_date
-            - award_id_piid
-            - parent_award_agency_id
-            - parent_award_id_piid
+          arguments:
+            combination_of_columns:
+              - recipient_uei
+              - action_date
+              - action_date_fiscal_year
+              - period_of_performance_start_date
+              - award_id_piid
+              - parent_award_agency_id
+              - parent_award_id_piid

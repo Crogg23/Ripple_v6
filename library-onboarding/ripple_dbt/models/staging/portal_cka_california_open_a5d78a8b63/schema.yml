@@ -28,8 +28,9 @@ models:
           - not_null
     data_tests:
       - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - latitude
-            - last_modified_date
-            - date_data_refers_to
-            - dwr_gw_site_code
+          arguments:
+            combination_of_columns:
+              - latitude
+              - last_modified_date
+              - date_data_refers_to
+              - dwr_gw_site_code

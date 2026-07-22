@@ -57,14 +57,15 @@ models:
         description: Type of document (e.g., transcript, photograph).
         data_tests:
           - accepted_values:
-              values:
-                - 'Transcript'
-                - 'Photograph'
-                - 'Document'
-                - 'Sound Recording'
-                - 'Map'
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values:
+                  - 'Transcript'
+                  - 'Photograph'
+                  - 'Document'
+                  - 'Sound Recording'
+                  - 'Map'
       - name: format_label
         description: Format label assigned by the Library of Congress.
 
@@ -139,14 +140,15 @@ models:
         description: Type of document.
         data_tests:
           - accepted_values:
-              values:
-                - 'Transcript'
-                - 'Photograph'
-                - 'Document'
-                - 'Sound Recording'
-                - 'Map'
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values:
+                  - 'Transcript'
+                  - 'Photograph'
+                  - 'Document'
+                  - 'Sound Recording'
+                  - 'Map'
       - name: format_label
         description: Format label assigned by the Library of Congress.
 
@@ -170,8 +172,9 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values:
-                - 'fed_wpa_slave_narratives'
+              arguments:
+                values:
+                  - 'fed_wpa_slave_narratives'
 
       - name: _ingested_at
         description: Timestamp when the row was first processed.

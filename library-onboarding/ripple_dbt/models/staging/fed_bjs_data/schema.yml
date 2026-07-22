@@ -41,9 +41,10 @@ models:
         description: Geographic granularity of the data (e.g., National, State, County).
         data_tests:
           - accepted_values:
-              values: ['National', 'State', 'County', 'Local', 'Tribal', 'Other']
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: ['National', 'State', 'County', 'Local', 'Tribal', 'Other']
       - name: unit_of_enumeration
         description: The unit being counted or measured in the collection.
 
@@ -51,9 +52,10 @@ models:
         description: Access restriction level for the dataset.
         data_tests:
           - accepted_values:
-              values: ['Public', 'Restricted', 'Private', 'NACJD']
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: ['Public', 'Restricted', 'Private', 'NACJD']
       - name: download_url
         description: Direct download URL for the collection data files.
 
@@ -103,9 +105,10 @@ models:
         description: Geographic granularity of the data.
         data_tests:
           - accepted_values:
-              values: ['National', 'State', 'County', 'Local', 'Tribal', 'Other']
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: ['National', 'State', 'County', 'Local', 'Tribal', 'Other']
       - name: unit_of_enumeration
         description: The unit being counted or measured in the collection.
 
@@ -113,9 +116,10 @@ models:
         description: Access restriction level for the dataset.
         data_tests:
           - accepted_values:
-              values: ['Public', 'Restricted', 'Private', 'NACJD']
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: ['Public', 'Restricted', 'Private', 'NACJD']
       - name: publication_date
         description: Date the collection or report was published.
 

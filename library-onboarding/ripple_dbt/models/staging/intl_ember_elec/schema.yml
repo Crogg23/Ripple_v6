@@ -44,10 +44,11 @@ models:
         description: Indicates whether the row represents a country/economy or a region aggregate.
         data_tests:
           - accepted_values:
-              values: ['Country or economy', 'Region']
-              quote: true
               config:
                 severity: warn
+              arguments:
+                values: ['Country or economy', 'Region']
+                quote: true
       - name: continent
         description: Continent name associated with the country/region.
 
@@ -145,10 +146,11 @@ models:
         description: Indicates whether the row represents a country or a region aggregate.
         data_tests:
           - accepted_values:
-              values: ['Country', 'Region']
-              quote: true
               config:
                 severity: warn
+              arguments:
+                values: ['Country', 'Region']
+                quote: true
       - name: continent
         description: Continent name associated with the country/region.
 

@@ -41,11 +41,12 @@ models:
           here means the entity is an organization (see entity_kind).
         data_tests:
           - accepted_values:
-              values: ['individual', 'vessel', 'aircraft']
-              quote: true
               config:
                 severity: warn
 
+              arguments:
+                values: ['individual', 'vessel', 'aircraft']
+                quote: true
       - name: entity_kind
         description: >
           Derived entity classification -- coalesce(cleaned sdn_type,
@@ -53,9 +54,9 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: ['individual', 'vessel', 'aircraft', 'organization']
-              quote: true
-
+              arguments:
+                values: ['individual', 'vessel', 'aircraft', 'organization']
+                quote: true
       - name: program
         description: OFAC sanctions program code(s) the entity falls under ('-0- ' token cleaned).
 

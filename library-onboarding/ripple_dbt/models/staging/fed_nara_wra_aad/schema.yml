@@ -65,25 +65,27 @@ models:
         description: Sex of the individual, uppercased.
         data_tests:
           - accepted_values:
-              values: ['M', 'F', 'MALE', 'FEMALE', 'U', 'UNKNOWN']
-              quote: true
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: ['M', 'F', 'MALE', 'FEMALE', 'U', 'UNKNOWN']
+                quote: true
       - name: citizenship_status
         description: Citizenship status of the individual, uppercased.
         data_tests:
           - accepted_values:
-              values:
-                - 'US CITIZEN'
-                - 'ALIEN'
-                - 'UNKNOWN'
-                - 'NISEI'
-                - 'ISSEI'
-                - 'KIBEI'
-                - 'SANSEI'
-              quote: true
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values:
+                  - 'US CITIZEN'
+                  - 'ALIEN'
+                  - 'UNKNOWN'
+                  - 'NISEI'
+                  - 'ISSEI'
+                  - 'KIBEI'
+                  - 'SANSEI'
+                quote: true
       - name: family_number
         description: Family unit identifier used by the WRA.
 
@@ -150,25 +152,27 @@ models:
         description: Sex of the individual.
         data_tests:
           - accepted_values:
-              values: ['M', 'F', 'MALE', 'FEMALE', 'U', 'UNKNOWN']
-              quote: true
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: ['M', 'F', 'MALE', 'FEMALE', 'U', 'UNKNOWN']
+                quote: true
       - name: citizenship_status
         description: Citizenship status of the individual.
         data_tests:
           - accepted_values:
-              values:
-                - 'US CITIZEN'
-                - 'ALIEN'
-                - 'UNKNOWN'
-                - 'NISEI'
-                - 'ISSEI'
-                - 'KIBEI'
-                - 'SANSEI'
-              quote: true
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values:
+                  - 'US CITIZEN'
+                  - 'ALIEN'
+                  - 'UNKNOWN'
+                  - 'NISEI'
+                  - 'ISSEI'
+                  - 'KIBEI'
+                  - 'SANSEI'
+                quote: true
       - name: family_number
         description: Family unit identifier.
 

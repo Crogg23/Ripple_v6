@@ -28,10 +28,11 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values:
-                - 'Marketable'
-                - 'Non-marketable'
-                - 'Interest-bearing Debt'
+              arguments:
+                values:
+                  - 'Marketable'
+                  - 'Non-marketable'
+                  - 'Interest-bearing Debt'
 
       - name: security_desc
         description: Specific security instrument name.
@@ -51,10 +52,11 @@ models:
         description: Federal fiscal quarter of the record date.
         data_tests:
           - accepted_values:
-              values: ['1', '2', '3', '4']
-              quote: false
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: ['1', '2', '3', '4']
+                quote: false
       - name: record_calendar_year
         description: Calendar year of the record date.
 
@@ -62,18 +64,20 @@ models:
         description: Calendar quarter of the record date.
         data_tests:
           - accepted_values:
-              values: ['1', '2', '3', '4']
-              quote: false
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: ['1', '2', '3', '4']
+                quote: false
       - name: record_calendar_month
         description: Calendar month number of the record date.
         data_tests:
           - accepted_values:
-              values: ['1','2','3','4','5','6','7','8','9','10','11','12']
-              quote: false
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+                quote: false
       - name: _ingested_at
         description: Timestamp when the row was loaded into the landing table.
 
@@ -103,10 +107,11 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values:
-                - 'Marketable'
-                - 'Non-marketable'
-                - 'Interest-bearing Debt'
+              arguments:
+                values:
+                  - 'Marketable'
+                  - 'Non-marketable'
+                  - 'Interest-bearing Debt'
 
       - name: security_desc
         description: Specific security instrument name.
@@ -126,10 +131,11 @@ models:
         description: Federal fiscal quarter of the record date.
         data_tests:
           - accepted_values:
-              values: ['1', '2', '3', '4']
-              quote: false
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: ['1', '2', '3', '4']
+                quote: false
       - name: record_calendar_year
         description: Calendar year of the record date.
 
@@ -137,18 +143,20 @@ models:
         description: Calendar quarter of the record date.
         data_tests:
           - accepted_values:
-              values: ['1', '2', '3', '4']
-              quote: false
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: ['1', '2', '3', '4']
+                quote: false
       - name: record_calendar_month
         description: Calendar month number of the record date.
         data_tests:
           - accepted_values:
-              values: ['1','2','3','4','5','6','7','8','9','10','11','12']
-              quote: false
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+                quote: false
       - name: report_month
         description: Record date truncated to the first day of the month (convenience column).
 

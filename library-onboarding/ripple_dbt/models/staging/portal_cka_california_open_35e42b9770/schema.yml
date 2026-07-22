@@ -25,7 +25,8 @@ models:
           - not_null
     data_tests:
       - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - org_id
-            - water_system_id
-            - report_period_start_date
+          arguments:
+            combination_of_columns:
+              - org_id
+              - water_system_id
+              - report_period_start_date

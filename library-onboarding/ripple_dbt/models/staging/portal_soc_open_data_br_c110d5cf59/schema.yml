@@ -34,10 +34,11 @@ models:
           - not_null
     data_tests:
       - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - zip
-            - business_naics_code
-            - resource_type
-            - sub_resource_type
-            - business_id
-            - metadata_id
+          arguments:
+            combination_of_columns:
+              - zip
+              - business_naics_code
+              - resource_type
+              - sub_resource_type
+              - business_id
+              - metadata_id

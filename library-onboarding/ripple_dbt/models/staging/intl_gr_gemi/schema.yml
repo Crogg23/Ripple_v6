@@ -46,10 +46,10 @@ models:
         description: Current registration status of the company.
         data_tests:
           - accepted_values:
-              values: ['Active', 'Inactive', 'Suspended', 'Dissolved', 'In Liquidation',
-                       'active', 'inactive', 'suspended', 'dissolved', 'in liquidation']
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: ['Active', 'Inactive', 'Suspended', 'Dissolved', 'In Liquidation', 'active', 'inactive', 'suspended', 'dissolved', 'in liquidation']
       - name: registration_suspension
         description: Details of any suspension on the company registration.
 
@@ -123,10 +123,10 @@ models:
         description: Current registration status.
         data_tests:
           - accepted_values:
-              values: ['Active', 'Inactive', 'Suspended', 'Dissolved', 'In Liquidation',
-                       'active', 'inactive', 'suspended', 'dissolved', 'in liquidation']
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: ['Active', 'Inactive', 'Suspended', 'Dissolved', 'In Liquidation', 'active', 'inactive', 'suspended', 'dissolved', 'in liquidation']
       - name: registration_suspension
         description: Details of any registration suspension.
 
@@ -150,14 +150,16 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: [true, false]
+              arguments:
+                values: [true, false]
 
       - name: is_active
         description: Boolean flag — true when status equals 'active' (case-insensitive).
         data_tests:
           - not_null
           - accepted_values:
-              values: [true, false]
+              arguments:
+                values: [true, false]
 
       - name: city
         description: City of the registered address.
@@ -170,7 +172,8 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: ['intl_gr_gemi']
+              arguments:
+                values: ['intl_gr_gemi']
 
       - name: _ingested_at
         description: Timestamp the record was ingested into the landing zone.

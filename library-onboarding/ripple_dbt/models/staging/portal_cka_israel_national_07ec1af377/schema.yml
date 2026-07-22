@@ -22,6 +22,7 @@ models:
           - not_null
     data_tests:
       - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - deaceased_id
-            - deaceased_date
+          arguments:
+            combination_of_columns:
+              - deaceased_id
+              - deaceased_date

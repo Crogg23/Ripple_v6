@@ -37,11 +37,12 @@ models:
           - not_null
     data_tests:
       - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - recipient_duns
-            - period_of_performance_start
-            - period_of_performance_current
-            - period_of_performance
-            - award_id_piid
-            - parent_award_agency_id
-            - parent_award_id
+          arguments:
+            combination_of_columns:
+              - recipient_duns
+              - period_of_performance_start
+              - period_of_performance_current
+              - period_of_performance
+              - award_id_piid
+              - parent_award_agency_id
+              - parent_award_id

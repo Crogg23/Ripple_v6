@@ -49,10 +49,11 @@ models:
         description: Classification of the provider as Rural or Urban.
         data_tests:
           - accepted_values:
-              values: ['R', 'U', 'Rural', 'Urban']
-              quote: true
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: ['R', 'U', 'Rural', 'Urban']
+                quote: true
       - name: fiscal_year_begin_date
         description: First day of the hospital's fiscal year for this cost report.
 
@@ -133,10 +134,11 @@ models:
         description: Rural / Urban classification.
         data_tests:
           - accepted_values:
-              values: ['R', 'U', 'Rural', 'Urban']
-              quote: true
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: ['R', 'U', 'Rural', 'Urban']
+                quote: true
       - name: type_of_control
         description: Ownership / control type of the hospital (e.g. Government, Non-profit, For-profit).
 
@@ -220,9 +222,9 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: ['fed_cms_hcris']
-              quote: true
-
+              arguments:
+                values: ['fed_cms_hcris']
+                quote: true
       - name: _ingested_at
         description: Timestamp when the record was loaded into the landing table.
         data_tests:

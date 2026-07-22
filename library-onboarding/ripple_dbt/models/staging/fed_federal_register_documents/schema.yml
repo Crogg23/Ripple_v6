@@ -33,11 +33,12 @@ models:
         description: Document type classification.
         data_tests:
           - accepted_values:
-              values:
-                - Rule
-                - Proposed Rule
-                - Notice
-                - Presidential Document
+              arguments:
+                values:
+                  - Rule
+                  - Proposed Rule
+                  - Notice
+                  - Presidential Document
 
       - name: abstract
         description: Short summary of the document contents.
@@ -176,11 +177,12 @@ models:
         description: Document type classification.
         data_tests:
           - accepted_values:
-              values:
-                - Rule
-                - Proposed Rule
-                - Notice
-                - Presidential Document
+              arguments:
+                values:
+                  - Rule
+                  - Proposed Rule
+                  - Notice
+                  - Presidential Document
 
       - name: subtype
         description: Document subtype, e.g. Executive Order, Proclamation.

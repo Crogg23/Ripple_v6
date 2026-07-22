@@ -26,9 +26,7 @@ models:
     columns:
 
       - name: fips
-        description: 5-digit county FIPS code. Join key. ~3 counties wobble across
-          years (08014 Broomfield CO, 51515 Bedford city VA, 02068 Denali AK) due
-          to FIPS-lifecycle boundary changes, NOT suppression.
+        description: 5-digit county FIPS code. Join key. ~3 counties wobble across years (08014 Broomfield CO, 51515 Bedford city VA, 02068 Denali AK) due to FIPS-lifecycle boundary changes, NOT suppression.
         data_tests:
           - not_null
 
@@ -74,34 +72,34 @@ models:
               config:
                 severity: warn
           - accepted_values:
-              values:
-                - '0-2'
-                - '2.1-4'
-                - '4.1-6'
-                - '6.1-8'
-                - '8.1-10'
-                - '10.1-12'
-                - '12.1-14'
-                - '14.1-16'
-                - '16.1-18'
-                - '18.1-20'
-                - '20.1-22'
-                - '22.1-24'
-                - '24.1-26'
-                - '26.1-28'
-                - '28.1-30'
-                - '>30'
-              quote: true
-
+              arguments:
+                values:
+                  - '0-2'
+                  - '2.1-4'
+                  - '4.1-6'
+                  - '6.1-8'
+                  - '8.1-10'
+                  - '10.1-12'
+                  - '12.1-14'
+                  - '14.1-16'
+                  - '16.1-18'
+                  - '18.1-20'
+                  - '20.1-22'
+                  - '22.1-24'
+                  - '24.1-26'
+                  - '26.1-28'
+                  - '28.1-30'
+                  - '>30'
+                quote: true
       - name: rate_band_ordinal
         description: >
           Integer rank (1..16) of rate_band in natural low-to-high order, for
           sorting/ordinal analysis without implying a continuous numeric rate.
         data_tests:
           - accepted_values:
-              values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-              quote: false
-
+              arguments:
+                values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+                quote: false
       - name: _ingested_at
         description: Timestamp when the record was ingested into the landing table.
 
@@ -110,6 +108,7 @@ models:
 
     data_tests:
       - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - fips
-            - year
+          arguments:
+            combination_of_columns:
+              - fips
+              - year

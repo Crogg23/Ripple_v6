@@ -50,11 +50,12 @@ models:
           # compiles to `not(<column> <expression>)`, so the expression is the
           # infix predicate applied to npi (Snowflake RLIKE), not a standalone clause.
           - dbt_utils.expression_is_true:
-              expression: "rlike '^[0-9]{10}$'"
               config:
                 where: "npi is not null"
                 severity: warn
 
+              arguments:
+                expression: "rlike '^[0-9]{10}$'"
       - name: npi_is_real
         description: >
           TRUE only when npi is a real (non-placeholder, non-blank) NPI. FALSE
@@ -62,7 +63,8 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: [true, false]
+              arguments:
+                values: [true, false]
 
       - name: last_name
         description: Individual's last name (NULL for entity/business rows).
@@ -113,33 +115,34 @@ models:
               config:
                 severity: warn
           - accepted_values:
-              values:
-                - '1128a1'
-                - '1128a2'
-                - '1128a3'
-                - '1128a4'
-                - '1128b1'
-                - '1128b2'
-                - '1128b3'
-                - '1128b4'
-                - '1128b5'
-                - '1128b6'
-                - '1128b7'
-                - '1128b8'
-                - '1128b11'
-                - '1128b12'
-                - '1128b14'
-                - '1128b15'
-                - '1128b16'
-                - '1128Aa'
-                - '1156'
-                - '1160'
-                - 'BRCH SA'
-                - 'BRCH CIA'
-              quote: true
               config:
                 severity: warn
 
+              arguments:
+                values:
+                  - '1128a1'
+                  - '1128a2'
+                  - '1128a3'
+                  - '1128a4'
+                  - '1128b1'
+                  - '1128b2'
+                  - '1128b3'
+                  - '1128b4'
+                  - '1128b5'
+                  - '1128b6'
+                  - '1128b7'
+                  - '1128b8'
+                  - '1128b11'
+                  - '1128b12'
+                  - '1128b14'
+                  - '1128b15'
+                  - '1128b16'
+                  - '1128Aa'
+                  - '1156'
+                  - '1160'
+                  - 'BRCH SA'
+                  - 'BRCH CIA'
+                quote: true
       - name: exclusion_date
         description: >
           Date the exclusion took effect, parsed from EXCLDATE via parse_yyyymmdd
@@ -169,7 +172,8 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: [true, false]
+              arguments:
+                values: [true, false]
 
       - name: exclusion_date_raw
         description: Raw YYYYMMDD exclusion date text, retained as a business-key part.

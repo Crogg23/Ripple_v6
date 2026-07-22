@@ -123,7 +123,8 @@ models:
           in the multistate coalition (lead_state = state).
         data_tests:
           - accepted_values:
-              values: [true, false]
+              arguments:
+                values: [true, false]
 
       - name: _ingested_at
         description: Timestamp when the record was ingested into the landing table.

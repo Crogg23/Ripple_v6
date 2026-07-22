@@ -52,10 +52,11 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: ['ES']
               config:
                 severity: warn
 
+              arguments:
+                values: ['ES']
       - name: date
         description: Publication date of the BORME entry, cast to DATE.
         data_tests:
@@ -68,13 +69,14 @@ models:
         description: Section of the BORME (e.g. Sección Segunda, Sección Tercera).
         data_tests:
           - accepted_values:
-              values:
-                - 'Sección Primera'
-                - 'Sección Segunda'
-                - 'Sección Tercera'
               config:
                 severity: warn
 
+              arguments:
+                values:
+                  - 'Sección Primera'
+                  - 'Sección Segunda'
+                  - 'Sección Tercera'
       - name: company_name
         description: Registered name of the company.
         data_tests:
@@ -119,10 +121,11 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: ['ES']
               config:
                 severity: warn
 
+              arguments:
+                values: ['ES']
       - name: date
         description: Publication date of the BORME entry. Part of the composite primary key.
         data_tests:
@@ -167,7 +170,8 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: ['intl_es_borme']
+              arguments:
+                values: ['intl_es_borme']
 
       - name: _ingested_at
         description: Timestamp when the record was ingested into the landing table.

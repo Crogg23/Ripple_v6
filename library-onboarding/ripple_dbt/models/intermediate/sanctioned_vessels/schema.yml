@@ -24,7 +24,8 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: ['ofac', 'opensanctions']
+              arguments:
+                values: ['ofac', 'opensanctions']
       - name: source_id
         description: The source feed's own entity id (OFAC ENT_NUM / OpenSanctions ID).
       - name: vessel_name
@@ -38,6 +39,7 @@ models:
         data_tests:
           - not_null
           - dbt_utils.expression_is_true:
-              expression: "rlike '^[0-9]{7}$'"
               config:
                 severity: warn
+              arguments:
+                expression: "rlike '^[0-9]{7}$'"

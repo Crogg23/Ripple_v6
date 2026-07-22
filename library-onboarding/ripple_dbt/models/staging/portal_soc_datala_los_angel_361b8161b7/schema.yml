@@ -28,8 +28,9 @@ models:
           - not_null
     data_tests:
       - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - mailing_zip_code
-            - location_start_date
-            - location_end_date
-            - zip_code
+          arguments:
+            combination_of_columns:
+              - mailing_zip_code
+              - location_start_date
+              - location_end_date
+              - zip_code

@@ -46,24 +46,27 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY', 'DC']
+              arguments:
+                values: ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY', 'DC']
 
       - name: holc_grade
         description: HOLC security grade assigned to the neighborhood (A, B, C, or D).
         data_tests:
           - not_null
           - accepted_values:
-              values: ['A', 'B', 'C', 'D']
               config:
                 severity: warn
 
+              arguments:
+                values: ['A', 'B', 'C', 'D']
       - name: holc_color
         description: Color associated with the HOLC grade on historical maps.
         data_tests:
           - accepted_values:
-              values: ['green', 'blue', 'yellow', 'red']
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: ['green', 'blue', 'yellow', 'red']
       - name: area_description_data
         description: Raw JSON or text area description data from the HOLC appraisal form.
 
@@ -127,17 +130,19 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY', 'DC']
+              arguments:
+                values: ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY', 'DC']
 
       - name: holc_grade
         description: HOLC security grade assigned to the neighborhood (A, B, C, or D).
         data_tests:
           - not_null
           - accepted_values:
-              values: ['A', 'B', 'C', 'D']
               config:
                 severity: warn
 
+              arguments:
+                values: ['A', 'B', 'C', 'D']
       - name: holc_color
         description: Color associated with the HOLC grade on historical maps.
 
@@ -163,21 +168,24 @@ models:
         description: Ordinal rank derived from holc_grade (A=1 best, D=4 worst).
         data_tests:
           - accepted_values:
-              values: [1, 2, 3, 4]
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: [1, 2, 3, 4]
       - name: holc_grade_label
         description: Human-readable label for the HOLC grade.
         data_tests:
           - accepted_values:
-              values: ['Best', 'Still Desirable', 'Definitely Declining', 'Hazardous', 'Unknown']
+              arguments:
+                values: ['Best', 'Still Desirable', 'Definitely Declining', 'Hazardous', 'Unknown']
 
       - name: source_id
         description: Constant identifier for the source dataset (fed_mapping_inequality).
         data_tests:
           - not_null
           - accepted_values:
-              values: ['fed_mapping_inequality']
+              arguments:
+                values: ['fed_mapping_inequality']
 
       - name: _ingested_at
         description: Timestamp when the record was ingested into the landing table.

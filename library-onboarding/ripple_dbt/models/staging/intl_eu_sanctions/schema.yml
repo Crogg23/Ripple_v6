@@ -58,18 +58,19 @@ models:
           - not_null
     data_tests:
       - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - addr_zipcode
-            - date_file
-            - leba_publication_date
-            - naal_leba_publication_date
-            - entity_logical_id
-            - naal_logical_id
-            - entity_logical_id_1
-            - entity_logical_id_2
-            - birt_logical_id
-            - entity_logical_id_3
-            - iden_logical_id
-            - entity_logical_id_4
-            - citi_logical_id
-            - entity_logical_id_5
+          arguments:
+            combination_of_columns:
+              - addr_zipcode
+              - date_file
+              - leba_publication_date
+              - naal_leba_publication_date
+              - entity_logical_id
+              - naal_logical_id
+              - entity_logical_id_1
+              - entity_logical_id_2
+              - birt_logical_id
+              - entity_logical_id_3
+              - iden_logical_id
+              - entity_logical_id_4
+              - citi_logical_id
+              - entity_logical_id_5

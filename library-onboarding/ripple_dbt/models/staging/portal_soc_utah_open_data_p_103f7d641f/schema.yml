@@ -34,10 +34,11 @@ models:
           - not_null
     data_tests:
       - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - recipient_duns
-            - period_of_performance_start
-            - period_of_performance_current
-            - last_modified_date
-            - award_id_fain
-            - award_id_uri
+          arguments:
+            combination_of_columns:
+              - recipient_duns
+              - period_of_performance_start
+              - period_of_performance_current
+              - last_modified_date
+              - award_id_fain
+              - award_id_uri

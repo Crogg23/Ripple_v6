@@ -12,7 +12,7 @@ from __future__ import annotations
 
 from . import db, store
 from .discover import domain_of
-from .entity_index_specs import DISPLAY_SPECS
+from .entity_index_specs import DISPLAY_SPECS, table_keys
 from .keys import normalize_sql, quote_ident
 from .spine import _addr_expr, _name_expr  # one definition of name/addr, shared
 
@@ -23,22 +23,22 @@ EMAP_FQN = store.cfqn("ENTITY_MAP")
 def build(conn, run_id: str = "") -> int:
     parts = []
     for tbl, spec in DISPLAY_SPECS.items():
-        key = spec["key"]
-        norm = normalize_sql(key, quote_ident(spec["key_col"]))
         preview_pairs = [f"'place', ANY_VALUE({_addr_expr(spec)})"]
         for label, col in spec.get("extra", {}).items():
             preview_pairs.append(f"'{label}', ANY_VALUE(TRIM({quote_ident(col)}))")
         preview = f"OBJECT_CONSTRUCT({', '.join(preview_pairs)})"
-        parts.append(f"""
-          SELECT e.ENTITY_ID, ANY_VALUE(e.ENTITY_TYPE) AS ENTITY_TYPE,
-                 '{key}' AS KEY_TYPE, ANY_VALUE({norm}) AS KEY_VALUE,
-                 '{tbl}' AS SOURCE_TABLE, '{domain_of(tbl)}' AS DOMAIN,
-                 ANY_VALUE({_name_expr(spec)}) AS DISPLAY_LABEL,
-                 COUNT(*) AS ROW_COUNT, {preview} AS PREVIEW
-          FROM {db.fqn(tbl)} t
-          JOIN {EMAP_FQN} e ON e.KEY_TYPE = '{key}' AND e.KEY_VALUE = {norm}
-          WHERE {norm} IS NOT NULL
-          GROUP BY e.ENTITY_ID""")
+        for key, key_col in table_keys(spec):
+            norm = normalize_sql(key, quote_ident(key_col))
+            parts.append(f"""
+              SELECT e.ENTITY_ID, ANY_VALUE(e.ENTITY_TYPE) AS ENTITY_TYPE,
+                     '{key}' AS KEY_TYPE, ANY_VALUE({norm}) AS KEY_VALUE,
+                     '{tbl}' AS SOURCE_TABLE, '{domain_of(tbl)}' AS DOMAIN,
+                     ANY_VALUE({_name_expr(spec)}) AS DISPLAY_LABEL,
+                     COUNT(*) AS ROW_COUNT, {preview} AS PREVIEW
+              FROM {db.fqn(tbl)} t
+              JOIN {EMAP_FQN} e ON e.KEY_TYPE = '{key}' AND e.KEY_VALUE = {norm}
+              WHERE {norm} IS NOT NULL
+              GROUP BY e.ENTITY_ID""")
     union = " UNION ALL ".join(parts)
     db.rows(conn, f"""
         CREATE OR REPLACE TABLE {INDEX_FQN} AS

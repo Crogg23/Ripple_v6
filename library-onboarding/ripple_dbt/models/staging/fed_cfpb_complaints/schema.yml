@@ -61,25 +61,27 @@ models:
         description: Channel through which the complaint was submitted.
         data_tests:
           - accepted_values:
-              values: ['Web', 'Phone', 'Postal mail', 'Fax', 'Email', 'Referral', 'Web Referral']
               config:
                 severity: warn
 
+              arguments:
+                values: ['Web', 'Phone', 'Postal mail', 'Fax', 'Email', 'Referral', 'Web Referral']
       - name: company_response
         description: How the company responded to the consumer.
         data_tests:
           - accepted_values:
-              values:
-                - 'Closed with explanation'
-                - 'Closed with monetary relief'
-                - 'Closed with non-monetary relief'
-                - 'Closed without relief'
-                - 'Closed'
-                - 'In progress'
-                - 'Untimely response'
               config:
                 severity: warn
 
+              arguments:
+                values:
+                  - 'Closed with explanation'
+                  - 'Closed with monetary relief'
+                  - 'Closed with non-monetary relief'
+                  - 'Closed without relief'
+                  - 'Closed'
+                  - 'In progress'
+                  - 'Untimely response'
       - name: company_public_response
         description: The company's optional public response.
 
@@ -185,7 +187,8 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: ['fed_cfpb_complaints']
+              arguments:
+                values: ['fed_cfpb_complaints']
 
       - name: _ingested_at
         description: Timestamp the record was ingested into the landing table.

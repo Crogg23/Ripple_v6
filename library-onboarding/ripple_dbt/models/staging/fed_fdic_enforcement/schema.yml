@@ -168,7 +168,8 @@ models:
         description: Static tag identifying the originating source system (fed_fdic_enforcement).
         data_tests:
           - accepted_values:
-              values: ['fed_fdic_enforcement']
+              arguments:
+                values: ['fed_fdic_enforcement']
 
       - name: _ingested_at
         description: Timestamp when the record was processed.

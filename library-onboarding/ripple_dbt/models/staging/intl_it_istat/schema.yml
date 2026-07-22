@@ -52,7 +52,8 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: ['IT']
+              arguments:
+                values: ['IT']
 
       - name: date
         description: Parsed observation date.
@@ -80,9 +81,10 @@ models:
         description: SDMX observation status code.
         data_tests:
           - accepted_values:
-              values: ['A', 'M', 'E', 'P', 'D', 'S', 'U', 'B', 'F', 'I', 'T', 'N', 'L', 'W', 'K', 'O']
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: ['A', 'M', 'E', 'P', 'D', 'S', 'U', 'B', 'F', 'I', 'T', 'N', 'L', 'W', 'K', 'O']
       - name: unit_measure
         description: Unit of measure code.
 
@@ -93,9 +95,10 @@ models:
         description: Frequency of observation (A, Q, M, W, D, etc.).
         data_tests:
           - accepted_values:
-              values: ['A', 'Q', 'M', 'W', 'D', 'B', 'N', 'H', 'S', 'T']
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: ['A', 'Q', 'M', 'W', 'D', 'B', 'N', 'H', 'S', 'T']
       - name: _ingested_at
         description: Timestamp when the record was fetched from the ISTAT API.
 
@@ -122,7 +125,8 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: ['IT']
+              arguments:
+                values: ['IT']
 
       - name: date
         description: Observation date.
@@ -159,9 +163,10 @@ models:
         description: SDMX observation status code (A = Normal, M = Missing, etc.).
         data_tests:
           - accepted_values:
-              values: ['A', 'M', 'E', 'P', 'D', 'S', 'U', 'B', 'F', 'I', 'T', 'N', 'L', 'W', 'K', 'O']
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: ['A', 'M', 'E', 'P', 'D', 'S', 'U', 'B', 'F', 'I', 'T', 'N', 'L', 'W', 'K', 'O']
       - name: unit_measure
         description: Unit of measure code (EUR, INDEX, PC, etc.).
 
@@ -178,9 +183,10 @@ models:
         description: Frequency of observation (A=Annual, Q=Quarterly, M=Monthly, etc.).
         data_tests:
           - accepted_values:
-              values: ['A', 'Q', 'M', 'W', 'D', 'B', 'N', 'H', 'S', 'T']
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: ['A', 'Q', 'M', 'W', 'D', 'B', 'N', 'H', 'S', 'T']
       - name: is_normal_value
         description: Boolean flag; true when obs_status = 'A' (normal/regular observation).
         data_tests:

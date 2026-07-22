@@ -34,10 +34,11 @@ models:
           - not_null
     data_tests:
       - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - zip
-            - val_date
-            - in_100_yr_floodplain
-            - in_500_yr_floodplain
-            - id
-            - state_id
+          arguments:
+            combination_of_columns:
+              - zip
+              - val_date
+              - in_100_yr_floodplain
+              - in_500_yr_floodplain
+              - id
+              - state_id

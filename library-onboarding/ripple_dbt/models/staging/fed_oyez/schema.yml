@@ -59,20 +59,21 @@ models:
         description: How the lower-court ruling was treated (e.g. Affirmed, Reversed).
         data_tests:
           - accepted_values:
-              values:
-                - Affirmed
-                - Reversed
-                - Vacated
-                - Remanded
-                - Reversed and Remanded
-                - Vacated and Remanded
-                - Affirmed in Part and Reversed in Part
-                - Dismissed
-                - Per Curiam
-                - Other
               config:
                 severity: warn
 
+              arguments:
+                values:
+                  - Affirmed
+                  - Reversed
+                  - Vacated
+                  - Remanded
+                  - Reversed and Remanded
+                  - Vacated and Remanded
+                  - Affirmed in Part and Reversed in Part
+                  - Dismissed
+                  - Per Curiam
+                  - Other
       - name: citation
         description: Official U.S. Reports citation for the case.
 
@@ -168,20 +169,21 @@ models:
         description: How the lower-court ruling was treated.
         data_tests:
           - accepted_values:
-              values:
-                - Affirmed
-                - Reversed
-                - Vacated
-                - Remanded
-                - Reversed and Remanded
-                - Vacated and Remanded
-                - Affirmed in Part and Reversed in Part
-                - Dismissed
-                - Per Curiam
-                - Other
               config:
                 severity: warn
 
+              arguments:
+                values:
+                  - Affirmed
+                  - Reversed
+                  - Vacated
+                  - Remanded
+                  - Reversed and Remanded
+                  - Vacated and Remanded
+                  - Affirmed in Part and Reversed in Part
+                  - Dismissed
+                  - Per Curiam
+                  - Other
       - name: citation
         description: Official U.S. Reports citation.
 
@@ -204,13 +206,15 @@ models:
         description: Boolean flag — true when an audio recording URL is present.
         data_tests:
           - accepted_values:
-              values: [true, false]
+              arguments:
+                values: [true, false]
 
       - name: has_transcript
         description: Boolean flag — true when a transcript URL is present.
         data_tests:
           - accepted_values:
-              values: [true, false]
+              arguments:
+                values: [true, false]
 
       - name: scraped_at
         description: Timestamp when the record was scraped from Oyez.

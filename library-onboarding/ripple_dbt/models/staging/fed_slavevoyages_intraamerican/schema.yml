@@ -160,7 +160,8 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: ['fed_slavevoyages_intraamerican']
+              arguments:
+                values: ['fed_slavevoyages_intraamerican']
 
       - name: country
         description: Standardised country field (cross-source join key); maps to country_of_departure.

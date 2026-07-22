@@ -53,7 +53,8 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: [2022, 2023, 2024]
+              arguments:
+                values: [2022, 2023, 2024]
 
       - name: total_fb_payments
         description: >
@@ -109,10 +110,10 @@ models:
         data_tests:
           - not_null
           - dbt_utils.accepted_range:
-              min_value: 0
-              max_value: 1
-              inclusive: true
-
+              arguments:
+                min_value: 0
+                max_value: 1
+                inclusive: true
       - name: cliff_ratio
         description: >
           n_meal_cap / nullif(n_just_above, 0). Just-below vs just-above the cap.
@@ -125,10 +126,10 @@ models:
           the single $124.99 spike (the tightest read of the fingerprint).
         data_tests:
           - dbt_utils.accepted_range:
-              min_value: 0
-              max_value: 1
-              inclusive: true
-
+              arguments:
+                min_value: 0
+                max_value: 1
+                inclusive: true
       - name: is_pronounced_fingerprint
         description: >
           True when the manufacturer shows a pronounced meal-cap pattern:
@@ -137,4 +138,5 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: [true, false]
+              arguments:
+                values: [true, false]

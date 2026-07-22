@@ -91,32 +91,33 @@ models:
         description: Type of award (e.g., Contract, Grant, Loan, Direct Payment).
         data_tests:
           - accepted_values:
-              values:
-                - 'A'
-                - 'B'
-                - 'C'
-                - 'D'
-                - '02'
-                - '03'
-                - '04'
-                - '05'
-                - '06'
-                - '07'
-                - '08'
-                - '09'
-                - '10'
-                - '11'
-                - 'IDV_A'
-                - 'IDV_B'
-                - 'IDV_B_A'
-                - 'IDV_B_B'
-                - 'IDV_B_C'
-                - 'IDV_C'
-                - 'IDV_D'
-                - 'IDV_E'
-              quote: true
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values:
+                  - 'A'
+                  - 'B'
+                  - 'C'
+                  - 'D'
+                  - '02'
+                  - '03'
+                  - '04'
+                  - '05'
+                  - '06'
+                  - '07'
+                  - '08'
+                  - '09'
+                  - '10'
+                  - '11'
+                  - 'IDV_A'
+                  - 'IDV_B'
+                  - 'IDV_B_A'
+                  - 'IDV_B_B'
+                  - 'IDV_B_C'
+                  - 'IDV_C'
+                  - 'IDV_D'
+                  - 'IDV_E'
+                quote: true
       - name: naics_description
         description: Human-readable description of the NAICS code.
 
@@ -304,14 +305,14 @@ models:
           Micro (<100K), Small (100K-1M), Medium (1M-10M), Large (>=10M).
         data_tests:
           - accepted_values:
-              values:
-                - 'Large (>=10M)'
-                - 'Medium (1M-10M)'
-                - 'Small (100K-1M)'
-                - 'Micro (<100K)'
-                - 'Unknown'
-              quote: true
-
+              arguments:
+                values:
+                  - 'Large (>=10M)'
+                  - 'Medium (1M-10M)'
+                  - 'Small (100K-1M)'
+                  - 'Micro (<100K)'
+                  - 'Unknown'
+                quote: true
       - name: _ingested_at
         description: Timestamp when the record was loaded into the landing table.
 

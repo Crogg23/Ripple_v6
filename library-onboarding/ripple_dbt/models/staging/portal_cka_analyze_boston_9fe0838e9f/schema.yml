@@ -28,8 +28,9 @@ models:
           - not_null
     data_tests:
       - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - zipcode
-            - date_business_established
-            - business_type
-            - cob_category_codes1
+          arguments:
+            combination_of_columns:
+              - zipcode
+              - date_business_established
+              - business_type
+              - cob_category_codes1

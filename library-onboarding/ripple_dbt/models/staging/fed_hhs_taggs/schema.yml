@@ -97,10 +97,11 @@ models:
         description: Indicates whether the recipient is in a metro or non-metro area.
         data_tests:
           - accepted_values:
-              values: ['Metro', 'Non-Metro', 'Unknown', 'metro', 'non-metro', 'unknown']
-              quote: true
               config:
                 severity: warn
+              arguments:
+                values: ['Metro', 'Non-Metro', 'Unknown', 'metro', 'non-metro', 'unknown']
+                quote: true
       - name: _ingested_at
         description: Timestamp when the record was ingested into the landing table.
 
@@ -172,10 +173,11 @@ models:
         description: Indicates whether the recipient is in a metro or non-metro area.
         data_tests:
           - accepted_values:
-              values: ['Metro', 'Non-Metro', 'Unknown', 'metro', 'non-metro', 'unknown']
-              quote: true
               config:
                 severity: warn
+              arguments:
+                values: ['Metro', 'Non-Metro', 'Unknown', 'metro', 'non-metro', 'unknown']
+                quote: true
       - name: opdiv
         description: HHS Operating Division that issued the award.
         data_tests:
@@ -206,9 +208,9 @@ models:
         description: Bucketed award size — large (>=1M), medium (>=100K), small (>=0), unknown.
         data_tests:
           - accepted_values:
-              values: ['large', 'medium', 'small', 'unknown']
-              quote: true
-
+              arguments:
+                values: ['large', 'medium', 'small', 'unknown']
+                quote: true
       - name: _ingested_at
         description: Timestamp when the record was ingested into the landing table.
 

@@ -38,17 +38,18 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values:
-                - 'Normal'
-                - 'Dissolved'
-                - 'Struck Off'
-                - 'Liquidation'
-                - 'Receivership'
-                - 'Examined'
-                - 'Converted'
-              quote: true
               config:
                 severity: warn
+              arguments:
+                values:
+                  - 'Normal'
+                  - 'Dissolved'
+                  - 'Struck Off'
+                  - 'Liquidation'
+                  - 'Receivership'
+                  - 'Examined'
+                  - 'Converted'
+                quote: true
       - name: company_type
         description: Legal company type classification as defined by the CRO.
 
@@ -105,17 +106,18 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values:
-                - 'Normal'
-                - 'Dissolved'
-                - 'Struck Off'
-                - 'Liquidation'
-                - 'Receivership'
-                - 'Examined'
-                - 'Converted'
-              quote: true
               config:
                 severity: warn
+              arguments:
+                values:
+                  - 'Normal'
+                  - 'Dissolved'
+                  - 'Struck Off'
+                  - 'Liquidation'
+                  - 'Receivership'
+                  - 'Examined'
+                  - 'Converted'
+                quote: true
       - name: company_type
         description: Legal company type classification.
 
@@ -139,10 +141,10 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values:
-                - 'intl_ie_cro'
-              quote: true
-
+              arguments:
+                values:
+                  - 'intl_ie_cro'
+                quote: true
       - name: dataset_name
         description: Original dataset bundle name from the CRO portal.
 

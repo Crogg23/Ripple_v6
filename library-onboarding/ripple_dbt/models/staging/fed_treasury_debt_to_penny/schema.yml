@@ -28,15 +28,15 @@ models:
         data_tests:
           # Null for ~2,958 historical rows (pre-breakdown era) -- warn, don't fail.
           - not_null:
-              severity: warn
-
+              config:
+                severity: warn
       - name: intragov_hold_amt
         description: Intragovernmental holdings in dollars.
         data_tests:
           # Null for ~2,958 historical rows (pre-breakdown era) -- warn, don't fail.
           - not_null:
-              severity: warn
-
+              config:
+                severity: warn
       - name: tot_pub_debt_out_amt
         description: Total public debt outstanding in dollars.
         data_tests:
@@ -52,10 +52,11 @@ models:
         description: Federal fiscal quarter of the record (1-4).
         data_tests:
           - accepted_values:
-              values: ['1', '2', '3', '4']
-              quote: true
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: ['1', '2', '3', '4']
+                quote: true
       - name: record_calendar_yr
         description: Calendar year of the record.
 
@@ -63,10 +64,11 @@ models:
         description: Calendar quarter of the record (1-4).
         data_tests:
           - accepted_values:
-              values: ['1', '2', '3', '4']
-              quote: true
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: ['1', '2', '3', '4']
+                quote: true
       - name: record_calendar_month
         description: Calendar month of the record (01-12).
 
@@ -102,10 +104,11 @@ models:
         description: Federal fiscal quarter of the record (1-4).
         data_tests:
           - accepted_values:
-              values: ['1', '2', '3', '4']
-              quote: true
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: ['1', '2', '3', '4']
+                quote: true
       - name: record_calendar_yr
         description: Calendar year of the record.
 
@@ -113,10 +116,11 @@ models:
         description: Calendar quarter of the record (1-4).
         data_tests:
           - accepted_values:
-              values: ['1', '2', '3', '4']
-              quote: true
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: ['1', '2', '3', '4']
+                quote: true
       - name: record_calendar_month
         description: Calendar month of the record (01-12).
 
@@ -131,15 +135,15 @@ models:
         data_tests:
           # Null for ~2,958 historical rows (pre-breakdown era) -- warn, don't fail.
           - not_null:
-              severity: warn
-
+              config:
+                severity: warn
       - name: intragov_hold_amt
         description: Intragovernmental holdings in dollars.
         data_tests:
           # Null for ~2,958 historical rows (pre-breakdown era) -- warn, don't fail.
           - not_null:
-              severity: warn
-
+              config:
+                severity: warn
       - name: tot_pub_debt_out_amt
         description: Total public debt outstanding in dollars.
         data_tests:

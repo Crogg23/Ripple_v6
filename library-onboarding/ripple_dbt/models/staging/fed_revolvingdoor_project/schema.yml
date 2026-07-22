@@ -183,9 +183,9 @@ models:
         data_tests:
           - not_null
           - relationships:
-              to: ref('stg_fed_revolvingdoor_project__personnel_positions')
-              field: position_key
-
+              arguments:
+                to: ref('stg_fed_revolvingdoor_project__personnel_positions')
+                field: position_key
       - name: person_name
         description: Full name of the individual.
         data_tests:
@@ -206,23 +206,24 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values:
-                - sector1
-                - sector2
-                - sector3
-                - sector4
-                - sector5
-                - sector6
-                - sector7
-                - sector8
-                - sector9
-                - sector10
-                - sector11
-                - sector12
-                - sector14
-                - sector14_1
-                - sector15
-                - sector16
+              arguments:
+                values:
+                  - sector1
+                  - sector2
+                  - sector3
+                  - sector4
+                  - sector5
+                  - sector6
+                  - sector7
+                  - sector8
+                  - sector9
+                  - sector10
+                  - sector11
+                  - sector12
+                  - sector14
+                  - sector14_1
+                  - sector15
+                  - sector16
 
       - name: sector_name
         description: Name of the private-sector interest area for this slot.
@@ -296,22 +297,25 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: [true, false]
+              arguments:
+                values: [true, false]
 
       - name: is_revolving_door
         description: Boolean flag; true when position_type contains 'revolv'.
         data_tests:
           - not_null
           - accepted_values:
-              values: [true, false]
+              arguments:
+                values: [true, false]
 
       - name: _source_id
         description: Static source identifier for cross-source lineage.
         data_tests:
           - not_null
           - accepted_values:
-              values:
-                - fed_revolvingdoor_project
+              arguments:
+                values:
+                  - fed_revolvingdoor_project
 
       - name: _ingested_at
         description: Timestamp when the record was loaded into the landing table.

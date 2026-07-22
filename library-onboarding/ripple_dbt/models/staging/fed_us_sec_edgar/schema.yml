@@ -118,48 +118,49 @@ models:
         description: SEC form type (e.g. 10-K, 10-Q, 8-K, S-1).
         data_tests:
           - accepted_values:
-              values:
-                - 10-K
-                - 10-K/A
-                - 10-Q
-                - 10-Q/A
-                - 8-K
-                - 8-K/A
-                - 20-F
-                - 20-F/A
-                - 40-F
-                - 40-F/A
-                - S-1
-                - S-1/A
-                - S-3
-                - S-3/A
-                - S-4
-                - S-4/A
-                - F-1
-                - F-1/A
-                - F-3
-                - F-3/A
-                - 424B1
-                - 424B2
-                - 424B3
-                - 424B4
-                - 424B5
-                - 424B7
-                - 424B8
-                - DEF 14A
-                - DEFA14A
-                - SC 13G
-                - SC 13G/A
-                - SC 13D
-                - SC 13D/A
-                - 4
-                - 4/A
-                - 3
-                - 5
-                - 6-K
-              quote: true
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values:
+                  - 10-K
+                  - 10-K/A
+                  - 10-Q
+                  - 10-Q/A
+                  - 8-K
+                  - 8-K/A
+                  - 20-F
+                  - 20-F/A
+                  - 40-F
+                  - 40-F/A
+                  - S-1
+                  - S-1/A
+                  - S-3
+                  - S-3/A
+                  - S-4
+                  - S-4/A
+                  - F-1
+                  - F-1/A
+                  - F-3
+                  - F-3/A
+                  - 424B1
+                  - 424B2
+                  - 424B3
+                  - 424B4
+                  - 424B5
+                  - 424B7
+                  - 424B8
+                  - DEF 14A
+                  - DEFA14A
+                  - SC 13G
+                  - SC 13G/A
+                  - SC 13D
+                  - SC 13D/A
+                  - 4
+                  - 4/A
+                  - 3
+                  - 5
+                  - 6-K
+                quote: true
       - name: sic_code
         description: Standard Industrial Classification code for the entity.
 
@@ -200,8 +201,9 @@ models:
         description: Constant identifier for this data source (fed_us_sec_edgar).
         data_tests:
           - accepted_values:
-              values:
-                - fed_us_sec_edgar
+              arguments:
+                values:
+                  - fed_us_sec_edgar
 
       - name: _ingested_at
         description: Timestamp when the record was ingested into the landing table.

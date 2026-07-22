@@ -48,52 +48,55 @@ models:
         description: Current recruitment/study status.
         data_tests:
           - accepted_values:
-              values:
-                - Recruiting
-                - Not yet recruiting
-                - Enrolling by invitation
-                - Active, not recruiting
-                - Completed
-                - Terminated
-                - Withdrawn
-                - Suspended
-                - Unknown status
-                - Available
-                - No longer available
-                - Temporarily not available
-                - Approved for marketing
               config:
                 severity: warn
 
+              arguments:
+                values:
+                  - Recruiting
+                  - Not yet recruiting
+                  - Enrolling by invitation
+                  - Active, not recruiting
+                  - Completed
+                  - Terminated
+                  - Withdrawn
+                  - Suspended
+                  - Unknown status
+                  - Available
+                  - No longer available
+                  - Temporarily not available
+                  - Approved for marketing
       - name: phase
         description: Trial phase.
         data_tests:
           - accepted_values:
-              values:
-                - 'Phase 1'
-                - 'Phase 1/Phase 2'
-                - 'Phase 2'
-                - 'Phase 2/Phase 3'
-                - 'Phase 3'
-                - 'Phase 3/Phase 4'
-                - 'Phase 4'
-                - 'Early Phase 1'
-                - 'N/A'
-                - 'Not Applicable'
               config:
                 severity: warn
 
+              arguments:
+                values:
+                  - 'Phase 1'
+                  - 'Phase 1/Phase 2'
+                  - 'Phase 2'
+                  - 'Phase 2/Phase 3'
+                  - 'Phase 3'
+                  - 'Phase 3/Phase 4'
+                  - 'Phase 4'
+                  - 'Early Phase 1'
+                  - 'N/A'
+                  - 'Not Applicable'
       - name: study_type
         description: Study design classification.
         data_tests:
           - accepted_values:
-              values:
-                - Interventional
-                - Observational
-                - Expanded Access
               config:
                 severity: warn
 
+              arguments:
+                values:
+                  - Interventional
+                  - Observational
+                  - Expanded Access
       - name: start_date
         description: Date the study began enrolling participants (cast to DATE).
 
@@ -124,18 +127,19 @@ models:
         description: Sponsor class (Industry, NIH, U.S. Fed, Other).
         data_tests:
           - accepted_values:
-              values:
-                - INDUSTRY
-                - NIH
-                - U.S. FED
-                - OTHER
-                - Industry
-                - NIH
-                - U.S. Fed
-                - Other
               config:
                 severity: warn
 
+              arguments:
+                values:
+                  - INDUSTRY
+                  - NIH
+                  - U.S. FED
+                  - OTHER
+                  - Industry
+                  - NIH
+                  - U.S. Fed
+                  - Other
       - name: responsible_party
         description: Principal investigator or sponsor contact responsible for the study.
 
@@ -155,13 +159,14 @@ models:
         description: Eligible participant sex.
         data_tests:
           - accepted_values:
-              values:
-                - All
-                - Female
-                - Male
               config:
                 severity: warn
 
+              arguments:
+                values:
+                  - All
+                  - Female
+                  - Male
       - name: minimum_age
         description: Minimum participant age (free-text, e.g. '18 Years').
 
@@ -360,12 +365,13 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values:
-                - Active
-                - Completed
-                - Stopped
-                - Active, not recruiting
-                - Other / Unknown
+              arguments:
+                values:
+                  - Active
+                  - Completed
+                  - Stopped
+                  - Active, not recruiting
+                  - Other / Unknown
 
       - name: phase_category
         description: >
@@ -373,21 +379,23 @@ models:
           Post-Market, N/A, or Unknown.
         data_tests:
           - accepted_values:
-              values:
-                - Early Phase
-                - Mid Phase
-                - Late Phase
-                - Post-Market
-                - N/A
-                - Unknown
+              arguments:
+                values:
+                  - Early Phase
+                  - Mid Phase
+                  - Late Phase
+                  - Post-Market
+                  - N/A
+                  - Unknown
 
       - name: source_id
         description: Constant identifier for this data source ('fed_clinicaltrials').
         data_tests:
           - not_null
           - accepted_values:
-              values:
-                - fed_clinicaltrials
+              arguments:
+                values:
+                  - fed_clinicaltrials
 
       - name: _ingested_at
         description: Timestamp when the record was ingested into the landing table.

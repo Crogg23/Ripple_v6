@@ -100,17 +100,17 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: [true, false]
-              quote: false
-
+              arguments:
+                values: [true, false]
+                quote: false
       - name: is_jail_top_decile
         description: Boolean -- jail_pctile >= 0.9.
         data_tests:
           - not_null
           - accepted_values:
-              values: [true, false]
-              quote: false
-
+              arguments:
+                values: [true, false]
+                quote: false
       - name: double_burden
         description: >
           Boolean -- the headline flag. True when the county is in the top
@@ -119,5 +119,6 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: [true, false]
-              quote: false
+              arguments:
+                values: [true, false]
+                quote: false

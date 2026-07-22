@@ -22,6 +22,7 @@ models:
           - not_null
     data_tests:
       - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - decedent_zip
-            - death_date_and_time
+          arguments:
+            combination_of_columns:
+              - decedent_zip
+              - death_date_and_time

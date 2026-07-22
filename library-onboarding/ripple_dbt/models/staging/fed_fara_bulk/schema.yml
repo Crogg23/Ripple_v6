@@ -90,18 +90,19 @@ models:
         description: Type of FARA document filed.
         data_tests:
           - accepted_values:
-              values:
-                - 'Registration Statement'
-                - 'Supplemental Statement'
-                - 'Short Form'
-                - 'Exhibit AB'
-                - 'Exhibit C'
-                - 'Amendment'
-                - 'Termination'
-                - 'Other'
               config:
                 severity: warn
 
+              arguments:
+                values:
+                  - 'Registration Statement'
+                  - 'Supplemental Statement'
+                  - 'Short Form'
+                  - 'Exhibit AB'
+                  - 'Exhibit C'
+                  - 'Amendment'
+                  - 'Termination'
+                  - 'Other'
       - name: doc_url
         description: URL link to the filed document on the FARA eFile system.
 
@@ -197,18 +198,19 @@ models:
         description: Type of FARA document filed.
         data_tests:
           - accepted_values:
-              values:
-                - 'Registration Statement'
-                - 'Supplemental Statement'
-                - 'Short Form'
-                - 'Exhibit AB'
-                - 'Exhibit C'
-                - 'Amendment'
-                - 'Termination'
-                - 'Other'
               config:
                 severity: warn
 
+              arguments:
+                values:
+                  - 'Registration Statement'
+                  - 'Supplemental Statement'
+                  - 'Short Form'
+                  - 'Exhibit AB'
+                  - 'Exhibit C'
+                  - 'Amendment'
+                  - 'Termination'
+                  - 'Other'
       - name: doc_url
         description: URL link to the filed document on the FARA eFile system.
 
@@ -262,14 +264,16 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: [true, false]
+              arguments:
+                values: [true, false]
 
       - name: is_active_foreign_principal
         description: Boolean flag — true if the foreign principal relationship has not been terminated as of today.
         data_tests:
           - not_null
           - accepted_values:
-              values: [true, false]
+              arguments:
+                values: [true, false]
 
       - name: source_file
         description: Name of the source bulk data file from which this record was extracted.

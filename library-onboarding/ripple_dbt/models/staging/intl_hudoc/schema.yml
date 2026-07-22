@@ -58,28 +58,30 @@ models:
         description: Type of document (e.g., JUDGMENT, DECISION, ADVISORY-OPINION).
         data_tests:
           - accepted_values:
-              values:
-                - JUDGMENT
-                - DECISION
-                - ADVISORY-OPINION
-                - COMMUNICATED CASE
-                - STRIKE OUT
-                - REVISION
-                - INTERPRETATION
-                - OTHER
-              quote: true
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values:
+                  - JUDGMENT
+                  - DECISION
+                  - ADVISORY-OPINION
+                  - COMMUNICATED CASE
+                  - STRIKE OUT
+                  - REVISION
+                  - INTERPRETATION
+                  - OTHER
+                quote: true
       - name: importance
         description: >
           Numeric importance level assigned by the Court
           (1 = Grand Chamber / key cases, 4 = low importance).
         data_tests:
           - accepted_values:
-              values: [1, 2, 3, 4]
-              quote: false
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: [1, 2, 3, 4]
+                quote: false
       - name: articles
         description: Convention articles cited in the case.
 
@@ -105,12 +107,13 @@ models:
         description: Language in which the case was published (EN or FR).
         data_tests:
           - accepted_values:
-              values:
-                - EN
-                - FR
-              quote: true
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values:
+                  - EN
+                  - FR
+                quote: true
       - name: url
         description: Direct URL to the case on the HUDOC portal.
 
@@ -178,26 +181,28 @@ models:
         description: Document type.
         data_tests:
           - accepted_values:
-              values:
-                - JUDGMENT
-                - DECISION
-                - ADVISORY-OPINION
-                - COMMUNICATED CASE
-                - STRIKE OUT
-                - REVISION
-                - INTERPRETATION
-                - OTHER
-              quote: true
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values:
+                  - JUDGMENT
+                  - DECISION
+                  - ADVISORY-OPINION
+                  - COMMUNICATED CASE
+                  - STRIKE OUT
+                  - REVISION
+                  - INTERPRETATION
+                  - OTHER
+                quote: true
       - name: importance
         description: Numeric importance level (1–4).
         data_tests:
           - accepted_values:
-              values: [1, 2, 3, 4]
-              quote: false
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values: [1, 2, 3, 4]
+                quote: false
       - name: originating_body
         description: Court body that issued the ruling.
 
@@ -208,12 +213,13 @@ models:
         description: Publication language.
         data_tests:
           - accepted_values:
-              values:
-                - EN
-                - FR
-              quote: true
-              severity: warn
-
+              config:
+                severity: warn
+              arguments:
+                values:
+                  - EN
+                  - FR
+                quote: true
       - name: articles
         description: Convention articles cited.
 

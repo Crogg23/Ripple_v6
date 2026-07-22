@@ -72,29 +72,32 @@ models:
         description: Numeric code for jurisdictional basis (1=US Govt Plaintiff, 2=US Govt Defendant, 3=Fed Question, 4=Diversity).
         data_tests:
           - accepted_values:
-              values: [1, 2, 3, 4]
-              quote: false
               config:
                 severity: warn
 
+              arguments:
+                values: [1, 2, 3, 4]
+                quote: false
       - name: prose_code
         description: Indicator of pro se representation (0=Not Pro Se, 1=Plaintiff, 2=Defendant, 3=Both).
         data_tests:
           - accepted_values:
-              values: [0, 1, 2, 3]
-              quote: false
               config:
                 severity: warn
 
+              arguments:
+                values: [0, 1, 2, 3]
+                quote: false
       - name: gender_code
         description: Gender code of the primary plaintiff/defendant (1=Male, 2=Female).
         data_tests:
           - accepted_values:
-              values: [1, 2]
-              quote: false
               config:
                 severity: warn
 
+              arguments:
+                values: [1, 2]
+                quote: false
       - name: criminal_count
         description: Number of criminal counts in the case.
 
@@ -209,11 +212,12 @@ models:
         description: Numeric code for jurisdictional basis.
         data_tests:
           - accepted_values:
-              values: [1, 2, 3, 4]
-              quote: false
               config:
                 severity: warn
 
+              arguments:
+                values: [1, 2, 3, 4]
+                quote: false
       - name: jurisdiction_label
         description: Human-readable label for jurisdiction_code.
 
@@ -221,11 +225,12 @@ models:
         description: Indicator of pro se representation.
         data_tests:
           - accepted_values:
-              values: [0, 1, 2, 3]
-              quote: false
               config:
                 severity: warn
 
+              arguments:
+                values: [0, 1, 2, 3]
+                quote: false
       - name: prose_label
         description: Human-readable label for prose_code.
 
@@ -233,11 +238,12 @@ models:
         description: Gender code of the primary party.
         data_tests:
           - accepted_values:
-              values: [1, 2]
-              quote: false
               config:
                 severity: warn
 
+              arguments:
+                values: [1, 2]
+                quote: false
       - name: gender_label
         description: Human-readable label for gender_code.
 

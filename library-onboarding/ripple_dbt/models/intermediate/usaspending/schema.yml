@@ -148,11 +148,12 @@ models:
           up with foreign PARENT companies (finding #18).
         data_tests:
           - accepted_values:
-              values: ['f', 't']
-              quote: true
               config:
                 severity: warn
 
+              arguments:
+                values: ['f', 't']
+                quote: true
       - name: usaspending_permalink
         description: USASpending.gov permalink for the award.
 
