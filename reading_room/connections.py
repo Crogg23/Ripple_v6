@@ -16,6 +16,7 @@ exercise it without a browser or a network.
 """
 from __future__ import annotations
 
+import json
 import os
 import sys
 from pathlib import Path
@@ -48,9 +49,27 @@ def _clamp_secondary_roles(conn):
     """`role=` pins only the PRIMARY role — with secondary roles active
     (often ALL by default) a session would union in every granted role and
     the append-only wall would be app-theater. Clamp both lanes to exactly
-    the role they claim to be."""
-    conn.cursor().execute("USE SECONDARY ROLES NONE")
-    return conn
+    the role they claim to be.
+
+    Role-restricted PATs (this repo's standard mint) open a RESTRICTED
+    session that refuses USE SECONDARY ROLES outright (error 003107) —
+    while already pinning one role harder than the clamp does. That path
+    is accepted only on proof: CURRENT_SECONDARY_ROLES() must come back
+    empty, otherwise refuse the connection."""
+    cur = conn.cursor()
+    try:
+        cur.execute("USE SECONDARY ROLES NONE")
+        return conn
+    except Exception:
+        cur.execute("SELECT CURRENT_SECONDARY_ROLES()")
+        row = cur.fetchone()
+        active = json.loads(row[0] or "{}").get("roles") if row else None
+        if active == "":
+            return conn  # restricted session, provably zero secondary roles
+        raise RuntimeError(
+            "Cannot clamp secondary roles and the session reports active "
+            f"secondary roles ({active!r}) — refusing to run with a wider "
+            "role set than the lane claims.")
 
 
 def reader_connect():
