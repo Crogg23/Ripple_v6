@@ -265,27 +265,13 @@ def render_dossier(eid: str):
                 if st.button("Open source", key=f"d{s['SOURCE_TABLE']}"):
                     goto(view="source", src=str(s["SOURCE_TABLE"]).lower())
 
-    # ---- affiliations (providers only) -----------------------------------
-    if g.get("KEY_TYPE") == "NPI":
-        st.subheader("Affiliated facilities")
-        st.caption("A *works-at* relationship (provider → CMS facility), not identity — "
-                   "each facility is its own entity. Source: FED_CMS_FACILITY_AFFILIATION.")
-        try:
-            aff = q.get_affiliations(g["KEY_VALUE"])
-        except Exception as e:
-            st.warning(f"Affiliations unavailable: {e}")
-            aff = None
-        if aff is not None and not aff.empty:
-            for _, a_ in aff.iterrows():
-                ccn = a_["CCN"]
-                name = a_.get("CANONICAL_NAME") or "(unnamed facility)"
-                addr = a_.get("CANONICAL_ADDR") or ""
-                cols = st.columns([5, 1])
-                cols[0].markdown(f"CCN `{ccn}` — **{name}**  \n{addr}")
-                if cols[1].button("Dossier", key=f"aff{ccn}"):
-                    goto(view="dossier", eid=q.entity_id_for("CCN", ccn))
-        elif aff is not None:
-            st.caption("No CMS facility affiliations on record for this provider.")
+    # ---- affiliations (providers only) — RETIRED 2026-07-20 ---------------
+    # The source table FED_CMS_FACILITY_AFFILIATION was dropped from
+    # LIBRARY_RAW.LANDING (see CLOSE_THE_LOOP_checklist.md). This panel queried it
+    # via q.get_affiliations() and, since the drop, only ever soft-failed to an
+    # "Affiliations unavailable" warning on every NPI dossier. Removed rather than
+    # shown broken. To restore: re-land the affiliations source, then bring back
+    # this block and get_affiliations() in serve_queries.py.
 
 
 # --------------------------------------------------------------------------- #

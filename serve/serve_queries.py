@@ -177,8 +177,12 @@ def get_dossier(eid: str):
 
 @st.cache_data(ttl=180, show_spinner=False)
 def get_affiliations(npi_value: str):
-    """Provider -> CMS facilities (works-at relationship, NOT identity). Reads the
-    LIVE landing table; the one part of the dossier that hits LIBRARY_RAW directly."""
+    """Provider -> CMS facilities (works-at relationship, NOT identity).
+
+    RETIRED 2026-07-20 / ORPHANED: FED_CMS_FACILITY_AFFILIATION was dropped from
+    LIBRARY_RAW.LANDING, so this errors if called. Its only caller (the NPI-dossier
+    affiliations panel in app.py) was removed the same day. Kept for a clean restore
+    if the source is re-landed; do NOT re-wire it until then."""
     npi_n = normalize_sql("NPI", '"NPI"')
     ccn_n = normalize_sql("CCN", '"CCN"')
     sql = f"""
