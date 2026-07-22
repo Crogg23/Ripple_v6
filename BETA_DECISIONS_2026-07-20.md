@@ -83,3 +83,12 @@ Sprint brief §5.2, built and adversarially verified. **`honesty/` package** (~6
 - **Two repo defects noted by the auditors, not fixed here (out of scope):** `stg_fed_noaa_ais`'s header claims a single-day AIS snapshot while the verified POLICY says 8 days (the policy is receipt-backed; the header is wrong); and out-of-dbt warehouse views are opaque to any manifest walker — `V_LEADS_PUBLISHED` is caught by name, but the limitation is documented in `honesty/README.md`.
 
 **Adjust by:** the taxonomy (one judgment call — hard-anchored composite joins count as fact-compatible) is documented in `honesty/README.md`; say the word and the rule flips with its tests.
+
+---
+
+## 2026-07-21 (evening) — RECEIPT MADE PUBLIC-EXECUTABLE + GRADER DISCRIMINATION PROOF
+
+Chris's orders, both delivered (full receipts: `outputs/RECEIPT_PARITY_2026-07-21.md`):
+
+- **The SBA page's receipt now runs on public data.** The printed receipt is a DuckDB query over the two public 7(a) FOIA CSVs (download URLs + zero-load instructions on the page); the internal Snowflake query moved to a provenance note. Verified by running BOTH sides 2026-07-21: **FY2019–FY2025 all 91 grid cells identical to the loan**; FY2026's 13 cells differ solely because the current public file is one quarter newer (asof 6/30 vs our 3/31 snapshot) — stated on the page, and the FY26 pattern holds in the newer quarter ($350k ratio 14.7). **Found en route:** SBA migrated its data portal mid-2026 — the page's old primary-source link (`/dataset/7-a-504-foia`) now 404s; fixed to `/dataset/7a-504-foia`. The built HTML under `evidence/build/` predates this edit (deploy path untouched per orders); the next build picks it up.
+- **The grader can say no.** A throwaway name-join mart pushed through the real pipeline came back **UNVERIFIED** with the exact clause as its receipt; deleted same-session, clean re-parse re-checked — 47 marts, grade+receipt parity with the committed artifacts EXACT.

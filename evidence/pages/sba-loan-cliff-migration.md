@@ -164,22 +164,39 @@ A grocery business in suburban Chicago borrowed **exactly $1,000,000 — to the 
 
 **Not verified, stated plainly:** whether the *borrower* or the *lender* moves the number (the data cannot distinguish; lender concentration analysis shows lenders amplify but don't create the pattern) · FY19–22 annual-service-fee tiers (upfront cutoffs, which carry the finding, were all verified against primary notices) · SBA's enforcement of the 90-day aggregation rule on split-pattern borrowers · FY26 completeness (partial year — all FY26 numbers provisional) · the receipt case's motive (consistent with fee-aware sizing; no document proves intent — the finding is about the class, not the case).
 
-## Frozen receipts
+## Run the receipt yourself — no access to us required
 
-**Source:** `LIBRARY_RAW.LANDING.FED_SBA_LOANS` — SBA 7(a)/504 FOIA file, 2,174,502 rows, single clean load, ASOFDATE 3/31/2026. Filters: `TRIM(PROGRAM)='7A'`, positive parsed `GROSSAPPROVAL`, `APPROVALFY` 2019–2026. **Re-derived live 2026-07-20; zero discrepancies against the committed finding (64 grid cells + totals, all control checks).** The master query, verbatim (Snowflake SQL — every chart above is this query's output, frozen):
+**Public source (the same files SBA publishes):** the loan-level 7(a) FOIA files on SBA's open-data portal — dataset [7(a) & 504 FOIA](https://data.sba.gov/dataset/7a-504-foia), refreshed quarterly. Download the two 7(a) files covering FY2010–present (at this writing: `FOIA_7a_FY2010_FY2019_asof_260630.csv` and `FOIA_7a_FY2020_Present_asof_260630.csv` — the `asof` suffix advances each quarter).
+**Load step:** none. [DuckDB](https://duckdb.org) (free, one binary) reads the CSVs in place. From the folder holding the two files:
 
-<pre><code>WITH loans AS (SELECT APPROVALFY fy, TRY_TO_NUMBER(GROSSAPPROVAL,18,2) g
-  FROM LIBRARY_RAW.LANDING.FED_SBA_LOANS
-  WHERE TRIM(PROGRAM)='7A' AND TRY_TO_NUMBER(GROSSAPPROVAL,18,2) &gt; 0
-    AND APPROVALFY BETWEEN '2019' AND '2026')
-SELECT fy, COUNT(*) n_total,
- COUNT_IF(g&gt;330000 AND g&lt;=350000) b350, COUNT_IF(g&gt;350000 AND g&lt;=370000) a350, COUNT_IF(g=350000) at350,
- COUNT_IF(g&gt;480000 AND g&lt;=500000) b500, COUNT_IF(g&gt;500000 AND g&lt;=520000) a500, COUNT_IF(g=500000) at500,
- COUNT_IF(g&gt;980000 AND g&lt;=1000000) b1000, COUNT_IF(g&gt;1000000 AND g&lt;=1020000) a1000, COUNT_IF(g=1000000) at1000,
- COUNT_IF(g&gt;1980000 AND g&lt;=2000000) b2000, COUNT_IF(g&gt;2000000 AND g&lt;=2020000) a2000, COUNT_IF(g=2000000) at2000
+<pre><code>WITH loans AS (
+  SELECT "ApprovalFY" AS fy, TRY_CAST("GrossApproval" AS DECIMAL(18,2)) AS g
+  FROM read_csv(['FOIA_7a_FY2010_FY2019_asof_260630.csv',
+                 'FOIA_7a_FY2020_Present_asof_260630.csv'], all_varchar = true)
+  WHERE TRIM("Program") = '7A'
+    AND TRY_CAST("GrossApproval" AS DECIMAL(18,2)) &gt; 0
+    AND "ApprovalFY" BETWEEN '2019' AND '2026'
+)
+SELECT fy, COUNT(*) AS n_total,
+ COUNT(*) FILTER (g &gt; 330000 AND g &lt;= 350000)   AS b350,
+ COUNT(*) FILTER (g &gt; 350000 AND g &lt;= 370000)   AS a350,
+ COUNT(*) FILTER (g = 350000)                   AS at350,
+ COUNT(*) FILTER (g &gt; 480000 AND g &lt;= 500000)   AS b500,
+ COUNT(*) FILTER (g &gt; 500000 AND g &lt;= 520000)   AS a500,
+ COUNT(*) FILTER (g = 500000)                   AS at500,
+ COUNT(*) FILTER (g &gt; 980000 AND g &lt;= 1000000)  AS b1000,
+ COUNT(*) FILTER (g &gt; 1000000 AND g &lt;= 1020000) AS a1000,
+ COUNT(*) FILTER (g = 1000000)                  AS at1000,
+ COUNT(*) FILTER (g &gt; 1980000 AND g &lt;= 2000000) AS b2000,
+ COUNT(*) FILTER (g &gt; 2000000 AND g &lt;= 2020000) AS a2000,
+ COUNT(*) FILTER (g = 2000000)                  AS at2000
 FROM loans GROUP BY 1 ORDER BY 1;</code></pre>
 
-**Primary sources:** [SBA 7(a) & 504 FOIA loan data](https://data.sba.gov/dataset/7-a-504-foia) · SBA Information Notices 5000-818641 (FY22 fees), the FY23 fee schedule, 5000-848801 (FY24), 5000-858936 (FY25), 5000-872051 (FY26) — all at [sba.gov/documents](https://www.sba.gov/documents) · [CRS report R41146](https://crsreports.congress.gov/product/pdf/R/R41146) (7(a) program overview) · SOP 50 10 (editions 7 and 8).
+**Parity, verified 2026-07-21:** this public query and our internal snapshot were run side by side. **FY2019–FY2025: all 91 grid cells identical, to the loan.** FY2026 cells differ only because the public file is one quarter newer than our 3/31/2026 snapshot (40,824 partial-year loans vs 26,467) — and the FY26 pattern *holds* in the newer quarter: the $350k ratio reads 14.7, while $500k and $1M stay collapsed. Because SBA replaces these files quarterly, your `asof` may be newer still: FY19–25 cells should match exactly; FY26 keeps growing until the fiscal year closes on Sept 30.
+
+**Internal provenance (how this page's own numbers were made):** the charts above render frozen extracts of `LIBRARY_RAW.LANDING.FED_SBA_LOANS` — a single clean load of these same FOIA files, 2,174,502 rows, ASOFDATE 3/31/2026 — via the equivalent Snowflake query (`TRIM(PROGRAM)='7A'`, positive `TRY_TO_NUMBER(GROSSAPPROVAL,18,2)`, `APPROVALFY BETWEEN '2019' AND '2026'`, `COUNT_IF` per ±$20k window), re-derived 2026-07-20 with zero discrepancies against the committed finding.
+
+**Primary sources:** [SBA 7(a) & 504 FOIA loan data](https://data.sba.gov/dataset/7a-504-foia) *(the portal migrated mid-2026; older links to `/dataset/7-a-504-foia` now 404)* · SBA Information Notices 5000-818641 (FY22 fees), the FY23 fee schedule, 5000-848801 (FY24), 5000-858936 (FY25), 5000-872051 (FY26) — all at [sba.gov/documents](https://www.sba.gov/documents) · [CRS report R41146](https://crsreports.congress.gov/product/pdf/R/R41146) (7(a) program overview) · SOP 50 10 (editions 7 and 8).
 
 **Novelty:** bunching at SBA fee/guarantee thresholds is a known class in the economics literature (Bachas–Kim–Yannelis documented it at the historical $150k line). No published analysis was found (searched 2026-07-13) of the FY2022–26 waiver-cutoff **migration** at $350k/$500k/$1M/$2M. Known class, apparently-unpublished instance.
 
