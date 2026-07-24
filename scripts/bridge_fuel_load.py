@@ -229,7 +229,7 @@ def _open_csv_source(s: dict, tmp: Path):
     if kind == "zip_csv":
         zpath = _download(url, tmp / "src.zip")
         with zipfile.ZipFile(zpath) as zf:
-            members = [n for n in zf.namelist() if n.lower().endswith((".csv", ".txt"))]
+            members = [n for n in zf.namelist() if n.lower().endswith((".csv", ".txt", ".tsv"))]
             pat = s.get("member")
             chosen = None
             if pat:

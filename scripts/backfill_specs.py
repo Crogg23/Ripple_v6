@@ -412,4 +412,31 @@ SPECS = [{'source_id': 'fed_cms_part_d_prescribers',
            '(no new key infra needed). NDC drug codes also present '
            '(Associated_Drug_or_Biological_NDC_1..5) but not in the canonical key set. URL embeds '
            'a publication-date stamp (PGYR2023_P01232026_01102026) - if CMS re-publishes PY2023, '
-           're-resolve via the metastore before reload.'}]
+           're-resolve via the metastore before reload.'},
+ {'source_id': 'fed_cfpb_complaints',
+  'name': 'CFPB Consumer Complaint Database (full bulk)',
+  'publisher': 'Consumer Financial Protection Bureau (CFPB)',
+  'url': 'https://www.consumerfinance.gov/data-research/consumer-complaints/',
+  'download_url': 'https://files.consumerfinance.gov/ccdb/complaints.csv.zip',
+  'kind': 'zip_csv',
+  'member': 'complaints\\.csv',
+  'csv_opts': {'dtype': 'str', 'keep_default_na': False},
+  'chunked': True,
+  'chunk_rows': 200000,
+  'join_keys': 'Company (free-text name), State, ZIP code, Complaint ID (CFPB internal)',
+  'category': 'consumer_finance',
+  'subcategory': 'consumer_complaints',
+  'jurisdiction': 'fed',
+  'unit_of_observation': 'one row = one consumer complaint filed with the CFPB against a company',
+  'update_cadence': 'daily',
+  'volume': '~1.4GB zip (content-length 1,425,369,704 verified 2026-07-23); millions of complaint rows',
+  'accountability_relevance': 'Consumer-harm complaints by company. No hard ID column (company is '
+                              'free text) -> name-matches to lenders in CFPB HMDA (LEI) and GLEIF to '
+                              'compute complaint density per lender against lending patterns.',
+  'priority_tier': '2',
+  'notes': 'Backfills the 250-row API stub with the full bulk export. VERIFIED LIVE 2026-07-23: '
+           'curl -sIL HTTP 200, binary/octet-stream, content-length 1,425,369,704. Zip holds one '
+           "member complaints.csv, RFC4180 comma CSV with header; narratives carry embedded "
+           'commas/newlines -> pandas default quoting handles it. dtype=str + keep_default_na=false '
+           'keep the all-TEXT mirror. ~9M rows -> chunked. Column set differs from the old API stub '
+           '(18 CSV cols vs 20 API cols) so RELOAD needs --force --allow-schema-change.'}]

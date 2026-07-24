@@ -201,7 +201,7 @@ def main(argv=None) -> int:
                 print(f"    -> flushed (landed {total:,})", flush=True)
             if tot and page * PAGE_SIZE >= tot:
                 break
-            time.sleep(3)                        # gentle pace — stay under SAM's throttle
+            time.sleep(15)                       # SAM throttles hard (429 at 3s); 15s keeps us under
         if buf:
             _land(conn, buf, overwrite=first, run_id=run_id, started=started)
             total += len(buf)
