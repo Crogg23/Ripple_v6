@@ -59,6 +59,7 @@ PY = sys.executable or "/usr/bin/python3"
 
 MASTER_LOG = OUTPUTS / "_heartbeat.log"
 STATE_FILE = OUTPUTS / "_heartbeat_state.json"
+ZOMBIE_FILE = OUTPUTS / "_heartbeat_zombie.json"
 LOCK_FILE = OUTPUTS / "_heartbeat.lock"
 RECIPES_FILE = SCRIPTS / "acquire_recipes.json"
 BUILD_LEDGER = SCRIPTS / "build_freshness_ledger.py"
@@ -488,10 +489,12 @@ def _kill_group(p) -> bool:
     POSIX: SIGTERM the process group, grace, then SIGKILL.
     Windows: no killpg/process groups worth the name — shell out to
     `taskkill /PID <pid> /T /F`, the OS-native tree kill (walks descendants and
-    force-terminates the lot, including the snowflake driver child)."""
+    force-terminates the lot, including the snowflake driver child).
+
+    Returns True if the child is confirmed dead, False if still alive."""
     if os.name == "nt":
         if p.poll() is not None:
-            return False   # already dead — mirror the POSIX ProcessLookupError path
+            return True    # already dead
         try:
             subprocess.run(["taskkill", "/PID", str(p.pid), "/T", "/F"],
                            capture_output=True, timeout=30)
@@ -501,11 +504,12 @@ def _kill_group(p) -> bool:
             p.wait(timeout=10)
         except Exception:
             pass
-        return True
+        # VERIFY: is the child actually dead?
+        return p.poll() is not None
     try:
         pgid = os.getpgid(p.pid)
     except ProcessLookupError:
-        return False
+        return True    # already dead
     try:
         os.killpg(pgid, signal.SIGTERM)
     except ProcessLookupError:
@@ -523,7 +527,37 @@ def _kill_group(p) -> bool:
         p.wait(timeout=10)
     except Exception:
         pass
-    return True
+    return p.poll() is not None
+
+
+def _persist_zombie(child_pid: int) -> None:
+    """Record a zombie child PID that we failed to kill. The next tick must check
+    this before spawning — if the zombie is still alive, refuse to run."""
+    ZOMBIE_FILE.write_text(json.dumps({
+        "pid": child_pid, "detected_at": iso_now()
+    }), encoding="utf-8")
+
+
+def _check_zombie() -> str | None:
+    """Check if a previously-recorded zombie child is still alive.
+    Returns a reason string if blocked, None if safe to proceed."""
+    if not ZOMBIE_FILE.exists():
+        return None
+    try:
+        data = json.loads(ZOMBIE_FILE.read_text(encoding="utf-8"))
+    except Exception:
+        ZOMBIE_FILE.unlink(missing_ok=True)
+        return None
+    pid = int(data.get("pid") or 0)
+    if not pid:
+        ZOMBIE_FILE.unlink(missing_ok=True)
+        return None
+    if HeartbeatLock._alive(pid):
+        return (f"zombie child PID {pid} (from {data.get('detected_at', '?')}) is still alive — "
+                f"refusing to spawn a concurrent writer")
+    # Zombie is dead — clear the file
+    ZOMBIE_FILE.unlink(missing_ok=True)
+    return None
 
 
 def run_guarded(tier: str, cmd: list, cwd: Path, soft_s: int, hard_s: int,
@@ -535,6 +569,11 @@ def run_guarded(tier: str, cmd: list, cwd: Path, soft_s: int, hard_s: int,
     the local killpg already fired. Real warehouse tiers pass (hard_s + buffer); the
     OFFLINE selftest leaves it None so it never touches the warehouse."""
     global _CURRENT_CHILD
+    # Check for a zombie from a prior failed kill before spawning
+    zombie_reason = _check_zombie()
+    if zombie_reason:
+        return {"tier": tier, "status": "blocked_zombie", "rc": None,
+                "dur_s": 0, "log": "", "note": zombie_reason}
     ts = datetime.now().strftime("%Y%m%dT%H%M%S")
     logpath = OUTPUTS / f"_heartbeat_{tier}_{ts}.log"
     started = time.time()
@@ -582,8 +621,16 @@ def run_guarded(tier: str, cmd: list, cwd: Path, soft_s: int, hard_s: int,
                 lf.write(f"[heartbeat] HARD TIMEOUT {hard_s}s — killing process group "
                          f"(SIGTERM->SIGKILL)\n")
                 lf.flush()
-                _kill_group(p)
+                killed = _kill_group(p)
                 _CURRENT_CHILD = None
+                if not killed:
+                    lf.write(f"[heartbeat] KILL FAILED — child PID {p.pid} may still be alive!\n")
+                    lf.flush()
+                    # Persist zombie child PID so next tick refuses to run
+                    _persist_zombie(p.pid)
+                    return {"tier": tier, "status": "kill_failed", "rc": p.poll(),
+                            "dur_s": int(time.time() - started), "log": str(logpath),
+                            "note": f"kill failed — zombie PID {p.pid} may still be running"}
                 return {"tier": tier, "status": "timeout_killed", "rc": p.poll(),
                         "dur_s": int(time.time() - started), "log": str(logpath),
                         "note": f"hard timeout {hard_s}s"}
