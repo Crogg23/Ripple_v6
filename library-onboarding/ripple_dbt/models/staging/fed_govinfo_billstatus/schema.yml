@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_GOVINFO_BILLSTATUS
+        description: >
+          Raw landing table for GovInfo BILLSTATUS -- Bill Status XML (sponsor, cosponsors, actions, laws). Grain not yet determined.
+
+models:
+  - name: stg_fed_govinfo_billstatus__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

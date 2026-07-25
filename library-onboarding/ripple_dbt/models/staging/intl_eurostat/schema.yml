@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: INTL_EUROSTAT
+        description: >
+          Raw landing table for Eurostat SDMX Dissemination API. Grain not yet determined.
+
+models:
+  - name: stg_intl_eurostat__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

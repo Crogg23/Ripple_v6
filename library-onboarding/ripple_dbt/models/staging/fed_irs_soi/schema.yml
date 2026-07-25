@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_IRS_SOI
+        description: >
+          Raw landing table for IRS Statistics of Income (SOI). Grain not yet determined.
+
+models:
+  - name: stg_fed_irs_soi__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

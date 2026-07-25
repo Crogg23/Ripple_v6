@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: XC_RANSOMWARELIVE_VICTIMS
+        description: >
+          Raw landing table for Ransomware.live — global ransomware victim tracker. Grain not yet determined.
+
+models:
+  - name: stg_xc_ransomwarelive_victims__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

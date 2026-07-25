@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CBP_ENCOUNTERS
+        description: >
+          Raw landing table for CBP Nationwide Encounters Data. Grain not yet determined.
+
+models:
+  - name: stg_fed_cbp_encounters__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

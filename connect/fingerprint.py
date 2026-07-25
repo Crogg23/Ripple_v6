@@ -35,6 +35,7 @@ def landed_tables(conn) -> list[str]:
         SELECT TABLE_NAME
         FROM {db.RAW_DB}.INFORMATION_SCHEMA.TABLES
         WHERE TABLE_SCHEMA = '{db.RAW_SCHEMA}' AND TABLE_TYPE = 'BASE TABLE'
+              AND TABLE_NAME NOT LIKE 'PORTAL_%%'
         ORDER BY TABLE_NAME
     """
     return [r[0] for r in db.rows(conn, sql) if r[0] not in SKIP_TABLES]

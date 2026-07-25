@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FBI_NICS_CHECKS
+        description: >
+          Raw landing table for FBI NICS Firearm Background Checks (Data Liberation Project CSV mirror). Grain not yet determined.
+
+models:
+  - name: stg_fed_fbi_nics_checks__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

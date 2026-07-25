@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_NHTSA_INVESTIGATIONS
+        description: >
+          Raw landing table for NHTSA ODI Investigations (flat file). Grain not yet determined.
+
+models:
+  - name: stg_fed_nhtsa_investigations__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

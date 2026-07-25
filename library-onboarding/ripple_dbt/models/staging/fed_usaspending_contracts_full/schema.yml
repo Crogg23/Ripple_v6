@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_USASPENDING_CONTRACTS_FULL
+        description: >
+          Raw landing table for USASpending Federal Contract Awards (FY2007-FY2026, all agencies). Grain not yet determined.
+
+models:
+  - name: stg_fed_usaspending_contracts_full__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

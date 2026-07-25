@@ -32,7 +32,7 @@ CONNECT_DB, CONNECT_SCHEMA = "LIBRARY_META", "CONNECT"   # CONNECT is reserved -
 KEYSET_FQN = f'"{CONNECT_DB}"."{CONNECT_SCHEMA}"."KEYSET_SCRATCH"'
 
 MIN_POP_PCT = 1.0          # a key must be at least this populated to count as live
-NAME_MAX_ROWS = 300_000    # skip name/address joins when EITHER table exceeds this
+NAME_MAX_ROWS = 2_000_000  # skip name/address joins when EITHER table exceeds this
 SPATIAL_POINT_MAX = 100_000  # skip point-in-polygon when the point table exceeds this
 SPATIAL_MAX_PAIRS = 1500     # backstop: cap spatial pair-queries so they can't explode at scale
 PROBABILISTIC = {"NAME", "ADDRESS"}

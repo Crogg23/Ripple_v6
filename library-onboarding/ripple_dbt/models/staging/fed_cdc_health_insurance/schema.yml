@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CDC_HEALTH_INSURANCE
+        description: >
+          Raw landing table for CDC Indicators of Health Insurance Coverage. Grain not yet determined.
+
+models:
+  - name: stg_fed_cdc_health_insurance__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

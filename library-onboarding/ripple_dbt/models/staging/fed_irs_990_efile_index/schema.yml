@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_IRS_990_EFILE_INDEX
+        description: >
+          Raw landing table for IRS 990 e-file Index (filer + XML URL, by year). Grain not yet determined.
+
+models:
+  - name: stg_fed_irs_990_efile_index__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

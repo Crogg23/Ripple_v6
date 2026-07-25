@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: INTL_GH_DATAGOVGH
+        description: >
+          Raw landing table for Ghana Open Data Initiative (data.gov.gh). Grain not yet determined.
+
+models:
+  - name: stg_intl_gh_datagovgh__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

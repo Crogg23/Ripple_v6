@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_IRS_EO_PR
+        description: >
+          Raw landing table for IRS Exempt Organizations BMF - Puerto Rico. Grain not yet determined.
+
+models:
+  - name: stg_fed_irs_eo_pr__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

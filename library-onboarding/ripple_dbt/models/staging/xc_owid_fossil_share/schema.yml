@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: XC_OWID_FOSSIL_SHARE
+        description: >
+          Raw landing table for OWID — Fossil fuel share of primary energy. Grain not yet determined.
+
+models:
+  - name: stg_xc_owid_fossil_share__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

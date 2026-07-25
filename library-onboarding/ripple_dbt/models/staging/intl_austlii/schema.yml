@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: INTL_AUSTLII
+        description: >
+          Raw landing table for AustLII / WorldLII — Australasian and Global Legal Databases. Grain not yet determined.
+
+models:
+  - name: stg_intl_austlii__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

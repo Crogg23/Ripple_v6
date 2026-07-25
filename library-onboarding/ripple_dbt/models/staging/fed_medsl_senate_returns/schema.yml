@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_MEDSL_SENATE_RETURNS
+        description: >
+          Raw landing table for MEDSL -- U.S. Senate constituency returns (1976-2024). Grain not yet determined.
+
+models:
+  - name: stg_fed_medsl_senate_returns__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

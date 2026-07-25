@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CFPB_HMDA
+        description: >
+          Raw landing table for HMDA (Home Mortgage Disclosure Act) Data. Grain not yet determined.
+
+models:
+  - name: stg_fed_cfpb_hmda__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

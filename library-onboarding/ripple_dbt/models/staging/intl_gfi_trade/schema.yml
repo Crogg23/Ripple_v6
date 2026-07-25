@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: INTL_GFI_TRADE
+        description: >
+          Raw landing table for GFI Trade-Related Illicit Financial Flows Data. Grain not yet determined.
+
+models:
+  - name: stg_intl_gfi_trade__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

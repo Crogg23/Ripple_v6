@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_ED_FSA_DATACENTER
+        description: >
+          Raw landing table for FSA Data Center – Student Loan Portfolio. Grain not yet determined.
+
+models:
+  - name: stg_fed_ed_fsa_datacenter__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

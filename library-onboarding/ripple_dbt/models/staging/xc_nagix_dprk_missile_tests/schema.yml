@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: XC_NAGIX_DPRK_MISSILE_TESTS
+        description: >
+          Raw landing table for nagix/nk-missile-tests — North Korea missile flight tests (JSON, CNS-derived + landing geocoding). Grain not yet determined.
+
+models:
+  - name: stg_xc_nagix_dprk_missile_tests__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: INTL_AR_DATOSGOB
+        description: >
+          Raw landing table for Argentina National Open Data Portal (datos.gob.ar). Grain not yet determined.
+
+models:
+  - name: stg_intl_ar_datosgob__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

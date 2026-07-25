@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FARA
+        description: >
+          Raw landing table for FARA Foreign Agents Registration Act Database. Grain not yet determined.
+
+models:
+  - name: stg_fed_fara__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

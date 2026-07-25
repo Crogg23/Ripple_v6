@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: XC_WAYBACK_REPLAY_DOJ_DEEP_PAGES
+        description: >
+          Raw landing table for XC_WAYBACK_REPLAY_DOJ_DEEP_PAGES. Grain not yet determined.
+
+models:
+  - name: stg_xc_wayback_replay_doj_deep_pages__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

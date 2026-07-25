@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: XC_OWID_NUCLEAR_WARHEADS
+        description: >
+          Raw landing table for Our World in Data — Estimated nuclear warhead stockpiles (FAS Nuclear Notebook). Grain not yet determined.
+
+models:
+  - name: stg_xc_owid_nuclear_warheads__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

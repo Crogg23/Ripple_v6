@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: XC_WIKIPEDIA_LARGEST_US_COMPANIES
+        description: >
+          Raw landing table for XC_WIKIPEDIA_LARGEST_US_COMPANIES. Grain not yet determined.
+
+models:
+  - name: stg_xc_wikipedia_largest_us_companies__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

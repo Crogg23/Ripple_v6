@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FOREIGNASSISTANCE
+        description: >
+          Raw landing table for ForeignAssistance.gov. Grain not yet determined.
+
+models:
+  - name: stg_fed_foreignassistance__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: INTL_IPC_FOOD_INSECURITY_GLOBAL
+        description: >
+          Raw landing table for IPC Global Acute Food Insecurity Country Data. Grain not yet determined.
+
+models:
+  - name: stg_intl_ipc_food_insecurity_global__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

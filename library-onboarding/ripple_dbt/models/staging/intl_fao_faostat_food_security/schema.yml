@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: INTL_FAO_FAOSTAT_FOOD_SECURITY
+        description: >
+          Raw landing table for FAOSTAT Suite of Food Security Indicators (bulk). Grain not yet determined.
+
+models:
+  - name: stg_intl_fao_faostat_food_security__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

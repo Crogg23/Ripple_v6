@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_BLS_QCEW
+        description: >
+          Raw landing table for Quarterly Census of Employment and Wages (QCEW). Grain not yet determined.
+
+models:
+  - name: stg_fed_bls_qcew__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

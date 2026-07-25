@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_VA_SUICIDE_APPENDIX
+        description: >
+          Raw landing table for VA National Veteran Suicide Data Appendix 2021-2023. Grain not yet determined.
+
+models:
+  - name: stg_fed_va_suicide_appendix__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

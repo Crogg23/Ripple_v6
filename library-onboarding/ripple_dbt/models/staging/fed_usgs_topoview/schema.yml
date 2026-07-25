@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_USGS_TOPOVIEW
+        description: >
+          Raw landing table for USGS Historical Topographic Map Collection (topoView + TNM API). Grain not yet determined.
+
+models:
+  - name: stg_fed_usgs_topoview__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

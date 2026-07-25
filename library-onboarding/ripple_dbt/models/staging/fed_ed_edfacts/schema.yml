@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_ED_EDFACTS
+        description: >
+          Raw landing table for EDFacts. Grain not yet determined.
+
+models:
+  - name: stg_fed_ed_edfacts__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

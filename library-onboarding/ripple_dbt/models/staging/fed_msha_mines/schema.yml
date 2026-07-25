@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_MSHA_MINES
+        description: >
+          Raw landing table for MSHA Mines (operator directory). Grain not yet determined.
+
+models:
+  - name: stg_fed_msha_mines__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

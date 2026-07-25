@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: INTL_EG_CAPMAS
+        description: >
+          Raw landing table for Egypt Data Portal (opendataforafrica.org/Egypt). Grain not yet determined.
+
+models:
+  - name: stg_intl_eg_capmas__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

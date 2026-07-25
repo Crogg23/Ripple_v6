@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_SEC_EDGAR
+        description: >
+          Raw landing table for SEC EDGAR Filing Database (data.sec.gov API). Grain not yet determined.
+
+models:
+  - name: stg_fed_sec_edgar__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

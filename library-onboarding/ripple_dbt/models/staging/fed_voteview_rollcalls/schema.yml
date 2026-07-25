@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_VOTEVIEW_ROLLCALLS
+        description: >
+          Raw landing table for Voteview -- Roll-Call Votes (member-by-vote matrix). Grain not yet determined.
+
+models:
+  - name: stg_fed_voteview_rollcalls__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

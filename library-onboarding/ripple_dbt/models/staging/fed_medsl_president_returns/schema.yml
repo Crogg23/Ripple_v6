@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_MEDSL_PRESIDENT_RETURNS
+        description: >
+          Raw landing table for MEDSL -- U.S. President state-level returns. Grain not yet determined.
+
+models:
+  - name: stg_fed_medsl_president_returns__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

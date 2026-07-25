@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_DHS_OHSS
+        description: >
+          Raw landing table for DHS OHSS Immigration Enforcement Data. Grain not yet determined.
+
+models:
+  - name: stg_fed_dhs_ohss__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_NASA_OPEN_DATA
+        description: >
+          Raw landing table for NASA Open APIs & Data Portal. Grain not yet determined.
+
+models:
+  - name: stg_fed_nasa_open_data__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

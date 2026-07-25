@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FEC_CANDIDATES
+        description: >
+          Raw landing table for FEC Candidate Master (bulk, multi-cycle). Grain not yet determined.
+
+models:
+  - name: stg_fed_fec_candidates__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

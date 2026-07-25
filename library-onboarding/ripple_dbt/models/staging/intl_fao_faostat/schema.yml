@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: INTL_FAO_FAOSTAT
+        description: >
+          Raw landing table for FAOSTAT. Grain not yet determined.
+
+models:
+  - name: stg_intl_fao_faostat__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

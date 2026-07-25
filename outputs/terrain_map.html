@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="snowflake-source" content="cortex-agent-authored">
+<title>Ripple Connection Terrain Map</title>
+<script type="application/json" id="snowflake-report-metadata">
+{
+  "generated": "2026-07-25",
+  "intent": "Cross-domain entity connection topology for Ripple data warehouse",
+  "dataSources": [
+    {"type": "query", "warehouse": "RIPPLE_WH", "sql": "SELECT ... FROM LIBRARY_META.CONNECT.CONNECT_EDGES ... WHERE cross-domain, confidence >= 0.3"}
+  ]
+}
+</script>
+<style>
+:root { color-scheme: light dark; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: light-dark(#f8f9fa, #0a0a0f); color: light-dark(#1f2937, #e0e0e0); }
+#header { padding: 24px 30px 16px; border-bottom: 1px solid light-dark(#ddd, #222); }
+#header h1 { font-size: 26px; font-weight: 600; margin-bottom: 8px; }
+#header .narrative { font-size: 14px; color: light-dark(#4b5563, #aaa); line-height: 1.5; max-width: 900px; }
+#header .narrative strong { color: light-dark(#1f2937, #e0e0e0); }
+#controls { padding: 10px 30px; display: flex; gap: 15px; align-items: center; border-bottom: 1px solid light-dark(#e5e7eb, #1a1a1a); }
+#controls button { padding: 6px 14px; border: 1px solid light-dark(#ccc, #333); background: light-dark(#fff, #1a1a2a); color: light-dark(#333, #ccc); border-radius: 4px; cursor: pointer; font-size: 12px; }
+#controls button.active { background: light-dark(#e0e7ff, #2a2a4a); border-color: light-dark(#6366f1, #556); color: light-dark(#1e1b4b, #fff); }
+#main { display: flex; height: calc(100vh - 160px); }
+#graph { flex: 1; }
+#panel { width: 420px; border-left: 1px solid light-dark(#ddd, #222); overflow-y: auto; padding: 20px; }
+#panel h2 { font-size: 13px; margin-bottom: 12px; color: light-dark(#666, #aaa); text-transform: uppercase; letter-spacing: 1px; }
+.edge-card { padding: 12px 14px; margin-bottom: 10px; background: light-dark(#fff, #111); border-radius: 6px; border-left: 4px solid #4a6; }
+.edge-card .friendly { font-size: 13px; font-weight: 600; color: light-dark(#1e293b, #e2e8f0); }
+.edge-card .explain { font-size: 12px; color: light-dark(#4b5563, #9ca3af); margin-top: 6px; line-height: 1.5; }
+.edge-card .so-what { font-size: 11px; color: light-dark(#7c3aed, #a78bfa); margin-top: 6px; font-style: italic; }
+.edge-card .badge { display: inline-block; font-size: 10px; padding: 2px 6px; border-radius: 3px; margin-top: 6px; }
+.badge-steel { background: light-dark(#dbeafe, #1e3a5f); color: light-dark(#1e40af, #93c5fd); }
+.badge-corroborated { background: light-dark(#dcfce7, #14532d); color: light-dark(#166534, #86efac); }
+.badge-geo { background: light-dark(#fef3c7, #451a03); color: light-dark(#92400e, #fcd34d); }
+.tier-steel { border-left-color: #3b82f6; }
+.tier-corroborated { border-left-color: #22c55e; }
+.tier-geo { border-left-color: #f59e0b; }
+.coverage-box { background: light-dark(#f3f4f6, #111); border-radius: 8px; padding: 14px; margin-bottom: 16px; border: 1px solid light-dark(#e5e7eb, #222); }
+.coverage-box h3 { font-size: 12px; color: light-dark(#6b7280, #888); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+.coverage-bar { height: 8px; border-radius: 4px; background: light-dark(#e5e7eb, #222); overflow: hidden; margin: 8px 0; }
+.coverage-bar .fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, #3b82f6, #22c55e); }
+.coverage-stat { font-size: 12px; color: light-dark(#4b5563, #9ca3af); line-height: 1.6; }
+.coverage-stat strong { color: light-dark(#1f2937, #e0e0e0); }
+.dark-table { font-size: 11px; color: light-dark(#6b7280, #777); padding: 3px 0; }
+.dark-table .rows { color: light-dark(#9ca3af, #555); }
+.bridge-card { padding: 8px 12px; margin-bottom: 6px; background: light-dark(#fff, #111); border-radius: 4px; border-left: 3px solid #a78bfa; }
+.bridge-card .label { font-size: 13px; font-weight: 500; }
+.bridge-card .meta { font-size: 11px; color: light-dark(#6b7280, #888); margin-top: 2px; }
+svg text { fill: light-dark(#374151, #ccc); font-size: 10px; }
+.link { stroke-opacity: 0.5; stroke: light-dark(#9ca3af, #444); }
+.source-link { stroke-opacity: 0.4; stroke: light-dark(#9ca3af, #555); }
+.node circle { stroke: light-dark(#e5e7eb, #333); stroke-width: 1px; }
+.node text { font-size: 9px; fill: light-dark(#6b7280, #aaa); }
+#stats { padding: 10px 30px; font-size: 12px; color: light-dark(#9ca3af, #666); position: fixed; bottom: 0; left: 0; right: 0; background: light-dark(#f8f9fa, #0a0a0f); border-top: 1px solid light-dark(#e5e7eb, #1a1a1a); }
+</style>
+</head>
+<body>
+<div id="header">
+  <h1>Where Does Your Data Secretly Connect?</h1>
+  <p class="narrative">
+    You have <strong>389,380,866 rows</strong> of public data across <strong>242 datasets</strong>.
+    This map shows where those datasets share the same real-world entities &mdash; the same people, companies, and places
+    appearing in records that were never designed to talk to each other.
+    Each line is a proven pathway: a question you can ask that spans two different worlds.
+    Right now, <strong>64% of your data</strong> is illuminated. The rest is still in the dark.
+  </p>
+</div>
+<div id="controls">
+  <button class="active" id="btn-domain">By Topic</button>
+  <button id="btn-source">By Dataset</button>
+  <span style="color:light-dark(#d1d5db,#333); font-size:11px; margin: 0 4px;">|</span>
+  <span style="font-size:12px; color:light-dark(#6b7280,#888);">47 cross-topic pathways found</span>
+</div>
+<div id="main">
+  <div id="graph"></div>
+  <div id="panel">
+    <div class="coverage-box">
+      <h3>What You're Seeing (and What You're Not)</h3>
+      <div class="coverage-bar"><div class="fill" style="width:64%"></div></div>
+      <div class="coverage-stat">
+        <strong>64% illuminated</strong> &mdash; 105 datasets connected via hard IDs<br>
+        <strong>36% in the dark</strong> &mdash; 137 datasets can't link yet (only have names/addresses, no shared ID numbers)
+      </div>
+      <div style="margin-top:8px; font-size:11px; color:light-dark(#9ca3af,#555);">
+        Biggest unconnected datasets:
+      </div>
+      <div id="dark-tables"></div>
+    </div>
+
+    <h2>Strongest Connections Found</h2>
+    <div id="edges-list"></div>
+
+    <h2 style="margin-top:20px;">Bridge Entities (appear in 3+ topics)</h2>
+    <div id="bridges-list"></div>
+  </div>
+</div>
+<div id="stats"></div>
+
+<script src="/libs/d3@7.9.0/d3.min.js"></script>
+<script>
+if (typeof d3 === 'undefined') {
+  var s = document.createElement('script');
+  s.src = 'https://d3js.org/d3.v7.min.js';
+  s.onload = function() { init(); };
+  document.head.appendChild(s);
+} else { init(); }
+
+function init() {
+
+var domainNodes = [{"id": "health_medicine", "w": 59861}, {"id": "energy_environment", "w": 52034}, {"id": "corporate_entities", "w": 39606}, {"id": "economy_labor_trade", "w": 21332}, {"id": "justice_courts", "w": 18440}, {"id": "money_in_politics", "w": 16492}, {"id": "government_power", "w": 14508}, {"id": "money_finance", "w": 13365}, {"id": "spending_budget", "w": 13131}, {"id": "transport_movement", "w": 11078}, {"id": "housing_social", "w": 6355}, {"id": "crime_security", "w": 2004}, {"id": "elections_voting", "w": 971}, {"id": "sanctions_enforcement", "w": 391}, {"id": "immigration_migration", "w": 12}];
+var domainEdges = [{"s": "health_medicine", "t": "energy_environment", "n": 21, "w": 19405}, {"s": "health_medicine", "t": "justice_courts", "n": 4, "w": 12292}, {"s": "corporate_entities", "t": "money_finance", "n": 7, "w": 10842}, {"s": "economy_labor_trade", "t": "health_medicine", "n": 3, "w": 9491}, {"s": "health_medicine", "t": "corporate_entities", "n": 28, "w": 9287}, {"s": "energy_environment", "t": "corporate_entities", "n": 3, "w": 8560}, {"s": "government_power", "t": "money_in_politics", "n": 2, "w": 8221}, {"s": "energy_environment", "t": "spending_budget", "n": 3, "w": 7633}, {"s": "economy_labor_trade", "t": "corporate_entities", "n": 6, "w": 4972}, {"s": "transport_movement", "t": "government_power", "n": 1, "w": 4534}, {"s": "energy_environment", "t": "money_in_politics", "n": 2, "w": 4108}, {"s": "energy_environment", "t": "health_medicine", "n": 3, "w": 3756}, {"s": "economy_labor_trade", "t": "energy_environment", "n": 2, "w": 3318}, {"s": "economy_labor_trade", "t": "justice_courts", "n": 1, "w": 3075}, {"s": "energy_environment", "t": "justice_courts", "n": 1, "w": 3073}, {"s": "health_medicine", "t": "housing_social", "n": 2, "w": 3044}, {"s": "transport_movement", "t": "money_in_politics", "n": 2, "w": 2980}, {"s": "corporate_entities", "t": "spending_budget", "n": 4, "w": 2529}, {"s": "crime_security", "t": "housing_social", "n": 1, "w": 1513}, {"s": "energy_environment", "t": "transport_movement", "n": 1, "w": 1416}, {"s": "health_medicine", "t": "spending_budget", "n": 9, "w": 1254}, {"s": "money_finance", "t": "housing_social", "n": 1, "w": 1233}, {"s": "transport_movement", "t": "corporate_entities", "n": 2, "w": 1086}, {"s": "government_power", "t": "corporate_entities", "n": 2, "w": 1082}, {"s": "transport_movement", "t": "spending_budget", "n": 1, "w": 869}, {"s": "money_in_politics", "t": "corporate_entities", "n": 4, "w": 631}, {"s": "housing_social", "t": "corporate_entities", "n": 1, "w": 538}, {"s": "economy_labor_trade", "t": "money_finance", "n": 1, "w": 402}, {"s": "health_medicine", "t": "elections_voting", "n": 9, "w": 390}, {"s": "money_in_politics", "t": "spending_budget", "n": 2, "w": 368}, {"s": "sanctions_enforcement", "t": "spending_budget", "n": 4, "w": 341}, {"s": "energy_environment", "t": "government_power", "n": 2, "w": 225}, {"s": "health_medicine", "t": "crime_security", "n": 4, "w": 218}, {"s": "health_medicine", "t": "money_finance", "n": 8, "w": 194}, {"s": "energy_environment", "t": "money_finance", "n": 2, "w": 179}, {"s": "health_medicine", "t": "government_power", "n": 7, "w": 175}, {"s": "health_medicine", "t": "transport_movement", "n": 6, "w": 157}, {"s": "money_finance", "t": "elections_voting", "n": 3, "w": 151}, {"s": "elections_voting", "t": "energy_environment", "n": 3, "w": 151}, {"s": "elections_voting", "t": "government_power", "n": 3, "w": 150}, {"s": "health_medicine", "t": "money_in_politics", "n": 5, "w": 140}, {"s": "elections_voting", "t": "crime_security", "n": 3, "w": 129}, {"s": "money_finance", "t": "energy_environment", "n": 2, "w": 89}, {"s": "money_finance", "t": "corporate_entities", "n": 3, "w": 73}, {"s": "money_finance", "t": "spending_budget", "n": 2, "w": 67}, {"s": "crime_security", "t": "energy_environment", "n": 2, "w": 58}, {"s": "money_finance", "t": "government_power", "n": 1, "w": 50}];
+var topSourceEdges = [{"a": "FED_FCC_LICENSING", "b": "FED_FEC_INDIV_CONTRIBUTIONS", "key": "NAME@ZIP", "tier": "CORROBORATED", "matched": 8202, "friendly": "FCC Universal Licensing System (ULS) ↔ FEC Bulk Data -- Itemized Individual Contribu", "explain": "8,202 entities share the same name AND the same ZIP code in both datasets. That's not a coincidence at scale — it's the same organizations showing up in Government & Power records and Money in Politics records simultaneously.", "so_what": "Trace whether telecom and broadcast license holders donate to the lawmakers who regulate them."}, {"a": "FED_EPA_ECHO", "b": "FED_IRS_BMF", "key": "NAME@ZIP", "tier": "CORROBORATED", "matched": 7760, "friendly": "EPA ECHO Exporter (Facility-level Enforcement ↔ IRS Exempt Organizations Business Master File", "explain": "7,760 entities share the same name AND the same ZIP code in both datasets. That's not a coincidence at scale — it's the same organizations showing up in Energy & Environment records and Who Owns What records simultaneously.", "so_what": "Find nonprofits claiming tax-exempt status while racking up EPA violations."}, {"a": "FED_EPA_ECHO", "b": "FED_USASPENDING_CONTRACTS", "key": "NAME@ZIP", "tier": "CORROBORATED", "matched": 7479, "friendly": "EPA ECHO Exporter (Facility-level Enforcement ↔ USASpending — Federal Prime Contract Awards", "explain": "7,479 entities share the same name AND the same ZIP code in both datasets. That's not a coincidence at scale — it's the same organizations showing up in Energy & Environment records and Government Spending records simultaneously.", "so_what": "Find companies getting government contracts while under environmental enforcement action."}, {"a": "FED_SEC_EDGAR_COMPANY_TICKERS", "b": "FED_SEC_EDGAR_FINANCIALS", "key": "CIK", "tier": "STEEL", "matched": 5779, "friendly": "SEC EDGAR Company Tickers ↔ SEC Financial Statement Data Sets", "explain": "5,779 entities appear in both datasets with the exact same ID number. Not a guess — a proven, deterministic match. The same real-world entity, verified across Who Owns What and Money & Finance.", "so_what": "Connect a company's identity to its full financial filings — revenue, debt, everything."}, {"a": "FED_SEC_EDGAR_COMPANY_TICKERS", "b": "FED_SEC_EDGAR_INSIDERS", "key": "CIK", "tier": "STEEL", "matched": 4915, "friendly": "SEC EDGAR Company Tickers ↔ SEC EDGAR Forms 3/4/5 — Insider Trading Repor", "explain": "4,915 entities appear in both datasets with the exact same ID number. Not a guess — a proven, deterministic match. The same real-world entity, verified across Who Owns What and Money & Finance.", "so_what": "See exactly who sold stock before bad earnings. Every insider trade linked to the company."}, {"a": "FED_FAA_REGISTRY", "b": "FED_FCC_LICENSING", "key": "NAME@ZIP", "tier": "CORROBORATED", "matched": 4534, "friendly": "FAA Civil Aircraft Registry ↔ FCC Universal Licensing System (ULS)", "explain": "4,534 entities share the same name AND the same ZIP code in both datasets. That's not a coincidence at scale — it's the same organizations showing up in Planes, Trains & Ships records and Government & Power records simultaneously.", "so_what": "People or companies with both aircraft and radio/telecom licenses. Aviation + telecommunications overlap."}, {"a": "FED_EPA_ECHO", "b": "FED_FEC_INDIV_CONTRIBUTIONS", "key": "NAME@ZIP", "tier": "CORROBORATED", "matched": 3979, "friendly": "EPA ECHO Exporter (Facility-level Enforcement ↔ FEC Bulk Data -- Itemized Individual Contribu", "explain": "3,979 entities share the same name AND the same ZIP code in both datasets. That's not a coincidence at scale — it's the same organizations showing up in Energy & Environment records and Money in Politics records simultaneously.", "so_what": "Same name at the same location in both datasets — strong enough for investigative leads, not proof."}, {"a": "FED_EPA_ECHO", "b": "FED_HRSA_SHORTAGE_AREAS", "key": "FIPS", "tier": "GEO", "matched": 3222, "friendly": "EPA ECHO Exporter (Facility-level Enforcement ↔ Health Professional Shortage Areas (HPSA) Dat", "explain": "3,222 counties appear in both datasets. Not entity-matching — this tells you where Energy & Environment and Healthcare data geographically overlaps for regional analysis.", "so_what": "Geographic overlap — useful for regional analysis and county-level comparisons."}, {"a": "FED_BLS_QCEW", "b": "FED_EPA_ECHO", "key": "FIPS", "tier": "GEO", "matched": 3220, "friendly": "Quarterly Census of Employment and Wages (QCE ↔ EPA ECHO Exporter (Facility-level Enforcement", "explain": "3,220 counties appear in both datasets. Not entity-matching — this tells you where Economy & Labor and Energy & Environment data geographically overlaps for regional analysis.", "so_what": "Geographic overlap — useful for regional analysis and county-level comparisons."}, {"a": "FED_BLS_QCEW", "b": "FED_HRSA_SHORTAGE_AREAS", "key": "FIPS", "tier": "GEO", "matched": 3216, "friendly": "Quarterly Census of Employment and Wages (QCE ↔ Health Professional Shortage Areas (HPSA) Dat", "explain": "3,216 counties appear in both datasets. Not entity-matching — this tells you where Economy & Labor and Healthcare data geographically overlaps for regional analysis.", "so_what": "Geographic overlap — useful for regional analysis and county-level comparisons."}, {"a": "FED_BLS_QCEW", "b": "FED_CDC_INJURY_VIOLENCE_COUNTY", "key": "FIPS", "tier": "GEO", "matched": 3142, "friendly": "Quarterly Census of Employment and Wages (QCE ↔ CDC Mapping Injury, Overdose, and Violence - ", "explain": "3,142 counties appear in both datasets. Not entity-matching — this tells you where Economy & Labor and Healthcare data geographically overlaps for regional analysis.", "so_what": "Geographic overlap — useful for regional analysis and county-level comparisons."}, {"a": "FED_CDC_INJURY_VIOLENCE_COUNTY", "b": "FED_EPA_ECHO", "key": "FIPS", "tier": "GEO", "matched": 3141, "friendly": "CDC Mapping Injury, Overdose, and Violence -  ↔ EPA ECHO Exporter (Facility-level Enforcement", "explain": "3,141 counties appear in both datasets. Not entity-matching — this tells you where Healthcare and Energy & Environment data geographically overlaps for regional analysis.", "so_what": "Geographic overlap — useful for regional analysis and county-level comparisons."}, {"a": "FED_CDC_DRUG_POISONING_COUNTY", "b": "FED_EPA_ECHO", "key": "FIPS", "tier": "GEO", "matched": 3136, "friendly": "NCHS Drug Poisoning Mortality by County ↔ EPA ECHO Exporter (Facility-level Enforcement", "explain": "3,136 counties appear in both datasets. Not entity-matching — this tells you where Healthcare and Energy & Environment data geographically overlaps for regional analysis.", "so_what": "Geographic overlap — useful for regional analysis and county-level comparisons."}, {"a": "FED_BLS_QCEW", "b": "FED_CDC_DRUG_POISONING_COUNTY", "key": "FIPS", "tier": "GEO", "matched": 3133, "friendly": "Quarterly Census of Employment and Wages (QCE ↔ NCHS Drug Poisoning Mortality by County", "explain": "3,133 counties appear in both datasets. Not entity-matching — this tells you where Economy & Labor and Healthcare data geographically overlaps for regional analysis.", "so_what": "Geographic overlap — useful for regional analysis and county-level comparisons."}, {"a": "FED_BLS_QCEW", "b": "XC_VERA_INCARCERATION_TRENDS", "key": "FIPS", "tier": "GEO", "matched": 3075, "friendly": "Quarterly Census of Employment and Wages (QCE ↔ Vera Institute — Incarceration Trends (county", "explain": "3,075 counties appear in both datasets. Not entity-matching — this tells you where Economy & Labor and Courts & Justice data geographically overlaps for regional analysis.", "so_what": "Geographic overlap — useful for regional analysis and county-level comparisons."}];
+var bridges = [];
+var coverage = {"total_tables": 242, "total_rows": 389380866, "connected_tables": 105, "connected_rows": 248014132, "dark_tables": 137, "dark_rows": 141366734, "top_dark": [{"name": "FED_NOAA_AIS", "rows": 58106517}, {"name": "FED_FHFA_NMDB", "rows": 19054246}, {"name": "FED_CFPB_COMPLAINTS", "rows": 17179788}, {"name": "FED_EOIR_CASE_DATA", "rows": 12631225}, {"name": "FED_USGS_WATER", "rows": 6694816}]};
+var domainLabels = {"health_medicine": "Healthcare", "money_in_politics": "Money in Politics", "money_finance": "Money & Finance", "economy_labor_trade": "Economy & Labor", "justice_courts": "Courts & Justice", "crime_security": "Crime & Security", "transport_movement": "Planes, Trains & Ships", "energy_environment": "Energy & Environment", "education": "Education", "housing_social": "Housing & Social Services", "spending_budget": "Government Spending", "corporate_entities": "Who Owns What", "immigration_migration": "Immigration", "government_power": "Government & Power", "sanctions_enforcement": "Who's Banned", "elections_voting": "Elections & Voting", "science_research": "Science & Research", "history_culture": "History & Culture"};
+
+var domainColors = {
+  'health_medicine': '#4ecdc4', 'money_in_politics': '#ff6b6b',
+  'money_finance': '#ffd93d', 'economy_labor_trade': '#6bcb77',
+  'justice_courts': '#c084fc', 'crime_security': '#f97316',
+  'transport_movement': '#38bdf8', 'energy_environment': '#22c55e',
+  'education': '#a78bfa', 'housing_social': '#fb923c',
+  'spending_budget': '#f472b6', 'corporate_entities': '#fbbf24',
+  'immigration_migration': '#2dd4bf', 'government_power': '#818cf8',
+  'sanctions_enforcement': '#ef4444', 'elections_voting': '#67e8f9',
+  'science_research': '#86efac', 'history_culture': '#d4a574',
+};
+function getColor(d) { return domainColors[d] || '#666'; }
+function getLabel(d) { return domainLabels[d] || d.replace(/_/g, ' '); }
+
+// Coverage: dark tables
+var darkDiv = document.getElementById('dark-tables');
+coverage.top_dark.forEach(function(t) {
+  darkDiv.innerHTML += '<div class="dark-table">' + t.name.replace(/^FED_/, '').replace(/_/g, ' ') +
+    ' <span class="rows">(' + t.rows.toLocaleString() + ' rows)</span></div>';
+});
+
+// Sidebar: edge cards
+var edgesList = document.getElementById('edges-list');
+topSourceEdges.forEach(function(e) {
+  var tierClass = 'tier-' + e.tier.toLowerCase();
+  var badgeClass = 'badge-' + e.tier.toLowerCase();
+  var tierLabel = e.tier === 'STEEL' ? 'Exact ID Match' : e.tier === 'CORROBORATED' ? 'Name + Location' : 'Geographic';
+  edgesList.innerHTML += '<div class="edge-card ' + tierClass + '">' +
+    '<div class="friendly">' + e.friendly + '</div>' +
+    '<div class="explain">' + e.explain + '</div>' +
+    '<div class="so-what">' + e.so_what + '</div>' +
+    '<span class="badge ' + badgeClass + '">' + tierLabel + ' &mdash; ' + e.matched.toLocaleString() + ' shared</span>' +
+    '</div>';
+});
+
+// Sidebar: bridge entities
+var bridgesList = document.getElementById('bridges-list');
+if (bridges.length === 0) {
+  bridgesList.innerHTML = '<p style="font-size:12px;color:light-dark(#9ca3af,#666);line-height:1.5;">No bridge entities detected yet. These appear when the entity spine finds a single person, company, or place showing up across 3+ completely different topic areas.</p>';
+} else {
+  bridges.forEach(function(b) {
+    bridgesList.innerHTML += '<div class="bridge-card">' +
+      '<div class="label">' + (b.label || b.id) + '</div>' +
+      '<div class="meta">' + b.type + ' &mdash; appears in ' + b.domains + ' different topics across ' + b.sources + ' datasets</div>' +
+      '<div class="meta" style="opacity:0.7">' + b.domain_list + '</div></div>';
+  });
+}
+
+var graphEl = document.getElementById('graph');
+var width = graphEl.clientWidth;
+var height = graphEl.clientHeight;
+var svg = d3.select('#graph').append('svg').attr('width', width).attr('height', height);
+var simulation;
+
+function showDomains() {
+  document.getElementById('btn-domain').classList.add('active');
+  document.getElementById('btn-source').classList.remove('active');
+  svg.selectAll('*').remove();
+
+  var nodes = domainNodes.filter(function(n) { return n.w > 0; }).map(function(d) { return Object.assign({}, d); });
+  var maxW = Math.max.apply(null, domainEdges.map(function(e) { return e.w; }));
+  var edges = domainEdges.map(function(e) {
+    return { source: e.s, target: e.t, weight: e.w, width: Math.max(1.5, (e.w / maxW) * 14) };
+  });
+
+  var connected = new Set();
+  edges.forEach(function(e) { connected.add(e.source); connected.add(e.target); });
+  var filteredNodes = nodes.filter(function(n) { return connected.has(n.id); });
+
+  simulation = d3.forceSimulation(filteredNodes)
+    .force('link', d3.forceLink(edges).id(function(d) { return d.id; }).distance(140))
+    .force('charge', d3.forceManyBody().strength(-500))
+    .force('center', d3.forceCenter(width / 2, height / 2))
+    .force('collision', d3.forceCollide().radius(50));
+
+  var link = svg.append('g').selectAll('line')
+    .data(edges).join('line')
+    .attr('class', 'link')
+    .attr('stroke-width', function(d) { return d.width; });
+
+  var maxNodeW = Math.max.apply(null, filteredNodes.map(function(n) { return n.w; }));
+  var node = svg.append('g').selectAll('g')
+    .data(filteredNodes).join('g')
+    .attr('class', 'node')
+    .call(d3.drag()
+      .on('start', function(e, d) { if (!e.active) simulation.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+      .on('drag', function(e, d) { d.fx = e.x; d.fy = e.y; })
+      .on('end', function(e, d) { if (!e.active) simulation.alphaTarget(0); d.fx = null; d.fy = null; }));
+
+  node.append('circle')
+    .attr('r', function(d) { return 10 + Math.sqrt(d.w / maxNodeW) * 30; })
+    .attr('fill', function(d) { return getColor(d.id); })
+    .attr('opacity', 0.85);
+
+  node.append('text')
+    .attr('dx', function(d) { return 14 + Math.sqrt(d.w / maxNodeW) * 30; })
+    .attr('dy', 4)
+    .text(function(d) { return getLabel(d.id); });
+
+  simulation.on('tick', function() {
+    link.attr('x1', function(d) { return d.source.x; }).attr('y1', function(d) { return d.source.y; })
+        .attr('x2', function(d) { return d.target.x; }).attr('y2', function(d) { return d.target.y; });
+    node.attr('transform', function(d) { return 'translate(' + d.x + ',' + d.y + ')'; });
+  });
+
+  document.getElementById('stats').textContent =
+    'Topic view: ' + filteredNodes.length + ' topics connected by ' + edges.length + ' pathways. Thicker lines = more shared entities. Bigger circles = more total cross-topic connections.';
+}
+
+function showSources() {
+  document.getElementById('btn-source').classList.add('active');
+  document.getElementById('btn-domain').classList.remove('active');
+  svg.selectAll('*').remove();
+
+  var edges = topSourceEdges.map(function(e) {
+    return { source: e.a, target: e.b, weight: e.matched, width: Math.max(1, Math.log10(e.matched) * 2) };
+  });
+
+  var nodeSet = new Set();
+  edges.forEach(function(e) { nodeSet.add(e.source); nodeSet.add(e.target); });
+  var nodes = Array.from(nodeSet).map(function(id) { return { id: id }; });
+
+  simulation = d3.forceSimulation(nodes)
+    .force('link', d3.forceLink(edges).id(function(d) { return d.id; }).distance(80))
+    .force('charge', d3.forceManyBody().strength(-200))
+    .force('center', d3.forceCenter(width / 2, height / 2))
+    .force('collision', d3.forceCollide().radius(20));
+
+  var link = svg.append('g').selectAll('line')
+    .data(edges).join('line')
+    .attr('class', 'link source-link')
+    .attr('stroke-width', function(d) { return d.width; });
+
+  var node = svg.append('g').selectAll('g')
+    .data(nodes).join('g')
+    .attr('class', 'node')
+    .call(d3.drag()
+      .on('start', function(e, d) { if (!e.active) simulation.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+      .on('drag', function(e, d) { d.fx = e.x; d.fy = e.y; })
+      .on('end', function(e, d) { if (!e.active) simulation.alphaTarget(0); d.fx = null; d.fy = null; }));
+
+  node.append('circle').attr('r', 8).attr('fill', '#6b7280').attr('opacity', 0.9);
+  node.append('text').attr('dx', 12).attr('dy', 4).style('font-size', '8px')
+    .text(function(d) { return d.id.replace(/^FED_/, '').replace(/^XC_/, '').replace(/^INTL_/, '').replace(/_/g, ' '); });
+
+  simulation.on('tick', function() {
+    link.attr('x1', function(d) { return d.source.x; }).attr('y1', function(d) { return d.source.y; })
+        .attr('x2', function(d) { return d.target.x; }).attr('y2', function(d) { return d.target.y; });
+    node.attr('transform', function(d) { return 'translate(' + d.x + ',' + d.y + ')'; });
+  });
+
+  document.getElementById('stats').textContent =
+    'Dataset view: ' + nodes.length + ' individual datasets, ' + edges.length + ' proven connections between them.';
+}
+
+document.getElementById('btn-domain').addEventListener('click', showDomains);
+document.getElementById('btn-source').addEventListener('click', showSources);
+showDomains();
+
+} // end init
+</script>
+</body>
+</html>

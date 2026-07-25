@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FEC_INDEPENDENT_EXPENDITURES
+        description: >
+          Raw landing table for FEC Independent Expenditures (bulk, multi-cycle). Grain not yet determined.
+
+models:
+  - name: stg_fed_fec_independent_expenditures__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

@@ -1,6 +1,6 @@
 # Spine backfill profiling report
 
-HIGH 492 | MEDIUM 319 | AMBIGUOUS 968 | NO_TABLE 0 | NO_REGISTRY_ROW 0
+HIGH 492 | MEDIUM 320 | AMBIGUOUS 971 | NO_TABLE 0 | NO_REGISTRY_ROW 18
 
 ## HIGH (492)
 
@@ -499,25 +499,26 @@ HIGH 492 | MEDIUM 319 | AMBIGUOUS 968 | NO_TABLE 0 | NO_REGISTRY_ROW 0
 | portal_soc_utah_open_data_p_f87fb2bfb7 | organization | EIN | one row per organization (EIN is unique) |
 | portal_soc_washington_state_11cd1995b7 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID is unique) |
 
-## MEDIUM (319)
+## MEDIUM (320)
 
 | source_id | spine_entity | natural_key | grain |
 |---|---|---|---|
-| fed_cfpb_complaints | (unresolved -- grain proven, entity unknown) | COMPLAINT_ID | one row per record (spine_entity not determined -- no registry hint available) (COMPLAINT_ID unique) |
+| fed_cfpb_complaints | (unresolved -- grain proven, entity unknown) | Complaint ID | one row per record (spine_entity not determined -- no registry hint available) (Complaint ID unique) |
 | fed_cms_hospital_compare | facility | FACILITY_ID | one row per facility (FACILITY_ID unique) |
 | fed_cms_main | (unresolved -- grain proven, entity unknown) | DATASET_ID | one row per record (spine_entity not determined -- no registry hint available) (DATASET_ID unique) |
 | fed_cms_open_payments | (unresolved -- grain proven, entity unknown) | RECORD_ID | one row per record (spine_entity not determined -- no registry hint available) (RECORD_ID unique) |
+| fed_cms_open_payments_2022 | (unresolved -- grain proven, entity unknown) | RECORD_ID | one row per record (spine_entity not determined -- no registry hint available) (RECORD_ID unique) |
 | fed_cms_open_payments_2023 | (unresolved -- grain proven, entity unknown) | RECORD_ID | one row per record (spine_entity not determined -- no registry hint available) (RECORD_ID unique) |
-| fed_congress_committee_membership | (unresolved -- grain proven, entity unknown) | BIOGUIDE,COMMITTEE_CODE | one row per record (spine_entity not determined -- no registry hint available) (BIOGUIDE+COMMITTEE_CODE unique) |
+| fed_congress_committee_membership | person | BIOGUIDE,COMMITTEE_CODE | one row per person (BIOGUIDE+COMMITTEE_CODE unique) |
 | fed_densho_ddr | (unresolved -- grain proven, entity unknown) | OBJECT_ID | one row per record (spine_entity not determined -- no registry hint available) (OBJECT_ID unique) |
-| fed_dhs_yearbook | (unresolved -- grain proven, entity unknown) | COUNTRY_OF_LAST_RESIDENCE,FISCAL_YEAR | one row per record (spine_entity not determined -- no registry hint available) (COUNTRY+FISCAL_YEAR unique) |
+| fed_dhs_yearbook | place | COUNTRY_OF_LAST_RESIDENCE,FISCAL_YEAR | one row per place (COUNTRY+FISCAL_YEAR unique) |
 | fed_dol_form5500 | (unresolved -- grain proven, entity unknown) | ACK_ID | one row per record (spine_entity not determined -- no registry hint available) (ACK_ID unique) |
 | fed_epa_echo | (unresolved -- grain proven, entity unknown) | FRS_ID | one row per record (spine_entity not determined -- no registry hint available) (FRS_ID unique) |
 | fed_faa_registry | (unresolved -- grain proven, entity unknown) | UNIQUE_ID | one row per record (spine_entity not determined -- no registry hint available) (UNIQUE_ID unique) |
 | fed_fdic_failed_banks | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | fed_fec_api | (unresolved -- grain proven, entity unknown) | TRANSACTION_ID | one row per record (spine_entity not determined -- no registry hint available) (TRANSACTION_ID unique) |
 | fed_fec_bulk | (unresolved -- grain proven, entity unknown) | FEC_CMTE_ID | one row per record (spine_entity not determined -- no registry hint available) (FEC_CMTE_ID unique) |
-| fed_fec_bulk_candidates | (unresolved -- grain proven, entity unknown) | CAND_ZIP,CAND_ELECTION_YR,CYCLE,CAND_STATUS,CAND_ID | one row per record (spine_entity not determined -- no registry hint available) (ZIP+CAND_ELECTION_YR+CYCLE+CAND_STATUS+CAND_ID unique) |
+| fed_fec_bulk_candidates | place | CAND_ZIP,CAND_ELECTION_YR,CYCLE,CAND_STATUS,CAND_ID | one row per place (ZIP+CAND_ELECTION_YR+CYCLE+CAND_STATUS+CAND_ID unique) |
 | fed_fec_bulk_committees | (unresolved -- grain proven, entity unknown) | FEC_CMTE_ID | one row per record (spine_entity not determined -- no registry hint available) (FEC_CMTE_ID unique) |
 | fed_fec_bulk_linkages | (unresolved -- grain proven, entity unknown) | CAND_ID,CMTE_ID,LINKAGE_ID | one row per record (spine_entity not determined -- no registry hint available) (CAND_ID+CMTE_ID+LINKAGE_ID unique) |
 | fed_fec_bulk_summary | (unresolved -- grain proven, entity unknown) | CAND_ID,CYCLE | one row per record (spine_entity not determined -- no registry hint available) (CAND_ID+CYCLE unique) |
@@ -526,64 +527,64 @@ HIGH 492 | MEDIUM 319 | AMBIGUOUS 968 | NO_TABLE 0 | NO_REGISTRY_ROW 0
 | fed_noaa_storm_events | event | EVENT_ID | one row per event (EVENT_ID unique) |
 | fed_noaa_weather_api | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | fed_us_usaspending_api | (unresolved -- grain proven, entity unknown) | AWARD_ID | one row per record (spine_entity not determined -- no registry hint available) (AWARD_ID unique) |
-| fed_usaspending_bulk | (unresolved -- grain proven, entity unknown) | RECIPIENT_UEI,ACTION_DATE,ACTION_DATE_FISCAL_YEAR,PERIOD_OF_PERFORMANCE_START_DATE,AWARD_ID_PIID,PARENT_AWARD_AGENCY_ID,PARENT_AWARD_ID_PIID | one row per record (spine_entity not determined -- no registry hint available) (UEI+ACTION_DATE+ACTION_DATE_FISCAL_YEAR+PERIOD_OF_PERFORMANCE_START_DATE+AWARD_ID_PIID+PARENT_AWARD_AGENCY_ID+PARENT_AWARD_ID_PIID unique) |
-| fed_usaspending_contracts | (unresolved -- grain proven, entity unknown) | RECIPIENT_UEI,ACTION_DATE,PERIOD_OF_PERFORMANCE_START_DATE,PERIOD_OF_PERFORMANCE_CURRENT_END_DATE,AWARD_ID_PIID | one row per record (spine_entity not determined -- no registry hint available) (UEI+ACTION_DATE+PERIOD_OF_PERFORMANCE_START_DATE+PERIOD_OF_PERFORMANCE_CURRENT_END_DATE+AWARD_ID_PIID unique) |
+| fed_usaspending_bulk | organization | RECIPIENT_UEI,ACTION_DATE,ACTION_DATE_FISCAL_YEAR,PERIOD_OF_PERFORMANCE_START_DATE,AWARD_ID_PIID,PARENT_AWARD_AGENCY_ID,PARENT_AWARD_ID_PIID | one row per organization (UEI+ACTION_DATE+ACTION_DATE_FISCAL_YEAR+PERIOD_OF_PERFORMANCE_START_DATE+AWARD_ID_PIID+PARENT_AWARD_AGENCY_ID+PARENT_AWARD_ID_PIID unique) |
+| fed_usaspending_contracts | organization | RECIPIENT_UEI,ACTION_DATE,PERIOD_OF_PERFORMANCE_START_DATE,PERIOD_OF_PERFORMANCE_CURRENT_END_DATE,AWARD_ID_PIID | one row per organization (UEI+ACTION_DATE+PERIOD_OF_PERFORMANCE_START_DATE+PERIOD_OF_PERFORMANCE_CURRENT_END_DATE+AWARD_ID_PIID unique) |
 | fed_usgs_earthquakes | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | fed_usgs_minerals | (unresolved -- grain proven, entity unknown) | DEP_ID | one row per record (spine_entity not determined -- no registry hint available) (DEP_ID unique) |
 | fed_wpa_slave_narratives | (unresolved -- grain proven, entity unknown) | LOC_ITEM_ID | one row per record (spine_entity not determined -- no registry hint available) (LOC_ITEM_ID unique) |
-| intl_eu_sanctions | (unresolved -- grain proven, entity unknown) | ADDR_ZIPCODE,DATE_FILE,LEBA_PUBLICATION_DATE,NAAL_LEBA_PUBLICATION_DATE,ENTITY_LOGICAL_ID,NAAL_LOGICAL_ID,ENTITY_LOGICAL_ID_1,ENTITY_LOGICAL_ID_2,BIRT_LOGICAL_ID,ENTITY_LOGICAL_ID_3,IDEN_LOGICAL_ID,ENTITY_LOGICAL_ID_4,CITI_LOGICAL_ID,ENTITY_LOGICAL_ID_5 | one row per record (spine_entity not determined -- no registry hint available) (ZIP+DATE_FILE+LEBA_PUBLICATION_DATE+NAAL_LEBA_PUBLICATION_DATE+ENTITY_LOGICAL_ID+NAAL_LOGICAL_ID+ENTITY_LOGICAL_ID_1+ENTITY_LOGICAL_ID_2+BIRT_LOGICAL_ID+ENTITY_LOGICAL_ID_3+IDEN_LOGICAL_ID+ENTITY_LOGICAL_ID_4+CITI_LOGICAL_ID+ENTITY_LOGICAL_ID_5 unique) |
+| intl_eu_sanctions | place | ADDR_ZIPCODE,DATE_FILE,LEBA_PUBLICATION_DATE,NAAL_LEBA_PUBLICATION_DATE,ENTITY_LOGICAL_ID,NAAL_LOGICAL_ID,ENTITY_LOGICAL_ID_1,ENTITY_LOGICAL_ID_2,BIRT_LOGICAL_ID,ENTITY_LOGICAL_ID_3,IDEN_LOGICAL_ID,ENTITY_LOGICAL_ID_4,CITI_LOGICAL_ID,ENTITY_LOGICAL_ID_5 | one row per place (ZIP+DATE_FILE+LEBA_PUBLICATION_DATE+NAAL_LEBA_PUBLICATION_DATE+ENTITY_LOGICAL_ID+NAAL_LOGICAL_ID+ENTITY_LOGICAL_ID_1+ENTITY_LOGICAL_ID_2+BIRT_LOGICAL_ID+ENTITY_LOGICAL_ID_3+IDEN_LOGICAL_ID+ENTITY_LOGICAL_ID_4+CITI_LOGICAL_ID+ENTITY_LOGICAL_ID_5 unique) |
 | intl_fr_data_gouv | (unresolved -- grain proven, entity unknown) | DATASET_ID,RESOURCE_ID | one row per record (spine_entity not determined -- no registry hint available) (DATASET_ID+RESOURCE_ID unique) |
 | intl_gem_hazard | (unresolved -- grain proven, entity unknown) | HAZARD_MODEL_ID | one row per record (spine_entity not determined -- no registry hint available) (HAZARD_MODEL_ID unique) |
 | intl_hudoc | case | CASE_ID | one row per case (CASE_ID unique) |
 | intl_ucdp_ged | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
-| intl_wb_ids | (unresolved -- grain proven, entity unknown) | COUNTRY_CODE,COUNTERPART_AREA_CODE,SERIES_CODE | one row per record (spine_entity not determined -- no registry hint available) (COUNTRY+COUNTERPART_AREA_CODE+SERIES_CODE unique) |
+| intl_wb_ids | place | COUNTRY_CODE,COUNTERPART_AREA_CODE,SERIES_CODE | one row per place (COUNTRY+COUNTERPART_AREA_CODE+SERIES_CODE unique) |
 | portal_arc_atlanta_dataatla_1a7f4adc21 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | portal_arc_atlanta_dataatla_4ab9f9e31e | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
-| portal_arc_atlanta_dataatla_51a606f539 | (unresolved -- grain proven, entity unknown) | LONGITUDE,BUSINESS_LICENSE_YEAR,DATE_OF_OPENING_IN_ATLANTA,PREVIOUS_YEAR_REPORTED_REVENUE | one row per record (spine_entity not determined -- no registry hint available) (LATLON+BUSINESS_LICENSE_YEAR+DATE_OF_OPENING_IN_ATLANTA+PREVIOUS_YEAR_REPORTED_REVENUE unique) |
-| portal_arc_atlanta_dataatla_5d9b9c30a9 | (unresolved -- grain proven, entity unknown) | ZIP,INDUSTRY_DESC | one row per record (spine_entity not determined -- no registry hint available) (ZIP+INDUSTRY_DESC unique) |
+| portal_arc_atlanta_dataatla_51a606f539 | place | LONGITUDE,BUSINESS_LICENSE_YEAR,DATE_OF_OPENING_IN_ATLANTA,PREVIOUS_YEAR_REPORTED_REVENUE | one row per place (LATLON+BUSINESS_LICENSE_YEAR+DATE_OF_OPENING_IN_ATLANTA+PREVIOUS_YEAR_REPORTED_REVENUE unique) |
+| portal_arc_atlanta_dataatla_5d9b9c30a9 | place | ZIP,INDUSTRY_DESC | one row per place (ZIP+INDUSTRY_DESC unique) |
 | portal_arc_atlanta_dataatla_79e3c7bd36 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | portal_arc_atlanta_dataatla_a59db2e766 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | portal_arc_atlanta_dataatla_de1e9d4350 | (unresolved -- grain proven, entity unknown) | USER_FORMATTED_ID | one row per record (spine_entity not determined -- no registry hint available) (USER_FORMATTED_ID unique) |
-| portal_arc_atlanta_dataatla_ead25cbdc7 | (unresolved -- grain proven, entity unknown) | LONGITUDE,BUSINESS_LICENSE_YEAR,DATE_OF_OPENING_IN_ATLANTA,PREVIOUS_YEAR_REPORTED_REVENUE | one row per record (spine_entity not determined -- no registry hint available) (LATLON+BUSINESS_LICENSE_YEAR+DATE_OF_OPENING_IN_ATLANTA+PREVIOUS_YEAR_REPORTED_REVENUE unique) |
-| portal_arc_atlanta_dataatla_fd3576897b | (unresolved -- grain proven, entity unknown) | ZIP,INDUSTRY_DESC | one row per record (spine_entity not determined -- no registry hint available) (ZIP+INDUSTRY_DESC unique) |
+| portal_arc_atlanta_dataatla_ead25cbdc7 | place | LONGITUDE,BUSINESS_LICENSE_YEAR,DATE_OF_OPENING_IN_ATLANTA,PREVIOUS_YEAR_REPORTED_REVENUE | one row per place (LATLON+BUSINESS_LICENSE_YEAR+DATE_OF_OPENING_IN_ATLANTA+PREVIOUS_YEAR_REPORTED_REVENUE unique) |
+| portal_arc_atlanta_dataatla_fd3576897b | place | ZIP,INDUSTRY_DESC | one row per place (ZIP+INDUSTRY_DESC unique) |
 | portal_arc_harris_county_op_12691a85a0 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
-| portal_arc_harris_county_op_1966ac023b | (unresolved -- grain proven, entity unknown) | ZIP,VAL_DATE | one row per record (spine_entity not determined -- no registry hint available) (ZIP+VAL_DATE unique) |
+| portal_arc_harris_county_op_1966ac023b | place | ZIP,VAL_DATE | one row per place (ZIP+VAL_DATE unique) |
 | portal_arc_harris_county_op_1a53499962 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | portal_arc_harris_county_op_2d6f9d0da7 | (unresolved -- grain proven, entity unknown) | OBJECT_ID | one row per record (spine_entity not determined -- no registry hint available) (OBJECT_ID unique) |
 | portal_arc_harris_county_op_3cfe4113ed | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | portal_arc_harris_county_op_3e1426df10 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
-| portal_arc_harris_county_op_6cdcf96ca7 | (unresolved -- grain proven, entity unknown) | ZIP,VAL_DATE,IN_100_YR_FLOODPLAIN,IN_500_YR_FLOODPLAIN,ID,STATE_ID | one row per record (spine_entity not determined -- no registry hint available) (ZIP+VAL_DATE+IN_100_YR_FLOODPLAIN+IN_500_YR_FLOODPLAIN+ID+STATE_ID unique) |
+| portal_arc_harris_county_op_6cdcf96ca7 | place | ZIP,VAL_DATE,IN_100_YR_FLOODPLAIN,IN_500_YR_FLOODPLAIN,ID,STATE_ID | one row per place (ZIP+VAL_DATE+IN_100_YR_FLOODPLAIN+IN_500_YR_FLOODPLAIN+ID+STATE_ID unique) |
 | portal_arc_harris_county_op_8549ec1226 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | portal_arc_harris_county_op_87f4853c1a | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | portal_arc_harris_county_op_a2dae85c30 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | portal_arc_harris_county_op_d354d2d6e2 | (unresolved -- grain proven, entity unknown) | OBJECT_ID | one row per record (spine_entity not determined -- no registry hint available) (OBJECT_ID unique) |
 | portal_arc_harris_county_op_d9a3089ed0 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
-| portal_arc_harris_county_op_e87e81379a | (unresolved -- grain proven, entity unknown) | ZIP,VAL_DATE,IN_100_YR_FLOODPLAIN,IN_500_YR_FLOODPLAIN,ID,STATE_ID | one row per record (spine_entity not determined -- no registry hint available) (ZIP+VAL_DATE+IN_100_YR_FLOODPLAIN+IN_500_YR_FLOODPLAIN+ID+STATE_ID unique) |
+| portal_arc_harris_county_op_e87e81379a | place | ZIP,VAL_DATE,IN_100_YR_FLOODPLAIN,IN_500_YR_FLOODPLAIN,ID,STATE_ID | one row per place (ZIP+VAL_DATE+IN_100_YR_FLOODPLAIN+IN_500_YR_FLOODPLAIN+ID+STATE_ID unique) |
 | portal_arc_harris_county_op_ede1e11f9d | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | portal_arc_harris_county_op_f3d3a3ab57 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
-| portal_arc_la_county_open_d_0a94db308e | (unresolved -- grain proven, entity unknown) | CCN,NPI,PARTICIPATION_DATE,APPROVAL_DATE,START_DATE | one row per record (spine_entity not determined -- no registry hint available) (CCN+NPI+PARTICIPATION_DATE+APPROVAL_DATE+START_DATE unique) |
+| portal_arc_la_county_open_d_0a94db308e | provider | CCN,NPI,PARTICIPATION_DATE,APPROVAL_DATE,START_DATE | one row per provider (CCN+NPI+PARTICIPATION_DATE+APPROVAL_DATE+START_DATE unique) |
 | portal_arc_la_county_open_d_2e79eb67c8 | place | SAFEGRAPH_PLACE_ID | one row per place (SAFEGRAPH_PLACE_ID unique) |
 | portal_arc_la_county_open_d_75836d970c | (unresolved -- grain proven, entity unknown) | FAC_ID | one row per record (spine_entity not determined -- no registry hint available) (FAC_ID unique) |
 | portal_arc_la_county_open_d_d75e8ea051 | facility | TRI_FACILITY_ID | one row per facility (TRI_FACILITY_ID unique) |
-| portal_arc_la_county_open_d_e034245e05 | (unresolved -- grain proven, entity unknown) | NPI,SCC_TYPE | one row per record (spine_entity not determined -- no registry hint available) (NPI+SCC_TYPE unique) |
+| portal_arc_la_county_open_d_e034245e05 | provider | NPI,SCC_TYPE | one row per provider (NPI+SCC_TYPE unique) |
 | portal_arc_la_county_open_d_e549c7c921 | facility | TRI_FACILITY_ID | one row per facility (TRI_FACILITY_ID unique) |
 | portal_arc_new_mexico_open_1b6c7f7fbd | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
-| portal_arc_open_baltimore_751d91c991 | (unresolved -- grain proven, entity unknown) | CCN,TYPE | one row per record (spine_entity not determined -- no registry hint available) (CCN+TYPE unique) |
+| portal_arc_open_baltimore_751d91c991 | facility | CCN,TYPE | one row per facility (CCN+TYPE unique) |
 | portal_arc_open_data_dc_582a28d212 | (unresolved -- grain proven, entity unknown) | GIS_ID | one row per record (spine_entity not determined -- no registry hint available) (GIS_ID unique) |
 | portal_arc_open_data_dc_59913164d2 | (unresolved -- grain proven, entity unknown) | EGIS_ID | one row per record (spine_entity not determined -- no registry hint available) (EGIS_ID unique) |
-| portal_arc_open_data_dc_5b867c795c | (unresolved -- grain proven, entity unknown) | CCN_REV,DATE | one row per record (spine_entity not determined -- no registry hint available) (CCN+DATE unique) |
+| portal_arc_open_data_dc_5b867c795c | facility | CCN_REV,DATE | one row per facility (CCN+DATE unique) |
 | portal_arc_open_data_dc_5cb81acbdd | place | SAFEGRAPH_PLACE_ID | one row per place (SAFEGRAPH_PLACE_ID unique) |
 | portal_arc_open_data_dc_74d9616143 | (unresolved -- grain proven, entity unknown) | EGIS_ID | one row per record (spine_entity not determined -- no registry hint available) (EGIS_ID unique) |
 | portal_arc_open_data_dc_adf4f0e413 | place | SAFEGRAPH_PLACE_ID | one row per place (SAFEGRAPH_PLACE_ID unique) |
 | portal_arc_open_data_dc_d359158bc8 | (unresolved -- grain proven, entity unknown) | INFOUSA_ID | one row per record (spine_entity not determined -- no registry hint available) (INFOUSA_ID unique) |
-| portal_arc_open_data_dc_d8e55d5b7f | (unresolved -- grain proven, entity unknown) | CCN_REV,DATE | one row per record (spine_entity not determined -- no registry hint available) (CCN+DATE unique) |
+| portal_arc_open_data_dc_d8e55d5b7f | facility | CCN_REV,DATE | one row per facility (CCN+DATE unique) |
 | portal_arc_open_data_dc_e1dd5d3551 | (unresolved -- grain proven, entity unknown) | UNIQUE_ID | one row per record (spine_entity not determined -- no registry hint available) (UNIQUE_ID unique) |
 | portal_arc_open_data_dc_f37f5ddc3d | (unresolved -- grain proven, entity unknown) | ANC_ID | one row per record (spine_entity not determined -- no registry hint available) (ANC_ID unique) |
 | portal_arc_open_data_raleig_5e5b26dc88 | (unresolved -- grain proven, entity unknown) | INFOUSA_ID | one row per record (spine_entity not determined -- no registry hint available) (INFOUSA_ID unique) |
 | portal_arc_open_data_raleig_8ee851c810 | (unresolved -- grain proven, entity unknown) | INFOUSA_ID | one row per record (spine_entity not determined -- no registry hint available) (INFOUSA_ID unique) |
 | portal_arc_open_data_raleig_df19dcbb03 | (unresolved -- grain proven, entity unknown) | INFOUSA_ID | one row per record (spine_entity not determined -- no registry hint available) (INFOUSA_ID unique) |
 | portal_arc_open_data_raleig_efbb617010 | (unresolved -- grain proven, entity unknown) | INFOUSA_ID | one row per record (spine_entity not determined -- no registry hint available) (INFOUSA_ID unique) |
-| portal_arc_open_data_raleig_f18f09f22f | (unresolved -- grain proven, entity unknown) | SHIPPING_ZIP_POSTAL_CODE,APPLICATION_DATE | one row per record (spine_entity not determined -- no registry hint available) (ZIP+APPLICATION_DATE unique) |
+| portal_arc_open_data_raleig_f18f09f22f | place | SHIPPING_ZIP_POSTAL_CODE,APPLICATION_DATE | one row per place (ZIP+APPLICATION_DATE unique) |
 | portal_arc_orange_county_op_05390f8d55 | (unresolved -- grain proven, entity unknown) | INVENTORY_ID | one row per record (spine_entity not determined -- no registry hint available) (INVENTORY_ID unique) |
 | portal_arc_orange_county_op_0dea033879 | (unresolved -- grain proven, entity unknown) | INVENTORY_ID | one row per record (spine_entity not determined -- no registry hint available) (INVENTORY_ID unique) |
 | portal_arc_orange_county_op_2f4310b675 | facility | FACILITY_ID | one row per facility (FACILITY_ID unique) |
@@ -591,19 +592,19 @@ HIGH 492 | MEDIUM 319 | AMBIGUOUS 968 | NO_TABLE 0 | NO_REGISTRY_ROW 0
 | portal_arc_orange_county_op_43a1fe3fbe | (unresolved -- grain proven, entity unknown) | INVENTORY_ID | one row per record (spine_entity not determined -- no registry hint available) (INVENTORY_ID unique) |
 | portal_arc_orange_county_op_572f3c6271 | facility | FACILITY_ID | one row per facility (FACILITY_ID unique) |
 | portal_arc_orange_county_op_62e4574f5e | facility | FACILITY_ID | one row per facility (FACILITY_ID unique) |
-| portal_arc_orange_county_op_644fb9535b | (unresolved -- grain proven, entity unknown) | ZIP,INSPECTION_DATE,OPERATIONAL_STATUS,PROGRAM_ELEMENT | one row per record (spine_entity not determined -- no registry hint available) (ZIP+INSPECTION_DATE+OPERATIONAL_STATUS+PROGRAM_ELEMENT unique) |
+| portal_arc_orange_county_op_644fb9535b | place | ZIP,INSPECTION_DATE,OPERATIONAL_STATUS,PROGRAM_ELEMENT | one row per place (ZIP+INSPECTION_DATE+OPERATIONAL_STATUS+PROGRAM_ELEMENT unique) |
 | portal_arc_orange_county_op_dd64a3f2b8 | facility | FACILITY_ID | one row per facility (FACILITY_ID unique) |
 | portal_arc_tn_data_tennesse_655f6bcc6d | (unresolved -- grain proven, entity unknown) | INFOUSA_ID | one row per record (spine_entity not determined -- no registry hint available) (INFOUSA_ID unique) |
-| portal_arc_tucson_open_data_14c7aa5ccf | (unresolved -- grain proven, entity unknown) | ZIP,INDUSTRY_DESC | one row per record (spine_entity not determined -- no registry hint available) (ZIP+INDUSTRY_DESC unique) |
-| portal_arc_tucson_open_data_32a72d9d1d | (unresolved -- grain proven, entity unknown) | ZIP,INDUSTRY_DESC | one row per record (spine_entity not determined -- no registry hint available) (ZIP+INDUSTRY_DESC unique) |
-| portal_arc_tucson_open_data_3a7e0821d1 | (unresolved -- grain proven, entity unknown) | DOCKET,LAST_EDITED_DATE | one row per record (spine_entity not determined -- no registry hint available) (DOCKET+LAST_EDITED_DATE unique) |
+| portal_arc_tucson_open_data_14c7aa5ccf | place | ZIP,INDUSTRY_DESC | one row per place (ZIP+INDUSTRY_DESC unique) |
+| portal_arc_tucson_open_data_32a72d9d1d | place | ZIP,INDUSTRY_DESC | one row per place (ZIP+INDUSTRY_DESC unique) |
+| portal_arc_tucson_open_data_3a7e0821d1 | case | DOCKET,LAST_EDITED_DATE | one row per case (DOCKET+LAST_EDITED_DATE unique) |
 | portal_arc_tucson_open_data_55d5164315 | (unresolved -- grain proven, entity unknown) | SCHOOLS_UNIVERSAL_ID | one row per record (spine_entity not determined -- no registry hint available) (SCHOOLS_UNIVERSAL_ID unique) |
-| portal_arc_tucson_open_data_63c0193ff1 | (unresolved -- grain proven, entity unknown) | DOCKET,LAST_EDITED_DATE | one row per record (spine_entity not determined -- no registry hint available) (DOCKET+LAST_EDITED_DATE unique) |
-| portal_arc_tucson_open_data_7468cf46db | (unresolved -- grain proven, entity unknown) | DOCKET,LAST_EDITED_DATE | one row per record (spine_entity not determined -- no registry hint available) (DOCKET+LAST_EDITED_DATE unique) |
-| portal_arc_tucson_open_data_cdffe1002a | (unresolved -- grain proven, entity unknown) | DOCKET,LAST_EDITED_DATE | one row per record (spine_entity not determined -- no registry hint available) (DOCKET+LAST_EDITED_DATE unique) |
-| portal_arc_tucson_open_data_e0edea39be | (unresolved -- grain proven, entity unknown) | ZIP,INDUSTRY_DESC | one row per record (spine_entity not determined -- no registry hint available) (ZIP+INDUSTRY_DESC unique) |
-| portal_arc_tucson_open_data_f0203665dd | (unresolved -- grain proven, entity unknown) | ZIP,INDUSTRY_DESC | one row per record (spine_entity not determined -- no registry hint available) (ZIP+INDUSTRY_DESC unique) |
-| portal_arc_tucson_open_data_f919285f50 | (unresolved -- grain proven, entity unknown) | DOCKET,LAST_EDITED_DATE | one row per record (spine_entity not determined -- no registry hint available) (DOCKET+LAST_EDITED_DATE unique) |
+| portal_arc_tucson_open_data_63c0193ff1 | case | DOCKET,LAST_EDITED_DATE | one row per case (DOCKET+LAST_EDITED_DATE unique) |
+| portal_arc_tucson_open_data_7468cf46db | case | DOCKET,LAST_EDITED_DATE | one row per case (DOCKET+LAST_EDITED_DATE unique) |
+| portal_arc_tucson_open_data_cdffe1002a | case | DOCKET,LAST_EDITED_DATE | one row per case (DOCKET+LAST_EDITED_DATE unique) |
+| portal_arc_tucson_open_data_e0edea39be | place | ZIP,INDUSTRY_DESC | one row per place (ZIP+INDUSTRY_DESC unique) |
+| portal_arc_tucson_open_data_f0203665dd | place | ZIP,INDUSTRY_DESC | one row per place (ZIP+INDUSTRY_DESC unique) |
+| portal_arc_tucson_open_data_f919285f50 | case | DOCKET,LAST_EDITED_DATE | one row per case (DOCKET+LAST_EDITED_DATE unique) |
 | portal_arc_wisconsin_open_d_022efd1ae5 | (unresolved -- grain proven, entity unknown) | GIS_ID | one row per record (spine_entity not determined -- no registry hint available) (GIS_ID unique) |
 | portal_arc_wisconsin_open_d_4ebc995c5d | (unresolved -- grain proven, entity unknown) | GIS_ID | one row per record (spine_entity not determined -- no registry hint available) (GIS_ID unique) |
 | portal_arc_wisconsin_open_d_5206358bdd | (unresolved -- grain proven, entity unknown) | GIS_ID | one row per record (spine_entity not determined -- no registry hint available) (GIS_ID unique) |
@@ -611,33 +612,33 @@ HIGH 492 | MEDIUM 319 | AMBIGUOUS 968 | NO_TABLE 0 | NO_REGISTRY_ROW 0
 | portal_arc_wisconsin_open_d_b2efa24715 | (unresolved -- grain proven, entity unknown) | GIS_ID | one row per record (spine_entity not determined -- no registry hint available) (GIS_ID unique) |
 | portal_arc_wisconsin_open_d_cb1509f410 | (unresolved -- grain proven, entity unknown) | GIS_ID | one row per record (spine_entity not determined -- no registry hint available) (GIS_ID unique) |
 | portal_arc_wisconsin_open_d_d05399642c | (unresolved -- grain proven, entity unknown) | GIS_ID | one row per record (spine_entity not determined -- no registry hint available) (GIS_ID unique) |
-| portal_cka_analyze_boston_0012b002be | (unresolved -- grain proven, entity unknown) | SHAPE_WKT,DATE_AND_TIME | one row per record (spine_entity not determined -- no registry hint available) (GEOM+DATE_AND_TIME unique) |
+| portal_cka_analyze_boston_0012b002be | place | SHAPE_WKT,DATE_AND_TIME | one row per place (GEOM+DATE_AND_TIME unique) |
 | portal_cka_analyze_boston_0f7b6b1f80 | (unresolved -- grain proven, entity unknown) | NEIGHBORHOOD_ID | one row per record (spine_entity not determined -- no registry hint available) (NEIGHBORHOOD_ID unique) |
-| portal_cka_analyze_boston_1321cb60b5 | (unresolved -- grain proven, entity unknown) | LAT,DATE_TIME | one row per record (spine_entity not determined -- no registry hint available) (LATLON+DATE_TIME unique) |
-| portal_cka_analyze_boston_4eddc3919b | (unresolved -- grain proven, entity unknown) | ZIP_CODE,APPLICATION_DATE | one row per record (spine_entity not determined -- no registry hint available) (ZIP+APPLICATION_DATE unique) |
-| portal_cka_analyze_boston_5288db6955 | (unresolved -- grain proven, entity unknown) | SHAPE_WKT,DATE_DESIGNATED_1,CREATED_DATE,LAST_EDITED_DATE,UNIQUE_ID | one row per record (spine_entity not determined -- no registry hint available) (GEOM+DATE_DESIGNATED_1+CREATED_DATE+LAST_EDITED_DATE+UNIQUE_ID unique) |
+| portal_cka_analyze_boston_1321cb60b5 | place | LAT,DATE_TIME | one row per place (LATLON+DATE_TIME unique) |
+| portal_cka_analyze_boston_4eddc3919b | place | ZIP_CODE,APPLICATION_DATE | one row per place (ZIP+APPLICATION_DATE unique) |
+| portal_cka_analyze_boston_5288db6955 | place | SHAPE_WKT,DATE_DESIGNATED_1,CREATED_DATE,LAST_EDITED_DATE,UNIQUE_ID | one row per place (GEOM+DATE_DESIGNATED_1+CREATED_DATE+LAST_EDITED_DATE+UNIQUE_ID unique) |
 | portal_cka_analyze_boston_5ccb249b71 | (unresolved -- grain proven, entity unknown) | SWK_ID | one row per record (spine_entity not determined -- no registry hint available) (SWK_ID unique) |
 | portal_cka_analyze_boston_5fc2a4d010 | (unresolved -- grain proven, entity unknown) | POLYGON_ID | one row per record (spine_entity not determined -- no registry hint available) (POLYGON_ID unique) |
 | portal_cka_analyze_boston_7d75fd803f | (unresolved -- grain proven, entity unknown) | CSP_SCH_ID | one row per record (spine_entity not determined -- no registry hint available) (CSP_SCH_ID unique) |
 | portal_cka_analyze_boston_7f82f529e8 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | portal_cka_analyze_boston_824b1b659e | (unresolved -- grain proven, entity unknown) | PROJECT_ID | one row per record (spine_entity not determined -- no registry hint available) (PROJECT_ID unique) |
-| portal_cka_analyze_boston_9fe0838e9f | (unresolved -- grain proven, entity unknown) | ZIPCODE,DATE_BUSINESS_ESTABLISHED,BUSINESS_TYPE,COB_CATEGORY_CODES1 | one row per record (spine_entity not determined -- no registry hint available) (ZIP+DATE_BUSINESS_ESTABLISHED+BUSINESS_TYPE+COB_CATEGORY_CODES1 unique) |
+| portal_cka_analyze_boston_9fe0838e9f | place | ZIPCODE,DATE_BUSINESS_ESTABLISHED,BUSINESS_TYPE,COB_CATEGORY_CODES1 | one row per place (ZIP+DATE_BUSINESS_ESTABLISHED+BUSINESS_TYPE+COB_CATEGORY_CODES1 unique) |
 | portal_cka_analyze_boston_a6c2b4684a | (unresolved -- grain proven, entity unknown) | TOWNS_ID | one row per record (spine_entity not determined -- no registry hint available) (TOWNS_ID unique) |
 | portal_cka_analyze_boston_b6c7223760 | (unresolved -- grain proven, entity unknown) | OS_ID | one row per record (spine_entity not determined -- no registry hint available) (OS_ID unique) |
 | portal_cka_analyze_boston_bbe6f0fd04 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
-| portal_cka_analyze_boston_d5a9ad584e | filing | ZIP_CODE,PERMIT_APPLICATION_FILING_DATE,PERMIT_ISSUED_DATE,REZONING_EFFECTIVE_DATE,PARCEL_ID,SAM_ID | one row per filing (ZIP+PERMIT_APPLICATION_FILING_DATE+PERMIT_ISSUED_DATE+REZONING_EFFECTIVE_DATE+PARCEL_ID+SAM_ID unique) |
+| portal_cka_analyze_boston_d5a9ad584e | place | ZIP_CODE,PERMIT_APPLICATION_FILING_DATE,PERMIT_ISSUED_DATE,REZONING_EFFECTIVE_DATE,PARCEL_ID,SAM_ID | one row per place (ZIP+PERMIT_APPLICATION_FILING_DATE+PERMIT_ISSUED_DATE+REZONING_EFFECTIVE_DATE+PARCEL_ID+SAM_ID unique) |
 | portal_cka_analyze_boston_db29ec5366 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
-| portal_cka_analyze_boston_dd269d0a1d | (unresolved -- grain proven, entity unknown) | ZIP_R,SEGMENT_ID | one row per record (spine_entity not determined -- no registry hint available) (ZIP+SEGMENT_ID unique) |
+| portal_cka_analyze_boston_dd269d0a1d | place | ZIP_R,SEGMENT_ID | one row per place (ZIP+SEGMENT_ID unique) |
 | portal_cka_analyze_boston_e4c004d662 | case | CASE_ID | one row per case (CASE_ID unique) |
-| portal_cka_analyze_boston_f1b3f76830 | (unresolved -- grain proven, entity unknown) | CONTACT_ZIP,STATUS_DTTM | one row per record (spine_entity not determined -- no registry hint available) (ZIP+STATUS_DTTM unique) |
+| portal_cka_analyze_boston_f1b3f76830 | place | CONTACT_ZIP,STATUS_DTTM | one row per place (ZIP+STATUS_DTTM unique) |
 | portal_cka_california_open_0ad648012f | (unresolved -- grain proven, entity unknown) | STATION_ID | one row per record (spine_entity not determined -- no registry hint available) (STATION_ID unique) |
 | portal_cka_california_open_35e42b9770 | (unresolved -- grain proven, entity unknown) | ORG_ID,WATER_SYSTEM_ID,REPORT_PERIOD_START_DATE | one row per record (spine_entity not determined -- no registry hint available) (ORG_ID+WATER_SYSTEM_ID+REPORT_PERIOD_START_DATE unique) |
 | portal_cka_california_open_3b70ad4f80 | (unresolved -- grain proven, entity unknown) | STN_ID | one row per record (spine_entity not determined -- no registry hint available) (STN_ID unique) |
 | portal_cka_california_open_490b55c81b | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
-| portal_cka_california_open_6611464444 | (unresolved -- grain proven, entity unknown) | LONGITUDE,SITE_CODE | one row per record (spine_entity not determined -- no registry hint available) (LATLON+SITE_CODE unique) |
-| portal_cka_california_open_a5d78a8b63 | (unresolved -- grain proven, entity unknown) | LATITUDE,LAST_MODIFIED_DATE,DATE_DATA_REFERS_TO,DWR_GW_SITE_CODE | one row per record (spine_entity not determined -- no registry hint available) (LATLON+LAST_MODIFIED_DATE+DATE_DATA_REFERS_TO+DWR_GW_SITE_CODE unique) |
+| portal_cka_california_open_6611464444 | place | LONGITUDE,SITE_CODE | one row per place (LATLON+SITE_CODE unique) |
+| portal_cka_california_open_a5d78a8b63 | place | LATITUDE,LAST_MODIFIED_DATE,DATE_DATA_REFERS_TO,DWR_GW_SITE_CODE | one row per place (LATLON+LAST_MODIFIED_DATE+DATE_DATA_REFERS_TO+DWR_GW_SITE_CODE unique) |
 | portal_cka_california_open_ac6c9e2b47 | (unresolved -- grain proven, entity unknown) | STN_ID | one row per record (spine_entity not determined -- no registry hint available) (STN_ID unique) |
-| portal_cka_california_open_c19a7c8625 | (unresolved -- grain proven, entity unknown) | COUNTRY,SUBMITTED_DATE | one row per record (spine_entity not determined -- no registry hint available) (COUNTRY+SUBMITTED_DATE unique) |
+| portal_cka_california_open_c19a7c8625 | place | COUNTRY,SUBMITTED_DATE | one row per place (COUNTRY+SUBMITTED_DATE unique) |
 | portal_cka_california_open_c65b641866 | (unresolved -- grain proven, entity unknown) | STATION_ID | one row per record (spine_entity not determined -- no registry hint available) (STATION_ID unique) |
 | portal_cka_california_open_f8f7b5716b | (unresolved -- grain proven, entity unknown) | ORG_ID,FY_START_DATE | one row per record (spine_entity not determined -- no registry hint available) (ORG_ID+FY_START_DATE unique) |
 | portal_cka_houston_open_dat_07c9c99eb1 | event | TEMP_EVENT_ID,INSPECTION_DATE,ACTIVITY_TYPE,STAFF_CODE | one row per event (TEMP_EVENT_ID+INSPECTION_DATE+ACTIVITY_TYPE+STAFF_CODE unique) |
@@ -649,58 +650,58 @@ HIGH 492 | MEDIUM 319 | AMBIGUOUS 968 | NO_TABLE 0 | NO_REGISTRY_ROW 0
 | portal_cka_houston_open_dat_702315b033 | (unresolved -- grain proven, entity unknown) | TRANSPORTATION_ID | one row per record (spine_entity not determined -- no registry hint available) (TRANSPORTATION_ID unique) |
 | portal_cka_houston_open_dat_76e445329f | (unresolved -- grain proven, entity unknown) | TRANSPORTATION_ID,VEHICLE_ID | one row per record (spine_entity not determined -- no registry hint available) (TRANSPORTATION_ID+VEHICLE_ID unique) |
 | portal_cka_houston_open_dat_7a8148751c | (unresolved -- grain proven, entity unknown) | GEO_ID,YEAR | one row per record (spine_entity not determined -- no registry hint available) (GEO_ID+YEAR unique) |
-| portal_cka_houston_open_dat_a4490182ba | (unresolved -- grain proven, entity unknown) | ZIPCODE,SR_CREATE_DATE,DUE_DATE,DATE_CLOSED,TAX_ID | one row per record (spine_entity not determined -- no registry hint available) (ZIP+SR_CREATE_DATE+DUE_DATE+DATE_CLOSED+TAX_ID unique) |
+| portal_cka_houston_open_dat_a4490182ba | place | ZIPCODE,SR_CREATE_DATE,DUE_DATE,DATE_CLOSED,TAX_ID | one row per place (ZIP+SR_CREATE_DATE+DUE_DATE+DATE_CLOSED+TAX_ID unique) |
 | portal_cka_houston_open_dat_aa67e5b416 | (unresolved -- grain proven, entity unknown) | GEO_ID,YEAR | one row per record (spine_entity not determined -- no registry hint available) (GEO_ID+YEAR unique) |
-| portal_cka_houston_open_dat_ab35bb6552 | (unresolved -- grain proven, entity unknown) | ZIP,IN_DATE,DUE_DATE,OUT_DATE,ID | one row per record (spine_entity not determined -- no registry hint available) (ZIP+IN_DATE+DUE_DATE+OUT_DATE+ID unique) |
+| portal_cka_houston_open_dat_ab35bb6552 | place | ZIP,IN_DATE,DUE_DATE,OUT_DATE,ID | one row per place (ZIP+IN_DATE+DUE_DATE+OUT_DATE+ID unique) |
 | portal_cka_houston_open_dat_aeb065e230 | (unresolved -- grain proven, entity unknown) | GEO_ID,YEAR | one row per record (spine_entity not determined -- no registry hint available) (GEO_ID+YEAR unique) |
 | portal_cka_houston_open_dat_bdf3a70a86 | (unresolved -- grain proven, entity unknown) | GEO_ID,YEAR | one row per record (spine_entity not determined -- no registry hint available) (GEO_ID+YEAR unique) |
 | portal_cka_houston_open_dat_cfdcdf13fd | (unresolved -- grain proven, entity unknown) | GEO_ID,YEAR | one row per record (spine_entity not determined -- no registry hint available) (GEO_ID+YEAR unique) |
 | portal_cka_houston_open_dat_f572136326 | (unresolved -- grain proven, entity unknown) | GEO_ID,YEAR | one row per record (spine_entity not determined -- no registry hint available) (GEO_ID+YEAR unique) |
 | portal_cka_indiana_data_hub_7747efe139 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
-| portal_cka_indiana_data_hub_78f3e49d13 | (unresolved -- grain proven, entity unknown) | COUNTY_FIPS,SCHOOL_YEAR,SUBMISSION_STATUS,SCHOOL_ID | one row per record (spine_entity not determined -- no registry hint available) (FIPS+SCHOOL_YEAR+SUBMISSION_STATUS+SCHOOL_ID unique) |
+| portal_cka_indiana_data_hub_78f3e49d13 | place | COUNTY_FIPS,SCHOOL_YEAR,SUBMISSION_STATUS,SCHOOL_ID | one row per place (FIPS+SCHOOL_YEAR+SUBMISSION_STATUS+SCHOOL_ID unique) |
 | portal_cka_indiana_data_hub_83ba6435c2 | (unresolved -- grain proven, entity unknown) | LOCATION_ID,DATE | one row per record (spine_entity not determined -- no registry hint available) (LOCATION_ID+DATE unique) |
-| portal_cka_indiana_data_hub_d4dae8d984 | (unresolved -- grain proven, entity unknown) | ZIPCODE,YEAR,AGE_GROUP | one row per record (spine_entity not determined -- no registry hint available) (ZIP+YEAR+AGE_GROUP unique) |
-| portal_cka_indiana_data_hub_fe00d42acc | (unresolved -- grain proven, entity unknown) | FIPS,DATE | one row per record (spine_entity not determined -- no registry hint available) (FIPS+DATE unique) |
-| portal_cka_israel_national_03d9d0d534 | (unresolved -- grain proven, entity unknown) | ZIPCODE,OPEN_DATE,CLOSE_DATE,BRANCH_CODE,ID | one row per record (spine_entity not determined -- no registry hint available) (ZIP+OPEN_DATE+CLOSE_DATE+BRANCH_CODE+ID unique) |
+| portal_cka_indiana_data_hub_d4dae8d984 | place | ZIPCODE,YEAR,AGE_GROUP | one row per place (ZIP+YEAR+AGE_GROUP unique) |
+| portal_cka_indiana_data_hub_fe00d42acc | place | FIPS,DATE | one row per place (FIPS+DATE unique) |
+| portal_cka_israel_national_03d9d0d534 | place | ZIPCODE,OPEN_DATE,CLOSE_DATE,BRANCH_CODE,ID | one row per place (ZIP+OPEN_DATE+CLOSE_DATE+BRANCH_CODE+ID unique) |
 | portal_cka_israel_national_07ec1af377 | (unresolved -- grain proven, entity unknown) | DEACEASED_ID,DEACEASED_DATE | one row per record (spine_entity not determined -- no registry hint available) (DEACEASED_ID+DEACEASED_DATE unique) |
 | portal_cka_israel_national_32cf786f4c | (unresolved -- grain proven, entity unknown) | PROJECT_ID,BUILDING_ID | one row per record (spine_entity not determined -- no registry hint available) (PROJECT_ID+BUILDING_ID unique) |
 | portal_cka_israel_national_338ef2b642 | (unresolved -- grain proven, entity unknown) | FUND_ID,MANAGING_CORPORATION_LEGAL_ID,REPORT_PERIOD | one row per record (spine_entity not determined -- no registry hint available) (FUND_ID+MANAGING_CORPORATION_LEGAL_ID+REPORT_PERIOD unique) |
 | portal_cka_israel_national_44788840fc | (unresolved -- grain proven, entity unknown) | EQUIPMENT_GROUP_ID,MANUFACTER_ID,MODEL_ID | one row per record (spine_entity not determined -- no registry hint available) (EQUIPMENT_GROUP_ID+MANUFACTER_ID+MODEL_ID unique) |
 | portal_cka_israel_national_511b70eb2b | (unresolved -- grain proven, entity unknown) | BUS_LICENSE_ID | one row per record (spine_entity not determined -- no registry hint available) (BUS_LICENSE_ID unique) |
-| portal_cka_israel_national_6272f09a75 | (unresolved -- grain proven, entity unknown) | ZIP_CODE,CATEGORY,BANK_CODE | one row per record (spine_entity not determined -- no registry hint available) (ZIP+CATEGORY+BANK_CODE unique) |
+| portal_cka_israel_national_6272f09a75 | place | ZIP_CODE,CATEGORY,BANK_CODE | one row per place (ZIP+CATEGORY+BANK_CODE unique) |
 | portal_cka_israel_national_6c5e40114c | (unresolved -- grain proven, entity unknown) | FUND_ID,REPORT_PERIOD | one row per record (spine_entity not determined -- no registry hint available) (FUND_ID+REPORT_PERIOD unique) |
-| portal_cka_israel_national_c05e5881a0 | (unresolved -- grain proven, entity unknown) | ZIP_CODE,INSTITUTE_CODE | one row per record (spine_entity not determined -- no registry hint available) (ZIP+INSTITUTE_CODE unique) |
+| portal_cka_israel_national_c05e5881a0 | place | ZIP_CODE,INSTITUTE_CODE | one row per place (ZIP+INSTITUTE_CODE unique) |
 | portal_cka_israel_national_d59087e169 | (unresolved -- grain proven, entity unknown) | FUND_ID,MANAGING_CORPORATION_LEGAL_ID,REPORT_PERIOD | one row per record (spine_entity not determined -- no registry hint available) (FUND_ID+MANAGING_CORPORATION_LEGAL_ID+REPORT_PERIOD unique) |
-| portal_cka_israel_national_e3d369b05f | (unresolved -- grain proven, entity unknown) | STN_LAT,DATE_OPEN,DATE_CLOSE | one row per record (spine_entity not determined -- no registry hint available) (LATLON+DATE_OPEN+DATE_CLOSE unique) |
-| portal_cka_open_data_sa_1c37ee3869 | (unresolved -- grain proven, entity unknown) | SHAPE__LENGTH,FISCAL_YEAR | one row per record (spine_entity not determined -- no registry hint available) (GEOM+FISCAL_YEAR unique) |
-| portal_cka_open_data_sa_2fcd3aefd6 | (unresolved -- grain proven, entity unknown) | SHAPE__LENGTH,CREATED_DATE | one row per record (spine_entity not determined -- no registry hint available) (GEOM+CREATED_DATE unique) |
+| portal_cka_israel_national_e3d369b05f | place | STN_LAT,DATE_OPEN,DATE_CLOSE | one row per place (LATLON+DATE_OPEN+DATE_CLOSE unique) |
+| portal_cka_open_data_sa_1c37ee3869 | place | SHAPE__LENGTH,FISCAL_YEAR | one row per place (GEOM+FISCAL_YEAR unique) |
+| portal_cka_open_data_sa_2fcd3aefd6 | place | SHAPE__LENGTH,CREATED_DATE | one row per place (GEOM+CREATED_DATE unique) |
 | portal_cka_open_data_sa_5b3ce659e5 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
-| portal_cka_open_data_sa_9dca88d285 | (unresolved -- grain proven, entity unknown) | SHAPE__LENGTH,FISCAL_YEAR | one row per record (spine_entity not determined -- no registry hint available) (GEOM+FISCAL_YEAR unique) |
-| portal_cka_open_data_sa_a8ef161189 | (unresolved -- grain proven, entity unknown) | SHAPE__LENGTH,CREATED_DATE | one row per record (spine_entity not determined -- no registry hint available) (GEOM+CREATED_DATE unique) |
+| portal_cka_open_data_sa_9dca88d285 | place | SHAPE__LENGTH,FISCAL_YEAR | one row per place (GEOM+FISCAL_YEAR unique) |
+| portal_cka_open_data_sa_a8ef161189 | place | SHAPE__LENGTH,CREATED_DATE | one row per place (GEOM+CREATED_DATE unique) |
 | portal_cka_open_data_sa_e846782f2c | (unresolved -- grain proven, entity unknown) | RECORD_ID | one row per record (spine_entity not determined -- no registry hint available) (RECORD_ID unique) |
 | portal_cka_san_jose_open_da_00b8041d47 | (unresolved -- grain proven, entity unknown) | INCIDENT_ID | one row per record (spine_entity not determined -- no registry hint available) (INCIDENT_ID unique) |
-| portal_cka_san_jose_open_da_98849b65ee | (unresolved -- grain proven, entity unknown) | LATITUDE,REPORTDATE | one row per record (spine_entity not determined -- no registry hint available) (LATLON+REPORTDATE unique) |
+| portal_cka_san_jose_open_da_98849b65ee | place | LATITUDE,REPORTDATE | one row per place (LATLON+REPORTDATE unique) |
 | portal_cka_tampa_open_data_06c9cc7276 | (unresolved -- grain proven, entity unknown) | ID,DATE,PERIOD | one row per record (spine_entity not determined -- no registry hint available) (ID+DATE+PERIOD unique) |
 | portal_cka_tampa_open_data_18b980d54d | (unresolved -- grain proven, entity unknown) | ID,DATE | one row per record (spine_entity not determined -- no registry hint available) (ID+DATE unique) |
 | portal_cka_tampa_open_data_c8043a5df9 | (unresolved -- grain proven, entity unknown) | ID,DATE,PERIOD | one row per record (spine_entity not determined -- no registry hint available) (ID+DATE+PERIOD unique) |
 | portal_cka_virginia_open_da_039aacd655 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | portal_cka_virginia_open_da_1d39bdec50 | (unresolved -- grain proven, entity unknown) | FAC_ID | one row per record (spine_entity not determined -- no registry hint available) (FAC_ID unique) |
-| portal_cka_virginia_open_da_3e67a117fb | (unresolved -- grain proven, entity unknown) | FIPS,REPORT_DATE | one row per record (spine_entity not determined -- no registry hint available) (FIPS+REPORT_DATE unique) |
-| portal_cka_virginia_open_da_651c0c423a | (unresolved -- grain proven, entity unknown) | ZIP_CODE,STARTING_DATE,EXPIRATION_DATE,INSERTED_DATE,BUFFER_ID | one row per record (spine_entity not determined -- no registry hint available) (ZIP+STARTING_DATE+EXPIRATION_DATE+INSERTED_DATE+BUFFER_ID unique) |
+| portal_cka_virginia_open_da_3e67a117fb | place | FIPS,REPORT_DATE | one row per place (FIPS+REPORT_DATE unique) |
+| portal_cka_virginia_open_da_651c0c423a | place | ZIP_CODE,STARTING_DATE,EXPIRATION_DATE,INSERTED_DATE,BUFFER_ID | one row per place (ZIP+STARTING_DATE+EXPIRATION_DATE+INSERTED_DATE+BUFFER_ID unique) |
 | portal_cka_virginia_open_da_77706d86da | (unresolved -- grain proven, entity unknown) | SWC_ID | one row per record (spine_entity not determined -- no registry hint available) (SWC_ID unique) |
 | portal_cka_virginia_open_da_ac3869ee0e | (unresolved -- grain proven, entity unknown) | PARCEL_ID | one row per record (spine_entity not determined -- no registry hint available) (PARCEL_ID unique) |
 | portal_cka_virginia_open_da_ace8ac0352 | (unresolved -- grain proven, entity unknown) | TMDL_EQ_ID | one row per record (spine_entity not determined -- no registry hint available) (TMDL_EQ_ID unique) |
-| portal_cka_virginia_open_da_cbc7fe8b75 | (unresolved -- grain proven, entity unknown) | INCIDENT_FIPS,INCIDENT_YEAR,INCIDENT_MONTH | one row per record (spine_entity not determined -- no registry hint available) (FIPS+INCIDENT_YEAR+INCIDENT_MONTH unique) |
+| portal_cka_virginia_open_da_cbc7fe8b75 | place | INCIDENT_FIPS,INCIDENT_YEAR,INCIDENT_MONTH | one row per place (FIPS+INCIDENT_YEAR+INCIDENT_MONTH unique) |
 | portal_cka_virginia_open_da_e4498c978c | (unresolved -- grain proven, entity unknown) | PRP_REPORT_ID | one row per record (spine_entity not determined -- no registry hint available) (PRP_REPORT_ID unique) |
-| portal_cka_western_pennsylv_070a16004d | (unresolved -- grain proven, entity unknown) | ZIPCODE,LAST_EDIT_DATE | one row per record (spine_entity not determined -- no registry hint available) (ZIP+LAST_EDIT_DATE unique) |
+| portal_cka_western_pennsylv_070a16004d | place | ZIPCODE,LAST_EDIT_DATE | one row per place (ZIP+LAST_EDIT_DATE unique) |
 | portal_cka_western_pennsylv_09335a764b | (unresolved -- grain proven, entity unknown) | START_STATION_ID,END_STATION_ID,START_DATE | one row per record (spine_entity not determined -- no registry hint available) (START_STATION_ID+END_STATION_ID+START_DATE unique) |
 | portal_cka_western_pennsylv_0af7431c6c | facility | STATE_COUNTY_FIPS_CODE,REPORTING_YEAR,ZIP_CODE,PRIMARY_SIC_CODE,TRI_FACILITY_ID,EPA_REGISTRY_ID,TRI_CHEM_ID,SRS_ID | one row per facility (FIPS+REPORTING_YEAR+ZIP+SIC+TRI_FACILITY_ID+EPA_REGISTRY_ID+TRI_CHEM_ID+SRS_ID unique) |
 | portal_cka_western_pennsylv_20c6fc6029 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | portal_cka_western_pennsylv_20e1a330ce | (unresolved -- grain proven, entity unknown) | CLIENT_ID | one row per record (spine_entity not determined -- no registry hint available) (CLIENT_ID unique) |
-| portal_cka_western_pennsylv_23b8b5b7d2 | (unresolved -- grain proven, entity unknown) | ZIP_CODE,CREATE_DATE,PROPERTY_TYPE,INSPECTION_STATUS,PARCEL_ID | one row per record (spine_entity not determined -- no registry hint available) (ZIP+CREATE_DATE+PROPERTY_TYPE+INSPECTION_STATUS+PARCEL_ID unique) |
-| portal_cka_western_pennsylv_2dfc1addea | (unresolved -- grain proven, entity unknown) | DECEDENT_ZIP,DEATH_DATE_AND_TIME | one row per record (spine_entity not determined -- no registry hint available) (ZIP+DEATH_DATE_AND_TIME unique) |
-| portal_cka_western_pennsylv_4fc22c2c30 | (unresolved -- grain proven, entity unknown) | ZIP_CODE,PERMIT_ISSUE_DATE,PERMIT_EXPIRE_DATE,PROJECT_TYPE,PARCEL_ID | one row per record (spine_entity not determined -- no registry hint available) (ZIP+PERMIT_ISSUE_DATE+PERMIT_EXPIRE_DATE+PROJECT_TYPE+PARCEL_ID unique) |
-| portal_cka_western_pennsylv_51b8dcf278 | (unresolved -- grain proven, entity unknown) | LATITUDE,START_YEAR,APPROVED_DATE | one row per record (spine_entity not determined -- no registry hint available) (LATLON+START_YEAR+APPROVED_DATE unique) |
+| portal_cka_western_pennsylv_23b8b5b7d2 | place | ZIP_CODE,CREATE_DATE,PROPERTY_TYPE,INSPECTION_STATUS,PARCEL_ID | one row per place (ZIP+CREATE_DATE+PROPERTY_TYPE+INSPECTION_STATUS+PARCEL_ID unique) |
+| portal_cka_western_pennsylv_2dfc1addea | place | DECEDENT_ZIP,DEATH_DATE_AND_TIME | one row per place (ZIP+DEATH_DATE_AND_TIME unique) |
+| portal_cka_western_pennsylv_4fc22c2c30 | place | ZIP_CODE,PERMIT_ISSUE_DATE,PERMIT_EXPIRE_DATE,PROJECT_TYPE,PARCEL_ID | one row per place (ZIP+PERMIT_ISSUE_DATE+PERMIT_EXPIRE_DATE+PROJECT_TYPE+PARCEL_ID unique) |
+| portal_cka_western_pennsylv_51b8dcf278 | place | LATITUDE,START_YEAR,APPROVED_DATE | one row per place (LATLON+START_YEAR+APPROVED_DATE unique) |
 | portal_cka_western_pennsylv_6a4c3e0e78 | (unresolved -- grain proven, entity unknown) | INSPECTION_ID | one row per record (spine_entity not determined -- no registry hint available) (INSPECTION_ID unique) |
 | portal_cka_western_pennsylv_7bfb1a4c7d | (unresolved -- grain proven, entity unknown) | MARKET_ID | one row per record (spine_entity not determined -- no registry hint available) (MARKET_ID unique) |
 | portal_cka_western_pennsylv_7d8c19b074 | (unresolved -- grain proven, entity unknown) | ET_ID | one row per record (spine_entity not determined -- no registry hint available) (ET_ID unique) |
@@ -709,7 +710,7 @@ HIGH 492 | MEDIUM 319 | AMBIGUOUS 968 | NO_TABLE 0 | NO_REGISTRY_ROW 0
 | portal_cka_western_pennsylv_aad84a1f6e | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | portal_cka_western_pennsylv_b25e480dfc | asset | ASSET_ID | one row per asset (ASSET_ID unique) |
 | portal_cka_western_pennsylv_ddb61776d0 | (unresolved -- grain proven, entity unknown) | INSPECTION_ID | one row per record (spine_entity not determined -- no registry hint available) (INSPECTION_ID unique) |
-| portal_cka_western_pennsylv_ed65b530a3 | (unresolved -- grain proven, entity unknown) | GEOID,QUARTER | one row per record (spine_entity not determined -- no registry hint available) (FIPS+QUARTER unique) |
+| portal_cka_western_pennsylv_ed65b530a3 | place | GEOID,QUARTER | one row per place (FIPS+QUARTER unique) |
 | portal_cka_western_pennsylv_ef682f7e59 | (unresolved -- grain proven, entity unknown) | PERMIT_ID | one row per record (spine_entity not determined -- no registry hint available) (PERMIT_ID unique) |
 | portal_cka_western_pennsylv_f6a018a1cb | (unresolved -- grain proven, entity unknown) | INSPECTION_ID | one row per record (spine_entity not determined -- no registry hint available) (INSPECTION_ID unique) |
 | portal_cka_western_pennsylv_f810addeec | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
@@ -717,10 +718,10 @@ HIGH 492 | MEDIUM 319 | AMBIGUOUS 968 | NO_TABLE 0 | NO_REGISTRY_ROW 0
 | portal_cka_western_pennsylv_fbecf42e16 | (unresolved -- grain proven, entity unknown) | REF_ID | one row per record (spine_entity not determined -- no registry hint available) (REF_ID unique) |
 | portal_cka_western_pennsylv_fd81b4fb82 | (unresolved -- grain proven, entity unknown) | CONTAINER_ID | one row per record (spine_entity not determined -- no registry hint available) (CONTAINER_ID unique) |
 | portal_cka_wprdc_allegheny_0cd6a9957c | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
-| portal_cka_wprdc_allegheny_12c9244c06 | (unresolved -- grain proven, entity unknown) | ZIPCODE,LAST_EDIT_DATE | one row per record (spine_entity not determined -- no registry hint available) (ZIP+LAST_EDIT_DATE unique) |
+| portal_cka_wprdc_allegheny_12c9244c06 | place | ZIPCODE,LAST_EDIT_DATE | one row per place (ZIP+LAST_EDIT_DATE unique) |
 | portal_cka_wprdc_allegheny_16a0bb67b4 | (unresolved -- grain proven, entity unknown) | CLIENT_ID | one row per record (spine_entity not determined -- no registry hint available) (CLIENT_ID unique) |
 | portal_cka_wprdc_allegheny_1b2d51749e | (unresolved -- grain proven, entity unknown) | CLOSURE_ID | one row per record (spine_entity not determined -- no registry hint available) (CLOSURE_ID unique) |
-| portal_cka_wprdc_allegheny_1c103ee2cd | (unresolved -- grain proven, entity unknown) | ZIP_CODE,CREATE_DATE,PROPERTY_TYPE,INSPECTION_STATUS,PARCEL_ID | one row per record (spine_entity not determined -- no registry hint available) (ZIP+CREATE_DATE+PROPERTY_TYPE+INSPECTION_STATUS+PARCEL_ID unique) |
+| portal_cka_wprdc_allegheny_1c103ee2cd | place | ZIP_CODE,CREATE_DATE,PROPERTY_TYPE,INSPECTION_STATUS,PARCEL_ID | one row per place (ZIP+CREATE_DATE+PROPERTY_TYPE+INSPECTION_STATUS+PARCEL_ID unique) |
 | portal_cka_wprdc_allegheny_415f1fe712 | (unresolved -- grain proven, entity unknown) | ET_ID | one row per record (spine_entity not determined -- no registry hint available) (ET_ID unique) |
 | portal_cka_wprdc_allegheny_49ed6437bf | (unresolved -- grain proven, entity unknown) | INSPECTION_ID | one row per record (spine_entity not determined -- no registry hint available) (INSPECTION_ID unique) |
 | portal_cka_wprdc_allegheny_508c030bd9 | (unresolved -- grain proven, entity unknown) | CONTAINER_ID | one row per record (spine_entity not determined -- no registry hint available) (CONTAINER_ID unique) |
@@ -729,55 +730,55 @@ HIGH 492 | MEDIUM 319 | AMBIGUOUS 968 | NO_TABLE 0 | NO_REGISTRY_ROW 0
 | portal_cka_wprdc_allegheny_7af23acd2f | (unresolved -- grain proven, entity unknown) | START_STATION_ID,END_STATION_ID,START_DATE | one row per record (spine_entity not determined -- no registry hint available) (START_STATION_ID+END_STATION_ID+START_DATE unique) |
 | portal_cka_wprdc_allegheny_7b65ae0cff | (unresolved -- grain proven, entity unknown) | INSPECTION_ID | one row per record (spine_entity not determined -- no registry hint available) (INSPECTION_ID unique) |
 | portal_cka_wprdc_allegheny_822e5dba4c | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
-| portal_cka_wprdc_allegheny_9ccbefbacc | (unresolved -- grain proven, entity unknown) | GEOID,QUARTER | one row per record (spine_entity not determined -- no registry hint available) (FIPS+QUARTER unique) |
-| portal_cka_wprdc_allegheny_a4e9ce945b | (unresolved -- grain proven, entity unknown) | DECEDENT_ZIP,DEATH_DATE_AND_TIME | one row per record (spine_entity not determined -- no registry hint available) (ZIP+DEATH_DATE_AND_TIME unique) |
+| portal_cka_wprdc_allegheny_9ccbefbacc | place | GEOID,QUARTER | one row per place (FIPS+QUARTER unique) |
+| portal_cka_wprdc_allegheny_a4e9ce945b | place | DECEDENT_ZIP,DEATH_DATE_AND_TIME | one row per place (ZIP+DEATH_DATE_AND_TIME unique) |
 | portal_cka_wprdc_allegheny_b20a13551f | (unresolved -- grain proven, entity unknown) | REF_ID | one row per record (spine_entity not determined -- no registry hint available) (REF_ID unique) |
 | portal_cka_wprdc_allegheny_b78655de4f | (unresolved -- grain proven, entity unknown) | MARKET_ID | one row per record (spine_entity not determined -- no registry hint available) (MARKET_ID unique) |
 | portal_cka_wprdc_allegheny_b9904b63c2 | asset | ASSET_ID | one row per asset (ASSET_ID unique) |
-| portal_cka_wprdc_allegheny_bb0184f847 | (unresolved -- grain proven, entity unknown) | ZIP_CODE,PERMIT_ISSUE_DATE,PERMIT_EXPIRE_DATE,PROJECT_TYPE,PARCEL_ID | one row per record (spine_entity not determined -- no registry hint available) (ZIP+PERMIT_ISSUE_DATE+PERMIT_EXPIRE_DATE+PROJECT_TYPE+PARCEL_ID unique) |
+| portal_cka_wprdc_allegheny_bb0184f847 | place | ZIP_CODE,PERMIT_ISSUE_DATE,PERMIT_EXPIRE_DATE,PROJECT_TYPE,PARCEL_ID | one row per place (ZIP+PERMIT_ISSUE_DATE+PERMIT_EXPIRE_DATE+PROJECT_TYPE+PARCEL_ID unique) |
 | portal_cka_wprdc_allegheny_c96164a13d | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
-| portal_cka_wprdc_allegheny_ce7a2694fc | (unresolved -- grain proven, entity unknown) | LATITUDE,START_YEAR,APPROVED_DATE | one row per record (spine_entity not determined -- no registry hint available) (LATLON+START_YEAR+APPROVED_DATE unique) |
+| portal_cka_wprdc_allegheny_ce7a2694fc | place | LATITUDE,START_YEAR,APPROVED_DATE | one row per place (LATLON+START_YEAR+APPROVED_DATE unique) |
 | portal_cka_wprdc_allegheny_da448e7083 | (unresolved -- grain proven, entity unknown) | INSPECTION_ID | one row per record (spine_entity not determined -- no registry hint available) (INSPECTION_ID unique) |
 | portal_cka_wprdc_allegheny_de448d04d4 | facility | STATE_COUNTY_FIPS_CODE,REPORTING_YEAR,ZIP_CODE,PRIMARY_SIC_CODE,TRI_FACILITY_ID,EPA_REGISTRY_ID,TRI_CHEM_ID,SRS_ID | one row per facility (FIPS+REPORTING_YEAR+ZIP+SIC+TRI_FACILITY_ID+EPA_REGISTRY_ID+TRI_CHEM_ID+SRS_ID unique) |
 | portal_cka_wprdc_allegheny_fa3191e7a1 | (unresolved -- grain proven, entity unknown) | EV_ID | one row per record (spine_entity not determined -- no registry hint available) (EV_ID unique) |
 | portal_soc_austin_open_data_0b4c639a1c | (unresolved -- grain proven, entity unknown) | EMPLOYEE_ID | one row per record (spine_entity not determined -- no registry hint available) (EMPLOYEE_ID unique) |
 | portal_soc_cambridge_open_d_8a1152140c | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | portal_soc_chicago_data_por_26de83baf4 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
-| portal_soc_colorado_informa_1d5cfad830 | (unresolved -- grain proven, entity unknown) | COUNTY_FIPS,FISCAL_YEAR,START_DATE,EXIT_DATE,STATE_ID,STATE_ID_COPY,APPRENTICE_ID,PROGRAM_ID | one row per record (spine_entity not determined -- no registry hint available) (FIPS+FISCAL_YEAR+START_DATE+EXIT_DATE+STATE_ID+STATE_ID_COPY+APPRENTICE_ID+PROGRAM_ID unique) |
+| portal_soc_colorado_informa_1d5cfad830 | place | COUNTY_FIPS,FISCAL_YEAR,START_DATE,EXIT_DATE,STATE_ID,STATE_ID_COPY,APPRENTICE_ID,PROGRAM_ID | one row per place (FIPS+FISCAL_YEAR+START_DATE+EXIT_DATE+STATE_ID+STATE_ID_COPY+APPRENTICE_ID+PROGRAM_ID unique) |
 | portal_soc_colorado_informa_239fba8b76 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | portal_soc_colorado_informa_46101be391 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | portal_soc_colorado_informa_6367a44c92 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | portal_soc_colorado_informa_a50da9b699 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | portal_soc_colorado_informa_b4dd509314 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | portal_soc_colorado_informa_d017cfcf7f | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
-| portal_soc_colorado_informa_de6c8a6901 | (unresolved -- grain proven, entity unknown) | COUNTY_FIPS,FISCAL_YEAR,START_DATE,EXIT_DATE,STATE_ID,STATE_ID_COPY,APPRENTICE_ID,PROGRAM_ID | one row per record (spine_entity not determined -- no registry hint available) (FIPS+FISCAL_YEAR+START_DATE+EXIT_DATE+STATE_ID+STATE_ID_COPY+APPRENTICE_ID+PROGRAM_ID unique) |
-| portal_soc_colorado_informa_e80ca7800e | (unresolved -- grain proven, entity unknown) | COUNTY_FIPS,EXIT_DATE,FISCAL_YEAR,START_DATE,STATE_ID,STATE_ID_COPY,APPRENTICE_ID,PROGRAM_ID | one row per record (spine_entity not determined -- no registry hint available) (FIPS+EXIT_DATE+FISCAL_YEAR+START_DATE+STATE_ID+STATE_ID_COPY+APPRENTICE_ID+PROGRAM_ID unique) |
+| portal_soc_colorado_informa_de6c8a6901 | place | COUNTY_FIPS,FISCAL_YEAR,START_DATE,EXIT_DATE,STATE_ID,STATE_ID_COPY,APPRENTICE_ID,PROGRAM_ID | one row per place (FIPS+FISCAL_YEAR+START_DATE+EXIT_DATE+STATE_ID+STATE_ID_COPY+APPRENTICE_ID+PROGRAM_ID unique) |
+| portal_soc_colorado_informa_e80ca7800e | place | COUNTY_FIPS,EXIT_DATE,FISCAL_YEAR,START_DATE,STATE_ID,STATE_ID_COPY,APPRENTICE_ID,PROGRAM_ID | one row per place (FIPS+EXIT_DATE+FISCAL_YEAR+START_DATE+STATE_ID+STATE_ID_COPY+APPRENTICE_ID+PROGRAM_ID unique) |
 | portal_soc_colorado_informa_f0e162d7a8 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | portal_soc_colorado_informa_f78543c045 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | portal_soc_colorado_informa_f9498d9b7f | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | portal_soc_connecticut_open_88b075d7af | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
-| portal_soc_connecticut_open_aeb46f6c94 | (unresolved -- grain proven, entity unknown) | C_9_ZIP,C_1_YEAR,C_18_INDUSTRY_SECTOR_CODE,C_19_INDUSTRY_SECTOR,C_3_FRS_ID,C_35_CAS_COMPOUND_ID,C_36_SRS_ID | one row per record (spine_entity not determined -- no registry hint available) (ZIP+C_1_YEAR+C_18_INDUSTRY_SECTOR_CODE+C_19_INDUSTRY_SECTOR+C_3_FRS_ID+C_35_CAS_COMPOUND_ID+C_36_SRS_ID unique) |
-| portal_soc_connecticut_open_ff2b86a533 | (unresolved -- grain proven, entity unknown) | ZIP_CODE,FISCAL_YEAR,CONTRACT_EXECUTION_DATE | one row per record (spine_entity not determined -- no registry hint available) (ZIP+FISCAL_YEAR+CONTRACT_EXECUTION_DATE unique) |
-| portal_soc_datala_los_angel_361b8161b7 | (unresolved -- grain proven, entity unknown) | MAILING_ZIP_CODE,LOCATION_START_DATE,LOCATION_END_DATE,ZIP_CODE | one row per record (spine_entity not determined -- no registry hint available) (ZIP+LOCATION_START_DATE+LOCATION_END_DATE+ZIP unique) |
-| portal_soc_datala_los_angel_dc3670afe1 | (unresolved -- grain proven, entity unknown) | MAILING_ZIP_CODE,LOCATION_START_DATE,ZIP_CODE | one row per record (spine_entity not determined -- no registry hint available) (ZIP+LOCATION_START_DATE+ZIP unique) |
+| portal_soc_connecticut_open_aeb46f6c94 | place | C_9_ZIP,C_1_YEAR,C_18_INDUSTRY_SECTOR_CODE,C_19_INDUSTRY_SECTOR,C_3_FRS_ID,C_35_CAS_COMPOUND_ID,C_36_SRS_ID | one row per place (ZIP+C_1_YEAR+C_18_INDUSTRY_SECTOR_CODE+C_19_INDUSTRY_SECTOR+C_3_FRS_ID+C_35_CAS_COMPOUND_ID+C_36_SRS_ID unique) |
+| portal_soc_connecticut_open_ff2b86a533 | place | ZIP_CODE,FISCAL_YEAR,CONTRACT_EXECUTION_DATE | one row per place (ZIP+FISCAL_YEAR+CONTRACT_EXECUTION_DATE unique) |
+| portal_soc_datala_los_angel_361b8161b7 | place | MAILING_ZIP_CODE,LOCATION_START_DATE,LOCATION_END_DATE,ZIP_CODE | one row per place (ZIP+LOCATION_START_DATE+LOCATION_END_DATE+ZIP unique) |
+| portal_soc_datala_los_angel_dc3670afe1 | place | MAILING_ZIP_CODE,LOCATION_START_DATE,ZIP_CODE | one row per place (ZIP+LOCATION_START_DATE+ZIP unique) |
 | portal_soc_new_york_state_o_0c94dd2b8a | (unresolved -- grain proven, entity unknown) | NPDES_ID | one row per record (spine_entity not determined -- no registry hint available) (NPDES_ID unique) |
 | portal_soc_new_york_state_o_c08efa40c8 | (unresolved -- grain proven, entity unknown) | DEC_ID,YEAR | one row per record (spine_entity not determined -- no registry hint available) (DEC_ID+YEAR unique) |
 | portal_soc_new_york_state_o_eff72c4402 | (unresolved -- grain proven, entity unknown) | PROJECT_ID_NUMBER | one row per record (spine_entity not determined -- no registry hint available) (PROJECT_ID_NUMBER unique) |
 | portal_soc_open_data_br_6083bc2934 | (unresolved -- grain proven, entity unknown) | LOT_ID | one row per record (spine_entity not determined -- no registry hint available) (LOT_ID unique) |
-| portal_soc_open_data_br_c110d5cf59 | (unresolved -- grain proven, entity unknown) | ZIP,BUSINESS_NAICS_CODE,RESOURCE_TYPE,SUB_RESOURCE_TYPE,BUSINESS_ID,METADATA_ID | one row per record (spine_entity not determined -- no registry hint available) (ZIP+NAICS+RESOURCE_TYPE+SUB_RESOURCE_TYPE+BUSINESS_ID+METADATA_ID unique) |
-| portal_soc_seattle_open_dat_c8f2072189 | (unresolved -- grain proven, entity unknown) | ZIP,LICENSE_START_DATE | one row per record (spine_entity not determined -- no registry hint available) (ZIP+LICENSE_START_DATE unique) |
-| portal_soc_sf_opendata_data_79618299a6 | (unresolved -- grain proven, entity unknown) | BUSINESS_ZIP,DBA_START_DATE,LOCATION_START_DATE | one row per record (spine_entity not determined -- no registry hint available) (ZIP+DBA_START_DATE+LOCATION_START_DATE unique) |
+| portal_soc_open_data_br_c110d5cf59 | place | ZIP,BUSINESS_NAICS_CODE,RESOURCE_TYPE,SUB_RESOURCE_TYPE,BUSINESS_ID,METADATA_ID | one row per place (ZIP+NAICS+RESOURCE_TYPE+SUB_RESOURCE_TYPE+BUSINESS_ID+METADATA_ID unique) |
+| portal_soc_seattle_open_dat_c8f2072189 | place | ZIP,LICENSE_START_DATE | one row per place (ZIP+LICENSE_START_DATE unique) |
+| portal_soc_sf_opendata_data_79618299a6 | place | BUSINESS_ZIP,DBA_START_DATE,LOCATION_START_DATE | one row per place (ZIP+DBA_START_DATE+LOCATION_START_DATE unique) |
 | portal_soc_sf_opendata_data_8dccc91916 | provider | NPI,PROVIDER_TYPE,SITE_ID | one row per provider (NPI+PROVIDER_TYPE+SITE_ID unique) |
-| portal_soc_sf_opendata_data_c19ee9eb44 | (unresolved -- grain proven, entity unknown) | NPI,PROGRAM_NAME | one row per record (spine_entity not determined -- no registry hint available) (NPI+NAME unique) |
+| portal_soc_sf_opendata_data_c19ee9eb44 | provider | NPI,PROGRAM_NAME | one row per provider (NPI+NAME unique) |
 | portal_soc_texas_open_data_0f8f4663c8 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
-| portal_soc_texas_open_data_28e2f49084 | (unresolved -- grain proven, entity unknown) | NPN_EIN,ACTIVE_DATE,APPOINTMENT_TYPE,NAIC_ID | one row per record (spine_entity not determined -- no registry hint available) (EIN+ACTIVE_DATE+APPOINTMENT_TYPE+NAIC_ID unique) |
-| portal_soc_texas_open_data_354e3abf4f | (unresolved -- grain proven, entity unknown) | SITE_ZIP_CD,NOR_REGISTRATION_DATE | one row per record (spine_entity not determined -- no registry hint available) (ZIP+NOR_REGISTRATION_DATE unique) |
-| portal_soc_texas_open_data_5410a1009f | (unresolved -- grain proven, entity unknown) | OUTLET_ZIP_CODE,OUTLET_PERMIT_ISSUE_DATE | one row per record (spine_entity not determined -- no registry hint available) (ZIP+OUTLET_PERMIT_ISSUE_DATE unique) |
-| portal_soc_texas_open_data_6f798a64fa | (unresolved -- grain proven, entity unknown) | EIN,ACTIVE_DATE,APPOINTMENT_TYPE,NAIC_ID | one row per record (spine_entity not determined -- no registry hint available) (EIN+ACTIVE_DATE+APPOINTMENT_TYPE+NAIC_ID unique) |
-| portal_soc_texas_open_data_a415622c5d | (unresolved -- grain proven, entity unknown) | LOC_ZIP,PERMIT_DATE | one row per record (spine_entity not determined -- no registry hint available) (ZIP+PERMIT_DATE unique) |
-| portal_soc_texas_open_data_d83872d208 | (unresolved -- grain proven, entity unknown) | DISTRICT_COURT_DOCKET_NO,ORDER_DATE | one row per record (spine_entity not determined -- no registry hint available) (DOCKET+ORDER_DATE unique) |
-| portal_soc_texas_open_data_da657010b1 | (unresolved -- grain proven, entity unknown) | LOC_ZIP,RESP_BEGIN_DATE | one row per record (spine_entity not determined -- no registry hint available) (ZIP+RESP_BEGIN_DATE unique) |
-| portal_soc_utah_open_data_p_103f7d641f | (unresolved -- grain proven, entity unknown) | RECIPIENT_DUNS,PERIOD_OF_PERFORMANCE_START,PERIOD_OF_PERFORMANCE_CURRENT,LAST_MODIFIED_DATE,AWARD_ID_FAIN,AWARD_ID_URI | one row per record (spine_entity not determined -- no registry hint available) (DUNS+PERIOD_OF_PERFORMANCE_START+PERIOD_OF_PERFORMANCE_CURRENT+LAST_MODIFIED_DATE+AWARD_ID_FAIN+AWARD_ID_URI unique) |
+| portal_soc_texas_open_data_28e2f49084 | organization | NPN_EIN,ACTIVE_DATE,APPOINTMENT_TYPE,NAIC_ID | one row per organization (EIN+ACTIVE_DATE+APPOINTMENT_TYPE+NAIC_ID unique) |
+| portal_soc_texas_open_data_354e3abf4f | place | SITE_ZIP_CD,NOR_REGISTRATION_DATE | one row per place (ZIP+NOR_REGISTRATION_DATE unique) |
+| portal_soc_texas_open_data_5410a1009f | place | OUTLET_ZIP_CODE,OUTLET_PERMIT_ISSUE_DATE | one row per place (ZIP+OUTLET_PERMIT_ISSUE_DATE unique) |
+| portal_soc_texas_open_data_6f798a64fa | organization | EIN,ACTIVE_DATE,APPOINTMENT_TYPE,NAIC_ID | one row per organization (EIN+ACTIVE_DATE+APPOINTMENT_TYPE+NAIC_ID unique) |
+| portal_soc_texas_open_data_a415622c5d | place | LOC_ZIP,PERMIT_DATE | one row per place (ZIP+PERMIT_DATE unique) |
+| portal_soc_texas_open_data_d83872d208 | case | DISTRICT_COURT_DOCKET_NO,ORDER_DATE | one row per case (DOCKET+ORDER_DATE unique) |
+| portal_soc_texas_open_data_da657010b1 | place | LOC_ZIP,RESP_BEGIN_DATE | one row per place (ZIP+RESP_BEGIN_DATE unique) |
+| portal_soc_utah_open_data_p_103f7d641f | organization | RECIPIENT_DUNS,PERIOD_OF_PERFORMANCE_START,PERIOD_OF_PERFORMANCE_CURRENT,LAST_MODIFIED_DATE,AWARD_ID_FAIN,AWARD_ID_URI | one row per organization (DUNS+PERIOD_OF_PERFORMANCE_START+PERIOD_OF_PERFORMANCE_CURRENT+LAST_MODIFIED_DATE+AWARD_ID_FAIN+AWARD_ID_URI unique) |
 | portal_soc_utah_open_data_p_1614522f52 | (unresolved -- grain proven, entity unknown) | NPDES_ID | one row per record (spine_entity not determined -- no registry hint available) (NPDES_ID unique) |
 | portal_soc_utah_open_data_p_289c31329b | case | CASE_ID | one row per case (CASE_ID unique) |
 | portal_soc_utah_open_data_p_33421b5a2a | facility | TRI_FACILITY_ID,CAS_COMPOUND_ID,YEAR | one row per facility (TRI_FACILITY_ID+CAS_COMPOUND_ID+YEAR unique) |
@@ -786,15 +787,15 @@ HIGH 492 | MEDIUM 319 | AMBIGUOUS 968 | NO_TABLE 0 | NO_REGISTRY_ROW 0
 | portal_soc_utah_open_data_p_4309355f14 | facility | TRI_FACILITY_ID,CAS_COMPOUND_ID,YEAR | one row per facility (TRI_FACILITY_ID+CAS_COMPOUND_ID+YEAR unique) |
 | portal_soc_utah_open_data_p_4388c129f2 | facility | TRI_FACILITY_ID,CAS_COMPOUND_ID | one row per facility (TRI_FACILITY_ID+CAS_COMPOUND_ID unique) |
 | portal_soc_utah_open_data_p_4eba247771 | provider | PROVIDER_NPI,REPORTING_PERIOD,PROVIDER_POSTAL_CODE,MEASURE_ID | one row per provider (NPI+REPORTING_PERIOD+ZIP+MEASURE_ID unique) |
-| portal_soc_utah_open_data_p_55ef6ef0c6 | (unresolved -- grain proven, entity unknown) | NPI,HCPCS_CODE | one row per record (spine_entity not determined -- no registry hint available) (NPI+HCPCS_CODE unique) |
+| portal_soc_utah_open_data_p_55ef6ef0c6 | provider | NPI,HCPCS_CODE | one row per provider (NPI+HCPCS_CODE unique) |
 | portal_soc_utah_open_data_p_589cc47a29 | (unresolved -- grain proven, entity unknown) | NPDES_ID | one row per record (spine_entity not determined -- no registry hint available) (NPDES_ID unique) |
 | portal_soc_utah_open_data_p_5c3521189e | facility | TRI_FACILITY_ID,CAS_COMPOUND_ID | one row per facility (TRI_FACILITY_ID+CAS_COMPOUND_ID unique) |
 | portal_soc_utah_open_data_p_5e73751281 | facility | TRI_FACILITY_ID,CAS_COMPOUND_ID | one row per facility (TRI_FACILITY_ID+CAS_COMPOUND_ID unique) |
-| portal_soc_utah_open_data_p_5ef68422ff | (unresolved -- grain proven, entity unknown) | RECIPIENT_DUNS,PERIOD_OF_PERFORMANCE_START,PERIOD_OF_PERFORMANCE_CURRENT,PERIOD_OF_PERFORMANCE,AWARD_ID_PIID,PARENT_AWARD_AGENCY_ID,PARENT_AWARD_ID | one row per record (spine_entity not determined -- no registry hint available) (DUNS+PERIOD_OF_PERFORMANCE_START+PERIOD_OF_PERFORMANCE_CURRENT+PERIOD_OF_PERFORMANCE+AWARD_ID_PIID+PARENT_AWARD_AGENCY_ID+PARENT_AWARD_ID unique) |
+| portal_soc_utah_open_data_p_5ef68422ff | organization | RECIPIENT_DUNS,PERIOD_OF_PERFORMANCE_START,PERIOD_OF_PERFORMANCE_CURRENT,PERIOD_OF_PERFORMANCE,AWARD_ID_PIID,PARENT_AWARD_AGENCY_ID,PARENT_AWARD_ID | one row per organization (DUNS+PERIOD_OF_PERFORMANCE_START+PERIOD_OF_PERFORMANCE_CURRENT+PERIOD_OF_PERFORMANCE+AWARD_ID_PIID+PARENT_AWARD_AGENCY_ID+PARENT_AWARD_ID unique) |
 | portal_soc_utah_open_data_p_636fffdfa2 | facility | TRI_FACILITY_ID,CAS_COMPOUND_ID | one row per facility (TRI_FACILITY_ID+CAS_COMPOUND_ID unique) |
 | portal_soc_utah_open_data_p_66c519bccf | facility | TRI_FACILITY_ID,CAS_COMPOUND_ID | one row per facility (TRI_FACILITY_ID+CAS_COMPOUND_ID unique) |
 | portal_soc_utah_open_data_p_6f5fcc229f | facility | TRI_FACILITY_ID,FRS_ID,CAS_COMPOUND_ID | one row per facility (TRI_FACILITY_ID+FRS_ID+CAS_COMPOUND_ID unique) |
-| portal_soc_utah_open_data_p_7186edb84b | provider | PROVIDER_CCN,YEAR,FISCAL_YEAR_BEGIN_DATE | one row per provider (CCN+YEAR+FISCAL_YEAR_BEGIN_DATE unique) |
+| portal_soc_utah_open_data_p_7186edb84b | facility | PROVIDER_CCN,YEAR,FISCAL_YEAR_BEGIN_DATE | one row per facility (CCN+YEAR+FISCAL_YEAR_BEGIN_DATE unique) |
 | portal_soc_utah_open_data_p_7a3c73b2fd | facility | TRI_FACILITY_ID,CAS_COMPOUND_ID,YEAR | one row per facility (TRI_FACILITY_ID+CAS_COMPOUND_ID+YEAR unique) |
 | portal_soc_utah_open_data_p_7f45e582f7 | facility | TRI_FACILITY_ID,CAS_COMPOUND_ID | one row per facility (TRI_FACILITY_ID+CAS_COMPOUND_ID unique) |
 | portal_soc_utah_open_data_p_81a81b1650 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
@@ -805,25 +806,25 @@ HIGH 492 | MEDIUM 319 | AMBIGUOUS 968 | NO_TABLE 0 | NO_REGISTRY_ROW 0
 | portal_soc_utah_open_data_p_a45115b872 | facility | TRI_FACILITY_ID,CAS_COMPOUND_ID | one row per facility (TRI_FACILITY_ID+CAS_COMPOUND_ID unique) |
 | portal_soc_utah_open_data_p_a54aa90538 | facility | TRI_FACILITY_ID,CAS_COMPOUND_ID | one row per facility (TRI_FACILITY_ID+CAS_COMPOUND_ID unique) |
 | portal_soc_utah_open_data_p_a5715666da | facility | TRI_FACILITY_ID,CAS_COMPOUND_ID | one row per facility (TRI_FACILITY_ID+CAS_COMPOUND_ID unique) |
-| portal_soc_utah_open_data_p_a5ae4fd7a4 | provider | PROVIDER_CCN,FISCAL_YEAR_BEGIN_DATE | one row per provider (CCN+FISCAL_YEAR_BEGIN_DATE unique) |
-| portal_soc_utah_open_data_p_a9b7e273c8 | provider | PROVIDER_CCN,FISCAL_YEAR_BEGIN_DATE | one row per provider (CCN+FISCAL_YEAR_BEGIN_DATE unique) |
+| portal_soc_utah_open_data_p_a5ae4fd7a4 | facility | PROVIDER_CCN,FISCAL_YEAR_BEGIN_DATE | one row per facility (CCN+FISCAL_YEAR_BEGIN_DATE unique) |
+| portal_soc_utah_open_data_p_a9b7e273c8 | facility | PROVIDER_CCN,FISCAL_YEAR_BEGIN_DATE | one row per facility (CCN+FISCAL_YEAR_BEGIN_DATE unique) |
 | portal_soc_utah_open_data_p_b0f7881369 | facility | TRI_FACILITY_ID,CAS_COMPOUND_ID,YEAR | one row per facility (TRI_FACILITY_ID+CAS_COMPOUND_ID+YEAR unique) |
 | portal_soc_utah_open_data_p_b5e39c25f8 | facility | TRI_FACILITY_ID,CAS_COMPOUND_ID | one row per facility (TRI_FACILITY_ID+CAS_COMPOUND_ID unique) |
 | portal_soc_utah_open_data_p_cdbdd459c0 | facility | TRI_FACILITY_ID,CAS_COMPOUND_ID | one row per facility (TRI_FACILITY_ID+CAS_COMPOUND_ID unique) |
 | portal_soc_utah_open_data_p_d4aca49a9b | provider | PROVIDER_NPI,REPORTING_PERIOD,PROVIDER_POSTAL_CODE,MEASURE_ID | one row per provider (NPI+REPORTING_PERIOD+ZIP+MEASURE_ID unique) |
-| portal_soc_utah_open_data_p_d5f7ca2621 | (unresolved -- grain proven, entity unknown) | C_9_ZIP,C_1_YEAR,C_18_INDUSTRY_SECTOR_CODE,C_19_INDUSTRY_SECTOR,C_35_CAS_COMPOUND_ID,C_36_SRS_ID,C_3_FRS_ID | one row per record (spine_entity not determined -- no registry hint available) (ZIP+C_1_YEAR+C_18_INDUSTRY_SECTOR_CODE+C_19_INDUSTRY_SECTOR+C_35_CAS_COMPOUND_ID+C_36_SRS_ID+C_3_FRS_ID unique) |
-| portal_soc_utah_open_data_p_f1292b8d2f | (unresolved -- grain proven, entity unknown) | DUNS_NO,FISCAL_YEAR,EVALUATION_CLOSED_DATE | one row per record (spine_entity not determined -- no registry hint available) (DUNS+FISCAL_YEAR+EVALUATION_CLOSED_DATE unique) |
+| portal_soc_utah_open_data_p_d5f7ca2621 | place | C_9_ZIP,C_1_YEAR,C_18_INDUSTRY_SECTOR_CODE,C_19_INDUSTRY_SECTOR,C_35_CAS_COMPOUND_ID,C_36_SRS_ID,C_3_FRS_ID | one row per place (ZIP+C_1_YEAR+C_18_INDUSTRY_SECTOR_CODE+C_19_INDUSTRY_SECTOR+C_35_CAS_COMPOUND_ID+C_36_SRS_ID+C_3_FRS_ID unique) |
+| portal_soc_utah_open_data_p_f1292b8d2f | organization | DUNS_NO,FISCAL_YEAR,EVALUATION_CLOSED_DATE | one row per organization (DUNS+FISCAL_YEAR+EVALUATION_CLOSED_DATE unique) |
 | portal_soc_utah_open_data_p_f326bad0fc | facility | TRI_FACILITY_ID,CAS_COMPOUND_ID | one row per facility (TRI_FACILITY_ID+CAS_COMPOUND_ID unique) |
 | portal_soc_utah_open_data_p_f8cdd62630 | provider | PROVIDER_NPI,REPORTING_PERIOD,PROVIDER_POSTAL_CODE,MEASURE_ID | one row per provider (NPI+REPORTING_PERIOD+ZIP+MEASURE_ID unique) |
 | portal_soc_utah_open_data_p_fe79f02e34 | facility | TRI_FACILITY_ID,CAS_COMPOUND_ID,YEAR | one row per facility (TRI_FACILITY_ID+CAS_COMPOUND_ID+YEAR unique) |
-| portal_soc_washington_state_1a95fb1665 | (unresolved -- grain proven, entity unknown) | UBI_EIN,AUDIT_CLOSED_DATE,RECIPIENT_TYPE,AUDIT_TYPE | one row per record (spine_entity not determined -- no registry hint available) (EIN+AUDIT_CLOSED_DATE+NAME+AUDIT_TYPE unique) |
+| portal_soc_washington_state_1a95fb1665 | organization | UBI_EIN,AUDIT_CLOSED_DATE,RECIPIENT_TYPE,AUDIT_TYPE | one row per organization (EIN+AUDIT_CLOSED_DATE+NAME+AUDIT_TYPE unique) |
 | portal_soc_washington_state_48eeef5dfc | (unresolved -- grain proven, entity unknown) | BUSINESS_ID,ID | one row per record (spine_entity not determined -- no registry hint available) (BUSINESS_ID+ID unique) |
-| st_cannabis_policy_bundles | (unresolved -- grain proven, entity unknown) | FIPS,YEAR | one row per record (spine_entity not determined -- no registry hint available) (FIPS+YEAR unique) |
-| xc_owid_refugees | (unresolved -- grain proven, entity unknown) | REFUGEES_BY_COUNTRY_OF_ORIGIN,YEAR,CODE | one row per record (spine_entity not determined -- no registry hint available) (COUNTRY+YEAR+CODE unique) |
-| xc_vera_incarceration_trends | (unresolved -- grain proven, entity unknown) | STATE_FIPS,YEAR,STATE_CODE,COUNTY_CODE | one row per record (spine_entity not determined -- no registry hint available) (FIPS+YEAR+STATE_CODE+COUNTY_CODE unique) |
+| st_cannabis_policy_bundles | place | FIPS,YEAR | one row per place (FIPS+YEAR unique) |
+| xc_owid_refugees | place | REFUGEES_BY_COUNTRY_OF_ORIGIN,YEAR,CODE | one row per place (COUNTRY+YEAR+CODE unique) |
+| xc_vera_incarceration_trends | place | STATE_FIPS,YEAR,STATE_CODE,COUNTY_CODE | one row per place (FIPS+YEAR+STATE_CODE+COUNTY_CODE unique) |
 | xc_wapo_fatal_force | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 
-## AMBIGUOUS (968) -- needs a human call, never auto-written
+## AMBIGUOUS (971) -- needs a human call, never auto-written
 
 | source_id | reason | detail |
 |---|---|---|
@@ -858,10 +859,10 @@ HIGH 492 | MEDIUM 319 | AMBIGUOUS 968 | NO_TABLE 0 | NO_REGISTRY_ROW 0
 | fed_fara_bulk | not-unique-after-dimension-search | base=ZIP key_ratio=0.0075 dims_tried=[REGISTRATION_DATE, TERMINATION_DATE, DATE_STAMPED] ratios_at_each_level=[0.0075, 0.0314, 0.0535, 0.1164] |
 | fed_fbi_nics_checks | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_fcc_licensing | not-unique-after-dimension-search | base=EIN key_ratio=0.0 dims_tried=[GRANT_DATE, EXPIRED_DATE, CANCELLATION_DATE, EBF_TRANSACTION_ID] ratios_at_each_level=[0.0, 0.0, 0.0059, 0.176, 0.2863, 0.2863] |
-| fed_fda_drug_enforcement | not-unique-after-dimension-search | base=POSTAL_CODE key_ratio=0.1662 dims_tried=[RECALL_INITIATION_DATE, CENTER_CLASSIFICATION_DATE, TERMINATION_DATE, EVENT_ID] ratios_at_each_level=[0.1662, 0.375, 0.372, 0.3746, 0.3748, 0.375] |
+| fed_fda_drug_enforcement | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_fdic_bank_data | not-unique-after-dimension-search | base=FIPS key_ratio=0.0001 dims_tried=[(none found)] ratios_at_each_level=[0.0001] |
 | fed_fdic_enforcement | no-key-column | ENTITY_TYPES hint: (none) |
-| fed_fec_independent_expenditures | not-unique-after-dimension-search | base=CAND_ID key_ratio=0.0131 dims_tried=[SPE_ID, TRAN_ID, EXP_DATE] ratios_at_each_level=[0.0131, 0.0642, 0.8297, 0.8602] |
+| fed_fec_independent_expenditures | not-unique-after-dimension-search | base=cand_id key_ratio=0.0078 dims_tried=[spe_id, tran_id, exp_date] ratios_at_each_level=[0.0078, 0.0567, 0.8231, 0.8631] |
 | fed_federal_register_documents | not-unique-after-dimension-search | base=DOCKET_IDS key_ratio=0.5334 dims_tried=[PUBLICATION_DATE, TYPE, SUBTYPE, REGULATION_ID_NUMBERS] ratios_at_each_level=[0.5334, 0.042, 0.6677, 0.6828, 0.685, 0.6909] |
 | fed_ffiec_call_reports | not-unique-after-dimension-search | base=RSSD_ID key_ratio=0.0033 dims_tried=[REPORTING_PERIOD_END_DATE, MDRM_CONCEPT_CODE] ratios_at_each_level=[0.0033, 0.0033, 0.0033] |
 | fed_fhfa_hpi | not-unique-after-dimension-search | base=PLACE_ID key_ratio=0.0026 dims_tried=[YR, PERIOD, HPI_TYPE] ratios_at_each_level=[0.0026, 0.1159, 0.4677, 0.5107] |
@@ -871,10 +872,10 @@ HIGH 492 | MEDIUM 319 | AMBIGUOUS 968 | NO_TABLE 0 | NO_REGISTRY_ROW 0
 | fed_govinfo_bill_cosponsors | not-unique-after-dimension-search | base=COSPONSOR_BIOGUIDE key_ratio=0.0017 dims_tried=[SPONSORSHIP_DATE, SPONSORSHIP_WITHDRAWN_DATE, BILL_TYPE] ratios_at_each_level=[0.0017, 0.464, 0.4642, 0.577] |
 | fed_govinfo_billstatus | not-unique-after-dimension-search | base=SPONSOR_BIOGUIDE key_ratio=0.0173 dims_tried=[INTRODUCED_DATE, LATEST_ACTION_DATE, BILL_TYPE] ratios_at_each_level=[0.0173, 0.8089, 0.8543, 0.8732] |
 | fed_hhs_oig_leie | not-unique-after-dimension-search | base=NPI key_ratio=0.1019 dims_tried=[(none found)] ratios_at_each_level=[0.1019] |
+| fed_hhs_taggs | not-unique-after-dimension-search | base=RECIPIENT_EIN key_ratio=0.0222 dims_tried=[AWARD_DATE, FISCAL_YEAR, RECIPIENT_CLASS] ratios_at_each_level=[0.0222, 0.0222, 0.0222, 0.0222] |
 | fed_hrsa_shortage_areas | not-unique-after-dimension-search | base=STATE_FIPS_CODE key_ratio=0.0004 dims_tried=[HPSA_DESIGNATION_DATE, HPSA_DESIGNATION_LAST_UPDATE_DATE, WITHDRAWN_DATE, HPSA_ID] ratios_at_each_level=[0.0004, 0.2556, 0.0876, 0.1229, 0.123, 0.2559] |
 | fed_hud_data | not-unique-after-dimension-search | base=EIN key_ratio=0.013 dims_tried=[YEAR] ratios_at_each_level=[0.013, 0.026] |
 | fed_ice_statistics | not-unique-after-dimension-search | base=COUNTRY_OF_CITIZENSHIP key_ratio=0.8959 dims_tried=[FISCAL_YEAR, FISCAL_QUARTER, SNAPSHOT_DATE] ratios_at_each_level=[0.8959, 0.8959, 0.8959, 0.8959] |
-| fed_irs_eo_bmf | not-unique-after-dimension-search | base=EIN key_ratio=0.5 dims_tried=[TAX_PERIOD, C_GROUP, CLASSIFICATION] ratios_at_each_level=[0.5, 0.5, 0.5, 0.5] |
 | fed_irs_soi | not-unique-after-dimension-search | base=STATE_FIPS key_ratio=0.0003 dims_tried=[TAX_YEAR, ZIP_CODE] ratios_at_each_level=[0.0003, 0.0003, 0.1667] |
 | fed_mapping_inequality | not-unique-after-dimension-search | base=FIPS key_ratio=0.0001 dims_tried=[YEAR_MAPPED, HOLC_ID] ratios_at_each_level=[0.0001, 0.0001, 0.0001, 0.0001] |
 | fed_medsl_house_returns | not-unique-after-dimension-search | base=STATE_FIPS key_ratio=0.0017 dims_tried=[YEAR] ratios_at_each_level=[0.0017, 0.0371] |
@@ -884,18 +885,21 @@ HIGH 492 | MEDIUM 319 | AMBIGUOUS 968 | NO_TABLE 0 | NO_REGISTRY_ROW 0
 | fed_nara_wra_aad | not-unique-after-dimension-search | base=FIPS key_ratio=0.0278 dims_tried=[DATE, CITIZENSHIP_STATUS, SERIES_ID, RECORD_ID] ratios_at_each_level=[0.0278, 0.0278, 0.0278, 0.0278, 0.0278, 0.0278] |
 | fed_nasa_open_data | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_ncua_call_reports | not-unique-after-dimension-search | base=EIN key_ratio=0.0 dims_tried=[CYCLE_DATE, ACCT_CODE, ZIP_CODE] ratios_at_each_level=[0.0, 0.0, 0.0, 0.045] |
+| fed_nhtsa_complaints | no-key-column | ENTITY_TYPES hint: (none) |
+| fed_nhtsa_recalls | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_noaa_ais | not-unique-after-dimension-search | base=MMSI key_ratio=0.0004 dims_tried=[DATE, STATUS, TRANSCEIVER_CLASS] ratios_at_each_level=[0.0004, 0.0021, 0.0023, 0.0023] |
 | fed_nsf_awards | not-unique-after-dimension-search | base=EIN key_ratio=0.008 dims_tried=[AWARD_DATE, START_DATE, END_DATE, AWARD_ID] ratios_at_each_level=[0.008, 0.92, 0.304, 0.44, 0.568, 0.92] |
 | fed_ofac_sdn | not-unique-after-dimension-search | base=IMO key_ratio=0.1063 dims_tried=[SDN_TYPE, PROGRAM, VESS_TYPE] ratios_at_each_level=[0.1063, 0.1065, 0.1247, 0.1247] |
 | fed_pbgc_data | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_revolvingdoor_project | no-key-column | ENTITY_TYPES hint: (none) |
-| fed_sam_exclusions | not-unique-after-dimension-search | base=NPI+UEI key_ratio=0.182 dims_tried=[ACTIVATION_DATE, TERMINATION_DATE, CLASSIFICATION] ratios_at_each_level=[0.182, 0.182, 0.182, 0.183] |
+| fed_sam_exclusions | not-unique-after-dimension-search | base=NPI+UEI key_ratio=0.3268 dims_tried=[ACTIVATION_DATE, TERMINATION_DATE, CLASSIFICATION] ratios_at_each_level=[0.3268, 0.3268, 0.3268, 0.327] |
 | fed_sba_loans | not-unique-after-dimension-search | base=CDC_ZIP key_ratio=0.0001 dims_tried=[PROGRAM] ratios_at_each_level=[0.0001, 0.0001] |
 | fed_sba_ppp | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_scdb | not-unique-after-dimension-search | base=DOCKET key_ratio=0.0826 dims_tried=[(none found)] ratios_at_each_level=[0.0826] |
 | fed_sec_edgar | not-unique-after-dimension-search | base=CIK key_ratio=0.1 dims_tried=[REPORTDATE] ratios_at_each_level=[0.1, 0.46] |
 | fed_sec_edgar_company_tickers | not-unique-after-dimension-search | base=CIK_STR key_ratio=0.7699 dims_tried=[(none found)] ratios_at_each_level=[0.7699] |
 | fed_sec_edgar_financials | not-unique-after-dimension-search | base=CIK key_ratio=0.1458 dims_tried=[PERIOD, FY] ratios_at_each_level=[0.1458, 0.9275, 0.9537] |
+| fed_sec_edgar_insiders | not-unique-after-dimension-search | base=CIK key_ratio=0.0766 dims_tried=[FILING_DATE, PERIOD_OF_REPORT, DATE_OF_ORIG_SUB] ratios_at_each_level=[0.0766, 0.3117, 0.3444, 0.346] |
 | fed_slavevoyages_intraamerican | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_slavevoyages_transatlantic | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_treasury_avg_interest_rates | no-key-column | ENTITY_TYPES hint: (none) |
@@ -1799,5 +1803,23 @@ HIGH 492 | MEDIUM 319 | AMBIGUOUS 968 | NO_TABLE 0 | NO_REGISTRY_ROW 0
 ## No physical LANDING table (0)
 
 
-## No SOURCE_REGISTRY row (0)
+## No SOURCE_REGISTRY row (18)
 
+- fed_cms_open_payments_gnrl (landed)
+- fed_cms_partd_prescriber_drug (landed)
+- fed_fec_cand_cmte_linkage (landed)
+- fed_fec_candidates (landed)
+- fed_fec_committees (landed)
+- fed_fec_pac_summary (landed)
+- fed_irs_990_efile_index (landed)
+- fed_irs_eo_pr (landed)
+- fed_msha_accidents (landed)
+- fed_msha_mines (landed)
+- fed_msha_violations (landed)
+- fed_nhtsa_investigations (landed)
+- fed_sec_insider_deriv_trans (landed)
+- fed_sec_insider_nonderiv_trans (landed)
+- fed_sec_insider_reportingowner (landed)
+- fed_sec_insider_submission (landed)
+- fed_usaspending_assistance_full (landed)
+- fed_usaspending_contracts_full (landed)

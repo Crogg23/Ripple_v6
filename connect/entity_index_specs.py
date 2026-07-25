@@ -151,12 +151,15 @@ DISPLAY_SPECS: dict[str, dict] = {
     },
 
     # LEI organization -- also a brand-new key axis. GLEIF is the LEI issuer's own
-    # global registry (wins names; only composite address strings available, no
-    # split city/state/zip). HMDA carries LEI but no lender-name column at all
-    # (loan-level records only identify the lender by LEI) -- it contributes
-    # membership only, never a name.
+    # global registry (wins names; address fields are dot-notation XML paths).
+    # HMDA carries LEI but no lender-name column at all (loan-level records only
+    # identify the lender by LEI) -- it contributes membership only, never a name.
     "INTL_GLEIF": {                   # LEI organization (the authoritative global LEI registry)
-        "key": "LEI", "key_col": "LEI", "org": "ENTITY_LEGAL_NAME", "authority": 1,
+        "key": "LEI", "key_col": "LEI", "org": "Entity.LegalName",
+        "city": "Entity.LegalAddress.City",
+        "state": "Entity.LegalAddress.Region",
+        "zip": "Entity.LegalAddress.PostalCode",
+        "authority": 1,
     },
     "FED_CFPB_HMDA": {                # LEI organization (mortgage lending; no lender-name column)
         "key": "LEI", "key_col": "LEI", "state": "STATE_CODE", "authority": 6,

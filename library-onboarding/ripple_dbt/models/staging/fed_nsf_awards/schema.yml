@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_NSF_AWARDS
+        description: >
+          Raw landing table for NSF Award Search API. Grain not yet determined.
+
+models:
+  - name: stg_fed_nsf_awards__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_DOCSOUTH
+        description: >
+          Raw landing table for Documenting the American South (DocSouth). Grain not yet determined.
+
+models:
+  - name: stg_fed_docsouth__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_USGS_WATER
+        description: >
+          Raw landing table for USGS Water Data APIs. Grain not yet determined.
+
+models:
+  - name: stg_fed_usgs_water__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

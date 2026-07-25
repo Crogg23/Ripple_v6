@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_ICE_STATISTICS
+        description: >
+          Raw landing table for ICE Enforcement and Removal Operations Statistics. Grain not yet determined.
+
+models:
+  - name: stg_fed_ice_statistics__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

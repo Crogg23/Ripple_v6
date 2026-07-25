@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CDC_DATA_PORTAL
+        description: >
+          Raw landing table for CDC Open Data Portal (data.cdc.gov). Grain not yet determined.
+
+models:
+  - name: stg_fed_cdc_data_portal__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_USCOURTS_STATS
+        description: >
+          Raw landing table for U.S. Courts Caseload Statistics Data Tables. Grain not yet determined.
+
+models:
+  - name: stg_fed_uscourts_stats__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

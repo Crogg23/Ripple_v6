@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CMS_NADAC
+        description: >
+          Raw landing table for NADAC — National Average Drug Acquisition Cost. Grain not yet determined.
+
+models:
+  - name: stg_fed_cms_nadac__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."

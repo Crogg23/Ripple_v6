@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: INTL_NTI_CNS_DPRK_MISSILE_TESTS
+        description: >
+          Raw landing table for CNS North Korea Missile Test Database (Nuclear Threat Initiative / James Martin Center for Nonproliferation Studies). Grain not yet determined.
+
+models:
+  - name: stg_intl_nti_cns_dprk_missile_tests__records
+    description: "Minimal passthrough staging (grain undetermined). Needs manual review."
