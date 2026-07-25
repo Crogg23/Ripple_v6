@@ -110,6 +110,11 @@ def confidence(key, tier, a_distinct, b_distinct, matched):
     if matched < floor:
         return 0.0, False
     cover = matched / (min(a_distinct, b_distinct) or 1)    # coverage of the smaller set
+    # STEEL/STRONG keys are globally unique identifiers (EIN, NPI, IMO, CIK, etc.)
+    # Any overlap is real — skip the collision-chance gate entirely.
+    if tier in ("STEEL", "STRONG"):
+        score = 0.4 + 0.6 * min(cover, 1.0)
+        return round(min(score, 1.0), 3), True
     dom = KEY_DOMAIN.get(key)
     if dom:
         expected = (a_distinct * b_distinct) / dom          # ~random collisions over the value space

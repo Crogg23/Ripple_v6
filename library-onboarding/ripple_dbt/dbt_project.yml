@@ -42,11 +42,11 @@ models:
           +enabled: true  # re-enabled 2026-07-24: source re-ingested (819K rows)
       economics:
         economics__fed_hhs_taggs:
-          +enabled: false
+          +enabled: false  # stub: 45 rows of scraped HTML nav text, not real grants
         economics__intl_ch_zefix:
-          +enabled: false
+          +enabled: false  # stub: 18 rows, scrape captured page chrome not company data
         economics__intl_gr_gemi:
-          +enabled: false
+          +enabled: false  # stub: 40 rows, scrape captured page chrome not registry data
       government_records:
         government_records__fed_nara_aad:
           +enabled: true  # re-enabled 2026-07-24: source re-ingested (554 rows)
@@ -55,7 +55,7 @@ models:
           +enabled: true  # re-enabled 2026-07-24: source re-ingested (11.5K rows)
       justice:
         justice__fed_doj_crt_cases:
-          +enabled: false
+          +enabled: false  # stub: 1 row, failed scrape
         justice__fed_fjc_idb:
           +enabled: true  # re-enabled 2026-07-24: source re-ingested (4.1M rows)
       legal_enforcement:
@@ -63,4 +63,4 @@ models:
           +enabled: true  # re-enabled 2026-07-24: source re-ingested (882 rows)
       regulation:
         regulation__fed_fdic_enforcement:
-          +enabled: false
+          +enabled: false  # stub: 14 rows, failed scrape

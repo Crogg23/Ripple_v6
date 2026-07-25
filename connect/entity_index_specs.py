@@ -46,10 +46,15 @@ DISPLAY_SPECS: dict[str, dict] = {
         "zip": "PROVIDER_BUSINESS_MAILING_ADDRESS_POSTAL_CODE",
         "authority": 1,
     },
-    # FED_CMS_FACILITY_AFFILIATION removed 2026-07-20: the landing table was
-    # dropped (verified live — zero columns in INFORMATION_SCHEMA). Its NPIs
-    # stay on the spine via NPPES/LEIE; the banned_but_operating detector's
-    # frozen evidence is unaffected (documented caveat in lead_queue.sql).
+    # FED_CMS_FACILITY_AFFILIATION re-added 2026-07-25: table restored with 2.2M rows
+    # (previously removed 2026-07-20 when it appeared empty; re-ingested since then).
+    "FED_CMS_FACILITY_AFFILIATION": {
+        "key": "NPI", "key_col": "NPI",
+        "person": ["PROVIDER_LAST_NAME", "PROVIDER_FIRST_NAME"],
+        "city": None, "state": None, "zip": None,
+        "extra": {"ccn": "CCN", "facility_type": "FACILITY_TYPE"},
+        "authority": 3,
+    },
     "FED_HHS_OIG_LEIE": {
         "key": "NPI", "key_col": "NPI",
         "person": ["LASTNAME", "FIRSTNAME"], "org": "BUSNAME",

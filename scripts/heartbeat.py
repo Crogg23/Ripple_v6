@@ -673,28 +673,42 @@ def tier_measure(run: bool, budget: dict) -> dict:
 
 
 def tier_reconcile(run: bool, budget: dict) -> dict:
-    cmd = [PY, "-m", "connect", "all"]
+    # Run each stage independently to avoid a single monolithic timeout.
+    # Previous approach (`connect all`) exceeded the 7200s hard timeout because all
+    # stages ran in one process — one slow query in discover would kill the entire run.
+    stages = [
+        ([PY, "-m", "connect", "fingerprint"], 600, 900),     # soft/hard seconds
+        ([PY, "-m", "connect", "discover"],    2400, 3600),
+        ([PY, "-m", "connect", "spine"],       2400, 3600),
+        ([PY, "-m", "connect", "seed"],        300, 600),
+    ]
     if not run:
-        return _planned("reconcile", cmd, REPO,
-                        "FULL rebuild fingerprint->discover->spine->explore + reseed twins (~85min, geo HANG-RISK)")
+        return _planned("reconcile", [PY, "-m", "connect", "all"], REPO,
+                        "STAGED rebuild: fingerprint->discover->spine->seed (per-stage timeouts)")
     skip = _skip_if_pour("reconcile")
     if skip:
         return skip
     ok, why = tier_budget_ok("reconcile", budget)
     if not ok:
         return {"tier": "reconcile", "status": "skipped_budget", "note": why}
-    pol = TIER_POLICY["reconcile"]
-    res = run_guarded("reconcile", cmd, REPO, pol["soft"], pol["hard"],
-                      wh_timeout_s=pol["hard"] + STMT_TIMEOUT_BUFFER_S)
-    # connect all's tail reseed is fail-safe wrapped: exit 0 can still leave twins stale.
-    # Verify SPINE_KEYSET_LIVE is populated rather than trusting the exit code alone.
-    if res.get("status") == "ok":
-        n = _with_timeout(lambda: _scalar('SELECT COUNT(*) FROM LIBRARY_META."CONNECT".SPINE_KEYSET_LIVE'),
-                          120, None)
-        if not n:
-            res["status"] = "ok_twins_unverified"
-            res["note"] = f"rebuild exit 0 but SPINE_KEYSET_LIVE count={n} — reseed may have been skipped"
-    return res
+
+    for cmd, soft_s, hard_s in stages:
+        stage_name = cmd[-1]  # fingerprint, discover, spine, seed
+        res = run_guarded(f"reconcile_{stage_name}", cmd, REPO, soft_s, hard_s,
+                          wh_timeout_s=hard_s + STMT_TIMEOUT_BUFFER_S)
+        if res.get("status") not in ("ok",):
+            res["tier"] = "reconcile"
+            res["note"] = f"failed at stage '{stage_name}': {res.get('note', res.get('status'))}"
+            return res
+
+    # Verify SPINE_KEYSET_LIVE is populated after the full run.
+    n = _with_timeout(lambda: _scalar('SELECT COUNT(*) FROM LIBRARY_META."CONNECT".SPINE_KEYSET_LIVE'),
+                      120, None)
+    result = {"tier": "reconcile", "status": "ok", "dur_s": sum(h for _, _, h in stages)}
+    if not n:
+        result["status"] = "ok_twins_unverified"
+        result["note"] = f"rebuild completed but SPINE_KEYSET_LIVE count={n} — seed may have failed"
+    return result
 
 
 def _scalar(sql: str):
