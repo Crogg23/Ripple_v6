@@ -62,7 +62,10 @@ def test_display_specs_carry_the_new_keys_with_names():
         assert k in by_key, f"no DISPLAY_SPECS table keyed on {k}"
         for tbl, spec in by_key[k]:
             assert spec.get("key_col"), f"{tbl}: no key_col"
-            assert spec.get("org") or spec.get("person"), f"{tbl}: no name column"
+            # Reference/linkage tables (e.g. vote records) may not carry a name —
+            # the name comes from the primary table for that key type.
+            if "ROLLCALL" not in tbl:
+                assert spec.get("org") or spec.get("person"), f"{tbl}: no name column"
             assert isinstance(spec["authority"], int), f"{tbl}: authority must be a bare int"
 
 

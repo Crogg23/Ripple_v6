@@ -28,7 +28,7 @@ from connect import safety  # noqa: E402
 # ── SQL hygiene ─────────────────────────────────────────────────────────────
 
 def test_app_py_contains_no_sql():
-    text = (REPO / "reading_room/app.py").read_text()
+    text = (REPO / "reading_room/app.py").read_text(encoding="utf-8")
     for token in ("SELECT ", "INSERT ", "UPDATE ", "DELETE ", "MERGE "):
         assert token not in text, f"SQL ({token.strip()}) leaked into app.py"
 
