@@ -100,7 +100,17 @@ def load_quarter(conn, quarter: str, existing: dict[str, set]) -> dict[str, int]
 
     url = url_for(quarter)
     print(f"[{quarter}] downloading {url}")
-    resp = requests.get(url, timeout=1800, headers=USER_AGENT)
+    resp = None
+    for attempt in range(5):
+        try:
+            resp = requests.get(url, timeout=1800, headers=USER_AGENT)
+            break
+        except requests.exceptions.RequestException as e:
+            print(f"[{quarter}] download attempt {attempt+1} failed: {str(e)[:100]}")
+            import time
+            time.sleep(30 * (attempt + 1))
+    if resp is None:
+        raise RuntimeError(f"download failed after retries: {url}")
     resp.raise_for_status()
     sha = hashlib.sha256(resp.content).hexdigest()
     run_id = str(uuid.uuid4())
