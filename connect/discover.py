@@ -35,6 +35,7 @@ MIN_POP_PCT = 1.0          # a key must be at least this populated to count as l
 NAME_MAX_ROWS = 2_000_000  # skip name/address joins when EITHER table exceeds this
 SPATIAL_POINT_MAX = 100_000  # skip point-in-polygon when the point table exceeds this
 SPATIAL_MAX_PAIRS = 1500     # backstop: cap spatial pair-queries so they can't explode at scale
+VALUE_FANOUT_CAP = 50        # a single value shared across > this many tables is a "stopword" -- skip it
 PROBABILISTIC = {"NAME", "ADDRESS"}
 
 # --- confidence: refuse to draw a fluke. A connection isn't real just because one
@@ -325,9 +326,10 @@ def _build_keysets(conn, fp, name_max_rows) -> tuple[dict, int]:
             if not best:
                 continue
             seen.add(key)
-            if key in PROBABILISTIC and info["rows"] > name_max_rows:
-                skipped += 1                      # fuzzy name-matching huge tables: skip + log
-                print(f"  [skip name] {tbl} on {key} ({info['rows']:,} rows > {name_max_rows:,})")
+            if key in PROBABILISTIC:
+                # D-name-gate: bare NAME/ADDRESS alone is never trustworthy at scale.
+                # Only the corroborated composite (NAME@ZIP, NAME@FIPS) emits edges.
+                skipped += 1
                 continue
             members[(tbl, key)] = (best["column"], _tier(fp, key))
             norm = normalize_sql(key, quote_ident(best["column"]))
@@ -363,12 +365,19 @@ def _value_edges_bulk(conn, fp, name_max_rows) -> tuple[list, int, int, int]:
               for r in db.dicts(conn, f"SELECT table_name, key, COUNT(*) nd FROM {KEYSET_FQN} GROUP BY 1, 2")}
 
     # ONE self-join: all co-occurring (table_a, table_b) pairs per key + overlap + a sample.
+    # D-fanout: exclude "stopword" values that appear in too many tables for a given key.
+    # Without this, a hot ZIP shared across 1,500 portal tables generates ~1M pairs.
     pairs = db.dicts(conn, f"""
+        WITH capped AS (
+            SELECT key, val, table_name
+            FROM {KEYSET_FQN}
+            QUALIFY COUNT(DISTINCT table_name) OVER (PARTITION BY key, val) <= {VALUE_FANOUT_CAP}
+        )
         SELECT a.key AS jkey, a.table_name AS ta, b.table_name AS tb,
                COUNT(*) AS matched,
                ARRAY_SLICE(ARRAY_AGG(a.val), 0, 4) AS samp
-        FROM {KEYSET_FQN} a
-        JOIN {KEYSET_FQN} b ON a.key = b.key AND a.val = b.val AND a.table_name < b.table_name
+        FROM capped a
+        JOIN capped b ON a.key = b.key AND a.val = b.val AND a.table_name < b.table_name
         GROUP BY 1, 2, 3
         HAVING COUNT(*) >= {MIN_MATCH}
     """)

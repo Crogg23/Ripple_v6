@@ -31,6 +31,15 @@ MAX_KEY_COLS_PER_TABLE = 16  # guard against a runaway aggregate query
 
 
 def landed_tables(conn) -> list[str]:
+    """Return non-portal tables + portal tables that carry a STEEL/STRONG entity key.
+
+    Portal tables are only included if their columns match at least one hard entity
+    key (EIN/NPI/UEI/CIK/etc.) -- the connectable-first gate. This keeps NAME/ZIP-only
+    city scrapes out while activating portals that can actually link to the spine.
+    """
+    from .keys import ENTITY_KEYS, detect_key
+
+    # Core tables (non-portal) -- always included
     sql = f"""
         SELECT TABLE_NAME
         FROM {db.RAW_DB}.INFORMATION_SCHEMA.TABLES
@@ -38,7 +47,35 @@ def landed_tables(conn) -> list[str]:
               AND TABLE_NAME NOT LIKE 'PORTAL_%%'
         ORDER BY TABLE_NAME
     """
-    return [r[0] for r in db.rows(conn, sql) if r[0] not in SKIP_TABLES]
+    core = [r[0] for r in db.rows(conn, sql) if r[0] not in SKIP_TABLES]
+
+    # Portal tables -- only those with at least one STEEL/STRONG entity key column
+    portal_sql = f"""
+        SELECT t.TABLE_NAME, c.COLUMN_NAME
+        FROM {db.RAW_DB}.INFORMATION_SCHEMA.TABLES t
+        JOIN {db.RAW_DB}.INFORMATION_SCHEMA.COLUMNS c
+            ON c.TABLE_SCHEMA = t.TABLE_SCHEMA AND c.TABLE_NAME = t.TABLE_NAME
+        WHERE t.TABLE_SCHEMA = '{db.RAW_SCHEMA}' AND t.TABLE_TYPE = 'BASE TABLE'
+              AND t.TABLE_NAME LIKE 'PORTAL_%%'
+        ORDER BY t.TABLE_NAME
+    """
+    portal_rows = db.rows(conn, portal_sql)
+    from collections import defaultdict
+    table_cols = defaultdict(list)
+    for tbl, col in portal_rows:
+        if tbl not in SKIP_TABLES:
+            table_cols[tbl].append(col)
+
+    entity_key_set = set(ENTITY_KEYS)
+    connectable_portals = []
+    for tbl, cols in table_cols.items():
+        for col in cols:
+            key, _tier = detect_key(col)
+            if key and key in entity_key_set:
+                connectable_portals.append(tbl)
+                break
+
+    return core + sorted(set(connectable_portals))
 
 
 def table_columns(conn, table: str) -> list[str]:
