@@ -32,7 +32,7 @@ import snow  # noqa: E402
 
 TABLE = "FED_FAC_SINGLE_AUDIT"
 API_BASE = "https://api.fac.gov/general"
-API_KEY = "DEMO_KEY"
+API_KEY = "wLMnDanzGi60LgkWgbHxf0aC1FQGlECvuki9VBRY"
 PAGE_SIZE = 10000
 RETRY_STATUS = {429, 500, 502, 503, 504}
 MAX_RETRIES = 3
@@ -102,17 +102,20 @@ def load(conn, df: pd.DataFrame) -> int:
     staging = f"{TABLE}__STAGING"
     cur = conn.cursor()
 
-    # Create staging table
-    cur.execute(f"CREATE OR REPLACE TABLE LIBRARY_RAW.LANDING.{staging} "
-                f"({', '.join(f'{c} STRING' for c in df.columns)}, "
-                f"_INGESTED_AT TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(), "
-                f"_SOURCE_RUN_ID STRING DEFAULT UUID_STRING())")
-
-    # Write data
+    # Write data to staging (auto-creates the table from DataFrame dtypes)
+    cur.execute(f"DROP TABLE IF EXISTS LIBRARY_RAW.LANDING.{staging}")
     write_pandas(conn, df, staging, database="LIBRARY_RAW", schema="LANDING",
-                 auto_create_table=False, overwrite=False)
+                 auto_create_table=True, overwrite=True)
 
-    # Density gate: if empty, don't swap
+    # Add provenance columns
+    cur.execute(f"ALTER TABLE LIBRARY_RAW.LANDING.{staging} ADD COLUMN IF NOT EXISTS "
+                f"_INGESTED_AT TIMESTAMP_NTZ")
+    cur.execute(f"ALTER TABLE LIBRARY_RAW.LANDING.{staging} ADD COLUMN IF NOT EXISTS "
+                f"_SOURCE_RUN_ID STRING")
+    cur.execute(f"UPDATE LIBRARY_RAW.LANDING.{staging} SET "
+                f"_INGESTED_AT = CURRENT_TIMESTAMP(), _SOURCE_RUN_ID = UUID_STRING()")
+
+    # Density gate
     cur.execute(f"SELECT COUNT(*) FROM LIBRARY_RAW.LANDING.{staging}")
     n = cur.fetchone()[0]
     if n == 0:
@@ -121,8 +124,10 @@ def load(conn, df: pd.DataFrame) -> int:
         return 0
 
     # Atomic swap
-    cur.execute(f"CREATE TABLE IF NOT EXISTS LIBRARY_RAW.LANDING.{TABLE} LIKE LIBRARY_RAW.LANDING.{staging}")
-    cur.execute(f"ALTER TABLE LIBRARY_RAW.LANDING.{staging} SWAP WITH LIBRARY_RAW.LANDING.{TABLE}")
+    cur.execute(f"CREATE TABLE IF NOT EXISTS LIBRARY_RAW.LANDING.{TABLE} "
+                f"LIKE LIBRARY_RAW.LANDING.{staging}")
+    cur.execute(f"ALTER TABLE LIBRARY_RAW.LANDING.{staging} "
+                f"SWAP WITH LIBRARY_RAW.LANDING.{TABLE}")
     cur.execute(f"DROP TABLE IF EXISTS LIBRARY_RAW.LANDING.{staging}")
     print(f"  loaded {n:,} rows -> LIBRARY_RAW.LANDING.{TABLE}")
     return n
@@ -130,14 +135,14 @@ def load(conn, df: pd.DataFrame) -> int:
 
 def register(conn, n_rows: int):
     """Register in SOURCE_REGISTRY."""
-    from connect import db
-    db.rows(conn, f"""
+    cur = conn.cursor()
+    cur.execute(f"""
         MERGE INTO LIBRARY_META.REGISTRY.SOURCE_REGISTRY t
-        USING (SELECT '{TABLE}' AS SOURCE_ID) s ON t.SOURCE_ID = s.SOURCE_ID
+        USING (SELECT 'FED_FAC_SINGLE_AUDIT' AS SOURCE_ID) s ON t.SOURCE_ID = s.SOURCE_ID
         WHEN NOT MATCHED THEN INSERT (SOURCE_ID, NAME, PUBLISHER, DESCRIPTION,
             JURISDICTION, CATEGORY, JOIN_KEYS, PRIORITY_TIER, ACCESS_METHOD, URL,
             UNIT_OF_OBSERVATION, UPDATE_CADENCE, DOMAIN_PRIMARY)
-        VALUES ('{TABLE}',
+        VALUES ('FED_FAC_SINGLE_AUDIT',
             'Federal Audit Clearinghouse — Single Audits',
             'GSA / Federal Audit Clearinghouse',
             'Every single audit submitted to the FAC since 2016. One row per audit engagement. '
