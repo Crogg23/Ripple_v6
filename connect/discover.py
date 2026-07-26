@@ -331,6 +331,12 @@ def _build_keysets(conn, fp, name_max_rows) -> tuple[dict, int]:
                 # Only the corroborated composite (NAME@ZIP, NAME@FIPS) emits edges.
                 skipped += 1
                 continue
+            if key == "DOCKET" and tbl.startswith("PORTAL_"):
+                # Docket numbers are court-local (cv-00001 exists in every district).
+                # Curated federal court sources (Oyez/SCDB use unique SCOTUS dockets)
+                # can still match; portal docket columns are untrusted and collide.
+                skipped += 1
+                continue
             members[(tbl, key)] = (best["column"], _tier(fp, key))
             norm = normalize_sql(key, quote_ident(best["column"]))
             db.rows(conn, f"INSERT INTO {KEYSET_FQN} "
