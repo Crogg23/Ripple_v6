@@ -34,6 +34,38 @@
       "cwd": "repo",
       "cost_estimate_cr": 1.5,
       "note": "DISABLED: usgs_quake_backfill.py TRUNCATEs then reloads ALL quakes since 2010 every run (a narrow window would DELETE history). Needs a delta-refresh loader before it is safe to automate. Left here as the disabled-recipe example."
+    },
+    "fed_sec_dcat": {
+      "enabled": true,
+      "kind": "script",
+      "cmd": ["scripts/sec_bulk_discover_load.py", "--run", "--limit", "30"],
+      "cwd": "repo",
+      "cost_estimate_cr": 2.0,
+      "note": "SAFE: DCAT catalog discovery + snapshot-replace per CSV. Parallel download (6 workers). SEC data.json is stable. All tables are overwrite=True => idempotent. Weekly cadence."
+    },
+    "fed_epa_echo": {
+      "enabled": true,
+      "kind": "script",
+      "cmd": ["scripts/epa_echo_bulk_load.py", "--run"],
+      "cwd": "repo",
+      "cost_estimate_cr": 3.0,
+      "note": "SAFE: Known ECHO ZIP URLs, snapshot-replace per CSV inside each ZIP. Parallel (4 workers). ZIPs are large (50-700MB) but idempotent. Monthly cadence."
+    },
+    "fed_dol_enforce": {
+      "enabled": true,
+      "kind": "script",
+      "cmd": ["scripts/dol_enforce_bulk_load.py", "--run"],
+      "cwd": "repo",
+      "cost_estimate_cr": 2.0,
+      "note": "SAFE: Known enforcedata.dol.gov CSV endpoints, snapshot-replace (overwrite=True). Parallel download. Monthly cadence. OSHA/MSHA/WHD data is public domain."
+    },
+    "fed_irs_bulk": {
+      "enabled": false,
+      "kind": "script",
+      "cmd": ["scripts/irs_bulk_discover_load.py", "--run"],
+      "cwd": "repo",
+      "cost_estimate_cr": 2.5,
+      "note": "DISABLED: 990 e-filer index is ~3GB JSON and changes daily. Revocations/Pub78/SOI are safe (small, snapshot-replace) but bundled here with the 990 index. Enable after splitting or adding SHA-skip to the 990 path."
     }
   }
 }
