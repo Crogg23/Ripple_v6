@@ -1,0 +1,8 @@
+89 quarters in range, 80 to load
+[2006q2] downloading https://fis.fda.gov/content/Exports/aers_ascii_2006q2.zip
+[2006q2] 10,154,467 bytes  sha256=c439e539872e5cf0
+[2006q2] loaded: DEMO=79,449, DRUG=309,882, REAC=389,166, OUTC=87,399, INDI=121,313
+[2006q3] downloading https://fis.fda.gov/content/Exports/aers_ascii_2006q3.zip
+[2006q3] download attempt 1 failed: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by t
+[2006q3] download attempt 2 failed: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by t
+[2006q3] download attempt 3 failed: Response ended prematurely
