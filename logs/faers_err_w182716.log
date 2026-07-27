@@ -6,12 +6,11 @@ C:\Code\Ripple_v6\scripts\fda_faers_load.py:144: UserWarning: Pandas Dataframe h
   ok, _c, _n, _ = write_pandas(
 C:\Code\Ripple_v6\scripts\fda_faers_load.py:144: UserWarning: Pandas Dataframe has non-standard index of type <class 'pandas.core.indexes.base.Index'> which will not be written. Consider changing the index to pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
   ok, _c, _n, _ = write_pandas(
-Traceback (most recent call last):
-  File "C:\Code\Ripple_v6\scripts\fda_faers_load.py", line 190, in <module>
-    main()
-  File "C:\Code\Ripple_v6\scripts\fda_faers_load.py", line 176, in main
-    counts = load_quarter(conn, q, existing)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Code\Ripple_v6\scripts\fda_faers_load.py", line 113, in load_quarter
-    raise RuntimeError(f"download failed after retries: {url}")
-RuntimeError: download failed after retries: https://fis.fda.gov/content/Exports/aers_ascii_2006q3.zip
+C:\Code\Ripple_v6\scripts\fda_faers_load.py:144: UserWarning: Pandas Dataframe has non-standard index of type <class 'pandas.core.indexes.base.Index'> which will not be written. Consider changing the index to pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _n, _ = write_pandas(
+C:\Code\Ripple_v6\scripts\fda_faers_load.py:144: UserWarning: Pandas Dataframe has non-standard index of type <class 'pandas.core.indexes.base.Index'> which will not be written. Consider changing the index to pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _n, _ = write_pandas(
+C:\Code\Ripple_v6\scripts\fda_faers_load.py:144: UserWarning: Pandas Dataframe has non-standard index of type <class 'pandas.core.indexes.base.Index'> which will not be written. Consider changing the index to pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _n, _ = write_pandas(
+C:\Code\Ripple_v6\scripts\fda_faers_load.py:144: UserWarning: Pandas Dataframe has non-standard index of type <class 'pandas.core.indexes.base.Index'> which will not be written. Consider changing the index to pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _n, _ = write_pandas(
