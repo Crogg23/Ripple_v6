@@ -63,19 +63,28 @@ def write_edges(conn, edges: list[dict], run_id: str, *,
 
     Legacy CONNECT_EDGES (created 2026-07-02) predates A_COL/B_COL; they are added
     in place via ALTER ADD COLUMN IF NOT EXISTS — an ALTER, NOT a CREATE OR REPLACE,
-    so existing grants (RIPPLE_READER SELECT) are preserved without COPY GRANTS."""
+    so existing grants (RIPPLE_READER SELECT) are preserved without COPY GRANTS.
+
+    ATOMIC: writes to a __STAGING table then SWAPs to avoid the window where the
+    live table is empty/partial (the non-atomic TRUNCATE+INSERT bug from audit D3)."""
     ensure_schema(conn)
     fqn = cfqn(table)
+    staging_fqn = cfqn(f"{table}__STAGING")
+
+    # Ensure live table exists with current schema
     db.rows(conn, f"CREATE TABLE IF NOT EXISTS {fqn} ({_EDGES_COLS})")
     db.rows(conn, f"ALTER TABLE {fqn} ADD COLUMN IF NOT EXISTS A_COL STRING")
     db.rows(conn, f"ALTER TABLE {fqn} ADD COLUMN IF NOT EXISTS B_COL STRING")
-    db.rows(conn, f"TRUNCATE TABLE {fqn}")
+
+    # Write to staging (CREATE OR REPLACE — starts clean)
+    db.rows(conn, f"CREATE OR REPLACE TABLE {staging_fqn} ({_EDGES_COLS})")
     if not edges:
+        # Swap empty staging into live (intentional full-clear)
+        db.rows(conn, f"ALTER TABLE {staging_fqn} SWAP WITH {fqn}")
+        db.rows(conn, f"DROP TABLE IF EXISTS {staging_fqn}")
         return 0
 
     collist = ", ".join(f'"{c}"' for c in _EDGE_INSERT_COLS)
-    # VALUES gives column1..column13; SELECT applies PARSE_JSON to the sample col
-    # (column12). One multi-row INSERT per chunk keeps it O(edges / chunk) round-trips.
     sel = ("SELECT column1, column2, column3, column4, column5, column6, column7, "
            "column8, column9, column10, column11, PARSE_JSON(column12), column13")
     row_ph = "(" + ",".join(["%s"] * 13) + ")"
@@ -94,7 +103,11 @@ def write_edges(conn, edges: list[dict], run_id: str, *,
                 json.dumps(e.get("sample") or []), run_id,
             ]
         values = ", ".join([row_ph] * len(batch))
-        db.rows(conn, f"INSERT INTO {fqn} ({collist}) {sel} FROM VALUES {values}",
+        db.rows(conn, f"INSERT INTO {staging_fqn} ({collist}) {sel} FROM VALUES {values}",
                 tuple(params))
         written += len(batch)
+
+    # Atomic swap: staging becomes live in one DDL statement
+    db.rows(conn, f"ALTER TABLE {staging_fqn} SWAP WITH {fqn}")
+    db.rows(conn, f"DROP TABLE IF EXISTS {staging_fqn}")
     return written

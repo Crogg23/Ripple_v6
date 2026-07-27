@@ -151,6 +151,10 @@ def main():
             cp[label] = counts
             CHECKPOINT.parent.mkdir(exist_ok=True)
             CHECKPOINT.write_text(json.dumps(cp, indent=1))
+
+        run_id = str(uuid.uuid4())
+        for tbl in ("FED_SEC_13F_HOLDINGS", "FED_SEC_13F_FILERS", "FED_SEC_13F_SUBMISSIONS"):
+            bulk.run_quality_gate(conn, "fed_sec_13f", tbl, run_id)
     finally:
         conn.close()
     print("DONE")

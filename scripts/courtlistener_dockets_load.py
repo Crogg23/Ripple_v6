@@ -114,8 +114,15 @@ ON_ERROR=ABORT_STATEMENT
         for row in cur.fetchall():
             print("  COPY:", row[:4])
         cur.execute(f'SELECT COUNT(*) FROM {bulk.LANDING_FQS}."{TBL}"')
-        print(f"  ROWS={cur.fetchone()[0]:,}  SOURCE_URL={DOCKETS_URL}  SHA256={sha}")
+        rows = cur.fetchone()[0]
+        print(f"  ROWS={rows:,}  SOURCE_URL={DOCKETS_URL}  SHA256={sha}")
         cur.execute(f'DROP STAGE {bulk.LANDING_FQS}."STG_CL_DOCKETS"')
+
+        passed, report = bulk.run_quality_gate(
+            conn, "fed_courtlistener_dockets", TBL, run_id,
+            sha256=sha, row_count=rows, source_url=DOCKETS_URL)
+        if not passed:
+            sys.exit(1)
     finally:
         conn.close()
 

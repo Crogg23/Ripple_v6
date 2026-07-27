@@ -197,9 +197,22 @@ def main() -> int:
     results = bulk.parallel_load(tasks, max_workers=4, label="DOL")
     ok = sum(1 for r in results if "result" in r and r["result"])
     total_rows = sum(r.get("result", 0) for r in results if "result" in r)
-    print(f"\nDone: {ok}/{len(to_load)} datasets loaded, {total_rows:,} total rows")
+
+    # Run quality gate on each successfully loaded table
+    import uuid as _uuid
+    run_id = str(_uuid.uuid4())
+    dq_failures = 0
+    for r in results:
+        if "result" in r and r["result"]:
+            tbl = r["name"]
+            passed, _ = bulk.run_quality_gate(conn, f"fed_dol_{tbl.lower()}", tbl, run_id)
+            if not passed:
+                dq_failures += 1
+
+    print(f"\nDone: {ok}/{len(to_load)} datasets loaded, {total_rows:,} total rows"
+          + (f", {dq_failures} DQ failures" if dq_failures else ""))
     conn.close()
-    return 0
+    return 1 if dq_failures else 0
 
 
 if __name__ == "__main__":

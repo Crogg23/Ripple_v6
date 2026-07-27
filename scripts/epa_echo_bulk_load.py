@@ -128,15 +128,27 @@ def main() -> int:
 
     results = bulk.parallel_load(tasks, max_workers=min(4, len(to_load)), label="EPA")
 
+    loaded_tables = []
     for r in results:
         if "result" in r and r["result"]:
             for tbl, rows, keys in r["result"]:
                 total_tables += 1
                 total_rows += rows
+                loaded_tables.append(tbl)
 
-    print(f"\nDone: {total_tables} tables loaded, {total_rows:,} total rows")
+    # Run quality gate on each newly loaded table
+    import uuid as _uuid
+    run_id = str(_uuid.uuid4())
+    dq_failures = 0
+    for tbl in loaded_tables:
+        passed, _ = bulk.run_quality_gate(conn, f"fed_epa_echo_{tbl.lower()}", tbl, run_id)
+        if not passed:
+            dq_failures += 1
+
+    print(f"\nDone: {total_tables} tables loaded, {total_rows:,} total rows"
+          + (f", {dq_failures} DQ failures" if dq_failures else ""))
     conn.close()
-    return 0
+    return 1 if dq_failures else 0
 
 
 if __name__ == "__main__":

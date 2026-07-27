@@ -150,6 +150,12 @@ def main():
             cp[str(y)] = n
             CHECKPOINT.parent.mkdir(exist_ok=True)
             CHECKPOINT.write_text(json.dumps(cp, indent=1))
+
+        run_id = str(uuid.uuid4())
+        passed, report = bulk.run_quality_gate(
+            conn, "fed_cpsc_neiss", TBL, run_id)
+        if not passed:
+            sys.exit(1)
     finally:
         conn.close()
     print("DONE")

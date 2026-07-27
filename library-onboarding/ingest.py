@@ -592,15 +592,23 @@ def _load_landing_chunked(conn, chunk_iter, table: str, run_id: str, started,
                           resume_from_row: int, fresh: bool, max_rows: int):
     """Write a stream of DataFrame chunks to the landing table, bounded memory.
 
-    First chunk of a FRESH load replaces the table (snapshot-style); every other
-    chunk appends. On resume, all chunks append. Returns
-    ``(appended_rows, manifest_sha, file_bytes, columns, sample_rows)``.
+    ATOMIC (fresh loads): writes to {table}__STAGING then SWAPs into the live
+    table at the end — a mid-stream death leaves the live table untouched.
+    Resume appends go directly to live (they're already partial by design).
+
+    Returns ``(appended_rows, manifest_sha, file_bytes, columns, sample_rows, density)``.
     """
     from snowflake.connector.pandas_tools import write_pandas
 
     database, schema = settings.raw_database, settings.raw_schema
     snow.execute(conn, f'CREATE SCHEMA IF NOT EXISTS "{database}"."{schema}"')
     ingested_at = started.replace(tzinfo=None)
+
+    # For fresh loads, write to a staging table then SWAP at the end.
+    # For resumes (not fresh), append directly to the live table.
+    use_staging = fresh
+    staging_table = f"{table}__STAGING" if use_staging else table
+    write_target = staging_table
 
     appended = 0
     file_bytes = 0
@@ -610,9 +618,6 @@ def _load_landing_chunked(conn, chunk_iter, table: str, run_id: str, started,
     density_frames: list = []  # bounded row sample (across chunks) for the density gate
     density_rows = 0
     n = 0
-    # Resume is enforced HERE, not in the generated code: a resumed fetch re-yields
-    # the file from the start, and we drop the rows already landed. This is dup-safe
-    # regardless of whether the model's fetch honoured resume_from_row.
     to_skip = resume_from_row if not fresh else 0
     for chunk in chunk_iter:
         if not hasattr(chunk, "columns"):
@@ -637,10 +642,10 @@ def _load_landing_chunked(conn, chunk_iter, table: str, run_id: str, started,
         out[META_INGESTED_AT] = ingested_at
         out[META_SOURCE_RUN_ID] = run_id
         out[META_SRC_SHA256] = chunk_sha  # per-chunk provenance
-        overwrite = (n == 0 and fresh)    # fresh first chunk replaces; otherwise append
+        overwrite = (n == 0)  # first chunk replaces staging (or live on resume)
 
         ok, _chunks, _nrows, _ = write_pandas(
-            conn, out, table_name=table, database=database, schema=schema,
+            conn, out, table_name=write_target, database=database, schema=schema,
             auto_create_table=True, overwrite=overwrite, quote_identifiers=False,
         )
         if not ok:
@@ -649,9 +654,6 @@ def _load_landing_chunked(conn, chunk_iter, table: str, run_id: str, started,
         if n == 0:
             columns = list(out.columns)
             sample = out.head(SAMPLE_ROWS).astype(str).to_dict(orient="records")
-        # Accumulate a bounded row sample for the density gate. The whole file is
-        # never in memory, so we sample the leading rows across chunks (a parse
-        # failure is uniform, so the head is representative).
         if density_rows < DENSITY_SAMPLE_ROWS:
             take = out.head(DENSITY_SAMPLE_ROWS - density_rows)
             density_frames.append(take)
@@ -670,6 +672,16 @@ def _load_landing_chunked(conn, chunk_iter, table: str, run_id: str, started,
             "Chunked fetch_data yielded no rows -- failing loudly (bad URL / parse / "
             "wrong format?)."
         )
+
+    # Atomic swap: staging -> live (fresh loads only)
+    if use_staging and appended > 0:
+        live_fqt = f'"{database}"."{schema}"."{table}"'
+        staging_fqt = f'"{database}"."{schema}"."{staging_table}"'
+        # Ensure live table exists (for SWAP to work, both must exist)
+        snow.execute(conn, f"CREATE TABLE IF NOT EXISTS {live_fqt} LIKE {staging_fqt}")
+        snow.execute(conn, f"ALTER TABLE {staging_fqt} SWAP WITH {live_fqt}")
+        snow.execute(conn, f"DROP TABLE IF EXISTS {staging_fqt}")
+
     manifest_sha = hashlib.sha256("".join(chunk_shas).encode("utf-8")).hexdigest()
     # Density over the bounded leading-row sample (meta stamps excluded by the gate).
     if density_frames:

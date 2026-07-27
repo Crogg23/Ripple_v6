@@ -265,13 +265,11 @@ def render_dossier(eid: str):
                 if st.button("Open source", key=f"d{s['SOURCE_TABLE']}"):
                     goto(view="source", src=str(s["SOURCE_TABLE"]).lower())
 
-    # ---- affiliations (providers only) — RETIRED 2026-07-20 ---------------
-    # The source table FED_CMS_FACILITY_AFFILIATION was dropped from
-    # LIBRARY_RAW.LANDING (see CLOSE_THE_LOOP_checklist.md). This panel queried it
-    # via q.get_affiliations() and, since the drop, only ever soft-failed to an
-    # "Affiliations unavailable" warning on every NPI dossier. Removed rather than
-    # shown broken. To restore: re-land the affiliations source, then bring back
-    # this block and get_affiliations() in serve_queries.py.
+    # ---- affiliations (providers only) ----------------------------------------
+    aff = q.get_affiliations(entity_id)
+    if aff is not None and not aff.empty:
+        st.subheader("Facility Affiliations")
+        st.dataframe(aff, use_container_width=True, hide_index=True)
 
 
 # --------------------------------------------------------------------------- #
