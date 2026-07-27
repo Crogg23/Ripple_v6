@@ -104,7 +104,7 @@ def join_mode(key: str) -> str:
 NORM_RULES: dict[str, tuple[str, int]] = {
     "NPI": ("pad", 10), "EIN": ("pad", 9), "DUNS": ("pad", 9), "CIK": ("pad", 10),
     "CCN": ("pad", 6), "IMO": ("imo", 7), "MMSI": ("pad", 9),
-    "UEI": ("fixed", 12), "LEI": ("fixed", 20),
+    "UEI": ("fixed", 12), "LEI": ("fixed", 20), "DEA_NO": ("alnum_upper", 0),
     "NAICS": ("code", 0), "SIC": ("code", 0), "NCES": ("code", 0),
     "DOCKET": ("code", 0), "PATENT": ("code", 0), "FIPS": ("code", 0), "ZIP": ("zip5", 5),
     "COUNTRY": ("country", 0),

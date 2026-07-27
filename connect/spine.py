@@ -44,6 +44,7 @@ LEADS_FQN = store.cfqn("LEADS")
 _ENTITY_TYPE_SQL = ("CASE key_type WHEN 'NPI' THEN 'provider' WHEN 'CCN' THEN 'facility' "
                     "WHEN 'IMO' THEN 'vessel' WHEN 'MMSI' THEN 'vessel' "
                     "WHEN 'BIOGUIDE' THEN 'person' WHEN 'ICPSR' THEN 'person' "
+                    "WHEN 'DEA_NO' THEN 'organization' "
                     "ELSE 'organization' END")
 
 

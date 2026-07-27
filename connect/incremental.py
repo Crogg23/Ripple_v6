@@ -328,6 +328,7 @@ def _entity_type_sql(col_ref: str) -> str:
     return (f"CASE {col_ref} WHEN 'NPI' THEN 'provider' WHEN 'CCN' THEN 'facility' "
             f"WHEN 'IMO' THEN 'vessel' WHEN 'MMSI' THEN 'vessel' "
             f"WHEN 'BIOGUIDE' THEN 'person' WHEN 'ICPSR' THEN 'person' "
+            f"WHEN 'DEA_NO' THEN 'organization' "
             f"ELSE 'organization' END")
 
 

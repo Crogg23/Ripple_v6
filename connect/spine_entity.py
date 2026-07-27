@@ -51,6 +51,7 @@ SPINE_ENTITY_BY_KEY: dict[str, str] = {
     "UEI": "organization",
     "DUNS": "organization",
     "LEI": "organization",
+    "DEA_NO": "organization",
     "PATENT": "asset",
     "DOCKET": "case",
     "FIPS": "place",

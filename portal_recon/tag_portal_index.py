@@ -109,6 +109,7 @@ KEY_TOKENS: dict[str, tuple[str, set[str]]] = {
     "IMO":    ("STEEL", {"imo"}),
     "MMSI":   ("STEEL", {"mmsi"}),
     "CCN":    ("STEEL", {"ccn"}),
+    "DEA_NO": ("STEEL", {"dea"}),
     # ---- STRONG — domain-native IDs --------------------------------------
     "DOCKET": ("STRONG", {"docket"}),
     "NAICS":  ("STRONG", {"naics"}),

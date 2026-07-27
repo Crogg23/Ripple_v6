@@ -1,5 +1,5 @@
 <!-- GENERATED FILE. DO NOT EDIT BY HAND.
-     Source: LIBRARY_META.BUILD  |  Generated: 2026-07-12T20:58:09Z
+     Source: LIBRARY_META.BUILD  |  Generated: 2026-07-27T16:30:05Z
      To change anything here, change the row and regenerate:
      python3 scripts/gen_build_state.py --write -->
 
@@ -12,35 +12,37 @@
 - actions_pending: **2**
 - defects_blocker: **1**
 - defects_open: **20**
-- defects_unverified_7d: **1**
+- defects_unverified_7d: **20**
 - parked_hot: **4**
 
 ## DATA STATE (V_STATE)
-- catalog.orphans: 284
-- catalog.sources: 2840
-- connect.edges: 41101
+- catalog.orphans: 442
+- catalog.sources: 3017
+- connect.edges: 11197
 - connect.edges_inc: 1074
-- connect.entities: 9788419
+- connect.entities: 16244825
 - decisions.total: 0
-- landing.rows: 287060389
-- landing.tables: 1785
-- leads.banned_but_operating.active: 11
+- landing.rows: 856056729
+- landing.tables: 1943
+- leads.banned_but_operating.active: 10
+- leads.banned_but_operating.stale: 1
 - leads.banned_but_paid.active: 773
 - leads.debarred_but_funded.active: 2
 - leads.excluded_but_billing.active: 236
-- leads.sanctioned_vessel_broadcasting.active: 2
-- leads.sanctioned_vessel_broadcasting_v2.active: 6
-- marts.stale_vs_landing: 1
+- leads.sanctioned_vessel_broadcasting.active: 4
+- leads.sanctioned_vessel_broadcasting_v2.active: 12
+- leads.sec_filer_in_irs_bmf.active: 3
+- marts.stale_vs_landing: 3
 - reading_room.views: 252
-- registry.sources: 2556
+- registry.sources: 2575
 - taps.empty: 34
 - taps.failed: 258
-- taps.landed: 171
+- taps.landed: 330
 - taps.modeled: 30
 - taps.queued: 7
-- taps.sampled: 1579
-- taps.scouted: 758
-- taps.stale: 3
+- taps.sampled: 1578
+- taps.scouted: 753
+- taps.stale: 27
 
 ## OPEN DEFECTS
 
@@ -67,7 +69,7 @@
 | low | viz | explorer/overlay HTML pull Plotly from CDN, die offline | still_broken | 2026-07-12 |
 | low | viz | leads_overlay.html stale (4 detectors/353 leads vs live 6/1030) | still_broken | 2026-07-12 |
 
-Re-verify: `python3 scripts/verify_defects.py` â€” 'clear' is a recommendation; a human closes.
+Re-verify: `python3 scripts/verify_defects.py` — 'clear' is a recommendation; a human closes.
 
 ## PENDING ACTIONS (dependency order)
 
@@ -79,17 +81,17 @@ Re-verify: `python3 scripts/verify_defects.py` â€” 'clear' is a recommendation; 
 Applied: A10 (2026-07-12 by chris (go 2026-07-12), agent-executed on bootstrap token); A09 (2026-07-12 by chris (go 2026-07-12), agent-executed on bootstrap token); A08 (2026-07-12 by chris (go 2026-07-12), agent-executed on bootstrap token); A11 (2026-07-12 by chris (go 2026-07-12), agent-executed on bootstrap token); A07 (2026-07-12 by chris (go 2026-07-12), agent-executed on bootstrap token); A06 (2026-07-12 by chris (go 2026-07-12), agent-executed on bootstrap token); A05 (2026-07-12 by chris (go 2026-07-12), agent-executed on bootstrap token); A04 (2026-07-12 by chris (go 2026-07-12), agent-executed on bootstrap token); A02 (2026-07-12 by chris (go 2026-07-12), agent-executed on bootstrap token); A01 (2026-07-12 by chris (go 2026-07-12), agent-executed on bootstrap token)
 
 ## PARKED IDEAS
-- [IDEA â€” HOT] Land one new identifier (EIN wired, or CIK via User-Agent fix) | WHY: Breaks the 75%-of-leads-on-one-edge concentration. EIN is LANDED (see already_done row) but not wired into detectors; CIK needs RIPPLE_CONTACT_UA in .env first.
-- [IDEA â€” HOT] Materialize connect__banned_but_operating as a dbt mart | WHY: First shippable story from the connected Library (crosswalk x LEIE).
-- [IDEA â€” HOT] Per-watchlist FANOUT_MAX relax for small curated watchlists | WHY: FANOUT_MAX=40 kills junk but drops legit hospital->banned-provider hops (LEIE 8,775 NPIs).
-- [IDEA â€” HOT] Tier-aware bridge dedup (weak GEO edge suppresses strong CCN->NPI bridge) | WHY: Fix: only dedup against equal-or-stronger-tier direct edges.
-- [IDEA â€” SOMEDAY] Central sources.yml instead of per-model sources blocks | WHY: Cosmetic.
-- [IDEA â€” SOMEDAY] Hide raw-vs-cleaned duplicate objects in the Reading Room | WHY: Ugly collision-suffixed names when both exist.
-- [IDEA â€” SOMEDAY] Sketch EIN/NAICS/DOCKET/ZIP detector templates | WHY: Design-brief open call; engineering templates only, no new detectors built.
-- [IDEA â€” SOMEDAY] Structurally exclude bare ZIP/FIPS edges from the graph (design call) | WHY: 52.2% of edges are ZIP-key at recon. OUT OF SCOPE for the govern brief â€” recorded so it stops living in prose.
-- [IDEA â€” SOMEDAY] Vendor Plotly locally in explorer/overlay HTML | WHY: Tracked as an open viz defect too; file already on disk, just unwired.
-- [IDEA â€” SOMEDAY] Wire the Library Map as 'ripple map' so it self-refreshes
-- [IDEA â€” SOMEDAY] dbt deprecation sweep (148 generic-test-arg + 57 severity warnings) | WHY: Become errors on a future dbt major bump.
+- [IDEA — HOT] Land one new identifier (EIN wired, or CIK via User-Agent fix) | WHY: Breaks the 75%-of-leads-on-one-edge concentration. EIN is LANDED (see already_done row) but not wired into detectors; CIK needs RIPPLE_CONTACT_UA in .env first.
+- [IDEA — HOT] Materialize connect__banned_but_operating as a dbt mart | WHY: First shippable story from the connected Library (crosswalk x LEIE).
+- [IDEA — HOT] Per-watchlist FANOUT_MAX relax for small curated watchlists | WHY: FANOUT_MAX=40 kills junk but drops legit hospital->banned-provider hops (LEIE 8,775 NPIs).
+- [IDEA — HOT] Tier-aware bridge dedup (weak GEO edge suppresses strong CCN->NPI bridge) | WHY: Fix: only dedup against equal-or-stronger-tier direct edges.
+- [IDEA — SOMEDAY] Central sources.yml instead of per-model sources blocks | WHY: Cosmetic.
+- [IDEA — SOMEDAY] Hide raw-vs-cleaned duplicate objects in the Reading Room | WHY: Ugly collision-suffixed names when both exist.
+- [IDEA — SOMEDAY] Sketch EIN/NAICS/DOCKET/ZIP detector templates | WHY: Design-brief open call; engineering templates only, no new detectors built.
+- [IDEA — SOMEDAY] Structurally exclude bare ZIP/FIPS edges from the graph (design call) | WHY: 52.2% of edges are ZIP-key at recon. OUT OF SCOPE for the govern brief — recorded so it stops living in prose.
+- [IDEA — SOMEDAY] Vendor Plotly locally in explorer/overlay HTML | WHY: Tracked as an open viz defect too; file already on disk, just unwired.
+- [IDEA — SOMEDAY] Wire the Library Map as 'ripple map' so it self-refreshes
+- [IDEA — SOMEDAY] dbt deprecation sweep (148 generic-test-arg + 57 severity warnings) | WHY: Become errors on a future dbt major bump.
 - [ALREADY_DONE] Pour IRS EO BMF (1.97M nonprofit EINs) | superseded by: defect 'FED_IRS_EO_BMF is an exact 2x duplicate' + action A04
 
 ## STANDING POLICY
@@ -102,8 +104,8 @@ Applied: A10 (2026-07-12 by chris (go 2026-07-12), agent-executed on bootstrap t
 - **preview_then_apply** (2026-06-25): Every warehouse/catalog mutation ships as a preview-by-default script with --apply. The agent never executes DDL/DML against shared infra directly.
 - **serve_surface_evidence_dev** (2026-07-06): SERVE surface is evidence.dev; serve/ (Streamlit) is legacy fallback.
 - **source_scope_clean_public** (2026-06-27): Clean public sources only; paid/ToS-grey dropped or deferred to a specific story need.
-- **trap_ais_snapshot** (2026-06-28): FED_NOAA_AIS is a stale 8-day snapshot: 58,106,517 rows spanning exactly 2024-01-01..2024-01-08. It pre-dates the 2025-26 sanctions wave â€” any 'sanctioned vessel in US waters' match off it is reverse-causality unless date-checked. Never draw it as a time series.
-- **trap_leie_npi_and_dates** (2026-06-26): FED_HHS_OIG_LEIE: NPI='0000000000' on 74,780/83,464 rows (89.6%) â€” a naive NPI join merges them all into one 'doctor' (the libel trap). EXCLDATE needs explicit date parsing; TRY_CAST collapses to 1970.
+- **trap_ais_snapshot** (2026-06-28): FED_NOAA_AIS is a stale 8-day snapshot: 58,106,517 rows spanning exactly 2024-01-01..2024-01-08. It pre-dates the 2025-26 sanctions wave — any 'sanctioned vessel in US waters' match off it is reverse-causality unless date-checked. Never draw it as a time series.
+- **trap_leie_npi_and_dates** (2026-06-26): FED_HHS_OIG_LEIE: NPI='0000000000' on 74,780/83,464 rows (89.6%) — a naive NPI join merges them all into one 'doctor' (the libel trap). EXCLDATE needs explicit date parsing; TRY_CAST collapses to 1970.
 - **trap_ofac_sdn_type** (2026-06-25): FED_OFAC_SDN.SDN_TYPE uses the literal sentinel '-0- ' (trailing space, 9,785 rows) for entities; also one empty-string row. Filter explicitly.
 - **trap_open_payments_split** (2026-06-28): Open Payments is split across THREE landing tables (base 15.4M / 2022 13.25M / 2023 14.7M). Ad-hoc queries against one bare table under-count; the banned_but_paid detector already reads a unioned view.
 - **trap_rlike_whole_string** (2026-06-25): Snowflake RLIKE/REGEXP match the WHOLE string: 'catalog' RLIKE 'cat' is FALSE. Wrap patterns in .*...* or catalog searches silently return zero rows.

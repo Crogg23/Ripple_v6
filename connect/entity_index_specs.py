@@ -185,6 +185,9 @@ DISPLAY_SPECS: dict[str, dict] = {
         "key": "CIK", "key_col": "CIK", "org": "NAME",
         "city": "CITYBA", "state": "STPRBA", "zip": "ZIPBA", "authority": 5,
     },
+    "FED_SEC_13F_SUBMISSIONS": {      # CIK organization (13F institutional holdings filings)
+        "key": "CIK", "key_col": "CIK", "authority": 6,
+    },
 
     # --- money / maritime / corporate (2026-06-26: unhealth the spine) ---
     # keys.py already normalizes UEI/CIK/IMO; ENTITY_TYPE_BY_KEY maps them to
@@ -207,6 +210,12 @@ DISPLAY_SPECS: dict[str, dict] = {
     },
     "FED_NOAA_AIS": {                         # IMO vessel (broadcasting hull, 7.3M rows)
         "key": "IMO", "key_col": "IMO", "org": "VESSELNAME", "authority": 6,
+    },
+    "FED_DEA_ARCOS_FULL": {                   # DEA_NO organization (opioid distributor/buyer, 380M rows)
+        "key": "DEA_NO", "key_col": "REPORTER_DEA_NO", "org": "REPORTER_NAME",
+        "city": "REPORTER_CITY", "state": "REPORTER_STATE", "zip": "REPORTER_ZIP",
+        "authority": 3,
+        "extra_keys": [{"key": "DEA_NO", "key_col": "BUYER_DEA_NO"}],
     },
 
     # --- politics (2026-07-02: make legislators first-class spine entities) ---
@@ -241,7 +250,7 @@ SPINE_TABLES = list(DISPLAY_SPECS)
 ENTITY_TYPE_BY_KEY = {
     "NPI": "provider", "CCN": "facility",
     "EIN": "organization", "CIK": "organization", "DUNS": "organization",
-    "LEI": "organization", "UEI": "organization",
+    "LEI": "organization", "UEI": "organization", "DEA_NO": "organization",
     "IMO": "vessel", "MMSI": "vessel",
     "BIOGUIDE": "person", "ICPSR": "person",   # politicians (Step-K politics)
 }
