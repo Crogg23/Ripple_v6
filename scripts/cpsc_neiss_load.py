@@ -8,7 +8,9 @@ Files: https://www.cpsc.gov/cgibin/NEISSQuery/Data/Archived%20Data/{Y}/neiss{Y}.
 NOTE: cpsc.gov blocks curl/PowerShell TLS fingerprints and HEAD requests;
 python-requests GET works. Checkpointed per year.
 
-    python scripts/cpsc_neiss_load.py --run
+Parallel mode: downloads up to N years concurrently, uploads sequentially.
+
+    python scripts/cpsc_neiss_load.py --run [--workers 4]
 """
 from __future__ import annotations
 
@@ -18,8 +20,11 @@ import hashlib
 import io
 import json
 import sys
+import time
 import uuid
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
+from threading import Lock
 
 import pandas as pd
 import requests
@@ -43,6 +48,7 @@ CHECKPOINT = _REPO / "logs" / "neiss_checkpoint.json"
 TBL = "FED_CPSC_NEISS"
 CHUNK_ROWS = 500_000
 YEARS = range(1999, 2027)
+DEFAULT_WORKERS = 4
 
 
 def ensure_columns(conn, tbl: str, cols: list[str], existing: dict[str, set]) -> None:
@@ -65,29 +71,36 @@ def ensure_columns(conn, tbl: str, cols: list[str], existing: dict[str, set]) ->
             existing[tbl].add(c)
 
 
-def load_year(conn, year: int, existing: dict[str, set]) -> int:
-    from snowflake.connector.pandas_tools import write_pandas
-
+def download_year(year: int) -> tuple[int, bytes | None, str]:
+    """Download a year's TSV. Returns (year, content_bytes_or_None, sha256)."""
     url = f"{BASE}/Archived%20Data/{year}/neiss{year}.tsv"
-    r = None
+    resp = None
     for attempt in range(5):
         try:
-            r = requests.get(url, headers=USER_AGENT, timeout=1800)
+            resp = requests.get(url, headers=USER_AGENT, timeout=1800)
             break
         except requests.exceptions.RequestException as e:
             print(f"[{year}] download attempt {attempt+1} failed: {str(e)[:100]}")
-            import time
             time.sleep(30 * (attempt + 1))
-    if r is None:
+    if resp is None:
         raise RuntimeError(f"download failed after retries: {url}")
-    if r.status_code != 200:
-        print(f"[{year}] HTTP {r.status_code} -- not available")
-        return -1
-    sha = hashlib.sha256(r.content).hexdigest()
+    if resp.status_code != 200:
+        print(f"[{year}] HTTP {resp.status_code} -- not available")
+        return year, None, ""
+    sha = hashlib.sha256(resp.content).hexdigest()
+    print(f"[{year}] downloaded {len(resp.content):,} bytes  sha={sha[:12]}")
+    return year, resp.content, sha
+
+
+def upload_year(conn, year: int, content: bytes, sha: str,
+                existing: dict[str, set]) -> int:
+    """Parse and upload a downloaded year to Snowflake."""
+    from snowflake.connector.pandas_tools import write_pandas
+
     run_id = str(uuid.uuid4())
     started = dt.datetime.now(dt.timezone.utc).replace(tzinfo=None)
     total = 0
-    reader = pd.read_csv(io.BytesIO(r.content), sep="\t", dtype=str,
+    reader = pd.read_csv(io.BytesIO(content), sep="\t", dtype=str,
                          chunksize=CHUNK_ROWS, low_memory=False,
                          encoding_errors="replace", on_bad_lines="skip")
     for df in reader:
@@ -105,7 +118,7 @@ def load_year(conn, year: int, existing: dict[str, set]) -> int:
         if not ok:
             raise RuntimeError(f"write_pandas failed {year}")
         total += len(df)
-    print(f"[{year}] {total:,} rows  sha={sha[:12]}")
+    print(f"[{year}] loaded {total:,} rows")
     return total
 
 
@@ -134,22 +147,56 @@ def load_codes(conn):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--run", action="store_true")
+    ap.add_argument("--workers", type=int, default=DEFAULT_WORKERS,
+                    help="Number of parallel download threads (default 4)")
     args = ap.parse_args()
     if not args.run:
         print("preview: years", list(YEARS))
         return
+
     cp = json.loads(CHECKPOINT.read_text()) if CHECKPOINT.exists() else {}
+    todo = [y for y in YEARS if str(y) not in cp]
+    print(f"{len(list(YEARS))} years, {len(todo)} to load, {args.workers} workers")
+
     conn = snow.connect()
     existing: dict[str, set] = {}
+    cp_lock = Lock()
+
     try:
         load_codes(conn)
-        for y in YEARS:
-            if str(y) in cp:
-                continue
-            n = load_year(conn, y, existing)
-            cp[str(y)] = n
-            CHECKPOINT.parent.mkdir(exist_ok=True)
-            CHECKPOINT.write_text(json.dumps(cp, indent=1))
+
+        with ThreadPoolExecutor(max_workers=args.workers) as pool:
+            futures = {pool.submit(download_year, y): y for y in todo}
+
+            for future in as_completed(futures):
+                year = futures[future]
+                try:
+                    _, content, sha = future.result()
+                except Exception as e:
+                    print(f"[{year}] download failed: {e} -- skipping")
+                    with cp_lock:
+                        cp[str(year)] = {"error": str(e)}
+                        CHECKPOINT.parent.mkdir(exist_ok=True)
+                        CHECKPOINT.write_text(json.dumps(cp, indent=1))
+                    continue
+
+                if content is None:
+                    with cp_lock:
+                        cp[str(year)] = -1
+                        CHECKPOINT.parent.mkdir(exist_ok=True)
+                        CHECKPOINT.write_text(json.dumps(cp, indent=1))
+                    continue
+
+                try:
+                    n = upload_year(conn, year, content, sha, existing)
+                except Exception as e:
+                    print(f"[{year}] upload failed: {e}")
+                    raise
+
+                with cp_lock:
+                    cp[str(year)] = n
+                    CHECKPOINT.parent.mkdir(exist_ok=True)
+                    CHECKPOINT.write_text(json.dumps(cp, indent=1))
 
         run_id = str(uuid.uuid4())
         passed, report = bulk.run_quality_gate(

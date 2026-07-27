@@ -9,7 +9,9 @@ Quarterly zips from sec.gov structured data sets (cleaner than parsing
 EDGAR SGML). Amendments (13F-HR/A) are kept, not deduplicated -- raw landing.
 Checkpointed per zip for resume.
 
-    python scripts/sec_13f_load.py --run
+Parallel mode: downloads up to N zips concurrently, uploads sequentially.
+
+    python scripts/sec_13f_load.py --run [--workers 4]
 """
 from __future__ import annotations
 
@@ -22,7 +24,9 @@ import re
 import sys
 import uuid
 import zipfile
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
+from threading import Lock
 
 import pandas as pd
 import requests
@@ -43,6 +47,7 @@ INDEX_URL = "https://www.sec.gov/data-research/sec-markets-data/form-13f-data-se
 USER_AGENT = {"User-Agent": "Ripple-Library/1.0 (data research; w.rogers9999@gmail.com)"}
 CHECKPOINT = _REPO / "logs" / "sec13f_checkpoint.json"
 CHUNK_ROWS = 500_000
+DEFAULT_WORKERS = 4
 
 FILE_MAP = {
     "INFOTABLE": "FED_SEC_13F_HOLDINGS",
@@ -78,20 +83,36 @@ def ensure_columns(conn, tbl: str, cols: list[str], existing: dict[str, set]) ->
             existing[tbl].add(c)
 
 
-def load_zip(conn, url: str, existing: dict[str, set]) -> dict[str, int]:
-    from snowflake.connector.pandas_tools import write_pandas
-
+def download_zip(url: str) -> tuple[str, bytes, str]:
+    """Download a zip file. Returns (label, content_bytes, sha256)."""
     label = url.rsplit("/", 1)[-1]
-    print(f"[{label}] downloading")
-    resp = requests.get(url, timeout=3600, headers=USER_AGENT)
+    resp = None
+    for attempt in range(5):
+        try:
+            resp = requests.get(url, timeout=3600, headers=USER_AGENT)
+            break
+        except requests.exceptions.RequestException as e:
+            print(f"[{label}] download attempt {attempt+1} failed: {str(e)[:100]}")
+            import time
+            time.sleep(30 * (attempt + 1))
+    if resp is None:
+        raise RuntimeError(f"download failed after retries: {url}")
     resp.raise_for_status()
     sha = hashlib.sha256(resp.content).hexdigest()
+    print(f"[{label}] downloaded {len(resp.content):,} bytes sha={sha[:12]}")
+    return label, resp.content, sha
+
+
+def upload_zip(conn, label: str, content: bytes, sha: str,
+               existing: dict[str, set]) -> dict[str, int]:
+    """Parse and upload a downloaded zip to Snowflake."""
+    from snowflake.connector.pandas_tools import write_pandas
+
     run_id = str(uuid.uuid4())
     started = dt.datetime.now(dt.timezone.utc).replace(tzinfo=None)
-    print(f"[{label}] {len(resp.content):,} bytes sha={sha[:12]}")
-
     counts: dict[str, int] = {}
-    with zipfile.ZipFile(io.BytesIO(resp.content)) as zf:
+
+    with zipfile.ZipFile(io.BytesIO(content)) as zf:
         for name in zf.namelist():
             stem = Path(name).stem.upper()
             if stem not in FILE_MAP:
@@ -119,38 +140,62 @@ def load_zip(conn, url: str, existing: dict[str, set]) -> dict[str, int]:
                         raise RuntimeError(f"write_pandas failed {tbl} {label}")
                     total += len(df)
             counts[stem] = total
-    print(f"[{label}] " + ", ".join(f"{k}={v:,}" for k, v in counts.items()))
+    print(f"[{label}] loaded: " + ", ".join(f"{k}={v:,}" for k, v in counts.items()))
     return counts
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--run", action="store_true")
+    ap.add_argument("--workers", type=int, default=DEFAULT_WORKERS,
+                    help="Number of parallel download threads (default 4)")
     args = ap.parse_args()
 
     zips = list_zips()
     cp = json.loads(CHECKPOINT.read_text()) if CHECKPOINT.exists() else {}
     todo = [u for u in zips if u.rsplit("/", 1)[-1] not in cp]
-    print(f"{len(zips)} zips, {len(todo)} to load")
+    print(f"{len(zips)} zips, {len(todo)} to load, {args.workers} workers")
     if not args.run:
         return
 
     conn = snow.connect()
     existing: dict[str, set] = {}
+    cp_lock = Lock()
+
     try:
-        for u in todo:
-            label = u.rsplit("/", 1)[-1]
-            try:
-                counts = load_zip(conn, u, existing)
-            except requests.HTTPError as e:
-                print(f"[{label}] HTTP error {e} -- skipping")
-                cp[label] = {"error": str(e)}
-                CHECKPOINT.parent.mkdir(exist_ok=True)
-                CHECKPOINT.write_text(json.dumps(cp, indent=1))
-                continue
-            cp[label] = counts
-            CHECKPOINT.parent.mkdir(exist_ok=True)
-            CHECKPOINT.write_text(json.dumps(cp, indent=1))
+        with ThreadPoolExecutor(max_workers=args.workers) as pool:
+            futures = {pool.submit(download_zip, u): u for u in todo}
+
+            for future in as_completed(futures):
+                url = futures[future]
+                label = url.rsplit("/", 1)[-1]
+                try:
+                    _, content, sha = future.result()
+                except requests.HTTPError as e:
+                    print(f"[{label}] HTTP error {e} -- skipping")
+                    with cp_lock:
+                        cp[label] = {"error": str(e)}
+                        CHECKPOINT.parent.mkdir(exist_ok=True)
+                        CHECKPOINT.write_text(json.dumps(cp, indent=1))
+                    continue
+                except Exception as e:
+                    print(f"[{label}] download failed: {e} -- skipping")
+                    with cp_lock:
+                        cp[label] = {"error": str(e)}
+                        CHECKPOINT.parent.mkdir(exist_ok=True)
+                        CHECKPOINT.write_text(json.dumps(cp, indent=1))
+                    continue
+
+                try:
+                    counts = upload_zip(conn, label, content, sha, existing)
+                except Exception as e:
+                    print(f"[{label}] upload failed: {e}")
+                    raise
+
+                with cp_lock:
+                    cp[label] = counts
+                    CHECKPOINT.parent.mkdir(exist_ok=True)
+                    CHECKPOINT.write_text(json.dumps(cp, indent=1))
 
         run_id = str(uuid.uuid4())
         for tbl in ("FED_SEC_13F_HOLDINGS", "FED_SEC_13F_FILERS", "FED_SEC_13F_SUBMISSIONS"):

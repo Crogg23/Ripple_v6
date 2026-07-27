@@ -8,7 +8,11 @@ Legacy LAERS (pre-2012Q4) and FAERS columns are unioned: new columns are
 added to the landing table via ALTER TABLE ADD COLUMN, legacy rows keep NULLs.
 Raw landing only -- no dedup, no rename. Checkpointed per quarter for resume.
 
-    python scripts/fda_faers_load.py --run [--start 2004q1] [--end 2026q1]
+Parallel mode: downloads up to N quarters concurrently while uploading
+completed downloads to Snowflake. Checkpoint is still per-quarter (safe to
+kill and resume at any time).
+
+    python scripts/fda_faers_load.py --run [--start 2004q1] [--end 2026q1] [--workers 4]
 """
 from __future__ import annotations
 
@@ -18,9 +22,12 @@ import hashlib
 import io
 import json
 import sys
+import time
 import uuid
 import zipfile
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
+from threading import Lock
 
 import pandas as pd
 import requests
@@ -41,6 +48,7 @@ USER_AGENT = {"User-Agent": "Ripple-Library/1.0 (data research; w.rogers9999@gma
 CHECKPOINT = _REPO / "logs" / "faers_checkpoint.json"
 FILE_TYPES = ["DEMO", "DRUG", "REAC", "OUTC", "INDI"]
 CHUNK_ROWS = 500_000
+DEFAULT_WORKERS = 4
 
 
 def quarters(start: str, end: str) -> list[str]:
@@ -73,8 +81,26 @@ def save_checkpoint(cp: dict):
     CHECKPOINT.write_text(json.dumps(cp, indent=1))
 
 
+def download_quarter(quarter: str) -> tuple[str, bytes, str]:
+    """Download a quarter's zip. Returns (quarter, content_bytes, sha256)."""
+    url = url_for(quarter)
+    resp = None
+    for attempt in range(5):
+        try:
+            resp = requests.get(url, timeout=1800, headers=USER_AGENT)
+            break
+        except requests.exceptions.RequestException as e:
+            print(f"[{quarter}] download attempt {attempt+1} failed: {str(e)[:100]}")
+            time.sleep(30 * (attempt + 1))
+    if resp is None:
+        raise RuntimeError(f"download failed after retries: {url}")
+    resp.raise_for_status()
+    sha = hashlib.sha256(resp.content).hexdigest()
+    print(f"[{quarter}] downloaded {len(resp.content):,} bytes  sha={sha[:12]}")
+    return quarter, resp.content, sha
+
+
 def ensure_columns(conn, tbl: str, cols: list[str], existing: dict[str, set]) -> None:
-    """Create table or add missing VARCHAR columns."""
     cur = conn.cursor()
     if tbl not in existing:
         cur.execute(f"SELECT COLUMN_NAME FROM {bulk.LANDING_DB}.INFORMATION_SCHEMA.COLUMNS "
@@ -95,33 +121,18 @@ def ensure_columns(conn, tbl: str, cols: list[str], existing: dict[str, set]) ->
             existing[tbl].add(c)
 
 
-def load_quarter(conn, quarter: str, existing: dict[str, set]) -> dict[str, int]:
+def upload_quarter(conn, quarter: str, content: bytes, sha: str,
+                   existing: dict[str, set]) -> dict[str, int]:
+    """Parse and upload a downloaded quarter to Snowflake. Returns file-type counts."""
     from snowflake.connector.pandas_tools import write_pandas
 
-    url = url_for(quarter)
-    print(f"[{quarter}] downloading {url}")
-    resp = None
-    for attempt in range(5):
-        try:
-            resp = requests.get(url, timeout=1800, headers=USER_AGENT)
-            break
-        except requests.exceptions.RequestException as e:
-            print(f"[{quarter}] download attempt {attempt+1} failed: {str(e)[:100]}")
-            import time
-            time.sleep(30 * (attempt + 1))
-    if resp is None:
-        raise RuntimeError(f"download failed after retries: {url}")
-    resp.raise_for_status()
-    sha = hashlib.sha256(resp.content).hexdigest()
     run_id = str(uuid.uuid4())
     started = dt.datetime.now(dt.timezone.utc).replace(tzinfo=None)
-    print(f"[{quarter}] {len(resp.content):,} bytes  sha256={sha[:16]}")
-
     counts: dict[str, int] = {}
-    with zipfile.ZipFile(io.BytesIO(resp.content)) as zf:
+
+    with zipfile.ZipFile(io.BytesIO(content)) as zf:
         names = {n.upper(): n for n in zf.namelist()}
         for ft in FILE_TYPES:
-            # e.g. ASCII/DEMO24Q1.TXT or ascii/DEMO04Q1.TXT
             match = [orig for up, orig in names.items()
                      if up.endswith(".TXT") and Path(up).name.startswith(ft)]
             if not match:
@@ -159,28 +170,55 @@ def main():
     ap.add_argument("--run", action="store_true")
     ap.add_argument("--start", default="2004q1")
     ap.add_argument("--end", default="2026q1")
+    ap.add_argument("--workers", type=int, default=DEFAULT_WORKERS,
+                    help="Number of parallel download threads (default 4)")
     args = ap.parse_args()
 
     qs = quarters(args.start, args.end)
     cp = load_checkpoint()
     todo = [q for q in qs if q not in cp]
-    print(f"{len(qs)} quarters in range, {len(todo)} to load")
+    print(f"{len(qs)} quarters in range, {len(todo)} to load, {args.workers} workers")
     if not args.run:
         return
 
     conn = snow.connect()
     existing: dict[str, set] = {}
+    cp_lock = Lock()
+
     try:
-        for q in todo:
-            try:
-                counts = load_quarter(conn, q, existing)
-            except requests.HTTPError as e:
-                print(f"[{q}] HTTP error: {e} -- skipping")
-                cp[q] = {"error": str(e)}
-                save_checkpoint(cp)
-                continue
-            cp[q] = counts
-            save_checkpoint(cp)
+        # Pipeline: download in parallel, upload sequentially (Snowflake conn is not
+        # thread-safe for writes, and ensure_columns/ALTER TABLE needs serialization).
+        # Downloads are the bottleneck (slow gov servers), so overlapping them is the win.
+        with ThreadPoolExecutor(max_workers=args.workers) as pool:
+            futures = {pool.submit(download_quarter, q): q for q in todo}
+
+            for future in as_completed(futures):
+                quarter = futures[future]
+                try:
+                    _, content, sha = future.result()
+                except requests.HTTPError as e:
+                    print(f"[{quarter}] HTTP error: {e} -- skipping")
+                    with cp_lock:
+                        cp[quarter] = {"error": str(e)}
+                        save_checkpoint(cp)
+                    continue
+                except Exception as e:
+                    print(f"[{quarter}] download failed: {e} -- skipping")
+                    with cp_lock:
+                        cp[quarter] = {"error": str(e)}
+                        save_checkpoint(cp)
+                    continue
+
+                # Upload sequentially (safe)
+                try:
+                    counts = upload_quarter(conn, quarter, content, sha, existing)
+                except Exception as e:
+                    print(f"[{quarter}] upload failed: {e}")
+                    raise
+
+                with cp_lock:
+                    cp[quarter] = counts
+                    save_checkpoint(cp)
 
         run_id = str(uuid.uuid4())
         for ft in FILE_TYPES:
