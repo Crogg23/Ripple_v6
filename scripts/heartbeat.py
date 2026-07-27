@@ -727,7 +727,7 @@ def tier_reconcile(run: bool, budget: dict) -> dict:
         ([PY, "-m", "connect", "fingerprint"], 600, 900),     # soft/hard seconds
         ([PY, "-m", "connect", "discover"],    2400, 3600),
         ([PY, "-m", "connect", "spine"],       2400, 3600),
-        ([PY, "-m", "connect", "seed"],        300, 600),
+        ([PY, "-m", "connect", "seed", "--reseed"],  300, 600),
     ]
     if not run:
         return _planned("reconcile", [PY, "-m", "connect", "all"], REPO,
@@ -869,6 +869,24 @@ def tier_acquire(run: bool, budget: dict, max_sources: int, optin: bool) -> dict
         r = run_guarded("acquire", cmd, cwd, pol["soft"], pol["hard"],
                         wh_timeout_s=pol["hard"] + STMT_TIMEOUT_BUFFER_S)
         r["source_id"] = sid
+
+        # Post-acquire verify: if recipe declares a verify_table, confirm non-empty
+        if r.get("status") == "ok" and rec.get("verify_table"):
+            try:
+                vtbl = rec["verify_table"]
+                cur = snow.connect().cursor()
+                cur.execute(f'SELECT COUNT(*) FROM LIBRARY_RAW.LANDING."{vtbl}"')
+                cnt = cur.fetchone()[0]
+                cur.connection.close()
+                if cnt == 0:
+                    r["status"] = "dq_failed"
+                    r["dq_note"] = f"verify_table {vtbl} is EMPTY after rc=0"
+                    mlog(event="acquire_dq_fail", source=sid, table=vtbl)
+                else:
+                    r["dq_rows"] = cnt
+            except Exception as e:
+                r["dq_note"] = f"verify check error: {str(e)[:120]}"
+
         results.append(r)
         attempted += 1
 
@@ -910,7 +928,7 @@ def _advance(state: dict, tier: str, status: str) -> None:
     rec = state["tiers"].setdefault(tier, {})
     rec["last_attempt"] = iso_now()
     rec["last_status"] = status
-    if status in ("ok", "ok_twins_unverified", "noop"):
+    if status in ("ok", "noop"):
         rec["last_success"] = iso_now()
         if tier == "reconcile":                    # a full rebuild also satisfies LINK
             link = state["tiers"].setdefault("link", {})

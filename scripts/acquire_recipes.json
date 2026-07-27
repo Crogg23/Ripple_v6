@@ -25,6 +25,7 @@
       "cmd": ["scripts/cisa_kev_load.py", "--run"],
       "cwd": "repo",
       "cost_estimate_cr": 0.1,
+      "verify_table": "FED_CISA_KEV",
       "note": "VERIFIED SAFE: single CC0 JSON, snapshot-replace (overwrite=True) => idempotent, and SHA-SKIPs an unchanged reload (compares the freshly-computed source SHA-256 to the last successful INGEST_RUNS.SHA256 for this source_id; equal => no warehouse write). Daily cadence. ~tiny. The reference auto-ACQUIRE recipe."
     },
     "fed_usgs_earthquakes": {
@@ -41,6 +42,7 @@
       "cmd": ["scripts/sec_bulk_discover_load.py", "--run", "--limit", "30"],
       "cwd": "repo",
       "cost_estimate_cr": 2.0,
+      "verify_table": "FED_SEC_EDGAR_COMPANY_TICKERS",
       "note": "SAFE: DCAT catalog discovery + snapshot-replace per CSV. Parallel download (6 workers). SEC data.json is stable. All tables are overwrite=True => idempotent. Weekly cadence."
     },
     "fed_epa_echo": {
@@ -49,6 +51,7 @@
       "cmd": ["scripts/epa_echo_bulk_load.py", "--run"],
       "cwd": "repo",
       "cost_estimate_cr": 3.0,
+      "verify_table": "FED_EPA_ECHO",
       "note": "SAFE: Known ECHO ZIP URLs, snapshot-replace per CSV inside each ZIP. Parallel (4 workers). ZIPs are large (50-700MB) but idempotent. Monthly cadence."
     },
     "fed_dol_enforce": {
@@ -57,6 +60,7 @@
       "cmd": ["scripts/dol_enforce_bulk_load.py", "--run"],
       "cwd": "repo",
       "cost_estimate_cr": 2.0,
+      "verify_table": "FED_MSHA_VIOLATIONS",
       "note": "SAFE: Known enforcedata.dol.gov CSV endpoints, snapshot-replace (overwrite=True). Parallel download. Monthly cadence. OSHA/MSHA/WHD data is public domain."
     },
     "fed_irs_bulk": {

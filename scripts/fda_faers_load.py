@@ -181,6 +181,11 @@ def main():
                 continue
             cp[q] = counts
             save_checkpoint(cp)
+
+        run_id = str(uuid.uuid4())
+        for ft in FILE_TYPES:
+            tbl = f"FED_FDA_FAERS_{ft}"
+            bulk.run_quality_gate(conn, f"fed_fda_faers_{ft.lower()}", tbl, run_id)
     finally:
         conn.close()
     print("DONE")

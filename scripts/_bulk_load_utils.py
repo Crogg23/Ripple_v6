@@ -7,6 +7,7 @@ duplicating the download/load/stamp machinery.  Optimized for throughput:
   - ZipFile over BytesIO (no temp extraction directory)
 
     from _bulk_load_utils import fast_load, load_zip_csvs, parallel_load, ...
+    from _bulk_load_utils import assess_bulk_load, bulk_log_run
 """
 from __future__ import annotations
 
@@ -14,6 +15,7 @@ import concurrent.futures
 import datetime as dt
 import hashlib
 import io
+import json
 import re
 import tempfile
 import time
@@ -256,3 +258,173 @@ def parallel_header_check(urls: list[tuple[str, str]], key_set: set[str],
 def new_conn():
     """Open a fresh Snowflake connection (for use in worker threads)."""
     return snow.connect()
+
+
+# ---------------------------------------------------------------------------
+# Data Quality Gate
+# ---------------------------------------------------------------------------
+META_COLS = {"_INGESTED_AT", "_SOURCE_RUN_ID", "_SRC_SHA256", "_LOADED_AT",
+             "_SRC_YEAR", "_SRC_QUARTER", "_SRC_FILE"}
+
+DQ_FAILURES_PATH = _REPO / "outputs" / "_dq_failures.jsonl"
+
+
+def _data_columns(conn, table: str) -> list[str]:
+    """Non-meta columns in a landing table."""
+    cur = conn.cursor()
+    try:
+        cur.execute(
+            "SELECT COLUMN_NAME FROM LIBRARY_RAW.INFORMATION_SCHEMA.COLUMNS "
+            "WHERE TABLE_SCHEMA='LANDING' AND TABLE_NAME=%s ORDER BY ORDINAL_POSITION",
+            (table.upper(),))
+        cols = [r[0] for r in cur.fetchall()]
+    finally:
+        cur.close()
+    return [c for c in cols if c.upper() not in META_COLS]
+
+
+def _density_check(conn, table: str, data_cols: list[str],
+                   sample: int = 5000, threshold: float = 0.85) -> tuple[float, bool]:
+    """Check for degenerate columns (dead-scrape signature).
+
+    Returns (degenerate_frac, passed). Passed means < threshold fraction degenerate.
+    """
+    if not data_cols:
+        return 1.0, False
+    sel = ["COUNT(*) AS _n"] + [
+        f'COUNT(DISTINCT NULLIF(TRIM("{c}"),\'\')) AS "d_{i}"'
+        for i, c in enumerate(data_cols)]
+    sql = (f"SELECT {', '.join(sel)} FROM "
+           f'(SELECT * FROM {LANDING_FQS}."{table}" LIMIT {int(sample)})')
+    cur = conn.cursor()
+    try:
+        cur.execute(sql)
+        row = cur.fetchone()
+    finally:
+        cur.close()
+    if not row or row[0] == 0:
+        return 1.0, False
+    distincts = list(row[1:])
+    degenerate_count = sum(1 for d in distincts if (d or 0) <= 1)
+    frac = degenerate_count / len(data_cols)
+    return frac, frac < threshold
+
+
+def assess_bulk_load(conn, table: str, *,
+                     expected_min_rows: int = 1,
+                     prev_row_count: int | None = None,
+                     density_sample: int = 5000,
+                     density_threshold: float = 0.85) -> tuple[bool, dict]:
+    """Post-load quality gate. Returns (passed, report).
+
+    Checks:
+      1. Row count > expected_min_rows
+      2. No >50% row regression vs prev_row_count (if provided)
+      3. Density gate -- not a dead-scrape (degenerate columns < threshold)
+    """
+    report: dict = {}
+    cur = conn.cursor()
+    try:
+        cur.execute(f'SELECT COUNT(*) FROM {LANDING_FQS}."{table}"')
+        actual = cur.fetchone()[0]
+    finally:
+        cur.close()
+
+    report["row_count"] = actual
+    report["row_check"] = actual > expected_min_rows
+
+    if prev_row_count and actual < prev_row_count * 0.5:
+        report["regression"] = True
+        report["regression_detail"] = f"{actual} vs prev {prev_row_count} (>50% drop)"
+    else:
+        report["regression"] = False
+
+    data_cols = _data_columns(conn, table)
+    if actual > 0 and data_cols:
+        degen_frac, density_ok = _density_check(
+            conn, table, data_cols, sample=density_sample, threshold=density_threshold)
+        report["degenerate_frac"] = round(degen_frac, 4)
+        report["density_check"] = density_ok
+    else:
+        report["degenerate_frac"] = None
+        report["density_check"] = actual > 0
+
+    passed = (report["row_check"] and not report["regression"] and report["density_check"])
+    report["passed"] = passed
+    return passed, report
+
+
+def bulk_log_run(conn, source_id: str, run_id: str, *,
+                 sha256: str = "",
+                 row_count: int = 0,
+                 status: str = "success",
+                 message: str = "",
+                 source_url: str = "",
+                 file_bytes: int | None = None,
+                 dq_report: dict | None = None):
+    """Write to INGEST_RUNS -- same schema as ingest._log_run()."""
+    now = dt.datetime.now(dt.timezone.utc).replace(tzinfo=None)
+    msg = message
+    if dq_report:
+        msg = (message + " | DQ: " + json.dumps(dq_report, default=str))[:16_000]
+    cur = conn.cursor()
+    try:
+        cur.execute(
+            "INSERT INTO LIBRARY_META.INGEST_LOGS.INGEST_RUNS "
+            "(SOURCE_ID, RUN_ID, STARTED_AT, ENDED_AT, STATUS, ROW_COUNT, "
+            " FILE_BYTES, SHA256, SOURCE_URL, MESSAGE) "
+            "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+            (source_id, run_id, now, now, status, row_count,
+             file_bytes, sha256 or None, source_url or None, msg or None))
+    finally:
+        cur.close()
+
+
+def _append_dq_failure(source_id: str, table: str, report: dict):
+    """Local fallback: append failure to JSONL so it's visible even if SF is dead."""
+    entry = {
+        "ts": dt.datetime.now(dt.timezone.utc).isoformat(),
+        "source_id": source_id,
+        "table": table,
+        **report,
+    }
+    DQ_FAILURES_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with open(DQ_FAILURES_PATH, "a") as f:
+        f.write(json.dumps(entry, default=str) + "\n")
+
+
+def run_quality_gate(conn, source_id: str, table: str, run_id: str, *,
+                     sha256: str = "",
+                     row_count: int | None = None,
+                     source_url: str = "",
+                     file_bytes: int | None = None,
+                     prev_row_count: int | None = None,
+                     expected_min_rows: int = 1) -> tuple[bool, dict]:
+    """Full quality gate + logging in one call.
+
+    Call this at the end of any bulk loader:
+        passed, report = run_quality_gate(conn, SOURCE_ID, TABLE, run_id, sha256=sha)
+        if not passed:
+            sys.exit(1)
+    """
+    passed, report = assess_bulk_load(
+        conn, table,
+        expected_min_rows=expected_min_rows,
+        prev_row_count=prev_row_count)
+
+    actual_rows = report.get("row_count", row_count or 0)
+    status = "success" if passed else "dq_failed"
+
+    bulk_log_run(conn, source_id, run_id,
+                 sha256=sha256, row_count=actual_rows,
+                 status=status, source_url=source_url,
+                 file_bytes=file_bytes, dq_report=report)
+
+    if not passed:
+        _append_dq_failure(source_id, table, report)
+        print(f"  [DQ FAILED] {source_id}/{table}: {report}")
+    else:
+        print(f"  [DQ OK] {source_id}/{table}: {actual_rows:,} rows, "
+              f"density {report.get('degenerate_frac', 'n/a')}")
+
+    return passed, report

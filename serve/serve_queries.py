@@ -179,10 +179,9 @@ def get_dossier(eid: str):
 def get_affiliations(npi_value: str):
     """Provider -> CMS facilities (works-at relationship, NOT identity).
 
-    RETIRED 2026-07-20 / ORPHANED: FED_CMS_FACILITY_AFFILIATION was dropped from
-    LIBRARY_RAW.LANDING, so this errors if called. Its only caller (the NPI-dossier
-    affiliations panel in app.py) was removed the same day. Kept for a clean restore
-    if the source is re-landed; do NOT re-wire it until then."""
+    Re-activated: FED_CMS_FACILITY_AFFILIATION restored to LANDING (2.2M rows
+    as of 2026-07-25). connect/dossier.py and connect/leads_specs.py already
+    query it; this is the serve-layer consumer."""
     npi_n = normalize_sql("NPI", '"NPI"')
     ccn_n = normalize_sql("CCN", '"CCN"')
     sql = f"""
