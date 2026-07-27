@@ -82,6 +82,20 @@ def _load_specs() -> dict[str, dict]:
         specs.update({d["source_id"]: d for d in backfill_specs.SPECS})
     except ModuleNotFoundError:
         pass
+    # Sprint specs (scripts/sprint_*_specs.py) — loader-filtered to bridge_fuel only
+    import importlib.util
+    from pathlib import Path as _P
+    for p in _P(__file__).resolve().parent.glob("sprint_*_specs.py"):
+        try:
+            sp = importlib.util.spec_from_file_location(p.stem, str(p))
+            mod = importlib.util.module_from_spec(sp)
+            sp.loader.exec_module(mod)
+            for d in getattr(mod, "SPECS", []):
+                if d.get("loader", "bridge_fuel") == "bridge_fuel":
+                    sid = d.get("source_id", "").upper() or d.get("source_id", "")
+                    specs[sid] = d
+        except Exception:
+            pass
     return specs
 
 
@@ -645,8 +659,26 @@ def _load_chunked(conn, s, src, opts, table, run_id, started, sid, do_run,
 def _run_one(s: dict, args) -> dict:
     """Load one spec, catching its own errors so one failure can't kill a batch."""
     try:
-        return load_spec(s, do_run=args.run, force=args.force, refresh=args.refresh,
-                         allow_schema_change=getattr(args, "allow_schema_change", False))
+        result = load_spec(s, do_run=args.run, force=args.force, refresh=args.refresh,
+                           allow_schema_change=getattr(args, "allow_schema_change", False))
+        # Post-land lifecycle: scaffold dbt + wire into connection engine
+        if result.get("status") == "loaded":
+            try:
+                from loadkit.lifecycle import on_success
+                lc = on_success(
+                    source_id=s["source_id"],
+                    key_cols=s.get("key_cols", []),
+                    description=s.get("accountability_relevance", s.get("name", "")),
+                )
+                if lc["scaffolded"]:
+                    print(f"    scaffolded dbt: {lc['scaffolded']}")
+                if lc["connected"]:
+                    print(f"    connect-one: wired into graph")
+                for err in lc["errors"]:
+                    print(f"    lifecycle warn: {err}")
+            except Exception as lc_err:
+                print(f"    lifecycle warn: {lc_err}")
+        return result
     except Exception as e:  # noqa: BLE001
         print(f"    [{s['source_id']}] ERROR: {str(e)[:160]}")
         return {"source_id": s["source_id"], "status": f"ERROR: {str(e)[:90]}"}

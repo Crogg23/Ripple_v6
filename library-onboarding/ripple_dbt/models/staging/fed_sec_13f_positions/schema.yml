@@ -1,0 +1,21 @@
+  version: 2
+
+  sources:
+    - name: ripple_raw
+      database: LIBRARY_RAW
+      schema: LANDING
+      tables:
+        - name: FED_SEC_13F_POSITIONS
+
+  models:
+    - name: stg_fed_sec_13f_positions__all
+      description: "Millions of fund→company ownership positions per quarter. CUSIP identifies the held security; ACCESSION_NUMBER joins to SUBMISSION for filer CIK. The 'who owns what' backbone: which hedge fund loaded up before the merger, which insurer dumped stock before the recall."
+      columns:
+- name: CUSIP
+  tests:
+    - not_null
+    - unique
+- name: SEC_ACCESSION_NUMBER
+  tests:
+    - not_null
+    - unique

@@ -76,7 +76,22 @@ STAGE = "LIBRARY_RAW.LANDING.BULK_STAGE"
 # --------------------------------------------------------------------------- #
 def _load_specs() -> dict[str, dict]:
     import server_side_specs  # scripts/server_side_specs.py
-    return {d["source_id"]: d for d in server_side_specs.SPECS}
+    specs = {d["source_id"]: d for d in server_side_specs.SPECS}
+    # Sprint specs (scripts/sprint_*_specs.py) — loader-filtered to server_side only
+    import importlib.util
+    from pathlib import Path as _P
+    for p in _P(__file__).resolve().parent.glob("sprint_*_specs.py"):
+        try:
+            sp = importlib.util.spec_from_file_location(p.stem, str(p))
+            mod = importlib.util.module_from_spec(sp)
+            sp.loader.exec_module(mod)
+            for d in getattr(mod, "SPECS", []):
+                if d.get("loader") == "server_side":
+                    sid = d.get("source_id", "").upper() or d.get("source_id", "")
+                    specs[sid] = d
+        except Exception:
+            pass
+    return specs
 
 
 # --------------------------------------------------------------------------- #
@@ -847,8 +862,26 @@ def load_spec(s: dict, do_run: bool = False, force: bool = False,
 
 def _run_one(s: dict, args) -> dict:
     try:
-        return load_spec(s, do_run=args.run, force=args.force,
-                         reuse_staged=args.reuse_staged, refresh=args.refresh)
+        result = load_spec(s, do_run=args.run, force=args.force,
+                           reuse_staged=args.reuse_staged, refresh=args.refresh)
+        # Post-land lifecycle: scaffold dbt + wire into connection engine
+        if result.get("status") == "loaded":
+            try:
+                from loadkit.lifecycle import on_success
+                lc = on_success(
+                    source_id=s["source_id"],
+                    key_cols=s.get("key_cols", []),
+                    description=s.get("accountability_relevance", s.get("name", "")),
+                )
+                if lc["scaffolded"]:
+                    print(f"    scaffolded dbt: {lc['scaffolded']}")
+                if lc["connected"]:
+                    print(f"    connect-one: wired into graph")
+                for err in lc["errors"]:
+                    print(f"    lifecycle warn: {err}")
+            except Exception as lc_err:
+                print(f"    lifecycle warn: {lc_err}")
+        return result
     except Exception as e:  # noqa: BLE001
         print(f"    [{s['source_id']}] ERROR: {str(e)[:200]}")
         return {"source_id": s["source_id"], "status": f"ERROR: {str(e)[:120]}"}

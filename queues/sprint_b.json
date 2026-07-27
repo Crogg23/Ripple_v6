@@ -1,0 +1,15 @@
+{
+  "sprint": "B",
+  "created": "2026-07-27",
+  "notes": "Gap-list datasets with verified direct download URLs. 6 sources (SEC 13F split into 2 tables = 7 specs). Deferred: LDA, USASpending sub, DOL WHD, ATF FFL (API-gated, Sprint C).",
+  "spec_files": ["scripts/sprint_b_specs.py"],
+  "sources": [
+    {"source_id": "INT_GLEIF_RR", "notes": "~2M rows, LEI→parent LEI ownership. Resolver: goldencopy.gleif.org API"},
+    {"source_id": "FED_SEC_13F_SUBMISSION", "notes": "~5K filers/quarter, CIK key. TSV in multi-member ZIP"},
+    {"source_id": "FED_SEC_13F_POSITIONS", "notes": "~2-3M positions/quarter, CUSIP key. TSV in same ZIP"},
+    {"source_id": "FED_DOL_OSHA_INSPECTION", "notes": "~4-5M rows, activity_nr key. New host: data.dol.gov"},
+    {"source_id": "FED_PHMSA_FLAGGED_INCIDENTS", "notes": "Curated significant incidents, OPERATOR_ID. New host: www.phmsa.dot.gov"},
+    {"source_id": "INT_UK_COMPANIES_HOUSE", "notes": "~6M rows, CompanyNumber. New host: download.companieshouse.gov.uk"},
+    {"source_id": "FED_DOL_OLMS", "notes": "~30-50K filings/year, EIN key. New host: olmsapps.dol.gov"}
+  ]
+}

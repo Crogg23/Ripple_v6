@@ -1,0 +1,21 @@
+  version: 2
+
+  sources:
+    - name: ripple_raw
+      database: LIBRARY_RAW
+      schema: LANDING
+      tables:
+        - name: INT_GLEIF_RR
+
+  models:
+    - name: stg_int_gleif_rr__all
+      description: "Lights up the entire 3.4M LEI spine with who-owns-whom chains. Every corporate subsidiary → ultimate parent traversal starts here. Bridges SEC filers (CIK→LEI crosswalk) to their global parent entities."
+      columns:
+- name: LEI
+  tests:
+    - not_null
+    - unique
+- name: PARENT_LEI
+  tests:
+    - not_null
+    - unique

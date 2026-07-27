@@ -1,0 +1,17 @@
+  version: 2
+
+  sources:
+    - name: ripple_raw
+      database: LIBRARY_RAW
+      schema: LANDING
+      tables:
+        - name: INT_UK_COMPANIES_HOUSE
+
+  models:
+    - name: stg_int_uk_companies_house__all
+      description: "6M UK companies with registered address, SIC codes, incorporation date, and company status. Some carry LEI cross-references. Bridges to GLEIF L1/L2 for UK entities in global ownership chains. Essential for tracing UK subsidiaries of US-listed parent companies."
+      columns:
+- name: UK_COMPANY_NUMBER
+  tests:
+    - not_null
+    - unique

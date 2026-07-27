@@ -1,0 +1,17 @@
+  version: 2
+
+  sources:
+    - name: ripple_raw
+      database: LIBRARY_RAW
+      schema: LANDING
+      tables:
+        - name: FED_DOL_OSHA_INSPECTION
+
+  models:
+    - name: stg_fed_dol_osha_inspection__all
+      description: "~4-5M inspections back to 1970s. Identifies repeat-violator establishments by name and address. SIC/NAICS codes enable industry-wide pattern detection. Bridges to other enforcement datasets via establishment name/address matching. The 'how many times were they warned before someone died' detector."
+      columns:
+- name: OSHA_ACTIVITY_NR
+  tests:
+    - not_null
+    - unique

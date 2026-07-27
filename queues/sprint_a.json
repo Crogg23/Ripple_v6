@@ -1,0 +1,13 @@
+{
+  "sprint": "A",
+  "created": "2026-07-27",
+  "notes": "Direct downloads, high graph value. First five sources from the Next Pour Plan.",
+  "spec_files": ["scripts/sprint_a_specs.py"],
+  "sources": [
+    {"source_id": "FED_FEC_LEADERSHIP_PAC", "notes": "~5K rows, FEC_ID key, pre-built bridge to legislators"},
+    {"source_id": "XC_HOUSESTOCKWATCHER", "notes": "~30K rows, BIOGUIDE key, completes insider-trading triangle"},
+    {"source_id": "FED_IRS_990_INDEX", "notes": "~3M rows, EIN key, replaces 200-row test load"},
+    {"source_id": "FED_EPA_FRS_FULL", "notes": "~4M rows, FRS_ID+EIN, uncap existing 500K load"},
+    {"source_id": "FED_SEC_INSIDER_TXN", "notes": "~5M rows, CIK key, ownership backbone"}
+  ]
+}

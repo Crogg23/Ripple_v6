@@ -1,0 +1,21 @@
+  version: 2
+
+  sources:
+    - name: ripple_raw
+      database: LIBRARY_RAW
+      schema: LANDING
+      tables:
+        - name: FED_FEC_LEADERSHIP_PAC
+
+  models:
+    - name: stg_fed_fec_leadership_pac__all
+      description: "Pre-built bridge: which member of Congress controls which Leadership PAC. Connects FEC committee money flows directly to legislators (BIOGUIDE)."
+      columns:
+- name: FEC_CANDIDATE_ID
+  tests:
+    - not_null
+    - unique
+- name: FEC_COMMITTEE_ID
+  tests:
+    - not_null
+    - unique
