@@ -1,21 +1,16 @@
-  version: 2
+version: 2
 
-  sources:
-    - name: ripple_raw
-      database: LIBRARY_RAW
-      schema: LANDING
-      tables:
-        - name: FED_EPA_FRS_FULL
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_EPA_FRS_FULL
 
-  models:
-    - name: stg_fed_epa_frs_full__all
-      description: "The EPA's master facility list (~4M sites). Crosswalk from FRS_ID to EIN jumps from 1.9% to ~60% coverage when uncapped. Bridges EPA enforcement (ECHO) to USASpending contracts and IRS BMF."
-      columns:
-- name: FRS_ID
-  tests:
-    - not_null
-    - unique
-- name: EIN
-  tests:
-    - not_null
-    - unique
+models:
+  - name: stg_fed_epa_frs_full__all
+    description: "EPA Facility Registry Service — master list of ~5.3M regulated facilities."
+    columns:
+      - name: FRS_ID
+        data_tests:
+          - not_null

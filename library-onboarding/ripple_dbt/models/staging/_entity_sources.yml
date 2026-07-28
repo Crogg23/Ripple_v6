@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: entity_resolution
+    database: LIBRARY_META
+    schema: CONNECT
+    description: >
+      Entity resolution golden tables from the Connect pipeline.
+      Content-addressed hashing (ENT_ + MD5(key_type|normalized_value)[:16])
+      produces deterministic entity IDs across all sources.
+    tables:
+      - name: ENTITY_GOLDEN
+        description: >
+          Golden survivorship table — one row per resolved entity with canonical
+          name, address, and entity type. Join key: ENTITY_ID matches
+          spine_entity_id in staging models.

@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FOREIGNASSISTANCE
+        description: >
+          ForeignAssistance.gov — ~4M records of US foreign aid transactions.

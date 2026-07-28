@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CPSC_NEISS
+        description: >
+          CPSC National Electronic Injury Surveillance System. ~9.8M ER visit
+          records for consumer product-related injuries. Statistical sample
+          with weights for national estimates.

@@ -10,7 +10,7 @@ ripple:
       type: snowflake
       account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
       user: "{{ env_var('SNOWFLAKE_USER') }}"
-      authenticator: externalbrowser
+      password: "{{ env_var('SNOWFLAKE_PAT') }}"
       # Role default changed ACCOUNTADMIN -> RIPPLE_TRANSFORM_RW (2026-07-20):
       # an unexported shell now fails loudly on missing grants instead of
       # silently running dbt with full account privileges.

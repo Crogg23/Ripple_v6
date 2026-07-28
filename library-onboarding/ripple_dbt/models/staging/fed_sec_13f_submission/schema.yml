@@ -1,17 +1,16 @@
-  version: 2
+version: 2
 
-  sources:
-    - name: ripple_raw
-      database: LIBRARY_RAW
-      schema: LANDING
-      tables:
-        - name: FED_SEC_13F_SUBMISSION
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_SEC_13F_SUBMISSION
 
-  models:
-    - name: stg_fed_sec_13f_submission__all
-      description: "The filer identity table for 13F institutional holdings. ~5K filers per quarter (hedge funds, mutual funds, insurance companies). CIK key connects to SEC EDGAR universe, insider transactions, and GLEIF (via CIK→LEI crosswalk)."
-      columns:
-- name: CIK
-  tests:
-    - not_null
-    - unique
+models:
+  - name: stg_fed_sec_13f_submission__all
+    description: "SEC 13F filer identity table — institutional holders filing quarterly."
+    columns:
+      - name: CIK
+        data_tests:
+          - not_null

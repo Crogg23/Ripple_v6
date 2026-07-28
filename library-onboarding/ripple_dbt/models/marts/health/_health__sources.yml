@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_DEA_ARCOS_FULL
+        description: >
+          DEA ARCOS — every controlled substance transaction from manufacturer/distributor
+          to pharmacy/hospital. 178M records. The supply-side map of the opioid crisis.
+      - name: FED_FOREIGNASSISTANCE
+        description: >
+          ForeignAssistance.gov — all US foreign aid disbursements and obligations.
