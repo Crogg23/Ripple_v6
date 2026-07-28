@@ -11,7 +11,7 @@ select
     coal_metal_ind,
     current_mine_type,
     current_mine_status,
-    try_to_date(current_status_dt, 'YYYYMMDD')     as current_status_dt,
+    try_to_date(current_status_dt, 'MM/DD/YYYY')   as current_status_dt,
     current_controller_id,
     current_controller_name,
     current_operator_id,

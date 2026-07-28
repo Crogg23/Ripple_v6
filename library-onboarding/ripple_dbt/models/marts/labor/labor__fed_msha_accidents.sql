@@ -13,7 +13,7 @@ select
     operator_id,
     operator_name,
     subunit,
-    try_to_date(accident_dt, 'YYYYMMDD')           as accident_date,
+    try_to_date(accident_dt, 'MM/DD/YYYY')         as accident_date,
     try_to_number(cal_yr)                          as cal_yr,
     degree_injury_cd,
     degree_injury,

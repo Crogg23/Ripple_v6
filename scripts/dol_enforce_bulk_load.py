@@ -46,6 +46,30 @@ ENTITY_KEYS = {
 
 # MSHA Open Government Data -- direct ZIPs (pipe-delimited, updated weekly)
 # Source: https://arlweb.msha.gov/OpenGovernmentData/OGIMSHA.asp
+OSHA_MANIFEST = [
+    {
+        "name": "OSHA_INSPECTION",
+        "table": "FED_DOL_OSHA_INSPECTION",
+        "url": "https://enforcedata.dol.gov/data_catalogs/osha/osha_inspection.csv.zip",
+        "description": "All OSHA workplace inspections since 1972 (ACTIVITY_NR keyed)",
+        "sep": ",",
+    },
+    {
+        "name": "OSHA_VIOLATION",
+        "table": "FED_DOL_OSHA_VIOLATION",
+        "url": "https://enforcedata.dol.gov/data_catalogs/osha/osha_violation.csv.zip",
+        "description": "Citations issued from OSHA inspections (violation-level)",
+        "sep": ",",
+    },
+    {
+        "name": "OSHA_ACCIDENT",
+        "table": "FED_DOL_OSHA_ACCIDENT",
+        "url": "https://enforcedata.dol.gov/data_catalogs/osha/osha_accident.csv.zip",
+        "description": "OSHA accident investigation records",
+        "sep": ",",
+    },
+]
+
 MSHA_MANIFEST = [
     {
         "name": "MSHA_MINES",
@@ -98,9 +122,10 @@ MSHA_MANIFEST = [
 ]
 
 
-def _load_msha_zip(conn, entry: dict, max_rows: int) -> int:
-    """Load an MSHA ZIP (pipe-delimited text inside)."""
+def _load_dol_zip(conn, entry: dict, max_rows: int) -> int:
+    """Load a DOL enforcement ZIP (pipe-delimited MSHA or comma-delimited OSHA)."""
     tbl = entry["table"]
+    sep = entry.get("sep", "|")
     print(f"  Downloading {entry['name']}...")
     try:
         resp = requests.get(entry["url"], timeout=600, headers=USER_AGENT)
@@ -112,20 +137,19 @@ def _load_msha_zip(conn, entry: dict, max_rows: int) -> int:
     import zipfile, hashlib, datetime as dt, uuid
     try:
         with zipfile.ZipFile(io.BytesIO(resp.content)) as zf:
-            # Find the data file (usually .txt, pipe-delimited)
-            txt_files = [n for n in zf.namelist()
-                         if n.lower().endswith('.txt') and 'definition' not in n.lower()]
-            if not txt_files:
-                print(f"    No data .txt file found in ZIP")
+            data_files = [n for n in zf.namelist()
+                          if n.lower().endswith(('.txt', '.csv'))
+                          and 'definition' not in n.lower()
+                          and not n.startswith('__MACOSX')]
+            if not data_files:
+                print(f"    No data file found in ZIP")
                 return 0
-            # Take the largest file
-            txt_files.sort(key=lambda n: zf.getinfo(n).file_size, reverse=True)
-            target = txt_files[0]
+            data_files.sort(key=lambda n: zf.getinfo(n).file_size, reverse=True)
+            target = data_files[0]
             with zf.open(target) as f:
                 content = f.read()
 
-        # MSHA files are pipe-delimited
-        df = pd.read_csv(io.BytesIO(content), sep="|", dtype=str,
+        df = pd.read_csv(io.BytesIO(content), sep=sep, dtype=str,
                          nrows=max_rows, low_memory=False, encoding_errors="replace")
         if df.empty:
             return 0
@@ -159,23 +183,27 @@ def _load_msha_zip(conn, entry: dict, max_rows: int) -> int:
 def main() -> int:
     ap = argparse.ArgumentParser(description="DOL enforcement bulk loader (MSHA + OSHA)")
     ap.add_argument("--run", action="store_true")
-    ap.add_argument("--limit", type=int, default=len(MSHA_MANIFEST))
-    ap.add_argument("--max-rows", type=int, default=500000)
+    ap.add_argument("--limit", type=int, default=len(OSHA_MANIFEST) + len(MSHA_MANIFEST))
+    ap.add_argument("--max-rows", type=int, default=None)
+    ap.add_argument("--force", action="store_true", help="Reload even if table exists (for re-pours)")
     args = ap.parse_args()
 
     conn = snow.connect()
     loaded = bulk.get_loaded_tables(conn)
     print(f"Already loaded: {len(loaded)} tables in LANDING")
 
-    # Filter to not-yet-loaded
+    # Combine manifests
+    all_entries = OSHA_MANIFEST + MSHA_MANIFEST
+
+    # Filter to not-yet-loaded (or --force to reload broken tables)
     to_load = []
-    for entry in MSHA_MANIFEST[:args.limit]:
-        if entry["table"] in loaded:
+    for entry in all_entries[:args.limit]:
+        if entry["table"] in loaded and not args.force:
             print(f"  SKIP {entry['table']} (already loaded)")
         else:
             to_load.append(entry)
 
-    print(f"\n{len(to_load)} DOL/MSHA datasets to load")
+    print(f"\n{len(to_load)} DOL datasets to load")
 
     if not args.run:
         print("\n(preview only -- add --run to load)")
@@ -189,7 +217,7 @@ def main() -> int:
     tasks = []
     for entry in to_load:
         tasks.append({
-            "fn": _load_msha_zip,
+            "fn": _load_dol_zip,
             "args": (conn, entry, args.max_rows),
             "name": entry["table"],
         })

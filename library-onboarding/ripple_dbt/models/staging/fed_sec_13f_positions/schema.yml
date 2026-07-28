@@ -6,11 +6,18 @@ sources:
     schema: LANDING
     tables:
       - name: FED_SEC_13F_POSITIONS
+        identifier: FED_SEC_13F_HOLDINGS
 
 models:
   - name: stg_fed_sec_13f_positions__all
-    description: "SEC 13F institutional holdings positions by CUSIP."
+    description: >
+      SEC 13F institutional holdings positions. One row per holding line
+      (accession_number + infotable_sk). VALUE normalized to whole dollars
+      (pre-2023 files reported in thousands per SEC rule).
     columns:
-      - name: CUSIP
+      - name: cusip
+        data_tests:
+          - not_null
+      - name: sec_accession_number
         data_tests:
           - not_null

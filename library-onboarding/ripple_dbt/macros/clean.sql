@@ -67,3 +67,12 @@
 {% macro clean_heading(col) -%}
     case when try_to_double(trim({{ col }})) < 360 then try_to_double(trim({{ col }})) end
 {%- endmacro %}
+
+
+{#- MSHA pipe-delimited CSVs retain literal quote characters inside text values
+    (e.g. |"Y"| lands as the 3-char string "Y" instead of bare Y). Pandas
+    read_csv with sep='|' doesn't always strip these. This macro strips embedded
+    double-quotes and trims whitespace, nulling empty strings. -#}
+{% macro strip_quotes(col) -%}
+    nullif(trim(replace({{ col }}, '"', '')), '')
+{%- endmacro %}

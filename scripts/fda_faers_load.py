@@ -143,7 +143,7 @@ def upload_quarter(conn, quarter: str, content: bytes, sha: str,
             with zf.open(match[0]) as f:
                 reader = pd.read_csv(f, sep="$", dtype=str, chunksize=CHUNK_ROWS,
                                      low_memory=False, encoding_errors="replace",
-                                     on_bad_lines="skip")
+                                     on_bad_lines="skip", index_col=False)
                 for df in reader:
                     df.columns = [bulk.sf_col(c) for c in df.columns]
                     ensure_columns(conn, tbl, list(df.columns), existing)

@@ -54,19 +54,19 @@ PAGE_SIZE = 1000
 
 
 def _g(d, *path):
-    """Safe nested get -> '' if any hop missing."""
+    """Safe nested get -> None if any hop missing (lands as NULL, not empty string)."""
     cur = d
     for p in path:
         if isinstance(cur, list):
             cur = cur[0] if cur else {}
         if not isinstance(cur, dict):
-            return ""
+            return None
         cur = cur.get(p)
         if cur is None:
-            return ""
+            return None
     if isinstance(cur, (dict, list)):
-        return ""
-    return cur
+        return None
+    return cur or None  # convert empty string to None
 
 
 def _flatten(e: dict) -> dict:
@@ -86,9 +86,9 @@ def _flatten(e: dict) -> dict:
         "EXCLUSION_TYPE": _g(det, "exclusionType"),
         "EXCLUSION_PROGRAM": _g(det, "exclusionProgram"),
         "EXCLUDING_AGENCY": _g(det, "excludingAgencyName"),
-        "ACTIVATION_DATE": _g(e, "exclusionActions", "activationDate"),
-        "TERMINATION_DATE": _g(e, "exclusionActions", "terminationDate"),
-        "RECORD_STATUS": _g(e, "exclusionActions", "recordStatus"),
+        "ACTIVATION_DATE": _g(e, "exclusionActions", "listOfActions", "activationDate"),
+        "TERMINATION_DATE": _g(e, "exclusionActions", "listOfActions", "terminationDate"),
+        "RECORD_STATUS": _g(e, "exclusionActions", "listOfActions", "recordStatus"),
         "CITY": _g(e, "exclusionPrimaryAddress", "city"),
         "STATE": _g(e, "exclusionPrimaryAddress", "stateOrProvinceCode"),
         "ZIP": _g(e, "exclusionPrimaryAddress", "zipCode"),
