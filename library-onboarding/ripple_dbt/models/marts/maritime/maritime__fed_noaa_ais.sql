@@ -13,8 +13,15 @@ enriched as (
         -- surrogate / natural keys
         {{ dbt_utils.generate_surrogate_key(['mmsi', 'imo_number', 'date', 'base_datetime']) }}
                                                         as ais_position_sk,
+        -- mmsi is the reliable vessel key (present on every row, ~14,868 distinct
+        -- vessels). raw imo_number is kept for lineage only -- ~56% of rows are
+        -- blank or the 'IMO0000000' placeholder, DO NOT join on it directly
+        -- (2026-07-28 audit finding). imo_normalized is the cross-source join
+        -- key (bare valid 7-digit hull number, else NULL) -- already computed
+        -- in staging but was never exposed here until this fix.
         mmsi,
         imo_number,
+        imo_normalized,
         date,
 
         -- timestamps

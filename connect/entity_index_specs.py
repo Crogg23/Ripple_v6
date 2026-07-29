@@ -18,7 +18,20 @@ Per-table spec:
     BIOGUIDE id for the same legislator). Each extra key gets its own spine
     entity (spine v1 never fuses different ID *types* -- see spine.py's
     docstring) but shares this table's org/person/address/authority for name
-    survivorship, since it's the same underlying row.
+    survivorship, since it's the same underlying row. Only use extra_keys when
+    the extra ID genuinely describes THIS row's same entity (e.g. an auditee's
+    UEI alongside its EIN) -- not a different entity on the row (e.g. ARCOS's
+    buyer_dea_no shares reporter_name/city via this same mechanism today, a
+    known, accepted mislabeling tradeoff; don't add a new instance of it
+    without a good reason).
+
+A table not in DISPLAY_SPECS is NOT part of the spine or ENTITY_INDEX today --
+spine.py and entity_index.py both iterate this dict exclusively (SPINE_TABLES
+below). (Corrected 2026-07-28: this docstring previously claimed an unlisted
+table still joins the spine "via its hard key" -- that described a broader
+design that was never built; DISPLAY_SPECS is the actual, current scope. See
+the CONNECT_EDGES/ENTITY_INDEX scope-mismatch fix in discover.py for the
+edge-generation side of the same gap.)
 """
 
 from __future__ import annotations
@@ -56,6 +69,16 @@ DISPLAY_SPECS: dict[str, dict] = {
         "authority": 3,
     },
     "FED_HHS_OIG_LEIE": {
+        # 2026-07-28 audit + repair pass: only 10.4% of rows carry a usable NPI
+        # (89.6% unjoinable by hard ID) -- confirmed a HARD SOURCE LIMITATION, not
+        # a pipeline bug. LEIE also carries UPIN and DOB, but neither is a
+        # recognized key type anywhere in this codebase's key-tagging system
+        # (portal_recon/tag_portal_index.py's KEY_TOKENS has no entry for either),
+        # and there's no SSN/license-number column at all. UPIN was retired as a
+        # CMS identifier before modern NPPES data, so wiring it would likely add
+        # little match value for real build cost. Decision (Chris, this date):
+        # document and accept the gap rather than build a new key axis or lean on
+        # the gated fuzzy resolver for this population. Revisit if that changes.
         "key": "NPI", "key_col": "NPI",
         "person": ["LASTNAME", "FIRSTNAME"], "org": "BUSNAME",
         "city": "CITY", "state": "STATE", "zip": "ZIP",
@@ -240,6 +263,71 @@ DISPLAY_SPECS: dict[str, dict] = {
         # ID types (see spine.py docstring) -- so this table now shows up as a
         # source on BOTH the ICPSR entity and the BIOGUIDE entity for that person.
         "extra_keys": [{"key": "BIOGUIDE", "key_col": "BIOGUIDE_ID"}],
+    },
+
+    # --- 2026-07-28 repair pass: 11 wired-but-never-spine-ized tables, confirmed
+    # live (real columns + a real STEEL key checked against the warehouse) as
+    # part of the CONNECT_EDGES/ENTITY_INDEX scope reconciliation. See
+    # reports/priority1_table_classification_2026-07-28.md for the full 59-table
+    # classification this was drawn from.
+    "FED_IRS_990_EFILE_INDEX": {       # EIN organization (the REAL 990 e-file universe,
+                                        # 5.5M rows -- FED_IRS_990 above is a 200-row stub)
+        "key": "EIN", "key_col": "EIN", "org": "TAXPAYER_NAME", "authority": 2,
+    },
+    "FED_FCC_LICENSING": {             # EIN organization (FCC ULS license holders)
+        "key": "EIN", "key_col": "EIN", "org": "ENTITY_NAME",
+        "city": "CITY", "state": "STATE", "zip": "ZIP_CODE", "authority": 4,
+    },
+    "FED_FAC_SINGLE_AUDIT": {          # EIN organization (federal single-audit clearinghouse,
+                                        # auditee only -- AUDITOR_EIN deliberately not wired as
+                                        # an extra_key: it's a DIFFERENT entity (the audit firm)
+                                        # and would wrongly inherit the auditee's name/address)
+        "key": "EIN", "key_col": "AUDITEE_EIN", "org": "AUDITEE_NAME",
+        "city": "AUDITEE_CITY", "state": "AUDITEE_STATE", "zip": "AUDITEE_ZIP",
+        "authority": 5,
+        "extra_keys": [{"key": "UEI", "key_col": "AUDITEE_UEI"}],  # same auditee, same row -- safe
+    },
+    "FED_NCUA_CALL_REPORTS": {         # EIN organization (credit union call reports)
+        "key": "EIN", "key_col": "EIN", "org": "CU_NAME",
+        "city": "CITY", "state": "STATE", "zip": "ZIP_CODE", "authority": 5,
+    },
+    "FED_CMS_HCRIS": {                 # CCN facility (hospital cost reports)
+        "key": "CCN", "key_col": "PROVIDER_CCN", "org": "HOSPITAL_NAME",
+        "city": "CITY", "state": "STATE_CODE", "zip": "ZIP_CODE", "authority": 3,
+    },
+    "FED_CMS_NURSING_HOME": {          # CCN facility -- added ALONGSIDE FED_NURSINGHOME411
+                                        # above (2026-07-28: prior audit flagged these as a
+                                        # possible-duplicate pair; not resolving which is more
+                                        # complete this pass, so both feed the CCN axis at the
+                                        # same authority tier). Also carries an NPI column --
+                                        # deliberately not wired as an extra_key this pass.
+        "key": "CCN", "key_col": "CMS_CERTIFICATION_NUMBER__CCN", "org": "PROVIDER_NAME",
+        "city": "CITY_TOWN", "state": "STATE", "zip": "ZIP_CODE", "authority": 2,
+    },
+    "FED_GOVINFO_BILL_COSPONSORS": {   # BIOGUIDE person (bill cosponsor listings)
+        "key": "BIOGUIDE", "key_col": "COSPONSOR_BIOGUIDE", "org": "COSPONSOR_NAME",
+        "state": "COSPONSOR_STATE", "authority": 6,
+    },
+    "FED_GOVINFO_BILLSTATUS": {        # BIOGUIDE person (bill sponsor)
+        "key": "BIOGUIDE", "key_col": "SPONSOR_BIOGUIDE", "org": "SPONSOR_NAME", "authority": 6,
+    },
+    "FED_CMS_PARTD_PRESCRIBER_DRUG": { # NPI provider (Part D prescribing, drug-level grain --
+                                        # companion to FED_CMS_PART_D_PRESCRIBERS above, same
+                                        # NPI axis, adds table-membership breadth not a new axis)
+        "key": "NPI", "key_col": "Prscrbr_NPI",   # source columns are mixed-case, must match exactly
+        "person": ["Prscrbr_Last_Org_Name", "Prscrbr_First_Name"],
+        "city": "Prscrbr_City", "state": "Prscrbr_State_Abrvtn", "authority": 3,
+    },
+    "FED_NSF_AWARDS": {                # EIN organization (NSF grant awardees, small table)
+        "key": "EIN", "key_col": "EIN", "org": "AWARDEE_NAME",
+        "city": "CITY", "state": "STATE", "zip": "ZIP", "authority": 6,
+    },
+    "FED_SEC_INSIDER_REPORTINGOWNER": {  # CIK organization/person (insider filer identity --
+                                          # raw column is RPTOWNERCIK, no separator, which is why
+                                          # the automated tagger missed it as a key on this table)
+        "key": "CIK", "key_col": "RPTOWNERCIK", "org": "RPTOWNERNAME",
+        "city": "RPTOWNER_CITY", "state": "RPTOWNER_STATE", "zip": "RPTOWNER_ZIPCODE",
+        "authority": 6,
     },
 }
 

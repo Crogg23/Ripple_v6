@@ -7,8 +7,18 @@ sources:
     tables:
       - name: FED_NHTSA_INVESTIGATIONS
         description: >
-          Raw landing table for NHTSA ODI Investigations (flat file). Grain not yet determined.
+          Raw landing table for NHTSA ODI Investigations (flat file). Grain not yet
+          fully determined -- see staging model comment (2026-07-28): widening the
+          dedup key to (action_number, make, model, year, compname, mfr_name)
+          recovered a confirmed 21,123 real distinct rows, but some exact-duplicate
+          raw rows persist beyond that too. Not a formally verified grain yet.
 
 models:
   - name: stg_fed_nhtsa_investigations__records
-    description: "Minimal passthrough staging (grain undetermined). Needs manual review."
+    description: >
+      Passthrough staging, deduped on (nhtsa_action_number, make, model, year_txt,
+      compname, mfr_name) as of 2026-07-28 -- widened from the original 4-field key,
+      which was silently dropping legitimate distinct component/manufacturer rows
+      under the same investigation+vehicle. Still not a fully verified grain (see
+      source description) -- treat further row-count changes here as expected until
+      someone signs off on the true grain.

@@ -27,8 +27,15 @@ renamed as (
     from source
 )
 
+-- 2026-07-28 fix: the original key (nhtsa_action_number, make, model, year_txt)
+-- ignored compname/mfr_name, which ARE exposed as distinct columns downstream --
+-- one investigation commonly covers multiple components/manufacturers under the
+-- same action number. Confirmed live: widening the key recovers 30,748 -> 51,871
+-- distinct rows (real rows, not just theoretical). Grain is still not fully
+-- verified -- a sample showed some rows identical across all 6 of these fields
+-- too, so genuine exact-duplicate rows likely remain beyond this fix.
 select * from renamed
 qualify row_number() over (
-    partition by nhtsa_action_number, make, model, year_txt
+    partition by nhtsa_action_number, make, model, year_txt, compname, mfr_name
     order by _loaded_at desc
 ) = 1

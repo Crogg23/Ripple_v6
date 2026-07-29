@@ -7,7 +7,13 @@
 
 with frs_geo as (
     select
-        trim("FIPS_CODE")                              as fips_code,
+        -- 2026-07-28 fix: raw FIPS_CODE isn't consistently zero-padded (lengths
+        -- 1-5 confirmed live, e.g. '663', '4951', '60') -- an unpadded TRIM()
+        -- treated leading-zero-stripped variants of the same real county as
+        -- distinct rows, roughly doubling the count vs the true ~3,200 US
+        -- counties (7,542 distinct raw values before this fix). LPAD to the
+        -- standard 5-digit FIPS width (2 state + 3 county) before grouping.
+        lpad(trim("FIPS_CODE"), 5, '0')                as fips_code,
         trim("COUNTY_NAME")                            as county_name,
         trim("STATE_CODE")                             as state_abbr,
         trim("STATE_NAME")                             as state_name,

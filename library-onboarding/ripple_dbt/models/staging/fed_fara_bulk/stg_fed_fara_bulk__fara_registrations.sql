@@ -66,13 +66,22 @@ renamed as (
 
 deduped as (
 
+    -- 2026-07-28 fix: the original key (registration_number, person_name, state,
+    -- registration_date) omitted foreign_principal_name/document_type -- a single
+    -- registrant can list multiple foreign principals, or file both long-form and
+    -- short-form docs, on the same date. Confirmed live: widening the key recovers
+    -- 21,326 -> 48,104 distinct registrations (real rows, not just theoretical --
+    -- still short of the 221,900 raw rows, so some further true duplication likely
+    -- remains; this is a confirmed improvement, not necessarily the final grain).
     select *,
         row_number() over (
             partition by
                 registration_number,
                 coalesce(person_name, ''),
                 coalesce(state, ''),
-                coalesce(registration_date::text, '')
+                coalesce(registration_date::text, ''),
+                coalesce(foreign_principal_name, ''),
+                coalesce(document_type, '')
             order by _ingested_at desc nulls last
         ) as _row_num
     from renamed
@@ -80,12 +89,17 @@ deduped as (
 )
 
 select
-    -- surrogate / natural key
+    -- surrogate / natural key -- widened 2026-07-28 alongside the dedup partition
+    -- above (see comment there); must match or the widened dedup produces
+    -- multiple rows sharing one "unique" key, silently breaking the mart's own
+    -- unique/not_null tests on fara_registration_key.
     {{ dbt_utils.generate_surrogate_key([
         'registration_number',
         'person_name',
         'registration_date',
-        'state'
+        'state',
+        'foreign_principal_name',
+        'document_type'
     ]) }}                                                          as fara_registration_key,
 
     registration_number,

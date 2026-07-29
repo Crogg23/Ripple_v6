@@ -14,8 +14,20 @@ renamed as (
         DIMENSION_KEYS                                 as dimension_keys,
         SERIES_KEY                                     as series_key,
 
-        -- temporal
-        try_to_date(DATE)                              as date,
+        -- temporal (2026-07-28 fix: ISTAT mixes annual 'YYYY' and monthly
+        -- 'YYYY-MM' notation in the same column -- confirmed live, no other
+        -- shape exists (202,824 YYYY + 10,460 YYYY-MM = 213,284, matches FREQ
+        -- in {'A','M'} exactly). A bare try_to_date(DATE) silently nulled every
+        -- YYYY-MM row, which then collapsed the downstream dedup partition key
+        -- (dataflow_id, dimension_keys, date) and dropped 157,188 real
+        -- observations -- not a too-narrow dedup key, a broken date parse.
+        case
+            when regexp_like(trim(DATE), '^[0-9]{4}$')
+                then try_to_date(trim(DATE) || '-01-01', 'YYYY-MM-DD')
+            when regexp_like(trim(DATE), '^[0-9]{4}-[0-9]{2}$')
+                then try_to_date(trim(DATE) || '-01', 'YYYY-MM-DD')
+            else try_to_date(trim(DATE))
+        end                                             as date,
 
         -- measures
         try_to_double(OBS_VALUE)                       as obs_value,

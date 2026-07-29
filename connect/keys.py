@@ -194,7 +194,13 @@ def normalize_sql(key: str, col: str) -> str:
         # rows, discovery sweep #1): a zero-filled ID is never a real entity, and
         # left unguarded it fans out -- one placeholder on the active side would
         # match every placeholder on the flag side. Width-padded so '0','00',... all collapse.
+        # 2026-07-28: also require digits-only. _alnum() strips punctuation but KEEPS
+        # letters, so a text sentinel (e.g. NPPES EIN's literal '<UNAVAIL>' -> 'UNAVAIL'
+        # after stripping) would otherwise pad to a plausible-looking 9-char value
+        # instead of being rejected -- every pad-mode key (NPI/EIN/DUNS/CIK/CCN/MMSI) is
+        # purely numeric, so a letter anywhere means dirty input, not a real ID.
         return (f"CASE WHEN LENGTH({clean}) = 0 OR LENGTH({clean}) > {width} "
+                f"OR NOT REGEXP_LIKE({clean}, '^[0-9]+$') "
                 f"OR LPAD({clean}, {width}, '0') = REPEAT('0', {width}) THEN NULL "
                 f"ELSE LPAD({clean}, {width}, '0') END")
     if mode == "fixed":

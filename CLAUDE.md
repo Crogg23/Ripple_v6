@@ -160,6 +160,12 @@ Any investigation / build / audit result:
 - **Never claim something exists** — a file, table, config, model — unless it was
   confirmed in THIS session. If unsure, say "might exist" or "check if it's
   there." Never assert it as fact.
+- **Never trust `COUNT(col)` alone to mean "this key is real."** A bare null
+  check has already produced a false "100% populated" reading twice on this
+  platform (NPPES `EIN`, NOAA_AIS `imo_number` — both looked fully populated,
+  both were ~100%/~56% sentinel-masked blank strings or placeholder text once
+  checked). Always pair it with `COUNT(DISTINCT col)` and a value sample before
+  trusting a column as a real join key.
 - **AI is a build-time tool, not a runtime dependency.** Everything gets written
   durably into control tables so the platform runs on plain SQL, dbt, and
   Snowflake without needing AI at runtime.

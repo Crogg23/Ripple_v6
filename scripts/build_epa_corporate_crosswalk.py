@@ -43,16 +43,21 @@ STRIP = (
 
 SQL = f"""
 CREATE OR REPLACE TABLE {L}.XC_EPA_CORPORATE_CROSSWALK AS
-WITH epa AS (
+WITH -- 2026-07-28 repoint: FED_EPA_FRS_FRS_FACILITIES (abandoned duplicate, capped at
+-- 500K, being dropped this pass) -> FED_EPA_FRS_FULL (canonical, 5.3M rows).
+-- Column names differ entirely between the two (only REGISTRY_ID matches) --
+-- aliased below to the same FAC_* names so every downstream reference in this
+-- file is unchanged.
+epa AS (
   SELECT REGISTRY_ID AS EPA_REGISTRY_ID,
-         FAC_NAME    AS FACILITY_NAME,
-         FAC_STREET, FAC_CITY, FAC_STATE,
-         LEFT(REGEXP_REPLACE(FAC_ZIP,'[^0-9]',''),5) AS ZIP5,
-         {NORM.format(c='FAC_NAME')} AS NAME_NORM,
-         {STRIP.format(n=NORM.format(c='FAC_NAME'))} AS NAME_CORE,
-         SPLIT_PART({NORM.format(c='FAC_STREET')},' ',1) AS STREET_TOK1
-  FROM {L}.FED_EPA_FRS_FRS_FACILITIES
-  WHERE FAC_NAME IS NOT NULL
+         PRIMARY_NAME AS FACILITY_NAME,
+         LOCATION_ADDRESS AS FAC_STREET, CITY_NAME AS FAC_CITY, STATE_CODE AS FAC_STATE,
+         LEFT(REGEXP_REPLACE(POSTAL_CODE,'[^0-9]',''),5) AS ZIP5,
+         {NORM.format(c='PRIMARY_NAME')} AS NAME_NORM,
+         {STRIP.format(n=NORM.format(c='PRIMARY_NAME'))} AS NAME_CORE,
+         SPLIT_PART({NORM.format(c='LOCATION_ADDRESS')},' ',1) AS STREET_TOK1
+  FROM {L}.FED_EPA_FRS_FULL
+  WHERE PRIMARY_NAME IS NOT NULL
 ),
 epa5 AS (
   SELECT *, ARRAY_TO_STRING(ARRAY_SLICE(SPLIT(NAME_CORE,' '),0,5),' ') AS NAME5

@@ -53,10 +53,16 @@
 
 {#- IMO normalization (#3/#66). AIS stores 'IMO8851273' (+2.24M junk pings),
     OFAC/OpenSanctions store bare 7-digit. Strip an 'IMO' prefix and keep only
-    a valid 7-digit number; everything else (placeholders, blanks) -> NULL. -#}
+    a valid 7-digit number; everything else (placeholders, blanks) -> NULL.
+    2026-07-28 fix: the 7-digit regex alone let the all-zero placeholder
+    'IMO0000000' -> '0000000' through as "valid" -- confirmed live on
+    FED_NOAA_AIS, 13,868,433 of 58,106,517 rows (23.9%) were silently getting
+    this fake-but-well-formed hull number instead of NULL, exactly the AIS
+    junk-ping pattern this macro's own docstring already said to null. -#}
 {% macro normalize_imo(col) -%}
     case
         when regexp_like(regexp_replace(trim({{ col }}), '^IMO', ''), '^[0-9]{7}$')
+             and regexp_replace(trim({{ col }}), '^IMO', '') != '0000000'
         then regexp_replace(trim({{ col }}), '^IMO', '')
     end
 {%- endmacro %}

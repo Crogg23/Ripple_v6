@@ -54,6 +54,12 @@ KEY_DOMAIN = {           # ~size of each key's value space, for the collision ma
     # ICPSR = a small integer member number (live values up to ~40k; historical span
     # comfortably inside 10^6). Honest value-space sizes so the collision math runs.
     "BIOGUIDE": 26 * 10**6, "ICPSR": 10**6,
+    # DEA registrant number (2026-07-28 fix): 2 letters + 7 digits (e.g. "AB1234563",
+    # keys.py NORM_RULES mode "alnum_upper") -> 26^2 * 10^7. Was wired into
+    # entity_index_specs.py on 2026-06-26 but never added here -- validate_key_config()
+    # has been blocking every `connect discover` run since then; the live CONNECT_EDGES
+    # (11,206 rows) predates this key and was stale relative to the current spine config.
+    "DEA_NO": 26**2 * 10**7,
 }
 
 # D17: classification codes are NOT entity identifiers. NAICS/SIC/NCES describe
@@ -65,6 +71,40 @@ KEY_DOMAIN = {           # ~size of each key's value space, for the collision ma
 # "shared dimensions" surface can use them), but they never become graph edges.
 # Mirrors connect/spine_entity.py's _CLASSIFICATION_CODES exclusion from the spine.
 VOCAB_KEYS = {"NAICS", "SIC", "NCES"}
+
+# 2026-07-28 repair pass (audit: reports/library_spine_audit_2026-07-28.md):
+# CONNECT_EDGES was scanning ~456 distinct tables (fingerprint.py's landed_tables()
+# is effectively "everything in LANDING") while ENTITY_INDEX only ever covers
+# entity_index_specs.py's curated DISPLAY_SPECS -- 98.2% of edges referenced a
+# table the entity layer never indexed. Two causes, filtered here (not in
+# fingerprint.py, which stays a broad diagnostic tool -- only edge GENERATION
+# narrows scope):
+#   1. PORTAL_* tables (367 of the 426 orphaned tables) -- the open "finish or
+#      prune the portal crawl" question from the 2026-07-27 table-inventory
+#      audit, deliberately left unresolved. Excluded from edges until decided.
+#   2. Raw tables already flagged in that same audit as abandoned duplicates,
+#      superseded by a canonical table that IS in DISPLAY_SPECS -- generating
+#      edges against a stale duplicate just recreates the mart-layer confusion
+#      one level down in the raw layer.
+EDGE_UNIVERSE_EXCLUDE_PREFIXES = ("PORTAL_",)
+EDGE_UNIVERSE_EXCLUDE_TABLES = {
+    "FED_FEC_BULK", "FED_FEC_BULK_CANDIDATES", "FED_FEC_BULK_COMMITTEES",
+    "FED_USASPENDING_ASSISTANCE_FULL", "FED_USASPENDING_CONTRACTS_FULL", "FED_USASPENDING_BULK",
+    "FED_IRS_EO_PR", "FED_CMS_HOSPITAL_COMPARE",
+    "FED_SEC_EDGAR", "FED_US_SEC_EDGAR",  # already self-documented as stale below in entity_index_specs.py
+}
+
+
+def _scope_fingerprint(fp: dict) -> dict:
+    """Narrow the edge-discovery candidate universe to non-portal, non-abandoned
+    tables (see EDGE_UNIVERSE_EXCLUDE_* above). fingerprint.py's own output/report
+    stays untouched and broad for diagnostics -- only the persisted CONNECT_EDGES
+    graph built from it is scoped."""
+    return {
+        t: info for t, info in fp.items()
+        if t not in EDGE_UNIVERSE_EXCLUDE_TABLES
+        and not t.startswith(EDGE_UNIVERSE_EXCLUDE_PREFIXES)
+    }
 
 
 def validate_key_config() -> None:
@@ -207,7 +247,7 @@ def _wgs84_poly_tables(conn, poly_raw: dict) -> dict:
 def run(name_max_rows: int = NAME_MAX_ROWS, write: bool = True,
         bridge_on: bool = True, fanout_max: int = 40) -> dict:
     validate_key_config()   # fail loud on a half-added Step-K key BEFORE any Snowflake work
-    fp = json.loads(FP_PATH.read_text())
+    fp = _scope_fingerprint(json.loads(FP_PATH.read_text()))
     conn = db.connect()
     tested = skipped = gated = 0
     edges: list[dict] = []
