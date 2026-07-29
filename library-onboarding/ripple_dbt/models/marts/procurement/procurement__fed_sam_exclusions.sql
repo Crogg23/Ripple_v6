@@ -3,7 +3,7 @@
 -- GRAIN: one row per excluded entity (UEI or entity_name + activation_date)
 -- Answers: Who has been debarred/suspended from federal contracting, and for how long?
 -- Source: SAM.gov Exclusions (~9K records)
--- Key joins: entity_name/cage → USAspending contracts; npi → health providers
+-- Key joins: entity_name/cage â†’ USAspending contracts; npi â†’ health providers
 
 with base as (
     select * from {{ ref('stg_fed_sam_exclusions__records') }}

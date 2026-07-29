@@ -1,0 +1,38 @@
+{{ config(materialized='table', schema='IMMIGRATION') }}
+
+-- GRAIN: one row per encounter report row (multi-sheet compilation)
+
+with source as (
+    select * from {{ source('ripple_raw', 'FED_DHS_OHSS') }}
+)
+
+select
+    REPORT_MONTH,
+    ENCOUNTER_TYPE,
+    REGION_OR_SECTOR,
+    CITIZENSHIP,
+    FAMILY_STATUS,
+    CRIMINALITY,
+    FISCAL_YEAR,
+    CALENDAR_YEAR,
+    EVENT_COUNT,
+    ENCOUNTERS,
+    SOURCE_FILE_NAME,
+    SOURCE_SHEET_NAME,
+    "MONTH" as MONTH,
+    TOTAL,
+    VENEZUELA,
+    CUBA,
+    MEXICO,
+    HAITI,
+    HONDURAS,
+    COLOMBIA,
+    GUATEMALA,
+    EL_SALVADOR,
+    ECUADOR,
+    RUSSIA,
+    OTHER,
+    NICARAGUA,
+    BORDER,
+    INTERIOR
+from source

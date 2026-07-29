@@ -1,4 +1,4 @@
-{{ config(materialized='table') }}
+{{ config(materialized='table', schema='HEALTH') }}
 
 -- ============================================================================
 -- health__pharma_meal_cap_fingerprint

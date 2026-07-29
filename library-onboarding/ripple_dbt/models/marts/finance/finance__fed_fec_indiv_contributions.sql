@@ -3,7 +3,7 @@
 -- GRAIN: one row per individual contribution (sub_id is unique)
 -- Answers: Who donates to whom, how much, and from which employer?
 -- Source: FEC Individual Contributions (~84M records)
--- Key joins: cmte_id → fec_pac_summary/committees; employer → entity resolution
+-- Key joins: cmte_id â†’ fec_pac_summary/committees; employer â†’ entity resolution
 
 select
     sub_id,

@@ -3,7 +3,7 @@
 -- GRAIN: one row per investigation-vehicle combination
 -- Answers: What defect investigations has NHTSA opened, and did they result in recalls?
 -- Source: NHTSA ODI Investigations (~154K records)
--- Key joins: recall_number → nhtsa_recalls.campno; mfr_name → manufacturer entities
+-- Key joins: recall_number â†’ nhtsa_recalls.campno; mfr_name â†’ manufacturer entities
 
 select
     nhtsa_action_number,

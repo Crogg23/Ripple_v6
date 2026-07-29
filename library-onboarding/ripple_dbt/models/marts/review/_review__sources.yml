@@ -2,12 +2,12 @@ version: 2
 
 # Sources used ONLY by the review marts (lead_queue).
 #
-# NOTE: FED_HHS_OIG_LEIE, FED_CMS_NPPES, FED_CMS_PART_D_PRESCRIBERS,
-# FED_NOAA_AIS, FED_OFAC_SDN (staging schema.yml files) and
-# FED_USASPENDING_CONTRACTS (intermediate/usaspending/schema.yml) are ALREADY
-# declared as ripple_raw sources — do not redeclare them here (dbt errors on
-# duplicate source tables). This file adds only the tables no other model has
-# claimed yet, plus the guarded CONNECT view.
+# NOTE: every ripple_raw landing table this mart reads is declared by its own
+# staging/<source>/schema.yml (or intermediate/usaspending/schema.yml) — do NOT
+# redeclare them here, dbt hard-errors on duplicate source tables. That rule was
+# violated for FED_SEC_EDGAR_FINANCIALS and FED_SAM_EXCLUSIONS, which broke
+# `dbt parse` outright; both were removed 2026-07-29 and the empty ripple_raw
+# block went with them. This file now declares only the guarded CONNECT view.
 
 sources:
   - name: library_meta_connect
@@ -25,24 +25,3 @@ sources:
       schema: true
     tables:
       - name: V_LEADS_PUBLISHED
-
-  - name: ripple_raw
-    database: LIBRARY_RAW
-    schema: LANDING
-    tables:
-      - name: FED_SEC_EDGAR_FINANCIALS
-        description: >
-          SEC financial-statement filer list (55,635 rows / 5,773 distinct
-          EINs, carries NAME + CIK) — the EIN-side enrichment for the dormant
-          sec_filer_in_irs_bmf detector. Deliberately NOT FED_US_SEC_EDGAR,
-          whose EIN column is junk (per connect/leads_specs.py).
-      - name: FED_SAM_EXCLUSIONS
-        description: >
-          SAM.gov exclusions (debarments). CAVEAT (verified live 2026-07-12):
-          exactly 1,000 rows — a suspected capped sample load, so
-          debarred_but_funded breadth is a floor. ACTIVATION_DATE is blank on
-          every row, so no debarment-date timeline is possible yet.
-          (FED_USASPENDING_CONTRACTS is declared by
-          intermediate/usaspending/schema.yml — the lead_queue dollar totals
-          sum FEDERAL_ACTION_OBLIGATION, never the cumulative
-          TOTAL_DOLLARS_OBLIGATED, per POLICY trap_usaspending_grain.)

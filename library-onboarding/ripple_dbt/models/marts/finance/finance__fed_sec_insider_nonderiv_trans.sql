@@ -2,8 +2,8 @@
 
 -- GRAIN: one row per insider transaction (accession_number + nonderiv_trans_sk)
 -- Answers: What non-derivative securities did insiders buy/sell, at what price?
--- Source: SEC EDGAR Form 3/4/5 — Non-Derivative Transactions (~2.67M records)
--- Key joins: accession_number → insider_submission (issuer info) + reportingowner (who)
+-- Source: SEC EDGAR Form 3/4/5 â€” Non-Derivative Transactions (~2.67M records)
+-- Key joins: accession_number â†’ insider_submission (issuer info) + reportingowner (who)
 
 select
     trim(accession_number)                           as accession_number,

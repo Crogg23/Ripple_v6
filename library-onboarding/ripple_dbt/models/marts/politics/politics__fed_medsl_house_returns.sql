@@ -2,8 +2,8 @@
 
 -- GRAIN: one row per candidate-state-district-year-stage-mode combination
 -- Answers: How many votes did each House candidate receive, by mode and stage?
--- Source: MIT Election Data + Science Lab (MEDSL) — U.S. House returns
--- Key joins: state_fips → geography; candidate → member crosswalk (fuzzy)
+-- Source: MIT Election Data + Science Lab (MEDSL) â€” U.S. House returns
+-- Key joins: state_fips â†’ geography; candidate â†’ member crosswalk (fuzzy)
 
 with base as (
     select * from {{ ref('stg_fed_medsl_house_returns__records') }}

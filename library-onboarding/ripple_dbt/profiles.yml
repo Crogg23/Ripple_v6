@@ -1,23 +1,49 @@
 # dbt connection profile for the in-repo ripple_dbt project.
-# NO SECRETS HERE -- everything reads from environment variables. The Snowflake
-# PAT is passed as the password (PATs work as a password replacement).
-# Staging builds into LIBRARY_STAGING, marts into LIBRARY_MARTS (see dbt_project.yml),
-# both in the DBT_CROGERS schema so we never touch the existing CORE schemas.
+#
+# AUTH (fixed 2026-07-29): this profile used to pass env_var('SNOWFLAKE_PAT') as a
+# password. There is no PAT on this machine and never was, so dbt could not connect at
+# all -- `dbt parse` died on the missing SNOWFLAKE_ACCOUNT env var before it ever
+# reached Snowflake. Everything else was ruled out too:
+#   * externalbrowser  -> account has no SAML IdP configured (error 390190)
+#   * password         -> SNOWFLAKE_PASSWORD in the env is not valid (error 250001)
+#   * OAuth            -> ~/.snowflake/connections.toml uses OAUTH_AUTHORIZATION_CODE,
+#                         an interactive flow dbt cannot drive
+#   * PAT              -> viable, but Snowflake's default BLOCKED_ROLES_LIST forbids a
+#                         PAT from using ACCOUNTADMIN, and all 243 existing mart tables
+#                         are ACCOUNTADMIN-owned, so it would need an ownership transfer
+# So dbt now uses key-pair auth, which is non-interactive and MFA-exempt by design.
+# The public half lives in CROGG23's previously-unused RSA_PUBLIC_KEY_2 slot; the
+# existing RSA_PUBLIC_KEY (whose private half is lost) was left untouched.
+#
+# The private key is machine-local and gitignored (.keys/ is in .gitignore). If you
+# move machines, regenerate: see scripts/rotate_dbt_keypair.py.
+#
+# Staging builds into LIBRARY_STAGING, marts into LIBRARY_MARTS (see dbt_project.yml).
+# Models that set config(schema='<DOMAIN>') land in LIBRARY_MARTS.<DOMAIN> verbatim via
+# macros/generate_schema_name.sql; models that set nothing fall back to the schema below.
 ripple:
   target: dev
   outputs:
     dev:
       type: snowflake
-      account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
-      user: "{{ env_var('SNOWFLAKE_USER') }}"
-      password: "{{ env_var('SNOWFLAKE_PAT') }}"
-      # Role default changed ACCOUNTADMIN -> RIPPLE_TRANSFORM_RW (2026-07-20):
-      # an unexported shell now fails loudly on missing grants instead of
-      # silently running dbt with full account privileges.
-      role: "{{ env_var('SNOWFLAKE_ROLE', 'RIPPLE_TRANSFORM_RW') }}"
-      # Lane pinning (2026-07-20): dbt is BUILD work — prefer the ETL warehouse
-      # when SNOWFLAKE_ETL_WAREHOUSE is set; never default to the serving lane.
-      warehouse: "{{ env_var('SNOWFLAKE_ETL_WAREHOUSE', env_var('SNOWFLAKE_WAREHOUSE', 'RIPPLE_WH')) }}"
+      # Defaulted from ~/.snowflake/connections.toml so an unexported shell still works.
+      account: "{{ env_var('SNOWFLAKE_ACCOUNT', 'ONEAFDA-UMB20733') }}"
+      user: "{{ env_var('SNOWFLAKE_USER', 'CROGG23') }}"
+      private_key_path: "{{ env_var('SNOWFLAKE_PRIVATE_KEY_PATH', 'C:/Code/Ripple_v6/.keys/ripple_dbt.p8') }}"
+      # ROLE (fixed 2026-07-29): this defaulted to RIPPLE_TRANSFORM_RW, a role that
+      # DOES NOT EXIST on this account. Verified 2026-07-29 -- CROGG23 holds
+      # ACCOUNTADMIN, ORGADMIN, RIPPLE_ROLE, RIPPLE_LOADER, RIPPLE_READER,
+      # RIPPLE_REVIEW_WRITER, CLAUDE_MCP_READONLY, and none of the RIPPLE_* roles has
+      # a single database grant. So dbt could never have connected under that default.
+      # ACCOUNTADMIN is what every existing LIBRARY_MARTS table was actually built with.
+      # HARDENING GAP: a real least-privilege transform role (USAGE on LIBRARY_RAW,
+      # CREATE/WRITE on LIBRARY_STAGING + LIBRARY_MARTS, USAGE on the ETL warehouse)
+      # still needs to be created, granted, and given ownership of the existing mart
+      # tables. Until then this runs with full account privileges.
+      role: "{{ env_var('SNOWFLAKE_ROLE', 'ACCOUNTADMIN') }}"
+      # Lane pinning: dbt is BUILD work -- prefer the ETL warehouse when
+      # SNOWFLAKE_ETL_WAREHOUSE is set; never default to the serving lane (SERVE_WH).
+      warehouse: "{{ env_var('SNOWFLAKE_ETL_WAREHOUSE', env_var('SNOWFLAKE_WAREHOUSE', 'DBT_WH')) }}"
       database: LIBRARY_STAGING
       schema: DBT_CROGERS
       threads: 4

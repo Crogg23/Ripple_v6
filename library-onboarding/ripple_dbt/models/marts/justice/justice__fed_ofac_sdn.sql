@@ -3,7 +3,7 @@
 -- GRAIN: one row per sanctioned entity (ent_num is unique)
 -- Answers: Who is on the US sanctions list, and for what programs?
 -- Source: OFAC Specially Designated Nationals (~12K entities)
--- Key joins: imo_number → int_sanctioned_vessels; entity → spine
+-- Key joins: imo_number â†’ int_sanctioned_vessels; entity â†’ spine
 
 select
     ent_num,

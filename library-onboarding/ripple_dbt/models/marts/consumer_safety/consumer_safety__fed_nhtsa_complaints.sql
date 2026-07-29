@@ -3,7 +3,7 @@
 -- GRAIN: one row per complaint (cmplid is unique)
 -- Answers: What vehicles are generating safety complaints, and how much harm?
 -- Source: NHTSA ODI Consumer Complaints (~2.2M since 1995)
--- Key joins: mfr_name → manufacturer entities; state → geography
+-- Key joins: mfr_name â†’ manufacturer entities; state â†’ geography
 
 select
     cmplid,

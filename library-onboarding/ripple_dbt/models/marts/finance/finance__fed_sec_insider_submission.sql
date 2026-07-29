@@ -2,8 +2,8 @@
 
 -- GRAIN: one row per insider filing (accession_number is unique)
 -- Answers: What insider trading filings have been made, for which companies?
--- Source: SEC EDGAR Form 3/4/5 — Submissions (~1.77M filings)
--- Key joins: issuercik → SEC EDGAR companies; accession_number → transactions + owners
+-- Source: SEC EDGAR Form 3/4/5 â€” Submissions (~1.77M filings)
+-- Key joins: issuercik â†’ SEC EDGAR companies; accession_number â†’ transactions + owners
 
 select
     trim(accession_number)                           as accession_number,

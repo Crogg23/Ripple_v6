@@ -1,43 +1,65 @@
-{{ config(materialized='table') }}
+{{ config(materialized='table', schema='LEGAL_ENFORCEMENT') }}
 
-with base as (
+-- GRAIN: one row per multistate settlement action
 
-    select *
-    from {{ ref('stg_fed_naag_multistate_settlements__multistate_settlements') }}
-
-),
-
-final as (
-
-    select
-        -- surrogate / natural key components
-        {{ dbt_utils.generate_surrogate_key(['company_id', 'date', 'state']) }}
-                                                          as settlement_sk,
-        company_id,
-        date                                              as settlement_date,
-        state                                             as state,
-
-        -- settlement details
-        company_name,
-        settlement_amount,
-        case_description,
-        industry,
-        lead_state,
-        num_states,
-        document_url,
-
-        -- derived convenience columns
-        year(date)                                        as settlement_year,
-        month(date)                                       as settlement_month,
-        iff(lead_state = state, true, false)              as is_lead_state_row,
-
-        -- metadata
-        _ingested_at,
-        _source_run_id
-
-    from base
-
+with source as (
+    select * from {{ source('ripple_raw', 'FED_NAAG_MULTISTATE_SETTLEMENTS') }}
 )
 
-select *
-from final
+select
+    C_CASE,
+    "YEAR" as YEAR,
+    DATERESOLVED,
+    DEFENDANTS,
+    ADDITIONALDEFENDANTS,
+    TOTALSETTLEMENTAMOUNT,
+    TOTALSTATESHARE,
+    TOTAL_FEDERAL_SHARE,
+    LEADAGS,
+    PARTICIPATINGAGS,
+    DEMLEADSTATES,
+    GOPLEADSTATES,
+    DEMPARTICIPATINGSTATE,
+    GOPPARTICIPATINGSTATE,
+    INDUSTRYTYPE,
+    ISSUEAREAGENERAL,
+    ISSUEAREASPECIFIC,
+    ENFORCEMENTCAMPAIGN,
+    PRODUCT_INVOLVED,
+    DESCRIPTION,
+    DATE_ENTRY_CREATED,
+    DATE_ENTRY_UPDATED,
+    OFAGS,
+    FEDERALINVOLVEMENT,
+    CONSUMER_RESTITUTION,
+    LOCATION_SETTLEMENT_FILED,
+    RELATED6DIGITNAICSCODE,
+    FILED_COMPLAINT,
+    SETTLEMENT_DOCUMENTS_OR_PRESS_RELEASE,
+    PRESS_RELEASES,
+    OTHER_SINGLE_STATE_SETTLEMENTS,
+    KEYSETTLEMENTTERMS,
+    COURT_LEVEL,
+    CITATION,
+    TOTALDEMAGSINOFFICE,
+    TOTALGOPAGSINOFFICE,
+    LEGAL_BASIS,
+    SETTLEMENT_PROVISION_TYPES,
+    CORPORATE_MONITOR_PROVISION,
+    RELATED4DIGITNAICSCODE,
+    CORPORATEHEADQUARTERS,
+    OTHERPARTIESINVOLVED,
+    FOCUS,
+    DATE_FILED,
+    DATE_OF_FINAL_COURT_APPROVAL,
+    PRESIDENTIALADMINISTRATION,
+    QUI_TAM_REALTOR_SHARE,
+    OTHER_SETTLEMENT_AMOUNT,
+    STATE_COSTS_FEES,
+    RELATED_CLASS_ACTION_SETTLEMENT_S,
+    SORT_ID,
+    ID,
+    INGESTED_AT,
+    SOURCE_RUN_ID,
+    SRC_SHA256
+from source

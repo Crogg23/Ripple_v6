@@ -1,30 +1,64 @@
 {{ config(materialized='table', schema='ECONOMICS') }}
 
--- GRAIN: one row per LEI relationship (child LEI → parent LEI)
--- Answers: Which legal entities own/control which other legal entities?
--- Source: GLEIF Relationship Records (~482K parent-child pairs)
--- Key joins: lei/parent_lei → intl_gleif (entity details)
+-- GRAIN: one row per LEI reporting relationship
 
 with source as (
     select * from {{ source('ripple_raw', 'INT_GLEIF_RR') }}
 )
 
 select
-    trim("Relationship.StartNode.NodeID")                as lei,
-    trim("Relationship.EndNode.NodeID")                  as parent_lei,
-    trim("Relationship.RelationshipType")                as relationship_type,
-    trim("Relationship.RelationshipStatus")              as relationship_status,
-    -- 2026-07-28 fix: raw values are ISO8601-with-timezone (e.g. '2012-11-29T00:00:00.000Z',
-    -- '2011-10-01T00:00:00+02:00'), not bare 'YYYY-MM-DD' -- the old cast silently nulled
-    -- every row (confirmed live: 0 of 391,664 populated). Date portion is always the first
-    -- 10 chars regardless of timezone suffix.
-    try_to_date(left(trim("Relationship.Period.1.startDate"), 10), 'YYYY-MM-DD') as period_start_date,
-    try_to_date(left(trim("Relationship.Period.1.endDate"), 10), 'YYYY-MM-DD')   as period_end_date,
-    (trim("Relationship.RelationshipStatus") = 'ACTIVE') as is_active,
-    "_INGESTED_AT" as _loaded_at,
-    "_SOURCE_RUN_ID" as _source_run_id
+    "Relationship.StartNode.NodeID" as RELATIONSHIP_STARTNODE_NODEID,
+    "Relationship.StartNode.NodeIDType" as RELATIONSHIP_STARTNODE_NODEIDTYPE,
+    "Relationship.EndNode.NodeID" as RELATIONSHIP_ENDNODE_NODEID,
+    "Relationship.EndNode.NodeIDType" as RELATIONSHIP_ENDNODE_NODEIDTYPE,
+    "Relationship.RelationshipType" as RELATIONSHIP_RELATIONSHIPTYPE,
+    "Relationship.RelationshipStatus" as RELATIONSHIP_RELATIONSHIPSTATUS,
+    "Relationship.Period.1.startDate" as RELATIONSHIP_PERIOD_1_STARTDATE,
+    "Relationship.Period.1.endDate" as RELATIONSHIP_PERIOD_1_ENDDATE,
+    "Relationship.Period.1.periodType" as RELATIONSHIP_PERIOD_1_PERIODTYPE,
+    "Relationship.Period.2.startDate" as RELATIONSHIP_PERIOD_2_STARTDATE,
+    "Relationship.Period.2.endDate" as RELATIONSHIP_PERIOD_2_ENDDATE,
+    "Relationship.Period.2.periodType" as RELATIONSHIP_PERIOD_2_PERIODTYPE,
+    "Relationship.Period.3.startDate" as RELATIONSHIP_PERIOD_3_STARTDATE,
+    "Relationship.Period.3.endDate" as RELATIONSHIP_PERIOD_3_ENDDATE,
+    "Relationship.Period.3.periodType" as RELATIONSHIP_PERIOD_3_PERIODTYPE,
+    "Relationship.Period.4.startDate" as RELATIONSHIP_PERIOD_4_STARTDATE,
+    "Relationship.Period.4.endDate" as RELATIONSHIP_PERIOD_4_ENDDATE,
+    "Relationship.Period.4.periodType" as RELATIONSHIP_PERIOD_4_PERIODTYPE,
+    "Relationship.Period.5.startDate" as RELATIONSHIP_PERIOD_5_STARTDATE,
+    "Relationship.Period.5.endDate" as RELATIONSHIP_PERIOD_5_ENDDATE,
+    "Relationship.Period.5.periodType" as RELATIONSHIP_PERIOD_5_PERIODTYPE,
+    "Relationship.Qualifiers.1.QualifierDimension" as RELATIONSHIP_QUALIFIERS_1_QUALIFIERDIMENSION,
+    "Relationship.Qualifiers.1.QualifierCategory" as RELATIONSHIP_QUALIFIERS_1_QUALIFIERCATEGORY,
+    "Relationship.Qualifiers.2.QualifierDimension" as RELATIONSHIP_QUALIFIERS_2_QUALIFIERDIMENSION,
+    "Relationship.Qualifiers.2.QualifierCategory" as RELATIONSHIP_QUALIFIERS_2_QUALIFIERCATEGORY,
+    "Relationship.Qualifiers.3.QualifierDimension" as RELATIONSHIP_QUALIFIERS_3_QUALIFIERDIMENSION,
+    "Relationship.Qualifiers.3.QualifierCategory" as RELATIONSHIP_QUALIFIERS_3_QUALIFIERCATEGORY,
+    "Relationship.Qualifiers.4.QualifierDimension" as RELATIONSHIP_QUALIFIERS_4_QUALIFIERDIMENSION,
+    "Relationship.Qualifiers.4.QualifierCategory" as RELATIONSHIP_QUALIFIERS_4_QUALIFIERCATEGORY,
+    "Relationship.Qualifiers.5.QualifierDimension" as RELATIONSHIP_QUALIFIERS_5_QUALIFIERDIMENSION,
+    "Relationship.Qualifiers.5.QualifierCategory" as RELATIONSHIP_QUALIFIERS_5_QUALIFIERCATEGORY,
+    "Relationship.Quantifiers.1.MeasurementMethod" as RELATIONSHIP_QUANTIFIERS_1_MEASUREMENTMETHOD,
+    "Relationship.Quantifiers.1.QuantifierAmount" as RELATIONSHIP_QUANTIFIERS_1_QUANTIFIERAMOUNT,
+    "Relationship.Quantifiers.1.QuantifierUnits" as RELATIONSHIP_QUANTIFIERS_1_QUANTIFIERUNITS,
+    "Relationship.Quantifiers.2.MeasurementMethod" as RELATIONSHIP_QUANTIFIERS_2_MEASUREMENTMETHOD,
+    "Relationship.Quantifiers.2.QuantifierAmount" as RELATIONSHIP_QUANTIFIERS_2_QUANTIFIERAMOUNT,
+    "Relationship.Quantifiers.2.QuantifierUnits" as RELATIONSHIP_QUANTIFIERS_2_QUANTIFIERUNITS,
+    "Relationship.Quantifiers.3.MeasurementMethod" as RELATIONSHIP_QUANTIFIERS_3_MEASUREMENTMETHOD,
+    "Relationship.Quantifiers.3.QuantifierAmount" as RELATIONSHIP_QUANTIFIERS_3_QUANTIFIERAMOUNT,
+    "Relationship.Quantifiers.3.QuantifierUnits" as RELATIONSHIP_QUANTIFIERS_3_QUANTIFIERUNITS,
+    "Relationship.Quantifiers.4.MeasurementMethod" as RELATIONSHIP_QUANTIFIERS_4_MEASUREMENTMETHOD,
+    "Relationship.Quantifiers.4.QuantifierAmount" as RELATIONSHIP_QUANTIFIERS_4_QUANTIFIERAMOUNT,
+    "Relationship.Quantifiers.4.QuantifierUnits" as RELATIONSHIP_QUANTIFIERS_4_QUANTIFIERUNITS,
+    "Relationship.Quantifiers.5.MeasurementMethod" as RELATIONSHIP_QUANTIFIERS_5_MEASUREMENTMETHOD,
+    "Relationship.Quantifiers.5.QuantifierAmount" as RELATIONSHIP_QUANTIFIERS_5_QUANTIFIERAMOUNT,
+    "Relationship.Quantifiers.5.QuantifierUnits" as RELATIONSHIP_QUANTIFIERS_5_QUANTIFIERUNITS,
+    "Registration.InitialRegistrationDate" as REGISTRATION_INITIALREGISTRATIONDATE,
+    "Registration.LastUpdateDate" as REGISTRATION_LASTUPDATEDATE,
+    "Registration.RegistrationStatus" as REGISTRATION_REGISTRATIONSTATUS,
+    "Registration.NextRenewalDate" as REGISTRATION_NEXTRENEWALDATE,
+    "Registration.ManagingLOU" as REGISTRATION_MANAGINGLOU,
+    "Registration.ValidationSources" as REGISTRATION_VALIDATIONSOURCES,
+    "Registration.ValidationDocuments" as REGISTRATION_VALIDATIONDOCUMENTS,
+    "Registration.ValidationReference" as REGISTRATION_VALIDATIONREFERENCE
 from source
-qualify row_number() over (
-    partition by "Relationship.StartNode.NodeID", "Relationship.EndNode.NodeID"
-    order by "_INGESTED_AT" desc
-) = 1

@@ -3,7 +3,7 @@
 -- GRAIN: one row per organization (EIN is unique)
 -- Answers: What is the current IRS classification and financial tier of every tax-exempt org?
 -- Source: IRS Business Master File Extract (~1.97M organizations)
--- Key joins: spine_entity_id → ENTITY_GOLDEN; ein → IRS 990 for financials; ntee_cd → NTEE classification
+-- Key joins: spine_entity_id â†’ ENTITY_GOLDEN; ein â†’ IRS 990 for financials; ntee_cd â†’ NTEE classification
 
 select
     ein,

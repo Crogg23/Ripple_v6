@@ -3,7 +3,7 @@
 -- GRAIN: one row per mine (mine_id is unique)
 -- Answers: Where is every regulated mine in the US, who operates it, and what type?
 -- Source: MSHA Mines (~92K records)
--- Key joins: mine_id → msha_violations/accidents; fips_cnty_cd → geography
+-- Key joins: mine_id â†’ msha_violations/accidents; fips_cnty_cd â†’ geography
 
 select
     mine_id,

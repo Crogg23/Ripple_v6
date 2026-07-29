@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_SEC_13F_SUBMISSIONS
+        description: >
+          SEC Form 13F submission headers (336K rows). Distinct from
+          FED_SEC_13F_SUBMISSION (singular, 3.8M rows) declared in
+          staging/fed_sec_13f_submission -- these are two different landing
+          tables, not a typo.

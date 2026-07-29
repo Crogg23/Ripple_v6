@@ -48,3 +48,8 @@ outputs/_ripple_domain_approvals.json
 investigations/**/*.html
 investigations/**/plotly.min.js
 outputs/_viz_cache.json
+
+# Snowflake key-pair auth for dbt (added 2026-07-29). Private keys NEVER get committed.
+.keys/
+*.p8
+*.pem

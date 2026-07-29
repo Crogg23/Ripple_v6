@@ -1,4 +1,4 @@
-{{ config(materialized='table') }}
+{{ config(materialized='table', schema='CIVIL_RIGHTS') }}
 
 with base as (
 

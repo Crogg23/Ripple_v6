@@ -1,9 +1,9 @@
-{{ config(materialized='table') }}
+{{ config(materialized='table', schema='HEALTH') }}
 
--- GRAIN: one row per drug (NDC) × effective_date
+-- GRAIN: one row per drug (NDC) Ã— effective_date
 -- Answers: national average drug acquisition costs over time, brand vs. generic pricing
 -- Source: CMS NADAC survey data (1.5M rows)
--- Key joins: NDC → Part D prescriber drug data for cost-paid vs. cost-acquired comparison
+-- Key joins: NDC â†’ Part D prescriber drug data for cost-paid vs. cost-acquired comparison
 
 with source as (
 

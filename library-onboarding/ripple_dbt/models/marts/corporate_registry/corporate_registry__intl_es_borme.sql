@@ -1,4 +1,4 @@
-{{ config(materialized='table') }}
+{{ config(materialized='table', schema='CORPORATE_REGISTRY') }}
 
 with base as (
 

@@ -1,9 +1,9 @@
 {{ config(materialized='table', schema='ECONOMICS') }}
 
--- GRAIN: one row per organization (EIN is unique — latest filing kept)
+-- GRAIN: one row per organization (EIN is unique â€” latest filing kept)
 -- Answers: What are the financials of every tax-exempt org in the US?
 -- Source: IRS Form 990 e-File Index (~5.5M filings, deduped to latest per EIN)
--- Key joins: spine_entity_id → ENTITY_GOLDEN; ein → IRS BMF for classification
+-- Key joins: spine_entity_id â†’ ENTITY_GOLDEN; ein â†’ IRS BMF for classification
 
 select
     ein,

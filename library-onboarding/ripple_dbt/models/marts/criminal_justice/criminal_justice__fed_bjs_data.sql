@@ -1,41 +1,47 @@
-{{ config(materialized='table') }}
+{{ config(materialized='table', schema='CRIMINAL_JUSTICE') }}
 
-with base as (
+-- GRAIN: one row per victimization incident (NCVS survey)
 
-    select *
-    from {{ ref('stg_fed_bjs_data__bjs_data_collections') }}
-
-),
-
-final as (
-
-    select
-        -- surrogate / natural keys exposed for cross-source joins
-        fips_code                                        as fips,
-        nacjd_id,
-
-        -- collection metadata
-        collection_name,
-        topic,
-        description,
-        geographic_level,
-        unit_of_enumeration,
-        access_level,
-
-        -- temporal
-        publication_date,
-        years_available,
-
-        -- access / download
-        download_url,
-        data_tool_url,
-
-        -- pipeline lineage
-        _ingested_at,
-        _source_run_id
-
-    from base
-
+with source as (
+    select * from {{ source('ripple_raw', 'FED_BJS_DATA') }}
 )
 
-select * from final
+select
+    IDPER,
+    YEARQ,
+    "YEAR" as YEAR,
+    AGER,
+    SEX,
+    HISPANIC,
+    RACE,
+    RACE_ETHNICITY,
+    HINCOME1,
+    HINCOME2,
+    MARITAL,
+    POPSIZE,
+    REGION,
+    MSA,
+    LOCALITY,
+    EDUCATN1,
+    EDUCATN2,
+    VETERAN,
+    CITIZEN,
+    NEWCRIME,
+    NEWOFF,
+    SERIOUSVIOLENT,
+    NOTIFY,
+    VICSERVICES,
+    LOCATIONR,
+    DIREL,
+    WEAPON,
+    WEAPCAT,
+    INJURY,
+    SERIOUS,
+    TREATMENT,
+    OFFENDERAGE,
+    OFFENDERSEX,
+    OFFTRACENEW,
+    WGTVICCY,
+    SERIES,
+    NEWWGT
+from source

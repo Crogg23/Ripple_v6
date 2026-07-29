@@ -31,7 +31,7 @@ jobs:
         with:
           python-version: "3.11"
       - name: Install dbt
-        run: pip install "dbt-snowflake==1.8.4"
+        run: pip install "dbt-fusion==2.0.0-preview.173"
       - name: dbt deps
         run: dbt deps
       - name: dbt parse (structural validation -- no warehouse)

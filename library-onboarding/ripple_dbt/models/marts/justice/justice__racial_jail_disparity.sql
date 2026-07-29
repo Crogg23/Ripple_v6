@@ -1,4 +1,4 @@
-{{ config(materialized='table') }}
+{{ config(materialized='table', schema='JUSTICE') }}
 
 -- =============================================================================
 -- justice__racial_jail_disparity

@@ -3,7 +3,7 @@
 -- GRAIN: one row per recall record (record_id is unique)
 -- Answers: What recalls have been issued, by whom, for what defect?
 -- Source: NHTSA ODI Recalls (~243K records)
--- Key joins: campno → nhtsa_investigations; mfg_name → manufacturer entities
+-- Key joins: campno â†’ nhtsa_investigations; mfg_name â†’ manufacturer entities
 
 select
     record_id,

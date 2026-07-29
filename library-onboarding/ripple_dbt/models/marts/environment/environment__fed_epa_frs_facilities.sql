@@ -3,7 +3,7 @@
 -- GRAIN: one row per EPA-registered facility (REGISTRY_ID is unique)
 -- Answers: Where is every EPA-regulated facility in the US, who runs it, what programs cover it?
 -- Source: EPA Facility Registry Service (~5.3M facilities)
--- Key joins: fips_code → geography; primary_name → entity resolution; pgm_sys_acrnms → EPA program tables
+-- Key joins: fips_code â†’ geography; primary_name â†’ entity resolution; pgm_sys_acrnms â†’ EPA program tables
 
 with source as (
     select * from {{ source('ripple_raw', 'FED_EPA_FRS_FULL') }}

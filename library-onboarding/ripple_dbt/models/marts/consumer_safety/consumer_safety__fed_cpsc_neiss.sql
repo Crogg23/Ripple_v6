@@ -2,8 +2,8 @@
 
 -- GRAIN: one row per injury case (cpsc_case_number is unique)
 -- Answers: What consumer products cause injuries, how severe, to whom?
--- Source: CPSC NEISS (National Electronic Injury Surveillance System) — ~9.8M cases
--- Key joins: product_1/2/3 → CPSC product codes; body_part/diagnosis → NEISS code lookups
+-- Source: CPSC NEISS (National Electronic Injury Surveillance System) â€” ~9.8M cases
+-- Key joins: product_1/2/3 â†’ CPSC product codes; body_part/diagnosis â†’ NEISS code lookups
 
 with source as (
     select * from {{ source('ripple_raw', 'FED_CPSC_NEISS') }}

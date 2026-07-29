@@ -1,9 +1,9 @@
 {{ config(materialized='table', schema='POLITICS') }}
 
--- GRAIN: one row per committee (cmte_id is unique — latest filing period kept)
+-- GRAIN: one row per committee (cmte_id is unique â€” latest filing period kept)
 -- Answers: How much money does each PAC/party committee raise, spend, and give away?
 -- Source: FEC PAC and Party Summary (~48K committees)
--- Key joins: cmte_id → fec_cand_cmte_linkage → candidates; cmte_id → individual contributions
+-- Key joins: cmte_id â†’ fec_cand_cmte_linkage â†’ candidates; cmte_id â†’ individual contributions
 
 select
     cmte_id,

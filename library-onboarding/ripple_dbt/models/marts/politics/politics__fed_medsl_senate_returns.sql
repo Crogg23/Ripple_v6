@@ -2,8 +2,8 @@
 
 -- GRAIN: one row per candidate-state-year-stage-mode combination
 -- Answers: How did Senate candidates perform in each state?
--- Source: MIT Election Data + Science Lab (MEDSL) — U.S. Senate returns
--- Key joins: state_fips → geography; candidate → member crosswalk (fuzzy)
+-- Source: MIT Election Data + Science Lab (MEDSL) â€” U.S. Senate returns
+-- Key joins: state_fips â†’ geography; candidate â†’ member crosswalk (fuzzy)
 
 with base as (
     select * from {{ ref('stg_fed_medsl_senate_returns__records') }}

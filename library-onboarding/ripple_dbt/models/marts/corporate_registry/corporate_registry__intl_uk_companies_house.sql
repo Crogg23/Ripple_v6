@@ -3,7 +3,7 @@
 -- GRAIN: one row per company (CompanyNumber is unique)
 -- Answers: What companies are registered in the UK, what's their status?
 -- Source: UK Companies House (~5.7M companies)
--- Key joins: company_number → UK-specific cross-references
+-- Key joins: company_number â†’ UK-specific cross-references
 
 with source as (
     select * from {{ source('ripple_raw', 'INT_UK_COMPANIES_HOUSE') }}

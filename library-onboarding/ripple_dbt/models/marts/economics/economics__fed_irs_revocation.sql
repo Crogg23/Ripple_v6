@@ -3,7 +3,7 @@
 -- GRAIN: one row per organization (EIN is unique)
 -- Answers: Which tax-exempt orgs lost their status, when, and were they reinstated?
 -- Source: IRS Automatic Revocation List (~1.2M revoked orgs)
--- Key joins: spine_entity_id → ENTITY_GOLDEN; ein → IRS 990/BMF
+-- Key joins: spine_entity_id â†’ ENTITY_GOLDEN; ein â†’ IRS 990/BMF
 
 select
     ein,

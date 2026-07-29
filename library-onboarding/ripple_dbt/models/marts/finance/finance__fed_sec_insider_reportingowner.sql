@@ -2,8 +2,8 @@
 
 -- GRAIN: one row per filing-owner pair (accession_number + rptownercik is unique)
 -- Answers: Who are the insiders making trades, what's their role at the company?
--- Source: SEC EDGAR Form 3/4/5 — Reporting Owners (~1.93M records)
--- Key joins: accession_number → insider_submission + nonderiv_trans; rptownercik → SEC entities
+-- Source: SEC EDGAR Form 3/4/5 â€” Reporting Owners (~1.93M records)
+-- Key joins: accession_number â†’ insider_submission + nonderiv_trans; rptownercik â†’ SEC entities
 
 select
     trim(accession_number)                           as accession_number,

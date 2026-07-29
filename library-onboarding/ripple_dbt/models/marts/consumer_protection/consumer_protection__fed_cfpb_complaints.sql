@@ -1,4 +1,4 @@
-{{ config(materialized='table') }}
+{{ config(materialized='table', schema='CONSUMER_PROTECTION') }}
 
 with base as (
 

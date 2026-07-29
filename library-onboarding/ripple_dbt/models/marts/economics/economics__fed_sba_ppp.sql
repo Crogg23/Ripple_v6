@@ -1,9 +1,9 @@
-{{ config(materialized='table') }}
+{{ config(materialized='table', schema='ECONOMICS') }}
 
 -- GRAIN: one row per loan (LOANNUMBER)
--- Answers: PPP pandemic relief distribution — who got how much, where, forgiveness rates
+-- Answers: PPP pandemic relief distribution â€” who got how much, where, forgiveness rates
 -- Source: SBA Paycheck Protection Program (968K rows)
--- Key joins: BORROWERSTATE/PROJECTSTATE → DIM_STATE, CD → congressional district
+-- Key joins: BORROWERSTATE/PROJECTSTATE â†’ DIM_STATE, CD â†’ congressional district
 
 with source as (
 

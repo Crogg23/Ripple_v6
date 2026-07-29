@@ -1,4 +1,4 @@
-{{ config(materialized='table') }}
+{{ config(materialized='table', schema='JUSTICE') }}
 
 --
 -- justice__county_double_burden

@@ -3,7 +3,7 @@
 -- GRAIN: one row per violation (event_no + violation_no is unique)
 -- Answers: Which mines have the most safety violations, how severe, and what fines?
 -- Source: MSHA Violations (~3.09M records)
--- Key joins: mine_id → msha_mines; violator_name → entity resolution
+-- Key joins: mine_id â†’ msha_mines; violator_name â†’ entity resolution
 
 select
     event_no,

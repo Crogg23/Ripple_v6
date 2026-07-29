@@ -14,10 +14,6 @@ sources:
           legislator. Carries the master ID crosswalk (bioguide/icpsr/fec/govtrack/
           opensecrets/votesmart/...) plus bio and most-recent term. FEC_IDS is a
           JSON array string (a member can have several FEC candidate IDs). All TEXT.
-      - name: FED_VOTEVIEW_MEMBERS
-        description: >
-          Voteview HSall_members: one row per member-congress with DW-NOMINATE
-          ideology (nominate_dim1/dim2), keyed by ICPSR, with BIOGUIDE_ID. All TEXT.
       - name: FED_FEC_BULK_CANDIDATES
         description: >
           FEC candidate master (cn), cycles 2024 + 2026. A CYCLE column is added at
@@ -31,27 +27,6 @@ sources:
           FEC all-candidates financial summary (weball), cycles 2024 + 2026 -- the
           ONLY FEC bulk file carrying dollar amounts (TTL_RECEIPTS etc.). CYCLE added
           at load. All TEXT.
-      - name: FED_VOTEVIEW_ROLLCALLS
-        description: >
-          Voteview member-by-member VOTES MATRIX (the fed_voteview_rollcalls source =
-          HSall_votes.csv), 118th + 119th congresses. One row per member-rollcall with
-          cast_code. All TEXT. (Roll-call metadata is the separate _ROLLCALL_META table.)
-      - name: FED_VOTEVIEW_ROLLCALL_META
-        description: >
-          Voteview roll-call METADATA (HSall_rollcalls.csv), 118th + 119th. One row per
-          roll-call: date, yea/nay counts, result, question, bill number. All TEXT.
-      - name: FED_GOVINFO_BILLSTATUS
-        description: >
-          GovInfo BILLSTATUS (official GPO bill-status XML), 118th + 119th, all bill types.
-          One row per bill: type/number/congress, sponsor bioguideId, introduced date, title,
-          the <laws> public-law number (present only when enacted), the pipe-delimited DISTINCT
-          set of GPO action types, latest action, and the raw cosponsor count. All TEXT.
-      - name: FED_GOVINFO_BILL_COSPONSORS
-        description: >
-          GovInfo BILLSTATUS cosponsor extract, 118th + 119th. One row per (bill, cosponsor
-          bioguide): isOriginalCosponsor, sponsorshipDate, and sponsorshipWithdrawnDate (present
-          only when withdrawn). Kept off the bill grain so the list never inflates it. All TEXT.
-
 models:
   - name: stg_fed_congress_legislators__members
     description: >

@@ -1,4 +1,4 @@
-{{ config(materialized='table') }}
+{{ config(materialized='table', schema='MONEY_FINANCE') }}
 
 -- =====================================================================
 -- money__debt_repayment_cliff

@@ -9,6 +9,3 @@ sources:
         description: >
           DEA ARCOS — every controlled substance transaction from manufacturer/distributor
           to pharmacy/hospital. 178M records. The supply-side map of the opioid crisis.
-      - name: FED_FOREIGNASSISTANCE
-        description: >
-          ForeignAssistance.gov — all US foreign aid disbursements and obligations.

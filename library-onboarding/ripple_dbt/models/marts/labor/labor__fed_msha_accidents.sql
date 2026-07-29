@@ -3,7 +3,7 @@
 -- GRAIN: one row per accident document (document_no is unique)
 -- Answers: What mining accidents occurred, where, severity, and who was responsible?
 -- Source: MSHA Accidents (~274K records)
--- Key joins: mine_id → msha_mines/violations; fips_state_cd → geography
+-- Key joins: mine_id â†’ msha_mines/violations; fips_state_cd â†’ geography
 
 select
     document_no,

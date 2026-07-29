@@ -3,7 +3,7 @@
 -- GRAIN: one row per fatal encounter (id is unique)
 -- Answers: Who is killed by police, where, and under what circumstances?
 -- Source: Washington Post Fatal Force Database
--- Key joins: state → geography; race + age + gender → demographics
+-- Key joins: state â†’ geography; race + age + gender â†’ demographics
 
 with base as (
     select * from {{ ref('stg_xc_wapo_fatal_force__records') }}

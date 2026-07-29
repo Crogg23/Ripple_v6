@@ -4,8 +4,8 @@
 -- Answers: Which facilities have chronic noncompliance but face minimal penalties,
 --   and what are the demographics of their surrounding communities?
 -- Source: EPA ECHO (filtered to chronic violators with minimal penalties)
--- Key joins: fips_code → geography; facility_name → entity resolution
--- NOTE: This is a MECHANISM mart — it reveals the pattern of unenforced environmental harm.
+-- Key joins: fips_code â†’ geography; facility_name â†’ entity resolution
+-- NOTE: This is a MECHANISM mart â€” it reveals the pattern of unenforced environmental harm.
 
 with echo as (
     select * from {{ ref('environment__fed_epa_echo') }}

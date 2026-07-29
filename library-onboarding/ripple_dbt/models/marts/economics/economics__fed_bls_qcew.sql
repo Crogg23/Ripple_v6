@@ -1,9 +1,9 @@
-{{ config(materialized='table') }}
+{{ config(materialized='table', schema='ECONOMICS') }}
 
--- GRAIN: one row per county (AREA_FIPS) × industry (INDUSTRY_CODE) × ownership (OWN_CODE) × year × quarter
+-- GRAIN: one row per county (AREA_FIPS) Ã— industry (INDUSTRY_CODE) Ã— ownership (OWN_CODE) Ã— year Ã— quarter
 -- Answers: employment levels, wages, and establishment counts by geography and industry
 -- Source: BLS Quarterly Census of Employment and Wages (3.6M rows)
--- Key joins: AREA_FIPS → DIM_COUNTY (first 5 digits = county FIPS)
+-- Key joins: AREA_FIPS â†’ DIM_COUNTY (first 5 digits = county FIPS)
 
 with source as (
 

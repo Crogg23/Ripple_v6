@@ -144,7 +144,7 @@ The most actionable content in the brief. Each has a current default — accept 
 ```
 # one-time setup
 python3 -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt          # plotly, pandas, snowflake-connector, rich, dbt-snowflake
+pip install -r requirements.txt          # plotly, pandas, snowflake-connector, rich, dbt-fusion
 # then set SNOWFLAKE_PAT in library-onboarding/.env
 
 python -m connect all      # rebuild the full map → outputs/connection_explorer.html (auto-opens)

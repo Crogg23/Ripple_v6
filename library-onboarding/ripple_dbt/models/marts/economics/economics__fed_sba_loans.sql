@@ -1,9 +1,9 @@
-{{ config(materialized='table') }}
+{{ config(materialized='table', schema='ECONOMICS') }}
 
 -- GRAIN: one row per loan (implied by LOCATIONID + BORRNAME + APPROVALDATE + GROSSAPPROVAL)
 -- Answers: SBA lending patterns, which businesses get approved, where, for how much?
 -- Source: SBA 7(a) and 504 loan data (2.2M rows)
--- Key joins: BORRSTATE/PROJECTSTATE → DIM_STATE
+-- Key joins: BORRSTATE/PROJECTSTATE â†’ DIM_STATE
 
 with source as (
 

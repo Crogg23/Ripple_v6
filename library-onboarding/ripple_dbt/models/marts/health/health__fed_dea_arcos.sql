@@ -2,9 +2,9 @@
 
 -- GRAIN: one row per controlled substance transaction (transaction_id is unique)
 -- Answers: Who distributes what controlled substances to whom, where, and how much?
--- Source: DEA ARCOS (Automation of Reports and Consolidated Orders System) — ~178M records
--- Key joins: buyer_county → geography; drug_name/ingredient_name → substance classification;
---   buyer_dea_no → pharmacy/provider entities; reporter_name → manufacturer/distributor entities
+-- Source: DEA ARCOS (Automation of Reports and Consolidated Orders System) â€” ~178M records
+-- Key joins: buyer_county â†’ geography; drug_name/ingredient_name â†’ substance classification;
+--   buyer_dea_no â†’ pharmacy/provider entities; reporter_name â†’ manufacturer/distributor entities
 -- WARNING: This is 178M rows. Full materialization takes significant compute.
 
 with source as (

@@ -3,7 +3,7 @@
 -- GRAIN: one row per exclusion record (exclusion_sk is unique)
 -- Answers: Which healthcare providers/entities have been excluded from federal programs?
 -- Source: HHS OIG List of Excluded Individuals/Entities (LEIE)
--- Key joins: npi → CMS NPPES provider; business_name → entity resolution
+-- Key joins: npi â†’ CMS NPPES provider; business_name â†’ entity resolution
 
 select
     exclusion_sk,

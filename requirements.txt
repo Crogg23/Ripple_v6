@@ -56,4 +56,4 @@ pyyaml==6.0.3                # YAML I/O for dbt scaffolding / config
 # NOT installed on this machine, so not == to a probed version. Pinned to a
 # recent known-good release; required to `dbt run` / `dbt test` the staging +
 # mart models. Bump together with dbt-core if you upgrade.
-dbt-snowflake==1.8.4
+dbt-fusion==2.0.0-preview.173

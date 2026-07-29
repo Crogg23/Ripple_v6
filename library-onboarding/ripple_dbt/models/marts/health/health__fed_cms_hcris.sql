@@ -1,4 +1,4 @@
-{{ config(materialized='table') }}
+{{ config(materialized='table', schema='HEALTH') }}
 
 with base as (
 
@@ -90,7 +90,7 @@ select
     combined_outpatient_inpatient_total_charges,
     cost_to_charge_ratio,
 
-    -- balance sheet – assets
+    -- balance sheet â€“ assets
     cash_on_hand_and_in_banks,
     temporary_investments,
     notes_receivable,
@@ -114,7 +114,7 @@ select
     total_other_assets,
     total_assets,
 
-    -- balance sheet – liabilities
+    -- balance sheet â€“ liabilities
     accounts_payable,
     salaries_wages_and_fees_payable,
     payroll_taxes_payable,

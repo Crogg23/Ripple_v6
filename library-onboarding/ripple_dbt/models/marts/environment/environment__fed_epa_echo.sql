@@ -3,8 +3,8 @@
 -- GRAIN: one row per EPA-regulated facility (FRS_ID is unique)
 -- Answers: Which facilities violate environmental law, how much are they penalized,
 --   and what are the demographics of surrounding communities?
--- Source: EPA ECHO (Enforcement and Compliance History Online) — ~3.2M facilities
--- Key joins: frs_id → epa_frs; fac_fips_code → geography; fac_name → entity resolution
+-- Source: EPA ECHO (Enforcement and Compliance History Online) â€” ~3.2M facilities
+-- Key joins: frs_id â†’ epa_frs; fac_fips_code â†’ geography; fac_name â†’ entity resolution
 
 with source as (
     select * from {{ source('ripple_raw', 'FED_EPA_ECHO') }}
