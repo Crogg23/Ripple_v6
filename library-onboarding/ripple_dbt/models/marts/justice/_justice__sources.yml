@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_COURTLISTENER_DOCKETS
+      - name: FED_COURTLISTENER_INVESTMENTS
+      - name: FED_COURTLISTENER_FINANCIAL_DISCLOSURES
+      - name: FED_COURTLISTENER_POSITIONS
+      - name: FED_COURTLISTENER_JUDGES
+      - name: XC_MAPPING_POLICE_VIOLENCE

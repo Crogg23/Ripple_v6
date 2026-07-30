@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: INTL_GLEIF_REPEX
+      - name: FED_IRS_AUTO_REVOCATIONS
+      - name: FED_IRS_PUB78_ELIGIBLE_DONEES
+      - name: INTL_GLEIF_RELATIONSHIPS
+      - name: FED_FAC_SINGLE_AUDIT
+      - name: FED_TREASURY_DTS_DEPOSITS
+      - name: FED_TREASURY_MTS_RECEIPTS
+      - name: FED_IRS_SOI_CHARITIES
+      - name: FED_TREASURY_DEBT_OUTSTANDING

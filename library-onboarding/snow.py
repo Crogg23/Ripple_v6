@@ -27,8 +27,13 @@ def connect(*, pat=None, warehouse=None, role=None, session_parameters=None):
     """
     settings.require("snowflake_account", "snowflake_user", "snowflake_warehouse")
     pat = (pat or "").strip() or None
-    if not (pat or settings.snowflake_pat.strip() or settings.snowflake_password.strip()):
-        raise ConfigError("Set SNOWFLAKE_PAT (programmatic access token) or SNOWFLAKE_PASSWORD.")
+    if not (pat or settings.snowflake_pat.strip()
+            or settings.snowflake_password.strip() or settings.has_private_key()):
+        raise ConfigError(
+            "No usable Snowflake credential. Set SNOWFLAKE_PAT, SNOWFLAKE_PASSWORD, or "
+            "generate a key pair with `python scripts/rotate_dbt_keypair.py` and "
+            "register the printed public key on the user."
+        )
     try:
         import snowflake.connector
     except ImportError as exc:  # pragma: no cover
@@ -62,12 +67,40 @@ def connect(*, pat=None, warehouse=None, role=None, session_parameters=None):
             kwargs["token"] = tok
         else:
             kwargs["password"] = tok  # PATs work as a password replacement
+    elif settings.has_private_key():
+        # Key-pair auth (2026-07-29). Deliberately ranked ABOVE the password: this
+        # machine has a stale SNOWFLAKE_PASSWORD in its environment that Snowflake
+        # rejects (error 250001), so preferring the password would fail every script
+        # while a working key sat right there. An explicitly passed `pat` still wins,
+        # since callers use that to pin a narrower serving credential.
+        kwargs["private_key"] = _private_key_der(settings.snowflake_private_key_path)
     else:
         kwargs["password"] = settings.snowflake_password
     conn = snowflake.connector.connect(**kwargs)
     if not session_parameters:
         _apply_session_guards(conn)
     return conn
+
+
+def _private_key_der(path: str) -> bytes:
+    """Load the PEM private key and hand the connector the DER bytes it wants."""
+    from pathlib import Path
+
+    from cryptography.hazmat.primitives import serialization
+
+    p = Path(path).expanduser()
+    if not p.exists():
+        raise ConfigError(
+            f"Snowflake private key not found at {p}. Generate one with "
+            "`python scripts/rotate_dbt_keypair.py` and register the public key."
+        )
+    with open(p, "rb") as fh:
+        key = serialization.load_pem_private_key(fh.read(), password=None)
+    return key.private_bytes(
+        encoding=serialization.Encoding.DER,
+        format=serialization.PrivateFormat.PKCS8,
+        encryption_algorithm=serialization.NoEncryption(),
+    )
 
 
 def _apply_session_guards(conn) -> None:

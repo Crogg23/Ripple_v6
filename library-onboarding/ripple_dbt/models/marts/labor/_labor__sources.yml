@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_OSHA_ITA_CASE_DETAIL_2024
+      - name: FED_OSHA_ITA_CASE_DETAIL_2023
+      - name: FED_OSHA_ITA_300A_SUMMARY_2024
+      - name: FED_OSHA_ITA_300A_SUMMARY_2023
+      - name: FED_OSHA_ITA_300A_SUMMARY_2025
+      - name: FED_OSHA_ITA_CASE_DETAIL_2025

@@ -43,19 +43,21 @@ def connect(database=None, schema=None):
     )
 
 
-def columns_of(table, database="LIBRARY_RAW", schema="LANDING", conn=None):
-    """Return the column names of a table in declaration order, exact case."""
+def columns_of(table, database="LIBRARY_RAW", schema="LANDING", conn=None,
+               with_types=False):
+    """Return column names (or (name, data_type) pairs) in declaration order."""
     close = conn is None
     conn = conn or connect()
     try:
         cur = conn.cursor()
         cur.execute(
-            f"select column_name from {database}.information_schema.columns "
+            f"select column_name, data_type from {database}.information_schema.columns "
             f"where table_schema = %s and table_name = %s "
             f"order by ordinal_position",
             (schema, table),
         )
-        return [r[0] for r in cur.fetchall()]
+        rows = cur.fetchall()
+        return [(r[0], r[1]) for r in rows] if with_types else [r[0] for r in rows]
     finally:
         if close:
             conn.close()

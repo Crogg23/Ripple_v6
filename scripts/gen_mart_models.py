@@ -1,296 +1,322 @@
-"""
-Batch-generate dbt mart models for all unmodeled sources.
+"""Batch-generate dbt mart models for landed sources that don't have one yet.
 
-Connects to Snowflake, reads column metadata from LIBRARY_RAW.LANDING,
-and writes mart SQL files following the established project pattern.
+Rewritten 2026-07-29. The previous version produced models that could not build and a
+project that could not parse. Fixed here:
+
+1. Source declarations. It appended every table to the mart-level
+   _<domain>__sources.yml without checking whether staging/<source>/schema.yml already
+   declared it. Duplicate (source, table) pairs are a FATAL dbt compilation error, and
+   this is what left `dbt parse` dead. Now every existing declaration in the project is
+   indexed first and a table is only declared if nothing else claims it.
+2. Aliases that cannot compile. A column named "1862_land_grant_college" was aliased
+   verbatim, but an identifier cannot begin with a digit. Years now move to the end.
+3. Reserved-word aliases. "GROUP" was quoted on the source side but aliased bare, which
+   is a syntax error. Reserved aliases now get a _col suffix.
+4. Duplicate output names. The old code had a comment about avoiding duplicate snake
+   aliases but never did it, so two source columns could collide into one output name.
+   Names are now de-duplicated with a numeric suffix.
+5. Auth. It read SNOWFLAKE_PAT / SNOWFLAKE_PASSWORD, neither of which exists on this
+   machine. It now uses the shared key-pair connection.
+6. Cost. A straight passthrough of a 100M-row table as a physical table pays twice for
+   the same bytes, so anything above VIEW_ROW_THRESHOLD is materialized as a view.
 
 Usage:
-    cd library-onboarding/ripple_dbt
-    python ../../scripts/gen_mart_models.py
+    python scripts/gen_mart_models.py            # dry run, prints the plan
+    python scripts/gen_mart_models.py --apply
 """
-
+import argparse
+import glob
 import os
 import re
-import snowflake.connector
-from pathlib import Path
+import sys
 
-# --- Config ---
-DBT_MODELS_DIR = Path(__file__).parent.parent / "library-onboarding" / "ripple_dbt" / "models" / "marts"
-SOURCES_DIR = Path(__file__).parent.parent / "library-onboarding" / "ripple_dbt" / "models" / "staging"
+import yaml
 
-# Columns to always exclude from the mart projection
-EXCLUDE_COLS = {'_INGESTED_AT', '_SOURCE_RUN_ID', '_SRC_SHA256', 'INGESTED_AT', 'SOURCE_RUN_ID', 'SRC_SHA256'}
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import _snowflake_conn as sc  # noqa: E402
 
-# Domain to schema folder mapping
+REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MODELS = os.path.join(REPO, "library-onboarding", "ripple_dbt", "models")
+MARTS = os.path.join(MODELS, "marts")
+
+# A passthrough this big is not worth a second physical copy.
+VIEW_ROW_THRESHOLD = 15_000_000
+
+EXCLUDE_COLS = {"_INGESTED_AT", "_SOURCE_RUN_ID", "_SRC_SHA256",
+                "INGESTED_AT", "SOURCE_RUN_ID", "SRC_SHA256"}
+
 DOMAIN_MAP = {
-    'health_medicine': 'health',
-    'money_in_politics': 'finance',
-    'money_finance': 'finance',
-    'corporate_entities': 'economics',
-    'spending_budget': 'economics',
-    'economy_labor_trade': 'economics',
-    'government_power': 'politics',
-    'elections_voting': 'politics',
-    'justice_courts': 'justice',
-    'crime_security': 'justice',
-    'sanctions_enforcement': 'justice',
-    'energy_environment': 'environment',
-    'transport_movement': 'transport',
-    'housing_social': 'housing',
-    'immigration_migration': 'immigration',
-    'history_culture': 'history',
-    'science_research': 'science',
-    'geo_demographics': 'reference',
-    'open_data_portal': 'open_data',
-    'targeted_investigation': 'investigations',
-    'procurement_intl': 'procurement',
-    'education': 'education',
-    None: 'uncategorized',
-    'None': 'uncategorized',
-    'UNCLASSIFIED': 'uncategorized',
+    "health_medicine": "health", "money_in_politics": "finance",
+    "money_finance": "finance", "corporate_entities": "economics",
+    "spending_budget": "economics", "economy_labor_trade": "economics",
+    "government_power": "politics", "elections_voting": "politics",
+    "justice_courts": "justice", "crime_security": "justice",
+    "sanctions_enforcement": "justice", "energy_environment": "environment",
+    "transport_movement": "transport", "housing_social": "housing",
+    "immigration_migration": "immigration", "history_culture": "history",
+    "science_research": "science", "geo_demographics": "reference",
+    "open_data_portal": "open_data", "targeted_investigation": "investigations",
+    "procurement_intl": "procurement", "education": "education",
+    None: "uncategorized", "None": "uncategorized", "UNCLASSIFIED": "uncategorized",
+}
+
+# Fallback when DOMAIN_PRIMARY is null/UNCLASSIFIED, which is true for a lot of the
+# bulk-loaded sources. Without this, big obvious datasets (SEC 13F holdings,
+# CourtListener dockets, FDA FAERS) get dumped in 'uncategorized', which is how the
+# UNCATEGORIZED schema filled up with things that clearly belong elsewhere.
+# First match on the source_id wins, so order matters.
+ID_HINTS = [
+    ("courtlistener", "justice"), ("uscourts", "justice"), ("scdb", "justice"),
+    ("fjc", "justice"), ("eoir", "immigration"), ("uscis", "immigration"),
+    ("cbp_", "immigration"), ("ice_", "immigration"), ("dhs_", "immigration"),
+    ("fda_", "health"), ("cms_", "health"), ("cdc_", "health"),
+    ("hrsa", "health"), ("nih_", "health"), ("hhs_", "health"), ("dea_", "health"),
+    ("sec_", "finance"), ("fec_", "finance"), ("fdic", "finance"),
+    ("ffiec", "finance"), ("ncua", "finance"), ("cfpb", "finance"),
+    ("gleif", "economics"), ("irs_", "economics"), ("usaspending", "economics"),
+    ("sba_", "economics"), ("treasury", "economics"), ("pbgc", "economics"),
+    ("grants_gov", "economics"), ("fac_", "economics"),
+    ("epa_", "environment"), ("noaa", "environment"), ("usgs", "environment"),
+    ("osha", "labor"), ("msha", "labor"), ("dol_", "labor"), ("bls_", "labor"),
+    ("nhtsa", "transport"), ("faa_", "transport"), ("fra_", "transport"),
+    ("dot_", "transport"), ("bts_", "transport"),
+    ("hud_", "housing"), ("fhfa", "housing"),
+    ("nces", "education"), ("ed_", "education"),
+    ("govinfo", "politics"), ("congress", "politics"), ("voteview", "politics"),
+    ("medsl", "politics"), ("eac_", "politics"),
+    ("wayback", "investigations"), ("epstein", "investigations"),
+    ("portal_", "open_data"),
+]
+
+
+def domain_folder(source_id, domain):
+    folder = DOMAIN_MAP.get(domain, "uncategorized")
+    if folder != "uncategorized":
+        return folder
+    sid = source_id.lower()
+    for hint, target in ID_HINTS:
+        if hint in sid:
+            return target
+    return "uncategorized"
+
+RESERVED = {
+    "GROUP", "ORDER", "SELECT", "FROM", "WHERE", "TABLE", "INDEX", "CREATE", "DROP",
+    "ALTER", "CONNECT", "GRANT", "REVOKE", "DATE", "TIME", "YEAR", "MONTH", "DAY",
+    "HOUR", "MINUTE", "SECOND", "VALUE", "VALUES", "KEY", "PRIMARY", "FOREIGN",
+    "UNIQUE", "CHECK", "DEFAULT", "NULL", "NOT", "AND", "OR", "IN", "IS", "LIKE",
+    "BETWEEN", "EXISTS", "CASE", "WHEN", "THEN", "ELSE", "END", "AS", "ON", "JOIN",
+    "LEFT", "RIGHT", "FULL", "INNER", "OUTER", "CROSS", "NATURAL", "UNION", "ALL",
+    "ANY", "SOME", "TRUE", "FALSE", "COMMENT", "COLUMN", "ROWS", "RANK", "PARTITION",
+    "OVER", "WINDOW", "LIMIT", "OFFSET", "HAVING", "SET", "UPDATE", "DELETE",
+    "INSERT", "INTO", "MERGE", "USING", "MATCHED", "LOCALTIME", "LOCALTIMESTAMP",
+    "CURRENT_DATE", "CURRENT_TIME", "CURRENT_TIMESTAMP", "CURRENT_USER", "QUALIFY",
+    "ASC", "DESC", "DISTINCT", "BY", "WITH", "SAMPLE", "TABLESAMPLE", "ILIKE", "RLIKE",
 }
 
 
-def get_connection():
-    return snowflake.connector.connect(
-        account=os.environ['SNOWFLAKE_ACCOUNT'],
-        user=os.environ['SNOWFLAKE_USER'],
-        password=os.environ.get('SNOWFLAKE_PAT', os.environ.get('SNOWFLAKE_PASSWORD', '')),
-        role=os.environ.get('SNOWFLAKE_ROLE', 'ACCOUNTADMIN'),
-        warehouse=os.environ.get('SNOWFLAKE_WAREHOUSE', 'COMPUTE_WH'),
-    )
-
-
-def get_unmodeled_sources(conn):
-    """Get sources that need mart models generated."""
-    cur = conn.cursor()
-    cur.execute("""
-        SELECT c.source_id, c.name, c.domain_primary, c.run_rows, c.join_key_tier
-        FROM LIBRARY_META.REGISTRY.CATALOG c
-        WHERE c.lifecycle IN ('landed', 'stale')
-          AND c._real_mart = FALSE
-          AND COALESCE(c.run_rows, 0) > 0
-        ORDER BY c.run_rows DESC NULLS LAST
-    """)
-    return cur.fetchall()
-
-
-def get_columns(conn, table_name):
-    """Get column names for a landing table."""
-    cur = conn.cursor()
-    cur.execute(f"""
-        SELECT column_name, data_type
-        FROM LIBRARY_RAW.INFORMATION_SCHEMA.COLUMNS
-        WHERE table_schema = 'LANDING' AND table_name = '{table_name}'
-        ORDER BY ordinal_position
-    """)
-    return [(row[0], row[1]) for row in cur.fetchall()]
+def index_declared_sources():
+    """Every (source, table) already declared anywhere, so we never duplicate one."""
+    declared = {}
+    for path in glob.glob(os.path.join(MODELS, "**", "*.yml"), recursive=True):
+        try:
+            with open(path, encoding="utf-8") as fh:
+                doc = yaml.safe_load(fh)
+        except Exception:
+            continue
+        if not isinstance(doc, dict):
+            continue
+        for src in doc.get("sources") or []:
+            for tbl in src.get("tables") or []:
+                declared[(src.get("name"), tbl.get("name"))] = os.path.relpath(
+                    path, MODELS)
+    return declared
 
 
 def snake_case(name):
-    """Convert a column name to snake_case."""
-    # Handle dotted names (e.g. Entity.LegalName -> entity_legal_name)
-    name = name.replace('.', '_')
-    # Handle camelCase
-    name = re.sub(r'([a-z])([A-Z])', r'\1_\2', name)
-    # Handle sequences of caps (e.g. HTMLParser -> html_parser)
-    name = re.sub(r'([A-Z]+)([A-Z][a-z])', r'\1_\2', name)
-    # Replace non-alphanumeric with underscore
-    name = re.sub(r'[^a-zA-Z0-9]', '_', name)
-    # Collapse multiple underscores
-    name = re.sub(r'_+', '_', name)
-    # Strip leading/trailing underscores
-    name = name.strip('_').lower()
+    name = name.replace(".", "_")
+    name = re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", name)
+    name = re.sub(r"([A-Z]+)([A-Z][a-z])", r"\1_\2", name)
+    name = re.sub(r"[^A-Za-z0-9]", "_", name)
+    return re.sub(r"_+", "_", name).strip("_").lower()
+
+
+def safe_alias(col_name, taken):
+    """A legal, unique, non-reserved output name."""
+    name = snake_case(col_name) or "col"
+    # An identifier cannot start with a digit: 1862_land_grant -> land_grant_1862
+    m = re.match(r"^(\d+)_?(.*)$", name)
+    if m:
+        name = f"{m.group(2)}_{m.group(1)}" if m.group(2) else f"col_{m.group(1)}"
+    if name.upper() in RESERVED:
+        name = f"{name}_col"
+    base, i = name, 2
+    while name in taken:
+        name = f"{base}_{i}"
+        i += 1
+    taken.add(name)
     return name
 
 
 def needs_quoting(col_name):
-    """Check if a column name needs double-quoting in Snowflake."""
-    # Needs quoting if: contains dots, spaces, hyphens, starts with number, is mixed case, or is reserved
-    reserved = {'GROUP', 'ORDER', 'SELECT', 'FROM', 'WHERE', 'TABLE', 'INDEX', 'CREATE',
-                'DROP', 'ALTER', 'CONNECT', 'GRANT', 'REVOKE', 'DATE', 'TIME', 'YEAR',
-                'MONTH', 'DAY', 'HOUR', 'MINUTE', 'SECOND', 'VALUE', 'VALUES', 'KEY',
-                'PRIMARY', 'FOREIGN', 'UNIQUE', 'CHECK', 'DEFAULT', 'NULL', 'NOT',
-                'AND', 'OR', 'IN', 'IS', 'LIKE', 'BETWEEN', 'EXISTS', 'CASE', 'WHEN',
-                'THEN', 'ELSE', 'END', 'AS', 'ON', 'JOIN', 'LEFT', 'RIGHT', 'FULL',
-                'INNER', 'OUTER', 'CROSS', 'NATURAL', 'UNION', 'ALL', 'ANY', 'SOME',
-                'TRUE', 'FALSE', 'COMMENT', 'COLUMN', 'ROWS', 'RANK', 'PARTITION',
-                'OVER', 'WINDOW', 'LIMIT', 'OFFSET', 'HAVING', 'SET', 'UPDATE',
-                'DELETE', 'INSERT', 'INTO', 'MERGE', 'USING', 'MATCHED'}
-    if col_name.upper() in reserved:
+    if col_name.upper() in RESERVED:
         return True
-    if not re.match(r'^[A-Za-z_][A-Za-z0-9_]*$', col_name):
+    if not re.match(r"^[A-Za-z_][A-Za-z0-9_]*$", col_name):
         return True
-    if col_name != col_name.upper() and col_name != col_name.lower():
-        return True  # mixed case
-    return False
+    return col_name != col_name.upper()
 
 
-def infer_cast(col_name, snake_name):
-    """Infer an appropriate type cast based on column name patterns."""
-    upper = col_name.upper()
-    # Date patterns
-    if any(x in upper for x in ['_DATE', 'DATE_', 'EFFECTIVE_DATE', 'CREATED', 'UPDATED',
-                                  'FILED_DATE', 'START_DATE', 'END_DATE', 'EXPIR']):
-        if 'TIME' in upper or 'DATETIME' in upper:
-            return 'try_to_timestamp'
-        return 'try_to_date'
-    # Numeric patterns (amounts, counts, rates)
-    if any(x in upper for x in ['AMOUNT', 'AMT', 'COST', 'PRICE', 'TOTAL', 'VALUE',
-                                  'DOLLARS', 'PROCEEDS', 'OBLIGATION', 'DISBURSEMENT']):
-        return 'try_to_double'
-    if any(x in upper for x in ['COUNT', 'CNT', 'NUM_', 'NUMBER_OF', 'QUANTITY',
-                                  'DEATHS', 'INJURED', 'MILES', 'SPEED', 'ROWS']):
-        return 'try_to_number'
-    if any(x in upper for x in ['_PCT', 'PERCENT', 'RATIO', 'RATE', 'SCORE', 'INDEX']):
-        return 'try_to_double'
-    if any(x in upper for x in ['LATITUDE', 'LONGITUDE', 'LAT', 'LON', 'LNG']):
-        return 'try_to_double'
-    if upper in ('YEAR', 'FISCAL_YEAR', 'FY', 'CONGRESS'):
-        return 'try_to_number'
-    return None  # keep as text
+def infer_cast(col_name, data_type=None):
+    """Pick a cast from the column name -- but only for text columns.
 
-
-def generate_mart_sql(source_id, table_name, columns, domain, source_name, run_rows):
-    """Generate the mart model SQL."""
-    # Filter out metadata columns
-    proj_cols = [(c, t) for c, t in columns if c.upper() not in EXCLUDE_COLS]
-
-    if not proj_cols:
+    Casting an already-typed column is a hard error, not a no-op: TRY_TO_DOUBLE on a
+    NUMBER raises "TRY_CAST cannot be used with arguments of types NUMBER and FLOAT",
+    and TRY_TO_DATE on a DATE raises "invalid type for parameter 'TO_DATE'". Two models
+    died this way (fed_fac_single_audit, fed_osha_ita_case_detail_2024) before this
+    guard existed.
+    """
+    if data_type is not None and not str(data_type).upper().startswith(
+            ("TEXT", "VARCHAR", "STRING", "CHAR")):
         return None
+    u = col_name.upper()
+    if any(x in u for x in ("_DATE", "DATE_", "CREATED", "UPDATED", "EXPIR")):
+        return "try_to_timestamp" if ("TIME" in u or "DATETIME" in u) else "try_to_date"
+    if any(x in u for x in ("AMOUNT", "AMT", "COST", "PRICE", "DOLLARS", "PROCEEDS",
+                            "OBLIGATION", "DISBURSEMENT")):
+        return "try_to_double"
+    if any(x in u for x in ("COUNT", "CNT", "NUM_", "NUMBER_OF", "QUANTITY",
+                            "DEATHS", "INJURED")):
+        return "try_to_number"
+    if any(x in u for x in ("_PCT", "PERCENT", "RATIO", "_RATE", "LATITUDE",
+                            "LONGITUDE")):
+        return "try_to_double"
+    if u in ("YEAR", "FISCAL_YEAR", "FY", "CONGRESS"):
+        return "try_to_number"
+    return None
 
-    # Determine schema from domain
-    schema_folder = DOMAIN_MAP.get(domain, 'uncategorized')
-    schema_upper = schema_folder.upper()
 
-    # Build model name
-    model_name = f"{schema_folder}__{source_id.lower()}"
+def build_model_sql(table, columns, schema_folder, source_name, rows):
+    """columns is a list of (name, data_type) pairs."""
+    cols = [(c, t) for c, t in columns if c.upper() not in EXCLUDE_COLS]
+    if not cols:
+        return None
+    materialized = "view" if (rows or 0) > VIEW_ROW_THRESHOLD else "table"
+    label = (source_name or table).encode("ascii", "replace").decode("ascii")
 
-    lines = []
-    lines.append(f"{{{{ config(materialized='table', schema='{schema_upper}') }}}}")
-    lines.append("")
-    safe_name = (source_name or table_name).encode('ascii', 'replace').decode('ascii')
-    lines.append(f"-- Source: {safe_name} ({run_rows or '?'} rows)")
-    lines.append(f"-- Generated by gen_mart_models.py")
-    lines.append("")
-    lines.append("with source as (")
-    lines.append(f"    select * from {{{{ source('ripple_raw', '{table_name}') }}}}")
-    lines.append(")")
-    lines.append("")
-    lines.append("select")
+    head = [
+        f"{{{{ config(materialized='{materialized}', schema='{schema_folder.upper()}') }}}}",
+        "",
+        f"-- Source: {label} ({rows or '?'} rows)",
+        "-- Generated by scripts/gen_mart_models.py",
+    ]
+    if materialized == "view":
+        head += [
+            "--",
+            f"-- Materialized as a VIEW: this is a straight passthrough of a "
+            f"{(rows or 0):,}-row",
+            "-- landing table, so a physical copy would pay twice for the same bytes"
+            " without",
+            "-- precomputing any join, filter, or aggregation.",
+        ]
+    head += ["", "with source as (",
+             f"    select * from {{{{ source('ripple_raw', '{table}') }}}}",
+             ")", "", "select"]
 
-    col_lines = []
-    for i, (col_name, data_type) in enumerate(proj_cols):
-        sname = snake_case(col_name)
-        # Avoid duplicate snake names
-        quoted = f'"{col_name}"' if needs_quoting(col_name) else col_name
-        cast = infer_cast(col_name, sname)
-
+    taken, lines = set(), []
+    for col, dtype in cols:
+        alias = safe_alias(col, taken)
+        ref = f'"{col}"' if needs_quoting(col) else col
+        cast = infer_cast(col, dtype)
         if cast:
-            expr = f"    {cast}({quoted}) as {sname}"
-        elif quoted != sname:
-            expr = f"    {quoted} as {sname}"
+            lines.append(f"    {cast}({ref}) as {alias}")
+        elif ref.strip('"') != alias:
+            lines.append(f"    {ref} as {alias}")
         else:
-            expr = f"    {quoted}"
-
-        col_lines.append(expr)
-
-    lines.append(",\n".join(col_lines))
-    lines.append("from source")
-    lines.append("")
-
-    return model_name, schema_folder, "\n".join(lines)
+            lines.append(f"    {ref}")
+    return "\n".join(head) + "\n" + ",\n".join(lines) + "\nfrom source\n"
 
 
-def ensure_source_yaml(schema_folder, table_name):
-    """Ensure a _sources.yml exists for this mart folder referencing the raw table."""
-    folder = DBT_MODELS_DIR / schema_folder
-    sources_file = folder / f"_{schema_folder}__sources.yml"
-
-    if sources_file.exists():
-        content = sources_file.read_text(encoding='utf-8')
-        if table_name in content:
-            return  # already referenced
-
-        # Append table to existing source
-        if '      tables:' in content:
-            content = content.rstrip() + f"\n        - name: {table_name}\n"
-            sources_file.write_text(content, encoding='utf-8')
-    else:
-        # Create new sources file
-        yaml_content = f"""version: 2
-
-sources:
-  - name: ripple_raw
-    database: LIBRARY_RAW
-    schema: LANDING
-    tables:
-      - name: {table_name}
-"""
-        folder.mkdir(parents=True, exist_ok=True)
-        sources_file.write_text(yaml_content, encoding='utf-8')
+def write_source_decl(schema_folder, table, declared, apply):
+    """Declare the table only if nothing in the project already declares it."""
+    if ("ripple_raw", table) in declared:
+        return False
+    path = os.path.join(MARTS, schema_folder, f"_{schema_folder}__sources.yml")
+    if apply:
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        if os.path.exists(path):
+            with open(path, encoding="utf-8") as fh:
+                body = fh.read().rstrip("\n")
+            body += f"\n      - name: {table}\n"
+        else:
+            body = ("version: 2\n\nsources:\n  - name: ripple_raw\n"
+                    "    database: LIBRARY_RAW\n    schema: LANDING\n    tables:\n"
+                    f"      - name: {table}\n")
+        with open(path, "w", encoding="utf-8", newline="\n") as fh:
+            fh.write(body)
+    declared[("ripple_raw", table)] = os.path.relpath(path, MODELS)
+    return True
 
 
 def main():
-    # Load env
-    from dotenv import load_dotenv
-    env_path = Path(__file__).parent.parent / "library-onboarding" / ".env"
-    if env_path.exists():
-        load_dotenv(env_path, override=True)
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--apply", action="store_true")
+    ap.add_argument("--limit", type=int)
+    args = ap.parse_args()
 
-    conn = get_connection()
-    sources = get_unmodeled_sources(conn)
-    print(f"Found {len(sources)} unmodeled sources to process")
+    declared = index_declared_sources()
+    print(f"{len(declared)} source tables already declared in the project")
 
-    generated = 0
-    skipped = 0
-    errors = 0
+    conn = sc.connect()
+    cur = conn.cursor()
+    cur.execute("""
+        select SOURCE_ID, NAME, DOMAIN_PRIMARY, LANDED_ROW_COUNT
+        from LIBRARY_META.REGISTRY.CATALOG
+        where LIFECYCLE in ('landed','stale')
+          and _REAL_MART = FALSE
+          and coalesce(LANDED_ROW_COUNT, 0) > 0
+        order by LANDED_ROW_COUNT desc
+    """)
+    todo = cur.fetchall()
+    if args.limit:
+        todo = todo[:args.limit]
+    print(f"{len(todo)} landed sources without a real mart\n")
 
-    for source_id, name, domain, run_rows, key_tier in sources:
-        table_name = source_id.upper()
-
-        # Check if columns exist
-        columns = get_columns(conn, table_name)
-        if not columns:
+    made = skipped = noview = 0
+    views = []
+    for source_id, name, domain, rows in todo:
+        table = source_id.upper()
+        folder = domain_folder(source_id, domain)
+        model = f"{folder}__{source_id.lower()}"
+        target = os.path.join(MARTS, folder, f"{model}.sql")
+        if os.path.exists(target):
             skipped += 1
             continue
-
-        # Check if model already exists
-        schema_folder = DOMAIN_MAP.get(domain, 'uncategorized')
-        model_name = f"{schema_folder}__{source_id.lower()}"
-        target_dir = DBT_MODELS_DIR / schema_folder
-        target_file = target_dir / f"{model_name}.sql"
-
-        if target_file.exists():
+        cols = sc.columns_of(table, conn=conn, with_types=True)
+        if not cols:
             skipped += 1
             continue
-
-        # Generate
-        result = generate_mart_sql(source_id, table_name, columns, domain, name, run_rows)
-        if result is None:
+        sql = build_model_sql(table, cols, folder, name, rows)
+        if sql is None:
             skipped += 1
             continue
-
-        model_name, schema_folder, sql = result
-        target_dir = DBT_MODELS_DIR / schema_folder
-        target_dir.mkdir(parents=True, exist_ok=True)
-        target_file = target_dir / f"{model_name}.sql"
-        target_file.write_text(sql, encoding='utf-8')
-
-        # Ensure source yaml
-        try:
-            ensure_source_yaml(schema_folder, table_name)
-        except Exception as e:
-            print(f"  WARN: source yaml issue for {table_name}: {e}")
-
-        generated += 1
-        if generated % 20 == 0:
-            print(f"  ...generated {generated} models so far")
-
-    print(f"\nDone! Generated: {generated}, Skipped: {skipped}, Errors: {errors}")
-    print(f"Total unmodeled sources: {len(sources)}")
+        if (rows or 0) > VIEW_ROW_THRESHOLD:
+            views.append((model, rows))
+        if args.apply:
+            os.makedirs(os.path.dirname(target), exist_ok=True)
+            with open(target, "w", encoding="utf-8", newline="\n") as fh:
+                fh.write(sql)
+        write_source_decl(folder, table, declared, args.apply)
+        made += 1
     conn.close()
 
+    print(f"models to generate: {made}   skipped (exists / no columns): {skipped}")
+    if views:
+        print(f"\nmaterialized as VIEWS (> {VIEW_ROW_THRESHOLD:,} rows):")
+        for mname, rows in views:
+            print(f"   {rows:>12,}  {mname}")
+    if not args.apply:
+        print("\nDRY RUN -- rerun with --apply to write files")
+    return 0
 
-if __name__ == '__main__':
-    main()
+
+if __name__ == "__main__":
+    sys.exit(main())

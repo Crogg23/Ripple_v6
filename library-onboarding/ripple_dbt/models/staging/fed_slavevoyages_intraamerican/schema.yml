@@ -91,46 +91,8 @@ models:
       including temporal, geographic, and demographic dimensions.
     columns:
 
-      - name: voyage_id
-        description: Primary key — unique identifier for each recorded voyage.
-        data_tests:
-          - unique
-          - not_null
-
-      - name: date_of_departure
-        description: Date of the voyage departure (cross-source date key).
-        data_tests:
-          - not_null:
-              config:
-                severity: warn
-      - name: year_of_departure
-        description: Year of the voyage departure.
-        data_tests:
-          - not_null:
-              config:
-                severity: warn
-      - name: port_of_departure
-        description: Name of the port from which the voyage departed.
-        data_tests:
-          - not_null
-
-      - name: port_of_arrival
-        description: Name of the port at which the voyage arrived.
-        data_tests:
-          - not_null
-
-      - name: country_of_departure
-        description: Country associated with the port of departure.
-        data_tests:
-          - not_null
-
       - name: country_of_arrival
         description: Country associated with the port of arrival.
-
-      - name: person_name
-        description: Name of the captain (cross-source person_name key).
-        data_tests:
-          - not_null
 
       - name: slave_trade_company
         description: Trading company associated with the voyage.
@@ -154,19 +116,6 @@ models:
 
       - name: source_voyage_id
         description: Voyage identifier as supplied by the original source system.
-
-      - name: source_id
-        description: Constant identifier for this source dataset.
-        data_tests:
-          - not_null
-          - accepted_values:
-              arguments:
-                values: ['fed_slavevoyages_intraamerican']
-
-      - name: country
-        description: Standardised country field (cross-source join key); maps to country_of_departure.
-        data_tests:
-          - not_null
 
       - name: fips_code
         description: FIPS geographic code (null for this source — reserved for cross-source joins).

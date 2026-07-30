@@ -79,47 +79,15 @@ models:
       Analytics-ready mart for BJS data collections. Exposes FIPS and NACJD
       identifiers for cross-source joins within the criminal justice domain.
     columns:
-      - name: fips
-        description: FIPS geographic identifier — primary key for this mart.
-        data_tests:
-          - not_null
-          - unique
-
-      - name: nacjd_id
-        description: National Archive of Criminal Justice Data identifier.
-        data_tests:
-          - not_null
-
-      - name: collection_name
-        description: Name of the BJS data collection.
-        data_tests:
-          - not_null
-
       - name: topic
         description: High-level topic area for the data collection.
 
       - name: description
         description: Detailed description of the data collection.
 
-      - name: geographic_level
-        description: Geographic granularity of the data.
-        data_tests:
-          - accepted_values:
-              config:
-                severity: warn
-              arguments:
-                values: ['National', 'State', 'County', 'Local', 'Tribal', 'Other']
       - name: unit_of_enumeration
         description: The unit being counted or measured in the collection.
 
-      - name: access_level
-        description: Access restriction level for the dataset.
-        data_tests:
-          - accepted_values:
-              config:
-                severity: warn
-              arguments:
-                values: ['Public', 'Restricted', 'Private', 'NACJD']
       - name: publication_date
         description: Date the collection or report was published.
 

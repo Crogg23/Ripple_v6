@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT
+      - name: FED_EPA_SDWA_SDWA_SERVICE_AREAS
+      - name: FED_CMS_HOSPICE_ENROLLMENTS

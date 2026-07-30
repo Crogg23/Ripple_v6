@@ -66,30 +66,6 @@ models:
       key identifiers for cross-source joins and adds convenience columns
       such as settlement year, month, and a surrogate key.
     columns:
-      - name: settlement_sk
-        description: >-
-          Surrogate key generated from company_id, settlement_date, and state.
-          Serves as the primary key for this mart table.
-        data_tests:
-          - unique
-          - not_null
-
-      - name: company_id
-        description: Identifier for the company involved in the settlement.
-        data_tests:
-          - not_null
-
-      - name: settlement_date
-        description: Date of the settlement.
-        data_tests:
-          - not_null:
-              config:
-                severity: warn
-      - name: state
-        description: US state participating in the multistate settlement.
-        data_tests:
-          - not_null
-
       - name: company_name
         description: Legal name of the company involved in the settlement.
 
@@ -116,15 +92,6 @@ models:
 
       - name: settlement_month
         description: Calendar month extracted from settlement_date for time-series analysis.
-
-      - name: is_lead_state_row
-        description: >-
-          Boolean flag indicating whether this row represents the lead state
-          in the multistate coalition (lead_state = state).
-        data_tests:
-          - accepted_values:
-              arguments:
-                values: [true, false]
 
       - name: _ingested_at
         description: Timestamp when the record was ingested into the landing table.

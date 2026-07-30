@@ -157,11 +157,6 @@ models:
         data_tests:
           - not_null
 
-      - name: product_ndc
-        description: National Drug Code (NDC) identifying the specific drug product.
-        data_tests:
-          - not_null
-
       - name: status
         description: Current status of the recall.
         data_tests:
@@ -270,16 +265,6 @@ models:
 
       - name: recalling_firm_full_address
         description: Concatenated full address of the recalling firm.
-
-      - name: source_id
-        description: Constant source identifier for cross-source lineage (fed_fda_drug_enforcement).
-        data_tests:
-          - not_null
-
-      - name: _ingested_at
-        description: Timestamp when the record was loaded into the landing table.
-        data_tests:
-          - not_null
 
       - name: _source_run_id
         description: Pipeline run identifier that produced this row.

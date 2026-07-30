@@ -65,8 +65,22 @@ class Config:
     # Programmatic Access Token (used in place of a password if set).
     snowflake_pat: str = field(default_factory=lambda: os.getenv("SNOWFLAKE_PAT", ""))
     snowflake_authenticator: str = field(default_factory=lambda: os.getenv("SNOWFLAKE_AUTHENTICATOR", ""))
-    snowflake_warehouse: str = field(default_factory=lambda: os.getenv("SNOWFLAKE_WAREHOUSE", ""))
-    snowflake_role: str = field(default_factory=lambda: os.getenv("SNOWFLAKE_ROLE", ""))
+    # Key-pair auth (added 2026-07-29). This account has no SAML IdP, its password is
+    # not valid for programmatic login, and its interactive login is browser OAuth,
+    # which a script cannot drive -- so key-pair is the only working non-interactive
+    # option. Defaults to the same key dbt uses. The file is gitignored (.keys/).
+    snowflake_private_key_path: str = field(
+        default_factory=lambda: os.getenv(
+            "SNOWFLAKE_PRIVATE_KEY_PATH",
+            str(Path(__file__).resolve().parents[1] / ".keys" / "ripple_dbt.p8"),
+        )
+    )
+    # Defaulted to DBT_WH (2026-07-29): this was "" and snow.py calls
+    # settings.require("snowflake_warehouse"), so every script died on a missing env
+    # var in any shell that hadn't exported it. DBT_WH is the build lane, and never
+    # SERVE_WH, which is reserved for analyst reads.
+    snowflake_warehouse: str = field(default_factory=lambda: os.getenv("SNOWFLAKE_WAREHOUSE", "DBT_WH"))
+    snowflake_role: str = field(default_factory=lambda: os.getenv("SNOWFLAKE_ROLE", "ACCOUNTADMIN"))
 
     # --- Ripple warehouse layout (rarely overridden) -------------------
     raw_database: str = field(default_factory=lambda: os.getenv("RIPPLE_RAW_DATABASE", "LIBRARY_RAW"))
@@ -152,8 +166,16 @@ class Config:
             )
 
     def snowflake_ready(self) -> bool:
-        has_secret = bool(self.snowflake_pat.strip() or self.snowflake_password.strip())
+        has_secret = bool(
+            self.snowflake_pat.strip()
+            or self.snowflake_password.strip()
+            or self.has_private_key()
+        )
         return has_secret and bool(self.snowflake_warehouse.strip())
+
+    def has_private_key(self) -> bool:
+        p = self.snowflake_private_key_path.strip()
+        return bool(p) and Path(p).expanduser().exists()
 
     def dbt_dir(self) -> Path:
         if not self.dbt_project_path.strip():
