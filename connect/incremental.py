@@ -60,6 +60,7 @@ from .discover import (
     validate_key_config,
 )
 from .entity_index_specs import DISPLAY_SPECS, table_keys
+from .entity_index_specs import entity_type_sql as _entity_type_sql_shared
 from .keys import NORM_RULES, normalize_sql, quote_ident
 from .spine import _addr_expr, _name_expr  # one definition of name/addr, shared
 
@@ -323,13 +324,11 @@ def _rebuild_spine_keyset_from_landing(conn) -> None:
 # small SQL helpers
 # =========================================================================== #
 def _entity_type_sql(col_ref: str) -> str:
-    """Identical mapping to spine._ENTITY_TYPE_SQL, but with the key_type column
-    reference injected so it's unambiguous when joined against _AFFECTED."""
-    return (f"CASE {col_ref} WHEN 'NPI' THEN 'provider' WHEN 'CCN' THEN 'facility' "
-            f"WHEN 'IMO' THEN 'vessel' WHEN 'MMSI' THEN 'vessel' "
-            f"WHEN 'BIOGUIDE' THEN 'person' WHEN 'ICPSR' THEN 'person' "
-            f"WHEN 'DEA_NO' THEN 'organization' "
-            f"ELSE 'organization' END")
+    """Delegates to entity_index_specs.entity_type_sql -- the ONE definition, shared
+    with spine.py's full-rebuild path. Was a hand-copied duplicate of that CASE
+    expression until 2026-07-30; if the two had ever drifted, a MERGE would have
+    re-typed entities relative to the last full reconciliation."""
+    return _entity_type_sql_shared(col_ref)
 
 
 def _entity_id_sql(key_type_ref: str, val_ref: str) -> str:

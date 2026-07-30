@@ -28,7 +28,7 @@ from __future__ import annotations
 import uuid
 
 from . import db, store
-from .entity_index_specs import DISPLAY_SPECS, table_keys
+from .entity_index_specs import DISPLAY_SPECS, entity_type_sql, table_keys
 from .keys import normalize_sql, quote_ident
 
 KEYSET_FQN = store.cfqn("SPINE_KEYSET")   # transient working set
@@ -39,13 +39,11 @@ GOLD_FQN = store.cfqn("ENTITY_GOLDEN")
 LEADS_FQN = store.cfqn("LEADS")
 
 # entity type from the hard key (references the GROUP BY column `key_type`).
-# MUST stay in lockstep with incremental._entity_type_sql and entity_index_specs.
-# ENTITY_TYPE_BY_KEY — a drift across the three sites re-types entities on a MERGE.
-_ENTITY_TYPE_SQL = ("CASE key_type WHEN 'NPI' THEN 'provider' WHEN 'CCN' THEN 'facility' "
-                    "WHEN 'IMO' THEN 'vessel' WHEN 'MMSI' THEN 'vessel' "
-                    "WHEN 'BIOGUIDE' THEN 'person' WHEN 'ICPSR' THEN 'person' "
-                    "WHEN 'DEA_NO' THEN 'organization' "
-                    "ELSE 'organization' END")
+# Generated from entity_index_specs.ENTITY_TYPE_BY_KEY -- the ONE source of truth.
+# This used to be a hand-written CASE string duplicated in incremental.py and two
+# dicts elsewhere, with a comment in each asking the next person to keep all four in
+# lockstep. Generating it removes the drift risk entirely.
+_ENTITY_TYPE_SQL = entity_type_sql("key_type")
 
 
 def _name_expr(spec: dict) -> str:

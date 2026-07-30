@@ -60,6 +60,18 @@ KEY_DOMAIN = {           # ~size of each key's value space, for the collision ma
     # has been blocking every `connect discover` run since then; the live CONNECT_EDGES
     # (11,206 rows) predates this key and was stale relative to the current spine config.
     "DEA_NO": 26**2 * 10**7,
+    # --- 2026-07-30 spine wiring. Value spaces read off LIVE landing values, not
+    # assumed from the ID spec, so the collision math is honest.
+    # FRS_ID  -- EPA Facility Registry Service, 12-digit numeric -> 10^12.
+    # PWSID   -- 2-letter state prefix + 7 digits ('FL6581003') -> 26^2 * 10^7.
+    # MINE_ID -- MSHA, 7-digit numeric AFTER stripping the literal double quotes the
+    #            landing values are wrapped in ('"1600354"') -> 10^7.
+    # FEC_CMTE_ID / FEC_CAND_ID -- 9-char, leading letter is the committee class or
+    #            the chamber, remaining 8 alphanumeric ('C00035006' / 'H0NJ07261');
+    #            26 * 36^8 is the honest space. Two separate keys on purpose: a
+    #            committee is an organization, a candidate is a person.
+    "FRS_ID": 10**12, "PWSID": 26**2 * 10**7, "MINE_ID": 10**7,
+    "FEC_CMTE_ID": 26 * 36**8, "FEC_CAND_ID": 26 * 36**8,
 }
 
 # D17: classification codes are NOT entity identifiers. NAICS/SIC/NCES describe
@@ -88,8 +100,31 @@ VOCAB_KEYS = {"NAICS", "SIC", "NCES"}
 #      one level down in the raw layer.
 EDGE_UNIVERSE_EXCLUDE_PREFIXES = ("PORTAL_",)
 EDGE_UNIVERSE_EXCLUDE_TABLES = {
-    "FED_FEC_BULK", "FED_FEC_BULK_CANDIDATES", "FED_FEC_BULK_COMMITTEES",
-    "FED_USASPENDING_ASSISTANCE_FULL", "FED_USASPENDING_CONTRACTS_FULL", "FED_USASPENDING_BULK",
+    # FED_FEC_BULK is a GENUINE duplicate and stays excluded: verified 2026-07-30, its
+    # 18 columns are byte-identical to FED_FEC_BULK_COMMITTEES minus CYCLE, so the
+    # _COMMITTEES table strictly supersedes it.
+    "FED_FEC_BULK",
+    # FED_FEC_BULK_CANDIDATES and _COMMITTEES were REMOVED from this set on 2026-07-30
+    # for the same reason as the USASPENDING entry below: reason #2 above only justifies
+    # excluding a table "superseded by a canonical table that IS in DISPLAY_SPECS", and
+    # NO FEC table was in DISPLAY_SPECS at all. They are also not duplicates of each
+    # other -- one is the candidate master (CAND_ID, office, party, district), the other
+    # the committee master (FEC_CMTE_ID, treasurer, committee type). A candidate is a
+    # person; a committee is an organization. Both are now wired to the spine.
+    # FED_USASPENDING_ASSISTANCE_FULL was REMOVED from this set on 2026-07-30. It was
+    # never actually a duplicate: reason #2 above says "superseded by a canonical table
+    # that IS in DISPLAY_SPECS", and there is NO federal-assistance table in
+    # DISPLAY_SPECS -- only FED_USASPENDING_CONTRACTS. Contracts (procurement: the
+    # government buys a thing) and assistance (grants and loans: the government funds
+    # an organization) are different money with different recipients. Verified live:
+    # the table carries 223,721 distinct recipient UEIs, of which 175,699 appear
+    # NOWHERE in the spine (which held only 152,895 UEIs total), so excluding it was
+    # hiding the single largest new-entity population available. Now wired.
+    # NOTE the trap it also revealed: recipient_uei reads as 100% non-null, but 61% of
+    # rows are EMPTY STRINGS -- 7.8M joinable rows, not 19.9M. COUNT(col) lies here
+    # exactly as CLAUDE.md section 7 warns.
+    "FED_USASPENDING_CONTRACTS_FULL",   # genuine duplicate of the spine's _CONTRACTS
+    "FED_USASPENDING_BULK",
     "FED_IRS_EO_PR", "FED_CMS_HOSPITAL_COMPARE",
     "FED_SEC_EDGAR", "FED_US_SEC_EDGAR",  # already self-documented as stale below in entity_index_specs.py
 }

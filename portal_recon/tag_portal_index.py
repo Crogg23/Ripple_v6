@@ -110,6 +110,25 @@ KEY_TOKENS: dict[str, tuple[str, set[str]]] = {
     "MMSI":   ("STEEL", {"mmsi"}),
     "CCN":    ("STEEL", {"ccn"}),
     "DEA_NO": ("STEEL", {"dea"}),
+    # ---- STEEL, added 2026-07-30 (spine wiring pass) ------------------------
+    # These five were already being written into the registry as STEEL by
+    # scripts/retier_join_keys.py's OWN key dict, but were never added here --
+    # so connect/ could not join on them at all (detect_key returned None and
+    # keys.normalize_sql RAISED). That drift is what this block closes; the
+    # matching NORM_RULES entries in connect/keys.py go in at the same time,
+    # and tests/test_key_vocab_parity.py now fails if the two ever split again.
+    #
+    # PWSID is the only one safe as a bare token ('pwsid' has no false friend).
+    # The other four are PAIR_RULES-only (see below) because their leading token
+    # is a common English word that appears on non-key columns in the same
+    # tables -- FRS_FACILITY_DETAIL_REPORT_URL would match a bare 'frs', and
+    # MINE_NAME / MINE_TYPE / MINE_EXPER would all match a bare 'mine'.
+    # Empty token sets never single-match; the pair rules below carry them.
+    "PWSID":       ("STEEL", {"pwsid"}),
+    "FRS_ID":      ("STEEL", set()),
+    "MINE_ID":     ("STEEL", set()),
+    "FEC_CMTE_ID": ("STEEL", set()),
+    "FEC_CAND_ID": ("STEEL", set()),
     # ---- STRONG — domain-native IDs --------------------------------------
     "DOCKET": ("STRONG", {"docket"}),
     "NAICS":  ("STRONG", {"naics"}),
@@ -135,6 +154,21 @@ KEY_TOKENS: dict[str, tuple[str, set[str]]] = {
 # (catches "postal_code" -> {postal, code}, which neither single token covers.)
 PAIR_RULES: list[tuple[str, tuple[str, str]]] = [
     ("ZIP", ("postal", "code")),
+    # 2026-07-30 spine wiring. Each of these needs BOTH tokens, which is what
+    # keeps them off the same table's non-key columns (MINE_NAME has no 'id').
+    # FRS_ID has two spellings in the wild: EPA's ECHO calls it FRS_ID, EPA's own
+    # FRS registry calls the same 12-digit value REGISTRY_ID -- verified identical
+    # format live (both 12-digit numeric, e.g. '110003665793'), so both map to one key.
+    ("FRS_ID", ("frs", "id")),
+    ("FRS_ID", ("registry", "id")),
+    ("PWSID", ("pws", "id")),
+    ("MINE_ID", ("mine", "id")),
+    # FEC committee and candidate are DELIBERATELY two keys, not one. retier_join_keys.py
+    # lumped CAND_ID and CMTE_ID together as a single 'FEC_ID', which would fuse a PAC
+    # with a human being into one spine entity -- exactly the merge spine.py's docstring
+    # forbids. A committee is an organization; a candidate is a person.
+    ("FEC_CMTE_ID", ("cmte", "id")),
+    ("FEC_CAND_ID", ("cand", "id")),
 ]
 
 # Exclusion tokens: a key matches its KEY_TOKENS only if NONE of these co-occur in

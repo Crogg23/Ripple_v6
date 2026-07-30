@@ -88,6 +88,85 @@ def test_detect_key_strongest_tier_even_when_appended_last(monkeypatch):
     assert tier == "STEEL" and key == "ZIPSTEEL"
 
 
+# ---- vocabulary parity: the guard against the drift found on 2026-07-30 ---- #
+# Three separate places name join keys, and they had silently diverged:
+#   portal_recon/tag_portal_index.py KEY_TOKENS  -- what connect/ can DETECT
+#   connect/keys.py NORM_RULES                  -- what connect/ can JOIN on
+#   scripts/retier_join_keys.py STEEL_KEYS      -- what got WRITTEN to the registry
+# The registry was advertising sources as "STEEL: FRS_ID" while normalize_sql
+# raised KeyError on FRS_ID, so those sources could never actually be wired.
+# These tests fail loudly if the three ever split again.
+def test_every_entity_key_has_a_norm_rule():
+    """Any STEEL/STRONG key the tagger can detect must be joinable, or the spine
+    crashes the moment a source carrying it gets wired."""
+    missing = sorted(k for k in keys.ENTITY_KEYS if k not in keys.NORM_RULES)
+    assert not missing, (
+        f"STEEL/STRONG keys in KEY_TOKENS with no NORM_RULES entry: {missing}. "
+        f"normalize_sql() raises on these -- add a rule (with a width read off LIVE "
+        f"values, not assumed) before any source keyed on them can be wired.")
+
+
+def test_registry_side_key_vocabulary_is_joinable():
+    """Every canonical key scripts/retier_join_keys.py can stamp into the registry
+    must be joinable by connect/, EXCEPT the documented non-entity keys."""
+    import importlib.util
+    import pathlib
+
+    path = pathlib.Path(__file__).resolve().parents[1] / "scripts" / "retier_join_keys.py"
+    spec = importlib.util.spec_from_file_location("_retier", path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+
+    # Deliberately NOT spine entity keys (2026-07-30 call): an ACCESSION_NUMBER is a
+    # FILING and a CUSIP is a SECURITY -- neither is a real-world actor, and making
+    # them entities would bury every dossier under ~400M document "entities". They
+    # belong as edges hanging off the CIK (company) axis instead. The rest are
+    # genuine keys that simply have no spine wiring yet.
+    NOT_ENTITY_KEYS = {"ACCESSION_NUMBER", "CUSIP", "RECALL_NUMBER"}
+    # retier lumps FEC candidate+committee into one 'FEC_ID'; connect/ splits them
+    # into FEC_CAND_ID / FEC_CMTE_ID on purpose (a PAC is not a person).
+    RENAMED = {"FEC_ID", "NCES_ID", "DOCKET_ID"}
+
+    unjoinable = sorted(
+        k for k in mod.STEEL_KEYS
+        if k not in keys.NORM_RULES and k not in NOT_ENTITY_KEYS and k not in RENAMED)
+    assert not unjoinable, (
+        f"retier_join_keys.py can stamp these into JOIN_KEYS_STD but connect/ cannot "
+        f"join on them: {unjoinable}. Either add a NORM_RULES entry or add the key to "
+        f"NOT_ENTITY_KEYS with a reason.")
+
+
+def test_new_2026_07_30_axes_are_detectable_and_joinable():
+    """The five keys added in the spine-wiring pass, end to end."""
+    assert detect_key("FRS_ID") == ("FRS_ID", "STEEL")
+    assert detect_key("REGISTRY_ID") == ("FRS_ID", "STEEL")   # EPA's other spelling
+    assert detect_key("PWSID") == ("PWSID", "STEEL")
+    assert detect_key("MINE_ID") == ("MINE_ID", "STEEL")
+    assert detect_key("CMTE_ID") == ("FEC_CMTE_ID", "STEEL")
+    assert detect_key("CAND_ID") == ("FEC_CAND_ID", "STEEL")
+    for k in ("FRS_ID", "PWSID", "MINE_ID", "FEC_CMTE_ID", "FEC_CAND_ID"):
+        normalize_sql(k, "X")      # must not raise
+
+
+def test_mine_and_frs_false_friends_do_not_tag():
+    # These live alongside the real key columns in the SAME tables. A bare-token
+    # rule would have tagged all of them; the pair rules must not.
+    assert detect_key("MINE_NAME") != ("MINE_ID", "STEEL")
+    assert detect_key("MINE_TYPE") != ("MINE_ID", "STEEL")
+    assert detect_key("MINE_EXPER") != ("MINE_ID", "STEEL")
+    assert detect_key("FRS_FACILITY_DETAIL_REPORT_URL") != ("FRS_ID", "STEEL")
+
+
+def test_mine_id_normalizer_survives_the_quoted_landing_values():
+    """MSHA landing values are 7-digit IDs wrapped in literal double quotes
+    ('"1600354"'). The emitted SQL must strip to digits and pad to 7, NOT key on
+    the quote characters (which would make the column join to nothing)."""
+    sql = normalize_sql("MINE_ID", "X")
+    assert "LPAD" in sql and ", 7, '0'" in sql
+    assert "[^0-9A-Za-z]" in sql          # the quote-stripping regex
+    assert "'^[0-9]+$'" in sql            # digits-only guard rejects text sentinels
+
+
 # ---- live: real Snowflake canonicalization -------------------------------- #
 def _norm(sf, key, value):
     from connect import db

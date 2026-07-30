@@ -1,11 +1,13 @@
 """Key-type -> spine_entity mapping for the registry-driven staging generator.
 
-Mirrors connect/spine.py's ``_ENTITY_TYPE_SQL`` (NPI->provider, CCN->facility,
-IMO/MMSI->vessel, BIOGUIDE/ICPSR->person, everything else->organization) so a
-source classified here resolves to the SAME entity type connect/'s spine already
-writes into ``LIBRARY_META.CONNECT.ENTITY_MAP`` -- extended with grains connect/
-doesn't resolve to a hard ID yet (place, case, asset). Chris's Step-1 taxonomy
-call (2026-07-05):
+DERIVES from entity_index_specs.ENTITY_TYPE_BY_KEY, which is the single source of
+truth that connect/spine.py and connect/incremental.py also generate their
+``CASE key_type ...`` expression from. So a source classified here always resolves
+to the SAME entity type the spine writes into ``LIBRARY_META.CONNECT.ENTITY_MAP``,
+by construction rather than by hand-syncing. Extended below with the grains
+connect/ doesn't resolve to a hard ID yet (place, case, asset).
+
+Chris's Step-1 taxonomy call (2026-07-05):
   - company collapses into organization (matches connect/'s catch-all; avoids a
     third taxonomy fork alongside connect/'s resolver and the registry's
     ENTITY_TYPES facet, which does keep company distinct for its own purposes).
@@ -13,12 +15,12 @@ call (2026-07-05):
     (FIPS/ZIP/GEOM are join-key tiers there, not ENTITY_MAP entries) -- makes the
     61-source gap visible instead of hiding it.
   - PATENT is classified 'asset' here. connect/spine.py's catch-all ELSE would
-    call it 'organization' -- that's not fixed there (out of scope: live
-    production code), only diverged from here.
+    call it 'organization' -- a deliberate, documented divergence, not a drift.
 
-NOT importing connect/spine.py's _ENTITY_TYPE_SQL directly -- it's an inline SQL
-string, not a mapping. Keep SPINE_ENTITY_BY_KEY in sync by hand if that CASE
-expression ever changes.
+2026-07-30: before this date the mapping was hand-copied into FOUR files, each
+carrying a comment asking the next reader to keep them in lockstep manually. A
+drift across those sites silently re-types entities on an incremental MERGE. The
+copies are gone; only the additive grains below are hand-written.
 
 Only keys that identify a THING are natural-key candidates. NAICS/SIC/NCES are
 STRONG-tier in connect/keys.py's tagger but are classification codes, not entity
@@ -34,26 +36,33 @@ _CONNECT = Path(__file__).resolve().parent
 if str(_CONNECT) not in sys.path:
     sys.path.insert(0, str(_CONNECT))
 
+from entity_index_specs import ENTITY_TYPE_BY_KEY  # noqa: E402
 from keys import ENTITY_KEYS, detect_key  # noqa: E402  (connect/keys.py)
 
-# key_label -> spine_entity. Ordered by connect/spine.py's classifier first, then
-# the additive grains. A key absent here is not spine-eligible (e.g. NAICS/SIC/NCES,
-# NAME/ADDRESS -- never a reliable unique natural key on their own).
+# key_label -> spine_entity. DERIVED from entity_index_specs.ENTITY_TYPE_BY_KEY (the
+# single source of truth that spine.py and incremental.py also generate their CASE
+# expression from), then extended with the grains connect/ doesn't resolve to a hard
+# ID yet (place, case, asset).
+#
+# 2026-07-30: this dict used to be a hand-maintained COPY of that mapping, with a
+# docstring asking the reader to keep it in sync by hand. It's now computed, so the
+# 'place'/'asset'/'case' additions below are the only hand-written part -- and adding
+# a key axis in ENTITY_TYPE_BY_KEY automatically lands here too.
+#
+# A key absent here is not spine-eligible. NAICS/SIC/NCES are STRONG-tier in the
+# tagger but are CLASSIFICATION codes, not entity IDs (many organizations share one
+# NAICS code) -- deliberately excluded. So are NAME/ADDRESS: never a reliable unique
+# natural key on their own.
 SPINE_ENTITY_BY_KEY: dict[str, str] = {
-    "NPI": "provider",
-    "CCN": "facility",
-    "IMO": "vessel",
-    "MMSI": "vessel",
-    "BIOGUIDE": "person",
-    "ICPSR": "person",
-    "EIN": "organization",
-    "CIK": "organization",
-    "UEI": "organization",
-    "DUNS": "organization",
-    "LEI": "organization",
-    "DEA_NO": "organization",
+    **ENTITY_TYPE_BY_KEY,
+    # Grains connect/spine.py has no hard-ID resolver for. PATENT is 'asset' here
+    # where spine.py's ELSE would call it 'organization' -- a deliberate divergence,
+    # documented in this module's docstring.
     "PATENT": "asset",
     "DOCKET": "case",
+    # place: included as a label even though connect/ has no place resolver
+    # (FIPS/ZIP/GEOM are join-key tiers there, not ENTITY_MAP entries) -- makes the
+    # 61-source gap visible instead of hiding it.
     "FIPS": "place",
     "ZIP": "place",
     "LATLON": "place",

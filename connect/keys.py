@@ -114,6 +114,33 @@ NORM_RULES: dict[str, tuple[str, int]] = {
     # BIOGUIDE 'B001261' (1 letter + 6 digits), ICPSR '40305'/'5611' (small integer,
     # never zero-padded); the empty-string ICPSR placeholder NULLs out via NULLIF.
     "BIOGUIDE": ("alnum_upper", 0), "ICPSR": ("alnum_upper", 0),
+    # --- Added 2026-07-30 (spine wiring pass). Every width/mode below was read off
+    # LIVE values, not assumed -- see the sample evidence in each comment.
+    #
+    # FRS_ID -- EPA's Facility Registry Service ID. 12-digit numeric, uniform in both
+    # spellings (ECHO's FRS_ID and the FRS registry's REGISTRY_ID), e.g.
+    # '110003665793'. 'fixed' rather than 'pad': a 12-digit FRS ID is never written
+    # short, so anything not exactly 12 chars is dirty input, not a paddable value.
+    "FRS_ID": ("fixed", 12),
+    # PWSID -- EPA Public Water System ID. 2-letter state prefix + 7 digits, always
+    # 9 chars, e.g. 'FL6581003' / 'GA0310233'. Alphanumeric, so 'fixed' (pad-mode
+    # would reject it outright for containing letters).
+    "PWSID": ("fixed", 9),
+    # MINE_ID -- MSHA mine ID. CAUTION, this one is a trap: the landing values are
+    # 7-digit numbers WRAPPED IN LITERAL DOUBLE QUOTES ('"1600354"') from a bad CSV
+    # parse, which is why a naive LENGTH() reads 9 and a naive 'fixed 9' rule would
+    # key on the quotes and never join anything. _alnum() strips the quotes, leaving
+    # a uniform 7-digit numeric value -- verified across BOTH MSHA tables (0 rows of
+    # any other stripped length, 0 alpha chars), and 13,338 of 13,489 accident mines
+    # then join to the violations table. Hence pad-7.
+    "MINE_ID": ("pad", 7),
+    # FEC committee / candidate IDs -- 9-char alphanumeric with a meaningful letter
+    # prefix ('C00035006' committee; 'H0NJ07261' / 'S4WV00159' candidate, where the
+    # letter is the chamber). Opaque IDs, so alnum_upper: no width pad, no
+    # leading-zero stripping. Kept as TWO distinct keys on purpose -- see the
+    # PAIR_RULES comment in portal_recon/tag_portal_index.py; fusing them would put
+    # a PAC and a human in one entity.
+    "FEC_CMTE_ID": ("alnum_upper", 0), "FEC_CAND_ID": ("alnum_upper", 0),
     # Names: token-SORT + strip legal-suffix / credential noise, so 'SMITH, JOHN MD'
     # == 'JOHN SMITH' and 'Memorial Health Inc' == 'HEALTH MEMORIAL'. PERSON is a
     # distinct key (person-name columns) but shares the canonicalizer for now.
