@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: science__fed_usgs_earthquakes
+    description: USGS earthquake catalog (M2.5+). One row per event.
+    columns:
+      - name: id
+        description: USGS event identifier. Grain of this mart.
+        data_tests: [unique, not_null]

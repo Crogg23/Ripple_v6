@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: environment__fed_epa_frs_facilities
+    description: EPA Facility Registry Service. One row per registered facility.
+    columns:
+      - name: registry_id
+        description: EPA FRS facility identifier. Grain of this mart.
+        data_tests: [unique, not_null]

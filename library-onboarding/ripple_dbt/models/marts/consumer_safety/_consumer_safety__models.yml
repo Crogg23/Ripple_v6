@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: consumer_safety__fed_nhtsa_recalls
+    description: NHTSA ODI vehicle recalls. One row per recall record.
+    columns:
+      - name: record_id
+        description: NHTSA recall record identifier. Grain of this mart.
+        data_tests: [unique, not_null]
+
+  - name: consumer_safety__fed_nhtsa_complaints
+    description: NHTSA ODI consumer complaints. One row per complaint.
+    columns:
+      - name: cmplid
+        description: NHTSA complaint identifier. Grain of this mart.
+        data_tests: [unique, not_null]

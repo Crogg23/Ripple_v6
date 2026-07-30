@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: health__fed_cms_hospital_general
+    description: CMS Hospital Compare "Hospital General Information". One row per hospital.
+    columns:
+      - name: ccn
+        description: CMS Certification Number. Grain of this mart.
+        data_tests: [unique, not_null]

@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: economics__fed_sba_ppp
+    description: SBA Paycheck Protection Program loans. One row per loan.
+    columns:
+      - name: loan_number
+        description: SBA PPP loan number. Grain of this mart.
+        data_tests: [unique, not_null]
+
+  - name: economics__fed_irs_990
+    description: >
+      IRS Form 990 e-File Index, deduped to the latest filing per EIN. Note:
+      uniqueness holds today at the current ~200-row load size because the
+      model explicitly keeps latest-filing-only per EIN (see model SQL grain
+      comment) -- if this source is later loaded with full history instead of
+      latest-only, EIN alone would stop being a valid grain and this test
+      would need to move to (ein, tax_year).
+    columns:
+      - name: ein
+        description: Employer Identification Number. Grain of this mart (latest filing kept).
+        data_tests: [unique, not_null]
