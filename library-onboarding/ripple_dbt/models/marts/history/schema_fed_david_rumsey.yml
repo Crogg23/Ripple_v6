@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: history__fed_david_rumsey
+    columns:
+      - name: manifest_id
+        data_tests:
+          - not_null
+          - unique
+      - name: luna_record_id
+        data_tests:
+          - not_null
+          - unique

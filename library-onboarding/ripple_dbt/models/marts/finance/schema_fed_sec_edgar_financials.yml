@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: finance__fed_sec_edgar_financials
+    columns:
+      - name: adsh
+        data_tests:
+          - not_null
+          - unique

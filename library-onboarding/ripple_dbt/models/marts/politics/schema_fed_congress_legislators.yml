@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: politics__fed_congress_legislators
+    columns:
+      - name: bioguide
+        data_tests:
+          - not_null
+      - name: icpsr
+        data_tests:
+          - not_null
+      - name: google_entity_id
+        data_tests:
+          - not_null

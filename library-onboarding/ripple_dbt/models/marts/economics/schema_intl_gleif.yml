@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: economics__intl_gleif
+    columns:
+      - name: entity_legalentityevents_legalentityevent_1_group_id
+        data_tests:
+          - not_null
+      - name: entity_legalentityevents_legalentityevent_2_group_id
+        data_tests:
+          - not_null
+      - name: entity_legalentityevents_legalentityevent_3_group_id
+        data_tests:
+          - not_null
+      - name: entity_legalentityevents_legalentityevent_4_group_id
+        data_tests:
+          - not_null
+      - name: entity_legalentityevents_legalentityevent_5_group_id
+        data_tests:
+          - not_null

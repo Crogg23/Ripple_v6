@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: finance__fed_sec_insider_nonderiv_trans
+    columns:
+      - name: accession_number
+        data_tests:
+          - not_null
+      - name: transaction_code
+        data_tests:
+          - not_null

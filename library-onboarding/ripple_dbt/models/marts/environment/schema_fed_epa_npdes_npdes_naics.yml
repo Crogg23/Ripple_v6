@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: environment__fed_epa_npdes_npdes_naics
+    columns:
+      - name: npdes_id
+        data_tests:
+          - not_null
+      - name: naics_code
+        data_tests:
+          - not_null

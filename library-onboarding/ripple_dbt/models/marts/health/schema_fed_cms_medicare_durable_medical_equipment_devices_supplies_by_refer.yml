@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: health__fed_cms_medicare_durable_medical_equipment_devices_supplies_by_refer
+    columns:
+      - name: rfrg_npi
+        data_tests:
+          - not_null
+          - unique
+      - name: rfrg_prvdr_state_fips
+        data_tests:
+          - not_null

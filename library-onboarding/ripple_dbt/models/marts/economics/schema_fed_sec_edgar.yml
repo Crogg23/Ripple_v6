@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: economics__fed_sec_edgar
+    columns:
+      - name: cik
+        data_tests:
+          - not_null

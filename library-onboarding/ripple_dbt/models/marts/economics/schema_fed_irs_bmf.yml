@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: economics__fed_irs_bmf
+    columns:
+      - name: subsection_code
+        data_tests:
+          - not_null
+      - name: classification_code
+        data_tests:
+          - not_null
+      - name: affiliation_code
+        data_tests:
+          - not_null
+      - name: deductibility_code
+        data_tests:
+          - not_null
+      - name: foundation_code
+        data_tests:
+          - not_null
+      - name: activity_code
+        data_tests:
+          - not_null
+      - name: ntee_code
+        data_tests:
+          - not_null
+      - name: group_exemption_number
+        data_tests:
+          - not_null
+      - name: spine_entity_id
+        data_tests:
+          - not_null
+          - unique

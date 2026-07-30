@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: environment__intl_gem_hazard
+    columns:
+      - name: hazard_model_id
+        data_tests:
+          - not_null
+          - unique

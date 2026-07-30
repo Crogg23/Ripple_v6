@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: justice__intl_austlii
+    columns:
+      - name: document_url
+        data_tests:
+          - not_null
+          - unique

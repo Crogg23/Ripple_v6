@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: economics__xc_owid_gini
+    columns:
+      - name: entity
+        data_tests:
+          - not_null

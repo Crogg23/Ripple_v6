@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: health__fed_cms_medicare_inpatient_hospitals_by_provider_and_service
+    columns:
+      - name: rndrng_prvdr_state_fips
+        data_tests:
+          - not_null

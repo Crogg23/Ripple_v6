@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: environment__fed_noaa_storm_events
+    columns:
+      - name: episode_id
+        data_tests:
+          - not_null
+      - name: event_id
+        data_tests:
+          - not_null
+          - unique
+      - name: state_fips
+        data_tests:
+          - not_null
+      - name: cz_fips
+        data_tests:
+          - not_null
+      - name: tor_other_cz_fips
+        data_tests:
+          - not_null

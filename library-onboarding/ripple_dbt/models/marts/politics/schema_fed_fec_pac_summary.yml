@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: politics__fed_fec_pac_summary
+    columns:
+      - name: cmte_id
+        data_tests:
+          - not_null
+          - unique

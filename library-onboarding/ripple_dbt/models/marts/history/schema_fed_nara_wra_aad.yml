@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: history__fed_nara_wra_aad
+    columns:
+      - name: series_id
+        data_tests:
+          - not_null
+      - name: record_id
+        data_tests:
+          - not_null
+      - name: family_number
+        data_tests:
+          - not_null

@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: immigration__fed_dhs_ohss
+    columns:
+      - name: report_month
+        data_tests:
+          - not_null

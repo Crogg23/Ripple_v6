@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: finance__fed_sec_money_market_fund_information
+    columns:
+      - name: series_id
+        data_tests:
+          - not_null
+      - name: class_id
+        data_tests:
+          - not_null

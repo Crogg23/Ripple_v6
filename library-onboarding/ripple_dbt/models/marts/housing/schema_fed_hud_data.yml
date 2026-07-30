@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: housing__fed_hud_data
+    columns:
+      - name: dataset_name
+        data_tests:
+          - not_null

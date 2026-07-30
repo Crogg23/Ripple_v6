@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: education__fed_google_polads_creative_id_mapping
+    columns:
+      - name: oldcreativeid
+        data_tests:
+          - not_null

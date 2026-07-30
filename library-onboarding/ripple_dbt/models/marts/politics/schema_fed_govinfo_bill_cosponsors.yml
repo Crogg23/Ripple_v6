@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: politics__fed_govinfo_bill_cosponsors
+    columns:
+      - name: bill_number
+        data_tests:
+          - not_null

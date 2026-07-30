@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: labor__fed_osha_ita_case_detail_2024
+    columns:
+      - name: id
+        data_tests:
+          - not_null
+          - unique
+      - name: establishment_id
+        data_tests:
+          - not_null
+      - name: zip_code
+        data_tests:
+          - not_null
+      - name: naics_code
+        data_tests:
+          - not_null
+      - name: soc_code
+        data_tests:
+          - not_null

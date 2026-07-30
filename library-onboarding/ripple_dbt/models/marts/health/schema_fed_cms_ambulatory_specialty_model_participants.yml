@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: health__fed_cms_ambulatory_specialty_model_participants
+    columns:
+      - name: npi
+        data_tests:
+          - not_null

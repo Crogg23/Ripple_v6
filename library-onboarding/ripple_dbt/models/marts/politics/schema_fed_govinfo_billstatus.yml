@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: politics__fed_govinfo_billstatus
+    columns:
+      - name: bill_number
+        data_tests:
+          - not_null
+      - name: law_number
+        data_tests:
+          - not_null

@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: justice__intl_nti_cns_dprk_missile_tests
+    columns:
+      - name: f1
+        data_tests:
+          - not_null
+          - unique

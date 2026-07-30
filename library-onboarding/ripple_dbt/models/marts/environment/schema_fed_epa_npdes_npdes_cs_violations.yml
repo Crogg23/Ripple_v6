@@ -1,0 +1,24 @@
+version: 2
+
+models:
+  - name: environment__fed_epa_npdes_npdes_cs_violations
+    columns:
+      - name: npdes_id
+        data_tests:
+          - not_null
+      - name: npdes_violation_id
+        data_tests:
+          - not_null
+          - unique
+      - name: violation_type_code
+        data_tests:
+          - not_null
+      - name: comp_schedule_event_id
+        data_tests:
+          - not_null
+      - name: violation_code
+        data_tests:
+          - not_null
+      - name: schedule_event_code
+        data_tests:
+          - not_null

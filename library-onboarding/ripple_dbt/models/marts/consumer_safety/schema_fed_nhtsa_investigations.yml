@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: consumer_safety__fed_nhtsa_investigations
+    columns:
+      - name: nhtsa_action_number
+        data_tests:
+          - not_null
+      - name: recall_number
+        data_tests:
+          - not_null

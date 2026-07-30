@@ -15,9 +15,10 @@
 --           the spec; tests/test_lead_queue_receipt_parity.py proves parity.
 -- CAVEATS:  the caveat column carries the known per-detector data traps
 --           (POLICY rows trap_ais_snapshot / trap_usaspending_grain, the
---           dropped facility-affiliation table, the 1,000-row SAM sample).
---           They ship WITH the lead so the analyst never reads a number the
---           warehouse can't back.
+--           facility-affiliation mart lagging its now-restored source table,
+--           the OSHA cohort detector's self-reported inputs). They ship WITH
+--           the lead so the analyst never reads a number the warehouse can't
+--           back.
 -- NULLs:    'text' || NULL is NULL in Snowflake â€” every substituted field is
 --           COALESCE-wrapped. Guard tests forbid 'NULL'/'None'/'||' in
 --           headlines.
@@ -341,6 +342,8 @@ enriched AS (
             WHEN 'debarred_but_funded' THEN NULL
             WHEN 'sanctioned_vessel_broadcasting' THEN 'flag: ' || COALESCE(v1.flag, '[unknown]')
             WHEN 'sanctioned_vessel_broadcasting_v2' THEN 'flag: ' || COALESCE(v2.flag, '[unknown]')
+            WHEN 'osha_cohort_outlier_2024' THEN
+                NULLIF(TRIM(COALESCE(ld.evidence[0]:city::STRING, '') || ' ' || COALESCE(ld.evidence[0]:state::STRING, '')), '')
         END                                                  AS entity_a_location,
 
         -- ------- activity-side (entity B) display fields -------
@@ -363,11 +366,12 @@ enriched AS (
         CASE ld.rule_name
             WHEN 'banned_but_paid'                  THEN 'LIBRARY_STAGING.DBT_CROGERS.INT_OPEN_PAYMENTS_ALL_YEARS'
             WHEN 'excluded_but_billing'             THEN 'LIBRARY_RAW.LANDING.FED_CMS_PART_D_PRESCRIBERS'
-            WHEN 'banned_but_operating'             THEN 'FED_CMS_FACILITY_AFFILIATION (DROPPED â€” evidence frozen)'
+            WHEN 'banned_but_operating'             THEN 'LIBRARY_RAW.LANDING.FED_CMS_FACILITY_AFFILIATION (restored 2026-07-25; this mart still reads the frozen EVIDENCE snapshot, see caveat)'
             WHEN 'debarred_but_funded'              THEN 'LIBRARY_RAW.LANDING.FED_USASPENDING_CONTRACTS'
             WHEN 'sanctioned_vessel_broadcasting'   THEN 'LIBRARY_RAW.LANDING.FED_NOAA_AIS'
             WHEN 'sanctioned_vessel_broadcasting_v2' THEN 'LIBRARY_RAW.LANDING.FED_NOAA_AIS'
             WHEN 'sec_filer_in_irs_bmf'             THEN 'LIBRARY_RAW.LANDING.FED_IRS_BMF'
+            WHEN 'osha_cohort_outlier_2024'         THEN 'LIBRARY_RAW.LANDING.FED_OSHA_ITA_300A_SUMMARY_2024'
         END                                                  AS entity_b_source,
 
         -- ------- corroborating registry (NPPES, the third source) -------
@@ -380,10 +384,11 @@ enriched AS (
         CASE ld.rule_name
             WHEN 'banned_but_paid'                  THEN r.recs
             WHEN 'excluded_but_billing'             THEN p.recs
-            WHEN 'banned_but_operating'             THEN ld.evidence_count  -- one item per facility; source dropped
+            WHEN 'banned_but_operating'             THEN ld.evidence_count  -- one item per facility; this mart still reads the frozen EVIDENCE snapshot (see caveat)
             WHEN 'debarred_but_funded'              THEN u.recs
             WHEN 'sanctioned_vessel_broadcasting'   THEN a.recs
             WHEN 'sanctioned_vessel_broadcasting_v2' THEN a.recs
+            WHEN 'osha_cohort_outlier_2024'         THEN ld.evidence[0]:dart_cases::NUMBER
         END                                                  AS n_activity_records,
 
         CASE ld.rule_name
@@ -460,15 +465,17 @@ enriched AS (
         -- ------- the known data traps, travelling with the lead -------
         CASE ld.rule_name
             WHEN 'banned_but_operating' THEN
-                'Source table FED_CMS_FACILITY_AFFILIATION was dropped from LANDING (verified 2026-07-12): the stored evidence_sql cannot be re-run; facility evidence is frozen in the lead''s EVIDENCE payload.'
+                'Source table FED_CMS_FACILITY_AFFILIATION was RESTORED to LANDING 2026-07-25 (2.2M+ rows; confirmed live 2026-07-30) after being briefly dropped. This mart has not yet been updated to recompute facility evidence live from the restored table â€” today''s facility count/name still reflects the frozen EVIDENCE snapshot captured at detection time, not a fresh re-query.'
             WHEN 'sanctioned_vessel_broadcasting' THEN
                 'SUPERSEDED by sanctioned_vessel_broadcasting_v2. AIS activity is a Jan 1-8 2024 US-coastal archive snapshot that PRE-DATES most 2025-26 sanctions listings â€” never read as current behavior.'
             WHEN 'sanctioned_vessel_broadcasting_v2' THEN
                 'AIS activity is a Jan 1-8 2024 US-coastal archive snapshot that PRE-DATES most 2025-26 sanctions listings â€” an appearance is historical presence, never current broadcasting.'
             WHEN 'debarred_but_funded' THEN
-                'FED_SAM_EXCLUSIONS holds exactly 1,000 rows (suspected capped sample load) and ACTIVATION_DATE is blank â€” breadth is a floor and no debarment-date timeline is possible.'
+                'FED_SAM_EXCLUSIONS holds 9,000 rows (confirmed live 2026-07-30; a 2026-07-24 re-pour replaced the earlier ~1,000-row capped sample) and ACTIVATION_DATE is still blank on every row â€” breadth is a floor and no debarment-date timeline is possible.'
             WHEN 'excluded_but_billing' THEN
                 'Part D landing table carries no program-year column â€” no billing-date timeline is possible.'
+            WHEN 'osha_cohort_outlier_2024' THEN
+                'Peer-cohort statistical outlier, not a hard-ID ban-list match like the other detectors â€” confidence_tier reads HARD_ID_ONLY here only because the CASE logic''s catch-all is "not NPI", not because a registry corroborated an identity. Scored against 2024 OSHA Form 300A only; DART rate and cohort membership are both self-reported by the employer.'
         END                                                  AS caveat
 
     FROM leads ld

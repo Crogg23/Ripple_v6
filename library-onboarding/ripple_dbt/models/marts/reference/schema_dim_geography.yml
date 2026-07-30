@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: ref__dim_geography
+    columns:
+      - name: fips_code
+        data_tests:
+          - not_null
+          - unique
+      - name: state_fips
+        data_tests:
+          - not_null

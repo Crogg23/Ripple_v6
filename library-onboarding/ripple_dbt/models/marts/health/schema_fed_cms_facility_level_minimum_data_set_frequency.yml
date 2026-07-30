@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: health__fed_cms_facility_level_minimum_data_set_frequency
+    columns:
+      - name: zip_code
+        data_tests:
+          - not_null
+      - name: fips_county_code
+        data_tests:
+          - not_null

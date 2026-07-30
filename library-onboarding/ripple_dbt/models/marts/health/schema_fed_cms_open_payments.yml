@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: health__fed_cms_open_payments
+    columns:
+      - name: record_id
+        data_tests:
+          - not_null
+          - unique
+      - name: npi
+        data_tests:
+          - not_null
+      - name: covered_recipient_profile_id
+        data_tests:
+          - not_null
+      - name: recipient_zip_code
+        data_tests:
+          - not_null

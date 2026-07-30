@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: transport__fed_faa_registry
+    columns:
+      - name: n_number
+        data_tests:
+          - not_null
+      - name: serial_number
+        data_tests:
+          - not_null
+      - name: mfr_mdl_code
+        data_tests:
+          - not_null
+      - name: zip_code
+        data_tests:
+          - not_null
+      - name: status_code
+        data_tests:
+          - not_null
+      - name: mode_s_code
+        data_tests:
+          - not_null
+          - unique
+      - name: unique_id
+        data_tests:
+          - not_null
+          - unique

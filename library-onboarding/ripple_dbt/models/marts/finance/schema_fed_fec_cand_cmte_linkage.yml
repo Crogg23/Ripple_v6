@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: finance__fed_fec_cand_cmte_linkage
+    columns:
+      - name: c1
+        data_tests:
+          - not_null

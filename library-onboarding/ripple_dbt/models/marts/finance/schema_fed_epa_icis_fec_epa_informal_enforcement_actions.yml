@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: finance__fed_epa_icis_fec_epa_informal_enforcement_actions
+    columns:
+      - name: pgm_sys_id
+        data_tests:
+          - not_null
+      - name: registry_id
+        data_tests:
+          - not_null
+      - name: activity_type_code
+        data_tests:
+          - not_null
+      - name: enf_type_code
+        data_tests:
+          - not_null

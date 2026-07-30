@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: health__fed_cms_pending_initial_logging_and_tracking_physicians
+    columns:
+      - name: npi
+        data_tests:
+          - not_null
+          - unique

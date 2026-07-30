@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: health__fed_cdc_drug_poisoning_county
+    columns:
+      - name: fips
+        data_tests:
+          - not_null

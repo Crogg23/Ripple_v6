@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: finance__fed_fec_independent_expenditures
+    columns:
+      - name: cand_id
+        data_tests:
+          - not_null
+      - name: spe_id
+        data_tests:
+          - not_null
+      - name: tran_id
+        data_tests:
+          - not_null

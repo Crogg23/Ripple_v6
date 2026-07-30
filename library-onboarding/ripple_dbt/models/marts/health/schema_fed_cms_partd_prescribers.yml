@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: health__fed_cms_partd_prescribers
+    columns:
+      - name: npi
+        data_tests:
+          - not_null
+      - name: prescriber_state_fips
+        data_tests:
+          - not_null

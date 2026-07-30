@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: transport__fed_dot_bts
+    columns:
+      - name: carrier_code
+        data_tests:
+          - not_null
+      - name: state_fips
+        data_tests:
+          - not_null

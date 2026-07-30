@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: politics__fed_voteview_rollcall_meta
+    columns:
+      - name: bill_number
+        data_tests:
+          - not_null

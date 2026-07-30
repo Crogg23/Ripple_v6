@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: health__fed_cms_facility_affiliation
+    columns:
+      - name: npi
+        data_tests:
+          - not_null
+      - name: ind_pac_id
+        data_tests:
+          - not_null
+      - name: facility_type_certification_number
+        data_tests:
+          - not_null

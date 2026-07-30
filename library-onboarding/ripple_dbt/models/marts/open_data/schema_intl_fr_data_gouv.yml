@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: open_data__intl_fr_data_gouv
+    columns:
+      - name: dataset_id
+        data_tests:
+          - not_null
+      - name: organization_id
+        data_tests:
+          - not_null
+      - name: resource_id
+        data_tests:
+          - not_null

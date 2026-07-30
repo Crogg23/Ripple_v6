@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: economics__fed_foreignassistance
+    columns:
+      - name: country
+        data_tests:
+          - not_null

@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: health__fed_cms_main
+    columns:
+      - name: dataset_id
+        data_tests:
+          - not_null
+          - unique
+      - name: npi
+        data_tests:
+          - not_null

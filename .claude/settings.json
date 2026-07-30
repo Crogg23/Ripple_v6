@@ -29,7 +29,11 @@
       "Bash(echo \"=== DBT GLEIF_RR FIX3 DONE \\(exit $?\\) ===\")",
       "Bash(python3 \"C:\\\\Users\\\\wroge\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Code-Ripple-v6\\\\b210958a-f764-4a67-876a-d2dbc8f4a979\\\\scratchpad\\\\run_dbt.py\" run --select economics__intl_gleif_rr)",
       "Bash(python3 \"C:\\\\Users\\\\wroge\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Code-Ripple-v6\\\\b210958a-f764-4a67-876a-d2dbc8f4a979\\\\scratchpad\\\\run_dbt.py\" run --select stg_intl_ie_cro__cro_companies corporate_registry__intl_ie_cro)",
-      "Bash(python3 \"C:\\\\Users\\\\wroge\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Code-Ripple-v6\\\\b210958a-f764-4a67-876a-d2dbc8f4a979\\\\scratchpad\\\\run_dbt.py\" test --select stg_intl_ie_cro__cro_companies corporate_registry__intl_ie_cro economics__intl_gleif_rr)"
+      "Bash(python3 \"C:\\\\Users\\\\wroge\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Code-Ripple-v6\\\\b210958a-f764-4a67-876a-d2dbc8f4a979\\\\scratchpad\\\\run_dbt.py\" test --select stg_intl_ie_cro__cro_companies corporate_registry__intl_ie_cro economics__intl_gleif_rr)",
+      "Read(//c/Users/wroge/.claude/debug/**)",
+      "Read(//c/Users/wroge/.claude/**)",
+      "Read(//c/Users/wroge/**)",
+      "PowerShell($path = \"C:\\\\Users\\\\wroge\\\\.claude\\\\debug\\\\30a6d885-7ee6-4396-ad05-ee3f32ec88dd.txt\"; if \\(Test-Path $path\\) { Write-Output \"EXISTS\"; \\(Get-Content $path | Measure-Object -Line\\).Lines } else { Write-Output \"NOT FOUND\" })"
     ]
   }
 }

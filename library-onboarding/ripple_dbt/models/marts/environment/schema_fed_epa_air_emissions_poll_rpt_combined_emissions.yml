@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: environment__fed_epa_air_emissions_poll_rpt_combined_emissions
+    columns:
+      - name: registry_id
+        data_tests:
+          - not_null
+      - name: pgm_sys_id
+        data_tests:
+          - not_null

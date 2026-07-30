@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: economics__intl_gleif_repex
+    columns:
+      - name: lei
+        data_tests:
+          - not_null

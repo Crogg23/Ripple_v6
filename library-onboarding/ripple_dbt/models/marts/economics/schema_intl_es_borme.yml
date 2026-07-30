@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: economics__intl_es_borme
+    columns:
+      - name: borme_issue_number
+        data_tests:
+          - not_null
+      - name: company_id
+        data_tests:
+          - not_null

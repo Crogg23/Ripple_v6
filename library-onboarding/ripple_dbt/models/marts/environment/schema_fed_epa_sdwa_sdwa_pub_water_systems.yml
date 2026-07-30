@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: environment__fed_epa_sdwa_sdwa_pub_water_systems
+    columns:
+      - name: primacy_agency_code
+        data_tests:
+          - not_null
+      - name: pws_activity_code
+        data_tests:
+          - not_null
+      - name: pws_type_code
+        data_tests:
+          - not_null
+      - name: pop_cat_2_code
+        data_tests:
+          - not_null
+      - name: pop_cat_3_code
+        data_tests:
+          - not_null
+      - name: pop_cat_4_code
+        data_tests:
+          - not_null
+      - name: pop_cat_5_code
+        data_tests:
+          - not_null
+      - name: pop_cat_11_code
+        data_tests:
+          - not_null
+      - name: submission_status_code
+        data_tests:
+          - not_null

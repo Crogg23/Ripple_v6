@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: open_data__intl_ar_datosgob
+    columns:
+      - name: dataset_id
+        data_tests:
+          - not_null
+      - name: serie_id
+        data_tests:
+          - not_null
+      - name: provincia_id
+        data_tests:
+          - not_null
+      - name: municipio_id
+        data_tests:
+          - not_null
+      - name: departamento_id
+        data_tests:
+          - not_null

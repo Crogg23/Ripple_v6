@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: health__fed_cms_opt_out_affidavits
+    columns:
+      - name: npi
+        data_tests:
+          - not_null
+      - name: state_code
+        data_tests:
+          - not_null
+      - name: zip_code
+        data_tests:
+          - not_null

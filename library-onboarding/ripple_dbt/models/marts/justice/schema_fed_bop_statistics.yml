@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: justice__fed_bop_statistics
+    columns:
+      - name: state_fips
+        data_tests:
+          - not_null

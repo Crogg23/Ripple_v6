@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: environment__fed_epa_sdwa_sdwa_geographic_areas
+    columns:
+      - name: geo_id
+        data_tests:
+          - not_null
+          - unique
+      - name: area_type_code
+        data_tests:
+          - not_null

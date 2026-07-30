@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: environment__fed_epa_sdwa_sdwa_events_milestones
+    columns:
+      - name: event_schedule_id
+        data_tests:
+          - not_null
+      - name: event_milestone_code
+        data_tests:
+          - not_null

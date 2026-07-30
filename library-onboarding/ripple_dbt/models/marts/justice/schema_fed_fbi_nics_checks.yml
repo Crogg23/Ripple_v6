@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: justice__fed_fbi_nics_checks
+    columns:
+      - name: month
+        data_tests:
+          - not_null

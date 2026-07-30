@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: immigration__fed_dol_oflc
+    columns:
+      - name: case_number
+        data_tests:
+          - not_null
+          - unique
+      - name: soc_code
+        data_tests:
+          - not_null
+      - name: employer_postal_code
+        data_tests:
+          - not_null
+      - name: naics_code
+        data_tests:
+          - not_null
+      - name: agent_attorney_postal_code
+        data_tests:
+          - not_null

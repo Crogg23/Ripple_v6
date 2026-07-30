@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: finance__fed_fec_bulk_committees
+    columns:
+      - name: fec_cmte_id
+        data_tests:
+          - not_null
+          - unique
+      - name: fec_cand_id
+        data_tests:
+          - not_null

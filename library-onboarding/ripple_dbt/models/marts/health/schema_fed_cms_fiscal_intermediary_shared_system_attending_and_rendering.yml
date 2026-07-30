@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: health__fed_cms_fiscal_intermediary_shared_system_attending_and_rendering
+    columns:
+      - name: npi
+        data_tests:
+          - not_null
+          - unique

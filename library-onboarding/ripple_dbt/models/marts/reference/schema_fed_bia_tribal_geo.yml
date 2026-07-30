@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: reference__fed_bia_tribal_geo
+    columns:
+      - name: objectid
+        data_tests:
+          - not_null
+          - unique

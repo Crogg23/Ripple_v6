@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: finance__fed_ffiec_call_reports
+    columns:
+      - name: rssd_id
+        data_tests:
+          - not_null
+      - name: mdrm_concept_code
+        data_tests:
+          - not_null

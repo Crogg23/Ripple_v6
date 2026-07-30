@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: justice__xc_vera_incarceration_trends
+    columns:
+      - name: county_fips
+        data_tests:
+          - not_null
+      - name: state_fips
+        data_tests:
+          - not_null
+      - name: state_code
+        data_tests:
+          - not_null
+      - name: county_code
+        data_tests:
+          - not_null
+      - name: source_run_id
+        data_tests:
+          - not_null

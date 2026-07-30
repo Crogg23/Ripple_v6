@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: environment__fed_epa_npdes_icis_facilities
+    columns:
+      - name: icis_facility_interest_id
+        data_tests:
+          - not_null
+          - unique
+      - name: npdes_id
+        data_tests:
+          - not_null
+          - unique

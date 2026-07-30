@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: environment__xc_epa_corporate_crosswalk
+    columns:
+      - name: epa_registry_id
+        data_tests:
+          - not_null
+          - unique

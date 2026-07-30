@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: health__fed_cms_medicare_diabetes_prevention_program
+    columns:
+      - name: zip_code
+        data_tests:
+          - not_null
+      - name: telephone_number
+        data_tests:
+          - not_null
+      - name: npi
+        data_tests:
+          - not_null
+      - name: unique_id
+        data_tests:
+          - not_null
+          - unique

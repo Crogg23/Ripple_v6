@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: politics__st_cannabis_policy_bundles
+    columns:
+      - name: state
+        data_tests:
+          - not_null

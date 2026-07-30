@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: economics__fed_treasury_dts_deposits
+    columns:
+      - name: record_date
+        data_tests:
+          - not_null

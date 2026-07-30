@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: environment__fed_usgs_water
+    columns:
+      - name: site_no
+        data_tests:
+          - not_null

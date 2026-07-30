@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: uncategorized__fed_epa_frs_full
+    columns:
+      - name: registry_id
+        data_tests:
+          - not_null
+          - unique
+      - name: fips_code
+        data_tests:
+          - not_null
+      - name: state_code
+        data_tests:
+          - not_null
+      - name: postal_code
+        data_tests:
+          - not_null
+      - name: federal_facility_code
+        data_tests:
+          - not_null
+      - name: tribal_land_code
+        data_tests:
+          - not_null
+      - name: census_block_code
+        data_tests:
+          - not_null
+      - name: huc_code
+        data_tests:
+          - not_null
+      - name: epa_region_code
+        data_tests:
+          - not_null

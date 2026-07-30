@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: politics__intl_voeten_unga_votes
+    columns:
+      - name: col_0
+        data_tests:
+          - not_null
+          - unique

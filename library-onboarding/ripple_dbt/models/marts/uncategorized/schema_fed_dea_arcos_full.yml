@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: uncategorized__fed_dea_arcos_full
+    columns:
+      - name: transaction_code
+        data_tests:
+          - not_null
+      - name: drug_code
+        data_tests:
+          - not_null
+      - name: transaction_id
+        data_tests:
+          - not_null

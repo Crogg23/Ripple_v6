@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: health__fed_cdc_wonder
+    columns:
+      - name: database_id
+        data_tests:
+          - not_null
+          - unique
+      - name: group_by_1_code
+        data_tests:
+          - not_null
+          - unique
+      - name: group_by_2_code
+        data_tests:
+          - not_null
+          - unique

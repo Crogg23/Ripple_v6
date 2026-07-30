@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: justice__intl_opensanctions
+    columns:
+      - name: id
+        data_tests:
+          - not_null
+          - unique

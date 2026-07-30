@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: health__fed_cms_nursing_home_fire_deficiencies
+    columns:
+      - name: zip_code
+        data_tests:
+          - not_null
+      - name: deficiency_tag_number
+        data_tests:
+          - not_null
+      - name: scope_severity_code
+        data_tests:
+          - not_null

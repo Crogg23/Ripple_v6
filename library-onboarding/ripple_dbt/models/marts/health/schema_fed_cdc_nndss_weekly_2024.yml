@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: health__fed_cdc_nndss_weekly_2024
+    columns:
+      - name: reporting_area
+        data_tests:
+          - not_null

@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: economics__fed_fac_single_audit
+    columns:
+      - name: report_id
+        data_tests:
+          - not_null
+          - unique

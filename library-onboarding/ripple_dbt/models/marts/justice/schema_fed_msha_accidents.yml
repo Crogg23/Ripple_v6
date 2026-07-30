@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: justice__fed_msha_accidents
+    columns:
+      - name: mine_id
+        data_tests:
+          - not_null
+      - name: controller_id
+        data_tests:
+          - not_null
+      - name: operator_id
+        data_tests:
+          - not_null
+      - name: contractor_id
+        data_tests:
+          - not_null

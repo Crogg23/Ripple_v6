@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: health__fed_cms_hospital_compare
+    columns:
+      - name: facility_id
+        data_tests:
+          - not_null
+          - unique
+      - name: zip_code
+        data_tests:
+          - not_null
+      - name: telephone_number
+        data_tests:
+          - not_null

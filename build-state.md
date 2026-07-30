@@ -1,5 +1,5 @@
 <!-- GENERATED FILE. DO NOT EDIT BY HAND.
-     Source: LIBRARY_META.BUILD  |  Generated: 2026-07-27T16:30:05Z
+     Source: LIBRARY_META.BUILD  |  Generated: 2026-07-30T20:45:11Z
      To change anything here, change the row and regenerate:
      python3 scripts/gen_build_state.py --write -->
 
@@ -10,58 +10,52 @@
 ## BUILD STATE (V_BUILD_STATE)
 - actions_irreversible_pending: **1**
 - actions_pending: **2**
-- defects_blocker: **1**
-- defects_open: **20**
-- defects_unverified_7d: **20**
+- defects_blocker: **0**
+- defects_open: **13**
+- defects_unverified_7d: **13**
 - parked_hot: **4**
 
 ## DATA STATE (V_STATE)
-- catalog.orphans: 442
-- catalog.sources: 3017
-- connect.edges: 11197
+- catalog.orphans: 287
+- catalog.sources: 2992
+- connect.edges: 610
 - connect.edges_inc: 1074
-- connect.entities: 16244825
+- connect.entities: 22623285
 - decisions.total: 0
-- landing.rows: 856056729
-- landing.tables: 1943
+- landing.rows: 875575558
+- landing.tables: 1937
 - leads.banned_but_operating.active: 10
 - leads.banned_but_operating.stale: 1
 - leads.banned_but_paid.active: 773
 - leads.debarred_but_funded.active: 2
 - leads.excluded_but_billing.active: 236
+- leads.osha_cohort_outlier_2024.active: 16215
 - leads.sanctioned_vessel_broadcasting.active: 4
 - leads.sanctioned_vessel_broadcasting_v2.active: 12
 - leads.sec_filer_in_irs_bmf.active: 3
-- marts.stale_vs_landing: 3
+- marts.stale_vs_landing: 1
 - reading_room.views: 252
-- registry.sources: 2575
-- taps.empty: 34
-- taps.failed: 258
-- taps.landed: 330
-- taps.modeled: 30
+- registry.sources: 2705
+- taps.empty: 33
+- taps.failed: 262
+- taps.landed: 11
+- taps.modeled: 346
 - taps.queued: 7
-- taps.sampled: 1578
-- taps.scouted: 753
-- taps.stale: 27
+- taps.sampled: 1577
+- taps.scouted: 751
+- taps.stale: 5
 
 ## OPEN DEFECTS
 
 | sev | area | defect | last verdict | verified |
 |---|---|---|---|---|
-| blocker | creds | leaked/unrestricted ACCOUNTADMIN PATs still ACTIVE | clear | 2026-07-12 |
 | high | ci | no ladder regression tests (5 named gaps, no holdout fixture) | clear | 2026-07-12 |
 | high | creds | evidence.dev read lane is dark (dead interim token) | clear | 2026-07-12 |
 | high | creds | no scoped write lane exists (reader-only PAT) | still_broken | 2026-07-12 |
-| high | loader | resolve.py PAIRS spec broken by NPPES re-land (column rename) | clear | 2026-07-12 |
-| high | truth_layer | FED_IRS_EO_BMF is an exact 2x duplicate of FED_IRS_BMF | clear | 2026-07-12 |
-| high | truth_layer | OP-2022 load mislogged: 13.25M rows live, ledger says error/0 | clear | 2026-07-12 |
-| high | truth_layer | build-state.md is hand-typed, not generated | clear | 2026-07-12 |
 | medium | creds | keys_ledger.json does not track the live PAT population | still_broken | 2026-07-12 |
 | medium | creds | source API keys still missing from .env | still_broken | 2026-07-12 |
-| medium | graph | V_CONNECTIONS_CORE (trustworthy-core view) does not exist | clear | 2026-07-12 |
 | medium | loader | append-mode loaders leave silent partial loads on crash | still_broken | 2026-07-12 |
 | medium | politics | politics marts clobberable by selector-less dbt build | never verified | - |
-| medium | truth_layer | FED_FHFA_NMDB (19M rows) misgraded in catalog lifecycle | clear | 2026-07-12 |
 | medium | truth_layer | landed/modeled sources whose landing table holds <=3 rows | still_broken | 2026-07-12 |
 | medium | typing | landed/modeled sources with no staging view at all | still_broken | 2026-07-12 |
 | medium | typing | staging views that are 100% TEXT | still_broken | 2026-07-12 |
@@ -70,6 +64,15 @@
 | low | viz | leads_overlay.html stale (4 detectors/353 leads vs live 6/1030) | still_broken | 2026-07-12 |
 
 Re-verify: `python3 scripts/verify_defects.py` — 'clear' is a recommendation; a human closes.
+
+## RECENTLY CLOSED
+- leaked/unrestricted ACCOUNTADMIN PATs still ACTIVE — closed 2026-07-27 by cortex_code
+- resolve.py PAIRS spec broken by NPPES re-land (column rename) — closed 2026-07-27 by cortex_code
+- V_CONNECTIONS_CORE (trustworthy-core view) does not exist — closed 2026-07-27 by cortex_code
+- build-state.md is hand-typed, not generated — closed 2026-07-27 by cortex_code
+- FED_FHFA_NMDB (19M rows) misgraded in catalog lifecycle — closed 2026-07-27 by cortex_code
+- FED_IRS_EO_BMF is an exact 2x duplicate of FED_IRS_BMF — closed 2026-07-27 by cortex_code
+- OP-2022 load mislogged: 13.25M rows live, ledger says error/0 — closed 2026-07-27 by cortex_code
 
 ## PENDING ACTIONS (dependency order)
 

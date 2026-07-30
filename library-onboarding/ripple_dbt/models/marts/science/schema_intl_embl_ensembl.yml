@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: science__intl_embl_ensembl
+    columns:
+      - name: id
+        data_tests:
+          - not_null
+          - unique
+      - name: taxon_id
+        data_tests:
+          - not_null

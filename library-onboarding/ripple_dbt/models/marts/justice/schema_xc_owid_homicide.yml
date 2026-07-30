@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: justice__xc_owid_homicide
+    columns:
+      - name: entity
+        data_tests:
+          - not_null

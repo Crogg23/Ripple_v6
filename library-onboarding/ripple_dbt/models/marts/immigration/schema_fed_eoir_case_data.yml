@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: immigration__fed_eoir_case_data
+    columns:
+      - name: case_type
+        data_tests:
+          - not_null
+          - unique

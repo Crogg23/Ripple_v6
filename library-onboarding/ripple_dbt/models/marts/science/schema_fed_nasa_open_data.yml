@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: science__fed_nasa_open_data
+    columns:
+      - name: api_name
+        data_tests:
+          - not_null

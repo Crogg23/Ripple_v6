@@ -50,6 +50,15 @@ models:
       government_records:
         government_records__fed_nara_aad:
           +enabled: true  # re-enabled 2026-07-24: source re-ingested (554 rows)
+      politics:
+        # 2026-07-30: STANDING POLICY no_selectorless_dbt_build enforced for real,
+        # not just documented. These models mirror Python-built canonical tables
+        # (politics/loaders/*.py, reconciled to the penny against OpenFEC/GovTrack)
+        # purely so `dbt test` can run against them. `dbt build`/`dbt run` against
+        # any model in this folder now hard-fails at compile time unless you pass
+        # --vars '{"allow_politics_rebuild": true}' -- see macros/guard_politics_mirror.sql.
+        # `dbt test` is completely unaffected (pre-hooks don't fire for tests).
+        +pre-hook: "{{ guard_politics_mirror() }}"
       historical_records:
         historical_records__fed_slavevoyages_intraamerican:
           +enabled: true  # re-enabled 2026-07-24: source re-ingested (11.5K rows)

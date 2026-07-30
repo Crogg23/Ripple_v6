@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: health__fed_cms_pos_other
+    columns:
+      - name: cross_ref_provider_number
+        data_tests:
+          - not_null
+      - name: ltc_cross_ref_provider_number
+        data_tests:
+          - not_null
+      - name: medicare_medicaid_prvdr_number
+        data_tests:
+          - not_null
+      - name: parent_provider_number
+        data_tests:
+          - not_null

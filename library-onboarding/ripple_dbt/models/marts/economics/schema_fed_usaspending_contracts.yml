@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: economics__fed_usaspending_contracts
+    columns:
+      - name: cage_code
+        data_tests:
+          - not_null
+      - name: recipient_state_code
+        data_tests:
+          - not_null
+      - name: recipient_zip_4_code
+        data_tests:
+          - not_null
+      - name: primary_place_of_performance_state_code
+        data_tests:
+          - not_null
+      - name: naics_code
+        data_tests:
+          - not_null

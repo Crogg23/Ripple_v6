@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: environment__fed_epa_sdwa_sdwa_lcr_samples
+    columns:
+      - name: sample_id
+        data_tests:
+          - not_null
+      - name: sar_id
+        data_tests:
+          - not_null
+      - name: contaminant_code
+        data_tests:
+          - not_null

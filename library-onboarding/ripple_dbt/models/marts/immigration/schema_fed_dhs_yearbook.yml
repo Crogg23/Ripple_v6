@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: immigration__fed_dhs_yearbook
+    columns:
+      - name: fiscal_year
+        data_tests:
+          - not_null
+          - unique

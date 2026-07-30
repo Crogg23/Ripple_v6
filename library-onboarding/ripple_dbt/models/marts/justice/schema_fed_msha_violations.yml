@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: justice__fed_msha_violations
+    columns:
+      - name: controller_id
+        data_tests:
+          - not_null
+      - name: mine_id
+        data_tests:
+          - not_null
+      - name: contractor_id
+        data_tests:
+          - not_null

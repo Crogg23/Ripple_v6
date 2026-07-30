@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: environment__fed_usgs_minerals
+    columns:
+      - name: dep_id
+        data_tests:
+          - not_null
+          - unique
+      - name: mrds_id
+        data_tests:
+          - not_null
+      - name: mas_id
+        data_tests:
+          - not_null

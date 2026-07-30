@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: finance__fed_sec_edgar_company_tickers_exchange
+    columns:
+      - name: fields
+        data_tests:
+          - not_null
+          - unique

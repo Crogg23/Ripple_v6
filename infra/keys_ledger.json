@@ -1,11 +1,11 @@
 {
   "_about": "Every credential the platform runs on, with its expiry. THE single place expiry lives — preflight (loadkit/preflight.py pat_expiry_check) and scripts/check_keys.py read this. When you rotate a key, update its row HERE in the same sitting. 'expires: null' = no expiry tracked (verify at the provider if it starts failing).",
-  "updated": "2026-07-02",
+  "updated": "2026-07-30",
   "keys": [
     {
       "name": "Snowflake PAT (ACCOUNTADMIN, the one credential everything writes through)",
       "env_var": "SNOWFLAKE_PAT",
-      "expires": "2026-09-20T14:58:55Z",
+      "expires": "2026-10-21T16:08:31Z",
       "renew_note": "Decoded from the live token's JWT exp claim (zero-network). Rotate in Snowsight: Admin > Users > CROGG23 > Programmatic access tokens > generate new; paste into library-onboarding/.env SNOWFLAKE_PAT; update this row. check_keys.py cross-checks this date against the live token and flags drift."
     },
     {

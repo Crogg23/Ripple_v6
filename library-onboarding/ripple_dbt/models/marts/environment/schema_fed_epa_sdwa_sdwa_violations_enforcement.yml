@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: environment__fed_epa_sdwa_sdwa_violations_enforcement
+    columns:
+      - name: violation_id
+        data_tests:
+          - not_null
+      - name: violation_code
+        data_tests:
+          - not_null
+      - name: violation_category_code
+        data_tests:
+          - not_null
+      - name: viol_originator_code
+        data_tests:
+          - not_null
+      - name: rule_code
+        data_tests:
+          - not_null
+      - name: rule_group_code
+        data_tests:
+          - not_null
+      - name: rule_family_code
+        data_tests:
+          - not_null
+      - name: enforcement_id
+        data_tests:
+          - not_null
+      - name: enforcement_action_type_code
+        data_tests:
+          - not_null
+      - name: enf_originator_code
+        data_tests:
+          - not_null

@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: environment__epa_penalty_gap
+    columns:
+      - name: frs_id
+        data_tests:
+          - not_null
+          - unique
+      - name: fips_code
+        data_tests:
+          - not_null

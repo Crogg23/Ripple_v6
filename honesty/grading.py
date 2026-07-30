@@ -36,10 +36,16 @@ UNVERIFIED = "unverified"
 _STRENGTH = {FACT: 2, LEAD: 1, UNVERIFIED: 0}
 
 # Hard identifiers — the same key set the connect spine indexes on
-# (connect/entity_index_specs.py ENTITY_TYPE_BY_KEY).
+# (connect/entity_index_specs.py ENTITY_TYPE_BY_KEY / connect/keys.py STEEL).
+# 2026-07-30: added DEA_NO/FRS_ID/PWSID/MINE_ID/FEC_CMTE_ID/FEC_CAND_ID — a
+# same-day connect/ wiring pass (35 new sources, 6 new key types) had drifted
+# this list 6 keys behind connect's actual STEEL set; this comment's own claim
+# of parity was false until this fix. Keep these two lists in lockstep by hand
+# until they're generated from one shared source.
 HARD_ID_TOKENS = {
     "NPI", "CCN", "UEI", "EIN", "CIK", "DUNS", "LEI",
     "IMO", "MMSI", "BIOGUIDE", "ICPSR",
+    "DEA_NO", "FRS_ID", "PWSID", "MINE_ID", "FEC_CMTE_ID", "FEC_CAND_ID", "PATENT",
 }
 
 # Claim/review surfaces: viz/guard.py:36 CLAIM_TABLES + the review lane +

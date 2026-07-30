@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: reference__xc_owid_fertility
+    columns:
+      - name: entity
+        data_tests:
+          - not_null

@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: housing__fed_fhfa_nmdb
+    columns:
+      - name: geo_code
+        data_tests:
+          - not_null

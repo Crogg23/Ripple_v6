@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: health__fed_cms_nursing_home_penalties
+    columns:
+      - name: zip_code
+        data_tests:
+          - not_null

@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: finance__fed_sec_13f_positions
+    columns:
+      - name: accession_number
+        data_tests:
+          - not_null

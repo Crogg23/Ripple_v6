@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: health__fed_cms_medicare_durable_medical_equipment_devices_supplies_by_suppl
+    columns:
+      - name: suplr_npi
+        data_tests:
+          - not_null
+      - name: suplr_prvdr_state_fips
+        data_tests:
+          - not_null
+      - name: rbcs_id
+        data_tests:
+          - not_null

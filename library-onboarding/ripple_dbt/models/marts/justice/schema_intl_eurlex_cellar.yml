@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: justice__intl_eurlex_cellar
+    columns:
+      - name: celex_id
+        data_tests:
+          - not_null
+      - name: ecli_id
+        data_tests:
+          - not_null
+      - name: oj_number
+        data_tests:
+          - not_null

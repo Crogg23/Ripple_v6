@@ -1,0 +1,36 @@
+version: 2
+
+models:
+  - name: justice__intl_ucdp_ged
+    columns:
+      - name: id
+        data_tests:
+          - not_null
+          - unique
+      - name: conflict_dset_id
+        data_tests:
+          - not_null
+      - name: conflict_new_id
+        data_tests:
+          - not_null
+      - name: dyad_dset_id
+        data_tests:
+          - not_null
+      - name: dyad_new_id
+        data_tests:
+          - not_null
+      - name: side_a_dset_id
+        data_tests:
+          - not_null
+      - name: side_a_new_id
+        data_tests:
+          - not_null
+      - name: side_b_dset_id
+        data_tests:
+          - not_null
+      - name: side_b_new_id
+        data_tests:
+          - not_null
+      - name: country_id
+        data_tests:
+          - not_null

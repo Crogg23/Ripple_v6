@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: immigration__xc_owid_refugees
+    columns:
+      - name: entity
+        data_tests:
+          - not_null

@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: finance__fed_fec_bulk_linkages
+    columns:
+      - name: cand_id
+        data_tests:
+          - not_null
+      - name: cmte_id
+        data_tests:
+          - not_null
+      - name: linkage_id
+        data_tests:
+          - not_null
+          - unique

@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: politics__fed_eac_eavs
+    columns:
+      - name: fipscode
+        data_tests:
+          - not_null

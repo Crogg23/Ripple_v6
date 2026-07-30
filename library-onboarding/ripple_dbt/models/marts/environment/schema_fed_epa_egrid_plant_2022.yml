@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: environment__fed_epa_egrid_plant_2022
+    columns:
+      - name: plant_file_sequence_number
+        data_tests:
+          - not_null
+          - unique
+      - name: doe_eia_oris_plant_or_facility_code
+        data_tests:
+          - not_null
+          - unique
+      - name: plant_transmission_or_distribution_system_owner_id
+        data_tests:
+          - not_null
+      - name: utility_id
+        data_tests:
+          - not_null
+      - name: plant_fips_state_code
+        data_tests:
+          - not_null

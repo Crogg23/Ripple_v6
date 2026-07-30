@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: economics__fed_treasury_mts_receipts
+    columns:
+      - name: classification_id
+        data_tests:
+          - not_null
+          - unique

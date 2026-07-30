@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: politics__fed_fjc_judges
+    columns:
+      - name: nid
+        data_tests:
+          - not_null
+          - unique

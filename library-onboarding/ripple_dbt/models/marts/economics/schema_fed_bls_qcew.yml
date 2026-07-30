@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: economics__fed_bls_qcew
+    columns:
+      - name: area_fips
+        data_tests:
+          - not_null
+      - name: state_fips
+        data_tests:
+          - not_null
+      - name: ownership_code
+        data_tests:
+          - not_null
+      - name: industry_code
+        data_tests:
+          - not_null
+      - name: aggregation_level_code
+        data_tests:
+          - not_null
+      - name: size_code
+        data_tests:
+          - not_null
+      - name: disclosure_code
+        data_tests:
+          - not_null

@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: environment__fed_epa_npdes_npdes_formal_enforcement_actions
+    columns:
+      - name: npdes_id
+        data_tests:
+          - not_null
+      - name: activity_id
+        data_tests:
+          - not_null
+      - name: activity_type_code
+        data_tests:
+          - not_null
+      - name: enf_type_code
+        data_tests:
+          - not_null

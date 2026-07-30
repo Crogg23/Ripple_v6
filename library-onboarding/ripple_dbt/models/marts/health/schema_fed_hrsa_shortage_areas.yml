@@ -1,0 +1,50 @@
+version: 2
+
+models:
+  - name: health__fed_hrsa_shortage_areas
+    columns:
+      - name: hpsa_id
+        data_tests:
+          - not_null
+      - name: hpsa_geography_identification_number
+        data_tests:
+          - not_null
+      - name: bhcmis_organization_identification_number
+        data_tests:
+          - not_null
+      - name: common_postal_code
+        data_tests:
+          - not_null
+      - name: common_state_fips_code
+        data_tests:
+          - not_null
+      - name: discipline_class_number
+        data_tests:
+          - not_null
+      - name: hpsa_component_source_identification_number
+        data_tests:
+          - not_null
+      - name: hpsa_component_type_code
+        data_tests:
+          - not_null
+      - name: hpsa_metropolitan_indicator_code
+        data_tests:
+          - not_null
+      - name: hpsa_postal_code
+        data_tests:
+          - not_null
+      - name: hpsa_status_code
+        data_tests:
+          - not_null
+      - name: hpsa_type_code
+        data_tests:
+          - not_null
+      - name: primary_state_fips_code
+        data_tests:
+          - not_null
+      - name: rural_status_code
+        data_tests:
+          - not_null
+      - name: state_fips_code
+        data_tests:
+          - not_null

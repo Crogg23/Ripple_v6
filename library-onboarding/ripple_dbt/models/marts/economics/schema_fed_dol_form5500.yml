@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: economics__fed_dol_form5500
+    columns:
+      - name: ack_id
+        data_tests:
+          - not_null
+          - unique
+      - name: business_code
+        data_tests:
+          - not_null
+      - name: type_pension_bnft_code
+        data_tests:
+          - not_null
+      - name: type_welfare_bnft_code
+        data_tests:
+          - not_null
+      - name: m1_receipt_confirmation_code
+        data_tests:
+          - not_null

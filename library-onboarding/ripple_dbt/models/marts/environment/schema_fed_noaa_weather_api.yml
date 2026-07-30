@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: environment__fed_noaa_weather_api
+    columns:
+      - name: id
+        data_tests:
+          - not_null
+          - unique
+      - name: station_id
+        data_tests:
+          - not_null
+      - name: fips_code
+        data_tests:
+          - not_null
+      - name: zip_code
+        data_tests:
+          - not_null

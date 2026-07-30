@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: open_data__intl_br_dados_gov
+    columns:
+      - name: dataset_id
+        data_tests:
+          - not_null
+          - unique

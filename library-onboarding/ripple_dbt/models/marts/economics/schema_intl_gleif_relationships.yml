@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: economics__intl_gleif_relationships
+    columns:
+      - name: relationship_startnode_nodeid
+        data_tests:
+          - not_null

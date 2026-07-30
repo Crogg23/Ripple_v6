@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: economics__fed_irs_pub78_eligible_donees
+    columns:
+      - name: ein
+        data_tests:
+          - not_null
+          - unique

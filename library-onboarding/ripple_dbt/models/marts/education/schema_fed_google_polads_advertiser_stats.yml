@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: education__fed_google_polads_advertiser_stats
+    columns:
+      - name: advertiser_id
+        data_tests:
+          - not_null
+          - unique

@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: environment__fed_epa_npdes_npdes_qncr_history
+    columns:
+      - name: npdes_id
+        data_tests:
+          - not_null

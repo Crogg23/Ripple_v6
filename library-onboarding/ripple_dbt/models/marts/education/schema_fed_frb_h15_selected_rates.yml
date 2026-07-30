@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: education__fed_frb_h15_selected_rates
+    columns:
+      - name: series_description
+        data_tests:
+          - not_null
+          - unique

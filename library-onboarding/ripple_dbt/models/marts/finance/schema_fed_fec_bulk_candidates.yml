@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: finance__fed_fec_bulk_candidates
+    columns:
+      - name: cand_id
+        data_tests:
+          - not_null

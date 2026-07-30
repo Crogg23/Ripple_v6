@@ -34,9 +34,12 @@ models:
       Activity numbers (counts, dollars, dates) are RECOMPUTED from the same
       source tables the detectors read, never trusted from the 50-item-capped
       EVIDENCE array. Known per-detector data traps travel in the caveat
-      column. banned_but_operating's source table was dropped from LANDING
-      (verified 2026-07-12), so its facility evidence is frozen — its stored
-      evidence_sql cannot be re-run.
+      column. banned_but_operating's source table (FED_CMS_FACILITY_AFFILIATION)
+      was restored to LANDING 2026-07-25 after being briefly dropped; this
+      mart still reads its frozen EVIDENCE snapshot rather than recomputing
+      live (see the caveat column). An 8th detector, osha_cohort_outlier_2024,
+      is a peer-cohort statistical outlier (not a hard-ID ban-list join like
+      the other seven) — see connect/cohort_leads.py.
     columns:
       - name: lead_id
         description: PK, from V_LEADS_PUBLISHED (LEAD_ + md5 of rule|key).
@@ -55,6 +58,7 @@ models:
                   - sanctioned_vessel_broadcasting
                   - sanctioned_vessel_broadcasting_v2
                   - sec_filer_in_irs_bmf
+                  - osha_cohort_outlier_2024
       - name: priority_rank
         description: Total order over the queue; unique proves totality.
         data_tests: [unique, not_null]

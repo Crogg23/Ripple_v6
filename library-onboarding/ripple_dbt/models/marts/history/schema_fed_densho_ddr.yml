@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: history__fed_densho_ddr
+    columns:
+      - name: object_id
+        data_tests:
+          - not_null
+          - unique
+      - name: collection_id
+        data_tests:
+          - not_null

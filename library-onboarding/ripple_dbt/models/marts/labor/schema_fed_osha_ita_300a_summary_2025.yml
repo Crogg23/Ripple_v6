@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: labor__fed_osha_ita_300a_summary_2025
+    columns:
+      - name: establishment_id
+        data_tests:
+          - not_null

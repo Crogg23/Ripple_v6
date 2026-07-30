@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: justice__fed_courtlistener_positions
+    columns:
+      - name: id
+        data_tests:
+          - not_null
+          - unique
+      - name: person_id
+        data_tests:
+          - not_null

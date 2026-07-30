@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: economics__fed_irs_auto_revocations
+    columns:
+      - name: zip_code
+        data_tests:
+          - not_null

@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: immigration__fed_cms_medicare_fee_for_service_public_provider_enrollment
+    columns:
+      - name: npi
+        data_tests:
+          - not_null
+      - name: pecos_asct_cntl_id
+        data_tests:
+          - not_null
+      - name: enrlmt_id
+        data_tests:
+          - not_null
+          - unique

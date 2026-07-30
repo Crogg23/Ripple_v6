@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: economics__fed_sba_loans
+    columns:
+      - name: naics_code
+        data_tests:
+          - not_null

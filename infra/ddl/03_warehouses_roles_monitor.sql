@@ -44,7 +44,10 @@ CREATE WAREHOUSE IF NOT EXISTS COMPUTE_WH
 -- Level = ACCOUNT, so it is applied at the account level, not to a single warehouse.
 CREATE RESOURCE MONITOR IF NOT EXISTS RIPPLE_BUDGET
   WITH
-    CREDIT_QUOTA = 30
+    -- live value confirmed 2026-07-30 via SHOW RESOURCE MONITORS: 300, not 30.
+    -- Raised at some point after this DDL was first captured; bumping the
+    -- snapshot so a disaster-recovery rebuild doesn't silently under-provision.
+    CREDIT_QUOTA = 300
     FREQUENCY = MONTHLY
     START_TIMESTAMP = IMMEDIATELY
   TRIGGERS

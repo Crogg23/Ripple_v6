@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: health__fed_va_allcause_mortality
+    columns:
+      - name: figures_and_tables
+        data_tests:
+          - not_null

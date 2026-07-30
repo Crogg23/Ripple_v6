@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: investigations__intl_leiden_russian_ops_europe
+    columns:
+      - name: incidentyear
+        data_tests:
+          - not_null

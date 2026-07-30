@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: economics__xc_wikipedia_largest_us_companies
+    columns:
+      - name: rank
+        data_tests:
+          - not_null
+          - unique

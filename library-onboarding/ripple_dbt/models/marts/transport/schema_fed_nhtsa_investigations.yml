@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: transport__fed_nhtsa_investigations
+    columns:
+      - name: c1
+        data_tests:
+          - not_null

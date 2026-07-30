@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: politics__fed_voteview_members
+    columns:
+      - name: icpsr
+        data_tests:
+          - not_null
+      - name: district_code
+        data_tests:
+          - not_null
+      - name: party_code
+        data_tests:
+          - not_null
+      - name: bioguide_id
+        data_tests:
+          - not_null

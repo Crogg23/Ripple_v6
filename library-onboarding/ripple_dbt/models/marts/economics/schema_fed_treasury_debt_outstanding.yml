@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: economics__fed_treasury_debt_outstanding
+    columns:
+      - name: record_date
+        data_tests:
+          - not_null
+          - unique

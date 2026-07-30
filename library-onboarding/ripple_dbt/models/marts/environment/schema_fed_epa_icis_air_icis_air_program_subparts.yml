@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: environment__fed_epa_icis_air_icis_air_program_subparts
+    columns:
+      - name: pgm_sys_id
+        data_tests:
+          - not_null
+      - name: program_code
+        data_tests:
+          - not_null
+      - name: air_program_subpart_code
+        data_tests:
+          - not_null

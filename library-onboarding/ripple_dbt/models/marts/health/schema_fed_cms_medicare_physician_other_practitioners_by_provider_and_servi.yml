@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: health__fed_cms_medicare_physician_other_practitioners_by_provider_and_servi
+    columns:
+      - name: rndrng_npi
+        data_tests:
+          - not_null
+      - name: rndrng_prvdr_state_fips
+        data_tests:
+          - not_null

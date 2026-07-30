@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: health__fed_cms_medicare_provider
+    columns:
+      - name: npi
+        data_tests:
+          - not_null
+          - unique
+      - name: rndrng_prvdr_state_fips
+        data_tests:
+          - not_null

@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: health__fed_cms_quality_payment_program_experience
+    columns:
+      - name: npi
+        data_tests:
+          - not_null

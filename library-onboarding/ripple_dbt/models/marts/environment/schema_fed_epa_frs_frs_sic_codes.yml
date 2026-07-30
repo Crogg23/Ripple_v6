@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: environment__fed_epa_frs_frs_sic_codes
+    columns:
+      - name: pgm_sys_id
+        data_tests:
+          - not_null
+      - name: sic_code
+        data_tests:
+          - not_null
+      - name: registry_id
+        data_tests:
+          - not_null

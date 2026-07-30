@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: investigations__xc_wayback_replay_doj_listing
+    columns:
+      - name: page_url
+        data_tests:
+          - not_null

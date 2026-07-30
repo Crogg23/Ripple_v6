@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: health__fed_cms_partd_prescriber_drug
+    columns:
+      - name: prscrbr_npi
+        data_tests:
+          - not_null
+      - name: prscrbr_state_fips
+        data_tests:
+          - not_null

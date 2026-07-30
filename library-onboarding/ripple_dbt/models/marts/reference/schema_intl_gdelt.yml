@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: reference__intl_gdelt
+    columns:
+      - name: globaleventid
+        data_tests:
+          - not_null
+          - unique

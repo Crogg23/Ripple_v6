@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: justice__intl_eu_sanctions
+    columns:
+      - name: entity_logical_id
+        data_tests:
+          - not_null
+      - name: naal_logical_id
+        data_tests:
+          - not_null
+      - name: addr_logical_id
+        data_tests:
+          - not_null
+      - name: addr_number
+        data_tests:
+          - not_null
+      - name: birt_logical_id
+        data_tests:
+          - not_null
+      - name: iden_logical_id
+        data_tests:
+          - not_null
+      - name: iden_number
+        data_tests:
+          - not_null
+      - name: citi_logical_id
+        data_tests:
+          - not_null

@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: transport__fed_faa_data_portal
+    columns:
+      - name: dataset_id
+        data_tests:
+          - not_null
+      - name: n_number
+        data_tests:
+          - not_null
+      - name: airport_id
+        data_tests:
+          - not_null

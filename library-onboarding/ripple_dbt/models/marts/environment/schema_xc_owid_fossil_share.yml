@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: environment__xc_owid_fossil_share
+    columns:
+      - name: entity
+        data_tests:
+          - not_null

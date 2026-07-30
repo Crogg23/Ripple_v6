@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: health__fed_cdc_overdose
+    columns:
+      - name: state
+        data_tests:
+          - not_null

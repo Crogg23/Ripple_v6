@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: politics__fed_congress_committee_membership
+    columns:
+      - name: committee_code
+        data_tests:
+          - not_null
+      - name: bioguide
+        data_tests:
+          - not_null

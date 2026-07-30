@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: justice__xc_mapping_police_violence
+    columns:
+      - name: mpv_id
+        data_tests:
+          - not_null

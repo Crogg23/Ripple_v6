@@ -1,0 +1,89 @@
+version: 2
+
+models:
+  - name: economics__fed_usaspending_assistance_full
+    columns:
+      - name: modification_number
+        data_tests:
+          - not_null
+      - name: sai_number
+        data_tests:
+          - not_null
+      - name: awarding_agency_code
+        data_tests:
+          - not_null
+      - name: awarding_sub_agency_code
+        data_tests:
+          - not_null
+      - name: awarding_office_code
+        data_tests:
+          - not_null
+      - name: funding_agency_code
+        data_tests:
+          - not_null
+      - name: funding_sub_agency_code
+        data_tests:
+          - not_null
+      - name: funding_office_code
+        data_tests:
+          - not_null
+      - name: recipient_country_code
+        data_tests:
+          - not_null
+      - name: recipient_city_code
+        data_tests:
+          - not_null
+      - name: prime_award_transaction_recipient_county_fips_code
+        data_tests:
+          - not_null
+      - name: prime_award_transaction_recipient_state_fips_code
+        data_tests:
+          - not_null
+      - name: recipient_state_code
+        data_tests:
+          - not_null
+      - name: recipient_zip_code
+        data_tests:
+          - not_null
+      - name: recipient_zip_last_4_code
+        data_tests:
+          - not_null
+      - name: recipient_foreign_postal_code
+        data_tests:
+          - not_null
+      - name: primary_place_of_performance_country_code
+        data_tests:
+          - not_null
+      - name: primary_place_of_performance_code
+        data_tests:
+          - not_null
+      - name: prime_award_transaction_place_of_performance_county_fips_code
+        data_tests:
+          - not_null
+      - name: prime_award_transaction_place_of_performance_state_fips_code
+        data_tests:
+          - not_null
+      - name: cfda_number
+        data_tests:
+          - not_null
+      - name: funding_opportunity_number
+        data_tests:
+          - not_null
+      - name: assistance_type_code
+        data_tests:
+          - not_null
+      - name: business_funds_indicator_code
+        data_tests:
+          - not_null
+      - name: business_types_code
+        data_tests:
+          - not_null
+      - name: correction_delete_indicator_code
+        data_tests:
+          - not_null
+      - name: action_type_code
+        data_tests:
+          - not_null
+      - name: record_type_code
+        data_tests:
+          - not_null

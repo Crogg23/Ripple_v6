@@ -266,10 +266,11 @@ def render_dossier(eid: str):
                     goto(view="source", src=str(s["SOURCE_TABLE"]).lower())
 
     # ---- affiliations (providers only) ----------------------------------------
-    aff = q.get_affiliations(entity_id)
-    if aff is not None and not aff.empty:
-        st.subheader("Facility Affiliations")
-        st.dataframe(aff, use_container_width=True, hide_index=True)
+    if g.get("KEY_TYPE") == "NPI":
+        aff = q.get_affiliations(g.get("KEY_VALUE"))
+        if aff is not None and not aff.empty:
+            st.subheader("Facility Affiliations")
+            st.dataframe(aff, use_container_width=True, hide_index=True)
 
 
 # --------------------------------------------------------------------------- #

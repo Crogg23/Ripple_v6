@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: politics__fed_medsl_house_returns
+    columns:
+      - name: state_fips
+        data_tests:
+          - not_null

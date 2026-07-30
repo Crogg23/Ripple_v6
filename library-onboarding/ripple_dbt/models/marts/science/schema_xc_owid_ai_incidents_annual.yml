@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: science__xc_owid_ai_incidents_annual
+    columns:
+      - name: entity
+        data_tests:
+          - not_null

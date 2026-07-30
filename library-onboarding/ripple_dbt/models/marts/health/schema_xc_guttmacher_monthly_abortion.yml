@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: health__xc_guttmacher_monthly_abortion
+    columns:
+      - name: state
+        data_tests:
+          - not_null

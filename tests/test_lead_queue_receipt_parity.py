@@ -65,7 +65,7 @@ def _queue_sql(cur) -> str:
     if not COMPILED.exists():
         pytest.skip("LEAD_QUEUE not materialized and no compiled SQL found "
                     "(run: dbt compile --select lead_queue)")
-    sql = COMPILED.read_text()
+    sql = COMPILED.read_text(encoding="utf-8")
     for col, typ in (("compiled_sql", "VARCHAR"), ("sql_sha256", "VARCHAR"),
                      ("as_of_date", "DATE")):
         sql, n = re.subn(rf"^[ \t]*{col},[ \t]*$",

@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: justice__fed_fdic_enforcement
+    columns:
+      - name: raw_text
+        data_tests:
+          - not_null
+          - unique

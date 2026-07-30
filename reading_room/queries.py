@@ -2,7 +2,7 @@
 only. User input NEVER lands in SQL text (no f-strings over values); the
 offline tests assert it.
 
-Read surfaces: LIBRARY_MARTS.DBT_CROGERS.LEAD_QUEUE (the triage mart),
+Read surfaces: LIBRARY_MARTS.REVIEW.LEAD_QUEUE (the triage mart),
 LIBRARY_META.REVIEW.V_LATEST_DECISIONS (decisions truth),
 LIBRARY_META."CONNECT".V_LEADS_PUBLISHED (evidence payload — the SAFE view,
 never raw LEADS), plus per-lead source-record pulls from LANDING.
@@ -12,7 +12,7 @@ from __future__ import annotations
 
 import json
 
-QUEUE_TABLE = "LIBRARY_MARTS.DBT_CROGERS.LEAD_QUEUE"
+QUEUE_TABLE = "LIBRARY_MARTS.REVIEW.LEAD_QUEUE"
 
 DETECTORS = [
     "banned_but_paid",
@@ -22,6 +22,7 @@ DETECTORS = [
     "sanctioned_vessel_broadcasting_v2",
     "sanctioned_vessel_broadcasting",
     "sec_filer_in_irs_bmf",
+    "osha_cohort_outlier_2024",
 ]
 
 TIERS = ["FACT_GRADE_3_SOURCE", "TWO_SOURCE", "NPPES_CONFLICT",

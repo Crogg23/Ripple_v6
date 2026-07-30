@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: economics__fed_irs_revocation
+    columns:
+      - name: zip_code
+        data_tests:
+          - not_null
+      - name: spine_entity_id
+        data_tests:
+          - not_null
+          - unique

@@ -52,7 +52,7 @@ def render(conn) -> str:
         ORDER BY DECODE(SEVERITY,'blocker',0,'high',1,'medium',2,'low',3), AREA, TITLE""")
     closed = fetch(cur, """
         SELECT TITLE, TO_VARCHAR(CLOSED_AT,'YYYY-MM-DD'), CLOSED_BY
-        FROM LIBRARY_META.BUILD.DEFECTS WHERE STATUS IN ('fixed','wontfix','superseded')
+        FROM LIBRARY_META.BUILD.DEFECTS WHERE STATUS IN ('closed','fixed','wontfix','superseded')
         ORDER BY CLOSED_AT DESC NULLS LAST LIMIT 15""")
     actions = fetch(cur, """
         SELECT ACTION_ID, SEQ, SCRIPT_PATH, STATUS, REQUIRES_HUMAN, REVERSIBLE, DEPENDS_ON, DESCRIPTION

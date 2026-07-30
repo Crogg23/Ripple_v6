@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: politics__fed_doj_epstein_library
+    columns:
+      - name: page_url
+        data_tests:
+          - not_null

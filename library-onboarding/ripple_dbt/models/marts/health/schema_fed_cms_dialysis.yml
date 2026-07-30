@@ -1,0 +1,80 @@
+version: 2
+
+models:
+  - name: health__fed_cms_dialysis
+    columns:
+      - name: five_star_data_availability_code
+        data_tests:
+          - not_null
+      - name: zip_code
+        data_tests:
+          - not_null
+      - name: telephone_number
+        data_tests:
+          - not_null
+      - name: patient_survival_data_availability_code
+        data_tests:
+          - not_null
+      - name: patient_hospitalization_data_availability_code
+        data_tests:
+          - not_null
+      - name: patient_hospital_readmission_data_availability_code
+        data_tests:
+          - not_null
+      - name: patient_transfusion_data_availability_code
+        data_tests:
+          - not_null
+      - name: patient_transplant_waitlist_data_availability_code
+        data_tests:
+          - not_null
+      - name: patient_prevalent_transplant_waitlist_data_availability_code
+        data_tests:
+          - not_null
+      - name: emergency_department_encounter_data_availability_code
+        data_tests:
+          - not_null
+      - name: emergency_department_encounter_ratio_occurring_within_30_days_of_hospital_discharge_data_availability_code
+        data_tests:
+          - not_null
+      - name: modality_switch_data_availability_code
+        data_tests:
+          - not_null
+      - name: patient_infection_data_availability_code
+        data_tests:
+          - not_null
+      - name: fistula_data_availability_code
+        data_tests:
+          - not_null
+      - name: hcp_vaccination_data_availability_code
+        data_tests:
+          - not_null
+      - name: adult_hd_kt_v_data_availability_code
+        data_tests:
+          - not_null
+      - name: adult_pd_kt_v_data_availability_code
+        data_tests:
+          - not_null
+      - name: pediatric_hd_kt_v_data_availability_code
+        data_tests:
+          - not_null
+      - name: pediatric_pd_kt_v_data_availability_code
+        data_tests:
+          - not_null
+      - name: hgb_10_data_availability_code
+        data_tests:
+          - not_null
+      - name: hgb_12_data_availability_code
+        data_tests:
+          - not_null
+      - name: hypercalcemia_data_availability_code
+        data_tests:
+          - not_null
+      - name: serum_phosphorus_data_availability_code
+        data_tests:
+          - not_null
+      - name: long_term_catheter_data_availability_code
+        data_tests:
+          - not_null
+      - name: npcr_data_availability_code
+        data_tests:
+          - not_null

@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: immigration__fed_uscis_data
+    columns:
+      - name: form_number
+        data_tests:
+          - not_null

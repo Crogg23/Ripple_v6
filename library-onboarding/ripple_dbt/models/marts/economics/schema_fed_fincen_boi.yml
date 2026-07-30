@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: economics__fed_fincen_boi
+    columns:
+      - name: fincen_id
+        data_tests:
+          - not_null
+          - unique
+      - name: beneficial_owner_id_number
+        data_tests:
+          - not_null
+          - unique

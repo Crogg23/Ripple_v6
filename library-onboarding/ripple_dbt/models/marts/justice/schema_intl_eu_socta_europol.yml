@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: justice__intl_eu_socta_europol
+    columns:
+      - name: serial_number
+        data_tests:
+          - not_null

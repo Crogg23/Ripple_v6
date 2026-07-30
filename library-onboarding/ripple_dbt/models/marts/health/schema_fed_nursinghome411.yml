@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: health__fed_nursinghome411
+    columns:
+      - name: chain_id
+        data_tests:
+          - not_null
+      - name: cms_region_number
+        data_tests:
+          - not_null

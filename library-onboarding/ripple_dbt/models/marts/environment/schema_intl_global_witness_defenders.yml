@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: environment__intl_global_witness_defenders
+    columns:
+      - name: defender_name
+        data_tests:
+          - not_null

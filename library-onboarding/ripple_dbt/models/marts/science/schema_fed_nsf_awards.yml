@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: science__fed_nsf_awards
+    columns:
+      - name: award_id
+        data_tests:
+          - not_null
+      - name: cfda_number
+        data_tests:
+          - not_null

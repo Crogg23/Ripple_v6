@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: housing__fed_fhfa_hpi
+    columns:
+      - name: place_id
+        data_tests:
+          - not_null
