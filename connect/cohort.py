@@ -144,6 +144,24 @@ dup_denom AS (
     GROUP BY ein, employees, hours
     HAVING COUNT(DISTINCT est_key) >= 3
 ),
+dup_site AS (
+    -- SAME-SITE DOUBLE-FILING DETECTOR (verified in the 2024 file, entity-quality
+    -- pass): a small number of establishments are filed TWICE under two different
+    -- ESTABLISHMENT_ID values for what is the identical physical site -- same EIN,
+    -- same establishment name, same city/state, same employee count, hours agreeing
+    -- to within rounding (e.g. Commodity Forwarders LAX-5814: 552,815 hours filed
+    -- under two IDs; US Foods Norcross: 362,230 vs 362,231 hours). ESTABLISHMENT_ID
+    -- is otherwise fully populated and unique in this file (no address-key fallback
+    -- was needed), so this is a genuine double-filing, not the fallback-collision
+    -- risk the grain comment above warns about. Ranking both would count one
+    -- workplace as two entries in the finding, so -- same policy as dup_denom --
+    -- both copies are excluded rather than one being guessed as authoritative.
+    SELECT ein, UPPER(TRIM(establishment)) AS est_name, city, state, employees
+    FROM est
+    WHERE establishment IS NOT NULL AND employees > 0
+    GROUP BY ein, UPPER(TRIM(establishment)), city, state, employees
+    HAVING COUNT(DISTINCT est_key) >= 2 AND MAX(hours) - MIN(hours) <= 5
+),
 scored AS (
     SELECT *,
            -- DART = Days Away, Restricted, or Transferred. The OSHA severity measure
@@ -194,6 +212,11 @@ scored AS (
       AND NOT EXISTS (SELECT 1 FROM dup_denom d
                       WHERE d.ein = e.ein AND d.employees = e.employees
                         AND d.hours = e.hours)
+      -- and the site must not be the identical physical location double-filed
+      -- under a second ESTABLISHMENT_ID (dup_site, see above)
+      AND NOT EXISTS (SELECT 1 FROM dup_site d
+                      WHERE d.ein = e.ein AND d.est_name = UPPER(TRIM(e.establishment))
+                        AND d.city = e.city AND d.state = e.state AND d.employees = e.employees)
 ),
 cohort AS (
     SELECT naics, size_band,
@@ -216,7 +239,7 @@ cohort AS (
        AND (SUM(dart_cases) * {OSHA_BASE_HOURS}) / NULLIF(SUM(hours), 0) >= 0.25
 )
 SELECT
-    s.ein, s.company, s.establishment, s.city, s.state,
+    s.ein, s.est_key, s.company, s.establishment, s.city, s.state,
     s.naics, s.industry, s.size_band,
     s.employees, s.hours,
     s.deaths, s.dart_cases, s.dafw_days,

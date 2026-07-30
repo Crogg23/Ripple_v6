@@ -172,6 +172,12 @@ def resolve_snapshots(conn, spec: dict) -> list[dict]:
     loads write a different per-chunk SHA, so a DISTINCT set would never match one stored hash).
     A non-landing object (a dbt staging view) carries no _SOURCE_RUN_ID — recorded honestly as
     unresolved so the receipt never claims a pin it doesn't have.
+
+    Some landing tables carry the provenance trio WITHOUT the underscore prefix (SOURCE_RUN_ID /
+    SRC_SHA256 / INGESTED_AT, e.g. FED_IRS_BMF, FED_OSHA_ITA_300A_SUMMARY_2024) — documented in
+    leads_specs.py's sec_filer_in_irs_bmf caveat. Falls back to that bare-column trio, pinning
+    directly off the row's own SRC_SHA256 (still a real content hash) rather than reporting
+    unresolved when the underscore-prefixed convention isn't present.
     """
     out = []
     for t in source_tables(spec):
@@ -190,8 +196,26 @@ def resolve_snapshots(conn, spec: dict) -> list[dict]:
                     rec["ingest_started_at"] = str(ing[0].get("STARTED_AT") or "")
             else:
                 rec["note"] = "non-landing object (dbt view?) — pin its underlying LANDING sources"
-        except Exception as exc:  # missing column / no access / view — record, don't crash
-            rec["note"] = f"unresolved: {type(exc).__name__}"
+        except Exception:
+            try:
+                row = db.dicts(conn, f"SELECT ANY_VALUE(SOURCE_RUN_ID) AS RID, "
+                                     f"ANY_VALUE(SRC_SHA256) AS SHA, ANY_VALUE(INGESTED_AT) AS AT, "
+                                     f"COUNT(DISTINCT SRC_SHA256) AS N_SHA, COUNT(*) AS N FROM {t}")
+                r0 = row[0] if row else {}
+                rec["rows"] = r0.get("N")
+                if r0.get("RID"):
+                    rec["source_run_id"] = r0["RID"]
+                    rec["ingest_sha256"] = r0.get("SHA")
+                    rec["ingest_started_at"] = str(r0.get("AT") or "")
+                    rec["note"] = ("bare (non-underscore) provenance columns; content hash is "
+                                   "this run's SRC_SHA256, not an INGEST_RUNS manifest lookup"
+                                   + ("" if r0.get("N_SHA") == 1 else
+                                      f" — WARNING: {r0.get('N_SHA')} distinct SRC_SHA256 across "
+                                      "this table, single hash may not cover the whole load"))
+                else:
+                    rec["note"] = "unresolved: no recognized provenance columns"
+            except Exception as exc:
+                rec["note"] = f"unresolved: {type(exc).__name__}"
         out.append(rec)
     return out
 
@@ -224,7 +248,13 @@ def run(lead_id: str, sql_only: bool = False, as_json: bool = False, check: bool
         lead = fetch_lead(conn, lead_id)
         if not lead:
             raise SystemExit(f"no lead {lead_id} in {store.cfqn('LEADS')}")
-        spec = JOBS.get(lead.get("RULE_NAME"))
+        rule = lead.get("RULE_NAME")
+        spec = JOBS.get(rule)
+        if spec is None:
+            # aggregation-shaped rules (e.g. cohort_leads) aren't JobSpecs; they
+            # register a minimal left/right-table stand-in spec instead.
+            from .cohort_leads import COHORT_SPECS
+            spec = COHORT_SPECS.get(rule)
         if not spec:
             raise SystemExit(f"lead {lead_id} has unknown rule {lead.get('RULE_NAME')!r} "
                              "(spec retired?) — cannot rebuild receipt")
