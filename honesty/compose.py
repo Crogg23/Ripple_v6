@@ -82,7 +82,7 @@ def measure_input_for_mart(mart: str, grades_path=None) -> MeasureInput:
     from pathlib import Path
 
     path = Path(grades_path) if grades_path else Path(__file__).resolve().parent / "mart_grades.json"
-    data = json.loads(path.read_text())
+    data = json.loads(path.read_text(encoding="utf-8"))
     for node_id, g in data["grades"].items():
         if node_id == mart or node_id.split(".")[-1] == mart:
             return MeasureInput(mart, g["grade"], tuple(g["traps"]))

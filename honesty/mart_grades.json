@@ -1,9 +1,19 @@
 {
-  "manifest": "library-onboarding/ripple_dbt/target/manifest.json",
-  "manifest_generated_at": "2026-07-20T22:25:50.643923Z",
-  "dbt_invocation_id": "b745af0a-049c-4a96-aed2-dfbd0e933d74",
-  "n_marts": 47,
+  "manifest": "library-onboarding\\ripple_dbt\\target\\manifest.json",
+  "manifest_generated_at": "2026-07-30T19:20:14.086654Z",
+  "dbt_invocation_id": "bc1c5447-3c1a-4e0d-b264-16a1337fd76f",
+  "n_marts": 391,
   "grades": {
+    "model.ripple.civil_rights__fed_nara_wra_aad": {
+      "model": "model.ripple.civil_rights__fed_nara_wra_aad",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_NARA_WRA_AAD"
+      ],
+      "n_ancestors": 2
+    },
     "model.ripple.consumer_protection__fed_cfpb_complaints": {
       "model": "model.ripple.consumer_protection__fed_cfpb_complaints",
       "grade": "fact",
@@ -11,6 +21,46 @@
       "traps": [],
       "sources": [
         "FED_CFPB_COMPLAINTS"
+      ],
+      "n_ancestors": 2
+    },
+    "model.ripple.consumer_safety__fed_cpsc_neiss": {
+      "model": "model.ripple.consumer_safety__fed_cpsc_neiss",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CPSC_NEISS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.consumer_safety__fed_nhtsa_complaints": {
+      "model": "model.ripple.consumer_safety__fed_nhtsa_complaints",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_NHTSA_COMPLAINTS"
+      ],
+      "n_ancestors": 2
+    },
+    "model.ripple.consumer_safety__fed_nhtsa_investigations": {
+      "model": "model.ripple.consumer_safety__fed_nhtsa_investigations",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_NHTSA_INVESTIGATIONS"
+      ],
+      "n_ancestors": 2
+    },
+    "model.ripple.consumer_safety__fed_nhtsa_recalls": {
+      "model": "model.ripple.consumer_safety__fed_nhtsa_recalls",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_NHTSA_RECALLS"
       ],
       "n_ancestors": 2
     },
@@ -24,6 +74,26 @@
       ],
       "n_ancestors": 2
     },
+    "model.ripple.corporate_registry__intl_ie_cro": {
+      "model": "model.ripple.corporate_registry__intl_ie_cro",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_IE_CRO"
+      ],
+      "n_ancestors": 2
+    },
+    "model.ripple.corporate_registry__intl_uk_companies_house": {
+      "model": "model.ripple.corporate_registry__intl_uk_companies_house",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INT_UK_COMPANIES_HOUSE"
+      ],
+      "n_ancestors": 1
+    },
     "model.ripple.criminal_justice__fed_bjs_data": {
       "model": "model.ripple.criminal_justice__fed_bjs_data",
       "grade": "fact",
@@ -32,7 +102,37 @@
       "sources": [
         "FED_BJS_DATA"
       ],
-      "n_ancestors": 2
+      "n_ancestors": 1
+    },
+    "model.ripple.economics__fed_bls_qcew": {
+      "model": "model.ripple.economics__fed_bls_qcew",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_BLS_QCEW"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.economics__fed_dol_form5500": {
+      "model": "model.ripple.economics__fed_dol_form5500",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_DOL_FORM5500"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.economics__fed_fac_single_audit": {
+      "model": "model.ripple.economics__fed_fac_single_audit",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FAC_SINGLE_AUDIT"
+      ],
+      "n_ancestors": 1
     },
     "model.ripple.economics__fed_fdic_failed_banks": {
       "model": "model.ripple.economics__fed_fdic_failed_banks",
@@ -43,6 +143,156 @@
         "FED_FDIC_FAILED_BANKS"
       ],
       "n_ancestors": 2
+    },
+    "model.ripple.economics__fed_fincen_boi": {
+      "model": "model.ripple.economics__fed_fincen_boi",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FINCEN_BOI"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.economics__fed_foreignassistance": {
+      "model": "model.ripple.economics__fed_foreignassistance",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FOREIGNASSISTANCE"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.economics__fed_grants_gov": {
+      "model": "model.ripple.economics__fed_grants_gov",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_GRANTS_GOV"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.economics__fed_irs_990": {
+      "model": "model.ripple.economics__fed_irs_990",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_IRS_990"
+      ],
+      "n_ancestors": 2
+    },
+    "model.ripple.economics__fed_irs_990_efile_index": {
+      "model": "model.ripple.economics__fed_irs_990_efile_index",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_IRS_990_EFILE_INDEX"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.economics__fed_irs_auto_revocations": {
+      "model": "model.ripple.economics__fed_irs_auto_revocations",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_IRS_AUTO_REVOCATIONS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.economics__fed_irs_bmf": {
+      "model": "model.ripple.economics__fed_irs_bmf",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_IRS_BMF"
+      ],
+      "n_ancestors": 2
+    },
+    "model.ripple.economics__fed_irs_eo_pr": {
+      "model": "model.ripple.economics__fed_irs_eo_pr",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_IRS_EO_PR"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.economics__fed_irs_pub78_eligible_donees": {
+      "model": "model.ripple.economics__fed_irs_pub78_eligible_donees",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_IRS_PUB78_ELIGIBLE_DONEES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.economics__fed_irs_revocation": {
+      "model": "model.ripple.economics__fed_irs_revocation",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_IRS_REVOCATION"
+      ],
+      "n_ancestors": 2
+    },
+    "model.ripple.economics__fed_irs_soi_charities": {
+      "model": "model.ripple.economics__fed_irs_soi_charities",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_IRS_SOI_CHARITIES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.economics__fed_pbgc_data": {
+      "model": "model.ripple.economics__fed_pbgc_data",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_PBGC_DATA"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.economics__fed_sba_loans": {
+      "model": "model.ripple.economics__fed_sba_loans",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_SBA_LOANS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.economics__fed_sba_ppp": {
+      "model": "model.ripple.economics__fed_sba_ppp",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_SBA_PPP"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.economics__fed_sec_edgar": {
+      "model": "model.ripple.economics__fed_sec_edgar",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_SEC_EDGAR"
+      ],
+      "n_ancestors": 1
     },
     "model.ripple.economics__fed_sec_edgar_company_tickers": {
       "model": "model.ripple.economics__fed_sec_edgar_company_tickers",
@@ -64,6 +314,16 @@
       ],
       "n_ancestors": 2
     },
+    "model.ripple.economics__fed_treasury_debt_outstanding": {
+      "model": "model.ripple.economics__fed_treasury_debt_outstanding",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_TREASURY_DEBT_OUTSTANDING"
+      ],
+      "n_ancestors": 1
+    },
     "model.ripple.economics__fed_treasury_debt_to_penny": {
       "model": "model.ripple.economics__fed_treasury_debt_to_penny",
       "grade": "fact",
@@ -73,6 +333,26 @@
         "FED_TREASURY_DEBT_TO_PENNY"
       ],
       "n_ancestors": 2
+    },
+    "model.ripple.economics__fed_treasury_dts_deposits": {
+      "model": "model.ripple.economics__fed_treasury_dts_deposits",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_TREASURY_DTS_DEPOSITS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.economics__fed_treasury_mts_receipts": {
+      "model": "model.ripple.economics__fed_treasury_mts_receipts",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_TREASURY_MTS_RECEIPTS"
+      ],
+      "n_ancestors": 1
     },
     "model.ripple.economics__fed_us_sec_edgar": {
       "model": "model.ripple.economics__fed_us_sec_edgar",
@@ -94,6 +374,148 @@
       ],
       "n_ancestors": 2
     },
+    "model.ripple.economics__fed_usaspending_assistance_full": {
+      "model": "model.ripple.economics__fed_usaspending_assistance_full",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_USASPENDING_ASSISTANCE_FULL"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.economics__fed_usaspending_contracts": {
+      "model": "model.ripple.economics__fed_usaspending_contracts",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [
+        "trap_usaspending_grain"
+      ],
+      "sources": [
+        "FED_USASPENDING_CONTRACTS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.economics__fed_usaspending_contracts_full": {
+      "model": "model.ripple.economics__fed_usaspending_contracts_full",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_USASPENDING_CONTRACTS_FULL"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.economics__fed_usaspending_toptier_agencies": {
+      "model": "model.ripple.economics__fed_usaspending_toptier_agencies",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_USASPENDING_TOPTIER_AGENCIES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.economics__int_gleif_rr": {
+      "model": "model.ripple.economics__int_gleif_rr",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INT_GLEIF_RR"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.economics__intl_es_borme": {
+      "model": "model.ripple.economics__intl_es_borme",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_ES_BORME"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.economics__intl_fao_faostat": {
+      "model": "model.ripple.economics__intl_fao_faostat",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_FAO_FAOSTAT"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.economics__intl_fao_faostat_food_security": {
+      "model": "model.ripple.economics__intl_fao_faostat_food_security",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_FAO_FAOSTAT_FOOD_SECURITY"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.economics__intl_gfi_trade": {
+      "model": "model.ripple.economics__intl_gfi_trade",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_GFI_TRADE"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.economics__intl_gleif": {
+      "model": "model.ripple.economics__intl_gleif",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_GLEIF"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.economics__intl_gleif_relationships": {
+      "model": "model.ripple.economics__intl_gleif_relationships",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_GLEIF_RELATIONSHIPS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.economics__intl_gleif_repex": {
+      "model": "model.ripple.economics__intl_gleif_repex",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_GLEIF_REPEX"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.economics__intl_gleif_rr": {
+      "model": "model.ripple.economics__intl_gleif_rr",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INT_GLEIF_RR"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.economics__intl_ipc_food_insecurity_global": {
+      "model": "model.ripple.economics__intl_ipc_food_insecurity_global",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_IPC_FOOD_INSECURITY_GLOBAL"
+      ],
+      "n_ancestors": 1
+    },
     "model.ripple.economics__intl_it_istat": {
       "model": "model.ripple.economics__intl_it_istat",
       "grade": "fact",
@@ -104,6 +526,176 @@
       ],
       "n_ancestors": 2
     },
+    "model.ripple.economics__xc_owid_gini": {
+      "model": "model.ripple.economics__xc_owid_gini",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "XC_OWID_GINI"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.economics__xc_wikipedia_largest_us_companies": {
+      "model": "model.ripple.economics__xc_wikipedia_largest_us_companies",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "XC_WIKIPEDIA_LARGEST_US_COMPANIES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.education__fed_cftc_cot_financial": {
+      "model": "model.ripple.education__fed_cftc_cot_financial",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CFTC_COT_FINANCIAL"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.education__fed_cftc_cot_futures": {
+      "model": "model.ripple.education__fed_cftc_cot_futures",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CFTC_COT_FUTURES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.education__fed_cpsc_neiss_codes": {
+      "model": "model.ripple.education__fed_cpsc_neiss_codes",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CPSC_NEISS_CODES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.education__fed_ed_edfacts": {
+      "model": "model.ripple.education__fed_ed_edfacts",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_ED_EDFACTS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.education__fed_frb_h15_selected_rates": {
+      "model": "model.ripple.education__fed_frb_h15_selected_rates",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FRB_H15_SELECTED_RATES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.education__fed_frb_z1_csv": {
+      "model": "model.ripple.education__fed_frb_z1_csv",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FRB_Z1_CSV"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.education__fed_google_polads_advertiser_declared_stats": {
+      "model": "model.ripple.education__fed_google_polads_advertiser_declared_stats",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_GOOGLE_POLADS_ADVERTISER_DECLARED_STATS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.education__fed_google_polads_advertiser_geo_spend": {
+      "model": "model.ripple.education__fed_google_polads_advertiser_geo_spend",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_GOOGLE_POLADS_ADVERTISER_GEO_SPEND"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.education__fed_google_polads_advertiser_id_mapping": {
+      "model": "model.ripple.education__fed_google_polads_advertiser_id_mapping",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_GOOGLE_POLADS_ADVERTISER_ID_MAPPING"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.education__fed_google_polads_advertiser_stats": {
+      "model": "model.ripple.education__fed_google_polads_advertiser_stats",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_GOOGLE_POLADS_ADVERTISER_STATS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.education__fed_google_polads_advertiser_weekly_spend": {
+      "model": "model.ripple.education__fed_google_polads_advertiser_weekly_spend",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_GOOGLE_POLADS_ADVERTISER_WEEKLY_SPEND"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.education__fed_google_polads_creative_id_mapping": {
+      "model": "model.ripple.education__fed_google_polads_creative_id_mapping",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_GOOGLE_POLADS_CREATIVE_ID_MAPPING"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.education__fed_google_polads_creative_stats": {
+      "model": "model.ripple.education__fed_google_polads_creative_stats",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_GOOGLE_POLADS_CREATIVE_STATS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.education__fed_google_polads_geo_spend": {
+      "model": "model.ripple.education__fed_google_polads_geo_spend",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_GOOGLE_POLADS_GEO_SPEND"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.education__fed_senate_lda_filings": {
+      "model": "model.ripple.education__fed_senate_lda_filings",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_SENATE_LDA_FILINGS"
+      ],
+      "n_ancestors": 1
+    },
     "model.ripple.energy__intl_ember_elec": {
       "model": "model.ripple.energy__intl_ember_elec",
       "grade": "fact",
@@ -113,6 +705,946 @@
         "INTL_EMBER_ELEC"
       ],
       "n_ancestors": 2
+    },
+    "model.ripple.environment__epa_penalty_gap": {
+      "model": "model.ripple.environment__epa_penalty_gap",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_ECHO"
+      ],
+      "n_ancestors": 2
+    },
+    "model.ripple.environment__fed_epa_air_emissions_poll_rpt_combined_emissions": {
+      "model": "model.ripple.environment__fed_epa_air_emissions_poll_rpt_combined_emissions",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_AIR_EMISSIONS_POLL_RPT_COMBINED_EMISSIONS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_echo": {
+      "model": "model.ripple.environment__fed_epa_echo",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_ECHO"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_egrid_plant_2022": {
+      "model": "model.ripple.environment__fed_epa_egrid_plant_2022",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_EGRID_PLANT_2022"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_frs_facilities": {
+      "model": "model.ripple.environment__fed_epa_frs_facilities",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_FRS_FULL"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_frs_frs_naics_codes": {
+      "model": "model.ripple.environment__fed_epa_frs_frs_naics_codes",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_FRS_FRS_NAICS_CODES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_frs_frs_program_links": {
+      "model": "model.ripple.environment__fed_epa_frs_frs_program_links",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_FRS_FRS_PROGRAM_LINKS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_frs_frs_sic_codes": {
+      "model": "model.ripple.environment__fed_epa_frs_frs_sic_codes",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_FRS_FRS_SIC_CODES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_icis_air_icis_air_facilities": {
+      "model": "model.ripple.environment__fed_epa_icis_air_icis_air_facilities",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_icis_air_icis_air_fces_pces": {
+      "model": "model.ripple.environment__fed_epa_icis_air_icis_air_fces_pces",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_ICIS_AIR_ICIS_AIR_FCES_PCES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_icis_air_icis_air_formal_actions": {
+      "model": "model.ripple.environment__fed_epa_icis_air_icis_air_formal_actions",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_ICIS_AIR_ICIS_AIR_FORMAL_ACTIONS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_icis_air_icis_air_informal_actions": {
+      "model": "model.ripple.environment__fed_epa_icis_air_icis_air_informal_actions",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_ICIS_AIR_ICIS_AIR_INFORMAL_ACTIONS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_icis_air_icis_air_pollutants": {
+      "model": "model.ripple.environment__fed_epa_icis_air_icis_air_pollutants",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_ICIS_AIR_ICIS_AIR_POLLUTANTS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_icis_air_icis_air_program_subparts": {
+      "model": "model.ripple.environment__fed_epa_icis_air_icis_air_program_subparts",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_ICIS_AIR_ICIS_AIR_PROGRAM_SUBPARTS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_icis_air_icis_air_programs": {
+      "model": "model.ripple.environment__fed_epa_icis_air_icis_air_programs",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_ICIS_AIR_ICIS_AIR_PROGRAMS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_icis_air_icis_air_stack_tests": {
+      "model": "model.ripple.environment__fed_epa_icis_air_icis_air_stack_tests",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_ICIS_AIR_ICIS_AIR_STACK_TESTS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_icis_air_icis_air_titlev_certs": {
+      "model": "model.ripple.environment__fed_epa_icis_air_icis_air_titlev_certs",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_ICIS_AIR_ICIS_AIR_TITLEV_CERTS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_icis_air_icis_air_violation_history": {
+      "model": "model.ripple.environment__fed_epa_icis_air_icis_air_violation_history",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_ICIS_AIR_ICIS_AIR_VIOLATION_HISTORY"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_npdes_icis_facilities": {
+      "model": "model.ripple.environment__fed_epa_npdes_icis_facilities",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_NPDES_ICIS_FACILITIES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_npdes_npdes_cs_violations": {
+      "model": "model.ripple.environment__fed_epa_npdes_npdes_cs_violations",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_NPDES_NPDES_CS_VIOLATIONS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_npdes_npdes_formal_enforcement_actions": {
+      "model": "model.ripple.environment__fed_epa_npdes_npdes_formal_enforcement_actions",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_NPDES_NPDES_FORMAL_ENFORCEMENT_ACTIONS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_npdes_npdes_informal_enforcement_actions": {
+      "model": "model.ripple.environment__fed_epa_npdes_npdes_informal_enforcement_actions",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_NPDES_NPDES_INFORMAL_ENFORCEMENT_ACTIONS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_npdes_npdes_inspections": {
+      "model": "model.ripple.environment__fed_epa_npdes_npdes_inspections",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_NPDES_NPDES_INSPECTIONS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_npdes_npdes_naics": {
+      "model": "model.ripple.environment__fed_epa_npdes_npdes_naics",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_NPDES_NPDES_NAICS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_npdes_npdes_ps_violations": {
+      "model": "model.ripple.environment__fed_epa_npdes_npdes_ps_violations",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_NPDES_NPDES_PS_VIOLATIONS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_npdes_npdes_qncr_history": {
+      "model": "model.ripple.environment__fed_epa_npdes_npdes_qncr_history",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_NPDES_NPDES_QNCR_HISTORY"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_npdes_npdes_se_violations": {
+      "model": "model.ripple.environment__fed_epa_npdes_npdes_se_violations",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_NPDES_NPDES_SE_VIOLATIONS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_npdes_npdes_sics": {
+      "model": "model.ripple.environment__fed_epa_npdes_npdes_sics",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_NPDES_NPDES_SICS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_sdwa_sdwa_events_milestones": {
+      "model": "model.ripple.environment__fed_epa_sdwa_sdwa_events_milestones",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_SDWA_SDWA_EVENTS_MILESTONES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_sdwa_sdwa_facilities": {
+      "model": "model.ripple.environment__fed_epa_sdwa_sdwa_facilities",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_SDWA_SDWA_FACILITIES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_sdwa_sdwa_geographic_areas": {
+      "model": "model.ripple.environment__fed_epa_sdwa_sdwa_geographic_areas",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_sdwa_sdwa_lcr_samples": {
+      "model": "model.ripple.environment__fed_epa_sdwa_sdwa_lcr_samples",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_SDWA_SDWA_LCR_SAMPLES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_sdwa_sdwa_pn_violation_assoc": {
+      "model": "model.ripple.environment__fed_epa_sdwa_sdwa_pn_violation_assoc",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_SDWA_SDWA_PN_VIOLATION_ASSOC"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_sdwa_sdwa_pub_water_systems": {
+      "model": "model.ripple.environment__fed_epa_sdwa_sdwa_pub_water_systems",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_sdwa_sdwa_site_visits": {
+      "model": "model.ripple.environment__fed_epa_sdwa_sdwa_site_visits",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_SDWA_SDWA_SITE_VISITS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_sdwa_sdwa_violations_enforcement": {
+      "model": "model.ripple.environment__fed_epa_sdwa_sdwa_violations_enforcement",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_epa_tri_basic_2023": {
+      "model": "model.ripple.environment__fed_epa_tri_basic_2023",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_TRI_BASIC_2023"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_noaa_storm_events": {
+      "model": "model.ripple.environment__fed_noaa_storm_events",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_NOAA_STORM_EVENTS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_noaa_weather_api": {
+      "model": "model.ripple.environment__fed_noaa_weather_api",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_NOAA_WEATHER_API"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_usgs_minerals": {
+      "model": "model.ripple.environment__fed_usgs_minerals",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_USGS_MINERALS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__fed_usgs_water": {
+      "model": "model.ripple.environment__fed_usgs_water",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_USGS_WATER"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__intl_gem_hazard": {
+      "model": "model.ripple.environment__intl_gem_hazard",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_GEM_HAZARD"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__intl_global_witness_defenders": {
+      "model": "model.ripple.environment__intl_global_witness_defenders",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_GLOBAL_WITNESS_DEFENDERS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__xc_epa_corporate_crosswalk": {
+      "model": "model.ripple.environment__xc_epa_corporate_crosswalk",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "XC_EPA_CORPORATE_CROSSWALK"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__xc_owid_co2": {
+      "model": "model.ripple.environment__xc_owid_co2",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "XC_OWID_CO2"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__xc_owid_fossil_share": {
+      "model": "model.ripple.environment__xc_owid_fossil_share",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "XC_OWID_FOSSIL_SHARE"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.environment__xc_owid_temp_anomaly": {
+      "model": "model.ripple.environment__xc_owid_temp_anomaly",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "XC_OWID_TEMP_ANOMALY"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_cfpb_complaints": {
+      "model": "model.ripple.finance__fed_cfpb_complaints",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CFPB_COMPLAINTS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_epa_icis_fec_case_enforcement_conclusion_facilities": {
+      "model": "model.ripple.finance__fed_epa_icis_fec_case_enforcement_conclusion_facilities",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_ICIS_FEC_CASE_ENFORCEMENT_CONCLUSION_FACILITIES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_epa_icis_fec_case_facilities": {
+      "model": "model.ripple.finance__fed_epa_icis_fec_case_facilities",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_ICIS_FEC_CASE_FACILITIES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_epa_icis_fec_epa_informal_enforcement_actions": {
+      "model": "model.ripple.finance__fed_epa_icis_fec_epa_informal_enforcement_actions",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_ICIS_FEC_EPA_INFORMAL_ENFORCEMENT_ACTIONS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_epa_icis_fec_icis_fec_epa_inspections": {
+      "model": "model.ripple.finance__fed_epa_icis_fec_icis_fec_epa_inspections",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_ICIS_FEC_ICIS_FEC_EPA_INSPECTIONS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_fara": {
+      "model": "model.ripple.finance__fed_fara",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FARA"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_fec_bulk": {
+      "model": "model.ripple.finance__fed_fec_bulk",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FEC_BULK"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_fec_bulk_candidates": {
+      "model": "model.ripple.finance__fed_fec_bulk_candidates",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FEC_BULK_CANDIDATES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_fec_bulk_committees": {
+      "model": "model.ripple.finance__fed_fec_bulk_committees",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FEC_BULK_COMMITTEES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_fec_bulk_linkages": {
+      "model": "model.ripple.finance__fed_fec_bulk_linkages",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FEC_BULK_LINKAGES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_fec_bulk_summary": {
+      "model": "model.ripple.finance__fed_fec_bulk_summary",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FEC_BULK_SUMMARY"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_fec_cand_cmte_linkage": {
+      "model": "model.ripple.finance__fed_fec_cand_cmte_linkage",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FEC_CAND_CMTE_LINKAGE"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_fec_candidates": {
+      "model": "model.ripple.finance__fed_fec_candidates",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FEC_CANDIDATES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_fec_committee_to_candidate": {
+      "model": "model.ripple.finance__fed_fec_committee_to_candidate",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FEC_COMMITTEE_TO_CANDIDATE"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_fec_committees": {
+      "model": "model.ripple.finance__fed_fec_committees",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FEC_COMMITTEES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_fec_independent_expenditures": {
+      "model": "model.ripple.finance__fed_fec_independent_expenditures",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FEC_INDEPENDENT_EXPENDITURES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_fec_indiv_contributions": {
+      "model": "model.ripple.finance__fed_fec_indiv_contributions",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FEC_INDIV_CONTRIBUTIONS"
+      ],
+      "n_ancestors": 2
+    },
+    "model.ripple.finance__fed_fec_leadership_pac": {
+      "model": "model.ripple.finance__fed_fec_leadership_pac",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FEC_LEADERSHIP_PAC"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_fec_pac_summary": {
+      "model": "model.ripple.finance__fed_fec_pac_summary",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FEC_PAC_SUMMARY"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_ffiec_call_reports": {
+      "model": "model.ripple.finance__fed_ffiec_call_reports",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FFIEC_CALL_REPORTS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_irs_soi": {
+      "model": "model.ripple.finance__fed_irs_soi",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_IRS_SOI"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_ncua_call_reports": {
+      "model": "model.ripple.finance__fed_ncua_call_reports",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_NCUA_CALL_REPORTS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_sec_13f_filers": {
+      "model": "model.ripple.finance__fed_sec_13f_filers",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_SEC_13F_FILERS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_sec_13f_holdings": {
+      "model": "model.ripple.finance__fed_sec_13f_holdings",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_SEC_13F_HOLDINGS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_sec_13f_positions": {
+      "model": "model.ripple.finance__fed_sec_13f_positions",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_SEC_13F_HOLDINGS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_sec_13f_submission": {
+      "model": "model.ripple.finance__fed_sec_13f_submission",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_SEC_13F_SUBMISSION"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_sec_13f_submissions": {
+      "model": "model.ripple.finance__fed_sec_13f_submissions",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_SEC_13F_SUBMISSIONS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_sec_business_development_company_report": {
+      "model": "model.ripple.finance__fed_sec_business_development_company_report",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_SEC_BUSINESS_DEVELOPMENT_COMPANY_REPORT"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_sec_closed_end_fund_information": {
+      "model": "model.ripple.finance__fed_sec_closed_end_fund_information",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_SEC_CLOSED_END_FUND_INFORMATION"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_sec_dera_sub_2024q1": {
+      "model": "model.ripple.finance__fed_sec_dera_sub_2024q1",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_SEC_DERA_SUB_2024Q1"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_sec_dera_sub_2024q2": {
+      "model": "model.ripple.finance__fed_sec_dera_sub_2024q2",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_SEC_DERA_SUB_2024Q2"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_sec_dera_sub_2024q3": {
+      "model": "model.ripple.finance__fed_sec_dera_sub_2024q3",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_SEC_DERA_SUB_2024Q3"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_sec_dera_sub_2024q4": {
+      "model": "model.ripple.finance__fed_sec_dera_sub_2024q4",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_SEC_DERA_SUB_2024Q4"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_sec_dera_sub_2025q1": {
+      "model": "model.ripple.finance__fed_sec_dera_sub_2025q1",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_SEC_DERA_SUB_2025Q1"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_sec_dera_sub_2025q2": {
+      "model": "model.ripple.finance__fed_sec_dera_sub_2025q2",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_SEC_DERA_SUB_2025Q2"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_sec_dera_sub_2025q3": {
+      "model": "model.ripple.finance__fed_sec_dera_sub_2025q3",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_SEC_DERA_SUB_2025Q3"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_sec_dera_sub_2025q4": {
+      "model": "model.ripple.finance__fed_sec_dera_sub_2025q4",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_SEC_DERA_SUB_2025Q4"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_sec_dera_sub_2026q1": {
+      "model": "model.ripple.finance__fed_sec_dera_sub_2026q1",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_SEC_DERA_SUB_2026Q1"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_sec_edgar_company_tickers_exchange": {
+      "model": "model.ripple.finance__fed_sec_edgar_company_tickers_exchange",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_SEC_EDGAR_COMPANY_TICKERS_EXCHANGE"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_sec_edgar_financials": {
+      "model": "model.ripple.finance__fed_sec_edgar_financials",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_SEC_EDGAR_FINANCIALS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_sec_edgar_insiders": {
+      "model": "model.ripple.finance__fed_sec_edgar_insiders",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_SEC_EDGAR_INSIDERS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_sec_insider_deriv_trans": {
+      "model": "model.ripple.finance__fed_sec_insider_deriv_trans",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_SEC_INSIDER_DERIV_TRANS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__fed_sec_insider_nonderiv_trans": {
+      "model": "model.ripple.finance__fed_sec_insider_nonderiv_trans",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_SEC_INSIDER_NONDERIV_TRANS"
+      ],
+      "n_ancestors": 2
+    },
+    "model.ripple.finance__fed_sec_insider_reportingowner": {
+      "model": "model.ripple.finance__fed_sec_insider_reportingowner",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_SEC_INSIDER_REPORTINGOWNER"
+      ],
+      "n_ancestors": 2
+    },
+    "model.ripple.finance__fed_sec_insider_submission": {
+      "model": "model.ripple.finance__fed_sec_insider_submission",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_SEC_INSIDER_SUBMISSION"
+      ],
+      "n_ancestors": 2
+    },
+    "model.ripple.finance__fed_sec_money_market_fund_information": {
+      "model": "model.ripple.finance__fed_sec_money_market_fund_information",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_SEC_MONEY_MARKET_FUND_INFORMATION"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.finance__intl_wb_ids": {
+      "model": "model.ripple.finance__intl_wb_ids",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_WB_IDS"
+      ],
+      "n_ancestors": 1
     },
     "model.ripple.foreign_influence__fed_fara_bulk": {
       "model": "model.ripple.foreign_influence__fed_fara_bulk",
@@ -134,6 +1666,106 @@
       ],
       "n_ancestors": 2
     },
+    "model.ripple.government_records__fed_nara_aad": {
+      "model": "model.ripple.government_records__fed_nara_aad",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_NARA_AAD"
+      ],
+      "n_ancestors": 2
+    },
+    "model.ripple.health__fed_cdc_anxiety_depression": {
+      "model": "model.ripple.health__fed_cdc_anxiety_depression",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CDC_ANXIETY_DEPRESSION"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cdc_data_portal": {
+      "model": "model.ripple.health__fed_cdc_data_portal",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CDC_DATA_PORTAL"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cdc_drug_poisoning_county": {
+      "model": "model.ripple.health__fed_cdc_drug_poisoning_county",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CDC_DRUG_POISONING_COUNTY"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cdc_health_insurance": {
+      "model": "model.ripple.health__fed_cdc_health_insurance",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CDC_HEALTH_INSURANCE"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cdc_injury_violence_county": {
+      "model": "model.ripple.health__fed_cdc_injury_violence_county",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CDC_INJURY_VIOLENCE_COUNTY"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cdc_nndss_weekly_2024": {
+      "model": "model.ripple.health__fed_cdc_nndss_weekly_2024",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CDC_NNDSS_WEEKLY_2024"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cdc_overdose": {
+      "model": "model.ripple.health__fed_cdc_overdose",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CDC_OVERDOSE"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cdc_suicide_rates": {
+      "model": "model.ripple.health__fed_cdc_suicide_rates",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CDC_SUICIDE_RATES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cdc_wonder": {
+      "model": "model.ripple.health__fed_cdc_wonder",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CDC_WONDER"
+      ],
+      "n_ancestors": 1
+    },
     "model.ripple.health__fed_clinicaltrials": {
       "model": "model.ripple.health__fed_clinicaltrials",
       "grade": "fact",
@@ -144,6 +1776,66 @@
       ],
       "n_ancestors": 2
     },
+    "model.ripple.health__fed_cms_ambulatory_specialty_model_participants": {
+      "model": "model.ripple.health__fed_cms_ambulatory_specialty_model_participants",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_dialysis": {
+      "model": "model.ripple.health__fed_cms_dialysis",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_DIALYSIS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_facility_affiliation": {
+      "model": "model.ripple.health__fed_cms_facility_affiliation",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_FACILITY_AFFILIATION"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_facility_level_minimum_data_set_frequency": {
+      "model": "model.ripple.health__fed_cms_facility_level_minimum_data_set_frequency",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_federally_qualified_health_center_enrollments": {
+      "model": "model.ripple.health__fed_cms_federally_qualified_health_center_enrollments",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_fiscal_intermediary_shared_system_attending_and_rendering": {
+      "model": "model.ripple.health__fed_cms_fiscal_intermediary_shared_system_attending_and_rendering",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING"
+      ],
+      "n_ancestors": 1
+    },
     "model.ripple.health__fed_cms_hcris": {
       "model": "model.ripple.health__fed_cms_hcris",
       "grade": "fact",
@@ -153,6 +1845,216 @@
         "FED_CMS_HCRIS"
       ],
       "n_ancestors": 2
+    },
+    "model.ripple.health__fed_cms_home_health": {
+      "model": "model.ripple.health__fed_cms_home_health",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_HOME_HEALTH"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_home_health_agency_enrollments": {
+      "model": "model.ripple.health__fed_cms_home_health_agency_enrollments",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_hospice": {
+      "model": "model.ripple.health__fed_cms_hospice",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_HOSPICE"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_hospital_compare": {
+      "model": "model.ripple.health__fed_cms_hospital_compare",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_HOSPITAL_COMPARE"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_hospital_enrollments": {
+      "model": "model.ripple.health__fed_cms_hospital_enrollments",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_HOSPITAL_ENROLLMENTS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_hospital_general": {
+      "model": "model.ripple.health__fed_cms_hospital_general",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_HOSPITAL_GENERAL"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_hpt_mrf": {
+      "model": "model.ripple.health__fed_cms_hpt_mrf",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_HPT_MRF"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_irf": {
+      "model": "model.ripple.health__fed_cms_irf",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_IRF"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_ltch": {
+      "model": "model.ripple.health__fed_cms_ltch",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_LTCH"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_main": {
+      "model": "model.ripple.health__fed_cms_main",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_MAIN"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_medicare_diabetes_prevention_program": {
+      "model": "model.ripple.health__fed_cms_medicare_diabetes_prevention_program",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_MEDICARE_DIABETES_PREVENTION_PROGRAM"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_medicare_dialysis_facilities": {
+      "model": "model.ripple.health__fed_cms_medicare_dialysis_facilities",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_MEDICARE_DIALYSIS_FACILITIES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_medicare_durable_medical_equipment_devices_supplies_by_refer": {
+      "model": "model.ripple.health__fed_cms_medicare_durable_medical_equipment_devices_supplies_by_refer",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_medicare_durable_medical_equipment_devices_supplies_by_suppl": {
+      "model": "model.ripple.health__fed_cms_medicare_durable_medical_equipment_devices_supplies_by_suppl",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_medicare_inpatient_hospitals_by_provider": {
+      "model": "model.ripple.health__fed_cms_medicare_inpatient_hospitals_by_provider",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_medicare_inpatient_hospitals_by_provider_and_service": {
+      "model": "model.ripple.health__fed_cms_medicare_inpatient_hospitals_by_provider_and_service",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_medicare_outpatient_hospitals_by_provider_and_service": {
+      "model": "model.ripple.health__fed_cms_medicare_outpatient_hospitals_by_provider_and_service",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_medicare_physician_other_practitioners_by_provider": {
+      "model": "model.ripple.health__fed_cms_medicare_physician_other_practitioners_by_provider",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_medicare_physician_other_practitioners_by_provider_and_servi": {
+      "model": "model.ripple.health__fed_cms_medicare_physician_other_practitioners_by_provider_and_servi",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_medicare_provider": {
+      "model": "model.ripple.health__fed_cms_medicare_provider",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_MEDICARE_PROVIDER"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_nadac": {
+      "model": "model.ripple.health__fed_cms_nadac",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_NADAC"
+      ],
+      "n_ancestors": 1
     },
     "model.ripple.health__fed_cms_nppes": {
       "model": "model.ripple.health__fed_cms_nppes",
@@ -174,6 +2076,202 @@
       ],
       "n_ancestors": 2
     },
+    "model.ripple.health__fed_cms_nursing_home_deficiencies": {
+      "model": "model.ripple.health__fed_cms_nursing_home_deficiencies",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_NURSING_HOME_DEFICIENCIES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_nursing_home_fire_deficiencies": {
+      "model": "model.ripple.health__fed_cms_nursing_home_fire_deficiencies",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_nursing_home_penalties": {
+      "model": "model.ripple.health__fed_cms_nursing_home_penalties",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_NURSING_HOME_PENALTIES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_open_payments": {
+      "model": "model.ripple.health__fed_cms_open_payments",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [
+        "trap_open_payments_split"
+      ],
+      "sources": [
+        "FED_CMS_OPEN_PAYMENTS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_open_payments_2022": {
+      "model": "model.ripple.health__fed_cms_open_payments_2022",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [
+        "trap_open_payments_split"
+      ],
+      "sources": [
+        "FED_CMS_OPEN_PAYMENTS_2022"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_open_payments_2023": {
+      "model": "model.ripple.health__fed_cms_open_payments_2023",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [
+        "trap_open_payments_split"
+      ],
+      "sources": [
+        "FED_CMS_OPEN_PAYMENTS_2023"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_opioid_treatment_program_providers": {
+      "model": "model.ripple.health__fed_cms_opioid_treatment_program_providers",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_OPIOID_TREATMENT_PROGRAM_PROVIDERS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_opt_out_affidavits": {
+      "model": "model.ripple.health__fed_cms_opt_out_affidavits",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_OPT_OUT_AFFIDAVITS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_order_and_referring": {
+      "model": "model.ripple.health__fed_cms_order_and_referring",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_ORDER_AND_REFERRING"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_part_d_prescribers": {
+      "model": "model.ripple.health__fed_cms_part_d_prescribers",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_PART_D_PRESCRIBERS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_partd_prescriber_drug": {
+      "model": "model.ripple.health__fed_cms_partd_prescriber_drug",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_PARTD_PRESCRIBER_DRUG"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_partd_prescribers": {
+      "model": "model.ripple.health__fed_cms_partd_prescribers",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_PARTD_PRESCRIBER_DRUG"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_pending_initial_logging_and_tracking_non_physicians": {
+      "model": "model.ripple.health__fed_cms_pending_initial_logging_and_tracking_non_physicians",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_NON_PHYSICIANS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_pending_initial_logging_and_tracking_physicians": {
+      "model": "model.ripple.health__fed_cms_pending_initial_logging_and_tracking_physicians",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_pos_other": {
+      "model": "model.ripple.health__fed_cms_pos_other",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_POS_OTHER"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_quality_payment_program_experience": {
+      "model": "model.ripple.health__fed_cms_quality_payment_program_experience",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_rural_health_clinic_enrollments": {
+      "model": "model.ripple.health__fed_cms_rural_health_clinic_enrollments",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_cms_skilled_nursing_facility_enrollments": {
+      "model": "model.ripple.health__fed_cms_skilled_nursing_facility_enrollments",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_dea_arcos": {
+      "model": "model.ripple.health__fed_dea_arcos",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_DEA_ARCOS_FULL"
+      ],
+      "n_ancestors": 1
+    },
     "model.ripple.health__fed_fda_drug_enforcement": {
       "model": "model.ripple.health__fed_fda_drug_enforcement",
       "grade": "fact",
@@ -182,7 +2280,109 @@
       "sources": [
         "FED_FDA_DRUG_ENFORCEMENT"
       ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_fda_faers_demo": {
+      "model": "model.ripple.health__fed_fda_faers_demo",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FDA_FAERS_DEMO"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_fda_faers_drug": {
+      "model": "model.ripple.health__fed_fda_faers_drug",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FDA_FAERS_DRUG"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_fda_faers_indi": {
+      "model": "model.ripple.health__fed_fda_faers_indi",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FDA_FAERS_INDI"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_fda_faers_outc": {
+      "model": "model.ripple.health__fed_fda_faers_outc",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FDA_FAERS_OUTC"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_fda_faers_reac": {
+      "model": "model.ripple.health__fed_fda_faers_reac",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FDA_FAERS_REAC"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_hhs_oig_leie": {
+      "model": "model.ripple.health__fed_hhs_oig_leie",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [
+        "trap_leie_npi_and_dates"
+      ],
+      "sources": [
+        "FED_HHS_OIG_LEIE"
+      ],
       "n_ancestors": 2
+    },
+    "model.ripple.health__fed_hrsa_shortage_areas": {
+      "model": "model.ripple.health__fed_hrsa_shortage_areas",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_HRSA_SHORTAGE_AREAS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_nursinghome411": {
+      "model": "model.ripple.health__fed_nursinghome411",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_NURSINGHOME411"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_va_allcause_mortality": {
+      "model": "model.ripple.health__fed_va_allcause_mortality",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_VA_ALLCAUSE_MORTALITY"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__fed_va_suicide_appendix": {
+      "model": "model.ripple.health__fed_va_suicide_appendix",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_VA_SUICIDE_APPENDIX"
+      ],
+      "n_ancestors": 1
     },
     "model.ripple.health__pharma_meal_cap_fingerprint": {
       "model": "model.ripple.health__pharma_meal_cap_fingerprint",
@@ -198,6 +2398,86 @@
       ],
       "n_ancestors": 4
     },
+    "model.ripple.health__xc_guttmacher_monthly_abortion": {
+      "model": "model.ripple.health__xc_guttmacher_monthly_abortion",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "XC_GUTTMACHER_MONTHLY_ABORTION"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.health__xc_owid_life_expectancy": {
+      "model": "model.ripple.health__xc_owid_life_expectancy",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "XC_OWID_LIFE_EXPECTANCY"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.historical_records__fed_slavevoyages_intraamerican": {
+      "model": "model.ripple.historical_records__fed_slavevoyages_intraamerican",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_SLAVEVOYAGES_INTRAAMERICAN"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.history__fed_david_rumsey": {
+      "model": "model.ripple.history__fed_david_rumsey",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_DAVID_RUMSEY"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.history__fed_densho_ddr": {
+      "model": "model.ripple.history__fed_densho_ddr",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_DENSHO_DDR"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.history__fed_docsouth": {
+      "model": "model.ripple.history__fed_docsouth",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_DOCSOUTH"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.history__fed_nara_wra_aad": {
+      "model": "model.ripple.history__fed_nara_wra_aad",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_NARA_WRA_AAD"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.history__fed_slavevoyages_transatlantic": {
+      "model": "model.ripple.history__fed_slavevoyages_transatlantic",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_SLAVEVOYAGES_TRANSATLANTIC"
+      ],
+      "n_ancestors": 1
+    },
     "model.ripple.history__fed_wpa_slave_narratives": {
       "model": "model.ripple.history__fed_wpa_slave_narratives",
       "grade": "fact",
@@ -208,6 +2488,46 @@
       ],
       "n_ancestors": 2
     },
+    "model.ripple.housing__fed_cfpb_hmda": {
+      "model": "model.ripple.housing__fed_cfpb_hmda",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CFPB_HMDA"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.housing__fed_fhfa_hpi": {
+      "model": "model.ripple.housing__fed_fhfa_hpi",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FHFA_HPI"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.housing__fed_fhfa_nmdb": {
+      "model": "model.ripple.housing__fed_fhfa_nmdb",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FHFA_NMDB"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.housing__fed_hud_data": {
+      "model": "model.ripple.housing__fed_hud_data",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_HUD_DATA"
+      ],
+      "n_ancestors": 1
+    },
     "model.ripple.housing__fed_mapping_inequality": {
       "model": "model.ripple.housing__fed_mapping_inequality",
       "grade": "fact",
@@ -217,6 +2537,146 @@
         "FED_MAPPING_INEQUALITY"
       ],
       "n_ancestors": 2
+    },
+    "model.ripple.immigration__fed_cbp_encounters": {
+      "model": "model.ripple.immigration__fed_cbp_encounters",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CBP_ENCOUNTERS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.immigration__fed_cms_hospice_enrollments": {
+      "model": "model.ripple.immigration__fed_cms_hospice_enrollments",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_HOSPICE_ENROLLMENTS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.immigration__fed_cms_medicare_fee_for_service_public_provider_enrollment": {
+      "model": "model.ripple.immigration__fed_cms_medicare_fee_for_service_public_provider_enrollment",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.immigration__fed_dhs_ohss": {
+      "model": "model.ripple.immigration__fed_dhs_ohss",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_DHS_OHSS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.immigration__fed_dhs_yearbook": {
+      "model": "model.ripple.immigration__fed_dhs_yearbook",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_DHS_YEARBOOK"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.immigration__fed_dol_oflc": {
+      "model": "model.ripple.immigration__fed_dol_oflc",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_DOL_OFLC"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.immigration__fed_eoir_case_data": {
+      "model": "model.ripple.immigration__fed_eoir_case_data",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EOIR_CASE_DATA"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.immigration__fed_epa_sdwa_sdwa_service_areas": {
+      "model": "model.ripple.immigration__fed_epa_sdwa_sdwa_service_areas",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_SDWA_SDWA_SERVICE_AREAS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.immigration__fed_ice_statistics": {
+      "model": "model.ripple.immigration__fed_ice_statistics",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_ICE_STATISTICS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.immigration__fed_uscis_data": {
+      "model": "model.ripple.immigration__fed_uscis_data",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_USCIS_DATA"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.immigration__xc_owid_refugees": {
+      "model": "model.ripple.immigration__xc_owid_refugees",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "XC_OWID_REFUGEES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.investigations__intl_leiden_russian_ops_europe": {
+      "model": "model.ripple.investigations__intl_leiden_russian_ops_europe",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_LEIDEN_RUSSIAN_OPS_EUROPE"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.investigations__xc_wayback_replay_doj_deep_pages": {
+      "model": "model.ripple.investigations__xc_wayback_replay_doj_deep_pages",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "XC_WAYBACK_REPLAY_DOJ_DEEP_PAGES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.investigations__xc_wayback_replay_doj_listing": {
+      "model": "model.ripple.investigations__xc_wayback_replay_doj_listing",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "XC_WAYBACK_REPLAY_DOJ_LISTING"
+      ],
+      "n_ancestors": 1
     },
     "model.ripple.judiciary__fed_oyez": {
       "model": "model.ripple.judiciary__fed_oyez",
@@ -239,6 +2699,76 @@
       ],
       "n_ancestors": 4
     },
+    "model.ripple.justice__fed_bop_statistics": {
+      "model": "model.ripple.justice__fed_bop_statistics",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_BOP_STATISTICS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.justice__fed_cisa_kev": {
+      "model": "model.ripple.justice__fed_cisa_kev",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CISA_KEV"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.justice__fed_courtlistener_dockets": {
+      "model": "model.ripple.justice__fed_courtlistener_dockets",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_COURTLISTENER_DOCKETS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.justice__fed_courtlistener_financial_disclosures": {
+      "model": "model.ripple.justice__fed_courtlistener_financial_disclosures",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_COURTLISTENER_FINANCIAL_DISCLOSURES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.justice__fed_courtlistener_investments": {
+      "model": "model.ripple.justice__fed_courtlistener_investments",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_COURTLISTENER_INVESTMENTS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.justice__fed_courtlistener_judges": {
+      "model": "model.ripple.justice__fed_courtlistener_judges",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_COURTLISTENER_JUDGES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.justice__fed_courtlistener_positions": {
+      "model": "model.ripple.justice__fed_courtlistener_positions",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_COURTLISTENER_POSITIONS"
+      ],
+      "n_ancestors": 1
+    },
     "model.ripple.justice__fed_doj_fca_settlements": {
       "model": "model.ripple.justice__fed_doj_fca_settlements",
       "grade": "fact",
@@ -246,6 +2776,98 @@
       "traps": [],
       "sources": [
         "FED_DOJ_FCA_SETTLEMENTS"
+      ],
+      "n_ancestors": 2
+    },
+    "model.ripple.justice__fed_fbi_cde": {
+      "model": "model.ripple.justice__fed_fbi_cde",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FBI_CDE"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.justice__fed_fbi_nics_checks": {
+      "model": "model.ripple.justice__fed_fbi_nics_checks",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FBI_NICS_CHECKS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.justice__fed_fdic_enforcement": {
+      "model": "model.ripple.justice__fed_fdic_enforcement",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FDIC_ENFORCEMENT"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.justice__fed_fjc_idb": {
+      "model": "model.ripple.justice__fed_fjc_idb",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FJC_IDB"
+      ],
+      "n_ancestors": 2
+    },
+    "model.ripple.justice__fed_ftc_datasets": {
+      "model": "model.ripple.justice__fed_ftc_datasets",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FTC_DATASETS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.justice__fed_msha_accidents": {
+      "model": "model.ripple.justice__fed_msha_accidents",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_MSHA_ACCIDENTS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.justice__fed_msha_mines": {
+      "model": "model.ripple.justice__fed_msha_mines",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_MSHA_MINES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.justice__fed_msha_violations": {
+      "model": "model.ripple.justice__fed_msha_violations",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_MSHA_VIOLATIONS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.justice__fed_ofac_sdn": {
+      "model": "model.ripple.justice__fed_ofac_sdn",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [
+        "trap_ofac_sdn_type"
+      ],
+      "sources": [
+        "FED_OFAC_SDN"
       ],
       "n_ancestors": 2
     },
@@ -259,6 +2881,66 @@
       ],
       "n_ancestors": 2
     },
+    "model.ripple.justice__fed_uscourts_stats": {
+      "model": "model.ripple.justice__fed_uscourts_stats",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_USCOURTS_STATS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.justice__intl_austlii": {
+      "model": "model.ripple.justice__intl_austlii",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_AUSTLII"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.justice__intl_eu_sanctions": {
+      "model": "model.ripple.justice__intl_eu_sanctions",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_EU_SANCTIONS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.justice__intl_eu_socta_europol": {
+      "model": "model.ripple.justice__intl_eu_socta_europol",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_EU_SOCTA_EUROPOL"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.justice__intl_eurlex_cellar": {
+      "model": "model.ripple.justice__intl_eurlex_cellar",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_EURLEX_CELLAR"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.justice__intl_fatf_ratings": {
+      "model": "model.ripple.justice__intl_fatf_ratings",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_FATF_RATINGS"
+      ],
+      "n_ancestors": 1
+    },
     "model.ripple.justice__intl_hudoc": {
       "model": "model.ripple.justice__intl_hudoc",
       "grade": "fact",
@@ -269,6 +2951,36 @@
       ],
       "n_ancestors": 2
     },
+    "model.ripple.justice__intl_nti_cns_dprk_missile_tests": {
+      "model": "model.ripple.justice__intl_nti_cns_dprk_missile_tests",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_NTI_CNS_DPRK_MISSILE_TESTS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.justice__intl_opensanctions": {
+      "model": "model.ripple.justice__intl_opensanctions",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_OPENSANCTIONS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.justice__intl_ucdp_ged": {
+      "model": "model.ripple.justice__intl_ucdp_ged",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_UCDP_GED"
+      ],
+      "n_ancestors": 1
+    },
     "model.ripple.justice__racial_jail_disparity": {
       "model": "model.ripple.justice__racial_jail_disparity",
       "grade": "fact",
@@ -278,6 +2990,176 @@
         "XC_VERA_INCARCERATION_TRENDS"
       ],
       "n_ancestors": 2
+    },
+    "model.ripple.justice__xc_mapping_police_violence": {
+      "model": "model.ripple.justice__xc_mapping_police_violence",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "XC_MAPPING_POLICE_VIOLENCE"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.justice__xc_nagix_dprk_missile_tests": {
+      "model": "model.ripple.justice__xc_nagix_dprk_missile_tests",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "XC_NAGIX_DPRK_MISSILE_TESTS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.justice__xc_owid_homicide": {
+      "model": "model.ripple.justice__xc_owid_homicide",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "XC_OWID_HOMICIDE"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.justice__xc_owid_nuclear_warheads": {
+      "model": "model.ripple.justice__xc_owid_nuclear_warheads",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "XC_OWID_NUCLEAR_WARHEADS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.justice__xc_owid_terrorism_deaths": {
+      "model": "model.ripple.justice__xc_owid_terrorism_deaths",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "XC_OWID_TERRORISM_DEATHS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.justice__xc_ransomwarelive_victims": {
+      "model": "model.ripple.justice__xc_ransomwarelive_victims",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "XC_RANSOMWARELIVE_VICTIMS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.justice__xc_vera_incarceration_trends": {
+      "model": "model.ripple.justice__xc_vera_incarceration_trends",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "XC_VERA_INCARCERATION_TRENDS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.justice__xc_wapo_fatal_force": {
+      "model": "model.ripple.justice__xc_wapo_fatal_force",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "XC_WAPO_FATAL_FORCE"
+      ],
+      "n_ancestors": 2
+    },
+    "model.ripple.labor__fed_msha_accidents": {
+      "model": "model.ripple.labor__fed_msha_accidents",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_MSHA_ACCIDENTS"
+      ],
+      "n_ancestors": 2
+    },
+    "model.ripple.labor__fed_msha_mines": {
+      "model": "model.ripple.labor__fed_msha_mines",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_MSHA_MINES"
+      ],
+      "n_ancestors": 2
+    },
+    "model.ripple.labor__fed_msha_violations": {
+      "model": "model.ripple.labor__fed_msha_violations",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_MSHA_VIOLATIONS"
+      ],
+      "n_ancestors": 2
+    },
+    "model.ripple.labor__fed_osha_ita_300a_summary_2023": {
+      "model": "model.ripple.labor__fed_osha_ita_300a_summary_2023",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_OSHA_ITA_300A_SUMMARY_2023"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.labor__fed_osha_ita_300a_summary_2024": {
+      "model": "model.ripple.labor__fed_osha_ita_300a_summary_2024",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_OSHA_ITA_300A_SUMMARY_2024"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.labor__fed_osha_ita_300a_summary_2025": {
+      "model": "model.ripple.labor__fed_osha_ita_300a_summary_2025",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_OSHA_ITA_300A_SUMMARY_2025"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.labor__fed_osha_ita_case_detail_2023": {
+      "model": "model.ripple.labor__fed_osha_ita_case_detail_2023",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_OSHA_ITA_CASE_DETAIL_2023"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.labor__fed_osha_ita_case_detail_2024": {
+      "model": "model.ripple.labor__fed_osha_ita_case_detail_2024",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_OSHA_ITA_CASE_DETAIL_2024"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.labor__fed_osha_ita_case_detail_2025": {
+      "model": "model.ripple.labor__fed_osha_ita_case_detail_2025",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_OSHA_ITA_CASE_DETAIL_2025"
+      ],
+      "n_ancestors": 1
     },
     "model.ripple.land_and_territory__fed_bia_tribal_geo": {
       "model": "model.ripple.land_and_territory__fed_bia_tribal_geo",
@@ -323,6 +3205,16 @@
       ],
       "n_ancestors": 15
     },
+    "model.ripple.legal_enforcement__fed_naag_multistate_settlements": {
+      "model": "model.ripple.legal_enforcement__fed_naag_multistate_settlements",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_NAAG_MULTISTATE_SETTLEMENTS"
+      ],
+      "n_ancestors": 1
+    },
     "model.ripple.maritime__fed_noaa_ais": {
       "model": "model.ripple.maritime__fed_noaa_ais",
       "grade": "fact",
@@ -342,6 +3234,66 @@
       "traps": [],
       "sources": [
         "INTL_WB_IDS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.open_data__intl_ar_datosgob": {
+      "model": "model.ripple.open_data__intl_ar_datosgob",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_AR_DATOSGOB"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.open_data__intl_br_dados_gov": {
+      "model": "model.ripple.open_data__intl_br_dados_gov",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_BR_DADOS_GOV"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.open_data__intl_fr_data_gouv": {
+      "model": "model.ripple.open_data__intl_fr_data_gouv",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_FR_DATA_GOUV"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.open_data__intl_ge_datagov": {
+      "model": "model.ripple.open_data__intl_ge_datagov",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_GE_DATAGOV"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.open_data__intl_gh_datagovgh": {
+      "model": "model.ripple.open_data__intl_gh_datagovgh",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_GH_DATAGOVGH"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.open_data__xc_wayback_doj_epstein": {
+      "model": "model.ripple.open_data__xc_wayback_doj_epstein",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "XC_WAYBACK_DOJ_EPSTEIN"
       ],
       "n_ancestors": 1
     },
@@ -395,6 +3347,196 @@
         "FED_FEC_BULK_SUMMARY"
       ],
       "n_ancestors": 2
+    },
+    "model.ripple.politics__fed_congress_committee_membership": {
+      "model": "model.ripple.politics__fed_congress_committee_membership",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CONGRESS_COMMITTEE_MEMBERSHIP"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.politics__fed_congress_legislators": {
+      "model": "model.ripple.politics__fed_congress_legislators",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_CONGRESS_LEGISLATORS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.politics__fed_doj_epstein_library": {
+      "model": "model.ripple.politics__fed_doj_epstein_library",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_DOJ_EPSTEIN_LIBRARY"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.politics__fed_eac_eavs": {
+      "model": "model.ripple.politics__fed_eac_eavs",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EAC_EAVS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.politics__fed_fcc_licensing": {
+      "model": "model.ripple.politics__fed_fcc_licensing",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FCC_LICENSING"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.politics__fed_fec_pac_summary": {
+      "model": "model.ripple.politics__fed_fec_pac_summary",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FEC_PAC_SUMMARY"
+      ],
+      "n_ancestors": 2
+    },
+    "model.ripple.politics__fed_fjc_judges": {
+      "model": "model.ripple.politics__fed_fjc_judges",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FJC_JUDGES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.politics__fed_fjc_service": {
+      "model": "model.ripple.politics__fed_fjc_service",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FJC_SERVICE"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.politics__fed_govinfo_bill_cosponsors": {
+      "model": "model.ripple.politics__fed_govinfo_bill_cosponsors",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_GOVINFO_BILL_COSPONSORS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.politics__fed_govinfo_billstatus": {
+      "model": "model.ripple.politics__fed_govinfo_billstatus",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_GOVINFO_BILLSTATUS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.politics__fed_medsl_house_returns": {
+      "model": "model.ripple.politics__fed_medsl_house_returns",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_MEDSL_HOUSE_RETURNS"
+      ],
+      "n_ancestors": 2
+    },
+    "model.ripple.politics__fed_medsl_president_returns": {
+      "model": "model.ripple.politics__fed_medsl_president_returns",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_MEDSL_PRESIDENT_RETURNS"
+      ],
+      "n_ancestors": 2
+    },
+    "model.ripple.politics__fed_medsl_senate_returns": {
+      "model": "model.ripple.politics__fed_medsl_senate_returns",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_MEDSL_SENATE_RETURNS"
+      ],
+      "n_ancestors": 2
+    },
+    "model.ripple.politics__fed_voteview_members": {
+      "model": "model.ripple.politics__fed_voteview_members",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_VOTEVIEW_MEMBERS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.politics__fed_voteview_rollcall_meta": {
+      "model": "model.ripple.politics__fed_voteview_rollcall_meta",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_VOTEVIEW_ROLLCALL_META"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.politics__fed_voteview_rollcalls": {
+      "model": "model.ripple.politics__fed_voteview_rollcalls",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_VOTEVIEW_ROLLCALLS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.politics__intl_freedomhouse": {
+      "model": "model.ripple.politics__intl_freedomhouse",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_FREEDOMHOUSE"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.politics__intl_owid_milspend": {
+      "model": "model.ripple.politics__intl_owid_milspend",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_OWID_MILSPEND"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.politics__intl_voeten_unga_votes": {
+      "model": "model.ripple.politics__intl_voeten_unga_votes",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_VOETEN_UNGA_VOTES"
+      ],
+      "n_ancestors": 1
     },
     "model.ripple.politics__member_bill_record": {
       "model": "model.ripple.politics__member_bill_record",
@@ -463,6 +3605,16 @@
       ],
       "n_ancestors": 4
     },
+    "model.ripple.politics__st_cannabis_policy_bundles": {
+      "model": "model.ripple.politics__st_cannabis_policy_bundles",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "ST_CANNABIS_POLICY_BUNDLES"
+      ],
+      "n_ancestors": 1
+    },
     "model.ripple.politics__voteview_rollcalls": {
       "model": "model.ripple.politics__voteview_rollcalls",
       "grade": "fact",
@@ -483,6 +3635,66 @@
       ],
       "n_ancestors": 2
     },
+    "model.ripple.politics__xc_jcs_coa": {
+      "model": "model.ripple.politics__xc_jcs_coa",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "XC_JCS_COA"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.politics__xc_jcs_medians": {
+      "model": "model.ripple.politics__xc_jcs_medians",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "XC_JCS_MEDIANS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.politics__xc_jcs_scotus": {
+      "model": "model.ripple.politics__xc_jcs_scotus",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "XC_JCS_SCOTUS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.politics__xc_owid_cpi": {
+      "model": "model.ripple.politics__xc_owid_cpi",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "XC_OWID_CPI"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.procurement__fed_sam_exclusions": {
+      "model": "model.ripple.procurement__fed_sam_exclusions",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_SAM_EXCLUSIONS"
+      ],
+      "n_ancestors": 2
+    },
+    "model.ripple.procurement__intl_adb_data": {
+      "model": "model.ripple.procurement__intl_adb_data",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_ADB_DATA"
+      ],
+      "n_ancestors": 1
+    },
     "model.ripple.procurement__intl_ec_sercop": {
       "model": "model.ripple.procurement__intl_ec_sercop",
       "grade": "fact",
@@ -492,6 +3704,360 @@
         "INTL_EC_SERCOP"
       ],
       "n_ancestors": 2
+    },
+    "model.ripple.ref__dim_geography": {
+      "model": "model.ripple.ref__dim_geography",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_FRS_FULL"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.ref__dim_state": {
+      "model": "model.ripple.ref__dim_state",
+      "grade": "unverified",
+      "reasons": [
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        },
+        {
+          "kind": "unparseable_join",
+          "node": "model.ripple.ref__dim_state",
+          "detail": "comma-join \u2014 predicates live in WHERE; the walker cannot bind them (fail closed)"
+        }
+      ],
+      "traps": [],
+      "sources": [],
+      "n_ancestors": 0
+    },
+    "model.ripple.reference__fed_bia_tribal_geo": {
+      "model": "model.ripple.reference__fed_bia_tribal_geo",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_BIA_TRIBAL_GEO"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.reference__fed_usgs_topoview": {
+      "model": "model.ripple.reference__fed_usgs_topoview",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_USGS_TOPOVIEW"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.reference__intl_eg_capmas": {
+      "model": "model.ripple.reference__intl_eg_capmas",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_EG_CAPMAS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.reference__intl_eurostat": {
+      "model": "model.ripple.reference__intl_eurostat",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_EUROSTAT"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.reference__intl_gdelt": {
+      "model": "model.ripple.reference__intl_gdelt",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_GDELT"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.reference__xc_owid_fertility": {
+      "model": "model.ripple.reference__xc_owid_fertility",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "XC_OWID_FERTILITY"
+      ],
+      "n_ancestors": 1
     },
     "model.ripple.regulatory__fed_federal_register_documents": {
       "model": "model.ripple.regulatory__fed_federal_register_documents",
@@ -503,6 +4069,56 @@
       ],
       "n_ancestors": 2
     },
+    "model.ripple.science__fed_nasa_open_data": {
+      "model": "model.ripple.science__fed_nasa_open_data",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_NASA_OPEN_DATA"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.science__fed_nsf_awards": {
+      "model": "model.ripple.science__fed_nsf_awards",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_NSF_AWARDS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.science__fed_usgs_earthquakes": {
+      "model": "model.ripple.science__fed_usgs_earthquakes",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_USGS_EARTHQUAKES"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.science__intl_embl_ensembl": {
+      "model": "model.ripple.science__intl_embl_ensembl",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INTL_EMBL_ENSEMBL"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.science__xc_owid_ai_incidents_annual": {
+      "model": "model.ripple.science__xc_owid_ai_incidents_annual",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "XC_OWID_AI_INCIDENTS_ANNUAL"
+      ],
+      "n_ancestors": 1
+    },
     "model.ripple.science_research__xc_biorxiv_medrxiv": {
       "model": "model.ripple.science_research__xc_biorxiv_medrxiv",
       "grade": "fact",
@@ -512,6 +4128,116 @@
         "XC_BIORXIV_MEDRXIV"
       ],
       "n_ancestors": 2
+    },
+    "model.ripple.transport__fed_dot_bts": {
+      "model": "model.ripple.transport__fed_dot_bts",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_DOT_BTS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.transport__fed_faa_data_portal": {
+      "model": "model.ripple.transport__fed_faa_data_portal",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FAA_DATA_PORTAL"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.transport__fed_faa_registry": {
+      "model": "model.ripple.transport__fed_faa_registry",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FAA_REGISTRY"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.transport__fed_fra_safety": {
+      "model": "model.ripple.transport__fed_fra_safety",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_FRA_SAFETY"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.transport__fed_nhtsa_complaints": {
+      "model": "model.ripple.transport__fed_nhtsa_complaints",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_NHTSA_COMPLAINTS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.transport__fed_nhtsa_investigations": {
+      "model": "model.ripple.transport__fed_nhtsa_investigations",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_NHTSA_INVESTIGATIONS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.transport__fed_nhtsa_recalls": {
+      "model": "model.ripple.transport__fed_nhtsa_recalls",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_NHTSA_RECALLS"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.uncategorized__fed_dea_arcos_full": {
+      "model": "model.ripple.uncategorized__fed_dea_arcos_full",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_DEA_ARCOS_FULL"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.uncategorized__fed_epa_frs_full": {
+      "model": "model.ripple.uncategorized__fed_epa_frs_full",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_EPA_FRS_FULL"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.uncategorized__int_gleif_rr": {
+      "model": "model.ripple.uncategorized__int_gleif_rr",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INT_GLEIF_RR"
+      ],
+      "n_ancestors": 1
+    },
+    "model.ripple.uncategorized__int_uk_companies_house": {
+      "model": "model.ripple.uncategorized__int_uk_companies_house",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "INT_UK_COMPANIES_HOUSE"
+      ],
+      "n_ancestors": 1
     }
   }
 }

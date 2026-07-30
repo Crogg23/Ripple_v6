@@ -90,6 +90,10 @@ def write_artifacts(manifest_path: Path = DEFAULT_MANIFEST, out_dir: Path = OUT_
         "grades": {k: v.as_dict() for k, v in sorted(grades.items())},
     }
     out_dir.mkdir(parents=True, exist_ok=True)
-    (out_dir / "mart_grades.json").write_text(json.dumps(payload, indent=2) + "\n")
-    (out_dir / "MART_GRADES.md").write_text(render_md(grades, manifest_rel, meta))
+    (out_dir / "mart_grades.json").write_text(
+        json.dumps(payload, indent=2) + "\n", encoding="utf-8"
+    )
+    (out_dir / "MART_GRADES.md").write_text(
+        render_md(grades, manifest_rel, meta), encoding="utf-8"
+    )
     return payload

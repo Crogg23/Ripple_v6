@@ -121,3 +121,8 @@ files, the same doctrine as every control table in this repo.
   changed, never the calendar.
 - Seeds (committed CSVs) count as trusted reference data, like landing.
 - `NATURAL JOIN` always demotes (implicit predicate — deliberate suspicion).
+- **Known false positive:** `ref__dim_state` grades `unverified`. It's a
+  hardcoded 55-row `FROM VALUES (...)` reference table with no real join for
+  the comma-join heuristic to read — not a demoted mart. Confirmed 2026-07-30;
+  not "fixed" by loosening the join taxonomy without Chris's sign-off (see
+  "the one documented judgment call, made once" above).

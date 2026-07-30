@@ -110,7 +110,7 @@ class Grade:
 
 
 def load_manifest(path: str | Path) -> dict:
-    return json.loads(Path(path).read_text())
+    return json.loads(Path(path).read_text(encoding="utf-8"))
 
 
 def _is_namey(col: str) -> bool:
@@ -411,7 +411,8 @@ def grade_model(manifest: dict, node_id: str) -> Grade:
 def mart_ids(manifest: dict) -> list[str]:
     return sorted(
         k for k, v in manifest["nodes"].items()
-        if v.get("resource_type") == "model" and "/marts/" in (v.get("original_file_path") or "")
+        if v.get("resource_type") == "model"
+        and "/marts/" in (v.get("original_file_path") or "").replace("\\", "/")
     )
 
 
