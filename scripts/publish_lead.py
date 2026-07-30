@@ -66,7 +66,7 @@ def main() -> int:
     if not pat:
         print("HALT: RIPPLE_REVIEW_PAT is not set in library-onboarding/.env — the publish "
               "lane never falls back to another credential. Mint it per "
-              "CLOSE_THE_LOOP_checklist.md Step 2.")
+              "archive/CLOSE_THE_LOOP_checklist.md Step 2.")
         return 2
 
     conn = snow.connect(pat=pat, role="RIPPLE_REVIEW_WRITER", warehouse="SERVE_WH")

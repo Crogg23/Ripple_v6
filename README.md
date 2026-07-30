@@ -3,6 +3,16 @@
 Investigative Journalism — a Snowflake-backed data Library, its source catalog, and
 the agents that build both.
 
+## Read next
+
+- [`docs/ripple_pitch_deck.md`](docs/ripple_pitch_deck.md) — the best single overview:
+  real numbers, real SQL, honest about what's unproven. Start here.
+- [`docs/RIPPLE_FOR_EVERYONE.md`](docs/RIPPLE_FOR_EVERYONE.md) — the plain-English version.
+- [`honesty/README.md`](honesty/README.md) — the fact/lead/unverified provenance grader;
+  the most distinctive piece of architecture in this repo.
+- [`OVERVIEW.md`](OVERVIEW.md) — the architecture tour.
+- [`PROJECT_SHAPE.md`](PROJECT_SHAPE.md) — an outside reviewer's honest read of the project.
+
 ## Quick start (one command)
 
 From the repo root, create a virtualenv and install every runtime dependency:
