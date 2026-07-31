@@ -10,6 +10,10 @@ outputs/_heartbeat_selftest*.pid
 # per-query dossiers generated on demand by `connect dossier --html`
 outputs/dossier_*.html
 
+# local cache for multi-GB bulk-loader downloads (courtlistener_dockets_load.py,
+# dea_arcos_full_load.py) — machine-local, never commit
+outputs/_bulk_cache/
+
 # python bytecode
 __pycache__/
 *.pyc
@@ -43,6 +47,7 @@ library-onboarding/*.log
 outputs/_task_*_LAST.json
 outputs/_task_*_out.txt
 .dbt-venv/
+.venv/
 # ripple CLI runtime state (machine-local)
 outputs/_ripple_state.json
 outputs/_ripple_domain_approvals.json
