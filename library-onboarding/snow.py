@@ -115,6 +115,14 @@ def _apply_session_guards(conn) -> None:
         return
     cur = conn.cursor()
     try:
+        # ALTER SESSION doesn't accept a bind param for this setting, so the
+        # int() cast above is the only thing standing between this f-string
+        # and injection if settings.statement_timeout_s is ever sourced from
+        # somewhere less trusted. Re-validate right at the interpolation
+        # point too, so this line stays safe even if that upstream cast is
+        # ever refactored away.
+        if not isinstance(secs, int):
+            raise TypeError(f"statement_timeout_s must be int, got {type(secs).__name__}")
         cur.execute(f"ALTER SESSION SET STATEMENT_TIMEOUT_IN_SECONDS = {secs}")
         cur.execute("ALTER SESSION SET ABORT_DETACHED_QUERY = TRUE")
     except Exception:

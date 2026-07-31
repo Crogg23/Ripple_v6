@@ -69,6 +69,33 @@ def test_compile_sql_byte_stable_for_existing_specs():
         assert got == want, f"{rule}: compiled SQL changed (receipt hashes would churn)"
 
 
+def test_all_person_vs_person_specs_require_surname():
+    """No live spec should ever ship without this -- it's the only name-based
+    sanity check on a person-vs-person join. Locks in the current (correct)
+    state so a future copy-pasted spec can't silently regress it."""
+    for name, spec in JOBS.items():
+        lkind = "person" if "name_cols" in spec.get("left", {}) else None
+        rkind = "person" if "name_cols" in spec.get("right", {}) else None
+        if lkind == rkind == "person":
+            assert spec.get("require_surname") is True, f"{name}: person-vs-person without require_surname"
+
+
+def test_compile_sql_refuses_a_person_pair_without_require_surname():
+    spec = {
+        "rule_name": "t_no_surname_guard",
+        "title_template": "{l_last}: {count}",
+        "left": {"table": "L_TBL", "key": "NPI", "key_col": "NPI",
+                 "name_cols": ["LAST", "FIRST"]},
+        "right": {"table": "R_TBL", "key": "NPI", "key_col": "NPI",
+                  "name_cols": ["R_LAST", "R_FIRST"]},
+        "score": {"breadth_w": 1.0, "breadth_div": 10.0},
+        "no_fanout_guard": True,
+        # require_surname deliberately omitted
+    }
+    with pytest.raises(ValueError, match="require_surname"):
+        leads.compile_sql(spec, as_of="2026-01-01")
+
+
 # ---- date_gate capability --------------------------------------------------------
 
 def _mini_spec(**extra):

@@ -1,7 +1,7 @@
 {
   "manifest": "library-onboarding\\ripple_dbt\\target\\manifest.json",
-  "manifest_generated_at": "2026-07-31T02:06:11.326203Z",
-  "dbt_invocation_id": "776b3af3-b5be-4968-84ea-3745c45eb3f8",
+  "manifest_generated_at": "2026-07-31T04:41:38.012271Z",
+  "dbt_invocation_id": "c29ed26e-af34-4679-8e43-a29550e1256d",
   "n_marts": 391,
   "grades": {
     "model.ripple.civil_rights__fed_nara_wra_aad": {

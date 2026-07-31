@@ -248,6 +248,12 @@ st.subheader("Decision")
 
 if writer_state == "ready" and not (reviewer or "").strip():
     st.info("Enter your reviewer name in the sidebar to enable the buttons.")
+elif writer_state != "ready":
+    # Was: the only explanation for this was the banner at the top of the
+    # page (line ~73), which a reviewer scrolling straight to a long case
+    # file would never scroll back up to see. Repeat it right here too.
+    st.info("Buttons are disabled — the write lane isn't provisioned yet "
+           "(see the banner at the top of the page).")
 can_decide = writer_state == "ready" and bool((reviewer or "").strip())
 
 with st.form(key=f"decision_{lead_id}"):

@@ -168,7 +168,12 @@ def render_search():
                          placeholder="e.g.  memorial hospital   ·   1164450573   ·   cms open payments",
                          label_visibility="collapsed")
     kind = c2.selectbox("as", ["Name", "NPI", "CCN", "UEI", "CIK", "IMO"],
-                        label_visibility="collapsed")
+                        label_visibility="collapsed",
+                        help="NPI: medical provider (National Provider Identifier) · "
+                             "CCN: CMS-certified facility (CMS Certification Number) · "
+                             "UEI: federal contractor/grantee (Unique Entity ID) · "
+                             "CIK: SEC filer (Central Index Key) · "
+                             "IMO: ship (International Maritime Organization number)")
     if not term.strip():
         st.info("Enter a search above. Example entities: `alexander frank`, NPI `1164450573`.")
         return
@@ -315,6 +320,10 @@ def render_dossier(eid: str):
             if total > len(aff):
                 st.caption(f"Showing top {len(aff)} of {total} affiliations.")
             st.dataframe(display_aff, use_container_width=True, hide_index=True)
+    else:
+        # This section only exists for providers (KEY_TYPE=NPI). Was: silently
+        # absent for every other entity type with no hint it exists at all.
+        st.caption("Facility Affiliations is shown for provider (NPI) entities.")
 
 
 # --------------------------------------------------------------------------- #
@@ -410,8 +419,9 @@ def render_graph():
         # else: none of the requested sources are in the cached graph --
         # build_figure will fall back to the full graph and warn about it.
 
-    fig = G.build_figure(graph, tiers=tiers, include_samples=include_samples,
-                         focus=focus, enrich=enrich, asof=asof)
+    with st.spinner("Drawing the graph…"):
+        fig = G.build_figure(graph, tiers=tiers, include_samples=include_samples,
+                             focus=focus, enrich=enrich, asof=asof)
 
     # Node click -> open that source (nodes are SOURCE tables).
     selected = None

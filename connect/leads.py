@@ -139,6 +139,15 @@ def compile_sql(spec: dict, as_of: str | None = None) -> str:
     lkind, lname = _names_of(L)
     rkind, rname = _names_of(R)
     person_pair = lkind == "person" and rkind == "person"
+    # Fail loud, not silently: without require_surname, a person-vs-person join
+    # has NO name-based sanity check at all -- a coincidental/mistagged hard-key
+    # match (e.g. a reused NPI) would produce a full-score lead with zero
+    # corroboration. Every current spec already sets this correctly; this guard
+    # exists so a future copy-pasted spec can't silently ship without it.
+    if person_pair and not spec.get("require_surname"):
+        raise ValueError(
+            f"{spec['rule_name']}: person-vs-person join without require_surname=True -- "
+            "add it, or this lead has no name-based corroboration at all, just the hard key.")
 
     # NULLIF blank names: a blank surname must NOT satisfy the require_surname gate
     # ('' = '' is TRUE in SQL), and a blank first name must not score as a match.
