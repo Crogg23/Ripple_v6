@@ -41,8 +41,17 @@ def _load_script(name: str, rel: str):
 # so the recorded hashes were miscalculated/wrong from the moment they were
 # committed, not broken by later drift. Recomputed and verified live against
 # the current (unchanged, correct) compile_sql output.
+#
+# 2026-07-31: banned_but_operating's hash moved AGAIN, this time for a real,
+# intentional reason -- leads_specs.py's _FACILITY_NAME_TABLES was missing 3
+# CCN-keyed facility rosters (FED_NURSINGHOME411, FED_CMS_HCRIS,
+# FED_CMS_NURSING_HOME) wired onto the spine after this list was written; a
+# lead whose facility only existed in one of those three fired with a blank
+# facility name. Fixed by adding them (leads_specs.py, leads.py's enrich_name
+# join). This is exactly the kind of change this test exists to make visible,
+# not silently pass through -- recomputed and re-pinned deliberately.
 GOLDEN_SQL_SHA256 = {
-    "banned_but_operating": "7341607c430f8b3ef61c327a7dfb19d7ae34235d4a3795656e97cbd88a30ea28",
+    "banned_but_operating": "ef2c2cd7eeca0954ca9c8f822341b0471102c62272b4e032e838d9d816d2adb4",
     "sanctioned_vessel_broadcasting": "2712127fd0ce1da6e2f3cc2008a7a0910f93d6e21ebaa96877bd1b0e513d1e89",
     "debarred_but_funded": "58116f2f7526c577aafbcd0c4cd2222e1128b3ad4ff6482fa175639dfd508c1d",
     "banned_but_paid": "f3d31841f9346765c7ab2f55f74f73a4a2d9958dd6b3ff74fb5de81b235f83aa",

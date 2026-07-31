@@ -52,7 +52,9 @@ def source_tables(spec: dict) -> list[str]:
     tabs = [spec["left"]["table"], spec["right"]["table"]]
     en = spec.get("enrich_name")
     if en:
-        tabs += [t for t, _name in en.get("tables", [])]
+        # entries are (table, name_col) or (table, name_col, key_col) --
+        # see leads.py's enrich_name join for why the 3-tuple form exists.
+        tabs += [entry[0] for entry in en.get("tables", [])]
     seen, out = set(), []
     for t in tabs:
         f = db.fqn(t)

@@ -34,8 +34,16 @@ JobSpec shape:
 
 from __future__ import annotations
 
-# The 7 CCN facility rosters: CCN -> a human facility name. All carry a `CCN`
-# column (bridge_fuel aliased it); the name column differs per roster.
+# The CCN facility rosters: CCN -> a human facility name. The first 7 carry a
+# `CCN` column verbatim (bridge_fuel aliased it); three more CCN-keyed facility
+# tables were wired onto the spine after this list was written (connect/
+# entity_index_specs.py DISPLAY_SPECS) and were missing here entirely, so a
+# banned_but_operating lead whose facility ONLY appears in one of those three
+# fired with a blank facility name and no error -- weakened, silently, the
+# human-reviewable evidence for the lead. Added 2026-07-31, key columns
+# verified live against LIBRARY_RAW.LANDING (none of the three carry a column
+# literally named CCN, hence the explicit 3-tuple key_col override -- see
+# leads.py's enrich_name join for how that's consumed).
 _FACILITY_NAME_TABLES = [
     ("FED_CMS_POS_OTHER", "FAC_NAME"),
     ("FED_CMS_HOSPITAL_GENERAL", "FACILITY_NAME"),
@@ -44,6 +52,9 @@ _FACILITY_NAME_TABLES = [
     ("FED_CMS_IRF", "PROVIDER_NAME"),
     ("FED_CMS_LTCH", "PROVIDER_NAME"),
     ("FED_CMS_DIALYSIS", "FACILITY_NAME"),
+    ("FED_NURSINGHOME411", "PROVIDER_NAME", "CMS_CERTIFICATION_NUMBER_CCN"),
+    ("FED_CMS_HCRIS", "HOSPITAL_NAME", "PROVIDER_CCN"),
+    ("FED_CMS_NURSING_HOME", "PROVIDER_NAME", "CMS_CERTIFICATION_NUMBER__CCN"),
 ]
 
 JOBS: dict[str, dict] = {

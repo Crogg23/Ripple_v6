@@ -199,11 +199,20 @@ def compile_sql(spec: dict, as_of: str | None = None) -> str:
     # key: the rosters are a UNION ALL, so without this the LEFT JOIN fans out a key
     # that appears in multiple rosters, silently re-weighting AVG(name_match).
     if en:
-        ne = _norm(en["key"], en["key"])
-        union = " UNION ALL ".join(
-            f"SELECT {ne} AS ENRICH_N, UPPER(TRIM({quote_ident(name)})) AS FAC_NAME "
-            f"FROM {db.fqn(tbl)} WHERE {ne} IS NOT NULL"
-            for tbl, name in en["tables"])
+        # Entries are (table, name_col) when the table carries a column literally
+        # named en["key"] (e.g. "CCN") -- the common case. A table whose key lives
+        # under a different name (e.g. FED_NURSINGHOME411's CCN is actually
+        # CMS_CERTIFICATION_NUMBER_CCN) uses the 3-tuple (table, name_col, key_col)
+        # form instead. Additive: every existing spec only ever used 2-tuples, so
+        # this changes zero bytes of their compiled SQL (verified against
+        # tests/test_leads_wave2.py's golden SHA256 receipts).
+        def _enrich_arm(entry):
+            tbl, name = entry[0], entry[1]
+            key_col = entry[2] if len(entry) > 2 else en["key"]
+            ne = _norm(en["key"], key_col)
+            return (f"SELECT {ne} AS ENRICH_N, UPPER(TRIM({quote_ident(name)})) AS FAC_NAME "
+                    f"FROM {db.fqn(tbl)} WHERE {ne} IS NOT NULL")
+        union = " UNION ALL ".join(_enrich_arm(entry) for entry in en["tables"])
         fac_cte = f"SELECT ENRICH_N, ANY_VALUE(FAC_NAME) AS FAC_NAME FROM ( {union} ) GROUP BY ENRICH_N"
     else:
         fac_cte = "SELECT NULL AS ENRICH_N, NULL AS FAC_NAME WHERE 1=0"
