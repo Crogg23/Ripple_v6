@@ -1,0 +1,18 @@
+# dbt -- runs/tests the 1,378 models in library-onboarding/ripple_dbt.
+#
+# Kept in its OWN file, installed into its OWN venv (.dbt-venv locally), never
+# alongside requirements.txt: dbt-snowflake requires snowflake-connector-python
+# ~=3.0, which genuinely conflicts with requirements.txt's own
+# snowflake-connector-python==4.4.0 pin (verified live -- pip's resolver
+# refuses to install both together in one environment).
+#
+# Bootstrap:
+#   python3 -m venv .dbt-venv && .dbt-venv/bin/pip install -r requirements-dbt.txt
+#
+# 2026-07-30: this used to be "dbt-fusion==2.0.0-preview.173" (in
+# requirements.txt and .github/workflows/dbt.yml), a package/version that has
+# never existed on PyPI -- CI had been failing on every push. What's actually
+# installed and proven working (both locally and in CI) is plain dbt-core +
+# the Snowflake adapter, pinned to these exact versions.
+dbt-core==1.11.12
+dbt-snowflake==1.8.4

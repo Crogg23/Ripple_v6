@@ -53,12 +53,9 @@ pyyaml==6.0.3                # YAML I/O for dbt scaffolding / config
 # playwright==1.49.1          # not installed locally; pinned to a recent known-good
 
 # --- dbt (runs/tests the 1,378 models in library-onboarding/ripple_dbt) -----
-# 2026-07-30: "dbt-fusion==2.0.0-preview.173" was pinned here and in
-# .github/workflows/dbt.yml, but that exact package/version was never
-# installable from PyPI (`pip install` errors "Could not find a version that
-# satisfies the requirement... from versions: none") -- it had been silently
-# failing CI on every push. What's actually installed and verified working
-# locally (.dbt-venv) is plain dbt-core + the Snowflake adapter, pinned here
-# to those exact versions.
-dbt-core==1.11.12
-dbt-snowflake==1.8.4
+# dbt does NOT belong in this shared requirements.txt: dbt-snowflake requires
+# snowflake-connector-python~=3.0, which genuinely conflicts with this file's
+# own snowflake-connector-python==4.4.0 pin (verified live -- pip's resolver
+# refuses both together with "conflicting dependencies"). That's exactly why
+# dbt lives in its own isolated .dbt-venv locally, not this one. Install dbt
+# separately: pip install -r requirements-dbt.txt (into its own venv).

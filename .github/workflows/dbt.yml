@@ -35,8 +35,12 @@ jobs:
         # a package/version that's never been on PyPI -- pip failed outright
         # and this job had been failing on every push. dbt-core + the
         # Snowflake adapter is what's actually used and verified working
-        # (matches requirements.txt and the local .dbt-venv install).
-        run: pip install "dbt-core==1.11.12" "dbt-snowflake==1.8.4"
+        # (matches requirements-dbt.txt and the local .dbt-venv install).
+        # This job runs in its own isolated runner/environment (separate from
+        # tests.yml), so installing dbt's pins here is safe even though they
+        # conflict with requirements.txt's snowflake-connector-python pin --
+        # see requirements-dbt.txt for why dbt is never installed alongside it.
+        run: pip install -r ../../requirements-dbt.txt
       - name: dbt deps
         run: dbt deps
       - name: dbt parse (structural validation -- no warehouse)
