@@ -111,6 +111,12 @@ def main() -> int:
                     help="Check every success run, not just the latest per source.")
     ap.add_argument("--sample", type=int, default=2000,
                     help="Rows sampled per landing table (default 2000).")
+    # Added 2026-07-31. Without this the script re-samples EVERY success run in the
+    # warehouse (~1,000 landing tables) and takes long enough to time out a terminal,
+    # which makes it useless for the common case: a targeted repair of the one or two
+    # sources you already know are wrong.
+    ap.add_argument("--source", action="append", default=None, metavar="SOURCE_ID",
+                    help="Only check this source_id (repeatable). Case-insensitive.")
     args = ap.parse_args()
 
     mode = "APPLY" if args.apply else "PREVIEW (reads only, no writes)"
@@ -124,6 +130,15 @@ def main() -> int:
     conn = snow.connect()
     try:
         runs = _candidate_runs(conn, args.all_runs)
+        if args.source:
+            wanted = {s.strip().lower() for s in args.source}
+            runs = [r for r in runs if str(r[1]).strip().lower() in wanted]
+            missing = wanted - {str(r[1]).strip().lower() for r in runs}
+            if missing:
+                # Say so rather than silently checking nothing -- a typo'd source_id
+                # would otherwise look identical to "this source is healthy".
+                print(f"  NOTE: no success run found for {sorted(missing)} "
+                      f"(already non-success, or the id is wrong)")
         print(f"\nchecking {len(runs)} success run(s)...\n")
 
         demote = []   # (run_id, source_id, row_count, density_dict)

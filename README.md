@@ -47,7 +47,12 @@ python library-onboarding/onboard.py --batch   # onboard new sources into the Li
 - **`library-onboarding/`** — the 6-checkpoint source-onboarding agent. See
   `library-onboarding/README.md`.
 
-> Note: `dbt-fusion` is listed in `requirements.txt` (it runs/tests the 1,378 dbt
-> models in `library-onboarding/ripple_dbt` — 975 staging, 399 marts, 4
-> intermediate) but is **not** installed in the dev environment by default —
-> install it when you need to `dbt run` / `dbt test`.
+> Note: dbt runs/tests the 1,378 models in `library-onboarding/ripple_dbt` — 975
+> staging, 399 marts, 4 intermediate — but it is **deliberately not in
+> `requirements.txt`**. `dbt-snowflake` requires `snowflake-connector-python~=3.0`,
+> which genuinely conflicts with this repo's `==4.4.0` pin (pip refuses both in one
+> environment). Install it into its own venv when you need `dbt run` / `dbt test`:
+>
+> ```bash
+> python3 -m venv .dbt-venv && .dbt-venv/bin/pip install -r requirements-dbt.txt
+> ```

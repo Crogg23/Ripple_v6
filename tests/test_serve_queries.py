@@ -98,6 +98,35 @@ def test_normalize_sql_unknown_key_raises():
         q.normalize_sql("NOT_A_REAL_KEY", "V")
 
 
+def test_normalize_sql_rejects_text_sentinels_in_pad_mode():
+    """The 2026-07-28 digits-only guard. _alnum() strips punctuation but KEEPS
+    letters, so NPPES EIN's literal '<UNAVAIL>' becomes 'UNAVAIL' -- 7 chars, which
+    LPADs into a perfectly plausible 9-digit EIN. serve/ missed this guard for three
+    days while get_affiliations() ran the expression over raw LANDING columns."""
+    for key in ("NPI", "EIN", "CIK", "CCN"):
+        assert "REGEXP_LIKE" in q.normalize_sql(key, "V"), key
+
+
+# ---- the drift guard: serve/ is a COPY of connect/, so prove it stays one ---- #
+def test_serve_normalizers_are_character_identical_to_connect():
+    """serve/ deliberately reproduces connect/keys.py rather than importing it, so
+    the reading room lifts into Streamlit-in-Snowflake with no connect/ dependency
+    (connect/keys.py sys.path-hacks portal_recon/ at import time and cannot come
+    along). That copy is only safe if it is provably a copy -- on 2026-07-31 it had
+    drifted three days behind and was resolving text sentinels into apparent
+    providers. Any one-sided edit now fails here instead of shipping."""
+    from connect import keys as ckeys
+
+    assert q._NAME_NOISE == ckeys._NAME_NOISE, (
+        "serve/serve_queries.py _NAME_NOISE has drifted from connect/keys.py. A name "
+        "canonicalized against a different noise list is a DIFFERENT entity.")
+
+    for key in list(q._NORM) + ["NAME", "PERSON"]:
+        assert q.normalize_sql(key, '"C"') == ckeys.normalize_sql(key, '"C"'), (
+            f"serve/ and connect/ emit different SQL for {key}. The reading room and "
+            f"the connect engine would disagree about which rows are the same entity.")
+
+
 # --------------------------------------------------------------------------- #
 # resolve_hard_id -- typed ID -> ENTITY_MAP lookup, one bound raw value
 # --------------------------------------------------------------------------- #

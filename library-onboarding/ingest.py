@@ -100,6 +100,26 @@ DENSITY_SAMPLE_ROWS = 2000
 # append of a single legit new row must never be demoted -- and it is tunable here.
 DENSITY_MIN_ROWS = 2
 
+# A multi-column frame where EXACTLY ONE source column carries any data at all is not
+# a sparse table -- it is a parse that failed to split. Two live examples, both of
+# which cleared the 1% floor and rode in as STATUS='success', LIFECYCLE='modeled',
+# TRUST_LAYER='mart' (i.e. the catalog advertised them as trustworthy):
+#
+#   fed_ffiec_call_reports -- the loader fetched an HTML PAGE instead of the data
+#     file. Its one populated column is literally named DOCTYPE_HTML and holds
+#     '<html lang="en">'; RSSD_ID, INSTITUTION_NAME, TOTAL_ASSETS are all blank.
+#     1 of 14 columns = 7.1% density, SEVEN TIMES the 1% floor.
+#   intl_fatf_ratings -- COUNTRY populated, the six rating columns blank.
+#     1 of 7 columns = 14.3%.
+#
+# The floor cannot catch these: it measures CELLS, and one full column out of a dozen
+# is a lot of cells. This is a STRUCTURAL trigger instead, and it is deliberately
+# narrow so it does not collide with the "2 always-filled key columns + 198 optional
+# blanks" case the floor comment protects -- that frame has TWO populated columns, so
+# this never fires on it. Requires several columns, because a genuine 1- or 2-column
+# lookup table populating its only column is perfectly real data.
+DENSITY_SINGLE_COL_MIN_COLS = 4
+
 
 def _is_blank(v) -> bool:
     """A cell carries no data: None/NaN, or empty/whitespace-only after strip."""
@@ -194,12 +214,26 @@ def assess_density(df, sample_rows: int = DENSITY_SAMPLE_ROWS, min_rows: int = 1
     below_floor = populated_fraction < DENSITY_MIN_POPULATED_FRACTION
     # STRUCTURAL: too few rows to be a real dataset (opt-in via min_rows; snapshot only).
     too_few_rows = n_rows < min_rows
-    empty = below_floor or single_distinct_blank or too_few_rows
+    # STRUCTURAL: exactly ONE source column carries data in a multi-column frame ->
+    # the parse failed to split (a scraped HTML page, or a delimiter that never
+    # matched). Cell-density cannot see this: one full column out of fourteen is 7%,
+    # seven times the floor. See DENSITY_SINGLE_COL_MIN_COLS for the two live cases.
+    populated_cols = n_cols - all_blank_cols
+    single_populated_col = (n_cols >= DENSITY_SINGLE_COL_MIN_COLS and populated_cols == 1)
+    empty = below_floor or single_distinct_blank or too_few_rows or single_populated_col
 
     if not empty:
         reason = ""
     elif single_distinct_blank:
         reason = "every source column collapsed to a single blank value"
+    elif single_populated_col:
+        live = next((c for c in cols if c), "?")
+        reason = (f"only 1 of {n_cols} source columns carries any data "
+                  f"({all_blank_cols} entirely blank) -- the parse did not split. "
+                  f"A frame this shape is a scraped page or an unmatched delimiter, "
+                  f"not a sparse table (density {populated_fraction:.1%} clears the "
+                  f"{DENSITY_MIN_POPULATED_FRACTION:.0%} floor, which is why the "
+                  f"floor alone missed it); first source column '{live}'")
     elif below_floor:
         reason = (f"populated-cell fraction {populated_fraction:.2%} below the "
                   f"{DENSITY_MIN_POPULATED_FRACTION:.0%} floor "
@@ -213,6 +247,8 @@ def assess_density(df, sample_rows: int = DENSITY_SAMPLE_ROWS, min_rows: int = 1
         "all_blank_cols": all_blank_cols,
         "source_cols": n_cols,
         "single_distinct_blank": single_distinct_blank,
+        "single_populated_col": single_populated_col,
+        "populated_cols": populated_cols,
         "rows_sampled": rows_sampled,
         "empty": empty,
         "reason": reason,

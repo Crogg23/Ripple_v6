@@ -462,10 +462,26 @@ def save_state(state: dict) -> None:
 
 
 def _parse(ts: str):
+    """Parse a state timestamp. ALWAYS returns a timezone-AWARE datetime.
+
+    The try/except was meant to make this total, and didn't: an unparseable string
+    fell back to an aware epoch, but a perfectly VALID naive one ('2026-07-31T10:00:00',
+    no offset) parsed fine and returned naive -- then blew up one frame later in
+    tier_age_s, which subtracts it from datetime.now(timezone.utc):
+
+        TypeError: can't subtract offset-naive and offset-aware datetimes
+
+    Nothing catches that, and heartbeat is the scheduled spine -- so a single naive
+    timestamp in the state file silently stops ALL automation. iso_now() always writes
+    an offset today, so this is a latent trap rather than a live outage: a hand-edited
+    state file, a restored backup, or any future writer that forgets the tzinfo arms it.
+    Assume UTC for a naive value -- every timestamp this file stores is UTC-derived.
+    """
     try:
-        return datetime.fromisoformat(ts)
+        dt = datetime.fromisoformat(ts)
     except Exception:
         return datetime.fromtimestamp(0, timezone.utc)
+    return dt if dt.tzinfo is not None else dt.replace(tzinfo=timezone.utc)
 
 
 def tier_age_s(state: dict, tier: str) -> float:

@@ -58,10 +58,15 @@ CREATE RESOURCE MONITOR IF NOT EXISTS RIPPLE_BUDGET
 -- Bind it to the account (matches level = ACCOUNT in SHOW RESOURCE MONITORS).
 -- CAUTION: unlike the CREATE ... IF NOT EXISTS statements above, this is an
 -- UNCONDITIONAL, ACCOUNT-WIDE side effect. It rebinds the account's resource
--- monitor and re-imposes the 30-credit/month cap that SUSPENDs warehouses at
+-- monitor and re-imposes the 300-credit/month cap that SUSPENDs warehouses at
 -- 90% (and SUSPEND_IMMEDIATE at 100%) — re-running it can halt live ETL if the
 -- account is already near the cap. This file has no USE ROLE (unlike
 -- 05_serve_wh.sql), so it must be run as ACCOUNTADMIN.
+--
+-- 2026-07-31: this caution said "30-credit" while the CREDIT_QUOTA twenty lines
+-- above had already been corrected to 300. In a disaster-recovery file that
+-- contradiction is worse than useless — whoever runs this under pressure reads the
+-- warning, not the DDL, and would size the blast radius 10x too small.
 ALTER ACCOUNT SET RESOURCE_MONITOR = RIPPLE_BUDGET;
 
 -- CLAUDE_MCP_READONLY (role)

@@ -1,0 +1,29 @@
+version: 2
+
+# SAM exclusions is the LEFT side of debarred_but_funded. Untested until
+# 2026-07-31 -- and this whole directory had exactly one schema file for three
+# models.
+#
+# NOTE the asymmetry, it is deliberate: `unique` on uei but NOT `not_null`.
+# The model's own grain is `coalesce(nullif(trim(uei),''), entity_name ||
+# activation_date)` -- an individual debarment has no UEI, so a null there is
+# CORRECT data, not a defect. Verified 2026-07-31: 2,940 rows, 2,939 distinct
+# UEIs and exactly 1 null. dbt's `unique` test ignores nulls, so it asserts the
+# real invariant (no two records claim the same UEI) without failing on the
+# legitimately-null individual rows.
+models:
+  - name: procurement__fed_sam_exclusions
+    description: >
+      SAM.gov debarments and suspensions. One row per excluded entity, deduped on
+      UEI (falling back to entity_name + activation_date for individuals).
+    columns:
+      - name: uei
+        description: >
+          Unique Entity Identifier. Null for individual debarments, which have no
+          UEI -- unique-among-non-nulls is the real invariant here.
+        data_tests:
+          - unique
+      - name: is_currently_excluded
+        description: Whether the exclusion is still in force as of the model run.
+        data_tests:
+          - not_null

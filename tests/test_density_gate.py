@@ -11,6 +11,8 @@ conftest.py puts library-onboarding on sys.path, so `import ingest` works offlin
 import pandas as pd
 import pytest
 
+import ingest
+
 from ingest import (
     DENSITY_MIN_POPULATED_FRACTION,
     DENSITY_MIN_ROWS,
@@ -290,3 +292,67 @@ def test_reject_html_passes_field_with_html_snippet():
         "description": ["<p>See <a href='x'>details</a></p>", "plain text"],
     })
     _reject_html(df)  # no raise
+
+
+# --------------------------------------------------------------------------- #
+# The gap found 2026-07-31: a load where exactly ONE column survives the parse.
+# The 1%-cell floor cannot see it -- one full column out of fourteen is 7% of
+# cells, seven times the floor -- so fed_ffiec_call_reports (a scraped HTML page)
+# and intl_fatf_ratings both logged STATUS='success' and reached the catalog as
+# LIFECYCLE='modeled', TRUST_LAYER='mart'.
+# --------------------------------------------------------------------------- #
+def test_single_populated_column_is_demoted_even_though_it_clears_the_floor():
+    """The real fed_ffiec_call_reports shape: the loader fetched a web page, so the
+    only column carrying data is the one named after the doctype."""
+    import pandas as pd
+    cols = ["DOCTYPE_HTML", "RSSD_ID", "IDRSSD", "REPORTING_PERIOD_END_DATE",
+            "INSTITUTION_NAME", "TOTAL_ASSETS", "TOTAL_DEPOSITS",
+            "TOTAL_LOANS_AND_LEASES", "NET_INCOME", "TIER1_CAPITAL",
+            "PAST_DUE_LOANS_30_89", "PAST_DUE_LOANS_90_PLUS", "X13", "X14"]
+    df = pd.DataFrame({c: (["<html lang=\"en\">"] * 50 if c == "DOCTYPE_HTML"
+                           else [""] * 50) for c in cols})
+
+    d = ingest.assess_density(df)
+    assert d["populated_cols"] == 1
+    # The floor genuinely does NOT catch this -- that's the whole point.
+    assert d["populated_fraction"] > ingest.DENSITY_MIN_POPULATED_FRACTION
+    assert d["single_populated_col"] is True
+    assert d["empty"] is True, "a 14-column frame with 1 live column must be demoted"
+    assert "did not split" in d["reason"]
+
+
+def test_sparse_but_real_wide_table_is_not_demoted():
+    """The case the floor comment explicitly protects, and which this new trigger
+    must NOT break: two always-filled key columns plus a long tail of legitimately
+    optional blank ones. TWO populated columns, so the single-column rule can't fire."""
+    import pandas as pd
+    data = {"NPI": ["1234567890"] * 50, "STATE": ["CA"] * 50}
+    for i in range(198):
+        data[f"OPTIONAL_{i}"] = [""] * 50
+    d = ingest.assess_density(pd.DataFrame(data))
+
+    assert d["populated_cols"] == 2
+    assert d["single_populated_col"] is False
+    assert d["empty"] is False, "a real sparse wide table must survive the gate"
+
+
+def test_narrow_lookup_table_with_one_column_is_not_demoted():
+    """A genuine 1- or 2-column lookup populating its only column is real data --
+    hence DENSITY_SINGLE_COL_MIN_COLS. Without that floor on column count this rule
+    would demote every legitimate code table in the warehouse."""
+    import pandas as pd
+    d = ingest.assess_density(pd.DataFrame({"STATE_CODE": ["CA", "NY", "TX"] * 10}))
+    assert d["single_populated_col"] is False
+    assert d["empty"] is False
+
+
+def test_intl_fatf_ratings_shape_is_demoted():
+    """The second live case: country names landed, every rating column blank."""
+    import pandas as pd
+    df = pd.DataFrame({
+        "COUNTRY": [f"Country{i}" for i in range(40)],
+        "ML_RATING": [""] * 40, "TF_RATING": [""] * 40, "R1": [""] * 40,
+        "R2": [""] * 40, "R3": [""] * 40, "ASSESSMENT_DATE": [""] * 40,
+    })
+    d = ingest.assess_density(df)
+    assert d["empty"] is True and d["single_populated_col"] is True

@@ -23,7 +23,13 @@ jobs:
       SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
       SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
       SNOWFLAKE_PAT: ${{ secrets.SNOWFLAKE_PAT }}
-      SNOWFLAKE_ROLE: ACCOUNTADMIN
+      # 2026-07-31: was ACCOUNTADMIN. RIPPLE_TRANSFORM_RW already exists in the
+      # account and its own comment says what it's for -- "dbt transform: read RAW
+      # landing + META, build STAGING and MARTS. Least privilege, used by GitHub
+      # Actions." The purpose-built role was sitting there unused while CI claimed
+      # account-admin rights it never needed. `dbt parse` needs no privileges at
+      # all; the gated build step needs exactly what this role grants.
+      SNOWFLAKE_ROLE: RIPPLE_TRANSFORM_RW
       SNOWFLAKE_WAREHOUSE: RIPPLE_WH
     steps:
       - uses: actions/checkout@v4

@@ -175,6 +175,40 @@ def _load_graph_rows() -> None:
         pass
 
 
+def _detector_backlog(limit: int = 4) -> list[tuple[str, int]]:
+    """"Where to aim next": hard-ID join keys the graph found FAT edges on that no
+    detector covers yet -> [(key, n_edges), ...] descending.
+
+    This used to be frozen prose -- the literal string "STEEL 37 · CCN~NPI 39 ·
+    NPI 21 · CIK 1", typed in on 2026-06-27 and never touched again, sitting eight
+    lines under a comment bragging that the OTHER callout is "computed from the live
+    counts, never hardcoded". By 2026-07-31 it was materially wrong (CCN~NPI had gone
+    39 -> 67, NPI 21 -> 36) and the chart stated it on screen anyway. Exactly the
+    "that's how overlays rot" failure the module docstring warns about.
+
+    Derived from the cached graph, NOT the warehouse: this module is deliberately
+    DB-free on the render path (see _load_graph_rows), so the board still draws from
+    a fresh checkout with no Snowflake creds. Returns [] when the graph is missing --
+    the caller then omits the caption entirely rather than showing a stale one.
+    """
+    covered = {key for _rule, _lt, _rt, key in DETECTORS}
+    try:
+        g = json.loads(GRAPH.read_text())
+    except Exception:
+        return []          # no graph -> no claim (fail closed, never stale prose)
+    tally: dict[str, int] = {}
+    for e in g.get("edges", []):
+        # Hard-ID only. GEO/NAME edges are context, not identity -- proposing a
+        # detector on a ZIP edge would be proposing to merge strangers.
+        if e.get("tier") not in ("STEEL", "BRIDGE"):
+            continue
+        key = e.get("key")
+        if not key or key in covered:
+            continue
+        tally[key] = tally.get(key, 0) + 1
+    return sorted(tally.items(), key=lambda kv: (-kv[1], kv[0]))[:limit]
+
+
 def build_figure(counts: dict[str, int]) -> "go.Figure":
     import plotly.graph_objects as go  # lazy: only the render path needs plotly
     fig = go.Figure()
@@ -244,11 +278,13 @@ def build_figure(counts: dict[str, int]) -> "go.Figure":
                 text=f"{top_cnt:,} of {total:,} active leads ride ONE edge "
                      f"({top_rule}) — the rest fire {total - top_cnt:,} combined",
                 showarrow=False, font=dict(color="#f4a23a", size=12.5))
-    fig.add_annotation(  # the backlog: where to aim next
-        x=0.5, y=-0.06, xref="x", yref="paper", xanchor="center",
-        text="<b>Detector backlog</b> — fat hard-ID edges with NO rule yet:  "
-             "STEEL 37  ·  CCN~NPI 39  ·  NPI 21  ·  CIK 1",
-        showarrow=False, font=dict(color="#8b949e", size=11.5))
+    backlog = _detector_backlog()
+    if backlog:
+        parts = "  ·  ".join(f"{k} {n}" for k, n in backlog)
+        fig.add_annotation(  # the backlog: where to aim next
+            x=0.5, y=-0.06, xref="x", yref="paper", xanchor="center",
+            text=f"<b>Detector backlog</b> — hard-ID edges with NO rule yet:  {parts}",
+            showarrow=False, font=dict(color="#8b949e", size=11.5))
 
     fig.update_layout(
         title=dict(

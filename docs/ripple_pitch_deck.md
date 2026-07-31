@@ -32,7 +32,7 @@ That's the core idea. The rest is just making it work at scale.
 
 # What "making it work at scale" actually means
 
-Here's where the idea meets reality. You can't just dump 500 million rows of government data into a spreadsheet and ctrl+F your way through it. There's real engineering in between "interesting question" and "actual answer."
+Here's where the idea meets reality. You can't just dump 875 million rows of government data into a spreadsheet and ctrl+F your way through it. There's real engineering in between "interesting question" and "actual answer."
 
 **Problem 1: The data arrives messy.**
 
@@ -44,21 +44,21 @@ Here's what the 10 largest source tables look like:
 ┌──────────────────────────────────────────────────────┬────────────────┐
 │ Source Table                                         │ Rows           │
 ├──────────────────────────────────────────────────────┼────────────────┤
+│ DEA ARCOS (controlled-substance transactions)        │ 178,598,026    │
+│ SEC 13F Holdings                                     │ 101,261,252    │
 │ FEC Individual Contributions                         │ 84,172,112     │
 │ CourtListener Dockets                                │ 71,677,647     │
 │ NOAA AIS (vessel transponders)                       │ 58,106,517     │
-│ SEC 13F Holdings                                     │ 39,395,369     │
 │ CMS Part D Prescriber-Drug                           │ 25,869,521     │
+│ FDA FAERS (adverse-event drugs)                      │ 20,914,284     │
+│ FDA FAERS (adverse-event reactions)                  │ 20,621,386     │
 │ USASpending Contracts                                │ 20,000,000     │
 │ USASpending Assistance                               │ 19,902,879     │
-│ FHFA National Mortgage Database                      │ 19,054,246     │
-│ CFPB Consumer Complaints                             │ 17,179,788     │
-│ CMS Open Payments (pharma → doctors)                 │ 15,385,047     │
 └──────────────────────────────────────────────────────┴────────────────┘
-Total across all 1,942 tables: 555,381,078 rows
+Total across all 1,937 landing tables: 875,575,558 rows
 ```
 
-So the first job is just: pour everything into one warehouse, then write a cleaning model for each source. I have 969 of those cleaning models now. Each one handles one source's specific quirks — deduplication, type casting, normalization, grain definition. Not glamorous. Very necessary.
+So the first job is just: pour everything into one warehouse, then write a cleaning model for each source. I have 975 of those cleaning models now. Each one handles one source's specific quirks — deduplication, type casting, normalization, grain definition. Not glamorous. Very necessary.
 
 **Problem 2: The same entity has different IDs in different systems.**
 
@@ -84,14 +84,19 @@ That kind of thing happens constantly. The "interesting question" takes five min
 
 The short version of the tech:
 
-- **Snowflake warehouse** — where the data lives. 555 million rows across 1,942 tables. Four databases, organized by function (raw landing, metadata/registry, staging, marts).
-- **dbt pipeline** — 1,032 transformation models in a dependency graph. Staging layer (clean the source), intermediate layer (fix grain, union years), mart layer (query-ready domain tables).
+- **Snowflake warehouse** — where the data lives. 875 million rows across 1,937 landing tables. Four databases, organized by function (raw landing, metadata/registry, staging, marts).
+- **dbt pipeline** — 1,378 transformation models in a dependency graph (975 staging, 399 marts, 4 intermediate). Staging layer (clean the source), intermediate layer (fix grain, union years), mart layer (query-ready domain tables).
 - **Custom loading framework** — Python. Handles downloading, checksumming, deduplication, atomic loads, and recovery if something fails mid-load.
 - **Portal indexer** — crawled open-data portals and cataloged 338,520 datasets. Tagged each one with which government ID types it carries. That's the map of "what's out there to load next."
-- **Entity resolution engine** — profiles every table for known ID patterns, normalizes them, and builds a graph of where each entity appears. 16.2 million match-pairs across datasets right now.
-- **Detection layer** — six rules that run cross-table intersection queries. Gated by thresholds so random noise doesn't create false leads.
+- **Entity resolution engine** — profiles every table for known ID patterns, normalizes them, and builds a graph of where each entity appears. 22.6 million entities and 31.1 million match-pairs across datasets right now.
+- **Detection layer** — eight rules that run cross-table intersection queries. Gated by thresholds so random noise doesn't create false leads.
 
-About 10,500 SQL files, 300 Python files, 2,800 YAML configs. One person, about 40 days so far in this version.
+About 1,400 hand-authored SQL files (1,378 of them dbt models), 309 Python files,
+and 1,400 YAML configs. One person, about 40 days so far in this version.
+
+(That SQL number counts files I wrote. dbt also *compiles* every model into
+`target/`, which balloons the on-disk `.sql` count past 20,000 — but those are
+machine-generated copies, not work, and it would be dishonest to claim them.)
 
 The source registry organizes everything by domain:
 
@@ -111,11 +116,15 @@ The source registry organizes everything by domain:
 │ Government & Power          │    67   │
 │ Energy & Environment        │    60   │
 │ Money in Politics           │    58   │
-│ Spending & Budget           │    51   │
+│ Spending & Budget           │    50   │
 │ History & Culture           │    37   │
 │ Crime & Security            │    33   │
 ├─────────────────────────────┼─────────┤
-│ Total registered            │ 2,575   │
+│ Subtotal (15 domains above) │ 2,460   │
+│ Seven smaller domains       │   114   │
+│ Not yet classified          │   418   │
+├─────────────────────────────┼─────────┤
+│ Total registered            │ 2,992   │
 └─────────────────────────────┴─────────┘
 ```
 
@@ -123,7 +132,7 @@ The source registry organizes everything by domain:
 
 # What it's found so far
 
-The six detectors have produced 1,041 leads. Here's the actual query that backs this up:
+The eight detectors have produced 17,256 leads. Here's the actual query that backs this up:
 
 ```sql
 -- "Show me every lead, grouped by which detector found it"
@@ -134,22 +143,41 @@ ORDER BY leads DESC;
 ```
 
 ```
-┌─────────────────────────────────────────┬───────┐
-│ Detector                                │ Leads │
-├─────────────────────────────────────────┼───────┤
-│ banned_but_paid                         │   773 │
-│ excluded_but_billing                    │   236 │
-│ sanctioned_vessel_broadcasting_v2       │    12 │
-│ banned_but_operating                    │    11 │
-│ sanctioned_vessel_broadcasting (v1)     │     4 │
-│ sec_filer_in_irs_bmf                    │     3 │
-│ debarred_but_funded                     │     2 │
-├─────────────────────────────────────────┼───────┤
-│ Total                                   │ 1,041 │
-└─────────────────────────────────────────┴───────┘
+┌─────────────────────────────────────────┬────────┐
+│ Detector                                │  Leads │
+├─────────────────────────────────────────┼────────┤
+│ osha_cohort_outlier_2024                │ 16,215 │
+│ banned_but_paid                         │    773 │
+│ excluded_but_billing                    │    236 │
+│ sanctioned_vessel_broadcasting_v2       │     12 │
+│ banned_but_operating                    │     11 │
+│ sanctioned_vessel_broadcasting (v1)     │      4 │
+│ sec_filer_in_irs_bmf                    │      3 │
+│ debarred_but_funded                     │      2 │
+├─────────────────────────────────────────┼────────┤
+│ Total                                   │ 17,256 │
+└─────────────────────────────────────────┴────────┘
 ```
 
-Most leads are healthcare-related (NPI-keyed). That's partly because healthcare has the cleanest IDs, and partly because I've focused more effort there. The other domains are thinner — honestly, some of those single-digit counts reflect incomplete crosswalk data more than a lack of real problems.
+Those are two different kinds of finding, and the split matters more than the total.
+
+`osha_cohort_outlier_2024` is a **statistical sweep**: it scores every OSHA
+establishment against its own NAICS-and-size peer cohort and flags the ones whose
+injury rate runs at least 2x the pooled rate on 5+ cases. 16,215 of those is not a
+surprise — that's what a population-wide outlier scan returns. Each one is a
+neutral, peer-relative observation with frozen SQL behind it, not an accusation.
+
+The other seven are **intersection rules**: the same hard ID (NPI / IMO / UEI)
+appearing on a flag list and an activity list at the same time. Those are rarer by
+construction, which is why the counts are small.
+
+Most of the intersection leads are healthcare-related (NPI-keyed). That's partly
+because healthcare has the cleanest IDs, and partly because I've focused more
+effort there. The other domains are thinner — honestly, some of those single-digit
+counts reflect incomplete crosswalk data more than a lack of real problems.
+
+Nothing in this table has been reviewed or published. Every one is a lead pending
+human sign-off; auto-publish is structurally blocked.
 
 ---
 
@@ -338,8 +366,8 @@ But 773 banned doctors still getting pharma checks seems like it shouldn't be a 
 
 This is one person's work. The engineering skills it demonstrates:
 
-- Designing and operating a 555M-row cloud data warehouse (Snowflake)
-- Building a 1,032-model dbt pipeline across 24 domains
+- Designing and operating an 875M-row cloud data warehouse (Snowflake)
+- Building a 1,378-model dbt pipeline across 24 domains
 - Writing ETL frameworks with integrity checking, atomic loads, and recovery
 - Entity resolution with graph-based matching across heterogeneous sources
 - SQL at depth — window functions, temporal logic, grain management, anti-joins

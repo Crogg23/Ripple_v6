@@ -40,6 +40,20 @@ models:
       corporate_registry:
         corporate_registry__intl_ie_cro:
           +enabled: true  # re-enabled 2026-07-24: source re-ingested (819K rows)
+      # 2026-07-31: both sources re-graded STATUS='empty' by the density gate's new
+      # single-populated-column trigger. They must be disabled here TOO, not just
+      # re-graded -- LIBRARY_META.REGISTRY.CATALOG resolves LIFECYCLE with
+      # `WHEN f.real_mart THEN 'modeled'` as its FIRST branch, so a mart built on
+      # garbage keeps advertising the source as fully modeled/mart-grade no matter
+      # what the ingest log says. Removing the mart is what lets LIFECYCLE fall
+      # through to 'empty'.
+      #
+      # NB: do NOT "fix" this by making empty beat real_mart in that view. fed_dea_arcos
+      # has a stale 409-row failed run sitting next to a genuinely healthy 178.6M-row
+      # dataset; that precedence is what protects it from being wrongly condemned.
+      finance:
+        finance__fed_ffiec_call_reports:
+          +enabled: false  # source is a saved HTML page: only populated column is DOCTYPE_HTML
       economics:
         economics__fed_hhs_taggs:
           +enabled: false  # stub: 45 rows of scraped HTML nav text, not real grants
@@ -65,8 +79,15 @@ models:
       justice:
         justice__fed_doj_crt_cases:
           +enabled: false  # stub: 1 row, failed scrape
+        justice__intl_fatf_ratings:
+          +enabled: false  # 2026-07-31: source parse failed -- COUNTRY populated, all 6 rating columns blank
         justice__fed_fjc_idb:
-          +enabled: true  # re-enabled 2026-07-24: source re-ingested (4.1M rows)
+          # 2026-07-24 note said "source re-ingested (4.1M rows)" -- the ROW COUNT was
+          # re-ingested, the DATA was not. Verified 2026-07-31: all 4,126,450 rows are
+          # the empty string in every column, and the ingest log has correctly said
+          # STATUS='empty' since 2026-06-17. The mart it builds is 1 row (the dedup
+          # collapses every identical blank surrogate key into one).
+          +enabled: false
       legal_enforcement:
         legal_enforcement__fed_naag_multistate_settlements:
           +enabled: true  # re-enabled 2026-07-24: source re-ingested (882 rows)

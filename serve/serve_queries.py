@@ -56,25 +56,45 @@ def _alnum(col: str) -> str:
 def _name_canon(col: str) -> str:
     base = f"TRIM(REGEXP_REPLACE(UPPER(TO_VARCHAR({col})), '[^A-Z0-9]+', ' '))"
     noise = ", ".join(f"'{t}'" for t in _NAME_NOISE)
-    return (f"NULLIF(ARRAY_TO_STRING(ARRAY_SORT(ARRAY_EXCEPT("
-            f"SPLIT({base}, ' '), ARRAY_CONSTRUCT({noise}))), ' '), '')")
+    return (f"NULLIF(ARRAY_TO_STRING(ARRAY_SORT(FILTER("
+            f"SPLIT({base}, ' '), t -> NOT ARRAY_CONTAINS(t, ARRAY_CONSTRUCT({noise})))), ' '), '')")
 
 
 def normalize_sql(key: str, col: str) -> str:
-    """SQL expression canonicalizing `col` for an equi-join on `key`."""
+    """SQL expression canonicalizing `col` for an equi-join on `key`.
+
+    This is a deliberate COPY of connect/keys.py, not an import -- see the module
+    docstring: serve/ stays dependency-free so it lifts into Streamlit-in-Snowflake,
+    and connect/keys.py cannot come along (it sys.path-hacks portal_recon/ at import
+    time). The copy is the price of that lift. The parity test in
+    tests/test_serve_queries.py is what makes the price safe to pay: it asserts these
+    expressions are character-identical to connect's, so a one-sided edit fails CI
+    instead of silently splitting the two lanes.
+
+    2026-07-31: they HAD silently split. connect/keys.py gained a digits-only guard
+    on 2026-07-28 (a text sentinel like NPPES EIN's literal '<UNAVAIL>' survives
+    _alnum() as 'UNAVAIL' and then LPADs into a plausible-looking 9-char ID); this
+    copy never got it, and get_affiliations() runs these expressions over RAW LANDING
+    columns -- so the reading room was resolving sentinels into apparent providers
+    that the connect engine correctly rejects.
+    """
     if key in ("NAME", "PERSON"):
         return _name_canon(col)
     mode, width = _NORM[key]
     clean = _alnum(col)
     if mode == "pad":
+        # The digits-only guard: every pad-mode key (NPI/EIN/CIK/CCN) is purely
+        # numeric, so a letter anywhere means a text sentinel, not a real ID.
         return (f"CASE WHEN LENGTH({clean}) = 0 OR LENGTH({clean}) > {width} "
+                f"OR NOT REGEXP_LIKE({clean}, '^[0-9]+$') "
                 f"OR LPAD({clean}, {width}, '0') = REPEAT('0', {width}) THEN NULL "
                 f"ELSE LPAD({clean}, {width}, '0') END")
     if mode == "fixed":
         return f"CASE WHEN LENGTH({clean}) = {width} THEN {clean} ELSE NULL END"
     if mode == "imo":
         d = f"REGEXP_REPLACE(TO_VARCHAR({col}), '[^0-9]', '')"
-        return f"CASE WHEN LENGTH({d}) <> {width} OR {d} = REPEAT('0', {width}) THEN NULL ELSE {d} END"
+        return (f"CASE WHEN LENGTH({d}) <> {width} OR {d} = REPEAT('0', {width}) "
+                f"THEN NULL ELSE {d} END")
     raise KeyError(key)
 
 

@@ -324,3 +324,50 @@ def test_traps_mirror_registry_seeds():
     for table, keys in SOURCE_TRAPS.items():
         assert all(k in TRAPS for k in keys)
         assert traps_for_source(table.lower()) == keys   # case-insensitive
+
+
+# ---- vocabulary parity: the last hand-synced key list in the platform -------- #
+# Same failure mode as the 2026-07-30 drift guarded in test_keys_normalize.py, and
+# the same one that bit serve/serve_queries.py on 2026-07-31: a key list copied by
+# hand, with a comment asking humans to keep it in lockstep. HARD_ID_TOKENS decides
+# whether a mart's join grades 'fact' or 'unverified'. If connect/ learns a new STEEL
+# key and this list doesn't, every mart joining on that key silently grades
+# 'unverified' -- the honesty engine under-claiming, which is the safe direction but
+# still wrong. If this list keeps a key connect/ has DEMOTED, marts grade 'fact' on a
+# key the spine no longer trusts -- the unsafe direction. Neither should be possible
+# without a test failing first.
+def test_hard_id_tokens_match_connects_steel_keys():
+    from connect import keys as ckeys
+
+    from honesty.grading import HARD_ID_TOKENS
+
+    steel = {k for k, (tier, _t) in ckeys.KEY_TOKENS.items() if tier == "STEEL"}
+
+    missing = sorted(steel - HARD_ID_TOKENS)
+    assert not missing, (
+        f"connect/ treats these as STEEL but honesty/grading.py does not list them as "
+        f"hard IDs: {missing}. Every mart joining on them grades 'unverified' instead "
+        f"of 'fact' -- the honesty engine under-claims until this list catches up.")
+
+    stale = sorted(HARD_ID_TOKENS - steel - {
+        k for k, (tier, _t) in ckeys.KEY_TOKENS.items() if tier == "STRONG"})
+    assert not stale, (
+        f"honesty/grading.py grades joins on {stale} as hard-ID-anchored 'fact', but "
+        f"connect/ no longer tiers them STEEL/STRONG. This is the UNSAFE direction: "
+        f"marts claim fact-grade identity on a key the spine has demoted.")
+
+
+def test_claim_surfaces_cover_vizs_claim_tables():
+    """honesty/grading.py says CLAIM_SURFACES mirrors viz/guard.py CLAIM_TABLES.
+    Ancestry through a claim table must grade 'lead' in BOTH lanes -- a table the
+    chart guard badges as a lead but the mart grader calls a fact is exactly the
+    'leads are not facts' rule breaking at the seam between two modules."""
+    from viz.guard import CLAIM_TABLES
+
+    from honesty.grading import CLAIM_SURFACES
+
+    missing = sorted(CLAIM_TABLES - CLAIM_SURFACES)
+    assert not missing, (
+        f"viz/guard.py treats these as claim tables but honesty/grading.py does not: "
+        f"{missing}. The chart lane badges them LEAD while the mart lane grades them "
+        f"fact-eligible.")

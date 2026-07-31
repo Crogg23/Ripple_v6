@@ -1,0 +1,23 @@
+version: 2
+
+# The LEIE exclusion registry is the LEFT side of banned_but_paid and
+# excluded_but_billing -- the two detectors that produce most of Ripple's
+# intersection leads. It declared its grain in a header comment
+# ("one row per exclusion record (exclusion_sk is unique)") and had NO dbt test
+# enforcing it until 2026-07-31. A silent grain break here inflates every lead
+# count downstream, on claims about named people.
+#
+# Deliberately NOT tested: npi. ~90% of LEIE rows carry the placeholder
+# '0000000000' (documented in connect/keys.py and the registry traps), so
+# not_null would pass while meaning nothing, and unique would fail by design.
+models:
+  - name: health__fed_hhs_oig_leie
+    description: >
+      HHS OIG List of Excluded Individuals/Entities. One row per exclusion record.
+      Verified 2026-07-31: 83,369 rows, exclusion_sk unique and fully populated.
+    columns:
+      - name: exclusion_sk
+        description: Surrogate key -- the declared grain of this model.
+        data_tests:
+          - not_null
+          - unique

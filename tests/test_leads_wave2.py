@@ -7,6 +7,7 @@ titles, lead_receipt SQL parameterization, and rung display honesty.
 """
 
 import hashlib
+import json
 import importlib.util
 import sys
 from pathlib import Path
@@ -356,3 +357,38 @@ def test_ein_spec_carries_evidence_and_neutral_title():
     assert "also appears in" in t                           # co-occurrence phrasing
     for banned in ("violat", "illegal", "fraud", "banned", "crime"):
         assert banned not in t.lower(), f"title overclaims: {banned!r}"
+
+
+# ---- the detector backlog: derived, never frozen prose ---------------------- #
+def test_detector_backlog_excludes_keys_a_detector_already_covers(tmp_path, monkeypatch):
+    """The caption was hardcoded on 2026-06-27 ("STEEL 37 · CCN~NPI 39 · NPI 21 ·
+    CIK 1") and was materially wrong by 2026-07-31 -- CCN~NPI had gone 39 -> 67 and
+    NPI had since GAINED a detector, so listing it as backlog was doubly wrong. The
+    point of the caption is "where to aim next", so a key that already has a rule
+    must never appear in it."""
+    covered = sorted({k for *_, k in ov.DETECTORS})
+    assert covered, "DETECTORS should derive at least one key from JOBS"
+    graph = {"edges": [
+        {"a": "T1", "b": "T2", "key": covered[0], "tier": "STEEL"},   # covered -> excluded
+        {"a": "T3", "b": "T4", "key": "ZZ_UNCOVERED", "tier": "STEEL"},
+        {"a": "T5", "b": "T6", "key": "ZZ_UNCOVERED", "tier": "BRIDGE"},
+        {"a": "T7", "b": "T8", "key": "ZZ_GEOKEY", "tier": "GEO"},    # geo -> excluded
+        {"a": "T9", "b": "TA", "key": "ZZ_NAMEKEY", "tier": "CORROBORATED"},
+    ]}
+    p = tmp_path / "connect_graph.json"
+    p.write_text(json.dumps(graph))
+    monkeypatch.setattr(ov, "GRAPH", p)
+
+    backlog = dict(ov._detector_backlog())
+    assert backlog == {"ZZ_UNCOVERED": 2}, (
+        f"backlog should count only uncovered HARD-ID edges, got {backlog}")
+    assert covered[0] not in backlog       # a key with a rule is not backlog
+    assert "ZZ_GEOKEY" not in backlog      # GEO is context, not identity
+    assert "ZZ_NAMEKEY" not in backlog     # name-tier would propose merging strangers
+
+
+def test_detector_backlog_fails_closed_when_the_graph_is_missing(tmp_path, monkeypatch):
+    """No graph -> no claim. The caller omits the caption entirely rather than
+    render a stale one, which is the whole failure this replaced."""
+    monkeypatch.setattr(ov, "GRAPH", tmp_path / "does_not_exist.json")
+    assert ov._detector_backlog() == []

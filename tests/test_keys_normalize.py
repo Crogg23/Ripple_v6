@@ -9,8 +9,20 @@ from connect.keys import detect_key, normalize_sql
 # ---- offline: the SQL the normalizer emits -------------------------------- #
 def test_name_token_sorts_and_strips_noise():
     sql = normalize_sql("NAME", "X")
-    assert "ARRAY_SORT" in sql and "ARRAY_EXCEPT" in sql      # token-sorted
+    assert "ARRAY_SORT" in sql and "FILTER" in sql            # token-sorted
     assert "'INC'" in sql and "'LLC'" in sql and "'MD'" in sql  # noise stripped
+
+
+def test_name_strips_noise_with_filter_not_array_except():
+    """ARRAY_EXCEPT is a MULTISET difference in Snowflake -- it removes ONE
+    occurrence per element of the second array. 'ACME HOLDINGS GROUP HOLDINGS' kept
+    a stray second HOLDINGS while 'ACME HOLDINGS GROUP' dropped its only one, so the
+    same org canonicalized two ways and failed to match itself. FILTER removes every
+    occurrence. ARRAY_DISTINCT would also have worked but would have collapsed
+    duplicates of REAL tokens too, silently re-keying legitimate names."""
+    sql = normalize_sql("NAME", "X")
+    assert "ARRAY_EXCEPT" not in sql
+    assert "ARRAY_CONTAINS" in sql and "ARRAY_DISTINCT" not in sql
 
 
 def test_person_shares_the_name_canonicalizer():
@@ -26,6 +38,18 @@ def test_address_standardizes_but_does_not_sort():
 def test_npi_pads_to_ten_never_strips():
     sql = normalize_sql("NPI", "X")
     assert "LPAD" in sql and "10" in sql
+
+
+def test_zip_accepts_only_real_us_zip_lengths():
+    """The gate was `>= 5`, which did not match its own comment. A ZIP+4 int-cast
+    through a CSV load loses its leading zero and arrives 8 digits ('21151234' for
+    02115-1234); `>= 5` accepted it and LEFT-5 produced '21151' -- a real, WRONG
+    Pennsylvania ZIP standing in for a Boston one, with nothing to flag it. Only 5
+    (ZIP5) and 9 (ZIP+4) are lengths a real US ZIP can have."""
+    sql = normalize_sql("ZIP", "X")
+    assert "IN (5, 9)" in sql
+    assert ">= 5" not in sql       # the old permissive gate must be gone
+    assert "LEFT(" in sql and ", 5)" in sql
 
 
 def test_unknown_key_fails_loud():

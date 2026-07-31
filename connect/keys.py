@@ -172,11 +172,20 @@ def _alnum(col: str) -> str:
 
 
 def _name_canon(col: str) -> str:
-    """Token-sorted, noise-stripped name: order- and suffix-insensitive matching."""
+    """Token-sorted, noise-stripped name: order- and suffix-insensitive matching.
+
+    FILTER, not ARRAY_EXCEPT. ARRAY_EXCEPT is a MULTISET difference in Snowflake:
+    it removes one occurrence per element of the second array, so
+    'ACME HOLDINGS GROUP HOLDINGS' kept a stray second HOLDINGS while
+    'ACME HOLDINGS GROUP' dropped its only one -- the two canonicalized
+    differently and the same org failed to match itself. FILTER removes EVERY
+    occurrence of a noise token while preserving duplicates of REAL tokens
+    (ARRAY_DISTINCT would have collapsed those too, silently re-keying names).
+    """
     base = f"TRIM(REGEXP_REPLACE(UPPER(TO_VARCHAR({col})), '[^A-Z0-9]+', ' '))"
     noise = ", ".join(f"'{t}'" for t in _NAME_NOISE)
-    return (f"NULLIF(ARRAY_TO_STRING(ARRAY_SORT(ARRAY_EXCEPT("
-            f"SPLIT({base}, ' '), ARRAY_CONSTRUCT({noise}))), ' '), '')")
+    return (f"NULLIF(ARRAY_TO_STRING(ARRAY_SORT(FILTER("
+            f"SPLIT({base}, ' '), t -> NOT ARRAY_CONTAINS(t, ARRAY_CONSTRUCT({noise})))), ' '), '')")
 
 
 def _addr_canon(col: str) -> str:
@@ -238,11 +247,18 @@ def normalize_sql(key: str, col: str) -> str:
         # D18: US ZIP -> first `width` digits, so a ZIP+4 (NPPES '021151234' or
         # '02115-1234') equi-joins a ZIP5 (LEIE '02115'). Before this, ZIP used 'code'
         # (no truncation) so the 8.7M ZIP9 rows in NPPES could never match any ZIP5
-        # store. Digits only; require at least `width` (a numeric ZIP that lost its
-        # leading zero is dropped, never risked as a false 4-digit match).
+        # store. Digits only; a numeric ZIP that lost its leading zero is DROPPED,
+        # never risked as a false match.
+        #
+        # 2026-07-31: the gate was `>= width`, which did not do what the line above
+        # claims. A ZIP+4 int-cast through a CSV load loses its leading zero and
+        # arrives 8 digits ('21151234' for 02115-1234); `>= 5` accepted it and LEFT-5
+        # produced '21151' -- a real, WRONG, Pennsylvania ZIP silently standing in for
+        # a Boston one. Same for any 6/7-digit run (foreign postal codes). Only the two
+        # lengths a real US ZIP can have are accepted: 5 (ZIP5) and 9 (ZIP+4).
         digits = f"REGEXP_REPLACE(TO_VARCHAR({col}), '[^0-9]', '')"
-        return (f"CASE WHEN LENGTH({digits}) >= {width} THEN LEFT({digits}, {width}) "
-                f"ELSE NULL END")
+        return (f"CASE WHEN LENGTH({digits}) IN ({width}, {width + 4}) "
+                f"THEN LEFT({digits}, {width}) ELSE NULL END")
     if mode == "country":
         return f"NULLIF(UPPER(REGEXP_REPLACE(TO_VARCHAR({col}), '[^A-Za-z]', '')), '')"
     raise KeyError(f"Unknown norm mode '{mode}' for key '{key}'.")

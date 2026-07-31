@@ -1,0 +1,21 @@
+version: 2
+
+# OFAC SDN is the LEFT side of sanctioned_vessel_broadcasting (v1 and v2) and
+# feeds int_sanctioned_vessels. It declared "one row per sanctioned entity
+# (ent_num is unique)" in a header comment with no test behind it until
+# 2026-07-31.
+#
+# Deliberately NOT tested: imo_number. Only vessel rows carry one, and the
+# registry traps record a literal '-0- ' sentinel in sdn_type on this source --
+# a not_null test would be wrong and a unique test would fail on the sentinel.
+models:
+  - name: justice__fed_ofac_sdn
+    description: >
+      OFAC Specially Designated Nationals. One row per sanctioned entity.
+      Verified 2026-07-31: 19,115 rows, ent_num unique and fully populated.
+    columns:
+      - name: ent_num
+        description: OFAC entity number -- the declared grain of this model.
+        data_tests:
+          - not_null
+          - unique
