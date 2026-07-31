@@ -134,7 +134,12 @@ def search_names(raw: str, limit: int = 50):
     tokens = [t for t in nn.split(" ") if t]
     if not tokens:
         return run_df("SELECT NULL AS ENTITY_ID WHERE 1=0")
-    where = " AND ".join(["g.NAME_NORM LIKE %s"] * len(tokens))
+    # Tokens must match as WHOLE words: NAME_NORM is a plain space-joined
+    # token list with no boundary delimiter, so an unanchored LIKE '%JON%'
+    # would match inside "JONES" too. Pad with boundary spaces and require
+    # '% TOKEN %' so each match is anchored to a real token, not a substring
+    # (same class of bug fixed in connect/dossier.py's _resolve() 2026-07-30).
+    where = " AND ".join(["(' ' || g.NAME_NORM || ' ') LIKE %s"] * len(tokens))
     # TOTAL_MATCHES rides along via COUNT(*) OVER(), computed before LIMIT
     # truncates -- so the caller can show "top 50 of N" instead of silently
     # capping the result with no indication more rows exist.
@@ -146,7 +151,7 @@ def search_names(raw: str, limit: int = 50):
         WHERE {where}
         ORDER BY m.SOURCE_COUNT DESC NULLS LAST, LENGTH(g.CANONICAL_NAME), g.CANONICAL_NAME
         LIMIT %s"""
-    return run_df(sql, tuple(f"%{t}%" for t in tokens) + (limit,))
+    return run_df(sql, tuple(f"% {t} %" for t in tokens) + (limit,))
 
 
 @st.cache_data(ttl=300, show_spinner=False)

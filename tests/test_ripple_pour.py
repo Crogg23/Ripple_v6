@@ -32,24 +32,39 @@ SAMPLE_QUEUE = [
 
 
 # --------------------------------------------------------------- classify (#5)
+#
+# 2026-07-30: these tests were written for a since-refactored 2-tier API
+# (classify(queue, spec_ids) positional, returning {"deterministic":[...],
+# "llm":[...]}) that no longer exists -- pour.py moved to a 4-tier router
+# (bridge_fuel/server_side/portal/onboard, keyed off classify(queue,
+# specs=dict)) but nobody updated these tests, so they'd been silently
+# failing. Also fixed: several tests monkeypatched `pour.known_spec_ids`,
+# but run_plan/run_run actually call `pour.known_specs` -- the patch was a
+# no-op and those tests were hitting the REAL on-disk spec files instead of
+# a hermetic stub, contrary to this file's own "SPECS are stubbed" docstring
+# claim.
 def test_known_spec_ids_reads_stub_modules():
+    # known_specs()/known_spec_ids() upper-case every source_id (matches the
+    # upper-cased lookup key `classify()` builds from each queue entry).
     ids = pour.known_spec_ids([_stub_specs(["a", "b"]), _stub_specs(["c"])])
-    assert ids == {"a", "b", "c"}
+    assert ids == {"A", "B", "C"}
 
 
 def test_classify_splits_deterministic_vs_llm():
-    spec_ids = {"fed_cms_facility_affiliation"}
-    split = pour.classify(SAMPLE_QUEUE, spec_ids)
-    det_ids = {e["source_id"] for e in split["deterministic"]}
-    llm_ids = {e["source_id"] for e in split["llm"]}
+    specs = {"FED_CMS_FACILITY_AFFILIATION": {"loader": "bridge_fuel"}}
+    buckets = pour.classify(SAMPLE_QUEUE, specs=specs)
+    det_ids = {e["source_id"] for e in buckets["bridge_fuel"] + buckets["server_side"] + buckets["portal"]}
+    llm_ids = {e["source_id"] for e in buckets["onboard"]}
 
     assert det_ids == {"fed_cms_facility_affiliation", "loc_city_budget", "fed_bia_tribal_geo"}
     assert llm_ids == {"fed_novel_api"}
 
 
 def test_classify_reason_tags():
-    split = pour.classify(SAMPLE_QUEUE, {"fed_cms_facility_affiliation"})
-    by_id = {e["source_id"]: e["route_reason"] for e in split["deterministic"] + split["llm"]}
+    specs = {"FED_CMS_FACILITY_AFFILIATION": {"loader": "bridge_fuel"}}
+    buckets = pour.classify(SAMPLE_QUEUE, specs=specs)
+    by_id = {e["source_id"]: e["route_reason"]
+             for e in buckets["bridge_fuel"] + buckets["portal"] + buckets["onboard"]}
     assert by_id["fed_cms_facility_affiliation"] == "bridge_fuel spec"
     assert by_id["loc_city_budget"] == "portal loader"
     assert by_id["fed_bia_tribal_geo"] == "portal loader"
@@ -138,7 +153,10 @@ def test_run_dry_does_not_execute(tmp_path, monkeypatch, capsys):
     q = tmp_path / "q.json"
     q.write_text(json.dumps(SAMPLE_QUEUE), encoding="utf-8")
     monkeypatch.setattr(pour.C, "pour_running", lambda: None)
-    monkeypatch.setattr(pour, "known_spec_ids", lambda *a, **k: {"fed_cms_facility_affiliation"})
+    # run_run/run_plan call known_specs(), not known_spec_ids() -- patch the
+    # function actually used, with the dict shape classify() expects.
+    monkeypatch.setattr(pour, "known_specs",
+                        lambda *a, **k: {"FED_CMS_FACILITY_AFFILIATION": {"loader": "bridge_fuel"}})
 
     # If run tried to execute, this would blow up — DRY must never call subprocess.
     def _boom(*a, **k):
@@ -151,14 +169,16 @@ def test_run_dry_does_not_execute(tmp_path, monkeypatch, capsys):
     out = capsys.readouterr().out
     assert rc == 0
     assert "DRY plan" in out
-    assert "bridge_fuel_load.py --spec fed_cms_facility_affiliation" in out
+    # bf_ids are upper-cased in run_run (matches known_specs()'s upper-cased keys)
+    assert "bridge_fuel_load.py --spec FED_CMS_FACILITY_AFFILIATION" in out
 
 
 def test_run_run_launches_both_stages(tmp_path, monkeypatch, capsys):
     q = tmp_path / "q.json"
     q.write_text(json.dumps(SAMPLE_QUEUE), encoding="utf-8")
     monkeypatch.setattr(pour.C, "pour_running", lambda: None)
-    monkeypatch.setattr(pour, "known_spec_ids", lambda *a, **k: {"fed_cms_facility_affiliation"})
+    monkeypatch.setattr(pour, "known_specs",
+                        lambda *a, **k: {"FED_CMS_FACILITY_AFFILIATION": {"loader": "bridge_fuel"}})
 
     calls = []
 
@@ -190,7 +210,8 @@ def test_run_run_launches_both_stages(tmp_path, monkeypatch, capsys):
 def test_run_plan_prints_split(tmp_path, monkeypatch, capsys):
     q = tmp_path / "q.json"
     q.write_text(json.dumps(SAMPLE_QUEUE), encoding="utf-8")
-    monkeypatch.setattr(pour, "known_spec_ids", lambda *a, **k: {"fed_cms_facility_affiliation"})
+    monkeypatch.setattr(pour, "known_specs",
+                        lambda *a, **k: {"FED_CMS_FACILITY_AFFILIATION": {"loader": "bridge_fuel"}})
 
     args = types.SimpleNamespace(action="plan", queue=str(q), run=False, interval=5, once=False)
     rc = pour.run(args)

@@ -1,4 +1,9 @@
-"""Ripple — the Reading Room (Phase 1 SERVE layer).
+"""Ripple — the Atlas (Phase 1 SERVE layer).
+
+Named per archive/ROADMAP_2026-07-14.md §"the Atlas" -- the investigator's
+search/dossier/graph/workbench tool, distinct from reading_room/app.py (the
+human sign-off review queue). The two apps previously both titled themselves
+"Reading Room," which was indistinguishable in a browser tab or a demo.
 
 ONE Streamlit app that surfaces the already-built moat, live:
   • a SEARCH front door over entities (the 9.8M-entity backbone) + sources (CATALOG)
@@ -24,7 +29,7 @@ import serve_queries as q
 import serve_graph as G
 from serve_session import boot_status
 
-st.set_page_config(page_title="Ripple — Reading Room", page_icon="📖", layout="wide")
+st.set_page_config(page_title="Ripple — the Atlas", page_icon="🗺️", layout="wide")
 
 # --------------------------------------------------------------------------- #
 # Freshness badge vocabulary
@@ -101,7 +106,7 @@ def render_decorated_source(source_id: str, dec: dict):
 # --------------------------------------------------------------------------- #
 def sidebar():
     with st.sidebar:
-        st.markdown("## 📖 Ripple\n**The Reading Room**")
+        st.markdown("## 🗺️ Ripple\n**The Atlas**")
         st.caption("Library of Alexandria for the investigative data analyst — "
                    "every public dataset, connected by identity.")
         if st.button("🔎  Search", use_container_width=True):

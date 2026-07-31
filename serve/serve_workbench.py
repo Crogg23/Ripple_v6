@@ -1,4 +1,4 @@
-"""The Workbench — the Reading Room's fifth view: ask ANY question, get a chart.
+"""The Workbench — the Atlas's fifth view: ask ANY question, get a chart.
 
 A thin Streamlit shell over viz/* — ALL logic (guard, discovery, plugs, safety,
 cards) lives in the viz package so the CLI and the Workbench cannot drift, and

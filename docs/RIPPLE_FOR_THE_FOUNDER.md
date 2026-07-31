@@ -120,7 +120,7 @@ LIBRARY_RAW (text mirror)  →  STAGING (clean + cast)  →  MARTS (analyst-read
 
 If you've done SQL for six years: raw is **bronze**, staging is **silver**, marts are **gold**. Don't transform in bronze — Ripple just enforces it with a naming convention.
 
-**Where it stands on `main`:** 86 dbt models — **42 staging views, 4 intermediate, 40 mart tables** across 21 domains, carrying 770+ data-quality tests (exact on disk this read: 42/4/40, 21 domains, 774 tests).
+**Where it stood on `main` as of 2026-07-30:** 1,378 dbt models — **975 staging views, 4 intermediate, 399 mart tables**. (This grew fast — an earlier read of this same repo counted 86; verify against `find library-onboarding/ripple_dbt/models -name '*.sql' | wc -l` before quoting a number, this doc goes stale quickly.)
 
 ---
 

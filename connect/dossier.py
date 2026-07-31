@@ -74,15 +74,24 @@ def _resolve(conn, npi, ccn, ein, entity_id, q):
         # NAME_NORM is token-SORTED, so a single substring of the sorted query would
         # miss non-contiguous tokens (e.g. "SMITH JOHN" inside "JOHN PAUL SMITH").
         # Require EACH query token to be present instead — order-/gap-insensitive.
+        #
+        # Tokens must match as WHOLE words, not bare substrings: NAME_NORM is a
+        # plain space-joined token list with no boundary delimiter, so an
+        # unanchored `LIKE '%JON%'` matches inside "JONES" too, and `%SMITH%`
+        # matches inside "SMITHFIELD" -- a search for "jon smith" could then
+        # silently resolve to an unrelated single match like "JONES SMITHFIELD
+        # MEDICAL GROUP" with no disambiguation prompt shown. Padding NAME_NORM
+        # with boundary spaces and requiring '% TOKEN %' anchors each match to
+        # a real token boundary.
         qn = _norm_input(conn, "NAME", q) or ""
         tokens = [t for t in qn.split(" ") if t]
         if not tokens:
             return None, []
-        where = " AND ".join(["NAME_NORM LIKE %s"] * len(tokens))
+        where = " AND ".join(["(' ' || NAME_NORM || ' ') LIKE %s"] * len(tokens))
         cands = db.dicts(conn, f"""
             SELECT ENTITY_ID, CANONICAL_NAME, ENTITY_TYPE FROM {GOLD}
             WHERE {where} ORDER BY LENGTH(CANONICAL_NAME), CANONICAL_NAME LIMIT 50""",
-            tuple(f"%{t}%" for t in tokens))
+            tuple(f"% {t} %" for t in tokens))
         if len(cands) == 1:
             return cands[0]["ENTITY_ID"], []
         return None, cands

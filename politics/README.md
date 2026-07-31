@@ -9,6 +9,13 @@ existing identifier spine, laying the foundation for a politician **stat card**.
 > `ripple_dbt/models/{staging,marts}/politics/`. Nothing existing is modified.
 > Registry writes are **append-only**. Built on branch `politics-domain`.
 
+> **`SESSION_BRIEF_2026-06-29.md` is stale — read this README, not that file,
+> for current state.** The brief's "single next action" (build the itcont
+> loader) was completed (`build_indiv_donations.py` / `smoke_itcont.py`), and
+> an entire judiciary domain (FJC/SCOTUS/JCS) plus the `who_won` election-
+> outcomes domain were built after the brief was written and are documented
+> below, not in it. Kept for history, not as a runbook.
+
 ## What's here
 
 ```
@@ -23,9 +30,20 @@ politics/
     smoke_money.py                  # Phase 2 must-pass proof (money raised vs FEC.gov)
     build_votes_leg.py              # Phase 3: land Voteview votes+rollcalls -> voting marts
     smoke_votes.py                  # Phase 3 must-pass proof (missed-vote% vs GovTrack)
+    build_bills_leg.py              # Phase 4: land GovInfo BILLSTATUS -> bill marts
+    smoke_bills.py                  # Phase 4 must-pass proof (sponsored/enacted vs GovTrack)
+    build_indiv_donations.py        # Task A: itemized individual donations per member (itcont)
+    smoke_itcont.py                 # Task A referee -- reconciles itcont sum to FEC truth
+    build_who_won.py                # Task B: MEDSL "who won" -- election outcomes joined to spine
+    smoke_who_won.py                # Task B referee -- winners vs known facts
+    build_fjc_judges.py             # Judiciary: FJC judges + SCOTUS crosswalk
+    build_judicial_common_space.py  # Judiciary: JCS ideology scores for judges + justices
+    build_scotus_justice.py         # Judiciary: POLITICS__SCOTUS_JUSTICE dimension + crosswalk
+    build_cm26_refresh.py           # Maintenance: refresh FEC committee master to 2026 (cm26)
+    verify_cm26.py                  # Maintenance: adversarial verification of the cm26 refresh
   registry/
     promote_keys_and_fix_domain.py  # Phase 2 Fix A (vocab) + Fix B (fed_fec_bulk one-row)
-  SESSION_BRIEF_2026-06-29.md       # session-end brief (start here next session)
+  SESSION_BRIEF_2026-06-29.md       # STALE as of 2026-07-30 -- see note below, don't treat as current state
 ```
 
 Plus (additive) in the dbt project:
@@ -62,6 +80,23 @@ python politics/registry/register_political_sources.py --apply   # +2 rows (bill
 python politics/loaders/build_bills_leg.py                       # land GovInfo BILLSTATUS 118+119 + build bill marts
 python politics/loaders/build_bills_leg.py --skip-fetch          # rebuild marts only
 python politics/loaders/smoke_bills.py                           # sponsored/enacted/cosponsored vs GovTrack 118th
+
+# Task A -- individual donations (itcont)
+python politics/loaders/build_indiv_donations.py                 # itemized donations per member
+python politics/loaders/smoke_itcont.py                          # reconcile to FEC truth
+
+# Task B -- "who won" (election outcomes)
+python politics/loaders/build_who_won.py                         # land MEDSL + build who_won mart
+python politics/loaders/smoke_who_won.py                         # verify winners vs known facts
+
+# Judiciary -- FJC judges, SCOTUS crosswalk, judge ideology (JCS)
+python politics/loaders/build_fjc_judges.py                      # FJC directory + SCOTUS crosswalk
+python politics/loaders/build_scotus_justice.py                  # POLITICS__SCOTUS_JUSTICE
+python politics/loaders/build_judicial_common_space.py           # JCS ideology scores
+
+# Maintenance -- refresh the FEC committee master to the 2026 cycle
+python politics/loaders/build_cm26_refresh.py
+python politics/loaders/verify_cm26.py                           # read-only adversarial check
 ```
 
 dbt models mirror the Python-built marts (canonical tables are Python-built into
@@ -113,6 +148,35 @@ Voting stats are **definition-bound** (reconciled to GovTrack's 118th figures to
 | `MARTS.POLITICS.POLITICS__MEMBER_BILL_RECORD` | 1,104 | **the stat** — sponsored / enacted / advanced / cosponsored, per (bioguide, congress) |
 
 This **completes the clean box score: ideology + money + votes + bills**, all bioguide-keyed. The headline-trap stat (`bills_sponsored`) ships only with its qualifiers — the type split (substantive vs resolutions), `bills_enacted` + `enacted_rate` (**law-eligible denominator** — resolutions can't become law), `advanced_past_committee`, and a **separate** `cosponsored_count` (withdrawn excluded; authoring ≠ signing on). `became_law` comes from the `<laws>` element (public-law number), not a status-string match. Reconciled to GovTrack's 118th report card: **sponsored + cosponsored match to the integer** across 3 members (incl. Biggs's 612-bill spam outlier); `became_law` is ours (standalone `<laws>`) = GovTrack − {0,1} (GovTrack also counts text incorporated into other enacted bills).
+
+**Task A — individual donations** (FEC itemized contributions, `itcont`)
+| Object | What |
+|---|---|
+| `LANDING.FED_FEC_INDIV_CONTRIBUTIONS` | the raw 84M-row itcont firehose |
+| `MARTS.POLITICS.POLITICS__MEMBER_INDIV_DONATIONS` | **the stat** — itemized individual donations per (bioguide, cycle) |
+
+Reconciled by `smoke_itcont.py` against an independent FEC truth for clean committees — the module's own docstring notes a naive sum off the raw firehose gave a plausible-but-wrong answer three times before this referee existed.
+
+**Task B — "who won"** (MEDSL/MIT Election Lab constituency returns)
+| Object | What |
+|---|---|
+| `LANDING.FED_MEDSL_HOUSE_RETURNS` / `_SENATE_RETURNS` / `_PRESIDENT_RETURNS` | constituency-level election returns |
+| `MARTS.POLITICS.POLITICS__WHO_WON` | election outcomes joined to the member spine |
+
+**Honesty note (both docs and the module docstring agree on this):** the join here is **name + state (+ district)**, not a hard ID — MEDSL carries no FEC candidate ID or ICPSR, contradicting what `SESSION_BRIEF_2026-06-29.md` assumed going in. This is a fuzzy, LEAD-grade match, verified with `smoke_who_won.py` against known facts (seat counts, named winners), not a STEEL-tier join.
+
+**Judiciary — federal judges, SCOTUS, and judge ideology**
+| Object | What |
+|---|---|
+| `LANDING.FED_FJC_JUDGES` / `FED_FJC_SERVICE` | FJC Biographical Directory of Article III judges |
+| `LANDING.FED_SCDB` | Spaeth SCOTUS database (already-landed, reused here) |
+| `MARTS.POLITICS.POLITICS__FJC_JUDGE` / `POLITICS__FJC_APPOINTMENT` | the judiciary spine |
+| `MARTS.POLITICS.POLITICS__FJC_SCOTUS_CROSSWALK` | links FJC judge records to SCOTUS justices |
+| `MARTS.POLITICS.POLITICS__SCOTUS_JUSTICE` | one row per justice (~40 modern justices), keyed on the Spaeth/JCS naming convention |
+| `MARTS.POLITICS.POLITICS__JCS_MEDIANS`, `POLITICS__JUDGE_IDEOLOGY_COA`, `POLITICS__JUDGE_IDEOLOGY_SCOTUS` | Judicial Common Space ideology scores — same scale as DW-NOMINATE, so judges and members of Congress are directly comparable |
+
+**Maintenance — the cm26 refresh**
+`build_cm26_refresh.py` re-lands the FEC committee master against the 2026 (119th-cycle) snapshot — the original Phase 2 landing was 2024-cycle-only, so 2026 candidate↔committee linkages were only resolving ~57% (vs ~98% for 2024). `verify_cm26.py` is the read-only adversarial check that the refresh actually closed that gap. This is a staleness fix, not a data-quality bug in the original Phase 2 work.
 
 ## The join spine — clean vs fuzzy (be honest)
 

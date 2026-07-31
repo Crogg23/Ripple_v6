@@ -14,7 +14,7 @@
 3. [CONNECT — only a real government ID gets to draw a line](#3-connect)
 4. [DETECT — turning a connection into a lead worth a human's time](#4-detect)
 5. [THE HONESTY GATE — how a lead earns the right to be called true](#5-gate)
-6. [THE READING ROOM — the human front door](#6-reading-room)
+6. [THE ATLAS — the human front door](#6-the-atlas)
 7. [THE PLUMBING — loadkit and infra, the seatbelts (and the ones not buckled)](#7-plumbing)
 8. [THE POLITICS DOMAIN — the same lens, pointed at Congress](#8-politics)
 9. [THE HONEST CURRENT STATE — is this production-grade?](#9-honest-state)
@@ -139,15 +139,17 @@ One more current, plain fact: the browsing app's review buttons can't even write
 
 ---
 
-## 6. THE READING ROOM — the human front door {#6-reading-room}
+## 6. THE ATLAS — the human front door {#6-the-atlas}
 
 **serve/** is the one piece meant for someone who doesn't want to write SQL. It's a small local app with four real views: search, an entity dossier, a source page, and the connection graph — plus a fifth, a "workbench" where you can type any read-only query and get a chart back, with the exact code that drew it shown right next to it, so it's a learning tool instead of a black box.
+
+*(2026-07-30: renamed from "the Reading Room" — that name was also serve/app.py's original title, colliding with the actual Reading Room, the separate human sign-off review app covered in Chapter 4/5. The two apps do different jobs and now have different names. "The Atlas" is the name the project's own roadmap already used for this app; see `archive/ROADMAP_2026-07-14.md`.)*
 
 Type a name or paste a real ID — it accepts five ID types today (a subset; more on that below) — and it searches the entity spine directly. Try it with a real one: **NPI 1164450573** resolves to a real provider in Oklahoma City, appearing across nine different federal datasets at once, including the exclusion list *and* hundreds of payment and prescribing records from the years after. That's the mission's core "receipt" idea, rendered on one screen, findable by a plain-text name search a journalist with zero SQL could type themselves.
 
 Every row shown carries a "provenance receipt" — the exact run ID, file checksum, and source URL it came from, so a skeptic can go re-download the original government file and check the platform's work directly. Every dataset carries a freshness badge, and the badges are built to fail honestly: if the system genuinely doesn't know how fresh something is, it shows a gray "unverified" dot rather than guessing green. The "card catalog" — a plain-English index of every browsable dataset — isn't a metaphor; it's a literal, queryable database view with one row per dataset. And the Workbench specifically blocks a curious analyst from directly reading the platform's *unreviewed* claim tables (the same LEADS table Chapter 4 covers) — redirecting instead to the reviewed, gated version. That's the "no unreviewed accusation gets stated as true" rule, enforced in code at the query layer, not just written down as policy.
 
-**Honestly:** a real bug sits in the dossier page's "facility affiliations" section — a variable name mismatch means it will error every time anyone opens that section today. The five hard-ID types the search box accepts cover under half the entity spine by count; the other 55% (tax IDs, company legal-entity IDs, water-system IDs, and several others) are currently only reachable by typing a name. And the project's own written policy still names a different, more polished front end (`evidence.dev`) as the "real" surface with this app as a "legacy fallback" — but that other app was deleted from the codebase entirely one day before this research ran. In practice, today, this Streamlit app *is* the Reading Room, whatever the policy document says.
+**Honestly:** the dossier page's "facility affiliations" crash this section used to describe (a variable-name mismatch erroring on every open) was fixed in the 2026-07-30 remediation pass — verified against a real NPI. The five hard-ID types the search box accepts cover under half the entity spine by count; the other 55% (tax IDs, company legal-entity IDs, water-system IDs, and several others) are currently only reachable by typing a name. And the project's own written policy still names a different, more polished front end (`evidence.dev`) as the "real" surface with this app as a "legacy fallback" — but that other app was deleted from the codebase entirely, and nobody has updated the policy doc to reflect that. This is a taste call for Chris (which surface he actually wants going forward), not a bug — see the standing open item in the handoff docs. In practice, today, this Streamlit app *is* the Atlas.
 
 ---
 

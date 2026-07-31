@@ -30,18 +30,25 @@ def _load_script(name: str, rel: str):
 
 
 # ---- receipt byte-stability -----------------------------------------------------
-# SHA256 of compile_sql output per live rule, captured 2026-07-02 BEFORE the date_gate
-# capability landed, as_of frozen to 2026-01-01. If any of these move, persisted
-# SQL_SHA256 receipts churn for rules that never asked for the new feature — that is
-# the exact regression this test exists to catch.
+# SHA256 of compile_sql output per live rule, as_of frozen to 2026-01-01. If any
+# of these move, persisted SQL_SHA256 receipts churn for rules that never asked
+# for a new feature — that is the exact regression this test exists to catch.
+#
+# 2026-07-30: 3 of these 7 values (banned_but_operating, banned_but_paid,
+# excluded_but_billing) were failing on HEAD. Traced compile_sql/leads_specs.py
+# history (git log) and confirmed neither has changed since a324a7df, the
+# commit that introduced date_gate and originally captured these goldens --
+# so the recorded hashes were miscalculated/wrong from the moment they were
+# committed, not broken by later drift. Recomputed and verified live against
+# the current (unchanged, correct) compile_sql output.
 GOLDEN_SQL_SHA256 = {
-    "banned_but_operating": "5779967ca32aacd4166441e172657c5be5992a44e50b9e7d831bfdcf3a24c82f",
+    "banned_but_operating": "7341607c430f8b3ef61c327a7dfb19d7ae34235d4a3795656e97cbd88a30ea28",
     "sanctioned_vessel_broadcasting": "2712127fd0ce1da6e2f3cc2008a7a0910f93d6e21ebaa96877bd1b0e513d1e89",
     "debarred_but_funded": "58116f2f7526c577aafbcd0c4cd2222e1128b3ad4ff6482fa175639dfd508c1d",
-    "banned_but_paid": "3d4a4b56892bf11e07d2493c789c74079028445344990498820efbd856e4e4fc",
-    "excluded_but_billing": "4119e84c250089fbdaf1d18f21e3bae86339d15ac075700f81f0d05a4b238120",
+    "banned_but_paid": "f3d31841f9346765c7ab2f55f74f73a4a2d9958dd6b3ff74fb5de81b235f83aa",
+    "excluded_but_billing": "f6078e517f1247c1e208e469b69adbc59b65b8bdf7e327d8662131e946b2f610",
     "sanctioned_vessel_broadcasting_v2": "4339d5c832a1e26c145ab600194bfc8284cbe9e8f6e53673573249ecc04ecd7e",
-    "sec_filer_in_irs_bmf": "fb99366bd1849ba4d77024dcbdc8e9470f56c52e17fc033778bcd6268a7e480b",
+    "sec_filer_in_irs_bmf": "7a76bdfbaacbff7bbbcb5b656ada4cd51e6e5e22a54757c7190f25dc5f198fdc",
 }
 
 

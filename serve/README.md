@@ -1,8 +1,10 @@
-# Ripple — the Reading Room (Phase 1 SERVE layer)
+# Ripple — the Atlas (Phase 1 SERVE layer)
 
 The moat is already built — a 9.8M-entity backbone that \"pulls every thread\" on any
 person/company/ship/place across every domain. Until now it was trapped behind a CLI.
-**This is the reading room: a single, persistent Streamlit app that surfaces it live.**
+**This is the Atlas: a single, persistent Streamlit app that surfaces it live.**
+(Named per `archive/ROADMAP_2026-07-14.md` — distinct from `reading_room/app.py`,
+the human sign-off review queue. Both apps used to title themselves "Reading Room.")
 
 ```
 streamlit run serve/app.py
