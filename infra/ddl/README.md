@@ -13,6 +13,7 @@ structure is rebuildable from git. Phase 0 of the foundation blueprint.
 | `03_warehouses_roles_monitor.sql` | Warehouses, `RIPPLE_BUDGET` monitor, roles | Yes — agent-reconstructed; **review before relying on** |
 | `04_freshness_ledger.sql` | `SOURCE_FRESHNESS` table + `V_SOURCE_FRESHNESS` view | Yes — populated by `scripts/build_freshness_ledger.py` |
 | `05_serve_wh.sql` | Read-only serving warehouse (`SERVE_WH`) + its own budget monitor (`SERVE_MON`) + grant to `CLAUDE_MCP_READONLY` | Yes — run as ACCOUNTADMIN; `CREATE ... IF NOT EXISTS`, but `ALTER WAREHOUSE SET RESOURCE_MONITOR` + `GRANT` re-run on apply |
+| `10_thelibrary_trap_safe_views.sql` | Two companion friendly views (complete Open Payments, award-grain USASpending) fixing traps the original friendly names still carry | Yes — `CREATE OR REPLACE VIEW`, requires the dbt intermediate models it selects from to already be built |
 
 ## What this DOES protect
 
