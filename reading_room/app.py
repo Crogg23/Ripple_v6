@@ -29,6 +29,27 @@ st.set_page_config(page_title="Ripple — The Reading Room", page_icon="🗂️"
                    layout="wide")
 
 
+def _friendly_error(e: Exception) -> str:
+    """A plain-English one-liner for a reviewer, with the raw exception tucked
+    into an expander for anyone who needs to debug it. Was: raw Snowflake/
+    driver exception text shown directly as the primary error."""
+    s = str(e).lower()
+    if any(t in s for t in ("closed", "expired", "no longer exists", "reset by peer",
+                            "could not connect", "operationalerror")):
+        return "Can't reach the warehouse right now — it may have gone idle. Try again in a moment."
+    if "not authorized" in s or "insufficient privileges" in s:
+        return "This role doesn't have access to that data."
+    if "compilation error" in s or "syntax error" in s:
+        return "That query isn't valid SQL — this is a bug, not something you did."
+    return "Something went wrong talking to the warehouse."
+
+
+def _show_error(banner, e: Exception, label: str = "details"):
+    banner(_friendly_error(e))
+    with st.expander(label, expanded=False):
+        st.code(str(e))
+
+
 # ── lanes (cached per process; cleared + retried once if Snowflake killed
 #    an idle session, so one expired connection never bricks the app) ────────
 @st.cache_resource
@@ -55,7 +76,7 @@ def _read(name: str, sql: str, params: tuple = ()):  # -> list[dict]
             if attempt == 1:
                 _reader.clear()  # drop the dead connection, reconnect once
                 continue
-            st.error(f"Reader query '{name}' failed: {exc}")
+            _show_error(st.error, exc, label=f"query '{name}' — details")
             st.stop()
 
 
@@ -281,6 +302,6 @@ if clicked:
                 f"click would add a harmless duplicate row, never corrupt.)")
             st.rerun()  # refetch the queue — the decided lead drops out NOW
     except Exception as exc:
-        st.error(f"Write failed: {exc}")
+        _show_error(st.error, exc, label="write failure details")
         if "expired" in str(exc).lower() or "auth" in str(exc).lower():
             st.info(connections.WRITER_REMEDIATION)

@@ -1,5 +1,16 @@
 # The Heartbeat — install + run runbook
 
+> **2026-07-31: on the current (Windows) machine, this runs via Windows Task
+> Scheduler, not launchd.** `scripts/register_windows_tasks.ps1` registers
+> `Ripple-heartbeat` to run `heartbeat.py --run` hourly — the same runner,
+> same guards, same cadence logic described below, just a different trigger.
+> Nothing here is marked "retired": launchd is still the right path if this
+> ever runs on a Mac again (the runner itself doesn't care which scheduler
+> calls it). This file's step-by-step instructions (§1, §2) are macOS-only —
+> on Windows, use `register_windows_tasks.ps1` instead of `cp .../plist` +
+> `launchctl load`. Everything else here (guards, ACQUIRE opt-in, budget
+> bands) applies identically regardless of scheduler.
+
 Keeps the Library alive on a cadence with no hand on the wheel. One runner
 (`scripts/heartbeat.py`) drives four tiers, each behind hard guards. **Preview by
 default — it writes nothing and spends nothing until you pass `--run`.**
@@ -103,9 +114,11 @@ ACQUIRE re-ingests sources unattended. It is OFF unless you opt in. Before enabl
 1. Wait for budget headroom — `heartbeat.py --status` should show `band=GREEN`
    (below GREEN the runner down-scopes by band and ACQUIRE no-ops anyway).
 2. Vet `scripts/acquire_recipes.json`. Only sources with `"enabled": true` ever run.
-   The seed enables exactly one verified-safe loader (`fed_cisa_kev`) and ships
-   `fed_usgs_earthquakes` **disabled** with the reason. Adding a source there is the
-   opt-in act.
+   **As of 2026-07-31, 4 recipes are enabled** (`fed_cisa_kev`, `fed_sec_dcat`,
+   `fed_epa_echo`, `fed_dol_enforce`) and 2 are disabled with a reason
+   (`fed_usgs_earthquakes`, `fed_irs_bulk`) — this list grows over time as
+   sources get vetted; re-check the actual file rather than trusting a count
+   here. Adding a source there is the opt-in act.
 3. Try it by hand first:
 
 ```bash

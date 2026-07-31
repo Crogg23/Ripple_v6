@@ -57,6 +57,30 @@ def _int(x, default=0):
         return default
 
 
+def _friendly_error(e: Exception) -> str:
+    """A plain-English one-liner for a demo audience, with the raw exception
+    tucked into an expander for anyone who actually needs to debug it. Was:
+    raw Snowflake/driver exception text (SQL error codes, internal messages)
+    shown directly as the primary error text on every failure path."""
+    s = str(e).lower()
+    if any(t in s for t in ("closed", "expired", "no longer exists", "reset by peer",
+                            "could not connect", "operationalerror")):
+        return "Can't reach the warehouse right now — it may have gone idle. Try again in a moment."
+    if "not authorized" in s or "insufficient privileges" in s or "does not exist or not authorized" in s:
+        return "This role doesn't have access to that data (or it doesn't exist)."
+    if "compilation error" in s or "syntax error" in s:
+        return "That query isn't valid SQL — check for a typo."
+    return "Something went wrong talking to the warehouse."
+
+
+def _show_error(banner, e: Exception, label: str = "details"):
+    """banner is st.error or st.warning. Shows the friendly message, with the
+    raw exception available on demand rather than dumped inline."""
+    banner(_friendly_error(e))
+    with st.expander(label, expanded=False):
+        st.code(str(e))
+
+
 def goto(**params):
     st.query_params.clear()
     st.query_params.update({k: str(v) for k, v in params.items() if v is not None})
@@ -128,7 +152,7 @@ def sidebar():
                 st.caption("freshness ledger: " + ("✅ V_SOURCE_FRESHNESS live"
                            if fv else "⚪ absent — badges show 'recency unverified'"))
             except Exception as e:
-                st.error(f"connection problem: {e}")
+                _show_error(st.error, e, label="connection details")
         st.caption("Phase 1 · read-only · defer NL→SQL / auth / case folders")
 
 
@@ -337,7 +361,7 @@ def render_source(src: str):
         samp = q.sample_rows(r["SOURCE_ID"])
         st.dataframe(samp, use_container_width=True, height=360)
     except Exception as e:
-        st.warning(f"Couldn't sample the landing table: {e}")
+        _show_error(st.warning, e, label="sample query details")
 
 
 # --------------------------------------------------------------------------- #
@@ -351,7 +375,11 @@ def render_graph():
     try:
         graph, asof = G.load_graph()
     except Exception as e:
-        st.error(f"Couldn't load connect_graph.json: {e}")
+        st.error("Couldn't load the connection graph — it may not have been "
+                "built yet on this machine.")
+        with st.expander("details", expanded=False):
+            st.code(str(e))
+            st.caption("Try: `python3 -m connect discover` then `python3 -m connect.cache_layout`")
         return
     try:
         enrich = q.catalog_enrichment()

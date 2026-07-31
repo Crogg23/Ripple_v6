@@ -41,7 +41,7 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-$Repo    = "C:\Code\Ripple_v6"
+$Repo    = (Get-Item $PSScriptRoot).Parent.FullName
 $Wrapper = Join-Path $Repo "scripts\task_wrapper.ps1"
 $NagPs1  = Join-Path $Repo "scripts\task_nag.ps1"
 $PsExe   = Join-Path $env:SystemRoot "System32\WindowsPowerShell\v1.0\powershell.exe"

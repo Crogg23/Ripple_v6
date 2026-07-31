@@ -14,6 +14,12 @@ outputs/dossier_*.html
 # dea_arcos_full_load.py) — machine-local, never commit
 outputs/_bulk_cache/
 
+# loader run/error logs + resumable checkpoints — machine-local runtime state,
+# same class of file as outputs/_*.log above (never committed); a stale
+# checkpoint committed to git would actively mislead a resume on another
+# machine, not just bloat the repo.
+logs/
+
 # python bytecode
 __pycache__/
 *.pyc

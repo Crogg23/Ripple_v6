@@ -15,7 +15,7 @@ PowerShell 5.1-compatible: no && chains, no ternaries.
 #>
 $ErrorActionPreference = "Continue"
 
-$Repo   = "C:\Code\Ripple_v6"
+$Repo   = (Get-Item $PSScriptRoot).Parent.FullName
 $OutDir = Join-Path $Repo "outputs"
 
 # Expected cadence per task, in hours. Stale threshold = 2x this.

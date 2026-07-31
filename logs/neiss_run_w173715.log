@@ -1,8 +1,0 @@
-[codes] 1,250 rows cols=['FORMAT_NAME', 'STARTING_VALUE_FOR_FORMAT', 'ENDING_VALUE_FOR_FORMAT', 'FORMAT_VALUE_LABEL', '_INGESTED_AT', '_SOURCE_RUN_ID']
-[2004] 353,393 rows  sha=9878e8315fd3
-[2005] 360,374 rows  sha=fc8a409be6ce
-[2006] download attempt 1 failed: ('Connection broken: IncompleteRead(6815232 bytes read, 42914664 more expected)', IncompleteRead(681
-[2006] download attempt 2 failed: ('Connection broken: IncompleteRead(7028066 bytes read, 42701830 more expected)', IncompleteRead(702
-[2006] download attempt 3 failed: ('Connection broken: IncompleteRead(7462400 bytes read, 42267496 more expected)', IncompleteRead(746
-[2006] download attempt 4 failed: ('Connection broken: IncompleteRead(6045026 bytes read, 43684870 more expected)', IncompleteRead(604
-[2006] download attempt 5 failed: ('Connection broken: IncompleteRead(9403904 bytes read, 40325992 more expected)', IncompleteRead(940

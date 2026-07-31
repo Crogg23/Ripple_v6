@@ -115,3 +115,28 @@ def test_receipt_caption_no_sha_no_url():
     out = app.receipt_caption({"run_id": "abcdef1234567890", "loaded_at": "2026-07-30T01:02:03"})
     assert "sha `—`" in out
     assert "verify source" not in out
+
+
+# --------------------------------------------------------------------------- #
+# _friendly_error -- 2026-07-31 fix: raw Snowflake exceptions used to be shown
+# directly to the user (st.error(f"...{e}")) on every failure path.
+# --------------------------------------------------------------------------- #
+def test_friendly_error_classifies_connection_problems():
+    msg = app._friendly_error(Exception("Connection is closed"))
+    assert "warehouse" in msg.lower()
+    assert "closed" not in msg.lower()  # the raw driver text must not leak through
+
+
+def test_friendly_error_classifies_permission_problems():
+    msg = app._friendly_error(Exception("SQL access control error: Insufficient privileges"))
+    assert "access" in msg.lower()
+
+
+def test_friendly_error_classifies_sql_syntax_problems():
+    msg = app._friendly_error(Exception("SQL compilation error: invalid identifier 'FOO'"))
+    assert "valid sql" in msg.lower()
+
+
+def test_friendly_error_has_a_generic_fallback():
+    msg = app._friendly_error(Exception("some totally novel driver failure"))
+    assert msg and "totally novel" not in msg

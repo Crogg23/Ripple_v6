@@ -1,6 +1,0 @@
-[codes] 1,250 rows cols=['FORMAT_NAME', 'STARTING_VALUE_FOR_FORMAT', 'ENDING_VALUE_FOR_FORMAT', 'FORMAT_VALUE_LABEL', '_INGESTED_AT', '_SOURCE_RUN_ID']
-[2004] download attempt 1 failed: ('Connection broken: IncompleteRead(6848000 bytes read, 42011443 more expected)', IncompleteRead(684
-[2004] download attempt 2 failed: ('Connection broken: IncompleteRead(13688320 bytes read, 35171123 more expected)', IncompleteRead(13
-[2004] download attempt 3 failed: ('Connection broken: IncompleteRead(8470016 bytes read, 40389427 more expected)', IncompleteRead(847
-[2004] download attempt 4 failed: ('Connection broken: IncompleteRead(16039424 bytes read, 32820019 more expected)', IncompleteRead(16
-[2004] download attempt 5 failed: ('Connection broken: IncompleteRead(15851008 bytes read, 33008435 more expected)', IncompleteRead(15

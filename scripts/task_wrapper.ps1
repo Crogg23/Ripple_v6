@@ -30,8 +30,13 @@ param(
 $ErrorActionPreference = "Continue"
 
 # Pinned absolutes — scheduled tasks inherit a bare environment; never trust PATH.
-$Py   = "C:\Users\wroge\AppData\Local\Programs\Python\Python312\python.exe"
-$Repo = "C:\Code\Ripple_v6"
+# Derived from this script's own location (scripts/task_wrapper.ps1), not
+# hardcoded, so a clone to a different path doesn't silently break every
+# scheduled task. $Py points at the repo's own .venv (matching
+# campaign_watchdog.ps1's convention) instead of one specific Windows user's
+# global Python 3.12 install, which only existed on one machine/user.
+$Repo = (Get-Item $PSScriptRoot).Parent.FullName
+$Py   = Join-Path $Repo ".venv\Scripts\python.exe"
 $OutDir = Join-Path $Repo "outputs"
 $LastFile = Join-Path $OutDir ("_task_" + $TaskName + "_LAST.json")
 

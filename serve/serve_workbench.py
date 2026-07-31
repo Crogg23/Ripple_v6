@@ -55,6 +55,14 @@ def render_workbench():
         except sqlrun.GuardError as e:
             st.error(str(e))
             return
+        except Exception as e:
+            # A malformed/unsupported query (a real Snowflake compile error, not
+            # a guard rejection) used to be unhandled here and crashed the whole
+            # Streamlit app with a full traceback shown to the user.
+            st.error("That query didn't run — check the SQL for a typo or an unsupported statement.")
+            with st.expander("details", expanded=False):
+                st.code(str(e))
+            return
         st.session_state["wb_result"] = (sql, df, meta, int(limit))
 
     if "wb_result" not in st.session_state:
