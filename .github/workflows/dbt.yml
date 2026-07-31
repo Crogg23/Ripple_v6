@@ -31,7 +31,12 @@ jobs:
         with:
           python-version: "3.11"
       - name: Install dbt
-        run: pip install "dbt-fusion==2.0.0-preview.173"
+        # 2026-07-30: this used to install "dbt-fusion==2.0.0-preview.173",
+        # a package/version that's never been on PyPI -- pip failed outright
+        # and this job had been failing on every push. dbt-core + the
+        # Snowflake adapter is what's actually used and verified working
+        # (matches requirements.txt and the local .dbt-venv install).
+        run: pip install "dbt-core==1.11.12" "dbt-snowflake==1.8.4"
       - name: dbt deps
         run: dbt deps
       - name: dbt parse (structural validation -- no warehouse)

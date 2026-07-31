@@ -20,17 +20,29 @@
     build-state.md's defect ledger as "never verified" until 2026-07-30.
 
     This macro is wired in as a +pre-hook on the whole models.ripple.marts.politics
-    folder (dbt_project.yml). Pre-hooks run at MODEL-EXECUTION time (dbt run /
-    dbt build), so `dbt test` -- which only queries the already-materialized
-    table, never re-runs the model -- is completely unaffected: the one real
-    job these models exist to do (let tests run against Python-built tables)
-    still works with zero friction, every time.
+    folder (dbt_project.yml). `dbt test` -- which only queries the
+    already-materialized table, never re-runs the model -- is unaffected: the
+    one real job these models exist to do (let tests run against Python-built
+    tables) still works with zero friction, every time.
+
+    2026-07-31: originally this guard's Jinja fired unconditionally, which
+    turned out to ALSO fire during `dbt parse`/`dbt compile` -- dbt renders
+    every model's pre-hook Jinja while building the manifest, before any
+    `-s`/`--select` filter is even applied, regardless of whether that model
+    will actually run. That broke .github/workflows/dbt.yml's `dbt parse`
+    step (a pure structural check, no warehouse, no model selection) on
+    every single push -- CI had been red since this guard first landed.
+    Wrapped in `{% if execute %}`: dbt's execute flag is False during
+    parsing/compiling (nothing is about to run) and only True when a
+    selected model is genuinely about to materialize -- so parse/compile
+    now pass cleanly, and the guard still fires for real on `dbt run`/
+    `dbt build` against this model.
 
     To deliberately rebuild one of these models (a real, considered decision,
     not an accident): `dbt build --select <model> --vars '{"allow_politics_rebuild": true}'`.
 #}
 {% macro guard_politics_mirror() %}
-{%- if not var('allow_politics_rebuild', false) -%}
+{%- if execute and not var('allow_politics_rebuild', false) -%}
 {{ exceptions.raise_compiler_error(
     "BLOCKED: " ~ this.identifier ~ " is a dbt MIRROR of a Python-built canonical "
     "POLITICS table (STANDING POLICY no_selectorless_dbt_build, build-state.md). "

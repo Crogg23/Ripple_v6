@@ -52,8 +52,13 @@ pyyaml==6.0.3                # YAML I/O for dbt scaffolding / config
 # a source actually needs JS rendering. Uncomment to enable.
 # playwright==1.49.1          # not installed locally; pinned to a recent known-good
 
-# --- dbt (runs/tests the 73 models in library-onboarding/ripple_dbt) --------
-# NOT installed on this machine, so not == to a probed version. Pinned to a
-# recent known-good release; required to `dbt run` / `dbt test` the staging +
-# mart models. Bump together with dbt-core if you upgrade.
-dbt-fusion==2.0.0-preview.173
+# --- dbt (runs/tests the 1,378 models in library-onboarding/ripple_dbt) -----
+# 2026-07-30: "dbt-fusion==2.0.0-preview.173" was pinned here and in
+# .github/workflows/dbt.yml, but that exact package/version was never
+# installable from PyPI (`pip install` errors "Could not find a version that
+# satisfies the requirement... from versions: none") -- it had been silently
+# failing CI on every push. What's actually installed and verified working
+# locally (.dbt-venv) is plain dbt-core + the Snowflake adapter, pinned here
+# to those exact versions.
+dbt-core==1.11.12
+dbt-snowflake==1.8.4
