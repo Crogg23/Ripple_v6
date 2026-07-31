@@ -123,7 +123,11 @@ def load_dataset(conn, url: str, table_name: str, max_rows: int = 500000) -> int
     print(f"    downloading {url[:80]}...")
     resp = requests.get(url, timeout=120)
     resp.raise_for_status()
-    df = pd.read_csv(io.StringIO(resp.text), dtype=str, nrows=max_rows, low_memory=False)
+    df = pd.read_csv(io.StringIO(resp.text), dtype=str, nrows=max_rows + 1, low_memory=False)
+    if len(df) > max_rows:
+        raise RuntimeError(
+            f"{table_name}: source has more than max_rows={max_rows:,} rows -- "
+            f"refusing to silently truncate. Pass a higher max_rows explicitly.")
     if df.empty:
         return 0
     # Normalize column names for Snowflake

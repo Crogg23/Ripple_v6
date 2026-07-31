@@ -15,71 +15,84 @@ models:
   - name: stg_fed_slavevoyages_intraamerican__intra_american_voyages
     description: >
       Staging model for the Intra-American Slave Trade Database (SlaveVoyages).
-      Renames raw columns to snake_case, casts to appropriate types, and
-      deduplicates on voyage_id.
+      Renames raw SlaveVoyages codebook columns (VOYAGEID, TSLAVESD, SLAARRIV,
+      ...) per the official SPSS codebook, casts to appropriate types, and
+      deduplicates on voyage_id. Geography fields are carried through as raw
+      numeric SlaveVoyages place codes (no code->name table is landed in this
+      warehouse) rather than fabricated as country names — see the model's
+      2026-07-30 remediation note for why.
     columns:
 
       - name: voyage_id
-        description: Unique identifier for each recorded voyage.
+        description: Unique identifier for each recorded voyage (VOYAGEID).
         data_tests:
           - unique
           - not_null
 
       - name: date_of_departure
-        description: Parsed date of the voyage departure.
+        description: Parsed date the voyage began (DATEDEPA/B/C).
         data_tests:
           - not_null:
               config:
                 severity: warn
-      - name: year_of_departure
-        description: Year extracted from the departure date.
+      - name: year_of_arrival
+        description: Year of arrival at the port of disembarkation (YEARAM, per codebook).
         data_tests:
           - not_null:
               config:
                 severity: warn
-      - name: port_of_departure
-        description: Name of the port from which the voyage departed.
+      - name: port_of_departure_code
+        description: >
+          Numeric SlaveVoyages place code for the port of departure (PORTDEP)
+          — NOT a resolved place name; no geography lookup table is landed.
+          Verified live 2026-07-30: populated on only 29/11,521 rows (0.25%)
+          — a strict not_null would fail on 99.75% of this 500-year-old
+          historical record, not catch a real defect.
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
 
-      - name: port_of_arrival
-        description: Name of the port at which the voyage arrived.
+      - name: port_of_arrival_code
+        description: >
+          Numeric SlaveVoyages place code for the first intended port of
+          disembarkation (ARRPORT) — NOT a resolved place name. Verified live
+          2026-07-30: populated on 4,813/11,521 rows (42%).
         data_tests:
-          - not_null
-
-      - name: country_of_departure
-        description: Country associated with the port of departure.
-        data_tests:
-          - not_null
-
-      - name: country_of_arrival
-        description: Country associated with the port of arrival.
+          - not_null:
+              config:
+                severity: warn
 
       - name: captain_name
-        description: Name of the captain recorded for the voyage.
+        description: >
+          Name of the first captain recorded for the voyage (CAPTAINA).
+          Verified live 2026-07-30: populated on 10,512/11,521 rows (91%).
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
 
       - name: num_enslaved_embarked
-        description: Number of enslaved persons who embarked.
+        description: >
+          Total enslaved people on board at departure from the last slaving
+          port (TSLAVESD, per codebook).
 
       - name: num_enslaved_disembarked
-        description: Number of enslaved persons who disembarked.
+        description: >
+          Total enslaved people who arrived at the first port of
+          disembarkation (SLAARRIV, per codebook).
 
       - name: vessel_name
-        description: Name of the vessel used for the voyage.
+        description: Name of the vessel used for the voyage (SHIPNAME).
 
-      - name: slave_trade_company
-        description: Trading company associated with the voyage, if applicable.
+      - name: first_owner_name
+        description: First recorded owner of the voyage/venture (OWNERA).
 
       - name: source_citation
-        description: Bibliographic citation for the primary source record.
-
-      - name: doctype_html
-        description: Raw HTML doctype field carried through from landing.
+        description: First recorded bibliographic source for the voyage (SOURCEA).
 
       - name: _ingested_at
-        description: Timestamp when the row was processed by the staging model.
+        description: Real per-row landing timestamp propagated from the ingestion layer (INGESTED_AT).
 
       - name: _source_run_id
         description: Pipeline run identifier propagated from the ingestion layer.

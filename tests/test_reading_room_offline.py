@@ -38,8 +38,6 @@ def test_user_values_are_bound_never_interpolated():
     sql, params = queries.queue_sql(detector=hostile, tier=hostile, limit=20)
     assert hostile not in sql
     assert params == (hostile, hostile, 20)
-    sql2, params2 = queries.queue_depth_sql(detector=hostile)
-    assert hostile not in sql2 and hostile in params2
 
 
 def test_queue_sql_composes_filters():

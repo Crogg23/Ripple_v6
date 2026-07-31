@@ -49,8 +49,12 @@ def _load_pipe_zip(conn, url: str, tbl: str, col_names: list[str], max_rows: int
         with zf.open(txt_files[0]) as f:
             content = f.read()
     df = pd.read_csv(io.BytesIO(content), sep="|", dtype=str, header=None,
-                     names=col_names, nrows=max_rows, on_bad_lines="skip",
+                     names=col_names, nrows=max_rows + 1, on_bad_lines="skip",
                      encoding_errors="replace")
+    if len(df) > max_rows:
+        raise RuntimeError(
+            f"{tbl}: source has more than max_rows={max_rows:,} rows -- "
+            f"refusing to silently truncate. Pass a higher max_rows explicitly.")
     if df.empty:
         return 0
     df.columns = [bulk.sf_col(c) for c in df.columns]

@@ -80,6 +80,25 @@ def connect(refresh: bool = False):
     _conn = conn
     _lane = _verify_lane(conn, expected_reader=bool(serve_pat))
     _warehouse = _pick_warehouse(conn)
+    # Default the session onto THE_LIBRARY (the friendly, browsable database) so
+    # a Workbench query can name a table as SCHEMA.TABLE instead of always
+    # needing the full DATABASE.SCHEMA.TABLE path -- without this, the session
+    # has no default database/schema at all and even a real, granted object
+    # fails with Snowflake's ambiguous "does not exist or not authorized"
+    # (2026-07-30, reported live: THE_LIBRARY.GOVERNMENT.CONGRESS_ROLL_CALL_VOTES
+    # unqualified). Queries against LIBRARY_MARTS/LIBRARY_RAW/etc. still need
+    # their own database prefix -- a session can only default to one database.
+    try:
+        conn.cursor().execute("USE DATABASE THE_LIBRARY")
+    except Exception as exc:
+        # Best-effort convenience default; explicit qualification still works.
+        # But swallowing this silently used to mean a lost grant/role change
+        # showed up later as Snowflake's generic "does not exist or not
+        # authorized" on an unqualified query, with no trace of the real
+        # cause -- log it so lane_status() surfaces it instead.
+        _lane_notes.append(f"[!!] default database THE_LIBRARY not set: {exc} "
+                           "-- unqualified SCHEMA.TABLE queries will fail; "
+                           "use the full DATABASE.SCHEMA.TABLE path")
     return conn
 
 
@@ -135,7 +154,11 @@ def _pick_warehouse(conn) -> str:
     """SERVE_WH if it exists, else COMPUTE_WH. Never the pour/dbt lanes."""
     cur = conn.cursor()
     try:
-        cur.execute(f"SHOW WAREHOUSES LIKE '{SERVE_WH}'")
+        # SERVE_WH is env-controlled; sanitize it the same way the USE
+        # WAREHOUSE call two lines below does, instead of raw f-string
+        # interpolation into the LIKE literal (a stray quote in the env var
+        # used to be able to break out of the string).
+        cur.execute(f"SHOW WAREHOUSES LIKE '{guard.validate_fqn(SERVE_WH)}'")
         wh = SERVE_WH if cur.fetchall() else FALLBACK_WH
         if wh != SERVE_WH:
             _lane_notes.append(f"[!!] {SERVE_WH} missing - using {FALLBACK_WH} "

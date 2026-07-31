@@ -39,8 +39,12 @@ S3 = "https://com-courtlistener-storage.s3-us-west-2.amazonaws.com/bulk-data"
 DOCKETS_URL = f"{S3}/dockets-{DATE}.csv.bz2"
 LOADSH_URL = f"{S3}/load-bulk-data-{DATE}.sh"
 TBL = "FED_COURTLISTENER_DOCKETS"
-LOCAL = Path(r"C:\Users\wroge\AppData\Local\Temp\claude\c--Code-Ripple-v6"
-             r"\4eff1010-56a9-484a-9c58-95d1ceba69d0\scratchpad") / f"dockets-{DATE}.csv.bz2"
+# Stable, project-relative -- NOT a Claude-Code session scratchpad (those are
+# tied to one session UUID and vanish/change every session, so the re-use
+# check below would silently miss a prior 5GB download and re-fetch from
+# scratch, or fail outright if the temp dir was already cleaned up).
+CACHE_DIR = _REPO / "outputs" / "_bulk_cache"
+LOCAL = CACHE_DIR / f"dockets-{DATE}.csv.bz2"
 USER_AGENT = {"User-Agent": "Ripple-Library/1.0 (data research; w.rogers9999@gmail.com)"}
 
 
@@ -52,6 +56,7 @@ def get_columns() -> list[str]:
 
 def download() -> str:
     """Stream-download the bz2; returns sha256."""
+    CACHE_DIR.mkdir(parents=True, exist_ok=True)
     h = hashlib.sha256()
     if LOCAL.exists() and LOCAL.stat().st_size > 5_000_000_000:
         print(f"  Using existing {LOCAL}")

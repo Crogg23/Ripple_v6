@@ -1,7 +1,7 @@
 {
   "manifest": "library-onboarding\\ripple_dbt\\target\\manifest.json",
-  "manifest_generated_at": "2026-07-30T20:43:06.135845900Z",
-  "dbt_invocation_id": "019fb4c4-2f38-75c2-b2e7-bbb9322a861c",
+  "manifest_generated_at": "2026-07-31T02:06:11.326203Z",
+  "dbt_invocation_id": "776b3af3-b5be-4968-84ea-3745c45eb3f8",
   "n_marts": 391,
   "grades": {
     "model.ripple.civil_rights__fed_nara_wra_aad": {
@@ -2060,7 +2060,9 @@
       "model": "model.ripple.health__fed_cms_nppes",
       "grade": "fact",
       "reasons": [],
-      "traps": [],
+      "traps": [
+        "trap_nppes_ein_masked"
+      ],
       "sources": [
         "FED_CMS_NPPES"
       ],
@@ -3182,8 +3184,10 @@
         }
       ],
       "traps": [
+        "trap_ais_imo_masked",
         "trap_ais_snapshot",
         "trap_leie_npi_and_dates",
+        "trap_nppes_ein_masked",
         "trap_ofac_sdn_type",
         "trap_open_payments_split",
         "trap_usaspending_grain"
@@ -3220,6 +3224,7 @@
       "grade": "fact",
       "reasons": [],
       "traps": [
+        "trap_ais_imo_masked",
         "trap_ais_snapshot"
       ],
       "sources": [
@@ -3392,7 +3397,9 @@
       "model": "model.ripple.politics__fed_fcc_licensing",
       "grade": "fact",
       "reasons": [],
-      "traps": [],
+      "traps": [
+        "trap_fcc_uls_ein_masked"
+      ],
       "sources": [
         "FED_FCC_LICENSING"
       ],

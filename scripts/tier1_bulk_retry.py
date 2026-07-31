@@ -168,8 +168,12 @@ def load_csv(conn, entry, max_rows):
     resp = requests.get(entry["url"], timeout=300, headers=USER_AGENT)
     resp.raise_for_status()
     sha, run_id, started = _provenance(resp.content)
-    df = pd.read_csv(io.BytesIO(resp.content), dtype=str, nrows=max_rows,
+    df = pd.read_csv(io.BytesIO(resp.content), dtype=str, nrows=max_rows + 1,
                      low_memory=False, encoding_errors="replace")
+    if len(df) > max_rows:
+        raise RuntimeError(
+            f"{entry['table']}: source has more than max_rows={max_rows:,} rows -- "
+            f"refusing to silently truncate. Pass a higher max_rows explicitly.")
     if df.empty:
         return 0
     df = _stamp(df, sha, run_id, started)
@@ -189,8 +193,12 @@ def load_zip_csv(conn, entry, max_rows):
         csv_files.sort(key=lambda n: zf.getinfo(n).file_size, reverse=True)
         with zf.open(csv_files[0]) as f:
             content = f.read()
-    df = pd.read_csv(io.BytesIO(content), dtype=str, nrows=max_rows,
+    df = pd.read_csv(io.BytesIO(content), dtype=str, nrows=max_rows + 1,
                      low_memory=False, encoding_errors="replace")
+    if len(df) > max_rows:
+        raise RuntimeError(
+            f"{entry['table']}: source has more than max_rows={max_rows:,} rows -- "
+            f"refusing to silently truncate. Pass a higher max_rows explicitly.")
     if df.empty:
         return 0
     df = _stamp(df, sha, run_id, started)
@@ -202,8 +210,12 @@ def load_xlsx(conn, entry, max_rows):
     resp.raise_for_status()
     sha, run_id, started = _provenance(resp.content)
     sheet = entry.get("sheet", 0)
-    df = pd.read_excel(io.BytesIO(resp.content), dtype=str, nrows=max_rows,
+    df = pd.read_excel(io.BytesIO(resp.content), dtype=str, nrows=max_rows + 1,
                        sheet_name=sheet)
+    if len(df) > max_rows:
+        raise RuntimeError(
+            f"{entry['table']}: source has more than max_rows={max_rows:,} rows -- "
+            f"refusing to silently truncate. Pass a higher max_rows explicitly.")
     if df.empty:
         return 0
     df = _stamp(df, sha, run_id, started)
@@ -215,8 +227,12 @@ def load_bz2_csv(conn, entry, max_rows):
     resp.raise_for_status()
     sha, run_id, started = _provenance(resp.content)
     decompressed = bz2.decompress(resp.content)
-    df = pd.read_csv(io.BytesIO(decompressed), dtype=str, nrows=max_rows,
+    df = pd.read_csv(io.BytesIO(decompressed), dtype=str, nrows=max_rows + 1,
                      low_memory=False, encoding_errors="replace")
+    if len(df) > max_rows:
+        raise RuntimeError(
+            f"{entry['table']}: source has more than max_rows={max_rows:,} rows -- "
+            f"refusing to silently truncate. Pass a higher max_rows explicitly.")
     if df.empty:
         return 0
     df = _stamp(df, sha, run_id, started)
@@ -241,8 +257,12 @@ def load_zip_multi_google(conn, entry, max_rows):
             try:
                 with zf.open(name) as f:
                     content = f.read()
-                df = pd.read_csv(io.BytesIO(content), dtype=str, nrows=max_rows,
+                df = pd.read_csv(io.BytesIO(content), dtype=str, nrows=max_rows + 1,
                                  low_memory=False, encoding_errors="replace")
+                if len(df) > max_rows:
+                    raise RuntimeError(
+                        f"{tbl}: source has more than max_rows={max_rows:,} rows -- "
+                        f"refusing to silently truncate. Pass a higher max_rows explicitly.")
                 if df.empty:
                     continue
                 df = _stamp(df, sha, run_id, started)

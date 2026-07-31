@@ -35,8 +35,11 @@ import _bulk_load_utils as bulk  # noqa: E402
 
 URL = "https://d2ty8gaf6rmowa.cloudfront.net/dea-pain-pill-database/bulk/arcos_all_washpost.tsv.gz"
 TBL = "FED_DEA_ARCOS_FULL"
-LOCAL = Path(r"C:\Users\wroge\AppData\Local\Temp\claude\c--Code-Ripple-v6"
-             r"\4eff1010-56a9-484a-9c58-95d1ceba69d0\scratchpad") / "arcos_all_washpost.tsv.gz"
+# Stable, project-relative -- NOT a Claude-Code session scratchpad (those are
+# tied to one session UUID and vanish/change every session, so the resume
+# logic below would silently miss a prior partial/full download).
+CACHE_DIR = _REPO / "outputs" / "_bulk_cache"
+LOCAL = CACHE_DIR / "arcos_all_washpost.tsv.gz"
 USER_AGENT = {"User-Agent": "Ripple-Library/1.0 (data research; w.rogers9999@gmail.com)"}
 
 
@@ -44,6 +47,7 @@ FULL_SIZE = 6886701113
 
 
 def download() -> str:
+    CACHE_DIR.mkdir(parents=True, exist_ok=True)
     have = LOCAL.stat().st_size if LOCAL.exists() else 0
     if have < FULL_SIZE:
         hdrs = dict(USER_AGENT)

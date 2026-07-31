@@ -39,17 +39,35 @@ TRAPS: dict[str, str] = {
         "fragments across child/parent UEIs (Lockheed: 77 child / 26 parent). "
         "Top-contractor rankings are floors, not truths."
     ),
+    "trap_nppes_ein_masked": (
+        "FED_CMS_NPPES.EMPLOYER_IDENTIFICATION_NUMBER_EIN is 100% non-null (9,606,683/9,606,683 "
+        "rows) but only 2 distinct values exist: '' (7,669,321 rows) and '<UNAVAIL>' (1,937,362 "
+        "rows) — zero real EINs. A bare COUNT(col) reads as fully populated; any join or "
+        "entity-resolution on this column merges every provider into one or two buckets."
+    ),
+    "trap_fcc_uls_ein_masked": (
+        "FED_FCC_LICENSING.EIN is 100% non-null (1,689,338/1,689,338 rows) but 100% empty "
+        "string — zero real EINs. Same masked-ID shape as the NPPES EIN trap."
+    ),
+    "trap_ais_imo_masked": (
+        "FED_NOAA_AIS.IMO is 100% non-null (58,106,517/58,106,517 rows) but ~55% are sentinel "
+        "placeholders: '' (18,070,341 rows, 31.1%) and 'IMO0000000' (13,868,433 rows, 23.9%). "
+        "A naive IMO join merges roughly a third of all vessels into one 'ship' via the blank "
+        "sentinel alone."
+    ),
 }
 
 # landing table (upper-case identifier) -> policy keys that poison it
 SOURCE_TRAPS: dict[str, tuple[str, ...]] = {
-    "FED_NOAA_AIS": ("trap_ais_snapshot",),
+    "FED_NOAA_AIS": ("trap_ais_snapshot", "trap_ais_imo_masked"),
     "FED_HHS_OIG_LEIE": ("trap_leie_npi_and_dates",),
     "FED_OFAC_SDN": ("trap_ofac_sdn_type",),
     "FED_USASPENDING_CONTRACTS": ("trap_usaspending_grain",),
     "FED_CMS_OPEN_PAYMENTS": ("trap_open_payments_split",),
     "FED_CMS_OPEN_PAYMENTS_2022": ("trap_open_payments_split",),
     "FED_CMS_OPEN_PAYMENTS_2023": ("trap_open_payments_split",),
+    "FED_CMS_NPPES": ("trap_nppes_ein_masked",),
+    "FED_FCC_LICENSING": ("trap_fcc_uls_ein_masked",),
 }
 
 

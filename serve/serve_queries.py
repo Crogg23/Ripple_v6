@@ -135,9 +135,12 @@ def search_names(raw: str, limit: int = 50):
     if not tokens:
         return run_df("SELECT NULL AS ENTITY_ID WHERE 1=0")
     where = " AND ".join(["g.NAME_NORM LIKE %s"] * len(tokens))
+    # TOTAL_MATCHES rides along via COUNT(*) OVER(), computed before LIMIT
+    # truncates -- so the caller can show "top 50 of N" instead of silently
+    # capping the result with no indication more rows exist.
     sql = f"""
         SELECT g.ENTITY_ID, g.CANONICAL_NAME, g.ENTITY_TYPE, g.KEY_TYPE, g.KEY_VALUE,
-               m.SOURCE_COUNT
+               m.SOURCE_COUNT, COUNT(*) OVER () AS TOTAL_MATCHES
         FROM {CONNECT}.ENTITY_GOLDEN g
         LEFT JOIN {CONNECT}.ENTITY_MAP m ON m.ENTITY_ID = g.ENTITY_ID
         WHERE {where}
@@ -151,7 +154,8 @@ def search_sources(q: str, limit: int = 50):
     like = f"%{q}%"
     sql = f"""
         SELECT SOURCE_ID, NAME, DOMAIN_PRIMARY, JURISDICTION, LIFECYCLE,
-               LANDED_ROW_COUNT, JOIN_KEYS_STD, LANDING_FQN, PUBLISHER, URL
+               LANDED_ROW_COUNT, JOIN_KEYS_STD, LANDING_FQN, PUBLISHER, URL,
+               COUNT(*) OVER () AS TOTAL_MATCHES
         FROM {CATALOG}
         WHERE (NAME ILIKE %s OR SOURCE_ID ILIKE %s OR DOMAIN_PRIMARY ILIKE %s)
           AND LIFECYCLE IN ('landed','modeled')
@@ -189,7 +193,8 @@ def get_affiliations(npi_value: str):
             SELECT DISTINCT {ccn_n} AS CCN
             FROM {LANDING}.FED_CMS_FACILITY_AFFILIATION
             WHERE {npi_n} = %s)
-        SELECT x.CCN, g.CANONICAL_NAME, g.CANONICAL_ADDR
+        SELECT x.CCN, g.CANONICAL_NAME, g.CANONICAL_ADDR,
+               COUNT(*) OVER () AS TOTAL_AFFILIATIONS
         FROM ccns x
         LEFT JOIN {CONNECT}.ENTITY_GOLDEN g ON g.KEY_TYPE = 'CCN' AND g.KEY_VALUE = x.CCN
         WHERE x.CCN IS NOT NULL

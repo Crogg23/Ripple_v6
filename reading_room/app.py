@@ -87,14 +87,13 @@ with st.sidebar:
 
 # ── queue screen ────────────────────────────────────────────────────────────
 queue = _read("queue", *queries.queue_sql(detector, tier, limit=20))
-depth = _read("queue_depth", *queries.queue_depth_sql(detector, tier))
-depth_n = list(depth[0].values())[0] if depth else 0
 
 if not queue:
     st.success("Queue is empty for this filter — every matching lead has a "
                "decision. Change the filter, or take the rest of the day.")
     st.stop()
 
+depth_n = queue[0]["queue_depth"]  # same query, same snapshot as the rows below
 st.subheader(f"Queue — showing {len(queue)} of {depth_n}")
 
 # Radio identity: OPTIONS ARE LEAD IDS (stable), labels are cosmetic via
@@ -109,10 +108,17 @@ def _label(lid: str) -> str:
             f"{(r['headline'] or '')[:110]}")
 
 
+if st.session_state.get("queue_radio") not in by_id:
+    # Sticky widget value from a prior render (e.g. the just-decided lead
+    # dropped out of the queue on rerun) — clear it before st.radio
+    # reconciles session_state against the new options, which otherwise
+    # raises instead of falling back to a default.
+    st.session_state.pop("queue_radio", None)
+
 lead_id = st.radio("Pick a case file", list(by_id.keys()),
                    format_func=_label, key="queue_radio",
                    label_visibility="collapsed")
-if lead_id not in by_id:  # filter changed under a sticky widget value
+if lead_id not in by_id:  # defensive: should be unreachable after the pop above
     lead_id = next(iter(by_id))
 
 # ── case file ───────────────────────────────────────────────────────────────
@@ -250,12 +256,24 @@ if clicked:
             _writer.clear()  # dead cached connection — reconnect once
             wcur = _writer().cursor()
             wcur.execute(queries.INSERT_DECISION_SQL, params)
-        wcur.execute(queries.CONFIRM_DECISION_SQL, (lead_id,))
+        verdict, reviewer_clean = params[1], params[3]
+        wcur.execute(queries.CONFIRM_DECISION_SQL, (lead_id, reviewer_clean))
         landed = wcur.fetchone()
         if not landed:
             st.error("Insert reported success but the decision row is not "
                      "readable back — do NOT retry blindly; check "
                      "LIBRARY_META.REVIEW.DECISIONS.")
+        elif landed[0] != verdict:
+            # A newer row from this same reviewer already landed (e.g. a
+            # double-submit from two tabs) between our write and this
+            # read-back — the row we just wrote is real, but it is not the
+            # latest one anymore. Say so instead of flashing the wrong verdict.
+            st.warning(
+                f"Your **{verdict}** on `{lead_id}` was written, but a newer "
+                f"decision (**{landed[0]}** by {landed[1]} at {landed[2]}) "
+                f"has since landed for this reviewer on this lead — that one "
+                f"wins. Append-only: nothing was lost, but check the row.")
+            st.rerun()
         else:
             st.session_state["flash"] = (
                 f"Recorded **{landed[0]}** on `{lead_id}` by {landed[1]} at "

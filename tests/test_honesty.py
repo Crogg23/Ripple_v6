@@ -312,6 +312,9 @@ def test_traps_mirror_registry_seeds():
         "trap_leie_npi_and_dates": "NPI='0000000000' on 74,780/83,464 rows",
         "trap_ofac_sdn_type": "literal sentinel '-0- '",
         "trap_usaspending_grain": "one row per TRANSACTION, not per award",
+        "trap_nppes_ein_masked": "only 2 distinct values exist",
+        "trap_fcc_uls_ein_masked": "but 100% empty",
+        "trap_ais_imo_masked": "roughly a third of all vessels",
     }
     assert set(fragments) == set(TRAPS)
     for key, frag in fragments.items():

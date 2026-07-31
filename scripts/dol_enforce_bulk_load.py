@@ -150,7 +150,11 @@ def _load_dol_zip(conn, entry: dict, max_rows: int) -> int:
                 content = f.read()
 
         df = pd.read_csv(io.BytesIO(content), sep=sep, dtype=str,
-                         nrows=max_rows, low_memory=False, encoding_errors="replace")
+                         nrows=max_rows + 1, low_memory=False, encoding_errors="replace")
+        if len(df) > max_rows:
+            raise RuntimeError(
+                f"{tbl}: source has more than max_rows={max_rows:,} rows -- "
+                f"refusing to silently truncate. Pass a higher max_rows explicitly.")
         if df.empty:
             return 0
 

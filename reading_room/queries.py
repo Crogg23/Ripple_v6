@@ -44,11 +44,17 @@ _QUEUE_FILTER = (
     "('confirmed', 'rejected', 'retracted', 'stale', 'published')"
 )
 
+# QUEUE_DEPTH is a COUNT(*) OVER() — computed over the full filtered set in
+# THIS SAME query, before LIMIT truncates the rows returned. That makes the
+# "showing N of depth" header an atomic snapshot instead of two separate
+# round-trips that a concurrent decision could land between (the depth could
+# previously disagree with the rows actually shown).
 _QUEUE_SELECT = f"""
 SELECT
     q.lead_id, q.detector, q.priority_rank, q.priority_score, q.headline,
     q.confidence_tier, q.receipt_verdict, q.caveat,
-    d.decision AS latest_decision, d.decided_at AS latest_decided_at
+    d.decision AS latest_decision, d.decided_at AS latest_decided_at,
+    COUNT(*) OVER () AS queue_depth
 FROM {QUEUE_TABLE} q
 LEFT JOIN LIBRARY_META.REVIEW.V_LATEST_DECISIONS d
        ON d.lead_id = q.lead_id
@@ -58,7 +64,8 @@ WHERE {_QUEUE_FILTER}
 
 def queue_sql(detector: str | None = None, tier: str | None = None,
               limit: int = 20) -> tuple[str, tuple]:
-    """Top-of-queue pull. Filters are optional; values are BOUND."""
+    """Top-of-queue pull, with the full-filter depth riding along on every
+    row (see QUEUE_DEPTH note above). Filters are optional; values are BOUND."""
     sql, params = _QUEUE_SELECT, []
     if detector:
         sql += " AND q.detector = %s"
@@ -68,23 +75,6 @@ def queue_sql(detector: str | None = None, tier: str | None = None,
         params.append(tier)
     sql += " ORDER BY q.priority_rank LIMIT %s"
     params.append(int(limit))
-    return sql, tuple(params)
-
-
-def queue_depth_sql(detector: str | None = None,
-                    tier: str | None = None) -> tuple[str, tuple]:
-    """How many reviewable leads match the current filter ('20 of N')."""
-    sql = (f"SELECT COUNT(*) FROM {QUEUE_TABLE} q "
-           "LEFT JOIN LIBRARY_META.REVIEW.V_LATEST_DECISIONS d "
-           "ON d.lead_id = q.lead_id "
-           f"WHERE {_QUEUE_FILTER}")
-    params = []
-    if detector:
-        sql += " AND q.detector = %s"
-        params.append(detector)
-    if tier:
-        sql += " AND q.confidence_tier = %s"
-        params.append(tier)
     return sql, tuple(params)
 
 
@@ -138,10 +128,16 @@ SELECT 'lead', %s, %s, %s, %s, PARSE_JSON(%s)
 
 # Post-insert confirmation reads the writer's OWN table grant (latest wins);
 # the queue's anti-join uses V_LATEST_DECISIONS on the reader lane.
+# Scoped by REVIEWER too (not just TARGET_ID): DECISIONS is append-only and
+# unscoped-by-reviewer, "latest row for this lead" can read back a DIFFERENT
+# reviewer's concurrent verdict on the same lead and flash it as if it
+# confirmed the current click. The caller must still compare the returned
+# DECISION against the verdict it just wrote (this narrows, but cannot fully
+# close, the case of the SAME reviewer double-clicking across two tabs).
 CONFIRM_DECISION_SQL = """
 SELECT DECISION, REVIEWER, DECIDED_AT
 FROM LIBRARY_META.REVIEW.DECISIONS
-WHERE TARGET_KIND = 'lead' AND TARGET_ID = %s
+WHERE TARGET_KIND = 'lead' AND TARGET_ID = %s AND REVIEWER = %s
 QUALIFY ROW_NUMBER() OVER (PARTITION BY TARGET_ID ORDER BY DECIDED_AT DESC) = 1
 """
 

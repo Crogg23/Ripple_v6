@@ -76,9 +76,24 @@ def _domain_color(domain: str) -> str:
 def build_figure(graph: dict, *, tiers, include_samples: bool,
                  focus=None, enrich=None, asof=None) -> go.Figure:
     enrich = enrich or {}
-    tiers = set(tiers) & set(ALL_TIERS) or set(DEFAULT_TIERS)
+    # None means "caller didn't specify" -> use the default tiers. An explicit
+    # empty list means the user deselected every tier checkbox and genuinely
+    # wants to see none -- that must NOT silently revert to the default (it
+    # used to, via `set() or DEFAULT_TIERS`, since an empty set is falsy).
+    if tiers is None:
+        tiers = set(DEFAULT_TIERS)
+    else:
+        tiers = set(tiers) & set(ALL_TIERS)
     nodes_by_id = {n["id"]: n for n in graph["nodes"]}
-    focus = [f for f in (focus or []) if f in nodes_by_id]
+    requested_focus = list(focus or [])
+    focus = [f for f in requested_focus if f in nodes_by_id]
+    focus_missing = bool(requested_focus) and not focus
+    if focus_missing:
+        st.warning(
+            f"None of this entity's {len(requested_focus)} source table(s) "
+            f"were found in the cached graph — showing the full graph "
+            f"instead of a focused neighborhood. The graph cache may be "
+            f"stale; try `python3 -m connect.cache_layout`.")
 
     # ---- which edges / nodes are visible -----------------------------------
     if focus:
@@ -160,8 +175,12 @@ def build_figure(graph: dict, *, tiers, include_samples: bool,
             nx.append(x); ny.append(y); color.append(_domain_color(dom))
             size.append(min(base_size + 1.6 * degree.get(nid, 0) ** 0.5, base_size + 16))
             cd.append(nid)
+            # isinstance(rows, numbers.Number) is True for NaN too (it's a float),
+            # but int(nan) raises ValueError -- `rows == rows` is False only for
+            # NaN, so this excludes it without importing math.isnan.
+            has_rows = isinstance(rows, numbers.Number) and rows == rows
             hov.append(f"<b>{nid}</b><br>{meta.get('name','') or ''}"
-                       f"<br>domain: {dom}<br>rows: {int(rows):,}" if isinstance(rows, numbers.Number)
+                       f"<br>domain: {dom}<br>rows: {int(rows):,}" if has_rows
                        else f"<b>{nid}</b><br>domain: {dom}")
             hov[-1] += f"<br>keys: {keys}" if keys else ""
             hov[-1] += f"<br>degree: {degree.get(nid,0)}"

@@ -173,7 +173,13 @@ def render_search():
             if df.empty:
                 st.warning("No entity name matches every word you typed.")
             else:
-                st.caption(f"{len(df)} candidate(s) — multi-source entities first.")
+                total = _int(df.iloc[0].get("TOTAL_MATCHES"), len(df))
+                if total > len(df):
+                    st.caption(f"Showing top {len(df)} of {total} candidate(s) "
+                               f"— multi-source entities first. Narrow your "
+                               f"search to see the rest.")
+                else:
+                    st.caption(f"{len(df)} candidate(s) — multi-source entities first.")
                 for _, r in df.iterrows():
                     sc = _int(r["SOURCE_COUNT"])
                     label = (f"**{r['CANONICAL_NAME']}** · {r['ENTITY_TYPE']} · "
@@ -188,6 +194,10 @@ def render_search():
         if sdf.empty:
             st.caption("No landed/modeled source matches.")
         else:
+            total = _int(sdf.iloc[0].get("TOTAL_MATCHES"), len(sdf))
+            if total > len(sdf):
+                st.caption(f"Showing top {len(sdf)} of {total} source(s) — "
+                          f"narrow your search to see the rest.")
             dec = q.decorations_for(tuple(sdf["SOURCE_ID"].tolist()))
             for _, r in sdf.iterrows():
                 with st.container(border=True):
@@ -213,7 +223,8 @@ def render_dossier(eid: str):
     g = golden.iloc[0]
     m = emap.iloc[0].to_dict() if not emap.empty else {}
     member_tables = q.safe_json(m.get("MEMBER_TABLES")) or []
-    src_count = _int(m.get("SOURCE_COUNT")) or len(sources)
+    _cached_src_count = _int(m.get("SOURCE_COUNT"), None)
+    src_count = _cached_src_count if _cached_src_count is not None else len(sources)
 
     if st.button("← Back to search", key="back_dossier"):
         goto(view="search")
@@ -270,7 +281,11 @@ def render_dossier(eid: str):
         aff = q.get_affiliations(g.get("KEY_VALUE"))
         if aff is not None and not aff.empty:
             st.subheader("Facility Affiliations")
-            st.dataframe(aff, use_container_width=True, hide_index=True)
+            total = _int(aff.iloc[0].get("TOTAL_AFFILIATIONS"), len(aff))
+            display_aff = aff.drop(columns=["TOTAL_AFFILIATIONS"], errors="ignore")
+            if total > len(aff):
+                st.caption(f"Showing top {len(aff)} of {total} affiliations.")
+            st.dataframe(display_aff, use_container_width=True, hide_index=True)
 
 
 # --------------------------------------------------------------------------- #
@@ -345,11 +360,22 @@ def render_graph():
     include_samples = top[1].toggle("Include portal samples", value=bool(focus),
                                     help="655/764 nodes are open-data-portal samples; "
                                          "hidden by default so the core library shows.")
+
+    # Resolve focus against the actual cached graph BEFORE captioning, so the
+    # caption reflects what will really render, not what the query param
+    # asked for (build_figure does its own membership check too — if the
+    # graph cache is stale, that shows its own warning at render time).
+    node_ids = {n["id"] for n in graph["nodes"]} if focus else set()
+    resolved_focus = [f for f in (focus or []) if f in node_ids]
+
     if focus:
         if top[2].button("✕ Clear focus / show full graph"):
             goto(view="graph")
-        st.caption(f"Showing the connection neighborhood of {len(focus)} source(s) "
-                   "this entity appears in.")
+        if resolved_focus:
+            st.caption(f"Showing the connection neighborhood of "
+                       f"{len(resolved_focus)} source(s) this entity appears in.")
+        # else: none of the requested sources are in the cached graph --
+        # build_figure will fall back to the full graph and warn about it.
 
     fig = G.build_figure(graph, tiers=tiers, include_samples=include_samples,
                          focus=focus, enrich=enrich, asof=asof)

@@ -571,6 +571,25 @@ POLICY = [
          stmt="Snowflake RLIKE/REGEXP match the WHOLE string: 'catalog' RLIKE 'cat' is FALSE. "
               "Wrap patterns in .*...* or catalog searches silently return zero rows.",
          why="Demonstrated live 2026-07-12.", decided="2026-06-25"),
+    dict(key="trap_nppes_ein_masked",
+         stmt="FED_CMS_NPPES.EMPLOYER_IDENTIFICATION_NUMBER_EIN is 100% non-null (9,606,683/"
+              "9,606,683 rows) but only 2 distinct values exist: '' (7,669,321 rows) and "
+              "'<UNAVAIL>' (1,937,362 rows) — zero real EINs. A bare COUNT(col) reads as fully "
+              "populated; any join or entity-resolution on this column merges every provider "
+              "into one or two buckets.",
+         why="Verified live 2026-07-30 (honesty-sweep remediation) — the exact trap CLAUDE.md's "
+             "bridge-fuel-reality note already documented but honesty/traps.py never registered.",
+         decided="2026-07-30"),
+    dict(key="trap_fcc_uls_ein_masked",
+         stmt="FED_FCC_LICENSING.EIN is 100% non-null (1,689,338/1,689,338 rows) but 100% empty "
+              "string — zero real EINs. Same masked-ID shape as the NPPES EIN trap.",
+         why="Verified live 2026-07-30 (honesty-sweep remediation).", decided="2026-07-30"),
+    dict(key="trap_ais_imo_masked",
+         stmt="FED_NOAA_AIS.IMO is 100% non-null (58,106,517/58,106,517 rows) but ~55% are "
+              "sentinel placeholders: '' (18,070,341 rows, 31.1%) and 'IMO0000000' (13,868,433 "
+              "rows, 23.9%). A naive IMO join merges roughly a third of all vessels into one "
+              "'ship' via the blank sentinel alone.",
+         why="Verified live 2026-07-30 (honesty-sweep remediation).", decided="2026-07-30"),
 ]
 
 

@@ -121,7 +121,11 @@ def _load_dera_quarter(conn, quarter: str, max_rows: int) -> int:
                 content = f.read()
         # sub.txt is tab-delimited
         df = pd.read_csv(io.BytesIO(content), sep="\t", dtype=str,
-                         nrows=max_rows, low_memory=False, encoding_errors="replace")
+                         nrows=max_rows + 1, low_memory=False, encoding_errors="replace")
+        if len(df) > max_rows:
+            raise RuntimeError(
+                f"{quarter}: source has more than max_rows={max_rows:,} rows -- "
+                f"refusing to silently truncate. Pass a higher max_rows explicitly.")
         if df.empty:
             return 0
         df.columns = [bulk.sf_col(c) for c in df.columns]

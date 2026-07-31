@@ -43,6 +43,18 @@
       "env_var": "SOCRATA_APP_TOKEN",
       "expires": null,
       "renew_note": "no expiry tracked — manage at the Socrata developer portal; only affects rate limits."
+    },
+    {
+      "name": "Ripple review-lane PAT (Reading Room Confirm/Reject writes, publish_lead.py, export_review_decisions.py)",
+      "env_var": "RIPPLE_REVIEW_PAT",
+      "expires": null,
+      "renew_note": "NOT YET PROVISIONED as of 2026-07-30 — missing from library-onboarding/.env entirely. Without it the Reading Room's Confirm/Reject buttons and scripts/publish_lead.py cannot write. Chris must create it in Snowsight (build-state.md pending action A00); update this row with a real expiry once issued."
+    },
+    {
+      "name": "Senate LDA (lobbying disclosure) API key",
+      "env_var": "LDA_API_KEY",
+      "expires": null,
+      "renew_note": "no expiry tracked — manage at lda.senate.gov API signup; used by scripts/senate_lda_load.py."
     }
   ]
 }

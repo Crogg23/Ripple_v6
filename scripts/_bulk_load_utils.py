@@ -137,8 +137,12 @@ def _load_bytes(conn, content: bytes, tbl: str, *, max_rows: int = DEFAULT_MAX_R
     run_id = str(uuid.uuid4())
     started = dt.datetime.now(dt.timezone.utc)
 
-    df = pd.read_csv(io.BytesIO(content), dtype=str, nrows=max_rows,
+    df = pd.read_csv(io.BytesIO(content), dtype=str, nrows=max_rows + 1,
                      low_memory=False, encoding_errors="replace")
+    if len(df) > max_rows:
+        raise RuntimeError(
+            f"{tbl}: source has more than max_rows={max_rows:,} rows -- "
+            f"refusing to silently truncate. Pass a higher max_rows explicitly.")
     if df.empty:
         return 0
 
