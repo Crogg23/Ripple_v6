@@ -56,7 +56,7 @@ CREATE SCHEMA IF NOT EXISTS LIBRARY_META.REVIEW
 
 CREATE TABLE IF NOT EXISTS LIBRARY_META.REVIEW.DECISIONS (
     DECISION_ID    STRING        DEFAULT UUID_STRING(),
-    TARGET_KIND    STRING        NOT NULL DEFAULT 'lead',  -- 'lead' | 'link' | 'entity'
+    TARGET_KIND    STRING        NOT NULL DEFAULT 'lead',  -- 'lead' | 'link' | 'entity' | 'cohort' (Pattern Desk, 2026-08-01)
     TARGET_ID      STRING        NOT NULL,                 -- LEAD_ID for leads
     DECISION       STRING        NOT NULL,                 -- confirmed|rejected|retracted|stale|needs_work|published
     REASON         STRING,                                 -- the reviewer's note
@@ -220,4 +220,7 @@ ALTER TABLE IF EXISTS LIBRARY_META."CONNECT".DECISIONS
 -- line after the first mart build. lead_queue.sql sets copy_grants=true so
 -- dbt rebuilds keep the grant afterwards.
 
-GRANT SELECT ON TABLE LIBRARY_MARTS.DBT_CROGERS.LEAD_QUEUE TO ROLE RIPPLE_READER;
+-- CORRECTED 2026-08-01: the mart routes to LIBRARY_MARTS.REVIEW (custom dbt
+-- schema routing), not DBT_CROGERS. provision_pattern_desk.sql Part 8 carries
+-- the current grant set for all three review marts.
+GRANT SELECT ON TABLE LIBRARY_MARTS.REVIEW.LEAD_QUEUE TO ROLE RIPPLE_READER;

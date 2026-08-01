@@ -35,11 +35,11 @@ DECISIONS_FQN = '"LIBRARY_META"."REVIEW"."DECISIONS"'
 DECISIONS_DDL = f"""
 CREATE TABLE IF NOT EXISTS {DECISIONS_FQN} (
     DECISION_ID    STRING DEFAULT UUID_STRING(),
-    TARGET_KIND    STRING NOT NULL DEFAULT 'lead',  -- 'lead' | 'link' | 'entity'
-    TARGET_ID      STRING NOT NULL,    -- the stable id of the claim (LEAD_ID, link hash, ...)
+    TARGET_KIND    STRING NOT NULL DEFAULT 'lead',  -- 'lead' | 'link' | 'entity' | 'cohort' (Pattern Desk)
+    TARGET_ID      STRING NOT NULL,    -- the stable id of the claim (LEAD_ID, cohort_id, link hash, ...)
     DECISION       STRING NOT NULL,    -- 'confirmed' | 'rejected' | 'retracted' | 'stale' | 'needs_work' | 'published'
     REASON         STRING,
-    REVIEWER       STRING,
+    REVIEWER       STRING NOT NULL,    -- matches provision_review_lane.sql DDL (was nullable here; aligned 2026-08-01)
     MODEL_VERSION  STRING,             -- which scoring model produced the claim being judged
     QUEUE_SNAPSHOT VARIANT,            -- what the reviewer was shown at decision time
     DECIDED_AT     TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
@@ -50,6 +50,15 @@ CREATE TABLE IF NOT EXISTS {DECISIONS_FQN} (
 # (flagged) and unpublished — the Reading Room's third button.
 VALID = {"confirmed", "rejected", "retracted", "stale", "needs_work"}
 SUPPRESS = {"rejected", "retracted", "stale"}   # latest verdict in here -> never shown as fact
+
+# Decision target kinds. 'cohort' (Pattern Desk, 2026-08-01): TARGET_ID is the
+# detector's cohort key (naics||'|'||size_band); a cohort verdict inherits to
+# member leads WITH NO individual decision via
+# LIBRARY_META.REVIEW.V_EFFECTIVE_LEAD_DECISIONS — specific beats general, a
+# lead-level decision always wins for that lead.
+KINDS = {"lead", "link", "entity", "cohort"}
+
+EFFECTIVE_VIEW_FQN = '"LIBRARY_META"."REVIEW"."V_EFFECTIVE_LEAD_DECISIONS"'
 
 # Two-step publish gate (2026-07-20, beta ruling B1). 'published' is a READ
 # state, deliberately absent from VALID: record() — i.e. the Reading Room
@@ -97,9 +106,24 @@ def latest(conn, kind: str) -> dict[str, str]:
     return {r["TARGET_ID"]: r["DECISION"] for r in rows}
 
 
+def effective_lead_decisions(conn) -> dict[str, str]:
+    """The effective verdict per lead — lead-level, else the inherited cohort
+    verdict (Pattern Desk, specific-beats-general). Falls back to plain
+    lead-level decisions when the effective view is not provisioned yet
+    (pre-A15 warehouses), so callers degrade instead of crashing."""
+    try:
+        rows = db.dicts(conn, f"SELECT LEAD_ID, DECISION FROM {EFFECTIVE_VIEW_FQN}")
+        return {r["LEAD_ID"]: r["DECISION"] for r in rows}
+    except Exception:
+        return latest(conn, "lead")
+
+
 def suppressed(conn, kind: str) -> set[str]:
-    """Target ids whose latest verdict means 'never publish' — the anti-join set for publish paths."""
-    return {tid for tid, d in latest(conn, kind).items() if d in SUPPRESS}
+    """Target ids whose latest verdict means 'never publish' — the anti-join
+    set for publish paths. For leads this reads the EFFECTIVE verdict (so a
+    Pattern Desk cohort rejection suppresses its undecided members too)."""
+    decided = effective_lead_decisions(conn) if kind == "lead" else latest(conn, kind)
+    return {tid for tid, d in decided.items() if d in SUPPRESS}
 
 
 def gate_rows(rows: list[dict], decisions: dict[str, str],

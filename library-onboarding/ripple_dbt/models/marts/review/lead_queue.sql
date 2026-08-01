@@ -1,13 +1,13 @@
 {{ config(materialized='table', copy_grants=true, schema='REVIEW') }}
 
 -- ============================================================================
--- LEAD_QUEUE â€” the Reading Room triage mart
+-- LEAD_QUEUE — the Reading Room triage mart
 -- ============================================================================
 -- GRAIN:    one row per reviewable lead (REVIEW_STATE pending or needs_work)
--- KEY:      lead_id (from LIBRARY_META."CONNECT".V_LEADS_PUBLISHED â€” the safe
+-- KEY:      lead_id (from LIBRARY_META."CONNECT".V_LEADS_PUBLISHED — the safe
 --           view; this model NEVER reads raw LEADS, same rule the viz guard
 --           enforces)
--- HEADLINE: every analyst-facing string is a fixed SQL template â€” nothing
+-- HEADLINE: every analyst-facing string is a fixed SQL template — nothing
 --           model-generated anywhere in this model, build time or read time.
 --           Templates are DRAFT v1 pending Chris's Checkpoint-1 edit.
 -- RECEIPT:  confidence_tier + receipt_verdict port scripts/lead_receipt.py's
@@ -19,7 +19,7 @@
 --           the OSHA cohort detector's self-reported inputs). They ship WITH
 --           the lead so the analyst never reads a number the warehouse can't
 --           back.
--- NULLs:    'text' || NULL is NULL in Snowflake â€” every substituted field is
+-- NULLs:    'text' || NULL is NULL in Snowflake — every substituted field is
 --           COALESCE-wrapped. Guard tests forbid 'NULL'/'None'/'||' in
 --           headlines.
 -- ============================================================================
@@ -63,9 +63,9 @@ ein_keys AS (
     SELECT DISTINCT left_key_value AS ein FROM leads WHERE left_key_type = 'EIN'
 ),
 
--- SEC financial-statement filers (sec_filer_in_irs_bmf, dormant today â€”
--- 0 active leads â€” but the enrichment is wired so the day it wakes its
--- headlines carry real names, not '[name unavailable]').
+-- SEC financial-statement filers (sec_filer_in_irs_bmf — carries a handful of
+-- live leads as of the 2026-08-01 audit, no longer dormant; the enrichment
+-- puts real names in its headlines, not '[name unavailable]').
 sec AS (
     SELECT
         ein,
@@ -77,10 +77,10 @@ sec AS (
 ),
 
 -- ---------------------------------------------------------------------------
--- [2] OIG-LEIE â€” the ban. Two grains:
---   leie_pair  mirrors lead_receipt.py's CTE exactly (npi, lname, fname) â€”
+-- [2] OIG-LEIE — the ban. Two grains:
+--   leie_pair  mirrors lead_receipt.py's CTE exactly (npi, lname, fname) —
 --              feeds the banned_but_paid receipt join (op ON npi AND lname).
---   leie_npi   one deterministic row per NPI (latest exclusion first) â€” feeds
+--   leie_npi   one deterministic row per NPI (latest exclusion first) — feeds
 --              the display fields for the other NPI detectors.
 -- Date parsing is explicit YYYYMMDD (POLICY trap_leie_npi_and_dates: TRY_CAST
 -- collapses LEIE dates to 1970).
@@ -112,9 +112,9 @@ leie_npi AS (
 ),
 
 -- ---------------------------------------------------------------------------
--- [1] NPPES â€” the registry (the third source). Single-underscore column name
+-- [1] NPPES — the registry (the third source). Single-underscore column name
 -- is the LIVE schema after the 2026-07-12 re-land (commit 124f350);
--- lead_receipt.py still holds the old double-underscore name â€” the Python
+-- lead_receipt.py still holds the old double-underscore name — the Python
 -- LOGIC is the spec, this column name is the fix.
 -- ---------------------------------------------------------------------------
 nppes AS (
@@ -130,7 +130,7 @@ nppes AS (
 ),
 
 -- ---------------------------------------------------------------------------
--- [3] Open Payments â€” the money. Same grain and normalization as
+-- [3] Open Payments — the money. Same grain and normalization as
 -- lead_receipt.py's op CTE (npi, lname), against the SAME all-years union the
 -- banned_but_paid detector reads. Payment dates parse 'MM/DD/YYYY' explicitly.
 -- ---------------------------------------------------------------------------
@@ -153,10 +153,10 @@ op_pair AS (
     GROUP BY 1, 2
 ),
 
--- The receipt join, exactly as lead_receipt.py: LEIE â‹ˆ OP on npi AND surname,
+-- The receipt join, exactly as lead_receipt.py: LEIE ⋈ OP on npi AND surname,
 -- NPPES LEFT-joined as the corroborating third source. Where one NPI carries
 -- several LEIE name variants, keep the row the receipt script prints FIRST
--- (most payments, then most dollars) â€” deterministic tiebreak on lname.
+-- (most payments, then most dollars) — deterministic tiebreak on lname.
 receipt_bbp AS (
     SELECT
         l.npi,
@@ -186,8 +186,31 @@ receipt_bbp AS (
 ),
 
 -- ---------------------------------------------------------------------------
+-- CMS facility affiliations (banned_but_operating) -- recomputed LIVE from
+-- the restored FED_CMS_FACILITY_AFFILIATION table (audit F5, 2026-08-01: one
+-- lead's frozen count understated reality 3 vs 6). The landing file carries
+-- facility TYPE + certification numbers but NO facility name column, so the
+-- example facility name still comes from the frozen EVIDENCE snapshot; the
+-- caveat says exactly that.
+-- ---------------------------------------------------------------------------
+fac_agg AS (
+    SELECT
+        npi,
+        COUNT(DISTINCT COALESCE(ccn, facility_type_certification_number, '?')
+                       || '|' || COALESCE(facility_type, '?'))
+                                                             AS n_facilities,
+        ARRAY_SLICE(
+            ARRAY_AGG(DISTINCT facility_type)
+                WITHIN GROUP (ORDER BY facility_type),
+            0, 3)                                            AS facility_types
+    FROM {{ source('ripple_raw', 'FED_CMS_FACILITY_AFFILIATION') }}
+    WHERE npi IN (SELECT npi FROM npi_keys)
+    GROUP BY 1
+),
+
+-- ---------------------------------------------------------------------------
 -- Medicare Part D aggregate (excluded_but_billing). No program-year column in
--- this landing table â†’ no timeline verdict possible; costs recomputed from
+-- this landing table → no timeline verdict possible; costs recomputed from
 -- source rather than trusted from the capped EVIDENCE array.
 -- ---------------------------------------------------------------------------
 partd_agg AS (
@@ -239,11 +262,11 @@ usasp_agg AS (
 
 -- ---------------------------------------------------------------------------
 -- Sanctions lists + the AIS archive (both vessel detectors). The AIS table is
--- a FIXED Jan 1â€“8 2024 US-coastal snapshot (POLICY trap_ais_snapshot) â€” the
+-- a FIXED Jan 1–8 2024 US-coastal snapshot (POLICY trap_ais_snapshot) — the
 -- caveat travels on every vessel row.
 -- ---------------------------------------------------------------------------
 -- IMO normalization mirrors connect/keys.py: digits only (AIS broadcasts
--- 'IMO9389095', OFAC stores bare '9389095' â€” same hull), exactly 7 digits,
+-- 'IMO9389095', OFAC stores bare '9389095' — same hull), exactly 7 digits,
 -- never the all-zero placeholder. OFAC's literal null token '-0- ' (POLICY
 -- trap_ofac_sdn_type) is scrubbed so 'flag: -0-' can never reach an analyst.
 sdn AS (
@@ -366,7 +389,7 @@ enriched AS (
         CASE ld.rule_name
             WHEN 'banned_but_paid'                  THEN 'LIBRARY_STAGING.DBT_CROGERS.INT_OPEN_PAYMENTS_ALL_YEARS'
             WHEN 'excluded_but_billing'             THEN 'LIBRARY_RAW.LANDING.FED_CMS_PART_D_PRESCRIBERS'
-            WHEN 'banned_but_operating'             THEN 'LIBRARY_RAW.LANDING.FED_CMS_FACILITY_AFFILIATION (restored 2026-07-25; this mart still reads the frozen EVIDENCE snapshot, see caveat)'
+            WHEN 'banned_but_operating'             THEN 'LIBRARY_RAW.LANDING.FED_CMS_FACILITY_AFFILIATION'
             WHEN 'debarred_but_funded'              THEN 'LIBRARY_RAW.LANDING.FED_USASPENDING_CONTRACTS'
             WHEN 'sanctioned_vessel_broadcasting'   THEN 'LIBRARY_RAW.LANDING.FED_NOAA_AIS'
             WHEN 'sanctioned_vessel_broadcasting_v2' THEN 'LIBRARY_RAW.LANDING.FED_NOAA_AIS'
@@ -380,11 +403,31 @@ enriched AS (
                 NULLIF(INITCAP(TRIM(COALESCE(np.fname, '') || ' ' || COALESCE(np.lname, ''))), '')
         END                                                  AS nppes_legal_name,
 
+        -- ------- first-name cross-check (audit F4, 2026-08-01) -------
+        -- The confidence tier corroborates on SURNAME only; six FACT_GRADE
+        -- leads had entirely different first names in LEIE vs NPPES (often a
+        -- same-person alternate/anglicized name, sometimes not). Surface the
+        -- pair and a hard-conflict flag (different first LETTER, both present)
+        -- so the case file can warn instead of overselling the corroboration.
+        CASE WHEN ld.left_key_type = 'NPI'
+             THEN NULLIF(INITCAP(TRIM(COALESCE(r.leie_fname, ln.fname, ''))), '')
+        END                                                  AS leie_first_name,
+        CASE WHEN ld.left_key_type = 'NPI'
+             THEN NULLIF(INITCAP(TRIM(COALESCE(np.fname, ''))), '')
+        END                                                  AS nppes_first_name,
+        COALESCE(
+            ld.left_key_type = 'NPI'
+            AND COALESCE(TRIM(np.fname), '') <> ''
+            AND COALESCE(TRIM(COALESCE(r.leie_fname, ln.fname)), '') <> ''
+            AND UPPER(TRIM(np.fname)) <> UPPER(TRIM(COALESCE(r.leie_fname, ln.fname)))
+            AND LEFT(UPPER(TRIM(np.fname)), 1) <> LEFT(UPPER(TRIM(COALESCE(r.leie_fname, ln.fname))), 1),
+            FALSE)                                           AS first_name_conflict,
+
         -- ------- recomputed activity numbers (never the capped EVIDENCE) ---
         CASE ld.rule_name
             WHEN 'banned_but_paid'                  THEN r.recs
             WHEN 'excluded_but_billing'             THEN p.recs
-            WHEN 'banned_but_operating'             THEN ld.evidence_count  -- one item per facility; this mart still reads the frozen EVIDENCE snapshot (see caveat)
+            WHEN 'banned_but_operating'             THEN fa.n_facilities  -- LIVE count from the restored table (audit F5); example name stays frozen (no name column in the landing file)
             WHEN 'debarred_but_funded'              THEN u.recs
             WHEN 'sanctioned_vessel_broadcasting'   THEN a.recs
             WHEN 'sanctioned_vessel_broadcasting_v2' THEN a.recs
@@ -442,7 +485,7 @@ enriched AS (
         CASE
             WHEN ld.left_key_type <> 'NPI'                     THEN 'HARD_ID_ONLY'
             -- LEIE row vanished since detection (monthly OIG refresh removes
-            -- reinstated providers) â€” no surname to compare; never mislabel
+            -- reinstated providers) — no surname to compare; never mislabel
             -- this as a conflict.
             WHEN COALESCE(r.leie_lname, ln.lname) IS NULL      THEN 'LEIE_ROW_MISSING'
             WHEN np.npi IS NULL OR COALESCE(np.lname, '') = '' THEN 'TWO_SOURCE'
@@ -465,17 +508,20 @@ enriched AS (
         -- ------- the known data traps, travelling with the lead -------
         CASE ld.rule_name
             WHEN 'banned_but_operating' THEN
-                'Source table FED_CMS_FACILITY_AFFILIATION was RESTORED to LANDING 2026-07-25 (2.2M+ rows; confirmed live 2026-07-30) after being briefly dropped. This mart has not yet been updated to recompute facility evidence live from the restored table â€” today''s facility count/name still reflects the frozen EVIDENCE snapshot captured at detection time, not a fresh re-query.'
+                'Facility COUNT is recomputed live from the restored FED_CMS_FACILITY_AFFILIATION table on every mart build (audit F5, 2026-08-01). The example facility NAME still comes from the frozen detection-time evidence: the landing file carries facility types and certification numbers but no facility name column.'
             WHEN 'sanctioned_vessel_broadcasting' THEN
-                'SUPERSEDED by sanctioned_vessel_broadcasting_v2. AIS activity is a Jan 1-8 2024 US-coastal archive snapshot that PRE-DATES most 2025-26 sanctions listings â€” never read as current behavior.'
+                'SUPERSEDED by sanctioned_vessel_broadcasting_v2. AIS activity is a Jan 1-8 2024 US-coastal archive snapshot that PRE-DATES most 2025-26 sanctions listings — never read as current behavior.'
             WHEN 'sanctioned_vessel_broadcasting_v2' THEN
-                'AIS activity is a Jan 1-8 2024 US-coastal archive snapshot that PRE-DATES most 2025-26 sanctions listings â€” an appearance is historical presence, never current broadcasting.'
+                'AIS activity is a Jan 1-8 2024 US-coastal archive snapshot that PRE-DATES most 2025-26 sanctions listings — an appearance is historical presence, never current broadcasting.'
             WHEN 'debarred_but_funded' THEN
-                'FED_SAM_EXCLUSIONS holds 9,000 rows (confirmed live 2026-07-30; a 2026-07-24 re-pour replaced the earlier ~1,000-row capped sample) and ACTIVATION_DATE is still blank on every row â€” breadth is a floor and no debarment-date timeline is possible.'
+                'FED_SAM_EXCLUSIONS holds 9,000 rows (confirmed live 2026-07-30; a 2026-07-24 re-pour replaced the earlier ~1,000-row capped sample) and ACTIVATION_DATE is still blank on every row — breadth is a floor and no debarment-date timeline is possible.'
             WHEN 'excluded_but_billing' THEN
-                'Part D landing table carries no program-year column â€” no billing-date timeline is possible.'
+                'Part D landing table carries no program-year column — no billing-date timeline is possible.'
             WHEN 'osha_cohort_outlier_2024' THEN
-                'Peer-cohort statistical outlier, not a hard-ID ban-list match like the other detectors â€” confidence_tier reads HARD_ID_ONLY here only because the CASE logic''s catch-all is "not NPI", not because a registry corroborated an identity. Scored against 2024 OSHA Form 300A only; DART rate and cohort membership are both self-reported by the employer.'
+                'Peer-cohort statistical outlier, not a hard-ID ban-list match like the other detectors - confidence_tier reads HARD_ID_ONLY here only because the CASE logic''s catch-all is "not NPI", not because a registry corroborated an identity. Scored against 2024 OSHA Form 300A only; DART rate and cohort membership are both self-reported by the employer.'
+                || IFF(ld.evidence[0]:dart_rate::FLOAT > 50,
+                       ' This establishment reports a DART rate above 50, which is physically implausible and almost certainly a filing error (hours understated or cases overstated) - treat the rate as suspect, not as the worst case on the books.',
+                       '')
         END                                                  AS caveat
 
     FROM leads ld
@@ -483,6 +529,7 @@ enriched AS (
                              AND ld.rule_name = 'banned_but_paid'
     LEFT JOIN leie_npi   ln  ON ld.left_key_type = 'NPI' AND ln.npi = ld.left_key_value
     LEFT JOIN nppes      np  ON ld.left_key_type = 'NPI' AND np.npi = ld.left_key_value
+    LEFT JOIN fac_agg    fa  ON ld.left_key_type = 'NPI' AND fa.npi = ld.left_key_value
     LEFT JOIN partd_agg  p   ON ld.left_key_type = 'NPI' AND p.npi  = ld.left_key_value
     LEFT JOIN sam        s   ON ld.left_key_type = 'UEI' AND s.uei  = ld.left_key_value
     LEFT JOIN usasp_agg  u   ON ld.left_key_type = 'UEI' AND u.uei  = ld.left_key_value
@@ -494,7 +541,7 @@ enriched AS (
 ),
 
 -- ---------------------------------------------------------------------------
--- Headlines â€” six fixed templates (DRAFT v1, Checkpoint-1 approval pending),
+-- Headlines — six fixed templates (DRAFT v1, Checkpoint-1 approval pending),
 -- one per detector, plus the dormant sec_filer branch. Pure SQL string
 -- concatenation; every field COALESCE-guarded so one missing value can never
 -- NULL-poison the sentence. Dollar amounts are whole-dollar rounded (the
@@ -515,7 +562,7 @@ headlined AS (
                 || COALESCE(TRIM(TO_CHAR(e.n_activity_records, '999,999,990')), '[count unavailable]')
                 || ' drug/device industry payment records totaling $'
                 || COALESCE(TRIM(TO_CHAR(e.activity_total_usd, '999,999,999,990')), '[amount unavailable]')
-                || ' â€” latest payment '
+                || ' — latest payment '
                 || COALESCE(TO_CHAR(e.activity_max_date, 'YYYY-MM-DD'), '[date unavailable]') || '.'
 
             WHEN 'excluded_but_billing' THEN
@@ -545,7 +592,7 @@ headlined AS (
                 || COALESCE(TRIM(TO_CHAR(e.n_activity_records, '999,999,990')), '[count unavailable]')
                 || ' federal contract transaction records ('
                 -- net obligation can be NEGATIVE (de-obligated/terminated
-                -- awards â€” exactly what happens to a debarred contractor)
+                -- awards — exactly what happens to a debarred contractor)
                 || COALESCE(
                        IFF(e.activity_total_usd < 0, '-$', '$')
                        || TRIM(TO_CHAR(ABS(e.activity_total_usd), '999,999,999,990')),
@@ -561,7 +608,7 @@ headlined AS (
                 || COALESCE(TRIM(TO_CHAR(e.n_activity_records, '999,999,990')), '[count unavailable]')
                 || ' AIS position reports in the Jan 2024 US-coastal archive'
                 || COALESCE(', broadcasting as ' || NULLIF(e.entity_b_name, ''), '')
-                || ' â€” archive snapshot, not current activity.'
+                || ' — archive snapshot, not current activity.'
 
             WHEN 'sanctioned_vessel_broadcasting_v2' THEN
                 'Vessel '
@@ -571,12 +618,12 @@ headlined AS (
                 || COALESCE(TRIM(TO_CHAR(e.n_activity_records, '999,999,990')), '[count unavailable]')
                 || ' AIS position reports in the Jan 2024 US-coastal archive'
                 || COALESCE(', broadcasting as ' || NULLIF(e.entity_b_name, ''), '')
-                || ' â€” archive snapshot, not current activity.'
+                || ' — archive snapshot, not current activity.'
 
             WHEN 'sec_filer_in_irs_bmf' THEN
                 COALESCE(e.entity_a_name, '[name unavailable]')
                 || ' files financials with the SEC and its EIN also appears on the IRS tax-exempt roster'
-                || ' â€” co-occurrence to examine, not a violation claim.'
+                || ' — co-occurrence to examine, not a violation claim.'
 
             ELSE
                 COALESCE(e.detector_title, '[headline unavailable]')
@@ -588,7 +635,7 @@ headlined AS (
 ),
 
 -- ---------------------------------------------------------------------------
--- Priority â€” deterministic, no model anywhere. Formula (documented in the
+-- Priority — deterministic, no model anywhere. Formula (documented in the
 -- model YAML, weights DRAFT v1 pending Checkpoint-1 approval):
 --   tier weight + receipt weight + detector weight + detector-score tiebreak
 -- ---------------------------------------------------------------------------
@@ -626,7 +673,21 @@ scored AS (
                 ELSE 0.5
             END
             +
-            LEAST(COALESCE(h.detector_score, 0), 1.0) * 0.5
+            -- Detector-score band. Audit F2 (2026-08-01): the OSHA detector's
+            -- score is the raw fold-vs-cohort (2..62+), so the old
+            -- LEAST(score,1)*0.5 saturated and every OSHA lead tied at 3.25 --
+            -- 94% of the queue unranked. OSHA now gets a log-scaled fold
+            -- spread (64x saturates, weights DRAFT v1 pending Checkpoint-1);
+            -- physically implausible rates (DART > 50, audit F7) are demoted
+            -- to the 2x floor so an entry error can't crown the queue.
+            CASE
+                WHEN h.detector = 'osha_cohort_outlier_2024' THEN
+                    LEAST(LN(1 + IFF(h.evidence[0]:dart_rate::FLOAT > 50,
+                                     LEAST(COALESCE(h.detector_score, 0), 2.0),
+                                     COALESCE(h.detector_score, 0))) / LN(65),
+                          1.0) * 2.0
+                ELSE LEAST(COALESCE(h.detector_score, 0), 1.0) * 0.5
+            END
         , 3)                                                 AS priority_score
 
     FROM headlined h
@@ -652,6 +713,9 @@ final AS (
         entity_b_name,
         entity_b_source,
         nppes_legal_name,
+        leie_first_name,
+        nppes_first_name,
+        first_name_conflict,
         n_activity_records,
         activity_total_usd,
         opioid_cost_usd,
@@ -660,7 +724,18 @@ final AS (
         excl_date,
         excl_reason_code,
         excl_reason_plain,
-        caveat,
+        -- Audit F4: a hard first-name disagreement between LEIE and NPPES
+        -- travels WITH the lead, appended to any existing caveat.
+        CASE WHEN first_name_conflict THEN
+            COALESCE(caveat || ' ', '')
+            || 'First names DISAGREE across sources: OIG-LEIE says "'
+            || COALESCE(leie_first_name, '[unavailable]')
+            || '" but the NPPES registry says "'
+            || COALESCE(nppes_first_name, '[unavailable]')
+            || '" for this NPI. The confidence tier corroborates on surname '
+            || 'only - often a same-person alternate or anglicized name, but '
+            || 'verify the identity before treating this as fact-grade.'
+        ELSE caveat END                                      AS caveat,
         detector_title,
         detector_score,
         evidence_count,

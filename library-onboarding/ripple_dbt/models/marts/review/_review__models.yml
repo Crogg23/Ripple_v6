@@ -25,9 +25,19 @@ models:
                               1.25 | banned_but_paid 1.0 | debarred_but_funded
                               1.0 | sanctioned_vessel_broadcasting_v2 0.75 |
                               sec_filer_in_irs_bmf 0.5 |
-                              sanctioned_vessel_broadcasting 0.25 [superseded])
-          + LEAST(detector score, 1.0) * 0.5   (uncalibrated ranking signal,
-                                                tiebreak band only)
+                              sanctioned_vessel_broadcasting 0.25 [superseded,
+                              retired to STATUS='stale' by
+                              scripts/provision_pattern_desk.sql])
+          + detector-score band:
+              osha_cohort_outlier_2024:
+                LEAST(LN(1 + fold) / LN(65), 1.0) * 2.0 where fold is the
+                detector score (fold-vs-cohort), demoted to a 2.0 floor when
+                the establishment's DART rate exceeds 50 (physically
+                implausible, audit F7). Replaces the old LEAST(score,1)*0.5
+                band that saturated for every OSHA lead and left 94% of the
+                queue tied at 3.25 (audit F2, 2026-08-01).
+              all other detectors: LEAST(detector score, 1.0) * 0.5
+                (uncalibrated ranking signal, tiebreak band only)
         priority_rank = ROW_NUMBER() OVER (ORDER BY priority_score DESC,
         lead_id) — the lead_id tiebreak guarantees a total order.
 
@@ -128,3 +138,73 @@ models:
           - accepted_values:
               arguments:
                 values: [pending, needs_work]
+      - name: first_name_conflict
+        description: >
+          Audit F4 (2026-08-01). TRUE when LEIE and NPPES both carry a first
+          name for this NPI and they differ down to the first letter — the
+          confidence tier corroborates on surname only, so this flags likely
+          alternate/anglicized names (or wrong-person matches) that FACT_GRADE
+          would otherwise oversell. Surfaced as a case-file warning plus an
+          appended caveat sentence; the tier vocabulary itself is unchanged.
+        data_tests: [not_null]
+
+  - name: cohort_queue
+    description: >
+      The Pattern Desk triage mart: one row per peer cohort (NAICS-4 x
+      employer size band) holding at least one reviewable
+      osha_cohort_outlier_2024 lead. The Pattern Desk reviews the COHORT —
+      the systemic pattern — and member leads are its receipts; a cohort
+      verdict (TARGET_KIND='cohort', TARGET_ID=cohort_id in
+      LIBRARY_META.REVIEW.DECISIONS) covers member leads with no individual
+      decision via LIBRARY_META.REVIEW.V_EFFECTIVE_LEAD_DECISIONS
+      (specific-beats-general: a lead-level decision always wins). Zero AI
+      anywhere; headlines are fixed SQL templates; receipts_sample carries the
+      5 worst PLAUSIBLE members by fold (DART rates above 50 are excluded as
+      filing errors — audit F7 — but stay counted in n_implausible).
+
+      COHORT PRIORITY FORMULA (weights draft v1, Checkpoint-1 approval
+      pending):
+        priority_score =
+            LEAST(LN(1 + worst_fold_plausible) / LN(65), 1.0) * 3.0  [severity]
+          + LEAST(LN(1 + n_outliers) / LN(101), 1.0) * 1.5           [breadth]
+          + IFF(n_deaths_total > 0, 1.0, 0.0)                        [fatality]
+          + LEAST(n_outliers / cohort_n, 0.25) * 2.0                 [density]
+        priority_rank = ROW_NUMBER() OVER (ORDER BY priority_score DESC,
+        cohort_id).
+    columns:
+      - name: cohort_id
+        description: naics || '|' || size_band — the detector's natural cohort key.
+        data_tests: [unique, not_null]
+      - name: priority_rank
+        data_tests: [unique, not_null]
+      - name: headline
+        data_tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: "NOT LIKE '%NULL%'"
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: "NOT LIKE '%None%'"
+      - name: n_outliers
+        data_tests: [not_null]
+      - name: caveat
+        description: Self-reported-inputs caveat + conditional implausible-rate and EIN-drift sentences. Never null for this detector.
+        data_tests: [not_null]
+
+  - name: case_queue
+    description: >
+      The Case Desk grouping view: one row per flagged person/entity (unit)
+      across the hard-ID detectors (OSHA and the retired v1 vessel detector
+      excluded). Groups the audit's 179 cross-detector duplicates so a person
+      is reviewed once with every claim in one case file. Decisions stay
+      per-lead — this view only groups; lead_ids carries the member leads in
+      priority order.
+    columns:
+      - name: unit_id
+        description: entity_a_key_type || '|' || entity_a_key_value.
+        data_tests: [unique, not_null]
+      - name: unit_rank
+        data_tests: [unique, not_null]
+      - name: n_leads
+        data_tests: [not_null]

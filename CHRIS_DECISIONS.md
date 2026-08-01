@@ -735,3 +735,44 @@ key), ACTIVE until 2026-10-21. All scoped replacements now exist:
    ledger (it will show 8 live PATs, none ACCOUNTADMIN).
 Also: reopen/re-close the mis-closed blocker defect honestly once this is
 done — the 07-27 closure by `cortex_code` violated agent_never_closes_defects.
+
+## 2026-08-01 — Reading Room v2: the two-desk ruling (Chris)
+
+Chris approved the two-room redesign of the Reading Room after the
+2026-08-01 full-queue audit (`outputs/reading_room_audit_2026-08-01.md`):
+
+1. **Case Desk** — hard-ID detectors, grouped by person/entity. Decisions
+   stay per-lead (each lead is a distinct claim with its own receipt).
+2. **Pattern Desk** — the statistical detector (osha_cohort_outlier_2024)
+   is reviewed at COHORT grain (`TARGET_KIND='cohort'`, `TARGET_ID =
+   naics||'|'||size_band`). One verdict covers the cohort's member leads.
+
+Rulings recorded:
+- **Pattern-desk cohort review is REVIEW, not publishing.** It does not
+  breach POLICY `foundation_before_detectives` (which defers the publishing
+  layer). Cohort verdicts use the same confirm/reject/needs_work vocabulary
+  and can never produce `published` — the two-step publish gate
+  (beta ruling B1) is untouched and remains per-lead.
+- **Inheritance precedence is specific-beats-general**: a lead-level
+  decision always wins for that lead; the cohort verdict fills in only for
+  members with no individual decision (COALESCE, not
+  latest-timestamp-wins). A later blanket cohort verdict must never
+  silently override a deliberate per-lead exception. Enforced by
+  `LIBRARY_META.REVIEW.V_EFFECTIVE_LEAD_DECISIONS`
+  (`scripts/provision_pattern_desk.sql`).
+- **Both priority formulas ship as DRAFT v1** (lead-queue OSHA fold spread +
+  cohort-queue severity/breadth/fatality/density) pending Chris's
+  Checkpoint-1 re-weighting — documented in
+  `models/marts/review/_review__models.yml`.
+
+### OPEN: A15 — provision the Pattern Desk (Chris, one sitting, after A00)
+1. Snowsight (ACCOUNTADMIN): run `scripts/provision_pattern_desk.sql` top
+   to bottom.
+2. Rebuild the review marts via `library-onboarding/ripple_dbt/
+   build_review.bat` (NEVER a bare `dbt build` — the wrapper forces UTF-8;
+   audit F1 mojibake came from a cp1252 read on Windows, and
+   `tests/assert_no_mojibake.sql` now fails any mis-encoded build).
+3. Re-run the Part-8 grant block if it errored before the first build.
+4. Verify with the commented queries in the script; launch the Reading
+   Room; smoke one `needs_work` cohort verdict and confirm member leads
+   stay visible and flagged.

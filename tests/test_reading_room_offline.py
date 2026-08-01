@@ -27,10 +27,19 @@ from connect import safety  # noqa: E402
 
 # ── SQL hygiene ─────────────────────────────────────────────────────────────
 
-def test_app_py_contains_no_sql():
-    text = (REPO / "reading_room/app.py").read_text(encoding="utf-8")
-    for token in ("SELECT ", "INSERT ", "UPDATE ", "DELETE ", "MERGE "):
-        assert token not in text, f"SQL ({token.strip()}) leaked into app.py"
+def test_ui_modules_contain_no_sql():
+    """queries.py owns every statement. The scan covers EVERY reading_room
+    module except queries.py itself — extracting desks into their own files
+    must not weaken the lock."""
+    # queries.py owns app SQL; connections.py owns lane hygiene only (the
+    # secondary-role clamp probe) — both are exempt, nothing else is.
+    for py in sorted((REPO / "reading_room").glob("*.py")):
+        if py.name in ("queries.py", "connections.py"):
+            continue
+        text = py.read_text(encoding="utf-8")
+        for token in ("SELECT ", "INSERT ", "UPDATE ", "DELETE ", "MERGE "):
+            assert token not in text, (
+                f"SQL ({token.strip()}) leaked into {py.name}")
 
 
 def test_user_values_are_bound_never_interpolated():
@@ -56,6 +65,27 @@ def test_queue_filter_keeps_needs_work_visible():
         "visible in the queue")
     for verdict in ("confirmed", "rejected", "retracted", "stale"):
         assert f"'{verdict}'" in sql
+
+
+def test_lead_queue_excludes_pattern_desk_and_retired_detectors():
+    """OSHA leads are reviewed on the Pattern Desk (cohort grain); the v1
+    vessel detector is retired (audit F3). Neither may reach the per-lead
+    Case Desk path, and neither is offered as a filter."""
+    sql, _ = queries.queue_sql()
+    assert "'osha_cohort_outlier_2024'" in sql
+    assert "'sanctioned_vessel_broadcasting'" in sql
+    assert "osha_cohort_outlier_2024" not in queries.DETECTORS
+    assert "sanctioned_vessel_broadcasting" not in queries.DETECTORS
+    assert "sanctioned_vessel_broadcasting_v2" in queries.DETECTORS
+
+
+def test_queue_anti_join_reads_effective_decisions():
+    """The runtime anti-join must read the EFFECTIVE view so a Pattern Desk
+    cohort verdict hides its member leads live, between mart rebuilds."""
+    for sql in (queries.queue_sql()[0], queries.CASE_SQL,
+                queries.PERSON_LEADS_SQL,
+                queries.case_queue_sql()[0]):
+        assert "V_EFFECTIVE_LEAD_DECISIONS" in sql
 
 
 # ── verdict vocabulary ──────────────────────────────────────────────────────

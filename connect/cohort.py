@@ -369,7 +369,7 @@ def main() -> int:
     ap = argparse.ArgumentParser(prog="connect.cohort")
     ap.add_argument("--year", type=int, default=2024, choices=sorted(OSHA_TABLES))
     ap.add_argument("--naics-digits", type=int, default=4,
-                    help="cohort industry granularity (2=sector, 6=exact); default 3")
+                    help="cohort industry granularity (2=sector, 6=exact); default 4")
     ap.add_argument("--min-hours", type=int, default=MIN_HOURS)
     ap.add_argument("--min-cohort", type=int, default=MIN_COHORT)
     ap.add_argument("--top", type=int, default=25)
