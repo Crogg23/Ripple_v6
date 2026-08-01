@@ -1,0 +1,8 @@
+-- PATs REMOVED from CROGG23 on 20260801_085935 by revoke_straggler_pats.py
+-- REMOVE is IRREVERSIBLE: a PAT secret cannot be recreated. This file
+-- records each dropped token's metadata. To restore access, generate a
+-- NEW token in Snowsight (Admin > Users > CROGG23 > Programmatic access
+-- tokens) with the same role_restriction and rewire the consumer.
+--
+--
+-- The DROP statements that were run:
