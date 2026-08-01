@@ -136,3 +136,50 @@ def test_source_panel_never_hides_nulls():
     panel = render.source_rows_to_panel([{"A": None, "B": " ", "C": "x"}], "t")
     rec = panel["records"][0]
     assert rec["A"] == "—" and rec["B"] == "—" and rec["C"] == "x"
+
+
+# ── source-record elucidation (the "raw government field" translator) ──────
+
+def test_elucidate_leie_date_sentinels():
+    panel = render.source_rows_to_panel(
+        [{"excldate": "20230920", "reindate": "00000000",
+          "excltype": "1128a3", "npi": "1891876520",
+          "midname": "JOHNS II", "wvrstate": None}], "leie")
+    rec = panel["records"][0]
+    assert rec["Excluded on"] == "2023-09-20 (raw 20230920)"
+    assert "never" in rec["Reinstated on"]
+    assert "still active" in rec["Reinstated on"]
+    assert rec["Exclusion authority (statute code)"].startswith(
+        "Felony conviction relating to health-care fraud")
+    assert rec["NPI (federal provider ID)"] == "1891876520"
+    assert rec["Waiver state"] == "—"
+    # the OIG suffix-cramming note surfaces exactly once
+    assert any("suffix" in n for n in panel["notes"])
+
+
+def test_elucidate_all_zero_npi_is_flagged_not_shown_bare():
+    rec = render.source_rows_to_panel(
+        [{"npi": "0000000000"}], "leie")["records"][0]
+    assert "not recorded by OIG" in rec["NPI (federal provider ID)"]
+    assert "name only" in rec["NPI (federal provider ID)"]
+
+
+def test_elucidate_ofac_null_token_never_reaches_analyst_bare():
+    rec = render.source_rows_to_panel(
+        [{"someforeignfield": "-0- "}], "leie")["records"][0]
+    assert rec["someforeignfield"].startswith("—")
+
+
+def test_elucidate_unknown_source_falls_back_to_raw_fieldnames():
+    rec = render.source_rows_to_panel(
+        [{"anything": "value"}], "not_a_source")["records"][0]
+    assert rec == {"anything": "value"}
+
+
+def test_elucidate_hides_nothing():
+    row = {"lastname": "JOSEPH", "firstname": "ROBERT", "midname": "JOHNS II",
+           "excltype": "1128a3", "excldate": "20230920",
+           "reindate": "00000000", "city": "SANTA ANA", "state": "CA",
+           "specialty": "PODIATRY", "npi": "1891876520", "wvrstate": ""}
+    rec = render.source_rows_to_panel([row], "leie")["records"][0]
+    assert len(rec) == len(row)  # every input field is displayed

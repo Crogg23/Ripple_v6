@@ -178,21 +178,33 @@ if case.get("entity_a_key_type") == "NPI":
     nppes = _read("nppes_record", queries.NPPES_SQL,
                   (case["entity_a_key_value"],))
     with left:
-        st.markdown("**OIG-LEIE — the ban** "
+        st.markdown("**OIG-LEIE — the ban list** — the row OIG publishes, "
+                    "translated (raw values kept in parentheses)  \n"
                     "(`LIBRARY_RAW.LANDING.FED_HHS_OIG_LEIE`)")
-        for rec in render.source_rows_to_panel(leie, "leie")["records"]:
+        panel = render.source_rows_to_panel(leie, "leie")
+        for rec in panel["records"]:
             st.table(rec)
+        for note in panel["notes"]:
+            st.caption(f"ℹ️ {note}")
     with right:
-        st.markdown("**NPPES — the registry** "
+        st.markdown("**NPPES — the federal provider registry** — the "
+                    "independent third source corroborating the identity  \n"
                     "(`LIBRARY_RAW.LANDING.FED_CMS_NPPES`)")
-        for rec in render.source_rows_to_panel(nppes, "nppes")["records"]:
+        panel = render.source_rows_to_panel(nppes, "nppes")
+        for rec in panel["records"]:
             st.table(rec)
+        for note in panel["notes"]:
+            st.caption(f"ℹ️ {note}")
     st.markdown(f"**The activity — the money** "
                 f"(`{case.get('entity_b_source')}`)")
-    st.table({k: ("—" if case.get(k) is None else str(case.get(k)))
-              for k in ("entity_b_name", "n_activity_records",
-                        "activity_total_usd", "opioid_cost_usd",
-                        "activity_min_date", "activity_max_date")})
+    st.table({label: ("—" if case.get(k) is None else str(case.get(k)))
+              for k, label in (
+                  ("entity_b_name", "Who paid / reported the activity"),
+                  ("n_activity_records", "Payment records"),
+                  ("activity_total_usd", "Total dollars"),
+                  ("opioid_cost_usd", "Of which opioid drug cost"),
+                  ("activity_min_date", "Earliest payment"),
+                  ("activity_max_date", "Latest payment"))})
 else:
     a, b = st.columns(2)
     a.markdown(f"**Flagged entity** — `{case.get('entity_a_source')}`")

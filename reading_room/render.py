@@ -72,17 +72,107 @@ def linkage_features(detector: str, key_type: str, key_value: str,
     return feats
 
 
+# ---------------------------------------------------------------------------
+# Source-record elucidation — raw government fields, translated in place.
+# Deterministic dicts only. Rules:
+#   * every field is shown (nothing hidden),
+#   * a translated value keeps the raw form beside it: "2023-09-20 (raw 20230920)",
+#   * sentinels are decoded, never displayed bare (00000000, 0000000000, '-0- ').
+# ---------------------------------------------------------------------------
+
+# OIG 1128 exclusion codes -> plain English (same map lead_queue.sql ships).
+EXCLTYPE_PLAIN = {
+    "1128a1": "Conviction of a Medicare/Medicaid program-related crime",
+    "1128a2": "Conviction relating to patient abuse or neglect",
+    "1128a3": "Felony conviction relating to health-care fraud",
+    "1128a4": "Felony conviction relating to controlled substances",
+    "1128b1": "Misdemeanor conviction relating to health-care fraud",
+    "1128b4": "License revoked, suspended, or surrendered",
+    "1128b5": "Exclusion/suspension under a federal/state health program",
+    "1128b7": "Fraud, kickbacks, or other prohibited activities",
+    "1128b8": "Entities controlled by a sanctioned individual",
+}
+
+# raw column -> (plain label, optional note shown once per panel)
+FIELD_LABELS = {
+    "leie": {
+        "lastname":  ("Last name", None),
+        "firstname": ("First name", None),
+        "midname":   ("Middle name", "OIG's file has no suffix column — "
+                      "generational suffixes like 'II' get crammed in here "
+                      "by their data entry, not by Ripple."),
+        "busname":   ("Business name", None),
+        "general":   ("Provider category (OIG shorthand)", None),
+        "specialty": ("Specialty", None),
+        "npi":       ("NPI (federal provider ID)", None),
+        "upin":      ("UPIN (legacy pre-NPI provider ID)", None),
+        "dob":       ("Date of birth", None),
+        "address":   ("Address", None),
+        "city":      ("City", None),
+        "state":     ("State", None),
+        "zip":       ("ZIP", None),
+        "excltype":  ("Exclusion authority (statute code)", None),
+        "excldate":  ("Excluded on", None),
+        "reindate":  ("Reinstated on", None),
+        "waiverdate": ("Waiver granted on", None),
+        "wvrstate":  ("Waiver state", None),
+    },
+    "nppes": {
+        "provider_last_name_legal_name": ("Legal last name", None),
+        "provider_first_name":           ("First name", None),
+        "provider_middle_name":          ("Middle name", None),
+        "provider_name_suffix_text":     ("Suffix (Jr/II/...)", None),
+        "provider_credential_text":      ("Credential (MD/DPM/...)", None),
+        "npi":                           ("NPI (federal provider ID)", None),
+    },
+}
+
+
+def _elucidate_value(source: str, field: str, raw: str) -> str:
+    """Translate one raw value. Always returns display text; keeps the raw
+    form visible whenever the translation changed it."""
+    v = raw.strip()
+    if v == "":
+        return "—"
+    f = field.lower()
+
+    # OIG all-zero date sentinels: not a date, a state.
+    if f == "reindate" and set(v) <= {"0"}:
+        return "never — the exclusion is still active (raw 00000000)"
+    if f in ("excldate", "reindate", "waiverdate", "dob"):
+        if len(v) == 8 and v.isdigit():
+            return f"{v[0:4]}-{v[4:6]}-{v[6:8]} (raw {v})"
+        return v
+    if f == "npi" and set(v) <= {"0"}:
+        return "not recorded by OIG (raw 0000000000) — identity rests on name only"
+    if f == "excltype":
+        plain = EXCLTYPE_PLAIN.get(v.lower())
+        return f"{plain} ({v})" if plain else v
+    if v in ("-0-", "-0- "):
+        return "— (source null token '-0-')"
+    return v
+
+
 def source_rows_to_panel(rows: list[dict], title: str) -> dict:
     """Normalize a source-record pull into a display panel: every field,
-    labeled, NULLs shown as em-dashes (never hidden)."""
-    return {
-        "title": title,
-        "records": [
-            {str(k): ("—" if v is None or str(v).strip() == "" else str(v))
-             for k, v in row.items()}
-            for row in rows
-        ],
-    }
+    plain-English labeled, sentinels decoded, NULLs shown as em-dashes
+    (never hidden). `title` picks the label map ('leie' / 'nppes'); unknown
+    sources fall back to raw field names."""
+    labels = FIELD_LABELS.get(title, {})
+    records, notes = [], []
+    for row in rows:
+        rec = {}
+        for k, v in row.items():
+            field = str(k)
+            raw = "" if v is None else str(v)
+            label_info = labels.get(field.lower())
+            label = label_info[0] if label_info else field
+            if label_info and label_info[1] and label_info[1] not in notes \
+                    and raw.strip():
+                notes.append(label_info[1])
+            rec[label] = _elucidate_value(title, field, raw)
+        records.append(rec)
+    return {"title": title, "records": records, "notes": notes}
 
 
 def three_sources(row: dict) -> list[str]:
