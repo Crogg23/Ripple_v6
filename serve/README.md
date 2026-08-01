@@ -1,4 +1,9 @@
-# Ripple — the Atlas (Phase 1 SERVE layer)
+# Ripple — the Atlas (legacy browse app)
+
+> **Status: legacy.** Superseded as the daily front door by `reading_room/`
+> (the human review queue that `START_HERE.bat` opens). The Atlas still runs
+> and remains useful for entity search / dossiers / the graph view, but it is
+> not the primary surface. See `docs/RIPPLE.md` §3.
 
 The moat is already built — a 9.8M-entity backbone that \"pulls every thread\" on any
 person/company/ship/place across every domain. Until now it was trapped behind a CLI.

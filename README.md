@@ -1,58 +1,53 @@
-# Ripple_v6
+# Ripple
 
-Investigative Journalism — a Snowflake-backed data Library, its source catalog, and
-the agents that build both.
+Ripple pours the public record — government datasets on doctors, companies,
+ships, contracts, sanctions — into one Snowflake warehouse, draws only the
+connections that can't be faked (shared government IDs, never name guesses),
+and points at the ones that shouldn't exist: banned but still paid, debarred
+but still funded, sanctioned but still broadcasting. Nothing is ever published
+without an explicit human decision; auto-publish is structurally blocked.
 
-## Read next
+## Read this first
 
-- [`docs/ripple_pitch_deck.md`](docs/ripple_pitch_deck.md) — the best single overview:
-  real numbers, real SQL, honest about what's unproven. Start here.
-- [`docs/RIPPLE_FOR_EVERYONE.md`](docs/RIPPLE_FOR_EVERYONE.md) — the plain-English version.
-- [`honesty/README.md`](honesty/README.md) — the fact/lead/unverified provenance grader;
-  the most distinctive piece of architecture in this repo.
-- [`OVERVIEW.md`](OVERVIEW.md) — the architecture tour.
-- [`PROJECT_SHAPE.md`](PROJECT_SHAPE.md) — an outside reviewer's honest read of the project.
+**[`docs/RIPPLE.md`](docs/RIPPLE.md)** — the whole thing in one document:
+the plain-English story, a decoder for every jargon word, a room-by-room map
+of this repo, how to turn it on, and the deep tour of how it works.
 
-## Quick start (one command)
+Then, as needed:
 
-From the repo root, create a virtualenv and install every runtime dependency:
+- [`build-state.md`](build-state.md) — the instrument panel. Machine-generated
+  live numbers; the **only** numbers to trust. Prose numbers anywhere else are
+  stale by definition.
+- [`CHRIS_DECISIONS.md`](CHRIS_DECISIONS.md) — the owner's decision ledger.
+- [`CLAUDE.md`](CLAUDE.md) — the operating constitution. Wins every argument.
+- [`docs/ripple_pitch_deck.md`](docs/ripple_pitch_deck.md) — the outward-facing
+  overview. [`docs/RIPPLE_DESIGN_BRIEF.md`](docs/RIPPLE_DESIGN_BRIEF.md) — for
+  whoever builds the visual layer.
 
-```bash
-python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt
-```
+## Quick start
 
-That's everything `python -m connect all` and `python onboard.py` need (plotly,
-snowflake-connector-python, pandas, pyarrow, rich, etc. — all pinned in
-`requirements.txt`).
+Double-click **`START_HERE.bat`** — it installs what it needs and opens the
+Reading Room (the human review queue) in your browser.
 
-Running the tests too? Add the dev/test deps:
-
-```bash
-pip install -r requirements-dev.txt
-```
-
-Then drop your Snowflake token into `library-onboarding/.env` (see
-`library-onboarding/.env.example`) and you're live.
-
-## The two entry points
+Or from a terminal, after `pip install -r requirements.txt` into a venv and
+dropping your Snowflake token into `library-onboarding/.env` (template beside
+it):
 
 ```bash
-python -m connect all                       # profile every landed table, find real
-                                            # cross-dataset connections, draw the graph
-python library-onboarding/onboard.py --batch   # onboard new sources into the Library
+python -m connect all                    # rebuild the connection map + leads
+python library-onboarding/onboard.py     # walk a new source into the Library
+python ripple.py chart                   # make a chart from warehouse data
 ```
 
-- **`connect/`** — the connection engine (entity resolution, the confidence ladder,
-  the graph + connection explorer). See `connect/HOWTO.md`.
-- **`library-onboarding/`** — the 6-checkpoint source-onboarding agent. See
-  `library-onboarding/README.md`.
+Dev/test extras: `pip install -r requirements-dev.txt`.
 
-> Note: dbt runs/tests the 1,378 models in `library-onboarding/ripple_dbt` — 975
-> staging, 399 marts, 4 intermediate — but it is **deliberately not in
-> `requirements.txt`**. `dbt-snowflake` requires `snowflake-connector-python~=3.0`,
-> which genuinely conflicts with this repo's `==4.4.0` pin (pip refuses both in one
-> environment). Install it into its own venv when you need `dbt run` / `dbt test`:
+> **dbt note:** dbt runs the 1,378 cleanup models in
+> `library-onboarding/ripple_dbt` but is **deliberately not in
+> `requirements.txt`** — `dbt-snowflake` needs `snowflake-connector-python~=3.0`,
+> which conflicts with this repo's `==4.4.0` pin. Give it its own venv:
 >
 > ```bash
-> python3 -m venv .dbt-venv && .dbt-venv/bin/pip install -r requirements-dbt.txt
+> python -m venv .dbt-venv && .dbt-venv/Scripts/pip install -r requirements-dbt.txt
 > ```
+>
+> And never run a bare `dbt build` — see `docs/RIPPLE.md` §7.

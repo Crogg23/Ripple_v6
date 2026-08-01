@@ -2,13 +2,13 @@
 
 *For whoever builds the publishing/visual layer. The visual identity is unbuilt and yours to invent. This brief is self-contained — start here, no other reading required.*
 
-*(Companion doc: the founder's deep system explainer is [`RIPPLE_FOR_THE_FOUNDER.md`](RIPPLE_FOR_THE_FOUNDER.md). You don't need it to start — but its §8 and §9 hold the full data caveats referenced below.)*
+*(Companion doc: the single combined explainer is [`RIPPLE.md`](RIPPLE.md). You don't need it to start. The older founder's deep-dive, whose §8 and §9 hold the full data caveats referenced below, is preserved at [`../archive/RIPPLE_FOR_THE_FOUNDER.md`](../archive/RIPPLE_FOR_THE_FOUNDER.md).)*
 
 ### 90-second primer (everything you need to start)
 
 - **What Ripple is:** a private map of how 720 public datasets connect, plus six "detectors" that surface where two datasets contradict each other in a way that smells like a story (banned doctors still paid, sanctioned ships still broadcasting).
 - **The one concept that governs everything — fact vs. lead:** a **fact** is two records sharing the same government-issued **hard ID** (same NPI = the same doctor, certain). A **lead** is two records sharing a name with no shared ID (maybe the same person — a hunch). **Facts are publishable. Leads need a human. Never let a viz blur the two.**
-- **Four data traps constrain what any viz may honestly claim:** (1) AIS = one 24-hr snapshot, **never draw a time series**; (2) same-name ≠ same person, **never merge in a viz**; (3) top-contractor rankings are *floors*, not truth; (4) LEIE's all-zero NPI = **libel risk if drawn as a confirmed fact.** (Full detail: [`RIPPLE_FOR_THE_FOUNDER.md`](RIPPLE_FOR_THE_FOUNDER.md) §8.)
+- **Four data traps constrain what any viz may honestly claim:** (1) AIS = one 24-hr snapshot, **never draw a time series**; (2) same-name ≠ same person, **never merge in a viz**; (3) top-contractor rankings are *floors*, not truth; (4) LEIE's all-zero NPI = **libel risk if drawn as a confirmed fact.** (Full detail: [`../archive/RIPPLE_FOR_THE_FOUNDER.md`](../archive/RIPPLE_FOR_THE_FOUNDER.md) §8.)
 
 ## D0. The one thing to know first — your permission
 
