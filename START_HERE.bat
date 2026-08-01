@@ -2,7 +2,7 @@
 REM Double-click this file to start Ripple.
 REM It opens automatically in your web browser at http://127.0.0.1:8890
 
-cd /d "%~dp0"
+cd /d "C:\Code\Ripple_v6"
 
 echo Starting Ripple... this window must stay open while you use it.
 echo.
