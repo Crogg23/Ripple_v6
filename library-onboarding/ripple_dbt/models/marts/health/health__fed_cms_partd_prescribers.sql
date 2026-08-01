@@ -1,8 +1,18 @@
 {{ config(materialized='table', schema='HEALTH') }}
 
--- GRAIN: one row per prescriber (NPI) x drug (generic name)
--- Answers: which prescribers prescribe which drugs, in what volume and cost?
--- Source: CMS Part D Prescriber Drug dataset (25.9M rows)
+-- GRAIN: one row per prescriber (NPI) x drug (generic name) x BRAND. Fixed
+-- 2026-07-31: the key was missing brand_name, so a prescriber writing claims under
+-- two different brand/formulation names for the same generic (e.g. 64 claims for
+-- "Divalproex Sodium" at $1,807 AND 63 separate claims for "Divalproex Sodium Er"
+-- at $4,427) had one of the two SILENTLY DISCARDED, arbitrarily -- undercounting
+-- both total claims and total drug cost for every affected prescriber. Found via
+-- tests/test_mart_duplication.py, which caught this mart (24,530,894 rows)
+-- disagreeing with an auto-generated raw duplicate (25,869,521). brand_name now
+-- joins the key; verified live: COUNT(DISTINCT full 3-column key) == 25,869,521
+-- exactly, matching the raw source with zero further collapsing.
+-- Answers: which prescribers prescribe which drugs (by generic AND brand), in what
+-- volume and cost?
+-- Source: CMS Part D Prescriber Drug dataset (25,869,521 rows — exact, verified 2026-07-31)
 -- Key joins: NPI -> LIBRARY_META."CONNECT".ENTITY_GOLDEN (spine_entity='provider')
 --
 -- BUG FIXED 2026-07-29: every column in this landing table was created as a quoted
@@ -56,7 +66,7 @@ final as (
         end as claims_per_beneficiary
 
     from cleaned
-    qualify row_number() over (partition by npi, generic_name order by _loaded_at desc) = 1
+    qualify row_number() over (partition by npi, generic_name, brand_name order by _loaded_at desc) = 1
 
 )
 

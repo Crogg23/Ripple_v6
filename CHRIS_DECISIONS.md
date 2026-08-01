@@ -23,6 +23,68 @@ More compute than the spine rebuild was. **Rec: yes, do it** — this is the who
 point of the fix, and "we found connections that were invisible before" is a good
 line in a demo.
 
+### 2b. STRESS-TEST RESULTS — every fix I made today, measured against live data
+You asked for accuracy above all. Each change re-checked at warehouse scale:
+
+**ZIP length gate (`>= 5` → `IN (5, 9)`) — PASSES, with a stated limit.**
+Across all 17 spine ZIP columns: 330,554,449 values kept before, 329,922,431 after —
+**632,018 dropped (0.19%)**. Every real US ZIP survives (`02115` and `02115-1234`
+both still give `02115`).
+
+Nearly the whole drop is one table: **INTL_GLEIF loses 25.6%**, which alarmed me
+until I read the values. They're foreign postal codes, and the OLD rule was
+*fabricating* US ZIPs out of them:
+
+    'R 22640-102' (Brazilian CEP)  OLD -> 22640  (a real Virginia ZIP)  NEW -> NULL
+    '0000-000'    (Portuguese)     OLD -> 00000                         NEW -> NULL
+
+So that 25% is the fix removing 567,739 fabricated US-ZIP matches on foreign
+addresses. **HONEST LIMIT — this is narrowed, not solved.** Foreign codes that happen
+to carry 5 digits still masquerade as US ZIPs:
+
+    'y21 t449' (Irish Eircode)  -> 21449 (a real Virginia ZIP)  STILL WRONG
+    'KY1-1106' (Cayman)         -> 11106 (a real NY ZIP)        STILL WRONG
+
+The real fix is country-gating the normalizer (apply US ZIP semantics only when the
+row's country is US). `normalize_sql(key, col)` takes no country context, so that's a
+signature change. **Open — want it?**
+
+**Name canonicalization (`ARRAY_EXCEPT` → `FILTER`) — PASSES.**
+Sampled every org-name column in the spine: 38,307 canonical names changed. The
+decisive check is direction — distinct-name counts **only ever fall** (e.g.
+FED_FAC_SINGLE_AUDIT 66,967 → 66,848). That's entities a stray `OF` had split back
+into one. **No column's distinct count rose**, which is what would have signalled the
+fix inventing entities.
+
+**`gen_mart_models.py` duplicate guard — PASSES.** Indexes 383 sources, catches all
+13 known cross-domain duplicates, zero slip through.
+
+**Density gate single-populated-column trigger — PASSES, and the stress test caught
+a bug in ITSELF, not in the fix.** Ran a throwaway script against every landing
+table with 4+ columns (1,896 tables). First result: 2 false alarms —
+`FED_FDA_FAERS_REAC` and `FED_FDA_FAERS_OUTC`, the exact tables I'd already hand-
+verified healthy this morning. That contradiction was the signal to stop and check,
+not report.
+
+Root cause: my script sampled with `LIMIT 2000` and no `ORDER BY`. On a Snowflake
+table that's not "the first 2000 rows" the way a file read would be — it's an
+arbitrary physical chunk, and this table's storage clusters some old rows together
+so the chunk it grabbed happened to be legacy-format ones with 3 blank columns.
+Full-table counts (never in doubt) confirm both tables are healthy:
+`FED_FDA_FAERS_OUTC` has 926,332 / 913,733 distinct PRIMARYID/CASEID values.
+
+**This is a bug in my one-off verification script, not in `ingest.py`'s actual
+gate.** The real gate samples the freshly-parsed dataframe at load time (`df.head()`
+on the file's own row order), which is a different, better-behaved operation than an
+unordered SQL `LIMIT` against already-stored columnar data. Confirmed via the 4
+targeted unit tests added earlier, which exercise the real function directly and
+don't have this flaw. Deleted the throwaway script rather than fix and keep it —
+it was disposable by design.
+
+The honest scope of what stress-testing established: the density gate change is
+correct on every table actually checked (1,894 of 1,896 cleanly; the other 2 needed
+one more level of checking, and passed). Zero real false positives.
+
 ### 2. `_addr_canon` fix — apply now, or batch it?
 Written and validated against live Snowflake, deliberately NOT applied.
 
@@ -78,6 +140,218 @@ Four files, uncommitted, all tests green (620 passed / 3 skipped):
 - `connect/keys.py` — ARRAY_EXCEPT → FILTER; ZIP length gate
 - `serve/serve_queries.py` — restored the missing digits-only sentinel guard
 - `tests/test_keys_normalize.py`, `tests/test_serve_queries.py`, `tests/test_honesty.py` — +6 tests incl. drift guards
+
+---
+
+## FIXED — the duplicate-mart check was itself incomplete, and finding that found a worse bug
+
+You said "find the source, stress-test the fix, make it accurate." Taking that
+seriously on my own earlier work turned up more than the original 7.
+
+**The gap:** my original fix matched marts by filename suffix (`__fed_dea_arcos`
+vs `__fed_dea_arcos_full` don't match as strings, even though both read the exact
+same landing table). Widened the check to resolve each mart's ACTUAL source table
+through its `source()`/`ref()` calls — the same thing dbt itself resolves lineage
+by — instead of guessing from a name. That's a more accurate check, and it found
+**21 more duplicate pairs**, on top of the original 7.
+
+**Triaged all 21 individually, not in bulk** — verified whether each was a real
+bug (both sides claim the same grain, disagree) or a legitimate different-purpose
+model that happens to share a source (e.g. `member_spine` vs a raw roster —
+different shapes, not a duplicate). 7 turned out to be genuinely different models
+by design and are excluded, cited to the model header that explains why.
+
+**One was a real, serious bug: CMS Part D prescribers (25.9M rows).** The mart's
+dedupe key was missing brand name, so a prescriber who wrote claims under two
+different brand/formulation names for the same generic drug — verified live: 64
+claims for "Divalproex Sodium" at \$1,807, 63 SEPARATE claims for "Divalproex
+Sodium Er" at \$4,427 — had one of the two silently discarded, arbitrarily. This
+undercounted both total claims and total drug cost for every affected prescriber,
+in a health-spending mart with 25.9M rows. Fixed (brand_name joins the key),
+built, tested live: 25,869,521 rows, exact.
+
+The rest of the 14 real duplicates all agreed on row count (no accuracy bug) but
+were still wasted, redundant raw copies from the same generator bug — disabled.
+Two more (`FEC_BULK_LINKAGES`, `GOVINFO_BILL_COSPONSORS`) I nearly mis-filed as
+"different purpose" — checked properly, found their small gaps are legitimate
+(duplicate audit IDs with identical content; a documented intentional business
+rule respectively), not bugs, but the redundant autogen twin still needed
+disabling.
+
+**Fixed the root cause a second time**, properly this time: both
+`gen_mart_models.py`'s duplicate guard and `tests/test_mart_duplication.py` now
+resolve real source tables instead of matching filenames. Stress-tested: catches
+all 22 known duplicate sources, zero misses.
+
+**Also added dbt test coverage** for the 4 highest-value previously-untested
+models (FAERS drug/indi/demo, UK Companies House — 5-21M rows each). Verified
+every assertion against live data first; caught and fixed two of my own wrong
+guesses in the process (a `not_null` that failed on 37 real rows, an invariant
+that had 7 legitimate exceptions in a different table) rather than shipping them
+broken.
+
+---
+
+## MAPPED — the cross-domain bridge question (EPA → contracts → campaign money)
+
+Exhaustive, not a sample: checked every column in `FED_EPA_ECHO`, `FED_EPA_FRS_FULL`,
+`FED_EPA_SDWA_SDWA_FACILITIES`, `FED_EPA_FRS_FRS_PROGRAM_LINKS`,
+`FED_USASPENDING_CONTRACTS_FULL`, `FED_USASPENDING_ASSISTANCE_FULL`,
+`FED_SAM_EXCLUSIONS`, `FED_FEC_INDIV_CONTRIBUTIONS`, `FED_FEC_PAC_SUMMARY`,
+`FED_FEC_COMMITTEE_TO_CANDIDATE`, `FED_FEC_BULK_CANDIDATES` for anything
+EIN/UEI/DUNS/CAGE/tax-ID-shaped.
+
+**Confirmed: zero hard-ID bridge exists in currently-loaded sources.**
+- EPA's world (ECHO enforcement + the FRS facility registry) is keyed entirely on
+  its own `FRS_ID`/`REGISTRY_ID` — no UEI, DUNS, CAGE, or EIN anywhere in it.
+- USASpending contracts DO carry `recipient_uei` / `recipient_duns` / `cage_code`.
+- FEC campaign-finance data carries **no structured ID at all** — name and a free-text
+  employer field only.
+
+So EPA can't hard-link to contracts, and neither can hard-link to campaign money.
+This matches what the pitch deck already says about the ceiling here — now verified
+column-by-column rather than asserted.
+
+**But it isn't a blank slate.** The connect engine has already scored NAME@ZIP
+matches across exactly this chain — checked the live edge table:
+
+| Left | Right | Matched pairs |
+|---|---|---|
+| EPA enforcement records | individual campaign donors | **3,979** |
+| EPA enforcement records | FEC committee↔candidate | 129 |
+| EPA enforcement records | SAM debarments | 33 |
+| FEC committee↔candidate | SAM debarments | 1,120 (GEO tier only) |
+| Individual donors | SAM debarments | 11 |
+
+All at `CORROBORATED` tier — meaning, per this platform's own honesty rules, every
+one of these is correctly a **lead**, never a **fact**. That's the accurate
+starting point: not "nothing connects these three worlds," but "3,979 name+ZIP
+matches exist today, each one an unconfirmed lead pending a human look — never
+promoted to identity without a hard ID behind it."
+
+**What building on this would actually require** (not started — this is a real
+design commitment, your call): either (a) sharpening the existing fuzzy matcher
+(`connect/match.py`'s calibrated Fellegi-Sunter scorer already exists and is more
+rigorous than the NAME@ZIP heuristic above — it's just never been run against this
+specific triple), or (b) finding an unloaded source that bridges by ID (e.g. an
+IRS/SEC filing that maps a company name to both an EIN and a UEI would connect
+worlds that currently can't touch).
+
+---
+
+## FIXED — the platform contradicts itself in 7 places
+
+Found 2026-07-31. **14 sources are modeled into more than one domain mart**, and
+**7 of those pairs disagree on how many rows they have.**
+
+| Source | One domain says | The other says |
+|---|---|---|
+| NHTSA investigations | CONSUMER_SAFETY **51,871** | TRANSPORT **154,209** |
+| FEC PAC summary | FINANCE **48,395** | POLITICS **22,899** |
+| CFPB complaints | CONSUMER_PROTECTION **17,168,287** | FINANCE **17,179,788** |
+| MSHA violations | JUSTICE **3,087,266** | LABOR **3,087,215** |
+| NARA WRA records | CIVIL_RIGHTS **1** | HISTORY **36** |
+| BIA tribal geo | LAND_AND_TERRITORY **1** | REFERENCE **100** |
+| ES BORME | CORPORATE_REGISTRY **3** | ECONOMICS **25** |
+
+### ROOT CAUSE (established 2026-07-31 — and it corrects two things I said first)
+
+**It is not two analyses disagreeing.** Every one of the 7 pairs is the same shape:
+
+- the **hand-built** mart reads a cleaned, *deduplicated* staging model
+- the **auto-generated** mart reads raw landing **directly**, skipping staging entirely
+
+Verified exactly, no inference: in all 7 cases the autogen mart's row count equals
+its landing count **to the row**, and the hand-built mart's equals its staging count
+**to the row**. The gap is always and only the staging dedupe.
+
+**The mechanism:** `scripts/gen_mart_models.py` mass-generates passthrough marts
+(156 of the 399 marts in the project are autogen). Its only duplicate guard was
+`os.path.exists(target)`, where target is `<domain>/<domain>__<source>.sql` built
+from the source's *registered* DOMAIN_PRIMARY. So it could only ever see a duplicate
+in the **same** domain folder. When a hand-built mart already existed under a
+different domain — common, because a source's editorial home and its registered
+domain often differ — the path didn't match, the guard passed, and it published a raw
+twin into a second schema. That produced 13 duplicate marts, 7 of which diverge.
+
+**Fixed:** the guard now indexes every existing mart by `__<source_id>` across all
+domain folders and skips loudly. Stress-tested: catches all 13 known duplicates,
+none slip through.
+
+### CORRECTION 1 — I said "a working copy exists alongside a broken one". Wrong.
+For NARA, BIA and BORME I assumed the larger copy was the good one. It isn't. The
+larger copy is just *raw*, and in all three the SOURCE is bad:
+
+- **`FED_NARA_WRA_AAD`** — 36 rows, and **every column has exactly 1 distinct value**.
+  The source is dead, same class as FJC. The staging model collapsing it to 1 row is
+  CORRECT behaviour, not a bug. (My blank-landing audit missed this one: I ran it with
+  `--min-rows 100` and this table has 36 rows. Small dead tables were out of scope.)
+- **`INTL_ES_BORME`** — 25 rows; every dedupe-key column constant. Mostly dead.
+- **`FED_BIA_TRIBAL_GEO`** — see below. Worst of the three.
+
+### CORRECTION 2 — `FED_BIA_TRIBAL_GEO` is not tribal land data at all
+I nearly "fixed" its staging model. The dedupe is `partition by fips`, and FIPS is
+`''` on all 100 rows, so it collapses to 1. That looks exactly like a broken key
+destroying good data — 100 distinct OBJECTIDs sitting right there.
+
+I checked the values before changing anything. They are:
+
+    NAME:       "How Has the Greenland Ice Sheet Changed"
+                "Plan de Gestión de Riesgos de la parroquia..."
+    LAYER_NAME: "Web Mapping Application" / "StoryMap" / "Feature Service"
+    OBJECTID:   32-char GUIDs
+    FIPS:       '' on every row
+
+Registered URL: `https://opendata-1-bia-geospatial.hub.arcgis.com/` — an ArcGIS Hub
+**home page**. The loader scraped the portal's item directory instead of downloading
+a dataset, and the items aren't even BIA's.
+
+So `reference__fed_bia_tribal_geo` currently serves **a directory listing of
+unrelated public web maps as tribal land records**, at `LIFECYCLE='modeled'`. Given
+what this platform is for, that is the most serious accuracy problem found today —
+and had I "fixed" the dedupe key, I'd have promoted 1 row of garbage to 100.
+
+**The lesson, written down because I nearly got it wrong:** a degenerate dedupe key
+collapsing a table is sometimes the only thing *containing* a bad source. Check what
+the rows CONTAIN before restoring them.
+
+**UPDATE 2026-07-31, later same day — all 7 actually fixed, at the root, not just
+guarded.** `tests/test_mart_duplication.py` BASELINE_UNRESOLVED is now empty. What
+happened to each:
+
+- **NHTSA investigations** — real grain bug. One investigation can map to several
+  separate recall campaigns (one HID-headlight defect tied to 11 distinct recall
+  numbers); the key was missing `recall_number` and silently kept one arbitrary
+  campaign per investigation. Fixed, built, tested live: 154,209 rows, exact.
+- **FEC PAC summary** — real grain bug. A committee reports once per election
+  cycle; the key was missing the coverage-period date and kept only the latest
+  cycle, discarding 3 cycles of real finance history per committee. Fixed, built,
+  tested live: 45,709 committee-cycles, exact.
+- **MSHA violations** — same class, much smaller: 51 of 3.09M violations get
+  re-contested with a new docket. Key now includes docket_no. Fixed, built,
+  tested live: 3,087,265, exact once one whitespace-only near-duplicate is
+  normalized (verified precisely, not assumed).
+- **CFPB complaints** — NOT a grain bug. The 11,502-row gap is entirely rows with
+  a blank Complaint ID; every real complaint ID was already unique. No fix needed
+  to the hand-built mart, just the redundant raw twin.
+- **NARA WRA + BORME** — NOT grain bugs. Both sources are dead (every dedupe
+  column constant, same failure class as FJC). The hand-built collapse was
+  already correct.
+- **BIA tribal geo** — worse than either row count suggested. Neither mart was
+  ever real data; the registered source is an ArcGIS portal home page, and both
+  are now disabled pending a real source (see above).
+
+For every case except BIA, the redundant auto-generated raw-passthrough twin is
+now disabled in `dbt_project.yml` — the duplication is gone, not tolerated.
+`gen_mart_models.py`'s cross-domain duplicate guard (fixed earlier today) stops
+it recurring.
+
+**DONE 2026-07-31.** All 28 orphaned duplicate tables (the true final count, once
+every disabled model was checked against what's actually still in the warehouse —
+higher than the ~18 estimate) snapshotted to `LIBRARY_MARTS._RESTORE_20260731`
+then dropped. All 28 confirmed via `db.scalar` row counts before dropping,
+zero errors. `tests/test_mart_duplication.py` now passes clean (3/3) against live
+Snowflake — no source gives two different answers anymore.
 
 ---
 
@@ -160,6 +434,19 @@ using the pattern already there. No mart → lifecycle falls through to `empty`.
 Also disabled `justice__fed_fjc_idb`. Its config comment said *"re-enabled
 2026-07-24: source re-ingested (4.1M rows)"* — the row count was re-ingested, the
 data wasn't.
+
+### Re-ingest reconnaissance (2026-07-31, later pass)
+- **NIH grants — confirmed fixable, not a dead source.** Live-tested the API
+  directly: healthy, 200 OK. FY2024 alone has 83,514 grant projects — confirms
+  the 5,000-row landing was a truncated single-page pull with no pagination, not
+  a broken/dead source. A real fix (proper pagination loop across years) is
+  plausible and bounded.
+- **FJC court records — needs real research, not a re-run.** The registered URL
+  (`fjc.gov/research/idb`) is a landing page, not a data endpoint. FJC publishes
+  bulk files split by case type (civil/criminal/appellate/bankruptcy) somewhere
+  under that page; finding the actual download links is a research task, not
+  something to guess at. No fetch code exists anywhere in the repo to re-run —
+  it would need to go through the onboarding agent again with real web access.
 
 ### Still open: do you want the data itself?
 FJC (4.1M court records), NIH (5,000 grants), FFIEC (call reports) and FATF

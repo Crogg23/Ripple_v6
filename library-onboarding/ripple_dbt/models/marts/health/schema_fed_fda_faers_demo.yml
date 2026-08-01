@@ -1,0 +1,19 @@
+version: 2
+
+# FAERS DEMO spans THREE identifier eras across its history, and NO single column
+# is universally populated -- verified live 2026-07-31, so don't add a not_null
+# test here without re-checking against live data first:
+#   isr           76% populated (legacy quarters)
+#   primaryid     26% populated (modern quarters, paired with case_id)
+#   c_case        74% populated
+# The 7-row (of 5,811,086) remainder where BOTH isr and primaryid are null are
+# real, legitimate 2004-era records identified only by foll_seq (a case-sequence
+# field, a THIRD scheme predating even ISR) -- confirmed by inspecting them live,
+# not corruption. Too small (0.0001%) to be worth a fourth identifier branch in a
+# test; documented here so the next person doesn't "fix" it by force-adding a
+# not_null that will spuriously fail on those 7 real rows.
+models:
+  - name: health__fed_fda_faers_demo
+    description: >
+      FDA Adverse Event Reporting System, case-demographics level. 5,811,086 rows.
+      See the note above on why no ID column here gets a not_null test.

@@ -89,6 +89,63 @@ ID_HINTS = [
 ]
 
 
+_SOURCE_RE = re.compile(r"source\(\s*'[^']+'\s*,\s*'([^']+)'\s*\)")
+_REF_RE = re.compile(r"ref\(\s*'([^']+)'\s*\)")
+
+
+def _resolve_landing_source(sql_path):
+    """The actual LANDING table a mart .sql ultimately reads, resolved through one
+    ref() hop into staging if needed. Returns None if it can't be determined.
+    """
+    try:
+        text = open(sql_path, encoding="utf-8", errors="ignore").read()
+    except OSError:
+        return None
+    m = _SOURCE_RE.search(text)
+    if m:
+        return m.group(1).upper()
+    m = _REF_RE.search(text)
+    if m:
+        hits = glob.glob(os.path.join(MODELS, "staging", "**", m.group(1) + ".sql"),
+                          recursive=True)
+        if hits:
+            stext = open(hits[0], encoding="utf-8", errors="ignore").read()
+            m2 = _SOURCE_RE.search(stext)
+            if m2:
+                return m2.group(1).upper()
+    return None
+
+
+def existing_marts_by_source():
+    """{landing_table_upper: 'folder/model.sql'} for EVERY mart already in the project.
+
+    THE BUG THIS FIXES (found 2026-07-31, in two stages).
+
+    Stage 1: the only duplicate guard was `os.path.exists(target)`, checking just the
+    SAME domain folder the new mart was about to write into. A hand-built mart in a
+    DIFFERENT domain was invisible to it, so this script published a raw passthrough
+    twin. First fix: index every mart by its `__<name>` filename suffix instead of by
+    path, so a same-named mart anywhere in the project is recognised.
+
+    Stage 2 (the same day, found while auditing further): filename suffix is not
+    source identity. `health__fed_dea_arcos` and `uncategorized__fed_dea_arcos_full`
+    read the exact same landing table (FED_DEA_ARCOS_FULL) but have different name
+    suffixes ('fed_dea_arcos' vs 'fed_dea_arcos_full'), so the Stage-1 fix STILL
+    missed them -- along with 20 other pairs, one of which (CMS Part D prescribers)
+    was silently discarding real claims and cost data via a stale dedupe key exposed
+    by the duplicate. Filenames drift from the tables they read; the source()/ref()
+    the SQL actually compiles against does not. This resolves through to the real
+    LANDING table (one ref() hop into staging, matching how dbt itself resolves
+    lineage) and keys on THAT.
+    """
+    out = {}
+    for path in glob.glob(os.path.join(MARTS, "*", "*.sql")):
+        src = _resolve_landing_source(path)
+        if src:
+            out.setdefault(src, os.path.relpath(path, MARTS).replace("\\", "/"))
+    return out
+
+
 def domain_folder(source_id, domain):
     folder = DOMAIN_MAP.get(domain, "uncategorized")
     if folder != "uncategorized":
@@ -282,12 +339,25 @@ def main():
 
     made = skipped = noview = 0
     views = []
+    # Index EVERY existing mart by source before generating anything, so a mart that
+    # already exists under a DIFFERENT domain folder is still recognised as a duplicate.
+    already = existing_marts_by_source()
+    print(f"{len(already)} source(s) already have a mart somewhere in the project")
     for source_id, name, domain, rows in todo:
         table = source_id.upper()
         folder = domain_folder(source_id, domain)
         model = f"{folder}__{source_id.lower()}"
         target = os.path.join(MARTS, folder, f"{model}.sql")
         if os.path.exists(target):
+            skipped += 1
+            continue
+        prior = already.get(source_id.upper())
+        if prior:
+            # Cross-domain duplicate: this source is already modeled elsewhere. Say so
+            # rather than silently skipping -- a hand-built mart under another domain is
+            # exactly the case that used to slip through and publish a raw twin.
+            print(f"  SKIP {source_id}: already modeled at {prior} "
+                  f"(would have written a duplicate at {folder}/{model}.sql)")
             skipped += 1
             continue
         cols = sc.columns_of(table, conn=conn, with_types=True)

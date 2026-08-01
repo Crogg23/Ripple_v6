@@ -1,0 +1,21 @@
+version: 2
+
+# Same two-ID-era shape as health__fed_fda_faers_drug (see that model's schema
+# file for the full explanation) -- isr for legacy quarters, primaryid/caseid for
+# modern ones. Verified live 2026-07-31: unlike DEMO, every one of the 9,833,260
+# rows here has at least one of isr/primaryid populated (zero exceptions), so the
+# expression_is_true test below is a real, unconditional invariant, not an
+# approximation.
+models:
+  - name: health__fed_fda_faers_indi
+    description: >
+      FDA Adverse Event Reporting System, indication (why the drug was prescribed)
+      level. 9,833,260 rows.
+    columns:
+      - name: indi_pt
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "isr is not null or primaryid is not null"

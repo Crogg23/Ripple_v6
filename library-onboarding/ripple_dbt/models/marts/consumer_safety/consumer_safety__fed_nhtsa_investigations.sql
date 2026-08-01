@@ -1,8 +1,15 @@
 {{ config(materialized='table', schema='CONSUMER_SAFETY') }}
 
--- GRAIN: one row per investigation-vehicle combination
+-- GRAIN: one row per investigation-vehicle-RECALL combination. Fixed 2026-07-31:
+-- was one row per investigation-vehicle, silently keeping only ONE of a possibly-
+-- multiple recall_number per investigation (arbitrary, whichever loaded last). A
+-- single investigation into one defect commonly maps to SEVERAL recall campaigns
+-- (e.g. one HID-headlight defect action tied to 11 distinct recall numbers) -- so
+-- COUNT(*) on this mart is not "number of investigations", it's "number of
+-- investigation-recall LINKS". Group by nhtsa_action_number for investigation-level
+-- counts.
 -- Answers: What defect investigations has NHTSA opened, and did they result in recalls?
--- Source: NHTSA ODI Investigations (~154K records)
+-- Source: NHTSA ODI Investigations (154,209 records — exact, verified 2026-07-31)
 -- Key joins: recall_number â†’ nhtsa_recalls.campno; mfr_name â†’ manufacturer entities
 
 select

@@ -1,8 +1,19 @@
 {{ config(materialized='view', tags=['spine_generated']) }}
 
--- GRAIN: one row per committee (CMTE_ID is unique)
+-- GRAIN: one row per (committee, reporting-cycle coverage period). Fixed 2026-07-31:
+-- the "CMTE_ID is unique" claim was false -- this file spans MULTIPLE election
+-- cycles (cvg_end_dt of 2018, 2020, 2022, 2024 all appear for the same committee),
+-- and deduping on cmte_id alone kept only the most-recently-loaded cycle, silently
+-- discarding a committee's entire finance history from every earlier cycle. Found
+-- via tests/test_mart_duplication.py: this mart (22,899 rows) disagreed with an
+-- auto-generated raw duplicate (48,395 rows) that happened to expose the loss.
+--
+-- cvg_end_dt now joins the key. Verified live: the handful of residual (cmte_id,
+-- cvg_end_dt) collisions are rows where BOTH the date AND every financial column are
+-- blank -- fully degenerate rows with nothing to lose by collapsing. Real cycle data
+-- is never dropped.
 -- SPINE_ENTITY: organization
--- Source: FEC PAC and Party Summary — ~48K committees
+-- Source: FEC PAC and Party Summary — ~48K committee-cycle records
 -- Key joins: cmte_id → FEC committee linkage tables; spine_entity_id → ENTITY_GOLDEN
 
 with source as (
@@ -45,6 +56,6 @@ renamed as (
 
 select * from renamed
 qualify row_number() over (
-    partition by cmte_id
+    partition by cmte_id, cvg_end_dt
     order by _loaded_at desc
 ) = 1

@@ -2,8 +2,18 @@ version: 2
 
 models:
   - name: politics__fed_fec_pac_summary
+    description: >
+      One row per (committee, election-cycle coverage period). cmte_id alone is
+      NOT unique here -- fixed 2026-07-31, see the model's header for why "cmte_id
+      is unique" was a wrong assumption that discarded 3 cycles of every
+      committee's finance history.
     columns:
       - name: cmte_id
         data_tests:
           - not_null
-          - unique
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - cmte_id
+              - coverage_end_date

@@ -1,8 +1,13 @@
 {{ config(materialized='table', schema='POLITICS') }}
 
--- GRAIN: one row per committee (cmte_id is unique â€” latest filing period kept)
--- Answers: How much money does each PAC/party committee raise, spend, and give away?
--- Source: FEC PAC and Party Summary (~48K committees)
+-- GRAIN: one row per (committee, election-cycle coverage period). Fixed 2026-07-31 --
+-- was silently keeping only the LATEST cycle per committee (see staging model header
+-- for the root cause and the 25,496 rows of multi-cycle history that recovered).
+-- COUNT(*) is committee-cycles, not committees -- filter/group by coverage_end_date
+-- for a single-cycle view, or by cmte_id for a committee's full history.
+-- Answers: How much money does each PAC/party committee raise, spend, and give away,
+-- IN EACH ELECTION CYCLE?
+-- Source: FEC PAC and Party Summary (48,395 committee-cycle records)
 -- Key joins: cmte_id â†’ fec_cand_cmte_linkage â†’ candidates; cmte_id â†’ individual contributions
 
 select

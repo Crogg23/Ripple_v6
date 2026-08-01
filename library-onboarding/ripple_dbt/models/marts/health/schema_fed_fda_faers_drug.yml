@@ -1,0 +1,22 @@
+version: 2
+
+# FAERS spans TWO ID eras and neither identifier is populated across the whole
+# file: legacy quarters use ISR (populated 76% live), later quarters use
+# PRIMARYID/CASEID (populated 24% live) -- confirmed live 2026-07-31. A naive
+# not_null on either alone would be WRONG (fail on ~a quarter of real, valid rows)
+# and would train someone to "fix" it by weakening the test rather than
+# understanding the format.
+#
+# drugname is NOT a not_null column either -- tried it, it failed live: 37 of
+# 20,914,284 rows (0.0002%) have a genuinely null drug name. Left untested rather
+# than asserting something 37 real rows would contradict.
+models:
+  - name: health__fed_fda_faers_drug
+    description: >
+      FDA Adverse Event Reporting System, drug-level. 20,914,284 rows spanning
+      ISR-era and PRIMARYID/CASEID-era quarters -- see note above before adding an
+      ID-column test.
+    data_tests:
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "isr is not null or primaryid is not null"

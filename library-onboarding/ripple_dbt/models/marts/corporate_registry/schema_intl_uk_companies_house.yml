@@ -1,0 +1,15 @@
+version: 2
+
+# Verified live 2026-07-31: 5,734,780 rows, 5,734,779 distinct non-null
+# company_number -- one row has a genuinely null company number (a UK filer
+# without one), everything else is uniquely keyed. `unique` alone is correct here
+# (dbt's unique test ignores nulls, same as a SQL UNIQUE constraint); adding
+# not_null would spuriously fail on that one real row.
+models:
+  - name: corporate_registry__intl_uk_companies_house
+    description: >
+      UK Companies House register. One row per company. 5,734,780 rows.
+    columns:
+      - name: company_number
+        data_tests:
+          - unique

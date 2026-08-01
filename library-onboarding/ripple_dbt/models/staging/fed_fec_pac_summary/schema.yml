@@ -7,8 +7,17 @@ sources:
     tables:
       - name: FED_FEC_PAC_SUMMARY
         description: >
-          Raw landing table for FEC PAC/Party Committee Summary (bulk, multi-cycle). Grain not yet determined.
+          Raw landing table for FEC PAC/Party Committee Summary (bulk, multi-cycle).
 
 models:
   - name: stg_fed_fec_pac_summary__records
-    description: "Minimal passthrough staging (grain undetermined). Needs manual review."
+    description: >
+      One row per (committee, election-cycle coverage period). Grain determined
+      2026-07-31 -- see the model's header for how "CMTE_ID is unique" turned out
+      to be wrong and cost 25,496 rows of real multi-cycle finance history.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - cmte_id
+              - cvg_end_dt

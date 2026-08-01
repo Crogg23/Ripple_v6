@@ -189,11 +189,23 @@ def _name_canon(col: str) -> str:
 
 
 def _addr_canon(col: str) -> str:
-    """Standardize street-type words on a space-padded string, then collapse."""
-    expr = f"' ' || REGEXP_REPLACE(UPPER(TO_VARCHAR({col})), '[^A-Z0-9]+', ' ') || ' '"
-    for long, short in _ADDR_ABBR:
-        expr = f"REPLACE({expr}, ' {long} ', ' {short} ')"
-    return f"NULLIF(TRIM(REGEXP_REPLACE({expr}, ' +', ' ')), '')"
+    """Standardize street-type words, order preserved (address order is meaningful).
+
+    TRANSFORM over tokens, not REPLACE chains. REPLACE(' ...NORTH NORTH...',
+    ' NORTH ', ' N ') only replaces NON-OVERLAPPING matches left to right: the two
+    NORTHs share the space between them, so replacing the first consumes it and the
+    second NORTH never matches its own leading space -- '100 NORTH NORTH STREET'
+    canonicalized to '100 N NORTH ST' (second NORTH untouched), while a differently
+    -formatted repeat like '2 SOUTH SOUTH SOUTH RD' came out '2 S SOUTH S RD'
+    (alternating hits and misses). Both are real addresses (a "North North Street"
+    exists; a road can appear twice in an inconsistently-formatted feed). Token-wise
+    TRANSFORM converts every occurrence independently, so repeats behave uniformly:
+    '2 SOUTH SOUTH SOUTH RD' -> '2 S S S RD'.
+    """
+    base = f"TRIM(REGEXP_REPLACE(UPPER(TO_VARCHAR({col})), '[^A-Z0-9]+', ' '))"
+    whens = " ".join(f"WHEN '{long}' THEN '{short}'" for long, short in _ADDR_ABBR)
+    return (f"NULLIF(ARRAY_TO_STRING(TRANSFORM(SPLIT({base}, ' '), "
+            f"x -> CASE x::VARCHAR {whens} ELSE x::VARCHAR END), ' '), '')")
 
 
 def normalize_sql(key: str, col: str) -> str:

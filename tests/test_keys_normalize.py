@@ -31,8 +31,23 @@ def test_person_shares_the_name_canonicalizer():
 
 def test_address_standardizes_but_does_not_sort():
     sql = normalize_sql("ADDRESS", "X")
-    assert "STREET" in sql and "AVENUE" in sql and "REPLACE" in sql
+    assert "STREET" in sql and "AVENUE" in sql and "TRANSFORM" in sql
     assert "ARRAY_SORT" not in sql      # address order is meaningful
+
+
+def test_address_uses_transform_not_replace_chain():
+    """REPLACE(' NORTH NORTH ', ' NORTH ', ' N ') only fires on non-overlapping
+    matches: two adjacent NORTHs share one space, so replacing the first consumes
+    it and the second NORTH never matches its own leading space. Verified live:
+    '100 NORTH NORTH STREET' canonicalized to '100 N NORTH ST' (second NORTH
+    untouched) and '2 SOUTH SOUTH SOUTH RD' to '2 S SOUTH S RD' (alternating hits
+    and misses). TRANSFORM converts every token independently, so repeats behave
+    uniformly regardless of position."""
+    sql = normalize_sql("ADDRESS", "X")
+    # REGEXP_REPLACE (structural cleanup) is fine; a chained bare REPLACE(...,
+    # ' NORTH ', ' N ') per abbreviation -- the old, buggy approach -- is not.
+    assert "', ' N '" not in sql and "REPLACE(' " not in sql
+    assert "TRANSFORM(SPLIT(" in sql
 
 
 def test_npi_pads_to_ten_never_strips():
@@ -210,6 +225,14 @@ def test_name_canon_collapses_variants(sf, a, b):
 @pytest.mark.snowflake
 def test_address_canon_abbreviates(sf):
     assert _norm(sf, "ADDRESS", "100 North Main Street") == "100 N MAIN ST"
+
+
+@pytest.mark.snowflake
+def test_address_canon_handles_repeated_tokens(sf):
+    """The REPLACE-chain bug, live. Both are real addresses -- inconsistent source
+    formatting can genuinely repeat a directional/street-type word."""
+    assert _norm(sf, "ADDRESS", "100 North North Street") == "100 N N ST"
+    assert _norm(sf, "ADDRESS", "2 South South South Rd") == "2 S S S RD"
 
 
 @pytest.mark.snowflake

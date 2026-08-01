@@ -54,6 +54,54 @@ models:
       finance:
         finance__fed_ffiec_call_reports:
           +enabled: false  # source is a saved HTML page: only populated column is DOCTYPE_HTML
+        finance__fed_cfpb_complaints:
+          # 2026-07-31: raw passthrough duplicate of consumer_protection__fed_cfpb_complaints,
+          # auto-generated under a different domain than the hand-built mart (the
+          # gen_mart_models.py cross-domain duplicate bug -- see that fix's note).
+          # Verified the hand-built copy is CORRECT, not lossy: the 11,502-row gap
+          # between them is entirely rows with a blank/missing Complaint ID, which
+          # collapse together as ONE group under PARTITION BY (SQL puts all NULLs/
+          # blanks in one partition) -- every non-blank complaint ID is already
+          # unique with zero collisions. No real complaint is lost.
+          +enabled: false
+        finance__fed_fec_pac_summary:
+          # 2026-07-31: raw passthrough duplicate of politics__fed_fec_pac_summary,
+          # same cross-domain duplicate bug. This one is what EXPOSED that the
+          # hand-built mart's grain was wrong (see that model's header) -- now fixed
+          # and grain-exact, so the raw twin adds nothing.
+          +enabled: false
+        finance__fed_fec_bulk_candidates:
+          +enabled: false  # raw twin of politics__fec_candidate (agrees, 17,900 rows; redundant)
+        finance__fed_fec_bulk_linkages:
+          # verified 2026-07-31: politics__fec_cand_cmte_link's small row-count gap
+          # vs this raw twin is real duplicate LINKAGE_IDs with IDENTICAL substantive
+          # fields (cmte_tp, cmte_dsgn) -- collapsing them loses nothing. Not a bug;
+          # this twin is still redundant, so disabled.
+          +enabled: false
+        finance__fed_fec_bulk_summary:
+          +enabled: false  # raw twin of politics__fec_candidate_summary (agrees, 7,933 rows; redundant)
+      health:
+        health__fed_cms_partd_prescriber_drug:
+          # 2026-07-31: raw passthrough duplicate of health__fed_cms_partd_prescribers
+          # -- this is the pair the WIDENED (resolve-by-actual-source, not filename)
+          # duplicate check caught. The hand-built mart's grain was missing
+          # brand_name and was silently discarding real claims/cost data (see that
+          # model's header) -- now fixed and grain-exact, so the raw twin adds
+          # nothing.
+          +enabled: false
+      # 2026-07-31: an "uncategorized" domain full of raw autogen twins of already
+      # hand-built marts -- exactly the cross-domain duplicate bug, just routed to
+      # the fallback folder instead of a named domain. All 4 verified AGREEING with
+      # their hand-built sibling (no accuracy issue), disabled as pure redundancy.
+      uncategorized:
+        uncategorized__fed_dea_arcos_full:
+          +enabled: false  # raw twin of health__fed_dea_arcos (agrees, 178,598,026 rows; redundant)
+        uncategorized__fed_epa_frs_full:
+          +enabled: false  # raw twin of environment__fed_epa_frs_facilities (agrees, 5,300,149 rows; redundant)
+        uncategorized__int_uk_companies_house:
+          +enabled: false  # raw twin of corporate_registry__intl_uk_companies_house (agrees, 5,734,780 rows; redundant)
+        uncategorized__int_gleif_rr:
+          +enabled: false  # raw twin of economics__int_gleif_rr (agrees, 481,933 rows; redundant)
       economics:
         economics__fed_hhs_taggs:
           +enabled: false  # stub: 45 rows of scraped HTML nav text, not real grants
@@ -61,9 +109,43 @@ models:
           +enabled: false  # stub: 18 rows, scrape captured page chrome not company data
         economics__intl_gr_gemi:
           +enabled: false  # stub: 40 rows, scrape captured page chrome not registry data
+        economics__intl_es_borme:
+          # 2026-07-31: raw passthrough duplicate of corporate_registry__intl_es_borme.
+          # The SOURCE is dead here, not the model -- every dedupe-key column
+          # (date, issue number, section, company_id, company_name, act_type,
+          # country) is constant across all 25 rows; corporate_registry's 3-row
+          # collapse is the pipeline correctly recognizing a degenerate source, same
+          # class of failure as FED_FJC_IDB. The raw 25-row copy is not "more
+          # complete", it's just uncollapsed garbage.
+          +enabled: false
+      history:
+        history__fed_nara_wra_aad:
+          # 2026-07-31: raw passthrough duplicate of civil_rights__fed_nara_wra_aad.
+          # Same story as economics__intl_es_borme above: FED_NARA_WRA_AAD's source
+          # is dead (36 rows, every column constant), civil_rights' 1-row collapse
+          # is correct, this 36-row raw copy is not.
+          +enabled: false
       government_records:
         government_records__fed_nara_aad:
           +enabled: true  # re-enabled 2026-07-24: source re-ingested (554 rows)
+      # 2026-07-31: FED_BIA_TRIBAL_GEO's registered URL is an ArcGIS Hub HOME PAGE
+      # (https://opendata-1-bia-geospatial.hub.arcgis.com/), not a dataset endpoint.
+      # The loader scraped the portal's item DIRECTORY LISTING instead of downloading
+      # tribal land data -- confirmed live: the 100 landed rows are unrelated public
+      # web maps (NAME values like "How Has the Greenland Ice Sheet Changed", "Plan
+      # de Gestión de Riesgos de la parroquia..."), LAYER_NAME is an ArcGIS item type
+      # (StoryMap / Web Map / Feature Service), OBJECTID is a 32-char GUID, and FIPS
+      # is blank on every row. NEITHER existing mart is trustworthy: the hand-built
+      # one collapses to 1 row via a broken FIPS dedupe key, and the "fix" is NOT to
+      # repair that key -- restoring it would promote all 100 rows of scraped-portal
+      # garbage as if they were real tribal geography. Both disabled until the
+      # source is re-pointed at an actual BIA geospatial dataset endpoint.
+      land_and_territory:
+        land_and_territory__fed_bia_tribal_geo:
+          +enabled: false
+      reference:
+        reference__fed_bia_tribal_geo:
+          +enabled: false
       politics:
         # 2026-07-30: STANDING POLICY no_selectorless_dbt_build enforced for real,
         # not just documented. These models mirror Python-built canonical tables
@@ -73,14 +155,43 @@ models:
         # --vars '{"allow_politics_rebuild": true}' -- see macros/guard_politics_mirror.sql.
         # `dbt test` is completely unaffected (pre-hooks don't fire for tests).
         +pre-hook: "{{ guard_politics_mirror() }}"
+        politics__fed_govinfo_billstatus:
+          +enabled: false  # raw twin of politics__bills (agrees, 36,465 rows; redundant)
+        politics__fed_govinfo_bill_cosponsors:
+          # verified 2026-07-31: politics__bill_cosponsors' small row-count gap vs
+          # this raw twin is a DOCUMENTED intentional collapse (a member who
+          # withdrew then re-cosponsored keeps one row, preferring not-withdrawn)
+          # plus a data-quality filter on malformed rows. Not a bug; this twin is
+          # still redundant, so disabled.
+          +enabled: false
+        politics__fed_voteview_rollcalls:
+          +enabled: false  # raw twin of politics__voteview_votes (agrees, 945,523 rows; redundant)
+        politics__fed_voteview_rollcall_meta:
+          +enabled: false  # raw twin of politics__voteview_rollcalls (agrees, 3,364 rows; redundant)
       historical_records:
         historical_records__fed_slavevoyages_intraamerican:
           +enabled: true  # re-enabled 2026-07-24: source re-ingested (11.5K rows)
       justice:
         justice__fed_doj_crt_cases:
           +enabled: false  # stub: 1 row, failed scrape
+        justice__fed_msha_violations:
+          # 2026-07-31: raw passthrough duplicate of labor__fed_msha_violations,
+          # same cross-domain duplicate bug as the finance/consumer_safety ones
+          # above. This is what exposed the hand-built mart's grain was ALMOST but
+          # not quite unique (see that model's header, 51 contested-docket rows).
+          # Now grain-exact; the raw twin adds nothing.
+          +enabled: false
         justice__intl_fatf_ratings:
           +enabled: false  # 2026-07-31: source parse failed -- COUNTRY populated, all 6 rating columns blank
+        justice__fed_msha_accidents:
+          +enabled: false  # raw twin of labor__fed_msha_accidents (agrees, 273,623 rows; redundant)
+        justice__fed_msha_mines:
+          +enabled: false  # raw twin of labor__fed_msha_mines (agrees, 91,906 rows; redundant)
+        justice__fed_fdic_enforcement:
+          # 2026-07-31: raw twin of regulation__fed_fdic_enforcement, which is
+          # ALREADY disabled below as a dead-source stub (14 rows, failed scrape).
+          # This is the orphan of an already-known-dead source, not a new bug.
+          +enabled: false
         justice__fed_fjc_idb:
           # 2026-07-24 note said "source re-ingested (4.1M rows)" -- the ROW COUNT was
           # re-ingested, the DATA was not. Verified 2026-07-31: all 4,126,450 rows are
@@ -88,6 +199,21 @@ models:
           # STATUS='empty' since 2026-06-17. The mart it builds is 1 row (the dedup
           # collapses every identical blank surrogate key into one).
           +enabled: false
+      transport:
+        transport__fed_nhtsa_investigations:
+          # 2026-07-31: a raw passthrough auto-generated under a DIFFERENT domain
+          # folder than the hand-built consumer_safety__fed_nhtsa_investigations --
+          # gen_mart_models.py's duplicate guard only checked its own folder, so it
+          # never saw the existing mart and published a second copy. That copy is
+          # what first exposed the grain bug in the hand-built one (see that model's
+          # header). Now that the hand-built model is grain-correct (154,209 rows,
+          # exact), this raw twin adds nothing but a second row-order-only, generic
+          # C1..C11 copy of the same data. Disabled rather than left to drift again.
+          +enabled: false
+        transport__fed_nhtsa_complaints:
+          +enabled: false  # raw twin of consumer_safety__fed_nhtsa_complaints (agrees, 2,227,941 rows; redundant)
+        transport__fed_nhtsa_recalls:
+          +enabled: false  # raw twin of consumer_safety__fed_nhtsa_recalls (agrees, 242,993 rows; redundant)
       legal_enforcement:
         legal_enforcement__fed_naag_multistate_settlements:
           +enabled: true  # re-enabled 2026-07-24: source re-ingested (882 rows)
