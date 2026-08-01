@@ -10,7 +10,8 @@ ongoing work — the work routes around it.
 
 ## OPEN — costs compute
 
-### 1. Re-run the matching layer so the name fix cashes out
+### 1. DONE 2026-08-01 — Re-run the matching layer so the name fix cashes out
+**Executed 2026-08-01:** discover (663 edges kept, +53 vs pre-fix 610; 718 flukes gated) + leads --job all --run (17,307 leads; debarred_but_funded 2 -> 53). lead_queue rebuilt, 21/21 tests pass, reconcile exact at 17,306.
 `python -m connect discover` + the leads jobs.
 
 The `ARRAY_EXCEPT` fix (2026-07-31) means org names with two "of"s can finally

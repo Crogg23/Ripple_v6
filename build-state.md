@@ -1,5 +1,5 @@
 <!-- GENERATED FILE. DO NOT EDIT BY HAND.
-     Source: LIBRARY_META.BUILD  |  Generated: 2026-07-30T20:45:11Z
+     Source: LIBRARY_META.BUILD  |  Generated: 2026-08-01T16:48:18Z
      To change anything here, change the row and regenerate:
      python3 scripts/gen_build_state.py --write -->
 
@@ -18,7 +18,7 @@
 ## DATA STATE (V_STATE)
 - catalog.orphans: 287
 - catalog.sources: 2992
-- connect.edges: 610
+- connect.edges: 663
 - connect.edges_inc: 1074
 - connect.entities: 22623285
 - decisions.total: 0
@@ -27,14 +27,14 @@
 - leads.banned_but_operating.active: 10
 - leads.banned_but_operating.stale: 1
 - leads.banned_but_paid.active: 773
-- leads.debarred_but_funded.active: 2
+- leads.debarred_but_funded.active: 53
 - leads.excluded_but_billing.active: 236
 - leads.osha_cohort_outlier_2024.active: 16215
 - leads.sanctioned_vessel_broadcasting.active: 4
 - leads.sanctioned_vessel_broadcasting_v2.active: 12
 - leads.sec_filer_in_irs_bmf.active: 3
 - marts.stale_vs_landing: 1
-- reading_room.views: 252
+- reading_room.views: 254
 - registry.sources: 2705
 - taps.empty: 33
 - taps.failed: 262
