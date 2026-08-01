@@ -76,7 +76,15 @@ def connect(refresh: bool = False):
     serve_pat = (os.getenv("SNOWFLAKE_SERVE_PAT") or "").strip()
     params = {"STATEMENT_TIMEOUT_IN_SECONDS": STATEMENT_TIMEOUT_S,
               "ABORT_DETACHED_QUERY": True}
-    conn = snow.connect(pat=serve_pat or None, session_parameters=params)
+    # When riding the serve PAT, PIN the reader role (same rule as
+    # reading_room/connections.py): the PAT is role-restricted, and without
+    # an explicit role snow.connect falls back to SNOWFLAKE_ROLE from .env
+    # (ACCOUNTADMIN on this box), which the restricted PAT refuses with
+    # error 250001 (live, 2026-08-01).
+    serve_role = os.getenv("RIPPLE_SERVE_ROLE", "RIPPLE_READER") \
+        if serve_pat else None
+    conn = snow.connect(pat=serve_pat or None, role=serve_role,
+                        session_parameters=params)
     _conn = conn
     _lane = _verify_lane(conn, expected_reader=bool(serve_pat))
     _warehouse = _pick_warehouse(conn)

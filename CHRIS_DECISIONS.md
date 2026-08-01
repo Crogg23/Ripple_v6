@@ -776,3 +776,54 @@ Rulings recorded:
 4. Verify with the commented queries in the script; launch the Reading
    Room; smoke one `needs_work` cohort verdict and confirm member leads
    stay visible and flagged.
+
+## 2026-08-01 — The Playground: rulings (Chris)
+
+Chris's realignment after Reading Room v2: the decision desks are the LAST
+step; the daily environment is a playground where CHRIS writes the SQL and
+builds the Plotly charts, and the platform supplies the tailored dictionary
+(tables, columns, joins, traps per question). No SQL generation, ever.
+Primary focus: US-politician accountability (assessment, not witch hunt).
+
+Rulings recorded:
+- **Question packs live in the repo** (`playground/packs.py`, data-only),
+  not a control table: editorial content wants git review; the schema has
+  no row-count field so prose numbers cannot rot (v_state_numbers_only by
+  construction).
+- **COLUMN_CATALOG writes ride the standard loader PAT** (the lane that
+  already writes LIBRARY_META.REGISTRY). Only the one-time CREATE+GRANT
+  (`infra/ddl/06_column_catalog.sql`) is a Snowsight/ACCOUNTADMIN act.
+  A00 is not involved.
+- **Senate stock trades are foundation-only** (landing + registry +
+  dictionary + question pack). NO detector, NO lead rules, NO
+  entity_index_specs entry — per POLICY foundation_before_detectives.
+- **Journalism-use-only is structural** for financial-disclosure data
+  (5 USC 13107(c)(1)): tagged in LICENSE_TERMS, bannered in the app,
+  asserted by tests. Any commercial release gate must EXCLUDE
+  FED_SENATE_STOCK_WATCHER / POLITICS__SENATE_TRADES and derivatives.
+- **Scouting correction**: the "bioguide-keyed" claim for Senate Stock
+  Watcher (FABLE_KEY_HUNT 2026-07-22) was WRONG — the source is name-only.
+  The member link is a documented name match with MATCH_METHOD recorded
+  per row; member-level claims from it stay lead-grade.
+- **One glossary**: reading_room tier/verdict wording now comes from the
+  shared `glossary/` package — one plain-English vocabulary everywhere.
+- Yellow-lane fix, for the record: `viz/sqlrun.connect` now pins the
+  reader role when riding the serve PAT (it previously inherited
+  SNOWFLAKE_ROLE=ACCOUNTADMIN from .env, which the restricted PAT refused
+  — the read lane was unusable on this box until then).
+
+### OPEN: A16 — light up the Playground (Chris, one sitting; no A00 needed)
+1. Snowsight (ACCOUNTADMIN, one time): run `infra/ddl/06_column_catalog.sql`.
+2. Loader PAT (normal .env): `python politics/registry/register_political_sources.py`
+   (preview) then `--apply`; `python politics/loaders/build_senate_trades.py`;
+   `python politics/loaders/smoke_senate_trades.py` (must pass).
+3. Loader PAT: `python scripts/build_column_catalog.py` (preview) then `--apply`
+   (long first run — it profiles every landed table).
+4. Refresh the inventory fixture:
+   `python scripts/snapshot_playground_inventory.py > tests/fixtures/playground_inventory.json`,
+   review the diff, commit; remove the two entries from PENDING_FQNS in
+   playground/packs.py; `pytest tests/test_playground_offline.py`.
+5. Launch: `playground\run.bat` (or START_HERE.bat now starts both apps).
+   Smoke: member_money pack -> run a query -> change x/y/color -> save a
+   card -> see it under Saved cards; confirm the journalism banner on the
+   trades pack.

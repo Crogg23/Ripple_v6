@@ -105,7 +105,15 @@ NOT_ACCIDENTAL_DUPLICATES = {
 # Divergence that is genuinely INTENDED for a pair we DO treat as accidental
 # duplicates -- e.g. one copy is deliberately filtered to a subset. Add here only
 # with a real reason.
-KNOWN_DIVERGENT: dict[str, str] = {}
+KNOWN_DIVERGENT: dict[str, str] = {
+    "V_LEADS_PUBLISHED": (
+        "LEAD_QUEUE (one row per reviewable lead) and COHORT_QUEUE (one row "
+        "per peer cohort of osha_cohort_outlier_2024 leads) both read the "
+        "safe leads view AT DIFFERENT GRAINS by design -- the Reading Room's "
+        "two desks (2026-08-01). They can never agree on row count; their "
+        "own reconciliation lock is tests/assert_cohort_queue_reconciles.sql "
+        "(SUM(n_outliers) == reviewable OSHA leads)."),
+}
 
 # A RATCHET, not an excuse list. Every entry here was already broken when the check
 # that found it was written. Leaving the test permanently red trains everyone to

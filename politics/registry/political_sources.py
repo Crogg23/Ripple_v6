@@ -527,6 +527,38 @@ SOURCES = [
               + _KEYFLAG,
     ),
     dict(
+        SOURCE_ID="fed_senate_stock_watcher",
+        NAME="Senate Stock Watcher -- Senate STOCK Act trades (community re-parse)",
+        PUBLISHER="Senate Stock Watcher (volunteer; re-parse of Senate eFD PTRs)",
+        DESCRIPTION="Every disclosed Senate stock transaction from the official eFD periodic transaction "
+                    "reports, re-parsed to JSON by a volunteer-maintained project: senator name, ticker, "
+                    "asset, transaction type, amount BAND, date, and a link to the original filing. "
+                    "Carries NO bioguide and NO disclosure date (schema verified live 2026-08-01).",
+        UNIT_OF_OBSERVATION="one row = one disclosed transaction",
+        TEMPORAL_COVERAGE="2012-present (volunteer-maintained; freshness not guaranteed)",
+        ACCESS_METHOD="bulk_download", FORMAT="json",
+        AUTH_REQUIRED="none", COST="free", UPDATE_CADENCE="rolling (volunteer)", VOLUME="~10k rows",
+        LICENSE_TERMS="JOURNALISM USE ONLY -- 5 USC 13107(c)(1) forbids commercial, credit, or "
+                      "solicitation use of financial-disclosure data; the restriction attaches to the USE, "
+                      "not the person. Repo states no license of its own. Any commercial release gate must "
+                      "EXCLUDE this table and everything derived from it.",
+        URL="https://github.com/timothycarambat/senate-stock-watcher-data",
+        JOIN_KEYS="senator NAME (-> bioguide via crosswalk name-match, recorded in MATCH_METHOD); ticker (-> CIK)",
+        ACCOUNTABILITY_RELEVANCE="The Senate half of the 'member traded the stock' link -- trades vs "
+                                 "committee jurisdiction vs votes is the canonical congressional "
+                                 "accountability overlay.",
+        PRIORITY_TIER="2", DOMAIN_PRIMARY="money_in_politics", DOMAIN_SECONDARY=["money_finance"],
+        ENTITY_TYPES=["filing", "payment"], HAS_EVENTS=True, JOIN_KEYS_STD=[],
+        JOIN_KEY_TIER="PROBABILISTIC", JOIN_KEY_TIER_PROVISIONAL=False,
+        THEMES=["follow_the_money", "power_who_holds_it"],
+        NOTES="LANDED 2026-08-01 -> LANDING.FED_SENATE_STOCK_WATCHER via politics/loaders/"
+              "build_senate_trades.py; member match built into LIBRARY_MARTS.POLITICS."
+              "POLITICS__SENATE_TRADES (surname+chamber+term-span, MATCH_METHOD per row, unmatched "
+              "quarantined as NULL). Referee: smoke_senate_trades.py. Earlier scouting note claiming "
+              "'bioguide-keyed' was WRONG -- the source is name-only. House companion (House Stock "
+              "Watcher) is DEAD (DNS/404); House PTRs remain the PDF/OCR build.",
+    ),
+    dict(
         SOURCE_ID="fed_house_financialdisclosure",
         NAME="House Clerk -- Annual Financial Disclosures (net worth)",
         PUBLISHER="U.S. House Clerk -- Financial Disclosure",

@@ -1,47 +1,29 @@
 """Case-file layout helpers — pure functions, no SQL, no streamlit, no
 network. Everything here turns mart columns into plain English an analyst
 can act on. Deterministic by construction (fixed dicts, no model anywhere).
+
+Since 2026-08-01 the tier and verdict wording comes from the shared
+top-level glossary package — one plain-English vocabulary across the
+Reading Room and the Playground.
 """
 from __future__ import annotations
 
-TIER_DEFS = {
-    "FACT_GRADE_3_SOURCE": (
-        "Name agrees across all three federal sources (NPPES registry + "
-        "OIG-LEIE + the activity source) on the same hard ID. The strongest "
-        "corroboration this detector can produce."),
-    "TWO_SOURCE": (
-        "The ban and the activity agree on ID and name, but the NPPES "
-        "registry record is blank/deactivated — the third confirmation "
-        "isn't available. Manual check before publishing."),
-    "NPPES_CONFLICT": (
-        "The NPPES registry shows a DIFFERENT surname on this ID. Often a "
-        "credential-suffix artifact ('Smith Md Pc'), sometimes a genuine "
-        "identity problem — verify before using."),
-    "LEIE_ROW_MISSING": (
-        "The exclusion row has vanished from the current LEIE file since "
-        "this lead was detected (OIG's monthly refresh removes reinstated "
-        "providers). No comparison is possible; the ban may have been "
-        "lifted — check the OIG site before anything else."),
-    "HARD_ID_ONLY": (
-        "A hard-ID detector (UEI / IMO / EIN): the key match IS the "
-        "identity, and no third registry exists to corroborate against. "
-        "Names from both sides are shown for the eyeball check."),
-}
+import sys
+from pathlib import Path
 
-VERDICT_TEXT = {
-    "PAID_ON_OR_AFTER_EXCLUSION": (
-        "The latest recorded payment is ON or AFTER the exclusion date — "
-        "activity while banned."),
-    "PAYMENTS_PREDATE_EXCLUSION": (
-        "All recorded payments predate the exclusion (later-excluded; "
-        "weaker as a story)."),
-    "TIMELINE_UNKNOWN": (
-        "A date needed for the timeline is missing from the current source "
-        "rows — no on/after claim can be made."),
-    "NOT_EVALUATED": (
-        "This detector's activity side carries no usable dates — the "
-        "timeline was not evaluated, by design."),
-}
+_ROOT = Path(__file__).resolve().parents[1]
+if str(_ROOT) not in sys.path:
+    sys.path.insert(0, str(_ROOT))
+
+from glossary import GLOSSARY  # noqa: E402
+
+TIER_DEFS = {k: GLOSSARY[k] for k in (
+    "FACT_GRADE_3_SOURCE", "TWO_SOURCE", "NPPES_CONFLICT",
+    "LEIE_ROW_MISSING", "HARD_ID_ONLY")}
+
+VERDICT_TEXT = {k: GLOSSARY[k] for k in (
+    "PAID_ON_OR_AFTER_EXCLUSION", "PAYMENTS_PREDATE_EXCLUSION",
+    "TIMELINE_UNKNOWN", "NOT_EVALUATED")}
 
 
 def linkage_features(detector: str, key_type: str, key_value: str,
@@ -239,8 +221,8 @@ def cohort_features(row: dict) -> list[str]:
          f"{row.get('size_band') or '—'}-employee size band "
          f"({row.get('cohort_n') or '—'} establishments). Same industry, "
          f"same size — the fairest available comparison group."),
-        (f"The cohort's pooled DART rate (injuries causing days away, "
-         f"restriction, or transfer, per 100 full-time workers) is "
+        (f"The cohort's pooled DART rate — DART means "
+         f"{GLOSSARY['DART']} — is "
          f"{row.get('cohort_pooled_dart') or '—'}. Every establishment "
          f"flagged here reports at least 2x that, with at least 5 DART "
          f"cases — small-numbers noise is filtered before anything is "
