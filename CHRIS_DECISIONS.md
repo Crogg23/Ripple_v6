@@ -705,3 +705,32 @@ demo:
   content-addressed). Config fingerprint re-pinned, incremental lane unblocked,
   1,041 leads restamped, zero review verdicts touched. Self-synced
   `SPINE_KEYSET_LIVE` + `CONNECT_WATERMARK`, so no separate `seed` was needed.
+
+---
+
+## 2026-08-01 — security session (agent notes, appended per protocol)
+
+### DONE: A03 — straggler PATs
+Both DROP targets (`ripple_loader`, `RIPPLE_LOADER_PAT2`) are confirmed GONE
+from `SHOW USER PROGRAMMATIC ACCESS TOKENS` — revoked or expired off between
+07-12 and today. Nothing to drop. `infra/keys_ledger.json` now tracks all 9
+live PATs (the blind spot is closed); `scripts/revoke_straggler_pats.py`
+lists refreshed to match live reality.
+
+### OPEN: A00 — the LIBRARY_PAT cutover (Chris, ~10 min in Snowsight)
+The last credential item. `LIBRARY_PAT` is still ACCOUNTADMIN (full-account
+key), ACTIVE until 2026-10-21. All scoped replacements now exist:
+`RIPPLE_TRANSFORM_RW` (write lane), `RIPPLE_REVIEW_WRITER`, `READER`,
+`INSTRUMENT_READER`. The checklist:
+1. In Snowsight: Admin > Users & Roles > CROGG23 > Programmatic access
+   tokens. If you don't have the `RIPPLE_TRANSFORM_RW` secret saved,
+   generate a fresh token under that same role.
+2. In `library-onboarding/.env`: point `SNOWFLAKE_PAT` at the
+   RIPPLE_TRANSFORM_RW secret (today it carries the ACCOUNTADMIN lane).
+3. Smoke-test: `python -m connect fingerprint` (or any loader) — confirm
+   writes still work on the scoped role.
+4. Back in Snowsight: REMOVE `LIBRARY_PAT`. Irreversible on purpose.
+5. Re-run `python scripts/revoke_straggler_pats.py --apply` to refresh the
+   ledger (it will show 8 live PATs, none ACCOUNTADMIN).
+Also: reopen/re-close the mis-closed blocker defect honestly once this is
+done — the 07-27 closure by `cortex_code` violated agent_never_closes_defects.

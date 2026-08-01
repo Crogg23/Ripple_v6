@@ -1,6 +1,6 @@
 {
-  "_about": "Every credential the platform runs on, with its expiry. THE single place expiry lives — preflight (loadkit/preflight.py pat_expiry_check) and scripts/check_keys.py read this. When you rotate a key, update its row HERE in the same sitting. 'expires: null' = no expiry tracked (verify at the provider if it starts failing).",
-  "updated": "2026-07-30",
+  "_about": "Every credential the platform runs on, with its expiry. THE single place expiry lives \u00e2\u20ac\u201d preflight (loadkit/preflight.py pat_expiry_check) and scripts/check_keys.py read this. When you rotate a key, update its row HERE in the same sitting. 'expires: null' = no expiry tracked (verify at the provider if it starts failing).",
+  "updated": "2026-08-01",
   "keys": [
     {
       "name": "Snowflake PAT (ACCOUNTADMIN, the one credential everything writes through)",
@@ -18,43 +18,111 @@
       "name": "Anthropic API key (recon/codegen LLM path)",
       "env_var": "ANTHROPIC_API_KEY",
       "expires": null,
-      "renew_note": "No expiry — Anthropic keys live until revoked at console.anthropic.com. Watch spend limits instead."
+      "renew_note": "No expiry \u00e2\u20ac\u201d Anthropic keys live until revoked at console.anthropic.com. Watch spend limits instead."
     },
     {
       "name": "SEC/FFIEC contact User-Agent (not a secret, but a load fails without it)",
       "env_var": "RIPPLE_CONTACT_UA",
       "expires": null,
-      "renew_note": "no expiry tracked — must contain a real email; SEC returns 403 without it."
+      "renew_note": "no expiry tracked \u00e2\u20ac\u201d must contain a real email; SEC returns 403 without it."
     },
     {
       "name": "Census ACS API key",
       "env_var": "CENSUS_API_KEY",
       "expires": null,
-      "renew_note": "no expiry tracked — Census keys don't expire; re-request at api.census.gov/data/key_signup.html if revoked."
+      "renew_note": "no expiry tracked \u00e2\u20ac\u201d Census keys don't expire; re-request at api.census.gov/data/key_signup.html if revoked."
     },
     {
       "name": "CourtListener / RECAP token",
       "env_var": "COURTLISTENER_TOKEN",
       "expires": null,
-      "renew_note": "no expiry tracked — manage at courtlistener.com profile > API token."
+      "renew_note": "no expiry tracked \u00e2\u20ac\u201d manage at courtlistener.com profile > API token."
     },
     {
       "name": "Socrata app token (portal rate limits)",
       "env_var": "SOCRATA_APP_TOKEN",
       "expires": null,
-      "renew_note": "no expiry tracked — manage at the Socrata developer portal; only affects rate limits."
+      "renew_note": "no expiry tracked \u00e2\u20ac\u201d manage at the Socrata developer portal; only affects rate limits."
     },
     {
       "name": "Ripple review-lane PAT (Reading Room Confirm/Reject writes, publish_lead.py, export_review_decisions.py)",
       "env_var": "RIPPLE_REVIEW_PAT",
       "expires": null,
-      "renew_note": "NOT YET PROVISIONED as of 2026-07-30 — missing from library-onboarding/.env entirely. Without it the Reading Room's Confirm/Reject buttons and scripts/publish_lead.py cannot write. Chris must create it in Snowsight (build-state.md pending action A00); update this row with a real expiry once issued."
+      "renew_note": "NOT YET PROVISIONED as of 2026-07-30 \u00e2\u20ac\u201d missing from library-onboarding/.env entirely. Without it the Reading Room's Confirm/Reject buttons and scripts/publish_lead.py cannot write. Chris must create it in Snowsight (build-state.md pending action A00); update this row with a real expiry once issued."
     },
     {
       "name": "Senate LDA (lobbying disclosure) API key",
       "env_var": "LDA_API_KEY",
       "expires": null,
-      "renew_note": "no expiry tracked — manage at lda.senate.gov API signup; used by scripts/senate_lda_load.py."
+      "renew_note": "no expiry tracked \u00e2\u20ac\u201d manage at lda.senate.gov API signup; used by scripts/senate_lda_load.py."
     }
-  ]
+  ],
+  "programmatic_access_tokens": {
+    "_about": "Every LIVE programmatic access token on CROGG23, refreshed by scripts/revoke_straggler_pats.py. SHOW USER PROGRAMMATIC ACCESS TOKENS is the source of truth; this mirrors the KEPT set so the ledger stops being a blind spot. Stragglers were revoked 2026-07-07.",
+    "tokens": [
+      {
+        "name": "CLAUDE_MCP_RO",
+        "user": "CROGG23",
+        "role_restriction": "CLAUDE_MCP_READONLY",
+        "expires": "2026-09-16T21:51:52Z",
+        "status": "ACTIVE"
+      },
+      {
+        "name": "INSTRUMENT_READER",
+        "user": "CROGG23",
+        "role_restriction": "RIPPLE_READER",
+        "expires": "2027-08-01T01:42:47Z",
+        "status": "ACTIVE"
+      },
+      {
+        "name": "LIBRARY_PAT",
+        "user": "CROGG23",
+        "role_restriction": "ACCOUNTADMIN",
+        "expires": "2026-10-21T16:08:31Z",
+        "status": "ACTIVE"
+      },
+      {
+        "name": "PORTAL_RECON",
+        "user": "CROGG23",
+        "role_restriction": "CLAUDE_MCP_READONLY",
+        "expires": "2026-09-19T19:01:50Z",
+        "status": "ACTIVE"
+      },
+      {
+        "name": "READER",
+        "user": "CROGG23",
+        "role_restriction": "RIPPLE_READER",
+        "expires": "2027-07-22T21:30:08Z",
+        "status": "ACTIVE"
+      },
+      {
+        "name": "RIPPLE_LOADER_PAT",
+        "user": "CROGG23",
+        "role_restriction": "RIPPLE_LOADER",
+        "expires": "2026-08-25T17:17:15Z",
+        "status": "ACTIVE"
+      },
+      {
+        "name": "RIPPLE_REVIEW_WRITER",
+        "user": "CROGG23",
+        "role_restriction": "RIPPLE_REVIEW_WRITER",
+        "expires": "2027-07-22T05:01:38Z",
+        "status": "ACTIVE"
+      },
+      {
+        "name": "RIPPLE_TRANSFORM_RW",
+        "user": "CROGG23",
+        "role_restriction": "RIPPLE_TRANSFORM_RW",
+        "expires": "2027-07-22T22:13:27Z",
+        "status": "ACTIVE"
+      },
+      {
+        "name": "WAVE3_LOAD",
+        "user": "CROGG23",
+        "role_restriction": "CLAUDE_MCP_READONLY",
+        "expires": "2026-09-19T23:14:57Z",
+        "status": "ACTIVE"
+      }
+    ]
+  }
 }

@@ -79,10 +79,15 @@ LEDGER = REPO / "infra" / "keys_ledger.json"
 # KEEP would make this script ABORT forever after it expires.
 # LIBRARY_PAT stays KEEP for now: it is the only standing write lane until the
 # scoped write PAT (action A00) exists — revisit it then.
-DROP_NAMES = frozenset({
-    "ripple_loader",
-    "RIPPLE_LOADER_PAT2",
-})
+# Lists refreshed 2026-08-01: both 07-12 DROP targets (ripple_loader,
+# RIPPLE_LOADER_PAT2) are confirmed GONE from SHOW — revoked or expired off.
+# A03 is complete. DROP is now empty; this script's remaining job is the
+# ledger refresh. Three scoped tokens minted 07-22..08-01 join KEEP:
+# RIPPLE_REVIEW_WRITER (review write lane), RIPPLE_TRANSFORM_RW (the scoped
+# write lane A00 asked for), INSTRUMENT_READER (viz read lane).
+# LIBRARY_PAT (ACCOUNTADMIN) stays KEEP only until the A00 cutover — once
+# consumers point at RIPPLE_TRANSFORM_RW, revoke it manually in Snowsight.
+DROP_NAMES: frozenset[str] = frozenset()
 KEEP_NAMES = frozenset({
     "LIBRARY_PAT",
     "RIPPLE_LOADER_PAT",
@@ -90,6 +95,9 @@ KEEP_NAMES = frozenset({
     "PORTAL_RECON",
     "WAVE3_LOAD",
     "READER",
+    "RIPPLE_REVIEW_WRITER",
+    "RIPPLE_TRANSFORM_RW",
+    "INSTRUMENT_READER",
 })
 
 
