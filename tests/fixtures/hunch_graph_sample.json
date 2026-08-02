@@ -1,0 +1,10 @@
+{
+  "meta": {"pairs_tested": 10, "gated_out": 3, "edges": 1,
+           "by_tier": {"STEEL": 1}},
+  "nodes": [{"id": "TAB_NPI_A", "rows": 1000, "domain": "health", "keys": ["NPI", "ZIP"]},
+            {"id": "TAB_NPI_B", "rows": 500, "domain": "health", "keys": ["NPI"]}],
+  "edges": [{"a": "TAB_NPI_A", "b": "TAB_NPI_B", "key": "NPI", "tier": "STEEL",
+             "a_col": "NPI", "b_col": "NPI_NUM", "mode": "value",
+             "matched": 400, "a_distinct": 900, "b_distinct": 480,
+             "match_rate": 83.3, "confidence": 0.98, "sample": ["1", "2"]}]
+}

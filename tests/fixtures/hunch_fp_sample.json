@@ -1,0 +1,32 @@
+{
+  "TAB_NPI_A": {"rows": 1000, "keys": [
+    {"column": "NPI", "key": "NPI", "tier": "STEEL", "mode": "value", "nonnull": 1000, "distinct": 900, "populated_pct": 100.0},
+    {"column": "PROVIDER_ZIP", "key": "ZIP", "tier": "GEO", "mode": "value", "nonnull": 990, "distinct": 400, "populated_pct": 99.0}]},
+  "TAB_NPI_B": {"rows": 500, "keys": [
+    {"column": "NPI_NUM", "key": "NPI", "tier": "STEEL", "mode": "value", "nonnull": 500, "distinct": 480, "populated_pct": 100.0},
+    {"column": "BILLER_NPI", "key": "NPI", "tier": "STEEL", "mode": "value", "nonnull": 250, "distinct": 240, "populated_pct": 50.0}]},
+  "TAB_NPI_LOW": {"rows": 800, "keys": [
+    {"column": "NPI", "key": "NPI", "tier": "STEEL", "mode": "value", "nonnull": 4, "distinct": 4, "populated_pct": 0.5}]},
+  "FED_CMS_NPPES": {"rows": 9000, "keys": [
+    {"column": "NPI", "key": "NPI", "tier": "STEEL", "mode": "value", "nonnull": 9000, "distinct": 9000, "populated_pct": 100.0}]},
+  "TAB_GEO_A": {"rows": 300, "keys": [
+    {"column": "COUNTY_FIPS", "key": "FIPS", "tier": "GEO", "mode": "value", "nonnull": 300, "distinct": 200, "populated_pct": 100.0},
+    {"column": "ORG_NAME", "key": "NAME", "tier": "PROBABILISTIC", "mode": "value", "nonnull": 300, "distinct": 290, "populated_pct": 100.0}]},
+  "TAB_GEO_B": {"rows": 400, "keys": [
+    {"column": "FIPS", "key": "FIPS", "tier": "GEO", "mode": "value", "nonnull": 400, "distinct": 210, "populated_pct": 100.0},
+    {"column": "COMPANY_NAME", "key": "NAME", "tier": "PROBABILISTIC", "mode": "value", "nonnull": 400, "distinct": 390, "populated_pct": 100.0}]},
+  "TAB_CCN_ONLY": {"rows": 200, "keys": [
+    {"column": "CCN", "key": "CCN", "tier": "STEEL", "mode": "value", "nonnull": 200, "distinct": 200, "populated_pct": 100.0}]},
+  "TAB_XWALK": {"rows": 1000, "keys": [
+    {"column": "CCN", "key": "CCN", "tier": "STEEL", "mode": "value", "nonnull": 990, "distinct": 985, "populated_pct": 99.0},
+    {"column": "NPI", "key": "NPI", "tier": "STEEL", "mode": "value", "nonnull": 1000, "distinct": 990, "populated_pct": 100.0}]},
+  "TAB_VOCAB": {"rows": 100, "keys": [
+    {"column": "NAICS_CODE", "key": "NAICS", "tier": "STRONG", "mode": "value", "nonnull": 100, "distinct": 50, "populated_pct": 100.0}]},
+  "TAB_VOCAB_2": {"rows": 100, "keys": [
+    {"column": "NAICS", "key": "NAICS", "tier": "STRONG", "mode": "value", "nonnull": 100, "distinct": 40, "populated_pct": 100.0}]},
+  "TAB_ZERO_KEYS": {"rows": 50, "keys": []},
+  "PORTAL_SOCRATA_X": {"rows": 10, "keys": [
+    {"column": "NPI", "key": "NPI", "tier": "STEEL", "mode": "value", "nonnull": 10, "distinct": 10, "populated_pct": 100.0}]},
+  "FED_FEC_BULK": {"rows": 10, "keys": [
+    {"column": "CMTE_ID", "key": "FEC_CMTE_ID", "tier": "STEEL", "mode": "value", "nonnull": 10, "distinct": 10, "populated_pct": 100.0}]}
+}

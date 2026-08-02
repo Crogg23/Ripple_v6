@@ -1,0 +1,3 @@
+table,key_a,col_a,key_b,col_b,rows,a_populated,b_populated,copopulated,copop_pct,distinct_pairs,max_fanout,sample,reject_reason
+TAB_XWALK,CCN,CCN,NPI,NPI,1000,990,1000,990,99.0,985,3,1>2,
+TAB_XWALK_BAD,CCN,CCN,NPI,NPI,1000,10,1000,10,1.0,10,900,1>2,fanout too high

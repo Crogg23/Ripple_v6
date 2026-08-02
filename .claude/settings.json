@@ -34,7 +34,8 @@
       "Read(//c/Users/wroge/.claude/**)",
       "Read(//c/Users/wroge/**)",
       "PowerShell($path = \"C:\\\\Users\\\\wroge\\\\.claude\\\\debug\\\\30a6d885-7ee6-4396-ad05-ee3f32ec88dd.txt\"; if \\(Test-Path $path\\) { Write-Output \"EXISTS\"; \\(Get-Content $path | Measure-Object -Line\\).Lines } else { Write-Output \"NOT FOUND\" })",
-      "Bash(python -c ' *)"
+      "Bash(python -c ' *)",
+      "Bash(awk -F: '{s+=$2} END {print \"test funcs:\",s}')"
     ]
   }
 }

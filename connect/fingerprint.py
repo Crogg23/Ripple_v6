@@ -10,8 +10,19 @@ dead key never poses as a live connection.
 Output: outputs/connect_fingerprints.json
   { "<TABLE>": {
       "rows": int,
-      "keys": [ {column, key, tier, mode, nonnull, distinct, populated_pct} ... ]
+      "fmt": 2,
+      "keys": [ {column, key, tier, mode, nonnull, distinct, populated_pct,
+                 min, max, prefixes, prefix_count} ... ]
   } }
+
+fmt 2 (2026-08-01, Hunch Engine): value keys also carry the normalized value
+RANGE (min/max) and the distinct 2-char prefix set (capped at PREFIX_CAP;
+prefix_count says whether the cap truncated it). Collected in the SAME scan —
+no extra pass. Why: partitioned ID spaces (CCN encodes facility type in its
+ranges, dockets encode the court) make zero overlap boring-by-construction;
+absence-surprise must condition on the two sides' ranges actually overlapping
+(see reports/hunch_calibration_2026-08-01.md). fmt is also the resume marker:
+run(resume=True) skips tables already fingerprinted at this format.
 """
 
 from __future__ import annotations
@@ -28,6 +39,9 @@ OUT = Path(__file__).resolve().parents[1] / "outputs" / "connect_fingerprints.js
 SKIP_TABLES = {"INTL_DEMO_QUOTES_TOSCRAPE_JS"}
 
 MAX_KEY_COLS_PER_TABLE = 16  # guard against a runaway aggregate query
+PREFIX_CAP = 128             # distinct LEFT(v,2) prefixes kept per key column
+CHECKPOINT_EVERY = 25        # partial JSON write cadence (a 2h run must survive a crash)
+FMT = 2                      # bump when per-key fields change; resume skips same-fmt entries
 
 
 def landed_tables(conn) -> list[str]:
@@ -121,39 +135,76 @@ def fingerprint_table(conn, table: str) -> dict:
         selects.append(f"COUNT({expr}) AS nn_{i}")
         if kc["mode"] == "value":
             selects.append(f"APPROX_COUNT_DISTINCT({expr}) AS nd_{i}")
+            # fmt 2: value range + prefix set, same scan (absence-null conditioning)
+            selects.append(f"MIN({expr}) AS mn_{i}")
+            selects.append(f"MAX({expr}) AS mx_{i}")
+            selects.append(f"ARRAY_SLICE(ARRAY_AGG(DISTINCT LEFT({expr}, 2)), 0, {PREFIX_CAP}) AS px_{i}")
+            selects.append(f"APPROX_COUNT_DISTINCT(LEFT({expr}, 2)) AS pn_{i}")
         else:
             selects.append(f"COUNT(DISTINCT {qc}) AS nd_{i}")
 
     stats = {}
     if selects:
         row = db.dicts(conn, f"SELECT {', '.join(selects)} FROM {db.fqn(table)}")[0]
-        for i in range(len(measured)):
-            stats[i] = (int(row[f"NN_{i}"] or 0), int(row[f"ND_{i}"] or 0))
+        for i, kc in enumerate(measured):
+            entry = {"nn": int(row[f"NN_{i}"] or 0), "nd": int(row[f"ND_{i}"] or 0)}
+            if kc["mode"] == "value":
+                px = row.get(f"PX_{i}")
+                if isinstance(px, str):
+                    px = json.loads(px)
+                entry.update({
+                    "mn": row.get(f"MN_{i}"), "mx": row.get(f"MX_{i}"),
+                    "px": sorted(px or []), "pn": int(row.get(f"PN_{i}") or 0),
+                })
+            stats[i] = entry
 
     keys_out = []
     for i, kc in enumerate(measured):
-        nn, nd = stats.get(i, (0, 0))
-        keys_out.append({
+        st = stats.get(i, {"nn": 0, "nd": 0})
+        out = {
             **kc,
-            "nonnull": nn,
-            "distinct": nd,
-            "populated_pct": round(nn / rows_total * 100, 1) if rows_total else 0.0,
-        })
-    return {"rows": rows_total, "keys": keys_out}
+            "nonnull": st["nn"],
+            "distinct": st["nd"],
+            "populated_pct": round(st["nn"] / rows_total * 100, 1) if rows_total else 0.0,
+        }
+        if kc["mode"] == "value":
+            out.update({
+                "min": st.get("mn"), "max": st.get("mx"),
+                "prefixes": st.get("px", []), "prefix_count": st.get("pn", 0),
+            })
+        keys_out.append(out)
+    return {"rows": rows_total, "fmt": FMT, "keys": keys_out}
 
 
-def run(tables: list[str] | None = None, write: bool = True) -> dict:
+def run(tables: list[str] | None = None, write: bool = True, resume: bool = False) -> dict:
+    """resume=True keeps existing SAME-FMT entries and only fingerprints the
+    rest — the crash-recovery path for the multi-hour full sweep. A fmt bump
+    naturally invalidates every old entry."""
+    result: dict = {}
+    if resume and OUT.exists():
+        prior = json.loads(OUT.read_text())
+        result = {t: e for t, e in prior.items() if e.get("fmt") == FMT}
+        if result:
+            print(f"resume: keeping {len(result)} fmt-{FMT} entries")
+
     conn = db.connect()
     try:
         targets = tables or landed_tables(conn)
-        print(f"fingerprinting {len(targets)} landed tables ...")
-        result = {}
-        for t in targets:
-            fp = fingerprint_table(conn, t)
+        todo = [t for t in targets if t not in result]
+        print(f"fingerprinting {len(todo)} landed tables ({len(targets) - len(todo)} skipped) ...")
+        for n, t in enumerate(todo, 1):
+            try:
+                fp = fingerprint_table(conn, t)
+            except Exception as exc:
+                print(f"  FAIL {t}: {exc}")
+                continue
             live = [k for k in fp["keys"] if k["populated_pct"] > 0]
             tags = ", ".join(f"{k['key']}({k['populated_pct']:.0f}%)" for k in live) or "—"
-            print(f"  {t:<42} rows={fp['rows']:>10,}  keys: {tags}")
+            print(f"  [{n}/{len(todo)}] {t:<42} rows={fp['rows']:>10,}  keys: {tags}", flush=True)
             result[t] = fp
+            if write and n % CHECKPOINT_EVERY == 0:
+                OUT.parent.mkdir(parents=True, exist_ok=True)
+                OUT.write_text(json.dumps(result, indent=2))
     finally:
         conn.close()
 

@@ -1,0 +1,946 @@
+{
+ "FED_CMS_DIALYSIS|FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "28 shared occupied buckets"
+ },
+ "FED_CMS_DIALYSIS|FED_CMS_HCRIS|CCN": {
+  "verdict": "credible",
+  "reason": "28 shared occupied buckets"
+ },
+ "FED_CMS_DIALYSIS|FED_CMS_HOME_HEALTH|CCN": {
+  "verdict": "credible",
+  "reason": "30 shared occupied buckets"
+ },
+ "FED_CMS_DIALYSIS|FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "31 shared occupied buckets"
+ },
+ "FED_CMS_DIALYSIS|FED_CMS_HOSPICE|CCN": {
+  "verdict": "credible",
+  "reason": "27 shared occupied buckets"
+ },
+ "FED_CMS_DIALYSIS|FED_CMS_HOSPICE_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "27 shared occupied buckets"
+ },
+ "FED_CMS_DIALYSIS|FED_CMS_HOSPITAL_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "29 shared occupied buckets"
+ },
+ "FED_CMS_DIALYSIS|FED_CMS_HOSPITAL_GENERAL|CCN": {
+  "verdict": "credible",
+  "reason": "27 shared occupied buckets"
+ },
+ "FED_CMS_DIALYSIS|FED_CMS_IRF|CCN": {
+  "verdict": "credible",
+  "reason": "28 shared occupied buckets"
+ },
+ "FED_CMS_DIALYSIS|FED_CMS_LTCH|CCN": {
+  "verdict": "credible",
+  "reason": "25 shared occupied buckets"
+ },
+ "FED_CMS_DIALYSIS|FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER|CCN": {
+  "verdict": "credible",
+  "reason": "26 shared occupied buckets"
+ },
+ "FED_CMS_DIALYSIS|FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE|CCN": {
+  "verdict": "credible",
+  "reason": "26 shared occupied buckets"
+ },
+ "FED_CMS_DIALYSIS|FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE|CCN": {
+  "verdict": "credible",
+  "reason": "26 shared occupied buckets"
+ },
+ "FED_CMS_DIALYSIS|FED_CMS_NURSING_HOME|CCN": {
+  "verdict": "credible",
+  "reason": "30 shared occupied buckets"
+ },
+ "FED_CMS_DIALYSIS|FED_CMS_NURSING_HOME_DEFICIENCIES|CCN": {
+  "verdict": "credible",
+  "reason": "30 shared occupied buckets"
+ },
+ "FED_CMS_DIALYSIS|FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES|CCN": {
+  "verdict": "credible",
+  "reason": "29 shared occupied buckets"
+ },
+ "FED_CMS_DIALYSIS|FED_CMS_NURSING_HOME_PENALTIES|CCN": {
+  "verdict": "credible",
+  "reason": "29 shared occupied buckets"
+ },
+ "FED_CMS_DIALYSIS|FED_CMS_POS_OTHER|CCN": {
+  "verdict": "credible",
+  "reason": "29 shared occupied buckets"
+ },
+ "FED_CMS_DIALYSIS|FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "25 shared occupied buckets"
+ },
+ "FED_CMS_DIALYSIS|FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "30 shared occupied buckets"
+ },
+ "FED_CMS_DIALYSIS|FED_NURSINGHOME411|CCN": {
+  "verdict": "credible",
+  "reason": "30 shared occupied buckets"
+ },
+ "FED_CMS_FACILITY_AFFILIATION|FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "32 shared occupied buckets"
+ },
+ "FED_CMS_FACILITY_AFFILIATION|FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "25 shared occupied buckets"
+ },
+ "FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY|FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS|CCN": {
+  "verdict": "unverifiable",
+  "reason": "histogram too sparse (non-numeric or tiny side)"
+ },
+ "FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY|FED_CMS_HOME_HEALTH|CCN": {
+  "verdict": "unverifiable",
+  "reason": "histogram too sparse (non-numeric or tiny side)"
+ },
+ "FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY|FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS|CCN": {
+  "verdict": "unverifiable",
+  "reason": "histogram too sparse (non-numeric or tiny side)"
+ },
+ "FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY|FED_CMS_POS_OTHER|CCN": {
+  "verdict": "unverifiable",
+  "reason": "histogram too sparse (non-numeric or tiny side)"
+ },
+ "FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS|FED_CMS_HCRIS|CCN": {
+  "verdict": "credible",
+  "reason": "25 shared occupied buckets"
+ },
+ "FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS|FED_CMS_HOME_HEALTH|CCN": {
+  "verdict": "credible",
+  "reason": "27 shared occupied buckets"
+ },
+ "FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS|FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "28 shared occupied buckets"
+ },
+ "FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS|FED_CMS_HOSPICE|CCN": {
+  "verdict": "credible",
+  "reason": "29 shared occupied buckets"
+ },
+ "FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS|FED_CMS_HOSPICE_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "29 shared occupied buckets"
+ },
+ "FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS|FED_CMS_HOSPITAL_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "26 shared occupied buckets"
+ },
+ "FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS|FED_CMS_HOSPITAL_GENERAL|CCN": {
+  "verdict": "credible",
+  "reason": "24 shared occupied buckets"
+ },
+ "FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS|FED_CMS_IRF|CCN": {
+  "verdict": "credible",
+  "reason": "24 shared occupied buckets"
+ },
+ "FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS|FED_CMS_LTCH|CCN": {
+  "verdict": "credible",
+  "reason": "21 shared occupied buckets"
+ },
+ "FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS|FED_CMS_MEDICARE_DIALYSIS_FACILITIES|CCN": {
+  "verdict": "unverifiable",
+  "reason": "histogram too sparse (non-numeric or tiny side)"
+ },
+ "FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS|FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER|CCN": {
+  "verdict": "credible",
+  "reason": "23 shared occupied buckets"
+ },
+ "FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS|FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE|CCN": {
+  "verdict": "credible",
+  "reason": "23 shared occupied buckets"
+ },
+ "FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS|FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE|CCN": {
+  "verdict": "credible",
+  "reason": "23 shared occupied buckets"
+ },
+ "FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS|FED_CMS_NURSING_HOME|CCN": {
+  "verdict": "credible",
+  "reason": "28 shared occupied buckets"
+ },
+ "FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS|FED_CMS_NURSING_HOME_DEFICIENCIES|CCN": {
+  "verdict": "credible",
+  "reason": "28 shared occupied buckets"
+ },
+ "FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS|FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES|CCN": {
+  "verdict": "credible",
+  "reason": "27 shared occupied buckets"
+ },
+ "FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS|FED_CMS_NURSING_HOME_PENALTIES|CCN": {
+  "verdict": "credible",
+  "reason": "27 shared occupied buckets"
+ },
+ "FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS|FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "27 shared occupied buckets"
+ },
+ "FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS|FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "28 shared occupied buckets"
+ },
+ "FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS|FED_NURSINGHOME411|CCN": {
+  "verdict": "credible",
+  "reason": "28 shared occupied buckets"
+ },
+ "FED_CMS_HCRIS|FED_CMS_HOME_HEALTH|CCN": {
+  "verdict": "credible",
+  "reason": "31 shared occupied buckets"
+ },
+ "FED_CMS_HCRIS|FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "27 shared occupied buckets"
+ },
+ "FED_CMS_HCRIS|FED_CMS_HOSPICE|CCN": {
+  "verdict": "credible",
+  "reason": "24 shared occupied buckets"
+ },
+ "FED_CMS_HCRIS|FED_CMS_HOSPICE_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "24 shared occupied buckets"
+ },
+ "FED_CMS_HCRIS|FED_CMS_NURSING_HOME|CCN": {
+  "verdict": "credible",
+  "reason": "32 shared occupied buckets"
+ },
+ "FED_CMS_HCRIS|FED_CMS_NURSING_HOME_DEFICIENCIES|CCN": {
+  "verdict": "credible",
+  "reason": "32 shared occupied buckets"
+ },
+ "FED_CMS_HCRIS|FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES|CCN": {
+  "verdict": "credible",
+  "reason": "31 shared occupied buckets"
+ },
+ "FED_CMS_HCRIS|FED_CMS_NURSING_HOME_PENALTIES|CCN": {
+  "verdict": "credible",
+  "reason": "31 shared occupied buckets"
+ },
+ "FED_CMS_HCRIS|FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "25 shared occupied buckets"
+ },
+ "FED_CMS_HCRIS|FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "32 shared occupied buckets"
+ },
+ "FED_CMS_HCRIS|FED_NURSINGHOME411|CCN": {
+  "verdict": "credible",
+  "reason": "32 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH|FED_CMS_HOSPICE|CCN": {
+  "verdict": "credible",
+  "reason": "25 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH|FED_CMS_HOSPICE_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "25 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH|FED_CMS_HOSPITAL_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "32 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH|FED_CMS_HOSPITAL_GENERAL|CCN": {
+  "verdict": "credible",
+  "reason": "31 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH|FED_CMS_IRF|CCN": {
+  "verdict": "credible",
+  "reason": "30 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH|FED_CMS_LTCH|CCN": {
+  "verdict": "credible",
+  "reason": "28 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH|FED_CMS_MEDICARE_DIALYSIS_FACILITIES|CCN": {
+  "verdict": "unverifiable",
+  "reason": "histogram too sparse (non-numeric or tiny side)"
+ },
+ "FED_CMS_HOME_HEALTH|FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER|CCN": {
+  "verdict": "credible",
+  "reason": "29 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH|FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE|CCN": {
+  "verdict": "credible",
+  "reason": "29 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH|FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE|CCN": {
+  "verdict": "credible",
+  "reason": "29 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH|FED_CMS_NURSING_HOME|CCN": {
+  "verdict": "credible",
+  "reason": "33 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH|FED_CMS_NURSING_HOME_DEFICIENCIES|CCN": {
+  "verdict": "credible",
+  "reason": "33 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH|FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES|CCN": {
+  "verdict": "credible",
+  "reason": "33 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH|FED_CMS_NURSING_HOME_PENALTIES|CCN": {
+  "verdict": "credible",
+  "reason": "33 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH|FED_CMS_POS_OTHER|CCN": {
+  "verdict": "credible",
+  "reason": "27 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH|FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "25 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH|FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "33 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH|FED_NURSINGHOME411|CCN": {
+  "verdict": "credible",
+  "reason": "33 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS|FED_CMS_HOSPICE|CCN": {
+  "verdict": "credible",
+  "reason": "26 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS|FED_CMS_HOSPICE_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "26 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS|FED_CMS_HOSPITAL_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "28 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS|FED_CMS_HOSPITAL_GENERAL|CCN": {
+  "verdict": "credible",
+  "reason": "27 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS|FED_CMS_IRF|CCN": {
+  "verdict": "credible",
+  "reason": "27 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS|FED_CMS_LTCH|CCN": {
+  "verdict": "credible",
+  "reason": "25 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS|FED_CMS_MEDICARE_DIALYSIS_FACILITIES|CCN": {
+  "verdict": "unverifiable",
+  "reason": "histogram too sparse (non-numeric or tiny side)"
+ },
+ "FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS|FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER|CCN": {
+  "verdict": "credible",
+  "reason": "26 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS|FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE|CCN": {
+  "verdict": "credible",
+  "reason": "26 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS|FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE|CCN": {
+  "verdict": "credible",
+  "reason": "26 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS|FED_CMS_NURSING_HOME|CCN": {
+  "verdict": "credible",
+  "reason": "30 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS|FED_CMS_NURSING_HOME_DEFICIENCIES|CCN": {
+  "verdict": "credible",
+  "reason": "30 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS|FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES|CCN": {
+  "verdict": "credible",
+  "reason": "30 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS|FED_CMS_NURSING_HOME_PENALTIES|CCN": {
+  "verdict": "credible",
+  "reason": "30 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS|FED_CMS_POS_OTHER|CCN": {
+  "verdict": "credible",
+  "reason": "28 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS|FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "25 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS|FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "30 shared occupied buckets"
+ },
+ "FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS|FED_NURSINGHOME411|CCN": {
+  "verdict": "credible",
+  "reason": "30 shared occupied buckets"
+ },
+ "FED_CMS_HOSPICE|FED_CMS_HOSPITAL_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "25 shared occupied buckets"
+ },
+ "FED_CMS_HOSPICE|FED_CMS_HOSPITAL_GENERAL|CCN": {
+  "verdict": "credible",
+  "reason": "24 shared occupied buckets"
+ },
+ "FED_CMS_HOSPICE|FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER|CCN": {
+  "verdict": "credible",
+  "reason": "23 shared occupied buckets"
+ },
+ "FED_CMS_HOSPICE|FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE|CCN": {
+  "verdict": "credible",
+  "reason": "23 shared occupied buckets"
+ },
+ "FED_CMS_HOSPICE|FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE|CCN": {
+  "verdict": "credible",
+  "reason": "23 shared occupied buckets"
+ },
+ "FED_CMS_HOSPICE|FED_CMS_NURSING_HOME|CCN": {
+  "verdict": "credible",
+  "reason": "26 shared occupied buckets"
+ },
+ "FED_CMS_HOSPICE|FED_CMS_NURSING_HOME_DEFICIENCIES|CCN": {
+  "verdict": "credible",
+  "reason": "26 shared occupied buckets"
+ },
+ "FED_CMS_HOSPICE|FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES|CCN": {
+  "verdict": "credible",
+  "reason": "26 shared occupied buckets"
+ },
+ "FED_CMS_HOSPICE|FED_CMS_NURSING_HOME_PENALTIES|CCN": {
+  "verdict": "credible",
+  "reason": "26 shared occupied buckets"
+ },
+ "FED_CMS_HOSPICE|FED_CMS_POS_OTHER|CCN": {
+  "verdict": "credible",
+  "reason": "29 shared occupied buckets"
+ },
+ "FED_CMS_HOSPICE|FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "24 shared occupied buckets"
+ },
+ "FED_CMS_HOSPICE|FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "26 shared occupied buckets"
+ },
+ "FED_CMS_HOSPICE|FED_NURSINGHOME411|CCN": {
+  "verdict": "credible",
+  "reason": "26 shared occupied buckets"
+ },
+ "FED_CMS_HOSPICE_ENROLLMENTS|FED_CMS_HOSPITAL_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "25 shared occupied buckets"
+ },
+ "FED_CMS_HOSPICE_ENROLLMENTS|FED_CMS_HOSPITAL_GENERAL|CCN": {
+  "verdict": "credible",
+  "reason": "24 shared occupied buckets"
+ },
+ "FED_CMS_HOSPICE_ENROLLMENTS|FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER|CCN": {
+  "verdict": "credible",
+  "reason": "23 shared occupied buckets"
+ },
+ "FED_CMS_HOSPICE_ENROLLMENTS|FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE|CCN": {
+  "verdict": "credible",
+  "reason": "23 shared occupied buckets"
+ },
+ "FED_CMS_HOSPICE_ENROLLMENTS|FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE|CCN": {
+  "verdict": "credible",
+  "reason": "23 shared occupied buckets"
+ },
+ "FED_CMS_HOSPICE_ENROLLMENTS|FED_CMS_NURSING_HOME|CCN": {
+  "verdict": "credible",
+  "reason": "26 shared occupied buckets"
+ },
+ "FED_CMS_HOSPICE_ENROLLMENTS|FED_CMS_NURSING_HOME_DEFICIENCIES|CCN": {
+  "verdict": "credible",
+  "reason": "26 shared occupied buckets"
+ },
+ "FED_CMS_HOSPICE_ENROLLMENTS|FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES|CCN": {
+  "verdict": "credible",
+  "reason": "26 shared occupied buckets"
+ },
+ "FED_CMS_HOSPICE_ENROLLMENTS|FED_CMS_NURSING_HOME_PENALTIES|CCN": {
+  "verdict": "credible",
+  "reason": "26 shared occupied buckets"
+ },
+ "FED_CMS_HOSPICE_ENROLLMENTS|FED_CMS_POS_OTHER|CCN": {
+  "verdict": "credible",
+  "reason": "29 shared occupied buckets"
+ },
+ "FED_CMS_HOSPICE_ENROLLMENTS|FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "24 shared occupied buckets"
+ },
+ "FED_CMS_HOSPICE_ENROLLMENTS|FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "26 shared occupied buckets"
+ },
+ "FED_CMS_HOSPICE_ENROLLMENTS|FED_NURSINGHOME411|CCN": {
+  "verdict": "credible",
+  "reason": "26 shared occupied buckets"
+ },
+ "FED_CMS_HOSPITAL_ENROLLMENTS|FED_CMS_NURSING_HOME|CCN": {
+  "verdict": "credible",
+  "reason": "33 shared occupied buckets"
+ },
+ "FED_CMS_HOSPITAL_ENROLLMENTS|FED_CMS_NURSING_HOME_DEFICIENCIES|CCN": {
+  "verdict": "credible",
+  "reason": "33 shared occupied buckets"
+ },
+ "FED_CMS_HOSPITAL_ENROLLMENTS|FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES|CCN": {
+  "verdict": "credible",
+  "reason": "32 shared occupied buckets"
+ },
+ "FED_CMS_HOSPITAL_ENROLLMENTS|FED_CMS_NURSING_HOME_PENALTIES|CCN": {
+  "verdict": "credible",
+  "reason": "32 shared occupied buckets"
+ },
+ "FED_CMS_HOSPITAL_ENROLLMENTS|FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "25 shared occupied buckets"
+ },
+ "FED_CMS_HOSPITAL_ENROLLMENTS|FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "33 shared occupied buckets"
+ },
+ "FED_CMS_HOSPITAL_ENROLLMENTS|FED_NURSINGHOME411|CCN": {
+  "verdict": "credible",
+  "reason": "33 shared occupied buckets"
+ },
+ "FED_CMS_HOSPITAL_GENERAL|FED_CMS_NURSING_HOME|CCN": {
+  "verdict": "credible",
+  "reason": "30 shared occupied buckets"
+ },
+ "FED_CMS_HOSPITAL_GENERAL|FED_CMS_NURSING_HOME_DEFICIENCIES|CCN": {
+  "verdict": "credible",
+  "reason": "30 shared occupied buckets"
+ },
+ "FED_CMS_HOSPITAL_GENERAL|FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES|CCN": {
+  "verdict": "credible",
+  "reason": "30 shared occupied buckets"
+ },
+ "FED_CMS_HOSPITAL_GENERAL|FED_CMS_NURSING_HOME_PENALTIES|CCN": {
+  "verdict": "credible",
+  "reason": "30 shared occupied buckets"
+ },
+ "FED_CMS_HOSPITAL_GENERAL|FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "24 shared occupied buckets"
+ },
+ "FED_CMS_HOSPITAL_GENERAL|FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "30 shared occupied buckets"
+ },
+ "FED_CMS_HOSPITAL_GENERAL|FED_NURSINGHOME411|CCN": {
+  "verdict": "credible",
+  "reason": "30 shared occupied buckets"
+ },
+ "FED_CMS_IRF|FED_CMS_NURSING_HOME|CCN": {
+  "verdict": "credible",
+  "reason": "31 shared occupied buckets"
+ },
+ "FED_CMS_IRF|FED_CMS_NURSING_HOME_DEFICIENCIES|CCN": {
+  "verdict": "credible",
+  "reason": "31 shared occupied buckets"
+ },
+ "FED_CMS_IRF|FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES|CCN": {
+  "verdict": "credible",
+  "reason": "30 shared occupied buckets"
+ },
+ "FED_CMS_IRF|FED_CMS_NURSING_HOME_PENALTIES|CCN": {
+  "verdict": "credible",
+  "reason": "30 shared occupied buckets"
+ },
+ "FED_CMS_IRF|FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "25 shared occupied buckets"
+ },
+ "FED_CMS_IRF|FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "31 shared occupied buckets"
+ },
+ "FED_CMS_IRF|FED_NURSINGHOME411|CCN": {
+  "verdict": "credible",
+  "reason": "31 shared occupied buckets"
+ },
+ "FED_CMS_LTCH|FED_CMS_NURSING_HOME|CCN": {
+  "verdict": "credible",
+  "reason": "27 shared occupied buckets"
+ },
+ "FED_CMS_LTCH|FED_CMS_NURSING_HOME_DEFICIENCIES|CCN": {
+  "verdict": "credible",
+  "reason": "27 shared occupied buckets"
+ },
+ "FED_CMS_LTCH|FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES|CCN": {
+  "verdict": "credible",
+  "reason": "27 shared occupied buckets"
+ },
+ "FED_CMS_LTCH|FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "27 shared occupied buckets"
+ },
+ "FED_CMS_LTCH|FED_NURSINGHOME411|CCN": {
+  "verdict": "credible",
+  "reason": "27 shared occupied buckets"
+ },
+ "FED_CMS_MEDICARE_DIALYSIS_FACILITIES|FED_CMS_NURSING_HOME|CCN": {
+  "verdict": "unverifiable",
+  "reason": "histogram too sparse (non-numeric or tiny side)"
+ },
+ "FED_CMS_MEDICARE_DIALYSIS_FACILITIES|FED_CMS_NURSING_HOME_DEFICIENCIES|CCN": {
+  "verdict": "unverifiable",
+  "reason": "histogram too sparse (non-numeric or tiny side)"
+ },
+ "FED_CMS_MEDICARE_DIALYSIS_FACILITIES|FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES|CCN": {
+  "verdict": "unverifiable",
+  "reason": "histogram too sparse (non-numeric or tiny side)"
+ },
+ "FED_CMS_MEDICARE_DIALYSIS_FACILITIES|FED_CMS_NURSING_HOME_PENALTIES|CCN": {
+  "verdict": "unverifiable",
+  "reason": "histogram too sparse (non-numeric or tiny side)"
+ },
+ "FED_CMS_MEDICARE_DIALYSIS_FACILITIES|FED_CMS_POS_OTHER|CCN": {
+  "verdict": "unverifiable",
+  "reason": "histogram too sparse (non-numeric or tiny side)"
+ },
+ "FED_CMS_MEDICARE_DIALYSIS_FACILITIES|FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS|CCN": {
+  "verdict": "unverifiable",
+  "reason": "histogram too sparse (non-numeric or tiny side)"
+ },
+ "FED_CMS_MEDICARE_DIALYSIS_FACILITIES|FED_NURSINGHOME411|CCN": {
+  "verdict": "unverifiable",
+  "reason": "histogram too sparse (non-numeric or tiny side)"
+ },
+ "FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER|FED_CMS_NURSING_HOME|CCN": {
+  "verdict": "credible",
+  "reason": "30 shared occupied buckets"
+ },
+ "FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER|FED_CMS_NURSING_HOME_DEFICIENCIES|CCN": {
+  "verdict": "credible",
+  "reason": "30 shared occupied buckets"
+ },
+ "FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER|FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES|CCN": {
+  "verdict": "credible",
+  "reason": "30 shared occupied buckets"
+ },
+ "FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER|FED_CMS_NURSING_HOME_PENALTIES|CCN": {
+  "verdict": "credible",
+  "reason": "30 shared occupied buckets"
+ },
+ "FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER|FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "24 shared occupied buckets"
+ },
+ "FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER|FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "30 shared occupied buckets"
+ },
+ "FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER|FED_NURSINGHOME411|CCN": {
+  "verdict": "credible",
+  "reason": "30 shared occupied buckets"
+ },
+ "FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE|FED_CMS_NURSING_HOME|CCN": {
+  "verdict": "credible",
+  "reason": "30 shared occupied buckets"
+ },
+ "FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE|FED_CMS_NURSING_HOME_DEFICIENCIES|CCN": {
+  "verdict": "credible",
+  "reason": "30 shared occupied buckets"
+ },
+ "FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE|FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES|CCN": {
+  "verdict": "credible",
+  "reason": "30 shared occupied buckets"
+ },
+ "FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE|FED_CMS_NURSING_HOME_PENALTIES|CCN": {
+  "verdict": "credible",
+  "reason": "30 shared occupied buckets"
+ },
+ "FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE|FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "24 shared occupied buckets"
+ },
+ "FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE|FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "30 shared occupied buckets"
+ },
+ "FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE|FED_NURSINGHOME411|CCN": {
+  "verdict": "credible",
+  "reason": "30 shared occupied buckets"
+ },
+ "FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE|FED_CMS_NURSING_HOME|CCN": {
+  "verdict": "credible",
+  "reason": "31 shared occupied buckets"
+ },
+ "FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE|FED_CMS_NURSING_HOME_DEFICIENCIES|CCN": {
+  "verdict": "credible",
+  "reason": "31 shared occupied buckets"
+ },
+ "FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE|FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES|CCN": {
+  "verdict": "credible",
+  "reason": "31 shared occupied buckets"
+ },
+ "FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE|FED_CMS_NURSING_HOME_PENALTIES|CCN": {
+  "verdict": "credible",
+  "reason": "31 shared occupied buckets"
+ },
+ "FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE|FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "24 shared occupied buckets"
+ },
+ "FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE|FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "31 shared occupied buckets"
+ },
+ "FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE|FED_NURSINGHOME411|CCN": {
+  "verdict": "credible",
+  "reason": "31 shared occupied buckets"
+ },
+ "FED_CMS_NURSING_HOME|FED_CMS_POS_OTHER|CCN": {
+  "verdict": "credible",
+  "reason": "28 shared occupied buckets"
+ },
+ "FED_CMS_NURSING_HOME|FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "25 shared occupied buckets"
+ },
+ "FED_CMS_NURSING_HOME_DEFICIENCIES|FED_CMS_POS_OTHER|CCN": {
+  "verdict": "credible",
+  "reason": "28 shared occupied buckets"
+ },
+ "FED_CMS_NURSING_HOME_DEFICIENCIES|FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "25 shared occupied buckets"
+ },
+ "FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES|FED_CMS_POS_OTHER|CCN": {
+  "verdict": "credible",
+  "reason": "27 shared occupied buckets"
+ },
+ "FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES|FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "25 shared occupied buckets"
+ },
+ "FED_CMS_NURSING_HOME_PENALTIES|FED_CMS_POS_OTHER|CCN": {
+  "verdict": "credible",
+  "reason": "27 shared occupied buckets"
+ },
+ "FED_CMS_NURSING_HOME_PENALTIES|FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "25 shared occupied buckets"
+ },
+ "FED_CMS_POS_OTHER|FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "28 shared occupied buckets"
+ },
+ "FED_CMS_POS_OTHER|FED_NURSINGHOME411|CCN": {
+  "verdict": "credible",
+  "reason": "28 shared occupied buckets"
+ },
+ "FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS|FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS|CCN": {
+  "verdict": "credible",
+  "reason": "25 shared occupied buckets"
+ },
+ "FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS|FED_NURSINGHOME411|CCN": {
+  "verdict": "credible",
+  "reason": "25 shared occupied buckets"
+ },
+ "FED_DOL_FORM5500|FED_IRS_AUTO_REVOCATIONS|EIN": {
+  "verdict": "credible",
+  "reason": "17 shared occupied buckets"
+ },
+ "FED_IRS_990_EFILE_INDEX|FED_SEC_DERA_SUB_2024Q1|EIN": {
+  "verdict": "credible",
+  "reason": "37 shared occupied buckets"
+ },
+ "FED_IRS_990_EFILE_INDEX|FED_SEC_DERA_SUB_2024Q2|EIN": {
+  "verdict": "credible",
+  "reason": "37 shared occupied buckets"
+ },
+ "FED_IRS_990_EFILE_INDEX|FED_SEC_DERA_SUB_2024Q3|EIN": {
+  "verdict": "credible",
+  "reason": "37 shared occupied buckets"
+ },
+ "FED_IRS_990_EFILE_INDEX|FED_SEC_DERA_SUB_2024Q4|EIN": {
+  "verdict": "credible",
+  "reason": "37 shared occupied buckets"
+ },
+ "FED_IRS_990_EFILE_INDEX|FED_SEC_DERA_SUB_2025Q1|EIN": {
+  "verdict": "credible",
+  "reason": "37 shared occupied buckets"
+ },
+ "FED_IRS_990_EFILE_INDEX|FED_SEC_DERA_SUB_2025Q2|EIN": {
+  "verdict": "credible",
+  "reason": "37 shared occupied buckets"
+ },
+ "FED_IRS_990_EFILE_INDEX|FED_SEC_DERA_SUB_2025Q3|EIN": {
+  "verdict": "credible",
+  "reason": "37 shared occupied buckets"
+ },
+ "FED_IRS_990_EFILE_INDEX|FED_SEC_DERA_SUB_2025Q4|EIN": {
+  "verdict": "credible",
+  "reason": "37 shared occupied buckets"
+ },
+ "FED_IRS_990_EFILE_INDEX|FED_SEC_DERA_SUB_2026Q1|EIN": {
+  "verdict": "credible",
+  "reason": "40 shared occupied buckets"
+ },
+ "FED_IRS_990_EFILE_INDEX|FED_SEC_EDGAR_FINANCIALS|EIN": {
+  "verdict": "credible",
+  "reason": "37 shared occupied buckets"
+ },
+ "FED_IRS_AUTO_REVOCATIONS|FED_OSHA_ITA_CASE_DETAIL_2023|EIN": {
+  "verdict": "credible",
+  "reason": "18 shared occupied buckets"
+ },
+ "FED_IRS_AUTO_REVOCATIONS|FED_OSHA_ITA_CASE_DETAIL_2024|EIN": {
+  "verdict": "credible",
+  "reason": "19 shared occupied buckets"
+ },
+ "FED_IRS_AUTO_REVOCATIONS|FED_OSHA_ITA_CASE_DETAIL_2025|EIN": {
+  "verdict": "credible",
+  "reason": "18 shared occupied buckets"
+ },
+ "FED_IRS_AUTO_REVOCATIONS|FED_SEC_DERA_SUB_2024Q2|EIN": {
+  "verdict": "credible",
+  "reason": "17 shared occupied buckets"
+ },
+ "FED_IRS_AUTO_REVOCATIONS|FED_SEC_DERA_SUB_2024Q3|EIN": {
+  "verdict": "credible",
+  "reason": "17 shared occupied buckets"
+ },
+ "FED_IRS_AUTO_REVOCATIONS|FED_SEC_DERA_SUB_2024Q4|EIN": {
+  "verdict": "credible",
+  "reason": "17 shared occupied buckets"
+ },
+ "FED_IRS_AUTO_REVOCATIONS|FED_SEC_DERA_SUB_2025Q1|EIN": {
+  "verdict": "credible",
+  "reason": "17 shared occupied buckets"
+ },
+ "FED_IRS_AUTO_REVOCATIONS|FED_SEC_DERA_SUB_2025Q2|EIN": {
+  "verdict": "credible",
+  "reason": "17 shared occupied buckets"
+ },
+ "FED_IRS_AUTO_REVOCATIONS|FED_SEC_DERA_SUB_2025Q3|EIN": {
+  "verdict": "credible",
+  "reason": "17 shared occupied buckets"
+ },
+ "FED_IRS_AUTO_REVOCATIONS|FED_SEC_DERA_SUB_2025Q4|EIN": {
+  "verdict": "credible",
+  "reason": "17 shared occupied buckets"
+ },
+ "FED_IRS_AUTO_REVOCATIONS|FED_SEC_EDGAR_FINANCIALS|EIN": {
+  "verdict": "credible",
+  "reason": "17 shared occupied buckets"
+ },
+ "FED_IRS_BMF|FED_SEC_DERA_SUB_2024Q1|EIN": {
+  "verdict": "credible",
+  "reason": "37 shared occupied buckets"
+ },
+ "FED_IRS_BMF|FED_SEC_DERA_SUB_2024Q2|EIN": {
+  "verdict": "credible",
+  "reason": "37 shared occupied buckets"
+ },
+ "FED_IRS_BMF|FED_SEC_DERA_SUB_2024Q3|EIN": {
+  "verdict": "credible",
+  "reason": "37 shared occupied buckets"
+ },
+ "FED_IRS_BMF|FED_SEC_DERA_SUB_2024Q4|EIN": {
+  "verdict": "credible",
+  "reason": "37 shared occupied buckets"
+ },
+ "FED_IRS_BMF|FED_SEC_DERA_SUB_2025Q1|EIN": {
+  "verdict": "credible",
+  "reason": "37 shared occupied buckets"
+ },
+ "FED_IRS_BMF|FED_SEC_DERA_SUB_2025Q2|EIN": {
+  "verdict": "credible",
+  "reason": "37 shared occupied buckets"
+ },
+ "FED_IRS_BMF|FED_SEC_DERA_SUB_2025Q3|EIN": {
+  "verdict": "credible",
+  "reason": "37 shared occupied buckets"
+ },
+ "FED_IRS_BMF|FED_SEC_DERA_SUB_2025Q4|EIN": {
+  "verdict": "credible",
+  "reason": "37 shared occupied buckets"
+ },
+ "FED_IRS_BMF|FED_SEC_DERA_SUB_2026Q1|EIN": {
+  "verdict": "credible",
+  "reason": "37 shared occupied buckets"
+ },
+ "FED_IRS_BMF|FED_SEC_EDGAR_FINANCIALS|EIN": {
+  "verdict": "credible",
+  "reason": "37 shared occupied buckets"
+ },
+ "FED_IRS_PUB78_ELIGIBLE_DONEES|FED_SEC_DERA_SUB_2024Q2|EIN": {
+  "verdict": "credible",
+  "reason": "15 shared occupied buckets"
+ },
+ "FED_IRS_PUB78_ELIGIBLE_DONEES|FED_SEC_DERA_SUB_2024Q3|EIN": {
+  "verdict": "credible",
+  "reason": "15 shared occupied buckets"
+ },
+ "FED_IRS_PUB78_ELIGIBLE_DONEES|FED_SEC_DERA_SUB_2024Q4|EIN": {
+  "verdict": "credible",
+  "reason": "15 shared occupied buckets"
+ },
+ "FED_IRS_PUB78_ELIGIBLE_DONEES|FED_SEC_DERA_SUB_2025Q1|EIN": {
+  "verdict": "credible",
+  "reason": "15 shared occupied buckets"
+ },
+ "FED_IRS_PUB78_ELIGIBLE_DONEES|FED_SEC_DERA_SUB_2025Q2|EIN": {
+  "verdict": "credible",
+  "reason": "15 shared occupied buckets"
+ },
+ "FED_IRS_PUB78_ELIGIBLE_DONEES|FED_SEC_DERA_SUB_2025Q3|EIN": {
+  "verdict": "credible",
+  "reason": "15 shared occupied buckets"
+ },
+ "FED_IRS_PUB78_ELIGIBLE_DONEES|FED_SEC_DERA_SUB_2025Q4|EIN": {
+  "verdict": "credible",
+  "reason": "15 shared occupied buckets"
+ },
+ "FED_IRS_PUB78_ELIGIBLE_DONEES|FED_SEC_EDGAR_FINANCIALS|EIN": {
+  "verdict": "credible",
+  "reason": "15 shared occupied buckets"
+ },
+ "FED_IRS_REVOCATION|FED_SEC_DERA_SUB_2024Q1|EIN": {
+  "verdict": "credible",
+  "reason": "37 shared occupied buckets"
+ },
+ "FED_IRS_REVOCATION|FED_SEC_DERA_SUB_2024Q2|EIN": {
+  "verdict": "credible",
+  "reason": "37 shared occupied buckets"
+ },
+ "FED_IRS_REVOCATION|FED_SEC_DERA_SUB_2024Q3|EIN": {
+  "verdict": "credible",
+  "reason": "37 shared occupied buckets"
+ },
+ "FED_IRS_REVOCATION|FED_SEC_DERA_SUB_2024Q4|EIN": {
+  "verdict": "credible",
+  "reason": "37 shared occupied buckets"
+ },
+ "FED_IRS_REVOCATION|FED_SEC_DERA_SUB_2025Q1|EIN": {
+  "verdict": "credible",
+  "reason": "37 shared occupied buckets"
+ },
+ "FED_IRS_REVOCATION|FED_SEC_DERA_SUB_2025Q2|EIN": {
+  "verdict": "credible",
+  "reason": "37 shared occupied buckets"
+ },
+ "FED_IRS_REVOCATION|FED_SEC_DERA_SUB_2025Q3|EIN": {
+  "verdict": "credible",
+  "reason": "37 shared occupied buckets"
+ },
+ "FED_IRS_REVOCATION|FED_SEC_DERA_SUB_2025Q4|EIN": {
+  "verdict": "credible",
+  "reason": "37 shared occupied buckets"
+ },
+ "FED_IRS_REVOCATION|FED_SEC_DERA_SUB_2026Q1|EIN": {
+  "verdict": "credible",
+  "reason": "37 shared occupied buckets"
+ },
+ "FED_IRS_REVOCATION|FED_SEC_EDGAR_FINANCIALS|EIN": {
+  "verdict": "credible",
+  "reason": "37 shared occupied buckets"
+ }
+}
