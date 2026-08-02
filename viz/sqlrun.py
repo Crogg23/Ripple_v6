@@ -290,7 +290,13 @@ def _is_conn_error(exc) -> bool:
 
 def _is_monitor_suspended(exc) -> bool:
     text = str(exc).lower()
-    return "resource monitor" in text and "suspend" in text
+    # Two different messages, same cause: the warehouse gets SUSPENDED while
+    # running, and refuses to RESUME once cold. The resume wording ("cannot be
+    # resumed because resource monitor X has exceeded its quota") used to slip
+    # past a bare "suspend" check and surface as a raw connector traceback
+    # (2026-08-02, live: SERVE_WH / SERVE_MON).
+    return "resource monitor" in text and (
+        "suspend" in text or "exceeded its quota" in text or "cannot be resumed" in text)
 
 
 # --------------------------------------------------------------------------- #

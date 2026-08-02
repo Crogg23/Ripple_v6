@@ -40,6 +40,17 @@ dash>=3.0                    # viz/atlas_app.py -- the Library Atlas (Plotly + D
                              #   `python -m connect all` on a clean clone.
 streamlit==1.45.1            # serve/ apps (dossier, reading room, workbench)
 
+# --- The studio pipeline (playground/workbench.ipynb) ----------------------
+# Three stages: matplotlib draws the vectors -> skia applies real blur/shadow/
+# blend -> Pillow composites and writes the PNG. All three publish prebuilt
+# wheels for macOS (arm64 + x86_64) and Windows on py3.10-3.14, so a clean
+# `pip install -r requirements.txt` needs no compiler on either machine.
+matplotlib>=3.9              # the drafting stage: axes, scales, labels
+pillow>=11.0                 # the compositing stage: stack layers, write files
+skia-python>=138             # the effects stage: the engine behind Chrome's
+                             #   box-shadow/filter -- matplotlib has no blur
+ipykernel>=6.29              # so VS Code can run the notebook
+
 # --- CLI / config ----------------------------------------------------------
 rich==13.9.4                 # checkpoint UI (checkpoint.py)
                              #   NOTE: not installed locally; pinned to a recent
