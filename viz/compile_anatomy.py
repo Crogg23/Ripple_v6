@@ -1,6 +1,10 @@
 """
 Library anatomy compiler.
 
+DEPRECATED 2026-08-02: superseded by viz/compile_library.py, which covers all
+1,043 tables in one payload. Kept only because docs/library-anatomy.html and
+docs/library-atlas.html still read anatomy.json via --inline.
+
 Reads what the Library actually IS -- from files already on disk, zero
 Snowflake cost -- and bakes three deterministic layouts, one per candidate
 visual paradigm. Heavy thinking happens HERE, at build time; the renderer just

@@ -1,6 +1,10 @@
 """
 DEEPFIELD atlas compiler.
 
+DEPRECATED 2026-08-02: superseded by viz/compile_library.py (its presence
+taxonomy and honesty math live on there). Kept only because docs/deepfield.html
+still reads atlas.json via --inline.
+
 Reads the connect engine's outputs and bakes a deterministic layout for the
 Library's structural map. Heavy thinking happens HERE, at build time; the
 renderer just draws a file (constitution section 7: AI/compute is a build-time
