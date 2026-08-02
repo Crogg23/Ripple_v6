@@ -52,28 +52,52 @@ FINGERPRINTS = ROOT / "outputs" / "connect_fingerprints.json"
 INVENTORY = ROOT / "outputs" / "thelibrary_inventory.json"
 CONTENT = ROOT / "outputs" / "thelibrary_content.json"
 OUT = ROOT / "outputs" / "anatomy.json"
-HTML = ROOT / "docs" / "library-anatomy.html"
+# Two consumers, one payload: the study page that explains the three lenses,
+# and the atlas that is the actual tool.
+HTML_PAGES = [
+    ROOT / "docs" / "library-anatomy.html",
+    ROOT / "docs" / "library-atlas.html",
+]
 
 START = "/*ANATOMY_START*/"
 END = "/*ANATOMY_END*/"
 
 # The confidence ladder. Meaning and ordering are sacred (design brief D2) --
 # strongest first, and a weaker link may never be drawn like a stronger one.
+# The internal names stay, because they are what the warehouse and the code
+# call these things. But nobody outside this repo knows what "CORROBORATED"
+# means, so every one of them ships with words a person can read.
 LADDER = ["STEEL", "STRONG", "BRIDGE", "CORROBORATED", "GEO", "PROBABILISTIC"]
+
+LADDER_LABELS = [
+    ("Same ID number", "Both records carry the same government ID -- the same "
+                       "licence number, the same tax number. Same thing, no doubt."),
+    ("Same industry code", "They share an industry or sector code. Very likely "
+                           "the same thing, not quite certain."),
+    ("Through a third file", "Not linked directly. A third dataset knows them "
+                             "both, so we can get from one to the other."),
+    ("Same name and place", "Same name, same location. Better than a name on "
+                            "its own -- still not proof."),
+    ("Same place only", "Only the location lines up. A hint, nothing more."),
+    ("Similar name only", "The names look alike. That's a hunch, and a person "
+                          "has to check it."),
+]
 
 # The pipeline stages, in run order. This IS the functional infrastructure:
 # every object in the warehouse is doing exactly one of these five jobs.
 STAGES = [
-    ("intake", "INTAKE", "Raw landing tables. Whatever the agency published, "
-                         "as published. Nothing cleaned, nothing dropped."),
-    ("staging", "STAGING", "One view per source. Types cast, columns renamed, "
-                           "1:1 with intake. The translation layer."),
-    ("bridge", "BRIDGE", "The few places several sources are welded into one "
-                         "record before anything reads them."),
-    ("shelf", "SHELVES", "The finished, queryable tables, filed by subject. "
-                         "This is what an investigation actually reads."),
-    ("desk", "THE DESK", "Where the machine hands work to a human. Queues of "
-                         "flagged units awaiting sign-off."),
+    ("intake", "AS IT ARRIVED", "Raw files, exactly as the agency published "
+                                "them. Nothing cleaned, nothing thrown away."),
+    ("staging", "TIDIED UP", "The same data, made usable: dates turned into "
+                             "dates, columns given real names. One for each "
+                             "raw file."),
+    ("bridge", "COMBINED", "The few places where several sources are welded "
+                           "into one record before anything reads them."),
+    ("shelf", "READY TO USE", "The finished tables, sorted by subject. This is "
+                              "what an investigation actually reads."),
+    ("desk", "NEEDS A PERSON", "The end of the line: lists of flagged people "
+                               "and companies waiting for someone to check "
+                               "them."),
 ]
 
 # Review-schema models are marts, but functionally they are the end of the
@@ -349,7 +373,23 @@ def build():
         })
     convergence.sort(key=lambda c: (-len(c["feeds"]), c["name"]))
 
+    layouts = {
+        "refinery": layout_refinery(objects, lineage),
+        "constellation": layout_constellation(tables, edges),
+        "stacks": layout_stacks(tables),
+    }
+
+    # The 368 charted tables are the spine that exists in every lens. Everything
+    # else in the refinery (staging views, shelves, the desk) is context that
+    # only that lens has an opinion about. xref[i] is charted table i's seat in
+    # the refinery, or -1 -- the renderer needs it to tween a node between
+    # lenses instead of cutting.
+    seat = {n["id"]: i for i, n in enumerate(layouts["refinery"]["nodes"])
+            if n["s"] == "intake"}
+    xref = [seat.get(t["n"], -1) for t in tables]
+
     payload = {
+        "xref": xref,
         "meta": {
             "charted": len(tables),
             "joins": len(edges),
@@ -361,16 +401,13 @@ def build():
             "connected_rows": sum(t["rows"] for t in tables if t["deg"] > 0),
         },
         "ladder": LADDER,
+        "ladder_labels": [list(x) for x in LADDER_LABELS],
         "stages": stages,
         "flows": flows,
         "convergence": convergence[:24],
         "tables": tables,
         "edges": edges,
-        "layouts": {
-            "refinery": layout_refinery(objects, lineage),
-            "constellation": layout_constellation(tables, edges),
-            "stacks": layout_stacks(tables),
-        },
+        "layouts": layouts,
     }
     return payload
 
@@ -388,9 +425,15 @@ def objects_desc(objects, name):
 # will land in. The renderer fits that box uniformly -- so nothing is ever
 # stretched, and no layout wastes half the element on letterbox bars.
 
-BOX_REFINERY = (1600, 800)
-BOX_CONSTELLATION = (1600, 900)
-BOX_STACKS = (1600, 900)
+# All three lenses share ONE coordinate box. That is not tidiness -- it is what
+# lets a table hold its identity while the organising idea changes underneath
+# it. Switching lens tweens the same node from one position to another instead
+# of destroying it and drawing a new one, so you can watch the Library
+# re-organise rather than being shown a different picture and asked to trust it.
+BOX = (1600, 900)
+BOX_REFINERY = BOX
+BOX_CONSTELLATION = BOX
+BOX_STACKS = BOX
 
 
 def layout_refinery(objects, lineage):
@@ -567,22 +610,25 @@ def layout_stacks(tables):
 
 
 def inline(payload):
-    if not HTML.exists():
-        raise SystemExit(f"missing {HTML} -- write the page first")
-    src = HTML.read_text(encoding="utf-8")
-    i, j = src.find(START), src.find(END)
-    if i < 0 or j < 0:
-        raise SystemExit(f"missing {START}/{END} markers in {HTML}")
     blob = json.dumps(payload, separators=(",", ":"), sort_keys=True)
-    out = src[: i + len(START)] + "\nconst ANATOMY=" + blob + ";\n" + src[j:]
-    HTML.write_text(out, encoding="utf-8")
-    return len(blob)
+    done = []
+    for page in HTML_PAGES:
+        if not page.exists():
+            raise SystemExit(f"missing {page} -- write the page first")
+        src = page.read_text(encoding="utf-8")
+        i, j = src.find(START), src.find(END)
+        if i < 0 or j < 0:
+            raise SystemExit(f"missing {START}/{END} markers in {page}")
+        page.write_text(src[: i + len(START)] + "\nconst ANATOMY=" + blob + ";\n"
+                        + src[j:], encoding="utf-8")
+        done.append(page.name)
+    return len(blob), done
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--inline", action="store_true",
-                    help="also inject the payload into docs/library-anatomy.html")
+                    help="also inject the payload into the standalone HTML pages")
     args = ap.parse_args()
 
     payload = build()
@@ -594,8 +640,8 @@ def main():
     print(f"  dbt objects      {m['dbt_objects']}  ({m['lineage_edges']} lineage edges)")
     print(f"  domains resolved {m['domains_resolved']}/{m['charted']}")
     if args.inline:
-        n = inline(payload)
-        print(f"  inlined {n/1024:.0f} KB into {HTML.name}")
+        n, pages = inline(payload)
+        print(f"  inlined {n/1024:.0f} KB into {', '.join(pages)}")
 
 
 if __name__ == "__main__":

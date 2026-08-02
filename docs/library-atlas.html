@@ -3,403 +3,184 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>The Library — Anatomy: three ways to draw it</title>
+<title>The Library — Atlas</title>
 <style>
 :root{
   --surface:#0d1117; --panel:#121a24; --panel-2:#0f1620;
   --ink:#e8eaed; --ink-2:#9aa4b2; --ink-3:#6b7684;
-  --rule:rgba(255,255,255,.09); --rule-2:rgba(255,255,255,.05);
-
-  /* Confidence ladder — ORDINAL, one hue, strongest brightest.
-     Meaning + ordering are inherited and sacred (design brief D2);
-     the ramp is new. Validated: monotone L, all step gaps >= .06,
-     dimmest step 2.53:1 on this surface. A weak link now literally
-     reads weaker instead of merely differently-coloured. */
-  --t0:#fbc06a; --t1:#eda748; --t2:#d98d33;
-  --t3:#bd7327; --t4:#9d5c1e; --t5:#7d4818;
-
-  /* Pipeline stage — ORDINAL, one hue, brightening as material is refined.
-     Raw intake is dim; the human desk at the end is brightest.
-     Validated: monotone, dimmest step 3.51:1 on this surface. */
+  --rule:rgba(255,255,255,.10); --rule-2:rgba(255,255,255,.05);
+  /* How sure we are a link is real. One colour, brightest = surest, fading
+     down to a hunch. Checked for contrast against this background. */
+  --t0:#fbc06a; --t1:#eda748; --t2:#d98d33; --t3:#bd7327; --t4:#9d5c1e; --t5:#7d4818;
+  /* The five steps data goes through, getting brighter as it gets more useful. */
   --s0:#256abf; --s1:#3987e5; --s2:#6da7ec; --s3:#9ec5f4; --s4:#cde2fb;
 }
 *{box-sizing:border-box}
-html{color-scheme:dark}
-body{
-  margin:0; background:var(--surface); color:var(--ink);
-  font:15px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
-  -webkit-font-smoothing:antialiased;
-}
-.mono{font-family:ui-monospace,SFMono-Regular,"Cascadia Mono",Menlo,Consolas,monospace}
-.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
-a{color:#7fb3ff}
+html,body{height:100%}
+body{margin:0;background:var(--surface);color:var(--ink);overflow:hidden;
+  font:14px/1.5 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  -webkit-font-smoothing:antialiased}
 
-/* ---------------------------------------------------------------- header */
-header{border-bottom:1px solid var(--rule);padding:56px 0 40px;margin-bottom:44px}
-.eyebrow{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+/* Pinned to the window. Nothing here may ever push the page sideways: if the
+   document can scroll horizontally, dragging the map scrolls the page instead
+   and everything you click lands somewhere else. */
+#app{position:fixed;inset:0;display:flex;flex-direction:column;overflow:hidden}
+#bar{display:flex;align-items:center;gap:13px;padding:9px 16px;flex-wrap:wrap;
+  border-bottom:1px solid var(--rule);background:var(--panel);z-index:5;
+  max-width:100%;overflow:hidden;flex:none}
+.brand{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);
+  font-family:ui-monospace,Menlo,Consolas,monospace;white-space:nowrap;flex:0 0 auto}
+.brand b{color:var(--ink);font-weight:640}
+.seg{display:flex;border:1px solid var(--rule);border-radius:3px;overflow:hidden}
+.seg button{font:inherit;font-size:12px;letter-spacing:.05em;background:transparent;
+  color:var(--ink-2);border:0;border-right:1px solid var(--rule);padding:6px 14px;cursor:pointer;
+  font-family:ui-monospace,Menlo,Consolas,monospace;white-space:nowrap}
+.seg button:last-child{border-right:0}
+.seg button:hover{color:var(--ink);background:rgba(255,255,255,.04)}
+.seg button[aria-pressed=true]{background:var(--ink);color:#0d1117;font-weight:600}
+.seg button .n{opacity:.5;margin-right:7px}
+#search{font:inherit;font-size:12.5px;font-family:ui-monospace,Menlo,Consolas,monospace;
+  background:var(--panel-2);border:1px solid var(--rule);border-radius:3px;color:var(--ink);
+  padding:6px 11px;min-width:0;flex:0 1 250px;outline:none}
+#search:focus{border-color:#3d5875}
+#search::placeholder{color:var(--ink-3)}
+.tiers{display:flex;gap:5px;align-items:center;flex-wrap:wrap;min-width:0;flex:1 1 auto}
+.tiers .lbl{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);
+  font-family:ui-monospace,Menlo,Consolas,monospace;white-space:nowrap}
+.tiers button{font:inherit;font-size:11px;background:transparent;color:var(--ink-3);
+  border:1px solid var(--rule);border-radius:2px;padding:3px 8px;cursor:pointer;
+  font-family:ui-monospace,Menlo,Consolas,monospace;display:flex;align-items:center;gap:6px;
+  white-space:nowrap}
+.tiers button[aria-pressed=true]{color:var(--ink)}
+.tiers button .sw{width:8px;height:8px;border-radius:1px;display:block;flex:none}
+.tiers button[aria-pressed=false] .sw{opacity:.22}
+.tiers button .ct{opacity:.6;font-variant-numeric:tabular-nums}
+.spacer{margin-left:auto}
+.hint{font-size:11px;color:var(--ink-3);font-family:ui-monospace,Menlo,Consolas,monospace;
+  white-space:nowrap}
+.hint kbd{border:1px solid var(--rule);border-radius:2px;padding:1px 5px;color:var(--ink-2)}
+
+#main{flex:1;position:relative;min-height:0;overflow:hidden}
+#cv{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab}
+#cv.drag{cursor:grabbing}
+/* Says what you're looking at, then gets out of the way of it. */
+#lensnote{position:absolute;left:0;top:0;padding:16px 30px 30px 18px;max-width:460px;
+  pointer-events:none;transition:opacity .6s ease;
+  background:radial-gradient(120% 100% at 0% 0%, rgba(13,17,23,.95) 42%, rgba(13,17,23,0) 100%)}
+#lensnote.faded{opacity:0}
+#lensnote h2{margin:0;font-size:20px;font-weight:640;letter-spacing:-.01em}
+#lensnote p{margin:6px 0 0;font-size:13.5px;color:var(--ink-2);line-height:1.55}
+#legend{position:absolute;left:0;bottom:0;padding:14px 34px 14px 18px;font-size:11.5px;
+  color:var(--ink-3);font-family:ui-monospace,Menlo,Consolas,monospace;pointer-events:none;
+  line-height:1.8;
+  background:radial-gradient(130% 130% at 0% 100%, rgba(13,17,23,.94) 45%, rgba(13,17,23,0) 100%)}
+#legend .row{display:flex;align-items:center;gap:8px}
+#legend .sw{width:9px;height:9px;border-radius:50%;display:block;flex:none}
+#legend .sq{width:9px;height:9px;border-radius:1px;display:block;flex:none}
+#status{position:absolute;right:0;bottom:0;padding:14px 18px 14px 34px;font-size:11.5px;
+  color:var(--ink-3);font-family:ui-monospace,Menlo,Consolas,monospace;pointer-events:none;
+  text-align:right;
+  background:radial-gradient(130% 130% at 100% 100%, rgba(13,17,23,.94) 45%, rgba(13,17,23,0) 100%)}
+
+#tip{position:absolute;left:0;top:0;will-change:transform;
+  pointer-events:none;z-index:6;background:rgba(13,17,23,.97);
+  border:1px solid var(--rule);border-radius:3px;padding:8px 11px;max-width:340px;
+  font-size:12px;line-height:1.55;color:var(--ink-2);display:none;
+  box-shadow:0 6px 22px rgba(0,0,0,.55)}
+#tip b{color:var(--ink);font-weight:600;word-break:break-all;
+  font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11.5px}
+#tip .k{color:var(--t0)}
+
+#panel{position:absolute;right:0;top:0;bottom:0;width:398px;background:var(--panel-2);
+  border-left:1px solid var(--rule);transform:translateX(100%);transition:transform .26s ease;
+  display:flex;flex-direction:column;z-index:7}
+#panel.open{transform:none}
+#panel header{padding:15px 18px 13px;border-bottom:1px solid var(--rule);background:var(--panel)}
+#panel header .dom{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--t0);
   font-family:ui-monospace,Menlo,Consolas,monospace}
-h1{font-size:clamp(30px,4.4vw,46px);line-height:1.1;margin:16px 0 0;letter-spacing:-.02em;font-weight:640}
-h1 em{font-style:normal;color:var(--ink-3)}
-.lede{font-size:17px;color:var(--ink-2);max-width:68ch;margin:20px 0 0}
-.lede strong{color:var(--ink);font-weight:600}
-
-/* ------------------------------------------------------------ stat strip */
-.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:1px;
-  background:var(--rule-2);border:1px solid var(--rule);margin:34px 0 0;border-radius:3px;overflow:hidden}
-.fact{background:var(--panel-2);padding:15px 17px}
-.fact b{display:block;font-size:25px;font-weight:640;letter-spacing:-.02em;
-  font-variant-numeric:tabular-nums;line-height:1.2}
-.fact span{display:block;font-size:11.5px;color:var(--ink-3);margin-top:3px;letter-spacing:.03em}
-
-/* --------------------------------------------------------------- section */
-section{margin:0 0 22px;padding:0 0 22px}
-.sec-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:0 0 6px}
-h2{font-size:26px;margin:0;letter-spacing:-.015em;font-weight:640}
-.tag{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);
-  border:1px solid var(--rule);border-radius:2px;padding:3px 8px;
+#panel header h3{margin:6px 0 0;font-size:14px;font-weight:640;word-break:break-all;line-height:1.35;
   font-family:ui-monospace,Menlo,Consolas,monospace}
-h3{font-size:15px;margin:30px 0 8px;letter-spacing:.01em;font-weight:620}
-p{margin:10px 0;max-width:74ch}
-.dim{color:var(--ink-2)}
-.idea{font-size:17.5px;color:var(--ink);max-width:70ch;margin:12px 0 4px;line-height:1.5}
-.idea b{color:var(--t0);font-weight:640}
-
-/* ---------------------------------------------------------------- canvas */
-.stage{position:relative;border:1px solid var(--rule);border-radius:4px;
-  background:var(--panel-2);margin:20px 0 0;overflow:hidden}
-canvas{display:block;width:100%;cursor:crosshair}
-.ctrls{display:flex;gap:7px;flex-wrap:wrap;align-items:center;
-  padding:9px 12px;border-bottom:1px solid var(--rule);background:var(--panel)}
-button.chip{font:inherit;font-size:11.5px;letter-spacing:.06em;color:var(--ink-2);
-  background:transparent;border:1px solid var(--rule);border-radius:2px;
-  padding:4px 10px;cursor:pointer;font-family:ui-monospace,Menlo,Consolas,monospace}
-button.chip:hover{color:var(--ink);border-color:rgba(255,255,255,.22)}
-button.chip[aria-pressed=true]{color:#0d1117;background:var(--ink);border-color:var(--ink)}
-button.chip .sw{display:inline-block;width:8px;height:8px;border-radius:1px;margin-right:6px;
-  vertical-align:baseline}
-.ctrl-note{font-size:11.5px;color:var(--ink-3);margin-left:auto;
+#panel .body{overflow-y:auto;padding:0 18px 34px;flex:1}
+#close{position:absolute;right:12px;top:12px;background:transparent;border:1px solid var(--rule);
+  color:var(--ink-3);border-radius:2px;width:24px;height:24px;cursor:pointer;font:inherit;line-height:1}
+#close:hover{color:var(--ink)}
+#panel h4{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);
+  margin:24px 0 9px;font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:600}
+#panel p{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.6}
+#panel p.small{font-size:12px;color:var(--ink-3);margin-top:8px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;font-size:13px}
+.kv dt{color:var(--ink-3)}
+.kv dd{margin:0;color:var(--ink);font-variant-numeric:tabular-nums;
   font-family:ui-monospace,Menlo,Consolas,monospace}
-.readout{min-height:52px;padding:10px 13px;border-top:1px solid var(--rule);
-  background:var(--panel);font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;
-  color:var(--ink-2);line-height:1.55}
-.readout b{color:var(--ink);font-weight:600}
-.readout .k{color:var(--t0)}
+.chipset{display:flex;flex-wrap:wrap;gap:5px}
+.chipset span{font-size:11px;font-family:ui-monospace,Menlo,Consolas,monospace;
+  border:1px solid var(--rule);border-radius:2px;padding:2px 7px;color:var(--ink-2)}
+.chipset span.rare{color:var(--t0);border-color:rgba(251,192,106,.42)}
+.tierrow{display:flex;align-items:center;gap:9px;font-size:12.5px;margin:5px 0}
+.tierrow .sw{width:9px;height:9px;border-radius:1px;flex:none}
+.tierrow .nm{color:var(--ink-2);width:130px;flex:none}
+.tierrow .ct{color:var(--ink);font-variant-numeric:tabular-nums;width:34px;text-align:right;flex:none;
+  font-family:ui-monospace,Menlo,Consolas,monospace}
+.tierrow .bar{height:5px;border-radius:2px;flex:1;min-width:2px}
+.lineage{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11.5px;line-height:1.75}
+.lineage .step{display:flex;gap:9px;align-items:flex-start}
+.lineage .dot{width:7px;height:7px;border-radius:1px;margin-top:6px;flex:none}
+.lineage .nm{color:var(--ink-2);word-break:break-all}
+.neigh button{display:flex;width:100%;gap:9px;align-items:center;background:transparent;
+  border:0;border-bottom:1px solid var(--rule-2);color:var(--ink-2);padding:7px 0;cursor:pointer;
+  font:inherit;font-size:11.5px;font-family:ui-monospace,Menlo,Consolas,monospace;text-align:left}
+.neigh button:hover{color:var(--ink)}
+.neigh .sw{width:7px;height:7px;border-radius:1px;flex:none}
+.neigh .nm{flex:1;word-break:break-all}
+.neigh .ct{color:var(--ink-3);flex:none}
 
-/* ---------------------------------------------------------------- tables */
-table{border-collapse:collapse;width:100%;margin:16px 0;font-size:13.5px}
-th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--rule-2);vertical-align:top}
-th{color:var(--ink-3);font-weight:600;font-size:11px;letter-spacing:.11em;text-transform:uppercase;
-  border-bottom:1px solid var(--rule);font-family:ui-monospace,Menlo,Consolas,monospace}
-td.n{font-variant-numeric:tabular-nums;font-family:ui-monospace,Menlo,Consolas,monospace;color:var(--ink-2)}
-.tbl-scroll{overflow-x:auto}
-.best{color:var(--t0);font-weight:600}
-.ok{color:var(--ink-2)} .weak{color:var(--ink-3)}
-
-/* ---------------------------------------------------------------- pieces */
-.two{display:grid;grid-template-columns:1fr 1fr;gap:34px}
-@media(max-width:860px){.two{grid-template-columns:1fr;gap:8px}}
-ul{margin:8px 0;padding-left:20px;max-width:74ch} li{margin:5px 0;color:var(--ink-2)}
-li b{color:var(--ink);font-weight:600}
-.rule{height:1px;background:var(--rule);margin:52px 0}
-.callout{border-left:2px solid var(--t2);background:var(--panel-2);padding:13px 17px;
-  margin:20px 0;border-radius:0 3px 3px 0}
-.callout p{margin:5px 0;font-size:14px}
-footer{border-top:1px solid var(--rule);margin-top:60px;padding:30px 0 70px;
-  color:var(--ink-3);font-size:12.5px;font-family:ui-monospace,Menlo,Consolas,monospace}
-.flow{display:flex;align-items:stretch;gap:0;margin:22px 0 0;flex-wrap:wrap;
-  border:1px solid var(--rule);border-radius:3px;overflow:hidden}
-.flow-step{flex:1 1 168px;padding:13px 15px;background:var(--panel-2);
-  border-right:1px solid var(--rule);position:relative}
-.flow-step:last-child{border-right:0}
-.flow-step .bar{height:3px;border-radius:2px;margin-bottom:10px}
-.flow-step h4{margin:0;font-size:12px;letter-spacing:.13em;text-transform:uppercase;
-  font-family:ui-monospace,Menlo,Consolas,monospace;color:var(--ink)}
-.flow-step .num{font-size:22px;font-weight:640;font-variant-numeric:tabular-nums;margin:5px 0 4px}
-.flow-step p{font-size:12.5px;color:var(--ink-3);margin:0;line-height:1.5}
+#results{position:absolute;left:16px;top:52px;width:340px;max-height:52vh;overflow-y:auto;
+  background:rgba(13,17,23,.98);border:1px solid var(--rule);border-radius:3px;display:none;z-index:8;
+  box-shadow:0 10px 30px rgba(0,0,0,.6)}
+#results button{display:flex;width:100%;gap:9px;align-items:baseline;background:transparent;border:0;
+  border-bottom:1px solid var(--rule-2);color:var(--ink-2);padding:7px 11px;cursor:pointer;
+  font:inherit;font-size:11.5px;font-family:ui-monospace,Menlo,Consolas,monospace;text-align:left}
+#results button:hover,#results button.sel{background:rgba(255,255,255,.07);color:var(--ink)}
+#results .nm{flex:1;word-break:break-all}
+#results .meta{color:var(--ink-3);flex:none}
+@media(max-width:1620px){ .hint{display:none} }
+@media(max-width:860px){ #panel{width:100%} #lensnote{max-width:64%} }
 </style>
 </head>
 <body>
+<div id="app">
 
-<header>
- <div class="wrap">
-  <div class="eyebrow">Ripple · The Library · anatomy study · 2026-08-02</div>
-  <h1>Three ways to draw the Library.<br><em>All three got built.</em></h1>
-  <p class="lede" style="margin-bottom:0"><b style="color:var(--t0)">→ <a href="library-atlas.html">Open the Atlas</a></b>
-  — all three lenses in one map, switchable with <span class="mono">1</span>
-  <span class="mono">2</span> <span class="mono">3</span>. This page is the study
-  underneath it: why there are three, and what each one trades away.</p>
-  <p class="lede">Ripple holds 368 public datasets that have been checked against each
-  other, 2,694 confirmed links between them, and a machine of 2,454 moving parts that
-  keeps them fed. That's a lot to look at, and <strong>there is no single right way to
-  arrange it</strong>. So we built three, and this page is the argument for why.
-  Every sketch below is <strong>live and running on the real data</strong>. Every number
-  was measured, not estimated.</p>
-  <div class="facts" id="facts"></div>
- </div>
-</header>
+ <div id="bar">
+  <div class="brand">Ripple · <b>The Library</b></div>
 
-<div class="wrap">
-
-<!-- ============================================================ preamble -->
-<section>
- <div class="sec-head"><h2>First: what this thing actually is</h2>
-   <span class="tag">measured, not assumed</span></div>
- <p class="dim">Before picking a way to draw it, it helps to know its real shape — and
- the real shape is a surprise. You'd expect a tangle. It isn't one. It's <b>very wide
- and very shallow</b>: a huge floor where raw files land, a tidying-up step that is
- almost exactly one-for-one with it, and a comparatively small set of finished tables
- at the end. Data passes through <b>at most four steps</b> from arrival to use.</p>
- <div class="flow" id="flow"></div>
- <p class="dim" style="margin-top:18px">Nobody had drawn that line before. It comes out
- of the build system's own record of what runs after what — a file that was sitting in
- the repo the whole time, unopened.</p>
- <div class="callout">
-  <p><b>Three questions, three different pictures.</b> Anyone looking at a system like
-  this wants to know three things, and they are not the same question:</p>
-  <p class="dim"><b style="color:var(--s3)">What's in here?</b> — what exists, and
-  how much of it.<br>
-  <b style="color:var(--s3)">What does each part do?</b> — its job, and what it can
-  be matched up with.<br>
-  <b style="color:var(--s3)">What feeds what?</b> — where a number came from, and
-  what happens to it next.</p>
-  <p class="dim">Here's the catch. Whichever question you build the picture around
-  gets answered for free, because it becomes the <i>shape</i>. The other two have to
-  be bolted on. That's the whole trade, and it's why there are three of these rather
-  than one.</p>
- </div>
-</section>
-
-<div class="rule"></div>
-
-<!-- =========================================================== PARADIGM A -->
-<section>
- <div class="sec-head"><h2>A · The Refinery</h2><span class="tag">built around: what feeds what</span></div>
- <p class="idea">Raw files come in on the left and leave on the right as finished
- tables. <b>Moving right means moving forward in time.</b> If you've ever seen a
- diagram of a factory floor, you already know how to read this one — and it answers
- the question that matters when you don't trust a number:
- <i>where did this come from, and what happens to it next?</i></p>
-
- <div class="stage">
-  <div class="ctrls" id="ctrl-a">
-   <button class="chip" data-a="flow" aria-pressed="true">show what feeds what</button>
-   <button class="chip" data-a="labels" aria-pressed="true">stage names</button>
-   <span class="ctrl-note">point at anything — its whole path lights up</span>
+  <div class="seg" id="lenses" role="group" aria-label="How to arrange the map">
+   <button data-lens="stacks"        aria-pressed="true"><span class="n">1</span>BY SUBJECT</button>
+   <button data-lens="constellation" aria-pressed="false"><span class="n">2</span>BY CONNECTION</button>
+   <button data-lens="refinery"      aria-pressed="false"><span class="n">3</span>BY JOURNEY</button>
   </div>
-  <canvas id="cv-a" height="560"></canvas>
-  <div class="readout mono" id="ro-a">2,454 moving parts, 1,366 handoffs. Five stages, left to right, in the order they run.</div>
+
+  <input id="search" type="search" placeholder="find a dataset, a subject, an ID…" autocomplete="off" spellcheck="false">
+
+  <div class="tiers" id="tiers"><span class="lbl">show links</span></div>
+
+  <div class="spacer"></div>
+  <div class="hint"><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd> arrange · <kbd>/</kbd> find · <kbd>F</kbd> zoom out · <kbd>Esc</kbd> clear</div>
  </div>
 
- <div class="two">
-  <div>
-   <h3>What it's good for</h3>
-   <ul>
-    <li><b>Tracing anything back.</b> Point at a finished table and the whole path back to the original government file lights up. "Show your work," made literal.</li>
-    <li><b>Honest about proportion.</b> You can see instantly that the pile of raw files dwarfs everything else, and that the queue a person actually reviews is three items wide.</li>
-    <li><b>No explanation needed.</b> Things move left to right. That's it.</li>
-   </ul>
-  </div>
-  <div>
-   <h3>What it costs</h3>
-   <ul>
-    <li><b>The links have nowhere to go.</b> All 2,694 of them run sideways across the columns and turn to spaghetti. They have to be something you ask for, not something that's always on.</li>
-    <li><b>Subjects get lost.</b> Health and Environment sit side by side with nothing but a label between them.</li>
-    <li><b>It feels like a machine, not a library.</b> True, but colder than this project should sound.</li>
-   </ul>
-  </div>
+ <div id="main">
+  <canvas id="cv"></canvas>
+  <div id="lensnote"><h2></h2><p></p></div>
+  <div id="legend"></div>
+  <div id="status"></div>
+  <div id="tip"></div>
+  <div id="results"></div>
+
+  <aside id="panel">
+   <button id="close" title="Close">×</button>
+   <header><div class="dom"></div><h3></h3></header>
+   <div class="body"></div>
+  </aside>
  </div>
-
- <h3>How it should feel to use</h3>
- <p class="dim">The view slides left and right along the line rather than flying
- freely, so there's always a stage underneath you and you can't get lost. Zooming in
- goes: <span class="mono">the whole line → one stage → one block → one file</span>.
- Pick something and everything unrelated fades to almost nothing, then the path lights
- up <i>in order</i>, oldest step first — so you watch where the number came from
- instead of reading it off a key.</p>
-</section>
-
-<div class="rule"></div>
-
-<!-- =========================================================== PARADIGM B -->
-<section>
- <div class="sec-head"><h2>B · The Constellation</h2><span class="tag">built around: what links to what</span></div>
- <p class="idea">Two datasets can only be linked if they share an ID number. So put
- each ID in its own gravity well, and let every dataset fall toward the one it uses.
- A dataset that only has doctors' licence numbers sits with the doctors. One that has
- <i>both</i> licence numbers <i>and</i> company tax numbers gets pulled into the gap
- between the two — <b>and those in-between ones are the entire point</b>, because
- they're the only way a question gets from doctors to companies. Here, where something
- sits is an argument, not decoration.</p>
-
- <div class="stage">
-  <div class="ctrls" id="ctrl-b">
-   <span class="mono" style="font-size:11.5px;color:var(--ink-3);margin-right:2px">how sure:</span>
-   <button class="chip" data-tier="0" aria-pressed="true"><i class="sw" style="background:var(--t0)"></i>same ID number</button>
-   <button class="chip" data-tier="2" aria-pressed="true"><i class="sw" style="background:var(--t2)"></i>via a third file</button>
-   <button class="chip" data-tier="3" aria-pressed="true"><i class="sw" style="background:var(--t3)"></i>same name and place</button>
-   <button class="chip" data-tier="4" aria-pressed="true"><i class="sw" style="background:var(--t4)"></i>same place only</button>
-   <span class="ctrl-note">switch off the weak ones — watch the certain links stand up on their own</span>
-  </div>
-  <canvas id="cv-b" height="620"></canvas>
-  <div class="readout mono" id="ro-b">368 datasets, 2,694 confirmed links, gathered around the 14 IDs they share.</div>
- </div>
-
- <div class="two">
-  <div>
-   <h3>What it's good for</h3>
-   <ul>
-    <li><b>It answers the question the whole project exists for.</b> "Can I get from a doctor, to the company that paid them, to the place they work?" Here that's a question about distance — you trace it with a finger.</li>
-    <li><b>It untangles itself.</b> Switch off the two weakest kinds of link and 1,517 of the 2,694 vanish, leaving the certain ones standing on their own. The tangle isn't hidden, it's <i>sorted</i>.</li>
-    <li><b>The valuable ones are obvious.</b> The datasets in the middle are the bridges, and you don't need a key to find them — they're just in the middle.</li>
-   </ul>
-  </div>
-  <div>
-   <h3>What it costs</h3>
-   <ul>
-    <li><b>Order disappears completely.</b> Nothing here tells you what runs before what.</li>
-    <li><b>It flattens what things do.</b> A dataset's job becomes "which ID it has," and that's only part of the truth.</li>
-    <li><b>It needs one sentence of explanation.</b> The other two don't.</li>
-   </ul>
-  </div>
- </div>
-
- <h3>How it should feel to use</h3>
- <p class="dim">The view drifts freely but settles when you let go near a well, so you
- always end up looking at something rather than at empty space. Zooming in goes:
- <span class="mono">all the IDs → one ID and its datasets → one dataset and its
- neighbours → a single link</span>. At the deepest level a link stops being a line and
- becomes the actual thing it's made of: the two columns that matched, and examples of
- the values that matched. The switches for how-sure-are-we live on screen permanently
- and never in a menu — they're what stops a hunch being shown to you as a fact.</p>
-</section>
-
-<div class="rule"></div>
-
-<!-- =========================================================== PARADIGM C -->
-<section>
- <div class="sec-head"><h2>C · The Stacks</h2><span class="tag">built around: what's in here</span></div>
- <p class="idea">It's called the Library, so draw a building. Each subject gets a room,
- sized by how much is filed in it. Inside, each dataset gets a shelf, sized by how much
- is on it. <b>Nothing ever moves</b> — rebuild it tomorrow and everything is exactly
- where you left it. After a week you know your way around the way you know a real
- building, and that muscle memory <i>is</i> the feature.</p>
-
- <div class="stage">
-  <div class="ctrls" id="ctrl-c">
-   <button class="chip" data-c="rows" aria-pressed="true">size by how much is in it</button>
-   <button class="chip" data-c="links" aria-pressed="false">show the links</button>
-   <button class="chip" data-c="conn" aria-pressed="false">mark the connected ones</button>
-   <span class="ctrl-note">point at a shelf</span>
-  </div>
-  <canvas id="cv-c" height="620"></canvas>
-  <div class="readout mono" id="ro-c">368 shelves in 34 rooms. Room size = how many datasets. Shelf size = how much is in it.</div>
- </div>
-
- <div class="two">
-  <div>
-   <h3>What it's good for</h3>
-   <ul>
-    <li><b>You get the whole picture in one look.</b> Health is a wing. Housing is a closet. Nobody has to tell you that.</li>
-    <li><b>Nothing to learn.</b> Everyone already knows how a floor plan works.</li>
-    <li><b>It won't fall apart as we grow.</b> At 5,000 datasets this looks like the same building. The other two get worse as things get added; this one doesn't.</li>
-    <li><b>Things have addresses.</b> A dataset becomes a place you can point at, remember, and send someone to.</li>
-   </ul>
-  </div>
-  <div>
-   <h3>What it costs</h3>
-   <ul>
-    <li><b>Both kinds of connection become add-ons.</b> Neither the links nor the order are built into the picture — they get drawn on top of it, and keeping that readable is genuinely hard.</li>
-    <li><b>You can't see importance.</b> A dataset that everything else connects to looks like any other tile until you're told.</li>
-    <li><b>It only works because we fixed the subject labels</b> — see below. A week ago this view wasn't possible.</li>
-   </ul>
-  </div>
- </div>
-
- <h3>How it should feel to use</h3>
- <p class="dim">Like a real map: drag and zoom, and it never rotates — a building you
- can spin is a building you get lost in. Zooming in goes <span class="mono">whole floor
- → room → shelf → the label on the spine</span>, and each step reveals different
- <i>words</i>, not just bigger versions of the same shapes. Link threads arc over the
- top like wires above a street, so the floor stays readable underneath them.</p>
-</section>
-
-<div class="rule"></div>
-
-<!-- ========================================================== compare/tech -->
-<section>
- <div class="sec-head"><h2>What each one is actually better at</h2><span class="tag">the real trade</span></div>
- <p class="dim">None of this is about looks — all three look fine. It's about which
- question you want answered <i>for free</i>. Whichever one becomes the shape of the
- picture costs nothing to answer. The other two have to be bolted on, and bolted-on
- answers are always worse.</p>
- <div class="tbl-scroll">
- <table>
-  <thead><tr><th>&nbsp;</th><th>A · Refinery</th><th>B · Constellation</th><th>C · Stacks</th></tr></thead>
-  <tbody>
-   <tr><td><b>What's in here?</b></td>
-       <td class="weak">poor — subject is just a label</td><td class="ok">okay — grouped by ID, not topic</td><td class="best">best — it's the whole layout</td></tr>
-   <tr><td><b>What does each part do?</b></td>
-       <td class="best">best — five clearly named jobs</td><td class="ok">okay — "which ID it has"</td><td class="ok">okay — "which room it's in"</td></tr>
-   <tr><td><b>What feeds what?</b></td>
-       <td class="best">best — it's the left-to-right</td><td class="weak">gone entirely</td><td class="weak">poor — an overlay at best</td></tr>
-   <tr><td><b>The 2,694 links</b></td>
-       <td class="weak">fight the layout</td><td class="best">the entire point</td><td class="ok">arc over the top</td></tr>
-   <tr><td><b>Still works at 5,000 datasets</b></td><td class="ok">yes, gets tall</td><td class="weak">no — the wells crowd</td><td class="best">yes, unchanged</td></tr>
-   <tr><td><b>Explanation needed</b></td><td class="ok">one line</td><td class="weak">a sentence</td><td class="best">none</td></tr>
-   <tr><td><b>Open it when you want to…</b></td><td>check where a number came from</td><td>get from one world to another</td><td>know what you've got</td></tr>
-  </tbody>
- </table>
- </div>
-
- <div class="callout">
-  <p><b>The answer was: build all three.</b> Not three separate pages —
-  <b>one map you can rearrange</b>, where a dataset keeps its identity and physically
-  <i>moves</i> when you change the question. That turns out to be the honest version,
-  and here's why. Every arrangement is secretly an argument about what matters. A map
-  that can only be arranged one way passes that argument off as the shape of the
-  world, and you'd never know it was making one. Let someone flip it in a keystroke
-  and no single version gets to pretend it's the truth.</p>
-  <p>Open <b>By subject</b> to know what you've got, <b>By connection</b> when your
-  question crosses from one world to another, and <b>By journey</b> when you don't
-  trust a number. <b><a href="library-atlas.html">→ Open the Atlas</a></b></p>
- </div>
-
- <h3>How it's built, and why it's fast</h3>
- <p class="dim">The trick isn't the drawing. It's that <b>all the hard thinking
- happens before you ever open the page</b>. A Python script works out where every
- single thing goes, then bakes the answer into the file. Your browser never
- calculates a layout — it just draws one that's already decided. That's why it opens
- instantly, needs no server, and works with the wifi off.</p>
- <ul>
-  <li><b>Plain canvas drawing.</b> Not the fancy 3D stuff. At this size it isn't needed, and the fancy version would mean a toolchain to maintain forever. There's a clear upgrade path if we ever get ten times bigger.</li>
-  <li><b>Shapes drawn once, not every frame.</b> The thousands of link lines are built into a handful of ready-made shapes, so drawing them all costs about as much as drawing none.</li>
-  <li><b>Dragging just slides a picture.</b> When you drag the map, nothing is recalculated — the finished picture slides across. That's not a shortcut; sliding a picture is exactly what sliding a map looks like.</li>
-  <li><b>It measures itself.</b> If frames start taking too long on your machine, it quietly trades a little sharpness for smoothness. A map you drag is a map you're reading, so smooth wins.</li>
-  <li><b>Same file every time.</b> Build it twice and you get identical files, byte for byte. That's what makes position something you can actually remember.</li>
-  <li><b>One file, nothing else.</b> Double-click it. Works offline, on a plane, behind a firewall.</li>
- </ul>
-</section>
-
-<div class="rule"></div>
-
-<section>
- <div class="sec-head"><h2>Two things that got fixed on the way</h2><span class="tag">worth knowing</span></div>
- <ul>
-  <li><b>Most datasets didn't know what they were about.</b> The subject label we'd been carrying said <span class="mono">other</span> for 62% of them — useless, and the reason an earlier attempt gave up on sorting by topic at all. But the answer was sitting right there: whatever finished table a raw file ends up feeding tells you what it's about. Following that through takes us from 140 datasets with a real subject to <b>342 of 368</b>. The whole "by subject" view only exists because of this.</li>
-  <li><b>A weak link used to look merely <i>different</i> from a strong one.</b> Each kind of link had its own colour, so nothing about the colours told you which ones to trust. Now it's one colour that simply gets dimmer as we get less sure — certain links are bright, hunches are faint. Same categories, same order, but now the picture itself can't oversell a guess. We ran the colours through a checker to confirm the steps are genuinely distinguishable and the faintest one is still visible.</li>
- </ul>
-</section>
-
-<footer>
- <div>These are sketches — enough to judge the idea, not the finished thing.<br>
- Layout compiled by <code>viz/compile_anatomy.py</code> from
- <code>target/manifest.json</code>, <code>connect_graph.json</code>,
- <code>connect_fingerprints.json</code>, <code>thelibrary_inventory.json</code>,
- <code>thelibrary_content.json</code>. Rebuild:
- <code>python -m viz.compile_anatomy --inline</code>.<br>
- Every number here was measured from those files on 2026-08-02 — nothing estimated. No database connection, no internet, nothing loaded from anywhere else.</div>
-</footer>
-
 </div>
 
 <script>
@@ -412,358 +193,759 @@ const ANATOMY={"convergence":[{"desc":"The Reading Room triage mart: one row per
 (function(){
 "use strict";
 const A = ANATOMY;
-if(!A){document.body.insertAdjacentHTML("afterbegin",
-  '<div style="padding:20px;background:#3a1e1e;color:#fbc06a;font-family:monospace">'+
-  'payload not inlined — run: python -m viz.compile_anatomy --inline</div>'); return; }
+if(!A){document.body.innerHTML='<pre style="padding:24px;color:#fbc06a;font:13px monospace">'+
+  'data not built in — run:  python -m viz.compile_anatomy --inline</pre>'; return;}
 
+/* ====================================================================== data
+   Everything below draws; nothing below thinks. All the layout was worked out
+   ahead of time by viz/compile_anatomy.py and baked into the file. */
+const T = A.tables, E = A.edges, XR = A.xref, LAB = A.ladder_labels;
+const LAY = A.layouts, BOX = LAY.stacks.box, BW = BOX[0], BH = BOX[1];
 const css = k => getComputedStyle(document.documentElement).getPropertyValue(k).trim();
-const TIER = [0,1,2,3,4,5].map(i=>css("--t"+i));
-const STAGE = {intake:css("--s0"),staging:css("--s1"),bridge:css("--s2"),
-               shelf:css("--s3"),desk:css("--s4")};
+const TIER  = [0,1,2,3,4,5].map(i=>css("--t"+i));
+const STAGE = [0,1,2,3,4].map(i=>css("--s"+i));
+const STAGE_OF = {intake:0,staging:1,bridge:2,shelf:3,desk:4};
 const INK=css("--ink"), INK2=css("--ink-2"), INK3=css("--ink-3");
 const fmt = n => n.toLocaleString("en-US");
-const DPR = Math.min(devicePixelRatio||1, 2);
+const N = T.length, R = LAY.refinery, C = LAY.constellation, S = LAY.stacks;
 
-/* ------------------------------------------------------------ stat strip */
-const m = A.meta;
-document.getElementById("facts").innerHTML = [
-  [fmt(m.charted),"datasets mapped"],
-  [fmt(m.joins),"confirmed links"],
-  [fmt(m.dbt_objects),"moving parts"],
-  [fmt(m.lineage_edges),"handoffs between them"],
-  [(m.connected_rows/1e6).toFixed(0)+"M","records covered"],
-  [fmt(m.domains_resolved)+"/"+fmt(m.charted),"sorted by subject"],
-].map(([b,s])=>`<div class="fact"><b>${b}</b><span>${s}</span></div>`).join("");
-
-/* ------------------------------------------------------------- flow line */
-document.getElementById("flow").innerHTML = A.stages.map(s=>
-  `<div class="flow-step"><div class="bar" style="background:${STAGE[s.id]}"></div>`+
-  `<h4>${s.label}</h4><div class="num">${fmt(s.count)}</div><p>${s.role}</p></div>`).join("");
-
-/* -------------------------------------------------------- canvas plumbing
-   One fitter for all three: HiDPI backing store, the layout's own model box
-   scaled uniformly into the element, redraws coalesced to one per frame.
-   Each layout ships a box already close to its canvas aspect, so the fit is
-   near-lossless and nothing is stretched. */
-function mount(id, box, draw, hit){
-  const cv = document.getElementById(id), ctx = cv.getContext("2d");
-  const [MW,MH] = box;
-  const view = {s:1,ox:0,oy:0,w:0,h:0,mw:MW,mh:MH};
-  let queued = false;
-  // The element takes the model box's aspect, so the fit is exact at every
-  // width and no layout ever pays for letterbox bars.
-  cv.style.aspectRatio = MW+" / "+MH;
-  cv.removeAttribute("height");
-  function fit(){
-    const r = cv.getBoundingClientRect();
-    view.w = r.width; view.h = r.height;
-    cv.width = Math.round(r.width*DPR); cv.height = Math.round(r.height*DPR);
-    view.s = Math.min(view.w/MW, view.h/MH);
-    view.ox = (view.w - MW*view.s)/2; view.oy = (view.h - MH*view.s)/2;
-    paint();
-  }
-  function paint(){
-    if(queued) return; queued = true;
-    requestAnimationFrame(()=>{ queued=false;
-      ctx.setTransform(DPR,0,0,DPR,0,0);
-      ctx.clearRect(0,0,view.w,view.h);
-      ctx.save(); ctx.translate(view.ox,view.oy); ctx.scale(view.s,view.s);
-      draw(ctx,view); ctx.restore();
-    });
-  }
-  const toModel = ev => {
-    const r = cv.getBoundingClientRect();
-    return {x:(ev.clientX-r.left-view.ox)/view.s, y:(ev.clientY-r.top-view.oy)/view.s};
-  };
-  if(hit){
-    cv.addEventListener("mousemove", e => { if(hit(toModel(e))) paint(); });
-    cv.addEventListener("mouseleave", () => { if(hit(null)) paint(); });
-  }
-  addEventListener("resize", fit); fit();
-  return {paint, view};
+/* Sharpness costs frames, and how much it costs depends on the machine.
+   A retina laptop wants 2 real pixels per point; on a small window that's free,
+   but full-screen on a 4K monitor the same rule asks for 32 million pixels
+   every frame and a smooth map turns into a stuttering one. We can't know in
+   advance which machine this is, so we don't guess: we start sharp, watch how
+   long frames actually take while the map is moving, and quietly trade a bit
+   of sharpness for smoothness if it's needed. Smooth always wins — a map you
+   drag is a map you're reading. */
+const PIXEL_BUDGET = 16e6;                 // first guess, before any evidence
+const WANT_DPR = Math.min(devicePixelRatio||1, 2);
+let DPR = 1, dprCap = WANT_DPR, downgrades = 0;
+function dprFor(w,h){
+  if(w*h <= 0) return dprCap;
+  const need = w*h*dprCap*dprCap;
+  return Math.min(dprCap, need<=PIXEL_BUDGET ? dprCap
+                        : Math.max(1, Math.sqrt(PIXEL_BUDGET/(w*h))));
 }
-/* Toggle chips: aria-pressed is the state, no shadow variable. */
-function chips(id, fn){
-  document.getElementById(id).addEventListener("click", e=>{
-    const b = e.target.closest("button.chip"); if(!b) return;
-    b.setAttribute("aria-pressed", b.getAttribute("aria-pressed")!=="true");
-    fn();
+/* Frame times are only meaningful while something is actually moving, so we
+   only sample then. We step down, never up: chasing the line in both
+   directions makes the picture flicker between sharpness levels. */
+const _ft = []; let _lastFrame = 0;
+function sampleFrame(now, busy){
+  if(!busy){ _lastFrame = 0; _ft.length = 0; return; }
+  if(_lastFrame){ _ft.push(now-_lastFrame); if(_ft.length>40) _ft.shift(); }
+  _lastFrame = now;
+  if(_ft.length<30 || downgrades>=2 || DPR<=1) return;
+  const med = _ft.slice().sort((a,b)=>a-b)[15];
+  if(med > 24){                            // under ~42fps: buy the frames back
+    downgrades++; dprCap = Math.max(1, dprCap*0.72); _ft.length = 0;
+    resize();
+  }
+}
+
+const cellOf = new Array(N); for(const c of S.cells) cellOf[c.i]=c;
+const bandOf = {}; for(const b of R.bands) bandOf[b.id]=b;      // no .find() in a loop
+const stageLabel = {}; for(const s of A.stages) stageLabel[s.id]=s;
+
+/* Where every dataset sits under each arrangement. Same list, same order, three
+   sets of coordinates — which is what lets a dataset keep its identity and
+   simply move when you change how the map is arranged. */
+const POS = {
+  stacks:        T.map((_,i)=>{const c=cellOf[i]; return [c.x+c.w/2, c.y+c.h/2];}),
+  constellation: T.map((_,i)=>[C.nodes[i].x, C.nodes[i].y]),
+  refinery:      T.map((_,i)=>{const s=XR[i]; return s>=0?[R.nodes[s].x,R.nodes[s].y]:null;}),
+};
+const intakeBand = bandOf.intake;
+// Two datasets were measured but were never declared in the build, so they have
+// no seat on the production line. We park them at the foot of it and draw them
+// hollow rather than invent a place for them.
+for(let i=0;i<N;i++) if(!POS.refinery[i])
+  POS.refinery[i] = [intakeBand.x + intakeBand.w*(0.3+0.4*(i%2)), BH-14];
+const SEATED = T.map((_,i)=>XR[i]>=0);
+
+const CORE_SEAT = new Set(XR.filter(i=>i>=0));
+const CTX = []; for(let i=0;i<R.nodes.length;i++) if(!CORE_SEAT.has(i)) CTX.push(i);
+
+const adj = T.map(()=>[]);
+E.forEach((e,i)=>{ adj[e[0]].push(i); adj[e[1]].push(i); });
+const kids = R.nodes.map(()=>[]), pars = R.nodes.map(()=>[]);
+for(const [a,b] of R.links){ kids[a].push(b); pars[b].push(a); }
+const maxDeg = Math.max(1, ...T.map(t=>t.deg));
+const logMax = Math.log10(Math.max(...T.map(t=>t.rows||1), 10));
+const FAM = {}; for(const t of T) for(const k of t.keys) FAM[k]=(FAM[k]||0)+1;
+// An ID only tells you something if it's rare. Nearly every dataset has a name
+// and a ZIP code, so those can't pick anyone out on their own.
+const RARE = k => (FAM[k]||0) <= 45;
+
+const LENSES = {
+  stacks:{title:"Arranged by subject",
+    note:"Every dataset, in a room with the others about the same thing. Bigger room, more datasets. Bigger tile, more records inside it. Nothing ever moves between builds, so you can learn where things live — like a real building."},
+  constellation:{title:"Arranged by what connects to what",
+    note:"Two datasets can only be linked if they share an ID — a doctor's licence number, a company's tax number, a ZIP code. Each one sits beside the ID it's identified by. The bright ones in the middle carry two rare IDs each, and those are the ones that let a question travel from doctors to companies to places."},
+  refinery:{title:"Arranged by the journey data takes",
+    note:"Left to right is the order things actually happen. Raw files land, get tidied up, a few get combined, most become ready-to-use tables, and a handful end up in a queue for a person to check."},
+};
+
+/* ==================================================================== camera
+   Geometry is drawn in map coordinates under a single canvas transform, so
+   panning and zooming never rebuild a shape. Text is drawn afterwards with the
+   transform reset, so it stays the same size no matter how far you zoom. */
+const cv = document.getElementById("cv"), ctx = cv.getContext("2d");
+const cam = {k:1,tx:0,ty:0,kfit:1,set:false};
+let W=0,H=0;
+function resize(){
+  const r = cv.getBoundingClientRect(); W=r.width; H=r.height;
+  DPR = dprFor(W,H);
+  cv.width=Math.round(W*DPR); cv.height=Math.round(H*DPR);
+  cam.kfit = Math.min(W/BW, H/BH)*0.93;
+  if(!cam.set){ cam.set=true; fit(); } else draw();
+}
+function fit(){ cam.k=cam.kfit; cam.tx=(W-BW*cam.k)/2; cam.ty=(H-BH*cam.k)/2; draw(); }
+const sx = x => x*cam.k+cam.tx, sy = y => y*cam.k+cam.ty;
+const wx = x => (x-cam.tx)/cam.k, wy = y => (y-cam.ty)/cam.k;
+const zoom = () => cam.k/cam.kfit;
+
+/* ===================================================================== state */
+let lens = "stacks", prevLens = "stacks", motion = 0, tweenT0 = 0;
+let hov = -1, sel = -1, focus = null, threadsAll = false, drag = null;
+const tiersOn = new Set([0,1,2,3,4,5]);
+let raf = 0;
+function draw(){ if(!raf) raf = requestAnimationFrame(frame); }
+
+const ease = t => t<0.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2;
+// Writes into a reused pair so hovering 2,700 edges doesn't litter the heap.
+const _p = [0,0];
+function posInto(i, out){
+  const b = POS[lens][i];
+  if(motion<=0){ out[0]=b[0]; out[1]=b[1]; return out; }
+  const a = POS[prevLens][i], e = ease(1-motion);
+  out[0]=a[0]+(b[0]-a[0])*e; out[1]=a[1]+(b[1]-a[1])*e; return out;
+}
+
+/* ============================================================ baked geometry
+   The expensive shapes get built once per arrangement and then just drawn.
+   This is the whole performance story: 2,694 curves become one stroke call. */
+const baked = {};                       // lens -> {joins:[Path2D], lineage, ctx:[Path2D]}
+function bakeFor(name){
+  if(baked[name]) return baked[name];
+  const P = POS[name], arc = name!=="refinery";
+  const joins = TIER.map(()=>new Path2D());
+  for(const e of E){
+    const p=P[e[0]], q=P[e[1]], path=joins[e[2]];
+    path.moveTo(p[0],p[1]);
+    if(arc){
+      const mx=(p[0]+q[0])/2, my=(p[1]+q[1])/2;
+      path.quadraticCurveTo(mx+(BW/2-mx)*0.16, my+(BH/2-my)*0.16, q[0],q[1]);
+    } else {
+      // On the production line every link sits inside one bank, so bowing them
+      // toward the middle would drag them across unrelated stages.
+      path.quadraticCurveTo((p[0]+q[0])/2, (p[1]+q[1])/2-Math.abs(q[1]-p[1])*0.22, q[0],q[1]);
+    }
+  }
+  let lineage=null, ctxCells=null, coreCells=null, coreCaps=null;
+  if(name==="refinery"){
+    lineage = new Path2D();
+    for(const [a,b] of R.links){
+      const u=R.nodes[a], v=R.nodes[b], mx=(u.x+v.x)/2;
+      lineage.moveTo(u.x,u.y); lineage.bezierCurveTo(mx,u.y,mx,v.y,v.x,v.y);
+    }
+    ctxCells = STAGE.map(()=>new Path2D());
+    for(const i of CTX){
+      const n=R.nodes[i], c=bandOf[n.s].cell;
+      ctxCells[STAGE_OF[n.s]].rect(n.x-c/2, n.y-c/2, c, c);
+    }
+    coreCells = new Path2D(); coreCaps = new Path2D();
+    const c = intakeBand.cell;
+    for(let i=0;i<N;i++){
+      if(!SEATED[i]) continue;
+      const n=R.nodes[XR[i]];
+      coreCells.rect(n.x-c/2, n.y-c/2, c, c);
+      if(T[i].deg>0) coreCaps.rect(n.x-c/2, n.y-c/2, c, Math.max(c*0.34,1.2));
+    }
+  }
+  let shelves=null;
+  if(name==="stacks"){
+    // Tiles bucketed by brightness: 12 fills instead of 368.
+    shelves = Array.from({length:12},()=>new Path2D());
+    for(let i=0;i<N;i++){
+      const c=cellOf[i];
+      const m = Math.log10(Math.max(T[i].rows,1))/logMax;
+      shelves[Math.min(11,Math.max(0,Math.round(m*11)))]
+        .rect(c.x+.6,c.y+.6,Math.max(c.w-1.2,.4),Math.max(c.h-1.2,.4));
+    }
+  }
+  return baked[name] = {joins, lineage, ctxCells, coreCells, coreCaps, shelves};
+}
+// Well glows are position-bound, so in map coordinates they can be made once.
+const wellFills = C.wells.map(w=>{
+  const r = 34+Math.sqrt(w.n)*7;
+  const g = ctx.createRadialGradient(w.x,w.y,0,w.x,w.y,r);
+  g.addColorStop(0,"rgba(157,180,215,.14)"); g.addColorStop(1,"rgba(157,180,215,0)");
+  return {g, r};
+});
+
+function setLens(next){
+  if(next===lens) return;
+  prevLens = lens; lens = next; motion = 1; tweenT0 = performance.now();
+  bakeFor(next);
+  for(const b of document.querySelectorAll("#lenses button"))
+    b.setAttribute("aria-pressed", b.dataset.lens===next);
+  showNote(LENSES[next]); legend(); draw();
+}
+let noteTimer = 0;
+function showNote(L){
+  const el = document.getElementById("lensnote");
+  el.querySelector("h2").textContent = L.title;
+  el.querySelector("p").textContent  = L.note;
+  el.classList.remove("faded");
+  clearTimeout(noteTimer);
+  noteTimer = setTimeout(()=>el.classList.add("faded"), 9000);
+}
+
+/* ============================================================= static layer
+   Dragging the map only slides it — every line keeps its shape and its size.
+   So we draw the rooms, wells, banks and links once onto a hidden canvas a
+   little larger than the window, and while you drag we just slide that picture
+   across. It's not an approximation: a slide of a picture is exactly what a
+   slide of the map looks like. It's redrawn properly the moment anything that
+   isn't a slide happens — zoom, a different arrangement, a link switched off. */
+const PAD = 320;
+const sCv = document.createElement("canvas"), sCtx = sCv.getContext("2d");
+const cache = {valid:false, k:0, tx:0, ty:0, lens:"", focus:false, sig:"", w:0, h:0};
+/* Everything the cached picture depends on. `sel` is in here because on the
+   journey view the selected dataset's chain is lit inside that picture. */
+function cacheSig(){
+  return lens+"|"+sel+"|"+(focus?1:0)+"|"+(threadsAll?1:0)+"|"
+       + [...tiersOn].sort().join("")+"|"+DPR+"|"+W+"x"+H;
+}
+function renderStatic(){
+  const w = W+PAD*2, h = H+PAD*2;
+  if(cache.w!==w||cache.h!==h){
+    sCv.width=Math.round(w*DPR); sCv.height=Math.round(h*DPR); cache.w=w; cache.h=h;
+  }
+  const keep = ctx;                       // the draw helpers write to `ctx`
+  cur = sCtx;
+  sCtx.setTransform(DPR,0,0,DPR,0,0);
+  sCtx.clearRect(0,0,w,h);
+  sCtx.setTransform(DPR*cam.k,0,0,DPR*cam.k,
+                    DPR*(cam.tx+PAD), DPR*(cam.ty+PAD));
+  const px = 1/cam.k;
+  if(lens==="stacks"){ drawRooms(1); drawShelves(px); }
+  if(lens==="constellation") drawWells(1);
+  if(lens==="refinery"){ drawBands(1); drawLineage(1,px); drawStations(1,px); }
+  drawJoinsBase(px);
+  cur = keep;
+  cache.valid=true; cache.k=cam.k; cache.tx=cam.tx; cache.ty=cam.ty;
+  cache.sig=cacheSig();
+}
+function cacheUsable(){
+  return cache.valid && cache.k===cam.k && cache.sig===cacheSig()
+      && Math.abs(cam.tx-cache.tx)<=PAD && Math.abs(cam.ty-cache.ty)<=PAD;
+}
+const invalidate = ()=>{ cache.valid=false; };
+
+/* ====================================================================== draw */
+function frame(now){
+  raf = 0;
+  const moving = motion>0;
+  sampleFrame(now, moving || !!drag);
+  if(moving){ motion = Math.max(0, 1-(now-tweenT0)/780); draw(); }
+
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+  ctx.clearRect(0,0,W,H);
+
+  const z = zoom(), settled = motion<=0;
+  const wOf = n => (lens===n?1:0)*(1-motion) + (prevLens===n?1:0)*motion;
+  const wR = wOf("refinery"), wC = wOf("constellation"), wS = wOf("stacks");
+  const px = 1/cam.k;                              // one screen pixel, in map units
+
+  // ---- everything with a shape, in map coordinates
+  if(settled){
+    // Settled: use (or refresh) the cached picture, then slide it into place.
+    if(!cacheUsable()) renderStatic();
+    // World point x sits at (cache.tx + PAD + k*x) inside the cached picture and
+    // must land at (cam.tx + k*x) on screen, so the picture is offset by how far
+    // we've panned SINCE it was made, minus the padding. Get this sign wrong and
+    // the map and everything drawn on top of it drift apart as you drag — which
+    // is exactly what it did.
+    ctx.drawImage(sCv, 0,0, sCv.width, sCv.height,
+      (cache.tx-cam.tx)-PAD, (cache.ty-cam.ty)-PAD, cache.w, cache.h);
+    ctx.save();
+    ctx.setTransform(DPR*cam.k,0,0,DPR*cam.k, DPR*cam.tx, DPR*cam.ty);
+    drawJoinsFocus(px);
+    ctx.restore();
+  } else {
+    // Mid-move nothing is stable enough to cache, and the two arrangements
+    // are crossfading, so this is drawn straight.
+    ctx.save();
+    ctx.setTransform(DPR*cam.k,0,0,DPR*cam.k, DPR*cam.tx, DPR*cam.ty);
+    if(wS>0.01) drawRooms(wS);
+    if(wC>0.01) drawWells(wC);
+    if(wR>0.01){ drawBands(wR); drawLineage(wR,px); drawStations(wR,px); }
+    ctx.restore();
+  }
+
+  // ---- everything made of dots and words, in screen pixels
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+  drawDots(z, wS, settled);
+  if(settled) drawLabels(z);
+  if(wS>0.01) roomNames(wS);
+  if(wC>0.01) wellNames(wC);
+  if(wR>0.01) bandNames(wR);
+  status();
+}
+
+/* These draw shapes, and they draw them into `cur` — which is the screen most
+   of the time and the cached picture when we're rebuilding it. */
+let cur = ctx;
+function drawRooms(a){
+  cur.globalAlpha=a;
+  cur.fillStyle="rgba(255,255,255,.035)"; cur.strokeStyle="rgba(255,255,255,.15)";
+  cur.lineWidth=1/cam.k;
+  for(const r of S.rooms){ cur.fillRect(r.x,r.y,r.w,r.h); cur.strokeRect(r.x,r.y,r.w,r.h); }
+  cur.globalAlpha=1;
+}
+function drawShelves(px){
+  const sh = bakeFor("stacks").shelves;
+  for(let b=0;b<12;b++){
+    cur.fillStyle = `rgba(226,233,243,${(0.17+0.62*(b/11)).toFixed(3)})`;
+    cur.fill(sh[b]);
+  }
+}
+function drawWells(a){
+  cur.globalAlpha=a;
+  C.wells.forEach((w,i)=>{
+    const f = wellFills[i];
+    cur.fillStyle=f.g; cur.beginPath(); cur.arc(w.x,w.y,f.r,0,7); cur.fill();
   });
+  cur.globalAlpha=1;
 }
-const on = (id,sel) => [...document.querySelectorAll("#"+id+" "+sel)]
-  .filter(b=>b.getAttribute("aria-pressed")==="true");
-
-/* ====================================================== A · THE REFINERY */
-(function(){
-  const L = A.layouts.refinery, N = L.nodes, LK = L.links, ro = document.getElementById("ro-a");
-  // Adjacency, built once: hovering must not allocate.
-  const kids = N.map(()=>[]), pars = N.map(()=>[]);
-  for(const [a,b] of LK){ kids[a].push(b); pars[b].push(a); }
-  const band = {}; for(const b of L.bands) band[b.id]=b;
-  let hov = -1, chain = null;
-
-  // Edges never change, so bake them into one Path2D up front.
-  const flowPath = new Path2D();
-  for(const [a,b] of LK){
-    const p=N[a], q=N[b], mx=(p.x+q.x)/2;
-    flowPath.moveTo(p.x,p.y); flowPath.bezierCurveTo(mx,p.y,mx,q.y,q.x,q.y);
+function drawBands(a){
+  cur.globalAlpha=a; cur.fillStyle="rgba(255,255,255,.022)";
+  for(const b of R.bands) cur.fillRect(b.x-8, 18, b.w+16, BH-40);
+  cur.globalAlpha=1;
+}
+function drawLineage(a, px){
+  cur.globalAlpha=a*(focus?0.07:0.20);
+  cur.strokeStyle="rgb(120,150,190)"; cur.lineWidth=0.9*px;
+  cur.stroke(bakeFor("refinery").lineage);
+  cur.globalAlpha=1;
+}
+/* Where the links belong depends on how the map is arranged. When it's arranged
+   by connection they ARE the point, so all of them are drawn. Over a floor plan
+   or a production line they'd bury it, so there they're drawn for whatever
+   you've picked — unless you deliberately ask for all of them. */
+function drawJoinsBase(px){
+  if(!(lens==="constellation" || threadsAll)) return;
+  const paths = bakeFor(lens).joins;
+  for(let t=TIER.length-1;t>=0;t--){
+    if(!tiersOn.has(t)) continue;
+    cur.strokeStyle=TIER[t];
+    cur.globalAlpha = focus?0.05:(t===0?0.46:0.20);
+    cur.lineWidth = (t===0?1.1:0.8)*px;
+    cur.stroke(paths[t]);
   }
-
-  function walk(i){
-    const seen = new Set([i]), st=[i];
-    while(st.length){ const c=st.pop();
-      for(const n of kids[c]) if(!seen.has(n)){seen.add(n);st.push(n);} }
-    const st2=[i]; while(st2.length){ const c=st2.pop();
-      for(const n of pars[c]) if(!seen.has(n)){seen.add(n);st2.push(n);} }
-    return seen;
+  cur.globalAlpha=1;
+}
+function drawJoinsFocus(px){
+  if(focus){
+    // Only the picked dataset's own links, drawn one by one — at most a few
+    // hundred, and only while something is actually selected.
+    const P = POS[lens], arc = lens!=="refinery", src = sel>=0?adj[sel]:[];
+    ctx.lineWidth=1.6*px; ctx.globalAlpha=0.95;
+    for(const ei of src){
+      const e=E[ei]; if(!tiersOn.has(e[2])) continue;
+      const p=P[e[0]], q=P[e[1]];
+      ctx.strokeStyle=TIER[e[2]]; ctx.beginPath(); ctx.moveTo(p[0],p[1]);
+      if(arc){ const mx=(p[0]+q[0])/2,my=(p[1]+q[1])/2;
+        ctx.quadraticCurveTo(mx+(BW/2-mx)*0.16,my+(BH/2-my)*0.16,q[0],q[1]); }
+      else ctx.quadraticCurveTo((p[0]+q[0])/2,(p[1]+q[1])/2-Math.abs(q[1]-p[1])*0.22,q[0],q[1]);
+      ctx.stroke();
+    }
   }
-
-  function draw(ctx){
-    const showFlow = on("ctrl-a","[data-a=flow]").length>0;
-    const showLbl  = on("ctrl-a","[data-a=labels]").length>0;
-
-    const BH = L.box[1];
-    if(showLbl) for(const b of L.bands){
-      const s = A.stages.find(s=>s.id===b.id);
-      ctx.fillStyle="rgba(255,255,255,.022)"; ctx.fillRect(b.x-8,20,b.w+16,BH-42);
-      ctx.fillStyle=INK3; ctx.font="600 13px ui-monospace,Menlo,monospace";
-      ctx.textAlign="center"; ctx.fillText(s.label, b.x+b.w/2, 13);
-      ctx.fillStyle="rgba(255,255,255,.32)"; ctx.font="12px ui-monospace,Menlo,monospace";
-      ctx.fillText(fmt(s.count), b.x+b.w/2, BH-5);
+  ctx.globalAlpha=1;
+}
+function drawStations(a, px){
+  const B = bakeFor("refinery");
+  const lit = focus && sel>=0 && SEATED[sel] ? chainOf(XR[sel]) : null;
+  if(lit){
+    // Something is selected, so each cell needs its own brightness.
+    cur.globalAlpha=a*0.10;
+    for(let s=0;s<5;s++){ cur.fillStyle=STAGE[s]; cur.fill(B.ctxCells[s]); }
+    cur.globalAlpha=a;
+    for(const i of lit){
+      const n=R.nodes[i], c=bandOf[n.s].cell;
+      cur.fillStyle=STAGE[STAGE_OF[n.s]];
+      cur.fillRect(n.x-c/2,n.y-c/2,c,c);
     }
-    if(showFlow){
-      ctx.lineWidth = 0.55; ctx.strokeStyle = chain ? "rgba(120,150,190,.09)"
-                                                    : "rgba(120,150,190,.19)";
-      ctx.stroke(flowPath);
-    }
-    // Cells. Two passes so the lit chain always sits above the field.
-    for(let pass=0; pass<2; pass++){
-      for(let i=0;i<N.length;i++){
-        const lit = chain ? chain.has(i) : true;
-        if((pass===0) === !!(chain && lit)) continue;
-        const n=N[i], cw=band[n.s].cell;
-        ctx.globalAlpha = chain ? (lit?1:0.10) : 0.82;
-        ctx.fillStyle = STAGE[n.s];
-        ctx.fillRect(n.x-cw/2, n.y-cw/2, cw, cw);
-      }
+  } else {
+    cur.globalAlpha=a*0.72;
+    for(let s=0;s<5;s++){ cur.fillStyle=STAGE[s]; cur.fill(B.ctxCells[s]); }
+    cur.globalAlpha=a;
+    cur.fillStyle=STAGE[0]; cur.fill(B.coreCells);
+    cur.fillStyle=TIER[0];  cur.fill(B.coreCaps);
+  }
+  cur.globalAlpha=1;
+}
+/* The 368 datasets themselves. Drawn in screen pixels so they stay a sensible
+   size at any zoom, and there are few enough that a plain loop is fine. */
+function drawDots(z, wS, settled){
+  // Each arrangement says its piece with its own mark. Settled on the subject
+  // view a dataset is a shelf; on the journey view it's a station in its bank.
+  // Both of those are already in the cached picture, so a dot on top would be
+  // the same thing drawn twice. Mid-move everything falls back to a dot.
+  const dots = !settled || lens==="constellation";
+  if(dots){
+    const lit = focus;
+    for(let i=0;i<N;i++){
+      posInto(i,_p);
+      const X=sx(_p[0]), Y=sy(_p[1]);
+      if(X<-30||X>W+30||Y<-30||Y>H+30) continue;
+      ctx.globalAlpha = (!lit||lit.has(i))?1:0.13;
+      const n=C.nodes[i];
+      ctx.fillStyle = !n.keyed ? "#41505f" : n.w>=2 ? "#eef1f5" : n.w===1 ? "#9fb0c6" : "#5d6d80";
+      ctx.beginPath(); ctx.arc(X,Y, 2.2+5.6*Math.sqrt(T[i].deg/maxDeg), 0,7); ctx.fill();
     }
     ctx.globalAlpha=1;
-    if(chain && showFlow){
-      ctx.lineWidth=1.1; ctx.strokeStyle="rgba(251,192,106,.85)";
-      const p=new Path2D();
-      for(const [a,b] of LK){ if(!chain.has(a)||!chain.has(b)) continue;
-        const u=N[a],v=N[b],mx=(u.x+v.x)/2;
-        p.moveTo(u.x,u.y); p.bezierCurveTo(mx,u.y,mx,v.y,v.x,v.y); }
-      ctx.stroke(p);
-    }
-    if(hov>=0){ const n=N[hov], k=band[n.s].cell*0.5+2.4;
-      ctx.strokeStyle="#fff"; ctx.lineWidth=1.4;
-      ctx.strokeRect(n.x-k,n.y-k,k*2,k*2); }
+  }
+  // Whatever you've picked or are pointing at gets a ring, in every arrangement.
+  for(const i of [sel,hov]){
+    if(i<0) continue;
+    posInto(i,_p);
+    ctx.strokeStyle = i===sel?"#fff":"rgba(255,255,255,.62)";
+    ctx.lineWidth = i===sel?2:1.4;
+    ctx.beginPath(); ctx.arc(sx(_p[0]), sy(_p[1]), 11, 0,7); ctx.stroke();
+  }
+}
+const _tw = new Map();                             // measured widths, kept
+function drawLabels(z){
+  if(z<1.5) return;
+  const cut = z<2.4 ? maxDeg*0.35 : z<4 ? maxDeg*0.10 : -1;
+  ctx.font="11px ui-monospace,Menlo,monospace"; ctx.textAlign="center";
+  const placed=[];
+  for(let i=0;i<N;i++){
+    if(T[i].deg<cut) continue;
+    if(focus && !focus.has(i)) continue;
+    posInto(i,_p);
+    const X=sx(_p[0]), Y=sy(_p[1])-11;
+    if(X<0||X>W||Y<12||Y>H) continue;
+    const nm = T[i].n.length>34 ? T[i].n.slice(0,32)+"…" : T[i].n;
+    let wdt=_tw.get(nm); if(wdt===undefined){ wdt=ctx.measureText(nm).width; _tw.set(nm,wdt); }
+    if(placed.some(q=>Math.abs(q[0]-X)<(q[2]+wdt)/2+7 && Math.abs(q[1]-Y)<12)) continue;
+    placed.push([X,Y,wdt]);
+    ctx.fillStyle="rgba(13,17,23,.82)"; ctx.fillRect(X-wdt/2-3,Y-9,wdt+6,12);
+    ctx.fillStyle=INK2; ctx.fillText(nm,X,Y);
+  }
+}
+function roomNames(a){
+  ctx.globalAlpha=a; ctx.font="600 11px ui-monospace,Menlo,monospace"; ctx.textAlign="left";
+  for(const r of S.rooms){
+    const t = r.d.replace(/_/g," ")+"  "+r.n;
+    if(ctx.measureText(t).width > r.w*cam.k-10 || r.h*cam.k<18) continue;
+    ctx.fillStyle="rgba(232,234,237,.8)"; ctx.fillText(t, sx(r.x)+6, sy(r.y)+13);
+  }
+  ctx.globalAlpha=1;
+}
+function wellNames(a){
+  ctx.globalAlpha=a;
+  for(const w of C.wells){
+    const dx=w.x-BW/2, dy=w.y-BH/2, d=Math.hypot(dx,dy)||1, m=1+92/d;
+    const lx=sx(BW/2+dx*m), ly=sy(BH/2+dy*m);
+    ctx.textAlign = Math.abs(dx)<70 ? "center" : (dx>0?"left":"right");
+    ctx.fillStyle=INK; ctx.font="600 13px ui-monospace,Menlo,monospace";
+    ctx.fillText(w.k, lx, ly);
+    ctx.fillStyle=INK3; ctx.font="11px ui-monospace,Menlo,monospace";
+    ctx.fillText(w.h+" here · "+w.n+" use it", lx, ly+13);
+  }
+  ctx.globalAlpha=1;
+}
+function bandNames(a){
+  ctx.globalAlpha=a; ctx.textAlign="center";
+  for(const b of R.bands){
+    const st=stageLabel[b.id];
+    ctx.fillStyle=INK3; ctx.font="600 12px ui-monospace,Menlo,monospace";
+    ctx.fillText(st.label, sx(b.x+b.w/2), sy(12));
+    ctx.fillStyle="rgba(255,255,255,.34)"; ctx.font="11px ui-monospace,Menlo,monospace";
+    ctx.fillText(fmt(st.count), sx(b.x+b.w/2), sy(BH-4));
+  }
+  ctx.globalAlpha=1;
+}
+function chainOf(seat){
+  const seen=new Set([seat]), st=[seat];
+  while(st.length){const c=st.pop(); for(const n of kids[c]) if(!seen.has(n)){seen.add(n);st.push(n);}}
+  const s2=[seat]; while(s2.length){const c=s2.pop(); for(const n of pars[c]) if(!seen.has(n)){seen.add(n);s2.push(n);}}
+  return seen;
+}
+
+/* ================================================================== picking */
+function pick(mx,my){
+  const px=wx(mx), py=wy(my);
+  if(lens==="stacks" && motion<=0){
+    for(const c of S.cells)
+      if(px>=c.x&&px<=c.x+c.w&&py>=c.y&&py<=c.y+c.h) return c.i;
+    return -1;
+  }
+  const rad=16/cam.k; let best=rad*rad, f=-1;
+  for(let i=0;i<N;i++){
+    posInto(i,_p);
+    const dx=_p[0]-px, dy=_p[1]-py, d=dx*dx+dy*dy;
+    if(d<best){best=d;f=i;}
+  }
+  return f;
+}
+
+/* =================================================================== chrome */
+const tip = document.getElementById("tip");
+let tipW=0, tipH=0, tipFor=-1, tipOn=false;
+function showTip(i, mx, my){
+  if(i!==tipFor){
+    const t=T[i];
+    tip.innerHTML = `<b>${t.n}</b><br><span class="k">${t.dom.replace(/_/g," ").toLowerCase()}</span> · `+
+      `${fmt(t.rows)} records · ${t.deg} link${t.deg===1?"":"s"}<br>`+
+      (t.keys.length?`IDs: ${t.keys.join(", ")}`:"no ID to match on");
+    tip.style.display="block"; tipOn=true;
+    // The one place we do measure — only when the words changed, never on a move.
+    const r=tip.getBoundingClientRect(); tipW=r.width; tipH=r.height; tipFor=i;
+  }
+  // Transform, not left/top: it moves the tooltip without asking the browser
+  // to lay the page out again.
+  tip.style.transform = `translate(${Math.min(mx+14, W-tipW-10)}px,${Math.min(my+14, H-tipH-10)}px)`;
+}
+function hideTip(){ if(!tipOn) return; tip.style.display="none"; tipOn=false; tipFor=-1; }
+
+let liveLinks = E.length;                          // recounted only when tiers change
+function countLinks(){ liveLinks = E.reduce((n,e)=>n+(tiersOn.has(e[2])?1:0),0); }
+function status(){
+  const drawn = (lens==="constellation"||threadsAll) ? `${fmt(liveLinks)} of ${fmt(E.length)} links drawn`
+              : focus ? "links drawn for what you picked"
+              : "pick a dataset to see its links";
+  document.getElementById("status").textContent =
+    `${fmt(N)} datasets · ${drawn} · zoom ${zoom().toFixed(1)}×`;
+}
+function legend(){
+  const el = document.getElementById("legend");
+  if(lens==="refinery"){
+    el.innerHTML = A.stages.map((s,i)=>
+      `<div class="row"><i class="sq" style="background:${STAGE[i]}"></i>${s.label.toLowerCase()} — ${fmt(s.count)}</div>`).join("")
+      + `<div class="row"><i class="sq" style="background:${TIER[0]}"></i>gold cap — we've found links for this one</div>`;
+  } else if(lens==="constellation"){
+    el.innerHTML =
+      `<div class="row"><i class="sw" style="background:#eef1f5"></i>two rare IDs — can bridge two worlds</div>`+
+      `<div class="row"><i class="sw" style="background:#9fb0c6"></i>one rare ID</div>`+
+      `<div class="row"><i class="sw" style="background:#5d6d80"></i>only common IDs, like a name or a ZIP</div>`+
+      `<div class="row"><i class="sw" style="background:#41505f"></i>nothing to match on yet</div>`+
+      `<div class="row">dot size — how many links it has</div>`;
+  } else {
+    el.innerHTML =
+      `<div class="row">tile size &amp; brightness — how many records</div>`+
+      `<div class="row">room size — how many datasets on that subject</div>`+
+      `<div class="row">pick any tile to see what it links to</div>`;
+  }
+}
+
+/* The links, weakest to strongest, and you can switch any of them off. This
+   stays on screen permanently and never hides in a menu: it is the control
+   that stops a hunch being shown to you as a fact. */
+const tiersEl = document.getElementById("tiers");
+const tierCount = {}; for(const e of E) tierCount[e[2]]=(tierCount[e[2]]||0)+1;
+LAB.forEach((L,i)=>{
+  if(!tierCount[i]) return;
+  const b=document.createElement("button");
+  b.setAttribute("aria-pressed","true"); b.title = L[1];
+  b.innerHTML = `<i class="sw" style="background:${TIER[i]}"></i>${L[0]}<span class="ct">${fmt(tierCount[i])}</span>`;
+  b.onclick = ()=>{
+    const on = b.getAttribute("aria-pressed")!=="true";
+    b.setAttribute("aria-pressed", on);
+    on ? tiersOn.add(i) : tiersOn.delete(i);
+    countLinks(); draw();
+  };
+  tiersEl.appendChild(b);
+});
+const allBtn = document.createElement("button");
+allBtn.setAttribute("aria-pressed","false");
+allBtn.title = "Draw every link at once, however the map is arranged. Over the "+
+               "subject and journey views that's a deliberate mess — worth a look, "+
+               "not somewhere to work.";
+allBtn.textContent = "show all at once";
+allBtn.onclick = ()=>{ threadsAll=!threadsAll; allBtn.setAttribute("aria-pressed",threadsAll); draw(); };
+tiersEl.appendChild(allBtn);
+
+/* ==================================================================== panel */
+const panel = document.getElementById("panel");
+function openPanel(i){
+  sel=i; focus=new Set([i]);
+  for(const ei of adj[i]){ focus.add(E[ei][0]); focus.add(E[ei][1]); }
+  const t=T[i];
+  panel.querySelector(".dom").textContent = t.dom.replace(/_/g," ").toLowerCase();
+  panel.querySelector("h3").textContent = t.n;
+
+  const byTier={};
+  for(const ei of adj[i]) byTier[E[ei][2]]=(byTier[E[ei][2]]||0)+1;
+  const maxT = Math.max(1,...Object.values(byTier));
+  const neigh = adj[i].map(ei=>{const e=E[ei];
+      return {j:e[0]===i?e[1]:e[0], tier:e[2], key:e[3], matched:e[4]};})
+    .sort((a,b)=>a.tier-b.tier||b.matched-a.matched).slice(0,40);
+
+  let chain;
+  if(SEATED[i]){
+    const seat=XR[i], order=[];
+    const walk=(u,dir,depth)=>{ for(const v of (dir>0?kids[u]:pars[u])){
+      if(order.some(o=>o.n===v)) continue; order.push({n:v,d:depth*dir}); walk(v,dir,depth+1); } };
+    walk(seat,1,1); walk(seat,-1,1);
+    const all=[{n:seat,d:0}].concat(order).sort((a,b)=>a.d-b.d);
+    chain = all.slice(0,26).map(o=>{ const n=R.nodes[o.n];
+      return `<div class="step"><i class="dot" style="background:${STAGE[STAGE_OF[n.s]]}"></i>`+
+        `<span class="nm" style="${o.n===seat?'color:#e8eaed':''}">${n.id}</span></div>`;}).join("")
+      + (all.length>26?`<div class="step"><span class="nm">and ${all.length-26} more</span></div>`:"");
+  } else {
+    chain = `<p>We measured this one, but it was never wired into the build — so there's no journey to show. That's a gap in our plumbing, not something about the data.</p>`;
   }
 
-  function hit(pt){
-    let f=-1;
-    if(pt){ let best=110;
-      for(let i=0;i<N.length;i++){
-        const dx=N[i].x-pt.x, dy=N[i].y-pt.y, d=dx*dx+dy*dy;
-        if(d<best){best=d;f=i;} } }
-    if(f===hov) return false;
-    hov=f; chain = f>=0 ? walk(f) : null;
-    if(f<0){ ro.textContent="2,454 moving parts, 1,366 handoffs. Five stages, left to right, in the order they run."; }
-    else{
-      const n=N[f], st=A.stages.find(s=>s.id===n.s);
-      const up=pars[f].length, dn=kids[f].length;
-      ro.innerHTML = `<b>${n.id}</b> &nbsp;<span class="k">${st.label.toLowerCase()}</span><br>`+
-        `reads from ${up} · feeds ${dn} · <b>${chain.size}</b> things on its path`+
-        (up?`<br><span style="color:${INK3}">from: ${pars[f].slice(0,4).map(i=>N[i].id).join(", ")}${up>4?" +"+(up-4):""}</span>`:"");
-    }
-    return true;
+  panel.querySelector(".body").innerHTML =
+    (t.desc?`<h4>What this is</h4><p>${t.desc}</p>`:"")+
+    `<h4>The numbers</h4><dl class="kv">
+      <dt>records</dt><dd>${fmt(t.rows)}</dd>
+      <dt>links</dt><dd>${t.deg}</dd>
+      <dt>subject</dt><dd>${t.dom.replace(/_/g," ").toLowerCase()}</dd></dl>`+
+    `<h4>What it can be matched on</h4><div class="chipset">`+
+      (t.keys.length? t.keys.map(k=>`<span class="${RARE(k)?"rare":""}">${k}</span>`).join("")
+                    : `<span>nothing yet</span>`)+`</div>`+
+      (t.keys.length?`<p class="small">Gold means an ID rare enough to pick out one specific thing. Almost every dataset has a name and a ZIP code, so those two can't identify anyone on their own.</p>`:"")+
+    (t.deg?`<h4>How sure we are of its links</h4>`+
+      LAB.map((L,ti)=> byTier[ti]?
+        `<div class="tierrow" title="${L[1]}"><i class="sw" style="background:${TIER[ti]}"></i>`+
+        `<span class="nm">${L[0]}</span><span class="ct">${byTier[ti]}</span>`+
+        `<i class="bar" style="background:${TIER[ti]};width:${100*byTier[ti]/maxT}%"></i></div>`:"").join("")
+      :"")+
+    (neigh.length?`<h4>Links to</h4><div class="neigh">`+
+      neigh.map(x=>`<button data-go="${x.j}"><i class="sw" style="background:${TIER[x.tier]}"></i>`+
+        `<span class="nm">${T[x.j].n}</span><span class="ct">${x.key}</span></button>`).join("")+
+      `</div>`:"")+
+    `<h4>Where it comes from, and where it goes</h4><div class="lineage">${chain}</div>`;
+
+  panel.querySelectorAll("[data-go]").forEach(b=>
+    b.onclick=()=>{ openPanel(+b.dataset.go); centerOn(+b.dataset.go); });
+  panel.classList.add("open");
+  draw();
+}
+function closePanel(){ panel.classList.remove("open"); sel=-1; focus=null; draw(); }
+document.getElementById("close").onclick = closePanel;
+function centerOn(i){
+  const p=POS[lens][i];
+  cam.k = Math.max(cam.k, cam.kfit*2.4);
+  const vis = panel.classList.contains("open") ? W-panel.offsetWidth : W;
+  cam.tx = vis/2 - p[0]*cam.k; cam.ty = H/2 - p[1]*cam.k;
+  draw();
+}
+
+/* =================================================================== search */
+const searchEl = document.getElementById("search"), resEl = document.getElementById("results");
+let hits=[], hi=0;
+function runSearch(){
+  const q = searchEl.value.trim().toUpperCase();
+  if(q.length<2){ resEl.style.display="none"; hits=[]; if(focus&&sel<0){focus=null;draw();} return; }
+  hits=[];
+  for(let i=0;i<N;i++){
+    const t=T[i];
+    const s = t.n.includes(q)?0 : t.dom.includes(q)?1 : t.keys.some(k=>k===q)?1
+            : (t.desc||"").toUpperCase().includes(q)?2 : -1;
+    if(s>=0) hits.push({i,s});
   }
-  const c = mount("cv-a", L.box, draw, hit);
-  chips("ctrl-a", c.paint);
-})();
-
-/* =================================================== B · THE CONSTELLATION */
-(function(){
-  const L = A.layouts.constellation, N = L.nodes, W = L.wells,
-        T = A.tables, E = A.edges, ro = document.getElementById("ro-b");
-  const adj = T.map(()=>[]);
-  E.forEach((e,i)=>{ adj[e[0]].push(i); adj[e[1]].push(i); });
-  const deg = T.map(t=>t.deg);
-  const maxDeg = Math.max(...deg);
-  let hov=-1;
-
-  const CX = L.box[0]/2, CY = L.box[1]/2, BOW = 0.16;
-  // One baked path per tier — thousands of edges, six strokes.
-  const paths = TIER.map(()=>new Path2D());
-  for(const e of E){ const p=N[e[0]], q=N[e[1]];
-    // Bow toward the middle so parallel links between two wells fan out
-    // instead of stacking into one thick illegible bar.
-    const mx=(p.x+q.x)/2, my=(p.y+q.y)/2;
-    paths[e[2]].moveTo(p.x,p.y);
-    paths[e[2]].quadraticCurveTo(mx+(CX-mx)*BOW, my+(CY-my)*BOW, q.x,q.y);
+  hits.sort((a,b)=>a.s-b.s||T[b.i].deg-T[a.i].deg);
+  hits=hits.slice(0,60); hi=0;
+  resEl.innerHTML = hits.length ? hits.map((h,n)=>
+      `<button data-i="${h.i}" class="${n===0?"sel":""}"><span class="nm">${T[h.i].n}</span>`+
+      `<span class="meta">${T[h.i].deg} links</span></button>`).join("")
+    : `<button disabled style="color:#6b7684">nothing found</button>`;
+  resEl.style.display="block";
+  resEl.querySelectorAll("[data-i]").forEach(b=>
+    b.onclick=()=>{ const i=+b.dataset.i; openPanel(i); centerOn(i);
+                    resEl.style.display="none"; searchEl.blur(); });
+  focus=new Set(hits.map(h=>h.i)); sel=-1; draw();
+}
+searchEl.addEventListener("input", runSearch);
+searchEl.addEventListener("keydown", e=>{
+  if(e.key==="Escape"){ searchEl.value=""; runSearch(); searchEl.blur(); }
+  if(!hits.length) return;
+  if(e.key==="ArrowDown"||e.key==="ArrowUp"){
+    e.preventDefault(); hi=(hi+(e.key==="ArrowDown"?1:hits.length-1))%hits.length;
+    resEl.querySelectorAll("button").forEach((b,n)=>b.classList.toggle("sel",n===hi));
+    resEl.children[hi]?.scrollIntoView({block:"nearest"});
   }
+  if(e.key==="Enter"){ const i=hits[hi].i; openPanel(i); centerOn(i);
+    resEl.style.display="none"; searchEl.blur(); }
+});
 
-  function draw(ctx){
-    const live = new Set(on("ctrl-b","[data-tier]").map(b=>+b.dataset.tier));
-    // Wells first, underneath everything.
-    for(const w of W){
-      const r = 34 + Math.sqrt(w.n)*7;
-      const g = ctx.createRadialGradient(w.x,w.y,0,w.x,w.y,r);
-      g.addColorStop(0,"rgba(157,180,215,.13)"); g.addColorStop(1,"rgba(157,180,215,0)");
-      ctx.fillStyle=g; ctx.beginPath(); ctx.arc(w.x,w.y,r,0,7); ctx.fill();
-    }
-    // Edges, weakest tier first so STEEL lands on top.
-    for(let t=TIER.length-1;t>=0;t--){
-      if(!live.has(t)) continue;
-      ctx.strokeStyle=TIER[t];
-      ctx.globalAlpha = hov>=0 ? 0.07 : (t===0?0.5:0.26);
-      ctx.lineWidth = t===0?0.9:0.6;
-      ctx.stroke(paths[t]);
-    }
-    ctx.globalAlpha=1;
-    if(hov>=0){
-      ctx.lineWidth=1.5;
-      for(const ei of adj[hov]){ const e=E[ei]; if(!live.has(e[2])) continue;
-        const p=N[e[0]],q=N[e[1]],mx=(p.x+q.x)/2,my=(p.y+q.y)/2;
-        ctx.strokeStyle=TIER[e[2]]; ctx.beginPath(); ctx.moveTo(p.x,p.y);
-        ctx.quadraticCurveTo(mx+(CX-mx)*BOW,my+(CY-my)*BOW,q.x,q.y); ctx.stroke(); }
-    }
-    // Nodes, sized by degree — connectivity, never row count (design brief D2).
-    for(let i=0;i<N.length;i++){
-      const n=N[i], r = 2.1 + 5.4*Math.sqrt(deg[i]/maxDeg);
-      ctx.globalAlpha = hov<0 ? 1 : (i===hov||adj[hov].some(ei=>E[ei][0]===i||E[ei][1]===i) ? 1 : 0.2);
-      // Brightness = how many DISCRIMINATING IDs the table carries. The bright
-      // ones are the crossings; that ranking is the whole argument of this map.
-      ctx.fillStyle = !n.keyed ? "#41505f"
-                    : n.w>=2  ? "#eef1f5"
-                    : n.w===1 ? "#9fb0c6" : "#5d6d80";
-      ctx.beginPath(); ctx.arc(n.x,n.y,r,0,7); ctx.fill();
-    }
-    ctx.globalAlpha=1;
-    // Well labels sit OUTSIDE the ring, pushed radially away from the centre,
-    // so they never land on top of the tables they name.
-    for(const w of W){
-      const dx=w.x-CX, dy=w.y-CY, d=Math.hypot(dx,dy)||1, k=1+92/d;
-      const lx=CX+dx*k, ly=CY+dy*k;
-      ctx.textAlign = Math.abs(dx)<70 ? "center" : (dx>0?"left":"right");
-      ctx.fillStyle=INK; ctx.font="600 14px ui-monospace,Menlo,monospace";
-      ctx.fillText(w.k, lx, ly);
-      ctx.fillStyle=INK3; ctx.font="11.5px ui-monospace,Menlo,monospace";
-      ctx.fillText(w.h+" filed · "+w.n+" carry", lx, ly+14);
-    }
-    if(hov>=0){ const n=N[hov];
-      ctx.strokeStyle="#fff"; ctx.lineWidth=1.5;
-      ctx.beginPath(); ctx.arc(n.x,n.y,10,0,7); ctx.stroke(); }
+/* ==================================================================== input */
+/* offsetX/offsetY are already relative to the canvas, cost nothing to read, and
+   stay correct if the page scrolls or the toolbar wraps to a second line. Working
+   them out by hand from a remembered element position is how a click ends up
+   selecting the wrong thing. */
+cv.addEventListener("mousedown", e=>{
+  drag={x:e.clientX, y:e.clientY, ox:e.offsetX, oy:e.offsetY,
+        tx:cam.tx, ty:cam.ty, moved:0};
+  cv.classList.add("drag");
+});
+addEventListener("mouseup", ()=>{
+  if(drag && drag.moved<4){
+    const i=pick(drag.ox, drag.oy);     // where the press landed, exactly
+    if(i>=0) openPanel(i); else closePanel();
   }
+  drag=null; cv.classList.remove("drag");
+});
+cv.addEventListener("mousemove", e=>{
+  if(drag){ drag.moved+=Math.abs(e.movementX)+Math.abs(e.movementY);
+    cam.tx=drag.tx+(e.clientX-drag.x); cam.ty=drag.ty+(e.clientY-drag.y);
+    hideTip(); draw(); return; }
+  const i=pick(e.offsetX, e.offsetY);
+  if(i!==hov){ hov=i; draw(); }        // cheap now: the map itself is cached
+  if(i>=0) showTip(i, e.offsetX, e.offsetY); else hideTip();
+});
+cv.addEventListener("mouseleave", ()=>{ if(hov>=0){hov=-1; draw();} hideTip(); });
+cv.addEventListener("wheel", e=>{
+  e.preventDefault();
+  const mx=e.offsetX, my=e.offsetY;
+  const bx=wx(mx), by=wy(my);
+  cam.k = Math.max(cam.kfit*0.55, Math.min(cam.kfit*22, cam.k*Math.pow(1.0016,-e.deltaY)));
+  cam.tx = mx-bx*cam.k; cam.ty = my-by*cam.k;
+  draw();
+}, {passive:false});
+document.getElementById("lenses").addEventListener("click", e=>{
+  const b=e.target.closest("button[data-lens]"); if(b) setLens(b.dataset.lens); });
+addEventListener("keydown", e=>{
+  if(e.target===searchEl) return;
+  if(e.key==="/"){ e.preventDefault(); searchEl.focus(); return; }
+  if(e.key==="1") setLens("stacks");
+  if(e.key==="2") setLens("constellation");
+  if(e.key==="3") setLens("refinery");
+  if(e.key==="f"||e.key==="F") fit();
+  if(e.key==="Escape"){ searchEl.value=""; runSearch(); closePanel(); }
+});
+addEventListener("resize", resize);
+// The toolbar wraps to a second line on a narrow window, which changes the
+// canvas height without the window itself resizing. Watch the element, not
+// the window, so the drawing surface and the thing you click never disagree.
+if(window.ResizeObserver){
+  let first = true;
+  new ResizeObserver(()=>{ if(first){first=false;return;} resize(); }).observe(cv);
+}
 
-  function hit(pt){
-    let f=-1;
-    if(pt){ let best=190;
-      for(let i=0;i<N.length;i++){
-        const dx=N[i].x-pt.x, dy=N[i].y-pt.y, d=dx*dx+dy*dy;
-        if(d<best){best=d;f=i;} } }
-    if(f===hov) return false;
-    hov=f;
-    if(f<0) ro.textContent="368 datasets, 2,694 confirmed links, gathered around the 14 IDs they share.";
-    else{
-      const t=T[f], byTier={}, LB=A.ladder_labels;
-      for(const ei of adj[f]) byTier[E[ei][2]]=(byTier[E[ei][2]]||0)+1;
-      const tiers = LB.map((L,i)=>byTier[i]?`${byTier[i]} ${L[0].toLowerCase()}`:null)
-                      .filter(Boolean).join(" · ");
-      ro.innerHTML = `<b>${t.n}</b> &nbsp;<span class="k">${t.dom.replace(/_/g," ").toLowerCase()}</span> · ${fmt(t.rows)} records<br>`+
-        `can be matched on <span class="k">${t.keys.join(", ")||"nothing yet"}</span><br>`+
-        (t.deg?`${t.deg} links — ${tiers}`:"no confirmed link yet")+
-        (t.desc?`<br><span style="color:${INK3}">${t.desc.slice(0,140)}</span>`:"");
-    }
-    return true;
-  }
-  const c = mount("cv-b", L.box, draw, hit);
-  chips("ctrl-b", c.paint);
-})();
+/* ===================================================================== boot */
+bakeFor("stacks");
+showNote(LENSES[lens]); legend(); countLinks(); resize();
 
-/* ======================================================== C · THE STACKS */
-(function(){
-  const L = A.layouts.stacks, R = L.rooms, C = L.cells,
-        T = A.tables, E = A.edges, ro = document.getElementById("ro-c");
-  const cellOf = {}; for(const c of C) cellOf[c.i]=c;
-  const maxRows = Math.max(...T.map(t=>t.rows||1));
-  let hov=-1;
-
-  function draw(ctx){
-    const byRows = on("ctrl-c","[data-c=rows]").length>0;
-    const links  = on("ctrl-c","[data-c=links]").length>0;
-    const conn   = on("ctrl-c","[data-c=conn]").length>0;
-
-    for(const r of R){
-      ctx.fillStyle="rgba(255,255,255,.035)"; ctx.fillRect(r.x,r.y,r.w,r.h);
-      ctx.strokeStyle="rgba(255,255,255,.14)"; ctx.lineWidth=0.8;
-      ctx.strokeRect(r.x+.4,r.y+.4,r.w-.8,r.h-.8);
-    }
-    for(const c of C){
-      const t=T[c.i];
-      // Fill carries magnitude only — one neutral ramp, never a hue, so it
-      // can never be mistaken for the confidence ladder.
-      const mag = byRows ? 0.16+0.62*(Math.log10(Math.max(t.rows,1))/Math.log10(maxRows)) : 0.4;
-      ctx.fillStyle = `rgba(226,233,243,${mag.toFixed(3)})`;
-      ctx.fillRect(c.x+.6,c.y+.6,Math.max(c.w-1.2,.5),Math.max(c.h-1.2,.5));
-      if(conn && t.deg>0){
-        ctx.strokeStyle=TIER[0]; ctx.lineWidth=0.9;
-        ctx.strokeRect(c.x+.9,c.y+.9,Math.max(c.w-1.8,.4),Math.max(c.h-1.8,.4));
-      }
-    }
-    if(links){
-      // Threads arc above the plan like wires over a street: the plan stays
-      // readable underneath, which a straight chord layer would destroy.
-      for(let t=TIER.length-1;t>=0;t--){
-        const p=new Path2D(); let any=false;
-        for(const e of E){ if(e[2]!==t) continue;
-          const a=cellOf[e[0]], b=cellOf[e[1]]; if(!a||!b) continue;
-          const ax=a.x+a.w/2, ay=a.y+a.h/2, bx=b.x+b.w/2, by=b.y+b.h/2;
-          const mx=(ax+bx)/2, my=(ay+by)/2 - Math.hypot(bx-ax,by-ay)*0.22;
-          p.moveTo(ax,ay); p.quadraticCurveTo(mx,my,bx,by); any=true; }
-        if(!any) continue;
-        ctx.strokeStyle=TIER[t]; ctx.globalAlpha=t===0?0.30:0.13;
-        ctx.lineWidth=t===0?0.8:0.5; ctx.stroke(p);
-      }
-      ctx.globalAlpha=1;
-    }
-    // Labels are measured before they are drawn: a room that cannot hold its
-    // own name gets the count alone, and a room that cannot hold that gets
-    // nothing. A clipped or overlapping label is worse than no label.
-    ctx.font="600 10.5px ui-monospace,Menlo,monospace";
-    ctx.textAlign="left"; ctx.textBaseline="alphabetic";
-    for(const r of R){
-      if(r.h<16) continue;
-      const full = r.d.replace(/_/g," ")+"  "+r.n, avail = r.w-9;
-      const txt = ctx.measureText(full).width<=avail ? full
-                : (ctx.measureText(String(r.n)).width<=avail ? String(r.n) : null);
-      if(!txt) continue;
-      ctx.fillStyle="rgba(232,234,237,"+(txt===full?".78":".5")+")";
-      ctx.fillText(txt, r.x+5, r.y+11);
-    }
-    if(hov>=0){ const c=cellOf[hov];
-      ctx.strokeStyle="#fff"; ctx.lineWidth=1.6;
-      ctx.strokeRect(c.x,c.y,c.w,c.h); }
-  }
-
-  function hit(pt){
-    let f=-1;
-    if(pt) for(const c of C)
-      if(pt.x>=c.x&&pt.x<=c.x+c.w&&pt.y>=c.y&&pt.y<=c.y+c.h){f=c.i;break;}
-    if(f===hov) return false;
-    hov=f;
-    if(f<0) ro.textContent="368 shelves in 34 rooms. Room size = how many datasets. Shelf size = how much is in it.";
-    else{ const t=T[f];
-      ro.innerHTML = `<b>${t.n}</b> &nbsp;<span class="k">${t.dom.replace(/_/g," ").toLowerCase()}</span><br>`+
-        `${fmt(t.rows)} records · ${t.deg} links · matched on ${t.keys.join(", ")||"nothing yet"}`+
-        (t.desc?`<br><span style="color:${INK3}">${t.desc.slice(0,150)}</span>`:"");
-    }
-    return true;
-  }
-  const c = mount("cv-c", L.box, draw, hit);
-  chips("ctrl-c", c.paint);
-})();
+/* A read-only window onto the page's own coordinate maths, so the regression
+   tests in viz/test_atlas.py can ask "where should this be?" and compare it
+   against where a click actually lands. Reading only -- nothing here can drive
+   the map, so it can't paper over a bug by taking a different code path. */
+window.__atlas = {
+  tables: T,
+  pos: name => POS[name],
+  sx, sy,
+  world: (x,y) => [wx(x), wy(y)],
+  lens: () => lens,
+  // How far the cached picture is currently being offset when it's blitted.
+  cacheOffset: () => [cam.tx-cache.tx, cam.ty-cache.ty],
+};
 })();
 </script>
 </body>
