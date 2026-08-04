@@ -1,0 +1,86 @@
+{
+  "meta": {
+    "port": 65253,
+    "pid": 2304,
+    "runs": 31,
+    "when": "2026-08-04 13:36:56",
+    "boot_ms": 1540.6615000683814
+  },
+  "gestures": [
+    {
+      "name": "click a chart",
+      "median_ms": 16.014400054700673,
+      "fast_ms": 5.411599995568395,
+      "slow_ms": 60.997100081294775,
+      "n": 31,
+      "sync_ms": 4.923500004224479,
+      "fanout_to_figure_ms": 8.143600076436996,
+      "request_kb": 23.646484375,
+      "lanes": {
+        "chart": {
+          "ms": 7.904099998995662,
+          "kb": 5.99609375
+        },
+        "knobs": {
+          "ms": 11.035199975594878,
+          "kb": 78.2197265625
+        },
+        "picker": {
+          "ms": 17.998200026340783,
+          "kb": 133.7275390625
+        }
+      },
+      "note": "bar -> scatter; the pane and the picker DO rebuild, on their own lanes"
+    },
+    {
+      "name": "turn a knob",
+      "median_ms": 18.278400064446032,
+      "fast_ms": 11.358199990354478,
+      "slow_ms": 39.3231000052765,
+      "n": 31,
+      "sync_ms": 5.780099891126156,
+      "fanout_to_figure_ms": 9.23179998062551,
+      "request_kb": 23.671875,
+      "lanes": {
+        "chart": {
+          "ms": 9.010800044052303,
+          "kb": 6.2431640625
+        },
+        "knobs": {
+          "ms": 8.989699999801815,
+          "kb": 0.02734375
+        },
+        "picker": {
+          "ms": 13.183100032620132,
+          "kb": 0.02734375
+        }
+      },
+      "note": "layout.barmode; pane and picker answer no_update, and still cost a round trip"
+    },
+    {
+      "name": "turn a knob, every tier open",
+      "median_ms": 46.244399971328676,
+      "fast_ms": 36.99209995102137,
+      "slow_ms": 90.61840001959354,
+      "n": 31,
+      "sync_ms": 35.24290001951158,
+      "fanout_to_figure_ms": 9.374899906106293,
+      "request_kb": 668.353515625,
+      "lanes": {
+        "chart": {
+          "ms": 8.750599925406277,
+          "kb": 6.2431640625
+        },
+        "knobs": {
+          "ms": 9.753099991939962,
+          "kb": 0.02734375
+        },
+        "picker": {
+          "ms": 10.013399994932115,
+          "kb": 0.02734375
+        }
+      },
+      "note": "all six buckets expanded - the worst case you can ask this app for"
+    }
+  ]
+}

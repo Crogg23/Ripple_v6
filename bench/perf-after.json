@@ -1,0 +1,1518 @@
+{
+  "meta": {
+    "when": "2026-08-04 13:12:36",
+    "label": "after-surgery",
+    "python": "3.14.6",
+    "platform": "Windows 11 AMD64, 16 cpus",
+    "packages": "dash 4.4.1, plotly 6.9.0, pandas 2.3.3, numpy 2.5.1",
+    "sections": [
+      "cold",
+      "knobs",
+      "callbacks",
+      "frames",
+      "http"
+    ]
+  },
+  "rows": [
+    {
+      "section": "cold",
+      "name": "import bench.app (fresh interpreter)",
+      "ms": 1196.8129000160843,
+      "fast": null,
+      "n": 3,
+      "kb": null,
+      "count": null,
+      "note": "includes plotly, pandas, registry's 145 templates AND the first layout build"
+    },
+    {
+      "section": "cold",
+      "name": "rebuild app.py module body (reload, warm caches)",
+      "ms": 18.254499998874962,
+      "fast": 17.676200019195676,
+      "n": 5,
+      "kb": null,
+      "count": null,
+      "note": "the layout construction with every cache hot"
+    },
+    {
+      "section": "cold",
+      "name": "app.layout size",
+      "ms": null,
+      "fast": null,
+      "n": 0,
+      "kb": 228.5712890625,
+      "count": 863,
+      "note": "count = Dash components; this is the /_dash-layout body"
+    },
+    {
+      "section": "cold",
+      "name": "serialise app.layout (dash to_json)",
+      "ms": 3.4545999951660633,
+      "fast": 3.427300020121038,
+      "n": 5,
+      "kb": null,
+      "count": null,
+      "note": "what serve_layout does on every page load"
+    },
+    {
+      "section": "cold",
+      "name": "  piece: knob_pane(bar)",
+      "ms": 5.317099974490702,
+      "fast": 5.254099960438907,
+      "n": 7,
+      "kb": 75.9580078125,
+      "count": 315,
+      "note": ""
+    },
+    {
+      "section": "cold",
+      "name": "  piece: knob_pane(bar) every tier open",
+      "ms": 108.45090006478131,
+      "fast": 106.05519998352975,
+      "n": 5,
+      "kb": 3796.1337890625,
+      "count": 14177,
+      "note": ""
+    },
+    {
+      "section": "cold",
+      "name": "  piece: picker(145 charts)",
+      "ms": 4.090399947017431,
+      "fast": 4.043999942950904,
+      "n": 7,
+      "kb": 133.576171875,
+      "count": 487,
+      "note": ""
+    },
+    {
+      "section": "cold",
+      "name": "  piece: source_bar",
+      "ms": 0.16259995754808187,
+      "fast": 0.15930004883557558,
+      "n": 7,
+      "kb": 8.0400390625,
+      "count": 26,
+      "note": ""
+    },
+    {
+      "section": "cold",
+      "name": "  piece: render_code",
+      "ms": 0.009199953638017178,
+      "fast": 0.008399947546422482,
+      "n": 7,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "cold",
+      "name": "  piece: knob_echo(pane)",
+      "ms": 0.6942999316379428,
+      "fast": 0.6911000236868858,
+      "n": 7,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "knobs",
+      "name": "indicator: knobs.tree COLD (cache cleared)",
+      "ms": 27.611900004558265,
+      "fast": 27.4154000217095,
+      "n": 3,
+      "kb": null,
+      "count": 2002,
+      "note": "count = knobs"
+    },
+    {
+      "section": "knobs",
+      "name": "indicator: knobs.tree warm",
+      "ms": 2.3736999137327075,
+      "fast": 2.3623000597581267,
+      "n": 7,
+      "kb": null,
+      "count": 2002,
+      "note": ""
+    },
+    {
+      "section": "knobs",
+      "name": "indicator: knob_pane -> components",
+      "ms": 4.958300036378205,
+      "fast": 4.7694999957457185,
+      "n": 7,
+      "kb": 74.3662109375,
+      "count": 308,
+      "note": "count = Dash components; LAZY, Tier 0 only"
+    },
+    {
+      "section": "knobs",
+      "name": "indicator: knob_pane, every tier open",
+      "ms": 103.26269990764558,
+      "fast": 102.08079998847097,
+      "n": 5,
+      "kb": 3629.3330078125,
+      "count": 13561,
+      "note": "what the pane used to cost on EVERY repaint"
+    },
+    {
+      "section": "knobs",
+      "name": "indicator: serialise that pane",
+      "ms": 1.146299997344613,
+      "fast": 1.142699969932437,
+      "n": 7,
+      "kb": 74.3662109375,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "knobs",
+      "name": "indicator: knob_echo(pane)",
+      "ms": 0.6720999954268336,
+      "fast": 0.6689000874757767,
+      "n": 7,
+      "kb": null,
+      "count": 68,
+      "note": "count = widgets whose value is echoed"
+    },
+    {
+      "section": "knobs",
+      "name": "indicator: ids matching the knob Input",
+      "ms": null,
+      "fast": null,
+      "n": 0,
+      "kb": null,
+      "count": 68,
+      "note": "every one is serialised into every knob-turn request"
+    },
+    {
+      "section": "knobs",
+      "name": "indicator: ids matching the knob Input (every tier open)",
+      "ms": null,
+      "fast": null,
+      "n": 0,
+      "kb": null,
+      "count": 3849,
+      "note": "every one is serialised into every knob-turn request"
+    },
+    {
+      "section": "knobs",
+      "name": "bar: knobs.tree COLD (cache cleared)",
+      "ms": 29.054899932816625,
+      "fast": 28.838900034315884,
+      "n": 3,
+      "kb": null,
+      "count": 2094,
+      "note": "count = knobs"
+    },
+    {
+      "section": "knobs",
+      "name": "bar: knobs.tree warm",
+      "ms": 2.5965000968426466,
+      "fast": 2.535599982365966,
+      "n": 7,
+      "kb": null,
+      "count": 2094,
+      "note": ""
+    },
+    {
+      "section": "knobs",
+      "name": "bar: knob_pane -> components",
+      "ms": 4.99470008071512,
+      "fast": 4.951999988406897,
+      "n": 7,
+      "kb": 75.9365234375,
+      "count": 315,
+      "note": "count = Dash components; LAZY, Tier 0 only"
+    },
+    {
+      "section": "knobs",
+      "name": "bar: knob_pane, every tier open",
+      "ms": 108.5933999856934,
+      "fast": 106.95599997416139,
+      "n": 5,
+      "kb": 3796.1123046875,
+      "count": 14177,
+      "note": "what the pane used to cost on EVERY repaint"
+    },
+    {
+      "section": "knobs",
+      "name": "bar: serialise that pane",
+      "ms": 1.1747999815270305,
+      "fast": 1.1679999297484756,
+      "n": 7,
+      "kb": 75.9365234375,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "knobs",
+      "name": "bar: knob_echo(pane)",
+      "ms": 0.6873999955132604,
+      "fast": 0.6859999848529696,
+      "n": 7,
+      "kb": null,
+      "count": 70,
+      "note": "count = widgets whose value is echoed"
+    },
+    {
+      "section": "knobs",
+      "name": "bar: ids matching the knob Input",
+      "ms": null,
+      "fast": null,
+      "n": 0,
+      "kb": null,
+      "count": 70,
+      "note": "every one is serialised into every knob-turn request"
+    },
+    {
+      "section": "knobs",
+      "name": "bar: ids matching the knob Input (every tier open)",
+      "ms": null,
+      "fast": null,
+      "n": 0,
+      "kb": null,
+      "count": 4026,
+      "note": "every one is serialised into every knob-turn request"
+    },
+    {
+      "section": "knobs",
+      "name": "scatter: knobs.tree COLD (cache cleared)",
+      "ms": 29.506499995477498,
+      "fast": 29.336499981582165,
+      "n": 3,
+      "kb": null,
+      "count": 2103,
+      "note": "count = knobs"
+    },
+    {
+      "section": "knobs",
+      "name": "scatter: knobs.tree warm",
+      "ms": 2.535699983127415,
+      "fast": 2.533000078983605,
+      "n": 7,
+      "kb": null,
+      "count": 2103,
+      "note": ""
+    },
+    {
+      "section": "knobs",
+      "name": "scatter: knob_pane -> components",
+      "ms": 5.102299968712032,
+      "fast": 4.986400017514825,
+      "n": 7,
+      "kb": 75.9482421875,
+      "count": 315,
+      "note": "count = Dash components; LAZY, Tier 0 only"
+    },
+    {
+      "section": "knobs",
+      "name": "scatter: knob_pane, every tier open",
+      "ms": 105.96270009409636,
+      "fast": 104.72159995697439,
+      "n": 5,
+      "kb": 3818.9873046875,
+      "count": 14240,
+      "note": "what the pane used to cost on EVERY repaint"
+    },
+    {
+      "section": "knobs",
+      "name": "scatter: serialise that pane",
+      "ms": 1.1820999206975102,
+      "fast": 1.1705999495461583,
+      "n": 7,
+      "kb": 75.9482421875,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "knobs",
+      "name": "scatter: knob_echo(pane)",
+      "ms": 0.6891000084578991,
+      "fast": 0.686999992467463,
+      "n": 7,
+      "kb": null,
+      "count": 70,
+      "note": "count = widgets whose value is echoed"
+    },
+    {
+      "section": "knobs",
+      "name": "scatter: ids matching the knob Input",
+      "ms": null,
+      "fast": null,
+      "n": 0,
+      "kb": null,
+      "count": 70,
+      "note": "every one is serialised into every knob-turn request"
+    },
+    {
+      "section": "knobs",
+      "name": "scatter: ids matching the knob Input (every tier open)",
+      "ms": null,
+      "fast": null,
+      "n": 0,
+      "kb": null,
+      "count": 4044,
+      "note": "every one is serialised into every knob-turn request"
+    },
+    {
+      "section": "knobs",
+      "name": "parcoords: knobs.tree COLD (cache cleared)",
+      "ms": 27.907899930141866,
+      "fast": 27.792800101451576,
+      "n": 3,
+      "kb": null,
+      "count": 2003,
+      "note": "count = knobs"
+    },
+    {
+      "section": "knobs",
+      "name": "parcoords: knobs.tree warm",
+      "ms": 2.4013000074774027,
+      "fast": 2.389300032518804,
+      "n": 7,
+      "kb": null,
+      "count": 2003,
+      "note": ""
+    },
+    {
+      "section": "knobs",
+      "name": "parcoords: knob_pane -> components",
+      "ms": 4.7787000657990575,
+      "fast": 4.7475999454036355,
+      "n": 7,
+      "kb": 74.4111328125,
+      "count": 308,
+      "note": "count = Dash components; LAZY, Tier 0 only"
+    },
+    {
+      "section": "knobs",
+      "name": "parcoords: knob_pane, every tier open",
+      "ms": 103.39309996925294,
+      "fast": 102.73589997086674,
+      "n": 5,
+      "kb": 3637.8076171875,
+      "count": 13590,
+      "note": "what the pane used to cost on EVERY repaint"
+    },
+    {
+      "section": "knobs",
+      "name": "parcoords: serialise that pane",
+      "ms": 1.1608999921008945,
+      "fast": 1.1595000978559256,
+      "n": 7,
+      "kb": 74.4111328125,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "knobs",
+      "name": "parcoords: knob_echo(pane)",
+      "ms": 0.6729000015184283,
+      "fast": 0.6714999908581376,
+      "n": 7,
+      "kb": null,
+      "count": 68,
+      "note": "count = widgets whose value is echoed"
+    },
+    {
+      "section": "knobs",
+      "name": "parcoords: ids matching the knob Input",
+      "ms": null,
+      "fast": null,
+      "n": 0,
+      "kb": null,
+      "count": 68,
+      "note": "every one is serialised into every knob-turn request"
+    },
+    {
+      "section": "knobs",
+      "name": "parcoords: ids matching the knob Input (every tier open)",
+      "ms": null,
+      "fast": null,
+      "n": 0,
+      "kb": null,
+      "count": 3854,
+      "note": "every one is serialised into every knob-turn request"
+    },
+    {
+      "section": "callbacks",
+      "name": "sync_spec: pick a chart (bar -> scatter)",
+      "ms": 0.16950001008808613,
+      "fast": 0.1631999621167779,
+      "n": 7,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "all three lanes after: pick a chart (bar -> scatter)",
+      "ms": 11.726299999281764,
+      "fast": 11.459500063210726,
+      "n": 7,
+      "kb": null,
+      "count": null,
+      "note": "what the OLD single callback made you wait for, all of it"
+    },
+    {
+      "section": "callbacks",
+      "name": "    pick a chart (bar -> scatter) | get_frame",
+      "ms": 0.004200031980872154,
+      "fast": 0.003500026650726795,
+      "n": 7,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "    pick a chart (bar -> scatter) | FAST LANE render_chart",
+      "ms": 1.2725000269711018,
+      "fast": 1.2330999597907066,
+      "n": 7,
+      "kb": 5.814453125,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "    pick a chart (bar -> scatter) |   of which: figure",
+      "ms": 1.1187000200152397,
+      "fast": 1.0969999711960554,
+      "n": 7,
+      "kb": 2.4794921875,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "    pick a chart (bar -> scatter) |   of which: code",
+      "ms": 0.01379998866468668,
+      "fast": 0.013199984095990658,
+      "n": 7,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "    pick a chart (bar -> scatter) |   of which: status",
+      "ms": 0.05579995922744274,
+      "fast": 0.05440006498247385,
+      "n": 7,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "    pick a chart (bar -> scatter) | SLOW LANE render_knobs",
+      "ms": 6.161099998280406,
+      "fast": 6.049700081348419,
+      "n": 7,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "    pick a chart (bar -> scatter) | picker (own lane, guarded)",
+      "ms": 3.8213999941945076,
+      "fast": 3.7741000996902585,
+      "n": 7,
+      "kb": 133.576171875,
+      "count": 487,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "    pick a chart (bar -> scatter) |   of which: knob_pane",
+      "ms": 5.431599915027618,
+      "fast": 5.269100074656308,
+      "n": 7,
+      "kb": 75.9482421875,
+      "count": 315,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "    pick a chart (bar -> scatter) |   of which: knob_echo",
+      "ms": 0.6792000494897366,
+      "fast": 0.6765000289306045,
+      "n": 7,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "sync_spec: turn a knob (layout.barmode)",
+      "ms": 0.06269989535212517,
+      "fast": 0.06089999806135893,
+      "n": 7,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "all three lanes after: turn a knob (layout.barmode)",
+      "ms": 6.730100023560226,
+      "fast": 6.642400054261088,
+      "n": 7,
+      "kb": null,
+      "count": null,
+      "note": "what the OLD single callback made you wait for, all of it"
+    },
+    {
+      "section": "callbacks",
+      "name": "    turn a knob (layout.barmode) | get_frame",
+      "ms": 0.003800028935074806,
+      "fast": 0.003500026650726795,
+      "n": 7,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "    turn a knob (layout.barmode) | FAST LANE render_chart",
+      "ms": 6.677200086414814,
+      "fast": 6.63920002989471,
+      "n": 7,
+      "kb": 6.0615234375,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "    turn a knob (layout.barmode) |   of which: figure",
+      "ms": 6.493999972008169,
+      "fast": 6.447500083595514,
+      "n": 7,
+      "kb": 2.6572265625,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "    turn a knob (layout.barmode) |   of which: code",
+      "ms": 0.021300045773386955,
+      "fast": 0.02050003968179226,
+      "n": 7,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "    turn a knob (layout.barmode) |   of which: status",
+      "ms": 0.060399994254112244,
+      "fast": 0.057999975979328156,
+      "n": 7,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "    turn a knob (layout.barmode) | SLOW LANE render_knobs",
+      "ms": 0.006900052540004253,
+      "fast": 0.006400048732757568,
+      "n": 7,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "    turn a knob (layout.barmode) | picker (own lane, guarded)",
+      "ms": 0.004900037311017513,
+      "fast": 0.004700035788118839,
+      "n": 7,
+      "kb": 133.576171875,
+      "count": 487,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "    turn a knob (layout.barmode) | knob pane",
+      "ms": null,
+      "fast": null,
+      "n": 0,
+      "kb": null,
+      "count": null,
+      "note": "no_update - the pane is NOT rebuilt for a knob turn"
+    },
+    {
+      "section": "callbacks",
+      "name": "sync_spec: edit the code (canonical)",
+      "ms": 0.08619995787739754,
+      "fast": 0.08289993274956942,
+      "n": 7,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "all three lanes after: edit the code (canonical)",
+      "ms": 12.973699951544404,
+      "fast": 12.908200034871697,
+      "n": 7,
+      "kb": null,
+      "count": null,
+      "note": "what the OLD single callback made you wait for, all of it"
+    },
+    {
+      "section": "callbacks",
+      "name": "    edit the code (canonical) | get_frame",
+      "ms": 0.00400003045797348,
+      "fast": 0.003600027412176132,
+      "n": 7,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "    edit the code (canonical) | FAST LANE render_chart",
+      "ms": 6.6602000733837485,
+      "fast": 6.621100008487701,
+      "n": 7,
+      "kb": 6.0615234375,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "    edit the code (canonical) |   of which: figure",
+      "ms": 6.543299998156726,
+      "fast": 6.4564000349491835,
+      "n": 7,
+      "kb": 2.6572265625,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "    edit the code (canonical) |   of which: code",
+      "ms": 0.02019992098212242,
+      "fast": 0.01850002445280552,
+      "n": 7,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "    edit the code (canonical) |   of which: status",
+      "ms": 0.05639996379613876,
+      "fast": 0.054999953135848045,
+      "n": 7,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "    edit the code (canonical) | SLOW LANE render_knobs",
+      "ms": 6.090899929404259,
+      "fast": 6.052100099623203,
+      "n": 7,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "    edit the code (canonical) | picker (own lane, guarded)",
+      "ms": 0.00500003807246685,
+      "fast": 0.004700035788118839,
+      "n": 7,
+      "kb": 133.576171875,
+      "count": 487,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "    edit the code (canonical) |   of which: knob_pane",
+      "ms": 5.346599966287613,
+      "fast": 5.277399905025959,
+      "n": 7,
+      "kb": 75.9736328125,
+      "count": 315,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "    edit the code (canonical) |   of which: knob_echo",
+      "ms": 0.6906000198796391,
+      "fast": 0.6883000023663044,
+      "n": 7,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "sync_spec: change source (demo -> long)",
+      "ms": 0.22849999368190765,
+      "fast": 0.22139993961900473,
+      "n": 7,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "all three lanes after: change source (demo -> long)",
+      "ms": 20.429200027137995,
+      "fast": 20.09649993851781,
+      "n": 7,
+      "kb": null,
+      "count": null,
+      "note": "what the OLD single callback made you wait for, all of it"
+    },
+    {
+      "section": "callbacks",
+      "name": "    change source (demo -> long) | get_frame",
+      "ms": 0.004200031980872154,
+      "fast": 0.0036999117583036423,
+      "n": 7,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "    change source (demo -> long) | FAST LANE render_chart",
+      "ms": 10.070199961774051,
+      "fast": 9.941300028003752,
+      "n": 7,
+      "kb": 38.63671875,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "    change source (demo -> long) |   of which: figure",
+      "ms": 9.982799994759262,
+      "fast": 9.796799975447357,
+      "n": 7,
+      "kb": 35.4404296875,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "    change source (demo -> long) |   of which: code",
+      "ms": 0.016900012269616127,
+      "fast": 0.015199999324977398,
+      "n": 7,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "    change source (demo -> long) |   of which: status",
+      "ms": 0.0564999645575881,
+      "fast": 0.05550007335841656,
+      "n": 7,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "    change source (demo -> long) | SLOW LANE render_knobs",
+      "ms": 6.164300022646785,
+      "fast": 6.0804999666288495,
+      "n": 7,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "    change source (demo -> long) | picker (own lane, guarded)",
+      "ms": 3.843700047582388,
+      "fast": 3.815299947746098,
+      "n": 7,
+      "kb": 131.966796875,
+      "count": 487,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "    change source (demo -> long) |   of which: knob_pane",
+      "ms": 5.336100002750754,
+      "fast": 5.2921000169590116,
+      "n": 7,
+      "kb": 76.0693359375,
+      "count": 315,
+      "note": ""
+    },
+    {
+      "section": "callbacks",
+      "name": "    change source (demo -> long) |   of which: knob_echo",
+      "ms": 0.6770999170839787,
+      "fast": 0.6747000152245164,
+      "n": 7,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "frames",
+      "name": "category: cold (both caches empty)",
+      "ms": 0.24719990324229002,
+      "fast": 0.23310002870857716,
+      "n": 3,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "frames",
+      "name": "category: warm (data frame-cache hit)",
+      "ms": 0.003500026650726795,
+      "fast": 0.003400025889277458,
+      "n": 7,
+      "kb": null,
+      "count": 6,
+      "note": "count = rows, 2 columns"
+    },
+    {
+      "section": "frames",
+      "name": "category_2way: cold (both caches empty)",
+      "ms": 0.282099936157465,
+      "fast": 0.2794000320136547,
+      "n": 3,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "frames",
+      "name": "category_2way: warm (data frame-cache hit)",
+      "ms": 0.0039000296965241432,
+      "fast": 0.003500026650726795,
+      "n": 7,
+      "kb": null,
+      "count": 24,
+      "note": "count = rows, 3 columns"
+    },
+    {
+      "section": "frames",
+      "name": "long: cold (both caches empty)",
+      "ms": 0.8900000248104334,
+      "fast": 0.8804999524727464,
+      "n": 3,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "frames",
+      "name": "long: warm (data frame-cache hit)",
+      "ms": 0.0037999125197529793,
+      "fast": 0.003500026650726795,
+      "n": 7,
+      "kb": null,
+      "count": 1560,
+      "note": "count = rows, 3 columns"
+    },
+    {
+      "section": "frames",
+      "name": "bimodal: cold (both caches empty)",
+      "ms": 0.39739999920129776,
+      "fast": 0.39190007373690605,
+      "n": 3,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "frames",
+      "name": "bimodal: warm (data frame-cache hit)",
+      "ms": 0.003800028935074806,
+      "fast": 0.0034999102354049683,
+      "n": 7,
+      "kb": null,
+      "count": 1100,
+      "note": "count = rows, 2 columns"
+    },
+    {
+      "section": "frames",
+      "name": "scatter: cold (both caches empty)",
+      "ms": 0.35089999437332153,
+      "fast": 0.34600007347762585,
+      "n": 3,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "frames",
+      "name": "scatter: warm (data frame-cache hit)",
+      "ms": 0.0039000296965241432,
+      "fast": 0.0035999109968543053,
+      "n": 7,
+      "kb": null,
+      "count": 450,
+      "note": "count = rows, 5 columns"
+    },
+    {
+      "section": "frames",
+      "name": "numeric_block: cold (both caches empty)",
+      "ms": 0.26890006847679615,
+      "fast": 0.26130001060664654,
+      "n": 3,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "frames",
+      "name": "numeric_block: warm (data frame-cache hit)",
+      "ms": 0.003800028935074806,
+      "fast": 0.0035999109968543053,
+      "n": 7,
+      "kb": null,
+      "count": 300,
+      "note": "count = rows, 5 columns"
+    },
+    {
+      "section": "frames",
+      "name": "timeseries: cold (both caches empty)",
+      "ms": 0.8321000495925546,
+      "fast": 0.8195999544113874,
+      "n": 3,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "frames",
+      "name": "timeseries: warm (data frame-cache hit)",
+      "ms": 0.003800028935074806,
+      "fast": 0.003600027412176132,
+      "n": 7,
+      "kb": null,
+      "count": 1680,
+      "note": "count = rows, 3 columns"
+    },
+    {
+      "section": "frames",
+      "name": "hierarchy: cold (both caches empty)",
+      "ms": 0.31459995079785585,
+      "fast": 0.30910002533346415,
+      "n": 3,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "frames",
+      "name": "hierarchy: warm (data frame-cache hit)",
+      "ms": 0.003800028935074806,
+      "fast": 0.0035999109968543053,
+      "n": 7,
+      "kb": null,
+      "count": 36,
+      "note": "count = rows, 4 columns"
+    },
+    {
+      "section": "frames",
+      "name": "flow: cold (both caches empty)",
+      "ms": 0.28849998489022255,
+      "fast": 0.2679999452084303,
+      "n": 3,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "frames",
+      "name": "flow: warm (data frame-cache hit)",
+      "ms": 0.003600027412176132,
+      "fast": 0.003500026650726795,
+      "n": 7,
+      "kb": null,
+      "count": 15,
+      "note": "count = rows, 3 columns"
+    },
+    {
+      "section": "frames",
+      "name": "stages: cold (both caches empty)",
+      "ms": 0.21710002329200506,
+      "fast": 0.2169000217691064,
+      "n": 3,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "frames",
+      "name": "stages: warm (data frame-cache hit)",
+      "ms": 0.003600027412176132,
+      "fast": 0.003400025889277458,
+      "n": 7,
+      "kb": null,
+      "count": 5,
+      "note": "count = rows, 2 columns"
+    },
+    {
+      "section": "frames",
+      "name": "geo_points: cold (both caches empty)",
+      "ms": 0.23610005155205727,
+      "fast": 0.2343999221920967,
+      "n": 3,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "frames",
+      "name": "geo_points: warm (data frame-cache hit)",
+      "ms": 0.0037999125197529793,
+      "fast": 0.0034999102354049683,
+      "n": 7,
+      "kb": null,
+      "count": 500,
+      "note": "count = rows, 3 columns"
+    },
+    {
+      "section": "frames",
+      "name": "states: cold (both caches empty)",
+      "ms": 0.23619993589818478,
+      "fast": 0.23419992066919804,
+      "n": 3,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "frames",
+      "name": "states: warm (data frame-cache hit)",
+      "ms": 0.003600027412176132,
+      "fast": 0.003400025889277458,
+      "n": 7,
+      "kb": null,
+      "count": 47,
+      "note": "count = rows, 3 columns"
+    },
+    {
+      "section": "frames",
+      "name": "ohlc: cold (both caches empty)",
+      "ms": 0.6981000769883394,
+      "fast": 0.6828999612480402,
+      "n": 3,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "frames",
+      "name": "ohlc: warm (data frame-cache hit)",
+      "ms": 0.003500026650726795,
+      "fast": 0.003400025889277458,
+      "n": 7,
+      "kb": null,
+      "count": 70,
+      "note": "count = rows, 5 columns"
+    },
+    {
+      "section": "frames",
+      "name": "grid: cold (both caches empty)",
+      "ms": 0.2973000518977642,
+      "fast": 0.2937000244855881,
+      "n": 3,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "frames",
+      "name": "grid: warm (data frame-cache hit)",
+      "ms": 0.003600027412176132,
+      "fast": 0.003400025889277458,
+      "n": 7,
+      "kb": null,
+      "count": 8,
+      "note": "count = rows, 12 columns"
+    },
+    {
+      "section": "frames",
+      "name": "surface: cold (both caches empty)",
+      "ms": 0.5676000146195292,
+      "fast": 0.5637999856844544,
+      "n": 3,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "frames",
+      "name": "surface: warm (data frame-cache hit)",
+      "ms": 0.003700028173625469,
+      "fast": 0.003500026650726795,
+      "n": 7,
+      "kb": null,
+      "count": 40,
+      "note": "count = rows, 40 columns"
+    },
+    {
+      "section": "frames",
+      "name": "volume: cold (both caches empty)",
+      "ms": 0.2680000616237521,
+      "fast": 0.2677999436855316,
+      "n": 3,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "frames",
+      "name": "volume: warm (data frame-cache hit)",
+      "ms": 0.003800028935074806,
+      "fast": 0.0034999102354049683,
+      "n": 7,
+      "kb": null,
+      "count": 2744,
+      "note": "count = rows, 4 columns"
+    },
+    {
+      "section": "frames",
+      "name": "vectorfield: cold (both caches empty)",
+      "ms": 0.27860002592206,
+      "fast": 0.27550000231713057,
+      "n": 3,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "frames",
+      "name": "vectorfield: warm (data frame-cache hit)",
+      "ms": 0.003700028173625469,
+      "fast": 0.003500026650726795,
+      "n": 7,
+      "kb": null,
+      "count": 216,
+      "note": "count = rows, 6 columns"
+    },
+    {
+      "section": "frames",
+      "name": "ternary: cold (both caches empty)",
+      "ms": 0.28979999478906393,
+      "fast": 0.2821999369189143,
+      "n": 3,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "frames",
+      "name": "ternary: warm (data frame-cache hit)",
+      "ms": 0.003700028173625469,
+      "fast": 0.0034999102354049683,
+      "n": 7,
+      "kb": null,
+      "count": 120,
+      "note": "count = rows, 4 columns"
+    },
+    {
+      "section": "frames",
+      "name": "wind: cold (both caches empty)",
+      "ms": 0.2831999445334077,
+      "fast": 0.27870002668350935,
+      "n": 3,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "frames",
+      "name": "wind: warm (data frame-cache hit)",
+      "ms": 0.003600027412176132,
+      "fast": 0.003500026650726795,
+      "n": 7,
+      "kb": null,
+      "count": 16,
+      "note": "count = rows, 3 columns"
+    },
+    {
+      "section": "frames",
+      "name": "gantt: cold (both caches empty)",
+      "ms": 0.734600005671382,
+      "fast": 0.7127999560907483,
+      "n": 3,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "frames",
+      "name": "gantt: warm (data frame-cache hit)",
+      "ms": 0.0036999117583036423,
+      "fast": 0.003500026650726795,
+      "n": 7,
+      "kb": null,
+      "count": 5,
+      "note": "count = rows, 4 columns"
+    },
+    {
+      "section": "frames",
+      "name": "rank_over_time: cold (both caches empty)",
+      "ms": 0.5876000504940748,
+      "fast": 0.5856000352650881,
+      "n": 3,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "frames",
+      "name": "rank_over_time: warm (data frame-cache hit)",
+      "ms": 0.003800028935074806,
+      "fast": 0.003500026650726795,
+      "n": 7,
+      "kb": null,
+      "count": 50,
+      "note": "count = rows, 4 columns"
+    },
+    {
+      "section": "frames",
+      "name": "geojson_zones: cold (both caches empty)",
+      "ms": 0.24809991009533405,
+      "fast": 0.24369999300688505,
+      "n": 3,
+      "kb": null,
+      "count": null,
+      "note": ""
+    },
+    {
+      "section": "frames",
+      "name": "geojson_zones: warm (data frame-cache hit)",
+      "ms": 0.003600027412176132,
+      "fast": 0.0034999102354049683,
+      "n": 7,
+      "kb": null,
+      "count": 9,
+      "note": "count = rows, 2 columns"
+    },
+    {
+      "section": "frames",
+      "name": "data._fetch calls: 5 repaints, one source",
+      "ms": null,
+      "fast": null,
+      "n": 0,
+      "kb": null,
+      "count": 0,
+      "note": "0 = the frame cache absorbed them; a warehouse source is NOT re-queried"
+    },
+    {
+      "section": "frames",
+      "name": "data._fetch calls: 5 sources x 2 rounds",
+      "ms": null,
+      "fast": null,
+      "n": 0,
+      "kb": null,
+      "count": 5,
+      "note": "CACHE_MAX_ENTRIES is 8, so all five fit and the second round is free"
+    },
+    {
+      "section": "frames",
+      "name": "warehouse: first paint of a new query",
+      "ms": null,
+      "fast": null,
+      "n": 0,
+      "kb": null,
+      "count": 1,
+      "note": "1 = the query really ran"
+    },
+    {
+      "section": "frames",
+      "name": "warehouse: 20 knob turns after that",
+      "ms": null,
+      "fast": null,
+      "n": 0,
+      "kb": null,
+      "count": 0,
+      "note": "MUST be 0. At 9.4s a round trip, 1 here is 3 minutes of a human's afternoon"
+    },
+    {
+      "section": "frames",
+      "name": "warehouse: pressing RUN on the same SQL",
+      "ms": null,
+      "fast": null,
+      "n": 0,
+      "kb": null,
+      "count": 1,
+      "note": "MUST be 1 - refresh has to reach the read lane, or RUN is a button that does nothing"
+    },
+    {
+      "section": "frames",
+      "name": "warehouse: the status bar admits it cached",
+      "ms": null,
+      "fast": null,
+      "n": 0,
+      "kb": null,
+      "count": 1,
+      "note": "1 = the `took` chip says the 9.40s is the ORIGINAL fetch, not one it just paid again"
+    },
+    {
+      "section": "http",
+      "name": "server boot to first 200 on /",
+      "ms": 1527.387399924919,
+      "fast": null,
+      "n": 1,
+      "kb": null,
+      "count": null,
+      "note": "pid 23680, port 52841"
+    },
+    {
+      "section": "http",
+      "name": "GET /_dash-layout",
+      "ms": 15.624299994669855,
+      "fast": 4.5350999571383,
+      "n": 11,
+      "kb": 228.5712890625,
+      "count": null,
+      "note": "first request dropped as warm-up"
+    },
+    {
+      "section": "http",
+      "name": "GET /_dash-dependencies",
+      "ms": 13.632900081574917,
+      "fast": 0.9817000245675445,
+      "n": 11,
+      "kb": 3.953125,
+      "count": null,
+      "note": "first request dropped as warm-up"
+    },
+    {
+      "section": "http",
+      "name": "POST pick a chart (sync_spec)",
+      "ms": 15.69909998215735,
+      "fast": 2.6609000051394105,
+      "n": 11,
+      "kb": 0.3271484375,
+      "count": null,
+      "note": "request 24 KB, HTTP 200"
+    },
+    {
+      "section": "http",
+      "name": "POST turn a knob (sync_spec)",
+      "ms": 13.45450000371784,
+      "fast": 2.4263999657705426,
+      "n": 11,
+      "kb": 2.501953125,
+      "count": null,
+      "note": "request 24 KB, HTTP 200"
+    },
+    {
+      "section": "http",
+      "name": "POST turn a knob, every tier open (sync_spec)",
+      "ms": 31.370599986985326,
+      "fast": 27.853399980813265,
+      "n": 11,
+      "kb": 170.369140625,
+      "count": null,
+      "note": "request 668 KB, HTTP 200"
+    },
+    {
+      "section": "http",
+      "name": "POST edit the code (sync_spec)",
+      "ms": 13.362400000914931,
+      "fast": 2.4376000510528684,
+      "n": 11,
+      "kb": 0.2392578125,
+      "count": null,
+      "note": "request 24 KB, HTTP 200"
+    },
+    {
+      "section": "http",
+      "name": "POST change source (sync_spec)",
+      "ms": 12.848999933339655,
+      "fast": 2.6383999502286315,
+      "n": 11,
+      "kb": 0.267578125,
+      "count": null,
+      "note": "request 24 KB, HTTP 200"
+    },
+    {
+      "section": "http",
+      "name": "POST repaint the chart (render_chart)",
+      "ms": 15.919000026769936,
+      "fast": 8.383300038985908,
+      "n": 11,
+      "kb": 5.73046875,
+      "count": null,
+      "note": "request 1 KB, HTTP 200"
+    },
+    {
+      "section": "http",
+      "name": "POST repaint the chart after a pick (render_chart)",
+      "ms": 15.875699929893017,
+      "fast": 8.44520004466176,
+      "n": 11,
+      "kb": 6.0751953125,
+      "count": null,
+      "note": "request 1 KB, HTTP 200"
+    },
+    {
+      "section": "http",
+      "name": "POST the knob pane, pane NOT rebuilt (render_knobs)",
+      "ms": 15.83829999435693,
+      "fast": 1.2045999756082892,
+      "n": 11,
+      "kb": 0.02734375,
+      "count": null,
+      "note": "request 3 KB, HTTP 200"
+    },
+    {
+      "section": "http",
+      "name": "POST the knob pane after a pick (render_knobs)",
+      "ms": 15.642600017599761,
+      "fast": 8.722000056877732,
+      "n": 11,
+      "kb": 78.2587890625,
+      "count": null,
+      "note": "request 3 KB, HTTP 200"
+    },
+    {
+      "section": "http",
+      "name": "POST the knob pane, every tier open (render_knobs)",
+      "ms": 224.8064000159502,
+      "fast": 208.69769994169474,
+      "n": 11,
+      "kb": 3989.4013671875,
+      "count": null,
+      "note": "request 3 KB, HTTP 200"
+    },
+    {
+      "section": "http",
+      "name": "POST the picker after a pick (render_picker)",
+      "ms": 15.528299962170422,
+      "fast": 7.173400023020804,
+      "n": 11,
+      "kb": 133.7275390625,
+      "count": null,
+      "note": "request 1 KB, HTTP 200"
+    },
+    {
+      "section": "http",
+      "name": "POST source_face (trivial callback)",
+      "ms": 15.814500045962632,
+      "fast": 1.0983999818563461,
+      "n": 11,
+      "kb": 0.25390625,
+      "count": null,
+      "note": "request 0 KB, HTTP 200"
+    }
+  ]
+}
