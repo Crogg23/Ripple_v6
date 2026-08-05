@@ -1,0 +1,116 @@
+/* =====================================================================
+   THE BENCH - static stylesheet (Dash auto-loads everything in assets/).
+
+   Colours are never written here as hex: app.py injects a generated
+   :root { --bench-* } block (controls.css_vars()) into index_string, so
+   every value below is a var() and the palette lives in exactly one
+   place - controls.py.
+   ===================================================================== */
+
+/* --- Dash 4 dropdowns (dcc.Dropdown renders its own markup that a
+       style= dict cannot reach; without this the open menu is a white
+       box on a dark pane). Styled globally - every dropdown in the
+       Bench is dark, so no per-instance class is needed. ------------- */
+
+.dash-dropdown {
+  background: var(--bench-bg-2) !important;
+  border-color: var(--bench-rule) !important;
+  color: var(--bench-ink) !important;
+}
+.dash-dropdown .dash-dropdown-value { color: var(--bench-ink); }
+.dash-dropdown .dash-dropdown-placeholder { color: var(--bench-faint); }
+.dash-dropdown-content {
+  background: var(--bench-bg-2) !important;
+  border: 1px solid var(--bench-rule-strong) !important;
+  color: var(--bench-ink) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+.dash-dropdown-search {
+  background: var(--bench-bg-0) !important;
+  border: 1px solid var(--bench-rule) !important;
+  color: var(--bench-ink) !important;
+}
+.dash-dropdown-search::placeholder { color: var(--bench-faint); }
+.dash-options-list { background: transparent !important; }
+.dash-options-list-option {
+  background: transparent !important;
+  color: var(--bench-ink) !important;
+}
+.dash-options-list-option:hover { background: var(--bench-bg-3) !important; }
+.dash-options-list-option.selected {
+  background: var(--bench-accent-bg) !important;
+  color: var(--bench-ink) !important;
+}
+.dash-dropdown-clear { color: var(--bench-muted) !important; }
+
+/* legacy react-select names kept for any older Dash serving this file;
+   the .bench-dd class is also the marker test_bench_runs looks for */
+.bench-dd .Select-control, .bench-dd .Select-menu-outer, .bench-dd .Select-menu {
+  background: var(--bench-bg-2) !important;
+  border-color: var(--bench-rule) !important;
+  color: var(--bench-ink) !important;
+}
+
+/* --- dcc.Slider (rc-slider ships light-grey rails and a white-ring
+       handle; nothing else in the app can restyle it) ---------------- */
+
+.rc-slider-rail { background-color: var(--bench-rule) !important; }
+.rc-slider-track { background-color: var(--bench-accent) !important; }
+.rc-slider-handle {
+  background-color: var(--bench-ink) !important;
+  border-color: var(--bench-accent) !important;
+  opacity: 1;
+}
+.rc-slider-dot {
+  background-color: var(--bench-bg-3) !important;
+  border-color: var(--bench-rule-strong) !important;
+}
+.rc-slider-dot-active { border-color: var(--bench-accent) !important; }
+.rc-slider-mark-text { color: var(--bench-faint) !important; }
+.rc-slider-mark-text-active { color: var(--bench-muted) !important; }
+.rc-slider-tooltip-inner {
+  background: var(--bench-bg-3) !important;
+  color: var(--bench-ink) !important;
+}
+
+/* --- the six knob buckets: each <details> carries
+       class="bench-bucket bench-bucket--<name>", and every visual
+       accent below reads the one --bucket variable ------------------- */
+
+.bench-bucket--data        { --bucket: var(--bench-bucket-data); }
+.bench-bucket--mark        { --bucket: var(--bench-bucket-mark); }
+.bench-bucket--scale       { --bucket: var(--bench-bucket-scale); }
+.bench-bucket--frame       { --bucket: var(--bench-bucket-frame); }
+.bench-bucket--interaction { --bucket: var(--bench-bucket-interaction); }
+.bench-bucket--motion      { --bucket: var(--bench-bucket-motion); }
+
+.bench-bucket > summary {
+  border-left: 3px solid var(--bucket);
+  padding-left: 9px;
+  border-radius: 2px;
+}
+.bench-bucket > summary:hover { background: var(--bench-bg-2); }
+.bench-bucket[open] > summary .bench-bucket-name { color: var(--bucket); }
+.bench-bucket-dot {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--bucket);
+  margin-right: 7px;
+  vertical-align: baseline;
+}
+
+/* --- buttons: hover states a style= dict cannot express -------------- */
+
+.bench-btn:hover { background: var(--bench-bg-3); }
+.bench-btn-primary:hover { background: var(--bench-accent-fill-hover) !important; }
+
+/* --- furniture ------------------------------------------------------- */
+
+summary::marker { color: var(--bench-faint); }
+summary:focus { outline: none; }
+summary { cursor: pointer; }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: var(--bench-bg-3); border-radius: 5px; }
+::-webkit-scrollbar-track { background: transparent; }

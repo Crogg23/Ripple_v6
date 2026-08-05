@@ -131,8 +131,8 @@ FAINT = controls.FAINT
 RULE = controls.RULE
 ACCENT = controls.ACCENT
 WARN = controls.WARN
-GOOD = "#2ea043"
-BAD = "#d1544c"
+GOOD = controls.GOOD
+BAD = controls.BAD
 MONO = controls.MONO
 SANS = controls.SANS
 
@@ -968,17 +968,20 @@ def source_bar(spec: dict, meta: dict) -> html.Div:
 app = Dash(__name__, title="The Bench", suppress_callback_exceptions=True,
            update_title=None)
 
-# controls.PANEL_CSS is not decoration: dcc.Dropdown renders its own
-# react-select markup that a `style=` dict cannot reach, so without this the
-# dropdowns are white boxes on a dark pane.
+# The inlined <style> is only the generated :root{--bench-*} variables plus
+# the page reset; every selector lives in assets/bench.css, which Dash
+# auto-loads and which resolves against these variables. dcc.Dropdown is why
+# the stylesheet is not decoration: it renders its own markup that a
+# `style=` dict cannot reach - without bench.css the open menus are white
+# boxes on a dark pane.
 app.index_string = (
     "<!DOCTYPE html><html><head>{%metas%}<title>{%title%}</title>"
     "{%favicon%}{%css%}<style>"
-    "html,body{margin:0;padding:0;background:" + SURFACE + ";height:100%;}"
+    + controls.css_vars()
+    + "html,body{margin:0;padding:0;background:" + SURFACE + ";height:100%;}"
     "#react-entry-point{height:100%;}"
-    + controls.PANEL_CSS
-    + "</style></head><body>{%app_entry%}<footer>{%config%}{%scripts%}"
-      "{%renderer%}</footer>"
+    "</style></head><body>{%app_entry%}<footer>{%config%}{%scripts%}"
+    "{%renderer%}</footer>"
     # Keyboard shortcuts: synthesised clicks on buttons that already exist,
     # so there is no second server surface to keep in step. Ctrl+Z/Y stay
     # native inside text boxes - hijacking undo in a textarea is hostile.

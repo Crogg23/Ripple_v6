@@ -187,10 +187,12 @@ def test_the_app_serves_a_page(server):
     page = server.get("/")
     assert page.status_code == 200
     assert b"react-entry-point" in page.content
-    # controls.PANEL_CSS is inlined by hand because dcc.Dropdown renders its own
-    # markup that a style= dict cannot reach. Without it the dropdowns are white
-    # boxes on a dark pane, which is a broken page, not a cosmetic one.
-    assert b".bench-dd" in page.content
+    # The generated --bench-* variables must be inlined and the stylesheet
+    # linked, because dcc.Dropdown renders its own markup that a style= dict
+    # cannot reach. Without them the dropdowns are white boxes on a dark
+    # pane, which is a broken page, not a cosmetic one.
+    assert b"--bench-bg-0" in page.content
+    assert b"bench.css" in page.content
 
 
 def test_the_served_layout_really_has_three_panes(server):

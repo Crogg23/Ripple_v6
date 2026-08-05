@@ -132,21 +132,78 @@ from dash import dcc, html
 # =====================================================================
 # THE LOOK
 # ---------------------------------------------------------------------
-# Same GitHub-dark surface the rest of the repo uses (viz/theme.py).
+# GitHub-dark hue family, restepped 2026-08 so the four background
+# levels are actually tellable apart (the old SURFACE/PANEL/PANEL_2 sat
+# within ~2% luminance of each other and the whole app read as one
+# flat grey). BG_0..BG_3 is the elevation scale; the old names stay as
+# aliases so existing style dicts keep working.
 # =====================================================================
 
-SURFACE = "#0d1117"   # the page
-PANEL = "#161b22"     # the pane itself
-PANEL_2 = "#0f1620"   # a changed row, lifted off the pane
+BG_0 = "#0a0e14"      # the page - darkest thing on screen
+BG_1 = "#161d26"      # panes and the chart card
+BG_2 = "#212b37"      # inputs, buttons, inset controls
+BG_3 = "#2d3a49"      # hover / raised / selected
+
+SURFACE = BG_0        # alias - the page
+PANEL = BG_1          # alias - the pane itself
+PANEL_2 = BG_3        # alias - a changed row, lifted off the pane
+
 INK = "#e6edf3"       # primary text
-MUTED = "#8b949e"     # labels of untouched knobs, descriptions
+MUTED = "#96a0ab"     # labels of untouched knobs, descriptions
 FAINT = "#6b7684"     # the dotted path line
-RULE = "#21262d"      # hairlines
+RULE = "#2a3441"      # hairlines
+RULE_STRONG = "#3d4c5e"  # pane edges and anything that must read as an edge
 ACCENT = "#3987e5"    # "you changed this"
-WARN = "#c98500"      # the CUSTOM-mode banner
+ACCENT_FILL = "#256abf"        # filled primary buttons
+ACCENT_FILL_HOVER = "#3987e5"  # their hover state
+WARN = "#e09b13"      # the CUSTOM-mode banner
+
+# Semantic pairs: saturated text on its own dark tint, so chips read as
+# coloured objects instead of 11px coloured letters.
+GOOD = "#3fb950"
+BAD = "#e5615a"
+GOOD_BG = "#12261a"
+BAD_BG = "#2d1a19"
+WARN_BG = "#2b2113"
+ACCENT_BG = "#14263d"
 
 MONO = 'ui-monospace, SFMono-Regular, Consolas, monospace'
 SANS = 'ui-sans-serif, system-ui, "Segoe UI", sans-serif'
+
+# One hue per knob bucket, drawn from the repo's validated dark
+# categorical slots (see the dataviz palette): all six clear the CVD and
+# normal-vision floors against BG_1. Identity is still carried by the
+# bucket's printed name - the hue is the at-a-glance handle.
+BUCKET_HUES: dict[str, str] = {
+    "DATA": "#3987e5",         # blue
+    "MARK": "#d95926",         # orange
+    "SCALE": "#199e70",        # aqua
+    "FRAME": "#9085e9",        # violet
+    "INTERACTION": "#d55181",  # magenta
+    "MOTION": "#c98500",       # yellow
+}
+
+
+def css_vars() -> str:
+    """The :root block that mirrors this palette into CSS custom properties.
+
+    Generated, not hand-written, so assets/bench.css can style Dash's own
+    markup (dropdown menus, sliders) with var(--bench-*) and there is
+    exactly one place a colour lives.
+    """
+    pairs = {
+        "bg-0": BG_0, "bg-1": BG_1, "bg-2": BG_2, "bg-3": BG_3,
+        "ink": INK, "muted": MUTED, "faint": FAINT,
+        "rule": RULE, "rule-strong": RULE_STRONG,
+        "accent": ACCENT, "accent-fill": ACCENT_FILL,
+        "accent-fill-hover": ACCENT_FILL_HOVER, "accent-bg": ACCENT_BG,
+        "warn": WARN, "good": GOOD, "bad": BAD,
+        "warn-bg": WARN_BG, "good-bg": GOOD_BG, "bad-bg": BAD_BG,
+    }
+    pairs.update({f"bucket-{name.lower()}": hue
+                  for name, hue in BUCKET_HUES.items()})
+    body = ";".join(f"--bench-{k}:{v}" for k, v in pairs.items())
+    return ":root{" + body + "}"
 
 
 # =====================================================================
@@ -1569,46 +1626,18 @@ def _as_tiers(tiers: Any) -> dict[int, list]:
 # =====================================================================
 # THE ONE BIT OF CSS
 # ---------------------------------------------------------------------
-# Everything else in this file is inline styles, house-style. dcc.Dropdown
-# is the exception: it renders its own react-select markup and cannot be
-# reached with a `style=` dict, so a dark dropdown needs real CSS.
+# The real stylesheet lives in bench/assets/bench.css (Dash auto-loads
+# it) and is written entirely in var(--bench-*) references; css_vars()
+# above generates the :root block those vars resolve against, and
+# app.py inlines that block via index_string. So: values in Python,
+# selectors in the .css file, nothing duplicated.
 #
-# app.py should drop this into `assets/bench.css`, or inline it via
-# `app.index_string`. Without it the pane still works - the dropdowns are
-# just white boxes on a dark pane.
+# PANEL_CSS is now just the generated variables - kept under its old
+# name so anything embedding a panel standalone can inline it and the
+# stylesheet still resolves.
 # =====================================================================
 
-PANEL_CSS = """
-.bench-dd .Select-control,
-.bench-dd .Select-menu-outer,
-.bench-dd .Select-menu {
-  background: #0d1117 !important;
-  border-color: #21262d !important;
-  color: #e6edf3 !important;
-}
-.bench-dd .Select-value-label,
-.bench-dd .Select-placeholder,
-.bench-dd .Select-input > input { color: #e6edf3 !important; }
-.bench-dd .Select-placeholder { color: #6b7684 !important; }
-.bench-dd .Select-option { background: #0d1117 !important; color: #e6edf3 !important; }
-.bench-dd .Select-option.is-focused { background: #161b22 !important; }
-.bench-dd .Select-arrow { border-top-color: #8b949e !important; }
-.bench-dd .Select--multi .Select-value {
-  background: #161b22 !important;
-  border-color: #21262d !important;
-  color: #e6edf3 !important;
-}
-.bench-dd .Select--multi .Select-value-icon { border-right-color: #21262d !important; }
-
-/* the accordion triangles, so they read as grey furniture not as text */
-summary::marker { color: #6b7684; }
-summary:focus { outline: none; }
-
-/* the pane's own scrollbar */
-::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-thumb { background: #21262d; border-radius: 5px; }
-::-webkit-scrollbar-track { background: transparent; }
-"""
+PANEL_CSS = css_vars()
 
 
 # =====================================================================
