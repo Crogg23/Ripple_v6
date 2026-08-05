@@ -99,7 +99,7 @@ __all__ = [
     "Slot", "ChartTemplate",
     "TEMPLATES", "CHARTS", "BY_SECTION", "SECTIONS", "PX_PURE",
     "roles", "describe", "drawable", "auto_map", "search",
-    "trace_type", "build", "sync_codegen",
+    "trace_type", "build",
 ]
 
 # The 49 trace names Plotly registers, mapped to their go class names. Read off
@@ -434,16 +434,28 @@ class ChartTemplate:
         return self.wall_fn()
 
 
-def _message_figure(title: str, body: str) -> go.Figure:
-    """An empty figure that explains itself. Used where a chart cannot draw."""
+def message_figure(title: str, body: str = "", *, width: int = 62,
+                   color: str | None = None,
+                   margin: bool = False) -> go.Figure:
+    """An empty figure that explains itself. Never a blank rectangle.
+
+    The one implementation - app.py used to carry a near-identical copy and
+    the two drifted; now app.py calls this with its own colour and margins.
+    """
+    text = f"<b>{title}</b>"
+    if body:
+        text += "<br><br>" + "<br>".join(_wrap(body, width))
     fig = go.Figure()
-    fig.add_annotation(
-        text=f"<b>{title}</b><br><br>" + "<br>".join(_wrap(body, 62)),
-        xref="paper", yref="paper", x=0.5, y=0.5, showarrow=False,
-        align="center", font=dict(size=12),
-    )
-    fig.update_layout(xaxis=dict(visible=False), yaxis=dict(visible=False))
+    font = dict(size=12) if color is None else dict(size=12, color=color)
+    fig.add_annotation(text=text, xref="paper", yref="paper", x=0.5, y=0.5,
+                       showarrow=False, align="center", font=font)
+    fig.update_layout(xaxis=dict(visible=False), yaxis=dict(visible=False),
+                      **({"margin": dict(l=30, r=30, t=30, b=30)} if margin else {}))
     return fig
+
+
+def _message_figure(title: str, body: str) -> go.Figure:
+    return message_figure(title, body)
 
 
 def _wrap(text: str, width: int) -> list[str]:
@@ -2812,24 +2824,6 @@ def build(key: str, df: pd.DataFrame, **mapping) -> go.Figure:
             + ", ".join(sorted(CHARTS)[:8]) + ", ..."
         )
     return CHARTS[key].builder(df, mapping, None)
-
-
-def sync_codegen() -> set[str]:
-    """
-    Narrow codegen's PX_CHARTS to the keys that really are one px call.
-
-    Call this once at startup if you want the code panel to never claim a
-    plain `px.bar(...)` produced a chart that was actually styled by a builder
-    in this file. It is NOT done at import: quietly rewriting another module's
-    globals is how you get a bug nobody can find at 3am, so the app has to ask.
-
-    Returns the set codegen ends up with.
-    """
-    from bench import codegen  # noqa: PLC0415 - deliberately lazy
-
-    codegen.PX_CHARTS.clear()
-    codegen.PX_CHARTS.update(PX_PURE)
-    return codegen.PX_CHARTS
 
 
 # =====================================================================

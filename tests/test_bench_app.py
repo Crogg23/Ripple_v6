@@ -32,6 +32,7 @@ from __future__ import annotations
 
 import json
 import sys
+import time
 from pathlib import Path
 
 import plotly.graph_objects as go
@@ -1247,6 +1248,47 @@ def test_find_tables_says_when_the_cap_trips(monkeypatch):
         context_value.set({})
     assert len(options) == bench_app.TABLE_CAP
     assert f"first {bench_app.TABLE_CAP} of {len(fake)}" in note
+
+
+# =====================================================================
+# the deadline gate: straight-line custom code never pays for the tracer
+# =====================================================================
+
+
+def test_needs_deadline_tells_loops_from_straight_lines():
+    assert not bench_app._needs_deadline("fig = px.bar(df)\n")
+    assert not bench_app._needs_deadline("fig = px.bar(df, x='A')\nfig.update_layout(title_text='t')\n")
+    assert bench_app._needs_deadline("while True:\n    pass\n")
+    assert bench_app._needs_deadline("for i in range(3):\n    pass\n")
+    assert bench_app._needs_deadline("xs = [i for i in range(3)]\n")
+    assert bench_app._needs_deadline("f = lambda: f()\n")
+    assert bench_app._needs_deadline("def f():\n    return f()\n")
+    assert not bench_app._needs_deadline("fig = (")   # will not compile -> cannot loop
+
+
+def test_straight_line_custom_code_never_installs_a_tracer(monkeypatch):
+    import sys as real_sys
+
+    calls = []
+    original = real_sys.settrace
+    monkeypatch.setattr(bench_app.sys, "settrace",
+                        lambda fn: (calls.append(fn), original(fn)))
+    import pandas as pd
+
+    df = pd.DataFrame({"A": [1, 2], "B": [3, 4]})
+    fig, why = bench_app.run_custom("fig = px.bar(df, x='A', y='B')\n", df)
+    assert why == ""
+    assert not calls, "the deadline tracer ran on loop-free code"
+
+
+def test_a_loop_still_hits_the_deadline():
+    import pandas as pd
+
+    df = pd.DataFrame({"A": [1]})
+    t0 = time.time()
+    fig, why = bench_app.run_custom("while True:\n    pass\n", df)
+    assert "stopped" in why or "TimeoutError" in why
+    assert time.time() - t0 < bench_app.CUSTOM_TIMEOUT_S + 5
 
 
 # =====================================================================

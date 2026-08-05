@@ -83,6 +83,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import logging
 import sys
 import threading
 import time
@@ -103,6 +104,7 @@ if str(_REPO) not in sys.path:
 
 from bench import wall  # noqa: E402  the 144 charts + the fake-data generators
 from viz import plugs  # noqa: E402  column-role sniffing (pure pandas, no network)
+from bench import settings  # noqa: E402  stdlib-only tunables
 from viz import sqlrun  # noqa: E402  THE guarded read lane - never bypassed
 
 # Importing wall has one side effect worth knowing about: it registers the dark
@@ -889,8 +891,8 @@ def _warehouse_frame(source: dict, t0: float) -> tuple[pd.DataFrame, dict]:
                      "nothing could prove a data vintage")
     try:
         notes.extend(sqlrun.lane_status().get("notes") or [])
-    except Exception:  # pragma: no cover - lane_status needs the same connection
-        pass
+    except Exception as exc:  # pragma: no cover - lane_status needs the same connection
+        _LOG.info("lane_status unavailable: %s: %s", type(exc).__name__, exc)
     out["notes"] = notes
     return df, out
 
@@ -1092,7 +1094,34 @@ def describe_roles(roles: dict) -> str:
 #
 # Every one of these needs a warehouse connection, so each is lazy and
 # each returns an empty answer rather than raising when there isn't one.
+#
+# But "empty because offline" and "empty because something broke" are two
+# different facts, and swallowing both into `[]` made them impossible to
+# tell apart from the UI. Each helper now records what actually happened in
+# LAST_CATALOG_ERROR (and the log), so app.py's note line can say which one
+# it was. The return types stay exactly as they were.
 # =====================================================================
+
+_LOG = logging.getLogger("bench.data")
+
+# The last exception a catalog helper swallowed, as one plain sentence -
+# or None if the most recent call worked. Read by app.py's source bar.
+LAST_CATALOG_ERROR: str | None = None
+
+
+def _catalog_failed(what: str, exc: Exception) -> None:
+    global LAST_CATALOG_ERROR
+    reason = f"{type(exc).__name__}: {exc}"
+    LAST_CATALOG_ERROR = f"{what} failed - {reason}"
+    if isinstance(exc, (ImportError, ConnectionError, OSError, TimeoutError)):
+        _LOG.info("%s: %s (treating as offline)", what, reason)
+    else:
+        _LOG.exception("%s failed", what)
+
+
+def _catalog_ok() -> None:
+    global LAST_CATALOG_ERROR
+    LAST_CATALOG_ERROR = None
 
 
 def lane() -> dict:
@@ -1112,8 +1141,11 @@ def tables(term: str = "", refresh: bool = False) -> list[dict]:
     """Chartable tables matching `term`, live off the catalog. [] when offline."""
     try:
         from viz import catalog
-        return catalog.find(term, refresh=refresh)
-    except Exception:
+        found = catalog.find(term, refresh=refresh)
+        _catalog_ok()
+        return found
+    except Exception as exc:
+        _catalog_failed("catalog.find", exc)
         return []
 
 
@@ -1122,8 +1154,11 @@ def table_columns(fqn: str) -> list[dict]:
     only - it costs no warehouse time. [] when offline."""
     try:
         from viz import catalog
-        return catalog.columns(fqn)
-    except Exception:
+        cols = catalog.columns(fqn)
+        _catalog_ok()
+        return cols
+    except Exception as exc:
+        _catalog_failed("catalog.columns", exc)
         return []
 
 
@@ -1132,15 +1167,22 @@ def table_profile(fqn: str) -> list[dict]:
     in pandas. Useful before you have run anything. [] when offline."""
     try:
         from viz import catalog
-        return catalog.profile(fqn)
-    except Exception:
+        prof = catalog.profile(fqn)
+        _catalog_ok()
+        return prof
+    except Exception as exc:
+        _catalog_failed("catalog.profile", exc)
         return []
 
 
-def starter_sql(fqn: str, limit: int = 1000) -> str:
+def starter_sql(fqn: str, limit: int | None = None) -> str:
     """A first query for the SQL box: the casted SELECT that makes an all-TEXT
     landing table chartable, plus a LIMIT. A starting point to edit, not a
-    hidden layer. Falls back to SELECT * when the catalog is unreachable."""
+    hidden layer. Falls back to SELECT * when the catalog is unreachable.
+
+    `limit` defaults to settings.SQL_LIMIT (env BENCH_SQL_LIMIT, 1000)."""
+    if limit is None:
+        limit = settings.SQL_LIMIT
     try:
         from viz import catalog
         return f"{catalog.cast_sql(fqn)}\nLIMIT {int(limit)}"

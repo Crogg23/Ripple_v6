@@ -86,6 +86,7 @@ script. Better to say that than to quietly hand you a tuple.
 
 from __future__ import annotations
 
+import ast
 import json
 import sys
 import time
@@ -109,7 +110,7 @@ if str(_REPO) not in sys.path:
 from dash import (ALL, Dash, Input, Output, State, clientside_callback, ctx,  # noqa: E402
                   dcc, html, no_update)
 
-from bench import codegen, controls, data, knobs, registry  # noqa: E402
+from bench import codegen, controls, data, knobs, registry, settings  # noqa: E402
 
 
 # =====================================================================
@@ -143,12 +144,13 @@ _BTN = {"background": "transparent", "color": INK, "border": f"1px solid {RULE}"
         "letterSpacing": ".06em", "cursor": "pointer", "flex": "none"}
 
 # How long the code panel waits after your last keystroke before it tries to
-# read what you typed. SPEC section 8 asks for about this.
-DEBOUNCE_MS = 600
+# read what you typed. SPEC section 8 asks for about this. The numbers live
+# in bench/settings.py so an env var can tune them without an edit here.
+DEBOUNCE_MS = settings.DEBOUNCE_MS
 
 # How many tables the "look up" dropdown will list before asking you to
 # narrow the term. The note says when this cap trips, and by how much.
-TABLE_CAP = 200
+TABLE_CAP = settings.TABLE_CAP
 
 # The colour of each lane badge. The badge is never allowed off the screen -
 # you should never look at a number without knowing what guarded it.
@@ -213,8 +215,8 @@ def blank_spec(chart: str = START_CHART, demo: str = START_DEMO) -> dict:
 # panel telling you a line that does not make that picture. registry.PX_PURE
 # is the honest set.
 #
-# We do NOT install it permanently. `registry.sync_codegen()` rewrites another
-# module's global in place, and that leaks: the first run of this file turned
+# We do NOT install it permanently. An earlier helper rewrote codegen's
+# module-level set in place, and that leaked: the first run of this file turned
 # two tests in tests/test_bench_codegen.py red, three files away, because they
 # re-measure that same set. codegen.render's `px_charts` keyword narrows it for
 # one call only, as a parameter - so there is no shared state to leak, and
@@ -302,30 +304,8 @@ def _columns(df: pd.DataFrame) -> list[str]:
 
 
 def message_figure(title: str, body: str = "") -> go.Figure:
-    """An empty chart that explains itself. Never a blank rectangle."""
-    text = f"<b>{title}</b>"
-    if body:
-        text += "<br><br>" + "<br>".join(_wrap(body, 74))
-    fig = go.Figure()
-    fig.add_annotation(text=text, xref="paper", yref="paper", x=0.5, y=0.5,
-                       showarrow=False, align="center",
-                       font=dict(size=12, color=MUTED))
-    fig.update_layout(xaxis=dict(visible=False), yaxis=dict(visible=False),
-                      margin=dict(l=30, r=30, t=30, b=30))
-    return fig
-
-
-def _wrap(text: str, width: int) -> list[str]:
-    lines, cur = [], ""
-    for word in str(text).split():
-        if len(cur) + len(word) + 1 > width:
-            lines.append(cur)
-            cur = word
-        else:
-            cur = f"{cur} {word}".strip()
-    if cur:
-        lines.append(cur)
-    return lines
+    """An empty chart that explains itself - registry's, in the app's colours."""
+    return registry.message_figure(title, body, width=74, color=MUTED, margin=True)
 
 
 def _custom_namespace(df: pd.DataFrame) -> dict:
@@ -346,7 +326,7 @@ def _custom_namespace(df: pd.DataFrame) -> dict:
 # How long custom code gets before we pull the plug. This is not a security
 # boundary and is not pretending to be one - it is the thing that stops
 # `while True:` in the code panel taking the whole app down with it.
-CUSTOM_TIMEOUT_S = 5.0
+CUSTOM_TIMEOUT_S = settings.CUSTOM_TIMEOUT_S
 
 
 def _deadline_tracer(deadline: float):
@@ -364,6 +344,30 @@ def _deadline_tracer(deadline: float):
                 "stopped — an endless loop in the panel would take the app down")
         return tracer
     return tracer
+
+
+def _needs_deadline(source: str) -> bool:
+    """Does this code even contain something that can loop?
+
+    The tracer above costs ~0.15s per build, and CUSTOM mode rebuilds on
+    every 600ms debounce tick - so straight-line code (the overwhelmingly
+    common case in the panel) skips the tracer entirely and pays nothing.
+    Anything with a loop, a comprehension, or a function definition (which
+    could recurse or hide a loop) keeps the full 5s guard.
+
+    The one honest gap: loop-free code that recurses WITHOUT defining a
+    function here (e.g. calling something recursive it built via exec) would
+    escape. That needs exec-inside-exec to reach, and CPython's own recursion
+    limit catches plain infinite recursion anyway.
+    """
+    try:
+        parsed = ast.parse(source)
+    except SyntaxError:
+        return False        # it will not compile, so it cannot loop
+    loopy = (ast.While, ast.For, ast.AsyncFor, ast.ListComp, ast.SetComp,
+             ast.DictComp, ast.GeneratorExp, ast.FunctionDef,
+             ast.AsyncFunctionDef, ast.Lambda)
+    return any(isinstance(node, loopy) for node in ast.walk(parsed))
 
 
 def run_custom(source: str, df: pd.DataFrame) -> tuple[go.Figure, str]:
@@ -391,15 +395,20 @@ def run_custom(source: str, df: pd.DataFrame) -> tuple[go.Figure, str]:
     saved_trace = sys.gettrace()          # give it back - pytest/coverage use it
     go.Figure.show = lambda self, *a, **k: None  # type: ignore[assignment]
     namespace = _custom_namespace(df.copy())
+    guard = _needs_deadline(source)
     try:
-        sys.settrace(_deadline_tracer(time.monotonic() + CUSTOM_TIMEOUT_S))
+        if guard:
+            sys.settrace(_deadline_tracer(time.monotonic() + CUSTOM_TIMEOUT_S))
         exec(compile(source, "<bench code panel>", "exec"), namespace)  # noqa: S102
+    except KeyboardInterrupt:             # a real Ctrl-C is not "your code raised"
+        raise
     except BaseException as exc:  # noqa: BLE001 - your code, your traceback
         line = traceback.format_exc().strip().splitlines()[-1]
         return (message_figure("custom code raised", line),
                 f"custom code raised {type(exc).__name__}: {exc}")
     finally:
-        sys.settrace(saved_trace)
+        if guard:
+            sys.settrace(saved_trace)
         go.Figure.show = saved_show  # type: ignore[assignment]
 
     fig = namespace.get("fig")
@@ -980,7 +989,7 @@ _PANE = {"height": "100%", "overflowY": "auto", "boxSizing": "border-box",
 # How long a repaint is allowed to look like nothing before we say we are
 # working. Under this it is a flicker and the spinner is the annoyance; over
 # it, silence reads as broken. The brief's number, and it is the right one.
-SPINNER_MS = 250
+SPINNER_MS = settings.SPINNER_MS
 
 
 def _loading(child, ident: str, **kw):
@@ -1843,9 +1852,10 @@ def find_tables(_clicks, chosen, term):
     t0 = time.time()
     found = data.tables(term or "")
     if not found:
+        why = data.LAST_CATALOG_ERROR
         return [], no_update, (
-            "no tables came back — either nothing matched, or there is no "
-            "warehouse connection from this machine right now")
+            f"no tables came back — {why}" if why else
+            "no tables came back — nothing matched that term")
     options = [{"label": f"{t.get('fqn', '')}   {t.get('rows', '')}",
                 "value": t.get("fqn")} for t in found[:TABLE_CAP] if t.get("fqn")]
     took = f"{time.time() - t0:.1f}s"
@@ -1903,9 +1913,7 @@ def export_chart(_py, _html, spec):
 # =====================================================================
 
 if __name__ == "__main__":
-    import os
-
-    port = int(os.environ.get("BENCH_PORT", "8051"))
     print(f"The Bench — {len(registry.TEMPLATES)} charts, "
-          f"{len(data.DEMO)} demo frames.  http://127.0.0.1:{port}")
-    app.run(debug=False, port=port)
+          f"{len(data.DEMO)} demo frames.  http://127.0.0.1:{settings.PORT}"
+          + ("  [debug]" if settings.DEBUG else ""))
+    app.run(debug=settings.DEBUG, port=settings.PORT)

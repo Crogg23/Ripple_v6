@@ -705,3 +705,35 @@ def test_cache_stats_reports_what_is_actually_held():
     entry = stats["frames"][0]
     assert entry["kind"] == "demo" and entry["rows"] == 6
     assert entry["bytes"] > 0 and entry["serves"] == 2
+
+
+# ---------------------------------------------------------------------
+# catalog error visibility: offline and broken are different facts
+# ---------------------------------------------------------------------
+
+
+def test_a_broken_catalog_leaves_a_readable_reason(monkeypatch):
+    import viz.catalog as catalog
+
+    monkeypatch.setattr(catalog, "find",
+                        lambda term, refresh=False: (_ for _ in ()).throw(
+                            RuntimeError("boom in the catalog")))
+    assert data.tables("x") == []
+    assert data.LAST_CATALOG_ERROR is not None
+    assert "boom in the catalog" in data.LAST_CATALOG_ERROR
+
+
+def test_a_working_catalog_call_clears_the_last_error(monkeypatch):
+    import viz.catalog as catalog
+
+    monkeypatch.setattr(catalog, "find", lambda term, refresh=False: [
+        {"fqn": "DB.S.T", "rows": 5}])
+    assert data.tables("x") == [{"fqn": "DB.S.T", "rows": 5}]
+    assert data.LAST_CATALOG_ERROR is None
+
+
+def test_starter_sql_defaults_to_the_settings_limit():
+    from bench import settings
+
+    sql = data.starter_sql("SOME.MISSING.TABLE")
+    assert f"LIMIT {settings.SQL_LIMIT}" in sql
