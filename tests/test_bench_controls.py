@@ -653,6 +653,42 @@ def test_lazy_pane_survives_a_real_dash_app():
     json.dumps(app.layout.to_plotly_json(), cls=PlotlyJSONEncoder)
 
 
+# ------------------------------------------------- the caching pass
+
+
+def test_options_falls_back_when_a_value_is_unhashable():
+    """An 'already an option dict' entry is unhashable, so the lru_cache
+    raises TypeError internally - the fallback must still build the list."""
+    values = [{"label": "Viridis", "value": "viridis"}, "plasma"]
+    out = controls._options(values)
+    assert out == [{"label": "Viridis", "value": "viridis"},
+                   {"label": "plasma", "value": "plasma"}]
+
+
+def test_options_cached_path_matches_the_uncached_one():
+    values = ["linear", "log", True, 3, None]
+    first = controls._options(values)
+    second = controls._options(list(values))          # same content, new list
+    assert first == second == controls._build_options(values)
+    assert first is not second                        # a fresh list each call
+
+
+def test_row_styles_are_the_shared_module_constants():
+    """_row builds up to ~1,895 rows per pane; each must reuse the
+    precomputed style dicts, and nothing may have mutated them."""
+    knob = Knob(path="layout.title.text", control="text")
+    unchanged = controls.control(knob, None)
+    changed = controls.control(knob, "hello")
+    disabled = controls.control(knob, None, disabled=True)
+
+    assert unchanged.style is controls._ROW_STYLE[(False, False)]
+    assert changed.style is controls._ROW_STYLE[(True, False)]
+    assert disabled.style is controls._ROW_STYLE[(False, True)]
+    assert unchanged.style["opacity"] == "1"
+    assert disabled.style["opacity"] == "0.55"
+    assert changed.style["borderLeft"].endswith(controls.ACCENT)
+
+
 # ---------------------------------------------------------------- report
 
 

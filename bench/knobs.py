@@ -51,7 +51,7 @@ import ast
 import fnmatch
 import logging
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from functools import lru_cache
 from typing import Any
 
@@ -493,6 +493,7 @@ DEPRECATED_TRACES: dict[str, str] = {
 }
 
 
+@lru_cache(maxsize=256)
 def trace_type_for(chart_key: str) -> str:
     """Which go.<Trace> to introspect for a registry key.
 
@@ -502,6 +503,11 @@ def trace_type_for(chart_key: str) -> str:
     registry present.
 
     Raises ValueError with the full legal list if the key is neither.
+
+    Cached: this chart-key -> trace-type mapping is static for the life of
+    the process once registry.py has finished loading (registry.TEMPLATES
+    never changes after import), and this runs on every `tree()` call,
+    cached or not.
     """
     key = (chart_key or "").strip()
 
@@ -928,27 +934,35 @@ def _tier0_rank(path: str) -> int:
 # =====================================================================
 
 
-def tree(chart_key: str, columns: list[str] | None = None) -> dict[str, dict[int, list[Knob]]]:
-    """Every knob for one chart, filed by bucket then tier.
+def _template_options() -> tuple[str, ...]:
+    """The registered Plotly template names, read fresh - see `tree()`."""
+    return tuple(sorted(str(t) for t in pio.templates))
 
-    Args:
-        chart_key: a registry key (`"sankey"`, `"bump_chart"`) or, when
-            registry.py cannot answer, a raw Plotly trace type name.
-        columns: the column names in the dataframe on screen. These become
-            the options on every DATA knob, which is the one bucket whose
-            legal values come from the data instead of from Plotly.
 
-    Returns:
-        `{bucket: {tier: [Knob, ...]}}` - every bucket in BUCKETS is present
-        and every tier in TIERS is present, so the UI can render the six
-        headers without checking for holes. Lists may be empty.
+@lru_cache(maxsize=128)
+def _tree_cached(
+    trace_type: str, cols: tuple[str, ...]
+) -> tuple[dict[str, dict[int, tuple["Knob", ...]]], tuple[str, int, int] | None]:
+    """The cached core of `tree()`.
 
-    Ordering inside a list is fixed and stable: Tier 0 runs in ATLAS
-    section 4.1 order, everything else runs alphabetically by path.
+    Returns `({bucket: {tier: (Knob, ...)}}, template_slot)`, where
+    `template_slot` is `(bucket, tier, index)` naming where the ONE
+    BaseTemplateValidator knob (`layout.template`) landed, or None if this
+    trace type has no such knob.
+
+    Safe to cache because `Knob` is a frozen dataclass: nothing can mutate a
+    shared instance in place, so hitting this cache and handing back the same
+    Knob objects to two different callers is fine. What is NOT safe to share
+    is the outer dict/list structure itself - app.py's `knob_tree()` does
+    `tree[knobs.DATA] = {...}`, an in-place rebind of whatever `tree()` handed
+    it, which would silently corrupt this cache for every later caller if it
+    ever touched a dict actually living in here. `tree()` below always builds
+    fresh dicts and lists from the tuples returned here; only the immutable
+    Knob objects themselves are shared.
+
+    `cols` is part of the key (not just `trace_type`) because DATA-bucket
+    knobs' options are the dataframe's columns, not a fact about Plotly.
     """
-    cols = tuple(columns or ())
-    trace_type = trace_type_for(chart_key)
-
     out: dict[str, dict[int, list[Knob]]] = {b: {t: [] for t in TIERS} for b in BUCKETS}
 
     for raw in _raw_tree(trace_type):
@@ -960,16 +974,11 @@ def tree(chart_key: str, columns: list[str] | None = None) -> dict[str, dict[int
             control = "column"
             options: tuple[Any, ...] | None = cols or None
         elif raw.validator_class == "BaseTemplateValidator":
-            # The one option list in the whole tree that is a fact about this
-            # PROCESS rather than about Plotly's schema, so it cannot be cached
-            # with the rest. `_raw_tree` is memoised, and a template registered
-            # after the first tree was built used to be missing from the
-            # dropdown forever - reproduced: build a tree, register a template,
-            # build again, and it is still not there. Anything that imports
-            # Plotly can add one (importing streamlit adds "streamlit";
-            # importing bench.wall adds "wall"), so it is read fresh here.
+            # Read fresh in `tree()` on every call, cache hit or miss - see
+            # there. What is cached here is just a placeholder; the slot it
+            # lands in is recorded below so `tree()` can replace it.
             control = raw.control
-            options = tuple(sorted(str(t) for t in pio.templates))
+            options = _template_options()
         else:
             control = raw.control
             options = raw.options
@@ -992,10 +1001,59 @@ def tree(chart_key: str, columns: list[str] | None = None) -> dict[str, dict[int
             )
         )
 
+    frozen: dict[str, dict[int, tuple[Knob, ...]]] = {}
     for bucket in BUCKETS:
         out[bucket][0].sort(key=lambda k: (_tier0_rank(k.path), k.path))
         out[bucket][1].sort(key=lambda k: k.path)
         out[bucket][2].sort(key=lambda k: k.path)
+        frozen[bucket] = {t: tuple(out[bucket][t]) for t in TIERS}
+
+    template_slot: tuple[str, int, int] | None = None
+    for bucket in BUCKETS:
+        for t in TIERS:
+            for i, k in enumerate(frozen[bucket][t]):
+                if k.validator == "BaseTemplateValidator":
+                    template_slot = (bucket, t, i)
+    return frozen, template_slot
+
+
+def tree(chart_key: str, columns: list[str] | None = None) -> dict[str, dict[int, list[Knob]]]:
+    """Every knob for one chart, filed by bucket then tier.
+
+    Args:
+        chart_key: a registry key (`"sankey"`, `"bump_chart"`) or, when
+            registry.py cannot answer, a raw Plotly trace type name.
+        columns: the column names in the dataframe on screen. These become
+            the options on every DATA knob, which is the one bucket whose
+            legal values come from the data instead of from Plotly.
+
+    Returns:
+        `{bucket: {tier: [Knob, ...]}}` - every bucket in BUCKETS is present
+        and every tier in TIERS is present, so the UI can render the six
+        headers without checking for holes. Lists may be empty.
+
+    Ordering inside a list is fixed and stable: Tier 0 runs in ATLAS
+    section 4.1 order, everything else runs alphabetically by path.
+
+    The heavy lifting (walking ~2,000 raw properties into tiered, sorted Knob
+    objects) is cached on `(trace_type, columns)` in `_tree_cached` - a repeat
+    call with the same chart and the same columns, which is what happens every
+    time a search or a "show more" click rebuilds the pane for the SAME chart,
+    is a dict/tuple lookup and a shallow copy instead of a full rebuild. This
+    function always hands back fresh containers, never the cached ones.
+    """
+    cols = tuple(columns or ())
+    trace_type = trace_type_for(chart_key)
+    cached, template_slot = _tree_cached(trace_type, cols)
+
+    out: dict[str, dict[int, list[Knob]]] = {
+        bucket: {tier: list(cached[bucket][tier]) for tier in TIERS}
+        for bucket in BUCKETS
+    }
+    if template_slot is not None:
+        bucket, tier, index = template_slot
+        out[bucket][tier][index] = replace(
+            out[bucket][tier][index], options=_template_options())
     return out
 
 

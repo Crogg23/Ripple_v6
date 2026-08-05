@@ -283,9 +283,16 @@ def section_knobs(app_mod) -> list[Row]:
 
         # Cold means "this trace type has never been walked". The walk is
         # lru_cached per trace type in knobs._raw_tree, so a chart you have
-        # already clicked once is never cold again.
+        # already clicked once is never cold again. knobs.tree() itself now
+        # has a second cache in front of that walk (knobs._tree_cached, keyed
+        # on trace type + columns) - clearing only _raw_tree would leave a
+        # warm _tree_cached hit in place (this exact chart was already built
+        # once at import time, in app.py's module-level _START_PANE), which
+        # would silently turn this row into a warm measurement wearing a cold
+        # label. Both have to be cleared for "cold" to mean cold.
         def cold() -> None:
             knobs._raw_tree.cache_clear()
+            knobs._tree_cached.cache_clear()
             knobs.tree(chart, cols)
 
         rows.append(measure("knobs", f"{chart}: knobs.tree COLD (cache cleared)",

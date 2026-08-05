@@ -761,3 +761,29 @@ def test_every_px_chart_key_renders_as_a_px_call():
         code = codegen.render(spec(chart=key))
         assert f"fig = px.{key}(df" in code
         assert same(codegen.parse(code), spec(chart=key))
+
+
+# =====================================================================
+# THE px_charts PARAMETER - one call, no shared state
+# =====================================================================
+
+
+def test_px_charts_override_narrows_without_touching_the_module_set():
+    """render(px_charts=...) decides the head for ONE call only."""
+    before = set(codegen.PX_CHARTS)
+    s = spec(chart="bar")
+
+    narrowed = codegen.render(s, px_charts=frozenset())
+    assert 'fig = bench.registry.build("bar", df' in narrowed
+
+    widened = codegen.render(spec(chart="bar"), px_charts={"bar"})
+    assert "fig = px.bar(df" in widened
+
+    assert codegen.PX_CHARTS == before          # module set untouched
+    assert same(codegen.parse(narrowed), s)     # both shapes still parse
+    assert same(codegen.parse(widened), s)
+
+
+def test_px_charts_none_keeps_the_default_behaviour():
+    s = spec(chart="bar")
+    assert codegen.render(s, px_charts=None) == codegen.render(s)

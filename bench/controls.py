@@ -124,6 +124,7 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass, field
+from functools import lru_cache
 from typing import Any, Iterable, Sequence
 
 from dash import dcc, html
@@ -818,6 +819,36 @@ def control(knob: Any, value: Any = None, *, children=None, disabled: bool = Fal
     return _row(knob, value, editor, disabled=disabled)
 
 
+# _row() builds one of these on every knob row - up to ~1,895 times for one
+# chart with every tier open (see the module docstring, point 3). Only two
+# things ever vary: whether the knob is CHANGED and whether the pane is
+# disabled (CUSTOM mode). Precomputed once so a row build shares one of these
+# four dicts instead of constructing a fresh one every time; nothing in this
+# file mutates a built component's `.style` in place, so sharing is safe.
+_ROW_HEAD_STYLE = {"display": "flex", "alignItems": "center"}
+_ROW_PATH_STYLE = {"font": f"10.5px {MONO}", "color": FAINT,
+                   "margin": "1px 0 4px", "wordBreak": "break-all"}
+_ROW_DESC_STYLE = {"font": f"11px/1.45 {SANS}", "color": MUTED,
+                   "marginTop": "4px"}
+_ROW_DOT_STYLE = {"color": ACCENT, "font": "9px sans-serif",
+                  "marginLeft": "6px", "verticalAlign": "middle"}
+_ROW_LABEL_STYLE = {
+    False: {"color": MUTED, "font": f"12.5px {SANS}"},
+    True: {"color": INK, "font": f"600 12.5px {SANS}"},
+}
+_ROW_STYLE = {
+    (changed, disabled): {
+        "padding": "7px 9px",
+        "margin": "3px 0",
+        "borderRadius": "5px",
+        "borderLeft": f"2px solid {ACCENT if changed else 'transparent'}",
+        "background": PANEL_2 if changed else "transparent",
+        "opacity": "0.55" if disabled else "1",
+    }
+    for changed in (False, True) for disabled in (False, True)
+}
+
+
 def _row(knob: Any, value: Any, editor, *, disabled: bool):
     """The line around one control: label, dotted path, the editor, the marker.
 
@@ -828,42 +859,27 @@ def _row(knob: Any, value: Any, editor, *, disabled: bool):
     desc = str(getattr(knob, "description", "") or "").strip()
 
     head = [
-        html.Span(
-            _label(knob),
-            style={"color": INK if changed else MUTED,
-                   "font": f"{'600 ' if changed else ''}12.5px {SANS}"},
-        ),
+        html.Span(_label(knob), style=_ROW_LABEL_STYLE[changed]),
         html.Span(
             "●" if changed else "",
             title="changed - this one is in the generated code",
-            style={"color": ACCENT, "font": "9px sans-serif",
-                   "marginLeft": "6px", "verticalAlign": "middle"},
+            style=_ROW_DOT_STYLE,
         ),
     ]
 
     body = [
-        html.Div(head, style={"display": "flex", "alignItems": "center"}),
-        html.Div(getattr(knob, "path", ""),
-                 style={"font": f"10.5px {MONO}", "color": FAINT,
-                        "margin": "1px 0 4px", "wordBreak": "break-all"}),
+        html.Div(head, style=_ROW_HEAD_STYLE),
+        html.Div(getattr(knob, "path", ""), style=_ROW_PATH_STYLE),
         editor,
     ]
     if desc:
-        body.append(html.Div(desc, style={"font": f"11px/1.45 {SANS}",
-                                          "color": MUTED, "marginTop": "4px"}))
+        body.append(html.Div(desc, style=_ROW_DESC_STYLE))
 
     return html.Div(
         body,
         id=knob_id(getattr(knob, "path", ""), "row"),
         title=desc or None,
-        style={
-            "padding": "7px 9px",
-            "margin": "3px 0",
-            "borderRadius": "5px",
-            "borderLeft": f"2px solid {ACCENT if changed else 'transparent'}",
-            "background": PANEL_2 if changed else "transparent",
-            "opacity": "0.55" if disabled else "1",
-        },
+        style=_ROW_STYLE[(changed, disabled)],
     )
 
 
@@ -1295,12 +1311,7 @@ def _label(knob: Any) -> str:
     return str(getattr(knob, "path", "")).rsplit(".", 1)[-1] or "(unnamed)"
 
 
-def _options(values: Iterable[Any]) -> list[dict]:
-    """Dropdown options from a bare list.
-
-    SPEC 4.1: drop the non-str/bool oddities. Some Plotly enums carry regex
-    objects and other non-JSON things that would break the wire.
-    """
+def _build_options(values: Sequence[Any]) -> list[dict]:
     out = []
     for v in values:
         if isinstance(v, dict) and "value" in v:      # already an option dict
@@ -1308,6 +1319,31 @@ def _options(values: Iterable[Any]) -> list[dict]:
         elif isinstance(v, bool) or isinstance(v, (str, int, float)):
             out.append({"label": str(v), "value": v})
     return out
+
+
+@lru_cache(maxsize=512)
+def _options_cached(values: tuple) -> tuple[dict, ...]:
+    return tuple(_build_options(values))
+
+
+def _options(values: Iterable[Any]) -> list[dict]:
+    """Dropdown options from a bare list.
+
+    SPEC 4.1: drop the non-str/bool oddities. Some Plotly enums carry regex
+    objects and other non-JSON things that would break the wire.
+
+    Plotly's enum vocabularies (94 named colorscales, categoryorder's 18
+    values, ...) are fixed for the life of the process and recur across many
+    knobs and many renders, so the common case is cached. `values` is
+    materialised once so the same list still works when caching a particular
+    call is impossible - an "already an option dict" entry (line above) is
+    unhashable, so that one call falls back to building fresh, uncached.
+    """
+    values = list(values)
+    try:
+        return list(_options_cached(tuple(values)))
+    except TypeError:
+        return _build_options(values)
 
 
 def _num(v: Any, fallback: float) -> float:

@@ -460,5 +460,81 @@ def test_knob_is_json_ready():
     json.dumps(knob.as_dict())
 
 
+# ---------------------------------------------------------------------
+# The _tree_cached contract: fresh containers, shared frozen Knobs
+# ---------------------------------------------------------------------
+
+
+def test_tree_hands_back_fresh_containers_every_call():
+    """Mutating one tree() result must never leak into the next.
+
+    app.py's knob_tree() rebinds tree[DATA] in place; if tree() ever handed
+    out the cached containers themselves, that rebind would corrupt the
+    cache for every later caller.
+    """
+    first = knobs.tree("bar", COLUMNS)
+    second_before = sum(
+        len(knobs.tree("bar", COLUMNS)[b][t]) for b in knobs.BUCKETS for t in knobs.TIERS)
+
+    first[knobs.DATA] = {t: [] for t in knobs.TIERS}
+    first[knobs.MARK][1].clear()
+    first[knobs.FRAME][0].append("not even a Knob")
+
+    third = knobs.tree("bar", COLUMNS)
+    total = sum(len(third[b][t]) for b in knobs.BUCKETS for t in knobs.TIERS)
+    assert total == second_before
+    assert all(hasattr(k, "path") for k in third[knobs.FRAME][0])
+
+
+def test_tree_shares_the_frozen_knob_objects():
+    """The containers are fresh but the Knobs inside are the SAME objects -
+    that identity is what makes the cache worth having."""
+    a = knobs.tree("bar", COLUMNS)
+    b = knobs.tree("bar", COLUMNS)
+    shared = 0
+    for bucket in knobs.BUCKETS:
+        for tier in knobs.TIERS:
+            for ka, kb in zip(a[bucket][tier], b[bucket][tier]):
+                if ka.validator == "BaseTemplateValidator":
+                    continue  # rebuilt fresh each call, by design
+                assert ka is kb, ka.path
+                shared += 1
+    assert shared > 1000
+
+
+def test_template_registered_after_first_build_still_appears():
+    """A pio.templates entry added between two tree() calls must show up in
+    layout.template's options - the one fact about the PROCESS, not Plotly."""
+    import plotly.io as pio
+
+    def template_knob(built):
+        for bucket in knobs.BUCKETS:
+            for tier in knobs.TIERS:
+                for k in built[bucket][tier]:
+                    if k.validator == "BaseTemplateValidator":
+                        return k
+        return None
+
+    knobs.tree("bar", COLUMNS)  # warm the cache first
+    name = "bench_test_template_freshness"
+    pio.templates[name] = pio.templates["plotly_dark"]
+    try:
+        knob = template_knob(knobs.tree("bar", COLUMNS))
+        assert knob is not None
+        assert name in (knob.options or ())
+    finally:
+        del pio.templates[name]
+    knob = template_knob(knobs.tree("bar", COLUMNS))
+    assert name not in (knob.options or ())
+
+
+def test_trace_type_for_still_raises_on_a_bad_key():
+    """The lru_cache must not swallow or alter the ValueError contract."""
+    for _ in range(2):  # twice: the second call exercises the cached path
+        with pytest.raises(ValueError):
+            knobs.trace_type_for("no_such_chart_key_ever")
+    assert knobs.trace_type_for("bar") == knobs.trace_type_for("bar")
+
+
 if __name__ == "__main__":
     raise SystemExit(pytest.main([__file__, "-q"]))

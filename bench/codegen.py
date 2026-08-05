@@ -64,7 +64,7 @@ from __future__ import annotations
 import ast
 import math
 import warnings
-from typing import Any
+from typing import Any, Iterable
 
 # =====================================================================
 # MEASURED FACTS
@@ -431,8 +431,14 @@ def _header(label: str) -> str:
 # =====================================================================
 
 
-def render(spec: dict) -> str:
+def render(spec: dict, *, px_charts: Iterable[str] | None = None) -> str:
     """Write a SPEC dict out as canonical Python.
+
+    `px_charts` overrides which chart keys print as `px.<name>(df, ...)`
+    instead of `bench.registry.build(<name>, df, ...)`, for one call only -
+    with no read of or write to the module-level PX_CHARTS. app.py's
+    render_code() uses this instead of mutating the shared set under a lock,
+    since a parameter can't leak between callers the way shared state can.
 
     Deterministic: the same spec always produces the same characters. That is
     the whole basis of the two-way sync - if rendering wobbled, the code panel
@@ -482,7 +488,8 @@ def render(spec: dict) -> str:
 
     args = [f"{slot}={_literal(mapping[slot], f'mapping[{slot!r}]')}"
             for slot in _ordered_mapping(mapping)]
-    if chart.isidentifier() and chart in PX_CHARTS:
+    charts = PX_CHARTS if px_charts is None else px_charts
+    if chart.isidentifier() and chart in charts:
         head = f"fig = {PX_NAMESPACE}.{chart}(df"
     else:
         head = f"fig = {REGISTRY_CALL}({_pystr(chart)}, df"

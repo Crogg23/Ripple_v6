@@ -88,7 +88,6 @@ from __future__ import annotations
 
 import json
 import sys
-import threading
 import time
 import traceback
 from functools import lru_cache
@@ -208,27 +207,20 @@ def blank_spec(chart: str = START_CHART, demo: str = START_DEMO) -> dict:
 # registry charts really are a bare px call - the other 141 have styling baked
 # into their builder, so printing `px.violin(df, ...)` for them would be the
 # panel telling you a line that does not make that picture. registry.PX_PURE
-# is the honest set, and registry.sync_codegen() exists to install it.
+# is the honest set.
 #
-# We do NOT install it permanently. `sync_codegen()` rewrites another module's
-# global in place, and that leaks: the first run of this file turned two
-# tests in tests/test_bench_codegen.py red, three files away, because they
-# re-measure that same set. So we narrow it for the length of one render and
-# put it straight back. A lock, because the dev server serves on threads.
-_PX_LOCK = threading.Lock()
+# We do NOT install it permanently. `registry.sync_codegen()` rewrites another
+# module's global in place, and that leaks: the first run of this file turned
+# two tests in tests/test_bench_codegen.py red, three files away, because they
+# re-measure that same set. codegen.render's `px_charts` keyword narrows it for
+# one call only, as a parameter - so there is no shared state to leak, and
+# nothing to lock: no other thread can ever observe a value passed as an
+# argument to a call it isn't part of.
 
 
 def render_code(spec: dict) -> str:
     """`codegen.render`, with the chart line printed the way it was really built."""
-    with _PX_LOCK:
-        saved = set(codegen.PX_CHARTS)
-        codegen.PX_CHARTS.clear()
-        codegen.PX_CHARTS.update(registry.PX_PURE)
-        try:
-            return codegen.render(spec)
-        finally:
-            codegen.PX_CHARTS.clear()
-            codegen.PX_CHARTS.update(saved)
+    return codegen.render(spec, px_charts=registry.PX_PURE)
 
 
 def _jsonable(value: Any) -> Any:
