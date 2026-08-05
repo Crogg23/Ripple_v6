@@ -1306,13 +1306,20 @@ def _bucket_section(name, tiers, spec_knobs, mapping, disabled, *,
                               is_open=False))
 
     count = found if found is not None else len(t0) + len(t1) + len(t2)
+    # The classNames are the whole per-bucket colour story: bench.css maps
+    # bench-bucket--<name> to its --bench-bucket-* hue and paints the summary
+    # stripe, the dot and the open-state name from that one variable. No
+    # colour is threaded through the row styles, so the memoised _ROW_* dicts
+    # stay exactly as they are.
     return html.Details(
         [
             html.Summary(
                 [
-                    html.Span(name, style={"font": f"600 12px {SANS}",
-                                           "letterSpacing": ".08em",
-                                           "color": INK}),
+                    html.Span(className="bench-bucket-dot"),
+                    html.Span(name, className="bench-bucket-name",
+                              style={"font": f"600 12px {SANS}",
+                                     "letterSpacing": ".08em",
+                                     "color": INK}),
                     html.Span(f"  {count}",
                               style={"font": f"11px {MONO}", "color": FAINT,
                                      "marginLeft": "8px"}),
@@ -1327,6 +1334,7 @@ def _bucket_section(name, tiers, spec_knobs, mapping, disabled, *,
                      style={"padding": "0 0 6px 6px"}),
         ],
         id=bucket_id(name, "section"),
+        className=f"bench-bucket bench-bucket--{name.lower()}",
         open=bool(force_open),
         n_clicks=0,          # so app.py can hear a bucket being opened
         style={"borderTop": f"1px solid {RULE}", "padding": "2px 0"},
