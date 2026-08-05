@@ -31,6 +31,11 @@
   color: var(--bench-ink) !important;
 }
 .dash-dropdown-search::placeholder { color: var(--bench-faint); }
+.dash-dropdown-search:focus {
+  outline: 2px solid var(--bench-accent) !important;
+  outline-offset: -1px;
+  border-color: var(--bench-accent) !important;
+}
 .dash-options-list { background: transparent !important; }
 .dash-options-list-option {
   background: transparent !important;
