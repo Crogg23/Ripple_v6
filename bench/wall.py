@@ -369,8 +369,11 @@ def d_geojson_boxes() -> tuple[dict, pd.DataFrame]:
 
 INK = "#e8edf4"
 MUTED = "#8b98ab"
-PANEL = "#12171f"
-GRID = "#232b38"
+# Matches controls.BG_1 by value (not import - wall must stay Dash-free) so
+# the chart card sits on the same elevation step as the side panes instead
+# of a third, subtly-different grey.
+PANEL = "#161d26"
+GRID = "#2a3441"
 
 # A categorical palette that stays distinguishable for colour-blind readers.
 CATS = [
@@ -390,6 +393,8 @@ pio.templates["wall"] = go.layout.Template(
         yaxis=dict(gridcolor=GRID, zerolinecolor=GRID, linecolor=GRID, automargin=True),
         legend=dict(bgcolor="rgba(0,0,0,0)", font=dict(size=11)),
         hoverlabel=dict(bgcolor="#0b0f14", bordercolor=GRID, font=dict(color=INK, size=12)),
+        # the modebar otherwise draws Plotly's light-theme icons over the dark card
+        modebar=dict(bgcolor="rgba(0,0,0,0)", color=MUTED, activecolor=INK),
         colorscale=dict(sequential="Viridis", diverging="RdBu"),
         coloraxis=dict(colorbar=dict(outlinewidth=0, thickness=11, len=0.8)),
         polar=dict(bgcolor=PANEL, angularaxis=dict(gridcolor=GRID), radialaxis=dict(gridcolor=GRID)),
