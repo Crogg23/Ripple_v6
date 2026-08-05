@@ -101,7 +101,7 @@ def _marked_changed(component, plotly_only: bool = False) -> list[str]:
     out = []
     for node in component._traverse():
         cid = getattr(node, "id", None)
-        if not (isinstance(cid, dict) and cid.get("bench") == "knob"
+        if not (isinstance(cid, dict) and cid.get("bench") == "knobwrap"
                 and cid.get("part") == "row"):
             continue
         path = str(cid.get("path"))

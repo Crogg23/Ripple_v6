@@ -18,20 +18,28 @@ callback per knob.
 Three families. The `bench` key names the family; the rest of the keys are
 always the same within a family, which is what MATCH and ALL require.
 
-    {"bench": "knob",   "path": "<dotted path>", "part": "<role>"}
-    {"bench": "bucket", "bucket": "<DATA|MARK|...>", "part": "<role>"}
-    {"bench": "panel",  "part": "<role>"}
+    {"bench": "knob",     "path": "<dotted path>", "part": "<role>"}
+    {"bench": "knobwrap", "path": "<dotted path>", "part": "<role>"}
+    {"bench": "bucket",   "bucket": "<DATA|MARK|...>", "part": "<role>"}
+    {"bench": "panel",    "part": "<role>"}
 
-Knob parts:
+Knob parts (family "knob" - these carry a `value`, and ARE what
+`Input({"bench": "knob", "path": ALL, "part": ALL}, "value")` matches):
 
     "value"  the ONE editor whose `value` prop holds this knob's setting.
              Exactly one per knob. A "section" knob has none - it is a
              container, not a setting.
     "hex"    the second editor a colour knob gets: the `#rrggbb` text box.
              Same knob, same setting, different way in.
-    "row"    the wrapper Div. No value. This is the styling target - it is
-             what turns grey (at default) or lights up (you changed it).
-    "body"   a section knob's expandable body Div. No value.
+
+Knobwrap parts (family "knobwrap" - plain Divs with no `value` prop at all.
+Kept OUT of the "knob" family on purpose: a Div in that family gets caught by
+the ALL/ALL "value" Input above, and dash-renderer logs "Invalid prop for
+this component" on every repaint because a Div has no `value` to read):
+
+    "row"    the wrapper Div. This is the styling target - it is what turns
+             grey (at default) or lights up (you changed it).
+    "body"   a section knob's expandable body Div.
 
 Bucket parts, all on an html.Details that carries `n_clicks`:
 
@@ -819,7 +827,7 @@ def _section(knob: Any, value: Any, disabled: bool, children=None):
     """
     body = html.Div(
         children if children is not None else [],
-        id=knob_id(knob.path, "body"),
+        id={"bench": "knobwrap", "path": str(knob.path), "part": "body"},
         style={"padding": "2px 0 2px 12px", "marginLeft": "3px",
                "borderLeft": f"1px solid {RULE}"},
     )
@@ -1061,7 +1069,7 @@ def _row(knob: Any, value: Any, editor, *, disabled: bool):
 
     return html.Div(
         body,
-        id=knob_id(getattr(knob, "path", ""), "row"),
+        id={"bench": "knobwrap", "path": str(getattr(knob, "path", "")), "part": "row"},
         title=desc or None,
         style=_ROW_STYLE[(changed, disabled)],
     )

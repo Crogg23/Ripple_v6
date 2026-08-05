@@ -1,4 +1,4 @@
-"""
+﻿"""
 Tests for bench/controls.py - the knob -> Dash control layer.
 
 Run it either way:
@@ -177,7 +177,7 @@ def ids_in(comp) -> list[dict]:
 
 def parts_for(comp, path: str) -> list[str]:
     return [i["part"] for i in ids_in(comp)
-            if i.get("bench") == "knob" and i.get("path") == path]
+            if i.get("bench") in ("knob", "knobwrap") and i.get("path") == path]
 
 
 # ---------------------------------------------------------------- tests
@@ -259,7 +259,7 @@ def test_search_cuts_every_tier():
     # is genuinely reaching past the tiers.
     p = controls.panel(tree, {}, query="minor")
     found = [i["path"] for i in ids_in(p)
-             if i.get("bench") == "knob" and i.get("part") == "row"]
+             if i.get("bench") == "knobwrap" and i.get("part") == "row"]
     assert found == ["layout.xaxis.minor.dtick"], found
     # and every surviving bucket opens itself
     sections = [c for c in walk(p)
@@ -281,7 +281,7 @@ def test_section_nests_its_children():
             body = c
     assert body is not None, "no body div for the trace.marker section"
     inside = [i["path"] for i in ids_in(body)
-              if i.get("bench") == "knob" and i.get("part") == "row"]
+              if i.get("bench") == "knobwrap" and i.get("part") == "row"]
     assert "trace.marker.color" in inside and "trace.marker.opacity" in inside, inside
     assert "trace.cliponaxis" not in inside, "a non-child leaked into the section"
 
@@ -304,7 +304,7 @@ def test_every_knob_id_is_a_dict_pattern_id():
         if cid is None:
             continue
         assert isinstance(cid, dict), f"string id found: {cid!r}"
-        assert cid.get("bench") in ("knob", "bucket", "panel"), cid
+        assert cid.get("bench") in ("knob", "knobwrap", "bucket", "panel"), cid
 
 
 def test_panel_survives_a_real_dash_app():
@@ -362,7 +362,7 @@ def test_expanded_builds_only_the_buckets_you_name():
 
     def rows(p):
         return [i["path"] for i in ids_in(p)
-                if i.get("bench") == "knob" and i.get("part") == "row"]
+                if i.get("bench") == "knobwrap" and i.get("part") == "row"]
 
     def sections(p):
         return [c.id["bucket"] for c in walk(p)
@@ -379,13 +379,13 @@ def test_search_ignores_expanded():
     """A search that can't reach a collapsed bucket is not a search."""
     p = controls.panel(fake_tree(), {}, query="minor", expanded=("DATA",))
     found = [i["path"] for i in ids_in(p)
-             if i.get("bench") == "knob" and i.get("part") == "row"]
+             if i.get("bench") == "knobwrap" and i.get("part") == "row"]
     assert found == ["layout.xaxis.minor.dtick"], found
 
 
 def test_custom_mode_greys_the_lot():
     p = controls.panel(fake_tree(), {}, disabled=True,
-                       banner="custom code — knobs are read-only until you Reset")
+                       banner="custom code â€” knobs are read-only until you Reset")
     rows = [c for c in walk(p)
             if isinstance(getattr(c, "id", None), dict)
             and c.id.get("part") == "row"]
@@ -435,7 +435,7 @@ def deep_tree() -> dict:
 
 def rows_in(comp) -> list[str]:
     return [i["path"] for i in ids_in(comp)
-            if i.get("bench") == "knob" and i.get("part") == "row"]
+            if i.get("bench") == "knobwrap" and i.get("part") == "row"]
 
 
 def test_lazy_builds_tier0_and_nothing_else():
@@ -789,3 +789,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
