@@ -146,7 +146,9 @@ BG_3 = "#2d3a49"      # hover / raised / selected
 
 SURFACE = BG_0        # alias - the page
 PANEL = BG_1          # alias - the pane itself
-PANEL_2 = BG_3        # alias - a changed row, lifted off the pane
+PANEL_2 = "#14263d"   # alias - a changed/selected row: an accent-tinted lift,
+                      # so "you touched this" reads as colour, not just grey
+                      # (same hex as ACCENT_BG below)
 
 INK = "#e6edf3"       # primary text
 MUTED = "#96a0ab"     # labels of untouched knobs, descriptions
@@ -879,8 +881,8 @@ COMPOUND_DEFAULTS: dict[str, dict] = {
 
 SHAPE_TYPES = ("line", "rect", "circle")
 
-_BTN_STYLE = {"background": PANEL_2, "color": INK,
-              "border": f"1px solid {RULE}", "borderRadius": "5px",
+_BTN_STYLE = {"background": BG_2, "color": INK,
+              "border": f"1px solid {RULE_STRONG}", "borderRadius": "5px",
               "padding": "3px 9px", "font": f"11px {MONO}",
               "cursor": "pointer"}
 

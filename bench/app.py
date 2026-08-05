@@ -140,9 +140,17 @@ _INPUT = {"background": SURFACE, "color": INK, "border": f"1px solid {RULE}",
           "borderRadius": "5px", "padding": "5px 8px", "font": f"12px {MONO}",
           "boxSizing": "border-box"}
 
-_BTN = {"background": "transparent", "color": INK, "border": f"1px solid {RULE}",
+# Secondary buttons sit on the raised BG_2 step with a real edge; the primary
+# variant (save / RUN) is a filled accent block. Hover states live in
+# assets/bench.css under .bench-btn / .bench-btn-primary.
+_BTN = {"background": controls.BG_2, "color": INK,
+        "border": f"1px solid {controls.RULE_STRONG}",
         "borderRadius": "5px", "padding": "5px 12px", "font": f"11px {MONO}",
         "letterSpacing": ".06em", "cursor": "pointer", "flex": "none"}
+
+_BTN_PRIMARY = {**_BTN, "background": controls.ACCENT_FILL, "color": "#ffffff",
+                "border": f"1px solid {controls.ACCENT_FILL}",
+                "font": f"600 11px {MONO}"}
 
 # How long the code panel waits after your last keystroke before it tries to
 # read what you typed. SPEC section 8 asks for about this. The numbers live
@@ -520,7 +528,7 @@ def picker(spec: dict, df: pd.DataFrame, query: str = "",
                     "background": PANEL_2 if selected else "transparent",
                     "color": INK if (ok and not template.blocked) else FAINT,
                     "border": "none",
-                    "borderLeft": f"2px solid {ACCENT if selected else 'transparent'}",
+                    "borderLeft": f"3px solid {ACCENT if selected else 'transparent'}",
                     "borderRadius": "4px", "padding": "5px 8px",
                     "margin": "1px 0", "cursor": "pointer",
                     "opacity": "1" if ok else "0.55",
@@ -870,7 +878,14 @@ def status_bar(meta: dict) -> list:
     return chips
 
 
+# A semantic chip colour gets its own dark tint behind it, so the state
+# reads as a coloured object across the room instead of 11px coloured text.
+_CHIP_TINT = {GOOD: controls.GOOD_BG, BAD: controls.BAD_BG,
+              WARN: controls.WARN_BG, ACCENT: controls.ACCENT_BG}
+
+
 def _chip(label: str, value: str, colour: str, title: str):
+    tint = _CHIP_TINT.get(colour)
     return html.Div(
         [
             html.Span(label + " ", style={"color": FAINT, "font": f"10px {MONO}",
@@ -878,8 +893,10 @@ def _chip(label: str, value: str, colour: str, title: str):
             html.Span(value, style={"color": colour, "font": f"600 11px {MONO}"}),
         ],
         title=title,
-        style={"border": f"1px solid {RULE}", "borderRadius": "4px",
-               "padding": "3px 8px", "whiteSpace": "nowrap"},
+        style={"border": f"1px solid {colour if tint else RULE}",
+               "background": tint or "transparent",
+               "borderRadius": "4px", "padding": "3px 8px",
+               "whiteSpace": "nowrap"},
     )
 
 
@@ -922,7 +939,8 @@ def source_bar(spec: dict, meta: dict) -> html.Div:
                                       style={**_INPUT, "width": "160px",
                                              "flex": "none"}),
                             html.Button("look up", id="bench-src-find",
-                                        n_clicks=0, style=_BTN),
+                                        n_clicks=0, style=_BTN,
+                                        className="bench-btn"),
                             html.Div(
                                 dcc.Dropdown(id="bench-src-table", options=[],
                                              placeholder="…then pick one for starter SQL",
@@ -930,8 +948,8 @@ def source_bar(spec: dict, meta: dict) -> html.Div:
                                              style={"font": f"12px {MONO}"}),
                                 style={"flex": "1", "minWidth": "140px"}),
                             html.Button("RUN", id="bench-src-run", n_clicks=0,
-                                        style={**_BTN, "color": ACCENT,
-                                               "borderColor": ACCENT}),
+                                        style=_BTN_PRIMARY,
+                                        className="bench-btn-primary"),
                         ],
                         id="bench-src-sql-tools",
                         style={"display": "none", "gap": "6px", "flex": "1",
@@ -956,7 +974,8 @@ def source_bar(spec: dict, meta: dict) -> html.Div:
                      style={"font": f"11px {SANS}", "color": MUTED,
                             "marginTop": "6px"}),
         ],
-        style={"background": PANEL, "borderTop": f"1px solid {RULE}",
+        style={"background": PANEL,
+               "borderTop": f"1px solid {controls.RULE_STRONG}",
                "padding": "8px 12px", "flex": "none"},
     )
 
@@ -1091,7 +1110,8 @@ app.layout = html.Div(
                         html.Div(picker(_START, _START_DF), id="bench-picker",
                                  style={"padding": "0 8px 40px"}),
                     ],
-                    style={**_PANE, "borderRight": f"1px solid {RULE}"},
+                    style={**_PANE,
+                           "borderRight": f"1px solid {controls.RULE_STRONG}"},
                 ),
                 # MIDDLE - the chart, then the code
                 html.Div(
@@ -1133,18 +1153,23 @@ app.layout = html.Div(
                                         html.Div(style={"flex": "1"}),
                                         html.Button("↶", id="bench-undo",
                                                     n_clicks=0, style=_BTN,
+                                                    className="bench-btn",
                                                     title="undo (Ctrl+Z outside "
                                                           "a text box)"),
                                         html.Button("↷", id="bench-redo",
                                                     n_clicks=0, style=_BTN,
+                                                    className="bench-btn",
                                                     title="redo (Ctrl+Y)"),
                                         html.Button("save", id="bench-save",
-                                                    n_clicks=0, style=_BTN,
+                                                    n_clicks=0,
+                                                    style=_BTN_PRIMARY,
+                                                    className="bench-btn-primary",
                                                     title="download this whole "
                                                           "setup as a .json spec "
                                                           "(Ctrl+S)"),
                                         dcc.Upload(
                                             html.Button("load", style=_BTN,
+                                                        className="bench-btn",
                                                         title="load a saved "
                                                               ".json spec"),
                                             id="bench-load", multiple=False,
@@ -1157,16 +1182,19 @@ app.layout = html.Div(
                                                    "cursor": "pointer"}),
                                         html.Button(".py", id="bench-export-py",
                                                     n_clicks=0, style=_BTN,
+                                                    className="bench-btn",
                                                     title="download this code as a "
                                                           "runnable .py file"),
                                         html.Button("html", id="bench-export-html",
                                                     n_clicks=0, style=_BTN,
+                                                    className="bench-btn",
                                                     title="download the chart as a "
                                                           "standalone interactive "
                                                           "HTML file"),
                                         dcc.Download(id="bench-download"),
                                         html.Button("Reset", id="bench-reset",
-                                                    n_clicks=0, style=_BTN),
+                                                    n_clicks=0, style=_BTN,
+                                                    className="bench-btn"),
                                     ],
                                     style={"display": "flex", "alignItems": "center",
                                            "gap": "6px", "padding": "4px 0"},
@@ -1200,7 +1228,8 @@ app.layout = html.Div(
                                      style={"padding": "0 12px 60px"}),
                             "bench-knobs-loading"),
                     ],
-                    style={**_PANE, "borderLeft": f"1px solid {RULE}"},
+                    style={**_PANE,
+                           "borderLeft": f"1px solid {controls.RULE_STRONG}"},
                 ),
             ],
             style={"display": "grid",
