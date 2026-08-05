@@ -110,6 +110,10 @@
 .bench-btn:hover { background: var(--bench-bg-3); }
 .bench-btn-primary:hover { background: var(--bench-accent-fill-hover) !important; }
 
+/* --- the catalog drawer's clickable rows ----------------------------- */
+
+.bench-cat-row:hover { background: var(--bench-bg-3) !important; }
+
 /* --- furniture ------------------------------------------------------- */
 
 summary::marker { color: var(--bench-faint); }

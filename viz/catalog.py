@@ -19,9 +19,18 @@ warehouse, so a source that lands next month is chartable with zero wiring:
                  column's chart role; all-digit strings are numeric, never dates.
   cast_sql(fqn)  drafts the casted SELECT that makes an all-TEXT landing table
                  chartable — the starting point Chris edits, not a black box.
+  snapshot_write / snapshot_read
+                 the bench's browse surface: find('') + shelves() written to
+                 one disk file, read back with zero warehouse contact. Refresh
+                 is an explicit button, never a background job.
 """
 
 from __future__ import annotations
+
+import json
+import os
+import time
+from pathlib import Path
 
 from viz import guard, sqlrun
 
@@ -149,6 +158,44 @@ def shelves() -> list[dict]:
           AND NOT STARTSWITH(TABLE_SCHEMA, '_')
         GROUP BY 1 ORDER BY 3 DESC NULLS LAST""")
     return [{"arm": "catalog", **d} for d in dom] + [{"arm": "marts", **m} for m in marts]
+
+
+# --------------------------------------------------------------------------- #
+# snapshot — the bench's browse surface, served entirely from disk
+# --------------------------------------------------------------------------- #
+SNAPSHOT_PATH = sqlrun.CACHE_PATH.parent / "bench_catalog.json"
+
+
+def snapshot_write(path: Path | None = None) -> dict:
+    """Rebuild the on-disk catalog snapshot. This is the ONLY discovery call
+    that is allowed to cost warehouse time on purpose: one find('') pass and
+    one shelves() pass (two live queries when the 30-min find cache is cold).
+
+    Everything the bench browses afterwards comes from this file — so browsing
+    never wakes the warehouse and never costs anything Chris didn't press a
+    button for."""
+    path = Path(path) if path else SNAPSHOT_PATH
+    snap = {
+        "built_at": time.strftime("%Y-%m-%dT%H:%M:%S"),
+        "tables": find("", refresh=True),
+        "shelves": shelves(),
+        "budget": sqlrun.budget_line(refresh=True),
+    }
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_suffix(".tmp")
+    tmp.write_text(json.dumps(snap, indent=1, default=str), encoding="utf-8")
+    os.replace(tmp, path)
+    return snap
+
+
+def snapshot_read(path: Path | None = None) -> dict | None:
+    """The snapshot as written, or None when there isn't one yet. Pure disk —
+    this function must NEVER open a warehouse connection."""
+    path = Path(path) if path else SNAPSHOT_PATH
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
 
 
 # --------------------------------------------------------------------------- #

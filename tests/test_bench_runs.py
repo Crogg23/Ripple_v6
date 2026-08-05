@@ -209,9 +209,9 @@ def test_the_served_layout_really_has_three_panes(server):
 
 
 def test_the_callbacks_are_registered_on_the_running_server(server):
-    """Eight server-side callbacks and the two clientside helpers."""
+    """Eleven server-side callbacks and the two clientside helpers."""
     clientside = [d for d in server.deps if d.get("clientside_function")]
-    assert len(server.deps) == 10, [d["output"] for d in server.deps]
+    assert len(server.deps) == 13, [d["output"] for d in server.deps]
     assert len(clientside) == 2, "the 600ms debounce and the one-shot restore"
 
 

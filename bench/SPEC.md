@@ -265,7 +265,12 @@ def frame(source: dict, *, refresh: bool = False,
   the "data as of" stamp are **shown in the UI**, always.
 
 Table/column discovery for the SQL box reuses `viz/catalog.py` rather than a
-hardcoded list.
+hardcoded list — since 2026-08, through a disk snapshot (`bench_catalog.json`,
+written by `catalog.snapshot_write`), so browsing costs zero warehouse queries.
+Exactly three catalog actions touch Snowflake, each behind its own labelled
+button: `refresh catalog` (two live queries), picking a row (`DESCRIBE`,
+metadata only), and `draft starter SQL` (the 10k-row profile, cached 7 days —
+it used to run silently on every pick; it does not any more).
 
 ### 7.1 The frame cache
 

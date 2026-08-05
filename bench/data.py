@@ -1146,6 +1146,42 @@ def lane() -> dict:
                 "notes": [f"no warehouse connection: {type(exc).__name__}: {exc}"]}
 
 
+def catalog_snapshot() -> dict | None:
+    """The on-disk catalog snapshot, or None when none has been built yet.
+    Pure disk read - NEVER touches the warehouse, safe to call on every
+    drawer repaint."""
+    try:
+        from viz import catalog
+        return catalog.snapshot_read()
+    except Exception as exc:
+        _catalog_failed("catalog.snapshot_read", exc)
+        return None
+
+
+def catalog_refresh() -> dict | None:
+    """Rebuild the catalog snapshot - the one discovery call that costs
+    warehouse time on purpose (two live queries, ~10s on a cold warehouse).
+    Only ever fired by the labelled refresh button. None when offline."""
+    try:
+        from viz import catalog
+        snap = catalog.snapshot_write()
+        _catalog_ok()
+        return snap
+    except Exception as exc:
+        _catalog_failed("catalog.snapshot_write", exc)
+        return None
+
+
+def budget() -> str:
+    """The resource-monitor budget line, cached 10 min by sqlrun. Costs one
+    metadata round trip on a cache miss - callers only invoke this after an
+    action that already touched the warehouse."""
+    try:
+        return sqlrun.budget_line()
+    except Exception as exc:
+        return f"budget unknown ({type(exc).__name__}: {exc})"
+
+
 def tables(term: str = "", refresh: bool = False) -> list[dict]:
     """Chartable tables matching `term`, live off the catalog. [] when offline."""
     try:
@@ -1194,8 +1230,11 @@ def starter_sql(fqn: str, limit: int | None = None) -> str:
         limit = settings.SQL_LIMIT
     try:
         from viz import catalog
-        return f"{catalog.cast_sql(fqn)}\nLIMIT {int(limit)}"
-    except Exception:
+        sql = f"{catalog.cast_sql(fqn)}\nLIMIT {int(limit)}"
+        _catalog_ok()
+        return sql
+    except Exception as exc:
+        _catalog_failed("catalog.cast_sql", exc)
         return f"SELECT *\nFROM {fqn}\nLIMIT {int(limit)}"
 
 

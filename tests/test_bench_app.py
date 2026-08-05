@@ -347,7 +347,7 @@ def test_the_chart_line_is_honest_and_leaves_codegen_alone():
 
 
 def test_every_callback_is_registered():
-    """Eight server callbacks and the one clientside debounce.
+    """Eleven server callbacks and the one clientside debounce.
 
     Named rather than counted, because the whole point of the split is WHICH
     callback owns which pane. A count alone would have gone green on a
@@ -356,16 +356,21 @@ def test_every_callback_is_registered():
     from dash import _callback
 
     outputs = {str(k) for k in bench_app.app.callback_map}
-    assert len(outputs) == 8, sorted(outputs)
+    assert len(outputs) == 11, sorted(outputs)
     for owns in ("bench-spec.data",                 # sync_spec, the one writer
                  "bench-figure.figure",             # render_chart, the fast lane
                  "bench-knobs.children",            # render_knobs, the slow lane
                  "bench-picker.children",           # render_picker
                  "bench-open.data",                 # grow_open
                  "bench-src-demo-box.style",        # source_face
-                 "bench-src-table.options",         # find_tables
+                 "bench-cat-drawer.style",          # toggle_catalog
+                 "bench-cat-list.children",         # browse_catalog
+                 "bench-cat-picked.data",           # pick_catalog_row
                  "bench-download.data"):            # export_chart
         assert any(owns in key for key in outputs), owns
+    # draft_starter has no unique Output name (both of its Outputs are
+    # allow_duplicate shares) - it shows up as a second writer of the note
+    assert sum("bench-src-note.children" in key for key in outputs) >= 2
     assert len(_callback.GLOBAL_CALLBACK_LIST) == 2   # the clientside debounce + the one-shot restore
 
 
@@ -1249,19 +1254,129 @@ def test_export_html_is_a_standalone_interactive_page():
     assert "plotly" in got["content"].lower()
 
 
-def test_find_tables_says_when_the_cap_trips(monkeypatch):
+# =====================================================================
+# the catalog drawer: browse off a snapshot, warehouse only on purpose
+# =====================================================================
+
+_FAKE_SNAP = {
+    "built_at": "2026-08-04T12:00:00",
+    "tables": [
+        {"fqn": "LIBRARY_MARTS.HEALTH.MART_A", "name": "Hospital Money",
+         "one_liner": "who pays whom", "domain": "health", "rows": 5_000_000,
+         "lifecycle": "modeled", "is_sample": False},
+        {"fqn": "LIBRARY_RAW.LANDING.NPPES", "name": "NPPES",
+         "one_liner": "every provider", "domain": "health", "rows": 8_000_000,
+         "lifecycle": "landed", "is_sample": False},
+        {"fqn": "LIBRARY_RAW.LANDING.TRADES", "name": "Senate Trades",
+         "one_liner": "", "domain": "politics", "rows": 12_000,
+         "lifecycle": "sampled", "is_sample": True},
+    ],
+}
+
+
+def test_catalog_body_groups_domains_and_filters():
+    rows, doms, age = bench_app._catalog_body(_FAKE_SNAP, None, None)
+    assert len(rows) == 3
+    assert [d["value"] for d in doms] == ["health", "politics"]   # by row volume
+    assert "13M rows" in doms[0]["label"] or "13.0M rows" in doms[0]["label"]
+    assert "browsing it is free" in age
+
+    rows, _, _ = bench_app._catalog_body(_FAKE_SNAP, "politics", None)
+    assert len(rows) == 1
+    rows, _, _ = bench_app._catalog_body(_FAKE_SNAP, None, "nppes")
+    assert len(rows) == 1
+
+
+def test_catalog_body_caps_and_says_so(monkeypatch):
+    big = {"built_at": "2026-08-04T12:00:00",
+           "tables": [{"fqn": f"DB.S.T{i}", "name": f"T{i}", "domain": "d",
+                       "rows": i, "lifecycle": "landed", "is_sample": False}
+                      for i in range(bench_app.TABLE_CAP + 50)]}
+    rows, _, _ = bench_app._catalog_body(big, None, None)
+    assert len(rows) == bench_app.TABLE_CAP + 1
+    tail = rows[-1].children
+    assert f"showing {bench_app.TABLE_CAP} of {len(big['tables'])}" in tail
+
+
+def test_catalog_body_without_snapshot_points_at_refresh():
+    rows, doms, age = bench_app._catalog_body(None, None, None)
+    assert doms == [] and age == ""
+    assert "refresh catalog" in rows.children
+
+
+def test_browse_catalog_reads_disk_only(monkeypatch):
+    """Opening/filtering the drawer must NEVER call the refresh path."""
     from bench import data as bench_data
 
-    fake = [{"fqn": f"DB.S.T{i}", "rows": i} for i in range(bench_app.TABLE_CAP + 50)]
-    monkeypatch.setattr(bench_data, "tables", lambda term: fake)
+    calls = {"refresh": 0}
+
+    def boom():
+        calls["refresh"] += 1
+        return None
+
+    monkeypatch.setattr(bench_data, "catalog_refresh", boom)
+    monkeypatch.setattr(bench_data, "catalog_snapshot", lambda: _FAKE_SNAP)
     context_value.set(AttributeDict(
-        triggered_inputs=[{"prop_id": "bench-src-find.n_clicks", "value": 1}]))
+        triggered_inputs=[{"prop_id": "bench-cat-open.n_clicks", "value": 1}]))
     try:
-        options, _sql, note = bench_app.find_tables(1, None, "t")
+        rows, doms, age, note = bench_app.browse_catalog(1, None, None, 0)
     finally:
         context_value.set({})
-    assert len(options) == bench_app.TABLE_CAP
-    assert f"first {bench_app.TABLE_CAP} of {len(fake)}" in note
+    assert calls["refresh"] == 0
+    assert len(rows) == 3 and note is no_update
+
+
+def test_refresh_button_is_the_one_that_pays(monkeypatch):
+    from bench import data as bench_data
+
+    monkeypatch.setattr(bench_data, "catalog_refresh", lambda: _FAKE_SNAP)
+    monkeypatch.setattr(bench_data, "budget", lambda: "SERVE_MON: 1.00/10 cr used")
+    context_value.set(AttributeDict(
+        triggered_inputs=[{"prop_id": "bench-cat-refresh.n_clicks", "value": 1}]))
+    try:
+        _rows, _doms, _age, note = bench_app.browse_catalog(0, None, None, 1)
+    finally:
+        context_value.set({})
+    assert "⚡ warehouse" in note and "SERVE_MON" in note
+
+
+def test_picking_a_row_describes_but_never_profiles(monkeypatch):
+    from bench import data as bench_data
+
+    called = {"profile": 0}
+    monkeypatch.setattr(bench_data, "table_columns",
+                        lambda fqn: [{"column": "NPI", "sf_type": "TEXT"}])
+    monkeypatch.setattr(bench_data, "table_profile",
+                        lambda fqn: called.__setitem__("profile", 1))
+    monkeypatch.setattr(bench_data, "starter_sql",
+                        lambda fqn: called.__setitem__("profile", 1))
+    monkeypatch.setattr(bench_data, "LAST_CATALOG_ERROR", None)
+    context_value.set(AttributeDict(triggered_inputs=[{
+        "prop_id": '{"fqn":"LIBRARY_RAW.LANDING.NPPES","type":"bench-cat-row"}.n_clicks',
+        "value": 1}]))
+    try:
+        sql, chips, picked, note = bench_app.pick_catalog_row([1])
+    finally:
+        context_value.set({})
+    assert called["profile"] == 0, "picking a row must not run the 10k profile"
+    assert sql.startswith("SELECT *") and "LIBRARY_RAW.LANDING.NPPES" in sql
+    assert picked == "LIBRARY_RAW.LANDING.NPPES"
+    assert len(chips) == 1
+    assert "metadata only" in note
+
+
+def test_draft_button_owns_the_profile(monkeypatch):
+    from bench import data as bench_data
+
+    monkeypatch.setattr(bench_data, "starter_sql",
+                        lambda fqn: f"SELECT\n    X\nFROM {fqn}\nLIMIT 1000")
+    monkeypatch.setattr(bench_data, "budget", lambda: "SERVE_MON: 1.00/10 cr used")
+    monkeypatch.setattr(bench_data, "LAST_CATALOG_ERROR", None)
+    sql, note = bench_app.draft_starter(1, "DB.S.T")
+    assert sql.startswith("SELECT") and "⚡ warehouse: profiled" in note
+
+    sql, note = bench_app.draft_starter(1, None)
+    assert sql is no_update and "pick a table" in note
 
 
 # =====================================================================

@@ -20,8 +20,8 @@ because it returns components:
                  and the cache in front of both (SPEC 7.1)
     registry.py  the 145 chart templates, and whether yours can be drawn
 
-SEVEN CALLBACKS, AND WHY THERE ARE SEVEN
-----------------------------------------
+THE CALLBACKS, AND WHY EACH EXISTS
+----------------------------------
     sync_spec      the ONE writer of the state object
     render_chart   the fast lane: figure, code, status, message, mode
     render_knobs   the slow lane: the right-hand pane
@@ -29,7 +29,9 @@ SEVEN CALLBACKS, AND WHY THERE ARE SEVEN
     grow_open      which knob tiers are materialised - and, just as much,
                    which clicks are NOT asking for one (see its own note)
     source_face    demo box vs SQL box
-    find_tables    table discovery for the SQL box
+    toggle_catalog / browse_catalog / pick_catalog_row / draft_starter
+                   the catalog drawer - browse-first table discovery off a
+                   disk snapshot; every warehouse touch is a labelled button
     (+ one clientside callback: the 600ms code debounce)
 
 The first four used to be two. `render_all` had EIGHT Outputs off ONE Input,
@@ -157,8 +159,8 @@ _BTN_PRIMARY = {**_BTN, "background": controls.ACCENT_FILL, "color": "#ffffff",
 # in bench/settings.py so an env var can tune them without an edit here.
 DEBOUNCE_MS = settings.DEBOUNCE_MS
 
-# How many tables the "look up" dropdown will list before asking you to
-# narrow the term. The note says when this cap trips, and by how much.
+# How many rows the catalog drawer renders before asking you to narrow the
+# filter. The list says when this cap trips, and by how much.
 TABLE_CAP = settings.TABLE_CAP
 
 # The colour of each lane badge. The badge is never allowed off the screen -
@@ -934,19 +936,20 @@ def source_bar(spec: dict, meta: dict) -> html.Div:
                     ),
                     html.Div(
                         [
-                            dcc.Input(id="bench-src-term", type="search",
-                                      placeholder="find a table…", debounce=True,
-                                      style={**_INPUT, "width": "160px",
-                                             "flex": "none"}),
-                            html.Button("look up", id="bench-src-find",
+                            html.Button("browse catalog", id="bench-cat-open",
                                         n_clicks=0, style=_BTN,
-                                        className="bench-btn"),
-                            html.Div(
-                                dcc.Dropdown(id="bench-src-table", options=[],
-                                             placeholder="…then pick one for starter SQL",
-                                             className="bench-dd",
-                                             style={"font": f"12px {MONO}"}),
-                                style={"flex": "1", "minWidth": "140px"}),
+                                        className="bench-btn",
+                                        title="browse the local catalog snapshot — "
+                                              "reads a file on disk, never touches "
+                                              "the warehouse"),
+                            html.Button("draft starter SQL", id="bench-src-draft",
+                                        n_clicks=0, style=_BTN,
+                                        className="bench-btn",
+                                        title="types the picked table's columns by "
+                                              "profiling 10,000 rows IN THE WAREHOUSE "
+                                              "(cached 7 days) — the only cost here "
+                                              "besides RUN"),
+                            html.Div(style={"flex": "1"}),
                             html.Button("RUN", id="bench-src-run", n_clicks=0,
                                         style=_BTN_PRIMARY,
                                         className="bench-btn-primary"),
@@ -961,6 +964,44 @@ def source_bar(spec: dict, meta: dict) -> html.Div:
                 ],
                 style={"display": "flex", "gap": "10px", "alignItems": "center"},
             ),
+            html.Div(
+                [
+                    html.Div(
+                        [
+                            dcc.Dropdown(id="bench-cat-domain", options=[],
+                                         placeholder="all domains",
+                                         clearable=True, className="bench-dd",
+                                         style={"font": f"12px {MONO}",
+                                                "width": "300px"}),
+                            dcc.Input(id="bench-cat-filter", type="search",
+                                      placeholder="filter by name…",
+                                      debounce=True,
+                                      style={**_INPUT, "width": "200px",
+                                             "flex": "none"}),
+                            html.Span(id="bench-cat-age",
+                                      style={"font": f"11px {SANS}",
+                                             "color": FAINT, "flex": "1"}),
+                            html.Button("refresh catalog", id="bench-cat-refresh",
+                                        n_clicks=0, style=_BTN,
+                                        className="bench-btn",
+                                        title="rebuilds the local snapshot: 2 "
+                                              "warehouse queries, ~10s if the "
+                                              "warehouse is cold — the only thing "
+                                              "browsing ever costs"),
+                        ],
+                        style={"display": "flex", "gap": "8px",
+                               "alignItems": "center"},
+                    ),
+                    html.Div(id="bench-cat-list",
+                             style={"maxHeight": "280px", "overflowY": "auto",
+                                    "marginTop": "8px"}),
+                ],
+                id="bench-cat-drawer",
+                style={"display": "none", "marginTop": "8px",
+                       "padding": "10px", "background": PANEL_2,
+                       "border": f"1px solid {RULE}", "borderRadius": "6px"},
+            ),
+            dcc.Store(id="bench-cat-picked", data=None),
             dcc.Textarea(
                 id="bench-src-sql",
                 value=source.get("sql", ""),
@@ -970,6 +1011,9 @@ def source_bar(spec: dict, meta: dict) -> html.Div:
                 style={**_INPUT, "display": "none", "width": "100%",
                        "height": "72px", "marginTop": "8px", "resize": "vertical"},
             ),
+            html.Div(id="bench-src-cols",
+                     style={"display": "flex", "flexWrap": "wrap", "gap": "4px",
+                            "marginTop": "6px"}),
             html.Div(id="bench-src-note",
                      style={"font": f"11px {SANS}", "color": MUTED,
                             "marginTop": "6px"}),
@@ -2124,7 +2168,7 @@ clientside_callback(
 # write to persist, so sync_spec's own mirroring can never re-trigger a
 # restore - and sync_spec validates and adopts it from there. The SQL text
 # rides along into the query box (a State, so writing it triggers nothing);
-# `allow_duplicate` because find_tables also writes that box.
+# `allow_duplicate` because the catalog drawer also writes that box.
 # =====================================================================
 
 clientside_callback(
@@ -2170,51 +2214,239 @@ def source_face(kind, sql_style):
 
 
 # =====================================================================
-# CALLBACK 5 - table discovery for the SQL box
+# CALLBACKS 5a-5d - the catalog drawer
 # ---------------------------------------------------------------------
-# SPEC section 7: reuse viz/catalog.py rather than hardcoding a list. It is
-# button-driven and lazy on purpose - nothing here touches the warehouse
-# until you ask it to, so the app still opens on a plane.
+# SPEC section 7: reuse viz/catalog.py rather than hardcoding a list. The
+# old shape was a blind term box + "look up" that fired live SQL and threw
+# away every fact the catalog returned except the FQN. This one is
+# browse-first off a DISK SNAPSHOT, so browsing costs nothing and works on
+# a plane. Exactly three actions here touch Snowflake, each behind its own
+# labelled button, each writing what it did to the note line:
+#     refresh catalog   two live queries, rebuilds the snapshot
+#     pick a row        DESCRIBE TABLE - metadata only, no compute
+#     draft starter SQL a 10k-row profile, cached 7 days
 # =====================================================================
+
+# The lifecycle badge colours: modeled means a typed mart exists, landed is
+# raw-but-real, sampled is a proof slice pretending to be small.
+_LIFE_COLOUR = {"modeled": GOOD, "landed": MUTED, "sampled": WARN}
+
+
+def _fmt_count(n) -> str:
+    try:
+        n = int(n)
+    except (TypeError, ValueError):
+        return "?"
+    for cut, suffix in ((1_000_000_000, "B"), (1_000_000, "M"), (1_000, "k")):
+        if n >= cut:
+            return f"{n / cut:.1f}{suffix}".replace(".0", "")
+    return str(n)
+
+
+def _snapshot_age(built_at: str) -> str:
+    try:
+        built = time.mktime(time.strptime(built_at, "%Y-%m-%dT%H:%M:%S"))
+        mins = max(0, int((time.time() - built) / 60))
+        ago = (f"{mins}m ago" if mins < 120 else
+               f"{mins // 60}h ago" if mins < 48 * 60 else
+               f"{mins // (24 * 60)}d ago")
+        return f"snapshot built {ago} · browsing it is free"
+    except ValueError:
+        return f"snapshot built {built_at}"
+
+
+def _catalog_row(t: dict) -> html.Button:
+    badges = [html.Span(f"{_fmt_count(t.get('rows'))} rows",
+                        style={"color": FAINT, "font": f"10px {MONO}",
+                               "flex": "none"})]
+    life = t.get("lifecycle") or ""
+    if life:
+        badges.append(html.Span(life, style={
+            "color": _LIFE_COLOUR.get(life, FAINT), "font": f"10px {MONO}",
+            "border": f"1px solid {RULE}", "borderRadius": "3px",
+            "padding": "0 4px", "flex": "none"}))
+    if t.get("is_sample"):
+        badges.append(html.Span("SAMPLE", title="a proof slice, not the full data",
+                                style={"color": WARN, "font": f"600 10px {MONO}",
+                                       "border": f"1px solid {WARN}",
+                                       "borderRadius": "3px", "padding": "0 4px",
+                                       "flex": "none"}))
+    top = [html.Span(t.get("name") or t.get("fqn"),
+                     style={"color": INK, "font": f"600 12px {SANS}"}),
+           html.Span(t.get("fqn") or "",
+                     style={"color": FAINT, "font": f"10px {MONO}",
+                            "marginLeft": "8px"})]
+    line2 = t.get("one_liner") or ""
+    return html.Button(
+        [html.Div([html.Div(top, style={"minWidth": "0", "overflow": "hidden",
+                                        "textOverflow": "ellipsis",
+                                        "whiteSpace": "nowrap", "flex": "1"}),
+                   *badges],
+                  style={"display": "flex", "gap": "6px",
+                         "alignItems": "center"}),
+         html.Div(line2, style={"color": MUTED, "font": f"11px {SANS}",
+                                "marginTop": "1px", "overflow": "hidden",
+                                "textOverflow": "ellipsis",
+                                "whiteSpace": "nowrap"}) if line2 else None],
+        id={"type": "bench-cat-row", "fqn": t.get("fqn") or ""},
+        n_clicks=0, className="bench-cat-row",
+        style={"display": "block", "width": "100%", "textAlign": "left",
+               "background": "transparent", "border": "none",
+               "borderBottom": f"1px solid {RULE}", "padding": "6px 8px",
+               "cursor": "pointer"},
+    )
+
+
+def _catalog_body(snap: dict | None, domain, term):
+    """(rows children, domain options, age line) off the snapshot alone."""
+    if not snap or not snap.get("tables"):
+        why = data.LAST_CATALOG_ERROR
+        empty = html.Div(
+            "no catalog snapshot yet — press refresh catalog (2 warehouse "
+            "queries)" + (f" · last error: {why}" if why else ""),
+            style={"color": MUTED, "font": f"12px {SANS}", "padding": "12px"})
+        return empty, [], ""
+    tables = snap["tables"]
+    by_dom: dict[str, list] = {}
+    for t in tables:
+        by_dom.setdefault(t.get("domain") or "unfiled", []).append(t)
+    dom_options = [
+        {"label": f"{d}  ·  {len(ts)} tables  ·  "
+                  f"{_fmt_count(sum(int(t.get('rows') or 0) for t in ts))} rows",
+         "value": d}
+        for d, ts in sorted(by_dom.items(),
+                            key=lambda kv: -sum(int(t.get("rows") or 0)
+                                                for t in kv[1]))]
+    shown = by_dom.get(domain, tables) if domain else tables
+    if term:
+        low = term.lower()
+        shown = [t for t in shown
+                 if low in (t.get("name") or "").lower()
+                 or low in (t.get("fqn") or "").lower()
+                 or low in (t.get("one_liner") or "").lower()]
+    rows = [_catalog_row(t) for t in shown[:TABLE_CAP]]
+    if len(shown) > TABLE_CAP:
+        rows.append(html.Div(
+            f"showing {TABLE_CAP} of {len(shown)} — narrow the filter",
+            style={"color": FAINT, "font": f"11px {SANS}", "padding": "8px"}))
+    elif not rows:
+        rows = [html.Div("nothing matches that filter",
+                         style={"color": MUTED, "font": f"12px {SANS}",
+                                "padding": "12px"})]
+    return rows, dom_options, _snapshot_age(snap.get("built_at") or "")
 
 
 @app.callback(
-    Output("bench-src-table", "options"),
-    Output("bench-src-sql", "value"),
+    Output("bench-cat-drawer", "style"),
+    Input("bench-cat-open", "n_clicks"),
+    State("bench-cat-drawer", "style"),
+    prevent_initial_call=True,
+)
+def toggle_catalog(_n, style):
+    """Open/close the drawer. Pure style flip - costs nothing anywhere."""
+    style = dict(style or {})
+    style["display"] = "none" if style.get("display") != "none" else "block"
+    return style
+
+
+@app.callback(
+    Output("bench-cat-list", "children"),
+    Output("bench-cat-domain", "options"),
+    Output("bench-cat-age", "children"),
     Output("bench-src-note", "children"),
-    Input("bench-src-find", "n_clicks"),
-    Input("bench-src-table", "value"),
-    State("bench-src-term", "value"),
-    # a catalog round trip can take seconds; a silent "look up" button reads
-    # as broken, so it says what it is doing - same pattern as RUN
+    Input("bench-cat-open", "n_clicks"),
+    Input("bench-cat-domain", "value"),
+    Input("bench-cat-filter", "value"),
+    Input("bench-cat-refresh", "n_clicks"),
     running=[
-        (Output("bench-src-find", "disabled"), True, False),
-        (Output("bench-src-find", "children"), "looking…", "look up"),
+        (Output("bench-cat-refresh", "disabled"), True, False),
+        (Output("bench-cat-refresh", "children"), "refreshing…", "refresh catalog"),
     ],
     prevent_initial_call=True,
 )
-def find_tables(_clicks, chosen, term):
-    """Look tables up, then drop a starter SELECT in the box when you pick one."""
-    if ctx.triggered_id == "bench-src-table" and chosen:
-        return no_update, data.starter_sql(chosen), (
-            f"starter SQL for {chosen} — edit it, then press RUN. It runs through "
-            "viz.sqlrun, so claim tables stay refused.")
-    t0 = time.time()
-    found = data.tables(term or "")
-    if not found:
+def browse_catalog(_open, domain, term, _refresh):
+    """Serve the drawer. Only the refresh button ever leaves this machine."""
+    if ctx.triggered_id == "bench-cat-refresh":
+        t0 = time.time()
+        snap = data.catalog_refresh()
+        if snap is None:
+            note = (f"catalog refresh failed — {data.LAST_CATALOG_ERROR}"
+                    if data.LAST_CATALOG_ERROR else "catalog refresh failed")
+        else:
+            note = (f"⚡ warehouse: rebuilt the catalog snapshot in "
+                    f"{time.time() - t0:.1f}s — {len(snap.get('tables', []))} "
+                    f"tables · {data.budget()}")
+    else:
+        snap = data.catalog_snapshot()
+        note = no_update    # browsing is silent because it costs nothing
+    rows, dom_options, age = _catalog_body(snap, domain, term)
+    return rows, dom_options, age, note
+
+
+@app.callback(
+    Output("bench-src-sql", "value", allow_duplicate=True),
+    Output("bench-src-cols", "children"),
+    Output("bench-cat-picked", "data"),
+    Output("bench-src-note", "children", allow_duplicate=True),
+    Input({"type": "bench-cat-row", "fqn": ALL}, "n_clicks"),
+    prevent_initial_call=True,
+)
+def pick_catalog_row(clicks):
+    """A row click: cheap SELECT * in the box + column chips off DESCRIBE.
+
+    DESCRIBE is metadata-only - no warehouse compute - and the note says so.
+    The 10k-row profile the old picker ran silently now only happens behind
+    the labelled `draft starter SQL` button."""
+    if not ctx.triggered_id or not isinstance(ctx.triggered_id, dict) \
+            or not any(c for c in (clicks or []) if c):
+        return no_update, no_update, no_update, no_update
+    fqn = ctx.triggered_id.get("fqn") or ""
+    sql = f"SELECT *\nFROM {fqn}\nLIMIT {settings.SQL_LIMIT}"
+    cols = data.table_columns(fqn)
+    if cols:
+        chips = [html.Span(f"{c['column']} · {c['sf_type']}",
+                           title=f"{c['column']}  ({c['sf_type']})",
+                           style={"color": MUTED, "font": f"10px {MONO}",
+                                  "border": f"1px solid {RULE}",
+                                  "borderRadius": "3px", "padding": "1px 5px"})
+                 for c in cols]
+        note = (f"⚡ warehouse: DESCRIBE {fqn} (metadata only, no compute) — "
+                f"{len(cols)} columns below. Edit the SQL and press RUN, or "
+                "press `draft starter SQL` to type the columns first.")
+    else:
+        chips = []
         why = data.LAST_CATALOG_ERROR
-        return [], no_update, (
-            f"no tables came back — {why}" if why else
-            "no tables came back — nothing matched that term")
-    options = [{"label": f"{t.get('fqn', '')}   {t.get('rows', '')}",
-                "value": t.get("fqn")} for t in found[:TABLE_CAP] if t.get("fqn")]
-    took = f"{time.time() - t0:.1f}s"
-    if len(found) > TABLE_CAP:
-        return options, no_update, (
-            f"showing the first {len(options)} of {len(found)} tables ({took}) — "
-            "narrow the search term to see the rest")
-    return options, no_update, (
-        f"{len(options)} tables in {took} — pick one for starter SQL")
+        note = (f"picked {fqn} — column preview unavailable "
+                f"({why})" if why else f"picked {fqn}")
+    return sql, chips, fqn, note
+
+
+@app.callback(
+    Output("bench-src-sql", "value", allow_duplicate=True),
+    Output("bench-src-note", "children", allow_duplicate=True),
+    Input("bench-src-draft", "n_clicks"),
+    State("bench-cat-picked", "data"),
+    running=[
+        (Output("bench-src-draft", "disabled"), True, False),
+        (Output("bench-src-draft", "children"), "profiling…", "draft starter SQL"),
+    ],
+    prevent_initial_call=True,
+)
+def draft_starter(_n, fqn):
+    """The one deliberate profile: casted starter SQL for the picked table."""
+    if not fqn:
+        return no_update, ("pick a table in the catalog first — draft needs to "
+                           "know which table's columns to type")
+    t0 = time.time()
+    sql = data.starter_sql(fqn)
+    if data.LAST_CATALOG_ERROR:
+        note = (f"profile failed ({data.LAST_CATALOG_ERROR}) — dropped a plain "
+                f"SELECT * for {fqn} instead")
+    else:
+        note = (f"⚡ warehouse: profiled 10,000 rows of {fqn} in "
+                f"{time.time() - t0:.1f}s (cached 7 days) — the casted starter "
+                f"SQL is in the box; edit it, then RUN · {data.budget()}")
+    return sql, note
 
 
 # =====================================================================
