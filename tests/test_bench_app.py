@@ -121,6 +121,7 @@ class Bench:
         self.opened: dict = {}
         self.echo = {"code": ""}
         self.knob_echo = {"knobs": {}, "sig": None, "vals": None}
+        self.history = {"past": [], "future": []}
         self.picker_sig = None
         self.code = ""
         self.figure = None
@@ -212,9 +213,11 @@ class Bench:
             src_kind=self.spec["source"].get("kind", "demo"),
             src_demo=self.spec["source"].get("name", bench_app.START_DEMO),
             _run=None,
+            _undo=None, _redo=None, load_contents=None, restore_data=None,
             code_value=self.code,
             sql=self.spec["source"].get("sql", ""),
             spec=self.spec, echo=self.echo, knob_echo=self.knob_echo,
+            history=self.history,
         )
         args.update(overrides)
         # Input index 1 is the knob pattern; app.py reads its ids from here.
@@ -229,13 +232,15 @@ class Bench:
             inputs_list=inputs_list,
         ))
         try:
-            spec, echo, message = bench_app.sync_spec(**args)
+            spec, echo, message, history, _persist = bench_app.sync_spec(**args)
         finally:
             context_value.set({})
 
         self.knob_msg = message
         if echo is not no_update:          # sync_spec stamps the KNOB echo
             self.knob_echo = echo
+        if history is not no_update:
+            self.history = history
         if spec is not no_update:
             self.spec = spec
             self.render()
@@ -360,7 +365,7 @@ def test_every_callback_is_registered():
                  "bench-src-table.options",         # find_tables
                  "bench-download.data"):            # export_chart
         assert any(owns in key for key in outputs), owns
-    assert len(_callback.GLOBAL_CALLBACK_LIST) == 1   # plus the clientside debounce
+    assert len(_callback.GLOBAL_CALLBACK_LIST) == 2   # the clientside debounce + the one-shot restore
 
 
 def test_the_chart_does_not_wait_on_the_knob_pane():
@@ -1204,7 +1209,7 @@ def test_export_py_hands_over_the_canonical_code():
     spec = bench_app.blank_spec()
     _fire("bench-export-py")
     try:
-        got = bench_app.export_chart(1, 0, spec)
+        got = bench_app.export_chart(1, 0, 0, spec)
     finally:
         context_value.set({})
     assert got["filename"].endswith(".py")
@@ -1217,7 +1222,7 @@ def test_export_py_in_custom_mode_hands_over_the_custom_text():
     spec["custom_code"] = "fig = px.bar(df)\n"
     _fire("bench-export-py")
     try:
-        got = bench_app.export_chart(1, 0, spec)
+        got = bench_app.export_chart(1, 0, 0, spec)
     finally:
         context_value.set({})
     assert "fig = px.bar(df)" in got["content"]
@@ -1227,7 +1232,7 @@ def test_export_html_is_a_standalone_interactive_page():
     spec = bench_app.blank_spec()
     _fire("bench-export-html")
     try:
-        got = bench_app.export_chart(0, 1, spec)
+        got = bench_app.export_chart(0, 1, 0, spec)
     finally:
         context_value.set({})
     assert got["filename"].endswith(".html")

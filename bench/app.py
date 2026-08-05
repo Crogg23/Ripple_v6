@@ -161,6 +161,7 @@ LANE_COLOUR = {
     "refused": BAD,          # the guard said no
     "offline": BAD,
     "unknown": BAD,
+    "idle": FAINT,           # restored SQL that has not run this session
 }
 
 LANE_MEANING = {
@@ -171,6 +172,7 @@ LANE_MEANING = {
     "refused": "the read guard refused this query",
     "offline": "no warehouse connection",
     "unknown": "the lane could not be determined",
+    "idle": "restored SQL that has not run this session - press RUN to run it",
 }
 
 CUSTOM_BANNER = "custom code — knobs are read-only until you Reset"
@@ -975,7 +977,32 @@ app.index_string = (
     "#react-entry-point{height:100%;}"
     + controls.PANEL_CSS
     + "</style></head><body>{%app_entry%}<footer>{%config%}{%scripts%}"
-      "{%renderer%}</footer></body></html>"
+      "{%renderer%}</footer>"
+    # Keyboard shortcuts: synthesised clicks on buttons that already exist,
+    # so there is no second server surface to keep in step. Ctrl+Z/Y stay
+    # native inside text boxes - hijacking undo in a textarea is hostile.
+    + """<script>
+document.addEventListener('keydown', function (e) {
+  var click = function (id) {
+    var el = document.getElementById(id); if (el) { el.click(); } };
+  var mod = e.ctrlKey || e.metaKey;
+  if (!mod) { return; }
+  var tag = (document.activeElement || {}).tagName || '';
+  var typing = tag === 'TEXTAREA' || tag === 'INPUT';
+  var key = (e.key || '').toLowerCase();
+  if (key === 's') { e.preventDefault(); click('bench-save'); }
+  else if (key === 'enter' &&
+           (document.activeElement || {}).id === 'bench-src-sql') {
+    click('bench-src-run');
+  }
+  else if (!typing && key === 'z' && !e.shiftKey) {
+    e.preventDefault(); click('bench-undo');
+  }
+  else if (!typing && (key === 'y' || (key === 'z' && e.shiftKey))) {
+    e.preventDefault(); click('bench-redo');
+  }
+});
+</script></body></html>"""
 )
 
 _START = blank_spec()
@@ -1029,6 +1056,15 @@ app.layout = html.Div(
         # the debounced code text - written from the browser, never typed into
         dcc.Store(id="bench-code-draft"),
         dcc.Store(id="bench-debounce-sink"),
+        # undo/redo: past and future specs, written only by sync_spec
+        dcc.Store(id="bench-history", data={"past": [], "future": []}),
+        # the localStorage mirror of the spec, so F5 comes back here. Written
+        # only by sync_spec; read once per page load by the restore below.
+        dcc.Store(id="bench-persist", storage_type="local"),
+        # the one-shot restore request: a clientside callback copies persist
+        # into here exactly once per page load, and sync_spec adopts it. The
+        # indirection is what keeps sync_spec the single writer of the spec.
+        dcc.Store(id="bench-restore-req"),
 
         # --- three panes -------------------------------------------------
         html.Div(
@@ -1091,6 +1127,24 @@ app.layout = html.Div(
                                                   style={"font": f"11px {MONO}",
                                                          "marginLeft": "10px"}),
                                         html.Div(style={"flex": "1"}),
+                                        html.Button("↶", id="bench-undo",
+                                                    n_clicks=0, style=_BTN,
+                                                    title="undo (Ctrl+Z outside "
+                                                          "a text box)"),
+                                        html.Button("↷", id="bench-redo",
+                                                    n_clicks=0, style=_BTN,
+                                                    title="redo (Ctrl+Y)"),
+                                        html.Button("save", id="bench-save",
+                                                    n_clicks=0, style=_BTN,
+                                                    title="download this whole "
+                                                          "setup as a .json spec "
+                                                          "(Ctrl+S)"),
+                                        dcc.Upload(
+                                            html.Button("load", style=_BTN,
+                                                        title="load a saved "
+                                                              ".json spec"),
+                                            id="bench-load", multiple=False,
+                                            accept=".json,application/json"),
                                         dcc.Clipboard(
                                             target_id="bench-code",
                                             title="copy the code",
@@ -1179,6 +1233,8 @@ _KNOB_INPUT_INDEX = 1
     Output("bench-spec", "data"),
     Output("bench-knob-echo", "data", allow_duplicate=True),
     Output("bench-knob-msg", "children"),
+    Output("bench-history", "data"),
+    Output("bench-persist", "data"),
     # 1. picker click
     Input({"bench": "chart", "key": ALL}, "n_clicks"),
     # 2. knob change - ONE pattern callback for every knob ON SCREEN.
@@ -1194,11 +1250,17 @@ _KNOB_INPUT_INDEX = 1
     Input("bench-src-kind", "value"),
     Input("bench-src-demo", "value"),
     Input("bench-src-run", "n_clicks"),
+    # 5. history / files / the restore-on-load request
+    Input("bench-undo", "n_clicks"),
+    Input("bench-redo", "n_clicks"),
+    Input("bench-load", "contents"),
+    Input("bench-restore-req", "data"),
     State("bench-code", "value"),
     State("bench-src-sql", "value"),
     State("bench-spec", "data"),
     State("bench-echo", "data"),
     State("bench-knob-echo", "data"),
+    State("bench-history", "data"),
     # THE ONE THING A HUMAN WAITS SECONDS FOR. A warehouse RUN goes through
     # this callback - `_apply_source` is where viz.sqlrun is called - and a
     # button that looks pressable while a 9.4s query is in flight is a button
@@ -1211,27 +1273,34 @@ _KNOB_INPUT_INDEX = 1
     prevent_initial_call=True,
 )
 def sync_spec(_chart_clicks, knob_values, draft, _blur, _reset, src_kind,
-              src_demo, _run, code_value, sql, spec, echo, knob_echo):
+              src_demo, _run, _undo, _redo, load_contents, restore_data,
+              code_value, sql, spec, echo, knob_echo, history):
     """Work out what the human just did, and write the one state object.
 
-    Returns (spec, knob echo, message). `no_update` for the spec means
-    "nothing a human did changed anything", which is the normal answer when
-    this fires because we ourselves just repainted the screen.
+    Returns (spec, knob echo, message, history, persist). `no_update` for the
+    spec means "nothing a human did changed anything", which is the normal
+    answer when this fires because we ourselves just repainted the screen.
 
     `echo` is the CODE echo (written by `render_chart`); `knob_echo` is the
     widget echo (written by `render_knobs`, and stamped here on a knob turn).
     They are two stores because they have two writers - see the layout.
+
+    `history` is the undo/redo record and `persist` is the localStorage
+    mirror. Both are outputs HERE, and only here, so the one-writer rule
+    holds for them the same way it holds for the spec.
     """
     try:
         return _sync_spec(_chart_clicks, knob_values, draft, _blur, _reset,
-                          src_kind, src_demo, _run, code_value, sql, spec,
-                          echo, knob_echo)
+                          src_kind, src_demo, _run, load_contents,
+                          restore_data, code_value, sql, spec, echo,
+                          knob_echo, history)
     except Exception as exc:  # noqa: BLE001 - a bug here must be readable
         # Nothing below this line is reachable in a green suite. It exists
         # because the alternative is a 500 the browser swallows and a
         # traceback only the terminal ever sees, which is exactly the
         # "slow or broken?" question this pane is supposed to answer.
-        return no_update, no_update, _oops("reading that interaction", exc)
+        return (no_update, no_update, _oops("reading that interaction", exc),
+                no_update, no_update)
 
 
 def _oops(doing: str, exc: BaseException) -> str:
@@ -1242,16 +1311,40 @@ def _oops(doing: str, exc: BaseException) -> str:
             "The full traceback is in the terminal.")
 
 
+# How many steps back the undo stack keeps. Beyond this the oldest falls off.
+HISTORY_CAP = 50
+
+
 def _sync_spec(_chart_clicks, knob_values, draft, _blur, _reset, src_kind,
-               src_demo, _run, code_value, sql, spec, echo, knob_echo):
+               src_demo, _run, load_contents, restore_data, code_value, sql,
+               spec, echo, knob_echo, history):
     """`sync_spec`'s body, so the guard above it stays one line."""
     spec = json.loads(json.dumps(spec or blank_spec()))    # never mutate the store
     echo = echo or {"code": ""}
     knob_echo = knob_echo or {"knobs": {}}
+    history = dict(history or {})
+    past = list(history.get("past") or [])
+    future = list(history.get("future") or [])
     before = json.dumps(spec, sort_keys=True)
+    before_spec = json.loads(before)
     trigger = ctx.triggered_id
     message = ""
     echo_out: Any = no_update
+
+    # -- undo / redo walk the history instead of making new ------------------
+    if trigger in ("bench-undo", "bench-redo"):
+        if trigger == "bench-undo":
+            if not past:
+                return no_update, no_update, "nothing to undo", no_update, no_update
+            restored, past = past[-1], past[:-1]
+            future = future + [before_spec]
+        else:
+            if not future:
+                return no_update, no_update, "nothing to redo", no_update, no_update
+            restored, future = future[-1], future[:-1]
+            past = past + [before_spec]
+        new_history = {"past": past, "future": future}
+        return restored, echo_out, "", new_history, restored
 
     if isinstance(trigger, dict) and trigger.get("bench") == "chart":
         spec, message = _apply_chart(spec, trigger.get("key"))
@@ -1270,11 +1363,21 @@ def _sync_spec(_chart_clicks, knob_values, draft, _blur, _reset, src_kind,
     elif trigger in ("bench-src-kind", "bench-src-demo", "bench-src-run"):
         spec, message = _apply_source(spec, trigger, src_kind, src_demo, sql)
 
+    elif trigger == "bench-load":
+        spec, message = _apply_load(spec, load_contents)
+
+    elif trigger == "bench-restore-req":
+        spec, message = _apply_restore(spec, restore_data)
+
     # Rule 3: if nothing actually moved, write nothing. A store that does not
     # change fires no callbacks, which is the last line of defence on a loop.
     if json.dumps(spec, sort_keys=True) == before:
-        return no_update, echo_out, message
-    return spec, echo_out, message
+        return no_update, echo_out, message, no_update, no_update
+    # A real change: the old spec goes on the undo stack, the redo stack
+    # empties (you cannot redo across a new edit), and localStorage gets the
+    # new spec so an F5 comes back here.
+    new_history = {"past": (past + [before_spec])[-HISTORY_CAP:], "future": []}
+    return spec, echo_out, message, new_history, spec
 
 
 # ---------------------------------------------------------------------
@@ -1292,10 +1395,30 @@ def _apply_chart(spec: dict, key: str) -> tuple[dict, str]:
     # registry.auto_map fills every required slot it can, so clicking a chart
     # gives you a picture rather than an empty pane with six dropdowns.
     spec["mapping"] = registry.auto_map(df, template)
-    spec["knobs"] = {}          # last chart's knobs may not exist on this one
+    # Knobs the new chart also has come along; the rest are dropped, because
+    # a knob with no widget here is one you could only reach by editing code.
+    # (This used to nuke the lot - ten minutes of styling gone on a misclick.)
+    old = spec.get("knobs") or {}
+    kept = {p: v for p, v in old.items() if _knob_lives_on(p, key)}
+    dropped = sorted(set(old) - set(kept))
+    spec["knobs"] = kept
     spec["custom_code"] = None
     ok, why = registry.drawable(df, template)
-    return spec, "" if ok else why
+    message = "" if ok else why
+    if dropped:
+        note = (f"dropped {', '.join(dropped)} — {key} has no such setting"
+                if len(dropped) <= 3 else
+                f"dropped {len(dropped)} settings {key} does not have")
+        message = f"{message}  {note}".strip()
+    return spec, message
+
+
+def _knob_lives_on(path: str, chart_key: str) -> bool:
+    """Does this knob path exist on that chart too?"""
+    try:
+        return knobs.validator_for(path, chart_key) is not None
+    except Exception:  # noqa: BLE001 - an unreadable path does not carry over
+        return False
 
 
 # ---------------------------------------------------------------------
@@ -1517,6 +1640,85 @@ def _apply_source(spec: dict, trigger: str, kind: str, demo_name: str,
         return spec, ("cleared " + ", ".join(sorted(set(dropped)))
                       + " — those columns are not in this result")
     return spec, ""
+
+
+# ---------------------------------------------------------------------
+# 5. files and the restore-on-load request
+# ---------------------------------------------------------------------
+
+
+def _valid_spec(candidate: Any) -> tuple[dict | None, str]:
+    """A dict from a file or localStorage, checked before it may become THE spec.
+
+    The same gate `_apply_code` runs: the chart must be in the registry, and a
+    canonical spec must survive `render_code` - anything that will not write
+    back out would take the fast lane down on the next repaint.
+    """
+    if not isinstance(candidate, dict) or not candidate.get("chart"):
+        return None, "that is not a Bench spec"
+    chart = candidate.get("chart")
+    if chart not in registry.CHARTS:
+        return None, f"{chart!r} is not a chart in this registry"
+    custom = candidate.get("custom_code")
+    spec = {
+        "chart": chart,
+        "source": (candidate.get("source")
+                   if isinstance(candidate.get("source"), dict)
+                   else blank_spec()["source"]),
+        "mapping": dict(candidate.get("mapping") or {}),
+        "knobs": dict(candidate.get("knobs") or {}),
+        "custom_code": custom if isinstance(custom, str) else None,
+    }
+    if spec["custom_code"] is None:
+        try:
+            render_code(spec)
+        except Exception as exc:  # noqa: BLE001 - refusal means invalid
+            return None, f"the Bench cannot write that spec back out — {exc}"
+    return spec, ""
+
+
+def _defer_warehouse(spec: dict) -> tuple[dict, str]:
+    """A restored/loaded warehouse source must not hit Snowflake by itself.
+
+    The SQL stays in the spec, but marked deferred: bench.data answers it with
+    "press RUN" instead of running it. Switching the source bar to warehouse
+    (the SQL is already in the box) and pressing RUN runs it - both of those
+    are the human asking, which is the whole point.
+    """
+    source = spec.get("source") or {}
+    if source.get("kind") != "warehouse" or not source.get("sql"):
+        return spec, ""
+    spec["source"] = {**source, "deferred": True}
+    return spec, ("this spec reads the warehouse — the SQL is restored but has "
+                  "not run. Switch the source bar to warehouse SQL and press "
+                  "RUN when you want it.")
+
+
+def _apply_load(spec: dict, contents: Any) -> tuple[dict, str]:
+    """A .json spec file dropped on the load button."""
+    if not isinstance(contents, str) or "," not in contents:
+        return spec, "could not read that file"
+    import base64
+
+    try:
+        raw = base64.b64decode(contents.split(",", 1)[1])
+        candidate = json.loads(raw.decode("utf-8"))
+    except Exception as exc:  # noqa: BLE001 - a bad file is a message
+        return spec, f"could not read that file — {type(exc).__name__}: {exc}"
+    loaded, why = _valid_spec(candidate)
+    if loaded is None:
+        return spec, why
+    loaded, note = _defer_warehouse(loaded)
+    return loaded, note or "spec loaded"
+
+
+def _apply_restore(spec: dict, data: Any) -> tuple[dict, str]:
+    """The one-shot restore on page load, from the localStorage mirror."""
+    restored, why = _valid_spec(data)
+    if restored is None:
+        return spec, ""      # nothing worth saying on a fresh boot
+    restored, note = _defer_warehouse(restored)
+    return restored, note or "restored where you left off"
 
 
 # =====================================================================
@@ -1797,6 +1999,37 @@ clientside_callback(
 
 
 # =====================================================================
+# THE RESTORE - once per page load, localStorage -> the spec
+# ---------------------------------------------------------------------
+# bench-persist (storage_type="local") arrives holding whatever sync_spec
+# last mirrored into it, possibly from a previous session. This copies it
+# into bench-restore-req exactly once - the window flag survives every later
+# write to persist, so sync_spec's own mirroring can never re-trigger a
+# restore - and sync_spec validates and adopts it from there. The SQL text
+# rides along into the query box (a State, so writing it triggers nothing);
+# `allow_duplicate` because find_tables also writes that box.
+# =====================================================================
+
+clientside_callback(
+    """
+    function (ts, data) {
+        const nu = window.dash_clientside.no_update;
+        if (window.__benchRestored) { return [nu, nu]; }
+        window.__benchRestored = true;
+        if (!data || !data.chart) { return [nu, nu]; }
+        const sql = (data.source && data.source.sql) ? data.source.sql : nu;
+        return [data, sql];
+    }
+    """,
+    Output("bench-restore-req", "data"),
+    Output("bench-src-sql", "value", allow_duplicate=True),
+    Input("bench-persist", "modified_timestamp"),
+    State("bench-persist", "data"),
+    prevent_initial_call="initial_duplicate",
+)
+
+
+# =====================================================================
 # CALLBACK 4 - the source bar's two faces
 # =====================================================================
 
@@ -1881,13 +2114,17 @@ def find_tables(_clicks, chosen, term):
     Output("bench-download", "data"),
     Input("bench-export-py", "n_clicks"),
     Input("bench-export-html", "n_clicks"),
+    Input("bench-save", "n_clicks"),
     State("bench-spec", "data"),
     prevent_initial_call=True,
 )
-def export_chart(_py, _html, spec):
-    """Download the current chart as a .py file or a standalone HTML page."""
+def export_chart(_py, _html, _save, spec):
+    """Download the chart as .py / standalone HTML, or the spec as .json."""
     spec = spec or blank_spec()
     name = str(spec.get("chart") or "chart").replace("/", "-")
+    if ctx.triggered_id == "bench-save":
+        return dcc.send_string(json.dumps(spec, indent=2),
+                               f"bench-{name}.json")
     if ctx.triggered_id == "bench-export-py":
         code = (spec.get("custom_code")
                 if isinstance(spec.get("custom_code"), str)

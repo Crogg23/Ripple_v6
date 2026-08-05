@@ -207,10 +207,10 @@ def test_the_served_layout_really_has_three_panes(server):
 
 
 def test_the_callbacks_are_registered_on_the_running_server(server):
-    """Eight server-side callbacks and the one clientside debounce."""
+    """Eight server-side callbacks and the two clientside helpers."""
     clientside = [d for d in server.deps if d.get("clientside_function")]
-    assert len(server.deps) == 9, [d["output"] for d in server.deps]
-    assert len(clientside) == 1, "the 600ms code debounce is not registered"
+    assert len(server.deps) == 10, [d["output"] for d in server.deps]
+    assert len(clientside) == 2, "the 600ms debounce and the one-shot restore"
 
 
 def test_the_run_button_says_what_it_is_doing_while_a_query_is_in_flight(server):
@@ -575,13 +575,19 @@ def _source_change(server, sql: str, trigger: str = "bench-src-kind.value"):
          {"id": "bench-reset", "property": "n_clicks", "value": 0},
          {"id": "bench-src-kind", "property": "value", "value": "warehouse"},
          {"id": "bench-src-demo", "property": "value", "value": "category"},
-         {"id": "bench-src-run", "property": "n_clicks", "value": 1}],
+         {"id": "bench-src-run", "property": "n_clicks", "value": 1},
+         {"id": "bench-undo", "property": "n_clicks", "value": 0},
+         {"id": "bench-redo", "property": "n_clicks", "value": 0},
+         {"id": "bench-load", "property": "contents", "value": None},
+         {"id": "bench-restore-req", "property": "data", "value": None}],
         state=[{"id": "bench-code", "property": "value", "value": ""},
                {"id": "bench-src-sql", "property": "value", "value": sql},
                {"id": "bench-spec", "property": "data", "value": start},
                {"id": "bench-echo", "property": "data", "value": {"code": ""}},
                {"id": "bench-knob-echo", "property": "data",
-                "value": {"knobs": {}, "sig": None, "vals": None}}],
+                "value": {"knobs": {}, "sig": None, "vals": None}},
+               {"id": "bench-history", "property": "data",
+                "value": {"past": [], "future": []}}],
         changed=[trigger])
 
 

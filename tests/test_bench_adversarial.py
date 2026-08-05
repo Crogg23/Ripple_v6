@@ -304,11 +304,16 @@ def test_parse_never_returns_a_number_render_cannot_write():
 # =====================================================================
 
 
-def test_a_picker_click_clears_the_old_chart_s_knobs(bench):
+def test_a_picker_click_drops_trace_knobs_with_no_home_and_keeps_layout(bench):
+    """Carry-over keeps what fits. Layout knobs are universal (go.Layout is
+    one class shared by every trace), so barmode rides to sankey even though
+    sankey ignores it; trace.marker.opacity has no home there and goes. And
+    the sync still settles - no echo loop from the carry."""
     bench.set_knob("layout.barmode", "group")
     bench.set_knob("trace.marker.opacity", 0.4)
     bench.click_chart("sankey")
-    assert bench.spec["knobs"] == {}
+    assert bench.spec["knobs"].get("layout.barmode") == "group"
+    assert "trace.marker.opacity" not in bench.spec["knobs"]
     assert settle(bench) == 0
 
 

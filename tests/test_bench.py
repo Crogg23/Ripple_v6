@@ -1023,12 +1023,15 @@ def test_an_empty_text_box_clears_a_knob_too(screen):
     assert "layout.yaxis.tickformat" not in screen.knobs
 
 
-def test_a_new_chart_starts_with_no_knobs(screen):
-    """Last chart's settings may not even exist on this one, so they go."""
+def test_a_new_chart_keeps_the_knobs_it_can_hold(screen):
+    """A picker click carries over knobs the new chart also has - ten minutes
+    of styling no longer dies on a misclick. Layout knobs are universal
+    (go.Layout is shared by every trace type), so barmode rides along;
+    trace.* knobs are the ones that get dropped when they have no home."""
     screen.turn("layout.barmode", "group")
     assert screen.knobs
     screen.click("violin")
-    assert screen.knobs == {}
+    assert screen.knobs.get("layout.barmode") == "group"
     assert screen.spec["chart"] == "violin"
     assert screen.spec["mapping"], "a picker click should guess a mapping"
 

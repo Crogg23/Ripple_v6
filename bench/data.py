@@ -860,6 +860,15 @@ def _warehouse_frame(source: dict, t0: float) -> tuple[pd.DataFrame, dict]:
     if not sql:
         return _fail("warehouse", "no SQL to run - the query box is empty", t0)
 
+    if source.get("deferred"):
+        # A spec restored from a previous session or loaded from a file. The
+        # SQL is real but nothing may hit Snowflake without a human asking -
+        # RUN builds a fresh source dict without this flag, which is the ask.
+        return _fail("warehouse",
+                     "restored SQL has not run this session - switch the "
+                     "source bar to warehouse SQL and press RUN to run it",
+                     t0, lane="idle")
+
     limit_rows = int(source.get("limit_rows") or sqlrun.DEFAULT_LIMIT_ROWS)
 
     try:
