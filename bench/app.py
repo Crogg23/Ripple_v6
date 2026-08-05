@@ -146,6 +146,10 @@ _BTN = {"background": "transparent", "color": INK, "border": f"1px solid {RULE}"
 # read what you typed. SPEC section 8 asks for about this.
 DEBOUNCE_MS = 600
 
+# How many tables the "look up" dropdown will list before asking you to
+# narrow the term. The note says when this cap trips, and by how much.
+TABLE_CAP = 200
+
 # The colour of each lane badge. The badge is never allowed off the screen -
 # you should never look at a number without knowing what guarded it.
 LANE_COLOUR = {
@@ -1048,7 +1052,15 @@ app.layout = html.Div(
                                 dcc.Graph(id="bench-figure", figure=go.Figure(),
                                           style={"height": "100%"},
                                           config={"displaylogo": False,
-                                                  "responsive": True}),
+                                                  "responsive": True,
+                                                  # the modebar camera saves a
+                                                  # real PNG at 2x - no kaleido,
+                                                  # the browser does the work
+                                                  "toImageButtonOptions": {
+                                                      "format": "png",
+                                                      "scale": 2,
+                                                      "filename": "bench-chart",
+                                                  }}),
                                 "bench-figure-loading",
                                 parent_style={"height": "100%"},
                                 style={"height": "100%"}),
@@ -1070,6 +1082,22 @@ app.layout = html.Div(
                                                   style={"font": f"11px {MONO}",
                                                          "marginLeft": "10px"}),
                                         html.Div(style={"flex": "1"}),
+                                        dcc.Clipboard(
+                                            target_id="bench-code",
+                                            title="copy the code",
+                                            style={"color": FAINT,
+                                                   "fontSize": "13px",
+                                                   "cursor": "pointer"}),
+                                        html.Button(".py", id="bench-export-py",
+                                                    n_clicks=0, style=_BTN,
+                                                    title="download this code as a "
+                                                          "runnable .py file"),
+                                        html.Button("html", id="bench-export-html",
+                                                    n_clicks=0, style=_BTN,
+                                                    title="download the chart as a "
+                                                          "standalone interactive "
+                                                          "HTML file"),
+                                        dcc.Download(id="bench-download"),
                                         html.Button("Reset", id="bench-reset",
                                                     n_clicks=0, style=_BTN),
                                     ],
@@ -1382,10 +1410,10 @@ def _apply_code(spec: dict, text: Any, echo: dict) -> tuple[dict, str]:
     if not text.strip():
         return spec, "the code box is empty — press Reset to bring it back"
 
-    parsed = codegen.parse(text)
+    parsed, reason = codegen.parse_why(text)
     why = ""
     if parsed is None:
-        why = "this is not the canonical form"
+        why = reason or "this is not the canonical form"
     elif parsed.get("chart") not in registry.CHARTS:
         why = f"{parsed.get('chart')!r} is not a chart in the registry"
     else:
@@ -1798,6 +1826,12 @@ def source_face(kind, sql_style):
     Input("bench-src-find", "n_clicks"),
     Input("bench-src-table", "value"),
     State("bench-src-term", "value"),
+    # a catalog round trip can take seconds; a silent "look up" button reads
+    # as broken, so it says what it is doing - same pattern as RUN
+    running=[
+        (Output("bench-src-find", "disabled"), True, False),
+        (Output("bench-src-find", "children"), "looking…", "look up"),
+    ],
     prevent_initial_call=True,
 )
 def find_tables(_clicks, chosen, term):
@@ -1813,9 +1847,55 @@ def find_tables(_clicks, chosen, term):
             "no tables came back — either nothing matched, or there is no "
             "warehouse connection from this machine right now")
     options = [{"label": f"{t.get('fqn', '')}   {t.get('rows', '')}",
-                "value": t.get("fqn")} for t in found[:200] if t.get("fqn")]
+                "value": t.get("fqn")} for t in found[:TABLE_CAP] if t.get("fqn")]
+    took = f"{time.time() - t0:.1f}s"
+    if len(found) > TABLE_CAP:
+        return options, no_update, (
+            f"showing the first {len(options)} of {len(found)} tables ({took}) — "
+            "narrow the search term to see the rest")
     return options, no_update, (
-        f"{len(options)} tables in {time.time() - t0:.1f}s — pick one for starter SQL")
+        f"{len(options)} tables in {took} — pick one for starter SQL")
+
+
+# =====================================================================
+# CALLBACK 6 - export
+# ---------------------------------------------------------------------
+# Two doors out of the Bench that are not a screenshot. `.py` hands over the
+# code panel's text as a file; `html` rebuilds the current figure server-side
+# and writes a standalone interactive page. PNG needs neither - the modebar
+# camera on the Graph does it in the browser.
+# =====================================================================
+
+
+@app.callback(
+    Output("bench-download", "data"),
+    Input("bench-export-py", "n_clicks"),
+    Input("bench-export-html", "n_clicks"),
+    State("bench-spec", "data"),
+    prevent_initial_call=True,
+)
+def export_chart(_py, _html, spec):
+    """Download the current chart as a .py file or a standalone HTML page."""
+    spec = spec or blank_spec()
+    name = str(spec.get("chart") or "chart").replace("/", "-")
+    if ctx.triggered_id == "bench-export-py":
+        code = (spec.get("custom_code")
+                if isinstance(spec.get("custom_code"), str)
+                else render_code(spec))
+        header = ("# Written by the Bench. Run it anywhere bench/ and its\n"
+                  "# data lane are importable.\n"
+                  "import plotly.express as px  # noqa: F401\n"
+                  "import bench.data\nimport bench.registry\n\n")
+        return dcc.send_string(header + code + "\n", f"bench-{name}.py")
+
+    df, meta = get_frame(spec.get("source") or {})
+    fig, why = figure_for(spec, df, meta)
+    if why:
+        # export exactly what is on screen, even when that is the message
+        # figure - a silent no-op download button reads as broken
+        pass
+    html_text = fig.to_html(include_plotlyjs="cdn", full_html=True)
+    return dcc.send_string(html_text, f"bench-{name}.html")
 
 
 # =====================================================================

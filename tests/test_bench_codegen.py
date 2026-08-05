@@ -787,3 +787,53 @@ def test_px_charts_override_narrows_without_touching_the_module_set():
 def test_px_charts_none_keeps_the_default_behaviour():
     s = spec(chart="bar")
     assert codegen.render(s, px_charts=None) == codegen.render(s)
+
+
+# =====================================================================
+# parse_why - the reason that rides along with the None
+# =====================================================================
+
+
+def test_parse_why_succeeds_quietly_on_canonical_code():
+    s = spec(knobs={"trace.marker.opacity": 0.5})
+    got, why = codegen.parse_why(codegen.render(s))
+    assert same(got, s)
+    assert why == ""
+
+
+def test_parse_why_names_the_line_of_a_stray_call():
+    code = codegen.render(spec()) + "\nprint('hello')\n"
+    got, why = codegen.parse_why(code)
+    assert got is None
+    assert why.startswith("line ") and "fig.show()" in why
+
+
+def test_parse_why_names_the_line_of_a_syntax_error():
+    got, why = codegen.parse_why("df = bench.data.frame({)\n")
+    assert got is None
+    assert why.startswith("line 1:")
+
+
+def test_parse_why_explains_a_wrong_first_statement():
+    got, why = codegen.parse_why("x = 1\nfig = px.bar(df)\n")
+    assert got is None
+    assert "df = " in why and "line 1:" in why
+
+
+def test_parse_why_explains_kwargs_on_the_chart_call():
+    got, why = codegen.parse_why(
+        'df = bench.data.frame({"kind": "demo", "name": "d"})\n'
+        "fig = px.bar(df, **extra)\n")
+    assert got is None
+    assert "**kwargs" in why
+
+
+def test_parse_why_never_raises_on_garbage():
+    for bad in (None, 123, "", "\x00", "import os", "fig.show()\nfig.show()"):
+        got, why = codegen.parse_why(bad)  # type: ignore[arg-type]
+        assert got is None
+        assert isinstance(why, str) and why
+
+
+def test_parse_still_returns_plain_none():
+    assert codegen.parse("not code at all (") is None

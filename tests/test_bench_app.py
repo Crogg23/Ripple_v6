@@ -340,7 +340,7 @@ def test_the_chart_line_is_honest_and_leaves_codegen_alone():
 
 
 def test_every_callback_is_registered():
-    """Seven server callbacks and the one clientside debounce.
+    """Eight server callbacks and the one clientside debounce.
 
     Named rather than counted, because the whole point of the split is WHICH
     callback owns which pane. A count alone would have gone green on a
@@ -349,14 +349,15 @@ def test_every_callback_is_registered():
     from dash import _callback
 
     outputs = {str(k) for k in bench_app.app.callback_map}
-    assert len(outputs) == 7, sorted(outputs)
+    assert len(outputs) == 8, sorted(outputs)
     for owns in ("bench-spec.data",                 # sync_spec, the one writer
                  "bench-figure.figure",             # render_chart, the fast lane
                  "bench-knobs.children",            # render_knobs, the slow lane
                  "bench-picker.children",           # render_picker
                  "bench-open.data",                 # grow_open
                  "bench-src-demo-box.style",        # source_face
-                 "bench-src-table.options"):        # find_tables
+                 "bench-src-table.options",         # find_tables
+                 "bench-download.data"):            # export_chart
         assert any(owns in key for key in outputs), owns
     assert len(_callback.GLOBAL_CALLBACK_LIST) == 1   # plus the clientside debounce
 
@@ -1171,6 +1172,81 @@ def test_the_whole_round_trip_holds_for_a_pile_of_knobs(bench):
     assert codegen.parse(bench.code) == {**bench.spec, "custom_code": None}
     for bucket in ("MARK", "SCALE", "FRAME", "INTERACTION", "MOTION"):
         assert f"# --- {bucket}" in bench.code, bucket
+
+
+# =====================================================================
+# quick wins: parse_why in the banner, export, the table cap
+# =====================================================================
+
+
+def test_a_bad_code_edit_names_its_line():
+    """The CUSTOM banner carries codegen.parse_why's reason, not a shrug."""
+    spec = bench_app.blank_spec()
+    _spec, msg = bench_app._apply_code(spec, "x = 1\nfig = px.bar(df)\n", {})
+    assert "CUSTOM mode" in msg
+    assert "line 1:" in msg and "df = " in msg
+
+
+def test_a_stray_statement_after_show_names_its_line_too():
+    spec = bench_app.blank_spec()
+    code = bench_app.render_code(spec) + "\nprint('x')\n"
+    _spec, msg = bench_app._apply_code(spec, code, {})
+    assert "line " in msg and "fig.show()" in msg
+
+
+def _fire(trigger_id):
+    context_value.set(AttributeDict(
+        triggered_inputs=[{"prop_id": f"{trigger_id}.n_clicks", "value": 1}]))
+
+
+def test_export_py_hands_over_the_canonical_code():
+    spec = bench_app.blank_spec()
+    _fire("bench-export-py")
+    try:
+        got = bench_app.export_chart(1, 0, spec)
+    finally:
+        context_value.set({})
+    assert got["filename"].endswith(".py")
+    assert bench_app.render_code(spec) in got["content"]
+    assert "import bench.data" in got["content"]
+
+
+def test_export_py_in_custom_mode_hands_over_the_custom_text():
+    spec = bench_app.blank_spec()
+    spec["custom_code"] = "fig = px.bar(df)\n"
+    _fire("bench-export-py")
+    try:
+        got = bench_app.export_chart(1, 0, spec)
+    finally:
+        context_value.set({})
+    assert "fig = px.bar(df)" in got["content"]
+
+
+def test_export_html_is_a_standalone_interactive_page():
+    spec = bench_app.blank_spec()
+    _fire("bench-export-html")
+    try:
+        got = bench_app.export_chart(0, 1, spec)
+    finally:
+        context_value.set({})
+    assert got["filename"].endswith(".html")
+    assert "<html" in got["content"].lower()
+    assert "plotly" in got["content"].lower()
+
+
+def test_find_tables_says_when_the_cap_trips(monkeypatch):
+    from bench import data as bench_data
+
+    fake = [{"fqn": f"DB.S.T{i}", "rows": i} for i in range(bench_app.TABLE_CAP + 50)]
+    monkeypatch.setattr(bench_data, "tables", lambda term: fake)
+    context_value.set(AttributeDict(
+        triggered_inputs=[{"prop_id": "bench-src-find.n_clicks", "value": 1}]))
+    try:
+        options, _sql, note = bench_app.find_tables(1, None, "t")
+    finally:
+        context_value.set({})
+    assert len(options) == bench_app.TABLE_CAP
+    assert f"first {bench_app.TABLE_CAP} of {len(fake)}" in note
 
 
 # =====================================================================

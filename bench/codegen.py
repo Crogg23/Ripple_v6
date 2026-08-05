@@ -569,22 +569,47 @@ def parse(src: str) -> dict | None:
       * a tuple is read as a list.
     Neither can affect the round trip, because `render` never emits either.
     """
+    spec, _why = parse_why(src)
+    return spec
+
+
+def parse_why(src: str) -> tuple[dict | None, str]:
+    """`parse`, but a failure comes with a plain-sentence reason.
+
+    Returns `(spec, "")` on success, or `(None, reason)` where the reason
+    names the line that broke canonicality when there is one to name -
+    "line 4: only fig.update_traces / fig.update_layout / fig.show() are
+    canonical here". The app puts this straight into the CUSTOM banner so
+    an edit that misses the shape says WHY instead of just flipping modes.
+
+    Same no-raise guarantee as `parse`.
+    """
     try:
         # Half-typed code makes the compiler grumble (SyntaxWarning: invalid
         # decimal literal, and friends). This runs on every keystroke, so
         # swallow the noise - the answer is the return value, not the log.
         with warnings.catch_warnings():
             warnings.simplefilter("ignore")
-            return _parse(src)
-    except Exception:       # noqa: BLE001 - "never raises" is the contract
-        return None
+            return _parse(src), ""
+    except SyntaxError as exc:
+        where = f"line {exc.lineno}: " if exc.lineno else ""
+        return None, f"{where}{exc.msg or 'syntax error'}"
+    except _NotCanonical as exc:
+        return None, str(exc)
+    except Exception:   # noqa: BLE001 - "never raises" is the contract
+        return None, "this is not the canonical shape"
 
 
-def _parse(src: str) -> dict | None:
+def _line(node: ast.AST) -> str:
+    return f"line {getattr(node, 'lineno', '?')}: "
+
+
+def _parse(src: str) -> dict:
     tree = ast.parse(src)
     body = list(tree.body)
     if len(body) < 2:
-        return None
+        raise _NotCanonical(
+            "canonical code is at least two statements: the df line, then the fig line")
 
     source = _read_source_line(body[0])
     chart, mapping = _read_chart_line(body[1])
@@ -593,30 +618,35 @@ def _parse(src: str) -> dict | None:
     seen_show = False
     for node in body[2:]:
         if seen_show:
-            return None                      # nothing may follow fig.show()
+            raise _NotCanonical(_line(node) + "nothing may follow fig.show()")
         if not isinstance(node, ast.Expr) or not isinstance(node.value, ast.Call):
-            return None
+            raise _NotCanonical(
+                _line(node) + "only fig.update_traces(...) / fig.update_layout(...) "
+                "/ fig.show() may follow the fig line")
         call = node.value
         func = call.func
         if not (isinstance(func, ast.Attribute)
                 and isinstance(func.value, ast.Name)
                 and func.value.id == "fig"):
-            return None
+            raise _NotCanonical(_line(node) + "this call is not on `fig`")
 
         if func.attr == "show":
             if call.args or call.keywords:
-                return None
+                raise _NotCanonical(_line(node) + "fig.show() takes no arguments here")
             seen_show = True
             continue
 
         if func.attr not in ("update_traces", "update_layout"):
-            return None
+            raise _NotCanonical(
+                _line(node) + f"fig.{func.attr}(...) is not canonical - only "
+                "update_traces, update_layout and show are")
         if call.args:
-            return None                      # canonical form is keywords only
+            raise _NotCanonical(
+                _line(node) + f"fig.{func.attr} takes keywords only in canonical form")
         prefix = "trace" if func.attr == "update_traces" else "layout"
         for kw in call.keywords:
             if kw.arg is None:               # **something
-                return None
+                raise _NotCanonical(_line(node) + f"**kwargs on fig.{func.attr}")
             knobs[_real_path(prefix, kw.arg)] = _read_value(kw.value)
 
     return {
@@ -634,15 +664,15 @@ def _read_source_line(node: ast.stmt) -> dict:
             and isinstance(node.targets[0], ast.Name)
             and node.targets[0].id == "df"
             and isinstance(node.value, ast.Call)):
-        raise _NotCanonical("first statement is not `df = ...`")
+        raise _NotCanonical(_line(node) + "the first statement must be `df = ...`")
     call = node.value
     if _dotted(call.func) != SOURCE_CALL:
-        raise _NotCanonical(f"first statement does not call {SOURCE_CALL}")
+        raise _NotCanonical(_line(node) + f"the first statement must call {SOURCE_CALL}")
     if len(call.args) != 1 or call.keywords:
-        raise _NotCanonical(f"{SOURCE_CALL} takes exactly one dict")
+        raise _NotCanonical(_line(node) + f"{SOURCE_CALL} takes exactly one dict")
     value = _read_value(call.args[0])
     if not isinstance(value, dict):
-        raise _NotCanonical(f"{SOURCE_CALL} was not handed a dict")
+        raise _NotCanonical(_line(node) + f"{SOURCE_CALL} was not handed a dict")
     return value
 
 
@@ -656,35 +686,35 @@ def _read_chart_line(node: ast.stmt) -> tuple[str, dict]:
             and isinstance(node.targets[0], ast.Name)
             and node.targets[0].id == "fig"
             and isinstance(node.value, ast.Call)):
-        raise _NotCanonical("second statement is not `fig = ...`")
+        raise _NotCanonical(_line(node) + "the second statement must be `fig = ...`")
     call = node.value
     name = _dotted(call.func)
     if name is None or "." not in name:
-        raise _NotCanonical("the chart call is not a dotted name")
+        raise _NotCanonical(_line(node) + "the chart call is not a dotted name")
 
     if name == REGISTRY_CALL:
         if len(call.args) != 2:
-            raise _NotCanonical(f"{REGISTRY_CALL} takes a key and df")
+            raise _NotCanonical(_line(node) + f"{REGISTRY_CALL} takes a key and df")
         key = call.args[0]
         if not (isinstance(key, ast.Constant) and isinstance(key.value, str)):
-            raise _NotCanonical("the registry key is not a string literal")
+            raise _NotCanonical(_line(node) + "the registry key is not a string literal")
         chart = key.value
         df_arg = call.args[1]
     else:
         if len(call.args) != 1:
-            raise _NotCanonical("the chart call takes df and then keywords")
+            raise _NotCanonical(_line(node) + "the chart call takes df and then keywords")
         chart = name.rsplit(".", 1)[-1]
         df_arg = call.args[0]
 
     if not (isinstance(df_arg, ast.Name) and df_arg.id == "df"):
-        raise _NotCanonical("the chart call was not handed df")
+        raise _NotCanonical(_line(node) + "the chart call was not handed df")
     if not chart:
-        raise _NotCanonical("empty chart key")
+        raise _NotCanonical(_line(node) + "empty chart key")
 
     mapping: dict[str, Any] = {}
     for kw in call.keywords:
         if kw.arg is None:
-            raise _NotCanonical("**kwargs on the chart call")
+            raise _NotCanonical(_line(node) + "**kwargs on the chart call")
         mapping[kw.arg] = _read_value(kw.value)
     return chart, mapping
 
