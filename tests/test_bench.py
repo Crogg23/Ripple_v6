@@ -424,10 +424,9 @@ KNOB_TURNS = [
      lambda f: f.layout.transition.duration, 400),
     ("trace.marker.opacity", 0.8, lambda f: f.data[0].marker.opacity, 0.8),
     ("trace.orientation", "h", lambda f: f.data[0].orientation, "h"),
-    ("layout.shapes", [{"type": "line", "x0": 0, "x1": 1, "y0": 0, "y1": 1}],
-     lambda f: f.layout.shapes[0].type, "line"),
-    ("layout.annotations", [{"text": "the March outage", "x": 1, "y": 2}],
-     lambda f: f.layout.annotations[0].text, "the March outage"),
+    # layout.shapes / layout.annotations are no longer typed as lists into a
+    # text box - they have the add/remove compound editor now, and their
+    # widget-to-figure trip is proven in tests/test_bench_compound.py.
 ]
 
 

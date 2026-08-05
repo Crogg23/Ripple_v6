@@ -209,6 +209,7 @@ class Bench:
         args = dict(
             _chart_clicks=[0] * len(registry.TEMPLATES),
             knob_values=list(self.values),
+            _row_clicks=[],
             draft=None, _blur=None, _reset=None,
             src_kind=self.spec["source"].get("kind", "demo"),
             src_demo=self.spec["source"].get("name", bench_app.START_DEMO),
@@ -556,10 +557,18 @@ def test_the_picker_search_narrows_the_chart_list(bench):
 
 
 def test_one_pattern_callback_covers_every_knob(bench):
-    """There is exactly one knob Input, and it catches thousands of widgets."""
+    """There is exactly one knob-value Input, and it catches thousands of
+    widgets. (The compound editor's add/remove buttons have their own
+    'knobrow' pattern - one more, deliberately, because a button has no
+    `value` prop for the knob pattern to hear.)"""
     knob_inputs = [i for cb in bench_app.app.callback_map.values()
-                   for i in cb["inputs"] if "knob" in str(i.get("id"))]
+                   for i in cb["inputs"]
+                   if '"bench":"knob"' in str(i.get("id"))]
+    row_inputs = [i for cb in bench_app.app.callback_map.values()
+                  for i in cb["inputs"]
+                  if '"bench":"knobrow"' in str(i.get("id"))]
     assert len(knob_inputs) == 1, knob_inputs
+    assert len(row_inputs) == 1, row_inputs
     assert len(bench.ids) > 500
 
 

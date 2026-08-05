@@ -88,6 +88,7 @@ from __future__ import annotations
 
 import ast
 import json
+import re
 import sys
 import time
 import traceback
@@ -1242,6 +1243,10 @@ _KNOB_INPUT_INDEX = 1
     #    has no components, so ALL matches nothing there and the browser stops
     #    posting ~4,000 widget values it never had a reason to send.
     Input({"bench": "knob", "path": ALL, "part": ALL}, "value"),
+    # 2b. the annotations/shapes editor's add / remove buttons - their own id
+    #     shape because a button has no `value` prop for the pattern above
+    Input({"bench": "knobrow", "path": ALL, "op": ALL, "index": ALL},
+          "n_clicks"),
     # 3. code edit, debounced in the browser (plus leaving the box)
     Input("bench-code-draft", "data"),
     Input("bench-code", "n_blur"),
@@ -1272,9 +1277,9 @@ _KNOB_INPUT_INDEX = 1
     ],
     prevent_initial_call=True,
 )
-def sync_spec(_chart_clicks, knob_values, draft, _blur, _reset, src_kind,
-              src_demo, _run, _undo, _redo, load_contents, restore_data,
-              code_value, sql, spec, echo, knob_echo, history):
+def sync_spec(_chart_clicks, knob_values, _row_clicks, draft, _blur, _reset,
+              src_kind, src_demo, _run, _undo, _redo, load_contents,
+              restore_data, code_value, sql, spec, echo, knob_echo, history):
     """Work out what the human just did, and write the one state object.
 
     Returns (spec, knob echo, message, history, persist). `no_update` for the
@@ -1293,7 +1298,7 @@ def sync_spec(_chart_clicks, knob_values, draft, _blur, _reset, src_kind,
         return _sync_spec(_chart_clicks, knob_values, draft, _blur, _reset,
                           src_kind, src_demo, _run, load_contents,
                           restore_data, code_value, sql, spec, echo,
-                          knob_echo, history)
+                          knob_echo, history)  # _row_clicks: trigger-only
     except Exception as exc:  # noqa: BLE001 - a bug here must be readable
         # Nothing below this line is reachable in a green suite. It exists
         # because the alternative is a 500 the browser swallows and a
@@ -1352,6 +1357,17 @@ def _sync_spec(_chart_clicks, knob_values, draft, _blur, _reset, src_kind,
     elif isinstance(trigger, dict) and trigger.get("bench") == "knob":
         ids = [item["id"] for item in ctx.inputs_list[_KNOB_INPUT_INDEX]]
         spec, message, echo_out = _apply_knobs(spec, ids, knob_values, knob_echo)
+
+    elif isinstance(trigger, dict) and trigger.get("bench") == "knobrow":
+        # Guard against the fire that happens when a pane rebuild ADDS these
+        # buttons: a freshly rendered button reports n_clicks 0, a click 1+.
+        clicked = False
+        try:
+            clicked = bool((ctx.triggered or [{}])[0].get("value"))
+        except Exception:  # noqa: BLE001 - no context in some harnesses
+            clicked = False
+        if clicked:
+            spec, message = _apply_compound_row(spec, trigger)
 
     elif trigger in ("bench-code-draft", "bench-code"):
         text = draft if trigger == "bench-code-draft" else code_value
@@ -1464,6 +1480,13 @@ def _apply_knobs(spec: dict, ids: list, values: list,
                 template, slot_name, raw)
             continue
 
+        # --- a field inside an annotations/shapes row --------------------
+        m = _COMPOUND_FIELD_RE.match(path)
+        if m:
+            _fold_compound_field(spec, m.group(1), int(m.group(2)),
+                                 m.group(3), raw)
+            continue
+
         # --- a real Plotly setting --------------------------------------
         # Ask Plotly whether it likes the value BEFORE it goes near the
         # figure, so a typo is a sentence and not a broken chart.
@@ -1488,6 +1511,68 @@ def _apply_knobs(spec: dict, ids: list, values: list,
     # pane underneath the control you are still holding.
     return spec, "; ".join(messages), {
         **echo, "knobs": known, "vals": knob_values_signature(spec)}
+
+
+# "layout.annotations[2].line.color" -> (parent, index, dotted field)
+_COMPOUND_FIELD_RE = re.compile(
+    r"^(layout\.(?:annotations|shapes))\[(\d+)\]\.(.+)$")
+
+
+def _coerce_compound(field: str, raw: Any) -> Any:
+    """A row-field widget value, as the type the figure wants.
+
+    text stays a string; showarrow is the yes/no radio; anything else tries
+    a number first so "0.5" folds as 0.5 but "March" stays a category label.
+    """
+    last = field.rsplit(".", 1)[-1]
+    if raw is None:
+        return None
+    if field == "showarrow":
+        return raw == "yes"
+    if last in ("text", "type") or last.endswith("color"):
+        return str(raw)
+    try:
+        num = float(raw)
+        return int(num) if num.is_integer() else num
+    except (TypeError, ValueError):
+        return str(raw)
+
+
+def _fold_compound_field(spec: dict, parent: str, index: int, field: str,
+                         raw: Any) -> None:
+    """Write one edited row field back into the parent list knob."""
+    rows = list(spec.get("knobs", {}).get(parent) or [])
+    if not (0 <= index < len(rows)) or not isinstance(rows[index], dict):
+        return
+    row = json.loads(json.dumps(rows[index]))
+    cur = row
+    parts = field.split(".")
+    for part in parts[:-1]:
+        cur = cur.setdefault(part, {})
+        if not isinstance(cur, dict):
+            return
+    cur[parts[-1]] = _coerce_compound(field, raw)
+    rows[index] = row
+    spec.setdefault("knobs", {})[parent] = rows
+
+
+def _apply_compound_row(spec: dict, trigger: dict) -> tuple[dict, str]:
+    """An add or remove click on the annotations/shapes editor."""
+    path = str(trigger.get("path"))
+    if path not in controls.COMPOUND_DEFAULTS:
+        return spec, ""
+    rows = list(spec.get("knobs", {}).get(path) or [])
+    if trigger.get("op") == "add":
+        rows.append(json.loads(json.dumps(controls.COMPOUND_DEFAULTS[path])))
+    elif trigger.get("op") == "remove":
+        index = int(trigger.get("index", -1))
+        if 0 <= index < len(rows):
+            del rows[index]
+    if rows:
+        spec.setdefault("knobs", {})[path] = rows
+    else:
+        spec.setdefault("knobs", {}).pop(path, None)   # empty -> Plotly default
+    return spec, ""
 
 
 def _coerce_mapping(template, slot_name: str, raw: Any) -> Any:

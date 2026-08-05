@@ -129,6 +129,14 @@ NO_RECURSE_VALIDATORS: frozenset[str] = frozenset(
 
 # The control the UI should draw. `controls.py` maps these names to Dash
 # components; this module never imports Dash and never builds a component.
+# The two CompoundArrayValidator paths that get a structured add/remove row
+# editor (controls.py's "compound" control) instead of the raw list box.
+# Annotations and reference shapes are THE investigative-chart features -
+# "this is when the subpoena landed" - so they earn a real editor; sliders /
+# updatemenus / buttons stay deferred.
+COMPOUND_EDITOR_PATHS: frozenset[str] = frozenset(
+    {"layout.annotations", "layout.shapes"})
+
 CONTROL_BY_VALIDATOR: dict[str, str] = {
     # --- SPEC section 4.1, verbatim -----------------------------------
     "EnumeratedValidator": "dropdown",
@@ -982,6 +990,11 @@ def _tree_cached(
         else:
             control = raw.control
             options = raw.options
+        if raw.path in COMPOUND_EDITOR_PATHS:
+            # annotations and shapes get a real add/remove row editor in
+            # controls.py instead of the type-a-list text box every other
+            # CompoundArrayValidator still has.
+            control = "compound"
         entry = TIER0.get(raw.path)
         description = entry[1] if entry else raw.description
         out[raw.bucket][tier].append(

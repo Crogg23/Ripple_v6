@@ -68,7 +68,7 @@ def test_paths_are_prefixed_and_within_depth_cap(trace):
 @pytest.mark.parametrize("trace", TRACES)
 def test_every_knob_has_a_real_control(trace):
     """Every knob names a control the UI knows how to draw."""
-    legal = set(knobs.CONTROL_BY_VALIDATOR.values()) | {"slider", "column"}
+    legal = set(knobs.CONTROL_BY_VALIDATOR.values()) | {"slider", "column", "compound"}
     for knob in knobs.flat(trace, COLUMNS):
         assert knob.control in legal, f"{knob.path} -> {knob.control}"
 
@@ -292,8 +292,12 @@ def test_compound_becomes_a_section_and_arrays_become_lists():
     bar = {k.path: k for k in knobs.flat("bar", COLUMNS)}
     assert bar["trace.marker"].control == "section"
     assert bar["layout.title"].control == "section"
-    assert bar["layout.annotations"].control == "list"
-    assert bar["layout.shapes"].control == "list"
+    # annotations and shapes graduated from the raw list box to the real
+    # add/remove editor; the other compound arrays are still lists
+    assert bar["layout.annotations"].control == "compound"
+    assert bar["layout.shapes"].control == "compound"
+    assert bar["layout.sliders"].control == "list"
+    assert bar["layout.updatemenus"].control == "list"
 
 
 # ---------------------------------------------------------------------

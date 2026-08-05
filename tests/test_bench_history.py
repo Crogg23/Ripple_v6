@@ -29,6 +29,7 @@ def _fire(prop_id, *, spec, history=None, **overrides):
     args = dict(
         _chart_clicks=[0] * len(registry.TEMPLATES),
         knob_values=[],
+        _row_clicks=[],
         draft=None, _blur=None, _reset=None,
         src_kind=spec["source"].get("kind", "demo"),
         src_demo=spec["source"].get("name", bench_app.START_DEMO),

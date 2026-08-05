@@ -240,6 +240,7 @@ CONTROL_KINDS: tuple[str, ...] = (
     "multi",      # FlaglistValidator
     "section",    # CompoundValidator   - an expandable sub-section
     "column",     # DataArrayValidator  - a dropdown of the df's columns
+    "compound",   # annotations / shapes - an add/remove row editor
 )
 
 # knobs.py is expected to emit the short names above. It may not exist yet,
@@ -783,6 +784,129 @@ def _section(knob: Any, value: Any, disabled: bool, children=None):
     )
 
 
+# =====================================================================
+# THE COMPOUND EDITOR - annotations and shapes as add/remove rows
+# ---------------------------------------------------------------------
+# The value is a plain list of dicts, exactly what layout.annotations /
+# layout.shapes hold in a figure and exactly what codegen already writes
+# and parses. Each row field is a normal knob widget whose path carries an
+# index - "layout.annotations[0].text" - and app.py folds those back into
+# the parent list. The add / per-row remove buttons use their own id shape
+# ({"bench": "knobrow", ...}) because a button has no `value` prop for the
+# knob pattern to hear.
+# =====================================================================
+
+# field name -> how to draw it. "text" keeps strings as typed; "coord" tries
+# a number first so 0.5 folds as a float but "March" stays a category label.
+COMPOUND_FIELDS: dict[str, tuple[tuple[str, str], ...]] = {
+    "layout.annotations": (
+        ("text", "text"), ("x", "coord"), ("y", "coord"),
+        ("showarrow", "bool"), ("arrowcolor", "colortext"),
+    ),
+    "layout.shapes": (
+        ("type", "shapetype"), ("x0", "coord"), ("y0", "coord"),
+        ("x1", "coord"), ("y1", "coord"), ("line.color", "colortext"),
+    ),
+}
+
+# What a fresh row holds. Paper refs so it draws on any chart immediately;
+# switch xref/yref in the code panel when you want data coordinates.
+COMPOUND_DEFAULTS: dict[str, dict] = {
+    "layout.annotations": {"text": "note", "x": 0.5, "y": 0.5,
+                           "xref": "paper", "yref": "paper",
+                           "showarrow": False},
+    "layout.shapes": {"type": "line", "x0": 0.1, "y0": 0.5, "x1": 0.9,
+                      "y1": 0.5, "xref": "paper", "yref": "paper",
+                      "line": {"color": "#d1544c", "width": 2, "dash": "dot"}},
+}
+
+SHAPE_TYPES = ("line", "rect", "circle")
+
+_BTN_STYLE = {"background": PANEL_2, "color": INK,
+              "border": f"1px solid {RULE}", "borderRadius": "5px",
+              "padding": "3px 9px", "font": f"11px {MONO}",
+              "cursor": "pointer"}
+
+
+def row_button_id(path: str, op: str, index: int) -> dict:
+    """The id of a compound editor's add / remove button."""
+    return {"bench": "knobrow", "path": str(path), "op": str(op),
+            "index": int(index)}
+
+
+def _field_get(row: dict, field: str):
+    """row["line.color"] read through the dots."""
+    cur: Any = row
+    for part in field.split("."):
+        if not isinstance(cur, dict):
+            return None
+        cur = cur.get(part)
+    return cur
+
+
+def _compound_field(path: str, index: int, field: str, kind_: str,
+                    value: Any, disabled: bool):
+    fid = knob_id(f"{path}[{index}].{field}")
+    label_style = {"font": f"10px {MONO}", "color": FAINT, "flex": "none",
+                   "width": "62px"}
+    box = {**_INPUT_STYLE, "flex": "1", "minWidth": "0", "width": "100%"}
+    if kind_ == "bool":
+        widget = dcc.RadioItems(
+            id=fid, value="yes" if value else "no", inline=True,
+            options=[{"label": "yes", "value": "yes", "disabled": disabled},
+                     {"label": "no", "value": "no", "disabled": disabled}],
+            inputStyle={"marginRight": "3px", "accentColor": ACCENT},
+            labelStyle={"marginRight": "10px", "color": INK,
+                        "cursor": "pointer"},
+            style={"font": f"11px {SANS}", "flex": "1"})
+    elif kind_ == "shapetype":
+        widget = dcc.Dropdown(
+            id=fid, value=value, clearable=False, disabled=disabled,
+            options=[{"label": t, "value": t} for t in SHAPE_TYPES],
+            className="bench-dd", style={"flex": "1", "font": f"11px {MONO}"})
+    else:
+        widget = dcc.Input(
+            id=fid, type="text", debounce=True, disabled=disabled,
+            value="" if value is None else str(value), style=box)
+    return html.Div([html.Span(field, style=label_style), widget],
+                    style={"display": "flex", "alignItems": "center",
+                           "gap": "6px", "margin": "2px 0"})
+
+
+def _compound(knob: Any, value: Any, disabled: bool):
+    """The whole editor for one compound path: rows + an add button."""
+    path = str(getattr(knob, "path", ""))
+    fields = COMPOUND_FIELDS.get(path, ())
+    rows = value if isinstance(value, list) else []
+    noun = path.rsplit(".", 1)[-1].rstrip("s")   # annotation / shape
+
+    built = []
+    for i, row in enumerate(rows):
+        if not isinstance(row, dict):
+            continue
+        built.append(html.Div(
+            [html.Div(
+                [html.Span(f"{noun} {i + 1}",
+                           style={"font": f"600 10.5px {MONO}",
+                                  "color": MUTED, "flex": "1"}),
+                 html.Button("remove", id=row_button_id(path, "remove", i),
+                             n_clicks=0, disabled=disabled,
+                             style={**_BTN_STYLE, "padding": "1px 7px",
+                                    "font": f"10px {MONO}"})],
+                style={"display": "flex", "alignItems": "center",
+                       "marginBottom": "2px"}),
+             *[_compound_field(path, i, f, k, _field_get(row, f), disabled)
+               for f, k in fields]],
+            style={"border": f"1px solid {RULE}", "borderRadius": "5px",
+                   "padding": "6px 8px", "margin": "4px 0"}))
+
+    built.append(html.Button(
+        f"+ add {noun}", id=row_button_id(path, "add", -1), n_clicks=0,
+        disabled=disabled,
+        style={**_BTN_STYLE, "marginTop": "3px", "font": f"11px {MONO}"}))
+    return html.Div(built)
+
+
 _BUILDERS = {
     "dropdown": _dropdown,
     "toggle": _toggle,
@@ -792,6 +916,7 @@ _BUILDERS = {
     "text": _text,
     "multi": _multi,
     "column": _column,
+    "compound": _compound,
 }
 
 
