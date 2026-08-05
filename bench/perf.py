@@ -404,9 +404,12 @@ class Screen:
             draft=None, _blur=None, _reset=None,
             src_kind=self.spec["source"].get("kind", "demo"),
             src_demo=self.spec["source"].get("name", self.app_mod.START_DEMO),
-            _run=None, code_value=self.code,
+            _run=None, _row_clicks=[], _undo=None, _redo=None,
+            load_contents=None, restore_data=None,
+            code_value=self.code,
             sql=self.spec["source"].get("sql", ""),
             spec=self.spec, echo=self.echo, knob_echo=self.knob_echo,
+            history={"past": [], "future": []},
         )
         args.update(overrides)
         return args
@@ -478,7 +481,7 @@ def section_callbacks(app_mod) -> list[Row]:
         try:
             rows.append(measure("callbacks", f"sync_spec: {name}",
                                 lambda a=args: app_mod.sync_spec(**a)))
-            spec, echo, _msg = app_mod.sync_spec(**args)
+            spec, echo, _msg, _hist, _persist = app_mod.sync_spec(**args)
         finally:
             context_value.set({})
         if spec is no_update:

@@ -442,8 +442,9 @@ Named so they are decisions, not omissions:
 - subplots / `make_subplots` (ATLAS §6.1)
 - animation frames (ATLAS §6.3)
 - multiple traces on one figure
-- saving/loading specs to disk
-- PNG export (**kaleido is not installed** — ATLAS intro)
+- ~~saving/loading specs to disk~~ *(shipped in the 2026-08 sweep — §11)*
+- ~~PNG export~~ *(shipped: browser-side via the modebar camera at 2x; kaleido
+  is still not installed and still not needed — §11)*
 
 Each is additive later. None changes the state object.
 
@@ -460,3 +461,72 @@ Each is additive later. None changes the state object.
 7. Tests cover: knob generation for ≥20 trace types, codegen round-trip
    (`parse(render(spec)) == spec`) over a spec battery, and CUSTOM-mode fallback
    on deliberately malformed code.
+
+
+---
+
+## 11. The 2026-08 improvement sweep (addendum)
+
+Everything below was added after v1 shipped. The v1 contracts above all still
+hold — one spec writer, the echo rules, the codegen shape, `viz.sqlrun` as the
+only warehouse door. New contracts:
+
+**`codegen.parse_why(src) -> (spec | None, reason)`.** `parse` is unchanged
+(never raises, `None` means CUSTOM). `parse_why` is the same walk but a failure
+carries a sentence naming the line that broke canonicality ("line 4: only
+fig.update_traces / fig.update_layout / fig.show() are canonical"). The CUSTOM
+banner prints it.
+
+**Export.** The code-panel header has copy (dcc.Clipboard), `.py` (the panel
+text as a runnable file), `html` (`fig.to_html`, standalone interactive page)
+and `save` (the SPEC as `.json`). PNG is the modebar camera at scale 2 —
+browser-side, no kaleido. All downloads share one `dcc.Download` behind the
+`export_chart` callback.
+
+**History and persistence — still one writer.** `sync_spec` gained two more
+Outputs: `bench-history` ({"past": [...], "future": [...]}, cap 50) and
+`bench-persist` (`storage_type="local"`, a mirror of every spec write). Undo /
+redo / load (dcc.Upload of a saved .json) / the restore request are four more
+Inputs on `sync_spec`; nothing else writes the spec, the history, or the
+mirror. On page load a clientside callback copies `bench-persist` into
+`bench-restore-req` exactly once (a window flag makes later mirror writes
+inert), and `sync_spec` validates it through the same gate as a file load: the
+chart must be in the registry and a canonical spec must survive `render_code`.
+
+**Deferred warehouse sources.** A restored or file-loaded spec whose source is
+warehouse SQL gets `source["deferred"] = True`. `bench.data` answers that with
+a refusal in the new `"idle"` lane ("restored SQL has not run this session —
+press RUN") instead of touching Snowflake. RUN builds a fresh source dict
+without the flag, which is the human asking.
+
+**A picker click no longer nukes the knobs.** Knobs the new chart also has
+(checked with `knobs.validator_for`) carry over; the rest are dropped and
+named in the message line. Layout knobs are universal — `go.Layout` is one
+class shared by every trace — so they always carry.
+
+**The compound editor.** `layout.annotations` and `layout.shapes` (and only
+those — `knobs.COMPOUND_EDITOR_PATHS`) render as controls' `"compound"`
+editor: one bordered group per row with the fields that matter, plus add /
+per-row remove buttons (`{"bench": "knobrow", ...}` ids, their own Input
+pattern on `sync_spec`, because a button has no `value` prop). Row field
+widgets use indexed knob paths — `layout.annotations[0].text` — and
+`_apply_knobs` folds them back into the parent list. The SPEC value stays a
+plain list of dicts, so codegen and the figure builder needed no changes. New
+rows default to paper refs so they draw on any chart immediately.
+
+**Keyboard.** Ctrl+Z / Ctrl+Y undo/redo (only outside text boxes — native
+undo stays native), Ctrl+S saves the spec, Ctrl+Enter in the SQL box is RUN.
+Synthesised clicks on the real buttons; no second server surface.
+
+**`bench/settings.py`.** Every tunable number, env-overridable:
+BENCH_DEBOUNCE_MS, BENCH_SPINNER_MS, BENCH_CUSTOM_TIMEOUT_S, BENCH_PORT,
+BENCH_SQL_LIMIT, BENCH_TABLE_CAP, BENCH_DEBUG (=1 turns on Dash hot reload).
+Stdlib-only, importable without Dash.
+
+**Error visibility.** The catalog helpers in `data.py` record
+`LAST_CATALOG_ERROR` (and log) instead of silently returning `[]`, so the
+source bar can say *offline* vs *broken*. The custom-code deadline tracer is
+ast-gated: straight-line code skips `sys.settrace` entirely; anything with a
+loop / comprehension / def keeps the 5s guard (known gap: loop-free recursion
+built via exec-inside-exec escapes it; CPython's recursion limit catches the
+plain kind).
