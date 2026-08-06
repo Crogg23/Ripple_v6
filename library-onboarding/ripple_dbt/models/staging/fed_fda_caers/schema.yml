@@ -1,0 +1,37 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FDA_CAERS
+        description: >
+          Raw landing table for openFDA CAERS (cosmetic adverse events). Each row is
+          one VARIANT chunk doc ({"results": [...]}); flatten RAW:results in staging.
+
+models:
+  - name: stg_fed_fda_caers__all
+    description: "Cosmetic adverse event reports, flattened from RAW:results. One row per report_number."
+    columns:
+      - name: report_number
+        description: Unique identifier for the cosmetic adverse event report.
+        data_tests:
+          - unique
+          - not_null
+      - name: report_type
+        description: Type of report (e.g. Non-Serious, Serious).
+      - name: initial_received_date
+        description: Date FDA first received the report.
+      - name: latest_received_date
+        description: Date of the most recent update to the report.
+      - name: product_brand_name
+        description: Brand name of the first cosmetic product named in the report.
+      - name: primary_reaction_text
+        description: Text of the first reported reaction.
+      - name: _ingested_at
+        description: Timestamp when the record was loaded into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this row.

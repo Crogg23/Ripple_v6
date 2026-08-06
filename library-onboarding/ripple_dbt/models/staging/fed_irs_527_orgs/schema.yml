@@ -1,0 +1,51 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_IRS_527_ORGS
+        description: >
+          Raw landing table for IRS section 527 political organization Form 8871
+          registrations (POFD bulk file, forms.irs.gov/app/pod/dataDownload/fullData).
+          Only the '1' (Form 8871) record type is landed here -- 8872 periodic
+          contribution/expenditure filing amounts are a deferred follow-up.
+        columns:
+          - name: SUBMISSION_ID
+            description: IRS submission identifier for this 8871 filing (raw TEXT).
+          - name: EIN
+            description: Employer Identification Number of the political organization (raw TEXT, not unique -- orgs re-file on amendment).
+          - name: FILED_DATE
+            description: Timestamp the 8871 was filed (raw TEXT, 'YYYY-MM-DD HH24:MI:SS').
+
+models:
+  - name: stg_fed_irs_527_orgs__records
+    description: >
+      Staging model for IRS section 527 political org Form 8871 registrations.
+      Deduplicates on submission_id (natural key). EIN is NOT unique -- a political
+      org files a fresh 8871 record on initial registration and again on amendment
+      (58,916 distinct EIN vs 77,591 total rows landed).
+    columns:
+      - name: submission_id
+        description: IRS 8871 submission identifier (natural key, deduplicated in this model).
+        data_tests:
+          - not_null
+          - unique
+
+      - name: ein
+        description: >
+          Employer Identification Number. Candidate join key to fed_irs_eo_bmf /
+          fed_irs_bmf -- NOT unique within this table (multiple filings per org).
+
+      - name: org_name
+        description: Name of the section 527 political organization.
+
+      - name: filed_date
+        description: Parsed timestamp the Form 8871 was filed.
+
+      - name: _loaded_at
+        description: Timestamp when the record was ingested into the landing table.
+
+      - name: _source_url
+        description: Source URL for this record's provenance.

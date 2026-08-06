@@ -1,0 +1,43 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FDA_DEVICE_510K
+        description: >
+          Raw landing table for openFDA device/510(k) clearances. Each row is one
+          VARIANT chunk doc ({"results": [...]}); flatten RAW:results in staging.
+
+models:
+  - name: stg_fed_fda_device_510k__all
+    description: "510(k) premarket clearance decisions, flattened from RAW:results. One row per k_number."
+    columns:
+      - name: k_number
+        description: Unique 510(k) submission identifier.
+        data_tests:
+          - unique
+          - not_null
+      - name: applicant
+        description: Company that submitted the 510(k).
+        data_tests:
+          - not_null
+      - name: device_name
+        description: Name of the cleared device.
+      - name: product_code
+        description: FDA product classification code.
+      - name: decision_code
+        description: Coded decision (e.g. SESE = substantially equivalent).
+      - name: date_received
+        description: Date FDA received the submission.
+      - name: decision_date
+        description: Date FDA issued its clearance decision.
+      - name: openfda
+        description: openFDA-enriched cross-reference block (device class, regulation number, etc).
+      - name: _ingested_at
+        description: Timestamp when the record was loaded into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this row.

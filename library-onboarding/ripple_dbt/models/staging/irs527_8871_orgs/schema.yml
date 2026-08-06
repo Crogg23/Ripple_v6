@@ -1,0 +1,74 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: IRS527_8871_ORGS
+        description: >
+          Raw landing table for IRS Form 8871 (527 political organization initial/
+          amended/final notices) -- the organization registry. All columns arrive as
+          TEXT from the ingestion pipeline. Sibling tables IRS527_DIRECTORS_OFFICERS,
+          IRS527_RELATED_ENTITIES, IRS527_EAIN, and IRS527_8872_REPORTS land as RAW
+          tables joined on FORM_ID_NUMBER/EIN; no staging models built for those yet.
+          Schedule A/B itemized contribution/expenditure line items (17.9M rows,
+          part of the 8872 report filings) are deferred entirely -- not landed.
+        columns:
+          - name: FORM_ID_NUMBER
+            description: IRS-assigned Form 8871 submission identifier (natural key, unique in this table).
+          - name: EIN
+            description: Employer Identification Number of the political organization (raw TEXT, join key -- not unique, orgs can refile).
+          - name: ORGANIZATION_NAME
+            description: Name of the 527 political organization.
+          - name: ESTABLISHED_DATE
+            description: Date the organization was established (raw TEXT, YYYYMMDD format; sparsely populated).
+
+models:
+  - name: stg_irs527_8871_orgs__registrations
+    description: >
+      Staging model for IRS Form 8871 527 political organization registrations.
+      Renames columns to snake_case and parses dates. FORM_ID_NUMBER is already
+      unique in the raw table (77,591 rows = 77,591 distinct FORM_ID_NUMBER; 58,916
+      distinct EIN -- some orgs file more than once).
+    columns:
+      - name: form_id_number
+        description: IRS-assigned Form 8871 submission identifier (natural key).
+        data_tests:
+          - not_null
+          - unique
+
+      - name: ein
+        description: Employer Identification Number of the political organization. Join key to other IRS/EIN-keyed sources; not unique per org.
+        data_tests:
+          - not_null
+
+      - name: organization_name
+        description: Name of the 527 political organization.
+
+      - name: initial_report_ind
+        description: "1 if this is the initial report, 0 otherwise."
+
+      - name: amended_report_ind
+        description: "1 if this is an amended report, 0 otherwise."
+
+      - name: final_report_ind
+        description: "1 if this is a final report, 0 otherwise."
+
+      - name: established_date
+        description: Parsed date the organization was established.
+
+      - name: purpose
+        description: Stated purpose of the political organization (free text).
+
+      - name: mailing_city
+        description: Mailing address city.
+
+      - name: mailing_state
+        description: Mailing address state.
+
+      - name: _loaded_at
+        description: Timestamp when the record was ingested into the landing table.
+
+      - name: _source_url
+        description: Source URL for this record's provenance.

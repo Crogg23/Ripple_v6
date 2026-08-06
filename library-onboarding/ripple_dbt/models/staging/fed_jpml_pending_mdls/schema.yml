@@ -1,0 +1,57 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_JPML_PENDING_MDLS
+        description: >
+          Raw landing table for JPML Pending MDLs sourced from the federal
+          Judicial Panel on Multidistrict Litigation. All columns arrive as TEXT.
+        columns:
+          - name: DISTRICT
+            description: Federal judicial district in which the MDL is pending.
+          - name: JUDGE
+            description: Presiding judge assigned to the MDL.
+          - name: MDL_NO
+            description: Unique MDL docket number assigned by JPML.
+          - name: LITIGATION
+            description: Name / title of the MDL litigation.
+          - name: PENDING
+            description: Number of cases currently pending in the MDL.
+          - name: TOTAL
+            description: Total number of cases transferred into the MDL.
+
+models:
+  - name: stg_fed_jpml_pending_mdls__mdl_docket
+    description: >
+      Staged and deduplicated view of the JPML Pending MDLs landing table.
+      TEXT columns are cast to appropriate types; one row per MDL docket number,
+      keeping the most recently ingested record.
+    columns:
+      - name: mdl_no
+        description: Unique MDL docket number — primary key for this entity.
+        data_tests:
+          - unique
+          - not_null
+      - name: district
+        description: Federal judicial district in which the MDL is pending.
+        data_tests:
+          - not_null
+      - name: judge
+        description: Presiding judge assigned to the MDL.
+      - name: litigation
+        description: Name / title of the MDL litigation.
+        data_tests:
+          - not_null
+      - name: pending_cases
+        description: Number of cases currently pending in the MDL (integer).
+      - name: total_cases
+        description: Total number of cases transferred into the MDL (integer).
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.

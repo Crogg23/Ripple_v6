@@ -1,0 +1,133 @@
+[19:48:41] ===== evicted INT_UK_COMPANIES_HOUSE from fingerprint cache =====
+[19:48:41] ===== fingerprint (resume) =====
+resume: keeping 1042 fmt-2 entries
+fingerprinting 98 landed tables (1042 skipped) ...
+  [1/98] CA_LOBBY_AMENDMENTS                        rows=    25,249  keys: NAME(4%), NAME(2%)
+  [2/98] CA_LOBBY_CHG_LOG                           rows=    85,765  keys: NAME(100%), ZIP(23%), NAME(92%), ZIP(2%)
+  [3/98] CA_LOBBY_CONTRIBUTIONS                     rows=     6,505  keys: NAME(99%), NAME(97%)
+  [4/98] CA_LOBBY_COVER                             rows=   568,988  keys: NAME(65%)
+  [5/98] CA_LOBBY_COVER2                            rows=   206,493  keys: —
+  [6/98] CA_LOBBY_EMPLOYER                          rows=     1,730  keys: NAME(100%), NAME(100%), NAME(100%)
+  [7/98] CA_LOBBY_EMPLOYER_FIRMS                    rows=       524  keys: NAME(100%), NAME(100%)
+  [8/98] CA_LOBBY_EMP_LOBBYIST                      rows=     1,500  keys: NAME(100%), NAME(100%), NAME(100%), NAME(100%)
+  [9/98] CA_LOBBY_FIRM                              rows=       256  keys: NAME(100%)
+  [10/98] CA_LOBBY_FIRM_EMPLOYER                     rows=       170  keys: NAME(100%), NAME(100%)
+  [11/98] CA_LOBBY_FIRM_LOBBYIST                     rows=       577  keys: NAME(100%), NAME(100%), NAME(100%)
+  [12/98] FED_ATF_FFL                                rows=    77,514  keys: ADDRESS(100%), ADDRESS(100%), ADDRESS(100%), COUNTRY(100%), ADDRESS(100%), COUNTRY(100%), NAME(100%), NAME(100%), ADDRESS(100%), ZIP(96%), ADDRESS(100%), ZIP(96%)
+    [cap] FED_CFPB_HMDA_HISTORIC: measuring 16/46 key cols
+  [13/98] FED_CFPB_HMDA_HISTORIC                     rows=19,136,434  keys: NAME(100%), NAME(100%), NAME(100%), NAME(100%), NAME(100%), NAME(100%), NAME(100%), NAME(91%), NAME(100%), NAME(100%), NAME(100%), NAME(100%), NAME(100%), NAME(100%), NAME(100%), NAME(100%)
+  [14/98] FED_COLLEGE_SCORECARD_INSTITUTION          rows=     6,273  keys: ZIP(100%), FIPS(100%), LATLON(91%), LATLON(91%), ADDRESS(92%)
+  [15/98] FED_CONSOLIDATED_SCREENING_LIST            rows=    25,918  keys: NAME(100%)
+  [16/98] FED_EIA860_1_UTILITY                       rows=     6,643  keys: NAME(100%), ADDRESS(100%), ZIP(85%)
+    [cap] FED_EIA860_2_PLANT: measuring 16/17 key cols
+  [17/98] FED_EIA860_2_PLANT                         rows=    16,132  keys: NAME(100%), NAME(100%), ADDRESS(99%), ZIP(88%), LATLON(100%), LATLON(100%), NAME(98%), NAME(27%), NAICS(100%), NAME(100%), DOCKET(3%), DOCKET(29%), DOCKET(9%), NAME(10%), NAME(9%), NAME(1%)
+  [18/98] FED_EIA860_3_1_GENERATOR                   rows=    26,856  keys: NAME(100%), NAME(100%), NAME(100%)
+  [19/98] FED_EIA860_3_2_WIND                        rows=     1,563  keys: NAME(100%), NAME(100%), NAME(100%)
+  [20/98] FED_EIA860_3_3_SOLAR                       rows=     7,154  keys: NAME(100%), NAME(100%), NAME(100%)
+  [21/98] FED_EIA860_3_4_ENERGY_STORAGE              rows=       786  keys: NAME(100%), NAME(100%), NAME(100%)
+  [22/98] FED_EIA860_3_5_MULTIFUEL                   rows=     2,893  keys: NAME(100%), NAME(100%), NAME(100%)
+  [23/98] FED_EIA860_4_OWNER                         rows=     5,496  keys: NAME(100%), NAME(100%), NAME(100%), ADDRESS(99%), ZIP(85%)
+  [24/98] FED_EIA860_6_1_ENVIROASSOC                 rows=     7,021  keys: NAME(100%), NAME(100%)
+  [25/98] FED_EIA860_6_2_ENVIROEQUIP                 rows=     4,429  keys: NAME(100%), NAME(100%)
+  [26/98] FED_EIA861_ADVANCED_METERS                 rows=     2,725  keys: NAME(100%)
+  [27/98] FED_EIA861_BALANCING_AUTHORITY             rows=       188  keys: —
+  [28/98] FED_EIA861_DELIVERY_COMPANIES              rows=         9  keys: —
+  [29/98] FED_EIA861_DEMAND_RESPONSE                 rows=       340  keys: —
+  [30/98] FED_EIA861_DISTRIBUTION_SYSTEMS            rows=     1,353  keys: —
+  [31/98] FED_EIA861_DYNAMIC_PRICING                 rows=       858  keys: —
+  [32/98] FED_EIA861_ENERGY_EFFICIENCY               rows=       460  keys: —
+  [33/98] FED_EIA861_FRAME                           rows=     3,412  keys: —
+  [34/98] FED_EIA861_MERGERS                         rows=         4  keys: —
+  [35/98] FED_EIA861_NET_METERING                    rows=     1,006  keys: —
+  [36/98] FED_EIA861_NON_NET_METERING_DISTRIBUTED    rows=       507  keys: NAME(100%)
+  [37/98] FED_EIA861_OPERATIONAL_DATA                rows=     1,712  keys: —
+  [38/98] FED_EIA861_RELIABILITY                     rows=       973  keys: —
+  [39/98] FED_EIA861_SALES_ULT_CUST                  rows=     2,817  keys: —
+  [40/98] FED_EIA861_SALES_ULT_CUST_CS               rows=       676  keys: —
+  [41/98] FED_EIA861_SERVICE_TERRITORY               rows=    11,775  keys: —
+  [42/98] FED_EIA861_SHORT_FORM                      rows=     1,724  keys: —
+  [43/98] FED_EIA861_UTILITY_DATA                    rows=     1,701  keys: NAME(100%)
+  [44/98] FED_EPA_FRS_FRS_FACILITIES                 rows= 3,277,557  keys: NAME(100%), ADDRESS(88%), ZIP(88%), FRS_ID(100%), LATLON(81%), LATLON(81%)
+  [45/98] FED_EPA_GHGRP_EMISSION                     rows=   346,683  keys: —
+  [46/98] FED_EPA_GHGRP_FACILITY                     rows=   136,005  keys: LATLON(100%), LATLON(100%), ZIP(100%), FIPS(92%), NAME(100%), NAME(100%), NAICS(100%), NAME(100%), FRS_ID(93%), NAME(99%)
+  [47/98] FED_FATCA_FFI                              rows=   516,298  keys: NAME(100%), COUNTRY(100%)
+  [48/98] FED_FDA_CAERS                              rows=        43  keys: —
+  [49/98] FED_FDA_DEVICE_510K                        rows=        88  keys: —
+  [50/98] FED_FDA_DEVICE_PMA                         rows=        29  keys: —
+  [51/98] FED_FDA_ESTABLISHMENT_REG                  rows=       166  keys: —
+  [52/98] FED_FDA_GUDID                              rows=     2,542  keys: —
+  [53/98] FED_FDA_MAUDE                              rows=     1,386  keys: —
+  [54/98] FED_FEMA_IA_HOUSING_REGISTRATIONS          rows= 3,080,000  keys: FIPS(100%)
+  [55/98] FED_FHFA_SUSPENDED_COUNTERPARTY_PROGRAM    rows=       241  keys: NAME(87%), NAME(87%), NAME(13%)
+  [56/98] FED_FRACFOCUS_DISCLOSURE_LIST              rows=   248,835  keys: LATLON(100%), LATLON(100%)
+  [57/98] FED_FRACFOCUS_REGISTRY                     rows= 7,200,550  keys: LATLON(100%), LATLON(100%)
+  [58/98] FED_FRACFOCUS_WATER_SOURCE                 rows=    23,747  keys: —
+  [59/98] FED_HRSA_NPDB                              rows= 1,911,185  keys: —
+  [60/98] FED_HRSA_UDS_HEALTH_CENTER_INFO            rows=     1,356  keys: —
+  [61/98] FED_HRSA_UDS_TABLE3A_PATIENTS              rows=     1,357  keys: —
+  [62/98] FED_HUD_ASSISTED_HOUSING_PROJECTS          rows=    35,601  keys: NAME(100%), LATLON(100%), LATLON(100%), ADDRESS(96%), ZIP(86%)
+  [63/98] FED_ICE_DETENTION_FACILITY_CODES           rows=     1,490  keys: NAME(100%), ADDRESS(96%), ZIP(89%), LATLON(100%), LATLON(100%)
+  [64/98] FED_ICE_DETENTION_FACILITY_LIST            rows=       165  keys: NAME(100%)
+  [65/98] FED_ICIJ_OFFSHORELEAKS_ADDRESSES           rows=   402,246  keys: ADDRESS(95%), NAME(56%), COUNTRY(69%)
+  [66/98] FED_ICIJ_OFFSHORELEAKS_ENTITIES            rows=   814,344  keys: NAME(100%), NAME(48%), NAME(1%), NAME(17%), ADDRESS(37%), COUNTRY(62%)
+  [67/98] FED_ICIJ_OFFSHORELEAKS_INTERMEDIARIES      rows=    26,768  keys: NAME(100%), ADDRESS(32%), COUNTRY(86%)
+  [68/98] FED_ICIJ_OFFSHORELEAKS_OFFICERS            rows=   771,315  keys: NAME(100%), COUNTRY(61%)
+  [69/98] FED_ICIJ_OFFSHORELEAKS_OTHERS              rows=     2,989  keys: NAME(100%), COUNTRY(13%)
+  [70/98] FED_ICIJ_OFFSHORELEAKS_RELATIONSHIPS       rows= 3,339,267  keys: —
+  [71/98] FED_JPML_PENDING_MDLS                      rows=       162  keys: —
+  [72/98] FED_NID_DAMS                               rows=    92,766  keys: NAME(95%), LATLON(100%), LATLON(100%), NAME(90%)
+  [73/98] FED_NTSB_AVIATION_AIRCRAFT                 rows=    31,503  keys: ADDRESS(33%), COUNTRY(94%), ZIP(79%), NAME(100%), NAME(51%), ADDRESS(26%), COUNTRY(93%), ZIP(74%), COUNTRY(80%), COUNTRY(73%)
+  [74/98] FED_NTSB_AVIATION_EVENTS                   rows=    30,968  keys: COUNTRY(100%), ZIP(78%), GEOM(100%), NAME(61%), LATLON(89%), LATLON(89%)
+  [75/98] FED_OCC_NATIONAL_BANKS                     rows=       724  keys: NAME(100%), ADDRESS(100%)
+  [76/98] FED_OCC_THRIFTS                            rows=       218  keys: NAME(100%), ADDRESS(100%)
+  [77/98] FED_RETRACTION_WATCH                       rows=    71,591  keys: COUNTRY(100%)
+  [78/98] INTL_OPENSANCTIONS_DEFAULT                 rows= 1,281,846  keys: NAME(93%)
+    [cap] INT_UK_COMPANIES_HOUSE: measuring 16/37 key cols
+  [79/98] INT_UK_COMPANIES_HOUSE                     rows= 5,734,780  keys: NAME(100%), COMPANY_NO(100%), ADDRESS(0%), ADDRESS(1%), ADDRESS(99%), ADDRESS(60%), ADDRESS(98%), ADDRESS(29%), COUNTRY(84%), ADDRESS(98%), NAME(100%), NAME(100%), COUNTRY(100%), SIC(100%), SIC(20%), SIC(9%)
+  [80/98] IRS527_8871_ORGS                           rows=    77,591  keys: EIN(100%), NAME(100%), ZIP(100%), ADDRESS(100%), NAME(100%), ZIP(100%), NAME(100%), ZIP(100%), ZIP(100%)
+  [81/98] IRS527_8872_REPORTS                        rows=    55,579  keys: ADDRESS(100%), NAME(100%), EIN(100%), ZIP(100%), ADDRESS(100%), NAME(100%), ZIP(100%), NAME(100%), ZIP(100%), ZIP(100%)
+  [82/98] IRS527_DIRECTORS_OFFICERS                  rows=   189,593  keys: NAME(100%), EIN(100%), NAME(100%), ZIP(100%)
+  [83/98] IRS527_EAIN                                rows=    17,853  keys: —
+  [84/98] IRS527_RELATED_ENTITIES                    rows=    64,835  keys: NAME(100%), EIN(100%), NAME(100%), ZIP(100%)
+  [85/98] ST_OEHHA_PROPOSITION_65_LIST               rows=     1,021  keys: —
+  [86/98] TX_LOBBY_AWARDS                            rows=     1,589  keys: —
+  [87/98] TX_LOBBY_COVER                             rows=   283,803  keys: —
+  [88/98] TX_LOBBY_DOCKETS                           rows=     1,207  keys: —
+  [89/98] TX_LOBBY_ENTERTAINMENT                     rows=     2,836  keys: —
+  [90/98] TX_LOBBY_EVENTS                            rows=     3,107  keys: —
+  [91/98] TX_LOBBY_FOOD_BEVERAGE                     rows=    14,452  keys: —
+  [92/98] TX_LOBBY_GIFTS                             rows=     4,084  keys: —
+  [93/98] TX_LOBBY_INDIVIDUAL_REPORTING              rows=    38,662  keys: —
+  [94/98] TX_LOBBY_SUBJECT_MATTER                    rows=   209,957  keys: —
+  [95/98] TX_LOBBY_TRANSPORTATION                    rows=     3,697  keys: —
+  [96/98] UK_COMPANIES_HOUSE_PSC                     rows= 7,000,000  keys: COMPANY_NO(100%), NAME(100%), NAME(22%), NAME(100%), NAME(100%), NAME(100%), COUNTRY(100%), ADDRESS(100%), ADDRESS(100%), ADDRESS(100%), ADDRESS(100%), COUNTRY(100%), COUNTRY(100%)
+    [cap] XC_UK_SANCTIONS_LIST: measuring 16/21 key cols
+  [97/98] XC_UK_SANCTIONS_LIST                       rows=    57,883  keys: NAME(100%), NAME(42%), NAME(21%), NAME(4%), NAME(1%), NAME(0%), NAME(100%), NAME(2%), NAME(100%), ADDRESS(56%), ADDRESS(36%), ADDRESS(22%), ADDRESS(9%), ADDRESS(13%), ADDRESS(66%), ADDRESS(20%)
+  [98/98] XC_UN_CONSOLIDATED_SANCTIONS_LIST          rows=     1,011  keys: NAME(100%), NAME(72%), ADDRESS(73%), NAME(34%), NAME(17%), NAME(0%), ADDRESS(27%)
+
+wrote C:\Code\Ripple_v6\outputs\connect_fingerprints.json
+[19:59:24] ===== discover =====
+  [value] 2871 kept / 5406 gated from 8277 co-occurring pairs (set-based)
+  [skip spatial-poly] FED_BIA_TRIBAL_GEO: geometry not WGS84/parseable
+  [skip spatial-poly] FED_USGS_3DEP: geometry not WGS84/parseable
+  [skip spatial-poly] FED_NTSB_AVIATION_EVENTS: geometry not WGS84/parseable
+  [spatial] 15 point tables x 3 WGS84 polygon tables
+  [err] spatial FED_NTSB_AVIATION_EVENTS in FED_MAPPING_INEQUALITY: 100205 (P0000): GeoJSON::Point: Invalid Lng/Lat pair: '1.140
+  [err] spatial FED_NTSB_AVIATION_EVENTS in FED_NOAA_WEATHER_API: 100205 (P0000): GeoJSON::Point: Invalid Lng/Lat pair: '74572
+  [err] spatial FED_NTSB_AVIATION_EVENTS in INTL_UCDP_GED: 100205 (P0000): GeoJSON::Point: Invalid Lng/Lat pair: '-93.5
+  [bridge] 381 transitive edges via 5 crosswalk relations (2,658,006 pairs); 0 gated, 324 already-direct
+
+3276 real connections kept (5406 flukes gated out) from 2666327 pairs tested (313 skipped).
+  by tier: CORROBORATED=1706, STEEL=891, BRIDGE=381, GEO=296, PROBABILISTIC=1, STRONG=1
+wrote C:\Code\Ripple_v6\outputs\connect_graph.json
+wrote 3,276 edges -> "LIBRARY_META"."CONNECT"."CONNECT_EDGES"
+[20:21:51] ===== spine =====
+spine: building hard-key set over 128 sources …
+  synced incremental state (SPINE_KEYSET_LIVE + CONNECT_WATERMARK)
+spine: 31,851,428 entities (15,468,968 multi-source) from 69,404,285 nodes; 31,851,428 golden records; by type: organization=16,185,747, provider=9,608,755, facility=6,008,957, person=39,313, vessel=8,656
+  entity index: 69,404,285 (entity, source) rows
+  backfilled LEFT_ENTITY_ID on 1092 leads
+[21:00:30] ===== explore =====
+wrote C:\Code\Ripple_v6\outputs\connection_explorer.html
+opened in your browser
+[21:00:32] ===== DONE OK =====

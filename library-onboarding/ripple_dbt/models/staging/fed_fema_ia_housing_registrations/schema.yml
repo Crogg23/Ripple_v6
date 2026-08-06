@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FEMA_IA_HOUSING_REGISTRATIONS
+        description: >
+          Raw landing table, ingestion sweep 2026-08-05. All columns arrive as TEXT.
+
+models:
+  - name: stg_fed_fema_ia_housing_registrations__all
+    description: >
+      Minimal passthrough staging view for FED_FEMA_IA_HOUSING_REGISTRATIONS. Grain not yet
+      determined -- snake_case rename only, no dedup.

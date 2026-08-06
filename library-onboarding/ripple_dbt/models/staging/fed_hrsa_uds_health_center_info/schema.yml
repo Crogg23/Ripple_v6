@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_HRSA_UDS_HEALTH_CENTER_INFO
+        description: >
+          HRSA UDS -- health center grantee identity/info (one row per funded health center).
+          All columns loaded as TEXT from the source system (raw landing, untransformed).
+
+models:
+
+  - name: stg_fed_hrsa_uds_health_center_info__records
+    description: >
+      Minimal passthrough staging model for FED_HRSA_UDS_HEALTH_CENTER_INFO. GRAIN NOT YET DETERMINED --
+      no dedup applied. Intended join key: bhcmisid (verify COUNT DISTINCT before using).

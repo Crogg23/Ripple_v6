@@ -1,0 +1,41 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FDA_GUDID
+        description: >
+          Raw landing table for openFDA device/udi (GUDID device identifiers).
+          Each row is one VARIANT chunk doc ({"results": [...]}); flatten
+          RAW:results in staging.
+
+models:
+  - name: stg_fed_fda_gudid__all
+    description: >
+      GUDID device identifier catalog records, flattened from RAW:results.
+      One row per public_device_record_key. primary_di is the join key to
+      MAUDE's device.udi_di.
+    columns:
+      - name: public_device_record_key
+        description: Unique GUDID catalog record key.
+        data_tests:
+          - unique
+          - not_null
+      - name: primary_di
+        description: Primary device identifier (DI) -- joins to MAUDE device.udi_di.
+      - name: brand_name
+        description: Device brand name.
+      - name: company_name
+        description: Labeler/manufacturer company name.
+      - name: labeler_duns_number
+        description: DUNS number of the labeler.
+      - name: primary_product_code
+        description: First FDA product classification code on the record.
+      - name: _ingested_at
+        description: Timestamp when the record was loaded into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this row.

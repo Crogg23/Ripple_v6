@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: justice__fed_atf_ffl
+    columns:
+      - name: ffl_number
+        data_tests:
+          - not_null
+          - unique

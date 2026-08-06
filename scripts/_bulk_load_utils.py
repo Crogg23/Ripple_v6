@@ -50,7 +50,7 @@ LANDING_FQS = f'"{LANDING_DB}"."{LANDING_SCHEMA}"'
 
 MAX_WORKERS = 6
 SMALL_THRESHOLD = 20_000_000  # 20 MB -- above this, use PUT+COPY path
-DEFAULT_MAX_ROWS = 500_000
+DEFAULT_MAX_ROWS = 5_000_000
 DEFAULT_TIMEOUT = 300
 
 # Provenance columns
@@ -410,7 +410,16 @@ def run_quality_gate(conn, source_id: str, table: str, run_id: str, *,
         passed, report = run_quality_gate(conn, SOURCE_ID, TABLE, run_id, sha256=sha)
         if not passed:
             sys.exit(1)
+
+    prev_row_count defaults to the last SUCCESSFUL run's row count from
+    INGEST_RUNS, so the >50% regression guard is live for every caller
+    without each loader having to thread it through.
     """
+    if prev_row_count is None:
+        try:
+            prev_row_count = ingest._latest_success_rows(conn, source_id)
+        except Exception:
+            prev_row_count = None
     passed, report = assess_bulk_load(
         conn, table,
         expected_min_rows=expected_min_rows,

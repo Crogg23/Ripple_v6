@@ -1,0 +1,68 @@
+candidates: 87   skipped: 78
+   SKIP  fed_dea_arcos                                           landing table FED_DEA_ARCOS does not exist (ghost registry row)
+   WIRE  INTL_GLEIF_REPEX                                        LEI           3,142,660 distinct  +    2,288 new
+   REJECT XC_EPA_CORPORATE_CROSSWALK                             FRS_ID: claimed by the registry but no known column name for it in this table
+   REJECT XC_EPA_CORPORATE_CROSSWALK                             LEI: claimed by the registry but no known column name for it in this table
+   REJECT XC_EPA_CORPORATE_CROSSWALK                             UEI: claimed by the registry but no known column name for it in this table
+   WIRE  FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY       CCN                 232 distinct  +        0 new
+   WIRE  FED_CMS_ORDER_AND_REFERRING                             NPI           2,018,350 distinct  +    1,439 new
+   WIRE  FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS                      PWSID           413,877 distinct  +  264,183 new
+   WIRE  FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT NPI           2,541,258 distinct  +      322 new
+   WIRE  FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING NPI           2,047,826 distinct  +    1,525 new
+   WIRE  FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI NPI              61,879 distinct  +        0 new
+   WIRE  FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE              NPI             453,202 distinct  +        0 new
+   WIRE  FED_CMS_MEDICARE_DIALYSIS_FACILITIES                    CCN                 335 distinct  +       34 new
+   WIRE  FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER NPI           1,296,739 distinct  +        0 new
+   REJECT FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL NPI: claimed by the registry but no known column name for it in this table
+   WIRE  FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS                     PWSID           434,040 distinct  +  280,388 new
+   WIRE  FED_EPA_SDWA_SDWA_SERVICE_AREAS                         PWSID           378,450 distinct  +  243,657 new
+   WIRE  FED_CMS_NURSING_HOME_DEFICIENCIES                       CCN              14,384 distinct  +        0 new
+   WIRE  FED_EPA_SDWA_SDWA_EVENTS_MILESTONES                     PWSID            98,555 distinct  +   55,599 new
+   WIRE  FED_EPA_SDWA_SDWA_PN_VIOLATION_ASSOC                    PWSID            42,034 distinct  +   29,148 new
+   REJECT FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER NPI: claimed by the registry but no known column name for it in this table
+   WIRE  FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES                    FRS_ID          266,026 distinct  +       57 new
+   WIRE  FED_FEC_INDEPENDENT_EXPENDITURES                        FEC_CAND_ID       2,014 distinct  +      607 new
+   WIRE  FED_EPA_ICIS_FEC_ICIS_FEC_EPA_INSPECTIONS               FRS_ID          156,326 distinct  +    2,486 new
+   WIRE  FED_EPA_ICIS_FEC_CASE_FACILITIES                        FRS_ID          113,854 distinct  +       70 new
+   WIRE  FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES                  CCN              13,687 distinct  +        0 new
+   WIRE  FED_MSHA_MINES                                          MINE_ID          91,906 distinct  +   60,478 new
+   REJECT FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE CCN: claimed by the registry but no known column name for it in this table
+   REJECT FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE CCN: claimed by the registry but no known column name for it in this table
+   REJECT FED_EPA_TRI_BASIC_2023                                 FRS_ID: claimed by the registry but no known column name for it in this table
+   WIRE  FED_SEC_EDGAR_INSIDERS                                  CIK               5,306 distinct  +      190 new
+   WIRE  FED_CMS_OPT_OUT_AFFIDAVITS                              NPI              56,455 distinct  +       19 new
+   WIRE  FED_US_SEC_EDGAR                                        CIK                  25 distinct  +        0 new
+   WIRE  FED_EPA_ICIS_FEC_EPA_INFORMAL_ENFORCEMENT_ACTIONS       FRS_ID           14,606 distinct  +        8 new
+   WIRE  FED_FEC_BULK                                            FEC_CMTE_ID      20,938 distinct  +    5,166 new
+   WIRE  FED_FEC_LEADERSHIP_PAC                                  FEC_CMTE_ID       8,338 distinct  +    3,464 new
+   WIRE  FED_FEC_BULK_LINKAGES                                   FEC_CMTE_ID      11,427 distinct  +    3,493 new
+   WIRE  FED_CMS_NURSING_HOME_PENALTIES                          CCN               6,771 distinct  +        0 new
+   WIRE  FED_SEC_DERA_SUB_2024Q2                                 CIK               6,250 distinct  +        0 new
+   WIRE  FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS NPI               7,240 distinct  +      361 new
+   WIRE  FED_SEC_DERA_SUB_2025Q2                                 CIK               6,081 distinct  +       41 new
+   WIRE  FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_NON_PHYSICIANS NPI               6,880 distinct  +      453 new
+   WIRE  FED_SEC_DERA_SUB_2024Q3                                 CIK               6,008 distinct  +        0 new
+   WIRE  FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS         NPI               6,510 distinct  +        0 new
+   WIRE  FED_SEC_DERA_SUB_2025Q3                                 CIK               5,909 distinct  +       57 new
+   WIRE  FED_SEC_DERA_SUB_2024Q4                                 CIK               5,833 distinct  +        0 new
+   WIRE  FED_SEC_DERA_SUB_2025Q4                                 CIK               5,786 distinct  +       88 new
+   WIRE  FED_SEC_DERA_SUB_2025Q1                                 CIK               5,672 distinct  +       18 new
+   WIRE  FED_SEC_DERA_SUB_2026Q1                                 CIK               5,750 distinct  +       95 new
+   WIRE  FED_SEC_DERA_SUB_2024Q1                                 CIK               5,506 distinct  +        0 new
+   REJECT FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER       CCN: claimed by the registry but no known column name for it in this table
+   WIRE  FED_IRS_EO_PR                                           EIN               2,587 distinct  +       29 new
+   WIRE  FED_CMS_OPIOID_TREATMENT_PROGRAM_PROVIDERS              NPI               1,287 distinct  +        0 new
+   REJECT FED_SEC_MONEY_MARKET_FUND_INFORMATION                  CIK: claimed by the registry but no known column name for it in this table
+   WIRE  FED_CMS_MEDICARE_DIABETES_PREVENTION_PROGRAM            NPI                 307 distinct  +        0 new
+   WIRE  FED_SEC_CLOSED_END_FUND_INFORMATION                     CIK                 973 distinct  +      650 new
+   REJECT FED_CLINICALTRIALS                                     NPI: claimed by the registry but no known column name for it in this table
+   WIRE  FED_SEC_BUSINESS_DEVELOPMENT_COMPANY_REPORT             CIK                 212 distinct  +       72 new
+   WIRE  FED_SEC_EDGAR                                           CIK                  20 distinct  +        0 new
+   REJECT FED_CMS_MAIN                                           NPI: only 0 distinct value(s) after normalization; only 0.0% of rows survive normalization; normalizes to NULL on every row (sentinel or wrong column)
+   WIRE  FED_USASPENDING_CONTRACTS_FULL                          UEI             420,990 distinct  +  316,786 new
+
+spec block -> outputs/spine_specs_generated_20260805.py
+
+wired 48 tables, 60 keys, 1,304,709 new entity values; 15 rejected
+evidence -> C:\Code\Ripple_v6\outputs\spine_wiring_evidence.csv
+rejects  -> C:\Code\Ripple_v6\outputs\spine_wiring_rejects.csv

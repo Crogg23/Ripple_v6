@@ -16,12 +16,14 @@ import json
 import re
 import sys
 import time
+import uuid
 from pathlib import Path
 
 import pandas as pd
 import requests
 
 _REPO = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(_REPO / "scripts"))
 sys.path.insert(0, str(_REPO / "library-onboarding"))
 try:
     from dotenv import load_dotenv
@@ -30,6 +32,7 @@ except Exception:
     pass
 
 import snow  # noqa: E402
+import _bulk_load_utils as bulk  # noqa: E402
 
 CATALOG_URL = "https://data.cms.gov/data.json"
 LANDING_SCHEMA = "LIBRARY_RAW.LANDING"
@@ -116,7 +119,7 @@ def discover_catalog() -> list[dict]:
     return candidates
 
 
-def load_dataset(conn, url: str, table_name: str, max_rows: int = 500000) -> int:
+def load_dataset(conn, url: str, table_name: str, max_rows: int = 5_000_000) -> int:
     """Download CSV and load to Snowflake via staging + SWAP."""
     from snowflake.connector.pandas_tools import write_pandas
 
@@ -154,7 +157,7 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--run", action="store_true")
     ap.add_argument("--limit", type=int, default=50, help="max datasets to load this run")
-    ap.add_argument("--max-rows", type=int, default=500000, help="row cap per dataset")
+    ap.add_argument("--max-rows", type=int, default=5_000_000, help="row cap per dataset")
     args = ap.parse_args()
 
     # Get what's already loaded
@@ -203,20 +206,31 @@ def main() -> int:
     # Load them
     loaded_count = 0
     total_rows = 0
+    failed = 0
     for d in loadable:
         try:
             n = load_dataset(conn, d["url"], d["table_name"], max_rows=args.max_rows)
             if n > 0:
+                # Quality gate + INGEST_RUNS row (audit 2026-08-05 finding #3:
+                # this loader bypassed the gate)
+                passed, report = bulk.run_quality_gate(
+                    conn, d["table_name"], d["table_name"], str(uuid.uuid4()),
+                    source_url=d["url"])
+                if not passed:
+                    print(f"    QUALITY GATE FAILED {d['table_name']}: {report}")
+                    failed += 1
+                    continue
                 loaded_count += 1
                 total_rows += n
                 print(f"    -> {d['table_name']}: {n:,} rows loaded")
         except Exception as e:
             print(f"    FAILED {d['table_name']}: {str(e)[:100]}")
+            failed += 1
             continue
 
-    print(f"\nDone: {loaded_count} datasets loaded, {total_rows:,} total rows")
+    print(f"\nDone: {loaded_count} datasets loaded, {total_rows:,} total rows, {failed} failed")
     conn.close()
-    return 0
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":

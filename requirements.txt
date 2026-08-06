@@ -28,6 +28,12 @@ snowflake-connector-python[pandas]==4.4.0      # load to LANDING, read catalog;
                                                #   [pandas] extra pulls write_pandas
 pyarrow==21.0.0                                # required by the [pandas] extra /
                                                #   write_pandas; pinned explicitly
+zipfile-deflate64==0.2.0                       # patches stdlib zipfile to decode
+                                               #   compress_type=9 (Deflate64) --
+                                               #   required by scripts/fjc_idb_load.py
+                                               #   (FJC's IDB zips use it; stdlib
+                                               #   zipfile alone raises
+                                               #   NotImplementedError on them)
 
 # --- HTML parsing / scrape sources -----------------------------------------
 beautifulsoup4==4.14.3        # static-page scrape (recon.py, browser.py)

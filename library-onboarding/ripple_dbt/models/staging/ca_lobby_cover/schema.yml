@@ -1,0 +1,64 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: CA_LOBBY_COVER
+        description: >
+          Raw landing table for California CAL-ACCESS Lobbying Disclosure cover pages
+          (Forms 615/625/635/645). All columns arrive as TEXT from the ingestion
+          pipeline. Sibling CA_LOBBY_* tables (COVER2, CHG_LOG, AMENDMENTS,
+          CONTRIBUTIONS, EMPLOYER, EMPLOYER_FIRMS, EMP_LOBBYIST, FIRM, FIRM_EMPLOYER,
+          FIRM_LOBBYIST) land as RAW tables joined on FILER_ID/FIRM_ID; no staging
+          models built for those yet.
+        columns:
+          - name: FILER_ID
+            description: CAL-ACCESS filer identifier (prefix denotes type -- L=individual lobbyist, E=employer, F=firm, C=committee). Join key across CA_LOBBY_* tables.
+          - name: FILING_ID
+            description: Unique filing/disclosure identifier (primary key of this table).
+          - name: RPT_DATE
+            description: Report filing date (raw TEXT, "M/D/YYYY H:MI:SS AM/PM" format).
+
+models:
+  - name: stg_ca_lobby_cover__filings
+    description: >
+      Staging model for CA CAL-ACCESS lobbying disclosure cover-page filings. Renames
+      columns to snake_case and parses dates. One row per filing (FILING_ID unique;
+      22,433 distinct FILER_IDs across 568,988 filings).
+    columns:
+      - name: filing_id
+        description: Unique filing identifier (natural key).
+        data_tests:
+          - not_null
+          - unique
+
+      - name: filer_id
+        description: CAL-ACCESS filer identifier (L/E/F/C-prefixed).
+        data_tests:
+          - not_null
+
+      - name: filer_naml
+        description: Filer last name or organization name.
+
+      - name: firm_id
+        description: Associated lobbying firm identifier, when applicable.
+
+      - name: firm_name
+        description: Associated lobbying firm name, when applicable.
+
+      - name: rpt_date
+        description: Parsed report filing date.
+
+      - name: from_date
+        description: Parsed reporting period start date.
+
+      - name: thru_date
+        description: Parsed reporting period end date.
+
+      - name: _loaded_at
+        description: Timestamp when the record was ingested into the landing table.
+
+      - name: _source_url
+        description: Source URL for this record's provenance.

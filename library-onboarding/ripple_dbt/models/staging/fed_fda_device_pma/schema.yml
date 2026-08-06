@@ -1,0 +1,55 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FDA_DEVICE_PMA
+        description: >
+          Raw landing table for openFDA device/pma (premarket approval) decisions.
+          Each row is one VARIANT chunk doc ({"results": [...]}); flatten RAW:results
+          in staging.
+
+models:
+  - name: stg_fed_fda_device_pma__all
+    description: >
+      PMA (premarket approval) decisions, flattened from RAW:results. Grain is
+      (pma_number, supplement_number) -- supplements to an already-approved PMA
+      reuse the same pma_number.
+    columns:
+      - name: pma_number
+        description: PMA original approval identifier. Not unique alone (see supplement_number).
+        data_tests:
+          - not_null
+      - name: supplement_number
+        description: Supplement sequence number; "" for the original approval.
+      - name: applicant
+        description: Company that submitted the PMA.
+        data_tests:
+          - not_null
+      - name: trade_name
+        description: Device trade name.
+      - name: product_code
+        description: FDA product classification code.
+      - name: decision_code
+        description: Coded decision (e.g. APPR = approved).
+      - name: date_received
+        description: Date FDA received the submission.
+      - name: decision_date
+        description: Date FDA issued its decision.
+      - name: openfda
+        description: openFDA-enriched cross-reference block.
+      - name: _ingested_at
+        description: Timestamp when the record was loaded into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this row.
+
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - pma_number
+              - supplement_number

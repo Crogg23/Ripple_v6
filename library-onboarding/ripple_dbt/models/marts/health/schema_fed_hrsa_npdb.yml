@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: health__fed_hrsa_npdb
+    columns:
+      - name: seqno
+        data_tests:
+          - not_null
+          - unique

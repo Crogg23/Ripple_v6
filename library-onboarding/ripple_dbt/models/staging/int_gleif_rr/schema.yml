@@ -9,9 +9,25 @@ sources:
 
 models:
   - name: stg_int_gleif_rr__all
-    description: "GLEIF Relationship Records — parent-child ownership chains across 482K LEI pairs."
+    description: >
+      GLEIF Relationship Records — parent-child ownership chains across 482K
+      relationship rows. Grain is (LEI, PARENT_LEI, RELATIONSHIP_TYPE): a single
+      child LEI can have multiple relationship rows (e.g. IS_DIRECTLY_CONSOLIDATED_BY
+      and IS_ULTIMATELY_CONSOLIDATED_BY are separate rows), so LEI alone is not unique.
     columns:
       - name: LEI
         data_tests:
           - not_null
-          - unique
+      - name: PARENT_LEI
+        data_tests:
+          - not_null
+      - name: RELATIONSHIP_TYPE
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - LEI
+              - PARENT_LEI
+              - RELATIONSHIP_TYPE

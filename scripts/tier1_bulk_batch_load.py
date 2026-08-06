@@ -317,7 +317,8 @@ def _stamp(df: pd.DataFrame, sha: str, run_id: str, started: dt.datetime) -> pd.
     return df
 
 
-def _write(conn, df: pd.DataFrame, tbl: str) -> int:
+def _write(conn, df: pd.DataFrame, tbl: str, *,
+           sha: str = "", run_id: str = "", source_url: str = "") -> int:
     from snowflake.connector.pandas_tools import write_pandas
     df.columns = [bulk.sf_col(c) for c in df.columns]
     ok, _c, _n, _ = write_pandas(
@@ -327,6 +328,14 @@ def _write(conn, df: pd.DataFrame, tbl: str) -> int:
     )
     if not ok:
         raise RuntimeError(f"write_pandas failed for {tbl}")
+    # Quality gate + INGEST_RUNS row (audit 2026-08-05 finding #3: this loader
+    # was a gate-bypass lane). A dq_failed load raises so it lands in the
+    # failure summary and the exit code, never a silent "success".
+    passed, report = bulk.run_quality_gate(
+        conn, tbl, tbl, run_id or str(uuid.uuid4()),
+        sha256=sha, source_url=source_url)
+    if not passed:
+        raise RuntimeError(f"{tbl}: quality gate failed -- {report}")
     return len(df)
 
 
@@ -343,7 +352,8 @@ def load_csv(conn, entry: dict, max_rows: int) -> int:
     if df.empty:
         return 0
     df = _stamp(df, sha, run_id, started)
-    return _write(conn, df, entry["table"])
+    return _write(conn, df, entry["table"], sha=sha, run_id=run_id,
+                  source_url=entry["url"])
 
 
 def load_zip_csv(conn, entry: dict, max_rows: int) -> int:
@@ -369,7 +379,8 @@ def load_zip_csv(conn, entry: dict, max_rows: int) -> int:
     if df.empty:
         return 0
     df = _stamp(df, sha, run_id, started)
-    return _write(conn, df, entry["table"])
+    return _write(conn, df, entry["table"], sha=sha, run_id=run_id,
+                  source_url=entry["url"])
 
 
 def load_zip_multi(conn, entry: dict, max_rows: int) -> int:
@@ -397,7 +408,8 @@ def load_zip_multi(conn, entry: dict, max_rows: int) -> int:
                 if df.empty:
                     continue
                 df = _stamp(df, sha, run_id, started)
-                n = _write(conn, df, tbl)
+                n = _write(conn, df, tbl, sha=sha, run_id=run_id,
+                           source_url=entry["url"])
                 print(f"      {tbl}: {n:,} rows")
                 total += n
             except Exception as e:
@@ -427,7 +439,8 @@ def load_zip_xlsx(conn, entry: dict, max_rows: int) -> int:
     if df.empty:
         return 0
     df = _stamp(df, sha, run_id, started)
-    return _write(conn, df, entry["table"])
+    return _write(conn, df, entry["table"], sha=sha, run_id=run_id,
+                  source_url=entry["url"])
 
 
 def load_xlsx(conn, entry: dict, max_rows: int) -> int:
@@ -443,7 +456,8 @@ def load_xlsx(conn, entry: dict, max_rows: int) -> int:
     if df.empty:
         return 0
     df = _stamp(df, sha, run_id, started)
-    return _write(conn, df, entry["table"])
+    return _write(conn, df, entry["table"], sha=sha, run_id=run_id,
+                  source_url=entry["url"])
 
 
 def load_bz2_csv(conn, entry: dict, max_rows: int) -> int:
@@ -461,7 +475,8 @@ def load_bz2_csv(conn, entry: dict, max_rows: int) -> int:
     if df.empty:
         return 0
     df = _stamp(df, sha, run_id, started)
-    return _write(conn, df, entry["table"])
+    return _write(conn, df, entry["table"], sha=sha, run_id=run_id,
+                  source_url=entry["url"])
 
 
 FORMAT_LOADERS = {
@@ -481,7 +496,7 @@ def main() -> int:
     ap = argparse.ArgumentParser(description="Batch loader for remaining Tier-1 bulk sources")
     ap.add_argument("--run", action="store_true", help="Actually load (default: preview)")
     ap.add_argument("--group", type=str, default=None, help="Only load a specific group")
-    ap.add_argument("--max-rows", type=int, default=500_000, help="Row cap per dataset")
+    ap.add_argument("--max-rows", type=int, default=5_000_000, help="Row cap per dataset")
     args = ap.parse_args()
 
     entries = MANIFEST
@@ -552,7 +567,9 @@ def main() -> int:
     print(f"{'='*60}")
 
     conn.close()
-    return 0
+    # Non-zero exit when anything failed (audit: main() previously always
+    # returned 0, hiding failures from calling schedulers).
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":

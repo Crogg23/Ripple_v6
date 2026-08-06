@@ -1,0 +1,99 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: ST_OEHHA_PROPOSITION_65_LIST
+        description: >
+          Raw landing table for the OEHHA Proposition 65 List. Contains chemicals
+          known to the State of California to cause cancer, birth defects, or other
+          reproductive harm.
+        columns:
+          - name: CHEMICAL
+            description: Name of the listed chemical.
+          - name: TYPE_OF_TOXICITY
+            description: Type of health hazard (e.g., cancer, reproductive toxicity).
+          - name: LISTING_MECHANISM
+            description: Regulatory mechanism used to add the chemical to the list.
+          - name: CAS_NO
+            description: Chemical Abstracts Service registry number.
+          - name: DATE_LISTED
+            description: Date the chemical was added to the Proposition 65 list.
+          - name: NSRL_OR_MADL_G_DAY_A
+            description: No Significant Risk Level or Maximum Allowable Dose Level in micrograms/day.
+          - name: COL_6
+            description: Additional raw column 6 (content varies by source extract).
+          - name: COL_7
+            description: Additional raw column 7 (content varies by source extract).
+          - name: COL_8
+            description: Additional raw column 8 (content varies by source extract).
+
+models:
+  - name: stg_st_oehha_proposition_65_list__chemical
+    description: >
+      Staging model for OEHHA Proposition 65 listed chemicals. Cleans and casts raw
+      text fields, deduplicates on (chemical, cas_no), and generates a surrogate key.
+    columns:
+      - name: chemical_key
+        description: Surrogate primary key derived from chemical name and CAS number.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: chemical
+        description: Name of the listed chemical.
+        data_tests:
+          - not_null
+
+      - name: cas_no
+        description: Chemical Abstracts Service registry number.
+        data_tests:
+          - not_null
+
+      - name: type_of_toxicity
+        description: Type of health hazard associated with the chemical.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values:
+                  - 'cancer'
+                  - 'reproductive toxicity'
+                  - 'cancer, reproductive toxicity'
+                  - 'developmental toxicity'
+                  - 'cancer, developmental toxicity'
+                quote: true
+              config:
+                severity: warn
+
+      - name: listing_mechanism
+        description: Regulatory mechanism used to list the chemical.
+        data_tests:
+          - not_null
+
+      - name: date_listed
+        description: Date the chemical was added to the list (cast from text).
+
+      - name: nsrl_or_madl_g_day
+        description: Safe harbor level in micrograms per day (cast from text).
+
+      - name: col_6
+        description: Supplementary raw column 6.
+
+      - name: col_7
+        description: Supplementary raw column 7.
+
+      - name: col_8
+        description: Supplementary raw column 8.
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this record.
+        data_tests:
+          - not_null

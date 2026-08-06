@@ -1,0 +1,52 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: TX_LOBBY_COVER
+        description: >
+          Raw landing table for the Texas Ethics Commission Lobby Activities Reports
+          cover sheet (Form LA totals). All columns arrive as TEXT from the ingestion
+          pipeline. Other TX lobby schedule tables (subject matter, transportation,
+          food/beverage, entertainment, gifts, awards, events, individual reporting)
+          land as sibling RAW tables (TX_LOBBY_SUBJECT_MATTER etc.) joined on
+          REPORTINFOIDENT; no staging models built for those yet.
+        columns:
+          - name: FILERIDENT
+            description: TEC-assigned lobbyist filer identifier (join key across all TX_LOBBY_* tables).
+          - name: REPORTINFOIDENT
+            description: Unique report number assigned by TEC (one row per filed report; primary key of this table).
+          - name: PERIODENDDT
+            description: End date of the reporting period (raw TEXT, YYYYMMDD format).
+
+models:
+  - name: stg_tx_lobby_cover__reports
+    description: >
+      Staging model for TX lobby activity cover-sheet reports. Renames columns to
+      snake_case and parses dates. One row per filed report (REPORTINFOIDENT is
+      already unique in the raw table; 8,952 distinct filers).
+    columns:
+      - name: report_info_ident
+        description: Unique report number (natural key).
+        data_tests:
+          - not_null
+          - unique
+
+      - name: filer_ident
+        description: TEC-assigned lobbyist filer identifier.
+        data_tests:
+          - not_null
+
+      - name: filer_name
+        description: Lobbyist/filer name.
+
+      - name: period_end_dt
+        description: Parsed end date of the reporting period.
+
+      - name: _loaded_at
+        description: Timestamp when the record was ingested into the landing table.
+
+      - name: _source_url
+        description: Source URL for this record's provenance.

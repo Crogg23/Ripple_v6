@@ -1,0 +1,150 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: XC_UN_CONSOLIDATED_SANCTIONS_LIST
+        description: >
+          Raw landing table for the UN Consolidated Sanctions List ingested by
+          the Ripple pipeline. All columns arrive as TEXT.
+
+models:
+
+  - name: stg_xc_un_consolidated_sanctions_list__designated_party
+    description: >
+      Staging model for the UN Consolidated Sanctions List. Casts TEXT columns
+      to appropriate types, renames to snake_case, and deduplicates on the
+      composite natural key (dataid, reference_number) keeping the most-recently
+      ingested record.
+    columns:
+      - name: dataid
+        description: Unique data identifier assigned by the UN for each sanction record.
+        data_tests:
+          - not_null
+
+      - name: reference_number
+        description: Human-readable reference number for the sanctioned entry.
+        data_tests:
+          - not_null
+
+      - name: record_type
+        description: Indicates whether the record refers to an Individual or an Entity.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['Individual', 'Entity', 'INDIVIDUAL', 'ENTITY']
+                quote: true
+
+      - name: version_num
+        description: Version number of the record cast from TEXT to NUMBER.
+
+      - name: first_name
+        description: First name of the designated individual (null for entities).
+
+      - name: second_name
+        description: Second name of the designated individual.
+
+      - name: third_name
+        description: Third name of the designated individual.
+
+      - name: fourth_name
+        description: Fourth name of the designated individual.
+
+      - name: full_name
+        description: Concatenated full name derived in the mart layer.
+
+      - name: name_original_script
+        description: Name written in the original script (e.g. Arabic, Cyrillic).
+
+      - name: title
+        description: Title or honorific of the designated party.
+
+      - name: gender
+        description: Gender of the designated individual.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['Male', 'Female', 'Unknown', 'MALE', 'FEMALE', 'UNKNOWN', '']
+                quote: true
+
+      - name: un_list_type
+        description: Specific UN list sub-type (e.g. Al-Qaida, Taliban).
+
+      - name: list_type
+        description: Broader sanctions list type classification.
+
+      - name: designation
+        description: Free-text designation / role description for the party.
+
+      - name: nationality
+        description: Nationality of the designated party.
+
+      - name: comments
+        description: Free-text comments associated with the sanction entry.
+
+      - name: has_interpol_link
+        description: Boolean flag indicating whether an Interpol notice link exists.
+
+      - name: interpol_link
+        description: URL to the related Interpol notice.
+
+      - name: listed_on
+        description: Date the party was added to the sanctions list.
+
+      - name: last_day_updated
+        description: Date the record was last updated.
+
+      - name: last_reviewed_on
+        description: Date the record was last formally reviewed.
+
+      - name: sort_key
+        description: Sort key used internally by the UN list publication.
+
+      - name: sort_key_last_mod
+        description: Sort key reflecting the last modification order.
+
+      - name: individual_alias
+        description: >
+          Semi-structured string containing alias name(s) for an individual
+          party as supplied by the source.
+
+      - name: individual_address
+        description: >
+          Semi-structured string containing known address(es) for an individual
+          party.
+
+      - name: individual_date_of_birth
+        description: >
+          Semi-structured string containing date-of-birth information for an
+          individual party (may include ranges / approximate values).
+
+      - name: individual_place_of_birth
+        description: >
+          Semi-structured string containing place-of-birth information for an
+          individual party.
+
+      - name: individual_document
+        description: >
+          Semi-structured string containing identity document details for an
+          individual party.
+
+      - name: entity_alias
+        description: >
+          Semi-structured string containing alias name(s) for an entity party.
+
+      - name: entity_address
+        description: >
+          Semi-structured string containing known address(es) for an entity
+          party.
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this record.
+        data_tests:
+          - not_null

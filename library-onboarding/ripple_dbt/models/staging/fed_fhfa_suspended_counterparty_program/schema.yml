@@ -1,0 +1,68 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FHFA_SUSPENDED_COUNTERPARTY_PROGRAM
+        description: >
+          Raw landing table for the FHFA Suspended Counterparty Program.
+          All columns arrive as TEXT from the ingestion pipeline.
+        columns:
+          - name: FIRST_NAME
+            description: First name of the suspended individual (raw TEXT).
+          - name: LAST_NAME
+            description: Last name of the suspended individual (raw TEXT).
+          - name: COMPANY
+            description: Company associated with the suspended counterparty (raw TEXT).
+          - name: CITY
+            description: City of the suspended counterparty (raw TEXT).
+          - name: STATE
+            description: State of the suspended counterparty (raw TEXT).
+          - name: EFFECTIVE_DATESORT_ASCENDING
+            description: Effective date of the suspension (raw TEXT, sortable ascending).
+          - name: SUSPENSION_END_DATE
+            description: End date of the suspension; NULL implies indefinite (raw TEXT).
+          - name: SUSPENSION_ORDER
+            description: Reference to the suspension order document (raw TEXT).
+
+models:
+  - name: stg_fed_fhfa_suspended_counterparty_program__suspended_counterparty
+    description: >
+      Staging model for the FHFA Suspended Counterparty Program. Renames columns to
+      snake_case, casts to appropriate types, and deduplicates on (last_name, company).
+    columns:
+      - name: last_name
+        description: Last name of the suspended individual.
+        data_tests:
+          - not_null
+
+      - name: company
+        description: Company associated with the suspended counterparty.
+        data_tests:
+          - not_null
+
+      - name: first_name
+        description: First name of the suspended individual.
+
+      - name: city
+        description: City of the suspended counterparty.
+
+      - name: state
+        description: State abbreviation or full name of the suspended counterparty.
+
+      - name: effective_date
+        description: Parsed effective date of the suspension.
+
+      - name: suspension_end_date
+        description: Parsed end date of the suspension. NULL implies indefinite suspension.
+
+      - name: suspension_order
+        description: Reference identifier or URL for the suspension order.
+
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier associated with the ingestion.

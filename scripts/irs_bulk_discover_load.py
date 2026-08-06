@@ -150,7 +150,7 @@ def main() -> int:
     ap = argparse.ArgumentParser(description="IRS targeted bulk loader")
     ap.add_argument("--run", action="store_true")
     ap.add_argument("--limit", type=int, default=len(IRS_MANIFEST))
-    ap.add_argument("--max-rows", type=int, default=500000)
+    ap.add_argument("--max-rows", type=int, default=5_000_000)
     args = ap.parse_args()
 
     conn = snow.connect()

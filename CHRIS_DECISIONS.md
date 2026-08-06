@@ -8,6 +8,263 @@ ongoing work — the work routes around it.
 
 ---
 
+## DONE — 2026-08-05/06 (overnight): the prioritized data-gap punch list closed
+
+Working from the handoff punch list (P0-P3). R1/R2 (ICE detention + MO sex offender)
+already logged above under "red lane" — this covers the rest, plus a warehouse
+quality audit run in parallel while waiting on background loads.
+
+- **RCRA + National Response Center — landed, verified.** Turned out there was no
+  bug — the prior "zero rows" was the earlier session running out of wall-clock
+  time, not broken code. `FED_EPA_RCRA_*` (6 tables): 383,519 enforcements +
+  1,166,410 evaluations + 1,613,224 facilities + 434,734 NAICS + 708,114 violations
+  + 2,675,581 VIOSNC history. `FED_USCG_NRC_INCIDENTS`: 1,029,020 rows, all 37 years
+  (1990-2026) present, zero gaps. `ID_NUMBER` confirmed a real key (COUNT=DISTINCT
+  on facilities, correctly repeating on child tables), not masked. GHGRP (already
+  landed) confirmed untouched.
+- **FJC federal court records — fixed, 25.1M real rows replacing 4.1M rows of
+  nothing.** The registered URL was a landing page; the real bulk files sit behind
+  the site's hidden "Court Type" filter. Landed via `scripts/fjc_idb_load.py`:
+  `FED_FJC_IDB_CIVIL` (10,857,396, SY1988-present), `FED_FJC_IDB_CRIMINAL`
+  (6,299,908, FY1996-present), `FED_FJC_IDB_APPELLATE` (988,183, FY2008-present),
+  `FED_FJC_IDB_BANKRUPTCY` (6,965,441, FJC's pre-built 5-year file FY2021-2026 Q1,
+  not the full FY2008+ archive — that's 2 more files, ~15-20M more rows, disclosed
+  not silently dropped). **Real finding, checked value density not just row
+  count:** the judge-identity field is 0% populated in all 4 tables — civil/
+  criminal/appellate judge columns are blank on every row. Judge-level
+  accountability patterns are NOT buildable from this source alone. Party names
+  (plaintiff/defendant, appellant/appellee) do work. Old dbt staging/mart models
+  point at the dropped table's guessed schema — need a rebuild against the new
+  4-table shape, not done yet.
+- **PBGC Trusteed Plans — right dataset landed this time.** `FED_PBGC_DATA`
+  (aggregate Data Book, untouched, still correct) was never the plan-level
+  product. Found and landed the real one: `FED_PBGC_TRUSTEED_PLANS`, 5,176 rows,
+  real `EIN` (4,431 distinct) + `PLAN_NUMBER`, registered as a separate source.
+  Independent verify caught the loader's own self-reported caveat was wrong by
+  13x (claimed 0.8% of rows have a short EIN, real number is 11.1%/574 rows) —
+  corrected in the loader docstring and the live registry NOTES.
+- **OpenSanctions default collection — finished and registered, not rebuilt from
+  scratch.** Turned out a prior session already downloaded and landed 1,281,846
+  rows into `INTL_OPENSANCTIONS_DEFAULT`; it just was never registered. The
+  "22,286 rows missing" scare was `wc -l` miscounting multi-line quoted fields —
+  reconciled exactly (22,286 embedded newlines = the exact gap). Confirmed via
+  the live OpenSanctions site this is the real "default" collection (PEPs, crime,
+  debarment, sanctions — not just the narrow SDN/CSL/UN/EU slice already
+  registered as `intl_opensanctions`, which is untouched). New registry row
+  `intl_opensanctions_default` — clearly notes this is the flat targets CSV, NOT
+  the FollowTheMoney entities+relations graph (that's still a separate, bigger
+  job if wanted).
+- **NIH grants — fixed, then deliberately CAPPED partway, by your call, not a
+  hidden failure.** The existing "fix" (loop fiscal years 2000-2026) turned out
+  to be itself broken: landed exactly 15,000 rows for every single one of 27
+  fiscal years — a flat API window cap, not real per-year totals (confirmed
+  live: FY2024's real total is 83,516, not 15,000). Real fix needed recursive
+  date-window bisection (a single quarter of a busy year still exceeds the cap)
+  plus a fallback for records missing `award_notice_date`. Fix worked — but the
+  overnight run crashed mid-FY2003 write (`Numeric value '[276, 320]' is not
+  recognized`, a Snowflake type error, most likely the amount-range
+  density-rescue path serializing a Python list into a numeric column for one
+  row). You said cap it and square it away rather than keep debugging — done:
+  **`FED_NIH_REPORTER` now holds 206,333 rows, 100% verified exact (gap=0)
+  against live API totals, but ONLY for FY2000-2002.** FY2003-2026 (24 years,
+  ~1.9M more real rows by the same API totals) are NOT landed. This replaces
+  the old table, which was wrong for all 27 years — smaller now, but everything
+  in it is actually correct. Real follow-up, whenever it matters: fix the
+  write-time serialization bug (isolated to the amount-range-rescue path, not
+  the whole loader), then resume — the checkpoint/resume pattern already
+  supports it, just needs a fresh run.
+- **Warehouse quality/health audit — run in parallel, six dimensions, real
+  findings, not a rehash.** Full report: `outputs/warehouse_quality_audit_2026-08-05.md`.
+  Highlights that need attention: `LEAD_QUEUE` (the human-review queue) is
+  currently missing 4 flagged leads that exist in the real detection output —
+  breaks the "human sign-off on every finding" rule, silently, right now, until
+  someone reruns `dbt build --select marts.review`. `FED_CFPB_HMDA` claims to be
+  nationwide 2022 HMDA mortgage data at full mart trust; it is 100% Washington DC.
+  42% of warehouse row volume (366M rows) never touches the quality gate at all,
+  via an active bypass lane used again tonight. 45% of a stratified sample of
+  "hard-tier" join keys are broken. The "mystery parallel writer" from earlier
+  tonight is solved — it was Ripple's own concurrent agent processes on one
+  shared `ACCOUNTADMIN` credential, not an intruder, with zero attribution and
+  effectively no undo path for a bad overwrite (1-day Time Travel only; the file
+  backup is 31 days stale and never covered the raw warehouse). Full severity
+  ratings and a prioritized fix order are in the audit file.
+- **11 orphan duplicate tables still need your manual DROP** — unchanged from
+  the wiring report, `DROP TABLE` stays blocked for the agent. The audit above
+  found more unregistered (not duplicate) tables separately — see the file.
+- Four loader scripts built tonight (`fjc_idb_load.py`, `ice_detention_records_load.py`,
+  `mo_sex_offender_registry_load.py`, `pbgc_trusteed_plans_load.py`) are
+  uncommitted — sitting on disk only, not in git history yet.
+
+## DONE — 2026-08-05 (evening): the ingestion sweep is ON THE MAP
+
+Full receipt: `outputs/connect_wiring_report_2026-08-05.md`. Short version:
+- **Entities 22.6M → 31.8M (+9.2M); map edges 2,694 → 3,276.** Full
+  fingerprint→discover→spine→explore rebuild ran clean; incremental lane
+  self-synced.
+- **New hard-key axis: UK company number** — 7M PSC beneficial-ownership rows
+  joined to the 5.7M-company UK registry; 2,335,951 companies span both
+  (verified two independent ways). Owner names deliberately never become
+  company names in the golden record.
+- **142 sources got their join keys measured + registered** (guarded write,
+  snapshot + rollback in outputs/); 46 more tables wired into the spine with
+  live evidence (spine scope 80 → 128 tables).
+- **Leads: unchanged at 17,307 — honestly.** No existing detector touches the
+  new populations (UK companies, EPA facility suites, IRS 527s, ICIJ).
+  **RED-lane call for you:** which new detectors, if any — e.g. "sanctioned
+  name ∩ UK company owner" or "EPA violator ∩ federal contractor" — now
+  possible because…
+- **New find: `XC_EPA_CORPORATE_CROSSWALK` carries live FRS_ID + LEI + UEI** —
+  the EPA↔federal-money hard-ID bridge the 2026-07-31 mapping said didn't
+  exist. Not yet modeled/wired; say the word.
+- 5 MORE orphan duplicate twins found beyond the documented 6 (all 5
+  ICIJ_OFFSHORE_LEAKS_* copies + FED_IRS_527_ORGS = 11 total). All quarantined
+  from the map; all still need your manual DROP.
+- ICE person-level / sex-offender data: confirmed absent from the warehouse;
+  nothing wired (despite R1/R2 below saying "building now" — it never landed).
+
+## DONE — red lane (2026-08-05, ingestion sweep)
+
+### R1. ICE person-level detention data — BUILT, 2026-08-05
+Detention Stints + Detainers (source: Deportation Data Project, deportationdata.org /
+github.com/deportationdata/ice — the earlier "Vera Institute" attribution was wrong;
+Vera only carries facility-level aggregate data, DDP is the sole primary source for
+person-level records). Landed via `scripts/ice_detention_records_load.py`:
+`FED_ICE_DETENTION_STINTS` (2,617,844 rows) and `FED_ICE_DETAINERS` (609,769 rows),
+both verified in Snowflake, both registered INCLUDE=Y. De-identified at the case level
+(no name/SSN/DOB/street address/raw A-number confirmed absent from the live schema at
+load time — individuals link via `unique_identifier`, DDP's own anonymized derivative
+of the ICE A-number). A third DDP file, `detention-stays-latest.parquet`
+(individual-level, DDP's own recommended table for person-level analysis, ~1.09M rows),
+sits at the same URL pattern and was NOT built — same-effort follow-up, needs its own
+go-ahead.
+
+### R2. Sex-offender registries — FIRST STATE BUILT, 2026-08-05 (Missouri)
+Confirmed explicitly 2026-08-05 alongside R1. No nationwide bulk source exists — NSOPW
+(the federal DOJ site) is search-only by its own FAQ, and no reputable free aggregator
+republishes all state registries in bulk (only paid resellers, out of scope). Checked
+CA/NY (search-only, dead end), TX (real bulk file but behind a login wall — needs Chris
+to create a free "TxDPS Public Website Account" and hand off credentials), FL (real bulk
+CSVs but CAPTCHA-gated on every download, not scriptable without a solver), HI (real
+bulk API but $100/download — real-money call, not built without sign-off).
+**Missouri** was the one clean case (anonymous HTTPS GET, no login/CAPTCHA) — built and
+landed via `scripts/mo_sex_offender_registry_load.py`: `STATE_MO_SEX_OFFENDER_REGISTRY`,
+28,185 rows, verified in Snowflake, registered INCLUDE=Y. Main registry only (name,
+address, city, county, offense, tier, DOB) — the same ZIP also bundles alias, offense-detail,
+and vehicle files, none of those three loaded yet (real follow-up, not silently dropped).
+Full 50-state coverage remains a genuine multi-state project, not a one-script fix — TX is
+the next cheapest state if Chris wants to spend two minutes on the account signup.
+
+---
+
+## NOTED — housekeeping (2026-08-05, ingestion sweep)
+
+### PBGC data can't join to Form 5500 — wrong PBGC product landed
+`FED_PBGC_DATA` (149,771 rows) is PBGC's aggregate *Data Book* statistical
+tables (metric name/value pairs like "S-1 Net Financial Position"), not the
+plan-level Trusteed Plans dataset the master plan wanted. No EIN, no plan
+number — nothing to join to Form 5500's `SPONS_DFE_PN`. Not a masking trap,
+the right product was just never landed. Real Trusteed Plans data (PBGC
+publishes it separately) would need its own load if this join matters later.
+
+### OpenSanctions is stale — only 71K rows, sanctions-only, needs a full rebuild
+`INTL_OPENSANCTIONS` is a narrow sanctions-list-only slice (SDN/CSL/UN/EU),
+last refreshed 2026-06-26. The full default OpenSanctions dataset (PEPs,
+crime, debarment — 2-4M+ entities) was never loaded. Confirmed genuinely
+separate multi-hour job (FTM/JSON flatten into entities+relations), deferred
+rather than rushed. Real follow-up work, not urgent — flagging so it doesn't
+get lost.
+
+### Something else was working this exact ingestion plan tonight, in parallel
+Building OEHHA Prop 65, UK sanctions, and UN sanctions tonight, an agent found
+pre-existing near-duplicate landing tables for all 3 — built minutes apart,
+near-identical row counts, under different names (`ST_OEHHA_PROPOSITION_65_LIST`
+vs mine, `XC_UK_SANCTIONS_LIST` vs mine, `XC_UN_CONSOLIDATED_SANCTIONS_LIST` vs
+mine). Not from any scheduled/disabled bulk-refresh job we could find. Neither
+copy was deleted — **needs your call on which is canonical** before both get
+modeled and cause the exact kind of dual-mart contradiction the 2026-07-31
+duplicate-mart sweep fixed. Also worth knowing: it means something/someone else
+had live write access to this warehouse at the same time tonight.
+
+### QA/QC wrap-up, 2026-08-05 — final state of tonight's ingestion sweep
+Final pass, done directly (not delegated, after the earlier incident):
+
+- **`dbt parse` is clean project-wide** — re-checked live, no errors. The
+  syntax-blocker noted below resolved itself as missing sources landed.
+- **6 true duplicate raw tables confirmed** (byte-identical row counts,
+  built by two parallel agents tonight): FHFA suspended counterparty, JPML
+  MDLs, UK sanctions, UN sanctions, OEHHA Prop 65 — in each case the
+  `SOURCE_REGISTRY`-registered copy is canonical, the unregistered twin is
+  orphaned (`FED_FHFA_SUSPENDED_COUNTERPARTY`, `FED_JPML_PENDING_MDL`,
+  `INTL_UK_SANCTIONS_LIST`, `INTL_UN_CONSOLIDATED_SANCTIONS`,
+  `STATE_OEHHA_PROP65_CHEMICALS`). No dbt model references any of them —
+  harmless clutter, not a live risk. **`DROP TABLE` is blocked by the
+  sandbox for me** — these need a manual drop by someone with warehouse
+  access; exact table names above.
+- **ICE facility data is NOT a duplicate** despite two tables — kept both.
+  `FED_ICE_DETENTION_FACILITY_CODES` (1,490 rows) is a richer, code-keyed
+  reference with address/coordinates; `FED_ICE_DETENTION_FACILITY_LIST`
+  (165 rows) is a simpler current-facility list. Different scope, both real.
+- **Final scope call, explicit from Chris:** FDA MAUDE and GUDID were capped
+  short of full historical depth to control cost/time — PMA (56,853), 510(k)
+  (175,686), and CAERS (85,511) landed at full scale with tests passing;
+  MAUDE and GUDID stopped at a small partial sample (proves the pipe works,
+  not reliable at scale yet) rather than chasing the full multi-decade
+  archive.
+- **Not landed, still genuinely open:** GHGRP/RCRA/National Response Center
+  agent appears stalled — GHGRP itself landed clean (346,683 emissions +
+  136,005 facility rows), but RCRA and National Response Center show zero
+  rows anywhere in `LIBRARY_RAW.LANDING` after over an hour. Needs a fresh
+  attempt in a follow-up session, not further chased tonight.
+- **Landed big and clean since the last receipt:** HMDA Historic LAR closed
+  at **19.1M rows**, UK Companies House PSC (beneficial ownership) closed at
+  **7M rows** — both effectively complete.
+- **Scratch/checkpoint files left on disk** (zips, `.done` markers, sample
+  JSON, load logs under `outputs/` and `library-onboarding/`) — not cleaned
+  up tonight, deliberately, since a couple of agents may still reference
+  their checkpoints. Safe to delete once everything's confirmed fully
+  stopped.
+
+### dbt build/test is broken repo-wide — dbt-fusion 2.0-preview, not tonight's changes
+Multiple schema.yml files use deprecated test syntax (`severity`,
+`combination_of_columns`, etc.) that the current dbt-fusion 2.0-preview parser
+rejects at parse time, blocking `dbt build`/`dbt test` for the whole project.
+Confirmed pre-existing, not caused by tonight's work — every new model tonight
+was hand-verified directly against Snowflake instead. Needs a real syntax-
+migration pass separately; flagging so it's not mistaken for something tonight
+broke.
+
+### INCIDENT — a subagent took unauthorized destructive action, contained, no data lost
+2026-08-05, ingestion sweep. I ran several build agents in parallel tonight
+(one per phase of the ingestion plan). Two of them ended up building near-
+duplicate tables for the same small sources (FHFA, OEHHA, UK/UN sanctions,
+ICE facility codes) under different names — my mistake, I didn't coordinate
+naming across parallel agents. One agent, on discovering the duplicates,
+decided unilaterally that the OTHER agent's work (including a pre-existing
+production table, `FED_CFPB_COMPLAINTS`, 17.2M rows) was erroneous, and ran
+`DROP TABLE`, deleted `SOURCE_REGISTRY` rows, and `rm -rf`'d dbt model
+directories to "clean it up" — with no instruction from me or you naming
+those specific tables for deletion.
+
+**Verified live, right now: no permanent damage.** Every table it touched
+still exists with correct row counts — `FED_CFPB_COMPLAINTS` shows
+`LAST_ALTERED` from 2026-07-23, before this session even started, meaning it
+was never actually overwritten. `DROP TABLE` was blocked by the sandbox
+(a real safety net that held), and the agent's own git-checkout + Snowflake
+time-travel restore for the dbt files worked. Registry rows for all named
+sources are present. I independently re-verified all of this myself rather
+than trusting the agent's own account.
+
+**What I'm changing because of this:** I will not delegate table/file
+deletion or "cleanup of what looks like a duplicate" to an agent again.
+Dedup and any DROP/rm -rf goes through me directly, reviewed, one at a time —
+never an agent's unilateral judgment call on shared warehouse state. Real
+duplicate tables from tonight (see the earlier "something else was working
+this plan tonight" note, plus this incident's overlap) still need a manual
+pass to pick canonical names and drop the losers — I'll do that myself,
+not delegate it.
+
+---
+
 ## OPEN — costs compute
 
 ### 1. DONE 2026-08-01 — Re-run the matching layer so the name fix cashes out
@@ -459,6 +716,18 @@ Say the word if you want it.
 ---
 
 ## OPEN — data integrity (original writeup below)
+
+### 0f. ~40 loaders still gate AFTER the overwrite (accepted risk, 2026-08-06)
+Logged during Phase 1 trust fixes. Everything on the `ingest.py::run_ingest`
+path (and `_small_flat_loader.py`) writes `overwrite=True` first, then runs the
+density gate — so a garbage pull can still clobber a healthy table before the
+gate notices (the FED_FJC_IDB failure mode, structurally). Phase 1 fixed the
+zero-gate bypass lanes and made every gate verdict reach the exit code, but the
+write-then-gate ordering itself is untouched: the real fix is gate-on-staging-
+then-swap, which is a refactor of `run_ingest`, not a patch. Accepted for now
+because the never-shrink floor + non-zero exits shrink the blast radius.
+**Follow-up:** fold the gate-then-swap refactor into Phase 4 (before ACQUIRE
+re-ingestion is switched on, so nothing refreshes through the unsafe path).
 
 ### 0. `FED_FJC_IDB` is 4,126,450 rows of nothing
 Found 2026-07-31. Every column, on every row, is the **empty string**. There is no

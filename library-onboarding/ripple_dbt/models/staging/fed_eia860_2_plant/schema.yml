@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_EIA860_2_PLANT
+        description: >
+          Raw landing table, ingestion sweep 2026-08-05. All columns arrive as TEXT.
+
+models:
+  - name: stg_fed_eia860_2_plant__all
+    description: >
+      Minimal passthrough staging view for FED_EIA860_2_PLANT. Grain not yet
+      determined -- snake_case rename only, no dedup.

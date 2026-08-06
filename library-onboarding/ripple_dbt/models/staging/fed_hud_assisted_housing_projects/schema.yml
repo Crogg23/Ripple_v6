@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_HUD_ASSISTED_HOUSING_PROJECTS
+        description: >
+          HUD Picture of Subsidized Households -- project-level assisted housing snapshot (Section 8, multifamily, 811/PRAC).
+          All columns loaded as TEXT from the source system (raw landing, untransformed).
+
+models:
+
+  - name: stg_fed_hud_assisted_housing_projects__records
+    description: >
+      Minimal passthrough staging model for FED_HUD_ASSISTED_HOUSING_PROJECTS. GRAIN NOT YET DETERMINED --
+      no dedup applied. Intended join key: code (verify COUNT DISTINCT before using).

@@ -216,7 +216,7 @@ def main() -> int:
     ap = argparse.ArgumentParser(description="SEC DERA + EDGAR bulk loader")
     ap.add_argument("--run", action="store_true")
     ap.add_argument("--limit", type=int, default=20)
-    ap.add_argument("--max-rows", type=int, default=500000)
+    ap.add_argument("--max-rows", type=int, default=5_000_000)
     args = ap.parse_args()
 
     conn = snow.connect()

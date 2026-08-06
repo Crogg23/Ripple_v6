@@ -1,0 +1,246 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: XC_UK_SANCTIONS_LIST
+        description: >
+          Raw landing table for the UK Office of Financial Sanctions Implementation
+          (OFSI) consolidated list of designated persons and entities.
+
+models:
+
+  - name: stg_xc_uk_sanctions_list__designated_person
+    description: >
+      Staging model for the UK Sanctions List. Casts TEXT columns to appropriate
+      types, renames to snake_case, and deduplicates on (unique_id, ofsi_group_id,
+      name_type) keeping the most-recently-updated record.
+    columns:
+
+      - name: unique_id
+        description: OFSI unique identifier for the designated person / entity row.
+        data_tests:
+          - not_null
+
+      - name: ofsi_group_id
+        description: OFSI group identifier that clusters all name / alias rows for a single designated party.
+        data_tests:
+          - not_null
+
+      - name: un_reference_number
+        description: UN Security Council reference number where applicable.
+
+      - name: last_updated_at
+        description: Timestamp the OFSI record was last updated.
+
+      - name: name_1
+        description: Primary name component (e.g. first name / full legal name).
+
+      - name: name_2
+        description: Secondary name component.
+
+      - name: name_3
+        description: Third name component.
+
+      - name: name_4
+        description: Fourth name component.
+
+      - name: name_5
+        description: Fifth name component.
+
+      - name: name_6
+        description: Sixth name component (often family name).
+
+      - name: name_type
+        description: Type of name record (e.g. Primary Name, Alias, Former Name).
+        data_tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - 'Primary Name'
+                  - 'Alias'
+                  - 'Former Name'
+                  - 'Also Known As'
+                  - 'Trading Name'
+                  - 'Other'
+                quote: true
+              config:
+                severity: warn
+
+      - name: alias_strength
+        description: Strength of the alias relationship (Strong / Weak).
+        data_tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - 'Strong'
+                  - 'Weak'
+                quote: true
+              config:
+                severity: warn
+
+      - name: title
+        description: Honorific or title of the individual.
+
+      - name: name_non_latin_script
+        description: Name rendered in a non-Latin script.
+
+      - name: non_latin_script_type
+        description: Script type for the non-Latin name (e.g. Arabic, Cyrillic).
+
+      - name: non_latin_script_language
+        description: Language associated with the non-Latin script name.
+
+      - name: regime_name
+        description: Sanctions regime under which the designation was made.
+
+      - name: designation_type
+        description: Type of designation (Individual / Entity / Ship).
+        data_tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - 'Individual'
+                  - 'Entity'
+                  - 'Ship'
+                quote: true
+              config:
+                severity: warn
+
+      - name: designation_source
+        description: Source authority for the designation.
+
+      - name: date_designated
+        description: Date the party was designated.
+
+      - name: sanctions_imposed
+        description: Description of the sanctions imposed.
+
+      - name: other_information
+        description: Free-text additional information about the designee.
+
+      - name: uk_statement_of_reasons
+        description: UK OFSI statement of reasons for the designation.
+
+      - name: address_line_1
+        description: First line of the known address.
+
+      - name: address_line_2
+        description: Second line of the known address.
+
+      - name: address_line_3
+        description: Third line of the known address.
+
+      - name: address_line_4
+        description: Fourth line of the known address.
+
+      - name: address_line_5
+        description: Fifth line of the known address.
+
+      - name: address_line_6
+        description: Sixth line of the known address.
+
+      - name: address_postal_code
+        description: Postal / ZIP code of the known address.
+
+      - name: address_country
+        description: Country of the known address.
+
+      - name: phone_number
+        description: Contact telephone number.
+
+      - name: website
+        description: Website URL.
+
+      - name: email_address
+        description: Email address.
+
+      - name: date_of_birth
+        description: Date of birth of the designated individual.
+
+      - name: nationalities
+        description: Nationality or nationalities of the designated individual.
+
+      - name: national_identifier_number
+        description: National identification number (e.g. NI, SSN equivalent).
+
+      - name: national_identifier_additional_information
+        description: Additional information about the national identifier.
+
+      - name: passport_number
+        description: Passport number(s) associated with the individual.
+
+      - name: passport_additional_information
+        description: Additional information about the passport.
+
+      - name: position
+        description: Known position or role held by the individual.
+
+      - name: gender
+        description: Gender of the designated individual.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - 'Male'
+                  - 'Female'
+                  - 'Unknown'
+                quote: true
+              config:
+                severity: warn
+
+      - name: town_of_birth
+        description: Town or city of birth.
+
+      - name: country_of_birth
+        description: Country of birth.
+
+      - name: type_of_entity
+        description: Classification of the designated entity.
+
+      - name: subsidiaries
+        description: Known subsidiaries of the designated entity.
+
+      - name: parent_company
+        description: Parent company of the designated entity.
+
+      - name: business_registration_numbers
+        description: Business registration number(s) for the entity.
+
+      - name: imo_number
+        description: IMO vessel identification number.
+
+      - name: current_owner_operators
+        description: Current owner(s) or operator(s) of the vessel.
+
+      - name: previous_owner_operators
+        description: Previous owner(s) or operator(s) of the vessel.
+
+      - name: current_believed_flag_of_ship
+        description: Current flag state of the vessel.
+
+      - name: previous_flags
+        description: Previous flag states of the vessel.
+
+      - name: type_of_ship
+        description: Classification of the vessel type.
+
+      - name: tonnage_of_ship
+        description: Gross tonnage of the vessel.
+
+      - name: length_of_ship
+        description: Length of the vessel in metres.
+
+      - name: year_built
+        description: Year the vessel was constructed.
+
+      - name: hull_identification_number
+        description: Hull Identification Number (HIN) of the vessel.
+
+      - name: _ingested_at
+        description: Timestamp the row was ingested into the raw landing table.
+
+      - name: _source_run_id
+        description: Pipeline run identifier that loaded this row.

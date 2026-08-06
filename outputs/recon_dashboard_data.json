@@ -1,0 +1,2072 @@
+{
+"sources": [
+{
+"domain": "Healthcare & Clinical",
+"name": "AccessGUDID -- FDA Global Unique Device Identification Database",
+"url": "https://accessgudid.nlm.nih.gov/download",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "Full release: 5,182,695 device identifier records (516 MB); latest monthly release ~56,705 records",
+"ids": [
+"UDI / Device Identifier (DI) \u2014 GUDID"
+]
+},
+{
+"domain": "Healthcare & Clinical",
+"name": "NPDB Public Use Data File",
+"url": "https://www.npdb.hrsa.gov/resources/publicDataStatement.jsp",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"NPDB Report Number (National Practitioner Data Bank)"
+]
+},
+{
+"domain": "Healthcare & Clinical",
+"name": "IHS Standard Code Book (SCB) -- Facility Table",
+"url": "https://www.ihs.gov/scb/standard-code-book-tables/facility/",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "8,733 matches in the on-page table",
+"ids": [
+"IHS Facility Location Code (Indian Health Service)"
+]
+},
+{
+"domain": "Healthcare & Clinical",
+"name": "HRSA Health Center Program Uniform Data System (UDS) Awardee/Look-Alike data and Service Delivery Site data",
+"url": "https://data.hrsa.gov/data/download",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"HRSA Health Center Program / UDS Site ID (FQHC)"
+]
+},
+{
+"domain": "Healthcare & Clinical",
+"name": "HRSA Health Professional Shortage Area (HPSA) and Medically Underserved Area/Population (MUA/P) designation data",
+"url": "https://data.hrsa.gov/data/download",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"HRSA HPSA/MUA Designation ID (Health Professional Shortage Area / Medically Underserved Area)"
+]
+},
+{
+"domain": "Healthcare & Clinical",
+"name": "VAERS (Vaccine Adverse Event Reporting System) Data Sets",
+"url": "https://vaers.hhs.gov/data/datasets.html",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"VAERS ID (Vaccine Adverse Event Reporting System report number)"
+]
+},
+{
+"domain": "Pharma, Biologics & Medical Devices",
+"name": "AccessGUDID (Global Unique Device Identification Database, GUDID)",
+"url": "https://accessgudid.nlm.nih.gov/",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"Unique Device Identifier / Device Identifier"
+]
+},
+{
+"domain": "Pharma, Biologics & Medical Devices",
+"name": "FDA Device Establishment Registration & Listing (openFDA registrationlisting dataset, carries FEI numbers)",
+"url": "https://open.fda.gov/apis/device/registrationlisting/",
+"shape": "api-open",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"FDA Establishment Identifier"
+]
+},
+{
+"domain": "Pharma, Biologics & Medical Devices",
+"name": "FDA Global Substance Registration System (GSRS) / UNII",
+"url": "https://precision.fda.gov/uniisearch",
+"shape": "api-open",
+"size": "large",
+"lift": "Med",
+"note": "",
+"ids": [
+"Unique Ingredient Identifier"
+]
+},
+{
+"domain": "Pharma, Biologics & Medical Devices",
+"name": "FDA 510(k) Premarket Notification Database",
+"url": "https://open.fda.gov/apis/device/510k/",
+"shape": "api-open",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"510(k) Premarket Notification Number"
+]
+},
+{
+"domain": "Pharma, Biologics & Medical Devices",
+"name": "FDA Premarket Approval (PMA) Database",
+"url": "https://open.fda.gov/apis/device/pma/",
+"shape": "api-open",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"Premarket Approval Number"
+]
+},
+{
+"domain": "Pharma, Biologics & Medical Devices",
+"name": "DailyMed Structured Product Labeling (SPL) bulk data",
+"url": "https://dailymed.nlm.nih.gov/dailymed/spl-resources.cfm",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"SPL Set ID (Structured Product Labeling)"
+]
+},
+{
+"domain": "Pharma, Biologics & Medical Devices",
+"name": "FDA MAUDE (Manufacturer and User Facility Device Experience) database",
+"url": "https://open.fda.gov/apis/device/event/",
+"shape": "api-open",
+"size": "large",
+"lift": "Med",
+"note": "",
+"ids": [
+"MAUDE Medical Device Report Number"
+]
+},
+{
+"domain": "Pharma, Biologics & Medical Devices",
+"name": "FDA Adverse Event Reporting System (FAERS)",
+"url": "https://open.fda.gov/apis/drug/event/",
+"shape": "api-open",
+"size": "large",
+"lift": "Med",
+"note": "",
+"ids": [
+"FAERS Individual Safety Report / Case ID"
+]
+},
+{
+"domain": "Pharma, Biologics & Medical Devices",
+"name": "Vaccine Adverse Event Reporting System (VAERS) data files",
+"url": "https://vaers.hhs.gov/data/datasets.html",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"VAERS ID"
+]
+},
+{
+"domain": "Pharma, Biologics & Medical Devices",
+"name": "Health Canada Drug Product Database (DPD)",
+"url": "https://health-products.canada.ca/dpd-bdpp/index-eng.jsp",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"Health Canada Drug Identification Number"
+]
+},
+{
+"domain": "Pharma, Biologics & Medical Devices",
+"name": "FDA Recall Enterprise System (RES) Enforcement Reports (device and drug)",
+"url": "https://open.fda.gov/apis/device/enforcement/",
+"shape": "api-open",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"FDA Enforcement Report Recall Number / Event ID"
+]
+},
+{
+"domain": "Pharma, Biologics & Medical Devices",
+"name": "FDA Device Product Classification Database",
+"url": "https://open.fda.gov/apis/device/classification/",
+"shape": "api-open",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"FDA Device Product Code (Classification Product Code)"
+]
+},
+{
+"domain": "Environment & Natural Resources",
+"name": "RCRAInfo \u2014 EPA's national hazardous waste handler database (Handler Reporting Universe)",
+"url": "https://echo.epa.gov/tools/data-downloads/rcrainfo-download-summary",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"RCRA Handler ID (EPA ID Number)"
+]
+},
+{
+"domain": "Environment & Natural Resources",
+"name": "EPA Air Quality System (AQS) / AirData Pre-Generated Data Files",
+"url": "https://aqs.epa.gov/aqsweb/airdata/download_files.html",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"EPA AQS Site ID (Air Quality System monitor)"
+]
+},
+{
+"domain": "Environment & Natural Resources",
+"name": "National Inventory of Dams (NID)",
+"url": "https://nid.sec.usace.army.mil/",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"National Inventory of Dams (NID) ID"
+]
+},
+{
+"domain": "Environment & Natural Resources",
+"name": "No single federal bulk file of all API-numbered wells; state oil & gas commission well databases hold the full universe. USGS's Documented Unplugged Orphaned Oil and Gas Well Dataset is a partial federal aggregation (orphaned wells only); BOEM Well Data covers federal offshore wells.",
+"url": "https://www.usgs.gov/data/united-states-documented-unplugged-orphaned-oil-and-gas-well-dataset",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "117,672 orphaned wells across 27 states \u2014 but this covers only the orphaned-well subset, not all API-numbered wells.",
+"ids": [
+"API Well Number (oil & gas wells)"
+]
+},
+{
+"domain": "Environment & Natural Resources",
+"name": "EPA Toxics Release Inventory (TRI) Basic Data Files",
+"url": "https://www.epa.gov/toxics-release-inventory-tri-program/tri-basic-data-files-calendar-years-1987-present",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"TRI Facility ID"
+]
+},
+{
+"domain": "Environment & Natural Resources",
+"name": "EPA Superfund Enterprise Management System (SEMS) site data \u2014 successor to CERCLIS",
+"url": "https://www.epa.gov/superfund/superfund-data-and-reports",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"CERCLIS / SEMS Site ID (Superfund)"
+]
+},
+{
+"domain": "Environment & Natural Resources",
+"name": "EPA Greenhouse Gas Reporting Program (GHGRP) Data Sets",
+"url": "https://www.epa.gov/ghgreporting/data-sets",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "",
+"ids": [
+"EPA GHGRP Facility ID (Greenhouse Gas Reporting Program)"
+]
+},
+{
+"domain": "Environment & Natural Resources",
+"name": "EPA Clean Air Markets Program Data (CAMPD) \u2014 facility & unit attributes (ORISPL Facility ID + Unit ID)",
+"url": "https://campd.epa.gov/data/custom-data-download",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "",
+"ids": [
+"EPA CAMD/CAMPD ORISPL Facility ID + Unit ID"
+]
+},
+{
+"domain": "Environment & Natural Resources",
+"name": "National Response Center (NRC) spills and incident reports database",
+"url": "https://nrc.uscg.mil/",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"National Response Center (NRC) Incident/Sequence Number"
+]
+},
+{
+"domain": "Environment & Natural Resources",
+"name": "National List of Active EPA-Registered Foreign and Domestic Pesticide and/or Device-Producing Establishments",
+"url": "https://www.epa.gov/compliance/national-list-active-epa-registered-foreign-and-domestic-pesticide-andor-device",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "",
+"ids": [
+"EPA Pesticide Producing-Establishment Number"
+]
+},
+{
+"domain": "Environment & Natural Resources",
+"name": "USGS/NRCS Watershed Boundary Dataset (WBD)",
+"url": "https://www.usgs.gov/national-hydrography/watershed-boundary-dataset",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"Hydrologic Unit Code (HUC)"
+]
+},
+{
+"domain": "Environment & Natural Resources",
+"name": "Water Quality Portal (WQP) \u2014 combines WQX/STORET and NWIS",
+"url": "https://www.waterqualitydata.us/",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"EPA WQX / STORET Monitoring Location ID (Water Quality Exchange)"
+]
+},
+{
+"domain": "Environment & Natural Resources",
+"name": "FEMA NFIP Community Status Book dataset",
+"url": "https://www.fema.gov/openfema-data-page/nfip-community-status-book-v1",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"FEMA National Flood Insurance Program (NFIP) Community ID Number"
+]
+},
+{
+"domain": "Environment & Natural Resources",
+"name": "USGS Geographic Names Information System (GNIS)",
+"url": "https://www.usgs.gov/us-board-on-geographic-names/download-gnis-data",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"GNIS ID (Geographic Names Information System)"
+]
+},
+{
+"domain": "Environment & Natural Resources",
+"name": "Integrated Taxonomic Information System (ITIS)",
+"url": "https://www.itis.gov/",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"ITIS TSN (Taxonomic Serial Number)"
+]
+},
+{
+"domain": "Environment & Natural Resources",
+"name": "EPA ICIS-Air (successor to AFS/AIRS) and ICIS-NPDES (successor to PCS) bulk downloads via ECHO",
+"url": "https://echo.epa.gov/tools/data-downloads",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"Legacy EPA AIRS/AFS Facility ID and PCS (Permit Compliance System) ID"
+]
+},
+{
+"domain": "Banking & Depository Institutions",
+"name": "OCC Financial Institution Lists (National Banks, Federal Savings Associations & Trust Banks, by charter number)",
+"url": "https://www.occ.treas.gov/topics/charters-and-licensing/financial-institution-lists/index-financial-institution-lists.html",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "",
+"ids": [
+"OCC Charter Number"
+]
+},
+{
+"domain": "Banking & Depository Institutions",
+"name": "NCUA Credit Union and Corporate Call Report Data (quarterly, includes charter number)",
+"url": "https://ncua.gov/analysis/credit-union-corporate-call-report-data",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "",
+"ids": [
+"NCUA Charter Number"
+]
+},
+{
+"domain": "Banking & Depository Institutions",
+"name": "HMDA Legacy Panel/LAR data (2017 and prior), identified by Agency Code + Respondent ID; ARID2017-to-LEI reference table",
+"url": "https://ffiec.cfpb.gov/documentation/faq/identifiers-faq",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"HMDA Legacy Respondent ID (Agency Code + Respondent ID)"
+]
+},
+{
+"domain": "Banking & Depository Institutions",
+"name": "SBA Paycheck Protection Program (PPP) FOIA loan-level data / SBA 7(a) & 504 FOIA loan data reports (data.sba.gov)",
+"url": "https://data.sba.gov/dataset/ppp-foia",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"SBA 7(a)/PPP Lender ID (SBA Lender Number)"
+]
+},
+{
+"domain": "Banking & Depository Institutions",
+"name": "FHFA Federal Home Loan Bank (FHLBank) Membership Data (quarterly)",
+"url": "https://www.fhfa.gov/data/fhlb-membership",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "",
+"ids": [
+"Federal Home Loan Bank (FHLB) Member ID"
+]
+},
+{
+"domain": "Banking & Depository Institutions",
+"name": "IRS FATCA Foreign Financial Institution (FFI) List Search and Download Tool",
+"url": "https://www.irs.gov/businesses/corporations/fatca-foreign-financial-institution-list-search-and-download-tool",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"FATCA GIIN (Global Intermediary Identification Number)"
+]
+},
+{
+"domain": "Securities, Investment Funds & Markets",
+"name": "PCAOB Registered Firms directory / AuditorSearch",
+"url": "https://pcaobus.org/resources/auditorsearch",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "",
+"ids": [
+"PCAOB Firm ID"
+]
+},
+{
+"domain": "Securities, Investment Funds & Markets",
+"name": "IRS FATCA Foreign Financial Institution (FFI) List",
+"url": "https://www.irs.gov/businesses/corporations/fatca-foreign-financial-institution-list-search-and-download-tool",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"Global Intermediary Identification Number",
+"FATCA Global Intermediary Identification Number"
+]
+},
+{
+"domain": "Securities, Investment Funds & Markets",
+"name": "Nasdaq/FINRA Market Participant ID (MPID) List",
+"url": "https://www.nasdaqtrader.com/dynamic/Symdir/mpidlist.txt",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "",
+"ids": [
+"FINRA Market Participant Identifier"
+]
+},
+{
+"domain": "Securities, Investment Funds & Markets",
+"name": "PCAOB AuditorSearch (Form AP engagement partner data)",
+"url": "https://pcaobus.org/resources/auditorsearch",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"PCAOB Form AP Engagement Partner ID"
+]
+},
+{
+"domain": "Securities, Investment Funds & Markets",
+"name": "ISO 10383 Market Identifier Code (MIC) registry",
+"url": "https://www.iso20022.org/market-identifier-codes",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "",
+"ids": [
+"Market Identifier Code"
+]
+},
+{
+"domain": "Financial Crimes, Sanctions & AML",
+"name": "United Nations Security Council Consolidated List (sanctions)",
+"url": "https://main.un.org/securitycouncil/en/content/un-sc-consolidated-list",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "2,919 total entities, 1,407 searchable (735 people, 402 addresses, 270 legal entities across 78 countries) per the OpenSanctions mirror of the UN source XML.",
+"ids": [
+"UN Security Council Consolidated Sanctions List reference number"
+]
+},
+{
+"domain": "Financial Crimes, Sanctions & AML",
+"name": "Companies House Persons with Significant Control (PSC) bulk data product",
+"url": "http://download.companieshouse.gov.uk/en_pscdata.html",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "Approximately 1GB zipped / 6GB unzipped, about 10 million records; also split into ~65MB chunks of 500,000 records each for easier download.",
+"ids": [
+"UK Companies House Persons with Significant Control (PSC) register"
+]
+},
+{
+"domain": "Financial Crimes, Sanctions & AML",
+"name": "ICIJ Offshore Leaks Database (Panama Papers, Paradise Papers, Pandora Papers, Bahamas Leaks, Offshore Leaks combined)",
+"url": "https://offshoreleaks.icij.org/pages/database",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"ICIJ Offshore Leaks Database entity/officer node ID"
+]
+},
+{
+"domain": "Financial Crimes, Sanctions & AML",
+"name": "UK Sanctions List (successor to the OFSI Consolidated List of Financial Sanctions Targets)",
+"url": "https://www.gov.uk/government/publications/the-uk-sanctions-list",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "",
+"ids": [
+"UK OFSI Consolidated List of Financial Sanctions Targets reference number"
+]
+},
+{
+"domain": "Corporate Registration & Beneficial Ownership",
+"name": "OCC Financial Institution Lists \u2014 National Banks by Name/State (charter number field)",
+"url": "https://www.occ.treas.gov/topics/charters-and-licensing/financial-institution-lists/index-financial-institution-lists.html",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "",
+"ids": [
+"OCC National Bank Charter Number"
+]
+},
+{
+"domain": "Corporate Registration & Beneficial Ownership",
+"name": "NCUA Chartering and Mergers data (Research a Credit Union charter-number spreadsheets)",
+"url": "https://ncua.gov/analysis/chartering-mergers",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "",
+"ids": [
+"NCUA Federal Credit Union Charter Number"
+]
+},
+{
+"domain": "Corporate Registration & Beneficial Ownership",
+"name": "OpenFIGI (Financial Instrument Global Identifier) mapping service",
+"url": "https://www.openfigi.com/api/documentation",
+"shape": "api-open",
+"size": "large",
+"lift": "Med",
+"note": "",
+"ids": [
+"FIGI (Financial Instrument Global Identifier)"
+]
+},
+{
+"domain": "Corporate Registration & Beneficial Ownership",
+"name": "Companies House Persons with Significant Control (PSC) Snapshot",
+"url": "https://download.companieshouse.gov.uk/en_pscdata.html",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"UK Companies House PSC (Persons with Significant Control) Reference"
+]
+},
+{
+"domain": "Corporate Registration & Beneficial Ownership",
+"name": "ICIJ Offshore Leaks Database (Offshore Leaks, Panama Papers, Bahamas Leaks, Paradise Papers, Pandora Papers)",
+"url": "https://offshoreleaks.icij.org/pages/database",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "more than 810,000 offshore entities across 200+ countries/territories",
+"ids": [
+"ICIJ Offshore Leaks Database (Panama/Paradise/Pandora/Bahamas Papers) entity & beneficial-owner records"
+]
+},
+{
+"domain": "Corporate Registration & Beneficial Ownership",
+"name": "Consolidated Screening List (CSL) \u2014 includes BIS Entity List, Denied Persons List, Unverified List",
+"url": "https://www.trade.gov/consolidated-screening-list",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"BIS Entity List / Denied Persons List / Unverified List"
+]
+},
+{
+"domain": "Corporate Registration & Beneficial Ownership",
+"name": "UN Security Council Consolidated Sanctions List",
+"url": "https://main.un.org/securitycouncil/content/un-sc-consolidated-list",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"UN Security Council Consolidated List Reference Number"
+]
+},
+{
+"domain": "Corporate Registration & Beneficial Ownership",
+"name": "OpenSanctions Default dataset (entity ID scheme: NK-IDs / Q-IDs)",
+"url": "https://www.opensanctions.org/docs/identifiers/",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"OpenSanctions Entity ID"
+]
+},
+{
+"domain": "Labor, Workplace Safety & Benefits",
+"name": "NLRB Case Search / Advanced Data Search (agency casehandling system \u2014 C, R, and other case types)",
+"url": "https://www.nlrb.gov/search/case",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"NLRB Case Number"
+]
+},
+{
+"domain": "Labor, Workplace Safety & Benefits",
+"name": "PBGC Trusteed Pension Plan Search (single-employer plans PBGC has taken over)",
+"url": "https://www.pbgc.gov/workers-retirees/trusteed-plans",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"PBGC Case Number (Trusteed Plans)"
+]
+},
+{
+"domain": "Criminal Justice & Court Systems",
+"name": "Biographical Directory of Article III Federal Judges -- Export",
+"url": "https://www.fjc.gov/history/judges/biographical-directory-article-iii-federal-judges-export",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "",
+"ids": [
+"FJC Judge NID (Biographical Directory ID)"
+]
+},
+{
+"domain": "Criminal Justice & Court Systems",
+"name": "Federal Firearms Licensees listing (ATF)",
+"url": "https://catalog.data.gov/dataset/federal-firearms-licensees",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"ATF Federal Firearms License (FFL) Number"
+]
+},
+{
+"domain": "Law Enforcement & Corrections",
+"name": "ICE detention facility code, the identifier used across ICE's individual-level detention datasets; compiled/republished by the Vera Institute of Justice (ICE Detention Trends) and the Deportation Data Project from FOIA releases",
+"url": "https://www.vera.org/ice-detention-trends",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "1,490 facilities over a 17-year period (October 2008 through March 2026)",
+"ids": [
+"ICE Detention Facility Code"
+]
+},
+{
+"domain": "Law Enforcement & Corrections",
+"name": "State sex offender registries (fragmented per state/territory/tribe); federated national search via the Dru Sjodin National Sex Offender Public Website (NSOPW); exemplar bulk-download state: Florida FDLE Sexual Offender & Predator Registry",
+"url": "https://offender.fdle.state.fl.us/offender/sops/registryDownload.jsf",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"State/County Sex Offender Registry ID"
+]
+},
+{
+"domain": "Law Enforcement & Corrections",
+"name": "BJS Survey of Sexual Victimization (SSV) facility-level data (National Prison Rape Statistics Program) plus the PREA Resource Center's Directory of PREA Audits (facility/agency-searchable, bulk-downloadable)",
+"url": "https://www.prearesourcecenter.org/audit/directory",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "3,797 results across 317 pages of searchable audit records (prisons, jails, lockups, community confinement, juvenile facilities), for audits initiated on or after June 30, 2022",
+"ids": [
+"BJS Survey of Sexual Victimization (SSV) / PREA Audit Facility ID"
+]
+},
+{
+"domain": "Law Enforcement & Corrections",
+"name": "USSC Individual Offender Datafiles (Commission Datafiles), FY2002-2025",
+"url": "https://www.ussc.gov/research/datafiles/commission-datafiles",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"U.S. Sentencing Commission Individual/Case Datafile record"
+]
+},
+{
+"domain": "Immigration & Border",
+"name": "ICE Detention Stints/Stays Data (Deportation Data Project FOIA release, CILP v. ICE)",
+"url": "https://deportationdata.org/data/ice.html",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "1,323,993 total detention \"stint\" (book-in) rows in the FOIA release covering September 2023 through end of July 2025.",
+"ids": [
+"ICE Alien Book-In Number (Detention Booking ID)"
+]
+},
+{
+"domain": "Immigration & Border",
+"name": "ICE Detainers Data (Deportation Data Project FOIA release, CILP v. ICE) \u2014 detainer case number redacted",
+"url": "https://deportationdata.org/data/ice.html",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "146,953 detainer requests in FY2024 in this dataset (vs. 149,764 in ICE's own FY2024 annual report).",
+"ids": [
+"ICE Detainer Number (Form I-247A/I-247D/I-247N series)"
+]
+},
+{
+"domain": "Immigration & Border",
+"name": "ICE Detention Facility Code (DETLOC) \u2014 via ICE detentions dataset (Deportation Data Project)",
+"url": "https://deportationdata.org/data/ice.html",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "",
+"ids": [
+"ICE Detention Facility ID / Facility Code"
+]
+},
+{
+"domain": "Politics, Elections & Lobbying",
+"name": "IRS Tax Exempt Organization Search \u2014 Political Organization Filing and Disclosure (Section 527, Forms 8871/8872/990)",
+"url": "https://www.irs.gov/charities-non-profits/political-organizations/political-organization-filing-and-disclosure",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"IRS Form 8871/8872 Section 527 Political Organization Notification/Report ID"
+]
+},
+{
+"domain": "Politics, Elections & Lobbying",
+"name": "State ethics-commission lobbyist registration systems, e.g. California CAL-ACCESS Lobbying raw data and Texas Ethics Commission Lobby Activities CSV Database",
+"url": "https://www.sos.ca.gov/campaign-lobbying/helpful-resources/raw-data-campaign-finance-and-lobbying-activity",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"State ethics-commission lobbyist registration ID (e.g. CA Cal-Access Lobbying Entity ID, NY Commission on Ethics and Lobbying in Government Lobbyist ID, TX Ethics Commission Lobbyist Filer ID, FL chamber/executive lobbyist registrations)"
+]
+},
+{
+"domain": "Politics, Elections & Lobbying",
+"name": "FCC Online Public Inspection File \u2014 Political File (broadcast station political ad disclosures)",
+"url": "https://publicfiles.fcc.gov/developer",
+"shape": "api-open",
+"size": "large",
+"lift": "Med",
+"note": "",
+"ids": [
+"FCC Political File Record ID (Online Public Inspection File)"
+]
+},
+{
+"domain": "Politics, Elections & Lobbying",
+"name": "Open Civic Data Division Identifiers (OCD-ID) \u2014 opencivicdata/ocd-division-ids reference repository",
+"url": "https://github.com/opencivicdata/ocd-division-ids",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"OCD-ID (Open Civic Data Division Identifier)"
+]
+},
+{
+"domain": "Politics, Elections & Lobbying",
+"name": "Elections Canada Political Financing Registry (registered parties, candidates, third parties, electoral district associations)",
+"url": "https://www.elections.ca/content.aspx?section=fin&document=index&lang=e",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"Elections Canada Political Financing registration ID"
+]
+},
+{
+"domain": "Politics, Elections & Lobbying",
+"name": "Municipal campaign finance board filer data, e.g. NYC Campaign Finance Board (CFB) Data Library",
+"url": "https://www.nyccfb.info/follow-the-money/data-library/",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"Municipal/city campaign finance board filer ID (e.g. NYC Campaign Finance Board Candidate ID, LA City Ethics Commission filer ID, Seattle Ethics and Elections Commission)"
+]
+},
+{
+"domain": "Transportation -- Aviation & Rail",
+"name": "NTSB Aviation Accident Database (CAROL query tool + bulk avdata download)",
+"url": "https://www.ntsb.gov/safety/data/Pages/Data_Stats.aspx",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"NTSB Accident/Incident Number"
+]
+},
+{
+"domain": "Transportation -- Aviation & Rail",
+"name": "FAA Airport Data and Information Portal (ADIP) \u2014 Airport Master Record (Form 5010)",
+"url": "https://adip.faa.gov/",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"FAA Airport Location Identifier (LID) / Airport Master Record Site Number"
+]
+},
+{
+"domain": "Transportation -- Aviation & Rail",
+"name": "BTS Air Carrier Statistics \u2014 Unique Carrier Code (UniqueCarrier field, T-100/TranStats)",
+"url": "https://www.transtats.bts.gov/Fields.asp?gnoyr_VQ=FMF",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "",
+"ids": [
+"DOT/BTS Unique Carrier Entity Code"
+]
+},
+{
+"domain": "Transportation -- Aviation & Rail",
+"name": "ICAO Doc 8643 \u2014 Aircraft Type Designators (online search tool)",
+"url": "https://www.icao.int/publications/DOC8643/Pages/Search.aspx",
+"shape": "api-open",
+"size": "small",
+"lift": "Low",
+"note": "",
+"ids": [
+"ICAO Aircraft Type Designator"
+]
+},
+{
+"domain": "Transportation -- Motor Carrier & Maritime",
+"name": "FMC Licensed/Registered Ocean Transportation Intermediaries (OTI) list \u2014 NVOCCs and Ocean Freight Forwarders",
+"url": "https://www2.fmc.gov/oti/NVOCC.aspx",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "Page reported 9,030 results total (organization number, license number, company name, trade names, address, renewal date) at time of fetch.",
+"ids": [
+"FMC OTI License Number (NVOCC / Ocean Freight Forwarder License)"
+]
+},
+{
+"domain": "Consumer Protection & Product Safety",
+"name": "AccessGUDID (FDA/NLM Global Unique Device Identification Database)",
+"url": "https://accessgudid.nlm.nih.gov/",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"Unique Device Identifier (UDI-DI) / GUDID"
+]
+},
+{
+"domain": "Consumer Protection & Product Safety",
+"name": "NHTSA Recalls Database (api.nhtsa.gov Recalls API / NHTSA.gov Recall Search)",
+"url": "https://api.nhtsa.gov/recalls/campaignNumber",
+"shape": "api-open",
+"size": "large",
+"lift": "Med",
+"note": "",
+"ids": [
+"NHTSA Recall Campaign Number"
+]
+},
+{
+"domain": "Consumer Protection & Product Safety",
+"name": "FDA MAUDE (Manufacturer and User Facility Device Experience) via openFDA Device Event API",
+"url": "https://open.fda.gov/apis/device/event/",
+"shape": "api-open",
+"size": "large",
+"lift": "Med",
+"note": "",
+"ids": [
+"FDA MAUDE Report / MDR Report Key"
+]
+},
+{
+"domain": "Consumer Protection & Product Safety",
+"name": "JPML Pending MDLs List",
+"url": "https://www.jpml.uscourts.gov/pending-mdls-0",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "",
+"ids": [
+"Judicial Panel on Multidistrict Litigation (JPML) MDL Number"
+]
+},
+{
+"domain": "Consumer Protection & Product Safety",
+"name": "openFDA Enforcement Reports (sourced from FDA's Recall Enterprise System, RES) -- food, drug, and device enforcement endpoints",
+"url": "https://open.fda.gov/apis/food/enforcement/",
+"shape": "api-open",
+"size": "large",
+"lift": "Med",
+"note": "records from 2004-present.",
+"ids": [
+"FDA Recall Event Number"
+]
+},
+{
+"domain": "Consumer Protection & Product Safety",
+"name": "EPA TRI (Toxics Release Inventory) Basic Data Files",
+"url": "https://www.epa.gov/toxics-release-inventory-tri-program/tri-basic-data-files-calendar-years-1987-present",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"EPA Toxics Release Inventory Facility ID"
+]
+},
+{
+"domain": "Consumer Protection & Product Safety",
+"name": "openFDA Device 510(k) Clearances API & PMA (Premarket Approval) API",
+"url": "https://open.fda.gov/apis/device/510k/",
+"shape": "api-open",
+"size": "large",
+"lift": "Med",
+"note": "records from 1976 onward for both endpoints.",
+"ids": [
+"FDA 510(k) Premarket Notification Number & PMA (Premarket Approval) Number"
+]
+},
+{
+"domain": "Consumer Protection & Product Safety",
+"name": "FDA CAERS (CFSAN Adverse Event Reporting System) via openFDA Food Event API",
+"url": "https://open.fda.gov/apis/food/event/",
+"shape": "api-open",
+"size": "medium",
+"lift": "Low",
+"note": "data spanning 2004 onward.",
+"ids": [
+"FDA CAERS Report Number"
+]
+},
+{
+"domain": "Consumer Protection & Product Safety",
+"name": "DailyMed SPL (Structured Product Labeling) Drug Label Repository",
+"url": "https://dailymed.nlm.nih.gov/dailymed/spl-resources-all-drug-labels.cfm",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"FDA Structured Product Labeling Set ID"
+]
+},
+{
+"domain": "Consumer Protection & Product Safety",
+"name": "OEHHA Proposition 65 List of Chemicals",
+"url": "https://oehha.ca.gov/proposition-65/proposition-65-list",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "",
+"ids": [
+"California Proposition 65 Listed Chemical"
+]
+},
+{
+"domain": "Education",
+"name": "Federal Student Aid / College Scorecard institutional data (OPEID identifier, crosswalked to IPEDS UnitID)",
+"url": "https://collegescorecard.ed.gov/data/",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"OPEID (Office of Postsecondary Education ID)"
+]
+},
+{
+"domain": "Education",
+"name": "CIP - Classification of Instructional Programs (NCES)",
+"url": "https://nces.ed.gov/ipeds/cipcode/",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "",
+"ids": [
+"CIP Code (Classification of Instructional Programs)"
+]
+},
+{
+"domain": "Housing, Real Estate & Mortgage Lending",
+"name": "Ginnie Mae MBS Loan Level Disclosure File (Pool ID field)",
+"url": "https://www.ginniemae.gov/s3/sites/default/files/pdfs/MBS_Loan_Disclosure_Layout_V2.0.pdf",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"Ginnie Mae Pool Number"
+]
+},
+{
+"domain": "Housing, Real Estate & Mortgage Lending",
+"name": "HUD Multifamily FHA Firm Commitments and Initial Endorsements Database",
+"url": "https://www.hud.gov/hud-partners/multifamily-data",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"FHA/HUD Multifamily Project Number"
+]
+},
+{
+"domain": "Housing, Real Estate & Mortgage Lending",
+"name": "CFPB Consumer Complaint Database",
+"url": "https://www.consumerfinance.gov/data-research/consumer-complaints/",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"CFPB Consumer Complaint Database Complaint ID"
+]
+},
+{
+"domain": "Housing, Real Estate & Mortgage Lending",
+"name": "HMDA Historic Loan/Application Register (LAR) flat files, pre-2018 format",
+"url": "https://files.consumerfinance.gov/hmda-historic-data-dictionaries/lar_record_format.pdf",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"HMDA Legacy Respondent ID + Agency Code (pre-2018)"
+]
+},
+{
+"domain": "Housing, Real Estate & Mortgage Lending",
+"name": "Ginnie Mae MBS Loan Level Disclosure File (Issuer ID field)",
+"url": "https://www.ginniemae.gov/s3/sites/default/files/pdfs/MBS_Loan_Disclosure_Layout_V2.0.pdf",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "",
+"ids": [
+"Ginnie Mae Issuer Number"
+]
+},
+{
+"domain": "Housing, Real Estate & Mortgage Lending",
+"name": "HUD FHA Single Family Portfolio Snapshot (originating mortgagee/lender number field) plus HUD Lender List search",
+"url": "https://www.hud.gov/stat/sfh/fha-sf-portfolio-snapshot",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"FHA/HUD Lender (Mortgagee) ID"
+]
+},
+{
+"domain": "Housing, Real Estate & Mortgage Lending",
+"name": "ASC National Appraiser Registry",
+"url": "https://www.asc.gov/appraiser",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"Appraisal Subcommittee National Registry ID"
+]
+},
+{
+"domain": "Housing, Real Estate & Mortgage Lending",
+"name": "HUD Public Housing Authorities dataset (HUD Open Data / IMS-PIC)",
+"url": "https://catalog.data.gov/dataset/public-housing-authorities",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "",
+"ids": [
+"HUD Public Housing Agency (PHA) Code"
+]
+},
+{
+"domain": "Housing, Real Estate & Mortgage Lending",
+"name": "FEMA NFIP Community Status Book Dataset",
+"url": "https://catalog.data.gov/dataset/national-flood-insurance-program-nfip-community-status-book-dataset",
+"shape": "api-open",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"FEMA NFIP Community ID Number"
+]
+},
+{
+"domain": "Housing, Real Estate & Mortgage Lending",
+"name": "DOT National Address Database (NAD) Text File",
+"url": "https://catalog.data.gov/dataset/national-address-database-nad-text-file",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"National Address Database Unique Address ID"
+]
+},
+{
+"domain": "Housing, Real Estate & Mortgage Lending",
+"name": "HUD Multifamily Assistance & Section 8 Contracts Database",
+"url": "https://www.hud.gov/hud-partners/multifamily-assist-section8-database",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"HUD Section 8 / Housing Assistance Payments (HAP) Contract Number"
+]
+},
+{
+"domain": "Housing, Real Estate & Mortgage Lending",
+"name": "HUD Defined CoC Names and Numbers list",
+"url": "https://www.hud.gov/sites/dfiles/CPD/documents/FY-2021_CoC-Names-Numbers_Final.pdf",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "",
+"ids": [
+"HUD Continuum of Care Number"
+]
+},
+{
+"domain": "Housing, Real Estate & Mortgage Lending",
+"name": "USDA Rural Development Multifamily Section 515 Rural Rental Housing and Section 514 Farm Labor Housing dataset",
+"url": "https://catalog.data.gov/dataset/usda-rural-development-multifamily-section-515-rural-rental-housing-and-section-514-farm-l",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "",
+"ids": [
+"USDA Rural Development Multifamily Housing Project Number (Section 515/514)"
+]
+},
+{
+"domain": "Housing, Real Estate & Mortgage Lending",
+"name": "ASC National AMC Registry",
+"url": "https://asc.gov/amc",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "",
+"ids": [
+"ASC National AMC (Appraisal Management Company) Registry ID"
+]
+},
+{
+"domain": "Housing, Real Estate & Mortgage Lending",
+"name": "FHFA Suspended Counterparty Program List",
+"url": "https://www.fhfa.gov/regulation/suspended-counterparty-program",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "241 total suspended counterparties (as displayed on page)",
+"ids": [
+"FHFA Suspended Counterparty Program (SCP) List entry"
+]
+},
+{
+"domain": "Federal Procurement & Grants",
+"name": "USASpending.gov Treasury Account Symbol (TAS) reference data (Treasury GTAS / CGAC agency codes)",
+"url": "https://api.usaspending.gov/docs/endpoints",
+"shape": "api-open",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"Treasury Account Symbol (TAS) / CGAC Agency Code"
+]
+},
+{
+"domain": "Federal Procurement & Grants",
+"name": "Federal Audit Clearinghouse (FAC) Single Audit Report Database",
+"url": "https://fac.gov/",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"Federal Audit Clearinghouse (FAC) Single Audit Report ID"
+]
+},
+{
+"domain": "Federal Procurement & Grants",
+"name": "SBIR.gov SBIR/STTR Awards Database",
+"url": "https://www.sbir.gov/awards",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "219,503 award records shown in the live search count at time of check.",
+"ids": [
+"SBIR/STTR Award Number"
+]
+},
+{
+"domain": "Energy, Utilities & Pipeline Safety",
+"name": "EIA-860 Annual Electric Generator Report \u2014 Plant file",
+"url": "https://www.eia.gov/electricity/data/eia860/",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"EIA Plant Code"
+]
+},
+{
+"domain": "Energy, Utilities & Pipeline Safety",
+"name": "EIA-860 Annual Electric Generator Report \u2014 Utility file",
+"url": "https://www.eia.gov/electricity/data/eia860/",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "",
+"ids": [
+"EIA Utility ID"
+]
+},
+{
+"domain": "Energy, Utilities & Pipeline Safety",
+"name": "FracFocus Chemical Disclosure Registry well data (keyed to the state-assigned API Well Number) plus underlying state oil & gas commission well records",
+"url": "https://fracfocus.org/data-download",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"API Well Number"
+]
+},
+{
+"domain": "Energy, Utilities & Pipeline Safety",
+"name": "BOEM Offshore Lease & Serial Register Data (Lease Data online queries and ASCII downloads)",
+"url": "https://www.data.boem.gov/",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"BOEM Offshore Lease Number"
+]
+},
+{
+"domain": "Energy, Utilities & Pipeline Safety",
+"name": "EIA-860 Annual Electric Generator Report \u2014 Generator file",
+"url": "https://www.eia.gov/electricity/data/eia860/",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"EIA-860 Generator ID"
+]
+},
+{
+"domain": "Energy, Utilities & Pipeline Safety",
+"name": "EIA-861 Annual Electric Power Industry Report \u2014 Balancing Authority data",
+"url": "https://www.eia.gov/electricity/data/eia861/",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "",
+"ids": [
+"Balancing Authority ID"
+]
+},
+{
+"domain": "Telecom & Media",
+"name": "CelesTrak / Space-Track Satellite Catalog (SATCAT) -- NORAD Catalog Number",
+"url": "https://celestrak.org/satcat/search.php",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"NORAD/Space Force Satellite Catalog Number"
+]
+},
+{
+"domain": "Insurance",
+"name": "OSFI \"Who We Regulate\" -- federally regulated financial institutions list (institution numbers)",
+"url": "https://open.canada.ca/data/en/dataset/b27ec3ef-7338-4e76-a6fd-128339a92df5",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "",
+"ids": [
+"Canada OSFI Financial Institution/Insurer Number"
+]
+},
+{
+"domain": "Federal Benefits & Safety Net / Veterans",
+"name": "College Scorecard (U.S. Department of Education)",
+"url": "https://collegescorecard.ed.gov/data/",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "All Data Files zip is ~470 MB; institution-level files span 1996-97 through 2025-26 per the page.",
+"ids": [
+"ED Office of Postsecondary Education ID (OPE ID)"
+]
+},
+{
+"domain": "Federal Benefits & Safety Net / Veterans",
+"name": "FEMA OpenFEMA Individual Assistance datasets (aggregate/de-identified \u2014 no public per-applicant Registration ID)",
+"url": "https://www.fema.gov/openfema-data-page/housing-assistance-data-owners-v2",
+"shape": "api-open",
+"size": "large",
+"lift": "Med",
+"note": "",
+"ids": [
+"FEMA Individual Assistance Registration ID"
+]
+},
+{
+"domain": "Federal Benefits & Safety Net / Veterans",
+"name": "IHS Facilities Directory (complete facility listing, Excel)",
+"url": "https://www.ihs.gov/locations/",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "File is a 296 KB Excel listing \u2014 a few hundred facilities across 12 areas, not a large row count.",
+"ids": [
+"Indian Health Service (IHS) Facility / Area / Service Unit Code"
+]
+},
+{
+"domain": "Science, Research Grants & Research Integrity",
+"name": "ORCID Public Data File (annual full-registry dump)",
+"url": "https://info.orcid.org/documentation/integration-guide/working-with-bulk-data/",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"ORCID iD"
+]
+},
+{
+"domain": "Science, Research Grants & Research Integrity",
+"name": "ROR Data Dump (Research Organization Registry)",
+"url": "https://ror.readme.io/docs/data-dump",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"ROR ID (Research Organization Registry)"
+]
+},
+{
+"domain": "Science, Research Grants & Research Integrity",
+"name": "OpenAlex snapshot + REST API",
+"url": "https://developers.openalex.org/",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"OpenAlex IDs (Work / Author / Institution / Funder / Source)"
+]
+},
+{
+"domain": "Science, Research Grants & Research Integrity",
+"name": "PubMed Baseline / Update Files (MEDLINE XML)",
+"url": "https://pubmed.ncbi.nlm.nih.gov/download/",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"PMID (PubMed Unique Identifier)"
+]
+},
+{
+"domain": "Science, Research Grants & Research Integrity",
+"name": "PMC Open Access Subset (bulk FTP/Cloud Service) + PMC-ids.csv.gz crosswalk",
+"url": "https://pmc.ncbi.nlm.nih.gov/tools/openftlist/",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"PMCID (PubMed Central ID)"
+]
+},
+{
+"domain": "Science, Research Grants & Research Integrity",
+"name": "Crossref REST API (DOI metadata)",
+"url": "https://www.crossref.org/documentation/retrieve-metadata/rest-api/",
+"shape": "api-open",
+"size": "large",
+"lift": "Med",
+"note": "",
+"ids": [
+"DOI (Digital Object Identifier) for the underlying publication"
+]
+},
+{
+"domain": "Science, Research Grants & Research Integrity",
+"name": "Retraction Watch Database (now hosted by Crossref)",
+"url": "https://www.crossref.org/blog/news-crossref-and-retraction-watch/",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "~50,000 retraction records combined",
+"ids": [
+"Retraction Watch Database record"
+]
+},
+{
+"domain": "Science, Research Grants & Research Integrity",
+"name": "NIH RePORTER API (Project Search)",
+"url": "https://api.reporter.nih.gov/",
+"shape": "api-open",
+"size": "large",
+"lift": "Med",
+"note": "",
+"ids": [
+"NIH Grant/Project Number (incl. Core Project Number)"
+]
+},
+{
+"domain": "Science, Research Grants & Research Integrity",
+"name": "USAspending.gov Assistance Award Data (API + bulk download)",
+"url": "https://api.usaspending.gov/docs/endpoints",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"Federal Award ID Number (FAIN)"
+]
+},
+{
+"domain": "Science, Research Grants & Research Integrity",
+"name": "NSF Award Search API",
+"url": "https://resources.research.gov/common/webapi/awardapisearch-v1.htm",
+"shape": "api-open",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"NSF Award Number"
+]
+},
+{
+"domain": "Science, Research Grants & Research Integrity",
+"name": "arXiv bulk metadata + full text (S3 / Kaggle / OAI-PMH)",
+"url": "https://info.arxiv.org/help/bulk_data/index.html",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"arXiv ID"
+]
+},
+{
+"domain": "Science, Research Grants & Research Integrity",
+"name": "OSTI.GOV Records API",
+"url": "https://www.osti.gov/api/v1/docs",
+"shape": "api-open",
+"size": "large",
+"lift": "Med",
+"note": "",
+"ids": [
+"DOE Office of Scientific and Technical Information (OSTI) ID"
+]
+},
+{
+"domain": "Science, Research Grants & Research Integrity",
+"name": "Grants.gov Database XML Extract",
+"url": "https://www.grants.gov/xml-extract",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"Grants.gov Funding Opportunity Number"
+]
+},
+{
+"domain": "Science, Research Grants & Research Integrity",
+"name": "Crossref Open Funder Registry (Funder IDs) + Funders API",
+"url": "https://www.crossref.org/services/funder-registry/",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "45,700 total funder records",
+"ids": [
+"DOI Grant/Funder IDs (Crossref Funder Registry / Grant Linking System)"
+]
+},
+{
+"domain": "Science, Research Grants & Research Integrity",
+"name": "OSF API v2 (Registrations endpoint)",
+"url": "https://api.osf.io/v2/",
+"shape": "api-open",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"OSF (Open Science Framework) Registration ID/DOI"
+]
+},
+{
+"domain": "International & Cross-Border Identifiers",
+"name": "GLEIF Level 2 Relationship Data (direct/ultimate parent LEI relationships) \u2014 Relationship Record API + Golden Copy file",
+"url": "https://api.gleif.org/api/v1/lei-records/{lei}/ultimate-parent-relationship ; bulk file at https://www.gleif.org/en/lei-data/gleif-golden-copy/download-the-golden-copy",
+"shape": "api-open",
+"size": "large",
+"lift": "Med",
+"note": "",
+"ids": [
+"GLEIF Level 2 Relationship Data (direct/ultimate parent LEI)"
+]
+},
+{
+"domain": "International & Cross-Border Identifiers",
+"name": "ISO 10383 Market Identifier Codes (MIC) Registry",
+"url": "https://www.iso20022.org/market-identifier-codes",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "",
+"ids": [
+"MIC (Market Identifier Code)"
+]
+},
+{
+"domain": "International & Cross-Border Identifiers",
+"name": "Base Sirene des entreprises et de leurs \u00e9tablissements (SIREN, SIRET)",
+"url": "https://www.data.gouv.fr/fr/datasets/base-sirene-des-entreprises-et-de-leurs-etablissements-siren-siret/",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"SIREN / SIRET (France)"
+]
+},
+{
+"domain": "International & Cross-Border Identifiers",
+"name": "FATCA Foreign Financial Institution (FFI) List (IRS)",
+"url": "https://www.irs.gov/businesses/corporations/fatca-foreign-financial-institution-list-search-and-download-tool",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"GIIN (FATCA Global Intermediary Identification Number)"
+]
+},
+{
+"domain": "International & Cross-Border Identifiers",
+"name": "OpenSanctions \"default\" Dataset (consolidated sanctions, PEP, and crime-context entities)",
+"url": "https://www.opensanctions.org/datasets/default/",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "4,095,494 total entities; 1,283,776 targets (1,174,470 people, 213,381 companies) at time of fetch",
+"ids": [
+"OpenSanctions consolidated entity ID (default dataset)"
+]
+},
+{
+"domain": "International & Cross-Border Identifiers",
+"name": "United Nations Security Council Consolidated List",
+"url": "https://main.un.org/securitycouncil/content/un-sc-consolidated-list (data files served via scsanctions.un.org, e.g. consolidatedLegacyByNAME.html/.xml)",
+"shape": "bulk-file",
+"size": "small",
+"lift": "Low",
+"note": "",
+"ids": [
+"UN Security Council Consolidated Sanctions List"
+]
+},
+{
+"domain": "International & Cross-Border Identifiers",
+"name": "UK Sanctions List (FCDO)",
+"url": "https://www.gov.uk/government/publications/the-uk-sanctions-list",
+"shape": "bulk-file",
+"size": "medium",
+"lift": "Low",
+"note": "",
+"ids": [
+"UK Sanctions List"
+]
+},
+{
+"domain": "International & Cross-Border Identifiers",
+"name": "Companies House People with Significant Control (PSC) Register \u2014 Snapshot Data",
+"url": "https://download.companieshouse.gov.uk/en_pscdata.html",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "split across 32 files (19MB-69MB each) or one combined file; exact row count not shown on page",
+"ids": [
+"UK Persons with Significant Control (PSC) Register"
+]
+},
+{
+"domain": "International & Cross-Border Identifiers",
+"name": "ICIJ Offshore Leaks Database",
+"url": "https://offshoreleaks.icij.org/pages/database",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"ICIJ Offshore Leaks Database"
+]
+},
+{
+"domain": "International & Cross-Border Identifiers",
+"name": "National Tax Agency Corporate Number Publication Site \u2014 bulk download",
+"url": "https://www.houjin-bangou.nta.go.jp/download/ (English portal: https://www.houjin-bangou.nta.go.jp/en/)",
+"shape": "bulk-file",
+"size": "large",
+"lift": "Low-Med",
+"note": "",
+"ids": [
+"Japan Corporate Number (H\u014djin Bang\u014d)"
+]
+}
+],
+"domains": [
+{
+"domain": "Healthcare & Clinical",
+"total": 21,
+"confirmed": 8,
+"inferred": 13,
+"notfound": 0,
+"fragmented": 1,
+"checked": 11,
+"downgraded": 4,
+"trust": 64,
+"ready": 6,
+"angle": "Adverse-event and provider registries link back to device/drug identifiers already coming in from Pharma."
+},
+{
+"domain": "Pharma, Biologics & Medical Devices",
+"total": 31,
+"confirmed": 13,
+"inferred": 17,
+"notfound": 1,
+"fragmented": 0,
+"checked": 14,
+"downgraded": 2,
+"trust": 86,
+"ready": 12,
+"angle": "Deep FDA bench \u2014 UNII/510k/PMA/MAUDE/FAERS all key off the same establishment and product IDs."
+},
+{
+"domain": "Environment & Natural Resources",
+"total": 29,
+"confirmed": 24,
+"inferred": 5,
+"notfound": 0,
+"fragmented": 6,
+"checked": 23,
+"downgraded": 2,
+"trust": 91,
+"ready": 16,
+"angle": "The deepest bench here \u2014 TRI/RCRA/AQS/GHGRP all key off facility IDs, so one polluter shows up everywhere at once."
+},
+{
+"domain": "Banking & Depository Institutions",
+"total": 18,
+"confirmed": 12,
+"inferred": 4,
+"notfound": 2,
+"fragmented": 1,
+"checked": 12,
+"downgraded": 4,
+"trust": 67,
+"ready": 6,
+"angle": "Cross with corporate registration to catch a bank/thrift still chartered after enforcement action elsewhere."
+},
+{
+"domain": "Securities, Investment Funds & Markets",
+"total": 20,
+"confirmed": 8,
+"inferred": 12,
+"notfound": 0,
+"fragmented": 1,
+"checked": 10,
+"downgraded": 5,
+"trust": 50,
+"ready": 5,
+"angle": "MIC/MPID/PCAOB data is thin but real \u2014 mostly identifier scaffolding, not incident data."
+},
+{
+"domain": "Financial Crimes, Sanctions & AML",
+"total": 20,
+"confirmed": 15,
+"inferred": 5,
+"notfound": 0,
+"fragmented": 2,
+"checked": 14,
+"downgraded": 5,
+"trust": 64,
+"ready": 4,
+"angle": "Sanctions/PSC/offshore data is the AML backbone \u2014 pairs directly with Corporate Registration for shell-company chains."
+},
+{
+"domain": "Corporate Registration & Beneficial Ownership",
+"total": 29,
+"confirmed": 19,
+"inferred": 10,
+"notfound": 0,
+"fragmented": 6,
+"checked": 20,
+"downgraded": 3,
+"trust": 85,
+"ready": 8,
+"angle": "Beneficial-ownership layer for the entity spine \u2014 trace who actually sits behind a sanctioned or offshore shell."
+},
+{
+"domain": "Labor, Workplace Safety & Benefits",
+"total": 19,
+"confirmed": 6,
+"inferred": 12,
+"notfound": 1,
+"fragmented": 2,
+"checked": 6,
+"downgraded": 1,
+"trust": 83,
+"ready": 2,
+"angle": "NLRB case data ties labor complaints to the same employer entity seen in procurement/corporate data."
+},
+{
+"domain": "Criminal Justice & Court Systems",
+"total": 13,
+"confirmed": 8,
+"inferred": 5,
+"notfound": 0,
+"fragmented": 3,
+"checked": 10,
+"downgraded": 2,
+"trust": 80,
+"ready": 2,
+"angle": "Federal judge/case metadata to connect enforcement outcomes back to the people who ruled on them."
+},
+{
+"domain": "Law Enforcement & Corrections",
+"total": 14,
+"confirmed": 12,
+"inferred": 2,
+"notfound": 0,
+"fragmented": 7,
+"checked": 13,
+"downgraded": 2,
+"trust": 85,
+"ready": 4,
+"angle": "Sentencing and detention facility data \u2014 mostly state-fragmented, so coverage will always be partial without 50 state builds."
+},
+{
+"domain": "Immigration & Border",
+"total": 19,
+"confirmed": 6,
+"inferred": 12,
+"notfound": 1,
+"fragmented": 1,
+"checked": 10,
+"downgraded": 4,
+"trust": 60,
+"ready": 3,
+"angle": "ICE detention data is large and sensitive \u2014 pairs with facility/contractor data to map who profits from detention."
+},
+{
+"domain": "Politics, Elections & Lobbying",
+"total": 20,
+"confirmed": 13,
+"inferred": 7,
+"notfound": 0,
+"fragmented": 4,
+"checked": 10,
+"downgraded": 1,
+"trust": 90,
+"ready": 6,
+"angle": "Lobbyist/political-filer data lets you connect money in politics to the same entities showing up in enforcement or procurement."
+},
+{
+"domain": "Transportation -- Aviation & Rail",
+"total": 29,
+"confirmed": 18,
+"inferred": 8,
+"notfound": 3,
+"fragmented": 0,
+"checked": 17,
+"downgraded": 3,
+"trust": 82,
+"ready": 4,
+"angle": "Carrier and accident IDs support incident-to-operator resolution once paired with FAA registration data."
+},
+{
+"domain": "Transportation -- Motor Carrier & Maritime",
+"total": 10,
+"confirmed": 4,
+"inferred": 6,
+"notfound": 0,
+"fragmented": 1,
+"checked": 6,
+"downgraded": 4,
+"trust": 33,
+"ready": 1,
+"angle": "Thinnest realm \u2014 only one clean bulk source; most of this domain is scrape-only or fragmented."
+},
+{
+"domain": "Consumer Protection & Product Safety",
+"total": 25,
+"confirmed": 14,
+"inferred": 9,
+"notfound": 2,
+"fragmented": 0,
+"checked": 22,
+"downgraded": 9,
+"trust": 59,
+"ready": 10,
+"angle": "Chain device/drug recalls (MAUDE, 510k, enforcement) to the same manufacturer across FDA and CPSC surfaces."
+},
+{
+"domain": "Education",
+"total": 21,
+"confirmed": 4,
+"inferred": 16,
+"notfound": 1,
+"fragmented": 4,
+"checked": 6,
+"downgraded": 2,
+"trust": 67,
+"ready": 2,
+"angle": "OPEID/IPEDS crosswalk to tie predatory-lending or fraud patterns to a specific accredited institution."
+},
+{
+"domain": "Housing, Real Estate & Mortgage Lending",
+"total": 30,
+"confirmed": 19,
+"inferred": 10,
+"notfound": 1,
+"fragmented": 4,
+"checked": 17,
+"downgraded": 1,
+"trust": 94,
+"ready": 15,
+"angle": "Best-covered realm \u2014 HMDA, FHA, Ginnie Mae, CFPB complaints all key on lender ID, ready for a full redlining/predatory-lending pass."
+},
+{
+"domain": "Federal Procurement & Grants",
+"total": 21,
+"confirmed": 13,
+"inferred": 6,
+"notfound": 2,
+"fragmented": 1,
+"checked": 10,
+"downgraded": 1,
+"trust": 90,
+"ready": 3,
+"angle": "Audit and award data flags who's getting federal money while under separate enforcement elsewhere."
+},
+{
+"domain": "Energy, Utilities & Pipeline Safety",
+"total": 31,
+"confirmed": 13,
+"inferred": 17,
+"notfound": 1,
+"fragmented": 6,
+"checked": 12,
+"downgraded": 4,
+"trust": 67,
+"ready": 6,
+"angle": "Plant/utility/generator IDs let pollution and safety incidents resolve to one owner across EIA + EPA."
+},
+{
+"domain": "Agriculture & Food Safety",
+"total": 24,
+"confirmed": 3,
+"inferred": 20,
+"notfound": 1,
+"fragmented": 4,
+"checked": 5,
+"downgraded": 4,
+"trust": 20,
+"ready": 0,
+"angle": "Nothing survived the critic pass clean \u2014 every checked row downgraded; treat this realm as unconfirmed."
+},
+{
+"domain": "Telecom & Media",
+"total": 27,
+"confirmed": 4,
+"inferred": 19,
+"notfound": 4,
+"fragmented": 1,
+"checked": 12,
+"downgraded": 11,
+"trust": 8,
+"ready": 1,
+"angle": "Almost nothing survived the critic pass \u2014 FCC/USAC portals are search tools, not files; treat this realm as effectively unmapped."
+},
+{
+"domain": "Insurance",
+"total": 27,
+"confirmed": 10,
+"inferred": 14,
+"notfound": 3,
+"fragmented": 12,
+"checked": 13,
+"downgraded": 5,
+"trust": 62,
+"ready": 1,
+"angle": "Almost entirely state-fragmented \u2014 one national source (Canada OSFI) confirmed, everything else needs a state-by-state build."
+},
+{
+"domain": "Federal Benefits & Safety Net / Veterans",
+"total": 22,
+"confirmed": 4,
+"inferred": 13,
+"notfound": 5,
+"fragmented": 4,
+"checked": 5,
+"downgraded": 1,
+"trust": 80,
+"ready": 3,
+"angle": "Thin, but OPEID ties student-aid harm to the same institutions surfaced in Education."
+},
+{
+"domain": "Science, Research Grants & Research Integrity",
+"total": 30,
+"confirmed": 26,
+"inferred": 2,
+"notfound": 2,
+"fragmented": 0,
+"checked": 24,
+"downgraded": 1,
+"trust": 96,
+"ready": 15,
+"angle": "Cleanest realm in the whole sweep \u2014 DOI/ORCID/ROR/grant IDs make researcher and funder identity resolution nearly solved."
+},
+{
+"domain": "International & Cross-Border Identifiers",
+"total": 21,
+"confirmed": 18,
+"inferred": 3,
+"notfound": 0,
+"fragmented": 2,
+"checked": 17,
+"downgraded": 2,
+"trust": 88,
+"ready": 10,
+"angle": "The connective tissue for cross-border ownership \u2014 SIREN, GLEIF, OpenSanctions bridge US entities to foreign registries."
+}
+]
+}

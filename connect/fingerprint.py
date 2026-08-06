@@ -36,7 +36,26 @@ from .keys import detect_key, join_mode, normalize_sql, quote_ident
 OUT = Path(__file__).resolve().parents[1] / "outputs" / "connect_fingerprints.json"
 
 # Tables that aren't real joinable sources (early proofs / archive captures / demos).
-SKIP_TABLES = {"INTL_DEMO_QUOTES_TOSCRAPE_JS"}
+SKIP_TABLES = {
+    "INTL_DEMO_QUOTES_TOSCRAPE_JS",
+    # 2026-08-05 ingestion sweep: orphaned duplicate twins from parallel build agents.
+    # Byte-identical row counts to their SOURCE_REGISTRY-registered canonical copies
+    # (see CHRIS_DECISIONS.md "6 true duplicate raw tables" + the ICIJ/IRS527 pairs
+    # found 2026-08-05). Skipped so the map never grows doubled edges; the tables
+    # themselves await a manual DROP by someone with warehouse access.
+    "FED_FHFA_SUSPENDED_COUNTERPARTY",      # canonical: FED_FHFA_SUSPENDED_COUNTERPARTY_PROGRAM
+    "FED_JPML_PENDING_MDL",                 # canonical: FED_JPML_PENDING_MDLS
+    "INTL_UK_SANCTIONS_LIST",               # canonical: XC_UK_SANCTIONS_LIST
+    "INTL_UN_CONSOLIDATED_SANCTIONS",       # canonical: XC_UN_CONSOLIDATED_SANCTIONS_LIST
+    "STATE_OEHHA_PROP65_CHEMICALS",         # canonical: ST_OEHHA_PROPOSITION_65_LIST
+    "ICIJ_OFFSHORE_LEAKS_ADDRESSES",        # canonical: FED_ICIJ_OFFSHORELEAKS_ADDRESSES
+    "ICIJ_OFFSHORE_LEAKS_ENTITIES",         # canonical: FED_ICIJ_OFFSHORELEAKS_ENTITIES
+    "ICIJ_OFFSHORE_LEAKS_INTERMEDIARIES",   # canonical: FED_ICIJ_OFFSHORELEAKS_INTERMEDIARIES
+    "ICIJ_OFFSHORE_LEAKS_OFFICERS",         # canonical: FED_ICIJ_OFFSHORELEAKS_OFFICERS
+    "ICIJ_OFFSHORE_LEAKS_RELATIONSHIPS",    # canonical: FED_ICIJ_OFFSHORELEAKS_RELATIONSHIPS
+    "FED_IRS_527_ORGS",                     # canonical: IRS527_8871_ORGS
+    "FED_FDA_GUDID__STAGING",               # loader scratch table, not a source
+}
 
 MAX_KEY_COLS_PER_TABLE = 16  # guard against a runaway aggregate query
 PREFIX_CAP = 128             # distinct LEFT(v,2) prefixes kept per key column

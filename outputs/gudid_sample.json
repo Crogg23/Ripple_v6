@@ -1,0 +1,104 @@
+{
+  "meta": {
+    "disclaimer": "Do not rely on openFDA to make decisions regarding medical care. While we make every effort to ensure that data is accurate, you should assume all results are unvalidated. We may limit or otherwise restrict your access to the API in line with our Terms of Service.",
+    "terms": "https://open.fda.gov/terms/",
+    "license": "https://open.fda.gov/license/",
+    "last_updated": "2026-07-13",
+    "results": {
+      "skip": 0,
+      "limit": 1,
+      "total": 5083948
+    }
+  },
+  "results": [
+    {
+      "has_donation_id_number": "false",
+      "mri_safety": "Labeling does not contain MRI Safety Information",
+      "record_status": "Published",
+      "is_labeled_as_nrl": "false",
+      "is_rx": "true",
+      "commercial_distribution_status": "In Commercial Distribution",
+      "device_description": "LARYNGOSCOPIC ALLIGATOR FORCEPS OVAL TIP RIGHT UP-ANGLE OPENED POINTED BLADE CONICAL FLEXIBLE TUBE SHAFT",
+      "public_device_record_key": "c8557a3c-3f34-4b70-9461-302eb8d841be",
+      "has_serial_number": "false",
+      "public_version_date": "2025-10-27",
+      "sterilization": {
+        "is_sterile": "false",
+        "is_sterilization_prior_use": "true",
+        "sterilization_methods": [
+          "Moist Heat or Steam Sterilization",
+          "Dry Heat Sterilization"
+        ]
+      },
+      "is_direct_marking_exempt": "false",
+      "public_version_number": "2",
+      "labeler_duns_number": "040729840",
+      "is_labeled_as_no_nrl": "false",
+      "identifiers": [
+        {
+          "id": "00192896058644",
+          "type": "Primary",
+          "issuing_agency": "GS1"
+        }
+      ],
+      "is_single_use": "false",
+      "is_otc": "false",
+      "version_or_model_number": "1301-294",
+      "has_manufacturing_date": "false",
+      "brand_name": "LARYNGOSCOPY ALLIGATOR FORCEPS",
+      "is_combination_product": "false",
+      "is_kit": "false",
+      "product_codes": [
+        {
+          "code": "KAE",
+          "name": "FORCEPS, ENT",
+          "openfda": {
+            "device_name": "Forceps, Ent",
+            "medical_specialty_description": "Ear, Nose, Throat",
+            "regulation_number": "874.4420",
+            "device_class": "1"
+          }
+        }
+      ],
+      "device_count_in_base_package": "1",
+      "is_pm_exempt": "true",
+      "has_lot_or_batch_number": "true",
+      "customer_contacts": [
+        {
+          "phone": "+1(800)821-7496",
+          "email": "info@sontecinstruments.com"
+        }
+      ],
+      "catalog_number": "1301-294",
+      "company_name": "SONTEC INSTRUMENTS, INC.",
+      "public_version_status": "Update",
+      "has_expiration_date": "false",
+      "is_hct_p": "false",
+      "gmdn_terms": [
+        {
+          "code": "38810",
+          "name": "Flexible endoscopic biopsy forceps, reusable",
+          "definition": "A flexible, manual, non-electrosurgical instrument intended to obtain tissue specimens during endoscopic procedures (e.g., gastro-urological endoscopy, laparoscopy, bronchoscopy, laryngoscopy) for histopathological examination. It is typically a flexible metal coil with a pair of scissors-like cups with cutting edge rims, which are operated by a control handle at the proximal end of the instrument. It is introduced into the body through an artificial orifice of the body or the working channel of the endoscope. This is a reusable device.",
+          "implantable": "false",
+          "code_status": "Active"
+        }
+      ],
+      "publish_date": "2018-09-10",
+      "device_sizes": [
+        {
+          "type": "Length",
+          "value": "9",
+          "unit": "Inch"
+        },
+        {
+          "type": "Device Size Text, specify",
+          "text": "2.5 x 4 Millmeter Cup"
+        },
+        {
+          "type": "Device Size Text, specify",
+          "text": "2 Millimeter Shaft"
+        }
+      ]
+    }
+  ]
+}

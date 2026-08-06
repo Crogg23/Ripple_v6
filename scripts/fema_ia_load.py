@@ -1,0 +1,140 @@
+"""FEMA OpenFEMA IndividualsAndHouseholdsProgramValidRegistrations loader.
+
+~26.2M rows (per API metadata count). Paginates via $skip/$top=10000,
+appends to Snowflake in batches, checkpoints skip offset to disk so a
+kill/restart resumes instead of re-downloading from zero.
+"""
+from __future__ import annotations
+import datetime as dt
+import hashlib
+import json
+import sys
+import time
+import uuid
+from pathlib import Path
+
+import pandas as pd
+import requests
+
+_REPO = Path(__file__).resolve().parents[1]
+_LIB = _REPO / "library-onboarding"
+sys.path.insert(0, str(_LIB))
+try:
+    from dotenv import load_dotenv
+    load_dotenv(_LIB / ".env", override=True)
+except Exception:
+    pass
+
+import snow  # noqa: E402
+import ingest  # noqa: E402
+
+BASE = "https://www.fema.gov/api/open/v2/IndividualsAndHouseholdsProgramValidRegistrations"
+TABLE = "FED_FEMA_IA_HOUSING_REGISTRATIONS"
+TOP = 10000
+CKPT = _REPO / "outputs" / "_fema_ia_checkpoint.json"
+LOG = _REPO / "outputs" / "_fema_ia_progress.log"
+
+
+def log(msg):
+    line = f"{dt.datetime.now().isoformat()} {msg}"
+    print(line, flush=True)
+    with open(LOG, "a") as f:
+        f.write(line + "\n")
+
+
+def fetch_page(skip: int) -> list[dict]:
+    params = {"$top": TOP, "$skip": skip, "$orderby": "id"}
+    for attempt in range(6):
+        try:
+            r = requests.get(BASE, params=params, timeout=120)
+            if r.status_code == 200:
+                d = r.json()
+                return d.get("IndividualsAndHouseholdsProgramValidRegistrations", [])
+            time.sleep(3 * (attempt + 1))
+        except Exception as e:
+            time.sleep(3 * (attempt + 1))
+    raise RuntimeError(f"failed page skip={skip}")
+
+
+def main():
+    conn = snow.connect()
+    skip = 0
+    first_batch = True
+    run_id = str(uuid.uuid4())
+    started = dt.datetime.now(dt.timezone.utc).replace(tzinfo=None)
+    total_loaded = 0
+
+    if CKPT.exists():
+        ck = json.loads(CKPT.read_text())
+        skip = ck["skip"]
+        total_loaded = ck["total_loaded"]
+        first_batch = False
+        log(f"resuming at skip={skip}, total_loaded={total_loaded}")
+    else:
+        # fresh run -- pre-create with an explicit all-VARCHAR schema so a page
+        # with an all-null column (e.g. rentalAssistanceEndDate) never gets
+        # auto_create_table-inferred as NUMBER and breaks a later text batch.
+        sample = fetch_page(0)
+        if not sample:
+            log("no data returned on probe page -- aborting")
+            sys.exit(1)
+        cols = sorted({k for rec in sample for k in rec.keys()})
+        sf_cols = [ingest._sf_col(c) for c in cols]
+        cur = conn.cursor()
+        cur.execute(f"DROP TABLE IF EXISTS LIBRARY_RAW.LANDING.{TABLE}")
+        ddl_cols = ", ".join(f'"{c}" VARCHAR' for c in sf_cols)
+        ddl_cols += ', "_INGESTED_AT" VARCHAR, "_SOURCE_RUN_ID" VARCHAR, "_SRC_SHA256" VARCHAR'
+        cur.execute(f'CREATE TABLE LIBRARY_RAW.LANDING.{TABLE} ({ddl_cols})')
+        cur.close()
+        log(f"created {TABLE} with {len(sf_cols)} VARCHAR columns")
+
+    from snowflake.connector.pandas_tools import write_pandas
+
+    while True:
+        batch = fetch_page(skip)
+        if not batch:
+            log(f"empty page at skip={skip} -- done")
+            break
+        df = pd.DataFrame(batch)
+        df.columns = [ingest._sf_col(c) for c in df.columns]
+        # force everything to string so auto_create_table always picks VARCHAR --
+        # mixed None/bool/number/date columns across pages otherwise cause
+        # Snowflake type-inference conflicts on later COPY INTO batches.
+        for c in df.columns:
+            df[c] = df[c].apply(lambda v: None if v is None else str(v))
+        sha = hashlib.sha256(df.to_csv(index=False).encode()).hexdigest()[:16]
+        df["_INGESTED_AT"] = started.isoformat()
+        df["_SOURCE_RUN_ID"] = run_id
+        df["_SRC_SHA256"] = sha
+
+        ok, _c, n, _ = write_pandas(
+            conn, df, table_name=TABLE,
+            database="LIBRARY_RAW", schema="LANDING",
+            auto_create_table=False, overwrite=False, quote_identifiers=False,
+        )
+        total_loaded += n
+        skip += TOP
+        first_batch = False
+        CKPT.write_text(json.dumps({"skip": skip, "total_loaded": total_loaded}))
+        if (skip // TOP) % 10 == 0:
+            log(f"skip={skip} total_loaded={total_loaded}")
+        if len(batch) < TOP:
+            log(f"final short page ({len(batch)}) -- done, total_loaded={total_loaded}")
+            break
+
+    cur = conn.cursor()
+    cur.execute(f"SELECT COUNT(*), COUNT(DISTINCT ID) FROM LIBRARY_RAW.LANDING.{TABLE}")
+    total, distinct_id = cur.fetchone()
+    log(f"FINAL VERIFY: {total} rows, {distinct_id} distinct ID")
+
+    ended = dt.datetime.now(dt.timezone.utc).replace(tzinfo=None)
+    ingest._log_run(conn, source_id="fed_fema_ia_housing_registrations", run_id=run_id,
+                     status="success", row_count=total, file_bytes=None,
+                     sha="paginated", url=BASE, started=started, ended=ended,
+                     message=f"paginated load, {skip} skip offset reached")
+    if CKPT.exists():
+        CKPT.unlink()
+
+
+if __name__ == "__main__":
+    main()

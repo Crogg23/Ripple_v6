@@ -1,0 +1,206 @@
+================================================================================
+JOIN_KEYS_STD backfill  --  468 landed/modeled sources (APPLY)
+gates: nonnull>=5  distinct>=2  pop>=0.5%  sample=50,000 rows
+================================================================================
+  ...50/468 measured (23s)
+  ...100/468 measured (43s)
+  ...200/468 measured (83s)
+  ...300/468 measured (119s)
+  ...350/468 measured (142s)
+  ...400/468 measured (158s)
+  ...450/468 measured (172s)
+
+--------------------------------------------------------------------------------
+WOULD WRITE (142 sources) -- provisional, measured a real key:
+--------------------------------------------------------------------------------
+  FED_CMS_PARTD_PRESCRIBER_DRUG                NPI,STATE              -> [NPI,FIPS,NAME] STEEL
+  FED_EPA_FRS_FULL                             COUNTY,FIPS,FRS_ID,STATE,ZIP -> [FRS_ID,COUNTRY,FIPS,ZIP,ADDRESS,NAME] STEEL
+  FED_FAC_SINGLE_AUDIT                         EIN,FIPS               -> [EIN,UEI,ZIP,ADDRESS,NAME] STEEL
+  FED_FEC_INDEPENDENT_EXPENDITURES             FEC_ID                 -> [FEC_CAND_ID,NAME] STEEL
+  FED_IRS_990_EFILE_INDEX                      EIN                    -> [EIN,NAME] STEEL
+  FED_IRS_EO_PR                                EIN,ZIP                -> [EIN,ZIP,ADDRESS,NAME] STEEL
+  FED_MSHA_ACCIDENTS                           MINE_ID                -> [MINE_ID,FIPS,NAME] STEEL
+  FED_MSHA_MINES                               MINE_ID,STATE          -> [MINE_ID,SIC,FIPS,NAME] STEEL
+  FED_MSHA_VIOLATIONS                          MINE_ID                -> [MINE_ID,DOCKET,NAME] STEEL
+  FED_SEC_INSIDER_REPORTINGOWNER               ACCESSION_NUMBER,STATE,ZIP -> [ZIP] GEO
+  FED_USASPENDING_ASSISTANCE_FULL              STATE,UEI              -> [DUNS,UEI,COUNTRY,NAME] STEEL
+  FED_USASPENDING_CONTRACTS_FULL               (empty)                -> [DUNS,UEI,NAME] STEEL
+  INTL_GLEIF                                   LEI                    -> [LEI,NAME] STEEL
+  INT_UK_COMPANIES_HOUSE                       (empty)                -> [COMPANY_NO,SIC,COUNTRY,ADDRESS,NAME] STEEL
+  ca_lobby_amendments                          (empty)                -> [NAME] PROBABILISTIC
+  ca_lobby_chg_log                             (empty)                -> [ZIP,NAME] GEO
+  ca_lobby_contributions                       (empty)                -> [NAME] PROBABILISTIC
+  ca_lobby_cover                               (empty)                -> [NAME] PROBABILISTIC
+  ca_lobby_emp_lobbyist                        (empty)                -> [NAME] PROBABILISTIC
+  ca_lobby_employer                            (empty)                -> [NAME] PROBABILISTIC
+  ca_lobby_employer_firms                      (empty)                -> [NAME] PROBABILISTIC
+  ca_lobby_firm                                (empty)                -> [NAME] PROBABILISTIC
+  ca_lobby_firm_employer                       (empty)                -> [NAME] PROBABILISTIC
+  ca_lobby_firm_lobbyist                       (empty)                -> [NAME] PROBABILISTIC
+  fed_cms_ambulatory_specialty_model_participants NPI,STATE              -> [NPI,NAME] STEEL
+  fed_cms_facility_level_minimum_data_set_frequency CCN,STATE,ZIP          -> [CCN,FIPS,ZIP,NAME] STEEL
+  fed_cms_federally_qualified_health_center_enrollments CCN,NPI,STATE,ZIP      -> [CCN,NPI,ZIP,ADDRESS,NAME] STEEL
+  fed_cms_fiscal_intermediary_shared_system_attending_and_rendering NPI                    -> [NPI,NAME] STEEL
+  fed_cms_home_health_agency_enrollments       CCN,NPI,STATE,ZIP      -> [CCN,NPI,ZIP,ADDRESS,NAME] STEEL
+  fed_cms_hospice_enrollments                  CCN,NPI,STATE,ZIP      -> [CCN,NPI,ZIP,ADDRESS,NAME] STEEL
+  fed_cms_hospital_enrollments                 CCN,NPI,STATE,ZIP      -> [CCN,NPI,ZIP,ADDRESS,NAME] STEEL
+  fed_cms_medicare_diabetes_prevention_program NPI,STATE,ZIP          -> [NPI,ZIP,ADDRESS,NAME] STEEL
+  fed_cms_medicare_dialysis_facilities         CCN,NPI,STATE          -> [CCN,NPI,NAME] STEEL
+  fed_cms_medicare_durable_medical_equipment_devices_supplies_by_refer (empty)                -> [NPI,COUNTRY,FIPS,ZIP,NAME] STEEL
+  fed_cms_medicare_durable_medical_equipment_devices_supplies_by_suppl (empty)                -> [NPI,FIPS,ZIP,NAME] STEEL
+  fed_cms_medicare_fee_for_service_public_provider_enrollment NPI                    -> [NPI,NAME] STEEL
+  fed_cms_medicare_inpatient_hospitals_by_provider (empty)                -> [CCN,FIPS,ZIP,NAME] STEEL
+  fed_cms_medicare_inpatient_hospitals_by_provider_and_service (empty)                -> [CCN,FIPS,ZIP,NAME] STEEL
+  fed_cms_medicare_outpatient_hospitals_by_provider_and_service (empty)                -> [CCN,FIPS,ZIP,NAME] STEEL
+  fed_cms_medicare_physician_other_practitioners_by_provider NPI                    -> [NPI,COUNTRY,FIPS,ZIP,NAME] STEEL
+  fed_cms_medicare_physician_other_practitioners_by_provider_and_servi NPI                    -> [NPI,FIPS,ZIP,NAME] STEEL
+  fed_cms_nursing_home_deficiencies            (empty)                -> [CCN,ZIP,ADDRESS,NAME] STEEL
+  fed_cms_nursing_home_fire_deficiencies       (empty)                -> [CCN,ZIP,ADDRESS,NAME] STEEL
+  fed_cms_nursing_home_penalties               (empty)                -> [CCN,ZIP,ADDRESS,NAME] STEEL
+  fed_cms_opioid_treatment_program_providers   NPI,STATE,ZIP          -> [NPI,ZIP,ADDRESS,NAME] STEEL
+  fed_cms_opt_out_affidavits                   NPI,STATE,ZIP          -> [NPI,ZIP,ADDRESS,NAME] STEEL
+  fed_cms_order_and_referring                  NPI                    -> [NPI,NAME] STEEL
+  fed_cms_pending_initial_logging_and_tracking_non_physicians NPI                    -> [NPI,NAME] STEEL
+  fed_cms_pending_initial_logging_and_tracking_physicians NPI                    -> [NPI,NAME] STEEL
+  fed_cms_quality_payment_program_experience   NPI                    -> [NPI] STEEL
+  fed_cms_rural_health_clinic_enrollments      CCN,NPI,STATE,ZIP      -> [CCN,NPI,ZIP,ADDRESS,NAME] STEEL
+  fed_cms_skilled_nursing_facility_enrollments CCN,NPI,STATE,ZIP      -> [CCN,NPI,ZIP,ADDRESS,NAME] STEEL
+  fed_college_scorecard_institution            (empty)                -> [FIPS,LATLON,ZIP,ADDRESS] GEO
+  fed_consolidated_screening_list              (empty)                -> [NAME] PROBABILISTIC
+  fed_courtlistener_dockets                    DOCKET_NUMBER          -> [DOCKET,NAME] STRONG
+  fed_courtlistener_judges                     (empty)                -> [COUNTRY,NAME] GEO
+  fed_courtlistener_positions                  (empty)                -> [NAME] PROBABILISTIC
+  fed_cpsc_neiss_codes                         (empty)                -> [NAME] PROBABILISTIC
+  fed_dea_arcos_full                           DEA_NO                 -> [DEA_NO,ZIP,NAME] STEEL
+  fed_epa_air_emissions_poll_rpt_combined_emissions FRS_ID                 -> [FRS_ID,NAME] STEEL
+  fed_epa_egrid_plant_2022                     (empty)                -> [FIPS,LATLON,NAME] GEO
+  fed_epa_frs_frs_naics_codes                  FRS_ID                 -> [FRS_ID,NAICS] STEEL
+  fed_epa_frs_frs_program_links                COUNTY,FIPS,FRS_ID,STATE,ZIP -> [FRS_ID,COUNTRY,FIPS,ZIP,ADDRESS,NAME] STEEL
+  fed_epa_frs_frs_sic_codes                    FRS_ID                 -> [FRS_ID,SIC] STEEL
+  fed_epa_icis_air_icis_air_facilities         FRS_ID,STATE,ZIP       -> [FRS_ID,NAICS,SIC,ZIP,ADDRESS,NAME] STEEL
+  fed_epa_icis_fec_case_enforcement_conclusion_facilities ACTIVITY_ID,CASE_NUMBER -> [ZIP,NAME] GEO
+  fed_epa_icis_fec_case_facilities             FRS_ID,STATE,ZIP       -> [FRS_ID,NAICS,SIC,ZIP,ADDRESS,NAME] STEEL
+  fed_epa_icis_fec_epa_informal_enforcement_actions FRS_ID                 -> [FRS_ID] STEEL
+  fed_epa_icis_fec_icis_fec_epa_inspections    FRS_ID                 -> [FRS_ID,NAME] STEEL
+  fed_epa_npdes_icis_facilities                STATE,ZIP              -> [LATLON,ZIP,ADDRESS,NAME] GEO
+  fed_epa_npdes_npdes_informal_enforcement_actions FRS_ID                 -> [FRS_ID] STEEL
+  fed_epa_npdes_npdes_inspections              FRS_ID                 -> [FRS_ID] STEEL
+  fed_epa_npdes_npdes_naics                    NPDES_ID               -> [NAICS] STRONG
+  fed_epa_npdes_npdes_sics                     NPDES_ID               -> [SIC] STRONG
+  fed_epa_sdwa_sdwa_events_milestones          PWSID                  -> [PWSID] STEEL
+  fed_epa_sdwa_sdwa_facilities                 PWSID                  -> [PWSID,NAME] STEEL
+  fed_epa_sdwa_sdwa_geographic_areas           PWSID                  -> [PWSID,ZIP] STEEL
+  fed_epa_sdwa_sdwa_lcr_samples                PWSID                  -> [PWSID] STEEL
+  fed_epa_sdwa_sdwa_pn_violation_assoc         PWSID                  -> [PWSID] STEEL
+  fed_epa_sdwa_sdwa_pub_water_systems          PWSID,STATE,ZIP        -> [PWSID,COUNTRY,ZIP,ADDRESS,NAME] STEEL
+  fed_epa_sdwa_sdwa_service_areas              PWSID                  -> [PWSID] STEEL
+  fed_epa_sdwa_sdwa_site_visits                PWSID                  -> [PWSID] STEEL
+  fed_epa_sdwa_sdwa_violations_enforcement     PWSID                  -> [PWSID] STEEL
+  fed_epa_tri_basic_2023                       (empty)                -> [FRS_ID,LATLON,ZIP,ADDRESS,NAME] STEEL
+  fed_fatca_ffi                                (empty)                -> [COUNTRY,NAME] GEO
+  fed_fda_faers_demo                           (empty)                -> [COUNTRY] GEO
+  fed_fec_bulk_linkages                        FEC_ID                 -> [FEC_CAND_ID,FEC_CMTE_ID] STEEL
+  fed_federal_register_documents               (empty)                -> [DOCKET] STRONG
+  fed_fhfa_suspended_counterparty_program      (empty)                -> [NAME] PROBABILISTIC
+  fed_google_polads_advertiser_declared_stats  (empty)                -> [ADDRESS,NAME] PROBABILISTIC
+  fed_google_polads_advertiser_geo_spend       (empty)                -> [COUNTRY,NAME] GEO
+  fed_google_polads_advertiser_stats           (empty)                -> [NAME] PROBABILISTIC
+  fed_google_polads_advertiser_weekly_spend    (empty)                -> [NAME] PROBABILISTIC
+  fed_google_polads_creative_stats             (empty)                -> [NAME] PROBABILISTIC
+  fed_google_polads_geo_spend                  (empty)                -> [COUNTRY] GEO
+  fed_hud_assisted_housing_projects            (empty)                -> [LATLON,ZIP,ADDRESS,NAME] GEO
+  fed_ice_detention_facility_list              (empty)                -> [NAME] PROBABILISTIC
+  fed_icij_offshoreleaks_addresses             (empty)                -> [COUNTRY,ADDRESS,NAME] GEO
+  fed_icij_offshoreleaks_entities              (empty)                -> [COUNTRY,ADDRESS,NAME] GEO
+  fed_icij_offshoreleaks_intermediaries        (empty)                -> [COUNTRY,ADDRESS,NAME] GEO
+  fed_icij_offshoreleaks_officers              (empty)                -> [COUNTRY,NAME] GEO
+  fed_icij_offshoreleaks_others                (empty)                -> [COUNTRY,NAME] GEO
+  fed_irs_auto_revocations                     EIN,STATE,ZIP          -> [EIN,COUNTRY,ZIP,NAME] STEEL
+  fed_irs_pub78_eligible_donees                EIN,STATE              -> [EIN,COUNTRY,NAME] STEEL
+  fed_irs_soi_charities                        EIN,STATE,ZIP          -> [EIN,ZIP,ADDRESS,NAME] STEEL
+  fed_nid_dams                                 (empty)                -> [LATLON,NAME] GEO
+  fed_nih_reporter                             (empty)                -> [DUNS,UEI,NAME] STEEL
+  fed_ntsb_aviation_aircraft                   (empty)                -> [COUNTRY,ZIP,ADDRESS,NAME] GEO
+  fed_ntsb_aviation_events                     (empty)                -> [COUNTRY,GEOM,LATLON,ZIP,NAME] GEO
+  fed_osha_ita_300a_summary_2023               EIN,STATE,ZIP          -> [EIN,NAICS,ZIP,ADDRESS,NAME] STEEL
+  fed_osha_ita_300a_summary_2024               EIN,STATE,ZIP          -> [EIN,NAICS,ZIP,ADDRESS,NAME] STEEL
+  fed_osha_ita_300a_summary_2025               EIN,STATE,ZIP          -> [EIN,NAICS,ZIP,ADDRESS,NAME] STEEL
+  fed_osha_ita_case_detail_2023                EIN,STATE,ZIP          -> [EIN,NAICS,ZIP,ADDRESS,NAME] STEEL
+  fed_osha_ita_case_detail_2024                EIN,STATE,ZIP          -> [EIN,NAICS,ZIP,ADDRESS,NAME] STEEL
+  fed_osha_ita_case_detail_2025                EIN,STATE,ZIP          -> [EIN,NAICS,ZIP,ADDRESS,NAME] STEEL
+  fed_retraction_watch                         (empty)                -> [COUNTRY] GEO
+  fed_sam_exclusions                           COUNTRY,STATE,UEI,ZIP  -> [UEI,COUNTRY,ZIP,NAME] STEEL
+  fed_sec_13f_filers                           ACCESSION_NUMBER       -> [ZIP,NAME] GEO
+  fed_sec_13f_submissions                      ACCESSION_NUMBER,CIK   -> [CIK] STEEL
+  fed_sec_business_development_company_report  CIK,STATE,ZIP          -> [CIK,ZIP,ADDRESS,NAME] STEEL
+  fed_sec_closed_end_fund_information          CIK,STATE,ZIP          -> [CIK,ZIP,ADDRESS,NAME] STEEL
+  fed_sec_dera_sub_2024q1                      CIK,EIN                -> [CIK,EIN,SIC,NAME] STEEL
+  fed_sec_dera_sub_2024q2                      CIK,EIN                -> [CIK,EIN,SIC,NAME] STEEL
+  fed_sec_dera_sub_2024q3                      CIK,EIN                -> [CIK,EIN,SIC,NAME] STEEL
+  fed_sec_dera_sub_2024q4                      CIK,EIN                -> [CIK,EIN,SIC,NAME] STEEL
+  fed_sec_dera_sub_2025q1                      CIK,EIN                -> [CIK,EIN,SIC,NAME] STEEL
+  fed_sec_dera_sub_2025q2                      CIK,EIN                -> [CIK,EIN,SIC,NAME] STEEL
+  fed_sec_dera_sub_2025q3                      CIK,EIN                -> [CIK,EIN,SIC,NAME] STEEL
+  fed_sec_dera_sub_2025q4                      CIK,EIN                -> [CIK,EIN,SIC,NAME] STEEL
+  fed_sec_dera_sub_2026q1                      CIK,EIN                -> [CIK,EIN,SIC,NAME] STEEL
+  fed_sec_edgar_insiders                       ACCESSION_NUMBER,CIK   -> [CIK] STEEL
+  fed_sec_money_market_fund_information        (empty)                -> [CIK,NAME] STEEL
+  fed_senate_lda_filings                       (empty)                -> [COUNTRY,NAME] GEO
+  intl_gleif_repex                             LEI                    -> [LEI] STEEL
+  irs527_8871_orgs                             (empty)                -> [EIN,ZIP,ADDRESS,NAME] STEEL
+  irs527_8872_reports                          (empty)                -> [EIN,ZIP,ADDRESS,NAME] STEEL
+  irs527_directors_officers                    (empty)                -> [EIN,ZIP,NAME] STEEL
+  irs527_related_entities                      (empty)                -> [EIN,ZIP,NAME] STEEL
+  xc_epa_corporate_crosswalk                   (empty)                -> [FRS_ID,LEI,UEI,NAME] STEEL
+  xc_mapping_police_violence                   STATE,ZIP              -> [LATLON,ZIP,ADDRESS,NAME] GEO
+  xc_uk_sanctions_list                         (empty)                -> [ADDRESS,NAME] PROBABILISTIC
+  xc_un_consolidated_sanctions_list            (empty)                -> [ADDRESS,NAME] PROBABILISTIC
+
+--------------------------------------------------------------------------------
+SUMMARY
+--------------------------------------------------------------------------------
+  WRITE (gain measured keys):     142
+  SKIP already-measured (D20):    134  (provisional=FALSE, untouched)
+  SKIP provisional, no real key:  135  (left provisional -- honest)
+  NO physical LANDING table:      2
+  NO SOURCE_REGISTRY row:         55
+
+  key frequency across WRITE sources:
+    EIN        [STEEL        ]   25
+    NPI        [STEEL        ]   22
+    CCN        [STEEL        ]   14
+    CIK        [STEEL        ]   14
+    FRS_ID     [STEEL        ]   13
+    PWSID      [STEEL        ]    9
+    UEI        [STEEL        ]    6
+    DUNS       [STEEL        ]    3
+    LEI        [STEEL        ]    3
+    MINE_ID    [STEEL        ]    3
+    FEC_CAND_ID [STEEL        ]    2
+    COMPANY_NO [STEEL        ]    1
+    DEA_NO     [STEEL        ]    1
+    FEC_CMTE_ID [STEEL        ]    1
+    SIC        [STRONG       ]   15
+    NAICS      [STRONG       ]   10
+    DOCKET     [STRONG       ]    3
+    ZIP        [GEO          ]   55
+    COUNTRY    [GEO          ]   24
+    FIPS       [GEO          ]   15
+    LATLON     [GEO          ]    8
+    GEOM       [GEO          ]    1
+    NAME       [PROBABILISTIC]  117
+    ADDRESS    [PROBABILISTIC]   43
+
+  strongest-tier distribution of WRITE sources:
+    STEEL            94
+    STRONG            4
+    GEO              24
+    PROBABILISTIC    20
+
+  full report -> C:\Code\Ripple_v6\outputs\join_keys_std_backfill_report.md
+
+  registry snapshot -> LIBRARY_META.REGISTRY._SOURCE_REGISTRY_BAK_JOINKEYS_20260805_193951
+  rollback DDL -> C:\Code\Ripple_v6\outputs\_rollback_join_keys_std_20260805_193951.sql
+  wrote 142/142 source(s) (guarded: provisional-only).
+  post-apply (landed/modeled): empty_std=92  provisional=137  total=413
+  DONE.

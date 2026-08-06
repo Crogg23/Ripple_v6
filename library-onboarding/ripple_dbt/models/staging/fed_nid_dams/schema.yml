@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_NID_DAMS
+        description: >
+          National Inventory of Dams -- nationwide dam inventory with hazard classification.
+          All columns loaded as TEXT from the source system (raw landing, untransformed).
+
+models:
+
+  - name: stg_fed_nid_dams__records
+    description: >
+      Minimal passthrough staging model for FED_NID_DAMS. GRAIN NOT YET DETERMINED --
+      no dedup applied. Intended join key: nid_id (verify COUNT DISTINCT before using).

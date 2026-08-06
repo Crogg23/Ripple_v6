@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_HRSA_UDS_TABLE3A_PATIENTS
+        description: >
+          HRSA UDS -- Table3A patient demographics by health center.
+          All columns loaded as TEXT from the source system (raw landing, untransformed).
+
+models:
+
+  - name: stg_fed_hrsa_uds_table3a_patients__records
+    description: >
+      Minimal passthrough staging model for FED_HRSA_UDS_TABLE3A_PATIENTS. GRAIN NOT YET DETERMINED --
+      no dedup applied. Intended join key: bhcmisid (verify COUNT DISTINCT before using).

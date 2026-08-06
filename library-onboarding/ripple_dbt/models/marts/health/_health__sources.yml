@@ -5,6 +5,15 @@ sources:
     database: LIBRARY_RAW
     schema: LANDING
     tables:
+      - name: FED_HRSA_NPDB
+        description: >
+          National Practitioner Data Bank Public Use Data File — adverse action
+          reports (licensure/clinical privileges/society membership/DEA/exclusion)
+          and medical malpractice payment reports on physicians, dentists, and
+          other licensed practitioners. SEQNO is the report-level key (verified
+          unique). No individual practitioner name/identity in the public file
+          (de-identified by design) -- practitioner-level joins are not possible
+          from this table alone.
       - name: FED_DEA_ARCOS_FULL
         description: >
           DEA ARCOS — every controlled substance transaction from manufacturer/distributor

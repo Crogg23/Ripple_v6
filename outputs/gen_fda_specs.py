@@ -1,0 +1,189 @@
+import json
+
+maude = json.load(open('outputs/fda_maude_manifest.json'))
+udi = json.load(open('outputs/fda_udi_manifest.json'))
+ereg = [
+    "https://download.open.fda.gov/device/registrationlisting/device-registrationlisting-0001-of-0002.json.zip",
+    "https://download.open.fda.gov/device/registrationlisting/device-registrationlisting-0002-of-0002.json.zip",
+]
+
+def block(lst):
+    return "\n".join('        "%s",' % u for u in lst)
+
+parts = []
+parts.append('''"""FDA device/cosmetic sprint specs -- Phase 3 (2026-08-05): MAUDE device adverse
+events, 510(k)/PMA device clearances, CAERS cosmetic adverse events, GUDID device
+identifiers, FDA establishment registration/listing (FEI). All openFDA bulk JSON
+dumps (download.open.fda.gov), server-side loaded (cloud-to-cloud, no local
+download) via scripts/server_side_load.py, same "kind": "json" -> single-column
+RAW VARIANT pattern as FED_FDA_DRUG_ENFORCEMENT (dbt flattens RAW:results).
+
+MAUDE (device/event) is capped to 2020Q1-forward (184 of 362 quarterly part
+files; full history is 25.3M records back to 1993) -- a scope call to keep the
+load bounded; still "large, multi-year". GUDID (device/udi) uses all 51 parts
+(5.08M device records) since it exists specifically to resolve MAUDE device
+identifiers for the join-chain test.
+"""
+
+SPECS = [
+    {
+        "source_id": "FED_FDA_MAUDE",
+        "name": "openFDA MAUDE (Manufacturer and User Facility Device Experience)",
+        "manifest": [
+''')
+parts.append(block(maude))
+parts.append('''
+        ],
+        "kind": "json",
+        "loader": "server_side",
+        "publisher": "U.S. Food and Drug Administration (openFDA)",
+        "description": (
+            "Device adverse event reports -- malfunctions, injuries, deaths tied to "
+            "medical devices. openFDA JSON (one doc with a results array per part). "
+            "Capped to 2020Q1-forward (184 quarterly part files) for load-time scope; "
+            "full history is 25.3M records back to 1993."),
+        "jurisdiction": "US", "category": "Health", "subcategory": "device_safety",
+        "unit_of_observation": "device adverse event reports (in RAW:results)",
+        "geographic_scope": "United States",
+        "access_method": "bulk", "format": "json", "update_cadence": "quarterly",
+        "license_terms": "Public domain (US Gov)",
+        "join_keys": "mdr_report_key; device.brand_name; device.generic_name; "
+                      "device.manufacturer_d_name",
+        "accountability_relevance": (
+            "Device harm receipts -- which devices/manufacturers are tied to injuries "
+            "and deaths. Joins to GUDID (device identifier) and FDA establishment "
+            "registration (FEI) to trace event -> device -> manufacturer -> facility."),
+        "priority_tier": "1",
+        "notes": "openFDA zipped JSON, manifest of 184 quarterly parts (2020Q1+) -> VARIANT.",
+    },
+    {
+        "source_id": "FED_FDA_DEVICE_510K",
+        "name": "openFDA Device 510(k) Clearances",
+        "url": "https://download.open.fda.gov/device/510k/device-510k-0001-of-0001.json.zip",
+        "kind": "json",
+        "loader": "server_side",
+        "publisher": "U.S. Food and Drug Administration (openFDA)",
+        "description": (
+            "Premarket notification (510(k)) clearances -- devices cleared as "
+            "substantially equivalent to a legally marketed predicate. One doc with "
+            "a results array (175,686 records)."),
+        "jurisdiction": "US", "category": "Health", "subcategory": "device_clearance",
+        "unit_of_observation": "510(k) clearance decisions (in RAW:results)",
+        "geographic_scope": "United States",
+        "access_method": "bulk", "format": "json", "update_cadence": "monthly",
+        "license_terms": "Public domain (US Gov)",
+        "join_keys": "k_number; applicant; product_code",
+        "accountability_relevance": (
+            "Which devices got cleared, by whom, on what predicate -- the regulatory "
+            "paper trail behind devices later showing up in MAUDE adverse events."),
+        "priority_tier": "1",
+        "notes": "openFDA zipped JSON, single part -> VARIANT.",
+    },
+    {
+        "source_id": "FED_FDA_DEVICE_PMA",
+        "name": "openFDA Device PMA (Premarket Approval)",
+        "url": "https://download.open.fda.gov/device/pma/device-pma-0001-of-0001.json.zip",
+        "kind": "json",
+        "loader": "server_side",
+        "publisher": "U.S. Food and Drug Administration (openFDA)",
+        "description": (
+            "Premarket approval (PMA) decisions -- the most stringent device "
+            "approval pathway (Class III / life-sustaining devices). One doc with a "
+            "results array (56,853 records)."),
+        "jurisdiction": "US", "category": "Health", "subcategory": "device_approval",
+        "unit_of_observation": "PMA approval decisions (in RAW:results)",
+        "geographic_scope": "United States",
+        "access_method": "bulk", "format": "json", "update_cadence": "monthly",
+        "license_terms": "Public domain (US Gov)",
+        "join_keys": "pma_number; applicant; product_code",
+        "accountability_relevance": (
+            "Highest-risk device approvals -- pairs with MAUDE to check whether "
+            "approved high-risk devices are the ones generating adverse events."),
+        "priority_tier": "1",
+        "notes": "openFDA zipped JSON, single part -> VARIANT.",
+    },
+    {
+        "source_id": "FED_FDA_CAERS",
+        "name": "openFDA CAERS (Cosmetic Adverse Event Reporting System)",
+        "url": "https://download.open.fda.gov/cosmetic/event/cosmetic-event-0001-of-0001.json.zip",
+        "kind": "json",
+        "loader": "server_side",
+        "publisher": "U.S. Food and Drug Administration (openFDA)",
+        "description": (
+            "Cosmetic product adverse event reports -- reactions/injuries tied to "
+            "cosmetics. One doc with a results array (85,511 records)."),
+        "jurisdiction": "US", "category": "Health", "subcategory": "cosmetic_safety",
+        "unit_of_observation": "cosmetic adverse event reports (in RAW:results)",
+        "geographic_scope": "United States",
+        "access_method": "bulk", "format": "json", "update_cadence": "quarterly",
+        "license_terms": "Public domain (US Gov)",
+        "join_keys": "report_number; products.name_brand; products.industry_code",
+        "accountability_relevance": (
+            "Cosmetic harm receipts, parallel to FAERS/MAUDE for drugs/devices -- "
+            "who got hurt by which cosmetic product/brand."),
+        "priority_tier": "2",
+        "notes": "openFDA zipped JSON, single part -> VARIANT.",
+    },
+    {
+        "source_id": "FED_FDA_GUDID",
+        "name": "openFDA GUDID (Global Unique Device Identification Database)",
+        "manifest": [
+''')
+parts.append(block(udi))
+parts.append('''
+        ],
+        "kind": "json",
+        "loader": "server_side",
+        "publisher": "U.S. Food and Drug Administration (openFDA / AccessGUDID)",
+        "description": (
+            "Device identifier records -- the DI (device identifier) portion of "
+            "each medical device's UDI, brand/company name, and device attributes. "
+            "openFDA JSON bulk dump, all 51 parts (5.08M device records)."),
+        "jurisdiction": "US", "category": "Health", "subcategory": "device_identifier",
+        "unit_of_observation": "device identifier (DI) records (in RAW:results)",
+        "geographic_scope": "United States",
+        "access_method": "bulk", "format": "json", "update_cadence": "weekly",
+        "license_terms": "Public domain (US Gov)",
+        "join_keys": "identifiers.id (device identifier / DI); company_name",
+        "accountability_relevance": (
+            "The device identifier spine -- resolves a MAUDE event's device "
+            "brand/model to a specific catalog record and manufacturer, the bridge "
+            "MAUDE -> GUDID -> FEI establishment needs."),
+        "priority_tier": "1",
+        "notes": "openFDA zipped JSON bulk file (not the live API), manifest of all 51 parts -> VARIANT.",
+    },
+    {
+        "source_id": "FED_FDA_ESTABLISHMENT_REG",
+        "name": "openFDA Device Establishment Registration & Listing (FEI)",
+        "manifest": [
+''')
+parts.append(block(ereg))
+parts.append('''
+        ],
+        "kind": "json",
+        "loader": "server_side",
+        "publisher": "U.S. Food and Drug Administration (openFDA)",
+        "description": (
+            "Facility registration and device listing records -- every FDA "
+            "establishment identifier (FEI) tied to a facility name/address and the "
+            "devices it lists. 2 parts (330,251 records)."),
+        "jurisdiction": "US", "category": "Health", "subcategory": "establishment_registration",
+        "unit_of_observation": "establishment registration/listing records (in RAW:results)",
+        "geographic_scope": "United States",
+        "access_method": "bulk", "format": "json", "update_cadence": "weekly",
+        "license_terms": "Public domain (US Gov)",
+        "join_keys": "registration.fei_number; proprietary_name; owner_operator.firm_name",
+        "accountability_relevance": (
+            "The manufacturer/facility spine -- resolves a GUDID company_name or a "
+            "510(k)/PMA applicant to a physical facility (FEI number), closing the "
+            "MAUDE -> GUDID -> FEI chain."),
+        "priority_tier": "1",
+        "notes": "openFDA zipped JSON, manifest of 2 parts -> VARIANT.",
+    },
+]
+''')
+
+content = "".join(parts)
+with open('scripts/sprint_fda_device_specs.py', 'w', encoding='utf-8') as f:
+    f.write(content)
+print("wrote", len(content), "bytes")

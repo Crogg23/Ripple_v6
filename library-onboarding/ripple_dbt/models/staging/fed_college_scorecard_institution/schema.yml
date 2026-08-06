@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_COLLEGE_SCORECARD_INSTITUTION
+        description: >
+          College Scorecard institution-level file -- cost, debt, earnings, completion by institution.
+          All columns loaded as TEXT from the source system (raw landing, untransformed).
+
+models:
+
+  - name: stg_fed_college_scorecard_institution__records
+    description: >
+      Minimal passthrough staging model for FED_COLLEGE_SCORECARD_INSTITUTION. GRAIN NOT YET DETERMINED --
+      no dedup applied. Intended join key: unitid (verify COUNT DISTINCT before using).

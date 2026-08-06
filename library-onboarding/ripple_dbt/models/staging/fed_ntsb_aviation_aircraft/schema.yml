@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_NTSB_AVIATION_AIRCRAFT
+        description: >
+          NTSB Aviation Accident Database -- aircraft table (one row per aircraft involved in an event).
+          All columns loaded as TEXT from the source system (raw landing, untransformed).
+
+models:
+
+  - name: stg_fed_ntsb_aviation_aircraft__records
+    description: >
+      Minimal passthrough staging model for FED_NTSB_AVIATION_AIRCRAFT. GRAIN NOT YET DETERMINED --
+      no dedup applied. Intended join key: ev_id (verify COUNT DISTINCT before using).

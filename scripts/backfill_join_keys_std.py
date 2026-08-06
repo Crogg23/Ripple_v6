@@ -68,7 +68,7 @@ except Exception:  # pragma: no cover
 
 import snow  # noqa: E402
 from keys import (  # noqa: E402
-    KEY_TOKENS, TIER_RANK, detect_key, join_mode, normalize_sql, quote_ident,
+    KEY_TOKENS, TIER_RANK, detect_key, join_mode, key_tier, normalize_sql, quote_ident,
 )
 
 REGISTRY = "LIBRARY_META.REGISTRY.SOURCE_REGISTRY"
@@ -201,8 +201,10 @@ def measure_source(cur, source_id: str, colnames: list[str]) -> dict:
         if ok and (kc["key"] not in best or pop > best[kc["key"]]["pop_pct"]):
             best[kc["key"]] = d
 
-    keys = sorted(best.keys(), key=lambda k: (TIER_RANK[KEY_TOKENS[k][0]], k))
-    tier = KEY_TOKENS[keys[0]][0] if keys else "NONE"
+    # key_tier, not KEY_TOKENS[k][0]: connect-local exact-token keys (COMPANY_NO)
+    # are absent from the shared tagger's KEY_TOKENS and crashed the direct index.
+    keys = sorted(best.keys(), key=lambda k: (TIER_RANK[key_tier(k)], k))
+    tier = key_tier(keys[0]) if keys else "NONE"
     return {"keys": keys, "tier": tier, "cols": detail, "sampled": n, "no_key_cols": False}
 
 
@@ -288,8 +290,8 @@ def main() -> int:
         print(f"  NO physical LANDING table:      {len(buckets['NO_TABLE'])}")
         print(f"  NO SOURCE_REGISTRY row:         {len(buckets['NO_REGISTRY_ROW'])}")
         print(f"\n  key frequency across WRITE sources:")
-        for k, c in sorted(keyfreq.items(), key=lambda kv: (TIER_RANK[KEY_TOKENS[kv[0]][0]], -kv[1], kv[0])):
-            print(f"    {k:<10} [{KEY_TOKENS[k][0]:<13}] {c:>4}")
+        for k, c in sorted(keyfreq.items(), key=lambda kv: (TIER_RANK[key_tier(kv[0])], -kv[1], kv[0])):
+            print(f"    {k:<10} [{key_tier(k):<13}] {c:>4}")
         print(f"\n  strongest-tier distribution of WRITE sources:")
         for t, c in sorted(tierfreq.items(), key=lambda kv: TIER_RANK.get(kv[0], 99)):
             print(f"    {t:<14} {c:>4}")

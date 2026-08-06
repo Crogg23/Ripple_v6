@@ -728,10 +728,13 @@ def load_spec(s: dict, do_run: bool = False, force: bool = False,
         return _load_manifest_members(s, do_run, force, reuse_staged, refresh)
     if s.get("members"):
         return _load_members(s, do_run, force, reuse_staged, refresh)
+    if s.get("kind") == "json":
+        # _load_json supports both single-url and manifest (multi-part openFDA) forms
+        # itself -- must be checked BEFORE the generic manifest branch, or a JSON
+        # manifest spec falls into the CSV manifest loader and breaks.
+        return _load_json(s, do_run, force, reuse_staged, refresh)
     if s.get("manifest"):
         return _load_manifest(s, do_run, force, reuse_staged, refresh)
-    if s.get("kind") == "json":
-        return _load_json(s, do_run, force, reuse_staged, refresh)
     sid = s["source_id"]
     table = sid.upper()
     url = _resolve_url(s)              # resolver hop (GLEIF etc.) or s['url'] unchanged

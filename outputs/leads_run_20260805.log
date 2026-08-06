@@ -1,0 +1,139 @@
+
+[banned_but_operating] 10 leads  (writing)
+   1. [0.900] Earl Maes — OIG-excluded (1128a1, 2025-12-18); affiliated with 5 CMS facilities
+      ↳ HCA FLORIDA NORTH FLORIDA HOSPITAL, CARROLLTON REGIONAL MEDICAL CENTER, BEACHAM MEMORIAL HOSPITAL, LAKE BUTLER HOSPITAL …
+   2. [0.860] Alexander Frank — OIG-excluded (1128a2, 2025-08-20); affiliated with 3 CMS facilities
+      ↳ COMPLETE HOSPICE CARE OF SOUTHERN OKLAHOMA, UNIVERSAL HEALTHCARE, HASKELL CARE CENTER
+   3. [0.840] Sadye Dexter — OIG-excluded (1128b4, 2026-06-18); affiliated with 2 CMS facilities
+      ↳ ADVENTHEALTH NEW SMYRNA BEACH, ADVENTHEALTH DAYTONA BEACH
+   4. [0.840] Gamal Zaki — OIG-excluded (1128a3, 2026-02-19); affiliated with 2 CMS facilities
+      ↳ BEAUMONT HOSPITAL, TROY, ASCENSION PROVIDENCE ROCHESTER HOSPITAL
+   5. [0.840] Domingo Barrientos — OIG-excluded (1128a1, 2025-11-20); affiliated with 2 CMS facilities
+      ↳ SAFEWAY HOME CARE, INC, DOCTORS PREFERRED HOSPICE, INC
+   6. [0.840] Amit Shah — OIG-excluded (1128a3, 2026-05-20); affiliated with 2 CMS facilities
+      ↳ CATHOLIC HOME CARE, JACOBI MEDICAL CENTER
+   7. [0.840] Mike Rostami — OIG-excluded (1128a1, 2026-01-20); affiliated with 2 CMS facilities
+      ↳ HOLLYWOOD PRESBYTERIAN MEDICAL CNTR, CALIPSO HOME HEALTH CARE INC
+   8. [0.820] Rajive Das — OIG-excluded (1128b4, 2026-04-20); affiliated with 1 CMS facility
+      ↳ HOLMES REGL MEDICAL CENTER
+   9. [0.820] Festus Ebonka — OIG-excluded (1128a1, 2025-09-18); affiliated with 1 CMS facility
+      ↳ EAGLE HOME HEALTH AGENCY, INC
+  10. [0.700] Eduardo Miranda — OIG-excluded (1128a1, 2015-06-18); affiliated with 4 CMS facilities
+      ↳ DOCTORS HOSPITAL OF LAREDO, UVALDE MEMORIAL HOSPITAL, DIMMIT REGIONAL HOSPITAL, FORT DUNCAN MEDICAL CENTER
+  merged 10 into "LIBRARY_META"."CONNECT"."LEADS"; staleness swept (run 8541833d8c59490b)
+
+[sanctioned_vessel_broadcasting] 4 leads  (writing)
+   1. [1.000] LAFIT — OFAC-sanctioned (IRAN-EO13902, flag Sao Tome & Principe); appears in 1322 AIS position reports (US-coastal archive; not evidence of current broadcasting)
+      ↳ ADVANTAGE VIRTUE
+   2. [1.000] EDOR — OFAC-sanctioned (IRAN-EO13902, flag Marshall Islands); appears in 642 AIS position reports (US-coastal archive; not evidence of current broadcasting)
+      ↳ FEDOR
+   3. [1.000] ROC — OFAC-sanctioned (SDGT, flag Panama); appears in 318 AIS position reports (US-coastal archive; not evidence of current broadcasting)
+      ↳ CONQUEROR
+   4. [1.000] NORTH STAR — OFAC-sanctioned (IRAN-EO13902, flag Barbados); appears in 255 AIS position reports (US-coastal archive; not evidence of current broadcasting)
+      ↳ PGC MARINA
+  merged 4 into "LIBRARY_META"."CONNECT"."LEADS"; staleness swept (run 8541833d8c59490b)
+
+[debarred_but_funded] 53 leads  (writing)
+   1. [1.000] SANFORD FEDERAL CANADA — federally debarred (Firm, Ineligible (Proceedings Complete)) by SMALL BUSINESS ADMINISTRATION; 1344 federal contract awards
+      ↳ Department of Veterans Affairs, Department of the Interior, Department of State, Department of Transportation …
+   2. [1.000] CLEM FEDERAL SOLUTIONS — federally debarred (Firm, Ineligible (Proceedings Completed)) by DEFENSE LOGISTICS AGENCY; 400 federal contract awards
+      ↳ Department of Defense
+   3. [1.000] BELLA MIA DONNA LLC — federally debarred (Firm, Ineligible (Proceedings Complete)) by DEFENSE LOGISTICS AGENCY; 257 federal contract awards
+      ↳ Department of Defense
+   4. [1.000] MIAMI CORDAGE, LLC — federally debarred (Firm, Voluntary Exclusion) by DEFENSE LOGISTICS AGENCY; 147 federal contract awards
+      ↳ Department of Defense, Department of Homeland Security
+   5. [0.880] TALON VETERAN SERVICES INCORPORATED — federally debarred (Firm, Ineligible (Proceedings Pending)) by SMALL BUSINESS ADMINISTRATION; 88 federal contract awards
+      ↳ Department of Agriculture, Department of Commerce, Department of Defense, Department of Justice …
+   6. [0.620] DISTRICT PSYCHIATRY AND WELLNESS LLC — federally debarred (Firm, Voluntary Exclusion) by DEFENSE LOGISTICS AGENCY; 62 federal contract awards
+      ↳ Department of Defense
+   7. [0.550] INTERNATIONAL QUALITY ADVANTAGE 2020, LLC — federally debarred (Firm, Ineligible (Proceedings Complete)) by DEFENSE LOGISTICS AGENCY; 55 federal contract awards
+      ↳ Department of Defense
+   8. [0.270] PRESCIENT TECHNOLOGIES LLC — federally debarred (Firm, Ineligible (Proceedings Completed)) by LABOR, DEPARTMENT OF; 27 federal contract awards
+      ↳ Department of Health and Human Services, Department of Justice, Department of Defense, Department of Commerce …
+   9. [0.240] FAR GOVERNMENT, INC. — federally debarred (Firm, Ineligible (Proceedings Complete)) by SMALL BUSINESS ADMINISTRATION; 24 federal contract awards
+      ↳ Department of the Interior, Department of Commerce, Department of Defense, Department of Agriculture
+  10. [0.240] FLORENCE MURAR DBA FLORENCE METALS — federally debarred (Firm, Ineligible (Proceedings Completed)) by DEFENSE LOGISTICS AGENCY; 24 federal contract awards
+      ↳ Department of Defense
+  merged 53 into "LIBRARY_META"."CONNECT"."LEADS"; staleness swept (run 8541833d8c59490b)
+
+[banned_but_paid] 773 leads  (writing)
+   1. [1.000] Stephen Pappachen — OIG-excluded (1128a1, 2025-06-19); appears in 1007 CMS Open Payments record(s)
+      ↳ Consulting Fee
+   2. [1.000] Yitzchok Kurtzer — OIG-excluded (1128a1, 2024-10-20); appears in 773 CMS Open Payments record(s)
+      ↳ Food and Beverage, Education
+   3. [1.000] Mohd Malik — OIG-excluded (1128a1, 2026-01-20); appears in 706 CMS Open Payments record(s)
+      ↳ Travel and Lodging, Compensation for services other than consulting, including serving as faculty or as a speaker at a venue other than a continuing education program, Food and Beverage, Consulting Fee …
+   4. [1.000] William Stephan — OIG-excluded (1128a3, 2026-05-20); appears in 639 CMS Open Payments record(s)
+      ↳ Food and Beverage, Education
+   5. [1.000] Eduardo Miranda — OIG-excluded (1128a1, 2015-06-18); appears in 632 CMS Open Payments record(s)
+      ↳ Food and Beverage, Long term medical supply or device loan, Education
+   6. [1.000] Hiralal Maheshwari — OIG-excluded (1128a2, 2025-01-20); appears in 408 CMS Open Payments record(s)
+      ↳ Food and Beverage, Compensation for services other than consulting, including serving as faculty or as a speaker at a venue other than a continuing education program, Education, Travel and Lodging
+   7. [1.000] Tneshia Richards — OIG-excluded (1128b4, 2025-07-20); appears in 378 CMS Open Payments record(s)
+      ↳ Food and Beverage
+   8. [1.000] Bernie Simons — OIG-excluded (1128b3, 2024-08-20); appears in 368 CMS Open Payments record(s)
+      ↳ Food and Beverage, Travel and Lodging
+   9. [1.000] Naveed Aslam — OIG-excluded (1128a3, 2026-06-18); appears in 344 CMS Open Payments record(s)
+      ↳ Food and Beverage, Travel and Lodging, Compensation for services other than consulting, including serving as faculty or as a speaker at a venue other than a continuing education program, Education …
+  10. [1.000] Donald Siao — OIG-excluded (1128a4, 2024-11-20); appears in 337 CMS Open Payments record(s)
+      ↳ Food and Beverage, Education
+  merged 773 into "LIBRARY_META"."CONNECT"."LEADS"; staleness swept (run 8541833d8c59490b)
+
+[excluded_but_billing] 236 leads  (writing)
+   1. [0.820] Kenneth Haygood — OIG-excluded (1128b4, 2025-02-20); appears in 2 Medicare Part D prescriber record(s)
+      ↳ 15040.33
+   2. [0.820] Anjana Sura — OIG-excluded (1128a1, 2026-03-19); appears in 2 Medicare Part D prescriber record(s)
+      ↳ 22878.85
+   3. [0.820] Frederick Brown — OIG-excluded (BRCH SA, 2026-02-05); appears in 2 Medicare Part D prescriber record(s)
+      ↳ 537.65
+   4. [0.760] David Allingham — OIG-excluded (1128a3, 2026-01-20); appears in 1 Medicare Part D prescriber record(s)
+      ↳ 1494.39
+   5. [0.760] Donald Siao — OIG-excluded (1128a4, 2024-11-20); appears in 1 Medicare Part D prescriber record(s)
+      ↳ 192922.69
+   6. [0.760] Luis Bird — OIG-excluded (1128b4, 2025-05-20); appears in 1 Medicare Part D prescriber record(s)
+      ↳ 731178.51
+   7. [0.760] Robert Pendleton — OIG-excluded (1128b4, 2026-06-18); appears in 1 Medicare Part D prescriber record(s)
+      ↳ 444536.64
+   8. [0.760] Jessica Friday — OIG-excluded (1128a4, 2026-06-18); appears in 1 Medicare Part D prescriber record(s)
+      ↳ 105293.24
+   9. [0.760] Bryan Vander Linden — OIG-excluded (1128a4, 2026-03-19); appears in 1 Medicare Part D prescriber record(s)
+      ↳ 11212.81
+  10. [0.760] Thomas Weiner — OIG-excluded (1128b4, 2026-04-20); appears in 1 Medicare Part D prescriber record(s)
+      ↳ 2134.95
+  merged 236 into "LIBRARY_META"."CONNECT"."LEADS"; staleness swept (run 8541833d8c59490b)
+
+[sanctioned_vessel_broadcasting_v2] 12 leads  (writing)
+   1. [1.000] PIERRE — sanctioned vessel (opensanctions, AU-VESSELS;CA-SEMA;EU-MARE;GB-RUS;SECO-UKRAINE); appears in 8424 AIS position report(s) (US-coastal archive; not evidence of current broadcasting)
+      ↳ SEA VINE
+   2. [1.000] KUSTO — sanctioned vessel (opensanctions, AU-VESSELS;CA-SEMA;EU-MARE;GB-RUS;SECO-UKRAINE); appears in 4051 AIS position report(s) (US-coastal archive; not evidence of current broadcasting)
+      ↳ LOVINA
+   3. [1.000] IMO 9333785 ("SEADAR") — sanctioned vessel (opensanctions, CA-SEMA;EU-MARE;GB-RUS;SECO-UKRAINE); appears in 2906 AIS position report(s) (US-coastal archive; not evidence of current broadcasting)
+      ↳ CAPRICORN SUN
+   4. [1.000] LAFIT — sanctioned vessel (ofac, IRAN-EO13902); appears in 2644 AIS position report(s) (US-coastal archive; not evidence of current broadcasting)
+      ↳ ADVANTAGE VIRTUE
+   5. [1.000] IMO 9439383 ("BHILVA") — sanctioned vessel (opensanctions, CA-SEMA;EU-MARE;GB-RUS;SECO-UKRAINE); appears in 2547 AIS position report(s) (US-coastal archive; not evidence of current broadcasting)
+      ↳ PS GENOVA
+   6. [1.000] LERUO — sanctioned vessel (opensanctions, CA-SEMA;EU-MARE;GB-RUS;SECO-UKRAINE); appears in 1989 AIS position report(s) (US-coastal archive; not evidence of current broadcasting)
+      ↳ ALCYONE T
+   7. [1.000] EDOR — sanctioned vessel (opensanctions, US-IRAN); appears in 1284 AIS position report(s) (US-coastal archive; not evidence of current broadcasting)
+      ↳ FEDOR
+   8. [1.000] MINION — sanctioned vessel (opensanctions, CA-SEMA;EU-MARE;GB-RUS;SECO-UKRAINE); appears in 1282 AIS position report(s) (US-coastal archive; not evidence of current broadcasting)
+      ↳ MINDORO
+   9. [1.000] ROC — sanctioned vessel (opensanctions, US-TERR); appears in 636 AIS position report(s) (US-coastal archive; not evidence of current broadcasting)
+      ↳ CONQUEROR
+  10. [1.000] NORTH STAR — sanctioned vessel (opensanctions, US-IRAN); appears in 510 AIS position report(s) (US-coastal archive; not evidence of current broadcasting)
+      ↳ PGC MARINA
+  merged 12 into "LIBRARY_META"."CONNECT"."LEADS"; staleness swept (run 8541833d8c59490b)
+
+[sec_filer_in_irs_bmf] 3 leads  (writing)
+   1. [0.800] NATIONAL RURAL UTILITIES COOPERATIVE FINANCE CORP /DC/ — SEC filer (CIK 70502) EIN also appears in the IRS exempt-org roster (8 record(s))
+      ↳ NATIONAL RURAL UTILITIES COOPERATIVE FINANCE CORP
+   2. [0.800] OLD DOMINION ELECTRIC COOPERATIVE — SEC filer (CIK 885568) EIN also appears in the IRS exempt-org roster (8 record(s))
+      ↳ OLD DOMINION ELECTRIC COOPERATIVE
+   3. [0.800] FEDERAL HOME LOAN BANK OF DES MOINES — SEC filer (CIK 1325814) EIN also appears in the IRS exempt-org roster (8 record(s))
+      ↳ FEDERAL HOME LOAN BANK OF DES MOINES
+  merged 3 into "LIBRARY_META"."CONNECT"."LEADS"; staleness swept (run 8541833d8c59490b)
+
+  ⚑ these leads are UNREVIEWED — none read as PUBLISHED fact. Two-step gate: a human confirms first
+     `connect review lead <LEAD_ID> confirmed --by <you>`  then publishes explicitly via `python scripts/publish_lead.py`
+     (`connect safety` shows the ledger)

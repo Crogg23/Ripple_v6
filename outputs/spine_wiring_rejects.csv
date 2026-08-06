@@ -1,1 +1,16 @@
 table,key,key_col,rows,surviving,surviving_pct,distinct,min_len,max_len,new_to_spine,sample,reject_reason
+XC_EPA_CORPORATE_CROSSWALK,FRS_ID,,5300149,0,0.0,0,,,0,,claimed by the registry but no known column name for it in this table
+XC_EPA_CORPORATE_CROSSWALK,LEI,,5300149,0,0.0,0,,,0,,claimed by the registry but no known column name for it in this table
+XC_EPA_CORPORATE_CROSSWALK,UEI,,5300149,0,0.0,0,,,0,,claimed by the registry but no known column name for it in this table
+FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL,NPI,,440670,0,0.0,0,,,0,,claimed by the registry but no known column name for it in this table
+FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER,NPI,,381228,0,0.0,0,,,0,,claimed by the registry but no known column name for it in this table
+FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE,CCN,,145879,0,0.0,0,,,0,,claimed by the registry but no known column name for it in this table
+FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE,CCN,,116182,0,0.0,0,,,0,,claimed by the registry but no known column name for it in this table
+FED_EPA_TRI_BASIC_2023,FRS_ID,,78647,0,0.0,0,,,0,,claimed by the registry but no known column name for it in this table
+FED_FEC_BULK,FEC_CAND_ID,FEC_CAND_ID,20938,8221,39.26,7746,9,9,20,H6WA05023 | H6AK00045 | H6CA24048 | S4AK00214 | H6NY36015,"extra_key rejected: FEC_CAND_ID is a 'person' but the row's primary FEC_CMTE_ID is a 'organization' -- two parties to a relationship, not one thing with two IDs. Wiring it would give the person this row's name. Add FED_FEC_BULK to SAME_THING_MULTI_ID only if that is genuinely wrong."
+FED_FEC_LEADERSHIP_PAC,FEC_CAND_ID,FEC_CANDIDATE_ID,8619,8619,100.0,8076,9,9,136,H0AL02137 | H0CA28141 | H0CA09117 | H0FL14099 | H0FL13125,"extra_key rejected: FEC_CAND_ID is a 'person' but the row's primary FEC_CMTE_ID is a 'organization' -- two parties to a relationship, not one thing with two IDs. Wiring it would give the person this row's name. Add FED_FEC_LEADERSHIP_PAC to SAME_THING_MULTI_ID only if that is genuinely wrong."
+FED_FEC_BULK_LINKAGES,FEC_CAND_ID,CAND_ID,16327,16327,100.0,11177,9,9,241,H0AZ01366 | H0CA17193 | H0AZ09013 | H0CA03078 | H0CA40104,"extra_key rejected: FEC_CAND_ID is a 'person' but the row's primary FEC_CMTE_ID is a 'organization' -- two parties to a relationship, not one thing with two IDs. Wiring it would give the person this row's name. Add FED_FEC_BULK_LINKAGES to SAME_THING_MULTI_ID only if that is genuinely wrong."
+FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER,CCN,,3044,0,0.0,0,,,0,,claimed by the registry but no known column name for it in this table
+FED_SEC_MONEY_MARKET_FUND_INFORMATION,CIK,,1206,0,0.0,0,,,0,,claimed by the registry but no known column name for it in this table
+FED_CLINICALTRIALS,NPI,,500,0,0.0,0,,,0,,claimed by the registry but no known column name for it in this table
+FED_CMS_MAIN,NPI,NPI,158,0,0.0,0,,,0,,only 0 distinct value(s) after normalization; only 0.0% of rows survive normalization; normalizes to NULL on every row (sentinel or wrong column)

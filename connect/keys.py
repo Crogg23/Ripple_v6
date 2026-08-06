@@ -30,6 +30,21 @@ from tag_portal_index import (  # noqa: E402
 )
 
 
+# Connect-local exact-token-set keys (2026-08-05 ingestion-sweep wiring).
+# The shared portal tagger can't express "COMPANY_NUMBER is an ID, COMPANY_NAME is
+# a name": 'company' is a NAME token, and a pair-rule in tag_portal_index would be
+# applied to the UNION of a dataset's tokens there, tagging any table that has both
+# a company column and any *_NUMBER column. So this rule fires ONLY when a single
+# column's token set matches EXACTLY -- verified live 2026-08-05: the only landing
+# columns tokenizing to {company, number} are UK_COMPANIES_HOUSE_PSC.COMPANY_NUMBER
+# and INT_UK_COMPANIES_HOUSE.CompanyNumber (both 8-char UK Companies House numbers;
+# the Utah portal's PARENT_COMPANY_DB_NUMBER has an extra 'db'/'parent' token and
+# is excluded by exactness). The portal index and ENTITY_KEYS are untouched.
+EXACT_TOKEN_KEYS: dict[frozenset, tuple[str, str]] = {
+    frozenset({"company", "number"}): ("COMPANY_NO", "STEEL"),
+}
+
+
 def detect_key(column_name: str) -> tuple[str | None, str | None]:
     """Return (key_label, tier) for a single column, or (None, None).
 
@@ -43,6 +58,9 @@ def detect_key(column_name: str) -> tuple[str | None, str | None]:
     tk = tokens(column_name)
     if not tk:
         return None, None
+    exact = EXACT_TOKEN_KEYS.get(frozenset(tk))
+    if exact:
+        return exact
     best_key, best_tier = None, None
     for key, (tier, toks) in KEY_TOKENS.items():
         # A false-friend token vetoes the match (e.g. STATE_ICPSR -> {icpsr,state}
@@ -77,6 +95,18 @@ SPATIAL_KEYS = {"LATLON", "GEOM"}
 ENTITY_KEYS = [k for k, (tier, _toks) in KEY_TOKENS.items() if tier in ("STEEL", "STRONG")]
 
 
+def key_tier(key: str) -> str | None:
+    """Tier of a key label, covering BOTH the shared tagger's KEY_TOKENS and the
+    connect-local EXACT_TOKEN_KEYS (which never appear in KEY_TOKENS -- callers
+    that index KEY_TOKENS[key][0] directly crash on those; use this instead)."""
+    if key in KEY_TOKENS:
+        return KEY_TOKENS[key][0]
+    for k, tier in EXACT_TOKEN_KEYS.values():
+        if k == key:
+            return tier
+    return None
+
+
 def join_mode(key: str) -> str:
     if key in SPATIAL_KEYS:
         return "spatial"
@@ -105,6 +135,13 @@ NORM_RULES: dict[str, tuple[str, int]] = {
     "NPI": ("pad", 10), "EIN": ("pad", 9), "DUNS": ("pad", 9), "CIK": ("pad", 10),
     "CCN": ("pad", 6), "IMO": ("imo", 7), "MMSI": ("pad", 9),
     "UEI": ("fixed", 12), "LEI": ("fixed", 20), "DEA_NO": ("alnum_upper", 0),
+    # COMPANY_NO -- UK Companies House company number (2026-08-05 wiring). Uniformly
+    # 8 chars on BOTH landing sides (verified live: PSC 7,000,000/7,000,000 rows len 8;
+    # CH registry 5,734,779/5,734,780 len 8, one NULL). Alphanumeric ('SC316600',
+    # 'NI626580', '00000133'), zero-padded at source, so 'fixed' -- anything not
+    # exactly 8 chars is dirty input, not a paddable value. Single namespace by
+    # construction: only the two UK Companies House tables carry this key.
+    "COMPANY_NO": ("fixed", 8),
     "NAICS": ("code", 0), "SIC": ("code", 0), "NCES": ("code", 0),
     "DOCKET": ("code", 0), "PATENT": ("code", 0), "FIPS": ("code", 0), "ZIP": ("zip5", 5),
     "COUNTRY": ("country", 0),

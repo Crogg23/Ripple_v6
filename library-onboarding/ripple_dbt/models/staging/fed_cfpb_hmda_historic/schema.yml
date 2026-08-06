@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CFPB_HMDA_HISTORIC
+        description: >
+          Raw landing table for CFPB HMDA Historic Data (pre-2018 LAR flat files, "_labels"
+          decoded CSV variant, first-lien owner-occupied 1-4 family subset). Legacy
+          Respondent ID (RESPONDENT_ID, 10-char alphanumeric) is the join key, not LEI --
+          this is a different era/shape than FED_CFPB_HMDA (2022, LEI-keyed). 3-year slice
+          landed 2026-08-05 (2015, 2016, 2017); remaining pre-2018 years are a follow-up
+          backfill, not yet landed.
+
+models:
+  - name: stg_fed_cfpb_hmda_historic__records
+    description: >
+      Minimal passthrough staging (grain undetermined -- one row per LAR record within a
+      SOURCE_YEAR). Needs manual review before promoting to a mart.

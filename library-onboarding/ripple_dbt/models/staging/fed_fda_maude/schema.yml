@@ -1,0 +1,51 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FDA_MAUDE
+        description: >
+          Raw landing table for openFDA device/event (MAUDE device adverse events),
+          2020Q1-forward. Each row is one VARIANT chunk doc ({"results": [...]});
+          flatten RAW:results (event-grain) then unnest the device array in
+          staging.
+
+models:
+  - name: stg_fed_fda_maude__all
+    description: >
+      Device adverse event reports, one row per device named in an event
+      (grain: mdr_report_key + device_sequence_number). udi_di is the join key
+      to GUDID's primary_di; baseline_510k_number joins to 510(k) k_number.
+    columns:
+      - name: mdr_report_key
+        description: FDA's unique event report key.
+        data_tests:
+          - not_null
+      - name: device_sequence_number
+        description: Sequence number of this device within the event (an event can list multiple devices).
+      - name: udi_di
+        description: >
+          Device identifier (DI) portion of the reported device's UDI, when the
+          reporter supplied one. Often blank for older/optional reports -- the
+          join-chain test measures the real population rate.
+      - name: baseline_510k_number
+        description: 510(k) number tied to this device, when supplied.
+      - name: manufacturer_d_name
+        description: Manufacturer name as reported on the device sub-record.
+      - name: device_report_product_code
+        description: FDA product classification code for the reported device.
+      - name: _ingested_at
+        description: Timestamp when the record was loaded into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this row.
+
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - mdr_report_key
+              - device_sequence_number

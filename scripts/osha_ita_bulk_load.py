@@ -180,7 +180,7 @@ FORMAT_LOADERS = {
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--run", action="store_true")
-    ap.add_argument("--max-rows", type=int, default=500_000)
+    ap.add_argument("--max-rows", type=int, default=5_000_000)
     args = ap.parse_args()
 
     conn = snow.connect()

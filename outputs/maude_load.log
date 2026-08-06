@@ -1,0 +1,450 @@
+
+=== FED_FDA_MAUDE (openFDA MAUDE (Manufacturer and User Facility Device Experience)) === split-load: 184 source file(s), chunk=2000 records/part
+    [1/184] downloading https://download.open.fda.gov/device/event/2020q1/device-event-0001-of-0004.json.zip
+        -> 48 chunk(s) so far, 95,000 record(s)
+    [2/184] downloading https://download.open.fda.gov/device/event/2020q1/device-event-0002-of-0004.json.zip
+        -> 96 chunk(s) so far, 190,000 record(s)
+    [3/184] downloading https://download.open.fda.gov/device/event/2020q1/device-event-0003-of-0004.json.zip
+        -> 144 chunk(s) so far, 285,000 record(s)
+    [4/184] downloading https://download.open.fda.gov/device/event/2020q1/device-event-0004-of-0004.json.zip
+        -> 188 chunk(s) so far, 371,630 record(s)
+    [5/184] downloading https://download.open.fda.gov/device/event/2020q2/device-event-0001-of-0004.json.zip
+        -> 236 chunk(s) so far, 466,630 record(s)
+    [6/184] downloading https://download.open.fda.gov/device/event/2020q2/device-event-0002-of-0004.json.zip
+        -> 284 chunk(s) so far, 561,630 record(s)
+    [7/184] downloading https://download.open.fda.gov/device/event/2020q2/device-event-0003-of-0004.json.zip
+        -> 332 chunk(s) so far, 656,630 record(s)
+    [8/184] downloading https://download.open.fda.gov/device/event/2020q2/device-event-0004-of-0004.json.zip
+        -> 344 chunk(s) so far, 678,780 record(s)
+    [9/184] downloading https://download.open.fda.gov/device/event/2020q3/device-event-0001-of-0005.json.zip
+        -> 392 chunk(s) so far, 773,780 record(s)
+    [10/184] downloading https://download.open.fda.gov/device/event/2020q3/device-event-0002-of-0005.json.zip
+        -> 440 chunk(s) so far, 868,780 record(s)
+    [11/184] downloading https://download.open.fda.gov/device/event/2020q3/device-event-0003-of-0005.json.zip
+        -> 488 chunk(s) so far, 963,780 record(s)
+    [12/184] downloading https://download.open.fda.gov/device/event/2020q3/device-event-0004-of-0005.json.zip
+        -> 536 chunk(s) so far, 1,058,780 record(s)
+    [13/184] downloading https://download.open.fda.gov/device/event/2020q3/device-event-0005-of-0005.json.zip
+        -> 544 chunk(s) so far, 1,073,490 record(s)
+    [14/184] downloading https://download.open.fda.gov/device/event/2020q4/device-event-0001-of-0006.json.zip
+        -> 592 chunk(s) so far, 1,168,490 record(s)
+    [15/184] downloading https://download.open.fda.gov/device/event/2020q4/device-event-0002-of-0006.json.zip
+        -> 640 chunk(s) so far, 1,263,490 record(s)
+    [16/184] downloading https://download.open.fda.gov/device/event/2020q4/device-event-0003-of-0006.json.zip
+        -> 688 chunk(s) so far, 1,358,490 record(s)
+    [17/184] downloading https://download.open.fda.gov/device/event/2020q4/device-event-0004-of-0006.json.zip
+        -> 736 chunk(s) so far, 1,453,490 record(s)
+    [18/184] downloading https://download.open.fda.gov/device/event/2020q4/device-event-0005-of-0006.json.zip
+        -> 784 chunk(s) so far, 1,548,490 record(s)
+    [19/184] downloading https://download.open.fda.gov/device/event/2020q4/device-event-0006-of-0006.json.zip
+        -> 793 chunk(s) so far, 1,564,999 record(s)
+    [20/184] downloading https://download.open.fda.gov/device/event/2021q1/device-event-0001-of-0006.json.zip
+        -> 841 chunk(s) so far, 1,659,999 record(s)
+    [21/184] downloading https://download.open.fda.gov/device/event/2021q1/device-event-0002-of-0006.json.zip
+        -> 889 chunk(s) so far, 1,754,999 record(s)
+    [22/184] downloading https://download.open.fda.gov/device/event/2021q1/device-event-0003-of-0006.json.zip
+        -> 937 chunk(s) so far, 1,849,999 record(s)
+    [23/184] downloading https://download.open.fda.gov/device/event/2021q1/device-event-0004-of-0006.json.zip
+        -> 985 chunk(s) so far, 1,944,999 record(s)
+    [24/184] downloading https://download.open.fda.gov/device/event/2021q1/device-event-0005-of-0006.json.zip
+        -> 1033 chunk(s) so far, 2,039,999 record(s)
+    [25/184] downloading https://download.open.fda.gov/device/event/2021q1/device-event-0006-of-0006.json.zip
+        -> 1044 chunk(s) so far, 2,061,918 record(s)
+    [26/184] downloading https://download.open.fda.gov/device/event/2021q2/device-event-0001-of-0006.json.zip
+        -> 1092 chunk(s) so far, 2,156,918 record(s)
+    [27/184] downloading https://download.open.fda.gov/device/event/2021q2/device-event-0002-of-0006.json.zip
+        -> 1140 chunk(s) so far, 2,251,918 record(s)
+    [28/184] downloading https://download.open.fda.gov/device/event/2021q2/device-event-0003-of-0006.json.zip
+        -> 1188 chunk(s) so far, 2,346,918 record(s)
+    [29/184] downloading https://download.open.fda.gov/device/event/2021q2/device-event-0004-of-0006.json.zip
+        -> 1236 chunk(s) so far, 2,441,918 record(s)
+    [30/184] downloading https://download.open.fda.gov/device/event/2021q2/device-event-0005-of-0006.json.zip
+        -> 1284 chunk(s) so far, 2,536,918 record(s)
+    [31/184] downloading https://download.open.fda.gov/device/event/2021q2/device-event-0006-of-0006.json.zip
+        -> 1295 chunk(s) so far, 2,557,498 record(s)
+    [32/184] downloading https://download.open.fda.gov/device/event/2021q3/device-event-0001-of-0005.json.zip
+        -> 1343 chunk(s) so far, 2,652,498 record(s)
+    [33/184] downloading https://download.open.fda.gov/device/event/2021q3/device-event-0002-of-0005.json.zip
+        -> 1391 chunk(s) so far, 2,747,498 record(s)
+    [34/184] downloading https://download.open.fda.gov/device/event/2021q3/device-event-0003-of-0005.json.zip
+        -> 1439 chunk(s) so far, 2,842,498 record(s)
+    [35/184] downloading https://download.open.fda.gov/device/event/2021q3/device-event-0004-of-0005.json.zip
+        -> 1487 chunk(s) so far, 2,937,498 record(s)
+    [36/184] downloading https://download.open.fda.gov/device/event/2021q3/device-event-0005-of-0005.json.zip
+        -> 1528 chunk(s) so far, 3,018,613 record(s)
+    [37/184] downloading https://download.open.fda.gov/device/event/2021q4/device-event-0001-of-0007.json.zip
+        -> 1576 chunk(s) so far, 3,113,613 record(s)
+    [38/184] downloading https://download.open.fda.gov/device/event/2021q4/device-event-0002-of-0007.json.zip
+        -> 1624 chunk(s) so far, 3,208,613 record(s)
+    [39/184] downloading https://download.open.fda.gov/device/event/2021q4/device-event-0003-of-0007.json.zip
+        -> 1672 chunk(s) so far, 3,303,613 record(s)
+    [40/184] downloading https://download.open.fda.gov/device/event/2021q4/device-event-0004-of-0007.json.zip
+        -> 1720 chunk(s) so far, 3,398,613 record(s)
+    [41/184] downloading https://download.open.fda.gov/device/event/2021q4/device-event-0005-of-0007.json.zip
+        -> 1768 chunk(s) so far, 3,493,613 record(s)
+    [42/184] downloading https://download.open.fda.gov/device/event/2021q4/device-event-0006-of-0007.json.zip
+        -> 1816 chunk(s) so far, 3,588,613 record(s)
+    [43/184] downloading https://download.open.fda.gov/device/event/2021q4/device-event-0007-of-0007.json.zip
+        -> 1819 chunk(s) so far, 3,593,308 record(s)
+    [44/184] downloading https://download.open.fda.gov/device/event/2022q1/device-event-0001-of-0009.json.zip
+        -> 1867 chunk(s) so far, 3,688,308 record(s)
+    [45/184] downloading https://download.open.fda.gov/device/event/2022q1/device-event-0002-of-0009.json.zip
+        -> 1915 chunk(s) so far, 3,783,308 record(s)
+    [46/184] downloading https://download.open.fda.gov/device/event/2022q1/device-event-0003-of-0009.json.zip
+        -> 1963 chunk(s) so far, 3,878,308 record(s)
+    [47/184] downloading https://download.open.fda.gov/device/event/2022q1/device-event-0004-of-0009.json.zip
+        -> 2011 chunk(s) so far, 3,973,308 record(s)
+    [48/184] downloading https://download.open.fda.gov/device/event/2022q1/device-event-0005-of-0009.json.zip
+        -> 2059 chunk(s) so far, 4,068,308 record(s)
+    [49/184] downloading https://download.open.fda.gov/device/event/2022q1/device-event-0006-of-0009.json.zip
+        -> 2107 chunk(s) so far, 4,163,308 record(s)
+    [50/184] downloading https://download.open.fda.gov/device/event/2022q1/device-event-0007-of-0009.json.zip
+        -> 2155 chunk(s) so far, 4,258,308 record(s)
+    [51/184] downloading https://download.open.fda.gov/device/event/2022q1/device-event-0008-of-0009.json.zip
+        -> 2203 chunk(s) so far, 4,353,308 record(s)
+    [52/184] downloading https://download.open.fda.gov/device/event/2022q1/device-event-0009-of-0009.json.zip
+        -> 2242 chunk(s) so far, 4,430,485 record(s)
+    [53/184] downloading https://download.open.fda.gov/device/event/2022q2/device-event-0001-of-0010.json.zip
+        -> 2290 chunk(s) so far, 4,525,485 record(s)
+    [54/184] downloading https://download.open.fda.gov/device/event/2022q2/device-event-0002-of-0010.json.zip
+        -> 2338 chunk(s) so far, 4,620,485 record(s)
+    [55/184] downloading https://download.open.fda.gov/device/event/2022q2/device-event-0003-of-0010.json.zip
+        -> 2386 chunk(s) so far, 4,715,485 record(s)
+    [56/184] downloading https://download.open.fda.gov/device/event/2022q2/device-event-0004-of-0010.json.zip
+        -> 2434 chunk(s) so far, 4,810,485 record(s)
+    [57/184] downloading https://download.open.fda.gov/device/event/2022q2/device-event-0005-of-0010.json.zip
+        -> 2482 chunk(s) so far, 4,905,485 record(s)
+    [58/184] downloading https://download.open.fda.gov/device/event/2022q2/device-event-0006-of-0010.json.zip
+        -> 2530 chunk(s) so far, 5,000,485 record(s)
+    [59/184] downloading https://download.open.fda.gov/device/event/2022q2/device-event-0007-of-0010.json.zip
+        -> 2578 chunk(s) so far, 5,095,485 record(s)
+    [60/184] downloading https://download.open.fda.gov/device/event/2022q2/device-event-0008-of-0010.json.zip
+        -> 2626 chunk(s) so far, 5,190,485 record(s)
+    [61/184] downloading https://download.open.fda.gov/device/event/2022q2/device-event-0009-of-0010.json.zip
+        -> 2674 chunk(s) so far, 5,285,485 record(s)
+    [62/184] downloading https://download.open.fda.gov/device/event/2022q2/device-event-0010-of-0010.json.zip
+        -> 2702 chunk(s) so far, 5,339,916 record(s)
+    [63/184] downloading https://download.open.fda.gov/device/event/2022q3/device-event-0001-of-0007.json.zip
+        -> 2750 chunk(s) so far, 5,434,916 record(s)
+    [64/184] downloading https://download.open.fda.gov/device/event/2022q3/device-event-0002-of-0007.json.zip
+        -> 2798 chunk(s) so far, 5,529,916 record(s)
+    [65/184] downloading https://download.open.fda.gov/device/event/2022q3/device-event-0003-of-0007.json.zip
+        -> 2846 chunk(s) so far, 5,624,916 record(s)
+    [66/184] downloading https://download.open.fda.gov/device/event/2022q3/device-event-0004-of-0007.json.zip
+        -> 2894 chunk(s) so far, 5,719,916 record(s)
+    [67/184] downloading https://download.open.fda.gov/device/event/2022q3/device-event-0005-of-0007.json.zip
+        -> 2942 chunk(s) so far, 5,814,916 record(s)
+    [68/184] downloading https://download.open.fda.gov/device/event/2022q3/device-event-0006-of-0007.json.zip
+        -> 2990 chunk(s) so far, 5,909,916 record(s)
+    [69/184] downloading https://download.open.fda.gov/device/event/2022q3/device-event-0007-of-0007.json.zip
+        -> 3026 chunk(s) so far, 5,979,968 record(s)
+    [70/184] downloading https://download.open.fda.gov/device/event/2022q4/device-event-0001-of-0006.json.zip
+        -> 3074 chunk(s) so far, 6,074,968 record(s)
+    [71/184] downloading https://download.open.fda.gov/device/event/2022q4/device-event-0002-of-0006.json.zip
+        -> 3122 chunk(s) so far, 6,169,968 record(s)
+    [72/184] downloading https://download.open.fda.gov/device/event/2022q4/device-event-0003-of-0006.json.zip
+        -> 3170 chunk(s) so far, 6,264,968 record(s)
+    [73/184] downloading https://download.open.fda.gov/device/event/2022q4/device-event-0004-of-0006.json.zip
+        -> 3218 chunk(s) so far, 6,359,968 record(s)
+    [74/184] downloading https://download.open.fda.gov/device/event/2022q4/device-event-0005-of-0006.json.zip
+        -> 3266 chunk(s) so far, 6,454,968 record(s)
+    [75/184] downloading https://download.open.fda.gov/device/event/2022q4/device-event-0006-of-0006.json.zip
+        -> 3308 chunk(s) so far, 6,538,693 record(s)
+    [76/184] downloading https://download.open.fda.gov/device/event/2023q1/device-event-0001-of-0007.json.zip
+        -> 3356 chunk(s) so far, 6,633,693 record(s)
+    [77/184] downloading https://download.open.fda.gov/device/event/2023q1/device-event-0002-of-0007.json.zip
+        -> 3404 chunk(s) so far, 6,728,693 record(s)
+    [78/184] downloading https://download.open.fda.gov/device/event/2023q1/device-event-0003-of-0007.json.zip
+        -> 3452 chunk(s) so far, 6,823,693 record(s)
+    [79/184] downloading https://download.open.fda.gov/device/event/2023q1/device-event-0004-of-0007.json.zip
+        -> 3500 chunk(s) so far, 6,918,693 record(s)
+    [80/184] downloading https://download.open.fda.gov/device/event/2023q1/device-event-0005-of-0007.json.zip
+        -> 3548 chunk(s) so far, 7,013,693 record(s)
+    [81/184] downloading https://download.open.fda.gov/device/event/2023q1/device-event-0006-of-0007.json.zip
+        -> 3596 chunk(s) so far, 7,108,693 record(s)
+    [82/184] downloading https://download.open.fda.gov/device/event/2023q1/device-event-0007-of-0007.json.zip
+        -> 3601 chunk(s) so far, 7,117,983 record(s)
+    [83/184] downloading https://download.open.fda.gov/device/event/2023q2/device-event-0001-of-0007.json.zip
+        -> 3649 chunk(s) so far, 7,212,983 record(s)
+    [84/184] downloading https://download.open.fda.gov/device/event/2023q2/device-event-0002-of-0007.json.zip
+        -> 3697 chunk(s) so far, 7,307,983 record(s)
+    [85/184] downloading https://download.open.fda.gov/device/event/2023q2/device-event-0003-of-0007.json.zip
+        -> 3745 chunk(s) so far, 7,402,983 record(s)
+    [86/184] downloading https://download.open.fda.gov/device/event/2023q2/device-event-0004-of-0007.json.zip
+        -> 3793 chunk(s) so far, 7,497,983 record(s)
+    [87/184] downloading https://download.open.fda.gov/device/event/2023q2/device-event-0005-of-0007.json.zip
+        -> 3841 chunk(s) so far, 7,592,983 record(s)
+    [88/184] downloading https://download.open.fda.gov/device/event/2023q2/device-event-0006-of-0007.json.zip
+        -> 3889 chunk(s) so far, 7,687,983 record(s)
+    [89/184] downloading https://download.open.fda.gov/device/event/2023q2/device-event-0007-of-0007.json.zip
+        -> 3896 chunk(s) so far, 7,701,278 record(s)
+    [90/184] downloading https://download.open.fda.gov/device/event/2023q3/device-event-0001-of-0007.json.zip
+        -> 3944 chunk(s) so far, 7,796,278 record(s)
+    [91/184] downloading https://download.open.fda.gov/device/event/2023q3/device-event-0002-of-0007.json.zip
+        -> 3992 chunk(s) so far, 7,891,278 record(s)
+    [92/184] downloading https://download.open.fda.gov/device/event/2023q3/device-event-0003-of-0007.json.zip
+        -> 4040 chunk(s) so far, 7,986,278 record(s)
+    [93/184] downloading https://download.open.fda.gov/device/event/2023q3/device-event-0004-of-0007.json.zip
+        -> 4088 chunk(s) so far, 8,081,278 record(s)
+    [94/184] downloading https://download.open.fda.gov/device/event/2023q3/device-event-0005-of-0007.json.zip
+        -> 4136 chunk(s) so far, 8,176,278 record(s)
+    [95/184] downloading https://download.open.fda.gov/device/event/2023q3/device-event-0006-of-0007.json.zip
+        -> 4184 chunk(s) so far, 8,271,278 record(s)
+    [96/184] downloading https://download.open.fda.gov/device/event/2023q3/device-event-0007-of-0007.json.zip
+        -> 4201 chunk(s) so far, 8,304,880 record(s)
+    [97/184] downloading https://download.open.fda.gov/device/event/2023q4/device-event-0001-of-0007.json.zip
+        -> 4249 chunk(s) so far, 8,399,880 record(s)
+    [98/184] downloading https://download.open.fda.gov/device/event/2023q4/device-event-0002-of-0007.json.zip
+        -> 4297 chunk(s) so far, 8,494,880 record(s)
+    [99/184] downloading https://download.open.fda.gov/device/event/2023q4/device-event-0003-of-0007.json.zip
+        -> 4345 chunk(s) so far, 8,589,880 record(s)
+    [100/184] downloading https://download.open.fda.gov/device/event/2023q4/device-event-0004-of-0007.json.zip
+        -> 4393 chunk(s) so far, 8,684,880 record(s)
+    [101/184] downloading https://download.open.fda.gov/device/event/2023q4/device-event-0005-of-0007.json.zip
+        -> 4441 chunk(s) so far, 8,779,880 record(s)
+    [102/184] downloading https://download.open.fda.gov/device/event/2023q4/device-event-0006-of-0007.json.zip
+        -> 4489 chunk(s) so far, 8,874,880 record(s)
+    [103/184] downloading https://download.open.fda.gov/device/event/2023q4/device-event-0007-of-0007.json.zip
+        -> 4491 chunk(s) so far, 8,878,499 record(s)
+    [104/184] downloading https://download.open.fda.gov/device/event/2024q1/device-event-0001-of-0007.json.zip
+        -> 4539 chunk(s) so far, 8,973,499 record(s)
+    [105/184] downloading https://download.open.fda.gov/device/event/2024q1/device-event-0002-of-0007.json.zip
+        -> 4587 chunk(s) so far, 9,068,499 record(s)
+    [106/184] downloading https://download.open.fda.gov/device/event/2024q1/device-event-0003-of-0007.json.zip
+        -> 4635 chunk(s) so far, 9,163,499 record(s)
+    [107/184] downloading https://download.open.fda.gov/device/event/2024q1/device-event-0004-of-0007.json.zip
+        -> 4683 chunk(s) so far, 9,258,499 record(s)
+    [108/184] downloading https://download.open.fda.gov/device/event/2024q1/device-event-0005-of-0007.json.zip
+        -> 4731 chunk(s) so far, 9,353,499 record(s)
+    [109/184] downloading https://download.open.fda.gov/device/event/2024q1/device-event-0006-of-0007.json.zip
+        -> 4779 chunk(s) so far, 9,448,499 record(s)
+    [110/184] downloading https://download.open.fda.gov/device/event/2024q1/device-event-0007-of-0007.json.zip
+        -> 4788 chunk(s) so far, 9,464,808 record(s)
+    [111/184] downloading https://download.open.fda.gov/device/event/2024q2/device-event-0001-of-0007.json.zip
+        -> 4836 chunk(s) so far, 9,559,808 record(s)
+    [112/184] downloading https://download.open.fda.gov/device/event/2024q2/device-event-0002-of-0007.json.zip
+        -> 4884 chunk(s) so far, 9,654,808 record(s)
+    [113/184] downloading https://download.open.fda.gov/device/event/2024q2/device-event-0003-of-0007.json.zip
+        -> 4932 chunk(s) so far, 9,749,808 record(s)
+    [114/184] downloading https://download.open.fda.gov/device/event/2024q2/device-event-0004-of-0007.json.zip
+        -> 4980 chunk(s) so far, 9,844,808 record(s)
+    [115/184] downloading https://download.open.fda.gov/device/event/2024q2/device-event-0005-of-0007.json.zip
+        -> 5028 chunk(s) so far, 9,939,808 record(s)
+    [116/184] downloading https://download.open.fda.gov/device/event/2024q2/device-event-0006-of-0007.json.zip
+        -> 5076 chunk(s) so far, 10,034,808 record(s)
+    [117/184] downloading https://download.open.fda.gov/device/event/2024q2/device-event-0007-of-0007.json.zip
+        -> 5107 chunk(s) so far, 10,096,354 record(s)
+    [118/184] downloading https://download.open.fda.gov/device/event/2024q3/device-event-0001-of-0008.json.zip
+        -> 5155 chunk(s) so far, 10,191,354 record(s)
+    [119/184] downloading https://download.open.fda.gov/device/event/2024q3/device-event-0002-of-0008.json.zip
+        -> 5203 chunk(s) so far, 10,286,354 record(s)
+    [120/184] downloading https://download.open.fda.gov/device/event/2024q3/device-event-0003-of-0008.json.zip
+        -> 5251 chunk(s) so far, 10,381,354 record(s)
+    [121/184] downloading https://download.open.fda.gov/device/event/2024q3/device-event-0004-of-0008.json.zip
+        -> 5299 chunk(s) so far, 10,476,354 record(s)
+    [122/184] downloading https://download.open.fda.gov/device/event/2024q3/device-event-0005-of-0008.json.zip
+        -> 5347 chunk(s) so far, 10,571,354 record(s)
+    [123/184] downloading https://download.open.fda.gov/device/event/2024q3/device-event-0006-of-0008.json.zip
+        -> 5395 chunk(s) so far, 10,666,354 record(s)
+    [124/184] downloading https://download.open.fda.gov/device/event/2024q3/device-event-0007-of-0008.json.zip
+        -> 5443 chunk(s) so far, 10,761,354 record(s)
+    [125/184] downloading https://download.open.fda.gov/device/event/2024q3/device-event-0008-of-0008.json.zip
+        -> 5461 chunk(s) so far, 10,796,152 record(s)
+    [126/184] downloading https://download.open.fda.gov/device/event/2024q4/device-event-0001-of-0008.json.zip
+        -> 5509 chunk(s) so far, 10,891,152 record(s)
+    [127/184] downloading https://download.open.fda.gov/device/event/2024q4/device-event-0002-of-0008.json.zip
+        -> 5557 chunk(s) so far, 10,986,152 record(s)
+    [128/184] downloading https://download.open.fda.gov/device/event/2024q4/device-event-0003-of-0008.json.zip
+        -> 5605 chunk(s) so far, 11,081,152 record(s)
+    [129/184] downloading https://download.open.fda.gov/device/event/2024q4/device-event-0004-of-0008.json.zip
+        -> 5653 chunk(s) so far, 11,176,152 record(s)
+    [130/184] downloading https://download.open.fda.gov/device/event/2024q4/device-event-0005-of-0008.json.zip
+        -> 5701 chunk(s) so far, 11,271,152 record(s)
+    [131/184] downloading https://download.open.fda.gov/device/event/2024q4/device-event-0006-of-0008.json.zip
+        -> 5749 chunk(s) so far, 11,366,152 record(s)
+    [132/184] downloading https://download.open.fda.gov/device/event/2024q4/device-event-0007-of-0008.json.zip
+        -> 5797 chunk(s) so far, 11,461,152 record(s)
+    [133/184] downloading https://download.open.fda.gov/device/event/2024q4/device-event-0008-of-0008.json.zip
+        -> 5820 chunk(s) so far, 11,505,649 record(s)
+    [134/184] downloading https://download.open.fda.gov/device/event/2025q1/device-event-0001-of-0008.json.zip
+        -> 5868 chunk(s) so far, 11,600,649 record(s)
+    [135/184] downloading https://download.open.fda.gov/device/event/2025q1/device-event-0002-of-0008.json.zip
+        -> 5916 chunk(s) so far, 11,695,649 record(s)
+    [136/184] downloading https://download.open.fda.gov/device/event/2025q1/device-event-0003-of-0008.json.zip
+        -> 5964 chunk(s) so far, 11,790,649 record(s)
+    [137/184] downloading https://download.open.fda.gov/device/event/2025q1/device-event-0004-of-0008.json.zip
+        -> 6012 chunk(s) so far, 11,885,649 record(s)
+    [138/184] downloading https://download.open.fda.gov/device/event/2025q1/device-event-0005-of-0008.json.zip
+        -> 6060 chunk(s) so far, 11,980,649 record(s)
+    [139/184] downloading https://download.open.fda.gov/device/event/2025q1/device-event-0006-of-0008.json.zip
+        -> 6108 chunk(s) so far, 12,075,649 record(s)
+    [140/184] downloading https://download.open.fda.gov/device/event/2025q1/device-event-0007-of-0008.json.zip
+        -> 6156 chunk(s) so far, 12,170,649 record(s)
+    [141/184] downloading https://download.open.fda.gov/device/event/2025q1/device-event-0008-of-0008.json.zip
+        -> 6167 chunk(s) so far, 12,190,900 record(s)
+    [142/184] downloading https://download.open.fda.gov/device/event/2025q2/device-event-0001-of-0007.json.zip
+        -> 6215 chunk(s) so far, 12,285,900 record(s)
+    [143/184] downloading https://download.open.fda.gov/device/event/2025q2/device-event-0002-of-0007.json.zip
+        -> 6263 chunk(s) so far, 12,380,900 record(s)
+    [144/184] downloading https://download.open.fda.gov/device/event/2025q2/device-event-0003-of-0007.json.zip
+        -> 6311 chunk(s) so far, 12,475,900 record(s)
+    [145/184] downloading https://download.open.fda.gov/device/event/2025q2/device-event-0004-of-0007.json.zip
+        -> 6359 chunk(s) so far, 12,570,900 record(s)
+    [146/184] downloading https://download.open.fda.gov/device/event/2025q2/device-event-0005-of-0007.json.zip
+        -> 6407 chunk(s) so far, 12,665,900 record(s)
+    [147/184] downloading https://download.open.fda.gov/device/event/2025q2/device-event-0006-of-0007.json.zip
+        -> 6455 chunk(s) so far, 12,760,900 record(s)
+    [148/184] downloading https://download.open.fda.gov/device/event/2025q2/device-event-0007-of-0007.json.zip
+        -> 6487 chunk(s) so far, 12,823,196 record(s)
+    [149/184] downloading https://download.open.fda.gov/device/event/2025q3/device-event-0001-of-0009.json.zip
+        -> 6535 chunk(s) so far, 12,918,196 record(s)
+    [150/184] downloading https://download.open.fda.gov/device/event/2025q3/device-event-0002-of-0009.json.zip
+        -> 6583 chunk(s) so far, 13,013,196 record(s)
+    [151/184] downloading https://download.open.fda.gov/device/event/2025q3/device-event-0003-of-0009.json.zip
+        -> 6631 chunk(s) so far, 13,108,196 record(s)
+    [152/184] downloading https://download.open.fda.gov/device/event/2025q3/device-event-0004-of-0009.json.zip
+        -> 6679 chunk(s) so far, 13,203,196 record(s)
+    [153/184] downloading https://download.open.fda.gov/device/event/2025q3/device-event-0005-of-0009.json.zip
+        -> 6727 chunk(s) so far, 13,298,196 record(s)
+    [154/184] downloading https://download.open.fda.gov/device/event/2025q3/device-event-0006-of-0009.json.zip
+        -> 6775 chunk(s) so far, 13,393,196 record(s)
+    [155/184] downloading https://download.open.fda.gov/device/event/2025q3/device-event-0007-of-0009.json.zip
+        -> 6823 chunk(s) so far, 13,488,196 record(s)
+    [156/184] downloading https://download.open.fda.gov/device/event/2025q3/device-event-0008-of-0009.json.zip
+        -> 6871 chunk(s) so far, 13,583,196 record(s)
+    [157/184] downloading https://download.open.fda.gov/device/event/2025q3/device-event-0009-of-0009.json.zip
+        -> 6901 chunk(s) so far, 13,642,640 record(s)
+    [158/184] downloading https://download.open.fda.gov/device/event/2025q4/device-event-0001-of-0008.json.zip
+        -> 6949 chunk(s) so far, 13,737,640 record(s)
+    [159/184] downloading https://download.open.fda.gov/device/event/2025q4/device-event-0002-of-0008.json.zip
+        -> 6997 chunk(s) so far, 13,832,640 record(s)
+    [160/184] downloading https://download.open.fda.gov/device/event/2025q4/device-event-0003-of-0008.json.zip
+        -> 7045 chunk(s) so far, 13,927,640 record(s)
+    [161/184] downloading https://download.open.fda.gov/device/event/2025q4/device-event-0004-of-0008.json.zip
+        -> 7093 chunk(s) so far, 14,022,640 record(s)
+    [162/184] downloading https://download.open.fda.gov/device/event/2025q4/device-event-0005-of-0008.json.zip
+        -> 7141 chunk(s) so far, 14,117,640 record(s)
+    [163/184] downloading https://download.open.fda.gov/device/event/2025q4/device-event-0006-of-0008.json.zip
+        -> 7189 chunk(s) so far, 14,212,640 record(s)
+    [164/184] downloading https://download.open.fda.gov/device/event/2025q4/device-event-0007-of-0008.json.zip
+        -> 7237 chunk(s) so far, 14,307,640 record(s)
+    [165/184] downloading https://download.open.fda.gov/device/event/2025q4/device-event-0008-of-0008.json.zip
+        -> 7281 chunk(s) so far, 14,393,652 record(s)
+    [166/184] downloading https://download.open.fda.gov/device/event/2026q1/device-event-0001-of-0009.json.zip
+        -> 7329 chunk(s) so far, 14,488,652 record(s)
+    [167/184] downloading https://download.open.fda.gov/device/event/2026q1/device-event-0002-of-0009.json.zip
+        -> 7377 chunk(s) so far, 14,583,652 record(s)
+    [168/184] downloading https://download.open.fda.gov/device/event/2026q1/device-event-0003-of-0009.json.zip
+        -> 7425 chunk(s) so far, 14,678,652 record(s)
+    [169/184] downloading https://download.open.fda.gov/device/event/2026q1/device-event-0004-of-0009.json.zip
+        -> 7473 chunk(s) so far, 14,773,652 record(s)
+    [170/184] downloading https://download.open.fda.gov/device/event/2026q1/device-event-0005-of-0009.json.zip
+        -> 7521 chunk(s) so far, 14,868,652 record(s)
+    [171/184] downloading https://download.open.fda.gov/device/event/2026q1/device-event-0006-of-0009.json.zip
+        -> 7569 chunk(s) so far, 14,963,652 record(s)
+    [172/184] downloading https://download.open.fda.gov/device/event/2026q1/device-event-0007-of-0009.json.zip
+        -> 7617 chunk(s) so far, 15,058,652 record(s)
+    [173/184] downloading https://download.open.fda.gov/device/event/2026q1/device-event-0008-of-0009.json.zip
+        -> 7665 chunk(s) so far, 15,153,652 record(s)
+    [174/184] downloading https://download.open.fda.gov/device/event/2026q1/device-event-0009-of-0009.json.zip
+        -> 7691 chunk(s) so far, 15,205,270 record(s)
+    [175/184] downloading https://download.open.fda.gov/device/event/2026q2/device-event-0001-of-0010.json.zip
+        -> 7739 chunk(s) so far, 15,300,270 record(s)
+    [176/184] downloading https://download.open.fda.gov/device/event/2026q2/device-event-0002-of-0010.json.zip
+        -> 7787 chunk(s) so far, 15,395,270 record(s)
+    [177/184] downloading https://download.open.fda.gov/device/event/2026q2/device-event-0003-of-0010.json.zip
+        -> 7835 chunk(s) so far, 15,490,270 record(s)
+    [178/184] downloading https://download.open.fda.gov/device/event/2026q2/device-event-0004-of-0010.json.zip
+        -> 7883 chunk(s) so far, 15,585,270 record(s)
+    [179/184] downloading https://download.open.fda.gov/device/event/2026q2/device-event-0005-of-0010.json.zip
+        -> 7931 chunk(s) so far, 15,680,270 record(s)
+    [180/184] downloading https://download.open.fda.gov/device/event/2026q2/device-event-0006-of-0010.json.zip
+        -> 7979 chunk(s) so far, 15,775,270 record(s)
+    [181/184] downloading https://download.open.fda.gov/device/event/2026q2/device-event-0007-of-0010.json.zip
+        -> 8027 chunk(s) so far, 15,870,270 record(s)
+    [182/184] downloading https://download.open.fda.gov/device/event/2026q2/device-event-0008-of-0010.json.zip
+        -> 8075 chunk(s) so far, 15,965,270 record(s)
+    [183/184] downloading https://download.open.fda.gov/device/event/2026q2/device-event-0009-of-0010.json.zip
+        -> 8123 chunk(s) so far, 16,060,270 record(s)
+    [184/184] downloading https://download.open.fda.gov/device/event/2026q2/device-event-0010-of-0010.json.zip
+        -> 8158 chunk(s) so far, 16,128,788 record(s)
+        COPY progress: 20/8158 parts, 20 rows
+        COPY progress: 40/8158 parts, 40 rows
+        COPY progress: 60/8158 parts, 60 rows
+        COPY progress: 80/8158 parts, 80 rows
+        COPY progress: 100/8158 parts, 100 rows
+        COPY progress: 120/8158 parts, 120 rows
+        COPY progress: 140/8158 parts, 140 rows
+        COPY progress: 160/8158 parts, 160 rows
+        COPY progress: 180/8158 parts, 180 rows
+        COPY progress: 200/8158 parts, 200 rows
+        COPY progress: 220/8158 parts, 220 rows
+        COPY progress: 240/8158 parts, 240 rows
+        COPY progress: 260/8158 parts, 260 rows
+        COPY progress: 280/8158 parts, 280 rows
+        COPY progress: 300/8158 parts, 300 rows
+        COPY progress: 320/8158 parts, 320 rows
+        COPY progress: 340/8158 parts, 340 rows
+        COPY progress: 360/8158 parts, 360 rows
+        COPY progress: 380/8158 parts, 380 rows
+        COPY progress: 400/8158 parts, 400 rows
+        COPY progress: 420/8158 parts, 420 rows
+        COPY progress: 440/8158 parts, 440 rows
+        COPY progress: 460/8158 parts, 460 rows
+        COPY progress: 480/8158 parts, 480 rows
+        COPY progress: 500/8158 parts, 500 rows
+        COPY progress: 520/8158 parts, 520 rows
+        COPY progress: 540/8158 parts, 540 rows
+        COPY progress: 560/8158 parts, 560 rows
+        COPY progress: 580/8158 parts, 580 rows
+        COPY progress: 600/8158 parts, 600 rows
+        COPY progress: 620/8158 parts, 620 rows
+        COPY progress: 640/8158 parts, 640 rows
+        COPY progress: 660/8158 parts, 660 rows
+        COPY progress: 680/8158 parts, 680 rows
+        COPY progress: 700/8158 parts, 700 rows
+        COPY progress: 720/8158 parts, 720 rows
+        COPY progress: 740/8158 parts, 740 rows
+        COPY progress: 760/8158 parts, 760 rows
+        COPY progress: 780/8158 parts, 780 rows
+        COPY progress: 800/8158 parts, 800 rows
+        COPY progress: 820/8158 parts, 820 rows
+        COPY progress: 840/8158 parts, 840 rows
+        COPY progress: 860/8158 parts, 860 rows
+        COPY progress: 880/8158 parts, 880 rows
+        COPY progress: 900/8158 parts, 900 rows
+        COPY progress: 920/8158 parts, 920 rows
+        COPY progress: 940/8158 parts, 940 rows
+        COPY progress: 960/8158 parts, 960 rows
+        COPY progress: 980/8158 parts, 980 rows
+        COPY progress: 1000/8158 parts, 1,000 rows
+        COPY progress: 1020/8158 parts, 1,020 rows
+        COPY progress: 1040/8158 parts, 1,040 rows
+        COPY progress: 1060/8158 parts, 1,060 rows
+        COPY progress: 1080/8158 parts, 1,080 rows
+        COPY progress: 1100/8158 parts, 1,100 rows
+        COPY progress: 1120/8158 parts, 1,120 rows
+        COPY progress: 1140/8158 parts, 1,140 rows
+        COPY progress: 1160/8158 parts, 1,160 rows
+        COPY progress: 1180/8158 parts, 1,180 rows
+        COPY progress: 1200/8158 parts, 1,200 rows
+        COPY progress: 1220/8158 parts, 1,220 rows
+        COPY progress: 1240/8158 parts, 1,240 rows
+        COPY progress: 1260/8158 parts, 1,260 rows
+Traceback (most recent call last):
+  File "C:\Code\Ripple_v6\scripts\fda_bulk_split_load.py", line 220, in <module>
+    chunk_re = re.compile(r"part_\d{4}_\d{5}\.json\.gz$")
+                 ^^^^^^
+  File "C:\Code\Ripple_v6\scripts\fda_bulk_split_load.py", line 213, in main
+    stg = ssl._build_variant_staging(conn, table)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Code\Ripple_v6\scripts\fda_bulk_split_load.py", line 191, in load_source
+    json_path = _download_and_extract_json(url, tmpdir)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Code\Ripple_v6\scripts\server_side_load.py", line 581, in _copy_json
+    return sum(int(r[3]) for r in rows) if rows else 0
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Code\Ripple_v6\scripts\server_side_load.py", line 581, in <genexpr>
+    return sum(int(r[3]) for r in rows) if rows else 0
+                   ~^^^
+IndexError: tuple index out of range

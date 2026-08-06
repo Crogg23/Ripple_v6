@@ -1,0 +1,49 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FDA_ESTABLISHMENT_REG
+        description: >
+          Raw landing table for openFDA device/registrationlisting (FDA establishment
+          registration + device listing, FEI numbers). Each row is one VARIANT chunk
+          doc ({"results": [...]}); flatten RAW:results in staging.
+
+models:
+  - name: stg_fed_fda_establishment_reg__all
+    description: >
+      Establishment registration/listing records, flattened from RAW:results.
+      One facility (fei_number) can list many products, so fei_number alone is
+      not unique -- see the composite key test below.
+    columns:
+      - name: fei_number
+        description: FDA Establishment Identifier -- the facility-level key.
+        data_tests:
+          - not_null
+      - name: establishment_name
+        description: Registered facility name.
+      - name: owner_operator_firm_name
+        description: Parent firm name that owns/operates the facility.
+      - name: k_number
+        description: 510(k) number this listing ties back to, if any.
+      - name: pma_number
+        description: PMA number this listing ties back to, if any.
+      - name: proprietary_name
+        description: Proprietary/brand name of the listed device.
+      - name: _ingested_at
+        description: Timestamp when the record was loaded into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this row.
+
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - fei_number
+              - k_number
+              - pma_number
+              - proprietary_name

@@ -1,0 +1,196 @@
+{
+  "meta": {
+    "disclaimer": "Do not rely on openFDA to make decisions regarding medical care. While we make every effort to ensure that data is accurate, you should assume all results are unvalidated. We may limit or otherwise restrict your access to the API in line with our Terms of Service.",
+    "terms": "https://open.fda.gov/terms/",
+    "license": "https://open.fda.gov/license/",
+    "last_updated": "2026-07-28",
+    "results": {
+      "skip": 0,
+      "limit": 1,
+      "total": 25103151
+    }
+  },
+  "results": [
+    {
+      "manufacturer_contact_zip_ext": "",
+      "manufacturer_g1_address_2": "",
+      "event_location": "",
+      "report_to_fda": "",
+      "manufacturer_contact_t_name": "",
+      "manufacturer_contact_state": "",
+      "manufacturer_link_flag": "Y",
+      "manufacturer_contact_address_2": "",
+      "manufacturer_g1_city": "",
+      "manufacturer_contact_address_1": "",
+      "manufacturer_contact_pcity": "",
+      "event_type": "Malfunction",
+      "report_number": "2919069-2008-00381",
+      "type_of_report": [
+        "Initial submission",
+        "Followup"
+      ],
+      "product_problem_flag": "Y",
+      "date_received": "20080220",
+      "manufacturer_address_2": "",
+      "pma_pmn_number": "K051215",
+      "date_of_event": "20071216",
+      "reprocessed_and_reused_flag": "N",
+      "manufacturer_address_1": "",
+      "exemption_number": "",
+      "manufacturer_contact_zip_code": "",
+      "reporter_occupation_code": "OTHER",
+      "manufacturer_contact_plocal": "",
+      "noe_summarized": "1",
+      "manufacturer_contact_l_name": "",
+      "source_type": [
+        "Consumer",
+        "Health Professional"
+      ],
+      "distributor_zip_code_ext": "",
+      "manufacturer_g1_postal_code": "",
+      "manufacturer_g1_state": "",
+      "reporter_country_code": "US",
+      "manufacturer_contact_area_code": "",
+      "date_added": "20091228",
+      "manufacturer_contact_f_name": "",
+      "previous_use_code": "",
+      "device": [
+        {
+          "device_event_key": "",
+          "implant_flag": "",
+          "date_removed_flag": "",
+          "device_sequence_number": "1",
+          "date_received": "20080220",
+          "brand_name": "CELL-DYN SAPPHIRE ANALYZER",
+          "generic_name": "AUTOMATED HEMATOLOGY ANALYZER",
+          "manufacturer_d_name": "ABBOTT DIAGNOSTICS DIVISION/CELLDYN",
+          "manufacturer_d_address_1": "5440 PATRICK HENRY DR.",
+          "manufacturer_d_address_2": "",
+          "manufacturer_d_city": "SANTA CLARA",
+          "manufacturer_d_state": "CA",
+          "manufacturer_d_zip_code": "95054",
+          "manufacturer_d_zip_code_ext": "",
+          "manufacturer_d_country": "US",
+          "manufacturer_d_postal_code": "95054",
+          "device_operator": "OTHER",
+          "model_number": "NA",
+          "catalog_number": "8H00-01",
+          "lot_number": "NA",
+          "other_id_number": "NA",
+          "device_availability": "Yes",
+          "device_report_product_code": "GKZ",
+          "device_age_text": "DA",
+          "device_evaluated_by_manufacturer": "Y",
+          "combination_product_flag": "N",
+          "udi_di": "",
+          "udi_public": "",
+          "openfda": {
+            "registration_number": [
+              "2919069"
+            ],
+            "fei_number": [
+              "2919069"
+            ],
+            "device_name": "Counter, Differential Cell",
+            "medical_specialty_description": "Hematology",
+            "regulation_number": "864.5220",
+            "device_class": "2"
+          }
+        }
+      ],
+      "product_problems": [
+        "Syringe, defective",
+        "Device Displays Incorrect Message"
+      ],
+      "reporter_state_code": "NJ",
+      "manufacturer_zip_code": "",
+      "suppl_dates_mfr_received": "*",
+      "mfr_report_type": "FDA Requested",
+      "manufacturer_contact_country": "",
+      "date_changed": "20250731",
+      "health_professional": "",
+      "summary_report_flag": "N",
+      "manufacturer_g1_zip_code_ext": "",
+      "manufacturer_contact_extension": "",
+      "manufacturer_city": "",
+      "manufacturer_contact_phone_number": "",
+      "patient": [
+        {
+          "patient_sequence_number": "1",
+          "date_received": "20080220",
+          "sequence_number_treatment": [
+            "LIST #08H49-02",
+            " CELL-DYN SAPPHIRE HEMOGLOBIN SYRINGE",
+            " CELL-DYN SAPPHIRE HEMOGLOBIN SYRINGE,"
+          ],
+          "sequence_number_outcome": [
+            ""
+          ],
+          "patient_age": "NI",
+          "patient_sex": "",
+          "patient_weight": "",
+          "patient_ethnicity": "",
+          "patient_race": "",
+          "patient_problems": [
+            "No Consequences Or Impact To Patient"
+          ]
+        }
+      ],
+      "distributor_city": "",
+      "date_report": "20080122",
+      "initial_report_to_fda": "",
+      "distributor_state": "",
+      "event_key": "",
+      "manufacturer_g1_country": "",
+      "manufacturer_contact_city": "",
+      "mdr_report_key": "1000000",
+      "removal_correction_number": "2919069-8/6/07-004-C",
+      "number_devices_in_event": "",
+      "manufacturer_name": "",
+      "report_source_code": "Manufacturer report",
+      "remedial_action": [
+        "Replace",
+        "Recall"
+      ],
+      "manufacturer_g1_zip_code": "",
+      "report_to_manufacturer": "",
+      "manufacturer_zip_code_ext": "",
+      "manufacturer_g1_name": "",
+      "adverse_event_flag": "N",
+      "distributor_address_1": "",
+      "manufacturer_state": "",
+      "distributor_address_2": "",
+      "manufacturer_postal_code": "",
+      "single_use_flag": "",
+      "manufacturer_country": "",
+      "mdr_text": [
+        {
+          "mdr_text_key": "788224",
+          "text_type_code": "Description of Event or Problem",
+          "patient_sequence_number": "1",
+          "text": "THE CUSTOMER CONTACTED ABBOTT REGARDING HEMOGLOBIN SYRINGE \"FAIL TO HOME\" ERROR MESSAGES GENERATED FIVE TIMES IN ONE DAY FROM THE CELL-DYN SAPPHIRE HEMATOLOGY ANALYZER. THE CUSTOMER WAS ABLE TO CLEAR THE ERROR MESSAGE WITH TEMPORARY RESOLUTION. THE ABBOTT CUSTOMER TECHNICAL ADVOCATE RECOMMENDED THE CUSTOMER CLEAN THE SYRINGE AND IF THE SYRINGE PLUNGER WAS DIFFICULT TO MOVE, REPLACE THE SYRINGE. THE ISSUE WAS RESOLVED WHEN THE CUSTOMER REPLACED THE SYRINGE. THE CUSTOMER REPORTED THERE WAS NO IMPACT TO PT MANAGEMENT."
+        },
+        {
+          "mdr_text_key": "8094441",
+          "text_type_code": "Additional Manufacturer Narrative",
+          "patient_sequence_number": "1",
+          "text": "THIS IS AN INITIAL REPORT. AN INVESTIGATION IS IN PROCESS. A FINAL REPORT WILL BE SUBMITTED WHEN THE INVESTIGATION IS COMPLETED."
+        },
+        {
+          "mdr_text_key": "8303917",
+          "text_type_code": "Additional Manufacturer Narrative",
+          "patient_sequence_number": "1",
+          "text": "(B)(4). CONCOMITANT MEDICAL PRODUCTS: CELL-DYN SAPPHIRE HEMOGLOBIN SYRINGE, LIST # 8H49-02 THIS FOLLOW UP MDR FOR REMEDIAL CORRECTION 2919069-8/6/07-004-C IS SUBMITTED LATE. THE CELL-DYN SAPPHIRE HEMOGLOBIN SYRINGE, LIST NUMBER 8H49-02, WAS MANUFACTURED ON (B)(4) 2007 AND WAS IDENTIFIED BY THE VENDOR TO HAVE BEEN MANUFACTURED WITH INSUFFICIENT OR INCONSISTENT AMOUNT OF SILICONE LUBRICANT APPLIED TO THE TIP OF THE SYRINGE PLUNGER. THE AFFECTED SYRINGES WITH A PACKAGE DATE OF (B)(4) 2007 THROUGH (B)(4) 2007, CAUSED THE CELL-DYN SAPPHIRE ANALYZER TO GENERATE AN ERROR MESSAGE UPON INSTALLATION OF THE SYRINGE OR SHORTLY THEREAFTER. THE CELL-DYN SAPPHIRE HEMOGLOBIN SYRINGE WAS DISTRIBUTED FOR THE CELL-DYN SAPPHIRE ANALYZER ONLY AND DID NOT IMPACT OTHER CELL-DYN ANALYZERS. THE ISSUE WAS RESOLVED WHEN A NEW CELL-DYN SAPPHIRE HEMOGLOBIN SYRINGE, LIST 8H49-04, WAS MANUFACTURED BY A NEW VENDOR AND RELEASED FOR DISTRIBUTION ON (B)(4) 2009."
+        }
+      ],
+      "number_patients_in_event": "",
+      "distributor_name": "",
+      "manufacturer_g1_address_1": "",
+      "distributor_zip_code": "",
+      "manufacturer_contact_postal_code": "",
+      "manufacturer_contact_exchange": "",
+      "manufacturer_contact_pcountry": "",
+      "suppl_dates_fda_received": "12/28/2009"
+    }
+  ]
+}
