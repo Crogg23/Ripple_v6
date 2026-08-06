@@ -90,3 +90,22 @@ outputs/_viz_cache.json
 # it rather than tracking it (same reasoning as the other outputs/ blobs above)
 outputs/_blank_landing_audit.json
 importtime*.log
+
+# Raw source downloads / scratch data (2026-08-06): re-downloadable multi-GB
+# source files, some person-level (ICIJ, Companies House PSC). Never commit --
+# GitHub rejects >100MB files and raw data doesn't belong in history.
+# The small .py scratch loaders inside _dl/ are force-added (git add -f).
+/ch_psc_snapshot.zip
+/icij_offshore.zip
+*.done
+*.pid
+library-onboarding/_dl/
+library-onboarding/raw_downloads/
+library-onboarding/ch_psc/
+library-onboarding/icij_extract/
+library-onboarding/scratch_*
+scripts/hmda_historic_scratch/
+outputs/_raw_downloads/
+outputs/_fracfocus.zip
+outputs/_eia860.zip
+outputs/_eia861.zip

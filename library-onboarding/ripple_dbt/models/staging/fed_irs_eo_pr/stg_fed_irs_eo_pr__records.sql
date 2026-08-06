@@ -21,7 +21,7 @@ renamed as (
         CITY as city,
         STATE as state,
         ZIP as zip,
-        GROUP as group,
+        "GROUP" as group_exemption,
         SUBSECTION as subsection,
         AFFILIATION as affiliation,
         CLASSIFICATION as classification,

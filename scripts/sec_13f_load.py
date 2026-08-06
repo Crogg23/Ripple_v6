@@ -198,10 +198,22 @@ def main():
                     CHECKPOINT.write_text(json.dumps(cp, indent=1))
 
         run_id = str(uuid.uuid4())
+        # Gate verdict must reach the exit code (audit 2026-08-05 finding #3:
+        # return was discarded, so dq_failed still printed DONE / exit 0).
+        gate_failed = []
         for tbl in ("FED_SEC_13F_HOLDINGS", "FED_SEC_13F_FILERS", "FED_SEC_13F_SUBMISSIONS"):
-            bulk.run_quality_gate(conn, "fed_sec_13f", tbl, run_id)
+            # source_id must be per-table: the gate auto-fetches the previous
+            # successful ROW_COUNT by source_id for its shrink guard, and a
+            # shared id would compare HOLDINGS (millions) against whichever
+            # of the three tables happened to log last.
+            passed, report = bulk.run_quality_gate(conn, tbl, tbl, run_id)
+            if not passed:
+                print(f"QUALITY GATE FAILED {tbl}: {report}")
+                gate_failed.append(tbl)
     finally:
         conn.close()
+    if gate_failed:
+        sys.exit(1)
     print("DONE")
 
 

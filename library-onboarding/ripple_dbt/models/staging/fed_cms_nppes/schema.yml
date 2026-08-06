@@ -22,8 +22,24 @@ models:
         data_tests:
           - unique
           - not_null
-      - name: EIN
-        description: Employer Identification Number associated with the provider organization.
+          - key_is_real:
+              arguments:
+                min_distinct: 100000
+      - name: EMPLOYER_IDENTIFICATION_NUMBER_EIN
+        description: >-
+          Employer Identification Number associated with the provider organization.
+          KNOWN BAD (audit 2026-08-05): ~100% sentinel-masked ('<UNAVAIL>'/blank,
+          nulled in staging) — this key_is_real test is the platform canary for
+          the masked-blank bug class and is EXPECTED to warn until the column is
+          fixed or retired.
+        data_tests:
+          - key_is_real:
+              arguments:
+                min_distinct: 1000
+                max_blank_fraction: 0.5
+                sentinels: ['<UNAVAIL>', '000000000']
+              config:
+                severity: warn
       - name: Provider_Business_Mailing_Address_Postal_Code
         description: >-
           ZIP / postal code from the provider's business mailing address. Mapped to the

@@ -13,12 +13,14 @@ import argparse
 import json
 import sys
 import time
+import uuid
 from pathlib import Path
 
 import pandas as pd
 import requests
 
 _REPO = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(_REPO / "scripts"))
 sys.path.insert(0, str(_REPO / "library-onboarding"))
 sys.path.insert(0, str(_REPO / "connect"))
 
@@ -29,6 +31,7 @@ except Exception:
     pass
 
 import snow  # noqa: E402
+import _bulk_load_utils as bulk  # noqa: E402
 
 TABLE = "FED_FAC_SINGLE_AUDIT"
 API_BASE = "https://api.fac.gov/general"
@@ -191,6 +194,13 @@ def main() -> int:
         n = load(conn, df)
         if n > 0:
             register(conn, n)
+            # Quality gate + INGEST_RUNS row (audit 2026-08-05 finding #3:
+            # this loader bypassed the gate — failure must reach exit code)
+            passed, report = bulk.run_quality_gate(
+                conn, TABLE, TABLE, str(uuid.uuid4()), source_url=API_BASE)
+            if not passed:
+                print(f"  QUALITY GATE FAILED: {report}")
+                return 1
         return 0
     finally:
         conn.close()

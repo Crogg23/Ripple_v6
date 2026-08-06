@@ -221,11 +221,20 @@ def main():
                     save_checkpoint(cp)
 
         run_id = str(uuid.uuid4())
+        # Gate verdict must reach the exit code (audit 2026-08-05 finding #3:
+        # return was discarded, so dq_failed still printed DONE / exit 0).
+        gate_failed = []
         for ft in FILE_TYPES:
             tbl = f"FED_FDA_FAERS_{ft}"
-            bulk.run_quality_gate(conn, f"fed_fda_faers_{ft.lower()}", tbl, run_id)
+            passed, report = bulk.run_quality_gate(
+                conn, f"fed_fda_faers_{ft.lower()}", tbl, run_id)
+            if not passed:
+                print(f"QUALITY GATE FAILED {tbl}: {report}")
+                gate_failed.append(tbl)
     finally:
         conn.close()
+    if gate_failed:
+        sys.exit(1)
     print("DONE")
 
 

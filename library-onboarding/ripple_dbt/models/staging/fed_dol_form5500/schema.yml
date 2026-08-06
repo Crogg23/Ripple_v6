@@ -18,3 +18,26 @@ models:
         data_tests:
           - unique
           - not_null
+      # EIN keys were the only untested columns here (audit 2026-08-05 #4);
+      # key_is_real catches the masked-blank/sentinel failure not_null cannot.
+      - name: spons_dfe_ein
+        data_tests:
+          - key_is_real:
+              arguments:
+                min_distinct: 1000
+                max_blank_fraction: 0.5
+                sentinels: ['000000000']
+      - name: sponsor_dfe_ein
+        description: >-
+          KNOWN BAD (found by key_is_real canary run, 2026-08-06): 100% blank
+          across all 33,484 rows — a dead column. Use spons_dfe_ein (29,069
+          distinct) as the sponsor EIN key instead. Test kept at warn to
+          document the fact without permanently failing the suite.
+        data_tests:
+          - key_is_real:
+              arguments:
+                min_distinct: 1000
+                max_blank_fraction: 0.5
+                sentinels: ['000000000']
+              config:
+                severity: warn
