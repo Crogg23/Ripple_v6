@@ -27,7 +27,8 @@ class _Conn:
         pass
 
 
-def _stub(monkeypatch, tmp_path, logged, swaps, lines_per_cycle=3, write_fail=False):
+def _stub(monkeypatch, tmp_path, logged, swaps, lines_per_cycle=3, write_fail=False,
+          prev_success_rows=None):
     monkeypatch.setattr(fec.snow, "connect", lambda *a, **k: _Conn())
     monkeypatch.setattr(fec.snow, "execute", lambda conn, sql, *a, **k: None)
     monkeypatch.setattr(fec, "download", lambda url, path: None)
@@ -35,6 +36,11 @@ def _stub(monkeypatch, tmp_path, logged, swaps, lines_per_cycle=3, write_fail=Fa
     # keep the zip cache/cleanup away from the REAL temp dir (a full-run test would
     # otherwise delete a genuinely cached indiv24.zip on this machine)
     monkeypatch.setattr(fec.tempfile, "gettempdir", lambda: str(tmp_path))
+    # never-shrink floor's row-count lookup (added 2026-08-06) -- None means "no
+    # prior successful run", the same real-world default _latest_success_rows
+    # returns, so the floor check is a no-op unless a test opts into a value.
+    monkeypatch.setattr(fec.ingest, "_latest_success_rows",
+                        lambda conn, sid: prev_success_rows)
 
     def _write_chunk(conn, lines, run_id, started, first):
         if write_fail:
@@ -62,6 +68,35 @@ def test_capped_smoke_never_swaps(monkeypatch, tmp_path):
 def test_full_run_swaps_then_logs_success(monkeypatch, tmp_path):
     logged, swaps = [], []
     _stub(monkeypatch, tmp_path, logged, swaps)
+
+    rc = fec.main([])
+
+    assert rc == 0
+    assert len(swaps) == 1
+    assert logged == ["success"]
+
+
+def test_shrunk_run_refuses_swap(monkeypatch, tmp_path):
+    """A run landing far fewer rows than the last success must NOT swap (the
+    empty/near-empty-stream case the never-shrink floor exists to catch)."""
+    logged, swaps = [], []
+    # 2 cycles x 3 lines = 6 rows this run; prior success was 1,000,000 -- well
+    # under the 50% floor.
+    _stub(monkeypatch, tmp_path, logged, swaps, prev_success_rows=1_000_000)
+
+    rc = fec.main([])
+
+    assert rc == 1
+    assert swaps == []               # live table untouched
+    assert logged == ["partial"]     # visibly flagged, not silently 'success'
+
+
+def test_run_above_floor_still_swaps(monkeypatch, tmp_path):
+    """A run that's shrunk a little (normal variance) but stays above the 50%
+    floor must swap normally -- the guard shouldn't false-positive on that."""
+    logged, swaps = [], []
+    # 2 cycles x 3 lines = 6 rows this run; floor only trips below 3.
+    _stub(monkeypatch, tmp_path, logged, swaps, prev_success_rows=10)
 
     rc = fec.main([])
 

@@ -120,7 +120,12 @@ a one-line receipt so nothing happens in the dark.
 Taste questions. No right answer in the data. These define what Ripple *is*.
 - Anything touching the mission or scope
 - Whether something gets published, ever (auto-publish is structurally blocked —
-  human sign-off required on every finding, no exceptions)
+  human sign-off required on every finding, no exceptions). **Never nudge or
+  lean toward publishing — not a suggestion, not a "however, given the mission,
+  I'd lean toward..." Publish-readiness is 100% Chris's call, on his timeline,
+  full stop. This is especially true the moment a session has just handed him a
+  list of open trust/quality problems — don't hand him the bad news and a push
+  to publish in the same breath. (Chris, 2026-08-06, after exactly that.)**
 - What we audit first — where the light points
 - Anything with legal or ethical weight
 - Spending real money

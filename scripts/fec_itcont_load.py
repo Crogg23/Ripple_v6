@@ -146,6 +146,24 @@ def main(argv=None) -> int:
                   f"live {TABLE} untouched (no swap on a capped run)", flush=True)
             return 0
 
+        # Never-shrink floor (audit 2026-08-05/06 finding: execute_swap's own
+        # docstring says "call ONLY after ... its smoke referee passed" but
+        # nothing here actually called one -- a near-empty stream, e.g. FEC
+        # changing the zip's inner file shape in a way stream_lines tolerates,
+        # would have swapped 0 rows over the real ~84M-row table). Same guard
+        # shape as build_skeleton.land's never-shrink floor.
+        prev = ingest._latest_success_rows(conn, SID)
+        if prev and total < prev * 0.5:
+            ended = ingest._utcnow()
+            ingest._log_run(conn, SID, run_id, "partial", total, None, "",
+                            "https://www.fec.gov/files/bulk-downloads/", started, ended,
+                            f"PARTIAL -- {total:,} rows is below the never-shrink floor "
+                            f"({prev:,} last success x 0.5 = {int(prev*0.5):,}). Live {TABLE} "
+                            f"LEFT UNTOUCHED (staging {STG} kept for inspection, quarantined {bad}).")
+            print(f"\nREFUSED SWAP -> {total:,} rows < floor {int(prev*0.5):,} (prev success {prev:,}) "
+                  f"-- live {TABLE} untouched, staging kept", flush=True)
+            return 1
+
         atomic_load.execute_swap(conn, TABLE, database=settings.raw_database, schema=settings.raw_schema)
         ingest._log_run(conn, SID, run_id, "success", total, None, "",
                         "https://www.fec.gov/files/bulk-downloads/", started, ended,

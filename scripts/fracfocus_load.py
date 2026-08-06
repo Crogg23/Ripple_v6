@@ -26,6 +26,7 @@ except Exception:
 
 import snow  # noqa: E402
 import ingest  # noqa: E402
+import _bulk_load_utils as bulk  # noqa: E402
 
 ZIP_PATH = _REPO / "outputs" / "_fracfocus.zip"
 
@@ -62,11 +63,23 @@ def load_csv_group(conn, zf, names: list[str], table: str, source_id: str, url: 
     cur.execute(f'SELECT COUNT(*) FROM LIBRARY_RAW.LANDING."{table}"')
     final_count = cur.fetchone()[0]
     ended = dt.datetime.now(dt.timezone.utc).replace(tzinfo=None)
+
+    # Quality gate (audit 2026-08-05/06 finding: none here at all -- this
+    # chunked loader can't check density before writing since chunks stream in,
+    # so it checks the live landed table right after, like assess_bulk_load's
+    # other callers in this file's sibling module).
+    passed, report = bulk.assess_bulk_load(conn, table)
+    status = "success" if passed else "partial"
+    if not passed:
+        print(f"  QUALITY GATE FAILED for {table}: {report}")
+
     ingest._log_run(conn, source_id=source_id, run_id=run_id,
-                     status="success", row_count=final_count, file_bytes=None,
+                     status=status, row_count=final_count, file_bytes=None,
                      sha=sha, url=url, started=started, ended=ended,
                      message=f"{len(names)} source files")
-    print(f"{table}: FINAL {final_count:,} rows")
+    print(f"{table}: FINAL {final_count:,} rows (status={status})")
+    if not passed:
+        raise RuntimeError(f"QUALITY GATE FAILED for {table}: {report}")
     return final_count
 
 

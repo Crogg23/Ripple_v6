@@ -123,6 +123,16 @@ def main(argv=None) -> int:
         print("\nPREVIEW only — add --run to land.")
         return 0
 
+    # Quality gate (audit 2026-08-05/06 finding: this loader had none at all --
+    # overwrite=True below would have silently clobbered a healthy table with an
+    # empty/degenerate pull). Must run BEFORE the write, not after.
+    density = ingest.assess_density(df)
+    if density["empty"]:
+        print(f"\nQUALITY GATE FAILED: parsed frame looks empty/degenerate -- {density['reason']} "
+              f"(populated_fraction={density['populated_fraction']:.3f}). Refusing to overwrite "
+              f"the live table.")
+        return 1
+
     started = ingest._utcnow()
     run_id = str(uuid.uuid4())
     conn = snow.connect()

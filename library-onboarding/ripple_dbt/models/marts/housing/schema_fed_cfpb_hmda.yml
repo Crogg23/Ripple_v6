@@ -2,7 +2,19 @@ version: 2
 
 models:
   - name: housing__fed_cfpb_hmda
+    description: >
+      KNOWN SCOPE ISSUE (found 2026-08-05 warehouse audit, confirmed live
+      2026-08-06): despite the generic name, this table is NOT nationwide HMDA
+      data. All 28,301 rows are STATE_CODE = 'DC' (verified via
+      COUNT(DISTINCT state_code) = 1 against the live mart). Treat any finding
+      built on this table as Washington DC-only until it is reloaded with the
+      full national file or renamed to make the scope explicit. The separate
+      fed_cfpb_hmda_historic source is a different, larger, multi-year table —
+      do not assume it shares this same DC-only limitation without checking.
     columns:
       - name: state_code
+        description: >
+          KNOWN: currently 100% 'DC' in this table (see model description) —
+          not evidence of a real geographic pattern, it's a load-scope bug.
         data_tests:
           - not_null

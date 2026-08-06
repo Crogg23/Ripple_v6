@@ -350,14 +350,28 @@ def main():
     print(f"{'='*60}")
 
     # Quality gate
+    # Gate verdict must reach the exit code (audit 2026-08-05 finding: same
+    # discarded-return bug class fixed in fda_faers_load.py / sec_13f_load.py
+    # -- this loader still had it as of 2026-08-06).
+    gate_failed = []
     if total_filings > 0:
-        bulk.run_quality_gate(conn, "fed_senate_lda_filings", TBL_FILINGS, run_id,
-                             row_count=total_filings, source_url=BASE_URL)
+        passed, report = bulk.run_quality_gate(
+            conn, "fed_senate_lda_filings", TBL_FILINGS, run_id,
+            row_count=total_filings, source_url=BASE_URL)
+        if not passed:
+            print(f"QUALITY GATE FAILED {TBL_FILINGS}: {report}")
+            gate_failed.append(TBL_FILINGS)
     if total_contribs > 0:
-        bulk.run_quality_gate(conn, "fed_senate_lda_contributions", TBL_CONTRIBUTIONS, run_id,
-                             row_count=total_contribs, source_url=BASE_URL)
+        passed, report = bulk.run_quality_gate(
+            conn, "fed_senate_lda_contributions", TBL_CONTRIBUTIONS, run_id,
+            row_count=total_contribs, source_url=BASE_URL)
+        if not passed:
+            print(f"QUALITY GATE FAILED {TBL_CONTRIBUTIONS}: {report}")
+            gate_failed.append(TBL_CONTRIBUTIONS)
 
     conn.close()
+    if gate_failed:
+        sys.exit(1)
     print("DONE")
 
 

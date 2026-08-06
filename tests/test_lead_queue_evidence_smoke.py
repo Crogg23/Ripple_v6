@@ -42,7 +42,7 @@ def test_top10_evidence_sql_reproduces():
         try:
             cur.execute("""
                 SELECT lead_id, detector, priority_rank, evidence_sql
-                FROM LIBRARY_MARTS.DBT_CROGERS.LEAD_QUEUE
+                FROM LIBRARY_MARTS.REVIEW.LEAD_QUEUE
                 WHERE priority_rank <= 10
                 ORDER BY priority_rank
             """)

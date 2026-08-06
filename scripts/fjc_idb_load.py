@@ -388,6 +388,15 @@ def main(argv=None) -> int:
             print(f"  {r['table']}: {r['rows']:,} rows landed this run (status={r['status']})", flush=True)
     finally:
         conn.close()
+
+    # This loader already detects an empty/degenerate landing (density["empty"],
+    # the exact FJC_IDB all-blank-columns tell) and correctly refuses to drop the
+    # old table on it -- but until now the process still exited 0 regardless, so
+    # a caller/scheduler had no way to notice without reading the printed log.
+    failed = [r["table"] for r in results if r["status"] != "success"]
+    if failed:
+        print(f"\nQUALITY GATE FAILED (empty/degenerate load) for: {', '.join(failed)}", flush=True)
+        return 1
     return 0
 
 

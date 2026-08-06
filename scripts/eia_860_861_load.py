@@ -62,6 +62,15 @@ def load_workbook(conn, data: bytes, zip_name: str, fname: str, prefix: str, sou
         print(f"    SKIP {fname}: 0 rows")
         return None
 
+    # Quality gate (audit 2026-08-05/06 finding: none here at all -- and this
+    # function DROPs the old table before writing, so an empty/degenerate parse
+    # would destroy the existing good table with nothing left to fall back to).
+    density = ingest.assess_density(df)
+    if density["empty"]:
+        print(f"    SKIP {fname}: parsed frame looks empty/degenerate -- {density['reason']} "
+              f"(populated_fraction={density['populated_fraction']:.3f})")
+        return None
+
     df.columns = [ingest._sf_col(str(c)) for c in df.columns]
     tbl = clean_name(fname, prefix)
     run_id = str(uuid.uuid4())

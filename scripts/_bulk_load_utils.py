@@ -160,6 +160,16 @@ def _load_bytes(conn, content: bytes, tbl: str, *, max_rows: int = DEFAULT_MAX_R
     )
     if not ok:
         raise RuntimeError(f"write_pandas failed for {tbl}")
+
+    # Quality gate (audit 2026-08-05/06 finding: fast_load/_load_bytes had none
+    # beyond an empty-frame check -- a row count > 0 with every column blank, the
+    # platform's own recurring failure mode, sailed through as a normal load).
+    # Runs post-write like every other caller of assess_bulk_load in this file;
+    # raising here is deliberate so a caller that doesn't check fast_load's
+    # return value still finds out, instead of silently logging a bad load as fine.
+    passed, report = assess_bulk_load(conn, tbl)
+    if not passed:
+        raise RuntimeError(f"QUALITY GATE FAILED for {tbl}: {report}")
     return len(df)
 
 

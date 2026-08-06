@@ -112,12 +112,23 @@ def main():
         return
 
     conn = snow.connect()
+    shortfalls = []
     try:
         for tbl, url, expected in plan:
             n = load_file(conn, url, tbl)
             print(f"  EXPECTED={expected:,}  LOADED={n:,}")
+            # Quality gate (audit 2026-08-05/06 finding: this loader had none at
+            # all -- it prints EXPECTED vs LOADED but never acted on the gap.
+            # GLEIF's own API response gives an authoritative expected count, so
+            # use it directly rather than a generic density check.
+            if expected and n < expected * 0.98:
+                print(f"  QUALITY GATE FAILED {tbl}: loaded {n:,} < 98% of "
+                      f"source-declared {expected:,}")
+                shortfalls.append(tbl)
     finally:
         conn.close()
+    if shortfalls:
+        raise RuntimeError(f"QUALITY GATE FAILED for: {', '.join(shortfalls)}")
 
 
 if __name__ == "__main__":

@@ -77,8 +77,9 @@ GHGRP_TABLES = {
 }
 
 
-def load_ghgrp(conn, max_rows: int) -> None:
+def load_ghgrp(conn, max_rows: int) -> list[str]:
     run_id = str(uuid.uuid4())
+    gate_failed: list[str] = []
     for tbl, ef_table in GHGRP_TABLES.items():
         count_url = f"https://data.epa.gov/efservice/{ef_table}/COUNT/CSV"
         r = requests.get(count_url, headers=USER_AGENT, timeout=60)
@@ -102,6 +103,10 @@ def load_ghgrp(conn, max_rows: int) -> None:
             sha256=sha, row_count=n, source_url=rows_url,
             file_bytes=len(resp.content))
         print(f"  -> {tbl}: {n:,} rows landed (claimed {total:,}), DQ passed={passed}")
+        if not passed:
+            print(f"     QUALITY GATE FAILED {tbl}: {report}")
+            gate_failed.append(tbl)
+    return gate_failed
 
 
 # ---------------------------------------------------------------------------
@@ -113,8 +118,9 @@ RCRA_ENTITY_KEYS = {
 RCRA_ZIP = "https://echo.epa.gov/files/echodownloads/rcra_downloads.zip"
 
 
-def load_rcra(conn, max_rows: int) -> None:
+def load_rcra(conn, max_rows: int) -> list[str]:
     run_id = str(uuid.uuid4())
+    gate_failed: list[str] = []
     results = bulk.load_zip_csvs(
         conn, RCRA_ZIP, "FED_EPA_RCRA", RCRA_ENTITY_KEYS,
         user_agent=USER_AGENT, max_rows=max_rows, timeout=900)
@@ -125,6 +131,10 @@ def load_rcra(conn, max_rows: int) -> None:
             conn, f"fed_epa_rcra_{tbl.lower()}", tbl, run_id,
             row_count=n, source_url=RCRA_ZIP)
         print(f"  -> {tbl}: {n:,} rows landed (keys: {keys}), DQ passed={passed}")
+        if not passed:
+            print(f"     QUALITY GATE FAILED {tbl}: {report}")
+            gate_failed.append(tbl)
+    return gate_failed
 
 
 # ---------------------------------------------------------------------------
@@ -134,7 +144,7 @@ NRC_TABLE = "FED_USCG_NRC_INCIDENTS"
 NRC_YEARS = list(range(1990, 2027))  # CY90..CY26
 
 
-def load_nrc(conn, max_rows: int) -> None:
+def load_nrc(conn, max_rows: int) -> list[str]:
     run_id = str(uuid.uuid4())
     frames = []
     total_bytes = 0
@@ -178,6 +188,10 @@ def load_nrc(conn, max_rows: int) -> None:
         sha256=sha, row_count=n, source_url="https://nrc.uscg.mil/FOIAFiles/",
         file_bytes=total_bytes)
     print(f"\n  -> {NRC_TABLE}: {n:,} rows landed across {len(frames)} years, DQ passed={passed}")
+    if not passed:
+        print(f"     QUALITY GATE FAILED {NRC_TABLE}: {report}")
+        return [NRC_TABLE]
+    return []
 
 
 def main() -> int:
@@ -193,18 +207,25 @@ def main() -> int:
         return 0
 
     conn = snow.connect()
+    # Gate verdict must reach the exit code (audit 2026-08-05 finding: this
+    # script was added the same day and reintroduced the discarded-return bug
+    # already fixed elsewhere -- passed was printed but never checked).
+    gate_failed: list[str] = []
     try:
         if args.source in ("ghgrp", "all"):
             print("\n=== GHGRP ===")
-            load_ghgrp(conn, args.max_rows)
+            gate_failed += load_ghgrp(conn, args.max_rows)
         if args.source in ("rcra", "all"):
             print("\n=== RCRA ===")
-            load_rcra(conn, args.max_rows)
+            gate_failed += load_rcra(conn, args.max_rows)
         if args.source in ("nrc", "all"):
             print("\n=== NRC ===")
-            load_nrc(conn, args.max_rows)
+            gate_failed += load_nrc(conn, args.max_rows)
     finally:
         conn.close()
+    if gate_failed:
+        print(f"\nQUALITY GATE FAILED for: {', '.join(gate_failed)}")
+        return 1
     return 0
 
 

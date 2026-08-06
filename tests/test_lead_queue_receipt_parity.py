@@ -58,8 +58,8 @@ def _queue_sql(cur) -> str:
     else the compiled model SQL (receipt columns stubbed — the safe view
     gains them when scripts/refresh_v_leads_published.sql is applied)."""
     try:
-        cur.execute("SELECT 1 FROM LIBRARY_MARTS.DBT_CROGERS.LEAD_QUEUE LIMIT 1")
-        return "LIBRARY_MARTS.DBT_CROGERS.LEAD_QUEUE"
+        cur.execute("SELECT 1 FROM LIBRARY_MARTS.REVIEW.LEAD_QUEUE LIMIT 1")
+        return "LIBRARY_MARTS.REVIEW.LEAD_QUEUE"
     except Exception:
         pass
     if not COMPILED.exists():
