@@ -66,7 +66,13 @@ models:
           National Provider Identifier of the covered recipient. NULL/blank for
           non-physician recipients (teaching hospitals, non-covered recipients),
           so deliberately NOT tested for not_null. Cast/clean downstream
-          (clean_npi) before joining to NPPES/LEIE.
+          (clean_npi) before joining to NPPES/LEIE. Live-profiled 2026-08-06:
+          43,335,833 rows, 1,327,751 distinct, 0.33% blank — a real, healthy key.
+        data_tests:
+          - key_is_real:
+              arguments:
+                min_distinct: 500000
+                max_blank_fraction: 0.1
 
       - name: covered_recipient_profile_id
         description: CMS covered-recipient profile identifier.

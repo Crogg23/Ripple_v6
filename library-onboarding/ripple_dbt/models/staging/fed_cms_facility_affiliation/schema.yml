@@ -17,9 +17,17 @@ models:
       - name: ccn
         data_tests:
           - not_null
+          - key_is_real:
+              arguments:
+                min_distinct: 20000
+                max_blank_fraction: 0.1
       - name: npi
         data_tests:
           - not_null
+          - key_is_real:
+              arguments:
+                min_distinct: 500000
+                max_blank_fraction: 0.1
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:

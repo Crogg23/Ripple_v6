@@ -1,5 +1,14 @@
 {{ config(materialized='view') }}
 
+-- FIXED 2026-08-06: the loader (scripts/server_side_load.py, "UPGRADE 3") lands
+-- openFDA JSON as ONE VARIANT row per file (the whole API response doc), by
+-- design -- its own docstring says "dbt flattens RAW:results downstream". This
+-- staging model was written assuming pre-flattened flat columns (recall_number,
+-- event_id, ...) that never existed on the landing table, so it errored on
+-- every query. Confirmed live: the landing table has exactly one column (RAW,
+-- VARIANT) holding the full openFDA response, with 17,816 real recall records
+-- inside RAW:results. This now does the flatten the loader always expected.
+
 with
 
 source as (
@@ -8,50 +17,65 @@ source as (
 
 ),
 
+flattened as (
+
+    select
+        rec.value as r,
+        source._ingested_at,
+        source._source_run_id
+    from source,
+    lateral flatten(input => source.raw:results) as rec
+
+),
+
 renamed_cast as (
 
     select
 
         -- key identifiers
-        recall_number                                    as recall_number,
-        event_id                                        as event_id,
-        product_ndc                                     as product_ndc,
+        r:recall_number::string                         as recall_number,
+        r:event_id::string                               as event_id,
+        -- product_ndc is NOT top-level in openFDA's response -- it's nested at
+        -- openfda.product_ndc (an array; a recall can cover multiple package
+        -- NDCs). The original SQL looked for a top-level field that never
+        -- existed, which is why this was NULL on every row.
+        array_to_string(r:openfda:product_ndc::array, ', ')          as product_ndc,
 
         -- status / classification
-        status                                          as status,
-        classification                                  as classification,
-        voluntary_mandated                              as voluntary_mandated,
-        initial_firm_notification                       as initial_firm_notification,
+        r:status::string                                 as status,
+        r:classification::string                         as classification,
+        r:voluntary_mandated::string                      as voluntary_mandated,
+        r:initial_firm_notification::string               as initial_firm_notification,
 
         -- product details
-        product_type                                    as product_type,
-        product_description                             as product_description,
-        product_quantity                                as product_quantity,
-        reason_for_recall                               as reason_for_recall,
-        distribution_pattern                            as distribution_pattern,
-        code_info                                       as code_info,
-        more_code_info                                  as more_code_info,
+        r:product_type::string                           as product_type,
+        r:product_description::string                    as product_description,
+        r:product_quantity::string                        as product_quantity,
+        r:reason_for_recall::string                       as reason_for_recall,
+        r:distribution_pattern::string                    as distribution_pattern,
+        r:code_info::string                              as code_info,
+        r:more_code_info::string                          as more_code_info,
 
-        -- dates
-        try_to_date(recall_initiation_date)             as recall_initiation_date,
-        try_to_date(center_classification_date)         as center_classification_date,
-        try_to_date(termination_date)                   as termination_date,
-        try_to_date(report_date)                        as report_date,
+        -- dates (openFDA carries these as YYYYMMDD strings)
+        {{ parse_yyyymmdd('r:recall_initiation_date::string') }}      as recall_initiation_date,
+        {{ parse_yyyymmdd('r:center_classification_date::string') }} as center_classification_date,
+        {{ parse_yyyymmdd('r:termination_date::string') }}           as termination_date,
+        {{ parse_yyyymmdd('r:report_date::string') }}                as report_date,
 
         -- recalling firm
-        recalling_firm                                  as recalling_firm,
-        address_1                                       as address_1,
-        address_2                                       as address_2,
-        city                                            as city,
-        state                                           as state,
-        postal_code                                     as postal_code,
-        country                                         as country,
+        r:recalling_firm::string                         as recalling_firm,
+        r:address_1::string                              as address_1,
+        r:address_2::string                              as address_2,
+        r:city::string                                   as city,
+        r:state::string                                  as state,
+        r:postal_code::string                            as postal_code,
+        r:country::string                                as country,
 
         -- metadata
-        _ingested_at                                    as _ingested_at,
-        _source_run_id                                  as _source_run_id
+        _ingested_at                                     as _ingested_at,
+        _source_run_id                                   as _source_run_id
 
-    from source
+    from flattened
 
 ),
 

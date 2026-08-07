@@ -15,6 +15,14 @@ models:
     description: "GRAIN: one row per organization (LEI is unique). SPINE_ENTITY: organization."
     columns:
       - name: lei
+        description: >
+          FIXED 2026-08-06: this view errored on every query before today (see
+          the model's header) -- confirmed dead, nothing read it. Live now:
+          3,382,301 rows, all distinct LEIs.
         data_tests:
           - unique
           - not_null
+          - key_is_real:
+              arguments:
+                min_distinct: 1000000
+                max_blank_fraction: 0.1

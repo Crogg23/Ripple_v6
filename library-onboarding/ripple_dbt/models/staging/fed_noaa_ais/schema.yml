@@ -9,17 +9,25 @@ sources:
         description: >
           Raw landing table for NOAA Marine Cadastre Nationwide AIS vessel
           position data. All columns arrive as TEXT from the ingestion pipeline.
-          SINGLE-DAY SNAPSHOT: 100% of the 7.3M rows are DATE = '2024-01-01'
-          (one daily file, AIS_2024_01_01.zip) -- a spatial cross-section, not a
-          time series.
+          UPDATED 2026-08-06 (was documented as a single-day snapshot, no
+          longer true): live table is 58.1M rows across 8 daily files,
+          2024-01-01 through 2024-01-08. Grew past the single-day description
+          at some unknown point without the docs being updated -- when isn't
+          confirmed, just that it's stale now. Still a short window (8 days),
+          not a real time series. Dedup key already includes date, so this
+          growth did not silently collapse real rows.
 
 models:
 
   - name: stg_fed_noaa_ais__ais_vessel_positions
     description: >
-      Staging view for NOAA AIS vessel position records. SINGLE-DAY SNAPSHOT:
-      every row is 2024-01-01 (one NOAA Marine Cadastre daily file) -- usable as
-      a spatial cross-section only, NOT a vessel-movement-over-time panel.
+      Staging view for NOAA AIS vessel position records. UPDATED 2026-08-06:
+      rows now span 2024-01-01 through 2024-01-08 (8 daily NOAA Marine
+      Cadastre files) -- this was documented as a single 2024-01-01-only
+      snapshot, which is stale (see the source description above for what's
+      confirmed vs. not about when it grew). Still a short window, not a real
+      vessel-movement-over-time panel -- treat as a small set of spatial
+      cross-sections, not a time series.
       Renames columns to snake_case, casts to appropriate types, and deduplicates
       on the natural key (mmsi, imo_number, date, base_datetime).
       Trap fixes: (1) imo_normalized is the cross-source join key -- AIS stores
@@ -33,23 +41,47 @@ models:
       - name: mmsi
         description: >
           Maritime Mobile Service Identity -- PRIMARY vessel radio identifier.
-          Reliable: present on every ping (14,868 distinct vessels). Repeats
-          across pings, so not unique at the row grain.
+          Reliable: present on every ping. Repeats across pings, so not unique
+          at the row grain. FLAG (found by key_is_real live-profiling,
+          2026-08-06): live table is now 58.1M rows across 8 distinct dates
+          (2024-01-01 through 2024-01-08, 22,759 distinct MMSI) -- the "single
+          day snapshot" framing in this model's description and the
+          14,868-vessel count above are stale; not corrected here, just noted.
         data_tests:
           - not_null
+          - key_is_real:
+              arguments:
+                min_distinct: 5000
+                max_blank_fraction: 0.1
 
       - name: imo_number
         description: >
           Raw AIS IMO number, kept for lineage. Carries the 'IMO' prefix and is
           junk-heavy (2.24M placeholder/blank pings, dominant 'IMO0000000').
           DO NOT join on this -- use imo_normalized instead. Often blank.
+          Live-profiled 2026-08-06: 31.1% blank + 23.9% literal 'IMO0000000' --
+          this is the exact masked-sentinel pattern CLAUDE.md documents as a
+          historical incident for this column; the test below is its canary.
+        data_tests:
+          - key_is_real:
+              config:
+                severity: warn
+              arguments:
+                min_distinct: 1000
+                max_blank_fraction: 0.4
+                sentinels: ['IMO0000000']
 
       - name: imo_normalized
         description: >
           Cross-source IMO join key (via normalize_imo): the bare valid 7-digit
           IMO with the 'IMO' prefix stripped, else NULL. Joins to OFAC /
           OpenSanctions / GLEIF. Mostly NULL because most AIS pings carry
-          placeholder IMOs.
+          placeholder IMOs -- deliberately sparse-but-clean, not a bug.
+        data_tests:
+          - key_is_real:
+              arguments:
+                min_distinct: 1000
+                max_blank_fraction: 0.7
 
       - name: date
         description: Calendar date of the AIS transmission (always 2024-01-01 in this snapshot).

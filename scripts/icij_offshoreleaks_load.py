@@ -119,6 +119,7 @@ def main(argv=None) -> int:
     extract_dir = _fetch_and_extract()
 
     conn = snow.connect() if args.run else None
+    gate_failed = []
     try:
         for sid, fname in FILES.items():
             table = sid.upper()
@@ -155,6 +156,9 @@ def main(argv=None) -> int:
             ended = ingest._utcnow()
             dens = ingest.assess_density(df)
             status = "success" if dens.get("populated_fraction", 0) >= 0.01 else "empty"
+            if status != "success":
+                print(f"  QUALITY GATE FAILED for {table}: {dens}")
+                gate_failed.append(table)
             ingest._log_run(conn, sid, run_id, status, len(df), None, sha, URL, started, ended,
                             f"ICIJ Offshore Leaks {fname}; {len(df):,} rows; density {dens.get('populated_fraction')}")
             _register(conn, sid, table, len(df))
@@ -168,6 +172,8 @@ def main(argv=None) -> int:
 
     if not args.run:
         print("\nPREVIEW only -- add --run to land all six tables.")
+    elif gate_failed:
+        raise RuntimeError(f"QUALITY GATE FAILED for: {', '.join(gate_failed)}")
     return 0
 
 

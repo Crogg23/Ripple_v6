@@ -44,7 +44,9 @@ models:
         description: >
           National Provider Identifier, cleaned via clean_npi -- NULL where the
           source carried the placeholder '0000000000' (89.6% of rows) or blank.
-          A non-null value is a real 10-digit NPI safe for hard-ID joins.
+          A non-null value is a real 10-digit NPI safe for hard-ID joins. The
+          89.6% blank rate is EXPECTED (most excluded parties are not billing
+          providers), not a masked-blank bug -- see npi_is_real below.
         data_tests:
           # A real NPI is exactly 10 digits. Column-level expression_is_true
           # compiles to `not(<column> <expression>)`, so the expression is the
@@ -56,6 +58,12 @@ models:
 
               arguments:
                 expression: "rlike '^[0-9]{10}$'"
+          - key_is_real:
+              config:
+                severity: warn
+              arguments:
+                min_distinct: 1000
+                max_blank_fraction: 0.95
       - name: npi_is_real
         description: >
           TRUE only when npi is a real (non-placeholder, non-blank) NPI. FALSE

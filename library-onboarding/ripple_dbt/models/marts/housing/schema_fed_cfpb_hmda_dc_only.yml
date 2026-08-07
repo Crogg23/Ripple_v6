@@ -1,20 +1,22 @@
 version: 2
 
 models:
-  - name: housing__fed_cfpb_hmda
+  - name: housing__fed_cfpb_hmda_dc_only
     description: >
-      KNOWN SCOPE ISSUE (found 2026-08-05 warehouse audit, confirmed live
-      2026-08-06): despite the generic name, this table is NOT nationwide HMDA
-      data. All 28,301 rows are STATE_CODE = 'DC' (verified via
-      COUNT(DISTINCT state_code) = 1 against the live mart). Treat any finding
-      built on this table as Washington DC-only until it is reloaded with the
-      full national file or renamed to make the scope explicit. The separate
-      fed_cfpb_hmda_historic source is a different, larger, multi-year table —
-      do not assume it shares this same DC-only limitation without checking.
+      Washington DC-only HMDA (Home Mortgage Disclosure Act) data. Renamed
+      2026-08-06 from housing__fed_cfpb_hmda (found 2026-08-05 warehouse
+      audit, confirmed live 2026-08-06): the underlying landing table is 100%
+      STATE_CODE = 'DC' (verified via COUNT(DISTINCT state_code) = 1), a
+      load-scope bug in how the source was pulled, not a real geographic
+      pattern. Loading the true nationwide file is a separate, larger job —
+      not done here; this model just makes the current scope honest. The
+      separate fed_cfpb_hmda_historic source is a different, larger,
+      multi-year table — do not assume it shares this same DC-only
+      limitation without checking.
     columns:
       - name: state_code
         description: >
-          KNOWN: currently 100% 'DC' in this table (see model description) —
-          not evidence of a real geographic pattern, it's a load-scope bug.
+          Always 'DC' in this table (see model description) — a load-scope
+          artifact, not evidence of a real geographic pattern.
         data_tests:
           - not_null

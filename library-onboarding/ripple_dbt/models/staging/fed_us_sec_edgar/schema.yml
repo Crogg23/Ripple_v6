@@ -26,9 +26,22 @@ models:
           - not_null
 
       - name: cik
-        description: SEC Central Index Key for the filing entity.
+        description: >
+          SEC Central Index Key for the filing entity. FLAG (found by
+          key_is_real live-profiling, 2026-08-06): only 25 distinct CIKs
+          across 48,984 rows, with one company (51.75% of all rows) -- for a
+          table named/described as general "SEC EDGAR filings" this looks
+          like a severely scope-limited load (same bug class as the HMDA
+          DC-only mart), not real broad coverage. Not fixed here; needs a
+          scope check before trusting this as representative.
         data_tests:
           - not_null
+          - key_is_real:
+              config:
+                severity: warn
+              arguments:
+                min_distinct: 20
+                max_blank_fraction: 0.1
 
       - name: ticker
         description: Stock ticker symbol associated with the filing entity.
@@ -44,6 +57,12 @@ models:
         description: Employer Identification Number of the filing entity.
         data_tests:
           - not_null
+          - key_is_real:
+              config:
+                severity: warn
+              arguments:
+                min_distinct: 20
+                max_blank_fraction: 0.1
 
       - name: entity_name
         description: Legal name of the entity that submitted the filing.

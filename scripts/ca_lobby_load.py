@@ -122,6 +122,7 @@ def main(argv=None) -> int:
         return 0
 
     conn = snow.connect()
+    gate_failed = []
     try:
         snow.execute(conn, f'CREATE SCHEMA IF NOT EXISTS "{settings.raw_database}"."{settings.raw_schema}"')
         from snowflake.connector.pandas_tools import write_pandas
@@ -148,6 +149,9 @@ def main(argv=None) -> int:
             ended = ingest._utcnow()
             dens = ingest.assess_density(df)
             status = "success" if dens.get("populated_fraction", 0) >= 0.01 else "empty"
+            if status != "success":
+                print(f"  QUALITY GATE FAILED for {table}: {dens}")
+                gate_failed.append(table)
             ingest._log_run(conn, sid, run_id, status, len(df), None, sha, URL, started, ended,
                             f"CA CAL-ACCESS {desc}; {len(df):,} rows; density {dens.get('populated_fraction')}")
             _register(conn, sid, table, desc, len(df))
@@ -155,6 +159,8 @@ def main(argv=None) -> int:
                   f"(status={status})", flush=True)
     finally:
         conn.close()
+    if gate_failed:
+        raise RuntimeError(f"QUALITY GATE FAILED for: {', '.join(gate_failed)}")
     return 0
 
 

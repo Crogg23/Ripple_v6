@@ -31,9 +31,17 @@ models:
           - not_null
 
       - name: product_ndc
-        description: National Drug Code (NDC) identifying the specific drug product.
+        description: >
+          National Drug Code (NDC) identifying the specific drug product.
+          Sourced from openFDA's best-effort openfda.product_ndc enrichment
+          (not a field on the recall record itself) -- FDA only cross-matches
+          this for a minority of recalls. Confirmed live 2026-08-06: 3,211 of
+          17,816 rows have a real value; the rest are unmatched at FDA's end,
+          not a mapping bug on our side.
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
 
       - name: status
         description: Current status of the recall.
@@ -59,6 +67,7 @@ models:
                   - Class I
                   - Class II
                   - Class III
+                  - Not Yet Classified
 
       - name: voluntary_mandated
         description: Whether the recall was voluntary (firm-initiated) or FDA-mandated.
@@ -178,6 +187,7 @@ models:
                   - Class I
                   - Class II
                   - Class III
+                  - Not Yet Classified
 
       - name: classification_severity_rank
         description: >

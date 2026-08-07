@@ -106,6 +106,7 @@ def main(argv=None) -> int:
 
     started = ingest._utcnow()
     conn = snow.connect()
+    gate_failed = []
     try:
         from snowflake.connector.pandas_tools import write_pandas
         snow.execute(conn, f'CREATE SCHEMA IF NOT EXISTS "{settings.raw_database}"."{settings.raw_schema}"')
@@ -126,6 +127,9 @@ def main(argv=None) -> int:
             ended = ingest._utcnow()
             dens = ingest.assess_density(df)
             status = "success" if dens.get("populated_fraction", 0) >= 0.01 else "empty"
+            if status != "success":
+                print(f"  QUALITY GATE FAILED for {table}: {dens}")
+                gate_failed.append(table)
             ingest._log_run(conn, sid, run_id, status, len(df), None, sha, URL, started, ended,
                             f"HRSA UDS FY2025 / {sheet} sheet; {len(df):,} rows; density {dens.get('populated_fraction')}")
             _register(conn, sid, table, len(df), unit)
@@ -142,6 +146,8 @@ def main(argv=None) -> int:
               f"Table3A->HealthCenterInfo join matches {join_ok:,}", flush=True)
     finally:
         conn.close()
+    if gate_failed:
+        raise RuntimeError(f"QUALITY GATE FAILED for: {', '.join(gate_failed)}")
     return 0
 
 

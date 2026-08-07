@@ -72,6 +72,12 @@ def _load_pipe_zip(conn, url: str, tbl: str, col_names: list[str], max_rows: int
     )
     if not ok:
         raise RuntimeError(f"write_pandas failed for {tbl}")
+    # Quality gate (audit 2026-08-05/06 finding: none here at all -- this
+    # pipe-delimited ZIP loader writes directly instead of going through
+    # bulk._load_bytes/fast_load, so it never got their internal density gate).
+    passed, report = bulk.assess_bulk_load(conn, tbl)
+    if not passed:
+        raise RuntimeError(f"QUALITY GATE FAILED for {tbl}: {report}")
     print(f"    -> {tbl}: {len(df):,} rows")
     return len(df)
 
@@ -177,18 +183,22 @@ def main() -> int:
     # Load sequentially (IRS sources are few and some need custom handling)
     total_rows = 0
     ok = 0
+    failed = []
     for entry in to_load:
         try:
             n = entry["fn"](conn, args.max_rows)
             if n > 0:
                 ok += 1
                 total_rows += n
+            else:
+                failed.append(entry["name"])
         except Exception as e:
             print(f"  FAILED {entry['name']}: {str(e)[:120]}")
+            failed.append(entry["name"])
 
     print(f"\nDone: {ok}/{len(to_load)} datasets loaded, {total_rows:,} total rows")
     conn.close()
-    return 0
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":

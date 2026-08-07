@@ -58,8 +58,10 @@ def fetch(cycle: str, yy: str) -> pd.DataFrame:
 def main() -> int:
     print(f"=== FEC pas2 (committee->candidate) cycles {'+'.join(CYCLES)} ===", flush=True)
     df = pd.concat([fetch(c, yy) for c, yy in CYCLES.items()], ignore_index=True)
-    land(df, SID, "https://www.fec.gov/files/bulk-downloads/",
+    result = land(df, SID, "https://www.fec.gov/files/bulk-downloads/",
          "FEC pas2 committee->candidate contributions + IEs (cycles 2024+2026); one row = one transaction.")
+    if result.get("status") != "success":
+        raise RuntimeError(f"QUALITY GATE FAILED for {SID}: {result}")
     print(f"\nDONE -> LIBRARY_RAW.LANDING.{SID.upper()}", flush=True)
     return 0
 

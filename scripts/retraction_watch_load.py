@@ -119,11 +119,15 @@ def main(argv=None) -> int:
         ended = ingest._utcnow()
         dens = ingest.assess_density(df)
         status = "success" if dens.get("populated_fraction", 0) >= 0.01 else "empty"
+        if status != "success":
+            print(f"  QUALITY GATE FAILED for {TABLE}: {dens}")
         ingest._log_run(conn, SID, run_id, status, len(df), None, sha, URL, started, ended,
                         f"Retraction Watch DB; {len(df):,} rows; density {dens.get('populated_fraction')}")
         _register(conn, len(df))
         print(f"\nLOADED {len(df):,} rows -> {settings.raw_database}.{settings.raw_schema}.{TABLE} "
               f"(status={status}); registered INCLUDE=Y", flush=True)
+        if status != "success":
+            raise RuntimeError(f"QUALITY GATE FAILED for {TABLE}: {dens}")
     finally:
         conn.close()
     return 0

@@ -52,6 +52,14 @@ models:
       # has a stale 409-row failed run sitting next to a genuinely healthy 178.6M-row
       # dataset; that precedence is what protects it from being wrongly condemned.
       finance:
+        finance__fed_fara:
+          # 2026-08-06: stub -- 30 rows, loaded from justice.gov/nsd-fara's program
+          # homepage (not a data file). REGISTRANT_NAME is literally the site's
+          # ".gov website" banner text on every row; every real field (registration
+          # number, foreign principal, EIN, dates) is blank. A separate, real bulk
+          # FARA loader already exists and works (foreign_influence__fed_fara_bulk,
+          # 221,900 rows) -- this stub adds nothing and is pure redundant garbage.
+          +enabled: false
         finance__fed_ffiec_call_reports:
           +enabled: false  # source is a saved HTML page: only populated column is DOCTYPE_HTML
         finance__fed_cfpb_complaints:
@@ -89,6 +97,21 @@ models:
           # model's header) -- now fixed and grain-exact, so the raw twin adds
           # nothing.
           +enabled: false
+        health__fed_cms_hpt_mrf:
+          # 2026-08-06: same failure mode as the BIA_TRIBAL_GEO case below --
+          # the loader's registered URL (github.com/CMSgov/hospital-price-transparency)
+          # is a GitHub repo's documentation page, not a data file. Hospital price
+          # transparency machine-readable files are published per-hospital at
+          # thousands of separate hospital sites; there is no single bulk source
+          # to point at. Confirmed live: landing table is 1 row, 31 of 32 columns
+          # blank, and that row's NPI is an empty string (not SQL NULL) -- which is
+          # why this mart's existing not_null/unique tests were passing while the
+          # mart advertised itself as real, unique billing records. Disabling
+          # rather than "fixing" the tests, same doctrine as BIA_TRIBAL_GEO: a
+          # real bulk ingestion for this source is a separate, much larger job
+          # (crawl thousands of per-hospital endpoints), not something to fake
+          # with a webpage scrape.
+          +enabled: false
       # 2026-07-31: an "uncategorized" domain full of raw autogen twins of already
       # hand-built marts -- exactly the cross-domain duplicate bug, just routed to
       # the fallback folder instead of a named domain. All 4 verified AGREEING with
@@ -103,6 +126,17 @@ models:
         uncategorized__int_gleif_rr:
           +enabled: false  # raw twin of economics__int_gleif_rr (agrees, 481,933 rows; redundant)
       economics:
+        economics__fed_fincen_boi:
+          # 2026-08-06: stub -- 1 row, loaded from fincen.gov's general BOI
+          # informational webpage (not a data file). Worth noting beyond the
+          # usual "wrong URL" case: FinCEN's Beneficial Ownership database is
+          # restricted-access under the Corporate Transparency Act (law
+          # enforcement / financial institutions only) and, as of the March
+          # 2025 rule change, only covers foreign reporting companies -- a
+          # real public bulk source for this may not exist at all, not just
+          # "not yet found." Existing not_null/unique tests were passing
+          # falsely because the blank values are empty strings, not SQL NULL.
+          +enabled: false
         economics__fed_hhs_taggs:
           +enabled: false  # stub: 45 rows of scraped HTML nav text, not real grants
         economics__intl_ch_zefix:
@@ -172,6 +206,12 @@ models:
         historical_records__fed_slavevoyages_intraamerican:
           +enabled: true  # re-enabled 2026-07-24: source re-ingested (11.5K rows)
       justice:
+        justice__fed_bop_statistics:
+          # 2026-08-06: stub -- 50 rows, loaded from bop.gov's statistics landing
+          # page (not a data file). Confirmed live: METRIC_NAME/METRIC_VALUE are
+          # scraped page-navigation labels ("Search", "Age:", "Race:", "Related
+          # Links"), not real Bureau of Prisons population figures.
+          +enabled: false
         justice__fed_doj_crt_cases:
           +enabled: false  # stub: 1 row, failed scrape
         justice__fed_msha_violations:
@@ -198,6 +238,19 @@ models:
           # the empty string in every column, and the ingest log has correctly said
           # STATUS='empty' since 2026-06-17. The mart it builds is 1 row (the dedup
           # collapses every identical blank surrogate key into one).
+          +enabled: false
+      education:
+        education__fed_ed_edfacts:
+          # 2026-08-06: stub -- 33 rows, loaded from ed.gov's EDFacts Initiative
+          # homepage (not a data file). Confirmed live: SCHOOL_YEAR and
+          # TOTAL_ENROLLMENT are 100% blank; AGENCY_NAME populated on only
+          # 11 of 33 rows. Not usable school-level enrollment data.
+          +enabled: false
+      procurement:
+        procurement__intl_adb_data:
+          # 2026-08-06: stub -- 41 rows, loaded from data.adb.org's homepage (not
+          # a data file). Confirmed live: COUNTRY, PROJECT_ID, LOAN_AMOUNT_USD --
+          # every real field -- are 100% blank across all rows.
           +enabled: false
       transport:
         transport__fed_nhtsa_investigations:

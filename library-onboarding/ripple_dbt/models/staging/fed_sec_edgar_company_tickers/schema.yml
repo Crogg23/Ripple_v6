@@ -31,6 +31,10 @@ models:
         description: SEC Central Index Key (CIK) cast to a numeric type.
         data_tests:
           - not_null
+          - key_is_real:
+              arguments:
+                min_distinct: 3000
+                max_blank_fraction: 0.1
       - name: ticker
         description: Exchange ticker symbol for the company.
         data_tests:

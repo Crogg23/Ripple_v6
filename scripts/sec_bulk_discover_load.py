@@ -146,6 +146,12 @@ def _load_dera_quarter(conn, quarter: str, max_rows: int) -> int:
         )
         if not ok:
             raise RuntimeError("write_pandas failed")
+        # Quality gate (audit 2026-08-05/06 finding: none here at all -- this DERA
+        # quarter loader writes directly instead of going through
+        # bulk._load_bytes/fast_load, so it never got their internal density gate).
+        passed, report = bulk.assess_bulk_load(conn, tbl)
+        if not passed:
+            raise RuntimeError(f"QUALITY GATE FAILED for {tbl}: {report}")
         print(f"    -> {tbl}: {len(df):,} rows")
         return len(df)
     except Exception as e:
@@ -259,6 +265,7 @@ def main() -> int:
     # Load
     total_rows = 0
     ok = 0
+    failed = []
     for t in to_load:
         try:
             if t["kind"] == "dera_quarter":
@@ -272,12 +279,15 @@ def main() -> int:
             if n > 0:
                 ok += 1
                 total_rows += n
+            else:
+                failed.append(t["table"])
         except Exception as e:
             print(f"  FAILED: {str(e)[:120]}")
+            failed.append(t["table"])
 
     print(f"\nDone: {ok}/{len(to_load)} datasets loaded, {total_rows:,} total rows")
     conn.close()
-    return 0
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":

@@ -254,6 +254,14 @@ def main(argv=None) -> int:
     results = [load_source(sid, args.run, args.chunk_records, args.force) for sid in ids]
     for r in results:
         print(r)
+    # Quality gate: load_source finalizes through server_side_load's shared density
+    # gate (see its docstring), which logs STATUS='empty' rather than raising for a
+    # degenerate load -- so this batch's own exit code must check for that verdict
+    # rather than assume "no exception" means "no bad load" (real errors DO already
+    # propagate as exceptions here, since load_source has no its-own try/except).
+    bad = [r for r in results if r.get("status") == "empty"]
+    if bad:
+        raise RuntimeError(f"QUALITY GATE FAILED for: {[r['source_id'] for r in bad]}")
     return 0
 
 

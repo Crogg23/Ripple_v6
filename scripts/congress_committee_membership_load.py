@@ -61,8 +61,10 @@ def fetch() -> pd.DataFrame:
 def main() -> int:
     print("=== Congressional committee membership (current) ===", flush=True)
     df = fetch()
-    land(df, SID, f"{GH}/committee-membership-current.yaml",
+    result = land(df, SID, f"{GH}/committee-membership-current.yaml",
          "Current congressional committee + subcommittee membership; one row = one member-seat.")
+    if result.get("status") != "success":
+        raise RuntimeError(f"QUALITY GATE FAILED for {SID}: {result}")
     print(f"\nDONE -> LIBRARY_RAW.LANDING.{SID.upper()}", flush=True)
     return 0
 

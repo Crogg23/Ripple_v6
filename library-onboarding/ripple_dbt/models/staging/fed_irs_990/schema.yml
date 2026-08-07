@@ -12,9 +12,18 @@ sources:
 
 models:
   - name: stg_fed_irs_990__organizations
-    description: "GRAIN: one row per organization (EIN is unique). SPINE_ENTITY: organization."
+    description: >
+      GRAIN: one row per organization (EIN is unique). SPINE_ENTITY: organization.
+      FLAG (found by key_is_real live-profiling, 2026-08-06): only 200 rows
+      live, suspiciously small for "IRS Form 990 Bulk Data" -- looks like a
+      partial/sample load rather than the real bulk file. Not fixed here;
+      worth a scope check before relying on this for a finding.
     columns:
       - name: ein
         data_tests:
           - unique
           - not_null
+          - key_is_real:
+              arguments:
+                min_distinct: 100
+                max_blank_fraction: 0.1

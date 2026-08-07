@@ -18,6 +18,10 @@ models:
       - name: LEI
         data_tests:
           - not_null
+          - key_is_real:
+              arguments:
+                min_distinct: 100000
+                max_blank_fraction: 0.1
       - name: PARENT_LEI
         data_tests:
           - not_null

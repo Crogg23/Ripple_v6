@@ -931,6 +931,11 @@ def main(argv=None) -> int:
     print(f"\n{len(landed)}/{len(results)} loaded, "
           f"{sum(r.get('rows', 0) for r in landed):,} rows."
           + (f" {len(errored)} errored: {[r['source_id'] for r in errored]}" if errored else ""))
+    # Quality gate (audit 2026-08-05/06 finding: every per-spec load is correctly
+    # density-gated and logged (see load_spec's step 5), but the batch's own exit
+    # code discarded that verdict -- a run where every spec errored still exited 0.
+    if errored:
+        raise RuntimeError(f"QUALITY GATE FAILED for: {[r['source_id'] for r in errored]}")
     return 0
 
 

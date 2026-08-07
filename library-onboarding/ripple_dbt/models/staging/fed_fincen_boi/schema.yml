@@ -15,6 +15,17 @@ models:
     description: "GRAIN: one row per organization (EIN is unique). SPINE_ENTITY: organization."
     columns:
       - name: ein
+        description: >
+          KNOWN BAD (found by key_is_real live-profiling, 2026-08-06): this
+          table is functionally empty -- exactly 1 row, and its EIN is an
+          empty string ('', not SQL NULL), so it silently passes not_null
+          while carrying zero real data. FinCEN's Beneficial Ownership
+          registry is not meaningfully loaded yet.
         data_tests:
           - unique
           - not_null
+          - key_is_real:
+              config:
+                severity: warn
+              arguments:
+                min_distinct: 1

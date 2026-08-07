@@ -27,6 +27,7 @@ except Exception:
 
 import snow  # noqa: E402
 import ingest  # noqa: E402
+import _bulk_load_utils as bulk  # noqa: E402
 
 BASE = "https://www.fema.gov/api/open/v2/IndividualsAndHouseholdsProgramValidRegistrations"
 TABLE = "FED_FEMA_IA_HOUSING_REGISTRATIONS"
@@ -128,12 +129,24 @@ def main():
     log(f"FINAL VERIFY: {total} rows, {distinct_id} distinct ID")
 
     ended = dt.datetime.now(dt.timezone.utc).replace(tzinfo=None)
+    # Quality gate (audit 2026-08-05/06 finding: this paginated loader had NO gate at
+    # all -- not even the ad-hoc ingest.assess_density pattern other loaders use. Can't
+    # check density before writing since pages stream in and append; check the live
+    # landed table right after, like fracfocus_load.py's fix for the same shape of
+    # loader last session.
+    prev_rows = ingest._latest_success_rows(conn, "fed_fema_ia_housing_registrations")
+    passed, report = bulk.assess_bulk_load(conn, TABLE, prev_row_count=prev_rows)
+    status = "success" if passed else "partial"
+    if not passed:
+        log(f"QUALITY GATE FAILED for {TABLE}: {report}")
     ingest._log_run(conn, source_id="fed_fema_ia_housing_registrations", run_id=run_id,
-                     status="success", row_count=total, file_bytes=None,
+                     status=status, row_count=total, file_bytes=None,
                      sha="paginated", url=BASE, started=started, ended=ended,
-                     message=f"paginated load, {skip} skip offset reached")
+                     message=f"paginated load, {skip} skip offset reached. DQ: {report}")
     if CKPT.exists():
         CKPT.unlink()
+    if not passed:
+        sys.exit(1)
 
 
 if __name__ == "__main__":

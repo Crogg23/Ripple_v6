@@ -2,34 +2,63 @@ version: 2
 
 models:
   - name: environment__fed_epa_sdwa_sdwa_violations_enforcement
+    description: >
+      One row = one SDWA violation OR enforcement action (or both, joined where
+      linked) -- NOT one row per violation with an enforcement action always
+      attached. Confirmed live 2026-08-06 after reloading the full table
+      (15,432,737 rows, was truncated at 500,000 before): 14,430,187 rows carry
+      a violation_id, 14,933,439 carry an enforcement_id, 13,930,889 carry
+      both. The ~1M violation-only and ~0.5M enforcement-only rows are why the
+      violation-side and enforcement-side code columns below are legitimately
+      NULL on each other's rows -- not a masked-blank bug, a real union grain.
     columns:
       - name: violation_id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: violation_code
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: violation_category_code
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: viol_originator_code
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: rule_code
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: rule_group_code
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: rule_family_code
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: enforcement_id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: enforcement_action_type_code
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: enf_originator_code
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn

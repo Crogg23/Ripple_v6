@@ -138,6 +138,7 @@ def main(argv=None) -> int:
     sel = urls[args.start_chunk - 1: args.start_chunk - 1 + args.chunks]
     conn = snow.connect() if args.run else None
     total_landed = 0
+    gate_failed = []
     try:
         for i, url in enumerate(sel, start=args.start_chunk):
             print(f"\n-- chunk {i}/{len(urls)}: {url} --", flush=True)
@@ -190,6 +191,9 @@ def main(argv=None) -> int:
             ended = ingest._utcnow()
             dens = ingest.assess_density(df)
             status = "success" if dens.get("populated_fraction", 0) >= 0.01 else "empty"
+            if status != "success":
+                print(f"  QUALITY GATE FAILED for chunk {i}: {dens}")
+                gate_failed.append(f"chunk {i}")
             ingest._log_run(conn, SID, run_id, status, len(df), None, sha, url, started, ended,
                             f"CH PSC chunk {i}/{len(urls)}; {len(df):,} rows")
             total_landed += len(df)
@@ -204,6 +208,8 @@ def main(argv=None) -> int:
 
     if not args.run:
         print("\nPREVIEW only -- add --run to land.")
+    elif gate_failed:
+        raise RuntimeError(f"QUALITY GATE FAILED for: {', '.join(gate_failed)}")
     return 0
 
 

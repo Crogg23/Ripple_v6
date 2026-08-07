@@ -31,9 +31,19 @@ models:
           - not_null
 
       - name: npi
-        description: National Provider Identifier (NPI).
+        description: >
+          National Provider Identifier (NPI). KNOWN BAD (found by key_is_real
+          live-profiling, 2026-08-06): 100% of 14,700 rows are an empty string
+          ('', not SQL NULL), so not_null passes falsely while the column is a
+          dead facility-level join key. Not usable for cross-source linking
+          until the source is re-checked for a real NPI field.
         data_tests:
           - not_null
+          - key_is_real:
+              config:
+                severity: warn
+              arguments:
+                min_distinct: 1
 
       - name: county_fips
         description: County FIPS code for geographic joins.

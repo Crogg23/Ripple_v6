@@ -1,9 +1,46 @@
 {
   "manifest": "library-onboarding\\ripple_dbt\\target\\manifest.json",
-  "manifest_generated_at": "2026-07-31T04:41:38.012271Z",
-  "dbt_invocation_id": "c29ed26e-af34-4679-8e43-a29550e1256d",
-  "n_marts": 391,
+  "manifest_generated_at": "2026-08-06T22:19:34.724082Z",
+  "dbt_invocation_id": "09d57545-430c-4294-8b6d-b7f71d384e01",
+  "n_marts": 361,
   "grades": {
+    "model.ripple.case_queue": {
+      "model": "model.ripple.case_queue",
+      "grade": "lead",
+      "reasons": [
+        {
+          "kind": "claim_ancestry",
+          "node": "source.ripple.library_meta_connect.V_LEADS_PUBLISHED",
+          "detail": "reads claim surface V_LEADS_PUBLISHED"
+        }
+      ],
+      "traps": [
+        "trap_ais_imo_masked",
+        "trap_ais_snapshot",
+        "trap_leie_npi_and_dates",
+        "trap_nppes_ein_masked",
+        "trap_ofac_sdn_type",
+        "trap_open_payments_split",
+        "trap_usaspending_grain"
+      ],
+      "sources": [
+        "FED_CMS_FACILITY_AFFILIATION",
+        "FED_CMS_NPPES",
+        "FED_CMS_OPEN_PAYMENTS",
+        "FED_CMS_OPEN_PAYMENTS_2022",
+        "FED_CMS_OPEN_PAYMENTS_2023",
+        "FED_CMS_PART_D_PRESCRIBERS",
+        "FED_HHS_OIG_LEIE",
+        "FED_NOAA_AIS",
+        "FED_OFAC_SDN",
+        "FED_SAM_EXCLUSIONS",
+        "FED_SEC_EDGAR_FINANCIALS",
+        "FED_USASPENDING_CONTRACTS",
+        "INTL_OPENSANCTIONS",
+        "V_LEADS_PUBLISHED"
+      ],
+      "n_ancestors": 17
+    },
     "model.ripple.civil_rights__fed_nara_wra_aad": {
       "model": "model.ripple.civil_rights__fed_nara_wra_aad",
       "grade": "fact",
@@ -11,6 +48,23 @@
       "traps": [],
       "sources": [
         "FED_NARA_WRA_AAD"
+      ],
+      "n_ancestors": 2
+    },
+    "model.ripple.cohort_queue": {
+      "model": "model.ripple.cohort_queue",
+      "grade": "lead",
+      "reasons": [
+        {
+          "kind": "claim_ancestry",
+          "node": "source.ripple.library_meta_connect.V_LEADS_PUBLISHED",
+          "detail": "reads claim surface V_LEADS_PUBLISHED"
+        }
+      ],
+      "traps": [],
+      "sources": [
+        "FED_OSHA_ITA_300A_SUMMARY_2024",
+        "V_LEADS_PUBLISHED"
       ],
       "n_ancestors": 2
     },
@@ -143,16 +197,6 @@
         "FED_FDIC_FAILED_BANKS"
       ],
       "n_ancestors": 2
-    },
-    "model.ripple.economics__fed_fincen_boi": {
-      "model": "model.ripple.economics__fed_fincen_boi",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "FED_FINCEN_BOI"
-      ],
-      "n_ancestors": 1
     },
     "model.ripple.economics__fed_foreignassistance": {
       "model": "model.ripple.economics__fed_foreignassistance",
@@ -426,16 +470,6 @@
       ],
       "n_ancestors": 1
     },
-    "model.ripple.economics__intl_es_borme": {
-      "model": "model.ripple.economics__intl_es_borme",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "INTL_ES_BORME"
-      ],
-      "n_ancestors": 1
-    },
     "model.ripple.economics__intl_fao_faostat": {
       "model": "model.ripple.economics__intl_fao_faostat",
       "grade": "fact",
@@ -573,16 +607,6 @@
       "traps": [],
       "sources": [
         "FED_CPSC_NEISS_CODES"
-      ],
-      "n_ancestors": 1
-    },
-    "model.ripple.education__fed_ed_edfacts": {
-      "model": "model.ripple.education__fed_ed_edfacts",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "FED_ED_EDFACTS"
       ],
       "n_ancestors": 1
     },
@@ -1176,16 +1200,6 @@
       ],
       "n_ancestors": 1
     },
-    "model.ripple.finance__fed_cfpb_complaints": {
-      "model": "model.ripple.finance__fed_cfpb_complaints",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "FED_CFPB_COMPLAINTS"
-      ],
-      "n_ancestors": 1
-    },
     "model.ripple.finance__fed_epa_icis_fec_case_enforcement_conclusion_facilities": {
       "model": "model.ripple.finance__fed_epa_icis_fec_case_enforcement_conclusion_facilities",
       "grade": "fact",
@@ -1226,16 +1240,6 @@
       ],
       "n_ancestors": 1
     },
-    "model.ripple.finance__fed_fara": {
-      "model": "model.ripple.finance__fed_fara",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "FED_FARA"
-      ],
-      "n_ancestors": 1
-    },
     "model.ripple.finance__fed_fec_bulk": {
       "model": "model.ripple.finance__fed_fec_bulk",
       "grade": "fact",
@@ -1246,16 +1250,6 @@
       ],
       "n_ancestors": 1
     },
-    "model.ripple.finance__fed_fec_bulk_candidates": {
-      "model": "model.ripple.finance__fed_fec_bulk_candidates",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "FED_FEC_BULK_CANDIDATES"
-      ],
-      "n_ancestors": 1
-    },
     "model.ripple.finance__fed_fec_bulk_committees": {
       "model": "model.ripple.finance__fed_fec_bulk_committees",
       "grade": "fact",
@@ -1263,26 +1257,6 @@
       "traps": [],
       "sources": [
         "FED_FEC_BULK_COMMITTEES"
-      ],
-      "n_ancestors": 1
-    },
-    "model.ripple.finance__fed_fec_bulk_linkages": {
-      "model": "model.ripple.finance__fed_fec_bulk_linkages",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "FED_FEC_BULK_LINKAGES"
-      ],
-      "n_ancestors": 1
-    },
-    "model.ripple.finance__fed_fec_bulk_summary": {
-      "model": "model.ripple.finance__fed_fec_bulk_summary",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "FED_FEC_BULK_SUMMARY"
       ],
       "n_ancestors": 1
     },
@@ -1353,26 +1327,6 @@
       "traps": [],
       "sources": [
         "FED_FEC_LEADERSHIP_PAC"
-      ],
-      "n_ancestors": 1
-    },
-    "model.ripple.finance__fed_fec_pac_summary": {
-      "model": "model.ripple.finance__fed_fec_pac_summary",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "FED_FEC_PAC_SUMMARY"
-      ],
-      "n_ancestors": 1
-    },
-    "model.ripple.finance__fed_ffiec_call_reports": {
-      "model": "model.ripple.finance__fed_ffiec_call_reports",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "FED_FFIEC_CALL_REPORTS"
       ],
       "n_ancestors": 1
     },
@@ -1906,16 +1860,6 @@
       ],
       "n_ancestors": 1
     },
-    "model.ripple.health__fed_cms_hpt_mrf": {
-      "model": "model.ripple.health__fed_cms_hpt_mrf",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "FED_CMS_HPT_MRF"
-      ],
-      "n_ancestors": 1
-    },
     "model.ripple.health__fed_cms_irf": {
       "model": "model.ripple.health__fed_cms_irf",
       "grade": "fact",
@@ -2184,16 +2128,6 @@
       ],
       "n_ancestors": 1
     },
-    "model.ripple.health__fed_cms_partd_prescriber_drug": {
-      "model": "model.ripple.health__fed_cms_partd_prescriber_drug",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "FED_CMS_PARTD_PRESCRIBER_DRUG"
-      ],
-      "n_ancestors": 1
-    },
     "model.ripple.health__fed_cms_partd_prescribers": {
       "model": "model.ripple.health__fed_cms_partd_prescribers",
       "grade": "fact",
@@ -2346,6 +2280,16 @@
       ],
       "n_ancestors": 2
     },
+    "model.ripple.health__fed_hrsa_npdb": {
+      "model": "model.ripple.health__fed_hrsa_npdb",
+      "grade": "fact",
+      "reasons": [],
+      "traps": [],
+      "sources": [
+        "FED_HRSA_NPDB"
+      ],
+      "n_ancestors": 1
+    },
     "model.ripple.health__fed_hrsa_shortage_areas": {
       "model": "model.ripple.health__fed_hrsa_shortage_areas",
       "grade": "fact",
@@ -2460,16 +2404,6 @@
       ],
       "n_ancestors": 1
     },
-    "model.ripple.history__fed_nara_wra_aad": {
-      "model": "model.ripple.history__fed_nara_wra_aad",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "FED_NARA_WRA_AAD"
-      ],
-      "n_ancestors": 1
-    },
     "model.ripple.history__fed_slavevoyages_transatlantic": {
       "model": "model.ripple.history__fed_slavevoyages_transatlantic",
       "grade": "fact",
@@ -2490,8 +2424,8 @@
       ],
       "n_ancestors": 2
     },
-    "model.ripple.housing__fed_cfpb_hmda": {
-      "model": "model.ripple.housing__fed_cfpb_hmda",
+    "model.ripple.housing__fed_cfpb_hmda_dc_only": {
+      "model": "model.ripple.housing__fed_cfpb_hmda_dc_only",
       "grade": "fact",
       "reasons": [],
       "traps": [],
@@ -2701,13 +2635,13 @@
       ],
       "n_ancestors": 4
     },
-    "model.ripple.justice__fed_bop_statistics": {
-      "model": "model.ripple.justice__fed_bop_statistics",
+    "model.ripple.justice__fed_atf_ffl": {
+      "model": "model.ripple.justice__fed_atf_ffl",
       "grade": "fact",
       "reasons": [],
       "traps": [],
       "sources": [
-        "FED_BOP_STATISTICS"
+        "FED_ATF_FFL"
       ],
       "n_ancestors": 1
     },
@@ -2801,26 +2735,6 @@
       ],
       "n_ancestors": 1
     },
-    "model.ripple.justice__fed_fdic_enforcement": {
-      "model": "model.ripple.justice__fed_fdic_enforcement",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "FED_FDIC_ENFORCEMENT"
-      ],
-      "n_ancestors": 1
-    },
-    "model.ripple.justice__fed_fjc_idb": {
-      "model": "model.ripple.justice__fed_fjc_idb",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "FED_FJC_IDB"
-      ],
-      "n_ancestors": 2
-    },
     "model.ripple.justice__fed_ftc_datasets": {
       "model": "model.ripple.justice__fed_ftc_datasets",
       "grade": "fact",
@@ -2828,36 +2742,6 @@
       "traps": [],
       "sources": [
         "FED_FTC_DATASETS"
-      ],
-      "n_ancestors": 1
-    },
-    "model.ripple.justice__fed_msha_accidents": {
-      "model": "model.ripple.justice__fed_msha_accidents",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "FED_MSHA_ACCIDENTS"
-      ],
-      "n_ancestors": 1
-    },
-    "model.ripple.justice__fed_msha_mines": {
-      "model": "model.ripple.justice__fed_msha_mines",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "FED_MSHA_MINES"
-      ],
-      "n_ancestors": 1
-    },
-    "model.ripple.justice__fed_msha_violations": {
-      "model": "model.ripple.justice__fed_msha_violations",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "FED_MSHA_VIOLATIONS"
       ],
       "n_ancestors": 1
     },
@@ -2930,16 +2814,6 @@
       "traps": [],
       "sources": [
         "INTL_EURLEX_CELLAR"
-      ],
-      "n_ancestors": 1
-    },
-    "model.ripple.justice__intl_fatf_ratings": {
-      "model": "model.ripple.justice__intl_fatf_ratings",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "INTL_FATF_RATINGS"
       ],
       "n_ancestors": 1
     },
@@ -3163,16 +3037,6 @@
       ],
       "n_ancestors": 1
     },
-    "model.ripple.land_and_territory__fed_bia_tribal_geo": {
-      "model": "model.ripple.land_and_territory__fed_bia_tribal_geo",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "FED_BIA_TRIBAL_GEO"
-      ],
-      "n_ancestors": 2
-    },
     "model.ripple.lead_queue": {
       "model": "model.ripple.lead_queue",
       "grade": "lead",
@@ -3193,6 +3057,7 @@
         "trap_usaspending_grain"
       ],
       "sources": [
+        "FED_CMS_FACILITY_AFFILIATION",
         "FED_CMS_NPPES",
         "FED_CMS_OPEN_PAYMENTS",
         "FED_CMS_OPEN_PAYMENTS_2022",
@@ -3207,7 +3072,7 @@
         "INTL_OPENSANCTIONS",
         "V_LEADS_PUBLISHED"
       ],
-      "n_ancestors": 15
+      "n_ancestors": 16
     },
     "model.ripple.legal_enforcement__fed_naag_multistate_settlements": {
       "model": "model.ripple.legal_enforcement__fed_naag_multistate_settlements",
@@ -3435,26 +3300,6 @@
       ],
       "n_ancestors": 1
     },
-    "model.ripple.politics__fed_govinfo_bill_cosponsors": {
-      "model": "model.ripple.politics__fed_govinfo_bill_cosponsors",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "FED_GOVINFO_BILL_COSPONSORS"
-      ],
-      "n_ancestors": 1
-    },
-    "model.ripple.politics__fed_govinfo_billstatus": {
-      "model": "model.ripple.politics__fed_govinfo_billstatus",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "FED_GOVINFO_BILLSTATUS"
-      ],
-      "n_ancestors": 1
-    },
     "model.ripple.politics__fed_medsl_house_returns": {
       "model": "model.ripple.politics__fed_medsl_house_returns",
       "grade": "fact",
@@ -3492,26 +3337,6 @@
       "traps": [],
       "sources": [
         "FED_VOTEVIEW_MEMBERS"
-      ],
-      "n_ancestors": 1
-    },
-    "model.ripple.politics__fed_voteview_rollcall_meta": {
-      "model": "model.ripple.politics__fed_voteview_rollcall_meta",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "FED_VOTEVIEW_ROLLCALL_META"
-      ],
-      "n_ancestors": 1
-    },
-    "model.ripple.politics__fed_voteview_rollcalls": {
-      "model": "model.ripple.politics__fed_voteview_rollcalls",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "FED_VOTEVIEW_ROLLCALLS"
       ],
       "n_ancestors": 1
     },
@@ -3691,16 +3516,6 @@
         "FED_SAM_EXCLUSIONS"
       ],
       "n_ancestors": 2
-    },
-    "model.ripple.procurement__intl_adb_data": {
-      "model": "model.ripple.procurement__intl_adb_data",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "INTL_ADB_DATA"
-      ],
-      "n_ancestors": 1
     },
     "model.ripple.procurement__intl_ec_sercop": {
       "model": "model.ripple.procurement__intl_ec_sercop",
@@ -4006,16 +3821,6 @@
       "sources": [],
       "n_ancestors": 0
     },
-    "model.ripple.reference__fed_bia_tribal_geo": {
-      "model": "model.ripple.reference__fed_bia_tribal_geo",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "FED_BIA_TRIBAL_GEO"
-      ],
-      "n_ancestors": 1
-    },
     "model.ripple.reference__fed_usgs_topoview": {
       "model": "model.ripple.reference__fed_usgs_topoview",
       "grade": "fact",
@@ -4173,76 +3978,6 @@
       "traps": [],
       "sources": [
         "FED_FRA_SAFETY"
-      ],
-      "n_ancestors": 1
-    },
-    "model.ripple.transport__fed_nhtsa_complaints": {
-      "model": "model.ripple.transport__fed_nhtsa_complaints",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "FED_NHTSA_COMPLAINTS"
-      ],
-      "n_ancestors": 1
-    },
-    "model.ripple.transport__fed_nhtsa_investigations": {
-      "model": "model.ripple.transport__fed_nhtsa_investigations",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "FED_NHTSA_INVESTIGATIONS"
-      ],
-      "n_ancestors": 1
-    },
-    "model.ripple.transport__fed_nhtsa_recalls": {
-      "model": "model.ripple.transport__fed_nhtsa_recalls",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "FED_NHTSA_RECALLS"
-      ],
-      "n_ancestors": 1
-    },
-    "model.ripple.uncategorized__fed_dea_arcos_full": {
-      "model": "model.ripple.uncategorized__fed_dea_arcos_full",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "FED_DEA_ARCOS_FULL"
-      ],
-      "n_ancestors": 1
-    },
-    "model.ripple.uncategorized__fed_epa_frs_full": {
-      "model": "model.ripple.uncategorized__fed_epa_frs_full",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "FED_EPA_FRS_FULL"
-      ],
-      "n_ancestors": 1
-    },
-    "model.ripple.uncategorized__int_gleif_rr": {
-      "model": "model.ripple.uncategorized__int_gleif_rr",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "INT_GLEIF_RR"
-      ],
-      "n_ancestors": 1
-    },
-    "model.ripple.uncategorized__int_uk_companies_house": {
-      "model": "model.ripple.uncategorized__int_uk_companies_house",
-      "grade": "fact",
-      "reasons": [],
-      "traps": [],
-      "sources": [
-        "INT_UK_COMPANIES_HOUSE"
       ],
       "n_ancestors": 1
     }

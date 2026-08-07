@@ -100,6 +100,12 @@ def _write(conn, df, tbl):
     )
     if not ok:
         raise RuntimeError(f"write_pandas failed for {tbl}")
+    # Quality gate (audit 2026-08-05/06 finding: none here at all -- mirrors
+    # _bulk_load_utils._load_bytes's post-write density check + raise; this
+    # shared write path feeds all three OSHA ITA format loaders below).
+    passed, report = bulk.assess_bulk_load(conn, tbl)
+    if not passed:
+        raise RuntimeError(f"QUALITY GATE FAILED for {tbl}: {report}")
     return len(df)
 
 
@@ -221,6 +227,7 @@ def main():
             print(f"  - {r['name']}: {r['error'][:80]}")
     print(f"{'='*60}")
     conn.close()
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":

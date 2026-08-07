@@ -737,6 +737,12 @@ def main(argv=None) -> int:
     errored = [r for r in results if str(r.get("status", "")).startswith("ERROR")]
     print(f"\n{len(landed)}/{len(results)} loaded, {sum(r.get('rows', 0) for r in landed):,} rows."
           + (f" {len(errored)} errored: {[r['source_id'] for r in errored]}" if errored else ""))
+    # Quality gate (audit 2026-08-05/06 finding: every per-spec load is correctly
+    # density-gated and logged, but the batch's own exit code discarded that verdict --
+    # a run where every spec errored still exited 0. Same discarded-verdict bug class
+    # fixed in senate_lda_load.py/fracfocus_load.py last session, at the batch level.
+    if errored:
+        raise RuntimeError(f"QUALITY GATE FAILED for: {[r['source_id'] for r in errored]}")
     return 0
 
 

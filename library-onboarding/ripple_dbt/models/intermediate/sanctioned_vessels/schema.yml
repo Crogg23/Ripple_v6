@@ -43,3 +43,7 @@ models:
                 severity: warn
               arguments:
                 expression: "rlike '^[0-9]{7}$'"
+          - key_is_real:
+              arguments:
+                min_distinct: 1000
+                max_blank_fraction: 0.3

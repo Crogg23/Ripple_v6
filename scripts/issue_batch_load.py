@@ -243,7 +243,7 @@ def main(argv=None) -> int:
     finally:
         conn.close()
     print(f"\nDONE: {ok} loaded, {fail} failed", flush=True)
-    return 0
+    return 1 if fail else 0
 
 
 if __name__ == "__main__":

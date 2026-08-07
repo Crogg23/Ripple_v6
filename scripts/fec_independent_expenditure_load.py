@@ -49,8 +49,10 @@ def fetch(year: str) -> pd.DataFrame:
 def main() -> int:
     print(f"=== FEC Independent Expenditures cycles {'+'.join(YEARS)} ===", flush=True)
     df = pd.concat([fetch(y) for y in YEARS], ignore_index=True)
-    land(df, SID, "https://www.fec.gov/files/bulk-downloads/",
+    result = land(df, SID, "https://www.fec.gov/files/bulk-downloads/",
          "FEC Independent Expenditures (Schedule E), 2024+2026; one row = one IE; SUP_OPP = for/against.")
+    if result.get("status") != "success":
+        raise RuntimeError(f"QUALITY GATE FAILED for {SID}: {result}")
     print(f"\nDONE -> LIBRARY_RAW.LANDING.{SID.upper()}", flush=True)
     return 0
 

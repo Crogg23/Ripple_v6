@@ -127,6 +127,7 @@ def main(argv=None) -> int:
 
         started = ingest._utcnow()
         conn = snow.connect()
+        gate_failed = []
         try:
             snow.execute(conn, f'CREATE SCHEMA IF NOT EXISTS "{settings.raw_database}"."{settings.raw_schema}"')
             from snowflake.connector.pandas_tools import write_pandas
@@ -147,6 +148,9 @@ def main(argv=None) -> int:
                 ended = ingest._utcnow()
                 dens = ingest.assess_density(df)
                 status = "success" if dens.get("populated_fraction", 0) >= 0.01 else "empty"
+                if status != "success":
+                    print(f"  QUALITY GATE FAILED for {table}: {dens}")
+                    gate_failed.append(table)
                 ingest._log_run(conn, sid, run_id, status, len(df), None, sha, URL, started, ended,
                                 f"NTSB avall.mdb / {t} table; {len(df):,} rows; density {dens.get('populated_fraction')}")
                 unit = "one row = one accident/incident event" if t == "events" else "one row = one aircraft involved in an event"
@@ -164,6 +168,8 @@ def main(argv=None) -> int:
                   f"aircraft->events join matches {join_ok:,}", flush=True)
         finally:
             conn.close()
+        if gate_failed:
+            raise RuntimeError(f"QUALITY GATE FAILED for: {', '.join(gate_failed)}")
     return 0
 
 

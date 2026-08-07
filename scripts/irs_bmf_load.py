@@ -110,12 +110,16 @@ def main(argv=None) -> int:
         ended = ingest._utcnow()
         dens = ingest.assess_density(df)
         status = "success" if dens.get("populated_fraction", 0) >= 0.01 else "empty"
+        if status != "success":
+            print(f"  QUALITY GATE FAILED for {TABLE}: {dens}")
         ingest._log_run(conn, SID, run_id, status, len(df), None, sha, URLS[0], started, ended,
                         f"IRS EO BMF; {len(df):,} rows; density {dens.get('populated_fraction')}")
         _register(conn, len(df))
         n = snow.fetch_scalar(conn, f'SELECT COUNT(*) FROM "{settings.raw_database}"."{settings.raw_schema}"."{TABLE}"')
         eins = snow.fetch_scalar(conn, f'SELECT COUNT(DISTINCT EIN) FROM "{settings.raw_database}"."{settings.raw_schema}"."{TABLE}"')
         print(f"LOADED {n:,} rows -> {TABLE} (status={status}); {eins:,} distinct EINs", flush=True)
+        if status != "success":
+            raise RuntimeError(f"QUALITY GATE FAILED for {TABLE}: {dens}")
     finally:
         conn.close()
     return 0

@@ -15,6 +15,17 @@ models:
     description: "GRAIN: one row per provider (NPI is unique). SPINE_ENTITY: provider."
     columns:
       - name: npi
+        description: >
+          KNOWN BAD (found by key_is_real live-profiling, 2026-08-06): this table
+          is functionally empty -- exactly 1 row, and its NPI is an empty string
+          ('', not SQL NULL), so it silently passes not_null while carrying zero
+          real data. A masked-blank case, not a real key yet. Source needs a real
+          reload before this model is usable.
         data_tests:
           - unique
           - not_null
+          - key_is_real:
+              config:
+                severity: warn
+              arguments:
+                min_distinct: 1
