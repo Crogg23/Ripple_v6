@@ -3,6 +3,9 @@ version: 2
 models:
   - name: health__fed_cms_dialysis
     columns:
+      - name: ccn
+        data_tests:
+          - unique
       - name: five_star_data_availability_code
         data_tests:
           - not_null

@@ -1,0 +1,112 @@
+[
+  {
+    "id_name": "NCUA Federal Credit Union Charter Number",
+    "domain": "Corporate Registration & Beneficial Ownership",
+    "dataset_name": "NCUA Chartering and Mergers data (Research a Credit Union charter-number spreadsheets)",
+    "url": "https://ncua.gov/analysis/chartering-mergers",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "\"Information in the spreadsheet includes the charter number, credit union name, event date, event type, and surviving charter number.\"",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "BIS Entity List / Denied Persons List / Unverified List",
+    "domain": "Corporate Registration & Beneficial Ownership",
+    "dataset_name": "Consolidated Screening List (CSL) \u2014 includes BIS Entity List, Denied Persons List, Unverified List",
+    "url": "https://www.trade.gov/consolidated-screening-list",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "\"The Consolidated Screening List (CSL) is a list of parties for which the United States Government maintains restrictions on certain exports, reexports, or transfers of items\"; includes \"BIS Denied Persons List\", \"BIS Entity List\", \"BIS Unverified List\"; \"Downloadable files in multiple formats: CSV ",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "UN Security Council Consolidated List Reference Number",
+    "domain": "Corporate Registration & Beneficial Ownership",
+    "dataset_name": "UN Security Council Consolidated Sanctions List",
+    "url": "https://main.un.org/securitycouncil/content/un-sc-consolidated-list",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "Sample entry \"QDi.371 Name: 1: ABD AL-BASET 2: AZZOUZ...\"; reference numbers follow prefixed sequential patterns such as \"QDi\" (Al-Qaeda individual), \"TAi\" (Taliban individual), \"SOi\" (Somalia), \"CFi\" (Central African Republic)",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "PBGC Case Number (Trusteed Plans)",
+    "domain": "Labor, Workplace Safety & Benefits",
+    "dataset_name": "PBGC Trusteed Pension Plan Search (single-employer plans PBGC has taken over)",
+    "url": "https://www.pbgc.gov/workers-retirees/trusteed-plans",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "\"The tool allows searching by 'Pension plan name,' 'PBGC 8-digit case number,' or 'Company name.' Users should omit leading zeros when entering case numbers (e.g., search '8336500' for case '08336500').\" Page also references \"downloadable lists including 'Single-employer plans trusteed by PBGC'.\"",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "FJC Judge NID (Biographical Directory ID)",
+    "domain": "Criminal Justice & Court Systems",
+    "dataset_name": "Biographical Directory of Article III Federal Judges -- Export",
+    "url": "https://www.fjc.gov/history/judges/biographical-directory-article-iii-federal-judges-export",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "\"This is a unique identifier for each judge generated solely for purposes of the FJC's biographical database\" -- describing the nid field, with CSV/Excel flat-file and relational-file export options offered on the page",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "ATF Federal Firearms License (FFL) Number",
+    "domain": "Criminal Justice & Court Systems",
+    "dataset_name": "Federal Firearms Licensees listing (ATF)",
+    "url": "https://catalog.data.gov/dataset/federal-firearms-licensees",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "\"Complete listing of federal firearms licensees in December 2021\" -- offered as XML (ISO 19139) and Excel spreadsheet, monthly accrual schedule, last updated 2025-09-01",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "ICE Detention Facility Code",
+    "domain": "Law Enforcement & Corrections",
+    "dataset_name": "ICE detention facility code, the identifier used across ICE's individual-level detention datasets; compiled/republished by the Vera Institute of Justice (ICE Detention Trends) and the Deportation Data Project from FOIA releases",
+    "url": "https://www.vera.org/ice-detention-trends",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "Vera counts each unique facility code in the ICE detention data as a distinct facility.",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "State/County Sex Offender Registry ID",
+    "domain": "Law Enforcement & Corrections",
+    "dataset_name": "State sex offender registries (fragmented per state/territory/tribe); federated national search via the Dru Sjodin National Sex Offender Public Website (NSOPW); exemplar bulk-download state: Florida FDLE Sexual Offender & Predator Registry",
+    "url": "https://offender.fdle.state.fl.us/offender/sops/registryDownload.jsf",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "The files are provided as a comma-separated value (CSV) file containing information related to sexual offenders and predators in the state of Florida.",
+    "fragmented": "True"
+  },
+  {
+    "id_name": "BJS Survey of Sexual Victimization (SSV) / PREA Audit Facility ID",
+    "domain": "Law Enforcement & Corrections",
+    "dataset_name": "BJS Survey of Sexual Victimization (SSV) facility-level data (National Prison Rape Statistics Program) plus the PREA Resource Center's Directory of PREA Audits (facility/agency-searchable, bulk-downloadable)",
+    "url": "https://www.prearesourcecenter.org/audit/directory",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "Users can also download search results by selecting 'Download Results' and selecting the format of their choice -- CSV, XLSX, or as a ZIP file containing final audit reports.",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "ICE Detention Facility ID / Facility Code",
+    "domain": "Immigration & Border",
+    "dataset_name": "ICE Detention Facility Code (DETLOC) \u2014 via ICE detentions dataset (Deportation Data Project)",
+    "url": "https://deportationdata.org/data/ice.html",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "\"Detention Facility Code: Short alphabetic code for detention facility, sometimes known as DETLOC. Note that this field means different things in the detainers and detention data.\" (ICE data-introduction PDF, loaded directly)",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "IRS Form 8871/8872 Section 527 Political Organization Notification/Report ID",
+    "domain": "Politics, Elections & Lobbying",
+    "dataset_name": "IRS Tax Exempt Organization Search \u2014 Political Organization Filing and Disclosure (Section 527, Forms 8871/8872/990)",
+    "url": "https://www.irs.gov/charities-non-profits/political-organizations/political-organization-filing-and-disclosure",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "Search for Forms 8871, 8872 and 990 filed with the IRS. ... The system offers a dedicated download feature called \"Download Political Organization Disclosures,\" which enables users to obtain Forms 8871, 8872, and 990 filings in bulk format.",
+    "fragmented": "False"
+  }
+]

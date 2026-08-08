@@ -1,0 +1,116 @@
+[
+  {
+    "model": "politics__fed_eac_eavs",
+    "sql_path": "models\\marts\\politics\\politics__fed_eac_eavs.sql",
+    "schema_path": "ripple://models\\marts\\politics\\schema_fed_eac_eavs.yml",
+    "columns": [
+      "fipscode"
+    ],
+    "domain": "politics"
+  },
+  {
+    "model": "politics__fed_fcc_licensing",
+    "sql_path": "models\\marts\\politics\\politics__fed_fcc_licensing.sql",
+    "schema_path": "ripple://models\\marts\\politics\\schema_fed_fcc_licensing.yml",
+    "columns": [
+      "uls_file_number",
+      "ebf_transaction_id",
+      "radio_service_code",
+      "zip_code",
+      "applicant_type_code"
+    ],
+    "domain": "politics"
+  },
+  {
+    "model": "politics__fed_fjc_service",
+    "sql_path": "models\\marts\\politics\\politics__fed_fjc_service.sql",
+    "schema_path": "ripple://models\\marts\\politics\\schema_fed_fjc_service.yml",
+    "columns": [
+      "seat_id"
+    ],
+    "domain": "politics"
+  },
+  {
+    "model": "politics__fed_medsl_house_returns",
+    "sql_path": "models\\marts\\politics\\politics__fed_medsl_house_returns.sql",
+    "schema_path": "ripple://models\\marts\\politics\\schema_fed_medsl_house_returns.yml",
+    "columns": [
+      "state_fips"
+    ],
+    "domain": "politics"
+  },
+  {
+    "model": "politics__fed_medsl_president_returns",
+    "sql_path": "models\\marts\\politics\\politics__fed_medsl_president_returns.sql",
+    "schema_path": "ripple://models\\marts\\politics\\schema_fed_medsl_president_returns.yml",
+    "columns": [
+      "state_fips"
+    ],
+    "domain": "politics"
+  },
+  {
+    "model": "politics__fed_medsl_senate_returns",
+    "sql_path": "models\\marts\\politics\\politics__fed_medsl_senate_returns.sql",
+    "schema_path": "ripple://models\\marts\\politics\\schema_fed_medsl_senate_returns.yml",
+    "columns": [
+      "state_fips"
+    ],
+    "domain": "politics"
+  },
+  {
+    "model": "politics__fed_voteview_members",
+    "sql_path": "models\\marts\\politics\\politics__fed_voteview_members.sql",
+    "schema_path": "ripple://models\\marts\\politics\\schema_fed_voteview_members.yml",
+    "columns": [
+      "icpsr",
+      "district_code",
+      "party_code",
+      "bioguide_id"
+    ],
+    "domain": "politics"
+  },
+  {
+    "model": "politics__intl_freedomhouse",
+    "sql_path": "models\\marts\\politics\\politics__intl_freedomhouse.sql",
+    "schema_path": null,
+    "columns": [],
+    "domain": "politics"
+  },
+  {
+    "model": "politics__intl_owid_milspend",
+    "sql_path": "models\\marts\\politics\\politics__intl_owid_milspend.sql",
+    "schema_path": "ripple://models\\marts\\politics\\schema_intl_owid_milspend.yml",
+    "columns": [
+      "entity"
+    ],
+    "domain": "politics"
+  },
+  {
+    "model": "politics__member_fec_id",
+    "sql_path": "models\\marts\\politics\\politics__member_fec_id.sql",
+    "schema_path": "ripple://models\\marts\\politics\\_politics__models.yml",
+    "columns": [
+      "member_key",
+      "fec_id"
+    ],
+    "domain": "politics"
+  },
+  {
+    "model": "politics__st_cannabis_policy_bundles",
+    "sql_path": "models\\marts\\politics\\politics__st_cannabis_policy_bundles.sql",
+    "schema_path": "ripple://models\\marts\\politics\\schema_st_cannabis_policy_bundles.yml",
+    "columns": [
+      "state"
+    ],
+    "domain": "politics"
+  },
+  {
+    "model": "politics__xc_owid_cpi",
+    "sql_path": "models\\marts\\politics\\politics__xc_owid_cpi.sql",
+    "schema_path": "ripple://models\\marts\\politics\\schema_xc_owid_cpi.yml",
+    "columns": [
+      "entity"
+    ],
+    "domain": "politics"
+  }
+]

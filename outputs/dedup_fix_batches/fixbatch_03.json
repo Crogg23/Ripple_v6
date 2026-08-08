@@ -1,0 +1,79 @@
+[
+  {
+    "model": "politics__fed_medsl_house_returns",
+    "verdict": "wrong_key",
+    "note": "Grouped the raw table on the exact proposed key (year, state_fips, district, stage, candidate_name, party, vote_mode): 81 groups still have >1 row; two are genuine same-candidate collisions ('Lee Fletcher'/'Rodney Alexander', LA-05, 2002) caused by Louisiana's jungle-primary runoff being coded under the same stage='gen', distinguished only by the RUNOFF flag \u2014 a column the mart already selects as is_runoff but left out of the key (the same missing-coverage-period mistake flagged in CLAUDE.md); adding it does resolve those two but 79 residual groups are unresolvable 'NA'-placeholder-candidate rows with no disambiguating column available at all.",
+    "sql_path": "models\\marts\\politics\\politics__fed_medsl_house_returns.sql",
+    "schema_path": "ripple://models\\marts\\politics\\schema_fed_medsl_house_returns.yml"
+  },
+  {
+    "model": "politics__fed_medsl_president_returns",
+    "verdict": "wrong_key",
+    "note": "Grouped the raw table on the proposed key (year, state_fips, candidate_name, party): 6 real duplicate groups exist, and inspecting them shows each pair is the same candidate's regular-ballot tally vs. write-in tally (e.g. Clinton/Trump, Maryland 2016) distinguished by the WRITEIN flag, which the mart already selects as is_writein but omits from the key; adding is_writein to the key was verified to make it perfectly unique (3740 groups = 3740 rows, 0 dups).",
+    "sql_path": "models\\marts\\politics\\politics__fed_medsl_president_returns.sql",
+    "schema_path": "ripple://models\\marts\\politics\\schema_fed_medsl_president_returns.yml"
+  },
+  {
+    "model": "politics__fed_medsl_senate_returns",
+    "verdict": "wrong_key",
+    "note": "Grouped the raw table on the proposed key (year, state_fips, stage, candidate_name, party_detailed, vote_mode): 62 duplicate groups exist; a verified real case (Alex Padilla, California 2022, regular vs. special election, same year/stage/party/mode) is only distinguished by the SPECIAL flag, which the mart selects as is_special_election but leaves out of the key \u2014 the same available-but-unused-disambiguator mistake as the house mart; remaining dups are mostly blank-candidate sentinel rows plus at least one Louisiana general/runoff pair this source has no flag column to distinguish at all.",
+    "sql_path": "models\\marts\\politics\\politics__fed_medsl_senate_returns.sql",
+    "schema_path": "ripple://models\\marts\\politics\\schema_fed_medsl_senate_returns.yml"
+  },
+  {
+    "model": "politics__intl_freedomhouse",
+    "verdict": "wrong_key",
+    "note": "Confirmed try_to_number(country_territory) is NULL for all 2723 rows as claimed, but the raw (untransformed) COUNTRY_TERRITORY text column combined with EDITION gives exactly 2723 distinct combos for 2723 rows \u2014 a perfect key was sitting right there; the skip reasoning correctly spotted the cast bug but wrongly concluded no usable identifier existed instead of flagging the cast as the thing to fix.",
+    "sql_path": "models\\marts\\politics\\politics__intl_freedomhouse.sql",
+    "schema_path": null
+  },
+  {
+    "model": "immigration__fed_ice_statistics",
+    "verdict": "wrong_key",
+    "note": "The mart is an unfiltered passthrough of FED_ICE_STATISTICS with no dedup, and a live query on the exact claimed 9-column key shows only 203 distinct combos across 221 rows -- 18 rows with metric_type='unknown' and every other column blank collide as exact duplicates, plus 2 more with metric_type='removals', so the 'clean OLAP-style fact table' claim is false and this test will fail against real data.",
+    "sql_path": "models\\marts\\immigration\\immigration__fed_ice_statistics.sql",
+    "schema_path": null
+  },
+  {
+    "model": "immigration__fed_uscis_data",
+    "verdict": "wrong_key",
+    "note": "The mart is an unfiltered passthrough of FED_USCIS_DATA, and a live query on the exact claimed 10-column key shows only 154 distinct combos across 3,204 rows -- e.g. 561 rows share form_number/category/country/uscis_office all blank with the same report_title/source_file_url (parser junk/footnote rows, not per-form breakdowns), so the claimed 'one row per form/fiscal-period/category/country/office breakdown' grain does not hold and this test will fail massively against real data.",
+    "sql_path": "models\\marts\\immigration\\immigration__fed_uscis_data.sql",
+    "schema_path": "ripple://models\\marts\\immigration\\schema_fed_uscis_data.yml"
+  },
+  {
+    "model": "immigration__xc_owid_refugees",
+    "verdict": "wrong_key",
+    "note": "The chosen key uses REFUGEES_BY_COUNTRY_OF_ORIGIN -- the metric/count column -- instead of ENTITY as the identity dimension; live query confirms (entity, year, code) is already fully unique across all 7,442 rows (as good a key as the chosen one, with zero collisions either way today), so using a measure column as part of the uniqueness key is fragile and semantically wrong even though it happens not to misfire on the current snapshot -- the staging model's own header comment for this appears to be a generator bug (line 3 says grain is 'COUNTRY+YEAR+CODE' but line 4's natural_key hint substring-matched on '...COUNTRY...' in REFUGEES_BY_COUNTRY_OF_ORIGIN instead of ENTITY), which the agent copied verbatim without catching it against the real ENTITY column sitting right there in the same source.",
+    "sql_path": "models\\marts\\immigration\\immigration__xc_owid_refugees.sql",
+    "schema_path": "ripple://models\\marts\\immigration\\schema_xc_owid_refugees.yml"
+  },
+  {
+    "model": "justice__fed_courtlistener_financial_disclosures",
+    "verdict": "wrong_key",
+    "note": "This is exactly the masked-ID trap CLAUDE.md warns about: live query on FED_COURTLISTENER_FINANCIAL_DISCLOSURES shows only 66,286 distinct ID values across 108,770 rows, and the duplicate ID values sampled are garbage text fragments -- '|' (1,997x), 'i' (898x), '?' (813x), '-' (729x), 'Part VII' (685x), 'a', 'Value', '=' -- not a real CourtListener API primary key at all, so 'ID is CourtListener's own API primary key ... selected directly and unmodified' is factually false and this unique test will fail immediately.",
+    "sql_path": "models\\marts\\justice\\justice__fed_courtlistener_financial_disclosures.sql",
+    "schema_path": null
+  },
+  {
+    "model": "finance__fed_epa_icis_fec_case_facilities",
+    "verdict": "wrong_key",
+    "note": "Empirically disproven: (activity_id, case_number, registry_id) still leaves 16935 duplicate groups covering tens of thousands of rows out of 204019, and inspecting one group shows registry_id is a SITE-level FRS id (e.g. \"FT WAINWRIGHT\") under which many genuinely distinct buildings sit, each with its own facility_name/location_address (BLDG 3011, BLDG 3490, BLDG 5009 etc.) -- adding registry_id did not fix the collapse the agent claimed it fixed, and only the full 10-column select (adding facility_name/location_address) reaches the true 1-row-per-building grain (204019 distinct = total).",
+    "sql_path": "models\\marts\\finance\\finance__fed_epa_icis_fec_case_facilities.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_epa_icis_fec_case_facilities.yml"
+  },
+  {
+    "model": "finance__fed_epa_icis_fec_icis_fec_epa_inspections",
+    "verdict": "wrong_key",
+    "note": "Empirically disproven: the chosen 5-column key leaves 3 duplicate groups that are legitimate distinct records -- e.g. the same activity_id/comp_monitor_uid/dates reported once under PGM_SYS_ACRNM='NEI' and once under 'NET', and another under 'RCRAINFO' vs 'CERCLIS' -- and adding PGM_SYS_ACRNM (already selected in the SQL, but omitted from the key) resolves all 3 to 0 duplicates, so as written the test will false-fail on real cross-program-system data, the same false-fail-on-legit-repeats mistake CLAUDE.md flags.",
+    "sql_path": "models\\marts\\finance\\finance__fed_epa_icis_fec_icis_fec_epa_inspections.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_epa_icis_fec_icis_fec_epa_inspections.yml"
+  },
+  {
+    "model": "finance__fed_ncua_call_reports",
+    "verdict": "wrong_key",
+    "note": "Empirically disproven and root-caused: ACCT_CODE is a 100%-blank sentinel column across all 121713 rows (COUNT(DISTINCT ACCT_CODE)=1, the exact masked-column trap CLAUDE.md warns about), so the real key is only (cu_number, cycle_date, table_name), which produces 7370 duplicate groups covering ~40k rows of clearly legitimate distinct records (e.g. 263 different physical branches of Navy Federal Credit Union under table_name='Credit Union Branch Information', each with a different branch name) that the source table has no other column to distinguish -- this needed either a skip (like fed_fec_committees) or a mixed-grain redesign, not a straight add.",
+    "sql_path": "models\\marts\\finance\\finance__fed_ncua_call_reports.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_ncua_call_reports.yml"
+  }
+]

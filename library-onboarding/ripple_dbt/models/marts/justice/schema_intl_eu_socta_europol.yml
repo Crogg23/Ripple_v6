@@ -6,3 +6,4 @@ models:
       - name: serial_number
         data_tests:
           - not_null
+          - unique

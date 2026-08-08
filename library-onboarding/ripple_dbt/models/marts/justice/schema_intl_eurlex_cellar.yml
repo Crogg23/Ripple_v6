@@ -12,3 +12,6 @@ models:
       - name: oj_number
         data_tests:
           - not_null
+      - name: cellar_uri
+        data_tests:
+          - unique

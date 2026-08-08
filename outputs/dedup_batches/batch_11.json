@@ -1,0 +1,102 @@
+[
+  {
+    "model": "immigration__fed_cbp_encounters",
+    "sql_path": "models\\marts\\immigration\\immigration__fed_cbp_encounters.sql",
+    "schema_path": null,
+    "columns": [],
+    "domain": "immigration"
+  },
+  {
+    "model": "immigration__fed_dhs_ohss",
+    "sql_path": "models\\marts\\immigration\\immigration__fed_dhs_ohss.sql",
+    "schema_path": "ripple://models\\marts\\immigration\\schema_fed_dhs_ohss.yml",
+    "columns": [
+      "report_month"
+    ],
+    "domain": "immigration"
+  },
+  {
+    "model": "immigration__fed_epa_sdwa_sdwa_service_areas",
+    "sql_path": "models\\marts\\immigration\\immigration__fed_epa_sdwa_sdwa_service_areas.sql",
+    "schema_path": "ripple://models\\marts\\immigration\\schema_fed_epa_sdwa_sdwa_service_areas.yml",
+    "columns": [
+      "service_area_type_code"
+    ],
+    "domain": "immigration"
+  },
+  {
+    "model": "immigration__fed_ice_statistics",
+    "sql_path": "models\\marts\\immigration\\immigration__fed_ice_statistics.sql",
+    "schema_path": null,
+    "columns": [],
+    "domain": "immigration"
+  },
+  {
+    "model": "immigration__fed_uscis_data",
+    "sql_path": "models\\marts\\immigration\\immigration__fed_uscis_data.sql",
+    "schema_path": "ripple://models\\marts\\immigration\\schema_fed_uscis_data.yml",
+    "columns": [
+      "form_number"
+    ],
+    "domain": "immigration"
+  },
+  {
+    "model": "immigration__xc_owid_refugees",
+    "sql_path": "models\\marts\\immigration\\immigration__xc_owid_refugees.sql",
+    "schema_path": "ripple://models\\marts\\immigration\\schema_xc_owid_refugees.yml",
+    "columns": [
+      "entity"
+    ],
+    "domain": "immigration"
+  },
+  {
+    "model": "investigations__intl_leiden_russian_ops_europe",
+    "sql_path": "models\\marts\\investigations\\investigations__intl_leiden_russian_ops_europe.sql",
+    "schema_path": "ripple://models\\marts\\investigations\\schema_intl_leiden_russian_ops_europe.yml",
+    "columns": [
+      "incidentyear"
+    ],
+    "domain": "investigations"
+  },
+  {
+    "model": "investigations__xc_wayback_replay_doj_deep_pages",
+    "sql_path": "models\\marts\\investigations\\investigations__xc_wayback_replay_doj_deep_pages.sql",
+    "schema_path": "ripple://models\\marts\\investigations\\schema_xc_wayback_replay_doj_deep_pages.yml",
+    "columns": [
+      "page_url"
+    ],
+    "domain": "investigations"
+  },
+  {
+    "model": "investigations__xc_wayback_replay_doj_listing",
+    "sql_path": "models\\marts\\investigations\\investigations__xc_wayback_replay_doj_listing.sql",
+    "schema_path": "ripple://models\\marts\\investigations\\schema_xc_wayback_replay_doj_listing.yml",
+    "columns": [
+      "page_url"
+    ],
+    "domain": "investigations"
+  },
+  {
+    "model": "justice__county_double_burden",
+    "sql_path": "models\\marts\\justice\\justice__county_double_burden.sql",
+    "schema_path": null,
+    "columns": [],
+    "domain": "justice"
+  },
+  {
+    "model": "justice__fed_courtlistener_financial_disclosures",
+    "sql_path": "models\\marts\\justice\\justice__fed_courtlistener_financial_disclosures.sql",
+    "schema_path": null,
+    "columns": [],
+    "domain": "justice"
+  },
+  {
+    "model": "justice__fed_fbi_nics_checks",
+    "sql_path": "models\\marts\\justice\\justice__fed_fbi_nics_checks.sql",
+    "schema_path": "ripple://models\\marts\\justice\\schema_fed_fbi_nics_checks.yml",
+    "columns": [
+      "month"
+    ],
+    "domain": "justice"
+  }
+]

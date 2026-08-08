@@ -1,0 +1,102 @@
+[
+  {
+    "dataset_name": "NAIC Group Code (bundled into the same NAIC company/group financial-filing registry as NAIC Company Code, not a standalone dataset)",
+    "domain": "Insurance",
+    "url": "https://www.lawinsider.com/dictionary/naic-group-and-company-code"
+  },
+  {
+    "dataset_name": "NFIP Write-Your-Own (WYO) Program participating insurance companies list",
+    "domain": "Insurance",
+    "url": "https://agents.floodsmart.gov/topics/writing-policies/wyo-insurance-companies"
+  },
+  {
+    "dataset_name": "USDA RMA Approved Insurance Providers (AIP) Listing",
+    "domain": "Insurance",
+    "url": "https://public-rma.fpac.usda.gov/AipListing/"
+  },
+  {
+    "dataset_name": "SERFF (System for Electronic Rate and Form Filing) -- state-by-state public Filing Access portals",
+    "domain": "Insurance",
+    "url": "https://content.naic.org/industry/serff"
+  },
+  {
+    "dataset_name": "NCIGF state guaranty fund directory (coordinating links to each state P&C guaranty association)",
+    "domain": "Insurance",
+    "url": "https://www.ncigf.org/links-and-contacts"
+  },
+  {
+    "dataset_name": "State All-Payer Claims Databases, indexed via the APCD Council state map",
+    "domain": "Insurance",
+    "url": "https://www.apcdcouncil.org/state/map"
+  },
+  {
+    "dataset_name": "EIOPA Register of Insurance Undertakings",
+    "domain": "Insurance",
+    "url": "https://www.eiopa.europa.eu/tools-and-data/registers-lists-and-databases_en"
+  },
+  {
+    "dataset_name": "NOLHGA Insolvent Insurance Companies registry",
+    "domain": "Insurance",
+    "url": "https://nolhga.com/the-guaranty-system/insolvent-insurance-companies/"
+  },
+  {
+    "dataset_name": "NAIC IID Quarterly Listing of Alien Insurers, as referenced by state surplus-lines stamping-office eligible-insurer rosters",
+    "domain": "Insurance",
+    "url": "https://www.sltx.org/insurers/eligible-insurer-list/eligible-lloyds-syndicates/"
+  },
+  {
+    "dataset_name": "State TPA license rosters (e.g. California Office of Self-Insurance Plans TPA Roster)",
+    "domain": "Insurance",
+    "url": "https://www.dir.ca.gov/osip/TPARoster.pdf"
+  },
+  {
+    "dataset_name": "State-fund workers' compensation employer accounts (monopolistic states: OH, WA, ND, WY, PR)",
+    "domain": "Insurance",
+    "url": "https://www.lni.wa.gov/insurance/insurance-requirements/do-i-need-a-workers-comp-account/"
+  },
+  {
+    "dataset_name": "State life/viatical settlement provider & broker license registry (e.g. Florida OIR company search)",
+    "domain": "Insurance",
+    "url": "https://companysearch.floir.gov"
+  },
+  {
+    "dataset_name": "State residual-market insurers of last resort (Citizens Property Insurance Corp, FAIR Plans, windstorm/cat funds)",
+    "domain": "Insurance",
+    "url": "https://www.citizensfla.com"
+  },
+  {
+    "dataset_name": "State DOI producer/adjuster license lookup (e.g. California license number search)",
+    "domain": "Insurance",
+    "url": "https://cdicloud.insurance.ca.gov/cal/LicenseNumberSearch"
+  },
+  {
+    "dataset_name": "State self-insurance program certificate rosters (e.g. California Office of Self-Insurance Plans)",
+    "domain": "Insurance",
+    "url": "https://www.dir.ca.gov/OSIP/sip.html"
+  },
+  {
+    "dataset_name": "Lloyd's syndicate numbers as recognized by state surplus-lines stamping offices (SLTX eligible Lloyd's syndicates list)",
+    "domain": "Insurance",
+    "url": "https://www.sltx.org/insurers/eligible-insurer-list/eligible-lloyds-syndicates/"
+  },
+  {
+    "dataset_name": "VA Nationwide Gravesite Locator (search-only; no Interment Control Number field exposed)",
+    "domain": "Federal Benefits & Safety Net / Veterans",
+    "url": "https://gravelocator.cem.va.gov/"
+  },
+  {
+    "dataset_name": "USDA FNS SNAP Retailer Locator",
+    "domain": "Federal Benefits & Safety Net / Veterans",
+    "url": "https://www.fns.usda.gov/snap/retailer-locator"
+  },
+  {
+    "dataset_name": "State Disability Determination Services (DDS) agency directory (SSA-administered but state-run agencies)",
+    "domain": "Federal Benefits & Safety Net / Veterans",
+    "url": "https://www.ssa.gov/disability/determination.htm"
+  },
+  {
+    "dataset_name": "State UI tax agency employer account lookup/registration systems (no federal aggregator; typically login-gated, not bulk)",
+    "domain": "Federal Benefits & Safety Net / Veterans",
+    "url": "https://www.twc.texas.gov/programs/unemployment-tax"
+  }
+]

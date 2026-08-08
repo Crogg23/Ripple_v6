@@ -1,0 +1,79 @@
+[
+  {
+    "model": "health__fed_cdc_nndss_weekly_2024",
+    "verdict": "too_loose",
+    "note": "Raw table actually has 1,932,840 rows (not the 500,000 in the stale header comment); (reporting_area, current_mmwr_year, mmwr_week, label) ALONE is already 100% unique (0 dup groups) so location1/location2 add zero discriminating power, and the stated reasoning is factually wrong -- location1 turns out to just be a redundant copy of reporting_area (not an age/subcategory split) and location2 is populated in only ~18.6% of rows; the test as written still technically passes only because it's a strict superset of the true (already-unique) key.",
+    "sql_path": "models\\marts\\health\\health__fed_cdc_nndss_weekly_2024.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cdc_nndss_weekly_2024.yml"
+  },
+  {
+    "model": "health__fed_cms_ambulatory_specialty_model_participants",
+    "verdict": "wrong_key",
+    "note": "Live query shows npi alone is NOT unique: 125 rows collide because some providers legitimately participate through two different organizations (e.g. NPI 1013991520 appears once under 'MILWAUKEE ANES CONSULTANTS LTD' and once under 'ANEX, S.C.'); adding organization_legal_name resolves it to 0 dup groups (6,637/6,637) -- this is exactly the false-fail-on-legitimate-repeats trap, the plain `unique` test on npi would fail on real data today.",
+    "sql_path": "models\\marts\\health\\health__fed_cms_ambulatory_specialty_model_participants.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_ambulatory_specialty_model_participants.yml"
+  },
+  {
+    "model": "health__fed_cms_facility_affiliation",
+    "verdict": "wrong_key",
+    "note": "Live query shows the claimed 3-column key (npi, ccn, facility_type) still leaves 47 real duplicate groups/94 rows -- facility_type is fully redundant (never varies within an npi+ccn pair) and the true missing dimension is ind_pac_id (e.g. NPI 1013991520 shows two different pac_ids, 7810183969 and 6002002151, for the same ccn/facility_type); adding ind_pac_id makes the key perfectly unique (2,260,193/2,260,193). The sibling staging model's documented (ccn, npi) key is even further off since ind_pac_id is also missing there.",
+    "sql_path": "models\\marts\\health\\health__fed_cms_facility_affiliation.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_facility_affiliation.yml"
+  },
+  {
+    "model": "environment__fed_epa_icis_air_icis_air_formal_actions",
+    "verdict": "wrong_key",
+    "note": "Raw FED_EPA_ICIS_AIR_ICIS_AIR_FORMAL_ACTIONS has 582 real duplicate groups on (pgm_sys_id, activity_id) that are not bugs -- e.g. IL000003005AAI/130208 legitimately carries 4 rows under the same ENF_IDENTIFIER (05-2005-4530) with 4 different SETTLEMENT_ENTERED_DATE/PENALTY_AMOUNT pairs (multi-event settlement history), and even widening the key to include settlement_entered_date+penalty_amount still leaves 132 residual duplicate groups, so the tested 2-column key clearly under-captures the grain.",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_icis_air_icis_air_formal_actions.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_icis_air_icis_air_formal_actions.yml"
+  },
+  {
+    "model": "environment__fed_epa_icis_air_icis_air_pollutants",
+    "verdict": "wrong_key",
+    "note": "The agent's reasoning that AIR_POLLUTANT_CLASS_CODE is non-differentiating is empirically false: adding it to the key resolves 61,674 of the 91,236 duplicate (pgm_sys_id, pollutant_code) groups (distinct combos rise from 865,578 to 948,342), proving the same facility+pollutant legitimately repeats under different class codes for tens of thousands of real rows, so excluding it false-fails on that legitimate variation.",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_icis_air_icis_air_pollutants.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_icis_air_icis_air_pollutants.yml"
+  },
+  {
+    "model": "environment__fed_epa_npdes_npdes_formal_enforcement_actions",
+    "verdict": "wrong_key",
+    "note": "All 261 raw duplicate groups on (npdes_id, activity_id) are fully explained by a differing ENF_TYPE_CODE -- e.g. IN0021181/3603925267 has one row with SCWAAO 'State CWA Non Penalty AO' and another with SCWAAPO 'State CWA Penalty AO' -- and adding enf_type_code to the key resolves all 261 groups to zero, proving one activity legitimately carries multiple distinct enforcement-type actions that this key false-fails on.",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_npdes_npdes_formal_enforcement_actions.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_npdes_npdes_formal_enforcement_actions.yml"
+  },
+  {
+    "model": "environment__fed_epa_npdes_npdes_informal_enforcement_actions",
+    "verdict": "wrong_key",
+    "note": "99.93% of the 348,012 duplicate (npdes_id, activity_id) groups are exact-clone rows (a real ingestion bug, same as the ICIS-AIR sibling), but a genuine counterexample exists -- VI0020036/20076975 has one row ENF_TYPE_CODE=LOVWL/OFFICIAL_FLG=Y and another ENF_TYPE_CODE=NST/OFFICIAL_FLG=N under the identical key -- showing the same enf_type_code gap proven definitively in the sibling formal_enforcement_actions mart also affects a small slice (251 of 348,012 groups) here.",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_npdes_npdes_informal_enforcement_actions.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_npdes_npdes_informal_enforcement_actions.yml"
+  },
+  {
+    "model": "environment__fed_epa_npdes_npdes_inspections",
+    "verdict": "wrong_key",
+    "note": "All 112,313 raw duplicate groups on (npdes_id, activity_id) have genuine content differences, every sampled pair driven by COMP_MONITOR_TYPE_CODE -- e.g. SC0021580/3200523199 has one row CEI 'Evaluation' and another SA1 'Sampling' under the same activity -- so one inspection activity routinely spans multiple monitor types this key excludes, meaning the test would false-fail on essentially all its violations; note this mart wasn't in the claimed-results list at all, so no key was actually added/tested for it.",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_npdes_npdes_inspections.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_npdes_npdes_inspections.yml"
+  },
+  {
+    "model": "environment__fed_epa_npdes_npdes_naics",
+    "verdict": "wrong_key",
+    "note": "8,749 raw duplicate groups on (npdes_id, naics_code) are explained by PRIMARY_INDICATOR_FLAG -- e.g. AKG002207/238910 appears once as N and once as Y -- and adding primary_indicator_flag to the key resolves all of them to zero, proving a permit can legitimately list the same NAICS code twice (primary and non-primary), which this key false-fails on.",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_npdes_npdes_naics.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_npdes_npdes_naics.yml"
+  },
+  {
+    "model": "health__fed_hrsa_shortage_areas",
+    "verdict": "wrong_key",
+    "note": "Live-queried the mart: the claimed 3-column key collapses 165,531 rows into only 42,319 distinct groups (123,212 excess rows) because hpsa_component_source_identification_number is blank in 142,823/165,531 rows (86%) -- sampled a blank-component HPSA and found 80+ genuinely distinct census-tract sub-areas (differentiated only by hpsa_component_name) all colliding on the same blank key, and the sibling staging model's own header literally says 'GRAIN: NOT YET DETERMINED (profiler returned AMBIGUOUS)', contradicting the agent's confident reasoning.",
+    "sql_path": "models\\marts\\health\\health__fed_hrsa_shortage_areas.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_hrsa_shortage_areas.yml"
+  },
+  {
+    "model": "housing__fed_fhfa_nmdb",
+    "verdict": "wrong_key",
+    "note": "Live-queried the mart: the claimed 8-column key collapses 19,054,246 rows into just 7,204 distinct groups (19,047,042 excess duplicate rows); traced this to the raw LIBRARY_RAW.LANDING.FED_FHFA_NMDB table where geo_type, dataset_family, statistic_name, and statistic_unit are blank/empty-string in 100% of all 19M rows -- the claimed 'EAV-style panel of named statistics' grain described in the reasoning does not exist in this data, and period_value additionally goes NULL for every 'Quarterly' row because try_to_double() can't parse the quarter labels, destroying more of the intended distinguishing signal.",
+    "sql_path": "models\\marts\\housing\\housing__fed_fhfa_nmdb.sql",
+    "schema_path": "ripple://models\\marts\\housing\\schema_fed_fhfa_nmdb.yml"
+  }
+]

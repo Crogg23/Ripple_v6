@@ -2,7 +2,14 @@ version: 2
 
 models:
   - name: labor__fed_msha_accidents
+    description: >
+      GRAIN: one row per accident document. The model's own qualify clause
+      dedupes to one row per document_no.
     columns:
       - name: mine_id
         data_tests:
           - not_null
+      - name: document_no
+        data_tests:
+          - not_null
+          - unique

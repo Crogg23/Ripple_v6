@@ -1,0 +1,139 @@
+[
+  {
+    "model": "environment__fed_epa_icis_air_icis_air_formal_actions",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_icis_air_icis_air_formal_actions.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_icis_air_icis_air_formal_actions.yml",
+    "columns": [
+      "pgm_sys_id",
+      "activity_id",
+      "activity_type_code",
+      "enf_type_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_icis_air_icis_air_informal_actions",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_icis_air_icis_air_informal_actions.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_icis_air_icis_air_informal_actions.yml",
+    "columns": [
+      "pgm_sys_id",
+      "activity_id",
+      "activity_type_code",
+      "enf_type_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_icis_air_icis_air_pollutants",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_icis_air_icis_air_pollutants.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_icis_air_icis_air_pollutants.yml",
+    "columns": [
+      "pgm_sys_id",
+      "pollutant_code",
+      "air_pollutant_class_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_icis_air_icis_air_program_subparts",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_icis_air_icis_air_program_subparts.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_icis_air_icis_air_program_subparts.yml",
+    "columns": [
+      "pgm_sys_id",
+      "program_code",
+      "air_program_subpart_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_icis_air_icis_air_programs",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_icis_air_icis_air_programs.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_icis_air_icis_air_programs.yml",
+    "columns": [
+      "pgm_sys_id",
+      "program_code",
+      "air_operating_status_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_icis_air_icis_air_titlev_certs",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_icis_air_icis_air_titlev_certs.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_icis_air_icis_air_titlev_certs.yml",
+    "columns": [
+      "pgm_sys_id",
+      "activity_id",
+      "comp_monitor_type_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_npdes_npdes_formal_enforcement_actions",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_npdes_npdes_formal_enforcement_actions.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_npdes_npdes_formal_enforcement_actions.yml",
+    "columns": [
+      "npdes_id",
+      "activity_id",
+      "activity_type_code",
+      "enf_type_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_npdes_npdes_informal_enforcement_actions",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_npdes_npdes_informal_enforcement_actions.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_npdes_npdes_informal_enforcement_actions.yml",
+    "columns": [
+      "npdes_id",
+      "registry_id",
+      "activity_id",
+      "activity_type_code",
+      "enf_type_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_npdes_npdes_inspections",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_npdes_npdes_inspections.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_npdes_npdes_inspections.yml",
+    "columns": [
+      "registry_id",
+      "npdes_id",
+      "activity_id",
+      "activity_type_code",
+      "comp_monitor_type_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_npdes_npdes_naics",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_npdes_npdes_naics.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_npdes_npdes_naics.yml",
+    "columns": [
+      "npdes_id",
+      "naics_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_npdes_npdes_qncr_history",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_npdes_npdes_qncr_history.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_npdes_npdes_qncr_history.yml",
+    "columns": [
+      "npdes_id"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_npdes_npdes_se_violations",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_npdes_npdes_se_violations.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_npdes_npdes_se_violations.yml",
+    "columns": [
+      "npdes_id",
+      "npdes_violation_id",
+      "violation_type_code",
+      "violation_code"
+    ],
+    "domain": "environment"
+  }
+]

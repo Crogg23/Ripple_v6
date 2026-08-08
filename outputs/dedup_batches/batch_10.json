@@ -1,0 +1,131 @@
+[
+  {
+    "model": "health__fed_hrsa_shortage_areas",
+    "sql_path": "models\\marts\\health\\health__fed_hrsa_shortage_areas.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_hrsa_shortage_areas.yml",
+    "columns": [
+      "hpsa_id",
+      "hpsa_geography_identification_number",
+      "bhcmis_organization_identification_number",
+      "common_postal_code",
+      "common_state_fips_code",
+      "discipline_class_number",
+      "hpsa_component_source_identification_number",
+      "hpsa_component_type_code",
+      "hpsa_metropolitan_indicator_code",
+      "hpsa_postal_code",
+      "hpsa_status_code",
+      "hpsa_type_code",
+      "primary_state_fips_code",
+      "rural_status_code",
+      "state_fips_code"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_nursinghome411",
+    "sql_path": "models\\marts\\health\\health__fed_nursinghome411.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_nursinghome411.yml",
+    "columns": [
+      "chain_id",
+      "cms_region_number"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_va_allcause_mortality",
+    "sql_path": "models\\marts\\health\\health__fed_va_allcause_mortality.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_va_allcause_mortality.yml",
+    "columns": [
+      "figures_and_tables"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_va_suicide_appendix",
+    "sql_path": "models\\marts\\health\\health__fed_va_suicide_appendix.sql",
+    "schema_path": null,
+    "columns": [],
+    "domain": "health"
+  },
+  {
+    "model": "health__pharma_meal_cap_fingerprint",
+    "sql_path": "models\\marts\\health\\health__pharma_meal_cap_fingerprint.sql",
+    "schema_path": null,
+    "columns": [],
+    "domain": "health"
+  },
+  {
+    "model": "health__xc_guttmacher_monthly_abortion",
+    "sql_path": "models\\marts\\health\\health__xc_guttmacher_monthly_abortion.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_xc_guttmacher_monthly_abortion.yml",
+    "columns": [
+      "state"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__xc_owid_life_expectancy",
+    "sql_path": "models\\marts\\health\\health__xc_owid_life_expectancy.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_xc_owid_life_expectancy.yml",
+    "columns": [
+      "entity"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "historical_records__fed_slavevoyages_intraamerican",
+    "sql_path": "models\\marts\\historical_records\\historical_records__fed_slavevoyages_intraamerican.sql",
+    "schema_path": "ripple://models\\staging\\fed_slavevoyages_intraamerican\\schema.yml",
+    "columns": [
+      "country_of_arrival",
+      "slave_trade_company",
+      "num_enslaved_embarked",
+      "num_enslaved_disembarked",
+      "num_enslaved_mortality_estimate",
+      "vessel_name",
+      "source_citation",
+      "source_voyage_id",
+      "fips_code",
+      "_ingested_at",
+      "_source_run_id"
+    ],
+    "domain": "historical_records"
+  },
+  {
+    "model": "housing__fed_cfpb_hmda_dc_only",
+    "sql_path": "models\\marts\\housing\\housing__fed_cfpb_hmda_dc_only.sql",
+    "schema_path": "ripple://models\\marts\\housing\\schema_fed_cfpb_hmda_dc_only.yml",
+    "columns": [
+      "state_code"
+    ],
+    "domain": "housing"
+  },
+  {
+    "model": "housing__fed_fhfa_hpi",
+    "sql_path": "models\\marts\\housing\\housing__fed_fhfa_hpi.sql",
+    "schema_path": "ripple://models\\marts\\housing\\schema_fed_fhfa_hpi.yml",
+    "columns": [
+      "place_id"
+    ],
+    "domain": "housing"
+  },
+  {
+    "model": "housing__fed_fhfa_nmdb",
+    "sql_path": "models\\marts\\housing\\housing__fed_fhfa_nmdb.sql",
+    "schema_path": "ripple://models\\marts\\housing\\schema_fed_fhfa_nmdb.yml",
+    "columns": [
+      "geo_code"
+    ],
+    "domain": "housing"
+  },
+  {
+    "model": "housing__fed_hud_data",
+    "sql_path": "models\\marts\\housing\\housing__fed_hud_data.sql",
+    "schema_path": "ripple://models\\marts\\housing\\schema_fed_hud_data.yml",
+    "columns": [
+      "dataset_name"
+    ],
+    "domain": "housing"
+  }
+]

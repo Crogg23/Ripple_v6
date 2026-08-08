@@ -1,0 +1,110 @@
+[
+  {
+    "dataset_name": "USPTO Trademark Bulk Data (Daily/XML files) + Trademark Case Files Dataset",
+    "domain": "Corporate Registration & Beneficial Ownership",
+    "url": "https://www.uspto.gov/trademarks/trademark-updates-and-announcements/trademark-bulk-data-us-patent-and-trademark-office",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "inferred",
+    "evidence": "\"The Trademark Case Files Dataset contains detailed information on 12.7 million trademark applications and registrations filed with the USPTO\""
+  },
+  {
+    "dataset_name": "CMS PECOS Medicare Fee-For-Service Public Provider Enrollment file",
+    "domain": "Corporate Registration & Beneficial Ownership",
+    "url": "https://data.cms.gov/provider-characteristics/medicare-provider-supplier-enrollment/medicare-fee-for-service-public-provider-enrollment",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "inferred",
+    "evidence": "\"CMS Provider Enrollment, Chain, and Ownership System (PECOS) publishes a monthly snapshot of providers actively enrolled in Medicare fee-for-service\"; fields include \"PAC ID (CMS internal identifier)\" and \"Enrollment ID (CMS internal identifier)\""
+  },
+  {
+    "dataset_name": "OpenFIGI (Financial Instrument Global Identifier) mapping service",
+    "domain": "Corporate Registration & Beneficial Ownership",
+    "url": "https://www.openfigi.com/api/documentation",
+    "access_shape": "api-open",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"The API is free and open to the public, though unauthenticated traffic will be subject to a lower rate-limit.\" Rate limits: 25 mapping requests/minute unauthenticated vs 25 per 6 seconds with a free API key."
+  },
+  {
+    "dataset_name": "SEC EDGAR company search \u2014 SEC/Commission File Number field",
+    "domain": "Corporate Registration & Beneficial Ownership",
+    "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
+    "access_shape": "api-open",
+    "size_class": "large",
+    "confidence": "inferred",
+    "evidence": "sec.gov returned HTTP 403 to WebFetch on every attempt this session (EDGAR company search, data.sec.gov submissions JSON, edgar/search-and-access all blocked); SEC File Number as an EDGAR company-search field (format like 001-xxxxx) is well-established but not directly confirmed via a loaded page th"
+  },
+  {
+    "dataset_name": "IRS Exempt Organizations Business Master File (EO BMF) Extract",
+    "domain": "Corporate Registration & Beneficial Ownership",
+    "url": "https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "inferred",
+    "evidence": "\"The files are available in comma separated value (CSV) format.\" (confirms free bulk CSV extract exists; the rendered excerpt did not explicitly show a Group Exemption Number/GEN field)"
+  },
+  {
+    "dataset_name": "Companies House Persons with Significant Control (PSC) Snapshot",
+    "domain": "Corporate Registration & Beneficial Ownership",
+    "url": "https://download.companieshouse.gov.uk/en_pscdata.html",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"The People with significant control (PSC) snapshot is a downloadable data snapshot containing the full list of PSC's provided to Companies House. Each data file is provided in JSON format\""
+  },
+  {
+    "dataset_name": "VIES (VAT Information Exchange System)",
+    "domain": "Corporate Registration & Beneficial Ownership",
+    "url": "https://ec.europa.eu/taxation_customs/vies/",
+    "access_shape": "api-open",
+    "size_class": "large",
+    "confidence": "inferred",
+    "evidence": "WebFetch returned only the page title \"Vies on-the-Web - European Commission\" with no body text on repeated attempts; VIES is documented elsewhere as a real-time single-VAT-number validation service checked against national tax-authority registries, not a bulk EU-wide dataset \u2014 not directly confirme"
+  },
+  {
+    "dataset_name": "ICIJ Offshore Leaks Database (Offshore Leaks, Panama Papers, Bahamas Leaks, Paradise Papers, Pandora Papers)",
+    "domain": "Corporate Registration & Beneficial Ownership",
+    "url": "https://offshoreleaks.icij.org/pages/database",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"more than 810,000 offshore entities\" across \"Offshore Leaks (2013), Panama Papers (2016), Bahamas Leaks (2016), Paradise Papers (2017), and Pandora Papers (2021)\"; \"converted our original database into several CSV files, one per type of node and one for all the relationships\""
+  },
+  {
+    "dataset_name": "OpenSanctions Default dataset (entity ID scheme: NK-IDs / Q-IDs)",
+    "domain": "Corporate Registration & Beneficial Ownership",
+    "url": "https://www.opensanctions.org/docs/identifiers/",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"NK-IDs: randomly generated unique identifiers assigned during deduplication\" and \"Q-IDs: Wikidata identifiers... used when a matching Wikidata entry exists\"; \"OpenSanctions is free for non-commercial users.\""
+  },
+  {
+    "dataset_name": "OLMS Online Public Disclosure Room \u2014 Union Annual Financial Reports (LM-1/LM-2/LM-3/LM-4), searchable/filed by union File Number",
+    "domain": "Labor, Workplace Safety & Benefits",
+    "url": "https://www.dol.gov/agencies/olms/public-disclosure-room",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": "unionreports.gov returned a live 301 redirect to this dol.gov page (confirmed via WebFetch header); per search-engine synthesis of the page: 'The public can view union reports filed since 2000 on the OLMS online public disclosure room... The interface allows the user to find reports by file number o"
+  },
+  {
+    "dataset_name": "NLRB Case Search / Advanced Data Search (agency casehandling system \u2014 C, R, and other case types)",
+    "domain": "Labor, Workplace Safety & Benefits",
+    "url": "https://www.nlrb.gov/search/case",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "Page supports case-number search in the pattern '22-CA-029179' and offers a 'Download CSV' link on results; the related Advanced Data Search tool lets you 'create customized downloadable data sets (up to 100,000 records at a time)... by selecting a report type, adding columns... and selecting additi"
+  },
+  {
+    "dataset_name": "CMS Health Insurance Oversight System (HIOS) \u2014 Standard Component ID (SCID) for ACA/marketplace and other filed health plans",
+    "domain": "Labor, Workplace Safety & Benefits",
+    "url": "https://www.cms.gov/marketplace/resources/data",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": "Per CMS HIOS Portal Quick Guide (via search synthesis): 'A SCID (Standard Component ID) is the base identification of an insurance plan... The Standard Component ID generated by the Centers for Medicare and Medicaid Services (CMS) is a 14-characters alphanumeric sequence: Five-digit Issuer ID, Two-c"
+  }
+]

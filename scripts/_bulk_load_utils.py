@@ -277,8 +277,14 @@ def new_conn():
 # ---------------------------------------------------------------------------
 # Data Quality Gate
 # ---------------------------------------------------------------------------
-META_COLS = {"_INGESTED_AT", "_SOURCE_RUN_ID", "_SRC_SHA256", "_LOADED_AT",
-             "_SRC_YEAR", "_SRC_QUARTER", "_SRC_FILE"}
+META_COLS = {"INGESTED_AT", "SOURCE_RUN_ID", "SRC_SHA256", "LOADED_AT",
+             "SRC_YEAR", "SRC_QUARTER", "SRC_FILE"}
+# 2026-08-07 fix: these used to carry a leading underscore (matching the raw
+# DataFrame column names in ingest.py), but sf_col()/_sf_col() strips leading
+# underscores before a column ever lands in Snowflake -- the old names never
+# matched a real column, so this filter silently excluded nothing. Provenance
+# columns have always been included in the density check below (harmless
+# since they're never degenerate, but wasted scan cost on every table).
 
 DQ_FAILURES_PATH = _REPO / "outputs" / "_dq_failures.jsonl"
 
@@ -305,8 +311,14 @@ def _density_check(conn, table: str, data_cols: list[str],
     """
     if not data_cols:
         return 1.0, False
+    # 2026-08-07 fix: exact COUNT(DISTINCT ...) per column scales roughly
+    # quadratically with column count (confirmed: 100 cols=3.6s, 300
+    # cols=28.1s, 800 cols timed out at 150s) -- a wide table (thousands of
+    # columns) can blow past Snowflake's statement timeout and never get a
+    # verdict. APPROX_COUNT_DISTINCT (HyperLogLog) is far cheaper per column
+    # and plenty accurate for a near-1-distinct threshold check.
     sel = ["COUNT(*) AS _n"] + [
-        f'COUNT(DISTINCT NULLIF(TRIM("{c}"),\'\')) AS "d_{i}"'
+        f'APPROX_COUNT_DISTINCT(NULLIF(TRIM("{c}"),\'\')) AS "d_{i}"'
         for i, c in enumerate(data_cols)]
     sql = (f"SELECT {', '.join(sel)} FROM "
            f'(SELECT * FROM {LANDING_FQS}."{table}" LIMIT {int(sample)})')

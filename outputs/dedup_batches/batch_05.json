@@ -1,0 +1,126 @@
+[
+  {
+    "model": "environment__xc_owid_fossil_share",
+    "sql_path": "models\\marts\\environment\\environment__xc_owid_fossil_share.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_xc_owid_fossil_share.yml",
+    "columns": [
+      "entity"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__xc_owid_temp_anomaly",
+    "sql_path": "models\\marts\\environment\\environment__xc_owid_temp_anomaly.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_xc_owid_temp_anomaly.yml",
+    "columns": [
+      "entity"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "finance__fed_epa_icis_fec_case_enforcement_conclusion_facilities",
+    "sql_path": "models\\marts\\finance\\finance__fed_epa_icis_fec_case_enforcement_conclusion_facilities.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_epa_icis_fec_case_enforcement_conclusion_facilities.yml",
+    "columns": [
+      "activity_id",
+      "case_number",
+      "enf_conclusion_id",
+      "icis_facility_interest_id"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_epa_icis_fec_case_facilities",
+    "sql_path": "models\\marts\\finance\\finance__fed_epa_icis_fec_case_facilities.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_epa_icis_fec_case_facilities.yml",
+    "columns": [
+      "activity_id",
+      "case_number"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_epa_icis_fec_epa_informal_enforcement_actions",
+    "sql_path": "models\\marts\\finance\\finance__fed_epa_icis_fec_epa_informal_enforcement_actions.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_epa_icis_fec_epa_informal_enforcement_actions.yml",
+    "columns": [
+      "pgm_sys_id",
+      "registry_id",
+      "activity_type_code",
+      "enf_type_code"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_epa_icis_fec_icis_fec_epa_inspections",
+    "sql_path": "models\\marts\\finance\\finance__fed_epa_icis_fec_icis_fec_epa_inspections.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_epa_icis_fec_icis_fec_epa_inspections.yml",
+    "columns": [
+      "pgm_sys_id",
+      "activity_id",
+      "activity_type_code",
+      "statute_code",
+      "law_section_code"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_fec_cand_cmte_linkage",
+    "sql_path": "models\\marts\\finance\\finance__fed_fec_cand_cmte_linkage.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_fec_cand_cmte_linkage.yml",
+    "columns": [
+      "c1"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_fec_candidates",
+    "sql_path": "models\\marts\\finance\\finance__fed_fec_candidates.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_fec_candidates.yml",
+    "columns": [
+      "c1"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_fec_committees",
+    "sql_path": "models\\marts\\finance\\finance__fed_fec_committees.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_fec_committees.yml",
+    "columns": [
+      "c1"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_fec_independent_expenditures",
+    "sql_path": "models\\marts\\finance\\finance__fed_fec_independent_expenditures.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_fec_independent_expenditures.yml",
+    "columns": [
+      "cand_id",
+      "spe_id",
+      "tran_id"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_irs_soi",
+    "sql_path": "models\\marts\\finance\\finance__fed_irs_soi.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_irs_soi.yml",
+    "columns": [
+      "state_fips",
+      "zip_code"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_ncua_call_reports",
+    "sql_path": "models\\marts\\finance\\finance__fed_ncua_call_reports.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_ncua_call_reports.yml",
+    "columns": [
+      "cu_number",
+      "acct_code",
+      "zip_code"
+    ],
+    "domain": "finance"
+  }
+]

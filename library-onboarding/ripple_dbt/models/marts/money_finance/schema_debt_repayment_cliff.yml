@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: money__debt_repayment_cliff
+    description: >
+      GRAIN: one row per (country_code, data_year) debt-service schedule
+      point, per the model's own header comment. country_year_id is the
+      model's own concatenated surrogate key for exactly this grain.
+    columns:
+      - name: country_year_id
+        data_tests:
+          - not_null
+          - unique

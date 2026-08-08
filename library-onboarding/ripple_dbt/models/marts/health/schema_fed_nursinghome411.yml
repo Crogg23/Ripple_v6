@@ -9,3 +9,7 @@ models:
       - name: cms_region_number
         data_tests:
           - not_null
+      - name: cms_certification_number_ccn
+        data_tests:
+          - unique
+          - not_null

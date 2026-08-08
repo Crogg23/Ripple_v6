@@ -1,0 +1,112 @@
+[
+  {
+    "id_name": "NPDB Report Number (National Practitioner Data Bank)",
+    "domain": "Healthcare & Clinical",
+    "dataset_name": "NPDB Public Use Data File",
+    "url": "https://www.npdb.hrsa.gov/resources/publicDataStatement.jsp",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "\"Download the Public Use Data File\" after agreeing to a Data Use Agreement (DUA); \"provides de-identified information to researchers, journalists and others to use to report on trends\"",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "IHS Facility Location Code (Indian Health Service)",
+    "domain": "Healthcare & Clinical",
+    "dataset_name": "IHS Standard Code Book (SCB) -- Facility Table",
+    "url": "https://www.ihs.gov/scb/standard-code-book-tables/facility/",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "\"8733 matches\" with fields \"ASUFAC Code, Area, Service Unit, Facility name, Facility Type, Location Type, Bed Count, Status, APC Flag, and ITU Code\"; page lets you \"save a copy of the table to your computer or device\" in \"Excel\" or \"Delimited Text\"",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "HRSA Health Center Program / UDS Site ID (FQHC)",
+    "domain": "Healthcare & Clinical",
+    "dataset_name": "HRSA Health Center Program Uniform Data System (UDS) Awardee/Look-Alike data and Service Delivery Site data",
+    "url": "https://data.hrsa.gov/data/download",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "\"Health Center Program Uniform Data System (UDS) Awardees and Look-Alikes -- 41 files available covering years 1999-2025... Format: XLSX\" and \"Health Center Service Delivery and Look-Alike Sites -- 3 files available... Formats: XLSX, CSV... Updated August 5, 2026; Daily refresh cycle\"",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "HRSA HPSA/MUA Designation ID (Health Professional Shortage Area / Medically Underserved Area)",
+    "domain": "Healthcare & Clinical",
+    "dataset_name": "HRSA Health Professional Shortage Area (HPSA) and Medically Underserved Area/Population (MUA/P) designation data",
+    "url": "https://data.hrsa.gov/data/download",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "\"HPSA \u2013 Primary Care -- Multiple file formats: XLSX, CSV, SHP (shapefile)... Updated August 5, 2026; Daily refresh\" and \"Medically Underserved Areas/Populations (MUA/P) -- XLSX, CSV, and SHP formats available... 'MUA/P Designation Boundaries' and component boundaries included, Daily updates\"",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "FDA Establishment Identifier",
+    "domain": "Pharma, Biologics & Medical Devices",
+    "dataset_name": "FDA Device Establishment Registration & Listing (openFDA registrationlisting dataset, carries FEI numbers)",
+    "url": "https://open.fda.gov/apis/device/registrationlisting/",
+    "access_shape": "api-open",
+    "size_class": "medium",
+    "evidence": "\"the location of medical device establishments and the devices manufactured at those establishments\"",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "510(k) Premarket Notification Number",
+    "domain": "Pharma, Biologics & Medical Devices",
+    "dataset_name": "FDA 510(k) Premarket Notification Database",
+    "url": "https://open.fda.gov/apis/device/510k/",
+    "access_shape": "api-open",
+    "size_class": "medium",
+    "evidence": "\"Frequency of API updates: Monthly\" -- covers records from 1976 onward",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "Premarket Approval Number",
+    "domain": "Pharma, Biologics & Medical Devices",
+    "dataset_name": "FDA Premarket Approval (PMA) Database",
+    "url": "https://open.fda.gov/apis/device/pma/",
+    "access_shape": "api-open",
+    "size_class": "medium",
+    "evidence": "\"details about specific products and the sponsors of premarket approval applications and supplements,\" covering records from 1976 to present with monthly updates",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "SPL Set ID (Structured Product Labeling)",
+    "domain": "Pharma, Biologics & Medical Devices",
+    "dataset_name": "DailyMed Structured Product Labeling (SPL) bulk data",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/spl-resources.cfm",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "\"daily, weekly or monthly periodic updates or full releases of all drug labels\" as zip files; separate files \"map SPL Set ID to other information\"",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "Health Canada Drug Identification Number",
+    "domain": "Pharma, Biologics & Medical Devices",
+    "dataset_name": "Health Canada Drug Product Database (DPD)",
+    "url": "https://health-products.canada.ca/dpd-bdpp/index-eng.jsp",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "\"search by either a) drug identification number (DIN), b) Anatomical Therapeutic Chemical (ATC) code, or c) by company\" -- plus a linked \"Drug product database data extracts\" bulk download resource",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "FDA Enforcement Report Recall Number / Event ID",
+    "domain": "Pharma, Biologics & Medical Devices",
+    "dataset_name": "FDA Recall Enterprise System (RES) Enforcement Reports (device and drug)",
+    "url": "https://open.fda.gov/apis/device/enforcement/",
+    "access_shape": "api-open",
+    "size_class": "medium",
+    "evidence": "\"The openFDA device enforcement reports API returns data from the FDA Recall Enterprise System (RES), a database that contains information on recall event information submitted to FDA.\" Coverage 2004 to present, weekly updates.",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "FDA Device Product Code (Classification Product Code)",
+    "domain": "Pharma, Biologics & Medical Devices",
+    "dataset_name": "FDA Device Product Classification Database",
+    "url": "https://open.fda.gov/apis/device/classification/",
+    "access_shape": "api-open",
+    "size_class": "medium",
+    "evidence": "\"The product code assigned to a device is based upon the medical device product classification designated under 21 CFR Parts 862-892.\"",
+    "fragmented": "False"
+  }
+]

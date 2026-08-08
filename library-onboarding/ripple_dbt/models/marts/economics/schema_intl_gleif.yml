@@ -3,6 +3,10 @@ version: 2
 models:
   - name: economics__intl_gleif
     columns:
+      - name: lei
+        data_tests:
+          - not_null
+          - unique
       - name: entity_legalentityevents_legalentityevent_1_group_id
         data_tests:
           - not_null

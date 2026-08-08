@@ -1,0 +1,102 @@
+[
+  {
+    "dataset_name": "NRC Power Reactor Docket Index / List of Power Reactor Units",
+    "domain": "Energy, Utilities & Pipeline Safety",
+    "url": "https://www.nrc.gov/reactors/operating/list-power-reactor-units.html"
+  },
+  {
+    "dataset_name": "FERC Hydropower Licensing records (project-number indexed filings in eLibrary)",
+    "domain": "Energy, Utilities & Pipeline Safety",
+    "url": "https://www.ferc.gov/industries-data/hydropower/licensing"
+  },
+  {
+    "dataset_name": "NRC reactor operating license records (e.g. DPR-nn / NPF-nn license numbers)",
+    "domain": "Energy, Utilities & Pipeline Safety",
+    "url": "https://www.nrc.gov/reactors/operating/licensing/renewal/applications.html"
+  },
+  {
+    "dataset_name": "FERC eLibrary docket & filing search",
+    "domain": "Energy, Utilities & Pipeline Safety",
+    "url": "https://elibrary.ferc.gov/eLibrary/search"
+  },
+  {
+    "dataset_name": "FERC Electric Quarterly Report (EQR) data \u2014 Summary Report Viewer",
+    "domain": "Energy, Utilities & Pipeline Safety",
+    "url": "https://eqrreportviewer.ferc.gov/"
+  },
+  {
+    "dataset_name": "USDA Rural Utilities Service Electric Program borrower records",
+    "domain": "Energy, Utilities & Pipeline Safety",
+    "url": "https://www.rd.usda.gov/programs-services/electric-programs"
+  },
+  {
+    "dataset_name": "NRC Reactor Operator Licensing records (RO/SRO individual license numbers)",
+    "domain": "Energy, Utilities & Pipeline Safety",
+    "url": "https://www.nrc.gov/reactors/operator-licensing.html"
+  },
+  {
+    "dataset_name": "OSMRE e-AMLIS (Abandoned Mine Land Inventory System)",
+    "domain": "Energy, Utilities & Pipeline Safety",
+    "url": "https://eamlis.osmre.gov/"
+  },
+  {
+    "dataset_name": "NRC ADAMS (Agencywide Documents Access and Management System)",
+    "domain": "Energy, Utilities & Pipeline Safety",
+    "url": "https://www.nrc.gov/reading-rm/adams.html"
+  },
+  {
+    "dataset_name": "FERC Qualifying Facility (QF) filings (QF-prefixed eLibrary dockets, e.g. QF##-###)",
+    "domain": "Energy, Utilities & Pipeline Safety",
+    "url": "https://www.ferc.gov/qf-fact-sheet"
+  },
+  {
+    "dataset_name": "National Pipeline Mapping System (NPMS)",
+    "domain": "Energy, Utilities & Pipeline Safety",
+    "url": "https://www.npms.phmsa.dot.gov/"
+  },
+  {
+    "dataset_name": "State PUC electronic docket/proceeding search systems",
+    "domain": "Energy, Utilities & Pipeline Safety",
+    "url": "https://apps.cpuc.ca.gov/apex/f?p=401:1:0"
+  },
+  {
+    "dataset_name": "Regional REC tracking systems (WREGIS, NEPOOL GIS, PJM-GATS, M-RETS)",
+    "domain": "Energy, Utilities & Pipeline Safety",
+    "url": "https://www.wecc.org/wregis"
+  },
+  {
+    "dataset_name": "IAEA Power Reactor Information System (PRIS)",
+    "domain": "Energy, Utilities & Pipeline Safety",
+    "url": "https://pris.iaea.org/PRIS/home.aspx"
+  },
+  {
+    "dataset_name": "State radioactive material license registries issued under the NRC Agreement State Program",
+    "domain": "Energy, Utilities & Pipeline Safety",
+    "url": "https://www.nrc.gov/about-nrc/state-tribal/agreement-states.html"
+  },
+  {
+    "dataset_name": "State oil & gas regulator operator registration records (e.g. Texas RRC P-5 Organization Report / Operator Number)",
+    "domain": "Energy, Utilities & Pipeline Safety",
+    "url": "https://www.rrc.texas.gov/oil-and-gas/"
+  },
+  {
+    "dataset_name": "APHIS Animal Care Public Search Tool (AWA licensees & registrants)",
+    "domain": "Agriculture & Food Safety",
+    "url": "https://aphis.my.site.com/PublicSearchTool/s/"
+  },
+  {
+    "dataset_name": "State Meat & Poultry Inspection programs (Cooperative Interstate Shipment and state-only inspected establishments, parallel to FSIS federal inspection)",
+    "domain": "Agriculture & Food Safety",
+    "url": "https://www.fsis.usda.gov/inspection/state-inspection-programs"
+  },
+  {
+    "dataset_name": "USDA AMS PACA Licensee Search",
+    "domain": "Agriculture & Food Safety",
+    "url": "https://www.ams.usda.gov/PACAsearch"
+  },
+  {
+    "dataset_name": "DOL Wage and Hour Division -- MSPA Farm Labor Contractor Certificate of Registration records",
+    "domain": "Agriculture & Food Safety",
+    "url": "https://www.dol.gov/agencies/whd/direct-employment/farm-labor"
+  }
+]

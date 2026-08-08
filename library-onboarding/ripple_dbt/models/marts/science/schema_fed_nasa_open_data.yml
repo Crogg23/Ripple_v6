@@ -6,3 +6,6 @@ models:
       - name: api_name
         data_tests:
           - not_null
+      - name: url
+        data_tests:
+          - unique

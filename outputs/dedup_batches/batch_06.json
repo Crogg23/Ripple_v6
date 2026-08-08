@@ -1,0 +1,111 @@
+[
+  {
+    "model": "finance__fed_sec_13f_holdings",
+    "sql_path": "models\\marts\\finance\\finance__fed_sec_13f_holdings.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_sec_13f_holdings.yml",
+    "columns": [
+      "accession_number"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_sec_13f_positions",
+    "sql_path": "models\\marts\\finance\\finance__fed_sec_13f_positions.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_sec_13f_positions.yml",
+    "columns": [
+      "accession_number"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_sec_13f_submission",
+    "sql_path": "models\\marts\\finance\\finance__fed_sec_13f_submission.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_sec_13f_submission.yml",
+    "columns": [
+      "accession_number"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_sec_business_development_company_report",
+    "sql_path": "models\\marts\\finance\\finance__fed_sec_business_development_company_report.sql",
+    "schema_path": null,
+    "columns": [],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_sec_closed_end_fund_information",
+    "sql_path": "models\\marts\\finance\\finance__fed_sec_closed_end_fund_information.sql",
+    "schema_path": null,
+    "columns": [],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_sec_insider_deriv_trans",
+    "sql_path": "models\\marts\\finance\\finance__fed_sec_insider_deriv_trans.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_sec_insider_deriv_trans.yml",
+    "columns": [
+      "accession_number",
+      "trans_code"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_sec_insider_nonderiv_trans",
+    "sql_path": "models\\marts\\finance\\finance__fed_sec_insider_nonderiv_trans.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_sec_insider_nonderiv_trans.yml",
+    "columns": [
+      "accession_number",
+      "transaction_code"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_sec_insider_reportingowner",
+    "sql_path": "models\\marts\\finance\\finance__fed_sec_insider_reportingowner.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_sec_insider_reportingowner.yml",
+    "columns": [
+      "accession_number",
+      "zip_code"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_sec_money_market_fund_information",
+    "sql_path": "models\\marts\\finance\\finance__fed_sec_money_market_fund_information.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_sec_money_market_fund_information.yml",
+    "columns": [
+      "series_id",
+      "class_id"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__intl_wb_ids",
+    "sql_path": "models\\marts\\finance\\finance__intl_wb_ids.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_intl_wb_ids.yml",
+    "columns": [
+      "series_code"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "health__fed_cdc_anxiety_depression",
+    "sql_path": "models\\marts\\health\\health__fed_cdc_anxiety_depression.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cdc_anxiety_depression.yml",
+    "columns": [
+      "indicator"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cdc_data_portal",
+    "sql_path": "models\\marts\\health\\health__fed_cdc_data_portal.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cdc_data_portal.yml",
+    "columns": [
+      "dataset_id",
+      "zip_code"
+    ],
+    "domain": "health"
+  }
+]

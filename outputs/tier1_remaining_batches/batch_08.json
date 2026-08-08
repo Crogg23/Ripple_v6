@@ -1,0 +1,110 @@
+[
+  {
+    "dataset_name": "FFATA Subaward Reporting System (FSRS) data, now consolidated into SAM.gov/USASpending.gov subaward records",
+    "domain": "Federal Procurement & Grants",
+    "url": "https://www.fsrs.gov/",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "inferred",
+    "evidence": "fsrs.gov failed to load twice this session (read ECONNRESET both times) rather than returning a page. This is consistent with public reporting that GSA/OMB retired the standalone FSRS.gov site and folded FFATA subaward reporting into SAM.gov, whose data then flows into USASpending.gov's award/subawa"
+  },
+  {
+    "dataset_name": "Federal Audit Clearinghouse (FAC) Single Audit Report Database",
+    "domain": "Federal Procurement & Grants",
+    "url": "https://fac.gov/",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "fac.gov (loaded directly): \"The Federal Audit Clearinghouse (FAC) is the place to submit and review federal grant audits,\" with basic/advanced/tribal search, \"CSV data downloads and a Developer API,\" submission now via Login.gov, operated by GSA's Technology Transformation Services."
+  },
+  {
+    "dataset_name": "DOL Wage and Hour Division Section 14(c) Certificate Holders List",
+    "domain": "Federal Procurement & Grants",
+    "url": "https://www.dol.gov/agencies/whd/workers-with-disabilities/section-14c/certificate-holders",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "confidence": "inferred",
+    "evidence": "Every dol.gov URL attempted this session (WHD root, section-14c pages, OFCCP FOIA/data pages) returned HTTP 403 Forbidden, so no page content could be quoted directly. This row rests on general knowledge that DOL's Wage and Hour Division publicly maintains a list of active Section 14(c) certificate "
+  },
+  {
+    "dataset_name": "PHMSA Pipeline Safety annual report data (Gas Distribution / Gas Transmission & Gathering / Hazardous Liquid annual reports), keyed by OPERATOR_ID",
+    "domain": "Energy, Utilities & Pipeline Safety",
+    "url": "https://www.phmsa.dot.gov/data-and-statistics/pipeline/annual-report-data",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "confidence": "inferred",
+    "evidence": "www.phmsa.dot.gov returned HTTP 403 to automated fetch on every path tried (root and subpages); could not load page content this session. Inference based on PHMSA's well-documented annual-report data dictionaries which key on OPERATOR_ID."
+  },
+  {
+    "dataset_name": "FERC Form 1 / Form 3-Q Electric Utility financial filings \u2014 Respondent ID",
+    "domain": "Energy, Utilities & Pipeline Safety",
+    "url": "https://www.ferc.gov/industries-data/electric/general-information/electric-industry-forms/form-1-3-q-electric",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "confidence": "inferred",
+    "evidence": "ferc.gov returned HTTP 403 to automated fetch. Inference based on Respondent ID being FERC's documented filer key in Form 1 / Form 3-Q XBRL data."
+  },
+  {
+    "dataset_name": "FracFocus Chemical Disclosure Registry well data (keyed to the state-assigned API Well Number) plus underlying state oil & gas commission well records",
+    "domain": "Energy, Utilities & Pipeline Safety",
+    "url": "https://fracfocus.org/data-download",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "The header which describes the well, its location, the date of the treatment, and the total volume of base fluids."
+  },
+  {
+    "dataset_name": "PHMSA Pipeline Incident Flagged Files (Gas Distribution / Transmission & Gathering / Hazardous Liquid incident reports)",
+    "domain": "Energy, Utilities & Pipeline Safety",
+    "url": "https://www.phmsa.dot.gov/data-and-statistics/pipeline/pipeline-incident-flagged-files",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": "www.phmsa.dot.gov returned HTTP 403 to automated fetch on this path and on the related pipeline-incident-20-year-trends path. Inference based on PHMSA's well-documented public incident report downloads (flagged files, since 2010 for gas/hazardous liquid)."
+  },
+  {
+    "dataset_name": "DOE OE-417 Electric Emergency Incident and Disturbance Report",
+    "domain": "Energy, Utilities & Pipeline Safety",
+    "url": "https://www.oe.netl.doe.gov/oe417.aspx",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "confidence": "inferred",
+    "evidence": "oe.netl.doe.gov returned a connection error (ECONNREFUSED) / 404 on the paths tried this session. Inference based on DOE's well-documented public OE-417 annual summary spreadsheets."
+  },
+  {
+    "dataset_name": "EIA-176 Natural Gas Annual Respondent Query System (Company ID)",
+    "domain": "Energy, Utilities & Pipeline Safety",
+    "url": "https://www.eia.gov/naturalgas/ngqs/",
+    "access_shape": "api-open",
+    "size_class": "small",
+    "confidence": "inferred",
+    "evidence": "eia.gov/naturalgas/ngqs/ loaded only generic EIA site navigation (JS-rendered query tool did not render in fetched content), so no direct quote naming Company ID was obtained. Inference based on EIA's well-documented NGQS interactive respondent query system."
+  },
+  {
+    "dataset_name": "PHMSA Pipeline Safety Enforcement Actions data (CPF case numbers)",
+    "domain": "Energy, Utilities & Pipeline Safety",
+    "url": "https://www.phmsa.dot.gov/data-and-statistics/pipeline/enforcement-actions",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "confidence": "inferred",
+    "evidence": "www.phmsa.dot.gov returned HTTP 403 to automated fetch. Inference based on PHMSA's well-documented CPF (Case/Pipeline/Facility) enforcement case numbering shown in its public enforcement database."
+  },
+  {
+    "dataset_name": "PHMSA Underground Natural Gas Storage Facility annual report data",
+    "domain": "Energy, Utilities & Pipeline Safety",
+    "url": "https://www.phmsa.dot.gov/data-and-statistics/pipeline/underground-natural-gas-storage",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "confidence": "inferred",
+    "evidence": "www.phmsa.dot.gov returned HTTP 403 to automated fetch. Inference based on PHMSA's known post-Aliso Canyon underground gas storage annual reporting program (~400 facilities)."
+  },
+  {
+    "dataset_name": "FSIS Meat, Poultry and Egg Product Inspection Directory (MPI Directory)",
+    "domain": "Agriculture & Food Safety",
+    "url": "https://www.fsis.usda.gov/inspection/establishments/meat-poultry-and-egg-product-inspection-directory",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": "fsis.usda.gov returned HTTP 403 Forbidden to WebFetch on every path tried this session (root, establishment directory, recall-datasets, noncompliance-records). Dataset's existence and CSV-download shape (every FSIS-inspected establishment with its unique establishment number) is well-documented USDA"
+  }
+]

@@ -1,0 +1,102 @@
+[
+  {
+    "dataset_name": "DOJ FARA e-File registrant/filing database",
+    "domain": "Corporate Registration & Beneficial Ownership",
+    "url": "https://efile.fara.gov/ords/fara/f?p=1381:1"
+  },
+  {
+    "dataset_name": "FMCSA SAFER Company Snapshot (MC/MX Number lookup)",
+    "domain": "Corporate Registration & Beneficial Ownership",
+    "url": "https://safer.fmcsa.dot.gov/CompanySnapshot.aspx"
+  },
+  {
+    "dataset_name": "SBA Certifications Search (certify.sba.gov / Dynamic Small Business Search successor)",
+    "domain": "Corporate Registration & Beneficial Ownership",
+    "url": "https://search.certifications.sba.gov/"
+  },
+  {
+    "dataset_name": "World Bank Listing of Ineligible Firms & Individuals (cross-debarred under 2010 Mutual Enforcement Agreement)",
+    "domain": "Corporate Registration & Beneficial Ownership",
+    "url": "https://www.worldbank.org/en/projects-operations/procurement/debarred-firms"
+  },
+  {
+    "dataset_name": "State UCC filing search systems (Delaware Division of Corporations exemplar \u2014 state-fragmented)",
+    "domain": "Corporate Registration & Beneficial Ownership",
+    "url": "https://icis.corp.delaware.gov/Ecorp/EntitySearch/NameSearch.aspx"
+  },
+  {
+    "dataset_name": "Open Ownership Register (BODS-formatted bulk beneficial-ownership data)",
+    "domain": "Corporate Registration & Beneficial Ownership",
+    "url": "https://register.openownership.org/"
+  },
+  {
+    "dataset_name": "State Secretary of State entity/registered-agent search (Delaware exemplar \u2014 no dedicated agent ID found)",
+    "domain": "Corporate Registration & Beneficial Ownership",
+    "url": "https://icis.corp.delaware.gov/Ecorp/EntitySearch/NameSearch.aspx"
+  },
+  {
+    "dataset_name": "California State Bar Licensee Search (state-fragmented attorney license lookup)",
+    "domain": "Corporate Registration & Beneficial Ownership",
+    "url": "https://apps.calbar.ca.gov/attorney/LicenseeSearch/QuickSearch"
+  },
+  {
+    "dataset_name": "California DFPI FRANSES franchise registration filing system (state-fragmented)",
+    "domain": "Corporate Registration & Beneficial Ownership",
+    "url": "https://dfpi.ca.gov/franchises/"
+  },
+  {
+    "dataset_name": "MSPA Farm Labor Contractor / FLC Employee Certificate of Registration Listings (active certificate holders)",
+    "domain": "Labor, Workplace Safety & Benefits",
+    "url": "https://www.dol.gov/agencies/whd/agriculture/mspa"
+  },
+  {
+    "dataset_name": "SAM.gov Davis-Bacon Act General Wage Determinations (WD numbers, e.g. AL20250009)",
+    "domain": "Labor, Workplace Safety & Benefits",
+    "url": "https://sam.gov/wage-determinations"
+  },
+  {
+    "dataset_name": "SAM.gov Service Contract Act Wage Determinations (SCA WD/register numbers)",
+    "domain": "Labor, Workplace Safety & Benefits",
+    "url": "https://sam.gov/wage-determinations"
+  },
+  {
+    "dataset_name": "NMB representation/mediation case docket (exact public case-search URL not located)",
+    "domain": "Labor, Workplace Safety & Benefits",
+    "url": "https://www.nmb.gov"
+  },
+  {
+    "dataset_name": "RAPIDS (Registered Apprenticeship Partners Information Data System) \u2014 program/sponsor IDs, accessed via Apprenticeship.gov",
+    "domain": "Labor, Workplace Safety & Benefits",
+    "url": "https://www.apprenticeship.gov"
+  },
+  {
+    "dataset_name": "VETS-4212 Federal Contractor Veteran Employment Report filer records",
+    "domain": "Labor, Workplace Safety & Benefits",
+    "url": "https://www.dol.gov/agencies/vets/programs/vets4212"
+  },
+  {
+    "dataset_name": "CBP Withhold Release Orders and Findings list (forced-labor import detentions)",
+    "domain": "Labor, Workplace Safety & Benefits",
+    "url": "https://www.cbp.gov/trade/forced-labor/withhold-release-orders-and-findings"
+  },
+  {
+    "dataset_name": "State workers' compensation claim/case management systems (fragmented, per-state)",
+    "domain": "Labor, Workplace Safety & Benefits",
+    "url": "https://www.wcb.ny.gov"
+  },
+  {
+    "dataset_name": "State prevailing-wage-law determination systems (fragmented, per-state) \u2014 e.g. California DIR General Prevailing Wage Determinations",
+    "domain": "Labor, Workplace Safety & Benefits",
+    "url": "https://www.dir.ca.gov/OPRL/PWD/Search.asp"
+  },
+  {
+    "dataset_name": "BOP Inmate Locator (Federal Bureau of Prisons)",
+    "domain": "Criminal Justice & Court Systems",
+    "url": "https://www.bop.gov/inmateloc/"
+  },
+  {
+    "dataset_name": "State DOC offender/inmate search systems (fragmented; e.g. Texas TDCJ Offender Search)",
+    "domain": "Criminal Justice & Court Systems",
+    "url": "https://www.tdcj.texas.gov/ks_offender.html"
+  }
+]

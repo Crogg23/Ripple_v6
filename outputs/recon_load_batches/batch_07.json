@@ -1,0 +1,112 @@
+[
+  {
+    "id_name": "ED Office of Postsecondary Education ID (OPE ID)",
+    "domain": "Federal Benefits & Safety Net / Veterans",
+    "dataset_name": "College Scorecard (U.S. Department of Education)",
+    "url": "https://collegescorecard.ed.gov/data/",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "\"Crosswalk files for 2000-01 through 2022-23 that link the Department's OPEID with an IPEDS UNITID for each institution.\" Page also offers \"All Data Files [Download (.zip, 470 MB)]\".",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "Indian Health Service (IHS) Facility / Area / Service Unit Code",
+    "domain": "Federal Benefits & Safety Net / Veterans",
+    "dataset_name": "IHS Facilities Directory (complete facility listing, Excel)",
+    "url": "https://www.ihs.gov/locations/",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "\"Download a complete listing of IHS Facilities\" \u2014 Excel file, 296 KB, updated June 15, 2023. Page organizes IHS into \"twelve physical areas\" (Alaska, Albuquerque, Bemidji, Billings, California, Great Plains, Nashville, Navajo, Oklahoma, Phoenix, Portland, and Tucson).",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "ROR ID (Research Organization Registry)",
+    "domain": "Science, Research Grants & Research Integrity",
+    "dataset_name": "ROR Data Dump (Research Organization Registry)",
+    "url": "https://ror.readme.io/docs/data-dump",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "\"download ROR datasets from Zenodo programmatically\" \u2014 dataset at https://doi.org/10.5281/zenodo.6347574, JSON primary / CSV convenience formats, Schema 2.0+ as of release 2.0",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "Retraction Watch Database record",
+    "domain": "Science, Research Grants & Research Integrity",
+    "dataset_name": "Retraction Watch Database (now hosted by Crossref)",
+    "url": "https://www.crossref.org/blog/news-crossref-and-retraction-watch/",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "\"a git repository at https://gitlab.com/crossref/retraction-watch-data\" \u2014 CSV download, combined database ~50,000 retraction records (~43,000 from Retraction Watch + ~14,000 pre-existing Crossref records, some overlap), transferred Sept 2023",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "NSF Award Number",
+    "domain": "Science, Research Grants & Research Integrity",
+    "dataset_name": "NSF Award Search API",
+    "url": "https://resources.research.gov/common/webapi/awardapisearch-v1.htm",
+    "access_shape": "api-open",
+    "size_class": "medium",
+    "evidence": "Fields include \"pdPIName, piEmail, piFirstName, piLastName\"; output formats \"XML, JSON, JSONP\"; \"No authentication is needed\" at http://api.nsf.gov/services/v1/awards_",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "Grants.gov Funding Opportunity Number",
+    "domain": "Science, Research Grants & Research Integrity",
+    "dataset_name": "Grants.gov Database XML Extract",
+    "url": "https://www.grants.gov/xml-extract",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "\"Once a day, the Grants.gov database of grants is exported to an XML file\"; current extracts dated July 30 - August 5, 2026, each ~77.8-77.9 MB, ZIP-compressed, hosted on S3",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "DOI Grant/Funder IDs (Crossref Funder Registry / Grant Linking System)",
+    "domain": "Science, Research Grants & Research Integrity",
+    "dataset_name": "Crossref Open Funder Registry (Funder IDs) + Funders API",
+    "url": "https://www.crossref.org/services/funder-registry/",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "\"freely-downloadable RDF file\" via GitLab, plus \".csv file of the latest registry\"; CC0-licensed; api.crossref.org/funders shows \"total results\": 45,700, IDs like \"100000001\" mapped to https://doi.org/10.13039/[ID]",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "OSF (Open Science Framework) Registration ID/DOI",
+    "domain": "Science, Research Grants & Research Integrity",
+    "dataset_name": "OSF API v2 (Registrations endpoint)",
+    "url": "https://api.osf.io/v2/",
+    "access_shape": "api-open",
+    "size_class": "medium",
+    "evidence": "Root endpoint returns API version \"2.20\" and a links section pointing to \"nodes, users, collections, and registrations\"; registrations resource live at https://api.osf.io/v2/registrations/",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "MIC (Market Identifier Code)",
+    "domain": "International & Cross-Border Identifiers",
+    "dataset_name": "ISO 10383 Market Identifier Codes (MIC) Registry",
+    "url": "https://www.iso20022.org/market-identifier-codes",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "\"Download the latest list of Market Identifier Codes\" with direct file link https://www.iso20022.org/sites/default/files/ISO10383_MIC/ISO10383_MIC.xlsx, also offered as PDF/CSV/XML+XSD",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "UN Security Council Consolidated Sanctions List",
+    "domain": "International & Cross-Border Identifiers",
+    "dataset_name": "United Nations Security Council Consolidated List",
+    "url": "https://main.un.org/securitycouncil/content/un-sc-consolidated-list (data files served via scsanctions.un.org, e.g. consolidatedLegacyByNAME.html/.xml)",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "\"United Nations Security Council Consolidated List\", generated August 4, 2026, with Section A: Individuals / Section B: Entities and other groups; sample entry \"QDi.007 Name: GEDO HAMDAN AHMED\"",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "UK Sanctions List",
+    "domain": "International & Cross-Border Identifiers",
+    "dataset_name": "UK Sanctions List (FCDO)",
+    "url": "https://www.gov.uk/government/publications/the-uk-sanctions-list",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "\"The UK Sanctions List is now the only source for all UK sanctions designations.\" Downloadable in CSV, XML, ODS, ODT, HTML, Text, PDF",
+    "fragmented": "False"
+  }
+]

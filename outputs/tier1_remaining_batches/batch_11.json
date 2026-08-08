@@ -1,0 +1,110 @@
+[
+  {
+    "dataset_name": "HUD data.hud.gov Multifamily/Assisted Housing data catalog",
+    "domain": "Federal Benefits & Safety Net / Veterans",
+    "url": "https://data.hud.gov",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": "Live fetch of data.hud.gov confirmed it is \"the web presence of HUD's Office of the Chief Data Officer (OCDO)\" with a working \"data catalog\" and featured dataset (\"ACS 5-Year CHAS Estimate Data by County\"), plus a link to \"Explore our Datasets.\""
+  },
+  {
+    "dataset_name": "CMS Medicare Advantage/Part D Contract and Enrollment Data (monthly Contract/Plan/State/County files)",
+    "domain": "Federal Benefits & Safety Net / Veterans",
+    "url": "https://www.cms.gov/data-research/statistics-trends-reports/medicare-advantagepart-d-contract-and-enrollment-data",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "inferred",
+    "evidence": "No page content could be loaded \u2014 cms.gov returned HTTP 403 to automated fetch on every one of 5+ attempted URLs this session (main data page, monthly-enrollment-plan subpage, data.cms.gov, Research-Statistics-Data-and-Systems legacy path)."
+  },
+  {
+    "dataset_name": "OPM FEHB Plan Information / Rate & Enrollment data",
+    "domain": "Federal Benefits & Safety Net / Veterans",
+    "url": "https://www.opm.gov/healthcare-insurance/healthcare/plan-information/",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "confidence": "inferred",
+    "evidence": "opm.gov pages returned HTTP 403 or timed out on every attempt this session (plan-information landing page, all-plans subpage, premiums subpage); no content was loaded."
+  },
+  {
+    "dataset_name": "CMS Qualified Health Plan (QHP) Landscape / Marketplace Public Use Files",
+    "domain": "Federal Benefits & Safety Net / Veterans",
+    "url": "https://www.cms.gov/marketplace/resources/data",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": "cms.gov returned HTTP 403 to automated fetch on every attempt this session; no content was loaded."
+  },
+  {
+    "dataset_name": "FEMA OpenFEMA Individual Assistance datasets (aggregate/de-identified \u2014 no public per-applicant Registration ID)",
+    "domain": "Federal Benefits & Safety Net / Veterans",
+    "url": "https://www.fema.gov/openfema-data-page/housing-assistance-data-owners-v2",
+    "access_shape": "api-open",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "Live OpenFEMA API response (HousingAssistanceOwners v2) returned only county/disaster-level aggregate fields such as \"validRegistrations\": 4, \"totalInspected\": 3, \"totalApprovedIhpAmount\": 5915.91, with a synthetic row id (\"id\": \"bb7bda2c-b74a-4911-9195-9cc07b3d993f\") \u2014 no individual applicant/regis"
+  },
+  {
+    "dataset_name": "State WIC agency authorized-vendor lists (no national USDA-aggregated vendor ID list)",
+    "domain": "Federal Benefits & Safety Net / Veterans",
+    "url": "https://www.cdph.ca.gov/Programs/CFH/DWICSN/Pages/WIC-Vendor-Information.aspx",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": "Attempted fetch of the California CDPH WIC vendor page this session failed with a TLS certificate error (\"unable to verify the first certificate\"), so no page content was actually loaded \u2014 row is based on prior knowledge that state WIC agencies each publish their own authorized-vendor lists."
+  },
+  {
+    "dataset_name": "ORCID Public Data File (annual full-registry dump)",
+    "domain": "Science, Research Grants & Research Integrity",
+    "url": "https://info.orcid.org/documentation/integration-guide/working-with-bulk-data/",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"the public information associated with each user's ORCID record\" \u2014 annual tar.gz files 2013-2025, CC0 license, distributed via Figshare DOIs"
+  },
+  {
+    "dataset_name": "OpenAlex snapshot + REST API",
+    "domain": "Science, Research Grants & Research Integrity",
+    "url": "https://developers.openalex.org/",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"works, authors, sources, institutions, topics, publishers, and funders\" \u2014 full snapshot free quarterly, CC0 license, \"hundreds of millions of records and billions of connections\""
+  },
+  {
+    "dataset_name": "PubMed Baseline / Update Files (MEDLINE XML)",
+    "domain": "Science, Research Grants & Research Integrity",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/download/",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"a complete snapshot of PubMed data\" in XML, released annually via FTP, supplemented by daily update files; \"downloading data from our FTP servers\" requires accepting README Terms and Conditions"
+  },
+  {
+    "dataset_name": "PMC Open Access Subset (bulk FTP/Cloud Service) + PMC-ids.csv.gz crosswalk",
+    "domain": "Science, Research Grants & Research Integrity",
+    "url": "https://pmc.ncbi.nlm.nih.gov/tools/openftlist/",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"XML or plain text format files for 100,000s of articles per package\"; \"Systematic retrieval (or bulk retrieval) of articles through any other automated process is prohibited\" \u2014 only Cloud Service, FTP Service, OAI-PMH, E-Utilities permitted"
+  },
+  {
+    "dataset_name": "Crossref REST API (DOI metadata)",
+    "domain": "Science, Research Grants & Research Integrity",
+    "url": "https://www.crossref.org/documentation/retrieve-metadata/rest-api/",
+    "access_shape": "api-open",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"api.crossref.org\" \u2014 publicly available, no sign-up required; \"dozens of thousands of members from all around the world\" across 167 countries, JSON output, \"polite pool\" via mailto param"
+  },
+  {
+    "dataset_name": "NIH RePORTER API (Project Search)",
+    "domain": "Science, Research Grants & Research Integrity",
+    "url": "https://api.reporter.nih.gov/",
+    "access_shape": "api-open",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "Exposed fields include \"project number, core project number, application ID, serial number\"; JSON in/out, no auth requirement documented, \"no more than one URL request per second\" recommended; pagination capped at offset 14,999 (projects) / 9,999 (publications)"
+  }
+]

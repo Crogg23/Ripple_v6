@@ -12,3 +12,10 @@ models:
       - name: air_pollutant_class_code
         data_tests:
           - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - pgm_sys_id
+              - pollutant_code
+              - air_pollutant_class_code

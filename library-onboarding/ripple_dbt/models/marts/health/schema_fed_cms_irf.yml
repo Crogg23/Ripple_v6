@@ -9,3 +9,6 @@ models:
       - name: telephone_number
         data_tests:
           - not_null
+      - name: ccn
+        data_tests:
+          - unique

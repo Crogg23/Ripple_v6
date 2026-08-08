@@ -2,7 +2,17 @@ version: 2
 
 models:
   - name: politics__fed_doj_epstein_library
+    description: >
+      GRAIN: one row per link found on a DOJ Epstein-library page, per the
+      model's own header comment -- a given href can appear on more than one
+      page, and a page can list many hrefs, so the pair is the real key.
     columns:
       - name: page_url
         data_tests:
           - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - page_url
+              - href

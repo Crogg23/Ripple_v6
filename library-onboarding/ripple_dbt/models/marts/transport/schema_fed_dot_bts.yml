@@ -9,3 +9,6 @@ models:
       - name: state_fips
         data_tests:
           - not_null
+      - name: database_name
+        data_tests:
+          - unique

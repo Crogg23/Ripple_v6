@@ -9,3 +9,7 @@ models:
       - name: client_id
         data_tests:
           - not_null
+      - name: filing_uuid
+        data_tests:
+          - not_null
+          - unique

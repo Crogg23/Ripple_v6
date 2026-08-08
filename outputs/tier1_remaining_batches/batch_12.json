@@ -1,0 +1,101 @@
+[
+  {
+    "dataset_name": "USAspending.gov Assistance Award Data (API + bulk download)",
+    "domain": "Science, Research Grants & Research Integrity",
+    "url": "https://api.usaspending.gov/docs/endpoints",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"/api/v2/download/assistance/\" \"returns a zipped file containing Assistance data\"; \"Endpoints do not currently require any authorization\""
+  },
+  {
+    "dataset_name": "arXiv bulk metadata + full text (S3 / Kaggle / OAI-PMH)",
+    "domain": "Science, Research Grants & Research Integrity",
+    "url": "https://info.arxiv.org/help/bulk_data/index.html",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "Access methods listed: \"arXiv API\", \"DataCite API\", \"Kaggle dataset\" for metadata; \"AWS S3 for PDF and/or (La)TeX source files\"; \"we do not require that commercial projects sign an MOU\""
+  },
+  {
+    "dataset_name": "OSTI.GOV Records API",
+    "domain": "Science, Research Grants & Research Integrity",
+    "url": "https://www.osti.gov/api/v1/docs",
+    "access_shape": "api-open",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"GET /records\" and \"GET /records/{osti_id}\"; results in \"JSON (default), XML, and BibTeX\"; \"No authentication is required\""
+  },
+  {
+    "dataset_name": "GLEIF Level 2 Relationship Data (direct/ultimate parent LEI relationships) \u2014 Relationship Record API + Golden Copy file",
+    "domain": "International & Cross-Border Identifiers",
+    "url": "https://api.gleif.org/api/v1/lei-records/{lei}/ultimate-parent-relationship ; bulk file at https://www.gleif.org/en/lei-data/gleif-golden-copy/download-the-golden-copy",
+    "access_shape": "api-open",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "Live API call returned a real relationship record: \"type\":\"IS_ULTIMATELY_CONSOLIDATED_BY\", status ACTIVE; golden-copy page: \"The Level 2 RR-CDF Golden Copy File contains the Level 2 data to answer the question of 'who owns whom'\""
+  },
+  {
+    "dataset_name": "Base Sirene des entreprises et de leurs \u00e9tablissements (SIREN, SIRET)",
+    "domain": "International & Cross-Border Identifiers",
+    "url": "https://www.data.gouv.fr/fr/datasets/base-sirene-des-entreprises-et-de-leurs-etablissements-siren-siret/",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"Base Sirene des entreprises et de leurs \u00e9tablissements (SIREN, SIRET)\" \u2014 six monthly stock files, ZIP/Parquet, 113.5 MB to 2.7 GB compressed"
+  },
+  {
+    "dataset_name": "FATCA Foreign Financial Institution (FFI) List (IRS)",
+    "domain": "International & Cross-Border Identifiers",
+    "url": "https://www.irs.gov/businesses/corporations/fatca-foreign-financial-institution-list-search-and-download-tool",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"A monthly published list of financial institutions registered, accepted, and issued a Global Intermediary Identification Number (GIIN) in accordance with FATCA regulations.\" \u2014 \"can download the entire list...or search for a particular one by its legal name, GIIN, or country\""
+  },
+  {
+    "dataset_name": "OpenSanctions \"default\" Dataset (consolidated sanctions, PEP, and crime-context entities)",
+    "domain": "International & Cross-Border Identifiers",
+    "url": "https://www.opensanctions.org/datasets/default/",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"Total entities: 4,095,494\" ... \"Targets: 1,283,776\" ... described as \"the broadest available OpenSanctions dataset\" combining sanctions, regulatory and PEP information"
+  },
+  {
+    "dataset_name": "Companies House People with Significant Control (PSC) Register \u2014 Snapshot Data",
+    "domain": "International & Cross-Border Identifiers",
+    "url": "https://download.companieshouse.gov.uk/en_pscdata.html",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"The People with significant control (PSC) snapshot is a downloadable data snapshot containing the full list of PSC's provided to Companies House. Each data file is provided in JSON format.\" ... \"This snapshot is provided free of charge and will not be supported\""
+  },
+  {
+    "dataset_name": "ICIJ Offshore Leaks Database",
+    "domain": "International & Cross-Border Identifiers",
+    "url": "https://offshoreleaks.icij.org/pages/database",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"more than 810,000 offshore entities\" spanning \"more than 80 years up to 2020\", aggregating Offshore Leaks, Panama Papers, Bahamas Leaks, Paradise Papers, and Pandora Papers"
+  },
+  {
+    "dataset_name": "National Tax Agency Corporate Number Publication Site \u2014 bulk download",
+    "domain": "International & Cross-Border Identifiers",
+    "url": "https://www.houjin-bangou.nta.go.jp/download/ (English portal: https://www.houjin-bangou.nta.go.jp/en/)",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"\u524d\u6708\u672b\u6642\u70b9\u3067\u516c\u8868\u3057\u3066\u3044\u308b\u6cd5\u4eba\u7b49\u306e\u6700\u65b0\u60c5\u5831\u3092\u3001\u5168\u56fd\u5206\u53c8\u306f\u90fd\u9053\u5e9c\u770c\u30fb\u56fd\u5916\u306e\u5358\u4f4d\u5225\u306b\u30c0\u30a6\u30f3\u30ed\u30fc\u30c9\u3059\u308b\u3053\u3068\u304c\u3067\u304d\u307e\u3059\u3002\" (national or by-prefecture/overseas downloads of latest published corporate data); formats \"CSV\u5f62\u5f0f\u30fbShift-JIS\", \"CSV\u5f62\u5f0f\u30fbUnicode\", \"XML\u5f62\u5f0f\u30fbUnicode\""
+  },
+  {
+    "dataset_name": "Receita Federal \u2014 Dados P\u00fablicos CNPJ (Cadastro Nacional da Pessoa Jur\u00eddica) bulk files",
+    "domain": "International & Cross-Border Identifiers",
+    "url": "https://dadosabertos.rfb.gov.br/CNPJ/",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "inferred",
+    "evidence": ""
+  }
+]

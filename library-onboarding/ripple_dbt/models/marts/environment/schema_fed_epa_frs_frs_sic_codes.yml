@@ -18,3 +18,11 @@ models:
           - not_null:
               config:
                 severity: warn
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - registry_id
+              - pgm_sys_acnrm
+              - pgm_sys_id
+              - sic_code

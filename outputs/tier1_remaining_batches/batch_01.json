@@ -1,0 +1,110 @@
+[
+  {
+    "dataset_name": "FDA Purple Book Database of Licensed Biological Products (incl. Biological Product Patent Transparency lists)",
+    "domain": "Pharma, Biologics & Medical Devices",
+    "url": "https://purplebooksearch.fda.gov/downloads",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "confidence": "inferred",
+    "evidence": ""
+  },
+  {
+    "dataset_name": "FDA Drug Master Files (DMF) list",
+    "domain": "Pharma, Biologics & Medical Devices",
+    "url": "https://www.fda.gov/drugs/forms-submission-requirements/drug-master-files-dmfs",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": ""
+  },
+  {
+    "dataset_name": "DEA Diversion Control Division -- Controlled Substances by CSA Schedule (Orange Book / ACSCN list)",
+    "domain": "Pharma, Biologics & Medical Devices",
+    "url": "https://www.deadiversion.usdoj.gov/schedules/",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "confidence": "inferred",
+    "evidence": "\"REVIEW THE LIST OF CONTROLLED SUBSTANCES, EXEMPTED LISTS & DEFINITION OF CONTROLLED SUBSTANCE SCHEDULES\""
+  },
+  {
+    "dataset_name": "RCRAInfo \u2014 EPA's national hazardous waste handler database (Handler Reporting Universe)",
+    "domain": "Environment & Natural Resources",
+    "url": "https://echo.epa.gov/tools/data-downloads/rcrainfo-download-summary",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"RCRAInfo is the national program management and inventory system of Resource Conservation and Recovery Act (RCRA) hazardous waste handlers.\" / \"Six comma-separated value (CSV) files comprise the data download.\""
+  },
+  {
+    "dataset_name": "No single federal bulk file of all API-numbered wells; state oil & gas commission well databases hold the full universe. USGS's Documented Unplugged Orphaned Oil and Gas Well Dataset is a partial federal aggregation (orphaned wells only); BOEM Well Data covers federal offshore wells.",
+    "domain": "Environment & Natural Resources",
+    "url": "https://www.usgs.gov/data/united-states-documented-unplugged-orphaned-oil-and-gas-well-dataset",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"United States Documented Unplugged Orphaned Oil and Gas Well Dataset\" \u2014 \"117,672 orphaned wells across 27 states\" \u2014 \"Includes American Petroleum Institute (API) number, or other identification number\""
+  },
+  {
+    "dataset_name": "USGS National Water Information System (NWIS) / Water Data for the Nation",
+    "domain": "Environment & Natural Resources",
+    "url": "https://waterdata.usgs.gov/nwis",
+    "access_shape": "api-open",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"Water Data for the Nation\" \u2014 \"Over 135 years of water data from more than one million monitoring locations\""
+  },
+  {
+    "dataset_name": "National Response Center (NRC) spills and incident reports database",
+    "domain": "Environment & Natural Resources",
+    "url": "https://nrc.uscg.mil/",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "(via fedcenter.gov summary page for NRC) \"the sole federal point of contact for reporting oil and chemical spills\" \u2014 \"download Excel files of reports that have been made to the Center\""
+  },
+  {
+    "dataset_name": "Water Quality Portal (WQP) \u2014 combines WQX/STORET and NWIS",
+    "domain": "Environment & Natural Resources",
+    "url": "https://www.waterqualitydata.us/",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"the premiere source of discrete water-quality data in the United States and beyond\" \u2014 aggregates data from USGS, EPA, and \"over 400 state, federal, tribal, and local agencies\" \u2014 \"Site ID\" listed as an advanced search field"
+  },
+  {
+    "dataset_name": "USGS Geographic Names Information System (GNIS)",
+    "domain": "Environment & Natural Resources",
+    "url": "https://www.usgs.gov/us-board-on-geographic-names/download-gnis-data",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"Download GNIS Data\" \u2014 formats: \"Pipe-delimited text (TXT) files,\" \"GIS file geodatabase (GDB),\" \"GeoPackage (GPKG)\""
+  },
+  {
+    "dataset_name": "Integrated Taxonomic Information System (ITIS)",
+    "domain": "Environment & Natural Resources",
+    "url": "https://www.itis.gov/",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"authoritative taxonomic information on plants, animals, fungi, and microbes of North America and the world\" \u2014 \"Get ITIS Data\" section featuring \"Full Database Download\" plus \"ITIS Solr Web Services\""
+  },
+  {
+    "dataset_name": "EPA ICIS-Air (successor to AFS/AIRS) and ICIS-NPDES (successor to PCS) bulk downloads via ECHO",
+    "domain": "Environment & Natural Resources",
+    "url": "https://echo.epa.gov/tools/data-downloads",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"ICIS-Air Dataset (ZIP)\" \u2014 \"Data from EPA's Integrated Compliance Information System (ICIS) for Clean Air Act Stationary Sources\" which \"replaces the legacy Air Facility System (AFS), which is available as frozen historical data\" \u2014 \"ICIS-NPDES National Dataset (Part 1)\" and \"Part 2 - effluent violat"
+  },
+  {
+    "dataset_name": "FDIC BankFind Suite -- Summary of Deposits (SOD) branch office data / Bulk Data Download",
+    "domain": "Banking & Depository Institutions",
+    "url": "https://banks.data.fdic.gov/bankfind-suite/bulkData/bulkDataDownload",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": "BankFind Suite - Bulk Data Download ... Download Deposit Market Share reports, branch office deposits as of June 30"
+  }
+]

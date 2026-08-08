@@ -1,0 +1,79 @@
+[
+  {
+    "model": "health__fed_cms_medicare_dialysis_facilities",
+    "verdict": "wrong_key",
+    "note": "The npi not_null test's own description states the real table has 12,456,456 rows, but ~7,557 facilities (confirmed by the sibling health__fed_cms_dialysis roster mart) x a plausible ~50 measures x ~15 years only accounts for roughly 5-6M rows, and the SQL selects a MODALITY column (in-center HD / home HD / PD) that CMS dialysis quality measures are known to split on -- so modality is very likely a missing grain column the agent never checked, and ccn+measure_id+year alone would false-fail on legitimate same-measure-different-modality rows.",
+    "sql_path": "models\\marts\\health\\health__fed_cms_medicare_dialysis_facilities.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_medicare_dialysis_facilities.yml"
+  },
+  {
+    "model": "health__fed_cms_medicare_durable_medical_equipment_devices_supplies_by_suppl",
+    "verdict": "wrong_key",
+    "note": "The SQL selects SUPLR_RENTL_IND (rental/purchase indicator), which is exactly the field the CMS DMEPOS-by-Supplier PUF uses to report the same supplier+HCPCS pair twice (once as a rental, once as a purchase), so the test's key of suplr_npi+hcpcs_cd would wrongly flag that legitimate rental-vs-purchase pair as a duplicate -- the indicator column needs to be in the key.",
+    "sql_path": "models\\marts\\health\\health__fed_cms_medicare_durable_medical_equipment_devices_supplies_by_suppl.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_medicare_durable_medical_equipment_devices_supplies_by_suppl.yml"
+  },
+  {
+    "model": "labor__fed_osha_ita_300a_summary_2025",
+    "verdict": "wrong_key",
+    "note": "The claim that 'sibling 2023/2024 marts already test both id and establishment_id as unique' is false for 2023 -- schema_fed_osha_ita_300a_summary_2023.yml (same generator, same source family, checked directly) tests establishment_id not_null only, never unique -- which is real evidence within this repo that establishment_id can legitimately repeat within a filing year, so the added independent 'unique' test on establishment_id (on top of id) risks false-failing on legitimate repeats rather than catching a real load bug.",
+    "sql_path": "models\\marts\\labor\\labor__fed_osha_ita_300a_summary_2025.sql",
+    "schema_path": "ripple://models\\marts\\labor\\schema_fed_osha_ita_300a_summary_2025.yml"
+  },
+  {
+    "model": "justice__intl_eu_sanctions",
+    "verdict": "wrong_key",
+    "note": "The chosen key is a verbatim copy of the batch file's hint columns and omits programme/leba_numtitle/eu_ref_num/date_file, which are also present in the SELECT and are exactly the fields that distinguish one EU-regulation listing from another -- a person re-sanctioned under a second regulation with identical entity/alias/address/ID/citizenship sub-records would collide on this key and read as a false duplicate.",
+    "sql_path": "models\\marts\\justice\\justice__intl_eu_sanctions.sql",
+    "schema_path": "ripple://models\\marts\\justice\\schema_intl_eu_sanctions.yml"
+  },
+  {
+    "model": "finance__intl_wb_ids",
+    "verdict": "wrong_key",
+    "note": "The SQL wraps COUNTRY_CODE and COUNTERPART_AREA_CODE (and even COUNTRY_NAME/COUNTERPART_AREA_NAME) in try_to_number(), but World Bank IDS codes are alpha ISO-style strings (e.g. 'USA'), so those columns almost certainly evaluate to NULL for real data -- the test as coded then effectively tests uniqueness of (NULL, NULL, series_code), which will spuriously collide across every different country/counterpart-area sharing the same series_code; the agent's own reasoning flags this exact bug but ships the test on the broken columns anyway instead of routing around it or fixing the cast.",
+    "sql_path": "models\\marts\\finance\\finance__intl_wb_ids.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_intl_wb_ids.yml"
+  },
+  {
+    "model": "education__fed_google_polads_advertiser_geo_spend",
+    "verdict": "wrong_key",
+    "note": "Ran the test live and it FAILS with 14,695 duplicate groups; root cause is the SQL's try_to_number(COUNTRY) and try_to_number(COUNTRY_SUBDIVISION_PRIMARY) casts, which turn every row's country/subdivision code (alphanumeric, e.g. 'US') into NULL, so the added key can never actually discriminate by geography despite naming those columns.",
+    "sql_path": "models\\marts\\education\\education__fed_google_polads_advertiser_geo_spend.sql",
+    "schema_path": "ripple://models\\marts\\education\\schema_fed_google_polads_advertiser_geo_spend.yml"
+  },
+  {
+    "model": "education__fed_google_polads_creative_id_mapping",
+    "verdict": "wrong_key",
+    "note": "Ran the test live and it FAILS with 11,252 duplicate values; queried the underlying data directly and found oldcreativeid legitimately/literally repeats up to 185 times with the exact same newcreativeid each time (a genuine full-row duplication in the source), so single-column uniqueness on oldcreativeid is demonstrably false, not just a grain mismatch -- this is exactly the COUNT(DISTINCT)-before-trusting-a-key trap CLAUDE.md warns about.",
+    "sql_path": "models\\marts\\education\\education__fed_google_polads_creative_id_mapping.sql",
+    "schema_path": "ripple://models\\marts\\education\\schema_fed_google_polads_creative_id_mapping.yml"
+  },
+  {
+    "model": "education__fed_google_polads_geo_spend",
+    "verdict": "wrong_key",
+    "note": "Ran the test live and it fails; queried directly and found country, country_subdivision_primary, and country_subdivision_secondary are ALL NULL for every one of the 1,289 rows because of the same try_to_number() cast bug as advertiser_geo_spend, so the new schema file's key columns carry no real discriminating data at all.",
+    "sql_path": "models\\marts\\education\\education__fed_google_polads_geo_spend.sql",
+    "schema_path": null
+  },
+  {
+    "model": "environment__fed_epa_air_emissions_poll_rpt_combined_emissions",
+    "verdict": "wrong_key",
+    "note": "Ran the added test live: it FAILS with 11,774 duplicate groups on 500,000 rows; adding the SQL's own pgm_sys_acrnm column to the key did not fix it, but testing against every column in the row showed only 1,493 true full-row duplicates exist -- meaning the remaining ~10,000+ failures are legitimate distinct records (differing in annual_emission/unit_of_measure/pgm_sys_acrnm) that this key incorrectly collapses together, the exact false-fail-on-legitimate-repeats trap the repo has hit before.",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_air_emissions_poll_rpt_combined_emissions.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_air_emissions_poll_rpt_combined_emissions.yml"
+  },
+  {
+    "model": "environment__fed_epa_icis_air_icis_air_fces_pces",
+    "verdict": "wrong_key",
+    "note": "Ran the added test live and it FAILS with 498 duplicate groups; drilled into an example (pgm_sys_id=100000000000000031, activity_id=3601460207) and found 4 real rows differing only in activity_purpose_desc ('Core Program', 'Case Development', 'Applicability Determination', 'Citizen Complaint/Tip') and comp_monitor_type_code, meaning a single compliance activity legitimately serves multiple purposes and pgm_sys_id+activity_id alone is not the grain, contrary to the claimed 'EPA's own composite primary key' reasoning.",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_icis_air_icis_air_fces_pces.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_icis_air_icis_air_fces_pces.yml"
+  },
+  {
+    "model": "health__fed_cdc_health_insurance",
+    "verdict": "wrong_key",
+    "note": "Live query shows the claimed 6-column key (indicator, c_group, state, subgroup, phase, time_period) has 72 real duplicate groups (612 rows): when phase='-1' the time_period field resets to '1' across many genuinely different survey windows (time_period_label shows 'July 22 - Aug 18, 2020' vs 'Nov 27, 2023 - Jan 8, 2024' etc. sharing the same key) -- adding time_period_label makes it perfectly unique (16,056/16,056), so the coverage-period label should have been in the key.",
+    "sql_path": "models\\marts\\health\\health__fed_cdc_health_insurance.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cdc_health_insurance.yml"
+  }
+]

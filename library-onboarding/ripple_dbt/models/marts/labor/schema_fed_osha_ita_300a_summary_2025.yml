@@ -2,7 +2,15 @@ version: 2
 
 models:
   - name: labor__fed_osha_ita_300a_summary_2025
+    description: >
+      GRAIN: one row per establishment for this filing-year file (matches the
+      sibling 2023/2024 OSHA ITA 300A mart tests -- each year's file is a
+      separate table, so establishment_id is unique within it, not just id).
     columns:
+      - name: id
+        data_tests:
+          - not_null
+          - unique
       - name: establishment_id
         data_tests:
           - not_null

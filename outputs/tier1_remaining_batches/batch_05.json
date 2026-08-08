@@ -1,0 +1,110 @@
+[
+  {
+    "dataset_name": "ICE ERO Field Offices and Areas of Responsibility \u2014 list and shapefiles (Deportation Data Project)",
+    "domain": "Immigration & Border",
+    "url": "https://deportationdata.org/data/processed/ice-offices.html",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "confidence": "inferred",
+    "evidence": "\"All actions can be attributed to one of 25 ICE field offices, representing varying amounts of the country from a small number of counties to several states... the Deportation Data Project provides a list and shapefiles of the areas of responsibility.\" (ICE data-introduction PDF, loaded directly)"
+  },
+  {
+    "dataset_name": "House Clerk Financial Disclosure Reports \u2014 annual ZIP/XML index (disclosures-clerk.house.gov), filed via fd.house.gov portal",
+    "domain": "Politics, Elections & Lobbying",
+    "url": "https://disclosures-clerk.house.gov/FinancialDisclosure",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": ""
+  },
+  {
+    "dataset_name": "DOL Office of Labor-Management Standards (OLMS) Online Public Disclosure Room \u2014 LM-2/LM-3/LM-4 union financial reports, yearly pipe-delimited data",
+    "domain": "Politics, Elections & Lobbying",
+    "url": "https://www.dol.gov/agencies/olms/data",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": ""
+  },
+  {
+    "dataset_name": "EU Transparency Register (Joint Transparency Register Secretariat) open dataset",
+    "domain": "Politics, Elections & Lobbying",
+    "url": "https://open-data.europa.eu/en/data/dataset/transparency-register",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": ""
+  },
+  {
+    "dataset_name": "FCC Online Public Inspection File \u2014 Political File (broadcast station political ad disclosures)",
+    "domain": "Politics, Elections & Lobbying",
+    "url": "https://publicfiles.fcc.gov/developer",
+    "access_shape": "api-open",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "We built this site entirely off the APIs (Application Programming Interfaces) below and we want to share them with you."
+  },
+  {
+    "dataset_name": "Open Civic Data Division Identifiers (OCD-ID) \u2014 opencivicdata/ocd-division-ids reference repository",
+    "domain": "Politics, Elections & Lobbying",
+    "url": "https://github.com/opencivicdata/ocd-division-ids",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "The goal of this project is to assign somewhat predictable and globally unique identifiers to political divisions."
+  },
+  {
+    "dataset_name": "FAA Airmen Certification Database (Releasable Airman File)",
+    "domain": "Transportation -- Aviation & Rail",
+    "url": "https://www.faa.gov/licenses_certificates/airmen_certification/releasable_airmen_download",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "inferred",
+    "evidence": "Search summary of the FAA page: \"The FAA's Airmen Certification Branch provides downloadable airmen database files...available in either fixed length ASCII text format (TXT) or comma-delimited text format (CSV)\" and \"the FAA updates these files monthly.\" Direct WebFetch of the page itself returned H"
+  },
+  {
+    "dataset_name": "FTA National Transit Database (NTD) \u2014 Transit Agency Profiles / Annual Database Agency Information",
+    "domain": "Transportation -- Aviation & Rail",
+    "url": "https://www.transit.dot.gov/ntd/transit-agency-profiles",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "confidence": "inferred",
+    "evidence": "Search summary: \"The NTDID is a four-digit number unique to each transit system reporting to the NTD, where the first digit represents the FTA Region number...and the remaining three digits are assigned sequentially\" and \"The data are available free of charge at the FTA National Transit Database.\" D"
+  },
+  {
+    "dataset_name": "DOT/PHMSA Hazardous Materials Table (49 CFR \u00a7172.101) \u2014 UN/NA identification number column",
+    "domain": "Transportation -- Aviation & Rail",
+    "url": "https://www.phmsa.dot.gov/regulations/title49/section/172.101",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "confidence": "inferred",
+    "evidence": "Search summary: \"Identification numbers preceded by the letters 'UN' are associated with proper shipping names appropriate for both domestic and international transportation, while those preceded by the letters 'NA' are only used in domestic transportation and are not recognized internationally, exc"
+  },
+  {
+    "dataset_name": "UN/LOCODE full code list (UNECE)",
+    "domain": "Transportation -- Motor Carrier & Maritime",
+    "url": "https://unece.org/trade/cefact/UNLOCODE-Download",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": "Data comes from the UNECE UN/LOCODE Download page, released at least once a year."
+  },
+  {
+    "dataset_name": "AccessGUDID (FDA/NLM Global Unique Device Identification Database)",
+    "domain": "Consumer Protection & Product Safety",
+    "url": "https://accessgudid.nlm.nih.gov/",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"Download all the GUDID data at once\" -- full releases plus update files, plus a separate API and RSS update feed."
+  },
+  {
+    "dataset_name": "NHTSA Recalls Database (api.nhtsa.gov Recalls API / NHTSA.gov Recall Search)",
+    "domain": "Consumer Protection & Product Safety",
+    "url": "https://api.nhtsa.gov/recalls/campaignNumber",
+    "access_shape": "api-open",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "Documented example endpoint \"https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=12V176000\" returning recall info keyed by campaign number; NHTSA's own datasets/APIs hub confirms \"the NHTSA Application Programming Interface (API) is being used by the dynamic search applications within the NH"
+  }
+]

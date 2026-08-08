@@ -6,3 +6,23 @@ models:
       - name: incidentyear
         data_tests:
           - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - incidentyear
+              - incidentmonth
+              - incidentdaterange
+              - incidentdatestart
+              - incidentdateend
+              - what
+              - c_where
+              - eventcategory
+              - eventcategory2
+              - apparentgoal1
+              - apparentgoal2
+              - targettype
+              - targettype2
+              - disposableagentsinvolved
+              - for_discussion
+              - note

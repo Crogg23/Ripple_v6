@@ -1,0 +1,167 @@
+[
+  {
+    "model": "consumer_safety__fed_cpsc_neiss",
+    "sql_path": "models\\marts\\consumer_safety\\consumer_safety__fed_cpsc_neiss.sql",
+    "schema_path": "ripple://models\\marts\\consumer_safety\\schema_fed_cpsc_neiss.yml",
+    "columns": [
+      "sex_code"
+    ],
+    "domain": "consumer_safety"
+  },
+  {
+    "model": "consumer_safety__fed_nhtsa_investigations",
+    "sql_path": "models\\marts\\consumer_safety\\consumer_safety__fed_nhtsa_investigations.sql",
+    "schema_path": "ripple://models\\marts\\consumer_safety\\schema_fed_nhtsa_investigations.yml",
+    "columns": [
+      "nhtsa_action_number",
+      "recall_number"
+    ],
+    "domain": "consumer_safety"
+  },
+  {
+    "model": "corporate_registry__intl_es_borme",
+    "sql_path": "models\\marts\\corporate_registry\\corporate_registry__intl_es_borme.sql",
+    "schema_path": "ripple://models\\staging\\intl_es_borme\\schema.yml",
+    "columns": [
+      "company_id",
+      "country",
+      "date",
+      "borme_issue_number",
+      "section",
+      "cve",
+      "company_name",
+      "province",
+      "act_type",
+      "act_description",
+      "pdf_url",
+      "act_month",
+      "act_year",
+      "source_id",
+      "_ingested_at",
+      "_source_run_id"
+    ],
+    "domain": "corporate_registry"
+  },
+  {
+    "model": "criminal_justice__fed_bjs_data",
+    "sql_path": "models\\marts\\criminal_justice\\criminal_justice__fed_bjs_data.sql",
+    "schema_path": "ripple://models\\staging\\fed_bjs_data\\schema.yml",
+    "columns": [
+      "topic",
+      "description",
+      "unit_of_enumeration",
+      "publication_date",
+      "years_available",
+      "download_url",
+      "data_tool_url",
+      "_ingested_at",
+      "_source_run_id"
+    ],
+    "domain": "criminal_justice"
+  },
+  {
+    "model": "economics__fed_bls_qcew",
+    "sql_path": "models\\marts\\economics\\economics__fed_bls_qcew.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_fed_bls_qcew.yml",
+    "columns": [
+      "area_fips",
+      "state_fips",
+      "ownership_code",
+      "industry_code",
+      "aggregation_level_code",
+      "size_code",
+      "disclosure_code"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__fed_foreignassistance",
+    "sql_path": "models\\marts\\economics\\economics__fed_foreignassistance.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_fed_foreignassistance.yml",
+    "columns": [
+      "country"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__fed_irs_auto_revocations",
+    "sql_path": "models\\marts\\economics\\economics__fed_irs_auto_revocations.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_fed_irs_auto_revocations.yml",
+    "columns": [
+      "zip_code"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__fed_pbgc_data",
+    "sql_path": "models\\marts\\economics\\economics__fed_pbgc_data.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_fed_pbgc_data.yml",
+    "columns": [
+      "data_year"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__fed_sba_loans",
+    "sql_path": "models\\marts\\economics\\economics__fed_sba_loans.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_fed_sba_loans.yml",
+    "columns": [
+      "naics_code"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__fed_sec_edgar",
+    "sql_path": "models\\marts\\economics\\economics__fed_sec_edgar.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_fed_sec_edgar.yml",
+    "columns": [
+      "cik"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__fed_treasury_dts_deposits",
+    "sql_path": "models\\marts\\economics\\economics__fed_treasury_dts_deposits.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_fed_treasury_dts_deposits.yml",
+    "columns": [
+      "record_date"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__fed_usaspending_assistance_full",
+    "sql_path": "models\\marts\\economics\\economics__fed_usaspending_assistance_full.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_fed_usaspending_assistance_full.yml",
+    "columns": [
+      "modification_number",
+      "sai_number",
+      "awarding_agency_code",
+      "awarding_sub_agency_code",
+      "awarding_office_code",
+      "funding_agency_code",
+      "funding_sub_agency_code",
+      "funding_office_code",
+      "recipient_country_code",
+      "recipient_city_code",
+      "prime_award_transaction_recipient_county_fips_code",
+      "prime_award_transaction_recipient_state_fips_code",
+      "recipient_state_code",
+      "recipient_zip_code",
+      "recipient_zip_last_4_code",
+      "recipient_foreign_postal_code",
+      "primary_place_of_performance_country_code",
+      "primary_place_of_performance_code",
+      "prime_award_transaction_place_of_performance_county_fips_code",
+      "prime_award_transaction_place_of_performance_state_fips_code",
+      "cfda_number",
+      "funding_opportunity_number",
+      "assistance_type_code",
+      "business_funds_indicator_code",
+      "business_types_code",
+      "correction_delete_indicator_code",
+      "action_type_code",
+      "record_type_code"
+    ],
+    "domain": "economics"
+  }
+]

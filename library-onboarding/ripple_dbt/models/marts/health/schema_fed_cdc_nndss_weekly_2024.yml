@@ -6,3 +6,11 @@ models:
       - name: reporting_area
         data_tests:
           - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - reporting_area
+              - current_mmwr_year
+              - mmwr_week
+              - label

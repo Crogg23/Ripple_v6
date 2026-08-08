@@ -2,6 +2,16 @@ version: 2
 
 models:
   - name: finance__fed_epa_icis_fec_icis_fec_epa_inspections
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - pgm_sys_acrnm
+              - pgm_sys_id
+              - activity_id
+              - activity_type_code
+              - statute_code
+              - law_section_code
     columns:
       - name: pgm_sys_id
         data_tests:

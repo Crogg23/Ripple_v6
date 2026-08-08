@@ -1,0 +1,87 @@
+[
+  {
+    "dataset_name": "ISNI Registry (public search + members-only bulk data)",
+    "domain": "Science, Research Grants & Research Integrity",
+    "url": "https://isni.org/"
+  },
+  {
+    "dataset_name": "ORI Case Summaries (research misconduct findings)",
+    "domain": "Science, Research Grants & Research Integrity",
+    "url": "https://ori.hhs.gov/case_summary"
+  },
+  {
+    "dataset_name": "OHRP Assurance/IORG/IRB Search Database",
+    "domain": "Science, Research Grants & Research Integrity",
+    "url": "https://ohrp.cit.nih.gov/search/search.aspx"
+  },
+  {
+    "dataset_name": "NASA NSPIRES (Solicitation and Proposal Integrated Review and Evaluation System)",
+    "domain": "Science, Research Grants & Research Integrity",
+    "url": "https://nspires.nasaprs.com/external/"
+  },
+  {
+    "dataset_name": "USDA APHIS Animal Welfare Act licensing/registration and inspection reports",
+    "domain": "Science, Research Grants & Research Integrity",
+    "url": "https://www.aphis.usda.gov/animal-welfare"
+  },
+  {
+    "dataset_name": "CIRM Awards Database",
+    "domain": "Science, Research Grants & Research Integrity",
+    "url": "https://www.cirm.ca.gov/our-progress/awards"
+  },
+  {
+    "dataset_name": "RRID Portal / SciCrunch Resource Identification",
+    "domain": "Science, Research Grants & Research Integrity",
+    "url": "https://www.rrids.org/"
+  },
+  {
+    "dataset_name": "OLAW Assured Institutions Look Up Tool",
+    "domain": "Science, Research Grants & Research Integrity",
+    "url": "https://grants.nih.gov/policy-and-compliance/policy-topics/animal-welfare"
+  },
+  {
+    "dataset_name": "NASA Technical Reports Server (NTRS)",
+    "domain": "Science, Research Grants & Research Integrity",
+    "url": "https://ntrs.nasa.gov/"
+  },
+  {
+    "dataset_name": "database of Genotypes and Phenotypes (dbGaP)",
+    "domain": "Science, Research Grants & Research Integrity",
+    "url": "https://dbgap.ncbi.nlm.nih.gov/home"
+  },
+  {
+    "dataset_name": "China National Enterprise Credit Information Publicity System (\u56fd\u5bb6\u4f01\u4e1a\u4fe1\u7528\u4fe1\u606f\u516c\u793a\u7cfb\u7edf) \u2014 Unified Social Credit Identifier registry",
+    "domain": "International & Cross-Border Identifiers",
+    "url": "http://www.gsxt.gov.cn/ (primary lookup portal); background at https://en.wikipedia.org/wiki/Unified_Social_Credit_Code"
+  },
+  {
+    "dataset_name": "BIC (Business Identifier Code) Directory \u2014 ISO 9362 Registry, maintained by SWIFT",
+    "domain": "International & Cross-Border Identifiers",
+    "url": "https://www.swift.com/standards/data-standards/bic-business-identifier-code"
+  },
+  {
+    "dataset_name": "EU Transparency Register (register of interest representatives)",
+    "domain": "International & Cross-Border Identifiers",
+    "url": "https://transparency-register.europa.eu/index_en"
+  },
+  {
+    "dataset_name": "EU DG Competition Case Search (merger \"M\", state aid \"SA\", antitrust, and foreign-subsidies \"InstrumentFS\" case numbers)",
+    "domain": "International & Cross-Border Identifiers",
+    "url": "https://competition-cases.ec.europa.eu/search"
+  },
+  {
+    "dataset_name": "National Ultimate Beneficial Ownership (UBO) registers under EU AML directives \u2014 fragmented per member state; public access narrowed after the Nov 2022 CJEU ruling",
+    "domain": "International & Cross-Border Identifiers",
+    "url": "https://en.wikipedia.org/wiki/Beneficial_ownership (overview); e.g. Poland CRBR, Netherlands KVK UBO-register"
+  },
+  {
+    "dataset_name": "World Bank Listing of Ineligible Firms and Individuals (Debarred & Cross-Debarred Firms)",
+    "domain": "International & Cross-Border Identifiers",
+    "url": "https://www.worldbank.org/en/projects-operations/procurement/debarred-firms"
+  },
+  {
+    "dataset_name": "Common Code (jointly issued by Clearstream Banking and Euroclear Bank for internationally cleared securities)",
+    "domain": "International & Cross-Border Identifiers",
+    "url": "https://www.clearstream.com (Codelist reference-data application referenced on the homepage; no dedicated public Common Code page located)"
+  }
+]

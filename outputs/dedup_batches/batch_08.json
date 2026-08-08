@@ -1,0 +1,121 @@
+[
+  {
+    "model": "health__fed_cms_irf",
+    "sql_path": "models\\marts\\health\\health__fed_cms_irf.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_irf.yml",
+    "columns": [
+      "zip_code",
+      "telephone_number"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_ltch",
+    "sql_path": "models\\marts\\health\\health__fed_cms_ltch.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_ltch.yml",
+    "columns": [
+      "zip_code",
+      "telephone_number"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_medicare_dialysis_facilities",
+    "sql_path": "models\\marts\\health\\health__fed_cms_medicare_dialysis_facilities.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_medicare_dialysis_facilities.yml",
+    "columns": [
+      "npi",
+      "measure_id"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_medicare_durable_medical_equipment_devices_supplies_by_suppl",
+    "sql_path": "models\\marts\\health\\health__fed_cms_medicare_durable_medical_equipment_devices_supplies_by_suppl.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_medicare_durable_medical_equipment_devices_supplies_by_suppl.yml",
+    "columns": [
+      "suplr_npi",
+      "suplr_prvdr_state_fips",
+      "rbcs_id"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_medicare_inpatient_hospitals_by_provider",
+    "sql_path": "models\\marts\\health\\health__fed_cms_medicare_inpatient_hospitals_by_provider.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_medicare_inpatient_hospitals_by_provider.yml",
+    "columns": [
+      "rndrng_prvdr_state_fips"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_medicare_inpatient_hospitals_by_provider_and_service",
+    "sql_path": "models\\marts\\health\\health__fed_cms_medicare_inpatient_hospitals_by_provider_and_service.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_medicare_inpatient_hospitals_by_provider_and_service.yml",
+    "columns": [
+      "rndrng_prvdr_state_fips"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_medicare_outpatient_hospitals_by_provider_and_service",
+    "sql_path": "models\\marts\\health\\health__fed_cms_medicare_outpatient_hospitals_by_provider_and_service.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_medicare_outpatient_hospitals_by_provider_and_service.yml",
+    "columns": [
+      "rndrng_prvdr_state_fips"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_medicare_physician_other_practitioners_by_provider_and_servi",
+    "sql_path": "models\\marts\\health\\health__fed_cms_medicare_physician_other_practitioners_by_provider_and_servi.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_medicare_physician_other_practitioners_by_provider_and_servi.yml",
+    "columns": [
+      "rndrng_npi",
+      "rndrng_prvdr_state_fips"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_nadac",
+    "sql_path": "models\\marts\\health\\health__fed_cms_nadac.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_nadac.yml",
+    "columns": [
+      "ndc",
+      "explanation_code"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_nursing_home_deficiencies",
+    "sql_path": "models\\marts\\health\\health__fed_cms_nursing_home_deficiencies.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_nursing_home_deficiencies.yml",
+    "columns": [
+      "zip_code",
+      "deficiency_tag_number",
+      "scope_severity_code"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_nursing_home_fire_deficiencies",
+    "sql_path": "models\\marts\\health\\health__fed_cms_nursing_home_fire_deficiencies.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_nursing_home_fire_deficiencies.yml",
+    "columns": [
+      "zip_code",
+      "deficiency_tag_number",
+      "scope_severity_code"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_nursing_home_penalties",
+    "sql_path": "models\\marts\\health\\health__fed_cms_nursing_home_penalties.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_nursing_home_penalties.yml",
+    "columns": [
+      "zip_code"
+    ],
+    "domain": "health"
+  }
+]

@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: politics__intl_freedomhouse
+    columns:
+      - name: country_territory
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - country_territory
+              - edition

@@ -6,3 +6,6 @@ models:
       - name: cik
         data_tests:
           - not_null
+      - name: accessionnumber
+        data_tests:
+          - unique

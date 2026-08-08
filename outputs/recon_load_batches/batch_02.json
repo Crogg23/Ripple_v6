@@ -1,0 +1,112 @@
+[
+  {
+    "id_name": "HMDA Legacy Respondent ID (Agency Code + Respondent ID)",
+    "domain": "Banking & Depository Institutions",
+    "dataset_name": "HMDA Legacy Panel/LAR data (2017 and prior), identified by Agency Code + Respondent ID; ARID2017-to-LEI reference table",
+    "url": "https://ffiec.cfpb.gov/documentation/faq/identifiers-faq",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "An institution's unique identifier is the concatenation of Agency Code and Respondent ID.",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "Federal Home Loan Bank (FHLB) Member ID",
+    "domain": "Banking & Depository Institutions",
+    "dataset_name": "FHFA Federal Home Loan Bank (FHLBank) Membership Data (quarterly)",
+    "url": "https://www.fhfa.gov/data/fhlb-membership",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "Consistent with the Open Government Data Act and other federal requirements, FHFA publishes FHLBank membership listings on a quarterly basis.",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "PCAOB Firm ID",
+    "domain": "Securities, Investment Funds & Markets",
+    "dataset_name": "PCAOB Registered Firms directory / AuditorSearch",
+    "url": "https://pcaobus.org/resources/auditorsearch",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "\"Find firms currently registered with the PCAOB by name, location or audit report activity.\" and \"Download the entire data set (updated daily) from AuditorSearch.\"",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "Global Intermediary Identification Number",
+    "domain": "Securities, Investment Funds & Markets",
+    "dataset_name": "IRS FATCA Foreign Financial Institution (FFI) List",
+    "url": "https://www.irs.gov/businesses/corporations/fatca-foreign-financial-institution-list-search-and-download-tool",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "\"A monthly published list of financial institutions registered, accepted, and issued a Global Intermediary Identification Number (GIIN).\" ... can \"download the entire list of financial institutions or search for a particular one.\"",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "FINRA Market Participant Identifier",
+    "domain": "Securities, Investment Funds & Markets",
+    "dataset_name": "Nasdaq/FINRA Market Participant ID (MPID) List",
+    "url": "https://www.nasdaqtrader.com/dynamic/Symdir/mpidlist.txt",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "\"MPID|MP Type|Name|Location|Telephone|NASDAQ Member|FINRA Member|NASDAQ BX Member|PSX Participant\" (header row of the loaded file)",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "PCAOB Form AP Engagement Partner ID",
+    "domain": "Securities, Investment Funds & Markets",
+    "dataset_name": "PCAOB AuditorSearch (Form AP engagement partner data)",
+    "url": "https://pcaobus.org/resources/auditorsearch",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "\"AuditorSearch is a public database of engagement partners and audit firms participating in audits of U.S. public companies.\" Data comes from \"Form APs filed by registered firms.\" \"Download the entire data set (updated daily) from AuditorSearch.\"",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "Market Identifier Code",
+    "domain": "Securities, Investment Funds & Markets",
+    "dataset_name": "ISO 10383 Market Identifier Code (MIC) registry",
+    "url": "https://www.iso20022.org/market-identifier-codes",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "Downloadable in \"Excel format, PDF Format, Comma Separated Values, Extended Markup Language and Schema.\" \"The MIC list is published on the second Monday of the month or the following business day if it falls on a public holiday\" and \"modifications become effective on the fourth Monday of the month.\"",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "UN Security Council Consolidated Sanctions List reference number",
+    "domain": "Financial Crimes, Sanctions & AML",
+    "dataset_name": "United Nations Security Council Consolidated List (sanctions)",
+    "url": "https://main.un.org/securitycouncil/en/content/un-sc-consolidated-list",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "\"Source data: scsanctions.un.org \u00b7 XML\" (OpenSanctions un_sc_sanctions dataset page, mirroring the official UN source)",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "FATCA Global Intermediary Identification Number",
+    "domain": "Financial Crimes, Sanctions & AML",
+    "dataset_name": "IRS FATCA Foreign Financial Institution (FFI) List",
+    "url": "https://www.irs.gov/businesses/corporations/fatca-foreign-financial-institution-list-search-and-download-tool",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "\"A monthly published list of financial institutions registered, accepted, and issued a Global Intermediary Identification Number (GIIN)...\" and \"download the entire list...in CSV and XML formats. No login or password is required.\"",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "UK OFSI Consolidated List of Financial Sanctions Targets reference number",
+    "domain": "Financial Crimes, Sanctions & AML",
+    "dataset_name": "UK Sanctions List (successor to the OFSI Consolidated List of Financial Sanctions Targets)",
+    "url": "https://www.gov.uk/government/publications/the-uk-sanctions-list",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "\"The OFSI Consolidated List of Asset Freeze Targets closed on Wednesday 28 January 2026 and is no longer being updated.\" \"The UK Sanctions List is now the only source for all UK sanctions designations.\" Formats offered: \"ODT, ODS, XML, HTML, Text, CSV, PDF format UK Sanctions List\"",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "OCC National Bank Charter Number",
+    "domain": "Corporate Registration & Beneficial Ownership",
+    "dataset_name": "OCC Financial Institution Lists \u2014 National Banks by Name/State (charter number field)",
+    "url": "https://www.occ.treas.gov/topics/charters-and-licensing/financial-institution-lists/index-financial-institution-lists.html",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "\"National Banks & Federal Branches and Agencies... Sorted by bank name: Excel and PDF formats\" \u2014 active national banks list; underlying PDF header row is \"CHARTER NO NAME ADDRESS (LOC) CITY STATE CERT RSSD\"",
+    "fragmented": "False"
+  }
+]

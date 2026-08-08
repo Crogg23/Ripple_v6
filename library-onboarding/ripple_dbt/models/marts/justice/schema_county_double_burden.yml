@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: justice__county_double_burden
+    columns:
+      - name: fips
+        data_tests:
+          - unique

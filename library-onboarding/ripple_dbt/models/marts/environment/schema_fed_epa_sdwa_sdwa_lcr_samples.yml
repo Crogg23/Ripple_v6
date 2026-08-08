@@ -12,3 +12,12 @@ models:
       - name: contaminant_code
         data_tests:
           - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - submissionyearquarter
+              - pwsid
+              - sample_id
+              - sar_id
+              - contaminant_code

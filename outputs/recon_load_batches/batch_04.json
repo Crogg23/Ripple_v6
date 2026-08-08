@@ -1,0 +1,112 @@
+[
+  {
+    "id_name": "State ethics-commission lobbyist registration ID (e.g. CA Cal-Access Lobbying Entity ID, NY Commission on Ethics and Lobbying in Government Lobbyist ID, TX Ethics Commission Lobbyist Filer ID, FL chamber/executive lobbyist registrations)",
+    "domain": "Politics, Elections & Lobbying",
+    "dataset_name": "State ethics-commission lobbyist registration systems, e.g. California CAL-ACCESS Lobbying raw data and Texas Ethics Commission Lobby Activities CSV Database",
+    "url": "https://www.sos.ca.gov/campaign-lobbying/helpful-resources/raw-data-campaign-finance-and-lobbying-activity",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "The raw data extracts are updated once per day. [CA] / Lobby Activities CSV Database (As of 08/04/2026) [TX, ethics.state.tx.us/search/lobby/]",
+    "fragmented": "True"
+  },
+  {
+    "id_name": "Elections Canada Political Financing registration ID",
+    "domain": "Politics, Elections & Lobbying",
+    "dataset_name": "Elections Canada Political Financing Registry (registered parties, candidates, third parties, electoral district associations)",
+    "url": "https://www.elections.ca/content.aspx?section=fin&document=index&lang=e",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "Download datasets of political financing information dating back to 1993",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "Municipal/city campaign finance board filer ID (e.g. NYC Campaign Finance Board Candidate ID, LA City Ethics Commission filer ID, Seattle Ethics and Elections Commission)",
+    "domain": "Politics, Elections & Lobbying",
+    "dataset_name": "Municipal campaign finance board filer data, e.g. NYC Campaign Finance Board (CFB) Data Library",
+    "url": "https://www.nyccfb.info/follow-the-money/data-library/",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "CSV files containing data for all contributions, expenditures, intermediaries, and public funds payments for all candidates in the 2001, 2003, 2005, 2009, 2013, 2017, 2021, 2023, and 2025 election cycles are available.",
+    "fragmented": "True"
+  },
+  {
+    "id_name": "NTSB Accident/Incident Number",
+    "domain": "Transportation -- Aviation & Rail",
+    "dataset_name": "NTSB Aviation Accident Database (CAROL query tool + bulk avdata download)",
+    "url": "https://www.ntsb.gov/safety/data/Pages/Data_Stats.aspx",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "\"Downloadable data sets of aviation accident data are available for public use.\" Files include avall.zip and PRE1982.zip, accessible at app.ntsb.gov/avdata/Access/.",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "FAA Airport Location Identifier (LID) / Airport Master Record Site Number",
+    "domain": "Transportation -- Aviation & Rail",
+    "dataset_name": "FAA Airport Data and Information Portal (ADIP) \u2014 Airport Master Record (Form 5010)",
+    "url": "https://adip.faa.gov/",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "ADIP page (loaded directly): \"View/Download Historical Aeronautical Information\" with a link to the NASR Subscription service, plus a downloadable \"Private Airport Report\" (.xlsx). Wikipedia, loaded directly: \"The Federal Aviation Administration location identifier (FAA LID) is a three- to five-char",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "DOT/BTS Unique Carrier Entity Code",
+    "domain": "Transportation -- Aviation & Rail",
+    "dataset_name": "BTS Air Carrier Statistics \u2014 Unique Carrier Code (UniqueCarrier field, T-100/TranStats)",
+    "url": "https://www.transtats.bts.gov/Fields.asp?gnoyr_VQ=FMF",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "\"UniqueCarrier: Unique Carrier Code. When the same code has been used by multiple carriers, a numeric suffix is used for earlier users, for example, PA, PA(1), PA(2). Use this field for analysis across a range of years.\"",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "ICAO Aircraft Type Designator",
+    "domain": "Transportation -- Aviation & Rail",
+    "dataset_name": "ICAO Doc 8643 \u2014 Aircraft Type Designators (online search tool)",
+    "url": "https://www.icao.int/publications/DOC8643/Pages/Search.aspx",
+    "access_shape": "api-open",
+    "size_class": "small",
+    "evidence": "icao.int (loaded directly): page is \"an ICAO resource page dedicated to aircraft type designators\" with a live \"Aircraft Type Designators\" search link. Wikipedia (loaded directly): codes are \"published in ICAO Document 8643 Aircraft Type Designators\" and \"used by air traffic control and airline oper",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "FMC OTI License Number (NVOCC / Ocean Freight Forwarder License)",
+    "domain": "Transportation -- Motor Carrier & Maritime",
+    "dataset_name": "FMC Licensed/Registered Ocean Transportation Intermediaries (OTI) list \u2014 NVOCCs and Ocean Freight Forwarders",
+    "url": "https://www2.fmc.gov/oti/NVOCC.aspx",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "Click here to download the list of all active freight forwarders and non-vessel operating common carriers.",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "Judicial Panel on Multidistrict Litigation (JPML) MDL Number",
+    "domain": "Consumer Protection & Product Safety",
+    "dataset_name": "JPML Pending MDLs List",
+    "url": "https://www.jpml.uscourts.gov/pending-mdls-0",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "The page offers downloadable reports \"By District\", \"By MDL Number - sorted numerically by case identifier\", \"By Docket Type\", and \"By Actions Pending\", plus a \"Recently Terminated MDLs\" report and an archive of historical reports.",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "FDA CAERS Report Number",
+    "domain": "Consumer Protection & Product Safety",
+    "dataset_name": "FDA CAERS (CFSAN Adverse Event Reporting System) via openFDA Food Event API",
+    "url": "https://open.fda.gov/apis/food/event/",
+    "access_shape": "api-open",
+    "size_class": "medium",
+    "evidence": "\"provides data from the FDA's Center for Food Safety and Applied Nutrition Adverse Event Reporting System (CAERS)... adverse event and product complaint reports submitted to FDA for foods, dietary supplements, and cosmetics\"; \"each report received regarding an individual that experiences an adverse ",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "California Proposition 65 Listed Chemical",
+    "domain": "Consumer Protection & Product Safety",
+    "dataset_name": "OEHHA Proposition 65 List of Chemicals",
+    "url": "https://oehha.ca.gov/proposition-65/proposition-65-list",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "\"documents chemicals identified as causing cancer or reproductive harm\"; example entry \"Acetaldehyde is listed as causing cancer as of 04/01/1988\"; downloadable as \"PDF version, Excel spreadsheet (includes listing mechanism and safe harbor levels), CSV format\", free, no purchase required.",
+    "fragmented": "False"
+  }
+]

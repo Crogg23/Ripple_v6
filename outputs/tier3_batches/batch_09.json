@@ -1,0 +1,102 @@
+[
+  {
+    "dataset_name": "National Poultry Improvement Plan (NPIP) Database",
+    "domain": "Agriculture & Food Safety",
+    "url": "https://poultryimprovement.org/NPIPDatabase/index.cfm"
+  },
+  {
+    "dataset_name": "APHIS Biotechnology (BRS) Permits, Notifications & Petitions public listing (GE-organism import/field-release permits); general PPQ plant-pest permits are filed through the separate ePermits system",
+    "domain": "Agriculture & Food Safety",
+    "url": "https://www.aphis.usda.gov/aphis/ourfocus/biotechnology/permits-notifications-petitions/permits"
+  },
+  {
+    "dataset_name": "USDA AMS Warehouse License Search (Fair Trade Practices Program, successor to GIPSA warehouse licensing)",
+    "domain": "Agriculture & Food Safety",
+    "url": "https://www.ams.usda.gov/resources/warehouse-license-search"
+  },
+  {
+    "dataset_name": "EPA Pesticide Product and Label System (PPLS)",
+    "domain": "Agriculture & Food Safety",
+    "url": "https://www.epa.gov/pesticide-registration/pesticide-product-and-label-system-ppls"
+  },
+  {
+    "dataset_name": "USDA Office of Administrative Law Judges / Judicial Officer decisions archive (includes APHIS Horse Protection Act disqualification final orders)",
+    "domain": "Agriculture & Food Safety",
+    "url": "https://www.oha.usda.gov/oaljdecisions"
+  },
+  {
+    "dataset_name": "USDA AMS Dairy Programs -- Federal Milk Marketing Order Market Administrator bulletins (pool handler statistics), one per order-specific Market Administrator office",
+    "domain": "Agriculture & Food Safety",
+    "url": "https://www.ams.usda.gov/rules-regulations/moa/dairy"
+  },
+  {
+    "dataset_name": "State Departments of Agriculture -- commercial feed / fertilizer / seed product registration registries (coordinated via AAPFCO for fertilizer, AAFCO for feed)",
+    "domain": "Agriculture & Food Safety",
+    "url": "https://www.aapfco.org/"
+  },
+  {
+    "dataset_name": "FSIS Noncompliance Records search (PHIS public portal)",
+    "domain": "Agriculture & Food Safety",
+    "url": "https://www.fsis.usda.gov/inspection/compliance-enforcement/noncompliance-records"
+  },
+  {
+    "dataset_name": "NTIA BEAD Program state grantee allocations + state broadband-office subrecipient/subgrantee award lists",
+    "domain": "Telecom & Media",
+    "url": "https://www.internetforall.gov/bead-allocation"
+  },
+  {
+    "dataset_name": "USAC-administered Telecommunications Relay Services (TRS) Fund provider ID (distinct from iconectiv's iTRS numbering directory)",
+    "domain": "Telecom & Media",
+    "url": "https://www.iconectiv.com/"
+  },
+  {
+    "dataset_name": "FCC Licensing and Management System (LMS) / CDBS Broadcast Facility ID",
+    "domain": "Telecom & Media",
+    "url": "https://publicfiles.fcc.gov/"
+  },
+  {
+    "dataset_name": "FCC Cable Community Unit Identification Number (CUID), part of the Cable/LMS registration system",
+    "domain": "Telecom & Media",
+    "url": "https://www.fcc.gov/licensing-databases/lms"
+  },
+  {
+    "dataset_name": "FCC International Bureau Filing System (IBFS / MyIBFS) satellite and international filing records",
+    "domain": "Telecom & Media",
+    "url": "https://licensing.fcc.gov/myibfs/"
+  },
+  {
+    "dataset_name": "USDA Rural Utilities Service (RUS) Telecommunications & Broadband loan/grant borrower list",
+    "domain": "Telecom & Media",
+    "url": "https://www.rd.usda.gov/programs-services/telecommunications-programs"
+  },
+  {
+    "dataset_name": "US Copyright Office Copyright Public Records System (CPRS)",
+    "domain": "Telecom & Media",
+    "url": "https://www.copyright.gov/"
+  },
+  {
+    "dataset_name": "USAC National Lifeline Accountability Database (NLAD)",
+    "domain": "Telecom & Media",
+    "url": "https://www.usac.org/lifeline/"
+  },
+  {
+    "dataset_name": "iconectiv STI-PA STIR/SHAKEN Service Provider Code (SPC) Token registry",
+    "domain": "Telecom & Media",
+    "url": "https://www.iconectiv.com/"
+  },
+  {
+    "dataset_name": "ITU-T E.212 Mobile Country Code / Mobile Network Code assignments (mirrored by third-party mcc-mnc.com)",
+    "domain": "Telecom & Media",
+    "url": "https://www.mcc-mnc.com/"
+  },
+  {
+    "dataset_name": "FCC EAS (Emergency Alert System) Test Reporting System (ETRS) Participant ID",
+    "domain": "Telecom & Media",
+    "url": "https://www.fcc.gov/general/eas-test-reporting-system-etrs"
+  },
+  {
+    "dataset_name": "NAIC Company Code / State Based Systems (SBS) company lookup + NAIC Listing of Companies Summary",
+    "domain": "Insurance",
+    "url": "https://sbs.naic.org/solar-external-lookup/"
+  }
+]

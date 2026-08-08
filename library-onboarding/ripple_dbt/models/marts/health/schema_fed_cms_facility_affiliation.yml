@@ -12,3 +12,11 @@ models:
       - name: facility_type_certification_number
         data_tests:
           - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - npi
+              - ccn
+              - facility_type
+              - ind_pac_id

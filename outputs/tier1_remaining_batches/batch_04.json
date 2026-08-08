@@ -1,0 +1,110 @@
+[
+  {
+    "dataset_name": "Wage and Hour Division Compliance Action Data (public extract of WHISARD \u2014 Wage and Hour Investigative Support and Reporting Database)",
+    "domain": "Labor, Workplace Safety & Benefits",
+    "url": "https://catalog.data.gov/dataset/wage-and-hour-division-compliance-action-data",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "inferred",
+    "evidence": "\"This dataset compiles concluded WHD compliance actions dating back to fiscal year 2005\" ... \"The records include violation findings, back wage amounts, employee counts affected by wage violations, and civil money penalties levied\" ... \"'R/P3M' indicates quarterly updates. The dataset was last refre"
+  },
+  {
+    "dataset_name": "Enrolled Actuary (EA) number as a field within Form 5500 Schedule MB/SB actuarial certifications (EFAST2 bulk Form 5500 datasets)",
+    "domain": "Labor, Workplace Safety & Benefits",
+    "url": "https://www.dol.gov/agencies/ebsa/researchers/data/retirement-plans/form-5500-datasets",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "confidence": "inferred",
+    "evidence": ""
+  },
+  {
+    "dataset_name": "OFCCP Corporate Scheduling Announcement List (CSAL) \u2014 establishments selected for compliance evaluation",
+    "domain": "Labor, Workplace Safety & Benefits",
+    "url": "https://www.dol.gov/agencies/ofccp/scheduling-list",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "confidence": "inferred",
+    "evidence": ""
+  },
+  {
+    "dataset_name": "ICE detention facilities data (Deportation Data Project codebook/crosswalk to ICE detention stay records)",
+    "domain": "Criminal Justice & Court Systems",
+    "url": "https://deportationdata.org/docs/ice/codebook-facilities.html",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "confidence": "inferred",
+    "evidence": "deportationdata.org returned HTTP 403 Forbidden to WebFetch on three separate attempts (data.html, docs/ice.html, codebook-facilities.html, news release page); a WebSearch snippet (not a loaded page) described: \"Each detention facility is identified by a 'detention facility code' that matches the co"
+  },
+  {
+    "dataset_name": "USSC Individual Offender Datafiles (Commission Datafiles -- Individual)",
+    "domain": "Criminal Justice & Court Systems",
+    "url": "https://www.ussc.gov/research/datafiles/commission-datafiles",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "inferred",
+    "evidence": "\"The individual is the unit of analysis. These datafiles do not contain information from the Commission's Organizational, Resentencing, or Appeals Databases.\" -- page confirms annual individual sentencing datafiles FY2002-2025 in SAS/SPSS/CSV, with a Variable Codebook for Individual Offenders PDF li"
+  },
+  {
+    "dataset_name": "USSC Individual Offender Datafiles (Commission Datafiles), FY2002-2025",
+    "domain": "Law Enforcement & Corrections",
+    "url": "https://www.ussc.gov/research/datafiles/commission-datafiles",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "The Commission's Individual datafiles provide information on the sentences imposed in cases involving individuals, where the individual is the unit of analysis"
+  },
+  {
+    "dataset_name": "HIFLD Prison Boundaries (Homeland Infrastructure Foundation-Level Data, DHS)",
+    "domain": "Law Enforcement & Corrections",
+    "url": "https://catalog.data.gov/dataset/prison-boundaries",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "confidence": "inferred",
+    "evidence": "The dataset contains geospatial data sets containing information on Prison Boundaries."
+  },
+  {
+    "dataset_name": "OFLC Foreign Labor Certification Disclosure Data \u2014 LCA Program (Form ETA-9035)",
+    "domain": "Immigration & Border",
+    "url": "https://catalog.data.gov/dataset/office-of-foreign-labor-certification-oflc-case-disclosure-data",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "inferred",
+    "evidence": "\"Each dataset is cumulative with records identified by OFLC case numbers.\" / \"The dataset encompasses six foreign labor certification categories: ... LCA (Labor Condition Applications) ...\" (catalog.data.gov page, loaded directly)"
+  },
+  {
+    "dataset_name": "OFLC Foreign Labor Certification Disclosure Data \u2014 PERM Program (Form ETA-9089)",
+    "domain": "Immigration & Border",
+    "url": "https://catalog.data.gov/dataset/office-of-foreign-labor-certification-oflc-case-disclosure-data",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": "\"The dataset encompasses six foreign labor certification categories: H-2A ... H-2B ... PERM (permanent labor certification) ...\" (catalog.data.gov page, loaded directly); \"OFLC recently implemented the revised form ETA-9089, resulting in two distinct PERM disclosure data files\" (search synthesis)"
+  },
+  {
+    "dataset_name": "OFLC Foreign Labor Certification Disclosure Data \u2014 H-2A/H-2B Programs (Forms ETA-9142A/9142B)",
+    "domain": "Immigration & Border",
+    "url": "https://catalog.data.gov/dataset/office-of-foreign-labor-certification-oflc-case-disclosure-data",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": "\"The dataset encompasses six foreign labor certification categories: H-2A (agricultural workers), H-2B (temporary non-agricultural workers) ...\" (catalog.data.gov page, loaded directly)"
+  },
+  {
+    "dataset_name": "ICE Detention Stints/Stays Data (Deportation Data Project FOIA release, CILP v. ICE)",
+    "domain": "Immigration & Border",
+    "url": "https://deportationdata.org/data/ice.html",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"We construct the dataset in three steps. First, we remove 1,494 rows (of 1,323,993 total) for which there is a missing unique identifier.\" / \"Book In Date Time: This field marks the beginning of an individual's time in a particular detention center.\" (ICE data-introduction PDF, loaded directly via "
+  },
+  {
+    "dataset_name": "ICE Detainers Data (Deportation Data Project FOIA release, CILP v. ICE) \u2014 detainer case number redacted",
+    "domain": "Immigration & Border",
+    "url": "https://deportationdata.org/data/ice.html",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"Detainer requests are reported as 149,764 in the annual report and 146,953 in the dataset\" / \"internal agency case numbers, which fall under Exemption 7(E)\" [redacted] (ICE data-introduction PDF, loaded directly)"
+  }
+]

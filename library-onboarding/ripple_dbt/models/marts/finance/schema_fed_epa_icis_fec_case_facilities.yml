@@ -2,6 +2,20 @@ version: 2
 
 models:
   - name: finance__fed_epa_icis_fec_case_facilities
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - activity_id
+              - case_number
+              - registry_id
+              - facility_name
+              - location_address
+              - city
+              - state_code
+              - zip
+              - primary_sic_code
+              - primary_naics_code
     columns:
       - name: activity_id
         data_tests:

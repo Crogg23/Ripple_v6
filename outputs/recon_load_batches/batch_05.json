@@ -1,0 +1,112 @@
+[
+  {
+    "id_name": "OPEID (Office of Postsecondary Education ID)",
+    "domain": "Education",
+    "dataset_name": "Federal Student Aid / College Scorecard institutional data (OPEID identifier, crosswalked to IPEDS UnitID)",
+    "url": "https://collegescorecard.ed.gov/data/",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "Crosswalk files for 2000-01 through 2022-23 that link the Department's OPEID with an IPEDS UNITID for each institution.",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "CIP Code (Classification of Instructional Programs)",
+    "domain": "Education",
+    "dataset_name": "CIP - Classification of Instructional Programs (NCES)",
+    "url": "https://nces.ed.gov/ipeds/cipcode/",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "provides a taxonomic scheme that supports the accurate tracking and reporting of fields of study and program completions activity",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "Ginnie Mae Pool Number",
+    "domain": "Housing, Real Estate & Mortgage Lending",
+    "dataset_name": "Ginnie Mae MBS Loan Level Disclosure File (Pool ID field)",
+    "url": "https://www.ginniemae.gov/s3/sites/default/files/pdfs/MBS_Loan_Disclosure_Layout_V2.0.pdf",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "\"LL-03 Pool ID ... The Pool identifier assigned by Ginnie Mae at pooling.\" (MBS Loan Level Disclosure File, V2.0 layout doc)",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "FHA/HUD Multifamily Project Number",
+    "domain": "Housing, Real Estate & Mortgage Lending",
+    "dataset_name": "HUD Multifamily FHA Firm Commitments and Initial Endorsements Database",
+    "url": "https://www.hud.gov/hud-partners/multifamily-data",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "\"Multifamily publishes a quarterly database of FHA Multifamily Firm Commitments and Initial Endorsements. The below file contains data from Fiscal Year 2001 through the most recent quarter of the current Fiscal Year.\"",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "Ginnie Mae Issuer Number",
+    "domain": "Housing, Real Estate & Mortgage Lending",
+    "dataset_name": "Ginnie Mae MBS Loan Level Disclosure File (Issuer ID field)",
+    "url": "https://www.ginniemae.gov/s3/sites/default/files/pdfs/MBS_Loan_Disclosure_Layout_V2.0.pdf",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "\"LL-08 Issuer ID (including for loan packages in MIP pool) ... The four-digit identifier for the current issuer responsible for the loan\" (MBS Loan Level Disclosure File, V2.0 layout doc)",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "FHA/HUD Lender (Mortgagee) ID",
+    "domain": "Housing, Real Estate & Mortgage Lending",
+    "dataset_name": "HUD FHA Single Family Portfolio Snapshot (originating mortgagee/lender number field) plus HUD Lender List search",
+    "url": "https://www.hud.gov/stat/sfh/fha-sf-portfolio-snapshot",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "\"The data records include...the property zip code, originating mortgagee (lender) number, sponsor-lender name, sponsor number, nonprofit gift provider tax identification number, interest rate, and FHA insurance endorsement year and month.\"",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "Appraisal Subcommittee National Registry ID",
+    "domain": "Housing, Real Estate & Mortgage Lending",
+    "dataset_name": "ASC National Appraiser Registry",
+    "url": "https://www.asc.gov/appraiser",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "\"A '[Download](/downloader)' link appears below search results, allowing users to export data\" ... filters include \"Credentialing State/Territory,\" \"Certificate Type\" (Certified General, Certified Residential, Licensed)",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "HUD Public Housing Agency (PHA) Code",
+    "domain": "Housing, Real Estate & Mortgage Lending",
+    "dataset_name": "HUD Public Housing Authorities dataset (HUD Open Data / IMS-PIC)",
+    "url": "https://catalog.data.gov/dataset/public-housing-authorities",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "\"Public Housing was established to provide decent and safe rental housing for eligible low-income families, the elderly, and persons with disabilities.\" Download formats listed: \"Geo Database/ZIP\" and \"Shapefile/ZIP\"",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "FEMA NFIP Community ID Number",
+    "domain": "Housing, Real Estate & Mortgage Lending",
+    "dataset_name": "FEMA NFIP Community Status Book Dataset",
+    "url": "https://catalog.data.gov/dataset/national-flood-insurance-program-nfip-community-status-book-dataset",
+    "access_shape": "api-open",
+    "size_class": "medium",
+    "evidence": "\"1 resource available\" linking to \"https://www.fema.gov/api/open/v1/NfipCommunityStatusBook\"; \"The NFIP enables property owners to purchase flood insurance. In return, communities agree to adopt and implement local floodplain management regulations.\" Published by FEMA/RESILIENCE/FIMA, last updated J",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "HUD Section 8 / Housing Assistance Payments (HAP) Contract Number",
+    "domain": "Housing, Real Estate & Mortgage Lending",
+    "dataset_name": "HUD Multifamily Assistance & Section 8 Contracts Database",
+    "url": "https://www.hud.gov/hud-partners/multifamily-assist-section8-database",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "\"This compressed, (self extracting) file is offered in Microsoft Access Version 7.0 for Windows 95.\" Files offered: \"MF_Properties_with_Assistance_&_Sec8_Contracts\" and \"MF_Assistance_&_Sec8_Contracts\" (Excel).",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "HUD Continuum of Care Number",
+    "domain": "Housing, Real Estate & Mortgage Lending",
+    "dataset_name": "HUD Defined CoC Names and Numbers list",
+    "url": "https://www.hud.gov/sites/dfiles/CPD/documents/FY-2021_CoC-Names-Numbers_Final.pdf",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "\"The following lists Continuums of Care (CoCs) using HUD's naming and numbering convention.\" Sample entries: \"AK-500 Anchorage CoC\", \"CA-600 Los Angeles City & County CoC\", \"IL-511 Cook County CoC\"",
+    "fragmented": "False"
+  }
+]

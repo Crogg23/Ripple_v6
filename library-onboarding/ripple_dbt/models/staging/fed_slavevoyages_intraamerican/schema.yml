@@ -138,3 +138,14 @@ models:
 
       - name: _source_run_id
         description: Pipeline run identifier propagated from the ingestion layer.
+
+      - name: voyageid
+        description: >
+          Unique identifier for each recorded voyage (VOYAGEID), carried
+          through unrenamed from the raw source in this passthrough mart.
+          GRAIN: one row per intra-American slave voyage (see the model's
+          header comment) -- mirrors the sibling
+          history__fed_slavevoyages_transatlantic mart's convention.
+        data_tests:
+          - unique
+          - not_null

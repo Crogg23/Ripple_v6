@@ -6,3 +6,6 @@ models:
       - name: sex_code
         data_tests:
           - not_null
+      - name: case_number
+        data_tests:
+          - unique

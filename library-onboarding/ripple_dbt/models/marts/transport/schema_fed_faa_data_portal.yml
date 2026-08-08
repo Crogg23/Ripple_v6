@@ -12,3 +12,6 @@ models:
       - name: airport_id
         data_tests:
           - not_null
+      - name: access_url
+        data_tests:
+          - unique

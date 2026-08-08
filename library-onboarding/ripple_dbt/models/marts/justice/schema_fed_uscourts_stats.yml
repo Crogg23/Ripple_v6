@@ -12,3 +12,14 @@ models:
       - name: chapter_code
         data_tests:
           - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - table_number
+              - reporting_period
+              - circuit
+              - district
+              - fips_code
+              - chapter_code
+              - case_type

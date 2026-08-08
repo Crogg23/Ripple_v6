@@ -1,0 +1,110 @@
+[
+  {
+    "dataset_name": "AccessGUDID -- FDA Global Unique Device Identification Database",
+    "domain": "Healthcare & Clinical",
+    "url": "https://accessgudid.nlm.nih.gov/download",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"the full release spans 5182695 device identifier records across 516 MB\" -- page also offers \"ZIP archives\" and pipe-delimited .TXT files, daily/weekly/monthly/full releases, plus an API"
+  },
+  {
+    "dataset_name": "CMS Health Insurance Exchange / Marketplace Public Use Files -- Plan Attributes PUF",
+    "domain": "Healthcare & Clinical",
+    "url": "https://www.cms.gov/marketplace/resources/data/public-use-files",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": "search-engine text of the CMS page: \"The Plan Attributes PUF is one of several files available as part of the Exchange PUFs\" and \"the CMS PUF data website has a Plan Attributes file which reports details for specific PlanIDs using the 14 character HIOS id\" -- direct WebFetch of cms.gov, data.nber.or"
+  },
+  {
+    "dataset_name": "ONC Certified Health IT Product List (CHPL) Open API",
+    "domain": "Healthcare & Clinical",
+    "url": "https://chpl.healthit.gov/#/resources/chpl_api",
+    "access_shape": "api-open",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": "data.virginia.gov dataset mirror (loaded via WebFetch): CHPL is \"a comprehensive and authoritative listing of all certified Health Information Technology\" and the API resource is \"a fully queryable REST API with JSON and XML output\""
+  },
+  {
+    "dataset_name": "CMS Open Payments -- Covered Recipient Profile Supplement File",
+    "domain": "Healthcare & Clinical",
+    "url": "https://openpaymentsdata.cms.gov/datasets",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "inferred",
+    "evidence": "search-engine text of CMS documentation: \"The Covered Recipient Profile Supplement File contains all of the identifying information for physicians and NPPs...\" and includes \"a unique identification number (Physician Profile ID) that can be used to search for a specific physician\" -- five direct WebF"
+  },
+  {
+    "dataset_name": "CMS Medicare Fee-For-Service Public Provider Enrollment (PECOS extract)",
+    "domain": "Healthcare & Clinical",
+    "url": "https://data.cms.gov/provider-characteristics/medicare-provider-supplier-enrollment/medicare-fee-for-service-public-provider-enrollment",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "inferred",
+    "evidence": "search-engine text of CMS provider enrollment documentation: \"PECOS is the CMS system of record for all Medicare provider and supplier enrollment data\"; \"PAC ID is a unique 10-digit numeric identifier that is assigned to each individual or organizational provider\"; \"enrollment ID is a unique 15-digi"
+  },
+  {
+    "dataset_name": "CMS/NBER NPI-to-UPIN Crosswalk",
+    "domain": "Healthcare & Clinical",
+    "url": "https://www.nber.org/research/data/national-provider-identifier-npi-unique-physician-identification-number-upin-crosswalk",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": "page title from search index: \"National Provider Identifier (NPI) to Unique Physician Identification Number (UPIN) Crosswalk\"; NBER description states \"CMS built an NPI to UPIN crosswalk, and providers were encouraged to list their old UPIN when they applied for an NPI\" -- direct WebFetch of the NBE"
+  },
+  {
+    "dataset_name": "VAERS (Vaccine Adverse Event Reporting System) Data Sets",
+    "domain": "Healthcare & Clinical",
+    "url": "https://vaers.hhs.gov/data/datasets.html",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"Open the CSV files using a spreadsheet application such as Excel or a text editor\"; \"Last updated: July 3, 2026\" with \"Data contains VAERS reports processed as of: June 26, 2026\""
+  },
+  {
+    "dataset_name": "AccessGUDID (Global Unique Device Identification Database, GUDID)",
+    "domain": "Pharma, Biologics & Medical Devices",
+    "url": "https://accessgudid.nlm.nih.gov/",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"The Global Unique Device Identification Database (GUDID) contains key device identification information submitted to the FDA about medical devices that have Unique Device Identifiers (UDI).\""
+  },
+  {
+    "dataset_name": "FDA Global Substance Registration System (GSRS) / UNII",
+    "domain": "Pharma, Biologics & Medical Devices",
+    "url": "https://precision.fda.gov/uniisearch",
+    "access_shape": "api-open",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"enables efficient and accurate exchange of information on substances through their Unique Ingredient Identifiers (UNIIs)\""
+  },
+  {
+    "dataset_name": "FDA MAUDE (Manufacturer and User Facility Device Experience) database",
+    "domain": "Pharma, Biologics & Medical Devices",
+    "url": "https://open.fda.gov/apis/device/event/",
+    "access_shape": "api-open",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"this data covers publically releasable records submitted to the FDA from about 1992 to the present. The data is updated weekly.\""
+  },
+  {
+    "dataset_name": "FDA Adverse Event Reporting System (FAERS)",
+    "domain": "Pharma, Biologics & Medical Devices",
+    "url": "https://open.fda.gov/apis/drug/event/",
+    "access_shape": "api-open",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"includes publically releasable records submitted to the FDA through FAERS from 2004\" onward, updated \"Quarterly\""
+  },
+  {
+    "dataset_name": "Vaccine Adverse Event Reporting System (VAERS) data files",
+    "domain": "Pharma, Biologics & Medical Devices",
+    "url": "https://vaers.hhs.gov/data/datasets.html",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"VAERS Data Use Guide\" referenced on page; CSV/ZIP data downloads organized by year, files available 1990 through 2026"
+  }
+]

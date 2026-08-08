@@ -6,3 +6,6 @@ models:
       - name: post_title
         data_tests:
           - not_null
+      - name: post_url
+        data_tests:
+          - unique

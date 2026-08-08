@@ -1,0 +1,102 @@
+[
+  {
+    "dataset_name": "NSLP sponsor agreements - administered per state agency, no single centralized USDA FNS sponsor-level directory found this session",
+    "domain": "Education",
+    "url": "https://www.fns.usda.gov/nslp"
+  },
+  {
+    "dataset_name": "NC-SARA Participating Institutions Directory",
+    "domain": "Education",
+    "url": "https://nc-sara.org/directory/"
+  },
+  {
+    "dataset_name": "ABET Accredited Program Search",
+    "domain": "Education",
+    "url": "https://amspub.abet.org/aps"
+  },
+  {
+    "dataset_name": "HUD FHA Connection - Single Family Case Query / Case Detail",
+    "domain": "Housing, Real Estate & Mortgage Lending",
+    "url": "https://www.hud.gov/hud-partners/housing-premium-sf-case-detail"
+  },
+  {
+    "dataset_name": "HUD Manufactured Housing HUD Labels (Tags) verification program",
+    "domain": "Housing, Real Estate & Mortgage Lending",
+    "url": "https://www.hud.gov/hud-partners/manufactured-home-labels"
+  },
+  {
+    "dataset_name": "Federal Home Loan Bank Affordable Housing Program (AHP) awards (fragmented across the 11 regional FHLBanks)",
+    "domain": "Housing, Real Estate & Mortgage Lending",
+    "url": "https://www.fhfa.gov/programs/affordable-housing-program"
+  },
+  {
+    "dataset_name": "HUD Integrated Disbursement and Information System (IDIS)",
+    "domain": "Housing, Real Estate & Mortgage Lending",
+    "url": "https://www.hudexchange.info/programs/idis/"
+  },
+  {
+    "dataset_name": "State real estate broker/agent licensing databases (fragmented, no federal registry)",
+    "domain": "Housing, Real Estate & Mortgage Lending",
+    "url": "https://www2.dre.ca.gov/PublicASP/pplinfo.asp"
+  },
+  {
+    "dataset_name": "County Recorder/Clerk deed and document recording systems (fragmented, county by county)",
+    "domain": "Housing, Real Estate & Mortgage Lending",
+    "url": "https://www.cookcountyclerkil.gov/recordings/search-recordings"
+  },
+  {
+    "dataset_name": "DLA Commercial and Government Entity (CAGE/NCAGE) Code Program \u2014 CAGE Code Search & Inquiry Tool",
+    "domain": "Federal Procurement & Grants",
+    "url": "https://cage.dla.mil/"
+  },
+  {
+    "dataset_name": "NIH eRA Commons account/ID system (electronic Research Administration)",
+    "domain": "Federal Procurement & Grants",
+    "url": "https://era.nih.gov/"
+  },
+  {
+    "dataset_name": "NSF Research.gov NSF ID (PI/co-PI/reviewer identifier) account system",
+    "domain": "Federal Procurement & Grants",
+    "url": "https://www.research.gov/research-web/"
+  },
+  {
+    "dataset_name": "GSA eLibrary \u2014 Multiple Award Schedule (MAS) Contract Award Search",
+    "domain": "Federal Procurement & Grants",
+    "url": "https://www.gsaelibrary.gsa.gov/"
+  },
+  {
+    "dataset_name": "DLA Federal Catalog System / Federal Logistics Information System (FLIS) \u2014 National Stock Numbers",
+    "domain": "Federal Procurement & Grants",
+    "url": "https://www.logisticsinformationservice.dla.mil/PubLog/"
+  },
+  {
+    "dataset_name": "FAPIIS (Federal Awardee Performance and Integrity Information System) Responsibility/Qualification Records, now inside SAM.gov Data Bank",
+    "domain": "Federal Procurement & Grants",
+    "url": "https://sam.gov/content/fapiis"
+  },
+  {
+    "dataset_name": "DoD Activity Address Directory (DoDAAD) \u2014 DoDAAC lookup, maintained via DLA's Defense Automatic Addressing System Center (DAASC)",
+    "domain": "Federal Procurement & Grants",
+    "url": "https://www.transportation.army.mil/dodaac/"
+  },
+  {
+    "dataset_name": "SAM.gov Wage Determinations Library (Davis-Bacon Act / Service Contract Act)",
+    "domain": "Federal Procurement & Grants",
+    "url": "https://sam.gov/content/wage-determinations"
+  },
+  {
+    "dataset_name": "GAO Bid Protest Decisions & Docket Database",
+    "domain": "Federal Procurement & Grants",
+    "url": "https://www.gao.gov/legal/bid-protests"
+  },
+  {
+    "dataset_name": "AbilityOne Commission Qualified Nonprofit Agency Reports (NIB- and SourceAmerica-affiliated agencies)",
+    "domain": "Federal Procurement & Grants",
+    "url": "https://plims.abilityone.gov/reports/"
+  },
+  {
+    "dataset_name": "GSA eLibrary Special Item Number (SIN) Category Listings",
+    "domain": "Federal Procurement & Grants",
+    "url": "https://www.gsaelibrary.gsa.gov/"
+  }
+]

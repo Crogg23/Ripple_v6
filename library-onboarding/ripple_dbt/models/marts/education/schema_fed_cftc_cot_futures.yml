@@ -12,3 +12,9 @@ models:
       - name: cftc_commodity_code
         data_tests:
           - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - cftc_contract_market_code
+              - as_of_date_in_form_yyyy_mm_dd

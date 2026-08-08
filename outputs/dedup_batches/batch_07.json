@@ -1,0 +1,139 @@
+[
+  {
+    "model": "health__fed_cdc_drug_poisoning_county",
+    "sql_path": "models\\marts\\health\\health__fed_cdc_drug_poisoning_county.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cdc_drug_poisoning_county.yml",
+    "columns": [
+      "fips"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cdc_health_insurance",
+    "sql_path": "models\\marts\\health\\health__fed_cdc_health_insurance.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cdc_health_insurance.yml",
+    "columns": [
+      "quartile_number"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cdc_injury_violence_county",
+    "sql_path": "models\\marts\\health\\health__fed_cdc_injury_violence_county.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cdc_injury_violence_county.yml",
+    "columns": [
+      "geoid"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cdc_nndss_weekly_2024",
+    "sql_path": "models\\marts\\health\\health__fed_cdc_nndss_weekly_2024.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cdc_nndss_weekly_2024.yml",
+    "columns": [
+      "reporting_area"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cdc_overdose",
+    "sql_path": "models\\marts\\health\\health__fed_cdc_overdose.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cdc_overdose.yml",
+    "columns": [
+      "state"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cdc_suicide_rates",
+    "sql_path": "models\\marts\\health\\health__fed_cdc_suicide_rates.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cdc_suicide_rates.yml",
+    "columns": [
+      "indicator"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_ambulatory_specialty_model_participants",
+    "sql_path": "models\\marts\\health\\health__fed_cms_ambulatory_specialty_model_participants.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_ambulatory_specialty_model_participants.yml",
+    "columns": [
+      "npi"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_dialysis",
+    "sql_path": "models\\marts\\health\\health__fed_cms_dialysis.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_dialysis.yml",
+    "columns": [
+      "five_star_data_availability_code",
+      "zip_code",
+      "telephone_number",
+      "patient_survival_data_availability_code",
+      "patient_hospitalization_data_availability_code",
+      "patient_hospital_readmission_data_availability_code",
+      "patient_transfusion_data_availability_code",
+      "patient_transplant_waitlist_data_availability_code",
+      "patient_prevalent_transplant_waitlist_data_availability_code",
+      "emergency_department_encounter_data_availability_code",
+      "emergency_department_encounter_ratio_occurring_within_30_days_of_hospital_discharge_data_availability_code",
+      "modality_switch_data_availability_code",
+      "patient_infection_data_availability_code",
+      "fistula_data_availability_code",
+      "hcp_vaccination_data_availability_code",
+      "adult_hd_kt_v_data_availability_code",
+      "adult_pd_kt_v_data_availability_code",
+      "pediatric_hd_kt_v_data_availability_code",
+      "pediatric_pd_kt_v_data_availability_code",
+      "hgb_10_data_availability_code",
+      "hgb_12_data_availability_code",
+      "hypercalcemia_data_availability_code",
+      "serum_phosphorus_data_availability_code",
+      "long_term_catheter_data_availability_code",
+      "npcr_data_availability_code"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_facility_affiliation",
+    "sql_path": "models\\marts\\health\\health__fed_cms_facility_affiliation.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_facility_affiliation.yml",
+    "columns": [
+      "npi",
+      "ind_pac_id",
+      "facility_type_certification_number"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_facility_level_minimum_data_set_frequency",
+    "sql_path": "models\\marts\\health\\health__fed_cms_facility_level_minimum_data_set_frequency.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_facility_level_minimum_data_set_frequency.yml",
+    "columns": [
+      "zip_code",
+      "fips_county_code"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_home_health",
+    "sql_path": "models\\marts\\health\\health__fed_cms_home_health.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_home_health.yml",
+    "columns": [
+      "zip_code",
+      "telephone_number"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_hospice",
+    "sql_path": "models\\marts\\health\\health__fed_cms_hospice.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_hospice.yml",
+    "columns": [
+      "zip_code",
+      "telephone_number"
+    ],
+    "domain": "health"
+  }
+]

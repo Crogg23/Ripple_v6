@@ -6,3 +6,6 @@ models:
       - name: npi
         data_tests:
           - not_null
+      - name: provider_key
+        data_tests:
+          - unique

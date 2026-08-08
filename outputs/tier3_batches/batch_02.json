@@ -1,0 +1,102 @@
+[
+  {
+    "dataset_name": "SEC Litigation Releases & Administrative Proceedings archive (LR-##### / File No. 3-#####)",
+    "domain": "Securities, Investment Funds & Markets",
+    "url": "https://www.sec.gov/enforcement-litigation/litigation-releases"
+  },
+  {
+    "dataset_name": "SEC Transfer Agent registrations (Form TA-1 filings on EDGAR)",
+    "domain": "Securities, Investment Funds & Markets",
+    "url": "https://www.sec.gov/about/divisions-offices/division-trading-markets/transfer-agents"
+  },
+  {
+    "dataset_name": "NASAA Electronic Filing Depository (EFD) \u2014 multi-state Reg D / IA notice filings",
+    "domain": "Securities, Investment Funds & Markets",
+    "url": "https://nasaaefd.org/"
+  },
+  {
+    "dataset_name": "ANNA Service Bureau \u2014 ISO 10962 Classification of Financial Instruments (CFI) lookup",
+    "domain": "Securities, Investment Funds & Markets",
+    "url": "https://anna-web.org/about-the-anna-service-bureau/"
+  },
+  {
+    "dataset_name": "WM Datenservice Wertpapierkennnummer (WKN) database",
+    "domain": "Securities, Investment Funds & Markets",
+    "url": "https://en.wikipedia.org/wiki/Wertpapierkennnummer"
+  },
+  {
+    "dataset_name": "NFA BASIC \u2014 commodity pool registration search (Pool ID)",
+    "domain": "Securities, Investment Funds & Markets",
+    "url": "https://www.nfa.futures.org/basicnet/"
+  },
+  {
+    "dataset_name": "OFAC Specially Designated Nationals (SDN) List \u2014 Digital Currency Address identifiers",
+    "domain": "Financial Crimes, Sanctions & AML",
+    "url": "https://sanctionssearch.ofac.treas.gov/"
+  },
+  {
+    "dataset_name": "FINRA Central Registration Depository (CRD) / BrokerCheck records",
+    "domain": "Financial Crimes, Sanctions & AML",
+    "url": "https://www.finra.org/registration-exams-ce/classic-crd"
+  },
+  {
+    "dataset_name": "World Bank Listing of Ineligible Firms and Individuals",
+    "domain": "Financial Crimes, Sanctions & AML",
+    "url": "https://projects.worldbank.org/en/projects-operations/procurement/debarred-firms"
+  },
+  {
+    "dataset_name": "State Secretary of State UCC financing statement filing systems (Article 9 UCC filings)",
+    "domain": "Financial Crimes, Sanctions & AML",
+    "url": "https://www.sos.ca.gov/business-programs/ucc/financing-statement"
+  },
+  {
+    "dataset_name": "European Unique Identifier via the Business Registers Interconnection System (BRIS) / e-Justice Portal",
+    "domain": "Financial Crimes, Sanctions & AML",
+    "url": "https://e-justice.europa.eu/489/EN/business_registers__search_for_a_company_in_the_eu"
+  },
+  {
+    "dataset_name": "NFA BASIC (Background Affiliation Status Information Center) registration lookup",
+    "domain": "Financial Crimes, Sanctions & AML",
+    "url": "https://www.nfa.futures.org/basicnet/"
+  },
+  {
+    "dataset_name": "Federal Reserve Banks' E-Payments Routing Directory",
+    "domain": "Financial Crimes, Sanctions & AML",
+    "url": "https://www.frbservices.org/resources/routing-number-directory"
+  },
+  {
+    "dataset_name": "NYDFS-licensed virtual currency businesses (BitLicense / limited purpose trust charter holders)",
+    "domain": "Financial Crimes, Sanctions & AML",
+    "url": "https://nyscrypto.com/guides/bitlicense-companies/"
+  },
+  {
+    "dataset_name": "CBP Permitted Customs Broker Listing",
+    "domain": "Financial Crimes, Sanctions & AML",
+    "url": "https://www.cbp.gov/about/contact/brokers-listing"
+  },
+  {
+    "dataset_name": "INTERPOL Red Notices (public extracts)",
+    "domain": "Financial Crimes, Sanctions & AML",
+    "url": "https://www.interpol.int/en/How-we-work/Notices/View-Red-Notices"
+  },
+  {
+    "dataset_name": "FCC CORES (Commission Registration System) FRN registry",
+    "domain": "Corporate Registration & Beneficial Ownership",
+    "url": "https://apps.fcc.gov/cores/publicHome.do"
+  },
+  {
+    "dataset_name": "EU Business Registers Interconnection System (BRIS) \u2014 EUID-tagged company records",
+    "domain": "Corporate Registration & Beneficial Ownership",
+    "url": "https://ec.europa.eu/digital-building-blocks/sites/spaces/DIGITAL/blog/2017/09/19/533365899/Business+Register+Interconnection+System+BRIS"
+  },
+  {
+    "dataset_name": "NAIC Consumer Insurance Search (CIS) company lookup",
+    "domain": "Corporate Registration & Beneficial Ownership",
+    "url": "https://content.naic.org/cis_refined_results.htm"
+  },
+  {
+    "dataset_name": "NFA BASIC (Background Affiliation Status Information Center) registrant search",
+    "domain": "Corporate Registration & Beneficial Ownership",
+    "url": "https://www.nfa.org/basicnet/"
+  }
+]

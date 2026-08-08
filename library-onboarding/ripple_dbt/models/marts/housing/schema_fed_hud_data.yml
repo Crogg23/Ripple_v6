@@ -6,3 +6,12 @@ models:
       - name: dataset_name
         data_tests:
           - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - dataset_name
+              - fips
+              - zip
+              - ein
+              - year

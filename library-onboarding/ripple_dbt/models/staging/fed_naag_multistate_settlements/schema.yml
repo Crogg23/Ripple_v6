@@ -65,7 +65,21 @@ models:
       Analytics-ready mart table for NAAG Multistate Settlements. Exposes
       key identifiers for cross-source joins and adds convenience columns
       such as settlement year, month, and a surrogate key.
+
+      GRAIN NOTE (2026-08-07): the model's current .sql selects straight from
+      the raw source (C_CASE, YEAR, ID, etc.) rather than the company_name/
+      settlement_amount/settlement_year columns documented below -- that
+      column list is stale relative to the live SQL. The dedup test added
+      here targets ID, the source's own unique record identifier, which is
+      what the current SELECT actually exposes as the row-level key.
     columns:
+      - name: id
+        description: >-
+          Source-provided unique record identifier for the settlement entry
+          (the actual grain key of the current SQL -- see GRAIN NOTE above).
+        data_tests:
+          - not_null
+          - unique
       - name: company_name
         description: Legal name of the company involved in the settlement.
 

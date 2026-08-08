@@ -1,0 +1,102 @@
+[
+  {
+    "dataset_name": "FDA De Novo Classification Database (CDRH)",
+    "domain": "Pharma, Biologics & Medical Devices",
+    "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfPMN/denovo.cfm"
+  },
+  {
+    "dataset_name": "FDA Import Alerts (Detention Without Physical Examination)",
+    "domain": "Pharma, Biologics & Medical Devices",
+    "url": "https://www.accessdata.fda.gov/cms_ia/default.html"
+  },
+  {
+    "dataset_name": "FDA OTC Monograph Order database (OTC Monograph Reform, section 505G / OMUFA)",
+    "domain": "Pharma, Biologics & Medical Devices",
+    "url": "https://www.accessdata.fda.gov/scripts/cder/omuf/index.cfm"
+  },
+  {
+    "dataset_name": "USCG Port State Information Exchange (PSIX) Vessel Documentation Search",
+    "domain": "Environment & Natural Resources",
+    "url": "https://cgmix.uscg.mil/psix/psixsearch.aspx"
+  },
+  {
+    "dataset_name": "EPA Pesticide Product and Label System (PPLS)",
+    "domain": "Environment & Natural Resources",
+    "url": "https://ordspub.epa.gov/ords/pesticides/f?p=PPLS:1"
+  },
+  {
+    "dataset_name": "NRC materials license records \u2014 License Verification System (LVS) / Web-Based Licensing, plus Agreement State licensing systems",
+    "domain": "Environment & Natural Resources",
+    "url": "https://www.nrc.gov/security/byproduct/ismp/lvs.html"
+  },
+  {
+    "dataset_name": "OSMRE Abandoned Mine Land Inventory System (e-AMLIS)",
+    "domain": "Environment & Natural Resources",
+    "url": "https://www.osmre.gov/programs/e-amlis"
+  },
+  {
+    "dataset_name": "US Fish & Wildlife Service IPaC (Information for Planning and Consultation)",
+    "domain": "Environment & Natural Resources",
+    "url": "https://ipac.ecosphere.fws.gov/"
+  },
+  {
+    "dataset_name": "State-level pesticide applicator certification/licensing databases \u2014 no single federal database; EPA sets the FIFRA certification framework, states administer and hold the actual license records",
+    "domain": "Environment & Natural Resources",
+    "url": "https://agr.wa.gov/pestfert/licensinged/search"
+  },
+  {
+    "dataset_name": "State-level water/wastewater operator certification databases \u2014 no federal aggregator; EPA sets minimum standards under SDWA/CWA but states certify and hold operator records",
+    "domain": "Environment & Natural Resources",
+    "url": "https://www.waterboards.ca.gov/water_issues/programs/operator_certification/search.html"
+  },
+  {
+    "dataset_name": "EPA Renovation, Repair and Painting (RRP) Program \u2014 Lead-Safe Certified Firm records",
+    "domain": "Environment & Natural Resources",
+    "url": "https://www.epa.gov/lead/renovation-repair-and-painting-program-firm-certification"
+  },
+  {
+    "dataset_name": "EPA Underground Injection Control (UIC) Program permits \u2014 published as individual per-permit web pages; UIC Data Application (uicdata.epa.gov) for state/regional reporting",
+    "domain": "Environment & Natural Resources",
+    "url": "https://www.epa.gov/uic/uic-permit-vas3g931bsmy"
+  },
+  {
+    "dataset_name": "BLM Mineral & Land Records System (MLRS), successor to LR2000",
+    "domain": "Environment & Natural Resources",
+    "url": "https://www.blm.gov/services/land-records/mlrs"
+  },
+  {
+    "dataset_name": "USACE Regulatory Program permit records (ORM2 case-management system), published via per-District public notices \u2014 no confirmed single national public bulk file",
+    "domain": "Environment & Natural Resources",
+    "url": "https://permits.ops.usace.army.mil/orm-public"
+  },
+  {
+    "dataset_name": "Active Ginnie Mae Issuers (Approved Issuers Directory)",
+    "domain": "Banking & Depository Institutions",
+    "url": "https://catalog.data.gov/dataset/active-ginnie-mae-issuers"
+  },
+  {
+    "dataset_name": "ABA Routing Number Registry / Bankers Almanac Routing Transit Number File (official registrar: LexisNexis Risk Solutions, licensed through ABA)",
+    "domain": "Banking & Depository Institutions",
+    "url": "https://www.aba.com/about-us/routing-number"
+  },
+  {
+    "dataset_name": "FinCEN MSB Registrant Search (Money Services Business Registry)",
+    "domain": "Banking & Depository Institutions",
+    "url": "https://msb.fincen.gov/"
+  },
+  {
+    "dataset_name": "MSRB Registered Firms and Qualified Municipal Advisor Professionals (lookup tools: Municipal Advisors, Registered Dealers, Executing Broker Symbols)",
+    "domain": "Banking & Depository Institutions",
+    "url": "https://www.msrb.org/Registered-Firms-and-Qualified-Municipal-Advisor-Professionals"
+  },
+  {
+    "dataset_name": "State banking department charter/license registries (fragmented, 50 states) -- e.g. NY DFS supervised-institutions listings, Texas Dept. of Banking, Calif. DFPI",
+    "domain": "Banking & Depository Institutions",
+    "url": "https://www.dfs.ny.gov/apps_and_licensing/banks_and_trusts/home"
+  },
+  {
+    "dataset_name": "NFA BASIC (Background Affiliation Status Information Center) \u2014 NFA ID search",
+    "domain": "Securities, Investment Funds & Markets",
+    "url": "https://www.nfa.futures.org/basicnet/"
+  }
+]

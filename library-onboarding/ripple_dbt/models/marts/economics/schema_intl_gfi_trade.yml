@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: economics__intl_gfi_trade
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - country
+              - year
+              - flow_direction

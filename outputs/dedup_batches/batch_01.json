@@ -1,0 +1,184 @@
+[
+  {
+    "model": "economics__fed_usaspending_contracts",
+    "sql_path": "models\\marts\\economics\\economics__fed_usaspending_contracts.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_fed_usaspending_contracts.yml",
+    "columns": [
+      "cage_code",
+      "recipient_state_code",
+      "recipient_zip_4_code",
+      "primary_place_of_performance_state_code",
+      "naics_code"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__fed_usaspending_contracts_full",
+    "sql_path": "models\\marts\\economics\\economics__fed_usaspending_contracts_full.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_fed_usaspending_contracts_full.yml",
+    "columns": [
+      "modification_number",
+      "transaction_number",
+      "parent_award_agency_id",
+      "parent_award_modification_number",
+      "awarding_agency_code",
+      "awarding_sub_agency_code",
+      "awarding_office_code",
+      "funding_agency_code",
+      "funding_sub_agency_code",
+      "funding_office_code",
+      "cage_code",
+      "prime_award_transaction_recipient_state_fips_code",
+      "recipient_state_code",
+      "recipient_zip_4_code",
+      "recipient_phone_number",
+      "recipient_fax_number",
+      "prime_award_transaction_place_of_performance_state_fips_code",
+      "primary_place_of_performance_state_code",
+      "award_type_code",
+      "idv_type_code",
+      "multiple_or_single_award_idv_code",
+      "type_of_idc_code",
+      "type_of_contract_pricing_code",
+      "action_type_code",
+      "product_or_service_code",
+      "contract_bundling_code",
+      "dod_claimant_program_code",
+      "naics_code",
+      "recovered_materials_sustainability_code",
+      "domestic_or_foreign_entity_code",
+      "dod_acquisition_program_code",
+      "information_technology_commercial_item_category_code",
+      "epa_designated_product_code",
+      "place_of_manufacture_code",
+      "subcontracting_plan_code",
+      "extent_competed_code",
+      "solicitation_procedures_code",
+      "type_of_set_aside_code",
+      "evaluated_preference_code",
+      "research_code",
+      "fair_opportunity_limited_sources_code",
+      "other_than_full_and_open_competition_code",
+      "commercial_item_acquisition_procedures_code",
+      "simplified_procedures_for_certain_commercial_items_code",
+      "a76_fair_act_action_code",
+      "fed_biz_opps_code",
+      "local_area_set_aside_code",
+      "clinger_cohen_act_planning_code",
+      "materials_supplies_articles_equipment_code",
+      "labor_standards_code",
+      "interagency_contracting_authority_code",
+      "parent_award_type_code",
+      "parent_award_single_or_multiple_code",
+      "national_interest_action_code",
+      "government_furnished_property_code",
+      "sea_transportation_code",
+      "undefinitized_action_code",
+      "consolidated_contract_code",
+      "performance_based_service_acquisition_code",
+      "multi_year_contract_code",
+      "contract_financing_code",
+      "purchase_card_as_payment_method_code",
+      "contracting_officers_determination_of_business_size_code"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__int_gleif_rr",
+    "sql_path": "models\\marts\\economics\\economics__int_gleif_rr.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_int_gleif_rr.yml",
+    "columns": [
+      "relationship_start_node_node_id",
+      "relationship_end_node_node_id"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__intl_fao_faostat_food_security",
+    "sql_path": "models\\marts\\economics\\economics__intl_fao_faostat_food_security.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_intl_fao_faostat_food_security.yml",
+    "columns": [
+      "area_code",
+      "item_code",
+      "element_code",
+      "year_code"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__intl_gfi_trade",
+    "sql_path": "models\\marts\\economics\\economics__intl_gfi_trade.sql",
+    "schema_path": null,
+    "columns": [],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__intl_gleif",
+    "sql_path": "models\\marts\\economics\\economics__intl_gleif.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_intl_gleif.yml",
+    "columns": [
+      "entity_legalentityevents_legalentityevent_1_group_id",
+      "entity_legalentityevents_legalentityevent_2_group_id",
+      "entity_legalentityevents_legalentityevent_3_group_id",
+      "entity_legalentityevents_legalentityevent_4_group_id",
+      "entity_legalentityevents_legalentityevent_5_group_id"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__intl_gleif_relationships",
+    "sql_path": "models\\marts\\economics\\economics__intl_gleif_relationships.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_intl_gleif_relationships.yml",
+    "columns": [
+      "relationship_startnode_nodeid"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__intl_gleif_repex",
+    "sql_path": "models\\marts\\economics\\economics__intl_gleif_repex.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_intl_gleif_repex.yml",
+    "columns": [
+      "lei"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__intl_gleif_rr",
+    "sql_path": "models\\marts\\economics\\economics__intl_gleif_rr.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_intl_gleif_rr.yml",
+    "columns": [
+      "relationship_startnode_nodeid"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__intl_ipc_food_insecurity_global",
+    "sql_path": "models\\marts\\economics\\economics__intl_ipc_food_insecurity_global.sql",
+    "schema_path": null,
+    "columns": [],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__xc_owid_gini",
+    "sql_path": "models\\marts\\economics\\economics__xc_owid_gini.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_xc_owid_gini.yml",
+    "columns": [
+      "entity"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "education__fed_cftc_cot_financial",
+    "sql_path": "models\\marts\\education\\education__fed_cftc_cot_financial.sql",
+    "schema_path": "ripple://models\\marts\\education\\schema_fed_cftc_cot_financial.yml",
+    "columns": [
+      "cftc_contract_market_code",
+      "cftc_market_code",
+      "cftc_region_code",
+      "cftc_commodity_code",
+      "cftc_subgroup_code"
+    ],
+    "domain": "education"
+  }
+]

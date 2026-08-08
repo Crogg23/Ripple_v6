@@ -1,0 +1,2062 @@
+[
+  {
+    "model": "consumer_safety__fed_cpsc_neiss",
+    "sql_path": "models\\marts\\consumer_safety\\consumer_safety__fed_cpsc_neiss.sql",
+    "schema_path": "ripple://models\\marts\\consumer_safety\\schema_fed_cpsc_neiss.yml",
+    "columns": [
+      "sex_code"
+    ],
+    "domain": "consumer_safety"
+  },
+  {
+    "model": "consumer_safety__fed_nhtsa_investigations",
+    "sql_path": "models\\marts\\consumer_safety\\consumer_safety__fed_nhtsa_investigations.sql",
+    "schema_path": "ripple://models\\marts\\consumer_safety\\schema_fed_nhtsa_investigations.yml",
+    "columns": [
+      "nhtsa_action_number",
+      "recall_number"
+    ],
+    "domain": "consumer_safety"
+  },
+  {
+    "model": "corporate_registry__intl_es_borme",
+    "sql_path": "models\\marts\\corporate_registry\\corporate_registry__intl_es_borme.sql",
+    "schema_path": "ripple://models\\staging\\intl_es_borme\\schema.yml",
+    "columns": [
+      "company_id",
+      "country",
+      "date",
+      "borme_issue_number",
+      "section",
+      "cve",
+      "company_name",
+      "province",
+      "act_type",
+      "act_description",
+      "pdf_url",
+      "act_month",
+      "act_year",
+      "source_id",
+      "_ingested_at",
+      "_source_run_id"
+    ],
+    "domain": "corporate_registry"
+  },
+  {
+    "model": "criminal_justice__fed_bjs_data",
+    "sql_path": "models\\marts\\criminal_justice\\criminal_justice__fed_bjs_data.sql",
+    "schema_path": "ripple://models\\staging\\fed_bjs_data\\schema.yml",
+    "columns": [
+      "topic",
+      "description",
+      "unit_of_enumeration",
+      "publication_date",
+      "years_available",
+      "download_url",
+      "data_tool_url",
+      "_ingested_at",
+      "_source_run_id"
+    ],
+    "domain": "criminal_justice"
+  },
+  {
+    "model": "economics__fed_bls_qcew",
+    "sql_path": "models\\marts\\economics\\economics__fed_bls_qcew.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_fed_bls_qcew.yml",
+    "columns": [
+      "area_fips",
+      "state_fips",
+      "ownership_code",
+      "industry_code",
+      "aggregation_level_code",
+      "size_code",
+      "disclosure_code"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__fed_foreignassistance",
+    "sql_path": "models\\marts\\economics\\economics__fed_foreignassistance.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_fed_foreignassistance.yml",
+    "columns": [
+      "country"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__fed_irs_auto_revocations",
+    "sql_path": "models\\marts\\economics\\economics__fed_irs_auto_revocations.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_fed_irs_auto_revocations.yml",
+    "columns": [
+      "zip_code"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__fed_pbgc_data",
+    "sql_path": "models\\marts\\economics\\economics__fed_pbgc_data.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_fed_pbgc_data.yml",
+    "columns": [
+      "data_year"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__fed_sba_loans",
+    "sql_path": "models\\marts\\economics\\economics__fed_sba_loans.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_fed_sba_loans.yml",
+    "columns": [
+      "naics_code"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__fed_sec_edgar",
+    "sql_path": "models\\marts\\economics\\economics__fed_sec_edgar.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_fed_sec_edgar.yml",
+    "columns": [
+      "cik"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__fed_treasury_dts_deposits",
+    "sql_path": "models\\marts\\economics\\economics__fed_treasury_dts_deposits.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_fed_treasury_dts_deposits.yml",
+    "columns": [
+      "record_date"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__fed_usaspending_assistance_full",
+    "sql_path": "models\\marts\\economics\\economics__fed_usaspending_assistance_full.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_fed_usaspending_assistance_full.yml",
+    "columns": [
+      "modification_number",
+      "sai_number",
+      "awarding_agency_code",
+      "awarding_sub_agency_code",
+      "awarding_office_code",
+      "funding_agency_code",
+      "funding_sub_agency_code",
+      "funding_office_code",
+      "recipient_country_code",
+      "recipient_city_code",
+      "prime_award_transaction_recipient_county_fips_code",
+      "prime_award_transaction_recipient_state_fips_code",
+      "recipient_state_code",
+      "recipient_zip_code",
+      "recipient_zip_last_4_code",
+      "recipient_foreign_postal_code",
+      "primary_place_of_performance_country_code",
+      "primary_place_of_performance_code",
+      "prime_award_transaction_place_of_performance_county_fips_code",
+      "prime_award_transaction_place_of_performance_state_fips_code",
+      "cfda_number",
+      "funding_opportunity_number",
+      "assistance_type_code",
+      "business_funds_indicator_code",
+      "business_types_code",
+      "correction_delete_indicator_code",
+      "action_type_code",
+      "record_type_code"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__fed_usaspending_contracts",
+    "sql_path": "models\\marts\\economics\\economics__fed_usaspending_contracts.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_fed_usaspending_contracts.yml",
+    "columns": [
+      "cage_code",
+      "recipient_state_code",
+      "recipient_zip_4_code",
+      "primary_place_of_performance_state_code",
+      "naics_code"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__fed_usaspending_contracts_full",
+    "sql_path": "models\\marts\\economics\\economics__fed_usaspending_contracts_full.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_fed_usaspending_contracts_full.yml",
+    "columns": [
+      "modification_number",
+      "transaction_number",
+      "parent_award_agency_id",
+      "parent_award_modification_number",
+      "awarding_agency_code",
+      "awarding_sub_agency_code",
+      "awarding_office_code",
+      "funding_agency_code",
+      "funding_sub_agency_code",
+      "funding_office_code",
+      "cage_code",
+      "prime_award_transaction_recipient_state_fips_code",
+      "recipient_state_code",
+      "recipient_zip_4_code",
+      "recipient_phone_number",
+      "recipient_fax_number",
+      "prime_award_transaction_place_of_performance_state_fips_code",
+      "primary_place_of_performance_state_code",
+      "award_type_code",
+      "idv_type_code",
+      "multiple_or_single_award_idv_code",
+      "type_of_idc_code",
+      "type_of_contract_pricing_code",
+      "action_type_code",
+      "product_or_service_code",
+      "contract_bundling_code",
+      "dod_claimant_program_code",
+      "naics_code",
+      "recovered_materials_sustainability_code",
+      "domestic_or_foreign_entity_code",
+      "dod_acquisition_program_code",
+      "information_technology_commercial_item_category_code",
+      "epa_designated_product_code",
+      "place_of_manufacture_code",
+      "subcontracting_plan_code",
+      "extent_competed_code",
+      "solicitation_procedures_code",
+      "type_of_set_aside_code",
+      "evaluated_preference_code",
+      "research_code",
+      "fair_opportunity_limited_sources_code",
+      "other_than_full_and_open_competition_code",
+      "commercial_item_acquisition_procedures_code",
+      "simplified_procedures_for_certain_commercial_items_code",
+      "a76_fair_act_action_code",
+      "fed_biz_opps_code",
+      "local_area_set_aside_code",
+      "clinger_cohen_act_planning_code",
+      "materials_supplies_articles_equipment_code",
+      "labor_standards_code",
+      "interagency_contracting_authority_code",
+      "parent_award_type_code",
+      "parent_award_single_or_multiple_code",
+      "national_interest_action_code",
+      "government_furnished_property_code",
+      "sea_transportation_code",
+      "undefinitized_action_code",
+      "consolidated_contract_code",
+      "performance_based_service_acquisition_code",
+      "multi_year_contract_code",
+      "contract_financing_code",
+      "purchase_card_as_payment_method_code",
+      "contracting_officers_determination_of_business_size_code"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__int_gleif_rr",
+    "sql_path": "models\\marts\\economics\\economics__int_gleif_rr.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_int_gleif_rr.yml",
+    "columns": [
+      "relationship_start_node_node_id",
+      "relationship_end_node_node_id"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__intl_fao_faostat_food_security",
+    "sql_path": "models\\marts\\economics\\economics__intl_fao_faostat_food_security.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_intl_fao_faostat_food_security.yml",
+    "columns": [
+      "area_code",
+      "item_code",
+      "element_code",
+      "year_code"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__intl_gfi_trade",
+    "sql_path": "models\\marts\\economics\\economics__intl_gfi_trade.sql",
+    "schema_path": null,
+    "columns": [],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__intl_gleif",
+    "sql_path": "models\\marts\\economics\\economics__intl_gleif.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_intl_gleif.yml",
+    "columns": [
+      "entity_legalentityevents_legalentityevent_1_group_id",
+      "entity_legalentityevents_legalentityevent_2_group_id",
+      "entity_legalentityevents_legalentityevent_3_group_id",
+      "entity_legalentityevents_legalentityevent_4_group_id",
+      "entity_legalentityevents_legalentityevent_5_group_id"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__intl_gleif_relationships",
+    "sql_path": "models\\marts\\economics\\economics__intl_gleif_relationships.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_intl_gleif_relationships.yml",
+    "columns": [
+      "relationship_startnode_nodeid"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__intl_gleif_repex",
+    "sql_path": "models\\marts\\economics\\economics__intl_gleif_repex.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_intl_gleif_repex.yml",
+    "columns": [
+      "lei"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__intl_gleif_rr",
+    "sql_path": "models\\marts\\economics\\economics__intl_gleif_rr.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_intl_gleif_rr.yml",
+    "columns": [
+      "relationship_startnode_nodeid"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__intl_ipc_food_insecurity_global",
+    "sql_path": "models\\marts\\economics\\economics__intl_ipc_food_insecurity_global.sql",
+    "schema_path": null,
+    "columns": [],
+    "domain": "economics"
+  },
+  {
+    "model": "economics__xc_owid_gini",
+    "sql_path": "models\\marts\\economics\\economics__xc_owid_gini.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_xc_owid_gini.yml",
+    "columns": [
+      "entity"
+    ],
+    "domain": "economics"
+  },
+  {
+    "model": "education__fed_cftc_cot_financial",
+    "sql_path": "models\\marts\\education\\education__fed_cftc_cot_financial.sql",
+    "schema_path": "ripple://models\\marts\\education\\schema_fed_cftc_cot_financial.yml",
+    "columns": [
+      "cftc_contract_market_code",
+      "cftc_market_code",
+      "cftc_region_code",
+      "cftc_commodity_code",
+      "cftc_subgroup_code"
+    ],
+    "domain": "education"
+  },
+  {
+    "model": "education__fed_cftc_cot_futures",
+    "sql_path": "models\\marts\\education\\education__fed_cftc_cot_futures.sql",
+    "schema_path": "ripple://models\\marts\\education\\schema_fed_cftc_cot_futures.yml",
+    "columns": [
+      "cftc_contract_market_code",
+      "cftc_region_code",
+      "cftc_commodity_code"
+    ],
+    "domain": "education"
+  },
+  {
+    "model": "education__fed_cpsc_neiss_codes",
+    "sql_path": "models\\marts\\education\\education__fed_cpsc_neiss_codes.sql",
+    "schema_path": "ripple://models\\marts\\education\\schema_fed_cpsc_neiss_codes.yml",
+    "columns": [
+      "format_name"
+    ],
+    "domain": "education"
+  },
+  {
+    "model": "education__fed_google_polads_advertiser_geo_spend",
+    "sql_path": "models\\marts\\education\\education__fed_google_polads_advertiser_geo_spend.sql",
+    "schema_path": "ripple://models\\marts\\education\\schema_fed_google_polads_advertiser_geo_spend.yml",
+    "columns": [
+      "advertiser_id"
+    ],
+    "domain": "education"
+  },
+  {
+    "model": "education__fed_google_polads_advertiser_weekly_spend",
+    "sql_path": "models\\marts\\education\\education__fed_google_polads_advertiser_weekly_spend.sql",
+    "schema_path": "ripple://models\\marts\\education\\schema_fed_google_polads_advertiser_weekly_spend.yml",
+    "columns": [
+      "advertiser_id"
+    ],
+    "domain": "education"
+  },
+  {
+    "model": "education__fed_google_polads_creative_id_mapping",
+    "sql_path": "models\\marts\\education\\education__fed_google_polads_creative_id_mapping.sql",
+    "schema_path": "ripple://models\\marts\\education\\schema_fed_google_polads_creative_id_mapping.yml",
+    "columns": [
+      "oldcreativeid"
+    ],
+    "domain": "education"
+  },
+  {
+    "model": "education__fed_google_polads_geo_spend",
+    "sql_path": "models\\marts\\education\\education__fed_google_polads_geo_spend.sql",
+    "schema_path": null,
+    "columns": [],
+    "domain": "education"
+  },
+  {
+    "model": "education__fed_senate_lda_filings",
+    "sql_path": "models\\marts\\education\\education__fed_senate_lda_filings.sql",
+    "schema_path": "ripple://models\\marts\\education\\schema_fed_senate_lda_filings.yml",
+    "columns": [
+      "registrant_id",
+      "client_id"
+    ],
+    "domain": "education"
+  },
+  {
+    "model": "environment__fed_epa_air_emissions_poll_rpt_combined_emissions",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_air_emissions_poll_rpt_combined_emissions.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_air_emissions_poll_rpt_combined_emissions.yml",
+    "columns": [
+      "registry_id",
+      "pgm_sys_id"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_frs_frs_naics_codes",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_frs_frs_naics_codes.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_frs_frs_naics_codes.yml",
+    "columns": [
+      "pgm_sys_id"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_frs_frs_program_links",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_frs_frs_program_links.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_frs_frs_program_links.yml",
+    "columns": [
+      "pgm_sys_id",
+      "registry_id"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_frs_frs_sic_codes",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_frs_frs_sic_codes.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_frs_frs_sic_codes.yml",
+    "columns": [
+      "pgm_sys_id",
+      "sic_code",
+      "registry_id"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_icis_air_icis_air_fces_pces",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_icis_air_icis_air_fces_pces.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_icis_air_icis_air_fces_pces.yml",
+    "columns": [
+      "pgm_sys_id",
+      "activity_id",
+      "activity_type_code",
+      "comp_monitor_type_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_icis_air_icis_air_formal_actions",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_icis_air_icis_air_formal_actions.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_icis_air_icis_air_formal_actions.yml",
+    "columns": [
+      "pgm_sys_id",
+      "activity_id",
+      "activity_type_code",
+      "enf_type_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_icis_air_icis_air_informal_actions",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_icis_air_icis_air_informal_actions.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_icis_air_icis_air_informal_actions.yml",
+    "columns": [
+      "pgm_sys_id",
+      "activity_id",
+      "activity_type_code",
+      "enf_type_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_icis_air_icis_air_pollutants",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_icis_air_icis_air_pollutants.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_icis_air_icis_air_pollutants.yml",
+    "columns": [
+      "pgm_sys_id",
+      "pollutant_code",
+      "air_pollutant_class_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_icis_air_icis_air_program_subparts",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_icis_air_icis_air_program_subparts.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_icis_air_icis_air_program_subparts.yml",
+    "columns": [
+      "pgm_sys_id",
+      "program_code",
+      "air_program_subpart_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_icis_air_icis_air_programs",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_icis_air_icis_air_programs.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_icis_air_icis_air_programs.yml",
+    "columns": [
+      "pgm_sys_id",
+      "program_code",
+      "air_operating_status_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_icis_air_icis_air_titlev_certs",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_icis_air_icis_air_titlev_certs.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_icis_air_icis_air_titlev_certs.yml",
+    "columns": [
+      "pgm_sys_id",
+      "activity_id",
+      "comp_monitor_type_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_npdes_npdes_formal_enforcement_actions",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_npdes_npdes_formal_enforcement_actions.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_npdes_npdes_formal_enforcement_actions.yml",
+    "columns": [
+      "npdes_id",
+      "activity_id",
+      "activity_type_code",
+      "enf_type_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_npdes_npdes_informal_enforcement_actions",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_npdes_npdes_informal_enforcement_actions.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_npdes_npdes_informal_enforcement_actions.yml",
+    "columns": [
+      "npdes_id",
+      "registry_id",
+      "activity_id",
+      "activity_type_code",
+      "enf_type_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_npdes_npdes_inspections",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_npdes_npdes_inspections.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_npdes_npdes_inspections.yml",
+    "columns": [
+      "registry_id",
+      "npdes_id",
+      "activity_id",
+      "activity_type_code",
+      "comp_monitor_type_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_npdes_npdes_naics",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_npdes_npdes_naics.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_npdes_npdes_naics.yml",
+    "columns": [
+      "npdes_id",
+      "naics_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_npdes_npdes_qncr_history",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_npdes_npdes_qncr_history.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_npdes_npdes_qncr_history.yml",
+    "columns": [
+      "npdes_id"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_npdes_npdes_se_violations",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_npdes_npdes_se_violations.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_npdes_npdes_se_violations.yml",
+    "columns": [
+      "npdes_id",
+      "npdes_violation_id",
+      "violation_type_code",
+      "violation_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_npdes_npdes_sics",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_npdes_npdes_sics.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_npdes_npdes_sics.yml",
+    "columns": [
+      "npdes_id",
+      "sic_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_sdwa_sdwa_events_milestones",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_sdwa_sdwa_events_milestones.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_sdwa_sdwa_events_milestones.yml",
+    "columns": [
+      "event_schedule_id",
+      "event_milestone_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_sdwa_sdwa_facilities",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_sdwa_sdwa_facilities.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_sdwa_sdwa_facilities.yml",
+    "columns": [
+      "facility_id",
+      "facility_activity_code",
+      "facility_type_code",
+      "submission_status_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_sdwa_sdwa_lcr_samples",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_sdwa_sdwa_lcr_samples.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_sdwa_sdwa_lcr_samples.yml",
+    "columns": [
+      "sample_id",
+      "sar_id",
+      "contaminant_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_sdwa_sdwa_pn_violation_assoc",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_sdwa_sdwa_pn_violation_assoc.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_sdwa_sdwa_pn_violation_assoc.yml",
+    "columns": [
+      "pn_violation_id",
+      "related_violation_id",
+      "violation_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_sdwa_sdwa_pub_water_systems",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_sdwa_sdwa_pub_water_systems.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_sdwa_sdwa_pub_water_systems.yml",
+    "columns": [
+      "primacy_agency_code",
+      "pws_activity_code",
+      "pws_type_code",
+      "pop_cat_2_code",
+      "pop_cat_3_code",
+      "pop_cat_4_code",
+      "pop_cat_5_code",
+      "pop_cat_11_code",
+      "submission_status_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_sdwa_sdwa_site_visits",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_sdwa_sdwa_site_visits.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_sdwa_sdwa_site_visits.yml",
+    "columns": [
+      "visit_id",
+      "visit_reason_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_sdwa_sdwa_violations_enforcement",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_sdwa_sdwa_violations_enforcement.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_sdwa_sdwa_violations_enforcement.yml",
+    "columns": [
+      "violation_id",
+      "violation_code",
+      "violation_category_code",
+      "viol_originator_code",
+      "rule_code",
+      "rule_group_code",
+      "rule_family_code",
+      "enforcement_id",
+      "enforcement_action_type_code",
+      "enf_originator_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_tri_basic_2023",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_tri_basic_2023.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_tri_basic_2023.yml",
+    "columns": [
+      "c_22_industry_sector_code",
+      "c_39_tri_chemical_compound_id"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_usgs_water",
+    "sql_path": "models\\marts\\environment\\environment__fed_usgs_water.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_usgs_water.yml",
+    "columns": [
+      "site_no"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__intl_global_witness_defenders",
+    "sql_path": "models\\marts\\environment\\environment__intl_global_witness_defenders.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_intl_global_witness_defenders.yml",
+    "columns": [
+      "defender_name"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__xc_owid_co2",
+    "sql_path": "models\\marts\\environment\\environment__xc_owid_co2.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_xc_owid_co2.yml",
+    "columns": [
+      "entity"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__xc_owid_fossil_share",
+    "sql_path": "models\\marts\\environment\\environment__xc_owid_fossil_share.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_xc_owid_fossil_share.yml",
+    "columns": [
+      "entity"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__xc_owid_temp_anomaly",
+    "sql_path": "models\\marts\\environment\\environment__xc_owid_temp_anomaly.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_xc_owid_temp_anomaly.yml",
+    "columns": [
+      "entity"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "finance__fed_epa_icis_fec_case_enforcement_conclusion_facilities",
+    "sql_path": "models\\marts\\finance\\finance__fed_epa_icis_fec_case_enforcement_conclusion_facilities.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_epa_icis_fec_case_enforcement_conclusion_facilities.yml",
+    "columns": [
+      "activity_id",
+      "case_number",
+      "enf_conclusion_id",
+      "icis_facility_interest_id"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_epa_icis_fec_case_facilities",
+    "sql_path": "models\\marts\\finance\\finance__fed_epa_icis_fec_case_facilities.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_epa_icis_fec_case_facilities.yml",
+    "columns": [
+      "activity_id",
+      "case_number"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_epa_icis_fec_epa_informal_enforcement_actions",
+    "sql_path": "models\\marts\\finance\\finance__fed_epa_icis_fec_epa_informal_enforcement_actions.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_epa_icis_fec_epa_informal_enforcement_actions.yml",
+    "columns": [
+      "pgm_sys_id",
+      "registry_id",
+      "activity_type_code",
+      "enf_type_code"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_epa_icis_fec_icis_fec_epa_inspections",
+    "sql_path": "models\\marts\\finance\\finance__fed_epa_icis_fec_icis_fec_epa_inspections.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_epa_icis_fec_icis_fec_epa_inspections.yml",
+    "columns": [
+      "pgm_sys_id",
+      "activity_id",
+      "activity_type_code",
+      "statute_code",
+      "law_section_code"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_fec_cand_cmte_linkage",
+    "sql_path": "models\\marts\\finance\\finance__fed_fec_cand_cmte_linkage.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_fec_cand_cmte_linkage.yml",
+    "columns": [
+      "c1"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_fec_candidates",
+    "sql_path": "models\\marts\\finance\\finance__fed_fec_candidates.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_fec_candidates.yml",
+    "columns": [
+      "c1"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_fec_committees",
+    "sql_path": "models\\marts\\finance\\finance__fed_fec_committees.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_fec_committees.yml",
+    "columns": [
+      "c1"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_fec_independent_expenditures",
+    "sql_path": "models\\marts\\finance\\finance__fed_fec_independent_expenditures.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_fec_independent_expenditures.yml",
+    "columns": [
+      "cand_id",
+      "spe_id",
+      "tran_id"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_irs_soi",
+    "sql_path": "models\\marts\\finance\\finance__fed_irs_soi.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_irs_soi.yml",
+    "columns": [
+      "state_fips",
+      "zip_code"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_ncua_call_reports",
+    "sql_path": "models\\marts\\finance\\finance__fed_ncua_call_reports.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_ncua_call_reports.yml",
+    "columns": [
+      "cu_number",
+      "acct_code",
+      "zip_code"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_sec_13f_holdings",
+    "sql_path": "models\\marts\\finance\\finance__fed_sec_13f_holdings.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_sec_13f_holdings.yml",
+    "columns": [
+      "accession_number"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_sec_13f_positions",
+    "sql_path": "models\\marts\\finance\\finance__fed_sec_13f_positions.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_sec_13f_positions.yml",
+    "columns": [
+      "accession_number"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_sec_13f_submission",
+    "sql_path": "models\\marts\\finance\\finance__fed_sec_13f_submission.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_sec_13f_submission.yml",
+    "columns": [
+      "accession_number"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_sec_business_development_company_report",
+    "sql_path": "models\\marts\\finance\\finance__fed_sec_business_development_company_report.sql",
+    "schema_path": null,
+    "columns": [],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_sec_closed_end_fund_information",
+    "sql_path": "models\\marts\\finance\\finance__fed_sec_closed_end_fund_information.sql",
+    "schema_path": null,
+    "columns": [],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_sec_insider_deriv_trans",
+    "sql_path": "models\\marts\\finance\\finance__fed_sec_insider_deriv_trans.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_sec_insider_deriv_trans.yml",
+    "columns": [
+      "accession_number",
+      "trans_code"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_sec_insider_nonderiv_trans",
+    "sql_path": "models\\marts\\finance\\finance__fed_sec_insider_nonderiv_trans.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_sec_insider_nonderiv_trans.yml",
+    "columns": [
+      "accession_number",
+      "transaction_code"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_sec_insider_reportingowner",
+    "sql_path": "models\\marts\\finance\\finance__fed_sec_insider_reportingowner.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_sec_insider_reportingowner.yml",
+    "columns": [
+      "accession_number",
+      "zip_code"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__fed_sec_money_market_fund_information",
+    "sql_path": "models\\marts\\finance\\finance__fed_sec_money_market_fund_information.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_fed_sec_money_market_fund_information.yml",
+    "columns": [
+      "series_id",
+      "class_id"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "finance__intl_wb_ids",
+    "sql_path": "models\\marts\\finance\\finance__intl_wb_ids.sql",
+    "schema_path": "ripple://models\\marts\\finance\\schema_intl_wb_ids.yml",
+    "columns": [
+      "series_code"
+    ],
+    "domain": "finance"
+  },
+  {
+    "model": "health__fed_cdc_anxiety_depression",
+    "sql_path": "models\\marts\\health\\health__fed_cdc_anxiety_depression.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cdc_anxiety_depression.yml",
+    "columns": [
+      "indicator"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cdc_data_portal",
+    "sql_path": "models\\marts\\health\\health__fed_cdc_data_portal.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cdc_data_portal.yml",
+    "columns": [
+      "dataset_id",
+      "zip_code"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cdc_drug_poisoning_county",
+    "sql_path": "models\\marts\\health\\health__fed_cdc_drug_poisoning_county.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cdc_drug_poisoning_county.yml",
+    "columns": [
+      "fips"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cdc_health_insurance",
+    "sql_path": "models\\marts\\health\\health__fed_cdc_health_insurance.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cdc_health_insurance.yml",
+    "columns": [
+      "quartile_number"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cdc_injury_violence_county",
+    "sql_path": "models\\marts\\health\\health__fed_cdc_injury_violence_county.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cdc_injury_violence_county.yml",
+    "columns": [
+      "geoid"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cdc_nndss_weekly_2024",
+    "sql_path": "models\\marts\\health\\health__fed_cdc_nndss_weekly_2024.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cdc_nndss_weekly_2024.yml",
+    "columns": [
+      "reporting_area"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cdc_overdose",
+    "sql_path": "models\\marts\\health\\health__fed_cdc_overdose.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cdc_overdose.yml",
+    "columns": [
+      "state"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cdc_suicide_rates",
+    "sql_path": "models\\marts\\health\\health__fed_cdc_suicide_rates.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cdc_suicide_rates.yml",
+    "columns": [
+      "indicator"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_ambulatory_specialty_model_participants",
+    "sql_path": "models\\marts\\health\\health__fed_cms_ambulatory_specialty_model_participants.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_ambulatory_specialty_model_participants.yml",
+    "columns": [
+      "npi"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_dialysis",
+    "sql_path": "models\\marts\\health\\health__fed_cms_dialysis.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_dialysis.yml",
+    "columns": [
+      "five_star_data_availability_code",
+      "zip_code",
+      "telephone_number",
+      "patient_survival_data_availability_code",
+      "patient_hospitalization_data_availability_code",
+      "patient_hospital_readmission_data_availability_code",
+      "patient_transfusion_data_availability_code",
+      "patient_transplant_waitlist_data_availability_code",
+      "patient_prevalent_transplant_waitlist_data_availability_code",
+      "emergency_department_encounter_data_availability_code",
+      "emergency_department_encounter_ratio_occurring_within_30_days_of_hospital_discharge_data_availability_code",
+      "modality_switch_data_availability_code",
+      "patient_infection_data_availability_code",
+      "fistula_data_availability_code",
+      "hcp_vaccination_data_availability_code",
+      "adult_hd_kt_v_data_availability_code",
+      "adult_pd_kt_v_data_availability_code",
+      "pediatric_hd_kt_v_data_availability_code",
+      "pediatric_pd_kt_v_data_availability_code",
+      "hgb_10_data_availability_code",
+      "hgb_12_data_availability_code",
+      "hypercalcemia_data_availability_code",
+      "serum_phosphorus_data_availability_code",
+      "long_term_catheter_data_availability_code",
+      "npcr_data_availability_code"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_facility_affiliation",
+    "sql_path": "models\\marts\\health\\health__fed_cms_facility_affiliation.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_facility_affiliation.yml",
+    "columns": [
+      "npi",
+      "ind_pac_id",
+      "facility_type_certification_number"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_facility_level_minimum_data_set_frequency",
+    "sql_path": "models\\marts\\health\\health__fed_cms_facility_level_minimum_data_set_frequency.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_facility_level_minimum_data_set_frequency.yml",
+    "columns": [
+      "zip_code",
+      "fips_county_code"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_home_health",
+    "sql_path": "models\\marts\\health\\health__fed_cms_home_health.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_home_health.yml",
+    "columns": [
+      "zip_code",
+      "telephone_number"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_hospice",
+    "sql_path": "models\\marts\\health\\health__fed_cms_hospice.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_hospice.yml",
+    "columns": [
+      "zip_code",
+      "telephone_number"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_irf",
+    "sql_path": "models\\marts\\health\\health__fed_cms_irf.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_irf.yml",
+    "columns": [
+      "zip_code",
+      "telephone_number"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_ltch",
+    "sql_path": "models\\marts\\health\\health__fed_cms_ltch.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_ltch.yml",
+    "columns": [
+      "zip_code",
+      "telephone_number"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_medicare_dialysis_facilities",
+    "sql_path": "models\\marts\\health\\health__fed_cms_medicare_dialysis_facilities.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_medicare_dialysis_facilities.yml",
+    "columns": [
+      "npi",
+      "measure_id"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_medicare_durable_medical_equipment_devices_supplies_by_suppl",
+    "sql_path": "models\\marts\\health\\health__fed_cms_medicare_durable_medical_equipment_devices_supplies_by_suppl.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_medicare_durable_medical_equipment_devices_supplies_by_suppl.yml",
+    "columns": [
+      "suplr_npi",
+      "suplr_prvdr_state_fips",
+      "rbcs_id"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_medicare_inpatient_hospitals_by_provider",
+    "sql_path": "models\\marts\\health\\health__fed_cms_medicare_inpatient_hospitals_by_provider.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_medicare_inpatient_hospitals_by_provider.yml",
+    "columns": [
+      "rndrng_prvdr_state_fips"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_medicare_inpatient_hospitals_by_provider_and_service",
+    "sql_path": "models\\marts\\health\\health__fed_cms_medicare_inpatient_hospitals_by_provider_and_service.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_medicare_inpatient_hospitals_by_provider_and_service.yml",
+    "columns": [
+      "rndrng_prvdr_state_fips"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_medicare_outpatient_hospitals_by_provider_and_service",
+    "sql_path": "models\\marts\\health\\health__fed_cms_medicare_outpatient_hospitals_by_provider_and_service.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_medicare_outpatient_hospitals_by_provider_and_service.yml",
+    "columns": [
+      "rndrng_prvdr_state_fips"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_medicare_physician_other_practitioners_by_provider_and_servi",
+    "sql_path": "models\\marts\\health\\health__fed_cms_medicare_physician_other_practitioners_by_provider_and_servi.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_medicare_physician_other_practitioners_by_provider_and_servi.yml",
+    "columns": [
+      "rndrng_npi",
+      "rndrng_prvdr_state_fips"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_nadac",
+    "sql_path": "models\\marts\\health\\health__fed_cms_nadac.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_nadac.yml",
+    "columns": [
+      "ndc",
+      "explanation_code"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_nursing_home_deficiencies",
+    "sql_path": "models\\marts\\health\\health__fed_cms_nursing_home_deficiencies.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_nursing_home_deficiencies.yml",
+    "columns": [
+      "zip_code",
+      "deficiency_tag_number",
+      "scope_severity_code"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_nursing_home_fire_deficiencies",
+    "sql_path": "models\\marts\\health\\health__fed_cms_nursing_home_fire_deficiencies.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_nursing_home_fire_deficiencies.yml",
+    "columns": [
+      "zip_code",
+      "deficiency_tag_number",
+      "scope_severity_code"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_nursing_home_penalties",
+    "sql_path": "models\\marts\\health\\health__fed_cms_nursing_home_penalties.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_nursing_home_penalties.yml",
+    "columns": [
+      "zip_code"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_opioid_treatment_program_providers",
+    "sql_path": "models\\marts\\health\\health__fed_cms_opioid_treatment_program_providers.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_opioid_treatment_program_providers.yml",
+    "columns": [
+      "npi"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_opt_out_affidavits",
+    "sql_path": "models\\marts\\health\\health__fed_cms_opt_out_affidavits.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_opt_out_affidavits.yml",
+    "columns": [
+      "npi",
+      "state_code",
+      "zip_code"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_order_and_referring",
+    "sql_path": "models\\marts\\health\\health__fed_cms_order_and_referring.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_order_and_referring.yml",
+    "columns": [
+      "npi"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_partd_prescribers",
+    "sql_path": "models\\marts\\health\\health__fed_cms_partd_prescribers.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_partd_prescribers.yml",
+    "columns": [
+      "npi",
+      "prescriber_state_fips"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_pos_other",
+    "sql_path": "models\\marts\\health\\health__fed_cms_pos_other.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_pos_other.yml",
+    "columns": [
+      "cross_ref_provider_number",
+      "ltc_cross_ref_provider_number",
+      "medicare_medicaid_prvdr_number",
+      "parent_provider_number"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_quality_payment_program_experience",
+    "sql_path": "models\\marts\\health\\health__fed_cms_quality_payment_program_experience.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_quality_payment_program_experience.yml",
+    "columns": [
+      "npi"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_dea_arcos",
+    "sql_path": "models\\marts\\health\\health__fed_dea_arcos.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_dea_arcos.yml",
+    "columns": [
+      "transaction_id",
+      "transaction_code",
+      "drug_code"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_fda_faers_demo",
+    "sql_path": "models\\marts\\health\\health__fed_fda_faers_demo.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_fda_faers_demo.yml",
+    "columns": [],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_fda_faers_drug",
+    "sql_path": "models\\marts\\health\\health__fed_fda_faers_drug.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_fda_faers_drug.yml",
+    "columns": [],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_fda_faers_indi",
+    "sql_path": "models\\marts\\health\\health__fed_fda_faers_indi.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_fda_faers_indi.yml",
+    "columns": [
+      "indi_pt"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_fda_faers_outc",
+    "sql_path": "models\\marts\\health\\health__fed_fda_faers_outc.sql",
+    "schema_path": null,
+    "columns": [],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_fda_faers_reac",
+    "sql_path": "models\\marts\\health\\health__fed_fda_faers_reac.sql",
+    "schema_path": null,
+    "columns": [],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_hrsa_shortage_areas",
+    "sql_path": "models\\marts\\health\\health__fed_hrsa_shortage_areas.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_hrsa_shortage_areas.yml",
+    "columns": [
+      "hpsa_id",
+      "hpsa_geography_identification_number",
+      "bhcmis_organization_identification_number",
+      "common_postal_code",
+      "common_state_fips_code",
+      "discipline_class_number",
+      "hpsa_component_source_identification_number",
+      "hpsa_component_type_code",
+      "hpsa_metropolitan_indicator_code",
+      "hpsa_postal_code",
+      "hpsa_status_code",
+      "hpsa_type_code",
+      "primary_state_fips_code",
+      "rural_status_code",
+      "state_fips_code"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_nursinghome411",
+    "sql_path": "models\\marts\\health\\health__fed_nursinghome411.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_nursinghome411.yml",
+    "columns": [
+      "chain_id",
+      "cms_region_number"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_va_allcause_mortality",
+    "sql_path": "models\\marts\\health\\health__fed_va_allcause_mortality.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_va_allcause_mortality.yml",
+    "columns": [
+      "figures_and_tables"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_va_suicide_appendix",
+    "sql_path": "models\\marts\\health\\health__fed_va_suicide_appendix.sql",
+    "schema_path": null,
+    "columns": [],
+    "domain": "health"
+  },
+  {
+    "model": "health__pharma_meal_cap_fingerprint",
+    "sql_path": "models\\marts\\health\\health__pharma_meal_cap_fingerprint.sql",
+    "schema_path": null,
+    "columns": [],
+    "domain": "health"
+  },
+  {
+    "model": "health__xc_guttmacher_monthly_abortion",
+    "sql_path": "models\\marts\\health\\health__xc_guttmacher_monthly_abortion.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_xc_guttmacher_monthly_abortion.yml",
+    "columns": [
+      "state"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__xc_owid_life_expectancy",
+    "sql_path": "models\\marts\\health\\health__xc_owid_life_expectancy.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_xc_owid_life_expectancy.yml",
+    "columns": [
+      "entity"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "historical_records__fed_slavevoyages_intraamerican",
+    "sql_path": "models\\marts\\historical_records\\historical_records__fed_slavevoyages_intraamerican.sql",
+    "schema_path": "ripple://models\\staging\\fed_slavevoyages_intraamerican\\schema.yml",
+    "columns": [
+      "country_of_arrival",
+      "slave_trade_company",
+      "num_enslaved_embarked",
+      "num_enslaved_disembarked",
+      "num_enslaved_mortality_estimate",
+      "vessel_name",
+      "source_citation",
+      "source_voyage_id",
+      "fips_code",
+      "_ingested_at",
+      "_source_run_id"
+    ],
+    "domain": "historical_records"
+  },
+  {
+    "model": "housing__fed_cfpb_hmda_dc_only",
+    "sql_path": "models\\marts\\housing\\housing__fed_cfpb_hmda_dc_only.sql",
+    "schema_path": "ripple://models\\marts\\housing\\schema_fed_cfpb_hmda_dc_only.yml",
+    "columns": [
+      "state_code"
+    ],
+    "domain": "housing"
+  },
+  {
+    "model": "housing__fed_fhfa_hpi",
+    "sql_path": "models\\marts\\housing\\housing__fed_fhfa_hpi.sql",
+    "schema_path": "ripple://models\\marts\\housing\\schema_fed_fhfa_hpi.yml",
+    "columns": [
+      "place_id"
+    ],
+    "domain": "housing"
+  },
+  {
+    "model": "housing__fed_fhfa_nmdb",
+    "sql_path": "models\\marts\\housing\\housing__fed_fhfa_nmdb.sql",
+    "schema_path": "ripple://models\\marts\\housing\\schema_fed_fhfa_nmdb.yml",
+    "columns": [
+      "geo_code"
+    ],
+    "domain": "housing"
+  },
+  {
+    "model": "housing__fed_hud_data",
+    "sql_path": "models\\marts\\housing\\housing__fed_hud_data.sql",
+    "schema_path": "ripple://models\\marts\\housing\\schema_fed_hud_data.yml",
+    "columns": [
+      "dataset_name"
+    ],
+    "domain": "housing"
+  },
+  {
+    "model": "immigration__fed_cbp_encounters",
+    "sql_path": "models\\marts\\immigration\\immigration__fed_cbp_encounters.sql",
+    "schema_path": null,
+    "columns": [],
+    "domain": "immigration"
+  },
+  {
+    "model": "immigration__fed_dhs_ohss",
+    "sql_path": "models\\marts\\immigration\\immigration__fed_dhs_ohss.sql",
+    "schema_path": "ripple://models\\marts\\immigration\\schema_fed_dhs_ohss.yml",
+    "columns": [
+      "report_month"
+    ],
+    "domain": "immigration"
+  },
+  {
+    "model": "immigration__fed_epa_sdwa_sdwa_service_areas",
+    "sql_path": "models\\marts\\immigration\\immigration__fed_epa_sdwa_sdwa_service_areas.sql",
+    "schema_path": "ripple://models\\marts\\immigration\\schema_fed_epa_sdwa_sdwa_service_areas.yml",
+    "columns": [
+      "service_area_type_code"
+    ],
+    "domain": "immigration"
+  },
+  {
+    "model": "immigration__fed_ice_statistics",
+    "sql_path": "models\\marts\\immigration\\immigration__fed_ice_statistics.sql",
+    "schema_path": null,
+    "columns": [],
+    "domain": "immigration"
+  },
+  {
+    "model": "immigration__fed_uscis_data",
+    "sql_path": "models\\marts\\immigration\\immigration__fed_uscis_data.sql",
+    "schema_path": "ripple://models\\marts\\immigration\\schema_fed_uscis_data.yml",
+    "columns": [
+      "form_number"
+    ],
+    "domain": "immigration"
+  },
+  {
+    "model": "immigration__xc_owid_refugees",
+    "sql_path": "models\\marts\\immigration\\immigration__xc_owid_refugees.sql",
+    "schema_path": "ripple://models\\marts\\immigration\\schema_xc_owid_refugees.yml",
+    "columns": [
+      "entity"
+    ],
+    "domain": "immigration"
+  },
+  {
+    "model": "investigations__intl_leiden_russian_ops_europe",
+    "sql_path": "models\\marts\\investigations\\investigations__intl_leiden_russian_ops_europe.sql",
+    "schema_path": "ripple://models\\marts\\investigations\\schema_intl_leiden_russian_ops_europe.yml",
+    "columns": [
+      "incidentyear"
+    ],
+    "domain": "investigations"
+  },
+  {
+    "model": "investigations__xc_wayback_replay_doj_deep_pages",
+    "sql_path": "models\\marts\\investigations\\investigations__xc_wayback_replay_doj_deep_pages.sql",
+    "schema_path": "ripple://models\\marts\\investigations\\schema_xc_wayback_replay_doj_deep_pages.yml",
+    "columns": [
+      "page_url"
+    ],
+    "domain": "investigations"
+  },
+  {
+    "model": "investigations__xc_wayback_replay_doj_listing",
+    "sql_path": "models\\marts\\investigations\\investigations__xc_wayback_replay_doj_listing.sql",
+    "schema_path": "ripple://models\\marts\\investigations\\schema_xc_wayback_replay_doj_listing.yml",
+    "columns": [
+      "page_url"
+    ],
+    "domain": "investigations"
+  },
+  {
+    "model": "justice__county_double_burden",
+    "sql_path": "models\\marts\\justice\\justice__county_double_burden.sql",
+    "schema_path": null,
+    "columns": [],
+    "domain": "justice"
+  },
+  {
+    "model": "justice__fed_courtlistener_financial_disclosures",
+    "sql_path": "models\\marts\\justice\\justice__fed_courtlistener_financial_disclosures.sql",
+    "schema_path": null,
+    "columns": [],
+    "domain": "justice"
+  },
+  {
+    "model": "justice__fed_fbi_nics_checks",
+    "sql_path": "models\\marts\\justice\\justice__fed_fbi_nics_checks.sql",
+    "schema_path": "ripple://models\\marts\\justice\\schema_fed_fbi_nics_checks.yml",
+    "columns": [
+      "month"
+    ],
+    "domain": "justice"
+  },
+  {
+    "model": "justice__fed_ftc_datasets",
+    "sql_path": "models\\marts\\justice\\justice__fed_ftc_datasets.sql",
+    "schema_path": "ripple://models\\marts\\justice\\schema_fed_ftc_datasets.yml",
+    "columns": [
+      "action_name"
+    ],
+    "domain": "justice"
+  },
+  {
+    "model": "justice__fed_uscourts_stats",
+    "sql_path": "models\\marts\\justice\\justice__fed_uscourts_stats.sql",
+    "schema_path": "ripple://models\\marts\\justice\\schema_fed_uscourts_stats.yml",
+    "columns": [
+      "table_number",
+      "fips_code",
+      "chapter_code"
+    ],
+    "domain": "justice"
+  },
+  {
+    "model": "justice__intl_eu_sanctions",
+    "sql_path": "models\\marts\\justice\\justice__intl_eu_sanctions.sql",
+    "schema_path": "ripple://models\\marts\\justice\\schema_intl_eu_sanctions.yml",
+    "columns": [
+      "entity_logical_id",
+      "naal_logical_id",
+      "addr_logical_id",
+      "addr_number",
+      "birt_logical_id",
+      "iden_logical_id",
+      "iden_number",
+      "citi_logical_id"
+    ],
+    "domain": "justice"
+  },
+  {
+    "model": "justice__intl_eu_socta_europol",
+    "sql_path": "models\\marts\\justice\\justice__intl_eu_socta_europol.sql",
+    "schema_path": "ripple://models\\marts\\justice\\schema_intl_eu_socta_europol.yml",
+    "columns": [
+      "serial_number"
+    ],
+    "domain": "justice"
+  },
+  {
+    "model": "justice__intl_eurlex_cellar",
+    "sql_path": "models\\marts\\justice\\justice__intl_eurlex_cellar.sql",
+    "schema_path": "ripple://models\\marts\\justice\\schema_intl_eurlex_cellar.yml",
+    "columns": [
+      "celex_id",
+      "ecli_id",
+      "oj_number"
+    ],
+    "domain": "justice"
+  },
+  {
+    "model": "justice__racial_jail_disparity",
+    "sql_path": "models\\marts\\justice\\justice__racial_jail_disparity.sql",
+    "schema_path": null,
+    "columns": [],
+    "domain": "justice"
+  },
+  {
+    "model": "justice__xc_mapping_police_violence",
+    "sql_path": "models\\marts\\justice\\justice__xc_mapping_police_violence.sql",
+    "schema_path": "ripple://models\\marts\\justice\\schema_xc_mapping_police_violence.yml",
+    "columns": [
+      "mpv_id"
+    ],
+    "domain": "justice"
+  },
+  {
+    "model": "justice__xc_nagix_dprk_missile_tests",
+    "sql_path": "models\\marts\\justice\\justice__xc_nagix_dprk_missile_tests.sql",
+    "schema_path": "ripple://models\\marts\\justice\\schema_xc_nagix_dprk_missile_tests.yml",
+    "columns": [
+      "date"
+    ],
+    "domain": "justice"
+  },
+  {
+    "model": "justice__xc_owid_homicide",
+    "sql_path": "models\\marts\\justice\\justice__xc_owid_homicide.sql",
+    "schema_path": "ripple://models\\marts\\justice\\schema_xc_owid_homicide.yml",
+    "columns": [
+      "entity"
+    ],
+    "domain": "justice"
+  },
+  {
+    "model": "justice__xc_owid_nuclear_warheads",
+    "sql_path": "models\\marts\\justice\\justice__xc_owid_nuclear_warheads.sql",
+    "schema_path": "ripple://models\\marts\\justice\\schema_xc_owid_nuclear_warheads.yml",
+    "columns": [
+      "entity"
+    ],
+    "domain": "justice"
+  },
+  {
+    "model": "justice__xc_owid_terrorism_deaths",
+    "sql_path": "models\\marts\\justice\\justice__xc_owid_terrorism_deaths.sql",
+    "schema_path": "ripple://models\\marts\\justice\\schema_xc_owid_terrorism_deaths.yml",
+    "columns": [
+      "entity"
+    ],
+    "domain": "justice"
+  },
+  {
+    "model": "justice__xc_ransomwarelive_victims",
+    "sql_path": "models\\marts\\justice\\justice__xc_ransomwarelive_victims.sql",
+    "schema_path": "ripple://models\\marts\\justice\\schema_xc_ransomwarelive_victims.yml",
+    "columns": [
+      "post_title"
+    ],
+    "domain": "justice"
+  },
+  {
+    "model": "justice__xc_vera_incarceration_trends",
+    "sql_path": "models\\marts\\justice\\justice__xc_vera_incarceration_trends.sql",
+    "schema_path": "ripple://models\\marts\\justice\\schema_xc_vera_incarceration_trends.yml",
+    "columns": [
+      "county_fips",
+      "state_fips",
+      "state_code",
+      "county_code",
+      "source_run_id"
+    ],
+    "domain": "justice"
+  },
+  {
+    "model": "labor__fed_msha_accidents",
+    "sql_path": "models\\marts\\labor\\labor__fed_msha_accidents.sql",
+    "schema_path": "ripple://models\\marts\\labor\\schema_fed_msha_accidents.yml",
+    "columns": [
+      "mine_id"
+    ],
+    "domain": "labor"
+  },
+  {
+    "model": "labor__fed_msha_violations",
+    "sql_path": "models\\marts\\labor\\labor__fed_msha_violations.sql",
+    "schema_path": "ripple://models\\marts\\labor\\schema_fed_msha_violations.yml",
+    "columns": [
+      "mine_id"
+    ],
+    "domain": "labor"
+  },
+  {
+    "model": "labor__fed_osha_ita_300a_summary_2025",
+    "sql_path": "models\\marts\\labor\\labor__fed_osha_ita_300a_summary_2025.sql",
+    "schema_path": "ripple://models\\marts\\labor\\schema_fed_osha_ita_300a_summary_2025.yml",
+    "columns": [
+      "establishment_id"
+    ],
+    "domain": "labor"
+  },
+  {
+    "model": "legal_enforcement__fed_naag_multistate_settlements",
+    "sql_path": "models\\marts\\legal_enforcement\\legal_enforcement__fed_naag_multistate_settlements.sql",
+    "schema_path": "ripple://models\\staging\\fed_naag_multistate_settlements\\schema.yml",
+    "columns": [
+      "company_name",
+      "settlement_amount",
+      "case_description",
+      "industry",
+      "lead_state",
+      "num_states",
+      "document_url",
+      "settlement_year",
+      "settlement_month",
+      "_ingested_at",
+      "_source_run_id"
+    ],
+    "domain": "legal_enforcement"
+  },
+  {
+    "model": "money__debt_repayment_cliff",
+    "sql_path": "models\\marts\\money_finance\\money__debt_repayment_cliff.sql",
+    "schema_path": null,
+    "columns": [],
+    "domain": "money"
+  },
+  {
+    "model": "open_data__intl_ar_datosgob",
+    "sql_path": "models\\marts\\open_data\\open_data__intl_ar_datosgob.sql",
+    "schema_path": "ripple://models\\marts\\open_data\\schema_intl_ar_datosgob.yml",
+    "columns": [
+      "dataset_id",
+      "serie_id",
+      "provincia_id",
+      "municipio_id",
+      "departamento_id"
+    ],
+    "domain": "open_data"
+  },
+  {
+    "model": "open_data__intl_fr_data_gouv",
+    "sql_path": "models\\marts\\open_data\\open_data__intl_fr_data_gouv.sql",
+    "schema_path": "ripple://models\\marts\\open_data\\schema_intl_fr_data_gouv.yml",
+    "columns": [
+      "dataset_id",
+      "organization_id",
+      "resource_id"
+    ],
+    "domain": "open_data"
+  },
+  {
+    "model": "open_data__xc_wayback_doj_epstein",
+    "sql_path": "models\\marts\\open_data\\open_data__xc_wayback_doj_epstein.sql",
+    "schema_path": "ripple://models\\marts\\open_data\\schema_xc_wayback_doj_epstein.yml",
+    "columns": [
+      "status_code"
+    ],
+    "domain": "open_data"
+  },
+  {
+    "model": "politics__fed_congress_committee_membership",
+    "sql_path": "models\\marts\\politics\\politics__fed_congress_committee_membership.sql",
+    "schema_path": "ripple://models\\marts\\politics\\schema_fed_congress_committee_membership.yml",
+    "columns": [
+      "committee_code",
+      "bioguide"
+    ],
+    "domain": "politics"
+  },
+  {
+    "model": "politics__fed_congress_legislators",
+    "sql_path": "models\\marts\\politics\\politics__fed_congress_legislators.sql",
+    "schema_path": "ripple://models\\marts\\politics\\schema_fed_congress_legislators.yml",
+    "columns": [
+      "bioguide",
+      "icpsr",
+      "google_entity_id"
+    ],
+    "domain": "politics"
+  },
+  {
+    "model": "politics__fed_doj_epstein_library",
+    "sql_path": "models\\marts\\politics\\politics__fed_doj_epstein_library.sql",
+    "schema_path": "ripple://models\\marts\\politics\\schema_fed_doj_epstein_library.yml",
+    "columns": [
+      "page_url"
+    ],
+    "domain": "politics"
+  },
+  {
+    "model": "politics__fed_eac_eavs",
+    "sql_path": "models\\marts\\politics\\politics__fed_eac_eavs.sql",
+    "schema_path": "ripple://models\\marts\\politics\\schema_fed_eac_eavs.yml",
+    "columns": [
+      "fipscode"
+    ],
+    "domain": "politics"
+  },
+  {
+    "model": "politics__fed_fcc_licensing",
+    "sql_path": "models\\marts\\politics\\politics__fed_fcc_licensing.sql",
+    "schema_path": "ripple://models\\marts\\politics\\schema_fed_fcc_licensing.yml",
+    "columns": [
+      "uls_file_number",
+      "ebf_transaction_id",
+      "radio_service_code",
+      "zip_code",
+      "applicant_type_code"
+    ],
+    "domain": "politics"
+  },
+  {
+    "model": "politics__fed_fjc_service",
+    "sql_path": "models\\marts\\politics\\politics__fed_fjc_service.sql",
+    "schema_path": "ripple://models\\marts\\politics\\schema_fed_fjc_service.yml",
+    "columns": [
+      "seat_id"
+    ],
+    "domain": "politics"
+  },
+  {
+    "model": "politics__fed_medsl_house_returns",
+    "sql_path": "models\\marts\\politics\\politics__fed_medsl_house_returns.sql",
+    "schema_path": "ripple://models\\marts\\politics\\schema_fed_medsl_house_returns.yml",
+    "columns": [
+      "state_fips"
+    ],
+    "domain": "politics"
+  },
+  {
+    "model": "politics__fed_medsl_president_returns",
+    "sql_path": "models\\marts\\politics\\politics__fed_medsl_president_returns.sql",
+    "schema_path": "ripple://models\\marts\\politics\\schema_fed_medsl_president_returns.yml",
+    "columns": [
+      "state_fips"
+    ],
+    "domain": "politics"
+  },
+  {
+    "model": "politics__fed_medsl_senate_returns",
+    "sql_path": "models\\marts\\politics\\politics__fed_medsl_senate_returns.sql",
+    "schema_path": "ripple://models\\marts\\politics\\schema_fed_medsl_senate_returns.yml",
+    "columns": [
+      "state_fips"
+    ],
+    "domain": "politics"
+  },
+  {
+    "model": "politics__fed_voteview_members",
+    "sql_path": "models\\marts\\politics\\politics__fed_voteview_members.sql",
+    "schema_path": "ripple://models\\marts\\politics\\schema_fed_voteview_members.yml",
+    "columns": [
+      "icpsr",
+      "district_code",
+      "party_code",
+      "bioguide_id"
+    ],
+    "domain": "politics"
+  },
+  {
+    "model": "politics__intl_freedomhouse",
+    "sql_path": "models\\marts\\politics\\politics__intl_freedomhouse.sql",
+    "schema_path": null,
+    "columns": [],
+    "domain": "politics"
+  },
+  {
+    "model": "politics__intl_owid_milspend",
+    "sql_path": "models\\marts\\politics\\politics__intl_owid_milspend.sql",
+    "schema_path": "ripple://models\\marts\\politics\\schema_intl_owid_milspend.yml",
+    "columns": [
+      "entity"
+    ],
+    "domain": "politics"
+  },
+  {
+    "model": "politics__member_fec_id",
+    "sql_path": "models\\marts\\politics\\politics__member_fec_id.sql",
+    "schema_path": "ripple://models\\marts\\politics\\_politics__models.yml",
+    "columns": [
+      "member_key",
+      "fec_id"
+    ],
+    "domain": "politics"
+  },
+  {
+    "model": "politics__st_cannabis_policy_bundles",
+    "sql_path": "models\\marts\\politics\\politics__st_cannabis_policy_bundles.sql",
+    "schema_path": "ripple://models\\marts\\politics\\schema_st_cannabis_policy_bundles.yml",
+    "columns": [
+      "state"
+    ],
+    "domain": "politics"
+  },
+  {
+    "model": "politics__xc_owid_cpi",
+    "sql_path": "models\\marts\\politics\\politics__xc_owid_cpi.sql",
+    "schema_path": "ripple://models\\marts\\politics\\schema_xc_owid_cpi.yml",
+    "columns": [
+      "entity"
+    ],
+    "domain": "politics"
+  },
+  {
+    "model": "reference__fed_usgs_topoview",
+    "sql_path": "models\\marts\\reference\\reference__fed_usgs_topoview.sql",
+    "schema_path": "ripple://models\\marts\\reference\\schema_fed_usgs_topoview.yml",
+    "columns": [
+      "title"
+    ],
+    "domain": "reference"
+  },
+  {
+    "model": "reference__intl_eg_capmas",
+    "sql_path": "models\\marts\\reference\\reference__intl_eg_capmas.sql",
+    "schema_path": "ripple://models\\marts\\reference\\schema_intl_eg_capmas.yml",
+    "columns": [
+      "indicator_name"
+    ],
+    "domain": "reference"
+  },
+  {
+    "model": "reference__intl_eurostat",
+    "sql_path": "models\\marts\\reference\\reference__intl_eurostat.sql",
+    "schema_path": "ripple://models\\marts\\reference\\schema_intl_eurostat.yml",
+    "columns": [
+      "dataflow_id"
+    ],
+    "domain": "reference"
+  },
+  {
+    "model": "reference__xc_owid_fertility",
+    "sql_path": "models\\marts\\reference\\reference__xc_owid_fertility.sql",
+    "schema_path": "ripple://models\\marts\\reference\\schema_xc_owid_fertility.yml",
+    "columns": [
+      "entity"
+    ],
+    "domain": "reference"
+  },
+  {
+    "model": "science__fed_nasa_open_data",
+    "sql_path": "models\\marts\\science\\science__fed_nasa_open_data.sql",
+    "schema_path": "ripple://models\\marts\\science\\schema_fed_nasa_open_data.yml",
+    "columns": [
+      "api_name"
+    ],
+    "domain": "science"
+  },
+  {
+    "model": "science__fed_nsf_awards",
+    "sql_path": "models\\marts\\science\\science__fed_nsf_awards.sql",
+    "schema_path": "ripple://models\\marts\\science\\schema_fed_nsf_awards.yml",
+    "columns": [
+      "award_id",
+      "cfda_number"
+    ],
+    "domain": "science"
+  },
+  {
+    "model": "science__xc_owid_ai_incidents_annual",
+    "sql_path": "models\\marts\\science\\science__xc_owid_ai_incidents_annual.sql",
+    "schema_path": "ripple://models\\marts\\science\\schema_xc_owid_ai_incidents_annual.yml",
+    "columns": [
+      "entity"
+    ],
+    "domain": "science"
+  },
+  {
+    "model": "science_research__xc_biorxiv_medrxiv",
+    "sql_path": "models\\marts\\science_research\\science_research__xc_biorxiv_medrxiv.sql",
+    "schema_path": "ripple://models\\staging\\xc_biorxiv_medrxiv\\schema.yml",
+    "columns": [
+      "doi",
+      "biorxiv_doi",
+      "published_doi",
+      "person_name",
+      "funder_ror_id",
+      "title",
+      "authors",
+      "author_corresponding_institution",
+      "preprint_posted_date",
+      "version",
+      "submission_type",
+      "license",
+      "category",
+      "abstract",
+      "server",
+      "jats_xml_path",
+      "published_journal_doi_raw",
+      "funding_name",
+      "funding_id_type",
+      "funding_award",
+      "published_journal",
+      "preprint_platform",
+      "preprint_title",
+      "preprint_authors",
+      "preprint_category",
+      "preprint_date",
+      "published_date",
+      "preprint_abstract",
+      "preprint_author_corresponding",
+      "preprint_author_corresponding_institution",
+      "is_published",
+      "days_preprint_to_publication",
+      "stat_month",
+      "new_papers",
+      "new_papers_cumulative",
+      "revised_papers",
+      "revised_papers_cumulative",
+      "abstract_views",
+      "full_text_views",
+      "pdf_downloads",
+      "abstract_cumulative",
+      "full_text_cumulative",
+      "pdf_cumulative",
+      "_ingested_at",
+      "_source_run_id"
+    ],
+    "domain": "science_research"
+  },
+  {
+    "model": "transport__fed_dot_bts",
+    "sql_path": "models\\marts\\transport\\transport__fed_dot_bts.sql",
+    "schema_path": "ripple://models\\marts\\transport\\schema_fed_dot_bts.yml",
+    "columns": [
+      "carrier_code",
+      "state_fips"
+    ],
+    "domain": "transport"
+  },
+  {
+    "model": "transport__fed_faa_data_portal",
+    "sql_path": "models\\marts\\transport\\transport__fed_faa_data_portal.sql",
+    "schema_path": "ripple://models\\marts\\transport\\schema_fed_faa_data_portal.yml",
+    "columns": [
+      "dataset_id",
+      "n_number",
+      "airport_id"
+    ],
+    "domain": "transport"
+  }
+]

@@ -1,0 +1,371 @@
+[
+  {
+    "batch_id": 0,
+    "path": "outputs/dedup_batches/batch_00.json",
+    "count": 12,
+    "domains": [
+      "consumer_safety",
+      "corporate_registry",
+      "criminal_justice",
+      "economics"
+    ],
+    "models": [
+      "consumer_safety__fed_cpsc_neiss",
+      "consumer_safety__fed_nhtsa_investigations",
+      "corporate_registry__intl_es_borme",
+      "criminal_justice__fed_bjs_data",
+      "economics__fed_bls_qcew",
+      "economics__fed_foreignassistance",
+      "economics__fed_irs_auto_revocations",
+      "economics__fed_pbgc_data",
+      "economics__fed_sba_loans",
+      "economics__fed_sec_edgar",
+      "economics__fed_treasury_dts_deposits",
+      "economics__fed_usaspending_assistance_full"
+    ]
+  },
+  {
+    "batch_id": 1,
+    "path": "outputs/dedup_batches/batch_01.json",
+    "count": 12,
+    "domains": [
+      "economics",
+      "education"
+    ],
+    "models": [
+      "economics__fed_usaspending_contracts",
+      "economics__fed_usaspending_contracts_full",
+      "economics__int_gleif_rr",
+      "economics__intl_fao_faostat_food_security",
+      "economics__intl_gfi_trade",
+      "economics__intl_gleif",
+      "economics__intl_gleif_relationships",
+      "economics__intl_gleif_repex",
+      "economics__intl_gleif_rr",
+      "economics__intl_ipc_food_insecurity_global",
+      "economics__xc_owid_gini",
+      "education__fed_cftc_cot_financial"
+    ]
+  },
+  {
+    "batch_id": 2,
+    "path": "outputs/dedup_batches/batch_02.json",
+    "count": 12,
+    "domains": [
+      "education",
+      "environment"
+    ],
+    "models": [
+      "education__fed_cftc_cot_futures",
+      "education__fed_cpsc_neiss_codes",
+      "education__fed_google_polads_advertiser_geo_spend",
+      "education__fed_google_polads_advertiser_weekly_spend",
+      "education__fed_google_polads_creative_id_mapping",
+      "education__fed_google_polads_geo_spend",
+      "education__fed_senate_lda_filings",
+      "environment__fed_epa_air_emissions_poll_rpt_combined_emissions",
+      "environment__fed_epa_frs_frs_naics_codes",
+      "environment__fed_epa_frs_frs_program_links",
+      "environment__fed_epa_frs_frs_sic_codes",
+      "environment__fed_epa_icis_air_icis_air_fces_pces"
+    ]
+  },
+  {
+    "batch_id": 3,
+    "path": "outputs/dedup_batches/batch_03.json",
+    "count": 12,
+    "domains": [
+      "environment"
+    ],
+    "models": [
+      "environment__fed_epa_icis_air_icis_air_formal_actions",
+      "environment__fed_epa_icis_air_icis_air_informal_actions",
+      "environment__fed_epa_icis_air_icis_air_pollutants",
+      "environment__fed_epa_icis_air_icis_air_program_subparts",
+      "environment__fed_epa_icis_air_icis_air_programs",
+      "environment__fed_epa_icis_air_icis_air_titlev_certs",
+      "environment__fed_epa_npdes_npdes_formal_enforcement_actions",
+      "environment__fed_epa_npdes_npdes_informal_enforcement_actions",
+      "environment__fed_epa_npdes_npdes_inspections",
+      "environment__fed_epa_npdes_npdes_naics",
+      "environment__fed_epa_npdes_npdes_qncr_history",
+      "environment__fed_epa_npdes_npdes_se_violations"
+    ]
+  },
+  {
+    "batch_id": 4,
+    "path": "outputs/dedup_batches/batch_04.json",
+    "count": 12,
+    "domains": [
+      "environment"
+    ],
+    "models": [
+      "environment__fed_epa_npdes_npdes_sics",
+      "environment__fed_epa_sdwa_sdwa_events_milestones",
+      "environment__fed_epa_sdwa_sdwa_facilities",
+      "environment__fed_epa_sdwa_sdwa_lcr_samples",
+      "environment__fed_epa_sdwa_sdwa_pn_violation_assoc",
+      "environment__fed_epa_sdwa_sdwa_pub_water_systems",
+      "environment__fed_epa_sdwa_sdwa_site_visits",
+      "environment__fed_epa_sdwa_sdwa_violations_enforcement",
+      "environment__fed_epa_tri_basic_2023",
+      "environment__fed_usgs_water",
+      "environment__intl_global_witness_defenders",
+      "environment__xc_owid_co2"
+    ]
+  },
+  {
+    "batch_id": 5,
+    "path": "outputs/dedup_batches/batch_05.json",
+    "count": 12,
+    "domains": [
+      "environment",
+      "finance"
+    ],
+    "models": [
+      "environment__xc_owid_fossil_share",
+      "environment__xc_owid_temp_anomaly",
+      "finance__fed_epa_icis_fec_case_enforcement_conclusion_facilities",
+      "finance__fed_epa_icis_fec_case_facilities",
+      "finance__fed_epa_icis_fec_epa_informal_enforcement_actions",
+      "finance__fed_epa_icis_fec_icis_fec_epa_inspections",
+      "finance__fed_fec_cand_cmte_linkage",
+      "finance__fed_fec_candidates",
+      "finance__fed_fec_committees",
+      "finance__fed_fec_independent_expenditures",
+      "finance__fed_irs_soi",
+      "finance__fed_ncua_call_reports"
+    ]
+  },
+  {
+    "batch_id": 6,
+    "path": "outputs/dedup_batches/batch_06.json",
+    "count": 12,
+    "domains": [
+      "finance",
+      "health"
+    ],
+    "models": [
+      "finance__fed_sec_13f_holdings",
+      "finance__fed_sec_13f_positions",
+      "finance__fed_sec_13f_submission",
+      "finance__fed_sec_business_development_company_report",
+      "finance__fed_sec_closed_end_fund_information",
+      "finance__fed_sec_insider_deriv_trans",
+      "finance__fed_sec_insider_nonderiv_trans",
+      "finance__fed_sec_insider_reportingowner",
+      "finance__fed_sec_money_market_fund_information",
+      "finance__intl_wb_ids",
+      "health__fed_cdc_anxiety_depression",
+      "health__fed_cdc_data_portal"
+    ]
+  },
+  {
+    "batch_id": 7,
+    "path": "outputs/dedup_batches/batch_07.json",
+    "count": 12,
+    "domains": [
+      "health"
+    ],
+    "models": [
+      "health__fed_cdc_drug_poisoning_county",
+      "health__fed_cdc_health_insurance",
+      "health__fed_cdc_injury_violence_county",
+      "health__fed_cdc_nndss_weekly_2024",
+      "health__fed_cdc_overdose",
+      "health__fed_cdc_suicide_rates",
+      "health__fed_cms_ambulatory_specialty_model_participants",
+      "health__fed_cms_dialysis",
+      "health__fed_cms_facility_affiliation",
+      "health__fed_cms_facility_level_minimum_data_set_frequency",
+      "health__fed_cms_home_health",
+      "health__fed_cms_hospice"
+    ]
+  },
+  {
+    "batch_id": 8,
+    "path": "outputs/dedup_batches/batch_08.json",
+    "count": 12,
+    "domains": [
+      "health"
+    ],
+    "models": [
+      "health__fed_cms_irf",
+      "health__fed_cms_ltch",
+      "health__fed_cms_medicare_dialysis_facilities",
+      "health__fed_cms_medicare_durable_medical_equipment_devices_supplies_by_suppl",
+      "health__fed_cms_medicare_inpatient_hospitals_by_provider",
+      "health__fed_cms_medicare_inpatient_hospitals_by_provider_and_service",
+      "health__fed_cms_medicare_outpatient_hospitals_by_provider_and_service",
+      "health__fed_cms_medicare_physician_other_practitioners_by_provider_and_servi",
+      "health__fed_cms_nadac",
+      "health__fed_cms_nursing_home_deficiencies",
+      "health__fed_cms_nursing_home_fire_deficiencies",
+      "health__fed_cms_nursing_home_penalties"
+    ]
+  },
+  {
+    "batch_id": 9,
+    "path": "outputs/dedup_batches/batch_09.json",
+    "count": 12,
+    "domains": [
+      "health"
+    ],
+    "models": [
+      "health__fed_cms_opioid_treatment_program_providers",
+      "health__fed_cms_opt_out_affidavits",
+      "health__fed_cms_order_and_referring",
+      "health__fed_cms_partd_prescribers",
+      "health__fed_cms_pos_other",
+      "health__fed_cms_quality_payment_program_experience",
+      "health__fed_dea_arcos",
+      "health__fed_fda_faers_demo",
+      "health__fed_fda_faers_drug",
+      "health__fed_fda_faers_indi",
+      "health__fed_fda_faers_outc",
+      "health__fed_fda_faers_reac"
+    ]
+  },
+  {
+    "batch_id": 10,
+    "path": "outputs/dedup_batches/batch_10.json",
+    "count": 12,
+    "domains": [
+      "health",
+      "historical_records",
+      "housing"
+    ],
+    "models": [
+      "health__fed_hrsa_shortage_areas",
+      "health__fed_nursinghome411",
+      "health__fed_va_allcause_mortality",
+      "health__fed_va_suicide_appendix",
+      "health__pharma_meal_cap_fingerprint",
+      "health__xc_guttmacher_monthly_abortion",
+      "health__xc_owid_life_expectancy",
+      "historical_records__fed_slavevoyages_intraamerican",
+      "housing__fed_cfpb_hmda_dc_only",
+      "housing__fed_fhfa_hpi",
+      "housing__fed_fhfa_nmdb",
+      "housing__fed_hud_data"
+    ]
+  },
+  {
+    "batch_id": 11,
+    "path": "outputs/dedup_batches/batch_11.json",
+    "count": 12,
+    "domains": [
+      "immigration",
+      "investigations",
+      "justice"
+    ],
+    "models": [
+      "immigration__fed_cbp_encounters",
+      "immigration__fed_dhs_ohss",
+      "immigration__fed_epa_sdwa_sdwa_service_areas",
+      "immigration__fed_ice_statistics",
+      "immigration__fed_uscis_data",
+      "immigration__xc_owid_refugees",
+      "investigations__intl_leiden_russian_ops_europe",
+      "investigations__xc_wayback_replay_doj_deep_pages",
+      "investigations__xc_wayback_replay_doj_listing",
+      "justice__county_double_burden",
+      "justice__fed_courtlistener_financial_disclosures",
+      "justice__fed_fbi_nics_checks"
+    ]
+  },
+  {
+    "batch_id": 12,
+    "path": "outputs/dedup_batches/batch_12.json",
+    "count": 12,
+    "domains": [
+      "justice"
+    ],
+    "models": [
+      "justice__fed_ftc_datasets",
+      "justice__fed_uscourts_stats",
+      "justice__intl_eu_sanctions",
+      "justice__intl_eu_socta_europol",
+      "justice__intl_eurlex_cellar",
+      "justice__racial_jail_disparity",
+      "justice__xc_mapping_police_violence",
+      "justice__xc_nagix_dprk_missile_tests",
+      "justice__xc_owid_homicide",
+      "justice__xc_owid_nuclear_warheads",
+      "justice__xc_owid_terrorism_deaths",
+      "justice__xc_ransomwarelive_victims"
+    ]
+  },
+  {
+    "batch_id": 13,
+    "path": "outputs/dedup_batches/batch_13.json",
+    "count": 12,
+    "domains": [
+      "justice",
+      "labor",
+      "legal_enforcement",
+      "money",
+      "open_data",
+      "politics"
+    ],
+    "models": [
+      "justice__xc_vera_incarceration_trends",
+      "labor__fed_msha_accidents",
+      "labor__fed_msha_violations",
+      "labor__fed_osha_ita_300a_summary_2025",
+      "legal_enforcement__fed_naag_multistate_settlements",
+      "money__debt_repayment_cliff",
+      "open_data__intl_ar_datosgob",
+      "open_data__intl_fr_data_gouv",
+      "open_data__xc_wayback_doj_epstein",
+      "politics__fed_congress_committee_membership",
+      "politics__fed_congress_legislators",
+      "politics__fed_doj_epstein_library"
+    ]
+  },
+  {
+    "batch_id": 14,
+    "path": "outputs/dedup_batches/batch_14.json",
+    "count": 12,
+    "domains": [
+      "politics"
+    ],
+    "models": [
+      "politics__fed_eac_eavs",
+      "politics__fed_fcc_licensing",
+      "politics__fed_fjc_service",
+      "politics__fed_medsl_house_returns",
+      "politics__fed_medsl_president_returns",
+      "politics__fed_medsl_senate_returns",
+      "politics__fed_voteview_members",
+      "politics__intl_freedomhouse",
+      "politics__intl_owid_milspend",
+      "politics__member_fec_id",
+      "politics__st_cannabis_policy_bundles",
+      "politics__xc_owid_cpi"
+    ]
+  },
+  {
+    "batch_id": 15,
+    "path": "outputs/dedup_batches/batch_15.json",
+    "count": 10,
+    "domains": [
+      "reference",
+      "science",
+      "science_research",
+      "transport"
+    ],
+    "models": [
+      "reference__fed_usgs_topoview",
+      "reference__intl_eg_capmas",
+      "reference__intl_eurostat",
+      "reference__xc_owid_fertility",
+      "science__fed_nasa_open_data",
+      "science__fed_nsf_awards",
+      "science__xc_owid_ai_incidents_annual",
+      "science_research__xc_biorxiv_medrxiv",
+      "transport__fed_dot_bts",
+      "transport__fed_faa_data_portal"
+    ]
+  }
+]

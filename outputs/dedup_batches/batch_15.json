@@ -1,0 +1,140 @@
+[
+  {
+    "model": "reference__fed_usgs_topoview",
+    "sql_path": "models\\marts\\reference\\reference__fed_usgs_topoview.sql",
+    "schema_path": "ripple://models\\marts\\reference\\schema_fed_usgs_topoview.yml",
+    "columns": [
+      "title"
+    ],
+    "domain": "reference"
+  },
+  {
+    "model": "reference__intl_eg_capmas",
+    "sql_path": "models\\marts\\reference\\reference__intl_eg_capmas.sql",
+    "schema_path": "ripple://models\\marts\\reference\\schema_intl_eg_capmas.yml",
+    "columns": [
+      "indicator_name"
+    ],
+    "domain": "reference"
+  },
+  {
+    "model": "reference__intl_eurostat",
+    "sql_path": "models\\marts\\reference\\reference__intl_eurostat.sql",
+    "schema_path": "ripple://models\\marts\\reference\\schema_intl_eurostat.yml",
+    "columns": [
+      "dataflow_id"
+    ],
+    "domain": "reference"
+  },
+  {
+    "model": "reference__xc_owid_fertility",
+    "sql_path": "models\\marts\\reference\\reference__xc_owid_fertility.sql",
+    "schema_path": "ripple://models\\marts\\reference\\schema_xc_owid_fertility.yml",
+    "columns": [
+      "entity"
+    ],
+    "domain": "reference"
+  },
+  {
+    "model": "science__fed_nasa_open_data",
+    "sql_path": "models\\marts\\science\\science__fed_nasa_open_data.sql",
+    "schema_path": "ripple://models\\marts\\science\\schema_fed_nasa_open_data.yml",
+    "columns": [
+      "api_name"
+    ],
+    "domain": "science"
+  },
+  {
+    "model": "science__fed_nsf_awards",
+    "sql_path": "models\\marts\\science\\science__fed_nsf_awards.sql",
+    "schema_path": "ripple://models\\marts\\science\\schema_fed_nsf_awards.yml",
+    "columns": [
+      "award_id",
+      "cfda_number"
+    ],
+    "domain": "science"
+  },
+  {
+    "model": "science__xc_owid_ai_incidents_annual",
+    "sql_path": "models\\marts\\science\\science__xc_owid_ai_incidents_annual.sql",
+    "schema_path": "ripple://models\\marts\\science\\schema_xc_owid_ai_incidents_annual.yml",
+    "columns": [
+      "entity"
+    ],
+    "domain": "science"
+  },
+  {
+    "model": "science_research__xc_biorxiv_medrxiv",
+    "sql_path": "models\\marts\\science_research\\science_research__xc_biorxiv_medrxiv.sql",
+    "schema_path": "ripple://models\\staging\\xc_biorxiv_medrxiv\\schema.yml",
+    "columns": [
+      "doi",
+      "biorxiv_doi",
+      "published_doi",
+      "person_name",
+      "funder_ror_id",
+      "title",
+      "authors",
+      "author_corresponding_institution",
+      "preprint_posted_date",
+      "version",
+      "submission_type",
+      "license",
+      "category",
+      "abstract",
+      "server",
+      "jats_xml_path",
+      "published_journal_doi_raw",
+      "funding_name",
+      "funding_id_type",
+      "funding_award",
+      "published_journal",
+      "preprint_platform",
+      "preprint_title",
+      "preprint_authors",
+      "preprint_category",
+      "preprint_date",
+      "published_date",
+      "preprint_abstract",
+      "preprint_author_corresponding",
+      "preprint_author_corresponding_institution",
+      "is_published",
+      "days_preprint_to_publication",
+      "stat_month",
+      "new_papers",
+      "new_papers_cumulative",
+      "revised_papers",
+      "revised_papers_cumulative",
+      "abstract_views",
+      "full_text_views",
+      "pdf_downloads",
+      "abstract_cumulative",
+      "full_text_cumulative",
+      "pdf_cumulative",
+      "_ingested_at",
+      "_source_run_id"
+    ],
+    "domain": "science_research"
+  },
+  {
+    "model": "transport__fed_dot_bts",
+    "sql_path": "models\\marts\\transport\\transport__fed_dot_bts.sql",
+    "schema_path": "ripple://models\\marts\\transport\\schema_fed_dot_bts.yml",
+    "columns": [
+      "carrier_code",
+      "state_fips"
+    ],
+    "domain": "transport"
+  },
+  {
+    "model": "transport__fed_faa_data_portal",
+    "sql_path": "models\\marts\\transport\\transport__fed_faa_data_portal.sql",
+    "schema_path": "ripple://models\\marts\\transport\\schema_fed_faa_data_portal.yml",
+    "columns": [
+      "dataset_id",
+      "n_number",
+      "airport_id"
+    ],
+    "domain": "transport"
+  }
+]

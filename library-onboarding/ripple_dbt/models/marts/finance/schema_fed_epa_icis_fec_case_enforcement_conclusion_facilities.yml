@@ -2,6 +2,14 @@ version: 2
 
 models:
   - name: finance__fed_epa_icis_fec_case_enforcement_conclusion_facilities
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - activity_id
+              - case_number
+              - enf_conclusion_id
+              - icis_facility_interest_id
     columns:
       - name: activity_id
         data_tests:

@@ -6,3 +6,15 @@ models:
       - name: npi
         data_tests:
           - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - npi
+              - first_name
+              - last_name
+              - partb
+              - dme
+              - hha
+              - pmd
+              - hospice

@@ -6,6 +6,7 @@ models:
       - name: award_id
         data_tests:
           - not_null
+          - unique
       - name: cfda_number
         data_tests:
           - not_null

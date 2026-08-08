@@ -15,3 +15,6 @@ models:
       - name: parent_provider_number
         data_tests:
           - not_null
+      - name: ccn
+        data_tests:
+          - unique

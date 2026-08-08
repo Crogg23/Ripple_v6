@@ -2,10 +2,16 @@ version: 2
 
 models:
   - name: politics__fed_congress_legislators
+    description: >
+      GRAIN: one row per legislator (bioguide is the person-level key; the
+      12,847 row count matches the unitedstates/congress-legislators
+      historical+current person roster, not a per-term log -- term_start/
+      term_end/n_terms summarize a person's terms, they don't repeat per term).
     columns:
       - name: bioguide
         data_tests:
           - not_null
+          - unique
       - name: icpsr
         data_tests:
           - not_null

@@ -1,0 +1,74 @@
+[
+  {
+    "batch_id": 0,
+    "path": "outputs/dedup_fix_batches/fixbatch_00.json",
+    "count": 11,
+    "models": [
+      "health__fed_cms_medicare_dialysis_facilities",
+      "health__fed_cms_medicare_durable_medical_equipment_devices_supplies_by_suppl",
+      "labor__fed_osha_ita_300a_summary_2025",
+      "justice__intl_eu_sanctions",
+      "finance__intl_wb_ids",
+      "education__fed_google_polads_advertiser_geo_spend",
+      "education__fed_google_polads_creative_id_mapping",
+      "education__fed_google_polads_geo_spend",
+      "environment__fed_epa_air_emissions_poll_rpt_combined_emissions",
+      "environment__fed_epa_icis_air_icis_air_fces_pces",
+      "health__fed_cdc_health_insurance"
+    ]
+  },
+  {
+    "batch_id": 1,
+    "path": "outputs/dedup_fix_batches/fixbatch_01.json",
+    "count": 11,
+    "models": [
+      "health__fed_cdc_nndss_weekly_2024",
+      "health__fed_cms_ambulatory_specialty_model_participants",
+      "health__fed_cms_facility_affiliation",
+      "environment__fed_epa_icis_air_icis_air_formal_actions",
+      "environment__fed_epa_icis_air_icis_air_pollutants",
+      "environment__fed_epa_npdes_npdes_formal_enforcement_actions",
+      "environment__fed_epa_npdes_npdes_informal_enforcement_actions",
+      "environment__fed_epa_npdes_npdes_inspections",
+      "environment__fed_epa_npdes_npdes_naics",
+      "health__fed_hrsa_shortage_areas",
+      "housing__fed_fhfa_nmdb"
+    ]
+  },
+  {
+    "batch_id": 2,
+    "path": "outputs/dedup_fix_batches/fixbatch_02.json",
+    "count": 11,
+    "models": [
+      "corporate_registry__intl_es_borme",
+      "economics__fed_irs_auto_revocations",
+      "economics__fed_sec_edgar",
+      "health__fed_cms_opioid_treatment_program_providers",
+      "health__fed_cms_opt_out_affidavits",
+      "health__fed_cms_order_and_referring",
+      "health__fed_dea_arcos",
+      "reference__intl_eg_capmas",
+      "science__fed_nasa_open_data",
+      "transport__fed_dot_bts",
+      "transport__fed_faa_data_portal"
+    ]
+  },
+  {
+    "batch_id": 3,
+    "path": "outputs/dedup_fix_batches/fixbatch_03.json",
+    "count": 11,
+    "models": [
+      "politics__fed_medsl_house_returns",
+      "politics__fed_medsl_president_returns",
+      "politics__fed_medsl_senate_returns",
+      "politics__intl_freedomhouse",
+      "immigration__fed_ice_statistics",
+      "immigration__fed_uscis_data",
+      "immigration__xc_owid_refugees",
+      "justice__fed_courtlistener_financial_disclosures",
+      "finance__fed_epa_icis_fec_case_facilities",
+      "finance__fed_epa_icis_fec_icis_fec_epa_inspections",
+      "finance__fed_ncua_call_reports"
+    ]
+  }
+]

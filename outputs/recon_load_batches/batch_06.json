@@ -1,0 +1,112 @@
+[
+  {
+    "id_name": "USDA Rural Development Multifamily Housing Project Number (Section 515/514)",
+    "domain": "Housing, Real Estate & Mortgage Lending",
+    "dataset_name": "USDA Rural Development Multifamily Section 515 Rural Rental Housing and Section 514 Farm Labor Housing dataset",
+    "url": "https://catalog.data.gov/dataset/usda-rural-development-multifamily-section-515-rural-rental-housing-and-section-514-farm-l",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "\"latitude and longitude coordinates, property address, type of development, date of operation, profit type, management agent, loan program identifier, Low Income Housing Tax Credit identifier and expiration date...total units...\" Formats: CSV and PDF data dictionary.",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "ASC National AMC (Appraisal Management Company) Registry ID",
+    "domain": "Housing, Real Estate & Mortgage Lending",
+    "dataset_name": "ASC National AMC Registry",
+    "url": "https://asc.gov/amc",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "Page includes a field for \"Registration or Tracking Number\"; filters by \"Registering State or Territory\" and \"AMC Name\"; \"The page currently displays '0 Results' with an option to 'Download' the results.\"",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "FHFA Suspended Counterparty Program (SCP) List entry",
+    "domain": "Housing, Real Estate & Mortgage Lending",
+    "dataset_name": "FHFA Suspended Counterparty Program List",
+    "url": "https://www.fhfa.gov/regulation/suspended-counterparty-program",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "\"FHFA may issue orders suspending an individual or entity from doing business with the regulated entities.\" Table shows \"241 total suspended counterparties,\" sortable, with \"Downloadable formats: CSV and JSON options available.\"",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "Treasury Account Symbol (TAS) / CGAC Agency Code",
+    "domain": "Federal Procurement & Grants",
+    "dataset_name": "USASpending.gov Treasury Account Symbol (TAS) reference data (Treasury GTAS / CGAC agency codes)",
+    "url": "https://api.usaspending.gov/docs/endpoints",
+    "access_shape": "api-open",
+    "size_class": "medium",
+    "evidence": "api.usaspending.gov docs (loaded directly): endpoint \"/api/v2/references/filter_tree/tas/<AGENCY>/<FEDERAL_ACCOUNT>/\" returns \"a list of Treasury Account Symbols associated with the specified federal account\"; autocomplete endpoints return \"Treasury Account Symbol Availability Type Code (A)\" and rel",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "SBIR/STTR Award Number",
+    "domain": "Federal Procurement & Grants",
+    "dataset_name": "SBIR.gov SBIR/STTR Awards Database",
+    "url": "https://www.sbir.gov/awards",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "sbir.gov/awards (loaded directly): \"Search for information on all prior awards and companies,\" showing \"Showing 1-10 of 219503 results\"; \"Download all SBIR.gov award data either with award abstracts (290MB) or without award abstracts (65MB)\"; also offers API Documentation.",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "EIA Plant Code",
+    "domain": "Energy, Utilities & Pipeline Safety",
+    "dataset_name": "EIA-860 Annual Electric Generator Report \u2014 Plant file",
+    "url": "https://www.eia.gov/electricity/data/eia860/",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "2___PlantYyyyy \u2014 Contains plant-level data for the generators surveyed in all available years.",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "EIA Utility ID",
+    "domain": "Energy, Utilities & Pipeline Safety",
+    "dataset_name": "EIA-860 Annual Electric Generator Report \u2014 Utility file",
+    "url": "https://www.eia.gov/electricity/data/eia860/",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "1___UtilityYyyyy \u2014 Contains utility-level data for the plants and generators surveyed in the reporting year.",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "BOEM Offshore Lease Number",
+    "domain": "Energy, Utilities & Pipeline Safety",
+    "dataset_name": "BOEM Offshore Lease & Serial Register Data (Lease Data online queries and ASCII downloads)",
+    "url": "https://www.data.boem.gov/",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "Data are available via online queries, as well as downloadable PDF reports, ASCII files, and scanned documents available in PDF format.",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "EIA-860 Generator ID",
+    "domain": "Energy, Utilities & Pipeline Safety",
+    "dataset_name": "EIA-860 Annual Electric Generator Report \u2014 Generator file",
+    "url": "https://www.eia.gov/electricity/data/eia860/",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "3_1_GeneratorYyyyy \u2014 Contains generator-level data for the surveyed generators, split into three tabs.",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "Balancing Authority ID",
+    "domain": "Energy, Utilities & Pipeline Safety",
+    "dataset_name": "EIA-861 Annual Electric Power Industry Report \u2014 Balancing Authority data",
+    "url": "https://www.eia.gov/electricity/data/eia861/",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "The data contain the list of balancing authorities and the states they operate in.",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "Canada OSFI Financial Institution/Insurer Number",
+    "domain": "Insurance",
+    "dataset_name": "OSFI \"Who We Regulate\" -- federally regulated financial institutions list (institution numbers)",
+    "url": "https://open.canada.ca/data/en/dataset/b27ec3ef-7338-4e76-a6fd-128339a92df5",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "\"We regulate and supervise approximately 350 financial institutions. In this dataset you'll find a list of these institutions, updated daily.\" -- dataset available as CSV files in both English and French",
+    "fragmented": "False"
+  }
+]

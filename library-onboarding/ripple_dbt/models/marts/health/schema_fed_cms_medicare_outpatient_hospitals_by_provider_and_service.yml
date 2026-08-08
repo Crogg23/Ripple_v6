@@ -6,3 +6,9 @@ models:
       - name: rndrng_prvdr_state_fips
         data_tests:
           - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - rndrng_prvdr_ccn
+              - apc_cd

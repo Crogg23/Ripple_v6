@@ -1,0 +1,119 @@
+[
+  {
+    "model": "justice__fed_ftc_datasets",
+    "sql_path": "models\\marts\\justice\\justice__fed_ftc_datasets.sql",
+    "schema_path": "ripple://models\\marts\\justice\\schema_fed_ftc_datasets.yml",
+    "columns": [
+      "action_name"
+    ],
+    "domain": "justice"
+  },
+  {
+    "model": "justice__fed_uscourts_stats",
+    "sql_path": "models\\marts\\justice\\justice__fed_uscourts_stats.sql",
+    "schema_path": "ripple://models\\marts\\justice\\schema_fed_uscourts_stats.yml",
+    "columns": [
+      "table_number",
+      "fips_code",
+      "chapter_code"
+    ],
+    "domain": "justice"
+  },
+  {
+    "model": "justice__intl_eu_sanctions",
+    "sql_path": "models\\marts\\justice\\justice__intl_eu_sanctions.sql",
+    "schema_path": "ripple://models\\marts\\justice\\schema_intl_eu_sanctions.yml",
+    "columns": [
+      "entity_logical_id",
+      "naal_logical_id",
+      "addr_logical_id",
+      "addr_number",
+      "birt_logical_id",
+      "iden_logical_id",
+      "iden_number",
+      "citi_logical_id"
+    ],
+    "domain": "justice"
+  },
+  {
+    "model": "justice__intl_eu_socta_europol",
+    "sql_path": "models\\marts\\justice\\justice__intl_eu_socta_europol.sql",
+    "schema_path": "ripple://models\\marts\\justice\\schema_intl_eu_socta_europol.yml",
+    "columns": [
+      "serial_number"
+    ],
+    "domain": "justice"
+  },
+  {
+    "model": "justice__intl_eurlex_cellar",
+    "sql_path": "models\\marts\\justice\\justice__intl_eurlex_cellar.sql",
+    "schema_path": "ripple://models\\marts\\justice\\schema_intl_eurlex_cellar.yml",
+    "columns": [
+      "celex_id",
+      "ecli_id",
+      "oj_number"
+    ],
+    "domain": "justice"
+  },
+  {
+    "model": "justice__racial_jail_disparity",
+    "sql_path": "models\\marts\\justice\\justice__racial_jail_disparity.sql",
+    "schema_path": null,
+    "columns": [],
+    "domain": "justice"
+  },
+  {
+    "model": "justice__xc_mapping_police_violence",
+    "sql_path": "models\\marts\\justice\\justice__xc_mapping_police_violence.sql",
+    "schema_path": "ripple://models\\marts\\justice\\schema_xc_mapping_police_violence.yml",
+    "columns": [
+      "mpv_id"
+    ],
+    "domain": "justice"
+  },
+  {
+    "model": "justice__xc_nagix_dprk_missile_tests",
+    "sql_path": "models\\marts\\justice\\justice__xc_nagix_dprk_missile_tests.sql",
+    "schema_path": "ripple://models\\marts\\justice\\schema_xc_nagix_dprk_missile_tests.yml",
+    "columns": [
+      "date"
+    ],
+    "domain": "justice"
+  },
+  {
+    "model": "justice__xc_owid_homicide",
+    "sql_path": "models\\marts\\justice\\justice__xc_owid_homicide.sql",
+    "schema_path": "ripple://models\\marts\\justice\\schema_xc_owid_homicide.yml",
+    "columns": [
+      "entity"
+    ],
+    "domain": "justice"
+  },
+  {
+    "model": "justice__xc_owid_nuclear_warheads",
+    "sql_path": "models\\marts\\justice\\justice__xc_owid_nuclear_warheads.sql",
+    "schema_path": "ripple://models\\marts\\justice\\schema_xc_owid_nuclear_warheads.yml",
+    "columns": [
+      "entity"
+    ],
+    "domain": "justice"
+  },
+  {
+    "model": "justice__xc_owid_terrorism_deaths",
+    "sql_path": "models\\marts\\justice\\justice__xc_owid_terrorism_deaths.sql",
+    "schema_path": "ripple://models\\marts\\justice\\schema_xc_owid_terrorism_deaths.yml",
+    "columns": [
+      "entity"
+    ],
+    "domain": "justice"
+  },
+  {
+    "model": "justice__xc_ransomwarelive_victims",
+    "sql_path": "models\\marts\\justice\\justice__xc_ransomwarelive_victims.sql",
+    "schema_path": "ripple://models\\marts\\justice\\schema_xc_ransomwarelive_victims.yml",
+    "columns": [
+      "post_title"
+    ],
+    "domain": "justice"
+  }
+]

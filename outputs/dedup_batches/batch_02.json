@@ -1,0 +1,118 @@
+[
+  {
+    "model": "education__fed_cftc_cot_futures",
+    "sql_path": "models\\marts\\education\\education__fed_cftc_cot_futures.sql",
+    "schema_path": "ripple://models\\marts\\education\\schema_fed_cftc_cot_futures.yml",
+    "columns": [
+      "cftc_contract_market_code",
+      "cftc_region_code",
+      "cftc_commodity_code"
+    ],
+    "domain": "education"
+  },
+  {
+    "model": "education__fed_cpsc_neiss_codes",
+    "sql_path": "models\\marts\\education\\education__fed_cpsc_neiss_codes.sql",
+    "schema_path": "ripple://models\\marts\\education\\schema_fed_cpsc_neiss_codes.yml",
+    "columns": [
+      "format_name"
+    ],
+    "domain": "education"
+  },
+  {
+    "model": "education__fed_google_polads_advertiser_geo_spend",
+    "sql_path": "models\\marts\\education\\education__fed_google_polads_advertiser_geo_spend.sql",
+    "schema_path": "ripple://models\\marts\\education\\schema_fed_google_polads_advertiser_geo_spend.yml",
+    "columns": [
+      "advertiser_id"
+    ],
+    "domain": "education"
+  },
+  {
+    "model": "education__fed_google_polads_advertiser_weekly_spend",
+    "sql_path": "models\\marts\\education\\education__fed_google_polads_advertiser_weekly_spend.sql",
+    "schema_path": "ripple://models\\marts\\education\\schema_fed_google_polads_advertiser_weekly_spend.yml",
+    "columns": [
+      "advertiser_id"
+    ],
+    "domain": "education"
+  },
+  {
+    "model": "education__fed_google_polads_creative_id_mapping",
+    "sql_path": "models\\marts\\education\\education__fed_google_polads_creative_id_mapping.sql",
+    "schema_path": "ripple://models\\marts\\education\\schema_fed_google_polads_creative_id_mapping.yml",
+    "columns": [
+      "oldcreativeid"
+    ],
+    "domain": "education"
+  },
+  {
+    "model": "education__fed_google_polads_geo_spend",
+    "sql_path": "models\\marts\\education\\education__fed_google_polads_geo_spend.sql",
+    "schema_path": null,
+    "columns": [],
+    "domain": "education"
+  },
+  {
+    "model": "education__fed_senate_lda_filings",
+    "sql_path": "models\\marts\\education\\education__fed_senate_lda_filings.sql",
+    "schema_path": "ripple://models\\marts\\education\\schema_fed_senate_lda_filings.yml",
+    "columns": [
+      "registrant_id",
+      "client_id"
+    ],
+    "domain": "education"
+  },
+  {
+    "model": "environment__fed_epa_air_emissions_poll_rpt_combined_emissions",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_air_emissions_poll_rpt_combined_emissions.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_air_emissions_poll_rpt_combined_emissions.yml",
+    "columns": [
+      "registry_id",
+      "pgm_sys_id"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_frs_frs_naics_codes",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_frs_frs_naics_codes.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_frs_frs_naics_codes.yml",
+    "columns": [
+      "pgm_sys_id"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_frs_frs_program_links",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_frs_frs_program_links.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_frs_frs_program_links.yml",
+    "columns": [
+      "pgm_sys_id",
+      "registry_id"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_frs_frs_sic_codes",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_frs_frs_sic_codes.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_frs_frs_sic_codes.yml",
+    "columns": [
+      "pgm_sys_id",
+      "sic_code",
+      "registry_id"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_icis_air_icis_air_fces_pces",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_icis_air_icis_air_fces_pces.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_icis_air_icis_air_fces_pces.yml",
+    "columns": [
+      "pgm_sys_id",
+      "activity_id",
+      "activity_type_code",
+      "comp_monitor_type_code"
+    ],
+    "domain": "environment"
+  }
+]

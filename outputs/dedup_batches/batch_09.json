@@ -1,0 +1,110 @@
+[
+  {
+    "model": "health__fed_cms_opioid_treatment_program_providers",
+    "sql_path": "models\\marts\\health\\health__fed_cms_opioid_treatment_program_providers.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_opioid_treatment_program_providers.yml",
+    "columns": [
+      "npi"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_opt_out_affidavits",
+    "sql_path": "models\\marts\\health\\health__fed_cms_opt_out_affidavits.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_opt_out_affidavits.yml",
+    "columns": [
+      "npi",
+      "state_code",
+      "zip_code"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_order_and_referring",
+    "sql_path": "models\\marts\\health\\health__fed_cms_order_and_referring.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_order_and_referring.yml",
+    "columns": [
+      "npi"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_partd_prescribers",
+    "sql_path": "models\\marts\\health\\health__fed_cms_partd_prescribers.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_partd_prescribers.yml",
+    "columns": [
+      "npi",
+      "prescriber_state_fips"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_pos_other",
+    "sql_path": "models\\marts\\health\\health__fed_cms_pos_other.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_pos_other.yml",
+    "columns": [
+      "cross_ref_provider_number",
+      "ltc_cross_ref_provider_number",
+      "medicare_medicaid_prvdr_number",
+      "parent_provider_number"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_cms_quality_payment_program_experience",
+    "sql_path": "models\\marts\\health\\health__fed_cms_quality_payment_program_experience.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_quality_payment_program_experience.yml",
+    "columns": [
+      "npi"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_dea_arcos",
+    "sql_path": "models\\marts\\health\\health__fed_dea_arcos.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_dea_arcos.yml",
+    "columns": [
+      "transaction_id",
+      "transaction_code",
+      "drug_code"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_fda_faers_demo",
+    "sql_path": "models\\marts\\health\\health__fed_fda_faers_demo.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_fda_faers_demo.yml",
+    "columns": [],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_fda_faers_drug",
+    "sql_path": "models\\marts\\health\\health__fed_fda_faers_drug.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_fda_faers_drug.yml",
+    "columns": [],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_fda_faers_indi",
+    "sql_path": "models\\marts\\health\\health__fed_fda_faers_indi.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_fda_faers_indi.yml",
+    "columns": [
+      "indi_pt"
+    ],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_fda_faers_outc",
+    "sql_path": "models\\marts\\health\\health__fed_fda_faers_outc.sql",
+    "schema_path": null,
+    "columns": [],
+    "domain": "health"
+  },
+  {
+    "model": "health__fed_fda_faers_reac",
+    "sql_path": "models\\marts\\health\\health__fed_fda_faers_reac.sql",
+    "schema_path": null,
+    "columns": [],
+    "domain": "health"
+  }
+]

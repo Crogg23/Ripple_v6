@@ -27,3 +27,19 @@ models:
       - name: citi_logical_id
         data_tests:
           - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - entity_logical_id
+              - naal_logical_id
+              - addr_logical_id
+              - addr_number
+              - birt_logical_id
+              - iden_logical_id
+              - iden_number
+              - citi_logical_id
+              - programme
+              - leba_numtitle
+              - eu_ref_num
+              - date_file

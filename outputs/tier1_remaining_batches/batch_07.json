@@ -1,0 +1,110 @@
+[
+  {
+    "dataset_name": "State-assigned school/district IDs, carried as attribute fields inside NCES Common Core of Data (CCD) / EDFacts alongside the NCES ID",
+    "domain": "Education",
+    "url": "https://nces.ed.gov/ccd/elsi/tableGenerator.aspx",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "inferred",
+    "evidence": ""
+  },
+  {
+    "dataset_name": "ABA Standard 509 Information Reports (law school identifiers) - abarequireddisclosures.org",
+    "domain": "Education",
+    "url": "https://www.abarequireddisclosures.org/",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "confidence": "inferred",
+    "evidence": "Standard509Disclosure"
+  },
+  {
+    "dataset_name": "EADA - Equity in Athletics Data Analysis (ED Office of Postsecondary Education)",
+    "domain": "Education",
+    "url": "https://ope.ed.gov/athletics/",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": "Equity in Athletics"
+  },
+  {
+    "dataset_name": "FFEL Program Lender and Guaranty Agency Reports (legacy, ED Data Explorer) / NCHER guaranty agency code list",
+    "domain": "Education",
+    "url": "https://data.ed.gov/data_explorer",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "confidence": "inferred",
+    "evidence": "The official government platform offers data categorized as 'Federal Family Education Loan (FFEL) Program Lender and Guaranty Agency Reports'"
+  },
+  {
+    "dataset_name": "HMDA Loan/Application Register (LAR) data via the FFIEC HMDA Platform",
+    "domain": "Housing, Real Estate & Mortgage Lending",
+    "url": "https://ffiec.cfpb.gov/data-browser/",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "inferred",
+    "evidence": "\"The check digit tool can be used to generate a two character check digit when you enter a Legal Entity Identifier (LEI) and loan or application ID... [or] validate that a check digit is calculated correctly for any complete Universal Loan Identifier (ULI) you enter.\" (ffiec.cfpb.gov/documentation/t"
+  },
+  {
+    "dataset_name": "CFPB Consumer Complaint Database",
+    "domain": "Housing, Real Estate & Mortgage Lending",
+    "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"Download all complaint data | CSV\" ... \"Use our Open Data API\" ... \"All complaint data we publish is freely available for anyone to use, analyze, and build on.\""
+  },
+  {
+    "dataset_name": "HUD Picture of Subsidized Households (project/development-level extract)",
+    "domain": "Housing, Real Estate & Mortgage Lending",
+    "url": "https://catalog.data.gov/dataset/picture-of-subsidized-households",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": "\"This dataset documents roughly 5 million households receiving HUD housing assistance... data is aggregated at multiple geographic levels including national, state, agency, project, census tract, county, and city levels.\""
+  },
+  {
+    "dataset_name": "HMDA Historic Loan/Application Register (LAR) flat files, pre-2018 format",
+    "domain": "Housing, Real Estate & Mortgage Lending",
+    "url": "https://files.consumerfinance.gov/hmda-historic-data-dictionaries/lar_record_format.pdf",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"HMDA Loan Application Register Format (File format is comma separated value)\" field table lists: \"Respondent ID | 10 | Alphanumeric\" and \"Agency Code | 1 | Alphanumeric\""
+  },
+  {
+    "dataset_name": "County Assessor parcel-number systems (fragmented, county by county)",
+    "domain": "Housing, Real Estate & Mortgage Lending",
+    "url": "https://data.lacounty.gov/documents/4d67b154ae614d219c58535659128e71/about",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "inferred",
+    "evidence": "Search-index snippet for LA County's open-data parcels layer: \"Contains current parcel boundaries and related attributes for approximately 2.4 million parcels\" (updated monthly) -- direct WebFetch of the target data.lacounty.gov page was not obtained with quotable content."
+  },
+  {
+    "dataset_name": "HUD LIHTC Database (Building Identification Number / BIN)",
+    "domain": "Housing, Real Estate & Mortgage Lending",
+    "url": "https://www.huduser.gov/portal/datasets/lihtc/property.html",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": "Search-index snippet of HUD Form 52697 (LIHTC Tenant Data Form): \"Building Identification Number (BIN) consists of a two-character state designation...followed by a two digit designation representing the year the credit is allocated, and a five digit numbering...\" -- direct WebFetch of the target PD"
+  },
+  {
+    "dataset_name": "DOT National Address Database (NAD) Text File",
+    "domain": "Housing, Real Estate & Mortgage Lending",
+    "url": "https://catalog.data.gov/dataset/national-address-database-nad-text-file",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"The National Address Database (NAD) is a spatial database containing address data, point location coordinates, jurisdictions, record-level metadata and other supporting data.\" Field \"OID_\" described as \"perfectly unique across the entire dataset.\" Download: ZIP (application/x-zip-compressed)."
+  },
+  {
+    "dataset_name": "Mapping Inequality: Redlining in New Deal America (University of Richmond Digital Scholarship Lab)",
+    "domain": "Housing, Real Estate & Mortgage Lending",
+    "url": "https://dsl.richmond.edu/panorama/redlining/",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "confidence": "inferred",
+    "evidence": "A direct bulk-download URL was located and loaded, dsl.richmond.edu/panorama/redlining/static/fullDownload.geojson, confirming a full GeoJSON export exists, but the fetch tool could not extract quotable descriptive text (raw geodata, not prose) from either that file or the project's landing/data pag"
+  }
+]

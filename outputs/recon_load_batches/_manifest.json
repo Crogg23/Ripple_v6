@@ -1,0 +1,85 @@
+[
+  {
+    "batch_id": 0,
+    "path": "outputs/recon_load_batches/batch_00.json",
+    "count": 11,
+    "domains": [
+      "Healthcare & Clinical",
+      "Pharma, Biologics & Medical Devices"
+    ]
+  },
+  {
+    "batch_id": 1,
+    "path": "outputs/recon_load_batches/batch_01.json",
+    "count": 11,
+    "domains": [
+      "Banking & Depository Institutions",
+      "Environment & Natural Resources"
+    ]
+  },
+  {
+    "batch_id": 2,
+    "path": "outputs/recon_load_batches/batch_02.json",
+    "count": 11,
+    "domains": [
+      "Banking & Depository Institutions",
+      "Corporate Registration & Beneficial Ownership",
+      "Financial Crimes, Sanctions & AML",
+      "Securities, Investment Funds & Markets"
+    ]
+  },
+  {
+    "batch_id": 3,
+    "path": "outputs/recon_load_batches/batch_03.json",
+    "count": 11,
+    "domains": [
+      "Corporate Registration & Beneficial Ownership",
+      "Criminal Justice & Court Systems",
+      "Immigration & Border",
+      "Labor, Workplace Safety & Benefits",
+      "Law Enforcement & Corrections",
+      "Politics, Elections & Lobbying"
+    ]
+  },
+  {
+    "batch_id": 4,
+    "path": "outputs/recon_load_batches/batch_04.json",
+    "count": 11,
+    "domains": [
+      "Consumer Protection & Product Safety",
+      "Politics, Elections & Lobbying",
+      "Transportation -- Aviation & Rail",
+      "Transportation -- Motor Carrier & Maritime"
+    ]
+  },
+  {
+    "batch_id": 5,
+    "path": "outputs/recon_load_batches/batch_05.json",
+    "count": 11,
+    "domains": [
+      "Education",
+      "Housing, Real Estate & Mortgage Lending"
+    ]
+  },
+  {
+    "batch_id": 6,
+    "path": "outputs/recon_load_batches/batch_06.json",
+    "count": 11,
+    "domains": [
+      "Energy, Utilities & Pipeline Safety",
+      "Federal Procurement & Grants",
+      "Housing, Real Estate & Mortgage Lending",
+      "Insurance"
+    ]
+  },
+  {
+    "batch_id": 7,
+    "path": "outputs/recon_load_batches/batch_07.json",
+    "count": 11,
+    "domains": [
+      "Federal Benefits & Safety Net / Veterans",
+      "International & Cross-Border Identifiers",
+      "Science, Research Grants & Research Integrity"
+    ]
+  }
+]

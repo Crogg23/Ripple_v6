@@ -2,6 +2,10 @@ version: 2
 
 models:
   - name: open_data__intl_fr_data_gouv
+    description: >
+      GRAIN: one row per (dataset_id, resource_id) -- matches the verified
+      grain of the staging model for this same source (stg_intl_fr_data_gouv__
+      records, which qualifies on this exact pair and is tested on it).
     columns:
       - name: dataset_id
         data_tests:
@@ -12,3 +16,9 @@ models:
       - name: resource_id
         data_tests:
           - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - dataset_id
+              - resource_id

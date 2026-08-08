@@ -3,6 +3,9 @@ version: 2
 models:
   - name: politics__fed_fcc_licensing
     columns:
+      - name: unique_system_identifier
+        data_tests:
+          - unique
       - name: uls_file_number
         data_tests:
           - not_null

@@ -205,6 +205,16 @@ models:
       Analytics-ready mart table for bioRxiv / medRxiv preprint manuscripts.
       Exposes all key identifiers for cross-source joins, derived convenience
       flags, and pre-cast statistics columns.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - doi
+              - biorxiv_doi
+              - published_doi
+              - person_name
+              - funder_ror_id
+              - stat_month
     columns:
 
       - name: doi

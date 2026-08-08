@@ -1,0 +1,102 @@
+[
+  {
+    "dataset_name": "FDA FEI Portal (establishment identifier lookup) -- underlying FEI numbers also live inside separate FDA drug/device/food establishment registration & listing systems",
+    "domain": "Healthcare & Clinical",
+    "url": "https://feiportal.fda.gov"
+  },
+  {
+    "dataset_name": "FDA Human Cell and Tissue Establishment Registration (HCTERS) Public Query",
+    "domain": "Healthcare & Clinical",
+    "url": "https://www.fda.gov/vaccines-blood-biologics/biologics-establishment-registration/human-cell-and-tissue-establishment-registration-hcters-public-query-application"
+  },
+  {
+    "dataset_name": "HRSA 340B OPAIS Covered Entity Search",
+    "domain": "Healthcare & Clinical",
+    "url": "https://340bopais.hrsa.gov/SearchCe"
+  },
+  {
+    "dataset_name": "SAMHSA Behavioral Health Treatment Services Locator / Mental Health Treatment Facilities Locator",
+    "domain": "Healthcare & Clinical",
+    "url": "https://findtreatment.samhsa.gov"
+  },
+  {
+    "dataset_name": "FSMB DocInfo.org (Physician Data Center)",
+    "domain": "Healthcare & Clinical",
+    "url": "https://www.docinfo.org/"
+  },
+  {
+    "dataset_name": "Nursys -- NCSBN national nurse licensure database",
+    "domain": "Healthcare & Clinical",
+    "url": "https://www.nursys.com/"
+  },
+  {
+    "dataset_name": "State licensing-board license-number records for medicine, nursing, and pharmacy -- no single source, fragmented across 50+ independent state boards",
+    "domain": "Healthcare & Clinical",
+    "url": "https://www.mbc.ca.gov/"
+  },
+  {
+    "dataset_name": "FDA Clinical Investigator Disqualification Proceedings list",
+    "domain": "Healthcare & Clinical",
+    "url": "https://www.accessdata.fda.gov/scripts/cder/investigator/"
+  },
+  {
+    "dataset_name": "HHS OCR Breach Portal (\"Breach Report\" / public breach notification tool, informally the \"Wall of Shame\") -- breaches affecting 500+ individuals",
+    "domain": "Healthcare & Clinical",
+    "url": "https://ocrportal.hhs.gov/ocr/breach/breach_report.jsf"
+  },
+  {
+    "dataset_name": "Animal Drugs @ FDA (NADA/ANADA/CNADA database, Center for Veterinary Medicine)",
+    "domain": "Pharma, Biologics & Medical Devices",
+    "url": "https://animaldrugsatfda.fda.gov/adafda/views/#/search"
+  },
+  {
+    "dataset_name": "FDA Listing of CDRH Humanitarian Device Exemptions",
+    "domain": "Pharma, Biologics & Medical Devices",
+    "url": "https://www.fda.gov/medical-devices/hde-approvals/listing-cdrh-humanitarian-device-exemptions"
+  },
+  {
+    "dataset_name": "eHCTERS (electronic Human Cell and Tissue Establishment Registration System) Public Query Application",
+    "domain": "Pharma, Biologics & Medical Devices",
+    "url": "https://www.fda.gov/vaccines-blood-biologics/biologics-establishment-registration/human-cell-and-tissue-establishment-registration-hcters-public-query-application"
+  },
+  {
+    "dataset_name": "FDA Office of Orphan Products Development (OOPD) Searchable Orphan Drug Designations/Approvals Database",
+    "domain": "Pharma, Biologics & Medical Devices",
+    "url": "https://www.accessdata.fda.gov/scripts/opdlisting/oopd/"
+  },
+  {
+    "dataset_name": "EUDAMED Actor Registration Module (SRN for economic operators)",
+    "domain": "Pharma, Biologics & Medical Devices",
+    "url": "https://ec.europa.eu/tools/eudamed/#/screen/search-eo"
+  },
+  {
+    "dataset_name": "US Court of Federal Claims Vaccine Program (Office of Special Masters) petition dockets / HRSA NVICP statistics",
+    "domain": "Pharma, Biologics & Medical Devices",
+    "url": "https://www.hrsa.gov/vaccine-compensation/data"
+  },
+  {
+    "dataset_name": "FDA Debarment List (Drug Product Applications, Generic Drug Enforcement Act)",
+    "domain": "Pharma, Biologics & Medical Devices",
+    "url": "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/compliance-actions-and-activities/debarment-list-drug-product-applications"
+  },
+  {
+    "dataset_name": "FDA Disqualified/Restricted/Assurances Lists (Clinical Investigators)",
+    "domain": "Pharma, Biologics & Medical Devices",
+    "url": "https://www.fda.gov/drugs/inspections-compliance-enforcement-and-criminal-investigations/disqualified-restricted-and-assurances-lists"
+  },
+  {
+    "dataset_name": "NABP e-Profile ID (National Association of Boards of Pharmacy credentialing/licensure profile)",
+    "domain": "Pharma, Biologics & Medical Devices",
+    "url": "https://nabp.pharmacy/programs/e-profile-id/"
+  },
+  {
+    "dataset_name": "FDA Registered Outsourcing Facilities under Section 503B",
+    "domain": "Pharma, Biologics & Medical Devices",
+    "url": "https://www.fda.gov/drugs/human-drug-compounding/registered-outsourcing-facilities"
+  },
+  {
+    "dataset_name": "CMS National Supplier Clearinghouse DMEPOS Supplier Directory (operated by contractor Palmetto GBA)",
+    "domain": "Pharma, Biologics & Medical Devices",
+    "url": "https://www.cms.gov/medicare/enrollment-renewal/providers-suppliers/national-supplier-clearinghouse-nsc"
+  }
+]

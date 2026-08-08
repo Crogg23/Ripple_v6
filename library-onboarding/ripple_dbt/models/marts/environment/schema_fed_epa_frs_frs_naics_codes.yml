@@ -6,3 +6,11 @@ models:
       - name: pgm_sys_id
         data_tests:
           - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - registry_id
+              - pgm_sys_acnrm
+              - pgm_sys_id
+              - naics_code

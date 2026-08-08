@@ -2,6 +2,11 @@ version: 2
 
 models:
   - name: politics__fed_congress_committee_membership
+    description: >
+      GRAIN: one row per legislator per committee/subcommittee assignment
+      (a current-snapshot membership roster, not a historical log --
+      committee_code already distinguishes subcommittees from their parent
+      committee).
     columns:
       - name: committee_code
         data_tests:
@@ -9,3 +14,9 @@ models:
       - name: bioguide
         data_tests:
           - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - committee_code
+              - bioguide

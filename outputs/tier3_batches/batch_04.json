@@ -1,0 +1,102 @@
+[
+  {
+    "dataset_name": "National Registry of Exonerations case database",
+    "domain": "Criminal Justice & Court Systems",
+    "url": "https://exonerationregistry.org/"
+  },
+  {
+    "dataset_name": "National Missing and Unidentified Persons System (NamUs)",
+    "domain": "Criminal Justice & Court Systems",
+    "url": "https://namus.nij.ojp.gov/"
+  },
+  {
+    "dataset_name": "Dru Sjodin National Sex Offender Public Website (NSOPW) -- federated real-time search of state/territory/tribal registries",
+    "domain": "Criminal Justice & Court Systems",
+    "url": "https://www.nsopw.gov/faqs"
+  },
+  {
+    "dataset_name": "State bar attorney license/registration lookup systems (fragmented; e.g. State Bar of California Attorney Search)",
+    "domain": "Criminal Justice & Court Systems",
+    "url": "https://apps.calbar.ca.gov/attorney/LicenseeSearch/QuickSearch"
+  },
+  {
+    "dataset_name": "TRAC Immigration -- Judge-by-Judge Asylum Decisions in Immigration Courts",
+    "domain": "Criminal Justice & Court Systems",
+    "url": "https://tracreports.org/immigration/reports/judgereports/"
+  },
+  {
+    "dataset_name": "State DOC / county jail offender ID & inmate locator systems (fragmented per state/county); exemplar: Texas Dept. of Criminal Justice (TDCJ) Offender/SID Number inmate search",
+    "domain": "Law Enforcement & Corrections",
+    "url": "https://www.tdcj.texas.gov/ks_offender.html"
+  },
+  {
+    "dataset_name": "NIC 'Locate Correctional Facilities by State' directory -- an outbound link list to each state DOC's own facility directory plus the BOP facility locator; NIC does not itself maintain a coded facility-ID database",
+    "domain": "Law Enforcement & Corrections",
+    "url": "https://nicic.gov/resources/nic-library/hot-topics/locate-correctional-facilities-state"
+  },
+  {
+    "dataset_name": "Census of Juveniles in Residential Placement (CJRP), OJJDP/Census Bureau -- facility-level and individual-level juvenile custody census",
+    "domain": "Law Enforcement & Corrections",
+    "url": "https://ojjdp.ojp.gov/research-and-statistics/research-projects/Census-of-Juveniles-in-Residential-Placement/overview"
+  },
+  {
+    "dataset_name": "American Board of Criminalistics (ABC) Certificant Directory -- voluntary, private national certification lookup for forensic analysts (not a government-run or comprehensive registry)",
+    "domain": "Law Enforcement & Corrections",
+    "url": "https://www.criminalistics.com/certificant-directory.html"
+  },
+  {
+    "dataset_name": "State bar attorney license & discipline lookup (fragmented per-state bar); exemplar: State Bar of California Attorney Search",
+    "domain": "Law Enforcement & Corrections",
+    "url": "https://apps.calbar.ca.gov/"
+  },
+  {
+    "dataset_name": "State corrections officer certification records (fragmented per-state training/certification commission); exemplar: Washington State Criminal Justice Training Commission (WSCJTC) Certification Bureau",
+    "domain": "Law Enforcement & Corrections",
+    "url": "https://cjtc.wa.gov/certification/certification-information"
+  },
+  {
+    "dataset_name": "State parole/probation offender/case search tools (fragmented per-state); exemplar: South Carolina Dept. of Probation, Parole and Pardon Services (SCDPPPS) Offender Search",
+    "domain": "Law Enforcement & Corrections",
+    "url": "https://ppp.sc.gov/supervision-rehabilitation/offender-search"
+  },
+  {
+    "dataset_name": "CBP Border Patrol sector boundaries/codes (used in CBP Enforcement Statistics apprehension tables)",
+    "domain": "Immigration & Border",
+    "url": "https://www.cbp.gov/newsroom/stats/southwest-land-border-encounters-by-sector"
+  },
+  {
+    "dataset_name": "Schedule D \u2014 U.S. Customs District and Port Codes (CBP/Census Bureau)",
+    "domain": "Immigration & Border",
+    "url": "https://www.census.gov/foreign-trade/schedules/d/distcode.html"
+  },
+  {
+    "dataset_name": "SEVP Certified School Search (SEVIS school codes)",
+    "domain": "Immigration & Border",
+    "url": "https://studyinthestates.dhs.gov/school-search"
+  },
+  {
+    "dataset_name": "ICE 287(g) Program \u2014 current participating law-enforcement agencies list",
+    "domain": "Immigration & Border",
+    "url": "https://www.ice.gov/identify-and-arrest/287g"
+  },
+  {
+    "dataset_name": "EOIR Recognition and Accreditation Program \u2014 roster of recognized organizations/accredited representatives and disciplinary docket",
+    "domain": "Immigration & Border",
+    "url": "https://www.justice.gov/eoir/recognition-and-accreditation-program"
+  },
+  {
+    "dataset_name": "State Criminal Alien Assistance Program (SCAAP) award/facility data",
+    "domain": "Immigration & Border",
+    "url": "https://bja.ojp.gov/program/scaap/overview"
+  },
+  {
+    "dataset_name": "UK Electoral Commission Register of Political Parties and Register of Recent Donations/Loans (regulated donees)",
+    "domain": "Politics, Elections & Lobbying",
+    "url": "https://search.electoralcommission.org.uk/English/Registrations/PP3"
+  },
+  {
+    "dataset_name": "California FPPC Form 700 (Statement of Economic Interests) search portal",
+    "domain": "Politics, Elections & Lobbying",
+    "url": "https://www.fppc.ca.gov/transparency/form-700-filed-by-public-officials/form700-search.html"
+  }
+]

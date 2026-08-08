@@ -1,0 +1,110 @@
+[
+  {
+    "dataset_name": "SBA Paycheck Protection Program (PPP) FOIA loan-level data / SBA 7(a) & 504 FOIA loan data reports (data.sba.gov)",
+    "domain": "Banking & Depository Institutions",
+    "url": "https://data.sba.gov/dataset/ppp-foia",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "Paycheck Protection Program (PPP) FOIA -- provides loan-level information on all distributed PPP loans, available in CSV and XLSX formats; page also lists a 'PPP Data Dictionary.xlsx' file."
+  },
+  {
+    "dataset_name": "IRS FATCA Foreign Financial Institution (FFI) List Search and Download Tool",
+    "domain": "Banking & Depository Institutions",
+    "url": "https://www.irs.gov/businesses/corporations/fatca-foreign-financial-institution-list-search-and-download-tool",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "download the entire list of financial institutions or search for a particular one by its legal name, Global Intermediary Identification Number (GIIN), or country"
+  },
+  {
+    "dataset_name": "HMDA Loan/Application Register (LAR) data, 2018-forward -- CFPB HMDA Platform / Data Browser, loan-level records keyed by ULI",
+    "domain": "Banking & Depository Institutions",
+    "url": "https://ffiec.cfpb.gov/data-browser/",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "inferred",
+    "evidence": "LEI (Legal Entity Identifier) sourced from a Global LEI Foundation (GLEIF) operating unit is the unique identifier for HMDA Filers. (from ffiec.cfpb.gov/documentation/faq/identifiers-faq -- confirms the current post-2018 HMDA identifier regime that ULI is built on: LEI + loan/application number, per"
+  },
+  {
+    "dataset_name": "SEC/FINRA Investment Adviser Public Disclosure (IAPD) \u2014 IARD-numbered Form ADV filings",
+    "domain": "Securities, Investment Funds & Markets",
+    "url": "https://adviserinfo.sec.gov/compilation",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": "\"The Investment Adviser Registration Depository (IARD) functions as a one-stop electronic filing system for investment advisers.\" (investor.gov glossary page, loaded via WebFetch)"
+  },
+  {
+    "dataset_name": "SEC EDGAR Investment Company Series and Class Information report",
+    "domain": "Securities, Investment Funds & Markets",
+    "url": "https://www.sec.gov/data-research/sec-markets-data/investment-company-series-class-information",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": "\"A Series ID is a unique identifier assigned by the SEC to each series of an investment company, with the format being an 'S' followed by nine digits\" / Class ID is 'C' + nine digits (search snippet; page 403'd on WebFetch this session)"
+  },
+  {
+    "dataset_name": "MSRB Registrant List (brokers/dealers/municipal advisors with executing broker symbols)",
+    "domain": "Securities, Investment Funds & Markets",
+    "url": "https://www.msrb.org/Registrant",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "confidence": "inferred",
+    "evidence": "\"Access lists of brokers, dealers, municipal securities dealers and municipal advisors registered with the MSRB and the executing broker symbols for MSRB registrants that effect municipal securities transactions.\" Page includes a \"Download CSV\" option."
+  },
+  {
+    "dataset_name": "DTC Participant Directory / NSCC Member Directory",
+    "domain": "Securities, Investment Funds & Markets",
+    "url": "https://www.dtcc.com/client-center/dtc-directories",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "confidence": "inferred",
+    "evidence": "\"The DTC Participant Report includes listings in alphabetical order with participant names and their corresponding participant numbers... over 800 participants grouped into different series from 0 to 1600.\" (search snippet; direct PDF/XLSX file URLs surfaced in search results, e.g. DTC-Participant-i"
+  },
+  {
+    "dataset_name": "SEC EDGAR Central Index Key (CIK) assignments (filing agents are one CIK-holder class)",
+    "domain": "Securities, Investment Funds & Markets",
+    "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
+    "access_shape": "api-open",
+    "size_class": "large",
+    "confidence": "inferred",
+    "evidence": "\"A Central Index Key or CIK number is a unique number assigned to an individual, company, filing agent or foreign government by the United States Securities and Exchange Commission... up to ten digits in length and are permanent identifiers that may not be changed.\" (Wikipedia, loaded via WebFetch)"
+  },
+  {
+    "dataset_name": "OCC Member Directory (clearing members)",
+    "domain": "Securities, Investment Funds & Markets",
+    "url": "https://www.theocc.com/company-information/member-directory",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "confidence": "inferred",
+    "evidence": "\"Its clearing members serve both professional traders and public customers and are approximately 115 of the largest U.S. broker-dealers, futures commission merchants and non-U.S. securities firms.\" (Wikipedia, loaded via WebFetch); a direct XLS export endpoint (theocc.com/api/memberdirectory/xls) su"
+  },
+  {
+    "dataset_name": "Companies House Persons with Significant Control (PSC) bulk data product",
+    "domain": "Financial Crimes, Sanctions & AML",
+    "url": "http://download.companieshouse.gov.uk/en_pscdata.html",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"The file is new line deliminated JSON.\" and \"Updated daily before 10AM GMT every morning.\""
+  },
+  {
+    "dataset_name": "ICIJ Offshore Leaks Database (Panama Papers, Paradise Papers, Pandora Papers, Bahamas Leaks, Offshore Leaks combined)",
+    "domain": "Financial Crimes, Sanctions & AML",
+    "url": "https://offshoreleaks.icij.org/pages/database",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"Offshore Leaks zip file includes: Offshore Leaks (2013), Panama Papers (2016), Bahamas Leaks (2016), Paradise Papers (2017), Pandora Papers (2021)\""
+  },
+  {
+    "dataset_name": "EU Financial Sanctions Files (FSF) / Consolidated list of persons, groups and entities subject to EU financial sanctions",
+    "domain": "Financial Crimes, Sanctions & AML",
+    "url": "https://webgate.ec.europa.eu/fsd/fsf",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": "\"As part of the Common Foreign Security Policy the European Union publishes a sanctions list that is implemented by all member states.\" Source data available at webgate.ec.europa.eu in XML format. (via OpenSanctions eu_fsf mirror page, which republishes the official EU source)"
+  }
+]

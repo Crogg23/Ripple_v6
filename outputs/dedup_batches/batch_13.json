@@ -1,0 +1,131 @@
+[
+  {
+    "model": "justice__xc_vera_incarceration_trends",
+    "sql_path": "models\\marts\\justice\\justice__xc_vera_incarceration_trends.sql",
+    "schema_path": "ripple://models\\marts\\justice\\schema_xc_vera_incarceration_trends.yml",
+    "columns": [
+      "county_fips",
+      "state_fips",
+      "state_code",
+      "county_code",
+      "source_run_id"
+    ],
+    "domain": "justice"
+  },
+  {
+    "model": "labor__fed_msha_accidents",
+    "sql_path": "models\\marts\\labor\\labor__fed_msha_accidents.sql",
+    "schema_path": "ripple://models\\marts\\labor\\schema_fed_msha_accidents.yml",
+    "columns": [
+      "mine_id"
+    ],
+    "domain": "labor"
+  },
+  {
+    "model": "labor__fed_msha_violations",
+    "sql_path": "models\\marts\\labor\\labor__fed_msha_violations.sql",
+    "schema_path": "ripple://models\\marts\\labor\\schema_fed_msha_violations.yml",
+    "columns": [
+      "mine_id"
+    ],
+    "domain": "labor"
+  },
+  {
+    "model": "labor__fed_osha_ita_300a_summary_2025",
+    "sql_path": "models\\marts\\labor\\labor__fed_osha_ita_300a_summary_2025.sql",
+    "schema_path": "ripple://models\\marts\\labor\\schema_fed_osha_ita_300a_summary_2025.yml",
+    "columns": [
+      "establishment_id"
+    ],
+    "domain": "labor"
+  },
+  {
+    "model": "legal_enforcement__fed_naag_multistate_settlements",
+    "sql_path": "models\\marts\\legal_enforcement\\legal_enforcement__fed_naag_multistate_settlements.sql",
+    "schema_path": "ripple://models\\staging\\fed_naag_multistate_settlements\\schema.yml",
+    "columns": [
+      "company_name",
+      "settlement_amount",
+      "case_description",
+      "industry",
+      "lead_state",
+      "num_states",
+      "document_url",
+      "settlement_year",
+      "settlement_month",
+      "_ingested_at",
+      "_source_run_id"
+    ],
+    "domain": "legal_enforcement"
+  },
+  {
+    "model": "money__debt_repayment_cliff",
+    "sql_path": "models\\marts\\money_finance\\money__debt_repayment_cliff.sql",
+    "schema_path": null,
+    "columns": [],
+    "domain": "money"
+  },
+  {
+    "model": "open_data__intl_ar_datosgob",
+    "sql_path": "models\\marts\\open_data\\open_data__intl_ar_datosgob.sql",
+    "schema_path": "ripple://models\\marts\\open_data\\schema_intl_ar_datosgob.yml",
+    "columns": [
+      "dataset_id",
+      "serie_id",
+      "provincia_id",
+      "municipio_id",
+      "departamento_id"
+    ],
+    "domain": "open_data"
+  },
+  {
+    "model": "open_data__intl_fr_data_gouv",
+    "sql_path": "models\\marts\\open_data\\open_data__intl_fr_data_gouv.sql",
+    "schema_path": "ripple://models\\marts\\open_data\\schema_intl_fr_data_gouv.yml",
+    "columns": [
+      "dataset_id",
+      "organization_id",
+      "resource_id"
+    ],
+    "domain": "open_data"
+  },
+  {
+    "model": "open_data__xc_wayback_doj_epstein",
+    "sql_path": "models\\marts\\open_data\\open_data__xc_wayback_doj_epstein.sql",
+    "schema_path": "ripple://models\\marts\\open_data\\schema_xc_wayback_doj_epstein.yml",
+    "columns": [
+      "status_code"
+    ],
+    "domain": "open_data"
+  },
+  {
+    "model": "politics__fed_congress_committee_membership",
+    "sql_path": "models\\marts\\politics\\politics__fed_congress_committee_membership.sql",
+    "schema_path": "ripple://models\\marts\\politics\\schema_fed_congress_committee_membership.yml",
+    "columns": [
+      "committee_code",
+      "bioguide"
+    ],
+    "domain": "politics"
+  },
+  {
+    "model": "politics__fed_congress_legislators",
+    "sql_path": "models\\marts\\politics\\politics__fed_congress_legislators.sql",
+    "schema_path": "ripple://models\\marts\\politics\\schema_fed_congress_legislators.yml",
+    "columns": [
+      "bioguide",
+      "icpsr",
+      "google_entity_id"
+    ],
+    "domain": "politics"
+  },
+  {
+    "model": "politics__fed_doj_epstein_library",
+    "sql_path": "models\\marts\\politics\\politics__fed_doj_epstein_library.sql",
+    "schema_path": "ripple://models\\marts\\politics\\schema_fed_doj_epstein_library.yml",
+    "columns": [
+      "page_url"
+    ],
+    "domain": "politics"
+  }
+]

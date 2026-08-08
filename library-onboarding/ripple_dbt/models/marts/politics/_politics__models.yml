@@ -35,6 +35,12 @@ models:
     description: >
       DELIVERABLE #1 (bridge): one row per (member, fec_id). Preserves the
       one-to-many fec relationship; join fec_id -> FED_FEC_BULK.FEC_CAND_ID.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - member_key
+              - fec_id
     columns:
       - name: member_key
         description: FK to politics__member_crosswalk.member_key.

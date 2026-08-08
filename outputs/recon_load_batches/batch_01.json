@@ -1,0 +1,112 @@
+[
+  {
+    "id_name": "EPA AQS Site ID (Air Quality System monitor)",
+    "domain": "Environment & Natural Resources",
+    "dataset_name": "EPA Air Quality System (AQS) / AirData Pre-Generated Data Files",
+    "url": "https://aqs.epa.gov/aqsweb/airdata/download_files.html",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "\"Pre-Generated Data Files | AirData | US EPA\" \u2014 \"large files of data intended for use by people who understand the EPA ambient air quality monitoring program and data\"",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "National Inventory of Dams (NID) ID",
+    "domain": "Environment & Natural Resources",
+    "dataset_name": "National Inventory of Dams (NID)",
+    "url": "https://nid.sec.usace.army.mil/",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "\"National Inventory of Dams & Low-Head Dams Inventory\" (page title loaded at nid.sec.usace.army.mil); mirrored on HIFLD/ArcGIS Hub with CSV/GeoJSON/KML export.",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "TRI Facility ID",
+    "domain": "Environment & Natural Resources",
+    "dataset_name": "EPA Toxics Release Inventory (TRI) Basic Data Files",
+    "url": "https://www.epa.gov/toxics-release-inventory-tri-program/tri-basic-data-files-calendar-years-1987-present",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "\"TRI Basic Data Files: Calendar Years 1987-Present\" \u2014 \"Each 'Basic' data file contains the 100 most-used data fields from the TRI Reporting Form R and Form A\" \u2014 \"The files are presented in .csv (comma-separated value) format.\"",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "CERCLIS / SEMS Site ID (Superfund)",
+    "domain": "Environment & Natural Resources",
+    "dataset_name": "EPA Superfund Enterprise Management System (SEMS) site data \u2014 successor to CERCLIS",
+    "url": "https://www.epa.gov/superfund/superfund-data-and-reports",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "\"Superfund Data and Reports\" \u2014 \"Displays site and location information at active sites in SEMS\" \u2014 legacy \"CERCLIS...downloadable files in dBASEIII+ and ASCII text formats representing program data through fiscal year 2013\"",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "EPA GHGRP Facility ID (Greenhouse Gas Reporting Program)",
+    "domain": "Environment & Natural Resources",
+    "dataset_name": "EPA Greenhouse Gas Reporting Program (GHGRP) Data Sets",
+    "url": "https://www.epa.gov/ghgreporting/data-sets",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "\"Data Sets | US EPA\" \u2014 \"2023 Data Summary Spreadsheets (zip)\" containing \"high-level information for facilities\"; interactive tools \"Envirofacts and FLIGHT\" also provide searchable/downloadable access across 32 industry categories",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "EPA CAMD/CAMPD ORISPL Facility ID + Unit ID",
+    "domain": "Environment & Natural Resources",
+    "dataset_name": "EPA Clean Air Markets Program Data (CAMPD) \u2014 facility & unit attributes (ORISPL Facility ID + Unit ID)",
+    "url": "https://campd.epa.gov/data/custom-data-download",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "\"Clean Air Markets Program Data (CAMPD)\" (page title loaded); companion power-sector page references the \"EPA-EIA Power Sector Data Crosswalk\" whose \"methodology to match the different unit IDs is available in R script\"",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "EPA Pesticide Producing-Establishment Number",
+    "domain": "Environment & Natural Resources",
+    "dataset_name": "National List of Active EPA-Registered Foreign and Domestic Pesticide and/or Device-Producing Establishments",
+    "url": "https://www.epa.gov/compliance/national-list-active-epa-registered-foreign-and-domestic-pesticide-andor-device",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "\"National List of Active EPA-Registered Foreign and Domestic Pesticide and/or Device-Producing Establishments\" \u2014 \"EPA assigns a unique number to each establishment that produces any pesticide\"; exportable as spreadsheet, PDF, or image",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "Hydrologic Unit Code (HUC)",
+    "domain": "Environment & Natural Resources",
+    "dataset_name": "USGS/NRCS Watershed Boundary Dataset (WBD)",
+    "url": "https://www.usgs.gov/national-hydrography/watershed-boundary-dataset",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "\"Watershed Boundary Dataset is a seamless, national hydrologic unit dataset\" \u2014 \"Hydrologic unit codes (HUC) are developed using a progressive two-digit system\" \u2014 national coverage extends to \"the 12-digit level\"",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "FEMA National Flood Insurance Program (NFIP) Community ID Number",
+    "domain": "Environment & Natural Resources",
+    "dataset_name": "FEMA NFIP Community Status Book dataset",
+    "url": "https://www.fema.gov/openfema-data-page/nfip-community-status-book-v1",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "evidence": "\"information on the participation status of a jurisdiction with land use authority, along with attribution of Community Rating System (CRS) status, risk map effective dates\" \u2014 Dataset ID: FEMA-0137, accessible via the OpenFEMA API",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "OCC Charter Number",
+    "domain": "Banking & Depository Institutions",
+    "dataset_name": "OCC Financial Institution Lists (National Banks, Federal Savings Associations & Trust Banks, by charter number)",
+    "url": "https://www.occ.treas.gov/topics/charters-and-licensing/financial-institution-lists/index-financial-institution-lists.html",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "The OCC provides downloadable lists in multiple formats for three categories of institutions ... Each category is available sorted by bank name or by state and city, in both Excel and PDF formats (active as of 06/30/2026).",
+    "fragmented": "False"
+  },
+  {
+    "id_name": "NCUA Charter Number",
+    "domain": "Banking & Depository Institutions",
+    "dataset_name": "NCUA Credit Union and Corporate Call Report Data (quarterly, includes charter number)",
+    "url": "https://ncua.gov/analysis/credit-union-corporate-call-report-data",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "evidence": "This spreadsheet lists all active federally insured credit unions as of the end of the most recent quarter and includes essential metrics, including membership, assets, and loans.",
+    "fragmented": "False"
+  }
+]

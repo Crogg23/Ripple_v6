@@ -2,6 +2,10 @@ version: 2
 
 models:
   - name: justice__xc_vera_incarceration_trends
+    description: >
+      GRAIN: one row per county x year incarceration measure (per the model's
+      own header comment). Tested on (county_fips, year) -- county_fips alone
+      repeats once per year in this time series.
     columns:
       - name: county_fips
         data_tests:
@@ -18,3 +22,9 @@ models:
       - name: source_run_id
         data_tests:
           - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - county_fips
+              - year

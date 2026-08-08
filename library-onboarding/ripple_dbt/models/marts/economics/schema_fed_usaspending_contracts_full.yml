@@ -3,6 +3,10 @@ version: 2
 models:
   - name: economics__fed_usaspending_contracts_full
     columns:
+      - name: contract_transaction_unique_key
+        data_tests:
+          - not_null
+          - unique
       - name: modification_number
         data_tests:
           - not_null

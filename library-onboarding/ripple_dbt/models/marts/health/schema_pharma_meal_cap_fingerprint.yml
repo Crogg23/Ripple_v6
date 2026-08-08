@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: health__pharma_meal_cap_fingerprint
+    description: >
+      One row per (payment-making manufacturer/GPO) x (program year) -- see
+      the model's header comment for the meal-cap fingerprint methodology.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - payment_maker_name
+              - program_year

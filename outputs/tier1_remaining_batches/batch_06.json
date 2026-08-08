@@ -1,0 +1,110 @@
+[
+  {
+    "dataset_name": "FSIS Meat, Poultry and Egg Product Inspection (MPI) Directory",
+    "domain": "Consumer Protection & Product Safety",
+    "url": "https://www.fsis.usda.gov/data-tools-resources/mpi-directory",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": "Directory download files include \"MPI_Directory_by_Establishment_Number.xls\" and \"MPI_Directory_by_Establishment_Number.pdf\", described as listing establishments that produce meat/poultry/egg products under FSIS regulation."
+  },
+  {
+    "dataset_name": "FDA MAUDE (Manufacturer and User Facility Device Experience) via openFDA Device Event API",
+    "domain": "Consumer Protection & Product Safety",
+    "url": "https://open.fda.gov/apis/device/event/",
+    "access_shape": "api-open",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"adverse event reports submitted by mandatory reporters -- manufacturers, importers and device user facilities -- and voluntary reporters\"; \"Reports are identified by a 8-digit string (for instance, 6176304-1). The first 7 digits identify the individual report, and the last digit is a checksum.\" Upd"
+  },
+  {
+    "dataset_name": "FDA FAERS (Adverse Event Reporting System) via openFDA Drug Event API, plus legacy AEMS/FAERS Quarterly Data Extract Files",
+    "domain": "Consumer Protection & Product Safety",
+    "url": "https://open.fda.gov/apis/drug/event/",
+    "access_shape": "api-open",
+    "size_class": "large",
+    "confidence": "inferred",
+    "evidence": "openFDA: \"FDA Adverse Event Reporting System (FAERS), a database that contains information on adverse event and medication error reports\", records \"an 8-digit string (for instance, 6176304-1)\" as the case identifier; separately, the legacy quarterly extract page offers \"quarterly raw data extracts f"
+  },
+  {
+    "dataset_name": "openFDA Enforcement Reports (sourced from FDA's Recall Enterprise System, RES) -- food, drug, and device enforcement endpoints",
+    "domain": "Consumer Protection & Product Safety",
+    "url": "https://open.fda.gov/apis/food/enforcement/",
+    "access_shape": "api-open",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"The openFDA food enforcement reports API provides access to recall data from the FDA Recall Enterprise System (RES)\", covering \"publicly releasable records from 2004-present\" and \"refreshed weekly.\""
+  },
+  {
+    "dataset_name": "EPA TRI (Toxics Release Inventory) Basic Data Files",
+    "domain": "Consumer Protection & Product Safety",
+    "url": "https://www.epa.gov/toxics-release-inventory-tri-program/tri-basic-data-files-calendar-years-1987-present",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"the 100 most-used data fields from the TRI Reporting Form R and Form A Certification Statement\", with a \"download feature with dropdowns to select specific years (1987-2024) and geographic areas\", delivered as CSV."
+  },
+  {
+    "dataset_name": "openFDA Device 510(k) Clearances API & PMA (Premarket Approval) API",
+    "domain": "Consumer Protection & Product Safety",
+    "url": "https://open.fda.gov/apis/device/510k/",
+    "access_shape": "api-open",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "510(k): \"details about specific products and the original sponsors of premarket notification applications,\" updates monthly, covering \"records from 1976 onward.\" PMA: \"details about specific products and the sponsors of premarket approval applications and supplements,\" also \"Monthly\" updates, record"
+  },
+  {
+    "dataset_name": "NHTSA ODI Vehicle Owner Complaints Database",
+    "domain": "Consumer Protection & Product Safety",
+    "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "inferred",
+    "evidence": "\"NHTSA's Office of Defects Investigation (ODI) - Complaints\" database (also hosted at data.transportation.gov) stores vehicle owner complaints used to \"identify safety issues that warrant investigation and to determine if a safety-related defect trend exists\"; filing a complaint yields \"an ODI confi"
+  },
+  {
+    "dataset_name": "DailyMed SPL (Structured Product Labeling) Drug Label Repository",
+    "domain": "Consumer Protection & Product Safety",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/spl-resources-all-drug-labels.cfm",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "\"DailyMed... the official provider of FDA drug label information (package inserts)\"; \"SPL RESOURCES: Download All Drug Labels\" -- full releases by category (human prescription, OTC, homeopathic, animal, remainder), available via HTTPS and FTP with checksums."
+  },
+  {
+    "dataset_name": "DAPIP - Database of Accredited Postsecondary Institutions and Programs (ED Office of Postsecondary Education)",
+    "domain": "Education",
+    "url": "https://ope.ed.gov/dapip/",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": "Contains information reported to the U.S. Department of Education directly by recognized accrediting agencies and state approval agencies."
+  },
+  {
+    "dataset_name": "USAC E-Rate Open Data - Billed Entity datasets",
+    "domain": "Education",
+    "url": "https://opendata.usac.org/browse?category=E-Rate",
+    "access_shape": "api-open",
+    "size_class": "large",
+    "confidence": "inferred",
+    "evidence": "E-Rate Datasets"
+  },
+  {
+    "dataset_name": "RAPIDS - Registered Apprenticeship Partners Information Data System (DOL ETA / Apprenticeship.gov)",
+    "domain": "Education",
+    "url": "https://www.apprenticeship.gov/data-and-statistics",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "inferred",
+    "evidence": "'Registered Apprenticeship Partners Information Data System (RAPIDS)' is the official system sponsors use to manage registered apprenticeship programs"
+  },
+  {
+    "dataset_name": "Head Start Program Information Report (PIR) / Head Start Program Locations (ACF Office of Head Start)",
+    "domain": "Education",
+    "url": "https://eclkc.ohs.acf.hhs.gov/data-ongoing-monitoring",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": "The PIR 'provides comprehensive data on the services, staff, children, and families served by Head Start programs nationwide.'"
+  }
+]

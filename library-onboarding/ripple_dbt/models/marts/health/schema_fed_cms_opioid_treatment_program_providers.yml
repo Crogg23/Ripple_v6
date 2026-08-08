@@ -6,3 +6,9 @@ models:
       - name: npi
         data_tests:
           - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - npi
+              - address_line_1

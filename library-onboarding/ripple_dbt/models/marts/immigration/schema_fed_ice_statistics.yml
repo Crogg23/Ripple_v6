@@ -1,0 +1,4 @@
+version: 2
+
+models:
+  - name: immigration__fed_ice_statistics

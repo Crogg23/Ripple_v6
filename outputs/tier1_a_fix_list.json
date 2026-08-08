@@ -1,0 +1,109 @@
+[
+  {
+    "group": "ihs",
+    "table": "FED_IHS_SCB_FACILITY",
+    "url": "https://www.ihs.gov/scb/download-tablesall/?file=txt",
+    "format": "csv",
+    "description": "IHS facility reference table (ASUFAC code, Area, Service Unit, Facility name/type, Location Type, Bed Count, Status, APC Flag, ITU Code), confirmed real -- 8733-row comma-delimited .txt export matching the site's stated match count. IMPORTANT: this export URL only returns data if a ColdFusion session cookie was first established by GETting the facility page (fallback_url below) in the same session/cookie jar -- hit cold with no prior request, it returns an HTML page instead of data. Not a login, just a two-step session flow the loader needs to replicate (requests.Session(): GET fallback_url, then GET url).",
+    "fallback_url": "https://www.ihs.gov/scb/standard-code-book-tables/facility/"
+  },
+  {
+    "group": "dailymed",
+    "table": "FED_NLM_DAILYMED_SPL_SETID_MAP",
+    "url": "https://dailymed-data.nlm.nih.gov/public-release-files/dm_spl_zip_files_meta_data.zip",
+    "format": "zip_csv",
+    "description": "DailyMed SPL Set ID mapping file -- one row per SPL document mapping SETID to zip filename, upload date, SPL version, and drug title. Confirmed real zip (7.6MB) containing a 29MB pipe-delimited txt plus README (verified: 'SETID|ZIP_FILE_NAME|UPLOAD_DATE|SPL_VERSION|TITLE', real sample rows). NOTE: pipe-delimited, not comma -- a plain zip_csv loader using pd.read_csv defaults will need sep='|' for this file specifically. This is the small mapping table, not the full multi-GB XML label-document dump (dm_spl_release_human_rx_part*.zip) -- those exist too but are XML SPL documents, not tabular, and would need a different loader entirely.",
+    "fallback_url": "https://dailymed.nlm.nih.gov/dailymed/spl-resources-all-mapping-files.cfm"
+  },
+  {
+    "group": "usgs",
+    "table": "FED_USGS_WBD_HUC8",
+    "url": "https://hydro.nationalmap.gov/arcgis/rest/services/wbd/MapServer/4/query?where=1%3D1&outFields=*&f=json",
+    "format": "json_api",
+    "description": "USGS National Map Hydrologic Unit boundaries ArcGIS MapServer, layer 4 = 8-digit Hydrologic Unit Code (HUC8) polygons with huc8/name/states fields, queryable with no auth (verified: 2,456 records, real JSON); the 2.7GB national WBD geodatabase ZIP also exists and works but is too large/wrong shape for this pipeline, and the plain-text USGS huc_name.txt is an unstructured 1987 narrative document, not tabular data, so this REST layer is the best real fit. Not one of the six standard loader formats -- needs a new paginated ArcGIS-JSON loader."
+  },
+  {
+    "group": "ncua",
+    "table": "FED_NCUA_CHARTER_MERGER_EVENTS",
+    "url": "https://ncua.gov/files/publications/analysis/insurance-report-activity-mar-2026.zip",
+    "format": "zip_xlsx",
+    "description": "NCUA quarterly ZIP of credit union chartering/merger event reports (charter number, credit union name, event date, event type, surviving charter number); verified ZIP contains 5 xlsx reports, the largest being insurance-report-activity-detail which matches the census evidence text.",
+    "fallback_url": "https://ncua.gov/analysis/chartering-mergers/merger-activity-insurance-report"
+  },
+  {
+    "group": "pcaob",
+    "table": "FED_PCAOB_FORM_AP_FILINGS",
+    "url": "https://assets.pcaobus.org/firm-filings/FirmFilings.zip",
+    "format": "zip_csv",
+    "description": "PCAOB's daily-updated AuditorSearch bulk export -- confirmed live, zip contains one CSV (FirmFilings.csv, ~93MB uncompressed) with one row per Form AP filing, including both Firm ID/Firm Name and Engagement Partner ID/Name/Issuer columns. This single file covers both the PCAOB Firm ID identifier and the PCAOB Form AP Engagement Partner ID identifier (see that candidate's skip note).",
+    "fallback_url": "https://pcaobus.org/resources/auditorsearch"
+  },
+  {
+    "group": "irs",
+    "table": "FED_IRS_527_POLITICAL_ORG_FILINGS",
+    "url": "https://forms.irs.gov/app/pod/dataDownload/fullData",
+    "format": "zip_csv",
+    "description": "IRS Political Organization Filing and Disclosure bulk download -- full database of electronically submitted Forms 8871/8872 (Section 527 political org notifications/reports) as a zipped text file; verified working, ~106MB ZIP, application/zip.",
+    "fallback_url": "https://www.irs.gov/charities-non-profits/political-organizations/political-organization-filing-and-disclosure"
+  },
+  {
+    "group": "finra",
+    "table": "FED_FINRA_MPID_LIST",
+    "url": "https://www.nasdaqtrader.com/dynamic/Symdir/mpidlist.txt",
+    "format": "csv",
+    "description": "Nasdaq's live MPID directory (~220KB), confirmed via the header row matching the census evidence exactly. Note: this is PIPE-delimited, not comma-delimited -- the loader for this table needs pd.read_csv(sep='|') instead of the default comma separator."
+  },
+  {
+    "group": "un_sanctions",
+    "table": "INTL_UN_SC_CONSOLIDATED_SANCTIONS",
+    "url": "https://scsanctions.un.org/resources/xml/en/consolidated.xml",
+    "format": "json_api",
+    "description": "UN Security Council Consolidated Sanctions List (QDi/TAi/SOi/CFi-style reference numbers) as XML. The landing pages (main.un.org, scsanctions.un.org) block plain HTTP clients (403/404), but this stable path 302-redirects to a freshly SAS-signed Azure blob XML file on every request (verified: each hit returns a new signature with ~1hr expiry) -- it is a real, permanent, auth-free entry point, just not a plain static file. Does not fit any of the 6 built-in formats (it's XML, not CSV/JSON, and requires following a redirect at fetch time rather than caching the target URL) -- recorded as json_api per instructions; needs a new loader that follows the redirect and parses XML.",
+    "fallback_url": "https://main.un.org/securitycouncil/content/un-sc-consolidated-list"
+  },
+  {
+    "group": "un_sanctions",
+    "table": "INTL_UN_SC_CONSOLIDATED_SANCTIONS",
+    "url": "https://unsolprodfiles.blob.core.windows.net/publiclegacyxmlfiles/EN/consolidated.xml",
+    "format": "xml",
+    "description": "UN Security Council Consolidated Sanctions List (individuals + entities), raw XML hosted on Azure Blob Storage; the scsanctions.un.org domain cited in the census is fully dead (404 on every path), the working host was found via web search and verified live 200 OK, 2.5MB, real XML content, last-modified Aug 6 2026 -- does not fit any of the six standard formats (single XML file, not zipped, not CSV/JSON), needs a new xml loader."
+  },
+  {
+    "group": "elections_canada",
+    "table": "INTL_ELECTIONS_CANADA_CONTRIBUTIONS",
+    "url": "https://www.elections.ca/fin/oda/od_cntrbtn_de_e.zip",
+    "format": "zip_csv",
+    "description": "Elections Canada Open Data - detailed contributions to registered federal political parties, candidates, and other entities. The landing page URL in the census was a nav page, not a file; real download links live on the Open Data sub-page. Companion files at the same path (contribution audits, 1993-2004 historical candidate/party archives) are also real and could be added later.",
+    "fallback_url": "https://www.elections.ca/content.aspx?section=fin&dir=oda&document=index&lang=e"
+  },
+  {
+    "group": "ntsb",
+    "table": "FED_NTSB_AVIATION_ACCIDENTS",
+    "url": "https://data.ntsb.gov/avdata/FileDirectory/DownloadFile?fileID=C%3A%5Cavdata%5Cavall.zip",
+    "format": "zip_multi",
+    "description": "NTSB aviation accident/incident database bulk export (avall.zip, ~95MB) with normalized tables for events, aircraft, and injuries. The census's app.ntsb.gov/avdata host has been retired and now redirects to data.ntsb.gov/avdata - use the new host.",
+    "fallback_url": "https://www.ntsb.gov/safety/data/Pages/Data_Stats.aspx"
+  },
+  {
+    "group": "fmc",
+    "table": "FED_FMC_OTI_NVOCC_LIST",
+    "url": "https://www2.fmc.gov/oti/NVOCC.aspx",
+    "format": "xlsx",
+    "description": "FMC list of active licensed/registered Ocean Transportation Intermediaries (NVOCCs and Ocean Freight Forwarders), delivered as an Excel export. Confirmed real by actually triggering the page's 'OTI List Download' button: it's an ASP.NET webforms postback (POST with __VIEWSTATE/__EVENTVALIDATION), not a plain GET link, and returned a genuine 1.8MB .xlsx file. The assembly step needs a loader that simulates that form postback rather than a simple GET."
+  },
+  {
+    "group": "education",
+    "table": "FED_ED_SCORECARD_INSTITUTION",
+    "url": "https://ed-public-download.scorecard.network/downloads/Most-Recent-Cohorts-Institution_06102026.zip",
+    "format": "zip_csv",
+    "description": "US Dept of Education College Scorecard institution-level file (confirmed real ZIP/CSV, 3308 columns); every row carries OPEID and OPEID6 alongside the IPEDS UNITID, so this file itself is the OPEID-to-UNITID crosswalk the census was pointing at -- the landing page URL is JS-rendered so I pulled the real download link straight out of its payload.",
+    "fallback_url": "https://collegescorecard.ed.gov/data/"
+  },
+  {
+    "group": "osf",
+    "table": "XC_OSF_REGISTRATIONS",
+    "url": "https://api.osf.io/v2/registrations/",
+    "format": "json_api",
+    "description": "OSF API v2 registrations endpoint, no authentication required; verified live 200 OK with real registration records returned (titles, descriptions, ids) -- needs a new JSON-API loader with pagination, not a single bulk file."
+  }
+]

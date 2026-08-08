@@ -1,0 +1,102 @@
+[
+  {
+    "dataset_name": "IMO GISIS Ship and Company Particulars module (IMO Company/Registered Owner ID lookup)",
+    "domain": "Transportation -- Motor Carrier & Maritime",
+    "url": "https://gisis.imo.org/Public/Default.aspx"
+  },
+  {
+    "dataset_name": "California DMV Active Motor Carrier Permit (MCP) Search",
+    "domain": "Transportation -- Motor Carrier & Maritime",
+    "url": "https://www.dmv.ca.gov/portal/vehicle-industry-services/motor-carrier-services-mcs/motor-carrier-permits/active-motor-carriers/"
+  },
+  {
+    "dataset_name": "PHMSA Hazmat Registration search (RMIS - Registration and Management Information System)",
+    "domain": "Transportation -- Motor Carrier & Maritime",
+    "url": "https://www.phmsa.dot.gov/registration/online-registration"
+  },
+  {
+    "dataset_name": "UCR National Registration System (NRS)",
+    "domain": "Transportation -- Motor Carrier & Maritime",
+    "url": "https://ucr.gov/"
+  },
+  {
+    "dataset_name": "FMCSA Licensing & Insurance (L&I) Public system \u2014 broker/freight-forwarder surety bond (BMC-84) and trust fund (BMC-85) filings",
+    "domain": "Transportation -- Motor Carrier & Maritime",
+    "url": "https://li-public.fmcsa.dot.gov/LIVIEW/pkg_menu.prc_menu"
+  },
+  {
+    "dataset_name": "NTSB CAROL (Case Analysis and Reporting Online) query system \u2014 all-mode accident/investigation database",
+    "domain": "Transportation -- Motor Carrier & Maritime",
+    "url": "https://data.ntsb.gov/carol-main-public/basic-search"
+  },
+  {
+    "dataset_name": "EPA Pesticide Product and Label System (PPLS)",
+    "domain": "Consumer Protection & Product Safety",
+    "url": "https://ordspub.epa.gov/ords/pesticides/f?p=PPLS:1"
+  },
+  {
+    "dataset_name": "FMCSA SAFER Company Snapshot / MCMIS Company Census File",
+    "domain": "Consumer Protection & Product Safety",
+    "url": "https://safer.fmcsa.dot.gov/"
+  },
+  {
+    "dataset_name": "CPSC NEISS (National Electronic Injury Surveillance System) Injury Data",
+    "domain": "Consumer Protection & Product Safety",
+    "url": "https://www.cpsc.gov/cgibin/NEISSQuery/home.aspx"
+  },
+  {
+    "dataset_name": "USCG National Vessel Documentation Center (NVDC) records, searchable via CGMIX/PSIX Vessel Search",
+    "domain": "Consumer Protection & Product Safety",
+    "url": "https://cgmix.uscg.mil/PSIX/PSIXSearch.aspx"
+  },
+  {
+    "dataset_name": "FCC Equipment Authorization System (EAS) / FCC ID Search",
+    "domain": "Consumer Protection & Product Safety",
+    "url": "https://apps.fcc.gov/oetcf/eas/reports/GenericSearch.cfm"
+  },
+  {
+    "dataset_name": "NIOSH Certified Equipment List (CEL) -- respirator approvals",
+    "domain": "Consumer Protection & Product Safety",
+    "url": "https://wwwn.cdc.gov/NIOSH-CEL/"
+  },
+  {
+    "dataset_name": "SaferProducts.gov Consumer Product Incident Database",
+    "domain": "Consumer Protection & Product Safety",
+    "url": "https://www.saferproducts.gov/"
+  },
+  {
+    "dataset_name": "List of CPSC-Accepted/Accredited Testing Laboratories",
+    "domain": "Consumer Protection & Product Safety",
+    "url": "https://www.cpsc.gov/Business--Manufacturing/Testing-Certification/CPSC-Accepted-Laboratories"
+  },
+  {
+    "dataset_name": "SEVP Certified Schools List (ICE / Study in the States)",
+    "domain": "Education",
+    "url": "https://studyinthestates.dhs.gov/school-search"
+  },
+  {
+    "dataset_name": "College Board CEEB/ATP institution codes - no official bulk dataset found, interactive lookup plus third-party mirrors only",
+    "domain": "Education",
+    "url": "https://satsuite.collegeboard.org/"
+  },
+  {
+    "dataset_name": "UK Register of Learning Providers (UKRLP)",
+    "domain": "Education",
+    "url": "https://ukrlp.education.gov.uk/"
+  },
+  {
+    "dataset_name": "State proprietary/postsecondary school licensing registries (fragmented, no single federal aggregator)",
+    "domain": "Education",
+    "url": "https://www.bppe.ca.gov/"
+  },
+  {
+    "dataset_name": "WIOA Eligible Training Provider List - state-run ETPLs, with a national rollup via CareerOneStop / trainingproviderresults.gov",
+    "domain": "Education",
+    "url": "https://www.careeronestop.org/LocalHelp/Training/find-eligible-training-programs.aspx"
+  },
+  {
+    "dataset_name": "AAMC MSAR (Medical School Admission Requirements) - AAMC institution/AMCAS codes",
+    "domain": "Education",
+    "url": "https://www.aamc.org/data-reports"
+  }
+]

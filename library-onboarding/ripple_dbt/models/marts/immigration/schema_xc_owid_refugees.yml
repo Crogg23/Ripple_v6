@@ -6,3 +6,10 @@ models:
       - name: entity
         data_tests:
           - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - entity
+              - year
+              - code

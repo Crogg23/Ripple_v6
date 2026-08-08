@@ -1,0 +1,102 @@
+[
+  {
+    "dataset_name": "EAC Certified Voting Systems Database",
+    "domain": "Politics, Elections & Lobbying",
+    "url": "https://www.eac.gov/voting-equipment/certified-voting-systems"
+  },
+  {
+    "dataset_name": "Registry of Lobbyists \u2014 Office of the Commissioner of Lobbying of Canada",
+    "domain": "Politics, Elections & Lobbying",
+    "url": "https://lobbycanada.gc.ca/en/registry/"
+  },
+  {
+    "dataset_name": "France HATVP Repertoire des representants d'interets (confirmed); Germany Lobbyregister (Bundestag/federal government, launched 2022) (not confirmed)",
+    "domain": "Politics, Elections & Lobbying",
+    "url": "https://www.hatvp.fr/le-repertoire/"
+  },
+  {
+    "dataset_name": "PHMSA Hazmat Incident Reports (DOT Form 5800.1) / Hazmat Incident Reports Data Mining Tool",
+    "domain": "Transportation -- Aviation & Rail",
+    "url": "https://www.phmsa.dot.gov/hazmat/library/data-stats/incidents"
+  },
+  {
+    "dataset_name": "FAA Type Certificate Data Sheets (TCDS), Dynamic Regulatory System (DRS)",
+    "domain": "Transportation -- Aviation & Rail",
+    "url": "https://drs.faa.gov/browse/TCDSMODEL/doctypeDetails"
+  },
+  {
+    "dataset_name": "FAA Airworthiness Directives, now hosted on Dynamic Regulatory System (DRS) after rgl.faa.gov decommission",
+    "domain": "Transportation -- Aviation & Rail",
+    "url": "https://drs.faa.gov/"
+  },
+  {
+    "dataset_name": "FAA Service Difficulty Reporting System (SDRS)",
+    "domain": "Transportation -- Aviation & Rail",
+    "url": "https://sdrs.faa.gov/"
+  },
+  {
+    "dataset_name": "FAA Certificated Repair Stations Directory (FAA's own hosting access-impaired; mirrored by third-party 'Aviation DataBase')",
+    "domain": "Transportation -- Aviation & Rail",
+    "url": "https://www.faa.gov/aircraft/repair"
+  },
+  {
+    "dataset_name": "AAR/Railinc Reporting Mark Register + UMLER (Universal Machine Language Equipment Register)",
+    "domain": "Transportation -- Aviation & Rail",
+    "url": "https://public.railinc.com/products-services/umler-system"
+  },
+  {
+    "dataset_name": "STB e-Library / Search STB Records",
+    "domain": "Transportation -- Aviation & Rail",
+    "url": "https://www.stb.gov/proceedings-actions/search-stb-records/"
+  },
+  {
+    "dataset_name": "NASA ASRS Database Online",
+    "domain": "Transportation -- Aviation & Rail",
+    "url": "https://asrs.arc.nasa.gov/search/database.html"
+  },
+  {
+    "dataset_name": "PHMSA Hazmat Registration Search (Registration Statement, Form 5800.2)",
+    "domain": "Transportation -- Aviation & Rail",
+    "url": "https://portal.phmsa.dot.gov/HazmatRegistrationSearch"
+  },
+  {
+    "dataset_name": "FAA Supplemental Type Certificates, searchable via Dynamic Regulatory System (DRS)",
+    "domain": "Transportation -- Aviation & Rail",
+    "url": "https://drs.faa.gov/"
+  },
+  {
+    "dataset_name": "FAA Production Certificates & Parts Manufacturer Approvals (PMA), searchable via Dynamic Regulatory System (DRS)",
+    "domain": "Transportation -- Aviation & Rail",
+    "url": "https://drs.faa.gov/"
+  },
+  {
+    "dataset_name": "Amtrak Station Codes (three-letter station/city codes)",
+    "domain": "Transportation -- Aviation & Rail",
+    "url": "https://en.wikipedia.org/wiki/List_of_Amtrak_stations"
+  },
+  {
+    "dataset_name": "FMCSA Licensing & Insurance (L&I) System / SAFER Company Snapshot",
+    "domain": "Transportation -- Aviation & Rail",
+    "url": "https://li-public.fmcsa.dot.gov/LIVIEW/pkg_menu.prc_menu"
+  },
+  {
+    "dataset_name": "FAA ARTCC/TRACON facility identifiers (part of the FAA Location Identifier system / NASR facility data)",
+    "domain": "Transportation -- Aviation & Rail",
+    "url": "https://en.wikipedia.org/wiki/Location_identifier"
+  },
+  {
+    "dataset_name": "NTSB Office of Administrative Law Judges (OALJ) \u2014 Air Safety Proceedings dockets (49 CFR Part 821)",
+    "domain": "Transportation -- Aviation & Rail",
+    "url": "https://www.ntsb.gov/legal/alj/Pages/default.aspx"
+  },
+  {
+    "dataset_name": "FAA Flight Standards District Office (FSDO) directory",
+    "domain": "Transportation -- Aviation & Rail",
+    "url": "https://en.wikipedia.org/wiki/Flight_Standards_District_Office"
+  },
+  {
+    "dataset_name": "DOT Essential Air Service Program \u2014 EAS community/contract list",
+    "domain": "Transportation -- Aviation & Rail",
+    "url": "https://en.wikipedia.org/wiki/Essential_Air_Service"
+  }
+]

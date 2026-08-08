@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: justice__racial_jail_disparity
+    columns:
+      - name: county_year_key
+        data_tests:
+          - unique

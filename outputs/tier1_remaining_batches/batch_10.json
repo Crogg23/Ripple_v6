@@ -1,0 +1,110 @@
+[
+  {
+    "dataset_name": "FCC Broadband Data Collection (BDC) Provider ID (registered filer, separate from the location-level Fabric ID)",
+    "domain": "Telecom & Media",
+    "url": "https://bdc.fcc.gov/public/published-data",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": "Broadband Data Collection System"
+  },
+  {
+    "dataset_name": "USAC Billed Entity Number (E-Rate / Rural Health Care applicant identifier)",
+    "domain": "Telecom & Media",
+    "url": "https://www.usac.org/e-rate/",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": ""
+  },
+  {
+    "dataset_name": "USAC High-Cost Universal Service Fund Study Area Code (SAC)",
+    "domain": "Telecom & Media",
+    "url": "https://www.usac.org/lifeline/",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "confidence": "inferred",
+    "evidence": "Obtaining a Study Area Code"
+  },
+  {
+    "dataset_name": "CelesTrak / Space-Track Satellite Catalog (SATCAT) -- NORAD Catalog Number",
+    "domain": "Telecom & Media",
+    "url": "https://celestrak.org/satcat/search.php",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "confirmed",
+    "evidence": "NORAD Catalog Number: Integer-based identifiers ranging from 1 to 9 digits"
+  },
+  {
+    "dataset_name": "FCC Consumer Complaints Data Center",
+    "domain": "Telecom & Media",
+    "url": "https://www.fcc.gov/consumer-help-center-data",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "inferred",
+    "evidence": ""
+  },
+  {
+    "dataset_name": "USAC E-Rate Funding Request Number (FRN) -- Form 471 funding request records",
+    "domain": "Telecom & Media",
+    "url": "https://www.usac.org/e-rate/",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "inferred",
+    "evidence": ""
+  },
+  {
+    "dataset_name": "FCC Universal Licensing System (ULS) Commercial Radio Operator license records",
+    "domain": "Telecom & Media",
+    "url": "https://wireless2.fcc.gov/UlsApp/UlsSearch/searchLicense.jsp",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "inferred",
+    "evidence": ""
+  },
+  {
+    "dataset_name": "CMS Health Insurance Oversight System (HIOS) -- Marketplace Plan ID Crosswalk / QHP Public Use Files",
+    "domain": "Insurance",
+    "url": "https://data.healthcare.gov/public-use-files",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": "\"Plan ID Crosswalk PUF mapping QHPs to plan identifiers\" (search description of data.healthcare.gov public use files page)"
+  },
+  {
+    "dataset_name": "CMS Medicare Advantage/Part D Contract and Enrollment Data (Monthly Enrollment by Plan/Contract)",
+    "domain": "Insurance",
+    "url": "https://www.cms.gov/data-research/statistics-trends-and-reports/medicare-advantagepart-d-contract-and-enrollment-data",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "inferred",
+    "evidence": "\"Monthly Enrollment by Plan ... Provides monthly enrollment at the plan level\" (search description of CMS page titles under this data hub)"
+  },
+  {
+    "dataset_name": "Treasury Department Circular 570 -- Companies Holding Certificates of Authority as Acceptable Sureties/Reinsuring Companies",
+    "domain": "Insurance",
+    "url": "https://fiscal.treasury.gov/about-us/doing-business-with-fiscal-service/surety-bonds/circular-570",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "confidence": "inferred",
+    "evidence": "\"Department Circular 570 offers a complete list of companies that write or reinsure federal bonds.\" (search description, page noted as last updated August 1, 2026)"
+  },
+  {
+    "dataset_name": "Vermont Captive Insurance Companies licensed list (Vermont Dept. of Financial Regulation)",
+    "domain": "Insurance",
+    "url": "https://dfr.vermont.gov/document/captives-list",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": "\"Currently licensed Vermont Captive Insurance Companies by License as of June 30, 2026\" (search result description)"
+  },
+  {
+    "dataset_name": "HUD Picture of Subsidized Households (PHA-code-keyed dataset)",
+    "domain": "Federal Benefits & Safety Net / Veterans",
+    "url": "https://www.huduser.gov/portal/datasets/assthsg.html",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": "Page returned no readable body content on two separate fetch attempts this session; row is based on prior knowledge that HUDUser's PIC/\"Picture of Subsidized Households\" data is keyed by PHA code."
+  }
+]

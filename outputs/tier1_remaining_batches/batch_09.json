@@ -1,0 +1,110 @@
+[
+  {
+    "dataset_name": "FDA Data Dashboard -- Inspections (records keyed by FEI Number); FEI also threads through several openFDA drug/device/food establishment fields",
+    "domain": "Agriculture & Food Safety",
+    "url": "https://datadashboard.fda.gov/ora/index.htm",
+    "access_shape": "api-open",
+    "size_class": "large",
+    "confidence": "inferred",
+    "evidence": "datadashboard.fda.gov (loaded, redirected to /oii/index.htm): built to 'increase transparency and accountability by displaying and allowing the analysis of public FDA data,' with an 'Inspections' section covering 'U.S. domestic and foreign inspections by fiscal year, classification, product type, et"
+  },
+  {
+    "dataset_name": "USDA Organic INTEGRITY Database",
+    "domain": "Agriculture & Food Safety",
+    "url": "https://organic.ams.usda.gov/integrity/",
+    "access_shape": "api-open",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": "organic.ams.usda.gov/integrity/ (loaded) returned live in-app text: 'An error has occurred. This application may no longer respond until reloaded.' This confirms a real client-rendered application sits at that URL but the fetched content was a runtime error, not descriptive body text, so scope/API/s"
+  },
+  {
+    "dataset_name": "DOL OFLC Foreign Labor Certification Performance Data (H-2A Disclosure Files)",
+    "domain": "Agriculture & Food Safety",
+    "url": "https://www.dol.gov/agencies/eta/foreign-labor/performance",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "inferred",
+    "evidence": "dol.gov returned HTTP 403 Forbidden to WebFetch on every path tried this session (root, /agencies/whd/agriculture, /agencies/eta/foreign-labor/performance). Wikipedia (loaded) corroborates a public disclosure pipeline: 'Since Fiscal Year 2012, the USCIS has released data on the number of H-2A petiti"
+  },
+  {
+    "dataset_name": "APHIS Center for Veterinary Biologics -- Licensed Establishments and Permittees list",
+    "domain": "Agriculture & Food Safety",
+    "url": "https://www.aphis.usda.gov/aphis/ourfocus/animalhealth/veterinary-biologics",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "confidence": "inferred",
+    "evidence": "aphis.usda.gov timed out on every attempt this session (root and subpaths). Existence of CVB's periodically published list of licensed veterinary biologics establishments/permittees, keyed by U.S. Veterinary License/Permit number, is established USDA public-records knowledge (these numbers appear on"
+  },
+  {
+    "dataset_name": "FDA Interstate Milk Shippers (IMS) List",
+    "domain": "Agriculture & Food Safety",
+    "url": "https://www.fda.gov/food/milk-guidance-documents-regulatory-information/interstate-milk-shippers-ims-list",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": "Both the fda.gov root and the specific IMS List URL path returned 404 to WebFetch this session (fda.gov's datadashboard subdomain loaded fine elsewhere, suggesting dynamic routing rather than a broken domain). The IMS List's existence and twice-yearly PDF publication is well-established FDA public-r"
+  },
+  {
+    "dataset_name": "FSIS Recall Case Archive / Recall and Public Health Alert Datasets (API)",
+    "domain": "Agriculture & Food Safety",
+    "url": "https://www.fsis.usda.gov/science-data/developer-resources/recall-and-public-health-alert-datasets",
+    "access_shape": "api-open",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": "fsis.usda.gov returned HTTP 403 Forbidden to WebFetch on every path tried this session. Existence of FSIS's recall API/dataset keyed by Recall Number or Case Number is established USDA public-records knowledge, not re-confirmed this session."
+  },
+  {
+    "dataset_name": "USASpending.gov Award Search / Custom Award Data Download (USDA Rural Development awards, a sub-agency slice of the USDA feed)",
+    "domain": "Agriculture & Food Safety",
+    "url": "https://www.usaspending.gov/agency/department-of-agriculture",
+    "access_shape": "api-open",
+    "size_class": "large",
+    "confidence": "inferred",
+    "evidence": "api.usaspending.gov/api/v2/references/toptier_agencies/ (loaded): JSON confirms 'Department of Agriculture' is a listed top-tier agency -- {\"agency_id\": 95, \"toptier_code\": \"012\", \"abbreviation\": \"USDA\", \"agency_name\": \"Department of Agriculture\"} -- feeding USASpending's award-search and bulk-downl"
+  },
+  {
+    "dataset_name": "USDA AMS Federal Grain Inspection Service -- Directory of Designated and Delegated States/Agencies",
+    "domain": "Agriculture & Food Safety",
+    "url": "https://www.ams.usda.gov/resources/gipsa-directories",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "confidence": "inferred",
+    "evidence": "ams.usda.gov blocked (403) this session. en.wikipedia.org/wiki/Grain_Inspection,_Packers_and_Stockyards_Administration (loaded) confirms FGIS 'ensures impartial application of these grades and standards through a network of federal, state, and private inspection agencies,' corroborating a delegated-"
+  },
+  {
+    "dataset_name": "USDA National Organic Program -- List of Accredited Certifying Agents",
+    "domain": "Agriculture & Food Safety",
+    "url": "https://www.ams.usda.gov/services/organic-certification/certifying-agents",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "confidence": "inferred",
+    "evidence": "ams.usda.gov blocked (403) this session. en.wikipedia.org/wiki/National_Organic_Program (loaded): 'As of 2023, there are approximately 75 USDA accredited certifying agents (ACAs) operating across the country,' and the NOP 'website maintains a public directory to help producers locate and connect wit"
+  },
+  {
+    "dataset_name": "FCC Antenna Structure Registration (ASR) Database",
+    "domain": "Telecom & Media",
+    "url": "https://www.fcc.gov/asr-search",
+    "access_shape": "bulk-file",
+    "size_class": "medium",
+    "confidence": "inferred",
+    "evidence": ""
+  },
+  {
+    "dataset_name": "FCC Office of Engineering and Technology (OET) Equipment Authorization database -- FCC ID / Grantee Code",
+    "domain": "Telecom & Media",
+    "url": "https://apps.fcc.gov/oetcf/eas/reports/GenericSearch.cfm",
+    "access_shape": "bulk-file",
+    "size_class": "large",
+    "confidence": "inferred",
+    "evidence": ""
+  },
+  {
+    "dataset_name": "FCC 911 Master PSAP Registry",
+    "domain": "Telecom & Media",
+    "url": "https://www.fcc.gov/general/9-1-1-master-psap-registry",
+    "access_shape": "bulk-file",
+    "size_class": "small",
+    "confidence": "inferred",
+    "evidence": ""
+  }
+]

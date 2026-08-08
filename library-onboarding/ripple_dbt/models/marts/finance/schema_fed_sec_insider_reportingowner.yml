@@ -9,3 +9,9 @@ models:
       - name: zip_code
         data_tests:
           - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - accession_number
+              - owner_cik

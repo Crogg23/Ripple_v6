@@ -1,0 +1,138 @@
+[
+  {
+    "model": "environment__fed_epa_npdes_npdes_sics",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_npdes_npdes_sics.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_npdes_npdes_sics.yml",
+    "columns": [
+      "npdes_id",
+      "sic_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_sdwa_sdwa_events_milestones",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_sdwa_sdwa_events_milestones.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_sdwa_sdwa_events_milestones.yml",
+    "columns": [
+      "event_schedule_id",
+      "event_milestone_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_sdwa_sdwa_facilities",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_sdwa_sdwa_facilities.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_sdwa_sdwa_facilities.yml",
+    "columns": [
+      "facility_id",
+      "facility_activity_code",
+      "facility_type_code",
+      "submission_status_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_sdwa_sdwa_lcr_samples",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_sdwa_sdwa_lcr_samples.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_sdwa_sdwa_lcr_samples.yml",
+    "columns": [
+      "sample_id",
+      "sar_id",
+      "contaminant_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_sdwa_sdwa_pn_violation_assoc",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_sdwa_sdwa_pn_violation_assoc.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_sdwa_sdwa_pn_violation_assoc.yml",
+    "columns": [
+      "pn_violation_id",
+      "related_violation_id",
+      "violation_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_sdwa_sdwa_pub_water_systems",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_sdwa_sdwa_pub_water_systems.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_sdwa_sdwa_pub_water_systems.yml",
+    "columns": [
+      "primacy_agency_code",
+      "pws_activity_code",
+      "pws_type_code",
+      "pop_cat_2_code",
+      "pop_cat_3_code",
+      "pop_cat_4_code",
+      "pop_cat_5_code",
+      "pop_cat_11_code",
+      "submission_status_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_sdwa_sdwa_site_visits",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_sdwa_sdwa_site_visits.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_sdwa_sdwa_site_visits.yml",
+    "columns": [
+      "visit_id",
+      "visit_reason_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_sdwa_sdwa_violations_enforcement",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_sdwa_sdwa_violations_enforcement.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_sdwa_sdwa_violations_enforcement.yml",
+    "columns": [
+      "violation_id",
+      "violation_code",
+      "violation_category_code",
+      "viol_originator_code",
+      "rule_code",
+      "rule_group_code",
+      "rule_family_code",
+      "enforcement_id",
+      "enforcement_action_type_code",
+      "enf_originator_code"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_epa_tri_basic_2023",
+    "sql_path": "models\\marts\\environment\\environment__fed_epa_tri_basic_2023.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_epa_tri_basic_2023.yml",
+    "columns": [
+      "c_22_industry_sector_code",
+      "c_39_tri_chemical_compound_id"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__fed_usgs_water",
+    "sql_path": "models\\marts\\environment\\environment__fed_usgs_water.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_fed_usgs_water.yml",
+    "columns": [
+      "site_no"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__intl_global_witness_defenders",
+    "sql_path": "models\\marts\\environment\\environment__intl_global_witness_defenders.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_intl_global_witness_defenders.yml",
+    "columns": [
+      "defender_name"
+    ],
+    "domain": "environment"
+  },
+  {
+    "model": "environment__xc_owid_co2",
+    "sql_path": "models\\marts\\environment\\environment__xc_owid_co2.sql",
+    "schema_path": "ripple://models\\marts\\environment\\schema_xc_owid_co2.yml",
+    "columns": [
+      "entity"
+    ],
+    "domain": "environment"
+  }
+]

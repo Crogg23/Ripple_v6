@@ -6,3 +6,6 @@ models:
       - name: c1
         data_tests:
           - not_null
+      - name: c7
+        data_tests:
+          - unique

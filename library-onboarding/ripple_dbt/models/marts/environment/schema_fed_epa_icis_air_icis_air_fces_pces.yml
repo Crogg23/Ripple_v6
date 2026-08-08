@@ -15,3 +15,11 @@ models:
       - name: comp_monitor_type_code
         data_tests:
           - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - pgm_sys_id
+              - activity_id
+              - activity_purpose_desc
+              - comp_monitor_type_code

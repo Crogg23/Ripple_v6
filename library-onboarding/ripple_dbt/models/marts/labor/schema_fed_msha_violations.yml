@@ -2,7 +2,20 @@ version: 2
 
 models:
   - name: labor__fed_msha_violations
+    description: >
+      GRAIN: one row per (violation, contest docket) -- per the model's own
+      header comment. event_no + violation_no alone is very nearly unique but
+      not exactly (a re-contested violation opens a second docket and a second
+      real row); docket_no closes that gap. Verified 2026-07-31 per the
+      model's header: lossless against the raw source row count.
     columns:
       - name: mine_id
         data_tests:
           - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - event_no
+              - violation_no
+              - docket_no

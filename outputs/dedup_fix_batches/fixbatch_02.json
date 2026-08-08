@@ -1,0 +1,79 @@
+[
+  {
+    "model": "corporate_registry__intl_es_borme",
+    "verdict": "wrong_key",
+    "note": "The 5-column key matches the staging model's own qualify and documented composite PK, but a live query on the raw INTL_ES_BORME landing table shows only 25 rows exist and company_id/act_type are blank in every one of them and cve is blank in 23/25, so the composite collapses to just 3 distinct groups (23 rows share one all-blank key) -- the test will fail immediately against real data because this source's field extraction is currently broken (the only fields that actually vary are pdf_url and a mangled 'province' column holding document-reference strings).",
+    "sql_path": "models\\marts\\corporate_registry\\corporate_registry__intl_es_borme.sql",
+    "schema_path": "ripple://models\\staging\\intl_es_borme\\schema.yml"
+  },
+  {
+    "model": "economics__fed_irs_auto_revocations",
+    "verdict": "wrong_key",
+    "note": "Live query on the raw table shows EIN is NOT unique (1,207,295 rows vs 1,187,976 distinct EIN); e.g. EIN 272713536 appears 3 times with three different revocation_date/reinstatement_date pairs (revoked 2013, reinstated, revoked again 2018, reinstated, revoked again 2024) -- a real 'org gets auto-revoked more than once' pattern the sibling-table analogy missed; adding revocation_date (or revocation_date+reinstatement_date) to the key makes it exactly unique (1,207,295==1,207,295).",
+    "sql_path": "models\\marts\\economics\\economics__fed_irs_auto_revocations.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_fed_irs_auto_revocations.yml"
+  },
+  {
+    "model": "economics__fed_sec_edgar",
+    "verdict": "wrong_key",
+    "note": "A live query on the raw table shows accessionnumber -- already selected in the mart -- is exactly unique (200 rows, 200 distinct values, zero collisions), and SEC accession numbers are the agency's own globally-unique per-filing identifier by design, so a real key (accessionnumber) was directly findable and should have been added instead of skipped.",
+    "sql_path": "models\\marts\\economics\\economics__fed_sec_edgar.sql",
+    "schema_path": "ripple://models\\marts\\economics\\schema_fed_sec_edgar.yml"
+  },
+  {
+    "model": "health__fed_cms_opioid_treatment_program_providers",
+    "verdict": "wrong_key",
+    "note": "Live query on LIBRARY_RAW.LANDING.FED_CMS_OPIOID_TREATMENT_PROGRAM_PROVIDERS shows 1,558 rows but only 1,340 distinct NPI (218 excess), and the dupes are genuine multi-location providers sharing one org NPI (e.g. NPI 1003972654 = AEGIS TREATMENT CENTERS LLC at two different street addresses; one NPI has 49 duplicate rows), so the added plain `unique` test on npi will fail immediately against real data.",
+    "sql_path": "models\\marts\\health\\health__fed_cms_opioid_treatment_program_providers.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_opioid_treatment_program_providers.yml"
+  },
+  {
+    "model": "health__fed_cms_opt_out_affidavits",
+    "verdict": "wrong_key",
+    "note": "Live query shows npi+optout_effective_date is still not unique (57,209 rows vs 56,832 distinct combos, 377 excess): some excess is legitimate multi-state listings under the same date (NPI 1083688105 = Oral Surgery/IL vs Maxillofacial Surgery/MO, same effective date) and some is byte-for-byte duplicate rows (NPI 1154582583 repeated 4x identically across every column), and even the full 8-column row combo still leaves 148 exact duplicates, so no available column subset achieves the grain this test asserts.",
+    "sql_path": "models\\marts\\health\\health__fed_cms_opt_out_affidavits.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_opt_out_affidavits.yml"
+  },
+  {
+    "model": "health__fed_cms_order_and_referring",
+    "verdict": "wrong_key",
+    "note": "The raw table actually holds 2,018,354 rows, not the 500,000 the mart header/reasoning cites, and live query shows npi is not unique there (4 excess duplicate rows, e.g. NPI 1083901888 appears twice as 'ANABEL' vs 'ANABELL' CRAMTON with differing eligibility flags), so the added plain `unique` test on npi will fail on real data even though the volume is tiny.",
+    "sql_path": "models\\marts\\health\\health__fed_cms_order_and_referring.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_cms_order_and_referring.yml"
+  },
+  {
+    "model": "health__fed_dea_arcos",
+    "verdict": "wrong_key",
+    "note": "Live query is decisive: LIBRARY_RAW.LANDING.FED_DEA_ARCOS_FULL has 178,598,026 rows but only 11,678,713 distinct transaction_id values, and a sampled duplicated transaction_id was shared across 20+ completely unrelated buyer/reporter/drug/date/quantity combinations, so the model's own header comment claiming 'transaction_id is unique' is simply false and was never live-verified before the `unique` test was added -- it will fail catastrophically (166M+ duplicate rows).",
+    "sql_path": "models\\marts\\health\\health__fed_dea_arcos.sql",
+    "schema_path": "ripple://models\\marts\\health\\schema_fed_dea_arcos.yml"
+  },
+  {
+    "model": "reference__intl_eg_capmas",
+    "verdict": "wrong_key",
+    "note": "Ran `dbt test` and it FAILS now (3 failed groups of 50): indicator_name only has 3 distinct values ('Login','Sign Up','Data Catalog') and category/year/country are blank for all 150 rows -- this is scraped website nav, not indicator data, and the actual varying field is the `source` URL column (52 distinct values), which the chosen key omits.",
+    "sql_path": "models\\marts\\reference\\reference__intl_eg_capmas.sql",
+    "schema_path": "ripple://models\\marts\\reference\\schema_intl_eg_capmas.yml"
+  },
+  {
+    "model": "science__fed_nasa_open_data",
+    "verdict": "wrong_key",
+    "note": "Query on FED_NASA_OPEN_DATA shows the `url` column (already selected in the mart SQL) is 100% unique (54/54 distinct) and is a stable per-item identifier (image asset URL / JPL small-body lookup page), so a key was findable without guessing about response_date semantics -- the skip missed it.",
+    "sql_path": "models\\marts\\science\\science__fed_nasa_open_data.sql",
+    "schema_path": "ripple://models\\marts\\science\\schema_fed_nasa_open_data.yml"
+  },
+  {
+    "model": "transport__fed_dot_bts",
+    "verdict": "wrong_key",
+    "note": "Aggregate query across all 21 FED_DOT_BTS rows shows year/month/carrier_code/origin/dest/state_fips/county_fips are 100% blank (0 non-blank) on every row, and database_name is already 100% unique (21/21) -- there was no real ambiguity here and a single-column unique test on database_name should have been added instead of skipping.",
+    "sql_path": "models\\marts\\transport\\transport__fed_dot_bts.sql",
+    "schema_path": "ripple://models\\marts\\transport\\schema_fed_dot_bts.yml"
+  },
+  {
+    "model": "transport__fed_faa_data_portal",
+    "verdict": "wrong_key",
+    "note": "dataset_id/n_number/airport_id are blank in all 4 FED_FAA_DATA_PORTAL rows as the agent noted, but it overlooked access_url, which is populated in all 4 and reveals rows 1-2 are already byte-identical duplicates (same access_url 'https://www.faa.gov/data' and even the same _SRC_SHA256 hash) -- a key on access_url would have correctly caught this real duplicate instead of skipping.",
+    "sql_path": "models\\marts\\transport\\transport__fed_faa_data_portal.sql",
+    "schema_path": "ripple://models\\marts\\transport\\schema_fed_faa_data_portal.yml"
+  }
+]

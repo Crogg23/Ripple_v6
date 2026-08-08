@@ -2,6 +2,15 @@ version: 2
 
 models:
   - name: finance__fed_epa_icis_fec_epa_informal_enforcement_actions
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - enf_identifier
+              - pgm_sys_id
+              - registry_id
+              - activity_type_code
+              - enf_type_code
     columns:
       - name: pgm_sys_id
         data_tests:
