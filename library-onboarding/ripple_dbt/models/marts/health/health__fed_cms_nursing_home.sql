@@ -13,7 +13,7 @@ select
     -- -----------------------------------------------------------------------
     cms_certification_number_ccn,
     provider_number,
-    npi,
+    -- npi removed 2026-08-08: source has no NPI field (see staging model note)
     county_fips,
     provider_ssa_county_code,
     state,

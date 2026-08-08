@@ -32,12 +32,13 @@ so dropping changes nothing downstream.
 
 ## 3. HMDA honesty call (audit critical #2)
 
-The mart says "nationwide 2022 mortgage data"; it is 100% Washington DC.
+UPDATE 2026-08-08: rename is DONE (mart now `HOUSING__FED_CFPB_HMDA_DC_ONLY`,
+verified identical 28,301 rows). Only the old-copy drop remains — agent is
+permission-blocked from running DROP, so it's yours:
 
-- [ ] Recommended: rename the table `FED_CFPB_HMDA_DC_2022` (or approve the
-      agent doing the relabel in registry/dbt). The real 19.1M-row nationwide
-      file is already landed (`FED_CFPB_HMDA_HISTORIC`); Phase 2 builds the
-      honest mart on it. Nothing needs re-downloading.
+- [ ] `DROP TABLE LIBRARY_MARTS.HOUSING.HOUSING__FED_CFPB_HMDA;`
+      The real 19.1M-row nationwide file is already landed
+      (`FED_CFPB_HMDA_HISTORIC`); Phase 2 builds the honest mart on it.
 
 ## 4. Three standing decisions — one line each is enough
 

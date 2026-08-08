@@ -1,36 +1,28 @@
-# RIPPLE STATUS — 2026-08-06 (late session)
+# RIPPLE STATUS — 2026-08-08
 
 *One screen. Rewritten (never appended) at the end of every session. Sessions read this at boot and brief Chris in chat — Chris never has to open it.*
 
-**BROKE (found this session, still open):**
-- One column (nursing home NPI) is still silently blank. Checked whether CMS's real source even has that field before attempting a fix — couldn't confirm cheaply either way (the dataset isn't in the catalog feed I can check quickly), so left flagged rather than guess.
-- The old, misleadingly-named copy of the mortgage table is still sitting in the warehouse — safety guardrails correctly blocked me from deleting it without your say-so.
-- 70 files changed this session, nothing committed yet.
+**BROKE (still open):**
+- The old, wrongly-named copy of the mortgage table is STILL in the warehouse. Rename verified (identical 28,301 rows both copies); agent is permission-blocked from running DROP even with Chris's verbal OK. One line for Chris in Snowsight:
+  `DROP TABLE LIBRARY_MARTS.HOUSING.HOUSING__FED_CFPB_HMDA;`
+- Today's changes (nursing-home fix, checklist updates) are uncommitted — small diff, review anytime.
 
-**RESOLVED without new building (investigated, didn't need a fix):**
-- The 25-company SEC filings table: confirmed the platform already has genuinely deep SEC coverage elsewhere (one table alone has 101 million real institutional-holdings rows, another has 344,000 real filers). Building a proper replacement for the narrow table isn't worth it — what it would have added already exists better elsewhere. Left as-is, not a real gap.
+**FIXED this session (verified live, not just claimed):**
+- Nursing-home "silently blank NPI" mystery SOLVED: checked CMS's real source live (all 100 columns of the provider dataset) — the source has NO NPI field at all. The column was phantom. Removed it from staging + mart + schema docs; rebuilt live; all 25 model tests pass. NPI↔facility linking correctly lives in the facility-affiliation bridge instead.
+- Entity spine fully rebuilt and reconciled. Chain of events: 3 CMS tables had fresh data the spine hadn't absorbed → ran the cheap incremental catch-up → that EXPOSED pre-existing drift (~99 excluded-provider entities with stale pair/membership records, predating today) that the incremental path can't repair by design → Chris approved the full rebuild (priced first) → rebuild ran clean. Result: 31.85M entities, 4,615 verified connections, incremental state re-synced.
+- All 6 spine-health equivalence checks now PASS (were 3 FAIL at worst mid-session).
 
-**FIXED this session (found broken, then actually fixed, not just flagged):**
-- A core corporate-matching table (GLEIF) was completely unusable — any query on it errored out, because its code expected clean column names but the live data landed with raw XML-style names instead. Rewrote the mapping, verified: 3.38 million real company records now come back correctly.
-- The biggest find: an FDA drug-recall table was completely broken because the loader stores each API pull as one sealed data package, and the step meant to unpack it into real rows never worked. Unpacked it properly — recovered **17,816 real drug recall records** that were sitting there unusable. Also fixed a field that was looking in the wrong spot for a product code, and added a legitimate 4th recall category that was missing from the checklist.
-- A vessel-tracking table's docs claimed one day of data; it's actually 8 days. Confirmed that didn't silently break anything — just fixed the stale documentation.
-- **Found and disabled 6 marts total** that were silently presenting scraped webpages as if they were real datasets (hospital price-transparency, FinCEN ownership, a foreign-agent registry stub — a real 221,900-row version of that one already exists elsewhere, so nothing lost — a prison-statistics table that turned out to be scraped page navigation buttons, an education table, and a development-bank table). Same known bug class the platform already had a fix pattern for; applied it, with the evidence written down for each one.
-
-**WORKS (done and verified live this session, not just claimed):**
-- Reloaded the 6 tables that were actually still stuck at the old 500K-row cap — turned out an overnight run had already fixed the other 29 that a stale status note said were still broken. All 6 verified live: real row counts (one now at 9.8M rows), real key diversity, no duplicates.
-- Renamed the mislabeled mortgage table so the name itself is honest (was claiming nationwide, is actually one city) — rebuilt, verified the new name holds the identical row count.
-- Extended the "secretly blank" canary test from 4 columns to 28 across the platform's core federal sources — each one checked against live data first, not guessed. This is what caught the two masked-blank columns above.
-- Closed 29 more real loader gaps (bad load → silent success) using the same careful read-the-actual-code approach as last session — separately confirmed 11 look-alikes were already fine and correctly left alone.
-- Un-truncating the 6 tables surfaced 16 test failures in downstream reports; all traced to real causes (legitimate one-sided-blank columns, trivial edge cases), documented, and downgraded so they warn instead of blocking the build.
-- Caught and fixed a stale internal scorecard (29 already-retired duplicate tables were still counted in it) as a side effect of the above.
+**WORKS:**
+- Full offline suite GREEN after everything: 2,692 passed, 2 skipped, 0 failed.
+- Spine validate: all checks pass. Incremental heartbeat is trustworthy again.
 
 **YOUR MOVE:**
-1. OK to delete the old, wrongly-named copy of the mortgage table now that the rename is confirmed to hold the same data? (yes/no — safety guardrail is blocking me without it)
-2. Review/commit the 70 changed files whenever convenient — nothing pushed.
-3. Phase 0 checklist (Missouri registry yes/no, DOL + Senate API signups) — still open from before, unrelated to this session.
+1. Run the one-line DROP above (only thing an agent can't do).
+2. Commit today's small diff whenever convenient.
+3. Phase 0 checklist still open (Snowsight credential grants, orphan-table drops, API signups) — see outputs/phase0_chris_checklist_2026-08-06.md (HMDA section updated today).
 
-**NEXT SESSION:** Finish reviewing/committing this session's changes, then continue down the punch list — moving loaders off the full-admin credential (after the loader-gate work settles), then cross-agency entity matching (still deliberately saved for last, needs its own planning session).
+**NEXT SESSION:** Loaders off the full-admin credential (blocked on Phase 0 grants), then the cross-agency entity-matching planning session with Chris.
 
-**COST:** One real warehouse-compute spend this session — the 6-table reload (~40 minutes, priced and approved before running). Everything else was code/tests plus small read-only warehouse checks. One background agent did the bulk of the loader-gate triage/fixes; its findings were independently re-verified, not taken on faith.
+**COST:** One approved warehouse spend: full spine rebuild, ~4.5 hours wall-clock on the X-Small warehouse ≈ 4-5 credits ≈ ~$10-15 (priced and approved before running; original estimate said 30-60 min — wall clock was 4-5x that, dollar estimate held because the warehouse is the smallest size). Plus small read-only checks and two dbt/test runs (minutes).
 
-**TEST STATUS:** Offline suite re-confirmed clean twice, independently, after all changes: 2,677 passed, 2 skipped, 0 failed. Every warehouse-side model touched this session (mortgage table, GLEIF, FDA drug recalls, the 6 disabled garbage marts, all 28 blank-key checks) was individually rebuilt and tested live, not just edited on paper — all clean, zero unexplained failures.
+**TEST STATUS:** 2,692 passed / 2 skipped / 0 failed (full suite, post-rebuild). Spine equivalence validate: 6/6 PASS. Nursing-home staging+mart rebuilt live: 25/25 tests (1 pre-existing warn on ownership-type wording, unrelated).

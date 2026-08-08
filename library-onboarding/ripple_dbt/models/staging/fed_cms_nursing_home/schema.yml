@@ -30,20 +30,10 @@ models:
         data_tests:
           - not_null
 
-      - name: npi
-        description: >
-          National Provider Identifier (NPI). KNOWN BAD (found by key_is_real
-          live-profiling, 2026-08-06): 100% of 14,700 rows are an empty string
-          ('', not SQL NULL), so not_null passes falsely while the column is a
-          dead facility-level join key. Not usable for cross-source linking
-          until the source is re-checked for a real NPI field.
-        data_tests:
-          - not_null
-          - key_is_real:
-              config:
-                severity: warn
-              arguments:
-                min_distinct: 1
+      # npi removed 2026-08-08: CMS Provider Information source has no NPI field
+      # (verified live against the CMS provider-data API — 100 columns, none NPI);
+      # the landing column was 100% empty strings. NPI<->CCN linking lives in the
+      # facility affiliation mart.
 
       - name: county_fips
         description: County FIPS code for geographic joins.
@@ -178,10 +168,7 @@ models:
         data_tests:
           - not_null
 
-      - name: npi
-        description: National Provider Identifier.
-        data_tests:
-          - not_null
+      # npi removed 2026-08-08 — source has no NPI field (see staging model note).
 
       - name: county_fips
         description: County FIPS code for geographic joins.

@@ -1,0 +1,109 @@
+{
+ "datasets_landed": 1269,
+ "datasets_connected": 594,
+ "entities": 31852154,
+ "multi_source_entities": 15477779,
+ "entity_source_links": 70958109,
+ "verified_connections": 4615,
+ "rejected_flukes": 8716,
+ "tiers": {
+  "STEEL": 1121,
+  "GEO": 385,
+  "STRONG": 3,
+  "CORROBORATED": 2638,
+  "BRIDGE": 467,
+  "PROBABILISTIC": 1
+ },
+ "strongest_links": [
+  {
+   "a": "FED_EPA_FRS_FULL",
+   "b": "XC_EPA_CORPORATE_CROSSWALK",
+   "id_type": "FRS_ID",
+   "matched_records": 5300149
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "b": "XC_EPA_CORPORATE_CROSSWALK",
+   "id_type": "FRS_ID",
+   "matched_records": 3337501
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "b": "FED_EPA_FRS_FULL",
+   "id_type": "FRS_ID",
+   "matched_records": 3337501
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_FACILITIES",
+   "b": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "id_type": "FRS_ID",
+   "matched_records": 3277557
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_FACILITIES",
+   "b": "XC_EPA_CORPORATE_CROSSWALK",
+   "id_type": "FRS_ID",
+   "matched_records": 3192631
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_FACILITIES",
+   "b": "FED_EPA_FRS_FULL",
+   "id_type": "FRS_ID",
+   "matched_records": 3192631
+  },
+  {
+   "a": "INTL_GLEIF",
+   "b": "INTL_GLEIF_REPEX",
+   "id_type": "LEI",
+   "matched_records": 3140372
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "id_type": "FRS_ID",
+   "matched_records": 3134321
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_EPA_FRS_FRS_FACILITIES",
+   "id_type": "FRS_ID",
+   "matched_records": 3077288
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "XC_EPA_CORPORATE_CROSSWALK",
+   "id_type": "FRS_ID",
+   "matched_records": 3073736
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_EPA_FRS_FULL",
+   "id_type": "FRS_ID",
+   "matched_records": 3073736
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_FACILITIES",
+   "b": "FED_EPA_FRS_FULL",
+   "id_type": "NAME@ZIP",
+   "matched_records": 2673005
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "b": "FED_EPA_FRS_FULL",
+   "id_type": "NAME@ZIP",
+   "matched_records": 2644587
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_EPA_FRS_FULL",
+   "id_type": "NAME@ZIP",
+   "matched_records": 2585827
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_EPA_FRS_FRS_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "matched_records": 2542118
+  }
+ ]
+}

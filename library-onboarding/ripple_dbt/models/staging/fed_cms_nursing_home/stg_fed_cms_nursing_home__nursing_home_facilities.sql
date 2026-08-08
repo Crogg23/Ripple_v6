@@ -13,7 +13,10 @@ renamed as (
         -- primary & key identifiers
         CMS_CERTIFICATION_NUMBER__CCN                                        as cms_certification_number_ccn,
         PROVIDER_NUMBER                                                       as provider_number,
-        NPI                                                                   as npi,
+        -- NPI intentionally excluded: CMS Provider Information source has no NPI
+        -- field (verified live against the CMS provider-data API, 2026-08-08);
+        -- the landing column is 100% empty strings. Use the CMS facility
+        -- affiliation mart for the NPI<->CCN bridge instead.
         COUNTY_FIPS                                                           as county_fips,
         PROVIDER_SSA_COUNTY_CODE                                              as provider_ssa_county_code,
 

@@ -1,0 +1,316 @@
+{
+ "nodes": [
+  {
+   "domain": "Other Federal",
+   "datasets": 172,
+   "total_rows": 271967381
+  },
+  {
+   "domain": "Health & Medicine",
+   "datasets": 91,
+   "total_rows": 221710282
+  },
+  {
+   "domain": "Environment",
+   "datasets": 77,
+   "total_rows": 168689229
+  },
+  {
+   "domain": "International & Historical",
+   "datasets": 67,
+   "total_rows": 18400395
+  },
+  {
+   "domain": "Money & Markets",
+   "datasets": 64,
+   "total_rows": 195515807
+  },
+  {
+   "domain": "Politics & Influence",
+   "datasets": 43,
+   "total_rows": 95565452
+  },
+  {
+   "domain": "Government Spending & Programs",
+   "datasets": 21,
+   "total_rows": 33137797
+  },
+  {
+   "domain": "Justice & Enforcement",
+   "datasets": 19,
+   "total_rows": 73964300
+  },
+  {
+   "domain": "Transport & Trade",
+   "datasets": 13,
+   "total_rows": 4330515
+  },
+  {
+   "domain": "Work & Safety",
+   "datasets": 13,
+   "total_rows": 7280864
+  },
+  {
+   "domain": "State & Local Portals",
+   "datasets": 11,
+   "total_rows": 591579
+  },
+  {
+   "domain": "Consumer & Communications",
+   "datasets": 3,
+   "total_rows": 11485565
+  }
+ ],
+ "edges": [
+  {
+   "a": "Environment",
+   "b": "Health & Medicine",
+   "connections": 458
+  },
+  {
+   "a": "Health & Medicine",
+   "b": "Work & Safety",
+   "connections": 221
+  },
+  {
+   "a": "Environment",
+   "b": "Other Federal",
+   "connections": 218
+  },
+  {
+   "a": "Health & Medicine",
+   "b": "Other Federal",
+   "connections": 193
+  },
+  {
+   "a": "Money & Markets",
+   "b": "Work & Safety",
+   "connections": 191
+  },
+  {
+   "a": "Money & Markets",
+   "b": "Other Federal",
+   "connections": 168
+  },
+  {
+   "a": "Environment",
+   "b": "Work & Safety",
+   "connections": 132
+  },
+  {
+   "a": "Health & Medicine",
+   "b": "Money & Markets",
+   "connections": 130
+  },
+  {
+   "a": "Other Federal",
+   "b": "Work & Safety",
+   "connections": 110
+  },
+  {
+   "a": "Environment",
+   "b": "Money & Markets",
+   "connections": 102
+  },
+  {
+   "a": "Environment",
+   "b": "Transport & Trade",
+   "connections": 78
+  },
+  {
+   "a": "Government Spending & Programs",
+   "b": "Health & Medicine",
+   "connections": 68
+  },
+  {
+   "a": "Environment",
+   "b": "Government Spending & Programs",
+   "connections": 67
+  },
+  {
+   "a": "Health & Medicine",
+   "b": "Transport & Trade",
+   "connections": 54
+  },
+  {
+   "a": "Government Spending & Programs",
+   "b": "Other Federal",
+   "connections": 50
+  },
+  {
+   "a": "Environment",
+   "b": "Politics & Influence",
+   "connections": 41
+  },
+  {
+   "a": "Other Federal",
+   "b": "Politics & Influence",
+   "connections": 40
+  },
+  {
+   "a": "Transport & Trade",
+   "b": "Work & Safety",
+   "connections": 35
+  },
+  {
+   "a": "Other Federal",
+   "b": "Transport & Trade",
+   "connections": 33
+  },
+  {
+   "a": "Government Spending & Programs",
+   "b": "Work & Safety",
+   "connections": 29
+  },
+  {
+   "a": "Government Spending & Programs",
+   "b": "Money & Markets",
+   "connections": 26
+  },
+  {
+   "a": "Environment",
+   "b": "Justice & Enforcement",
+   "connections": 25
+  },
+  {
+   "a": "Money & Markets",
+   "b": "Transport & Trade",
+   "connections": 23
+  },
+  {
+   "a": "Health & Medicine",
+   "b": "Politics & Influence",
+   "connections": 22
+  },
+  {
+   "a": "Money & Markets",
+   "b": "Politics & Influence",
+   "connections": 19
+  },
+  {
+   "a": "Politics & Influence",
+   "b": "Work & Safety",
+   "connections": 18
+  },
+  {
+   "a": "Politics & Influence",
+   "b": "Transport & Trade",
+   "connections": 11
+  },
+  {
+   "a": "Consumer & Communications",
+   "b": "Other Federal",
+   "connections": 11
+  },
+  {
+   "a": "Consumer & Communications",
+   "b": "Environment",
+   "connections": 10
+  },
+  {
+   "a": "Justice & Enforcement",
+   "b": "Work & Safety",
+   "connections": 9
+  },
+  {
+   "a": "Government Spending & Programs",
+   "b": "Transport & Trade",
+   "connections": 8
+  },
+  {
+   "a": "Consumer & Communications",
+   "b": "Health & Medicine",
+   "connections": 7
+  },
+  {
+   "a": "Justice & Enforcement",
+   "b": "Money & Markets",
+   "connections": 6
+  },
+  {
+   "a": "International & Historical",
+   "b": "Money & Markets",
+   "connections": 5
+  },
+  {
+   "a": "Government Spending & Programs",
+   "b": "Justice & Enforcement",
+   "connections": 5
+  },
+  {
+   "a": "Health & Medicine",
+   "b": "Justice & Enforcement",
+   "connections": 5
+  },
+  {
+   "a": "Justice & Enforcement",
+   "b": "Other Federal",
+   "connections": 4
+  },
+  {
+   "a": "Justice & Enforcement",
+   "b": "Transport & Trade",
+   "connections": 4
+  },
+  {
+   "a": "Consumer & Communications",
+   "b": "Money & Markets",
+   "connections": 4
+  },
+  {
+   "a": "Consumer & Communications",
+   "b": "Transport & Trade",
+   "connections": 3
+  },
+  {
+   "a": "Government Spending & Programs",
+   "b": "Politics & Influence",
+   "connections": 3
+  },
+  {
+   "a": "Justice & Enforcement",
+   "b": "Politics & Influence",
+   "connections": 3
+  },
+  {
+   "a": "Consumer & Communications",
+   "b": "Politics & Influence",
+   "connections": 2
+  },
+  {
+   "a": "International & Historical",
+   "b": "Work & Safety",
+   "connections": 1
+  },
+  {
+   "a": "Environment",
+   "b": "International & Historical",
+   "connections": 1
+  },
+  {
+   "a": "Consumer & Communications",
+   "b": "Justice & Enforcement",
+   "connections": 1
+  },
+  {
+   "a": "Consumer & Communications",
+   "b": "State & Local Portals",
+   "connections": 1
+  },
+  {
+   "a": "Consumer & Communications",
+   "b": "Government Spending & Programs",
+   "connections": 1
+  },
+  {
+   "a": "Politics & Influence",
+   "b": "State & Local Portals",
+   "connections": 1
+  },
+  {
+   "a": "Consumer & Communications",
+   "b": "Work & Safety",
+   "connections": 1
+  }
+ ]
+}

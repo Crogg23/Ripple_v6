@@ -299,8 +299,8 @@ DISPLAY_SPECS: dict[str, dict] = {
                                         # above (2026-07-28: prior audit flagged these as a
                                         # possible-duplicate pair; not resolving which is more
                                         # complete this pass, so both feed the CCN axis at the
-                                        # same authority tier). Also carries an NPI column --
-                                        # deliberately not wired as an extra_key this pass.
+                                        # same authority tier). Its NPI column was confirmed
+                                        # phantom (source has no NPI field; removed 2026-08-08).
         "key": "CCN", "key_col": "CMS_CERTIFICATION_NUMBER__CCN", "org": "PROVIDER_NAME",
         "city": "CITY_TOWN", "state": "STATE", "zip": "ZIP_CODE", "authority": 2,
     },

@@ -1,0 +1,3861 @@
+{
+ "nodes": [
+  {
+   "table": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "domain": "Work & Safety",
+   "rows": 394234,
+   "hard_connections": 120
+  },
+  {
+   "table": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "domain": "Work & Safety",
+   "rows": 383283,
+   "hard_connections": 120
+  },
+  {
+   "table": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "domain": "Work & Safety",
+   "rows": 398620,
+   "hard_connections": 119
+  },
+  {
+   "table": "FED_EPA_FRS_FULL",
+   "domain": "Environment",
+   "rows": 5300149,
+   "hard_connections": 115
+  },
+  {
+   "table": "FED_EPA_FRS_FRS_FACILITIES",
+   "domain": "Environment",
+   "rows": 3277557,
+   "hard_connections": 115
+  },
+  {
+   "table": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "domain": "Environment",
+   "rows": 4406498,
+   "hard_connections": 115
+  },
+  {
+   "table": "FED_EPA_ECHO",
+   "domain": "Environment",
+   "rows": 3157891,
+   "hard_connections": 115
+  },
+  {
+   "table": "FED_IRS_BMF",
+   "domain": "Money & Markets",
+   "rows": 1974830,
+   "hard_connections": 110
+  },
+  {
+   "table": "FED_FAC_SINGLE_AUDIT",
+   "domain": "Other Federal",
+   "rows": 411638,
+   "hard_connections": 107
+  },
+  {
+   "table": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "domain": "Work & Safety",
+   "rows": 890934,
+   "hard_connections": 105
+  },
+  {
+   "table": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "domain": "Health & Medicine",
+   "rows": 1296739,
+   "hard_connections": 104
+  },
+  {
+   "table": "FED_CMS_MEDICARE_PROVIDER",
+   "domain": "Health & Medicine",
+   "rows": 1296739,
+   "hard_connections": 104
+  },
+  {
+   "table": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "domain": "Health & Medicine",
+   "rows": 9781673,
+   "hard_connections": 104
+  },
+  {
+   "table": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "domain": "Environment",
+   "rows": 279728,
+   "hard_connections": 101
+  },
+  {
+   "table": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "domain": "Environment",
+   "rows": 279728,
+   "hard_connections": 101
+  },
+  {
+   "table": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "domain": "Work & Safety",
+   "rows": 688649,
+   "hard_connections": 101
+  },
+  {
+   "table": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "domain": "Work & Safety",
+   "rows": 330447,
+   "hard_connections": 101
+  },
+  {
+   "table": "FED_EPA_RCRA_FACILITIES",
+   "domain": "Environment",
+   "rows": 1613224,
+   "hard_connections": 99
+  },
+  {
+   "table": "FED_EPA_RCRA_RCRA_FACILITIES",
+   "domain": "Environment",
+   "rows": 1613224,
+   "hard_connections": 99
+  },
+  {
+   "table": "FED_IRS_AUTO_REVOCATIONS",
+   "domain": "Money & Markets",
+   "rows": 1207295,
+   "hard_connections": 96
+  },
+  {
+   "table": "FED_IRS_REVOCATION",
+   "domain": "Money & Markets",
+   "rows": 1206628,
+   "hard_connections": 96
+  },
+  {
+   "table": "FED_IRS_EO_BMF",
+   "domain": "Money & Markets",
+   "rows": 280922,
+   "hard_connections": 96
+  },
+  {
+   "table": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "domain": "Environment",
+   "rows": 204019,
+   "hard_connections": 91
+  },
+  {
+   "table": "FED_EPA_NPDES_ICIS_FACILITIES",
+   "domain": "Environment",
+   "rows": 1213737,
+   "hard_connections": 90
+  },
+  {
+   "table": "FED_USASPENDING_CONTRACTS",
+   "domain": "Government Spending & Programs",
+   "rows": 6325622,
+   "hard_connections": 89
+  },
+  {
+   "table": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+   "domain": "Environment",
+   "rows": 434040,
+   "hard_connections": 87
+  },
+  {
+   "table": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "domain": "Health & Medicine",
+   "rows": 9175,
+   "hard_connections": 87
+  },
+  {
+   "table": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "domain": "Health & Medicine",
+   "rows": 440670,
+   "hard_connections": 83
+  },
+  {
+   "table": "FED_CMS_POS_OTHER",
+   "domain": "Health & Medicine",
+   "rows": 44429,
+   "hard_connections": 80
+  },
+  {
+   "table": "FED_CMS_HCRIS",
+   "domain": "Health & Medicine",
+   "rows": 6103,
+   "hard_connections": 76
+  }
+ ],
+ "edges": [
+  {
+   "a": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "b": "FED_EPA_FRS_FULL",
+   "id_type": "FRS_ID",
+   "tier": "STEEL",
+   "matched_records": 3337501
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_FACILITIES",
+   "b": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "id_type": "FRS_ID",
+   "tier": "STEEL",
+   "matched_records": 3277557
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_FACILITIES",
+   "b": "FED_EPA_FRS_FULL",
+   "id_type": "FRS_ID",
+   "tier": "STEEL",
+   "matched_records": 3192631
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "id_type": "FRS_ID",
+   "tier": "STEEL",
+   "matched_records": 3134321
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_EPA_FRS_FRS_FACILITIES",
+   "id_type": "FRS_ID",
+   "tier": "STEEL",
+   "matched_records": 3077288
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_EPA_FRS_FULL",
+   "id_type": "FRS_ID",
+   "tier": "STEEL",
+   "matched_records": 3073736
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_FACILITIES",
+   "b": "FED_EPA_FRS_FULL",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2673005
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "b": "FED_EPA_FRS_FULL",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2644587
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_EPA_FRS_FULL",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2585827
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_EPA_FRS_FRS_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2542118
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_FACILITIES",
+   "b": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2519523
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2432161
+  },
+  {
+   "a": "FED_EPA_RCRA_FACILITIES",
+   "b": "FED_EPA_RCRA_RCRA_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1429903
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "b": "FED_EPA_RCRA_RCRA_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1421346
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "b": "FED_EPA_RCRA_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1421346
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "b": "FED_CMS_MEDICARE_PROVIDER",
+   "id_type": "NPI",
+   "tier": "STEEL",
+   "matched_records": 1296739
+  },
+  {
+   "a": "FED_EPA_FRS_FULL",
+   "b": "FED_EPA_RCRA_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1234224
+  },
+  {
+   "a": "FED_EPA_FRS_FULL",
+   "b": "FED_EPA_RCRA_RCRA_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1234224
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_EPA_RCRA_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1227833
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_EPA_RCRA_RCRA_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1227833
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_FACILITIES",
+   "b": "FED_EPA_RCRA_RCRA_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1227146
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_FACILITIES",
+   "b": "FED_EPA_RCRA_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1227146
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "b": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "id_type": "NPI",
+   "tier": "STEEL",
+   "matched_records": 1207473
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "b": "FED_CMS_MEDICARE_PROVIDER",
+   "id_type": "NPI",
+   "tier": "STEEL",
+   "matched_records": 1207473
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "b": "FED_CMS_MEDICARE_PROVIDER",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1204061
+  },
+  {
+   "a": "FED_IRS_AUTO_REVOCATIONS",
+   "b": "FED_IRS_REVOCATION",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 1187318
+  },
+  {
+   "a": "FED_IRS_AUTO_REVOCATIONS",
+   "b": "FED_IRS_REVOCATION",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1151103
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "b": "FED_CMS_MEDICARE_PROVIDER",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1125466
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "b": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1125466
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "b": "FED_EPA_NPDES_ICIS_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1074238
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_FACILITIES",
+   "b": "FED_EPA_NPDES_ICIS_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 923092
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_EPA_NPDES_ICIS_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 919247
+  },
+  {
+   "a": "FED_EPA_FRS_FULL",
+   "b": "FED_EPA_NPDES_ICIS_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 912882
+  },
+  {
+   "a": "FED_IRS_BMF",
+   "b": "FED_IRS_EO_BMF",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 279160
+  },
+  {
+   "a": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "b": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 270351
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "b": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 270060
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "b": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 270060
+  },
+  {
+   "a": "FED_IRS_BMF",
+   "b": "FED_IRS_EO_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 268338
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_FACILITIES",
+   "b": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "id_type": "FRS_ID",
+   "tier": "STEEL",
+   "matched_records": 266026
+  },
+  {
+   "a": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "b": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "id_type": "FRS_ID",
+   "tier": "STEEL",
+   "matched_records": 266026
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "b": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "id_type": "FRS_ID",
+   "tier": "STEEL",
+   "matched_records": 266026
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_FACILITIES",
+   "b": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "id_type": "FRS_ID",
+   "tier": "STEEL",
+   "matched_records": 266026
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "b": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "id_type": "FRS_ID",
+   "tier": "STEEL",
+   "matched_records": 266026
+  },
+  {
+   "a": "FED_EPA_FRS_FULL",
+   "b": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "id_type": "FRS_ID",
+   "tier": "STEEL",
+   "matched_records": 265793
+  },
+  {
+   "a": "FED_EPA_FRS_FULL",
+   "b": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "id_type": "FRS_ID",
+   "tier": "STEEL",
+   "matched_records": 265793
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "id_type": "FRS_ID",
+   "tier": "STEEL",
+   "matched_records": 265741
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "id_type": "FRS_ID",
+   "tier": "STEEL",
+   "matched_records": 265741
+  },
+  {
+   "a": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 231726
+  },
+  {
+   "a": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 223922
+  },
+  {
+   "a": "FED_EPA_FRS_FULL",
+   "b": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 210709
+  },
+  {
+   "a": "FED_EPA_FRS_FULL",
+   "b": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 210709
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_FACILITIES",
+   "b": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 209754
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_FACILITIES",
+   "b": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 209754
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 206556
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 206556
+  },
+  {
+   "a": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 198316
+  },
+  {
+   "a": "FED_IRS_AUTO_REVOCATIONS",
+   "b": "FED_IRS_BMF",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 160497
+  },
+  {
+   "a": "FED_IRS_BMF",
+   "b": "FED_IRS_REVOCATION",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 159938
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "id_type": "FRS_ID",
+   "tier": "STEEL",
+   "matched_records": 113680
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "b": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 113632
+  },
+  {
+   "a": "FED_EPA_FRS_FULL",
+   "b": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "id_type": "FRS_ID",
+   "tier": "STEEL",
+   "matched_records": 113462
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "b": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "id_type": "FRS_ID",
+   "tier": "STEEL",
+   "matched_records": 112823
+  },
+  {
+   "a": "FED_IRS_AUTO_REVOCATIONS",
+   "b": "FED_IRS_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 91397
+  },
+  {
+   "a": "FED_IRS_BMF",
+   "b": "FED_IRS_REVOCATION",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 90857
+  },
+  {
+   "a": "FED_EPA_FRS_FULL",
+   "b": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 89689
+  },
+  {
+   "a": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 88519
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 87970
+  },
+  {
+   "a": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 84782
+  },
+  {
+   "a": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 82239
+  },
+  {
+   "a": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 74725
+  },
+  {
+   "a": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 61052
+  },
+  {
+   "a": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 59854
+  },
+  {
+   "a": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 56933
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_FACILITIES",
+   "b": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "id_type": "FRS_ID",
+   "tier": "STEEL",
+   "matched_records": 55654
+  },
+  {
+   "a": "FED_EPA_FRS_FULL",
+   "b": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 52897
+  },
+  {
+   "a": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 48213
+  },
+  {
+   "a": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 43926
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_FACILITIES",
+   "b": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 37996
+  },
+  {
+   "a": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 35682
+  },
+  {
+   "a": "FED_EPA_NPDES_ICIS_FACILITIES",
+   "b": "FED_EPA_RCRA_RCRA_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 33976
+  },
+  {
+   "a": "FED_EPA_NPDES_ICIS_FACILITIES",
+   "b": "FED_EPA_RCRA_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 33976
+  },
+  {
+   "a": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 33694
+  },
+  {
+   "a": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 33457
+  },
+  {
+   "a": "FED_FAC_SINGLE_AUDIT",
+   "b": "FED_IRS_BMF",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 33429
+  },
+  {
+   "a": "FED_EPA_FRS_FULL",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 33310
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 32320
+  },
+  {
+   "a": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "b": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "id_type": "NPI",
+   "tier": "STEEL",
+   "matched_records": 32158
+  },
+  {
+   "a": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "b": "FED_CMS_MEDICARE_PROVIDER",
+   "id_type": "NPI",
+   "tier": "STEEL",
+   "matched_records": 32158
+  },
+  {
+   "a": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "b": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "id_type": "NPI",
+   "tier": "STEEL",
+   "matched_records": 31852
+  },
+  {
+   "a": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "b": "FED_EPA_RCRA_RCRA_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 30443
+  },
+  {
+   "a": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "b": "FED_EPA_RCRA_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 30443
+  },
+  {
+   "a": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "b": "FED_EPA_RCRA_RCRA_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 30443
+  },
+  {
+   "a": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "b": "FED_EPA_RCRA_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 30443
+  },
+  {
+   "a": "FED_EPA_FRS_FULL",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 29273
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 28864
+  },
+  {
+   "a": "FED_EPA_FRS_FULL",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 28708
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 28197
+  },
+  {
+   "a": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 27916
+  },
+  {
+   "a": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "b": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 27638
+  },
+  {
+   "a": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "b": "FED_CMS_MEDICARE_PROVIDER",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 27638
+  },
+  {
+   "a": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "b": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 27384
+  },
+  {
+   "a": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 26836
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_FACILITIES",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 26757
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 25970
+  },
+  {
+   "a": "FED_IRS_AUTO_REVOCATIONS",
+   "b": "FED_IRS_EO_BMF",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 24803
+  },
+  {
+   "a": "FED_IRS_EO_BMF",
+   "b": "FED_IRS_REVOCATION",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 24803
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 24494
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_FACILITIES",
+   "b": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 24352
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_FACILITIES",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 23720
+  },
+  {
+   "a": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 23315
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_FACILITIES",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 23279
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 23003
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 22580
+  },
+  {
+   "a": "FED_FAC_SINGLE_AUDIT",
+   "b": "FED_IRS_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 22390
+  },
+  {
+   "a": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 20976
+  },
+  {
+   "a": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 20524
+  },
+  {
+   "a": "FED_EPA_RCRA_FACILITIES",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 20446
+  },
+  {
+   "a": "FED_EPA_RCRA_RCRA_FACILITIES",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 20446
+  },
+  {
+   "a": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 20415
+  },
+  {
+   "a": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "b": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "id_type": "FRS_ID",
+   "tier": "STEEL",
+   "matched_records": 18732
+  },
+  {
+   "a": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "b": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "id_type": "FRS_ID",
+   "tier": "STEEL",
+   "matched_records": 18732
+  },
+  {
+   "a": "FED_EPA_RCRA_RCRA_FACILITIES",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 18399
+  },
+  {
+   "a": "FED_EPA_RCRA_FACILITIES",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 18399
+  },
+  {
+   "a": "FED_EPA_RCRA_FACILITIES",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 17979
+  },
+  {
+   "a": "FED_EPA_RCRA_RCRA_FACILITIES",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 17979
+  },
+  {
+   "a": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 17256
+  },
+  {
+   "a": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 16840
+  },
+  {
+   "a": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 15992
+  },
+  {
+   "a": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "b": "FED_EPA_NPDES_ICIS_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 15448
+  },
+  {
+   "a": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "b": "FED_EPA_NPDES_ICIS_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 15448
+  },
+  {
+   "a": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "b": "FED_EPA_RCRA_RCRA_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 15438
+  },
+  {
+   "a": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "b": "FED_EPA_RCRA_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 15438
+  },
+  {
+   "a": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "b": "FED_EPA_NPDES_ICIS_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 15072
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "b": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 14678
+  },
+  {
+   "a": "FED_IRS_EO_BMF",
+   "b": "FED_IRS_REVOCATION",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 14589
+  },
+  {
+   "a": "FED_IRS_AUTO_REVOCATIONS",
+   "b": "FED_IRS_EO_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 14589
+  },
+  {
+   "a": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 13676
+  },
+  {
+   "a": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 13387
+  },
+  {
+   "a": "FED_EPA_FRS_FULL",
+   "b": "FED_IRS_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 13024
+  },
+  {
+   "a": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 11741
+  },
+  {
+   "a": "FED_EPA_NPDES_ICIS_FACILITIES",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 11341
+  },
+  {
+   "a": "FED_EPA_FRS_FULL",
+   "b": "FED_FAC_SINGLE_AUDIT",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 11128
+  },
+  {
+   "a": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 10808
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 10702
+  },
+  {
+   "a": "FED_EPA_FRS_FULL",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 10612
+  },
+  {
+   "a": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "b": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 10288
+  },
+  {
+   "a": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "b": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 10288
+  },
+  {
+   "a": "FED_EPA_NPDES_ICIS_FACILITIES",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 10101
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "b": "FED_FAC_SINGLE_AUDIT",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 9730
+  },
+  {
+   "a": "FED_EPA_NPDES_ICIS_FACILITIES",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 9601
+  },
+  {
+   "a": "FED_EPA_FRS_FULL",
+   "b": "FED_USASPENDING_CONTRACTS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 9356
+  },
+  {
+   "a": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 9123
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "b": "FED_USASPENDING_CONTRACTS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 9088
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_FACILITIES",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 8760
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "b": "FED_IRS_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 8580
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 8504
+  },
+  {
+   "a": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 8415
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_FAC_SINGLE_AUDIT",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 8001
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_FACILITIES",
+   "b": "FED_FAC_SINGLE_AUDIT",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 7831
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_IRS_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 7774
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_FACILITIES",
+   "b": "FED_IRS_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 7724
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_FACILITIES",
+   "b": "FED_USASPENDING_CONTRACTS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 7584
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_USASPENDING_CONTRACTS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 7485
+  },
+  {
+   "a": "FED_IRS_BMF",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 7446
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 7125
+  },
+  {
+   "a": "FED_IRS_BMF",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 6857
+  },
+  {
+   "a": "FED_EPA_RCRA_RCRA_FACILITIES",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 6841
+  },
+  {
+   "a": "FED_EPA_RCRA_FACILITIES",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 6841
+  },
+  {
+   "a": "FED_EPA_FRS_FULL",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 6729
+  },
+  {
+   "a": "FED_EPA_RCRA_RCRA_FACILITIES",
+   "b": "FED_USASPENDING_CONTRACTS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 6577
+  },
+  {
+   "a": "FED_EPA_RCRA_FACILITIES",
+   "b": "FED_USASPENDING_CONTRACTS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 6577
+  },
+  {
+   "a": "FED_IRS_BMF",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 6455
+  },
+  {
+   "a": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 6371
+  },
+  {
+   "a": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 6371
+  },
+  {
+   "a": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+   "b": "FED_IRS_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 6208
+  },
+  {
+   "a": "FED_CMS_HCRIS",
+   "b": "FED_CMS_POS_OTHER",
+   "id_type": "CCN",
+   "tier": "STEEL",
+   "matched_records": 6037
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_CMS_POS_OTHER",
+   "id_type": "CCN",
+   "tier": "STEEL",
+   "matched_records": 5945
+  },
+  {
+   "a": "FED_FAC_SINGLE_AUDIT",
+   "b": "FED_IRS_EO_BMF",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 5839
+  },
+  {
+   "a": "FED_EPA_RCRA_FACILITIES",
+   "b": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 5799
+  },
+  {
+   "a": "FED_EPA_RCRA_RCRA_FACILITIES",
+   "b": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 5799
+  },
+  {
+   "a": "FED_CMS_HCRIS",
+   "b": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "id_type": "CCN",
+   "tier": "STEEL",
+   "matched_records": 5738
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_FACILITIES",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 5738
+  },
+  {
+   "a": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 5611
+  },
+  {
+   "a": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 5611
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 5571
+  },
+  {
+   "a": "FED_EPA_RCRA_RCRA_FACILITIES",
+   "b": "FED_FAC_SINGLE_AUDIT",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 5330
+  },
+  {
+   "a": "FED_EPA_RCRA_FACILITIES",
+   "b": "FED_FAC_SINGLE_AUDIT",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 5330
+  },
+  {
+   "a": "FED_EPA_NPDES_ICIS_FACILITIES",
+   "b": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 5327
+  },
+  {
+   "a": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 5289
+  },
+  {
+   "a": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 5289
+  },
+  {
+   "a": "FED_FAC_SINGLE_AUDIT",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 5183
+  },
+  {
+   "a": "FED_FAC_SINGLE_AUDIT",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 4904
+  },
+  {
+   "a": "FED_EPA_RCRA_RCRA_FACILITIES",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 4877
+  },
+  {
+   "a": "FED_EPA_RCRA_FACILITIES",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 4877
+  },
+  {
+   "a": "FED_FAC_SINGLE_AUDIT",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 4543
+  },
+  {
+   "a": "FED_EPA_RCRA_RCRA_FACILITIES",
+   "b": "FED_IRS_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 4443
+  },
+  {
+   "a": "FED_EPA_RCRA_FACILITIES",
+   "b": "FED_IRS_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 4443
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 4442
+  },
+  {
+   "a": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "b": "FED_USASPENDING_CONTRACTS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 4257
+  },
+  {
+   "a": "FED_EPA_FRS_FULL",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 4155
+  },
+  {
+   "a": "FED_EPA_NPDES_ICIS_FACILITIES",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 4056
+  },
+  {
+   "a": "FED_FAC_SINGLE_AUDIT",
+   "b": "FED_IRS_EO_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 3961
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "b": "FED_EPA_FRS_FULL",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 3867
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PROVIDER",
+   "b": "FED_EPA_FRS_FULL",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 3867
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "b": "FED_EPA_FRS_FULL",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 3797
+  },
+  {
+   "a": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "b": "FED_USASPENDING_CONTRACTS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 3695
+  },
+  {
+   "a": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "b": "FED_USASPENDING_CONTRACTS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 3689
+  },
+  {
+   "a": "FED_EPA_NPDES_ICIS_FACILITIES",
+   "b": "FED_FAC_SINGLE_AUDIT",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 3659
+  },
+  {
+   "a": "FED_CMS_POS_OTHER",
+   "b": "FED_EPA_FRS_FULL",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 3559
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_CMS_POS_OTHER",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 3551
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_FACILITIES",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 3512
+  },
+  {
+   "a": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "b": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 3487
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 3407
+  },
+  {
+   "a": "FED_CMS_POS_OTHER",
+   "b": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 3355
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PROVIDER",
+   "b": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 3341
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "b": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 3341
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "b": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 3290
+  },
+  {
+   "a": "FED_IRS_BMF",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 3166
+  },
+  {
+   "a": "FED_IRS_BMF",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 3126
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "b": "FED_EPA_FRS_FRS_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 3020
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PROVIDER",
+   "b": "FED_EPA_FRS_FRS_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 3020
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "b": "FED_EPA_ECHO",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 3005
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PROVIDER",
+   "b": "FED_EPA_ECHO",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 3005
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "b": "FED_EPA_FRS_FRS_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2974
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "b": "FED_EPA_ECHO",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2961
+  },
+  {
+   "a": "FED_EPA_RCRA_RCRA_FACILITIES",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2949
+  },
+  {
+   "a": "FED_EPA_RCRA_FACILITIES",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2949
+  },
+  {
+   "a": "FED_CMS_HCRIS",
+   "b": "FED_CMS_POS_OTHER",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2922
+  },
+  {
+   "a": "FED_EPA_NPDES_ICIS_FACILITIES",
+   "b": "FED_IRS_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2909
+  },
+  {
+   "a": "FED_CMS_POS_OTHER",
+   "b": "FED_EPA_FRS_FRS_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2838
+  },
+  {
+   "a": "FED_CMS_POS_OTHER",
+   "b": "FED_EPA_ECHO",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2758
+  },
+  {
+   "a": "FED_EPA_FRS_FULL",
+   "b": "FED_IRS_EO_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2757
+  },
+  {
+   "a": "FED_IRS_BMF",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2722
+  },
+  {
+   "a": "FED_IRS_BMF",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2692
+  },
+  {
+   "a": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2656
+  },
+  {
+   "a": "FED_CMS_POS_OTHER",
+   "b": "FED_EPA_RCRA_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2514
+  },
+  {
+   "a": "FED_CMS_POS_OTHER",
+   "b": "FED_EPA_RCRA_RCRA_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2514
+  },
+  {
+   "a": "FED_EPA_NPDES_ICIS_FACILITIES",
+   "b": "FED_USASPENDING_CONTRACTS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2495
+  },
+  {
+   "a": "FED_EPA_NPDES_ICIS_FACILITIES",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2470
+  },
+  {
+   "a": "FED_IRS_BMF",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 2460
+  },
+  {
+   "a": "FED_FAC_SINGLE_AUDIT",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2420
+  },
+  {
+   "a": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2385
+  },
+  {
+   "a": "FED_IRS_BMF",
+   "b": "FED_USASPENDING_CONTRACTS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2323
+  },
+  {
+   "a": "FED_FAC_SINGLE_AUDIT",
+   "b": "FED_USASPENDING_CONTRACTS",
+   "id_type": "UEI",
+   "tier": "STEEL",
+   "matched_records": 2316
+  },
+  {
+   "a": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2302
+  },
+  {
+   "a": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+   "b": "FED_FAC_SINGLE_AUDIT",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2299
+  },
+  {
+   "a": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2291
+  },
+  {
+   "a": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2291
+  },
+  {
+   "a": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2225
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PROVIDER",
+   "b": "FED_EPA_RCRA_RCRA_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2173
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "b": "FED_EPA_RCRA_RCRA_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2173
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "b": "FED_EPA_RCRA_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2173
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PROVIDER",
+   "b": "FED_EPA_RCRA_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2173
+  },
+  {
+   "a": "FED_FAC_SINGLE_AUDIT",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2158
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "b": "FED_EPA_RCRA_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2131
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "b": "FED_EPA_RCRA_RCRA_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2131
+  },
+  {
+   "a": "FED_FAC_SINGLE_AUDIT",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2076
+  },
+  {
+   "a": "FED_FAC_SINGLE_AUDIT",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 2065
+  },
+  {
+   "a": "FED_FAC_SINGLE_AUDIT",
+   "b": "FED_USASPENDING_CONTRACTS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2034
+  },
+  {
+   "a": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 2023
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "b": "FED_FAC_SINGLE_AUDIT",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1995
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PROVIDER",
+   "b": "FED_FAC_SINGLE_AUDIT",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1995
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "b": "FED_FAC_SINGLE_AUDIT",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1990
+  },
+  {
+   "a": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1990
+  },
+  {
+   "a": "FED_CMS_HCRIS",
+   "b": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1930
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "b": "FED_IRS_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1888
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PROVIDER",
+   "b": "FED_IRS_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1888
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "b": "FED_IRS_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1875
+  },
+  {
+   "a": "FED_CMS_HCRIS",
+   "b": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1863
+  },
+  {
+   "a": "FED_CMS_HCRIS",
+   "b": "FED_EPA_FRS_FULL",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1830
+  },
+  {
+   "a": "FED_CMS_POS_OTHER",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1823
+  },
+  {
+   "a": "FED_CMS_POS_OTHER",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1813
+  },
+  {
+   "a": "FED_CMS_POS_OTHER",
+   "b": "FED_IRS_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1800
+  },
+  {
+   "a": "FED_CMS_POS_OTHER",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1795
+  },
+  {
+   "a": "FED_FAC_SINGLE_AUDIT",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 1777
+  },
+  {
+   "a": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "b": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1754
+  },
+  {
+   "a": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "b": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1754
+  },
+  {
+   "a": "FED_IRS_BMF",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 1651
+  },
+  {
+   "a": "FED_CMS_POS_OTHER",
+   "b": "FED_FAC_SINGLE_AUDIT",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1604
+  },
+  {
+   "a": "FED_EPA_FRS_FULL",
+   "b": "FED_IRS_AUTO_REVOCATIONS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1567
+  },
+  {
+   "a": "FED_EPA_FRS_FULL",
+   "b": "FED_IRS_REVOCATION",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1565
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1550
+  },
+  {
+   "a": "FED_CMS_HCRIS",
+   "b": "FED_EPA_FRS_FRS_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1545
+  },
+  {
+   "a": "FED_FAC_SINGLE_AUDIT",
+   "b": "FED_IRS_AUTO_REVOCATIONS",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 1520
+  },
+  {
+   "a": "FED_FAC_SINGLE_AUDIT",
+   "b": "FED_IRS_REVOCATION",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 1509
+  },
+  {
+   "a": "FED_CMS_HCRIS",
+   "b": "FED_EPA_ECHO",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1483
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "b": "FED_IRS_EO_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1473
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_EPA_FRS_FULL",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1424
+  },
+  {
+   "a": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "b": "FED_EPA_FRS_FULL",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1419
+  },
+  {
+   "a": "FED_EPA_NPDES_ICIS_FACILITIES",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1405
+  },
+  {
+   "a": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1397
+  },
+  {
+   "a": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1397
+  },
+  {
+   "a": "FED_CMS_HCRIS",
+   "b": "FED_EPA_RCRA_RCRA_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1356
+  },
+  {
+   "a": "FED_CMS_HCRIS",
+   "b": "FED_EPA_RCRA_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1356
+  },
+  {
+   "a": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "b": "FED_USASPENDING_CONTRACTS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1353
+  },
+  {
+   "a": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "b": "FED_USASPENDING_CONTRACTS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1353
+  },
+  {
+   "a": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "b": "FED_FAC_SINGLE_AUDIT",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1317
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1306
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1305
+  },
+  {
+   "a": "FED_IRS_EO_BMF",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 1298
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_IRS_EO_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1288
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1270
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_FACILITIES",
+   "b": "FED_IRS_EO_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1264
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_EPA_FRS_FRS_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1253
+  },
+  {
+   "a": "FED_FAC_SINGLE_AUDIT",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 1232
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_EPA_ECHO",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1208
+  },
+  {
+   "a": "FED_CMS_HCRIS",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1206
+  },
+  {
+   "a": "FED_CMS_POS_OTHER",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1206
+  },
+  {
+   "a": "FED_IRS_EO_BMF",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 1191
+  },
+  {
+   "a": "FED_CMS_HCRIS",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1177
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_EPA_RCRA_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1166
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_EPA_RCRA_RCRA_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1166
+  },
+  {
+   "a": "FED_CMS_HCRIS",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1165
+  },
+  {
+   "a": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "b": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1163
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PROVIDER",
+   "b": "FED_EPA_NPDES_ICIS_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1129
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "b": "FED_EPA_NPDES_ICIS_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1129
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "b": "FED_EPA_NPDES_ICIS_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1126
+  },
+  {
+   "a": "FED_IRS_BMF",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1113
+  },
+  {
+   "a": "FED_IRS_EO_BMF",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 1072
+  },
+  {
+   "a": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "b": "FED_EPA_ECHO",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1063
+  },
+  {
+   "a": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "b": "FED_EPA_FRS_FRS_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1054
+  },
+  {
+   "a": "FED_CMS_POS_OTHER",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 1040
+  },
+  {
+   "a": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 974
+  },
+  {
+   "a": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 974
+  },
+  {
+   "a": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "b": "FED_EPA_RCRA_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 967
+  },
+  {
+   "a": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "b": "FED_EPA_RCRA_RCRA_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 967
+  },
+  {
+   "a": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "b": "FED_USASPENDING_CONTRACTS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 930
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "b": "FED_IRS_AUTO_REVOCATIONS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 923
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+   "b": "FED_IRS_REVOCATION",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 923
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 917
+  },
+  {
+   "a": "FED_EPA_RCRA_FACILITIES",
+   "b": "FED_IRS_EO_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 907
+  },
+  {
+   "a": "FED_EPA_RCRA_RCRA_FACILITIES",
+   "b": "FED_IRS_EO_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 907
+  },
+  {
+   "a": "FED_CMS_HCRIS",
+   "b": "FED_IRS_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 893
+  },
+  {
+   "a": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "b": "FED_IRS_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 874
+  },
+  {
+   "a": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "b": "FED_IRS_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 874
+  },
+  {
+   "a": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+   "b": "FED_IRS_EO_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 857
+  },
+  {
+   "a": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 855
+  },
+  {
+   "a": "FED_FAC_SINGLE_AUDIT",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 853
+  },
+  {
+   "a": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "b": "FED_FAC_SINGLE_AUDIT",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 846
+  },
+  {
+   "a": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "b": "FED_FAC_SINGLE_AUDIT",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 846
+  },
+  {
+   "a": "FED_FAC_SINGLE_AUDIT",
+   "b": "FED_IRS_AUTO_REVOCATIONS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 845
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 842
+  },
+  {
+   "a": "FED_FAC_SINGLE_AUDIT",
+   "b": "FED_IRS_REVOCATION",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 841
+  },
+  {
+   "a": "FED_CMS_HCRIS",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 837
+  },
+  {
+   "a": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "b": "FED_USASPENDING_CONTRACTS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 787
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_IRS_AUTO_REVOCATIONS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 785
+  },
+  {
+   "a": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "b": "FED_USASPENDING_CONTRACTS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 784
+  },
+  {
+   "a": "FED_EPA_ECHO",
+   "b": "FED_IRS_REVOCATION",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 784
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_FACILITIES",
+   "b": "FED_IRS_REVOCATION",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 777
+  },
+  {
+   "a": "FED_EPA_FRS_FRS_FACILITIES",
+   "b": "FED_IRS_AUTO_REVOCATIONS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 777
+  },
+  {
+   "a": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 771
+  },
+  {
+   "a": "FED_IRS_BMF",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 764
+  },
+  {
+   "a": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+   "b": "FED_IRS_AUTO_REVOCATIONS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 741
+  },
+  {
+   "a": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+   "b": "FED_IRS_REVOCATION",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 739
+  },
+  {
+   "a": "FED_CMS_POS_OTHER",
+   "b": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 733
+  },
+  {
+   "a": "FED_CMS_POS_OTHER",
+   "b": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 733
+  },
+  {
+   "a": "FED_CMS_POS_OTHER",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 728
+  },
+  {
+   "a": "FED_CMS_HCRIS",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 717
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 681
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PROVIDER",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 681
+  },
+  {
+   "a": "FED_FAC_SINGLE_AUDIT",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 677
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 673
+  },
+  {
+   "a": "FED_CMS_HCRIS",
+   "b": "FED_FAC_SINGLE_AUDIT",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 642
+  },
+  {
+   "a": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "b": "FED_IRS_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 618
+  },
+  {
+   "a": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 589
+  },
+  {
+   "a": "FED_CMS_HCRIS",
+   "b": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 588
+  },
+  {
+   "a": "FED_CMS_HCRIS",
+   "b": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 588
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PROVIDER",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 567
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 567
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 560
+  },
+  {
+   "a": "FED_IRS_EO_BMF",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 560
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PROVIDER",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 560
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 559
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "b": "FED_IRS_EO_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 558
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PROVIDER",
+   "b": "FED_IRS_EO_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 558
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "b": "FED_IRS_EO_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 555
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 554
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 554
+  },
+  {
+   "a": "FED_CMS_HCRIS",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 553
+  },
+  {
+   "a": "FED_IRS_EO_BMF",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 545
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "b": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 535
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PROVIDER",
+   "b": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 535
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "b": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 533
+  },
+  {
+   "a": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "b": "FED_USASPENDING_CONTRACTS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 515
+  },
+  {
+   "a": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 497
+  },
+  {
+   "a": "FED_IRS_BMF",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 485
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "b": "FED_USASPENDING_CONTRACTS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 475
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PROVIDER",
+   "b": "FED_USASPENDING_CONTRACTS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 475
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "b": "FED_USASPENDING_CONTRACTS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 470
+  },
+  {
+   "a": "FED_IRS_EO_BMF",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 459
+  },
+  {
+   "a": "FED_FAC_SINGLE_AUDIT",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 456
+  },
+  {
+   "a": "FED_EPA_RCRA_RCRA_FACILITIES",
+   "b": "FED_IRS_REVOCATION",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 451
+  },
+  {
+   "a": "FED_EPA_RCRA_FACILITIES",
+   "b": "FED_IRS_AUTO_REVOCATIONS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 451
+  },
+  {
+   "a": "FED_EPA_RCRA_RCRA_FACILITIES",
+   "b": "FED_IRS_AUTO_REVOCATIONS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 451
+  },
+  {
+   "a": "FED_EPA_RCRA_FACILITIES",
+   "b": "FED_IRS_REVOCATION",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 451
+  },
+  {
+   "a": "FED_CMS_POS_OTHER",
+   "b": "FED_EPA_NPDES_ICIS_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 450
+  },
+  {
+   "a": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+   "b": "FED_USASPENDING_CONTRACTS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 447
+  },
+  {
+   "a": "FED_IRS_EO_BMF",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 422
+  },
+  {
+   "a": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 387
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 379
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 379
+  },
+  {
+   "a": "FED_IRS_EO_BMF",
+   "b": "FED_USASPENDING_CONTRACTS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 347
+  },
+  {
+   "a": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 340
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_FAC_SINGLE_AUDIT",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 337
+  },
+  {
+   "a": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "b": "FED_USASPENDING_CONTRACTS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 319
+  },
+  {
+   "a": "FED_EPA_NPDES_ICIS_FACILITIES",
+   "b": "FED_IRS_EO_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 317
+  },
+  {
+   "a": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "b": "FED_IRS_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 307
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PROVIDER",
+   "b": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 304
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "b": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 304
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "b": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 301
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_IRS_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 297
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "b": "FED_CMS_POS_OTHER",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 296
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PROVIDER",
+   "b": "FED_CMS_POS_OTHER",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 296
+  },
+  {
+   "a": "FED_CMS_POS_OTHER",
+   "b": "FED_IRS_EO_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 292
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "b": "FED_CMS_POS_OTHER",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 277
+  },
+  {
+   "a": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "b": "FED_IRS_EO_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 274
+  },
+  {
+   "a": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "b": "FED_IRS_EO_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 274
+  },
+  {
+   "a": "FED_CMS_HCRIS",
+   "b": "FED_EPA_NPDES_ICIS_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 263
+  },
+  {
+   "a": "FED_IRS_EO_BMF",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 253
+  },
+  {
+   "a": "FED_EPA_NPDES_ICIS_FACILITIES",
+   "b": "FED_IRS_AUTO_REVOCATIONS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 245
+  },
+  {
+   "a": "FED_EPA_NPDES_ICIS_FACILITIES",
+   "b": "FED_IRS_REVOCATION",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 245
+  },
+  {
+   "a": "FED_CMS_POS_OTHER",
+   "b": "FED_IRS_AUTO_REVOCATIONS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 244
+  },
+  {
+   "a": "FED_CMS_POS_OTHER",
+   "b": "FED_IRS_REVOCATION",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 243
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PROVIDER",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 224
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 224
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 220
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "b": "FED_IRS_AUTO_REVOCATIONS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 211
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PROVIDER",
+   "b": "FED_IRS_AUTO_REVOCATIONS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 211
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_EPA_NPDES_ICIS_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 210
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "b": "FED_IRS_REVOCATION",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 210
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "b": "FED_IRS_AUTO_REVOCATIONS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 210
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PROVIDER",
+   "b": "FED_IRS_REVOCATION",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 210
+  },
+  {
+   "a": "FED_IRS_EO_BMF",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 209
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "b": "FED_IRS_REVOCATION",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 209
+  },
+  {
+   "a": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "b": "FED_CMS_POS_OTHER",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 205
+  },
+  {
+   "a": "FED_IRS_EO_BMF",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 202
+  },
+  {
+   "a": "FED_CMS_POS_OTHER",
+   "b": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 188
+  },
+  {
+   "a": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "b": "FED_FAC_SINGLE_AUDIT",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 187
+  },
+  {
+   "a": "FED_CMS_POS_OTHER",
+   "b": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 183
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "b": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 173
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "b": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 173
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PROVIDER",
+   "b": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 173
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PROVIDER",
+   "b": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 173
+  },
+  {
+   "a": "FED_IRS_AUTO_REVOCATIONS",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 172
+  },
+  {
+   "a": "FED_IRS_REVOCATION",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 171
+  },
+  {
+   "a": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 170
+  },
+  {
+   "a": "FED_CMS_POS_OTHER",
+   "b": "FED_USASPENDING_CONTRACTS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 170
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "b": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 169
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "b": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 169
+  },
+  {
+   "a": "FED_CMS_HCRIS",
+   "b": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 160
+  },
+  {
+   "a": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 157
+  },
+  {
+   "a": "FED_IRS_AUTO_REVOCATIONS",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 155
+  },
+  {
+   "a": "FED_IRS_REVOCATION",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 155
+  },
+  {
+   "a": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "b": "FED_IRS_EO_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 149
+  },
+  {
+   "a": "FED_CMS_HCRIS",
+   "b": "FED_IRS_EO_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 147
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 145
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PROVIDER",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 145
+  },
+  {
+   "a": "FED_IRS_AUTO_REVOCATIONS",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 143
+  },
+  {
+   "a": "FED_IRS_REVOCATION",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 143
+  },
+  {
+   "a": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 142
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 141
+  },
+  {
+   "a": "FED_IRS_AUTO_REVOCATIONS",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 132
+  },
+  {
+   "a": "FED_IRS_REVOCATION",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 130
+  },
+  {
+   "a": "FED_CMS_HCRIS",
+   "b": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 126
+  },
+  {
+   "a": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "b": "FED_IRS_REVOCATION",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 117
+  },
+  {
+   "a": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "b": "FED_IRS_AUTO_REVOCATIONS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 117
+  },
+  {
+   "a": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "b": "FED_IRS_REVOCATION",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 117
+  },
+  {
+   "a": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "b": "FED_IRS_AUTO_REVOCATIONS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 117
+  },
+  {
+   "a": "FED_IRS_REVOCATION",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 111
+  },
+  {
+   "a": "FED_IRS_AUTO_REVOCATIONS",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 111
+  },
+  {
+   "a": "FED_IRS_REVOCATION",
+   "b": "FED_USASPENDING_CONTRACTS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 111
+  },
+  {
+   "a": "FED_IRS_AUTO_REVOCATIONS",
+   "b": "FED_USASPENDING_CONTRACTS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 111
+  },
+  {
+   "a": "FED_CMS_HCRIS",
+   "b": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 107
+  },
+  {
+   "a": "FED_CMS_HCRIS",
+   "b": "FED_CMS_MEDICARE_PROVIDER",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 107
+  },
+  {
+   "a": "FED_CMS_HCRIS",
+   "b": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 105
+  },
+  {
+   "a": "FED_IRS_REVOCATION",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 104
+  },
+  {
+   "a": "FED_IRS_AUTO_REVOCATIONS",
+   "b": "FED_OSHA_ITA_300A_SUMMARY_2025",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 104
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PROVIDER",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 102
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 102
+  },
+  {
+   "a": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "b": "FED_IRS_REVOCATION",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 101
+  },
+  {
+   "a": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "b": "FED_IRS_AUTO_REVOCATIONS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 101
+  },
+  {
+   "a": "FED_CMS_HCRIS",
+   "b": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 100
+  },
+  {
+   "a": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 99
+  },
+  {
+   "a": "FED_CMS_HCRIS",
+   "b": "FED_USASPENDING_CONTRACTS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 95
+  },
+  {
+   "a": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "b": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 91
+  },
+  {
+   "a": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "b": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 91
+  },
+  {
+   "a": "FED_CMS_HCRIS",
+   "b": "FED_IRS_REVOCATION",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 86
+  },
+  {
+   "a": "FED_CMS_HCRIS",
+   "b": "FED_IRS_AUTO_REVOCATIONS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 86
+  },
+  {
+   "a": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "b": "FED_EPA_NPDES_ICIS_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 84
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 80
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 64
+  },
+  {
+   "a": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 61
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 59
+  },
+  {
+   "a": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 57
+  },
+  {
+   "a": "FED_IRS_REVOCATION",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 57
+  },
+  {
+   "a": "FED_IRS_AUTO_REVOCATIONS",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 57
+  },
+  {
+   "a": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "b": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 56
+  },
+  {
+   "a": "FED_IRS_EO_BMF",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 55
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 51
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_CMS_MEDICARE_PROVIDER",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 51
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 50
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_IRS_REVOCATION",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 49
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_IRS_AUTO_REVOCATIONS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 49
+  },
+  {
+   "a": "FED_IRS_AUTO_REVOCATIONS",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 47
+  },
+  {
+   "a": "FED_IRS_REVOCATION",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2023",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 46
+  },
+  {
+   "a": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 45
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_USASPENDING_CONTRACTS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 39
+  },
+  {
+   "a": "FED_IRS_REVOCATION",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 38
+  },
+  {
+   "a": "FED_IRS_AUTO_REVOCATIONS",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 38
+  },
+  {
+   "a": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "b": "FED_IRS_EO_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 37
+  },
+  {
+   "a": "FED_IRS_AUTO_REVOCATIONS",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 33
+  },
+  {
+   "a": "FED_IRS_REVOCATION",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2024",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 33
+  },
+  {
+   "a": "FED_IRS_EO_BMF",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 32
+  },
+  {
+   "a": "FED_IRS_REVOCATION",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 25
+  },
+  {
+   "a": "FED_IRS_AUTO_REVOCATIONS",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "EIN",
+   "tier": "STEEL",
+   "matched_records": 25
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "id_type": "NPI",
+   "tier": "STEEL",
+   "matched_records": 24
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_CMS_MEDICARE_PROVIDER",
+   "id_type": "NPI",
+   "tier": "STEEL",
+   "matched_records": 24
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "id_type": "NPI",
+   "tier": "STEEL",
+   "matched_records": 24
+  },
+  {
+   "a": "FED_IRS_REVOCATION",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 24
+  },
+  {
+   "a": "FED_IRS_AUTO_REVOCATIONS",
+   "b": "FED_OSHA_ITA_CASE_DETAIL_2025",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 24
+  },
+  {
+   "a": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "b": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 23
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_IRS_EO_BMF",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 20
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "b": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "id_type": "NPI",
+   "tier": "STEEL",
+   "matched_records": 14
+  },
+  {
+   "a": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "b": "FED_IRS_REVOCATION",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 10
+  },
+  {
+   "a": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+   "b": "FED_IRS_AUTO_REVOCATIONS",
+   "id_type": "NAME@ZIP",
+   "tier": "CORROBORATED",
+   "matched_records": 10
+  }
+ ]
+}
