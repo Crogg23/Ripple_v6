@@ -35,6 +35,8 @@ WITH latest_run AS (
 landed AS (
     SELECT LOWER(TABLE_NAME) AS sid, TABLE_NAME, ROW_COUNT AS land_rows
     FROM LIBRARY_RAW.INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='LANDING'
+      -- stray Snowpark scratch tables must never count as landed sources
+      AND TABLE_NAME NOT ILIKE 'SNOWPARK_TEMP_TABLE_%'
 ),
 marts AS (
     SELECT LOWER(SPLIT_PART(TABLE_NAME,'__',2)) AS sid, SUM(ROW_COUNT) AS mart_rows
