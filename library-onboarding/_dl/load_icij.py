@@ -2,7 +2,7 @@ import sys, hashlib, time
 sys.path.insert(0, r"c:\Code\Ripple_v6\library-onboarding")
 import pandas as pd
 from snow import connect
-from ingest import _load_landing, _sf_col
+from ingest import _load_landing, _sf_col, assess_density
 
 conn = connect()
 run_id = f"manual-{int(time.time())}"
@@ -17,6 +17,7 @@ files = {
 
 base = r"c:\Code\Ripple_v6\library-onboarding\_dl\icij_extract"
 
+gate_failed = []
 for table, fname in files.items():
     path = f"{base}\\{fname}"
     sha = hashlib.sha256(open(path, "rb").read()).hexdigest()
@@ -27,8 +28,17 @@ for table, fname in files.items():
     df["_SRC_SHA256"] = sha
     print(table, "rows:", len(df))
     _load_landing(conn, df, table, overwrite=True)
+    # QUALITY GATE: same density gate ingest.py's own run_ingest() uses -- a load
+    # that landed but carries no real data (parse failure / schema drift) must not
+    # be waved through as a clean success.
+    dens = assess_density(df)
+    if dens["empty"]:
+        print(f"  QUALITY GATE FAILED for {table}: {dens['reason']} ({dens})")
+        gate_failed.append(table)
     cur = conn.cursor()
     cur.execute(f"select count(*), count(distinct node_id) from library_raw.landing.{table}" if "NODE_ID" in df.columns else f"select count(*) from library_raw.landing.{table}")
     print(" ->", cur.fetchall())
 
 print("done")
+if gate_failed:
+    raise RuntimeError(f"QUALITY GATE FAILED for: {', '.join(gate_failed)}")

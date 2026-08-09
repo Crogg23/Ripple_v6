@@ -45,6 +45,7 @@ except Exception:  # pragma: no cover
 import ingest        # noqa: E402
 import register      # noqa: E402
 import snow          # noqa: E402
+import _bulk_load_utils as bulk  # noqa: E402
 from config import settings  # noqa: E402
 
 SID = "fed_sam_exclusions"
@@ -205,11 +206,23 @@ def main(argv=None) -> int:
         if buf:
             _land(conn, buf, overwrite=first, run_id=run_id, started=started)
             total += len(buf)
-        ended = ingest._utcnow()
-        ingest._log_run(conn, SID, run_id, "success", total, None, "",
-                        API, started, ended,
-                        f"SAM exclusions. {total:,} rows landed"
-                        + (f"; {len(skipped)} pages skipped ({skipped[:10]})" if skipped else "."))
+        # Quality gate (was: hardcoded ingest._log_run(..., "success", ...) with NO
+        # check ever run first). This is the loader with the DOCUMENTED live incident:
+        # ingest._latest_success_rows()'s own docstring cites "the SAM exclusions
+        # failure: 1k landed of ~167k, logged 'success'" as the reason the never-
+        # shrink floor exists -- and this exact function is the source of that bug.
+        # `tot` is SAM's own reported totalRecords for this run, fetched live from
+        # the API, so expected_min_rows below is grounded in a real number rather
+        # than a guess; the 50,000 fallback (if the API never told us a total) is
+        # well under the documented ~167k volume but still would have caught that
+        # exact 1k-of-167k incident.
+        floor = int(tot * 0.5) if tot else 50_000
+        passed, report = bulk.run_quality_gate(
+            conn, SID, TABLE, run_id, row_count=total,
+            source_url=API, expected_min_rows=floor)
+        if not passed:
+            print(f"QUALITY GATE FAILED {TABLE}: {report}")
+            return 1
         _register(conn, total)
         print(f"\nLOADED {total:,} rows -> LIBRARY_RAW.LANDING.{TABLE}; "
               f"{len(skipped)} pages skipped; registered INCLUDE=Y")

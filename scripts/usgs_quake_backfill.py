@@ -55,6 +55,7 @@ except Exception:  # pragma: no cover
 import ingest        # noqa: E402
 import register      # noqa: E402
 import snow          # noqa: E402
+import _bulk_load_utils as bulk  # noqa: E402
 from config import settings  # noqa: E402
 from snowflake.connector.pandas_tools import write_pandas  # noqa: E402
 
@@ -210,13 +211,23 @@ def main() -> int:
             total_rows += wrote
             print(f"  {a:%Y-%m}: {wrote:>6,} rows  (running {total_rows:,})", flush=True)
 
-        ended = ingest._utcnow()
         final_sha = sha.hexdigest()
-        ingest._log_run(conn, SID, run_id, "success", total_rows, len(final_sha), final_sha,
-                        f"{BASE}/query?format=csv&minmagnitude={MIN_MAG}",
-                        started, ended,
-                        f"USGS full-history backfill {start}..{end}: snapshot-replaced "
-                        f"with {total_rows:,} rows across {len(windows)} monthly windows")
+        # Quality gate (was: hardcoded ingest._log_run(..., "success", ...) with NO
+        # check ever run first -- a broken pagination window or a USGS outage
+        # returning empty CSVs would still count as a clean "success" run). `total`
+        # was already fetched from USGS's own /count endpoint for this EXACT window
+        # before any paginated fetching started (it's used above for the preview
+        # and the cap-safety sample), so it's a real, source-confirmed expected
+        # count rather than a guess. expected_min_rows uses 90% of it to allow for
+        # the small amount of near-realtime drift between that count check and the
+        # paginated fetch that follows it.
+        passed, report = bulk.run_quality_gate(
+            conn, SID, TABLE, run_id, sha256=final_sha, row_count=total_rows,
+            source_url=f"{BASE}/query?format=csv&minmagnitude={MIN_MAG}",
+            expected_min_rows=int(total * 0.9))
+        if not passed:
+            print(f"QUALITY GATE FAILED {TABLE}: {report}")
+            return 1
 
         # re-register (snapshot -> time series; loaders may register autonomously)
         try:

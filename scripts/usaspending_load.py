@@ -46,6 +46,7 @@ except Exception:  # pragma: no cover
 import ingest        # noqa: E402
 import register      # noqa: E402
 import snow          # noqa: E402
+import _bulk_load_utils as bulk  # noqa: E402
 from config import settings  # noqa: E402
 
 SID = "fed_usaspending_contracts"
@@ -216,9 +217,22 @@ def main(argv=None) -> int:
             allshas += shas
             print(f"    month {s[:7]}: {appended:,} rows  (grand total {total:,})", flush=True)
         manifest = hashlib.sha256("".join(allshas).encode()).hexdigest()
-        ended = ingest._utcnow()
-        ingest._log_run(conn, SID, run_id, "success", total, None, manifest, API, started, ended,
-                        f"USASpending prime contracts {args.start}..{args.end} (monthly). {total:,} rows.")
+        # Quality gate (was: hardcoded ingest._log_run(..., "success", ...) with NO
+        # check ever run first -- a dead download job or an all-blank zip would land
+        # 0/garbage rows and still get logged clean, the same failure mode that has
+        # already bitten this platform twice (NPPES EIN, NOAA_AIS imo_number, both
+        # sentinel-masked blanks that looked 100% populated). 100 is a deliberately
+        # loose floor: real full-agency federal contract-action volume for even a
+        # single day is orders of magnitude higher than that; it exists purely to
+        # catch a dead scrape, not to police normal variance. The >50% shrink guard
+        # inside run_quality_gate (vs this SID's last successful row count) is the
+        # real defense against a partial-but-nonzero bad pull on a repeat run.
+        passed, report = bulk.run_quality_gate(
+            conn, SID, TABLE, run_id, sha256=manifest, row_count=total,
+            source_url=API, expected_min_rows=100)
+        if not passed:
+            print(f"QUALITY GATE FAILED {TABLE}: {report}")
+            return 1
         _register(conn, args.start, args.end, total)
         print(f"\nLOADED {total:,} rows -> LIBRARY_RAW.LANDING.{TABLE}; registered INCLUDE=Y")
     finally:

@@ -2,7 +2,7 @@ import sys, hashlib, time
 sys.path.insert(0, r"c:\Code\Ripple_v6\library-onboarding")
 import pandas as pd, openpyxl
 from snow import connect
-from ingest import _load_landing, _sf_col
+from ingest import _load_landing, _sf_col, assess_density
 
 conn = connect()
 run_id = f"manual-{int(time.time())}"
@@ -12,6 +12,7 @@ files = {
     "FED_OCC_THRIFTS": ("occ_thrifts_by_name.xlsx", "federal thrift"),
 }
 
+gate_failed = []
 for table, (fname, kind) in files.items():
     path = f"c:\\Code\\Ripple_v6\\library-onboarding\\_dl\\{fname}"
     sha = hashlib.sha256(open(path, "rb").read()).hexdigest()
@@ -35,5 +36,14 @@ for table, (fname, kind) in files.items():
     df["_SRC_SHA256"] = sha
     print(table, "rows:", len(df), list(df.columns))
     _load_landing(conn, df, table, overwrite=True)
+    # QUALITY GATE: same density gate ingest.py's own run_ingest() uses -- a load
+    # that landed but carries no real data (parse failure / schema drift) must not
+    # be waved through as a clean success.
+    dens = assess_density(df)
+    if dens["empty"]:
+        print(f"  QUALITY GATE FAILED for {table}: {dens['reason']} ({dens})")
+        gate_failed.append(table)
 
 print("done")
+if gate_failed:
+    raise RuntimeError(f"QUALITY GATE FAILED for: {', '.join(gate_failed)}")

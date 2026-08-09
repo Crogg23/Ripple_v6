@@ -3,7 +3,7 @@ sys.path.insert(0, r"c:\Code\Ripple_v6\library-onboarding")
 import zipfile
 import pandas as pd
 from snow import connect
-from ingest import _load_landing
+from ingest import _load_landing, assess_density
 
 ZIP_PATH = r"c:\Code\Ripple_v6\library-onboarding\_dl\ch_psc_snapshot.zip"
 INNER = "persons-with-significant-control-snapshot-2026-08-05.txt"
@@ -12,6 +12,8 @@ CHUNK = 250_000
 
 conn = connect()
 run_id = f"manual-{int(time.time())}"
+gate_failed = []
+chunk_num = 0
 
 def flat(rec):
     d = rec.get("data", {}) or {}
@@ -48,12 +50,21 @@ def flat(rec):
     }
 
 def load_chunk(rows, overwrite):
+    global chunk_num
+    chunk_num += 1
     df = pd.DataFrame(rows)
     df = df.astype(object).where(pd.notnull(df), None).astype(str)
     df["_INGESTED_AT"] = int(time.time() * 1_000_000)
     df["_SOURCE_RUN_ID"] = run_id
     df["_SRC_SHA256"] = "streamed-see-source-zip"
     _load_landing(conn, df, TABLE, overwrite=overwrite)
+    # QUALITY GATE: same density gate ingest.py's own run_ingest() uses -- a load
+    # that landed but carries no real data (parse failure / schema drift) must not
+    # be waved through as a clean success.
+    dens = assess_density(df)
+    if dens["empty"]:
+        print(f"  QUALITY GATE FAILED for chunk {chunk_num}: {dens['reason']} ({dens})", flush=True)
+        gate_failed.append(f"chunk {chunk_num}")
 
 sha = hashlib.sha256()
 z = zipfile.ZipFile(ZIP_PATH)
@@ -82,3 +93,5 @@ with z.open(INNER) as f:
         print("loaded", total, flush=True)
 
 print("TOTAL ROWS:", total)
+if gate_failed:
+    raise RuntimeError(f"QUALITY GATE FAILED for: {', '.join(gate_failed)}")

@@ -2,7 +2,7 @@ import sys, hashlib, time
 sys.path.insert(0, r"c:\Code\Ripple_v6\library-onboarding")
 import pandas as pd
 from snow import connect
-from ingest import _load_landing, _sf_col
+from ingest import _load_landing, _sf_col, assess_density
 
 path = r"c:\Code\Ripple_v6\library-onboarding\_dl\opensanctions_targets.csv"
 sha = hashlib.sha256(open(path, "rb").read()).hexdigest()
@@ -17,6 +17,14 @@ print("rows to load:", len(df), "cols:", list(df.columns))
 
 conn = connect()
 _load_landing(conn, df, "INTL_OPENSANCTIONS_DEFAULT", overwrite=True)
+# QUALITY GATE: same density gate ingest.py's own run_ingest() uses -- a load
+# that landed but carries no real data (parse failure / schema drift) must not
+# be waved through as a clean success.
+dens = assess_density(df)
+if dens["empty"]:
+    raise RuntimeError(
+        f"QUALITY GATE FAILED for INTL_OPENSANCTIONS_DEFAULT: {dens['reason']} ({dens})"
+    )
 print("loaded.")
 
 cur = conn.cursor()

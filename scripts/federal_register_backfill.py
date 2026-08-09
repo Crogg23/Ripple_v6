@@ -53,6 +53,7 @@ import requests
 _REPO = Path(__file__).resolve().parents[1]
 _LIB = _REPO / "library-onboarding"
 sys.path.insert(0, str(_LIB))
+sys.path.insert(0, str(_REPO / "scripts"))
 try:
     from dotenv import load_dotenv
     load_dotenv(_LIB / ".env", override=True)
@@ -63,6 +64,7 @@ import ingest        # noqa: E402
 import snow          # noqa: E402
 from config import settings  # noqa: E402
 from snowflake.connector.pandas_tools import write_pandas  # noqa: E402
+import _bulk_load_utils as bulk  # noqa: E402
 
 TABLE = "FED_FEDERAL_REGISTER_DOCUMENTS"
 SID = "fed_federal_register_documents"
@@ -274,11 +276,18 @@ def main() -> int:
                     f"WHERE {ingest.META_SOURCE_RUN_ID} = %s", (full_sha, run_id))
         cur.close()
 
-        ended = ingest._utcnow()
-        ingest._log_run(conn, SID, run_id, "success", appended, 0, full_sha,
-                        f"{API}?gte={gte}&lte={lte}", started, ended,
-                        f"Federal Register backfill {gte}..{lte}: snapshot-replaced "
-                        f"{appended:,} documents across {len(windows)} monthly windows.")
+        # Quality gate (audit 2026-08-08 finding: this loader hardcoded status="success"
+        # with no real density/row-count check first -- a dead API pull that silently
+        # returned zero/few docs would have snapshot-replaced the table and still logged
+        # clean. `total` above is the API's OWN pre-run count for this exact window, so
+        # it doubles as the row-count hint for the gate floor (with slack for the small
+        # drift between the count call and the fetch).
+        expected_min_rows = max(1, int(total * 0.8))
+        passed, report = bulk.run_quality_gate(
+            conn, SID, TABLE, run_id, sha256=full_sha,
+            source_url=f"{API}?gte={gte}&lte={lte}", expected_min_rows=expected_min_rows)
+        if not passed:
+            print(f"  QUALITY GATE FAILED: {report}")
 
         # ---- confirm the unlock ----
         cur = conn.cursor()
@@ -290,7 +299,7 @@ def main() -> int:
         cur.close()
         print(f"\nDONE: {appended:,} loaded. {TABLE} now = {cnt:,} rows, "
               f"{mn} .. {mx}, {ndates:,} distinct dates across {nyears} years.")
-        return 0
+        return 0 if passed else 1
     finally:
         conn.close()
 

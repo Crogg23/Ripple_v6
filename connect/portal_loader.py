@@ -341,9 +341,39 @@ def load_one(conn, rec: dict, max_rows: int, force: bool = False, refresh: bool 
         df = ingest._stringify(df)
 
         ingest._load_landing(conn, df, table, overwrite=True)
+
+        # DENSITY GATE (same lineage/logic as ingest.py's P0-1 fix, reused rather
+        # than reimplemented): a portal that returns rows which are all blank or
+        # degenerate -- parse failure, a dead endpoint serving an empty shell, an
+        # HTML error page paginated through as "data" -- must NOT be logged
+        # 'success' and ride into the catalog as a real source. A per-source
+        # expected_min_rows floor (the _bulk_load_utils.py lineage) doesn't fit
+        # here: this ONE driver stands behind ~729 wildly-different-sized portal
+        # datasets, so there's no single meaningful row-count floor to set. The
+        # ingest.py density gate needs no such calibration -- it floors on the
+        # FRACTION of populated cells plus shape-based structural checks (too few
+        # rows, only one column ever populated), so it works the same regardless
+        # of whether a portal normally returns 50 rows or 5 million. This loader
+        # always overwrites (snapshot, never incremental), so it opts into the
+        # same min-rows floor ingest.py uses for its own snapshot path.
+        density = ingest.assess_density(df, sample_rows=None, min_rows=ingest.DENSITY_MIN_ROWS)
+        if density["empty"]:
+            ingest._log_run(conn, sid, run_id, "empty", len(df),
+                            len(ingest._df_bytes(df)), sha, rec["SOURCE_URL"], started,
+                            ingest._utcnow(),
+                            f"EMPTY LOAD -- {density['reason']}. {ingest._density_note(density)}. "
+                            f"Bulk portal load ({rec['PLATFORM']}) landed {len(df)} rows into "
+                            f"LIBRARY_RAW.LANDING.{table} but the frame carries no real data "
+                            "(likely parse failure / dead endpoint / schema drift). Not "
+                            "registered in the catalog.")
+            return {"source_id": sid, "status": f"EMPTY -- {density['reason'][:80]}",
+                    "rows": len(df), "platform": rec["PLATFORM"], "empty": True}
+
         ingest._log_run(conn, sid, run_id, "success", len(df),
                         len(ingest._df_bytes(df)), sha, rec["SOURCE_URL"], started,
-                        ingest._utcnow(), f"Bulk portal load ({rec['PLATFORM']}) of {len(df)} rows.")
+                        ingest._utcnow(),
+                        f"Bulk portal load ({rec['PLATFORM']}) of {len(df)} rows. "
+                        f"{ingest._density_note(density)}.")
 
         jk = rec.get("JOIN_KEYS")
         join_keys = ", ".join(json.loads(jk) if isinstance(jk, str) else (jk or [])) if jk else ""

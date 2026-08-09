@@ -125,6 +125,18 @@ def main():
                 print(f"  QUALITY GATE FAILED {tbl}: loaded {n:,} < 98% of "
                       f"source-declared {expected:,}")
                 shortfalls.append(tbl)
+            # Density/regression gate + INGEST_RUNS row (this loader never wrote
+            # to INGEST_RUNS at all -- a dead-scrape with the right row count
+            # but blank columns, or silent drift on a later run, had nothing
+            # catching it). No expected_min_rows override: matches every other
+            # run_quality_gate() caller in scripts/ -- the source-declared-count
+            # check above is this loader's real row-count floor, so the gate
+            # here leans on the density + never-shrink-vs-last-run checks.
+            passed, report = bulk.run_quality_gate(
+                conn, tbl, tbl, str(uuid.uuid4()), row_count=n, source_url=url)
+            if not passed:
+                print(f"  QUALITY GATE FAILED {tbl}: {report}")
+                shortfalls.append(tbl)
     finally:
         conn.close()
     if shortfalls:

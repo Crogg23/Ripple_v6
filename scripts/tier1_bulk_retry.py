@@ -320,6 +320,21 @@ def main():
         try:
             n = loader(conn, entry, args.max_rows)
             print(f"  -> {n:,} rows loaded")
+            if n > 0:
+                # Quality gate + INGEST_RUNS row (this loader had no density/
+                # regression check at all -- a load could log rows with every
+                # column blank and nothing would catch it). No expected_min_rows
+                # override: matches every other run_quality_gate() caller in
+                # scripts/, which lean on the density + never-shrink-vs-last-run
+                # checks rather than a hardcoded floor.
+                passed, report = bulk.run_quality_gate(
+                    conn, entry["table"], entry["table"], str(uuid.uuid4()),
+                    row_count=n, source_url=entry["url"])
+                if not passed:
+                    print(f"  QUALITY GATE FAILED {entry['table']}: {report}")
+                    results.append({"name": entry["table"],
+                                     "error": f"DQ failed: {report}"[:200]})
+                    continue
             results.append({"name": entry["table"], "rows": n})
         except Exception as e:
             print(f"  FAILED: {str(e)[:200]}")
@@ -336,7 +351,7 @@ def main():
             print(f"  - {r['name']}: {r['error'][:80]}")
     print(f"{'='*60}")
     conn.close()
-    return 0
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":

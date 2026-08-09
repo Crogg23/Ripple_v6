@@ -62,6 +62,7 @@ except Exception:  # pragma: no cover
 import ingest        # noqa: E402
 import register      # noqa: E402
 import snow          # noqa: E402
+import _bulk_load_utils as bulk  # noqa: E402
 from config import settings  # noqa: E402
 from snowflake.connector.pandas_tools import write_pandas  # noqa: E402
 
@@ -329,11 +330,23 @@ def main() -> int:
                             f"PY2022 load failed after {progress['rows']:,} rows: "
                             f"{type(ex).__name__}: {str(ex)[:140]}")
             raise
-        ended = ingest._utcnow()
-        ingest._log_run(conn, SID, run_id, "success", rows, file_bytes, sha, URL,
-                        started, ended,
-                        f"CMS Open Payments PY2022 general-detail: snapshot-replace "
-                        f"load of {rows:,} rows into LIBRARY_RAW.LANDING.{TABLE}.")
+
+        # Quality gate (was: hardcoded ingest._log_run(..., "success", ...) with NO
+        # check ever run first). This is the exact loader reconcile_op2022.py exists
+        # to clean up after: the 2026-06-28 run threw an I/O error at EOF *after*
+        # every row had already landed, and the error path's hardcoded row_count=0
+        # got logged as the final state even though 13,250,000 good rows were sitting
+        # in the table. reconcile_op2022.py's ROWS=13_250_000 is that verified real
+        # count for THIS table; 10,000,000 below is a floor safely under it (room for
+        # CMS republication drift) but far above anything a truncated/degenerate
+        # parse could produce -- so a repeat of that incident, or a new one, now
+        # fails loudly instead of getting logged as a clean success.
+        passed, report = bulk.run_quality_gate(
+            conn, SID, TABLE, run_id, sha256=sha, row_count=rows,
+            source_url=URL, file_bytes=file_bytes, expected_min_rows=10_000_000)
+        if not passed:
+            print(f"QUALITY GATE FAILED {TABLE}: {report}")
+            return 1
         _register(conn, rows)
 
         # Confirm the unlock: PROGRAM_YEAR distribution in the new table.

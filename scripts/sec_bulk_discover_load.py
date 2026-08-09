@@ -168,7 +168,10 @@ def _load_json_dataset(conn, entry: dict, max_rows: int) -> int:
         resp.raise_for_status()
         data = resp.json()
         # Handle different JSON structures
-        if isinstance(data, dict):
+        if isinstance(data, dict) and "fields" in data and "data" in data:
+            # company_tickers_exchange.json: {"fields": [...], "data": [[...], ...]}
+            records = [dict(zip(data["fields"], row)) for row in data["data"]]
+        elif isinstance(data, dict):
             # company_tickers.json: {"0": {cik, ticker, title}, ...}
             records = list(data.values()) if all(isinstance(v, dict) for v in data.values()) else [data]
         elif isinstance(data, list):

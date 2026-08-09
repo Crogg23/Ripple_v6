@@ -65,6 +65,7 @@ import pandas as pd
 _REPO = Path(__file__).resolve().parents[1]
 _LIB = _REPO / "library-onboarding"
 sys.path.insert(0, str(_LIB))
+sys.path.insert(0, str(_REPO / "scripts"))
 try:
     from dotenv import load_dotenv
     load_dotenv(_LIB / ".env", override=True)
@@ -75,6 +76,7 @@ import ingest        # noqa: E402
 import snow          # noqa: E402
 from config import settings  # noqa: E402
 from snowflake.connector.pandas_tools import write_pandas  # noqa: E402
+import _bulk_load_utils as bulk  # noqa: E402
 
 TABLE = "FED_NOAA_STORM_EVENTS"
 SID = "fed_noaa_storm_events"
@@ -178,10 +180,9 @@ def _load_year(conn, year: int, fn: str, table_cols: list[str], run_id: str) -> 
             if not ok:
                 return False, f"write_pandas failed after {appended:,} rows"
             appended += len(out)
-        ended = ingest._utcnow()
-        ingest._log_run(conn, SID, run_id, "success", appended, size, sha, url,
-                        started, ended,
-                        f"Storm Events backfill {year}: appended {appended:,} rows from {fn}")
+        # NOTE: no per-year INGEST_RUNS write here (that used to hardcode status="success"
+        # with no check at all -- see the end-of-run quality gate in main()). Per-year
+        # provenance still lives in the YEAR column on the landing table itself.
         return True, f"appended {appended:,} rows ({size/1e6:.1f} MB gz)"
     except Exception as ex:  # noqa: BLE001
         return False, f"{type(ex).__name__}: {str(ex)[:160]}"
@@ -237,7 +238,18 @@ def main() -> int:
         cur.close()
         print(f"\nDONE: {ok} year(s) loaded, {fail} failed. "
               f"FED_NOAA_STORM_EVENTS now {n:,} rows spanning {yrs} year(s) ({mn}-{mx}).")
-        return 0 if fail == 0 else 1
+
+        # Quality gate (audit 2026-08-08 finding: this loader hardcoded status="success"
+        # per year with no real density/row-count check first -- a dead scrape or a
+        # garbage/empty year would have sailed through as a clean success. Gated once at
+        # the end of the whole backfill against the live table, mirroring
+        # fda_faers_load.py / hmda_historic_lar_load.py rather than per-chunk.
+        expected_min_rows = max(1, len(want) * 10_000)  # conservative floor; docs cite ~50k-80k rows/year
+        passed, report = bulk.run_quality_gate(
+            conn, SID, TABLE, run_id, source_url=BASE, expected_min_rows=expected_min_rows)
+        if not passed:
+            print(f"  QUALITY GATE FAILED: {report}")
+        return 0 if (fail == 0 and passed) else 1
     finally:
         conn.close()
 

@@ -65,16 +65,23 @@ def _landed_sources(conn, include_portal: bool):
     return out
 
 
+BLOB_TYPES = {"VARIANT", "OBJECT", "ARRAY"}
+
+
 def _data_columns(conn, table: str):
+    """Non-meta, non-blob column names -- semi-structured columns (raw JSON dumps)
+    aren't meaningfully profiled by a string-distinct check, so they're excluded
+    rather than counted as automatically degenerate."""
     cur = conn.cursor()
     try:
         cur.execute(
-            "SELECT column_name FROM LIBRARY_RAW.INFORMATION_SCHEMA.COLUMNS "
+            "SELECT column_name, data_type FROM LIBRARY_RAW.INFORMATION_SCHEMA.COLUMNS "
             "WHERE table_schema='LANDING' AND table_name=%s ORDER BY ordinal_position", (table,))
-        cols = [c[0] for c in cur.fetchall()]
+        rows = cur.fetchall()
     finally:
         cur.close()
-    return [c for c in cols if c.upper() not in META_COLS]
+    return [c for c, dtype in rows
+            if c.upper() not in META_COLS and dtype.upper() not in BLOB_TYPES]
 
 
 def _profile(conn, table: str, cols: list[str], sample: int):
@@ -84,7 +91,7 @@ def _profile(conn, table: str, cols: list[str], sample: int):
     sel = ["COUNT(*) AS _n"] + [
         f'COUNT(DISTINCT NULLIF(TRIM("{c}"),\'\')) AS "d_{i}"' for i, c in enumerate(cols)]
     sql = (f"SELECT {', '.join(sel)} FROM "
-           f"(SELECT * FROM LIBRARY_RAW.LANDING.\"{table}\" LIMIT {int(sample)})")
+           f"(SELECT * FROM LIBRARY_RAW.LANDING.\"{table}\" SAMPLE ({int(sample)} ROWS))")
     cur = conn.cursor()
     try:
         cur.execute(sql)
@@ -108,7 +115,10 @@ def main() -> int:
     args = ap.parse_args()
 
     conn = snow.connect()
+    conn.cursor().execute("ALTER SESSION SET STATEMENT_TIMEOUT_IN_SECONDS = 120")
     results = []
+    errored = []
+    blob_only = []
     try:
         sources = _landed_sources(conn, args.all)
         print(f"profiling {len(sources)} landed/modeled source(s) "
@@ -116,9 +126,12 @@ def main() -> int:
         for sid, table in sources:
             cols = _data_columns(conn, table)
             if not cols:
+                blob_only.append(sid)
                 continue
             prof = _profile(conn, table, cols, args.sample)
             if prof is None or "error" in (prof or {}):
+                if prof is not None:
+                    errored.append((sid, len(cols), prof["error"]))
                 continue
             n = prof["n"]
             degen = [c for c, d in prof["distincts"].items() if (d or 0) <= 1]
@@ -147,8 +160,19 @@ def main() -> int:
                 print(f"  {r['source_id']:<40} {r['rows_sampled']:>7} {r['data_cols']:>5} "
                       f"{r['degenerate_cols']:>6} {r['degenerate_frac']*100:5.0f}%")
 
+        if errored:
+            print(f"\n  -- SKIPPED (query error or timeout, not scanned): {len(errored)} --")
+            for sid, ncols, err in errored:
+                print(f"  {sid:<40} {ncols:>5} cols  {err}")
+
+        if blob_only:
+            print(f"\n  -- NOT EVALUATED (blob-only landing, e.g. raw JSON dump): {len(blob_only)} --")
+            for sid in blob_only:
+                print(f"  {sid}")
+
         if args.json:
-            Path(args.json).write_text(json.dumps(results, indent=2))
+            Path(args.json).write_text(json.dumps(
+                {"results": results, "skipped": errored, "blob_only": blob_only}, indent=2))
             print(f"\nfull results -> {args.json}")
         return 0
     finally:
