@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ripple — how 1,269 government datasets connect</title>
+<style>
+  :root{
+    --paper:#f7f5f0; --paper-2:#fffdfa; --ink:#15181c; --ink-2:#4d4a45; --ink-3:#6b665e; --ink-4:#8d877d;
+    --rule:#e0dad0; --rule-2:#e6e0d6;
+    --amber:#b06000;       /* marks / large text / fills — passes CVD + normal-vision separation */
+    --amber-text:#8f4e0d;  /* darkened ~15% for small text — clears WCAG AA (~5.9:1) on --paper */
+    --teal:#2f6f7d;
+    --red:#b0342a;
+    --hollow-bg:#f2ede4;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);}
+  body{font-family:Archivo,-apple-system,"Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+  h1,h2,.serif{font-family:Newsreader,Georgia,serif;}
+  a{color:var(--amber-text);text-decoration:none;} a:hover{color:var(--ink);}
+  ::selection{background:#f0d9a8;}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 40px;}
+  .nav{position:sticky;top:0;z-index:20;background:rgba(247,245,240,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule);}
+  .nav-inner{height:60px;display:flex;align-items:center;gap:16px;}
+  .brand{font-size:23px;font-weight:600;letter-spacing:-.01em;}
+  .brand-sub{font-size:12px;color:var(--ink-3);}
+  .nav-links{display:flex;gap:22px;font-size:12.5px;color:var(--ink-2);white-space:nowrap;}
+  .kicker{font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--amber-text);}
+  .lede{font-size:16.5px;line-height:1.7;color:#3c3a36;max-width:58ch;}
+  .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);}
+  .stat{background:var(--paper);padding:22px 20px 20px;}
+  .stat .big{font-family:Newsreader,serif;font-size:38px;font-weight:500;line-height:1;letter-spacing:-.01em;}
+  .stat .label{font-size:13px;font-weight:600;margin-top:9px;}
+  .stat .note{font-size:12.5px;line-height:1.55;color:var(--ink-4);margin-top:5px;}
+  .legend{margin-top:46px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:22px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px;}
+  .legend-item{display:flex;gap:14px;align-items:flex-start;}
+  .legend-swatch{width:11px;height:11px;margin-top:5px;flex:none;}
+  .legend-title{font-size:13.5px;font-weight:600;}
+  .legend-body{font-size:12.5px;line-height:1.6;color:var(--ink-3);margin-top:3px;}
+  section{padding-top:88px;}
+  .sec-head{display:flex;align-items:baseline;gap:16px;}
+  .sec-num{font-family:Newsreader,serif;font-size:15px;color:var(--amber-text);}
+  .sec-title{font-family:Newsreader,serif;font-size:40px;font-weight:500;letter-spacing:-.015em;margin:0;}
+  .sec-intro{font-size:16px;line-height:1.7;color:#3c3a36;margin:16px 0 0;max-width:78ch;}
+  .example-box{margin-top:22px;border:1px solid var(--rule);background:var(--paper-2);padding:18px 22px;max-width:78ch;}
+  .example-tag{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);}
+  .example-body{font-size:14.5px;line-height:1.7;color:var(--ink-2);margin-top:8px;}
+  .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(520px,1fr));gap:40px;margin-top:34px;align-items:start;}
+  .panel-label{font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-4);margin-bottom:14px;}
+  .caption{font-size:12.5px;line-height:1.6;color:var(--ink-4);margin-top:12px;max-width:640px;}
+  .readout{border:1px solid #d9d3c8;background:var(--paper-2);padding:22px 24px;min-height:168px;}
+  .readout-tag{font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--amber-text);}
+  .readout-title{font-family:Newsreader,serif;font-size:26px;line-height:1.25;margin-top:10px;}
+  .readout-body{font-size:15px;line-height:1.65;color:#3c3a36;margin-top:10px;}
+  .fact-row{display:flex;gap:26px;margin-top:18px;border-top:1px solid var(--rule-2);padding-top:14px;}
+  .fact-k{font-size:11.5px;color:var(--ink-4);}
+  .fact-v{font-size:19px;font-weight:600;margin-top:2px;}
+  .bar-row{display:grid;grid-template-columns:1fr 90px 54px 74px;gap:14px;align-items:center;padding:7px 0;border-top:1px solid var(--rule-2);cursor:pointer;background:transparent;text-align:left;font:inherit;color:inherit;border-left:none;border-right:none;border-bottom:none;width:100%;}
+  .bar-row:hover,.bar-row:focus-visible,.bar-row[aria-pressed="true"]{background:rgba(176,96,0,.07);}
+  .bar-track{height:9px;background:var(--rule-2);}
+  .bar-fill{height:100%;background:#c9a06a;}
+  .kept-block{border:1px solid #d9d3c8;background:var(--paper-2);padding:22px 24px;margin-top:26px;}
+  .kept-title{font-family:Newsreader,serif;font-size:26px;line-height:1.25;}
+  .kept-strip{display:flex;height:26px;margin-top:16px;}
+  .toggle-btn{font-size:13px;padding:7px 14px;border:1px solid #d9d3c8;color:var(--ink-2);background:transparent;cursor:pointer;font-family:inherit;}
+  .toggle-btn[aria-pressed="true"]{border-color:var(--teal);color:var(--teal);background:rgba(47,111,125,.07);}
+  .weld-row{display:grid;grid-template-columns:24px minmax(150px,1fr) minmax(110px,auto) 96px;gap:14px;align-items:center;border-top:1px solid var(--rule-2);padding:9px 0;}
+  .partner-row{display:grid;grid-template-columns:1fr 140px 88px;gap:14px;align-items:center;border-top:1px solid var(--rule-2);padding:9px 0;}
+  .ellipsis{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .tier-row{display:grid;grid-template-columns:minmax(220px,1.1fr) minmax(200px,1.6fr) minmax(120px,1fr) 92px;gap:26px;align-items:center;border-bottom:1px solid var(--rule-2);padding:16px 0;}
+  .tier-mark{width:11px;height:11px;flex:none;margin-top:4px;}
+  .tier-mark.hollow{background:var(--hollow-bg);border:1.5px solid;}
+  .footer-grid{margin-top:96px;border-top:1px solid #d9d3c8;padding-top:26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px;}
+  .footer-note{font-size:12.5px;line-height:1.75;color:var(--ink-4);}
+  svg text{font-family:Archivo,sans-serif;}
+  .hub{cursor:pointer;} .hub:focus-visible circle{stroke:var(--ink);stroke-width:2;}
+  .cell{cursor:pointer;} .cell:focus-visible rect{stroke:var(--ink);stroke-width:2;}
+  #loading{padding:120px 40px;text-align:center;color:var(--ink-3);font-size:14px;}
+  @media (max-width: 760px){ .nav-links{display:none;} }
+</style>
+</head>
+<body>
+
+<div id="loading">Loading the archive…</div>
+<div id="app" hidden></div>
+
+<script>
+const NAMES = {
+  FED_OSHA_ITA_300A_SUMMARY_2023: 'OSHA injury summaries, 2023',
+  FED_OSHA_ITA_300A_SUMMARY_2024: 'OSHA injury summaries, 2024',
+  FED_OSHA_ITA_300A_SUMMARY_2025: 'OSHA injury summaries, 2025',
+  FED_OSHA_ITA_CASE_DETAIL_2023: 'OSHA injury cases, 2023',
+  FED_OSHA_ITA_CASE_DETAIL_2024: 'OSHA injury cases, 2024',
+  FED_OSHA_ITA_CASE_DETAIL_2025: 'OSHA injury cases, 2025',
+  FED_EPA_FRS_FULL: 'EPA facility registry, full',
+  FED_EPA_FRS_FRS_FACILITIES: 'EPA facility registry, sites',
+  FED_EPA_FRS_FRS_PROGRAM_LINKS: 'EPA facility registry, programs',
+  FED_EPA_ECHO: 'EPA enforcement & compliance',
+  FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES: 'EPA air permits, sites',
+  FED_EPA_ICIS_ICIS_AIR_FACILITIES: 'EPA air permits, second copy',
+  FED_EPA_RCRA_FACILITIES: 'EPA hazardous waste sites',
+  FED_EPA_RCRA_RCRA_FACILITIES: 'EPA hazardous waste, second copy',
+  FED_EPA_ICIS_FEC_CASE_FACILITIES: 'EPA enforcement case sites',
+  FED_EPA_NPDES_ICIS_FACILITIES: 'EPA water discharge permits',
+  FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS: 'Public drinking water systems',
+  XC_EPA_CORPORATE_CROSSWALK: 'EPA corporate ownership crosswalk',
+  FED_IRS_BMF: 'IRS nonprofit master file',
+  FED_IRS_EO_BMF: 'IRS tax-exempt organisations',
+  FED_IRS_AUTO_REVOCATIONS: 'IRS automatic revocations',
+  FED_IRS_REVOCATION: 'IRS revoked nonprofits',
+  FED_FAC_SINGLE_AUDIT: 'Federal single audits',
+  FED_USASPENDING_CONTRACTS: 'Federal contract awards',
+  FED_CMS_MEDICARE_PROVIDER: 'Medicare providers',
+  FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER: 'Medicare payments by doctor',
+  FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI: 'Medicare payments by doctor & service',
+  FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL: 'Medicare equipment suppliers',
+  FED_CMS_HOSPITAL_ENROLLMENTS: 'Hospital enrolments',
+  FED_CMS_POS_OTHER: 'Medicare provider locations',
+  FED_CMS_HCRIS: 'Hospital cost reports',
+  INTL_GLEIF: 'Global company ID register',
+  INTL_GLEIF_REPEX: 'Global company ownership filings'
+};
+const KEYS = {
+  FRS_ID:'EPA facility ID', NPI:'national doctor ID', EIN:'IRS employer ID',
+  CCN:'Medicare facility ID', UEI:'federal contractor ID', LEI:'global company ID',
+  'NAME@ZIP':'name + ZIP code'
+};
+const AMBER='#b06000', AMBER_TEXT='#8f4e0d', TEAL='#2f6f7d', RED='#b0342a', INK='#15181c', PAPER='#f7f5f0';
+const displayName = t => NAMES[t] || t.replace(/^(FED_|INTL_|XC_)/,'').replace(/_/g,' ').toLowerCase();
+const keyName = k => KEYS[k] || k;
+const fmt = n => n.toLocaleString('en-US');
+const words = n => n>=1e6 ? (n/1e6).toFixed(n>=1e7?1:2).replace(/\.0$/,'')+' million' : n>=1e3 ? fmt(Math.round(n/1e3))+',000' : ''+n;
+const compact = n => n>=1e6 ? (n/1e6).toFixed(1)+'M' : n>=1e3 ? Math.round(n/1e3)+'k' : ''+n;
+const shortD = { 'Government Spending & Programs':'Gov. spending', 'International & Historical':'International',
+  'Consumer & Communications':'Consumer & comms', 'State & Local Portals':'State & local',
+  'Politics & Influence':'Politics', 'Justice & Enforcement':'Justice', 'Health & Medicine':'Health',
+  'Money & Markets':'Money', 'Transport & Trade':'Transport', 'Other Federal':'Other federal' };
+const sd = n => shortD[n] || n;
+const el = (tag, attrs, ...kids) => {
+  const n = document.createElementNS(tag==='svg'||tag==='g'||tag==='rect'||tag==='text'||tag==='line'||tag==='path'||tag==='circle'
+    ? 'http://www.w3.org/2000/svg' : null, tag);
+  for (const k in (attrs||{})) {
+    if (k==='text') n.textContent = attrs[k];
+    else if (k.slice(0,2)==='on') n.addEventListener(k.slice(2).toLowerCase(), attrs[k]);
+    else n.setAttribute(k, attrs[k]);
+  }
+  kids.flat().forEach(c => c!=null && n.appendChild(typeof c==='string' ? document.createTextNode(c) : c));
+  return n;
+};
+const h = (tag, attrs, ...kids) => {
+  const n = document.createElement(tag);
+  for (const k in (attrs||{})) {
+    if (k==='text') n.textContent = attrs[k];
+    else if (k.slice(0,2)==='on') n.addEventListener(k.slice(2).toLowerCase(), attrs[k]);
+    else if (k==='html') n.innerHTML = attrs[k];
+    else n.setAttribute(k, attrs[k]);
+  }
+  kids.flat().forEach(c => c!=null && n.appendChild(typeof c==='string' ? document.createTextNode(c) : c));
+  return n;
+};
+
+Promise.all(['../outputs/design_package/layer1_domains.json','../outputs/design_package/layer2_hubs.json','../outputs/design_package/layer3_stats.json']
+  .map(f => fetch(f).then(r => r.json())))
+  .then(([l1, l2, l3]) => { document.getElementById('loading').hidden = true; document.getElementById('app').hidden = false; render(l1, l2, l3); })
+  .catch(e => { document.getElementById('loading').textContent = 'The archive did not load. Check the console for details.'; console.error('Ripple: data load failed', e); });
+
+function render(l1, l2, l3) {
+  const app = document.getElementById('app');
+
+  // ---- shared state ----
+  let state = { cell: null, dom: null, hub: null, mesh: false };
+
+  // ---- hero stats, computed from the live data (nothing hardcoded) ----
+  const heroStats = [
+    { big: fmt(l3.datasets_landed), label: 'government datasets', note: 'poured into one warehouse' },
+    { big: words(l3.entities).replace(' million','M'), label: 'things they describe', note: 'people, companies, sites, ships' },
+    { big: fmt(l3.verified_connections), label: 'proven connections', note: 'between one dataset and another' },
+    { big: words(l3.multi_source_entities).replace(' million','M'), label: 'appear in more than one', note: 'the same thing, seen twice' }
+  ];
+
+  app.appendChild(h('div', {class:'nav'},
+    h('div', {class:'wrap nav-inner'},
+      h('div', {style:'display:flex;align-items:baseline;gap:10px;'},
+        h('div', {class:'brand serif', text:'Ripple'}),
+        h('div', {class:'brand-sub', text:'the public record, wired together'})),
+      h('div', {style:'flex:1'}),
+      h('div', {class:'nav-links'},
+        h('a', {href:'#subjects', text:"What's in it"}),
+        h('a', {href:'#spine', text:'What holds it together'}),
+        h('a', {href:'#proof', text:'How sure we are'}))
+    )
+  ));
+
+  const wrap = h('div', {class:'wrap', style:'padding-bottom:100px;'});
+  app.appendChild(wrap);
+
+  // ---- hero ----
+  wrap.appendChild(h('div', {style:'padding:74px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:56px;align-items:start;'},
+    h('div', {},
+      h('div', {class:'kicker', text:'Start here, whoever you are'}),
+      h('h1', {class:'serif', style:'font-size:clamp(38px,4.4vw,58px);line-height:1.06;font-weight:500;letter-spacing:-.02em;margin:20px 0 0;text-wrap:balance;', text:
+        'Every government form asks its own questions. Nobody was answering the one underneath all of them.'}),
+      h('p', {class:'lede', style:'margin:26px 0 0;', text:
+        "Here's the thing nobody tells you about government data: there isn't one big database. There are thousands of small ones — a factory's air permit here, a hospital's billing record there, a company's tax filing somewhere else entirely — and almost none of them were built to talk to each other."}),
+      h('p', {class:'lede', style:'margin:16px 0 0;', text:
+        "Ripple's job is to find the moments where two of those records are secretly describing the exact same thing, and prove it — not guess it. This page is that proof, at three different zoom levels: what's in the pile, what glues it together, and exactly how sure we're allowed to be."})
+    ),
+    h('div', {class:'stat-grid'},
+      ...heroStats.map(s => h('div', {class:'stat'},
+        h('div', {class:'big serif', text:s.big}),
+        h('div', {class:'label', text:s.label}),
+        h('div', {class:'note', text:s.note})
+      ))
+    )
+  ));
+
+  // ---- honesty callout, moved up: kept vs rejected ----
+  const tested = l3.verified_connections + l3.rejected_flukes;
+  const rejPct = Math.round(l3.rejected_flukes / tested * 100);
+  wrap.appendChild(h('div', {class:'kept-block'},
+    h('div', {class:'kept-title serif', text:'Before anything else: most guesses fail, on purpose'}),
+    h('p', {class:'lede', style:'margin:10px 0 0;', text:
+      `Every time Ripple thinks two records might be the same thing, that's a hypothesis, not a fact. ${fmt(tested)} of those hypotheses got tested against real ID numbers, names, and addresses. ${fmt(l3.rejected_flukes)} of them — ${rejPct}% — turned out to be coincidences, and got thrown out. Only the survivors are on this page.`}),
+    h('div', {class:'kept-strip'},
+      h('div', {style:`width:${(l3.verified_connections/tested*100)}%;background:${AMBER};`}),
+      h('div', {style:`flex:1;background:${RED};opacity:.85;`})
+    ),
+    h('div', {style:'display:flex;justify-content:space-between;margin-top:8px;font-size:12.5px;'},
+      h('div', {style:`color:${AMBER_TEXT};font-weight:600;`, text:`${fmt(l3.verified_connections)} kept`}),
+      h('div', {style:`color:${RED};font-weight:600;`, text:`${fmt(l3.rejected_flukes)} rejected`})
+    )
+  ));
+
+  // ---- legend, with the fill/hollow trick used consistently everywhere below ----
+  wrap.appendChild(h('div', {class:'legend'},
+    h('div', {class:'legend-item'},
+      h('div', {class:'legend-swatch', style:`background:${AMBER};`}),
+      h('div', {}, h('div', {class:'legend-title', text:'A proven link'}),
+        h('div', {class:'legend-body', text:'Two records carry the same government ID number. Same doctor. Same factory. Certain. Shown filled, in amber.'}))),
+    h('div', {class:'legend-item'},
+      h('div', {class:'legend-swatch', style:`background:${TEAL};`}),
+      h('div', {}, h('div', {class:'legend-title', text:'A corroborated link'}),
+        h('div', {class:'legend-body', text:'No shared ID, but the name and the address agree. Likely, not certain. Shown filled, in teal.'}))),
+    h('div', {class:'legend-item'},
+      h('div', {class:'legend-swatch', style:`border:1.5px solid ${RED};`}),
+      h('div', {}, h('div', {class:'legend-title', text:'A rejected link'}),
+        h('div', {class:'legend-body', text:'Looked like a match, failed the test, thrown out. Shown hollow. Two of every three candidates.'})))
+  ));
+
+  // ================= SECTION 01 — SUBJECTS =================
+  const doms = [...l1.nodes].sort((a,b) => b.datasets - a.datasets);
+  const idx = {}; doms.forEach((d,i) => idx[d.domain] = i);
+  const n = doms.length;
+  const M = doms.map(() => doms.map(() => 0));
+  l1.edges.forEach(e => { const i = idx[e.a], j = idx[e.b]; M[i][j] = e.connections; M[j][i] = e.connections; });
+  const maxCell = Math.max(...l1.edges.map(e => e.connections));
+  const rowTot = M.map(r => r.reduce((a,b) => a+b, 0));
+  const cross = l1.edges.reduce((s,e) => s+e.connections, 0);
+
+  const sec1 = h('section', {id:'subjects'},
+    h('div', {class:'sec-head'}, h('div', {class:'sec-num serif', text:'01'}), h('h2', {class:'sec-title', text:"What's actually in the pile, and where it overlaps"})),
+    h('p', {class:'sec-intro', text:
+      "The 1,269 datasets sort into twelve rough subjects — health, money, the environment, and so on. The grid below counts every proven link between one subject and another. Darker square means more links. Click a square, or a subject's name, to read the story behind it."}),
+  );
+  wrap.appendChild(sec1);
+
+  const grid2a = h('div', {class:'grid-2'});
+  sec1.appendChild(grid2a);
+
+  const matrixCol = h('div', {style:'min-width:0;'},
+    h('div', {class:'panel-label', text:'Proven links between subjects'})
+  );
+  const matrixHost = h('div', {style:'max-width:740px;'});
+  matrixCol.appendChild(matrixHost);
+  matrixCol.appendChild(h('div', {class:'caption', text:
+    "Read a row across, or a column down: each square is one pair of subjects, and the number in it is how many proven links run between them. A blank square means no proven link yet — not that one doesn't exist, just that nobody's found it."}));
+  grid2a.appendChild(matrixCol);
+
+  const readoutCol = h('div', {style:'min-width:0;display:flex;flex-direction:column;gap:22px;'});
+  const readout1 = h('div', {class:'readout'});
+  readoutCol.appendChild(readout1);
+  const domBarsHost = h('div', {},
+    h('div', {class:'panel-label', text:'The twelve subjects, by number of datasets'})
+  );
+  const domRows = h('div', {});
+  domBarsHost.appendChild(domRows);
+  domBarsHost.appendChild(h('div', {style:'display:grid;grid-template-columns:1fr 90px 54px 74px;gap:14px;margin-top:8px;font-size:11px;color:var(--ink-4);'},
+    h('div'), h('div'), h('div', {style:'text-align:right;', text:'datasets'}), h('div', {style:'text-align:right;', text:'records'})));
+  readoutCol.appendChild(domBarsHost);
+  grid2a.appendChild(readoutCol);
+
+  function drawMatrix() {
+    matrixHost.innerHTML = '';
+    const CS=42, LW=176, TH=128, MW=LW+CS*n+8, MH=TH+CS*n+8;
+    const svg = el('svg', {viewBox:`0 0 ${MW} ${MH}`, style:'width:100%;height:auto;display:block;overflow:visible;', role:'img',
+      'aria-label':'Matrix of proven connections between the twelve subject areas'});
+    doms.forEach((d,j) => {
+      const x = LW + j*CS + CS/2;
+      const hot = state.dom===d.domain || (state.cell && (state.cell[0]===j || state.cell[1]===j));
+      svg.appendChild(el('text', {x, y:TH-10, transform:`rotate(-42 ${x} ${TH-10})`, 'text-anchor':'start', 'font-size':12,
+        'font-weight':hot?600:400, fill:hot?INK:'#6b665e', text:sd(d.domain)}));
+    });
+    doms.forEach((d,i) => {
+      const y = TH + i*CS + CS/2;
+      const hot = state.dom===d.domain || (state.cell && (state.cell[0]===i || state.cell[1]===i));
+      const t = el('text', {x:LW-12, y, dy:4, 'text-anchor':'end', 'font-size':12.5, 'font-weight':hot?600:400,
+        fill:hot?INK:'#4d4a45', style:'cursor:pointer;', tabindex:'0', role:'button',
+        'aria-label':`Focus on ${d.domain}`, 'aria-pressed': state.dom===d.domain ? 'true':'false', text:sd(d.domain)});
+      const pick = () => { state = {...state, dom: state.dom===d.domain?null:d.domain, cell:null}; drawMatrix(); drawReadout1(); drawDomRows(); };
+      t.addEventListener('click', pick);
+      t.addEventListener('keydown', ev => { if (ev.key==='Enter'||ev.key===' ') { ev.preventDefault(); pick(); } });
+      svg.appendChild(t);
+    });
+    for (let i=0;i<n;i++) for (let j=0;j<n;j++) {
+      const x=LW+j*CS, y=TH+i*CS, v=M[i][j];
+      if (i===j) { svg.appendChild(el('rect', {x:x+1,y:y+1,width:CS-2,height:CS-2,fill:'#ece6dc'})); continue; }
+      const t = v ? .1 + Math.pow(v/maxCell,.42)*.9 : 0;
+      const sel = state.cell && state.cell[0]===i && state.cell[1]===j;
+      const inRow = state.dom ? (doms[i].domain===state.dom || doms[j].domain===state.dom) : true;
+      const g = el('g', {class:'cell', tabindex: v ? '0':'-1', role: v?'button':undefined,
+        'aria-label': v ? `${doms[i].domain} and ${doms[j].domain}: ${v} proven links` : undefined,
+        style: v ? 'cursor:pointer;' : ''});
+      g.appendChild(el('rect', {x:x+1,y:y+1,width:CS-2,height:CS-2, fill: v?AMBER:'#f2ede4',
+        'fill-opacity': v ? t*(inRow?1:.22) : 1, stroke: sel?INK:'none', 'stroke-width':1.5}));
+      if (v) g.appendChild(el('text', {x:x+CS/2, y:y+CS/2, dy:4, 'text-anchor':'middle', 'font-size':11,
+        fill: t>.62?PAPER:'#5a544b', 'fill-opacity': inRow?1:.3, style:'pointer-events:none;', text:v}));
+      if (v) { const pick = () => { state = {...state, cell: sel?null:[i,j], dom:null}; drawMatrix(); drawReadout1(); };
+        g.addEventListener('click', pick);
+        g.addEventListener('keydown', ev => { if (ev.key==='Enter'||ev.key===' ') { ev.preventDefault(); pick(); } }); }
+      svg.appendChild(g);
+    }
+    matrixHost.appendChild(svg);
+  }
+
+  function drawReadout1() {
+    readout1.innerHTML = '';
+    if (state.cell) {
+      const [i,j] = state.cell, a = doms[i], b = doms[j], v = M[i][j];
+      readout1.append(
+        h('div', {class:'readout-tag', text:'One pair of subjects'}),
+        h('div', {class:'readout-title serif', text:`${a.domain} ↔ ${b.domain}`}),
+        h('div', {class:'readout-body', text:`${fmt(v)} times, a record in one turned out to describe the same thing as a record in the other.`}),
+        h('div', {class:'fact-row'},
+          h('div', {}, h('div', {class:'fact-k', text:'Proven links'}), h('div', {class:'fact-v', text:fmt(v)})),
+          h('div', {}, h('div', {class:'fact-k', text:'Datasets involved'}), h('div', {class:'fact-v', text:fmt(a.datasets+b.datasets)})))
+      );
+    } else if (state.dom) {
+      const d = doms[idx[state.dom]];
+      const partners = l1.edges.filter(e => e.a===state.dom || e.b===state.dom).sort((x,y) => y.connections-x.connections);
+      const top = partners[0];
+      readout1.append(
+        h('div', {class:'readout-tag', text:'One subject'}),
+        h('div', {class:'readout-title serif', text:d.domain}),
+        h('div', {class:'readout-body', text:`${fmt(d.datasets)} datasets holding ${words(d.total_rows)} records. Its strongest overlap is with ${top.a===state.dom?top.b:top.a}.`}),
+        h('div', {class:'fact-row'},
+          h('div', {}, h('div', {class:'fact-k', text:'Links to other subjects'}), h('div', {class:'fact-v', text:fmt(rowTot[idx[state.dom]])})),
+          h('div', {}, h('div', {class:'fact-k', text:'Subjects it touches'}), h('div', {class:'fact-v', text:fmt(partners.length)})))
+      );
+    } else {
+      const top = l1.edges.reduce((m,e) => e.connections>m.connections?e:m, l1.edges[0]);
+      readout1.append(
+        h('div', {class:'readout-tag', text:'Tap a square to begin'}),
+        h('div', {class:'readout-title serif', text:'Environment and health overlap most'}),
+        h('div', {class:'readout-body', text:`Click any square to read one pair. The darkest is ${top.a} and ${top.b} — ${fmt(top.connections)} proven links, mostly factories that are also public-health records.`}),
+        h('div', {class:'fact-row'},
+          h('div', {}, h('div', {class:'fact-k', text:'Links across subjects'}), h('div', {class:'fact-v', text:fmt(cross)})),
+          h('div', {}, h('div', {class:'fact-k', text:'Subjects'}), h('div', {class:'fact-v', text:fmt(n)})))
+      );
+    }
+  }
+
+  const maxDs = doms[0].datasets;
+  function drawDomRows() {
+    domRows.innerHTML = '';
+    doms.forEach(d => {
+      const on = state.dom === d.domain;
+      const row = h('button', {class:'bar-row', type:'button', 'aria-pressed': on?'true':'false'},
+        h('div', {style:'font-size:13.5px;', text:sd(d.domain)}),
+        h('div', {class:'bar-track'}, h('div', {class:'bar-fill', style:`width:${Math.max(2, d.datasets/maxDs*100)}%;background:${on?AMBER:'#c9a06a'};`})),
+        h('div', {style:'font-size:13px;text-align:right;color:var(--ink-2);', text:fmt(d.datasets)}),
+        h('div', {style:'font-size:12.5px;text-align:right;color:var(--ink-4);', text:compact(d.total_rows)})
+      );
+      row.addEventListener('click', () => { state = {...state, dom: on?null:d.domain, cell:null}; drawMatrix(); drawReadout1(); drawDomRows(); });
+      domRows.appendChild(row);
+    });
+  }
+  drawMatrix(); drawReadout1(); drawDomRows();
+
+  // human-stakes worked example (illustrative, not a real case) — answers "why should I care"
+  sec1.appendChild(h('div', {class:'example-box'},
+    h('div', {class:'example-tag', text:'Why this matters, concretely'}),
+    h('div', {class:'example-body', text:
+      "Say a factory shows up in the environment records with an air-pollution permit. If Ripple can prove that same factory — same ID number, not just a similar name — also shows up in the workplace-safety records with a string of injury reports, and again in the tax records as a nonprofit's subsidiary, you've gone from three disconnected filings to one paper trail about one place. That chain is what a proven link makes possible. Nobody has to notice it by hand anymore."}))
+  );
+
+  // ================= SECTION 02 — SPINE =================
+  const byDom = {};
+  l2.nodes.forEach(nd => (byDom[nd.domain] = byDom[nd.domain]||[]).push(nd));
+  const order = Object.keys(byDom).sort((a,b) => byDom[b].length-byDom[a].length || a.localeCompare(b));
+  order.forEach(d => byDom[d].sort((a,b) => b.hard_connections-a.hard_connections));
+  const seq = []; const bands = [];
+  order.forEach(d => { const s = seq.length; byDom[d].forEach(nd => seq.push(nd)); bands.push({d, s, e: seq.length-1}); });
+  const AW=1020, PAD=40, GAP=(AW-PAD*2)/(seq.length-1), AXIS=300, AH=AXIS+210;
+  const px = {}; seq.forEach((nd,i) => px[nd.table] = PAD + i*GAP);
+  const steel = l2.edges.filter(e => e.tier==='STEEL');
+  const corrob = l2.edges.filter(e => e.tier==='CORROBORATED');
+  const maxS = Math.max(...steel.map(e => e.matched_records));
+  const nbr = {}; l2.edges.forEach(e => { (nbr[e.a]=nbr[e.a]||new Set()).add(e.b); (nbr[e.b]=nbr[e.b]||new Set()).add(e.a); });
+
+  const sec2 = h('section', {id:'spine'},
+    h('div', {class:'sec-head'}, h('div', {class:'sec-num serif', text:'02'}), h('h2', {class:'sec-title', text:'The thirty datasets that hold the whole thing together'})),
+    h('p', {class:'sec-intro', text:
+      "A handful of datasets act like switchboards — they carry ID numbers that lots of other datasets also happen to use, so everything else routes through them. These are the biggest thirty. Every curve below is a proven link between two of them."}),
+    h('p', {class:'sec-intro', style:'margin-top:10px;color:var(--ink-3);font-size:13.5px;', text:
+      "One thing to know before you look: a curve's thickness is the strength of the link — how many records actually match. Its height is not. Height is just an accident of where two datasets happen to sit on the line below, and taller does not mean stronger."})
+  );
+  wrap.appendChild(sec2);
+
+  const spineControls = h('div', {style:'display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:26px;'},
+    h('div', {style:'font-size:13px;color:var(--ink-3);', text:'Click any dataset to trace its links. Use Tab and Enter if you’re on a keyboard.'}),
+    h('div', {style:'flex:1;'})
+  );
+  const meshBtn = h('button', {class:'toggle-btn', type:'button'});
+  spineControls.appendChild(meshBtn);
+  sec2.appendChild(spineControls);
+  function drawMeshBtn() {
+    meshBtn.textContent = state.mesh ? 'Hide name-and-address matches' : 'Show name-and-address matches';
+    meshBtn.setAttribute('aria-pressed', state.mesh ? 'true':'false');
+  }
+  meshBtn.addEventListener('click', () => { state = {...state, mesh: !state.mesh}; drawMeshBtn(); drawArc(); });
+  drawMeshBtn();
+
+  const arcFrame = h('div', {style:'border:1px solid #d9d3c8;background:var(--paper-2);margin-top:14px;padding:8px 8px 0;overflow:auto;'});
+  const arcHost = h('div', {style:'min-width:1020px;'});
+  arcFrame.appendChild(arcHost);
+  sec2.appendChild(arcFrame);
+
+  const grid2b = h('div', {style:'display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:36px;margin-top:32px;align-items:start;'});
+  const hubReadout = h('div', {style:`border-left:2px solid ${AMBER};padding:2px 0 2px 20px;`});
+  const hubList = h('div', {});
+  grid2b.appendChild(hubReadout); grid2b.appendChild(hubList);
+  sec2.appendChild(grid2b);
+
+  function drawArc() {
+    arcHost.innerHTML = '';
+    const svg = el('svg', {viewBox:`0 0 ${AW} ${AH}`, style:'width:100%;height:auto;display:block;', role:'img',
+      'aria-label':'Arc diagram of proven links between the thirty most-connected datasets'});
+    bands.forEach(b => {
+      const x1 = px[seq[b.s].table]-GAP*.42, x2 = px[seq[b.e].table]+GAP*.42;
+      svg.appendChild(el('line', {x1,y1:AXIS+13,x2,y2:AXIS+13,stroke:'#d9d3c8','stroke-width':3}));
+      if (b.e-b.s+1 < 2) return;
+      const lbl = sd(b.d).toUpperCase(); const w = lbl.length*7.4;
+      let cxp=(x1+x2)/2, anchor='middle';
+      if (cxp+w/2 > AW-4) { cxp=AW-4; anchor='end'; }
+      if (cxp-w/2 < 4) { cxp=4; anchor='start'; }
+      svg.appendChild(el('text', {x:cxp,y:AXIS+30,'text-anchor':anchor,'font-size':11,'letter-spacing':'.1em',fill:'#8d877d',text:lbl}));
+    });
+    const focus = state.hub;
+    const arc = (e, gold) => {
+      const a=px[e.a], b=px[e.b], w=Math.abs(b-a), r=Math.min(w/2, AXIS-14);
+      const touch = focus && (e.a===focus || e.b===focus);
+      const t = Math.sqrt(e.matched_records/maxS);
+      return el('path', {d:`M${a},${AXIS} C${a},${AXIS-r*1.1} ${b},${AXIS-r*1.1} ${b},${AXIS}`,
+        fill:'none', stroke: gold?AMBER:TEAL, 'stroke-width': gold ? .8+t*4 : .7,
+        opacity: focus ? (touch ? (gold?.95:.5) : .05) : (gold ? .16+t*.5 : .13)});
+    };
+    if (state.mesh) { const g=el('g',{}); corrob.forEach(e => g.appendChild(arc(e,false))); svg.appendChild(g); }
+    const g2=el('g',{}); [...steel].sort((a,b)=>a.matched_records-b.matched_records).forEach(e => g2.appendChild(arc(e,true))); svg.appendChild(g2);
+    svg.appendChild(el('line', {x1:PAD-14,y1:AXIS,x2:AW-PAD+14,y2:AXIS,stroke:'#c9c2b6','stroke-width':1}));
+    seq.forEach(nd => {
+      const x = px[nd.table], on = focus===nd.table, rel = !focus || on || (nbr[focus] && nbr[focus].has(nd.table));
+      const g = el('g', {class:'hub', tabindex:'0', role:'button', 'aria-label':`Focus on ${displayName(nd.table)}`,
+        'aria-pressed': on?'true':'false'});
+      g.appendChild(el('circle', {cx:x, cy:AXIS, r:3+(nd.hard_connections-76)/44*4, fill: on?AMBER:rel?'#8a8378':'#d2ccc1', stroke:PAPER,'stroke-width':1.5}));
+      g.appendChild(el('text', {x:x-4, y:AXIS+46, transform:`rotate(-40 ${x-4} ${AXIS+46})`, 'text-anchor':'end', 'font-size':11.5,
+        'font-weight':on?600:400, fill: on?INK:rel?'#4d4a45':'#b3aa9e', text: displayName(nd.table)}));
+      g.appendChild(el('rect', {x:x-GAP/2, y:6, width:GAP, height:AXIS+14, fill:'transparent', style:'cursor:pointer;'}));
+      const pick = () => { state = {...state, hub: on?null:nd.table}; drawArc(); drawHubReadout(); };
+      g.addEventListener('click', pick);
+      g.addEventListener('keydown', ev => { if (ev.key==='Enter'||ev.key===' ') { ev.preventDefault(); pick(); } });
+      svg.appendChild(g);
+    });
+    arcHost.appendChild(svg);
+  }
+
+  function drawHubReadout() {
+    hubReadout.innerHTML=''; hubList.innerHTML='';
+    const focus = state.hub;
+    if (focus) {
+      const nd = seq.find(x => x.table===focus);
+      const touching = l2.edges.filter(e => e.a===focus || e.b===focus);
+      const hard = touching.filter(e => e.tier==='STEEL');
+      const bodyTxt = hard.length===0
+        ? 'None of the other 29 switchboard datasets share an official ID number with this one. Every link below rests on name and address agreeing.'
+        : hard.length===1
+          ? 'One of the other 29 switchboard datasets shares an official ID number with this one. The rest agree on name and address.'
+          : `${hard.length} of the other 29 switchboard datasets share an official ID number with this one. The rest agree on name and address.`;
+      hubReadout.append(
+        h('div', {class:'readout-title serif', style:'font-size:24px;', text: displayName(focus)}),
+        h('div', {style:'font-size:12.5px;color:var(--ink-4);margin-top:5px;', text:`${sd(nd.domain)} · ${focus}`}),
+        h('div', {style:'font-size:15px;line-height:1.65;color:#3c3a36;margin-top:12px;', text: bodyTxt}),
+        h('div', {style:'display:flex;gap:30px;margin-top:18px;'},
+          h('div', {}, h('div', {class:'fact-k', text:'Records'}), h('div', {class:'fact-v', text: compact(nd.rows)})),
+          h('div', {}, h('div', {class:'fact-k', text:'Datasets it connects to'}), h('div', {class:'fact-v', text: fmt(nd.hard_connections)})))
+      );
+      hubList.appendChild(h('div', {class:'panel-label', text:'Its strongest links'}));
+      const best = {};
+      touching.forEach(e => { const p = e.a===focus?e.b:e.a; const r = (e.tier==='STEEL'?1e10:0)+e.matched_records; if (!best[p] || r>best[p].r) best[p]={r,e,p}; });
+      Object.values(best).sort((a,b)=>b.r-a.r).slice(0,8).forEach(x => {
+        hubList.appendChild(h('div', {class:'partner-row'},
+          h('div', {class:'ellipsis', style:'font-size:13.5px;', text: displayName(x.p)}),
+          h('div', {style:'display:flex;align-items:center;gap:7px;'},
+            h('div', {style:`width:9px;height:9px;flex:none;background:${x.e.tier==='STEEL'?AMBER:TEAL};`}),
+            h('div', {class:'ellipsis', style:'font-size:12px;color:var(--ink-3);', text: keyName(x.e.id_type)})),
+          h('div', {style:'font-size:13px;text-align:right;color:var(--ink-2);', text: compact(x.e.matched_records)})));
+      });
+    } else {
+      const pairs = new Set(l2.edges.map(e => [e.a,e.b].sort().join('|')));
+      hubReadout.append(
+        h('div', {class:'readout-title serif', style:'font-size:24px;', text:'All thirty are connected to each other'}),
+        h('div', {style:'font-size:12.5px;color:var(--ink-4);margin-top:5px;', text:`every one of the ${fmt(pairs.size)} possible pairs has at least one verified link`}),
+        h('div', {style:'font-size:15px;line-height:1.65;color:#3c3a36;margin-top:12px;', text:
+          `Only ${steel.length} of those pairs share an official ID number — the amber curves. The rest agree on name and address, which is weaker, and stays labelled that way.`}),
+        h('div', {style:'display:flex;gap:30px;margin-top:18px;'},
+          h('div', {}, h('div', {class:'fact-k', text:'Links by shared ID'}), h('div', {class:'fact-v', text: fmt(steel.length)})),
+          h('div', {}, h('div', {class:'fact-k', text:'Links by name + address'}), h('div', {class:'fact-v', text: fmt(corrob.length)})))
+      );
+      hubList.appendChild(h('div', {class:'panel-label', text:'The heaviest of them'}));
+      [...l2.edges].sort((a,b)=>b.matched_records-a.matched_records).slice(0,8).forEach(e => {
+        hubList.appendChild(h('div', {class:'partner-row'},
+          h('div', {class:'ellipsis', style:'font-size:13.5px;', text:`${displayName(e.a)} ↔ ${displayName(e.b)}`}),
+          h('div', {style:'display:flex;align-items:center;gap:7px;'},
+            h('div', {style:`width:9px;height:9px;flex:none;background:${e.tier==='STEEL'?AMBER:TEAL};`}),
+            h('div', {class:'ellipsis', style:'font-size:12px;color:var(--ink-3);', text: keyName(e.id_type)})),
+          h('div', {style:'font-size:13px;text-align:right;color:var(--ink-2);', text: compact(e.matched_records)})));
+      });
+    }
+    hubList.appendChild(h('div', {style:'font-size:12.5px;color:var(--ink-4);margin-top:10px;line-height:1.6;', text:
+      'Matching records are the rows that actually line up on a shared ID.'}));
+  }
+  drawArc(); drawHubReadout();
+
+  // ================= SECTION 03 — PROOF =================
+  const sec3 = h('section', {id:'proof'},
+    h('div', {class:'sec-head'}, h('div', {class:'sec-num serif', text:'03'}), h('h2', {class:'sec-title', text:'How sure we are, link by link'})),
+    h('p', {class:'sec-intro', text:
+      "Not every link was proven the same way, so every link carries a label for exactly how it was proven. Nothing gets to look more certain than it is just because it's convenient."})
+  );
+  wrap.appendChild(sec3);
+
+  // Ladder: collapsed to the tiers that actually carry volume, reusing the fill/hollow trick
+  // instead of inventing new hues. STRONG (3) and PROBABILISTIC (1) are folded into a footnote —
+  // showing them as full rows next to thousands would overstate how much they matter today.
+  const TIER_DEFS = [
+    { code:'STEEL', plain:'Same official ID number', color:AMBER, hollow:false,
+      meaning:'Both records carry the same government-issued number. The same doctor, the same factory, the same company. This is certainty.' },
+    { code:'BRIDGE', plain:'Linked through a third dataset', color:AMBER, hollow:true,
+      meaning:'A and B never meet directly, but both match a third dataset on an ID. Reached, not direct — still an amber-family link.' },
+    { code:'CORROBORATED', plain:'Same name and same address', color:TEAL, hollow:false,
+      meaning:'No shared ID number. The name agrees and the location agrees. Better than a name alone — still not proof.' },
+    { code:'GEO', plain:'Same location only', color:TEAL, hollow:true,
+      meaning:"The records sit at the same place. A hint about where to look, nothing more." }
+  ];
+  const maxT = Math.max(...TIER_DEFS.map(t => l3.tiers[t.code]||0));
+  const ladderHost = h('div', {style:'margin-top:34px;border-top:1px solid #d9d3c8;'});
+  TIER_DEFS.forEach(t => {
+    const c = l3.tiers[t.code] || 0;
+    ladderHost.appendChild(h('div', {class:'tier-row'},
+      h('div', {style:'display:flex;gap:12px;align-items:flex-start;min-width:0;'},
+        h('div', {class:`tier-mark ${t.hollow?'hollow':''}`, style: t.hollow ? `border-color:${t.color};` : `background:${t.color};`}),
+        h('div', {style:'min-width:0;'}, h('div', {style:'font-size:15px;font-weight:600;line-height:1.3;', text:t.plain}),
+          h('div', {style:'font-size:11.5px;color:#a09a90;margin-top:3px;', text:`internally: ${t.code}`}))),
+      h('div', {style:'font-size:13.5px;line-height:1.6;color:var(--ink-2);', text:t.meaning}),
+      h('div', {style:'height:10px;background:#ece6dc;'}, h('div', {style:`height:100%;width:${Math.max(.5,c/maxT*100)}%;background:${t.color};`})),
+      h('div', {style:'font-size:17px;text-align:right;font-weight:600;', text: fmt(c)})
+    ));
+  });
+  sec3.appendChild(ladderHost);
+  const rareCount = (l3.tiers.STRONG||0) + (l3.tiers.PROBABILISTIC||0);
+  if (rareCount > 0) {
+    sec3.appendChild(h('div', {style:'font-size:12.5px;color:var(--ink-4);margin-top:10px;', text:
+      `Two rarer tiers exist but barely register yet: ${fmt(l3.tiers.STRONG||0)} matched on an industry-issued ID, and ${fmt(l3.tiers.PROBABILISTIC||0)} on name similarity alone (never published without a person confirming it). They'll get their own row once there's enough of either to matter.`}));
+  }
+
+  const grid2c = h('div', {style:'display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:40px;margin-top:44px;align-items:start;'});
+  sec3.appendChild(grid2c);
+
+  const weldsCol = h('div', {},
+    h('div', {class:'panel-label', text:'The heaviest links in the archive'}),
+    h('div', {style:'font-size:13.5px;line-height:1.65;color:var(--ink-3);margin:8px 0 14px;', text:'Ranked by how many records actually line up.'})
+  );
+  (l3.strongest_links||[]).forEach((e,i) => {
+    weldsCol.appendChild(h('div', {class:'weld-row'},
+      h('div', {style:'font-size:12px;color:#a09a90;', text: String(i+1).padStart(2,'0')}),
+      h('div', {style:'min-width:0;'},
+        h('div', {class:'ellipsis', style:'font-size:13.5px;', text: displayName(e.a)}),
+        h('div', {class:'ellipsis', style:'font-size:13.5px;color:var(--ink-4);', text:`↔ ${displayName(e.b)}`})),
+      h('div', {style:'display:flex;align-items:center;gap:7px;'},
+        h('div', {style:`width:9px;height:9px;flex:none;background:${e.id_type==='NAME@ZIP'?TEAL:AMBER};`}),
+        h('div', {style:'font-size:12px;color:var(--ink-3);white-space:nowrap;', text: keyName(e.id_type)})),
+      h('div', {style:'font-size:13.5px;text-align:right;', text: compact(e.matched_records)})));
+  });
+  grid2c.appendChild(weldsCol);
+
+  const rejCol = h('div', {},
+    h('div', {class:'serif', style:'font-size:22px;line-height:1.25;', text:'Rejections are kept, not deleted'}),
+    h('p', {class:'lede', style:'font-size:14.5px;margin:12px 0 0;', text:
+      `A link that failed the test is still a record of a question that was asked and answered — ${fmt(l3.rejected_flukes)} of them, filed away instead of thrown away, so nobody has to ask the same question twice.`})
+  );
+  grid2c.appendChild(rejCol);
+
+  wrap.appendChild(h('div', {class:'footer-grid'},
+    h('div', {class:'footer-note', text:'Every number on this page is counted from the live warehouse. A shared name is never treated as a shared identity.'}),
+    h('div', {class:'footer-note', text:'Where a link rests on name and address rather than an ID number, it is labelled that way here and everywhere else.'}),
+    h('div', {class:'footer-note', text:'No person is named on this page. Anything about an individual stays internal until a human confirms it.'})
+  ));
+}
+</script>
+</body>
+</html>
