@@ -54,7 +54,13 @@ STATES = [
     "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA",
     "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY",
 ]
-FROM_YEAR, TO_YEAR = 1985, 2023
+FROM_MONTH, TO_MONTH = "01-1985", "12-2023"
+# CDE offense slugs for the summarized endpoints (verified live 2026-08-09; the
+# older /estimate endpoints are 404-retired).
+OFFENSES = [
+    "violent-crime", "homicide", "rape", "robbery", "aggravated-assault",
+    "property-crime", "burglary", "larceny", "motor-vehicle-theft", "arson",
+]
 
 
 def _key() -> str:
@@ -66,28 +72,45 @@ def _key() -> str:
     return k
 
 
-def _fetch_state(key: str, state: str, tries: int = 4) -> list[dict]:
-    """State estimates: one row per year x offense category."""
-    url = f"{BASE}/estimate/state/{state}"
+def _fetch_state(key: str, state: str, offense: str, tries: int = 4) -> list[dict]:
+    """One state x offense: monthly offense/clearance counts and rates.
+
+    Response: offenses.actuals / offenses.rates, each keyed '<State> Offenses' /
+    '<State> Clearances' (plus national series we skip -- national comes from
+    every state's response identically) -> {'MM-YYYY': value}.
+    """
+    url = f"{BASE}/summarized/state/{state}/{offense}"
     for i in range(tries):
         try:
             r = requests.get(url, params={
-                "from": FROM_YEAR, "to": TO_YEAR, "API_KEY": key}, timeout=120)
+                "from": FROM_MONTH, "to": TO_MONTH, "type": "counts",
+                "API_KEY": key}, timeout=120)
             r.raise_for_status()
-            j = r.json()
-            rows = []
-            # response shape: {"results": [{"year":..., offense keys...}, ...]}
-            # (older deployments used {"data": [...]}) -- accept either.
-            for rec in j.get("results", j.get("data", [])) or []:
-                rec = dict(rec)
-                rec["STATE"] = state
-                rows.append(rec)
-            return rows
+            off = r.json().get("offenses", {})
+            actuals, rates = off.get("actuals", {}), off.get("rates", {})
+            merged: dict[tuple[str, str], dict] = {}
+            for section, d in actuals.items():
+                if section.startswith("United States"):
+                    continue
+                kind = "CLEARANCES" if section.endswith("Clearances") else "OFFENSES"
+                for month, v in (d or {}).items():
+                    merged.setdefault((month, kind), {})["COUNT"] = v
+            for section, d in rates.items():
+                if section.startswith("United States"):
+                    continue
+                kind = "CLEARANCES" if section.endswith("Clearances") else "OFFENSES"
+                for month, v in (d or {}).items():
+                    merged.setdefault((month, kind), {})["RATE_PER_100K"] = v
+            return [
+                {"STATE": state, "OFFENSE": offense, "MONTH": month, "SERIES": kind,
+                 "COUNT": vals.get("COUNT"), "RATE_PER_100K": vals.get("RATE_PER_100K")}
+                for (month, kind), vals in sorted(merged.items())]
         except Exception as e:  # noqa: BLE001
             wait = 10 * (i + 1)
-            print(f"    {state} retry {i + 1}/{tries} ({str(e)[:80]}); wait {wait}s", flush=True)
+            print(f"    {state}/{offense} retry {i + 1}/{tries} ({str(e)[:80]}); wait {wait}s",
+                  flush=True)
             time.sleep(wait)
-    raise RuntimeError(f"CDE fetch failed for {state}")
+    raise RuntimeError(f"CDE fetch failed for {state}/{offense}")
 
 
 def main(argv=None) -> int:
@@ -97,21 +120,22 @@ def main(argv=None) -> int:
     key = _key()
 
     if not args.run:
-        rows = _fetch_state(key, "OH")
-        print(f"OH: {len(rows)} rows; sample:")
+        rows = _fetch_state(key, "OH", "violent-crime")
+        print(f"OH/violent-crime: {len(rows)} rows; sample:")
         for r in rows[:3]:
-            print("  ", {k: r[k] for k in list(r)[:8]})
-        print("\nPREVIEW only -- add --run to land all states.")
+            print("  ", r)
+        print("\nPREVIEW only -- add --run to land all states x offenses.")
         return 0
 
     started = ingest._utcnow()
     run_id = str(uuid.uuid4())
     all_rows = []
     for st in STATES:
-        rows = _fetch_state(key, st)
-        all_rows.extend(rows)
-        print(f"    {st}: +{len(rows)} (total {len(all_rows):,})", flush=True)
-        time.sleep(1)  # api.data.gov default limit is 1,000/hr -- 51 calls is fine
+        for offense in OFFENSES:
+            rows = _fetch_state(key, st, offense)
+            all_rows.extend(rows)
+            time.sleep(0.5)  # 510 calls, well under api.data.gov's 1,000/hr
+        print(f"    {st}: total {len(all_rows):,}", flush=True)
 
     df = pd.DataFrame(all_rows)
     conn = snow.connect()
@@ -130,10 +154,11 @@ def main(argv=None) -> int:
             overwrite=True, quote_identifiers=False)
         if not ok:
             raise RuntimeError("write_pandas failed")
-        # 51 jurisdictions x ~39 years -- under 1,000 rows total means most states failed
+        # 51 states x 10 offenses x 2 series x up to 468 months -- far under 100k
+        # total means whole states/offenses came back empty
         passed, report = bulk.run_quality_gate(
             conn, SID, TABLE, run_id, row_count=len(out),
-            source_url=BASE, expected_min_rows=1_000)
+            source_url=BASE, expected_min_rows=100_000)
         if not passed:
             print(f"QUALITY GATE FAILED {TABLE}: {report}")
             return 1
@@ -142,10 +167,10 @@ def main(argv=None) -> int:
             "name": "FBI Crime Data Explorer -- State Crime Estimates",
             "publisher": "FBI -- Criminal Justice Information Services",
             "url": "https://cde.ucr.cjis.gov/",
-            "description": "Estimated offense counts by state and year (violent/property "
-                           "categories) from the FBI Crime Data Explorer estimates API.",
-            "jurisdiction": "US", "category": "Crime", "subcategory": "Offense Estimates",
-            "unit_of_observation": "one row = one state x year of estimated offense counts",
+            "description": "Monthly offense and clearance counts and rates by state and "
+                           "offense category from the FBI Crime Data Explorer summarized API.",
+            "jurisdiction": "US", "category": "Crime", "subcategory": "Offense Counts",
+            "unit_of_observation": "one row = one state x offense x month x series (offenses/clearances)",
             "geographic_scope": "United States", "access_method": "api", "format": "json",
             "auth": {"type": "api_key"}, "cost": "free", "update_cadence": "annual",
             "volume": f"{len(out):,} rows", "license_terms": "Public domain (US Gov)",
