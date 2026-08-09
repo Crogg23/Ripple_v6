@@ -93,16 +93,49 @@ def main() -> int:
         cur_state = {r[0]: (r[1], r[2]) for r in cur.fetchall()}
         cur.close()
 
+        # FRESH-LOAD GUARD (added 2026-08-09, after this script demoted three
+        # SAME-DAY rebuilds -- 821k-row Irish CRO among them -- because the dead
+        # source had been resurrected under the same source_id and "latest success"
+        # was suddenly the good load). A dead scrape is by definition SMALL and
+        # OLD; a latest-success run that is large or recent is almost certainly a
+        # rebuild, so it is refused, loudly, run by run. There is deliberately no
+        # override flag: if a big/fresh run truly must be demoted, that's a
+        # hand-written UPDATE with eyes on it, not a batch script.
+        GUARD_MAX_ROWS = 5_000        # every true dead scrape ever demoted: <= 2,808 rows
+        GUARD_MIN_AGE_DAYS = 7
+        cur = conn.cursor()
+        cur.execute(
+            f"SELECT source_id, DATEDIFF('day', started_at, CURRENT_TIMESTAMP()) FROM {fqn} r "
+            f"WHERE source_id IN ({placeholders}) AND started_at = "
+            f"(SELECT MAX(started_at) FROM {fqn} s WHERE s.source_id=r.source_id)",
+            tuple(sids))
+        age_days = {r[0]: r[1] for r in cur.fetchall()}
+        cur.close()
+
         print(f"\n{'SOURCE_ID':<34} {'FINDING':>7} {'NOW':>9} {'ROWS':>8}  REASON")
         print(f"{'-'*34} {'-'*7} {'-'*9} {'-'*8}  {'-'*30}")
-        to_apply = []
+        to_apply, guarded = [], []
         for sid, finding, reason in targets:
             st, rc = cur_state.get(sid, ("(no run)", None))
             rcs = f"{rc:,}" if isinstance(rc, int) else "-"
+            age = age_days.get(sid)
+            fresh = age is not None and age < GUARD_MIN_AGE_DAYS
+            big = isinstance(rc, int) and rc > GUARD_MAX_ROWS
+            if st == "success" and (fresh or big):
+                why = " + ".join(w for w, on in
+                                 ((f"loaded {age}d ago", fresh), (f"{rcs} rows", big)) if on)
+                print(f"{sid:<34} {finding:>7} {str(st):>9} {rcs:>8}  "
+                      f"REFUSED -- looks like a live rebuild ({why}), not a dead scrape")
+                guarded.append(sid)
+                continue
             flag = "" if st == "success" else "  [already non-success / no run -- skip]"
             print(f"{sid:<34} {finding:>7} {str(st):>9} {rcs:>8}  {reason[:46]}{flag}")
             if st == "success":
                 to_apply.append((sid, finding, reason))
+        if guarded:
+            print(f"\n  GUARD: {len(guarded)} source(s) refused above -- their latest "
+                  "success is too big/recent to be a dead scrape. If one truly must "
+                  "be demoted, do it by hand with eyes on the run.")
 
         if not args.apply:
             print(f"\n{len(to_apply)} run(s) would be demoted success -> empty.")
