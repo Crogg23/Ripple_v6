@@ -413,7 +413,11 @@ def _build_keysets(conn, fp, name_max_rows) -> tuple[dict, int]:
                 skipped += 1
                 continue
             members[(tbl, key)] = (best["column"], _tier(fp, key))
-            norm = normalize_sql(key, quote_ident(best["column"]))
+            # ZIP country-gate (Chris 2026-08-09): if this table also carries a
+            # country column, foreign-country rows contribute no ZIP keys.
+            ccol = _best_value_col(info["keys"], "COUNTRY") if key == "ZIP" else None
+            norm = normalize_sql(key, quote_ident(best["column"]),
+                                 country_col=quote_ident(ccol["column"]) if ccol else None)
             db.rows(conn, f"INSERT INTO {KEYSET_FQN} "
                           f"SELECT DISTINCT '{tbl}', '{key}', {norm} "
                           f"FROM {db.fqn(tbl)} WHERE {norm} IS NOT NULL")
@@ -428,7 +432,9 @@ def _build_keysets(conn, fp, name_max_rows) -> tuple[dict, int]:
             if name_col and geo_col:
                 ck = f"NAME@{geo}"
                 nexpr = normalize_sql("NAME", quote_ident(name_col["column"]))
-                gexpr = normalize_sql(geo, quote_ident(geo_col["column"]))
+                ccol = _best_value_col(info["keys"], "COUNTRY") if geo == "ZIP" else None
+                gexpr = normalize_sql(geo, quote_ident(geo_col["column"]),
+                                      country_col=quote_ident(ccol["column"]) if ccol else None)
                 members[(tbl, ck)] = (f"{name_col['column']}+{geo_col['column']}", "CORROBORATED")
                 db.rows(conn, f"INSERT INTO {KEYSET_FQN} "
                               f"SELECT DISTINCT '{tbl}', '{ck}', {nexpr} || '|' || {gexpr} "

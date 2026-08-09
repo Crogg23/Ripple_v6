@@ -245,11 +245,24 @@ def _addr_canon(col: str) -> str:
             f"x -> CASE x::VARCHAR {whens} ELSE x::VARCHAR END), ' '), '')")
 
 
-def normalize_sql(key: str, col: str) -> str:
+# Normalized (letters-only, upper) spellings that mean "United States" in landing
+# country columns. Checked AFTER the 'country' normalizer, so 'U.S.', 'us', 'U S A'
+# all collapse into these. Blank/NULL country passes the gate: unknown is not foreign.
+US_COUNTRY_ALIASES = ("US", "USA", "UNITEDSTATES", "UNITEDSTATESOFAMERICA")
+
+
+def normalize_sql(key: str, col: str, country_col: str | None = None) -> str:
     """SQL expression canonicalizing `col` for an equi-join on `key`.
 
     Raises on an unmapped value key -- fail loud, never silently mis-canonicalize
     (the old code fell back to a keep-zeros default, hiding newly-added keys).
+
+    country_col (ZIP only, Chris-approved 2026-08-09): when the table carries a
+    country column, pass it (quoted) and the ZIP normalizer returns NULL for rows
+    whose country is present and NOT a US spelling. Closes the residual foreign-
+    postal trap the length gate can't ('Y21 T449' Eircode -> '21449', a real VA
+    ZIP; 'KY1-1106' Cayman -> '11106', a real NY ZIP). Rows with no country info
+    still pass -- the gate narrows, it never widens.
     """
     if key not in NORM_RULES:
         raise KeyError(f"No NORM_RULES entry for key '{key}'. Add one before joining on it.")
@@ -306,8 +319,14 @@ def normalize_sql(key: str, col: str) -> str:
         # a Boston one. Same for any 6/7-digit run (foreign postal codes). Only the two
         # lengths a real US ZIP can have are accepted: 5 (ZIP5) and 9 (ZIP+4).
         digits = f"REGEXP_REPLACE(TO_VARCHAR({col}), '[^0-9]', '')"
-        return (f"CASE WHEN LENGTH({digits}) IN ({width}, {width + 4}) "
+        expr = (f"CASE WHEN LENGTH({digits}) IN ({width}, {width + 4}) "
                 f"THEN LEFT({digits}, {width}) ELSE NULL END")
+        if country_col:
+            cnorm = f"UPPER(REGEXP_REPLACE(TO_VARCHAR({country_col}), '[^A-Za-z]', ''))"
+            aliases = ", ".join(f"'{a}'" for a in US_COUNTRY_ALIASES)
+            expr = (f"CASE WHEN COALESCE({cnorm}, '') = '' "
+                    f"OR {cnorm} IN ({aliases}) THEN {expr} ELSE NULL END")
+        return expr
     if mode == "country":
         return f"NULLIF(UPPER(REGEXP_REPLACE(TO_VARCHAR({col}), '[^A-Za-z]', '')), '')"
     raise KeyError(f"Unknown norm mode '{mode}' for key '{key}'.")

@@ -67,6 +67,26 @@ def test_zip_accepts_only_real_us_zip_lengths():
     assert "LEFT(" in sql and ", 5)" in sql
 
 
+def test_zip_country_gate_nulls_foreign_rows():
+    """Chris-approved 2026-08-09 (Option A): the length gate can't stop foreign
+    codes that happen to carry 5 digits ('Y21 T449' Eircode -> '21449', a real VA
+    ZIP). With a country column supplied, non-US rows contribute NO zip key;
+    blank/NULL country still passes (unknown is not foreign)."""
+    sql = normalize_sql("ZIP", '"Z"', country_col='"C"')
+    assert "'US'" in sql and "'UNITEDSTATES'" in sql
+    assert 'COALESCE' in sql and "= ''" in sql   # blank country passes the gate
+    assert sql.count("CASE") == 2                # gate wraps the length check
+    # without a country column the expression is unchanged from the plain form
+    assert normalize_sql("ZIP", '"Z"') not in ("", sql)
+    assert "'US'" not in normalize_sql("ZIP", '"Z"')
+
+
+def test_zip_country_gate_only_applies_to_zip():
+    """country_col is a ZIP-only concept; other keys must ignore it silently
+    rather than emit a nonsense gate."""
+    assert normalize_sql("NPI", "X", country_col='"C"') == normalize_sql("NPI", "X")
+
+
 def test_unknown_key_fails_loud():
     with pytest.raises(KeyError):
         normalize_sql("NOT_A_KEY", "X")

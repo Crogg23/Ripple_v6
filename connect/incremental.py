@@ -655,13 +655,19 @@ def _discover_keyset_inserts(conn, table: str) -> list[tuple[str, str]]:
         seen.add(key)
         if key in PROBABILISTIC and fp["rows"] > NAME_MAX_ROWS:
             continue   # huge fuzzy-name table: skip (mirrors discover's name cap)
-        inserts.append((key, normalize_sql(key, quote_ident(best["column"]))))
+        # ZIP country-gate (Chris 2026-08-09) — mirrors discover._build_keysets.
+        ccol = _best_value_col(info_keys, "COUNTRY") if key == "ZIP" else None
+        inserts.append((key, normalize_sql(
+            key, quote_ident(best["column"]),
+            country_col=quote_ident(ccol["column"]) if ccol else None)))
     name_col = _best_value_col(info_keys, "NAME")
     for geo in ("ZIP", "FIPS"):
         geo_col = _best_value_col(info_keys, geo)
         if name_col and geo_col:
             nexpr = normalize_sql("NAME", quote_ident(name_col["column"]))
-            gexpr = normalize_sql(geo, quote_ident(geo_col["column"]))
+            ccol = _best_value_col(info_keys, "COUNTRY") if geo == "ZIP" else None
+            gexpr = normalize_sql(geo, quote_ident(geo_col["column"]),
+                                  country_col=quote_ident(ccol["column"]) if ccol else None)
             inserts.append((f"NAME@{geo}", f"{nexpr} || '|' || {gexpr}"))
             break
     return inserts
