@@ -1,62 +1,74 @@
-# RIPPLE STATUS — 2026-08-09 (night session: backlog wave 1 — ICIJ, ICE, OpenSanctions, FRA)
+# RIPPLE STATUS — 2026-08-10 (backlog wave 3: 22 sources modeled; truncated-load hunt)
 
 *One screen. Rewritten (never appended) at the end of every session. Sessions read this at boot and brief Chris in chat — Chris never has to open it.*
 
 **BROKE (still open):**
-- 11 orphan twin tables still need dropping (Chris-only, unchanged).
-- Old junk marts keep two demoted sources (`fed_faa_data_portal`,
-  `fed_va_suicide_appendix`) reading as "modeled" in the catalog — drop with
-  the orphans.
-- FBI CDE key in `library-onboarding/.env` remains semi-exposed; rotate at
-  leisure. API signups still pending on Chris: DOL WHD, Senate LDA.
+- Three loads confirmed TRUNCATED, all now loudly labeled, none yet re-loaded:
+  - UK Companies House PSC: exactly 7,000,000 of ~10M records (round-count
+    trap again). Modeled as loud SAMPLE. Loader supports chunked resume but
+    the landed 7M is one unchunked stream from the 2026-08-05 snapshot —
+    clean fix is a full re-ingest from a current snapshot (~30-60 min).
+  - FEMA IA housing registrations: 3.08M of 25,886,797 (true count confirmed
+    vs OpenFEMA metadata). Modeled as loud SAMPLE; full reload queued.
+  - NIH RePORTER: full-history reload RUNNING in background at session close
+    (detached, checkpointed; 2000–2012 of ~26 years done, ~6.5 min/year).
+    If it dies, rerun scripts/nih_reporter_load.py — it resumes at the next
+    undone year automatically.
+- Trust-check finding at boot: the previous session ran waves 2a–2d (~30
+  sources) but never rewrote STATUS.md — the boot brief was a session stale.
+- 11 orphan twin tables (unchanged) PLUS a new duplicate-ingest drop list:
+  ~25 landed twins of already-modeled sources + 5 RCRA dupe twins, all
+  verified by row-count/column match — reports/duplicate_ingest_drop_list_2026-08-10.md
+  (DROPs are Chris-only). Old junk marts (faa portal / va appendix) unchanged.
+- FBI CDE key still semi-exposed in library-onboarding/.env; API signups
+  still pending on Chris: DOL WHD, Senate LDA.
 
-**DONE this session (two commits, 784f7c32 + 1a6a83ab, both pushed):**
-Part 1 (earlier close, see git): 4 new marts + 2 stale-shape rewrites +
-prod refresh for the rebuilt sources (rail deaths by railroad, FBI crime
-state-month, CDC WONDER national, NCHS by-state, VA suicide state/national).
-CI green on both those pushes.
+**DONE this session (one commit 028d9b13, pushed, CI green both workflows):**
+Backlog wave 3 — 22 sources flipped landed→modeled (catalog 430→452), every
+grain COUNT(DISTINCT)-verified live before modeling:
+- FJC federal court cases, 4 tables → JUSTICE: civil 10.86M, criminal 6.30M
+  defendant-records, bankruptcy 6.97M (casekey+snapshot), appellate 988k.
+  The pre-existing court mart was a PHANTOM (staging read a nonexistent
+  landing table, mart never built) — deleted, zero references.
+- HMDA historic mortgages 19.14M → HOUSING (2015–2017 only, stated loudly).
+- Elections Canada contributions 12.65M → POLITICS (placed in the lobbying
+  folder because the politics folder's mirror-guard blocks dbt builds).
+- FracFocus fracking chemicals ×3 → ENVIRONMENT (registry 7.20M ingredient
+  lines exactly unique on disclosure+purpose+ingredient).
+- EPA RCRAInfo hazardous-waste family ×6 → ENVIRONMENT (handlers 1.61M,
+  monthly vio/SNC 2.68M, evaluations, violations, enforcements, NAICS).
+- EPA FRS facilities 3.28M → ENVIRONMENT (84,926 registry ids NOT in the
+  bigger already-modeled FRS extract — different cuts, both kept).
+- FEMA IA registrations (SAMPLE) → HOUSING; UK PSC (SAMPLE) → CORPORATE_REGISTRY;
+  Open Payments profile supplement 1.70M → HEALTH (NPI join key);
+  USGS GNIS place names 1.25M → REFERENCE; USCG/NRC incident tables ×2 → ENVIRONMENT.
+- Connection engine: persisted keyset carried 6.27M stale keys from the
+  pre-dedup IRS EO BMF table — reseeded via its own repair path; its
+  validate now fully PASSes (was the one failing check in the suite).
+- Sorted all 170 "landed" catalog rows: ~30 are duplicate registrations
+  (drop list above), ~129 real backlog remain (biggest: ITIS taxonomy family,
+  NYC campaign finance ×5, EIA-860/861 family ×~30, GHGRP, SBIR, PCAOB).
 
-Part 2 — backlog wave 1, 12 sources flipped landed→modeled in the catalog
-(verified live), every grain COUNT(DISTINCT)-checked before tests:
-- ICIJ Offshore Leaks, 6 tables / 5.36M rows → CORPORATE_REGISTRY marts:
-  entities/officers/intermediaries/addresses/others all unique on node_id;
-  relationships edges NOT unique (multi-leak republication, kept as landed).
-  29 unnamed entities and a few absurd incorporation dates (year 199, 2812)
-  are ICIJ's own data, kept as published.
-- ICE detention stints (2.62M, person-level anon hashes, 2004-2026) + ICE
-  detainers (610k, Oct 2022-2026) → IMMIGRATION marts. Stint mart excludes
-  only publisher-flagged duplicate rows (2,571,975 kept). Known quirks
-  documented, not "fixed": person hash blank on 7,341 stint rows and 74,751
-  detainer rows; detainer rows only unique with file+row provenance; some
-  dates future-dated as published.
-- OpenSanctions default collection (1.28M worldwide sanctions/PEP targets,
-  unique id) → JUSTICE mart, distinct from the smaller sanctions-only
-  collection already modeled.
-- FRA passthrough marts (casualties / crossing / equipment) so the three
-  rail sources register as modeled; the intended detail-vs-rollup row-count
-  difference on casualties is documented in the duplication guard with its
-  reconciliation (53,105 deaths both ways).
-- Connection engine: all nine new tables were already linked at land time
-  (content-key no-ops) — nothing to redo.
-- dbt build green (21 models, 52 tests). Offline suite 2,698 passed /
-  0 failed (the one failure during the session was the duplication guard
-  correctly catching the FRA detail/rollup pair — resolved by documenting).
+**TEST STATUS:** offline 2,698 passed / 2 skipped / 0 failed (full clean run
+post-fix). dbt wave-3 build: 44 models + 104 tests green against production.
+CI green on the push (both workflows).
 
 **YOUR MOVE:**
-1. Nothing blocking. Orphan + junk-mart drop list available on request.
+1. Nothing blocking. The duplicate-ingest drop list is ready when you want
+   to clear the ~30 dupe tables (Chris-only DROPs).
 
 **NEXT SESSION:**
-1. Continue the backlog: next biggest are
-   IRS exempt-orgs master file (281k), NIH grants (206k), plus the sampled
-   API sources (USAspending bulk, HMDA, FDIC) which may need fuller loads
-   before modeling — check before building.
-2. Phase 0 leftovers: orphan drops, API signups (DOL WHD, Senate LDA).
-3. Optional: lens/KPI definition session if Chris opens it (his call).
+1. Verify the NIH reload finished (checkpoint file), rebuild its mart, and
+   confirm it flips modeled.
+2. Full re-ingests for the two truncated SAMPLEs: UK PSC (~10M, fresh
+   snapshot) and FEMA IA (25.9M via OpenFEMA API — sizeable, price it first).
+3. Keep draining the ~129-source real backlog (ITIS family, NYC campaign
+   finance, EIA-860/861 — the EIA family needs a vintage decision first:
+   two near-identical copies landed, see drop list).
+4. Phase 0 leftovers: orphan + dupe drops, API signups (DOL WHD, Senate LDA).
 
-**COST:** light-moderate — roughly 1 Snowflake credit (~$2-3): key checks
-over the 3.3M-row edge table and 2.6M-row stints, twelve mart builds
-(largest 3.3M rows), 52 tests, two offline-suite warehouse-check runs.
-
-**TEST STATUS:** offline 2,698 passed / 2 skipped / 0 failed; dbt build
-green (21 models, 52 tests) against production databases. CI green on all
-four pushes this session.
+**COST:** moderate — ~2-3 Snowflake credits (~$5-8): wave-3 grain checks over
+25M+19M+12M-row tables, 44 model builds + 104 tests (8m42s build), connection
+keyset reseed (157M-row state rebuild), two full offline-suite runs, NIH
+reload still ticking (small writes). Agent spend: 4 parallel model-writers,
+~290k tokens total.
