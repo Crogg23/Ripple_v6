@@ -1,60 +1,66 @@
-# RIPPLE STATUS — 2026-08-10 (backlog wave 4: 46 sources modeled; NIH full history landed)
+# RIPPLE STATUS — 2026-08-10 (waves 4+5: 86 sources modeled; NIH full; FEMA reload RUNNING)
 
 *One screen. Rewritten (never appended) at the end of every session. Sessions read this at boot and brief Chris in chat — Chris never has to open it.*
 
-**BROKE: nothing.** Open items, none blocking:
-- Two truncated SAMPLEs still await full re-ingest (both queued, priced work):
-  UK Companies House PSC (7M of ~10M; needs fresh-snapshot re-ingest ~30-60 min)
-  and FEMA IA registrations (3.08M of 25.9M via OpenFEMA API — sizeable, price
-  before running).
-- Drop list for Chris grew: the ~30 dupe rows from wave 3 PLUS (added this
-  session, all verified) 4 corrupted power-plant vintage twins, 3 junk 1-row
-  loads (SEC tickers JSON-in-one-row, FinCEN BOI legally-restricted placeholder,
-  CMS hospital-price GitHub-listing), and 1 leftover internal staging table —
-  reports/duplicate_ingest_drop_list_2026-08-10.md. DROPs are Chris-only.
-- FBI CDE key still semi-exposed in library-onboarding/.env; API signups still
-  pending on Chris: DOL WHD, Senate LDA.
+**BROKE: nothing.** Live/open items:
+- FEMA IA full reload RUNNING detached at session close (checkpointed at
+  ~3.7M+ of 25,886,797; ~100k rows/2 min ≈ 7-8 h to finish; resumes on rerun
+  of scripts/fema_ia_load.py if it dies). When done: rebuild its staging+mart
+  and REMOVE the SAMPLE label from its descriptions.
+- UK Companies House PSC re-ingest is BLOCKED on a Chris-only wipe: sessions
+  can't DELETE/TRUNCATE. One-liner for Chris, then rerun the chunked loader:
+  `DELETE FROM LIBRARY_RAW.LANDING.UK_COMPANIES_HOUSE_PSC;` then
+  `python scripts/uk_ch_psc_load.py --chunks 32 --run` (~30-60 min).
+- Drop list (Chris-only) now ~40 tables in 4 sections:
+  reports/duplicate_ingest_drop_list_2026-08-10.md — wave-3 dupes (~30),
+  4 EIA vintage twins, 3 junk 1-row loads, 4 snapshot twins
+  (screening list / FJC judges / JPML / Prop-65), 2 broken loads to re-ingest
+  properly later (USACE dams inventory, DTCC participants), 1 garbage OCC
+  by-name table, 1 leftover internal staging table.
+- FBI CDE key still semi-exposed in library-onboarding/.env; API signups
+  still pending on Chris: DOL WHD, Senate LDA.
 
-**DONE this session (commit 1dae94e2 pushed; NIH rebuild after it):**
-- NIH RePORTER full-history reload FINISHED CLEAN: 27 fiscal years (2000–2026),
-  2,122,611 rows, distinct APPL_ID = row count, zero gaps vs the publisher's
-  own per-year counts. Staging+mart rebuilt; catalog shows modeled, full,
-  not a sample.
-- Backlog wave 4 — 46 sources flipped landed→modeled (catalog 452→511 modeled,
-  89 landed rows remain incl. ~30 dupes = ~55 real backlog). Every grain
-  COUNT(DISTINCT)-verified live first. Highlights:
-  - ITIS taxonomy family ×19 → REFERENCE (core taxa 993k, ref links 1.97M).
-  - NYC CFB campaign contributions ×5 cycles (2001–2025) → POLITICS
-    (1.25M contribution rows total; 2001 cycle needed the surrogate-key idiom).
-  - EIA-860 power plants ×10 + EIA-861 utility survey ×18 → ENERGY (2024
-    vintage; upgraded from auto-generated passthrough staging). Vintage
-    decision made: sheet-numbered family kept, 4 corrupted twins → drop list.
-    Five 861 tables lost their first data row into the Excel header at load —
-    modeled with that caveat in every affected description.
-  - EPA GHGRP emissions+facilities, SBIR/STTR awards, NTSB aviation injuries,
-    FDA UNII substance crosswalk hub, DailyMed label map, PCAOB audit-partner
-    filings → their domain folders.
-- dbt build: 119 models + 311 tests all green (one warehouse pass).
-- Three 1-row landing tables inspected and condemned (junk loads, not modeled).
+**DONE this session (commits 1dae94e2, 5481691d, 173846f3 — all pushed):**
+- Wave 4 (46 sources) + wave 5 (40 sources): catalog 452 → 551 modeled.
+  Real landed backlog is now ZERO — everything left in 'landed' is either
+  on the drop list, a broken load queued for re-ingest, or live-loading.
+  Every grain COUNT(DISTINCT)-verified live before modeling.
+  - Wave 4: ITIS taxonomy ×19, NYC CFB contributions ×5 cycles,
+    EIA-860/861 power-plant+utility family ×28 (vintage decided, 4 corrupt
+    twins condemned; 5 tables carry a lost-first-row caveat), GHGRP ×2,
+    SBIR, NTSB injuries, FDA UNII hub, DailyMed map, PCAOB Form AP.
+  - Wave 5: health ×7 (HPSA, UDS sites, IHS ×2, DMF, Purple Book,
+    Health Canada DPD), housing ×8 (FHA snapshot, HUD MF ×2, PHAs, USDA RD,
+    NFIP, HMDA LAR SAMPLE + xref), finance ×10 (SEC series/class, FINRA,
+    MSRB, OCC ×2, ISO MIC, OSFI, FHLB, NCUA ×2), environment ×5 (TRI, AQS,
+    orphaned wells, WQP, HUC8), science/reference/education ×8 (ROR,
+    retraction watch, Crossref funders, OSF SAMPLE, TAS tree, College
+    Scorecard, CIP codes), Form 5500 Sch SB → labor, ICE facility codes →
+    immigration. Four Excel-mangled tables recovered by hunting their
+    embedded header rows live.
+- NIH RePORTER full history verified complete: 27 years, 2,122,611 rows,
+  zero gaps vs publisher counts; mart rebuilt, modeled, not a sample.
 
-**TEST STATUS:** offline 2,698 passed / 2 skipped / 0 failed (full run after
-authoring). dbt wave-4 build 430/430 green; NIH rebuild 7/7 green. Wave-4
-commit pushed (CI state not re-checked this session — verify at next boot).
+**TEST STATUS:** offline 2,698 passed / 2 skipped (run after EACH wave).
+dbt: wave-4 430/430; wave-5 339 green after 4 small fixes. All pushed;
+CI state not re-checked — verify at next boot.
 
 **YOUR MOVE:**
-1. Nothing blocking. The enlarged drop list is ready whenever you want to
-   clear it (Chris-only DROPs).
+1. Run the UK PSC wipe one-liner above (then a session reruns the loader).
+2. Drop list (~40 tables) whenever you want — all verified, receipts in the
+   report.
 
 **NEXT SESSION:**
-1. Verify CI went green on the wave-4 push (boot trust check).
-2. Full re-ingests for the two truncated SAMPLEs: UK PSC (fresh snapshot),
-   FEMA IA (25.9M — show Chris the price line first, §8.7).
-3. Drain the ~55 real remaining backlog sources (biggest left: retraction
-   watch 72k, dams 93k, orphaned wells 118k, HPSA 79k, EPA TRI facility 65k,
-   HUD/USDA housing tables, credit-union/bank registries, long tail <65k).
-4. Phase 0 leftovers: drops (Chris), API signups (Chris).
+1. Boot trust check: CI green on the three pushes?
+2. Check FEMA IA finished (checkpoint file); rebuild its models, drop the
+   SAMPLE label, verify full 25.9M.
+3. If Chris ran the wipe: rerun UK PSC loader (32 chunks), rebuild, un-SAMPLE.
+4. Re-ingest the two broken loads properly (dams inventory ~93k, DTCC list)
+   — small, free APIs.
+5. Backlog is drained — next frontier is the 1,569 'sampled' sources and
+   the 268 'failed' ones in the catalog, plus Phase 0 leftovers.
 
-**COST:** moderate — roughly 1-2 Snowflake credits (~$3-6): grain checks over
-~60 mostly-small tables, 119-model build + NIH mart rebuild (2.1M rows), two
-catalog verification queries; NIH reload API pull ran to completion (small
-steady writes). Agent spend: 5 parallel model-writers, ~395k tokens.
+**COST:** moderate — ~2-3 Snowflake credits (~$5-8) across both waves:
+grain checks over ~110 tables, two multi-model builds (119 + 91 models),
+NIH mart rebuild (2.1M), FEMA loader writing steadily. Agent spend:
+9 model-writer agents, ~760k tokens total.
