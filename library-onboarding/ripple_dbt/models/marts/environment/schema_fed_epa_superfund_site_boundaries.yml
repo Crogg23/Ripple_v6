@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: environment__fed_epa_superfund_site_boundaries
+    description: >
+      EPA Superfund site boundary features (full set, 2,114 features across
+      1,908 sites; attributes only, polygon geometry not landed). One row per
+      boundary feature; epa_id joins to EPA FRS and enforcement corpora.
+    columns:
+      - name: boundary_feature_id
+        data_tests: [unique, not_null]
+      - name: epa_id
+        data_tests: [not_null]

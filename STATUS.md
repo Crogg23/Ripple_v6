@@ -1,4 +1,4 @@
-# RIPPLE STATUS — 2026-08-10 (full-day drain: 559 modeled; frontier tail nearly done; FEMA RUNNING)
+# RIPPLE STATUS — 2026-08-10 (full-day drain: 560 modeled; frontier tail done; FEMA RUNNING)
 
 *One screen. Rewritten (never appended) at the end of every session. Sessions read this at boot and brief Chris in chat — Chris never has to open it.*
 
@@ -18,8 +18,11 @@
   USASpending), dead House-trades mirror registry row.
 - Key-gated on Chris: FCC broadband map (needs free API key), DOL WHD,
   Senate LDA. FBI CDE key semi-exposed in library-onboarding/.env.
-- Small tail left: OFCCP audit list + Superfund boundaries (2k samples of
-  small datasets, need proper full pulls), DTCC directory (manual download).
+- Small tail left: OFCCP audit list (the entire dol.gov estate Akamai-blocks
+  scripted pulls — manual browser download like DTCC), DTCC directory
+  (manual download), PHMSA's other 3 pipeline-type files (phmsa.dot.gov
+  rate-blocked us tonight after the transmission pull — retry next session
+  via the academic Zenodo mirror already used for other PHMSA data).
 
 **DONE this session (8 commits pushed; catalog 452 → 559 modeled):**
 - Waves 4+5 (86 sources) + NIH full history + landed backlog to zero.
@@ -39,6 +42,9 @@
   validate 20/20 green both times.
 - Triage verdicts: HHS grants redundant, House-trades mirror dead upstream,
   UK FCDO redundant+broken, ATF sample redundant.
+- Superfund site boundaries completed: the "2,000-row sample" was the ArcGIS
+  page cap; true total is 2,114 — full pull landed (new
+  scripts/superfund_boundaries_load.py) and modeled → ENVIRONMENT (560th).
 
 **TEST STATUS:** offline suite green (2,697 passed + connection tests 20/20
 after reseed / 2 skipped). All dbt builds green. CI not re-checked — next boot.

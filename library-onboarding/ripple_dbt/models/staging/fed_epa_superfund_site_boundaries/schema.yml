@@ -1,0 +1,30 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_EPA_SUPERFUND_SITE_BOUNDARIES
+        description: >
+          EPA Superfund site boundary features (attributes only; polygon
+          geometry not landed). Full pull 2026-08-10: 2,114 features across
+          1,908 EPA site ids, replacing the earlier 2,000-row page-capped
+          probe.
+
+models:
+  - name: stg_fed_epa_superfund_site_boundaries__boundaries
+    description: >
+      One row per Superfund site boundary feature. EPA_ID joins to EPA FRS
+      and enforcement corpora; NPL status and feature class describe what the
+      boundary represents.
+    columns:
+      - name: boundary_feature_id
+        description: ArcGIS OBJECTID -- the verified-unique feature key.
+        data_tests:
+          - unique
+          - not_null
+      - name: epa_id
+        description: EPA site id (join key; NOT unique -- multiple features per site).
+        data_tests:
+          - not_null
