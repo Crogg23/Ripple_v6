@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: procurement__fed_usaspending_subawards
+    description: "SAMPLE ONLY -- NOT the full dataset. USAspending subawards: a 5,000-row API slice of the multi-million-row subaward corpus, landed as flat JSON records. Use for shape/testing only."
+    columns:
+      - name: subaward_id
+        data_tests: [not_null, unique]

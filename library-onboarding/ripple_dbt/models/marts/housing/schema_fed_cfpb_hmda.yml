@@ -1,14 +1,7 @@
 version: 2
 
-sources:
-  - name: ripple_raw
-    database: LIBRARY_RAW
-    schema: LANDING
-    tables:
-      - name: FED_CFPB_HMDA
-
 models:
-  - name: stg_fed_cfpb_hmda__loans
+  - name: housing__fed_cfpb_hmda
     description: "SAMPLE ONLY -- NOT the full dataset. HMDA mortgage loan-level records: a single state-year slice (Washington DC, 2023; 28,301 rows) of a corpus that is ~50 states x 2018-present. Use for shape/testing, never for lending-pattern claims. Full pull needs a state x year loop loader."
     columns:
       - name: lei

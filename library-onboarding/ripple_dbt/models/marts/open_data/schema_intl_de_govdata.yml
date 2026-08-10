@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: open_data__intl_de_govdata
+    description: "SAMPLE ONLY -- NOT the full dataset. GovData.de dataset catalog: 5,000-dataset slice of the German national open-data portal index."
+    columns:
+      - name: dataset_id
+        data_tests: [not_null, unique]

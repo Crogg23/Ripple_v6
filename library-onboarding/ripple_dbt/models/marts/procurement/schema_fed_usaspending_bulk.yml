@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: procurement__fed_usaspending_bulk
+    description: "SAMPLE ONLY -- NOT the full dataset. USAspending prime-award contract transactions: a 50,000-row slice of a multi-hundred-million-row corpus (bulk loader capped). Use for shape/testing, never for totals or coverage claims. Full re-ingest needs a dedicated streaming loader."
+    columns:
+      - name: contract_transaction_unique_key
+        data_tests: [not_null, unique]

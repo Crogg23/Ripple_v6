@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: health__fed_fda_device_pma
+    description: "FDA PMA premarket approvals: 56.9k approval/supplement records flattened from raw openFDA JSON -- effectively the full corpus."
+    columns:
+      - name: pma_number
+        data_tests: [not_null]

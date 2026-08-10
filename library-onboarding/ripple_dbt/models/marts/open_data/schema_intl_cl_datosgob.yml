@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: open_data__intl_cl_datosgob
+    description: "SAMPLE ONLY -- NOT the full dataset. datos.gob.cl dataset catalog: 1,000-dataset slice of the Chilean national open-data portal index."
+    columns:
+      - name: dataset_id
+        data_tests: [not_null, unique]

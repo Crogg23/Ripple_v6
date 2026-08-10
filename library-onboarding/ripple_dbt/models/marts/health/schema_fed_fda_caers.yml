@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: health__fed_fda_caers
+    description: "FDA CAERS food/cosmetics adverse-event reports: 85.5k reports flattened from raw openFDA JSON."
+    columns:
+      - name: report_number
+        data_tests: [not_null]

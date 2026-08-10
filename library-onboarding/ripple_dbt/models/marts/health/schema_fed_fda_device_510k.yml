@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: health__fed_fda_device_510k
+    description: "FDA 510(k) premarket clearances: 175.7k clearance records flattened from raw openFDA JSON -- effectively the full corpus."
+    columns:
+      - name: k_number
+        data_tests: [not_null]

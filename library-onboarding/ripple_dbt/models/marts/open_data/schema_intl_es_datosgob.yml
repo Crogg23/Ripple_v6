@@ -1,0 +1,5 @@
+version: 2
+
+models:
+  - name: open_data__intl_es_datosgob
+    description: "SAMPLE ONLY -- NOT the full dataset. datos.gob.es dataset catalog: 1,000-row slice AND defective as landed -- URI/title/description columns are blank (loader parse bug, needs a re-point); publisher/sector/format/URL populated."

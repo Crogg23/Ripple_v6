@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: politics__fed_fec_api
+    description: "SAMPLE ONLY -- NOT the full dataset. FEC itemized contributions API: a 500-row default-page slice. Use for shape/testing only; the FEC bulk files are the real corpus (separate sources)."
+    columns:
+      - name: transaction_id
+        data_tests: [not_null, unique]

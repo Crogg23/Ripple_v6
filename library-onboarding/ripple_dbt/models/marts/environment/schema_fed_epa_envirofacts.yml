@@ -1,14 +1,7 @@
 version: 2
 
-sources:
-  - name: ripple_raw
-    database: LIBRARY_RAW
-    schema: LANDING
-    tables:
-      - name: FED_EPA_ENVIROFACTS
-
 models:
-  - name: stg_fed_epa_envirofacts__facility_sample
+  - name: environment__fed_epa_envirofacts
     description: "SAMPLE ONLY -- NOT the full dataset. EPA Envirofacts API: a 5,000-row slice of ONE program table (TRI facility names); FRS/site/handler id columns are blank in this slice. Use for shape/testing only."
     columns:
       - name: facility_name

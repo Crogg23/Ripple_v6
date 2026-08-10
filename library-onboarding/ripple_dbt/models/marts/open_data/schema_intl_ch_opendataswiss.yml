@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: open_data__intl_ch_opendataswiss
+    description: "SAMPLE ONLY -- NOT the full dataset. opendata.swiss dataset catalog: 5,000-dataset slice of the Swiss national open-data portal index."
+    columns:
+      - name: id
+        data_tests: [not_null, unique]

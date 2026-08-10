@@ -1,0 +1,5 @@
+version: 2
+
+models:
+  - name: health__fed_fda_establishment_reg
+    description: "FDA device establishment registrations: 330k registration-product rows flattened from raw openFDA JSON."

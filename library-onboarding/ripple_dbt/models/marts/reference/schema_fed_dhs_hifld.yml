@@ -1,0 +1,8 @@
+﻿version: 2
+
+models:
+  - name: reference__fed_dhs_hifld
+    description: "SAMPLE ONLY -- NOT the full dataset. DHS HIFLD infrastructure facilities: a 500-row slice of one layer. objectid+layer unique in the slice. Use for shape/testing only."
+    columns:
+      - name: objectid
+        data_tests: [not_null]

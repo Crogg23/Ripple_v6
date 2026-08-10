@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: open_data__intl_ca_open_canada
+    description: "SAMPLE ONLY -- NOT the full dataset. open.canada.ca dataset catalog: 500-dataset slice of the Canadian national open-data portal index."
+    columns:
+      - name: dataset_id
+        data_tests: [not_null, unique]

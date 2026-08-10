@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: health__fed_fda_maude
+    description: "FDA MAUDE device adverse-event reports, device-level grain, 2.74M rows flattened from raw openFDA JSON. Scope: 2020Q1-forward slice of the 1993-2026 history (documented in staging)."
+    columns:
+      - name: mdr_report_key
+        data_tests: [not_null]

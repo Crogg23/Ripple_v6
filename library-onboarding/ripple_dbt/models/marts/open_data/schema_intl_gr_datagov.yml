@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: open_data__intl_gr_datagov
+    description: "SAMPLE ONLY -- NOT the full dataset. data.gov.gr dataset catalog: 5,000-row slice; 12 dataset ids appear twice as published."
+    columns:
+      - name: dataset_id
+        data_tests: [not_null]

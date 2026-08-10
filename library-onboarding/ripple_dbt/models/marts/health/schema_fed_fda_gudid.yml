@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: health__fed_fda_gudid
+    description: "FDA Global UDI Database (GUDID): 5.08M device records flattened from raw openFDA JSON pages -- effectively the full corpus."
+    columns:
+      - name: primary_di
+        data_tests: [not_null]

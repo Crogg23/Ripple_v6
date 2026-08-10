@@ -1,14 +1,7 @@
 version: 2
 
-sources:
-  - name: ripple_raw
-    database: LIBRARY_RAW
-    schema: LANDING
-    tables:
-      - name: FED_FDIC_BANK_DATA
-
 models:
-  - name: stg_fed_fdic_bank_data__institutions
+  - name: finance__fed_fdic_bank_data
     description: "SAMPLE ONLY -- NOT the full dataset. FDIC insured-institution directory: a 10,000-row API slice (cert number unique within it) of the full multi-decade institution universe. Use for shape/testing only; full pull needs an offset-paginated loader."
     columns:
       - name: cert
