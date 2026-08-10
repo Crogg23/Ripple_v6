@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: finance__fed_fdic_sod_branch_deposits
+    description: >
+      FDIC Summary of Deposits (SOD): FULL annual branch survey history
+      1994-2025 (~2.82M rows). One row = one FDIC-insured bank branch in one
+      survey year, with branch deposits (thousands of dollars), branch
+      location/geocoding, and parent-institution and holding-company context.
+      fdic_cert, rssd_id, and holding_company_rssd are join keys to other bank
+      registries (FDIC institution directory, FFIEC/NCUA call reports, Fed NIC
+      holding-company data).
+    columns:
+      - name: branch_year_key
+        description: "Surrogate key: survey_year-fdic_cert-branch_number."
+        data_tests: [unique, not_null]
+      - name: survey_year
+        data_tests: [not_null]
+      - name: fdic_cert
+        data_tests: [not_null]
+      - name: branch_number
+        data_tests: [not_null]

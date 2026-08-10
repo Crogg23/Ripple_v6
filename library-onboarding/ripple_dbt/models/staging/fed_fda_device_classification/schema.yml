@@ -1,0 +1,155 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FDA_DEVICE_CLASSIFICATION
+        description: >
+          Raw landing table for FDA Device Classification records (openFDA
+          device/classification API). Lands as VARIANT rows holding the whole
+          API response; the real records live in the RAW:results array.
+
+models:
+
+  - name: stg_fed_fda_device_classification__device_classifications
+    description: >
+      Staging model for FDA device classification records. Flattens the
+      RAW:results array from the openFDA response, renames to snake_case,
+      and deduplicates on product_code keeping the most recently ingested row.
+    columns:
+
+      - name: product_code
+        description: Three-letter FDA product code uniquely identifying the generic device category.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: device_name
+        description: Official FDA name for the generic device category.
+        data_tests:
+          - not_null
+
+      - name: regulation_number
+        description: CFR Title 21 regulation number governing the device category.
+
+      - name: device_class
+        description: >
+          FDA device class: 1 (low risk, general controls), 2 (moderate risk,
+          special controls), 3 (high risk, premarket approval). Also carries
+          special values for unclassified/not-classified categories.
+        data_tests:
+          - not_null
+
+      - name: medical_specialty
+        description: Two-letter code for the medical specialty panel the device is assigned to.
+
+      - name: medical_specialty_description
+        description: Plain-English description of the medical specialty panel.
+
+      - name: review_panel
+        description: FDA advisory review panel code for the device category.
+
+      - name: submission_type_id
+        description: Code for the premarket submission type required (510(k), PMA, exempt, etc.).
+
+      - name: unclassified_reason
+        description: Reason code when the device category is unclassified.
+
+      - name: definition
+        description: Narrative definition of the device category.
+
+      - name: gmp_exempt_flag
+        description: Whether the device is exempt from Good Manufacturing Practice requirements (Y/N).
+
+      - name: implant_flag
+        description: Whether the device is an implant (Y/N).
+
+      - name: life_sustain_support_flag
+        description: Whether the device is life-sustaining or life-supporting (Y/N).
+
+      - name: third_party_flag
+        description: Whether the device is eligible for third-party 510(k) review (Y/N).
+
+      - name: openfda
+        description: openFDA enrichment sub-object (registration numbers, k-numbers, etc.), kept whole.
+
+      - name: _ingested_at
+        description: Timestamp when the record was loaded into the landing table.
+        data_tests:
+          - not_null
+
+      - name: _source_run_id
+        description: Pipeline run identifier that produced this row.
+
+  - name: health__fed_fda_device_classification
+    description: >
+      Analytics-ready mart table for FDA device classification records.
+      One row per product_code, with class/specialty context and scalar
+      openFDA enrichment lists for cross-source joins.
+    columns:
+
+      - name: product_code
+        description: Three-letter FDA product code (primary key).
+        data_tests:
+          - unique
+          - not_null
+
+      - name: device_name
+        description: Official FDA name for the generic device category.
+        data_tests:
+          - not_null
+
+      - name: device_class
+        description: FDA device class (1 / 2 / 3, plus unclassified variants).
+        data_tests:
+          - not_null
+
+      - name: regulation_number
+        description: CFR Title 21 regulation number governing the device category.
+
+      - name: medical_specialty
+        description: Two-letter medical specialty panel code.
+
+      - name: medical_specialty_description
+        description: Plain-English description of the medical specialty panel.
+
+      - name: review_panel
+        description: FDA advisory review panel code.
+
+      - name: submission_type_id
+        description: Code for the premarket submission type required.
+
+      - name: unclassified_reason
+        description: Reason code when the device category is unclassified.
+
+      - name: definition
+        description: Narrative definition of the device category.
+
+      - name: gmp_exempt_flag
+        description: GMP-exempt flag (Y/N).
+
+      - name: implant_flag
+        description: Implant flag (Y/N).
+
+      - name: life_sustain_support_flag
+        description: Life-sustaining/life-supporting flag (Y/N).
+
+      - name: third_party_flag
+        description: Third-party 510(k) review eligibility flag (Y/N).
+
+      - name: registration_number_list
+        description: openFDA establishment registration numbers, joined to a scalar list.
+
+      - name: k_number_list
+        description: openFDA 510(k) clearance numbers, joined to a scalar list.
+
+      - name: pma_number_list
+        description: openFDA PMA numbers, joined to a scalar list.
+
+      - name: fei_number_list
+        description: openFDA FEI facility identifiers, joined to a scalar list.
+
+      - name: openfda
+        description: openFDA enrichment sub-object, kept whole.

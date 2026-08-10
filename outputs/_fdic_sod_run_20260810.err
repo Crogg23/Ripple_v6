@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "C:\Code\Ripple_v6\scripts\fdic_sod_load.py", line 130, in <module>
+    main()
+    ~~~~^^
+  File "C:\Code\Ripple_v6\scripts\fdic_sod_load.py", line 80, in main
+    sample = fetch_page(0)
+  File "C:\Code\Ripple_v6\scripts\fdic_sod_load.py", line 64, in fetch_page
+    raise RuntimeError(f"failed page offset={offset}")
+RuntimeError: failed page offset=0
+Traceback (most recent call last):
+  File "C:\Code\Ripple_v6\scripts\fdic_sod_load.py", line 133, in <module>
+    main()
+    ~~~~^^
+  File "C:\Code\Ripple_v6\scripts\fdic_sod_load.py", line 101, in main
+    batch = fetch_page(offset)
+  File "C:\Code\Ripple_v6\scripts\fdic_sod_load.py", line 67, in fetch_page
+    raise RuntimeError(f"failed page offset={offset}")
+RuntimeError: failed page offset=2000000

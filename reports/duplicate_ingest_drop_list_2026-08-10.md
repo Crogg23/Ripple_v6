@@ -115,6 +115,21 @@ Broken loads confirmed by inspection (drop + re-ingest properly later):
 | FED_DTCC_DTC_PARTICIPANTS | 904 | participant report landed as title + nulls — no data |
 | FED_OCC_NATIONAL_BANKS_BY_NAME | 62 | garbage columns; redundant with the by-charter table (modeled) |
 
+## E. FDA twin registrations (wave-5 evening pass)
+
+The three failed 1-row "adverse events" registrations are twins of corpora
+already fully loaded + modeled under the older FDA ids (CAERS 85k, MAUDE 2.7M,
+FAERS family 5.8–20.9M). Drop the 1-row tables + registry rows:
+
+| drop | twin of (modeled) |
+|---|---|
+| FED_FDA_CAERS_FOOD_EVENTS (1 row) | FED_FDA_CAERS |
+| FED_FDA_MAUDE_DEVICE_EVENTS (1 row) | FED_FDA_MAUDE |
+| FED_FDA_FAERS_DRUG_EVENTS (1 row) | fed_fda_faers_* family |
+
+Also: FED_FDA_DEVICE_ENFORCEMENT__STAGING (internal work table, drops after
+the re-load finishes).
+
 Drop one-liners (run as ACCOUNTADMIN, table A first, after eyeball):
 each is `DROP TABLE LIBRARY_RAW.LANDING.<NAME>;` plus
 `DELETE FROM LIBRARY_META.REGISTRY.SOURCE_REGISTRY WHERE UPPER(SOURCE_ID)=UPPER('<sid>');`

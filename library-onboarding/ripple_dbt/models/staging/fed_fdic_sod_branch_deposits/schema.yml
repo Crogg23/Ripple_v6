@@ -1,0 +1,78 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FDIC_SOD_BRANCH_DEPOSITS
+        description: >
+          Raw landing table for the FDIC Summary of Deposits (SOD) annual branch
+          survey, full history 1994-2025 (~2.82M rows). One row per bank branch
+          per survey year. All columns arrive as TEXT. Columns with a *BR suffix
+          describe the branch; unsuffixed counterparts describe the parent
+          institution.
+
+models:
+  - name: stg_fed_fdic_sod_branch_deposits__branches
+    description: >
+      Staged FDIC Summary of Deposits branch survey, full history 1994-2025.
+      One row = one FDIC-insured bank branch in one annual survey year
+      (grain YEAR + CERT + BRNUM, verified unique). Cryptic SOD abbreviations
+      renamed to readable snake_case; deposits/assets cast to numbers
+      (thousands of dollars), SIMS coordinates to doubles, SIMS dates to dates.
+      fdic_cert (FDIC certificate), rssd_id, and holding_company_rssd are join
+      keys to other bank registries (FDIC institution directory, FFIEC/NCUA
+      call reports, Fed NIC holding-company data).
+    columns:
+      - name: branch_year_key
+        description: >
+          Surrogate key: survey_year-fdic_cert-branch_number. One per branch
+          per survey year.
+        data_tests:
+          - unique
+          - not_null
+      - name: survey_year
+        description: SOD survey year (1994-2025).
+        data_tests:
+          - not_null
+      - name: fdic_cert
+        description: >
+          FDIC certificate number of the parent institution. Join key to the
+          FDIC institution directory and other bank registries.
+        data_tests:
+          - not_null
+      - name: branch_number
+        description: Branch office number, unique within an institution and year (0 = main office).
+        data_tests:
+          - not_null
+      - name: branch_uninum
+        description: FDIC unique branch identifier (UNINUMBR), stable across years.
+      - name: rssd_id
+        description: Federal Reserve RSSD ID of the institution. Join key to Fed NIC / FFIEC data.
+      - name: holding_company_rssd
+        description: RSSD ID of the regulatory top holding company. Join key to Fed holding-company registries.
+      - name: holding_company_name
+        description: Name of the regulatory top holding company.
+      - name: branch_name
+        description: Branch office name.
+      - name: branch_deposits_thousands
+        description: Deposits held at this branch, thousands of dollars (DEPSUMBR).
+      - name: institution_name
+        description: Full legal name of the parent institution (NAMEFULL).
+      - name: institution_deposits_thousands
+        description: Total institution deposits, thousands of dollars (DEPSUM).
+      - name: institution_domestic_deposits_thousands
+        description: Institution domestic-office deposits, thousands of dollars (DEPDOM).
+      - name: institution_assets_thousands
+        description: Institution total assets, thousands of dollars (ASSET).
+      - name: sims_latitude
+        description: Branch latitude from FDIC SIMS geocoding.
+      - name: sims_longitude
+        description: Branch longitude from FDIC SIMS geocoding.
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.
+      - name: _src_sha256
+        description: SHA-256 of the source file this record came from.

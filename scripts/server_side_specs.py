@@ -463,6 +463,45 @@ SPECS = [
         "notes": "openFDA zipped JSON -> VARIANT. Upgrades the prior 5000-row stub. Adverse events (huge) deferred (RED).",
     },
     {
+        "source_id": "FED_FDA_DEVICE_CLASSIFICATION",
+        "name": "openFDA Device Classification",
+        "url": "https://download.open.fda.gov/device/classification/device-classification-0001-of-0001.json.zip",
+        "kind": "json",
+        "publisher": "U.S. Food and Drug Administration (openFDA)",
+        "description": (
+            "FDA medical-device classification database -- device name, class (I/II/III), "
+            "regulation number, medical specialty, submission type. openFDA JSON "
+            "(one doc with a results array)."),
+        "jurisdiction": "US", "category": "Health", "subcategory": "device_safety",
+        "unit_of_observation": "device classifications (in RAW:results)", "geographic_scope": "United States",
+        "access_method": "bulk", "format": "json", "update_cadence": "monthly", "license_terms": "Public domain (US Gov)",
+        "join_keys": "product_code; regulation_number",
+        "accountability_relevance": (
+            "Reference layer for device-harm work: maps product codes to risk class and "
+            "regulation, so recalls and clearances can be read by risk tier."),
+        "priority_tier": "2",
+        "notes": "Re-ingest: prior API loader failed at first page and landed 1 junk row. Adverse events (MAUDE/FAERS/CAERS) stay deferred (RED).",
+    },
+    {
+        "source_id": "FED_FDA_DEVICE_ENFORCEMENT",
+        "name": "openFDA Device Enforcement (recalls)",
+        "url": "https://download.open.fda.gov/device/enforcement/device-enforcement-0001-of-0001.json.zip",
+        "kind": "json",
+        "publisher": "U.S. Food and Drug Administration (openFDA)",
+        "description": (
+            "FDA device recall/enforcement actions -- recalling firm, product, reason, "
+            "classification, status. openFDA JSON (one doc with a results array)."),
+        "jurisdiction": "US", "category": "Health", "subcategory": "device_safety",
+        "unit_of_observation": "recall events (in RAW:results)", "geographic_scope": "United States",
+        "access_method": "bulk", "format": "json", "update_cadence": "quarterly", "license_terms": "Public domain (US Gov)",
+        "join_keys": "recalling_firm; product_description; recall_number",
+        "accountability_relevance": (
+            "Device harm receipts -- which firms recalled which devices and why; mirrors "
+            "the drug-enforcement table on the device side."),
+        "priority_tier": "2",
+        "notes": "Re-ingest: prior API loader failed at first page and landed 1 junk row. Adverse events (MAUDE/FAERS/CAERS) stay deferred (RED).",
+    },
+    {
         "source_id": "FED_FEC_INDEPENDENT_EXPENDITURES",
         "name": "FEC Independent Expenditures (bulk, multi-cycle)",
         # UPGRADE 1 manifest: per-cycle IE CSVs on www.fec.gov (direct, no S3 redirect),
