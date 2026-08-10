@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: finance__fed_ncua_federally_insured_cu_list
+    description: "NCUA list of federally insured credit unions: charter number, name, address, type, region, low-income designation, and quarterly financial summary (members, assets, loans, deposits, ratios, growth). Grain: one row = one federally insured credit union (charter_number unique)."
+    columns:
+      - name: charter_number
+        data_tests: [not_null, unique]

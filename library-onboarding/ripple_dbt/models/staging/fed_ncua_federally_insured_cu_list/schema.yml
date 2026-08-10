@@ -1,0 +1,31 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_NCUA_FEDERALLY_INSURED_CU_LIST
+        description: >
+          Raw landing table for fed_ncua_federally_insured_cu_list. NCUA list of federally insured credit unions: charter number, name, address, type, region, low-income designation, and quarterly financial summary (members, assets, loans, deposits, ratios, growth).
+          Nearly all columns arrive as TEXT.
+
+models:
+  - name: stg_fed_ncua_federally_insured_cu_list__credit_unions
+    description: >
+      Staged view of the fed_ncua_federally_insured_cu_list landing table. TEXT columns are cast to
+      appropriate types. Grain: one row = one federally insured credit union (charter_number unique).
+    columns:
+      - name: charter_number
+        description: Primary key for this entity.
+        data_tests:
+          - unique
+          - not_null
+      - name: _loaded_at
+        description: Epoch timestamp (microseconds) when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.
+      - name: _src_sha256
+        description: SHA-256 of the source file the record came from.

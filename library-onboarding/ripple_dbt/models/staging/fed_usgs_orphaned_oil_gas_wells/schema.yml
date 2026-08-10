@@ -1,0 +1,33 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_USGS_ORPHANED_OIL_GAS_WELLS
+        description: >
+          Raw landing table for fed_usgs_orphaned_oil_gas_wells. USGS inventory of documented orphaned oil and gas wells on US lands: well identifier (usually API number), state/county, type, status, coordinates, PLSS location, and the state source agency.
+          Nearly all columns arrive as TEXT.
+
+models:
+  - name: stg_fed_usgs_orphaned_oil_gas_wells__wells
+    description: >
+      Staged view of the fed_usgs_orphaned_oil_gas_wells landing table. TEXT columns are cast to
+      appropriate types. Grain: one row = one orphaned well record (well_record_id).
+    columns:
+      - name: well_record_id
+        description: Primary key for this entity.
+        data_tests:
+          - unique
+          - not_null
+      - name: well_identifier
+        description: "Source well identifier, usually an API number prefixed 'API:'."
+      - name: _loaded_at
+        description: Epoch timestamp (microseconds) when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.
+      - name: _src_sha256
+        description: SHA-256 of the source file the record came from.

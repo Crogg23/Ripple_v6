@@ -1,0 +1,40 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CFPB_HMDA_ARID2017_LEI_XREF
+        description: >
+          Raw landing table for the CFPB HMDA crosswalk between 2017-format
+          respondent IDs (ARID) and the LEIs those lenders reported under in
+          2018-2020. All data columns arrive as TEXT.
+
+models:
+  - name: stg_fed_cfpb_hmda_arid2017_lei_xref__xref
+    description: >
+      Staged HMDA 2017 respondent-ID to LEI crosswalk; one row per 2017
+      respondent ID (exact key, 5,399 rows), keeping the most recently
+      ingested record. Bridges pre-2018 HMDA (respondent_id) to 2018+ HMDA
+      (lei).
+    columns:
+      - name: arid_2017
+        description: 2017-format HMDA respondent ID (agency prefix + respondent id) — primary key.
+        data_tests:
+          - unique
+          - not_null
+      - name: respondent_name
+        description: Lender name as reported.
+      - name: lei_2018
+        description: LEI the lender reported under in 2018.
+      - name: lei_2019
+        description: LEI the lender reported under in 2019.
+      - name: lei_2020
+        description: LEI the lender reported under in 2020.
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.

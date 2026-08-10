@@ -1,0 +1,54 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_ED_COLLEGE_SCORECARD_INSTITUTION
+        description: >
+          Raw landing table for the Dept. of Education College Scorecard
+          institution-level file — 3,311 columns wide (every metric by every
+          cohort/demographic slice). Data columns arrive as TEXT.
+
+models:
+  - name: stg_fed_ed_college_scorecard_institution__institutions
+    description: >
+      Staged College Scorecard institution file. One row per UNITID. Curated
+      ~60-column core (identity, location, control/level, admissions,
+      enrollment, costs/net price, completion, earnings, debt,
+      default/repayment); the full 3,311-column width stays in landing.
+    columns:
+      - name: unitid
+        description: IPEDS unit id — primary key and join key to other education corpora.
+        data_tests:
+          - unique
+          - not_null
+      - name: opeid
+        description: 8-digit Office of Postsecondary Education id (join key to federal aid data).
+      - name: opeid6
+        description: 6-digit OPE id shared across an institution's branches.
+      - name: institution_name
+        description: Institution name.
+        data_tests:
+          - not_null
+      - name: state
+        description: State postal abbreviation.
+      - name: control_code
+        description: Control of institution (1 public, 2 private nonprofit, 3 private for-profit).
+      - name: admission_rate
+        description: Admission rate (fraction of applicants admitted).
+      - name: undergrad_enrollment
+        description: Undergraduate degree-seeking enrollment.
+      - name: earnings_median_10yr
+        description: Median earnings of students 10 years after entry.
+      - name: debt_median
+        description: Median federal loan debt.
+      - name: default_rate_3yr
+        description: 3-year cohort default rate.
+      - name: _loaded_at
+        description: Ingestion timestamp (converted from epoch-microseconds).
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run.

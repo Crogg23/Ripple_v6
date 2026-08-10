@@ -1,0 +1,33 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_MSRB_REGISTRANTS
+        description: >
+          Raw landing table for fed_msrb_registrants. MSRB registrant list: municipal securities dealers and municipal advisors registered with the Municipal Securities Rulemaking Board.
+          Nearly all columns arrive as TEXT.
+
+models:
+  - name: stg_fed_msrb_registrants__registrants
+    description: >
+      Staged view of the fed_msrb_registrants landing table. TEXT columns are cast to
+      appropriate types. Grain: one row = one registrant per registrant type (MSRB_ID + REGISTRANT_TYPE exactly unique).
+    columns:
+      - name: msrb_registrant_id
+        description: Primary key for this entity.
+        data_tests:
+          - unique
+          - not_null
+      - name: msrb_id
+        description: "MSRB-assigned registrant identifier."
+      - name: _loaded_at
+        description: Epoch timestamp (microseconds) when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.
+      - name: _src_sha256
+        description: SHA-256 of the source file the record came from.

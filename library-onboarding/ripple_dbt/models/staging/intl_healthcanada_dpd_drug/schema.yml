@@ -1,0 +1,41 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: INTL_HEALTHCANADA_DPD_DRUG
+        description: >
+          Raw landing table for the Health Canada Drug Product Database (DPD)
+          drug.txt extract. LOADER DEFECT: the first data row was consumed as
+          the column header, so landing column names are the first record's
+          values (C_9, UNNAMED_1, HUMAN, ...) and that record is missing.
+
+models:
+  - name: stg_intl_healthcanada_dpd_drug__drugs
+    description: >
+      Staged Health Canada DPD drug products, positionally renamed back to the
+      published drug.txt layout. One row per drug_code (verified unique,
+      13,383 rows). One record is missing: the loader consumed the first data
+      row as the column header.
+    columns:
+      - name: drug_code
+        description: DPD internal drug code — primary key for this entity.
+        data_tests:
+          - unique
+          - not_null
+      - name: drug_identification_number
+        description: DIN — Health Canada Drug Identification Number.
+      - name: brand_name
+        description: Brand name (English).
+      - name: drug_class
+        description: Drug class (Human / Veterinary / Disinfectant).
+      - name: last_update_date
+        description: Date the DPD record was last updated.
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.

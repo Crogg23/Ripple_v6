@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: environment__fed_usgs_wbd_huc8
+    description: "USGS Watershed Boundary Dataset HUC-8 subbasin index (huc8 unique): names, states, areas; join key for hydrologic-unit-keyed environmental data."
+    columns:
+      - name: huc8
+        data_tests: [not_null, unique]
+      - name: watershed_name
+        data_tests: [not_null]

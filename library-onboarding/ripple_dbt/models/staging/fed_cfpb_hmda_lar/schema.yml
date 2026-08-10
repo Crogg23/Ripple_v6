@@ -1,0 +1,45 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CFPB_HMDA_LAR
+        description: >
+          Raw landing table for CFPB HMDA Loan/Application Register (LAR)
+          records. SAMPLE ONLY: 17,474 rows landed of a multi-million-row
+          national corpus. All data columns arrive as TEXT except a few
+          all-null NUMBER columns.
+
+models:
+  - name: stg_fed_cfpb_hmda_lar__lar_records
+    description: >
+      Staged HMDA LAR loan-application records. SAMPLE ONLY -- a tiny slice
+      of the full national LAR. Loan-level with no natural key (LEI +
+      activity_year verified NOT unique); lar_record_id appends a row_number
+      over the full-row hash as a deterministic tiebreaker.
+    columns:
+      - name: lar_record_id
+        description: Surrogate primary key (lei + activity_year + tiebreaker).
+        data_tests:
+          - unique
+          - not_null
+      - name: lei
+        description: Legal Entity Identifier of the reporting lender.
+        data_tests:
+          - not_null
+      - name: activity_year
+        description: HMDA activity (reporting) year.
+        data_tests:
+          - not_null
+      - name: action_taken
+        description: Coded action taken on the application (1 = originated, 3 = denied, ...).
+      - name: loan_amount
+        description: Loan amount in dollars.
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.

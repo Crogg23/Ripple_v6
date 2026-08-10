@@ -1,0 +1,35 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_DOL_EBSA_FORM5500_SCHEDULE_SB
+        description: >
+          Raw landing table for fed_dol_ebsa_form5500_schedule_sb. DOL EBSA Form 5500 Schedule SB: single-employer defined-benefit pension actuarial filings — funding targets, participant counts, contributions, interest rates, and the signing actuary.
+          Nearly all columns arrive as TEXT.
+
+models:
+  - name: stg_fed_dol_ebsa_form5500_schedule_sb__filings
+    description: >
+      Staged view of the fed_dol_ebsa_form5500_schedule_sb landing table. TEXT columns are cast to
+      appropriate types. Grain: one row = one Schedule SB filing (ack_id unique).
+    columns:
+      - name: ack_id
+        description: Primary key for this entity.
+        data_tests:
+          - unique
+          - not_null
+      - name: sb_ein
+        description: "Plan sponsor EIN — join key to other Form 5500 data and PBGC plans."
+      - name: sb_pn
+        description: "Three-digit plan number — combines with sb_ein to identify a plan."
+      - name: _loaded_at
+        description: Epoch timestamp (microseconds) when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.
+      - name: _src_sha256
+        description: SHA-256 of the source file the record came from.

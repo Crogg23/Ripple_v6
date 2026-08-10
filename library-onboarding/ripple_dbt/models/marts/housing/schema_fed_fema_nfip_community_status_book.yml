@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: housing__fed_fema_nfip_community_status_book
+    description: "FEMA National Flood Insurance Program Community Status Book: one row per community (community_id_number unique) with NFIP participation, initial/current flood-map dates, tribal flag, and CRS class rating with SFHA/non-SFHA premium discounts."
+    columns:
+      - name: community_id_number
+        data_tests: [not_null, unique]

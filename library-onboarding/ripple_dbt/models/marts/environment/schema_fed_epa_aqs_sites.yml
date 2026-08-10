@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: environment__fed_epa_aqs_sites
+    description: "EPA Air Quality System (AQS) monitoring sites: every air-quality monitoring site with location, land use, setting, owning agency, and open/close dates. Grain: one row = one monitoring site (state_code + county_code + site_number exactly unique)."
+    columns:
+      - name: aqs_site_id
+        data_tests: [not_null, unique]

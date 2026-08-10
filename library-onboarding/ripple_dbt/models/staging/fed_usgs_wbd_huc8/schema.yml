@@ -1,0 +1,41 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_USGS_WBD_HUC8
+        description: >
+          Raw landing table for the USGS Watershed Boundary Dataset HUC-8
+          subbasin index. Unusually for landing, columns arrived typed
+          (NUMBER/FLOAT); LOADDATE is a FLOAT epoch in milliseconds.
+
+models:
+  - name: stg_fed_usgs_wbd_huc8__watersheds
+    description: >
+      Staged USGS Watershed Boundary Dataset HUC-8 index. One row per 8-digit
+      hydrologic unit (subbasin). huc8 is the join key to water-quality and
+      environmental datasets keyed by hydrologic unit.
+    columns:
+      - name: huc8
+        description: 8-digit hydrologic unit code — primary key.
+        data_tests:
+          - unique
+          - not_null
+      - name: watershed_name
+        description: Subbasin name.
+        data_tests:
+          - not_null
+      - name: states
+        description: Comma-separated state abbreviations the unit touches.
+      - name: area_sq_km
+        description: Area in square kilometers.
+      - name: load_date
+        description: Source load date (converted from epoch-milliseconds FLOAT).
+      - name: _loaded_at
+        description: Ingestion timestamp (converted from epoch-microseconds).
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run.

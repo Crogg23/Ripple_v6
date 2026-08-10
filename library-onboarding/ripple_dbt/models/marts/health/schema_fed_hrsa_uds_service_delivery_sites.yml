@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: health__fed_hrsa_uds_service_delivery_sites
+    description: "HRSA UDS federally-funded health-center service delivery sites (FQHCs and look-alikes), one row per site with NPI, Medicare billing number, and parent health center."
+    columns:
+      - name: bphc_assigned_number
+        data_tests: [not_null, unique]

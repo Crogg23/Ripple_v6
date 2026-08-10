@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: finance__intl_iso_mic_registry
+    description: "ISO 10383 Market Identifier Code (MIC) registry: every registered trading venue / market segment worldwide, with operating MIC, legal entity name, LEI, country, and status. Grain: one row = one market identifier code (mic unique)."
+    columns:
+      - name: mic
+        data_tests: [not_null, unique]

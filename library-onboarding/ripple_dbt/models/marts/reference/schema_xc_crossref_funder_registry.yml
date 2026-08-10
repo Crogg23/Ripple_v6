@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: reference__xc_crossref_funder_registry
+    description: "Crossref Funder Registry: funder DOI URI (unique) + display name + replacement pointers; FundRef crosswalk join key."
+    columns:
+      - name: funder_uri
+        data_tests: [not_null, unique]

@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: finance__fed_msrb_registrants
+    description: "MSRB registrant list: municipal securities dealers and municipal advisors registered with the Municipal Securities Rulemaking Board. Grain: one row = one registrant per registrant type (MSRB_ID + REGISTRANT_TYPE exactly unique)."
+    columns:
+      - name: msrb_registrant_id
+        data_tests: [not_null, unique]

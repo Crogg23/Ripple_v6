@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: reference__xc_ror_research_organizations
+    description: "ROR global research-organization registry (ror_id unique) with GRID/ISNI/Wikidata/FundRef crosswalk identifiers as join keys."
+    columns:
+      - name: ror_id
+        data_tests: [not_null, unique]

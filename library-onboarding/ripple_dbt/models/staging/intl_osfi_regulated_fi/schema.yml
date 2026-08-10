@@ -1,0 +1,31 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: INTL_OSFI_REGULATED_FI
+        description: >
+          Raw landing table for intl_osfi_regulated_fi. OSFI register of federally regulated financial institutions in Canada: banks, insurers, trust and loan companies, and fraternal benefit societies with type, group, and head-office address.
+          Nearly all columns arrive as TEXT.
+
+models:
+  - name: stg_intl_osfi_regulated_fi__institutions
+    description: >
+      Staged view of the intl_osfi_regulated_fi landing table. TEXT columns are cast to
+      appropriate types. Grain: one row = one regulated-institution record (osfi_fi_record_id).
+    columns:
+      - name: osfi_fi_record_id
+        description: Primary key for this entity.
+        data_tests:
+          - unique
+          - not_null
+      - name: _loaded_at
+        description: Epoch timestamp (microseconds) when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.
+      - name: _src_sha256
+        description: SHA-256 of the source file the record came from.

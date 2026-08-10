@@ -1,0 +1,41 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FDA_DRUG_MASTER_FILES
+        description: >
+          Raw landing table for the FDA Drug Master File (DMF) registry —
+          confidential submissions covering drug substances, packaging, and
+          manufacturing. All data columns arrive as TEXT.
+
+models:
+  - name: stg_fed_fda_drug_master_files__dmfs
+    description: >
+      Staged FDA Drug Master Files. One row per DMF number; dmf_number is
+      verified unique (41,253 rows). Holder is the submitting company, subject
+      is what the DMF covers.
+    columns:
+      - name: dmf_number
+        description: DMF number — primary key for this entity.
+        data_tests:
+          - unique
+          - not_null
+      - name: status
+        description: Decoded status (Active / Inactive).
+      - name: dmf_type
+        description: DMF type (I-V; e.g. II = drug substance).
+      - name: submit_date
+        description: Original submission date.
+      - name: holder
+        description: Company that holds the DMF.
+      - name: subject
+        description: Subject of the DMF (substance / material covered).
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.

@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: health__fed_hrsa_hpsa_primary_care
+    description: "HRSA primary-care Health Professional Shortage Area (HPSA) designations: one row per HPSA x geography component with scores, shortage measures, and geography rollups. Surrogate key over near-unique (hpsa_id, hpsa_geography_id)."
+    columns:
+      - name: hpsa_component_id
+        data_tests: [not_null, unique]
+      - name: hpsa_id
+        data_tests: [not_null]

@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: finance__fed_sec_investment_company_series_class
+    description: "SEC investment-company series/class registry: every registered fund series and share class with CIK, series/class IDs, ticker, and registrant address. Grain: one row = one fund share class record (series_class_record_id)."
+    columns:
+      - name: series_class_record_id
+        data_tests: [not_null, unique]

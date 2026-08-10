@@ -1,0 +1,45 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_USDA_RD_MFH_ACTIVE_PROJECTS
+        description: >
+          Raw landing table for USDA Rural Development Multi-Family Housing
+          active projects (Section 515 etc.). All data columns arrive as TEXT.
+
+models:
+  - name: stg_fed_usda_rd_mfh_active_projects__projects
+    description: >
+      Staged USDA RD multifamily housing active projects; one row per
+      borrower_id + project_id (exact composite key, 13,550 rows), keeping the
+      most recently ingested record.
+    columns:
+      - name: borrower_id
+        description: USDA RD borrower identifier (composite key part 1).
+        data_tests:
+          - not_null
+      - name: project_id
+        description: Project identifier within the borrower (composite key part 2).
+        data_tests:
+          - not_null
+      - name: project_name
+        description: Multifamily project name.
+      - name: project_size_units
+        description: Total units in the project.
+      - name: rental_assistance_units
+        description: Units receiving rental assistance.
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - borrower_id
+              - project_id

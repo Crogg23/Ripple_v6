@@ -1,0 +1,41 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_HUD_MF_SECTION8_CONTRACTS
+        description: >
+          Raw landing table for HUD multifamily Section 8 (and related
+          programs) rental-assistance contracts from TRACS. All data columns
+          arrive as TEXT.
+
+models:
+  - name: stg_fed_hud_mf_section8_contracts__contracts
+    description: >
+      Staged HUD multifamily Section 8 contracts. CONTRACT_NUMBER is
+      near-unique (24,308 distinct of 24,309), so contract_record_id appends a
+      row_number over the full-row hash as a deterministic tiebreaker.
+    columns:
+      - name: contract_record_id
+        description: Surrogate primary key (contract number + tiebreaker).
+        data_tests:
+          - unique
+          - not_null
+      - name: contract_number
+        description: HUD Section 8 contract number (near-unique).
+        data_tests:
+          - not_null
+      - name: property_id
+        description: HUD property identifier the contract is attached to.
+      - name: assisted_units_count
+        description: Number of assisted units under the contract.
+      - name: tracs_status_name
+        description: Contract status in TRACS (e.g. Active).
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.

@@ -1,0 +1,37 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: XC_CROSSREF_FUNDER_REGISTRY
+        description: >
+          Raw landing table for the Crossref Funder Registry: funder DOI URI,
+          primary display name, and replacement pointers for deprecated
+          funder ids. All data columns arrive as TEXT.
+
+models:
+  - name: stg_xc_crossref_funder_registry__funders
+    description: >
+      Staged Crossref Funder Registry. One row per funder URI. The URI is the
+      FundRef DOI, a crosswalk join key (e.g. to ROR external ids and funding
+      acknowledgments in publication metadata).
+    columns:
+      - name: funder_uri
+        description: Funder DOI URI — primary key and FundRef crosswalk join key.
+        data_tests:
+          - unique
+          - not_null
+      - name: funder_name
+        description: Primary display name of the funder.
+        data_tests:
+          - not_null
+      - name: replaced_by_uri
+        description: URI of the funder record that replaces this deprecated one, when present.
+      - name: _loaded_at
+        description: Ingestion timestamp (converted from epoch-microseconds).
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run.

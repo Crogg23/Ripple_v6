@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: environment__fed_usgs_orphaned_oil_gas_wells
+    description: "USGS inventory of documented orphaned oil and gas wells on US lands: well identifier (usually API number), state/county, type, status, coordinates, PLSS location, and the state source agency. Grain: one row = one orphaned well record (well_record_id)."
+    columns:
+      - name: well_record_id
+        data_tests: [not_null, unique]

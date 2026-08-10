@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: finance__intl_osfi_regulated_fi
+    description: "OSFI register of federally regulated financial institutions in Canada: banks, insurers, trust and loan companies, and fraternal benefit societies with type, group, and head-office address. Grain: one row = one regulated-institution record (osfi_fi_record_id)."
+    columns:
+      - name: osfi_fi_record_id
+        data_tests: [not_null, unique]

@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: finance__fed_fhfa_fhlb_membership
+    description: "FHFA Federal Home Loan Bank membership roster: every FHLB member institution with district, member type, charter type, and regulator identifiers (FDIC CERT, Fed ID, NCUA ID, NAIC ID). Grain: one row = one FHLB member institution (fhfa_id unique)."
+    columns:
+      - name: fhfa_id
+        data_tests: [not_null, unique]

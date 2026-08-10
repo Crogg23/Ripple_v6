@@ -94,6 +94,27 @@ Confirmed junk 1-row loads (verified by inspection 2026-08-10; none modeled):
 Also orphan work-table candidate: FED_FDA_GUDID__STAGING (1,329 rows, leftover
 internal staging landed in RAW).
 
+## D. Added by wave-5 pass (2026-08-10, evening)
+
+Snapshot twins of already-modeled sources (same publisher data re-registered
+under a second id at a slightly different pull date; counts differ by <2%,
+verified live). Drop the landed twin + registry row:
+
+| drop twin | rows | modeled as |
+|---|---|---|
+| FED_TRADE_CONSOLIDATED_SCREENING_LIST | 25,929 | fed_consolidated_screening_list (25,918) |
+| FED_FJC_ARTICLE_III_JUDGES | 4,074 | fed_fjc_judges (4,067) |
+| FED_JPML_PENDING_MDL | 161 | fed_jpml_pending_mdls (162) |
+| ST_CA_OEHHA_PROP65_CHEMICALS | 1,055 | st_oehha_proposition_65_list (1,021) |
+
+Broken loads confirmed by inspection (drop + re-ingest properly later):
+
+| drop | rows | why |
+|---|---|---|
+| FED_USACE_NID_DAMS | 92,767 | dam inventory landed as 2-column key/value mush — unusable |
+| FED_DTCC_DTC_PARTICIPANTS | 904 | participant report landed as title + nulls — no data |
+| FED_OCC_NATIONAL_BANKS_BY_NAME | 62 | garbage columns; redundant with the by-charter table (modeled) |
+
 Drop one-liners (run as ACCOUNTADMIN, table A first, after eyeball):
 each is `DROP TABLE LIBRARY_RAW.LANDING.<NAME>;` plus
 `DELETE FROM LIBRARY_META.REGISTRY.SOURCE_REGISTRY WHERE UPPER(SOURCE_ID)=UPPER('<sid>');`

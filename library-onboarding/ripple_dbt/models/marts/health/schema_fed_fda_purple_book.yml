@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: health__fed_fda_purple_book
+    description: "FDA Purple Book biologics licenses (monthly changes report, June 2026): BLA products with applicant, licensure, approval and exclusivity dates. Loader-embedded preamble rows filtered in staging; surrogate key over (bla_number, product_number, supplement_number); 2-digit source years make pre-1970 dates century-ambiguous."
+    columns:
+      - name: purple_book_record_id
+        data_tests: [not_null, unique]
+      - name: bla_number
+        data_tests: [not_null]

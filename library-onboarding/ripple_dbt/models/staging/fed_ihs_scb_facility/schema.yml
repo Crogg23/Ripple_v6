@@ -1,0 +1,42 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_IHS_SCB_FACILITY
+        description: >
+          Raw landing table for the Indian Health Service Standard Code Book
+          facility list. All data columns arrive as TEXT; '?' is a source
+          placeholder for unknown.
+
+models:
+  - name: stg_fed_ihs_scb_facility__facilities
+    description: >
+      Staged IHS Standard Code Book facilities. ASUFAC_CODE is near-unique
+      (8,731 distinct of 8,733 rows), so a deterministic surrogate key
+      (scb_facility_id) is built from asufac_code plus a full-row-hash
+      row_number tiebreaker. Source '?' placeholders are nulled.
+    columns:
+      - name: scb_facility_id
+        description: >
+          Surrogate primary key — hash of asufac_code plus a row_number
+          tiebreaker over the full-row hash.
+        data_tests:
+          - unique
+          - not_null
+      - name: asufac_code
+        description: Area / Service Unit / Facility code (ASUFAC).
+        data_tests:
+          - not_null
+      - name: facility_name
+        description: Facility name.
+      - name: itu_code
+        description: IHS / Tribal / Urban operator code.
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.

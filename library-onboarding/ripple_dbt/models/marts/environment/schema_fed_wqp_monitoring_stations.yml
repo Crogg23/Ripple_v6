@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: environment__fed_wqp_monitoring_stations
+    description: "Water Quality Portal monitoring stations: surface- and ground-water monitoring locations with organization, type, HUC8 watershed, coordinates, and well/aquifer details. Grain: one row = one monitoring station (monitoringlocationidentifier unique)."
+    columns:
+      - name: monitoring_location_identifier
+        data_tests: [not_null, unique]

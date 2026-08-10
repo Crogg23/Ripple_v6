@@ -1,0 +1,43 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_ED_NCES_CIP_CODES
+        description: >
+          Raw landing table for the NCES CIP-2020 (Classification of
+          Instructional Programs) code list. Code columns arrive
+          Excel-armored (="01.0000"); all data columns are TEXT.
+
+models:
+  - name: stg_fed_ed_nces_cip_codes__cip_codes
+    description: >
+      Staged NCES CIP-2020 program classification codes. One row per CIP code
+      at every hierarchy level (2-, 4-, and 6-digit). cip_code is the join key
+      to program-level education data (e.g. Scorecard field-of-study files).
+    columns:
+      - name: cip_code
+        description: CIP-2020 code (Excel armor stripped) — primary key.
+        data_tests:
+          - unique
+          - not_null
+      - name: cip_family
+        description: Two-digit CIP family the code belongs to.
+        data_tests:
+          - not_null
+      - name: cip_title
+        description: Program title.
+        data_tests:
+          - not_null
+      - name: cip_definition
+        description: Program definition text.
+      - name: action
+        description: Change action versus CIP-2010 (e.g. "No substantive changes", "New").
+      - name: _loaded_at
+        description: Ingestion timestamp (converted from epoch-microseconds).
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run.

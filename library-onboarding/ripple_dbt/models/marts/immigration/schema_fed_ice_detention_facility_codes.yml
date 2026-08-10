@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: immigration__fed_ice_detention_facility_codes
+    description: "ICE detention facility code list: the internal facility codes ICE uses in detention data, with facility name, address, county, area of responsibility (AOR), coordinates, and facility type. Grain: one row = one detention facility code (detention_facility_code unique)."
+    columns:
+      - name: detention_facility_code
+        data_tests: [not_null, unique]

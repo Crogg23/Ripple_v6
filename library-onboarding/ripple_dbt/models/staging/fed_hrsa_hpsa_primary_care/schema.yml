@@ -1,0 +1,49 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_HRSA_HPSA_PRIMARY_CARE
+        description: >
+          Raw landing table for HRSA primary-care Health Professional Shortage
+          Area (HPSA) designations. One row per HPSA x geography component.
+          All data columns arrive as TEXT.
+
+models:
+  - name: stg_fed_hrsa_hpsa_primary_care__designations
+    description: >
+      Staged HRSA primary-care HPSA designations. One row per HPSA x geography
+      component. The composite (hpsa_id, hpsa_geography_id) is near-unique
+      (79,153 distinct of 79,158 rows), so a deterministic surrogate key
+      (hpsa_component_id) is built from the composite plus a full-row-hash
+      row_number tiebreaker.
+    columns:
+      - name: hpsa_component_id
+        description: >
+          Surrogate primary key — hash of (hpsa_id, hpsa_geography_id) plus a
+          row_number tiebreaker over the full-row hash.
+        data_tests:
+          - unique
+          - not_null
+      - name: hpsa_id
+        description: HRSA HPSA designation identifier.
+        data_tests:
+          - not_null
+      - name: hpsa_geography_id
+        description: Geography component identifier within the HPSA.
+      - name: hpsa_name
+        description: Name of the shortage-area designation.
+      - name: designation_type
+        description: Designation type (e.g. Geographic HPSA, High Needs Geographic HPSA).
+      - name: hpsa_score
+        description: HPSA score (0-25); higher = greater shortage priority.
+      - name: hpsa_status
+        description: Designation status (Designated / Proposed For Withdrawal / Withdrawn).
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.

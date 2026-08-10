@@ -1,0 +1,39 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: XC_OSF_REGISTRATIONS
+        description: >
+          Raw landing table for OSF (Open Science Framework) registrations —
+          a 10-row proof slice of a much larger registry, 370 columns wide
+          (mostly per-schema registration-response answer blobs from the API).
+
+models:
+  - name: stg_xc_osf_registrations__registrations
+    description: >
+      SAMPLE ONLY -- NOT the full dataset: staged 10-row proof slice of the OSF
+      registrations registry. One row per registration id. Curated subset of
+      the 370 landing columns; the rest were dropped as API-noise.
+    columns:
+      - name: osf_id
+        description: OSF registration id — primary key.
+        data_tests:
+          - unique
+          - not_null
+      - name: title
+        description: Registration title.
+      - name: is_withdrawn
+        description: Whether the registration has been withdrawn.
+      - name: registered_from_id
+        description: OSF id of the project this registration was created from.
+      - name: registration_schema_id
+        description: OSF id of the preregistration schema used.
+      - name: _loaded_at
+        description: Ingestion timestamp (converted from epoch-microseconds).
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run.

@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: housing__fed_hud_public_housing_authorities
+    description: "HUD Public Housing Authorities: one row per PHA (participant_code unique) with public-housing and Section 8 unit counts, occupancy, operating/capital fund amounts, resident demographics (children, elderly, income), and geocoded location."
+    columns:
+      - name: participant_code
+        data_tests: [not_null, unique]

@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: science_research__xc_osf_registrations
+    description: "SAMPLE ONLY -- NOT the full dataset: 10-row proof slice of the OSF registrations registry (osf_id unique); curated subset of the 370-column API payload."
+    columns:
+      - name: osf_id
+        data_tests: [not_null, unique]

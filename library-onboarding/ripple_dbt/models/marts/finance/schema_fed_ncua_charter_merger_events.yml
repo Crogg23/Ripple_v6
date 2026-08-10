@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: finance__fed_ncua_charter_merger_events
+    description: "NCUA credit union merger events: which credit union merged into which, with charters, locations, assets, and the stated reason for the merger. Grain: one row = one merger event (merging_credit_union_charter unique in this extract)."
+    columns:
+      - name: merging_credit_union_charter
+        data_tests: [not_null, unique]

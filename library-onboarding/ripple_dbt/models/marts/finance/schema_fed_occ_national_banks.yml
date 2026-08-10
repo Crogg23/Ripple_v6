@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: finance__fed_occ_national_banks
+    description: "OCC list of active national banks: charter number, name, headquarters location, with FDIC CERT and Federal Reserve RSSD identifiers. Grain: one row = one OCC-chartered national bank (charter_no unique)."
+    columns:
+      - name: charter_no
+        data_tests: [not_null, unique]

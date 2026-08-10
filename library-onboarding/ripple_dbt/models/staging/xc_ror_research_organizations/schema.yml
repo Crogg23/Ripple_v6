@@ -1,0 +1,47 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: XC_ROR_RESEARCH_ORGANIZATIONS
+        description: >
+          Raw landing table for the ROR (Research Organization Registry) global
+          registry of research organizations, with GRID / ISNI / Wikidata /
+          FundRef crosswalk identifiers. All data columns arrive as TEXT.
+
+models:
+  - name: stg_xc_ror_research_organizations__organizations
+    description: >
+      Staged ROR research-organization registry. One row per ROR id. External
+      identifier columns (GRID, ISNI, Wikidata, FundRef, GeoNames) are join
+      keys to other corpora.
+    columns:
+      - name: ror_id
+        description: ROR identifier URL — primary key.
+        data_tests:
+          - unique
+          - not_null
+      - name: display_name
+        description: Primary display name of the organization.
+        data_tests:
+          - not_null
+      - name: grid_id
+        description: Preferred GRID identifier (crosswalk join key).
+      - name: isni_id
+        description: Preferred ISNI identifier (crosswalk join key).
+      - name: wikidata_id
+        description: Preferred Wikidata identifier (crosswalk join key).
+      - name: fundref_id
+        description: Preferred Crossref FundRef identifier (crosswalk join key).
+      - name: status
+        description: Registry status (active / inactive / withdrawn).
+      - name: country_code
+        description: ISO country code of the organization's location.
+      - name: _loaded_at
+        description: Ingestion timestamp (converted from epoch-microseconds).
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run.

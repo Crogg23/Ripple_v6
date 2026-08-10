@@ -1,0 +1,42 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_HUD_FHA_SF_PORTFOLIO_SNAPSHOT
+        description: >
+          Raw landing table for the HUD FHA Single-Family Portfolio Snapshot
+          (loan-level endorsements). All data columns arrive as TEXT; the file
+          publishes no natural loan key.
+
+models:
+  - name: stg_fed_hud_fha_sf_portfolio_snapshot__loans
+    description: >
+      Staged FHA single-family portfolio snapshot. Loan-level with no natural
+      key in the source; loan_record_id is a documented surrogate built from
+      state + zip + originating mortgagee number + endorsement year/month plus
+      a row_number over the full-row hash.
+    columns:
+      - name: loan_record_id
+        description: Surrogate primary key (composite hash + row_number tiebreaker).
+        data_tests:
+          - unique
+          - not_null
+      - name: property_state
+        description: State of the mortgaged property.
+      - name: originating_mortgagee_name
+        description: Originating mortgagee / sponsor originator name.
+      - name: original_mortgage_amount
+        description: Original mortgage amount in dollars.
+      - name: endorsement_year
+        description: FHA endorsement year.
+      - name: endorsement_month
+        description: FHA endorsement month (1-12).
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.

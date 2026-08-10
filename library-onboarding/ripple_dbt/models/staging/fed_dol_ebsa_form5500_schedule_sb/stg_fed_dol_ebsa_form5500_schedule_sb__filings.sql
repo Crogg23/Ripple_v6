@@ -1,0 +1,160 @@
+{{ config(materialized='view') }}
+
+with
+
+source as (
+
+    select * from {{ source('ripple_raw', 'FED_DOL_EBSA_FORM5500_SCHEDULE_SB') }}
+
+),
+
+renamed as (
+
+    select
+
+        trim(ACK_ID)                                   as ack_id,
+        try_to_date(trim(SB_PLAN_YEAR_BEGIN_DATE), 'YYYY-MM-DD') as sb_plan_year_begin_date,
+        try_to_date(trim(SB_TAX_PRD), 'YYYY-MM-DD')    as sb_tax_prd,
+        trim(SB_PN)                                    as sb_pn,
+        trim(SB_EIN)                                   as sb_ein,
+        trim(SB_PLAN_TYPE_CODE)                        as sb_plan_type_code,
+        trim(SB_CNT_PARTCP_PR_YR_CD)                   as sb_cnt_partcp_pr_yr_cd,
+        try_to_date(trim(SB_VALUE_DATE), 'YYYY-MM-DD') as sb_value_date,
+        try_to_number(trim(SB_CURR_VALUE_AST_01_AMT))  as sb_curr_value_ast_01_amt,
+        try_to_number(trim(SB_ACTRL_VALUE_AST_AMT))    as sb_actrl_value_ast_amt,
+        try_to_number(trim(SB_RTD_PARTCP_CNT))         as sb_rtd_partcp_cnt,
+        try_to_number(trim(SB_RTD_FNDNG_TGT_AMT))      as sb_rtd_fndng_tgt_amt,
+        try_to_number(trim(SB_TERM_PARTCP_CNT))        as sb_term_partcp_cnt,
+        try_to_number(trim(SB_TERM_FNDNG_TGT_AMT))     as sb_term_fndng_tgt_amt,
+        SB_ACT_NONVSTD_FNDNG_TGT_AMT                   as sb_act_nonvstd_fndng_tgt_amt,
+        try_to_number(trim(SB_ACT_VSTD_FNDNG_TGT_AMT)) as sb_act_vstd_fndng_tgt_amt,
+        try_to_number(trim(SB_ACT_PARTCP_CNT))         as sb_act_partcp_cnt,
+        try_to_number(trim(SB_LIAB_ACT_TOT_FNDNG_TGT_AMT)) as sb_liab_act_tot_fndng_tgt_amt,
+        try_to_number(trim(SB_TOT_PARTCP_CNT))         as sb_tot_partcp_cnt,
+        try_to_number(trim(SB_TOT_FNDNG_TGT_AMT))      as sb_tot_fndng_tgt_amt,
+        trim(SB_PLAN_AT_RISK_IND)                      as sb_plan_at_risk_ind,
+        try_to_number(trim(SB_TGT_DISREGARD_ASSUMP_AMT)) as sb_tgt_disregard_assump_amt,
+        try_to_number(trim(SB_TGT_REFLECT_ASSUMP_AMT)) as sb_tgt_reflect_assump_amt,
+        try_to_number(trim(SB_EFF_INT_RATE_PRCNT))     as sb_eff_int_rate_prcnt,
+        try_to_number(trim(SB_TGT_NRML_COST_01_AMT))   as sb_tgt_nrml_cost_01_amt,
+        try_to_date(trim(SB_SIGNATURE_DATE), 'YYYY-MM-DD') as sb_signature_date,
+        trim(SB_ACTUARY_NAME_LINE)                     as sb_actuary_name_line,
+        trim(SB_ACTUARY_FIRM_NAME)                     as sb_actuary_firm_name,
+        trim(SB_ACTUARY_US_ADDRESS1)                   as sb_actuary_us_address1,
+        trim(SB_ACTUARY_US_ADDRESS2)                   as sb_actuary_us_address2,
+        trim(SB_ACTUARY_US_CITY)                       as sb_actuary_us_city,
+        trim(SB_ACTUARY_US_STATE)                      as sb_actuary_us_state,
+        trim(SB_ACTUARY_US_ZIP)                        as sb_actuary_us_zip,
+        trim(SB_ACTUARY_FOREIGN_ADDRESS1)              as sb_actuary_foreign_address1,
+        trim(SB_ACTUARY_FOREIGN_ADDRESS2)              as sb_actuary_foreign_address2,
+        trim(SB_ACTUARY_FOREIGN_CITY)                  as sb_actuary_foreign_city,
+        trim(SB_ACTUARY_FOREIGN_PROV_STATE)            as sb_actuary_foreign_prov_state,
+        trim(SB_ACTUARY_FOREIGN_CNTRY)                 as sb_actuary_foreign_cntry,
+        trim(SB_ACTUARY_FOREIGN_POSTAL_CD)             as sb_actuary_foreign_postal_cd,
+        trim(SB_ACTUARY_PHONE_NUM)                     as sb_actuary_phone_num,
+        trim(SB_ACTRY_ENRLMT_NUM)                      as sb_actry_enrlmt_num,
+        trim(SB_ACTUARY_NOT_REFLECT_IND)               as sb_actuary_not_reflect_ind,
+        try_to_number(trim(SB_CARRYOVER_PR_YR_AMT))    as sb_carryover_pr_yr_amt,
+        try_to_number(trim(SB_PRE_FNDNG_PR_YR_AMT))    as sb_pre_fndng_pr_yr_amt,
+        try_to_number(trim(SB_CARRYOVER_USED_PR_YR_AMT)) as sb_carryover_used_pr_yr_amt,
+        try_to_number(trim(SB_PRE_FNDNG_USED_PR_YR_AMT)) as sb_pre_fndng_used_pr_yr_amt,
+        try_to_number(trim(SB_CARRYOVER_PR_YR_TOT_AMT)) as sb_carryover_pr_yr_tot_amt,
+        try_to_number(trim(SB_PRE_FNDNG_PR_YR_TOT_AMT)) as sb_pre_fndng_pr_yr_tot_amt,
+        try_to_number(trim(SB_INT_PR_YR_PRCNT))        as sb_int_pr_yr_prcnt,
+        try_to_number(trim(SB_INT_PR_YR_CARRYOVER_AMT)) as sb_int_pr_yr_carryover_amt,
+        try_to_number(trim(SB_INT_PR_YR_PRE_FNDNG_AMT)) as sb_int_pr_yr_pre_fndng_amt,
+        try_to_number(trim(SB_EXCESS_CONTRIB_AMT))     as sb_excess_contrib_amt,
+        try_to_number(trim(SB_EXCESS_CONTRIB_INT_PRCNT)) as sb_excess_contrib_int_prcnt,
+        try_to_number(trim(SB_EXCESS_CONTRIB_INT_AMT)) as sb_excess_contrib_int_amt,
+        try_to_number(trim(SB_EXCESS_CONTRIB_AVAIL_AMT)) as sb_excess_contrib_avail_amt,
+        try_to_number(trim(SB_EXCESS_CONTRIB_ADDED_AMT)) as sb_excess_contrib_added_amt,
+        try_to_number(trim(SB_CARRYOVER_REDUCTION_AMT)) as sb_carryover_reduction_amt,
+        try_to_number(trim(SB_PRE_FNDNG_REDUCTION_AMT)) as sb_pre_fndng_reduction_amt,
+        try_to_number(trim(SB_CARRYOVER_BOY_TOT_AMT))  as sb_carryover_boy_tot_amt,
+        try_to_number(trim(SB_PRE_FNDNG_BOY_TOT_AMT))  as sb_pre_fndng_boy_tot_amt,
+        try_to_number(trim(SB_FNDNG_TGT_PRCNT))        as sb_fndng_tgt_prcnt,
+        try_to_number(trim(SB_ADJ_FNDNG_TGT_PRCNT))    as sb_adj_fndng_tgt_prcnt,
+        try_to_number(trim(SB_PR_YR_FNDNG_PRCNT))      as sb_pr_yr_fndng_prcnt,
+        try_to_number(trim(SB_AST_LESS_70_PRCNT))      as sb_ast_less_70_prcnt,
+        try_to_number(trim(SB_TOT_EMPLR_CONTRIB_AMT))  as sb_tot_emplr_contrib_amt,
+        try_to_number(trim(SB_TOT_EMPLEE_CONTRIB_AMT)) as sb_tot_emplee_contrib_amt,
+        try_to_number(trim(SB_CONTRIB_ALLOC_PR_YR_01_AMT)) as sb_contrib_alloc_pr_yr_01_amt,
+        try_to_number(trim(SB_CONTRIB_AVOID_RESTRIC_AMT)) as sb_contrib_avoid_restric_amt,
+        try_to_number(trim(SB_CONTRIB_ALLOC_CURR_YR_AMT)) as sb_contrib_alloc_curr_yr_amt,
+        trim(SB_FNDNG_SHORT_IND)                       as sb_fndng_short_ind,
+        trim(SB_QRTLY_INSTALL_IND)                     as sb_qrtly_install_ind,
+        try_to_number(trim(SB_1ST_LIQUIDITY_SHORT_AMT)) as sb_1st_liquidity_short_amt,
+        try_to_number(trim(SB_2ND_LIQUIDITY_SHORT_AMT)) as sb_2nd_liquidity_short_amt,
+        try_to_number(trim(SB_3RD_LIQUIDITY_SHORT_AMT)) as sb_3rd_liquidity_short_amt,
+        try_to_number(trim(SB_4TH_LIQUIDITY_SHORT_AMT)) as sb_4th_liquidity_short_amt,
+        try_to_number(trim(SB_1ST_SEG_RATE_PRCNT))     as sb_1st_seg_rate_prcnt,
+        try_to_number(trim(SB_2ND_SEG_RATE_PRCNT))     as sb_2nd_seg_rate_prcnt,
+        try_to_number(trim(SB_3RD_SEG_RATE_PRCNT))     as sb_3rd_seg_rate_prcnt,
+        trim(SB_YIELD_CURVE_IND)                       as sb_yield_curve_ind,
+        trim(SB_APPLICABLE_MONTH_CD)                   as sb_applicable_month_cd,
+        try_to_number(trim(SB_WEIGHTED_RTM_AGE))       as sb_weighted_rtm_age,
+        trim(SB_MORTALITY_TBL_CD)                      as sb_mortality_tbl_cd,
+        trim(SB_CHG_ACTRL_ASSUMP_CURR_IND)             as sb_chg_actrl_assump_curr_ind,
+        trim(SB_CHG_METHOD_IND)                        as sb_chg_method_ind,
+        trim(SB_SCH_ACTIVE_PARTCP_RQD_IND)             as sb_sch_active_partcp_rqd_ind,
+        trim(SB_ALT_FNDNG_RULES_CD)                    as sb_alt_fndng_rules_cd,
+        try_to_number(trim(SB_UNPAID_PR_YR_CONTRIB_AMT)) as sb_unpaid_pr_yr_contrib_amt,
+        try_to_number(trim(SB_CONTRIB_ALLOC_PR_YR_02_AMT)) as sb_contrib_alloc_pr_yr_02_amt,
+        try_to_number(trim(SB_UNPAID_MIN_RQD_TOT_AMT)) as sb_unpaid_min_rqd_tot_amt,
+        try_to_number(trim(SB_TGT_NRML_COST_02_AMT))   as sb_tgt_nrml_cost_02_amt,
+        try_to_number(trim(SB_SHORT_AMORTZ_OUTSTD_AMT)) as sb_short_amortz_outstd_amt,
+        try_to_number(trim(SB_SHORT_AMORTZ_INST))      as sb_short_amortz_inst,
+        try_to_number(trim(SB_WVRS_AMORTZ_OUTSTD_AMT)) as sb_wvrs_amortz_outstd_amt,
+        try_to_number(trim(SB_WVRS_AMORTZ_INST))       as sb_wvrs_amortz_inst,
+        try_to_date(trim(SB_WVR_APPROVED_LTR_DATE), 'YYYY-MM-DD') as sb_wvr_approved_ltr_date,
+        try_to_number(trim(SB_WAIVED_AMT))             as sb_waived_amt,
+        try_to_number(trim(SB_FNDNG_RQMT_TOT_AMT))     as sb_fndng_rqmt_tot_amt,
+        try_to_number(trim(SB_OFFSET_CARRYOVER_AMT))   as sb_offset_carryover_amt,
+        try_to_number(trim(SB_OFFSET_PRE_FNDNG_AMT))   as sb_offset_pre_fndng_amt,
+        try_to_number(trim(SB_OFFSET_BAL))             as sb_offset_bal,
+        try_to_number(trim(SB_ADDL_CASH_TOT_AMT))      as sb_addl_cash_tot_amt,
+        try_to_number(trim(SB_CONTR_ALLOC_CURR_YR_02_AMT)) as sb_contr_alloc_curr_yr_02_amt,
+        SB_EXCES_CONTR_CURR_YR_TOT_AMT                 as sb_exces_contr_curr_yr_tot_amt,
+        try_to_number(trim(SB_UNP_MIN_CONT_CUR_YR_TOT_AMT)) as sb_unp_min_cont_cur_yr_tot_amt,
+        try_to_number(trim(SB_UNP_MIN_CONTRIB_ALL_YR_AMT)) as sb_unp_min_contrib_all_yr_amt,
+        SB_ACCELERATION_ADJ_AMT                        as sb_acceleration_adj_amt,
+        trim(SB_ACTUARY_PHONE_NUM_FOREIGN)             as sb_actuary_phone_num_foreign,
+        SB_ELIGIBLE_PLAN_YEAR_1_IND                    as sb_eligible_plan_year_1_ind,
+        SB_ELIGIBLE_PLAN_YEAR_2_IND                    as sb_eligible_plan_year_2_ind,
+        SB_ELIGIBLE_PLAN_YEAR_3_IND                    as sb_eligible_plan_year_3_ind,
+        SB_ELIGIBLE_PLAN_YEAR_4_IND                    as sb_eligible_plan_year_4_ind,
+        SB_EXCESS_INSTALL_ACCELER_AMT                  as sb_excess_install_acceler_amt,
+        try_to_number(trim(SB_MIN_REQ_CONT_EXCESS_AST_AMT)) as sb_min_req_cont_excess_ast_amt,
+        try_to_number(trim(SB_PORT_PREFNDNG_FNDNG_CAR_AMT)) as sb_port_prefndng_fndng_car_amt,
+        try_to_number(trim(SB_PRESENT_VAL_EXCES_CONT_AMT)) as sb_present_val_exces_cont_amt,
+        SB_SHOR_AMOR_BASE_SCH_ELEC_IND                 as sb_shor_amor_base_sch_elec_ind,
+        try_to_number(trim(SB_RTD_VSTD_TGT_AMT))       as sb_rtd_vstd_tgt_amt,
+        try_to_number(trim(SB_TERM_VSTD_FNDNG_TGT_AMT)) as sb_term_vstd_fndng_tgt_amt,
+        try_to_number(trim(SB_TOT_VSTD_FNDNG_TGT_AMT)) as sb_tot_vstd_fndng_tgt_amt,
+        try_to_number(trim(SB_INT_PRIOR_YEAR_ACTUAL_AMT)) as sb_int_prior_year_actual_amt,
+        try_to_number(trim(SB_PRE_VAL_CUR_PLN_YR_ACR_AMT)) as sb_pre_val_cur_pln_yr_acr_amt,
+        try_to_number(trim(SB_ANTIC_PLAN_RELATED_EXP_AMT)) as sb_antic_plan_related_exp_amt,
+        trim(SB_EXPECTED_BNFT_PAYMENTS_IND)            as sb_expected_bnft_payments_ind,
+        trim(SB_AMORTZ_BASE_ELECT_IND)                 as sb_amortz_base_elect_ind,
+        INGESTED_AT                                    as _loaded_at,
+        SOURCE_RUN_ID                                  as _source_run_id,
+        SRC_SHA256                                     as _src_sha256
+
+    from source
+
+),
+
+deduped as (
+
+    select *,
+        row_number() over (
+            partition by ack_id
+            order by _loaded_at desc
+        ) as _row_num
+    from renamed
+    where ack_id is not null
+
+)
+
+select * exclude (_row_num) from deduped
+where _row_num = 1

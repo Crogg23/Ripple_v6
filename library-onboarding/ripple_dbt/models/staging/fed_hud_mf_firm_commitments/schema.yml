@@ -1,0 +1,48 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_HUD_MF_FIRM_COMMITMENTS
+        description: >
+          Raw landing table for the HUD FHA Multifamily Firm Commitment
+          Activity database (Excel). Landed WITH the spreadsheet preamble:
+          columns are a report-title column plus UNNAMED_1..24; the real
+          header row is embedded in the data and is filtered out in staging.
+
+models:
+  - name: stg_fed_hud_mf_firm_commitments__commitments
+    description: >
+      Staged HUD FHA multifamily firm commitment activity. Columns are renamed
+      positionally from the file's true 25-field header; preamble/header/count
+      rows are dropped by keeping only rows with a numeric FHA Number.
+      commitment_record_id is a documented surrogate (fha_number +
+      firm_activity_date + row_number over full-row hash).
+    columns:
+      - name: commitment_record_id
+        description: Surrogate primary key (fha_number + firm activity date + tiebreaker).
+        data_tests:
+          - unique
+          - not_null
+      - name: fha_number
+        description: FHA project number (numeric string; filter key for real data rows).
+        data_tests:
+          - not_null
+      - name: project_name
+        description: Multifamily project name.
+      - name: lender_name
+        description: Lender name for the firm activity.
+      - name: mortgage_amount
+        description: Mortgage amount in dollars.
+      - name: total_units
+        description: Total units in the project.
+      - name: firm_activity_date
+        description: Date of the firm commitment activity.
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.

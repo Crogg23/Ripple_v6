@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: health__intl_healthcanada_dpd_drug
+    description: "Health Canada Drug Product Database (DPD) drug products with DIN, brand name, class, and AI group; one row per drug_code. One record is missing: the loader consumed the first data row as the column header."
+    columns:
+      - name: drug_code
+        data_tests: [not_null, unique]

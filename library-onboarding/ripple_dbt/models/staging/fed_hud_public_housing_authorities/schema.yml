@@ -1,0 +1,40 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_HUD_PUBLIC_HOUSING_AUTHORITIES
+        description: >
+          Raw landing table for HUD Public Housing Authorities (PHA) with unit
+          counts, funding, per-PHA resident demographics, and a geocoded
+          address block. Most data columns arrive as TEXT.
+
+models:
+  - name: stg_fed_hud_public_housing_authorities__authorities
+    description: >
+      Staged HUD public housing authorities; one row per PHA participant code
+      (exact key, 3,787 rows), keeping the most recently ingested record.
+    columns:
+      - name: participant_code
+        description: HUD PHA participant code — primary key.
+        data_tests:
+          - unique
+          - not_null
+      - name: formal_participant_name
+        description: Formal name of the public housing authority.
+      - name: total_units
+        description: Total public housing units.
+      - name: section8_units_count
+        description: Section 8 (voucher) units administered.
+      - name: pct_occupied
+        description: Percent of units occupied.
+      - name: median_income_amount
+        description: Median household income of residents (dollars).
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.

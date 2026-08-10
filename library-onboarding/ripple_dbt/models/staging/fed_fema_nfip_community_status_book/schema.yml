@@ -1,0 +1,41 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FEMA_NFIP_COMMUNITY_STATUS_BOOK
+        description: >
+          Raw landing table for the FEMA National Flood Insurance Program
+          Community Status Book (community participation, flood-map dates, and
+          CRS class ratings). All data columns arrive as TEXT.
+
+models:
+  - name: stg_fed_fema_nfip_community_status_book__communities
+    description: >
+      Staged NFIP community status book; one row per community ID number
+      (exact key, 25,122 rows), keeping the most recently ingested record.
+      Date columns mix ISO timestamps and MM/DD/YY strings; the currently
+      effective map date may carry a "(M)" suffix and is kept raw alongside
+      the parsed date.
+    columns:
+      - name: community_id_number
+        description: FEMA NFIP community identification number — primary key.
+        data_tests:
+          - unique
+          - not_null
+      - name: community_name
+        description: Community name.
+      - name: state
+        description: State abbreviation.
+      - name: participating_in_nfip_flag
+        description: 1/0 flag for current NFIP participation.
+      - name: crs_class_rating
+        description: Community Rating System class (lower = bigger discount).
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.

@@ -1,0 +1,55 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FDA_PURPLE_BOOK
+        description: >
+          Raw landing table for the FDA Purple Book monthly changes report
+          (June 2026) of licensed biological products. LOADER DEFECT: the
+          report title row became the header, so columns are the title +
+          UNNAMED_1..27 and preamble / section / header rows are embedded
+          as data.
+
+models:
+  - name: stg_fed_fda_purple_book__licenses
+    description: >
+      Staged FDA Purple Book biologics license records, positionally renamed
+      onto the real embedded header and filtered to rows with a numeric BLA
+      number (drops title / preamble / section / header rows). Grain was not
+      pre-verified post-filter, so a deterministic surrogate key is built over
+      (bla_number, product_number, supplement_number) with a full-row-hash
+      row_number tiebreaker. Two-digit source years make pre-1970 dates
+      century-ambiguous.
+    columns:
+      - name: purple_book_record_id
+        description: >
+          Surrogate primary key — hash of (bla_number, product_number,
+          supplement_number) plus a row_number tiebreaker over the full-row
+          hash.
+        data_tests:
+          - unique
+          - not_null
+      - name: bla_number
+        description: Biologics License Application number.
+        data_tests:
+          - not_null
+      - name: applicant
+        description: License applicant / holder.
+      - name: proprietary_name
+        description: Brand (proprietary) name.
+      - name: proper_name
+        description: Proper (nonproprietary) name.
+      - name: approval_date
+        description: >
+          Approval date. Source uses 2-digit years ('2-Jan-59'), so the
+          century is inferred by Snowflake's 2-digit-year pivot and pre-1970
+          dates may land in the wrong century.
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.

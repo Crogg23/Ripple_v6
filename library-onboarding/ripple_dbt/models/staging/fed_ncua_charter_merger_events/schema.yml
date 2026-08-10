@@ -1,0 +1,33 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_NCUA_CHARTER_MERGER_EVENTS
+        description: >
+          Raw landing table for fed_ncua_charter_merger_events. NCUA credit union merger events: which credit union merged into which, with charters, locations, assets, and the stated reason for the merger.
+          Nearly all columns arrive as TEXT.
+
+models:
+  - name: stg_fed_ncua_charter_merger_events__merger_events
+    description: >
+      Staged view of the fed_ncua_charter_merger_events landing table. TEXT columns are cast to
+      appropriate types. Grain: one row = one merger event (merging_credit_union_charter unique in this extract).
+    columns:
+      - name: merging_credit_union_charter
+        description: Primary key for this entity.
+        data_tests:
+          - unique
+          - not_null
+      - name: continuing_credit_union_charter
+        description: "Charter number of the surviving credit union — join key to NCUA credit-union data."
+      - name: _loaded_at
+        description: Epoch timestamp (microseconds) when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.
+      - name: _src_sha256
+        description: SHA-256 of the source file the record came from.

@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: housing__fed_cfpb_hmda_lar
+    description: "SAMPLE ONLY -- NOT the full dataset: 17,474 HMDA Loan/Application Register records out of a multi-million-row national corpus. Loan-level (surrogate lar_record_id; lei + activity_year not unique) with all 102 LAR columns. Use for shape/testing, never for lending-pattern claims."
+    columns:
+      - name: lar_record_id
+        data_tests: [not_null, unique]
+      - name: lei
+        data_tests: [not_null]
+      - name: activity_year
+        data_tests: [not_null]

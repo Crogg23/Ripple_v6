@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: government_records__fed_usaspending_tas_filter_tree
+    description: "USAspending Treasury Account Symbol filter tree: agency-level nodes (node_id unique) with federal-account counts; ancestors kept as a VARIANT array."
+    columns:
+      - name: node_id
+        data_tests: [not_null, unique]

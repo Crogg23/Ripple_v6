@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: housing__fed_cfpb_hmda_arid2017_lei_xref
+    description: "CFPB HMDA crosswalk from 2017-format respondent IDs (arid_2017 unique) to the LEIs those lenders reported under in 2018, 2019, and 2020 — the bridge between pre-2018 and modern HMDA lender identifiers."
+    columns:
+      - name: arid_2017
+        data_tests: [not_null, unique]

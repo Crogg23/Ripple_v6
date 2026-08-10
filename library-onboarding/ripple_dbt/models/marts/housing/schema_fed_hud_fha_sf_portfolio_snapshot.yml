@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: housing__fed_hud_fha_sf_portfolio_snapshot
+    description: "HUD FHA Single-Family Portfolio Snapshot: loan-level FHA endorsements (surrogate loan_record_id; source publishes no natural key) with originating mortgagee, sponsor, property state/city/zip, rate, and original mortgage amount."
+    columns:
+      - name: loan_record_id
+        data_tests: [not_null, unique]
+      - name: property_state
+        data_tests: [not_null]

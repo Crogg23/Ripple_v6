@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: environment__fed_epa_tri_facility
+    description: "EPA Toxics Release Inventory facility registry: every TRI-reporting facility with address, parent company (domestic and foreign), FRS ID, EPA registry ID, and preferred coordinates. Grain: one row = one TRI facility (tri_facility_id unique)."
+    columns:
+      - name: tri_facility_id
+        data_tests: [not_null, unique]

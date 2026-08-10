@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: science_research__xc_retraction_watch_database
+    description: "Retraction Watch database: retracted/corrected papers with DOIs, reasons, and institutions. One row per retraction record (surrogate retraction_record_id unique; RECORD_ID near-unique in source)."
+    columns:
+      - name: retraction_record_id
+        data_tests: [not_null, unique]
+      - name: record_id
+        data_tests: [not_null]

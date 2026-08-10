@@ -1,0 +1,35 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_OCC_THRIFTS
+        description: >
+          Raw landing table for fed_occ_thrifts. OCC list of active federal savings associations (thrifts): charter number, name, headquarters location, with FDIC CERT and RSSD identifiers.
+          Nearly all columns arrive as TEXT.
+
+models:
+  - name: stg_fed_occ_thrifts__thrifts
+    description: >
+      Staged view of the fed_occ_thrifts landing table. TEXT columns are cast to
+      appropriate types. Grain: one row = one OCC-regulated federal thrift (charter_no unique).
+    columns:
+      - name: charter_no
+        description: Primary key for this entity.
+        data_tests:
+          - unique
+          - not_null
+      - name: cert
+        description: "FDIC certificate number — join key to FDIC bank data."
+      - name: rssd
+        description: "Federal Reserve RSSD ID — join key to FFIEC/Fed data."
+      - name: _loaded_at
+        description: Epoch timestamp (microseconds) when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.
+      - name: _src_sha256
+        description: SHA-256 of the source file the record came from.

@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: housing__fed_hud_mf_section8_contracts
+    description: "HUD multifamily Section 8 rental-assistance contracts (TRACS): contract dates/status, program type, assisted unit counts by bedroom size, and rent-to-FMR ratio. contract_number is near-unique; surrogate contract_record_id adds a tiebreaker."
+    columns:
+      - name: contract_record_id
+        data_tests: [not_null, unique]
+      - name: contract_number
+        data_tests: [not_null]

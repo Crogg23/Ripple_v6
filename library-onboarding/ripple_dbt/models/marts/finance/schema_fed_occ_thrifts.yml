@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: finance__fed_occ_thrifts
+    description: "OCC list of active federal savings associations (thrifts): charter number, name, headquarters location, with FDIC CERT and RSSD identifiers. Grain: one row = one OCC-regulated federal thrift (charter_no unique)."
+    columns:
+      - name: charter_no
+        data_tests: [not_null, unique]

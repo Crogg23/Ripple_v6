@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: education__fed_ed_nces_cip_codes
+    description: "NCES CIP-2020 program classification codes (cip_code unique) with titles and definitions; join key for program-level education data."
+    columns:
+      - name: cip_code
+        data_tests: [not_null, unique]

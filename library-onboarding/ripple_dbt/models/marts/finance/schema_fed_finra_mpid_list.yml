@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: finance__fed_finra_mpid_list
+    description: "FINRA market participant ID (MPID) list: broker-dealer / participant identifiers with membership flags for Nasdaq, FINRA, Nasdaq BX, and PSX. Grain: one row = one MPID registration record (mpid_record_id)."
+    columns:
+      - name: mpid_record_id
+        data_tests: [not_null, unique]

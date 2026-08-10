@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: health__fed_ihs_facilities
+    description: "IHS / Tribal / Urban Indian Health facilities list (June 2023) with address, service flags, workload, ownership, and coordinates. Loader-embedded title/preamble/header rows filtered out in staging; surrogate key over (asufac, asufac_and_modifier)."
+    columns:
+      - name: ihs_facility_id
+        data_tests: [not_null, unique]
+      - name: asufac
+        data_tests: [not_null]

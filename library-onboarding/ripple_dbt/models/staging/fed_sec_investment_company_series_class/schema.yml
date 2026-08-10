@@ -1,0 +1,35 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_SEC_INVESTMENT_COMPANY_SERIES_CLASS
+        description: >
+          Raw landing table for fed_sec_investment_company_series_class. SEC investment-company series/class registry: every registered fund series and share class with CIK, series/class IDs, ticker, and registrant address.
+          Nearly all columns arrive as TEXT.
+
+models:
+  - name: stg_fed_sec_investment_company_series_class__series_classes
+    description: >
+      Staged view of the fed_sec_investment_company_series_class landing table. TEXT columns are cast to
+      appropriate types. Grain: one row = one fund share class record (series_class_record_id).
+    columns:
+      - name: series_class_record_id
+        description: Primary key for this entity.
+        data_tests:
+          - unique
+          - not_null
+      - name: cik_number
+        description: "SEC Central Index Key of the registrant — join key to EDGAR/DERA."
+      - name: class_ticker
+        description: "Exchange ticker symbol of the share class — join key to market data."
+      - name: _loaded_at
+        description: Epoch timestamp (microseconds) when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.
+      - name: _src_sha256
+        description: SHA-256 of the source file the record came from.

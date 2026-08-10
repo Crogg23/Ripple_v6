@@ -1,0 +1,37 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_HRSA_UDS_SERVICE_DELIVERY_SITES
+        description: >
+          Raw landing table for HRSA UDS federally-funded health-center service
+          delivery sites. All data columns arrive as TEXT.
+
+models:
+  - name: stg_fed_hrsa_uds_service_delivery_sites__sites
+    description: >
+      Staged HRSA UDS health-center service delivery sites. One row per site;
+      bphc_assigned_number is verified unique (19,038 rows).
+    columns:
+      - name: bphc_assigned_number
+        description: BPHC-assigned site number — primary key for this entity.
+        data_tests:
+          - unique
+          - not_null
+      - name: health_center_number
+        description: Grant number of the parent health center.
+      - name: fqhc_site_npi_number
+        description: NPI of the FQHC site, where reported (joinable to NPPES).
+      - name: site_name
+        description: Name of the service delivery site.
+      - name: site_status_description
+        description: Site status (Active / Inactive).
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.

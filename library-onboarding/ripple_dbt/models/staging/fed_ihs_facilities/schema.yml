@@ -1,0 +1,46 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_IHS_FACILITIES
+        description: >
+          Raw landing table for the IHS / Tribal / Urban Indian Health
+          facilities list (released June 2023). LOADER DEFECT: the spreadsheet
+          title row became the header, so columns are the title + UNNAMED_1..28
+          and the preamble + real header rows are embedded as data.
+
+models:
+  - name: stg_fed_ihs_facilities__facilities
+    description: >
+      Staged IHS / Tribal / Urban Indian Health facilities, positionally
+      renamed onto the real embedded header and filtered to rows with a
+      numeric ASUFAC code (drops title / preamble / header rows). Surrogate
+      key over (asufac, asufac_and_modifier) with a full-row-hash row_number
+      tiebreaker.
+    columns:
+      - name: ihs_facility_id
+        description: >
+          Surrogate primary key — hash of (asufac, asufac_and_modifier) plus a
+          row_number tiebreaker over the full-row hash.
+        data_tests:
+          - unique
+          - not_null
+      - name: asufac
+        description: Area / Service Unit / Facility code.
+        data_tests:
+          - not_null
+      - name: asufac_and_modifier
+        description: ASUFAC with modifier suffix.
+      - name: facility_name
+        description: Facility name.
+      - name: itu_code
+        description: IHS / Tribal / Urban operator code.
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.

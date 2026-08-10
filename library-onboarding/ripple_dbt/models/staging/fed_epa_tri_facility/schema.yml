@@ -1,0 +1,37 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_EPA_TRI_FACILITY
+        description: >
+          Raw landing table for fed_epa_tri_facility. EPA Toxics Release Inventory facility registry: every TRI-reporting facility with address, parent company (domestic and foreign), FRS ID, EPA registry ID, and preferred coordinates.
+          Nearly all columns arrive as TEXT.
+
+models:
+  - name: stg_fed_epa_tri_facility__facilities
+    description: >
+      Staged view of the fed_epa_tri_facility landing table. TEXT columns are cast to
+      appropriate types. Grain: one row = one TRI facility (tri_facility_id unique).
+    columns:
+      - name: tri_facility_id
+        description: Primary key for this entity.
+        data_tests:
+          - unique
+          - not_null
+      - name: frs_id
+        description: "EPA Facility Registry Service internal ID (numeric) — join key to FRS facilities."
+      - name: epa_registry_id
+        description: "EPA FRS registry ID — join key to FRS facilities."
+      - name: parent_co_db_num
+        description: "Parent company D-U-N-S number."
+      - name: _loaded_at
+        description: Epoch timestamp (microseconds) when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.
+      - name: _src_sha256
+        description: SHA-256 of the source file the record came from.

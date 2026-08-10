@@ -1,0 +1,41 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_USASPENDING_TAS_FILTER_TREE
+        description: >
+          Raw landing table for the USAspending Treasury Account Symbol (TAS)
+          filter tree: top-level agency nodes with account counts. ANCESTORS
+          is a VARIANT array; other data columns are TEXT/NUMBER.
+
+models:
+  - name: stg_fed_usaspending_tas_filter_tree__tas_nodes
+    description: >
+      Staged USAspending TAS filter tree. One row per tree node (agency-level
+      identifier code, e.g. the 3-digit agency TAS prefix) with the count of
+      federal accounts underneath it.
+    columns:
+      - name: node_id
+        description: TAS filter-tree node id (agency identifier code) — primary key.
+        data_tests:
+          - unique
+          - not_null
+      - name: description
+        description: Human-readable name of the node (agency name).
+        data_tests:
+          - not_null
+      - name: ancestors
+        description: VARIANT array of ancestor node ids (empty for top-level nodes).
+      - name: account_count
+        description: Number of federal accounts under this node.
+      - name: child_count
+        description: Number of direct child nodes, when reported.
+      - name: _loaded_at
+        description: Ingestion timestamp (converted from epoch-microseconds).
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run.

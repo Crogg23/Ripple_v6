@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: housing__fed_usda_rd_mfh_active_projects
+    description: "USDA Rural Development Multi-Family Housing active projects: one row per borrower_id + project_id with location, management company, tax-credit and restrictive-clause expiration dates, and unit counts including rental-assistance and vacant units."
+    columns:
+      - name: borrower_id
+        data_tests: [not_null]
+      - name: project_id
+        data_tests: [not_null]
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - borrower_id
+              - project_id

@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: health__fed_fda_drug_master_files
+    description: "FDA Drug Master File registry: one row per DMF number with holder company, subject, type, status, and submit date."
+    columns:
+      - name: dmf_number
+        data_tests: [not_null, unique]

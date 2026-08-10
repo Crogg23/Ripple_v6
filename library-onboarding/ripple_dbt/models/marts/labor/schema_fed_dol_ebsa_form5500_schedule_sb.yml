@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: labor__fed_dol_ebsa_form5500_schedule_sb
+    description: "DOL EBSA Form 5500 Schedule SB: single-employer defined-benefit pension actuarial filings — funding targets, participant counts, contributions, interest rates, and the signing actuary. Grain: one row = one Schedule SB filing (ack_id unique)."
+    columns:
+      - name: ack_id
+        data_tests: [not_null, unique]

@@ -1,0 +1,33 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FINRA_MPID_LIST
+        description: >
+          Raw landing table for fed_finra_mpid_list. FINRA market participant ID (MPID) list: broker-dealer / participant identifiers with membership flags for Nasdaq, FINRA, Nasdaq BX, and PSX.
+          Nearly all columns arrive as TEXT.
+
+models:
+  - name: stg_fed_finra_mpid_list__market_participants
+    description: >
+      Staged view of the fed_finra_mpid_list landing table. TEXT columns are cast to
+      appropriate types. Grain: one row = one MPID registration record (mpid_record_id).
+    columns:
+      - name: mpid_record_id
+        description: Primary key for this entity.
+        data_tests:
+          - unique
+          - not_null
+      - name: mpid
+        description: "FINRA market participant identifier."
+      - name: _loaded_at
+        description: Epoch timestamp (microseconds) when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.
+      - name: _src_sha256
+        description: SHA-256 of the source file the record came from.

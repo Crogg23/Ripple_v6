@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: education__fed_ed_college_scorecard_institution
+    description: "College Scorecard institution-level file (unitid unique): curated core of identity, admissions, costs, completion, earnings, debt, and default metrics; full 3,311-column width stays in landing."
+    columns:
+      - name: unitid
+        data_tests: [not_null, unique]
+      - name: institution_name
+        data_tests: [not_null]

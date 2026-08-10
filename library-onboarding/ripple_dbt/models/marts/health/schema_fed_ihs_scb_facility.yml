@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: health__fed_ihs_scb_facility
+    description: "Indian Health Service Standard Code Book facilities: ASUFAC-coded facility list with area, service unit, type, bed count, and IHS/Tribal/Urban operator code. Surrogate key over near-unique asufac_code."
+    columns:
+      - name: scb_facility_id
+        data_tests: [not_null, unique]
+      - name: asufac_code
+        data_tests: [not_null]

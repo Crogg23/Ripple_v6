@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: housing__fed_hud_mf_firm_commitments
+    description: "HUD FHA Multifamily Firm Commitment Activity, FY2001 through Q3 FY2026: one row per firm commitment activity (surrogate commitment_record_id) with project, lender, mortgage amount, total units, and subsidy flags. Spreadsheet preamble and embedded header rows are filtered out in staging."
+    columns:
+      - name: commitment_record_id
+        data_tests: [not_null, unique]
+      - name: fha_number
+        data_tests: [not_null]

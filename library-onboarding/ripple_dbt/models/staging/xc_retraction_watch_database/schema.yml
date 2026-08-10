@@ -1,0 +1,49 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: XC_RETRACTION_WATCH_DATABASE
+        description: >
+          Raw landing table for the Retraction Watch database: retracted /
+          corrected papers with DOIs, retraction reasons, institutions,
+          journals, and authors. All data columns arrive as TEXT; UNNAMED_20
+          is an all-null junk column.
+
+models:
+  - name: stg_xc_retraction_watch_database__retractions
+    description: >
+      Staged Retraction Watch database. One row per retraction record.
+      RECORD_ID is near-unique (71,389 distinct of 71,608 rows), so a
+      row_number surrogate suffix makes retraction_record_id fully unique.
+      DOIs and PubMed ids are join keys to publication corpora.
+    columns:
+      - name: retraction_record_id
+        description: >
+          Surrogate primary key: record_id plus a deterministic row_number
+          tiebreaker over the full-row hash.
+        data_tests:
+          - unique
+          - not_null
+      - name: record_id
+        description: Retraction Watch record id (near-unique in the source).
+        data_tests:
+          - not_null
+      - name: original_paper_doi
+        description: DOI of the original (retracted) paper — join key.
+      - name: retraction_doi
+        description: DOI of the retraction notice.
+      - name: retraction_nature
+        description: Nature of the notice (retraction, correction, expression of concern...).
+      - name: reasons
+        description: Semicolon-delimited retraction reasons.
+      - name: retraction_date
+        description: Date of the retraction notice.
+      - name: _loaded_at
+        description: Ingestion timestamp (converted from epoch-microseconds).
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run.

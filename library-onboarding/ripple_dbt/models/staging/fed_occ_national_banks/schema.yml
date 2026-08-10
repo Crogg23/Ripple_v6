@@ -1,0 +1,35 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_OCC_NATIONAL_BANKS
+        description: >
+          Raw landing table for fed_occ_national_banks. OCC list of active national banks: charter number, name, headquarters location, with FDIC CERT and Federal Reserve RSSD identifiers.
+          Nearly all columns arrive as TEXT.
+
+models:
+  - name: stg_fed_occ_national_banks__banks
+    description: >
+      Staged view of the fed_occ_national_banks landing table. TEXT columns are cast to
+      appropriate types. Grain: one row = one OCC-chartered national bank (charter_no unique).
+    columns:
+      - name: charter_no
+        description: Primary key for this entity.
+        data_tests:
+          - unique
+          - not_null
+      - name: cert
+        description: "FDIC certificate number — join key to FDIC bank data."
+      - name: rssd
+        description: "Federal Reserve RSSD ID — join key to FFIEC/Fed data."
+      - name: _loaded_at
+        description: Epoch timestamp (microseconds) when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.
+      - name: _src_sha256
+        description: SHA-256 of the source file the record came from.
