@@ -6,15 +6,20 @@ sources:
     schema: LANDING
     tables:
       - name: FED_CDC_WONDER
-        description: >
-          Raw landing table for CDC WONDER. All columns arrive as TEXT and
-          are cast in the staging layer.
 
 models:
   - name: stg_fed_cdc_wonder__records
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (DATABASE_ID is unique). SPINE_ENTITY: (not determined)."
+    description: "CDC WONDER national mortality grid 1999-2020: deaths, population and crude rate per year x ICD chapter x sex (API is national-only by CDC policy)."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [year, icd_chapter, sex]
     columns:
-      - name: database_id
-        data_tests:
-          - unique
-          - not_null
+      - name: year
+        data_tests: [not_null]
+      - name: icd_chapter
+        data_tests: [not_null]
+      - name: sex
+        data_tests: [not_null]
+      - name: deaths
+        description: "NULL where CDC suppressed the cell (counts under 10; 8 rows on the 2026-08-09 load)."

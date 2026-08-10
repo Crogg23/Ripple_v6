@@ -6,15 +6,24 @@ sources:
     schema: LANDING
     tables:
       - name: FED_FBI_CDE
-        description: >
-          Raw landing table for FBI Crime Data Explorer (NIBRS/UCR). All columns arrive as TEXT and
-          are cast in the staging layer.
 
 models:
-  - name: stg_fed_fbi_cde__places
-    description: "GRAIN: one row per place (FIPS is unique). SPINE_ENTITY: place."
+  - name: stg_fed_fbi_cde__state_month
+    description: "FBI Crime Data Explorer state monthly counts back to 1985: offenses and clearances (series) with rates per 100k, per state x offense x month."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [state, offense, month, series]
     columns:
-      - name: fips_county_code
+      - name: state
+        data_tests: [not_null]
+      - name: offense
+        data_tests: [not_null]
+      - name: series
         data_tests:
-          - unique
           - not_null
+          - accepted_values:
+              arguments:
+                values: ['OFFENSES', 'CLEARANCES']
+      - name: month_date
+        data_tests: [not_null]

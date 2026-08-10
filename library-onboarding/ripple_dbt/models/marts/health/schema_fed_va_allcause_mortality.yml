@@ -2,7 +2,15 @@ version: 2
 
 models:
   - name: health__fed_va_allcause_mortality
+    description: "Leading causes of veteran death 2018-2023 with counts, rates and years of potential life lost, by cohort and sex (VA all-cause mortality appendix)."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [year, cohort, sex, cause_of_death]
     columns:
-      - name: figures_and_tables
+      - name: year
+        data_tests:
+          - not_null
+      - name: cause_of_death
         data_tests:
           - not_null

@@ -6,9 +6,20 @@ sources:
     schema: LANDING
     tables:
       - name: FED_VA_ALLCAUSE_MORTALITY
-        description: >
-          Raw landing table for VA All-Cause Mortality Data Appendix 2018-2023. Grain not yet determined.
 
 models:
-  - name: stg_fed_va_allcause_mortality__records
-    description: "Minimal passthrough staging (grain undetermined). Needs manual review."
+  - name: stg_fed_va_allcause_mortality__all
+    description: "VA all-cause mortality appendix 2018-2023: leading causes of veteran death with counts, rates and years of potential life lost, by cohort and sex."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [year, cohort, sex, cause_of_death]
+    columns:
+      - name: year
+        data_tests: [not_null]
+      - name: cohort
+        data_tests: [not_null]
+      - name: sex
+        data_tests: [not_null]
+      - name: cause_of_death
+        data_tests: [not_null]

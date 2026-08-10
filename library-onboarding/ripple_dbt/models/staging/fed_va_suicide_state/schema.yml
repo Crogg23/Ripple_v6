@@ -1,0 +1,25 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_VA_SUICIDE_STATE
+
+models:
+  - name: stg_fed_va_suicide_state__all
+    description: "VA state suicide data appendix 2001-2023: veteran suicide deaths and rates by state, sex, age group and method, one stacked sheet per dimension."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [sheet, state, year_of_death, sex, age_group, group_method, method, geographic_region]
+    columns:
+      - name: sheet
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Veteran Suicides by State', 'Veteran Suicides by Sex', 'Suicides by Age', 'Suicides by Method']
+      - name: year_of_death
+        data_tests: [not_null]

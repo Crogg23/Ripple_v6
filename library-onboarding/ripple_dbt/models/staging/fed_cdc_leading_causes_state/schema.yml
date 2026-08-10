@@ -1,0 +1,25 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CDC_LEADING_CAUSES_STATE
+
+models:
+  - name: stg_fed_cdc_leading_causes_state__all
+    description: "NCHS leading causes of death by state 1999-2017: deaths and age-adjusted rates per state x year x cause (state companion to the national CDC WONDER grid)."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [year, state, cause_name]
+    columns:
+      - name: year
+        data_tests: [not_null]
+      - name: state
+        data_tests: [not_null]
+      - name: cause_name
+        data_tests: [not_null]
+      - name: deaths
+        data_tests: [not_null]

@@ -1,0 +1,27 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_VA_SUICIDE_NATIONAL
+
+models:
+  - name: stg_fed_va_suicide_national__all
+    description: "VA national suicide data appendix 2001-2023: suicide deaths, populations and rates by cohort (Veteran, VHA user, other veteran, non-veteran, US adult), year, sex, and optional age group."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [year_of_death, cohort, age_group]
+    columns:
+      - name: year_of_death
+        data_tests: [not_null]
+      - name: cohort
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Veteran', 'Recent Veteran VHA User', 'Other Veteran', 'Non-Veteran', 'U.S. Adult Population']
+      - name: suicide_deaths
+        data_tests: [not_null]

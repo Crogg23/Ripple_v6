@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FRA_CROSSING_INCIDENTS
+
+models:
+  - name: stg_fed_fra_crossing_incidents__all
+    description: "FRA Form 57 highway-rail grade crossing incidents by railroad and crossing, with casualties and warning-device context."
+    columns:
+      - name: report_key
+        description: FRA report key. NOT unique (amended/joint filings) -- see model header.
+        data_tests: [not_null]
+      - name: railroad_code
+        data_tests: [not_null]

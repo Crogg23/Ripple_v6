@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FRA_EQUIPMENT_ACCIDENTS
+
+models:
+  - name: stg_fed_fra_equipment_accidents__all
+    description: "FRA Form 54 rail equipment accidents (derailments, collisions) with damage costs, casualties and causes. One row per reporting railroad per accident."
+    columns:
+      - name: report_key
+        description: NOT unique -- one accident can be reported by several railroads; see model header.
+        data_tests: [not_null]
+      - name: reporting_railroad_code
+        data_tests: [not_null]
