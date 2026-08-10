@@ -66,12 +66,48 @@ def _clean_header(cells) -> list[str]:
     return out
 
 
+def _is_header_row(row) -> bool:
+    """Header rows in every VA suicide sheet start with a 'Year of Death' cell."""
+    c = row[0]
+    return c is not None and re.sub(r"\s+", " ", str(c)).strip().lower() == "year of death"
+
+
 def _tidy_sheet(ws, sheet: str, extra: dict) -> pd.DataFrame:
-    """Suicide-file sheets: rows 1-2 are banner/blank, row 3 is the header."""
+    """Suicide-file sheets hold one or MORE stacked sub-tables, each introduced by
+    a title row + its own 'Year of Death...' header (the national cohort sheets
+    stack a by-age table with an extra Age Group column below the main table —
+    parsing everything under the first header shifted those rows by a column,
+    the 2026-08-09 corruption). Parse each segment under its own header and
+    concat by column NAME so differing segment shapes align instead of shifting."""
     rows = list(ws.iter_rows(values_only=True))
-    header = _clean_header(rows[2])
-    data = [r for r in rows[3:] if any(c is not None and str(c).strip() for c in r)]
-    df = pd.DataFrame(data, columns=header)
+    segments: list[pd.DataFrame] = []
+    # Row 3 is always the first header (rows 1-2 are banner/blank); later
+    # segments announce themselves with a fresh 'Year of Death' header row.
+    header, data = _clean_header(rows[2]), []
+
+    def _flush():
+        if header and data:
+            segments.append(pd.DataFrame(data, columns=header))
+
+    for r in rows[3:]:
+        if _is_header_row(r):
+            _flush()
+            header, data = _clean_header(r), []
+        elif header is not None:
+            cells = [c for c in r if c is not None and str(c).strip()]
+            if not cells:
+                continue
+            # a lone non-empty first cell is a sub-table title, not data
+            if len(cells) == 1 and (r[0] is not None and str(r[0]).strip()):
+                continue
+            data.append(r)
+    _flush()
+    if not segments:
+        raise RuntimeError(f"sheet {sheet!r}: no 'Year of Death' header found")
+    df = pd.concat(segments, ignore_index=True)
+    # blank trailing header cells become COL_n placeholders; drop any that
+    # carried no data at all across every segment
+    df = df.dropna(axis=1, how="all")
     for k, v in extra.items():
         df[k] = v
     return df
