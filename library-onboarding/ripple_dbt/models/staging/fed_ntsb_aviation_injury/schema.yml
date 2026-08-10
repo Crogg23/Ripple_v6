@@ -1,0 +1,34 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_NTSB_AVIATION_INJURY
+
+models:
+  - name: stg_fed_ntsb_aviation_injury__injuries
+    description: >
+      NTSB aviation accident database, injury table: injury counts per event x
+      aircraft x person category x injury level (composite verified exactly
+      unique). ev_id joins to the NTSB aviation events staging/mart.
+    columns:
+      - name: injury_record_id
+        description: Surrogate key over (ev_id, aircraft_key, inj_person_category, injury_level).
+        data_tests: [not_null, unique]
+      - name: ev_id
+        description: NTSB event id — joins to the NTSB aviation events mart.
+        data_tests: [not_null]
+      - name: aircraft_key
+        description: Aircraft sequence key within the event.
+      - name: inj_person_category
+        description: Person category (crew, passenger, ground, etc.).
+      - name: injury_level
+        description: Injury severity level (fatal, serious, minor, none).
+      - name: inj_person_count
+        description: Number of persons in this category at this injury level.
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.

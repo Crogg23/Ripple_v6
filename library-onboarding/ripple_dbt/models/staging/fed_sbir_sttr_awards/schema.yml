@@ -1,0 +1,39 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_SBIR_STTR_AWARDS
+
+models:
+  - name: stg_fed_sbir_sttr_awards__awards
+    description: >
+      Federal SBIR/STTR small-business research awards: agency, phase,
+      program, contract, amounts, company profile and PI contacts. One row per
+      award record, with a surrogate tiebreaker for the 127 composite-key
+      collisions.
+    columns:
+      - name: award_record_id
+        description: Surrogate key over agency/phase/program/tracking-number/contract/year plus a deterministic tiebreaker.
+        data_tests: [not_null, unique]
+      - name: agency
+        description: Awarding federal agency.
+        data_tests: [not_null]
+      - name: phase
+        description: SBIR/STTR phase (I, II, ...).
+      - name: program
+        description: Program (SBIR or STTR).
+      - name: uei
+        description: SAM Unique Entity Identifier — cross-dataset join key for the awardee company.
+      - name: duns
+        description: Legacy DUNS number — cross-dataset join key for the awardee company.
+      - name: award_year
+        description: Award year (integer).
+      - name: award_amount
+        description: Award amount in dollars.
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.

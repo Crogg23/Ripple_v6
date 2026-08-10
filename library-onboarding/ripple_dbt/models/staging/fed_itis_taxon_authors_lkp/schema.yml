@@ -1,0 +1,31 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_ITIS_TAXON_AUTHORS_LKP
+        description: >
+          Raw landing table for ITIS (Integrated Taxonomic Information System,
+          USDA/USGS) — taxon_authors_lkp. All data columns arrive as TEXT;
+          metadata columns are INGESTED_AT (epoch NUMBER) / SOURCE_RUN_ID / SRC_SHA256.
+
+models:
+  - name: stg_fed_itis_taxon_authors_lkp__authors
+    description: >
+      Staged view of the ITIS taxon_authors_lkp landing table.
+      Lookup of taxon author citations (the naming authority string attached to scientific names), keyed by author id.
+      Grain verified live: one row per taxon_author_id (214,445 rows).
+    columns:
+      - name: taxon_author_id
+        description: Primary key for this table.
+        data_tests:
+          - unique
+          - not_null
+      - name: _loaded_at
+        description: Ingestion timestamp (from epoch INGESTED_AT).
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run.

@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: energy__fed_eia860_3_3_solar
+    description: "EIA-860 2024 annual report, Schedule 3.3 (Solar): solar-generator detail with tracking type, panel material, azimuth/tilt, DC capacity, and net-metering agreements. One row per plant + generator."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - plant_code
+              - generator_id
+    columns:
+      - name: plant_code
+        data_tests: [not_null]
+      - name: generator_id
+        data_tests: [not_null]

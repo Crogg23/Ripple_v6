@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: reference__fed_itis_longnames
+    description: "ITIS (Integrated Taxonomic Information System, USDA/USGS taxonomy) reference data — Lookup of the assembled complete scientific name for every TSN. Grain: one row per tsn (993,346 rows)."
+    columns:
+      - name: tsn
+        data_tests: [not_null, unique]

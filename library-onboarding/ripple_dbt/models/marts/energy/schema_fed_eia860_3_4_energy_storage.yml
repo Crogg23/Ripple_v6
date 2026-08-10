@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: energy__fed_eia860_3_4_energy_storage
+    description: "EIA-860 2024 annual report, Schedule 3.4 (Energy Storage): battery/storage-generator detail with energy capacity (MWh), max charge/discharge rates, storage technology, use-case flags, and coupling. One row per plant + generator."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - plant_code
+              - generator_id
+    columns:
+      - name: plant_code
+        data_tests: [not_null]
+      - name: generator_id
+        data_tests: [not_null]

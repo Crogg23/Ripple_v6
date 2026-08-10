@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: health__fed_fda_unii_gsrs_substances
+    description: "FDA GSRS substance registry: one row per UNII with crosswalks to CAS RN, RXCUI, PubChem, InChIKey, NCIt, ITIS, NCBI — a join-key hub for substance linkage across datasets."
+    columns:
+      - name: unii
+        data_tests: [not_null, unique]

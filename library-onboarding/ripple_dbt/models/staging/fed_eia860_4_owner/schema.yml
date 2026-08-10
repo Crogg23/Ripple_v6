@@ -7,10 +7,43 @@ sources:
     tables:
       - name: FED_EIA860_4_OWNER
         description: >
-          Raw landing table, ingestion sweep 2026-08-05. All columns arrive as TEXT.
+          Raw landing table for EIA-860 Schedule 4 (Owner), 2024 reporting year.
+          One sheet-row per owner stake in a jointly-owned generator. All columns
+          arrive as TEXT.
 
 models:
   - name: stg_fed_eia860_4_owner__all
     description: >
-      Minimal passthrough staging view for FED_EIA860_4_OWNER. Grain not yet
-      determined -- snake_case rename only, no dedup.
+      Staged EIA-860 2024 Schedule 4 generator ownership. One row per
+      plant_code + generator_id + ownership_id (verified exact-unique).
+      percent_owned typed to a fractional number (e.g. 0.6 = 60%).
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - plant_code
+              - generator_id
+              - ownership_id
+    columns:
+      - name: plant_code
+        description: EIA plant code -- composite primary key component.
+        data_tests: [not_null]
+      - name: generator_id
+        description: Generator identifier within the plant -- composite primary key component.
+        data_tests: [not_null]
+      - name: ownership_id
+        description: EIA identifier of the owning entity -- composite primary key component.
+        data_tests: [not_null]
+      - name: utility_id
+        description: Reporting (operating) utility identifier (FK to Schedule 1).
+      - name: owner_name
+        description: Name of the owning entity.
+        data_tests: [not_null]
+      - name: percent_owned
+        description: Fraction of the generator owned (0-1 scale as reported).
+      - name: _loaded_at
+        description: Timestamp the row was ingested into the landing table.
+      - name: _source_run_id
+        description: Ingestion pipeline run identifier.
+      - name: _src_file
+        description: Source workbook/sheet file name.

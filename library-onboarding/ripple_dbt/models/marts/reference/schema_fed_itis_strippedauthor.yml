@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: reference__fed_itis_strippedauthor
+    description: "ITIS (Integrated Taxonomic Information System, USDA/USGS taxonomy) reference data — Companion lookup with a stripped/normalized short form of each taxon author string, keyed by author id. Grain: one row per taxon_author_id (214,445 rows)."
+    columns:
+      - name: taxon_author_id
+        data_tests: [not_null, unique]

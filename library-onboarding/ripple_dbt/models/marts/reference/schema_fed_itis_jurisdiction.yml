@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: reference__fed_itis_jurisdiction
+    description: "ITIS (Integrated Taxonomic Information System, USDA/USGS taxonomy) reference data — Jurisdictional occurrence of each taxon (e.g. Continental US, Alaska, Canada) with native/introduced origin; one row per TSN x jurisdiction. Grain: one row per tsn, jurisdiction_value (161,922 rows)."
+    columns:
+      - name: itis_jurisdiction_key
+        data_tests: [not_null, unique]

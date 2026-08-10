@@ -7,10 +7,43 @@ sources:
     tables:
       - name: FED_EIA860_6_2_ENVIROEQUIP
         description: >
-          Raw landing table, ingestion sweep 2026-08-05. All columns arrive as TEXT.
+          Raw landing table for EIA-860 Schedule 6.2 (EnviroEquip), 2024
+          reporting year. One sheet-row per boiler. All columns arrive as TEXT.
 
 models:
   - name: stg_fed_eia860_6_2_enviroequip__all
     description: >
-      Minimal passthrough staging view for FED_EIA860_6_2_ENVIROEQUIP. Grain not yet
-      determined -- snake_case rename only, no dedup.
+      Staged EIA-860 2024 Schedule 6.2 boiler emissions-regulation and control
+      equipment detail. One row per plant_code + boiler_id (verified
+      exact-unique). Regulation standards and compliance years typed from TEXT.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - plant_code
+              - boiler_id
+    columns:
+      - name: plant_code
+        description: EIA plant code -- composite primary key component.
+        data_tests: [not_null]
+      - name: boiler_id
+        description: Boiler identifier within the plant -- composite primary key component.
+        data_tests: [not_null]
+      - name: utility_id
+        description: Reporting utility identifier (FK to Schedule 1).
+      - name: boiler_status
+        description: Boiler status code (e.g. OP, RE, SB).
+      - name: regulation_sulfur
+        description: Applicable sulfur dioxide regulation code.
+      - name: regulation_nitrogen
+        description: Applicable nitrogen oxide regulation code.
+      - name: regulation_particulate
+        description: Applicable particulate matter regulation code.
+      - name: regulation_mercury
+        description: Applicable mercury regulation code.
+      - name: _loaded_at
+        description: Timestamp the row was ingested into the landing table.
+      - name: _source_run_id
+        description: Ingestion pipeline run identifier.
+      - name: _src_file
+        description: Source workbook/sheet file name.

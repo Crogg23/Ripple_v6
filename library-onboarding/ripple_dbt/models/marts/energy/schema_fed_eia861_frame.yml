@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: energy__fed_eia861_frame
+    description: "EIA-861 (2024 vintage) Frame: the respondent frame (one row per filing entity) with ownership and fifteen X-marked schedule-participation flags whose header names were destroyed at load (kept positionally as schedule_flag_01..15). All data is reporting year 2024. One record is missing: the loader consumed the first data row as the column header."
+    columns:
+      - name: record_id
+        data_tests: [not_null, unique]

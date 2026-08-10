@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: transport__fed_ntsb_aviation_injury
+    description: "NTSB aviation accident database, injury table: injury counts per event x aircraft x person category x injury level; ev_id joins to transport__fed_ntsb_aviation_events."
+    columns:
+      - name: injury_record_id
+        data_tests: [not_null, unique]
+      - name: ev_id
+        data_tests: [not_null]

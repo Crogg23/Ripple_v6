@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: reference__fed_itis_reference_links
+    description: "ITIS (Integrated Taxonomic Information System, USDA/USGS taxonomy) reference data — Links taxa to the publications/experts/other-source documents that support them; one row per TSN x document. Grain: one row per tsn, doc_id_prefix, documentation_id (1,970,107 rows)."
+    columns:
+      - name: itis_reference_links_key
+        data_tests: [not_null, unique]

@@ -7,10 +7,31 @@ sources:
     tables:
       - name: FED_EIA861_DYNAMIC_PRICING
         description: >
-          Raw landing table, ingestion sweep 2026-08-05. All columns arrive as TEXT.
+          Raw landing table for the EIA-861 2024 annual electric utility survey
+          (dynamic_pricing workbook), ingestion sweep 2026-08-05.
+          All columns arrive as TEXT; the Excel header landed corrupted and is
+          repaired positionally in staging.
 
 models:
-  - name: stg_fed_eia861_dynamic_pricing__all
+  - name: stg_fed_eia861_dynamic_pricing__enrollment
     description: >
-      Minimal passthrough staging view for FED_EIA861_DYNAMIC_PRICING. Grain not yet
-      determined -- snake_case rename only, no dedup.
+      EIA-861 (2024 vintage) Dynamic Pricing: customers enrolled in dynamic-rate programs and Y/N program flags (time-of-use, real-time, variable-peak, critical-peak pricing/rebate) by utility, state and sector. All data is reporting year 2024.
+      Grain: surrogate over (data_year, utility_number, state); grain not verifiable pre-clean.
+    columns:
+      - name: record_id
+        description: >
+          Surrogate key: hash of the natural composite plus a deterministic
+          row_number tiebreaker over the full-row hash.
+        data_tests:
+          - unique
+          - not_null
+      - name: data_year
+        description: Reporting year (2024 for this vintage).
+      - name: utility_number
+        description: EIA utility identification number.
+      - name: _loaded_at
+        description: Ingestion timestamp (from _INGESTED_AT).
+      - name: _source_run_id
+        description: Ingestion pipeline run identifier.
+      - name: _src_file
+        description: Source Excel workbook file name.

@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: energy__fed_eia861_distribution_systems
+    description: "EIA-861 (2024 vintage) Distribution Systems: number of distribution circuits and circuits with voltage optimization by utility and state. All data is reporting year 2024. One record is missing: the loader consumed the first data row as the column header."
+    columns:
+      - name: record_id
+        data_tests: [not_null, unique]

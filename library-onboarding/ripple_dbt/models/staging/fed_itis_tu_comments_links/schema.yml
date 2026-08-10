@@ -1,0 +1,39 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_ITIS_TU_COMMENTS_LINKS
+        description: >
+          Raw landing table for ITIS (Integrated Taxonomic Information System,
+          USDA/USGS) — tu_comments_links. All data columns arrive as TEXT;
+          metadata columns are INGESTED_AT (epoch NUMBER) / SOURCE_RUN_ID / SRC_SHA256.
+
+models:
+  - name: stg_fed_itis_tu_comments_links__comment_links
+    description: >
+      Staged view of the ITIS tu_comments_links landing table.
+      Bridge linking taxa to free-text curator comments; one row per TSN x comment id.
+      Grain verified live: one row per tsn, comment_id (192,851 rows).
+    columns:
+      - name: itis_tu_comments_links_key
+        description: Surrogate key over (tsn, comment_id) — the verified grain.
+        data_tests:
+          - unique
+          - not_null
+      - name: tsn
+        description: Component of the composite key.
+        data_tests:
+          - not_null
+      - name: comment_id
+        description: Component of the composite key.
+        data_tests:
+          - not_null
+      - name: _loaded_at
+        description: Ingestion timestamp (from epoch INGESTED_AT).
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run.

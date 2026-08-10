@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: energy__fed_eia861_operational_data
+    description: "EIA-861 (2024 vintage) Operational Data: peak demand (MW), energy sources and disposition (MWh), and revenue (thousand dollars) by utility and state. All data is reporting year 2024."
+    columns:
+      - name: record_id
+        data_tests: [not_null, unique]

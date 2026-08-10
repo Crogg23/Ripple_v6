@@ -1,0 +1,39 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_ITIS_OTHER_SOURCES
+        description: >
+          Raw landing table for ITIS (Integrated Taxonomic Information System,
+          USDA/USGS) — other_sources. All data columns arrive as TEXT;
+          metadata columns are INGESTED_AT (epoch NUMBER) / SOURCE_RUN_ID / SRC_SHA256.
+
+models:
+  - name: stg_fed_itis_other_sources__other_sources
+    description: >
+      Staged view of the ITIS other_sources landing table.
+      Non-publication evidence sources (databases, websites) cited for taxa; one row per source id (with prefix).
+      Grain verified live: one row per source_id_prefix, source_id (1,071 rows).
+    columns:
+      - name: itis_other_sources_key
+        description: Surrogate key over (source_id_prefix, source_id) — the verified grain.
+        data_tests:
+          - unique
+          - not_null
+      - name: source_id_prefix
+        description: Component of the composite key.
+        data_tests:
+          - not_null
+      - name: source_id
+        description: Component of the composite key.
+        data_tests:
+          - not_null
+      - name: _loaded_at
+        description: Ingestion timestamp (from epoch INGESTED_AT).
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run.

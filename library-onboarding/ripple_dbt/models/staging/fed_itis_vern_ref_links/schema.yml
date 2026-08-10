@@ -1,0 +1,47 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_ITIS_VERN_REF_LINKS
+        description: >
+          Raw landing table for ITIS (Integrated Taxonomic Information System,
+          USDA/USGS) — vern_ref_links. All data columns arrive as TEXT;
+          metadata columns are INGESTED_AT (epoch NUMBER) / SOURCE_RUN_ID / SRC_SHA256.
+
+models:
+  - name: stg_fed_itis_vern_ref_links__vernacular_ref_links
+    description: >
+      Staged view of the ITIS vern_ref_links landing table.
+      Links vernacular names to their supporting documents; one row per TSN x document x vernacular id.
+      Grain verified live: one row per tsn, doc_id_prefix, documentation_id, vern_id (93,078 rows).
+    columns:
+      - name: itis_vern_ref_links_key
+        description: Surrogate key over (tsn, doc_id_prefix, documentation_id, vern_id) — the verified grain.
+        data_tests:
+          - unique
+          - not_null
+      - name: tsn
+        description: Component of the composite key.
+        data_tests:
+          - not_null
+      - name: doc_id_prefix
+        description: Component of the composite key.
+        data_tests:
+          - not_null
+      - name: documentation_id
+        description: Component of the composite key.
+        data_tests:
+          - not_null
+      - name: vern_id
+        description: Component of the composite key.
+        data_tests:
+          - not_null
+      - name: _loaded_at
+        description: Ingestion timestamp (from epoch INGESTED_AT).
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run.

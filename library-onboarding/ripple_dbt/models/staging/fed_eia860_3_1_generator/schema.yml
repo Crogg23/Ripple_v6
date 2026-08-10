@@ -7,10 +7,55 @@ sources:
     tables:
       - name: FED_EIA860_3_1_GENERATOR
         description: >
-          Raw landing table, ingestion sweep 2026-08-05. All columns arrive as TEXT.
+          Raw landing table for EIA-860 Schedule 3.1 (Generator), 2024 reporting
+          year. One sheet-row per generator unit. All columns arrive as TEXT.
 
 models:
   - name: stg_fed_eia860_3_1_generator__all
     description: >
-      Minimal passthrough staging view for FED_EIA860_3_1_GENERATOR. Grain not yet
-      determined -- snake_case rename only, no dedup.
+      Staged EIA-860 2024 Schedule 3.1 generator inventory. One row per
+      plant_code + generator_id (verified exact-unique). Capacity, status,
+      fuel, and planned-change fields typed from TEXT.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - plant_code
+              - generator_id
+    columns:
+      - name: plant_code
+        description: EIA plant code -- composite primary key component.
+        data_tests: [not_null]
+      - name: generator_id
+        description: Generator identifier within the plant -- composite primary key component.
+        data_tests: [not_null]
+      - name: utility_id
+        description: Reporting utility identifier (FK to Schedule 1).
+      - name: technology
+        description: Generation technology description.
+      - name: prime_mover
+        description: Prime mover code (e.g. IC, GT, ST, WT, PV).
+      - name: status
+        description: Generator status code (e.g. OP, SB, RE).
+      - name: nameplate_capacity_mw
+        description: Nameplate capacity in megawatts.
+      - name: summer_capacity_mw
+        description: Net summer capacity in megawatts.
+      - name: winter_capacity_mw
+        description: Net winter capacity in megawatts.
+      - name: operating_month
+        description: Month the generator began (or is planned to begin) operation.
+      - name: operating_year
+        description: Year the generator began (or is planned to begin) operation.
+      - name: planned_retirement_year
+        description: Planned retirement year, if reported.
+      - name: energy_source_1
+        description: Primary energy source code (e.g. NG, DFO, SUB, WND, SUN).
+      - name: carbon_capture_technology
+        description: Y/None flag -- carbon capture technology in use.
+      - name: _loaded_at
+        description: Timestamp the row was ingested into the landing table.
+      - name: _source_run_id
+        description: Ingestion pipeline run identifier.
+      - name: _src_file
+        description: Source workbook/sheet file name.

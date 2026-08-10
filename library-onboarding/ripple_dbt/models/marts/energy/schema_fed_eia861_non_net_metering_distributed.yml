@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: energy__fed_eia861_non_net_metering_distributed
+    description: "EIA-861 (2024 vintage) Non-Net-Metering Distributed generators: distributed capacity (MW) by utility, state, interconnection type, customer sector, and technology group. Technology identities of the ten per-technology column groups were flattened out of the Excel header at load and are kept as tech_01..tech_10; the final group is the all-technology total. All data is reporting year 2024."
+    columns:
+      - name: record_id
+        data_tests: [not_null, unique]

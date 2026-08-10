@@ -1,0 +1,39 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_ITIS_TAXON_UNIT_TYPES
+        description: >
+          Raw landing table for ITIS (Integrated Taxonomic Information System,
+          USDA/USGS) — taxon_unit_types. All data columns arrive as TEXT;
+          metadata columns are INGESTED_AT (epoch NUMBER) / SOURCE_RUN_ID / SRC_SHA256.
+
+models:
+  - name: stg_fed_itis_taxon_unit_types__rank_types
+    description: >
+      Staged view of the ITIS taxon_unit_types landing table.
+      Rank definitions per kingdom (Kingdom/Phylum/.../Species etc.) with required-parent rank rules; one row per kingdom x rank.
+      Grain verified live: one row per kingdom_id, rank_id (182 rows).
+    columns:
+      - name: itis_taxon_unit_types_key
+        description: Surrogate key over (kingdom_id, rank_id) — the verified grain.
+        data_tests:
+          - unique
+          - not_null
+      - name: kingdom_id
+        description: Component of the composite key.
+        data_tests:
+          - not_null
+      - name: rank_id
+        description: Component of the composite key.
+        data_tests:
+          - not_null
+      - name: _loaded_at
+        description: Ingestion timestamp (from epoch INGESTED_AT).
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run.

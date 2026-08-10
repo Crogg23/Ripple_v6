@@ -1,0 +1,39 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_ITIS_SYNONYM_LINKS
+        description: >
+          Raw landing table for ITIS (Integrated Taxonomic Information System,
+          USDA/USGS) — synonym_links. All data columns arrive as TEXT;
+          metadata columns are INGESTED_AT (epoch NUMBER) / SOURCE_RUN_ID / SRC_SHA256.
+
+models:
+  - name: stg_fed_itis_synonym_links__synonyms
+    description: >
+      Staged view of the ITIS synonym_links landing table.
+      Synonym mapping from a non-accepted TSN to its accepted TSN; one row per synonym pair.
+      Grain verified live: one row per tsn, tsn_accepted (315,254 rows).
+    columns:
+      - name: itis_synonym_links_key
+        description: Surrogate key over (tsn, tsn_accepted) — the verified grain.
+        data_tests:
+          - unique
+          - not_null
+      - name: tsn
+        description: Component of the composite key.
+        data_tests:
+          - not_null
+      - name: tsn_accepted
+        description: Component of the composite key.
+        data_tests:
+          - not_null
+      - name: _loaded_at
+        description: Ingestion timestamp (from epoch INGESTED_AT).
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run.

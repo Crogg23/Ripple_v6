@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: energy__fed_eia861_service_territory
+    description: "EIA-861 (2024 vintage) Service Territory: counties served by each utility, by state. All data is reporting year 2024. One record is missing: the loader consumed the first data row as the column header."
+    columns:
+      - name: record_id
+        data_tests: [not_null, unique]

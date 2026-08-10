@@ -1,0 +1,39 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_ITIS_JURISDICTION
+        description: >
+          Raw landing table for ITIS (Integrated Taxonomic Information System,
+          USDA/USGS) — jurisdiction. All data columns arrive as TEXT;
+          metadata columns are INGESTED_AT (epoch NUMBER) / SOURCE_RUN_ID / SRC_SHA256.
+
+models:
+  - name: stg_fed_itis_jurisdiction__jurisdictions
+    description: >
+      Staged view of the ITIS jurisdiction landing table.
+      Jurisdictional occurrence of each taxon (e.g. Continental US, Alaska, Canada) with native/introduced origin; one row per TSN x jurisdiction.
+      Grain verified live: one row per tsn, jurisdiction_value (161,922 rows).
+    columns:
+      - name: itis_jurisdiction_key
+        description: Surrogate key over (tsn, jurisdiction_value) — the verified grain.
+        data_tests:
+          - unique
+          - not_null
+      - name: tsn
+        description: Component of the composite key.
+        data_tests:
+          - not_null
+      - name: jurisdiction_value
+        description: Component of the composite key.
+        data_tests:
+          - not_null
+      - name: _loaded_at
+        description: Ingestion timestamp (from epoch INGESTED_AT).
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run.

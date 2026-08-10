@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: energy__fed_eia860_2_plant
+    description: "EIA-860 2024 annual report, Schedule 2 (Plant): power-plant roster with location (lat/long), NERC region, balancing authority, sector, FERC statuses, ash impoundment, and natural-gas supply detail. One row per plant."
+    columns:
+      - name: plant_code
+        data_tests: [not_null, unique]
+      - name: utility_id
+        data_tests: [not_null]

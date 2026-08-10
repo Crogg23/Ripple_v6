@@ -7,10 +7,31 @@ sources:
     tables:
       - name: FED_EIA861_ADVANCED_METERS
         description: >
-          Raw landing table, ingestion sweep 2026-08-05. All columns arrive as TEXT.
+          Raw landing table for the EIA-861 2024 annual electric utility survey
+          (advanced_meters workbook), ingestion sweep 2026-08-05.
+          All columns arrive as TEXT; the Excel header landed corrupted and is
+          repaired positionally in staging.
 
 models:
-  - name: stg_fed_eia861_advanced_meters__all
+  - name: stg_fed_eia861_advanced_meters__meter_counts
     description: >
-      Minimal passthrough staging view for FED_EIA861_ADVANCED_METERS. Grain not yet
-      determined -- snake_case rename only, no dedup.
+      EIA-861 (2024 vintage) Advanced Meters: AMR/AMI meter counts and energy served through AMI, by utility, state, and customer sector. All data is reporting year 2024.
+      Grain: one row per utility per state (UTILITY_NUMBER+STATE is near-unique: 2,683 distinct of 2,725 rows).
+    columns:
+      - name: record_id
+        description: >
+          Surrogate key: hash of the natural composite plus a deterministic
+          row_number tiebreaker over the full-row hash.
+        data_tests:
+          - unique
+          - not_null
+      - name: data_year
+        description: Reporting year (2024 for this vintage).
+      - name: utility_number
+        description: EIA utility identification number.
+      - name: _loaded_at
+        description: Ingestion timestamp (from _INGESTED_AT).
+      - name: _source_run_id
+        description: Ingestion pipeline run identifier.
+      - name: _src_file
+        description: Source Excel workbook file name.

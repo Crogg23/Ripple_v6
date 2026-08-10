@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: reference__fed_itis_other_sources
+    description: "ITIS (Integrated Taxonomic Information System, USDA/USGS taxonomy) reference data — Non-publication evidence sources (databases, websites) cited for taxa; one row per source id (with prefix). Grain: one row per source_id_prefix, source_id (1,071 rows)."
+    columns:
+      - name: itis_other_sources_key
+        data_tests: [not_null, unique]

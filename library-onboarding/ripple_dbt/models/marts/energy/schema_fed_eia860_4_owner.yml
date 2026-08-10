@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: energy__fed_eia860_4_owner
+    description: "EIA-860 2024 annual report, Schedule 4 (Owner): fractional ownership of jointly-owned generators with owner name/address and percent owned. One row per plant + generator + owner."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - plant_code
+              - generator_id
+              - ownership_id
+    columns:
+      - name: plant_code
+        data_tests: [not_null]
+      - name: generator_id
+        data_tests: [not_null]
+      - name: ownership_id
+        data_tests: [not_null]

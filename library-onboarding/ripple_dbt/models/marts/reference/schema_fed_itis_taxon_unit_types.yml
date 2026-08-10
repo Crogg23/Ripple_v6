@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: reference__fed_itis_taxon_unit_types
+    description: "ITIS (Integrated Taxonomic Information System, USDA/USGS taxonomy) reference data — Rank definitions per kingdom (Kingdom/Phylum/.../Species etc.) with required-parent rank rules; one row per kingdom x rank. Grain: one row per kingdom_id, rank_id (182 rows)."
+    columns:
+      - name: itis_taxon_unit_types_key
+        data_tests: [not_null, unique]

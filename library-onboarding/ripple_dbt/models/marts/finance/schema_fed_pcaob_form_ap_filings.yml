@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: finance__fed_pcaob_form_ap_filings
+    description: "PCAOB Form AP filings: one row per filing linking engagement (audit) partner, audit firm, and public-company issuer; issuer_cik joins to SEC data."
+    columns:
+      - name: form_filing_id
+        data_tests: [not_null, unique]
+      - name: issuer_cik
+        description: SEC Central Index Key — join key to SEC EDGAR/DERA marts.

@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: reference__fed_itis_experts
+    description: "ITIS (Integrated Taxonomic Information System, USDA/USGS taxonomy) reference data — Taxonomic experts cited as evidence sources; one row per expert id (with prefix). Grain: one row per expert_id_prefix, expert_id (197 rows)."
+    columns:
+      - name: itis_experts_key
+        data_tests: [not_null, unique]

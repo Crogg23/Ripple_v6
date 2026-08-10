@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: energy__fed_eia861_advanced_meters
+    description: "EIA-861 (2024 vintage) Advanced Meters: AMR/AMI meter counts and energy served through AMI, by utility, state, and customer sector. All data is reporting year 2024."
+    columns:
+      - name: record_id
+        data_tests: [not_null, unique]

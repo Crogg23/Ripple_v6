@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: reference__fed_itis_nodc_ids
+    description: "ITIS (Integrated Taxonomic Information System, USDA/USGS taxonomy) reference data — Crosswalk from legacy NOAA/NODC taxonomic codes to ITIS TSNs; one row per NODC id x TSN. Grain: one row per nodc_id, tsn (209,565 rows)."
+    columns:
+      - name: itis_nodc_ids_key
+        data_tests: [not_null, unique]

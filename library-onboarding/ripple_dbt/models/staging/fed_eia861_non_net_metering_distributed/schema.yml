@@ -7,10 +7,31 @@ sources:
     tables:
       - name: FED_EIA861_NON_NET_METERING_DISTRIBUTED
         description: >
-          Raw landing table, ingestion sweep 2026-08-05. All columns arrive as TEXT.
+          Raw landing table for the EIA-861 2024 annual electric utility survey
+          (non_net_metering_distributed workbook), ingestion sweep 2026-08-05.
+          All columns arrive as TEXT; the Excel header landed corrupted and is
+          repaired positionally in staging.
 
 models:
-  - name: stg_fed_eia861_non_net_metering_distributed__all
+  - name: stg_fed_eia861_non_net_metering_distributed__capacity
     description: >
-      Minimal passthrough staging view for FED_EIA861_NON_NET_METERING_DISTRIBUTED. Grain not yet
-      determined -- snake_case rename only, no dedup.
+      EIA-861 (2024 vintage) Non-Net-Metering Distributed generators: distributed capacity (MW) by utility, state, interconnection type, customer sector, and technology group. Technology identities of the ten per-technology column groups were flattened out of the Excel header at load and are kept as tech_01..tech_10; the final group is the all-technology total. All data is reporting year 2024.
+      Grain: one row per utility per state per interconnection type (UTILITY_NUMBER+STATE+TYPE is near-unique: 495 distinct of 507 rows).
+    columns:
+      - name: record_id
+        description: >
+          Surrogate key: hash of the natural composite plus a deterministic
+          row_number tiebreaker over the full-row hash.
+        data_tests:
+          - unique
+          - not_null
+      - name: data_year
+        description: Reporting year (2024 for this vintage).
+      - name: utility_number
+        description: EIA utility identification number.
+      - name: _loaded_at
+        description: Ingestion timestamp (from _INGESTED_AT).
+      - name: _source_run_id
+        description: Ingestion pipeline run identifier.
+      - name: _src_file
+        description: Source Excel workbook file name.

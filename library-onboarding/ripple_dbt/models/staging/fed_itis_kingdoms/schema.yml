@@ -1,0 +1,31 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_ITIS_KINGDOMS
+        description: >
+          Raw landing table for ITIS (Integrated Taxonomic Information System,
+          USDA/USGS) — kingdoms. All data columns arrive as TEXT;
+          metadata columns are INGESTED_AT (epoch NUMBER) / SOURCE_RUN_ID / SRC_SHA256.
+
+models:
+  - name: stg_fed_itis_kingdoms__kingdoms
+    description: >
+      Staged view of the ITIS kingdoms landing table.
+      The seven ITIS kingdoms of life, keyed by kingdom id.
+      Grain verified live: one row per kingdom_id (7 rows).
+    columns:
+      - name: kingdom_id
+        description: Primary key for this table.
+        data_tests:
+          - unique
+          - not_null
+      - name: _loaded_at
+        description: Ingestion timestamp (from epoch INGESTED_AT).
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run.

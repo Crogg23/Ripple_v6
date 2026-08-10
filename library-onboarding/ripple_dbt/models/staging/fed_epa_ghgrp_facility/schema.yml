@@ -1,0 +1,43 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_EPA_GHGRP_FACILITY
+
+models:
+  - name: stg_fed_epa_ghgrp_facility__facilities
+    description: >
+      EPA GHGRP facility registry: facility name, address, lat/long, NAICS,
+      parent company, and FRS id per reporting year. One row per facility x
+      year (verified exactly unique).
+    columns:
+      - name: facility_year_id
+        description: Surrogate key over (facility_id, reporting_year).
+        data_tests: [not_null, unique]
+      - name: facility_id
+        description: GHGRP facility identifier; joins to GHGRP emissions.
+        data_tests: [not_null]
+      - name: reporting_year
+        description: Reporting year.
+        data_tests: [not_null]
+      - name: frs_id
+        description: >
+          EPA Facility Registry Service id — cross-dataset join key to FRS,
+          ECHO, ICIS, and other EPA program data.
+      - name: facility_name
+        description: Reported facility name.
+      - name: parent_company
+        description: Reported parent company (with ownership percentages).
+      - name: naics_code
+        description: Primary NAICS industry code.
+      - name: latitude
+        description: Facility latitude (decimal degrees).
+      - name: longitude
+        description: Facility longitude (decimal degrees).
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.

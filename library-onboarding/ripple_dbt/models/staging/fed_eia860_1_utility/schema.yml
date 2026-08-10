@@ -7,10 +7,42 @@ sources:
     tables:
       - name: FED_EIA860_1_UTILITY
         description: >
-          Raw landing table, ingestion sweep 2026-08-05. All columns arrive as TEXT.
+          Raw landing table for EIA-860 Schedule 1 (Utility), 2024 reporting year.
+          One sheet-row per utility. All columns arrive as TEXT.
 
 models:
   - name: stg_fed_eia860_1_utility__all
     description: >
-      Minimal passthrough staging view for FED_EIA860_1_UTILITY. Grain not yet
-      determined -- snake_case rename only, no dedup.
+      Staged EIA-860 2024 Schedule 1 utility roster. One row per utility_id
+      (verified exact-unique). TEXT columns cast to typed columns.
+    columns:
+      - name: utility_id
+        description: EIA utility identifier -- primary key.
+        data_tests: [unique, not_null]
+      - name: utility_name
+        description: Legal name of the utility.
+        data_tests: [not_null]
+      - name: street_address
+        description: Utility mailing street address.
+      - name: city
+        description: Utility mailing city.
+      - name: state
+        description: Utility mailing state (2-letter).
+      - name: zip
+        description: Utility mailing ZIP code.
+      - name: owner_of_plants_reported_on_form
+        description: Y/None flag -- utility owns plants reported on the form.
+      - name: operator_of_plants_reported_on_form
+        description: Y/None flag -- utility operates plants reported on the form.
+      - name: asset_manager_of_plants_reported_on_form
+        description: Y/None flag -- utility is asset manager of plants reported on the form.
+      - name: other_relationships_with_plants_reported_on_form
+        description: Y/None flag -- other relationships with reported plants.
+      - name: entity_type
+        description: EIA entity type code (e.g. IND, C, I, M).
+      - name: _loaded_at
+        description: Timestamp the row was ingested into the landing table.
+      - name: _source_run_id
+        description: Ingestion pipeline run identifier.
+      - name: _src_file
+        description: Source workbook/sheet file name.

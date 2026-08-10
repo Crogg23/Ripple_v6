@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: reference__fed_itis_vern_ref_links
+    description: "ITIS (Integrated Taxonomic Information System, USDA/USGS taxonomy) reference data — Links vernacular names to their supporting documents; one row per TSN x document x vernacular id. Grain: one row per tsn, doc_id_prefix, documentation_id, vern_id (93,078 rows)."
+    columns:
+      - name: itis_vern_ref_links_key
+        data_tests: [not_null, unique]

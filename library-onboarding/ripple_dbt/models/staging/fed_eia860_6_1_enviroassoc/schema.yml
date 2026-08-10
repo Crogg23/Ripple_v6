@@ -7,10 +7,39 @@ sources:
     tables:
       - name: FED_EIA860_6_1_ENVIROASSOC
         description: >
-          Raw landing table, ingestion sweep 2026-08-05. All columns arrive as TEXT.
+          Raw landing table for EIA-860 Schedule 6.1 (EnviroAssoc), 2024 reporting
+          year. One sheet-row per boiler-generator association. All columns arrive
+          as TEXT.
 
 models:
   - name: stg_fed_eia860_6_1_enviroassoc__all
     description: >
-      Minimal passthrough staging view for FED_EIA860_6_1_ENVIROASSOC. Grain not yet
-      determined -- snake_case rename only, no dedup.
+      Staged EIA-860 2024 Schedule 6.1 boiler-generator association. One row per
+      plant_code + boiler_id + generator_id + steam_plant_type (verified
+      exact-unique). Bridge table linking boilers to the generators they serve.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - plant_code
+              - boiler_id
+              - generator_id
+              - steam_plant_type
+    columns:
+      - name: plant_code
+        description: EIA plant code -- composite primary key component.
+        data_tests: [not_null]
+      - name: boiler_id
+        description: Boiler identifier within the plant -- composite primary key component.
+      - name: generator_id
+        description: Generator identifier within the plant -- composite primary key component.
+      - name: steam_plant_type
+        description: Steam plant type code -- composite primary key component.
+      - name: utility_id
+        description: Reporting utility identifier (FK to Schedule 1).
+      - name: _loaded_at
+        description: Timestamp the row was ingested into the landing table.
+      - name: _source_run_id
+        description: Ingestion pipeline run identifier.
+      - name: _src_file
+        description: Source workbook/sheet file name.

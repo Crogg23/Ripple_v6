@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: reference__fed_itis_vernaculars
+    description: "ITIS (Integrated Taxonomic Information System, USDA/USGS taxonomy) reference data — Common (vernacular) names for taxa in multiple languages; one row per TSN x vernacular id. Grain: one row per tsn, vern_id (166,778 rows)."
+    columns:
+      - name: itis_vernaculars_key
+        data_tests: [not_null, unique]

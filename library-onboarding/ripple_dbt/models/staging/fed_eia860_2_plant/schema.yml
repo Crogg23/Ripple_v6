@@ -7,10 +7,50 @@ sources:
     tables:
       - name: FED_EIA860_2_PLANT
         description: >
-          Raw landing table, ingestion sweep 2026-08-05. All columns arrive as TEXT.
+          Raw landing table for EIA-860 Schedule 2 (Plant), 2024 reporting year.
+          One sheet-row per power plant. All columns arrive as TEXT.
 
 models:
   - name: stg_fed_eia860_2_plant__all
     description: >
-      Minimal passthrough staging view for FED_EIA860_2_PLANT. Grain not yet
-      determined -- snake_case rename only, no dedup.
+      Staged EIA-860 2024 Schedule 2 plant roster. One row per plant_code
+      (verified exact-unique). Location, grid, FERC-status, and gas-supply
+      attributes typed from TEXT.
+    columns:
+      - name: plant_code
+        description: EIA plant code -- primary key; joins to generator/owner/enviro schedules.
+        data_tests: [unique, not_null]
+      - name: utility_id
+        description: EIA utility identifier of the reporting utility (FK to Schedule 1).
+        data_tests: [not_null]
+      - name: utility_name
+        description: Name of the reporting utility.
+      - name: plant_name
+        description: Plant name.
+        data_tests: [not_null]
+      - name: state
+        description: Plant state (2-letter).
+      - name: county
+        description: Plant county.
+      - name: latitude
+        description: Plant latitude (decimal degrees).
+      - name: longitude
+        description: Plant longitude (decimal degrees).
+      - name: nerc_region
+        description: NERC reliability region code.
+      - name: balancing_authority_code
+        description: Balancing authority code the plant operates within.
+      - name: primary_purpose_naics_code
+        description: NAICS code of the plant's primary purpose.
+      - name: sector
+        description: EIA sector number.
+      - name: sector_name
+        description: EIA sector name (e.g. Electric Utility, IPP Non-CHP).
+      - name: grid_voltage_kv
+        description: Primary grid interconnection voltage (kV).
+      - name: _loaded_at
+        description: Timestamp the row was ingested into the landing table.
+      - name: _source_run_id
+        description: Ingestion pipeline run identifier.
+      - name: _src_file
+        description: Source workbook/sheet file name.

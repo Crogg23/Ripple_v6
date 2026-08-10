@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: energy__fed_eia861_short_form
+    description: "EIA-861 (2024 vintage) Short Form: total revenue (thousand dollars), sales (MWh) and customers for short-form respondents; the last four columns' header names were destroyed at load and are kept positionally as unrecovered_*. All data is reporting year 2024. One record is missing: the loader consumed the first data row as the column header."
+    columns:
+      - name: record_id
+        data_tests: [not_null, unique]

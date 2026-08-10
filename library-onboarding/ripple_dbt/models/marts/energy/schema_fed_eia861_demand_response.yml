@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: energy__fed_eia861_demand_response
+    description: "EIA-861 (2024 vintage) Demand Response: enrolled customers, energy savings (MWh), potential and actual peak demand savings (MW), incentives and costs (thousand dollars) by utility, state and sector. All data is reporting year 2024."
+    columns:
+      - name: record_id
+        data_tests: [not_null, unique]

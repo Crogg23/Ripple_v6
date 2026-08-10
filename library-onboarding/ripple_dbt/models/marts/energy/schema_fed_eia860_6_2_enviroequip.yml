@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: energy__fed_eia860_6_2_enviroequip
+    description: "EIA-860 2024 annual report, Schedule 6.2 (EnviroEquip): boiler-level emissions regulation and control-equipment detail (SO2/NOx/particulate/mercury standards, strategies, compliance years). One row per plant + boiler."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - plant_code
+              - boiler_id
+    columns:
+      - name: plant_code
+        data_tests: [not_null]
+      - name: boiler_id
+        data_tests: [not_null]

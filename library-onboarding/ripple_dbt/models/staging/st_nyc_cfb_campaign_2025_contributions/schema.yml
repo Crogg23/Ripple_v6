@@ -1,0 +1,80 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: ST_NYC_CFB_CAMPAIGN_2025_CONTRIBUTIONS
+        description: >
+          Raw landing table for NYC Campaign Finance Board contribution-level
+          disclosure data for the 2025 election cycle (259,537 rows). All
+          business columns arrive as TEXT. NOTE: this table's ingestion metadata
+          columns have NO leading underscore (INGESTED_AT epoch NUMBER,
+          SOURCE_RUN_ID, SRC_SHA256).
+
+models:
+  - name: stg_st_nyc_cfb_campaign_2025_contributions__contributions
+    description: >
+      Staged view of NYC CFB 2025-cycle contributions. One row = one reported contribution transaction (259,537 rows). The composite (recipient_id, committee_id, filing_id, reference_number) is exactly unique; contribution_record_id is a surrogate key over it.
+    columns:
+      - name: contribution_record_id
+        description: >
+          Surrogate primary key -- md5 surrogate over the exactly-unique composite (RECIPID, COMMITTEE, FILING, REFNO).
+        data_tests:
+          - unique
+          - not_null
+      - name: election_cycle
+        description: Election cycle year the contribution was reported under.
+      - name: office_code
+        description: Code for the office the candidate is seeking.
+      - name: recipient_id
+        description: NYC CFB recipient (candidate/committee) identifier.
+      - name: candidate_class
+        description: Candidate classification code.
+      - name: recipient_name
+        description: Name of the recipient candidate or committee.
+      - name: committee_id
+        description: Committee identifier the contribution was reported by.
+      - name: filing_id
+        description: Filing (disclosure statement) identifier.
+      - name: schedule
+        description: Disclosure schedule the transaction was reported on.
+      - name: page_number
+        description: Page number within the filing.
+      - name: sequence_number
+        description: Sequence number within the page.
+      - name: reference_number
+        description: Reference number of the transaction within the filing.
+      - name: contribution_date
+        description: Date of the contribution (date).
+      - name: refund_date
+        description: Date of any refund of the contribution (date).
+      - name: contributor_name
+        description: Name of the contributor as reported.
+      - name: contributor_code
+        description: Contributor type code (individual, corporation, PAC, etc.).
+      - name: borough_code
+        description: NYC borough code of the contributor address.
+      - name: amount
+        description: Contribution amount in USD (numeric).
+      - name: match_amount
+        description: Public matching funds amount claimed for this contribution in USD (numeric).
+      - name: previous_amount
+        description: Previously reported amount for this contribution in USD (numeric).
+      - name: payment_method
+        description: Payment method code.
+      - name: intermediary_name
+        description: Name of the intermediary (bundler), if any.
+      - name: purpose_code
+        description: Purpose code of the transaction.
+      - name: exempt_code
+        description: Exempt code of the transaction.
+      - name: adjustment_type_code
+        description: Adjustment type code of the transaction.
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table (from epoch-microseconds INGESTED_AT).
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.
+      - name: _src_sha256
+        description: SHA-256 of the source file the record was loaded from.

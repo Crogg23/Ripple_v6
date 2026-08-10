@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: energy__fed_eia861_utility_data
+    description: "EIA-861 (2024 vintage) Utility Data: utility profile with NERC-region flags, RTO/ISO participation flags, and activity flags (generation, transmission, distribution, marketing). All data is reporting year 2024."
+    columns:
+      - name: record_id
+        data_tests: [not_null, unique]

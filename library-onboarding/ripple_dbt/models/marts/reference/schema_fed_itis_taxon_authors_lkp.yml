@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: reference__fed_itis_taxon_authors_lkp
+    description: "ITIS (Integrated Taxonomic Information System, USDA/USGS taxonomy) reference data — Lookup of taxon author citations (the naming authority string attached to scientific names), keyed by author id. Grain: one row per taxon_author_id (214,445 rows)."
+    columns:
+      - name: taxon_author_id
+        data_tests: [not_null, unique]

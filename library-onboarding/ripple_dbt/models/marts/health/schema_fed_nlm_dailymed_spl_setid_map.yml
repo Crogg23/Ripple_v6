@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: health__fed_nlm_dailymed_spl_setid_map
+    description: "NLM DailyMed SPL set-id to label file map: one row per SPL set id with zip file name, upload date, label version, and title."
+    columns:
+      - name: setid
+        data_tests: [not_null, unique]

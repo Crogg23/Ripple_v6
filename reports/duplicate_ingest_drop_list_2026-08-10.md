@@ -62,6 +62,38 @@ FED_EIA860_1_UTILITY, FED_EIA_861_BALANCING_AUTHORITY vs
 FED_EIA861_BALANCING_AUTHORITY (189/188). Decide vintage before modeling that
 family; not dropped yet.
 
+## C. Added by wave-4 session (2026-08-10, later same day)
+
+EIA vintage decision RESOLVED (truth question, decided): the sheet-numbered
+family (FED_EIA860_1_UTILITY ... FED_EIA860_6_2_ENVIROEQUIP) is the keeper —
+its columns are real field names. The three stragglers below landed with the
+Excel title row eaten as header, so every column is UNNAMED_n — unusable:
+
+| drop (garbage columns, redundant vintage) | rows |
+|---|---|
+| FED_EIA_860_GENERATOR | 26,857 |
+| FED_EIA_860_PLANT | 16,133 |
+| FED_EIA_860_UTILITY | 6,644 |
+
+Balancing authority flips the OTHER way: FED_EIA_861_BALANCING_AUTHORITY (189,
+clean columns) is kept + modeled; FED_EIA861_BALANCING_AUTHORITY (188, header
+eaten, garbage columns) joins the drop list:
+
+| drop | rows |
+|---|---|
+| FED_EIA861_BALANCING_AUTHORITY | 188 |
+
+Confirmed junk 1-row loads (verified by inspection 2026-08-10; none modeled):
+
+| drop | why |
+|---|---|
+| FED_SEC_EDGAR_COMPANY_TICKERS_EXCHANGE | whole JSON file landed as one row; trivial to re-ingest properly later |
+| FED_FINCEN_BOI | placeholder row: registry is access-restricted by law (CTA); no public bulk data exists |
+| FED_CMS_HPT_MRF | landed a GitHub directory listing, not data |
+
+Also orphan work-table candidate: FED_FDA_GUDID__STAGING (1,329 rows, leftover
+internal staging landed in RAW).
+
 Drop one-liners (run as ACCOUNTADMIN, table A first, after eyeball):
 each is `DROP TABLE LIBRARY_RAW.LANDING.<NAME>;` plus
 `DELETE FROM LIBRARY_META.REGISTRY.SOURCE_REGISTRY WHERE UPPER(SOURCE_ID)=UPPER('<sid>');`

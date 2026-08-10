@@ -7,10 +7,41 @@ sources:
     tables:
       - name: FED_EIA860_3_2_WIND
         description: >
-          Raw landing table, ingestion sweep 2026-08-05. All columns arrive as TEXT.
+          Raw landing table for EIA-860 Schedule 3.2 (Wind), 2024 reporting year.
+          One sheet-row per wind generator. All columns arrive as TEXT.
 
 models:
   - name: stg_fed_eia860_3_2_wind__all
     description: >
-      Minimal passthrough staging view for FED_EIA860_3_2_WIND. Grain not yet
-      determined -- snake_case rename only, no dedup.
+      Staged EIA-860 2024 Schedule 3.2 wind-generator detail. One row per
+      plant_code + generator_id (verified exact-unique). Turbine counts,
+      capacities, and hub height typed from TEXT.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - plant_code
+              - generator_id
+    columns:
+      - name: plant_code
+        description: EIA plant code -- composite primary key component.
+        data_tests: [not_null]
+      - name: generator_id
+        description: Generator identifier within the plant -- composite primary key component.
+        data_tests: [not_null]
+      - name: utility_id
+        description: Reporting utility identifier (FK to Schedule 1).
+      - name: nameplate_capacity_mw
+        description: Nameplate capacity in megawatts.
+      - name: number_of_turbines
+        description: Number of turbines in the generator.
+      - name: predominant_turbine_manufacturer
+        description: Predominant turbine manufacturer.
+      - name: turbine_hub_height_feet
+        description: Turbine hub height in feet.
+      - name: _loaded_at
+        description: Timestamp the row was ingested into the landing table.
+      - name: _source_run_id
+        description: Ingestion pipeline run identifier.
+      - name: _src_file
+        description: Source workbook/sheet file name.

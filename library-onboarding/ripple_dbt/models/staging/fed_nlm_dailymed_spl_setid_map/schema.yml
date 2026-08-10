@@ -1,0 +1,30 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_NLM_DAILYMED_SPL_SETID_MAP
+
+models:
+  - name: stg_fed_nlm_dailymed_spl_setid_map__setid_map
+    description: >
+      NLM DailyMed SPL set-id to label file map: one row per SPL set id with
+      the zip file name, upload date, label version, and label title.
+    columns:
+      - name: setid
+        description: DailyMed SPL set id — primary key; joins to drug label references across FDA/NLM datasets.
+        data_tests: [not_null, unique]
+      - name: zip_file_name
+        description: SPL label zip file carrying this set id.
+      - name: upload_date
+        description: Date the label file was uploaded to DailyMed.
+      - name: spl_version
+        description: SPL label version number.
+      - name: title
+        description: Label title.
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.

@@ -1,0 +1,34 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FDA_UNII_GSRS_SUBSTANCES
+
+models:
+  - name: stg_fed_fda_unii_gsrs_substances__substances
+    description: >
+      FDA GSRS substance registry: one row per UNII code with crosswalks to
+      CAS RN, RXCUI, PubChem, InChIKey, NCIt, ITIS, NCBI and other identifier
+      systems — a join-key hub for linking chemical and drug substances across
+      datasets.
+    columns:
+      - name: unii
+        description: FDA Unique Ingredient Identifier — primary key and central crosswalk hub.
+        data_tests: [not_null, unique]
+      - name: cas_rn
+        description: CAS Registry Number crosswalk.
+      - name: rxcui
+        description: RxNorm concept id crosswalk.
+      - name: pubchem_cid
+        description: PubChem compound id crosswalk.
+      - name: inchikey
+        description: InChIKey structure hash crosswalk.
+      - name: display_name
+        description: Preferred substance display name.
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.

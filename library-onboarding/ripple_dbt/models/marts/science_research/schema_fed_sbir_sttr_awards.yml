@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: science_research__fed_sbir_sttr_awards
+    description: "Federal SBIR/STTR small-business research awards: agency, phase, program, amounts, and awardee company with UEI/DUNS join keys (surrogate award_record_id unique)."
+    columns:
+      - name: award_record_id
+        data_tests: [not_null, unique]
+      - name: uei
+        description: SAM Unique Entity Identifier — company join key.
+      - name: duns
+        description: Legacy DUNS number — company join key.

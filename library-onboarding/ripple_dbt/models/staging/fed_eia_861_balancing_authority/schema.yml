@@ -1,0 +1,46 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_EIA_861_BALANCING_AUTHORITY
+        description: >
+          Raw landing table for the EIA-861 Balancing Authority sheet, 2024
+          reporting year (clean re-ingest with real headers -- not the corrupted
+          FED_EIA861_BALANCING_AUTHORITY twin). Data columns arrive as TEXT;
+          INGESTED_AT is a NUMBER epoch, metadata columns have no leading
+          underscore.
+
+models:
+  - name: stg_fed_eia_861_balancing_authority__all
+    description: >
+      Staged EIA-861 2024 balancing authority roster. One row per ba_id + state
+      (verified exact-unique) -- which balancing authorities operate in which
+      states.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - ba_id
+              - state
+    columns:
+      - name: ba_id
+        description: EIA balancing authority identifier -- composite primary key component.
+        data_tests: [not_null]
+      - name: state
+        description: State (2-letter) the balancing authority operates in -- composite primary key component.
+        data_tests: [not_null]
+      - name: data_year
+        description: EIA-861 reporting year (2024).
+      - name: ba_code
+        description: Balancing authority short code (e.g. AZPS).
+      - name: balancing_authority_name
+        description: Balancing authority full name.
+      - name: _loaded_at
+        description: Timestamp the row was ingested (converted from epoch).
+      - name: _source_run_id
+        description: Ingestion pipeline run identifier.
+      - name: _src_sha256
+        description: SHA-256 of the source file.

@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: energy__fed_eia861_net_metering
+    description: "EIA-861 (2024 vintage) Net Metering: net-metered capacity (MW), installations, energy sold back (MWh), virtual/community capacity and PV-paired battery storage, by utility, state, technology type and customer sector. Column groups suffixed _grp2.._grp4 repeat capacity/installations/energy-sold-back for additional technology blocks whose Excel super-headers were flattened at load. All data is reporting year 2024."
+    columns:
+      - name: record_id
+        data_tests: [not_null, unique]

@@ -7,10 +7,41 @@ sources:
     tables:
       - name: FED_EIA860_3_5_MULTIFUEL
         description: >
-          Raw landing table, ingestion sweep 2026-08-05. All columns arrive as TEXT.
+          Raw landing table for EIA-860 Schedule 3.5 (Multifuel), 2024 reporting
+          year. One sheet-row per multi-fuel generator. All columns arrive as TEXT.
 
 models:
   - name: stg_fed_eia860_3_5_multifuel__all
     description: >
-      Minimal passthrough staging view for FED_EIA860_3_5_MULTIFUEL. Grain not yet
-      determined -- snake_case rename only, no dedup.
+      Staged EIA-860 2024 Schedule 3.5 multifuel/fuel-switching detail. One row
+      per plant_code + generator_id (verified exact-unique). Switching capability
+      flags and gas/oil capacity figures typed from TEXT.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - plant_code
+              - generator_id
+    columns:
+      - name: plant_code
+        description: EIA plant code -- composite primary key component.
+        data_tests: [not_null]
+      - name: generator_id
+        description: Generator identifier within the plant -- composite primary key component.
+        data_tests: [not_null]
+      - name: utility_id
+        description: Reporting utility identifier (FK to Schedule 1).
+      - name: energy_source_1
+        description: Primary energy source code.
+      - name: switch_between_oil_and_natural_gas
+        description: Y/N flag -- generator can switch between oil and natural gas.
+      - name: net_summer_capacity_with_natural_gas_mw
+        description: Net summer capacity when running on natural gas (MW).
+      - name: net_summer_capacity_with_oil_mw
+        description: Net summer capacity when running on oil (MW).
+      - name: _loaded_at
+        description: Timestamp the row was ingested into the landing table.
+      - name: _source_run_id
+        description: Ingestion pipeline run identifier.
+      - name: _src_file
+        description: Source workbook/sheet file name.

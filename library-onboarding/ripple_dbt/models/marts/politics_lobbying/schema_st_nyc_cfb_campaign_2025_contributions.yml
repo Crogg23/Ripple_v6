@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: politics__st_nyc_cfb_campaign_2025_contributions
+    description: "NYC Campaign Finance Board: contribution-level campaign finance disclosure data for the 2025 NYC election cycle, 259,537 rows. One row = one reported contribution transaction (exactly unique natural key (RECIPID+COMMITTEE+FILING+REFNO)); contribution_record_id is the surrogate primary key."
+    columns:
+      - name: contribution_record_id
+        data_tests: [not_null, unique]

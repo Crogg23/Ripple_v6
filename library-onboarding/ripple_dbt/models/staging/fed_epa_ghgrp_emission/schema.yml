@@ -1,0 +1,37 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_EPA_GHGRP_EMISSION
+
+models:
+  - name: stg_fed_epa_ghgrp_emission__emissions
+    description: >
+      EPA Greenhouse Gas Reporting Program emissions: facility-level CO2e
+      emissions by gas, sector, and subsector, 2010+. One row per facility x
+      year x sector x subsector x gas, with a surrogate tiebreaker for the 81
+      composite-key collisions.
+    columns:
+      - name: emission_record_id
+        description: Surrogate key over facility/year/sector/subsector/gas plus a deterministic tiebreaker.
+        data_tests: [not_null, unique]
+      - name: facility_id
+        description: GHGRP facility identifier; joins to the GHGRP facility registry.
+        data_tests: [not_null]
+      - name: reporting_year
+        description: Reporting year (2010+).
+      - name: sector_id
+        description: GHGRP sector identifier.
+      - name: subsector_id
+        description: GHGRP subsector identifier.
+      - name: gas_id
+        description: Greenhouse gas identifier.
+      - name: co2e_emission
+        description: Emissions in metric tons CO2-equivalent.
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.

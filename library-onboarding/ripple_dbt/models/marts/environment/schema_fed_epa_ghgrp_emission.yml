@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: environment__fed_epa_ghgrp_emission
+    description: "EPA Greenhouse Gas Reporting Program: facility-level CO2e emissions by gas, sector, and subsector, 2010+ (surrogate emission_record_id unique)."
+    columns:
+      - name: emission_record_id
+        data_tests: [not_null, unique]

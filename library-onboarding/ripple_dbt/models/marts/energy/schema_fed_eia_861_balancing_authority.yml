@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: energy__fed_eia_861_balancing_authority
+    description: "EIA-861 2024 annual report, Balancing Authority sheet: which balancing authorities (id, code, name) operate in which states. One row per balancing authority x state."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - ba_id
+              - state
+    columns:
+      - name: ba_id
+        data_tests: [not_null]
+      - name: state
+        data_tests: [not_null]

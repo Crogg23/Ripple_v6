@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: reference__fed_itis_taxonomic_units
+    description: "ITIS (Integrated Taxonomic Information System, USDA/USGS taxonomy) reference data — Core taxonomic units table: one row per taxonomic serial number (TSN) with name parts, usage/validity, credibility ratings, parent TSN, author, kingdom and rank. Grain: one row per tsn (993,346 rows)."
+    columns:
+      - name: tsn
+        data_tests: [not_null, unique]

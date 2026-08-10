@@ -1,0 +1,39 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_ITIS_VERNACULARS
+        description: >
+          Raw landing table for ITIS (Integrated Taxonomic Information System,
+          USDA/USGS) — vernaculars. All data columns arrive as TEXT;
+          metadata columns are INGESTED_AT (epoch NUMBER) / SOURCE_RUN_ID / SRC_SHA256.
+
+models:
+  - name: stg_fed_itis_vernaculars__vernacular_names
+    description: >
+      Staged view of the ITIS vernaculars landing table.
+      Common (vernacular) names for taxa in multiple languages; one row per TSN x vernacular id.
+      Grain verified live: one row per tsn, vern_id (166,778 rows).
+    columns:
+      - name: itis_vernaculars_key
+        description: Surrogate key over (tsn, vern_id) — the verified grain.
+        data_tests:
+          - unique
+          - not_null
+      - name: tsn
+        description: Component of the composite key.
+        data_tests:
+          - not_null
+      - name: vern_id
+        description: Component of the composite key.
+        data_tests:
+          - not_null
+      - name: _loaded_at
+        description: Ingestion timestamp (from epoch INGESTED_AT).
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run.

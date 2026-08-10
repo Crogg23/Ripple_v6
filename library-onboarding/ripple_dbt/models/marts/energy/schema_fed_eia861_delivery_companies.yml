@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: energy__fed_eia861_delivery_companies
+    description: "EIA-861 (2024 vintage) Delivery Companies: energy-delivery-only companies' revenue (thousand dollars), sales (MWh) and customer counts by sector. All data is reporting year 2024."
+    columns:
+      - name: record_id
+        data_tests: [not_null, unique]

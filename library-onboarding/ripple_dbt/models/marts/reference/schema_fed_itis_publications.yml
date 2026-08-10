@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: reference__fed_itis_publications
+    description: "ITIS (Integrated Taxonomic Information System, USDA/USGS taxonomy) reference data — Bibliographic records for publications cited as taxonomic evidence; one row per publication id (with prefix). Grain: one row per pub_id_prefix, publication_id (30,772 rows)."
+    columns:
+      - name: itis_publications_key
+        data_tests: [not_null, unique]

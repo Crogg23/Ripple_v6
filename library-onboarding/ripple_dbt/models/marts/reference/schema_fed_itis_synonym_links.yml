@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: reference__fed_itis_synonym_links
+    description: "ITIS (Integrated Taxonomic Information System, USDA/USGS taxonomy) reference data — Synonym mapping from a non-accepted TSN to its accepted TSN; one row per synonym pair. Grain: one row per tsn, tsn_accepted (315,254 rows)."
+    columns:
+      - name: itis_synonym_links_key
+        data_tests: [not_null, unique]

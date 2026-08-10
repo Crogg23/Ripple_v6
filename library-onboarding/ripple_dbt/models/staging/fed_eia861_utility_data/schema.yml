@@ -7,10 +7,31 @@ sources:
     tables:
       - name: FED_EIA861_UTILITY_DATA
         description: >
-          Raw landing table, ingestion sweep 2026-08-05. All columns arrive as TEXT.
+          Raw landing table for the EIA-861 2024 annual electric utility survey
+          (utility_data workbook), ingestion sweep 2026-08-05.
+          All columns arrive as TEXT; the Excel header landed corrupted and is
+          repaired positionally in staging.
 
 models:
-  - name: stg_fed_eia861_utility_data__all
+  - name: stg_fed_eia861_utility_data__utility_profile
     description: >
-      Minimal passthrough staging view for FED_EIA861_UTILITY_DATA. Grain not yet
-      determined -- snake_case rename only, no dedup.
+      EIA-861 (2024 vintage) Utility Data: utility profile with NERC-region flags, RTO/ISO participation flags, and activity flags (generation, transmission, distribution, marketing). All data is reporting year 2024.
+      Grain: one row per utility per state (UTILITY_NUMBER+STATE is near-unique: 1,699 distinct of 1,701 rows).
+    columns:
+      - name: record_id
+        description: >
+          Surrogate key: hash of the natural composite plus a deterministic
+          row_number tiebreaker over the full-row hash.
+        data_tests:
+          - unique
+          - not_null
+      - name: data_year
+        description: Reporting year (2024 for this vintage).
+      - name: utility_number
+        description: EIA utility identification number.
+      - name: _loaded_at
+        description: Ingestion timestamp (from _INGESTED_AT).
+      - name: _source_run_id
+        description: Ingestion pipeline run identifier.
+      - name: _src_file
+        description: Source Excel workbook file name.

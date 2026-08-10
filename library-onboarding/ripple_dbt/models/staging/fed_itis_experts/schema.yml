@@ -1,0 +1,39 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_ITIS_EXPERTS
+        description: >
+          Raw landing table for ITIS (Integrated Taxonomic Information System,
+          USDA/USGS) — experts. All data columns arrive as TEXT;
+          metadata columns are INGESTED_AT (epoch NUMBER) / SOURCE_RUN_ID / SRC_SHA256.
+
+models:
+  - name: stg_fed_itis_experts__experts
+    description: >
+      Staged view of the ITIS experts landing table.
+      Taxonomic experts cited as evidence sources; one row per expert id (with prefix).
+      Grain verified live: one row per expert_id_prefix, expert_id (197 rows).
+    columns:
+      - name: itis_experts_key
+        description: Surrogate key over (expert_id_prefix, expert_id) — the verified grain.
+        data_tests:
+          - unique
+          - not_null
+      - name: expert_id_prefix
+        description: Component of the composite key.
+        data_tests:
+          - not_null
+      - name: expert_id
+        description: Component of the composite key.
+        data_tests:
+          - not_null
+      - name: _loaded_at
+        description: Ingestion timestamp (from epoch INGESTED_AT).
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run.

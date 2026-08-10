@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: environment__fed_epa_ghgrp_facility
+    description: "EPA GHGRP facility registry: one row per facility x reporting year with name, address, lat/long, NAICS, parent company, and FRS_ID cross-dataset join key."
+    columns:
+      - name: facility_year_id
+        data_tests: [not_null, unique]
+      - name: frs_id
+        description: EPA Facility Registry Service id — join key to FRS/ECHO/ICIS marts.

@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: reference__fed_itis_kingdoms
+    description: "ITIS (Integrated Taxonomic Information System, USDA/USGS taxonomy) reference data — The seven ITIS kingdoms of life, keyed by kingdom id. Grain: one row per kingdom_id (7 rows)."
+    columns:
+      - name: kingdom_id
+        data_tests: [not_null, unique]

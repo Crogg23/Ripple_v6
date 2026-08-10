@@ -7,10 +7,43 @@ sources:
     tables:
       - name: FED_EIA860_3_3_SOLAR
         description: >
-          Raw landing table, ingestion sweep 2026-08-05. All columns arrive as TEXT.
+          Raw landing table for EIA-860 Schedule 3.3 (Solar), 2024 reporting year.
+          One sheet-row per solar generator. All columns arrive as TEXT.
 
 models:
   - name: stg_fed_eia860_3_3_solar__all
     description: >
-      Minimal passthrough staging view for FED_EIA860_3_3_SOLAR. Grain not yet
-      determined -- snake_case rename only, no dedup.
+      Staged EIA-860 2024 Schedule 3.3 solar-generator detail. One row per
+      plant_code + generator_id (verified exact-unique). Tracking/panel-material
+      flags kept as text; capacities and angles typed from TEXT.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - plant_code
+              - generator_id
+    columns:
+      - name: plant_code
+        description: EIA plant code -- composite primary key component.
+        data_tests: [not_null]
+      - name: generator_id
+        description: Generator identifier within the plant -- composite primary key component.
+        data_tests: [not_null]
+      - name: utility_id
+        description: Reporting utility identifier (FK to Schedule 1).
+      - name: nameplate_capacity_mw
+        description: Nameplate (AC) capacity in megawatts.
+      - name: dc_net_capacity_mw
+        description: DC net capacity in megawatts.
+      - name: single_axis_tracking
+        description: Y/None flag -- single-axis tracking.
+      - name: crystalline_silicon
+        description: Y/None flag -- crystalline silicon panel material.
+      - name: net_metering_agreement
+        description: Y/N flag -- generator has a net metering agreement.
+      - name: _loaded_at
+        description: Timestamp the row was ingested into the landing table.
+      - name: _source_run_id
+        description: Ingestion pipeline run identifier.
+      - name: _src_file
+        description: Source workbook/sheet file name.

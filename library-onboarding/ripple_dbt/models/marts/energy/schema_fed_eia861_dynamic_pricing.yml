@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: energy__fed_eia861_dynamic_pricing
+    description: "EIA-861 (2024 vintage) Dynamic Pricing: customers enrolled in dynamic-rate programs and Y/N program flags (time-of-use, real-time, variable-peak, critical-peak pricing/rebate) by utility, state and sector. All data is reporting year 2024."
+    columns:
+      - name: record_id
+        data_tests: [not_null, unique]

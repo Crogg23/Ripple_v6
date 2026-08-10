@@ -1,0 +1,31 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_ITIS_TAXONOMIC_UNITS
+        description: >
+          Raw landing table for ITIS (Integrated Taxonomic Information System,
+          USDA/USGS) — taxonomic_units. All data columns arrive as TEXT;
+          metadata columns are INGESTED_AT (epoch NUMBER) / SOURCE_RUN_ID / SRC_SHA256.
+
+models:
+  - name: stg_fed_itis_taxonomic_units__taxa
+    description: >
+      Staged view of the ITIS taxonomic_units landing table.
+      Core taxonomic units table: one row per taxonomic serial number (TSN) with name parts, usage/validity, credibility ratings, parent TSN, author, kingdom and rank.
+      Grain verified live: one row per tsn (993,346 rows).
+    columns:
+      - name: tsn
+        description: Primary key for this table.
+        data_tests:
+          - unique
+          - not_null
+      - name: _loaded_at
+        description: Ingestion timestamp (from epoch INGESTED_AT).
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run.

@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: politics__st_nyc_cfb_campaign_2001_contribution
+    description: "NYC Campaign Finance Board: contribution-level campaign finance disclosure data for the 2001 NYC election cycle, 193,741 rows. One row = one reported contribution transaction (near-unique natural key (CANDID+COMMITTEE+FILING+REFNO; 248 collisions broken by a row_number tiebreaker)); contribution_record_id is the surrogate primary key."
+    columns:
+      - name: contribution_record_id
+        data_tests: [not_null, unique]

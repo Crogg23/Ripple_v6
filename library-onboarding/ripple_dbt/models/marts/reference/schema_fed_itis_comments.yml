@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: reference__fed_itis_comments
+    description: "ITIS (Integrated Taxonomic Information System, USDA/USGS taxonomy) reference data — Free-text curator comments referenced by the comment-links bridge, keyed by comment id. Grain: one row per comment_id (70,524 rows)."
+    columns:
+      - name: comment_id
+        data_tests: [not_null, unique]

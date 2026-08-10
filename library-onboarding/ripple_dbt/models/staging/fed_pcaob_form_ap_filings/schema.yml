@@ -1,0 +1,39 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_PCAOB_FORM_AP_FILINGS
+
+models:
+  - name: stg_fed_pcaob_form_ap_filings__filings
+    description: >
+      PCAOB Form AP filings: which engagement (audit) partner signed which
+      public-company audit, by audit firm and issuer. One row per filing;
+      issuer_cik joins to SEC EDGAR/DERA data.
+    columns:
+      - name: form_filing_id
+        description: PCAOB Form AP filing id — primary key.
+        data_tests: [not_null, unique]
+      - name: firm_id
+        description: PCAOB-registered audit firm id.
+      - name: firm_name
+        description: Audit firm name.
+      - name: issuer_cik
+        description: SEC Central Index Key of the audited issuer — cross-dataset join key to SEC filings.
+      - name: issuer_name
+        description: Audited public-company issuer name.
+      - name: engagement_partner_id
+        description: PCAOB id of the engagement partner who signed the audit.
+      - name: audit_report_date
+        description: Date of the audit report.
+      - name: fiscal_period_end_date
+        description: Fiscal period end covered by the audit.
+      - name: filing_date
+        description: Date the Form AP was filed.
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.

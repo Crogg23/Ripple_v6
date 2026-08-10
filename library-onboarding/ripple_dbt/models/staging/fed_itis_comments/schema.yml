@@ -1,0 +1,31 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_ITIS_COMMENTS
+        description: >
+          Raw landing table for ITIS (Integrated Taxonomic Information System,
+          USDA/USGS) — comments. All data columns arrive as TEXT;
+          metadata columns are INGESTED_AT (epoch NUMBER) / SOURCE_RUN_ID / SRC_SHA256.
+
+models:
+  - name: stg_fed_itis_comments__comments
+    description: >
+      Staged view of the ITIS comments landing table.
+      Free-text curator comments referenced by the comment-links bridge, keyed by comment id.
+      Grain verified live: one row per comment_id (70,524 rows).
+    columns:
+      - name: comment_id
+        description: Primary key for this table.
+        data_tests:
+          - unique
+          - not_null
+      - name: _loaded_at
+        description: Ingestion timestamp (from epoch INGESTED_AT).
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run.

@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: energy__fed_eia860_1_utility
+    description: "EIA-860 2024 annual report, Schedule 1 (Utility): utility roster with address, entity type, and owner/operator/asset-manager flags. One row per utility."
+    columns:
+      - name: utility_id
+        data_tests: [not_null, unique]
