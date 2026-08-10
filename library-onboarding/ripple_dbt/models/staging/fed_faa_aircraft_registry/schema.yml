@@ -8,11 +8,12 @@ sources:
       - name: FED_FAA_AIRCRAFT_REGISTRY
 
 models:
-  - name: stg_fed_faa_aircraft_registry__all
-    description: "FAA releasable aircraft master file: registered aircraft joined to owner names and addresses."
+  - name: stg_fed_faa_aircraft_registry__aircraft
+    description: "FAA Civil Aircraft Registry: one row per registered aircraft (N-number unique, verified 2026-08-09). Supersedes the stale July fed_faa_registry twin."
     columns:
       - name: n_number
-        description: Aircraft registration number (trimmed), verified unique on the 2026-08-09 load.
         data_tests: [not_null, unique]
-      - name: name
-        description: "Registered owner name. NULL on ~4,700 sale-reported/expired registrations (status V etc.) that legitimately carry no owner."
+      - name: unique_id
+        data_tests: [not_null, unique]
+      - name: registrant_name
+        description: Blank on 4,676 aircraft as published (typically sale-reported / registration-pending records).

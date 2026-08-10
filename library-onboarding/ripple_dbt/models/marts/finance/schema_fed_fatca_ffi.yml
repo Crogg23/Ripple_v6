@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: finance__fed_fatca_ffi
+    description: "IRS FATCA Foreign Financial Institution list: every foreign bank/fund/institution registered with the IRS for FATCA reporting, with GIIN and country."
+    columns:
+      - name: giin
+        data_tests: [not_null, unique]

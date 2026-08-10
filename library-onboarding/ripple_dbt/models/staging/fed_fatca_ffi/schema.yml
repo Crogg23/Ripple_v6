@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FATCA_FFI
+
+models:
+  - name: stg_fed_fatca_ffi__institutions
+    description: "IRS FATCA FFI list: one row per registered foreign financial institution (GIIN unique, verified 2026-08-09)."
+    columns:
+      - name: giin
+        data_tests: [not_null, unique]
+      - name: institution_name
+        data_tests: [not_null]

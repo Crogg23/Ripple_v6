@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: environment__fed_nid_dams
+    description: "USACE National Inventory of Dams: every inventoried US dam/structure with owner, hazard potential classification, condition assessment, inspection dates, and storage/height figures."
+    columns:
+      - name: nid_id
+        description: Not unique (associated structures share it); null on 2 rows as published.

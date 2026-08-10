@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: justice__fed_consolidated_screening_list
+    description: "US Consolidated Screening List: the government's merged screening list of export-denied and sanctioned parties across 13 federal lists, one row per entry."
+    columns:
+      - name: name
+        data_tests: [not_null]

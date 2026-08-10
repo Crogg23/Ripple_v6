@@ -6,127 +6,14 @@ sources:
     schema: LANDING
     tables:
       - name: FED_CONSOLIDATED_SCREENING_LIST
-        description: >
-          Raw landing table for the US Government Consolidated Screening List (CSL)
-          sourced from trade.gov. All columns arrive as TEXT.
 
 models:
-
-  - name: stg_fed_consolidated_screening_list__screened_party
-    description: >
-      Staging model for the Consolidated Screening List. Casts columns to
-      appropriate types, renames to snake_case, and de-duplicates on _id
-      keeping the most-recently-ingested row.
+  - name: stg_fed_consolidated_screening_list__entries
+    description: "US Consolidated Screening List: one row per entry across 13 federal export-control/sanctions lists. entry_id has ~96 published doubles (differing name/source) -- no unique test."
     columns:
-      - name: _id
-        description: Surrogate primary key assigned by the source / ingestion pipeline.
-        data_tests:
-          - unique
-          - not_null
-
-      - name: entity_number
-        description: Numeric entity identifier assigned by the source list authority.
-        data_tests:
-          - not_null
-
-      - name: source_name
-        description: Name of the originating government list (e.g. SDN, DPL, EL).
-        data_tests:
-          - not_null
-
-      - name: entity_type
-        description: Classification of the screened party.
-        data_tests:
-          - accepted_values:
-              arguments:
-                values:
-                  - Individual
-                  - Entity
-                  - Vessel
-                  - Aircraft
-                quote: true
-              config:
-                severity: warn
-
-      - name: party_name
-        description: Primary name of the screened party.
-
-      - name: party_title
-        description: Title or position of the screened individual.
-
-      - name: programs
-        description: Pipe- or comma-delimited list of sanction programs.
-
-      - name: addresses
-        description: JSON/delimited list of known addresses.
-
-      - name: alt_names
-        description: Alternative names or aliases for the screened party.
-
-      - name: ids
-        description: JSON/delimited list of identification documents.
-
-      - name: citizenships
-        description: Known citizenships of the screened party.
-
-      - name: nationalities
-        description: Known nationalities of the screened party.
-
-      - name: places_of_birth
-        description: Known places of birth.
-
-      - name: dates_of_birth
-        description: Known dates of birth (raw; may contain ranges or approximations).
-
-      - name: federal_register_notice
-        description: Reference to the Federal Register notice that established the entry.
-
-      - name: start_date
-        description: Date the sanction listing became effective.
-
-      - name: end_date
-        description: Date the sanction listing expired or was revoked, if applicable.
-
-      - name: standard_order
-        description: Indicates whether a standard denial order applies.
-
-      - name: license_requirement
-        description: Export licence requirement text.
-
-      - name: license_policy
-        description: Licence review policy text.
-
-      - name: call_sign
-        description: Radio call sign (vessels only).
-
-      - name: vessel_type
-        description: Type classification of the vessel.
-
-      - name: gross_tonnage
-        description: Gross tonnage of the vessel (numeric).
-
-      - name: gross_registered_tonnage
-        description: Gross registered tonnage of the vessel (numeric).
-
-      - name: vessel_flag
-        description: Flag state under which the vessel is registered.
-
-      - name: vessel_owner
-        description: Registered owner of the vessel.
-
-      - name: remarks
-        description: Free-text remarks from the issuing authority.
-
-      - name: source_list_url
-        description: URL pointing to the source list entry.
-
-      - name: source_information_url
-        description: URL with background information on the source list.
-
-      - name: _ingested_at
-        description: Timestamp when the row was ingested into the landing table.
-        data_tests:
-          - not_null
-
-      - name: _source_run_id
-        description: Pipeline run identifier that produced the row.
+      - name: entry_id
+        data_tests: [not_null]
+      - name: source_list
+        data_tests: [not_null]
+      - name: name
+        data_tests: [not_null]

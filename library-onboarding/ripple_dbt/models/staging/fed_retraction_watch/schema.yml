@@ -6,58 +6,13 @@ sources:
     schema: LANDING
     tables:
       - name: FED_RETRACTION_WATCH
-        description: >
-          Raw landing table for the Retraction Watch Database (distributed via the
-          Crossref Labs API). All columns arrive as TEXT from the ingestion pipeline.
-        columns:
-          - name: RECORD_ID
-            description: Retraction Watch's internal record identifier (raw TEXT, not globally unique -- a few duplicates exist).
-          - name: RETRACTIONDOI
-            description: DOI of the retraction notice (raw TEXT).
-          - name: ORIGINALPAPERDOI
-            description: DOI of the original retracted paper (raw TEXT).
-          - name: RETRACTIONPUBMEDID
-            description: PubMed ID of the retraction notice (raw TEXT).
-          - name: ORIGINALPAPERPUBMEDID
-            description: PubMed ID of the original retracted paper (raw TEXT).
-          - name: RETRACTIONDATE
-            description: Date the retraction was issued (raw TEXT, M/D/YYYY H:MI format).
-          - name: ORIGINALPAPERDATE
-            description: Date the original paper was published (raw TEXT, M/D/YYYY H:MI format).
 
 models:
-  - name: stg_fed_retraction_watch__records
-    description: >
-      Staging model for the Retraction Watch Database. Renames columns to snake_case
-      and parses dates. Deduplicates on record_id -- the raw feed carries a small
-      number of duplicate RECORD_ID rows (71,378 distinct vs 71,591 total landed).
+  - name: stg_fed_retraction_watch__retractions
+    description: "Retraction Watch database: one row per retraction/correction record. RECORD_ID blank on 214 rows as published; unique among non-blanks."
     columns:
       - name: record_id
-        description: Retraction Watch's internal record identifier (natural key, deduplicated in this model).
-        data_tests:
-          - not_null
-          - unique
-
-      - name: retraction_doi
-        description: DOI of the retraction notice. Join key to Crossref/other DOI-keyed sources.
-
-      - name: original_paper_doi
-        description: DOI of the original retracted paper. Join key to Crossref/other DOI-keyed sources.
-
-      - name: retraction_pubmed_id
-        description: PubMed ID of the retraction notice.
-
-      - name: original_paper_pubmed_id
-        description: PubMed ID of the original retracted paper.
-
-      - name: retraction_date
-        description: Parsed date the retraction was issued.
-
-      - name: original_paper_date
-        description: Parsed date the original paper was published.
-
-      - name: _loaded_at
-        description: Timestamp when the record was ingested into the landing table.
-
-      - name: _source_url
-        description: Source URL for this record's provenance.
+        description: Blank on 214 rows as published; dbt's unique test ignores nulls.
+        data_tests: [unique]
+      - name: title
+        description: Blank on 214 rows (the same blank-RECORD_ID stub rows) as published.

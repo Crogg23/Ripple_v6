@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: STATE_MO_SEX_OFFENDER_REGISTRY
+
+models:
+  - name: stg_state_mo_sex_offender_registry__offenses
+    description: "Missouri public sex offender registry: one row per registrant-offense (multi-offense registrants repeat). No unique key in the export."
+    columns:
+      - name: registrant_name
+        data_tests: [not_null]
+      - name: offense
+        data_tests: [not_null]

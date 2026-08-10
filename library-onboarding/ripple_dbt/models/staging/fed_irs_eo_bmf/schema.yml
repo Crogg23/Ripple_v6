@@ -1,0 +1,23 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_IRS_EO_BMF
+        description: >
+          IRS Exempt Organizations Business Master File, full national extract
+          (regions 1-4 unioned by scripts/irs_eo_bmf_full_load.py, 2026-08-09).
+
+models:
+  - name: stg_fed_irs_eo_bmf__orgs
+    description: "IRS EO BMF: one row per tax-exempt organization (EIN unique, verified 2026-08-09 on the full 1.98M-row national extract)."
+    columns:
+      - name: ein
+        description: Employer Identification Number, 9 digits, unique.
+        data_tests: [not_null, unique]
+      - name: org_name
+        data_tests: [not_null]
+      - name: ntee_code
+        description: NTEE activity classification; blank on ~29% of rows (older/church registrations) as published.

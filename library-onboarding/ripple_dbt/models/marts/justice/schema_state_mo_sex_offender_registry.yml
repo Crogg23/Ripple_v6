@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: justice__state_mo_sex_offender_registry
+    description: "Missouri public sex offender registry: registrant-offense rows with address, county, offense, compliance flag and tier, as published by the State Highway Patrol."
+    columns:
+      - name: registrant_name
+        data_tests: [not_null]

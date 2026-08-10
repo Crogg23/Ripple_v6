@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: transport__fed_faa_aircraft_registry
+    description: "FAA Civil Aircraft Registry: every US-registered civil aircraft with N-number, serial, make/model, registrant name and address, certification and airworthiness dates. 2026-08 vintage."
+    columns:
+      - name: n_number
+        data_tests: [not_null, unique]

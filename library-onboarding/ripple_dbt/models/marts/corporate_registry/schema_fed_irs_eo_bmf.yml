@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: corporate_registry__fed_irs_eo_bmf
+    description: "IRS Exempt Organizations Business Master File: every IRS-recognized tax-exempt organization nationally, with EIN, address, exemption subsection, foundation/status codes, NTEE classification, and latest reported asset/income/revenue amounts."
+    columns:
+      - name: ein
+        data_tests: [not_null, unique]

@@ -6,13 +6,12 @@ sources:
     schema: LANDING
     tables:
       - name: FED_NID_DAMS
-        description: >
-          National Inventory of Dams -- nationwide dam inventory with hazard classification.
-          All columns loaded as TEXT from the source system (raw landing, untransformed).
 
 models:
-
-  - name: stg_fed_nid_dams__records
-    description: >
-      Minimal passthrough staging model for FED_NID_DAMS. GRAIN NOT YET DETERMINED --
-      no dedup applied. Intended join key: nid_id (verify COUNT DISTINCT before using).
+  - name: stg_fed_nid_dams__structures
+    description: "USACE National Inventory of Dams: one row per structure. NID_ID NOT unique (associated structures share the parent dam's id; 2 rows have no id) as published -- no unique test."
+    columns:
+      - name: dam_name
+        description: Blank on 4,339 structures as published by USACE (unnamed dams).
+      - name: nid_id
+        description: Shared by a dam's associated structures; null on 2 rows as published.

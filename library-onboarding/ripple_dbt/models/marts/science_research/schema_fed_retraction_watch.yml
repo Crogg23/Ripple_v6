@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: science_research__fed_retraction_watch
+    description: "Retraction Watch: retracted and corrected scholarly papers with journal, institutions, authors, DOIs and the stated reasons for retraction."
+    columns:
+      - name: record_id
+        data_tests: [unique]

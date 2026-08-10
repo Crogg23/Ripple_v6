@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: justice__xc_uk_sanctions_list
+    description: "UK OFSI consolidated financial sanctions list: designated persons, entities and ships under UK sanctions regimes, one row per name variant with regime, designation date, and identifiers."
+    columns:
+      - name: designation_id
+        data_tests: [not_null]
