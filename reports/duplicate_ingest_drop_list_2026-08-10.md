@@ -111,7 +111,7 @@ Broken loads confirmed by inspection (drop + re-ingest properly later):
 
 | drop | rows | why |
 |---|---|---|
-| FED_USACE_NID_DAMS | 92,767 | dam inventory landed as 2-column key/value mush — unusable |
+| FED_USACE_NID_DAMS | 92,766 | TWIN of the already-modeled fed_nid_dams (identical row count). Was a 2-col mush; re-ingested clean 2026-08-10 before the twin was spotted — still redundant, still a drop. |
 | FED_DTCC_DTC_PARTICIPANTS | 904 | participant report landed as title + nulls — no data |
 | FED_OCC_NATIONAL_BANKS_BY_NAME | 62 | garbage columns; redundant with the by-charter table (modeled) |
 

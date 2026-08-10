@@ -2,8 +2,9 @@ version: 2
 
 models:
   - name: finance__fed_sec_edgar_company_tickers_exchange
+    description: "SEC EDGAR company_tickers_exchange reference: one row per (CIK, ticker) listing with company name and exchange. CIK is the join key to all SEC data."
     columns:
-      - name: fields
-        data_tests:
-          - not_null
-          - unique
+      - name: cik_ticker
+        data_tests: [not_null, unique]
+      - name: cik
+        data_tests: [not_null]

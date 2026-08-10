@@ -1,0 +1,40 @@
+version: 2
+
+# Source table FED_SEC_EDGAR_COMPANY_TICKERS_EXCHANGE is already declared in
+# models/marts/finance/_finance__sources.yml — not redeclared here to avoid a
+# duplicate-source compile error.
+
+models:
+  - name: stg_fed_sec_edgar_company_tickers_exchange__tickers
+    description: >
+      Staged SEC EDGAR company_tickers_exchange reference file: one row per
+      (CIK, ticker, exchange) listing (10,398 rows, exact-unique on
+      CIK + TICKER). CIK is the SEC Central Index Key — the join key to all
+      other SEC data on the platform (EDGAR filings, DERA financial statement
+      submissions, 13F holdings, insider transactions).
+    columns:
+      - name: cik_ticker
+        description: Concatenated CIK-ticker surrogate key for the verified-unique (CIK, TICKER) grain.
+        data_tests:
+          - unique
+          - not_null
+      - name: cik
+        description: SEC Central Index Key (numeric) — the universal join key across SEC datasets.
+        data_tests:
+          - not_null
+      - name: ticker
+        description: Stock ticker symbol.
+        data_tests:
+          - not_null
+      - name: company_name
+        description: Registrant company name as filed with the SEC.
+      - name: exchange
+        description: Listing exchange (e.g. Nasdaq, NYSE, OTC).
+      - name: _loaded_at
+        description: Ingestion timestamp from the landing table (INGESTED_AT).
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Ingestion pipeline run identifier.
+      - name: _src_sha256
+        description: SHA-256 of the source file the row was loaded from.

@@ -1,66 +1,54 @@
-# RIPPLE STATUS — 2026-08-10 (waves 4+5: 86 sources modeled; NIH full; FEMA reload RUNNING)
+# RIPPLE STATUS — 2026-08-10 (waves 4+5 + re-ingests + frontier triage; FEMA RUNNING)
 
 *One screen. Rewritten (never appended) at the end of every session. Sessions read this at boot and brief Chris in chat — Chris never has to open it.*
 
 **BROKE: nothing.** Live/open items:
-- FEMA IA full reload RUNNING detached at session close (checkpointed at
-  ~3.7M+ of 25,886,797; ~100k rows/2 min ≈ 7-8 h to finish; resumes on rerun
-  of scripts/fema_ia_load.py if it dies). When done: rebuild its staging+mart
-  and REMOVE the SAMPLE label from its descriptions.
-- UK Companies House PSC re-ingest is BLOCKED on a Chris-only wipe: sessions
-  can't DELETE/TRUNCATE. One-liner for Chris, then rerun the chunked loader:
+- FEMA IA full reload RUNNING detached (checkpointed, ~5.1M of 25.9M at close,
+  ~100k/2min ≈ 7h left; rerun scripts/fema_ia_load.py to resume if dead).
+  When done: rebuild staging+mart, remove the SAMPLE label.
+- UK Companies House PSC still blocked on the Chris-only wipe:
   `DELETE FROM LIBRARY_RAW.LANDING.UK_COMPANIES_HOUSE_PSC;` then
   `python scripts/uk_ch_psc_load.py --chunks 32 --run` (~30-60 min).
-- Drop list (Chris-only) now ~40 tables in 4 sections:
-  reports/duplicate_ingest_drop_list_2026-08-10.md — wave-3 dupes (~30),
-  4 EIA vintage twins, 3 junk 1-row loads, 4 snapshot twins
-  (screening list / FJC judges / JPML / Prop-65), 2 broken loads to re-ingest
-  properly later (USACE dams inventory, DTCC participants), 1 garbage OCC
-  by-name table, 1 leftover internal staging table.
-- FBI CDE key still semi-exposed in library-onboarding/.env; API signups
-  still pending on Chris: DOL WHD, Senate LDA.
+- DTCC participant directory: site 403-blocks scripted pulls; needs a manual
+  browser download (tiny file) or a header-spoofing retry.
+- Drop list (Chris-only, ~40 tables): reports/duplicate_ingest_drop_list_2026-08-10.md.
+  Note: the dams table there turned out to be a TWIN of an already-modeled dams
+  source — it was re-ingested clean before the twin was spotted, still a drop.
+- FBI CDE key semi-exposed in library-onboarding/.env; API signups pending on
+  Chris: DOL WHD, Senate LDA.
 
-**DONE this session (commits 1dae94e2, 5481691d, 173846f3 — all pushed):**
-- Wave 4 (46 sources) + wave 5 (40 sources): catalog 452 → 551 modeled.
-  Real landed backlog is now ZERO — everything left in 'landed' is either
-  on the drop list, a broken load queued for re-ingest, or live-loading.
-  Every grain COUNT(DISTINCT)-verified live before modeling.
-  - Wave 4: ITIS taxonomy ×19, NYC CFB contributions ×5 cycles,
-    EIA-860/861 power-plant+utility family ×28 (vintage decided, 4 corrupt
-    twins condemned; 5 tables carry a lost-first-row caveat), GHGRP ×2,
-    SBIR, NTSB injuries, FDA UNII hub, DailyMed map, PCAOB Form AP.
-  - Wave 5: health ×7 (HPSA, UDS sites, IHS ×2, DMF, Purple Book,
-    Health Canada DPD), housing ×8 (FHA snapshot, HUD MF ×2, PHAs, USDA RD,
-    NFIP, HMDA LAR SAMPLE + xref), finance ×10 (SEC series/class, FINRA,
-    MSRB, OCC ×2, ISO MIC, OSFI, FHLB, NCUA ×2), environment ×5 (TRI, AQS,
-    orphaned wells, WQP, HUC8), science/reference/education ×8 (ROR,
-    retraction watch, Crossref funders, OSF SAMPLE, TAS tree, College
-    Scorecard, CIP codes), Form 5500 Sch SB → labor, ICE facility codes →
-    immigration. Four Excel-mangled tables recovered by hunting their
-    embedded header rows live.
-- NIH RePORTER full history verified complete: 27 years, 2,122,611 rows,
-  zero gaps vs publisher counts; mart rebuilt, modeled, not a sample.
+**DONE this session (commits 1dae94e2, 5481691d, 173846f3, 951c5be7 + this close, all pushed):**
+- Waves 4+5: 86 sources modeled, catalog 452 → 551 modeled; landed backlog
+  drained to ZERO (details in prior commits / earlier STATUS revisions).
+- NIH RePORTER full history verified complete (27 yrs, 2.12M, zero gaps), rebuilt.
+- Re-ingests: SEC ticker/exchange map re-landed properly (10,398 rows, was a
+  1-row junk load) and modeled → catalog 552 modeled. Dams re-pulled clean
+  (92,766 × 84 cols) before discovering it twins the modeled source → drop list.
+- New loaders committed: scripts/nid_dams_load.py, scripts/sec_tickers_exchange_load.py.
+- Frontier triage (reports/sampled_failed_triage_2026-08-10.md): the 1,569
+  sampled + 268 failed rows are ~98% auto-crawled portal probes (10k caps,
+  dead links). Only 18 real sources need work: 5 openFDA corpora (bulk-download
+  rewrite), FDIC branch deposits (10k of millions — top value target), UK FCDO
+  sanctions, HHS grants tracker, FCC broadband, PHMSA incidents, DOL union
+  filings, House stock watcher, + small samples (OFCCP, Superfund boundaries,
+  ATF FFL). What to do with the portal-probe universe (finish / re-probe /
+  drop) is a where-the-light-points call → Chris.
 
-**TEST STATUS:** offline 2,698 passed / 2 skipped (run after EACH wave).
-dbt: wave-4 430/430; wave-5 339 green after 4 small fixes. All pushed;
-CI state not re-checked — verify at next boot.
+**TEST STATUS:** offline 2,698 passed / 2 skipped — run three times today, all
+green. dbt: all wave builds green. CI on pushes not re-checked — next boot.
 
 **YOUR MOVE:**
-1. Run the UK PSC wipe one-liner above (then a session reruns the loader).
-2. Drop list (~40 tables) whenever you want — all verified, receipts in the
-   report.
+1. Portal-probe universe: finish it, re-probe it, or drop it? (~1,800 catalog
+   rows; triage report has the shape.) No rush.
+2. UK PSC wipe one-liner (above), drop list whenever.
 
 **NEXT SESSION:**
-1. Boot trust check: CI green on the three pushes?
-2. Check FEMA IA finished (checkpoint file); rebuild its models, drop the
-   SAMPLE label, verify full 25.9M.
-3. If Chris ran the wipe: rerun UK PSC loader (32 chunks), rebuild, un-SAMPLE.
-4. Re-ingest the two broken loads properly (dams inventory ~93k, DTCC list)
-   — small, free APIs.
-5. Backlog is drained — next frontier is the 1,569 'sampled' sources and
-   the 268 'failed' ones in the catalog, plus Phase 0 leftovers.
+1. Boot trust check (CI on today's pushes), then FEMA IA: verify finished,
+   rebuild, un-SAMPLE.
+2. UK PSC if Chris ran the wipe.
+3. Start the 18-source frontier list: FDIC branch deposits first (bulk CSV),
+   then the 5 openFDA corpora via bulk downloads.
 
-**COST:** moderate — ~2-3 Snowflake credits (~$5-8) across both waves:
-grain checks over ~110 tables, two multi-model builds (119 + 91 models),
-NIH mart rebuild (2.1M), FEMA loader writing steadily. Agent spend:
-9 model-writer agents, ~760k tokens total.
+**COST:** moderate — ~3-4 Snowflake credits (~$7-10) total today: grain checks
+over ~110 tables, three multi-model builds, NIH rebuild, FEMA loader writing
+all day, two small re-ingests. Agent spend: 10 model-writer agents, ~820k tokens.
