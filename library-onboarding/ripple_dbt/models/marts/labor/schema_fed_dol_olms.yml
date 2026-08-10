@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: labor__fed_dol_olms
+    description: "DOL OLMS union financial disclosure filings (LM-2/LM-3/LM-4, 2000-2026): one row per LM filing with totals for assets, liabilities, receipts, disbursements, and members. file_number (OLMS file number) is the union entity key across years."
+    columns:
+      - name: filing_record_id
+        data_tests: [not_null, unique]
+      - name: rpt_id
+        description: near-unique source id; 158 rows arrive null from OLMS files, keyed by the surrogate instead

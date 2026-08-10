@@ -1,0 +1,66 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_DOL_OLMS
+        description: >
+          Raw landing table for DOL Office of Labor-Management Standards (OLMS)
+          union financial disclosure filings: a union of LM-2 / LM-3 / LM-4
+          annual reports, 2000-2026, one row per filing. All columns arrive
+          as TEXT.
+
+models:
+  - name: stg_fed_dol_olms__filings
+    description: >
+      Staged view of DOL OLMS union financial disclosure filings (LM-2/LM-3/LM-4,
+      2000-2026). One row per LM filing with headline totals (assets,
+      liabilities, receipts, disbursements, members). RPT_ID is near-unique, so
+      filing_record_id adds a deterministic hash-ordered tiebreaker.
+      file_number (F_NUM, the OLMS file number) is the union entity key that
+      links a union's filings across years.
+    columns:
+      - name: filing_record_id
+        description: >
+          Surrogate primary key — hash of RPT_ID plus a deterministic
+          row_number tiebreaker for the few colliding report ids.
+        data_tests:
+          - unique
+          - not_null
+      - name: rpt_id
+        description: >
+          OLMS report id for the filing (near-unique). 158 of 617,710 rows
+          arrive with a null id from the source files — kept, keyed by the
+          surrogate; so no not_null test here.
+      - name: file_number
+        description: >
+          OLMS file number (F_NUM) — the stable union entity key across years
+          of filings.
+      - name: form_type
+        description: LM form type filed (LM-2, LM-3, or LM-4).
+      - name: union_name
+        description: Name of the reporting labor organization.
+      - name: affiliation_abbr
+        description: Parent affiliation abbreviation (e.g. national/international union).
+      - name: year_covered
+        description: Fiscal year covered by the filing.
+      - name: period_covered_from
+        description: Start of the reporting period.
+      - name: period_covered_to
+        description: End of the reporting period.
+      - name: total_assets
+        description: Total assets reported on the filing.
+      - name: total_liabilities
+        description: Total liabilities reported on the filing.
+      - name: total_receipts
+        description: Total receipts reported on the filing.
+      - name: total_disbursements
+        description: Total disbursements reported on the filing.
+      - name: members
+        description: Reported membership count.
+      - name: _loaded_at
+        description: Timestamp when the record was ingested into the landing table.
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.

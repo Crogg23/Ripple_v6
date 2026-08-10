@@ -171,6 +171,9 @@ SPECS = [
         "kind": "zip_csv",
         "member": r"\.(csv|txt)$",
         "encoding": "latin-1",
+        # the .txt member is tab-delimited; ragged trailing tabs on some rows,
+        # so use the python engine and skip malformed lines loudly
+        "csv_opts": {"sep": "\t", "engine": "python", "on_bad_lines": "warn"},
         "loader": "bridge_fuel",
         "key_cols": [
             {"col": "OPERATOR_ID", "as": "PHMSA_OPERATOR_ID"},

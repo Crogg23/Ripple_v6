@@ -1,0 +1,6 @@
+C:\Code\Ripple_v6\scripts\dol_olms_load.py:108: ParserWarning: Skipping line 8188: '|' expected after '"'
+
+  df = pd.read_csv(io.BytesIO(zf.read(member)), sep="|", header=0,
+C:\Code\Ripple_v6\scripts\dol_olms_load.py:108: ParserWarning: Skipping line 8613: '|' expected after '"'
+
+  df = pd.read_csv(io.BytesIO(zf.read(member)), sep="|", header=0,

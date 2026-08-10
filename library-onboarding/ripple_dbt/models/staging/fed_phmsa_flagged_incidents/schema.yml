@@ -1,0 +1,61 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_PHMSA_FLAGGED_INCIDENTS
+        description: >
+          Raw landing table for PHMSA significant pipeline incidents — gas
+          transmission & gathering systems only, Jan 2010 to present. The full
+          624-column incident form arrives as TEXT; other pipeline-type
+          incident files (distribution, hazardous liquid, LNG) are a follow-up.
+
+models:
+  - name: stg_fed_phmsa_flagged_incidents__incidents
+    description: >
+      Staged view of PHMSA significant gas transmission & gathering pipeline
+      incidents (Jan 2010-present), one row per incident report
+      (report_number unique). Selects a curated core of the 624-column form:
+      report identity, dates, operator identity, location, commodity, release
+      volumes, casualties, and status. phmsa_operator_id is the operator join
+      key. The full column width stays in landing.
+    columns:
+      - name: report_number
+        description: PHMSA incident report number — primary key.
+        data_tests:
+          - unique
+          - not_null
+      - name: supplemental_number
+        description: Supplemental report number for the filing.
+      - name: report_type
+        description: Type of the incident report.
+      - name: phmsa_operator_id
+        description: PHMSA operator id — the operator join key across PHMSA datasets.
+      - name: operator_name
+        description: Reporting pipeline operator name.
+      - name: report_received_date
+        description: Date PHMSA received the report.
+      - name: incident_year
+        description: Calendar year of the incident.
+      - name: local_datetime
+        description: Local date/time of the incident.
+      - name: location_latitude
+        description: Incident latitude.
+      - name: location_longitude
+        description: Incident longitude.
+      - name: commodity_released_type
+        description: Commodity released in the incident.
+      - name: unintentional_release_volume
+        description: Unintentional release volume.
+      - name: intentional_release_volume
+        description: Intentional (controlled) release volume.
+      - name: total_fatalities
+        description: Total fatalities from the incident.
+      - name: total_injuries
+        description: Total injuries from the incident.
+      - name: _loaded_at
+        description: Timestamp when the record was ingested into the landing table.
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.

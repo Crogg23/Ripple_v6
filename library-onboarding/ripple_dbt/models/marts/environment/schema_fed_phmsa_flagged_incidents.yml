@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: environment__fed_phmsa_flagged_incidents
+    description: "PHMSA significant pipeline incidents, gas transmission & gathering only (Jan 2010-present): one row per incident report (report_number unique) with operator identity (phmsa_operator_id join key), location, commodity, release volumes, and fatality/injury counts. Other pipeline-type files are a follow-up; full 624-column form stays in landing."
+    columns:
+      - name: report_number
+        data_tests: [not_null, unique]
+      - name: phmsa_operator_id
+        data_tests: [not_null]

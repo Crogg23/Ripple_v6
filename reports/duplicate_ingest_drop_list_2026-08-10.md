@@ -130,6 +130,15 @@ FAERS family 5.8–20.9M). Drop the 1-row tables + registry rows:
 Also: FED_FDA_DEVICE_ENFORCEMENT__STAGING (internal work table, drops after
 the re-load finishes).
 
+## F. Frontier-tail verdicts (2026-08-10, late evening)
+
+| drop / demote | why |
+|---|---|
+| FED_ATF_FFL_LOCATIONS (2,000 sample) | twin: full FFL list (77,514) already modeled as fed_atf_ffl |
+| INTL_UK_FCDO_SANCTIONS_LIST (58,104, dq-failed 100% degenerate) | same publication as the modeled UK sanctions list; parse also broken — drop rather than fix |
+| FED_HHS_TAGGS (45 rows) | redundant: HHS grants held in full via USASpending assistance corpus |
+| XC_HOUSESTOCKWATCHER (never landed) | upstream dead: the community S3 bucket 403s; project abandoned. Registry row only. |
+
 Drop one-liners (run as ACCOUNTADMIN, table A first, after eyeball):
 each is `DROP TABLE LIBRARY_RAW.LANDING.<NAME>;` plus
 `DELETE FROM LIBRARY_META.REGISTRY.SOURCE_REGISTRY WHERE UPPER(SOURCE_ID)=UPPER('<sid>');`

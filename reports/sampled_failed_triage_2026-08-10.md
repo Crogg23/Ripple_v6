@@ -18,7 +18,7 @@ Failed (12):
 | source | state | next step |
 |---|---|---|
 | intl_uk_fcdo_sanctions_list | 58k landed, last run failed | diagnose loader; likely fixable |
-| fed_hhs_taggs | 45 rows | HHS grants tracker; loader broken, re-scope |
+| fed_hhs_taggs | 45 rows | REDUNDANT (decided 2026-08-10 evening): HHS grants are already held in full via the USASpending assistance corpus; no loader rebuild. Drop-list candidate. |
 | fed_fda_device_classification / maude_device_events / caers_food_events / faers_drug_events / device_enforcement | 1 row each | five openFDA corpora; API loaders failed at first page — rewrite against bulk downloads |
 | fed_dol_wage_hour | nothing landed | KEY-GATED — waiting on Chris's API signup |
 | fed_fcc_broadband | nothing landed | big geodata; scope decision first |

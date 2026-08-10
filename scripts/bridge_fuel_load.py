@@ -270,8 +270,15 @@ def _open_csv_source(s: dict, tmp: Path):
 _READ_DEFAULTS = {"dtype": str, "keep_default_na": False, "na_values": [], "low_memory": False}
 
 
+def _merged_read_opts(opts: dict) -> dict:
+    merged = {**_READ_DEFAULTS, **(opts or {})}
+    if merged.get("engine") == "python":
+        merged.pop("low_memory", None)  # unsupported by the python engine
+    return merged
+
+
 def _read_full(path, opts: dict) -> pd.DataFrame:
-    return pd.read_csv(path, **{**_READ_DEFAULTS, **(opts or {})})
+    return pd.read_csv(path, **_merged_read_opts(opts))
 
 
 def _read_multi(s: dict, tmp: Path, opts: dict, preview: bool = False) -> pd.DataFrame:
@@ -306,7 +313,7 @@ def _read_multi(s: dict, tmp: Path, opts: dict, preview: bool = False) -> pd.Dat
 
 
 def _iter_chunks(path, opts: dict, chunk_rows: int):
-    yield from pd.read_csv(path, chunksize=chunk_rows, **{**_READ_DEFAULTS, **(opts or {})})
+    yield from pd.read_csv(path, chunksize=chunk_rows, **_merged_read_opts(opts))
 
 
 # --------------------------------------------------------------------------- #
@@ -405,7 +412,11 @@ def load_spec(s: dict, do_run: bool = False, force: bool = False, refresh: bool 
         try:
             with tempfile.TemporaryDirectory(prefix="bridgefuel_") as td:
                 tmp = Path(td)
-                opts = s.get("csv_opts", {})
+                opts = dict(s.get("csv_opts", {}))
+                # honor a spec-level "encoding" (e.g. latin-1 for PHMSA) — specs
+                # declared it before the loader supported it
+                if s.get("encoding") and "encoding" not in opts:
+                    opts["encoding"] = s["encoding"]
 
                 if s.get("urls"):
                     # Multi-file: several same-schema partitions -> one table (e.g. IRS
