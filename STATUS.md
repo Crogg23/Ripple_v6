@@ -1,40 +1,78 @@
-# RIPPLE STATUS — 2026-08-08 (evening session)
+# RIPPLE STATUS — 2026-08-09 (full-day sprint)
 
 *One screen. Rewritten (never appended) at the end of every session. Sessions read this at boot and brief Chris in chat — Chris never has to open it.*
 
 **BROKE (still open):**
-- The old, wrongly-named copy of the mortgage table is STILL in the warehouse (same as this morning — agent is still permission-blocked from DROP even with verbal OK). One line for Chris in Snowsight:
-  `DROP TABLE LIBRARY_MARTS.HOUSING.HOUSING__FED_CFPB_HMDA;`
-- 19 sources are marked "landed" (counted as real, working data) but are actually dead scrapes — mostly help pages / nav chrome / blank forms scraped instead of real data, not new bugs from tonight, just newly confirmed. A ready preview/apply tool already exists for this (`scripts/propose_dead_scrape_demote.py`), 11 of the 19 were already sitting in its built-in list for weeks with nobody running `--apply`. Full 19-name list and one-line command to fix it: see "YOUR MOVE" below.
-- 3 copies of the same small College Scorecard table (6,273 rows) sit under 3 different names, each with 3,300+ columns — too wide for the standard scan to safely check (it correctly fails fast now instead of hanging, but nobody's built a smarter check for a table this wide yet). Needs a follow-up approach, not attempted tonight.
-- A leftover Snowflake scratch table (`snowpark_temp_table_dz2vfohwdp`, 22,152 columns) is incorrectly counted in the source catalog as a real landed source. Harmless but should be purged from the catalog — not investigated further tonight (didn't want to spend more warehouse time chasing a housekeeping item after tonight's cost lesson below).
-- The zip-code matching bug (foreign postal codes that happen to be 5 digits can fake-match a real US zip) is still open and still Chris's call — unchanged from before, not touched tonight.
-- 11 orphan twin tables still need dropping (same as before, Chris-only).
-- Tonight's diff (18 files) is uncommitted — review anytime, nothing risky in it.
+- The bulk loader's post-land dbt scaffolder emits a DEGENERATE staging model (a
+  phantom `"ID"` column + meta only) for any spec without key_cols, and it GUTTED
+  the curated intl_ie_cro schema.yml doing so. Damage reverted this session
+  (junk deleted, schema restored, nothing committed); the scaffolder itself in
+  `scripts/bridge_fuel_load.py` (~line 664 lifecycle hook) is still un-fixed —
+  next bulk load without key_cols will re-emit junk. Fix or gate before the next
+  spec-based load.
+- The 7 rebuilt/new sources have NO staging models yet (raw landing only):
+  fed_va_suicide_national/state, fed_cdc_wonder, fed_cdc_leading_causes_state,
+  intl_ie_cro (curated schema exists, model refers to old landing shape — verify),
+  fed_faa_aircraft_registry, fed_fra_* (3), fed_fbi_cde. Real dbt work, not autogen.
+- 11 orphan twin tables still need dropping (Chris-only, unchanged).
+- Old junk marts keep two demoted sources (`fed_faa_data_portal`,
+  `fed_va_suicide_appendix`) reading as "modeled" in the catalog — their marts
+  should be dropped with the orphans.
+- FBI CDE key now lives in `library-onboarding/.env` (`FBI_CDE_API_KEY`) — key
+  was pasted in chat 2026-08-09, treat as semi-exposed; rotate at leisure via
+  api.data.gov if it ever matters.
 
-**FIXED this session (verified live, not just claimed):**
-- Wired the existing data-safety check into 16 loaders that either had none at all (8) or were faking it — logging "success" without ever checking the data was real (8, including the exact loader `reconcile_op2022.py` had to hand-patch once before). Full offline test suite re-run clean after: 2,677 passed, 0 failed.
-- Found and fixed a real parsing bug: the SEC EDGAR ticker/exchange loader was saving the raw JSON envelope as one giant row instead of exploding it into one row per ticker. Fixed to match the working sibling loader's pattern.
-- Ran a full blank/dead-data scan across all 589 landed tables. It got stuck for ~2.5 hours hammering one badly-shaped table (killed it, found the root cause: no query timeout of its own, so it just waited on Snowflake's 1-hour default, three times). Fixed the scan tool itself (fast-fail timeout, stopped it from false-flagging JSON-blob tables and single-sample tables) and re-ran clean.
-- That scan + follow-up triage confirmed 15 "new" dead/near-dead sources: 11 are genuinely dead (docs pages scraped as data, broken portals, no real API — several already flagged in past audits going back weeks but never acted on), 1 was the SEC bug above (now fixed), 2 were false alarms caused by the scan tool's own blind spots (also now fixed), 1 is a dead duplicate of a source that's already been correctly re-loaded under a different name.
-- Confirmed: CI is green on main, and the mart-quality grading system is working correctly — the only "low-graded" marts are either doing their job on purpose (holding unreviewed leads) or a known, already-logged grading quirk on a static reference table.
+**INCIDENT (fixed, logged, guarded — read this):**
+The dead-scrape demote command handed to Chris was generated BEFORE this
+session rebuilt 3 dead sources under their old names — running it demoted the
+fresh 821k-row Irish CRO, CDC WONDER, and VA all-cause loads. Caught and
+re-promoted within minutes (verified back to landed/modeled). Two permanent
+fixes: (1) `propose_dead_scrape_demote.py` now REFUSES latest-success runs
+that are big (>5k rows) or fresh (<7 days) — no override flag on purpose;
+(2) memory note `stale-commands-are-live-ammo`: re-verify any queued command
+against CURRENT state before handing it over.
 
-**WORKS:**
-- Full offline test suite GREEN after every change tonight: 2,677 passed, 2 skipped, 0 failed.
-- GitHub Actions CI green on main (last 4 pushes).
-- Spine health (from this morning): still 6/6 PASS, untouched tonight.
+**DONE this session (all verified live):**
+- 7 approved dead-source rebuilds ALL LANDED, quality-gated (~3.3M rows total):
+  VA suicide national (700) + state (19,704), VA all-cause mortality (2,808),
+  CDC WONDER national year×cause×sex grid (880; API is NATIONAL-ONLY by CDC
+  policy — state grouping rejected), NCHS leading-causes-by-state companion
+  (10,868), Irish CRO companies (821,697), FAA aircraft registry (315,447),
+  FRA rail casualties (1,150,788) + crossing incidents (251,149) + equipment
+  accidents (224,941), FBI CDE state monthly crime counts (477,360; new
+  summarized endpoints — the old estimate API is retired).
+- 12 other dead sources stay demoted with receipts (FDIC enforcement, DOJ FCA,
+  DOJ CRT re-checked: still no machine path; AustLII/Georgia/ADB/NARA buried;
+  Zefix/Oyez/BORME are soft-buries with working paths if priorities change).
+- ZIP country-gate (Chris picked Option A): rows with a non-US country now
+  contribute NO zip key. In `connect/keys.py` (+ discover + incremental mirror),
+  28 zip+country tables resliced, 2 new offline tests.
+- Full fingerprint (1,273 tables) + discover rebuild: 4,538 edges; incremental
+  twins reseeded from it; the incremental==full-rebuild proof test now PASSES.
+- Catalog view now excludes Snowpark temp tables (ghost purged, rollback saved).
+- Chunked profiler for ultra-wide tables (`scripts/wide_table_profiler.py`):
+  College Scorecard data confirmed REAL (6% degenerate); 2 duplicate copies
+  identified and dropped by Chris.
+- Chris ran: mortgage-table drop, scorecard-twin + ghost drops, demote --apply.
+- Offline suite green all day: 2,679 passed / 2 skipped / 0 failed. CI green.
 
 **YOUR MOVE:**
-1. Run the housing-table DROP above (only thing an agent still can't do).
-2. When ready, demote the 19 confirmed-dead sources so they stop counting as real data — preview already re-verified tonight, run:
-   `python3 scripts/propose_dead_scrape_demote.py fed_cdc_wonder fed_fbi_cde fed_fra_safety intl_austlii intl_ge_datagov fed_nara_wra_aad intl_adb_data fed_faa_data_portal --apply`
-   (this covers the 8 newly confirmed; the other 11 were already in the script's built-in list — this one command catches all 19).
-3. Commit tonight's diff whenever convenient (18 files, all loader/tooling hardening, tests green throughout).
-4. Zip-code matcher decision still waiting on you (unchanged from before).
-5. Phase 0 checklist still open (Snowsight grants, orphan-table drops, API signups) — unchanged from before.
+1. Nothing is blocking. Optional: orphan-table + junk-mart drop list whenever
+   you want it printed again.
 
-**NEXT SESSION:** Chris's call on whether the 11 genuinely-dead sources are worth rebuilding (several need real new work — API credentials, a different endpoint, real scraping logic) versus just leaving them demoted. Also the 3,300-column College Scorecard table needs a smarter, chunked check before anyone can trust what's in it.
+**NEXT SESSION:**
+1. Fix or gate the degenerate dbt scaffolder in the bulk loader (top priority —
+   it silently destroys curated schemas).
+2. Write real staging models for the 7 new sources; wire FRA/FBI/CDC into marts
+   (rail deaths by railroad, crime baselines, mortality baselines).
+3. Phase 0 leftovers: orphan drops, remaining API signups (DOL WHD, Senate LDA).
 
-**COST:** 2.76 Snowflake credits tonight (~$7-8) — higher than the ~$1-3 originally quoted, entirely because of the ~2.5-hour stuck scan described above. That was a real mistake: I should have put a timeout on that tool before the first run, not after watching it hang. Caught it, killed it, fixed it, and the corrected re-run took minutes. No other unbounded spend risk left in flight — checked warehouse state directly, everything is idle.
+**COST:** 6.08 Snowflake credits today (~$15-18) — well above the ~$5 running
+estimate I gave Chris. Drivers: the planned loads/reslices (~2), but mostly the
+full fingerprint re-scan of all 1,273 tables (~1.5h) that I expected to resume
+from cache and didn't (its cache keys on a format bump + the purged JSON), plus
+the full discover + 3 warehouse-proof runs. Flagged before the go ("$4-5"), but
+the fingerprint overshoot was not re-flagged mid-run — noted as a miss.
 
-**TEST STATUS:** 2,677 passed / 2 skipped / 15 deselected (snowflake-marked) / 0 failed — confirmed multiple times tonight after every batch of changes.
+**TEST STATUS:** offline 2,679 passed / 2 skipped / 15 deselected / 0 failed;
+warehouse-marked incremental proof PASSES post-reseed. CI green on main.
