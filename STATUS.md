@@ -1,78 +1,70 @@
-# RIPPLE STATUS — 2026-08-09 (full-day sprint)
+# RIPPLE STATUS — 2026-08-09 (evening session: scaffolder fix + staging models)
 
 *One screen. Rewritten (never appended) at the end of every session. Sessions read this at boot and brief Chris in chat — Chris never has to open it.*
 
 **BROKE (still open):**
-- The bulk loader's post-land dbt scaffolder emits a DEGENERATE staging model (a
-  phantom `"ID"` column + meta only) for any spec without key_cols, and it GUTTED
-  the curated intl_ie_cro schema.yml doing so. Damage reverted this session
-  (junk deleted, schema restored, nothing committed); the scaffolder itself in
-  `scripts/bridge_fuel_load.py` (~line 664 lifecycle hook) is still un-fixed —
-  next bulk load without key_cols will re-emit junk. Fix or gate before the next
-  spec-based load.
-- The 7 rebuilt/new sources have NO staging models yet (raw landing only):
-  fed_va_suicide_national/state, fed_cdc_wonder, fed_cdc_leading_causes_state,
-  intl_ie_cro (curated schema exists, model refers to old landing shape — verify),
-  fed_faa_aircraft_registry, fed_fra_* (3), fed_fbi_cde. Real dbt work, not autogen.
+- Production staging views/marts not yet refreshed for the new models: this
+  session's dbt build ran against the dev target (personal DBT_CROGERS schema)
+  — all 11 models + 42 tests green there, and CI builds staging+intermediate on
+  push, but the LIBRARY_MARTS.HEALTH copy of the VA all-cause mart is still the
+  old 244-row junk shape until a prod mart build runs.
 - 11 orphan twin tables still need dropping (Chris-only, unchanged).
 - Old junk marts keep two demoted sources (`fed_faa_data_portal`,
-  `fed_va_suicide_appendix`) reading as "modeled" in the catalog — their marts
-  should be dropped with the orphans.
-- FBI CDE key now lives in `library-onboarding/.env` (`FBI_CDE_API_KEY`) — key
-  was pasted in chat 2026-08-09, treat as semi-exposed; rotate at leisure via
-  api.data.gov if it ever matters.
+  `fed_va_suicide_appendix`) reading as "modeled" in the catalog — drop with
+  the orphans.
+- FBI CDE key in `library-onboarding/.env` remains semi-exposed (chat-pasted
+  2026-08-09); rotate at leisure.
+- API signups still pending on Chris: DOL WHD, Senate LDA.
 
-**INCIDENT (fixed, logged, guarded — read this):**
-The dead-scrape demote command handed to Chris was generated BEFORE this
-session rebuilt 3 dead sources under their old names — running it demoted the
-fresh 821k-row Irish CRO, CDC WONDER, and VA all-cause loads. Caught and
-re-promoted within minutes (verified back to landed/modeled). Two permanent
-fixes: (1) `propose_dead_scrape_demote.py` now REFUSES latest-success runs
-that are big (>5k rows) or fresh (<7 days) — no override flag on purpose;
-(2) memory note `stale-commands-are-live-ammo`: re-verify any queued command
-against CURRENT state before handing it over.
+**INCIDENT FOUND & FIXED THIS SESSION (data corruption, was silent):**
+Yesterday's VA *national* suicide load was partially scrambled: each cohort
+sheet in the VA workbook stacks a second by-age table below the main one, and
+the loader parsed everything under the first header — age brackets landed in
+the deaths column, one column shifted, plus header rows as data (700 rows, 125
+real keys). Caught via the standing COUNT(DISTINCT) key check while writing
+staging models. Parser in `scripts/va_mortality_load.py` now segments sheets on
+their internal header rows; all three VA tables relanded and key-verified
+(national now 690 rows, unique on year x cohort x age_group). State and
+all-cause files were single-table and unaffected.
 
-**DONE this session (all verified live):**
-- 7 approved dead-source rebuilds ALL LANDED, quality-gated (~3.3M rows total):
-  VA suicide national (700) + state (19,704), VA all-cause mortality (2,808),
-  CDC WONDER national year×cause×sex grid (880; API is NATIONAL-ONLY by CDC
-  policy — state grouping rejected), NCHS leading-causes-by-state companion
-  (10,868), Irish CRO companies (821,697), FAA aircraft registry (315,447),
-  FRA rail casualties (1,150,788) + crossing incidents (251,149) + equipment
-  accidents (224,941), FBI CDE state monthly crime counts (477,360; new
-  summarized endpoints — the old estimate API is retired).
-- 12 other dead sources stay demoted with receipts (FDIC enforcement, DOJ FCA,
-  DOJ CRT re-checked: still no machine path; AustLII/Georgia/ADB/NARA buried;
-  Zefix/Oyez/BORME are soft-buries with working paths if priorities change).
-- ZIP country-gate (Chris picked Option A): rows with a non-US country now
-  contribute NO zip key. In `connect/keys.py` (+ discover + incremental mirror),
-  28 zip+country tables resliced, 2 new offline tests.
-- Full fingerprint (1,273 tables) + discover rebuild: 4,538 edges; incremental
-  twins reseeded from it; the incremental==full-rebuild proof test now PASSES.
-- Catalog view now excludes Snowpark temp tables (ghost purged, rollback saved).
-- Chunked profiler for ultra-wide tables (`scripts/wide_table_profiler.py`):
-  College Scorecard data confirmed REAL (6% degenerate); 2 duplicate copies
-  identified and dropped by Chris.
-- Chris ran: mortgage-table drop, scorecard-twin + ghost drops, demote --apply.
-- Offline suite green all day: 2,679 passed / 2 skipped / 0 failed. CI green.
+**DONE this session (all verified, committed, pushed; CI was green on push):**
+- Scaffolder gated (commit 8efde4b2): `loadkit/scaffold.py` now REFUSES to
+  invent columns (no live DESCRIBE + no key_cols) and REFUSES to overwrite any
+  existing schema.yml (the intl_ie_cro gutting path). 4 regression tests.
+  Trade-off: specs with key_cols but no connection still get a keys-only
+  skeleton (real columns, sparse) — tighten later if wanted.
+- VA parser fix + reland (commit a1b74b16, see incident above).
+- Real staging models for all 7 rebuilt sources / 10 tables (commit 816f5171):
+  VA suicide national/state, VA all-cause, CDC WONDER (rewritten for new
+  national grid), NCHS leading-causes-by-state, FBI CDE (rewritten as
+  state-month; stale places model deleted), FAA aircraft registry, FRA
+  casualties / crossing incidents / equipment accidents. Every grain
+  COUNT(DISTINCT)-verified before tests were written. Deliberate calls
+  documented in model headers: FRA equipment REPORT_KEY not unique
+  (multi-railroad/amended filings — NO dedup, would discard 27k reports);
+  FRA crossing 24 dup keys; WONDER deaths null = CDC suppression (<10);
+  FAA owner name null on ~4,700 sale-reported registrations.
+- health__fed_va_allcause_mortality mart rewritten onto the new staging model
+  (was reading the dead raw shape directly).
+- intl_ie_cro curated staging model verified to match the current landing
+  shape — untouched, still good.
+- dbt build (dev target): 11 models + 42 tests all green. Offline suite:
+  2,698 passed / 2 skipped / 0 failed (twice today).
 
 **YOUR MOVE:**
-1. Nothing is blocking. Optional: orphan-table + junk-mart drop list whenever
-   you want it printed again.
+1. Nothing blocking. Orphan + junk-mart drop list available on request.
 
 **NEXT SESSION:**
-1. Fix or gate the degenerate dbt scaffolder in the bulk loader (top priority —
-   it silently destroys curated schemas).
-2. Write real staging models for the 7 new sources; wire FRA/FBI/CDC into marts
-   (rail deaths by railroad, crime baselines, mortality baselines).
-3. Phase 0 leftovers: orphan drops, remaining API signups (DOL WHD, Senate LDA).
+1. Wire the new staging models into marts (rail deaths by railroad, crime
+   baselines, mortality baselines) and refresh prod schemas.
+2. Run the connection engine over the relanded VA tables (columns changed;
+   zip/name keys unaffected so drift is unlikely, but unverified).
+3. Start the 73-source real backlog (high-priority landed-but-unmodeled).
+4. Phase 0 leftovers: orphan drops, API signups (DOL WHD, Senate LDA).
 
-**COST:** 6.08 Snowflake credits today (~$15-18) — well above the ~$5 running
-estimate I gave Chris. Drivers: the planned loads/reslices (~2), but mostly the
-full fingerprint re-scan of all 1,273 tables (~1.5h) that I expected to resume
-from cache and didn't (its cache keys on a format bump + the purged JSON), plus
-the full discover + 3 warehouse-proof runs. Flagged before the go ("$4-5"), but
-the fingerprint overshoot was not re-flagged mid-run — noted as a miss.
+**COST:** light day — roughly 0.3-0.5 Snowflake credits (~$1): metadata scans,
+key checks over the 1.1M-row rail tables, one 690-row reland, dbt views +
+tests. No large loads, no fingerprint scans.
 
-**TEST STATUS:** offline 2,679 passed / 2 skipped / 15 deselected / 0 failed;
-warehouse-marked incremental proof PASSES post-reseed. CI green on main.
+**TEST STATUS:** offline 2,698 passed / 2 skipped / 0 failed; dbt build green
+on dev target (11 models, 42 tests). CI green on main at push time.
