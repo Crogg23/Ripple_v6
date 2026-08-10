@@ -134,14 +134,33 @@ def scaffold_if_missing(source_id: str, table_name: str | None = None,
     model_name = f"stg_{source_id_lower}__all"
     model_path = model_dir / f"{model_name}.sql"
 
+    schema_path = model_dir / "schema.yml"
+
     if model_path.exists():
         return None  # already scaffolded
+
+    # A schema.yml without our model file means a curated/hand-written model
+    # lives in this directory under another name. Overwriting it destroys real
+    # work (it gutted intl_ie_cro's curated schema on 2026-08-09) — refuse.
+    if schema_path.exists():
+        raise RuntimeError(
+            f"refusing to scaffold {source_id}: {schema_path} already exists "
+            "(curated model in place) — write the staging model by hand or "
+            "move the scaffold elsewhere.")
 
     # Get columns from Snowflake if connection available
     columns = _describe_columns(table_name, conn) if conn else []
     if not columns:
-        # Fallback: use key_cols names + generic placeholder
-        columns = [kc["col"] for kc in key_cols] if key_cols else ["ID"]
+        if key_cols:
+            # Fallback: at least the spec-declared key columns are real
+            columns = [kc["col"] for kc in key_cols]
+        else:
+            # No connection, no keys: any model we emit would be pure fiction
+            # (the old fallback invented a phantom "ID" column). Refuse.
+            raise RuntimeError(
+                f"refusing to scaffold {source_id}: no column info (no live "
+                "DESCRIBE and spec declares no key_cols) — a generated model "
+                "would contain fabricated columns.")
 
     # Generate files
     model_sql = staging_model_sql(source_id, table_name, columns, key_cols)
@@ -150,7 +169,7 @@ def scaffold_if_missing(source_id: str, table_name: str | None = None,
     # Write
     model_dir.mkdir(parents=True, exist_ok=True)
     model_path.write_text(model_sql, encoding="utf-8")
-    (model_dir / "schema.yml").write_text(schema, encoding="utf-8")
+    schema_path.write_text(schema, encoding="utf-8")
 
     return str(model_dir)
 
