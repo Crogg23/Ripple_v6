@@ -1,0 +1,42 @@
+Traceback (most recent call last):
+  File "C:\Code\Ripple_v6\scripts\nih_reporter_load.py", line 674, in <module>
+    main()
+    ~~~~^^
+  File "C:\Code\Ripple_v6\scripts\nih_reporter_load.py", line 584, in main
+    ok, _c, nrows, _ = write_pandas(
+                       ~~~~~~~~~~~~^
+        conn, df, table_name=STAGING_TABLE,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        database=DATABASE, schema=SCHEMA,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        auto_create_table=True, overwrite=is_fresh_start, quote_identifiers=False,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\wroge\AppData\Roaming\Python\Python314\site-packages\snowflake\connector\pandas_tools.py", line 602, in write_pandas
+    copy_results = cursor.execute(
+                   ~~~~~~~~~~~~~~^
+        copy_into_sql,
+        ^^^^^^^^^^^^^^
+    ...<3 lines>...
+        num_statements=1,
+        ^^^^^^^^^^^^^^^^^
+    ).fetchall()
+    ^
+  File "C:\Users\wroge\AppData\Roaming\Python\Python314\site-packages\snowflake\connector\cursor.py", line 1134, in execute
+    Error.errorhandler_wrapper(self.connection, self, error_class, errvalue)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\wroge\AppData\Roaming\Python\Python314\site-packages\snowflake\connector\errors.py", line 286, in errorhandler_wrapper
+    handed_over = Error.hand_to_other_handler(
+        connection,
+    ...<2 lines>...
+        error_value,
+    )
+  File "C:\Users\wroge\AppData\Roaming\Python\Python314\site-packages\snowflake\connector\errors.py", line 341, in hand_to_other_handler
+    cursor.errorhandler(connection, cursor, error_class, error_value)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\wroge\AppData\Roaming\Python\Python314\site-packages\snowflake\connector\errors.py", line 217, in default_errorhandler
+    raise error_class(
+    ...<10 lines>...
+    )
+snowflake.connector.errors.ProgrammingError: 100038 (22018): Numeric value '[276, 320]' is not recognized

@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: science_research__fed_nih_reporter
+    description: "NIH RePORTER: every NIH grant application FY2000-FY2026 with organization, PIs, award amounts, dates, and study section -- full 27-year crawl."
+    columns:
+      - name: appl_id
+        data_tests: [not_null, unique]

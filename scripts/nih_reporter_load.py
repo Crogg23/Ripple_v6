@@ -547,7 +547,22 @@ def main():
     ingested_at = started.replace(tzinfo=None)
 
     chunk_shas: list[str] = []
-    is_fresh_start = not done_years  # only overwrite the staging table on a truly clean start
+    is_fresh_start = not done_years  # only recreate the staging table on a truly clean start
+
+    # Pre-create the staging table with EXPLICIT all-VARCHAR columns. Relying on
+    # write_pandas(auto_create_table=True) type inference bit twice on 2026-08-09:
+    # even with every value stringified, a column that is entirely NULL across the
+    # first-written year (FY2000: ORG_CITY, SPENDING_CATEGORIES, ...) still gets
+    # inferred as NUMBER via the parquet null type, and the first later-year row
+    # with real text in it kills the COPY ("Numeric value '[276, 320]' is not
+    # recognized"). Explicit DDL removes inference from the picture entirely.
+    _DATA_COLS = list(flatten({}).keys())
+    if is_fresh_start:
+        cols_ddl = ", ".join(f"{c} VARCHAR" for c in _DATA_COLS)
+        cur0 = conn.cursor()
+        cur0.execute(f"CREATE OR REPLACE TABLE {_fqt(STAGING_TABLE)} ({cols_ddl}, "
+                     f"_INGESTED_AT TIMESTAMP_NTZ, _SOURCE_RUN_ID VARCHAR, _SRC_SHA256 VARCHAR)")
+        cur0.close()
 
     for fy in FISCAL_YEARS:
         if fy in done_years:
@@ -584,7 +599,7 @@ def main():
             ok, _c, nrows, _ = write_pandas(
                 conn, df, table_name=STAGING_TABLE,
                 database=DATABASE, schema=SCHEMA,
-                auto_create_table=True, overwrite=is_fresh_start, quote_identifiers=False,
+                auto_create_table=False, overwrite=False, quote_identifiers=False,
             )
             if not ok:
                 raise RuntimeError(f"write_pandas reported failure landing FY{fy} into {STAGING_TABLE}")

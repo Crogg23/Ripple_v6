@@ -7,8 +7,18 @@ sources:
     tables:
       - name: FED_NIH_REPORTER
         description: >
-          Raw landing table for NIH RePORTER API. Grain not yet determined.
+          NIH RePORTER grant projects, full FY2000-FY2026 crawl landed
+          all-VARCHAR by scripts/nih_reporter_load.py (recursive
+          date-window bisection loader; see its header for the API-cap
+          workarounds).
 
 models:
-  - name: stg_fed_nih_reporter__records
-    description: "Minimal passthrough staging (grain undetermined). Needs manual review."
+  - name: stg_fed_nih_reporter__projects
+    description: "NIH RePORTER grants: one row per application (appl_id unique, loader-deduped), FY2000-FY2026 full crawl."
+    columns:
+      - name: appl_id
+        data_tests: [not_null, unique]
+      - name: fiscal_year
+        data_tests: [not_null]
+      - name: org_name
+        description: Blank on subproject and some historical rows as published.
