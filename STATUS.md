@@ -1,13 +1,8 @@
-# RIPPLE STATUS — 2026-08-09 (evening session: scaffolder fix + staging models)
+# RIPPLE STATUS — 2026-08-09 (late session: marts for the rebuilt sources, prod refreshed)
 
 *One screen. Rewritten (never appended) at the end of every session. Sessions read this at boot and brief Chris in chat — Chris never has to open it.*
 
 **BROKE (still open):**
-- Production staging views/marts not yet refreshed for the new models: this
-  session's dbt build ran against the dev target (personal DBT_CROGERS schema)
-  — all 11 models + 42 tests green there, and CI builds staging+intermediate on
-  push, but the LIBRARY_MARTS.HEALTH copy of the VA all-cause mart is still the
-  old 244-row junk shape until a prod mart build runs.
 - 11 orphan twin tables still need dropping (Chris-only, unchanged).
 - Old junk marts keep two demoted sources (`fed_faa_data_portal`,
   `fed_va_suicide_appendix`) reading as "modeled" in the catalog — drop with
@@ -16,55 +11,45 @@
   2026-08-09); rotate at leisure.
 - API signups still pending on Chris: DOL WHD, Senate LDA.
 
-**INCIDENT FOUND & FIXED THIS SESSION (data corruption, was silent):**
-Yesterday's VA *national* suicide load was partially scrambled: each cohort
-sheet in the VA workbook stacks a second by-age table below the main one, and
-the loader parsed everything under the first header — age brackets landed in
-the deaths column, one column shifted, plus header rows as data (700 rows, 125
-real keys). Caught via the standing COUNT(DISTINCT) key check while writing
-staging models. Parser in `scripts/va_mortality_load.py` now segments sheets on
-their internal header rows; all three VA tables relanded and key-verified
-(national now 690 rows, unique on year x cohort x age_group). State and
-all-cause files were single-table and unaffected.
-
-**DONE this session (all verified, committed, pushed; CI was green on push):**
-- Scaffolder gated (commit 8efde4b2): `loadkit/scaffold.py` now REFUSES to
-  invent columns (no live DESCRIBE + no key_cols) and REFUSES to overwrite any
-  existing schema.yml (the intl_ie_cro gutting path). 4 regression tests.
-  Trade-off: specs with key_cols but no connection still get a keys-only
-  skeleton (real columns, sparse) — tighten later if wanted.
-- VA parser fix + reland (commit a1b74b16, see incident above).
-- Real staging models for all 7 rebuilt sources / 10 tables (commit 816f5171):
-  VA suicide national/state, VA all-cause, CDC WONDER (rewritten for new
-  national grid), NCHS leading-causes-by-state, FBI CDE (rewritten as
-  state-month; stale places model deleted), FAA aircraft registry, FRA
-  casualties / crossing incidents / equipment accidents. Every grain
-  COUNT(DISTINCT)-verified before tests were written. Deliberate calls
-  documented in model headers: FRA equipment REPORT_KEY not unique
-  (multi-railroad/amended filings — NO dedup, would discard 27k reports);
-  FRA crossing 24 dup keys; WONDER deaths null = CDC suppression (<10);
-  FAA owner name null on ~4,700 sale-reported registrations.
-- health__fed_va_allcause_mortality mart rewritten onto the new staging model
-  (was reading the dead raw shape directly).
-- intl_ie_cro curated staging model verified to match the current landing
-  shape — untouched, still good.
-- dbt build (dev target): 11 models + 42 tests all green. Offline suite:
-  2,698 passed / 2 skipped / 0 failed (twice today).
+**DONE this session (all verified, committed 784f7c32, pushed):**
+- Four new marts built to production LIBRARY_MARTS and live-test-verified:
+  - transport__fed_fra_rail_deaths_by_railroad — deaths by railroad x year x
+    person type from FRA Form 55a casualties (per-person unique report keys,
+    so no multi-railroad double-count; 53,105 deaths total, exact match to
+    the fatality flag count; 12 two-digit years normalized to 2020).
+    Top-5 since 2015: UP 2,280 / Amtrak 1,550 / BNSF 1,383 / CSX 1,123 / NS 1,045.
+  - health__fed_cdc_leading_causes_state — NCHS leading causes by state
+    1999-2017 (10,868 rows, incl. 'United States' rollup).
+  - health__fed_va_suicide_state — veteran suicide by state x year (1,196
+    rows; filters the by-state sheet from the 4-sheet stacked staging model).
+  - health__fed_va_suicide_national — cohort x year x optional age group (690).
+- Two stale marts that still read RETIRED raw shapes were rewritten onto the
+  new staging models (they'd have failed or served junk on any prod build):
+  - justice__fed_fbi_cde — now state x offense x month back to 1985 with
+    OFFENSES/CLEARANCES pivoted to columns (238,680 rows). States are 2-letter
+    abbreviations.
+  - health__fed_cdc_wonder — now the national year x ICD chapter x sex grid
+    (880 rows; deaths NULL = CDC suppression).
+- health__fed_va_allcause_mortality rebuilt to prod (rewritten last session;
+  prod had still been serving the old 244-row junk). Prod refresh item from
+  last session is now CLOSED for all these models.
+- Connection engine re-run over the three relanded VA tables: zero entity-key
+  partitions (they're statistical aggregates — no zip/name keys), no drift.
+- dbt build (marts, prod): 7 models + 26 tests green. Offline suite:
+  2,698 passed / 2 skipped / 0 failed. CI was in progress at close
+  (marts aren't in CI's staging+intermediate scope; low risk).
 
 **YOUR MOVE:**
 1. Nothing blocking. Orphan + junk-mart drop list available on request.
 
 **NEXT SESSION:**
-1. Wire the new staging models into marts (rail deaths by railroad, crime
-   baselines, mortality baselines) and refresh prod schemas.
-2. Run the connection engine over the relanded VA tables (columns changed;
-   zip/name keys unaffected so drift is unlikely, but unverified).
-3. Start the 73-source real backlog (high-priority landed-but-unmodeled).
-4. Phase 0 leftovers: orphan drops, API signups (DOL WHD, Senate LDA).
+1. Start the 73-source real backlog (high-priority landed-but-unmodeled).
+2. Phase 0 leftovers: orphan drops, API signups (DOL WHD, Senate LDA).
+3. Optional: lens/KPI definition session if Chris opens it (his call).
 
-**COST:** light day — roughly 0.3-0.5 Snowflake credits (~$1): metadata scans,
-key checks over the 1.1M-row rail tables, one 690-row reland, dbt views +
-tests. No large loads, no fingerprint scans.
+**COST:** light — well under 0.5 Snowflake credits (~$1): metadata + value
+checks, seven small mart builds (largest 238k rows), 26 tests, three
+connection-engine runs over tiny VA tables.
 
-**TEST STATUS:** offline 2,698 passed / 2 skipped / 0 failed; dbt build green
-on dev target (11 models, 42 tests). CI green on main at push time.
+**TEST STATUS:** offline 2,698 passed / 2 skipped / 0 failed; dbt marts build
+green (7 models, 26 tests) against production databases.
