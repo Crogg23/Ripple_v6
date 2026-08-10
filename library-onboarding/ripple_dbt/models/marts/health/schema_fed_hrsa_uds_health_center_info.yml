@@ -1,14 +1,7 @@
 version: 2
 
-sources:
-  - name: ripple_raw
-    database: LIBRARY_RAW
-    schema: LANDING
-    tables:
-      - name: FED_HRSA_UDS_HEALTH_CENTER_INFO
-
 models:
-  - name: stg_fed_hrsa_uds_health_center_info__centers
+  - name: health__fed_hrsa_uds_health_center_info
     description: "HRSA UDS health center directory: one row per federally-funded health center (bhcmisid unique) with address, director, funding streams, urban/rural flag."
     columns:
       - name: bhcmisid

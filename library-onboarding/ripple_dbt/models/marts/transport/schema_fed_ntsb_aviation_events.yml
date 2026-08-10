@@ -1,14 +1,7 @@
 version: 2
 
-sources:
-  - name: ripple_raw
-    database: LIBRARY_RAW
-    schema: LANDING
-    tables:
-      - name: FED_NTSB_AVIATION_EVENTS
-
 models:
-  - name: stg_fed_ntsb_aviation_events__events
+  - name: transport__fed_ntsb_aviation_events
     description: "NTSB aviation accident database, events table: one row per accident/incident (ev_id unique) with location, weather, and injury totals."
     columns:
       - name: ev_id

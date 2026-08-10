@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_PBGC_TRUSTEED_PLANS
+
+models:
+  - name: stg_fed_pbgc_trusteed_plans__plans
+    description: "PBGC trusteed single-employer pension plans (failed plans taken over by the federal insurer): one row per case (case_number unique) with sponsor, EIN, termination/trusteeship dates, participant count."
+    columns:
+      - name: case_number
+        data_tests: [not_null, unique]
+      - name: sponsor_name
+        data_tests: [not_null]

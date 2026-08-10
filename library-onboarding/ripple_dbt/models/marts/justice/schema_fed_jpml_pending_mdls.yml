@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: justice__fed_jpml_pending_mdls
+    description: "Judicial Panel on Multidistrict Litigation: pending MDLs (mdl_no unique) with district, judge, and pending/total action counts."
+    columns:
+      - name: mdl_no
+        data_tests: [not_null, unique]

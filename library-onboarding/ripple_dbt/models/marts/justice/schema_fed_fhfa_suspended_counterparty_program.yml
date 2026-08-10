@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: justice__fed_fhfa_suspended_counterparties
+    description: "FHFA Suspended Counterparty Program: individuals/companies banned from doing business with Fannie Mae, Freddie Mac and the FHLBanks. SUSPENSION_END_DATE is 'Indefinite' on most rows (nulls after date-cast; raw kept)."
+    columns:
+      - name: suspension_order
+        data_tests: [not_null]

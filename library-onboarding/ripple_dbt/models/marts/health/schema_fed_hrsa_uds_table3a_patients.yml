@@ -1,14 +1,7 @@
 version: 2
 
-sources:
-  - name: ripple_raw
-    database: LIBRARY_RAW
-    schema: LANDING
-    tables:
-      - name: FED_HRSA_UDS_TABLE3A_PATIENTS
-
 models:
-  - name: stg_fed_hrsa_uds_table3a_patients__by_center
+  - name: health__fed_hrsa_uds_table3a_patients
     description: "HRSA UDS Table 3A: federally-funded health center patient counts by age/sex line (bhcmisid unique). Column pairs are (male, female) per age line."
     columns:
       - name: bhcmisid

@@ -18,7 +18,9 @@ renamed as (
         -- attributes
         trim(TYPE_OF_TOXICITY)                              as type_of_toxicity,
         trim(LISTING_MECHANISM)                             as listing_mechanism,
-        try_to_date(trim(DATE_LISTED), 'MM/DD/YYYY')        as date_listed,
+        -- 2026-08-09 fix: landed values are ISO (e.g. '1990-01-01'); the old
+        -- 'MM/DD/YYYY' format string nulled out 100% of dates.
+        try_to_date(trim(DATE_LISTED))                      as date_listed,
         try_to_double(trim(NSRL_OR_MADL_G_DAY_A))          as nsrl_or_madl_g_day,
 
         -- overflow / extra columns retained as-is

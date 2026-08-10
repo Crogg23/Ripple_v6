@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_SENATE_STOCK_WATCHER
+
+models:
+  - name: stg_fed_senate_stock_watcher__transactions
+    description: "Senate Stock Watcher scrape of senator financial-disclosure trades (name-only source, coverage ends Dec 2020; STOCK Act disclosure-use limits apply -- journalism use only). 546 published exact-duplicate rows kept as landed."
+    columns:
+      - name: senator
+        data_tests: [not_null]

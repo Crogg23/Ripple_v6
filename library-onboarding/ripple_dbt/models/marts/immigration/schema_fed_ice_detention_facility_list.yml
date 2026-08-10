@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: immigration__fed_ice_detention_facility_list
+    description: "ICE detention facility list (facility name, city/state, AOR, detailed type). One published duplicate name+city pair kept as landed."
+    columns:
+      - name: facility_name
+        data_tests: [not_null]

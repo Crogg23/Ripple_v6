@@ -1,14 +1,7 @@
 version: 2
 
-sources:
-  - name: ripple_raw
-    database: LIBRARY_RAW
-    schema: LANDING
-    tables:
-      - name: FED_HUD_ASSISTED_HOUSING_PROJECTS
-
 models:
-  - name: stg_fed_hud_assisted_housing_projects__summaries
+  - name: housing__fed_hud_assisted_housing_projects
     description: "HUD Picture of Subsidized Households: assisted-housing units and tenant profiles by project/program/geography. NEGATIVE values are HUD suppression/N-A sentinels (kept as published -- filter value >= 0 for analysis)."
     columns:
       - name: quarter

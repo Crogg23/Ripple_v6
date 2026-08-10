@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: health__st_oehha_proposition_65_list
+    description: "California OEHHA Proposition 65 list of chemicals known to cause cancer or reproductive toxicity. 3 chemicals relisted under multiple toxicity types share rows -- row grain kept."
+    columns:
+      - name: chemical
+        data_tests: [not_null]

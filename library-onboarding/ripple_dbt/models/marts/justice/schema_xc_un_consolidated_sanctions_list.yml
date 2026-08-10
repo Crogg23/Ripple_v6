@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: justice__xc_un_consolidated_sanctions_list
+    description: "UN Security Council consolidated sanctions list: one row per designated individual/entity (dataid unique); RECORD_TYPE distinguishes the two shapes. LAST_DAY_UPDATED is a JSON blob kept raw."
+    columns:
+      - name: dataid
+        data_tests: [not_null, unique]

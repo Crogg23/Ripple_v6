@@ -1,14 +1,7 @@
 version: 2
 
-sources:
-  - name: ripple_raw
-    database: LIBRARY_RAW
-    schema: LANDING
-    tables:
-      - name: FED_NTSB_AVIATION_AIRCRAFT
-
 models:
-  - name: stg_fed_ntsb_aviation_aircraft__aircraft
+  - name: transport__fed_ntsb_aviation_aircraft
     description: "NTSB aviation accident database, aircraft table: one row per aircraft involved in an event (ev_id + aircraft_key unique). Registration, make/model, owner/operator, certification."
     columns:
       - name: ev_id

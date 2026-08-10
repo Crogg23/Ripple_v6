@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: labor__fed_pbgc_trusteed_plans
+    description: "PBGC trusteed single-employer pension plans (failed plans taken over by the federal insurer): one row per case (case_number unique) with sponsor, EIN, termination/trusteeship dates, participant count."
+    columns:
+      - name: case_number
+        data_tests: [not_null, unique]
+      - name: sponsor_name
+        data_tests: [not_null]
