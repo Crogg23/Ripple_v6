@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: transport__fed_fra_rail_deaths_by_railroad
+    description: "Rail deaths by reporting railroad, year and type of person killed (worker, passenger, trespasser, etc.), aggregated from FRA Form 55a casualty reports, 1975-present. Parent railroad and holding company carried for rollups."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [railroad_code, incident_year, type_of_person]
+    columns:
+      - name: railroad_code
+        data_tests:
+          - not_null
+      - name: incident_year
+        data_tests:
+          - not_null
+      - name: deaths
+        data_tests:
+          - not_null

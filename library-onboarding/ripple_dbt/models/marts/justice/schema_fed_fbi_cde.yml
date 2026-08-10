@@ -2,16 +2,18 @@ version: 2
 
 models:
   - name: justice__fed_fbi_cde
+    description: "FBI Crime Data Explorer state x offense x month crime baselines back to 1985: reported offense and clearance counts and rates per 100k."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [state, offense, month_date]
     columns:
-      - name: incident_id
+      - name: state
         data_tests:
           - not_null
-          - unique
-      - name: fips_state_code
+      - name: offense
         data_tests:
           - not_null
-          - unique
-      - name: offense_code
+      - name: month_date
         data_tests:
           - not_null
-          - unique

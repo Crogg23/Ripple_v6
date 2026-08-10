@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: health__fed_va_suicide_national
+    description: "National veteran suicide counts and rates per 100k by cohort, year and optional age group, with male/female splits (VA National Veteran Suicide Prevention Annual Report)."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [year_of_death, cohort, age_group]
+    columns:
+      - name: year_of_death
+        data_tests:
+          - not_null
+      - name: cohort
+        data_tests:
+          - not_null

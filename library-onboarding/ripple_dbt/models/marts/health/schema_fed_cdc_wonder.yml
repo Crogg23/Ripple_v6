@@ -2,16 +2,18 @@ version: 2
 
 models:
   - name: health__fed_cdc_wonder
+    description: "CDC WONDER national mortality baselines: deaths, population and crude rate by year x ICD chapter x sex. Deaths NULL where CDC suppresses counts under 10."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [year, icd_chapter, sex]
     columns:
-      - name: database_id
+      - name: year
         data_tests:
           - not_null
-          - unique
-      - name: group_by_1_code
+      - name: icd_chapter
         data_tests:
           - not_null
-          - unique
-      - name: group_by_2_code
+      - name: sex
         data_tests:
           - not_null
-          - unique

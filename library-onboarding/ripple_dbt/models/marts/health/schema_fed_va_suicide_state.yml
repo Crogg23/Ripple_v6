@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: health__fed_va_suicide_state
+    description: "Veteran suicide counts and rates per 100k by state and year, with general-population comparison rates (VA National Veteran Suicide Prevention Annual Report state appendix)."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [year_of_death, state]
+    columns:
+      - name: year_of_death
+        data_tests:
+          - not_null
+      - name: state
+        data_tests:
+          - not_null
