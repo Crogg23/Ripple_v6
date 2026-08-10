@@ -113,6 +113,15 @@ KNOWN_DIVERGENT: dict[str, str] = {
         "two desks (2026-08-01). They can never agree on row count; their "
         "own reconciliation lock is tests/assert_cohort_queue_reconciles.sql "
         "(SUM(n_outliers) == reviewable OSHA leads)."),
+    "FED_FRA_CASUALTIES": (
+        "TRANSPORT__FED_FRA_CASUALTIES (one row per Form 55a casualty report, "
+        "1.15M) and TRANSPORT__FED_FRA_RAIL_DEATHS_BY_RAILROAD (deaths only, "
+        "aggregated to railroad x year x person type, ~5k) read the same "
+        "source AT DIFFERENT GRAINS by design (2026-08-09): the rollup exists "
+        "because the equipment-accident table double-counts multi-railroad "
+        "accidents, so deaths-by-railroad is built from casualties instead. "
+        "The rollup's SUM(deaths) must equal the detail's fatality='Yes' row "
+        "count (verified 53,105 = 53,105 on build day)."),
 }
 
 # A RATCHET, not an excuse list. Every entry here was already broken when the check

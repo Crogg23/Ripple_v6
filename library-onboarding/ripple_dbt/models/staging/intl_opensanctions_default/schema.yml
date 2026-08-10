@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: INTL_OPENSANCTIONS_DEFAULT
+
+models:
+  - name: stg_intl_opensanctions_default__targets
+    description: "OpenSanctions default collection: consolidated worldwide sanctions/PEP/enforcement targets (people, companies, vessels, aircraft, crypto wallets). One row per deduplicated target."
+    columns:
+      - name: id
+        description: OpenSanctions canonical entity id, verified unique on the 2026-08-09 check.
+        data_tests: [not_null, unique]
+      - name: entity_type
+        data_tests: [not_null]
+      - name: name
+        data_tests: [not_null]

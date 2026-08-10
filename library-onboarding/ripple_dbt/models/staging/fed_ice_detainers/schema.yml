@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_ICE_DETAINERS
+
+models:
+  - name: stg_fed_ice_detainers__all
+    description: "ICE detainers Oct 2022-2026, person-level with anonymized hash IDs: one row per detainer record with facility, demographics, criminal-history flags and lift/removal outcome. Rows only unique with file+row provenance — no unique test."
+    columns:
+      - name: person_hash
+        description: Anonymized person identifier; repeats across a person's detainers (609,769 rows / 407,078 people). Blank (NULL) on 74,751 rows as published (the rows with a blank duplicate_likely flag).
+      - name: detainer_prepare_date
+        data_tests: [not_null]

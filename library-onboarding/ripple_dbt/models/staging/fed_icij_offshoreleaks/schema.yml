@@ -1,0 +1,52 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_ICIJ_OFFSHORELEAKS_ENTITIES
+      - name: FED_ICIJ_OFFSHORELEAKS_OFFICERS
+      - name: FED_ICIJ_OFFSHORELEAKS_INTERMEDIARIES
+      - name: FED_ICIJ_OFFSHORELEAKS_ADDRESSES
+      - name: FED_ICIJ_OFFSHORELEAKS_OTHERS
+      - name: FED_ICIJ_OFFSHORELEAKS_RELATIONSHIPS
+
+models:
+  - name: stg_fed_icij_offshoreleaks__entities
+    description: "ICIJ Offshore Leaks entity nodes: offshore companies and trusts from the Panama/Paradise/Pandora Papers, Offshore Leaks and Bahamas Leaks."
+    columns:
+      - name: node_id
+        description: ICIJ node id, verified unique on the 2026-08-09 check.
+        data_tests: [not_null, unique]
+      - name: name
+        description: Entity name; NULL on 29 rows as published by ICIJ.
+  - name: stg_fed_icij_offshoreleaks__officers
+    description: "ICIJ Offshore Leaks officer nodes: directors, shareholders and beneficiaries of offshore entities."
+    columns:
+      - name: node_id
+        data_tests: [not_null, unique]
+  - name: stg_fed_icij_offshoreleaks__intermediaries
+    description: "ICIJ Offshore Leaks intermediary nodes: the law firms, banks and agents that set up offshore entities."
+    columns:
+      - name: node_id
+        data_tests: [not_null, unique]
+  - name: stg_fed_icij_offshoreleaks__addresses
+    description: "ICIJ Offshore Leaks address nodes, linked to entities and officers via relationships."
+    columns:
+      - name: node_id
+        data_tests: [not_null, unique]
+  - name: stg_fed_icij_offshoreleaks__others
+    description: "ICIJ Offshore Leaks miscellaneous nodes (foundations, limited partnerships, etc.)."
+    columns:
+      - name: node_id
+        data_tests: [not_null, unique]
+  - name: stg_fed_icij_offshoreleaks__relationships
+    description: "ICIJ Offshore Leaks graph edges (officer_of, registered_address, intermediary_of, ...). (start, end, type, link) NOT unique — the same edge can be republished by multiple leak investigations; kept as landed."
+    columns:
+      - name: node_id_start
+        data_tests: [not_null]
+      - name: node_id_end
+        data_tests: [not_null]
+      - name: rel_type
+        data_tests: [not_null]

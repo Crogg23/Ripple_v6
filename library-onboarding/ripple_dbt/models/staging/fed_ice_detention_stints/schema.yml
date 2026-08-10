@@ -1,0 +1,19 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_ICE_DETENTION_STINTS
+
+models:
+  - name: stg_fed_ice_detention_stints__all
+    description: "ICE detention stints 2004-2026, person-level with anonymized hash IDs: one row per continuous hold at one facility, with facility, demographics, criminal-history flags, bond and release outcome. stint_id blank on 7,341 rows and a few duplicate pairs remain — no unique test; publisher duplicate flags carried through."
+    columns:
+      - name: person_hash
+        description: Anonymized person identifier; repeats across a person's stints. Blank (NULL) on 7,341 rows as published — the same rows whose stint_id is blank.
+      - name: detention_facility
+        data_tests: [not_null]
+      - name: book_in_at
+        data_tests: [not_null]

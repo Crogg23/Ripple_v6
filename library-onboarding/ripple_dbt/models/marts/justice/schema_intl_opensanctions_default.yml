@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: justice__intl_opensanctions_default
+    description: "OpenSanctions default collection: consolidated worldwide sanctions/PEP/enforcement targets — 1.28M people, companies, vessels, aircraft and crypto wallets, deduplicated to one row per target."
+    columns:
+      - name: id
+        data_tests: [not_null, unique]
+      - name: entity_type
+        data_tests: [not_null]
+      - name: name
+        data_tests: [not_null]

@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: corporate_registry__fed_icij_offshoreleaks_entities
+    description: "ICIJ Offshore Leaks: offshore companies and trusts from the Panama/Paradise/Pandora Papers, Offshore Leaks and Bahamas Leaks, with jurisdiction, status, dates and service provider."
+    columns:
+      - name: node_id
+        data_tests: [not_null, unique]
+  - name: corporate_registry__fed_icij_offshoreleaks_officers
+    description: "ICIJ Offshore Leaks: directors, shareholders and beneficiaries of offshore entities."
+    columns:
+      - name: node_id
+        data_tests: [not_null, unique]
+  - name: corporate_registry__fed_icij_offshoreleaks_intermediaries
+    description: "ICIJ Offshore Leaks: the law firms, banks and agents that set up offshore entities."
+    columns:
+      - name: node_id
+        data_tests: [not_null, unique]
+  - name: corporate_registry__fed_icij_offshoreleaks_addresses
+    description: "ICIJ Offshore Leaks: registered addresses linked to entities and officers."
+    columns:
+      - name: node_id
+        data_tests: [not_null, unique]
+  - name: corporate_registry__fed_icij_offshoreleaks_others
+    description: "ICIJ Offshore Leaks: miscellaneous nodes (foundations, limited partnerships, etc.)."
+    columns:
+      - name: node_id
+        data_tests: [not_null, unique]
+  - name: corporate_registry__fed_icij_offshoreleaks_relationships
+    description: "ICIJ Offshore Leaks graph edges (officer_of, registered_address, intermediary_of, ...) connecting the node tables. Edges can repeat across leak investigations — no unique test."
+    columns:
+      - name: node_id_start
+        data_tests: [not_null]
+      - name: node_id_end
+        data_tests: [not_null]
+      - name: rel_type
+        data_tests: [not_null]

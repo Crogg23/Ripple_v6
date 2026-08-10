@@ -1,0 +1,24 @@
+version: 2
+
+models:
+  - name: transport__fed_fra_casualties
+    description: "FRA Form 55a rail casualties (injuries, illnesses and deaths) by railroad, person type and cause, 1975-present. One row per reported casualty."
+    columns:
+      - name: report_key
+        data_tests: [not_null, unique]
+      - name: railroad_code
+        data_tests: [not_null]
+  - name: transport__fed_fra_crossing_incidents
+    description: "FRA Form 57 highway-rail grade crossing incidents: vehicle/pedestrian collisions at crossings with location, user type and outcome. 24 duplicate report keys (amended/joint filings) kept as landed."
+    columns:
+      - name: report_key
+        data_tests: [not_null]
+      - name: railroad_code
+        data_tests: [not_null]
+  - name: transport__fed_fra_equipment_accidents
+    description: "FRA Form 54 rail equipment accidents (derailments, collisions) with damage costs, causes and casualties. One row per reporting railroad per accident — the same accident repeats across involved railroads; aggregate with care."
+    columns:
+      - name: report_key
+        data_tests: [not_null]
+      - name: reporting_railroad_code
+        data_tests: [not_null]
