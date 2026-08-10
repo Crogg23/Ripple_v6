@@ -1,0 +1,167 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT
+        description: >
+          Raw landing table for the CMS Open Payments covered-recipient profile
+          supplement: one row = one covered recipient profile (physicians and
+          non-physician practitioners). Roster/demographics companion to the
+          Open Payments payment tables. All columns arrive as TEXT.
+        columns:
+          - name: COVERED_RECIPIENT_PROFILE_TYPE
+            description: Covered recipient type (physician / non-physician practitioner).
+          - name: COVERED_RECIPIENT_PROFILE_ID
+            description: Open Payments covered-recipient profile ID — unique per profile.
+          - name: ASSOCIATED_COVERED_RECIPIENT_PROFILE_ID_1
+            description: First associated covered-recipient profile ID, if any.
+          - name: ASSOCIATED_COVERED_RECIPIENT_PROFILE_ID_2
+            description: Second associated covered-recipient profile ID, if any.
+          - name: COVERED_RECIPIENT_NPI
+            description: National Provider Identifier of the covered recipient.
+          - name: COVERED_RECIPIENT_PROFILE_FIRST_NAME
+            description: Recipient first name.
+          - name: COVERED_RECIPIENT_PROFILE_MIDDLE_NAME
+            description: Recipient middle name.
+          - name: COVERED_RECIPIENT_PROFILE_LAST_NAME
+            description: Recipient last name.
+          - name: COVERED_RECIPIENT_PROFILE_SUFFIX
+            description: Recipient name suffix.
+          - name: COVERED_RECIPIENT_PROFILE_ALTERNATE_FIRST_NAME
+            description: Alternate first name.
+          - name: COVERED_RECIPIENT_PROFILE_ALTERNATE_MIDDLE_NAME
+            description: Alternate middle name.
+          - name: COVERED_RECIPIENT_PROFILE_ALTERNATE_LAST_NAME
+            description: Alternate last name.
+          - name: COVERED_RECIPIENT_PROFILE_ALTERNATE_SUFFIX
+            description: Alternate name suffix.
+          - name: COVERED_RECIPIENT_PROFILE_ADDRESS_LINE_1
+            description: Practice address line 1.
+          - name: COVERED_RECIPIENT_PROFILE_ADDRESS_LINE_2
+            description: Practice address line 2.
+          - name: COVERED_RECIPIENT_PROFILE_CITY
+            description: Practice city.
+          - name: COVERED_RECIPIENT_PROFILE_STATE
+            description: Practice state.
+          - name: COVERED_RECIPIENT_PROFILE_ZIPCODE
+            description: Practice ZIP code.
+          - name: COVERED_RECIPIENT_PROFILE_COUNTRY_NAME
+            description: Practice country name.
+          - name: COVERED_RECIPIENT_PROFILE_PROVINCE_NAME
+            description: Practice province name (non-US).
+          - name: COVERED_RECIPIENT_PROFILE_PRIMARY_SPECIALTY
+            description: Primary specialty.
+          - name: COVERED_RECIPIENT_PROFILE_OPS_TAXONOMY_1
+            description: Open Payments taxonomy code 1.
+          - name: COVERED_RECIPIENT_PROFILE_OPS_TAXONOMY_2
+            description: Open Payments taxonomy code 2.
+          - name: COVERED_RECIPIENT_PROFILE_OPS_TAXONOMY_3
+            description: Open Payments taxonomy code 3.
+          - name: COVERED_RECIPIENT_PROFILE_OPS_TAXONOMY_4
+            description: Open Payments taxonomy code 4.
+          - name: COVERED_RECIPIENT_PROFILE_OPS_TAXONOMY_5
+            description: Open Payments taxonomy code 5.
+          - name: COVERED_RECIPIENT_PROFILE_OPS_TAXONOMY_6
+            description: Open Payments taxonomy code 6.
+          - name: COVERED_RECIPIENT_PROFILE_LICENSE_STATE_CODE_1
+            description: License state code 1.
+          - name: COVERED_RECIPIENT_PROFILE_LICENSE_STATE_CODE_2
+            description: License state code 2.
+          - name: COVERED_RECIPIENT_PROFILE_LICENSE_STATE_CODE_3
+            description: License state code 3.
+          - name: COVERED_RECIPIENT_PROFILE_LICENSE_STATE_CODE_4
+            description: License state code 4.
+          - name: COVERED_RECIPIENT_PROFILE_LICENSE_STATE_CODE_5
+            description: License state code 5.
+
+models:
+  - name: stg_fed_cms_open_payments_profile_supplement__recipient_profiles
+    description: >
+      Staged and deduplicated view of the CMS Open Payments covered-recipient
+      profile supplement — the roster/demographics companion to the
+      already-modeled Open Payments payment tables. One row per covered
+      recipient profile, keyed on profile_id, keeping the most recently
+      ingested record.
+    columns:
+      - name: profile_id
+        description: >
+          Open Payments covered-recipient profile ID — primary key for this
+          entity.
+        data_tests:
+          - unique
+          - not_null
+      - name: associated_profile_id_1
+        description: First associated covered-recipient profile ID, if any.
+      - name: associated_profile_id_2
+        description: Second associated covered-recipient profile ID, if any.
+      - name: npi
+        description: >
+          National Provider Identifier — join key to NPI-keyed provider tables.
+          Kept as text.
+      - name: profile_type
+        description: Covered recipient type (physician / non-physician practitioner).
+      - name: first_name
+        description: Recipient first name.
+      - name: middle_name
+        description: Recipient middle name.
+      - name: last_name
+        description: Recipient last name.
+      - name: suffix
+        description: Recipient name suffix.
+      - name: alternate_first_name
+        description: Alternate first name.
+      - name: alternate_middle_name
+        description: Alternate middle name.
+      - name: alternate_last_name
+        description: Alternate last name.
+      - name: alternate_suffix
+        description: Alternate name suffix.
+      - name: address_line_1
+        description: Practice address line 1.
+      - name: address_line_2
+        description: Practice address line 2.
+      - name: city
+        description: Practice city.
+      - name: state
+        description: Practice state.
+      - name: zipcode
+        description: Practice ZIP code.
+      - name: country_name
+        description: Practice country name.
+      - name: province_name
+        description: Practice province name (non-US).
+      - name: primary_specialty
+        description: Primary specialty.
+      - name: ops_taxonomy_1
+        description: Open Payments taxonomy code 1.
+      - name: ops_taxonomy_2
+        description: Open Payments taxonomy code 2.
+      - name: ops_taxonomy_3
+        description: Open Payments taxonomy code 3.
+      - name: ops_taxonomy_4
+        description: Open Payments taxonomy code 4.
+      - name: ops_taxonomy_5
+        description: Open Payments taxonomy code 5.
+      - name: ops_taxonomy_6
+        description: Open Payments taxonomy code 6.
+      - name: license_state_code_1
+        description: License state code 1.
+      - name: license_state_code_2
+        description: License state code 2.
+      - name: license_state_code_3
+        description: License state code 3.
+      - name: license_state_code_4
+        description: License state code 4.
+      - name: license_state_code_5
+        description: License state code 5.
+      - name: ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.
+      - name: src_sha256
+        description: SHA-256 hash of the source file for this record.

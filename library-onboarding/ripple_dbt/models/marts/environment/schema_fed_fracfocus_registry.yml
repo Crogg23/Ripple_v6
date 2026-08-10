@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: environment__fed_fracfocus_registry
+    description: "FracFocus hydraulic-fracturing chemical disclosure registry: one row per ingredient line within a purpose within a well disclosure (7.2M rows), with operator, well location, CAS number, and concentration/mass figures. CAS numbers are frequently masked as trade secrets."
+    columns:
+      - name: ingredient_record_id
+        description: Surrogate key over (disclosure_id, purpose_id, ingredients_id).
+        data_tests: [not_null, unique]
+      - name: disclosure_id
+        description: Joins to environment__fed_fracfocus_disclosure_list and environment__fed_fracfocus_water_source.

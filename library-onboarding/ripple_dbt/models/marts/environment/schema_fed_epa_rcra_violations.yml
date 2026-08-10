@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: environment__fed_epa_rcra_violations
+    description: "EPA RCRAInfo violations: one row = one violation record. Composite near-unique; provenance tiebreaker on the key (same violation type can be re-determined)."
+    columns:
+      - name: violation_record_id
+        data_tests: [not_null, unique]

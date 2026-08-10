@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: environment__fed_epa_rcra_evaluations
+    description: "EPA RCRAInfo compliance evaluations (inspections): one row = one evaluation record. Composite near-unique; provenance tiebreaker on the key (multiple agency rows can share an identifier)."
+    columns:
+      - name: evaluation_record_id
+        data_tests: [not_null, unique]

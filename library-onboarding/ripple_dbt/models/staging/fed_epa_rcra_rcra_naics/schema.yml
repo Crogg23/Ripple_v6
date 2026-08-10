@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_EPA_RCRA_RCRA_NAICS
+        description: >
+          Raw landing table. EPA RCRAInfo handler NAICS industry codes: one row = one handler-location-NAICS link (exactly unique). All columns arrive as TEXT.
+
+models:
+  - name: stg_fed_epa_rcra_rcra_naics__naics_codes
+    description: >
+      Staged view of FED_EPA_RCRA_RCRA_NAICS. EPA RCRAInfo handler NAICS industry codes: one row = one handler-location-NAICS link (exactly unique).
+    columns:
+      - name: facility_naics_id
+        description: Primary key for this record (exactly unique composite).
+        data_tests:
+          - unique
+          - not_null

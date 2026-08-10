@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: corporate_registry__uk_companies_house_psc
+    description: "SAMPLE ONLY -- NOT the full dataset: ~7.0M of ~10M Persons with Significant Control (beneficial-ownership) records from the 2026-08-05 UK Companies House snapshot. The load truncated mid-stream (single provenance batch) — truncation, not random sampling; full reload queued. One row = one PSC record, unique on psc_link_self. company_number (5,107,915 distinct) is the join key to the already-modeled UK company register. natures_of_control is a semicolon-joined code list kept as text."
+    columns:
+      - name: psc_link_self
+        data_tests: [not_null, unique]
+      - name: company_number
+        data_tests: [not_null]

@@ -1,0 +1,54 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FJC_IDB_CRIMINAL
+        description: >
+          Raw landing table for the Federal Judicial Center Integrated Database
+          (IDB) criminal defendant files — one record per defendant per case per
+          snapshot. 6.3M rows, all columns arrive as TEXT.
+
+models:
+  - name: stg_fed_fjc_idb_criminal__defendant_records
+    description: >
+      Staged view of the FJC IDB criminal landing table. One row = one
+      defendant-case record per snapshot. The composite
+      (deflgky, fiscalyr, reopseq, tapeyear) is near-unique (6,283,938 distinct
+      of 6,299,908 rows); collisions are genuinely distinct records, so
+      defendant_record_id appends a deterministic row_number tiebreaker over
+      the full-row hash. The five repeated filing-offense and
+      termination-offense/sentence column groups are kept as-is, renamed to
+      snake_case with _1.._5 suffixes.
+    columns:
+      - name: defendant_record_id
+        description: >
+          Surrogate key over (deflgky, fiscalyr, reopseq, tapeyear) plus a
+          provenance tiebreaker — primary key.
+        data_tests:
+          - unique
+          - not_null
+      - name: defendant_link_key
+        description: FJC defendant link key (DEFLGKY) — links records for the same defendant across files.
+      - name: case_link_key
+        description: FJC case link key (CASLGKY) — links defendants in the same case.
+      - name: fiscal_year
+        description: Statistical fiscal year of the record.
+      - name: tape_year
+        description: Snapshot / reporting year of the IDB file.
+      - name: file_date
+        description: Date the case was filed against the defendant (parsed; null if unparseable).
+      - name: term_date
+        description: Date proceedings against the defendant terminated.
+      - name: fine_total
+        description: Total fine imposed across all counts (dollars).
+      - name: prison_total
+        description: Total prison sentence across all counts (months; FJC sentinel codes may parse as large values).
+      - name: probation_total
+        description: Total probation across all counts (months).
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.

@@ -1,0 +1,63 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_EPA_FRS_FRS_FACILITIES
+        description: >
+          Raw landing table for the EPA Facility Registry Service (FRS)
+          national facility file — name, address, and coordinates keyed by
+          registry ID. All columns arrive as TEXT. Note: a larger FRS extract
+          (FED_EPA_FRS_FULL, ~5.3M facilities) is modeled separately; this
+          file is a different vintage/cut and contains 84,926 registry IDs
+          not present in that extract (verified 2026-08-10), so both are kept.
+        columns:
+          - name: REGISTRY_ID
+            description: Unique EPA FRS registry identifier for the facility.
+          - name: FAC_NAME
+            description: Facility name.
+
+models:
+  - name: stg_fed_epa_frs_frs_facilities__facilities
+    description: >
+      Staged and deduplicated view of the EPA Facility Registry Service
+      national facility file. Grain: one row = one facility — verified
+      exactly unique on registry_id. This is a different vintage/cut from the
+      separately modeled larger FRS extract (FED_EPA_FRS_FULL, ~5.3M rows);
+      84,926 registry IDs here are absent from that extract, so both sources
+      are kept. TEXT columns are cast to appropriate types; keeps the most
+      recently ingested record per facility.
+    columns:
+      - name: registry_id
+        description: Unique EPA FRS registry identifier — primary key for this entity.
+        data_tests:
+          - unique
+          - not_null
+      - name: fac_name
+        description: Facility name.
+      - name: fac_street
+        description: Facility street address.
+      - name: fac_city
+        description: Facility city.
+      - name: fac_state
+        description: Facility state.
+      - name: fac_zip
+        description: Facility ZIP code.
+      - name: fac_county
+        description: Facility county.
+      - name: fac_epa_region
+        description: EPA region number the facility falls under.
+      - name: latitude_measure
+        description: Facility latitude (numeric).
+      - name: longitude_measure
+        description: Facility longitude (numeric).
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.
+      - name: _src_sha256
+        description: SHA-256 hash of the source file the record was loaded from.

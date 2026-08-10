@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_EPA_RCRA_VIOSNC_HISTORY
+        description: >
+          Raw landing table. EPA RCRAInfo violation / significant-non-compliance monthly history: one row = one handler-location-month status (vio_flag / snc_flag). All columns arrive as TEXT.
+
+models:
+  - name: stg_fed_epa_rcra_viosnc_history__monthly_status
+    description: >
+      Staged view of FED_EPA_RCRA_VIOSNC_HISTORY. EPA RCRAInfo violation / significant-non-compliance monthly history: one row = one handler-location-month status (vio_flag / snc_flag).
+    columns:
+      - name: status_month_id
+        description: Primary key for this record (exactly unique composite).
+        data_tests:
+          - unique
+          - not_null

@@ -1,0 +1,62 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_USCG_NRC_INCIDENTS
+        description: >
+          Raw landing table for US Coast Guard National Response Center (NRC)
+          incident reports — pollution, spill, and chemical release calls
+          phoned into the NRC. All columns arrive as TEXT. One row = one
+          incident report (call).
+        columns:
+          - name: SEQNOS
+            description: Unique NRC sequence number for the incident report.
+          - name: RESPONSIBLE_COMPANY
+            description: Company reported as responsible for the incident.
+
+models:
+  - name: stg_fed_uscg_nrc_incidents__incidents
+    description: >
+      Staged and deduplicated view of the National Response Center incident
+      reports. Grain: one row = one incident report (call) — verified exactly
+      unique on seqnos. This is the primary NRC source (~1.03M rows); a
+      smaller sibling extract with unlabeled trailing columns is staged
+      separately. TEXT columns are cast to appropriate types; keeps the most
+      recently ingested record per incident.
+    columns:
+      - name: seqnos
+        description: Unique NRC sequence number — primary key for this entity.
+        data_tests:
+          - unique
+          - not_null
+      - name: call_type
+        description: Type of call / report made to the NRC.
+      - name: responsible_company
+        description: Company reported as responsible for the incident.
+      - name: responsible_org_type
+        description: Organization type of the responsible party.
+      - name: responsible_city
+        description: City of the responsible party.
+      - name: responsible_state
+        description: State of the responsible party.
+      - name: responsible_zip
+        description: ZIP code of the responsible party.
+      - name: source
+        description: Source designation carried on the raw record.
+      - name: src_year
+        description: Source file year the record came from (passthrough).
+      - name: date_time_received
+        description: Timestamp the NRC received the incident call.
+      - name: date_time_complete
+        description: Timestamp the NRC completed the incident report.
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.
+      - name: _src_sha256
+        description: SHA-256 hash of the source file the record was loaded from.

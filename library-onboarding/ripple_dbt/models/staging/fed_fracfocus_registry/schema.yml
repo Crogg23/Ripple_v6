@@ -7,10 +7,114 @@ sources:
     tables:
       - name: FED_FRACFOCUS_REGISTRY
         description: >
-          Raw landing table, ingestion sweep 2026-08-05. All columns arrive as TEXT.
+          Raw landing table for the FracFocus hydraulic-fracturing chemical
+          disclosure registry (full ingredient-level extract). All columns
+          arrive as TEXT. One row = one ingredient line within a purpose
+          within a well disclosure.
+        columns:
+          - name: DISCLOSUREID
+            description: Disclosure identifier — one per well fracturing job disclosure.
+          - name: PURPOSEID
+            description: Purpose (additive product) identifier within the disclosure.
+          - name: INGREDIENTSID
+            description: Ingredient line identifier within the purpose.
+          - name: APINUMBER
+            description: API well number for the fractured well.
+          - name: CASNUMBER
+            description: CAS registry number of the chemical ingredient (may be masked as trade secret).
+          - name: OPERATORNAME
+            description: Well operator company name.
+          - name: MASSINGREDIENT
+            description: Mass of the ingredient used in the job.
 
 models:
-  - name: stg_fed_fracfocus_registry__all
+  - name: stg_fed_fracfocus_registry__ingredients
     description: >
-      Minimal passthrough staging view for FED_FRACFOCUS_REGISTRY. Grain not yet
-      determined -- snake_case rename only, no dedup.
+      Staged and deduplicated view of the FracFocus chemical disclosure
+      registry. Grain: one row = one ingredient line within a purpose within
+      a well fracturing disclosure — verified exactly unique on
+      (disclosure_id, purpose_id, ingredients_id), combined here into the
+      surrogate key ingredient_record_id. TEXT columns are cast to
+      appropriate types; keeps the most recently ingested record per key.
+    columns:
+      - name: ingredient_record_id
+        description: >
+          Surrogate primary key over (disclosure_id, purpose_id,
+          ingredients_id) via dbt_utils.generate_surrogate_key.
+        data_tests:
+          - unique
+          - not_null
+      - name: disclosure_id
+        description: Disclosure identifier — joins to the disclosure list and water source tables.
+        data_tests:
+          - not_null
+      - name: purpose_id
+        description: Purpose (additive product) identifier within the disclosure.
+      - name: ingredients_id
+        description: Ingredient line identifier within the purpose.
+      - name: api_number
+        description: API well number for the fractured well.
+      - name: cas_number
+        description: >
+          CAS registry number of the chemical ingredient, kept as text —
+          frequently masked with trade-secret / proprietary placeholders.
+      - name: state_name
+        description: State where the well is located.
+      - name: county_name
+        description: County where the well is located.
+      - name: operator_name
+        description: Well operator company name.
+      - name: well_name
+        description: Well name.
+      - name: projection
+        description: Coordinate projection / datum for the lat-lon values.
+      - name: ff_version
+        description: FracFocus form version the disclosure was filed under.
+      - name: federal_well
+        description: Whether the well is on federal land.
+      - name: indian_well
+        description: Whether the well is on tribal land.
+      - name: trade_name
+        description: Trade name of the additive product.
+      - name: supplier
+        description: Supplier of the additive product.
+      - name: purpose
+        description: Stated purpose of the additive in the fracturing job.
+      - name: ingredient_name
+        description: Chemical name of the ingredient.
+      - name: ingredient_common_name
+        description: Common name of the ingredient.
+      - name: ingredient_comment
+        description: Free-text comment on the ingredient line.
+      - name: ingredient_msds
+        description: Whether the ingredient appears on the product MSDS.
+      - name: claimant_company
+        description: Company claiming trade-secret protection for the ingredient, if any.
+      - name: job_start_date
+        description: Fracturing job start date.
+      - name: job_end_date
+        description: Fracturing job end date.
+      - name: latitude
+        description: Well latitude (numeric).
+      - name: longitude
+        description: Well longitude (numeric).
+      - name: tvd
+        description: True vertical depth of the well (numeric).
+      - name: total_base_water_volume
+        description: Total volume of base water used in the job (numeric).
+      - name: total_base_non_water_volume
+        description: Total volume of non-water base fluid used in the job (numeric).
+      - name: percent_high_additive
+        description: Ingredient concentration in the additive, percent (numeric).
+      - name: percent_hf_job
+        description: Ingredient concentration in the whole fracturing fluid, percent (numeric).
+      - name: mass_ingredient
+        description: Mass of the ingredient used in the job (numeric).
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.
+      - name: _src_file
+        description: Source file the record was loaded from.

@@ -1,0 +1,57 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FJC_IDB_CIVIL
+        description: >
+          Raw landing table for the Federal Judicial Center Integrated Database
+          (IDB) civil case files — annual terminated-case snapshots plus the
+          pending-cases file. 10.9M rows, all columns arrive as TEXT.
+
+models:
+  - name: stg_fed_fjc_idb_civil__case_records
+    description: >
+      Staged view of the FJC IDB civil case landing table. One row = one civil
+      case record per snapshot year. The composite
+      (circuit, district, office, docket, filedate, tapeyear) is near-unique;
+      2,867 collisions are genuinely distinct records, so case_record_id
+      appends a deterministic row_number tiebreaker over the full-row hash.
+      TAPEYEAR '2099' (462,223 rows) is FJC's convention for the pending-cases
+      file and is kept as published.
+    columns:
+      - name: case_record_id
+        description: >
+          Surrogate key over (circuit, district, office, docket, filedate,
+          tapeyear) plus a provenance tiebreaker — primary key.
+        data_tests:
+          - unique
+          - not_null
+      - name: circuit
+        description: Federal appellate circuit code.
+      - name: district
+        description: Federal district court code.
+      - name: office
+        description: Divisional office code within the district.
+      - name: docket
+        description: District court docket number.
+      - name: tape_year
+        description: >
+          Snapshot / statistical reporting year of the IDB file. '2099' is
+          FJC's convention for the pending-cases file.
+      - name: file_date
+        description: Date the case was filed (parsed; null if unparseable).
+      - name: nature_of_suit
+        description: FJC nature-of-suit code (kept as text).
+      - name: amount_demanded
+        description: Dollar amount demanded (thousands, per FJC codebook).
+      - name: amount_received
+        description: Dollar amount awarded/received at judgment.
+      - name: term_date
+        description: Date the case was terminated (null in the pending file).
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.

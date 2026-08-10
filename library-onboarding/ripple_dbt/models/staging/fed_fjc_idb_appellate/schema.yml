@@ -1,0 +1,44 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FJC_IDB_APPELLATE
+        description: >
+          Raw landing table for the Federal Judicial Center Integrated Database
+          (IDB) courts of appeals files — one record per appeal per snapshot.
+          988K rows, all columns arrive as TEXT.
+
+models:
+  - name: stg_fed_fjc_idb_appellate__appeal_records
+    description: >
+      Staged view of the FJC IDB appellate landing table. One row = one appeal
+      record per snapshot year; (circuit, docket, reopen, tapeyear, dktdate) is
+      exactly unique in the landing data, so appeal_record_id is a plain
+      surrogate key over those five raw text columns with no tiebreaker.
+    columns:
+      - name: appeal_record_id
+        description: >
+          Surrogate key over (circuit, docket, reopen, tapeyear, dktdate) —
+          primary key.
+        data_tests:
+          - unique
+          - not_null
+      - name: circuit
+        description: Federal appellate circuit code.
+      - name: docket
+        description: Court of appeals docket number.
+      - name: reopen
+        description: Reopen indicator distinguishing reopened appeal records.
+      - name: tape_year
+        description: Snapshot / reporting year of the IDB file.
+      - name: docket_date
+        description: Date the appeal was docketed (parsed; null if unparseable).
+      - name: judgment_date
+        description: Date of the court of appeals judgment.
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.

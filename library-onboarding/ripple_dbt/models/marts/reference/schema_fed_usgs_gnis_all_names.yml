@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: reference__fed_usgs_gnis_all_names
+    description: "USGS Geographic Names Information System AllNames file: one row = one name-citation for a geographic feature, unique on a surrogate key over (feature_id, feature_name, citation). The raw load carried 6 exact duplicate rows (1,249,624 distinct of 1,249,630), dropped in staging keeping the most recently ingested. feature_id (981,699 distinct) joins name variants of the same feature."
+    columns:
+      - name: name_citation_id
+        data_tests: [not_null, unique]
+      - name: feature_id
+        data_tests: [not_null]

@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: justice__fed_fjc_idb_appellate
+    description: >
+      Federal Judicial Center Integrated Database, courts of appeals case
+      files: one row = one appeal record per snapshot year (988,183 records).
+      (circuit, docket, reopen, tapeyear, dktdate) is exactly unique in the
+      source, so appeal_record_id is a plain surrogate key with no tiebreaker.
+      Covers parties, originating district case, panel judges, and
+      disposition/outcome codes.
+    columns:
+      - name: appeal_record_id
+        data_tests: [not_null, unique]

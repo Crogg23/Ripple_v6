@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: environment__fed_uscg_nrc_incidents
+    description: "USCG National Response Center incident reports: one row per pollution/spill/chemical release call (seqnos unique, 1.03M rows) with call type, responsible company/org, and received/completed timestamps. Primary NRC source."
+    columns:
+      - name: seqnos
+        data_tests: [not_null, unique]

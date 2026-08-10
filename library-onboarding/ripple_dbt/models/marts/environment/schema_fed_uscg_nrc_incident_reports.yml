@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: environment__fed_uscg_nrc_incident_reports
+    description: "Secondary USCG National Response Center incident extract: one row per incident report (seqnos unique, 116,662 rows). Same feed as the primary million-row NRC source; trailing payload columns arrived unlabeled from the publisher and are kept as extra_col_1..5."
+    columns:
+      - name: seqnos
+        data_tests: [not_null, unique]

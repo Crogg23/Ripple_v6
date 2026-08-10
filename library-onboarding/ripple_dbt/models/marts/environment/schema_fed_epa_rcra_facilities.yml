@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: environment__fed_epa_rcra_facilities
+    description: "EPA RCRAInfo hazardous-waste handler universe: one row = one RCRA handler (ID_NUMBER unique). Name, address, enforcement universe flags, generator status."
+    columns:
+      - name: handler_id
+        data_tests: [not_null, unique]

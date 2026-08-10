@@ -7,10 +7,52 @@ sources:
     tables:
       - name: FED_FRACFOCUS_WATER_SOURCE
         description: >
-          Raw landing table, ingestion sweep 2026-08-05. All columns arrive as TEXT.
+          Raw landing table for FracFocus water sources — where the base water
+          for each hydraulic-fracturing job came from. All columns arrive as
+          TEXT. One row = one water source line within a well disclosure.
+        columns:
+          - name: WATERSOURCEID
+            description: Unique water source line identifier.
+          - name: DISCLOSUREID
+            description: Disclosure identifier — the well fracturing job this water source belongs to.
+          - name: PERCENT
+            description: Share of the job's base water attributed to this source.
 
 models:
-  - name: stg_fed_fracfocus_water_source__all
+  - name: stg_fed_fracfocus_water_source__water_sources
     description: >
-      Minimal passthrough staging view for FED_FRACFOCUS_WATER_SOURCE. Grain not yet
-      determined -- snake_case rename only, no dedup.
+      Staged and deduplicated view of the FracFocus water source table.
+      Grain: one row = one water source line within a well fracturing
+      disclosure — verified exactly unique on water_source_id. TEXT columns
+      are cast to appropriate types; keeps the most recently ingested record
+      per water source line.
+    columns:
+      - name: water_source_id
+        description: Unique water source line identifier — primary key for this entity.
+        data_tests:
+          - unique
+          - not_null
+      - name: disclosure_id
+        description: Disclosure identifier — joins to the disclosure list and ingredient registry.
+      - name: api_number
+        description: API well number for the fractured well.
+      - name: state_name
+        description: State where the well is located.
+      - name: county_name
+        description: County where the well is located.
+      - name: operator_name
+        description: Well operator company name.
+      - name: well_name
+        description: Well name.
+      - name: description
+        description: Free-text description of the water source (e.g. river, aquifer, recycled).
+      - name: percent
+        description: Share of the job's base water attributed to this source, percent (numeric).
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.
+      - name: _src_file
+        description: Source file the record was loaded from.

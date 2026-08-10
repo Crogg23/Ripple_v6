@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: justice__fed_fjc_idb_bankruptcy
+    description: >
+      Federal Judicial Center Integrated Database, bankruptcy case files: one
+      row = one bankruptcy case per snapshot (7.0M records). (case_key,
+      snapshot) is exactly unique in the source, so case_snapshot_id is a
+      plain surrogate key with no tiebreaker. Includes chapter, debtor
+      pro-se/disposition detail, and petition-schedule dollar figures
+      (assets, liabilities, discharged debt).
+    columns:
+      - name: case_snapshot_id
+        data_tests: [not_null, unique]

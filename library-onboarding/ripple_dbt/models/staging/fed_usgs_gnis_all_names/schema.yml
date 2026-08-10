@@ -1,0 +1,104 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_USGS_GNIS_ALL_NAMES
+        description: >
+          Raw landing table for the USGS Geographic Names Information System
+          (GNIS) AllNames file: one row = one name-citation for a geographic
+          feature. Contains 1,249,630 rows, of which 1,249,624 are distinct on
+          (FEATURE_ID, FEATURE_NAME, CITATION).
+        columns:
+          - name: FEATURE_ID
+            description: GNIS feature identifier — joins name variants of the same feature.
+          - name: FEATURE_NAME
+            description: The name (official or variant) this citation documents.
+          - name: FEATURE_NAME_OFFICIAL
+            description: Flag / value indicating whether the name is the official feature name.
+          - name: SOURCECITATIONABBREVIATION
+            description: Abbreviated identifier of the citation source (arrives as NUMBER).
+          - name: SOURCEORIGINATOR
+            description: Originator (author/agency) of the cited source.
+          - name: SOURCEREFTYPE
+            description: Reference type of the cited source.
+          - name: TITLE
+            description: Title of the cited source.
+          - name: EDITION
+            description: Edition of the cited source.
+          - name: SOURCEURL
+            description: URL of the cited source, if any.
+          - name: PUBLICATIONDATE
+            description: Publication date of the cited source.
+          - name: SERIESNAME
+            description: Series name of the cited source.
+          - name: SERIESISSUE
+            description: Series issue of the cited source.
+          - name: ENDING_DATE
+            description: Ending date associated with the name/citation.
+          - name: DATE_CREATED
+            description: Date the record was created in GNIS.
+          - name: CITATION
+            description: Full citation text for the name.
+
+models:
+  - name: stg_fed_usgs_gnis_all_names__name_citations
+    description: >
+      Staged and deduplicated view of the USGS GNIS AllNames landing table. One
+      row per name-citation for a geographic feature, unique on the
+      (feature_id, feature_name, citation) triple. The raw load contains 6
+      exact duplicate rows (1,249,624 distinct of 1,249,630); these are dropped
+      here via row_number over the triple, keeping the most recently ingested
+      record. A surrogate key over the triple is the primary key.
+    columns:
+      - name: name_citation_id
+        description: >
+          Surrogate key over (feature_id, feature_name, citation) — primary key
+          for this entity.
+        data_tests:
+          - unique
+          - not_null
+      - name: feature_id
+        description: >
+          GNIS feature identifier (981,699 distinct) — joins name variants of
+          the same feature across rows.
+        data_tests:
+          - not_null
+      - name: feature_name
+        description: The name (official or variant) this citation documents.
+      - name: feature_name_official
+        description: Flag / value indicating whether the name is the official feature name.
+      - name: source_citation_abbreviation
+        description: Abbreviated identifier of the citation source.
+      - name: source_originator
+        description: Originator (author/agency) of the cited source.
+      - name: source_ref_type
+        description: Reference type of the cited source.
+      - name: title
+        description: Title of the cited source.
+      - name: edition
+        description: Edition of the cited source.
+      - name: source_url
+        description: URL of the cited source, if any.
+      - name: publication_date
+        description: Publication date of the cited source.
+      - name: series_name
+        description: Series name of the cited source.
+      - name: series_issue
+        description: Series issue of the cited source.
+      - name: ending_date
+        description: Ending date associated with the name/citation.
+      - name: date_created
+        description: Date the record was created in GNIS.
+      - name: citation
+        description: Full citation text for the name.
+      - name: ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.
+      - name: src_sha256
+        description: SHA-256 hash of the source file for this record.

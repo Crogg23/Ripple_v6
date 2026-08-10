@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: environment__fed_fracfocus_disclosure_list
+    description: "FracFocus disclosure list: one row per well hydraulic-fracturing job disclosure (disclosure_id unique, 248,835 rows) with operator, API well number, lat-lon, job dates, and base water/non-water fluid volumes."
+    columns:
+      - name: disclosure_id
+        description: Joins to environment__fed_fracfocus_registry (ingredients) and environment__fed_fracfocus_water_source.
+        data_tests: [not_null, unique]

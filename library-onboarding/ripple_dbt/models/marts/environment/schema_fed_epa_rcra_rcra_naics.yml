@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: environment__fed_epa_rcra_rcra_naics
+    description: "EPA RCRAInfo handler NAICS industry codes: one row = one handler-location-NAICS link (exactly unique)."
+    columns:
+      - name: facility_naics_id
+        data_tests: [not_null, unique]

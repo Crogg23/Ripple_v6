@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: politics__intl_elections_canada_contributions
+    description: "Elections Canada: federal political contributions reported on financial returns, all entity types (parties, candidates, electoral district associations, leadership contestants, nomination contestants, third parties), 12,646,465 lines. One row = one reported contribution line. No natural key -- repeated identical lines are legitimate; contribution_record_id is a surrogate (md5 over all business columns + row_number tiebreaker)."
+    columns:
+      - name: contribution_record_id
+        data_tests: [not_null, unique]

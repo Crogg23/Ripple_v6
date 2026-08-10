@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_EPA_RCRA_FACILITIES
+        description: >
+          Raw landing table. EPA RCRAInfo hazardous-waste handler universe: one row = one RCRA handler (ID_NUMBER unique). Name, address, enforcement universe flags, generator status. All columns arrive as TEXT.
+
+models:
+  - name: stg_fed_epa_rcra_facilities__facilities
+    description: >
+      Staged view of FED_EPA_RCRA_FACILITIES. EPA RCRAInfo hazardous-waste handler universe: one row = one RCRA handler (ID_NUMBER unique). Name, address, enforcement universe flags, generator status.
+    columns:
+      - name: handler_id
+        description: Primary key for this record (exactly unique composite).
+        data_tests:
+          - unique
+          - not_null

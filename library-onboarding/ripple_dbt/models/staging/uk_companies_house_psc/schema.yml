@@ -1,0 +1,138 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: UK_COMPANIES_HOUSE_PSC
+        description: >
+          Raw landing table for the UK Companies House "Persons with Significant
+          Control" (PSC) bulk snapshot dated 2026-08-05. PARTIAL LOAD: exactly
+          7,000,000 rows of a full snapshot of roughly 10 million landed before
+          the load truncated mid-stream (single provenance batch). All columns
+          arrive as TEXT.
+        columns:
+          - name: COMPANY_NUMBER
+            description: Companies House company number the PSC record belongs to.
+          - name: KIND
+            description: PSC record kind (individual, corporate entity, legal person, statement, etc.).
+          - name: NAME
+            description: Full name of the person or entity with significant control.
+          - name: NAME_TITLE
+            description: Name title component (individuals).
+          - name: NAME_FORENAME
+            description: Forename component (individuals).
+          - name: NAME_MIDDLE
+            description: Middle-name component (individuals).
+          - name: NAME_SURNAME
+            description: Surname component (individuals).
+          - name: NATIONALITY
+            description: Stated nationality (individuals).
+          - name: COUNTRY_OF_RESIDENCE
+            description: Stated country of residence (individuals).
+          - name: DOB_MONTH
+            description: Month of birth (individuals; year/month only in the public file).
+          - name: DOB_YEAR
+            description: Year of birth (individuals).
+          - name: ADDRESS_PREMISES
+            description: Service address premises.
+          - name: ADDRESS_LINE_1
+            description: Service address line 1.
+          - name: ADDRESS_LOCALITY
+            description: Service address locality / town.
+          - name: ADDRESS_POSTAL_CODE
+            description: Service address postal code.
+          - name: ADDRESS_COUNTRY
+            description: Service address country.
+          - name: REGISTRATION_NUMBER
+            description: Registration number of a corporate PSC in its home register.
+          - name: LEGAL_FORM
+            description: Legal form of a corporate PSC.
+          - name: COUNTRY_REGISTERED
+            description: Country of registration of a corporate PSC.
+          - name: NATURES_OF_CONTROL
+            description: Semicolon-joined list of nature-of-control codes.
+          - name: CEASED_ON
+            description: Date the PSC ceased (if applicable).
+          - name: NOTIFIED_ON
+            description: Date the PSC was notified to Companies House.
+          - name: ETAG
+            description: API etag for the record version. NOT unique (one known collision).
+          - name: LINK_SELF
+            description: Canonical Companies House API path for the PSC record — the true unique key.
+
+models:
+  - name: stg_uk_companies_house_psc__psc_records
+    description: >
+      Staged and deduplicated view of the UK Companies House PSC (beneficial
+      ownership) landing table. TEXT columns are cast to appropriate types; one
+      row per PSC record, keyed on the record's canonical API path
+      (psc_link_self), keeping the most recently ingested record. Underlying
+      load is a PARTIAL snapshot (7.0M of ~10M rows; see source description).
+    columns:
+      - name: psc_link_self
+        description: >
+          Canonical Companies House API path for the PSC record — primary key
+          for this entity.
+        data_tests:
+          - unique
+          - not_null
+      - name: company_number
+        description: >
+          Companies House company number — join key to the already-modeled UK
+          company register (5,107,915 distinct values in this load).
+        data_tests:
+          - not_null
+      - name: etag
+        description: API etag for the record version. Not unique — do not key on it.
+      - name: kind
+        description: PSC record kind (individual, corporate entity, legal person, statement, etc.).
+      - name: name
+        description: Full name of the person or entity with significant control.
+      - name: name_title
+        description: Name title component (individuals).
+      - name: name_forename
+        description: Forename component (individuals).
+      - name: name_middle
+        description: Middle-name component (individuals).
+      - name: name_surname
+        description: Surname component (individuals).
+      - name: nationality
+        description: Stated nationality (individuals).
+      - name: country_of_residence
+        description: Stated country of residence (individuals).
+      - name: dob_month
+        description: Month of birth (integer; individuals).
+      - name: dob_year
+        description: Year of birth (integer; individuals).
+      - name: address_premises
+        description: Service address premises.
+      - name: address_line_1
+        description: Service address line 1.
+      - name: address_locality
+        description: Service address locality / town.
+      - name: address_postal_code
+        description: Service address postal code.
+      - name: address_country
+        description: Service address country.
+      - name: registration_number
+        description: Registration number of a corporate PSC in its home register.
+      - name: legal_form
+        description: Legal form of a corporate PSC.
+      - name: country_registered
+        description: Country of registration of a corporate PSC.
+      - name: natures_of_control
+        description: Semicolon-joined list of nature-of-control codes, kept as text.
+      - name: notified_on
+        description: Date the PSC was notified to Companies House.
+      - name: ceased_on
+        description: Date the PSC ceased (null if still active).
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.
+      - name: _src_sha256
+        description: SHA-256 hash of the source file for this record.

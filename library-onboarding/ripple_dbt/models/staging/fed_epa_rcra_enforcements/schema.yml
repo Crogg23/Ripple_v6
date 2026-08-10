@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_EPA_RCRA_ENFORCEMENTS
+        description: >
+          Raw landing table. EPA RCRAInfo enforcement actions with penalty amounts (proposed/final monetary penalties, supplemental project and cost-recovery amounts): one row = one enforcement record. Composite near-unique; provenance tiebreaker on the key. All columns arrive as TEXT.
+
+models:
+  - name: stg_fed_epa_rcra_enforcements__enforcements
+    description: >
+      Staged view of FED_EPA_RCRA_ENFORCEMENTS. EPA RCRAInfo enforcement actions with penalty amounts (proposed/final monetary penalties, supplemental project and cost-recovery amounts): one row = one enforcement record. Composite near-unique; provenance tiebreaker on the key.
+    columns:
+      - name: enforcement_record_id
+        description: Primary key for this record (surrogate composite with provenance tiebreaker).
+        data_tests:
+          - unique
+          - not_null

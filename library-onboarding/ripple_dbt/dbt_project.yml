@@ -232,13 +232,6 @@ models:
           # ALREADY disabled below as a dead-source stub (14 rows, failed scrape).
           # This is the orphan of an already-known-dead source, not a new bug.
           +enabled: false
-        justice__fed_fjc_idb:
-          # 2026-07-24 note said "source re-ingested (4.1M rows)" -- the ROW COUNT was
-          # re-ingested, the DATA was not. Verified 2026-07-31: all 4,126,450 rows are
-          # the empty string in every column, and the ingest log has correctly said
-          # STATUS='empty' since 2026-06-17. The mart it builds is 1 row (the dedup
-          # collapses every identical blank surrogate key into one).
-          +enabled: false
       education:
         education__fed_ed_edfacts:
           # 2026-08-06: stub -- 33 rows, loaded from ed.gov's EDFacts Initiative

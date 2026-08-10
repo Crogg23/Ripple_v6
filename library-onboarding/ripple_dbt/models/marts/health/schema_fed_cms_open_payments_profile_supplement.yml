@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: health__fed_cms_open_payments_profile_supplement
+    description: "CMS Open Payments covered-recipient profile supplement: the roster/demographics companion to the already-modeled Open Payments payment tables. One row = one covered recipient profile (physicians + non-physician practitioners), unique on profile_id. npi is the join key to NPI-keyed provider tables (kept as text)."
+    columns:
+      - name: profile_id
+        data_tests: [not_null, unique]

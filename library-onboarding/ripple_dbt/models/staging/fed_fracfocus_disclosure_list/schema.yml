@@ -7,10 +7,70 @@ sources:
     tables:
       - name: FED_FRACFOCUS_DISCLOSURE_LIST
         description: >
-          Raw landing table, ingestion sweep 2026-08-05. All columns arrive as TEXT.
+          Raw landing table for the FracFocus disclosure list — the well/job
+          header extract of the hydraulic-fracturing chemical disclosure
+          registry. All columns arrive as TEXT. One row = one well fracturing
+          job disclosure.
+        columns:
+          - name: DISCLOSUREID
+            description: Unique disclosure identifier — one per well fracturing job disclosure.
+          - name: APINUMBER
+            description: API well number for the fractured well.
+          - name: OPERATORNAME
+            description: Well operator company name.
 
 models:
-  - name: stg_fed_fracfocus_disclosure_list__all
+  - name: stg_fed_fracfocus_disclosure_list__disclosures
     description: >
-      Minimal passthrough staging view for FED_FRACFOCUS_DISCLOSURE_LIST. Grain not yet
-      determined -- snake_case rename only, no dedup.
+      Staged and deduplicated view of the FracFocus disclosure list.
+      Grain: one row = one well fracturing job disclosure — verified exactly
+      unique on disclosure_id. TEXT columns are cast to appropriate types;
+      keeps the most recently ingested record per disclosure.
+    columns:
+      - name: disclosure_id
+        description: >
+          Unique disclosure identifier — primary key for this entity; joins
+          to the ingredient-level registry and water source tables.
+        data_tests:
+          - unique
+          - not_null
+      - name: api_number
+        description: API well number for the fractured well.
+      - name: state_name
+        description: State where the well is located.
+      - name: county_name
+        description: County where the well is located.
+      - name: operator_name
+        description: Well operator company name.
+      - name: well_name
+        description: Well name.
+      - name: projection
+        description: Coordinate projection / datum for the lat-lon values.
+      - name: ff_version
+        description: FracFocus form version the disclosure was filed under.
+      - name: federal_well
+        description: Whether the well is on federal land.
+      - name: indian_well
+        description: Whether the well is on tribal land.
+      - name: job_start_date
+        description: Fracturing job start date.
+      - name: job_end_date
+        description: Fracturing job end date.
+      - name: latitude
+        description: Well latitude (numeric).
+      - name: longitude
+        description: Well longitude (numeric).
+      - name: tvd
+        description: True vertical depth of the well (numeric).
+      - name: total_base_water_volume
+        description: Total volume of base water used in the job (numeric).
+      - name: total_base_non_water_volume
+        description: Total volume of non-water base fluid used in the job (numeric).
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.
+      - name: _src_file
+        description: Source file the record was loaded from.

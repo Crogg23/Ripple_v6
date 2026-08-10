@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_EPA_RCRA_VIOLATIONS
+        description: >
+          Raw landing table. EPA RCRAInfo violations: one row = one violation record. Composite near-unique; provenance tiebreaker on the key (same violation type can be re-determined). All columns arrive as TEXT.
+
+models:
+  - name: stg_fed_epa_rcra_violations__violations
+    description: >
+      Staged view of FED_EPA_RCRA_VIOLATIONS. EPA RCRAInfo violations: one row = one violation record. Composite near-unique; provenance tiebreaker on the key (same violation type can be re-determined).
+    columns:
+      - name: violation_record_id
+        description: Primary key for this record (surrogate composite with provenance tiebreaker).
+        data_tests:
+          - unique
+          - not_null

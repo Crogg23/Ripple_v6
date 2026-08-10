@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: justice__fed_fjc_idb_civil
+    description: >
+      Federal Judicial Center Integrated Database, civil case files: one row =
+      one civil case record per snapshot year (10.9M records, annual
+      terminated-case files plus the pending file). The natural composite
+      (circuit, district, office, docket, filedate, tapeyear) is near-unique —
+      2,867 collisions are genuinely distinct records, resolved with a
+      deterministic provenance tiebreaker inside case_record_id. Quirk:
+      tape_year '2099' (462,223 rows) is FJC's convention for the pending-cases
+      file, kept as published.
+    columns:
+      - name: case_record_id
+        data_tests: [not_null, unique]

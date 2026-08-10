@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: housing__fed_fema_ia_housing_registrations
+    description: "SAMPLE ONLY -- NOT the full dataset: 3,080,000 of 25,886,797 records (~12%; true count confirmed against OpenFEMA metadata 2026-08-10; truncated load, not a random sample; full reload queued). FEMA Individual Assistance housing registrations (OpenFEMA large-disasters dataset): one row = one valid IA registration (registration_id unique), with damage, insurance, and assistance award amounts."
+    columns:
+      - name: registration_id
+        data_tests: [not_null, unique]

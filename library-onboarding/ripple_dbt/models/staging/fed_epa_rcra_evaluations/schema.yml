@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_EPA_RCRA_EVALUATIONS
+        description: >
+          Raw landing table. EPA RCRAInfo compliance evaluations (inspections): one row = one evaluation record. Composite near-unique; provenance tiebreaker on the key (multiple agency rows can share an identifier). All columns arrive as TEXT.
+
+models:
+  - name: stg_fed_epa_rcra_evaluations__evaluations
+    description: >
+      Staged view of FED_EPA_RCRA_EVALUATIONS. EPA RCRAInfo compliance evaluations (inspections): one row = one evaluation record. Composite near-unique; provenance tiebreaker on the key (multiple agency rows can share an identifier).
+    columns:
+      - name: evaluation_record_id
+        description: Primary key for this record (surrogate composite with provenance tiebreaker).
+        data_tests:
+          - unique
+          - not_null

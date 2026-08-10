@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: environment__fed_epa_rcra_viosnc_history
+    description: "EPA RCRAInfo violation / significant-non-compliance monthly history: one row = one handler-location-month status (vio_flag / snc_flag)."
+    columns:
+      - name: status_month_id
+        data_tests: [not_null, unique]

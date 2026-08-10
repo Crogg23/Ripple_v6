@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: environment__fed_fracfocus_water_source
+    description: "FracFocus water sources: one row per water source line within a well fracturing disclosure (water_source_id unique, 23,747 rows) — source description and percent share of the job's base water."
+    columns:
+      - name: water_source_id
+        data_tests: [not_null, unique]
+      - name: disclosure_id
+        description: Joins to environment__fed_fracfocus_disclosure_list.

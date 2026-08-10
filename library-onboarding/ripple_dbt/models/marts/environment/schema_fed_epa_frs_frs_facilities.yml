@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: environment__fed_epa_frs_frs_facilities
+    description: "EPA Facility Registry Service national facility file: one row per facility (registry_id unique, 3.28M rows) with name, address, county, EPA region, and lat-lon. A different vintage/cut from the larger separately-modeled FRS extract — 84,926 registry IDs here are absent from that extract, so both are kept."
+    columns:
+      - name: registry_id
+        data_tests: [not_null, unique]

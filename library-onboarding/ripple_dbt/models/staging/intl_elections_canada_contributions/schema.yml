@@ -1,0 +1,72 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: INTL_ELECTIONS_CANADA_CONTRIBUTIONS
+        description: >
+          Raw landing table for federal political contributions reported to Elections
+          Canada, covering all entity types (registered parties, candidates, electoral
+          district associations, leadership contestants, nomination contestants,
+          third parties). 12,646,465 rows. All business columns arrive as TEXT.
+          NOTE: this table's ingestion metadata columns have NO leading underscore
+          (INGESTED_AT, SOURCE_RUN_ID, SRC_SHA256).
+
+models:
+  - name: stg_intl_elections_canada_contributions__contributions
+    description: >
+      Staged view of Elections Canada contribution lines. One row = one reported
+      contribution line from a financial return. No natural key exists: even the
+      composite (recipient_id, form_id, contributor_name, contribution_received_date,
+      monetary_amount) is NOT unique (9,817,007 distinct of 12,646,465, verified) --
+      repeated identical lines are legitimate (multiple identical installments,
+      aggregated part rows). contribution_record_id is a surrogate: md5 over all
+      business columns plus a row_number tiebreaker, so identical lines stay distinct.
+    columns:
+      - name: contribution_record_id
+        description: >
+          Surrogate primary key -- md5 hash over all business columns, plus a '-N'
+          row_number tiebreaker so repeated identical lines (legitimate) stay distinct.
+        data_tests:
+          - unique
+          - not_null
+      - name: political_entity
+        description: Type of recipient entity (party, candidate, leadership contestant, etc.).
+      - name: recipient_id
+        description: Elections Canada identifier for the recipient entity.
+      - name: recipient
+        description: Full name of the recipient entity.
+      - name: political_party_of_recipient
+        description: Political party affiliation of the recipient.
+      - name: electoral_district
+        description: Electoral district (riding) associated with the recipient.
+      - name: electoral_event
+        description: Electoral event (general election, by-election, fiscal year) the return covers.
+      - name: fiscal_election_date
+        description: Fiscal period end or election date of the return (date).
+      - name: form_id
+        description: Identifier of the financial return form the line was reported on.
+      - name: financial_report
+        description: Name of the financial report the line comes from.
+      - name: contributor_type
+        description: Type of contributor (individual, corporation, trade union, etc.).
+      - name: contributor_name
+        description: Name of the contributor as reported.
+      - name: contributor_province
+        description: Province of the contributor.
+      - name: contributor_postal_code
+        description: Postal code of the contributor.
+      - name: contribution_received_date
+        description: Date the contribution was received (date).
+      - name: monetary_amount
+        description: Monetary contribution amount in CAD (numeric).
+      - name: non_monetary_amount
+        description: Non-monetary (in-kind) contribution amount in CAD (numeric).
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.
+      - name: _src_sha256
+        description: SHA-256 of the source file the record was loaded from.

@@ -7,10 +7,55 @@ sources:
     tables:
       - name: FED_FEMA_IA_HOUSING_REGISTRATIONS
         description: >
-          Raw landing table, ingestion sweep 2026-08-05. All columns arrive as TEXT.
+          Raw landing table for FEMA Individual Assistance housing registrations
+          (OpenFEMA "Individuals and Households Program - Valid Registrations",
+          large-disasters dataset). 3,080,000 of 25,886,797 records landed (~12%;
+          true count confirmed against OpenFEMA metadata 2026-08-10) -- truncated
+          load, full reload queued. All columns arrive as TEXT.
 
 models:
-  - name: stg_fed_fema_ia_housing_registrations__all
+  - name: stg_fed_fema_ia_housing_registrations__registrations
     description: >
-      Minimal passthrough staging view for FED_FEMA_IA_HOUSING_REGISTRATIONS. Grain not yet
-      determined -- snake_case rename only, no dedup.
+      Staged view of FEMA Individual Assistance housing registrations. One row =
+      one valid IA registration; registration_id (source ID) is exactly unique
+      (3,080,000 distinct of 3,080,000, verified). Amounts cast to numeric, dates
+      to date. SAMPLE ONLY -- 3,080,000 of 25,886,797 records (~12%), truncated
+      load confirmed against OpenFEMA metadata 2026-08-10; full reload queued.
+    columns:
+      - name: registration_id
+        description: Source record ID -- primary key, one per IA registration.
+        data_tests:
+          - unique
+          - not_null
+      - name: disaster_number
+        description: FEMA disaster declaration number the registration falls under.
+      - name: applied_date
+        description: Date the applicant registered for assistance.
+      - name: declaration_date
+        description: Date the disaster was declared.
+      - name: damaged_state_abbreviation
+        description: State of the damaged dwelling.
+      - name: damaged_zip_code
+        description: ZIP code of the damaged dwelling.
+      - name: own_rent
+        description: Whether the applicant owns or rents the damaged dwelling.
+      - name: gross_income
+        description: Self-reported gross household income (numeric).
+      - name: ihp_amount
+        description: Total Individuals and Households Program award amount (numeric).
+      - name: ha_amount
+        description: Housing Assistance award amount (numeric).
+      - name: ona_amount
+        description: Other Needs Assistance award amount (numeric).
+      - name: fip_amount
+        description: Flood Insurance Purchase amount (numeric).
+      - name: flood_damage_amount
+        description: Verified flood damage amount (numeric).
+      - name: rental_assistance_amount
+        description: Rental assistance award amount (numeric).
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.
+      - name: _src_sha256
+        description: SHA-256 of the source file the record was loaded from.

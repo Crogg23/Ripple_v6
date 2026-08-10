@@ -8,14 +8,62 @@ sources:
       - name: FED_CFPB_HMDA_HISTORIC
         description: >
           Raw landing table for CFPB HMDA Historic Data (pre-2018 LAR flat files, "_labels"
-          decoded CSV variant, first-lien owner-occupied 1-4 family subset). Legacy
-          Respondent ID (RESPONDENT_ID, 10-char alphanumeric) is the join key, not LEI --
-          this is a different era/shape than FED_CFPB_HMDA (2022, LEI-keyed). 3-year slice
-          landed 2026-08-05 (2015, 2016, 2017); remaining pre-2018 years are a follow-up
-          backfill, not yet landed.
+          decoded CSV variant). 19,136,434 rows. Legacy Respondent ID (RESPONDENT_ID,
+          10-char alphanumeric) is the lender join key, NOT LEI -- this is a different
+          era/shape than FED_CFPB_HMDA (2018+, LEI-keyed). Coverage: AS_OF_YEAR 2015-2017
+          ONLY (verified) -- "historic" means the pre-2018 LAR file format, and only
+          2015, 2016, and 2017 are landed. Remaining pre-2018 years are a follow-up
+          backfill, not yet landed. All business columns arrive as TEXT except the
+          denial-reason columns (NUMBER).
 
 models:
-  - name: stg_fed_cfpb_hmda_historic__records
+  - name: stg_fed_cfpb_hmda_historic__lar_records
     description: >
-      Minimal passthrough staging (grain undetermined -- one row per LAR record within a
-      SOURCE_YEAR). Needs manual review before promoting to a mart.
+      Staged view of the pre-2018 HMDA Loan/Application Register (LAR) landing table.
+      One row = one anonymized loan-application record. Coverage is AS_OF_YEAR 2015-2017
+      ONLY. LAR records carry no natural key, so lar_record_id is a surrogate: an md5
+      hash over all business columns plus a row_number tiebreaker -- identical rows are
+      legitimate distinct applications in LAR files (anonymization collapses them), so
+      NO dedup is performed. The lender join key for this era is respondent_id (legacy
+      Respondent ID), NOT lei.
+    columns:
+      - name: lar_record_id
+        description: >
+          Surrogate primary key -- md5 hash over all business columns, plus a '-N'
+          row_number tiebreaker so identical rows (legitimate distinct applications)
+          stay distinct.
+        data_tests:
+          - unique
+          - not_null
+      - name: as_of_year
+        description: HMDA reporting year (2015, 2016, or 2017 only).
+      - name: source_year
+        description: Year of the source file the record was loaded from.
+      - name: respondent_id
+        description: >
+          Legacy Respondent ID of the reporting lender -- the join key for this
+          pre-2018 era (NOT LEI).
+      - name: agency_code
+        description: Code of the federal agency the lender reports to.
+      - name: loan_amount_000s
+        description: Loan amount in thousands of dollars (numeric).
+      - name: action_taken
+        description: Action-taken code (originated, denied, withdrawn, etc.); text code.
+      - name: applicant_income_000s
+        description: Applicant gross annual income in thousands of dollars (numeric).
+      - name: rate_spread
+        description: Rate spread over average prime offer rate, where reported (numeric).
+      - name: state_abbr
+        description: State of the subject property.
+      - name: county_code
+        description: County FIPS code of the subject property.
+      - name: census_tract_number
+        description: Census tract of the subject property.
+      - name: population
+        description: Population of the census tract (numeric).
+      - name: hud_median_family_income
+        description: HUD median family income for the MSA/MD (numeric).
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.

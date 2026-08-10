@@ -1,0 +1,73 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_USCG_NRC_INCIDENT_REPORTS
+        description: >
+          Raw landing table for a secondary US Coast Guard National Response
+          Center (NRC) incident report extract. Same feed as
+          FED_USCG_NRC_INCIDENTS (the primary, million-row source) but a
+          different extract whose trailing payload columns (COLUMN1..COLUMN5)
+          arrived unlabeled from the publisher. Metadata columns in this
+          table carry no leading underscore. One row = one incident report.
+        columns:
+          - name: SEQNOS
+            description: Unique NRC sequence number for the incident report.
+          - name: COLUMN1
+            description: Unlabeled trailing payload column as published.
+
+models:
+  - name: stg_fed_uscg_nrc_incident_reports__incident_reports
+    description: >
+      Staged and deduplicated view of the secondary NRC incident report
+      extract. Grain: one row = one incident report — verified exactly
+      unique on seqnos. The sibling million-row table
+      (stg_fed_uscg_nrc_incidents__incidents) is the primary NRC source;
+      this extract's trailing columns arrived unlabeled from the publisher
+      and are passed through as extra_col_1..5. Keeps the most recently
+      ingested record per incident.
+    columns:
+      - name: seqnos
+        description: Unique NRC sequence number — primary key for this entity.
+        data_tests:
+          - unique
+          - not_null
+      - name: call_type
+        description: Type of call / report made to the NRC.
+      - name: responsible_company
+        description: Company reported as responsible for the incident.
+      - name: responsible_org_type
+        description: Organization type of the responsible party.
+      - name: responsible_city
+        description: City of the responsible party.
+      - name: responsible_state
+        description: State of the responsible party.
+      - name: responsible_zip
+        description: ZIP code of the responsible party.
+      - name: source
+        description: Source designation carried on the raw record.
+      - name: date_time_received
+        description: Timestamp the NRC received the incident call.
+      - name: date_time_complete
+        description: Timestamp the NRC completed the incident report.
+      - name: extra_col_1
+        description: Unlabeled trailing payload column (COLUMN1) — arrived without a header from the publisher; kept as-is.
+      - name: extra_col_2
+        description: Unlabeled trailing payload column (COLUMN2) — arrived without a header from the publisher; kept as-is.
+      - name: extra_col_3
+        description: Unlabeled trailing payload column (COLUMN3) — arrived without a header from the publisher; kept as-is.
+      - name: extra_col_4
+        description: Unlabeled trailing payload column (COLUMN4) — arrived without a header from the publisher; kept as-is.
+      - name: extra_col_5
+        description: Unlabeled trailing payload column (COLUMN5) — arrived without a header from the publisher; kept as-is.
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table (raw column INGESTED_AT, no leading underscore at source).
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.
+      - name: _src_sha256
+        description: SHA-256 hash of the source file the record was loaded from.

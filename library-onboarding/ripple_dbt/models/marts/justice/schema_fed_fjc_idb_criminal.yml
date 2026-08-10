@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: justice__fed_fjc_idb_criminal
+    description: >
+      Federal Judicial Center Integrated Database, criminal defendant files:
+      one row = one defendant-case record per snapshot (6.3M records). The
+      natural composite (deflgky, fiscalyr, reopseq, tapeyear) is near-unique
+      (6,283,938 distinct of 6,299,908 rows) — collisions are genuinely
+      distinct records, resolved with a deterministic provenance tiebreaker
+      inside defendant_record_id. Up to five charged offenses at filing and
+      five offense/sentence slots at termination are kept as repeated column
+      groups (_1.._5), as published by FJC.
+    columns:
+      - name: defendant_record_id
+        data_tests: [not_null, unique]

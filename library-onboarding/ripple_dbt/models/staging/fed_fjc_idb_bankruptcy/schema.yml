@@ -1,0 +1,44 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FJC_IDB_BANKRUPTCY
+        description: >
+          Raw landing table for the Federal Judicial Center Integrated Database
+          (IDB) bankruptcy files — one record per case per snapshot. 7.0M rows,
+          all columns arrive as TEXT.
+
+models:
+  - name: stg_fed_fjc_idb_bankruptcy__case_snapshots
+    description: >
+      Staged view of the FJC IDB bankruptcy landing table. One row = one
+      bankruptcy case per snapshot; (case_key, snapshot) is exactly unique in
+      the landing data, so case_snapshot_id is a plain surrogate key over those
+      two columns with no tiebreaker.
+    columns:
+      - name: case_snapshot_id
+        description: Surrogate key over (case_key, snapshot) — primary key.
+        data_tests:
+          - unique
+          - not_null
+      - name: case_key
+        description: FJC case key (CASEKEY) — stable identifier for the bankruptcy case.
+      - name: snapshot
+        description: IDB snapshot identifier this record belongs to.
+      - name: file_date
+        description: Date the petition was filed (parsed; null if unparseable).
+      - name: close_date
+        description: Date the case was closed (null while pending).
+      - name: total_assets
+        description: Total assets reported on the petition schedules (dollars).
+      - name: total_liabilities
+        description: Total liabilities reported on the petition schedules (dollars).
+      - name: total_debt
+        description: Total debt reported (dollars).
+      - name: _ingested_at
+        description: Timestamp when the record was ingested into the landing table.
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.

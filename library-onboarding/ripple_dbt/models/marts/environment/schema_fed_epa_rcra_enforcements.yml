@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: environment__fed_epa_rcra_enforcements
+    description: "EPA RCRAInfo enforcement actions with penalty amounts (proposed/final monetary penalties, supplemental project and cost-recovery amounts): one row = one enforcement record. Composite near-unique; provenance tiebreaker on the key."
+    columns:
+      - name: enforcement_record_id
+        data_tests: [not_null, unique]
