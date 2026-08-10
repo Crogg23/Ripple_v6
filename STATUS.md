@@ -9,8 +9,6 @@
   the orphans.
 - FBI CDE key in `library-onboarding/.env` remains semi-exposed; rotate at
   leisure. API signups still pending on Chris: DOL WHD, Senate LDA.
-- CI was still running at close on the wave-1 push (same offline suite that
-  passed locally; low risk — verify at next boot).
 
 **DONE this session (two commits, 784f7c32 + 1a6a83ab, both pushed):**
 Part 1 (earlier close, see git): 4 new marts + 2 stale-shape rewrites +
@@ -48,7 +46,7 @@ Part 2 — backlog wave 1, 12 sources flipped landed→modeled in the catalog
 1. Nothing blocking. Orphan + junk-mart drop list available on request.
 
 **NEXT SESSION:**
-1. Verify CI on the wave-1 push, then continue the backlog: next biggest are
+1. Continue the backlog: next biggest are
    IRS exempt-orgs master file (281k), NIH grants (206k), plus the sampled
    API sources (USAspending bulk, HMDA, FDIC) which may need fuller loads
    before modeling — check before building.
@@ -60,5 +58,5 @@ over the 3.3M-row edge table and 2.6M-row stints, twelve mart builds
 (largest 3.3M rows), 52 tests, two offline-suite warehouse-check runs.
 
 **TEST STATUS:** offline 2,698 passed / 2 skipped / 0 failed; dbt build
-green (21 models, 52 tests) against production databases. CI green through
-the first push of the session; final push's CI still running at close.
+green (21 models, 52 tests) against production databases. CI green on all
+four pushes this session.
