@@ -562,8 +562,15 @@ def main():
             flat = [flatten(r) for r in recs]
             df = pd.DataFrame(flat)
             df = df.where(pd.notnull(df), None)
+            # Land EVERYTHING as text (the landing-layer convention). Leaving
+            # native ints/floats here let write_pandas auto-type the staging
+            # table off whatever FY2000-2002 happened to contain -- columns
+            # that were all-None in those years (ORG_CITY, SPENDING_CATEGORIES,
+            # ...) came out NUMBER, and the first later-year row with real text
+            # in one of them killed the COPY (live crash 2026-08-09:
+            # SPENDING_CATEGORIES '[276, 320]' vs a NUMBER column).
             for c in df.columns:
-                df[c] = df[c].apply(lambda v: v if v is None or isinstance(v, (str, int, float)) else str(v))
+                df[c] = df[c].apply(lambda v: None if v is None else str(v))
 
             csv_bytes = df.to_csv(index=False).encode("utf-8")
             chunk_sha = hashlib.sha256(csv_bytes).hexdigest()

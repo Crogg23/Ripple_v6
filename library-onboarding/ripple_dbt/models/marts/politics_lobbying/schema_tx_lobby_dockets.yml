@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: politics__tx_lobby_dockets
+    description: "Texas lobby docket/proceeding designations: one row per docket line (lobbydocketdesigid unique)."
+    columns:
+      - name: docket_id
+        data_tests: [not_null, unique]
+      - name: filer_id
+        data_tests: [not_null]

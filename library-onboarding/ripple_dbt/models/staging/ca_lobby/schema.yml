@@ -1,0 +1,75 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: CA_LOBBY_COVER2
+      - name: CA_LOBBY_CHG_LOG
+      - name: CA_LOBBY_AMENDMENTS
+      - name: CA_LOBBY_CONTRIBUTIONS
+      - name: CA_LOBBY_EMPLOYER
+      - name: CA_LOBBY_EMP_LOBBYIST
+      - name: CA_LOBBY_FIRM
+      - name: CA_LOBBY_FIRM_LOBBYIST
+      - name: CA_LOBBY_FIRM_EMPLOYER
+      - name: CA_LOBBY_EMPLOYER_FIRMS
+
+models:
+  - name: stg_ca_lobby__cover2
+    description: "CAL-ACCESS lobbying cover-page entity lines: one row per entity line item on a filing version (filing_id + amend_id + line_item unique)."
+    columns:
+      - name: filing_id
+        data_tests: [not_null]
+  - name: stg_ca_lobby__chg_log
+    description: "CAL-ACCESS lobbying registration change log: one row per logged attribute change. filer_id+change_no has 11 published near-duplicates -- no unique test."
+    columns:
+      - name: filer_id
+        description: Blank on 13 rows as published.
+  - name: stg_ca_lobby__amendments
+    description: "CAL-ACCESS lobbying registration amendments (Form 605): one row per amendment filing version (filing_id + amend_id unique)."
+    columns:
+      - name: filing_id
+        data_tests: [not_null]
+  - name: stg_ca_lobby__contributions
+    description: "CAL-ACCESS lobbyist campaign contributions: one row per reported contribution. CONTRIBUTION_DT blank on many rows as published."
+    columns:
+      - name: filer_id
+        data_tests: [not_null]
+  - name: stg_ca_lobby__employer
+    description: "CAL-ACCESS lobbyist employer session totals: one row per employer per legislative session (4 published doubles in the 1999 session -- no unique test)."
+    columns:
+      - name: employer_id
+        data_tests: [not_null]
+  - name: stg_ca_lobby__emp_lobbyist
+    description: "CAL-ACCESS in-house lobbyist roster: one row per lobbyist-employer-session (unique)."
+    columns:
+      - name: lobbyist_id
+        data_tests: [not_null]
+      - name: employer_id
+        data_tests: [not_null]
+  - name: stg_ca_lobby__firm
+    description: "CAL-ACCESS lobbying firm session totals: one row per firm per session (firm_id + session_id unique)."
+    columns:
+      - name: firm_id
+        data_tests: [not_null]
+  - name: stg_ca_lobby__firm_lobbyist
+    description: "CAL-ACCESS firm lobbyist roster: one row per lobbyist-firm-session (unique)."
+    columns:
+      - name: lobbyist_id
+        data_tests: [not_null]
+      - name: firm_id
+        data_tests: [not_null]
+  - name: stg_ca_lobby__firm_employer
+    description: "CAL-ACCESS firm-employer billing lines: one row per firm-filing-employer-period (unique with employer name + period start)."
+    columns:
+      - name: firm_id
+        data_tests: [not_null]
+  - name: stg_ca_lobby__employer_firms
+    description: "CAL-ACCESS employer-to-firm engagements: one row per employer-firm-session (unique)."
+    columns:
+      - name: employer_id
+        data_tests: [not_null]
+      - name: firm_id
+        data_tests: [not_null]

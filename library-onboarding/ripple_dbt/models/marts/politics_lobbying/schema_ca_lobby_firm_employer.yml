@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: politics__ca_lobby_firm_employer
+    description: "CAL-ACCESS firm-employer billing lines: one row per firm-filing-employer-period (unique with employer name + period start)."
+    columns:
+      - name: firm_id
+        data_tests: [not_null]

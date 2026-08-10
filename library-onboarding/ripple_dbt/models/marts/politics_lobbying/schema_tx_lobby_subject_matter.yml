@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: politics__tx_lobby_subject_matter
+    description: "Texas lobby subject-matter lines: one row per reported subject matter (lobbysubjectmatterid unique)."
+    columns:
+      - name: subject_matter_id
+        data_tests: [not_null, unique]
+      - name: filer_id
+        data_tests: [not_null]

@@ -1,0 +1,81 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: TX_LOBBY_SUBJECT_MATTER
+      - name: TX_LOBBY_INDIVIDUAL_REPORTING
+      - name: TX_LOBBY_FOOD_BEVERAGE
+      - name: TX_LOBBY_GIFTS
+      - name: TX_LOBBY_TRANSPORTATION
+      - name: TX_LOBBY_EVENTS
+      - name: TX_LOBBY_ENTERTAINMENT
+      - name: TX_LOBBY_AWARDS
+      - name: TX_LOBBY_DOCKETS
+
+models:
+  - name: stg_tx_lobby__subject_matter
+    description: "Texas lobby subject-matter lines: one row per reported subject matter (lobbysubjectmatterid unique)."
+    columns:
+      - name: subject_matter_id
+        data_tests: [not_null, unique]
+      - name: filer_id
+        data_tests: [not_null]
+  - name: stg_tx_lobby__individual_reporting
+    description: "Texas lobby on-behalf-of lines: one row per client an expenditure was made on behalf of (lobbyexpendonbehalfid unique)."
+    columns:
+      - name: on_behalf_id
+        data_tests: [not_null, unique]
+      - name: filer_id
+        data_tests: [not_null]
+  - name: stg_tx_lobby__food_beverage
+    description: "Texas lobby food & beverage expenditures on state officials: one row per activity (lobbyactivityid unique)."
+    columns:
+      - name: activity_id
+        data_tests: [not_null, unique]
+      - name: filer_id
+        data_tests: [not_null]
+  - name: stg_tx_lobby__gifts
+    description: "Texas lobby gift expenditures: one row per activity (lobbyactivityid unique)."
+    columns:
+      - name: activity_id
+        data_tests: [not_null, unique]
+      - name: filer_id
+        data_tests: [not_null]
+  - name: stg_tx_lobby__transportation
+    description: "Texas lobby transportation/lodging expenditures: one row per travel line (lobactivitytravelid unique; lobbyactivityid repeats across legs)."
+    columns:
+      - name: travel_id
+        data_tests: [not_null, unique]
+      - name: filer_id
+        data_tests: [not_null]
+  - name: stg_tx_lobby__events
+    description: "Texas lobby event expenditures (ceremonies/receptions for officials): one row per activity (lobbyactivityid unique)."
+    columns:
+      - name: activity_id
+        data_tests: [not_null, unique]
+      - name: filer_id
+        data_tests: [not_null]
+  - name: stg_tx_lobby__entertainment
+    description: "Texas lobby entertainment expenditures: one row per activity (lobbyactivityid unique)."
+    columns:
+      - name: activity_id
+        data_tests: [not_null, unique]
+      - name: filer_id
+        data_tests: [not_null]
+  - name: stg_tx_lobby__awards
+    description: "Texas lobby award/memento expenditures: one row per activity (lobbyactivityid unique)."
+    columns:
+      - name: activity_id
+        data_tests: [not_null, unique]
+      - name: filer_id
+        data_tests: [not_null]
+  - name: stg_tx_lobby__dockets
+    description: "Texas lobby docket/proceeding designations: one row per docket line (lobbydocketdesigid unique)."
+    columns:
+      - name: docket_id
+        data_tests: [not_null, unique]
+      - name: filer_id
+        data_tests: [not_null]

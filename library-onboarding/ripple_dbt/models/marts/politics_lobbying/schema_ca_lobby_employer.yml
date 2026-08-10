@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: politics__ca_lobby_employer
+    description: "CAL-ACCESS lobbyist employer session totals: one row per employer per legislative session (4 published doubles in the 1999 session -- no unique test)."
+    columns:
+      - name: employer_id
+        data_tests: [not_null]

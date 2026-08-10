@@ -1,0 +1,33 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: IRS527_DIRECTORS_OFFICERS
+      - name: IRS527_RELATED_ENTITIES
+      - name: IRS527_8872_REPORTS
+      - name: IRS527_EAIN
+
+models:
+  - name: stg_irs527__directors_officers
+    description: "IRS Form 8871 directors & officers of Section 527 political organizations: one row per listed person per form (form_id + director_id unique)."
+    columns:
+      - name: form_id_number
+        data_tests: [not_null]
+  - name: stg_irs527__related_entities
+    description: "IRS Form 8871 related entities of 527 orgs: one row per related entity per form (form_id + entity_id unique)."
+    columns:
+      - name: form_id_number
+        data_tests: [not_null]
+  - name: stg_irs527__8872_reports
+    description: "IRS Form 8872 periodic reports of 527 orgs (contribution/expenditure totals; form_id_number unique)."
+    columns:
+      - name: form_id_number
+        data_tests: [not_null, unique]
+  - name: stg_irs527__eain
+    description: "IRS Form 8871 election authority identification numbers: one row per EAIN per form (form_id + eain_id unique)."
+    columns:
+      - name: form_id_number
+        data_tests: [not_null]

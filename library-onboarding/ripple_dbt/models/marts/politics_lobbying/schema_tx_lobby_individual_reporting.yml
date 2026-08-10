@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: politics__tx_lobby_individual_reporting
+    description: "Texas lobby on-behalf-of lines: one row per client an expenditure was made on behalf of (lobbyexpendonbehalfid unique)."
+    columns:
+      - name: on_behalf_id
+        data_tests: [not_null, unique]
+      - name: filer_id
+        data_tests: [not_null]

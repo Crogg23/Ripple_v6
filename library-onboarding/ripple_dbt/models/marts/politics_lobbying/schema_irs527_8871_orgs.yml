@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: politics__irs527_8871_orgs
+    description: "IRS Form 8871 notices: Section 527 political organizations' registration filings (form_id_number unique)."
+    columns:
+      - name: form_id_number
+        data_tests: [not_null, unique]

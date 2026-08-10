@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: politics__ca_lobby_firm
+    description: "CAL-ACCESS lobbying firm session totals: one row per firm per session (firm_id + session_id unique)."
+    columns:
+      - name: firm_id
+        data_tests: [not_null]

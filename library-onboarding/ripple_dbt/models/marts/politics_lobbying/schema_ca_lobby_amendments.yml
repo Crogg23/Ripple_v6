@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: politics__ca_lobby_amendments
+    description: "CAL-ACCESS lobbying registration amendments (Form 605): one row per amendment filing version (filing_id + amend_id unique)."
+    columns:
+      - name: filing_id
+        data_tests: [not_null]

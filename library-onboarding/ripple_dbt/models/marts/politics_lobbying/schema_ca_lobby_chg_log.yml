@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: politics__ca_lobby_chg_log
+    description: "CAL-ACCESS lobbying registration change log: one row per logged attribute change. filer_id+change_no has 11 published near-duplicates -- no unique test."
+    columns:
+      - name: filer_id
+        description: Blank on 13 rows as published.

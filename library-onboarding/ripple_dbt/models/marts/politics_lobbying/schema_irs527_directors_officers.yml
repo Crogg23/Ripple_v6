@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: politics__irs527_directors_officers
+    description: "IRS Form 8871 directors & officers of Section 527 political organizations: one row per listed person per form (form_id + director_id unique)."
+    columns:
+      - name: form_id_number
+        data_tests: [not_null]

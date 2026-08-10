@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: politics__tx_lobby_cover
+    description: "Texas Ethics Commission lobby activity report cover sheets (Form LA): one row per report (reportinfoident unique) with per-category expenditure totals."
+    columns:
+      - name: report_info_ident
+        data_tests: [not_null, unique]

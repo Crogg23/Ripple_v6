@@ -1,0 +1,5 @@
+version: 2
+
+models:
+  - name: politics__ca_lobby_cover
+    description: "CAL-ACCESS lobbying disclosure cover pages (Forms 615/625/635/645...): one row per filing version (filing_id + amend_id unique)."

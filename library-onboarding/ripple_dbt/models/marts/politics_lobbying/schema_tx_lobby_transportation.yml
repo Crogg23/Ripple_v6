@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: politics__tx_lobby_transportation
+    description: "Texas lobby transportation/lodging expenditures: one row per travel line (lobactivitytravelid unique; lobbyactivityid repeats across legs)."
+    columns:
+      - name: travel_id
+        data_tests: [not_null, unique]
+      - name: filer_id
+        data_tests: [not_null]

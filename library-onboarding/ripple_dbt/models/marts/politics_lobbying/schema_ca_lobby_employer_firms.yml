@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: politics__ca_lobby_employer_firms
+    description: "CAL-ACCESS employer-to-firm engagements: one row per employer-firm-session (unique)."
+    columns:
+      - name: employer_id
+        data_tests: [not_null]
+      - name: firm_id
+        data_tests: [not_null]

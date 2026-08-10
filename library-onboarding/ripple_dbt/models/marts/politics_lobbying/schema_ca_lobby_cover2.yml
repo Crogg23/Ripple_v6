@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: politics__ca_lobby_cover2
+    description: "CAL-ACCESS lobbying cover-page entity lines: one row per entity line item on a filing version (filing_id + amend_id + line_item unique)."
+    columns:
+      - name: filing_id
+        data_tests: [not_null]

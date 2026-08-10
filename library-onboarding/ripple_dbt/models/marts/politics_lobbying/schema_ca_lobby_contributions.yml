@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: politics__ca_lobby_contributions
+    description: "CAL-ACCESS lobbyist campaign contributions: one row per reported contribution. CONTRIBUTION_DT blank on many rows as published."
+    columns:
+      - name: filer_id
+        data_tests: [not_null]

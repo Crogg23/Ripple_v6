@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: politics__tx_lobby_gifts
+    description: "Texas lobby gift expenditures: one row per activity (lobbyactivityid unique)."
+    columns:
+      - name: activity_id
+        data_tests: [not_null, unique]
+      - name: filer_id
+        data_tests: [not_null]

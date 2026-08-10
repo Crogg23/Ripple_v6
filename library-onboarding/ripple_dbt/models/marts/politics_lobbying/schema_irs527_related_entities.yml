@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: politics__irs527_related_entities
+    description: "IRS Form 8871 related entities of 527 orgs: one row per related entity per form (form_id + entity_id unique)."
+    columns:
+      - name: form_id_number
+        data_tests: [not_null]
