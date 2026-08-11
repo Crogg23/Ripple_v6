@@ -33,9 +33,15 @@ detail: `reports/spine_connection_audit_2026-08-11.md`.
    sides. Excluded-provider-to-pharma-payment on provider ID: 336 of 350 exact
    surname matches, and all 14 others are hyphen/spacing variants of the same
    person. 93.9% of 806M spine input rows carry a usable hard key.
-4. **Three dead sources removed from the who's-who** (a retired credit-union
+4. **Fifty-four stale copies of the matching rule, found and regenerated.** The
+   rule that cleans an ID before matching is copied into dozens of build files
+   so the warehouse can run without Python. Those copies were nearly three weeks
+   behind: they turned junk text into plausible-looking IDs that pointed at
+   entities the who's-who had correctly refused to create — a join to nothing,
+   silently. All regenerated, and one new test now checks every copy at once.
+5. **Three dead sources removed from the who's-who** (a retired credit-union
    file, FCC licensing, NSF awards) — their ID columns were usable on zero rows.
-5. **Recall gap found, deliberately NOT wired:** a fuller federal-contracts copy
+6. **Recall gap found, deliberately NOT wired:** a fuller federal-contracts copy
    would raise debarred-with-awards from 102 to 343 — but that copy is itself
    truncated at a suspiciously round 20 million rows. Repointing to a known-short
    table trades one wrong number for another; it needs a clean re-pull first.

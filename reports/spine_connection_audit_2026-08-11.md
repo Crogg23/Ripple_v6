@@ -138,6 +138,26 @@ priced decision handed to Chris.
   sides internally by name; no external fetch).
 - The spine's own rebuild (see the price tag in STATUS).
 
+## Addendum — a third and fourth copy of the normalizer, both drifted
+
+The serve-layer drift guard caught one one-sided edit immediately, which
+prompted a sweep for every other embedded copy. There were 54 more:
+
+- `cohort_queue.sql` carries a character-for-character copy (guarded since audit
+  F6); it was regenerated.
+- **53 staging models embed a GENERATED copy** inside their `spine_entity_id`
+  expression, so a mart can join the who's-who without calling Python. Those
+  copies predated the 2026-07-28 digits-only guard — a text sentinel such as
+  NPPES's `<UNAVAIL>` padded into a plausible 9-character value and hashed to an
+  entity id **the spine had correctly refused to create**. Those rows carried a
+  spine id that joins to nothing, silently, and no test compared them.
+
+All 54 regenerated from the single source of truth, and one new parity test now
+covers every embedded copy at once (`tests/test_staging_spine_id_parity.py`),
+verified red on all 53 before the fix. This is the same lesson the platform has
+now learned three times: **a hand-maintained copy of the key normalizer always
+drifts; only a generated-and-guarded copy stays true.**
+
 ## Found in passing (not connection-layer)
 
 The roll-call vote metadata is modeled into two marts that disagree — 113,512
