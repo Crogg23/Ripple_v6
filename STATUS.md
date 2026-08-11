@@ -1,94 +1,96 @@
-# RIPPLE STATUS — 2026-08-11 — routing bug fixed, 8.1M hidden rows recovered, slices now labelled
+# RIPPLE STATUS — 2026-08-11 — trust work: labels, stale marts, two full pulls, one data-corruption bug
 
 *One screen. Rewritten (never appended) at the end of every session. Sessions read
 this at boot and brief Chris in chat — Chris never has to open it.*
 
-**BROKE: nothing new.** Two jobs were dead at boot and both are running again:
+**BROKE: nothing new.** Both jobs that were dead at boot are fixed and one is
+still running by design (see live items).
 
-- The disaster-aid (FEMA) reload had died at 19.52M of 25.89M rows. The page was
-  NOT broken — re-requesting the same offset returns data fine. The government's
-  API just crawls once you are ~19M rows deep, and the loader's retry budget was
-  tuned on shallow pages, so six slow reads in a row killed it. Retries now wait
-  far longer and back off harder. Resumed and progressing (19.8M at close).
-- The connection-engine rebuild was NOT broken either. It prints one line, at the
-  very end. Last session read two hours of silence as a hang and killed a healthy
-  job. Confirmed alive this time by watching the warehouse: thousands of small
-  updates, about one a second. Still running at close.
+**The theme of this session: the warehouse had data that lied about itself.**
+Four separate bugs, all the same shape — something that read as complete or
+populated and was not. Every one of them would have produced a confident, wrong
+chart. All four are now fixed AND guarded by tests that fail the build if they
+come back.
 
 **DONE this session:**
 
-- **Found the mis-filing bug, and it is the same failure mode as yesterday's cast
-  bug**: a rule meant to match a whole word was matching fragments. "ice" (the
-  immigration agency) matched inside "hospice" and "service", so hospice care,
-  Medicare fee-for-service and drinking-water service areas were filed as
-  immigration. "ed" (the Education Department) matches inside "federal", which is
-  how commodity-trading data landed under education. Matching now requires a word
-  boundary and the earliest match wins, so the publishing agency decides. 21
-  models moved. Filenames deliberately unchanged, so no warehouse table was
-  renamed or rebuilt and nothing was added to the drop list.
+- **Fixed the mis-filing bug — same failure as yesterday's cast bug.** A rule
+  meant to match a whole word was matching fragments. "ice" (the immigration
+  agency) matched inside "hospice" and "service", so hospice care, Medicare
+  fee-for-service and drinking-water service areas were filed as immigration.
+  "ed" (the Education Department) matches inside "federal", which is how
+  commodity-trading data landed under education. 21 models moved; filenames left
+  alone, so no warehouse table was renamed and nothing joined the drop list.
 - **Recovered ~8.1M rows that were already paid for and invisible.** 19 marts had
-  been built BEFORE their raw table was last loaded. Four of these were on the
-  "needs re-pulling" list and needed no pull at all — the full data landed Aug 5,
-  the mart was last built Jul 30. Court financial-disclosure investments went
-  500,000 → 1,901,599; Google political-ads creative-id mapping 500,000 →
-  4,773,180; creative stats 500,000 → 1,562,870; workplace-injury case detail
-  500,000 → 890,934 (2023) and 688,649 (2024); plus the Irish company registry and
-  six smaller ones. Two minutes of compute, all data checks passed.
-- **Sample-only sources are now visible.** 17 marts said "SAMPLE ONLY — NOT the
-  full dataset" in their own file, and nothing surfaced it, so the catalog
-  advertised them under the full source's name. Those declarations are now lifted
-  into a control table and the catalog exposes both a flag and the author's own
-  sentence explaining WHICH slice it is (mortgage data is one state-year; the
-  bank directory is a 10,000-row page).
-- **Corrected 39 stale row counts in model headers — and they were understating,
-  not overstating.** Headers claimed a 500,000-row cap on tables that now hold
-  31.4M (nursing-home assessments), 15.4M (drinking-water violations), 12.5M
-  (dialysis facilities). Eleven complete national datasets read as samples to
-  anyone opening the file. All now match live, each with a dated note saying what
-  it used to say.
-- Found the checked-in catalog definition had drifted from the live warehouse
-  (missing a Jul 30 fix). Replaying it would have silently reverted that fix.
-  Re-synced.
-- Tests: **2,771 passed, 2 skipped, 0 failures**, including 38 new guards.
+  been built before their raw table was last loaded. Four were on the "needs
+  re-pulling" list and needed no pull at all. Court financial-disclosure
+  investments went 500,000 → 1,901,599; one political-ads table 500,000 →
+  4,773,180; another 500,000 → 1,562,870; workplace-injury case detail 500,000 →
+  890,934 and 688,649; plus the Irish company registry and six smaller ones.
+- **Sample-only sources now declare themselves.** 16 marts said "this is a slice,
+  not the full source" in their own file and nothing surfaced it. Those
+  statements are now in the catalog, with the author's sentence explaining WHICH
+  slice (mortgage data is one state-year; a portal is a 5,000-row page).
+- **Corrected 39 stale row counts in model headers — they were UNDERSTATING.**
+  Headers claimed a 500,000-row cap on tables now holding 31.4M, 15.4M, 12.5M.
+  Eleven complete national datasets read as samples to anyone opening the file.
+- **Two capped sources pulled in full**, each checked against the source's own
+  advertised total, not assumed:
+  - Bank directory: 10,000 → **27,836** institutions, founded 1782–2026. Only
+    4,254 are still active, so ~23,600 closed or merged banks are now visible.
+  - Federal daily cash ledger: 10,000 → **478,149** records, 5,237 business days
+    from Oct 2005 to Aug 2026 — money in and money out, by category, per day.
+- **Found and fixed a real data-corruption bug in five loaders.** Missing values
+  were being written as the literal text "nan". A bank identifier looked 6,260
+  populated; 4,008 of those were junk. The branch-deposits table held **4.2
+  million** corrupted cells, including a branch identifier and both map
+  coordinates. Loaders fixed, that table repaired and verified clean, marts
+  rebuilt. A repair tool exists for any other table.
+- Connection engine rebuilt (2,076 tables pinned), passes 20/20. The boot blocker
+  from the last two sessions is cleared.
+- Checked-in catalog definition had drifted from the live warehouse; replaying it
+  would have silently reverted a fix. Re-synced.
+- Tests: **2,807 passed, 2 skipped, 0 failures** — 63 new guards this session.
+  CI is green on everything pushed. Five commits sit locally, unpushed.
 
-**Corrections to what the last handoff assumed — read before doing step 3:**
+**Two things the last handoff got wrong — don't redo them:**
 
-- The "18 page-capped marts" list is mostly wrong. Five were stale marts, not
-  short pulls, and are now fixed. IRS auto-revocations is NOT capped (1,207,295
-  rows, not 500,000). What genuinely remains capped is the small stuff: the bank
-  directory (10k), Treasury deposits (10k), EPA Envirofacts (5k), USAspending
-  subawards (5k), four national open-data portals (1k–5k), the European court
-  (2k), and a couple more — and most of those already carry the SAMPLE ONLY
-  label now.
-- Row counts in the catalog were never stale; they read live. Only the file
-  comments had drifted.
+- The "18 page-capped marts" list was mostly wrong. Five were stale marts, not
+  short pulls. One supposedly capped at 500,000 actually holds 1,207,295.
+- Catalog row counts were never stale; they read live. Only file comments drifted.
 
-**NOT done — carried forward:**
-
-- **No new loaders were written.** The genuinely-capped small sources above still
-  need proper paginated loaders. This is what is left of step 3.
-- Catalog hygiene: 249 modeled sources still have a blank subject area, 67 are
-  unclassified, 139 have no last-ingested timestamp.
-- The connection-engine rebuild had not finished at close, so its validation test
-  has not been run yet. Do that first next session.
-- Worth a look: the guarded folder that blocks rebuilds now holds a number of
-  ordinary generated marts, which means those cannot be rebuilt by the normal
-  path. Not urgent, not touched.
+**One claim I corrected myself on:** the bank data does NOT join directly to the
+global company register. The government publishes that identifier truncated to 16
+characters against a real one's 20, so a straight join matches zero rows. Joining
+on the first 16 characters works and matches 2,224 of the 2,252 banks that carry
+one — but only ~8% of banks have one at all. Both model headers say this now.
 
 **Live/open items carried forward:**
 
-- Disaster-aid reload still running, ~19.8M of 25.9M, roughly 14 hours to go. It
-  checkpoints every page, so it survives a restart. When it finishes: rebuild
-  staging + mart, drop the SAMPLE label, reseed connections.
+- Disaster-aid reload still running: **20.07M of 25.9M**, roughly 13 hours left.
+  It rides through the government API's slow patches now and checkpoints every
+  page, so it survives a restart. When it finishes: repair the "nan" cells,
+  rebuild, drop its sample label, reseed connections.
 - UK company-ownership load blocked on the Chris-only wipe:
   `DELETE FROM LIBRARY_RAW.LANDING.UK_COMPANIES_HOUSE_PSC;` then
   `python scripts/uk_ch_psc_load.py --chunks 32 --run` (~30-60 min).
 - Drop list (Chris-only, ~50 tables):
   `reports/duplicate_ingest_drop_list_2026-08-10.md`.
 - Key-gated on Chris: broadband map, wage-and-hour, Senate lobbying.
-- Immigration court re-ingest — still the biggest single unlock, still needs a
-  brand new loader. Untouched.
-- Bank-enforcement scrape still captures only page text; needs a real parser.
+
+**NOT done — the honest list:**
+
+- **Immigration court records, 12.6M rows, are still a husk.** Every judge, date,
+  charge and outcome was thrown away at ingest. Biggest single unlock left,
+  needs a loader built from scratch. Untouched.
+- Bank enforcement actions captured web page text, not data. Needs a real parser.
+- Smaller capped sources still need paginated loaders: EPA chemical facilities,
+  federal spending subawards, four national open-data portals, the European
+  court. Most now carry an honest sample label at least.
+- Catalog hygiene: 249 modeled sources have no subject area, 67 unclassified,
+  139 have no last-ingested timestamp.
+- Worth a look someday: the guarded folder that blocks rebuilds now holds a
+  number of ordinary generated marts, which cannot be rebuilt by the normal path.
 
 **YOUR MOVE:**
 
@@ -99,11 +101,11 @@ this at boot and brief Chris in chat — Chris never has to open it.*
 
 **NEXT SESSION:**
 
-1. Boot trust check; validate the connection rebuild; finish the disaster-aid
-   load → rebuild → drop its SAMPLE label → reseed.
-2. What is left of step 3: paginated loaders for the small capped sources.
-3. Catalog hygiene (blank subject areas, missing timestamps).
+1. Boot trust check. Finish the disaster-aid load → repair the sentinel cells →
+   rebuild → drop its sample label → reseed connections.
+2. Loaders for the remaining small capped sources.
+3. Catalog hygiene, then the immigration-court re-ingest.
 
-**COST:** roughly $1-2 of warehouse credit — the rebuilds were about two minutes
-of compute, and everything else was metadata queries, which are free. No agent
-spend, single session.
+**COST:** roughly $2-4 of warehouse credit all session — a few minutes of mart
+rebuilds, one repair pass over 2.8M rows, and metadata queries, which are free.
+No agent spend, single session.
