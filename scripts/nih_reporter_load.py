@@ -143,6 +143,33 @@ except Exception:
 import snow  # noqa: E402
 import ingest  # noqa: E402
 
+
+def _as_text(v):
+    """Stringify for an all-VARCHAR landing table WITHOUT inventing the text 'nan'.
+
+    THE BUG THIS FIXES (2026-08-11). Every loader here did
+    `None if v is None else str(v)`. pandas does not keep a JSON null as None --
+    it becomes float NaN as soon as the column is built -- so `v is None` was
+    False and str(NaN) wrote the four characters n-a-n into the warehouse. The
+    column then reads as populated: FDIC's LEI showed 6,260 non-null values, of
+    which 4,008 were the string 'nan'. That is exactly the sentinel-masked-blank
+    trap that has already fooled this platform on two other join keys, and it is
+    worse for a KEY column, because 'nan' joins to 'nan'.
+
+    Also catches pandas' NA/NaT and the whitespace-only strings that some of
+    these APIs return in place of a null.
+    """
+    if v is None:
+        return None
+    try:
+        if pd.isna(v):
+            return None
+    except (TypeError, ValueError):
+        pass  # arrays/lists raise here; they are real values, fall through
+    s = str(v)
+    return None if s.strip() == "" else s
+
+
 API = "https://api.reporter.nih.gov/v2/projects/search"
 TABLE = "FED_NIH_REPORTER"
 STAGING_TABLE = f"{TABLE}__STAGING"
@@ -585,7 +612,7 @@ def main():
             # in one of them killed the COPY (live crash 2026-08-09:
             # SPENDING_CATEGORIES '[276, 320]' vs a NUMBER column).
             for c in df.columns:
-                df[c] = df[c].apply(lambda v: None if v is None else str(v))
+                df[c] = df[c].apply(_as_text)
 
             csv_bytes = df.to_csv(index=False).encode("utf-8")
             chunk_sha = hashlib.sha256(csv_bytes).hexdigest()

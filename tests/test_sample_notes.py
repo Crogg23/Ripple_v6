@@ -57,6 +57,12 @@ def test_header_stops_at_the_sql(tmp_path):
     ("values are sampled at source every 15 minutes", False),
     ("one row per water sample taken", False),
     ("complete national download", False),
+    # A model that has BEEN fixed often explains what it used to say. That
+    # sentence must not put the source straight back on the sample list --
+    # the FDIC institution directory tripped exactly this when its full pull
+    # landed and its new header described the label it had carried before.
+    ("this replaced a slice that had carried a sample-only label", False),
+    ("no longer a partial load", False),
 ])
 def test_declaration_pattern_is_deliberate(text, expected):
     assert bool(bsn.DECLARATION_RE.search(text)) is expected
@@ -65,8 +71,11 @@ def test_declaration_pattern_is_deliberate(text, expected):
 def test_live_repo_still_yields_the_known_declarations():
     """If this drops to zero, the catalog silently stops warning about slices."""
     rows = bsn.scan()
-    assert len(rows) >= 15, f"only {len(rows)} declarations found"
+    assert len(rows) >= 14, f"only {len(rows)} declarations found"
     ids = {r["source_id"] for r in rows}
-    for known in ("FED_CFPB_HMDA", "FED_FDIC_BANK_DATA", "FED_USASPENDING_SUBAWARDS"):
+    # Sources still known to be slices. FED_FDIC_BANK_DATA deliberately is NOT in
+    # this list any more: its full 27,836-institution pull landed 2026-08-11, so
+    # dropping off the sample list is the correct outcome, not a regression.
+    for known in ("FED_CFPB_HMDA", "FED_DHS_HIFLD", "FED_USASPENDING_SUBAWARDS"):
         assert known in ids, f"{known} no longer detected"
     assert all(r["note"].upper().startswith(("SAMPLE ONLY", "PROOF SLICE")) for r in rows)
