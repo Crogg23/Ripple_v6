@@ -32,6 +32,7 @@ import _bulk_load_utils as bulk  # noqa: E402
 BASE = "https://www.fema.gov/api/open/v2/IndividualsAndHouseholdsProgramValidRegistrations"
 TABLE = "FED_FEMA_IA_HOUSING_REGISTRATIONS"
 TOP = 10000
+ATTEMPTS = 10
 CKPT = _REPO / "outputs" / "_fema_ia_checkpoint.json"
 LOG = _REPO / "outputs" / "_fema_ia_progress.log"
 
@@ -44,17 +45,33 @@ def log(msg):
 
 
 def fetch_page(skip: int) -> list[dict]:
+    """One page, retried hard.
+
+    WHY THE RETRY BUDGET IS THIS BIG (2026-08-11): the run died at
+    skip=19,520,000 after six straight failures. The page itself is fine --
+    re-requesting the exact same offset later returned 200 with data. OpenFEMA
+    just degrades badly at deep offsets, because $skip forces it to walk the
+    whole ordered set every call, so single requests routinely blow past two
+    minutes near the 25.9M-row tail. The old budget (120s timeout, 6 tries,
+    3-18s linear backoff) was tuned on shallow pages and could not ride out a
+    slow patch. Timeout and backoff now scale with attempt number: a page gets
+    ~25 minutes of wall clock before we call it dead.
+    """
     params = {"$top": TOP, "$skip": skip, "$orderby": "id"}
-    for attempt in range(6):
+    last = None
+    for attempt in range(ATTEMPTS):
         try:
-            r = requests.get(BASE, params=params, timeout=120)
+            r = requests.get(BASE, params=params, timeout=min(120 + 60 * attempt, 420))
             if r.status_code == 200:
                 d = r.json()
                 return d.get("IndividualsAndHouseholdsProgramValidRegistrations", [])
-            time.sleep(3 * (attempt + 1))
+            last = f"HTTP {r.status_code}"
         except Exception as e:
-            time.sleep(3 * (attempt + 1))
-    raise RuntimeError(f"failed page skip={skip}")
+            last = repr(e)[:120]
+        wait = min(10 * (2 ** attempt), 180)
+        log(f"  retry skip={skip} attempt={attempt + 1}/{ATTEMPTS} ({last}) -- sleeping {wait}s")
+        time.sleep(wait)
+    raise RuntimeError(f"failed page skip={skip} after {ATTEMPTS} attempts ({last})")
 
 
 def main():

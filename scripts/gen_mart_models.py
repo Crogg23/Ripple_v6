@@ -72,6 +72,7 @@ ID_HINTS = [
     ("fda_", "health"), ("cms_", "health"), ("cdc_", "health"),
     ("hrsa", "health"), ("nih_", "health"), ("hhs_", "health"), ("dea_", "health"),
     ("sec_", "finance"), ("fec_", "finance"), ("fdic", "finance"),
+    ("cftc_", "finance"),
     ("ffiec", "finance"), ("ncua", "finance"), ("cfpb", "finance"),
     ("gleif", "economics"), ("irs_", "economics"), ("usaspending", "economics"),
     ("sba_", "economics"), ("treasury", "economics"), ("pbgc", "economics"),
@@ -86,6 +87,18 @@ ID_HINTS = [
     ("medsl", "politics"), ("eac_", "politics"),
     ("wayback", "investigations"), ("epstein", "investigations"),
     ("portal_", "open_data"),
+    # Added 2026-08-11 while fixing the substring mis-filing. These had NO hint at
+    # all, so they were only ever landing in a named folder by accident -- the
+    # Google political-ads and Senate lobbying marts were filed under education
+    # purely because "ed_" matched inside "fed_". Naming them explicitly is what
+    # keeps them out of the uncategorized bucket now that the accident is gone.
+    # NOT "politics": models/marts/politics/ carries a pre-hook guard that hard-fails
+    # dbt run/build (macros/guard_politics_mirror.sql) because those models mirror
+    # hand-reconciled Python-built tables. Anything generated into that folder is
+    # unbuildable. politics_lobbying is the correct, unguarded home for political
+    # advertising and lobbying disclosure.
+    ("google_polads", "politics_lobbying"), ("senate_lda", "politics_lobbying"),
+    ("frb_", "finance"), ("cpsc_", "consumer_safety"),
 ]
 
 
@@ -146,15 +159,52 @@ def existing_marts_by_source():
     return out
 
 
+def _hint_match(sid, hint):
+    """Index of `hint` in `sid` at a TOKEN boundary, or -1.
+
+    A boundary is the start of the string or the character after an underscore.
+    Bare substring matching is what mis-filed a pile of marts (found 2026-08-11,
+    the same failure mode as the cast-rule bug the day before):
+
+      * "ice_" (meant: the immigration agency) matched inside "hospice_" and
+        "service_", so CMS hospice enrollments, CMS fee-for-service enrollment
+        and the EPA drinking-water service areas were all filed under
+        immigration.
+      * "ed_" (meant: the Education Department) matched inside "fed_", which is
+        the prefix on nearly every federal source id -- that is how the CFTC
+        trader-commitment marts ended up under education.
+
+    Requiring a token boundary kills both without weakening any real hint,
+    because every hint is itself a leading token ("epa_", "cms_", "sec_").
+    """
+    start = 0
+    while True:
+        i = sid.find(hint, start)
+        if i < 0:
+            return -1
+        if i == 0 or sid[i - 1] == "_":
+            return i
+        start = i + 1
+
+
 def domain_folder(source_id, domain):
     folder = DOMAIN_MAP.get(domain, "uncategorized")
     if folder != "uncategorized":
         return folder
     sid = source_id.lower()
+    # EARLIEST boundary match wins, not first-in-list. Source ids lead with the
+    # publishing agency, so the earliest token is the one that actually owns the
+    # data. List order alone put the four EPA enforcement tables
+    # (fed_epa_icis_fec_*) under finance, because the "fec_" hint -- the election
+    # commission -- is listed above "epa_" and "fec" here means EPA's own Federal
+    # Enforcement & Compliance. Position breaks that tie correctly: "epa_" sits
+    # at index 4, "fec_" at 14.
+    best = None
     for hint, target in ID_HINTS:
-        if hint in sid:
-            return target
-    return "uncategorized"
+        i = _hint_match(sid, hint)
+        if i >= 0 and (best is None or i < best[0]):
+            best = (i, target)
+    return best[1] if best else "uncategorized"
 
 RESERVED = {
     "GROUP", "ORDER", "SELECT", "FROM", "WHERE", "TABLE", "INDEX", "CREATE", "DROP",

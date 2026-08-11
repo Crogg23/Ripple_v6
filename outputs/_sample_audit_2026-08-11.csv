@@ -1,0 +1,559 @@
+SOURCE_ID,NAME,LIFECYCLE,IS_SAMPLE,MART,LANDED,RUN
+ca_lobby_emp_lobbyist,California CAL-ACCESS Lobbying — Lobbyist employer <-> individual lobbyist relationships,modeled,False,1500,1500,1500
+ca_lobby_firm_lobbyist,California CAL-ACCESS Lobbying — Lobbying firm <-> individual lobbyist relationships,modeled,False,577,577,577
+fed_cisa_kev,CISA Known Exploited Vulnerabilities (KEV) Catalog,modeled,False,1631,1631,1631
+fed_cms_dialysis,CMS Care Compare — Dialysis Facility Listing,modeled,False,7557,7557,7557
+fed_cms_facility_affiliation,CMS Doctors & Clinicians — Facility Affiliation (NPI↔CCN crosswalk),modeled,False,2260193,2260193,2260193
+fed_cms_fiscal_intermediary_shared_system_attending_and_rendering,FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING,modeled,False,2047828,2047828,
+fed_cms_hospital_enrollments,FED_CMS_HOSPITAL_ENROLLMENTS,modeled,False,9175,9175,
+fed_cms_irf,CMS Care Compare — Inpatient Rehabilitation Facility General Information,modeled,False,1222,1222,1222
+fed_cms_nppes,NPPES National Plan and Provider Enumeration System,modeled,False,9606683,9606683,9606683
+fed_courtlistener_financial_disclosures,FED_COURTLISTENER_FINANCIAL_DISCLOSURES,modeled,False,108770,108770,
+fed_cpsc_neiss_codes,FED_CPSC_NEISS_CODES,modeled,False,1250,1250,
+fed_doj_epstein_library,DOJ Epstein Library — File Manifest,modeled,False,777,777,777
+fed_ed_edfacts,EDFacts,modeled,False,33,33,33
+fed_eoir_case_data,EOIR Immigration Court Case Data,modeled,False,12631225,12631225,12631225
+fed_epa_icis_air_icis_air_stack_tests,FED_EPA_ICIS_AIR_ICIS_AIR_STACK_TESTS,modeled,False,620302,620302,
+fed_epa_npdes_npdes_cs_violations,FED_EPA_NPDES_NPDES_CS_VIOLATIONS,modeled,False,82187,82187,
+fed_epa_npdes_npdes_naics,FED_EPA_NPDES_NPDES_NAICS,modeled,False,326473,326473,
+fed_epa_npdes_npdes_sics,FED_EPA_NPDES_NPDES_SICS,modeled,False,792807,792807,
+fed_epa_tri_basic_2023,FED_EPA_TRI_BASIC_2023,modeled,False,78647,78647,
+fed_fda_faers_outc,FED_FDA_FAERS_OUTC,modeled,False,5147466,5147466,
+fed_fdic_failed_banks,FDIC Failed Banks,modeled,False,3584,4115,4115
+fed_fhfa_nmdb,National Mortgage Database (NMDB) Public Use File,modeled,False,19054246,19054246,19054246
+fed_fra_equipment_accidents,FRA Rail Equipment Accident/Incident Data (Form 54),modeled,False,224941,224941,224941
+fed_hrsa_uds_table3a_patients,HRSA UDS (Uniform Data System) -- FED_HRSA_UDS_TABLE3A_PATIENTS,modeled,False,1356,1357,1357
+fed_irs_990,IRS Form 990 Bulk Data & Exempt Org Search,modeled,False,200,200,200
+fed_irs_auto_revocations,FED_IRS_AUTO_REVOCATIONS,modeled,False,1207295,1207295,
+FED_IRS_EO_PR,IRS Exempt Organizations BMF - Puerto Rico,modeled,False,2587,2587,2587
+ca_lobby_cover2,California CAL-ACCESS Lobbying — Lobbying disclosure cover page 2 (additional filer info),modeled,False,206493,206493,206493
+ca_lobby_employer_firms,California CAL-ACCESS Lobbying — Lobbyist employer <-> firm relationships,modeled,False,524,524,524
+fed_bia_tribal_geo,BIA Open Data Geospatial Portal,modeled,False,102,100,100
+fed_cbp_encounters,CBP Nationwide Encounters Data,modeled,False,9,9,9
+fed_cdc_anxiety_depression,CDC Indicators of Anxiety or Depression,modeled,False,16794,16794,16794
+fed_cms_ltch,CMS Care Compare — Long-Term Care Hospital General Information,modeled,False,311,311,311
+fed_cms_medicare_dialysis_facilities,FED_CMS_MEDICARE_DIALYSIS_FACILITIES,modeled,False,12456456,12456456,12456456
+fed_cms_medicare_durable_medical_equipment_devices_supplies_by_suppl,FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL,modeled,False,440670,440670,
+fed_cms_medicare_physician_other_practitioners_by_provider,FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER,modeled,False,1296739,1296739,
+fed_cms_medicare_physician_other_practitioners_by_provider_and_servi,FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI,modeled,False,9781673,9781673,9781673
+fed_cms_nursing_home_deficiencies,FED_CMS_NURSING_HOME_DEFICIENCIES,modeled,False,418479,418479,
+fed_cms_open_payments_2022,CMS Open Payments - General Payments Detail (PY2022),modeled,False,13250000,13250000,13250000
+fed_cms_open_payments_2023,CMS Open Payments PY2023 - General Payments (Detailed),modeled,False,14700786,14700786,14700786
+fed_cms_opt_out_affidavits,FED_CMS_OPT_OUT_AFFIDAVITS,modeled,False,57209,57209,
+fed_cms_order_and_referring,FED_CMS_ORDER_AND_REFERRING,modeled,False,2018354,2018354,
+fed_cms_part_d_prescribers,Medicare Part D Prescribers - by Provider,modeled,False,1416883,1416883,1416883
+fed_cms_pending_initial_logging_and_tracking_physicians,FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS,modeled,False,7240,7240,
+fed_courtlistener_dockets,FED_COURTLISTENER_DOCKETS,modeled,False,,71677647,
+FED_EPA_FRS_FULL,EPA Facility Registry Service — Full National Download,modeled,False,5300149,5300149,5300149
+fed_epa_icis_air_icis_air_formal_actions,FED_EPA_ICIS_AIR_ICIS_AIR_FORMAL_ACTIONS,modeled,False,106009,106009,
+fed_epa_icis_air_icis_air_program_subparts,FED_EPA_ICIS_AIR_ICIS_AIR_PROGRAM_SUBPARTS,modeled,False,190980,190980,
+fed_epa_sdwa_sdwa_lcr_samples,FED_EPA_SDWA_SDWA_LCR_SAMPLES,modeled,False,927415,927415,
+fed_epa_sdwa_sdwa_pn_violation_assoc,FED_EPA_SDWA_SDWA_PN_VIOLATION_ASSOC,modeled,False,387627,387627,
+fed_faa_aircraft_registry,FAA Aircraft Registry — Releasable Master File,modeled,False,315447,315447,315447
+FED_FDA_DRUG_ENFORCEMENT,openFDA Drug Enforcement (recalls),modeled,False,17816,1,1
+FED_FDA_ESTABLISHMENT_REG,openFDA Device Establishment Registration & Listing (FEI),modeled,False,263374,166,166
+fed_fda_faers_reac,FED_FDA_FAERS_REAC,modeled,False,,20621386,
+FED_FEC_CANDIDATES,"FEC Candidate Master (bulk, multi-cycle)",modeled,False,33506,33506,33506
+FED_FEC_LEADERSHIP_PAC,FEC Leadership PAC Sponsors (candidate-PAC bridge),modeled,False,17238,8619,8619
+fed_foreignassistance,ForeignAssistance.gov,modeled,False,3967456,3967456,3967456
+fed_bjs_data,BJS Data Collections and APIs,modeled,True,1000,1000,1000
+fed_cftc_cot_futures,FED_CFTC_COT_FUTURES,modeled,False,16764,16764,
+fed_cms_hospice,CMS Care Compare — Hospice General Information,modeled,False,6852,6852,6852
+fed_cms_main,CMS Data Portal (data.cms.gov),modeled,False,158,158,158
+fed_cms_pending_initial_logging_and_tracking_non_physicians,FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_NON_PHYSICIANS,modeled,False,6880,6880,
+fed_cms_quality_payment_program_experience,FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE,modeled,False,503917,503917,
+fed_cms_rural_health_clinic_enrollments,FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS,modeled,False,5530,5530,
+fed_dea_arcos_full,FED_DEA_ARCOS_FULL,modeled,False,178598026,178598026,178598026
+fed_dhs_hifld,Homeland Infrastructure Foundation-Level Data (HIFLD),modeled,True,500,500,500
+fed_dol_oflc,OFLC Foreign Labor Certification Disclosure Data,modeled,False,664616,664616,664616
+fed_epa_envirofacts,EPA Envirofacts Data Service API,modeled,True,5000,5000,5000
+fed_epa_frs_frs_program_links,FED_EPA_FRS_FRS_PROGRAM_LINKS,modeled,False,4406498,4406498,
+fed_epa_icis_air_icis_air_violation_history,FED_EPA_ICIS_AIR_ICIS_AIR_VIOLATION_HISTORY,modeled,False,102037,102037,
+fed_epa_npdes_icis_facilities,FED_EPA_NPDES_ICIS_FACILITIES,modeled,False,1213737,1213737,
+fed_epa_npdes_npdes_formal_enforcement_actions,FED_EPA_NPDES_NPDES_FORMAL_ENFORCEMENT_ACTIONS,modeled,False,112373,112373,
+fed_epa_npdes_npdes_ps_violations,FED_EPA_NPDES_NPDES_PS_VIOLATIONS,modeled,False,397615,397615,
+fed_epa_sdwa_sdwa_geographic_areas,FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS,modeled,False,578198,578198,
+FED_FAC_SINGLE_AUDIT,Federal Audit Clearinghouse — Single Audits,modeled,False,411638,411638,
+fed_fara,FARA Foreign Agents Registration Act Database,modeled,False,30,30,30
+FED_FDA_DEVICE_CLASSIFICATION,openFDA Device Classification,modeled,False,7085,1,1
+fed_fdic_enforcement,FDIC Enforcement Decisions and Orders,modeled,False,15,14,14
+fed_fec_api,OpenFEC Campaign Finance API,modeled,True,500,500,500
+fed_fec_bulk_candidates,FEC Bulk Data -- Candidate Master (cn.txt),modeled,False,17900,17900,17900
+fed_fec_bulk_linkages,FEC Bulk Data -- Candidate-Committee Linkage (ccl.txt),modeled,False,16327,16327,16327
+fed_fra_crossing_incidents,FRA Highway-Rail Grade Crossing Incident Data (Form 57),modeled,False,251149,251149,251149
+fed_google_polads_advertiser_stats,FED_GOOGLE_POLADS_ADVERTISER_STATS,modeled,False,21113,21211,
+fed_hrsa_shortage_areas,Health Professional Shortage Areas (HPSA) Data,modeled,False,165531,165531,165531
+fed_hud_data,HUD Open Data (huduser.gov),modeled,False,77,77,77
+fed_icij_offshoreleaks_relationships,ICIJ Offshore Leaks -- relationships,modeled,False,3339267,3339267,3339267
+ca_lobby_chg_log,California CAL-ACCESS Lobbying — Lobbying registration change log,modeled,False,85765,85765,85765
+fed_cdc_overdose,CDC VSRR Provisional Drug Overdose Death Counts,modeled,False,83790,83790,83790
+FED_CFPB_COMPLAINTS,CFPB Consumer Complaints,modeled,False,34348075,17179788,17179788
+fed_cms_hcris,Healthcare Provider Cost Reporting Information System (HCRIS),modeled,False,6103,6103,6103
+fed_cms_home_health,CMS Care Compare — Home Health Agencies,modeled,False,12392,12392,12392
+fed_cms_hospital_compare,Hospital Compare / Provider Data Catalog,modeled,False,5432,5432,5432
+fed_cms_medicare_inpatient_hospitals_by_provider,FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER,modeled,False,3044,3044,
+fed_cms_medicare_inpatient_hospitals_by_provider_and_service,FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE,modeled,False,145879,145879,
+fed_cms_nursing_home,CMS Nursing Home Care Compare Datasets,modeled,False,14700,14700,14700
+fed_courtlistener_judges,CourtListener — Judge & Financial Disclosure Database,modeled,False,16191,16191,
+fed_david_rumsey,David Rumsey Historical Map Collection (IIIF + LUNA API),modeled,False,10,10,10
+fed_dea_arcos,ARCOS Retail Drug Summary Reports,modeled,,178598026,,409
+fed_dhs_yearbook,DHS Yearbook of Immigration Statistics,modeled,False,27,27,27
+fed_epa_frs_frs_naics_codes,FED_EPA_FRS_FRS_NAICS_CODES,modeled,False,2179702,2179702,
+fed_epa_frs_frs_sic_codes,FED_EPA_FRS_FRS_SIC_CODES,modeled,False,1085211,1085211,
+fed_epa_icis_air_icis_air_pollutants,FED_EPA_ICIS_AIR_ICIS_AIR_POLLUTANTS,modeled,False,978398,978398,
+fed_epa_icis_air_icis_air_programs,FED_EPA_ICIS_AIR_ICIS_AIR_PROGRAMS,modeled,False,457581,457581,
+fed_epa_icis_fec_case_enforcement_conclusion_facilities,FED_EPA_ICIS_FEC_CASE_ENFORCEMENT_CONCLUSION_FACILITIES,modeled,False,150877,150877,
+fed_epa_icis_fec_epa_informal_enforcement_actions,FED_EPA_ICIS_FEC_EPA_INFORMAL_ENFORCEMENT_ACTIONS,modeled,False,21930,21930,
+fed_epa_sdwa_sdwa_facilities,FED_EPA_SDWA_SDWA_FACILITIES,modeled,False,1554832,1554832,
+fed_fara_bulk,FARA eFile Bulk Data,modeled,False,48104,221900,221900
+FED_FDA_CAERS,openFDA CAERS (Cosmetic Adverse Event Reporting System),modeled,False,85511,43,43
+fed_fec_bulk_summary,FEC Bulk Data -- All Candidates Financial Summary (weball),modeled,False,7933,7933,7933
+fed_fjc_judges,FJC Biographical Directory of Article III Federal Judges -- Judges,modeled,False,4067,4067,4067
+fed_ftc_datasets,FTC Enforcement Actions and Data Sets,modeled,False,1200,1200,1200
+fed_google_polads_creative_stats,FED_GOOGLE_POLADS_CREATIVE_STATS,modeled,False,500000,1562870,
+fed_govinfo_billstatus,"GovInfo BILLSTATUS -- Bill Status XML (sponsor, cosponsors, actions, laws)",modeled,False,36465,36465,36465
+fed_grants_gov,Grants.gov Opportunity Search API,modeled,False,100,100,100
+fed_hud_assisted_housing_projects,HUD Picture of Subsidized Households -- Project Level,modeled,False,35601,35601,35601
+fed_icij_offshoreleaks_intermediaries,ICIJ Offshore Leaks -- intermediaries,modeled,False,26768,26768,26768
+fed_irs_eo_bmf,IRS Exempt Organizations Business Master File (EO BMF),modeled,False,1983563,1983563,1983563
+fed_cdc_health_insurance,CDC Indicators of Health Insurance Coverage,modeled,False,16056,16056,16056
+fed_cdc_injury_violence_county,"CDC Mapping Injury, Overdose, and Violence - County",modeled,False,132000,132000,132000
+fed_clinicaltrials,ClinicalTrials.gov API + AACT,modeled,True,500,500,500
+fed_cms_federally_qualified_health_center_enrollments,FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS,modeled,False,11063,11063,
+fed_cms_medicare_outpatient_hospitals_by_provider_and_service,FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE,modeled,False,116182,116182,
+fed_cms_medicare_provider,Medicare Physician & Other Practitioners - by Provider,modeled,False,1296739,1296739,1296739
+fed_cms_open_payments,CMS Open Payments — General Payments detail (PY2024),modeled,False,15385047,15385047,15385047
+fed_congress_legislators,unitedstates/congress-legislators,modeled,False,12847,12847,12847
+fed_courtlistener_positions,FED_COURTLISTENER_POSITIONS,modeled,False,51290,51290,
+fed_doj_fca_settlements,DOJ False Claims Act Settlements and Judgments,modeled,False,12,19,19
+fed_epa_echo,EPA ECHO Exporter (Facility-level Enforcement & Compliance),modeled,False,3135554,3157891,3157891
+fed_epa_icis_air_icis_air_fces_pces,FED_EPA_ICIS_AIR_ICIS_AIR_FCES_PCES,modeled,False,1779096,1779096,
+fed_epa_sdwa_sdwa_site_visits,FED_EPA_SDWA_SDWA_SITE_VISITS,modeled,False,2495249,2495249,
+fed_fbi_cde,FBI Crime Data Explorer -- State Crime Estimates,modeled,False,238680,477360,477360
+fed_fbi_nics_checks,FBI NICS Firearm Background Checks (Data Liberation Project CSV mirror),modeled,False,16445,16445,16445
+fed_fda_faers_demo,FED_FDA_FAERS_DEMO,modeled,False,5811086,5811086,
+FED_FEC_PAC_SUMMARY,"FEC PAC/Party Committee Summary (bulk, multi-cycle)",modeled,False,94104,48395,48395
+fed_fhfa_hpi,FHFA House Price Index (HPI) — Master File,modeled,False,184807,184807,184807
+fed_fjc_idb,FJC Integrated Database (IDB) -- Federal Court Cases,modeled,,2,,6965441
+fed_frb_z1_csv,FED_FRB_Z1_CSV,modeled,False,304,304,
+fed_icij_offshoreleaks_officers,ICIJ Offshore Leaks -- officers,modeled,False,771315,771315,771315
+ca_lobby_cover,California CAL-ACCESS Lobbying — Lobbying disclosure cover page (Form 615/625/635/645),modeled,False,524828,568988,568988
+fed_bls_qcew,Quarterly Census of Employment and Wages (QCEW),modeled,False,3619437,3619437,3619437
+fed_bop_statistics,BOP Inmate Statistics,modeled,False,50,50,50
+fed_cdc_drug_poisoning_county,NCHS Drug Poisoning Mortality by County,modeled,False,53387,53387,53387
+fed_cdc_leading_causes_state,NCHS — Leading Causes of Death by State (1999-2017),modeled,False,10868,10868,10868
+fed_cdc_nndss_weekly_2024,FED_CDC_NNDSS_WEEKLY_2024,modeled,False,1932840,1932840,
+fed_cdc_suicide_rates,CDC NCHS Death rates for suicide by demographics,modeled,False,6390,6390,6390
+fed_cftc_cot_financial,FED_CFTC_COT_FINANCIAL,modeled,False,3163,3163,
+fed_cms_ambulatory_specialty_model_participants,FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS,modeled,False,6637,6637,
+fed_cms_facility_level_minimum_data_set_frequency,FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY,modeled,False,31403215,31403215,31403215
+fed_cms_hospice_enrollments,FED_CMS_HOSPICE_ENROLLMENTS,modeled,False,6066,6066,
+fed_cms_nursing_home_penalties,FED_CMS_NURSING_HOME_PENALTIES,modeled,False,16180,16180,
+fed_cms_skilled_nursing_facility_enrollments,FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS,modeled,False,14425,14425,
+fed_consolidated_screening_list,Consolidated Screening List,modeled,False,25918,25918,25918
+fed_cpsc_neiss,FED_CPSC_NEISS,modeled,False,9794971,9794977,9794977
+fed_epa_egrid_plant_2022,FED_EPA_EGRID_PLANT_2022,modeled,False,11974,11974,
+fed_epa_icis_air_icis_air_titlev_certs,FED_EPA_ICIS_AIR_ICIS_AIR_TITLEV_CERTS,modeled,False,2574815,2574815,
+fed_epa_icis_fec_case_facilities,FED_EPA_ICIS_FEC_CASE_FACILITIES,modeled,False,204019,204019,
+fed_epa_npdes_npdes_inspections,FED_EPA_NPDES_NPDES_INSPECTIONS,modeled,False,1900067,1900067,
+fed_epa_npdes_npdes_qncr_history,FED_EPA_NPDES_NPDES_QNCR_HISTORY,modeled,False,7951656,7951656,
+fed_epa_npdes_npdes_se_violations,FED_EPA_NPDES_NPDES_SE_VIOLATIONS,modeled,False,305478,305478,
+fed_epa_sdwa_sdwa_pub_water_systems,FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS,modeled,False,434040,434040,
+fed_faa_data_portal,FAA Data Portal (data.faa.gov),modeled,False,4,4,4
+fed_faa_registry,FAA Civil Aircraft Registry,modeled,False,314417,314417,314417
+FED_FDA_DEVICE_ENFORCEMENT,openFDA Device Enforcement (recalls),modeled,False,39635,20,20
+FED_FDA_MAUDE,openFDA MAUDE (Manufacturer and User Facility Device Experience),modeled,False,2743561,1386,1386
+fed_fdic_bank_data,FDIC BankFind Suite API,modeled,True,10000,10000,10000
+FED_FEC_CAND_CMTE_LINKAGE,"FEC Candidate-Committee Linkage (bulk, multi-cycle)",modeled,False,30536,30536,30536
+FED_FEC_INDEPENDENT_EXPENDITURES,"FEC Independent Expenditures (bulk, multi-cycle)",modeled,False,261033,261033,261033
+fed_fec_indiv_contributions,FEC Bulk Data -- Itemized Individual Contributions (itcont) -- the 84M-row firehose,modeled,False,84172112,84172112,84172112
+fed_federal_register_documents,Federal Register Documents,modeled,False,94731,94731,94731
+fed_ffiec_call_reports,FFIEC Bank Call Reports (CDR),modeled,False,302,302,302
+fed_google_polads_advertiser_declared_stats,FED_GOOGLE_POLADS_ADVERTISER_DECLARED_STATS,modeled,False,469,470,
+fed_google_polads_advertiser_geo_spend,FED_GOOGLE_POLADS_ADVERTISER_GEO_SPEND,modeled,False,614078,614078,
+fed_google_polads_creative_id_mapping,FED_GOOGLE_POLADS_CREATIVE_ID_MAPPING,modeled,False,500000,4773180,
+fed_govinfo_bill_cosponsors,GovInfo BILLSTATUS -- Cosponsor Extract,modeled,False,367742,367742,367742
+fed_hrsa_uds_health_center_info,HRSA UDS (Uniform Data System) -- FED_HRSA_UDS_HEALTH_CENTER_INFO,modeled,False,1356,1356,1356
+fed_ice_detention_facility_list,ICE Detention Facility List,modeled,False,163,165,165
+fed_icij_offshoreleaks_entities,ICIJ Offshore Leaks -- entities,modeled,False,814344,814344,814344
+ca_lobby_amendments,California CAL-ACCESS Lobbying — Lobbying amendments,modeled,False,25249,25249,25249
+ca_lobby_employer,California CAL-ACCESS Lobbying — Lobbyist employers,modeled,False,1730,1730,1730
+ca_lobby_firm,California CAL-ACCESS Lobbying — Lobbying firms,modeled,False,256,256,256
+ca_lobby_firm_employer,California CAL-ACCESS Lobbying — Lobbying firm <-> employer relationships,modeled,False,170,170,170
+fed_cdc_data_portal,CDC Open Data Portal (data.cdc.gov),modeled,False,15000,15000,15000
+fed_cfpb_hmda,HMDA (Home Mortgage Disclosure Act) Data,modeled,False,28301,28301,28301
+fed_cms_medicare_durable_medical_equipment_devices_supplies_by_refer,FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER,modeled,False,381228,381228,
+fed_cms_medicare_fee_for_service_public_provider_enrollment,FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT,modeled,False,2978925,2978925,
+fed_cms_opioid_treatment_program_providers,FED_CMS_OPIOID_TREATMENT_PROGRAM_PROVIDERS,modeled,False,1558,1558,
+FED_CMS_PARTD_PRESCRIBER_DRUG,CMS Medicare Part D Prescribers - by Provider and Drug (DY2022),modeled,False,25869521,25869521,25869521
+fed_congress_committee_membership,Congress -- Committee Membership (who chairs/sits on what),modeled,False,3879,3879,3879
+fed_courtlistener_investments,FED_COURTLISTENER_INVESTMENTS,modeled,False,500000,1901599,
+fed_densho_ddr,Densho Digital Repository (DDR),modeled,False,25,25,25
+fed_dhs_ohss,DHS OHSS Immigration Enforcement Data,modeled,False,50740,50740,50740
+fed_epa_air_emissions_poll_rpt_combined_emissions,FED_EPA_AIR_EMISSIONS_POLL_RPT_COMBINED_EMISSIONS,modeled,False,10411826,10411826,
+fed_epa_icis_air_icis_air_facilities,FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES,modeled,False,279728,279728,
+fed_epa_icis_air_icis_air_informal_actions,FED_EPA_ICIS_AIR_ICIS_AIR_INFORMAL_ACTIONS,modeled,False,338316,338316,
+fed_epa_icis_fec_icis_fec_epa_inspections,FED_EPA_ICIS_FEC_ICIS_FEC_EPA_INSPECTIONS,modeled,False,260556,260556,
+fed_epa_sdwa_sdwa_events_milestones,FED_EPA_SDWA_SDWA_EVENTS_MILESTONES,modeled,False,394075,394075,
+fed_epa_superfund_site_boundaries,EPA Superfund Site Boundaries,modeled,False,2114,2114,2114
+fed_fda_faers_drug,FED_FDA_FAERS_DRUG,modeled,False,,20914284,
+fed_fda_faers_indi,FED_FDA_FAERS_INDI,modeled,False,9833260,9833260,
+fed_fec_bulk,FEC Bulk Data - Committee Master (2024),modeled,False,20938,20938,20938
+fed_fec_committee_to_candidate,FEC Bulk Data -- Committee-to-Candidate (pas2/itpas2),modeled,False,866730,866730,866730
+FED_FEC_COMMITTEES,"FEC Committee Master (bulk, multi-cycle)",modeled,False,78039,78039,78039
+fed_google_polads_advertiser_weekly_spend,FED_GOOGLE_POLADS_ADVERTISER_WEEKLY_SPEND,modeled,False,296452,298884,
+fed_ice_detention_stints,ICE Detention Stints (person-level),modeled,False,2571975,2617844,2617844
+fed_ice_statistics,ICE Enforcement and Removal Operations Statistics,modeled,False,221,221,221
+fed_icij_offshoreleaks_addresses,ICIJ Offshore Leaks -- addresses,modeled,False,402246,402246,402246
+fed_icij_offshoreleaks_others,ICIJ Offshore Leaks -- others,modeled,False,2989,2989,2989
+ca_lobby_contributions,California CAL-ACCESS Lobbying — Lobbyist campaign contributions,modeled,False,6505,6505,6505
+fed_cdc_wonder,"CDC WONDER — Underlying Cause of Death (state x ICD chapter, 1999-2020)",modeled,False,880,880,880
+fed_cms_home_health_agency_enrollments,FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS,modeled,False,11508,11508,
+fed_cms_hospital_general,CMS Care Compare — Hospital General Information,modeled,False,5432,5432,5432
+fed_cms_medicare_diabetes_prevention_program,FED_CMS_MEDICARE_DIABETES_PREVENTION_PROGRAM,modeled,False,1037,1037,
+fed_cms_nadac,NADAC — National Average Drug Acquisition Cost,modeled,False,359514,1497925,1497925
+fed_cms_nursing_home_fire_deficiencies,FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES,modeled,False,200030,200030,
+fed_cms_pos_other,CMS Provider of Services — Hospital & Non-Hospital Facilities,modeled,False,44429,44429,44429
+fed_docsouth,Documenting the American South (DocSouth),modeled,False,144,144,144
+fed_dol_form5500,Form 5500 Annual Return/Report Datasets,modeled,False,33484,33484,33484
+fed_dot_bts,BTS TranStats Data Portal,modeled,False,21,21,21
+fed_eac_eavs,Election Administration and Voting Survey (EAVS),modeled,False,6460,6460,6460
+fed_epa_npdes_npdes_informal_enforcement_actions,FED_EPA_NPDES_NPDES_INFORMAL_ENFORCEMENT_ACTIONS,modeled,False,826867,826867,
+fed_epa_sdwa_sdwa_service_areas,FED_EPA_SDWA_SDWA_SERVICE_AREAS,modeled,False,422464,422464,
+fed_epa_sdwa_sdwa_violations_enforcement,FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT,modeled,False,15432737,15432737,
+fed_fatca_ffi,FATCA Foreign Financial Institution (FFI) List,modeled,False,516298,516298,516298
+fed_fcc_licensing,FCC Universal Licensing System (ULS),modeled,False,1689338,1689338,1689338
+FED_FDA_DEVICE_510K,openFDA Device 510(k) Clearances,modeled,False,175686,88,88
+FED_FDA_DEVICE_PMA,openFDA Device PMA (Premarket Approval),modeled,False,56853,29,29
+FED_FDA_GUDID,openFDA GUDID (Global Unique Device Identification Database),modeled,False,5083948,2542,2542
+fed_fec_bulk_committees,"FEC Bulk Data -- Committee Master (cm.txt), 2026 refresh",modeled,False,20007,20007,20007
+fed_fjc_service,FJC Biographical Directory of Article III Federal Judges -- Federal Judicial Service,modeled,False,4766,4766,4766
+fed_fra_casualties,FRA Injury/Illness Summary — Casualty Data (Form 55a),modeled,False,1150788,1150788,1150788
+fed_frb_h15_selected_rates,FED_FRB_H15_SELECTED_RATES,modeled,False,16848,16848,
+fed_google_polads_advertiser_id_mapping,FED_GOOGLE_POLADS_ADVERTISER_ID_MAPPING,modeled,False,8044,8044,
+fed_google_polads_geo_spend,FED_GOOGLE_POLADS_GEO_SPEND,modeled,False,1289,1289,
+fed_hhs_oig_leie,List of Excluded Individuals and Entities (LEIE),modeled,False,83369,83464,83464
+fed_ice_detainers,ICE Detainers (person-level),modeled,False,609769,609769,609769
+FED_IRS_990_EFILE_INDEX,"IRS 990 e-file Index (filer + XML URL, by year)",modeled,False,5544626,5544626,5544626
+fed_irs_bmf,IRS Exempt Organizations Business Master File (EO BMF),modeled,False,1974830,1974830,1974830
+fed_eia860_3_2_wind,FED_EIA860_3_2_WIND,modeled,False,1563,1563,1563
+fed_eia860_3_4_energy_storage,FED_EIA860_3_4_ENERGY_STORAGE,modeled,False,786,786,786
+fed_itis_taxon_authors_lkp,FED_ITIS_TAXON_AUTHORS_LKP,modeled,False,214445,214445,214445
+fed_finra_mpid_list,FED_FINRA_MPID_LIST,modeled,False,4215,4215,4215
+fed_epa_ghgrp_facility,FED_EPA_GHGRP_FACILITY,modeled,False,136005,136005,
+fed_eia861_service_territory,FED_EIA861_SERVICE_TERRITORY,modeled,False,11775,11775,11775
+fed_ed_nces_cip_codes,FED_ED_NCES_CIP_CODES,modeled,False,2318,2318,2318
+fed_usgs_wbd_huc8,FED_USGS_WBD_HUC8,modeled,False,2456,2456,2456
+intl_iso_mic_registry,INTL_ISO_MIC_REGISTRY,modeled,False,2864,2864,2864
+fed_cfpb_hmda_arid2017_lei_xref,FED_CFPB_HMDA_ARID2017_LEI_XREF,modeled,False,5399,5399,5399
+fed_itis_geographic_div,FED_ITIS_GEOGRAPHIC_DIV,modeled,False,480351,480351,480351
+fed_itis_comments,FED_ITIS_COMMENTS,modeled,False,70524,70524,70524
+fed_cms_open_payments_profile_supplement,FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT,modeled,False,1697025,1697025,1697025
+fed_usda_rd_mfh_active_projects,FED_USDA_RD_MFH_ACTIVE_PROJECTS,modeled,False,13550,13550,13550
+fed_fjc_idb_civil,FED_FJC_IDB_CIVIL,modeled,False,10857396,10857396,
+fed_medsl_house_returns,MEDSL -- U.S. House constituency returns (district level),modeled,False,29636,29636,29636
+FED_MSHA_ACCIDENTS,MSHA Mine Accidents & Injuries,modeled,False,547246,273623,273623
+fed_naag_multistate_settlements,NAAG Multistate AG Settlements (1980-present),modeled,False,883,882,882
+fed_nara_wra_aad,Records About Japanese Americans Relocated During World War II (NARA AAD Series 623),modeled,False,38,36,36
+FED_NHTSA_COMPLAINTS,NHTSA ODI Consumer Complaints (flat file),modeled,False,4455882,2227941,2227941
+fed_noaa_ais,NOAA Marine Cadastre Nationwide AIS,modeled,False,58104610,58106517,7210061
+fed_sec_dera_sub_2025q1,FED_SEC_DERA_SUB_2025Q1,modeled,False,6231,6231,
+fed_sec_dera_sub_2025q4,FED_SEC_DERA_SUB_2025Q4,modeled,False,6304,6304,
+fed_sec_dera_sub_2026q1,FED_SEC_DERA_SUB_2026Q1,modeled,False,6169,6169,
+fed_us_usaspending_api,USASpending,modeled,False,300,300,300
+fed_usaspending_contracts,USASpending — Federal Prime Contract Awards,modeled,False,6325622,6325622,6325622
+fed_va_suicide_national,VA National Suicide Data Appendix (2001-2023),modeled,False,690,690,690
+intl_es_borme,Spain BORME (Boletín Oficial del Registro Mercantil),modeled,False,28,25,25
+intl_es_datosgob,Spain National Open Data Portal (datos.gob.es),modeled,True,1000,1000,1000
+intl_fao_faostat_food_security,FAOSTAT Suite of Food Security Indicators (bulk),modeled,False,279470,279470,279470
+intl_gleif_repex,INTL_GLEIF_REPEX,modeled,False,6259489,6259489,
+intl_global_witness_defenders,Global Witness — Land and Environmental Defenders Database,modeled,False,232,232,232
+fed_irs_pub78_eligible_donees,FED_IRS_PUB78_ELIGIBLE_DONEES,modeled,False,1435544,1435544,
+fed_irs_soi,IRS Statistics of Income (SOI),modeled,False,179796,179796,179796
+fed_ncua_call_reports,Credit Union Call Report Quarterly Data,modeled,False,121713,121713,121713
+fed_nid_dams,National Inventory of Dams (NID),modeled,False,92766,92766,92766
+FED_SEC_13F_POSITIONS,SEC Form 13F — Institutional Holdings (positions),modeled,False,202522504,3822885,3822885
+FED_SEC_13F_SUBMISSION,SEC Form 13F — Submission Metadata (filer identity),modeled,False,3822885,3822885,3822885
+FED_SEC_INSIDER_NONDERIV_TRANS,"SEC EDGAR Insider Transactions (Form 3/4/5, 2025Q1) - NONDERIV_TRANS",modeled,False,2672841,2672841,2672841
+fed_slavevoyages_transatlantic,Trans-Atlantic Slave Trade Database (SlaveVoyages),modeled,False,36108,36108,36108
+FED_USASPENDING_ASSISTANCE_FULL,"USASpending Federal Assistance Awards (FY2007-FY2026, all agencies)",modeled,False,19902879,19902879,19902879
+fed_usgs_topoview,USGS Historical Topographic Map Collection (topoView + TNM API),modeled,False,250,250,250
+fed_usgs_water,USGS Water Data APIs,modeled,False,6694816,6694816,6694816
+fed_va_suicide_appendix,VA National Veteran Suicide Data Appendix 2021-2023,modeled,False,144,144,144
+intl_eg_capmas,Egypt Data Portal (opendataforafrica.org/Egypt),modeled,False,150,150,150
+intl_ember_elec,Ember Yearly and Monthly Electricity Data,modeled,False,369264,369264,369264
+intl_fatf_ratings,FATF Consolidated Assessment Ratings,modeled,False,200,200,200
+intl_gdelt,GDELT 2.0 Global Events Database,modeled,False,1015,1015,1015
+intl_ie_cro,Ireland CRO Open Data Portal,modeled,False,818930,821697,821697
+fed_nih_reporter,NIH RePORTER API,modeled,False,2122611,2122611,2122611
+fed_revolvingdoor_project,Revolving Door Project Personnel Map and Trump Administration Trackers,modeled,False,406,409,409
+fed_sec_dera_sub_2025q2,FED_SEC_DERA_SUB_2025Q2,modeled,False,7009,7009,
+fed_sec_edgar_company_tickers_exchange,SEC EDGAR Company Tickers + Exchange,modeled,False,10398,10398,10398
+fed_sec_edgar_financials,SEC Financial Statement Data Sets,modeled,False,55635,55635,6699
+fed_sec_edgar_insiders,SEC EDGAR Forms 3/4/5 — Insider Trading Reports,modeled,False,69259,69259,69259
+fed_senate_lda_filings,FED_SENATE_LDA_FILINGS,modeled,False,174871,174871,
+fed_slavevoyages_intraamerican,SlaveVoyages — Intra-American Slave Trade Database,modeled,False,11522,11521,11521
+intl_eu_sanctions,EU Consolidated Financial Sanctions List,modeled,False,42347,42347,42347
+intl_gleif_relationships,INTL_GLEIF_RELATIONSHIPS,modeled,False,481900,481900,
+intl_ipc_food_insecurity_global,IPC Global Acute Food Insecurity Country Data,modeled,False,735,735,735
+fed_mapping_inequality,Mapping Inequality: Redlining in New Deal America v3,modeled,False,1155,10154,10154
+fed_noaa_storm_events,NOAA NCEI Storm Events Database (bulk CSV),modeled,False,1780730,1780730,69801
+fed_ntsb_aviation_aircraft,NTSB Aviation Accident Database -- aircraft,modeled,False,31503,31503,31503
+fed_osha_ita_300a_summary_2024,FED_OSHA_ITA_300A_SUMMARY_2024,modeled,False,398620,398620,
+fed_retraction_watch,Retraction Watch Database,modeled,False,71591,71591,71591
+fed_scdb,Supreme Court Database (SCDB),modeled,False,83644,83644,83644
+fed_sec_13f_filers,FED_SEC_13F_FILERS,modeled,False,344109,344109,
+fed_sec_dera_sub_2024q2,FED_SEC_DERA_SUB_2024Q2,modeled,False,7675,7675,
+fed_sec_edgar,SEC EDGAR Filing Database (data.sec.gov API),modeled,False,200,200,200
+FED_SEC_INSIDER_DERIV_TRANS,"SEC EDGAR Insider Transactions (Form 3/4/5, 2025Q1) - DERIV_TRANS",modeled,False,1049121,1049121,1049121
+fed_treasury_dts_deposits,FED_TREASURY_DTS_DEPOSITS,modeled,False,10000,10000,
+fed_treasury_mts_receipts,FED_TREASURY_MTS_RECEIPTS,modeled,False,7490,7490,
+fed_usaspending_bulk,USAspending.gov Bulk Award Data Archive,modeled,True,49613,50000,50000
+fed_uscis_data,USCIS Immigration and Citizenship Data,modeled,False,3204,3204,3204
+fed_voteview_members,Voteview -- Congressional Member Ideology (DW-NOMINATE),modeled,False,51061,51061,51061
+INT_GLEIF_RR,GLEIF Level 2 — Relationship Records (parent-child ownership),modeled,False,963866,481933,481933
+intl_br_dados_gov,dados.gov.br,modeled,False,10,10,10
+intl_fao_faostat,FAOSTAT,modeled,False,69,69,69
+intl_it_istat,Italy ISTAT Statistics API (IstatData/SDMX),modeled,False,213284,213284,213284
+fed_irs_soi_charities,FED_IRS_SOI_CHARITIES,modeled,False,2450,2450,
+fed_nara_aad,NARA Access to Archival Databases (AAD),modeled,False,18,554,554
+FED_NHTSA_RECALLS,NHTSA ODI Recalls (flat file),modeled,False,485986,242993,242993
+fed_nursinghome411,NursingHome411 State-Level Nursing Home Data,modeled,False,14713,14713,14713
+fed_osha_ita_case_detail_2024,FED_OSHA_ITA_CASE_DETAIL_2024,modeled,False,500000,688649,
+fed_osha_ita_case_detail_2025,FED_OSHA_ITA_CASE_DETAIL_2025,modeled,False,330447,330447,
+fed_pbgc_trusteed_plans,PBGC Single-Employer Plans Trusteed by PBGC,modeled,False,5176,5176,5176
+fed_sba_loans,SBA 7(a) and 504 Loan FOIA Data,modeled,False,2174502,2174502,2174502
+fed_sec_dera_sub_2024q1,FED_SEC_DERA_SUB_2024Q1,modeled,False,6028,6028,
+fed_sec_dera_sub_2024q3,FED_SEC_DERA_SUB_2024Q3,modeled,False,6699,6699,
+fed_usgs_earthquakes,USGS Earthquake Catalog (M2.5+ full history),modeled,False,443274,443274,443274
+intl_ar_datosgob,Argentina National Open Data Portal (datos.gob.ar),modeled,False,3556,3556,3556
+intl_de_govdata,GovData.de,modeled,True,5000,5000,5000
+intl_fr_data_gouv,data.gouv.fr,modeled,False,2765,2765,2765
+intl_freedomhouse,Freedom in the World — All Data (aggregate + category scores),modeled,False,2723,2723,2723
+intl_gfi_trade,GFI Trade-Related Illicit Financial Flows Data,modeled,False,25,25,25
+fed_irs_revocation,IRS Automatic Revocation of Exemption List (Auto-Revocation),modeled,False,1187367,1206628,1206628
+fed_jpml_pending_mdls,JPML Pending MDLs,modeled,False,162,162,162
+fed_medsl_senate_returns,MEDSL -- U.S. Senate constituency returns (1976-2024),modeled,False,3945,3945,3945
+fed_noaa_weather_api,Weather.gov API (National Weather Service),modeled,False,287,287,287
+fed_nsf_awards,NSF Award Search API,modeled,False,125,125,125
+fed_osha_ita_300a_summary_2025,FED_OSHA_ITA_300A_SUMMARY_2025,modeled,False,383283,383283,
+fed_oyez,Oyez Project,modeled,False,25,25,25
+fed_pbgc_data,PBGC Pension Insurance Data,modeled,False,149771,149771,149771
+fed_sec_business_development_company_report,FED_SEC_BUSINESS_DEVELOPMENT_COMPANY_REPORT,modeled,False,212,212,
+fed_sec_closed_end_fund_information,FED_SEC_CLOSED_END_FUND_INFORMATION,modeled,False,973,973,
+fed_sec_edgar_company_tickers,SEC EDGAR Company Tickers,modeled,False,10414,10414,10414
+fed_usaspending_subawards,USAspending Sub-Award Data (FSRS/FFATA),modeled,True,5000,5000,5000
+fed_uscourts_stats,U.S. Courts Caseload Statistics Data Tables,modeled,False,50,50,50
+fed_va_allcause_mortality,VA All-Cause Mortality Data Appendix (2018-2023),modeled,False,2808,2808,2808
+fed_va_suicide_state,VA State Suicide Data Appendix (2001-2023),modeled,False,1196,19704,19704
+fed_voteview_rollcall_meta,Voteview -- Roll-Call Metadata,modeled,False,3364,3364,3364
+INT_UK_COMPANIES_HOUSE,UK Companies House — Basic Company Data (full register),modeled,False,5734780,5734780,5734780
+intl_ca_open_canada,Open Government Portal Canada (open.canada.ca),modeled,True,500,500,500
+intl_ch_opendataswiss,Switzerland Open Government Data Portal (opendata.swiss),modeled,True,5000,5000,5000
+intl_cl_datosgob,Chile National Open Data Portal (datos.gob.cl),modeled,True,1000,1000,1000
+intl_eurostat,Eurostat SDMX Dissemination API,modeled,False,450,450,450
+intl_gh_datagovgh,Ghana Open Data Initiative (data.gov.gh),modeled,False,10,10,10
+intl_gr_datagov,Greece National Open Data Portal (data.gov.gr),modeled,True,4988,5000,5000
+fed_medsl_president_returns,MEDSL -- U.S. President state-level returns,modeled,False,3740,3740,3740
+FED_MSHA_MINES,MSHA Mines (operator directory),modeled,False,183812,91906,91906
+FED_MSHA_VIOLATIONS,MSHA Mine Safety Violations,modeled,False,6174531,3087266,3087266
+fed_nasa_open_data,NASA Open APIs & Data Portal,modeled,False,54,54,54
+fed_ntsb_aviation_events,NTSB Aviation Accident Database -- events,modeled,False,30968,30968,30968
+fed_sam_exclusions,SAM.gov Exclusions (Federal Debarment List),modeled,False,2940,9000,0
+fed_sba_ppp,Paycheck Protection Program (PPP) Loan Data,modeled,False,968524,968524,968524
+fed_sec_13f_holdings,FED_SEC_13F_HOLDINGS,modeled,False,,101261252,
+fed_sec_dera_sub_2024q4,FED_SEC_DERA_SUB_2024Q4,modeled,False,6491,6491,
+FED_SEC_INSIDER_SUBMISSION,"SEC EDGAR Insider Transactions (Form 3/4/5, 2025Q1) - SUBMISSION",modeled,False,1772088,1772088,1772088
+fed_treasury_avg_interest_rates,Treasury Average Interest Rates,modeled,False,4961,4961,4961
+fed_us_sec_edgar,SEC EDGAR,modeled,False,48984,48990,48990
+fed_usaspending_toptier_agencies,USAspending Top-Tier Federal Agencies,modeled,False,111,111,111
+fed_usgs_minerals,USGS Mineral Resources Data,modeled,False,304632,304632,304632
+fed_voteview_rollcalls,Voteview -- Roll-Call Votes (member-by-vote matrix),modeled,False,945523,945523,945523
+fed_wpa_slave_narratives,"Born in Slavery: Slave Narratives from the Federal Writers' Project, 1936–1938",modeled,False,100,100,100
+intl_ec_sercop,Ecuador SERCOP Public Procurement OCDS,modeled,False,132995,132995,132995
+intl_eu_socta_europol,EU-SOCTA and IOCTA — Organized and Cybercrime Assessments,modeled,False,26,26,26
+intl_hudoc,HUDOC — ECHR Case-Law Database,modeled,True,2000,2000,2000
+FED_NHTSA_INVESTIGATIONS,NHTSA ODI Investigations (flat file),modeled,False,308418,154209,154209
+fed_ofac_sdn,OFAC Specially Designated Nationals (SDN) List,modeled,False,19115,19115,19115
+fed_osha_ita_300a_summary_2023,FED_OSHA_ITA_300A_SUMMARY_2023,modeled,False,394234,394234,
+fed_osha_ita_case_detail_2023,FED_OSHA_ITA_CASE_DETAIL_2023,modeled,False,500000,890934,
+FED_PHMSA_FLAGGED_INCIDENTS,PHMSA — Flagged Pipeline Safety Incidents (significant events),modeled,False,2039,2039,2039
+fed_sec_13f_submissions,FED_SEC_13F_SUBMISSIONS,modeled,False,336124,336124,
+fed_sec_dera_sub_2025q3,FED_SEC_DERA_SUB_2025Q3,modeled,False,6541,6541,
+FED_SEC_INSIDER_REPORTINGOWNER,"SEC EDGAR Insider Transactions (Form 3/4/5, 2025Q1) - REPORTINGOWNER",modeled,False,1934673,1934673,1934673
+fed_sec_money_market_fund_information,FED_SEC_MONEY_MARKET_FUND_INFORMATION,modeled,False,1206,1206,
+fed_senate_stock_watcher,Senate Stock Watcher -- Senate STOCK Act trades (community re-parse),modeled,False,8350,8350,8350
+fed_treasury_debt_outstanding,FED_TREASURY_DEBT_OUTSTANDING,modeled,False,237,237,
+fed_treasury_debt_to_penny,Treasury Debt to the Penny,modeled,False,8329,8329,8329
+FED_USASPENDING_CONTRACTS_FULL,"USASpending Federal Contract Awards (FY2007-FY2026, all agencies)",modeled,False,,20000000,20000000
+intl_adb_data,ADB Data Library — Projects and Economic Indicators,modeled,False,41,41,41
+intl_embl_ensembl,Ensembl Genome Browser & REST API,modeled,False,643,643,643
+intl_eurlex_cellar,EUR-Lex CELLAR — SPARQL/REST API,modeled,False,53,53,53
+intl_gem_hazard,GEM Global Seismic Hazard Model (OpenQuake Mosaic),modeled,False,12,12,12
+INTL_GLEIF,GLEIF LEI2 Golden Copy (full CSV),modeled,False,3382301,3382301,3382301
+intl_leiden_russian_ops_europe,Russian Operations Against Europe Dataset,modeled,False,153,153,153
+fed_sec_investment_company_series_class,FED_SEC_INVESTMENT_COMPANY_SERIES_CLASS,modeled,False,43123,43123,43123
+fed_epa_aqs_sites,FED_EPA_AQS_SITES,modeled,False,20994,20994,20994
+fed_itis_nodc_ids,FED_ITIS_NODC_IDS,modeled,False,209565,209565,209565
+fed_epa_rcra_violations,FED_EPA_RCRA_VIOLATIONS,modeled,False,708114,708114,708114
+fed_eia861_demand_response,FED_EIA861_DEMAND_RESPONSE,modeled,False,339,340,340
+fed_eia860_3_1_generator,FED_EIA860_3_1_GENERATOR,modeled,False,26855,26856,26856
+fed_eia861_reliability,FED_EIA861_RELIABILITY,modeled,False,971,973,973
+st_nyc_cfb_campaign_2009_contribution,ST_NYC_CFB_CAMPAIGN_2009_CONTRIBUTION,modeled,False,146112,146112,146112
+st_nyc_cfb_campaign_2013_contribution,ST_NYC_CFB_CAMPAIGN_2013_CONTRIBUTION,modeled,False,197968,197968,197968
+fed_eia861_delivery_companies,FED_EIA861_DELIVERY_COMPANIES,modeled,False,7,9,9
+fed_eia861_energy_efficiency,FED_EIA861_ENERGY_EFFICIENCY,modeled,False,458,460,460
+fed_hud_fha_sf_portfolio_snapshot,FED_HUD_FHA_SF_PORTFOLIO_SNAPSHOT,modeled,False,61647,61647,61647
+fed_hrsa_hpsa_primary_care,FED_HRSA_HPSA_PRIMARY_CARE,modeled,False,79158,79158,79158
+fed_ice_detention_facility_codes,FED_ICE_DETENTION_FACILITY_CODES,modeled,False,1490,1490,1490
+fed_dol_olms,FED_DOL_OLMS,modeled,False,617710,617710,617710
+fed_hud_public_housing_authorities,FED_HUD_PUBLIC_HOUSING_AUTHORITIES,modeled,False,3787,3787,3787
+irs527_directors_officers,IRS Political Organization Filing & Disclosure — Directors/Officers attached to a Form 8871,modeled,False,189593,189593,189593
+intl_ucdp_ged,UCDP Georeferenced Event Dataset (GED) Global,modeled,False,385918,385918,385918
+intl_opensanctions,"OpenSanctions Consolidated Sanctions (Targets, Simplified CSV)",modeled,False,71011,71011,71011
+intl_owid_milspend,Our World in Data — Military Spending (SIPRI mirror),modeled,False,9112,9112,9112
+intl_opensanctions_default,"OpenSanctions Default Collection (Targets, Simplified CSV)",modeled,False,1281846,1281846,
+irs527_8871_orgs,IRS Political Organization Filing & Disclosure — Form 8871 initial/amended/final notice (organization registry),modeled,False,77591,77591,77591
+intl_voeten_unga_votes,United Nations General Assembly Voting Data (Voeten),modeled,False,1823352,1823352,1823352
+irs527_eain,IRS Political Organization Filing & Disclosure — Election Authority ID Numbers attached to a Form 8871,modeled,False,17853,17853,17853
+intl_uk_companies_house,UK Companies House — Company and PSC Data,modeled,,5734780,,
+intl_nti_cns_dprk_missile_tests,CNS North Korea Missile Test Database (Nuclear Threat Initiative / James Martin Center for Nonproliferation Studies),modeled,False,303,303,303
+intl_wb_ids,World Bank International Debt Statistics (IDS),modeled,False,62983,62983,62983
+irs527_8872_reports,IRS Political Organization Filing & Disclosure — Form 8872 periodic report (organization report registry),modeled,False,55579,55579,55579
+irs527_related_entities,IRS Political Organization Filing & Disclosure — Related entities attached to a Form 8871,modeled,False,64835,64835,64835
+st_nyc_cfb_campaign_2001_contribution,ST_NYC_CFB_CAMPAIGN_2001_CONTRIBUTION,modeled,False,193741,193741,193741
+fed_itis_vernaculars,FED_ITIS_VERNACULARS,modeled,False,166778,166778,166778
+fed_eia861_distribution_systems,FED_EIA861_DISTRIBUTION_SYSTEMS,modeled,False,1353,1353,1353
+xc_osf_registrations,XC_OSF_REGISTRATIONS,modeled,False,10,10,10
+fed_fda_unii_gsrs_substances,FED_FDA_UNII_GSRS_SUBSTANCES,modeled,False,168046,168046,168046
+fed_ncua_charter_merger_events,FED_NCUA_CHARTER_MERGER_EVENTS,modeled,False,27,27,27
+fed_ed_college_scorecard_institution,FED_ED_COLLEGE_SCORECARD_INSTITUTION,modeled,False,6273,6273,6273
+fed_eia861_dynamic_pricing,FED_EIA861_DYNAMIC_PRICING,modeled,False,857,858,858
+fed_itis_reference_links,FED_ITIS_REFERENCE_LINKS,modeled,False,1970107,1970107,1970107
+fed_fema_ia_housing_registrations,FED_FEMA_IA_HOUSING_REGISTRATIONS,modeled,False,3080000,19600000,
+fed_itis_kingdoms,FED_ITIS_KINGDOMS,modeled,False,7,7,7
+fed_fda_purple_book,FED_FDA_PURPLE_BOOK,modeled,False,2228,2233,2233
+fed_eia860_3_5_multifuel,FED_EIA860_3_5_MULTIFUEL,modeled,False,2893,2893,2893
+fed_fracfocus_disclosure_list,FED_FRACFOCUS_DISCLOSURE_LIST,modeled,False,248835,248835,248835
+fed_fema_nfip_community_status_book,FED_FEMA_NFIP_COMMUNITY_STATUS_BOOK,modeled,False,25122,25122,25122
+st_nyc_cfb_campaign_2025_contributions,ST_NYC_CFB_CAMPAIGN_2025_CONTRIBUTIONS,modeled,False,259537,259537,259537
+fed_occ_thrifts,FED_OCC_THRIFTS,modeled,False,218,218,
+fed_eia861_frame,FED_EIA861_FRAME,modeled,False,3412,3412,3412
+fed_epa_rcra_enforcements,FED_EPA_RCRA_ENFORCEMENTS,modeled,False,383519,383519,383519
+fed_epa_rcra_rcra_naics,FED_EPA_RCRA_RCRA_NAICS,modeled,False,434734,434734,
+fed_itis_longnames,FED_ITIS_LONGNAMES,modeled,False,993346,993346,993346
+fed_itis_publications,FED_ITIS_PUBLICATIONS,modeled,False,30772,30772,30772
+intl_elections_canada_contributions,INTL_ELECTIONS_CANADA_CONTRIBUTIONS,modeled,False,12646465,12646465,12646465
+fed_uscg_nrc_incident_reports,FED_USCG_NRC_INCIDENT_REPORTS,modeled,False,116662,116662,116662
+fed_epa_rcra_facilities,FED_EPA_RCRA_FACILITIES,modeled,False,1613224,1613224,1613224
+fed_eia860_2_plant,FED_EIA860_2_PLANT,modeled,False,16132,16132,16132
+fed_eia860_6_2_enviroequip,FED_EIA860_6_2_ENVIROEQUIP,modeled,False,4428,4429,4429
+fed_eia861_non_net_metering_distributed,FED_EIA861_NON_NET_METERING_DISTRIBUTED,modeled,False,507,507,507
+fed_usgs_gnis_all_names,FED_USGS_GNIS_ALL_NAMES,modeled,False,1249624,1249630,1249630
+fed_itis_hierarchy,FED_ITIS_HIERARCHY,modeled,False,678363,678363,678363
+xc_crossref_funder_registry,XC_CROSSREF_FUNDER_REGISTRY,modeled,False,45661,45661,45661
+fed_eia861_operational_data,FED_EIA861_OPERATIONAL_DATA,modeled,False,1711,1712,1712
+fed_ihs_scb_facility,FED_IHS_SCB_FACILITY,modeled,False,8733,8733,8733
+fed_occ_national_banks,FED_OCC_NATIONAL_BANKS,modeled,False,724,724,
+fed_eia861_advanced_meters,FED_EIA861_ADVANCED_METERS,modeled,False,2725,2725,2725
+fed_cfpb_hmda_historic,FED_CFPB_HMDA_HISTORIC,modeled,False,19136434,19136434,
+fed_eia861_short_form,FED_EIA861_SHORT_FORM,modeled,False,1724,1724,1724
+fed_eia860_1_utility,FED_EIA860_1_UTILITY,modeled,False,6643,6643,6643
+st_nyc_cfb_campaign_2021_contributions,ST_NYC_CFB_CAMPAIGN_2021_CONTRIBUTIONS,modeled,False,457521,457521,457521
+fed_fdic_sod_branch_deposits,FED_FDIC_SOD_BRANCH_DEPOSITS,modeled,False,2823000,2823000,2823000
+fed_itis_tu_comments_links,FED_ITIS_TU_COMMENTS_LINKS,modeled,False,192851,192851,192851
+fed_epa_tri_facility,FED_EPA_TRI_FACILITY,modeled,False,64990,64990,64990
+intl_healthcanada_dpd_drug,INTL_HEALTHCANADA_DPD_DRUG,modeled,False,13383,13383,13383
+xc_retraction_watch_database,XC_RETRACTION_WATCH_DATABASE,modeled,False,71388,71608,71608
+fed_epa_ghgrp_emission,FED_EPA_GHGRP_EMISSION,modeled,False,346683,346683,
+fed_epa_rcra_viosnc_history,FED_EPA_RCRA_VIOSNC_HISTORY,modeled,False,2675581,2675581,2675581
+fed_epa_rcra_evaluations,FED_EPA_RCRA_EVALUATIONS,modeled,False,1166410,1166410,1166410
+fed_fracfocus_registry,FED_FRACFOCUS_REGISTRY,modeled,False,7200550,7200550,7200550
+fed_fhfa_fhlb_membership,FED_FHFA_FHLB_MEMBERSHIP,modeled,False,6327,6327,6327
+fed_usgs_orphaned_oil_gas_wells,FED_USGS_ORPHANED_OIL_GAS_WELLS,modeled,False,117672,117672,117672
+fed_eia861_sales_ult_cust_cs,FED_EIA861_SALES_ULT_CUST_CS,modeled,False,674,676,676
+fed_itis_synonym_links,FED_ITIS_SYNONYM_LINKS,modeled,False,315254,315254,315254
+intl_osfi_regulated_fi,INTL_OSFI_REGULATED_FI,modeled,False,343,343,343
+fed_itis_experts,FED_ITIS_EXPERTS,modeled,False,197,197,197
+fed_wqp_monitoring_stations,FED_WQP_MONITORING_STATIONS,modeled,False,5818,5818,5818
+fed_itis_taxon_unit_types,FED_ITIS_TAXON_UNIT_TYPES,modeled,False,182,182,182
+fed_nlm_dailymed_spl_setid_map,FED_NLM_DAILYMED_SPL_SETID_MAP,modeled,False,158452,158452,158452
+fed_atf_ffl,FED_ATF_FFL,modeled,False,77514,77514,
+fed_itis_other_sources,FED_ITIS_OTHER_SOURCES,modeled,False,1071,1071,1071
+fed_epa_frs_frs_facilities,FED_EPA_FRS_FRS_FACILITIES,modeled,False,3277557,3277557,
+fed_itis_taxonomic_units,FED_ITIS_TAXONOMIC_UNITS,modeled,False,993346,993346,993346
+fed_itis_jurisdiction,FED_ITIS_JURISDICTION,modeled,False,161922,161922,161922
+fed_ntsb_aviation_injury,FED_NTSB_AVIATION_INJURY,modeled,False,179179,179179,179179
+fed_fjc_idb_bankruptcy,FED_FJC_IDB_BANKRUPTCY,modeled,False,6965441,6965441,
+fed_eia861_utility_data,FED_EIA861_UTILITY_DATA,modeled,False,1701,1701,1701
+fed_eia_861_balancing_authority,FED_EIA_861_BALANCING_AUTHORITY,modeled,False,189,189,189
+fed_itis_vern_ref_links,FED_ITIS_VERN_REF_LINKS,modeled,False,93078,93078,93078
+fed_usaspending_tas_filter_tree,FED_USASPENDING_TAS_FILTER_TREE,modeled,False,92,92,92
+fed_dol_ebsa_form5500_schedule_sb,FED_DOL_EBSA_FORM5500_SCHEDULE_SB,modeled,False,41802,41802,41802
+fed_eia860_3_3_solar,FED_EIA860_3_3_SOLAR,modeled,False,7154,7154,7154
+fed_hud_mf_section8_contracts,FED_HUD_MF_SECTION8_CONTRACTS,modeled,False,24309,24309,24309
+fed_fjc_idb_appellate,FED_FJC_IDB_APPELLATE,modeled,False,988183,988183,
+fed_hrsa_npdb,FED_HRSA_NPDB,modeled,False,1911185,1911185,
+fed_hud_mf_firm_commitments,FED_HUD_MF_FIRM_COMMITMENTS,modeled,False,25557,25565,25565
+fed_eia860_6_1_enviroassoc,FED_EIA860_6_1_ENVIROASSOC,modeled,False,7020,7021,7021
+fed_eia860_4_owner,FED_EIA860_4_OWNER,modeled,False,5495,5496,5496
+tx_lobby_awards,Texas Ethics Commission Lobby Activities — Awards/Mementos - Schedule F,modeled,False,1589,1589,1589
+xc_epa_corporate_crosswalk,XC_EPA_CORPORATE_CROSSWALK,modeled,False,5300149,5300149,
+xc_jcs_scotus,Judicial Common Space -- SCOTUS justice ideology,modeled,False,782,782,782
+xc_owid_temp_anomaly,OWID — Global temperature anomaly,modeled,False,531,531,531
+tx_lobby_individual_reporting,Texas Ethics Commission Lobby Activities — Individual Reporting for Entity,modeled,False,38662,38662,38662
+xc_nagix_dprk_missile_tests,"nagix/nk-missile-tests — North Korea missile flight tests (JSON, CNS-derived + landing geocoding)",modeled,False,340,340,340
+xc_owid_terrorism_deaths,OWID — Terrorism deaths,modeled,False,10481,10481,10481
+xc_vera_incarceration_trends,Vera Institute — Incarceration Trends (county),modeled,False,128507,128507,128507
+st_cannabis_policy_bundles,US State Cannabis Policy Bundles Dataset,modeled,False,1500,1500,1500
+tx_lobby_subject_matter,Texas Ethics Commission Lobby Activities — Subject Matter - Schedule A,modeled,False,209957,209957,209957
+xc_mapping_police_violence,Mapping Police Violence Database,modeled,False,15476,15476,
+xc_wayback_replay_doj_deep_pages,XC_WAYBACK_REPLAY_DOJ_DEEP_PAGES,modeled,False,2542,2542,2542
+tx_lobby_entertainment,Texas Ethics Commission Lobby Activities — Entertainment - Schedule D,modeled,False,2836,2836,2836
+tx_lobby_food_beverage,Texas Ethics Commission Lobby Activities — Food/Beverages - Schedule C,modeled,False,14452,14452,14452
+tx_lobby_gifts,Texas Ethics Commission Lobby Activities — Gifts - Schedule E,modeled,False,4084,4084,4084
+xc_owid_co2,OWID — Annual CO2 emissions by country,modeled,False,29384,29384,29384
+xc_owid_gini,OWID — Gini index (income inequality),modeled,False,2389,2389,2389
+xc_ransomwarelive_victims,Ransomware.live — global ransomware victim tracker,modeled,False,29193,29193,29193
+xc_wayback_doj_epstein,Wayback CDX Census — DOJ Epstein Library Listing Pages,modeled,False,1537352,1537352,1537352
+tx_lobby_cover,Texas Ethics Commission Lobby Activities — Form LA Cover Sheet totals (one row per lobby activity report filed),modeled,False,283803,283803,283803
+tx_lobby_dockets,Texas Ethics Commission Lobby Activities — Dockets - Schedule A,modeled,False,1207,1207,1207
+xc_biorxiv_medrxiv,bioRxiv / medRxiv API,modeled,False,432,432,432
+xc_guttmacher_monthly_abortion,xc_guttmacher_monthly_abortion,modeled,False,2040,2040,2040
+xc_owid_life_expectancy,OWID — Life expectancy,modeled,False,21565,21565,21565
+xc_owid_refugees,OWID — Refugee population by country of origin,modeled,False,7442,7442,7442
+xc_wayback_replay_doj_listing,XC_WAYBACK_REPLAY_DOJ_LISTING,modeled,False,24897,24897,24897
+state_mo_sex_offender_registry,Missouri Sex Offender Registry,modeled,False,28185,28185,28185
+tx_lobby_events,Texas Ethics Commission Lobby Activities — Events - Schedule G,modeled,False,3107,3107,3107
+xc_owid_ai_incidents_annual,Annual reported AI incidents & controversies (AIID via AI Index),modeled,False,14,14,14
+xc_owid_cpi,OWID — Corruption Perceptions Index (TI),modeled,False,2312,2312,2312
+xc_owid_fossil_share,OWID — Fossil fuel share of primary energy,modeled,False,6379,6379,6379
+xc_uk_sanctions_list,UK Sanctions List,modeled,False,57883,57883,57883
+xc_wapo_fatal_force,Washington Post Fatal Force database (v2),modeled,False,10430,10430,10430
+xc_wikipedia_largest_us_companies,XC_WIKIPEDIA_LARGEST_US_COMPANIES,modeled,False,100,100,100
+st_oehha_proposition_65_list,OEHHA Proposition 65 List,modeled,False,952,1021,1021
+tx_lobby_transportation,Texas Ethics Commission Lobby Activities — Transportation - Schedule B,modeled,False,3697,3697,3697
+xc_jcs_coa,Judicial Common Space -- Courts of Appeals judge ideology,modeled,False,705,705,705
+xc_jcs_medians,Judicial Common Space -- court/institution ideology medians,modeled,False,102,102,102
+xc_owid_fertility,OWID — Fertility rate (children per woman),modeled,False,19402,19402,19402
+xc_owid_homicide,OWID — Homicide rate (UNODC),modeled,False,4912,4912,4912
+xc_owid_nuclear_warheads,Our World in Data — Estimated nuclear warhead stockpiles (FAS Nuclear Notebook),modeled,False,902,902,902
+xc_un_consolidated_sanctions_list,UN Consolidated Sanctions List,modeled,False,1011,1011,1011
+fed_cfpb_hmda_lar,FED_CFPB_HMDA_LAR,modeled,False,17474,17474,17474
+fed_hrsa_uds_service_delivery_sites,FED_HRSA_UDS_SERVICE_DELIVERY_SITES,modeled,False,19038,19038,19038
+fed_fhfa_suspended_counterparties,FED_FHFA_SUSPENDED_COUNTERPARTIES,modeled,False,222,241,241
+fed_ihs_facilities,FED_IHS_FACILITIES,modeled,False,1006,1010,1010
+fed_eia861_mergers,FED_EIA861_MERGERS,modeled,False,4,4,4
+uk_companies_house_psc,UK_COMPANIES_HOUSE_PSC,modeled,False,7000000,7000000,
+fed_eia861_net_metering,FED_EIA861_NET_METERING,modeled,False,1004,1006,1006
+fed_uscg_nrc_incidents,FED_USCG_NRC_INCIDENTS,modeled,False,1029020,1029020,
+fed_itis_strippedauthor,FED_ITIS_STRIPPEDAUTHOR,modeled,False,214445,214445,214445
+fed_sbir_sttr_awards,FED_SBIR_STTR_AWARDS,modeled,False,219503,219503,219503
+fed_msrb_registrants,FED_MSRB_REGISTRANTS,modeled,False,925,925,925
+fed_pcaob_form_ap_filings,FED_PCAOB_FORM_AP_FILINGS,modeled,False,155384,155384,155384
+fed_fda_drug_master_files,FED_FDA_DRUG_MASTER_FILES,modeled,False,41253,41253,41253
+xc_ror_research_organizations,XC_ROR_RESEARCH_ORGANIZATIONS,modeled,False,135710,135710,135710
+fed_eia861_sales_ult_cust,FED_EIA861_SALES_ULT_CUST,modeled,False,2815,2817,2817
+fed_fjc_idb_criminal,FED_FJC_IDB_CRIMINAL,modeled,False,6299908,6299908,
+fed_ncua_federally_insured_cu_list,FED_NCUA_FEDERALLY_INSURED_CU_LIST,modeled,False,4250,4250,4250
+fed_fracfocus_water_source,FED_FRACFOCUS_WATER_SOURCE,modeled,False,23747,23747,23747

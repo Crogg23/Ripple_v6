@@ -1,0 +1,2446 @@
+SOURCE_ID,NAME,DOMAIN_PRIMARY,DOMAIN_SECONDARY,DESCRIPTION,MART_ROW_COUNT,JOIN_KEYS_STD,ENTITY_TYPES,LAST_INGESTED_AT
+FED_EPA_FRS_FULL,EPA Facility Registry Service — Full National Download,UNCLASSIFIED,[],EPA Facility Registry Service — Full National Download,5300149,"[
+  ""FRS_ID"",
+  ""COUNTRY"",
+  ""FIPS"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",[],2026-07-27 20:18:28.217459
+FED_FDA_CAERS,openFDA CAERS (Cosmetic Adverse Event Reporting System),UNCLASSIFIED,[],"Cosmetic product adverse event reports -- reactions/injuries tied to cosmetics. One doc with a results array (85,511 records).",85511,[],[],2026-08-06 00:03:49.411798
+FED_FDA_DEVICE_510K,openFDA Device 510(k) Clearances,UNCLASSIFIED,[],"Premarket notification (510(k)) clearances -- devices cleared as substantially equivalent to a legally marketed predicate. One doc with a results array (175,686 records).",175686,[],[],2026-08-06 00:04:59.972889
+FED_FDA_DEVICE_CLASSIFICATION,openFDA Device Classification,UNCLASSIFIED,[],"FDA medical-device classification database -- device name, class (I/II/III), regulation number, medical specialty, submission type. openFDA JSON (one doc with a results array).",7085,[],[],2026-08-10 18:51:12.953339
+FED_FDA_DEVICE_ENFORCEMENT,openFDA Device Enforcement (recalls),UNCLASSIFIED,[],"FDA device recall/enforcement actions -- recalling firm, product, reason, classification, status. openFDA JSON (one doc with a results array).",39635,[],[],2026-08-10 18:57:00.543963
+FED_FDA_DEVICE_PMA,openFDA Device PMA (Premarket Approval),UNCLASSIFIED,[],"Premarket approval (PMA) decisions -- the most stringent device approval pathway (Class III / life-sustaining devices). One doc with a results array (56,853 records).",56853,[],[],2026-08-06 00:02:30.548911
+FED_FDA_ESTABLISHMENT_REG,openFDA Device Establishment Registration & Listing (FEI),UNCLASSIFIED,[],"Facility registration and device listing records -- every FDA establishment identifier (FEI) tied to a facility name/address and the devices it lists. 2 parts (330,251 records).",263374,[],[],2026-08-05 21:49:49.253567
+FED_FDA_GUDID,openFDA GUDID (Global Unique Device Identification Database),UNCLASSIFIED,[],"Device identifier records -- the DI (device identifier) portion of each medical device's UDI, brand/company name, and device attributes. openFDA JSON bulk dump, all 51 parts (5.08M device records).",5083948,[],[],2026-08-05 23:17:35.933226
+FED_FDA_MAUDE,openFDA MAUDE (Manufacturer and User Facility Device Experience),UNCLASSIFIED,[],"Device adverse event reports -- malfunctions, injuries, deaths tied to medical devices. openFDA JSON (one doc with a results array per part). Capped to 2020Q1-forward (184 quarterly part files) for load-time scope; full history is 25.3M records back to 1993.",2743561,[],[],2026-08-06 01:02:29.338886
+FED_FEC_LEADERSHIP_PAC,FEC Leadership PAC Sponsors (candidate-PAC bridge),UNCLASSIFIED,[],FEC Leadership PAC Sponsors (candidate-PAC bridge),17238,"[
+  ""FEC_ID""
+]",[],2026-07-27 19:54:41.660921
+FED_PHMSA_FLAGGED_INCIDENTS,PHMSA — Flagged Pipeline Safety Incidents (significant events),UNCLASSIFIED,[],PHMSA — Flagged Pipeline Safety Incidents (significant events),2039,[],[],2026-08-10 20:45:45.585140
+FED_SEC_13F_POSITIONS,SEC Form 13F — Institutional Holdings (positions),UNCLASSIFIED,[],SEC Form 13F — Institutional Holdings (positions),202522504,"[
+  ""ACCESSION_NUMBER"",
+  ""CUSIP""
+]",[],2026-07-27 20:49:21.705069
+FED_SEC_13F_SUBMISSION,SEC Form 13F — Submission Metadata (filer identity),UNCLASSIFIED,[],SEC Form 13F — Submission Metadata (filer identity),3822885,"[
+  ""ACCESSION_NUMBER"",
+  ""CUSIP""
+]",[],2026-07-27 20:48:35.872192
+INT_GLEIF_RR,GLEIF Level 2 — Relationship Records (parent-child ownership),UNCLASSIFIED,[],GLEIF Level 2 — Relationship Records (parent-child ownership),963866,[],[],2026-07-27 20:53:23.186906
+INT_UK_COMPANIES_HOUSE,UK Companies House — Basic Company Data (full register),UNCLASSIFIED,[],UK Companies House — Basic Company Data (full register),5734780,"[
+  ""COMPANY_NO"",
+  ""SIC"",
+  ""COUNTRY"",
+  ""ADDRESS"",
+  ""NAME""
+]",[],2026-07-27 20:55:59.345490
+ca_lobby_amendments,California CAL-ACCESS Lobbying — Lobbying amendments,UNCLASSIFIED,[],"Lobbying amendments. Part of the CAL-ACCESS bulk database export (dbwebexport.zip), lobbying-family tables only (campaign finance tables in the same export are out of scope for this source).",25249,"[
+  ""NAME""
+]",[],2026-08-05 21:37:24.114218
+ca_lobby_chg_log,California CAL-ACCESS Lobbying — Lobbying registration change log,UNCLASSIFIED,[],"Lobbying registration change log. Part of the CAL-ACCESS bulk database export (dbwebexport.zip), lobbying-family tables only (campaign finance tables in the same export are out of scope for this source).",85765,"[
+  ""ZIP"",
+  ""NAME""
+]",[],2026-08-05 21:37:16.388609
+ca_lobby_contributions,California CAL-ACCESS Lobbying — Lobbyist campaign contributions,UNCLASSIFIED,[],"Lobbyist campaign contributions. Part of the CAL-ACCESS bulk database export (dbwebexport.zip), lobbying-family tables only (campaign finance tables in the same export are out of scope for this source).",6505,"[
+  ""NAME""
+]",[],2026-08-05 21:37:31.417702
+ca_lobby_cover,California CAL-ACCESS Lobbying — Lobbying disclosure cover page (Form 615/625/635/645),UNCLASSIFIED,[],"Lobbying disclosure cover page (Form 615/625/635/645). Part of the CAL-ACCESS bulk database export (dbwebexport.zip), lobbying-family tables only (campaign finance tables in the same export are out of scope for this source).",524828,"[
+  ""NAME""
+]",[],2026-08-05 21:36:54.080525
+ca_lobby_cover2,California CAL-ACCESS Lobbying — Lobbying disclosure cover page 2 (additional filer info),UNCLASSIFIED,[],"Lobbying disclosure cover page 2 (additional filer info). Part of the CAL-ACCESS bulk database export (dbwebexport.zip), lobbying-family tables only (campaign finance tables in the same export are out of scope for this source).",206493,[],[],2026-08-05 21:37:03.437928
+ca_lobby_emp_lobbyist,California CAL-ACCESS Lobbying — Lobbyist employer <-> individual lobbyist relationships,UNCLASSIFIED,[],"Lobbyist employer <-> individual lobbyist relationships. Part of the CAL-ACCESS bulk database export (dbwebexport.zip), lobbying-family tables only (campaign finance tables in the same export are out of scope for this source).",1500,"[
+  ""NAME""
+]",[],2026-08-05 21:37:47.832489
+ca_lobby_employer,California CAL-ACCESS Lobbying — Lobbyist employers,UNCLASSIFIED,[],"Lobbyist employers. Part of the CAL-ACCESS bulk database export (dbwebexport.zip), lobbying-family tables only (campaign finance tables in the same export are out of scope for this source).",1730,"[
+  ""NAME""
+]",[],2026-08-05 21:37:38.213843
+ca_lobby_employer_firms,California CAL-ACCESS Lobbying — Lobbyist employer <-> firm relationships,UNCLASSIFIED,[],"Lobbyist employer <-> firm relationships. Part of the CAL-ACCESS bulk database export (dbwebexport.zip), lobbying-family tables only (campaign finance tables in the same export are out of scope for this source).",524,"[
+  ""NAME""
+]",[],2026-08-05 21:37:43.161797
+ca_lobby_firm,California CAL-ACCESS Lobbying — Lobbying firms,UNCLASSIFIED,[],"Lobbying firms. Part of the CAL-ACCESS bulk database export (dbwebexport.zip), lobbying-family tables only (campaign finance tables in the same export are out of scope for this source).",256,"[
+  ""NAME""
+]",[],2026-08-05 21:37:52.936464
+ca_lobby_firm_employer,California CAL-ACCESS Lobbying — Lobbying firm <-> employer relationships,UNCLASSIFIED,[],"Lobbying firm <-> employer relationships. Part of the CAL-ACCESS bulk database export (dbwebexport.zip), lobbying-family tables only (campaign finance tables in the same export are out of scope for this source).",170,"[
+  ""NAME""
+]",[],2026-08-05 21:37:58.711246
+ca_lobby_firm_lobbyist,California CAL-ACCESS Lobbying — Lobbying firm <-> individual lobbyist relationships,UNCLASSIFIED,[],"Lobbying firm <-> individual lobbyist relationships. Part of the CAL-ACCESS bulk database export (dbwebexport.zip), lobbying-family tables only (campaign finance tables in the same export are out of scope for this source).",577,"[
+  ""NAME""
+]",[],2026-08-05 21:38:04.353865
+fed_cdc_leading_causes_state,NCHS — Leading Causes of Death by State (1999-2017),UNCLASSIFIED,[],NCHS — Leading Causes of Death by State (1999-2017),10868,[],[],2026-08-09 18:18:27.140657
+fed_epa_superfund_site_boundaries,EPA Superfund Site Boundaries,UNCLASSIFIED,[],"Superfund (NPL and related) site boundary records, one row per site boundary feature: EPA site id, name, status, acreage, location. Attributes only — polygon geometry not landed.",2114,[],[],2026-08-10 23:35:25.353989
+fed_faa_aircraft_registry,FAA Aircraft Registry — Releasable Master File,UNCLASSIFIED,[],FAA Aircraft Registry — Releasable Master File,315447,[],[],2026-08-09 18:21:02.642130
+fed_fatca_ffi,FATCA Foreign Financial Institution (FFI) List,UNCLASSIFIED,[],"Every foreign financial institution registered with IRS under FATCA, with its Global Intermediary Identification Number (GIIN) -- the identifier used to report US-person accounts held abroad. Entity-spine join fuel: name + country + GIIN for foreign banks/funds/trusts.",516298,"[
+  ""COUNTRY"",
+  ""NAME""
+]",[],2026-08-05 21:25:06.631366
+fed_fra_casualties,FRA Injury/Illness Summary — Casualty Data (Form 55a),UNCLASSIFIED,[],FRA Injury/Illness Summary — Casualty Data (Form 55a),1150788,[],[],2026-08-09 18:26:08.561225
+fed_fra_crossing_incidents,FRA Highway-Rail Grade Crossing Incident Data (Form 57),UNCLASSIFIED,[],FRA Highway-Rail Grade Crossing Incident Data (Form 57),251149,[],[],2026-08-09 18:31:56.945370
+fed_fra_equipment_accidents,FRA Rail Equipment Accident/Incident Data (Form 54),UNCLASSIFIED,[],FRA Rail Equipment Accident/Incident Data (Form 54),224941,[],[],2026-08-09 18:35:04.999539
+fed_hrsa_uds_health_center_info,HRSA UDS (Uniform Data System) -- FED_HRSA_UDS_HEALTH_CENTER_INFO,UNCLASSIFIED,[],"Annual HRSA Uniform Data System (UDS) health-center reporting workbook, sheet FED_HRSA_UDS_HEALTH_CENTER_INFO. UDS is the OTHER half of HRSA data beyond HPSA shortage areas (already landed as FED_HRSA_SHORTAGE_AREAS) -- this is what funded health centers actually reported: patients served, demographics, funding.",1356,[],[],2026-08-05 21:43:51.351168
+fed_hrsa_uds_table3a_patients,HRSA UDS (Uniform Data System) -- FED_HRSA_UDS_TABLE3A_PATIENTS,UNCLASSIFIED,[],"Annual HRSA Uniform Data System (UDS) health-center reporting workbook, sheet FED_HRSA_UDS_TABLE3A_PATIENTS. UDS is the OTHER half of HRSA data beyond HPSA shortage areas (already landed as FED_HRSA_SHORTAGE_AREAS) -- this is what funded health centers actually reported: patients served, demographics, funding.",1356,[],[],2026-08-05 21:43:57.751607
+fed_hud_assisted_housing_projects,HUD Picture of Subsidized Households -- Project Level,UNCLASSIFIED,[],"Project-level snapshot of every HUD-assisted rental housing project (public housing, Section 8 project-based, 811/PRAC, and other HUD rental assistance programs): occupancy, tenant income, subsidy spending, and demographics per project.",35601,"[
+  ""LATLON"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",[],2026-08-05 21:41:06.038382
+fed_ice_detainers,ICE Detainers (person-level),UNCLASSIFIED,[],"Person-level ICE detainer records: detainer prepare date, detention facility + code, facility state/AOR/city, case status/category, apprehension method/date, entry status/date, most-serious-conviction charge + sentence, felon flag, final order date, departed date/country, port of departure, prior-felony flag, demographics (gender, birth_country, citizenship_country, birth_year -- no full DOB). De-identified at the case level: no name, no street address, no SSN, no raw A-number. Individuals link across rows only via unique_identifier, which DDP's codebook defines as an anonymized/hashed derivative of the ICE Alien Registration Number (A-number).",609769,[],[],2026-08-06 04:51:48.872867
+fed_ice_detention_stints,ICE Detention Stints (person-level),UNCLASSIFIED,[],"Person-level ICE detention records at the facility-STAY grain: book-in/book-out timestamps, detention facility + code, release reason, case status/category, criminal-charge fields (msc_charge, felon flag, sentence), bond posted date/amount, final order date, departed date/country, demographics (gender, race, ethnicity, marital status, religion, birth_country, citizenship_country, birth_year -- no full DOB). De-identified at the case level: no name, no street address, no SSN, no raw A-number. Individuals link across rows only via unique_identifier, which DDP's codebook defines as an anonymized/hashed derivative of the ICE Alien Registration Number (A-number).",2571975,[],[],2026-08-06 05:00:50.996055
+fed_icij_offshoreleaks_addresses,ICIJ Offshore Leaks -- addresses,UNCLASSIFIED,[],Address nodes tied to entities/officers/intermediaries.,402246,"[
+  ""COUNTRY"",
+  ""ADDRESS"",
+  ""NAME""
+]",[],2026-08-05 21:29:04.080245
+fed_icij_offshoreleaks_entities,ICIJ Offshore Leaks -- entities,UNCLASSIFIED,[],"Offshore companies/trusts/funds named in ICIJ's leaks (Panama Papers, Paradise Papers, Pandora Papers, Offshore Leaks, Bahamas Leaks). name, jurisdiction, incorporation/struck-off dates, status.",814344,"[
+  ""COUNTRY"",
+  ""ADDRESS"",
+  ""NAME""
+]",[],2026-08-05 21:28:22.883429
+fed_icij_offshoreleaks_intermediaries,ICIJ Offshore Leaks -- intermediaries,UNCLASSIFIED,[],"Law firms and corporate-service providers that set up the offshore entities (e.g. Mossack Fonseca, Appleby).",26768,"[
+  ""COUNTRY"",
+  ""ADDRESS"",
+  ""NAME""
+]",[],2026-08-05 21:29:26.581984
+fed_icij_offshoreleaks_officers,ICIJ Offshore Leaks -- officers,UNCLASSIFIED,[],People and companies acting as directors/shareholders/etc. of the offshore entities above.,771315,"[
+  ""COUNTRY"",
+  ""NAME""
+]",[],2026-08-05 21:28:43.203165
+fed_icij_offshoreleaks_others,ICIJ Offshore Leaks -- others,UNCLASSIFIED,[],Miscellaneous entity nodes not fitting the other categories.,2989,"[
+  ""COUNTRY"",
+  ""NAME""
+]",[],2026-08-05 21:29:33.140815
+fed_icij_offshoreleaks_relationships,ICIJ Offshore Leaks -- relationships,UNCLASSIFIED,[],"The edge list: node_id_start -> node_id_end with a rel_type (officer_of, registered_agent, similar, etc). This IS the offshore ownership graph.",3339267,[],[],2026-08-05 21:30:26.125509
+fed_nid_dams,National Inventory of Dams (NID),UNCLASSIFIED,[],"Federal inventory of dams meeting NID criteria (height/storage/hazard thresholds), including hazard-potential classification, condition assessment, owner, and location for each dam nationwide.",92766,"[
+  ""LATLON"",
+  ""NAME""
+]",[],2026-08-05 21:30:39.183341
+fed_ntsb_aviation_aircraft,NTSB Aviation Accident Database -- aircraft,UNCLASSIFIED,[],"NTSB's aviation accident/incident bulk database (avall.mdb), aircraft table. Current rolling window (older years ship as separate archived zips, not loaded here).",31503,"[
+  ""COUNTRY"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",[],2026-08-08 01:55:34.303228
+fed_ntsb_aviation_events,NTSB Aviation Accident Database -- events,UNCLASSIFIED,[],"NTSB's aviation accident/incident bulk database (avall.mdb), events table. Current rolling window (older years ship as separate archived zips, not loaded here).",30968,"[
+  ""COUNTRY"",
+  ""GEOM"",
+  ""LATLON"",
+  ""ZIP"",
+  ""NAME""
+]",[],2026-08-08 01:55:21.571436
+fed_pbgc_trusteed_plans,PBGC Single-Employer Plans Trusteed by PBGC,UNCLASSIFIED,[],"Plan-level list of every single-employer defined-benefit pension plan PBGC has trusteed (taken over) since 1974, after the sponsor/plan failed. One row = one trusteed plan: case number, sponsor name, plan name, EIN, plan number (PN), city/state, date of plan termination, date of PBGC trusteeship, participant count at termination. Distinct from the aggregate PBGC Data Book statistics already landed as fed_pbgc_data (no EIN/PN there).",5176,[],[],2026-08-06 04:52:51.667778
+fed_retraction_watch,Retraction Watch Database,UNCLASSIFIED,[],"Every known retracted, corrected, or otherwise flagged scientific paper tracked by Retraction Watch, distributed via the Crossref Labs API partnership.",71591,"[
+  ""COUNTRY""
+]",[],2026-08-05 21:24:57.247246
+fed_va_suicide_national,VA National Suicide Data Appendix (2001-2023),UNCLASSIFIED,[],"Veteran, VHA-user, other-veteran, non-veteran and US-adult suicide deaths, populations and rates by year and sex, 2001-2023.",690,[],[],2026-08-10 01:24:45.072390
+fed_va_suicide_state,VA State Suicide Data Appendix (2001-2023),UNCLASSIFIED,[],"Veteran suicide deaths and rates by state, sex, age group and method, 2001-2023 (state sheets of the VA suicide data appendix).",1196,[],[],2026-08-10 01:24:51.352259
+irs527_8871_orgs,IRS Political Organization Filing & Disclosure — Form 8871 initial/amended/final notice (organization registry),UNCLASSIFIED,[],"Form 8871 initial/amended/final notice (organization registry). Part of the IRS POFD bulk flat-file export (electronically filed forms only). NOT fed_irs_eo_pr (Puerto Rico exempt orgs) -- separate program, verified distinct.",77591,"[
+  ""EIN"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",[],2026-08-05 21:45:00.674710
+irs527_8872_reports,IRS Political Organization Filing & Disclosure — Form 8872 periodic report (organization report registry),UNCLASSIFIED,[],"Form 8872 periodic report (organization report registry). Part of the IRS POFD bulk flat-file export (electronically filed forms only). NOT fed_irs_eo_pr (Puerto Rico exempt orgs) -- separate program, verified distinct.",55579,"[
+  ""EIN"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",[],2026-08-05 21:45:44.560744
+irs527_directors_officers,IRS Political Organization Filing & Disclosure — Directors/Officers attached to a Form 8871,UNCLASSIFIED,[],"Directors/Officers attached to a Form 8871. Part of the IRS POFD bulk flat-file export (electronically filed forms only). NOT fed_irs_eo_pr (Puerto Rico exempt orgs) -- separate program, verified distinct.",189593,"[
+  ""EIN"",
+  ""ZIP"",
+  ""NAME""
+]",[],2026-08-05 21:45:18.556292
+irs527_eain,IRS Political Organization Filing & Disclosure — Election Authority ID Numbers attached to a Form 8871,UNCLASSIFIED,[],"Election Authority ID Numbers attached to a Form 8871. Part of the IRS POFD bulk flat-file export (electronically filed forms only). NOT fed_irs_eo_pr (Puerto Rico exempt orgs) -- separate program, verified distinct.",17853,[],[],2026-08-05 21:45:33.605440
+irs527_related_entities,IRS Political Organization Filing & Disclosure — Related entities attached to a Form 8871,UNCLASSIFIED,[],"Related entities attached to a Form 8871. Part of the IRS POFD bulk flat-file export (electronically filed forms only). NOT fed_irs_eo_pr (Puerto Rico exempt orgs) -- separate program, verified distinct.",64835,"[
+  ""EIN"",
+  ""ZIP"",
+  ""NAME""
+]",[],2026-08-05 21:45:27.847726
+state_mo_sex_offender_registry,Missouri Sex Offender Registry,UNCLASSIFIED,[],"State sex offender registry: one row per registered offender's offense record (name, current address/city/state/zip/county, offense description, offense count, compliance status, tier, DOB). Public safety-notification record per RSMo 589.400-425 and 43.650.",28185,[],[],2026-08-06 04:51:30.462013
+tx_lobby_awards,Texas Ethics Commission Lobby Activities — Awards/Mementos - Schedule F,UNCLASSIFIED,[],"Awards/Mementos - Schedule F. Part of the TEC Lobby Activities Reports (LA) bulk CSV export, electronic filings from 2005 forward plus paper-filing totals from 1993.",1589,[],[],2026-08-05 21:32:11.993482
+tx_lobby_cover,Texas Ethics Commission Lobby Activities — Form LA Cover Sheet totals (one row per lobby activity report filed),UNCLASSIFIED,[],"Form LA Cover Sheet totals (one row per lobby activity report filed). Part of the TEC Lobby Activities Reports (LA) bulk CSV export, electronic filings from 2005 forward plus paper-filing totals from 1993.",283803,[],[],2026-08-05 21:30:54.698058
+tx_lobby_dockets,Texas Ethics Commission Lobby Activities — Dockets - Schedule A,UNCLASSIFIED,[],"Dockets - Schedule A. Part of the TEC Lobby Activities Reports (LA) bulk CSV export, electronic filings from 2005 forward plus paper-filing totals from 1993.",1207,[],[],2026-08-05 21:31:31.875357
+tx_lobby_entertainment,Texas Ethics Commission Lobby Activities — Entertainment - Schedule D,UNCLASSIFIED,[],"Entertainment - Schedule D. Part of the TEC Lobby Activities Reports (LA) bulk CSV export, electronic filings from 2005 forward plus paper-filing totals from 1993.",2836,[],[],2026-08-05 21:31:54.928367
+tx_lobby_events,Texas Ethics Commission Lobby Activities — Events - Schedule G,UNCLASSIFIED,[],"Events - Schedule G. Part of the TEC Lobby Activities Reports (LA) bulk CSV export, electronic filings from 2005 forward plus paper-filing totals from 1993.",3107,[],[],2026-08-05 21:32:32.226461
+tx_lobby_food_beverage,Texas Ethics Commission Lobby Activities — Food/Beverages - Schedule C,UNCLASSIFIED,[],"Food/Beverages - Schedule C. Part of the TEC Lobby Activities Reports (LA) bulk CSV export, electronic filings from 2005 forward plus paper-filing totals from 1993.",14452,[],[],2026-08-05 21:31:47.794156
+tx_lobby_gifts,Texas Ethics Commission Lobby Activities — Gifts - Schedule E,UNCLASSIFIED,[],"Gifts - Schedule E. Part of the TEC Lobby Activities Reports (LA) bulk CSV export, electronic filings from 2005 forward plus paper-filing totals from 1993.",4084,[],[],2026-08-05 21:32:02.547398
+tx_lobby_individual_reporting,Texas Ethics Commission Lobby Activities — Individual Reporting for Entity,UNCLASSIFIED,[],"Individual Reporting for Entity. Part of the TEC Lobby Activities Reports (LA) bulk CSV export, electronic filings from 2005 forward plus paper-filing totals from 1993.",38662,[],[],2026-08-05 21:32:54.243670
+tx_lobby_subject_matter,Texas Ethics Commission Lobby Activities — Subject Matter - Schedule A,UNCLASSIFIED,[],"Subject Matter - Schedule A. Part of the TEC Lobby Activities Reports (LA) bulk CSV export, electronic filings from 2005 forward plus paper-filing totals from 1993.",209957,[],[],2026-08-05 21:31:15.165286
+tx_lobby_transportation,Texas Ethics Commission Lobby Activities — Transportation - Schedule B,UNCLASSIFIED,[],"Transportation - Schedule B. Part of the TEC Lobby Activities Reports (LA) bulk CSV export, electronic filings from 2005 forward plus paper-filing totals from 1993.",3697,[],[],2026-08-05 21:31:39.773498
+FED_IRS_990_EFILE_INDEX,"IRS 990 e-file Index (filer + XML URL, by year)",corporate_entities,[],"Index of every electronically-filed Form 990/990-EZ/990-PF -- EIN, org name, form type, tax period, and the URL of the return's XML. One row per filing.",5544626,"[
+  ""EIN"",
+  ""NAME""
+]",[],2026-07-24 02:12:43.882841
+FED_IRS_EO_PR,IRS Exempt Organizations BMF - Puerto Rico,corporate_entities,[],"IRS Exempt Organizations Business Master File extract, Puerto Rico region. One row per exempt org.",2587,"[
+  ""EIN"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",[],2026-07-23 20:03:40
+INTL_GLEIF,GLEIF LEI2 Golden Copy (full CSV),corporate_entities,[],The LEI golden copy: every Legal Entity Identifier and its registration + entity reference data. The global company-identity spine. One row per LEI.,3382301,"[
+  ""LEI"",
+  ""NAME""
+]",[],2026-07-23 19:42:13.500593
+fed_irs_990,IRS Form 990 Bulk Data & Exempt Org Search,corporate_entities,"[
+  ""money_finance"",
+  ""money_in_politics"",
+  ""government_power""
+]","Bulk XML downloads of all electronically filed IRS Form 990 series returns for tax-exempt organizations, organized by year and month, with per-year CSV index files.",200,"[
+  ""EIN""
+]","[
+  ""organization"",
+  ""person"",
+  ""payment"",
+  ""filing""
+]",2026-07-02 16:39:36.531174
+fed_irs_bmf,IRS Exempt Organizations Business Master File (EO BMF),corporate_entities,[],"Full roster of US tax-exempt organizations -- EIN, name, NTEE code, subsection, foundation/status codes, asset/income/revenue. The IRS side of the EIN bridge (#50). Concatenated from the 4 regional eo1-4.csv extracts.",1974830,"[
+  ""EIN"",
+  ""STATE"",
+  ""ZIP""
+]",[],2026-06-28 17:40:19.205022
+fed_irs_eo_bmf,IRS Exempt Organizations Business Master File (EO BMF),corporate_entities,"[
+  ""money_finance"",
+  ""government_power""
+]","Cumulative IRS Business Master File extract listing all tax-exempt organizations with registration details, EIN, filing address, subsection codes, and status.",1983563,[],"[
+  ""organization"",
+  ""filing"",
+  ""place""
+]",2026-08-10 03:41:18.063708
+fed_irs_revocation,IRS Automatic Revocation of Exemption List (Auto-Revocation),corporate_entities,[],IRS Automatic Revocation of Exemption List (Auto-Revocation),1187367,"[
+  ""COUNTRY"",
+  ""EIN"",
+  ""STATE"",
+  ""ZIP""
+]",[],2026-06-27 00:55:05.157323
+fed_sec_edgar,SEC EDGAR Filing Database (data.sec.gov API),corporate_entities,"[
+  ""money_finance"",
+  ""money_in_politics"",
+  ""spending_budget""
+]","SEC EDGAR API providing structured access to public company filings, financial statements, and company metadata indexed by CIK and EIN.",200,"[
+  ""CIK"",
+  ""EIN""
+]","[
+  ""company"",
+  ""organization"",
+  ""person"",
+  ""filing"",
+  ""asset"",
+  ""payment""
+]",2026-07-02 17:49:21.242608
+fed_sec_edgar_company_tickers,SEC EDGAR Company Tickers,corporate_entities,"[
+  ""economy_labor_trade""
+]",Flat JSON mapping of all SEC-registered companies to their CIK numbers and exchange ticker symbols.,10414,"[
+  ""CIK""
+]",[],2026-06-16 22:13:48.658729
+fed_us_sec_edgar,SEC EDGAR,corporate_entities,"[
+  ""money_finance"",
+  ""money_in_politics"",
+  ""sanctions_enforcement""
+]","SEC EDGAR full-text search and REST APIs providing access to company filings, financial statements, and corporate entity data submitted to the SEC.",48984,"[
+  ""ACCESSION_NUMBER"",
+  ""CIK"",
+  ""EIN""
+]","[
+  ""company"",
+  ""person"",
+  ""filing"",
+  ""asset"",
+  ""payment"",
+  ""organization""
+]",2026-07-01 20:40:16.017568
+intl_es_borme,Spain BORME (Boletín Oficial del Registro Mercantil),corporate_entities,"[
+  ""economy_labor_trade""
+]","Spain's Official Mercantile Registry Gazette, publishing daily corporate acts including incorporations, dissolutions, capital changes, and appointments of directors for Spanish companies.",28,"[
+  ""COUNTRY""
+]",[],2026-06-18 02:08:59.816801
+intl_ie_cro,Ireland CRO Open Data Portal,corporate_entities,"[
+  ""open_data_portal""
+]","Bulk extract of all companies registered with the Irish Companies Registration Office, including status, type, and address.",818930,"[
+  ""NAME""
+]","[
+  ""company"",
+  ""filing"",
+  ""place""
+]",2026-08-09 18:19:47.134232
+intl_uk_companies_house,UK Companies House — Company and PSC Data,corporate_entities,[],"Complete register of all UK companies including officer data, filing history, and People with Significant Control (PSC / beneficial ownership) records.",5734780,"[
+  ""COUNTRY"",
+  ""COUNTY""
+]",[],
+xc_wikipedia_largest_us_companies,XC_WIKIPEDIA_LARGEST_US_COMPANIES,corporate_entities,[],,100,"[
+  ""NAME""
+]",,2026-06-17 15:08:44.835016
+FED_MSHA_ACCIDENTS,MSHA Mine Accidents & Injuries,crime_security,[],"Reported mine accidents, injuries and fatalities (30 CFR Part 50). One row per accident/injury record.",547246,"[
+  ""MINE_ID"",
+  ""FIPS"",
+  ""NAME""
+]",[],2026-07-24 00:48:05.173382
+FED_MSHA_MINES,MSHA Mines (operator directory),crime_security,[],"All coal and metal/non-metal mines under MSHA jurisdiction -- status, current owner/operator, commodity. One row per mine.",183812,"[
+  ""MINE_ID"",
+  ""SIC"",
+  ""FIPS"",
+  ""NAME""
+]",[],2026-07-24 00:48:30.382433
+FED_MSHA_VIOLATIONS,MSHA Mine Safety Violations,crime_security,[],"Violations issued from MSHA mine inspections -- standard, penalty, persons affected. One row per violation.",6174531,"[
+  ""MINE_ID"",
+  ""DOCKET"",
+  ""NAME""
+]",[],2026-07-24 00:47:33.860830
+fed_bjs_data,BJS Data Collections and APIs,crime_security,"[
+  ""justice_courts"",
+  ""health_medicine""
+]","Incident-level extract from the National Crime Victimization Survey (NCVS) recording victim demographics, offense characteristics, weapon use, injury, treatment, and reporting/notification outcomes.",1000,[],"[
+  ""person"",
+  ""event""
+]",2026-07-05 20:57:59.680939
+fed_cisa_kev,CISA Known Exploited Vulnerabilities (KEV) Catalog,crime_security,[],Authoritative list of CVEs with reliable evidence of active in-the-wild exploitation. Carries a known-ransomware-campaign flag and federal due dates. Catalog version 2026.07.01.,1631,"[
+  ""NAME""
+]",[],2026-07-05 05:46:17.925251
+fed_fbi_cde,FBI Crime Data Explorer -- State Crime Estimates,crime_security,"[
+  ""justice_courts"",
+  ""geo_demographics"",
+  ""government_power""
+]",Monthly offense and clearance counts and rates by state and offense category from the FBI Crime Data Explorer summarized API.,238680,[],"[
+  ""person"",
+  ""organization"",
+  ""place"",
+  ""case"",
+  ""event""
+]",2026-08-09 19:15:08.944283
+fed_fbi_nics_checks,FBI NICS Firearm Background Checks (Data Liberation Project CSV mirror),crime_security,[],"Cleanest structured gun-commerce signal in this issue: state x month firearm demand 1998-present, the standard proxy for gun sales and the volume side of the ATF commerce story - loads in one pull. FBI publishes ONLY as PDF; this mirror is the de-facto structured version (DLP converts the PDF monthly). Verified live: HTTP 200, 1,411,489 bytes, header confirmed. Wide format with 24 check-type count columns + totals; state name is the join key (map to FIPS in staging). HARD CAVEAT for any narrative: a background check is NOT a gun sale (permit rechecks, multi-gun checks, CCW renewals inflate counts) - proxy, not a sales count. Pin commit/date in _SRC_SHA256 since the file is append-mostly but historical rows can be revised.",16445,"[
+  ""STATE""
+]",[],2026-06-28 03:02:08.967958
+intl_eu_socta_europol,EU-SOCTA and IOCTA — Organized and Cybercrime Assessments,crime_security,"[
+  ""sanctions_enforcement"",
+  ""money_finance"",
+  ""justice_courts""
+]","Europol's flagship EU-SOCTA and IOCTA reports providing strategic assessments of serious organised crime and cybercrime threats across Europe, published periodically.",26,[],"[
+  ""organization"",
+  ""place"",
+  ""event""
+]",2026-07-02 19:44:26.179652
+intl_nti_cns_dprk_missile_tests,CNS North Korea Missile Test Database (Nuclear Threat Initiative / James Martin Center for Nonproliferation Studies),crime_security,[],"Directly answers the issue — it is THE authoritative chronology of every DPRK missile flight test 1984-present (missile family, outcome, apogee/range, launch site geocoded), which is exactly the CSIS/NTI missile-test data the angle asks for, and it is the cleanest onboardable form of it. Header row is row 2 (row 1 is blank); 'Missile Tests' sheet dims A1:S305 with first real data at row 3. 19 columns incl. F1 id, Date, Date Entered/Updated, Launch Time (UTC), Missile Name, Missile Type (SRBM/MRBM/IRBM/ICBM/SLV), Launch Agency, Facility Name, Facility Location, Other Name, Facility Latitude, Facility Longitude, Landing Location (mostly text/'Unknown'), Apogee, Distance Travelled, Confirmation Status, Test Outcome, Additional Information, Source(s). Many numeric-ish fields ('Apogee','Distance Travelled','Landing Location') are free-text incl. 'Unknown' — keep as TEXT in landing, parse in s",303,"[
+  ""LATLON"",
+  ""NAME""
+]",[],2026-06-28 16:25:37.126428
+intl_ucdp_ged,UCDP Georeferenced Event Dataset (GED) Global,crime_security,[],"Geo-coded, dated events of organized violence worldwide (1989-present) with best/low/high fatality estimates by side. Keyless, openly licensed conflict backbone. GED Global v251.",385918,"[
+  ""COUNTRY"",
+  ""GEOM"",
+  ""LATLON"",
+  ""NAME""
+]",[],2026-06-28 02:36:11.529127
+xc_nagix_dprk_missile_tests,"nagix/nk-missile-tests — North Korea missile flight tests (JSON, CNS-derived + landing geocoding)",crime_security,[],"Best enrichment layer for the same issue: gives launch bearings and computed landing points (impact geography) plus coverage through 2026, filling the one real gap in the NTI file (no landing coordinates). Nested JSON: records live under timeBins[].data[], so flatten with pandas.json_normalize(record_path=['timeBins','data']) or a manual loop. Foreign-keyed by slug — missile/facility/satellite are codes ('scud-b','tonghae') that must be joined to missile.en.json / facility.en.json to get human names + facility lat/lon. Adds a 'bearing' field and computed landing geometry the NTI base file lacks (good for spatial viz of impact points). It is a DERIVED mirror, not the primary source — onboard NTI as the system of record and use this only to enrich landing coordinates/bearing.",340,[],[],2026-06-28 16:25:41.845252
+xc_owid_homicide,OWID — Homicide rate (UNODC),crime_security,[],OWID — Homicide rate (UNODC) — issue #48 crime.,4912,[],[],2026-06-28 03:21:14.954155
+xc_owid_nuclear_warheads,Our World in Data — Estimated nuclear warhead stockpiles (FAS Nuclear Notebook),crime_security,[],"Frictionless proliferation-context dataset (who has warheads, how many, over time) — but does not cover Iran directly; weak on the specific issue, strong as scene-setting. Dead-simple one-URL CSV with ISO-3 codes — but Iran is NOT in it (it's weapons states only: US, RU, CN, FR, UK, IN, PK, IL, KP, ZA + World). So it's a CONTEXT/proxy layer for the proliferation issue, not Iran data. Use it to frame the global arsenal backdrop, not to answer the Iran-specific ask. OWID grapher CSVs are stable but version param (?v=) can change; fetch the base path.",902,[],[],2026-06-28 02:57:06.324453
+xc_owid_terrorism_deaths,OWID — Terrorism deaths,crime_security,[],OWID — Terrorism deaths — issue #39 extremism.,10481,[],[],2026-06-28 03:21:02.702467
+xc_ransomwarelive_victims,Ransomware.live — global ransomware victim tracker,crime_security,[],"The broadest globally-scoped tracker of actual ransomware attacks on organizations including critical-infrastructure sectors — the 'victims' side of the issue, and the only candidate giving worldwide coverage rather than US-only. Use the flat data.ransomware.live mirror for bulk loads — don't paginate the REST API (it's rate-limited and meant for lookups). Data is crowdsourced/derived from criminal leak sites, so victim names are self-reported by attackers and unverified (duplicate/typo'd org names, sector mislabels). 'sector' is loosely mapped (sometimes NAICS-ish, sometimes free text) — good for filtering critical-infra sectors (healthcare, energy, water, manufacturing) but clean it in staging. Country is attacker-claimed. Project is one person's infrastructure — has gone briefly offline before; mirror the file on each pull. Carries no firm registry ID, so cross-source joins are NAME/D",29193,"[
+  ""COUNTRY"",
+  ""NAME""
+]",[],2026-06-28 02:57:23.009072
+xc_wapo_fatal_force,Washington Post Fatal Force database (v2),crime_security,[],"The standard, citable incident-level record of who police killed by gunfire, where (lat/lon), by which agency (ORI) — the spine of any police-violence accountability investigation. Only covers fatal SHOOTINGS, not all use-of-force/killings (excludes Taser, in-custody, vehicle deaths). v2 schema: incident cols (id,date,body_camera,city,county,state,latitude,longitude,location_precision,name,age,gender,race,race_source,was_mental_illness_related,threat_type,armed_with,flee_status,agency_ids). agency_ids is a semicolon/space-delimited list that joins to id in the agencies CSV (one-to-many, needs unnest in staging). oricodes in agencies can hold multiple ORIs per agency. lat/lon often block-level (see location_precision). Use the /raw/refs/heads/master/ URL (web HTML page is 403 to WebFetch; raw blob is fine).",10430,"[
+  ""COUNTY"",
+  ""STATE""
+]",[],2026-06-28 02:57:34.753184
+fed_bls_qcew,Quarterly Census of Employment and Wages (QCEW),economy_labor_trade,"[
+  ""geo_demographics""
+]","County-level quarterly and annual employment and wage statistics by industry (NAICS) and ownership sector, derived from unemployment insurance tax records.",3619437,"[
+  ""FIPS""
+]","[
+  ""place"",
+  ""filing""
+]",2026-07-05 21:10:12.628396
+fed_dol_form5500,Form 5500 Annual Return/Report Datasets,economy_labor_trade,"[
+  ""money_finance"",
+  ""corporate_entities"",
+  ""spending_budget""
+]","Annual structured data from Form 5500 and Form 5500-SF filings covering operations, funding, and investments of ~800,000 retirement and welfare benefit plans.",33484,"[
+  ""EIN"",
+  ""ZIP"",
+  ""NAME""
+]","[
+  ""company"",
+  ""organization"",
+  ""filing"",
+  ""payment"",
+  ""asset"",
+  ""person""
+]",2026-07-01 22:10:08.680835
+fed_fdic_failed_banks,FDIC Failed Banks,economy_labor_trade,[],"List of all FDIC-insured banks that have failed since 1934, including closure date, acquiring institution, and estimated loss to the deposit insurance fund.",3584,"[
+  ""FIPS"",
+  ""NAME""
+]",[],2026-06-16 22:20:37.442246
+fed_pbgc_data,PBGC Pension Insurance Data,economy_labor_trade,"[
+  ""money_finance"",
+  ""corporate_entities"",
+  ""spending_budget""
+]","Annual statistical tables and supplemental reports covering PBGC single-employer and multiemployer pension insurance programs, including financial position, claims, benefit payments, coverage, premiums, and funding levels.",149771,"[
+  ""STATE""
+]","[
+  ""company"",
+  ""organization"",
+  ""filing"",
+  ""payment"",
+  ""asset""
+]",2026-07-02 17:35:38.242723
+fed_treasury_avg_interest_rates,Treasury Average Interest Rates,economy_labor_trade,[],"Monthly average interest rates on US Treasury debt securities by security type and description, as published by the Bureau of the Fiscal Service.",4961,[],[],2026-06-17 00:26:16.345683
+fed_treasury_debt_to_penny,Treasury Debt to the Penny,economy_labor_trade,[],"Daily snapshot of total US national debt outstanding to the penny, broken down by debt held by the public and intragovernmental holdings.",8329,[],[],2026-06-16 22:48:09.411172
+intl_fao_faostat,FAOSTAT,economy_labor_trade,"[
+  ""open_data_portal"",
+  ""geo_demographics""
+]","Master JSON catalog of all FAOSTAT bulk-download datasets (production, trade, prices, food balance, land use, etc.) with links to per-dataset ZIP/CSV files.",69,[],"[
+  ""place"",
+  ""asset""
+]",2026-07-05 21:15:02.052925
+intl_fao_faostat_food_security,FAOSTAT Suite of Food Security Indicators (bulk),economy_labor_trade,[],"The baseline chronic-hunger dataset: prevalence of undernourishment and food-insecurity scales by country over 60+ years. Sets the structural context that IPC's acute spikes sit on top of. IMPORTANT: use the keyless bulk-download ZIP (bulks-faostat.fao.org), NOT the FAOSTAT developer API — the API now requires a JWT bearer token that expires every 60 minutes. ZIP serves clean from S3/CloudFront (HTTP 200). This is CHRONIC hunger (Prevalence of Undernourishment, Food Insecurity Experience Scale, dietary energy supply) — annual and slow-moving, complements IPC's acute crisis data. Country codes are FAO's M49-based 'Area Code' + 3-letter 'Area Code (M49)'; map to ISO3 for joins. Aggregates ('World', 'Africa') are mixed into the rows — filter them out in staging. There's a separate FAOSTAT data-source already scouted as intl_fao_faostat — recommend this as the food-security-specific sub-doma",279470,[],[],2026-06-28 02:57:58.045585
+intl_gfi_trade,GFI Trade-Related Illicit Financial Flows Data,economy_labor_trade,"[
+  ""money_finance"",
+  ""sanctions_enforcement"",
+  ""crime_security""
+]",Country-level data on trade-related illicit financial flows estimated by GFI from trade misinvoicing analysis.,25,[],"[
+  ""place"",
+  ""organization""
+]",2026-07-02 20:14:44.399362
+intl_ipc_food_insecurity_global,IPC Global Acute Food Insecurity Country Data,economy_labor_trade,[],"This IS the famine angle. Quantifies catastrophic food insecurity (Phase 5/Famine) and emergency (Phase 4) populations for Sudan and Darfur down to the analysis-area level — the data behind the 'famine confirmed in El Fasher/Kadugli' headlines, with official projections. Direct stable HDX download URLs (e.g. .../download/ipc_global_national_long_latest.csv) — no HDX login or API key needed; curl with a normal User-Agent works (the human-facing dataset PAGE 403s automated fetchers, but the CKAN resource download URLs are open). Choose granularity: national, level1 (admin1 — gives Darfur states), or area (IPC analysis units incl. El Fasher town, IDP camps). 'long' = tidy one-row-per-phase (recommended for Snowflake); 'wide' pivots phases to columns. Country code is ISO3 in the 'Country' column. Phase 5 = Famine — Sudan latest shows 134,808 (current) projected to 199,713. Percentage column ",735,"[
+  ""COUNTRY""
+]",[],2026-06-28 04:13:54.882910
+intl_it_istat,Italy ISTAT Statistics API (IstatData/SDMX),economy_labor_trade,[],"Machine-to-machine access to Italy's official statistical datasets via SDMX REST/SOAP web services, covering demographics, economy, labour, trade, environment, and censuses.",213284,"[
+  ""COUNTRY""
+]",[],2026-06-18 02:41:38.258563
+xc_owid_gini,OWID — Gini index (income inequality),economy_labor_trade,[],OWID — Gini index (income inequality) — issue #15 inequality.,2389,[],[],2026-06-28 03:20:46.588971
+fed_ed_edfacts,EDFacts,education,"[
+  ""geo_demographics"",
+  ""spending_budget"",
+  ""civil_rights_history""
+]","EDFacts centralizes pre-K through grade 12 performance, demographic, and program participation data collected from state education agencies for federal policymaking and planning.",33,"[
+  ""NAME""
+]","[
+  ""organization"",
+  ""place"",
+  ""facility""
+]",2026-07-01 22:34:41.153808
+fed_eac_eavs,Election Administration and Voting Survey (EAVS),elections_voting,"[
+  ""government_power"",
+  ""civil_rights_history"",
+  ""geo_demographics""
+]","Biennial survey of state and local election jurisdictions covering voter registration, absentee/mail voting, provisional ballots, polling places, poll workers, and UOCAVA ballots.",6460,"[
+  ""STATE""
+]","[
+  ""place"",
+  ""organization"",
+  ""event""
+]",2026-07-01 22:30:20.983013
+fed_medsl_house_returns,MEDSL -- U.S. House constituency returns (district level),elections_voting,"[
+  ""government_power""
+]","District-level U.S. House general-election returns, one row per candidate-per-district-per-year. The 'who won the House' source. NO FEC/ICPSR -- winner joins to member by name+state+district.",29636,"[
+  ""FIPS"",
+  ""STATE""
+]","[
+  ""event"",
+  ""person""
+]",2026-06-30 23:06:19.281926
+fed_medsl_president_returns,MEDSL -- U.S. President state-level returns,elections_voting,"[
+  ""government_power""
+]","State-level U.S. presidential returns, one row per candidate-per-state-per-year. The 'who won each state' geographic layer (no member-of-Congress join -- president is not in the bioguide spine).",3740,"[
+  ""FIPS"",
+  ""STATE""
+]","[
+  ""event""
+]",2026-06-30 23:06:26.266813
+fed_medsl_senate_returns,MEDSL -- U.S. Senate constituency returns (1976-2024),elections_voting,"[
+  ""government_power""
+]","State-level U.S. Senate general-election returns, one row per candidate-per-race-per-year: votes, total votes, party, special-election flag, runoff stage. The cleaned canonical 'who won the Senate' source. NO FEC/ICPSR in the file -- winner joins to the member spine by name+state (fuzzy).",3945,"[
+  ""FIPS"",
+  ""STATE""
+]","[
+  ""event"",
+  ""person""
+]",2026-06-30 23:06:09.565292
+fed_epa_echo,EPA ECHO Exporter (Facility-level Enforcement & Compliance),energy_environment,[],EPA ECHO Exporter (Facility-level Enforcement & Compliance),3135554,"[
+  ""COUNTY"",
+  ""FIPS"",
+  ""FRS_ID"",
+  ""STATE"",
+  ""ZIP""
+]",[],2026-06-27 01:05:40.838497
+fed_epa_envirofacts,EPA Envirofacts Data Service API,energy_environment,"[
+  ""health_medicine"",
+  ""enforcement_actions"",
+  ""corporate_entities""
+]","RESTful API providing access to ~20 EPA environmental databases including TRI, RCRA, SEMS, SDWIS, ECHO, FRS, and others, queryable by table with geographic and attribute filters.",5000,[],"[
+  ""facility"",
+  ""company"",
+  ""organization"",
+  ""place""
+]",2026-07-02 00:10:48.155675
+fed_noaa_storm_events,NOAA NCEI Storm Events Database (bulk CSV),energy_environment,[],"Best granular US extreme-weather IMPACT table: per-event fatalities, injuries, property/crop damage, hazard type, lat/lon and FIPS - the human/economic toll layer FEMA declarations don't capture. Strongest NEXT source to extend the issue. Filenames embed data year (d) and creation date (c), e.g. StormEvents_details-ftp_v1.0_dYYYY_cYYYYMMDD.csv.gz - scrape the directory index to resolve the latest c-stamp per year (c-date changes on revision; take the newest). DAMAGE_PROPERTY/DAMAGE_CROPS are TEXT with K/M/B suffixes ('2.5K','10.00M') - parse in staging, not landing. STATE_FIPS + CZ_FIPS need padding/joining; CZ_TYPE='Z' means NWS forecast zone (not a county FIPS) vs 'C'=county - don't blindly join Z-rows to county FIPS. Three files must be joined on EVENT_ID. Mirror also on source.coop (Earth Genome) if NCEI FTP is flaky.",1780730,"[
+  ""FIPS"",
+  ""STATE""
+]",[],2026-06-28 18:14:52.253885
+fed_noaa_weather_api,Weather.gov API (National Weather Service),energy_environment,"[
+  ""geo_demographics"",
+  ""health_medicine"",
+  ""government_power""
+]","Real-time NWS API providing weather forecasts, active alerts, station observations, and gridpoint data for the United States.",287,"[
+  ""GEOM"",
+  ""NAME""
+]","[
+  ""place"",
+  ""facility"",
+  ""event""
+]",2026-07-02 17:22:46.667452
+fed_usgs_minerals,USGS Mineral Resources Data,energy_environment,"[
+  ""economy_labor_trade"",
+  ""sanctions_enforcement"",
+  ""geo_demographics""
+]","Global and US statistics on supply, demand, and flow of mineral commodities by country and commodity type, including critical minerals data.",304632,"[
+  ""STATE""
+]","[
+  ""place"",
+  ""asset"",
+  ""company""
+]",2026-07-02 18:17:26.126006
+fed_usgs_water,USGS Water Data APIs,energy_environment,"[
+  ""health_medicine"",
+  ""geo_demographics"",
+  ""government_power""
+]","Real-time and daily streamflow, groundwater, and water-quality sensor data from the USGS national monitoring network, served via modernized Water Data APIs.",6694816,"[
+  ""LATLON"",
+  ""NAME""
+]","[
+  ""facility"",
+  ""place"",
+  ""organization""
+]",2026-07-02 18:25:35.542378
+intl_ember_elec,Ember Yearly and Monthly Electricity Data,energy_environment,[],"Yearly electricity generation, capacity, emissions, imports and demand data for 200+ geographies, updated twice monthly.",369264,"[
+  ""COUNTRY""
+]",[],2026-06-18 02:05:40.811341
+intl_gem_hazard,GEM Global Seismic Hazard Model (OpenQuake Mosaic),energy_environment,"[
+  ""geo_demographics"",
+  ""science_research"",
+  ""housing_social""
+]","Global mosaic of 30 national/regional seismic hazard models providing PGA and related hazard metrics worldwide, compatible with the OpenQuake Engine.",12,"[
+  ""COUNTRY""
+]","[
+  ""facility"",
+  ""place""
+]",2026-07-02 20:13:29.695147
+intl_global_witness_defenders,Global Witness — Land and Environmental Defenders Database,energy_environment,"[
+  ""crime_security"",
+  ""civil_rights_history"",
+  ""geo_demographics""
+]","Annual records of killings, disappearances, and attacks on land and environmental defenders worldwide, compiled by Global Witness since 2012.",232,"[
+  ""COUNTRY""
+]","[
+  ""person"",
+  ""organization"",
+  ""place"",
+  ""event"",
+  ""company""
+]",2026-07-02 20:20:22.718097
+xc_owid_co2,OWID — Annual CO2 emissions by country,energy_environment,[],OWID — Annual CO2 emissions by country — issue #24 climate.,29384,[],[],2026-06-28 03:20:37.900621
+xc_owid_fossil_share,OWID — Fossil fuel share of primary energy,energy_environment,[],OWID — Fossil fuel share of primary energy — issue #28 fossil fuels.,6379,[],[],2026-06-28 03:21:07.097926
+xc_owid_temp_anomaly,OWID — Global temperature anomaly,energy_environment,[],OWID — Global temperature anomaly — issue #24 climate.,531,[],[],2026-06-28 03:20:42.220826
+fed_bia_tribal_geo,BIA Open Data Geospatial Portal,geo_demographics,"[
+  ""government_power"",
+  ""energy_environment"",
+  ""housing_social""
+]","ArcGIS Hub portal providing geospatial datasets related to tribal lands, boundaries, and Native American territories maintained by the Bureau of Indian Affairs.",102,"[
+  ""GEOM"",
+  ""NAME""
+]","[
+  ""place"",
+  ""facility"",
+  ""organization""
+]",2026-07-01 20:57:01.295543
+fed_dhs_hifld,Homeland Infrastructure Foundation-Level Data (HIFLD),geo_demographics,"[
+  ""energy_environment"",
+  ""transport_movement"",
+  ""public_health_safety""
+]","Homeland Infrastructure Foundation-Level Data (HIFLD) providing geospatial datasets on critical infrastructure across the United States including energy, transportation, communications, healthcare, and public safety facilities.",500,[],"[
+  ""facility"",
+  ""place"",
+  ""organization""
+]",2026-07-02 15:24:38.966656
+fed_usgs_topoview,USGS Historical Topographic Map Collection (topoView + TNM API),geo_demographics,"[
+  ""history_culture"",
+  ""energy_environment"",
+  ""housing_social""
+]","USGS Historical Topographic Map Collection metadata and downloadable products accessible via the TNM Access API, covering pre-staged map products organized by dataset themes.",250,[],"[
+  ""facility"",
+  ""place"",
+  ""asset""
+]",2026-07-02 18:18:51.523949
+intl_eg_capmas,Egypt Data Portal (opendataforafrica.org/Egypt),geo_demographics,"[
+  ""economy_labor_trade"",
+  ""spending_budget"",
+  ""open_data_portal""
+]","Egypt national statistics portal providing time-series datasets and visualizations across agriculture, education, finance, population, trade, and other domains.",150,"[
+  ""NAME""
+]","[
+  ""place"",
+  ""organization""
+]",2026-07-02 19:26:01.732973
+intl_eurostat,Eurostat SDMX Dissemination API,geo_demographics,"[
+  ""economy_labor_trade"",
+  ""spending_budget"",
+  ""health_medicine""
+]",Eurostat SDMX 2.1 REST API providing structured statistical data across EU member states and candidate countries spanning dozens of domains.,450,[],"[
+  ""place"",
+  ""organization""
+]",2026-07-02 19:50:01.701446
+intl_gdelt,GDELT 2.0 Global Events Database,geo_demographics,"[
+  ""crime_security"",
+  ""government_power"",
+  ""history_culture""
+]","GDELT 2.0 master file list providing 15-minute-interval bulk downloads of global event, mention, and knowledge-graph (GKG) records extracted from worldwide news media.",1015,"[
+  ""COUNTRY"",
+  ""LATLON"",
+  ""NAME""
+]","[
+  ""person"",
+  ""organization"",
+  ""place"",
+  ""event"",
+  ""company""
+]",2026-07-02 20:10:39.584707
+xc_owid_fertility,OWID — Fertility rate (children per woman),geo_demographics,[],OWID — Fertility rate (children per woman) — issue #47 aging.,19402,[],[],2026-06-28 03:20:54.693557
+fed_congress_committee_membership,Congress -- Committee Membership (who chairs/sits on what),government_power,"[
+  ""money_in_politics""
+]","Current committee + subcommittee membership for Congress: which member sits on / chairs which committee, with rank and role. bioguide-keyed (joins straight to the member spine).",3879,"[
+  ""BIOGUIDE""
+]","[
+  ""person"",
+  ""organization""
+]",2026-07-01 03:01:03.949596
+fed_congress_legislators,unitedstates/congress-legislators,government_power,"[
+  ""elections_voting""
+]","Current + historical members of Congress and executives (presidents/VPs): bio, party, state, district, terms, AND the master ID crosswalk (bioguide/icpsr/fec/opensecrets/govtrack/votesmart/lis/thomas/wikidata/ballotpedia/cspan). The keystone for every join.",12847,"[
+  ""BIOGUIDE"",
+  ""ICPSR"",
+  ""STATE""
+]","[
+  ""person""
+]",2026-06-29 20:52:39.859363
+fed_doj_epstein_library,DOJ Epstein Library — File Manifest,government_power,[],"Monthly snapshot of every file link the DOJ Epstein Library lists publicly (disclosures index + 12 dataset pages). Metadata only — names, URLs, link text, page of origin — never the documents themselves. Snapshots over time show what appeared, what vanished, and what changed.",777,[],[],2026-06-11 16:52:45.194000
+fed_fcc_licensing,FCC Universal Licensing System (ULS),government_power,"[
+  ""corporate_entities"",
+  ""money_in_politics"",
+  ""geo_demographics""
+]","FCC Universal Licensing System — database of all FCC radio station and wireless licenses, applications, and related entities across spectrum services",1689338,"[
+  ""STATE"",
+  ""ZIP""
+]","[
+  ""company"",
+  ""organization"",
+  ""person"",
+  ""facility"",
+  ""place"",
+  ""filing"",
+  ""asset""
+]",2026-07-02 00:43:20.500506
+fed_federal_register_documents,Federal Register Documents,government_power,[],"Paginated JSON API returning the most recent Federal Register documents including rules, proposed rules, notices, and presidential documents.",94731,"[
+  ""DOCKET""
+]",[],2026-06-28 17:58:51.986700
+fed_fjc_judges,FJC Biographical Directory of Article III Federal Judges -- Judges,government_power,[],"The authoritative directory of every Article III federal judge (district, circuit, Supreme Court), 1789-present: name, demographics (gender, race/ethnicity), birth/death, keyed on the FJC nid. The judge dimension of the judiciary spine.",4067,[],"[
+  ""person""
+]",2026-07-01 03:47:34.762388
+fed_fjc_service,FJC Biographical Directory of Article III Federal Judges -- Federal Judicial Service,government_power,[],"Normalized appointment records for every Article III judgeship: Court Type/Name, Appointing President + party, nomination/confirmation dates, Senate Ayes/Nays, commission and termination. One row per (nid, appointment sequence).",4766,[],"[
+  ""person""
+]",2026-07-01 03:47:41.499585
+fed_govinfo_bill_cosponsors,GovInfo BILLSTATUS -- Cosponsor Extract,government_power,[],"The cosponsor list flattened out of GovInfo BILLSTATUS: one row per (bill, cosponsor bioguide) with the original-cosponsor flag, sponsorship date, and the withdrawn date (present only when a cosponsorship was withdrawn). Kept as a separate table so the list never inflates the one-row-per-bill grain.",367742,"[
+  ""BIOGUIDE""
+]","[
+  ""event""
+]",2026-06-29 23:55:27.054460
+fed_govinfo_billstatus,"GovInfo BILLSTATUS -- Bill Status XML (sponsor, cosponsors, actions, laws)",government_power,"[
+  ""elections_voting""
+]","Official bill-status records for every measure: bill type/number, congress, sponsor (bioguideId), cosponsor list, full action history, latest action, and the <laws> element present ONLY when the bill became law (public-law number). One XML file per bill, bulk by congress. The clean legislative-output leg -- sponsor AND cosponsor carry bioguide, so it joins straight to the member spine with no fuzzy matching.",36465,"[
+  ""BIOGUIDE""
+]","[
+  ""filing"",
+  ""event""
+]",2026-06-29 23:55:13.636702
+fed_revolvingdoor_project,Revolving Door Project Personnel Map and Trump Administration Trackers,government_power,[],"Maps corporate-sector connections to individual political appointees across federal executive-branch positions, linking economic sectors to regulatory and enforcement roles.",406,"[
+  ""NAME""
+]",[],2026-06-17 19:02:18.662169
+fed_voteview_members,Voteview -- Congressional Member Ideology (DW-NOMINATE),government_power,"[
+  ""elections_voting""
+]","Member-by-congress ideology scores (DW-NOMINATE dim1/dim2) plus member bio, keyed by ICPSR. The 'ideology' stat for the spine. Small member file (HSall_members.csv); the full member-by-vote matrix is a separate, much larger file (registered as fed_voteview_rollcalls).",51061,"[
+  ""BIOGUIDE"",
+  ""ICPSR""
+]","[
+  ""person""
+]",2026-06-29 20:52:49.197147
+fed_voteview_rollcall_meta,Voteview -- Roll-Call Metadata,government_power,[],"Per-roll-call metadata (one row per roll-call): date, session, yea/nay counts, result, vote question, bill number. The denominator + context for the votes matrix.",3364,[],"[
+  ""event""
+]",2026-06-29 22:27:12.260697
+fed_voteview_rollcalls,Voteview -- Roll-Call Votes (member-by-vote matrix),government_power,[],"Every recorded roll-call vote, member-by-member (the large matrix): HSall_votes.csv + HSall_rollcalls.csv. The raw material for missed-votes, party-unity, vote-similarity stats.",945523,"[
+  ""ICPSR""
+]","[
+  ""event""
+]",2026-06-29 22:27:03.540600
+intl_freedomhouse,Freedom in the World — All Data (aggregate + category scores),government_power,[],"The canonical annual freedom-status scorecard with disaggregated political-rights / civil-liberties sub-scores back to 2013 (status back to 1973) — the second pillar of any backsliding story, and directly downloadable now. Direct .xlsx (verified live, 488KB, no login). Hard-coded year-folder in the URL changes each release — parameterize it or scrape the report page for the current link. Header rows are messy (merged cells, two header rows; sub-indicator codes A1..G4 across columns) — read with pandas skiprows/header=[0,1] then flatten. Country names need a name->ISO crosswalk to get a clean COUNTRY join key (no ISO column). The 1973-2024 ratings file is a separate workbook with one sheet per year-block; the 'All Data 2013-2024' file is the one with full category scores. Commercial-use restriction matters for the publishing layer.",2723,"[
+  ""COUNTRY""
+]",[],2026-06-28 16:25:46.481456
+intl_owid_milspend,Our World in Data — Military Spending (SIPRI mirror),government_power,[],"Directly answers the 'China mil spend (SIPRI)' angle with clean, ISO-coded, ready-to-join time series. China's spend trajectory vs Taiwan/US/region is the core viz; ISO code lets it join to any country-keyed source in the Library. Single stable URL returns full long-format CSV; columns: entity, code (ISO-3, e.g. CHN/TWN), year, constant_usd, owid_region. Note OWID labels Taiwan code 'TWN' — verify it's present (China-political-sensitivity sometimes drops Taiwan in mirrors). Includes regional aggregate rows tagged '(SIPRI)' — filter them out for country-level marts. Only one metric (constant USD) per grapher; other SIPRI metrics (%GDP, per-capita, %govt) are separate OWID grapher URLs — onboard those as sibling tables if needed.",9112,[],[],2026-06-28 02:57:11.174396
+intl_voeten_unga_votes,United Nations General Assembly Voting Data (Voeten),government_power,[],United Nations General Assembly Voting Data (Voeten) — issue #11 multilateralism.,1823352,[],[],2026-06-28 03:22:30.021170
+st_cannabis_policy_bundles,US State Cannabis Policy Bundles Dataset,government_power,[],US State Cannabis Policy Bundles Dataset — issue #74 federalism.,1500,"[
+  ""FIPS"",
+  ""STATE""
+]",[],2026-06-28 03:22:37.542477
+xc_jcs_coa,Judicial Common Space -- Courts of Appeals judge ideology,government_power,[],"JCS lifetime ideology score for US Courts of Appeals judges, by circuit.",705,"[
+  ""NAME""
+]","[
+  ""person""
+]",2026-07-01 04:07:53.293450
+xc_jcs_medians,Judicial Common Space -- court/institution ideology medians,government_power,[],"Yearly median-ideology series for SCOTUS, each circuit, House, Senate and president on the common scale (the 'where is the median voter across institutions' series).",102,[],[],2026-07-01 04:07:58.290844
+xc_jcs_scotus,Judicial Common Space -- SCOTUS justice ideology,government_power,[],"DW-NOMINATE-scale ideology (JCS) for every Supreme Court justice by term, 1937-2022. One row per (justice, term).",782,[],"[
+  ""person""
+]",2026-07-01 04:07:48.982313
+xc_owid_cpi,OWID — Corruption Perceptions Index (TI),government_power,[],OWID — Corruption Perceptions Index (TI) — issue #38 corruption.,2312,[],[],2026-06-28 03:20:58.570955
+FED_CMS_PARTD_PRESCRIBER_DRUG,CMS Medicare Part D Prescribers - by Provider and Drug (DY2022),health_medicine,[],"Prescription drugs prescribed to Medicare Part D beneficiaries, aggregated by prescriber (NPI) and drug (brand + generic). One row per prescriber-drug.",25869521,"[
+  ""NPI"",
+  ""FIPS"",
+  ""NAME""
+]",[],2026-07-23 22:47:38.689604
+FED_FDA_DRUG_ENFORCEMENT,openFDA Drug Enforcement (recalls),health_medicine,[],"FDA drug recall/enforcement actions -- recalling firm, product, reason, classification, status. openFDA JSON (one doc with a results array).",17816,"[
+  ""COUNTRY"",
+  ""RECALL_NUMBER"",
+  ""STATE"",
+  ""ZIP""
+]",[],2026-07-24 01:04:55.844986
+fed_cdc_anxiety_depression,CDC Indicators of Anxiety or Depression,health_medicine,[],CDC Indicators of Anxiety or Depression — issue #31 mental health.,16794,"[
+  ""STATE""
+]",[],2026-06-28 04:25:41.456176
+fed_cdc_data_portal,CDC Open Data Portal (data.cdc.gov),health_medicine,"[
+  ""geo_demographics"",
+  ""energy_environment"",
+  ""open_data_portal""
+]","CDC Open Data Portal providing public health datasets spanning vaccinations, chronic disease, infectious disease outbreaks, and environmental health across the United States.",15000,"[
+  ""STATE""
+]","[
+  ""place"",
+  ""facility"",
+  ""organization"",
+  ""event""
+]",2026-07-01 21:27:50.126597
+fed_cdc_drug_poisoning_county,NCHS Drug Poisoning Mortality by County,health_medicine,[],NCHS Drug Poisoning Mortality by County — issue #48 drug deaths.,53387,"[
+  ""FIPS"",
+  ""STATE""
+]",[],2026-06-28 04:17:01.709390
+fed_cdc_health_insurance,CDC Indicators of Health Insurance Coverage,health_medicine,[],CDC Indicators of Health Insurance Coverage — issue #32 healthcare access.,16056,"[
+  ""STATE""
+]",[],2026-06-28 04:25:57.278383
+fed_cdc_injury_violence_county,"CDC Mapping Injury, Overdose, and Violence - County",health_medicine,[],"CDC Mapping Injury, Overdose, and Violence - County — issue #51 gun violence.",132000,"[
+  ""FIPS""
+]",[],2026-06-28 04:25:49.975935
+fed_cdc_overdose,CDC VSRR Provisional Drug Overdose Death Counts,health_medicine,[],CDC VSRR Provisional Drug Overdose Death Counts — issue #48 drug deaths.,83790,"[
+  ""STATE""
+]",[],2026-06-28 04:16:55.573720
+fed_cdc_suicide_rates,CDC NCHS Death rates for suicide by demographics,health_medicine,[],CDC NCHS Death rates for suicide by demographics — issue #31 mental health.,6390,"[
+  ""NAME""
+]",[],2026-06-28 04:25:35.110955
+fed_cdc_wonder,"CDC WONDER — Underlying Cause of Death (state x ICD chapter, 1999-2020)",health_medicine,"[
+  ""geo_demographics"",
+  ""crime_security""
+]","Deaths, population and crude rate by state, year and ICD-10 chapter from CDC WONDER D76 (final multiple-cause files).",880,[],"[
+  ""place"",
+  ""facility"",
+  ""event""
+]",2026-08-09 18:18:17.658109
+fed_clinicaltrials,ClinicalTrials.gov API + AACT,health_medicine,[],"Registry and results database for publicly and privately funded clinical studies conducted around the world, accessible via REST API and the AACT relational bulk download.",500,"[
+  ""NAME"",
+  ""NPI""
+]",[],2026-06-17 05:07:14.858327
+fed_cms_dialysis,CMS Care Compare — Dialysis Facility Listing,health_medicine,[],CMS Care Compare — Dialysis Facility Listing,7557,"[
+  ""CCN"",
+  ""STATE"",
+  ""ZIP""
+]",[],2026-06-24 22:16:04.839403
+fed_cms_facility_affiliation,CMS Doctors & Clinicians — Facility Affiliation (NPI↔CCN crosswalk),health_medicine,[],CMS Doctors & Clinicians — Facility Affiliation (NPI↔CCN crosswalk),2260193,"[
+  ""CCN"",
+  ""NPI""
+]",[],2026-07-11 15:24:29.907590
+fed_cms_hcris,Healthcare Provider Cost Reporting Information System (HCRIS),health_medicine,[],"Annual hospital cost reports submitted to CMS containing detailed financial, utilization, and staffing data for Medicare-participating hospitals.",6103,"[
+  ""CCN"",
+  ""COUNTY"",
+  ""STATE"",
+  ""ZIP""
+]",[],2026-06-17 05:10:24.890254
+fed_cms_home_health,CMS Care Compare — Home Health Agencies,health_medicine,[],CMS Care Compare — Home Health Agencies,12392,"[
+  ""CCN"",
+  ""STATE"",
+  ""ZIP""
+]",[],2026-06-24 22:15:30.436632
+fed_cms_hospice,CMS Care Compare — Hospice General Information,health_medicine,[],CMS Care Compare — Hospice General Information,6852,"[
+  ""CCN"",
+  ""STATE"",
+  ""ZIP""
+]",[],2026-06-24 22:15:16.277756
+fed_cms_hospital_compare,Hospital Compare / Provider Data Catalog,health_medicine,"[
+  ""spending_budget"",
+  ""corporate_entities"",
+  ""government_power""
+]","CMS Provider Data Catalog (Hospital Compare) — standardized quality, safety, and utilization data for hospitals and healthcare providers across the US.",5432,"[
+  ""STATE"",
+  ""ZIP""
+]","[
+  ""organization"",
+  ""facility"",
+  ""company"",
+  ""place""
+]",2026-07-01 21:43:46.477755
+fed_cms_hospital_general,CMS Care Compare — Hospital General Information,health_medicine,[],CMS Care Compare — Hospital General Information,5432,"[
+  ""CCN"",
+  ""STATE"",
+  ""ZIP""
+]",[],2026-06-24 22:15:04.155040
+fed_cms_irf,CMS Care Compare — Inpatient Rehabilitation Facility General Information,health_medicine,[],CMS Care Compare — Inpatient Rehabilitation Facility General Information,1222,"[
+  ""CCN"",
+  ""STATE"",
+  ""ZIP""
+]",[],2026-06-24 22:15:41.462736
+fed_cms_ltch,CMS Care Compare — Long-Term Care Hospital General Information,health_medicine,[],CMS Care Compare — Long-Term Care Hospital General Information,311,"[
+  ""CCN"",
+  ""STATE"",
+  ""ZIP""
+]",[],2026-06-24 22:15:51.781397
+fed_cms_main,CMS Data Portal (data.cms.gov),health_medicine,"[
+  ""spending_budget"",
+  ""follow_the_money"",
+  ""procurement_intl""
+]","CMS open data portal providing Medicare and Medicaid program data including provider, claims, spending, and quality datasets.",158,"[
+  ""NPI""
+]","[
+  ""person"",
+  ""company"",
+  ""organization"",
+  ""facility"",
+  ""payment"",
+  ""place""
+]",2026-07-01 21:52:39.027335
+fed_cms_medicare_provider,Medicare Physician & Other Practitioners - by Provider,health_medicine,[],Medicare Physician & Other Practitioners - by Provider,1296739,"[
+  ""NPI""
+]",[],2026-06-27 00:57:24.734750
+fed_cms_nadac,NADAC — National Average Drug Acquisition Cost,health_medicine,[],"The true acquisition-cost benchmark: what pharmacies actually pay per unit, by NDC. Lets Ripple compare Medicare/Medicaid reimbursement and negotiated prices against real cost — the markup/overpayment story. Carries clean NDC, unlike Part D Spending. Cleanest of the three. Direct CSV per week/year, e.g. https://download.medicaid.gov/data/nadac-national-average-drug-acquisition-cost-MM-DD-YYYY.csv, or pull the whole year via datastore: GET https://data.medicaid.gov/api/1/datastore/query/{distributionId}/0?limit=N&offset=N (distribution id b3b205f4-... for 2024). Columns: ndc, ndc_description, nadac_per_unit, pricing_unit, effective_date, classification_for_rate_setting (brand/generic), otc, pharmacy_type_indicator, corresponding_generic_drug_nadac_per_unit, as_of_date. NDC is the steel join key to FDA NDC, Part D, RxNorm. One dataset per calendar year — loop years for full history. Datast",359514,"[
+  ""NDC""
+]",[],2026-06-28 04:13:45.507154
+fed_cms_nppes,NPPES National Plan and Provider Enumeration System,health_medicine,[],"Monthly full-replacement and weekly incremental ZIP files of all active NPI records for US healthcare providers, including individual practitioners and organizations.",9606683,"[
+  ""NPI""
+]",[],2026-07-02 17:58:23.695327
+fed_cms_nursing_home,CMS Nursing Home Care Compare Datasets,health_medicine,[],"CMS Nursing Home Care Compare datasets covering quality ratings, staffing, inspections, and care outcomes for Medicare/Medicaid-certified nursing facilities across the US.",14700,"[
+  ""ADDRESS"",
+  ""CCN"",
+  ""FIPS"",
+  ""LATLON"",
+  ""NAME"",
+  ""NPI"",
+  ""ZIP""
+]",[],2026-06-17 16:58:46.761705
+fed_cms_open_payments,CMS Open Payments — General Payments detail (PY2024),health_medicine,[],CMS Open Payments — General Payments detail (PY2024),15385047,"[
+  ""CCN"",
+  ""NPI""
+]",[],2026-06-26 23:30:37.186193
+fed_cms_open_payments_2022,CMS Open Payments - General Payments Detail (PY2022),health_medicine,[],,13250000,"[
+  ""CCN"",
+  ""NPI""
+]","[
+  ""physician"",
+  ""teaching_hospital"",
+  ""manufacturer"",
+  ""gpo""
+]",2026-06-28 18:50:30.281923
+fed_cms_open_payments_2023,CMS Open Payments PY2023 - General Payments (Detailed),health_medicine,[],CMS Open Payments PY2023 - General Payments (Detailed),14700786,"[
+  ""CCN"",
+  ""NPI""
+]",[],2026-06-27 01:32:40.538114
+fed_cms_part_d_prescribers,Medicare Part D Prescribers - by Provider,health_medicine,[],Medicare Part D Prescribers - by Provider,1416883,"[
+  ""NPI"",
+  ""STATE""
+]",[],2026-06-27 00:58:17.636777
+fed_cms_pos_other,CMS Provider of Services — Hospital & Non-Hospital Facilities,health_medicine,[],CMS Provider of Services — Hospital & Non-Hospital Facilities,44429,"[
+  ""CCN""
+]",[],2026-06-24 22:14:48.658986
+fed_dea_arcos,ARCOS Retail Drug Summary Reports,health_medicine,"[
+  ""crime_security"",
+  ""enforcement_actions"",
+  ""government_power""
+]",DEA ARCOS retail drug summary reports tracking distribution of controlled substances by drug and geographic area across the US,178598026,"[
+  ""DEA_NO""
+]","[
+  ""organization"",
+  ""facility"",
+  ""place""
+]",2026-07-01 21:57:10.001739
+fed_hhs_oig_leie,List of Excluded Individuals and Entities (LEIE),health_medicine,[],"All individuals and entities currently excluded from participating in Medicare, Medicaid, and other federal health programs, with exclusion type and dates.",83369,"[
+  ""NPI"",
+  ""STATE"",
+  ""ZIP""
+]",[],2026-06-10 15:59:58.905000
+fed_hrsa_shortage_areas,Health Professional Shortage Areas (HPSA) Data,health_medicine,"[
+  ""geo_demographics"",
+  ""spending_budget"",
+  ""government_power""
+]","Designations of Health Professional Shortage Areas (HPSAs) and Medically Underserved Areas/Populations (MUA/P) for primary care, dental, and mental health across the US, updated quarterly.",165531,"[
+  ""STATE""
+]","[
+  ""facility"",
+  ""place"",
+  ""organization""
+]",2026-07-02 16:26:08.407322
+fed_nursinghome411,NursingHome411 State-Level Nursing Home Data,health_medicine,"[
+  ""corporate_entities"",
+  ""spending_budget"",
+  ""government_power""
+]","Facility-level nursing home ratings, staffing, inspections, penalties, and ownership data for all Medicare/Medicaid-certified US nursing homes, compiled by LTCCC from CMS provider data into downloadable Excel files.",14713,"[
+  ""CCN"",
+  ""LATLON"",
+  ""ADDRESS"",
+  ""NAME""
+]","[
+  ""facility"",
+  ""company"",
+  ""organization"",
+  ""place""
+]",2026-07-02 17:28:24.553300
+fed_va_allcause_mortality,VA All-Cause Mortality Data Appendix (2018-2023),health_medicine,[],"Leading causes of veteran death with counts, rates and years of potential life lost, by cohort and sex, 2018-2023.",2808,[],[],2026-08-10 01:24:56.818191
+fed_va_suicide_appendix,VA National Veteran Suicide Data Appendix 2021-2023,health_medicine,[],VA National Veteran Suicide Data Appendix 2021-2023 — issue #70 veteran suicide.,144,[],[],2026-06-28 04:17:07.367545
+st_oehha_proposition_65_list,OEHHA Proposition 65 List,health_medicine,"[
+  ""energy_environment"",
+  ""corporate_entities""
+]",California OEHHA list of chemicals known to the State to cause cancer or reproductive toxicity under Proposition 65 (Safe Drinking Water and Toxic Enforcement Act of 1986).,952,[],"[
+  ""company"",
+  ""facility"",
+  ""place""
+]",2026-08-05 21:28:16.822706
+xc_guttmacher_monthly_abortion,xc_guttmacher_monthly_abortion,health_medicine,[], ,2040,"[
+  ""STATE""
+]",[],2026-06-28 02:57:42.201579
+xc_owid_life_expectancy,OWID — Life expectancy,health_medicine,[],OWID — Life expectancy — issue #47 aging.,21565,[],[],2026-06-28 03:21:11.292121
+fed_david_rumsey,David Rumsey Historical Map Collection (IIIF + LUNA API),history_culture,"[
+  ""geo_demographics"",
+  ""housing_social""
+]","Historical map collection exposed via IIIF and LUNA APIs, providing access to tens of thousands of digitized historical maps with rich metadata.",10,[],"[
+  ""place"",
+  ""facility""
+]",2026-07-01 21:55:14.379569
+fed_densho_ddr,Densho Digital Repository (DDR),history_culture,"[
+  ""civil_rights_history"",
+  ""geo_demographics"",
+  ""government_power""
+]","Digital archive of photographs, documents, oral histories, and other primary source materials documenting the Japanese American incarceration experience during WWII.",25,[],"[
+  ""person"",
+  ""organization"",
+  ""place"",
+  ""event"",
+  ""facility"",
+  ""filing""
+]",2026-07-01 21:59:05.314718
+fed_docsouth,Documenting the American South (DocSouth),history_culture,"[
+  ""geo_demographics"",
+  ""civil_rights_history"",
+  ""science_research""
+]","Downloadable text and TEI/XML corpora from Documenting the American South, covering slave narratives, Southern literature, and church records for text mining and NLP research.",144,[],"[
+  ""person"",
+  ""organization"",
+  ""place"",
+  ""event""
+]",2026-07-01 22:07:10.654114
+fed_nara_aad,NARA Access to Archival Databases (AAD),history_culture,[],"NARA's Access to Archival Databases (AAD) provides online search access to selected high-value electronic records transferred to the National Archives, spanning military, diplomatic, personnel, and other federal records.",18,"[
+  ""FIPS""
+]",[],2026-06-17 18:36:54.470431
+fed_nara_wra_aad,Records About Japanese Americans Relocated During World War II (NARA AAD Series 623),history_culture,"[
+  ""government_power""
+]","NARA AAD Series 623: records about Japanese Americans relocated and interned during World War II, including personal and geographic information about individuals processed through relocation camps.",38,"[
+  ""FIPS""
+]",[],2026-06-18 01:41:31.330425
+fed_slavevoyages_intraamerican,SlaveVoyages — Intra-American Slave Trade Database,history_culture,[],"Voyage-level database of the intra-American (Americas-to-Americas) slave trade, ~1550-1888. One row = one documented slaving voyage with ship, captain(s), embarkation/arrival ports and regions, captives embarked and disembarked, voyage fate, dates, and source citation. 11,521 voyages, 169 variables (dataset I-Am 1.0).",11522,"[
+  ""VOYAGEID""
+]",[],2026-06-28 16:36:37.130854
+fed_slavevoyages_transatlantic,Trans-Atlantic Slave Trade Database (SlaveVoyages),history_culture,"[
+  ""geo_demographics"",
+  ""economy_labor_trade""
+]","Voyage-level dataset of transatlantic slave trading expeditions, including ships, nationalities, ports, dates, and enslaved-person counts embarked/disembarked.",36108,[],"[
+  ""vessel"",
+  ""place"",
+  ""event"",
+  ""organization""
+]",2026-07-05 21:14:14.663285
+fed_wpa_slave_narratives,"Born in Slavery: Slave Narratives from the Federal Writers' Project, 1936–1938",history_culture,[],"Typewritten manuscripts, photographs, and audio recordings of interviews with formerly enslaved people conducted by the Federal Writers' Project between 1936 and 1938.",100,"[
+  ""STATE""
+]",[],2026-06-17 19:14:54.109110
+fed_cfpb_hmda,HMDA (Home Mortgage Disclosure Act) Data,housing_social,"[
+  ""geo_demographics"",
+  ""civil_rights_history"",
+  ""corporate_entities""
+]","Loan-level home mortgage application and origination records reported annually by lenders under the Home Mortgage Disclosure Act, including borrower demographics, loan terms, and geographic identifiers.",28301,"[
+  ""CENSUS_TRACT"",
+  ""LEI""
+]","[
+  ""company"",
+  ""organization"",
+  ""place"",
+  ""filing"",
+  ""payment""
+]",2026-07-01 21:40:39.418862
+fed_fhfa_hpi,FHFA House Price Index (HPI) — Master File,housing_social,[],"The authoritative US house-price trend series, free and keyless, at every geography down to census tract — the price half of housing affordability, joinable by FIPS/ZIP straight onto redlining, ACS, and rents. Master CSV mixes geographic levels and index types in one file — split on the level/index-type columns in staging. County/ZIP/tract series are annual only; monthly is national+division only. 'place_id' is FHFA's own code, not raw FIPS for every level — derive FIPS for county/tract, ZIP for ZIP series; map MSA codes to CBSA. Some early periods have nulls/HPI=100 base. Index values are unitless (1980/1991/1995 bases differ by series), not dollars — needs a base-period note in the mart.",184807,"[
+  ""NAME""
+]",[],2026-06-28 02:57:30.495449
+fed_fhfa_nmdb,National Mortgage Database (NMDB) Public Use File,housing_social,"[
+  ""economy_labor_trade"",
+  ""geo_demographics"",
+  ""money_finance""
+]","Aggregate statistics on new, outstanding, and performance characteristics of US residential mortgages drawn from the NMDB 5% national sample, published at national, regional, state, and metro levels.",19054246,"[
+  ""NAME""
+]","[
+  ""place"",
+  ""asset""
+]",2026-07-02 00:56:45.717643
+fed_hud_data,HUD Open Data (huduser.gov),housing_social,"[
+  ""spending_budget"",
+  ""geo_demographics"",
+  ""civil_rights_history""
+]","HUD PDR (Policy Development and Research) datasets covering housing, community development, fair housing, and related federal program data.",77,"[
+  ""NAME""
+]","[
+  ""organization"",
+  ""company"",
+  ""place"",
+  ""facility"",
+  ""payment"",
+  ""filing""
+]",2026-07-02 01:17:41.598524
+fed_mapping_inequality,Mapping Inequality: Redlining in New Deal America v3,housing_social,[],"HOLC residential security maps and area descriptions for ~200 US cities, digitized and georeferenced, documenting 1930s federal redlining grades (A–D) by neighborhood.",1155,"[
+  ""STATE""
+]",[],2026-06-17 18:09:47.983713
+fed_cbp_encounters,CBP Nationwide Encounters Data,immigration_migration,"[
+  ""crime_security"",
+  ""government_power""
+]","Monthly nationwide CBP encounter data covering USBP apprehensions, OFO inadmissibles, and Title 42 expulsions broken down by border region, component, demographic category, and fiscal year.",9,[],"[
+  ""person"",
+  ""organization"",
+  ""place"",
+  ""event""
+]",2026-07-01 21:26:03.750173
+fed_dhs_ohss,DHS OHSS Immigration Enforcement Data,immigration_migration,"[
+  ""crime_security"",
+  ""government_power"",
+  ""justice_courts""
+]","Monthly tables covering CBP encounters, ICE arrests/detentions/removals, credible fear screenings, and CHNV parole processes from DHS operational data.",50740,"[
+  ""NAME""
+]","[
+  ""organization"",
+  ""place"",
+  ""event"",
+  ""person""
+]",2026-07-01 22:03:16.224604
+fed_dhs_yearbook,DHS Yearbook of Immigration Statistics,immigration_migration,"[
+  ""crime_security"",
+  ""geo_demographics"",
+  ""justice_courts""
+]","Annual collection of tables on lawful permanent residents, nonimmigrant admissions, refugees, asylees, naturalizations, and immigration enforcement actions by fiscal year.",27,[],"[
+  ""person"",
+  ""organization"",
+  ""place""
+]",2026-07-01 22:05:58.107523
+fed_dol_oflc,OFLC Foreign Labor Certification Disclosure Data,immigration_migration,"[
+  ""economy_labor_trade"",
+  ""corporate_entities"",
+  ""spending_budget""
+]","Quarterly and annual disclosure files of employer-submitted foreign labor certification applications (PERM, H-1B/LCA, H-2A, H-2B, CW-1, Prevailing Wage) including case determinations, wages, job titles, and worksite details.",664616,"[
+  ""NAICS"",
+  ""COUNTRY"",
+  ""ZIP"",
+  ""NAME""
+]","[
+  ""company"",
+  ""organization"",
+  ""place"",
+  ""filing""
+]",2026-07-01 22:21:02.634244
+fed_eoir_case_data,EOIR Immigration Court Case Data,immigration_migration,"[
+  ""justice_courts"",
+  ""civil_rights_history"",
+  ""government_power""
+]","Monthly-updated raw case file data from EOIR's electronic immigration court case database, released via FOIA, covering hearings, decisions, and dispositions across U.S. immigration courts.",12631225,[],"[
+  ""person"",
+  ""case"",
+  ""place"",
+  ""organization""
+]",2026-07-02 21:08:48.724041
+fed_ice_detention_facility_list,ICE Detention Facility List,immigration_migration,"[
+  ""justice_courts"",
+  ""crime_security"",
+  ""civil_rights_history""
+]","ICE ERO reference list of active adult detention facilities authorized to hold detainees longer than 72 hours -- facility name, city, state, AOR, and facility type only. No person-level detention records.",163,"[
+  ""NAME""
+]","[
+  ""facility"",
+  ""organization"",
+  ""place""
+]",2026-08-05 22:03:41.829123
+fed_ice_statistics,ICE Enforcement and Removal Operations Statistics,immigration_migration,"[
+  ""crime_security"",
+  ""spending_budget"",
+  ""civil_rights_history""
+]","Quarterly dashboards of ICE ERO arrests, detentions, removals, expulsions, and alternatives-to-detention statistics broken down by country of citizenship, criminal history, and area of responsibility.",221,"[
+  ""COUNTRY""
+]","[
+  ""person"",
+  ""organization"",
+  ""place"",
+  ""case"",
+  ""event""
+]",2026-07-02 16:36:14.062869
+fed_uscis_data,USCIS Immigration and Citizenship Data,immigration_migration,"[
+  ""government_power"",
+  ""civil_rights_history"",
+  ""economy_labor_trade""
+]","Quarterly and monthly statistical reports on USCIS application and petition form types, covering receipts, approvals, denials, pending counts, and processing times across immigration categories including employment-based, family-based, humanitarian, naturalization, and DACA.",3204,[],"[
+  ""organization"",
+  ""place"",
+  ""filing"",
+  ""case""
+]",2026-07-02 18:06:30.173512
+xc_owid_refugees,OWID — Refugee population by country of origin,immigration_migration,[],OWID — Refugee population by country of origin — issue #21 refugees.,7442,[],[],2026-06-28 03:20:50.651419
+fed_bop_statistics,BOP Inmate Statistics,justice_courts,"[
+  ""crime_security"",
+  ""geo_demographics"",
+  ""government_power""
+]","Aggregate statistics on the federal inmate population, staff, and facility data published by the Bureau of Prisons.",50,"[
+  ""NAME""
+]","[
+  ""organization"",
+  ""facility"",
+  ""place""
+]",2026-07-01 21:24:01.495836
+fed_courtlistener_judges,CourtListener — Judge & Financial Disclosure Database,justice_courts,[],"Structured database of 16,000+ state and federal judges including biographical data, career history, political affiliations, education, and 32,000+ financial disclosure filings containing 1.9M investment records.",16191,"[
+  ""COUNTRY"",
+  ""NAME""
+]",[],
+fed_doj_fca_settlements,DOJ False Claims Act Settlements and Judgments,justice_courts,"[
+  ""sanctions_enforcement""
+]","DOJ False Claims Act civil settlements and judgments, including qui tam recoveries, against individuals and companies that defrauded the federal government.",12,"[
+  ""CASE_NUMBER""
+]",[],2026-06-17 17:20:43.401310
+fed_fdic_enforcement,FDIC Enforcement Decisions and Orders,justice_courts,"[
+  ""sanctions_enforcement""
+]","FDIC enforcement decisions and orders against banks, companies, and individuals including cease-and-desist orders, civil money penalties, removal/prohibition orders, and other regulatory actions.",15,[],[],2026-06-18 01:52:24.607542
+fed_fjc_idb,FJC Integrated Database (IDB) -- Federal Court Cases,justice_courts,[],"Case-level federal court records -- civil cases, criminal defendants, appellate cases, and bankruptcy cases (by fiscal-year-end snapshot) -- as reported by the courts to AOUSC and redistributed by FJC. Landed as 4 tables, one per case type, because each has a genuinely different unit of observation and column layout per FJC's own codebooks.",2,[],[],2026-08-06 06:09:53.362302
+fed_ftc_datasets,FTC Enforcement Actions and Data Sets,justice_courts,"[
+  ""corporate_entities"",
+  ""sanctions_enforcement"",
+  ""money_finance""
+]","FTC enforcement actions, cases, and related datasets covering consumer protection and antitrust matters.",1200,"[
+  ""NAME""
+]","[
+  ""company"",
+  ""organization"",
+  ""person"",
+  ""case"",
+  ""filing"",
+  ""payment""
+]",2026-07-02 01:09:51.789780
+fed_jpml_pending_mdls,JPML Pending MDLs,justice_courts,"[
+  ""corporate_entities"",
+  ""crime_security"",
+  ""enforcement_actions""
+]","Judicial Panel on Multidistrict Litigation report of currently pending MDL dockets by actions pending, one row per active multidistrict litigation.",162,[],"[
+  ""organization"",
+  ""company"",
+  ""case"",
+  ""filing""
+]",2026-08-05 21:39:32.583862
+fed_naag_multistate_settlements,NAAG Multistate AG Settlements (1980-present),justice_courts,[],"Canonical searchable listing of multistate settlements concluded by state Attorneys General from 1980 to the present. Each row carries defendants, date resolved, total settlement amount, state/federal shares, lead and participating AGs (with party breakdown), industry/NAICS, issue area, and enforcement campaign. Sourced from the Ninja Tables get-all-data JSON feed behind the searchable table (table_id=1166), NOT page chrome.",883,"[
+  ""ID""
+]",[],2026-06-28 16:37:33.715188
+fed_oyez,Oyez Project,justice_courts,[],"Multimedia archive of U.S. Supreme Court oral arguments, case summaries, justice profiles, and full-text opinions from 1955-present",25,"[
+  ""DOCKET"",
+  ""NAME""
+]",[],2026-06-17 19:00:31.226988
+fed_scdb,Supreme Court Database (SCDB),justice_courts,[],"Comprehensive database of U.S. Supreme Court cases and individual justice votes from 1946 to present, organized by citation, docket, issue, or legal provision.",83644,"[
+  ""DOCKET_ID""
+]",[],2026-06-17 19:04:53.296549
+fed_uscourts_stats,U.S. Courts Caseload Statistics Data Tables,justice_courts,"[
+  ""crime_security"",
+  ""spending_budget"",
+  ""corporate_entities""
+]","Statistical data tables on caseloads across federal appellate, district, and bankruptcy courts, plus probation and pretrial services, published periodically by the U.S. Courts.",50,[],"[
+  ""organization"",
+  ""case"",
+  ""place"",
+  ""filing""
+]",2026-07-02 18:09:02.131735
+intl_eurlex_cellar,EUR-Lex CELLAR — SPARQL/REST API,justice_courts,"[
+  ""government_power"",
+  ""sanctions_enforcement"",
+  ""open_data_portal""
+]","EUR-Lex CELLAR repository exposing EU legal acts, case-law, Official Journal documents and metadata via a SPARQL endpoint and RESTful API",53,[],"[
+  ""organization"",
+  ""place"",
+  ""case"",
+  ""filing"",
+  ""event""
+]",2026-07-02 19:47:31.031272
+intl_hudoc,HUDOC — ECHR Case-Law Database,justice_courts,[],"HUDOC is the official ECHR case-law database containing judgments, decisions, advisory opinions, and legal summaries from the European Court of Human Rights.",2000,"[
+  ""COUNTRY""
+]",[],2026-06-18 02:32:48.096715
+xc_mapping_police_violence,Mapping Police Violence Database,justice_courts,"[
+  ""sanctions_enforcement""
+]","Comprehensive database of people killed by police in the US compiled from media, obituaries, and public records — more inclusive than the WaPo database because it covers on-duty, off-duty, and vehicle killings.",15476,"[
+  ""LATLON"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",[],
+xc_vera_incarceration_trends,Vera Institute — Incarceration Trends (county),justice_courts,[],Vera Institute — Incarceration Trends (county) — issue #53 mass incarceration.,128507,"[
+  ""COUNTY"",
+  ""FIPS"",
+  ""STATE""
+]",[],2026-06-28 03:21:52.052508
+FED_CFPB_COMPLAINTS,CFPB Consumer Complaints,money_finance,[],Consumer complaints about financial products and services filed with the CFPB.,34348075,"[
+  ""STATE"",
+  ""ZIP""
+]",[],2026-07-23 17:21:02.008497
+FED_SEC_INSIDER_DERIV_TRANS,"SEC EDGAR Insider Transactions (Form 3/4/5, 2025Q1) - DERIV_TRANS",money_finance,[],"Section 16 insider filings (Form 3/4/5) as flat tables: submissions, reporting owners, and non-derivative/derivative transactions. Who bought/sold their own company's stock. One row per record per member table.",1049121,"[
+  ""ACCESSION_NUMBER""
+]",[],2026-07-24 02:32:18.313082
+FED_SEC_INSIDER_NONDERIV_TRANS,"SEC EDGAR Insider Transactions (Form 3/4/5, 2025Q1) - NONDERIV_TRANS",money_finance,[],"Section 16 insider filings (Form 3/4/5) as flat tables: submissions, reporting owners, and non-derivative/derivative transactions. Who bought/sold their own company's stock. One row per record per member table.",2672841,"[
+  ""ACCESSION_NUMBER""
+]",[],2026-07-24 02:31:12.552330
+FED_SEC_INSIDER_REPORTINGOWNER,"SEC EDGAR Insider Transactions (Form 3/4/5, 2025Q1) - REPORTINGOWNER",money_finance,[],"Section 16 insider filings (Form 3/4/5) as flat tables: submissions, reporting owners, and non-derivative/derivative transactions. Who bought/sold their own company's stock. One row per record per member table.",1934673,"[
+  ""ZIP""
+]",[],2026-07-24 02:30:04.657904
+FED_SEC_INSIDER_SUBMISSION,"SEC EDGAR Insider Transactions (Form 3/4/5, 2025Q1) - SUBMISSION",money_finance,[],"Section 16 insider filings (Form 3/4/5) as flat tables: submissions, reporting owners, and non-derivative/derivative transactions. Who bought/sold their own company's stock. One row per record per member table.",1772088,"[
+  ""ACCESSION_NUMBER""
+]",[],2026-07-24 02:29:07.413260
+fed_fdic_bank_data,FDIC BankFind Suite API,money_finance,"[
+  ""government_power"",
+  ""corporate_entities""
+]","FDIC BankFind Suite API providing data on US financial institutions, branches, failures, financials, and Summary of Deposits",10000,[],"[
+  ""company"",
+  ""organization"",
+  ""place"",
+  ""facility"",
+  ""asset""
+]",2026-07-02 00:44:59.098692
+fed_ffiec_call_reports,FFIEC Bank Call Reports (CDR),money_finance,"[
+  ""corporate_entities"",
+  ""sanctions_enforcement"",
+  ""economy_labor_trade""
+]","Bulk download of FFIEC Call Report data (balance sheet, income statement, past due, UBPR ratios/ranks/stats) for all US commercial banks, available in tab-delimited or XBRL format.",302,[],"[
+  ""company"",
+  ""organization"",
+  ""filing"",
+  ""asset""
+]",2026-07-02 15:58:34.697123
+fed_irs_soi,IRS Statistics of Income (SOI),money_finance,"[
+  ""corporate_entities"",
+  ""economy_labor_trade"",
+  ""geo_demographics""
+]","IRS Statistics of Income program providing aggregated tax return data including individual, business, charitable, estate, gift, and trust statistics at various geographic levels including ZIP code.",179796,"[
+  ""FIPS"",
+  ""STATE"",
+  ""ZIP""
+]","[
+  ""company"",
+  ""organization"",
+  ""filing"",
+  ""place"",
+  ""asset""
+]",2026-07-02 16:48:25.981265
+fed_ncua_call_reports,Credit Union Call Report Quarterly Data,money_finance,"[
+  ""government_power"",
+  ""corporate_entities""
+]","Quarterly call report data for all federally insured credit unions, covering financial performance, balance sheets, and operational metrics from 1994 to present, distributed as zipped CSV files.",121713,"[
+  ""STATE"",
+  ""ZIP""
+]","[
+  ""organization"",
+  ""filing"",
+  ""payment"",
+  ""asset""
+]",2026-07-02 17:02:41.864357
+fed_sec_edgar_financials,SEC Financial Statement Data Sets,money_finance,[],SEC Financial Statement Data Sets,55635,"[
+  ""CIK"",
+  ""EIN""
+]",[],2026-06-28 17:56:35.841347
+fed_sec_edgar_insiders,SEC EDGAR Forms 3/4/5 — Insider Trading Reports,money_finance,[],"Reports that corporate insiders — officers, directors, and major shareholders — must file within days of buying or selling stock in their own company.",69259,"[
+  ""CIK""
+]",[],2026-07-23 16:13:52.754435
+intl_wb_ids,World Bank International Debt Statistics (IDS),money_finance,[],"THE canonical source for developing-world sovereign/external debt — debt stocks, debt service, and a unique creditor-by-creditor (bilateral/multilateral/private) breakdown showing who each country owes. Directly answers 'global debt crisis' for the countries actually in crisis. USE THE BULK CSV, not the API, for the full panel. The Data API v2 path is /v2/sources/6/country/{ISO3}/series/{SERIES}/time/all?format=json and it explodes on the Counterpart-Area dimension — a single Ghana+DT.DOD.DECT.CD query returned 19,152 rows (counterpart x time) and ~6,384 pages. For a clean country panel filter Counterpart-Area=WLD (all creditors). Series codes are WDI-style (e.g. DT.DOD.DECT.CD = total external debt stocks; DT.TDS.DECT.CD = total debt service). Only low- and middle-income countries are covered (no high-income/G7 debtors). Years run 1970-2032; 2025+ are projection/null placeholders — drop",62983,"[
+  ""COUNTRY"",
+  ""NAME""
+]",[],2026-06-28 04:13:23.035353
+FED_FEC_CANDIDATES,"FEC Candidate Master (bulk, multi-cycle)",money_in_politics,[],"FEC candidate master file -- every registered federal candidate. ID, name, party, office, state, district, incumbent status.",33506,[],[],2026-07-24 02:12:31.814413
+FED_FEC_CAND_CMTE_LINKAGE,"FEC Candidate-Committee Linkage (bulk, multi-cycle)",money_in_politics,[],Links candidates to their authorized committees (PACs that can accept contributions on their behalf). The bridge between candidate IDs and committee IDs.,30536,[],[],2026-07-24 02:13:19.698940
+FED_FEC_COMMITTEES,"FEC Committee Master (bulk, multi-cycle)",money_in_politics,[],"FEC committee master file -- every registered political committee (PACs, party committees, candidate committees). ID, name, type, party, treasurer, address, filing frequency.",78039,[],[],2026-07-24 02:11:41.475566
+FED_FEC_INDEPENDENT_EXPENDITURES,"FEC Independent Expenditures (bulk, multi-cycle)",money_in_politics,[],"Independent expenditures -- spending by super PACs and outside groups for/against federal candidates, not coordinated with campaigns. One row per expenditure.",261033,"[
+  ""FEC_CAND_ID"",
+  ""NAME""
+]",[],2026-07-24 01:08:10.249762
+FED_FEC_PAC_SUMMARY,"FEC PAC/Party Committee Summary (bulk, multi-cycle)",money_in_politics,[],"Financial summary for PACs and party committees -- total receipts, disbursements, cash on hand, debts, contributions to/from candidates.",94104,[],[],2026-07-24 02:14:09.542344
+fed_fara,FARA Foreign Agents Registration Act Database,money_in_politics,"[
+  ""government_power"",
+  ""sanctions_enforcement"",
+  ""corporate_entities""
+]","Public disclosures filed by agents of foreign principals under the Foreign Agents Registration Act, including registrant activities, receipts, and disbursements.",30,"[
+  ""NAME""
+]","[
+  ""person"",
+  ""company"",
+  ""organization"",
+  ""payment"",
+  ""filing""
+]",2026-07-02 21:15:27.553145
+fed_fara_bulk,FARA eFile Bulk Data,money_in_politics,[],"Bulk downloads of all FARA registrant, foreign principal, short-form registrant, and registrant document URL records maintained by the DOJ.",48104,"[
+  ""STATE"",
+  ""ZIP""
+]",[],2026-06-17 17:25:31.185355
+fed_fec_api,OpenFEC Campaign Finance API,money_in_politics,"[
+  ""corporate_entities"",
+  ""government_power"",
+  ""elections_voting""
+]","RESTful API exposing federal campaign finance data including candidate filings, PAC contributions, expenditures, and committee activity reported to the FEC.",500,[],"[
+  ""person"",
+  ""company"",
+  ""organization"",
+  ""payment"",
+  ""filing""
+]",2026-07-02 15:54:01.920485
+fed_fec_bulk,FEC Bulk Data - Committee Master (2024),money_in_politics,[],FEC Bulk Data - Committee Master (2024),20938,"[
+  ""FEC_CMTE_ID"",
+  ""FEC_CAND_ID""
+]",[],2026-06-27 00:55:14.341137
+fed_fec_bulk_candidates,FEC Bulk Data -- Candidate Master (cn.txt),money_in_politics,"[
+  ""elections_voting""
+]","Every FEC-registered candidate: FEC candidate ID, name, office sought, party, state, district, incumbent/challenger status, by cycle. The cand_id<->name<->office anchor for the fec bridge.",17900,"[
+  ""FEC_ID""
+]","[
+  ""person"",
+  ""filing""
+]",2026-06-29 21:33:58.973642
+fed_fec_bulk_committees,"FEC Bulk Data -- Committee Master (cm.txt), 2026 refresh",money_in_politics,"[
+  ""elections_voting""
+]","Every FEC-registered committee: committee ID, name, treasurer, address, designation, type, party, filing frequency, connected org, and linked candidate ID -- by cycle. The committee dimension the candidate->committee linkages resolve against. This is the 2026 (cm26) cycle snapshot, landed additively beside the existing 2024 committee master (fed_fec_bulk) to close the Phase-2 2026 linkage-resolution gap (2026 resolved only ~57% vs ~98% for 2024).",20007,"[
+  ""FEC_CMTE_ID"",
+  ""FEC_CAND_ID""
+]","[
+  ""organization"",
+  ""filing""
+]",2026-06-30 02:21:30.369358
+fed_fec_bulk_linkages,FEC Bulk Data -- Candidate-Committee Linkage (ccl.txt),money_in_politics,[],The official link table between FEC candidate IDs and committee IDs (which committees are authorized by / linked to which candidate). The clean cand<->cmte bridge.,16327,"[
+  ""FEC_CAND_ID"",
+  ""FEC_CMTE_ID""
+]","[
+  ""filing""
+]",2026-06-29 21:34:07.138448
+fed_fec_bulk_summary,FEC Bulk Data -- All Candidates Financial Summary (weball),money_in_politics,[],"Per-candidate-per-cycle financial summary: total receipts (money raised), disbursements, cash-on-hand, transfers from/to authorized committees, individual contributions, loans, debts. The ONLY FEC bulk file carrying dollar amounts -- the source of the money-raised stat.",7933,"[
+  ""FEC_ID""
+]","[
+  ""filing"",
+  ""payment""
+]",2026-06-29 21:34:17.130853
+fed_fec_committee_to_candidate,FEC Bulk Data -- Committee-to-Candidate (pas2/itpas2),money_in_politics,"[
+  ""elections_voting""
+]","Committee contributions TO (and independent expenditures for/against) candidates: PAC/party money to a candidate, by transaction type. Carries CAND_ID + CMTE_ID + CYCLE. The PAC-money leg of the box score.",866730,"[
+  ""FEC_ID"",
+  ""STATE"",
+  ""ZIP""
+]","[
+  ""payment""
+]",2026-06-30 19:37:57.457382
+fed_fec_indiv_contributions,FEC Bulk Data -- Itemized Individual Contributions (itcont) -- the 84M-row firehose,money_in_politics,"[
+  ""money_finance""
+]","Every itemized (>$200 aggregate) individual contribution to a federal committee: donor name, city/state/ZIP, EMPLOYER + OCCUPATION (free-text), amount, date, recipient committee, and the conduit (OTHER_ID) for earmarked gifts. 84.2M rows, cycles 2024+2026. NO cycle column (the loader merged indiv24+indiv26) -- cycle is derived from TRANSACTION_DT (MMDDYYYY).",84172112,"[
+  ""FEC_ID"",
+  ""STATE"",
+  ""ZIP""
+]","[
+  ""payment""
+]",2026-06-30 21:27:28.791482
+fed_senate_stock_watcher,Senate Stock Watcher -- Senate STOCK Act trades (community re-parse),money_in_politics,"[
+  ""money_finance""
+]","Every disclosed Senate stock transaction from the official eFD periodic transaction reports, re-parsed to JSON by a volunteer-maintained project: senator name, ticker, asset, transaction type, amount BAND, date, and a link to the original filing. Carries NO bioguide and NO disclosure date (schema verified live 2026-08-01).",8350,[],"[
+  ""filing"",
+  ""payment""
+]",2026-08-01 20:00:29.087356
+intl_ar_datosgob,Argentina National Open Data Portal (datos.gob.ar),open_data_portal,"[
+  ""spending_budget"",
+  ""elections_voting"",
+  ""geo_demographics""
+]","Argentina's national open data portal providing datasets, time-series indicators, electoral results, budget data, and geospatial/territorial normalization via multiple APIs and CKAN metadata.",3556,"[
+  ""NAME""
+]","[
+  ""organization"",
+  ""place"",
+  ""filing""
+]",2026-07-02 18:38:59.323950
+intl_br_dados_gov,dados.gov.br,open_data_portal,"[
+  ""spending_budget"",
+  ""government_power"",
+  ""procurement_intl""
+]",Brazil's national open data portal cataloguing datasets published by federal and local government agencies across all policy domains,10,[],"[
+  ""organization"",
+  ""company"",
+  ""place"",
+  ""filing""
+]",2026-07-02 18:54:14.278690
+intl_ca_open_canada,Open Government Portal Canada (open.canada.ca),open_data_portal,"[
+  ""spending_budget"",
+  ""energy_environment"",
+  ""health_medicine""
+]","Canada's federal open data portal aggregating datasets from across government departments covering spending, environment, health, geospatial, and more.",500,[],"[
+  ""organization"",
+  ""place"",
+  ""facility"",
+  ""payment"",
+  ""filing""
+]",2026-07-02 18:57:26.305626
+intl_ch_opendataswiss,Switzerland Open Government Data Portal (opendata.swiss),open_data_portal,"[
+  ""government_power"",
+  ""spending_budget"",
+  ""corporate_entities""
+]",CKAN-based Swiss Open Government Data portal providing metadata for all published datasets via a REST API,5000,[],"[
+  ""organization"",
+  ""place"",
+  ""filing""
+]",2026-07-02 19:05:12.740356
+intl_cl_datosgob,Chile National Open Data Portal (datos.gob.cl),open_data_portal,"[
+  ""spending_budget"",
+  ""geo_demographics"",
+  ""transport_movement""
+]","Chile's national open-data portal aggregating public-sector datasets from 266+ government institutions across transport, geography, health, finance, and more.",1000,[],"[
+  ""organization"",
+  ""place"",
+  ""facility""
+]",2026-07-02 19:06:30.242987
+intl_de_govdata,GovData.de,open_data_portal,"[
+  ""spending_budget"",
+  ""government_power"",
+  ""procurement_intl""
+]","Germany's central open-government data portal aggregating 131k+ datasets and metadata from federal, state, and municipal authorities across all 16 Bundesländer.",5000,[],"[
+  ""organization"",
+  ""place"",
+  ""facility"",
+  ""filing""
+]",2026-07-02 19:21:44.021727
+intl_es_datosgob,Spain National Open Data Portal (datos.gob.es),open_data_portal,"[
+  ""government_power"",
+  ""spending_budget"",
+  ""procurement_intl""
+]","Spain's national open data portal providing a semantic API and SPARQL endpoint for querying the national data catalogue, sector taxonomies, and geographic coverage identifiers.",1000,[],"[
+  ""organization"",
+  ""place"",
+  ""filing""
+]",2026-07-02 19:36:10.820205
+intl_fr_data_gouv,data.gouv.fr,open_data_portal,"[
+  ""spending_budget"",
+  ""procurement_intl"",
+  ""corporate_entities""
+]","French national open-data portal aggregating 73 000+ datasets and APIs across all public-sector domains, published by government bodies and civil society.",2765,"[
+  ""NAME""
+]","[
+  ""company"",
+  ""organization"",
+  ""person"",
+  ""place"",
+  ""facility"",
+  ""filing"",
+  ""payment"",
+  ""asset""
+]",2026-07-02 20:06:53.906346
+intl_gh_datagovgh,Ghana Open Data Initiative (data.gov.gh),open_data_portal,"[
+  ""spending_budget"",
+  ""energy_environment"",
+  ""elections_voting""
+]","Ghana's national open data portal aggregating datasets from 22 ministries and agencies across topics including agriculture, finance, health, elections, and extractives.",10,[],"[
+  ""organization"",
+  ""place"",
+  ""payment"",
+  ""filing"",
+  ""facility""
+]",2026-07-02 20:16:05.972679
+intl_gr_datagov,Greece National Open Data Portal (data.gov.gr),open_data_portal,"[
+  ""spending_budget"",
+  ""government_power"",
+  ""procurement_intl""
+]","Greece's national open data portal aggregating datasets, APIs, and resources from ~479 public organisations across all policy domains.",4988,[],"[
+  ""organization"",
+  ""place"",
+  ""filing"",
+  ""asset""
+]",2026-07-02 20:37:36.496241
+xc_wayback_doj_epstein,Wayback CDX Census — DOJ Epstein Library Listing Pages,open_data_portal,[],"Every Internet Archive capture of the DOJ Epstein Library listing pages since Nov 2025 — one row per capture with timestamp, HTTP status, and content digest. Digest changes between captures prove the page changed, attested by a third party. Reconstructs the months before Ripple started watching.",1537352,[],[],2026-06-12 04:46:04.114000
+intl_adb_data,ADB Data Library — Projects and Economic Indicators,procurement_intl,"[
+  ""spending_budget"",
+  ""economy_labor_trade"",
+  ""government_power""
+]",ADB Data Library providing project data and economic indicators for Asia-Pacific member countries.,41,"[
+  ""NAME""
+]","[
+  ""organization"",
+  ""place"",
+  ""payment"",
+  ""asset"",
+  ""filing""
+]",2026-07-02 18:34:57.098181
+fed_consolidated_screening_list,Consolidated Screening List,sanctions_enforcement,"[
+  ""corporate_entities"",
+  ""crime_security"",
+  ""economy_labor_trade""
+]","US government consolidated export screening list combining eleven ban/denial lists from Commerce (BIS), State, and Treasury (OFAC), including entities/persons denied export privileges or subject to sanctions.",25918,"[
+  ""NAME""
+]","[
+  ""person"",
+  ""company"",
+  ""organization"",
+  ""vessel"",
+  ""aircraft"",
+  ""facility""
+]",2026-08-05 21:37:19.533961
+fed_ofac_sdn,OFAC Specially Designated Nationals (SDN) List,sanctions_enforcement,[],"OFAC SDN sanctions list (individuals, entities, vessels). Vessel rows carry a derived 7-digit IMO.",19115,"[
+  ""IMO""
+]",[],2026-06-25 21:55:27.456507
+fed_sam_exclusions,SAM.gov Exclusions (Federal Debarment List),sanctions_enforcement,"[
+  ""spending_budget""
+]","Parties excluded/debarred from federal contracts & assistance. Carries UEI, CAGE and NPI per record (bridges to USASpending and to NPPES/LEIE).",2940,"[
+  ""UEI"",
+  ""COUNTRY"",
+  ""ZIP"",
+  ""NAME""
+]",[],2026-07-24 05:11:12.804116
+intl_eu_sanctions,EU Consolidated Financial Sanctions List,sanctions_enforcement,"[
+  ""money_finance"",
+  ""crime_security"",
+  ""corporate_entities""
+]","EU consolidated list of persons, groups, and entities subject to financial sanctions (asset freezes), maintained daily by the European Commission.",42347,"[
+  ""COUNTRY"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]","[
+  ""person"",
+  ""company"",
+  ""organization"",
+  ""vessel"",
+  ""aircraft"",
+  ""facility""
+]",2026-07-02 19:42:42.662044
+intl_fatf_ratings,FATF Consolidated Assessment Ratings,sanctions_enforcement,"[
+  ""money_finance"",
+  ""crime_security"",
+  ""corporate_entities""
+]",FATF consolidated mutual evaluation ratings assessing country compliance with AML/CFT recommendations across technical and effectiveness dimensions.,200,"[
+  ""COUNTRY""
+]","[
+  ""organization"",
+  ""place""
+]",2026-07-02 20:03:43.031253
+intl_opensanctions,"OpenSanctions Consolidated Sanctions (Targets, Simplified CSV)",sanctions_enforcement,[],"OpenSanctions Consolidated Sanctions (Targets, Simplified CSV)",71011,"[
+  ""NAME""
+]",[],2026-06-27 00:54:42.301207
+intl_opensanctions_default,"OpenSanctions Default Collection (Targets, Simplified CSV)",sanctions_enforcement,"[
+  ""crime_security"",
+  ""government_power"",
+  ""corporate_entities""
+]","Flat 'targets.simple.csv' export of OpenSanctions' DEFAULT collection -- the broadest OpenSanctions product, combining sanctions/regulatory designations, criminal-context listings, AND politically exposed persons (PEPs) across 443 source datasets (per opensanctions.org/datasets/default/). This is materially broader than the already-registered 'intl_opensanctions' source, which is the narrow sanctions-list-only collection (SDN/CSL/UN/EU/UK, ~80k targets). IMPORTANT SCOPE LIMIT: this is the FLAT targets-only CSV (one row per screening target: id, schema, name, aliases, birth_date, countries, addresses, identifiers, sanctions, phones, emails, program_ids, dataset, first_seen/last_seen/last_change). It does NOT include OpenSanctions' FollowTheMoney entities+relations graph (entities.ftm.json) -- no ownership edges, no family/associate relationship data. Loading that graph is a separate, larger job not covered by this registration.",1281846,[],"[
+  ""person"",
+  ""company"",
+  ""organization"",
+  ""vessel"",
+  ""aircraft"",
+  ""facility""
+]",
+xc_uk_sanctions_list,UK Sanctions List,sanctions_enforcement,"[
+  ""money_finance"",
+  ""crime_security"",
+  ""corporate_entities""
+]","UK Foreign, Commonwealth & Development Office consolidated list of persons and entities designated under UK sanctions regulations.",57883,"[
+  ""ADDRESS"",
+  ""NAME""
+]","[
+  ""person"",
+  ""company"",
+  ""organization"",
+  ""vessel"",
+  ""aircraft"",
+  ""facility""
+]",2026-08-05 21:30:08.255062
+xc_un_consolidated_sanctions_list,UN Consolidated Sanctions List,sanctions_enforcement,"[
+  ""crime_security"",
+  ""money_finance"",
+  ""government_power""
+]",United Nations Security Council consolidated list of individuals and entities subject to sanctions measures imposed by Security Council committees.,1011,"[
+  ""ADDRESS"",
+  ""NAME""
+]","[
+  ""person"",
+  ""company"",
+  ""organization"",
+  ""vessel"",
+  ""aircraft"",
+  ""facility""
+]",2026-08-05 21:35:09.617569
+fed_nasa_open_data,NASA Open APIs & Data Portal,science_research,"[
+  ""energy_environment"",
+  ""geo_demographics"",
+  ""open_data_portal""
+]","NASA Open APIs providing access to a wide range of NASA data including imagery, asteroids, Mars rover photos, Earth imagery, space weather, and more.",54,"[
+  ""NAME""
+]","[
+  ""facility"",
+  ""place"",
+  ""event""
+]",2026-07-02 16:52:19.243150
+fed_nih_reporter,NIH RePORTER API,science_research,"[
+  ""spending_budget"",
+  ""government_power"",
+  ""health_medicine""
+]","NIH RePORTER API exposing federal scientific grant award data from NIH and other federal agencies, including project details, funding amounts, investigators, and publications.",2122611,"[
+  ""DUNS"",
+  ""UEI"",
+  ""NAME""
+]","[
+  ""person"",
+  ""organization"",
+  ""company"",
+  ""payment"",
+  ""filing""
+]",2026-08-10 16:28:59.493295
+fed_nsf_awards,NSF Award Search API,science_research,"[
+  ""spending_budget"",
+  ""government_power"",
+  ""education""
+]","Searchable database of active and expired NSF-funded research awards including awardee, institution, title, and funding details.",125,"[
+  ""STATE"",
+  ""ZIP""
+]","[
+  ""organization"",
+  ""person"",
+  ""place"",
+  ""payment"",
+  ""filing""
+]",2026-07-02 17:25:46.298138
+fed_usgs_earthquakes,USGS Earthquake Catalog (M2.5+ full history),science_research,[],,443274,"[
+  ""LATLON""
+]",[],2026-06-28 18:25:55.809664
+intl_embl_ensembl,Ensembl Genome Browser & REST API,science_research,"[
+  ""health_medicine"",
+  ""open_data_portal""
+]","Ensembl REST API providing programmatic access to genome annotations, gene trees, variants, homology, sequences, ontologies, and comparative genomics across hundreds of species.",643,"[
+  ""NAME""
+]","[
+  ""asset"",
+  ""organization""
+]",2026-07-02 19:34:37.271464
+xc_biorxiv_medrxiv,bioRxiv / medRxiv API,science_research,[],"REST API providing metadata for bioRxiv and medRxiv preprint manuscripts, including author, funder, publication, and usage statistics.",432,[],[],2026-06-17 04:52:36.578752
+xc_owid_ai_incidents_annual,Annual reported AI incidents & controversies (AIID via AI Index),science_research,[],"Fastest possible first land for this issue and a clean 'AI incidents are accelerating' trend chart, sourced from the same AIID underneath rec #1. Trivial one-shot CSV (entity, year, count) — append ?v=1&csvType=full to get the full file. It's a derived aggregate, not the underlying incidents, so it's only useful as a headline trend line or a sanity cross-check against rec #1. Don't onboard this INSTEAD of AIID — onboard it alongside, or skip if you want depth over a quick win.",14,[],[],2026-06-28 02:57:15.310279
+FED_FAC_SINGLE_AUDIT,Federal Audit Clearinghouse — Single Audits,spending_budget,,Every single audit submitted to the FAC since 2016. Links auditee EIN + UEI to audit findings and compliance.,411638,"[
+  ""EIN"",
+  ""UEI"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",,
+FED_USASPENDING_ASSISTANCE_FULL,"USASpending Federal Assistance Awards (FY2007-FY2026, all agencies)",spending_budget,[],"Every federal assistance award -- grants, loans, direct payments, insurance (FY2007-present). One row per transaction. Carries recipient UEI, CFDA/Assistance Listing, agency, amounts.",19902879,"[
+  ""DUNS"",
+  ""UEI"",
+  ""COUNTRY"",
+  ""NAME""
+]",[],2026-07-24 03:26:15.150350
+FED_USASPENDING_CONTRACTS_FULL,"USASpending Federal Contract Awards (FY2007-FY2026, all agencies)",spending_budget,[],"Every federal prime contract award (FY2007-present). One row per contract action (transaction). Carries recipient UEI, DUNS, NAICS, awarding/funding agency, place of performance, dollar amounts.",,"[
+  ""DUNS"",
+  ""UEI"",
+  ""NAME""
+]",[],2026-07-24 02:54:38.919874
+fed_foreignassistance,ForeignAssistance.gov,spending_budget,"[
+  ""procurement_intl"",
+  ""government_power"",
+  ""sanctions_enforcement""
+]","Transaction-level U.S. foreign assistance data including obligations, disbursements, and budget aggregations by country, agency, sector, and DAC category.",3967456,"[
+  ""COUNTRY""
+]","[
+  ""organization"",
+  ""company"",
+  ""place"",
+  ""payment""
+]",2026-07-02 16:15:30.025823
+fed_grants_gov,Grants.gov Opportunity Search API,spending_budget,"[
+  ""government_power"",
+  ""procurement_intl"",
+  ""open_data_portal""
+]",Search and retrieve federal grant opportunity listings via the Grants.gov RESTful API (unauthenticated search endpoint).,100,[],"[
+  ""organization"",
+  ""company"",
+  ""filing"",
+  ""payment""
+]",2026-07-02 01:11:56.788231
+fed_sba_loans,SBA 7(a) and 504 Loan FOIA Data,spending_budget,"[
+  ""money_finance"",
+  ""corporate_entities"",
+  ""procurement_intl""
+]","FOIA-released SBA 7(a) and 504 loan program records segmented by decade, covering FY1991 to present, updated quarterly.",2174502,"[
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]","[
+  ""company"",
+  ""organization"",
+  ""place"",
+  ""payment"",
+  ""filing"",
+  ""asset""
+]",2026-07-02 17:45:33.475314
+fed_sba_ppp,Paycheck Protection Program (PPP) Loan Data,spending_budget,"[
+  ""money_finance"",
+  ""corporate_entities"",
+  ""economy_labor_trade""
+]","Loan-level records of Paycheck Protection Program (PPP) loans of $150,000 or more, including borrower, lender, amounts, and forgiveness status.",968524,[],"[
+  ""company"",
+  ""payment"",
+  ""filing"",
+  ""place""
+]",2026-07-05 21:13:12.262930
+fed_us_usaspending_api,USASpending,spending_budget,"[
+  ""procurement_intl"",
+  ""government_power"",
+  ""corporate_entities""
+]","Comprehensive federal spending data including awards, contracts, grants, loans, IDVs, agency budgets, and disaster/emergency funding via the USAspending REST API.",300,"[
+  ""NAME""
+]","[
+  ""company"",
+  ""organization"",
+  ""payment"",
+  ""filing"",
+  ""place"",
+  ""facility""
+]",2026-07-01 20:37:40.234892
+fed_usaspending_bulk,USAspending.gov Bulk Award Data Archive,spending_budget,"[
+  ""procurement_intl"",
+  ""corporate_entities"",
+  ""government_power""
+]","Bulk ZIP archives of federal award transaction data (contracts and financial assistance) by agency and fiscal year, including full and delta files, sourced from USAspending.gov's Award Data Archive.",49613,"[
+  ""AWARD_ID_PIID"",
+  ""CAGE_CODE"",
+  ""CONTRACT_AWARD_UNIQUE_KEY"",
+  ""RECIPIENT_DUNS"",
+  ""RECIPIENT_UEI""
+]","[
+  ""company"",
+  ""organization"",
+  ""person"",
+  ""payment"",
+  ""place"",
+  ""facility""
+]",2026-07-02 18:04:38.858558
+fed_usaspending_contracts,USASpending — Federal Prime Contract Awards,spending_budget,"[
+  ""money_finance""
+]","Prime contract award transactions (2024-10-01..2025-09-30), curated columns (company IDs UEI/DUNS/CAGE, parent, geography, NAICS, exec comp, permalink).",6325622,"[
+  ""STATE"",
+  ""UEI""
+]",[],2026-06-26 00:56:34.918713
+fed_usaspending_subawards,USAspending Sub-Award Data (FSRS/FFATA),spending_budget,[],"Sub-tier awards made by prime federal contract and grant recipients to sub-contractors and sub-grantees, as reported under FFATA.",5000,"[
+  ""EIN"",
+  ""FIPS""
+]",[],2026-06-10 16:00:24.489000
+fed_usaspending_toptier_agencies,USAspending Top-Tier Federal Agencies,spending_budget,[],"Top-tier federal agencies with current fiscal-year budgetary resources, obligations, and outlays from the USAspending.gov reference API.",111,"[
+  ""NAME""
+]",[],2026-06-16 22:00:25.801235
+intl_ec_sercop,Ecuador SERCOP Public Procurement OCDS,spending_budget,[],"Ecuador national public procurement data published in OCDS format, covering pre-contractual and contractual phases across SOCE, health, and school-feeding procurement systems from 2015 to present.",132995,"[
+  ""NAME""
+]",[],2026-06-18 02:03:30.813242
+intl_leiden_russian_ops_europe,Russian Operations Against Europe Dataset,targeted_investigation,[],Russian Operations Against Europe Dataset — issue #4 Russia-NATO hybrid war.,153,[],[],2026-06-28 03:21:57.797480
+xc_wayback_replay_doj_deep_pages,XC_WAYBACK_REPLAY_DOJ_DEEP_PAGES,targeted_investigation,[],,2542,[],,2026-06-12 21:09:20.777000
+xc_wayback_replay_doj_listing,XC_WAYBACK_REPLAY_DOJ_LISTING,targeted_investigation,[],,24897,[],,2026-06-12 19:23:31.698000
+FED_NHTSA_COMPLAINTS,NHTSA ODI Consumer Complaints (flat file),transport_movement,[],"Every safety-related defect complaint NHTSA received since 1995 -- crash, fire, injury and death reports on vehicles/equipment. One row per complaint record.",4455882,[],[],2026-07-24 00:43:02.154975
+FED_NHTSA_INVESTIGATIONS,NHTSA ODI Investigations (flat file),transport_movement,[],NHTSA defect investigations -- the formal probes opened from complaint trends. One row per investigation record.,308418,[],[],2026-07-24 00:43:34.561704
+FED_NHTSA_RECALLS,NHTSA ODI Recalls (flat file),transport_movement,[],"Every safety recall campaign NHTSA holds -- defect/noncompliance, affected make/model/year, remedy. One row per campaign x product combination.",485986,[],[],2026-07-24 00:44:34.705871
+fed_dot_bts,BTS TranStats Data Portal,transport_movement,"[
+  ""spending_budget"",
+  ""corporate_entities"",
+  ""economy_labor_trade""
+]","Portal aggregating dozens of transportation datasets across aviation, freight, highway, rail, maritime, transit, and pipeline modes including on-time performance, financial reports, origin-destination surveys, and safety data.",21,"[
+  ""NAME""
+]","[
+  ""company"",
+  ""organization"",
+  ""aircraft"",
+  ""facility"",
+  ""place"",
+  ""asset""
+]",2026-07-01 22:28:14.422965
+fed_faa_data_portal,FAA Data Portal (data.faa.gov),transport_movement,"[
+  ""crime_security"",
+  ""corporate_entities"",
+  ""government_power""
+]","FAA clearinghouse portal providing publicly available aviation datasets including aeronautical data, SWIM real-time feeds, accident/incident data, flight delay information, and airport data via APIs and bulk downloads.",4,[],"[
+  ""aircraft"",
+  ""facility"",
+  ""place"",
+  ""company"",
+  ""organization"",
+  ""event""
+]",2026-07-02 00:27:38.663288
+fed_faa_registry,FAA Civil Aircraft Registry,transport_movement,"[
+  ""corporate_entities"",
+  ""crime_security"",
+  ""money_finance""
+]","Complete FAA Civil Aircraft Registry including master registration, dealer applicants, document index, make/model reference, deregistered aircraft, engine reference, and reserved N-numbers — refreshed daily.",314417,"[
+  ""COUNTY"",
+  ""STATE"",
+  ""ZIP""
+]","[
+  ""person"",
+  ""company"",
+  ""organization"",
+  ""aircraft"",
+  ""asset"",
+  ""place""
+]",2026-07-02 00:30:16.463939
+fed_noaa_ais,NOAA Marine Cadastre Nationwide AIS,transport_movement,[],"Daily ZIP-packaged CSV files of Automatic Identification System (AIS) vessel position and voyage data for 2024 covering US waters, published by NOAA Marine Cadastre.",58104610,"[
+  ""IMO""
+]",[],2026-06-28 17:57:00.171355
+fed_atf_ffl,FED_ATF_FFL,,,,77514,,,
+fed_cdc_nndss_weekly_2024,FED_CDC_NNDSS_WEEKLY_2024,,,,1932840,,,
+fed_cfpb_hmda_arid2017_lei_xref,FED_CFPB_HMDA_ARID2017_LEI_XREF,,,,5399,,,2026-08-07 19:08:15.839467
+fed_cfpb_hmda_historic,FED_CFPB_HMDA_HISTORIC,,,,19136434,,,
+fed_cfpb_hmda_lar,FED_CFPB_HMDA_LAR,,,,17474,,,2026-08-08 04:55:53.799239
+fed_cftc_cot_financial,FED_CFTC_COT_FINANCIAL,,,,3163,,,
+fed_cftc_cot_futures,FED_CFTC_COT_FUTURES,,,,16764,,,
+fed_cms_ambulatory_specialty_model_participants,FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS,,,,6637,"[
+  ""NPI"",
+  ""NAME""
+]",,
+fed_cms_facility_level_minimum_data_set_frequency,FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY,,,,31403215,"[
+  ""CCN"",
+  ""FIPS"",
+  ""ZIP"",
+  ""NAME""
+]",,2026-08-06 19:42:46.789633
+fed_cms_federally_qualified_health_center_enrollments,FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS,,,,11063,"[
+  ""CCN"",
+  ""NPI"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",,
+fed_cms_fiscal_intermediary_shared_system_attending_and_rendering,FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING,,,,2047828,"[
+  ""NPI"",
+  ""NAME""
+]",,
+fed_cms_home_health_agency_enrollments,FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS,,,,11508,"[
+  ""CCN"",
+  ""NPI"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",,
+fed_cms_hospice_enrollments,FED_CMS_HOSPICE_ENROLLMENTS,,,,6066,"[
+  ""CCN"",
+  ""NPI"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",,
+fed_cms_hospital_enrollments,FED_CMS_HOSPITAL_ENROLLMENTS,,,,9175,"[
+  ""CCN"",
+  ""NPI"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",,
+fed_cms_medicare_diabetes_prevention_program,FED_CMS_MEDICARE_DIABETES_PREVENTION_PROGRAM,,,,1037,"[
+  ""NPI"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",,
+fed_cms_medicare_dialysis_facilities,FED_CMS_MEDICARE_DIALYSIS_FACILITIES,,,,12456456,"[
+  ""CCN"",
+  ""NPI"",
+  ""NAME""
+]",,2026-08-06 19:47:14.090998
+fed_cms_medicare_durable_medical_equipment_devices_supplies_by_refer,FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER,,,,381228,"[
+  ""NPI"",
+  ""COUNTRY"",
+  ""FIPS"",
+  ""ZIP"",
+  ""NAME""
+]",,
+fed_cms_medicare_durable_medical_equipment_devices_supplies_by_suppl,FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL,,,,440670,"[
+  ""NPI"",
+  ""FIPS"",
+  ""ZIP"",
+  ""NAME""
+]",,
+fed_cms_medicare_fee_for_service_public_provider_enrollment,FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT,,,,2978925,"[
+  ""NPI"",
+  ""NAME""
+]",,
+fed_cms_medicare_inpatient_hospitals_by_provider,FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER,,,,3044,"[
+  ""CCN"",
+  ""FIPS"",
+  ""ZIP"",
+  ""NAME""
+]",,
+fed_cms_medicare_inpatient_hospitals_by_provider_and_service,FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE,,,,145879,"[
+  ""CCN"",
+  ""FIPS"",
+  ""ZIP"",
+  ""NAME""
+]",,
+fed_cms_medicare_outpatient_hospitals_by_provider_and_service,FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE,,,,116182,"[
+  ""CCN"",
+  ""FIPS"",
+  ""ZIP"",
+  ""NAME""
+]",,
+fed_cms_medicare_physician_other_practitioners_by_provider,FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER,,,,1296739,"[
+  ""NPI"",
+  ""COUNTRY"",
+  ""FIPS"",
+  ""ZIP"",
+  ""NAME""
+]",,
+fed_cms_medicare_physician_other_practitioners_by_provider_and_servi,FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI,,,,9781673,"[
+  ""NPI"",
+  ""FIPS"",
+  ""ZIP"",
+  ""NAME""
+]",,2026-08-06 19:55:11.142734
+fed_cms_nursing_home_deficiencies,FED_CMS_NURSING_HOME_DEFICIENCIES,,,,418479,"[
+  ""CCN"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",,
+fed_cms_nursing_home_fire_deficiencies,FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES,,,,200030,"[
+  ""CCN"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",,
+fed_cms_nursing_home_penalties,FED_CMS_NURSING_HOME_PENALTIES,,,,16180,"[
+  ""CCN"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",,
+fed_cms_open_payments_profile_supplement,FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT,,,,1697025,,,2026-08-08 04:27:30.075777
+fed_cms_opioid_treatment_program_providers,FED_CMS_OPIOID_TREATMENT_PROGRAM_PROVIDERS,,,,1558,"[
+  ""NPI"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",,
+fed_cms_opt_out_affidavits,FED_CMS_OPT_OUT_AFFIDAVITS,,,,57209,"[
+  ""NPI"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",,
+fed_cms_order_and_referring,FED_CMS_ORDER_AND_REFERRING,,,,2018354,"[
+  ""NPI"",
+  ""NAME""
+]",,
+fed_cms_pending_initial_logging_and_tracking_non_physicians,FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_NON_PHYSICIANS,,,,6880,"[
+  ""NPI"",
+  ""NAME""
+]",,
+fed_cms_pending_initial_logging_and_tracking_physicians,FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS,,,,7240,"[
+  ""NPI"",
+  ""NAME""
+]",,
+fed_cms_quality_payment_program_experience,FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE,,,,503917,"[
+  ""NPI""
+]",,
+fed_cms_rural_health_clinic_enrollments,FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS,,,,5530,"[
+  ""CCN"",
+  ""NPI"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",,
+fed_cms_skilled_nursing_facility_enrollments,FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS,,,,14425,"[
+  ""CCN"",
+  ""NPI"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",,
+fed_courtlistener_dockets,FED_COURTLISTENER_DOCKETS,,,,,"[
+  ""DOCKET"",
+  ""NAME""
+]",,
+fed_courtlistener_financial_disclosures,FED_COURTLISTENER_FINANCIAL_DISCLOSURES,,,,108770,,,
+fed_courtlistener_investments,FED_COURTLISTENER_INVESTMENTS,,,,500000,,,
+fed_courtlistener_positions,FED_COURTLISTENER_POSITIONS,,,,51290,"[
+  ""NAME""
+]",,
+fed_cpsc_neiss,FED_CPSC_NEISS,,,,9794971,,,2026-07-27 15:44:43.762929
+fed_cpsc_neiss_codes,FED_CPSC_NEISS_CODES,,,,1250,"[
+  ""NAME""
+]",,
+fed_dea_arcos_full,FED_DEA_ARCOS_FULL,,,,178598026,"[
+  ""DEA_NO"",
+  ""ZIP"",
+  ""NAME""
+]",,2026-07-27 16:18:38.350583
+fed_dol_ebsa_form5500_schedule_sb,FED_DOL_EBSA_FORM5500_SCHEDULE_SB,,,,41802,,,2026-08-08 05:05:23.571532
+fed_dol_olms,FED_DOL_OLMS,,,,617710,,,2026-08-10 20:52:06.927973
+fed_ed_college_scorecard_institution,FED_ED_COLLEGE_SCORECARD_INSTITUTION,,,,6273,,,2026-08-08 02:00:23.112216
+fed_ed_nces_cip_codes,FED_ED_NCES_CIP_CODES,,,,2318,,,2026-08-07 20:19:20.639806
+fed_eia860_1_utility,FED_EIA860_1_UTILITY,,,,6643,,,2026-08-05 21:37:38.374445
+fed_eia860_2_plant,FED_EIA860_2_PLANT,,,,16132,,,2026-08-05 21:37:45.329292
+fed_eia860_3_1_generator,FED_EIA860_3_1_GENERATOR,,,,26855,,,2026-08-05 21:37:56.488569
+fed_eia860_3_2_wind,FED_EIA860_3_2_WIND,,,,1563,,,2026-08-05 21:38:00.848425
+fed_eia860_3_3_solar,FED_EIA860_3_3_SOLAR,,,,7154,,,2026-08-05 21:38:08.272605
+fed_eia860_3_4_energy_storage,FED_EIA860_3_4_ENERGY_STORAGE,,,,786,,,2026-08-05 21:38:18.185537
+fed_eia860_3_5_multifuel,FED_EIA860_3_5_MULTIFUEL,,,,2893,,,2026-08-05 21:38:22.288774
+fed_eia860_4_owner,FED_EIA860_4_OWNER,,,,5495,,,2026-08-05 21:38:26.675847
+fed_eia860_6_1_enviroassoc,FED_EIA860_6_1_ENVIROASSOC,,,,7020,,,2026-08-05 21:38:31.336848
+fed_eia860_6_2_enviroequip,FED_EIA860_6_2_ENVIROEQUIP,,,,4428,,,2026-08-05 21:38:36.753717
+fed_eia861_advanced_meters,FED_EIA861_ADVANCED_METERS,,,,2725,,,2026-08-05 21:38:50.543013
+fed_eia861_delivery_companies,FED_EIA861_DELIVERY_COMPANIES,,,,7,,,2026-08-05 21:38:57.541428
+fed_eia861_demand_response,FED_EIA861_DEMAND_RESPONSE,,,,339,,,2026-08-05 21:39:01.145974
+fed_eia861_distribution_systems,FED_EIA861_DISTRIBUTION_SYSTEMS,,,,1353,,,2026-08-05 21:39:05.196627
+fed_eia861_dynamic_pricing,FED_EIA861_DYNAMIC_PRICING,,,,857,,,2026-08-05 21:39:09.470707
+fed_eia861_energy_efficiency,FED_EIA861_ENERGY_EFFICIENCY,,,,458,,,2026-08-05 21:39:14.555032
+fed_eia861_frame,FED_EIA861_FRAME,,,,3412,,,2026-08-05 21:39:19.372255
+fed_eia861_mergers,FED_EIA861_MERGERS,,,,4,,,2026-08-05 21:39:23.776837
+fed_eia861_net_metering,FED_EIA861_NET_METERING,,,,1004,,,2026-08-05 21:39:27.941059
+fed_eia861_non_net_metering_distributed,FED_EIA861_NON_NET_METERING_DISTRIBUTED,,,,507,,,2026-08-05 21:39:32.421784
+fed_eia861_operational_data,FED_EIA861_OPERATIONAL_DATA,,,,1711,,,2026-08-05 21:39:35.990359
+fed_eia861_reliability,FED_EIA861_RELIABILITY,,,,971,,,2026-08-05 21:39:39.146039
+fed_eia861_sales_ult_cust,FED_EIA861_SALES_ULT_CUST,,,,2815,,,2026-08-05 21:39:43.352857
+fed_eia861_sales_ult_cust_cs,FED_EIA861_SALES_ULT_CUST_CS,,,,674,,,2026-08-05 21:39:48.535025
+fed_eia861_service_territory,FED_EIA861_SERVICE_TERRITORY,,,,11775,,,2026-08-05 21:38:39.814294
+fed_eia861_short_form,FED_EIA861_SHORT_FORM,,,,1724,,,2026-08-05 21:38:43.385980
+fed_eia861_utility_data,FED_EIA861_UTILITY_DATA,,,,1701,,,2026-08-05 21:38:46.759993
+fed_eia_861_balancing_authority,FED_EIA_861_BALANCING_AUTHORITY,,,,189,,,2026-08-07 20:22:37.540710
+fed_epa_air_emissions_poll_rpt_combined_emissions,FED_EPA_AIR_EMISSIONS_POLL_RPT_COMBINED_EMISSIONS,,,,10411826,"[
+  ""FRS_ID"",
+  ""NAME""
+]",,
+fed_epa_aqs_sites,FED_EPA_AQS_SITES,,,,20994,,,2026-08-07 18:55:32.833098
+fed_epa_egrid_plant_2022,FED_EPA_EGRID_PLANT_2022,,,,11974,"[
+  ""FIPS"",
+  ""LATLON"",
+  ""NAME""
+]",,
+fed_epa_frs_frs_facilities,FED_EPA_FRS_FRS_FACILITIES,,,,3277557,,,
+fed_epa_frs_frs_naics_codes,FED_EPA_FRS_FRS_NAICS_CODES,,,,2179702,"[
+  ""FRS_ID"",
+  ""NAICS""
+]",,
+fed_epa_frs_frs_program_links,FED_EPA_FRS_FRS_PROGRAM_LINKS,,,,4406498,"[
+  ""FRS_ID"",
+  ""COUNTRY"",
+  ""FIPS"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",,
+fed_epa_frs_frs_sic_codes,FED_EPA_FRS_FRS_SIC_CODES,,,,1085211,"[
+  ""FRS_ID"",
+  ""SIC""
+]",,
+fed_epa_ghgrp_emission,FED_EPA_GHGRP_EMISSION,,,,346683,,,
+fed_epa_ghgrp_facility,FED_EPA_GHGRP_FACILITY,,,,136005,,,
+fed_epa_icis_air_icis_air_facilities,FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES,,,,279728,"[
+  ""FRS_ID"",
+  ""NAICS"",
+  ""SIC"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",,
+fed_epa_icis_air_icis_air_fces_pces,FED_EPA_ICIS_AIR_ICIS_AIR_FCES_PCES,,,,1779096,"[
+  ""ACTIVITY_ID""
+]",,
+fed_epa_icis_air_icis_air_formal_actions,FED_EPA_ICIS_AIR_ICIS_AIR_FORMAL_ACTIONS,,,,106009,"[
+  ""ACTIVITY_ID""
+]",,
+fed_epa_icis_air_icis_air_informal_actions,FED_EPA_ICIS_AIR_ICIS_AIR_INFORMAL_ACTIONS,,,,338316,"[
+  ""ACTIVITY_ID""
+]",,
+fed_epa_icis_air_icis_air_pollutants,FED_EPA_ICIS_AIR_ICIS_AIR_POLLUTANTS,,,,978398,,,
+fed_epa_icis_air_icis_air_program_subparts,FED_EPA_ICIS_AIR_ICIS_AIR_PROGRAM_SUBPARTS,,,,190980,,,
+fed_epa_icis_air_icis_air_programs,FED_EPA_ICIS_AIR_ICIS_AIR_PROGRAMS,,,,457581,,,
+fed_epa_icis_air_icis_air_stack_tests,FED_EPA_ICIS_AIR_ICIS_AIR_STACK_TESTS,,,,620302,"[
+  ""ACTIVITY_ID""
+]",,
+fed_epa_icis_air_icis_air_titlev_certs,FED_EPA_ICIS_AIR_ICIS_AIR_TITLEV_CERTS,,,,2574815,"[
+  ""ACTIVITY_ID""
+]",,
+fed_epa_icis_air_icis_air_violation_history,FED_EPA_ICIS_AIR_ICIS_AIR_VIOLATION_HISTORY,,,,102037,"[
+  ""ACTIVITY_ID""
+]",,
+fed_epa_icis_fec_case_enforcement_conclusion_facilities,FED_EPA_ICIS_FEC_CASE_ENFORCEMENT_CONCLUSION_FACILITIES,,,,150877,"[
+  ""ZIP"",
+  ""NAME""
+]",,
+fed_epa_icis_fec_case_facilities,FED_EPA_ICIS_FEC_CASE_FACILITIES,,,,204019,"[
+  ""FRS_ID"",
+  ""NAICS"",
+  ""SIC"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",,
+fed_epa_icis_fec_epa_informal_enforcement_actions,FED_EPA_ICIS_FEC_EPA_INFORMAL_ENFORCEMENT_ACTIONS,,,,21930,"[
+  ""FRS_ID""
+]",,
+fed_epa_icis_fec_icis_fec_epa_inspections,FED_EPA_ICIS_FEC_ICIS_FEC_EPA_INSPECTIONS,,,,260556,"[
+  ""FRS_ID"",
+  ""NAME""
+]",,
+fed_epa_npdes_icis_facilities,FED_EPA_NPDES_ICIS_FACILITIES,,,,1213737,"[
+  ""LATLON"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",,
+fed_epa_npdes_npdes_cs_violations,FED_EPA_NPDES_NPDES_CS_VIOLATIONS,,,,82187,"[
+  ""NPDES_ID""
+]",,
+fed_epa_npdes_npdes_formal_enforcement_actions,FED_EPA_NPDES_NPDES_FORMAL_ENFORCEMENT_ACTIONS,,,,112373,"[
+  ""ACTIVITY_ID"",
+  ""NPDES_ID""
+]",,
+fed_epa_npdes_npdes_informal_enforcement_actions,FED_EPA_NPDES_NPDES_INFORMAL_ENFORCEMENT_ACTIONS,,,,826867,"[
+  ""FRS_ID""
+]",,
+fed_epa_npdes_npdes_inspections,FED_EPA_NPDES_NPDES_INSPECTIONS,,,,1900067,"[
+  ""FRS_ID""
+]",,
+fed_epa_npdes_npdes_naics,FED_EPA_NPDES_NPDES_NAICS,,,,326473,"[
+  ""NAICS""
+]",,
+fed_epa_npdes_npdes_ps_violations,FED_EPA_NPDES_NPDES_PS_VIOLATIONS,,,,397615,"[
+  ""NPDES_ID""
+]",,
+fed_epa_npdes_npdes_qncr_history,FED_EPA_NPDES_NPDES_QNCR_HISTORY,,,,7951656,"[
+  ""NPDES_ID""
+]",,
+fed_epa_npdes_npdes_se_violations,FED_EPA_NPDES_NPDES_SE_VIOLATIONS,,,,305478,"[
+  ""NPDES_ID""
+]",,
+fed_epa_npdes_npdes_sics,FED_EPA_NPDES_NPDES_SICS,,,,792807,"[
+  ""SIC""
+]",,
+fed_epa_rcra_enforcements,FED_EPA_RCRA_ENFORCEMENTS,,,,383519,,,2026-08-08 04:40:35.475103
+fed_epa_rcra_evaluations,FED_EPA_RCRA_EVALUATIONS,,,,1166410,,,2026-08-08 04:39:34.370963
+fed_epa_rcra_facilities,FED_EPA_RCRA_FACILITIES,,,,1613224,,,2026-08-08 04:39:11.967661
+fed_epa_rcra_rcra_naics,FED_EPA_RCRA_RCRA_NAICS,,,,434734,,,
+fed_epa_rcra_violations,FED_EPA_RCRA_VIOLATIONS,,,,708114,,,2026-08-08 04:39:56.192408
+fed_epa_rcra_viosnc_history,FED_EPA_RCRA_VIOSNC_HISTORY,,,,2675581,,,2026-08-08 04:40:21.219608
+fed_epa_sdwa_sdwa_events_milestones,FED_EPA_SDWA_SDWA_EVENTS_MILESTONES,,,,394075,"[
+  ""PWSID""
+]",,
+fed_epa_sdwa_sdwa_facilities,FED_EPA_SDWA_SDWA_FACILITIES,,,,1554832,"[
+  ""PWSID"",
+  ""NAME""
+]",,
+fed_epa_sdwa_sdwa_geographic_areas,FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS,,,,578198,"[
+  ""PWSID"",
+  ""ZIP""
+]",,
+fed_epa_sdwa_sdwa_lcr_samples,FED_EPA_SDWA_SDWA_LCR_SAMPLES,,,,927415,"[
+  ""PWSID""
+]",,
+fed_epa_sdwa_sdwa_pn_violation_assoc,FED_EPA_SDWA_SDWA_PN_VIOLATION_ASSOC,,,,387627,"[
+  ""PWSID""
+]",,
+fed_epa_sdwa_sdwa_pub_water_systems,FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS,,,,434040,"[
+  ""PWSID"",
+  ""COUNTRY"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",,
+fed_epa_sdwa_sdwa_service_areas,FED_EPA_SDWA_SDWA_SERVICE_AREAS,,,,422464,"[
+  ""PWSID""
+]",,
+fed_epa_sdwa_sdwa_site_visits,FED_EPA_SDWA_SDWA_SITE_VISITS,,,,2495249,"[
+  ""PWSID""
+]",,
+fed_epa_sdwa_sdwa_violations_enforcement,FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT,,,,15432737,"[
+  ""PWSID""
+]",,
+fed_epa_tri_basic_2023,FED_EPA_TRI_BASIC_2023,,,,78647,"[
+  ""FRS_ID"",
+  ""LATLON"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",,
+fed_epa_tri_facility,FED_EPA_TRI_FACILITY,,,,64990,,,2026-08-07 19:06:07.880963
+fed_fda_drug_master_files,FED_FDA_DRUG_MASTER_FILES,,,,41253,,,2026-08-08 04:36:58.456369
+fed_fda_faers_demo,FED_FDA_FAERS_DEMO,,,,5811086,"[
+  ""COUNTRY""
+]",,
+fed_fda_faers_drug,FED_FDA_FAERS_DRUG,,,,,,,
+fed_fda_faers_indi,FED_FDA_FAERS_INDI,,,,9833260,,,
+fed_fda_faers_outc,FED_FDA_FAERS_OUTC,,,,5147466,,,
+fed_fda_faers_reac,FED_FDA_FAERS_REAC,,,,,,,
+fed_fda_purple_book,FED_FDA_PURPLE_BOOK,,,,2228,,,2026-08-08 04:36:48.000022
+fed_fda_unii_gsrs_substances,FED_FDA_UNII_GSRS_SUBSTANCES,,,,168046,,,2026-08-08 04:36:23.776494
+fed_fdic_sod_branch_deposits,FED_FDIC_SOD_BRANCH_DEPOSITS,,,,2823000,,,2026-08-10 19:53:59.299429
+fed_fema_ia_housing_registrations,FED_FEMA_IA_HOUSING_REGISTRATIONS,,,,3080000,,,
+fed_fema_nfip_community_status_book,FED_FEMA_NFIP_COMMUNITY_STATUS_BOOK,,,,25122,,,2026-08-07 19:07:56.457142
+fed_fhfa_fhlb_membership,FED_FHFA_FHLB_MEMBERSHIP,,,,6327,,,2026-08-07 19:08:22.712619
+fed_fhfa_suspended_counterparties,FED_FHFA_SUSPENDED_COUNTERPARTIES,,,,222,,,2026-08-07 19:08:27.905741
+fed_finra_mpid_list,FED_FINRA_MPID_LIST,,,,4215,,,2026-08-08 01:44:24.489242
+fed_fjc_idb_appellate,FED_FJC_IDB_APPELLATE,,,,988183,,,
+fed_fjc_idb_bankruptcy,FED_FJC_IDB_BANKRUPTCY,,,,6965441,,,
+fed_fjc_idb_civil,FED_FJC_IDB_CIVIL,,,,10857396,,,
+fed_fjc_idb_criminal,FED_FJC_IDB_CRIMINAL,,,,6299908,,,
+fed_fracfocus_disclosure_list,FED_FRACFOCUS_DISCLOSURE_LIST,,,,248835,,,2026-08-05 21:36:24.882275
+fed_fracfocus_registry,FED_FRACFOCUS_REGISTRY,,,,7200550,,,2026-08-05 21:45:18.533329
+fed_fracfocus_water_source,FED_FRACFOCUS_WATER_SOURCE,,,,23747,,,2026-08-05 21:36:35.728341
+fed_frb_h15_selected_rates,FED_FRB_H15_SELECTED_RATES,,,,16848,,,
+fed_frb_z1_csv,FED_FRB_Z1_CSV,,,,304,,,
+fed_google_polads_advertiser_declared_stats,FED_GOOGLE_POLADS_ADVERTISER_DECLARED_STATS,,,,469,"[
+  ""ADDRESS"",
+  ""NAME""
+]",,
+fed_google_polads_advertiser_geo_spend,FED_GOOGLE_POLADS_ADVERTISER_GEO_SPEND,,,,500000,"[
+  ""COUNTRY"",
+  ""NAME""
+]",,
+fed_google_polads_advertiser_id_mapping,FED_GOOGLE_POLADS_ADVERTISER_ID_MAPPING,,,,8044,,,
+fed_google_polads_advertiser_stats,FED_GOOGLE_POLADS_ADVERTISER_STATS,,,,21113,"[
+  ""NAME""
+]",,
+fed_google_polads_advertiser_weekly_spend,FED_GOOGLE_POLADS_ADVERTISER_WEEKLY_SPEND,,,,296452,"[
+  ""NAME""
+]",,
+fed_google_polads_creative_id_mapping,FED_GOOGLE_POLADS_CREATIVE_ID_MAPPING,,,,500000,,,
+fed_google_polads_creative_stats,FED_GOOGLE_POLADS_CREATIVE_STATS,,,,500000,"[
+  ""NAME""
+]",,
+fed_google_polads_geo_spend,FED_GOOGLE_POLADS_GEO_SPEND,,,,1289,"[
+  ""COUNTRY""
+]",,
+fed_hrsa_hpsa_primary_care,FED_HRSA_HPSA_PRIMARY_CARE,,,,79158,,,2026-08-07 18:54:30.792181
+fed_hrsa_npdb,FED_HRSA_NPDB,,,,1911185,,,
+fed_hrsa_uds_service_delivery_sites,FED_HRSA_UDS_SERVICE_DELIVERY_SITES,,,,19038,,,2026-08-07 18:54:12.821080
+fed_hud_fha_sf_portfolio_snapshot,FED_HUD_FHA_SF_PORTFOLIO_SNAPSHOT,,,,61647,,,2026-08-07 20:20:12.616624
+fed_hud_mf_firm_commitments,FED_HUD_MF_FIRM_COMMITMENTS,,,,25557,,,2026-08-07 20:19:44.130249
+fed_hud_mf_section8_contracts,FED_HUD_MF_SECTION8_CONTRACTS,,,,24309,,,2026-08-07 20:20:44.176048
+fed_hud_public_housing_authorities,FED_HUD_PUBLIC_HOUSING_AUTHORITIES,,,,3787,,,2026-08-07 20:20:25.348955
+fed_ice_detention_facility_codes,FED_ICE_DETENTION_FACILITY_CODES,,,,1490,,,2026-08-05 21:32:57.329437
+fed_ihs_facilities,FED_IHS_FACILITIES,,,,1006,,,2026-08-07 18:54:38.977720
+fed_ihs_scb_facility,FED_IHS_SCB_FACILITY,,,,8733,,,2026-08-08 01:42:43.061009
+fed_irs_auto_revocations,FED_IRS_AUTO_REVOCATIONS,,,,500000,"[
+  ""EIN"",
+  ""COUNTRY"",
+  ""ZIP"",
+  ""NAME""
+]",,
+fed_irs_pub78_eligible_donees,FED_IRS_PUB78_ELIGIBLE_DONEES,,,,500000,"[
+  ""EIN"",
+  ""COUNTRY"",
+  ""NAME""
+]",,
+fed_irs_soi_charities,FED_IRS_SOI_CHARITIES,,,,2450,"[
+  ""EIN"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",,
+fed_itis_comments,FED_ITIS_COMMENTS,,,,70524,,,2026-08-08 04:44:18.654590
+fed_itis_experts,FED_ITIS_EXPERTS,,,,197,,,2026-08-08 04:44:23.680870
+fed_itis_geographic_div,FED_ITIS_GEOGRAPHIC_DIV,,,,480351,,,2026-08-08 04:44:32.521154
+fed_itis_hierarchy,FED_ITIS_HIERARCHY,,,,678363,,,2026-08-08 04:44:45.832610
+fed_itis_jurisdiction,FED_ITIS_JURISDICTION,,,,161922,,,2026-08-08 04:44:51.666247
+fed_itis_kingdoms,FED_ITIS_KINGDOMS,,,,7,,,2026-08-08 04:44:55.760658
+fed_itis_longnames,FED_ITIS_LONGNAMES,,,,993346,,,2026-08-08 04:45:09.786526
+fed_itis_nodc_ids,FED_ITIS_NODC_IDS,,,,209565,,,2026-08-08 04:46:17.651353
+fed_itis_other_sources,FED_ITIS_OTHER_SOURCES,,,,1071,,,2026-08-08 04:46:23.424946
+fed_itis_publications,FED_ITIS_PUBLICATIONS,,,,30772,,,2026-08-08 04:46:30.703753
+fed_itis_reference_links,FED_ITIS_REFERENCE_LINKS,,,,1970107,,,2026-08-08 04:46:58.189737
+fed_itis_strippedauthor,FED_ITIS_STRIPPEDAUTHOR,,,,214445,,,2026-08-08 04:47:07.240107
+fed_itis_synonym_links,FED_ITIS_SYNONYM_LINKS,,,,315254,,,2026-08-08 04:47:15.285614
+fed_itis_taxon_authors_lkp,FED_ITIS_TAXON_AUTHORS_LKP,,,,214445,,,2026-08-08 04:47:27.671373
+fed_itis_taxon_unit_types,FED_ITIS_TAXON_UNIT_TYPES,,,,182,,,2026-08-08 04:47:32.339915
+fed_itis_taxonomic_units,FED_ITIS_TAXONOMIC_UNITS,,,,993346,,,2026-08-08 04:48:37.353216
+fed_itis_tu_comments_links,FED_ITIS_TU_COMMENTS_LINKS,,,,192851,,,2026-08-08 04:48:44.835488
+fed_itis_vern_ref_links,FED_ITIS_VERN_REF_LINKS,,,,93078,,,2026-08-08 04:48:50.295600
+fed_itis_vernaculars,FED_ITIS_VERNACULARS,,,,166778,,,2026-08-08 04:49:08.143684
+fed_msrb_registrants,FED_MSRB_REGISTRANTS,,,,925,,,2026-08-08 04:57:28.619275
+fed_ncua_charter_merger_events,FED_NCUA_CHARTER_MERGER_EVENTS,,,,27,,,2026-08-08 01:43:15.516989
+fed_ncua_federally_insured_cu_list,FED_NCUA_FEDERALLY_INSURED_CU_LIST,,,,4250,,,2026-08-07 19:08:08.810151
+fed_nlm_dailymed_spl_setid_map,FED_NLM_DAILYMED_SPL_SETID_MAP,,,,158452,,,2026-08-08 01:42:59.152830
+fed_ntsb_aviation_injury,FED_NTSB_AVIATION_INJURY,,,,179179,,,2026-08-08 01:55:41.749176
+fed_occ_national_banks,FED_OCC_NATIONAL_BANKS,,,,724,,,
+fed_occ_thrifts,FED_OCC_THRIFTS,,,,218,,,
+fed_osha_ita_300a_summary_2023,FED_OSHA_ITA_300A_SUMMARY_2023,,,,394234,"[
+  ""EIN"",
+  ""NAICS"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",,
+fed_osha_ita_300a_summary_2024,FED_OSHA_ITA_300A_SUMMARY_2024,,,,398620,"[
+  ""EIN"",
+  ""NAICS"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",,
+fed_osha_ita_300a_summary_2025,FED_OSHA_ITA_300A_SUMMARY_2025,,,,383283,"[
+  ""EIN"",
+  ""NAICS"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",,
+fed_osha_ita_case_detail_2023,FED_OSHA_ITA_CASE_DETAIL_2023,,,,500000,"[
+  ""EIN"",
+  ""NAICS"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",,
+fed_osha_ita_case_detail_2024,FED_OSHA_ITA_CASE_DETAIL_2024,,,,500000,"[
+  ""EIN"",
+  ""NAICS"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",,
+fed_osha_ita_case_detail_2025,FED_OSHA_ITA_CASE_DETAIL_2025,,,,330447,"[
+  ""EIN"",
+  ""NAICS"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",,
+fed_pcaob_form_ap_filings,FED_PCAOB_FORM_AP_FILINGS,,,,155384,,,2026-08-08 01:43:37.330491
+fed_sbir_sttr_awards,FED_SBIR_STTR_AWARDS,,,,219503,,,2026-08-07 20:21:45.936843
+fed_sec_13f_filers,FED_SEC_13F_FILERS,,,,344109,"[
+  ""ZIP"",
+  ""NAME""
+]",,
+fed_sec_13f_holdings,FED_SEC_13F_HOLDINGS,,,,,"[
+  ""ACCESSION_NUMBER"",
+  ""CUSIP"",
+  ""FIGI""
+]",,
+fed_sec_13f_submissions,FED_SEC_13F_SUBMISSIONS,,,,336124,"[
+  ""CIK""
+]",,
+fed_sec_business_development_company_report,FED_SEC_BUSINESS_DEVELOPMENT_COMPANY_REPORT,,,,212,"[
+  ""CIK"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",,
+fed_sec_closed_end_fund_information,FED_SEC_CLOSED_END_FUND_INFORMATION,,,,973,"[
+  ""CIK"",
+  ""ZIP"",
+  ""ADDRESS"",
+  ""NAME""
+]",,
+fed_sec_dera_sub_2024q1,FED_SEC_DERA_SUB_2024Q1,,,,6028,"[
+  ""CIK"",
+  ""EIN"",
+  ""SIC"",
+  ""NAME""
+]",,
+fed_sec_dera_sub_2024q2,FED_SEC_DERA_SUB_2024Q2,,,,7675,"[
+  ""CIK"",
+  ""EIN"",
+  ""SIC"",
+  ""NAME""
+]",,
+fed_sec_dera_sub_2024q3,FED_SEC_DERA_SUB_2024Q3,,,,6699,"[
+  ""CIK"",
+  ""EIN"",
+  ""SIC"",
+  ""NAME""
+]",,
+fed_sec_dera_sub_2024q4,FED_SEC_DERA_SUB_2024Q4,,,,6491,"[
+  ""CIK"",
+  ""EIN"",
+  ""SIC"",
+  ""NAME""
+]",,
+fed_sec_dera_sub_2025q1,FED_SEC_DERA_SUB_2025Q1,,,,6231,"[
+  ""CIK"",
+  ""EIN"",
+  ""SIC"",
+  ""NAME""
+]",,
+fed_sec_dera_sub_2025q2,FED_SEC_DERA_SUB_2025Q2,,,,7009,"[
+  ""CIK"",
+  ""EIN"",
+  ""SIC"",
+  ""NAME""
+]",,
+fed_sec_dera_sub_2025q3,FED_SEC_DERA_SUB_2025Q3,,,,6541,"[
+  ""CIK"",
+  ""EIN"",
+  ""SIC"",
+  ""NAME""
+]",,
+fed_sec_dera_sub_2025q4,FED_SEC_DERA_SUB_2025Q4,,,,6304,"[
+  ""CIK"",
+  ""EIN"",
+  ""SIC"",
+  ""NAME""
+]",,
+fed_sec_dera_sub_2026q1,FED_SEC_DERA_SUB_2026Q1,,,,6169,"[
+  ""CIK"",
+  ""EIN"",
+  ""SIC"",
+  ""NAME""
+]",,
+fed_sec_edgar_company_tickers_exchange,SEC EDGAR Company Tickers + Exchange,,,"SEC's official CIK-to-ticker-to-exchange map: one row per listed company registration (CIK, company name, ticker, exchange).",10398,,,2026-08-10 17:44:07.846872
+fed_sec_investment_company_series_class,FED_SEC_INVESTMENT_COMPANY_SERIES_CLASS,,,,43123,,,2026-08-08 04:57:23.233398
+fed_sec_money_market_fund_information,FED_SEC_MONEY_MARKET_FUND_INFORMATION,,,,1206,"[
+  ""CIK"",
+  ""NAME""
+]",,
+fed_senate_lda_filings,FED_SENATE_LDA_FILINGS,,,,174871,"[
+  ""COUNTRY"",
+  ""NAME""
+]",,
+fed_treasury_debt_outstanding,FED_TREASURY_DEBT_OUTSTANDING,,,,237,,,
+fed_treasury_dts_deposits,FED_TREASURY_DTS_DEPOSITS,,,,10000,,,
+fed_treasury_mts_receipts,FED_TREASURY_MTS_RECEIPTS,,,,7490,,,
+fed_usaspending_tas_filter_tree,FED_USASPENDING_TAS_FILTER_TREE,,,,92,,,2026-08-07 20:20:58.878677
+fed_uscg_nrc_incident_reports,FED_USCG_NRC_INCIDENT_REPORTS,,,,116662,,,2026-08-08 04:42:30.092080
+fed_uscg_nrc_incidents,FED_USCG_NRC_INCIDENTS,,,,1029020,,,
+fed_usda_rd_mfh_active_projects,FED_USDA_RD_MFH_ACTIVE_PROJECTS,,,,13550,,,2026-08-07 20:20:53.519433
+fed_usgs_gnis_all_names,FED_USGS_GNIS_ALL_NAMES,,,,1249624,,,2026-08-08 04:43:41.038518
+fed_usgs_orphaned_oil_gas_wells,FED_USGS_ORPHANED_OIL_GAS_WELLS,,,,117672,,,2026-08-08 04:40:48.307526
+fed_usgs_wbd_huc8,FED_USGS_WBD_HUC8,,,,2456,,,2026-08-08 01:43:06.789018
+fed_wqp_monitoring_stations,FED_WQP_MONITORING_STATIONS,,,,5818,,,2026-08-08 04:42:40.382263
+intl_elections_canada_contributions,INTL_ELECTIONS_CANADA_CONTRIBUTIONS,,,,12646465,,,2026-08-08 01:50:58.494061
+intl_gleif_relationships,INTL_GLEIF_RELATIONSHIPS,,,,481900,,,
+intl_gleif_repex,INTL_GLEIF_REPEX,,,,6259489,"[
+  ""LEI""
+]",,
+intl_healthcanada_dpd_drug,INTL_HEALTHCANADA_DPD_DRUG,,,,13383,,,2026-08-07 18:55:00.361075
+intl_iso_mic_registry,INTL_ISO_MIC_REGISTRY,,,,2864,,,2026-08-07 19:09:20.352843
+intl_osfi_regulated_fi,INTL_OSFI_REGULATED_FI,,,,343,,,2026-08-07 20:22:44.352352
+st_nyc_cfb_campaign_2001_contribution,ST_NYC_CFB_CAMPAIGN_2001_CONTRIBUTION,,,,193741,,,2026-08-08 01:54:45.237915
+st_nyc_cfb_campaign_2009_contribution,ST_NYC_CFB_CAMPAIGN_2009_CONTRIBUTION,,,,146112,,,2026-08-08 01:54:57.617190
+st_nyc_cfb_campaign_2013_contribution,ST_NYC_CFB_CAMPAIGN_2013_CONTRIBUTION,,,,197968,,,2026-08-08 01:54:23.141265
+st_nyc_cfb_campaign_2021_contributions,ST_NYC_CFB_CAMPAIGN_2021_CONTRIBUTIONS,,,,457521,,,2026-08-08 01:53:48.324601
+st_nyc_cfb_campaign_2025_contributions,ST_NYC_CFB_CAMPAIGN_2025_CONTRIBUTIONS,,,,259537,,,2026-08-08 01:54:08.114963
+uk_companies_house_psc,UK_COMPANIES_HOUSE_PSC,,,,7000000,,,
+xc_crossref_funder_registry,XC_CROSSREF_FUNDER_REGISTRY,,,,45661,,,2026-08-07 20:24:02.249146
+xc_epa_corporate_crosswalk,XC_EPA_CORPORATE_CROSSWALK,,,,5300149,"[
+  ""FRS_ID"",
+  ""LEI"",
+  ""UEI"",
+  ""NAME""
+]",,
+xc_osf_registrations,XC_OSF_REGISTRATIONS,,,,10,,,2026-08-08 02:00:40.125282
+xc_retraction_watch_database,XC_RETRACTION_WATCH_DATABASE,,,,71388,,,2026-08-07 20:23:54.384278
+xc_ror_research_organizations,XC_ROR_RESEARCH_ORGANIZATIONS,,,,135710,,,2026-08-07 20:23:26.599873
