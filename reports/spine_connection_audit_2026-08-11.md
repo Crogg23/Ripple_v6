@@ -186,3 +186,78 @@ The who's-who was rebuilt on the fixed rules and re-measured:
 
 Runtime was ~25 minutes, not the ~4.5 hours estimated from the 2026-08-08
 precedent, so the actual spend was a small fraction of the $10–15 price tag.
+
+## Addendum 2 — EVERY connection measured, not two
+
+The first pass hand-checked two join surfaces. This closes the gap: because the
+spine is hard-ID-only, every connection the platform can make between two
+sources is an entity present in both, so a self-join of the per-source entity
+index enumerates all of them exactly once. **847 connections**, measured on name
+agreement (identical after normalisation, prefix containment, or shared 4+
+character token — order-insensitive).
+
+| | |
+|---|---|
+| connections measured | **847** |
+| name-checkable (both sides carry a name) | 661 |
+| not name-checkable (one side has no name column) | 186 — reported honestly, not counted as good |
+| overall name agreement | **99.4%** (90,507,854 of 91,064,041 compared pairs) |
+| connections below 50% agreement | 17, of which 3 were real defects and the rest are naming conventions |
+
+### The three real defects this found
+
+1. **430,916 of 434,040 public water systems were named after one of their own
+   wells.** A child table listing wells, tanks and intakes had a stronger
+   survivorship rank than the water-system register, so systems came out called
+   "WELL #1" or "LA1055063#01". Compounding it, the register itself was pointed
+   at a contact-person column, which also put private individuals' names into the
+   map ("ALLEN, FRITZ" for the system "ARTISAN CENTER OF CORRALES"). Fixed: the
+   register names the system from its own name column; the child table keeps its
+   membership but may no longer name its parent.
+2. **3,883 political committees were named after a donor.** Every column on a
+   contribution row describes the giver, not the committee the ID identifies.
+   Fixed: that source contributes membership only, no name or address.
+3. **Dialysis clinics fused with doctors.** 69,437 rows of the dialysis facility
+   file carry an individual's provider ID (NPPES entity type 1) instead of the
+   clinic's — the medical director, most likely — so "DCI ROCKCASTLE" became the
+   same entity as the prescriber "Rahman, Khalil". Fixed: that ID dropped as an
+   identity key; the facility ID already identifies these clinics.
+
+### The false alarms (joins are correct, publishers just name things differently)
+
+- Person-name order: "Josh Gottheimer" vs "Gottheimer, Josh" — five congressional
+  joins flagged only because the first comparator was order-sensitive. Fixed in
+  the comparator, not in the data.
+- Facility trade name vs owning legal entity ("Oakland Manor Nursing and
+  Rehabilitation" vs "OAKLAND MANOR NURSING & REHAB CENTER LLC").
+- Clinic vs operating hospital ("MCBAIN PRIMARY CARE" vs "MUNSON HEALTHCARE
+  CADILLAC") — same facility ID, one publisher lists the operator.
+- Committee vs the candidate it supports — a real relationship, deliberately not
+  an identity claim.
+
+Each is listed with its reason in the guard test, so it stays a claim a human
+made rather than a silent exception.
+
+### Bridges (the explicit crosswalk table)
+
+Nine bridge types, all built 2026-07-30, all carrying an explicit relation and a
+measured fan-out — no one-to-many bridge is presented as one-to-one:
+
+| bridge | rows | relation | fan-out |
+|---|---|---|---|
+| facility ↔ provider | 2,249,953 | affiliation | up to 6,962 |
+| candidate ↔ committee | 218,584 | affiliation | up to 821 |
+| facility ↔ company (EPA crosswalk) | 73,948 | same row | 1 |
+| facility ↔ provider (same row) | 52,031 | same row | 1 |
+| filer ↔ tax ID | 40,440 | same row | 1 |
+| legislator IDs | 12,655 / 12,298 | affiliation / same row | 3 / 1 |
+| ship IDs | 6,684 | affiliation | up to 21 |
+
+The affiliation bridges are relationships, not identities, and the spine
+deliberately does not fuse across them.
+
+### Guard
+
+`tests/test_connection_agreement_live.py` re-measures all 847 connections and
+fails on any NEW pair that drops below 50% agreement, plus a map-wide floor of
+97%. The legitimate naming-convention pairs are listed with reasons.

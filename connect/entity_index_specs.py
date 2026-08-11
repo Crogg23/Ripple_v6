@@ -471,10 +471,14 @@ DISPLAY_SPECS: dict[str, dict] = {
     # =========================================================================
     "FED_FEC_INDIV_CONTRIBUTIONS": {
         # FEC_CMTE_ID -- 12,291 distinct / 84,172,112 rows (100.0% survive norm), +12,291 new to spine. len 9-9. e.g. C00458000
+        # NO name/address here (2026-08-11 connection audit): the entity keyed by
+        # CMTE_ID is the COMMITTEE, but every column on a contribution row describes
+        # the DONOR -- name, city, state, ZIP all belong to the person who gave the
+        # money. Letting them survive named 3,883 committees after a donor (e.g. the
+        # committee HISPANIC 100 FED PAC carrying "LUCKEY, PALMER"). The membership
+        # edge is real and stays; only the labelling was wrong.
         "key": "FEC_CMTE_ID", "key_col": "CMTE_ID",
-        "org": "NAME",
-        "city": "CITY", "state": "STATE", "zip": "ZIP_CODE",
-        "authority": 6,
+        "authority": 9,
     },
     "FED_MSHA_VIOLATIONS": {
         # MINE_ID -- 31,277 distinct / 3,087,266 rows (100.0% survive norm), +31,277 new to spine. len 7-7. e.g. 0101552
@@ -498,10 +502,14 @@ DISPLAY_SPECS: dict[str, dict] = {
     },
     "FED_FEC_COMMITTEE_TO_CANDIDATE": {
         # FEC_CMTE_ID -- 6,270 distinct / 866,730 rows (100.0% survive norm), +6,270 new to spine. len 9-9. e.g. C00325324
+        # NO name/address here (2026-08-11 connection audit): the entity keyed by
+        # CMTE_ID is the COMMITTEE, but every column on a contribution row describes
+        # the DONOR -- name, city, state, ZIP all belong to the person who gave the
+        # money. Letting them survive named 3,883 committees after a donor (e.g. the
+        # committee HISPANIC 100 FED PAC carrying "LUCKEY, PALMER"). The membership
+        # edge is real and stays; only the labelling was wrong.
         "key": "FEC_CMTE_ID", "key_col": "CMTE_ID",
-        "org": "NAME",
-        "city": "CITY", "state": "STATE", "zip": "ZIP_CODE",
-        "authority": 6,
+        "authority": 9,
     },
     "FED_MSHA_ACCIDENTS": {
         # MINE_ID -- 13,489 distinct / 273,623 rows (100.0% survive norm), +13,489 new to spine. len 7-7. e.g. 1400413
@@ -510,9 +518,14 @@ DISPLAY_SPECS: dict[str, dict] = {
     },
     "FED_EPA_SDWA_SDWA_FACILITIES": {
         # PWSID -- 139,527 distinct / 500,000 rows (100.0% survive norm), +139,527 new to spine. len 9-9. e.g. 020010464
+        # NO name here (2026-08-11 connection audit): PWSID identifies the water
+        # SYSTEM; this table lists the wells, tanks and intakes INSIDE it, many per
+        # system. With authority 2 it outranked the system register and named
+        # 430,916 of 434,040 public water systems after one of their own wells
+        # ("WELL #1", "LA1055063#01"). The rows still belong to the system -- they
+        # are its facilities -- but a child row may never name its parent.
         "key": "PWSID", "key_col": "PWSID",
-        "org": "FACILITY_NAME",
-        "authority": 2,
+        "authority": 9,
     },
     "FED_EPA_FRS_FRS_SIC_CODES": {
         # FRS_ID -- 367,837 distinct / 500,000 rows (100.0% survive norm), +367,837 new to spine. len 12-12. e.g. 110000307739
@@ -663,8 +676,13 @@ DISPLAY_SPECS: dict[str, dict] = {
         "key": "CCN", "key_col": "CCN",
         "org": "PROVIDER_NAME",
         "city": "CITY", "state": "STATE",
-        # extra: NPI -- 332 distinct, +1 new to spine
-        "extra_keys": [{"key": "NPI", "key_col": "NPI"}],
+        # NPI dropped as an identity key 2026-08-11 (connection audit): 69,437 rows
+        # of this file carry an INDIVIDUAL's NPI (NPPES entity type 1) rather than
+        # the clinic's -- the medical director, most likely -- so the clinic fused
+        # with the doctor: "DCI ROCKCASTLE" became the same entity as the Part D
+        # prescriber "Rahman, Khalil". A facility merged with a person is the worst
+        # class of wrong merge, and CCN already identifies these clinics, so the
+        # link is dropped rather than filtered (the spec layer has no row filter).
         "authority": 6,
     },
     "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER": {
@@ -676,10 +694,16 @@ DISPLAY_SPECS: dict[str, dict] = {
     },
     "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS": {
         # PWSID -- 434,040 distinct / 434,040 rows (100.0% survive norm), +280,388 new to spine. len 9-9. e.g. MN1640004
+        # PWS_NAME, not ORG_NAME (2026-08-11 connection audit): ORG_NAME on this
+        # register is the contact/owner, frequently a private individual
+        # ("ALLEN, FRITZ" for the water system "ARTISAN CENTER OF CORRALES"), so it
+        # both mis-named systems and put private people's names into the map.
+        # PWS_NAME is the system's own name. Authority raised to 2 so the register
+        # names the system, not one of its wells.
         "key": "PWSID", "key_col": "PWSID",
-        "org": "ORG_NAME",
+        "org": "PWS_NAME",
         "city": "CITY_NAME", "state": "STATE_CODE", "zip": "ZIP_CODE",
-        "authority": 6,
+        "authority": 2,
     },
     "FED_EPA_SDWA_SDWA_SERVICE_AREAS": {
         # PWSID -- 378,450 distinct / 422,464 rows (100.0% survive norm), +243,657 new to spine. len 9-9. e.g. 020011103
