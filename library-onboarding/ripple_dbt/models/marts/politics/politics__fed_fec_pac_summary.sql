@@ -2,7 +2,7 @@
 
 -- GRAIN: one row per (committee, election-cycle coverage period). Fixed 2026-07-31 --
 -- was silently keeping only the LATEST cycle per committee (see staging model header
--- for the root cause and the 25,496 rows of multi-cycle history that recovered).
+-- for the root cause and the 45,709 rows of multi-cycle history that recovered).  [row count re-verified against the live table 2026-08-11; header had said 25,496]
 -- COUNT(*) is committee-cycles, not committees -- filter/group by coverage_end_date
 -- for a single-cycle view, or by cmte_id for a committee's full history.
 -- Answers: How much money does each PAC/party committee raise, spend, and give away,

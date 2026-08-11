@@ -6,7 +6,7 @@
 -- "Divalproex Sodium" at $1,807 AND 63 separate claims for "Divalproex Sodium Er"
 -- at $4,427) had one of the two SILENTLY DISCARDED, arbitrarily -- undercounting
 -- both total claims and total drug cost for every affected prescriber. Found via
--- tests/test_mart_duplication.py, which caught this mart (24,530,894 rows)
+-- tests/test_mart_duplication.py, which caught this mart (25,869,521 rows)  [row count re-verified against the live table 2026-08-11; header had said 24,530,894]
 -- disagreeing with an auto-generated raw duplicate (25,869,521). brand_name now
 -- joins the key; verified live: COUNT(DISTINCT full 3-column key) == 25,869,521
 -- exactly, matching the raw source with zero further collapsing.
