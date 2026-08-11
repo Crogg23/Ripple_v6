@@ -4,6 +4,7 @@
 -- Answers: Which facilities violate environmental law, how much are they penalized,
 --   and what are the demographics of surrounding communities?
 -- Source: EPA ECHO (Enforcement and Compliance History Online) â€” ~3.2M facilities
+-- COUNT vs PUBLISHER (verified 2026-08-11): we hold 3.14M distinct facility ids, rows unique -- NOT a double-load. EPA's "more than 1.5 million regulated facilities" is soft ad copy, not an exact corpus count.
 -- Key joins: frs_id â†’ epa_frs; fac_fips_code â†’ geography; fac_name â†’ entity resolution
 
 with source as (

@@ -2,6 +2,7 @@ model,folder,line,claimed_raw,claimed,actual,verdict
 education__fed_cpsc_neiss_codes,consumer_safety,3,1250,1250,1250,OK
 economics__fed_dol_form5500,economics,3,33484,33484,33484,OK
 economics__fed_fac_single_audit,economics,3,411638,411638,411638,OK
+economics__fed_foreignassistance,economics,5,"3,967,456",3967456,3967456,OK
 economics__fed_irs_990_efile_index,economics,3,5544626,5544626,5544626,OK
 economics__fed_irs_auto_revocations,economics,3,"1,207,295",1207295,1207295,OK
 economics__fed_irs_eo_pr,economics,3,2587,2587,2587,OK
@@ -82,7 +83,6 @@ finance__fed_fec_committee_to_candidate,finance,3,866730,866730,866730,OK
 finance__fed_fec_committees,finance,3,78039,78039,78039,OK
 finance__fed_fec_pac_summary,finance,3,48395,48395,48395,OK
 finance__fed_irs_soi,finance,3,179796,179796,179796,OK
-finance__fed_ncua_call_reports,finance,3,121713,121713,121713,OK
 finance__fed_sec_13f_filers,finance,3,344109,344109,344109,OK
 finance__fed_sec_13f_holdings,finance,3,101261252,101261252,,NO_LIVE_TABLE
 finance__fed_sec_13f_submission,finance,3,3822885,3822885,3822885,OK
@@ -162,7 +162,7 @@ immigration__fed_cms_medicare_fee_for_service_public_provider_enrollment,health,
 housing__fed_cfpb_hmda,housing,3,"28,301",28301,28301,OK
 housing__fed_cfpb_hmda_dc_only,housing,3,28301,28301,28301,OK
 housing__fed_fhfa_hpi,housing,3,184807,184807,184807,OK
-housing__fed_fhfa_nmdb,housing,3,19054246,19054246,19054246,OK
+housing__fed_fhfa_nmdb,housing,3,11648,11648,19054246,DISAGREES
 immigration__fed_dol_oflc,immigration,3,664616,664616,664616,OK
 immigration__fed_eoir_case_data,immigration,3,12631225,12631225,12631225,OK
 immigration__fed_uscis_data,immigration,3,3204,3204,3204,OK
@@ -243,7 +243,7 @@ reference__fed_itis_taxonomic_units,reference,5,"993,346",993346,993346,OK
 reference__fed_itis_tu_comments_links,reference,5,"192,851",192851,192851,OK
 reference__fed_itis_vern_ref_links,reference,5,"93,078",93078,93078,OK
 reference__fed_itis_vernaculars,reference,5,"166,778",166778,166778,OK
-reference__intl_gdelt,reference,3,1015,1015,1015,OK
+reference__intl_gdelt,reference,4,1015,1015,1015,OK
 reference__xc_crossref_funder_registry,reference,5,"45,661",45661,45661,OK
 reference__xc_owid_fertility,reference,3,19402,19402,19402,OK
 reference__xc_ror_research_organizations,reference,6,"135,710",135710,135710,OK

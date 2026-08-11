@@ -13,8 +13,17 @@ models:
         data_tests:
           - not_null
     data_tests:
+      # Grain corrected 2026-08-11: the publisher issues multiple cert rows
+      # per (permit, activity) differing in monitor type / end date / flags.
+      # After the exact-dup dedupe the FULL projection is unique (verified
+      # 499,113 = 499,113); (pgm_sys_id, activity_id) alone never was.
       - dbt_utils.unique_combination_of_columns:
           arguments:
             combination_of_columns:
               - pgm_sys_id
               - activity_id
+              - comp_monitor_type_code
+              - comp_monitor_type_desc
+              - state_epa_flag
+              - actual_end_date
+              - facility_rpt_deviation_flag

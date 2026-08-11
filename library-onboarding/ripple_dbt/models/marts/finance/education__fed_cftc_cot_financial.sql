@@ -5,11 +5,20 @@
 
 with source as (
     select * from {{ source('ripple_raw', 'FED_CFTC_COT_FINANCIAL') }}
+    -- TEMPORARY SHIELD (2026-08-11 history backfill): one bundle slice landed
+    -- 7,790 mis-filtered rows before its date parsing was fixed. They are
+    -- exactly identifiable by source-file hash; the landing DELETE is queued
+    -- for human sign-off (reports/repair_session_chris_gates_2026-08-11.md).
+    -- Remove this filter after that DELETE + the backfill rerun.
+    where SRC_SHA256 is null
+       or SRC_SHA256 <> 'c3a8d01765133a24ce9c082de88933816497d06f1b03eec8c53750bdd818f14b'
 )
 
 select
     MARKET_AND_EXCHANGE_NAMES as market_and_exchange_names,
-    try_to_date(AS_OF_DATE_IN_FORM_YYMMDD) as as_of_date_in_form_yymmdd,
+    -- YYMMDD strings fed to a bare try_to_date were read as epoch seconds
+    -- (every row 1970-01-03); an explicit format parses them correctly.
+    try_to_date(AS_OF_DATE_IN_FORM_YYMMDD, 'YYMMDD') as as_of_date_in_form_yymmdd,
     try_to_date(REPORT_DATE_AS_YYYY_MM_DD) as report_date_as_yyyy_mm_dd,
     CFTC_CONTRACT_MARKET_CODE as cftc_contract_market_code,
     CFTC_MARKET_CODE as cftc_market_code,

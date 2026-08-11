@@ -170,9 +170,9 @@ select
     try_to_double(COST_MEASURE_ACHIEVEMENT_POINTS_2) as cost_measure_achievement_points_2,
     try_to_double(COST_MEASURE_ID_3) as cost_measure_id_3,
     try_to_double(COST_MEASURE_ACHIEVEMENT_POINTS_3) as cost_measure_achievement_points_3,
-    try_to_double(COST_MEASURE_ID_4) as cost_measure_id_4,
+    COST_MEASURE_ID_4 as cost_measure_id_4,  -- cast removed 2026-08-11: alphanumeric measure ID, try_to_double nulled it
     try_to_double(COST_MEASURE_ACHIEVEMENT_POINTS_4) as cost_measure_achievement_points_4,
-    try_to_double(COST_MEASURE_ID_5) as cost_measure_id_5,
+    COST_MEASURE_ID_5 as cost_measure_id_5,  -- cast removed 2026-08-11: alphanumeric measure ID, try_to_double nulled it
     try_to_double(COST_MEASURE_ACHIEVEMENT_POINTS_5) as cost_measure_achievement_points_5,
     try_to_double(COST_MEASURE_ID_6) as cost_measure_id_6,
     try_to_double(COST_MEASURE_ACHIEVEMENT_POINTS_6) as cost_measure_achievement_points_6,
@@ -182,7 +182,7 @@ select
     try_to_double(COST_MEASURE_ACHIEVEMENT_POINTS_8) as cost_measure_achievement_points_8,
     try_to_double(COST_MEASURE_ID_9) as cost_measure_id_9,
     try_to_double(COST_MEASURE_ACHIEVEMENT_POINTS_9) as cost_measure_achievement_points_9,
-    try_to_double(COST_MEASURE_ID_10) as cost_measure_id_10,
+    COST_MEASURE_ID_10 as cost_measure_id_10,  -- cast removed 2026-08-11: alphanumeric measure ID, try_to_double nulled it
     try_to_double(COST_MEASURE_ACHIEVEMENT_POINTS_10) as cost_measure_achievement_points_10,
     try_to_double(COST_MEASURE_ID_11) as cost_measure_id_11,
     try_to_double(COST_MEASURE_ACHIEVEMENT_POINTS_11) as cost_measure_achievement_points_11,
@@ -204,13 +204,13 @@ select
     try_to_double(COST_MEASURE_ACHIEVEMENT_POINTS_19) as cost_measure_achievement_points_19,
     try_to_double(COST_MEASURE_ID_20) as cost_measure_id_20,
     try_to_double(COST_MEASURE_ACHIEVEMENT_POINTS_20) as cost_measure_achievement_points_20,
-    try_to_double(COST_MEASURE_ID_21) as cost_measure_id_21,
+    COST_MEASURE_ID_21 as cost_measure_id_21,  -- cast removed 2026-08-11: alphanumeric measure ID, try_to_double nulled it
     try_to_double(COST_MEASURE_ACHIEVEMENT_POINTS_21) as cost_measure_achievement_points_21,
-    try_to_double(COST_MEASURE_ID_22) as cost_measure_id_22,
+    COST_MEASURE_ID_22 as cost_measure_id_22,  -- cast removed 2026-08-11: alphanumeric measure ID, try_to_double nulled it
     try_to_double(COST_MEASURE_ACHIEVEMENT_POINTS_22) as cost_measure_achievement_points_22,
     try_to_double(COST_MEASURE_ID_23) as cost_measure_id_23,
     try_to_double(COST_MEASURE_ACHIEVEMENT_POINTS_23) as cost_measure_achievement_points_23,
-    try_to_double(COST_MEASURE_ID_24) as cost_measure_id_24,
+    COST_MEASURE_ID_24 as cost_measure_id_24,  -- cast removed 2026-08-11: alphanumeric measure ID, try_to_double nulled it
     try_to_double(COST_MEASURE_ACHIEVEMENT_POINTS_24) as cost_measure_achievement_points_24,
     try_to_double(COST_MEASURE_ID_25) as cost_measure_id_25,
     try_to_double(COST_MEASURE_ACHIEVEMENT_POINTS_25) as cost_measure_achievement_points_25,

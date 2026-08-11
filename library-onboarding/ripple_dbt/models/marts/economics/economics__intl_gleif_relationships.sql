@@ -54,12 +54,16 @@ select
     RELATIONSHIP_QUANTIFIERS_5_MEASUREMENTMETHOD as relationship_quantifiers_5_measurementmethod,
     try_to_double(RELATIONSHIP_QUANTIFIERS_5_QUANTIFIERAMOUNT) as relationship_quantifiers_5_quantifieramount,
     RELATIONSHIP_QUANTIFIERS_5_QUANTIFIERUNITS as relationship_quantifiers_5_quantifierunits,
-    try_to_double(REGISTRATION_INITIALREGISTRATIONDATE) as registration_initialregistrationdate,
-    try_to_date(REGISTRATION_LASTUPDATEDATE) as registration_lastupdatedate,
+    -- CAST FIX (2026-08-11): these fields carried try_to_double() on ISO-8601
+    -- timestamps / free-text references, nulling them 100%. Landing samples show
+    -- mixed timezone forms ('2022-11-14T09:59:48.000Z', '2024-06-24T11:39:46+02:00'),
+    -- so dates go through try_to_timestamp_tz (never a bare try_to_date on these).
+    to_date(try_to_timestamp_tz(REGISTRATION_INITIALREGISTRATIONDATE)) as registration_initialregistrationdate,
+    to_date(try_to_timestamp_tz(REGISTRATION_LASTUPDATEDATE)) as registration_lastupdatedate,
     REGISTRATION_REGISTRATIONSTATUS as registration_registrationstatus,
-    REGISTRATION_NEXTRENEWALDATE as registration_nextrenewaldate,
+    to_date(try_to_timestamp_tz(REGISTRATION_NEXTRENEWALDATE)) as registration_nextrenewaldate,
     REGISTRATION_MANAGINGLOU as registration_managinglou,
     REGISTRATION_VALIDATIONSOURCES as registration_validationsources,
     REGISTRATION_VALIDATIONDOCUMENTS as registration_validationdocuments,
-    try_to_double(REGISTRATION_VALIDATIONREFERENCE) as registration_validationreference
+    REGISTRATION_VALIDATIONREFERENCE as registration_validationreference
 from source

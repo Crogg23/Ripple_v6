@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: finance__fed_ncua_call_reports_fs220
+    description: "NCUA call report FS220 file: core financial statement per federally insured credit union for the 2026-03 cycle (~245 ACCT_* measures; acct_010 = total assets). cu_number joins to the FOICU roster mart. Grain: one row = one credit union (cu_number unique)."
+    columns:
+      - name: cu_number
+        data_tests: [not_null, unique]

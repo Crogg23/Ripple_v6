@@ -12,7 +12,17 @@ select
     SCHEMA as schema,
     NAME as name,
     ALIASES as aliases,
-    try_to_date(BIRTH_DATE) as birth_date,
+    -- Birth dates arrive in mixed precision: full 'YYYY-MM-DD', year-only
+    -- '1997', and a handful of impossible future dates published upstream.
+    -- A bare try_to_date() read year-only values as epoch SECONDS and
+    -- collapsed ~6.8k of them onto 1970-01-01. Only the exact-format,
+    -- non-future values become dates; the raw string is kept alongside.
+    case
+        when regexp_like(BIRTH_DATE, '^[0-9]{4}-[0-9]{2}-[0-9]{2}$')
+             and try_to_date(BIRTH_DATE, 'YYYY-MM-DD') <= current_date()
+        then try_to_date(BIRTH_DATE, 'YYYY-MM-DD')
+    end as birth_date,
+    BIRTH_DATE as birth_date_raw,
     COUNTRIES as countries,
     ADDRESSES as addresses,
     IDENTIFIERS as identifiers,

@@ -118,6 +118,8 @@ select
     SCH_H_ATTACHED_IND as sch_h_attached_ind,
     SCH_I_ATTACHED_IND as sch_i_attached_ind,
     SCH_A_ATTACHED_IND as sch_a_attached_ind,
+    -- Checked 2026-08-11: landing column is 100% empty string (all 33,484 rows);
+    -- cast kept -- it correctly yields NULL, nothing is being destroyed.
     try_to_number(NUM_SCH_A_ATTACHED_CNT) as num_sch_a_attached_cnt,
     SCH_C_ATTACHED_IND as sch_c_attached_ind,
     SCH_D_ATTACHED_IND as sch_d_attached_ind,

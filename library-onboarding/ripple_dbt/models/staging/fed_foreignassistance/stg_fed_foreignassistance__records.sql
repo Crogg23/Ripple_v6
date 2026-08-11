@@ -7,7 +7,15 @@
 
 with source as (
 
+    -- DEDUP (2026-08-11): landing carries runaway-pager exact duplicates
+    -- (3.97M rows, 95,658 real) until the Chris-gated swap lands; collapse
+    -- them here so every consumer sees the true grain.
     select * from {{ source('ripple_raw', 'FED_FOREIGNASSISTANCE') }}
+    qualify row_number() over (
+        partition by COUNTRY, MANAGING_AGENCY, FUNDING_AGENCY, USG_SECTOR,
+                     DAC_CATEGORY, OBLIGATION_AMOUNT, DISBURSEMENT_AMOUNT,
+                     FISCAL_YEAR, EIN, TRANSACTION_TYPE
+        order by _INGESTED_AT) = 1
 
 ),
 

@@ -1,8 +1,0 @@
-version: 2
-
-models:
-  - name: politics__fed_senate_stock_watcher
-    description: "Senate Stock Watcher scrape of senator financial-disclosure trades (name-only source, coverage ends Dec 2020; STOCK Act disclosure-use limits apply -- journalism use only). 546 published exact-duplicate rows kept as landed."
-    columns:
-      - name: senator
-        data_tests: [not_null]

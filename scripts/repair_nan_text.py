@@ -48,10 +48,11 @@ def text_columns(cur, table):
     return [r[0] for r in cur.fetchall()]
 
 
-def survey(cur, table, cols):
+def survey(cur, table, cols, sentinel):
     """Per-column count of the sentinel, in ONE pass over the table."""
-    expr = ", ".join(f"""SUM(IFF("{c}"='nan',1,0))""" for c in cols)
-    cur.execute(f"SELECT COUNT(*), {expr} FROM LIBRARY_RAW.LANDING.{table}")
+    expr = ", ".join(f"""SUM(IFF("{c}"=%s,1,0))""" for c in cols)
+    cur.execute(f"SELECT COUNT(*), {expr} FROM LIBRARY_RAW.LANDING.{table}",
+                tuple([sentinel] * len(cols)))
     row = cur.fetchone()
     return row[0], {c: (row[i + 1] or 0) for i, c in enumerate(cols)}
 
@@ -60,6 +61,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--table", action="append", help="repeatable; defaults to the suspect list")
+    ap.add_argument("--sentinel", default="nan",
+                    help="exact literal to NULL out (default 'nan'; 'null' found in "
+                         "treasury categories, 2026-08-11 verification). Case-sensitive, "
+                         "whole-cell match only.")
     args = ap.parse_args()
     tables = args.table or SUSPECT
 
@@ -69,7 +74,7 @@ def main():
         if not cols:
             print(f"{table}: no text columns (or table missing) -- skipped")
             continue
-        n, per_col = survey(cur, table, cols)
+        n, per_col = survey(cur, table, cols, args.sentinel)
         hits = {c: v for c, v in per_col.items() if v}
         total = sum(hits.values())
         print(f"\n{table}: {n:,} rows, {len(cols)} text columns, "
@@ -80,8 +85,9 @@ def main():
             continue
         # One UPDATE for the whole table -- Snowflake rewrites the micro-partitions
         # once, rather than once per column.
-        sets = ", ".join(f'''"{c}" = NULLIF("{c}", 'nan')''' for c in hits)
-        where = " OR ".join(f"""\"{c}\"='nan'""" for c in hits)
+        s = args.sentinel.replace("'", "''")
+        sets = ", ".join(f'''"{c}" = NULLIF("{c}", '{s}')''' for c in hits)
+        where = " OR ".join(f""""{c}"='{s}'""" for c in hits)
         cur.execute(f"UPDATE LIBRARY_RAW.LANDING.{table} SET {sets} WHERE {where}")
         print(f"    -> repaired ({cur.rowcount:,} rows touched)")
 

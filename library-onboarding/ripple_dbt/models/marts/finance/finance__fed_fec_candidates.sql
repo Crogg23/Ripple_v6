@@ -13,6 +13,9 @@ with source as (
 -- below are the official FEC bulk-data layout for this file, verified against the
 -- landing values (sample row: H0AL02087 / ROBY, MARTHA / REP / 2018 / AL / H).
 -- Layout: FEC Candidate Master (cn.txt)
+-- CYCLE check 2026-08-11: this landing table has NO cycle column (positional
+-- C1..C15 only) -- cycle cannot be added here. The multi-cycle copy with a real
+-- CYCLE column is the FEC bulk candidates landing/mart, which already carries it.
 
 select
     C1 as cand_id,

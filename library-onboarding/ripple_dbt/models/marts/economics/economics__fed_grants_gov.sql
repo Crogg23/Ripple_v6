@@ -22,6 +22,8 @@ select
     AWARD_CEILING as award_ceiling,
     AWARD_FLOOR as award_floor,
     try_to_double(ESTIMATED_TOTAL_PROGRAM_FUNDING) as estimated_total_program_funding,
+    -- Checked 2026-08-11: landing column is 100% empty string (all 100 rows);
+    -- cast kept -- it correctly yields NULL, nothing is being destroyed.
     try_to_number(EXPECTED_NUMBER_OF_AWARDS) as expected_number_of_awards,
     try_to_date(POSTED_DATE) as posted_date,
     try_to_date(CLOSE_DATE) as close_date,

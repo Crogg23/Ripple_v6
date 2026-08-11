@@ -9,7 +9,9 @@ with source as (
 
 select
     MARKET_AND_EXCHANGE_NAMES as market_and_exchange_names,
-    try_to_date(AS_OF_DATE_IN_FORM_YYMMDD) as as_of_date_in_form_yymmdd,
+    -- YYMMDD strings fed to a bare try_to_date were read as epoch seconds
+    -- (every row 1970-01-03); an explicit format parses them correctly.
+    try_to_date(AS_OF_DATE_IN_FORM_YYMMDD, 'YYMMDD') as as_of_date_in_form_yymmdd,
     try_to_date(AS_OF_DATE_IN_FORM_YYYY_MM_DD) as as_of_date_in_form_yyyy_mm_dd,
     CFTC_CONTRACT_MARKET_CODE as cftc_contract_market_code,
     CFTC_MARKET_CODE_IN_INITIALS as cftc_market_code_in_initials,

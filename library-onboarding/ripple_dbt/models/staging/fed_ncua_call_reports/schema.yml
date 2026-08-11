@@ -5,10 +5,56 @@ sources:
     database: LIBRARY_RAW
     schema: LANDING
     tables:
-      - name: FED_NCUA_CALL_REPORTS
+      - name: FED_NCUA_CALL_REPORTS_FOICU
         description: >
-          Raw landing table for Credit Union Call Report Quarterly Data. Grain not yet determined.
+          Raw landing table for the NCUA call report FOICU file (credit union roster/profile):
+          CU number, cycle date, RSSD, name, address, charter/region codes, year opened, peer group.
+          Loaded 2026-08-11 for the 2026-03 cycle, replacing the broken FED_NCUA_CALL_REPORTS table
+          (which held a data dictionary, not data). All columns arrive as TEXT.
+      - name: FED_NCUA_CALL_REPORTS_FS220
+        description: >
+          Raw landing table for the NCUA call report FS220 file (core financial statement):
+          CU number, cycle date, join number, update date, and ~245 ACCT_* financial columns
+          (ACCT_010 = total assets). Loaded 2026-08-11 for the 2026-03 cycle, replacing the broken
+          FED_NCUA_CALL_REPORTS table. All columns arrive as TEXT.
 
 models:
-  - name: stg_fed_ncua_call_reports__records
-    description: "Minimal passthrough staging (grain undetermined). Needs manual review."
+  - name: stg_fed_ncua_call_reports__foicu
+    description: >
+      Staged view of the NCUA call report FOICU landing table (credit union roster/profile).
+      TEXT columns are trimmed/nullif'd and cast; date strings parsed with explicit format strings.
+      Grain: one row = one federally insured credit union for the 2026-03 cycle (cu_number unique).
+    columns:
+      - name: cu_number
+        description: NCUA credit union number; primary key for this cycle.
+        data_tests:
+          - unique
+          - not_null
+      - name: _loaded_at
+        description: Epoch timestamp (microseconds) when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.
+      - name: _src_sha256
+        description: SHA-256 of the source file the record came from.
+
+  - name: stg_fed_ncua_call_reports__fs220
+    description: >
+      Staged view of the NCUA call report FS220 landing table (core financial statement).
+      ACCT_* numeric strings cast with try_to_number; date strings parsed with explicit format strings.
+      Grain: one row = one credit union's financial statement for the 2026-03 cycle (cu_number unique).
+    columns:
+      - name: cu_number
+        description: NCUA credit union number; primary key for this cycle. Joins to the FOICU roster.
+        data_tests:
+          - unique
+          - not_null
+      - name: _loaded_at
+        description: Epoch timestamp (microseconds) when the record was ingested into the landing table.
+        data_tests:
+          - not_null
+      - name: _source_run_id
+        description: Identifier for the ingestion pipeline run that loaded this record.
+      - name: _src_sha256
+        description: SHA-256 of the source file the record came from.

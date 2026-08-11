@@ -88,7 +88,11 @@ def _profile(conn, table: str, cols: list[str], sample: int):
     """One query: row count + COUNT(DISTINCT NULLIF(TRIM(col),'')) per column on a sample."""
     if not cols:
         return None
-    sel = ["COUNT(*) AS _n"] + [
+    # HASH(*) distinct-ratio: catches the RUNAWAY-PAGER shape (rows varied and
+    # dense but repeated wholesale) that the per-column distinct check is blind
+    # to -- the 2026-08-11 verification found two sources inflated 41x-1,636x
+    # that this detector had passed.
+    sel = ["COUNT(*) AS _n", "APPROX_COUNT_DISTINCT(HASH(*)) AS _nd"] + [
         f'COUNT(DISTINCT NULLIF(TRIM("{c}"),\'\')) AS "d_{i}"' for i, c in enumerate(cols)]
     sql = (f"SELECT {', '.join(sel)} FROM "
            f"(SELECT * FROM LIBRARY_RAW.LANDING.\"{table}\" SAMPLE ({int(sample)} ROWS))")
@@ -101,8 +105,10 @@ def _profile(conn, table: str, cols: list[str], sample: int):
     finally:
         cur.close()
     n = row[0]
-    distincts = list(row[1:])
-    return {"n": n, "distincts": dict(zip(cols, distincts))}
+    n_distinct_rows = row[1]
+    distincts = list(row[2:])
+    return {"n": n, "n_distinct_rows": n_distinct_rows,
+            "distincts": dict(zip(cols, distincts))}
 
 
 def main() -> int:
@@ -136,10 +142,13 @@ def main() -> int:
             n = prof["n"]
             degen = [c for c, d in prof["distincts"].items() if (d or 0) <= 1]
             frac = len(degen) / len(cols)
+            # runaway-pager signal: > half the sampled rows are exact repeats
+            dup_frac = 0.0 if not n else max(0.0, 1.0 - (prof["n_distinct_rows"] or n) / n)
             results.append({
                 "source_id": sid, "rows_sampled": n, "data_cols": len(cols),
                 "degenerate_cols": len(degen), "degenerate_frac": round(frac, 3),
-                "flagged": frac >= args.threshold,
+                "dup_row_frac": round(dup_frac, 3),
+                "flagged": frac >= args.threshold or dup_frac >= 0.5,
                 "degenerate_col_names": degen if frac >= args.threshold else [],
             })
 
@@ -150,7 +159,8 @@ def main() -> int:
         print(f"  {'-'*40} {'-'*7} {'-'*5} {'-'*6} {'-'*6}")
         for r in flagged:
             print(f"  {r['source_id']:<40} {r['rows_sampled']:>7} {r['data_cols']:>5} "
-                  f"{r['degenerate_cols']:>6} {r['degenerate_frac']*100:5.0f}%")
+                  f"{r['degenerate_cols']:>6} {r['degenerate_frac']*100:5.0f}%"
+                  + (f"  DUP-ROWS {r['dup_row_frac']*100:.0f}%" if r['dup_row_frac'] >= 0.5 else ""))
 
         near = sorted([r for r in results if not r["flagged"] and r["degenerate_frac"] >= args.threshold - 0.15],
                       key=lambda r: -r["degenerate_frac"])

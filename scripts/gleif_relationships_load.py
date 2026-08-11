@@ -98,11 +98,16 @@ def load_file(conn, url: str, tbl: str) -> int:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--run", action="store_true")
+    ap.add_argument("--targets", default=None,
+                    help="comma list of file keys to load (rr,repex); default all")
     args = ap.parse_args()
 
+    wanted = set(args.targets.split(",")) if args.targets else None
     meta = requests.get(API, timeout=60, headers=USER_AGENT).json()["data"]
     plan = []
     for key, tbl in TARGETS:
+        if wanted is not None and key not in wanted:
+            continue
         c = meta[key]["full_file"]["csv"]
         plan.append((tbl, c["url"], c["record_count"]))
         print(f"{tbl}: {c['record_count']:,} records  {c['size_human_readable']}  {c['url']}")

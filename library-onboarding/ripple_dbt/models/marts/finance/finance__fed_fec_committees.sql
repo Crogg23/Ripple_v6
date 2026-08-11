@@ -13,6 +13,9 @@ with source as (
 -- below are the official FEC bulk-data layout for this file, verified against the
 -- landing values (sample row: C00000018 / IRONWORKERS LOCAL UNION / STEVEN N GULICK / NOVI / MI).
 -- Layout: FEC Committee Master (cm.txt)
+-- CYCLE check 2026-08-11: this landing table has NO cycle column (positional
+-- C1..C15 only) -- cycle cannot be added here. The multi-cycle copy with a real
+-- CYCLE column is the FEC bulk committees landing/mart, which already carries it.
 
 select
     C1 as cmte_id,

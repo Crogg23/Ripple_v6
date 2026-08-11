@@ -1,5 +1,7 @@
 {{ config(materialized='table', schema='JUDICIARY') }}
 
+-- SAMPLE ONLY -- NOT the full dataset. A 25-case slice; Oyez covers thousands of Supreme Court cases (full audio since 1955). Use for shape/testing, never for docket-coverage claims. Labeled 2026-08-11 (verification sweep, defect class 7).
+
 with
 
 staging as (

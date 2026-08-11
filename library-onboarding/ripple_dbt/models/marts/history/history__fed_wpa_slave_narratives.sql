@@ -1,5 +1,7 @@
 {{ config(materialized='table', schema='HISTORY') }}
 
+-- SAMPLE ONLY -- NOT the full dataset. 100 of the 604 items in the LOC collection (which itself cites 2,300+ narratives). Use for shape/testing, never for coverage claims. Labeled 2026-08-11 (verification sweep, defect class 7).
+
 with base as (
 
     select * from {{ ref('stg_fed_wpa_slave_narratives__slave_narratives') }}

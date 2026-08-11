@@ -37,6 +37,8 @@ select
     VOTES_YES as votes_yes,
     VOTES_NO as votes_no,
     try_to_double(VOTES_YES_PERCENT) as votes_yes_percent,
+    -- Checked 2026-08-11: landing is ~100% null (51,286 of 51,290 rows); the few
+    -- real values are plain numerics ('41', '30.76'), so the cast is correct.
     try_to_double(VOTES_NO_PERCENT) as votes_no_percent,
     HOW_SELECTED as how_selected,
     HAS_INFERRED_VALUES as has_inferred_values,

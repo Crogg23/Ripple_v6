@@ -62,17 +62,25 @@ renamed as (
         trim(UNNAMED_10)                               as marketing_status,
         trim(UNNAMED_11)                               as licensure,
         -- Dates arrive like '2-Jan-59' / '19-Dec-25'. 'DD-MON-YY' relies on
-        -- Snowflake's TWO_DIGIT_CENTURY_START pivot (default 1970): '59' -> 2059
-        -- unless the session pivot says otherwise — genuinely ambiguous for
-        -- pre-1970 approvals; flagged, not silently fixed.
-        try_to_date(trim(UNNAMED_12), 'DD-MON-YY')     as approval_date,
-        try_to_date(trim(UNNAMED_13), 'DD-MON-YY')     as interchangeable_approval_date,
+        -- Snowflake's TWO_DIGIT_CENTURY_START pivot (default 1970): '59' -> 2059.
+        -- Approval-type dates cannot be in the future, so a parse landing
+        -- past today is the century pivot misfiring ('59' -> 2059): those
+        -- roll back 100 years. Expiration dates are left on the raw pivot
+        -- because future values there are legitimate.
+        iff(try_to_date(trim(UNNAMED_12), 'DD-MON-YY') > current_date(),
+            dateadd(year, -100, try_to_date(trim(UNNAMED_12), 'DD-MON-YY')),
+            try_to_date(trim(UNNAMED_12), 'DD-MON-YY')) as approval_date,
+        iff(try_to_date(trim(UNNAMED_13), 'DD-MON-YY') > current_date(),
+            dateadd(year, -100, try_to_date(trim(UNNAMED_13), 'DD-MON-YY')),
+            try_to_date(trim(UNNAMED_13), 'DD-MON-YY')) as interchangeable_approval_date,
         trim(UNNAMED_14)                               as ref_product_proper_name,
         trim(UNNAMED_15)                               as ref_product_proprietary_name,
         trim(UNNAMED_17)                               as submission_type,
         trim(UNNAMED_18)                               as interchangeable_supplement_number,
         trim(UNNAMED_21)                               as center,
-        try_to_date(trim(UNNAMED_22), 'DD-MON-YY')     as date_of_first_licensure,
+        iff(try_to_date(trim(UNNAMED_22), 'DD-MON-YY') > current_date(),
+            dateadd(year, -100, try_to_date(trim(UNNAMED_22), 'DD-MON-YY')),
+            try_to_date(trim(UNNAMED_22), 'DD-MON-YY')) as date_of_first_licensure,
         try_to_date(trim(UNNAMED_23), 'DD-MON-YY')     as exclusivity_expiration_date,
         try_to_date(trim(UNNAMED_24), 'DD-MON-YY')     as first_interchangeable_exclusivity_exp_date,
         try_to_date(trim(UNNAMED_25), 'DD-MON-YY')     as ref_product_exclusivity_exp_date,

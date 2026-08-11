@@ -1,0 +1,31 @@
+[
+  {
+    "id": "xc_ransomwarelive_victims",
+    "table": "XC_RANSOMWARELIVE_VICTIMS_FULL_R2",
+    "rows": 30661,
+    "publisher": 30661,
+    "url": "https://data.ransomware.live/victims.csv",
+    "keys": [
+      {
+        "col": "VICTIM",
+        "error": "column not found"
+      },
+      {
+        "col": "GROUP",
+        "error": "column not found"
+      },
+      {
+        "col": "DISCOVERED",
+        "rows": 30661,
+        "non_null": 30661,
+        "distinct": 30159,
+        "samples": [
+          "2026-08-11T15:53:26.240153+00:00",
+          "2026-08-11T15:28:23.935456+00:00",
+          "2026-08-11T15:27:31.586605+00:00"
+        ]
+      }
+    ],
+    "fallback_new_table": true
+  }
+]

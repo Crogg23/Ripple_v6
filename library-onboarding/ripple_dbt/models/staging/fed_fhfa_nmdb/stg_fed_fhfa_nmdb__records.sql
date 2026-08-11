@@ -7,7 +7,15 @@
 
 with source as (
 
+    -- DEDUP (2026-08-11): landing carries runaway-pager exact duplicates
+    -- (19M rows, 11,648 real) until the Chris-gated swap lands; collapse
+    -- them here so every consumer sees the true grain.
     select * from {{ source('ripple_raw', 'FED_FHFA_NMDB') }}
+    qualify row_number() over (
+        partition by GEO_TYPE, GEO_CODE, GEO_NAME, PERIOD_TYPE, PERIOD_VALUE,
+                     DATASET_FAMILY, STATISTIC_NAME, STATISTIC_VALUE,
+                     STATISTIC_UNIT, RELEASE_DATE
+        order by _INGESTED_AT) = 1
 
 ),
 
