@@ -168,3 +168,21 @@ mirror of a Python-built canonical table and a dbt rebuild would overwrite
 reconciled numbers. The offline suite has been failing on this since the repair
 session; the fix is to re-run the Python builder, and it is left for whoever
 owns that lane rather than forced past the guard.
+
+## Post-rebuild verification (same evening, Chris said go)
+
+The who's-who was rebuilt on the fixed rules and re-measured:
+
+| check | result |
+|---|---|
+| placeholder EIN `999999999` entity | **gone** (0 rows) |
+| any other repeated-digit / sequential key entity | 1 — UK company number `11111111`, a genuinely registered company appearing in the register and the PSC file (both the same publisher), not a filler |
+| debarment source feeding the spine | the full list: **38,424 debarred entities**, up from 2,940 |
+| the three dead sources (FCC, NSF, retired credit-union file) | contribute 0 nodes, as intended |
+| entities total | 31,887,492 (was 31,852,154) |
+| entities appearing in 2+ sources | 15,477,855 |
+| debarred entities also present in the contracts source | 102 — matches the pre-rebuild measurement exactly |
+| max fan-out | 18 source tables, on a real shared corporate EIN |
+
+Runtime was ~25 minutes, not the ~4.5 hours estimated from the 2026-08-08
+precedent, so the actual spend was a small fraction of the $10–15 price tag.
