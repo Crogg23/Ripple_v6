@@ -17,7 +17,7 @@ select
     UNIT_CD as unit_cd,
     QUALIFIER as qualifier,
     STATE_CD as state_cd,
-    try_to_number(COUNTY_CD) as county_cd,
+    COUNTY_CD as county_cd,
     HUC_CD as huc_cd,
     try_to_double(LATITUDE) as latitude,
     try_to_double(LONGITUDE) as longitude,

@@ -14,7 +14,7 @@ select
     DESCRIPTION as description,
     ACCESS_URL as access_url,
     FORMAT as format,
-    try_to_date(UPDATE_FREQUENCY) as update_frequency,
+    UPDATE_FREQUENCY as update_frequency,
     try_to_date(LAST_UPDATED) as last_updated,
     GEOGRAPHIC_SCOPE as geographic_scope,
     TEMPORAL_COVERAGE as temporal_coverage,

@@ -3,9 +3,9 @@ version: 2
 models:
   - name: finance__fed_fec_cand_cmte_linkage
     columns:
-      - name: c1
+      - name: cand_id
         data_tests:
           - not_null
-      - name: c7
+      - name: linkage_id
         data_tests:
           - unique

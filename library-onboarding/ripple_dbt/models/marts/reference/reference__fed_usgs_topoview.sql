@@ -22,7 +22,7 @@ select
     BOUNDINGBOX as boundingbox,
     FIPS as fips,
     STATE as state,
-    try_to_number(COUNTIES) as counties,
+    COUNTIES as counties,
     MAPSCALE as mapscale,
     PREVIEWGRAPHICURL as previewgraphicurl,
     METAURL as metaurl

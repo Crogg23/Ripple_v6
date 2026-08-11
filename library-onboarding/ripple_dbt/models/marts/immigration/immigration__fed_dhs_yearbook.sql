@@ -9,8 +9,8 @@ with source as (
 
 select
     try_to_number(FISCAL_YEAR) as fiscal_year,
-    try_to_number(COUNTRY_OF_BIRTH) as country_of_birth,
-    try_to_number(COUNTRY_OF_LAST_RESIDENCE) as country_of_last_residence,
+    COUNTRY_OF_BIRTH as country_of_birth,
+    COUNTRY_OF_LAST_RESIDENCE as country_of_last_residence,
     CATEGORY as category,
     STATE as state,
     try_to_number(COUNT) as count,

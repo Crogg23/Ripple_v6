@@ -19,5 +19,5 @@ select
     ORIGIN as origin,
     DEST as dest,
     STATE_FIPS as state_fips,
-    try_to_number(COUNTY_FIPS) as county_fips
+    COUNTY_FIPS as county_fips
 from source

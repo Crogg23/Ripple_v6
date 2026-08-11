@@ -13,7 +13,7 @@ select
     FACILITY_NAME as facility_name,
     STREET_ADDRESS as street_address,
     CITY as city,
-    try_to_number(COUNTY_NAME) as county_name,
+    COUNTY_NAME as county_name,
     STATE as state,
     ZIP_CODE as zip_code,
     EPA_REGION as epa_region,

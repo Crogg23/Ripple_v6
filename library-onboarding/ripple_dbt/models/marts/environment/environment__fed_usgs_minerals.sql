@@ -8,7 +8,7 @@ with source as (
 )
 
 select
-    try_to_number(COUNTRY) as country,
+    COUNTRY as country,
     FIPS as fips,
     COMMODITY as commodity,
     try_to_number("YEAR") as year,
@@ -29,7 +29,7 @@ select
     try_to_double(LONGITUDE) as longitude,
     REGION as region,
     STATE as state,
-    try_to_number(COUNTY) as county,
+    COUNTY as county,
     COM_TYPE as com_type,
     COMMOD1 as commod1,
     COMMOD2 as commod2,

@@ -16,7 +16,7 @@ select
     FIGI as figi,
     "VALUE" as value_col,
     try_to_double(SSHPRNAMT) as sshprnamt,
-    try_to_double(SSHPRNAMTTYPE) as sshprnamttype,
+    SSHPRNAMTTYPE as sshprnamttype,
     PUTCALL as putcall,
     INVESTMENTDISCRETION as investmentdiscretion,
     OTHERMANAGER as othermanager,

@@ -9,7 +9,7 @@ with source as (
 
 select
     MODEL_VERSION as model_version,
-    try_to_number(COUNTRY) as country,
+    COUNTRY as country,
     FIPS as fips,
     try_to_double(LATITUDE) as latitude,
     try_to_double(LONGITUDE) as longitude,

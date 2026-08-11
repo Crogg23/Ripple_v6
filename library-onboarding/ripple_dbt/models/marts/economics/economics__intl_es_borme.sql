@@ -16,7 +16,7 @@ select
     ACT_TYPE as act_type,
     ACT_DESCRIPTION as act_description,
     PROVINCE as province,
-    try_to_number(COUNTRY) as country,
+    COUNTRY as country,
     CVE as cve,
     PDF_URL as pdf_url
 from source

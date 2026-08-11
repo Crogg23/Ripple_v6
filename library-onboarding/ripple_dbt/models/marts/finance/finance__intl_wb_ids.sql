@@ -8,10 +8,10 @@ with source as (
 )
 
 select
-    try_to_number(COUNTRY_NAME) as country_name,
-    try_to_number(COUNTRY_CODE) as country_code,
-    try_to_number(COUNTERPART_AREA_NAME) as counterpart_area_name,
-    try_to_number(COUNTERPART_AREA_CODE) as counterpart_area_code,
+    COUNTRY_NAME as country_name,
+    COUNTRY_CODE as country_code,
+    COUNTERPART_AREA_NAME as counterpart_area_name,
+    COUNTERPART_AREA_CODE as counterpart_area_code,
     SERIES_NAME as series_name,
     SERIES_CODE as series_code,
     C_1970 as c_1970,

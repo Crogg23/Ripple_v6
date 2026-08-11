@@ -19,7 +19,7 @@ select
     ORGANIZATION_NAME as organization_name,
     DOING_BUSINESS_AS_NAME as doing_business_as_name,
     try_to_date(INCORPORATION_DATE) as incorporation_date,
-    try_to_double(INCORPORATION_STATE) as incorporation_state,
+    INCORPORATION_STATE as incorporation_state,
     ORGANIZATION_TYPE_STRUCTURE as organization_type_structure,
     ORGANIZATION_OTHER_TYPE_TEXT as organization_other_type_text,
     PROPRIETARY_NONPROFIT as proprietary_nonprofit,

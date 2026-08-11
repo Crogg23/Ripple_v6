@@ -13,7 +13,7 @@ select
     STATE as state,
     ST as st,
     FIPS_STATE as fips_state,
-    try_to_number(COUNTY) as county,
+    COUNTY as county,
     try_to_double(POPULATION) as population,
     try_to_double(ESTIMATED_AGE_ADJUSTED_DEATH_RATE_11_CATEGORIES_IN_RANGES) as estimated_age_adjusted_death_rate_11_categories_in_ranges
 from source

@@ -16,7 +16,7 @@ select
     SUBTOPIC as subtopic,
     DISTRICT as district,
     CIRCUIT as circuit,
-    try_to_number(COUNTY) as county,
+    COUNTY as county,
     FIPS_CODE as fips_code,
     CHAPTER_CODE as chapter_code,
     CASE_TYPE as case_type,

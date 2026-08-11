@@ -17,6 +17,6 @@ select
     ANSI_ENTITY_CODE as ansi_entity_code,
     ZIP_CODE_SERVED as zip_code_served,
     CITY_SERVED as city_served,
-    try_to_number(COUNTY_SERVED) as county_served,
+    COUNTY_SERVED as county_served,
     try_to_date(LAST_REPORTED_DATE) as last_reported_date
 from source

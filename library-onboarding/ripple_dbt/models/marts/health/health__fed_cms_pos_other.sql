@@ -36,7 +36,7 @@ select
     PGM_TRMNTN_CD as pgm_trmntn_cd,
     TRMNTN_EXPRTN_DT as trmntn_exprtn_dt,
     CRTFCTN_ACTN_TYPE_CD as crtfctn_actn_type_cd,
-    try_to_number(GNRL_CNTL_TYPE_CD) as gnrl_cntl_type_cd,
+    GNRL_CNTL_TYPE_CD as gnrl_cntl_type_cd,
     ZIP_CD as zip_cd,
     FIPS_STATE_CD as fips_state_cd,
     try_to_number(FIPS_CNTY_CD) as fips_cnty_cd,

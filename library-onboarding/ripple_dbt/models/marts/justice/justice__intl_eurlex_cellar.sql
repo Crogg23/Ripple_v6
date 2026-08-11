@@ -18,7 +18,7 @@ select
     try_to_date(DATE_OF_DOCUMENT) as date_of_document,
     IN_FORCE as in_force,
     SUBJECT_MATTER as subject_matter,
-    try_to_number(COUNTRY) as country,
+    COUNTRY as country,
     LANGUAGE as language,
     OJ_SERIES as oj_series,
     OJ_NUMBER as oj_number,

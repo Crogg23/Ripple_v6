@@ -10,8 +10,8 @@ with source as (
 select
     ADVERTISER_ID as advertiser_id,
     ADVERTISER_NAME as advertiser_name,
-    try_to_number(COUNTRY) as country,
-    try_to_number(COUNTRY_SUBDIVISION_PRIMARY) as country_subdivision_primary,
+    COUNTRY as country,
+    COUNTRY_SUBDIVISION_PRIMARY as country_subdivision_primary,
     SPEND_USD as spend_usd,
     SPEND_EUR as spend_eur,
     SPEND_INR as spend_inr,

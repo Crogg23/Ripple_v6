@@ -56,10 +56,10 @@ select
     RELATIONSHIP_QUANTIFIERS_5_QUANTIFIERUNITS as relationship_quantifiers_5_quantifierunits,
     try_to_double(REGISTRATION_INITIALREGISTRATIONDATE) as registration_initialregistrationdate,
     try_to_date(REGISTRATION_LASTUPDATEDATE) as registration_lastupdatedate,
-    try_to_double(REGISTRATION_REGISTRATIONSTATUS) as registration_registrationstatus,
-    try_to_double(REGISTRATION_NEXTRENEWALDATE) as registration_nextrenewaldate,
-    try_to_double(REGISTRATION_MANAGINGLOU) as registration_managinglou,
-    try_to_double(REGISTRATION_VALIDATIONSOURCES) as registration_validationsources,
-    try_to_double(REGISTRATION_VALIDATIONDOCUMENTS) as registration_validationdocuments,
+    REGISTRATION_REGISTRATIONSTATUS as registration_registrationstatus,
+    REGISTRATION_NEXTRENEWALDATE as registration_nextrenewaldate,
+    REGISTRATION_MANAGINGLOU as registration_managinglou,
+    REGISTRATION_VALIDATIONSOURCES as registration_validationsources,
+    REGISTRATION_VALIDATIONDOCUMENTS as registration_validationdocuments,
     try_to_double(REGISTRATION_VALIDATIONREFERENCE) as registration_validationreference
 from source

@@ -8,9 +8,9 @@ with source as (
 )
 
 select
-    try_to_number(COUNTRY) as country,
-    try_to_number(COUNTRY_SUBDIVISION_PRIMARY) as country_subdivision_primary,
-    try_to_number(COUNTRY_SUBDIVISION_SECONDARY) as country_subdivision_secondary,
+    COUNTRY as country,
+    COUNTRY_SUBDIVISION_PRIMARY as country_subdivision_primary,
+    COUNTRY_SUBDIVISION_SECONDARY as country_subdivision_secondary,
     SPEND_USD as spend_usd,
     SPEND_EUR as spend_eur,
     SPEND_INR as spend_inr,

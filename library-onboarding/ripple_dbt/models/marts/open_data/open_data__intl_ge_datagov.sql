@@ -18,6 +18,6 @@ select
     DOWNLOAD_URL as download_url,
     DESCRIPTION as description,
     LICENSE as license,
-    try_to_number(COUNTRY) as country,
+    COUNTRY as country,
     OGP_COMMITMENT_ID as ogp_commitment_id
 from source

@@ -14,7 +14,7 @@ select
     CITY_TOWN as city_town,
     STATE as state,
     ZIP_CODE as zip_code,
-    try_to_number(COUNTY_PARISH) as county_parish,
+    COUNTY_PARISH as county_parish,
     TELEPHONE_NUMBER as telephone_number,
     HOSPITAL_TYPE as hospital_type,
     HOSPITAL_OWNERSHIP as hospital_ownership,

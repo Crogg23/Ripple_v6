@@ -13,7 +13,7 @@ select
     PROVIDER_NAME as provider_name,
     PROVIDER_ADDRESS as provider_address,
     CITY_TOWN as city_town,
-    try_to_number(COUNTY_PARISH) as county_parish,
+    COUNTY_PARISH as county_parish,
     OWNERSHIP_TYPE as ownership_type,
     OWNERSHIP_TYPE_DETAIL as ownership_type_detail,
     try_to_number(NUMBER_OF_CERTIFIED_BEDS) as number_of_certified_beds,

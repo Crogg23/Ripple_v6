@@ -32,6 +32,6 @@ select
     EMAIL as email,
     CONTACT_COMPANY as contact_company,
     APPLICANT_TYPE_CODE as applicant_type_code,
-    try_to_number(FCC_COUNTY_CODE) as fcc_county_code,
+    FCC_COUNTY_CODE as fcc_county_code,
     try_to_date(LAST_ACTION_DATE) as last_action_date
 from source

@@ -8,7 +8,7 @@ with source as (
 )
 
 select
-    try_to_number(COUNTRY_TERRITORY) as country_territory,
+    COUNTRY_TERRITORY as country_territory,
     REGION as region,
     C_T as c_t,
     EDITION as edition,

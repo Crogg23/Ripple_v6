@@ -222,6 +222,42 @@ def needs_quoting(col_name):
     return col_name != col_name.upper()
 
 
+# Words that make a column textual no matter what numeric substring hides inside it.
+# These are matched as whole tokens (or as a prefix of a run-together token like
+# COUNTRYBA / COUNTYCD), never as bare substrings -- TOTAL_COUNTRY_POPULATION must
+# still cast, POPULATION is not a country.
+#
+# THE BUG THIS FIXES (verified live 2026-08-10, reports/mart_dead_columns_*.csv):
+# the rules below are plain `in` tests, so "COUNT" matched COUNTRY and COUNTY,
+# "RATIO" matched INCORPORATION / REGISTRATION / FILTRATION, "AMT" matched
+# SSHPRNAMTTYPE and "UPDATED" matched UPDATE_FREQUENCY. Every one of those columns
+# was wrapped in try_to_number / try_to_double / try_to_date, which does not fail --
+# it silently returns NULL for every row. 133 columns across 82 marts were 100%
+# NULL because of this, including every country field in the SEC DERA submissions,
+# the EPA county fields, and the Senate lobbying registrant/client countries.
+# Free text. Nothing inside these ever becomes a number or a date, no matter what
+# else the name contains ("footnote_for_dtc_risk_standardized_RATE").
+HARD_TEXT = ("FOOTNOTE", "DESCRIPTION", "NARRATIVE", "COMMENT", "REMARK",
+             "TITLE", "_TEXT", "TEXT_", "URL", "EMAIL", "PHONE", "ADDRESS",
+             "STREET", "_NAME", "NAME_", "LEGEND", "CAPTION",
+             "TYPE", "STATUS", "CATEGORY", "INDICATOR", "GENDER")
+
+# Words that carry the accidental numeric substring. They are REMOVED from the name
+# before the rules below run, so the rules judge what is left: INCORPORATION_DATE
+# still casts as a date (only INCORPORATION is dropped), while COUNTY_FIPS is left
+# alone because nothing numeric survives the strip.
+STRIP_WORDS = ("COUNTRIES", "COUNTRY", "COUNTIES", "COUNTERPART", "COUNTY",
+               "PARISH", "FIPS", "PROVINCE", "MUNICIPALITY", "LOCALITY",
+               "TERRITORY", "NATIONALITY", "CITIZENSHIP", "REGION", "STATE",
+               "CITY", "INCORPORATION", "REGISTRATION", "FILTRATION",
+               "ADMINISTRATION", "IDENTIFIER", "FREQUENCY", "CLASS", "FLAG",
+               "SEX", "RACE", "CODE", "_CD", "_ID")
+
+# Names that ARE numeric despite containing a text word above.
+MEASURE_WORDS = ("SCORE", "WEIGHT", "POPULATION", "REFUGEES", "VALIDATIONREFERENCE",
+                 "_MAND_")
+
+
 def infer_cast(col_name, data_type=None):
     """Pick a cast from the column name -- but only for text columns.
 
@@ -230,12 +266,31 @@ def infer_cast(col_name, data_type=None):
     and TRY_TO_DATE on a DATE raises "invalid type for parameter 'TO_DATE'". Two models
     died this way (fed_fac_single_audit, fed_osha_ita_case_detail_2024) before this
     guard existed.
+
+    Casting a text column that only LOOKS numeric is the quieter failure: TRY_TO_*
+    returns NULL rather than raising, so the model builds green and the column is
+    gone. HARD_TEXT and STRIP_WORDS are the guard for that half.
     """
     if data_type is not None and not str(data_type).upper().startswith(
             ("TEXT", "VARCHAR", "STRING", "CHAR")):
         return None
-    u = col_name.upper()
-    if any(x in u for x in ("_DATE", "DATE_", "CREATED", "UPDATED", "EXPIR")):
+    raw = col_name.upper()
+    # An explicit date suffix is unambiguous and outranks every text guard below:
+    # SENIOR_STATUS_DATE is a date, not a status label.
+    if re.search(r"_(?:DATE|DATETIME|TIMESTAMP)(?:_\d+)?$", raw) or             raw.startswith("DATE_"):
+        return "try_to_timestamp" if re.search(
+            r"_(?:DATETIME|TIMESTAMP)(?:_\d+)?$", raw) else "try_to_date"
+    # Real measures whose names happen to carry a text word (TOTAL_COUNTRY_POPULATION
+    # is a population, not a country). Verified populated in the live marts
+    # 2026-08-10, so the text guard must not swallow them.
+    if any(w in raw for w in MEASURE_WORDS):
+        return _naive_cast(raw)
+    if any(w in raw for w in HARD_TEXT):
+        return None
+    u = raw
+    for w in STRIP_WORDS:
+        u = u.replace(w, "_")
+    if any(x in u for x in ("_DATE", "CREATED", "UPDATED", "EXPIR"))             or u.startswith("DATE_"):
         return "try_to_timestamp" if ("TIME" in u or "DATETIME" in u) else "try_to_date"
     if any(x in u for x in ("AMOUNT", "AMT", "COST", "PRICE", "DOLLARS", "PROCEEDS",
                             "OBLIGATION", "DISBURSEMENT")):
@@ -311,6 +366,37 @@ def write_source_decl(schema_folder, table, declared, apply):
             fh.write(body)
     declared[("ripple_raw", table)] = os.path.relpath(path, MODELS)
     return True
+
+
+def _naive_cast(col_name):
+    """What the pre-2026-08-10 rules would have picked: bare substring matching,
+    no text guard. Kept only so cast_is_suspicious() can spot the difference."""
+    u = col_name.upper()
+    if any(x in u for x in ("_DATE", "DATE_", "CREATED", "UPDATED", "EXPIR")):
+        return "try_to_timestamp" if ("TIME" in u or "DATETIME" in u) else "try_to_date"
+    if any(x in u for x in ("AMOUNT", "AMT", "COST", "PRICE", "DOLLARS", "PROCEEDS",
+                            "OBLIGATION", "DISBURSEMENT")):
+        return "try_to_double"
+    if any(x in u for x in ("COUNT", "CNT", "NUM_", "NUMBER_OF", "QUANTITY",
+                            "DEATHS", "INJURED")):
+        return "try_to_number"
+    if any(x in u for x in ("_PCT", "PERCENT", "RATIO", "_RATE", "LATITUDE",
+                            "LONGITUDE")):
+        return "try_to_double"
+    if u in ("YEAR", "FISCAL_YEAR", "FY", "CONGRESS"):
+        return "try_to_number"
+    return None
+
+
+def cast_is_suspicious(col_name):
+    """True when a cast on this column looks like the substring accident.
+
+    A hand-written model may legitimately cast AGE or GROSSAPPROVAL -- names this
+    module has no opinion about -- so "infer_cast says None" is NOT evidence of a
+    bug. The bug signature is narrower: the naive substring rules fire, the guarded
+    rules decline. That is exactly COUNTRY / COUNTY / INCORPORATION / SSHPRNAMTTYPE.
+    """
+    return _naive_cast(col_name) is not None and infer_cast(col_name, "TEXT") is None
 
 
 def main():

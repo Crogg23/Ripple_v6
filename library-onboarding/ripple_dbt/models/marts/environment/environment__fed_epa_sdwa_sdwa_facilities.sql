@@ -23,7 +23,7 @@ select
     SELLER_TREATMENT_CODE as seller_treatment_code,
     SELLER_PWSID as seller_pwsid,
     SELLER_PWS_NAME as seller_pws_name,
-    try_to_double(FILTRATION_STATUS_CODE) as filtration_status_code,
+    FILTRATION_STATUS_CODE as filtration_status_code,
     IS_SOURCE_TREATED_IND as is_source_treated_ind,
     try_to_date(FIRST_REPORTED_DATE) as first_reported_date,
     try_to_date(LAST_REPORTED_DATE) as last_reported_date

@@ -15,7 +15,7 @@ select
     CITY as city,
     STATE as state,
     ZIP_CODE as zip_code,
-    try_to_number(COUNTRY) as country,
+    COUNTRY as country,
     EXEMPTION_TYPE as exemption_type,
     try_to_date(REVOCATION_DATE) as revocation_date,
     try_to_date(REVOCATION_POSTING_DATE) as revocation_posting_date,

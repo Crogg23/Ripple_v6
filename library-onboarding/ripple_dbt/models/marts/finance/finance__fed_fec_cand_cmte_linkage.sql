@@ -7,12 +7,19 @@ with source as (
     select * from {{ source('ripple_raw', 'FED_FEC_CAND_CMTE_LINKAGE') }}
 )
 
+-- Column names restored 2026-08-10. The loader wrote this FEC bulk file with no
+-- header row, so the landing table carries positional C1..CN names and the mart
+-- passed them straight through -- unusable for anything downstream. The names
+-- below are the official FEC bulk-data layout for this file, verified against the
+-- landing values (sample row: H0AL02087 / 2018 / 2018 / C00493783 / H / J / 212430).
+-- Layout: FEC Candidate-Committee Linkage (ccl.txt)
+
 select
-    C1 as c1,
-    C2 as c2,
-    C3 as c3,
-    C4 as c4,
-    C5 as c5,
-    C6 as c6,
-    C7 as c7
+    C1 as cand_id,
+    try_to_number(C2) as cand_election_yr,
+    try_to_number(C3) as fec_election_yr,
+    C4 as cmte_id,
+    C5 as cmte_tp,
+    C6 as cmte_dsgn,
+    C7 as linkage_id
 from source

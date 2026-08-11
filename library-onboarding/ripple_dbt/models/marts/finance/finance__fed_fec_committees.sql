@@ -7,20 +7,27 @@ with source as (
     select * from {{ source('ripple_raw', 'FED_FEC_COMMITTEES') }}
 )
 
+-- Column names restored 2026-08-10. The loader wrote this FEC bulk file with no
+-- header row, so the landing table carries positional C1..CN names and the mart
+-- passed them straight through -- unusable for anything downstream. The names
+-- below are the official FEC bulk-data layout for this file, verified against the
+-- landing values (sample row: C00000018 / IRONWORKERS LOCAL UNION / STEVEN N GULICK / NOVI / MI).
+-- Layout: FEC Committee Master (cm.txt)
+
 select
-    C1 as c1,
-    C2 as c2,
-    C3 as c3,
-    C4 as c4,
-    C5 as c5,
-    C6 as c6,
-    C7 as c7,
-    C8 as c8,
-    C9 as c9,
-    C10 as c10,
-    C11 as c11,
-    C12 as c12,
-    C13 as c13,
-    C14 as c14,
-    C15 as c15
+    C1 as cmte_id,
+    C2 as cmte_nm,
+    C3 as tres_nm,
+    C4 as cmte_st1,
+    C5 as cmte_st2,
+    C6 as cmte_city,
+    C7 as cmte_st,
+    C8 as cmte_zip,
+    C9 as cmte_dsgn,
+    C10 as cmte_tp,
+    C11 as cmte_pty_affiliation,
+    C12 as cmte_filing_freq,
+    C13 as org_tp,
+    C14 as connected_org_nm,
+    C15 as cand_id
 from source

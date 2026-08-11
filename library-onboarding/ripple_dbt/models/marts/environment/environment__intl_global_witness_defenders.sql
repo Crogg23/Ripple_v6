@@ -9,7 +9,7 @@ with source as (
 
 select
     DEFENDER_NAME as defender_name,
-    try_to_number(COUNTRY) as country,
+    COUNTRY as country,
     REGION as region,
     try_to_number("YEAR") as year,
     INCIDENT_TYPE as incident_type,

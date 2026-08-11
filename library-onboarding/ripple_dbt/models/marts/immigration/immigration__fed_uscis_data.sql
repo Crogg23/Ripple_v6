@@ -13,7 +13,7 @@ select
     try_to_number(FISCAL_YEAR) as fiscal_year,
     QUARTER as quarter,
     CATEGORY as category,
-    try_to_number(COUNTRY) as country,
+    COUNTRY as country,
     USCIS_OFFICE as uscis_office,
     RECEIPTS as receipts,
     APPROVALS as approvals,

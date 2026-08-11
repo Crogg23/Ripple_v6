@@ -31,11 +31,11 @@ select
     TO_MFR as to_mfr,
     CONFID as confid,
     _SRC_QUARTER as src_quarter,
-    try_to_number(REPORTER_COUNTRY) as reporter_country,
+    REPORTER_COUNTRY as reporter_country,
     PRIMARYID as primaryid,
     CASEID as caseid,
     CASEVERSION as caseversion,
     I_F_CODE as i_f_code,
     INIT_FDA_DT as init_fda_dt,
-    try_to_number(OCCR_COUNTRY) as occr_country
+    OCCR_COUNTRY as occr_country
 from source

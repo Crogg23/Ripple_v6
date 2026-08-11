@@ -26,6 +26,6 @@ select
     ZIP as zip,
     CITY as city,
     STATE as state,
-    try_to_number(COUNTRY) as country,
+    COUNTRY as country,
     CFDA_NUMBER as cfda_number
 from source

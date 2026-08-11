@@ -1,5 +1,12 @@
 # Mart defects surfaced by the viz brainstorm sweep — 2026-08-10
 
+> **SUPERSEDED 2026-08-10 (late).** Every claim below was a read of model
+> code with nothing checked against live data, and a good share of it turned
+> out to be wrong. The verified verdicts are in
+> `mart_defect_verdicts_2026-08-10.md`. Read that instead; this file is kept
+> only as the raw input it was.
+
+
 Found by 18 readers going source-by-source through every modeled mart's SQL on
 disk (no warehouse queries). Nothing here was confirmed against live data — each
 item is a read of the model code and should be verified before acting.

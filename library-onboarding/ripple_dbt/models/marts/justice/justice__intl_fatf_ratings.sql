@@ -8,7 +8,7 @@ with source as (
 )
 
 select
-    try_to_number(COUNTRY) as country,
+    COUNTRY as country,
     FATF_RECOMMENDATION as fatf_recommendation,
     RATING as rating,
     EVALUATION_ROUND as evaluation_round,

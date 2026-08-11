@@ -8,7 +8,7 @@ with source as (
 )
 
 select
-    try_to_number(COUNTRY) as country,
+    COUNTRY as country,
     PROJECT_ID as project_id,
     PROJECT_NAME as project_name,
     SECTOR as sector,

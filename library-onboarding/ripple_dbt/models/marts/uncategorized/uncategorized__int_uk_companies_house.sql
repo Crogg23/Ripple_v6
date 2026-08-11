@@ -20,7 +20,7 @@ select
     "RegAddress.PostCode" as reg_address_post_code,
     "CompanyCategory" as company_category,
     "CompanyStatus" as company_status,
-    try_to_number("CountryOfOrigin") as country_of_origin,
+    "CountryOfOrigin" as country_of_origin,
     "DissolutionDate" as dissolution_date,
     try_to_double("IncorporationDate") as incorporation_date,
     try_to_number("Accounts.AccountRefDay") as accounts_account_ref_day,

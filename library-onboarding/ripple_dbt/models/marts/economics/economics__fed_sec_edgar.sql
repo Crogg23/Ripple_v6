@@ -22,7 +22,7 @@ select
     ISXBRL as isxbrl,
     SIC as sic,
     SICDESCRIPTION as sicdescription,
-    try_to_double(STATEOFINCORPORATION) as stateofincorporation,
+    STATEOFINCORPORATION as stateofincorporation,
     FISCALYEAREND as fiscalyearend,
     TICKERS as tickers,
     EXCHANGES as exchanges

@@ -13,7 +13,7 @@ select
     DISCOVERED as discovered,
     PUBLISHED as published,
     WEBSITE as website,
-    try_to_number(COUNTRY) as country,
+    COUNTRY as country,
     ACTIVITY as activity,
     DESCRIPTION as description,
     POST_URL as post_url

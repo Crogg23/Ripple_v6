@@ -2,8 +2,15 @@ version: 2
 
 models:
   - name: immigration__fed_eoir_case_data
+    description: >
+      DEGRADED SOURCE -- do not build anything on this yet. The landing table
+      LIBRARY_RAW.LANDING.FED_EOIR_CASE_DATA holds 12,631,225 rows but only ONE
+      real column (CASE_TYPE); every judge, court, hearing-date, charge and
+      outcome field the EOIR FOIA release contains was dropped at ingest, not by
+      this model. Verified against information_schema 2026-08-10. Fixing it means
+      re-ingesting the source, not editing this file.
     columns:
       - name: case_type
+        description: The only field that survived ingest.
         data_tests:
           - not_null
-          - unique

@@ -14,7 +14,7 @@ select
     C_4_FACILITY_NAME as c_4_facility_name,
     C_5_STREET_ADDRESS as c_5_street_address,
     C_6_CITY as c_6_city,
-    try_to_number(C_7_COUNTY) as c_7_county,
+    C_7_COUNTY as c_7_county,
     C_8_ST as c_8_st,
     C_9_ZIP as c_9_zip,
     C_10_BIA as c_10_bia,

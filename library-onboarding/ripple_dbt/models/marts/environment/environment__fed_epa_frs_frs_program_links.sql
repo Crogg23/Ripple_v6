@@ -15,10 +15,10 @@ select
     LOCATION_ADDRESS as location_address,
     SUPPLEMENTAL_LOCATION as supplemental_location,
     CITY_NAME as city_name,
-    try_to_number(COUNTY_NAME) as county_name,
+    COUNTY_NAME as county_name,
     FIPS_CODE as fips_code,
     STATE_CODE as state_code,
     STATE_NAME as state_name,
-    try_to_number(COUNTRY_NAME) as country_name,
+    COUNTRY_NAME as country_name,
     POSTAL_CODE as postal_code
 from source

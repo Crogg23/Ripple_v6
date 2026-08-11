@@ -8,7 +8,7 @@ with source as (
 )
 
 select
-    try_to_number(COUNTRY) as country,
+    COUNTRY as country,
     try_to_number("YEAR") as year,
     try_to_double(ILLICIT_FLOW_VALUE) as illicit_flow_value,
     FLOW_DIRECTION as flow_direction,

@@ -11,7 +11,7 @@ select
     FINCEN_ID as fincen_id,
     REPORTING_COMPANY_NAME as reporting_company_name,
     JURISDICTION_OF_FORMATION as jurisdiction_of_formation,
-    try_to_double(US_REGISTRATION_STATE) as us_registration_state,
+    US_REGISTRATION_STATE as us_registration_state,
     try_to_date(US_REGISTRATION_DATE) as us_registration_date,
     EIN as ein,
     BENEFICIAL_OWNER_FULL_NAME as beneficial_owner_full_name,

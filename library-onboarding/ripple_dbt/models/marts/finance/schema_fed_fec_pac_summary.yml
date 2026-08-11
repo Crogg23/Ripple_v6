@@ -3,6 +3,6 @@ version: 2
 models:
   - name: finance__fed_fec_pac_summary
     columns:
-      - name: c1
+      - name: cmte_id
         data_tests:
           - not_null

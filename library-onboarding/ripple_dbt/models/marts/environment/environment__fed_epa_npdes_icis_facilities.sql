@@ -16,7 +16,7 @@ select
     LOCATION_ADDRESS as location_address,
     SUPPLEMENTAL_ADDRESS_TEXT as supplemental_address_text,
     CITY as city,
-    try_to_number(COUNTY_CODE) as county_code,
+    COUNTY_CODE as county_code,
     STATE_CODE as state_code,
     ZIP as zip,
     try_to_double(GEOCODE_LATITUDE) as geocode_latitude,

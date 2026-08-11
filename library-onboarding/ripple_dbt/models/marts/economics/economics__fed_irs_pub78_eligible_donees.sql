@@ -12,6 +12,6 @@ select
     LEGAL_NAME as legal_name,
     CITY as city,
     STATE as state,
-    try_to_number(COUNTRY) as country,
+    COUNTRY as country,
     DEDUCTIBILITY_STATUS as deductibility_status
 from source

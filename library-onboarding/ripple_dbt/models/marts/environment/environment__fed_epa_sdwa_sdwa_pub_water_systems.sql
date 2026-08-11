@@ -47,7 +47,7 @@ select
     ADDRESS_LINE2 as address_line2,
     CITY_NAME as city_name,
     ZIP_CODE as zip_code,
-    try_to_number(COUNTRY_CODE) as country_code,
+    COUNTRY_CODE as country_code,
     try_to_date(FIRST_REPORTED_DATE) as first_reported_date,
     try_to_date(LAST_REPORTED_DATE) as last_reported_date,
     STATE_CODE as state_code,

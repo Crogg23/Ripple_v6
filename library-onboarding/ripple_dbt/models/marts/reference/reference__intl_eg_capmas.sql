@@ -14,5 +14,5 @@ select
     try_to_double("VALUE") as value,
     UNIT as unit,
     SOURCE as source,
-    try_to_number(COUNTRY) as country
+    COUNTRY as country
 from source

@@ -11,7 +11,7 @@ select
     try_to_number(FISCAL_YEAR) as fiscal_year,
     FISCAL_QUARTER as fiscal_quarter,
     METRIC_TYPE as metric_type,
-    try_to_number(COUNTRY_OF_CITIZENSHIP) as country_of_citizenship,
+    COUNTRY_OF_CITIZENSHIP as country_of_citizenship,
     CRIMINAL_HISTORY_CATEGORY as criminal_history_category,
     AOR as aor,
     try_to_number(COUNT) as count,

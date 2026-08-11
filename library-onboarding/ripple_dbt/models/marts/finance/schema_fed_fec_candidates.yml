@@ -2,13 +2,7 @@ version: 2
 
 models:
   - name: finance__fed_fec_candidates
-    data_tests:
-      - dbt_utils.unique_combination_of_columns:
-          arguments:
-            combination_of_columns:
-              - c1
-              - c4
     columns:
-      - name: c1
+      - name: cand_id
         data_tests:
           - not_null

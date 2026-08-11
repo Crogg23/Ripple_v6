@@ -13,7 +13,7 @@ select
     NAME as name,
     ALIASES as aliases,
     try_to_date(BIRTH_DATE) as birth_date,
-    try_to_number(COUNTRIES) as countries,
+    COUNTRIES as countries,
     ADDRESSES as addresses,
     IDENTIFIERS as identifiers,
     SANCTIONS as sanctions,

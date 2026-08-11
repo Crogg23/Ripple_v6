@@ -12,7 +12,7 @@ select
     RAILROAD_NAME as railroad_name,
     try_to_date(EVENT_DATE) as event_date,
     STATE_FIPS as state_fips,
-    try_to_number(COUNTY_FIPS) as county_fips,
+    COUNTY_FIPS as county_fips,
     EVENT_TYPE as event_type,
     CASUALTIES as casualties,
     EQUIPMENT_TYPE as equipment_type,

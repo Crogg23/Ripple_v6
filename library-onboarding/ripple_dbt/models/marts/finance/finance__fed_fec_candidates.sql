@@ -7,20 +7,27 @@ with source as (
     select * from {{ source('ripple_raw', 'FED_FEC_CANDIDATES') }}
 )
 
+-- Column names restored 2026-08-10. The loader wrote this FEC bulk file with no
+-- header row, so the landing table carries positional C1..CN names and the mart
+-- passed them straight through -- unusable for anything downstream. The names
+-- below are the official FEC bulk-data layout for this file, verified against the
+-- landing values (sample row: H0AL02087 / ROBY, MARTHA / REP / 2018 / AL / H).
+-- Layout: FEC Candidate Master (cn.txt)
+
 select
-    C1 as c1,
-    C2 as c2,
-    C3 as c3,
-    C4 as c4,
-    C5 as c5,
-    C6 as c6,
-    C7 as c7,
-    C8 as c8,
-    C9 as c9,
-    C10 as c10,
-    C11 as c11,
-    C12 as c12,
-    C13 as c13,
-    C14 as c14,
-    C15 as c15
+    C1 as cand_id,
+    C2 as cand_name,
+    C3 as cand_pty_affiliation,
+    try_to_number(C4) as cand_election_yr,
+    C5 as cand_office_st,
+    C6 as cand_office,
+    C7 as cand_office_district,
+    C8 as cand_ici,
+    C9 as cand_status,
+    C10 as cand_pcc,
+    C11 as cand_st1,
+    C12 as cand_st2,
+    C13 as cand_city,
+    C14 as cand_st,
+    C15 as cand_zip
 from source

@@ -21,7 +21,7 @@ select
     FILINGMANAGER_STREET1 as filingmanager_street1,
     FILINGMANAGER_STREET2 as filingmanager_street2,
     FILINGMANAGER_CITY as filingmanager_city,
-    try_to_number(FILINGMANAGER_STATEORCOUNTRY) as filingmanager_stateorcountry,
+    FILINGMANAGER_STATEORCOUNTRY as filingmanager_stateorcountry,
     FILINGMANAGER_ZIPCODE as filingmanager_zipcode,
     REPORTTYPE as reporttype,
     FORM13FFILENUMBER as form13_ffilenumber,

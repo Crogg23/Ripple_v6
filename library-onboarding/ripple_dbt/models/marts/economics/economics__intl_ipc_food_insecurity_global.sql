@@ -9,7 +9,7 @@ with source as (
 
 select
     try_to_date(DATE_OF_ANALYSIS) as date_of_analysis,
-    try_to_number(COUNTRY) as country,
+    COUNTRY as country,
     try_to_double(TOTAL_COUNTRY_POPULATION) as total_country_population,
     VALIDITY_PERIOD as validity_period,
     C_FROM as c_from,

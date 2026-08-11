@@ -9,7 +9,7 @@ with source as (
 
 select
     try_to_date(RECORD_DATE) as record_date,
-    try_to_number(ACCOUNT_TYPE) as account_type,
+    ACCOUNT_TYPE as account_type,
     TRANSACTION_TYPE as transaction_type,
     TRANSACTION_CATG as transaction_catg,
     TRANSACTION_CATG_DESC as transaction_catg_desc,

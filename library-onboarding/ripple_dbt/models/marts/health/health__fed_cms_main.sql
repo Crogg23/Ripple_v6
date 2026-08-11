@@ -12,7 +12,7 @@ select
     DATASET_TITLE as dataset_title,
     PUBLISHER as publisher,
     DESCRIPTION as description,
-    try_to_date(UPDATE_FREQUENCY) as update_frequency,
+    UPDATE_FREQUENCY as update_frequency,
     FORMAT as format,
     ACCESS_URL as access_url,
     NPI as npi,

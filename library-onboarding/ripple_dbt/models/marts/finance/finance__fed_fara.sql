@@ -9,9 +9,9 @@ with source as (
 
 select
     REGISTRANT_NAME as registrant_name,
-    try_to_double(REGISTRATION_NUMBER) as registration_number,
+    REGISTRATION_NUMBER as registration_number,
     FOREIGN_PRINCIPAL as foreign_principal,
-    try_to_number(FOREIGN_PRINCIPAL_COUNTRY) as foreign_principal_country,
+    FOREIGN_PRINCIPAL_COUNTRY as foreign_principal_country,
     EIN as ein,
     try_to_date(REGISTRATION_DATE) as registration_date,
     FILING_TYPE as filing_type,

@@ -19,7 +19,7 @@ select
     LEI as lei,
     DERIVED_MSA_MD as derived_msa_md,
     STATE_CODE as state_code,
-    try_to_number(COUNTY_CODE) as county_code,
+    COUNTY_CODE as county_code,
     CENSUS_TRACT as census_tract,
     CONFORMING_LOAN_LIMIT as conforming_loan_limit,
     DERIVED_LOAN_PRODUCT_TYPE as derived_loan_product_type,

@@ -7,32 +7,39 @@ with source as (
     select * from {{ source('ripple_raw', 'FED_FEC_PAC_SUMMARY') }}
 )
 
+-- Column names restored 2026-08-10. The loader wrote this FEC bulk file with no
+-- header row, so the landing table carries positional C1..CN names and the mart
+-- passed them straight through -- unusable for anything downstream. The names
+-- below are the official FEC bulk-data layout for this file, verified against the
+-- landing values (sample row: C00000059 / HALLMARK CARDS, INC. PAC / Q / B / M / 95727.18).
+-- Layout: FEC PAC/Party Financial Summary (webk.txt)
+
 select
-    C1 as c1,
-    C2 as c2,
-    C3 as c3,
-    C4 as c4,
-    C5 as c5,
-    C6 as c6,
-    C7 as c7,
-    C8 as c8,
-    C9 as c9,
-    C10 as c10,
-    C11 as c11,
-    C12 as c12,
-    C13 as c13,
-    C14 as c14,
-    C15 as c15,
-    C16 as c16,
-    C17 as c17,
-    C18 as c18,
-    C19 as c19,
-    C20 as c20,
-    C21 as c21,
-    C22 as c22,
-    C23 as c23,
-    C24 as c24,
-    C25 as c25,
-    C26 as c26,
-    C27 as c27
+    C1 as cmte_id,
+    C2 as cmte_nm,
+    C3 as cmte_tp,
+    C4 as cmte_dsgn,
+    C5 as cmte_filing_freq,
+    try_to_double(C6) as ttl_receipts,
+    try_to_double(C7) as trans_from_aff,
+    try_to_double(C8) as indv_contrib,
+    try_to_double(C9) as other_pol_cmte_contrib,
+    try_to_double(C10) as cand_contrib,
+    try_to_double(C11) as cand_loans,
+    try_to_double(C12) as ttl_loans_received,
+    try_to_double(C13) as ttl_disb,
+    try_to_double(C14) as tranf_to_aff,
+    try_to_double(C15) as indv_refunds,
+    try_to_double(C16) as other_pol_cmte_refunds,
+    try_to_double(C17) as cand_loan_repay,
+    try_to_double(C18) as loan_repay,
+    try_to_double(C19) as coh_bop,
+    try_to_double(C20) as coh_cop,
+    try_to_double(C21) as debts_owed_by,
+    try_to_double(C22) as nonfed_trans_received,
+    try_to_double(C23) as contrib_to_other_cmte,
+    try_to_double(C24) as ind_exp,
+    try_to_double(C25) as pty_coord_exp,
+    try_to_double(C26) as nonfed_share_exp,
+    try_to_date(C27, 'MM/DD/YYYY') as cvg_end_dt
 from source
