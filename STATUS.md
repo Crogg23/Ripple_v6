@@ -1,64 +1,63 @@
-# RIPPLE STATUS — 2026-08-10 (full-day drain: 560 modeled; frontier tail done; FEMA RUNNING)
+# RIPPLE STATUS — 2026-08-10 (late) — viz brainstorm shipped; FEMA still loading
 
-*One screen. Rewritten (never appended) at the end of every session. Sessions read this at boot and brief Chris in chat — Chris never has to open it.*
+*One screen. Rewritten (never appended) at the end of every session. Sessions read
+this at boot and brief Chris in chat — Chris never has to open it.*
 
-**BROKE: nothing.** Live/open items:
-- FEMA IA full reload RUNNING detached (~10.6M of 25.9M at close, ~5h left;
-  rerun scripts/fema_ia_load.py to resume if dead). When done: rebuild
-  staging+mart, remove SAMPLE label, and expect a connection-engine reseed
-  (drift precedent — hit twice today, fix is
-  `python -m connect.incremental seed --reseed`, validated 20/20 both times).
-- UK Companies House PSC still blocked on the Chris-only wipe:
+**BROKE: nothing new broke this session, but the sweep surfaced a pile of
+pre-existing mart defects** — full list in
+`reports/mart_defects_from_viz_sweep_2026-08-10.md`. Headline items:
+- Immigration-court data (12.6M rows) is effectively unmodeled — the mart selects
+  only `case_type`. Same shape problem on FDIC enforcement (raw text only) and the
+  four core FEC marts (positional `c1..c15` column names; the bulk twins are fine).
+- A generated-model bug casts text columns to numbers, nulling them: country and
+  name fields across ~20 international/sanctions/immigration marts, plus MSHA
+  violator name and MSHA county FIPS (breaks the labor join).
+- Suspected page-capped loads sitting at exactly 500,000 / 10,000 rows across
+  Google political ads, IRS revocations + Pub 78, CourtListener investments,
+  Treasury deposits; several catalog row counts disagree with the mart's own comment.
+- None of this was verified live — it's a read of the model code. Verify before acting.
+
+**Live/open items carried forward:**
+- FEMA IA full reload STILL RUNNING detached (18.4M of 25.9M at close, ~1.5-2h left;
+  rerun `python scripts/fema_ia_load.py` to resume if dead). When done: rebuild
+  staging+mart, remove SAMPLE label, expect a connection-engine reseed
+  (`python -m connect.incremental seed --reseed`).
+- UK Companies House PSC blocked on the Chris-only wipe:
   `DELETE FROM LIBRARY_RAW.LANDING.UK_COMPANIES_HOUSE_PSC;` then
   `python scripts/uk_ch_psc_load.py --chunks 32 --run` (~30-60 min).
-- Drop list (Chris-only, 6 sections / ~50 tables):
-  reports/duplicate_ingest_drop_list_2026-08-10.md. New tonight: ATF FFL
-  2k sample (full list already modeled), UK FCDO sanctions (same publication
-  as the modeled UK list + broken parse), HHS grants tracker (redundant with
-  USASpending), dead House-trades mirror registry row.
-- Key-gated on Chris: FCC broadband map (needs free API key), DOL WHD,
-  Senate LDA. FBI CDE key semi-exposed in library-onboarding/.env.
-- Small tail left: OFCCP audit list (the entire dol.gov estate Akamai-blocks
-  scripted pulls — manual browser download like DTCC), DTCC directory
-  (manual download), PHMSA's other 3 pipeline-type files (phmsa.dot.gov
-  rate-blocked us tonight after the transmission pull — retry next session
-  via the academic Zenodo mirror already used for other PHMSA data).
+  (Sweep confirms the current load is ~7.0M of ~10M, truncated.)
+- Drop list (Chris-only, ~50 tables):
+  `reports/duplicate_ingest_drop_list_2026-08-10.md`.
+- Key-gated on Chris: FCC broadband map, DOL WHD, Senate LDA.
+- Small tail: OFCCP audit list (manual browser download), DTCC directory (manual),
+  PHMSA's other 3 pipeline-type files (via the Zenodo mirror).
 
-**DONE this session (8 commits pushed; catalog 452 → 559 modeled):**
-- Waves 4+5 (86 sources) + NIH full history + landed backlog to zero.
-- Frontier: FDIC branch deposits FULL (2.82M, 1994–2025), SEC ticker map,
-  openFDA device classification + recalls — all re-landed and modeled.
-- Frontier tail (tonight): DOL OLMS union financial filings FULL HISTORY
-  landed and modeled → LABOR: 617,710 LM-2/3/4 filings, 2000–2026, one row
-  per filing with assets/liabilities/receipts/disbursements/members. New
-  scripts/dol_olms_load.py (the servlet needs session cookies + rotating
-  tokens; python is TLS-blocked so transport shells to curl; the old spec's
-  file/columns assumptions were wrong — real member has a header, 56 cols).
-  PHMSA significant pipeline incidents landed and modeled → ENVIRONMENT:
-  2,039 gas transmission/gathering incidents 2010+ with fatality/injury
-  counts and operator ids (fixed the shared loader to honor spec encodings
-  and python-engine parsing; other pipeline-type files are a follow-up).
-- Connection engine reseeded twice after table replacements (expected drift);
-  validate 20/20 green both times.
-- Triage verdicts: HHS grants redundant, House-trades mirror dead upstream,
-  UK FCDO redundant+broken, ATF sample redundant.
-- Superfund site boundaries completed: the "2,000-row sample" was the ArcGIS
-  page cap; true total is 2,114 — full pull landed (new
-  scripts/superfund_boundaries_load.py) and modeled → ENVIRONMENT (560th).
+**DONE this session:**
+- Wide-net visualization brainstorm across the whole library, delivered as one flat
+  spreadsheet: `reports/viz_brainstorm_2026-08-10.csv` — 2,873 ideas, 16 columns
+  (id, bucket, sources, domain, title, idea, chart shape, key fields, join key,
+  time axis, geo grain, harm angle, strength, rigor, caveat).
+  2,192 single-source / 575 cross-source / 106 catalog-about-the-catalog.
+  1,816 rated high / 840 medium / 217 wild. All 558 modeled sources covered.
+- Every row is `plausible-from-metadata` — read off catalog descriptions and the
+  dbt model SQL on disk. NOTHING was verified against live data. Anything Chris
+  picks to build gets checked then.
+- Zero warehouse spend on this task by design (18 agents, disk reads only).
 
-**TEST STATUS:** offline suite green (2,697 passed + connection tests 20/20
-after reseed / 2 skipped). All dbt builds green. CI not re-checked — next boot.
+**TEST STATUS:** not re-run this session (no code changed). Last known: offline
+suite green (2,697 passed, connection tests 20/20). CI still not re-checked.
 
 **YOUR MOVE:**
-1. Portal-probe universe (~1,800 rows): finish / re-probe / drop — yours.
-2. UK PSC wipe one-liner; drop list; FCC broadband key signup if wanted.
+1. Skim the brainstorm spreadsheet, filter to `strength=high` + `bucket=cross`,
+   and flag the handful you want built. That's the next session's work.
+2. Portal-probe universe (~1,800 rows): finish / re-probe / drop — still yours.
+3. UK PSC wipe one-liner; the drop list; FCC broadband key signup if wanted.
 
 **NEXT SESSION:**
-1. Boot trust check (CI), FEMA IA finish → rebuild → un-SAMPLE → reseed.
-2. UK PSC if wiped. OFCCP + Superfund full pulls. PHMSA other pipeline types.
-3. Backlog/frontier is otherwise DRAINED — next real frontier is Chris's
-   portal-probe decision and the Phase 0 leftovers.
+1. Boot trust check (CI), FEMA finish → rebuild → un-SAMPLE → reseed.
+2. Triage the mart-defects list: the immigration-court remodel is the biggest
+   single unlock on it.
+3. Build whatever Chris flags out of the brainstorm.
 
-**COST:** today total ~5-6 Snowflake credits (~$11-15): morning waves + SOD
-2.82M + OLMS 617k + two reseeds (157M-row state rebuilds) + five full test
-runs. Agent spend: 13 model-writer agents, ~990k tokens.
+**COST:** no warehouse credits this session. Agent spend: 18 readers,
+~2.6M tokens total.
