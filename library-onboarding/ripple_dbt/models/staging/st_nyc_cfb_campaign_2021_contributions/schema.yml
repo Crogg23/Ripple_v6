@@ -41,9 +41,17 @@ models:
       - name: schedule
         description: Disclosure schedule the transaction was reported on.
       - name: page_number
-        description: Page number within the filing.
+        description: >-
+          Page number within the filing. PUBLISHER-ABSENT (byte-check
+          2026-08-11): PAGENO is blank in the CFB-Data.zip 2021_Contributions.csv
+          itself (0 non-blank in a 50k-row scan of the raw publisher file), as are
+          SEQUENCENO / STRNO / STRNAME / APARTMENT / INTSTRNO / INTSTRNM / INTAPTNO
+          — CFB redacts filing page/sequence and street-number address detail from
+          its public export. 100% NULL here is faithful to source, NOT a loader bug.
       - name: sequence_number
-        description: Sequence number within the page.
+        description: >-
+          Sequence number within the page. PUBLISHER-ABSENT (byte-check
+          2026-08-11): blank in the publisher's own CSV — see page_number note.
       - name: reference_number
         description: Reference number of the transaction within the filing.
       - name: contribution_date
@@ -69,7 +77,10 @@ models:
       - name: purpose_code
         description: Purpose code of the transaction.
       - name: exempt_code
-        description: Exempt code of the transaction.
+        description: >-
+          Exempt code of the transaction. Near-empty at source (byte-check
+          2026-08-11: 2 non-blank in a 50k-row scan of the publisher CSV) —
+          expected sparse, not a loader bug.
       - name: adjustment_type_code
         description: Adjustment type code of the transaction.
       - name: _ingested_at

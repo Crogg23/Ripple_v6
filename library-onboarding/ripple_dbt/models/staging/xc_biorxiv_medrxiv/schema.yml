@@ -41,7 +41,15 @@ models:
         description: Name of the corresponding author (mapped from author_corresponding).
 
       - name: funder_ror_id
-        description: Funder identifier string (e.g. ROR ID), mapped from funding_id.
+        description: >-
+          Funder identifier string (ROR ID), mapped from funding_id.
+          PUBLISHER-SPARSE (API check 2026-08-11): the bioRxiv details API DOES
+          emit structured funder objects (name / id / id-type='ROR' / award), but
+          only on ~6% of manuscripts sampled (9 funder entries across 150 records;
+          id populated 8 of 9). This landing table is a tiny 432-row pull mixing
+          details/pubs/stats record shapes, so all-NULL here is consistent with
+          upstream sparsity at this sample size — not a mart bug. A fuller
+          details-endpoint ingest would populate it for a minority of rows.
 
       - name: title
         description: Title of the preprint manuscript.
@@ -119,7 +127,11 @@ models:
         description: Name of the funding organisation.
 
       - name: funding_id_type
-        description: Type of funder identifier (e.g. ROR).
+        description: >-
+          Type of funder identifier. PUBLISHER-SPARSE (API check 2026-08-11):
+          upstream emits this only inside the ~6%-of-records funder objects, and
+          the value observed is always 'ROR'. All-NULL on this 432-row sample is
+          consistent with source — see funder_ror_id note.
 
       - name: funding_award
         description: Grant or award number associated with the funding.

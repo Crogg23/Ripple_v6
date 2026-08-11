@@ -2,8 +2,29 @@ version: 2
 
 models:
   - name: environment__xc_epa_corporate_crosswalk
+    description: >-
+      Derived crosswalk (scripts/build_epa_corporate_crosswalk.py), not an ingested
+      publisher file. Parent-identifier sparsity is STRUCTURAL, not a build bug
+      (verified read-only 2026-08-11 on 5,300,149 rows): only 1.40% of EPA facilities
+      name-match a GLEIF LEI at all; of those, 13.9% have an ACTIVE
+      IS_ULTIMATELY_CONSOLIDATED_BY parent (ultimate_parent_lei 0.19% overall);
+      parent_cik requires a further unique EDGAR ticker-name match (0.16%); most
+      facilities simply have no public-company/LEI parent. parent_uei is 8.07%
+      populated (427,515 rows) — the triage-scan claim of ~0.7% was stale.
     columns:
       - name: epa_registry_id
         data_tests:
           - not_null
           - unique
+      - name: ultimate_parent_lei
+        description: >-
+          Ultimate parent LEI via GLEIF Level-2 ACTIVE IS_ULTIMATELY_CONSOLIDATED_BY.
+          Expected ~0.19% populated — structural funnel sparsity, see model note.
+      - name: parent_cik
+        description: >-
+          SEC CIK via unique EDGAR ticker-name match on the parent legal name.
+          Expected ~0.16% populated — structural funnel sparsity, see model note.
+      - name: parent_uei
+        description: >-
+          UEI via USAspending recipient ZIP+street+name match. 8.07% populated
+          (427,515 of 5,300,149) as of 2026-08-11 — NOT a dead column.

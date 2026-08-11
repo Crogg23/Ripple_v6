@@ -158,9 +158,9 @@ Path prefix `M/` = `library-onboarding/ripple_dbt/models/`. Action codes:
 | ENVIRONMENT__FED_PHMSA_FLAGGED_INCIDENTS | NUM_WORKER_FATALITIES | 0.9902 | 2,039 | c | M/marts/environment/environment__fed_phmsa_flagged_incidents.sql | A8 |
 | ENVIRONMENT__FED_USGS_WBD_HUC8 | SOURCE_FEATURE_ID | 1.0000 | 2,456 | c | M/marts/environment/environment__fed_usgs_wbd_huc8.sql | A8 |
 | ENVIRONMENT__FED_WQP_MONITORING_STATIONS | CONTRIBUTING_DRAINAGE_AREA_MEASURE_UNIT_CODE | 0.9909 | 5,818 | c | M/marts/environment/environment__fed_wqp_monitoring_stations.sql | A8 |
-| ENVIRONMENT__XC_EPA_CORPORATE_CROSSWALK | PARENT_CIK | 0.9984 | 5,300,149 | c | M/marts/environment/environment__xc_epa_corporate_crosswalk.sql:19 | A8 |
-| ENVIRONMENT__XC_EPA_CORPORATE_CROSSWALK | PARENT_UEI | 0.9928 | 5,300,149 | c | M/marts/environment/environment__xc_epa_corporate_crosswalk.sql:20 | A8 |
-| ENVIRONMENT__XC_EPA_CORPORATE_CROSSWALK | ULTIMATE_PARENT_LEI | 0.9981 | 5,300,149 | c | M/marts/environment/environment__xc_epa_corporate_crosswalk.sql:17 | A8 |
+| ENVIRONMENT__XC_EPA_CORPORATE_CROSSWALK | PARENT_CIK | 0.9984 | 5,300,149 | a | M/marts/environment/environment__xc_epa_corporate_crosswalk.sql:19 | A5 |
+| ENVIRONMENT__XC_EPA_CORPORATE_CROSSWALK | PARENT_UEI | 0.9928 | 5,300,149 | a | M/marts/environment/environment__xc_epa_corporate_crosswalk.sql:20 | STALE |
+| ENVIRONMENT__XC_EPA_CORPORATE_CROSSWALK | ULTIMATE_PARENT_LEI | 0.9981 | 5,300,149 | a | M/marts/environment/environment__xc_epa_corporate_crosswalk.sql:17 | A5 |
 | FINANCE__FED_PCAOB_FORM_AP_FILINGS | ISSUER_TICKER_NOT_AVAILABLE | 1.0000 | 155,384 | c | M/marts/finance/finance__fed_pcaob_form_ap_filings.sql | A8 |
 | FOREIGN_INFLUENCE__FED_FARA_BULK | COMPANY_ID | 0.9954 | 48,104 | c | M/marts/foreign_influence/foreign_influence__fed_fara_bulk.sql:18 | A8 |
 | HEALTH__FED_CMS_FACILITY_AFFILIATION | FACILITY_TYPE_CERTIFICATION_NUMBER | 0.9961 | 2,260,193 | c | M/marts/health/health__fed_cms_facility_affiliation.sql:21 | A8 |
@@ -198,33 +198,33 @@ Path prefix `M/` = `library-onboarding/ripple_dbt/models/`. Action codes:
 | POLITICS__FED_FCC_LICENSING | ELIGIBILITY_RULE_NUM | 1.0000 | 1,689,338 | c | M/marts/politics/politics__fed_fcc_licensing.sql:20 | A8 |
 | POLITICS__FED_FCC_LICENSING | FCC_COUNTY_CODE | 1.0000 | 1,689,338 | c | M/marts/politics/politics__fed_fcc_licensing.sql:35 | A8 |
 | POLITICS__FED_FEC_API | CANDIDATE_ID | 0.9980 | 500 | c | M/marts/politics_lobbying/politics__fed_fec_api.sql | A8 |
-| POLITICS__ST_NYC_CFB_CAMPAIGN_2001_CONTRIBUTION | EXEMPT_CODE | 0.9999 | 193,741 | c | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2001_contribution.sql | A8 |
-| POLITICS__ST_NYC_CFB_CAMPAIGN_2001_CONTRIBUTION | SEQUENCE_NUMBER | 1.0000 | 193,741 | c | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2001_contribution.sql | A8 |
-| POLITICS__ST_NYC_CFB_CAMPAIGN_2009_CONTRIBUTION | EXEMPT_CODE | 0.9999 | 146,112 | c | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2009_contribution.sql | A8 |
-| POLITICS__ST_NYC_CFB_CAMPAIGN_2009_CONTRIBUTION | INTERMEDIARY_STREET_NUMBER | 1.0000 | 146,112 | c | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2009_contribution.sql | A8 |
-| POLITICS__ST_NYC_CFB_CAMPAIGN_2009_CONTRIBUTION | PAGE_NUMBER | 1.0000 | 146,112 | c | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2009_contribution.sql | A8 |
-| POLITICS__ST_NYC_CFB_CAMPAIGN_2009_CONTRIBUTION | PURPOSE_CODE | 0.9948 | 146,112 | c | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2009_contribution.sql | A8 |
-| POLITICS__ST_NYC_CFB_CAMPAIGN_2009_CONTRIBUTION | SEQUENCE_NUMBER | 1.0000 | 146,112 | c | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2009_contribution.sql | A8 |
-| POLITICS__ST_NYC_CFB_CAMPAIGN_2013_CONTRIBUTION | EXEMPT_CODE | 0.9999 | 197,968 | c | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2013_contribution.sql | A8 |
-| POLITICS__ST_NYC_CFB_CAMPAIGN_2013_CONTRIBUTION | INTERMEDIARY_STREET_NUMBER | 1.0000 | 197,968 | c | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2013_contribution.sql | A8 |
-| POLITICS__ST_NYC_CFB_CAMPAIGN_2013_CONTRIBUTION | STREET_NUMBER | 1.0000 | 197,968 | c | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2013_contribution.sql | A8 |
-| POLITICS__ST_NYC_CFB_CAMPAIGN_2021_CONTRIBUTIONS | EXEMPT_CODE | 1.0000 | 457,521 | c | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2021_contributions.sql | A8 |
-| POLITICS__ST_NYC_CFB_CAMPAIGN_2021_CONTRIBUTIONS | PAGE_NUMBER | 1.0000 | 457,521 | c | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2021_contributions.sql | A8 |
-| POLITICS__ST_NYC_CFB_CAMPAIGN_2021_CONTRIBUTIONS | STREET_NUMBER | 1.0000 | 457,521 | c | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2021_contributions.sql | A8 |
-| POLITICS__ST_NYC_CFB_CAMPAIGN_2025_CONTRIBUTIONS | INTERMEDIARY_STREET_NUMBER | 1.0000 | 259,537 | c | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2025_contributions.sql | A8 |
-| POLITICS__ST_NYC_CFB_CAMPAIGN_2025_CONTRIBUTIONS | PAGE_NUMBER | 1.0000 | 259,537 | c | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2025_contributions.sql | A8 |
-| POLITICS__ST_NYC_CFB_CAMPAIGN_2025_CONTRIBUTIONS | PURPOSE_CODE | 0.9983 | 259,537 | c | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2025_contributions.sql | A8 |
-| POLITICS__ST_NYC_CFB_CAMPAIGN_2025_CONTRIBUTIONS | STREET_NUMBER | 1.0000 | 259,537 | c | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2025_contributions.sql | A8 |
+| POLITICS__ST_NYC_CFB_CAMPAIGN_2001_CONTRIBUTION | EXEMPT_CODE | 0.9999 | 193,741 | a | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2001_contribution.sql | A6 |
+| POLITICS__ST_NYC_CFB_CAMPAIGN_2001_CONTRIBUTION | SEQUENCE_NUMBER | 1.0000 | 193,741 | a | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2001_contribution.sql | A6 |
+| POLITICS__ST_NYC_CFB_CAMPAIGN_2009_CONTRIBUTION | EXEMPT_CODE | 0.9999 | 146,112 | a | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2009_contribution.sql | A6 |
+| POLITICS__ST_NYC_CFB_CAMPAIGN_2009_CONTRIBUTION | INTERMEDIARY_STREET_NUMBER | 1.0000 | 146,112 | a | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2009_contribution.sql | A6 |
+| POLITICS__ST_NYC_CFB_CAMPAIGN_2009_CONTRIBUTION | PAGE_NUMBER | 1.0000 | 146,112 | a | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2009_contribution.sql | A6 |
+| POLITICS__ST_NYC_CFB_CAMPAIGN_2009_CONTRIBUTION | PURPOSE_CODE | 0.9948 | 146,112 | a | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2009_contribution.sql | A6 |
+| POLITICS__ST_NYC_CFB_CAMPAIGN_2009_CONTRIBUTION | SEQUENCE_NUMBER | 1.0000 | 146,112 | a | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2009_contribution.sql | A6 |
+| POLITICS__ST_NYC_CFB_CAMPAIGN_2013_CONTRIBUTION | EXEMPT_CODE | 0.9999 | 197,968 | a | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2013_contribution.sql | A6 |
+| POLITICS__ST_NYC_CFB_CAMPAIGN_2013_CONTRIBUTION | INTERMEDIARY_STREET_NUMBER | 1.0000 | 197,968 | a | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2013_contribution.sql | A6 |
+| POLITICS__ST_NYC_CFB_CAMPAIGN_2013_CONTRIBUTION | STREET_NUMBER | 1.0000 | 197,968 | a | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2013_contribution.sql | A6 |
+| POLITICS__ST_NYC_CFB_CAMPAIGN_2021_CONTRIBUTIONS | EXEMPT_CODE | 1.0000 | 457,521 | a | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2021_contributions.sql | A6 |
+| POLITICS__ST_NYC_CFB_CAMPAIGN_2021_CONTRIBUTIONS | PAGE_NUMBER | 1.0000 | 457,521 | a | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2021_contributions.sql | A6 |
+| POLITICS__ST_NYC_CFB_CAMPAIGN_2021_CONTRIBUTIONS | STREET_NUMBER | 1.0000 | 457,521 | a | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2021_contributions.sql | A6 |
+| POLITICS__ST_NYC_CFB_CAMPAIGN_2025_CONTRIBUTIONS | INTERMEDIARY_STREET_NUMBER | 1.0000 | 259,537 | a | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2025_contributions.sql | A6 |
+| POLITICS__ST_NYC_CFB_CAMPAIGN_2025_CONTRIBUTIONS | PAGE_NUMBER | 1.0000 | 259,537 | a | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2025_contributions.sql | A6 |
+| POLITICS__ST_NYC_CFB_CAMPAIGN_2025_CONTRIBUTIONS | PURPOSE_CODE | 0.9983 | 259,537 | a | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2025_contributions.sql | A6 |
+| POLITICS__ST_NYC_CFB_CAMPAIGN_2025_CONTRIBUTIONS | STREET_NUMBER | 1.0000 | 259,537 | a | M/marts/politics_lobbying/politics__st_nyc_cfb_campaign_2025_contributions.sql | A6 |
 | PROCUREMENT__FED_USASPENDING_BULK | EVALUATED_PREFERENCE_CODE | 1.0000 | 49,613 | c | M/marts/procurement/procurement__fed_usaspending_bulk.sql | A8 |
 | REFERENCE__FED_DHS_HIFLD | ZIP | 1.0000 | 500 | c | M/marts/reference/reference__fed_dhs_hifld.sql | A8 |
-| SCIENCE_RESEARCH__XC_BIORXIV_MEDRXIV | FUNDER_ROR_ID | 1.0000 | 432 | c | M/marts/science_research/science_research__xc_biorxiv_medrxiv.sql:18 | A8 |
-| SCIENCE_RESEARCH__XC_BIORXIV_MEDRXIV | FUNDING_ID_TYPE | 1.0000 | 432 | c | M/marts/science_research/science_research__xc_biorxiv_medrxiv.sql:39 | A8 |
+| SCIENCE_RESEARCH__XC_BIORXIV_MEDRXIV | FUNDER_ROR_ID | 1.0000 | 432 | a | M/marts/science_research/science_research__xc_biorxiv_medrxiv.sql:18 | A5 |
+| SCIENCE_RESEARCH__XC_BIORXIV_MEDRXIV | FUNDING_ID_TYPE | 1.0000 | 432 | a | M/marts/science_research/science_research__xc_biorxiv_medrxiv.sql:39 | A5 |
 | SCIENCE__INTL_EMBL_ENSEMBL | TAXON_ID | 1.0000 | 643 | c | M/marts/science/science__intl_embl_ensembl.sql:24 | A8 |
 | TRANSPORT__FED_FRA_CASUALTIES | COVERED_DATA_CODE | 0.9984 | 1,150,788 | c | M/marts/transport/transport__fed_fra_casualties.sql | A8 |
-| TRANSPORT__FED_NTSB_AVIATION_AIRCRAFT | OPER_CERT | 1.0000 | 31,503 | c | M/marts/transport/transport__fed_ntsb_aviation_aircraft.sql | A8 |
-| TRANSPORT__FED_NTSB_AVIATION_AIRCRAFT | OPRTNG_CERT | 1.0000 | 31,503 | c | M/marts/transport/transport__fed_ntsb_aviation_aircraft.sql | A8 |
-| TRANSPORT__FED_NTSB_AVIATION_EVENTS | FICHE_NUMBER | 1.0000 | 30,968 | c | M/marts/transport/transport__fed_ntsb_aviation_events.sql | A8 |
-| TRANSPORT__FED_NTSB_AVIATION_EVENTS | NTSB_DOCKET | 1.0000 | 30,968 | c | M/marts/transport/transport__fed_ntsb_aviation_events.sql | A8 |
+| TRANSPORT__FED_NTSB_AVIATION_AIRCRAFT | OPER_CERT | 1.0000 | 31,503 | a | M/marts/transport/transport__fed_ntsb_aviation_aircraft.sql | A6 |
+| TRANSPORT__FED_NTSB_AVIATION_AIRCRAFT | OPRTNG_CERT | 1.0000 | 31,503 | a | M/marts/transport/transport__fed_ntsb_aviation_aircraft.sql | A6 |
+| TRANSPORT__FED_NTSB_AVIATION_EVENTS | FICHE_NUMBER | 1.0000 | 30,968 | a | M/marts/transport/transport__fed_ntsb_aviation_events.sql | A6 |
+| TRANSPORT__FED_NTSB_AVIATION_EVENTS | NTSB_DOCKET | 1.0000 | 30,968 | a | M/marts/transport/transport__fed_ntsb_aviation_events.sql | A6 |
 
 ## Notes on the (c) rows that need a named source URL
 
@@ -240,3 +240,37 @@ Path prefix `M/` = `library-onboarding/ripple_dbt/models/`. Action codes:
 - NYC CFB (17 cols across 5 cycle tables): `STREET_NUMBER` / `PAGE_NUMBER` / `SEQUENCE_NUMBER` /
   `INTERMEDIARY_STREET_NUMBER` are 100% NULL in **every** cycle table — that consistency argues
   for a dropped-column-group ingest bug; promote to (b) if the publisher CSV carries them.
+
+## Byte-check resolutions (2026-08-11 follow-up session)
+
+Four (c) clusters resolved against publisher source bytes. Verdict column updated above
+(c→a); NOT promoted to (b) — none were loader bugs.
+
+- **NYC CFB (17 cols, 5 cycle tables) → publisher-absent.** Downloaded CFB-Data.zip
+  (102MB, the exact file the loader ingests) and scanned 50k raw rows of
+  `2021_Contributions.csv`: `PAGENO`, `SEQUENCENO`, `STRNO`, `STRNAME`, `APARTMENT`,
+  `INTSTRNO`, `INTSTRNM`, `INTAPTNO` are all 0 non-blank in the publisher's own file —
+  CFB redacts filing page/sequence and street-number address detail from its public
+  export. The all-cycles-identical pattern is redaction, not a dropped column group.
+  `EXEMPTCD` (2/50k) and `PURPOSECD` (70/50k) are genuinely near-empty at source too.
+  Documented in all five cycle staging schema.yml files. No reload needed.
+- **NTSB aviation (4 cols) → publisher-absent.** Downloaded avall.zip (95.6MB) and
+  queried avall.mdb directly via the Access ODBC driver: `ntsb_docket` and
+  `fiche_number` are 0 non-null of 30,968 events rows; `oper_cert` and `oprtng_cert`
+  are 0 non-null of 31,503 aircraft rows. NTSB ships them empty. Documented in the
+  events/aircraft staging schema.yml files. No reload needed.
+- **EPA corporate crosswalk (3 cols) → structural sparsity + one stale scan row.**
+  Read-only funnel on the 5,300,149-row table: only 1.40% of facilities name-match a
+  GLEIF LEI; 13.9% of those have an ACTIVE ultimate parent (`ULTIMATE_PARENT_LEI`
+  0.19% overall); `PARENT_CIK` needs a further unique EDGAR name match (0.16%). Most
+  facilities have no public-company/LEI parent — by design of the match ladder.
+  **`PARENT_UEI` is NOT dead: 427,515 rows populated (8.07%) in both landing and mart
+  today; the scan row above (0.9928 dead) is stale.** Documented in the crosswalk
+  mart schema yml.
+- **biorxiv funder IDs (2 cols) → publisher-sparse.** The bioRxiv details API DOES
+  emit structured funder objects (name/id/id-type='ROR'/award) but only on ~6% of
+  manuscripts (9 funder entries per 150 records sampled; id populated 8/9, id-type
+  always 'ROR'). Our 432-row landing sample mixes details/pubs/stats shapes, so
+  all-NULL is consistent with upstream sparsity at this size — not a mart bug. A
+  fuller details-endpoint ingest would populate a minority of rows. Documented in the
+  biorxiv staging schema.yml.

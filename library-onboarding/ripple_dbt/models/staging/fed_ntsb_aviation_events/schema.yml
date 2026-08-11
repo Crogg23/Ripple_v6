@@ -13,3 +13,13 @@ models:
     columns:
       - name: ev_id
         data_tests: [not_null, unique]
+      - name: ntsb_docket
+        description: >-
+          PUBLISHER-ABSENT (byte-check 2026-08-11): 0 of 30,968 rows non-null in
+          NTSB's own avall.mdb (fresh download from data.ntsb.gov). NTSB ships the
+          column empty; 100% NULL here is faithful to source, NOT a loader bug.
+      - name: fiche_number
+        description: >-
+          PUBLISHER-ABSENT (byte-check 2026-08-11): 0 non-null in NTSB's own
+          avall.mdb — legacy microfiche field NTSB no longer populates. Faithful
+          to source, NOT a loader bug.

@@ -15,3 +15,12 @@ models:
         data_tests: [not_null]
       - name: aircraft_key
         data_tests: [not_null]
+      - name: oper_cert
+        description: >-
+          PUBLISHER-ABSENT (byte-check 2026-08-11): 0 of 31,503 rows non-null in
+          NTSB's own avall.mdb (fresh download from data.ntsb.gov). NTSB ships the
+          column empty; 100% NULL here is faithful to source, NOT a loader bug.
+      - name: oprtng_cert
+        description: >-
+          PUBLISHER-ABSENT (byte-check 2026-08-11): 0 non-null in NTSB's own
+          avall.mdb — see oper_cert note. Faithful to source, NOT a loader bug.
