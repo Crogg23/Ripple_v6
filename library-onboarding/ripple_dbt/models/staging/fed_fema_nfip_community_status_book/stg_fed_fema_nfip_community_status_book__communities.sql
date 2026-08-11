@@ -4,7 +4,7 @@ with
 
 source as (
 
-    select * from {{ source('ripple_raw', 'FED_FEMA_NFIP_COMMUNITY_STATUS_BOOK') }}
+    select * from {{ source('ripple_raw', 'FED_FEMA_NFIP_COMMUNITY_STATUS_BOOK_FULL_R2') }}
 
 ),
 
@@ -38,10 +38,11 @@ renamed as (
         try_to_number(trim(NONSFHADISCOUNT))             as non_sfha_discount_pct,
         try_to_timestamp_ntz(left(trim(LASTREFRESH), 23), 'YYYY-MM-DD"T"HH24:MI:SS.FF3') as last_refresh_at,
 
-        -- metadata
-        to_timestamp_ntz(INGESTED_AT, 6)                 as _ingested_at,
-        SOURCE_RUN_ID                                    as _source_run_id,
-        SRC_SHA256                                       as _src_sha256
+        -- metadata (the full-pull table lands _INGESTED_AT as TIMESTAMP_NTZ
+        -- already — no epoch conversion needed, unlike the old landing table)
+        _INGESTED_AT                                     as _ingested_at,
+        _SOURCE_RUN_ID                                   as _source_run_id,
+        _SRC_SHA256                                      as _src_sha256
 
     from source
 

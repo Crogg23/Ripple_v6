@@ -1,11 +1,16 @@
 version: 2
 
+# 2026-08-11 full re-pull: the mart is now the CDC dataset catalog. The old
+# zip_code not_null test is gone with the column itself — ZIP_CODE (and FIPS)
+# were synthetic always-null columns flagged by the dead-ID triage, and the
+# publisher catalog never had them.
 models:
   - name: health__fed_cdc_data_portal
+    description: >
+      CDC Open Data Portal dataset catalog, full 2026-08-11 pull (1,471
+      rows). GRAIN: one row per dataset (dataset_id = Socrata resource id).
     columns:
       - name: dataset_id
         data_tests:
           - not_null
-      - name: zip_code
-        data_tests:
-          - not_null
+          - unique

@@ -1,11 +1,24 @@
 version: 2
 
+# post_url is NOT the key and never was: on the 2026-08-11 full pull, 10,394 of
+# 30,661 rows have no post URL and 469 URLs repeat (groups reuse one onion
+# homepage link across many victim posts — publisher-side duplication, and the
+# duplicated rows are NOT identical records, so no dedupe). The old `unique`
+# test on post_url was already failing with 460 dups on the capped data.
+# Verified grain: (post_title, group_name, discovered) — unique on all rows.
 models:
   - name: justice__xc_ransomwarelive_victims
+    description: >
+      Ransomware.live victim posts, full 2026-08-11 pull (30,661 rows). One
+      row per victim post: (post_title, group_name, discovered).
     columns:
       - name: post_title
         data_tests:
           - not_null
-      - name: post_url
-        data_tests:
-          - unique
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - post_title
+              - group_name
+              - discovered

@@ -232,14 +232,16 @@ partd_agg AS (
 -- trap_usaspending_grain).
 -- ---------------------------------------------------------------------------
 sam AS (
+    -- Full 2026-08-11 re-pull renamed UEI->UNIQUE_ENTITY_ID and
+    -- ENTITY_NAME->NAME in the landing table.
     SELECT
-        uei,
-        MAX(entity_name)                                     AS entity_name,
+        UNIQUE_ENTITY_ID                                     AS uei,
+        MAX(NAME)                                            AS entity_name,
         MAX(classification)                                  AS classification,
         MAX(exclusion_type)                                  AS exclusion_type,
         MAX(excluding_agency)                                AS excluding_agency
-    FROM {{ source('ripple_raw', 'FED_SAM_EXCLUSIONS') }}
-    WHERE uei IN (SELECT uei FROM uei_keys)
+    FROM {{ source('ripple_raw', 'FED_SAM_EXCLUSIONS_FULL_R2') }}
+    WHERE UNIQUE_ENTITY_ID IN (SELECT uei FROM uei_keys)
     GROUP BY 1
 ),
 usasp_agg AS (
@@ -350,7 +352,7 @@ enriched AS (
             WHEN 'banned_but_paid'                  THEN 'LIBRARY_RAW.LANDING.FED_HHS_OIG_LEIE'
             WHEN 'excluded_but_billing'             THEN 'LIBRARY_RAW.LANDING.FED_HHS_OIG_LEIE'
             WHEN 'banned_but_operating'             THEN 'LIBRARY_RAW.LANDING.FED_HHS_OIG_LEIE'
-            WHEN 'debarred_but_funded'              THEN 'LIBRARY_RAW.LANDING.FED_SAM_EXCLUSIONS'
+            WHEN 'debarred_but_funded'              THEN 'LIBRARY_RAW.LANDING.FED_SAM_EXCLUSIONS_FULL_R2'
             WHEN 'sanctioned_vessel_broadcasting'   THEN 'LIBRARY_RAW.LANDING.FED_OFAC_SDN'
             WHEN 'sanctioned_vessel_broadcasting_v2' THEN 'LIBRARY_STAGING.DBT_CROGERS.INT_SANCTIONED_VESSELS'
             WHEN 'sec_filer_in_irs_bmf'             THEN 'LIBRARY_RAW.LANDING.FED_SEC_EDGAR_FINANCIALS'
@@ -514,7 +516,7 @@ enriched AS (
             WHEN 'sanctioned_vessel_broadcasting_v2' THEN
                 'AIS activity is a Jan 1-8 2024 US-coastal archive snapshot that PRE-DATES most 2025-26 sanctions listings — an appearance is historical presence, never current broadcasting.'
             WHEN 'debarred_but_funded' THEN
-                'FED_SAM_EXCLUSIONS holds 9,000 rows (confirmed live 2026-07-30; a 2026-07-24 re-pour replaced the earlier ~1,000-row capped sample) and ACTIVATION_DATE is still blank on every row — breadth is a floor and no debarment-date timeline is possible.'
+                'FED_SAM_EXCLUSIONS_FULL_R2 holds 167,928 rows (re-pulled in full 2026-08-11; replaces the ~9K capped table) and ACTIVE_DATE is populated (YYYY-MM-DD), so a debarment-date timeline is now possible.'
             WHEN 'excluded_but_billing' THEN
                 'Part D landing table carries no program-year column — no billing-date timeline is possible.'
             WHEN 'osha_cohort_outlier_2024' THEN

@@ -5,10 +5,17 @@ sources:
     database: LIBRARY_RAW
     schema: LANDING
     tables:
-      - name: XC_RANSOMWARELIVE_VICTIMS
+      - name: XC_RANSOMWARELIVE_VICTIMS_FULL_R2
         description: >
-          Raw landing table for Ransomware.live — global ransomware victim tracker. Grain not yet determined.
+          Raw landing table for Ransomware.live — global ransomware victim
+          tracker. Re-pulled in full 2026-08-11 (30,661 rows). POST_URL is NOT
+          unique in the publisher file: 10,394 rows have no post URL at all,
+          and 469 URLs repeat (groups reuse one onion homepage link across
+          many victim posts). The verified record grain is
+          (POST_TITLE, GROUP_NAME, DISCOVERED).
 
 models:
   - name: stg_xc_ransomwarelive_victims__records
-    description: "Minimal passthrough staging (grain undetermined). Needs manual review."
+    description: >
+      Passthrough staging. Grain verified 2026-08-11 on the full pull:
+      (post_title, group_name, discovered) is unique.

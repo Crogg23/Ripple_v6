@@ -1,8 +1,19 @@
 version: 2
 
+# 2026-08-11 full re-pull note: the old not_null test on bill_number was an
+# artifact of the 118th-119th-only cap. In the full file (113,512 rows),
+# BILL_NUMBER is blank on 23,918 historical/procedural roll-calls — that is
+# correct publisher data (not every roll-call is on a bill), so the test was
+# removed rather than papered over.
 models:
   - name: politics__fed_voteview_rollcall_meta
-    columns:
-      - name: bill_number
-        data_tests:
-          - not_null
+    description: >
+      Voteview roll-call metadata, full 2026-08-11 pull (all congresses).
+      Grain: (congress, chamber, rollnumber).
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - congress
+              - chamber
+              - rollnumber

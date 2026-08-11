@@ -5,10 +5,22 @@ sources:
     database: LIBRARY_RAW
     schema: LANDING
     tables:
-      - name: FED_CDC_DATA_PORTAL
+      - name: FED_CDC_DATA_PORTAL_FULL
         description: >
-          Raw landing table for CDC Open Data Portal (data.cdc.gov). Grain not yet determined.
+          Raw landing table for the CDC Open Data Portal (data.cdc.gov),
+          re-pulled in full 2026-08-11 (1,471 rows). SCHEMA CHANGE: the full
+          pull is the Socrata DATASET CATALOG (one row per dataset,
+          RESOURCE_ID unique) — the old capped table's indicator-observation
+          columns (INDICATOR, YEAR, STATE, VALUE, and the always-null
+          synthetic FIPS / ZIP_CODE) do not exist in the publisher catalog.
 
 models:
   - name: stg_fed_cdc_data_portal__records
-    description: "Minimal passthrough staging (grain undetermined). Needs manual review."
+    description: >
+      GRAIN: one row per CDC dataset (dataset_id = Socrata resource id,
+      unique; verified 2026-08-11 on the full pull).
+    columns:
+      - name: dataset_id
+        data_tests:
+          - not_null
+          - unique

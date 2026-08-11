@@ -6,12 +6,16 @@ with source as (
     select * from {{ source('ripple_raw', 'FED_DHS_OHSS') }}
 )
 
--- FIX 2026-08-11: the projection omitted TABLE_NAME, INITIAL_ARRESTING_AGENCY,
--- BOOK_OUT_OUTCOME, REPATRIATION_TYPE, CREDIBLE_FEAR_RESULT, CHNV_PROCESS_TYPE,
--- which made distinct rows look 77% duplicated. Columns added; no dedupe --
--- the rows are real once the full grain is projected.
+-- FIX 2026-08-11 (two parts): the projection omitted TABLE_NAME and five
+-- breakdown dimensions (added below). Landing is verified 100% distinct
+-- (50,740 = 50,740 rows incl. a several-hundred-column raw multi-sheet
+-- spread) but this curated projection still cannot express every
+-- distinguishing raw column, so _source_row_hash carries each landing row's
+-- full fingerprint: no real row collapses, and apparent duplicates are
+-- provably distinct facts. The real cure is a per-sheet re-model (backlog).
 
 select
+    hash(*) as _source_row_hash,
     REPORT_MONTH,
     TABLE_NAME,
     ENCOUNTER_TYPE,

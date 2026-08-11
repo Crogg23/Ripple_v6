@@ -5,24 +5,25 @@ sources:
     database: LIBRARY_RAW
     schema: LANDING
     tables:
-      - name: INTL_FR_DATA_GOUV
+      - name: INTL_FR_DATA_GOUV_FULL
         description: >
-          Raw landing table for data.gouv.fr. All columns arrive as TEXT and
-          are cast in the staging layer.
+          Raw landing table for data.gouv.fr, re-pulled in full 2026-08-11
+          (130,431 rows). DATASET-grain publisher export: ID and SLUG are both
+          unique; the old capped table's dataset+resource grain and RESOURCE_*
+          columns no longer exist. ORGANIZATION_ID is null on ~6.6K
+          user-owned (non-organization) datasets. All columns arrive as TEXT
+          and are cast in the mart layer.
 
 models:
   - name: stg_intl_fr_data_gouv__records
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (DATASET_ID+RESOURCE_ID unique). SPINE_ENTITY: (not determined)."
+    description: >
+      GRAIN: one row per dataset (dataset_id unique; verified 2026-08-11 on
+      the full pull, 130,431 distinct IDs in 130,431 rows).
     columns:
       - name: dataset_id
         data_tests:
           - not_null
-      - name: resource_id
+          - unique
+      - name: slug
         data_tests:
           - not_null
-    data_tests:
-      - dbt_utils.unique_combination_of_columns:
-          arguments:
-            combination_of_columns:
-              - dataset_id
-              - resource_id

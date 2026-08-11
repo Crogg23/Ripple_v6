@@ -201,7 +201,12 @@ models:
         politics__fed_voteview_rollcalls:
           +enabled: false  # raw twin of politics__voteview_votes (agrees, 945,523 rows; redundant)
         politics__fed_voteview_rollcall_meta:
-          +enabled: false  # raw twin of politics__voteview_rollcalls (agrees, 3,364 rows; redundant)
+          # Re-enabled 2026-08-11: no longer a twin. Repointed to the full-history
+          # re-pull (113,512 roll-calls, 1789-present, publisher-exact) while the
+          # canonical Python-built chain still covers only the 118th-119th
+          # congresses (3,364). When the canonical chain is extended to full
+          # history, re-evaluate which one retires.
+          +enabled: true
       historical_records:
         historical_records__fed_slavevoyages_intraamerican:
           +enabled: true  # re-enabled 2026-07-24: source re-ingested (11.5K rows)

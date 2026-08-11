@@ -5,17 +5,21 @@ sources:
     database: LIBRARY_RAW
     schema: LANDING
     tables:
-      - name: FED_FEMA_NFIP_COMMUNITY_STATUS_BOOK
+      - name: FED_FEMA_NFIP_COMMUNITY_STATUS_BOOK_FULL_R2
         description: >
           Raw landing table for the FEMA National Flood Insurance Program
           Community Status Book (community participation, flood-map dates, and
-          CRS class ratings). All data columns arrive as TEXT.
+          CRS class ratings). Re-pulled in full 2026-08-11 (25,125 rows,
+          COMMUNITYIDNUMBER unique). All data columns arrive as TEXT; metadata
+          columns are _INGESTED_AT (TIMESTAMP_NTZ) / _SOURCE_RUN_ID /
+          _SRC_SHA256.
 
 models:
   - name: stg_fed_fema_nfip_community_status_book__communities
     description: >
       Staged NFIP community status book; one row per community ID number
-      (exact key, 25,122 rows), keeping the most recently ingested record.
+      (exact key, 25,125 rows, re-pulled in full 2026-08-11), keeping the most
+      recently ingested record.
       Date columns mix ISO timestamps and MM/DD/YY strings; the currently
       effective map date may carry a "(M)" suffix and is kept raw alongside
       the parsed date.

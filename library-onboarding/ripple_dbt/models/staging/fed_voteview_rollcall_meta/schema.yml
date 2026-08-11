@@ -5,9 +5,12 @@ sources:
     database: LIBRARY_RAW
     schema: LANDING
     tables:
-      - name: FED_VOTEVIEW_ROLLCALL_META
+      - name: FED_VOTEVIEW_ROLLCALL_META_FULL
         description: >
-          Raw landing table for Voteview -- Roll-Call Metadata. Grain not yet determined.
+          Raw landing table for Voteview -- Roll-Call Metadata. Re-pulled in
+          full 2026-08-11 (113,512 rows, all congresses; the old capped table
+          held the 118th-119th only). Grain: (CONGRESS, CHAMBER, ROLLNUMBER)
+          unique. BILL_NUMBER is blank on ~24K historical/procedural votes.
 
 models:
   - name: stg_fed_voteview_rollcall_meta__records

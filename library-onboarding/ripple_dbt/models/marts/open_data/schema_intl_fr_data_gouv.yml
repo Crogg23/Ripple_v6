@@ -1,24 +1,19 @@
 version: 2
 
+# 2026-08-11 full re-pull: publisher export changed to DATASET grain, so the
+# old (dataset_id, resource_id) combination test is obsolete — resource_id no
+# longer exists. organization_id lost its not_null test on purpose: 6,638 of
+# 130,431 datasets are user-owned (OWNER populated instead) — correct data.
 models:
   - name: open_data__intl_fr_data_gouv
     description: >
-      GRAIN: one row per (dataset_id, resource_id) -- matches the verified
-      grain of the staging model for this same source (stg_intl_fr_data_gouv__
-      records, which qualifies on this exact pair and is tested on it).
+      data.gouv.fr dataset catalog, full 2026-08-11 pull (130,431 rows).
+      GRAIN: one row per dataset (dataset_id unique; slug also unique).
     columns:
       - name: dataset_id
         data_tests:
           - not_null
-      - name: organization_id
+          - unique
+      - name: slug
         data_tests:
           - not_null
-      - name: resource_id
-        data_tests:
-          - not_null
-    data_tests:
-      - dbt_utils.unique_combination_of_columns:
-          arguments:
-            combination_of_columns:
-              - dataset_id
-              - resource_id

@@ -5,10 +5,22 @@ sources:
     database: LIBRARY_RAW
     schema: LANDING
     tables:
-      - name: FED_SAM_EXCLUSIONS
+      - name: FED_SAM_EXCLUSIONS_FULL_R2
         description: >
-          Raw landing table for SAM.gov Exclusions (Federal Debarment List). Grain not yet determined.
+          Raw landing table for SAM.gov Exclusions (Federal Debarment List),
+          re-pulled in full 2026-08-11 (167,928 rows; the old capped
+          FED_SAM_EXCLUSIONS table held ~9K). Publisher column set: SAM_NUMBER
+          is the record key (unique); UNIQUE_ENTITY_ID is sparse BY DESIGN
+          (individual debarments have no UEI) and NOT unique (one entity can
+          carry several exclusion records).
 
 models:
   - name: stg_fed_sam_exclusions__records
-    description: "Minimal passthrough staging (grain undetermined). Needs manual review."
+    description: >
+      One row per exclusion record (SAM_NUMBER). Trim/NULLIF passthrough of the
+      full 2026-08-11 pull.
+    columns:
+      - name: sam_number
+        data_tests:
+          - unique
+          - not_null

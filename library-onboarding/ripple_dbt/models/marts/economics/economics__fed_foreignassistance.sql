@@ -2,7 +2,7 @@
 
 -- GRAIN: one row per foreign assistance transaction
 -- DEDUP (2026-08-11 verification): the landing load came from a runaway
--- generated pager (3,967,456 rows, 95,658 real, 97.6% exact duplicates).
+-- generated pager (3.97M landed rows, 95,658 real, 97.6% exact duplicates).
 -- Exact data rows are collapsed here so the mart is correct even before
 -- the landing table itself is swapped clean.
 

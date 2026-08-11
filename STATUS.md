@@ -1,88 +1,71 @@
-# RIPPLE STATUS — 2026-08-11 (evening) — the verification session: the warehouse got its first full physical
+# RIPPLE STATUS — 2026-08-11 (late) — the repair session: all 14 defect classes worked same-day
 
 *One screen. Rewritten (never appended) at the end of every session. Sessions read
 this at boot and brief Chris in chat — Chris never has to open it.*
 
-**BROKE: nothing new broken by this session — but the sweep FOUND ~50 broken
-sources.** This session measured and logged; it deliberately fixed nothing.
+**BROKE: nothing.** One self-inflicted flaw was caught and contained: the
+commodity-trading history backfill appended 7,790 mis-sliced rows to one raw
+table before its date parsing was fixed — they are exactly identifiable, the
+mart filters them out, and the cleanup DELETE is on Chris's one-liner list.
 
-**The question this session answered:** "Is my warehouse accurate and reliable?"
-Full verdict with evidence: `reports/warehouse_verification_2026-08-11.md`.
+**What this session was:** the same-day answer to the morning verification.
+Every one of the 14 defect classes is now fixed + guarded, honestly labeled,
+or retracted as a false alarm. Full delta in the same nine-question frame:
+`reports/warehouse_repair_2026-08-11.md`.
 
-**The one-paragraph answer:** The core is real. 16 of 18 records spot-checked
-field-by-field against publishers' own sites match exactly, and of 181 sources
-where a publisher total could be found, 128 (71%) are complete. But ~50 of 558
-sources would produce a confident wrong chart today: 33.5M exact-duplicate rows
-(mostly one runaway loader), one table loaded with the wrong file entirely, one
-registry with a blank key column and epoch-dates, 30 sources materially short,
-8 holding more than the publisher advertises.
+**Headlines:**
 
-**Worst offenders (full ranked list of 14 classes in the report):**
+1. **Two of the worst findings were false alarms** — the FDA raw-table "wipe"
+   (those tables store JSON bundles; counted correctly they're full and
+   publisher-matched) and the corporate-exceptions "9.5x over" (true grain,
+   wrong publisher figure). Retractions documented; the checker traps are in
+   memory + report.
+2. **Everything else got fixed**: both runaway-duplication sources (marts now
+   at true row counts, guarded), credit-union reports reloaded from the right
+   file and verified to the dollar, commodity-trading dates fixed AND full
+   1986–2026 history loaded (publisher-exact 287,053), sanctions birth dates
+   and biologics date pivots corrected, 7 short sources re-pulled to
+   publisher-complete, 10 husks honestly labeled as samples, ~20 duplicate-row
+   marts root-caused and fixed (missing dimensions, bad casts, real dedupes),
+   10 redundant model files retired, 433k literal-"null" cells repaired.
+3. **The uniqueness test suite ran for the first time ever** (1,173/1,186
+   pass; every failure diagnosed and fixed or re-grained). A sanctioned test
+   wrapper now exists; every fixed class has a regression guard, each verified
+   to fail on the bad state first. Offline suite: 2,807 passed.
+4. **Post-repair scan is clean** on all 27 touched marts (worst residue: 0.2%
+   publisher-side near-dups on one sanctions list, documented).
 
-1. Mortgage database: 19.05M rows are 7,204 real rows duplicated ~2,600x.
-2. Credit-union call reports: the column-dictionary sheet got loaded as the
-   data — table is unusable.
-3. Aircraft registry: tail-number key 100% blank AND all four date columns
-   epoch-corrupted to 1970.
-4. Commodity-trading reports: one date column 100% epoch-corrupted (second date
-   column fine, rescuable); also only 6% of publisher's full history.
-5. Foreign-aid spending: 97.6% duplicate rows.
-6. Eight FDA raw landing tables truncated/wiped (their marts are mostly fine;
-   two marts genuinely short: device adverse events 2.7M of 25.7M, establishment
-   registrations 263k of 333k).
-7. 30 sources short vs publisher (lobbying filings 9%, federal register 9%,
-   GLEIF relationships 73%, sanctions-exclusions round-cap, etc.); 8 sources
-   OVER (FEC multi-cycle loads, GLEIF exceptions 9.5x, EPA facilities 2x).
-8. 104 ID-named columns ≥99% blank across 43 tables; sanctions birth dates
-   carry a 1970-01-01 sentinel on 7,406 rows.
-9. Uniqueness tests exist on 505/607 marts but there's no evidence the dbt
-   suite has actually been RUN since the last two weeks of rebuilds.
-10. 16 tables errored out of the scan (ICIJ offshore leaks among them) — still
-    unverified either way.
+**Live/open items:**
 
-**Verified clean:** encoding basically fine (9 tables, ≤1.25% sampled rows);
-557/606 mart tables free of material exact-dups; both big 2026-08-10 re-pulls
-(banks 27,836, daily cash ledger 478,149) confirmed exact against publisher.
-
-**Evidence files (receipts, not homework):** completeness per source, key/date/
-dup scan per table, 18 value spot-checks, mojibake scan — all in `outputs/`
-with date suffix 2026-08-11, referenced from the report.
-
-**Live/open items carried forward:**
-
-- Disaster-aid reload still running (20.1M of 25.9M at last check, checkpoint
-  updating). When done: repair 'nan' cells, rebuild staging+mart, drop sample
-  label, reseed connections.
-- UK company-ownership load still blocked on the Chris-only wipe (same
-  one-liner as before).
-- Drop list (Chris-only, ~50 tables): `reports/duplicate_ingest_drop_list_2026-08-10.md`.
-- Key-gated on Chris: broadband map, wage-and-hour, Senate lobbying.
-- Immigration court records still a husk (12.6M rows, no loader yet).
-- Repo-side routing fix (2026-08-11) moved model FILES but warehouse tables
-  still sit in wrong schemas (hospice under immigration, commodity-trading
-  under education, lobbying under education). Cosmetic in warehouse, visible in
-  every scan.
+- Disaster-aid reload STILL RUNNING (loader healthy, ~20.3M of 25.9M, slowed
+  near the tail). When it lands: sentinel repair → staging+mart rebuild →
+  drop sample label → reseed connections. A watcher is armed; next session
+  should check the checkpoint first.
+- Chris's one-liner list (all in `reports/repair_session_chris_gates_2026-08-11.md`):
+  dedupe swap run, wrong-file table drop, ~10 orphaned-table drops, the
+  7,790-row DELETE + backfill rerun, two priced FDA re-pulls (device adverse
+  events ~$5-10/hours; establishment top-up <$1), the old UK wipe, the
+  2026-08-10 drop list, three API-key signups (lobbying = biggest gap left).
+- Backlog (documented, not urgent): 107 dead-ID columns needing source-file
+  byte checks (`outputs/dead_id_columns_triage_2026-08-11.md`), per-sheet
+  re-model of the immigration-stats spreadsheet dump, schema-routing table
+  moves, federal register full pull, immigration court records loader.
 
 **YOUR MOVE:**
 
-1. Read the verdict (it's in the chat brief + report). Decide repair order —
-   suggested first wave is the top 5 above, all truth-lane fixes a session can
-   do without you, but the ORDER of what gets fixed first is yours if you care;
-   otherwise next session starts at #1.
-2. Same two one-liners as before (UK wipe; drop list).
-3. Separate call worth making soon (not this session's lane): whether the next
-   sessions keep hardening data or first make the platform USABLE end-to-end
-   (workbench/catalog/reading room have never produced a satisfying answer
-   end-to-end). That's a taste call, so it's yours.
+1. Run the one-liner list when you're ready — nothing else waits on it.
+2. Say go/no-go on the two priced FDA pulls.
+3. The strategy call from last session still stands: keep hardening data vs
+   make the platform usable end-to-end. The warehouse is now in materially
+   better shape for either.
 
 **NEXT SESSION:**
 
-1. Boot trust check; finish disaster-aid chain when the load lands.
-2. Repair wave 1 (dup purges, credit-union reload, aircraft registry re-parse,
-   commodity-trading date fix) with regression tests per the tdd streak.
-3. Get the dbt uniqueness suite actually running on a schedule and captured in
-   artifacts, so "guarded" means guarded.
+1. Boot trust check; finish the disaster-aid chain if landed.
+2. If Chris ran the one-liners: verify swaps/drops, rerun the dedupe tool
+   verify pass, rerun the commodity backfill for 2006-09.
+3. Otherwise: the backlog above, or Chris's strategy pick.
 
-**COST:** ~$2–4 warehouse credit (one aggregate pass over 590 tables + sampled
-scans, X-Small; metadata free). Agent spend: 12 background agents for publisher
-checks (~10-15 min each). Single session.
+**COST:** ~$5-10 warehouse credit (mass mart rebuilds, dedupe scans, first
+full test-suite run, post-repair scan — X-Small throughout). ~10 background
+agents. Single session, same day as the verification.

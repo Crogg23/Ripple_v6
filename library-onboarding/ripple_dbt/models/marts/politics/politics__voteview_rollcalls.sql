@@ -2,6 +2,8 @@
 
 -- Roll-call metadata, keyed (congress, chamber, rollnumber). The denominator +
 -- context (date, yea/nay counts, question, bill) for the votes matrix.
+-- Re-pulled in full 2026-08-11: staging now covers all congresses
+-- (113,512 landing rows; was 118th-119th only).
 
 select
     congress, chamber, rollnumber, vote_date, session,
