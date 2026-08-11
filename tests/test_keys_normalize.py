@@ -265,3 +265,36 @@ def test_bioguide_icpsr_roundtrip_real_values(sf):
     assert _norm(sf, "ICPSR", "40305") == "40305"
     assert _norm(sf, "ICPSR", "5611") == "5611"
     assert _norm(sf, "ICPSR", "") is None
+
+
+# ---- placeholder-ID merge guard (2026-08-11 spine audit) ------------------ #
+def test_pad_mode_rejects_repeated_digit_and_sequential_placeholders():
+    """EIN '999999999' fused CVS, SK Telecom, Kingsway Financial, Enstar and a
+    literal 'TEST Company' into ONE spine entity across 16 source tables (spine
+    audit, 2026-08-11): filers who don't have/won't give an EIN write a filler
+    value, and a filler shared by N filers is a false merge, not an identity.
+    All-zeros was already nulled; the same argument covers any single repeated
+    digit and the keyboard-walk sequentials. Drop, never risk a false match."""
+    sql = normalize_sql("EIN", "X")
+    assert "REPEAT(LEFT(" in sql, "no repeated-digit placeholder guard"
+    assert "'123456789'" in sql and "'987654321'" in sql
+
+
+@pytest.mark.snowflake
+@pytest.mark.parametrize("key,value", [
+    ("EIN", "999999999"), ("EIN", "99-9999999"), ("EIN", "111111111"),
+    ("EIN", "123456789"), ("EIN", "987654321"),
+    ("NPI", "1111111111"), ("NPI", "1234567890"), ("CCN", "111111"),
+])
+def test_placeholder_ids_normalize_to_null(sf, key, value):
+    assert _norm(sf, key, value) is None
+
+
+@pytest.mark.snowflake
+@pytest.mark.parametrize("key,value,expect", [
+    ("EIN", "37-0602744", "370602744"),   # a real, heavily-shared EIN stays
+    ("NPI", "1164450573", "1164450573"),
+    ("CCN", "010001", "010001"),
+])
+def test_real_ids_survive_the_placeholder_guard(sf, key, value, expect):
+    assert _norm(sf, key, value) == expect

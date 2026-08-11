@@ -45,6 +45,12 @@ _NAME_NOISE = sorted({
     "MD", "DO", "DDS", "DMD", "RN", "NP", "PHD", "ESQ", "JR", "SR", "II", "III", "IV",
     "MR", "MRS", "MS", "DR",
 })
+# Mirror of connect/keys.PAD_PLACEHOLDERS (drift-guarded by tests).
+PAD_PLACEHOLDERS = (
+    "123456789", "987654321", "1234567890", "0987654321",
+    "12345678", "87654321", "123456", "654321",
+)
+
 _NORM = {"NPI": ("pad", 10), "EIN": ("pad", 9), "CIK": ("pad", 10), "CCN": ("pad", 6),
          "UEI": ("fixed", 12), "IMO": ("imo", 7)}
 
@@ -85,10 +91,19 @@ def normalize_sql(key: str, col: str) -> str:
     if mode == "pad":
         # The digits-only guard: every pad-mode key (NPI/EIN/CIK/CCN) is purely
         # numeric, so a letter anywhere means a text sentinel, not a real ID.
+        # Placeholder guard (2026-08-11 spine audit, mirrors connect/keys.py):
+        # repeated-digit and keyboard-walk fillers merged CVS, SK Telecom,
+        # Kingsway Financial and a literal 'TEST Company' into one entity on
+        # EIN '999999999'. Kept character-identical to connect/keys.py.
+        padded = f"LPAD({clean}, {width}, '0')"
+        placeholders = ", ".join(f"'{v}'" for v in PAD_PLACEHOLDERS)
         return (f"CASE WHEN LENGTH({clean}) = 0 OR LENGTH({clean}) > {width} "
                 f"OR NOT REGEXP_LIKE({clean}, '^[0-9]+$') "
-                f"OR LPAD({clean}, {width}, '0') = REPEAT('0', {width}) THEN NULL "
-                f"ELSE LPAD({clean}, {width}, '0') END")
+                f"OR {padded} = REPEAT('0', {width}) "
+                f"OR (LENGTH({clean}) >= 4 AND {clean} = REPEAT(LEFT({clean}, 1), LENGTH({clean}))) "
+                f"OR {padded} = REPEAT(LEFT({padded}, 1), {width}) "
+                f"OR {clean} IN ({placeholders}) OR {padded} IN ({placeholders}) THEN NULL "
+                f"ELSE {padded} END")
     if mode == "fixed":
         return f"CASE WHEN LENGTH({clean}) = {width} THEN {clean} ELSE NULL END"
     if mode == "imo":

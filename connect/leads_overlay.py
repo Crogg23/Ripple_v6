@@ -53,7 +53,7 @@ DETECTORS = [
 LABEL = {
     "FED_HHS_OIG_LEIE":            "OIG exclusions\n(LEIE)",
     "FED_OFAC_SDN":                "OFAC sanctions\n(SDN)",
-    "FED_SAM_EXCLUSIONS":          "SAM debarments",
+    "FED_SAM_EXCLUSIONS_FULL_R2":  "SAM debarments",
     "INT_SANCTIONED_VESSELS":      "Sanctioned vessels\n(OFAC ∪ OpenSanctions)",
     "FED_CMS_OPEN_PAYMENTS":       "CMS Open Payments",
     "INT_OPEN_PAYMENTS_ALL_YEARS": "CMS Open Payments\n(all years)",
@@ -70,7 +70,7 @@ LABEL = {
 # stacks after these instead of crashing the board.
 _ORDER = {
     "FED_HHS_OIG_LEIE": 0, "FED_OFAC_SDN": 1, "INT_SANCTIONED_VESSELS": 2,
-    "FED_SAM_EXCLUSIONS": 3,
+    "FED_SAM_EXCLUSIONS_FULL_R2": 3,
     "INT_OPEN_PAYMENTS_ALL_YEARS": 0, "FED_CMS_OPEN_PAYMENTS": 1,
     "FED_CMS_FACILITY_AFFILIATION": 2, "FED_CMS_PART_D_PRESCRIBERS": 3,
     "FED_NOAA_AIS": 4, "FED_USASPENDING_CONTRACTS": 5,
@@ -82,7 +82,7 @@ KEY_COLOR = {"NPI": "#f4a23a", "IMO": "#3ab0c4", "UEI": "#b07cf0", "EIN": "#7ee0
 # where the node id matches. A table with no count renders as 0 (shown as '?') —
 # never a KeyError.
 ROWS = {
-    "FED_HHS_OIG_LEIE": 83464, "FED_OFAC_SDN": 19115, "FED_SAM_EXCLUSIONS": 1000,
+    "FED_HHS_OIG_LEIE": 83464, "FED_OFAC_SDN": 19115, "FED_SAM_EXCLUSIONS_FULL_R2": 167928,   # full list, 2026-08-11 (was a 9,000-row sample counted as 1,000)
     "FED_CMS_OPEN_PAYMENTS": 15385047, "FED_CMS_FACILITY_AFFILIATION": 2239952,
     "FED_NOAA_AIS": 7296275, "FED_USASPENDING_CONTRACTS": 6325622,
     "FED_SEC_EDGAR_FINANCIALS": 55635, "FED_IRS_BMF": 1974830,

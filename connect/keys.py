@@ -251,6 +251,15 @@ def _addr_canon(col: str) -> str:
 US_COUNTRY_ALIASES = ("US", "USA", "UNITEDSTATES", "UNITEDSTATESOFAMERICA")
 
 
+# Keyboard-walk placeholders seen in ID columns across the Library (spine audit
+# 2026-08-11). Repeated-digit fillers are handled structurally in pad mode; these
+# are the sequential ones no structural rule catches. Never issued as real IDs.
+PAD_PLACEHOLDERS = (
+    "123456789", "987654321", "1234567890", "0987654321",
+    "12345678", "87654321", "123456", "654321",
+)
+
+
 def normalize_sql(key: str, col: str, country_col: str | None = None) -> str:
     """SQL expression canonicalizing `col` for an equi-join on `key`.
 
@@ -297,10 +306,24 @@ def normalize_sql(key: str, col: str, country_col: str | None = None) -> str:
         # after stripping) would otherwise pad to a plausible-looking 9-char value
         # instead of being rejected -- every pad-mode key (NPI/EIN/DUNS/CIK/CCN/MMSI) is
         # purely numeric, so a letter anywhere means dirty input, not a real ID.
+        # 2026-08-11 spine audit: all-zeros was not the only filler. EIN
+        # '999999999' merged CVS, SK Telecom, Kingsway Financial, Enstar and a
+        # literal 'TEST Company' into ONE entity across 16 sources -- filers who
+        # can't or won't give an ID type a placeholder, and a placeholder shared
+        # by N filers is a false merge. So NULL any value that is a single digit
+        # repeated (>=4 long, before OR after padding: '9999999' and '99-9999999'
+        # are the same filler) and the keyboard-walk sequentials. These are not
+        # issued as real EIN/NPI/CCN values, and dropping is the safe direction:
+        # a lost row is a missing edge, a false merge accuses the wrong company.
+        padded = f"LPAD({clean}, {width}, '0')"
+        placeholders = ", ".join(f"'{v}'" for v in PAD_PLACEHOLDERS)
         return (f"CASE WHEN LENGTH({clean}) = 0 OR LENGTH({clean}) > {width} "
                 f"OR NOT REGEXP_LIKE({clean}, '^[0-9]+$') "
-                f"OR LPAD({clean}, {width}, '0') = REPEAT('0', {width}) THEN NULL "
-                f"ELSE LPAD({clean}, {width}, '0') END")
+                f"OR {padded} = REPEAT('0', {width}) "
+                f"OR (LENGTH({clean}) >= 4 AND {clean} = REPEAT(LEFT({clean}, 1), LENGTH({clean}))) "
+                f"OR {padded} = REPEAT(LEFT({padded}, 1), {width}) "
+                f"OR {clean} IN ({placeholders}) OR {padded} IN ({placeholders}) THEN NULL "
+                f"ELSE {padded} END")
     if mode == "fixed":
         return f"CASE WHEN LENGTH({clean}) = {width} THEN {clean} ELSE NULL END"
     if mode == "code":

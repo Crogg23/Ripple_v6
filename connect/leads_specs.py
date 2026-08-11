@@ -127,9 +127,16 @@ JOBS: dict[str, dict] = {
         "title_template": ("{l_name} — federally debarred ({classification}, {exclusion_type}) "
                            "by {excluding_agency}; {count} federal contract awards"),
         "left": {
-            "table": "FED_SAM_EXCLUSIONS",
-            "key": "UEI", "key_col": "UEI",
-            "name_col": "ENTITY_NAME",
+            # Repointed 2026-08-11 (spine audit): was the 9,000-row capped sample
+            # (2,940 UEIs). The full list landed as _FULL_R2 on 2026-08-11 with
+            # 167,928 rows / 38,425 distinct UEIs, so this lens was scoring against
+            # ~5% of the debarment list. Column names differ in the full publisher
+            # extract (UEI -> UNIQUE_ENTITY_ID, ENTITY_NAME -> NAME). ACTIVE_DATE is
+            # populated here, unlike the sample -- an "awarded AFTER debarment"
+            # framing is now possible but is NOT wired yet; the note above still holds.
+            "table": "FED_SAM_EXCLUSIONS_FULL_R2",
+            "key": "UEI", "key_col": "UNIQUE_ENTITY_ID",
+            "name_col": "NAME",
             "carry": {"CLASSIFICATION": "CLASSIFICATION", "EXCLUSION_TYPE": "EXCLUSION_TYPE",
                       "EXCLUDING_AGENCY": "EXCLUDING_AGENCY"},
         },

@@ -1,0 +1,1170 @@
+[
+ {
+  "t": "FED_CMS_NPPES",
+  "k": "NPI",
+  "col": "NPI",
+  "rows": 9606683,
+  "keyed": 9606683,
+  "distinct": 9606683
+ },
+ {
+  "t": "FED_CMS_FACILITY_AFFILIATION",
+  "k": "NPI",
+  "col": "NPI",
+  "rows": 2260193,
+  "keyed": 2260193,
+  "distinct": 940350
+ },
+ {
+  "t": "FED_HHS_OIG_LEIE",
+  "k": "NPI",
+  "col": "NPI",
+  "rows": 83464,
+  "keyed": 8684,
+  "distinct": 8503
+ },
+ {
+  "t": "FED_CMS_HOSPITAL_GENERAL",
+  "k": "CCN",
+  "col": "CCN",
+  "rows": 5432,
+  "keyed": 5268,
+  "distinct": 5268
+ },
+ {
+  "t": "FED_CMS_HOSPICE",
+  "k": "CCN",
+  "col": "CCN",
+  "rows": 6852,
+  "keyed": 5155,
+  "distinct": 5155
+ },
+ {
+  "t": "FED_CMS_HOME_HEALTH",
+  "k": "CCN",
+  "col": "CCN",
+  "rows": 12392,
+  "keyed": 12392,
+  "distinct": 12392
+ },
+ {
+  "t": "FED_CMS_IRF",
+  "k": "CCN",
+  "col": "CCN",
+  "rows": 1222,
+  "keyed": 410,
+  "distinct": 410
+ },
+ {
+  "t": "FED_CMS_LTCH",
+  "k": "CCN",
+  "col": "CCN",
+  "rows": 311,
+  "keyed": 311,
+  "distinct": 311
+ },
+ {
+  "t": "FED_CMS_DIALYSIS",
+  "k": "CCN",
+  "col": "CCN",
+  "rows": 7557,
+  "keyed": 7557,
+  "distinct": 7557
+ },
+ {
+  "t": "FED_CMS_POS_OTHER",
+  "k": "CCN",
+  "col": "CCN",
+  "rows": 44429,
+  "keyed": 41262,
+  "distinct": 41262
+ },
+ {
+  "t": "FED_NURSINGHOME411",
+  "k": "CCN",
+  "col": "CMS_CERTIFICATION_NUMBER_CCN",
+  "rows": 14713,
+  "keyed": 14456,
+  "distinct": 14456
+ },
+ {
+  "t": "FED_CMS_MEDICARE_PROVIDER",
+  "k": "NPI",
+  "col": "NPI",
+  "rows": 1296739,
+  "keyed": 1296739,
+  "distinct": 1296739
+ },
+ {
+  "t": "FED_CMS_OPEN_PAYMENTS",
+  "k": "NPI",
+  "col": "NPI",
+  "rows": 15385047,
+  "keyed": 15336988,
+  "distinct": 979136
+ },
+ {
+  "t": "FED_CMS_OPEN_PAYMENTS_2022",
+  "k": "NPI",
+  "col": "NPI",
+  "rows": 13250000,
+  "keyed": 13198870,
+  "distinct": 856696
+ },
+ {
+  "t": "FED_CMS_OPEN_PAYMENTS_2023",
+  "k": "NPI",
+  "col": "NPI",
+  "rows": 14700786,
+  "keyed": 14656553,
+  "distinct": 933619
+ },
+ {
+  "t": "FED_CMS_PART_D_PRESCRIBERS",
+  "k": "NPI",
+  "col": "NPI",
+  "rows": 1416883,
+  "keyed": 1416883,
+  "distinct": 1416883
+ },
+ {
+  "t": "FED_IRS_BMF",
+  "k": "EIN",
+  "col": "EIN",
+  "rows": 1974830,
+  "keyed": 1974830,
+  "distinct": 1974830
+ },
+ {
+  "t": "FED_IRS_990",
+  "k": "EIN",
+  "col": "EIN",
+  "rows": 200,
+  "keyed": 200,
+  "distinct": 200
+ },
+ {
+  "t": "FED_DOL_FORM5500",
+  "k": "EIN",
+  "col": "SPONS_DFE_EIN",
+  "rows": 33484,
+  "keyed": 33484,
+  "distinct": 29069
+ },
+ {
+  "t": "FED_IRS_REVOCATION",
+  "k": "EIN",
+  "col": "EIN",
+  "rows": 1206628,
+  "keyed": 1206627,
+  "distinct": 1187366
+ },
+ {
+  "t": "INTL_GLEIF",
+  "k": "LEI",
+  "col": "LEI",
+  "rows": 3382301,
+  "keyed": 3382301,
+  "distinct": 3382301
+ },
+ {
+  "t": "FED_CFPB_HMDA",
+  "k": "LEI",
+  "col": "LEI",
+  "rows": 28301,
+  "keyed": 28301,
+  "distinct": 538
+ },
+ {
+  "t": "FED_VOTEVIEW_ROLLCALLS",
+  "k": "ICPSR",
+  "col": "ICPSR",
+  "rows": 945523,
+  "keyed": 945523,
+  "distinct": 639
+ },
+ {
+  "t": "FED_SEC_EDGAR_FINANCIALS",
+  "k": "CIK",
+  "col": "CIK",
+  "rows": 55635,
+  "keyed": 55635,
+  "distinct": 8112
+ },
+ {
+  "t": "FED_SEC_13F_SUBMISSIONS",
+  "k": "CIK",
+  "col": "CIK",
+  "rows": 336124,
+  "keyed": 336124,
+  "distinct": 16273
+ },
+ {
+  "t": "FED_USASPENDING_CONTRACTS",
+  "k": "UEI",
+  "col": "RECIPIENT_UEI",
+  "rows": 6325622,
+  "keyed": 6325622,
+  "distinct": 92833
+ },
+ {
+  "t": "FED_SAM_EXCLUSIONS_FULL_R2",
+  "k": "UEI",
+  "col": "UNIQUE_ENTITY_ID",
+  "rows": 167928,
+  "keyed": 47683,
+  "distinct": 38424
+ },
+ {
+  "t": "FED_SEC_EDGAR_COMPANY_TICKERS",
+  "k": "CIK",
+  "col": "CIK_STR",
+  "rows": 10414,
+  "keyed": 10414,
+  "distinct": 8018
+ },
+ {
+  "t": "FED_OFAC_SDN",
+  "k": "IMO",
+  "col": "IMO",
+  "rows": 19115,
+  "keyed": 2032,
+  "distinct": 2030
+ },
+ {
+  "t": "FED_NOAA_AIS",
+  "k": "IMO",
+  "col": "IMO",
+  "rows": 58106517,
+  "keyed": 24362209,
+  "distinct": 6630
+ },
+ {
+  "t": "FED_DEA_ARCOS_FULL",
+  "k": "DEA_NO",
+  "col": "REPORTER_DEA_NO",
+  "rows": 178598026,
+  "keyed": 178598026,
+  "distinct": 656
+ },
+ {
+  "t": "FED_DEA_ARCOS_FULL",
+  "k": "DEA_NO",
+  "col": "BUYER_DEA_NO",
+  "rows": 178598026,
+  "keyed": 178598026,
+  "distinct": 148588
+ },
+ {
+  "t": "FED_CONGRESS_LEGISLATORS",
+  "k": "BIOGUIDE",
+  "col": "BIOGUIDE",
+  "rows": 12847,
+  "keyed": 12834,
+  "distinct": 12781
+ },
+ {
+  "t": "FED_CONGRESS_COMMITTEE_MEMBERSHIP",
+  "k": "BIOGUIDE",
+  "col": "BIOGUIDE",
+  "rows": 3879,
+  "keyed": 3879,
+  "distinct": 528
+ },
+ {
+  "t": "FED_VOTEVIEW_MEMBERS",
+  "k": "ICPSR",
+  "col": "ICPSR",
+  "rows": 51061,
+  "keyed": 51061,
+  "distinct": 12677
+ },
+ {
+  "t": "FED_VOTEVIEW_MEMBERS",
+  "k": "BIOGUIDE",
+  "col": "BIOGUIDE_ID",
+  "rows": 51061,
+  "keyed": 50993,
+  "distinct": 12584
+ },
+ {
+  "t": "FED_IRS_990_EFILE_INDEX",
+  "k": "EIN",
+  "col": "EIN",
+  "rows": 5544626,
+  "keyed": 5544626,
+  "distinct": 899097
+ },
+ {
+  "t": "FED_FCC_LICENSING",
+  "k": "EIN",
+  "col": "EIN",
+  "rows": 1689338,
+  "keyed": 0,
+  "distinct": 0
+ },
+ {
+  "t": "FED_FAC_SINGLE_AUDIT",
+  "k": "EIN",
+  "col": "AUDITEE_EIN",
+  "rows": 411638,
+  "keyed": 411636,
+  "distinct": 68126
+ },
+ {
+  "t": "FED_FAC_SINGLE_AUDIT",
+  "k": "UEI",
+  "col": "AUDITEE_UEI",
+  "rows": 411638,
+  "keyed": 411638,
+  "distinct": 59493
+ },
+ {
+  "t": "FED_CMS_HCRIS",
+  "k": "CCN",
+  "col": "PROVIDER_CCN",
+  "rows": 6103,
+  "keyed": 6103,
+  "distinct": 6040
+ },
+ {
+  "t": "FED_CMS_NURSING_HOME",
+  "k": "CCN",
+  "col": "CMS_CERTIFICATION_NUMBER__CCN",
+  "rows": 14700,
+  "keyed": 14448,
+  "distinct": 14448
+ },
+ {
+  "t": "FED_GOVINFO_BILL_COSPONSORS",
+  "k": "BIOGUIDE",
+  "col": "COSPONSOR_BIOGUIDE",
+  "rows": 367742,
+  "keyed": 367742,
+  "distinct": 635
+ },
+ {
+  "t": "FED_GOVINFO_BILLSTATUS",
+  "k": "BIOGUIDE",
+  "col": "SPONSOR_BIOGUIDE",
+  "rows": 36465,
+  "keyed": 36465,
+  "distinct": 632
+ },
+ {
+  "t": "FED_CMS_PARTD_PRESCRIBER_DRUG",
+  "k": "NPI",
+  "col": "Prscrbr_NPI",
+  "rows": 25869521,
+  "keyed": 25869521,
+  "distinct": 1057566
+ },
+ {
+  "t": "FED_NSF_AWARDS",
+  "k": "EIN",
+  "col": "EIN",
+  "rows": 125,
+  "keyed": 0,
+  "distinct": 0
+ },
+ {
+  "t": "FED_SEC_INSIDER_REPORTINGOWNER",
+  "k": "CIK",
+  "col": "RPTOWNERCIK",
+  "rows": 1934673,
+  "keyed": 1934673,
+  "distinct": 138006
+ },
+ {
+  "t": "FED_USASPENDING_ASSISTANCE_FULL",
+  "k": "UEI",
+  "col": "recipient_uei",
+  "rows": 19902879,
+  "keyed": 7788545,
+  "distinct": 223721
+ },
+ {
+  "t": "FED_OSHA_ITA_CASE_DETAIL_2024",
+  "k": "EIN",
+  "col": "EIN",
+  "rows": 688649,
+  "keyed": 628248,
+  "distinct": 20523
+ },
+ {
+  "t": "FED_IRS_AUTO_REVOCATIONS",
+  "k": "EIN",
+  "col": "EIN",
+  "rows": 1207295,
+  "keyed": 1207294,
+  "distinct": 1187975
+ },
+ {
+  "t": "FED_OSHA_ITA_CASE_DETAIL_2023",
+  "k": "EIN",
+  "col": "EIN",
+  "rows": 890934,
+  "keyed": 814066,
+  "distinct": 33693
+ },
+ {
+  "t": "FED_IRS_PUB78_ELIGIBLE_DONEES",
+  "k": "EIN",
+  "col": "EIN",
+  "rows": 1435544,
+  "keyed": 1435544,
+  "distinct": 1435544
+ },
+ {
+  "t": "FED_OSHA_ITA_300A_SUMMARY_2024",
+  "k": "EIN",
+  "col": "EIN",
+  "rows": 398620,
+  "keyed": 355334,
+  "distinct": 114603
+ },
+ {
+  "t": "FED_OSHA_ITA_300A_SUMMARY_2023",
+  "k": "EIN",
+  "col": "EIN",
+  "rows": 394234,
+  "keyed": 353299,
+  "distinct": 123206
+ },
+ {
+  "t": "FED_OSHA_ITA_300A_SUMMARY_2025",
+  "k": "EIN",
+  "col": "EIN",
+  "rows": 383283,
+  "keyed": 339960,
+  "distinct": 106218
+ },
+ {
+  "t": "FED_OSHA_ITA_CASE_DETAIL_2025",
+  "k": "EIN",
+  "col": "EIN",
+  "rows": 330447,
+  "keyed": 293328,
+  "distinct": 13387
+ },
+ {
+  "t": "FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS",
+  "k": "NPI",
+  "col": "NPI",
+  "rows": 14425,
+  "keyed": 14425,
+  "distinct": 14421
+ },
+ {
+  "t": "FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS",
+  "k": "CCN",
+  "col": "CCN",
+  "rows": 14425,
+  "keyed": 14250,
+  "distinct": 14250
+ },
+ {
+  "t": "FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS",
+  "k": "NPI",
+  "col": "NPI",
+  "rows": 11508,
+  "keyed": 11508,
+  "distinct": 11467
+ },
+ {
+  "t": "FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS",
+  "k": "CCN",
+  "col": "CCN",
+  "rows": 11508,
+  "keyed": 11413,
+  "distinct": 11413
+ },
+ {
+  "t": "FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS",
+  "k": "NPI",
+  "col": "NPI",
+  "rows": 11063,
+  "keyed": 11063,
+  "distinct": 10269
+ },
+ {
+  "t": "FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS",
+  "k": "CCN",
+  "col": "CCN",
+  "rows": 11063,
+  "keyed": 9954,
+  "distinct": 9954
+ },
+ {
+  "t": "FED_CMS_HOSPITAL_ENROLLMENTS",
+  "k": "NPI",
+  "col": "NPI",
+  "rows": 9175,
+  "keyed": 9175,
+  "distinct": 8717
+ },
+ {
+  "t": "FED_CMS_HOSPITAL_ENROLLMENTS",
+  "k": "CCN",
+  "col": "CCN",
+  "rows": 9175,
+  "keyed": 5966,
+  "distinct": 5966
+ },
+ {
+  "t": "FED_CMS_HOSPICE_ENROLLMENTS",
+  "k": "NPI",
+  "col": "NPI",
+  "rows": 6066,
+  "keyed": 6066,
+  "distinct": 6056
+ },
+ {
+  "t": "FED_CMS_HOSPICE_ENROLLMENTS",
+  "k": "CCN",
+  "col": "CCN",
+  "rows": 6066,
+  "keyed": 4798,
+  "distinct": 4798
+ },
+ {
+  "t": "FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS",
+  "k": "NPI",
+  "col": "NPI",
+  "rows": 5530,
+  "keyed": 5530,
+  "distinct": 5320
+ },
+ {
+  "t": "FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS",
+  "k": "CCN",
+  "col": "CCN",
+  "rows": 5530,
+  "keyed": 5313,
+  "distinct": 5313
+ },
+ {
+  "t": "FED_IRS_SOI_CHARITIES",
+  "k": "EIN",
+  "col": "EIN",
+  "rows": 2450,
+  "keyed": 2450,
+  "distinct": 2450
+ },
+ {
+  "t": "FED_FEC_INDIV_CONTRIBUTIONS",
+  "k": "FEC_CMTE_ID",
+  "col": "CMTE_ID",
+  "rows": 84172112,
+  "keyed": 84172112,
+  "distinct": 12291
+ },
+ {
+  "t": "FED_MSHA_VIOLATIONS",
+  "k": "MINE_ID",
+  "col": "MINE_ID",
+  "rows": 3087266,
+  "keyed": 3087266,
+  "distinct": 31277
+ },
+ {
+  "t": "FED_EPA_FRS_FULL",
+  "k": "FRS_ID",
+  "col": "REGISTRY_ID",
+  "rows": 5300149,
+  "keyed": 5300149,
+  "distinct": 5300149
+ },
+ {
+  "t": "FED_EPA_ECHO",
+  "k": "FRS_ID",
+  "col": "FRS_ID",
+  "rows": 3157891,
+  "keyed": 3135553,
+  "distinct": 3135553
+ },
+ {
+  "t": "FED_FEC_COMMITTEE_TO_CANDIDATE",
+  "k": "FEC_CMTE_ID",
+  "col": "CMTE_ID",
+  "rows": 866730,
+  "keyed": 866730,
+  "distinct": 6270
+ },
+ {
+  "t": "FED_MSHA_ACCIDENTS",
+  "k": "MINE_ID",
+  "col": "MINE_ID",
+  "rows": 273623,
+  "keyed": 273623,
+  "distinct": 13489
+ },
+ {
+  "t": "FED_EPA_SDWA_SDWA_FACILITIES",
+  "k": "PWSID",
+  "col": "PWSID",
+  "rows": 1554832,
+  "keyed": 1554832,
+  "distinct": 430916
+ },
+ {
+  "t": "FED_EPA_FRS_FRS_SIC_CODES",
+  "k": "FRS_ID",
+  "col": "REGISTRY_ID",
+  "rows": 1085211,
+  "keyed": 1082848,
+  "distinct": 831499
+ },
+ {
+  "t": "FED_EPA_AIR_EMISSIONS_POLL_RPT_COMBINED_EMISSIONS",
+  "k": "FRS_ID",
+  "col": "REGISTRY_ID",
+  "rows": 10411826,
+  "keyed": 10411826,
+  "distinct": 162513
+ },
+ {
+  "t": "FED_EPA_SDWA_SDWA_SITE_VISITS",
+  "k": "PWSID",
+  "col": "PWSID",
+  "rows": 2495249,
+  "keyed": 2495249,
+  "distinct": 267052
+ },
+ {
+  "t": "FED_EPA_NPDES_NPDES_INFORMAL_ENFORCEMENT_ACTIONS",
+  "k": "FRS_ID",
+  "col": "REGISTRY_ID",
+  "rows": 826867,
+  "keyed": 826831,
+  "distinct": 112933
+ },
+ {
+  "t": "FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT",
+  "k": "PWSID",
+  "col": "PWSID",
+  "rows": 15432737,
+  "keyed": 15432737,
+  "distinct": 258445
+ },
+ {
+  "t": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+  "k": "FRS_ID",
+  "col": "REGISTRY_ID",
+  "rows": 4406498,
+  "keyed": 4406498,
+  "distinct": 3422891
+ },
+ {
+  "t": "FED_EPA_FRS_FRS_NAICS_CODES",
+  "k": "FRS_ID",
+  "col": "REGISTRY_ID",
+  "rows": 2179702,
+  "keyed": 2178276,
+  "distinct": 1672433
+ },
+ {
+  "t": "FED_EPA_NPDES_NPDES_INSPECTIONS",
+  "k": "FRS_ID",
+  "col": "REGISTRY_ID",
+  "rows": 1900067,
+  "keyed": 1899932,
+  "distinct": 263075
+ },
+ {
+  "t": "FED_EPA_SDWA_SDWA_LCR_SAMPLES",
+  "k": "PWSID",
+  "col": "PWSID",
+  "rows": 927415,
+  "keyed": 927415,
+  "distinct": 89800
+ },
+ {
+  "t": "FED_FEC_BULK_COMMITTEES",
+  "k": "FEC_CMTE_ID",
+  "col": "FEC_CMTE_ID",
+  "rows": 20007,
+  "keyed": 20007,
+  "distinct": 20007
+ },
+ {
+  "t": "FED_FEC_BULK_CANDIDATES",
+  "k": "FEC_CAND_ID",
+  "col": "CAND_ID",
+  "rows": 17900,
+  "keyed": 17900,
+  "distinct": 13240
+ },
+ {
+  "t": "INT_UK_COMPANIES_HOUSE",
+  "k": "COMPANY_NO",
+  "col": "CompanyNumber",
+  "rows": 5734780,
+  "keyed": 5734779,
+  "distinct": 5734779
+ },
+ {
+  "t": "UK_COMPANIES_HOUSE_PSC",
+  "k": "COMPANY_NO",
+  "col": "COMPANY_NUMBER",
+  "rows": 7000000,
+  "keyed": 7000000,
+  "distinct": 5107915
+ },
+ {
+  "t": "FED_FEC_BULK_SUMMARY",
+  "k": "FEC_CAND_ID",
+  "col": "CAND_ID",
+  "rows": 7933,
+  "keyed": 7933,
+  "distinct": 5754
+ },
+ {
+  "t": "INTL_GLEIF_REPEX",
+  "k": "LEI",
+  "col": "LEI",
+  "rows": 6259489,
+  "keyed": 6259489,
+  "distinct": 3142660
+ },
+ {
+  "t": "FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY",
+  "k": "CCN",
+  "col": "CCN",
+  "rows": 31403215,
+  "keyed": 30864691,
+  "distinct": 14443
+ },
+ {
+  "t": "FED_CMS_ORDER_AND_REFERRING",
+  "k": "NPI",
+  "col": "NPI",
+  "rows": 2018354,
+  "keyed": 2018354,
+  "distinct": 2018350
+ },
+ {
+  "t": "FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS",
+  "k": "PWSID",
+  "col": "PWSID",
+  "rows": 578198,
+  "keyed": 578198,
+  "distinct": 413877
+ },
+ {
+  "t": "FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT",
+  "k": "NPI",
+  "col": "NPI",
+  "rows": 2978925,
+  "keyed": 2978925,
+  "distinct": 2541258
+ },
+ {
+  "t": "FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING",
+  "k": "NPI",
+  "col": "NPI",
+  "rows": 2047828,
+  "keyed": 2047828,
+  "distinct": 2047826
+ },
+ {
+  "t": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+  "k": "NPI",
+  "col": "RNDRNG_NPI",
+  "rows": 9781673,
+  "keyed": 9781673,
+  "distinct": 1207473
+ },
+ {
+  "t": "FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE",
+  "k": "NPI",
+  "col": "NPI",
+  "rows": 503917,
+  "keyed": 503917,
+  "distinct": 453202
+ },
+ {
+  "t": "FED_CMS_MEDICARE_DIALYSIS_FACILITIES",
+  "k": "CCN",
+  "col": "CCN",
+  "rows": 12456456,
+  "keyed": 12456456,
+  "distinct": 8241
+ },
+ {
+  "t": "FED_CMS_MEDICARE_DIALYSIS_FACILITIES",
+  "k": "NPI",
+  "col": "NPI",
+  "rows": 12456456,
+  "keyed": 12411454,
+  "distinct": 8140
+ },
+ {
+  "t": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+  "k": "NPI",
+  "col": "RNDRNG_NPI",
+  "rows": 1296739,
+  "keyed": 1296739,
+  "distinct": 1296739
+ },
+ {
+  "t": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+  "k": "PWSID",
+  "col": "PWSID",
+  "rows": 434040,
+  "keyed": 434040,
+  "distinct": 434040
+ },
+ {
+  "t": "FED_EPA_SDWA_SDWA_SERVICE_AREAS",
+  "k": "PWSID",
+  "col": "PWSID",
+  "rows": 422464,
+  "keyed": 422464,
+  "distinct": 378450
+ },
+ {
+  "t": "FED_CMS_NURSING_HOME_DEFICIENCIES",
+  "k": "CCN",
+  "col": "CMS_CERTIFICATION_NUMBER_CCN",
+  "rows": 418479,
+  "keyed": 413329,
+  "distinct": 14383
+ },
+ {
+  "t": "FED_EPA_SDWA_SDWA_EVENTS_MILESTONES",
+  "k": "PWSID",
+  "col": "PWSID",
+  "rows": 394075,
+  "keyed": 394075,
+  "distinct": 98555
+ },
+ {
+  "t": "FED_EPA_SDWA_SDWA_PN_VIOLATION_ASSOC",
+  "k": "PWSID",
+  "col": "PWSID",
+  "rows": 387627,
+  "keyed": 387627,
+  "distinct": 42034
+ },
+ {
+  "t": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+  "k": "FRS_ID",
+  "col": "REGISTRY_ID",
+  "rows": 279728,
+  "keyed": 279541,
+  "distinct": 266026
+ },
+ {
+  "t": "FED_FEC_INDEPENDENT_EXPENDITURES",
+  "k": "FEC_CAND_ID",
+  "col": "cand_id",
+  "rows": 261033,
+  "keyed": 228643,
+  "distinct": 2014
+ },
+ {
+  "t": "FED_EPA_ICIS_FEC_ICIS_FEC_EPA_INSPECTIONS",
+  "k": "FRS_ID",
+  "col": "REGISTRY_ID",
+  "rows": 260556,
+  "keyed": 259137,
+  "distinct": 156326
+ },
+ {
+  "t": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+  "k": "FRS_ID",
+  "col": "REGISTRY_ID",
+  "rows": 204019,
+  "keyed": 203232,
+  "distinct": 113854
+ },
+ {
+  "t": "FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES",
+  "k": "CCN",
+  "col": "CMS_CERTIFICATION_NUMBER_CCN",
+  "rows": 200030,
+  "keyed": 197001,
+  "distinct": 13686
+ },
+ {
+  "t": "FED_MSHA_MINES",
+  "k": "MINE_ID",
+  "col": "MINE_ID",
+  "rows": 91906,
+  "keyed": 91906,
+  "distinct": 91906
+ },
+ {
+  "t": "FED_SEC_EDGAR_INSIDERS",
+  "k": "CIK",
+  "col": "CIK",
+  "rows": 69259,
+  "keyed": 69259,
+  "distinct": 5306
+ },
+ {
+  "t": "FED_CMS_OPT_OUT_AFFIDAVITS",
+  "k": "NPI",
+  "col": "NPI",
+  "rows": 57209,
+  "keyed": 57209,
+  "distinct": 56455
+ },
+ {
+  "t": "FED_EPA_ICIS_FEC_EPA_INFORMAL_ENFORCEMENT_ACTIONS",
+  "k": "FRS_ID",
+  "col": "REGISTRY_ID",
+  "rows": 21930,
+  "keyed": 21930,
+  "distinct": 14606
+ },
+ {
+  "t": "FED_FEC_BULK",
+  "k": "FEC_CMTE_ID",
+  "col": "FEC_CMTE_ID",
+  "rows": 20938,
+  "keyed": 20938,
+  "distinct": 20938
+ },
+ {
+  "t": "FED_FEC_LEADERSHIP_PAC",
+  "k": "FEC_CMTE_ID",
+  "col": "FEC_COMMITTEE_ID",
+  "rows": 8619,
+  "keyed": 8619,
+  "distinct": 8338
+ },
+ {
+  "t": "FED_FEC_BULK_LINKAGES",
+  "k": "FEC_CMTE_ID",
+  "col": "CMTE_ID",
+  "rows": 16327,
+  "keyed": 16327,
+  "distinct": 11427
+ },
+ {
+  "t": "FED_CMS_NURSING_HOME_PENALTIES",
+  "k": "CCN",
+  "col": "CMS_CERTIFICATION_NUMBER_CCN",
+  "rows": 16180,
+  "keyed": 16032,
+  "distinct": 6771
+ },
+ {
+  "t": "FED_SEC_DERA_SUB_2024Q2",
+  "k": "CIK",
+  "col": "CIK",
+  "rows": 7675,
+  "keyed": 7675,
+  "distinct": 6250
+ },
+ {
+  "t": "FED_SEC_DERA_SUB_2024Q2",
+  "k": "EIN",
+  "col": "EIN",
+  "rows": 7675,
+  "keyed": 5820,
+  "distinct": 4744
+ },
+ {
+  "t": "FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS",
+  "k": "NPI",
+  "col": "NPI",
+  "rows": 7240,
+  "keyed": 7239,
+  "distinct": 7239
+ },
+ {
+  "t": "FED_SEC_DERA_SUB_2025Q2",
+  "k": "CIK",
+  "col": "CIK",
+  "rows": 7009,
+  "keyed": 7009,
+  "distinct": 6081
+ },
+ {
+  "t": "FED_SEC_DERA_SUB_2025Q2",
+  "k": "EIN",
+  "col": "EIN",
+  "rows": 7009,
+  "keyed": 5179,
+  "distinct": 4508
+ },
+ {
+  "t": "FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_NON_PHYSICIANS",
+  "k": "NPI",
+  "col": "NPI",
+  "rows": 6880,
+  "keyed": 6880,
+  "distinct": 6880
+ },
+ {
+  "t": "FED_SEC_DERA_SUB_2024Q3",
+  "k": "CIK",
+  "col": "CIK",
+  "rows": 6699,
+  "keyed": 6699,
+  "distinct": 6008
+ },
+ {
+  "t": "FED_SEC_DERA_SUB_2024Q3",
+  "k": "EIN",
+  "col": "EIN",
+  "rows": 6699,
+  "keyed": 5188,
+  "distinct": 4686
+ },
+ {
+  "t": "FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS",
+  "k": "NPI",
+  "col": "NPI",
+  "rows": 6637,
+  "keyed": 6637,
+  "distinct": 6510
+ },
+ {
+  "t": "FED_SEC_DERA_SUB_2025Q3",
+  "k": "CIK",
+  "col": "CIK",
+  "rows": 6541,
+  "keyed": 6541,
+  "distinct": 5909
+ },
+ {
+  "t": "FED_SEC_DERA_SUB_2025Q3",
+  "k": "EIN",
+  "col": "EIN",
+  "rows": 6541,
+  "keyed": 4938,
+  "distinct": 4494
+ },
+ {
+  "t": "FED_SEC_DERA_SUB_2024Q4",
+  "k": "CIK",
+  "col": "CIK",
+  "rows": 6491,
+  "keyed": 6491,
+  "distinct": 5833
+ },
+ {
+  "t": "FED_SEC_DERA_SUB_2024Q4",
+  "k": "EIN",
+  "col": "EIN",
+  "rows": 6491,
+  "keyed": 5126,
+  "distinct": 4663
+ },
+ {
+  "t": "FED_SEC_DERA_SUB_2025Q4",
+  "k": "CIK",
+  "col": "CIK",
+  "rows": 6304,
+  "keyed": 6304,
+  "distinct": 5786
+ },
+ {
+  "t": "FED_SEC_DERA_SUB_2025Q4",
+  "k": "EIN",
+  "col": "EIN",
+  "rows": 6304,
+  "keyed": 4870,
+  "distinct": 4501
+ },
+ {
+  "t": "FED_SEC_DERA_SUB_2025Q1",
+  "k": "CIK",
+  "col": "CIK",
+  "rows": 6231,
+  "keyed": 6231,
+  "distinct": 5672
+ },
+ {
+  "t": "FED_SEC_DERA_SUB_2025Q1",
+  "k": "EIN",
+  "col": "EIN",
+  "rows": 6231,
+  "keyed": 4704,
+  "distinct": 4305
+ },
+ {
+  "t": "FED_SEC_DERA_SUB_2026Q1",
+  "k": "CIK",
+  "col": "CIK",
+  "rows": 6169,
+  "keyed": 6169,
+  "distinct": 5750
+ },
+ {
+  "t": "FED_SEC_DERA_SUB_2026Q1",
+  "k": "EIN",
+  "col": "EIN",
+  "rows": 6169,
+  "keyed": 4530,
+  "distinct": 4236
+ },
+ {
+  "t": "FED_SEC_DERA_SUB_2024Q1",
+  "k": "CIK",
+  "col": "CIK",
+  "rows": 6028,
+  "keyed": 6028,
+  "distinct": 5506
+ },
+ {
+  "t": "FED_SEC_DERA_SUB_2024Q1",
+  "k": "EIN",
+  "col": "EIN",
+  "rows": 6028,
+  "keyed": 4632,
+  "distinct": 4238
+ },
+ {
+  "t": "FED_IRS_EO_PR",
+  "k": "EIN",
+  "col": "EIN",
+  "rows": 2587,
+  "keyed": 2587,
+  "distinct": 2587
+ },
+ {
+  "t": "FED_CMS_OPIOID_TREATMENT_PROGRAM_PROVIDERS",
+  "k": "NPI",
+  "col": "NPI",
+  "rows": 1558,
+  "keyed": 1502,
+  "distinct": 1287
+ },
+ {
+  "t": "FED_CMS_MEDICARE_DIABETES_PREVENTION_PROGRAM",
+  "k": "NPI",
+  "col": "NPI",
+  "rows": 1037,
+  "keyed": 1037,
+  "distinct": 307
+ },
+ {
+  "t": "FED_SEC_CLOSED_END_FUND_INFORMATION",
+  "k": "CIK",
+  "col": "CIK",
+  "rows": 973,
+  "keyed": 973,
+  "distinct": 973
+ },
+ {
+  "t": "FED_SEC_BUSINESS_DEVELOPMENT_COMPANY_REPORT",
+  "k": "CIK",
+  "col": "CIK",
+  "rows": 212,
+  "keyed": 212,
+  "distinct": 212
+ },
+ {
+  "t": "FED_USASPENDING_CONTRACTS_FULL",
+  "k": "UEI",
+  "col": "recipient_uei",
+  "rows": 20000000,
+  "keyed": 19999806,
+  "distinct": 420990
+ }
+]

@@ -51,14 +51,22 @@ def _load_script(name: str, rel: str):
 # facility name. Fixed by adding them (leads_specs.py, leads.py's enrich_name
 # join). This is exactly the kind of change this test exists to make visible,
 # not silently pass through -- recomputed and re-pinned deliberately.
+#
+# 2026-08-11 (spine audit): five hashes moved for two deliberate, measured reasons.
+# (a) The pad-mode normalizer now NULLs placeholder IDs -- EIN '999999999' had fused
+#     CVS, SK Telecom, Kingsway Financial, Enstar and a literal 'TEST Company' into
+#     one spine entity across 16 sources -- so every pad-key lens re-compiles.
+# (b) debarred_but_funded was repointed from the 9,000-row capped SAM sample to the
+#     full 167,928-row list (2,940 -> 38,425 distinct UEIs). Recomputed and re-pinned
+#     on purpose; the vessel lenses are unchanged because IMO is not a pad key.
 GOLDEN_SQL_SHA256 = {
-    "banned_but_operating": "ef2c2cd7eeca0954ca9c8f822341b0471102c62272b4e032e838d9d816d2adb4",
+    "banned_but_operating": "37c7cebedf41ccdc3c03458e222617244896403604b68616be7e09f806ddc198",
     "sanctioned_vessel_broadcasting": "2712127fd0ce1da6e2f3cc2008a7a0910f93d6e21ebaa96877bd1b0e513d1e89",
-    "debarred_but_funded": "58116f2f7526c577aafbcd0c4cd2222e1128b3ad4ff6482fa175639dfd508c1d",
-    "banned_but_paid": "f3d31841f9346765c7ab2f55f74f73a4a2d9958dd6b3ff74fb5de81b235f83aa",
-    "excluded_but_billing": "f6078e517f1247c1e208e469b69adbc59b65b8bdf7e327d8662131e946b2f610",
+    "debarred_but_funded": "b763c4bda0f3e970c3445137a840844e6193938f019525737381b2ea6633d8e7",
+    "banned_but_paid": "dc3203e6ec371c096de3a45bd7aa51f0857ccdd01bf1d4b46aadd7561a8f1954",
+    "excluded_but_billing": "d06a6b4f4e9a35f1441206cc30e1ae9437dbce3c94f755309c52ab004d4698fc",
     "sanctioned_vessel_broadcasting_v2": "4339d5c832a1e26c145ab600194bfc8284cbe9e8f6e53673573249ecc04ecd7e",
-    "sec_filer_in_irs_bmf": "7a76bdfbaacbff7bbbcb5b656ada4cd51e6e5e22a54757c7190f25dc5f198fdc",
+    "sec_filer_in_irs_bmf": "5718caaf82c98b2654934f6d26a28faa4baf9bb6d5a6ab42bb306d53d2b8f846",
 }
 
 

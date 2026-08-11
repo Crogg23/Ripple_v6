@@ -221,9 +221,17 @@ DISPLAY_SPECS: dict[str, dict] = {
         "city": "RECIPIENT_CITY_NAME", "state": "RECIPIENT_STATE_CODE",
         "zip": "RECIPIENT_ZIP_4_CODE", "authority": 4,
     },
-    "FED_SAM_EXCLUSIONS": {                   # UEI organization (the federal debarment flag)
-        "key": "UEI", "key_col": "UEI", "org": "ENTITY_NAME",
-        "city": "CITY", "state": "STATE", "zip": "ZIP", "authority": 5,
+    # Repointed 2026-08-11 (spine audit): the spine was still reading the 9,000-row
+    # capped sample (2,940 distinct UEIs) three weeks after the complete debarment
+    # list landed as ..._FULL_R2 (167,928 rows, 38,425 distinct UEIs -- 13x the
+    # linkable banned parties). The dbt lead queue had already been repointed; the
+    # connection engine had not, so "banned but still operating" was scored against
+    # ~5% of the exclusion list. UEI is populated on 47,684 of 167,928 rows (28%) --
+    # excluded individuals mostly have no UEI, which is publisher reality, not loss.
+    "FED_SAM_EXCLUSIONS_FULL_R2": {           # UEI organization (the federal debarment flag)
+        "key": "UEI", "key_col": "UNIQUE_ENTITY_ID", "org": "NAME",
+        "person": ["LAST", "FIRST"],
+        "city": "CITY", "state": "STATE_PROVINCE", "zip": "ZIP_CODE", "authority": 5,
     },
     "FED_SEC_EDGAR_COMPANY_TICKERS": {        # CIK organization (public-company spine)
         "key": "CIK", "key_col": "CIK_STR", "org": "TITLE", "authority": 5,
@@ -274,10 +282,10 @@ DISPLAY_SPECS: dict[str, dict] = {
                                         # 5.5M rows -- FED_IRS_990 above is a 200-row stub)
         "key": "EIN", "key_col": "EIN", "org": "TAXPAYER_NAME", "authority": 2,
     },
-    "FED_FCC_LICENSING": {             # EIN organization (FCC ULS license holders)
-        "key": "EIN", "key_col": "EIN", "org": "ENTITY_NAME",
-        "city": "CITY", "state": "STATE", "zip": "ZIP_CODE", "authority": 4,
-    },
+    # Dropped 2026-08-11 (spine audit): FCC ULS is one of the platform's documented
+    # masked-ID traps -- the EIN column is present on all 1,689,338 rows and carries a
+    # usable value on ZERO of them (triage code A6). It contributed no entities, only
+    # scan time, and left a dead key looking wired.
     "FED_FAC_SINGLE_AUDIT": {          # EIN organization (federal single-audit clearinghouse,
                                         # auditee only -- AUDITOR_EIN deliberately not wired as
                                         # an extra_key: it's a DIFFERENT entity (the audit firm)
@@ -287,10 +295,13 @@ DISPLAY_SPECS: dict[str, dict] = {
         "authority": 5,
         "extra_keys": [{"key": "UEI", "key_col": "AUDITEE_UEI"}],  # same auditee, same row -- safe
     },
-    "FED_NCUA_CALL_REPORTS": {         # EIN organization (credit union call reports)
-        "key": "EIN", "key_col": "EIN", "org": "CU_NAME",
-        "city": "CITY", "state": "STATE", "zip": "ZIP_CODE", "authority": 5,
-    },
+    # Dropped 2026-08-11 (spine audit): FED_NCUA_CALL_REPORTS held NCUA's account
+    # DICTIONARY, not call reports (2026-08-11 repair, triage code A3) -- its EIN
+    # column was 100% empty, so this spec contributed dead keys. The correct data
+    # reloaded as FED_NCUA_CALL_REPORTS_FOICU / _FS220, and NEITHER carries an EIN
+    # or any other hard ID in our vocabulary (CU_NUMBER is an NCUA-internal charter
+    # number, not a cross-source key). Credit unions therefore have no spine entry
+    # until a real bridge exists; a dead key posing as a live one is worse than none.
     "FED_CMS_HCRIS": {                 # CCN facility (hospital cost reports)
         "key": "CCN", "key_col": "PROVIDER_CCN", "org": "HOSPITAL_NAME",
         "city": "CITY", "state": "STATE_CODE", "zip": "ZIP_CODE", "authority": 3,
@@ -318,10 +329,8 @@ DISPLAY_SPECS: dict[str, dict] = {
         "person": ["Prscrbr_Last_Org_Name", "Prscrbr_First_Name"],
         "city": "Prscrbr_City", "state": "Prscrbr_State_Abrvtn", "authority": 3,
     },
-    "FED_NSF_AWARDS": {                # EIN organization (NSF grant awardees, small table)
-        "key": "EIN", "key_col": "EIN", "org": "AWARDEE_NAME",
-        "city": "CITY", "state": "STATE", "zip": "ZIP", "authority": 6,
-    },
+    # Dropped 2026-08-11 (spine audit): NSF does not publish awardee EINs -- 0 of 125
+    # rows carry one (triage code A6). Same reasoning as FCC ULS above.
     "FED_SEC_INSIDER_REPORTINGOWNER": {  # CIK organization/person (insider filer identity --
                                           # raw column is RPTOWNERCIK, no separator, which is why
                                           # the automated tagger missed it as a key on this table)
