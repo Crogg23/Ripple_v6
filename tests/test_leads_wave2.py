@@ -62,7 +62,7 @@ def _load_script(name: str, rel: str):
 GOLDEN_SQL_SHA256 = {
     "banned_but_operating": "37c7cebedf41ccdc3c03458e222617244896403604b68616be7e09f806ddc198",
     "sanctioned_vessel_broadcasting": "2712127fd0ce1da6e2f3cc2008a7a0910f93d6e21ebaa96877bd1b0e513d1e89",
-    "debarred_but_funded": "b763c4bda0f3e970c3445137a840844e6193938f019525737381b2ea6633d8e7",
+    "debarred_but_funded": "a5d76197f82de9db2b2e445da109f4c921426ec8083c2a42b9fdc20bde8fb8d8",
     "banned_but_paid": "dc3203e6ec371c096de3a45bd7aa51f0857ccdd01bf1d4b46aadd7561a8f1954",
     "excluded_but_billing": "d06a6b4f4e9a35f1441206cc30e1ae9437dbce3c94f755309c52ab004d4698fc",
     "sanctioned_vessel_broadcasting_v2": "4339d5c832a1e26c145ab600194bfc8284cbe9e8f6e53673573249ecc04ecd7e",

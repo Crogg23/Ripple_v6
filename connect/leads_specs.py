@@ -140,10 +140,17 @@ JOBS: dict[str, dict] = {
             "carry": {"CLASSIFICATION": "CLASSIFICATION", "EXCLUSION_TYPE": "EXCLUSION_TYPE",
                       "EXCLUDING_AGENCY": "EXCLUDING_AGENCY"},
         },
+        # Repointed 2026-08-11 (spine audit, second pass): the spine ALREADY indexes
+        # the fuller contracts extract; only this lens was still reading the smaller
+        # one, so the lens undercounted what the map could already see -- 102 debarred
+        # firms with awards instead of 344. CAVEAT, stated because it is real: the
+        # fuller extract itself stopped at a round 20,000,000 rows (a loader cap, not
+        # the publisher's true size), so 344 is a floor. An uncapped re-pull raises it
+        # again; it does not lower it.
         "right": {
-            "table": "FED_USASPENDING_CONTRACTS",
-            "key": "UEI", "key_col": "RECIPIENT_UEI",
-            "carry": {"AWARDING_AGENCY": "AWARDING_AGENCY_NAME", "RECIPIENT_NAME": "RECIPIENT_NAME"},
+            "table": "FED_USASPENDING_CONTRACTS_FULL",
+            "key": "UEI", "key_col": "recipient_uei",
+            "carry": {"AWARDING_AGENCY": "awarding_agency_name", "RECIPIENT_NAME": "recipient_name"},
         },
         "score": {"breadth_w": 1.0, "breadth_div": 100.0},
         "no_fanout_guard": True,
