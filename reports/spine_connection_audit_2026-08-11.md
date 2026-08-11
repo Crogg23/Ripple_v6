@@ -261,3 +261,23 @@ deliberately does not fuse across them.
 `tests/test_connection_agreement_live.py` re-measures all 847 connections and
 fails on any NEW pair that drops below 50% agreement, plus a map-wide floor of
 97%. The legitimate naming-convention pairs are listed with reasons.
+
+### Post-fix re-measure (map rebuilt on the corrected specs)
+
+| | before | after |
+|---|---|---|
+| connections measured | 847 | 829 (the wrong clinic-to-doctor links are gone) |
+| overall name agreement | 99.4% | **99.6%** (90,492,645 of 90,814,433) |
+| connections below 50% agreement | 17 | **0** |
+| water systems named after a well | 430,916 | **0** |
+| committees named after a donor | 3,883 | **0** |
+| not name-checkable (one side unnamed) | 186 | 191 - the honest remaining gap |
+
+The guard test passes against the rebuilt map, and would have failed against the
+old one: the water-system pair, both donor-name pairs and the clinic-to-doctor
+pairs were all below the floor and none of them is on the acknowledged list.
+Findings were re-run afterwards on the corrected map; the counts are unchanged
+(343 debarred firms with federal awards, 773 banned-from-Medicare with drug-money
+records, 236 in billing data), which is the expected result - these fixes changed
+what entities are CALLED and one bad identity link, not who is connected to whom
+on those surfaces.
