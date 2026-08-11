@@ -1,71 +1,72 @@
-# RIPPLE STATUS — 2026-08-11 (late) — the repair session: all 14 defect classes worked same-day
+# RIPPLE STATUS — 2026-08-11 (evening) — the connection audit: is a match TRUE?
 
 *One screen. Rewritten (never appended) at the end of every session. Sessions read
 this at boot and brief Chris in chat — Chris never has to open it.*
 
-**BROKE: nothing.** One self-inflicted flaw was caught and contained: the
-commodity-trading history backfill appended 7,790 mis-sliced rows to one raw
-table before its date parsing was fixed — they are exactly identifiable, the
-mart filters them out, and the cleanup DELETE is on Chris's one-liner list.
+**BROKE: one thing, and it is not from this session.** The roll-call vote
+metadata is modeled into two tables that disagree (113,512 rows vs 3,364). The
+code was repointed during the morning repair session but one table was never
+rebuilt, and it CANNOT be rebuilt with dbt — a standing guard refuses because
+that table mirrors a Python-built canonical one and dbt would overwrite
+reconciled numbers. The offline test suite has been failing on this since the
+repair session. The fix is re-running the Python builder; not forced past the
+guard.
 
-**What this session was:** the same-day answer to the morning verification.
-Every one of the 14 defect classes is now fixed + guarded, honestly labeled,
-or retracted as a false alarm. Full delta in the same nine-question frame:
-`reports/warehouse_repair_2026-08-11.md`.
+**What this session was:** the first measurement of the layer every story rides
+on — when Ripple says two records are the same company, is that true? Full
+detail: `reports/spine_connection_audit_2026-08-11.md`.
 
 **Headlines:**
 
-1. **Two of the worst findings were false alarms** — the FDA raw-table "wipe"
-   (those tables store JSON bundles; counted correctly they're full and
-   publisher-matched) and the corporate-exceptions "9.5x over" (true grain,
-   wrong publisher figure). Retractions documented; the checker traps are in
-   memory + report.
-2. **Everything else got fixed**: both runaway-duplication sources (marts now
-   at true row counts, guarded), credit-union reports reloaded from the right
-   file and verified to the dollar, commodity-trading dates fixed AND full
-   1986–2026 history loaded (publisher-exact 287,053), sanctions birth dates
-   and biologics date pivots corrected, 7 short sources re-pulled to
-   publisher-complete, 10 husks honestly labeled as samples, ~20 duplicate-row
-   marts root-caused and fixed (missing dimensions, bad casts, real dedupes),
-   10 redundant model files retired, 433k literal-"null" cells repaired.
-3. **The uniqueness test suite ran for the first time ever** (1,173/1,186
-   pass; every failure diagnosed and fixed or re-grained). A sanctioned test
-   wrapper now exists; every fixed class has a regression guard, each verified
-   to fail on the bad state first. Offline suite: 2,807 passed.
-4. **Post-repair scan is clean** on all 27 touched marts (worst residue: 0.2%
-   publisher-side near-dups on one sanctions list, documented).
+1. **One real wrong merge, found and fixed.** A placeholder tax ID of all nines
+   had fused CVS Pharmacy, SK Telecom, Kingsway Financial, Enstar Group and a
+   literal "TEST Company" into a single entity spanning 16 sources. The
+   normalizer rejected all-zeros but not all-nines or keyboard walks. Fixed in
+   both copies (engine + reading room), guards red-first.
+2. **The banned-but-operating work was reading 5% of the banned list.** The
+   spine and that lens still pointed at the 9,000-row capped debarment sample
+   three weeks after — and four hours after — the full 167,928-row list landed
+   under a new name. Repointed. Debarred firms holding federal contracts: **53
+   before, 102 after.**
+3. **Where joins fire, they are honest.** Debarred-firm-to-contract on the
+   12-character federal entity ID: 99 of 102 have matching company names on both
+   sides. Excluded-provider-to-pharma-payment on provider ID: 336 of 350 exact
+   surname matches, and all 14 others are hyphen/spacing variants of the same
+   person. 93.9% of 806M spine input rows carry a usable hard key.
+4. **Three dead sources removed from the who's-who** (a retired credit-union
+   file, FCC licensing, NSF awards) — their ID columns were usable on zero rows.
+5. **Recall gap found, deliberately NOT wired:** a fuller federal-contracts copy
+   would raise debarred-with-awards from 102 to 343 — but that copy is itself
+   truncated at a suspiciously round 20 million rows. Repointing to a known-short
+   table trades one wrong number for another; it needs a clean re-pull first.
 
 **Live/open items:**
 
-- Disaster-aid reload STILL RUNNING (loader healthy, ~20.3M of 25.9M, slowed
-  near the tail). When it lands: sentinel repair → staging+mart rebuild →
-  drop sample label → reseed connections. A watcher is armed; next session
-  should check the checkpoint first.
-- Chris's one-liner list (all in `reports/repair_session_chris_gates_2026-08-11.md`):
-  dedupe swap run, wrong-file table drop, ~10 orphaned-table drops, the
-  7,790-row DELETE + backfill rerun, two priced FDA re-pulls (device adverse
-  events ~$5-10/hours; establishment top-up <$1), the old UK wipe, the
-  2026-08-10 drop list, three API-key signups (lobbying = biggest gap left).
-- Backlog (documented, not urgent): 107 dead-ID columns needing source-file
-  byte checks (`outputs/dead_id_columns_triage_2026-08-11.md`), per-sheet
-  re-model of the immigration-stats spreadsheet dump, schema-routing table
-  moves, federal register full pull, immigration court records loader.
+- Disaster-aid reload still running, healthy (~21.5M of 25.9M). Post-landing
+  chain unchanged.
+- Every fix above is code-side. **None of it is in the warehouse until the
+  who's-who build re-runs** — see YOUR MOVE.
+- Chris's earlier one-liner list is still outstanding
+  (`reports/repair_session_chris_gates_2026-08-11.md`).
 
 **YOUR MOVE:**
 
-1. Run the one-liner list when you're ready — nothing else waits on it.
-2. Say go/no-go on the two priced FDA pulls.
-3. The strategy call from last session still stands: keep hardening data vs
-   make the platform usable end-to-end. The warehouse is now in materially
-   better shape for either.
+1. **The one decision: re-run the who's-who build?** ~4.5 hours on the small
+   warehouse, roughly **$10–15**. It is a full rebuild, not a catch-up: the
+   placeholder fix changes how every ID is canonicalized, so a partial run would
+   leave the bad merges in place. Until it runs, the 32M-entity map and the
+   debarment lens keep serving the old, wrong-in-two-ways state. Say go and it
+   starts; say wait and nothing breaks further.
+2. Still open from this morning: the one-liner list, and go/no-go on the two
+   priced FDA pulls.
 
 **NEXT SESSION:**
 
-1. Boot trust check; finish the disaster-aid chain if landed.
-2. If Chris ran the one-liners: verify swaps/drops, rerun the dedupe tool
-   verify pass, rerun the commodity backfill for 2006-09.
-3. Otherwise: the backlog above, or Chris's strategy pick.
+1. Boot trust check; finish the disaster-aid chain if it landed.
+2. If Chris said go: run the who's-who rebuild, then re-measure the same
+   precision numbers against the rebuilt layer.
+3. Otherwise: the roll-call mart rebuild via its Python builder, and the two
+   recall gaps (uncapped contracts pull, IRS 990 e-file index).
 
-**COST:** ~$5-10 warehouse credit (mass mart rebuilds, dedupe scans, first
-full test-suite run, post-repair scan — X-Small throughout). ~10 background
-agents. Single session, same day as the verification.
+**COST:** well under $1 of warehouse credit (sampling and metadata queries only,
+small warehouse throughout). No agents. No spend without a price tag.
