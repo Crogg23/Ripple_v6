@@ -1,0 +1,9 @@
+{"table": "FINANCE.FINANCE__FED_EPA_ICIS_FEC_CASE_FACILITIES", "sampled": 2000, "mojibake_rows": 1}
+{"table": "POLITICS.POLITICS__ST_NYC_CFB_CAMPAIGN_2013_CONTRIBUTION", "sampled": 2000, "mojibake_rows": 1}
+{"table": "ENVIRONMENT.ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES", "sampled": 2000, "mojibake_rows": 3}
+{"table": "CORPORATE_REGISTRY.CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_OFFICERS", "sampled": 2000, "mojibake_rows": 1}
+{"table": "ENVIRONMENT.ENVIRONMENT__FED_EPA_RCRA_FACILITIES", "sampled": 2000, "mojibake_rows": 1}
+{"table": "LABOR.LABOR__FED_OSHA_ITA_CASE_DETAIL_2024", "sampled": 2000, "mojibake_rows": 2}
+{"table": "ENVIRONMENT.ENVIRONMENT__FED_NOAA_STORM_EVENTS", "sampled": 2000, "mojibake_rows": 25}
+{"table": "EDUCATION.EDUCATION__FED_SENATE_LDA_FILINGS", "sampled": 1730, "mojibake_rows": 1}
+{"table": "POLITICS.POLITICS__FED_MEDSL_HOUSE_RETURNS", "sampled": 306, "mojibake_rows": 1}

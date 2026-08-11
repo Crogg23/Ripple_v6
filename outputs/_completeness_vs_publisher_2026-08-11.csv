@@ -1,0 +1,558 @@
+source_id,verdict,publisher_total,our_rows,evidence_url,note
+fed_dea_arcos_full,COMPLETE,178598026,178598026,https://www.washingtonpost.com/national/2019/07/18/how-download-use-dea-pain-pills-database/,Exact match to the Washington Post-released full ARCOS transaction count (178.6M rows).
+FED_USASPENDING_ASSISTANCE_FULL,UNKNOWN,,19902879,https://www.usaspending.gov/,No cheap advertised total for all assistance awards FY2007-FY2026; count API requires heavy paged POST queries.
+fed_eoir_case_data,UNKNOWN,,12631225,https://www.justice.gov/eoir/foia-library-0,EOIR FOIA zip has no advertised record count on the landing page.
+uk_companies_house_psc,UNKNOWN,,7000000,http://download.companieshouse.gov.uk/en_pscdata.html,Snapshot page lists file sizes not record counts; exactly 7000000 is a suspiciously round number suggesting a load cap.
+xc_epa_corporate_crosswalk,UNKNOWN,,5300149,,Internal derived crosswalk; no external publisher total exists.
+fed_epa_frs_frs_facilities,UNKNOWN,,3277557,https://www.epa.gov/frs,EPA does not advertise a precise FRS facility count on cheap metadata endpoints.
+fed_cms_facility_affiliation,COMPLETE,2260193,2260193,https://data.cms.gov/provider-data/api/1/datastore/query/27ea-46a8/0?limit=1&count=true&results=false,CMS datastore API count is 2260193 - exact match.
+FED_SEC_INSIDER_REPORTINGOWNER,UNKNOWN,,1934673,https://www.sec.gov/data-research/sec-markets-data/insider-transactions-data-sets,SEC quarterly insider data sets do not advertise per-file record counts.
+fed_fcc_licensing,UNKNOWN,,1689338,https://www.fcc.gov/uls/index.htm,ULS weekly dumps have no advertised total record count.
+intl_opensanctions_default,COMPLETE,1285996,1281846,https://data.opensanctions.org/datasets/latest/default/index.json,Live target_count 1285996 vs ours 1281846 (0.3% below a daily-growing collection).
+fed_itis_longnames,UNKNOWN,,993346,https://www.itis.gov/,ITIS does not advertise a longnames table row count without querying the database.
+intl_ie_cro,UNKNOWN,,821697,https://opendata.cro.ie/,CKAN resource metadata carries no row count for the companies CSV; full-file download so likely complete but unverified.
+fed_google_polads_advertiser_geo_spend,UNKNOWN,,614078,https://console.cloud.google.com/marketplace/product/transparency-report/google-political-ads,BigQuery public table row count requires a warehouse-style query (out of bounds here).
+fed_epa_icis_air_icis_air_programs,UNKNOWN,,457581,https://echo.epa.gov/tools/data-downloads,EPA ECHO/ICIS-Air download docs do not advertise per-table record counts.
+fed_osha_ita_300a_summary_2024,UNKNOWN,,398620,https://www.osha.gov/Establishment-Specific-Injury-and-Illness-Data,OSHA ITA page does not publish a 2024 establishment record count.
+fed_govinfo_bill_cosponsors,UNKNOWN,,367742,https://www.govinfo.gov/bulkdata/BILLSTATUS,Cosponsor rows are our own extract from BILLSTATUS XML; no publisher row count exists.
+fed_epa_npdes_npdes_se_violations,UNKNOWN,,305478,https://echo.epa.gov/tools/data-downloads,No advertised record count for the NPDES violations table.
+fed_fra_crossing_incidents,COMPLETE,251149,251149,https://data.transportation.gov/resource/7wn6-i5b9.json?$select=count(*),Socrata count(*) returns 251149 - exact match.
+fed_itis_nodc_ids,UNKNOWN,,209565,https://www.itis.gov/,No advertised count for the ITIS NODC crosswalk table.
+fed_irs_soi,UNKNOWN,,179796,https://www.irs.gov/statistics/soi-tax-stats-statistics-of-income,SOI is a family of aggregate statistical tables with no single advertised record count.
+fed_epa_icis_fec_case_enforcement_conclusion_facilities,UNKNOWN,,150877,https://echo.epa.gov/tools/data-downloads,No advertised count for the ICIS FE&C conclusion-facilities table.
+fed_usgs_orphaned_oil_gas_wells,COMPLETE,117672,117672,https://www.sciencebase.gov/catalog/item/62ebd67bd34eacf539724c56,USGS publication documents 117672 orphaned wells in this dataset - exact match.
+FED_MSHA_MINES,COMPLETE,91944,91906,https://arlweb.msha.gov/opengovernmentdata/DataSets/Mines.zip,Downloaded Mines.txt has 91944 data rows vs our 91906 (0.04%); mart is exactly 2x landing - likely mart double-count.
+fed_atf_ffl,UNKNOWN,,77514,https://www.atf.gov/firearms/listing-federal-firearms-licensees,ATF monthly FFL listings carry no advertised record count; 77k is plausible for one month but unverified.
+xc_uk_sanctions_list,UNKNOWN,,57883,https://www.gov.uk/government/publications/the-uk-sanctions-list,UK publishes ~4k designations; our 57883 is clearly exploded sub-rows so no comparable publisher total.
+FED_FEC_PAC_SUMMARY,UNKNOWN,,48395,https://www.fec.gov/data/browse-data/?tab=bulk-data,FEC bulk per-cycle webk files carry no advertised row counts; mart is ~2x landing - possible mart double-count.
+fed_hud_assisted_housing_projects,UNKNOWN,,35601,https://www.huduser.gov/portal/datasets/assthsg.html,HUD Picture of Subsidized Households project file has no advertised record count.
+fed_cfpb_hmda,SHORT,,28301,https://ffiec.cpfb.gov/data-publication/,National HMDA LAR is millions of records per year (~25M in 2023); our 28301 rows is a tiny subset unless a deliberate filter was intended.
+fed_fracfocus_water_source,UNKNOWN,,23747,https://fracfocus.org/data-download,FracFocus does not advertise per-table record counts.
+fed_hrsa_uds_service_delivery_sites,COMPLETE,19045,19038,https://data.hrsa.gov/DataDownload/DD_Files/Health_Center_Service_Delivery_and_LookAlike_Sites.csv,Live CSV has 19045 data rows vs our 19038 (0.04% on a refreshed file).
+fed_cms_nursing_home_penalties,UNKNOWN,,16180,https://data.cms.gov/provider-data/,Could not identify the exact provider-data dataset id cheaply to pull its datastore count.
+intl_healthcanada_dpd_drug,COMPLETE,13384,13383,https://www.canada.ca/content/dam/hc-sc/documents/services/drug-product-database/drug.zip,Downloaded drug.txt has 13384 lines vs our 13383 - match within one row on a refreshed extract.
+xc_wapo_fatal_force,COMPLETE,10430,10430,https://raw.githubusercontent.com/washingtonpost/data-police-shootings/master/v2/fatal-police-shootings-data.csv,Live CSV has 10430 data rows - exact match.
+FED_FEC_LEADERSHIP_PAC,COMPLETE,8619,8619,https://www.fec.gov/files/bulk-downloads/2024/ccl24.zip,Downloaded ccl.txt has 8619 rows - exact match; mart is exactly 2x landing - likely mart double-count.
+fed_eia860_3_3_solar,UNKNOWN,,7154,https://www.eia.gov/electricity/data/eia860/,EIA-860 schedule 3.3 solar tab has no advertised row count without opening the workbook.
+fed_sec_dera_sub_2024q4,UNKNOWN,,6491,https://www.sec.gov/data-research/sec-markets-data/financial-statement-data-sets,DERA quarterly zip does not advertise sub.txt row counts; download-and-count exceeded the time box.
+fed_cms_hospice_enrollments,UNKNOWN,,6066,https://data.cms.gov/,Could not identify the exact CMS dataset endpoint cheaply for a datastore count.
+intl_de_govdata,SAMPLE_DECLARED,155500,5000,https://www.govdata.de/ckan/api/3/action/package_search?rows=0,Declared sample; CKAN reports 155500 datasets on the portal.
+fed_fdic_failed_banks,COMPLETE,4115,4115,https://api.fdic.gov/banks/failures?limit=1,API meta.total is 4115 - exact match to landing; note mart holds only 3584 (mart short of landing).
+fed_voteview_rollcall_meta,SHORT,113512,3364,https://voteview.com/static/data/out/rollcalls/HSall_rollcalls.csv,Publisher file has 113512 data rows (all rollcalls 1789-present); we hold only 3364.
+fed_va_allcause_mortality,UNKNOWN,,2808,https://www.mentalhealth.va.gov/MENTALHEALTH/docs/data-sheets/2025/All-Cause_Mortality_Data_Appendix_2018-2023_508.xlsx,Multi-sheet XLSX appendix with no advertised record count; counting cheaply was not possible in the time box.
+fed_ed_nces_cip_codes,COMPLETE,2318,2318,https://nces.ed.gov/ipeds/cipcode/Files/CIPCode2010.csv,Live CSV has 2318 data rows - exact match.
+fed_eia861_utility_data,UNKNOWN,,1701,https://www.eia.gov/electricity/data/eia861/,EIA-861 workbooks carry no advertised record count.
+fed_hrsa_uds_health_center_info,UNKNOWN,,1356,https://data.hrsa.gov/tools/data-reporting/program-data,HRSA reports ~1400 funded health centers but no exact advertised table count; 1356 is plausible.
+st_oehha_proposition_65_list,UNKNOWN,,1021,https://oehha.ca.gov/proposition-65/proposition-65-list,OEHHA list page (~1000+ chemicals) has no machine-readable advertised count; landing 1021 plausible; mart 952 is below landing.
+fed_msrb_registrants,COMPLETE,924,925,https://www.msrb.org/exportregistrant?page&_format=csv,Live export has 924 data rows vs our 925 - within one row on a live registry.
+xc_jcs_coa,UNKNOWN,,705,https://epstein.wustl.edu/judicial-common-space,Academic zip of Stata files; no advertised record count on the landing page.
+fed_fec_api,SAMPLE_DECLARED,,500,https://api.open.fec.gov/developers/,Declared sample; OpenFEC holds millions of filings/records - no single advertised total.
+xc_nagix_dprk_missile_tests,COMPLETE,342,340,https://raw.githubusercontent.com/nagix/nk-missile-tests/master/data/test.en.json,Live JSON contains 342 test records vs our 340 (within 1% on an updated file).
+fed_treasury_debt_outstanding,COMPLETE,237,237,https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/debt_outstanding?page[size]=1,FiscalData API total-count is 237 - exact match.
+fed_itis_taxon_unit_types,UNKNOWN,,182,https://www.itis.gov/,Small ITIS lookup table with no advertised count.
+fed_nsf_awards,SHORT,,125,https://www.nsf.gov/awardsearch/,NSF Award Search covers roughly 500k awards; our 125 rows is a tiny slice of the corpus.
+intl_fao_faostat,COMPLETE,69,69,https://bulks-faostat.fao.org/production/datasets_E.json,Publisher dataset-catalog JSON lists 69 datasets - exact match.
+FED_FDA_DEVICE_PMA,SHORT,56911,29,https://api.fda.gov/device/pma.json?limit=1,openFDA meta total is 56911 vs landing 29; oddly the mart holds 56853 (near-complete) so the landing table looks broken not the ingest.
+fed_doj_fca_settlements,UNKNOWN,,19,https://www.justice.gov/civil/false-claims-act,DOJ page is press releases with no advertised settlement record count.
+fed_itis_kingdoms,COMPLETE,7,7,https://www.itis.gov/kingdoms.html,ITIS taxonomy has exactly 7 kingdoms - matches.
+fed_sec_13f_holdings,UNKNOWN,,101261252,,SEC 13F structured data sets publish no advertised total row count.
+fed_fema_ia_housing_registrations,SHORT,25886797,19600000,https://www.fema.gov/api/open/v1/DataSets,Best-match OpenFEMA dataset IndividualsAndHouseholdsProgramValidRegistrations reports 25886797 records; we hold ~76% (load may be in progress).
+fed_cms_medicare_dialysis_facilities,UNKNOWN,,12456456,,No cheap authoritative total; 12.4M rows far exceeds ~7k dialysis facilities so dataset identity unclear.
+fed_fjc_idb_bankruptcy,UNKNOWN,,6965441,,FJC IDB snapshot files do not advertise record counts.
+fed_fda_faers_outc,UNKNOWN,,5147466,,FAERS quarterly OUTC files publish no cumulative total.
+fed_epa_echo,OVER,1500000,3157891,https://echo.epa.gov/tools/data-downloads,EPA advertises ECHO Exporter as 'more than 1.5 million regulated facilities'; we hold ~2x that - possible double-load.
+FED_NHTSA_COMPLAINTS,UNKNOWN,,2227941,https://static.nhtsa.gov/odi/ffdd/cmpl/,No cheap publisher row count for FLAT_CMPL; note mart (4455882) is exactly 2x landing - likely mart double-count.
+fed_cdc_nndss_weekly_2024,UNKNOWN,,1932840,,CDC NNDSS weekly tables publish no advertised total row count.
+fed_epa_rcra_facilities,UNKNOWN,,1613224,,RCRAInfo flat files publish no advertised record count.
+fed_usgs_gnis_all_names,UNKNOWN,,1249630,https://prd-tnm.s3.amazonaws.com/StagedProducts/GeographicNames/,GNIS AllNames file count not advertised; verifying requires full ~100MB download.
+fed_itis_taxonomic_units,UNKNOWN,,993346,,ITIS does not advertise an exact taxonomic_units row count on its site.
+fed_icij_offshoreleaks_entities,COMPLETE,810000,814344,https://offshoreleaks.icij.org/,ICIJ advertises 'more than 810000 offshore companies foundations and trusts'; ours matches.
+fed_ice_detainers,UNKNOWN,,609769,,FOIA-released person-level detainer data has no publisher-advertised total.
+st_nyc_cfb_campaign_2021_contributions,UNKNOWN,,457521,,NYC CFB contribution export has no advertised record count.
+fed_epa_npdes_npdes_ps_violations,UNKNOWN,,397615,,EPA ICIS-NPDES download files publish no advertised counts.
+fed_epa_ghgrp_emission,UNKNOWN,,346683,,GHGRP Envirofacts tables publish no advertised row totals.
+fed_usgs_minerals,UNKNOWN,,304632,https://www.usgs.gov/centers/national-minerals-information-center,USGS landing page does not state an exact MRDS record count.
+fed_fracfocus_disclosure_list,UNKNOWN,,248835,https://fracfocus.org/,FracFocus homepage no longer shows a numeric disclosure count.
+ca_lobby_cover2,UNKNOWN,,206493,,CAL-ACCESS raw table exports have no advertised row counts.
+fed_ntsb_aviation_injury,UNKNOWN,,179179,,NTSB avall database injury table count not advertised.
+fed_pbgc_data,UNKNOWN,,149771,https://www.pbgc.gov/about/reports/pension-insurance-data,PBGC data tables page advertises no record counts.
+fed_uscg_nrc_incident_reports,UNKNOWN,,116662,https://nrc.uscg.mil/,NRC FOIA decade zip has no advertised record count.
+xc_retraction_watch_database,COMPLETE,71686,71608,https://gitlab.com/crossref/retraction-watch-data/-/raw/main/retraction_watch.csv,Live CSV has 71687 lines (~71686 records); ours within 0.2% of a daily-growing file.
+fed_cms_opt_out_affidavits,UNKNOWN,,57209,,Did not locate a cheap count endpoint for the CMS opt-out affidavits dataset in the time box.
+xc_crossref_funder_registry,COMPLETE,45662,45661,https://doi.crossref.org/funderNames?mode=list,Live funder list returns 45662 names; ours within 1 record.
+FED_FEC_CANDIDATES,UNKNOWN,,33506,https://www.fec.gov/data/browse-data/?tab=bulk-data,Multi-cycle master has no single advertised total (2024 cycle alone is 9798); cannot verify cheaply.
+state_mo_sex_offender_registry,UNKNOWN,,28185,,Missouri State Highway Patrol does not advertise a registry record count.
+fed_epa_icis_fec_epa_informal_enforcement_actions,UNKNOWN,,21930,,EPA ICIS-FE&C download files publish no advertised counts.
+fed_fec_bulk_candidates,OVER,9798,17900,https://www.fec.gov/files/bulk-downloads/2024/cn24.zip,cn24.zip contains 9798 records; we hold ~1.8x - likely multiple cycles loaded under a single-cycle source id.
+fed_eia860_2_plant,UNKNOWN,,16132,,EIA-860 plant sheet counts not advertised; multi-year total unclear.
+fed_congress_legislators,COMPLETE,12768,12847,https://unitedstates.github.io/congress-legislators/,Current+historical YAML contain ~12768 legislators; within 0.7% (count-method margin).
+fed_sec_edgar_company_tickers,COMPLETE,10387,10414,https://www.sec.gov/files/company_tickers.json,Live JSON has 10387 entries; ours within 0.3% of a fluctuating file.
+fed_senate_stock_watcher,UNKNOWN,,8350,,Community S3 aggregate file not reachable in time box; no advertised total.
+fed_eia860_6_1_enviroassoc,UNKNOWN,,7021,,EIA-860 enviro-assoc sheet count not advertised.
+fed_eac_eavs,COMPLETE,6460,6460,https://www.eac.gov/sites/default/files/2023-06/2022_EAVS_Report_508c.pdf,2022 EAVS covers 6460 jurisdictions (one row each); exact match.
+fed_sec_dera_sub_2024q1,UNKNOWN,,6028,,Verifying sub.txt row count requires downloading the full DERA 2024q1 zip; no advertised count.
+fed_usaspending_subawards,SAMPLE_DECLARED,,5000,,Declared sample; full FSRS/FFATA subaward universe is millions of records with no single advertised total.
+tx_lobby_gifts,UNKNOWN,,4084,,Texas Ethics Commission exports publish no advertised row counts.
+fed_uscis_data,UNKNOWN,,3204,https://www.uscis.gov/tools/reports-and-studies/immigration-and-citizenship-data,USCIS page is a report catalog with no record count.
+intl_fr_data_gouv,SHORT,73883,2765,https://www.data.gouv.fr/api/1/datasets/?page_size=1,API reports 73883 datasets in the catalog; we hold ~4% (if source is the dataset catalog).
+xc_owid_cpi,COMPLETE,2312,2312,https://ourworldindata.org/grapher/ti-corruption-perception-index.csv?csvType=full,Live CSV has 2312 data rows; exact match.
+fed_cisa_kev,COMPLETE,1662,1631,https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json,Live KEV feed count field = 1662; ours within 1.9% of a daily-growing catalog.
+fed_eia861_distribution_systems,UNKNOWN,,1353,,EIA-861 file counts not advertised.
+intl_gdelt,SHORT,,1015,http://data.gdeltproject.org/gdeltv2/masterfilelist.txt,GDELT advertises hundreds of millions of events (masterfile lists millions of files); 1015 rows is a sliver but is_sample not set.
+xc_owid_nuclear_warheads,COMPLETE,902,902,https://ourworldindata.org/grapher/nuclear-warhead-stockpiles-lines.csv?v=1&csvType=full,Live CSV has 902 data rows; exact match.
+fed_va_suicide_national,UNKNOWN,,690,,VA suicide data appendix spreadsheets have no advertised row count.
+fed_clinicaltrials,SAMPLE_DECLARED,598101,500,https://clinicaltrials.gov/api/v2/studies?pageSize=1&countTotal=true,Declared sample; API reports 598101 total studies.
+fed_cms_ltch,COMPLETE,311,311,https://data.cms.gov/provider-data/api/1/datastore/query/azum-44iv/0?limit=1&count=true,CMS datastore API reports count=311; exact match.
+intl_global_witness_defenders,UNKNOWN,,232,https://globalwitness.org/en/campaigns/land-and-environmental-defenders/,Site blocks automated fetch (403); Global Witness reports 2000+ killings since 2012 so 232 may be one year but unverified this session.
+ca_lobby_firm_employer,UNKNOWN,,170,,CAL-ACCESS raw table exports have no advertised row counts.
+fed_usaspending_toptier_agencies,COMPLETE,111,111,https://api.usaspending.gov/api/v2/references/toptier_agencies/,API returns 111 agencies; exact match.
+fed_nasa_open_data,UNKNOWN,,54,https://api.nasa.gov/,54 rows likely an API/dataset catalog; NASA advertises no such count.
+fed_dhs_yearbook,UNKNOWN,,27,https://ohss.dhs.gov/topics/immigration/yearbook,Yearbook is a set of tables/years with no advertised record count.
+fed_fdic_enforcement,UNKNOWN,,14,https://orders.fdic.gov/s/searchform,No cheap total from the Salesforce search UI; note FDIC has issued orders for decades so 14 rows looks like a stub - worth manual check.
+fed_faa_data_portal,UNKNOWN,,4,https://www.faa.gov/data,Portal metadata rows; no advertised count.
+fed_fec_indiv_contributions,UNKNOWN,,84172112,https://www.fec.gov/files/bulk-downloads/2024/indiv24.zip,FEC does not advertise row counts for bulk files; counting requires downloading the multi-GB zip.
+fed_cfpb_hmda_historic,UNKNOWN,,19136434,https://files.consumerfinance.gov/hmda-historic-loan-data/,CFPB historic HMDA page does not publish record counts for the 2007 file.
+fed_fjc_idb_civil,UNKNOWN,,10857396,https://www.fjc.gov/research/idb,FJC IDB does not advertise total record counts without downloading the large files.
+fed_usgs_water,UNKNOWN,,6694816,https://www.usgs.gov/tools/usgs-water-data-apis,Query-based API with no single advertised total record count.
+fed_google_polads_creative_id_mapping,UNKNOWN,,4773180,https://transparencyreport.google.com/political-ads/,Google political-ads data lives in BigQuery; no advertised row count without running a query. Mart (500000) looks capped vs landing 4.77M.
+FED_MSHA_VIOLATIONS,UNKNOWN,,3087266,https://arlweb.msha.gov/opengovernmentdata/OGIMSHA.asp,MSHA does not advertise the violations file row count; note mart_rows is exactly 2x landing_rows (possible double-count in mart).
+fed_epa_frs_frs_naics_codes,UNKNOWN,,2179702,https://echo.epa.gov/tools/data-downloads,EPA FRS download page does not advertise per-file row counts.
+fed_hrsa_npdb,UNKNOWN,,1911185,https://www.npdb.hrsa.gov/resources/publicData.jsp,NPDB public use file page does not advertise a record count without downloading the zip.
+fed_google_polads_creative_stats,UNKNOWN,,1562870,https://transparencyreport.google.com/political-ads/,BigQuery-hosted; no advertised row count. Mart (500000) looks capped vs landing 1.56M.
+fed_epa_npdes_icis_facilities,UNKNOWN,,1213737,https://echo.epa.gov/tools/data-downloads,EPA ECHO/ICIS downloads do not advertise per-table row counts.
+fed_fjc_idb_appellate,UNKNOWN,,988183,https://www.fjc.gov/research/idb,FJC IDB does not advertise total record counts.
+fed_epa_npdes_npdes_sics,UNKNOWN,,792807,https://echo.epa.gov/tools/data-downloads,EPA ECHO/ICIS downloads do not advertise per-table row counts.
+fed_epa_sdwa_sdwa_geographic_areas,UNKNOWN,,578198,https://echo.epa.gov/tools/data-downloads,EPA SDWA download files carry no advertised row counts.
+fed_usgs_earthquakes,UNKNOWN,,443274,https://earthquake.usgs.gov/fdsnws/event/1/count,USGS count endpoint returned 503 repeatedly for the full-history M2.5+ query; no count obtained.
+fed_osha_ita_300a_summary_2023,UNKNOWN,,394234,https://www.osha.gov/Establishment-Specific-Injury-and-Illness-Data,OSHA ITA page does not advertise per-year record counts.
+fed_sec_13f_filers,UNKNOWN,,344109,https://www.sec.gov/data-research/sec-markets-data/form-13f-data-sets,SEC 13F data sets page does not advertise filer row counts.
+fed_google_polads_advertiser_weekly_spend,UNKNOWN,,298884,https://transparencyreport.google.com/political-ads/,BigQuery-hosted; no advertised row count.
+FED_NHTSA_RECALLS,UNKNOWN,,242993,https://static.nhtsa.gov/odi/ffdd/rcl/,NHTSA does not advertise flat-file row counts; note mart_rows is exactly 2x landing_rows (possible double-count in mart).
+fed_epa_icis_fec_case_facilities,UNKNOWN,,204019,https://echo.epa.gov/tools/data-downloads,EPA ICIS FE&C downloads do not advertise per-table row counts.
+fed_senate_lda_filings,SHORT,1975825,174871,https://lda.senate.gov/api/v1/filings/?page_size=1,Senate LDA API reports count=1975825 total filings; we hold ~9% of that (may be an intentional year subset but is materially less than publisher total).
+st_nyc_cfb_campaign_2009_contribution,UNKNOWN,,146112,https://www.nyccfb.info/follow-the-money/data-library/,NYC CFB data library does not advertise per-cycle contribution row counts.
+fed_cms_medicare_outpatient_hospitals_by_provider_and_service,COMPLETE,116182,116182,https://data.cms.gov/data-api/v1/dataset/ccbc9a44-40d4-46b4-a709-5caa59212e50/data-viewer/stats,CMS data API stats reports total_rows=116182; exact match.
+fed_cdc_overdose,COMPLETE,85626,83790,https://data.cdc.gov/resource/xkb8-kh2a.json?$select=count(*),Live Socrata count is 85626; ours is 2.1% behind a weekly-updated provisional dataset - effectively complete as of load date.
+fed_retraction_watch,UNKNOWN,,71591,https://retractionwatch.com/retraction-watch-database-user-guide/,"Retraction Watch publishes no exact live count (""over 60000"" claims only); no cheap authoritative number."
+fed_sec_edgar_financials,UNKNOWN,,55635,https://www.sec.gov/data-research/sec-markets-data/financial-statement-data-sets,SEC does not advertise submission counts per quarterly data set.
+fed_cms_pos_other,COMPLETE,44707,44429,https://data.cms.gov/data-api/v1/dataset/8ba0f9b4-9493-4aa0-9f82-44ea9468d1b5/data-viewer/stats,CMS POS QIES stats reports total_rows=44707; ours within 0.6% (quarterly refresh drift).
+fed_dol_form5500,UNKNOWN,,33484,https://www.dol.gov/agencies/ebsa/about-ebsa/our-activities/public-disclosure/foia/form-5500-datasets,DOL does not advertise record counts per Form 5500 dataset file.
+fed_eia860_3_1_generator,UNKNOWN,,26856,https://www.eia.gov/electricity/data/eia860/,EIA-860 Excel workbooks carry no advertised row counts.
+xc_owid_life_expectancy,COMPLETE,21565,21565,https://ourworldindata.org/grapher/life-expectancy.csv?csvType=full,Fetched the OWID CSV: 21565 data rows; exact match.
+irs527_eain,UNKNOWN,,17853,https://forms.irs.gov/app/pod/dataDownload/dataDownload,IRS 527 bulk download does not advertise record counts per record type.
+fed_cdc_health_insurance,COMPLETE,16056,16056,https://data.cdc.gov/resource/jb9g-gnvr.json?$select=count(*),Live Socrata count is 16056; exact match.
+fed_cms_home_health,COMPLETE,12460,12392,https://data.cms.gov/provider-data/api/1/datastore/query/6jpm-sxkc/0?limit=1&count=true,CMS Provider Data datastore count is 12460; ours within 0.5% (monthly refresh drift).
+fed_sec_edgar_company_tickers_exchange,COMPLETE,10398,10398,https://www.sec.gov/files/company_tickers_exchange.json,Fetched the live JSON: 10398 entries; exact match.
+fed_treasury_debt_to_penny,COMPLETE,8367,8329,https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/debt_to_penny?page[size]=1,API meta total-count=8367; ours 0.45% behind a daily-growing series - complete.
+fed_sec_dera_sub_2025q2,UNKNOWN,,7009,https://www.sec.gov/data-research/sec-markets-data/financial-statement-data-sets,SEC does not advertise the sub.txt row count for a quarter without downloading the zip.
+fed_cdc_suicide_rates,COMPLETE,6390,6390,https://data.cdc.gov/resource/9j2v-jamp.json?$select=count(*),Live Socrata count is 6390; exact match.
+fed_wqp_monitoring_stations,COMPLETE,5818,5818,https://www.waterqualitydata.us/data/Station/search?mimeType=csv&statecode=US%3A44,Re-ran the same WQP station query (RI): Total-Site-Count 5818; exact match.
+intl_ch_opendataswiss,SAMPLE_DECLARED,16172,5000,https://opendata.swiss/api/3/action/package_search?rows=0,Declared sample; CKAN API reports 16172 datasets on the portal.
+fed_fjc_judges,COMPLETE,4074,4067,https://www.fjc.gov/sites/default/files/history/judges.csv,Fetched FJC judges.csv: ~4074 rows; ours within 0.2% (new appointments since load).
+fed_cftc_cot_financial,UNKNOWN,,3163,https://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm,CFTC COT reports carry no advertised total record count.
+fed_eia861_advanced_meters,UNKNOWN,,2725,https://www.eia.gov/electricity/data/eia861/,EIA-861 Excel workbooks carry no advertised row counts.
+fed_fda_purple_book,COMPLETE,2233,2233,https://www.accessdata.fda.gov/drugsatfda_docs/PurpleBook/2026/purplebook-search-June-data-download.csv,Fetched the CSV: 2234 lines incl header = 2233 records; exact match to landing.
+tx_lobby_awards,UNKNOWN,,1589,https://www.ethics.state.tx.us/data/search/lobby/,Texas Ethics Commission does not advertise per-schedule row counts.
+fed_google_polads_geo_spend,UNKNOWN,,1289,https://transparencyreport.google.com/political-ads/,BigQuery-hosted; no advertised row count.
+xc_un_consolidated_sanctions_list,COMPLETE,1011,1011,https://scsanctions.un.org/resources/xml/en/consolidated.xml,Fetched the UN XML: 736 individuals + 275 entities = 1011; exact match.
+fed_naag_multistate_settlements,UNKNOWN,,882,https://attorneysgeneral.org/settlements-and-enforcement-actions/searchable-list-of-settlements-1980-present/,NAAG searchable list does not display an advertised total; scraping the JS app was not cheap within timebox.
+fed_eia861_sales_ult_cust_cs,UNKNOWN,,676,https://www.eia.gov/electricity/data/eia861/,EIA-861 Excel workbooks carry no advertised row counts.
+intl_ca_open_canada,SAMPLE_DECLARED,47725,500,https://open.canada.ca/data/api/3/action/package_search?rows=0,Declared sample; CKAN API reports 47725 datasets on the portal.
+fed_frb_z1_csv,UNKNOWN,,304,https://www.federalreserve.gov/releases/z1/,Fed Z.1 release carries no advertised series/record count matching our extract shape.
+fed_ice_statistics,UNKNOWN,,221,https://www.ice.gov/statistics,ICE statistics page publishes spreadsheets with no advertised total record count.
+FED_FDA_ESTABLISHMENT_REG,SHORT,333181,166,https://api.fda.gov/device/registrationlisting.json?limit=1,openFDA meta.results.total=333181; landing holds 166 rows (mart 263374 also short) - materially incomplete.
+xc_jcs_medians,UNKNOWN,,102,https://epstein.wustl.edu/s/JCS2024.zip,Academic zip download; no advertised record count without downloading and parsing.
+intl_eurlex_cellar,UNKNOWN,,53,https://eur-lex.europa.eu/content/help/data-reuse/reuse-contents-eurlex-details.html,CELLAR is a query API; no advertised total matching a 53-row extract.
+fed_ncua_charter_merger_events,UNKNOWN,,27,https://ncua.gov/analysis/credit-union-corporate-call-report-data,NCUA insurance activity report zip carries no advertised event count.
+xc_owid_ai_incidents_annual,UNKNOWN,,14,https://ourworldindata.org/grapher/annual-reported-ai-incidents-controversies,OWID grapher CSV endpoint returned 404 (chart likely renamed); no cheap count obtained.
+fed_eia861_mergers,UNKNOWN,,4,https://www.eia.gov/electricity/data/eia861/,EIA-861 Excel workbooks carry no advertised row counts.
+fed_courtlistener_dockets,UNKNOWN,,71677647,https://www.courtlistener.com/api/rest/v4/dockets/,CourtListener count API requires auth token; no free advertised docket total found in time box.
+fed_fhfa_nmdb,UNKNOWN,,19054246,https://www.fhfa.gov/data/nmdb,FHFA NMDB page advertises no record count for the public use file.
+fed_epa_air_emissions_poll_rpt_combined_emissions,UNKNOWN,,10411826,,No URL given; EPA pollutant-report combined-emissions extract has no advertised row count.
+fed_usaspending_contracts,UNKNOWN,,6325622,https://www.usaspending.gov/download_center/award_data_archive,Award archive is per-FY zip files with no advertised total prime-contract row count.
+fed_epa_frs_frs_program_links,UNKNOWN,,4406498,,No URL given; FRS bulk download docs do not advertise a program-links row count.
+fed_cms_medicare_fee_for_service_public_provider_enrollment,UNKNOWN,,2978925,,No URL given; CMS dataset API needs dataset UUID not in input; skipped in time box.
+fed_sba_loans,UNKNOWN,,2174502,https://data.sba.gov/en/dataset/7-a-504-foia,SBA CKAN API returned non-JSON and page is JS-rendered; no advertised total found.
+fed_courtlistener_investments,UNKNOWN,,1901599,,No URL; CourtListener financial-disclosure investments has no advertised total (mart holds only 500000 of our 1901599 landing rows - internal gap worth flagging).
+fed_epa_sdwa_sdwa_facilities,UNKNOWN,,1554832,,No URL; ECHO SDWA download files carry no advertised row count.
+fed_irs_auto_revocations,UNKNOWN,,1207295,,No URL; IRS auto-revocation list has no advertised record count.
+fed_epa_icis_air_icis_air_pollutants,UNKNOWN,,978398,,No URL; ICIS-Air download has no advertised row count.
+fed_icij_offshoreleaks_officers,UNKNOWN,,771315,https://offshoreleaks.icij.org/,ICIJ does not advertise an officers row count without downloading the bulk CSV; skipped in time box.
+ca_lobby_cover,UNKNOWN,,568988,,No URL; CAL-ACCESS raw export has no advertised per-table row count.
+fed_cms_medicare_durable_medical_equipment_devices_supplies_by_suppl,UNKNOWN,,440670,,No URL; CMS DME-by-supplier dataset UUID not in input; skipped.
+fed_epa_sdwa_sdwa_events_milestones,UNKNOWN,,394075,,No URL; no advertised row count for SDWA events/milestones file.
+fed_epa_icis_air_icis_air_informal_actions,UNKNOWN,,338316,,No URL; no advertised row count.
+tx_lobby_cover,UNKNOWN,,283803,,No URL; Texas Ethics Commission bulk files carry no advertised row count.
+fed_fra_equipment_accidents,COMPLETE,224941,224941,https://data.transportation.gov/resource/85tf-25kj.json?$select=count(*),Socrata count(*) on dataset 85tf-25kj returns exactly 224941.
+fed_cms_nursing_home_fire_deficiencies,UNKNOWN,,200030,,No URL; CMS fire-safety deficiencies dataset UUID not in input; skipped.
+fed_fda_unii_gsrs_substances,UNKNOWN,,168046,https://precision.fda.gov/uniisearch/archive/latest/UNII_Data.zip,Publisher advertises no record count; verifying requires downloading the full zip.
+fed_cms_medicare_inpatient_hospitals_by_provider_and_service,UNKNOWN,,145879,,No URL; CMS dataset UUID not in input; skipped.
+fed_epa_npdes_npdes_formal_enforcement_actions,UNKNOWN,,112373,,No URL; ECHO NPDES download has no advertised row count.
+fed_scdb,UNKNOWN,,83644,http://scdb.wustl.edu/data.php,SCDB publishes multiple grains (case/justice/vote
+intl_opensanctions,COMPLETE,71646,71011,https://data.opensanctions.org/datasets/latest/sanctions/index.json,Latest index reports 71646 targets; ours is 0.9% lower (dataset grows daily).
+irs527_8872_reports,UNKNOWN,,55579,,No URL; IRS 527 FullDataFile has no advertised per-form record count.
+fed_sec_investment_company_series_class,COMPLETE,43123,43123,https://www.sec.gov/files/investment/data/other/investment-company-series-class-information/investment-company-series-class-2026.csv,Fetched CSV has 43124 lines incl header = 43123 records; exact match.
+fed_ntsb_aviation_aircraft,UNKNOWN,,31503,,No URL; NTSB avall database does not advertise aircraft-table row counts.
+fed_icij_offshoreleaks_intermediaries,UNKNOWN,,26768,https://offshoreleaks.icij.org/,No advertised intermediaries count without downloading bulk CSV; skipped.
+fed_google_polads_advertiser_stats,UNKNOWN,,21211,,No URL; Google political-ads transparency bundle advertises no row count outside BigQuery.
+fed_cfpb_hmda_lar,COMPLETE,17474,17474,https://ffiec.cfpb.gov/v2/data-browser-api/view/csv?years=2023&states=DC,Refetched the same API extract: 17475 lines incl header = 17474 records; exact match.
+xc_mapping_police_violence,COMPLETE,15000,15476,https://mappingpoliceviolence.us/aboutthedata,"Publisher advertises ""15000 killings"" tracked; ours slightly above the rounded figure."
+fed_epa_egrid_plant_2022,UNKNOWN,,11974,,No URL; EPA does not advertise an eGRID2022 plant-sheet row count without downloading the workbook.
+fed_mapping_inequality,UNKNOWN,,10154,https://dsl.richmond.edu/panorama/redlining/,JS-rendered site; no advertised HOLC-area count found on page in time box (mart 1155 vs landing 10154 is an internal gap).
+fed_google_polads_advertiser_id_mapping,UNKNOWN,,8044,,No URL; no advertised count outside BigQuery.
+fed_cms_pending_initial_logging_and_tracking_non_physicians,UNKNOWN,,6880,,No URL; CMS pending-L&T dataset UUID not in input; skipped.
+xc_owid_fossil_share,OVER,4914,6379,https://ourworldindata.org/grapher/fossil-fuels-share-energy.csv?csvType=full,Current full CSV has 4914 data rows; we hold 30% more - likely an older/wider grapher version; check for double-load or entity-set change.
+fed_cms_rural_health_clinic_enrollments,UNKNOWN,,5530,,No URL; CMS dataset UUID not in input; skipped.
+intl_gr_datagov,SAMPLE_DECLARED,,5000,,Declared sample (is_sample=True); Greek portal totals not checked.
+fed_medsl_senate_returns,UNKNOWN,,3945,https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/PEJ5QU,Dataverse metadata gives file sizes not row counts; no advertised record total.
+tx_lobby_events,UNKNOWN,,3107,,No URL; TEC Schedule G table has no advertised row count.
+intl_freedomhouse,COMPLETE,2723,2723,https://freedomhouse.org/sites/default/files/2025-02/All_data_FIW_2013-2024.xlsx,Fetched workbook: data sheet has 2725 rows incl 2 header rows = 2723 records; exact match.
+fed_epa_superfund_site_boundaries,COMPLETE,2114,2114,https://services.arcgis.com/cJ9YHowT8TU7DUyn/arcgis/rest/services/FAC_Superfund_Site_Boundaries_EPA_Public/FeatureServer/0/query?where=1%3D1&returnCountOnly=true&f=json,ArcGIS returnCountOnly gives 2114; exact match.
+fed_eia860_3_2_wind,UNKNOWN,,1563,,No URL; EIA-860 wind sheet row count not advertised without downloading workbook.
+fed_cpsc_neiss_codes,UNKNOWN,,1250,,No URL; NEISS coding manual has no advertised code-list count.
+fed_ihs_facilities,COMPLETE,1010,1010,https://www.ihs.gov/sites/locations/themes/responsive2017/display_objects/documents/ihs_facilities.xlsx,Fetched workbook: 1010 non-empty rows (incl header rows inflate raw max_row to 1277); matches.
+fed_cdc_wonder,UNKNOWN,,880,https://wonder.cdc.gov/wonder/help/wonder-api.html,WONDER is a query engine; an 880-row state-by-ICD-chapter aggregate has no advertised publisher total.
+intl_embl_ensembl,UNKNOWN,,643,https://rest.ensembl.org/info/species?content-type=application/json,REST species endpoint returns 356 vertebrate species; extract grain (likely multi-division) unclear so no comparable total.
+fed_google_polads_advertiser_declared_stats,UNKNOWN,,470,,No URL; no advertised count outside BigQuery.
+intl_nti_cns_dprk_missile_tests,COMPLETE,303,303,https://www.nti.org/wp-content/uploads/2021/10/north_korea_missile_test_database.xlsx,Fetched workbook: Missile Tests sheet 305 rows incl 2 header rows = 303 records; exact match.
+fed_occ_thrifts,UNKNOWN,,218,,No URL; OCC thrift list has no advertised count.
+fed_ice_detention_facility_list,UNKNOWN,,165,,No URL; ICE detention facility spreadsheet location/count not advertised; skipped in time box.
+fed_bia_tribal_geo,UNKNOWN,,100,https://opendata-1-bia-geospatial.hub.arcgis.com/,Hub portal item count varies by filter; no single advertised dataset count matching this extract.
+fed_bop_statistics,UNKNOWN,,50,https://www.bop.gov/about/statistics/,BOP statistics pages are dashboards; the 50-row extract grain has no advertised total.
+intl_eu_socta_europol,UNKNOWN,,26,https://www.europol.europa.eu/publication-events/main-reports/changing-dna-of-serious-and-organised-crime,Report-derived dataset; Europol advertises no record count.
+intl_gem_hazard,UNKNOWN,,12,https://hazard.openquake.org/gem/,GEM mosaic model count not cheaply verifiable (site JS-rendered); no advertised total found.
+FED_FDA_DRUG_ENFORCEMENT,SHORT,17866,1,https://api.fda.gov/drug/enforcement.json?limit=1,openFDA meta total is 17866 but landing holds 1 row (mart holds 17816 = within 0.3%; the landing table looks broken not the source).
+fed_noaa_ais,UNKNOWN,,58106517,https://coast.noaa.gov/htdata/CMSP/AISDataHandler/2024/index.html,File-based daily zips; NOAA advertises no total record count for 2024 AIS.
+FED_CFPB_COMPLAINTS,COMPLETE,17021062,17179788,https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=1,API hits.total=17021062; landing within 1% (ours slightly higher); NOTE mart_rows 34.3M is exactly 2x landing - likely double-count in mart.
+fed_fda_faers_indi,UNKNOWN,,9833260,,FAERS quarterly raw files; FDA advertises no cumulative INDI record count.
+fed_fjc_idb_criminal,UNKNOWN,,6299908,,FJC IDB criminal file has no cheap advertised record count.
+fed_foreignassistance,UNKNOWN,,3967456,https://foreignassistance.gov/api-docs,No advertised total record count on site or API docs; time-boxed out.
+fed_fdic_sod_branch_deposits,COMPLETE,2823000,2823000,https://api.fdic.gov/banks/sod?limit=1,FDIC SOD API meta.total=2823000 all years - exact match.
+fed_nih_reporter,UNKNOWN,,2122611,https://api.reporter.nih.gov/,RePORTER count requires POST search; no cheap GET/page-advertised total.
+fed_epa_npdes_npdes_inspections,UNKNOWN,,1900067,,EPA ECHO NPDES download files have no advertised row counts.
+xc_wayback_doj_epstein,UNKNOWN,,1537352,https://web.archive.org/cdx/search/cdx,CDX census is a point-in-time crawl query; no publisher-advertised total to compare.
+fed_irs_revocation,UNKNOWN,,1206628,https://www.irs.gov/charities-non-profits/tax-exempt-organization-search-bulk-data-downloads,IRS does not advertise the auto-revocation list row count; counting requires full download of current file.
+fed_sba_ppp,UNKNOWN,,968524,https://data.sba.gov/dataset/ppp-foia,Recorded file URL now returns 404; widely reported ~968525 loans >=150k matches ours but no live publisher count verified.
+fed_epa_rcra_violations,UNKNOWN,,708114,,RCRAInfo flat files have no advertised row counts.
+fed_fatca_ffi,UNKNOWN,,516298,,IRS FATCA FFI monthly list has no advertised record count.
+fed_epa_rcra_rcra_naics,UNKNOWN,,434734,,RCRAInfo flat files have no advertised row counts.
+fed_epa_sdwa_sdwa_pn_violation_assoc,UNKNOWN,,387627,,SDWIS download files have no advertised row counts.
+fed_sec_13f_submissions,UNKNOWN,,336124,,SEC 13F structured datasets are quarterly zips with no advertised cumulative submission count.
+fed_epa_icis_air_icis_air_facilities,UNKNOWN,,279728,,ICIS-Air download files have no advertised row counts.
+fed_fara_bulk,UNKNOWN,,221900,https://efile.fara.gov/ords/fara/f?p=API:BULKDATA,FARA bulk data has no advertised record count; NOTE internal gap - mart 48104 vs landing 221900.
+st_nyc_cfb_campaign_2013_contribution,UNKNOWN,,197968,,NYC CFB 2013 contribution file has no advertised row count without full download.
+fed_itis_vernaculars,UNKNOWN,,166778,,ITIS database dump; no advertised per-table record count.
+fed_epa_ghgrp_facility,UNKNOWN,,136005,https://www.epa.gov/ghgreporting,GHGRP summary spreadsheets carry no advertised total row count.
+fed_courtlistener_financial_disclosures,UNKNOWN,32336,108770,https://www.courtlistener.com/api/rest/v4/financial-disclosures/?count=on,API counts 32336 disclosure documents vs our 108770 rows - almost certainly different grain (line items vs documents) so no clean comparison.
+fed_hhs_oig_leie,COMPLETE,83842,83464,https://oig.hhs.gov/exclusions/downloadables/UPDATED.csv,Current LEIE CSV has 83842 records; ours 0.45% lower (monthly-growing list) - within tolerance.
+fed_itis_comments,UNKNOWN,,70524,,ITIS database dump; no advertised per-table record count.
+fed_cdc_drug_poisoning_county,COMPLETE,53387,53387,https://data.cdc.gov/resource/pbkm-d27e.json?$select=count(*),Socrata count(*)=53387 - exact match.
+intl_eu_sanctions,UNKNOWN,,42347,https://data.europa.eu/data/datasets/consolidated-list-of-persons-groups-and-entities-subject-to-eu-financial-sanctions,EU consolidated list has no advertised entry count on the dataset page.
+fed_ntsb_aviation_events,UNKNOWN,,30968,,NTSB CAROL/avall database advertises no total event count cheaply.
+fed_consolidated_screening_list,UNKNOWN,,25918,,CSL API is key-gated and site advertises no total entry count.
+fed_epa_aqs_sites,COMPLETE,20994,20994,https://aqs.epa.gov/aqsweb/airdata/aqs_sites.zip,Downloaded publisher zip: 20994 data rows - exact match.
+fed_frb_h15_selected_rates,UNKNOWN,,16848,,FRB H.15 series; no advertised observation count.
+fed_cdc_data_portal,OVER,1471,15000,https://api.us.socrata.com/api/catalog/v1?domains=data.cdc.gov&limit=1,Socrata catalog advertises 1471 assets (1078 datasets) on data.cdc.gov vs our 15000 rows - suspicious unless our grain is something other than datasets.
+fed_eia861_service_territory,UNKNOWN,,11775,,EIA-861 workbook; no advertised row count without full download.
+fed_fdic_bank_data,SAMPLE_DECLARED,,10000,https://banks.data.fdic.gov/docs/,Declared sample (round 10000 cap); FDIC API totals vary by endpoint so no single publisher total recorded.
+fed_fec_bulk_summary,OVER,3856,7933,https://www.fec.gov/files/bulk-downloads/2024/weball24.zip,weball24 file has 3856 records; ours is ~2x - likely multiple cycles loaded under one source.
+fed_cms_hospice,COMPLETE,6852,6852,https://data.cms.gov/provider-data/api/1/datastore/query/yc9t-dgbk/0?limit=1&count=true,Publisher datastore count=6852 - exact match.
+fed_fhfa_fhlb_membership,COMPLETE,6327,6327,https://www.fhfa.gov/document/d/fhlb-m/fhlb_members_q12026.xlsx,Downloaded publisher xlsx: 6327 member rows - exact match.
+fed_eia860_4_owner,UNKNOWN,,5496,,EIA-860 Schedule 4 owner tab; no advertised row count without full download.
+fed_treasury_avg_interest_rates,COMPLETE,4993,4961,https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/avg_interest_rates?page[size]=1,API meta total-count=4993; ours 0.6% lower (monthly-growing series) - within tolerance.
+fed_congress_committee_membership,UNKNOWN,,3879,https://github.com/unitedstates/congress-legislators,Membership YAML has no advertised record count; grain (member-committee pairs) not published as a number.
+fed_cms_medicare_inpatient_hospitals_by_provider,UNKNOWN,,3044,,No dataset URL recorded; CMS inpatient-by-provider count not fetched within time box.
+FED_IRS_EO_PR,COMPLETE,2515,2587,https://www.irs.gov/pub/irs-soi/eo_pr.csv,Current publisher file has 2515 records; ours slightly higher (older snapshot of a shrinking/changing list) - ours >= publisher.
+xc_guttmacher_monthly_abortion,UNKNOWN,,2040,https://osf.io/kqb9n/,OSF download carries no advertised row count without pulling the file; time-boxed out.
+fed_cms_opioid_treatment_program_providers,UNKNOWN,,1558,,No dataset URL recorded; CMS OTP provider count not fetched within time box.
+fed_cms_irf,COMPLETE,1222,1222,https://data.cms.gov/provider-data/api/1/datastore/query/7t8x-u3ir/0?limit=1&count=true,Publisher datastore count=1222 - exact match.
+fed_eia861_net_metering,UNKNOWN,,1006,,EIA-861 workbook; no advertised row count.
+fed_eia861_dynamic_pricing,UNKNOWN,,858,,EIA-861 workbook; no advertised row count.
+ca_lobby_firm_lobbyist,UNKNOWN,,577,,CAL-ACCESS raw export; no advertised relationship-table count.
+fed_eia861_energy_efficiency,UNKNOWN,,460,,EIA-861 workbook; no advertised row count.
+fed_ffiec_call_reports,UNKNOWN,,302,https://cdr.ffiec.gov/public/PWS/DownloadBulkData.aspx,FFIEC CDR bulk page advertises no record count; 302 rows looks like a file/period inventory rather than report rows.
+fed_sec_business_development_company_report,UNKNOWN,,212,,SEC BDC report dataset has no advertised record count.
+fed_jpml_pending_mdls,COMPLETE,162,162,https://www.jpml.uscourts.gov/sites/jpml/files/Pending_MDL_Dockets_By_MDL_Number-August-3-2026.pdf,PDF footer states 'MDLs Listed on this Report: 162' - exact match.
+fed_grants_gov,UNKNOWN,,100,https://www.grants.gov/api/api-guide,Search2 total requires POST; round 100 rows strongly suggests a capped sample but no publisher number captured.
+fed_uscourts_stats,UNKNOWN,,50,https://www.uscourts.gov/statistics-reports/caseload-statistics-data-tables,Data-tables catalog has no advertised table/record total; 50 rows grain unclear.
+fed_densho_ddr,SHORT,,25,https://ddr.densho.org/,Publisher advertises 'thousands' of items (no exact number); our 25 rows is materially less.
+fed_david_rumsey,SHORT,150000,10,https://www.davidrumsey.com/about,Publisher advertises over 150000 items online; we hold 10.
+FED_FDA_DEVICE_CLASSIFICATION,SHORT,7085,1,https://api.fda.gov/device/classification.json?limit=1,openFDA meta total=7085; landing holds 1 row (mart has 7085 - landing looks wiped/broken).
+fed_cms_facility_level_minimum_data_set_frequency,COMPLETE,31403215,31403215,https://data.cms.gov/data-api/v1/dataset/d086edc0-4953-4fb9-a663-b35526371add/data-viewer/stats,CMS data-viewer stats total_rows=31403215 matches exactly.
+fed_epa_sdwa_sdwa_violations_enforcement,UNKNOWN,,15432737,https://echo.epa.gov/tools/data-downloads,EPA ECHO SDWA download does not advertise a record count for this table.
+fed_cpsc_neiss,UNKNOWN,,9794977,https://www.cpsc.gov/cgibin/NEISSQuery/,CPSC does not publish an advertised total row count for NEISS extracts.
+intl_gleif_repex,OVER,658145,6259489,https://www.gleif.org/en/lei-data/gleif-concatenated-file/download-the-concatenated-file,GLEIF Reporting Exceptions concatenated file advertises ~658k records; we hold ~9.5x that - likely accumulated daily snapshots.
+FED_SEC_13F_POSITIONS,UNKNOWN,,3822885,https://www.sec.gov/data-research/sec-markets-data/form-13f-data-sets,SEC does not advertise row counts per 13F data-set zip; note mart 202.5M vs landing 3.8M internal mismatch.
+fed_epa_rcra_viosnc_history,UNKNOWN,,2675581,https://echo.epa.gov/tools/data-downloads,EPA ECHO RCRAInfo download does not advertise per-table record counts.
+fed_cms_fiscal_intermediary_shared_system_attending_and_rendering,COMPLETE,2050005,2047828,https://data.cms.gov/data-api/v1/dataset/75e8dcb2-78eb-4a7d-a377-9108441966db/data-viewer/stats,CMS stats total_rows=2050005; ours 0.1% lower - within tolerance of live updates.
+intl_voeten_unga_votes,UNKNOWN,,1823352,https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/LEJUQZ,Dataverse does not advertise a row count for the votes file.
+fed_cms_nadac,COMPLETE,1497925,1497925,https://data.medicaid.gov/api/1/datastore/query/99315a95-37ac-4eee-946a-3c523b4c481e/0?limit=1&count=true,data.medicaid.gov NADAC 2024 datastore count=1497925 matches landing exactly (mart holds subset 359k).
+fed_epa_rcra_evaluations,UNKNOWN,,1166410,https://echo.epa.gov/tools/data-downloads,EPA ECHO RCRAInfo download does not advertise per-table record counts.
+fed_voteview_rollcalls,UNKNOWN,,945523,https://voteview.com/data,Voteview does not advertise a row count for the member-by-vote CSV.
+fed_osha_ita_case_detail_2024,UNKNOWN,,688649,https://www.osha.gov/Establishment-Specific-Injury-and-Illness-Data,OSHA ITA page does not advertise case-detail record counts; mart's round 500000 suggests an internal cap.
+fed_cms_quality_payment_program_experience,COMPLETE,503917,503917,https://data.cms.gov/data-api/v1/dataset/7adb8b1b-b85c-4ed3-b314-064776e50180/data-viewer/stats,CMS data-viewer stats total_rows=503917 matches exactly.
+fed_epa_sdwa_sdwa_pub_water_systems,UNKNOWN,,434040,https://echo.epa.gov/tools/data-downloads,EPA ECHO SDWA download does not advertise per-table record counts.
+intl_ucdp_ged,UNKNOWN,,385918,https://ucdp.uu.se/downloads/,UCDP API now token-gated and the GED 25.1 codebook/Zenodo page state no event count.
+fed_osha_ita_case_detail_2025,UNKNOWN,,330447,https://www.osha.gov/Establishment-Specific-Injury-and-Illness-Data,OSHA ITA page does not advertise case-detail record counts.
+intl_fao_faostat_food_security,UNKNOWN,,279470,https://www.fao.org/faostat/en/#data/FS,FAO bulk zip has no advertised normalized-row count.
+fed_sbir_sttr_awards,UNKNOWN,,219503,https://api.www.sbir.gov/public/api/awards?rows=1,SBIR public API returned 429 (service unavailable); no advertised total found cheaply.
+st_nyc_cfb_campaign_2001_contribution,UNKNOWN,,193741,https://www.nyccfb.info/follow-the-money/data-library/,NYC CFB data library does not advertise per-cycle contribution row counts.
+fed_hrsa_shortage_areas,UNKNOWN,,165531,https://data.hrsa.gov/topics/health-workforce/shortage-areas,HRSA shortage-area page does not advertise a total record count.
+xc_ror_research_organizations,COMPLETE,135710,135710,https://zenodo.org/api/records/21773148,Zenodo v2.11 release notes state 135710 research organizations - exact match.
+fed_epa_icis_air_icis_air_formal_actions,UNKNOWN,,106009,https://echo.epa.gov/tools/data-downloads,EPA ECHO ICIS-Air download does not advertise per-table record counts.
+fed_epa_npdes_npdes_cs_violations,UNKNOWN,,82187,https://echo.epa.gov/tools/data-downloads,EPA ECHO NPDES download does not advertise per-table record counts.
+fed_sec_edgar_insiders,UNKNOWN,,69259,https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&type=4,EDGAR browse does not advertise a total count of Forms 3/4/5 filings.
+fed_courtlistener_positions,COMPLETE,51291,51290,https://www.courtlistener.com/api/rest/v4/positions/?count=on,CourtListener API count=51291; ours one lower - live source within tolerance.
+fed_dol_ebsa_form5500_schedule_sb,UNKNOWN,,41802,https://www.dol.gov/agencies/ebsa/researchers/data/form-5500-datasets,DOL does not advertise record counts for Schedule SB zip files.
+fed_itis_publications,UNKNOWN,,30772,https://www.itis.gov/downloads/,ITIS download page does not advertise a publications-table record count.
+fed_hud_mf_firm_commitments,UNKNOWN,,25565,https://www.hud.gov/program_offices/housing/mfh/mfdata,HUD posts the xlsx workbook without an advertised record count.
+fed_fec_bulk,UNKNOWN,,20938,https://www.fec.gov/data/browse-data/?tab=bulk-data,FEC bulk data page does not advertise per-file record counts; API is key-gated.
+fed_cdc_anxiety_depression,COMPLETE,16794,16794,https://data.cdc.gov/resource/8pt5-q6wp.json?$select=count(*),Socrata count(*)=16794 matches exactly.
+fed_nursinghome411,UNKNOWN,,14713,https://nursinghome411.org/data/ratings-info/,LTCCC does not advertise a total row count for its state-level files.
+fed_slavevoyages_intraamerican,COMPLETE,11400,11521,https://www.neh.gov/news/uci-co-leads-project-adding-11400-intra-american-journeys-slave-voyages-database,Publisher advertises ~11400 intra-American voyages; we hold slightly more (database grows).
+fed_treasury_dts_deposits,SHORT,478149,10000,https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/dts/deposits_withdrawals_operating_cash?page[size]=1,FiscalData DTS operating-cash table total-count=478149 (deposits+withdrawals combined); our round 10000 looks like a loader cap.
+fed_sec_dera_sub_2024q2,UNKNOWN,,7675,https://www.sec.gov/data-research/sec-markets-data/financial-statement-data-sets,SEC does not advertise per-quarter sub.txt record counts.
+fed_sec_dera_sub_2024q3,UNKNOWN,,6699,https://www.sec.gov/data-research/sec-markets-data/financial-statement-data-sets,SEC does not advertise per-quarter sub.txt record counts.
+fed_sec_dera_sub_2025q4,UNKNOWN,,6304,https://www.sec.gov/data-research/sec-markets-data/financial-statement-data-sets,SEC does not advertise per-quarter sub.txt record counts.
+fed_cms_hospital_compare,UNKNOWN,,5432,https://data.cms.gov/provider-data/docs,Unclear which Provider Data Catalog table 5432 rows maps to; no single advertised total.
+xc_owid_homicide,COMPLETE,4912,4912,https://ourworldindata.org/grapher/homicide-rate-unodc.csv?csvType=full,Fetched grapher CSV directly: 4912 data rows - exact match.
+fed_hud_public_housing_authorities,COMPLETE,3776,3787,https://hub.arcgis.com/api/v3/datasets/3d6ef39026b94eb59ddb7ce28eb0b692_0,ArcGIS Hub recordCount=3776; ours 0.3% higher - live layer within tolerance.
+fed_icij_offshoreleaks_others,UNKNOWN,,2989,https://offshoreleaks.icij.org/pages/database,ICIJ does not advertise a count for the residual 'others' node subset.
+FED_FDA_GUDID,SHORT,5083948,2542,https://api.fda.gov/device/udi.json?limit=1,openFDA UDI total=5083948; landing holds only 2542 rows (mart oddly matches publisher - landing/mart mismatch to investigate).
+FED_PHMSA_FLAGGED_INCIDENTS,UNKNOWN,,2039,https://www.phmsa.dot.gov/data-and-statistics/pipeline/distribution-transmission-gathering-lng-and-liquid-accident-and-incident-data,PHMSA does not advertise a count of flagged/significant incidents matching this subset.
+ca_lobby_emp_lobbyist,UNKNOWN,,1500,https://www.sos.ca.gov/campaign-lobbying/cal-access-resources/raw-data-campaign-finance-and-lobbying-activity,CAL-ACCESS raw data has no advertised per-table counts; round 1500 suggests an internal cap.
+tx_lobby_dockets,UNKNOWN,,1207,https://www.ethics.state.tx.us/data/search/lobby/,Texas Ethics Commission does not advertise docket record counts.
+fed_bjs_data,SAMPLE_DECLARED,,1000,https://api.ojp.gov/bjsdataset/v1/gcuy-rt5g.csv,Declared sample; OJP API total not fetched cheaply.
+fed_eia860_3_4_energy_storage,UNKNOWN,,786,https://www.eia.gov/electricity/data/eia860/,EIA-860 workbook sheets have no advertised row counts.
+fed_nara_aad,UNKNOWN,,554,https://aad.archives.gov/aad/,NARA AAD advertises series/records broadly but no count matching this 554-row extract; mart holds only 18.
+intl_eurostat,UNKNOWN,,450,https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1/,Eurostat catalog has thousands of datasets; unclear what the 450 rows represent - no comparable advertised total.
+fed_us_usaspending_api,UNKNOWN,,300,https://api.usaspending.gov/docs/endpoints,USASpending holds many millions of award records; 300 rows is clearly a slice but no comparable advertised total for this extract.
+fed_irs_990,UNKNOWN,,200,https://www.irs.gov/charities-non-profits/form-990-series-downloads,IRS 990 bulk covers hundreds of thousands of filings; 200 rows is a slice with no comparable advertised total.
+fed_cms_main,COMPLETE,158,158,https://data.cms.gov/data.json,data.cms.gov data.json lists exactly 158 datasets - matches our catalog row count.
+fed_wpa_slave_narratives,SHORT,604,100,https://www.loc.gov/collections/slave-narratives-from-the-federal-writers-project-1936-to-1938/?fo=json,LOC collection JSON reports 604 items (and cites 2300+ narratives); we hold 100.
+FED_FDA_CAERS,SHORT,85511,43,https://api.fda.gov/cosmetic/event.json?limit=1,openFDA CAERS total=85511; landing holds only 43 rows (mart matches publisher exactly - landing/mart mismatch).
+intl_es_borme,UNKNOWN,,25,https://www.boe.es/diario_borme/,BORME is a daily gazette; no advertised total comparable to a 25-row extract.
+intl_br_dados_gov,UNKNOWN,,10,https://dados.gov.br/,dados.gov.br catalogs ~15k datasets; 10 rows is a slice with no comparable advertised total.
+fed_dea_arcos,UNKNOWN,,,https://www.deadiversion.usdoj.gov/arcos/retail_drug_summary/arcos-drug-summary-reports.html,ARCOS publishes PDF summary reports with no advertised record count; landing_rows blank in input.
+FED_CMS_PARTD_PRESCRIBER_DRUG,COMPLETE,28023892,25869521,https://data.cms.gov/data-api/v1/dataset/9552739e-3d05-4c1b-8eff-ecabf391e2e5/data-viewer/stats,API total 28.0M is the current DY2023 version; our 25.87M matches the full DY2022 vintage file named in the source URL.
+fed_cms_open_payments,COMPLETE,15498687,15385047,https://openpaymentsdata.cms.gov/api/1/datastore/query/e6b17c6a-2534-4207-a4a1-6746a14911ff/0?limit=1&results=false&count=true,PY2024 General Payments datastore count 15498687; ours 0.7% below a refreshed live dataset.
+fed_cms_medicare_physician_other_practitioners_by_provider_and_servi,COMPLETE,9781673,9781673,https://data.cms.gov/data-api/v1/dataset/92396110-2aed-4d63-a6a2-5d6207d46a29/data-viewer/stats,Exact match to CMS API total_rows.
+fed_fda_faers_demo,UNKNOWN,,5811086,https://fis.fda.gov/extensions/FPD-QDE-FAERS/FPD-QDE-FAERS.html,FAERS is distributed as quarterly files; FDA advertises no cumulative DEMO row count.
+FED_SEC_13F_SUBMISSION,UNKNOWN,,3822885,https://www.sec.gov/data-research/sec-markets-data/form-13f-data-sets,SEC publishes quarterly 13F zips with no advertised cumulative submission count.
+FED_SEC_INSIDER_NONDERIV_TRANS,UNKNOWN,,2672841,https://www.sec.gov/data-research/sec-markets-data/insider-transactions-data-sets,Quarterly insider-transaction zips carry no advertised record counts.
+fed_cms_order_and_referring,COMPLETE,2020241,2018354,https://data.cms.gov/data-api/v1/dataset/c99b5865-1119-4436-bb80-c5af2773ea1f/data-viewer/stats,CMS API total 2020241; ours 0.09% below a weekly-refreshed dataset.
+fed_noaa_storm_events,UNKNOWN,,1780730,https://www.ncei.noaa.gov/pub/data/swdi/stormevents/csvfiles/,Bulk directory of ~75 per-year files; NCEI advertises no total record count.
+fed_irs_pub78_eligible_donees,COMPLETE,1412321,1435544,https://apps.irs.gov/pub/epostcard/data-download-pub78.zip,Current weekly Pub78 file has 1412321 lines; ours 1.6% above (file churns weekly; ours >= publisher).
+fed_fra_casualties,COMPLETE,1150788,1150788,https://data.transportation.gov/resource/rash-pd2d.json?$select=count(*),Socrata count(*) is an exact match.
+fed_epa_sdwa_sdwa_lcr_samples,UNKNOWN,,927415,https://echo.epa.gov/tools/data-downloads,ECHO SDWA bulk download; EPA advertises no per-table record counts.
+fed_itis_hierarchy,UNKNOWN,,678363,https://www.itis.gov/downloads/,ITIS database dump; no per-table record counts advertised.
+INT_GLEIF_RR,COMPLETE,484142,481933,https://goldencopy.gleif.org/api/v2/golden-copies/publishes/latest,Golden Copy RR full-file record_count 484142; landing 0.46% below today's file. Mart holds exactly 2x landing (possible double-count in mart).
+fed_epa_sdwa_sdwa_service_areas,UNKNOWN,,422464,https://echo.epa.gov/tools/data-downloads,ECHO SDWA bulk download; no per-table record counts advertised.
+fed_epa_rcra_enforcements,UNKNOWN,,383519,https://echo.epa.gov/tools/data-downloads,ECHO RCRA bulk download; no per-table record counts advertised.
+fed_epa_npdes_npdes_naics,UNKNOWN,,326473,https://echo.epa.gov/tools/data-downloads,ECHO NPDES bulk download; no per-table record counts advertised.
+FED_MSHA_ACCIDENTS,COMPLETE,274174,273623,https://arlweb.msha.gov/opengovernmentdata/DataSets/Accidents.zip,Downloaded zip: 274174 data lines; landing 0.2% below live file. Mart holds exactly 2x landing (possible double-count in mart).
+fed_itis_taxon_authors_lkp,UNKNOWN,,214445,https://www.itis.gov/downloads/,ITIS database dump; no per-table record counts advertised.
+fed_itis_tu_comments_links,UNKNOWN,,192851,https://www.itis.gov/downloads/,ITIS database dump; no per-table record counts advertised.
+fed_itis_jurisdiction,UNKNOWN,,161922,https://www.itis.gov/downloads/,ITIS database dump; no per-table record counts advertised.
+intl_ec_sercop,UNKNOWN,,132995,https://data.open-contracting.org/en/publication/110,OCP registry page is JS-heavy; release/record totals not extractable cheaply.
+fed_epa_icis_air_icis_air_violation_history,UNKNOWN,,102037,https://echo.epa.gov/tools/data-downloads,ECHO ICIS-Air bulk download; no per-table record counts advertised.
+fed_hrsa_hpsa_primary_care,COMPLETE,79160,79158,https://data.hrsa.gov/DataDownload/DD_Files/BCD_HPSA_FCT_DET_PC.csv,Live CSV has 79160 data lines; ours within 2 rows.
+fed_epa_tri_facility,COMPLETE,64990,64990,https://data.epa.gov/efservice/tri_facility/count/json,Envirofacts count endpoint is an exact match (64990).
+fed_voteview_members,COMPLETE,51062,51061,https://voteview.com/static/data/out/members/HSall_members.csv,Live CSV has 51063 lines incl header (~51062 data); exact-to-1 match.
+fed_fda_drug_master_files,UNKNOWN,,41253,https://www.fda.gov/drugs/forms-submission-requirements/drug-master-files-dmfs,DMF list is an Excel download; FDA advertises no record count and xlsx not counted in time-box.
+FED_FEC_CAND_CMTE_LINKAGE,UNKNOWN,,30536,https://www.fec.gov/data/browse-data/?tab=bulk-data,Multi-cycle ccl bulk files; FEC advertises no combined record count and covered cycles unspecified.
+ca_lobby_amendments,UNKNOWN,,25249,https://www.sos.ca.gov/campaign-lobbying/cal-access-resources,CAL-ACCESS raw dump; no advertised per-table counts.
+fed_fec_bulk_committees,COMPLETE,20369,20007,https://www.fec.gov/files/bulk-downloads/2026/cm26.zip,Downloaded cm26.zip: 20369 lines; ours 1.8% below a daily-growing live file.
+fed_cftc_cot_futures,SHORT,287053,16764,https://publicreporting.cftc.gov/resource/6dca-aqww.json?$select=count(*),CFTC Socrata futures-only COT full history holds 287053 rows; ours 16764 looks like a recent-years slice.
+fed_cms_nursing_home,COMPLETE,14693,14700,https://data.cms.gov/provider-data/api/1/datastore/query/4pq5-n9py/0?limit=1&results=false&count=true,Provider-info datastore count 14693; ours 7 rows above (0.05%).
+fed_cms_home_health_agency_enrollments,COMPLETE,11494,11508,https://data.cms.gov/data-api/v1/dataset/15f64ab4-3172-4a27-b589-ebd67a6d28aa/data-viewer/stats,CMS API total 11494; ours 14 rows above (0.1%).
+fed_cms_hospital_enrollments,COMPLETE,9162,9175,https://data.cms.gov/data-api/v1/dataset/f6f6505c-e8b0-4d57-b258-e2b94133aaf2/data-viewer/stats,CMS API total 9162; ours 13 rows above (0.1%).
+fed_cms_dialysis,COMPLETE,7490,7557,https://data.cms.gov/provider-data/api/1/datastore/query/23ew-n7w9/0?limit=1&results=false&count=true,Datastore count 7490; ours 0.9% above (facility list shrinks between refreshes).
+fed_eia860_1_utility,UNKNOWN,,6643,https://www.eia.gov/electricity/data/eia860/,EIA-860 is an Excel workbook; no advertised utility record count.
+fed_ed_college_scorecard_institution,COMPLETE,6273,6273,https://ed-public-download.scorecard.network/downloads/Most-Recent-Cohorts-Institution_06102026.zip,Downloaded zip: institution CSV has 6273 data rows; exact match.
+fed_cms_hospital_general,COMPLETE,5432,5432,https://data.cms.gov/provider-data/api/1/datastore/query/xubh-q36u/0?limit=1&results=false&count=true,Datastore count is an exact match (5432).
+fed_fjc_service,COMPLETE,4774,4766,https://www.fjc.gov/sites/default/files/history/federal-judicial-service.csv,Live CSV has 4774 data lines; ours 0.2% below the continuously updated file.
+fed_medsl_president_returns,UNKNOWN,,3740,https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/42MVDX,Dataverse metadata does not expose row counts and file not cheaply countable in time-box.
+fed_eia860_3_5_multifuel,UNKNOWN,,2893,https://www.eia.gov/electricity/data/eia860/,EIA-860 Excel workbook; no advertised record count for the multifuel schedule.
+xc_wayback_replay_doj_deep_pages,UNKNOWN,,2542,https://web.archive.org/,Internal Wayback crawl of DOJ pages; no publisher-advertised total exists.
+intl_hudoc,SAMPLE_DECLARED,230876,2000,https://hudoc.echr.coe.int/app/query/results?query=contentsitename:ECHR&select=itemid&start=0&length=1,HUDOC API resultcount 230876 total documents; our 2000 is a declared sample.
+st_cannabis_policy_bundles,COMPLETE,1500,1500,https://dataverse.harvard.edu/api/access/datafile/11912671?format=original,Downloaded xlsx: data sheets hold 1500 rows each; exact match.
+fed_sec_money_market_fund_information,UNKNOWN,,1206,https://www.sec.gov/data-research/sec-markets-data/money-market-fund-information,Monthly N-MFP structured datasets; no advertised record count.
+intl_es_datosgob,SAMPLE_DECLARED,,1000,https://datos.gob.es/apidata/catalog/dataset.json,Declared sample; portal API paginates without a cheap total field.
+xc_jcs_scotus,COMPLETE,782,782,https://epstein.wustl.edu/s/JCS2024.zip,Downloaded JCS2024 zip: SCOTUS long CSV has 782 data rows; exact match.
+xc_owid_temp_anomaly,COMPLETE,530,531,https://ourworldindata.org/grapher/temperature-anomaly.csv?csvType=full,Live CSV has 531 lines incl header; match within 1 row.
+xc_biorxiv_medrxiv,UNKNOWN,,432,https://api.biorxiv.org/,API reports totals only per date interval; no global advertised count. Our 432 is clearly a narrow pull but no baseline to compare.
+fed_noaa_weather_api,UNKNOWN,,287,https://www.weather.gov/documentation/services-web-api,Live forecast/observation API; no record total exists to compare.
+intl_fatf_ratings,UNKNOWN,,200,https://www.fatf-gafi.org/en/publications/Mutualevaluations/Assessment-ratings.html,Ratings page is JS-rendered (5KB shell); jurisdiction count (~200) plausible but not verifiable cheaply.
+intl_leiden_russian_ops_europe,UNKNOWN,,153,https://dataverse.harvard.edu/api/access/datafile/13350817,Dataverse file (likely xlsx); incident count not advertised in metadata.
+xc_wikipedia_largest_us_companies,COMPLETE,100,100,https://en.wikipedia.org/wiki/List_of_largest_companies_in_the_United_States_by_revenue,Wikipedia list is a fixed top-100 by definition; exact match.
+intl_adb_data,UNKNOWN,,41,https://data.adb.org/,Portal API is Cloudflare-blocked (403); dataset count not retrievable.
+intl_gfi_trade,UNKNOWN,,25,https://gfintegrity.org/iif-data-by-country/,GFI page count not cheaply verifiable; report covers 130+ countries so 25 rows may be a slice but unconfirmed.
+intl_gh_datagovgh,UNKNOWN,,10,https://data.gov.gh/,Portal TLS-blocks python-requests; dataset count not retrievable.
+fed_fjc_idb,SHORT,,,https://www.fjc.gov/research/idb,Publisher IDB holds millions of case records (civil filings since 1970 alone); our landing is empty and mart has 2 rows.
+fed_fda_faers_drug,UNKNOWN,,20914284,https://open.fda.gov/data/faers/,FAERS publisher advertises report counts not drug-line rows; grain mismatch so no comparable number.
+fed_cms_open_payments_2023,COMPLETE,14734121,14700786,https://openpaymentsdata.cms.gov/api/1/datastore/query/fb3a65aa-c901-4a38-a813-b04b00dfa2a9/0?limit=1&results=false&count=true,Live datastore API count 14734121; ours within 0.23% (dataset refreshed since load).
+fed_cms_nppes,UNKNOWN,,9606683,https://download.cms.gov/nppes/NPI_Files.html,CMS does not advertise a record count for the monthly full replacement file.
+INT_UK_COMPANIES_HOUSE,COMPLETE,5516377,5734780,https://www.gov.uk/government/statistics/incorporated-companies-in-the-uk-april-to-june-2026/incorporated-companies-in-the-uk-april-to-june-2026,Register held 5516377 companies end-June 2026; snapshot file includes dissolving/liquidation rows so ours >= publisher.
+fed_bls_qcew,UNKNOWN,,3619437,https://www.bls.gov/cew/downloadable-data-files.htm,BLS does not publish a row count for the annual singlefile CSV.
+fed_ice_detention_stints,UNKNOWN,,2617844,,No publisher URL; ICE/Deportation Data Project releases do not advertise a stint-level record count.
+fed_irs_eo_bmf,COMPLETE,1938732,1983563,https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf,EO BMF cited at 1938732 records (Mar 2026); ours >= publisher.
+fed_epa_icis_air_icis_air_fces_pces,UNKNOWN,,1779096,,No URL; EPA ICIS-Air download package does not advertise per-table row counts.
+fed_cms_part_d_prescribers,UNKNOWN,,1416883,https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/medicare-part-d-prescribers-by-provider,Landing page renders via JS; no row count retrievable cheaply.
+fed_epa_frs_frs_sic_codes,UNKNOWN,,1085211,,No URL; EPA FRS bulk download does not advertise per-table counts.
+fed_osha_ita_case_detail_2023,UNKNOWN,,890934,https://www.osha.gov/Establishment-Specific-Injury-and-Illness-Data,OSHA ITA page does not state a 2023 case-detail record count.
+fed_dol_oflc,UNKNOWN,,664616,https://www.dol.gov/agencies/eta/foreign-labor/performance,OFLC posts many program/year files with no aggregate record count.
+intl_gleif_relationships,SHORT,658145,481900,https://www.gleif.org/en/lei-data/global-lei-index/lei-statistics,GLEIF reports 658145 relationship records (Jul 2026); we hold ~73%.
+fed_cms_nursing_home_deficiencies,COMPLETE,418344,418479,https://data.cms.gov/provider-data/api/1/datastore/query/r5ix-sfxw/0?limit=1&results=false&count=true,Live datastore count 418344; ours within 0.1%.
+fed_osha_ita_300a_summary_2025,UNKNOWN,,383283,https://www.osha.gov/Establishment-Specific-Injury-and-Illness-Data,OSHA does not advertise a 300A 2025 submission count on the download page.
+fed_faa_aircraft_registry,UNKNOWN,,315447,https://www.faa.gov/licenses_certificates/aircraft_certification/aircraft_registry/releasable_aircraft_download,FAA does not advertise a record count; count only obtainable by downloading the file.
+FED_FEC_INDEPENDENT_EXPENDITURES,UNKNOWN,,261033,https://www.fec.gov/data/browse-data/?tab=bulk-data,FEC bulk data pages do not advertise multi-cycle IE row totals.
+fed_itis_strippedauthor,UNKNOWN,,214445,https://www.itis.gov/downloads/,ITIS does not advertise row counts for the strippedauthor table.
+fed_epa_icis_air_icis_air_program_subparts,UNKNOWN,,190980,,No URL; EPA ICIS-Air package has no advertised per-table counts.
+fed_nlm_dailymed_spl_setid_map,UNKNOWN,,158452,https://dailymed.nlm.nih.gov/dailymed/spl-resources-all-drug-labels.cfm,DailyMed does not advertise a setid-map row count; changes with each release.
+fed_cdc_injury_violence_county,COMPLETE,132000,132000,https://data.cdc.gov/resource/psx4-wq38.json?$select=count(*),Socrata count(*) returns exactly 132000.
+fed_federal_register_documents,SHORT,1006071,94731,https://www.federalregister.gov/api/v1/documents/facets/yearly,API yearly facets sum to 1006071 documents since 1994; we hold ~9%.
+fed_epa_tri_basic_2023,UNKNOWN,,78647,https://www.epa.gov/toxics-release-inventory-tri-program/tri-basic-data-files-calendar-years-1987-present,EPA does not advertise a row count for the 2023 basic data file.
+irs527_related_entities,UNKNOWN,,64835,https://forms.irs.gov/app/pod/dataDownload/dataDownload,IRS 527 bulk download has no advertised related-entity record count.
+fed_dhs_ohss,UNKNOWN,,50740,https://ohss.dhs.gov/topics/immigration/immigration-enforcement/monthly-tables,OHSS monthly tables are many spreadsheets with no aggregate row count.
+tx_lobby_individual_reporting,UNKNOWN,,38662,https://www.ethics.state.tx.us/data/search/lobby/,TEC bulk lobby files carry no advertised row counts.
+fed_medsl_house_returns,UNKNOWN,,29636,https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/IG0UN2,Dataverse metadata does not state row counts for the district-level file.
+fed_fema_nfip_community_status_book,SHORT,32436,25122,https://www.fema.gov/api/open/v1/NfipCommunityStatusBook?$inlinecount=allpages&$top=1,OpenFEMA API metadata.count = 32436; we hold ~77%.
+fed_va_suicide_state,UNKNOWN,,19704,https://www.mentalhealth.va.gov/suicide_prevention/data.asp,VA appendix spreadsheets carry no advertised total row count.
+fed_fbi_nics_checks,COMPLETE,16445,16445,https://raw.githubusercontent.com/BuzzFeedNews/nics-firearm-background-checks/master/data/nics-firearm-background-checks.csv,Mirror CSV has 16445 data rows; exact match.
+tx_lobby_food_beverage,UNKNOWN,,14452,https://www.ethics.state.tx.us/data/search/lobby/,TEC bulk lobby files carry no advertised row counts.
+fed_cms_federally_qualified_health_center_enrollments,UNKNOWN,,11063,https://data.cms.gov/,data.cms.gov dataset UUID not known; no cheap count retrieved.
+intl_owid_milspend,COMPLETE,9112,9112,https://ourworldindata.org/grapher/military-spending-sipri.csv?v=1&csvType=full,Live CSV has 9112 rows; exact match.
+fed_treasury_mts_receipts,UNKNOWN,,7490,https://fiscaldata.treasury.gov/datasets/monthly-treasury-statement/,Could not map our table to a specific MTS API table for a comparable count.
+fed_cms_ambulatory_specialty_model_participants,UNKNOWN,,6637,https://data.cms.gov/,No advertised count found for this participant list.
+fed_sec_dera_sub_2025q1,UNKNOWN,,6231,https://www.sec.gov/dera/data/financial-statement-data-sets,SEC DERA readme does not state sub.txt row counts per quarter.
+fed_cfpb_hmda_arid2017_lei_xref,UNKNOWN,,5399,https://ffiec.cfpb.gov/documentation/,FFIEC does not advertise a row count for the ARID-to-LEI crosswalk zip.
+fed_eia860_6_2_enviroequip,UNKNOWN,,4429,https://www.eia.gov/electricity/data/eia860/,EIA-860 workbook sheets carry no advertised row counts.
+tx_lobby_transportation,UNKNOWN,,3697,https://www.ethics.state.tx.us/data/search/lobby/,TEC bulk lobby files carry no advertised row counts.
+intl_iso_mic_registry,COMPLETE,2875,2864,https://www.iso20022.org/sites/default/files/ISO10383_MIC/ISO10383_MIC.csv,Live CSV has ~2875 rows; ours within 0.4% (registry grows monthly).
+fed_usgs_wbd_huc8,COMPLETE,2456,2456,https://hydro.nationalmap.gov/arcgis/rest/services/wbd/MapServer/4/query?where=1%3D1&returnCountOnly=true&f=json,Service returnCountOnly = 2456; exact match.
+ca_lobby_employer,UNKNOWN,,1730,https://www.sos.ca.gov/campaign-lobbying/cal-access-resources,CAL-ACCESS raw export has no advertised per-table counts.
+fed_ice_detention_facility_codes,UNKNOWN,,1490,,No URL; ICE does not publish an advertised facility-code count.
+fed_ftc_datasets,UNKNOWN,,1200,https://www.ftc.gov/developer,FTC developer page does not advertise a total enforcement-record count.
+intl_cl_datosgob,SAMPLE_DECLARED,,1000,https://datos.gob.cl/,Declared sample; portal catalog total not cheaply retrieved.
+fed_doj_epstein_library,UNKNOWN,,777,https://www.justice.gov/epstein/doj-disclosures,DOJ page lists files but no stated manifest count; page not machine-countable cheaply.
+ca_lobby_employer_firms,UNKNOWN,,524,https://www.sos.ca.gov/campaign-lobbying/cal-access-resources,CAL-ACCESS raw export has no advertised per-table counts.
+fed_revolvingdoor_project,UNKNOWN,,409,https://therevolvingdoorproject.org/personnel/,Tracker pages do not advertise a total entry count.
+ca_lobby_firm,UNKNOWN,,256,https://www.sos.ca.gov/campaign-lobbying/cal-access-resources,CAL-ACCESS raw export has no advertised per-table counts.
+fed_sec_edgar,SHORT,,200,https://www.sec.gov/search-filings/edgar-application-programming-interfaces,EDGAR holds millions of filings (1M+ per year per SEC); 200 rows is a sliver but is_sample=False.
+intl_eg_capmas,UNKNOWN,,150,https://egypt.opendataforafrica.org/,Portal does not advertise a comparable dataset/record total.
+fed_usaspending_tas_filter_tree,COMPLETE,92,92,https://api.usaspending.gov/api/v2/references/filter_tree/tas/,Live API returns exactly 92 top-level results.
+fed_nara_wra_aad,UNKNOWN,,36,https://aad.archives.gov/aad/series-description.jsp?s=623&cat=WR26,AAD series page returns 403 to automated fetch; advertised record count not confirmed this session (36 rows for a WWII relocation series looks suspiciously low).
+fed_oyez,SHORT,,25,https://www.oyez.org/about,Oyez covers thousands of Supreme Court cases (full audio since 1955); 25 rows is materially less.
+xc_osf_registrations,SHORT,286845,10,https://api.osf.io/v2/registrations/?page[size]=1,OSF API meta.total = 286845; we hold 10 rows and is_sample=False.
+intl_uk_companies_house,UNKNOWN,5516377,,https://developer.company-information.service.gov.uk/,No landing_rows recorded for this source; register total 5516377 for reference but nothing to compare.
+fed_fda_faers_reac,UNKNOWN,,20621386,,FAERS quarterly REAC table row counts are not advertised by FDA; openFDA totals are report-grain not reaction-grain
+fed_cms_open_payments_2022,COMPLETE,13322266,13250000,https://openpaymentsdata.cms.gov/api/1/datastore/query/df01c2f8-dc1f-4e79-96cb-8208beaf143c/0?limit=1&count=true,CMS datastore API reports 13322266 for PY2022 General Payments; ours within 0.6%
+fed_epa_npdes_npdes_qncr_history,UNKNOWN,,7951656,,EPA ECHO downloads do not advertise per-table row counts for NPDES QNCR history
+FED_IRS_990_EFILE_INDEX,UNKNOWN,,5544626,,IRS 990 e-file index is yearly CSVs with no advertised aggregate record count
+INTL_GLEIF,COMPLETE,3398874,3382301,https://api.gleif.org/api/v1/lei-records?page[size]=1,GLEIF API total 3398874 LEI records (grows daily); ours within 0.5%
+fed_epa_icis_air_icis_air_titlev_certs,UNKNOWN,,2574815,,EPA ICIS-Air download package does not advertise per-table row counts
+fed_irs_bmf,COMPLETE,1957340,1974830,https://www.irs.gov/pub/irs-soi/eo1.csv,Sum of current eo1-eo4 regional CSVs is 1957340; ours slightly higher (older snapshot) and within 1%
+FED_SEC_INSIDER_SUBMISSION,UNKNOWN,,1772088,,SEC insider transactions structured data sets do not advertise per-file row counts
+fed_cms_medicare_physician_other_practitioners_by_provider,COMPLETE,1296739,1296739,https://data.cms.gov/data-api/v1/dataset/8889d81e-2ee7-448f-8713-f071038289b5/data-viewer/stats,CMS API total_rows exactly matches ours
+FED_SEC_INSIDER_DERIV_TRANS,UNKNOWN,,1049121,,SEC insider transactions structured data sets do not advertise per-file row counts
+fed_fec_committee_to_candidate,OVER,703597,866730,https://www.fec.gov/files/bulk-downloads/2024/pas224.zip,Current pas224.zip holds 703597 rows; we hold 23% more - likely multiple cycles loaded or double-count vs single 2024 file
+fed_epa_icis_air_icis_air_stack_tests,UNKNOWN,,620302,,EPA ICIS-Air download package does not advertise per-table row counts
+fed_itis_geographic_div,UNKNOWN,,480351,,ITIS database dump internal table; no advertised row count
+FED_FAC_SINGLE_AUDIT,UNKNOWN,,411638,,Federal Audit Clearinghouse API is key-gated and no advertised total found cheaply
+fed_cms_medicare_durable_medical_equipment_devices_supplies_by_refer,COMPLETE,381228,381228,https://data.cms.gov/data-api/v1/dataset/f8603e5b-9c47-4c52-9b47-a4ef92dfada4/data-viewer/stats,CMS API total_rows for DME by Referring Provider exactly matches ours
+fed_itis_synonym_links,UNKNOWN,,315254,,ITIS database dump internal table; no advertised row count
+fed_epa_icis_fec_icis_fec_epa_inspections,UNKNOWN,,260556,,EPA ICIS-FE&C download package does not advertise per-table row counts
+intl_it_istat,UNKNOWN,,213284,,Istat SDMX web service exposes dataflows not a total observation count; grain unclear
+irs527_directors_officers,UNKNOWN,,189593,,IRS 527 disclosure data download does not advertise director/officer record counts
+fed_pcaob_form_ap_filings,COMPLETE,155674,155384,https://assets.pcaobus.org/firm-filings/FirmFilings.zip,Current FirmFilings.csv has 155674 rows (grows over time); ours within 0.2%
+xc_vera_incarceration_trends,COMPLETE,128507,128507,https://raw.githubusercontent.com/vera-institute/incarceration-trends/main/incarceration_trends_county.csv,GitHub CSV has 128507 data rows; exact match
+fed_itis_vern_ref_links,UNKNOWN,,93078,,ITIS database dump internal table; no advertised row count
+FED_FEC_COMMITTEES,UNKNOWN,,78039,,Multi-cycle committee master; per-cycle cm files exist but no advertised multi-cycle total to compare
+intl_wb_ids,UNKNOWN,,62983,,World Bank IDS bulk zip does not advertise a record count and grain (series-country-year) unclear without full download
+fed_usaspending_bulk,SAMPLE_DECLARED,,50000,,Declared sample; USAspending full archive is hundreds of millions of award rows
+fed_govinfo_billstatus,UNKNOWN,,36465,,GovInfo bulkdata BILLSTATUS has per-congress XML files with no advertised total bill count endpoint checked cheaply
+xc_owid_co2,COMPLETE,29384,29384,https://ourworldindata.org/grapher/annual-co2-emissions-per-country.csv?csvType=full,Downloaded CSV row count matches exactly
+xc_wayback_replay_doj_listing,UNKNOWN,,24897,,Custom Wayback Machine capture; no publisher-advertised count exists
+xc_owid_fertility,COMPLETE,19402,19402,https://ourworldindata.org/grapher/children-born-per-woman.csv?csvType=full,Downloaded CSV row count matches exactly
+fed_fec_bulk_linkages,OVER,8619,16327,https://www.fec.gov/files/bulk-downloads/2024/ccl24.zip,Current ccl24.zip holds 8619 rows; we hold ~2x - likely two cycles loaded vs the single 2024 file cited
+fed_cms_skilled_nursing_facility_enrollments,COMPLETE,14405,14425,https://data.cms.gov/data-api/v1/dataset/5f2c306f-3b1c-42cd-b037-187b2ce22126/data-viewer/stats,CMS API total_rows 14405 (current release); ours within 0.2%
+fed_cdc_leading_causes_state,COMPLETE,10868,10868,https://data.cdc.gov/resource/bi63-dtpu.json?$select=count(*),Socrata count exactly matches
+fed_sam_exclusions,SHORT,167681,9000,https://www.opensanctions.org/datasets/us_sam_exclusions/,SAM exclusion list holds ~167681 records per secondary trackers; our 9000 matches the known round-cap loader trap
+xc_owid_refugees,COMPLETE,7442,7442,https://ourworldindata.org/grapher/refugee-population-by-country-or-territory-of-origin.csv?csvType=full,Downloaded CSV row count matches exactly
+fed_sec_dera_sub_2025q3,UNKNOWN,,6541,,SEC DERA financial statement data set zips do not advertise sub.txt row counts without full download
+fed_sec_dera_sub_2026q1,UNKNOWN,,6169,,SEC DERA financial statement data set zips do not advertise sub.txt row counts without full download
+fed_pbgc_trusteed_plans,UNKNOWN,,5176,,PBGC trusteed plans page does not advertise a total plan count cheaply
+fed_ncua_federally_insured_cu_list,COMPLETE,4287,4250,https://ncua.gov/files/publications/analysis/federally-insured-credit-union-list-march-2026.zip,Current March 2026 xlsx has 4287 data rows; ours within 1%
+intl_ar_datosgob,UNKNOWN,1271,3556,https://datos.gob.ar/api/3/action/package_search?rows=0,CKAN reports 1271 datasets but our 3556 rows are likely resource/distribution grain - not comparable
+tx_lobby_entertainment,UNKNOWN,,2836,,Texas Ethics Commission does not advertise Schedule D row counts
+fed_irs_soi_charities,UNKNOWN,,2450,,IRS SOI charities extract row counts not advertised
+fed_eia861_short_form,UNKNOWN,,1724,,EIA-861 workbook tab row counts not advertised
+FED_FDA_MAUDE,SHORT,25711469,1386,https://api.fda.gov/device/event.json?limit=1,openFDA device/event total is 25.7M reports; landing 1386 (and mart 2.7M) is a tiny fraction
+fed_itis_other_sources,UNKNOWN,,1071,,ITIS database dump internal table; no advertised row count
+fed_sec_closed_end_fund_information,UNKNOWN,,973,,SEC closed-end fund dataset row count not advertised
+intl_ipc_food_insecurity_global,COMPLETE,728,735,https://data.humdata.org/dataset/7a7e7428-b8d7-4d2e-91d3-19100500e016/resource/6926dff7-658a-49e1-8d61-0ed8a983fbe1/download/ipc_global_national_long_latest.csv,Current HDX CSV has 728 data rows; ours slightly higher (older snapshot) within 1%
+fed_eia861_non_net_metering_distributed,UNKNOWN,,507,,EIA-861 workbook tab row counts not advertised
+intl_osfi_regulated_fi,UNKNOWN,,343,https://open.canada.ca/data/dataset/b27ec3ef-7338-4e76-a6fd-128339a92df5,Direct CSV URL now returns a 245-byte stub; could not verify current count
+fed_usgs_topoview,UNKNOWN,,250,https://www.usgs.gov/programs/national-geospatial-program/topographic-maps,topoView advertises ~190k historical maps but our 250-row grain is unclear (likely series-level) - not comparable
+fed_itis_experts,UNKNOWN,,197,,ITIS database dump internal table; no advertised row count
+fed_docsouth,UNKNOWN,,144,https://docsouth.unc.edu/docsouthdata/,DocSouth data page lists collections without a per-item total matching our 144-row grain
+FED_FDA_DEVICE_510K,SHORT,175757,88,https://api.fda.gov/device/510k.json?limit=1,openFDA 510k total is 175757; landing holds 88 though mart 175686 matches - landing table looks truncated
+fed_ed_edfacts,UNKNOWN,,33,https://www.ed.gov/data/edfacts-initiative,EDFacts is a file collection; no advertised count at our 33-row grain
+fed_dot_bts,UNKNOWN,,21,https://www.transtats.bts.gov/DataIndex.asp,TranStats is a portal of databases; no advertised count at our 21-row grain
+fed_cbp_encounters,UNKNOWN,,9,https://www.cbp.gov/newsroom/stats/nationwide-encounters,CBP publishes encounter stats dashboards; no advertised count at our 9-row grain
+FED_USASPENDING_CONTRACTS_FULL,UNKNOWN,,20000000,https://api.usaspending.gov/,USAspending count endpoints are POST-only and no advertised flat total exists for all contract awards FY2007-26.
+intl_elections_canada_contributions,UNKNOWN,,12646465,https://open.canada.ca/data/en/dataset/6495ea57-3824-48f0-a2b2-88477122a286,Elections Canada / open.canada.ca do not advertise a record count for the contributions file.
+fed_fracfocus_registry,UNKNOWN,,7200550,https://www.fracfocus.org/data-download,FracFocus data-download page states no total record count.
+FED_EPA_FRS_FULL,UNKNOWN,,5300149,https://www.epa.gov/frs/frs-data-resources,EPA cites 1.5M facilities / 4M+ places of interest but no row count for national_combined.zip; ours plausibly includes program-interest rows.
+fed_icij_offshoreleaks_relationships,UNKNOWN,,3339267,https://offshoreleaks.icij.org/pages/database,ICIJ advertises 810k+ entities but publishes no relationships row count.
+fed_epa_sdwa_sdwa_site_visits,UNKNOWN,,2495249,,EPA SDWA/ECHO downloads publish no per-table record counts.
+fed_itis_reference_links,UNKNOWN,,1970107,,ITIS does not advertise a reference-links table row count.
+fed_cms_open_payments_profile_supplement,UNKNOWN,,1697025,,CMS Open Payments does not advertise a row count for the profile supplement file.
+fed_cms_medicare_provider,UNKNOWN,,1296739,https://data.cms.gov/provider-summary-by-type-of-service/medicare-physician-other-practitioners/medicare-physician-other-practitioners-by-provider,Landing page renders count only in JS; no count retrievable via static fetch.
+fed_uscg_nrc_incidents,UNKNOWN,,1029020,,NRC incident downloads publish no total record count.
+fed_epa_npdes_npdes_informal_enforcement_actions,UNKNOWN,,826867,,EPA ECHO NPDES downloads publish no per-table counts.
+fed_dol_olms,UNKNOWN,,617710,,DOL OLMS yearly file servlet publishes no record count.
+fed_fbi_cde,UNKNOWN,,477360,https://cde.ucr.cjis.gov/,No advertised count; note our landing (477360) is exactly 2x mart (238680) - possible internal double-count.
+fed_icij_offshoreleaks_addresses,UNKNOWN,,402246,https://offshoreleaks.icij.org/pages/database,ICIJ publishes no addresses row count.
+intl_ember_elec,UNKNOWN,,369264,https://ember-energy.org/data/yearly-electricity-data/,Ember does not advertise dataset row counts.
+fed_faa_registry,UNKNOWN,,314417,https://www.faa.gov/licenses_certificates/aircraft_certification/aircraft_registry/releasable_aircraft_download,FAA page 403s to fetch and no advertised record count found; ~300k typical registry size is consistent with ours.
+st_nyc_cfb_campaign_2025_contributions,UNKNOWN,,259537,,NYC CFB does not advertise contribution record counts.
+tx_lobby_subject_matter,UNKNOWN,,209957,,Texas Ethics Commission publishes no per-schedule row counts.
+fed_fhfa_hpi,COMPLETE,184827,184807,https://www.fhfa.gov/hpi/download/monthly/hpi_master.csv,Downloaded live file has 184827 data rows; ours within 0.02% of a file that grows monthly.
+FED_NHTSA_INVESTIGATIONS,UNKNOWN,,154209,https://static.nhtsa.gov/odi/ffdd/inv/FLAT_INV.zip,No advertised count; note mart (308418) is exactly 2x landing - possible mart double-count.
+fed_ncua_call_reports,UNKNOWN,,121713,https://ncua.gov/analysis/credit-union-corporate-call-report-data/quarterly-data,NCUA publishes quarterly zips with no advertised row totals.
+fed_nid_dams,COMPLETE,92075,92766,https://nid.sec.usace.army.mil/,USACE/press cite 92075 dams in the NID; ours slightly above (0.8%).
+irs527_8871_orgs,UNKNOWN,,77591,,IRS 527 disclosure site publishes no organization registry count.
+fed_hud_fha_sf_portfolio_snapshot,UNKNOWN,,61647,,HUD snapshot xlsx has no advertised record count.
+fed_us_sec_edgar,UNKNOWN,,48990,https://www.sec.gov/search-filings/edgar-application-programming-interfaces,Unclear what unit this source counts; EDGAR advertises no comparable total.
+fed_slavevoyages_transatlantic,COMPLETE,36000,36108,https://www.slavevoyages.org/voyage/database,"SlaveVoyages advertises ""more than 36000 voyages""; 2019 export matches ours."
+xc_ransomwarelive_victims,SHORT,46405,29193,https://data.ransomware.live/victims.csv,Live victims.csv has 46405 data rows vs our 29193 (-37%); feed grows daily but gap is far beyond growth.
+fed_hud_mf_section8_contracts,UNKNOWN,,24309,https://www.hud.gov/sites/dfiles/Housing/documents/MF-Assistance-Sec8-Contracts1.xlsx,HUD advertises no record count for the Section 8 contracts workbook.
+fed_ofac_sdn,COMPLETE,19198,19115,https://www.treasury.gov/ofac/downloads/sdn.csv,Live sdn.csv has ~19198 rows vs our 19115 (0.4% below a daily-growing list).
+fed_courtlistener_judges,UNKNOWN,,16191,https://free.law/projects/judge-db/,Free Law Project advertises no judge-db record count.
+fed_usda_rd_mfh_active_projects,COMPLETE,13550,13550,https://www.sc.egov.usda.gov/data/files/MFH_Section_515/ActiveProjects/mfhd_active_projects.csv,Downloaded live file has 13550 data rows; exact match.
+xc_owid_terrorism_deaths,COMPLETE,10480,10481,https://ourworldindata.org/grapher/terrorism-deaths.csv?csvType=full,Downloaded live CSV has 10480 data rows; match within header/rounding.
+fed_ihs_scb_facility,UNKNOWN,,8733,https://www.ihs.gov/scb/,IHS publishes no facility-table record count.
+fed_cms_pending_initial_logging_and_tracking_physicians,UNKNOWN,,7240,,CMS pending L&T file has no advertised count.
+ca_lobby_contributions,UNKNOWN,,6505,,CAL-ACCESS publishes no per-table row counts.
+fed_cms_hcris,UNKNOWN,,6103,https://data.cms.gov/provider-compliance/cost-reports/hospital-provider-cost-report,~6100 hospital cost reports per year is plausible but CMS advertises no count on a static page.
+fed_epa_envirofacts,SAMPLE_DECLARED,,5000,,Declared sample; Envirofacts API total not cheaply retrievable.
+fed_finra_mpid_list,COMPLETE,4215,4215,https://www.nasdaqtrader.com/dynamic/Symdir/mpidlist.txt,Downloaded live file has ~4215 data rows; match.
+fed_eia861_frame,UNKNOWN,,3412,,EIA-861 workbook tabs have no advertised row counts.
+fed_eia861_sales_ult_cust,UNKNOWN,,2817,,EIA-861 workbook tabs have no advertised row counts.
+xc_owid_gini,COMPLETE,2388,2389,https://ourworldindata.org/grapher/economic-inequality-gini-index.csv?csvType=full,Downloaded live CSV has 2388 data rows; match within header/rounding.
+fed_eia861_operational_data,UNKNOWN,,1712,,EIA-861 workbook tabs have no advertised row counts.
+fed_hrsa_uds_table3a_patients,UNKNOWN,,1357,,HRSA UDS publishes no per-table row counts.
+fed_cms_medicare_diabetes_prevention_program,UNKNOWN,,1037,,CMS MDPP dataset count not on a static page.
+fed_eia861_reliability,UNKNOWN,,973,,EIA-861 workbook tabs have no advertised row counts.
+fed_occ_national_banks,UNKNOWN,,724,,OCC bank list has no advertised count; ~700-800 active charters is plausible.
+fed_dhs_hifld,SAMPLE_DECLARED,,500,,Declared sample of HIFLD layers.
+fed_eia861_demand_response,UNKNOWN,,340,,EIA-861 workbook tabs have no advertised row counts.
+fed_fhfa_suspended_counterparties,COMPLETE,240,241,https://www.fhfa.gov/document/d/scp/download/csv,Downloaded live file has 240 data rows; ours 241 (within header/rounding).
+fed_eia_861_balancing_authority,UNKNOWN,,189,https://www.eia.gov/electricity/data/eia861/zip/f8612024.zip,EIA-861 workbook tab has no advertised row count.
+fed_va_suicide_appendix,UNKNOWN,,144,https://www.mentalhealth.va.gov/,VA appendix xlsx has no advertised record count.
+fed_hud_data,UNKNOWN,,77,https://www.huduser.gov/portal/datasets/pdrdatas.html,Portal is a dataset index with no advertised count; unclear unit (77 datasets?).
+fed_fara,UNKNOWN,,30,https://www.justice.gov/nsd-fara,FARA has hundreds of active registrants; unclear what unit 30 rows represents - flagging as possibly very short but no comparable advertised number.
+FED_FDA_DEVICE_ENFORCEMENT,SHORT,39677,20,https://api.fda.gov/device/enforcement.json?limit=1,API meta.results.total=39677 vs landing 20; mart holds 39635 so landing table looks truncated rather than the data missing.
+fed_eia861_delivery_companies,UNKNOWN,,9,,EIA-861 workbook tabs have no advertised row counts.
