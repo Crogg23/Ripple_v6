@@ -74,5 +74,8 @@ detail: `reports/spine_connection_audit_2026-08-11.md`.
 3. Otherwise: the roll-call mart rebuild via its Python builder, and the two
    recall gaps (uncapped contracts pull, IRS 990 e-file index).
 
+**Tests:** offline suite 2,851 passing, none failing. The one live failure (the
+roll-call mart above) is the pre-existing one from this morning.
+
 **COST:** well under $1 of warehouse credit (sampling and metadata queries only,
 small warehouse throughout). No agents. No spend without a price tag.
