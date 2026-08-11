@@ -28,6 +28,12 @@ and preserves the inflated originals under a side table until you drop them:
     DROP TABLE LIBRARY_MARTS.POLITICS.POLITICS__FED_SENATE_STOCK_WATCHER;
     DROP TABLE LIBRARY_MARTS.TRANSPORT.TRANSPORT__FED_NHTSA_INVESTIGATIONS;  -- no repo model, routing residue
     DROP TABLE LIBRARY_RAW.LANDING.INT_GLEIF_RR;  -- duplicate GLEIF landing, kept twin is INTL_GLEIF_RELATIONSHIPS
+    DROP TABLE LIBRARY_RAW.LANDING.FED_SAM_EXCLUSIONS_FULL;  -- aborted first attempt, garbage inferred schema (kept copy is _FULL_R2)
+    DROP TABLE LIBRARY_RAW.LANDING.FED_FEMA_NFIP_COMMUNITY_STATUS_BOOK_FULL;  -- superseded by _FULL_R2
+    DROP TABLE LIBRARY_RAW.LANDING.XC_RANSOMWARELIVE_VICTIMS_FULL;  -- superseded by _FULL_R2
+    -- and once you're satisfied with the repointed marts, the six OLD short
+    -- landing tables (SAM 9k, NFIP 25k, ransomware 29k, voteview 3k, FR 2.7k,
+    -- CDC 15k) can retire the same way.
 
 (The ~50-table list from 2026-08-10 in reports/duplicate_ingest_drop_list_2026-08-10.md
 still stands separately; the aircraft-registry July twin is on it.)
