@@ -1,0 +1,1201 @@
+family,class,n_members,slot,slot_label,members_ready,members_hole,status
+UNMAPPED,unclassified,9,how_many,How many are there,9,0,ready
+UNMAPPED,unclassified,9,row_count_vs_published,Rows held vs publisher total,9,0,ready
+UNMAPPED,unclassified,9,freshness,How fresh is it (last load),9,0,ready
+UNMAPPED,unclassified,9,grain_integrity,Is one row really one thing (dup check),8,1,ready
+UNMAPPED,unclassified,9,id_integrity,Are the IDs real (distinct/sentinel check),8,1,ready
+UNMAPPED,unclassified,9,rank_in_family,Rank among peers in its family,9,0,ready
+UNMAPPED,unclassified,9,share_of_family,Share of its family,9,0,ready
+UNMAPPED,unclassified,9,by_time,Over time,0,9,hole
+UNMAPPED,unclassified,9,first_last,Earliest and latest,0,9,hole
+UNMAPPED,unclassified,9,gaps,Missing periods in the record,0,9,hole
+UNMAPPED,unclassified,9,seasonality,By month / day-of-week,0,9,hole
+UNMAPPED,unclassified,9,by_state,By state,1,8,ready
+UNMAPPED,unclassified,9,by_county_city,By county / city / zip,1,8,ready
+UNMAPPED,unclassified,9,map_points,On a map (points),1,8,ready
+UNMAPPED,unclassified,9,geo_concentration,Geographic concentration,1,8,ready
+UNMAPPED,unclassified,9,mix_by_code,Mix by type/status/category,3,6,ready
+UNMAPPED,unclassified,9,mix_over_time,Mix shifting over time,0,9,hole
+UNMAPPED,unclassified,9,code_concentration,Does one category dominate,3,6,ready
+UNMAPPED,unclassified,9,total_money,Total dollars,1,8,ready
+UNMAPPED,unclassified,9,typical_money,Typical dollar size (median),1,8,ready
+UNMAPPED,unclassified,9,money_distribution,Dollar distribution,1,8,ready
+UNMAPPED,unclassified,9,money_top_share,Top 1% share of dollars,1,8,ready
+UNMAPPED,unclassified,9,round_numbers,Suspiciously round amounts,1,8,ready
+UNMAPPED,unclassified,9,size_distribution,Size distribution,0,9,hole
+UNMAPPED,unclassified,9,per_person,Per person served,0,9,hole
+UNMAPPED,unclassified,9,flag_rates,Yes/no flag rates,1,8,ready
+accident,event,19,how_many,How many are there,19,0,ready
+accident,event,19,row_count_vs_published,Rows held vs publisher total,19,0,ready
+accident,event,19,freshness,How fresh is it (last load),19,0,ready
+accident,event,19,grain_integrity,Is one row really one thing (dup check),14,5,ready
+accident,event,19,id_integrity,Are the IDs real (distinct/sentinel check),10,9,ready
+accident,event,19,rank_in_family,Rank among peers in its family,19,0,ready
+accident,event,19,share_of_family,Share of its family,19,0,ready
+accident,event,19,by_time,Over time,16,3,ready
+accident,event,19,first_last,Earliest and latest,16,3,ready
+accident,event,19,gaps,Missing periods in the record,16,3,ready
+accident,event,19,seasonality,By month / day-of-week,16,3,ready
+accident,event,19,by_state,By state,12,7,ready
+accident,event,19,by_county_city,By county / city / zip,12,7,ready
+accident,event,19,map_points,On a map (points),2,17,ready
+accident,event,19,geo_concentration,Geographic concentration,12,7,ready
+accident,event,19,mix_by_code,Mix by type/status/category,15,4,ready
+accident,event,19,mix_over_time,Mix shifting over time,14,5,ready
+accident,event,19,code_concentration,Does one category dominate,15,4,ready
+accident,event,19,total_money,Total dollars,1,18,ready
+accident,event,19,typical_money,Typical dollar size (median),1,18,ready
+accident,event,19,money_distribution,Dollar distribution,1,18,ready
+accident,event,19,money_top_share,Top 1% share of dollars,1,18,ready
+accident,event,19,round_numbers,Suspiciously round amounts,1,18,ready
+accident,event,19,size_distribution,Size distribution,5,14,ready
+accident,event,19,per_noun_rate,Events per noun (the core ratio),10,9,ready
+accident,event,19,zero_nouns,Nouns with zero events (never touched),10,9,ready
+accident,event,19,repeaters,Repeat offenders / heaviest nouns,10,9,ready
+accident,event,19,noun_concentration,Top 1% of nouns' share of events,10,9,ready
+accident,event,19,per_person,Per person served,2,17,ready
+accident,event,19,flag_rates,Yes/no flag rates,4,15,ready
+action,event,38,how_many,How many are there,38,0,ready
+action,event,38,row_count_vs_published,Rows held vs publisher total,38,0,ready
+action,event,38,freshness,How fresh is it (last load),38,0,ready
+action,event,38,grain_integrity,Is one row really one thing (dup check),34,4,ready
+action,event,38,id_integrity,Are the IDs real (distinct/sentinel check),34,4,ready
+action,event,38,rank_in_family,Rank among peers in its family,38,0,ready
+action,event,38,share_of_family,Share of its family,38,0,ready
+action,event,38,by_time,Over time,23,15,ready
+action,event,38,first_last,Earliest and latest,23,15,ready
+action,event,38,gaps,Missing periods in the record,23,15,ready
+action,event,38,seasonality,By month / day-of-week,23,15,ready
+action,event,38,by_state,By state,17,21,ready
+action,event,38,by_county_city,By county / city / zip,17,21,ready
+action,event,38,map_points,On a map (points),3,35,ready
+action,event,38,geo_concentration,Geographic concentration,17,21,ready
+action,event,38,mix_by_code,Mix by type/status/category,26,12,ready
+action,event,38,mix_over_time,Mix shifting over time,23,15,ready
+action,event,38,code_concentration,Does one category dominate,26,12,ready
+action,event,38,total_money,Total dollars,9,29,ready
+action,event,38,typical_money,Typical dollar size (median),9,29,ready
+action,event,38,money_distribution,Dollar distribution,9,29,ready
+action,event,38,money_top_share,Top 1% share of dollars,9,29,ready
+action,event,38,round_numbers,Suspiciously round amounts,9,29,ready
+action,event,38,size_distribution,Size distribution,12,26,ready
+action,event,38,per_noun_rate,Events per noun (the core ratio),34,4,ready
+action,event,38,zero_nouns,Nouns with zero events (never touched),34,4,ready
+action,event,38,repeaters,Repeat offenders / heaviest nouns,34,4,ready
+action,event,38,noun_concentration,Top 1% of nouns' share of events,34,4,ready
+action,event,38,per_person,Per person served,2,36,ready
+action,event,38,flag_rates,Yes/no flag rates,3,35,ready
+aggregate,aggregate,56,how_many,How many are there,56,0,ready
+aggregate,aggregate,56,row_count_vs_published,Rows held vs publisher total,56,0,ready
+aggregate,aggregate,56,freshness,How fresh is it (last load),56,0,ready
+aggregate,aggregate,56,grain_integrity,Is one row really one thing (dup check),38,18,ready
+aggregate,aggregate,56,id_integrity,Are the IDs real (distinct/sentinel check),24,32,ready
+aggregate,aggregate,56,rank_in_family,Rank among peers in its family,56,0,ready
+aggregate,aggregate,56,share_of_family,Share of its family,56,0,ready
+aggregate,aggregate,56,by_time,Over time,44,12,ready
+aggregate,aggregate,56,first_last,Earliest and latest,44,12,ready
+aggregate,aggregate,56,gaps,Missing periods in the record,44,12,ready
+aggregate,aggregate,56,seasonality,By month / day-of-week,44,12,ready
+aggregate,aggregate,56,by_state,By state,33,23,ready
+aggregate,aggregate,56,by_county_city,By county / city / zip,33,23,ready
+aggregate,aggregate,56,map_points,On a map (points),4,52,ready
+aggregate,aggregate,56,geo_concentration,Geographic concentration,33,23,ready
+aggregate,aggregate,56,mix_by_code,Mix by type/status/category,43,13,ready
+aggregate,aggregate,56,mix_over_time,Mix shifting over time,39,17,ready
+aggregate,aggregate,56,code_concentration,Does one category dominate,43,13,ready
+aggregate,aggregate,56,total_money,Total dollars,13,43,ready
+aggregate,aggregate,56,typical_money,Typical dollar size (median),13,43,ready
+aggregate,aggregate,56,money_distribution,Dollar distribution,13,43,ready
+aggregate,aggregate,56,money_top_share,Top 1% share of dollars,13,43,ready
+aggregate,aggregate,56,round_numbers,Suspiciously round amounts,13,43,ready
+aggregate,aggregate,56,size_distribution,Size distribution,23,33,ready
+aggregate,aggregate,56,per_person,Per person served,8,48,ready
+aggregate,aggregate,56,flag_rates,Yes/no flag rates,5,51,ready
+asset,noun,15,how_many,How many are there,15,0,ready
+asset,noun,15,row_count_vs_published,Rows held vs publisher total,15,0,ready
+asset,noun,15,freshness,How fresh is it (last load),15,0,ready
+asset,noun,15,grain_integrity,Is one row really one thing (dup check),15,0,ready
+asset,noun,15,id_integrity,Are the IDs real (distinct/sentinel check),15,0,ready
+asset,noun,15,rank_in_family,Rank among peers in its family,15,0,ready
+asset,noun,15,share_of_family,Share of its family,15,0,ready
+asset,noun,15,by_time,Over time,10,5,ready
+asset,noun,15,first_last,Earliest and latest,10,5,ready
+asset,noun,15,gaps,Missing periods in the record,10,5,ready
+asset,noun,15,seasonality,By month / day-of-week,10,5,ready
+asset,noun,15,births,New ones per period (first seen),10,5,ready
+asset,noun,15,deaths,Disappeared per period (last seen),10,5,ready
+asset,noun,15,age_distribution,How old the living ones are,10,5,ready
+asset,noun,15,by_state,By state,13,2,ready
+asset,noun,15,by_county_city,By county / city / zip,13,2,ready
+asset,noun,15,map_points,On a map (points),7,8,ready
+asset,noun,15,geo_concentration,Geographic concentration,13,2,ready
+asset,noun,15,mix_by_code,Mix by type/status/category,12,3,ready
+asset,noun,15,mix_over_time,Mix shifting over time,10,5,ready
+asset,noun,15,code_concentration,Does one category dominate,12,3,ready
+asset,noun,15,total_money,Total dollars,1,14,ready
+asset,noun,15,typical_money,Typical dollar size (median),1,14,ready
+asset,noun,15,money_distribution,Dollar distribution,1,14,ready
+asset,noun,15,money_top_share,Top 1% share of dollars,1,14,ready
+asset,noun,15,round_numbers,Suspiciously round amounts,1,14,ready
+asset,noun,15,size_distribution,Size distribution,6,9,ready
+asset,noun,15,per_person,Per person served,2,13,ready
+asset,noun,15,flag_rates,Yes/no flag rates,3,12,ready
+award,event+noun,20,how_many,How many are there,20,0,ready
+award,event+noun,20,row_count_vs_published,Rows held vs publisher total,20,0,ready
+award,event+noun,20,freshness,How fresh is it (last load),20,0,ready
+award,event+noun,20,grain_integrity,Is one row really one thing (dup check),19,1,ready
+award,event+noun,20,id_integrity,Are the IDs real (distinct/sentinel check),20,0,ready
+award,event+noun,20,rank_in_family,Rank among peers in its family,20,0,ready
+award,event+noun,20,share_of_family,Share of its family,20,0,ready
+award,event+noun,20,by_time,Over time,19,1,ready
+award,event+noun,20,first_last,Earliest and latest,19,1,ready
+award,event+noun,20,gaps,Missing periods in the record,19,1,ready
+award,event+noun,20,seasonality,By month / day-of-week,19,1,ready
+award,event+noun,20,births,New ones per period (first seen),19,1,ready
+award,event+noun,20,deaths,Disappeared per period (last seen),19,1,ready
+award,event+noun,20,age_distribution,How old the living ones are,19,1,ready
+award,event+noun,20,by_state,By state,11,9,ready
+award,event+noun,20,by_county_city,By county / city / zip,11,9,ready
+award,event+noun,20,map_points,On a map (points),0,20,hole
+award,event+noun,20,geo_concentration,Geographic concentration,11,9,ready
+award,event+noun,20,mix_by_code,Mix by type/status/category,16,4,ready
+award,event+noun,20,mix_over_time,Mix shifting over time,16,4,ready
+award,event+noun,20,code_concentration,Does one category dominate,16,4,ready
+award,event+noun,20,total_money,Total dollars,17,3,ready
+award,event+noun,20,typical_money,Typical dollar size (median),17,3,ready
+award,event+noun,20,money_distribution,Dollar distribution,17,3,ready
+award,event+noun,20,money_top_share,Top 1% share of dollars,17,3,ready
+award,event+noun,20,round_numbers,Suspiciously round amounts,17,3,ready
+award,event+noun,20,size_distribution,Size distribution,10,10,ready
+award,event+noun,20,per_noun_rate,Events per noun (the core ratio),20,0,ready
+award,event+noun,20,zero_nouns,Nouns with zero events (never touched),20,0,ready
+award,event+noun,20,repeaters,Repeat offenders / heaviest nouns,20,0,ready
+award,event+noun,20,noun_concentration,Top 1% of nouns' share of events,20,0,ready
+award,event+noun,20,per_person,Per person served,2,18,ready
+award,event+noun,20,flag_rates,Yes/no flag rates,4,16,ready
+case,event+noun,44,how_many,How many are there,44,0,ready
+case,event+noun,44,row_count_vs_published,Rows held vs publisher total,44,0,ready
+case,event+noun,44,freshness,How fresh is it (last load),44,0,ready
+case,event+noun,44,grain_integrity,Is one row really one thing (dup check),41,3,ready
+case,event+noun,44,id_integrity,Are the IDs real (distinct/sentinel check),42,2,ready
+case,event+noun,44,rank_in_family,Rank among peers in its family,44,0,ready
+case,event+noun,44,share_of_family,Share of its family,44,0,ready
+case,event+noun,44,by_time,Over time,36,8,ready
+case,event+noun,44,first_last,Earliest and latest,36,8,ready
+case,event+noun,44,gaps,Missing periods in the record,36,8,ready
+case,event+noun,44,seasonality,By month / day-of-week,36,8,ready
+case,event+noun,44,births,New ones per period (first seen),36,8,ready
+case,event+noun,44,deaths,Disappeared per period (last seen),36,8,ready
+case,event+noun,44,age_distribution,How old the living ones are,36,8,ready
+case,event+noun,44,by_state,By state,31,13,ready
+case,event+noun,44,by_county_city,By county / city / zip,31,13,ready
+case,event+noun,44,map_points,On a map (points),12,32,ready
+case,event+noun,44,geo_concentration,Geographic concentration,31,13,ready
+case,event+noun,44,mix_by_code,Mix by type/status/category,31,13,ready
+case,event+noun,44,mix_over_time,Mix shifting over time,29,15,ready
+case,event+noun,44,code_concentration,Does one category dominate,31,13,ready
+case,event+noun,44,total_money,Total dollars,10,34,ready
+case,event+noun,44,typical_money,Typical dollar size (median),10,34,ready
+case,event+noun,44,money_distribution,Dollar distribution,10,34,ready
+case,event+noun,44,money_top_share,Top 1% share of dollars,10,34,ready
+case,event+noun,44,round_numbers,Suspiciously round amounts,10,34,ready
+case,event+noun,44,size_distribution,Size distribution,22,22,ready
+case,event+noun,44,per_noun_rate,Events per noun (the core ratio),42,2,ready
+case,event+noun,44,zero_nouns,Nouns with zero events (never touched),42,2,ready
+case,event+noun,44,repeaters,Repeat offenders / heaviest nouns,42,2,ready
+case,event+noun,44,noun_concentration,Top 1% of nouns' share of events,42,2,ready
+case,event+noun,44,per_person,Per person served,3,41,ready
+case,event+noun,44,flag_rates,Yes/no flag rates,2,42,ready
+change,event,11,how_many,How many are there,11,0,ready
+change,event,11,row_count_vs_published,Rows held vs publisher total,11,0,ready
+change,event,11,freshness,How fresh is it (last load),11,0,ready
+change,event,11,grain_integrity,Is one row really one thing (dup check),11,0,ready
+change,event,11,id_integrity,Are the IDs real (distinct/sentinel check),11,0,ready
+change,event,11,rank_in_family,Rank among peers in its family,11,0,ready
+change,event,11,share_of_family,Share of its family,11,0,ready
+change,event,11,by_time,Over time,9,2,ready
+change,event,11,first_last,Earliest and latest,9,2,ready
+change,event,11,gaps,Missing periods in the record,9,2,ready
+change,event,11,seasonality,By month / day-of-week,9,2,ready
+change,event,11,by_state,By state,8,3,ready
+change,event,11,by_county_city,By county / city / zip,8,3,ready
+change,event,11,map_points,On a map (points),2,9,ready
+change,event,11,geo_concentration,Geographic concentration,8,3,ready
+change,event,11,mix_by_code,Mix by type/status/category,8,3,ready
+change,event,11,mix_over_time,Mix shifting over time,7,4,ready
+change,event,11,code_concentration,Does one category dominate,8,3,ready
+change,event,11,total_money,Total dollars,0,11,hole
+change,event,11,typical_money,Typical dollar size (median),0,11,hole
+change,event,11,money_distribution,Dollar distribution,0,11,hole
+change,event,11,money_top_share,Top 1% share of dollars,0,11,hole
+change,event,11,round_numbers,Suspiciously round amounts,0,11,hole
+change,event,11,size_distribution,Size distribution,1,10,ready
+change,event,11,per_noun_rate,Events per noun (the core ratio),11,0,ready
+change,event,11,zero_nouns,Nouns with zero events (never touched),11,0,ready
+change,event,11,repeaters,Repeat offenders / heaviest nouns,11,0,ready
+change,event,11,noun_concentration,Top 1% of nouns' share of events,11,0,ready
+change,event,11,per_person,Per person served,0,11,hole
+change,event,11,flag_rates,Yes/no flag rates,4,7,ready
+code,code,47,how_many,How many are there,47,0,ready
+code,code,47,row_count_vs_published,Rows held vs publisher total,47,0,ready
+code,code,47,freshness,How fresh is it (last load),47,0,ready
+code,code,47,grain_integrity,Is one row really one thing (dup check),46,1,ready
+code,code,47,id_integrity,Are the IDs real (distinct/sentinel check),45,2,ready
+code,code,47,rank_in_family,Rank among peers in its family,47,0,ready
+code,code,47,share_of_family,Share of its family,47,0,ready
+code,code,47,by_time,Over time,23,24,ready
+code,code,47,first_last,Earliest and latest,23,24,ready
+code,code,47,gaps,Missing periods in the record,23,24,ready
+code,code,47,seasonality,By month / day-of-week,23,24,ready
+code,code,47,by_state,By state,9,38,ready
+code,code,47,by_county_city,By county / city / zip,9,38,ready
+code,code,47,map_points,On a map (points),3,44,ready
+code,code,47,geo_concentration,Geographic concentration,9,38,ready
+code,code,47,mix_by_code,Mix by type/status/category,24,23,ready
+code,code,47,mix_over_time,Mix shifting over time,6,41,ready
+code,code,47,code_concentration,Does one category dominate,24,23,ready
+code,code,47,total_money,Total dollars,1,46,ready
+code,code,47,typical_money,Typical dollar size (median),1,46,ready
+code,code,47,money_distribution,Dollar distribution,1,46,ready
+code,code,47,money_top_share,Top 1% share of dollars,1,46,ready
+code,code,47,round_numbers,Suspiciously round amounts,1,46,ready
+code,code,47,size_distribution,Size distribution,6,41,ready
+code,code,47,per_person,Per person served,0,47,hole
+code,code,47,flag_rates,Yes/no flag rates,10,37,ready
+code,code,47,codes_defined,Codes defined,47,0,ready
+code,code,47,codes_in_use,Codes actually used anywhere,47,0,ready
+code,code,47,code_usage_concentration,Usage concentration,47,0,ready
+code,code,47,orphan_codes,Values in data missing from vocabulary,47,0,ready
+complaint,event,6,how_many,How many are there,6,0,ready
+complaint,event,6,row_count_vs_published,Rows held vs publisher total,6,0,ready
+complaint,event,6,freshness,How fresh is it (last load),6,0,ready
+complaint,event,6,grain_integrity,Is one row really one thing (dup check),5,1,ready
+complaint,event,6,id_integrity,Are the IDs real (distinct/sentinel check),6,0,ready
+complaint,event,6,rank_in_family,Rank among peers in its family,6,0,ready
+complaint,event,6,share_of_family,Share of its family,6,0,ready
+complaint,event,6,by_time,Over time,4,2,ready
+complaint,event,6,first_last,Earliest and latest,4,2,ready
+complaint,event,6,gaps,Missing periods in the record,4,2,ready
+complaint,event,6,seasonality,By month / day-of-week,4,2,ready
+complaint,event,6,by_state,By state,4,2,ready
+complaint,event,6,by_county_city,By county / city / zip,4,2,ready
+complaint,event,6,map_points,On a map (points),0,6,hole
+complaint,event,6,geo_concentration,Geographic concentration,4,2,ready
+complaint,event,6,mix_by_code,Mix by type/status/category,6,0,ready
+complaint,event,6,mix_over_time,Mix shifting over time,4,2,ready
+complaint,event,6,code_concentration,Does one category dominate,6,0,ready
+complaint,event,6,total_money,Total dollars,0,6,hole
+complaint,event,6,typical_money,Typical dollar size (median),0,6,hole
+complaint,event,6,money_distribution,Dollar distribution,0,6,hole
+complaint,event,6,money_top_share,Top 1% share of dollars,0,6,hole
+complaint,event,6,round_numbers,Suspiciously round amounts,0,6,hole
+complaint,event,6,size_distribution,Size distribution,1,5,ready
+complaint,event,6,per_noun_rate,Events per noun (the core ratio),6,0,ready
+complaint,event,6,zero_nouns,Nouns with zero events (never touched),6,0,ready
+complaint,event,6,repeaters,Repeat offenders / heaviest nouns,6,0,ready
+complaint,event,6,noun_concentration,Top 1% of nouns' share of events,6,0,ready
+complaint,event,6,per_person,Per person served,0,6,hole
+complaint,event,6,flag_rates,Yes/no flag rates,4,2,ready
+contribution,event,23,how_many,How many are there,23,0,ready
+contribution,event,23,row_count_vs_published,Rows held vs publisher total,23,0,ready
+contribution,event,23,freshness,How fresh is it (last load),23,0,ready
+contribution,event,23,grain_integrity,Is one row really one thing (dup check),22,1,ready
+contribution,event,23,id_integrity,Are the IDs real (distinct/sentinel check),23,0,ready
+contribution,event,23,rank_in_family,Rank among peers in its family,23,0,ready
+contribution,event,23,share_of_family,Share of its family,23,0,ready
+contribution,event,23,by_time,Over time,22,1,ready
+contribution,event,23,first_last,Earliest and latest,22,1,ready
+contribution,event,23,gaps,Missing periods in the record,22,1,ready
+contribution,event,23,seasonality,By month / day-of-week,22,1,ready
+contribution,event,23,by_state,By state,18,5,ready
+contribution,event,23,by_county_city,By county / city / zip,18,5,ready
+contribution,event,23,map_points,On a map (points),0,23,hole
+contribution,event,23,geo_concentration,Geographic concentration,18,5,ready
+contribution,event,23,mix_by_code,Mix by type/status/category,17,6,ready
+contribution,event,23,mix_over_time,Mix shifting over time,17,6,ready
+contribution,event,23,code_concentration,Does one category dominate,17,6,ready
+contribution,event,23,total_money,Total dollars,19,4,ready
+contribution,event,23,typical_money,Typical dollar size (median),19,4,ready
+contribution,event,23,money_distribution,Dollar distribution,19,4,ready
+contribution,event,23,money_top_share,Top 1% share of dollars,19,4,ready
+contribution,event,23,round_numbers,Suspiciously round amounts,19,4,ready
+contribution,event,23,size_distribution,Size distribution,4,19,ready
+contribution,event,23,per_noun_rate,Events per noun (the core ratio),23,0,ready
+contribution,event,23,zero_nouns,Nouns with zero events (never touched),23,0,ready
+contribution,event,23,repeaters,Repeat offenders / heaviest nouns,23,0,ready
+contribution,event,23,noun_concentration,Top 1% of nouns' share of events,23,0,ready
+contribution,event,23,per_person,Per person served,0,23,hole
+contribution,event,23,flag_rates,Yes/no flag rates,13,10,ready
+crosswalk,link,16,how_many,How many are there,16,0,ready
+crosswalk,link,16,row_count_vs_published,Rows held vs publisher total,16,0,ready
+crosswalk,link,16,freshness,How fresh is it (last load),16,0,ready
+crosswalk,link,16,grain_integrity,Is one row really one thing (dup check),15,1,ready
+crosswalk,link,16,id_integrity,Are the IDs real (distinct/sentinel check),12,4,ready
+crosswalk,link,16,rank_in_family,Rank among peers in its family,16,0,ready
+crosswalk,link,16,share_of_family,Share of its family,16,0,ready
+crosswalk,link,16,by_time,Over time,7,9,ready
+crosswalk,link,16,first_last,Earliest and latest,7,9,ready
+crosswalk,link,16,gaps,Missing periods in the record,7,9,ready
+crosswalk,link,16,seasonality,By month / day-of-week,7,9,ready
+crosswalk,link,16,by_state,By state,5,11,ready
+crosswalk,link,16,by_county_city,By county / city / zip,5,11,ready
+crosswalk,link,16,map_points,On a map (points),4,12,ready
+crosswalk,link,16,geo_concentration,Geographic concentration,5,11,ready
+crosswalk,link,16,mix_by_code,Mix by type/status/category,8,8,ready
+crosswalk,link,16,mix_over_time,Mix shifting over time,4,12,ready
+crosswalk,link,16,code_concentration,Does one category dominate,8,8,ready
+crosswalk,link,16,total_money,Total dollars,1,15,ready
+crosswalk,link,16,typical_money,Typical dollar size (median),1,15,ready
+crosswalk,link,16,money_distribution,Dollar distribution,1,15,ready
+crosswalk,link,16,money_top_share,Top 1% share of dollars,1,15,ready
+crosswalk,link,16,round_numbers,Suspiciously round amounts,1,15,ready
+crosswalk,link,16,size_distribution,Size distribution,3,13,ready
+crosswalk,link,16,per_person,Per person served,1,15,ready
+crosswalk,link,16,flag_rates,Yes/no flag rates,1,15,ready
+crosswalk,link,16,degree_out,Connections per left noun,16,0,ready
+crosswalk,link,16,degree_in,Connections per right noun,16,0,ready
+crosswalk,link,16,multiplicity,One-to-one or many-to-many,16,0,ready
+dataset,noun,17,how_many,How many are there,17,0,ready
+dataset,noun,17,row_count_vs_published,Rows held vs publisher total,17,0,ready
+dataset,noun,17,freshness,How fresh is it (last load),17,0,ready
+dataset,noun,17,grain_integrity,Is one row really one thing (dup check),15,2,ready
+dataset,noun,17,id_integrity,Are the IDs real (distinct/sentinel check),15,2,ready
+dataset,noun,17,rank_in_family,Rank among peers in its family,17,0,ready
+dataset,noun,17,share_of_family,Share of its family,17,0,ready
+dataset,noun,17,by_time,Over time,14,3,ready
+dataset,noun,17,first_last,Earliest and latest,14,3,ready
+dataset,noun,17,gaps,Missing periods in the record,14,3,ready
+dataset,noun,17,seasonality,By month / day-of-week,14,3,ready
+dataset,noun,17,births,New ones per period (first seen),14,3,ready
+dataset,noun,17,deaths,Disappeared per period (last seen),14,3,ready
+dataset,noun,17,age_distribution,How old the living ones are,14,3,ready
+dataset,noun,17,by_state,By state,10,7,ready
+dataset,noun,17,by_county_city,By county / city / zip,10,7,ready
+dataset,noun,17,map_points,On a map (points),0,17,hole
+dataset,noun,17,geo_concentration,Geographic concentration,10,7,ready
+dataset,noun,17,mix_by_code,Mix by type/status/category,8,9,ready
+dataset,noun,17,mix_over_time,Mix shifting over time,7,10,ready
+dataset,noun,17,code_concentration,Does one category dominate,8,9,ready
+dataset,noun,17,total_money,Total dollars,0,17,hole
+dataset,noun,17,typical_money,Typical dollar size (median),0,17,hole
+dataset,noun,17,money_distribution,Dollar distribution,0,17,hole
+dataset,noun,17,money_top_share,Top 1% share of dollars,0,17,hole
+dataset,noun,17,round_numbers,Suspiciously round amounts,0,17,hole
+dataset,noun,17,size_distribution,Size distribution,4,13,ready
+dataset,noun,17,per_person,Per person served,0,17,hole
+dataset,noun,17,flag_rates,Yes/no flag rates,0,17,hole
+document,noun,14,how_many,How many are there,14,0,ready
+document,noun,14,row_count_vs_published,Rows held vs publisher total,14,0,ready
+document,noun,14,freshness,How fresh is it (last load),14,0,ready
+document,noun,14,grain_integrity,Is one row really one thing (dup check),10,4,ready
+document,noun,14,id_integrity,Are the IDs real (distinct/sentinel check),8,6,ready
+document,noun,14,rank_in_family,Rank among peers in its family,14,0,ready
+document,noun,14,share_of_family,Share of its family,14,0,ready
+document,noun,14,by_time,Over time,9,5,ready
+document,noun,14,first_last,Earliest and latest,9,5,ready
+document,noun,14,gaps,Missing periods in the record,9,5,ready
+document,noun,14,seasonality,By month / day-of-week,9,5,ready
+document,noun,14,births,New ones per period (first seen),9,5,ready
+document,noun,14,deaths,Disappeared per period (last seen),9,5,ready
+document,noun,14,age_distribution,How old the living ones are,9,5,ready
+document,noun,14,by_state,By state,4,10,ready
+document,noun,14,by_county_city,By county / city / zip,4,10,ready
+document,noun,14,map_points,On a map (points),0,14,hole
+document,noun,14,geo_concentration,Geographic concentration,4,10,ready
+document,noun,14,mix_by_code,Mix by type/status/category,5,9,ready
+document,noun,14,mix_over_time,Mix shifting over time,5,9,ready
+document,noun,14,code_concentration,Does one category dominate,5,9,ready
+document,noun,14,total_money,Total dollars,2,12,ready
+document,noun,14,typical_money,Typical dollar size (median),2,12,ready
+document,noun,14,money_distribution,Dollar distribution,2,12,ready
+document,noun,14,money_top_share,Top 1% share of dollars,2,12,ready
+document,noun,14,round_numbers,Suspiciously round amounts,2,12,ready
+document,noun,14,size_distribution,Size distribution,3,11,ready
+document,noun,14,per_person,Per person served,0,14,hole
+document,noun,14,flag_rates,Yes/no flag rates,2,12,ready
+enforcement,event,18,how_many,How many are there,18,0,ready
+enforcement,event,18,row_count_vs_published,Rows held vs publisher total,18,0,ready
+enforcement,event,18,freshness,How fresh is it (last load),18,0,ready
+enforcement,event,18,grain_integrity,Is one row really one thing (dup check),17,1,ready
+enforcement,event,18,id_integrity,Are the IDs real (distinct/sentinel check),17,1,ready
+enforcement,event,18,rank_in_family,Rank among peers in its family,18,0,ready
+enforcement,event,18,share_of_family,Share of its family,18,0,ready
+enforcement,event,18,by_time,Over time,17,1,ready
+enforcement,event,18,first_last,Earliest and latest,17,1,ready
+enforcement,event,18,gaps,Missing periods in the record,17,1,ready
+enforcement,event,18,seasonality,By month / day-of-week,17,1,ready
+enforcement,event,18,by_state,By state,17,1,ready
+enforcement,event,18,by_county_city,By county / city / zip,17,1,ready
+enforcement,event,18,map_points,On a map (points),4,14,ready
+enforcement,event,18,geo_concentration,Geographic concentration,17,1,ready
+enforcement,event,18,mix_by_code,Mix by type/status/category,16,2,ready
+enforcement,event,18,mix_over_time,Mix shifting over time,16,2,ready
+enforcement,event,18,code_concentration,Does one category dominate,16,2,ready
+enforcement,event,18,total_money,Total dollars,8,10,ready
+enforcement,event,18,typical_money,Typical dollar size (median),8,10,ready
+enforcement,event,18,money_distribution,Dollar distribution,8,10,ready
+enforcement,event,18,money_top_share,Top 1% share of dollars,8,10,ready
+enforcement,event,18,round_numbers,Suspiciously round amounts,8,10,ready
+enforcement,event,18,size_distribution,Size distribution,4,14,ready
+enforcement,event,18,per_noun_rate,Events per noun (the core ratio),17,1,ready
+enforcement,event,18,zero_nouns,Nouns with zero events (never touched),17,1,ready
+enforcement,event,18,repeaters,Repeat offenders / heaviest nouns,17,1,ready
+enforcement,event,18,noun_concentration,Top 1% of nouns' share of events,17,1,ready
+enforcement,event,18,per_person,Per person served,3,15,ready
+enforcement,event,18,flag_rates,Yes/no flag rates,8,10,ready
+facility,noun,142,how_many,How many are there,142,0,ready
+facility,noun,142,row_count_vs_published,Rows held vs publisher total,142,0,ready
+facility,noun,142,freshness,How fresh is it (last load),142,0,ready
+facility,noun,142,grain_integrity,Is one row really one thing (dup check),140,2,ready
+facility,noun,142,id_integrity,Are the IDs real (distinct/sentinel check),139,3,ready
+facility,noun,142,rank_in_family,Rank among peers in its family,142,0,ready
+facility,noun,142,share_of_family,Share of its family,142,0,ready
+facility,noun,142,by_time,Over time,107,35,ready
+facility,noun,142,first_last,Earliest and latest,107,35,ready
+facility,noun,142,gaps,Missing periods in the record,107,35,ready
+facility,noun,142,seasonality,By month / day-of-week,107,35,ready
+facility,noun,142,births,New ones per period (first seen),107,35,ready
+facility,noun,142,deaths,Disappeared per period (last seen),107,35,ready
+facility,noun,142,age_distribution,How old the living ones are,107,35,ready
+facility,noun,142,by_state,By state,136,6,ready
+facility,noun,142,by_county_city,By county / city / zip,136,6,ready
+facility,noun,142,map_points,On a map (points),74,68,ready
+facility,noun,142,geo_concentration,Geographic concentration,136,6,ready
+facility,noun,142,mix_by_code,Mix by type/status/category,115,27,ready
+facility,noun,142,mix_over_time,Mix shifting over time,92,50,ready
+facility,noun,142,code_concentration,Does one category dominate,115,27,ready
+facility,noun,142,total_money,Total dollars,10,132,ready
+facility,noun,142,typical_money,Typical dollar size (median),10,132,ready
+facility,noun,142,money_distribution,Dollar distribution,10,132,ready
+facility,noun,142,money_top_share,Top 1% share of dollars,10,132,ready
+facility,noun,142,round_numbers,Suspiciously round amounts,10,132,ready
+facility,noun,142,size_distribution,Size distribution,79,63,ready
+facility,noun,142,per_person,Per person served,20,122,ready
+facility,noun,142,flag_rates,Yes/no flag rates,19,123,ready
+filing,event+noun,73,how_many,How many are there,73,0,ready
+filing,event+noun,73,row_count_vs_published,Rows held vs publisher total,73,0,ready
+filing,event+noun,73,freshness,How fresh is it (last load),73,0,ready
+filing,event+noun,73,grain_integrity,Is one row really one thing (dup check),57,16,ready
+filing,event+noun,73,id_integrity,Are the IDs real (distinct/sentinel check),67,6,ready
+filing,event+noun,73,rank_in_family,Rank among peers in its family,73,0,ready
+filing,event+noun,73,share_of_family,Share of its family,73,0,ready
+filing,event+noun,73,by_time,Over time,65,8,ready
+filing,event+noun,73,first_last,Earliest and latest,65,8,ready
+filing,event+noun,73,gaps,Missing periods in the record,65,8,ready
+filing,event+noun,73,seasonality,By month / day-of-week,65,8,ready
+filing,event+noun,73,births,New ones per period (first seen),65,8,ready
+filing,event+noun,73,deaths,Disappeared per period (last seen),65,8,ready
+filing,event+noun,73,age_distribution,How old the living ones are,65,8,ready
+filing,event+noun,73,by_state,By state,39,34,ready
+filing,event+noun,73,by_county_city,By county / city / zip,39,34,ready
+filing,event+noun,73,map_points,On a map (points),8,65,ready
+filing,event+noun,73,geo_concentration,Geographic concentration,39,34,ready
+filing,event+noun,73,mix_by_code,Mix by type/status/category,56,17,ready
+filing,event+noun,73,mix_over_time,Mix shifting over time,52,21,ready
+filing,event+noun,73,code_concentration,Does one category dominate,56,17,ready
+filing,event+noun,73,total_money,Total dollars,13,60,ready
+filing,event+noun,73,typical_money,Typical dollar size (median),13,60,ready
+filing,event+noun,73,money_distribution,Dollar distribution,13,60,ready
+filing,event+noun,73,money_top_share,Top 1% share of dollars,13,60,ready
+filing,event+noun,73,round_numbers,Suspiciously round amounts,13,60,ready
+filing,event+noun,73,size_distribution,Size distribution,28,45,ready
+filing,event+noun,73,per_noun_rate,Events per noun (the core ratio),67,6,ready
+filing,event+noun,73,zero_nouns,Nouns with zero events (never touched),67,6,ready
+filing,event+noun,73,repeaters,Repeat offenders / heaviest nouns,67,6,ready
+filing,event+noun,73,noun_concentration,Top 1% of nouns' share of events,67,6,ready
+filing,event+noun,73,per_person,Per person served,7,66,ready
+filing,event+noun,73,flag_rates,Yes/no flag rates,17,56,ready
+inspection,event,13,how_many,How many are there,13,0,ready
+inspection,event,13,row_count_vs_published,Rows held vs publisher total,13,0,ready
+inspection,event,13,freshness,How fresh is it (last load),13,0,ready
+inspection,event,13,grain_integrity,Is one row really one thing (dup check),11,2,ready
+inspection,event,13,id_integrity,Are the IDs real (distinct/sentinel check),12,1,ready
+inspection,event,13,rank_in_family,Rank among peers in its family,13,0,ready
+inspection,event,13,share_of_family,Share of its family,13,0,ready
+inspection,event,13,by_time,Over time,13,0,ready
+inspection,event,13,first_last,Earliest and latest,13,0,ready
+inspection,event,13,gaps,Missing periods in the record,13,0,ready
+inspection,event,13,seasonality,By month / day-of-week,13,0,ready
+inspection,event,13,by_state,By state,12,1,ready
+inspection,event,13,by_county_city,By county / city / zip,12,1,ready
+inspection,event,13,map_points,On a map (points),3,10,ready
+inspection,event,13,geo_concentration,Geographic concentration,12,1,ready
+inspection,event,13,mix_by_code,Mix by type/status/category,12,1,ready
+inspection,event,13,mix_over_time,Mix shifting over time,12,1,ready
+inspection,event,13,code_concentration,Does one category dominate,12,1,ready
+inspection,event,13,total_money,Total dollars,4,9,ready
+inspection,event,13,typical_money,Typical dollar size (median),4,9,ready
+inspection,event,13,money_distribution,Dollar distribution,4,9,ready
+inspection,event,13,money_top_share,Top 1% share of dollars,4,9,ready
+inspection,event,13,round_numbers,Suspiciously round amounts,4,9,ready
+inspection,event,13,size_distribution,Size distribution,2,11,ready
+inspection,event,13,per_noun_rate,Events per noun (the core ratio),12,1,ready
+inspection,event,13,zero_nouns,Nouns with zero events (never touched),12,1,ready
+inspection,event,13,repeaters,Repeat offenders / heaviest nouns,12,1,ready
+inspection,event,13,noun_concentration,Top 1% of nouns' share of events,12,1,ready
+inspection,event,13,per_person,Per person served,0,13,hole
+inspection,event,13,flag_rates,Yes/no flag rates,2,11,ready
+instrument,noun,8,how_many,How many are there,8,0,ready
+instrument,noun,8,row_count_vs_published,Rows held vs publisher total,8,0,ready
+instrument,noun,8,freshness,How fresh is it (last load),8,0,ready
+instrument,noun,8,grain_integrity,Is one row really one thing (dup check),8,0,ready
+instrument,noun,8,id_integrity,Are the IDs real (distinct/sentinel check),6,2,ready
+instrument,noun,8,rank_in_family,Rank among peers in its family,8,0,ready
+instrument,noun,8,share_of_family,Share of its family,8,0,ready
+instrument,noun,8,by_time,Over time,4,4,ready
+instrument,noun,8,first_last,Earliest and latest,4,4,ready
+instrument,noun,8,gaps,Missing periods in the record,4,4,ready
+instrument,noun,8,seasonality,By month / day-of-week,4,4,ready
+instrument,noun,8,births,New ones per period (first seen),4,4,ready
+instrument,noun,8,deaths,Disappeared per period (last seen),4,4,ready
+instrument,noun,8,age_distribution,How old the living ones are,4,4,ready
+instrument,noun,8,by_state,By state,1,7,ready
+instrument,noun,8,by_county_city,By county / city / zip,1,7,ready
+instrument,noun,8,map_points,On a map (points),1,7,ready
+instrument,noun,8,geo_concentration,Geographic concentration,1,7,ready
+instrument,noun,8,mix_by_code,Mix by type/status/category,1,7,ready
+instrument,noun,8,mix_over_time,Mix shifting over time,1,7,ready
+instrument,noun,8,code_concentration,Does one category dominate,1,7,ready
+instrument,noun,8,total_money,Total dollars,3,5,ready
+instrument,noun,8,typical_money,Typical dollar size (median),3,5,ready
+instrument,noun,8,money_distribution,Dollar distribution,3,5,ready
+instrument,noun,8,money_top_share,Top 1% share of dollars,3,5,ready
+instrument,noun,8,round_numbers,Suspiciously round amounts,3,5,ready
+instrument,noun,8,size_distribution,Size distribution,2,6,ready
+instrument,noun,8,per_person,Per person served,0,8,hole
+instrument,noun,8,flag_rates,Yes/no flag rates,0,8,hole
+loan,event+noun,11,how_many,How many are there,11,0,ready
+loan,event+noun,11,row_count_vs_published,Rows held vs publisher total,11,0,ready
+loan,event+noun,11,freshness,How fresh is it (last load),11,0,ready
+loan,event+noun,11,grain_integrity,Is one row really one thing (dup check),7,4,ready
+loan,event+noun,11,id_integrity,Are the IDs real (distinct/sentinel check),7,4,ready
+loan,event+noun,11,rank_in_family,Rank among peers in its family,11,0,ready
+loan,event+noun,11,share_of_family,Share of its family,11,0,ready
+loan,event+noun,11,by_time,Over time,10,1,ready
+loan,event+noun,11,first_last,Earliest and latest,10,1,ready
+loan,event+noun,11,gaps,Missing periods in the record,10,1,ready
+loan,event+noun,11,seasonality,By month / day-of-week,10,1,ready
+loan,event+noun,11,births,New ones per period (first seen),10,1,ready
+loan,event+noun,11,deaths,Disappeared per period (last seen),10,1,ready
+loan,event+noun,11,age_distribution,How old the living ones are,10,1,ready
+loan,event+noun,11,by_state,By state,10,1,ready
+loan,event+noun,11,by_county_city,By county / city / zip,10,1,ready
+loan,event+noun,11,map_points,On a map (points),0,11,hole
+loan,event+noun,11,geo_concentration,Geographic concentration,10,1,ready
+loan,event+noun,11,mix_by_code,Mix by type/status/category,10,1,ready
+loan,event+noun,11,mix_over_time,Mix shifting over time,10,1,ready
+loan,event+noun,11,code_concentration,Does one category dominate,10,1,ready
+loan,event+noun,11,total_money,Total dollars,8,3,ready
+loan,event+noun,11,typical_money,Typical dollar size (median),8,3,ready
+loan,event+noun,11,money_distribution,Dollar distribution,8,3,ready
+loan,event+noun,11,money_top_share,Top 1% share of dollars,8,3,ready
+loan,event+noun,11,round_numbers,Suspiciously round amounts,8,3,ready
+loan,event+noun,11,size_distribution,Size distribution,7,4,ready
+loan,event+noun,11,per_noun_rate,Events per noun (the core ratio),7,4,ready
+loan,event+noun,11,zero_nouns,Nouns with zero events (never touched),7,4,ready
+loan,event+noun,11,repeaters,Repeat offenders / heaviest nouns,7,4,ready
+loan,event+noun,11,noun_concentration,Top 1% of nouns' share of events,7,4,ready
+loan,event+noun,11,per_person,Per person served,4,7,ready
+loan,event+noun,11,flag_rates,Yes/no flag rates,2,9,ready
+measurement,event,82,how_many,How many are there,82,0,ready
+measurement,event,82,row_count_vs_published,Rows held vs publisher total,82,0,ready
+measurement,event,82,freshness,How fresh is it (last load),82,0,ready
+measurement,event,82,grain_integrity,Is one row really one thing (dup check),62,20,ready
+measurement,event,82,id_integrity,Are the IDs real (distinct/sentinel check),39,43,ready
+measurement,event,82,rank_in_family,Rank among peers in its family,82,0,ready
+measurement,event,82,share_of_family,Share of its family,82,0,ready
+measurement,event,82,by_time,Over time,62,20,ready
+measurement,event,82,first_last,Earliest and latest,62,20,ready
+measurement,event,82,gaps,Missing periods in the record,62,20,ready
+measurement,event,82,seasonality,By month / day-of-week,62,20,ready
+measurement,event,82,by_state,By state,52,30,ready
+measurement,event,82,by_county_city,By county / city / zip,52,30,ready
+measurement,event,82,map_points,On a map (points),10,72,ready
+measurement,event,82,geo_concentration,Geographic concentration,52,30,ready
+measurement,event,82,mix_by_code,Mix by type/status/category,44,38,ready
+measurement,event,82,mix_over_time,Mix shifting over time,38,44,ready
+measurement,event,82,code_concentration,Does one category dominate,44,38,ready
+measurement,event,82,total_money,Total dollars,6,76,ready
+measurement,event,82,typical_money,Typical dollar size (median),6,76,ready
+measurement,event,82,money_distribution,Dollar distribution,6,76,ready
+measurement,event,82,money_top_share,Top 1% share of dollars,6,76,ready
+measurement,event,82,round_numbers,Suspiciously round amounts,6,76,ready
+measurement,event,82,size_distribution,Size distribution,25,57,ready
+measurement,event,82,per_noun_rate,Events per noun (the core ratio),39,43,ready
+measurement,event,82,zero_nouns,Nouns with zero events (never touched),39,43,ready
+measurement,event,82,repeaters,Repeat offenders / heaviest nouns,39,43,ready
+measurement,event,82,noun_concentration,Top 1% of nouns' share of events,39,43,ready
+measurement,event,82,per_person,Per person served,9,73,ready
+measurement,event,82,flag_rates,Yes/no flag rates,5,77,ready
+membership,link,12,how_many,How many are there,12,0,ready
+membership,link,12,row_count_vs_published,Rows held vs publisher total,12,0,ready
+membership,link,12,freshness,How fresh is it (last load),12,0,ready
+membership,link,12,grain_integrity,Is one row really one thing (dup check),11,1,ready
+membership,link,12,id_integrity,Are the IDs real (distinct/sentinel check),12,0,ready
+membership,link,12,rank_in_family,Rank among peers in its family,12,0,ready
+membership,link,12,share_of_family,Share of its family,12,0,ready
+membership,link,12,by_time,Over time,6,6,ready
+membership,link,12,first_last,Earliest and latest,6,6,ready
+membership,link,12,gaps,Missing periods in the record,6,6,ready
+membership,link,12,seasonality,By month / day-of-week,6,6,ready
+membership,link,12,by_state,By state,9,3,ready
+membership,link,12,by_county_city,By county / city / zip,9,3,ready
+membership,link,12,map_points,On a map (points),0,12,hole
+membership,link,12,geo_concentration,Geographic concentration,9,3,ready
+membership,link,12,mix_by_code,Mix by type/status/category,8,4,ready
+membership,link,12,mix_over_time,Mix shifting over time,5,7,ready
+membership,link,12,code_concentration,Does one category dominate,8,4,ready
+membership,link,12,total_money,Total dollars,1,11,ready
+membership,link,12,typical_money,Typical dollar size (median),1,11,ready
+membership,link,12,money_distribution,Dollar distribution,1,11,ready
+membership,link,12,money_top_share,Top 1% share of dollars,1,11,ready
+membership,link,12,round_numbers,Suspiciously round amounts,1,11,ready
+membership,link,12,size_distribution,Size distribution,2,10,ready
+membership,link,12,per_person,Per person served,0,12,hole
+membership,link,12,flag_rates,Yes/no flag rates,2,10,ready
+membership,link,12,degree_out,Connections per left noun,12,0,ready
+membership,link,12,degree_in,Connections per right noun,12,0,ready
+membership,link,12,multiplicity,One-to-one or many-to-many,12,0,ready
+natural_event,event,3,how_many,How many are there,3,0,ready
+natural_event,event,3,row_count_vs_published,Rows held vs publisher total,3,0,ready
+natural_event,event,3,freshness,How fresh is it (last load),3,0,ready
+natural_event,event,3,grain_integrity,Is one row really one thing (dup check),3,0,ready
+natural_event,event,3,id_integrity,Are the IDs real (distinct/sentinel check),3,0,ready
+natural_event,event,3,rank_in_family,Rank among peers in its family,3,0,ready
+natural_event,event,3,share_of_family,Share of its family,3,0,ready
+natural_event,event,3,by_time,Over time,1,2,ready
+natural_event,event,3,first_last,Earliest and latest,1,2,ready
+natural_event,event,3,gaps,Missing periods in the record,1,2,ready
+natural_event,event,3,seasonality,By month / day-of-week,1,2,ready
+natural_event,event,3,by_state,By state,3,0,ready
+natural_event,event,3,by_county_city,By county / city / zip,3,0,ready
+natural_event,event,3,map_points,On a map (points),3,0,ready
+natural_event,event,3,geo_concentration,Geographic concentration,3,0,ready
+natural_event,event,3,mix_by_code,Mix by type/status/category,1,2,ready
+natural_event,event,3,mix_over_time,Mix shifting over time,1,2,ready
+natural_event,event,3,code_concentration,Does one category dominate,1,2,ready
+natural_event,event,3,total_money,Total dollars,0,3,hole
+natural_event,event,3,typical_money,Typical dollar size (median),0,3,hole
+natural_event,event,3,money_distribution,Dollar distribution,0,3,hole
+natural_event,event,3,money_top_share,Top 1% share of dollars,0,3,hole
+natural_event,event,3,round_numbers,Suspiciously round amounts,0,3,hole
+natural_event,event,3,size_distribution,Size distribution,1,2,ready
+natural_event,event,3,per_noun_rate,Events per noun (the core ratio),3,0,ready
+natural_event,event,3,zero_nouns,Nouns with zero events (never touched),3,0,ready
+natural_event,event,3,repeaters,Repeat offenders / heaviest nouns,3,0,ready
+natural_event,event,3,noun_concentration,Top 1% of nouns' share of events,3,0,ready
+natural_event,event,3,per_person,Per person served,0,3,hole
+natural_event,event,3,flag_rates,Yes/no flag rates,0,3,hole
+organization,noun,131,how_many,How many are there,131,0,ready
+organization,noun,131,row_count_vs_published,Rows held vs publisher total,131,0,ready
+organization,noun,131,freshness,How fresh is it (last load),131,0,ready
+organization,noun,131,grain_integrity,Is one row really one thing (dup check),123,8,ready
+organization,noun,131,id_integrity,Are the IDs real (distinct/sentinel check),126,5,ready
+organization,noun,131,rank_in_family,Rank among peers in its family,131,0,ready
+organization,noun,131,share_of_family,Share of its family,131,0,ready
+organization,noun,131,by_time,Over time,74,57,ready
+organization,noun,131,first_last,Earliest and latest,74,57,ready
+organization,noun,131,gaps,Missing periods in the record,74,57,ready
+organization,noun,131,seasonality,By month / day-of-week,74,57,ready
+organization,noun,131,births,New ones per period (first seen),74,57,ready
+organization,noun,131,deaths,Disappeared per period (last seen),74,57,ready
+organization,noun,131,age_distribution,How old the living ones are,74,57,ready
+organization,noun,131,by_state,By state,102,29,ready
+organization,noun,131,by_county_city,By county / city / zip,102,29,ready
+organization,noun,131,map_points,On a map (points),21,110,ready
+organization,noun,131,geo_concentration,Geographic concentration,102,29,ready
+organization,noun,131,mix_by_code,Mix by type/status/category,97,34,ready
+organization,noun,131,mix_over_time,Mix shifting over time,69,62,ready
+organization,noun,131,code_concentration,Does one category dominate,97,34,ready
+organization,noun,131,total_money,Total dollars,40,91,ready
+organization,noun,131,typical_money,Typical dollar size (median),40,91,ready
+organization,noun,131,money_distribution,Dollar distribution,40,91,ready
+organization,noun,131,money_top_share,Top 1% share of dollars,40,91,ready
+organization,noun,131,round_numbers,Suspiciously round amounts,40,91,ready
+organization,noun,131,size_distribution,Size distribution,35,96,ready
+organization,noun,131,per_person,Per person served,13,118,ready
+organization,noun,131,flag_rates,Yes/no flag rates,14,117,ready
+ownership,link,11,how_many,How many are there,11,0,ready
+ownership,link,11,row_count_vs_published,Rows held vs publisher total,11,0,ready
+ownership,link,11,freshness,How fresh is it (last load),11,0,ready
+ownership,link,11,grain_integrity,Is one row really one thing (dup check),10,1,ready
+ownership,link,11,id_integrity,Are the IDs real (distinct/sentinel check),11,0,ready
+ownership,link,11,rank_in_family,Rank among peers in its family,11,0,ready
+ownership,link,11,share_of_family,Share of its family,11,0,ready
+ownership,link,11,by_time,Over time,3,8,ready
+ownership,link,11,first_last,Earliest and latest,3,8,ready
+ownership,link,11,gaps,Missing periods in the record,3,8,ready
+ownership,link,11,seasonality,By month / day-of-week,3,8,ready
+ownership,link,11,by_state,By state,4,7,ready
+ownership,link,11,by_county_city,By county / city / zip,4,7,ready
+ownership,link,11,map_points,On a map (points),1,10,ready
+ownership,link,11,geo_concentration,Geographic concentration,4,7,ready
+ownership,link,11,mix_by_code,Mix by type/status/category,8,3,ready
+ownership,link,11,mix_over_time,Mix shifting over time,2,9,ready
+ownership,link,11,code_concentration,Does one category dominate,8,3,ready
+ownership,link,11,total_money,Total dollars,1,10,ready
+ownership,link,11,typical_money,Typical dollar size (median),1,10,ready
+ownership,link,11,money_distribution,Dollar distribution,1,10,ready
+ownership,link,11,money_top_share,Top 1% share of dollars,1,10,ready
+ownership,link,11,round_numbers,Suspiciously round amounts,1,10,ready
+ownership,link,11,size_distribution,Size distribution,5,6,ready
+ownership,link,11,per_person,Per person served,0,11,hole
+ownership,link,11,flag_rates,Yes/no flag rates,2,9,ready
+ownership,link,11,degree_out,Connections per left noun,11,0,ready
+ownership,link,11,degree_in,Connections per right noun,11,0,ready
+ownership,link,11,multiplicity,One-to-one or many-to-many,11,0,ready
+payment,event,17,how_many,How many are there,17,0,ready
+payment,event,17,row_count_vs_published,Rows held vs publisher total,17,0,ready
+payment,event,17,freshness,How fresh is it (last load),17,0,ready
+payment,event,17,grain_integrity,Is one row really one thing (dup check),15,2,ready
+payment,event,17,id_integrity,Are the IDs real (distinct/sentinel check),15,2,ready
+payment,event,17,rank_in_family,Rank among peers in its family,17,0,ready
+payment,event,17,share_of_family,Share of its family,17,0,ready
+payment,event,17,by_time,Over time,11,6,ready
+payment,event,17,first_last,Earliest and latest,11,6,ready
+payment,event,17,gaps,Missing periods in the record,11,6,ready
+payment,event,17,seasonality,By month / day-of-week,11,6,ready
+payment,event,17,by_state,By state,12,5,ready
+payment,event,17,by_county_city,By county / city / zip,12,5,ready
+payment,event,17,map_points,On a map (points),3,14,ready
+payment,event,17,geo_concentration,Geographic concentration,12,5,ready
+payment,event,17,mix_by_code,Mix by type/status/category,11,6,ready
+payment,event,17,mix_over_time,Mix shifting over time,9,8,ready
+payment,event,17,code_concentration,Does one category dominate,11,6,ready
+payment,event,17,total_money,Total dollars,10,7,ready
+payment,event,17,typical_money,Typical dollar size (median),10,7,ready
+payment,event,17,money_distribution,Dollar distribution,10,7,ready
+payment,event,17,money_top_share,Top 1% share of dollars,10,7,ready
+payment,event,17,round_numbers,Suspiciously round amounts,10,7,ready
+payment,event,17,size_distribution,Size distribution,1,16,ready
+payment,event,17,per_noun_rate,Events per noun (the core ratio),15,2,ready
+payment,event,17,zero_nouns,Nouns with zero events (never touched),15,2,ready
+payment,event,17,repeaters,Repeat offenders / heaviest nouns,15,2,ready
+payment,event,17,noun_concentration,Top 1% of nouns' share of events,15,2,ready
+payment,event,17,per_person,Per person served,0,17,hole
+payment,event,17,flag_rates,Yes/no flag rates,5,12,ready
+person,noun,22,how_many,How many are there,22,0,ready
+person,noun,22,row_count_vs_published,Rows held vs publisher total,22,0,ready
+person,noun,22,freshness,How fresh is it (last load),22,0,ready
+person,noun,22,grain_integrity,Is one row really one thing (dup check),18,4,ready
+person,noun,22,id_integrity,Are the IDs real (distinct/sentinel check),20,2,ready
+person,noun,22,rank_in_family,Rank among peers in its family,22,0,ready
+person,noun,22,share_of_family,Share of its family,22,0,ready
+person,noun,22,by_time,Over time,13,9,ready
+person,noun,22,first_last,Earliest and latest,13,9,ready
+person,noun,22,gaps,Missing periods in the record,13,9,ready
+person,noun,22,seasonality,By month / day-of-week,13,9,ready
+person,noun,22,births,New ones per period (first seen),13,9,ready
+person,noun,22,deaths,Disappeared per period (last seen),13,9,ready
+person,noun,22,age_distribution,How old the living ones are,13,9,ready
+person,noun,22,by_state,By state,13,9,ready
+person,noun,22,by_county_city,By county / city / zip,13,9,ready
+person,noun,22,map_points,On a map (points),0,22,hole
+person,noun,22,geo_concentration,Geographic concentration,13,9,ready
+person,noun,22,mix_by_code,Mix by type/status/category,15,7,ready
+person,noun,22,mix_over_time,Mix shifting over time,10,12,ready
+person,noun,22,code_concentration,Does one category dominate,15,7,ready
+person,noun,22,total_money,Total dollars,1,21,ready
+person,noun,22,typical_money,Typical dollar size (median),1,21,ready
+person,noun,22,money_distribution,Dollar distribution,1,21,ready
+person,noun,22,money_top_share,Top 1% share of dollars,1,21,ready
+person,noun,22,round_numbers,Suspiciously round amounts,1,21,ready
+person,noun,22,size_distribution,Size distribution,3,19,ready
+person,noun,22,per_person,Per person served,0,22,hole
+person,noun,22,flag_rates,Yes/no flag rates,4,18,ready
+place,noun,453,how_many,How many are there,453,0,ready
+place,noun,453,row_count_vs_published,Rows held vs publisher total,453,0,ready
+place,noun,453,freshness,How fresh is it (last load),453,0,ready
+place,noun,453,grain_integrity,Is one row really one thing (dup check),452,1,ready
+place,noun,453,id_integrity,Are the IDs real (distinct/sentinel check),179,274,ready
+place,noun,453,rank_in_family,Rank among peers in its family,453,0,ready
+place,noun,453,share_of_family,Share of its family,453,0,ready
+place,noun,453,by_time,Over time,167,286,ready
+place,noun,453,first_last,Earliest and latest,167,286,ready
+place,noun,453,gaps,Missing periods in the record,167,286,ready
+place,noun,453,seasonality,By month / day-of-week,167,286,ready
+place,noun,453,births,New ones per period (first seen),167,286,ready
+place,noun,453,deaths,Disappeared per period (last seen),167,286,ready
+place,noun,453,age_distribution,How old the living ones are,167,286,ready
+place,noun,453,by_state,By state,350,103,ready
+place,noun,453,by_county_city,By county / city / zip,350,103,ready
+place,noun,453,map_points,On a map (points),230,223,ready
+place,noun,453,geo_concentration,Geographic concentration,350,103,ready
+place,noun,453,mix_by_code,Mix by type/status/category,206,247,ready
+place,noun,453,mix_over_time,Mix shifting over time,100,353,ready
+place,noun,453,code_concentration,Does one category dominate,206,247,ready
+place,noun,453,total_money,Total dollars,30,423,ready
+place,noun,453,typical_money,Typical dollar size (median),30,423,ready
+place,noun,453,money_distribution,Dollar distribution,30,423,ready
+place,noun,453,money_top_share,Top 1% share of dollars,30,423,ready
+place,noun,453,round_numbers,Suspiciously round amounts,30,423,ready
+place,noun,453,size_distribution,Size distribution,179,274,ready
+place,noun,453,per_person,Per person served,24,429,ready
+place,noun,453,flag_rates,Yes/no flag rates,16,437,ready
+post,event,5,how_many,How many are there,5,0,ready
+post,event,5,row_count_vs_published,Rows held vs publisher total,5,0,ready
+post,event,5,freshness,How fresh is it (last load),5,0,ready
+post,event,5,grain_integrity,Is one row really one thing (dup check),5,0,ready
+post,event,5,id_integrity,Are the IDs real (distinct/sentinel check),5,0,ready
+post,event,5,rank_in_family,Rank among peers in its family,5,0,ready
+post,event,5,share_of_family,Share of its family,5,0,ready
+post,event,5,by_time,Over time,4,1,ready
+post,event,5,first_last,Earliest and latest,4,1,ready
+post,event,5,gaps,Missing periods in the record,4,1,ready
+post,event,5,seasonality,By month / day-of-week,4,1,ready
+post,event,5,by_state,By state,2,3,ready
+post,event,5,by_county_city,By county / city / zip,2,3,ready
+post,event,5,map_points,On a map (points),1,4,ready
+post,event,5,geo_concentration,Geographic concentration,2,3,ready
+post,event,5,mix_by_code,Mix by type/status/category,2,3,ready
+post,event,5,mix_over_time,Mix shifting over time,1,4,ready
+post,event,5,code_concentration,Does one category dominate,2,3,ready
+post,event,5,total_money,Total dollars,1,4,ready
+post,event,5,typical_money,Typical dollar size (median),1,4,ready
+post,event,5,money_distribution,Dollar distribution,1,4,ready
+post,event,5,money_top_share,Top 1% share of dollars,1,4,ready
+post,event,5,round_numbers,Suspiciously round amounts,1,4,ready
+post,event,5,size_distribution,Size distribution,0,5,hole
+post,event,5,per_noun_rate,Events per noun (the core ratio),5,0,ready
+post,event,5,zero_nouns,Nouns with zero events (never touched),5,0,ready
+post,event,5,repeaters,Repeat offenders / heaviest nouns,5,0,ready
+post,event,5,noun_concentration,Top 1% of nouns' share of events,5,0,ready
+post,event,5,per_person,Per person served,0,5,hole
+post,event,5,flag_rates,Yes/no flag rates,0,5,hole
+product,noun,16,how_many,How many are there,16,0,ready
+product,noun,16,row_count_vs_published,Rows held vs publisher total,16,0,ready
+product,noun,16,freshness,How fresh is it (last load),16,0,ready
+product,noun,16,grain_integrity,Is one row really one thing (dup check),11,5,ready
+product,noun,16,id_integrity,Are the IDs real (distinct/sentinel check),10,6,ready
+product,noun,16,rank_in_family,Rank among peers in its family,16,0,ready
+product,noun,16,share_of_family,Share of its family,16,0,ready
+product,noun,16,by_time,Over time,14,2,ready
+product,noun,16,first_last,Earliest and latest,14,2,ready
+product,noun,16,gaps,Missing periods in the record,14,2,ready
+product,noun,16,seasonality,By month / day-of-week,14,2,ready
+product,noun,16,births,New ones per period (first seen),14,2,ready
+product,noun,16,deaths,Disappeared per period (last seen),14,2,ready
+product,noun,16,age_distribution,How old the living ones are,14,2,ready
+product,noun,16,by_state,By state,9,7,ready
+product,noun,16,by_county_city,By county / city / zip,9,7,ready
+product,noun,16,map_points,On a map (points),1,15,ready
+product,noun,16,geo_concentration,Geographic concentration,9,7,ready
+product,noun,16,mix_by_code,Mix by type/status/category,13,3,ready
+product,noun,16,mix_over_time,Mix shifting over time,11,5,ready
+product,noun,16,code_concentration,Does one category dominate,13,3,ready
+product,noun,16,total_money,Total dollars,3,13,ready
+product,noun,16,typical_money,Typical dollar size (median),3,13,ready
+product,noun,16,money_distribution,Dollar distribution,3,13,ready
+product,noun,16,money_top_share,Top 1% share of dollars,3,13,ready
+product,noun,16,round_numbers,Suspiciously round amounts,3,13,ready
+product,noun,16,size_distribution,Size distribution,6,10,ready
+product,noun,16,per_person,Per person served,3,13,ready
+product,noun,16,flag_rates,Yes/no flag rates,9,7,ready
+program,noun,21,how_many,How many are there,21,0,ready
+program,noun,21,row_count_vs_published,Rows held vs publisher total,21,0,ready
+program,noun,21,freshness,How fresh is it (last load),21,0,ready
+program,noun,21,grain_integrity,Is one row really one thing (dup check),18,3,ready
+program,noun,21,id_integrity,Are the IDs real (distinct/sentinel check),20,1,ready
+program,noun,21,rank_in_family,Rank among peers in its family,21,0,ready
+program,noun,21,share_of_family,Share of its family,21,0,ready
+program,noun,21,by_time,Over time,16,5,ready
+program,noun,21,first_last,Earliest and latest,16,5,ready
+program,noun,21,gaps,Missing periods in the record,16,5,ready
+program,noun,21,seasonality,By month / day-of-week,16,5,ready
+program,noun,21,births,New ones per period (first seen),16,5,ready
+program,noun,21,deaths,Disappeared per period (last seen),16,5,ready
+program,noun,21,age_distribution,How old the living ones are,16,5,ready
+program,noun,21,by_state,By state,16,5,ready
+program,noun,21,by_county_city,By county / city / zip,16,5,ready
+program,noun,21,map_points,On a map (points),4,17,ready
+program,noun,21,geo_concentration,Geographic concentration,16,5,ready
+program,noun,21,mix_by_code,Mix by type/status/category,15,6,ready
+program,noun,21,mix_over_time,Mix shifting over time,11,10,ready
+program,noun,21,code_concentration,Does one category dominate,15,6,ready
+program,noun,21,total_money,Total dollars,7,14,ready
+program,noun,21,typical_money,Typical dollar size (median),7,14,ready
+program,noun,21,money_distribution,Dollar distribution,7,14,ready
+program,noun,21,money_top_share,Top 1% share of dollars,7,14,ready
+program,noun,21,round_numbers,Suspiciously round amounts,7,14,ready
+program,noun,21,size_distribution,Size distribution,8,13,ready
+program,noun,21,per_person,Per person served,4,17,ready
+program,noun,21,flag_rates,Yes/no flag rates,2,19,ready
+provider,noun,40,how_many,How many are there,40,0,ready
+provider,noun,40,row_count_vs_published,Rows held vs publisher total,40,0,ready
+provider,noun,40,freshness,How fresh is it (last load),40,0,ready
+provider,noun,40,grain_integrity,Is one row really one thing (dup check),40,0,ready
+provider,noun,40,id_integrity,Are the IDs real (distinct/sentinel check),39,1,ready
+provider,noun,40,rank_in_family,Rank among peers in its family,40,0,ready
+provider,noun,40,share_of_family,Share of its family,40,0,ready
+provider,noun,40,by_time,Over time,23,17,ready
+provider,noun,40,first_last,Earliest and latest,23,17,ready
+provider,noun,40,gaps,Missing periods in the record,23,17,ready
+provider,noun,40,seasonality,By month / day-of-week,23,17,ready
+provider,noun,40,births,New ones per period (first seen),23,17,ready
+provider,noun,40,deaths,Disappeared per period (last seen),23,17,ready
+provider,noun,40,age_distribution,How old the living ones are,23,17,ready
+provider,noun,40,by_state,By state,35,5,ready
+provider,noun,40,by_county_city,By county / city / zip,35,5,ready
+provider,noun,40,map_points,On a map (points),11,29,ready
+provider,noun,40,geo_concentration,Geographic concentration,35,5,ready
+provider,noun,40,mix_by_code,Mix by type/status/category,36,4,ready
+provider,noun,40,mix_over_time,Mix shifting over time,22,18,ready
+provider,noun,40,code_concentration,Does one category dominate,36,4,ready
+provider,noun,40,total_money,Total dollars,10,30,ready
+provider,noun,40,typical_money,Typical dollar size (median),10,30,ready
+provider,noun,40,money_distribution,Dollar distribution,10,30,ready
+provider,noun,40,money_top_share,Top 1% share of dollars,10,30,ready
+provider,noun,40,round_numbers,Suspiciously round amounts,10,30,ready
+provider,noun,40,size_distribution,Size distribution,28,12,ready
+provider,noun,40,per_person,Per person served,7,33,ready
+provider,noun,40,flag_rates,Yes/no flag rates,8,32,ready
+recall,event+noun,9,how_many,How many are there,9,0,ready
+recall,event+noun,9,row_count_vs_published,Rows held vs publisher total,9,0,ready
+recall,event+noun,9,freshness,How fresh is it (last load),9,0,ready
+recall,event+noun,9,grain_integrity,Is one row really one thing (dup check),8,1,ready
+recall,event+noun,9,id_integrity,Are the IDs real (distinct/sentinel check),9,0,ready
+recall,event+noun,9,rank_in_family,Rank among peers in its family,9,0,ready
+recall,event+noun,9,share_of_family,Share of its family,9,0,ready
+recall,event+noun,9,by_time,Over time,8,1,ready
+recall,event+noun,9,first_last,Earliest and latest,8,1,ready
+recall,event+noun,9,gaps,Missing periods in the record,8,1,ready
+recall,event+noun,9,seasonality,By month / day-of-week,8,1,ready
+recall,event+noun,9,births,New ones per period (first seen),8,1,ready
+recall,event+noun,9,deaths,Disappeared per period (last seen),8,1,ready
+recall,event+noun,9,age_distribution,How old the living ones are,8,1,ready
+recall,event+noun,9,by_state,By state,4,5,ready
+recall,event+noun,9,by_county_city,By county / city / zip,4,5,ready
+recall,event+noun,9,map_points,On a map (points),0,9,hole
+recall,event+noun,9,geo_concentration,Geographic concentration,4,5,ready
+recall,event+noun,9,mix_by_code,Mix by type/status/category,7,2,ready
+recall,event+noun,9,mix_over_time,Mix shifting over time,6,3,ready
+recall,event+noun,9,code_concentration,Does one category dominate,7,2,ready
+recall,event+noun,9,total_money,Total dollars,0,9,hole
+recall,event+noun,9,typical_money,Typical dollar size (median),0,9,hole
+recall,event+noun,9,money_distribution,Dollar distribution,0,9,hole
+recall,event+noun,9,money_top_share,Top 1% share of dollars,0,9,hole
+recall,event+noun,9,round_numbers,Suspiciously round amounts,0,9,hole
+recall,event+noun,9,size_distribution,Size distribution,4,5,ready
+recall,event+noun,9,per_noun_rate,Events per noun (the core ratio),9,0,ready
+recall,event+noun,9,zero_nouns,Nouns with zero events (never touched),9,0,ready
+recall,event+noun,9,repeaters,Repeat offenders / heaviest nouns,9,0,ready
+recall,event+noun,9,noun_concentration,Top 1% of nouns' share of events,9,0,ready
+recall,event+noun,9,per_person,Per person served,0,9,hole
+recall,event+noun,9,flag_rates,Yes/no flag rates,1,8,ready
+registration,event+noun,23,how_many,How many are there,23,0,ready
+registration,event+noun,23,row_count_vs_published,Rows held vs publisher total,23,0,ready
+registration,event+noun,23,freshness,How fresh is it (last load),23,0,ready
+registration,event+noun,23,grain_integrity,Is one row really one thing (dup check),22,1,ready
+registration,event+noun,23,id_integrity,Are the IDs real (distinct/sentinel check),23,0,ready
+registration,event+noun,23,rank_in_family,Rank among peers in its family,23,0,ready
+registration,event+noun,23,share_of_family,Share of its family,23,0,ready
+registration,event+noun,23,by_time,Over time,22,1,ready
+registration,event+noun,23,first_last,Earliest and latest,22,1,ready
+registration,event+noun,23,gaps,Missing periods in the record,22,1,ready
+registration,event+noun,23,seasonality,By month / day-of-week,22,1,ready
+registration,event+noun,23,births,New ones per period (first seen),22,1,ready
+registration,event+noun,23,deaths,Disappeared per period (last seen),22,1,ready
+registration,event+noun,23,age_distribution,How old the living ones are,22,1,ready
+registration,event+noun,23,by_state,By state,20,3,ready
+registration,event+noun,23,by_county_city,By county / city / zip,20,3,ready
+registration,event+noun,23,map_points,On a map (points),5,18,ready
+registration,event+noun,23,geo_concentration,Geographic concentration,20,3,ready
+registration,event+noun,23,mix_by_code,Mix by type/status/category,23,0,ready
+registration,event+noun,23,mix_over_time,Mix shifting over time,22,1,ready
+registration,event+noun,23,code_concentration,Does one category dominate,23,0,ready
+registration,event+noun,23,total_money,Total dollars,4,19,ready
+registration,event+noun,23,typical_money,Typical dollar size (median),4,19,ready
+registration,event+noun,23,money_distribution,Dollar distribution,4,19,ready
+registration,event+noun,23,money_top_share,Top 1% share of dollars,4,19,ready
+registration,event+noun,23,round_numbers,Suspiciously round amounts,4,19,ready
+registration,event+noun,23,size_distribution,Size distribution,5,18,ready
+registration,event+noun,23,per_noun_rate,Events per noun (the core ratio),23,0,ready
+registration,event+noun,23,zero_nouns,Nouns with zero events (never touched),23,0,ready
+registration,event+noun,23,repeaters,Repeat offenders / heaviest nouns,23,0,ready
+registration,event+noun,23,noun_concentration,Top 1% of nouns' share of events,23,0,ready
+registration,event+noun,23,per_person,Per person served,9,14,ready
+registration,event+noun,23,flag_rates,Yes/no flag rates,5,18,ready
+registry,noun,15,how_many,How many are there,15,0,ready
+registry,noun,15,row_count_vs_published,Rows held vs publisher total,15,0,ready
+registry,noun,15,freshness,How fresh is it (last load),15,0,ready
+registry,noun,15,grain_integrity,Is one row really one thing (dup check),15,0,ready
+registry,noun,15,id_integrity,Are the IDs real (distinct/sentinel check),15,0,ready
+registry,noun,15,rank_in_family,Rank among peers in its family,15,0,ready
+registry,noun,15,share_of_family,Share of its family,15,0,ready
+registry,noun,15,by_time,Over time,10,5,ready
+registry,noun,15,first_last,Earliest and latest,10,5,ready
+registry,noun,15,gaps,Missing periods in the record,10,5,ready
+registry,noun,15,seasonality,By month / day-of-week,10,5,ready
+registry,noun,15,births,New ones per period (first seen),10,5,ready
+registry,noun,15,deaths,Disappeared per period (last seen),10,5,ready
+registry,noun,15,age_distribution,How old the living ones are,10,5,ready
+registry,noun,15,by_state,By state,11,4,ready
+registry,noun,15,by_county_city,By county / city / zip,11,4,ready
+registry,noun,15,map_points,On a map (points),7,8,ready
+registry,noun,15,geo_concentration,Geographic concentration,11,4,ready
+registry,noun,15,mix_by_code,Mix by type/status/category,12,3,ready
+registry,noun,15,mix_over_time,Mix shifting over time,7,8,ready
+registry,noun,15,code_concentration,Does one category dominate,12,3,ready
+registry,noun,15,total_money,Total dollars,0,15,hole
+registry,noun,15,typical_money,Typical dollar size (median),0,15,hole
+registry,noun,15,money_distribution,Dollar distribution,0,15,hole
+registry,noun,15,money_top_share,Top 1% share of dollars,0,15,hole
+registry,noun,15,round_numbers,Suspiciously round amounts,0,15,hole
+registry,noun,15,size_distribution,Size distribution,4,11,ready
+registry,noun,15,per_person,Per person served,0,15,hole
+registry,noun,15,flag_rates,Yes/no flag rates,3,12,ready
+role,link,30,how_many,How many are there,30,0,ready
+role,link,30,row_count_vs_published,Rows held vs publisher total,30,0,ready
+role,link,30,freshness,How fresh is it (last load),30,0,ready
+role,link,30,grain_integrity,Is one row really one thing (dup check),29,1,ready
+role,link,30,id_integrity,Are the IDs real (distinct/sentinel check),22,8,ready
+role,link,30,rank_in_family,Rank among peers in its family,30,0,ready
+role,link,30,share_of_family,Share of its family,30,0,ready
+role,link,30,by_time,Over time,18,12,ready
+role,link,30,first_last,Earliest and latest,18,12,ready
+role,link,30,gaps,Missing periods in the record,18,12,ready
+role,link,30,seasonality,By month / day-of-week,18,12,ready
+role,link,30,by_state,By state,13,17,ready
+role,link,30,by_county_city,By county / city / zip,13,17,ready
+role,link,30,map_points,On a map (points),2,28,ready
+role,link,30,geo_concentration,Geographic concentration,13,17,ready
+role,link,30,mix_by_code,Mix by type/status/category,10,20,ready
+role,link,30,mix_over_time,Mix shifting over time,6,24,ready
+role,link,30,code_concentration,Does one category dominate,10,20,ready
+role,link,30,total_money,Total dollars,2,28,ready
+role,link,30,typical_money,Typical dollar size (median),2,28,ready
+role,link,30,money_distribution,Dollar distribution,2,28,ready
+role,link,30,money_top_share,Top 1% share of dollars,2,28,ready
+role,link,30,round_numbers,Suspiciously round amounts,2,28,ready
+role,link,30,size_distribution,Size distribution,8,22,ready
+role,link,30,per_person,Per person served,0,30,hole
+role,link,30,flag_rates,Yes/no flag rates,4,26,ready
+role,link,30,degree_out,Connections per left noun,30,0,ready
+role,link,30,degree_in,Connections per right noun,30,0,ready
+role,link,30,multiplicity,One-to-one or many-to-many,30,0,ready
+trade,event,17,how_many,How many are there,17,0,ready
+trade,event,17,row_count_vs_published,Rows held vs publisher total,17,0,ready
+trade,event,17,freshness,How fresh is it (last load),17,0,ready
+trade,event,17,grain_integrity,Is one row really one thing (dup check),13,4,ready
+trade,event,17,id_integrity,Are the IDs real (distinct/sentinel check),15,2,ready
+trade,event,17,rank_in_family,Rank among peers in its family,17,0,ready
+trade,event,17,share_of_family,Share of its family,17,0,ready
+trade,event,17,by_time,Over time,17,0,ready
+trade,event,17,first_last,Earliest and latest,17,0,ready
+trade,event,17,gaps,Missing periods in the record,17,0,ready
+trade,event,17,seasonality,By month / day-of-week,17,0,ready
+trade,event,17,by_state,By state,12,5,ready
+trade,event,17,by_county_city,By county / city / zip,12,5,ready
+trade,event,17,map_points,On a map (points),0,17,hole
+trade,event,17,geo_concentration,Geographic concentration,12,5,ready
+trade,event,17,mix_by_code,Mix by type/status/category,16,1,ready
+trade,event,17,mix_over_time,Mix shifting over time,16,1,ready
+trade,event,17,code_concentration,Does one category dominate,16,1,ready
+trade,event,17,total_money,Total dollars,14,3,ready
+trade,event,17,typical_money,Typical dollar size (median),14,3,ready
+trade,event,17,money_distribution,Dollar distribution,14,3,ready
+trade,event,17,money_top_share,Top 1% share of dollars,14,3,ready
+trade,event,17,round_numbers,Suspiciously round amounts,14,3,ready
+trade,event,17,size_distribution,Size distribution,12,5,ready
+trade,event,17,per_noun_rate,Events per noun (the core ratio),15,2,ready
+trade,event,17,zero_nouns,Nouns with zero events (never touched),15,2,ready
+trade,event,17,repeaters,Repeat offenders / heaviest nouns,15,2,ready
+trade,event,17,noun_concentration,Top 1% of nouns' share of events,15,2,ready
+trade,event,17,per_person,Per person served,5,12,ready
+trade,event,17,flag_rates,Yes/no flag rates,2,15,ready
+unresolved,event,235,how_many,How many are there,235,0,ready
+unresolved,event,235,row_count_vs_published,Rows held vs publisher total,235,0,ready
+unresolved,event,235,freshness,How fresh is it (last load),235,0,ready
+unresolved,event,235,grain_integrity,Is one row really one thing (dup check),204,31,ready
+unresolved,event,235,id_integrity,Are the IDs real (distinct/sentinel check),194,41,ready
+unresolved,event,235,rank_in_family,Rank among peers in its family,235,0,ready
+unresolved,event,235,share_of_family,Share of its family,235,0,ready
+unresolved,event,235,by_time,Over time,208,27,ready
+unresolved,event,235,first_last,Earliest and latest,208,27,ready
+unresolved,event,235,gaps,Missing periods in the record,208,27,ready
+unresolved,event,235,seasonality,By month / day-of-week,208,27,ready
+unresolved,event,235,births,New ones per period (first seen),0,20,hole
+unresolved,event,235,deaths,Disappeared per period (last seen),0,20,hole
+unresolved,event,235,age_distribution,How old the living ones are,0,20,hole
+unresolved,event,235,by_state,By state,146,89,ready
+unresolved,event,235,by_county_city,By county / city / zip,146,89,ready
+unresolved,event,235,map_points,On a map (points),37,198,ready
+unresolved,event,235,geo_concentration,Geographic concentration,146,89,ready
+unresolved,event,235,mix_by_code,Mix by type/status/category,162,73,ready
+unresolved,event,235,mix_over_time,Mix shifting over time,152,83,ready
+unresolved,event,235,code_concentration,Does one category dominate,162,73,ready
+unresolved,event,235,total_money,Total dollars,33,202,ready
+unresolved,event,235,typical_money,Typical dollar size (median),33,202,ready
+unresolved,event,235,money_distribution,Dollar distribution,33,202,ready
+unresolved,event,235,money_top_share,Top 1% share of dollars,33,202,ready
+unresolved,event,235,round_numbers,Suspiciously round amounts,33,202,ready
+unresolved,event,235,size_distribution,Size distribution,83,152,ready
+unresolved,event,235,per_noun_rate,Events per noun (the core ratio),168,35,ready
+unresolved,event,235,zero_nouns,Nouns with zero events (never touched),168,35,ready
+unresolved,event,235,repeaters,Repeat offenders / heaviest nouns,168,35,ready
+unresolved,event,235,noun_concentration,Top 1% of nouns' share of events,168,35,ready
+unresolved,event,235,per_person,Per person served,27,208,ready
+unresolved,event,235,flag_rates,Yes/no flag rates,35,200,ready
+unresolved,event,235,degree_out,Connections per left noun,12,0,ready
+unresolved,event,235,degree_in,Connections per right noun,12,0,ready
+unresolved,event,235,multiplicity,One-to-one or many-to-many,12,0,ready
+violation,event,14,how_many,How many are there,14,0,ready
+violation,event,14,row_count_vs_published,Rows held vs publisher total,14,0,ready
+violation,event,14,freshness,How fresh is it (last load),14,0,ready
+violation,event,14,grain_integrity,Is one row really one thing (dup check),12,2,ready
+violation,event,14,id_integrity,Are the IDs real (distinct/sentinel check),14,0,ready
+violation,event,14,rank_in_family,Rank among peers in its family,14,0,ready
+violation,event,14,share_of_family,Share of its family,14,0,ready
+violation,event,14,by_time,Over time,14,0,ready
+violation,event,14,first_last,Earliest and latest,14,0,ready
+violation,event,14,gaps,Missing periods in the record,14,0,ready
+violation,event,14,seasonality,By month / day-of-week,14,0,ready
+violation,event,14,by_state,By state,7,7,ready
+violation,event,14,by_county_city,By county / city / zip,7,7,ready
+violation,event,14,map_points,On a map (points),1,13,ready
+violation,event,14,geo_concentration,Geographic concentration,7,7,ready
+violation,event,14,mix_by_code,Mix by type/status/category,14,0,ready
+violation,event,14,mix_over_time,Mix shifting over time,14,0,ready
+violation,event,14,code_concentration,Does one category dominate,14,0,ready
+violation,event,14,total_money,Total dollars,3,11,ready
+violation,event,14,typical_money,Typical dollar size (median),3,11,ready
+violation,event,14,money_distribution,Dollar distribution,3,11,ready
+violation,event,14,money_top_share,Top 1% share of dollars,3,11,ready
+violation,event,14,round_numbers,Suspiciously round amounts,3,11,ready
+violation,event,14,size_distribution,Size distribution,3,11,ready
+violation,event,14,per_noun_rate,Events per noun (the core ratio),14,0,ready
+violation,event,14,zero_nouns,Nouns with zero events (never touched),14,0,ready
+violation,event,14,repeaters,Repeat offenders / heaviest nouns,14,0,ready
+violation,event,14,noun_concentration,Top 1% of nouns' share of events,14,0,ready
+violation,event,14,per_person,Per person served,0,14,hole
+violation,event,14,flag_rates,Yes/no flag rates,4,10,ready
+vote,event,9,how_many,How many are there,9,0,ready
+vote,event,9,row_count_vs_published,Rows held vs publisher total,9,0,ready
+vote,event,9,freshness,How fresh is it (last load),9,0,ready
+vote,event,9,grain_integrity,Is one row really one thing (dup check),6,3,ready
+vote,event,9,id_integrity,Are the IDs real (distinct/sentinel check),8,1,ready
+vote,event,9,rank_in_family,Rank among peers in its family,9,0,ready
+vote,event,9,share_of_family,Share of its family,9,0,ready
+vote,event,9,by_time,Over time,6,3,ready
+vote,event,9,first_last,Earliest and latest,6,3,ready
+vote,event,9,gaps,Missing periods in the record,6,3,ready
+vote,event,9,seasonality,By month / day-of-week,6,3,ready
+vote,event,9,by_state,By state,0,9,hole
+vote,event,9,by_county_city,By county / city / zip,0,9,hole
+vote,event,9,map_points,On a map (points),0,9,hole
+vote,event,9,geo_concentration,Geographic concentration,0,9,hole
+vote,event,9,mix_by_code,Mix by type/status/category,4,5,ready
+vote,event,9,mix_over_time,Mix shifting over time,1,8,ready
+vote,event,9,code_concentration,Does one category dominate,4,5,ready
+vote,event,9,total_money,Total dollars,0,9,hole
+vote,event,9,typical_money,Typical dollar size (median),0,9,hole
+vote,event,9,money_distribution,Dollar distribution,0,9,hole
+vote,event,9,money_top_share,Top 1% share of dollars,0,9,hole
+vote,event,9,round_numbers,Suspiciously round amounts,0,9,hole
+vote,event,9,size_distribution,Size distribution,5,4,ready
+vote,event,9,per_noun_rate,Events per noun (the core ratio),8,1,ready
+vote,event,9,zero_nouns,Nouns with zero events (never touched),8,1,ready
+vote,event,9,repeaters,Repeat offenders / heaviest nouns,8,1,ready
+vote,event,9,noun_concentration,Top 1% of nouns' share of events,8,1,ready
+vote,event,9,per_person,Per person served,0,9,hole
+vote,event,9,flag_rates,Yes/no flag rates,1,8,ready

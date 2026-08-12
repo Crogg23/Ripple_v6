@@ -1,0 +1,41 @@
+slot,label,requires,classes
+how_many,How many are there,universal,all
+row_count_vs_published,Rows held vs publisher total,universal,all
+freshness,How fresh is it (last load),universal,all
+grain_integrity,Is one row really one thing (dup check),_key,all
+id_integrity,Are the IDs real (distinct/sentinel check),id,all
+rank_in_family,Rank among peers in its family,universal,all
+share_of_family,Share of its family,universal,all
+by_time,Over time,date,all
+first_last,Earliest and latest,date,all
+gaps,Missing periods in the record,date,all
+seasonality,By month / day-of-week,date,all
+births,New ones per period (first seen),date,"noun,event+noun"
+deaths,Disappeared per period (last seen),date,"noun,event+noun"
+age_distribution,How old the living ones are,date,"noun,event+noun"
+by_state,By state,geo,all
+by_county_city,By county / city / zip,geo,all
+map_points,On a map (points),geo_point,all
+geo_concentration,Geographic concentration,geo,all
+mix_by_code,Mix by type/status/category,code,all
+mix_over_time,Mix shifting over time,code+date,all
+code_concentration,Does one category dominate,code,all
+total_money,Total dollars,money,all
+typical_money,Typical dollar size (median),money,all
+money_distribution,Dollar distribution,money,all
+money_top_share,Top 1% share of dollars,money,all
+round_numbers,Suspiciously round amounts,money,all
+size_distribution,Size distribution,quantity,all
+per_noun_rate,Events per noun (the core ratio),id,"event,event+noun"
+zero_nouns,Nouns with zero events (never touched),id,"event,event+noun"
+repeaters,Repeat offenders / heaviest nouns,id,"event,event+noun"
+noun_concentration,Top 1% of nouns' share of events,id,"event,event+noun"
+per_person,Per person served,population,all
+flag_rates,Yes/no flag rates,flag,all
+degree_out,Connections per left noun,universal,link
+degree_in,Connections per right noun,universal,link
+multiplicity,One-to-one or many-to-many,universal,link
+codes_defined,Codes defined,universal,code
+codes_in_use,Codes actually used anywhere,universal,code
+code_usage_concentration,Usage concentration,universal,code
+orphan_codes,Values in data missing from vocabulary,universal,code

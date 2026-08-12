@@ -1,0 +1,20 @@
+{
+  "models_total": 1765,
+  "by_layer": {
+    "marts": 589,
+    "intermediate": 4,
+    "staging": 1172
+  },
+  "column_parse_quality": {
+    "clean": 433,
+    "star-cte-resolved": 1120,
+    "star-upstream-resolved": 200,
+    "documented-only-partial": 11,
+    "star-source": 1
+  },
+  "star_upstream_resolved_pass2": 200,
+  "grain_declared": 1091,
+  "grain_missing": 674,
+  "raw_source_tables": 1329,
+  "models_with_zero_columns": []
+}

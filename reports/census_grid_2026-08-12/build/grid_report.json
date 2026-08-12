@@ -1,0 +1,140 @@
+{
+  "models_total": 1765,
+  "families": 39,
+  "unmapped_models": 9,
+  "unmapped_list": [
+    "politics__xc_jcs_coa",
+    "stg_fed_eia861_balancing_authority__all",
+    "stg_portal_cka_houston_open_dat_09fd7e454a__records",
+    "stg_portal_cka_indiana_data_hub_7747efe139__records",
+    "stg_portal_cka_israel_national_44788840fc__records",
+    "stg_portal_cka_tampa_open_data_6c25ea91d4__records",
+    "stg_portal_cka_western_pennsylv_769bebae41__records",
+    "stg_portal_cka_wprdc_allegheny_4597fbdfe3__records",
+    "stg_tx_lobby__transportation"
+  ],
+  "map_confidence": {
+    "high": 740,
+    "medium": 781,
+    "low": 235,
+    "none": 9
+  },
+  "class_counts": {
+    "noun": 914,
+    "event": 478,
+    "event+noun": 180,
+    "link": 81,
+    "aggregate": 56,
+    "code": 47,
+    "unclassified": 9
+  },
+  "family_sizes": {
+    "place": 453,
+    "unresolved": 235,
+    "facility": 142,
+    "organization": 131,
+    "measurement": 82,
+    "filing": 73,
+    "aggregate": 56,
+    "code": 47,
+    "case": 44,
+    "provider": 40,
+    "action": 38,
+    "role": 30,
+    "contribution": 23,
+    "registration": 23,
+    "person": 22,
+    "program": 21,
+    "award": 20,
+    "accident": 19,
+    "enforcement": 18,
+    "dataset": 17,
+    "trade": 17,
+    "payment": 17,
+    "product": 16,
+    "crosswalk": 16,
+    "asset": 15,
+    "registry": 15,
+    "violation": 14,
+    "document": 14,
+    "inspection": 13,
+    "membership": 12,
+    "loan": 11,
+    "ownership": 11,
+    "change": 11,
+    "recall": 9,
+    "vote": 9,
+    "UNMAPPED": 9,
+    "instrument": 8,
+    "complaint": 6,
+    "post": 5,
+    "natural_event": 3
+  },
+  "grid_cells_total": 52235,
+  "grid_cell_status": {
+    "ready": 30509,
+    "hole": 21726
+  },
+  "family_grid_rows": 1200,
+  "parks_total": 4357,
+  "park_branches": 10,
+  "top_parked": [
+    [
+      "per person served",
+      1426
+    ],
+    [
+      "was there an inspection first (real lineage)",
+      658
+    ],
+    [
+      "did anyone get hurt (harm join)",
+      658
+    ],
+    [
+      "any trend over time",
+      616
+    ],
+    [
+      "join to the entity spine",
+      615
+    ],
+    [
+      "assessed vs actually collected",
+      160
+    ],
+    [
+      "events per noun via hard ID",
+      110
+    ],
+    [
+      "row-level version of this aggregate",
+      56
+    ],
+    [
+      "multi-year trending",
+      46
+    ],
+    [
+      "full column inventory",
+      12
+    ]
+  ],
+  "park_types": {
+    "needs-population": 1426,
+    "needs-history": 662,
+    "needs-second-table": 818,
+    "needs-lineage": 658,
+    "needs-crosswalk": 725,
+    "needs-source-upgrade": 56,
+    "needs-metadata-pull": 12
+  },
+  "onboarding_sources": 774,
+  "onboarding_status": {
+    "failed": 684,
+    "complete": 88,
+    "needs_key": 2
+  },
+  "raw_landing_tables": 1329,
+  "staged_source_dirs": 1141
+}
