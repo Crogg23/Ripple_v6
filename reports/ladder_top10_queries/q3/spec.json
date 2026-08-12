@@ -1,0 +1,20 @@
+{
+  "question": "Q3 - Parent, subsidiary, toxic facility: top 30 corporate parents by total 2023 toxic-release pounds across their facility portfolios (with EPA compliance stats), plus a transparency comparison of facilities whose owner refused to name a parent (GLEIF reporting exception) vs owners with a named parent",
+  "finding": "Teck American tops the parent ranking with 771 million pounds of toxic releases from just 2 facilities, and among the 73,948 EPA facilities matched to a global corporate ID, 71% (52,196) belong to owners who formally refused to name their parent company in the global registry.",
+  "chart": "Panel 1 (result.csv): horizontal bar of TOTAL_RELEASE_LBS by PARENT (log x), with FACILITIES as text and TOTAL_EPA_PENALTIES_USD as color. Panel 2 (result_repex.csv): grouped bar comparing the four owner-transparency classes on avg_release_lbs_per_tri_facility and avg_noncompliance_quarters.",
+  "caveats": [
+    "The LEI crosswalk only covers 74k of 5.3M EPA facilities (1.4%) and only 2,061 of 21,760 TRI reporters, so the parent ranking uses TRI's own EPA-standardized parent-company name (near-full coverage of 2023 TRI) instead of the GLEIF chain; the GLEIF/exception analysis applies only to the matched 74k subset.",
+    "Total-release pounds mix media (air, water, land, underground injection) and toxicity levels - a pound of copper-mine waste rock is not a pound of dioxin; grams-reported chemicals converted at 453.592 g/lb.",
+    "ECHO compliance stats join on FRS ID; facilities missing from ECHO count as null (not zero) in the sums/averages.",
+    "A GLEIF reporting exception is legal (e.g. 'non-consolidating' or 'natural person' owners) - it marks opacity, not wrongdoing.",
+    "Parent names are as-reported for 2023; mergers since then are not reflected."
+  ],
+  "rows": 34,
+  "notable": [
+    "The top 3 (Teck, Rio Tinto, Barrick - all mining) released 1.2 billion lbs from just 14 facilities, ~35% of the entire 3.4-billion-lb national total.",
+    "Targa Resources carries the largest EPA penalty load in the top 30: $48.4M across 33 facilities.",
+    "US Department of Defense appears as a 'parent' with 277 facilities, 925 noncompliance quarters, and $12.5M in penalties.",
+    "Owners who refused to name a parent average LOWER releases per TRI facility (73k lbs) than named-parent owners (153k lbs) - opacity clusters in smaller operators, not the biggest polluters.",
+    "Facilities with 'both' (partial exception) average the highest releases: 260k lbs per TRI facility."
+  ]
+}

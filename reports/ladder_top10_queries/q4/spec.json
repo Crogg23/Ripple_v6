@@ -1,0 +1,20 @@
+{
+  "question": "One doctor, whole footprint — census version: for every Medicare Part D prescriber, their drug-cost footprint, industry money, Medicare Part B billing, and exclusion status, aggregated per specialty",
+  "finding": "Across 109 specialties (25+ prescribers each), prescribers who received any industry money have a far higher median Part D drug cost than unpaid peers in the same specialty — e.g. Internal Medicine $140k vs $22k, Neurology $350k vs $53k, Nurse Practitioners $49k vs $8k — and 156 LEIE-excluded providers still appear as active Part D prescribers (38 nurse practitioners, 67 family practice, 50 internal medicine among the top).",
+  "chart": "plotly scatter: x = MEDIAN_DRUG_COST_UNPAID, y = MEDIAN_DRUG_COST_PAID (both log), size = N_PRESCRIBERS, color = PCT_PAID, hover = SPECIALTY, with a y=x reference line (everything above the line = paid prescribers out-prescribe unpaid ones); alternative: bubble of TOTAL_INDUSTRY_DOLLARS vs TOTAL_PARTD_DRUG_COST per specialty.",
+  "caveats": [
+    "Paid-vs-unpaid drug cost gap is association, not causation: higher-volume prescribers are more visible to industry reps, and specialty case-mix drives both.",
+    "Part D prescriber file is a single CMS vintage (one calendar year); industry dollars are Open Payments program years 2022-2024 summed, so time windows do not perfectly align.",
+    "Medicare Part B totals cover Part B fee-for-service only, from a single-vintage file.",
+    "Specialty label is CMS PRSCRBR_TYPE (self-reported/claims-derived); specialties with <25 prescribers were dropped.",
+    "LEIE-excluded prescribers appearing in Part D reflects the LEIE snapshot including exclusions dated after the Part D data year in some cases.",
+    "Suppressed cells in CMS source files mean some drug-cost values are undercounted."
+  ],
+  "rows": 109,
+  "notable": [
+    "Nurse Practitioners are the biggest Part D specialty: 278,577 prescribers, $50.3B drug cost, 72.8% received industry money.",
+    "Hematology-Oncology: 90.3% of 9,229 prescribers got industry money, median Part D drug cost $1.8M each.",
+    "In every large specialty the paid group's median drug cost is 2x-7x the unpaid group's.",
+    "Cardiology has the highest paid share of large specialties at 91.2%."
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "question": "The paper trail before the pension died: last Form 5500 filings vs PBGC plan failures, joined on EIN.",
+  "blocked": "Partially blocked as specced: ECONOMICS__FED_PBGC_DATA is the PBGC Pension Insurance Data Book (aggregate statistical tables, METRIC_NAME/METRIC_VALUE, no EIN, no plan-level records), so the EIN join and 'years between last filing and failure' cannot be built; the ladder's 18,989-EIN match must have used a different, uncataloged table. Closest honest charts built instead.",
+  "finding": "Plan-level failure linkage is impossible with the tables that exist; what the data does show is PBGC's cumulative trusteed/pending-trusteeship plan count grinding up from 4,779 (FY2016) to 5,154 (FY2023), and in just Jan-Jun 2026 the Form 5500 slice contains 2,590 plans filing their final-ever return, covering about 626,000 participants.",
+  "chart": "Chart A (result.csv): plotly line/area, x=FISCAL_YEAR, y=PLANS_TRUSTEED_CUMULATIVE. Chart B (form5500_final_filings_by_state.csv): bar or choropleth, x=STATE, y=FINAL_FILINGS (color by PLAN_KIND), hover=PARTICIPANTS.",
+  "caveats": [
+    "Form 5500 table is only filings RECEIVED Jan 2-Jun 24 2026 (33,484 rows); plan-year begin/end dates and FORM_YEAR are 100% empty in this slice, and asset amounts are null \u2014 participants counts come from beginning-of-year participant field.",
+    "A 'final filing' is a plan closing its paperwork for any reason (merger, voluntary termination, standard termination), NOT necessarily a failed pension.",
+    "PBGC GLANCE numbers are scraped from Data Book summary pages; duplicates across editions were collapsed with MAX per year, and 2016-2023 is the only coverage.",
+    "Plan-number trap handled: deduped on EIN + COALESCE(PLAN_NUM, SPONS_DFE_PN)."
+  ],
+  "rows": 8,
+  "notable": [
+    "PBGC took over roughly 375 more plans between FY2016 and FY2023 (~47/yr net).",
+    "California (216) and Texas (193) lead the final-filing count in the 2026 slice.",
+    "Only ~141 filings in the whole slice are classic defined-benefit (code 1A) plans - the slice is dominated by 401(k)-type plans."
+  ]
+}

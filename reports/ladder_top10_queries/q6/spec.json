@@ -1,0 +1,20 @@
+{
+  "question": "Does industry money move prescriptions? Prescribers bucketed by industry-money decile vs brand-vs-generic Part D prescribing, within the 15 largest specialties (association only)",
+  "finding": "Within every large specialty, brand-name claim share and total drug cost rise steadily with industry money received: e.g. Internal Medicine climbs from 12.6% brand claims and $159k median drug cost among unpaid prescribers to 16.7% and $990k in the top payment decile (median $7,040 received), and the same monotonic gradient holds for Nurse Practitioners (12.0%->16%+) and Family Practice.",
+  "chart": "plotly line chart (small multiples or color by SPECIALTY): x = PAY_BUCKET ordered ('00: no payment' then D01..D10), y = BRAND_CLAIM_SHARE_PCT, color = SPECIALTY; secondary view: y = MEDIAN_TOTAL_DRUG_COST (log) same axes. Hover shows MEDIAN_INDUSTRY_DOLLARS and N_PRESCRIBERS.",
+  "caveats": [
+    "ASSOCIATION ONLY, no causal claim: industry targets high prescribers, so the arrow could run either way; specialty case-mix, drug availability, and practice size are uncontrolled.",
+    "Manufacturer-to-drug matching was infeasible: the warehouse Open Payments tables carry NO drug/product columns, so this is the fallback shape (money decile vs brand share), not maker-specific prescribing.",
+    "Deciles are computed across the 15 specialties pooled (same dollar cut points for all), so per-specialty bucket sizes vary.",
+    "Prescribers with <50 Part D claims or with suppressed brand/generic cells are excluded (suppression removes small cells).",
+    "Industry dollars = Open Payments program years 2022-2024 summed; Part D file is one vintage year, so windows overlap but do not match exactly.",
+    "Brand share denominators exclude the 'other' drug category CMS reports separately."
+  ],
+  "rows": 155,
+  "notable": [
+    "The gradient is monotonic in nearly every specialty: no-payment prescribers have the lowest brand share and the top decile the highest, with the biggest jump between decile 9 and decile 10.",
+    "Cardiology top decile: median $9,685 industry money, 19.95% brand claims vs 17.03% for unpaid cardiologists.",
+    "Median total drug cost in the top payment decile is 4-6x the unpaid group's in Internal Medicine, Family Practice and Nurse Practitioners.",
+    "Top-decile prescribers are also far more numerous in procedure/drug-heavy specialties: 3,604 of Cardiology's 16,000 prescribers sit in the pooled top decile vs expected ~1,600."
+  ]
+}

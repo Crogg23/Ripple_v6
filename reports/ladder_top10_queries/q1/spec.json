@@ -1,0 +1,18 @@
+{
+  "question": "Q1 - One nursing home, whole record (census version): star ratings vs deficiencies, fire-safety failures, and penalty dollars across all ~14,600 CMS-rated nursing homes",
+  "finding": "Star ratings track health deficiencies and fines cleanly (1-star homes average ~$84k in fines vs ~$3k for 5-star), but fire safety breaks the pattern: 728 five-star nursing homes have 16 or more fire-safety deficiencies on file, and Illinois leads the nation at ~$105,530 in penalty dollars per facility.",
+  "chart": "Two panels: (1) grouped bar / heatmap of result.csv - x=OVERALL_RATING, color=FIRE_BUCKET, y=FACILITIES (or avg_penalty_usd as bar height) to expose 5-star homes in high fire-deficiency buckets; (2) horizontal bar of result_states.csv - y=STATE sorted by PENALTY_USD_PER_FACILITY.",
+  "caveats": [
+    "The registry's own total-deficiency and fire-deficiency columns are entirely NULL; counts were rebuilt by joining the 418k deficiency and 200k fire-deficiency detail tables on CCN.",
+    "132 facilities have no overall rating (NaN row) - they skew high on fines and deficiencies (often Special Focus / new facilities).",
+    "Deficiency counts span multiple inspection cycles (~3 years of surveys), not a single year.",
+    "Penalty dollars are CMS federal fines only; state fines are not included."
+  ],
+  "rows": 30,
+  "notable": [
+    "728 five-star facilities carry 16+ fire-safety deficiencies (641 in 16-30 bucket, 87 at 31+).",
+    "Unrated facilities average ~$160k in fines - the worst of any group, hidden from the rating system entirely.",
+    "Fine dollars fall monotonically with each added star: $84k / $39k / $18k / $8k / $3k.",
+    "Illinois total CMS penalties ($70.4M) exceed Texas ($58.6M) despite having 57% as many facilities."
+  ]
+}

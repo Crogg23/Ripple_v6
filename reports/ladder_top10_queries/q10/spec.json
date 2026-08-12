@@ -1,0 +1,20 @@
+{
+  "question": "Hurt workers + insider selling chain: companies present in OSHA 2024 injury data, SEC EDGAR filings, and PBGC failure data, with insider-transaction counts.",
+  "finding": "612 EIN-matched public-company records link OSHA 2024 injury logs to SEC filers (607 distinct EINs), 513 of them also have insider (Form 3/4/5) filings; injury rates run 0 to 31.6 recordable cases per 100 FTE (median 1.0) \u2014 but the pension-failure leg is blocked because the PBGC table has no EIN or plan-level data.",
+  "chart": "result.csv: plotly scatter, x=INJURY_RATE_PER_100_FTE, y=FORM4_FILINGS (log y), size=EMPLOYEES, hover=COMPANY_NAME/SIC/DEATHS; funnel.csv: plotly funnel of the 4 join steps (pension step shown as blocked/null).",
+  "caveats": [
+    "PBGC leg BLOCKED: ECONOMICS__FED_PBGC_DATA is aggregate Data Book statistics with no EIN, so no pension-failure indicator per company; the ladder's 381 EDGAR-PBGC matches must have come from an uncataloged plan-level table.",
+    "EDGAR_FINANCIALS is submission metadata (no revenue/income columns exist in the table) \u2014 company name, SIC and latest fiscal year are carried instead of financials.",
+    "Insider counts are FILINGS per issuer CIK (mostly Form 4s), not transaction counts or dollar values \u2014 the table has no transaction amounts.",
+    "OSHA ITA covers only establishments required to e-file 300A summaries (2024 year); EIN match found 607 companies vs the ladder's 191 because EINs were normalized to digits-only here.",
+    "Injury rate = total recordable cases x 200,000 / hours worked, summed across a company's establishments; small-hours companies (e.g. single retail HQ) produce noisy extreme rates.",
+    "612 rows > 607 EINs because a few EINs map to two CIKs (corporate restructurings)."
+  ],
+  "rows": 612,
+  "notable": [
+    "Funnel: 109,146 OSHA employers with EIN -> 5,773 SEC filers with EIN -> 607 matched -> 512 also with insider filings -> pension step blocked.",
+    "Zumiez tops the injury-rate list at 31.6 per 100 FTE (single establishment, small hours base - treat with care).",
+    "Southwest Airlines is the biggest multi-site matched employer (140 establishments) among the highest-rate names.",
+    "107 of 612 matched companies report a 0.0 injury rate."
+  ]
+}

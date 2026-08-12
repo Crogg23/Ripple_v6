@@ -1,0 +1,21 @@
+{
+  "total_after_exclusion": 1028113.17,
+  "royalty_share_pct": 60.4,
+  "royalty_provider_npi": "1194706754",
+  "royalty_provider_note": "South Dakota neurologist, excluded 2021 under 1128b7 (fraud/kickback). Two royalty-or-license payments only: $318,224 (2023) + $301,647 (2022) = $621,671. This is patent/IP royalty income, a legally distinct payment category from consulting or speaker fees, and its presence after exclusion is not itself evidence of ongoing kickback-style money flow -- it is more likely a running IP licensing deal signed before exclusion that continued paying out.",
+  "debt_forgiveness_finding": "Real payments, not a data artifact: $174,422.25 across 26 rows / 8 distinct NPIs, all confirmed present in the raw CMS Open Payments extract under the official 'Debt forgiveness' nature-of-payment category (this is a standard, CMS-defined Open Payments category -- manufacturers/GPOs writing off amounts a provider owed them, e.g. returned-product credits or account write-offs -- not a parsing bug or duplicate-row artifact). Two-thirds of it is a single $114,040 payment to NPI 1982679544 from Skye Orthobiologics LLC in 2024 (excluded since 2019-06-20). Most of the remainder ($45,120 across 18 line items) is to NPI 1396085015 from ConvaTec Inc. in 2024 (excluded 2024-03-20, so the payment landed the same program year as exclusion -- consistent with the report's own year-grain caveat that same-year payments may predate the exclusion date). The rest is six providers with payments under $13k each. Recommend keeping debt forgiveness in the after-exclusion total but flagging it as a distinct, non-cash-in-hand category like royalty -- it reflects account bookkeeping between manufacturer and provider, not payment for influence or services.",
+  "category_breakdown_after_exclusion": {
+    "Royalty or License": 621670.88,
+    "Debt forgiveness": 174422.25,
+    "Food and Beverage": 90022.95,
+    "Consulting Fee": 64141.29,
+    "Compensation for services other than consulting (faculty/speaker)": 61902.43,
+    "Travel and Lodging": 6492.08,
+    "Education": 4866.33,
+    "Gift": 2032.91,
+    "Honoraria": 1565.05,
+    "Long term medical supply or device loan": 997.00
+  },
+  "cash_in_hand_after_exclusion_excl_royalty_and_debt_forgiveness": 231970.09,
+  "recommended_reframe": "Excluding the one neurologist's $621,671 in patent royalty income and $174,422 in manufacturer debt-forgiveness write-offs -- neither of which is consulting/kickback-style money -- excluded providers still collected roughly $232,000 in after-exclusion consulting fees, speaker/faculty compensation, meals, travel, gifts and honoraria across the remaining after-exclusion payments; the $620k royalty case should be called out separately in the narrative as a likely pre-exclusion IP licensing deal continuing to pay out, not framed as part of the headline 'still getting paid' dollar figure."
+}

@@ -1,0 +1,18 @@
+{
+  "question": "Q7 - Years in noncompliance, zero consequences: EPA ECHO facilities by quarters in noncompliance (3-year window) split by whether any formal enforcement exists, plus a state ranking of chronic-and-unenforced facilities",
+  "finding": "15,323 facilities were in noncompliance every single quarter of the last three years and received zero formal enforcement actions; among all 54,315 chronic (8+ quarter) noncompliers, 82% (44,319) have no formal enforcement on file.",
+  "chart": "Panel 1 (result.csv): stacked/grouped bar - x=QNC_BUCKET (ordered 0,1-3,4-7,8-11,12), y=FACILITIES, color=ENFORCEMENT; log y-scale or drop the '0' bucket since it dwarfs the rest (2.89M). Panel 2 (result_states.csv): horizontal bar of CHRONIC_ZERO_ENFORCEMENT by state, with PCT_CHRONIC_UNENFORCED as text/color.",
+  "caveats": [
+    "QUARTERS_WITH_NONCOMPLIANCE caps at 12 - it is a 3-year rolling window, not lifetime; '12' means the entire observable window, and it is total quarters, not necessarily consecutive.",
+    "FORMAL_ACTION_COUNT / INFORMAL_ACTION_COUNT are ECHO's 5-year action counters; enforcement older than that window would not show.",
+    "~79k facilities (2.5%) have NULL quarters and are excluded.",
+    "State ranking filtered to states with >=50 chronic facilities."
+  ],
+  "rows": 10,
+  "notable": [
+    "Monetary penalties appear ONLY where formal enforcement exists - all 5.9M facilities with zero formal actions also show zero penalties, confirming informal actions carry no fines.",
+    "Chronic-unenforced facilities still average 3-8 informal actions (letters, notices) - the paper trail exists, the consequences do not.",
+    "Washington state tops the count (2,972) and West Virginia the rate (91.6% of chronic noncompliers never formally enforced).",
+    "Even in the worst bucket (12/12 quarters), only 18% of facilities ever saw formal enforcement."
+  ]
+}

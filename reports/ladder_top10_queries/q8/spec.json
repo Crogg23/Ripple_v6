@@ -1,0 +1,17 @@
+{
+  "question": "How many nonprofits on the IRS 'safe to donate' list (Pub 78) also appear on the IRS auto-revocation list?",
+  "finding": "125,692 EINs sit on both the Pub 78 eligible-donee list and the IRS revocation list; 106,649 were formally reinstated, but 19,043 were revoked and never reinstated yet are still listed as eligible donees, with revocation years peaking in 2010 (2,821) and rising again 2020-2025 (~1,200-1,560/yr).",
+  "chart": "plotly stacked bar: x=REV_YEAR, y=count, two series stacked = NEVER_REINSTATED_STILL_LISTED (emphasis color) and REINSTATED_STILL_LISTED (muted); companion choropleth/bar from by_state.csv on NEVER_REINSTATED_STILL_LISTED",
+  "caveats": [
+    "Used ECONOMICS__FED_IRS_REVOCATION (1.19M rows, deduped, has WAS_REINSTATED) as the revocation list; FED_IRS_AUTO_REVOCATIONS (1.21M) is the same data with ~19k duplicate EINs. Neither is 500k-capped as previously suspected \u2014 both exceed 1.1M rows, and Pub 78 has 1.44M.",
+    "Reinstatement is judged only by the REINSTATEMENT_DATE/WAS_REINSTATED field in the revocation file; an org reinstated but not recorded there would be miscounted as 'never reinstated'.",
+    "Pub 78 and the revocation file are point-in-time snapshots that may have been pulled on different dates; some 'still listed' cases may be lag between IRS file updates, especially 2025-2026 revocations.",
+    "State comes from the revocation record's address, not Pub 78."
+  ],
+  "rows": 17,
+  "notable": [
+    "84.8% of the overlap is explained by legitimate reinstatements \u2014 the honest headline is the 19,043 unexplained ones.",
+    "2026 revocations already show 45 never-reinstated orgs still listed (fresh file lag, not scandal).",
+    "2010 spike is the first mass auto-revocation wave after the Pension Protection Act three-year non-filing rule kicked in."
+  ]
+}

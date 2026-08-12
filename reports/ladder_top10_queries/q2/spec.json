@@ -1,0 +1,19 @@
+{
+  "question": "Banned providers still in the drug-money stream: OIG-excluded providers (LEIE) who received pharma/device industry payments (CMS Open Payments 2022-2024)",
+  "finding": "439 OIG-excluded providers received 2,938 industry payments totaling $1.03M in program years ON OR AFTER their exclusion year (out of 799 excluded NPIs matched to $6.26M of payments overall); fraud-conviction exclusions (1128a1) alone account for 216 after-exclusion provider-years and $264k, and one 1128b7 (fraud/kickback) neurologist took in $620k across 2022-2023 after a 2021 exclusion.",
+  "chart": "plotly scatter (strip/jitter): x = PAY_YEAR - EXCLUSION_YEAR (years since exclusion), y = TOTAL_DOLLARS (log scale), color = AFTER_EXCLUSION_FLAG (or EXCLUSION_TYPE), size = N_PAYMENTS; alternative: stacked bar of after-exclusion dollars by EXCLUSION_TYPE.",
+  "caveats": [
+    "Year-grain comparison only: a payment in the same calendar year as the exclusion may predate the exclusion date; flag uses payment program year >= exclusion year.",
+    "after_exclusion_flag also requires the provider not reinstated before the payment year; reinstatement dates present for only a minority.",
+    "Only ~10% of LEIE rows carry a usable NPI (8,503 distinct), so this undercounts excluded providers substantially.",
+    "Open Payments coverage here is program years 2022, 2023, 2024 only.",
+    "Receiving an industry payment while excluded is not itself illegal; exclusion bars federal-program billing. Association/receipt shown, no wrongdoing implied.",
+    "The single largest row ($3.08M, 2024, excluded 2025) is one pre-exclusion payment, not after-exclusion money."
+  ],
+  "rows": 1292,
+  "notable": [
+    "NPI-level top after-exclusion earner: a South Dakota neurologist excluded 2021 under 1128b7 received $318k (2023) + $302k (2022) = $620k after exclusion.",
+    "591 of 1,292 matched provider-years (46%) fall on/after the exclusion year.",
+    "Largest single matched payment: $3,082,225 to an Oklahoma family-practice physician in 2024, one year before their 2025 exclusion."
+  ]
+}

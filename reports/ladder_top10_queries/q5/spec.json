@@ -1,0 +1,19 @@
+{
+  "question": "Q5 - Lead in the water pair: (A) systems whose lead samples exceeded the 15 ppb action level but with zero Lead & Copper Rule violations on file; (B) LCR-covered systems with no lead/copper samples at all - both by state with population served",
+  "finding": "At least 4,515 active water systems serving 35.1 million people recorded lead 90th-percentile results over the 15 ppb action level yet have zero Lead & Copper Rule violations on file (Ohio alone: 488 systems, 5.7M people), while 3,350 covered systems serving 2.4 million people have no lead or copper sample in the loaded data at all.",
+  "chart": "Two horizontal-bar panels: (A) result_a.csv - states sorted by POPULATION_SERVED, bar=population, secondary label=SYSTEMS_EXCEEDING_NO_VIOLATION; (B) result_b.csv - same shape for never-sampled systems. Could combine as a diverging paired bar per state.",
+  "caveats": [
+    "Loader-cap warning was given for these tables, but actual loaded counts are larger (927k LCR samples, 15.4M violation rows, 434k systems); still, both parts are 'at least / among loaded records' claims - absence of a violation or sample in our copy is not proof of absence in EPA's full SDWIS.",
+    "SAMPLE_MEASURE is stored as text; all units are labeled mg/L but some values (e.g. 5-20 'mg/L' lead, Ohio state-average max of 4,723 ppb) look like ug/L results mislabeled as mg/L - the right tail and the Ohio count may be inflated by unit errors.",
+    "An exceedance is not automatically a violation under the LCR (exceedance triggers treatment steps), so 'no violation' can be legal - the story is the gap between measured exposure and enforcement paper, not proven lawbreaking.",
+    "'Lead-related violation' = SDWA rule code 350 (Lead & Copper Rule) or lead contaminant codes; Part B restricted to active community/non-transient systems, the ones the rule covers.",
+    "Part A joins only active systems; 131 exceeding systems (2.1M pop) have a null state code."
+  ],
+  "rows": 110,
+  "notable": [
+    "Ohio: 488 exceeding-but-unviolated systems serving 5,685,688 people - the largest state cluster by far.",
+    "California 386 systems / 4.2M people; Massachusetts 71 systems but 3.35M people (a few very large systems).",
+    "Part B: Washington state has the largest never-sampled population (1.06M across 101 systems); Michigan the most never-sampled systems (756).",
+    "Worst single recorded lead value: 20,127 ppb (Mississippi) - 1,340x the action level, though possibly a unit error."
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "national_systems_before": 4515,
+  "national_population_before": 35100000,
+  "national_systems_after": 3898,
+  "national_population_after": 31174414,
+  "excluded_implausible_systems": 913,
+  "excluded_implausible_population": 7694453,
+  "ohio_before": {
+    "systems": 488,
+    "population": 5700000
+  },
+  "ohio_after": {
+    "systems": 118,
+    "population": 2577038
+  },
+  "summary": "Restricting to the plausible 15-100 ppb exceedance band drops the national count from 4,515 to 3,898 systems (31.2M people) and cuts Ohio from 488 to 118 systems, confirming most of Ohio and a chunk of the national total was a mg/L-vs-ug/L unit-mislabeling artifact."
+}

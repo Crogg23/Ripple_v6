@@ -1,0 +1,34 @@
+-- Q1: rating vs deficiencies/fire/penalties, per rating x fire-deficiency bucket
+WITH def AS (
+  SELECT CMS_CERTIFICATION_NUMBER_CCN ccn, COUNT(*) n_def
+  FROM LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME_DEFICIENCIES GROUP BY 1),
+fire AS (
+  SELECT CMS_CERTIFICATION_NUMBER_CCN ccn, COUNT(*) n_fire
+  FROM LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES GROUP BY 1),
+pen AS (
+  SELECT CMS_CERTIFICATION_NUMBER_CCN ccn, COUNT(*) n_pen, SUM(FINE_AMOUNT) fine_usd
+  FROM LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME_PENALTIES GROUP BY 1)
+SELECT r.OVERALL_RATING rating,
+  CASE WHEN COALESCE(f.n_fire,0)=0 THEN '0' WHEN f.n_fire<=5 THEN '1-5'
+       WHEN f.n_fire<=15 THEN '6-15' WHEN f.n_fire<=30 THEN '16-30' ELSE '31+' END fire_bucket,
+  COUNT(*) facilities,
+  AVG(COALESCE(d.n_def,0)) avg_deficiencies,
+  AVG(COALESCE(f.n_fire,0)) avg_fire_defs,
+  AVG(COALESCE(p.fine_usd,0)) avg_penalty_usd,
+  SUM(COALESCE(p.fine_usd,0)) total_penalty_usd
+FROM LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME r
+LEFT JOIN def d ON d.ccn=r.CMS_CERTIFICATION_NUMBER_CCN
+LEFT JOIN fire f ON f.ccn=r.CMS_CERTIFICATION_NUMBER_CCN
+LEFT JOIN pen p ON p.ccn=r.CMS_CERTIFICATION_NUMBER_CCN
+GROUP BY 1,2 ORDER BY 1,2
+-- Q1b: state ranking of penalty dollars per facility
+WITH pen AS (
+  SELECT CMS_CERTIFICATION_NUMBER_CCN ccn, SUM(FINE_AMOUNT) fine_usd, COUNT(*) n_pen
+  FROM LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME_PENALTIES GROUP BY 1)
+SELECT r.STATE, COUNT(*) facilities,
+  SUM(COALESCE(p.fine_usd,0)) total_penalty_usd,
+  SUM(COALESCE(p.fine_usd,0))/COUNT(*) penalty_usd_per_facility,
+  AVG(r.OVERALL_RATING) avg_rating
+FROM LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME r
+LEFT JOIN pen p ON p.ccn=r.CMS_CERTIFICATION_NUMBER_CCN
+GROUP BY 1 ORDER BY penalty_usd_per_facility DESC

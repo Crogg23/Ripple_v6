@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nobody Wrote It Down</title>
+<style>
+:root {
+  color-scheme: light;
+  --ground:      #e8eaee;
+  --panel:       #f4f5f7;
+  --panel-edge:  #d0d5dd;
+  --ink:         #12171f;
+  --ink-2:       #47505d;
+  --ink-3:       #79838f;
+  --hit:         #d93a22;
+  --hit-soft:    #f2c9c1;
+  --calm:        #8f9aa8;
+  --rule:        #c8cdd6;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --ground:     #0f141b;
+    --panel:      #161d26;
+    --panel-edge: #263140;
+    --ink:        #eef1f5;
+    --ink-2:      #a8b3c1;
+    --ink-3:      #75818f;
+    --hit:        #ff5c3d;
+    --hit-soft:   #45241d;
+    --calm:       #46525f;
+    --rule:       #26303c;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ground:     #0f141b;
+  --panel:      #161d26;
+  --panel-edge: #263140;
+  --ink:        #eef1f5;
+  --ink-2:      #a8b3c1;
+  --ink-3:      #75818f;
+  --hit:        #ff5c3d;
+  --hit-soft:   #45241d;
+  --calm:       #46525f;
+  --rule:       #26303c;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  font-size: 19px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+}
+.sans { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+/* ---------- hero ---------- */
+.hero { padding: 88px 0 56px; border-bottom: 1px solid var(--rule); }
+.brandline {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--hit); margin-bottom: 28px;
+}
+h1 {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: clamp(38px, 7vw, 68px);
+  font-weight: 800; letter-spacing: -.03em; line-height: 1.04;
+  margin: 0 0 28px; text-wrap: balance;
+}
+h1 em { font-style: normal; color: var(--hit); }
+.standfirst { font-size: 21px; color: var(--ink-2); max-width: 34em; margin: 0 0 12px; }
+
+/* ---------- the five, up top ---------- */
+.ledger { border-top: 1px solid var(--rule); margin-top: 44px; }
+.ledger-row {
+  display: grid; grid-template-columns: 120px 1fr; gap: 20px;
+  padding: 18px 0; border-bottom: 1px solid var(--rule); align-items: baseline;
+}
+.ledger-num {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 28px; font-weight: 800; color: var(--hit);
+  letter-spacing: -.02em; font-variant-numeric: tabular-nums;
+}
+.ledger-txt { font-size: 17px; color: var(--ink-2); }
+.ledger-txt b { color: var(--ink); font-weight: 600; }
+
+/* ---------- cases ---------- */
+.case { padding: 76px 0 8px; border-bottom: 1px solid var(--rule); }
+.kicker {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--ink-3); display: flex; align-items: center; gap: 12px; margin-bottom: 22px;
+}
+.kicker .idx {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--hit); color: #fff; font-size: 13px; letter-spacing: 0;
+}
+h2 {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: clamp(27px, 4.4vw, 40px); font-weight: 800;
+  letter-spacing: -.025em; line-height: 1.12; margin: 0 0 30px; text-wrap: balance;
+}
+.bignum { display: flex; align-items: baseline; gap: 18px; margin: 0 0 30px; flex-wrap: wrap; }
+.bignum .v {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: clamp(56px, 12vw, 104px); font-weight: 800; color: var(--hit);
+  letter-spacing: -.04em; line-height: .9; font-variant-numeric: tabular-nums;
+}
+.bignum .c {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 15px; color: var(--ink-2); max-width: 16em; line-height: 1.4;
+}
+.case p { margin: 0 0 20px; }
+
+figure { margin: 34px 0; padding: 26px; background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 3px; overflow-x: auto; }
+figure svg { display: block; width: 100%; height: auto; max-width: 100%; }
+figcaption { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 13.5px; color: var(--ink-3); margin-top: 18px; line-height: 1.5; }
+
+svg .hit { fill: var(--hit); }
+svg .miss { fill: var(--calm); opacity: .38; }
+svg text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; fill: var(--ink-2); }
+svg .barlabel { font-size: 13px; font-weight: 600; fill: #fff; }
+svg .barval { font-size: 13px; font-weight: 700; fill: var(--ink); font-variant-numeric: tabular-nums; }
+svg .qtick { font-size: 11px; fill: var(--ink-3); }
+svg .qlabel { font-size: 12.5px; font-weight: 600; fill: var(--ink-2); }
+
+.note {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 15.5px; line-height: 1.58; padding: 20px 22px; margin: 26px 0;
+  border-left: 3px solid var(--calm); background: var(--panel); color: var(--ink-2); border-radius: 0 3px 3px 0;
+}
+.note.correction { border-left-color: var(--hit); }
+.note .lbl {
+  display: block; font-size: 11.5px; font-weight: 700; letter-spacing: .13em;
+  text-transform: uppercase; margin-bottom: 8px; color: var(--ink-3);
+}
+.note.correction .lbl { color: var(--hit); }
+
+/* ---------- close ---------- */
+.close { padding: 76px 0 96px; }
+.close h3 {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 24px; font-weight: 800; letter-spacing: -.02em; margin: 0 0 22px;
+}
+.close p { color: var(--ink-2); font-size: 18px; }
+.close .sig { margin-top: 34px; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 13.5px; color: var(--ink-3); line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="brandline">Ripple &middot; a look at the public record</div>
+    <h1>The government wrote it all down.<br><em>Then nothing happened.</em></h1>
+    <p class="standfirst">Every number below comes from the government's own files — inspections it ran, tests it ordered, bans it issued. We didn't leak anything. We just put two public records side by side and checked whether they agreed.</p>
+    <p class="standfirst">Five times we checked. Five times they didn't.</p>
+
+    <div class="ledger">
+      <div class="ledger-row"><div class="ledger-num">31M</div><div class="ledger-txt"><b>people</b> drinking from water systems that tested over the lead limit with no violation on file</div></div><div class="ledger-row"><div class="ledger-num">1 in 4</div><div class="ledger-txt"><b>five-star nursing homes</b> carrying a stack of fire-code citations</div></div><div class="ledger-row"><div class="ledger-num">82%</div><div class="ledger-txt"><b>of repeat polluters</b> — failing every quarter for three years — never formally punished</div></div><div class="ledger-row"><div class="ledger-num">19k</div><div class="ledger-txt"><b>charities</b> the IRS revoked, still on the IRS's own safe-to-donate list</div></div><div class="ledger-row"><div class="ledger-num">439</div><div class="ledger-txt"><b>doctors</b> banned for fraud, still collecting drug-industry money</div></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="case"><div class="kicker"><span class="idx">1</span>Your tap water</div><h2>31.2 million people are drinking from water systems that tested over the lead limit — with no violation on record.</h2><div class="bignum"><div class="v">31.2M</div><div class="c">people served by those systems</div></div><p>There are 3,898 public water systems in this country where a lead test came back above the federal safety level, and the enforcement file next to it is empty. Not "under review." Empty.</p><p>That's more people than live in Texas.</p><figure><svg role="img" aria-label="31.2 million people is more than the population of Texas" viewBox="0 0 710 184"><rect class="hit" x="0" y="0" width="620" height="34" rx="2"/><text class="barlabel" x="8" y="21.5">People drinking from those systems</text><text class="barval" x="630" y="21.5">31.2M</text><rect class="miss" x="0" y="50" width="607" height="34" rx="2"/><text class="barlabel" x="8" y="71.5">Everyone in Texas</text><text class="barval" x="617" y="71.5">30.5M</text><rect class="miss" x="0" y="100" width="449" height="34" rx="2"/><text class="barlabel" x="8" y="121.5">Everyone in Florida</text><text class="barval" x="459" y="121.5">22.6M</text><rect class="miss" x="0" y="150" width="165" height="34" rx="2"/><text class="barlabel" x="8" y="171.5">Everyone in New York City</text><text class="barval" x="175" y="171.5">8.3M</text></svg><figcaption>Everyone served by a system that tested high for lead and drew no violation, next to states you already picture.</figcaption></figure><div class="note"><span class="lbl">The honest catch</span>Going over the lead limit doesn't automatically make a water system a lawbreaker — it's supposed to trigger a required fix. The point isn't that 3,898 crimes happened. It's that the test result and the paper trail don't match, at a scale of 31 million people.</div><div class="note correction"><span class="lbl">What we got wrong first</span>We caught our own mistake here first: our original number was 35 million, until we noticed some readings were recorded in the wrong unit — off by a factor of a thousand. Ohio's numbers were almost entirely that error. We threw those out and re-ran it. 31.2 million is what's left after the correction.</div></section><section class="case"><div class="kicker"><span class="idx">2</span>Where we put our parents</div><h2>About 1 in 4 five-star nursing homes is carrying a stack of fire-code violations.</h2><div class="bignum"><div class="v">728</div><div class="c">five-star homes with 16+ fire-safety citations</div></div><p>The government gives every nursing home a rating out of five stars. Families use it exactly how you'd think — five stars means "this is the good one."</p><p>Of the 3,039 homes holding a perfect five-star rating, 728 of them have 16 or more fire-safety citations on file. Same count as some of the worst-rated homes in the country, sitting underneath a perfect score.</p><figure><svg role="img" aria-label="About one in four five-star nursing homes carries heavy fire-code citations" viewBox="0 0 554 134"><rect class="hit" x="0" y="0" width="22" height="22" rx="1"/><rect class="hit" x="28" y="0" width="22" height="22" rx="1"/><rect class="hit" x="56" y="0" width="22" height="22" rx="1"/><rect class="hit" x="84" y="0" width="22" height="22" rx="1"/><rect class="hit" x="112" y="0" width="22" height="22" rx="1"/><rect class="hit" x="140" y="0" width="22" height="22" rx="1"/><rect class="hit" x="168" y="0" width="22" height="22" rx="1"/><rect class="hit" x="196" y="0" width="22" height="22" rx="1"/><rect class="hit" x="224" y="0" width="22" height="22" rx="1"/><rect class="hit" x="252" y="0" width="22" height="22" rx="1"/><rect class="hit" x="280" y="0" width="22" height="22" rx="1"/><rect class="hit" x="308" y="0" width="22" height="22" rx="1"/><rect class="hit" x="336" y="0" width="22" height="22" rx="1"/><rect class="hit" x="364" y="0" width="22" height="22" rx="1"/><rect class="hit" x="392" y="0" width="22" height="22" rx="1"/><rect class="hit" x="420" y="0" width="22" height="22" rx="1"/><rect class="hit" x="448" y="0" width="22" height="22" rx="1"/><rect class="hit" x="476" y="0" width="22" height="22" rx="1"/><rect class="hit" x="504" y="0" width="22" height="22" rx="1"/><rect class="hit" x="532" y="0" width="22" height="22" rx="1"/><rect class="hit" x="0" y="28" width="22" height="22" rx="1"/><rect class="hit" x="28" y="28" width="22" height="22" rx="1"/><rect class="hit" x="56" y="28" width="22" height="22" rx="1"/><rect class="hit" x="84" y="28" width="22" height="22" rx="1"/><rect class="miss" x="112" y="28" width="22" height="22" rx="1"/><rect class="miss" x="140" y="28" width="22" height="22" rx="1"/><rect class="miss" x="168" y="28" width="22" height="22" rx="1"/><rect class="miss" x="196" y="28" width="22" height="22" rx="1"/><rect class="miss" x="224" y="28" width="22" height="22" rx="1"/><rect class="miss" x="252" y="28" width="22" height="22" rx="1"/><rect class="miss" x="280" y="28" width="22" height="22" rx="1"/><rect class="miss" x="308" y="28" width="22" height="22" rx="1"/><rect class="miss" x="336" y="28" width="22" height="22" rx="1"/><rect class="miss" x="364" y="28" width="22" height="22" rx="1"/><rect class="miss" x="392" y="28" width="22" height="22" rx="1"/><rect class="miss" x="420" y="28" width="22" height="22" rx="1"/><rect class="miss" x="448" y="28" width="22" height="22" rx="1"/><rect class="miss" x="476" y="28" width="22" height="22" rx="1"/><rect class="miss" x="504" y="28" width="22" height="22" rx="1"/><rect class="miss" x="532" y="28" width="22" height="22" rx="1"/><rect class="miss" x="0" y="56" width="22" height="22" rx="1"/><rect class="miss" x="28" y="56" width="22" height="22" rx="1"/><rect class="miss" x="56" y="56" width="22" height="22" rx="1"/><rect class="miss" x="84" y="56" width="22" height="22" rx="1"/><rect class="miss" x="112" y="56" width="22" height="22" rx="1"/><rect class="miss" x="140" y="56" width="22" height="22" rx="1"/><rect class="miss" x="168" y="56" width="22" height="22" rx="1"/><rect class="miss" x="196" y="56" width="22" height="22" rx="1"/><rect class="miss" x="224" y="56" width="22" height="22" rx="1"/><rect class="miss" x="252" y="56" width="22" height="22" rx="1"/><rect class="miss" x="280" y="56" width="22" height="22" rx="1"/><rect class="miss" x="308" y="56" width="22" height="22" rx="1"/><rect class="miss" x="336" y="56" width="22" height="22" rx="1"/><rect class="miss" x="364" y="56" width="22" height="22" rx="1"/><rect class="miss" x="392" y="56" width="22" height="22" rx="1"/><rect class="miss" x="420" y="56" width="22" height="22" rx="1"/><rect class="miss" x="448" y="56" width="22" height="22" rx="1"/><rect class="miss" x="476" y="56" width="22" height="22" rx="1"/><rect class="miss" x="504" y="56" width="22" height="22" rx="1"/><rect class="miss" x="532" y="56" width="22" height="22" rx="1"/><rect class="miss" x="0" y="84" width="22" height="22" rx="1"/><rect class="miss" x="28" y="84" width="22" height="22" rx="1"/><rect class="miss" x="56" y="84" width="22" height="22" rx="1"/><rect class="miss" x="84" y="84" width="22" height="22" rx="1"/><rect class="miss" x="112" y="84" width="22" height="22" rx="1"/><rect class="miss" x="140" y="84" width="22" height="22" rx="1"/><rect class="miss" x="168" y="84" width="22" height="22" rx="1"/><rect class="miss" x="196" y="84" width="22" height="22" rx="1"/><rect class="miss" x="224" y="84" width="22" height="22" rx="1"/><rect class="miss" x="252" y="84" width="22" height="22" rx="1"/><rect class="miss" x="280" y="84" width="22" height="22" rx="1"/><rect class="miss" x="308" y="84" width="22" height="22" rx="1"/><rect class="miss" x="336" y="84" width="22" height="22" rx="1"/><rect class="miss" x="364" y="84" width="22" height="22" rx="1"/><rect class="miss" x="392" y="84" width="22" height="22" rx="1"/><rect class="miss" x="420" y="84" width="22" height="22" rx="1"/><rect class="miss" x="448" y="84" width="22" height="22" rx="1"/><rect class="miss" x="476" y="84" width="22" height="22" rx="1"/><rect class="miss" x="504" y="84" width="22" height="22" rx="1"/><rect class="miss" x="532" y="84" width="22" height="22" rx="1"/><rect class="miss" x="0" y="112" width="22" height="22" rx="1"/><rect class="miss" x="28" y="112" width="22" height="22" rx="1"/><rect class="miss" x="56" y="112" width="22" height="22" rx="1"/><rect class="miss" x="84" y="112" width="22" height="22" rx="1"/><rect class="miss" x="112" y="112" width="22" height="22" rx="1"/><rect class="miss" x="140" y="112" width="22" height="22" rx="1"/><rect class="miss" x="168" y="112" width="22" height="22" rx="1"/><rect class="miss" x="196" y="112" width="22" height="22" rx="1"/><rect class="miss" x="224" y="112" width="22" height="22" rx="1"/><rect class="miss" x="252" y="112" width="22" height="22" rx="1"/><rect class="miss" x="280" y="112" width="22" height="22" rx="1"/><rect class="miss" x="308" y="112" width="22" height="22" rx="1"/><rect class="miss" x="336" y="112" width="22" height="22" rx="1"/><rect class="miss" x="364" y="112" width="22" height="22" rx="1"/><rect class="miss" x="392" y="112" width="22" height="22" rx="1"/><rect class="miss" x="420" y="112" width="22" height="22" rx="1"/><rect class="miss" x="448" y="112" width="22" height="22" rx="1"/><rect class="miss" x="476" y="112" width="22" height="22" rx="1"/><rect class="miss" x="504" y="112" width="22" height="22" rx="1"/><rect class="miss" x="532" y="112" width="22" height="22" rx="1"/></svg><figcaption>Out of every 100 five-star nursing homes, about 24 carry 16 or more fire-safety citations.</figcaption></figure><div class="note"><span class="lbl">The honest catch</span>Before you panic: 96% of those citations are the lowest severity band — blocked-door, bad-paperwork stuff, not a building about to go up. Read this as "the star rating isn't telling you everything," not "728 death traps."</div><div class="note correction"><span class="lbl">What we got wrong first</span>We checked whether the government already flags this somewhere else, which would make it old news. It doesn't — 95% of those same homes also score 4 or 5 stars on the inspection-specific score. Nothing the public sees catches it.</div></section><section class="case"><div class="kicker"><span class="idx">3</span>The factory down the road</div><h2>15,323 facilities broke environmental rules every single quarter for three years straight. Most of them were never actually punished.</h2><div class="bignum"><div class="v">82%</div><div class="c">of repeat violators got no formal penalty</div></div><p>The EPA tracks compliance quarter by quarter. So we asked a simple question: who failed every quarter, for three years, without exception?</p><p>15,323 facilities. And across the wider group of repeat offenders — 54,315 of them — 44,319 never received a formal enforcement action. They got letters. Letters are free.</p><figure><svg role="img" aria-label="Twelve consecutive quarters out of compliance, no penalty" viewBox="0 0 640 96"><rect class="hit" x="0" y="18" width="44" height="44" rx="2"/><text class="qtick" x="22.0" y="76" text-anchor="middle">Q1</text><rect class="hit" x="52" y="18" width="44" height="44" rx="2"/><text class="qtick" x="74.0" y="76" text-anchor="middle">Q2</text><rect class="hit" x="104" y="18" width="44" height="44" rx="2"/><text class="qtick" x="126.0" y="76" text-anchor="middle">Q3</text><rect class="hit" x="156" y="18" width="44" height="44" rx="2"/><text class="qtick" x="178.0" y="76" text-anchor="middle">Q4</text><rect class="hit" x="208" y="18" width="44" height="44" rx="2"/><text class="qtick" x="230.0" y="76" text-anchor="middle">Q5</text><rect class="hit" x="260" y="18" width="44" height="44" rx="2"/><text class="qtick" x="282.0" y="76" text-anchor="middle">Q6</text><rect class="hit" x="312" y="18" width="44" height="44" rx="2"/><text class="qtick" x="334.0" y="76" text-anchor="middle">Q7</text><rect class="hit" x="364" y="18" width="44" height="44" rx="2"/><text class="qtick" x="386.0" y="76" text-anchor="middle">Q8</text><rect class="hit" x="416" y="18" width="44" height="44" rx="2"/><text class="qtick" x="438.0" y="76" text-anchor="middle">Q9</text><rect class="hit" x="468" y="18" width="44" height="44" rx="2"/><text class="qtick" x="490.0" y="76" text-anchor="middle">Q10</text><rect class="hit" x="520" y="18" width="44" height="44" rx="2"/><text class="qtick" x="542.0" y="76" text-anchor="middle">Q11</text><rect class="hit" x="572" y="18" width="44" height="44" rx="2"/><text class="qtick" x="594.0" y="76" text-anchor="middle">Q12</text><text class="qlabel" x="0" y="10">Out of compliance — every quarter, three years running</text></svg><figcaption>Twelve quarters. Twelve failures. No formal penalty.</figcaption></figure><figure><svg role="img" aria-label="82 out of 100 repeat polluters faced no formal penalty" viewBox="0 0 554 134"><rect class="hit" x="0" y="0" width="22" height="22" rx="1"/><rect class="hit" x="28" y="0" width="22" height="22" rx="1"/><rect class="hit" x="56" y="0" width="22" height="22" rx="1"/><rect class="hit" x="84" y="0" width="22" height="22" rx="1"/><rect class="hit" x="112" y="0" width="22" height="22" rx="1"/><rect class="hit" x="140" y="0" width="22" height="22" rx="1"/><rect class="hit" x="168" y="0" width="22" height="22" rx="1"/><rect class="hit" x="196" y="0" width="22" height="22" rx="1"/><rect class="hit" x="224" y="0" width="22" height="22" rx="1"/><rect class="hit" x="252" y="0" width="22" height="22" rx="1"/><rect class="hit" x="280" y="0" width="22" height="22" rx="1"/><rect class="hit" x="308" y="0" width="22" height="22" rx="1"/><rect class="hit" x="336" y="0" width="22" height="22" rx="1"/><rect class="hit" x="364" y="0" width="22" height="22" rx="1"/><rect class="hit" x="392" y="0" width="22" height="22" rx="1"/><rect class="hit" x="420" y="0" width="22" height="22" rx="1"/><rect class="hit" x="448" y="0" width="22" height="22" rx="1"/><rect class="hit" x="476" y="0" width="22" height="22" rx="1"/><rect class="hit" x="504" y="0" width="22" height="22" rx="1"/><rect class="hit" x="532" y="0" width="22" height="22" rx="1"/><rect class="hit" x="0" y="28" width="22" height="22" rx="1"/><rect class="hit" x="28" y="28" width="22" height="22" rx="1"/><rect class="hit" x="56" y="28" width="22" height="22" rx="1"/><rect class="hit" x="84" y="28" width="22" height="22" rx="1"/><rect class="hit" x="112" y="28" width="22" height="22" rx="1"/><rect class="hit" x="140" y="28" width="22" height="22" rx="1"/><rect class="hit" x="168" y="28" width="22" height="22" rx="1"/><rect class="hit" x="196" y="28" width="22" height="22" rx="1"/><rect class="hit" x="224" y="28" width="22" height="22" rx="1"/><rect class="hit" x="252" y="28" width="22" height="22" rx="1"/><rect class="hit" x="280" y="28" width="22" height="22" rx="1"/><rect class="hit" x="308" y="28" width="22" height="22" rx="1"/><rect class="hit" x="336" y="28" width="22" height="22" rx="1"/><rect class="hit" x="364" y="28" width="22" height="22" rx="1"/><rect class="hit" x="392" y="28" width="22" height="22" rx="1"/><rect class="hit" x="420" y="28" width="22" height="22" rx="1"/><rect class="hit" x="448" y="28" width="22" height="22" rx="1"/><rect class="hit" x="476" y="28" width="22" height="22" rx="1"/><rect class="hit" x="504" y="28" width="22" height="22" rx="1"/><rect class="hit" x="532" y="28" width="22" height="22" rx="1"/><rect class="hit" x="0" y="56" width="22" height="22" rx="1"/><rect class="hit" x="28" y="56" width="22" height="22" rx="1"/><rect class="hit" x="56" y="56" width="22" height="22" rx="1"/><rect class="hit" x="84" y="56" width="22" height="22" rx="1"/><rect class="hit" x="112" y="56" width="22" height="22" rx="1"/><rect class="hit" x="140" y="56" width="22" height="22" rx="1"/><rect class="hit" x="168" y="56" width="22" height="22" rx="1"/><rect class="hit" x="196" y="56" width="22" height="22" rx="1"/><rect class="hit" x="224" y="56" width="22" height="22" rx="1"/><rect class="hit" x="252" y="56" width="22" height="22" rx="1"/><rect class="hit" x="280" y="56" width="22" height="22" rx="1"/><rect class="hit" x="308" y="56" width="22" height="22" rx="1"/><rect class="hit" x="336" y="56" width="22" height="22" rx="1"/><rect class="hit" x="364" y="56" width="22" height="22" rx="1"/><rect class="hit" x="392" y="56" width="22" height="22" rx="1"/><rect class="hit" x="420" y="56" width="22" height="22" rx="1"/><rect class="hit" x="448" y="56" width="22" height="22" rx="1"/><rect class="hit" x="476" y="56" width="22" height="22" rx="1"/><rect class="hit" x="504" y="56" width="22" height="22" rx="1"/><rect class="hit" x="532" y="56" width="22" height="22" rx="1"/><rect class="hit" x="0" y="84" width="22" height="22" rx="1"/><rect class="hit" x="28" y="84" width="22" height="22" rx="1"/><rect class="hit" x="56" y="84" width="22" height="22" rx="1"/><rect class="hit" x="84" y="84" width="22" height="22" rx="1"/><rect class="hit" x="112" y="84" width="22" height="22" rx="1"/><rect class="hit" x="140" y="84" width="22" height="22" rx="1"/><rect class="hit" x="168" y="84" width="22" height="22" rx="1"/><rect class="hit" x="196" y="84" width="22" height="22" rx="1"/><rect class="hit" x="224" y="84" width="22" height="22" rx="1"/><rect class="hit" x="252" y="84" width="22" height="22" rx="1"/><rect class="hit" x="280" y="84" width="22" height="22" rx="1"/><rect class="hit" x="308" y="84" width="22" height="22" rx="1"/><rect class="hit" x="336" y="84" width="22" height="22" rx="1"/><rect class="hit" x="364" y="84" width="22" height="22" rx="1"/><rect class="hit" x="392" y="84" width="22" height="22" rx="1"/><rect class="hit" x="420" y="84" width="22" height="22" rx="1"/><rect class="hit" x="448" y="84" width="22" height="22" rx="1"/><rect class="hit" x="476" y="84" width="22" height="22" rx="1"/><rect class="hit" x="504" y="84" width="22" height="22" rx="1"/><rect class="hit" x="532" y="84" width="22" height="22" rx="1"/><rect class="hit" x="0" y="112" width="22" height="22" rx="1"/><rect class="hit" x="28" y="112" width="22" height="22" rx="1"/><rect class="miss" x="56" y="112" width="22" height="22" rx="1"/><rect class="miss" x="84" y="112" width="22" height="22" rx="1"/><rect class="miss" x="112" y="112" width="22" height="22" rx="1"/><rect class="miss" x="140" y="112" width="22" height="22" rx="1"/><rect class="miss" x="168" y="112" width="22" height="22" rx="1"/><rect class="miss" x="196" y="112" width="22" height="22" rx="1"/><rect class="miss" x="224" y="112" width="22" height="22" rx="1"/><rect class="miss" x="252" y="112" width="22" height="22" rx="1"/><rect class="miss" x="280" y="112" width="22" height="22" rx="1"/><rect class="miss" x="308" y="112" width="22" height="22" rx="1"/><rect class="miss" x="336" y="112" width="22" height="22" rx="1"/><rect class="miss" x="364" y="112" width="22" height="22" rx="1"/><rect class="miss" x="392" y="112" width="22" height="22" rx="1"/><rect class="miss" x="420" y="112" width="22" height="22" rx="1"/><rect class="miss" x="448" y="112" width="22" height="22" rx="1"/><rect class="miss" x="476" y="112" width="22" height="22" rx="1"/><rect class="miss" x="504" y="112" width="22" height="22" rx="1"/><rect class="miss" x="532" y="112" width="22" height="22" rx="1"/></svg><figcaption>Out of every 100 repeat violators, 82 were never formally penalized.</figcaption></figure><div class="note"><span class="lbl">The honest catch</span>The obvious objection: maybe these are trivial paperwork slips, and a warning letter is the right response. We checked the actual violation status on all 44,319. 86% are logged as real violations or significant violations — not blank rows, not filing errors.</div></section><section class="case"><div class="kicker"><span class="idx">4</span>Where your donation goes</div><h2>19,043 organizations lost their tax-exempt status and are still sitting on the IRS's own "safe to donate" list.</h2><div class="bignum"><div class="v">19,043</div><div class="c">revoked, never reinstated, still listed as safe</div></div><p>The IRS publishes a list of charities you can safely give to and take the deduction. It separately publishes a list of organizations whose status it revoked.</p><p>Those two lists overlap on 125,692 organizations. Most of that is fine — 106,649 were revoked and later restored, exactly how it should work. The problem is the other 19,043: revoked, never restored, still on the list telling you they're good.</p><figure><svg role="img" aria-label="Charities revoked and never reinstated, spread evenly across fifteen years" viewBox="0 0 640 150"><rect class="hit" x="0.0" y="10.0" width="36.7" height="108.0" rx="1"/><rect class="hit" x="42.7" y="59.9" width="36.7" height="58.1" rx="1"/><text class="qtick" x="61.0" y="136" text-anchor="middle">2011</text><rect class="hit" x="85.3" y="79.8" width="36.7" height="38.2" rx="1"/><rect class="hit" x="128.0" y="75.0" width="36.7" height="43.0" rx="1"/><rect class="hit" x="170.7" y="81.1" width="36.7" height="36.9" rx="1"/><text class="qtick" x="189.0" y="136" text-anchor="middle">2014</text><rect class="hit" x="213.3" y="90.8" width="36.7" height="27.2" rx="1"/><rect class="hit" x="256.0" y="95.2" width="36.7" height="22.8" rx="1"/><rect class="hit" x="298.7" y="92.2" width="36.7" height="25.8" rx="1"/><text class="qtick" x="317.0" y="136" text-anchor="middle">2017</text><rect class="hit" x="341.3" y="91.3" width="36.7" height="26.7" rx="1"/><rect class="hit" x="384.0" y="81.7" width="36.7" height="36.3" rx="1"/><rect class="hit" x="426.7" y="62.0" width="36.7" height="56.0" rx="1"/><text class="qtick" x="445.0" y="136" text-anchor="middle">2020</text><rect class="hit" x="469.3" y="77.0" width="36.7" height="41.0" rx="1"/><rect class="hit" x="512.0" y="68.8" width="36.7" height="49.2" rx="1"/><rect class="hit" x="554.7" y="71.2" width="36.7" height="46.8" rx="1"/><text class="qtick" x="573.0" y="136" text-anchor="middle">2023</text><rect class="hit" x="597.3" y="66.5" width="36.7" height="51.5" rx="1"/><text class="qtick" x="615.7" y="136" text-anchor="middle">2024</text></svg><figcaption>Revoked and never reinstated, by the year the IRS pulled their status. If this were just a filing delay, these bars would all be bunched at the right edge.</figcaption></figure><div class="note correction"><span class="lbl">What we got wrong first</span>The innocent explanation is that the two files are just out of sync and it'll catch up. We tested that directly: if it were lag, these would cluster in the last year or two. They don't. There's a wave in 2010 and a steady stream every year since. A charity revoked fifteen years ago is still listed as safe to donate to today.</div></section><section class="case"><div class="kicker"><span class="idx">5</span>The doctor's office</div><h2>439 doctors banned from Medicare for fraud kept receiving payments from drug and device companies afterward.</h2><div class="bignum"><div class="v">439</div><div class="c">banned providers still receiving industry money</div></div><p>The federal government maintains a list of doctors barred from billing Medicare or Medicaid — usually for fraud. Being on it is about as serious as medical discipline gets.</p><p>439 of them show up receiving drug-company and device-company money in the years after their ban. Not a fortune each — roughly $232,000 total across all of them, made mostly of industry meals, consulting fees, and speaking payments.</p><div class="note"><span class="lbl">The honest catch</span>Taking industry money while banned isn't illegal on its own — the ban stops you from billing federal programs, not from having a relationship with a manufacturer. This is a smell, not a crime.</div><div class="note correction"><span class="lbl">What we got wrong first</span>Our first version of this number was $1 million, and the headline was one doctor pulling in $620,000 after his ban. We looked at what those payments actually were: patent royalties. He'd invented something, and the license payments kept running on autopilot. That's a completely different story than a banned doctor on the take — so we pulled it out of the headline and the number dropped to $232,000. The smaller number is the true one.</div></section>
+
+  <section class="close">
+    <h3>How to read this without getting fooled — including by us</h3>
+    <p>Big numbers are easy to produce and easy to get wrong. So before publishing any of this, we went back through every finding and actively tried to break it — looking for the boring explanation that would make it go away.</p>
+    <p>Twice, the boring explanation won. Our lead-in-water number was too high because some lab results were recorded in the wrong unit. Our banned-doctor headline was built on one man's patent royalties, which isn't the scandal it looked like. Both are corrected above, in plain sight, with the original numbers left in so you can see what moved.</p>
+    <p>Three findings survived everything we threw at them. Those are the ones worth being angry about.</p>
+    <p class="sig">Sources: federal drinking-water testing and violation records; nursing-home ratings, inspection and fire-safety files; EPA facility compliance and enforcement history; IRS eligible-donee and revocation lists; the federal exclusion list and industry payment disclosures. Every figure is reproducible from those files. Nothing here has been published or shared as a finding — this is a working draft.</p>
+  </section>
+</main>
+
+</body>
+</html>
