@@ -46,9 +46,9 @@ the newest commit contains exactly those files, tree was clean at boot. The
 
 ## Live/open items
 
-- **Partially committed:** the Excel workbook is committed and pushed (Chris
-  asked, for offline browsing). The census scripts, CSV outputs, and this file
-  are still uncommitted — Chris rules on those.
+- **Everything is committed and pushed.** Chris committed the census scripts
+  and outputs himself mid-session; the two Excel workbooks (reference +
+  explainer) and their builders went up right after. Tree clean.
 - **Next phase: fill the grid cells** — needs warehouse scans (row counts,
   distinct-counts, date ranges per table). Cheap but nonzero; **price tag goes
   to Chris before any query runs** (rough guess: one X-Small hour or less for
