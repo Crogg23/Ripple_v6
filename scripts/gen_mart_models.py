@@ -453,6 +453,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--apply", action="store_true")
     ap.add_argument("--limit", type=int)
+    ap.add_argument("--match", default="",
+                    help="only sources whose id contains this substring")
     args = ap.parse_args()
 
     declared = index_declared_sources()
@@ -469,6 +471,8 @@ def main():
         order by LANDED_ROW_COUNT desc
     """)
     todo = cur.fetchall()
+    if args.match:
+        todo = [r for r in todo if args.match.lower() in (r[0] or "").lower()]
     if args.limit:
         todo = todo[:args.limit]
     print(f"{len(todo)} landed sources without a real mart\n")
