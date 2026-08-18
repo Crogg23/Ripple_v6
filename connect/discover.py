@@ -72,13 +72,23 @@ KEY_DOMAIN = {           # ~size of each key's value space, for the collision ma
     #            committee is an organization, a candidate is a person.
     "FRS_ID": 10**12, "PWSID": 26**2 * 10**7, "MINE_ID": 10**7,
     "FEC_CMTE_ID": 26 * 36**8, "FEC_CAND_ID": 26 * 36**8,
-    # CourtListener internal IDs (2026-08-17 wiring; live spine entry is staged
-    # behind keys.ENABLE_COURTLISTENER_SPINE -- see the comment there). Value
-    # spaces read off live values: person ids are small integers (max ~5 digits
-    # today; 10^6 is the honest headroom), court ids are ~2-8 char slugs from a
-    # single curated registry of 3,361 courts -- 10^4 headroom, not 36^8, so the
-    # collision math stays honest about a tiny, dense namespace.
+    # 2026-08 spine batch (staged behind keys.ENABLE_SPINE_BATCH_2026_08 -- see
+    # the comment there). Value spaces read off live values, not assumed:
+    # CL person ids are small integers (10^6 honest headroom); CL court ids are
+    # ~2-8 char slugs from one curated registry of 3,361 courts (10^4, not
+    # 36^8 -- the collision math must know the namespace is tiny and dense);
+    # NPDES permit ids are 2-letter state prefix + 7 digits; NCUA charters are
+    # small integers (~4.2k live, 10^5 headroom); ICE facility codes are a
+    # curated roster of ~1,470 site codes (10^4).
     "CL_PERSON_ID": 10**6, "CL_COURT_ID": 10**4,
+    "NPDES_ID": 26**2 * 10**7, "NCUA_CHARTER": 10**5, "ICE_FACILITY": 10**4,
+    # COMPANY_NO backfill (2026-08-17): wired 2026-08-05 with NORM_RULES + specs
+    # but never given a value-space here, so a COMPANY_NO edge scored through
+    # the un-domained chance_free=0.9 branch -- the exact footgun
+    # validate_key_config() exists to catch (it couldn't: COMPANY_NO lives in
+    # EXACT_TOKEN_KEYS, which that check doesn't iterate). 8-char alphanumeric,
+    # zero-padded at source -> 36^8.
+    "COMPANY_NO": 36**8,
 }
 
 # D17: classification codes are NOT entity identifiers. NAICS/SIC/NCES describe

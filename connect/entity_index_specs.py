@@ -939,30 +939,53 @@ DISPLAY_SPECS: dict[str, dict] = {
     },
 }
 
-# --- CourtListener spine wiring (2026-08-17), STAGED behind a flag ------------ #
-# Two new key axes: CL_PERSON_ID (judge) and CL_COURT_ID (court). Every join
-# surface below was measured live 2026-08-17 (read-only; evidence in
-# reports/census_grid_2026-08-12/fill/courtlistener_edges.json): 19 of 20
-# surfaces at 99.2-100% referential match. The one failure is deliberately NOT
-# wired: POSITIONS.APPOINTER_ID matched judges only 47.17% -- it references a
-# different record type than a person (measured, not assumed), and wiring it
-# would manufacture false person entities.
+# =========================================================================== #
+# 2026-08 SPINE BATCH -- STAGED behind keys.ENABLE_SPINE_BATCH_2026_08
 #
-# Why staged: adding these specs (or their NORM_RULES entries) changes the
-# incremental-config fingerprint, which by design freezes connect-one /
+# Why staged: adding any of these specs (or their NORM_RULES entries) changes
+# the incremental-config fingerprint, which by design freezes connect-one /
 # connect-changed until a FULL spine rebuild re-pins it -- and the full rebuild
-# is a parked money decision (~$10-15). Flip keys.ENABLE_COURTLISTENER_SPINE to
-# True in the session that runs `python -m connect spine`, never before.
+# is a parked money decision (~$10-15). Flip the flag in the session that runs
+# `python -m connect spine`, never before.
 #
-# Notes carried from measurement:
-#   - JUDGES has 394 alias rows (IS_ALIAS_OF_ID set) out of 16,191; aliases
-#     become their own thin person entities in v1 (no row filter mechanism in
-#     specs). Acceptable: ~2.4% thin duplicates, zero false merges.
-#   - DOCKETS/POSITIONS declare NO name columns on purpose: their name columns
-#     are case/organization names, not the judge's or court's name -- declaring
-#     them would let a case name win survivorship for a court.
-#   - COURTS.FJC_COURT_ID (200 rows) is a future bridge to the FJC IDB world;
-#     not a key axis yet.
+# Every entry below was VERIFIED LIVE 2026-08-17 before staging -- fill,
+# distinct count after the axis's own normalization, and overlap against the
+# live entity map (or, for new families, referential match against the family's
+# authority table). Evidence: reports/census_grid_2026-08-12/fill/
+# courtlistener_edges.json + spine_batch_verification.jsonl.
+#
+# Measured and REJECTED (do not re-add without new evidence):
+#   FED_FCC_LICENSING.EIN            -- 0 of 1.69M rows survive normalization
+#                                       (fully masked; the known FCC ULS trap).
+#   FED_FDIC_BANK_DATA.LEI           -- 0 nonnull. Dead column.
+#   FED_EPA_TRI_FACILITY.FRS_ID      -- 0 nonnull. Dead column (TRI_BASIC_2023
+#                                       carries the live FRS values instead).
+#   FED_US_SEC_EDGAR (EIN+CIK)       -- only ~25 distinct companies across 49k
+#                                       rows; a capped per-company filings feed,
+#                                       not a registry.
+#   XC_EPA_CORPORATE_CROSSWALK       -- in-house name-match product (98.6% of
+#                                       rows unmatched or fuzzy 0.80-0.85; only
+#                                       59k "exact"). The spine is hard-ID
+#                                       zero-false-merge; this stays an overlay.
+#   FED_CMS_OPEN_PAYMENTS_GNRL + FED_IRS_990_EFILER_INDEX_2022/2023 -- live in
+#                                       the RETIRED schema; retired on purpose.
+#   IRS527_8871_ORGS                 -- byte-identical twin of FED_IRS_527_ORGS
+#                                       (same rows/distinct/overlap); wire one.
+#   FED_CONGRESS_LEGISLATORS.FEC_IDS -- real values but a JSON ARRAY per row
+#                                       ('["S8WA00194","H2WA01054"]'); specs
+#                                       address plain columns. Needs a tiny
+#                                       flatten crosswalk build; still the
+#                                       cheapest big politics unlock.
+# --------------------------------------------------------------------------- #
+
+# --- CourtListener (judge + court axes). 19 of 20 surfaces 99.2-100%. -------- #
+# POSITIONS.APPOINTER_ID deliberately NOT wired: 47.17% match -- it references
+# a different record type than a person; wiring it would manufacture false
+# person entities. JUDGES has 394 alias rows (~2.4% thin duplicate persons,
+# zero false merges -- specs have no row filter). DOCKETS/POSITIONS declare NO
+# name columns on purpose: their name columns are case/org names, and declaring
+# them would let a case name win survivorship for a court.
+# COURTS.FJC_COURT_ID (200 rows) is a future bridge axis, not wired yet.
 COURTLISTENER_DISPLAY_SPECS: dict[str, dict] = {
     "FED_COURTLISTENER_JUDGES": {
         # CL_PERSON_ID -- 16,057 distinct / 16,191 rows, all named. e.g. '370'
@@ -1014,19 +1037,264 @@ COURTLISTENER_DISPLAY_SPECS: dict[str, dict] = {
     },
 }
 
-def _maybe_enable_courtlistener() -> None:
+# --- Existing-axis additions (verified 2026-08-17, spine_batch_verification) -- #
+SPINE_BATCH_2026_08_DISPLAY_SPECS: dict[str, dict] = {
+    # EIN axis ---------------------------------------------------------------- #
+    "FED_IRS_EO_BMF": {
+        # 1,983,563 distinct EINs, 99.95% already in the spine -- the IRS
+        # exempt-org master file, the golden CHARITY name/address source.
+        "key": "EIN", "key_col": "EIN", "org": "NAME",
+        "city": "CITY", "state": "STATE", "zip": "ZIP", "authority": 3,
+    },
+    "FED_IRS_527_ORGS": {
+        # 58,915 distinct EINs, 0.81% spine overlap -- the 527 political-org
+        # universe is NEW entities, which is the finding (dark-money orgs are
+        # not the charity/employer population). Twin table IRS527_8871_ORGS
+        # excluded (byte-identical stats).
+        "key": "EIN", "key_col": "EIN", "org": "ORG_NAME",
+        "city": "MAIL_CITY", "state": "MAIL_STATE", "zip": "MAIL_ZIP",
+        "authority": 4,
+    },
+    "IRS527_8872_REPORTS": {
+        # 4,150 distinct filer EINs (periodic money reports).
+        "key": "EIN", "key_col": "EIN", "org": "ORGANIZATION_NAME",
+        "city": "MAILING_CITY", "state": "MAILING_STATE", "zip": "MAILING_ZIP",
+        "authority": 6,
+    },
+    "IRS527_DIRECTORS_OFFICERS": {
+        # EIN is the ORG's tax id; ORG_NAME is its name. ENTITY_NAME (the
+        # officer) deliberately not declared -- a person must not name the org.
+        "key": "EIN", "key_col": "EIN", "org": "ORG_NAME", "authority": 8,
+    },
+    "IRS527_RELATED_ENTITIES": {
+        "key": "EIN", "key_col": "EIN", "org": "ORG_NAME", "authority": 8,
+    },
+    "FED_DOL_EBSA_FORM5500_SCHEDULE_SB": {
+        # 39,581 distinct sponsor EINs on actuarial filings (the pension
+        # paper-trail leg). No name columns on the table.
+        "key": "EIN", "key_col": "SB_EIN", "authority": 8,
+    },
+    "FED_PBGC_TRUSTEED_PENSION_PLANS": {
+        # 20,835 distinct EINs -- failed-pension plans (admin detail vintage).
+        "key": "EIN", "key_col": "EIN", "org": "PLAN_SPONSOR_NAME",
+        "city": "ADMIN_CITY", "state": "ADMIN_STATE", "authority": 5,
+    },
+    "FED_PBGC_TRUSTEED_PLANS": {
+        # 4,431 distinct EINs, 100% populated (verified 2026-08-17 incl.
+        # leading-zero repair via pad-9 normalization). The sharpest harm
+        # chain's pension leg.
+        "key": "EIN", "key_col": "EIN", "org": "SPONSOR_NAME",
+        "city": "CITY", "state": "STATE", "authority": 5,
+    },
+    "FED_COURTLISTENER_SCHOOLS": {
+        # 2,569 distinct EINs (71.9% in spine): judges' schools join the tax
+        # world -- the education-to-money bridge.
+        "key": "EIN", "key_col": "EIN", "org": "NAME", "authority": 6,
+    },
+    # NPI axis ---------------------------------------------------------------- #
+    "FED_CMS_PECOS_PROVIDER_ENROLLMENT": {
+        # 2,541,258 distinct NPIs, 100.0% spine overlap -- Medicare enrollment.
+        "key": "NPI", "key_col": "NPI",
+        "person": ["LAST_NAME", "FIRST_NAME"], "org": "ORG_NAME",
+        "authority": 3,
+    },
+    "FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT": {
+        # 1,681,790 distinct NPIs, ~100% overlap -- pharma-payment recipient
+        # profiles.
+        "key": "NPI", "key_col": "COVERED_RECIPIENT_NPI",
+        "person": ["COVERED_RECIPIENT_PROFILE_LAST_NAME",
+                   "COVERED_RECIPIENT_PROFILE_FIRST_NAME"],
+        "city": "COVERED_RECIPIENT_PROFILE_CITY",
+        "state": "COVERED_RECIPIENT_PROFILE_STATE",
+        "zip": "COVERED_RECIPIENT_PROFILE_ZIPCODE", "authority": 5,
+    },
+    "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL": {
+        # 55,598 distinct supplier NPIs, 100% overlap. LAST_NAME_ORG is a
+        # mixed person/org surname column -- person-pattern keeps it honest.
+        "key": "NPI", "key_col": "SUPLR_NPI",
+        "person": ["SUPLR_PRVDR_LAST_NAME_ORG", "SUPLR_PRVDR_FIRST_NAME"],
+        "city": "SUPLR_PRVDR_CITY", "state": "SUPLR_PRVDR_STATE_ABRVTN",
+        "zip": "SUPLR_PRVDR_ZIP5", "authority": 7,
+    },
+    "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER": {
+        # 381,228 distinct referring NPIs, 100% overlap.
+        "key": "NPI", "key_col": "RFRG_NPI",
+        "person": ["RFRG_PRVDR_LAST_NAME_ORG", "RFRG_PRVDR_FIRST_NAME"],
+        "city": "RFRG_PRVDR_CITY", "state": "RFRG_PRVDR_STATE_ABRVTN",
+        "zip": "RFRG_PRVDR_ZIP5", "authority": 7,
+    },
+    "FED_HRSA_UDS_SERVICE_DELIVERY_SITES": {
+        # 6,047 distinct community-health-center site NPIs, 99.27% overlap.
+        "key": "NPI", "key_col": "FQHC_SITE_NPI_NUMBER", "org": "SITE_NAME",
+        "city": "SITE_CITY", "state": "SITE_STATE_ABBREVIATION",
+        "zip": "SITE_POSTAL_CODE", "authority": 6,
+    },
+    # CCN axis ---------------------------------------------------------------- #
+    "FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE": {
+        # 2,906 distinct hospital CCNs, 100% overlap -- inpatient price book.
+        "key": "CCN", "key_col": "RNDRNG_PRVDR_CCN",
+        "org": "RNDRNG_PRVDR_ORG_NAME", "city": "RNDRNG_PRVDR_CITY",
+        "state": "RNDRNG_PRVDR_STATE_ABRVTN", "zip": "RNDRNG_PRVDR_ZIP5",
+        "authority": 6,
+    },
+    "FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE": {
+        # 3,126 distinct hospital CCNs, 100% overlap -- outpatient price book.
+        "key": "CCN", "key_col": "RNDRNG_PRVDR_CCN",
+        "org": "RNDRNG_PRVDR_ORG_NAME", "city": "RNDRNG_PRVDR_CITY",
+        "state": "RNDRNG_PRVDR_STATE_ABRVTN", "zip": "RNDRNG_PRVDR_ZIP5",
+        "authority": 6,
+    },
+    # UEI + DUNS (same row = same recipient, the legit extra_keys case; these
+    # are the spine's FIRST DUNS entities -- ENTITY_MAP holds zero today, so
+    # each table also becomes a UEI<->DUNS old/new-ID crosswalk for free) ----- #
+    "FED_NIH_REPORTER": {
+        # 11,903 distinct UEIs (87.4% in spine) / 14,919 distinct DUNS.
+        "key": "UEI", "key_col": "ORG_UEI", "org": "ORG_NAME",
+        "city": "ORG_CITY", "state": "ORG_STATE", "zip": "ORG_ZIP",
+        "extra_keys": [{"key": "DUNS", "key_col": "ORG_DUNS"}],
+        "authority": 6,
+    },
+    "FED_SBIR_STTR_AWARDS": {
+        # 17,160 distinct UEIs (76.1% in spine) / 21,594 distinct DUNS.
+        "key": "UEI", "key_col": "UEI", "org": "COMPANY",
+        "city": "CITY", "state": "STATE", "zip": "ZIP",
+        "extra_keys": [{"key": "DUNS", "key_col": "DUNS"}],
+        "authority": 6,
+    },
+    # CIK axis ---------------------------------------------------------------- #
+    "FED_PCAOB_FORM_AP_FILINGS": {
+        # 28,773 distinct issuer CIKs (35.7% in spine; funds are new) -- the
+        # auditor-engagement bridge.
+        "key": "CIK", "key_col": "ISSUER_CIK", "org": "ISSUER_NAME",
+        "authority": 6,
+    },
+    "FED_SEC_INVESTMENT_COMPANY_SERIES_CLASS": {
+        # 2,046 distinct fund-family CIKs (mostly new to the spine).
+        "key": "CIK", "key_col": "CIK_NUMBER", "org": "ENTITY_NAME",
+        "city": "CITY", "state": "STATE", "zip": "ZIP_CODE", "authority": 7,
+    },
+    "FED_SEC_EDGAR_COMPANY_TICKERS_EXCHANGE": {
+        # 7,998 distinct CIKs, 98.2% overlap -- the listed-company ticker map.
+        "key": "CIK", "key_col": "CIK", "org": "NAME", "authority": 6,
+    },
+    # LEI / IMO --------------------------------------------------------------- #
+    "INTL_ISO_MIC_REGISTRY": {
+        # 1,060 distinct exchange-operator LEIs, 99.91% overlap.
+        "key": "LEI", "key_col": "LEI", "org": "LEGAL_ENTITY_NAME",
+        "authority": 6,
+    },
+    "INTL_UK_SANCTIONS_LIST": {
+        # 657 distinct sanctioned-vessel IMOs (45.5% seen broadcasting/OFAC).
+        # Names deliberately not declared: the list splits names across six
+        # columns; OFAC (authority 4) already names hulls.
+        "key": "IMO", "key_col": "IMO_NUMBER", "authority": 7,
+    },
+    # FRS_ID axis ------------------------------------------------------------- #
+    "FED_EPA_FRS_FRS_FACILITIES": {
+        # 3,277,557 distinct registry IDs, 100.0% overlap -- the EPA facility
+        # registry itself; second-most-authoritative name source for the axis.
+        "key": "FRS_ID", "key_col": "REGISTRY_ID", "org": "FAC_NAME",
+        "city": "FAC_CITY", "state": "FAC_STATE", "zip": "FAC_ZIP",
+        "authority": 2,
+    },
+    "FED_EPA_ICIS_ICIS_AIR_FACILITIES": {
+        # 266,026 distinct, 100.0% overlap -- air-program facilities.
+        "key": "FRS_ID", "key_col": "REGISTRY_ID", "org": "FACILITY_NAME",
+        "city": "CITY", "state": "STATE", "zip": "ZIP_CODE", "authority": 6,
+    },
+    "FED_EPA_GHGRP_FACILITY": {
+        # 13,221 distinct, 83.1% overlap -- greenhouse-gas reporters.
+        "key": "FRS_ID", "key_col": "FRS_ID", "org": "FACILITY_NAME",
+        "city": "CITY", "state": "STATE", "zip": "ZIP", "authority": 6,
+    },
+    "FED_EPA_TRI_BASIC_2023": {
+        # 21,760 distinct, 99.4% overlap -- toxics-release reporters.
+        "key": "FRS_ID", "key_col": "C_3_FRS_ID", "org": "C_4_FACILITY_NAME",
+        "city": "C_6_CITY", "zip": "C_9_ZIP", "authority": 7,
+    },
+    # NPDES_ID family (water-discharge permits; 100.0% referential on all
+    # seven event tables vs the 1.21M-facility authority) --------------------- #
+    "FED_EPA_NPDES_ICIS_FACILITIES": {
+        "key": "NPDES_ID", "key_col": "NPDES_ID", "org": "FACILITY_NAME",
+        "city": "CITY", "state": "STATE_CODE", "zip": "ZIP", "authority": 4,
+    },
+    "FED_EPA_NPDES_NPDES_CS_VIOLATIONS": {
+        "key": "NPDES_ID", "key_col": "NPDES_ID", "authority": 8,
+    },
+    "FED_EPA_NPDES_NPDES_PS_VIOLATIONS": {
+        "key": "NPDES_ID", "key_col": "NPDES_ID", "authority": 8,
+    },
+    "FED_EPA_NPDES_NPDES_SE_VIOLATIONS": {
+        "key": "NPDES_ID", "key_col": "NPDES_ID", "authority": 8,
+    },
+    "FED_EPA_NPDES_NPDES_FORMAL_ENFORCEMENT_ACTIONS": {
+        "key": "NPDES_ID", "key_col": "NPDES_ID", "authority": 8,
+    },
+    "FED_EPA_NPDES_NPDES_INFORMAL_ENFORCEMENT_ACTIONS": {
+        "key": "NPDES_ID", "key_col": "NPDES_ID", "authority": 8,
+    },
+    "FED_EPA_NPDES_NPDES_INSPECTIONS": {
+        "key": "NPDES_ID", "key_col": "NPDES_ID", "authority": 8,
+    },
+    "FED_EPA_NPDES_NPDES_QNCR_HISTORY": {
+        "key": "NPDES_ID", "key_col": "NPDES_ID", "authority": 8,
+    },
+    # NCUA_CHARTER family (credit unions) ------------------------------------- #
+    "FED_NCUA_FEDERALLY_INSURED_CU_LIST": {
+        # 4,212 distinct charters -- the insured-CU registry, golden names.
+        "key": "NCUA_CHARTER", "key_col": "CHARTER_NUMBER",
+        "org": "CREDIT_UNION_NAME", "city": "CITY_MAILING_ADDRESS",
+        "state": "STATE_MAILING_ADDRESS", "zip": "ZIP_CODE_MAILING_ADDRESS",
+        "authority": 4,
+    },
+    "FED_NCUA_CALL_REPORTS_FOICU": {
+        # 4,289 distinct, 98.0% vs insured list (the gap: recently merged-away
+        # charters -- expected, not error).
+        "key": "NCUA_CHARTER", "key_col": "CU_NUMBER", "org": "CU_NAME",
+        "city": "CITY", "state": "STATE", "zip": "ZIP_CODE", "authority": 5,
+    },
+    "FED_NCUA_CALL_REPORTS_FS220": {
+        "key": "NCUA_CHARTER", "key_col": "CU_NUMBER", "authority": 8,
+    },
+    "FED_NCUA_CHARTER_MERGER_EVENTS": {
+        # Both sides of every merger. Names deliberately NOT declared: extra
+        # keys share the table's name expression, so declaring the continuing
+        # CU's name would also label the merged-away CU with it.
+        "key": "NCUA_CHARTER", "key_col": "CONTINUING_CREDIT_UNION_CHARTER",
+        "extra_keys": [{"key": "NCUA_CHARTER",
+                        "key_col": "MERGING_CREDIT_UNION_CHARTER"}],
+        "authority": 8,
+    },
+    # ICE_FACILITY family (detention) ----------------------------------------- #
+    "FED_ICE_DETENTION_FACILITY_CODES": {
+        # 1,470 distinct codes with names/addresses -- the authority table.
+        "key": "ICE_FACILITY", "key_col": "DETENTION_FACILITY_CODE",
+        "org": "DETENTION_FACILITY_NAME",
+        "city": "CITY", "state": "STATE", "zip": "ZIP", "authority": 4,
+    },
+    "FED_ICE_DETENTION_STINTS": {
+        # 2.6M stints, 100.0% referential to the code list -- detention
+        # outcomes by operator, per facility.
+        "key": "ICE_FACILITY", "key_col": "DETENTION_FACILITY_CODE",
+        "authority": 8,
+    },
+}
+
+
+def _maybe_enable_spine_batch() -> None:
     # This module is imported BOTH as connect.entity_index_specs (package) and as
     # a top-level module (spine_entity.py path-hacks connect/ onto sys.path), so
     # the relative import needs a bare fallback. The flag is a module constant
     # read once at import; both import identities see the same source default.
     try:
-        from .keys import ENABLE_COURTLISTENER_SPINE
+        from .keys import ENABLE_SPINE_BATCH_2026_08
     except ImportError:
-        from keys import ENABLE_COURTLISTENER_SPINE
-    if ENABLE_COURTLISTENER_SPINE:
+        from keys import ENABLE_SPINE_BATCH_2026_08
+    if ENABLE_SPINE_BATCH_2026_08:
         DISPLAY_SPECS.update(COURTLISTENER_DISPLAY_SPECS)
+        DISPLAY_SPECS.update(SPINE_BATCH_2026_08_DISPLAY_SPECS)
 
-_maybe_enable_courtlistener()
+_maybe_enable_spine_batch()
 
 # spine scope = every table with a nameable hard key (health + money/maritime/corporate).
 SPINE_TABLES = list(DISPLAY_SPECS)
@@ -1059,13 +1327,18 @@ ENTITY_TYPE_BY_KEY = {
     # registrar's namespace (only the two UK CH tables carry it -- see
     # connect/keys.py EXACT_TOKEN_KEYS), identifying a registered company.
     "COMPANY_NO": "organization",
-    # 2026-08-17 CourtListener wiring (staged -- keys.ENABLE_COURTLISTENER_SPINE).
+    # 2026-08-17 batch wiring (staged -- keys.ENABLE_SPINE_BATCH_2026_08).
     # A judge is a human being; a court is an institution that hires, rules and
     # can be appealed against -- organization, not facility (a courthouse is the
-    # building; courts move between buildings). Present unconditionally: entity
-    # typing re-labels but never re-keys, so listing dark keys here is inert.
+    # building; courts move between buildings). A water-discharge permit and a
+    # detention center are fixed regulated sites (same grain as CCN/FRS/mine);
+    # a credit union is an institution. Present unconditionally: entity typing
+    # re-labels but never re-keys, so listing dark keys here is inert.
     "CL_PERSON_ID": "person",
     "CL_COURT_ID": "organization",
+    "NPDES_ID": "facility",
+    "NCUA_CHARTER": "organization",
+    "ICE_FACILITY": "facility",
 }
 
 # Entity types that carry no hard-ID column of their own and are assigned from the

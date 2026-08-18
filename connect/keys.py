@@ -186,32 +186,45 @@ NORM_RULES: dict[str, tuple[str, int]] = {
     "ADDRESS": ("address", 0),
 }
 
-# --- CourtListener key axes (2026-08-17 wiring, STAGED behind a flag) --------- #
-# CL_PERSON_ID -- CourtListener's judge/person primary key: a plain integer
-# ('370', '16214'), no leading zeros, so alnum_upper (opaque ID, no pad).
-# CL_COURT_ID -- CourtListener's court primary key: a lowercase slug ('scotus',
-# 'ca9', 'nysd'); alnum_upper canonicalizes case. Both are single-publisher
-# namespaces by construction (only FED_COURTLISTENER_* tables carry them), and
-# both are deliberately NOT in KEY_TOKENS/EXACT_TOKEN_KEYS: the carrying columns
-# are named PERSON_ID / COURT_ID / ASSIGNED_TO_ID -- token detection would tag
-# same-named columns in unrelated sources. The spine specs pin exact columns
-# instead (entity_index_specs.COURTLISTENER_DISPLAY_SPECS).
+# --- 2026-08 spine batch (STAGED behind one flag) ----------------------------- #
+# Five new key axes, all verified live 2026-08-17 before staging (evidence:
+# reports/census_grid_2026-08-12/fill/courtlistener_edges.json and
+# spine_batch_verification.jsonl):
+#   CL_PERSON_ID -- CourtListener judge/person PK: plain integer ('370'), no
+#                   leading zeros -> alnum_upper (opaque ID, no pad).
+#   CL_COURT_ID  -- CourtListener court PK: lowercase slug ('scotus', 'ca9')
+#                   -> alnum_upper canonicalizes case.
+#   NPDES_ID     -- EPA water-discharge permit ID ('AK0000345'): 2-letter state
+#                   prefix + digits; 100.0% referential across all 7 event
+#                   tables vs the 1.21M-facility authority table.
+#   NCUA_CHARTER -- NCUA credit-union charter number (integer, no leading-zero
+#                   convention); 98-100% referential vs the insured-CU list
+#                   (merged-away charters legitimately absent from the current
+#                   quarter's list).
+#   ICE_FACILITY -- ICE detention facility code ('CSCNCAADULT'-style); 100.0%
+#                   of 2.6M detention stints match the 1,470-code authority.
+# All five are single-publisher namespaces and deliberately NOT in
+# KEY_TOKENS/EXACT_TOKEN_KEYS: their carrying columns have generic names
+# (PERSON_ID, COURT_ID, CU_NUMBER...) that token detection would mis-tag in
+# unrelated sources. The spine specs pin exact columns instead
+# (entity_index_specs.SPINE_BATCH_2026_08_DISPLAY_SPECS).
 #
 # THE FLAG: flipping this changes the incremental-config fingerprint, which
 # freezes `connect-one`/`connect-changed` until the next FULL spine rebuild
 # re-pins it (incremental._guard_config, by design). The full rebuild is a
-# parked money decision (~$10-15). So the wiring ships dark: flip to True in
-# the same session that runs `python -m connect spine`, never before.
-# Join-surface evidence measured 2026-08-17 (read-only):
-# reports/census_grid_2026-08-12/fill/courtlistener_edges.json.
-ENABLE_COURTLISTENER_SPINE = False
+# parked money decision (~$10-15). So the whole batch ships dark: flip to True
+# in the same session that runs `python -m connect spine`, never before.
+ENABLE_SPINE_BATCH_2026_08 = False
 
-_COURTLISTENER_NORM_RULES: dict[str, tuple[str, int]] = {
+_SPINE_BATCH_NORM_RULES: dict[str, tuple[str, int]] = {
     "CL_PERSON_ID": ("alnum_upper", 0),
     "CL_COURT_ID": ("alnum_upper", 0),
+    "NPDES_ID": ("alnum_upper", 0),
+    "NCUA_CHARTER": ("alnum_upper", 0),
+    "ICE_FACILITY": ("alnum_upper", 0),
 }
-if ENABLE_COURTLISTENER_SPINE:
-    NORM_RULES.update(_COURTLISTENER_NORM_RULES)
+if ENABLE_SPINE_BATCH_2026_08:
+    NORM_RULES.update(_SPINE_BATCH_NORM_RULES)
 
 # tokens dropped from a name before matching (legal suffixes + person credentials +
 # a few stopwords). Sorted set so the generated SQL is stable across runs.

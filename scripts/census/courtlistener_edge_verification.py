@@ -3,7 +3,7 @@
 The 21 court tables join internally on CourtListener's own person/court IDs but
 have zero edges in the connection map. Before those keys become spine key axes
 (staged in connect/keys.py + entity_index_specs.py behind
-ENABLE_COURTLISTENER_SPINE, flipped at the next full spine rebuild), every join
+ENABLE_SPINE_BATCH_2026_08, flipped at the next full spine rebuild), every join
 surface is measured here the same way the 2026-08-11 connection audit measured
 the existing map: nonnull / distinct / match-rate against the authority table.
 

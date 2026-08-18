@@ -84,7 +84,7 @@ new spine key axes — judge (person) and court (organization):
   fingerprint, which (by design) freezes incremental spine updates until a
   FULL rebuild re-pins it — and the full rebuild is the parked ~$10–15
   decision. The wiring ships dark behind a single flag
-  (`connect/keys.py: ENABLE_COURTLISTENER_SPINE`); flip it in the same session
+  (`connect/keys.py: ENABLE_SPINE_BATCH_2026_08`); flip it in the same session
   that runs the full rebuild. Config verified both ways: flag off = fingerprint
   unchanged, flag on = specs/normalization/entity-typing all live.
 
@@ -92,6 +92,53 @@ new spine key axes — judge (person) and court (organization):
 politics + disclosures + investments + caseload on one hard ID), court-grain
 caseload ledgers over 71.7M dockets, and the judges-money-cases lane the
 ladder ranked as the court domain's top unlock.
+
+## The 2026-08 spine batch (staged with the court keys — "no bits and pieces")
+
+Chris's call: batch everything that trips the same rebuild gate. A full column
+sweep over all 2,216 live raw tables found every un-wired candidate; 41
+candidates were then measured live (fill, distinct after the axis's own
+normalization, overlap vs the live entity map / referential match vs the
+family authority). Evidence: `spine_batch_verification.jsonl`.
+
+**Staged — 39 new spec tables on existing axes + 3 new key families** (all
+inside the same `ENABLE_SPINE_BATCH_2026_08` flag; full per-table numbers in
+the spec file's comments):
+
+- **Charity/tax axis:** the IRS exempt-org master file (1.98M charities,
+  99.95% overlap — becomes the golden charity name source), the whole 527
+  dark-money family (59k orgs, own money reports, directors, related
+  entities), both failed-pension tables, pension actuarial filings, judges'
+  schools.
+- **Provider axis:** Medicare enrollment (2.5M providers, 100%), pharma-payment
+  recipient profiles (1.7M, 100%), medical-equipment suppliers + referrers,
+  community-health-center sites; hospital inpatient/outpatient price books on
+  the facility axis.
+- **Money axes:** NIH grants + small-business awards (first DUNS entities in
+  the spine; each row also carries the modern UEI → old↔new federal-ID
+  crosswalk for free), auditor-engagement issuer IDs (28.8k), fund registries,
+  the listed-company ticker map, exchange-operator LEIs, UK-sanctioned hulls.
+- **Environment:** the EPA facility registry itself (3.28M, 100%), air-program
+  facilities, greenhouse-gas reporters, toxics reporters — plus the new
+  **water-discharge permit family** (1.21M permitted facilities; violations,
+  enforcement, inspections, quarterly noncompliance — 100.0% referential on
+  all seven event tables).
+- **New families:** credit unions (charter number: insured registry, call
+  reports, merger ledger) and ICE detention facilities (2.6M stints, 100.0%
+  to the 1,470-facility roster — detention outcomes by operator).
+
+**Measured and REJECTED, on the record** (also in the spec file): the FCC
+license EIN (fully masked, 0 of 1.69M), the FDIC bank LEI (empty), one dead
+toxics FRS column, a 25-company SEC filings feed posing as a registry, three
+retired-schema tables, one byte-identical twin load, and the in-house EPA
+corporate crosswalk (98.6% unmatched/fuzzy name-matching — stays an overlay;
+the spine is zero-false-merge). **Parked:** the legislator FEC-IDs column is
+real but holds a JSON list per row — needs a tiny flatten build; still the
+cheapest big politics unlock. The banking-ID family (FDIC certificate ↔ Fed
+RSSD ↔ credit-union charter) parked as its own future axis study.
+
+Also fixed in passing: the UK company-number key (wired 2026-08-05) never had
+a collision-math entry — backfilled.
 
 ## Files
 
