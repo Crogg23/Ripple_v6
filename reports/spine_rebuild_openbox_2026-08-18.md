@@ -92,3 +92,90 @@ health<->other (1,015); justice appears in exactly 4 edges total.
   as raw JSON (a single RAW variant column). Data is complete inside
   (7,085 and 39,635 records, matching the source totals) but unflattened, so
   the map cannot read them. They silently left the graph.
+
+---
+
+# Afternoon session: map repair (2026-08-18)
+
+## Root causes found (three, all real)
+
+1. **Stale schema snapshot.** outputs/connect_fingerprints.json was built
+   2026-08-09. FED_EPA_SUPERFUND_SITE_BOUNDARIES had since been reloaded with
+   its ATTRIBUTES_ column prefix dropped, so `connect discover` aborted on
+   `invalid identifier 'ATTRIBUTES_ZIP_CODE'`. Re-profiled 5 tables whose
+   columns had moved; dropped 2 that no longer exist.
+
+2. **The five new key axes were never taught to the column recognizer.**
+   NORM_RULES (normalization) had them; KEY_TOKENS / EXACT_TOKEN_KEYS (name
+   detection) did not. The spine resolves from explicit (table, column) specs
+   so it was unaffected -- but discover must detect by name, so the entire
+   2026-08 batch produced ZERO edges. Re-fingerprinting alone would not have
+   fixed this.
+
+   Added 8 EXACT_TOKEN_KEYS entries. Every token set was verified against all
+   2,212 landing tables first -- each occurs only inside its own family.
+   Detection diffed over every landing column: 32 newly tagged, 0 taken from
+   an existing key.
+
+   Bare "ID" (the COURTS and JUDGES registry columns) exists on 180 landing
+   tables and cannot go through name detection. Added TABLE_COLUMN_KEYS, a
+   (table, column) -> key override consulted first by _key_columns.
+
+3. **Tier lookup bug, PRE-EXISTING since 2026-08-05.** discover._tier read
+   KEY_TOKENS alone, so any key declared only in EXACT_TOKEN_KEYS fell through
+   to the PROBABILISTIC default -- which also meant it never reached the STEEL
+   branch that skips the collision gate.
+     - COMPANY_NO (UK company number, 2,335,951 matches) was tagged
+       PROBABILISTIC in every graph produced since exact-token keys were added.
+     - CL_COURT_ID produced zero edges despite six dense real overlaps, because
+       KEY_DOMAIN=10000 made 2,199 matches look like chance.
+   Fixed via keys.tier_for(), which resolves a tier from all three declaration
+   sites.
+
+## Procedure error (mine, not the code)
+
+`python -m connect seed` without `--reseed` skips the keyset copy entirely when
+the persisted table is non-empty (incremental.sync_after_rebuild line ~292); it
+only re-pins watermarks. This morning's rebuild script and my first two re-seeds
+all ran the default, which is why discover_keyset_twin stayed red and its number
+moved (50,164,992 -> 3,418,851 -> 18,983,261) without ever converging.
+
+Correct order: fingerprint -> discover -> seed --reseed -> validate.
+
+## Final state
+
+  connect validate-incremental : all 6 checks PASS
+  pytest full suite            : 3,096 passed, 2 skipped, 1 failed
+                                 (roll-call mart twin -- pre-existing, standing)
+
+  Map: 4,762 edges kept / 8,902 gated, from 2,705,233 pairs tested
+  By tier: CORROBORATED 2,670, STEEL 1,249, BRIDGE 485, GEO 353, STRONG 5
+  PROBABILISTIC: 81 -> 0 (all were mislabelled hard IDs; STEEL 1,160 -> 1,249)
+
+  New families on the map: NPDES_ID 45, CL_PERSON_ID 28, CL_COURT_ID 6,
+  NCUA_CHARTER 6, ICE_FACILITY 3. CL_COURT_ID's 6 is every possible pair of
+  the 4 court tables -- that family is fully wired.
+
+## Corrected: the "941 blind tables" claim
+
+Only 58 were genuinely unprofiled (now done). The other ~900 are gated out on
+purpose by fingerprint.landed_tables(): portal scrapes carrying no STEEL/STRONG
+key. That is the documented connectable-first gate, matching the earlier
+"895 blind spot = all portal crawl" finding -- not a defect.
+
+The gated set holds 907 tables / 8,212,076 rows. Not all of it is city-scrape
+noise: the four ICIJ offshore-leaks tables (3.34M relationships, 814k entities,
+771k officers, 402k addresses), FED_IRS_527_ORGS and INTL_UK_SANCTIONS_LIST sit
+in there, gated because they key on names rather than ID numbers. Whether to
+build a name-based path for those is an open question, not a bug.
+
+## Open / not addressed
+
+- Roll-call vote mart still disagrees with its Python-built twin
+  (113,512 vs 3,364 rows). Standing.
+- FED_FDA_DEVICE_CLASSIFICATION / _ENFORCEMENT reloaded as raw JSON (one RAW
+  variant column). Data complete inside (7,085 and 39,635 records, matching
+  source totals) but unflattened, so the map cannot read them.
+- DEA_NO: 149,244 entities, 0 cross-source merges. Single-source, inert today.
+- Six polygon tables have geometry the map cannot parse; a handful of EPA/NTSB
+  coordinates are invalid (longitude 435.8, -9537). Pre-existing.
