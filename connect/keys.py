@@ -214,7 +214,7 @@ NORM_RULES: dict[str, tuple[str, int]] = {
 # re-pins it (incremental._guard_config, by design). The full rebuild is a
 # parked money decision (~$10-15). So the whole batch ships dark: flip to True
 # in the same session that runs `python -m connect spine`, never before.
-ENABLE_SPINE_BATCH_2026_08 = False
+ENABLE_SPINE_BATCH_2026_08 = True
 
 _SPINE_BATCH_NORM_RULES: dict[str, tuple[str, int]] = {
     "CL_PERSON_ID": ("alnum_upper", 0),
