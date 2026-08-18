@@ -1,75 +1,84 @@
-# RIPPLE STATUS — 2026-08-17 (session 3) — Court IDs registered (staged); grid filled
+# RIPPLE STATUS — 2026-08-17 (session 4) — The full spine batch is staged; one rebuild lights it all
 
 *One screen. Rewritten (never appended) at the end of every session. Sessions read
 this at boot and brief Chris in chat — Chris never has to open it.*
 
-**BROKE: nothing new.** Standing: the roll-call vote mart still disagrees with
-its Python-built twin (113,512 vs 3,364 rows). Full offline suite re-run this
-session: 3,034 passed, 2 skipped, that one pre-existing failure only.
+**BROKE: nothing new.** Standing: roll-call vote mart still disagrees with its
+Python-built twin. Suite re-run after the batch: 3,034 passed, 2 skipped, that
+one pre-existing failure only.
 
 ---
 
-## THE HEADLINE: the court world is measured and wired — it goes live at the rebuild
+## THE HEADLINE: "no bits and pieces" is done — everything rides one rebuild
 
-Chris said "just go" on court-ID registration. Done, with one deliberate catch:
+Chris asked what else should ride the rebuild so it isn't done piecemeal. A
+full column sweep over all 2,216 live raw tables found every un-wired
+candidate; 41 were measured live against the entity map; every passer is now
+staged behind ONE flag (`connect/keys.py: ENABLE_SPINE_BATCH_2026_08`).
 
-- **19 of 20 court join surfaces verified at 99.2–100% referential match.**
-  Court → docket is 100% on all 71.7M dockets; judge → assigned docket 100% on
-  32.4M; judge → financial disclosure 99.8%; the disclosure money chain (1.9M
-  investment lines) 99.4–99.6%. Evidence file + measuring script committed.
-- **One defect found and excluded:** the "appointing judge" column on
-  judgeships matches the judge table only 47% — it references a different
-  record type. Wiring it would have manufactured false person entities.
-- **Two new key axes are wired but DARK:** judge (person) and court
-  (organization) specs, normalization, entity typing and collision math are
-  all in the codebase behind one flag (`connect/keys.py:
-  ENABLE_COURTLISTENER_SPINE`, default False), verified both ways.
-- **Why dark:** flipping the flag changes the spine's config fingerprint,
-  which by design freezes incremental spine updates until a FULL spine
-  rebuild re-pins it. The full rebuild is the parked ~$10–15 / ~4.5h decision.
-  **Flip the flag in the same session that runs the rebuild — never before.**
-  The rebuild now buys more than before: judge dossiers, court caseload
-  ledgers, and the judges-money-cases lane, all on hard IDs.
+**Staged — 48 spec tables total (9 court + 39 batch) + 5 new key families:**
+- Charity/tax: IRS exempt-org master file (1.98M charities, 99.95% overlap —
+  becomes the golden charity name source), the 527 dark-money family (4
+  tables), both failed-pension tables, pension actuarial filings, judges'
+  schools.
+- Providers/facilities: Medicare enrollment (2.5M, 100%), pharma-payment
+  recipient profiles (1.7M), equipment suppliers/referrers, health-center
+  sites, hospital price books.
+- Money: NIH grants + small-business awards (the spine's FIRST DUNS entities,
+  each row carrying UEI too → free old↔new federal-ID crosswalk), auditor
+  issuer IDs, fund registries, ticker map, exchange LEIs, UK-sanctioned hulls.
+- Environment: the EPA facility registry itself (3.28M, 100%), air program,
+  greenhouse gas, toxics 2023, plus the new water-permit family (7 event
+  tables, 100.0% referential vs 1.21M permitted facilities).
+- New families: courts + judges, water permits, credit unions (incl. the
+  merger ledger), ICE detention facilities (2.6M stints, 100.0%).
 
-## Earlier today (sessions 1–2, all committed and pushed)
+**Rejected on evidence, documented in code so nobody re-tries them:** FCC EIN
+(fully masked), FDIC bank LEI (empty), one dead toxics FRS column, a
+25-company SEC feed posing as a registry, three retired-schema tables, one
+twin load, and the in-house EPA corporate crosswalk (98.6% unmatched/fuzzy —
+stays an overlay; the spine is zero-false-merge). **Parked:** legislator
+FEC-IDs (JSON list per row — needs a tiny flatten build; still the cheapest
+politics unlock), banking certificate/RSSD family. Fixed in passing: the UK
+company-number key's missing collision-math entry.
 
-- Ladder corrections patched into the ladder doc + rankings digest.
-- **Census grid FILLED for ~$2:** all 589 mart models measured (1.23B rows;
-  306 fresh into 2026; 12 stale). Pension tax-ID check PASSED (100% filled;
-  join zero-padded — leading zeros stripped). Staging→raw crosswalk built
-  (1,170/1,172; 2 broken staging views found). Ranked data-trap census in the
-  fill summary (FAERS 76% dup rows, contracts epoch-1970 on all 20M rows,
-  SEC year-0095 dates, foreign-assistance single-value tax-ID, etc.).
+Flag verified both ways: off = config fingerprint unchanged (incremental
+updater unaffected today); on = 173 spine tables / 196 table-key pairs.
 
-**Where:** `reports/census_grid_2026-08-12/fill/` (FILL_SUMMARY.md front page,
-now incl. the court registration section). Tree clean except this file.
+## THE DECISION ON CHRIS'S DESK (§8.7)
+
+**The full spine rebuild: ~$10–15, ~4.5h** (may run somewhat longer with the
+new 71.7M-docket and water-permit scans — call it $12–20 ceiling). One "go"
+buys: judge dossiers + court caseload ledgers, the failed-pension EIN legs,
+the charity golden names, 527s, water-permit enforcement chains, credit
+unions, detention-by-operator, first DUNS entities — all in one pass, then
+incremental re-pins and normal operation resumes.
 
 ## Live/open items
 
-- **Identity-map FULL rebuild (~$10–15, ~4.5h) — parked with Chris, now the
-  gate for lighting up the court keys** (flip the flag in that session).
-- Data-trap repairs, ranked by the fill (FAERS dup, contracts epoch dates,
-  NEISS future dates, SEC year-zero, foreign-assistance tax-ID, 2 broken
-  staging views).
-- Source-registry reconciliation: staging→raw leg done; onboarding-log leg
-  (774 vs 1,141 vs 1,329) still unjoined.
-- Court→outside-world bridge: 200 courts carry a Federal Judicial Center
-  bridge ID — a future crosswalk out of the court namespace.
+- **Rebuild go/no-go (above).** Next session on "go": flip the flag, run
+  `connect spine`, re-seed incremental, re-measure the graph (expect ~5 new
+  key families and a much bigger EIN/FRS world), update the graph JSON.
+- Data-trap repairs ranked by the fill (FAERS 76% dup, contracts epoch dates,
+  NEISS future dates, SEC year-zero, foreign-assistance EIN, 2 broken staging
+  views).
+- FEC-IDs flatten build (small; flips money→votes to hard-ID).
+- Source-registry reconciliation (staging→raw leg done; onboarding-log leg
+  open).
 - Roll-call mart rebuild via Python builder (standing).
-- CourtListener citation-network load retry still pending.
+- CourtListener citation-network load retry (standing).
 
-**YOUR MOVE:**
-1. Rule on the full spine rebuild (~$10–15, ~4.5h): it now also lights up the
-   court keys. Say "go" and next session runs it with the flag flipped.
+**YOUR MOVE:** one word — "go" on the rebuild (price above), or hold.
 
 **NEXT SESSION:**
-1. Boot trust check against this file and git log.
-2. On rebuild go: flip the court-keys flag, run the full spine rebuild,
-   re-seed incremental, re-measure the graph (expect 2 new key families).
-3. Otherwise: top data-trap repairs (FAERS dup + broken staging views first).
+1. Boot trust check vs this file and git log.
+2. On go: flag on → full rebuild → re-seed incremental → re-measure every new
+   connection → brief with the new graph numbers.
+3. Otherwise: FEC-IDs flatten build or top data-trap repairs.
 
-**Tests:** full offline suite run this session — 3,034 passed, 2 skipped,
+**Tests:** suite run twice today after changes — 3,034 passed, 2 skipped,
 1 pre-existing failure (roll-call mart twin). Nothing new broken.
 
-**COST:** session 3 ~$1 — court join measurements over 71.7M-row tables
-(~5 min warehouse) + a 16-min local test run. Whole day all-in: ~$3-4.
+**COST:** session 4 ~$1-2 — the 41-candidate verification (mostly small
+aggregates; a few over 2-8M-row tables) + two local test runs. Whole day
+all-in: ~$5.
