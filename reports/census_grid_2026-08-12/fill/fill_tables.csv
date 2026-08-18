@@ -1,0 +1,590 @@
+model,subject,family,class,object_type,n_rows,bytes,dup_ratio,date_min,date_max,n_epoch1970,n_far_future,best_key,best_key_fill_pct,best_key_distinct,best_key_sentinels,scan_provenance
+case_queue,review,organization,noun,VIEW,899,,0.0,,,0,0,UNIT_ID,100.0,895,0,tier-b-2026-08-17
+civil_rights__fed_nara_wra_aad,civil_rights,dataset,noun,BASE TABLE,1,1536,0.0,,,0,0,FAMILY_NUMBER,100.0,1,1,scan-2026-08-11
+cohort_queue,review,unresolved,event,BASE TABLE,903,495104,0.0,2026-07-30,2026-07-30 10:27:37.676000,0,0,COHORT_ID,100.0,894,0,scan-2026-08-11
+consumer_protection__fed_cfpb_complaints,consumer_protection,complaint,event,BASE TABLE,17168287,1169836544,0.0,2011-01-01,2026-07-23 17:19:21,0,0,COMPLAINT_ID,100.0,17011509,1,scan-2026-08-11
+consumer_safety__fed_cpsc_neiss,consumer_safety,case,event+noun,BASE TABLE,9794971,199864320,0.0,1999-01-01,56571662-04-06 21:41:58.000,0,9794971,CASE_NUMBER,100.0,10060358,0,scan-2026-08-11
+consumer_safety__fed_nhtsa_complaints,consumer_safety,complaint,event,BASE TABLE,2227941,343282176,0.0,0003-10-20,2203-07-26,5,6,VIN,100.0,398502,334604,scan-2026-08-11
+consumer_safety__fed_nhtsa_investigations,consumer_safety,role,link,BASE TABLE,154209,9532416,0.0,1972-03-10,2026-07-24 00:43:24,0,0,NHTSA_ACTION_NUMBER,100.0,5303,0,scan-2026-08-11
+consumer_safety__fed_nhtsa_recalls,consumer_safety,recall,event+noun,BASE TABLE,242993,19816960,0.0,0022-07-29,3019-05-14,0,11,RECORD_ID,100.0,244004,0,scan-2026-08-11
+corporate_registry__fed_icij_offshoreleaks_addresses,corporate_registry,place,noun,BASE TABLE,402246,17375744,0.0,56596958-03-20 14:46:15.000,56596958-03-20 14:46:15.000,0,402246,NODE_ID,100.0,400115,0,scan-2026-08-11
+corporate_registry__fed_icij_offshoreleaks_entities,corporate_registry,organization,noun,BASE TABLE,814344,22213632,0.0,0199-04-25,56596956-06-04 02:56:43.000,1904,814348,NODE_ID,100.0,820515,0,scan-2026-08-11
+corporate_registry__fed_icij_offshoreleaks_intermediaries,corporate_registry,organization,noun,BASE TABLE,26768,1372672,0.0,56596958-12-22 15:04:19.000,56596958-12-22 15:04:19.000,0,26768,NODE_ID,100.0,27124,0,scan-2026-08-11
+corporate_registry__fed_icij_offshoreleaks_officers,corporate_registry,role,link,BASE TABLE,771315,10997248,0.0,56596957-07-30 19:18:27.000,56596957-07-30 19:18:27.000,0,771315,NODE_ID,100.0,768985,0,scan-2026-08-11
+corporate_registry__fed_icij_offshoreleaks_others,corporate_registry,organization,noun,BASE TABLE,2989,84992,0.0,1933-08-05,56596959-07-23 16:04:31.000,3,2989,NODE_ID,100.0,2934,0,scan-2026-08-11
+corporate_registry__fed_icij_offshoreleaks_relationships,corporate_registry,role,link,BASE TABLE,3339267,18779648,0.0025,0003-06-24,56596959-11-04 22:24:53.000,137,3339303,NODE_ID_END,100.0,1318555,0,scan-2026-08-11
+corporate_registry__fed_irs_eo_bmf,corporate_registry,organization,noun,BASE TABLE,1983563,108626944,0.0,1900-01-01,2026-11-01,11975,0,EIN,100.0,1985797,0,scan-2026-08-11
+corporate_registry__intl_es_borme,corporate_registry,organization,noun,BASE TABLE,3,1536,0.0,2026-01-01,2026-06-01,0,0,BORME_ISSUE_NUMBER,100.0,1,3,scan-2026-08-11
+corporate_registry__intl_ie_cro,corporate_registry,organization,noun,BASE TABLE,821693,1536,0.0,1753-01-01,2033-06-30,2029,1,COMPANY_ID,100.0,815088,0,scan-2026-08-11
+corporate_registry__intl_uk_companies_house,corporate_registry,organization,noun,BASE TABLE,5734780,243533312,0.0,1327-01-01,2026-07-27 20:53:42,2237,0,COMPANY_NUMBER,100.0,5716497,0,scan-2026-08-11
+corporate_registry__uk_companies_house_psc,corporate_registry,organization,noun,BASE TABLE,7000000,651023360,0.0,1776-07-04,2026-08-04,3,0,COMPANY_NUMBER,100.0,4933075,0,scan-2026-08-11
+criminal_justice__fed_bjs_data,criminal_justice,accident,event,BASE TABLE,1000,41984,0.044,,,0,0,,,,,scan-2026-08-11
+economics__fed_bls_qcew,economics,place,noun,BASE TABLE,3619437,64660480,0.0,,,0,0,AREA_FIPS,100.0,4532,0,scan-2026-08-11
+economics__fed_dol_form5500,economics,filing,event+noun,BASE TABLE,33484,5620736,0.0,1878-01-01,2026-01-01,71,0,SPONS_DFE_PHONE_NUM,100.0,28283,376,scan-2026-08-11
+economics__fed_fac_single_audit,economics,inspection,event,BASE TABLE,411638,22205440,0.0,2002-07-01,2026-07-26,0,0,REPORT_ID,100.0,404595,0,scan-2026-08-11
+economics__fed_fdic_failed_banks,economics,organization,noun,BASE TABLE,3584,201728,0.0,1970-02-22,2026-07-30 12:06:15.635000-07:00,7,0,FDIC_CERT,100.0,3600,1,scan-2026-08-11
+economics__fed_foreignassistance,economics,trade,event,BASE TABLE,95658,617472,0.0,,,0,0,EIN,100.0,1,95658,scan-2026-08-11
+economics__fed_grants_gov,economics,award,event+noun,BASE TABLE,100,8192,0.0,2026-06-25,2027-06-07,0,0,OPPORTUNITY_NUMBER,100.0,100,0,scan-2026-08-11
+economics__fed_irs_990,economics,organization,noun,BASE TABLE,200,12800,0.0,,,0,0,SPINE_ENTITY_ID,100.0,203,0,scan-2026-08-11
+economics__fed_irs_990_efile_index,economics,measurement,event,BASE TABLE,5544626,161798144,0.0,1970-01-01,2020-01-28,3192934,0,OBJECT_ID,100.0,5616281,0,scan-2026-08-11
+economics__fed_irs_auto_revocations,economics,enforcement,event,BASE TABLE,1207295,63182336,0.0,2010-05-15,2026-08-04,0,0,EIN,100.0,1214103,0,scan-2026-08-11
+economics__fed_irs_bmf,economics,organization,noun,BASE TABLE,1974830,124540416,0.0,,,0,0,SPINE_ENTITY_ID,100.0,2006340,0,scan-2026-08-11
+economics__fed_irs_eo_pr,economics,post,event,BASE TABLE,2587,207872,0.0,,,0,0,EIN,100.0,2617,0,scan-2026-08-11
+economics__fed_irs_pub78_eligible_donees,economics,organization,noun,BASE TABLE,1435544,27696640,0.0,,,0,0,EIN,100.0,1435996,0,scan-2026-08-11
+economics__fed_irs_revocation,economics,organization,noun,BASE TABLE,1187367,55050752,0.0,,,0,0,EIN,100.0,1213627,0,scan-2026-08-11
+economics__fed_irs_soi_charities,economics,organization,noun,BASE TABLE,2450,195072,0.0,,,0,0,EIN,100.0,2472,0,scan-2026-08-11
+economics__fed_pbgc_data,economics,aggregate,aggregate,BASE TABLE,140454,2975232,0.0421,,,0,0,,,,,scan-2026-08-11
+economics__fed_sba_loans,economics,loan,event+noun,BASE TABLE,2174502,85786112,0.0011,1987-04-01,2028-06-18,0,0,BORROWER_ZIP,100.0,38126,0,scan-2026-08-11
+economics__fed_sba_ppp,economics,loan,event+noun,BASE TABLE,968524,52126208,0.0,2020-04-03,2024-09-30,0,0,LOAN_NUMBER,100.0,964274,0,scan-2026-08-11
+economics__fed_sec_edgar,economics,filing,event+noun,BASE TABLE,200,10752,0.0,,,0,0,EIN,100.0,20,0,scan-2026-08-11
+economics__fed_sec_edgar_company_tickers,economics,instrument,noun,BASE TABLE,10414,228352,0.0,,,0,0,INDEX_KEY,100.0,10428,0,scan-2026-08-11
+economics__fed_treasury_avg_interest_rates,economics,measurement,event,BASE TABLE,4961,268800,0.0,2001-01-01,2026-05-31,0,0,AVG_INTEREST_RATE_KEY,100.0,4969,0,scan-2026-08-11
+economics__fed_treasury_debt_outstanding,economics,instrument,noun,BASE TABLE,237,6144,0.0,1790-01-01,2025-09-30,1,0,,,,,scan-2026-08-11
+economics__fed_treasury_debt_to_penny,economics,instrument,noun,BASE TABLE,8329,278528,0.0,1993-04-01,2026-06-15,0,0,_SOURCE_RUN_ID,100.0,1,0,scan-2026-08-11
+economics__fed_treasury_dts_deposits,economics,payment,event,BASE TABLE,478149,9610752,0.0,2005-10-03,2026-08-07,0,0,,,,,scan-2026-08-11
+economics__fed_treasury_mts_receipts,economics,contribution,event,BASE TABLE,7490,459776,0.0,2015-03-31,2026-06-30,0,0,CLASSIFICATION_ID,100.0,7420,0,scan-2026-08-11
+economics__fed_us_sec_edgar,economics,filing,event+noun,BASE TABLE,48984,3087872,0.0,1995-05-19,2026-07-01,0,0,ACCESSION_NUMBER,100.0,48923,0,scan-2026-08-11
+economics__fed_us_usaspending_api,economics,award,event+noun,BASE TABLE,300,17408,0.0,1978-09-15,2100-12-31,0,13,AWARD_ID,100.0,304,0,scan-2026-08-11
+economics__fed_usaspending_assistance_full,economics,trade,event,BASE TABLE,19902879,3735469056,0.0,,,0,0,PRIMARY_PLACE_OF_PERFORMANCE_ZIP_4,100.0,532000,6936558,scan-2026-08-11
+economics__fed_usaspending_contracts,economics,trade,event,BASE TABLE,6325622,626324992,0.0,,,0,0,AWARD_ID_PIID,100.0,5685053,0,scan-2026-08-11
+economics__fed_usaspending_contracts_full,economics,award,event+noun,VIEW,20000000,,0.0,1007-09-14,9999-12-31,20000000,32611,CONTRACT_TRANSACTION_UNIQUE_KEY,100.0,19915283,0,tier-b-2026-08-17
+economics__fed_usaspending_toptier_agencies,economics,organization,noun,BASE TABLE,111,12288,0.0,,,0,0,TOPTIER_CODE,100.0,113,0,scan-2026-08-11
+economics__intl_fao_faostat,economics,aggregate,aggregate,BASE TABLE,69,36352,0.0,,,0,0,,,,,scan-2026-08-11
+economics__intl_fao_faostat_food_security,economics,product,noun,BASE TABLE,279470,1921024,0.0,,,0,0,AREA_CODE_M49,100.0,252,0,scan-2026-08-11
+economics__intl_gfi_trade,economics,trade,event,BASE TABLE,25,2048,0.0,,,0,0,,,,,scan-2026-08-11
+economics__intl_gleif,economics,organization,noun,BASE TABLE,3382301,659164160,0.0,,,0,0,REGISTRATION_VALIDATIONAUTHORITY_VALIDATIONAUTHORITYENTITYID,100.0,2998041,296210,scan-2026-08-11
+economics__intl_gleif_relationships,economics,role,link,BASE TABLE,484142,18055168,0.0,1900-01-01,2027-10-09,9,0,REGISTRATION_VALIDATIONREFERENCE,20.3,37067,1,scan-2026-08-11
+economics__intl_gleif_repex,economics,organization,noun,BASE TABLE,6259489,56535552,0.0,,,0,0,LEI,100.0,3150896,0,scan-2026-08-11
+economics__intl_ipc_food_insecurity_global,economics,product,noun,BASE TABLE,735,10752,0.0,,,0,0,NUMBER,100.0,513,0,scan-2026-08-11
+economics__intl_it_istat,economics,aggregate,aggregate,BASE TABLE,213284,10236416,0.0,2020-01-01,2026-06-18 02:38:14.345764,0,0,_SOURCE_RUN_ID,100.0,216734,0,scan-2026-08-11
+economics__xc_owid_gini,economics,measurement,event,BASE TABLE,2389,45056,0.0,,,0,0,CODE,100.0,172,109,scan-2026-08-11
+economics__xc_wikipedia_largest_us_companies,economics,organization,noun,BASE TABLE,100,5632,0.0,,,0,0,,,,,scan-2026-08-11
+education__fed_cftc_cot_financial,finance,aggregate,aggregate,BASE TABLE,34683,8160768,0.0,2013-01-08,2026-08-04,0,0,CFTC_CONTRACT_MARKET_CODE,100.0,170,0,scan-2026-08-11
+education__fed_cftc_cot_futures,finance,instrument,noun,BASE TABLE,287053,46687232,0.0,1986-01-15,2026-08-04,0,0,CFTC_CONTRACT_MARKET_CODE_QUOTES,100.0,1236,0,scan-2026-08-11
+education__fed_cpsc_neiss_codes,consumer_safety,code,code,BASE TABLE,1250,31232,0.0,,,0,0,,,,,scan-2026-08-11
+education__fed_ed_college_scorecard_institution,education,organization,noun,BASE TABLE,6273,1031168,0.0,2026-08-08 01:55:46.864147,2026-08-08 01:55:46.864147,0,0,ZIP,100.0,5788,0,scan-2026-08-11
+education__fed_ed_nces_cip_codes,education,code,code,BASE TABLE,2318,310784,0.0,2026-08-07 20:19:08.688446,2026-08-07 20:19:08.688446,0,0,CIP_CODE,100.0,2295,0,scan-2026-08-11
+education__fed_frb_h15_selected_rates,finance,measurement,event,BASE TABLE,16848,491520,0.0,,,0,0,,,,,scan-2026-08-11
+education__fed_frb_z1_csv,finance,aggregate,aggregate,BASE TABLE,304,639488,0.0,,,0,0,,,,,scan-2026-08-11
+education__fed_google_polads_advertiser_declared_stats,politics_lobbying,aggregate,aggregate,BASE TABLE,470,39936,0.0,,,0,0,ADVERTISER_ID,100.0,473,0,scan-2026-08-11
+education__fed_google_polads_advertiser_geo_spend,politics_lobbying,payment,event,BASE TABLE,614078,3923456,0.0,,,0,0,ADVERTISER_ID,100.0,15962,0,scan-2026-08-11
+education__fed_google_polads_advertiser_id_mapping,politics_lobbying,crosswalk,link,BASE TABLE,8044,244224,0.0,,,0,0,,,,,scan-2026-08-11
+education__fed_google_polads_advertiser_stats,politics_lobbying,aggregate,aggregate,BASE TABLE,21211,1093120,0.0,,,0,0,ADVERTISER_ID,100.0,20821,0,scan-2026-08-11
+education__fed_google_polads_advertiser_weekly_spend,politics_lobbying,payment,event,BASE TABLE,298884,3123200,0.0,2018-05-27,2026-08-02,0,0,ADVERTISER_ID,100.0,20821,0,scan-2026-08-11
+education__fed_google_polads_creative_id_mapping,politics_lobbying,crosswalk,link,BASE TABLE,971029,28976128,0.0,,,0,0,,,,,scan-2026-08-11
+education__fed_google_polads_creative_stats,politics_lobbying,aggregate,aggregate,BASE TABLE,1562870,108333056,0.0,2018-05-31,2026-08-05,0,0,AD_ID,100.0,1546836,0,scan-2026-08-11
+education__fed_google_polads_geo_spend,politics_lobbying,payment,event,BASE TABLE,1289,30208,0.0,,,0,0,,,,,scan-2026-08-11
+education__fed_senate_lda_filings,politics_lobbying,filing,event+noun,BASE TABLE,174871,50198016,0.0,2020-01-01,2021-12-31,0,0,CLIENT_ID,100.0,27246,0,scan-2026-08-11
+energy__fed_eia860_1_utility,energy,organization,noun,BASE TABLE,6643,239616,0.0,2026-08-05 21:37:34.980797,2026-08-05 21:37:34.980797,0,0,UTILITY_ID,100.0,6637,0,scan-2026-08-11
+energy__fed_eia860_2_plant,energy,facility,noun,BASE TABLE,16132,1314304,0.0,2026-08-05 21:37:40.609771,2026-08-05 21:37:40.609771,0,0,PLANT_CODE,100.0,16085,0,scan-2026-08-11
+energy__fed_eia860_3_1_generator,energy,facility,noun,BASE TABLE,26855,1184768,0.0,2026-08-05 21:37:51.630844,2026-08-05 21:37:51.630844,0,0,PLANT_CODE,100.0,13256,0,scan-2026-08-11
+energy__fed_eia860_3_2_wind,energy,facility,noun,BASE TABLE,1563,79360,0.0,2026-08-05 21:37:57.118681,2026-08-05 21:37:57.118681,0,0,PLANT_CODE,100.0,1367,0,scan-2026-08-11
+energy__fed_eia860_3_3_solar,energy,facility,noun,BASE TABLE,7154,330752,0.0,2026-08-05 21:38:02.108955,2026-08-05 21:38:02.108955,0,0,PLANT_CODE,100.0,6504,0,scan-2026-08-11
+energy__fed_eia860_3_4_energy_storage,energy,facility,noun,BASE TABLE,786,51200,0.0,2026-08-05 21:38:09.545184,2026-08-05 21:38:09.545184,0,0,PLANT_CODE,100.0,742,0,scan-2026-08-11
+energy__fed_eia860_3_5_multifuel,energy,facility,noun,BASE TABLE,2893,124928,0.0,2026-08-05 21:38:18.980503,2026-08-05 21:38:18.980503,0,0,PLANT_CODE,100.0,876,0,scan-2026-08-11
+energy__fed_eia860_4_owner,energy,ownership,link,BASE TABLE,5495,222208,0.0,2026-08-05 21:38:23.118957,2026-08-05 21:38:23.118957,0,0,PLANT_CODE,100.0,2284,0,scan-2026-08-11
+energy__fed_eia860_6_1_enviroassoc,energy,facility,noun,BASE TABLE,7020,123904,0.0,2026-08-05 21:38:27.428575,2026-08-05 21:38:27.428575,0,0,PLANT_CODE,100.0,1513,0,scan-2026-08-11
+energy__fed_eia860_6_2_enviroequip,energy,facility,noun,BASE TABLE,4428,175616,0.0,2026-08-05 21:38:32.380340,2026-08-05 21:38:32.380340,0,0,PLANT_CODE,100.0,1514,0,scan-2026-08-11
+energy__fed_eia861_advanced_meters,energy,organization,noun,BASE TABLE,2725,268800,0.0,2026-08-05 21:38:47.522619,2026-08-05 21:38:47.522619,0,0,RECORD_ID,100.0,2638,0,scan-2026-08-11
+energy__fed_eia861_delivery_companies,energy,organization,noun,BASE TABLE,7,3584,0.0,2026-08-05 21:38:54.094606,2026-08-05 21:38:54.094606,0,0,UTILITY_NUMBER,100.0,7,0,scan-2026-08-11
+energy__fed_eia861_demand_response,energy,action,event,BASE TABLE,339,33280,0.0,2026-08-05 21:38:58.348766,2026-08-05 21:38:58.348766,0,0,RECORD_ID,100.0,341,0,scan-2026-08-11
+energy__fed_eia861_distribution_systems,energy,program,noun,BASE TABLE,1353,73216,0.0,2026-08-05 21:39:01.966059,2026-08-05 21:39:01.966059,0,0,RECORD_ID,100.0,1354,0,scan-2026-08-11
+energy__fed_eia861_dynamic_pricing,energy,measurement,event,BASE TABLE,857,56832,0.0,2026-08-05 21:39:05.805460,2026-08-05 21:39:05.805460,0,0,RECORD_ID,100.0,855,0,scan-2026-08-11
+energy__fed_eia861_energy_efficiency,energy,measurement,event,BASE TABLE,458,62976,0.0,2026-08-05 21:39:10.034996,2026-08-05 21:39:10.034996,0,0,RECORD_ID,100.0,453,0,scan-2026-08-11
+energy__fed_eia861_frame,energy,measurement,event,BASE TABLE,3412,184832,0.0,2026-08-05 21:39:15.252749,2026-08-05 21:39:15.252749,0,0,RECORD_ID,100.0,3447,0,scan-2026-08-11
+energy__fed_eia861_mergers,energy,change,event,BASE TABLE,4,2560,0.0,2024-01-01,2026-08-05 21:39:20.077590,0,0,ZIP_CODE,100.0,4,0,scan-2026-08-11
+energy__fed_eia861_net_metering,energy,measurement,event,BASE TABLE,1004,124416,0.0,2026-08-05 21:39:24.621338,2026-08-05 21:39:24.621338,0,0,RECORD_ID,100.0,1002,0,scan-2026-08-11
+energy__fed_eia861_non_net_metering_distributed,energy,organization,noun,BASE TABLE,507,48128,0.0,2026-08-05 21:39:28.599333,2026-08-05 21:39:28.599333,0,0,RECORD_ID,100.0,503,0,scan-2026-08-11
+energy__fed_eia861_operational_data,energy,measurement,event,BASE TABLE,1711,168448,0.0,2026-08-05 21:39:33.079111,2026-08-05 21:39:33.079111,0,0,RECORD_ID,100.0,1709,0,scan-2026-08-11
+energy__fed_eia861_reliability,energy,measurement,event,BASE TABLE,971,71680,0.0,2026-08-05 21:39:36.498366,2026-08-05 21:39:36.498366,0,0,RECORD_ID,100.0,970,0,scan-2026-08-11
+energy__fed_eia861_sales_ult_cust,energy,trade,event,BASE TABLE,2815,249344,0.0,2026-08-05 21:39:39.774359,2026-08-05 21:39:39.774359,0,0,RECORD_ID,100.0,2819,0,scan-2026-08-11
+energy__fed_eia861_sales_ult_cust_cs,energy,trade,event,BASE TABLE,674,55808,0.0,2026-08-05 21:39:44.016869,2026-08-05 21:39:44.016869,0,0,RECORD_ID,100.0,686,0,scan-2026-08-11
+energy__fed_eia861_service_territory,energy,place,noun,BASE TABLE,11775,603136,0.0,2026-08-05 21:38:37.395426,2026-08-05 21:38:37.395426,0,0,RECORD_ID,100.0,11615,0,scan-2026-08-11
+energy__fed_eia861_short_form,energy,filing,event+noun,BASE TABLE,1724,108032,0.0,2026-08-05 21:38:40.445003,2026-08-05 21:38:40.445003,0,0,RECORD_ID,100.0,1745,0,scan-2026-08-11
+energy__fed_eia861_utility_data,energy,organization,noun,BASE TABLE,1701,105984,0.0,2026-08-05 21:38:44.000854,2026-08-05 21:38:44.000854,0,0,UTILITY_NUMBER,100.0,1672,0,scan-2026-08-11
+energy__fed_eia_861_balancing_authority,energy,organization,noun,BASE TABLE,189,5120,0.0,56602308-02-11 18:26:39.000,56602308-02-11 18:26:39.000,0,189,BA_ID,100.0,68,0,scan-2026-08-11
+energy__intl_ember_elec,energy,role,link,BASE TABLE,369264,6504448,0.0,2000-01-01,2025-01-01,0,0,ISO_3_CODE,100.0,217,22113,scan-2026-08-11
+environment__epa_penalty_gap,environment,enforcement,event,BASE TABLE,93808,7621632,0.0,1903-12-01,2026-06-18,0,0,FRS_ID,100.0,92888,0,scan-2026-08-11
+environment__fed_epa_air_emissions_poll_rpt_combined_emissions,environment,measurement,event,BASE TABLE,10411826,120378880,0.0002,,,0,0,PGM_SYS_ID,100.0,188588,0,scan-2026-08-11
+environment__fed_epa_aqs_sites,environment,facility,noun,BASE TABLE,20994,1271296,0.0,1957-01-01,2026-12-01,994,0,AQS_SITE_ID,100.0,21135,0,scan-2026-08-11
+environment__fed_epa_echo,environment,facility,noun,BASE TABLE,3135554,172973568,0.0,1016-04-22,2026-06-19,0,0,FRS_ID,100.0,3121193,1,scan-2026-08-11
+environment__fed_epa_egrid_plant_2022,environment,facility,noun,BASE TABLE,11974,3142144,0.0,,,0,0,PLANT_FILE_SEQUENCE_NUMBER,100.0,11913,0,scan-2026-08-11
+environment__fed_epa_envirofacts,environment,facility,noun,BASE TABLE,5000,106496,0.0112,2026-07-02 00:07:49.008704,2026-07-02 00:07:49.008704,0,0,POSTAL_CODE,100.0,1539,0,scan-2026-08-11
+environment__fed_epa_frs_facilities,environment,facility,noun,BASE TABLE,5300149,316451328,0.0,0001-03-01,2026-07-27 20:03:27.000,0,0,REGISTRY_ID,100.0,5350749,0,scan-2026-08-11
+environment__fed_epa_frs_frs_facilities,environment,facility,noun,BASE TABLE,3277557,109679104,0.0,,,0,0,REGISTRY_ID,100.0,3247693,0,scan-2026-08-11
+environment__fed_epa_frs_frs_naics_codes,environment,code,code,BASE TABLE,2179702,24239104,0.0,,,0,0,PGM_SYS_ID,100.0,2060027,0,scan-2026-08-11
+environment__fed_epa_frs_frs_program_links,environment,crosswalk,link,BASE TABLE,4406498,178074112,0.0,,,0,0,PGM_SYS_ID,100.0,4285090,0,scan-2026-08-11
+environment__fed_epa_frs_frs_sic_codes,environment,code,code,BASE TABLE,1085211,8148992,0.0,,,0,0,PGM_SYS_ID,100.0,982103,0,scan-2026-08-11
+environment__fed_epa_ghgrp_emission,environment,measurement,event,BASE TABLE,346683,9644032,0.0,,,0,0,EMISSION_RECORD_ID,100.0,350691,0,scan-2026-08-11
+environment__fed_epa_ghgrp_facility,environment,facility,noun,BASE TABLE,136005,5929472,0.0,,,0,0,FACILITY_YEAR_ID,100.0,136205,0,scan-2026-08-11
+environment__fed_epa_icis_air_icis_air_facilities,environment,facility,noun,BASE TABLE,279728,10158592,0.0,,,0,0,PGM_SYS_ID,100.0,287940,0,scan-2026-08-11
+environment__fed_epa_icis_air_icis_air_fces_pces,environment,inspection,event,BASE TABLE,1779096,13197312,0.0,,,0,0,ACTIVITY_ID,100.0,1783267,0,scan-2026-08-11
+environment__fed_epa_icis_air_icis_air_formal_actions,environment,action,event,BASE TABLE,106009,3287040,0.0,1972-10-25,2026-07-30,0,0,ACTIVITY_ID,100.0,101145,0,scan-2026-08-11
+environment__fed_epa_icis_air_icis_air_informal_actions,environment,action,event,BASE TABLE,175736,5369856,0.0,0001-01-01,8888-01-01,0,5,ENF_IDENTIFIER,100.0,177904,0,scan-2026-08-11
+environment__fed_epa_icis_air_icis_air_pollutants,environment,code,code,BASE TABLE,948342,20465152,0.0,,,0,0,PGM_SYS_ID,100.0,261861,0,scan-2026-08-11
+environment__fed_epa_icis_air_icis_air_program_subparts,environment,code,code,BASE TABLE,190980,4051968,0.0,,,0,0,PGM_SYS_ID,100.0,89693,0,scan-2026-08-11
+environment__fed_epa_icis_air_icis_air_programs,environment,program,noun,BASE TABLE,457581,3526144,0.0,0218-03-02,2028-10-29,109,0,PGM_SYS_ID,100.0,274484,0,scan-2026-08-11
+environment__fed_epa_icis_air_icis_air_stack_tests,environment,measurement,event,BASE TABLE,620302,6050816,0.0,0201-07-24,2026-07-29,1,0,ACTIVITY_ID,100.0,621170,0,scan-2026-08-11
+environment__fed_epa_icis_air_icis_air_titlev_certs,environment,unresolved,link,BASE TABLE,499113,8340992,0.0,0015-02-23,2026-07-30,0,0,ACTIVITY_ID,100.0,502781,0,scan-2026-08-11
+environment__fed_epa_icis_air_icis_air_violation_history,environment,change,event,BASE TABLE,102037,3691008,0.0,,,0,0,ACTIVITY_ID,100.0,100996,0,scan-2026-08-11
+environment__fed_epa_npdes_icis_facilities,environment,facility,noun,BASE TABLE,1213737,95601664,0.0,,,0,0,ICIS_FACILITY_INTEREST_ID,100.0,1198361,0,scan-2026-08-11
+environment__fed_epa_npdes_npdes_cs_violations,environment,violation,event,BASE TABLE,82187,3172864,0.0,0218-04-20,2026-07-31,0,0,NPDES_VIOLATION_ID,100.0,83053,0,scan-2026-08-11
+environment__fed_epa_npdes_npdes_formal_enforcement_actions,environment,action,event,BASE TABLE,112373,3121664,0.0,1970-09-07,2026-07-30,1,0,ACTIVITY_ID,100.0,105139,0,scan-2026-08-11
+environment__fed_epa_npdes_npdes_informal_enforcement_actions,environment,action,event,BASE TABLE,478855,17850368,0.0,0001-01-01,8202-06-10,0,3,ACTIVITY_ID,100.0,478534,0,scan-2026-08-11
+environment__fed_epa_npdes_npdes_inspections,environment,inspection,event,BASE TABLE,1900067,29707264,0.0,0005-03-20,2026-07-31,178,0,ACTIVITY_ID,100.0,1761705,0,scan-2026-08-11
+environment__fed_epa_npdes_npdes_naics,environment,code,code,BASE TABLE,326473,3357696,0.0,,,0,0,NPDES_ID,100.0,299952,0,scan-2026-08-11
+environment__fed_epa_npdes_npdes_ps_violations,environment,violation,event,BASE TABLE,397615,8393728,0.0,1974-03-30,2026-07-31,0,0,NPDES_VIOLATION_ID,100.0,389382,0,scan-2026-08-11
+environment__fed_epa_npdes_npdes_qncr_history,environment,change,event,BASE TABLE,7951656,18360832,0.0,,,0,0,NPDES_ID,100.0,690767,0,scan-2026-08-11
+environment__fed_epa_npdes_npdes_se_violations,environment,violation,event,BASE TABLE,305478,11238400,0.0001,1976-07-01,2026-07-31,0,0,NPDES_VIOLATION_ID,100.0,305301,0,scan-2026-08-11
+environment__fed_epa_npdes_npdes_sics,environment,code,code,BASE TABLE,792807,2698752,0.0,,,0,0,NPDES_ID,100.0,700720,0,scan-2026-08-11
+environment__fed_epa_rcra_enforcements,environment,enforcement,event,BASE TABLE,383519,20166144,0.0,0999-02-04,2026-07-31,0,0,ENFORCEMENT_RECORD_ID,100.0,381440,0,scan-2026-08-11
+environment__fed_epa_rcra_evaluations,environment,inspection,event,BASE TABLE,1166410,31811584,0.0,0005-05-17,2026-07-31,0,0,EVALUATION_RECORD_ID,100.0,1181427,0,scan-2026-08-11
+environment__fed_epa_rcra_facilities,environment,facility,noun,BASE TABLE,1613224,86393344,0.0,,,0,0,ID_NUMBER,100.0,1639459,0,scan-2026-08-11
+environment__fed_epa_rcra_rcra_naics,environment,code,code,BASE TABLE,434734,9328640,0.0,,,0,0,FACILITY_NAICS_ID,100.0,433713,0,scan-2026-08-11
+environment__fed_epa_rcra_violations,environment,violation,event,BASE TABLE,708114,38126592,0.0,0001-01-01,9999-04-26,0,78,VIOLATION_RECORD_ID,100.0,713808,0,scan-2026-08-11
+environment__fed_epa_rcra_viosnc_history,environment,change,event,BASE TABLE,2675581,47010816,0.0,,,0,0,STATUS_MONTH_ID,100.0,2694097,0,scan-2026-08-11
+environment__fed_epa_sdwa_sdwa_events_milestones,environment,action,event,BASE TABLE,394075,17100800,0.0,1991-07-01,2099-06-30,0,2,EVENT_SCHEDULE_ID,100.0,329483,0,scan-2026-08-11
+environment__fed_epa_sdwa_sdwa_facilities,environment,facility,noun,BASE TABLE,1554832,21976064,0.0,1900-02-01,2027-10-31,393,0,STATE_FACILITY_ID,69.5,290378,3,scan-2026-08-11
+environment__fed_epa_sdwa_sdwa_geographic_areas,environment,place,noun,BASE TABLE,578198,4492800,0.0,1995-07-22,2026-06-30,0,0,GEO_ID,100.0,556143,0,scan-2026-08-11
+environment__fed_epa_sdwa_sdwa_lcr_samples,environment,measurement,event,BASE TABLE,927415,15998464,0.0,1991-07-01,2033-12-31,0,14,SAR_ID,100.0,937360,0,scan-2026-08-11
+environment__fed_epa_sdwa_sdwa_pn_violation_assoc,environment,violation,event,BASE TABLE,387627,6985728,0.0,1950-01-01,2026-07-01,0,0,RELATED_VIOLATION_ID,100.0,213333,0,scan-2026-08-11
+environment__fed_epa_sdwa_sdwa_pub_water_systems,environment,program,noun,BASE TABLE,434040,24195072,0.0,1900-02-01,2031-05-29,66,0,FAX_NUMBER,6.8,20746,0,scan-2026-08-11
+environment__fed_epa_sdwa_sdwa_site_visits,environment,facility,noun,BASE TABLE,2495249,77681664,0.0,1900-01-01,2026-07-01,32,0,VISIT_ID,100.0,440968,0,scan-2026-08-11
+environment__fed_epa_sdwa_sdwa_violations_enforcement,environment,action,event,BASE TABLE,15432737,460229120,0.0,1900-01-01,2028-12-31,693,0,VIOLATION_ID,93.5,2353340,0,scan-2026-08-11
+environment__fed_epa_superfund_site_boundaries,environment,place,noun,BASE TABLE,2114,626688,0.0,2003-11-05 00:00:00,2026-08-10 23:35:16.411653,0,0,BOUNDARY_FEATURE_ID,100.0,2095,0,scan-2026-08-11
+environment__fed_epa_tri_basic_2023,environment,facility,noun,BASE TABLE,78647,8647168,0.0,,,0,0,C_36_DOC_CTRL_NUM,100.0,78499,0,scan-2026-08-11
+environment__fed_epa_tri_facility,environment,facility,noun,BASE TABLE,64990,8523776,0.0,,,0,0,EPA_REGISTRY_ID,100.0,65017,0,scan-2026-08-11
+environment__fed_fracfocus_disclosure_list,environment,filing,event+noun,BASE TABLE,248835,13955072,0.0,,,0,0,DISCLOSURE_ID,100.0,247558,0,scan-2026-08-11
+environment__fed_fracfocus_registry,environment,filing,event+noun,BASE TABLE,7200550,480380928,0.0,,,0,0,INGREDIENT_RECORD_ID,100.0,7028364,0,scan-2026-08-11
+environment__fed_fracfocus_water_source,environment,filing,event+noun,BASE TABLE,23747,2462720,0.0,,,0,0,WATER_SOURCE_ID,100.0,23824,0,scan-2026-08-11
+environment__fed_nid_dams,environment,asset,noun,BASE TABLE,92766,6647296,0.0,1901-01-01,5023-05-25,31,2,FEDERAL_ID,100.0,96781,0,scan-2026-08-11
+environment__fed_noaa_storm_events,environment,action,event,BASE TABLE,1780730,152641536,0.0,,,0,0,EVENT_ID,100.0,1750242,0,scan-2026-08-11
+environment__fed_noaa_weather_api,environment,natural_event,event,BASE TABLE,287,107008,0.0,2026-07-01,2026-07-04,0,0,ID,100.0,286,0,scan-2026-08-11
+environment__fed_phmsa_flagged_incidents,environment,filing,event+noun,BASE TABLE,2039,117760,0.0,2010-03-10,2026-07-31,0,0,NRC_REPORT_NUMBER,100.0,2016,8,scan-2026-08-11
+environment__fed_uscg_nrc_incident_reports,environment,filing,event+noun,BASE TABLE,116662,4338688,0.0,2020-01-01 00:14:00,2024-12-31 22:27:00,0,0,RESPONSIBLE_ZIP,33.6,9565,0,scan-2026-08-11
+environment__fed_uscg_nrc_incidents,environment,accident,event,BASE TABLE,1029020,22991360,0.0,1990-01-01 00:01:00,2026-08-02 23:17:00,0,0,RESPONSIBLE_ZIP,47.6,42763,525,scan-2026-08-11
+environment__fed_usgs_minerals,environment,aggregate,aggregate,BASE TABLE,304632,29943296,0.0,,,0,0,DEP_ID,100.0,297425,0,scan-2026-08-11
+environment__fed_usgs_orphaned_oil_gas_wells,environment,asset,noun,BASE TABLE,117672,9734144,0.0,2019-07-01,2022-12-10,0,0,WELL_IDENTIFIER,100.0,118877,0,scan-2026-08-11
+environment__fed_usgs_water,environment,measurement,event,BASE TABLE,6694816,43189248,0.0045,,,0,0,SITE_NO,100.0,3774,0,scan-2026-08-11
+environment__fed_usgs_wbd_huc8,environment,place,noun,BASE TABLE,2456,344576,0.0,2012-06-11 07:54:56,2026-08-08 01:43:01.186418,0,0,TNM_ID,100.0,2465,0,scan-2026-08-11
+environment__fed_wqp_monitoring_stations,environment,facility,noun,BASE TABLE,5818,246784,0.0,,,0,0,MONITORING_LOCATION_IDENTIFIER,100.0,5743,0,scan-2026-08-11
+environment__intl_gem_hazard,environment,natural_event,event,BASE TABLE,12,1536,0.0,,,0,0,HAZARD_MODEL_ID,100.0,12,0,scan-2026-08-11
+environment__intl_global_witness_defenders,environment,accident,event,BASE TABLE,232,28160,0.0,,,0,0,,,,,scan-2026-08-11
+environment__xc_epa_corporate_crosswalk,environment,crosswalk,link,BASE TABLE,5300149,102384128,0.0,,,0,0,EPA_REGISTRY_ID,100.0,5350749,0,scan-2026-08-11
+environment__xc_owid_co2,environment,aggregate,aggregate,BASE TABLE,29384,249856,0.0,,,0,0,CODE,100.0,229,3311,scan-2026-08-11
+environment__xc_owid_fossil_share,environment,aggregate,aggregate,BASE TABLE,6379,57344,0.0,,,0,0,CODE,100.0,93,1240,scan-2026-08-11
+environment__xc_owid_temp_anomaly,environment,aggregate,aggregate,BASE TABLE,531,16384,0.0,,,0,0,CODE,100.0,3,0,scan-2026-08-11
+finance__fed_epa_icis_fec_case_enforcement_conclusion_facilities,environment,facility,noun,BASE TABLE,150877,7456256,0.0001,,,0,0,ACTIVITY_ID,100.0,125247,0,scan-2026-08-11
+finance__fed_epa_icis_fec_case_facilities,environment,facility,noun,BASE TABLE,204019,12376576,0.0,,,0,0,ACTIVITY_ID,100.0,137292,0,scan-2026-08-11
+finance__fed_epa_icis_fec_epa_informal_enforcement_actions,environment,action,event,BASE TABLE,21930,465408,0.0,1970-06-01,2026-07-17,1,0,ENF_IDENTIFIER,100.0,18836,0,scan-2026-08-11
+finance__fed_epa_icis_fec_icis_fec_epa_inspections,environment,inspection,event,BASE TABLE,260556,8371200,0.0,0201-08-01,2026-07-24,0,0,ACTIVITY_ID,100.0,258842,0,scan-2026-08-11
+finance__fed_fatca_ffi,finance,organization,noun,BASE TABLE,516298,11042304,0.0,2026-08-05 21:24:50.345862,2026-08-05 21:24:50.345862,0,0,_SOURCE_RUN_ID,100.0,1,0,scan-2026-08-11
+finance__fed_fdic_bank_data,finance,organization,noun,BASE TABLE,27836,3485184,0.0,1782-01-01,9999-12-31,544,4444,CERT,100.0,28119,0,scan-2026-08-11
+finance__fed_fdic_sod_branch_deposits,finance,payment,event,BASE TABLE,2823000,274471936,0.0,1782-01-01,2026-08-10 19:22:47.335969,26581,0,RECORD_ID,100.0,2795785,0,scan-2026-08-11
+finance__fed_fec_bulk,finance,contribution,event,BASE TABLE,20938,1296384,0.0,,,0,0,FEC_CMTE_ID,100.0,20519,0,scan-2026-08-11
+finance__fed_fec_bulk_committees,finance,organization,noun,BASE TABLE,20007,1235456,0.0,,,0,0,FEC_CMTE_ID,100.0,19744,0,scan-2026-08-11
+finance__fed_fec_cand_cmte_linkage,finance,crosswalk,link,BASE TABLE,30536,462336,0.0,,,0,0,LINKAGE_ID,100.0,30470,0,scan-2026-08-11
+finance__fed_fec_candidates,finance,person,noun,BASE TABLE,33506,1635328,0.1913,,,0,0,CAND_ID,100.0,19063,0,scan-2026-08-11
+finance__fed_fec_committee_to_candidate,finance,person,noun,BASE TABLE,866730,25460736,0.0,,,0,0,SUB_ID,100.0,884334,0,scan-2026-08-11
+finance__fed_fec_committees,finance,organization,noun,BASE TABLE,78039,4886528,0.2308,,,0,0,CMTE_ID,100.0,37886,0,scan-2026-08-11
+finance__fed_fec_independent_expenditures,finance,trade,event,BASE TABLE,261033,11283456,0.0,,,0,0,TRAN_ID,100.0,169330,0,scan-2026-08-11
+finance__fed_fec_indiv_contributions,finance,contribution,event,BASE TABLE,84172112,2835296256,0.0,2000-01-01,3312-01-01,0,4,SUB_ID,100.0,84223335,0,scan-2026-08-11
+finance__fed_fec_leadership_pac,finance,crosswalk,link,BASE TABLE,8619,130048,0.0,,,0,0,LINKAGE_ID,100.0,8716,0,scan-2026-08-11
+finance__fed_fhfa_fhlb_membership,finance,membership,link,BASE TABLE,6327,303616,0.0,1973-01-02,2066-04-18,0,88,FHFA_ID,100.0,6227,0,scan-2026-08-11
+finance__fed_finra_mpid_list,finance,registry,noun,BASE TABLE,4215,251392,0.0,,,0,0,MPID_RECORD_ID,100.0,4198,0,scan-2026-08-11
+finance__fed_irs_soi,finance,aggregate,aggregate,BASE TABLE,179796,26994688,0.0,,,0,0,ZIP_CODE,100.0,29922,0,scan-2026-08-11
+finance__fed_msrb_registrants,finance,organization,noun,BASE TABLE,925,30720,0.0,,,0,0,MSRB_ID,100.0,925,0,scan-2026-08-11
+finance__fed_ncua_call_reports_foicu,finance,filing,event+noun,BASE TABLE,4336,310272,0.0,1899-12-30,2026-05-19 05:00:00.000,55,0,RSSD,100.0,4366,0,scan-2026-08-11
+finance__fed_ncua_call_reports_fs220,finance,filing,event+noun,BASE TABLE,4336,782848,0.0,2026-03-31,2026-05-20 22:02:49.000,0,0,JOIN_NUMBER,100.0,4396,0,scan-2026-08-11
+finance__fed_ncua_charter_merger_events,finance,action,event,BASE TABLE,27,8704,0.0,,,0,0,_SOURCE_RUN_ID,100.0,1,0,scan-2026-08-11
+finance__fed_ncua_federally_insured_cu_list,finance,organization,noun,BASE TABLE,4250,292864,0.0,,,0,0,NCUA_INTERNAL_ID_JOIN_NUMBER,100.0,4316,0,scan-2026-08-11
+finance__fed_occ_national_banks,finance,organization,noun,BASE TABLE,724,34816,0.0,,,0,0,RSSD,99.6,739,0,scan-2026-08-11
+finance__fed_occ_thrifts,finance,organization,noun,BASE TABLE,218,12800,0.0,,,0,0,CHARTER_NO,100.0,222,0,scan-2026-08-11
+finance__fed_pcaob_form_ap_filings,finance,filing,event+noun,BASE TABLE,155384,8180224,0.0,2026-08-08 01:43:19.023062,2026-08-08 01:43:19.023062,0,0,FORM_FILING_ID,100.0,158520,0,scan-2026-08-11
+finance__fed_sec_13f_filers,finance,organization,noun,BASE TABLE,344109,21449728,0.0,2012-10-01,2027-05-17,0,0,ACCESSION_NUMBER,100.0,345512,0,scan-2026-08-11
+finance__fed_sec_13f_holdings,finance,ownership,link,VIEW,101261252,,0.0,,,0,0,ACCESSION_NUMBER,100.0,265873,0,tier-b-2026-08-17
+finance__fed_sec_13f_positions,finance,ownership,link,BASE TABLE,101261252,1737058816,0.0,,,0,0,ACCESSION_NUMBER,100.0,265873,0,scan-2026-08-11
+finance__fed_sec_13f_submission,finance,filing,event+noun,BASE TABLE,3822885,80083456,0.0,,,0,0,CUSIP,100.0,36125,0,scan-2026-08-11
+finance__fed_sec_13f_submissions,finance,filing,event+noun,BASE TABLE,336124,5511168,0.0,,,0,0,ACCESSION_NUMBER,100.0,336964,0,scan-2026-08-11
+finance__fed_sec_business_development_company_report,finance,filing,event+noun,BASE TABLE,212,13312,0.0,0001-05-01,0095-06-02,0,0,FILE_NO,100.0,213,0,scan-2026-08-11
+finance__fed_sec_closed_end_fund_information,finance,program,noun,BASE TABLE,973,49664,0.0,0001-08-22,0099-08-26,0,0,FILE_NO,100.0,1005,0,scan-2026-08-11
+finance__fed_sec_dera_sub_2024q1,finance,filing,event+noun,BASE TABLE,6028,803840,0.0,,,0,0,CIK,100.0,5593,0,scan-2026-08-11
+finance__fed_sec_dera_sub_2024q2,finance,filing,event+noun,BASE TABLE,7675,931328,0.0,,,0,0,CIK,100.0,6222,0,scan-2026-08-11
+finance__fed_sec_dera_sub_2024q3,finance,filing,event+noun,BASE TABLE,6699,825344,0.0,,,0,0,CIK,100.0,5987,0,scan-2026-08-11
+finance__fed_sec_dera_sub_2024q4,finance,filing,event+noun,BASE TABLE,6491,860160,0.0,,,0,0,CIK,100.0,5816,0,scan-2026-08-11
+finance__fed_sec_dera_sub_2025q1,finance,filing,event+noun,BASE TABLE,6231,784384,0.0,,,0,0,CIK,100.0,5699,0,scan-2026-08-11
+finance__fed_sec_dera_sub_2025q2,finance,filing,event+noun,BASE TABLE,7009,929792,0.0,,,0,0,CIK,100.0,6051,0,scan-2026-08-11
+finance__fed_sec_dera_sub_2025q3,finance,filing,event+noun,BASE TABLE,6541,819200,0.0,,,0,0,CIK,100.0,5877,0,scan-2026-08-11
+finance__fed_sec_dera_sub_2025q4,finance,filing,event+noun,BASE TABLE,6304,777216,0.0,,,0,0,CIK,100.0,5779,0,scan-2026-08-11
+finance__fed_sec_dera_sub_2026q1,finance,filing,event+noun,BASE TABLE,6169,777216,0.0,,,0,0,CIK,100.0,5860,0,scan-2026-08-11
+finance__fed_sec_edgar_company_tickers_exchange,finance,instrument,noun,BASE TABLE,10398,380416,0.0,,,0,0,TICKER,100.0,10332,3,scan-2026-08-11
+finance__fed_sec_edgar_financials,finance,filing,event+noun,BASE TABLE,55635,7035392,0.0,,,0,0,CIK,100.0,8321,0,scan-2026-08-11
+finance__fed_sec_edgar_insiders,finance,filing,event+noun,BASE TABLE,69259,2157056,0.0,2020-11-06,2026-03-31,0,0,ACCESSION_NUMBER,100.0,70728,0,scan-2026-08-11
+finance__fed_sec_insider_deriv_trans,finance,trade,event,BASE TABLE,1049121,43775488,0.0,0018-02-26,2050-12-31,0,64164,ACCESSION_NUMBER,100.0,655442,0,scan-2026-08-11
+finance__fed_sec_insider_nonderiv_trans,finance,trade,event,BASE TABLE,2672841,86390784,0.0,0022-10-12,2047-05-24,0,6,ACCESSION_NUMBER,100.0,1325849,0,scan-2026-08-11
+finance__fed_sec_insider_reportingowner,finance,role,link,BASE TABLE,1934673,50415104,0.0,2026-07-24 02:29:10,2026-07-24 02:29:10,0,0,ACCESSION_NUMBER,100.0,1708947,0,scan-2026-08-11
+finance__fed_sec_insider_submission,finance,filing,event+noun,BASE TABLE,1772088,73448960,0.0,0001-01-01,2027-06-04,0,0,ACCESSION_NUMBER,100.0,1708947,0,scan-2026-08-11
+finance__fed_sec_investment_company_series_class,finance,organization,noun,BASE TABLE,43123,4674560,0.0,,,0,0,SERIES_CLASS_RECORD_ID,100.0,44354,0,scan-2026-08-11
+finance__fed_sec_money_market_fund_information,finance,program,noun,BASE TABLE,1206,40960,0.0,,,0,0,CLASS_ID,100.0,1043,0,scan-2026-08-11
+finance__intl_iso_mic_registry,finance,code,code,BASE TABLE,2864,196096,0.0,2003-04-01,2026-07-27,0,0,LEI,78.1,1067,0,scan-2026-08-11
+finance__intl_osfi_regulated_fi,finance,organization,noun,BASE TABLE,343,45568,0.0,,,0,0,OSFI_FI_RECORD_ID,100.0,343,0,scan-2026-08-11
+finance__intl_wb_ids,finance,aggregate,aggregate,BASE TABLE,62983,9858048,0.0,,,0,0,SERIES_CODE,100.0,577,5,scan-2026-08-11
+foreign_influence__fed_fara_bulk,foreign_influence,filing,event+noun,BASE TABLE,48104,5185024,0.0,1942-01-16,2026-07-30 12:06:10.313000-07:00,337,0,FARA_REGISTRATION_KEY,100.0,47148,0,scan-2026-08-11
+governance__fed_revolvingdoor_project,governance,ownership,link,BASE TABLE,406,119808,0.0,2026-06-17 19:02:09.104875,2026-06-17 19:02:09.104875,0,0,POSITION_KEY,100.0,409,0,scan-2026-08-11
+government_records__fed_nara_aad,government_records,dataset,noun,BASE TABLE,9,2560,0.0,,,0,0,DATASET_ID,100.0,9,1,scan-2026-08-11
+government_records__fed_usaspending_tas_filter_tree,government_records,award,event+noun,BASE TABLE,92,4608,0.0,2026-08-07 20:20:54.361016,2026-08-07 20:20:54.361016,0,0,NODE_ID,100.0,93,0,scan-2026-08-11
+health__fed_cdc_anxiety_depression,health,unresolved,event,BASE TABLE,16794,412672,0.0,2020-04-23 00:00:00,2024-09-16 00:00:00,0,0,,,,,scan-2026-08-11
+health__fed_cdc_data_portal,health,dataset,noun,BASE TABLE,1471,889856,0.0,2013-06-10 19:09:30.000,2026-08-11 14:00:20.000,0,0,DATASET_ID,100.0,1467,0,scan-2026-08-11
+health__fed_cdc_drug_poisoning_county,health,place,noun,BASE TABLE,53387,1117184,0.0,,,0,0,FIPS,100.0,3149,0,scan-2026-08-11
+health__fed_cdc_health_insurance,health,unresolved,event,BASE TABLE,16056,406528,0.0,2020-04-23 00:00:00,2024-09-16 00:00:00,0,0,QUARTILE_NUMBER,100.0,6,5040,scan-2026-08-11
+health__fed_cdc_injury_violence_county,health,place,noun,BASE TABLE,132000,1909760,0.0,,,0,0,,,,,scan-2026-08-11
+health__fed_cdc_leading_causes_state,health,unresolved,event,BASE TABLE,10868,150016,0.0,2026-08-09 18:18:23.310413,2026-08-09 18:18:23.310413,0,0,_SOURCE_RUN_ID,100.0,1,0,scan-2026-08-11
+health__fed_cdc_nndss_weekly_2024,health,unresolved,event,BASE TABLE,1932840,16829952,0.0,,,0,0,,,,,scan-2026-08-11
+health__fed_cdc_overdose,health,accident,event,BASE TABLE,83790,1443328,0.0,,,0,0,,,,,scan-2026-08-11
+health__fed_cdc_suicide_rates,health,measurement,event,BASE TABLE,6390,83968,0.0,,,0,0,STUB_LABEL_NUM,100.0,158,0,scan-2026-08-11
+health__fed_cdc_wonder,health,unresolved,event,BASE TABLE,880,15872,0.0,2026-08-09 18:18:09.399039,2026-08-09 18:18:09.399039,0,0,_SOURCE_RUN_ID,100.0,1,0,scan-2026-08-11
+health__fed_clinicaltrials,health,unresolved,event,BASE TABLE,500,1383424,0.0,1997-01-01,2032-06-06,0,3,ORG_STUDY_ID,100.0,501,0,scan-2026-08-11
+health__fed_cms_ambulatory_specialty_model_participants,health,unresolved,noun,BASE TABLE,6637,204800,0.0,,,0,0,NPI,100.0,6535,0,scan-2026-08-11
+health__fed_cms_dialysis,health,unresolved,event,BASE TABLE,7557,1478656,0.0,,,0,0,ZIP_CODE,100.0,5361,0,scan-2026-08-11
+health__fed_cms_facility_affiliation,health,membership,link,BASE TABLE,2260193,41509376,0.0,,,0,0,NPI,100.0,919153,0,scan-2026-08-11
+health__fed_cms_facility_level_minimum_data_set_frequency,health,measurement,event,BASE TABLE,31403215,214985216,0.0,,,0,0,ZIP_CODE,100.0,9229,0,scan-2026-08-11
+health__fed_cms_federally_qualified_health_center_enrollments,health,registration,event+noun,BASE TABLE,11063,892928,0.0,1817-01-01,2024-08-26,281,0,ENROLLMENT_ID,100.0,11122,0,scan-2026-08-11
+health__fed_cms_fiscal_intermediary_shared_system_attending_and_rendering,health,program,noun,BASE TABLE,2047828,26924544,0.0,,,0,0,NPI,100.0,1988946,0,scan-2026-08-11
+health__fed_cms_hcris,health,unresolved,event,BASE TABLE,6103,3678208,0.0,2022-10-01,2024-09-30,0,0,RPT_REC_NUM,100.0,6070,0,scan-2026-08-11
+health__fed_cms_home_health,health,unresolved,event,BASE TABLE,12392,2903552,0.0,1966-07-01,2025-10-09,26,0,TELEPHONE_NUMBER,100.0,11427,0,scan-2026-08-11
+health__fed_cms_home_health_agency_enrollments,health,registration,event+noun,BASE TABLE,11508,866304,0.0,1808-03-08,2024-08-09,7,0,ENROLLMENT_ID,100.0,11486,0,scan-2026-08-11
+health__fed_cms_hospice,health,unresolved,event,BASE TABLE,6852,360960,0.0,1983-11-01,2025-10-15,0,0,TELEPHONE_NUMBER,100.0,6534,75,scan-2026-08-11
+health__fed_cms_hospital_compare,health,provider,noun,BASE TABLE,5432,360448,0.0,,,0,0,TELEPHONE_NUMBER,100.0,5422,0,scan-2026-08-11
+health__fed_cms_hospital_enrollments,health,registration,event+noun,BASE TABLE,9175,786944,0.0,1800-01-01,2026-03-14,60,0,ENROLLMENT_ID,100.0,9253,0,scan-2026-08-11
+health__fed_cms_hospital_general,health,provider,noun,BASE TABLE,5432,360448,0.0,,,0,0,TELEPHONE_NUMBER,100.0,5422,0,scan-2026-08-11
+health__fed_cms_irf,health,unresolved,event,BASE TABLE,1222,75776,0.0,1983-10-01,2026-10-01,0,0,ZIP_CODE,100.0,1140,0,scan-2026-08-11
+health__fed_cms_ltch,health,unresolved,event,BASE TABLE,311,23552,0.0,1966-07-01,2025-02-01,1,0,ZIP_CODE,100.0,308,0,scan-2026-08-11
+health__fed_cms_main,health,unresolved,noun,BASE TABLE,158,297984,0.0,,,0,0,DATASET_ID,100.0,160,0,scan-2026-08-11
+health__fed_cms_medicare_diabetes_prevention_program,health,program,noun,BASE TABLE,1037,107520,0.0,,,0,0,UNIQUE_ID,100.0,1032,0,scan-2026-08-11
+health__fed_cms_medicare_dialysis_facilities,health,facility,noun,BASE TABLE,12456456,130220544,0.0,,,0,0,NPI,99.6,8308,0,scan-2026-08-11
+health__fed_cms_medicare_durable_medical_equipment_devices_supplies_by_refer,health,product,noun,BASE TABLE,381228,69555712,0.0,,,0,0,RFRG_NPI,100.0,377378,0,scan-2026-08-11
+health__fed_cms_medicare_durable_medical_equipment_devices_supplies_by_suppl,health,product,noun,BASE TABLE,440670,17388544,0.0,,,0,0,SUPLR_NPI,100.0,55010,0,scan-2026-08-11
+health__fed_cms_medicare_inpatient_hospitals_by_provider,health,provider,noun,BASE TABLE,3044,940032,0.0,,,0,0,RNDRNG_PRVDR_STATE_FIPS,100.0,51,0,scan-2026-08-11
+health__fed_cms_medicare_inpatient_hospitals_by_provider_and_service,health,role,link,BASE TABLE,145879,3401216,0.0,,,0,0,RNDRNG_PRVDR_STATE_FIPS,100.0,51,0,scan-2026-08-11
+health__fed_cms_medicare_outpatient_hospitals_by_provider_and_service,health,role,link,BASE TABLE,116182,4013056,0.0,,,0,0,RNDRNG_PRVDR_STATE_FIPS,100.0,50,0,scan-2026-08-11
+health__fed_cms_medicare_physician_other_practitioners_by_provider,health,provider,noun,BASE TABLE,1296739,145540608,0.0,,,0,0,RNDRNG_NPI,100.0,1261922,0,scan-2026-08-11
+health__fed_cms_medicare_physician_other_practitioners_by_provider_and_servi,health,provider,noun,BASE TABLE,9781673,505816576,0.0,,,0,0,RNDRNG_NPI,100.0,1169731,0,scan-2026-08-11
+health__fed_cms_medicare_provider,health,provider,noun,BASE TABLE,1296739,146096640,0.0,,,0,0,NPI,100.0,1261922,0,scan-2026-08-11
+health__fed_cms_nadac,health,product,noun,BASE TABLE,359514,9776128,0.0,2022-11-23,2024-12-25,0,0,EXPLANATION_CODE,100.0,15,0,scan-2026-08-11
+health__fed_cms_nppes,health,provider,noun,BASE TABLE,9606683,1511160320,0.0,2005-05-23,2026-06-08,0,0,PROVIDER_LICENSE_NUMBER_6,100.0,20616,9585452,scan-2026-08-11
+health__fed_cms_nursing_home,health,facility,noun,BASE TABLE,14700,4704768,0.0,2026-08-08 07:18:30.556000-07:00,2026-08-08 07:18:30.556000-07:00,0,0,TOTAL_NUMBER_OF_NURSE_STAFF_HOURS_PER_RESIDENT_PER_DAY_ON_THE_WEEKEND,95.8,14046,0,scan-2026-08-11
+health__fed_cms_nursing_home_deficiencies,health,violation,event,BASE TABLE,418479,5199360,0.0,2002-04-08,2026-06-29,0,0,CMS_CERTIFICATION_NUMBER_CCN,100.0,14275,0,scan-2026-08-11
+health__fed_cms_nursing_home_fire_deficiencies,health,violation,event,BASE TABLE,200030,2847232,0.0,2016-01-15,2027-05-30,0,0,CMS_CERTIFICATION_NUMBER_CCN,100.0,13603,0,scan-2026-08-11
+health__fed_cms_nursing_home_penalties,health,enforcement,event,BASE TABLE,16180,714240,0.0,2023-06-17,2026-06-01,0,0,FINE_ID,84.7,13741,0,scan-2026-08-11
+health__fed_cms_open_payments,health,payment,event,BASE TABLE,15385047,389764608,0.0,,,0,0,RECORD_ID,100.0,15916261,0,scan-2026-08-11
+health__fed_cms_open_payments_2022,health,payment,event,BASE TABLE,13250000,327976448,0.0,,,0,0,RECORD_ID,100.0,13474954,0,scan-2026-08-11
+health__fed_cms_open_payments_2023,health,payment,event,BASE TABLE,14700786,386825728,0.0,,,0,0,RECORD_ID,100.0,15185673,0,scan-2026-08-11
+health__fed_cms_open_payments_profile_supplement,health,payment,event,BASE TABLE,1697025,68459520,0.0,,,0,0,PROFILE_ID,100.0,1689064,0,scan-2026-08-11
+health__fed_cms_opioid_treatment_program_providers,health,provider,noun,BASE TABLE,1558,90624,0.0,2014-10-25,2026-05-20,0,0,ZIP,100.0,1526,0,scan-2026-08-11
+health__fed_cms_opt_out_affidavits,health,unresolved,event,BASE TABLE,57209,2834432,0.0019,1998-01-01,2028-10-01,0,0,NPI,100.0,55087,0,scan-2026-08-11
+health__fed_cms_order_and_referring,health,enforcement,event,BASE TABLE,2018354,17596928,0.0,,,0,0,NPI,100.0,1988705,0,scan-2026-08-11
+health__fed_cms_part_d_prescribers,health,provider,noun,BASE TABLE,1416883,168586752,0.0,,,0,0,NPI,100.0,1373068,0,scan-2026-08-11
+health__fed_cms_partd_prescribers,health,provider,noun,BASE TABLE,25869521,847242240,0.0,2026-07-23 22:44:38,2026-07-23 22:44:38,0,0,NPI,100.0,1038177,0,scan-2026-08-11
+health__fed_cms_pending_initial_logging_and_tracking_non_physicians,health,provider,noun,BASE TABLE,6880,114176,0.0,,,0,0,NPI,100.0,6900,0,scan-2026-08-11
+health__fed_cms_pending_initial_logging_and_tracking_physicians,health,provider,noun,BASE TABLE,7240,124416,0.0,,,0,0,NPI,100.0,7372,0,scan-2026-08-11
+health__fed_cms_pos_other,health,unresolved,event,BASE TABLE,44429,4740096,0.0,,,0,0,PHNE_NUM,100.0,33832,531,scan-2026-08-11
+health__fed_cms_quality_payment_program_experience,health,program,noun,BASE TABLE,503917,44867072,0.0,,,0,0,QUALITY_MEASURE_ID_7,63.4,138,0,scan-2026-08-11
+health__fed_cms_rural_health_clinic_enrollments,health,registration,event+noun,BASE TABLE,5530,476160,0.0,1859-01-28,2024-08-19,22,0,ENROLLMENT_ID,100.0,5553,0,scan-2026-08-11
+health__fed_cms_skilled_nursing_facility_enrollments,health,registration,event+noun,BASE TABLE,14425,1452544,0.0,1800-01-01,2024-09-17,36,0,ENROLLMENT_ID,100.0,14771,0,scan-2026-08-11
+health__fed_dea_arcos,health,trade,event,BASE TABLE,178598026,4220975104,0.0,2006-01-01,2026-07-27 15:58:30.224197,0,0,TRANSACTION_ID,100.0,11643950,0,scan-2026-08-11
+health__fed_fda_caers,health,unresolved,event,BASE TABLE,85511,3679744,0.0,2001-08-09,2026-08-06 00:02:43,0,0,REPORT_NUMBER,100.0,87080,0,scan-2026-08-11
+health__fed_fda_device_510k,health,product,noun,BASE TABLE,175686,24510976,0.0,1976-05-26,2026-08-06 00:00:35,0,0,K_NUMBER,100.0,172884,0,scan-2026-08-11
+health__fed_fda_device_classification,health,code,code,BASE TABLE,7085,7790592,0.0,,,0,0,PRODUCT_CODE,100.0,7190,1,scan-2026-08-11
+health__fed_fda_device_enforcement,health,recall,event+noun,BASE TABLE,39635,97010176,0.0,1930-12-11,2026-07-29,0,0,RECALL_NUMBER,100.0,39434,1,scan-2026-08-11
+health__fed_fda_device_pma,health,product,noun,BASE TABLE,56853,9266176,0.0,1900-01-01,2026-08-06 00:01:29,5,0,PMA_NUMBER,100.0,1768,0,scan-2026-08-11
+health__fed_fda_drug_enforcement,health,recall,event+noun,BASE TABLE,17816,4670976,0.0,2006-02-24,2026-07-16,0,0,RECALL_NUMBER,100.0,17732,2,scan-2026-08-11
+health__fed_fda_drug_master_files,health,organization,noun,BASE TABLE,41253,1544192,0.0,1939-07-18,2026-08-08 04:36:49.824519,140,0,DMF_NUMBER,100.0,41676,0,scan-2026-08-11
+health__fed_fda_establishment_reg,health,unresolved,event,BASE TABLE,263374,30806528,0.0,2026-08-05 21:43:33,2026-08-05 21:43:33,0,0,K_NUMBER,100.0,64568,136639,scan-2026-08-11
+health__fed_fda_faers_demo,health,accident,event,BASE TABLE,5811086,126811648,0.0,,,0,0,MFR_NUM,95.0,1448033,0,scan-2026-08-11
+health__fed_fda_faers_drug,health,product,noun,VIEW,20914284,,0.0,,,0,0,LOT_NUM,3.4,83902,0,tier-b-2026-08-17
+health__fed_fda_faers_indi,health,accident,event,BASE TABLE,9833260,45412352,0.0,,,0,0,,,,,scan-2026-08-11
+health__fed_fda_faers_outc,health,accident,event,BASE TABLE,1134815,16402944,0.0,,,0,0,OUTC_CODE,16.9,7,0,scan-2026-08-11
+health__fed_fda_faers_reac,health,accident,event,VIEW,20621386,,0.7619,,,0,0,,,,,tier-b-2026-08-17
+health__fed_fda_gudid,health,unresolved,event,BASE TABLE,5083948,503952384,0.0,2013-02-20,2026-08-05 21:50:00,0,0,PUBLIC_DEVICE_RECORD_KEY,100.0,5210447,0,scan-2026-08-11
+health__fed_fda_maude,health,unresolved,event,BASE TABLE,2743561,99384320,0.0,1900-01-01,2026-08-06 00:25:45,1,0,REPORT_NUMBER,100.0,2749443,0,scan-2026-08-11
+health__fed_fda_purple_book,health,unresolved,event,BASE TABLE,2228,202752,0.0,1930-06-14,2037-03-05,2,69,PURPLE_BOOK_RECORD_ID,100.0,2253,0,scan-2026-08-11
+health__fed_fda_unii_gsrs_substances,health,crosswalk,link,BASE TABLE,168046,21706752,0.0,2026-08-08 04:35:02.628239,2026-08-08 04:35:02.628239,0,0,EPA_COMPTOX_ID,50.5,85753,0,scan-2026-08-11
+health__fed_hhs_oig_leie,health,enforcement,event,BASE TABLE,83369,6817280,0.0,2026-06-10 15:59:57.867000,2026-06-10 15:59:57.867000,0,0,ZIP,100.0,18375,0,scan-2026-08-11
+health__fed_hrsa_hpsa_primary_care,health,measurement,event,BASE TABLE,79158,12601344,0.0,1970-01-01,2026-08-07 18:54:15.903191,1,0,HPSA_COMPONENT_ID,100.0,79250,0,scan-2026-08-11
+health__fed_hrsa_npdb,health,filing,event+noun,BASE TABLE,1911185,43588096,0.0,,,0,0,LICENSE_FIELD_CODE,100.0,163,0,scan-2026-08-11
+health__fed_hrsa_shortage_areas,health,place,noun,BASE TABLE,165531,7745024,0.0006,1970-01-01,2026-06-30,2,0,HPSA_GEOGRAPHY_IDENTIFICATION_NUMBER,100.0,47035,0,scan-2026-08-11
+health__fed_hrsa_uds_health_center_info,health,facility,noun,BASE TABLE,1356,136704,0.0,2026-08-05 21:43:43.460403,2026-08-05 21:43:43.460403,0,0,_SOURCE_RUN_ID,100.0,1,0,scan-2026-08-11
+health__fed_hrsa_uds_service_delivery_sites,health,provider,noun,BASE TABLE,19038,3472896,0.0,1966-01-01,2026-08-07 18:54:01.663552,32,0,BPHC_ASSIGNED_NUMBER,100.0,18571,0,scan-2026-08-11
+health__fed_hrsa_uds_table3a_patients,health,aggregate,aggregate,BASE TABLE,1356,294400,0.0,2026-08-05 21:43:43.460403,2026-08-05 21:43:43.460403,0,0,_SOURCE_RUN_ID,100.0,1,0,scan-2026-08-11
+health__fed_ihs_facilities,health,facility,noun,BASE TABLE,1006,142848,0.0,2026-08-07 18:54:32.544914,2026-08-07 18:54:32.544914,0,0,IHS_FACILITY_ID,100.0,1006,0,scan-2026-08-11
+health__fed_ihs_scb_facility,health,facility,noun,BASE TABLE,8733,543232,0.0,2026-08-08 01:42:33.696100,2026-08-08 01:42:33.696100,0,0,ASUFAC_CODE,100.0,8853,0,scan-2026-08-11
+health__fed_nlm_dailymed_spl_setid_map,health,document,noun,BASE TABLE,158452,8619520,0.0,2006-07-13,2026-08-08 01:42:45.275246,0,0,_SOURCE_RUN_ID,100.0,1,0,scan-2026-08-11
+health__fed_nursinghome411,health,unresolved,event,BASE TABLE,14713,3633152,0.0,1967-01-01,2025-12-12,153,0,CMS_CERTIFICATION_NUMBER_CCN,100.0,14345,0,scan-2026-08-11
+health__fed_va_allcause_mortality,health,unresolved,event,BASE TABLE,2808,69120,0.0,2026-08-10 01:24:35.964258,2026-08-10 01:24:35.964258,0,0,_SOURCE_RUN_ID,100.0,1,0,scan-2026-08-11
+health__fed_va_suicide_appendix,health,aggregate,aggregate,BASE TABLE,144,12800,0.0208,,,0,0,,,,,scan-2026-08-11
+health__fed_va_suicide_national,health,aggregate,aggregate,BASE TABLE,690,29696,0.0,2026-08-10 01:24:35.964258,2026-08-10 01:24:35.964258,0,0,_SOURCE_RUN_ID,100.0,1,0,scan-2026-08-11
+health__fed_va_suicide_state,health,aggregate,aggregate,BASE TABLE,1196,17408,0.0,2026-08-10 01:24:35.964258,2026-08-10 01:24:35.964258,0,0,_SOURCE_RUN_ID,100.0,1,0,scan-2026-08-11
+health__intl_healthcanada_dpd_drug,health,code,code,BASE TABLE,13383,459264,0.0,2025-03-22,2026-08-07 18:54:55.103559,0,0,DRUG_IDENTIFICATION_NUMBER,100.0,13733,0,scan-2026-08-11
+health__pharma_meal_cap_fingerprint,health,organization,noun,BASE TABLE,2462,229888,0.0,,,0,0,MEAL_CAP_KEY,100.0,2425,0,scan-2026-08-11
+health__st_oehha_proposition_65_list,health,registry,noun,BASE TABLE,952,58880,0.0,1987-02-27,2026-07-17,0,0,CHEMICAL_KEY,100.0,944,0,scan-2026-08-11
+health__xc_guttmacher_monthly_abortion,health,unresolved,event,BASE TABLE,2040,54784,0.0,,,0,0,,,,,scan-2026-08-11
+health__xc_owid_life_expectancy,health,aggregate,aggregate,BASE TABLE,21565,183296,0.0,,,0,0,CODE,100.0,249,1348,scan-2026-08-11
+historical_records__fed_slavevoyages_intraamerican,historical_records,measurement,event,BASE TABLE,11521,1536,0.0,,,0,0,SOURCE_RUN_ID,100.0,1,0,scan-2026-08-11
+history__fed_david_rumsey,history,unresolved,event,BASE TABLE,10,1536,0.0,,,0,0,MANIFEST_ID,100.0,10,0,scan-2026-08-11
+history__fed_densho_ddr,history,unresolved,event,BASE TABLE,25,3072,0.0,,,0,0,OBJECT_ID,100.0,25,0,scan-2026-08-11
+history__fed_docsouth,history,unresolved,event,BASE TABLE,144,13312,0.0,,,0,0,,,,,scan-2026-08-11
+history__fed_slavevoyages_transatlantic,history,measurement,event,BASE TABLE,36108,5893632,0.0,,,0,0,,,,,scan-2026-08-11
+history__fed_wpa_slave_narratives,history,unresolved,event,BASE TABLE,100,10752,0.0,1937-01-01,2026-07-30 12:10:48.044000-07:00,0,0,LOC_ITEM_ID,100.0,99,0,scan-2026-08-11
+housing__fed_cfpb_hmda,housing,unresolved,event,BASE TABLE,28301,1795072,0.0022,2026-07-01 21:40:19.856122,2026-07-01 21:40:19.856122,0,0,LEI,100.0,531,0,scan-2026-08-11
+housing__fed_cfpb_hmda_arid2017_lei_xref,housing,crosswalk,link,BASE TABLE,5399,342528,0.0,2026-08-07 19:08:11.453342,2026-08-07 19:08:11.453342,0,0,LEI_2018,100.0,5445,0,scan-2026-08-11
+housing__fed_cfpb_hmda_dc_only,housing,unresolved,event,BASE TABLE,28301,1982976,0.0022,,,0,0,LEI,100.0,531,0,scan-2026-08-11
+housing__fed_cfpb_hmda_historic,housing,unresolved,event,BASE TABLE,19136434,1297847296,0.0,2026-08-05 17:27:42.452000,2026-08-05 17:27:42.452000,0,0,_SOURCE_RUN_ID,100.0,18873316,0,scan-2026-08-11
+housing__fed_cfpb_hmda_lar,housing,loan,event+noun,BASE TABLE,17474,1199616,0.0,2026-08-08 04:55:47.435095,2026-08-08 04:55:47.435095,0,0,LAR_RECORD_ID,100.0,17477,0,scan-2026-08-11
+housing__fed_fema_ia_housing_registrations,housing,registration,event+noun,BASE TABLE,3080000,179345920,0.0,0003-11-24,2026-11-30,0,0,REGISTRATION_ID,100.0,3077569,0,scan-2026-08-11
+housing__fed_fema_nfip_community_status_book,housing,place,noun,BASE TABLE,25122,920064,0.0,1970-02-03,2069-10-01,320,8,COMMUNITY_ID_NUMBER,100.0,24299,0,scan-2026-08-11
+housing__fed_fhfa_hpi,housing,unresolved,event,BASE TABLE,184807,2830336,0.0,,,0,0,PLACE_ID,100.0,467,0,scan-2026-08-11
+housing__fed_fhfa_nmdb,housing,unresolved,event,BASE TABLE,7204,83968,0.0,2026-07-01,2026-07-01,0,0,GEO_CODE,100.0,67,0,scan-2026-08-11
+housing__fed_hud_assisted_housing_projects,housing,unresolved,event,BASE TABLE,35601,5479936,0.0,2026-08-05 21:40:52.153263,2026-08-05 21:40:52.153263,0,0,CODE,100.0,29165,0,scan-2026-08-11
+housing__fed_hud_data,housing,unresolved,event,BASE TABLE,77,5120,0.0779,,,0,0,EIN,100.0,1,77,scan-2026-08-11
+housing__fed_hud_fha_sf_portfolio_snapshot,housing,document,noun,BASE TABLE,61647,3759104,0.0,2026-08-07 20:20:01.477991,2026-08-07 20:20:01.477991,0,0,LOAN_RECORD_ID,100.0,60927,0,scan-2026-08-11
+housing__fed_hud_mf_firm_commitments,housing,action,event,BASE TABLE,25557,2021376,0.0,2000-10-02,2026-08-07 20:19:33.409255,0,0,COMMITMENT_RECORD_ID,100.0,25140,0,scan-2026-08-11
+housing__fed_hud_mf_section8_contracts,housing,award,event+noun,BASE TABLE,24309,2427904,0.0,1900-01-02,2056-02-29,0,17283,CONTRACT_RECORD_ID,100.0,24335,0,scan-2026-08-11
+housing__fed_hud_public_housing_authorities,housing,organization,noun,BASE TABLE,3787,1137152,0.0,2025-07-16 22:56:19,2026-08-07 20:20:14.677774,0,0,TRACT_LEVEL_KEY,99.9,3575,0,scan-2026-08-11
+housing__fed_mapping_inequality,housing,crosswalk,link,BASE TABLE,1155,738816,0.0,,,0,0,HOLC_NEIGHBORHOOD_KEY,100.0,1162,0,scan-2026-08-11
+housing__fed_usda_rd_mfh_active_projects,housing,place,noun,BASE TABLE,13550,1100288,0.0,1933-09-28,2098-03-01,36,6692,BORROWER_ID,100.0,12361,0,scan-2026-08-11
+immigration__fed_cbp_encounters,immigration,measurement,event,BASE TABLE,9,2048,0.0,,,0,0,,,,,scan-2026-08-11
+immigration__fed_cms_hospice_enrollments,health,registration,event+noun,BASE TABLE,6066,456192,0.0,1848-05-29,2024-09-14,6,0,NPI,100.0,6174,0,scan-2026-08-11
+immigration__fed_cms_medicare_fee_for_service_public_provider_enrollment,health,registration,event+noun,BASE TABLE,2978925,65861632,0.0,,,0,0,ENRLMT_ID,100.0,2980973,0,scan-2026-08-11
+immigration__fed_dhs_ohss,immigration,filing,event+noun,BASE TABLE,50740,1179648,0.7724,,,0,0,,,,,scan-2026-08-11
+immigration__fed_dhs_yearbook,immigration,unresolved,event,BASE TABLE,27,2048,0.0,,,0,0,,,,,scan-2026-08-11
+immigration__fed_dol_oflc,immigration,unresolved,event,BASE TABLE,664616,105060864,0.0,2012-09-17,2023-12-31,0,0,CASE_NUMBER,100.0,659542,0,scan-2026-08-11
+immigration__fed_eoir_case_data,immigration,case,event+noun,BASE TABLE,12631225,455330816,0.0,,,0,0,CASE_TYPE,100.0,12509568,0,scan-2026-08-11
+immigration__fed_epa_sdwa_sdwa_service_areas,environment,place,noun,BASE TABLE,422464,2725376,0.0,1995-07-22,2026-06-30,0,0,SERVICE_AREA_TYPE_CODE,100.0,28,0,scan-2026-08-11
+immigration__fed_ice_detainers,immigration,unresolved,event,BASE TABLE,609769,26744320,0.0,1919-07-12,56597796-07-20 23:29:38.000,27,609769,DETENTION_FACILITY_CODE,100.0,5269,0,scan-2026-08-11
+immigration__fed_ice_detention_facility_codes,immigration,code,code,BASE TABLE,1490,93184,0.0,,,0,0,DETENTION_FACILITY_CODE,100.0,1470,0,scan-2026-08-11
+immigration__fed_ice_detention_facility_list,immigration,facility,noun,BASE TABLE,163,7168,0.0,,,0,0,FACILITY_TYPE_DETAILED,100.0,5,0,scan-2026-08-11
+immigration__fed_ice_detention_stints,immigration,unresolved,event,BASE TABLE,2571975,315459584,0.0,1919-07-12,2027-02-01,13,0,STINT_ID,99.7,2549968,0,scan-2026-08-11
+immigration__fed_ice_statistics,immigration,aggregate,aggregate,BASE TABLE,221,4096,0.0769,2026-07-02,2026-07-02,0,0,,,,,scan-2026-08-11
+immigration__fed_uscis_data,immigration,unresolved,event,BASE TABLE,3204,55808,0.9448,,,0,0,FORM_NUMBER,100.0,96,2802,scan-2026-08-11
+immigration__xc_owid_refugees,immigration,aggregate,aggregate,BASE TABLE,7442,49152,0.0,,,0,0,CODE,100.0,212,233,scan-2026-08-11
+investigations__intl_leiden_russian_ops_europe,investigations,action,event,BASE TABLE,153,22528,0.0131,,,0,0,,,,,scan-2026-08-11
+investigations__xc_wayback_replay_doj_deep_pages,investigations,document,noun,BASE TABLE,2542,58368,0.0,2026-02-15 14:31:21,2026-06-12 21:09:19.866000,0,0,,,,,scan-2026-08-11
+investigations__xc_wayback_replay_doj_listing,investigations,measurement,event,BASE TABLE,24897,668160,0.0,2025-12-19 21:13:27,2026-06-12 19:23:30.350000,0,0,,,,,scan-2026-08-11
+judiciary__fed_oyez,judiciary,unresolved,event,BASE TABLE,25,29184,0.0,1966-01-17,2026-07-30 12:09:56.922000-07:00,0,0,DOCKET,100.0,25,0,scan-2026-08-11
+justice__county_double_burden,justice,place,noun,BASE TABLE,3029,145408,0.0,,,0,0,FIPS,100.0,3023,0,scan-2026-08-11
+justice__fed_atf_ffl,justice,unresolved,noun,BASE TABLE,77514,7076864,0.0,,,0,0,FFL_NUMBER,100.0,77862,0,scan-2026-08-11
+justice__fed_cisa_kev,justice,unresolved,event,BASE TABLE,1631,237568,0.0,2021-11-03,2026-07-04,0,0,CVE_ID,100.0,1624,0,scan-2026-08-11
+justice__fed_consolidated_screening_list,justice,registry,noun,BASE TABLE,25918,3360768,0.0,1974-11-17,2056-06-29,0,129,ENTRY_ID,100.0,26229,0,scan-2026-08-11
+justice__fed_courtlistener_citations,justice,violation,event,VIEW,18123788,,0.0,2025-09-26,2026-06-30,0,0,ID,100.0,17823992,0,tier-b-2026-08-17
+justice__fed_courtlistener_court_appeals_to,justice,case,event+noun,BASE TABLE,8,1024,0.0,,,0,0,ID,100.0,8,0,tier-b-2026-08-17
+justice__fed_courtlistener_courthouses,justice,unresolved,noun,BASE TABLE,3361,33792,0.0,,,0,0,ID,100.0,3302,0,tier-b-2026-08-17
+justice__fed_courtlistener_courts,justice,unresolved,event,BASE TABLE,3361,147968,0.0,1200-01-01,2026-06-12,2,0,ID,100.0,3361,0,tier-b-2026-08-17
+justice__fed_courtlistener_disclosure_agreements,justice,filing,event+noun,BASE TABLE,10007,447488,0.0,0001-05-01,2642-03-21,6016,11,ID,100.0,10240,0,tier-b-2026-08-17
+justice__fed_courtlistener_disclosure_debts,justice,filing,event+noun,BASE TABLE,18775,460800,0.0,2021-01-03,2025-02-05,0,0,ID,100.0,18877,0,tier-b-2026-08-17
+justice__fed_courtlistener_disclosure_gifts,justice,contribution,event,BASE TABLE,2025,82944,0.0,2021-01-04,2023-08-31,0,0,ID,100.0,2016,0,tier-b-2026-08-17
+justice__fed_courtlistener_disclosure_non_investment_income,justice,filing,event+noun,BASE TABLE,15302,435712,0.0,0001-11-07,2804-02-06,11990,5,ID,100.0,15348,0,tier-b-2026-08-17
+justice__fed_courtlistener_disclosure_positions,justice,ownership,link,BASE TABLE,37050,1234944,0.0,2021-01-03,2023-08-31,0,0,ID,100.0,37987,0,tier-b-2026-08-17
+justice__fed_courtlistener_disclosure_reimbursements,justice,filing,event+noun,BASE TABLE,33472,1424896,0.0,0002-02-11,3201-04-14,599,45,ID,100.0,34410,0,tier-b-2026-08-17
+justice__fed_courtlistener_disclosure_spousal_income,justice,filing,event+noun,BASE TABLE,20174,602624,0.0,0001-01-17,2955-09-13,17059,41,ID,100.0,20667,0,tier-b-2026-08-17
+justice__fed_courtlistener_dockets,justice,case,event+noun,VIEW,71677647,,0.0,1697-03-29,2026-06-30,624,0,ID,100.0,73820922,0,tier-b-2026-08-17
+justice__fed_courtlistener_financial_disclosures,justice,filing,event+noun,BASE TABLE,66287,10224640,0.0,0009-03-24,2024-11-15,2007,0,ID,100.0,65510,8,scan-2026-08-11
+justice__fed_courtlistener_fjc_idb_cl_linked,justice,unresolved,event,BASE TABLE,10323280,304146944,0.0,1901-01-01,2031-01-01,81,0,ID,100.0,10342599,0,tier-b-2026-08-17
+justice__fed_courtlistener_investments,justice,unresolved,event,BASE TABLE,1901599,57653760,0.0,0001-01-03,2025-02-05,57860,0,ID,100.0,1907666,0,scan-2026-08-11
+justice__fed_courtlistener_judge_educations,justice,person,noun,BASE TABLE,12777,183808,0.0,2016-04-20,2023-11-08,0,0,ID,100.0,12762,0,tier-b-2026-08-17
+justice__fed_courtlistener_judge_political_affiliations,justice,membership,link,BASE TABLE,8486,89600,0.0,1798-04-11,2022-08-09,63,0,ID,100.0,8462,0,tier-b-2026-08-17
+justice__fed_courtlistener_judge_races,justice,person,noun,BASE TABLE,6542,47104,0.0,,,0,0,PERSON_ID,100.0,6512,0,tier-b-2026-08-17
+justice__fed_courtlistener_judges,justice,person,noun,BASE TABLE,16191,626176,0.0,0031-01-01,2026-06-24,59,0,ID,100.0,16057,0,scan-2026-08-11
+justice__fed_courtlistener_opinion_clusters,justice,case,event+noun,BASE TABLE,10070727,3549741568,0.0,0019-01-31,2028-04-13,49858,0,ID,100.0,10140045,0,tier-b-2026-08-17
+justice__fed_courtlistener_oral_arguments,justice,unresolved,event,BASE TABLE,102649,997894656,0.0,2014-10-31,2026-06-26,0,0,ID,100.0,103128,0,tier-b-2026-08-17
+justice__fed_courtlistener_originating_court_info,justice,unresolved,event,BASE TABLE,973419,24962048,0.0,1020-06-01,3036-03-30,1,8,ID,100.0,968927,0,tier-b-2026-08-17
+justice__fed_courtlistener_parentheticals,justice,unresolved,link,BASE TABLE,6408887,430906368,0.0,,,0,0,ID,100.0,6315010,0,tier-b-2026-08-17
+justice__fed_courtlistener_positions,justice,ownership,link,BASE TABLE,51290,1220096,0.0,0022-01-01,2916-01-01,1053,113,ID,100.0,51907,0,scan-2026-08-11
+justice__fed_courtlistener_race_codes,justice,code,code,BASE TABLE,8,1024,0.0,,,0,0,ID,100.0,8,0,tier-b-2026-08-17
+justice__fed_courtlistener_schools,justice,organization,noun,BASE TABLE,6011,121344,0.0,2010-06-08,2025-06-16,0,0,ID,100.0,5916,0,tier-b-2026-08-17
+justice__fed_doj_fca_settlements,justice,enforcement,event,BASE TABLE,12,3072,0.0,,,0,0,FCA_SETTLEMENT_ID,100.0,12,0,scan-2026-08-11
+justice__fed_fbi_cde,justice,unresolved,event,BASE TABLE,238680,3548160,0.0,1985-01-01,2026-08-09 19:04:37.430423,0,0,,,,,scan-2026-08-11
+justice__fed_fbi_nics_checks,justice,unresolved,event,BASE TABLE,16445,540672,0.0,,,0,0,PERMIT,100.0,7352,24,scan-2026-08-11
+justice__fed_fhfa_suspended_counterparties,justice,unresolved,event,BASE TABLE,222,13312,0.0,2013-04-15,2033-03-08,0,13,_SOURCE_RUN_ID,100.0,1,0,scan-2026-08-11
+justice__fed_fjc_idb_appellate,justice,unresolved,event,BASE TABLE,988183,57010688,0.0,1900-01-01,2026-03-31,11,0,APPEAL_RECORD_ID,100.0,999560,0,scan-2026-08-11
+justice__fed_fjc_idb_bankruptcy,justice,unresolved,event,BASE TABLE,6965441,639994368,0.0,1923-08-25,2026-04-15,6,0,CASE_SNAPSHOT_ID,100.0,6988276,0,scan-2026-08-11
+justice__fed_fjc_idb_civil,justice,unresolved,event,BASE TABLE,10857396,638298112,0.0,1900-01-01,2045-05-21,23,3,CASE_RECORD_ID,100.0,10734630,0,scan-2026-08-11
+justice__fed_fjc_idb_criminal,justice,unresolved,event,BASE TABLE,6299908,755077120,0.0,1900-01-01,2026-04-21,6731,0,MAGISTRATE_DEFENDANT_NUMBER,100.0,549,0,scan-2026-08-11
+justice__fed_ftc_datasets,justice,dataset,noun,BASE TABLE,1200,61440,0.1633,2021-07-28,2026-07-07,0,0,EIN,100.0,1,1200,scan-2026-08-11
+justice__fed_jpml_pending_mdls,justice,unresolved,link,BASE TABLE,162,10752,0.0,,,0,0,MDL_NO,100.0,162,0,scan-2026-08-11
+justice__fed_ofac_sdn,justice,organization,noun,BASE TABLE,19115,1464320,0.0,2026-06-25 21:55:21.291621,2026-06-25 21:55:21.291621,0,0,ENT_NUM,100.0,19241,0,scan-2026-08-11
+justice__fed_scdb,justice,vote,event,BASE TABLE,83644,4657664,0.0,1944-10-08,2025-06-30,2245,0,VOTE_ID,100.0,80557,0,scan-2026-08-11
+justice__fed_uscourts_stats,justice,aggregate,aggregate,BASE TABLE,50,5120,0.0,,,0,0,TABLE_NUMBER,100.0,32,16,scan-2026-08-11
+justice__intl_austlii,justice,unresolved,event,BASE TABLE,1,1536,0.0,,,0,0,,,,,scan-2026-08-11
+justice__intl_eu_sanctions,justice,unresolved,event,BASE TABLE,42347,3458048,0.0,1925-01-25,2026-05-06,102,0,NAAL_LOGICAL_ID,100.0,30188,12105,scan-2026-08-11
+justice__intl_eu_socta_europol,justice,unresolved,event,BASE TABLE,26,3584,0.0,2025-03-18,2025-05-27,0,0,SERIAL_NUMBER,100.0,1,0,scan-2026-08-11
+justice__intl_eurlex_cellar,justice,unresolved,event,BASE TABLE,53,3072,0.0,1987-01-28,2026-03-26,0,0,CELEX_ID,100.0,13,0,scan-2026-08-11
+justice__intl_hudoc,justice,unresolved,event,BASE TABLE,2000,356352,0.0,,,0,0,CASE_ID,100.0,2008,0,scan-2026-08-11
+justice__intl_nti_cns_dprk_missile_tests,justice,measurement,event,BASE TABLE,303,75776,0.0,2016-12-23,2024-11-18,0,0,FACILITY_LONGITUDE,94.7,47,0,scan-2026-08-11
+justice__intl_opensanctions,justice,unresolved,event,BASE TABLE,71011,20158464,0.0,1921-05-06,2022-06-08,628,0,ID,100.0,71290,0,scan-2026-08-11
+justice__intl_opensanctions_default,justice,unresolved,event,BASE TABLE,1281846,87321088,0.0,2018-03-08 00:00:00.000,56596957-10-21 08:27:05.000,0,1281846,ID,100.0,1260702,0,scan-2026-08-11
+justice__intl_ucdp_ged,justice,unresolved,event,BASE TABLE,385918,39771648,0.0,1970-01-01,2055-12-31,385918,13,ID,100.0,388062,0,scan-2026-08-11
+justice__racial_jail_disparity,justice,unresolved,event,BASE TABLE,128507,7929344,0.0,2026-06-28 03:21:23.476104,2026-06-28 03:21:23.476104,0,0,COUNTY_YEAR_KEY,100.0,126816,0,scan-2026-08-11
+justice__state_mo_sex_offender_registry,justice,registry,noun,BASE TABLE,28185,1043968,0.0,1926-04-17,2026-08-06 04:51:21.325086,771,0,ZIP,84.2,1048,0,scan-2026-08-11
+justice__xc_mapping_police_violence,justice,crosswalk,link,BASE TABLE,15476,6150656,0.0,2013-01-01,2026-07-22,0,0,MPV_ID,100.0,15453,0,scan-2026-08-11
+justice__xc_nagix_dprk_missile_tests,justice,measurement,event,BASE TABLE,340,56832,0.0,,,0,0,FACILITY,100.0,56,1,scan-2026-08-11
+justice__xc_owid_homicide,justice,aggregate,aggregate,BASE TABLE,4912,60416,0.0,,,0,0,CODE,100.0,209,513,scan-2026-08-11
+justice__xc_owid_nuclear_warheads,justice,aggregate,aggregate,BASE TABLE,902,5120,0.0,,,0,0,NUMBER_OF_NUCLEAR_WARHEADS,100.0,353,0,scan-2026-08-11
+justice__xc_owid_terrorism_deaths,justice,aggregate,aggregate,BASE TABLE,10481,50176,0.0,,,0,0,CODE,100.0,204,912,scan-2026-08-11
+justice__xc_ransomwarelive_victims,justice,unresolved,noun,BASE TABLE,30661,6105088,0.0,,,0,0,,,,,scan-2026-08-11
+justice__xc_uk_sanctions_list,justice,registry,noun,BASE TABLE,33828,8053760,0.0021,2000-04-12,2026-08-05 21:29:47.929,0,0,DESIGNATION_ID,100.0,6236,0,scan-2026-08-11
+justice__xc_un_consolidated_sanctions_list,justice,organization,noun,BASE TABLE,1011,234496,0.0,2000-04-12,2026-07-22,0,0,REFERENCE_NUMBER,100.0,1033,0,scan-2026-08-11
+justice__xc_vera_incarceration_trends,justice,measurement,event,BASE TABLE,128507,21052928,0.0,,,0,0,COUNTY_FIPS,100.0,3069,0,scan-2026-08-11
+justice__xc_wapo_fatal_force,justice,measurement,event,BASE TABLE,10430,522240,0.0,2015-01-02,2024-12-31,0,0,ID,100.0,10418,0,scan-2026-08-11
+labor__fed_dol_ebsa_form5500_schedule_sb,labor,filing,event+noun,BASE TABLE,41802,6173184,0.0,1956-09-26,2055-09-17,0,1,ACK_ID,100.0,42579,0,scan-2026-08-11
+labor__fed_dol_olms,labor,asset,noun,BASE TABLE,617710,54657536,0.0,0003-11-08,9999-01-01,589063,28,RPT_ID,100.0,618041,0,scan-2026-08-11
+labor__fed_msha_accidents,labor,accident,event,BASE TABLE,273623,47636992,0.0,2000-01-01,2026-07-24 00:47:40,0,0,DOCUMENT_NO,100.0,280216,0,scan-2026-08-11
+labor__fed_msha_mines,labor,facility,noun,BASE TABLE,91906,5895168,0.0,1925-01-01,2026-07-24 00:48:11,100,0,MINE_ID,100.0,92336,0,scan-2026-08-11
+labor__fed_msha_violations,labor,violation,event,BASE TABLE,3087265,73170432,0.0,1994-09-09,2026-07-24 00:46:22,0,0,VIOLATION_NO,100.0,3040111,0,scan-2026-08-11
+labor__fed_osha_ita_300a_summary_2023,labor,aggregate,aggregate,BASE TABLE,394234,23847936,0.0,2024-01-01 00:00:00,2024-12-31 00:00:00,0,0,ID,100.0,389584,0,scan-2026-08-11
+labor__fed_osha_ita_300a_summary_2024,labor,aggregate,aggregate,BASE TABLE,398620,23817216,0.0,2025-01-01 00:00:00,2025-12-31 00:00:00,0,0,ID,100.0,409554,0,scan-2026-08-11
+labor__fed_osha_ita_300a_summary_2025,labor,aggregate,aggregate,BASE TABLE,383283,27268096,0.0,2026-01-01 00:00:00,2026-03-15 00:00:00,0,0,ID,100.0,390557,0,scan-2026-08-11
+labor__fed_osha_ita_case_detail_2023,labor,case,event+noun,BASE TABLE,890934,144099840,0.0,2022-02-26,2024-12-12,0,0,ID,100.0,891476,0,scan-2026-08-11
+labor__fed_osha_ita_case_detail_2024,labor,case,event+noun,BASE TABLE,688649,109102592,0.0,,,0,0,ID,100.0,674498,0,scan-2026-08-11
+labor__fed_osha_ita_case_detail_2025,labor,case,event+noun,BASE TABLE,330447,77483520,0.0,2024-01-01,2025-12-31,0,0,ID,100.0,328253,0,scan-2026-08-11
+labor__fed_pbgc_trusteed_plans,labor,case,event+noun,BASE TABLE,5176,299520,0.0,1972-04-01,2026-08-06 04:52:42.871859,0,0,CASE_NUMBER,100.0,5177,0,scan-2026-08-11
+lead_queue,review,unresolved,event,BASE TABLE,17306,24957952,0.0,1995-12-20,2026-08-05 21:08:43.619000,0,0,LEAD_ID,100.0,17277,0,scan-2026-08-11
+legal_enforcement__fed_naag_multistate_settlements,legal_enforcement,action,event,BASE TABLE,882,2048,0.0,,,0,0,ID,100.0,881,0,scan-2026-08-11
+maritime__fed_noaa_ais,maritime,unresolved,event,BASE TABLE,58104610,2474664448,0.0,2024-01-01,2026-06-28 17:54:17.037886,0,0,MMSI,100.0,22307,0,scan-2026-08-11
+money__debt_repayment_cliff,money_finance,unresolved,event,BASE TABLE,938,83968,0.0,,,0,0,COUNTRY_YEAR_ID,100.0,925,0,scan-2026-08-11
+open_data__intl_ar_datosgob,open_data,unresolved,event,BASE TABLE,3556,320512,0.0014,,,0,0,DATASET_ID,100.0,500,224,scan-2026-08-11
+open_data__intl_br_dados_gov,open_data,unresolved,event,BASE TABLE,10,4096,0.0,,,0,0,DATASET_ID,100.0,10,0,scan-2026-08-11
+open_data__intl_ca_open_canada,open_data,unresolved,event,BASE TABLE,500,1334272,0.0,,,0,0,DATASET_ID,100.0,490,0,scan-2026-08-11
+open_data__intl_ch_opendataswiss,open_data,unresolved,event,BASE TABLE,5000,10811904,0.0,,,0,0,ID,100.0,5137,0,scan-2026-08-11
+open_data__intl_cl_datosgob,open_data,unresolved,event,BASE TABLE,1000,488448,0.0,,,0,0,DATASET_ID,100.0,984,0,scan-2026-08-11
+open_data__intl_de_govdata,open_data,unresolved,event,BASE TABLE,5000,5347840,0.0,,,0,0,DATASET_ID,100.0,5080,0,scan-2026-08-11
+open_data__intl_es_datosgob,open_data,unresolved,event,BASE TABLE,1000,288768,0.0,,,0,0,LICENSE,100.0,41,899,scan-2026-08-11
+open_data__intl_fr_data_gouv,open_data,dataset,noun,BASE TABLE,130431,57822720,0.0,0001-01-01,9999-12-31,68,583,DATASET_ID,100.0,128856,0,scan-2026-08-11
+open_data__intl_ge_datagov,open_data,unresolved,event,BASE TABLE,1,1536,0.0,,,0,0,OGP_COMMITMENT_ID,100.0,1,0,scan-2026-08-11
+open_data__intl_gh_datagovgh,open_data,unresolved,event,BASE TABLE,10,2048,0.0,,,0,0,LICENSE,100.0,1,10,scan-2026-08-11
+open_data__intl_gr_datagov,open_data,unresolved,event,BASE TABLE,4988,3088384,0.0,,,0,0,DATASET_ID,100.0,5016,0,scan-2026-08-11
+open_data__xc_wayback_doj_epstein,open_data,measurement,event,BASE TABLE,1537352,44339200,0.0,2025-12-19 21:13:27,2026-06-12 04:46:01.295000,0,0,STATUS_CODE,100.0,7,0,scan-2026-08-11
+politics__bill_cosponsors,politics,unresolved,event,BASE TABLE,367735,2682880,0.0,2023-01-09,2026-06-25,0,0,BILL_NUMBER,100.0,10097,0,scan-2026-08-11
+politics__bills,politics,unresolved,event,BASE TABLE,36465,2753536,0.0,2023-01-03,2026-06-26,0,0,BILL_NUMBER,100.0,10554,0,scan-2026-08-11
+politics__ca_lobby_amendments,politics_lobbying,filing,event+noun,BASE TABLE,25249,887808,0.0,0107-10-31,5201-11-18,0,15,FILING_ID,100.0,4826,0,scan-2026-08-11
+politics__ca_lobby_chg_log,politics_lobbying,change,event,BASE TABLE,85765,3935232,0.0,0001-04-30,7002-02-28,0,8,FILER_ID,100.0,21522,0,scan-2026-08-11
+politics__ca_lobby_contributions,politics_lobbying,contribution,event,BASE TABLE,6505,108032,0.0186,0200-06-30,2031-03-01,0,0,FILER_ID,100.0,596,0,scan-2026-08-11
+politics__ca_lobby_cover,politics_lobbying,filing,event+noun,BASE TABLE,524828,44382720,0.0,0001-07-01 00:00:00,8201-04-01 00:00:00,0,219,FILING_ID,100.0,511102,0,scan-2026-08-11
+politics__ca_lobby_cover2,politics_lobbying,filing,event+noun,BASE TABLE,206493,4502528,0.0,2026-08-05 21:36:55.640576,2026-08-05 21:36:55.640576,0,0,FILING_ID,100.0,84326,0,scan-2026-08-11
+politics__ca_lobby_emp_lobbyist,politics_lobbying,role,link,BASE TABLE,1500,35840,0.0,2026-08-05 21:37:44.838665,2026-08-05 21:37:44.838665,0,0,LOBBYIST_ID,100.0,668,0,scan-2026-08-11
+politics__ca_lobby_employer,politics_lobbying,organization,noun,BASE TABLE,1730,83456,0.0023,2026-08-05 21:37:33.809408,2026-08-05 21:37:33.809408,0,0,EMPLOYER_ID,100.0,1730,0,scan-2026-08-11
+politics__ca_lobby_employer_firms,politics_lobbying,role,link,BASE TABLE,524,9728,0.0,2026-08-05 21:37:40.163961,2026-08-05 21:37:40.163961,0,0,EMPLOYER_ID,100.0,176,0,scan-2026-08-11
+politics__ca_lobby_firm,politics_lobbying,organization,noun,BASE TABLE,256,13312,0.0,2026-08-05 21:37:49.624240,2026-08-05 21:37:49.624240,0,0,FIRM_ID,100.0,253,0,scan-2026-08-11
+politics__ca_lobby_firm_employer,politics_lobbying,role,link,BASE TABLE,170,13312,0.0,2001-04-01,2026-08-05 21:37:55.142453,0,0,FILING_ID,100.0,24,0,scan-2026-08-11
+politics__ca_lobby_firm_lobbyist,politics_lobbying,role,link,BASE TABLE,577,20480,0.0,2026-08-05 21:38:00.679767,2026-08-05 21:38:00.679767,0,0,LOBBYIST_ID,100.0,572,0,scan-2026-08-11
+politics__fec_cand_cmte_link,politics,contribution,event,BASE TABLE,16229,227840,0.0,,,0,0,LINKAGE_ID,100.0,16352,0,scan-2026-08-11
+politics__fec_candidate,politics,person,noun,BASE TABLE,17900,403968,0.0,,,0,0,CAND_ID,100.0,13606,0,scan-2026-08-11
+politics__fec_candidate_summary,politics,aggregate,aggregate,BASE TABLE,7933,411136,0.0,,,0,0,CAND_ID,100.0,5822,0,scan-2026-08-11
+politics__fed_congress_committee_membership,politics,person,noun,BASE TABLE,3879,67072,0.0,,,0,0,BIOGUIDE,100.0,533,0,scan-2026-08-11
+politics__fed_congress_legislators,politics,person,noun,BASE TABLE,12847,929280,0.0,,,0,0,GOOGLE_ENTITY_ID,100.0,12933,154,scan-2026-08-11
+politics__fed_doj_epstein_library,politics,document,noun,BASE TABLE,777,23552,0.0,2026-06-11 16:52:19,2026-06-11 16:52:44.500000,0,0,,,,,scan-2026-08-11
+politics__fed_eac_eavs,politics,unresolved,noun,BASE TABLE,6460,2204160,0.0,,,0,0,,,,,scan-2026-08-11
+politics__fed_fcc_licensing,politics,unresolved,event,BASE TABLE,1689338,89560576,0.0,1917-07-11,2036-09-24,0,373860,UNIQUE_SYSTEM_IDENTIFIER,100.0,1693765,0,scan-2026-08-11
+politics__fed_fec_api,politics_lobbying,contribution,event,BASE TABLE,500,23552,0.0,,,0,0,TRANSACTION_ID,100.0,504,1,scan-2026-08-11
+politics__fed_fec_pac_summary,politics,aggregate,aggregate,BASE TABLE,45709,2991104,0.0,2017-01-01,2026-07-24 02:13:26,0,0,CMTE_ID,100.0,22819,0,scan-2026-08-11
+politics__fed_fjc_judges,politics,person,noun,BASE TABLE,4067,1207296,0.0,1794-06-09,2025-07-24,10,0,SEAT_ID_1,100.0,3987,3,scan-2026-08-11
+politics__fed_fjc_service,politics,role,link,BASE TABLE,4766,313344,0.0,1789-09-24,2026-06-27,365,0,SEAT_ID,100.0,4682,3,scan-2026-08-11
+politics__fed_medsl_house_returns,politics,role,link,BASE TABLE,29636,710144,0.0,,,0,0,STATE_FIPS,100.0,50,0,scan-2026-08-11
+politics__fed_medsl_president_returns,politics,role,link,BASE TABLE,3740,71680,0.0,,,0,0,STATE_FIPS,100.0,51,0,scan-2026-08-11
+politics__fed_medsl_senate_returns,politics,role,link,BASE TABLE,3945,112128,0.0,,,0,0,STATE_FIPS,100.0,50,0,scan-2026-08-11
+politics__fed_voteview_members,politics,person,noun,BASE TABLE,51061,2270720,0.0,,,0,0,BIOGUIDE_ID,100.0,12633,68,scan-2026-08-11
+politics__fed_voteview_rollcall_meta,politics,vote,event,BASE TABLE,113512,211968,0.0,,,0,0,BILL_NUMBER,78.9,16295,0,scan-2026-08-11
+politics__intl_elections_canada_contributions,politics_lobbying,contribution,event,BASE TABLE,12646465,621302784,0.0,0025-04-07,4002-06-15,2,77,CONTRIBUTION_RECORD_ID,100.0,12349006,0,scan-2026-08-11
+politics__intl_freedomhouse,politics,aggregate,aggregate,BASE TABLE,2723,60928,0.0,,,0,0,,,,,scan-2026-08-11
+politics__intl_owid_milspend,politics,aggregate,aggregate,BASE TABLE,9112,100864,0.0,,,0,0,CODE,100.0,169,644,scan-2026-08-11
+politics__intl_voeten_unga_votes,politics,vote,event,BASE TABLE,1823352,21147648,0.0,,,0,0,,,,,scan-2026-08-11
+politics__irs527_8871_orgs,politics_lobbying,unresolved,event,BASE TABLE,77591,12285440,0.0,1808-01-01,2026-07-24 20:46:44,34,0,FORM_ID_NUMBER,100.0,77834,0,scan-2026-08-11
+politics__irs527_8872_reports,politics_lobbying,filing,event+noun,BASE TABLE,55579,6962688,0.0,1869-09-01,2026-08-05 21:45:35.236922,123,0,FORM_ID_NUMBER,100.0,55630,0,scan-2026-08-11
+politics__irs527_directors_officers,politics_lobbying,person,noun,BASE TABLE,189593,6021632,0.0,2026-08-05 21:45:02.628518,2026-08-05 21:45:02.628518,0,0,DIRECTOR_ID,100.0,193081,0,scan-2026-08-11
+politics__irs527_eain,politics_lobbying,unresolved,link,BASE TABLE,17853,278528,0.0,2026-08-05 21:45:29.519383,2026-08-05 21:45:29.519383,0,0,EAIN_ID,100.0,17705,0,scan-2026-08-11
+politics__irs527_related_entities,politics_lobbying,organization,noun,BASE TABLE,64835,2353664,0.0,2026-08-05 21:45:20.501427,2026-08-05 21:45:20.501427,0,0,ENTITY_ID,100.0,63823,0,scan-2026-08-11
+politics__member_bill_record,politics,membership,link,BASE TABLE,1104,31232,0.0,,,0,0,BIOGUIDE,100.0,637,0,scan-2026-08-11
+politics__member_crosswalk,politics,membership,link,BASE TABLE,12794,992256,0.0,,,0,0,GOOGLE_ENTITY_ID,99.2,12933,0,scan-2026-08-11
+politics__member_fec_id,politics,contribution,event,BASE TABLE,1715,49664,0.0,,,0,0,FEC_ID,100.0,1739,0,scan-2026-08-11
+politics__member_money_raised,politics,membership,link,BASE TABLE,1050,44032,0.0,,,0,0,BIOGUIDE,100.0,539,0,scan-2026-08-11
+politics__member_spine,politics,membership,link,BASE TABLE,12794,491520,0.0,,,0,0,MEMBER_KEY,100.0,12863,0,scan-2026-08-11
+politics__member_voting_record,politics,membership,link,BASE TABLE,1105,40960,0.0,,,0,0,BIOGUIDE,100.0,637,0,scan-2026-08-11
+politics__st_cannabis_policy_bundles,politics,program,noun,BASE TABLE,1500,49152,0.0,,,0,0,FIPS,100.0,50,0,scan-2026-08-11
+politics__st_nyc_cfb_campaign_2001_contribution,politics_lobbying,contribution,event,BASE TABLE,193741,18660864,0.0,2026-08-08 01:53:18.818276,2026-08-08 01:53:18.818276,0,0,CONTRIBUTION_RECORD_ID,100.0,194505,0,scan-2026-08-11
+politics__st_nyc_cfb_campaign_2009_contribution,politics_lobbying,contribution,event,BASE TABLE,146112,7235584,0.0,2000-05-02,2026-08-08 01:53:18.818276,0,0,ZIP,98.9,3652,1,scan-2026-08-11
+politics__st_nyc_cfb_campaign_2013_contribution,politics_lobbying,contribution,event,BASE TABLE,197968,10192384,0.0,1913-06-13,2026-08-08 01:53:18.818276,0,0,REFERENCE_NUMBER,100.0,35041,0,scan-2026-08-11
+politics__st_nyc_cfb_campaign_2021_contributions,politics_lobbying,contribution,event,BASE TABLE,457521,23267840,0.0,2011-03-11,2026-08-08 01:53:18.818276,0,0,CONTRIBUTION_RECORD_ID,100.0,464005,0,scan-2026-08-11
+politics__st_nyc_cfb_campaign_2025_contributions,politics_lobbying,contribution,event,BASE TABLE,259537,13537280,0.0,2014-07-31,2026-08-08 01:53:18.818276,0,0,CONTRIBUTION_RECORD_ID,100.0,260168,0,scan-2026-08-11
+politics__tx_lobby_awards,politics_lobbying,action,event,BASE TABLE,1589,84480,0.0,2005-01-01,2026-08-05 21:32:04.493602,0,0,ACTIVITY_ID,100.0,1620,0,scan-2026-08-11
+politics__tx_lobby_cover,politics_lobbying,filing,event+noun,BASE TABLE,283803,11688960,0.0,0205-02-28,2027-04-12,0,0,,,,,scan-2026-08-11
+politics__tx_lobby_dockets,politics_lobbying,case,event+noun,BASE TABLE,1207,44544,0.0,2001-05-01,2027-01-11,0,0,DOCKET_ID,100.0,1192,0,scan-2026-08-11
+politics__tx_lobby_entertainment,politics_lobbying,action,event,BASE TABLE,2836,141824,0.0,2005-01-01,2026-08-05 21:31:50.401780,0,0,ACTIVITY_ID,100.0,2871,0,scan-2026-08-11
+politics__tx_lobby_events,politics_lobbying,action,event,BASE TABLE,3107,137216,0.0,2005-01-01,2026-08-05 21:32:13.908658,0,0,ACTIVITY_ID,100.0,3124,0,scan-2026-08-11
+politics__tx_lobby_food_beverage,politics_lobbying,action,event,BASE TABLE,14452,680960,0.0,2004-01-01,2026-08-05 21:31:41.497811,0,0,ACTIVITY_ID,100.0,15088,0,scan-2026-08-11
+politics__tx_lobby_gifts,politics_lobbying,action,event,BASE TABLE,4084,186368,0.0,2004-01-01,2026-08-05 21:31:56.893722,0,0,ACTIVITY_ID,100.0,4071,0,scan-2026-08-11
+politics__tx_lobby_individual_reporting,politics_lobbying,payment,event,BASE TABLE,38662,1627136,0.0,2000-07-01,2027-01-11,0,0,ON_BEHALF_ID,100.0,39794,0,scan-2026-08-11
+politics__tx_lobby_subject_matter,politics_lobbying,case,event+noun,BASE TABLE,209957,3171328,0.0,1999-08-01,2027-04-12,0,0,SUBJECT_MATTER_ID,100.0,216261,0,scan-2026-08-11
+politics__tx_lobby_transportation,politics_lobbying,role,link,BASE TABLE,3697,240640,0.0,2000-02-06,2028-06-26,0,0,TRAVEL_ID,100.0,3756,0,scan-2026-08-11
+politics__voteview_rollcalls,politics,vote,event,BASE TABLE,3364,155136,0.0,2023-01-03,2026-06-25,0,0,BILL_NUMBER,98.8,1378,0,scan-2026-08-11
+politics__voteview_votes,politics,vote,event,BASE TABLE,945523,3235328,0.0,,,0,0,CAST_CODE,100.0,4,0,scan-2026-08-11
+politics__xc_jcs_coa,politics,UNMAPPED,unclassified,BASE TABLE,705,17920,0.0,,,0,0,,,,,scan-2026-08-11
+politics__xc_jcs_medians,politics,unresolved,event,BASE TABLE,102,12800,0.0,,,0,0,,,,,scan-2026-08-11
+politics__xc_jcs_scotus,politics,unresolved,event,BASE TABLE,782,15872,0.0,,,0,0,,,,,scan-2026-08-11
+politics__xc_owid_cpi,politics,aggregate,aggregate,BASE TABLE,2312,12800,0.0,,,0,0,CODE,100.0,183,0,scan-2026-08-11
+procurement__fed_sam_exclusions,procurement,enforcement,event,BASE TABLE,167928,12082688,0.0,1908-04-20,2227-07-21,0,1690,SAM_NUMBER,100.0,168438,0,scan-2026-08-11
+procurement__fed_usaspending_bulk,procurement,award,event+noun,BASE TABLE,49613,27323392,0.0,,,0,0,CONTRACT_AWARD_UNIQUE_KEY,100.0,49019,0,scan-2026-08-11
+procurement__fed_usaspending_subawards,procurement,award,event+noun,BASE TABLE,5000,586752,0.0,2008-08-01,2026-06-10 16:00:23.716000,0,0,SUBAWARD_ID,100.0,5046,0,scan-2026-08-11
+procurement__intl_ec_sercop,procurement,unresolved,event,BASE TABLE,132995,30088704,0.0,2023-12-20,2026-12-17,0,0,TENDER_ID,100.0,129530,3835,scan-2026-08-11
+ref__dim_geography,reference,code,code,BASE TABLE,6988,255488,0.0,,,0,0,FIPS_CODE,100.0,7055,0,scan-2026-08-11
+ref__dim_state,reference,place,noun,BASE TABLE,56,2560,0.0,,,0,0,STATE_FIPS,100.0,56,0,scan-2026-08-11
+reference__fed_dhs_hifld,reference,unresolved,event,BASE TABLE,500,7680,0.0,2014-06-12,2026-07-02 15:24:12.681013,0,0,_SOURCE_RUN_ID,100.0,1,0,scan-2026-08-11
+reference__fed_itis_comments,reference,post,event,BASE TABLE,70524,3718144,0.0,1996-06-13 14:51:08,2026-08-08 04:44:10.570840,0,0,COMMENT_ID,100.0,70073,0,scan-2026-08-11
+reference__fed_itis_experts,reference,person,noun,BASE TABLE,197,15872,0.0,1998-04-28,2026-08-08 04:44:10.570840,0,0,EXPERT_ID,100.0,200,0,scan-2026-08-11
+reference__fed_itis_geographic_div,reference,code,code,BASE TABLE,480351,3161600,0.0,1900-01-01,2026-08-08 04:44:10.570840,0,0,ITIS_GEOGRAPHIC_DIV_KEY,100.0,482287,0,scan-2026-08-11
+reference__fed_itis_hierarchy,reference,code,code,BASE TABLE,678363,4715520,0.0,2026-08-08 04:44:10.570840,2026-08-08 04:44:10.570840,0,0,_SOURCE_RUN_ID,100.0,1,0,scan-2026-08-11
+reference__fed_itis_jurisdiction,reference,code,code,BASE TABLE,161922,2649600,0.0,1997-10-27,2026-08-08 04:44:10.570840,0,0,ITIS_JURISDICTION_KEY,100.0,162452,0,scan-2026-08-11
+reference__fed_itis_kingdoms,reference,unresolved,link,BASE TABLE,7,1536,0.0,1996-03-26,2026-08-08 04:44:10.570840,0,0,KINGDOM_ID,100.0,7,0,scan-2026-08-11
+reference__fed_itis_longnames,reference,code,code,BASE TABLE,993346,6872576,0.0,2026-08-08 04:44:10.570840,2026-08-08 04:44:10.570840,0,0,_SOURCE_RUN_ID,100.0,1,0,scan-2026-08-11
+reference__fed_itis_nodc_ids,reference,unresolved,link,BASE TABLE,209565,3588096,0.0,1996-06-24,2026-08-08 04:44:10.570840,0,0,ITIS_NODC_IDS_KEY,100.0,204481,0,scan-2026-08-11
+reference__fed_itis_other_sources,reference,unresolved,event,BASE TABLE,1071,82432,0.0,1996-01-01,2026-08-08 04:44:10.570840,0,0,ITIS_OTHER_SOURCES_KEY,100.0,1085,0,scan-2026-08-11
+reference__fed_itis_publications,reference,dataset,noun,BASE TABLE,30772,3504640,0.0,1753-01-01,2026-08-08 04:44:10.570840,255,0,PUBLICATION_ID,100.0,30649,0,scan-2026-08-11
+reference__fed_itis_reference_links,reference,code,code,BASE TABLE,1970107,13251584,0.0,1996-11-12,2026-08-08 04:44:10.570840,0,0,ITIS_REFERENCE_LINKS_KEY,100.0,1945795,0,scan-2026-08-11
+reference__fed_itis_strippedauthor,reference,code,code,BASE TABLE,214445,3461632,0.0,2026-08-08 04:44:10.570840,2026-08-08 04:44:10.570840,0,0,TAXON_AUTHOR_ID,100.0,215714,0,scan-2026-08-11
+reference__fed_itis_synonym_links,reference,code,code,BASE TABLE,315254,2706944,0.0,1996-06-24,2026-08-08 04:44:10.570840,0,0,ITIS_SYNONYM_LINKS_KEY,100.0,321337,0,scan-2026-08-11
+reference__fed_itis_taxon_authors_lkp,reference,code,code,BASE TABLE,214445,3643904,0.0,1996-06-13,2026-08-08 04:44:10.570840,0,0,TAXON_AUTHOR_ID,100.0,215714,0,scan-2026-08-11
+reference__fed_itis_taxon_unit_types,reference,code,code,BASE TABLE,182,4608,0.0,1996-06-13,2026-08-08 04:44:10.570840,0,0,ITIS_TAXON_UNIT_TYPES_KEY,100.0,180,0,scan-2026-08-11
+reference__fed_itis_taxonomic_units,reference,code,code,BASE TABLE,993346,23761920,0.0,1996-06-13 14:51:08,2026-08-08 04:44:10.570840,0,0,TAXON_AUTHOR_ID,100.0,212527,0,scan-2026-08-11
+reference__fed_itis_tu_comments_links,reference,code,code,BASE TABLE,192851,3153920,0.0,1996-06-17,2026-08-08 04:44:10.570840,0,0,ITIS_TU_COMMENTS_LINKS_KEY,100.0,189232,0,scan-2026-08-11
+reference__fed_itis_vern_ref_links,reference,code,code,BASE TABLE,93078,1887744,0.0,1900-01-01,2026-08-08 04:44:10.570840,0,0,ITIS_VERN_REF_LINKS_KEY,100.0,95994,0,scan-2026-08-11
+reference__fed_itis_vernaculars,reference,code,code,BASE TABLE,166778,4636160,0.0,1997-08-20,2026-08-08 04:44:10.570840,0,0,ITIS_VERNACULARS_KEY,100.0,168355,0,scan-2026-08-11
+reference__fed_usgs_gnis_all_names,reference,unresolved,event,BASE TABLE,1249624,35739136,0.0,1700-12-31,2026-06-29,225,0,FEATURE_ID,100.0,984171,0,scan-2026-08-11
+reference__fed_usgs_topoview,reference,unresolved,noun,BASE TABLE,250,20480,0.0,2018-02-18,2025-09-22,0,0,FIPS,100.0,1,250,scan-2026-08-11
+reference__intl_eg_capmas,reference,unresolved,event,BASE TABLE,150,2048,0.6533,,,0,0,,,,,scan-2026-08-11
+reference__intl_eurostat,reference,unresolved,event,BASE TABLE,450,5120,0.0,,,0,0,RAW_XML_SERIES_KEY,100.0,130,0,scan-2026-08-11
+reference__intl_gdelt,reference,unresolved,event,BASE TABLE,1015,118784,0.0,,,0,0,,,,,scan-2026-08-11
+reference__xc_crossref_funder_registry,reference,organization,noun,BASE TABLE,45661,1310208,0.0,2026-08-07 20:23:56.685612,2026-08-07 20:23:56.685612,0,0,_SOURCE_RUN_ID,100.0,1,0,scan-2026-08-11
+reference__xc_owid_fertility,reference,aggregate,aggregate,BASE TABLE,19402,145920,0.0,,,0,0,CODE,100.0,257,387,scan-2026-08-11
+reference__xc_ror_research_organizations,reference,organization,noun,BASE TABLE,135710,23610368,0.0,2018-11-14,2026-08-07 20:22:52.794000,0,0,ROR_ID,100.0,133104,0,scan-2026-08-11
+regulatory__fed_federal_register_documents,regulatory,document,noun,BASE TABLE,94731,50903040,0.0,2010-12-14,2033-03-07,0,1,DOCUMENT_NUMBER,100.0,92577,0,scan-2026-08-11
+science__fed_nasa_open_data,science,unresolved,event,BASE TABLE,54,28160,0.0,1998-05-02,2026-07-02,0,0,,,,,scan-2026-08-11
+science__fed_nsf_awards,science,award,event+noun,BASE TABLE,125,152064,0.08,2026-01-16,2031-12-31,0,17,AWARD_ID,100.0,116,0,scan-2026-08-11
+science__fed_usgs_earthquakes,science,action,event,BASE TABLE,443274,31137280,0.0,2013-02-27,2026-06-28,0,0,ID,100.0,447702,0,scan-2026-08-11
+science__intl_embl_ensembl,science,unresolved,event,BASE TABLE,643,26624,0.0,,,0,0,PRIMARY_ACCESSION,100.0,645,0,scan-2026-08-11
+science__xc_owid_ai_incidents_annual,science,accident,event,BASE TABLE,14,1024,0.0,,,0,0,CODE,100.0,1,0,scan-2026-08-11
+science_research__fed_nih_reporter,science_research,unresolved,event,BASE TABLE,2122611,3298033152,0.0,1899-12-31,56608739-01-16 20:56:48.000,19,2123056,APPL_ID,100.0,2124919,0,scan-2026-08-11
+science_research__fed_retraction_watch,science_research,recall,event+noun,BASE TABLE,71591,19378688,0.003,1753-01-01,2026-08-05 21:24:40.302602,15,0,RECORD_ID,99.7,71365,0,scan-2026-08-11
+science_research__fed_sbir_sttr_awards,science_research,award,event+noun,BASE TABLE,219503,46063616,0.0,0001-01-01,5025-05-05,0,3,AWARD_RECORD_ID,100.0,216233,0,scan-2026-08-11
+science_research__xc_biorxiv_medrxiv,science_research,unresolved,event,BASE TABLE,432,545280,0.0,2021-06-18,2026-06-01,0,0,LICENSE,100.0,6,372,scan-2026-08-11
+science_research__xc_osf_registrations,science_research,registration,event+noun,BASE TABLE,10,13312,0.0,2025-12-12 14:24:31.802432,2029-01-01 00:00:00,0,0,ORIGINAL_RESPONSE_ID,100.0,10,0,scan-2026-08-11
+science_research__xc_retraction_watch_database,science_research,recall,event+noun,BASE TABLE,71388,24026112,0.0,1753-01-01,2026-08-07 20:23:37.787286,15,0,RECORD_ID,100.0,71411,0,scan-2026-08-11
+transport__fed_dot_bts,transport,unresolved,event,BASE TABLE,21,5632,0.0,,,0,0,CARRIER_CODE,100.0,1,21,scan-2026-08-11
+transport__fed_faa_aircraft_registry,transport,asset,noun,BASE TABLE,315447,16759808,0.0,1920-12-09,2033-08-31,2408,64406,UNIQUE_ID,100.0,318123,0,scan-2026-08-11
+transport__fed_faa_data_portal,transport,unresolved,event,BASE TABLE,4,1536,0.25,,,0,0,FIPS,100.0,1,4,scan-2026-08-11
+transport__fed_faa_registry,transport,registry,noun,BASE TABLE,314417,15255040,0.0,1970-08-11,1970-08-24,1199875,0,UNIQUE_ID,100.0,316433,0,scan-2026-08-11
+transport__fed_fra_casualties,transport,unresolved,event,BASE TABLE,1150788,68523008,0.0,1997-01-01,2026-08-09 18:22:06.422939,0,0,REPORT_KEY,100.0,1174312,0,scan-2026-08-11
+transport__fed_fra_crossing_incidents,transport,accident,event,BASE TABLE,251149,27314688,0.0,1975-01-01,2026-08-09 18:26:38.946552,0,0,REPORT_KEY,100.0,247587,0,scan-2026-08-11
+transport__fed_fra_equipment_accidents,transport,organization,noun,BASE TABLE,224941,40189952,0.0,1975-01-01,2026-08-09 18:32:24.930788,0,0,MAINTENANCE_ACCIDENT_NUMBER,100.0,164647,0,scan-2026-08-11
+transport__fed_fra_rail_deaths_by_railroad,transport,person,noun,BASE TABLE,5152,169472,0.0,2026-08-09 18:22:06.422939,2026-08-09 18:22:06.422939,0,0,RAILROAD_CODE,100.0,531,0,scan-2026-08-11
+transport__fed_fra_safety,transport,unresolved,event,BASE TABLE,1,1536,0.0,,,0,0,COUNTY_FIPS,100.0,1,1,scan-2026-08-11
+transport__fed_ntsb_aviation_aircraft,transport,action,event,BASE TABLE,31503,5067264,0.0,1980-06-20,2026-08-08 01:55:07.240125,0,0,EV_ID,100.0,31373,0,scan-2026-08-11
+transport__fed_ntsb_aviation_events,transport,accident,event,BASE TABLE,30968,3718656,0.0,2008-01-01,2026-08-08 01:55:07.240125,0,0,EV_ID,100.0,31373,0,scan-2026-08-11
+transport__fed_ntsb_aviation_injury,transport,accident,event,BASE TABLE,179179,6820864,0.0,2020-09-25,2026-08-08 01:55:07.240125,0,0,INJURY_RECORD_ID,100.0,180056,0,scan-2026-08-11

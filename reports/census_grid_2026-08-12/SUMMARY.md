@@ -1,5 +1,8 @@
 # The Census Grid — every thing in the warehouse × every way to look at it
 
+> **FILLED 2026-08-17:** measured row counts, date ranges, key reality and dup
+> ratios now attached to every mart model — see `fill/FILL_SUMMARY.md`.
+
 *Built 2026-08-12 from table metadata only (dbt manifest + model SQL + source
 descriptions). Zero warehouse queries. Every number below is reproducible by
 running `scripts/census/extract_models.py` then `scripts/census/build_grid.py`.*
