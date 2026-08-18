@@ -1,80 +1,75 @@
-# RIPPLE STATUS — 2026-08-17 (session 2) — The census grid is FILLED
+# RIPPLE STATUS — 2026-08-17 (session 3) — Court IDs registered (staged); grid filled
 
 *One screen. Rewritten (never appended) at the end of every session. Sessions read
 this at boot and brief Chris in chat — Chris never has to open it.*
 
-**BROKE: nothing new broken by this session.** But the fill *measured* real
-existing problems — see the data-trap census below. Standing: the roll-call vote
-mart still disagrees with its Python-built twin (113,512 vs 3,364 rows).
+**BROKE: nothing new.** Standing: the roll-call vote mart still disagrees with
+its Python-built twin (113,512 vs 3,364 rows). Full offline suite re-run this
+session: 3,034 passed, 2 skipped, that one pre-existing failure only.
 
 ---
 
-## THE HEADLINE: every mart table now carries measured reality — for ~$2
+## THE HEADLINE: the court world is measured and wired — it goes live at the rebuild
 
-Chris said "full send" on the fill price tag (both tiers + commit). Delivered,
-far under the quote, because the 2026-08-11 verification scan was reusable for
-562 of 589 mart tables — only 27 fresh scans were needed (the new court tables
-plus the mart views over 18M–101M-row raw tables).
+Chris said "just go" on court-ID registration. Done, with one deliberate catch:
 
-- **All 589 mart models measured: 1.23B total rows.** 349 have real date
-  ranges; 306 are fresh into 2026; 12 are stale (990 e-file index stops
-  Jan 2020; Senate lobbying stops 2021; OpenSanctions stops mid-2022).
-- **Pension tax-ID check PASSED:** 100% filled, 4,431 distinct employers, no
-  masking. The sharpest harm chain (injuries → SEC → failed pension →
-  insiders) is unblocked. Trap: leading zeros stripped — join zero-padded.
-- **Bonus: staging→raw crosswalk built** (parsed from model SQL, no guessing):
-  1,170 of 1,172 staging models now have measured row counts; **2 staging
-  views are broken** (raw tables gone: college-scorecard institutions, OSHA
-  inspections — likely re-pulls under new names, the known drift pattern).
-- **The data-trap census, ranked by size** (hypotheses to verify, not
-  verdicts): FAERS drug reactions 76% duplicate full rows (20.6M table);
-  federal contracts carry an epoch-1970 date on all 20M rows; consumer-product
-  injuries 9.8M far-future dates; two SEC fund tables with year-0095 dates;
-  foreign-assistance EIN is a single repeated value across 95k rows; 38 models
-  with >1% sentinel-masked best keys.
-- New court tables' internal IDs are real high-cardinality keys (docket ID
-  ~unique at 71.7M) — still zero edges to the entity map; registration is the
-  unlock.
+- **19 of 20 court join surfaces verified at 99.2–100% referential match.**
+  Court → docket is 100% on all 71.7M dockets; judge → assigned docket 100% on
+  32.4M; judge → financial disclosure 99.8%; the disclosure money chain (1.9M
+  investment lines) 99.4–99.6%. Evidence file + measuring script committed.
+- **One defect found and excluded:** the "appointing judge" column on
+  judgeships matches the judge table only 47% — it references a different
+  record type. Wiring it would have manufactured false person entities.
+- **Two new key axes are wired but DARK:** judge (person) and court
+  (organization) specs, normalization, entity typing and collision math are
+  all in the codebase behind one flag (`connect/keys.py:
+  ENABLE_COURTLISTENER_SPINE`, default False), verified both ways.
+- **Why dark:** flipping the flag changes the spine's config fingerprint,
+  which by design freezes incremental spine updates until a FULL spine
+  rebuild re-pins it. The full rebuild is the parked ~$10–15 / ~4.5h decision.
+  **Flip the flag in the same session that runs the rebuild — never before.**
+  The rebuild now buys more than before: judge dossiers, court caseload
+  ledgers, and the judges-money-cases lane, all on hard IDs.
 
-**Where:** `reports/census_grid_2026-08-12/fill/` (FILL_SUMMARY.md is the front
-page; fill_tables.csv is the machine layer). Builders: `scripts/census/fill_*`,
-`staging_raw_crosswalk.py`, `merge_fill.py`, `pension_ein_check.py`.
-**Everything committed and pushed** (fill + the earlier ladder-corrections
-patch). Tree should be clean apart from this file.
+## Earlier today (sessions 1–2, all committed and pushed)
 
-## Also this session (context)
+- Ladder corrections patched into the ladder doc + rankings digest.
+- **Census grid FILLED for ~$2:** all 589 mart models measured (1.23B rows;
+  306 fresh into 2026; 12 stale). Pension tax-ID check PASSED (100% filled;
+  join zero-padded — leading zeros stripped). Staging→raw crosswalk built
+  (1,170/1,172; 2 broken staging views found). Ranked data-trap census in the
+  fill summary (FAERS 76% dup rows, contracts epoch-1970 on all 20M rows,
+  SEC year-0095 dates, foreign-assistance single-value tax-ID, etc.).
 
-- Boot trust-check: last session's claims verified TRUE against git.
-- The stale 2026-08-12 recon handoff was caught before duplicating work — the
-  question ladder it commissions already shipped 2026-08-12.
-- The owed ladder-corrections patch shipped and is committed (corrections
-  section at the top of the ladder doc + pointer in the rankings digest).
+**Where:** `reports/census_grid_2026-08-12/fill/` (FILL_SUMMARY.md front page,
+now incl. the court registration section). Tree clean except this file.
 
 ## Live/open items
 
-- **Data-trap repairs, ranked by the fill** (FAERS dup, contracts epoch dates,
-  NEISS future dates, SEC year-zero dates, foreign-assistance EIN sentinel,
-  2 broken staging views) — each needs a verify-then-repair pass.
-- Court-table internal-ID registration into the connection map (the biggest
-  single unlock per both the ladder and the fill).
-- Source-registry reconciliation: staging→raw crosswalk now exists; the
-  onboarding-log leg (774 vs 1,141 vs 1,329) still unjoined.
+- **Identity-map FULL rebuild (~$10–15, ~4.5h) — parked with Chris, now the
+  gate for lighting up the court keys** (flip the flag in that session).
+- Data-trap repairs, ranked by the fill (FAERS dup, contracts epoch dates,
+  NEISS future dates, SEC year-zero, foreign-assistance tax-ID, 2 broken
+  staging views).
+- Source-registry reconciliation: staging→raw leg done; onboarding-log leg
+  (774 vs 1,141 vs 1,329) still unjoined.
+- Court→outside-world bridge: 200 courts carry a Federal Judicial Center
+  bridge ID — a future crosswalk out of the court namespace.
 - Roll-call mart rebuild via Python builder (standing).
-- Identity-map full rebuild decision (~4.5h, ~$10-15) still parked with Chris.
 - CourtListener citation-network load retry still pending.
 
-**YOUR MOVE:** nothing required. Options when ready: pick a data-trap repair to
-start, or green-light court-ID registration into the connection map.
+**YOUR MOVE:**
+1. Rule on the full spine rebuild (~$10–15, ~4.5h): it now also lights up the
+   court keys. Say "go" and next session runs it with the flag flipped.
 
 **NEXT SESSION:**
 1. Boot trust check against this file and git log.
-2. Whatever Chris picks from YOUR MOVE; court-ID registration is the highest-
-   leverage green/yellow work standing if he says "just go."
+2. On rebuild go: flip the court-keys flag, run the full spine rebuild,
+   re-seed incremental, re-measure the graph (expect 2 new key families).
+3. Otherwise: top data-trap repairs (FAERS dup + broken staging views first).
 
-**Tests:** not run — new standalone scripts + reports only, no platform code
-touched. Last known: offline suite 3,034 passing, 2 skipped, 1 pre-existing
-failure (roll-call mart).
+**Tests:** full offline suite run this session — 3,034 passed, 2 skipped,
+1 pre-existing failure (roll-call mart twin). Nothing new broken.
 
-**COST:** this session ~$2-3 total — Tier A catalog pull (pennies), 27 table
-scans incl. four 20M–101M-row aggregates (~35 min X-Small ≈ $1.50-2.50), pension
-check (pennies), no subagents, no web.
+**COST:** session 3 ~$1 — court join measurements over 71.7M-row tables
+(~5 min warehouse) + a 16-min local test run. Whole day all-in: ~$3-4.
