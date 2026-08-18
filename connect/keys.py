@@ -71,6 +71,27 @@ TABLE_COLUMN_KEYS: dict[tuple[str, str], tuple[str, str]] = {
 }
 
 
+def tier_for(key: str) -> str:
+    """The tier of a key label, from EVERY place a key can be declared.
+
+    discover/ used to read KEY_TOKENS alone. Any key declared only in
+    EXACT_TOKEN_KEYS or TABLE_COLUMN_KEYS therefore fell through to the
+    PROBABILISTIC default and was scored as a guess -- which also meant it hit
+    the collision gate that STEEL keys are meant to skip. That silently
+    mislabelled the UK company-number link (2,335,951 matches, STEEL, tagged
+    PROBABILISTIC since 2026-08-05) and gated out CL_COURT_ID entirely.
+    """
+    if key in KEY_TOKENS:
+        return KEY_TOKENS[key][0]
+    for k, t in EXACT_TOKEN_KEYS.values():
+        if k == key:
+            return t
+    for k, t in TABLE_COLUMN_KEYS.values():
+        if k == key:
+            return t
+    return "PROBABILISTIC"
+
+
 def detect_key(column_name: str) -> tuple[str | None, str | None]:
     """Return (key_label, tier) for a single column, or (None, None).
 

@@ -507,8 +507,8 @@ def _value_edges_bulk(conn, fp, name_max_rows) -> tuple[list, int, int, int]:
 
 # --- small helpers ---------------------------------------------------------- #
 def _tier(fp: dict, key: str) -> str:
-    from .keys import KEY_TOKENS
-    return KEY_TOKENS.get(key, ("PROBABILISTIC",))[0]
+    from .keys import tier_for
+    return tier_for(key)
 
 
 def _edge(a, b, key, tier, a_col, b_col, ov, conf) -> dict:
