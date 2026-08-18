@@ -19,6 +19,11 @@ renamed as (
         VOTEID                                              as vote_id,
 
         -- dates
+        -- NOT A BUG (epoch-1970 investigation, 2026-08-18): already uses an
+        -- explicit 'MM/DD/YYYY' format, so it never hit the bare-try_to_date
+        -- epoch trap. Its 2,245-of-83,644 (2.7%) 1970 rows (confirmed live)
+        -- spread across many distinct 1970 days -- real Supreme Court 1970-term
+        -- decisions, not sentinel garbage. Left as-is.
         try_to_date(DATEDECISION, 'MM/DD/YYYY')             as date_decision,
         try_to_date(DATEARGUMENT, 'MM/DD/YYYY')             as date_argument,
         try_to_date(DATEREARG,    'MM/DD/YYYY')             as date_reargument,

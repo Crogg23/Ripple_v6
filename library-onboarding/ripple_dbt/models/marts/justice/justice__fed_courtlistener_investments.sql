@@ -19,7 +19,14 @@ select
     GROSS_VALUE_CODE as gross_value_code,
     GROSS_VALUE_METHOD as gross_value_method,
     TRANSACTION_DURING_REPORTING_PERIOD as transaction_during_reporting_period,
-    try_to_date(TRANSACTION_DATE_RAW) as transaction_date_raw,
+    -- BUG FIXED 2026-08-18 (epoch-1970 investigation): TRANSACTION_DATE_RAW is
+    -- CourtListener's own as-extracted OCR text off scanned financial-
+    -- disclosure PDFs (confirmed live samples: '04/01/20', '03/25/20', plus
+    -- garbled single-digit fragments elsewhere in this family) -- explicitly
+    -- not a clean date. A bare try_to_date() epoch-mangled 57,859 of 57,860
+    -- rows. TRANSACTION_DATE (below) is the clean, already-working sibling
+    -- column. Pass this one through as text; it was never meant to be parsed.
+    TRANSACTION_DATE_RAW as transaction_date_raw,
     try_to_date(TRANSACTION_DATE) as transaction_date,
     TRANSACTION_VALUE_CODE as transaction_value_code,
     TRANSACTION_GAIN_CODE as transaction_gain_code,

@@ -16,6 +16,24 @@ with source as (
 -- CYCLE check 2026-08-11: this landing table has NO cycle column (positional
 -- C1..C15 only) -- cycle cannot be added here. The multi-cycle copy with a real
 -- CYCLE column is the FEC bulk committees landing/mart, which already carries it.
+--
+-- DUP INVESTIGATION 2026-08-18 -- FLAGGED, NOT FIXED, NEEDS A HUMAN CALL: live
+-- full-scan shows 23.08% exact-row duplication (78,039 rows / 60,031 distinct).
+-- Duplicate-group samples are real committee records (verified against known FEC
+-- committees, e.g. Florida Bankers Association PAC) repeating byte-identical
+-- ~4x, and the whole landing table carries a SINGLE _SOURCE_RUN_ID / _INGESTED_AT
+-- -- so this isn't a re-run problem, it's baked into one ingest event (source
+-- bulk file spanning multiple cycles, or a chunked fetch double-pulling within
+-- one run; the loader script for this landing table could not be located in the
+-- repo to confirm which). Because there is no cycle/snapshot column, a blind
+-- exact-row QUALIFY/ROW_NUMBER dedup would silently destroy real multi-cycle
+-- history with no way to tell which cycle the surviving row came from -- so no
+-- row-level fix was applied. A cleaner, actively-maintained cycle-aware
+-- alternative already exists: LIBRARY_MARTS.POLITICS.POLITICS__FEC_COMMITTEE
+-- (built by politics/loaders/build_cm26_refresh.py, deduped on cmte_id+cycle),
+-- backed by sibling landing table FED_FEC_BULK_COMMITTEES (20,007 rows). Needs
+-- Chris/loader decision: retire this mart in favor of the POLITICS family, or
+-- re-derive the missing cycle tag from source before any row-level fix.
 
 select
     C1 as cmte_id,

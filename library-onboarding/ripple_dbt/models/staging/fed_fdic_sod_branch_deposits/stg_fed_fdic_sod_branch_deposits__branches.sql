@@ -60,6 +60,11 @@ renamed as (
         try_to_number(nullif(trim(DEPSUMBR), ''))                  as branch_deposits_thousands,
 
         -- branch geocoding (FDIC SIMS)
+        -- NOT A BUG (epoch-1970 investigation, 2026-08-18): sims_established_date
+        -- already uses an explicit 'MM/DD/YYYY' format, so it never fell into the
+        -- bare-try_to_date epoch trap. Its 26,581-of-2.82M (0.9%) 1970 rows
+        -- (confirmed live) spread across many distinct 1970 days -- real bank
+        -- branches established that year, not sentinel garbage. Left as-is.
         try_to_double(nullif(trim(SIMS_LATITUDE), ''))             as sims_latitude,
         try_to_double(nullif(trim(SIMS_LONGITUDE), ''))            as sims_longitude,
         nullif(trim(SIMS_PROJECTION), '')                          as sims_projection,

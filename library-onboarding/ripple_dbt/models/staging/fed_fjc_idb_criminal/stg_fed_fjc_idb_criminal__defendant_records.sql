@@ -56,6 +56,16 @@ renamed as (
         trim(FUGSTAT)                                  as fugitive_status,
         try_to_date(trim(FGSTRTDATE))                  as fugitive_start_date,
         try_to_date(trim(FGENDDATE))                   as fugitive_end_date,
+        -- NOT A BUG (epoch-1970 investigation, 2026-08-18): file_date/proceeding_date
+        -- drive 6,731-of-6,299,908 (0.1%) 1970 rows (confirmed live), spread across
+        -- many distinct 1970 dates -- expected, since 1970 is literally the
+        -- historical start year of FJC's federal criminal case coverage. LATENT
+        -- RISK noted, not fixed: these two casts have no explicit format string,
+        -- same shape as the bugs fixed elsewhere in this batch. They happen to be
+        -- clean today (source dates already come pre-formatted so the implicit
+        -- parse succeeds), but a future source-format change could silently
+        -- reintroduce the epoch trap here. Left as-is per the no-guess rule --
+        -- there is no live defect to fix.
         try_to_date(trim(FILEDATE))                    as file_date,
         try_to_date(trim(PROCDATE))                    as proceeding_date,
         trim(PROCCD)                                   as proceeding_code,

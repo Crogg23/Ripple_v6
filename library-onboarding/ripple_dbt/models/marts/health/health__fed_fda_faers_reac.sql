@@ -6,6 +6,25 @@
 -- Materialized as a VIEW: this is a straight passthrough of a 20,621,386-row
 -- landing table, so a physical copy would pay twice for the same bytes without
 -- precomputing any join, filter, or aggregation.
+--
+-- DUP INVESTIGATION 2026-08-18 -- DO NOT DEDUP, THIS IS A LOAD-TIME BUG, NOT
+-- REPEATED DATA: live full-scan shows 76.19% exact-row duplication (20,621,386
+-- rows / ~4.9M distinct), but the cause is a column-mapping bug on the legacy
+-- AERS-era quarters, not real repeated case reports. For all 15,997,301 rows
+-- from 2004Q1-2012Q3 (77.6% of the table), ISR holds the reaction term text
+-- (e.g. "NAUSEA", "DEATH") and PT/PRIMARYID/CASEID are 100% NULL -- the true
+-- per-case link was lost at load time, so two different real adverse-event
+-- reports that cite the same reaction term in the same quarter become an
+-- indistinguishable identical row. For all 4,624,085 rows from 2012Q4 onward
+-- (modern format), ISR is correctly null (field doesn't exist post-format-
+-- change) and PT/PRIMARYID/CASEID are 100% populated -- and that portion is
+-- 0.0% duplicated. The clean break exactly at FAERS's known 2012Q4 legacy-to-
+-- modern format changeover is decisive: a QUALIFY/ROW_NUMBER dedup here would
+-- be actively wrong -- it would encode the broken (case-less) grain as if it
+-- were correct and permanently collapse ~16M distinct historical case reports
+-- down to a few thousand reaction-term-per-quarter rows. Needed instead: re-
+-- ingest 2004Q1-2012Q3 from the legacy REAC.txt source layout with the real
+-- case identifier restored. Left untouched pending that re-ingest.
 
 with source as (
     select * from {{ source('ripple_raw', 'FED_FDA_FAERS_REAC') }}

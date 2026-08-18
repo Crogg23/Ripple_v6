@@ -11,7 +11,14 @@ select
     ID as id,
     try_to_date(DATE_CREATED) as date_created,
     try_to_date(DATE_MODIFIED) as date_modified,
-    try_to_date(DATE_RAW) as date_raw,
+    -- BUG FIXED 2026-08-18 (epoch-1970 investigation): DATE_RAW is
+    -- CourtListener's as-extracted OCR text off scanned financial-disclosure
+    -- PDFs (confirmed live samples: 'See VIII', "'84-presnt", '1987-2002',
+    -- '2.10/74', bare years like '2003') -- not a clean date. Same generator
+    -- miss repeated across the whole CourtListener disclosure family. A bare
+    -- try_to_date() epoch-mangled 6,016 of 10,007 rows (60%). Pass through as
+    -- text; it was never meant to be parsed.
+    DATE_RAW as date_raw,
     PARTIES_AND_TERMS as parties_and_terms,
     REDACTED as redacted,
     FINANCIAL_DISCLOSURE_ID as financial_disclosure_id

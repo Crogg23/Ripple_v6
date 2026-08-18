@@ -40,6 +40,11 @@ renamed as (
         nullif(trim(STATUS_CODE), '')                          as status_code,
         nullif(trim(MODE_S_CODE), '')                          as mode_s_code,
         nullif(trim(FRACT_OWNER), '')                          as fractional_owner,
+        -- NOT A BUG, NOT A REGRESSION (epoch-1970 investigation, 2026-08-18):
+        -- already uses the explicit 'YYYYMMDD' format fixed 2026-08-09 (see the
+        -- mart header). Re-checked live this session: 2,325-of-315,447 (0.7%)
+        -- rows in 1970 spread across ~230 distinct days that whole year -- real
+        -- 50+ year old aircraft still on the registry, not sentinel garbage.
         try_to_date(nullif(trim(AIR_WORTH_DATE), ''), 'YYYYMMDD')   as airworthiness_date,
         nullif(trim(OTHER_NAMES_1), '')                        as other_name_1,
         nullif(trim(OTHER_NAMES_2), '')                        as other_name_2,

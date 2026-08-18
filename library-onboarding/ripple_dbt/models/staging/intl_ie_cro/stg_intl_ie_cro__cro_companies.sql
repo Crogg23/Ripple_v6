@@ -45,6 +45,12 @@ renamed as (
         cast(null as varchar)                               as dataset_name,
 
         -- date columns
+        -- NOT A BUG (epoch-1970 investigation, 2026-08-18): already uses an
+        -- explicit 'YYYY-MM-DD' format, so it never hit the bare-try_to_date
+        -- epoch trap. Its 2,029-of-821,693 (0.25%) 1970 rows (confirmed live,
+        -- re-checked this session across the full year) spread across ~230
+        -- distinct 1970 weekdays -- a real registration-office pattern (no
+        -- weekend dates), not sentinel garbage. Left as-is.
         try_to_date(trim(COMPANY_REG_DATE), 'YYYY-MM-DD')      as incorporation_date,
         try_to_date(trim(LAST_ACCOUNTS_DATE), 'YYYY-MM-DD')    as financial_year_end,
 

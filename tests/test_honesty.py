@@ -315,6 +315,21 @@ def test_traps_mirror_registry_seeds():
         "trap_nppes_ein_masked": "only 2 distinct values exist",
         "trap_fcc_uls_ein_masked": "but 100% empty",
         "trap_ais_imo_masked": "roughly a third of all vessels",
+        # 2026-08-18 join-key trust catalog sweep
+        "trap_foreignassistance_ein_masked": "100% blank across all 95,658 deduped rows",
+        "trap_hud_data_ein_masked": "100% blank across all 77 rows",
+        "trap_ftc_datasets_ein_masked": "100% blank across all 1,200 rows",
+        "trap_usgs_topoview_fips_masked": "100% blank across all 250 rows",
+        "trap_dot_bts_carrier_code_masked": "100% blank across all 21 rows",
+        "trap_datagovgh_license_masked": "100% blank across all 10 rows",
+        "trap_faa_data_portal_fips_masked": "100% blank across all 4 rows",
+        "trap_nara_wra_aad_family_number_masked": "blank on the table's only row",
+        "trap_es_borme_issue_number_masked": "100% blank across all 3 rows",
+        "trap_fra_safety_county_fips_masked": "literal text 'N/A' on its only row",
+        "trap_socta_europol_serial_number_garbage": "literal 3-char fragment 'ion'",
+        "trap_uscis_data_form_number_garbage": "'Notes:', full DHS/USCIS office names",
+        "trap_nppes_license_number_mirage": "99.78% blank",
+        "trap_nhtsa_vin_masked_and_truncated": "blank rows, thousands more are free-text placeholders",
     }
     assert set(fragments) == set(TRAPS)
     for key, frag in fragments.items():

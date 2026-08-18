@@ -12,7 +12,21 @@ select
     FILING_TYPE as filing_type,
     EIN as ein,
     TAX_PERIOD as tax_period,
-    try_to_date(SUB_DATE) as sub_date,
+    -- BUG FIXED 2026-08-18 (epoch-1970 investigation): SUB_DATE mixes a full
+    -- timestamp ('1/28/2019 8:00:04 AM', older vintages) with a bare 4-digit
+    -- filing year ('2022'..'2026', newer vintages -- confirmed live: exactly
+    -- 5 values, 3,192,934 rows, 57.6% of the table). A bare try_to_date() read
+    -- the bare-year rows as epoch SECONDS and collapsed all of them onto
+    -- 1970-01-01 -- which silently hid every recent filing (FY2022-2026) behind
+    -- a garbage date and made the table look stale at 2020-01-28. Explicit
+    -- strict-format parse across all 3 observed shapes leaves only 1 of
+    -- 5,544,626 rows unparsed (verified live) and zero epoch rows.
+    coalesce(
+        try_to_date(SUB_DATE, 'MM/DD/YYYY HH12:MI:SS AM'),
+        try_to_date(SUB_DATE, 'MM/DD/YYYY'),
+        try_to_date(SUB_DATE, 'YYYY')
+    ) as sub_date,
+    SUB_DATE as sub_date_raw,
     TAXPAYER_NAME as taxpayer_name,
     RETURN_TYPE as return_type,
     DLN as dln,

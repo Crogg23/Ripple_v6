@@ -31,6 +31,11 @@ renamed as (
         nullif(trim(AFFILIATION), '')                      as affiliation_code,
         nullif(trim(CLASSIFICATION), '')                   as classification_code,
         nullif(trim(RULING), '')                           as ruling_yyyymm,
+        -- NOT A BUG (epoch-1970 investigation, 2026-08-18): this already uses an
+        -- explicit 'YYYYMMDD' format, so it never hit the bare-try_to_date epoch
+        -- trap. Its 11,975-of-1,983,563 (0.6%) 1970 rows (confirmed live) spread
+        -- across all 12 months of 1970 -- real IRS exempt-org rulings issued that
+        -- year, not sentinel garbage. Left as-is.
         try_to_date(nullif(trim(RULING), '') || '01', 'YYYYMMDD')     as ruling_date,
         nullif(trim(DEDUCTIBILITY), '')                    as deductibility_code,
         nullif(trim(FOUNDATION), '')                       as foundation_code,

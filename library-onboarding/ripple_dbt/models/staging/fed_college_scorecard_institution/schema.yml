@@ -1,18 +1,20 @@
 version: 2
 
-sources:
-  - name: ripple_raw
-    database: LIBRARY_RAW
-    schema: LANDING
-    tables:
-      - name: FED_COLLEGE_SCORECARD_INSTITUTION
-        description: >
-          College Scorecard institution-level file -- cost, debt, earnings, completion by institution.
-          All columns loaded as TEXT from the source system (raw landing, untransformed).
+# NOTE 2026-08-18: this model no longer has its own source table. The raw
+# table it originally pointed at (FED_COLLEGE_SCORECARD_INSTITUTION) was
+# DROP TABLE'd 2026-08-09; the model was repointed at FED_ED_COLLEGE_SCORECARD_
+# INSTITUTION instead (see the .sql file header for the full story). That
+# table's `sources:` entry already lives in
+# ../fed_ed_college_scorecard_institution/schema.yml -- it is intentionally
+# NOT re-declared here, since dbt does not allow the same source table
+# declared twice.
 
 models:
 
   - name: stg_fed_college_scorecard_institution__records
     description: >
-      Minimal passthrough staging model for FED_COLLEGE_SCORECARD_INSTITUTION. GRAIN NOT YET DETERMINED --
-      no dedup applied. Intended join key: unitid (verify COUNT DISTINCT before using).
+      Minimal passthrough staging model, now reading FED_ED_COLLEGE_SCORECARD_INSTITUTION
+      (repointed 2026-08-18 after the original FED_COLLEGE_SCORECARD_INSTITUTION table was
+      dropped -- see .sql header). GRAIN NOT YET DETERMINED -- no dedup applied. Intended
+      join key: unitid (verify COUNT DISTINCT before using). No downstream mart depends on
+      this model; the curated/tested path is stg_fed_ed_college_scorecard_institution__institutions.

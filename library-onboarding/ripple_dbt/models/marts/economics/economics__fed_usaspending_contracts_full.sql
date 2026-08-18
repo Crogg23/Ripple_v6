@@ -44,7 +44,12 @@ select
     try_to_double("outlayed_amount_from_IIJA_supplemental_for_overall_award")       as outlayed_amount_from_iija_supplemental_for_overall_award,
     try_to_double("obligated_amount_from_IIJA_supplemental_for_overall_award")      as obligated_amount_from_iija_supplemental_for_overall_award,
     try_to_date("action_date")                                                      as action_date,
-    try_to_date("action_date_fiscal_year")                                          as action_date_fiscal_year,
+    -- BUG FIXED 2026-08-18 (epoch-1970 investigation): this column is a fiscal-YEAR
+    -- number ('2012', '2018', ...), not a date -- confirmed via raw sample, exactly
+    -- 1,000,000 rows per FY 2007-2026. A bare try_to_date() read the small integer as
+    -- epoch SECONDS, collapsing every one of the 20M rows onto 1970-01-01. Cast to a
+    -- number instead; it was never a date.
+    try_to_number("action_date_fiscal_year")                                        as action_date_fiscal_year,
     try_to_date("period_of_performance_start_date")                                 as period_of_performance_start_date,
     try_to_date("period_of_performance_current_end_date")                           as period_of_performance_current_end_date,
     try_to_date("period_of_performance_potential_end_date")                         as period_of_performance_potential_end_date,

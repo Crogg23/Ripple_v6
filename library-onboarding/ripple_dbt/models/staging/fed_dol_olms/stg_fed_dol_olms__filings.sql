@@ -54,11 +54,37 @@ renamed as (
         trim(FYE)                                      as fiscal_year_end,
         try_to_date(trim(PD_COVERED_FROM))             as period_covered_from,
         try_to_date(trim(PD_COVERED_TO))               as period_covered_to,
+        -- NOT A BUG (epoch-1970 investigation, 2026-08-18): EST_DATE is 100%
+        -- populated across 395,053 of 617,710 rows (64%) with the literal
+        -- string '1970-12-01', repeated identically -- confirmed live. That's
+        -- a textbook sentinel signature, almost certainly DOL OLMS's own
+        -- system default for "establishment date not on file," not a cast
+        -- bug. Left as-is on purpose; do not force a fix here.
         try_to_date(trim(EST_DATE))                    as established_date,
         try_to_date(trim(TERM_DATE))                   as termination_date,
         try_to_date(trim(REGISTER_DATE))               as register_date,
         try_to_date(trim(RECEIVE_DATE))                as receive_date,
-        try_to_date(trim(NEXT_ELECTION))               as next_election_date,
+        -- BUG FIXED 2026-08-18 (epoch-1970 investigation): NEXT_ELECTION is a
+        -- messy free-text field (union self-reported), confirmed live to hold
+        -- at least 6 shapes: 'MMYYYY' (022004, the dominant shape, 195,289
+        -- rows), 'MM/YYYY' (05/2025, 188,823 rows), 'MM/DD/YY' (11/01/08,
+        -- 2,247 rows), bare years, full month names ("JUNE 2009"), and free
+        -- text ('n/a', '~', "SEE ADDT'L INFO"). A bare try_to_date() couldn't
+        -- match any of these against a default format, so it fell back to
+        -- reading the pure-digit shapes (MMYYYY, bare years) as epoch
+        -- SECONDS -- collapsing 193,854 rows (31%) onto 1970-01-01 and
+        -- destroying a DOL-required disclosure field. Strict explicit-format
+        -- parse across the 3 confirmed date-shaped patterns recovers both the
+        -- MMYYYY and MM/YYYY populations (verified live: zero epoch rows
+        -- remain). The free-text/month-name shapes (~1-2% of rows) are left
+        -- NULL rather than guessed -- same strict, no-guessing rule as the
+        -- rest of this fix batch -- and were already NULL before this fix, so
+        -- nothing regresses.
+        coalesce(
+            try_to_date(trim(NEXT_ELECTION), 'MM/DD/YY'),
+            try_to_date(trim(NEXT_ELECTION), 'MM/YYYY'),
+            try_to_date(trim(NEXT_ELECTION), 'MMYYYY')
+        )                                               as next_election_date,
 
         -- financial totals
         try_to_number(trim(TTL_ASSETS))                as total_assets,

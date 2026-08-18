@@ -4,6 +4,30 @@
 -- SPINE_ENTITY: organization (by ESTAB_NAME + SITE_ADDRESS)
 -- Source: DOL OSHA — ~5.2M inspections back to 1970s
 -- Key joins: NAICS/SIC → industry lookups; ESTAB_NAME → entity resolution
+--
+-- ⚠ BROKEN 2026-08-18: source table LIBRARY_RAW.LANDING.FED_DOL_OSHA_INSPECTION
+-- DOES NOT EXIST. It is not a rename/re-pull -- checked every schema in
+-- LIBRARY_RAW (EPSTEIN, LANDING, PUBLIC, RETIRED) for any OSHA inspection/
+-- enforcement/citation table under any name; nothing exists except the
+-- unrelated FED_OSHA_ITA_* self-reported-injury tables (a different OSHA
+-- program, 2023-2025 only -- not a substitute).
+-- History: the table landed once on 2026-07-27 (~5.19M rows) via
+-- scripts/dol_enforce_bulk_load.py, but the chunked write_pandas load
+-- corrupted the first column's header (a Snowflake staged-chunk filename got
+-- prepended to it instead of a clean ACTIVITY_NR), breaking every downstream
+-- query. Someone debugged it that evening, could not fix it in place, and ran
+-- DROP TABLE IF EXISTS on it (2026-07-27 19:27) -- it was never reloaded.
+-- scripts/fix_errored_models.py already disabled the downstream mart
+-- (labor__fed_dol_osha_inspection.sql, enabled=false) for this same reason,
+-- but left this staging view enabled and pointed at the dead table -- that is
+-- the break the census grid caught (reports/census_grid_2026-08-12/fill/).
+-- DO NOT silently "fix" this by relaxing the query -- there is no data to
+-- read. A real fix needs someone to re-run scripts/dol_enforce_bulk_load.py
+-- (it has a --force flag for exactly this re-pour) AND check the reload for
+-- the same column-mangling defect before trusting it -- the root cause of
+-- *why* write_pandas produced the bad header was never diagnosed, only that
+-- it happened. Left as-is (not disabled) per investigation-session instruction
+-- so the break stays visible instead of being paved over.
 
 with source as (
     select * from {{ source('ripple_raw', 'FED_DOL_OSHA_INSPECTION') }}

@@ -45,7 +45,13 @@ select
     COUNTRY_ID as country_id,
     REGION as region,
     EVENT_CLARITY as event_clarity,
-    try_to_date(DATE_PREC) as date_prec,
+    -- BUG FIXED 2026-08-18 (epoch-1970 investigation): DATE_PREC is UCDP's
+    -- categorical date-precision CODE (confirmed live: only values 1-5, per
+    -- the UCDP codebook), not a date. It is always populated, so a bare
+    -- try_to_date() epoch-mangled every one of the 385,918 rows. Cast to a
+    -- number instead -- it was never a date. (DATE_START/DATE_END/SOURCE_DATE
+    -- are the real date columns on this table and are unaffected.)
+    try_to_number(DATE_PREC) as date_prec,
     try_to_date(DATE_START) as date_start,
     try_to_date(DATE_END) as date_end,
     try_to_number(DEATHS_A) as deaths_a,

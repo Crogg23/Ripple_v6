@@ -1,0 +1,342 @@
+=== CIVIL_RIGHTS__FED_NARA_WRA_AAD (schema=CIVIL_RIGHTS, landing=FED_NARA_WRA_AAD) ===
+  live=1 catalog_csv=38 header= disagree=catalog=38
+  landing table fresh row_count (info_schema)=36
+  CATALOG row: LIFECYCLE=modeled LANDED=36 MART_ROW_COUNT=38 RUN_ROWS=36 IS_SAMPLE=False LAST_INGESTED_AT=2026-06-18 01:41:31.330425
+  mart tables sharing sid='fed_nara_wra_aad' (by landing table name): [('_RESTORE_20260731', 'HISTORY__FED_NARA_WRA_AAD', 'BASE TABLE', 36), ('_RESTORE_20260701', 'CIVIL_RIGHTS__FED_NARA_WRA_AAD', 'BASE TABLE', 1), ('CIVIL_RIGHTS', 'CIVIL_RIGHTS__FED_NARA_WRA_AAD', 'BASE TABLE', 1)]
+  mart tables sharing sid='civil_rights__fed_nara_wra_aad' (by model name): []
+
+=== CONSUMER_PROTECTION__FED_CFPB_COMPLAINTS (schema=CONSUMER_PROTECTION, landing=FED_CFPB_COMPLAINTS) ===
+  live=17168287 catalog_csv=34348075 header= disagree=catalog=34348075
+  landing table fresh row_count (info_schema)=17179788
+  CATALOG row: LIFECYCLE=modeled LANDED=17179788 MART_ROW_COUNT=34348075 RUN_ROWS=17179788 IS_SAMPLE=False LAST_INGESTED_AT=2026-07-23 17:21:02.008497
+  mart tables sharing sid='fed_cfpb_complaints' (by landing table name): [('_RESTORE_20260731', 'FINANCE__FED_CFPB_COMPLAINTS', 'BASE TABLE', 17179788), ('CONSUMER_PROTECTION', 'CONSUMER_PROTECTION__FED_CFPB_COMPLAINTS', 'BASE TABLE', 17168287)]
+  mart tables sharing sid='consumer_protection__fed_cfpb_complaints' (by model name): []
+
+=== CONSUMER_SAFETY__FED_NHTSA_COMPLAINTS (schema=CONSUMER_SAFETY, landing=FED_NHTSA_COMPLAINTS) ===
+  live=2227941 catalog_csv=4455882 header= disagree=catalog=4455882
+  landing table fresh row_count (info_schema)=2227941
+  CATALOG row: LIFECYCLE=modeled LANDED=2227941 MART_ROW_COUNT=4455882 RUN_ROWS=2227941 IS_SAMPLE=False LAST_INGESTED_AT=2026-07-24 00:43:02.154975
+  mart tables sharing sid='fed_nhtsa_complaints' (by landing table name): [('_RESTORE_20260731', 'TRANSPORT__FED_NHTSA_COMPLAINTS', 'BASE TABLE', 2227941), ('CONSUMER_SAFETY', 'CONSUMER_SAFETY__FED_NHTSA_COMPLAINTS', 'BASE TABLE', 2227941)]
+  mart tables sharing sid='consumer_safety__fed_nhtsa_complaints' (by model name): []
+
+=== CONSUMER_SAFETY__FED_NHTSA_INVESTIGATIONS (schema=CONSUMER_SAFETY, landing=FED_NHTSA_INVESTIGATIONS) ===
+  live=154209 catalog_csv=308418 header= disagree=catalog=308418
+  landing table fresh row_count (info_schema)=154209
+  CATALOG row: LIFECYCLE=modeled LANDED=154209 MART_ROW_COUNT=308418 RUN_ROWS=154209 IS_SAMPLE=False LAST_INGESTED_AT=2026-07-24 00:43:34.561704
+  mart tables sharing sid='fed_nhtsa_investigations' (by landing table name): [('_RESTORE_20260731', 'TRANSPORT__FED_NHTSA_INVESTIGATIONS', 'BASE TABLE', 154209), ('CONSUMER_SAFETY', 'CONSUMER_SAFETY__FED_NHTSA_INVESTIGATIONS', 'BASE TABLE', 154209)]
+  mart tables sharing sid='consumer_safety__fed_nhtsa_investigations' (by model name): []
+
+=== CONSUMER_SAFETY__FED_NHTSA_RECALLS (schema=CONSUMER_SAFETY, landing=FED_NHTSA_RECALLS) ===
+  live=242993 catalog_csv=485986 header= disagree=catalog=485986
+  landing table fresh row_count (info_schema)=242993
+  CATALOG row: LIFECYCLE=modeled LANDED=242993 MART_ROW_COUNT=485986 RUN_ROWS=242993 IS_SAMPLE=False LAST_INGESTED_AT=2026-07-24 00:44:34.705871
+  mart tables sharing sid='fed_nhtsa_recalls' (by landing table name): [('CONSUMER_SAFETY', 'CONSUMER_SAFETY__FED_NHTSA_RECALLS', 'BASE TABLE', 242993), ('_RESTORE_20260731', 'TRANSPORT__FED_NHTSA_RECALLS', 'BASE TABLE', 242993)]
+  mart tables sharing sid='consumer_safety__fed_nhtsa_recalls' (by model name): []
+
+=== CORPORATE_REGISTRY__INTL_ES_BORME (schema=CORPORATE_REGISTRY, landing=INTL_ES_BORME) ===
+  live=3 catalog_csv=28 header= disagree=catalog=28
+  landing table fresh row_count (info_schema)=25
+  CATALOG row: LIFECYCLE=modeled LANDED=25 MART_ROW_COUNT=28 RUN_ROWS=25 IS_SAMPLE=False LAST_INGESTED_AT=2026-06-18 02:08:59.816801
+  mart tables sharing sid='intl_es_borme' (by landing table name): [('CORPORATE_REGISTRY', 'CORPORATE_REGISTRY__INTL_ES_BORME', 'BASE TABLE', 3), ('_RESTORE_20260731', 'ECONOMICS__INTL_ES_BORME', 'BASE TABLE', 25)]
+  mart tables sharing sid='corporate_registry__intl_es_borme' (by model name): []
+
+=== ECONOMICS__INTL_GLEIF_RR (schema=ECONOMICS, landing=INT_GLEIF_RR) ===
+  live=481933 catalog_csv=963866 header= disagree=catalog=963866
+  landing table fresh row_count (info_schema)=None
+  CATALOG row: LIFECYCLE=modeled LANDED=None MART_ROW_COUNT=481933 RUN_ROWS=481933 IS_SAMPLE=None LAST_INGESTED_AT=2026-07-27 20:53:23.186906
+  mart tables sharing sid='int_gleif_rr' (by landing table name): [('_RESTORE_20260731', 'UNCATEGORIZED__INT_GLEIF_RR', 'BASE TABLE', 481933)]
+  mart tables sharing sid='economics__intl_gleif_rr' (by model name): []
+
+=== ECONOMICS__INT_GLEIF_RR (schema=ECONOMICS, landing=INT_GLEIF_RR) ===
+  live=481933 catalog_csv=963866 header=481933 disagree=catalog=963866
+  landing table fresh row_count (info_schema)=None
+  CATALOG row: LIFECYCLE=modeled LANDED=None MART_ROW_COUNT=481933 RUN_ROWS=481933 IS_SAMPLE=None LAST_INGESTED_AT=2026-07-27 20:53:23.186906
+  mart tables sharing sid='int_gleif_rr' (by landing table name): [('_RESTORE_20260731', 'UNCATEGORIZED__INT_GLEIF_RR', 'BASE TABLE', 481933)]
+  mart tables sharing sid='economics__int_gleif_rr' (by model name): []
+
+=== ENVIRONMENT__FED_EPA_AIR_EMISSIONS_POLL_RPT_COMBINED_EMISSIONS (schema=ENVIRONMENT, landing=FED_EPA_AIR_EMISSIONS_POLL_RPT_COMBINED_EMISSIONS) ===
+  live=10411826 catalog_csv=10411826 header=500000 disagree=header=500000
+  landing table fresh row_count (info_schema)=10411826
+  CATALOG row: LIFECYCLE=modeled LANDED=10411826 MART_ROW_COUNT=10411826 RUN_ROWS=None IS_SAMPLE=False LAST_INGESTED_AT=None
+  mart tables sharing sid='fed_epa_air_emissions_poll_rpt_combined_emissions' (by landing table name): [('ENVIRONMENT', 'ENVIRONMENT__FED_EPA_AIR_EMISSIONS_POLL_RPT_COMBINED_EMISSIONS', 'BASE TABLE', 10411826)]
+  mart tables sharing sid='environment__fed_epa_air_emissions_poll_rpt_combined_emissions' (by model name): []
+
+=== ENVIRONMENT__FED_EPA_FRS_FRS_NAICS_CODES (schema=ENVIRONMENT, landing=FED_EPA_FRS_FRS_NAICS_CODES) ===
+  live=2179702 catalog_csv=2179702 header=500000 disagree=header=500000
+  landing table fresh row_count (info_schema)=2179702
+  CATALOG row: LIFECYCLE=modeled LANDED=2179702 MART_ROW_COUNT=2179702 RUN_ROWS=None IS_SAMPLE=False LAST_INGESTED_AT=None
+  mart tables sharing sid='fed_epa_frs_frs_naics_codes' (by landing table name): [('ENVIRONMENT', 'ENVIRONMENT__FED_EPA_FRS_FRS_NAICS_CODES', 'BASE TABLE', 2179702)]
+  mart tables sharing sid='environment__fed_epa_frs_frs_naics_codes' (by model name): []
+
+=== ENVIRONMENT__FED_EPA_FRS_FRS_PROGRAM_LINKS (schema=ENVIRONMENT, landing=FED_EPA_FRS_FRS_PROGRAM_LINKS) ===
+  live=4406498 catalog_csv=4406498 header=500000 disagree=header=500000
+  landing table fresh row_count (info_schema)=4406498
+  CATALOG row: LIFECYCLE=modeled LANDED=4406498 MART_ROW_COUNT=4406498 RUN_ROWS=None IS_SAMPLE=False LAST_INGESTED_AT=None
+  mart tables sharing sid='fed_epa_frs_frs_program_links' (by landing table name): [('ENVIRONMENT', 'ENVIRONMENT__FED_EPA_FRS_FRS_PROGRAM_LINKS', 'BASE TABLE', 4406498)]
+  mart tables sharing sid='environment__fed_epa_frs_frs_program_links' (by model name): []
+
+=== ENVIRONMENT__FED_EPA_FRS_FRS_SIC_CODES (schema=ENVIRONMENT, landing=FED_EPA_FRS_FRS_SIC_CODES) ===
+  live=1085211 catalog_csv=1085211 header=500000 disagree=header=500000
+  landing table fresh row_count (info_schema)=1085211
+  CATALOG row: LIFECYCLE=modeled LANDED=1085211 MART_ROW_COUNT=1085211 RUN_ROWS=None IS_SAMPLE=False LAST_INGESTED_AT=None
+  mart tables sharing sid='fed_epa_frs_frs_sic_codes' (by landing table name): [('ENVIRONMENT', 'ENVIRONMENT__FED_EPA_FRS_FRS_SIC_CODES', 'BASE TABLE', 1085211)]
+  mart tables sharing sid='environment__fed_epa_frs_frs_sic_codes' (by model name): []
+
+=== ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_FCES_PCES (schema=ENVIRONMENT, landing=FED_EPA_ICIS_AIR_ICIS_AIR_FCES_PCES) ===
+  live=1779096 catalog_csv=1779096 header=500000 disagree=header=500000
+  landing table fresh row_count (info_schema)=1779096
+  CATALOG row: LIFECYCLE=modeled LANDED=1779096 MART_ROW_COUNT=1779096 RUN_ROWS=None IS_SAMPLE=False LAST_INGESTED_AT=None
+  mart tables sharing sid='fed_epa_icis_air_icis_air_fces_pces' (by landing table name): [('ENVIRONMENT', 'ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_FCES_PCES', 'BASE TABLE', 1779096)]
+  mart tables sharing sid='environment__fed_epa_icis_air_icis_air_fces_pces' (by model name): []
+
+=== ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_POLLUTANTS (schema=ENVIRONMENT, landing=FED_EPA_ICIS_AIR_ICIS_AIR_POLLUTANTS) ===
+  live=978398 catalog_csv=978398 header=500000 disagree=header=500000
+  landing table fresh row_count (info_schema)=978398
+  CATALOG row: LIFECYCLE=modeled LANDED=978398 MART_ROW_COUNT=948342 RUN_ROWS=None IS_SAMPLE=False LAST_INGESTED_AT=None
+  mart tables sharing sid='fed_epa_icis_air_icis_air_pollutants' (by landing table name): [('ENVIRONMENT', 'ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_POLLUTANTS', 'BASE TABLE', 948342)]
+  mart tables sharing sid='environment__fed_epa_icis_air_icis_air_pollutants' (by model name): []
+
+=== ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_STACK_TESTS (schema=ENVIRONMENT, landing=FED_EPA_ICIS_AIR_ICIS_AIR_STACK_TESTS) ===
+  live=620302 catalog_csv=620302 header=500000 disagree=header=500000
+  landing table fresh row_count (info_schema)=620302
+  CATALOG row: LIFECYCLE=modeled LANDED=620302 MART_ROW_COUNT=620302 RUN_ROWS=None IS_SAMPLE=False LAST_INGESTED_AT=None
+  mart tables sharing sid='fed_epa_icis_air_icis_air_stack_tests' (by landing table name): [('ENVIRONMENT', 'ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_STACK_TESTS', 'BASE TABLE', 620302)]
+  mart tables sharing sid='environment__fed_epa_icis_air_icis_air_stack_tests' (by model name): []
+
+=== ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_TITLEV_CERTS (schema=ENVIRONMENT, landing=FED_EPA_ICIS_AIR_ICIS_AIR_TITLEV_CERTS) ===
+  live=2574815 catalog_csv=2574815 header=500000 disagree=header=500000
+  landing table fresh row_count (info_schema)=2574815
+  CATALOG row: LIFECYCLE=modeled LANDED=2574815 MART_ROW_COUNT=499113 RUN_ROWS=None IS_SAMPLE=False LAST_INGESTED_AT=None
+  mart tables sharing sid='fed_epa_icis_air_icis_air_titlev_certs' (by landing table name): [('ENVIRONMENT', 'ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_TITLEV_CERTS', 'BASE TABLE', 499113)]
+  mart tables sharing sid='environment__fed_epa_icis_air_icis_air_titlev_certs' (by model name): []
+
+=== ENVIRONMENT__FED_EPA_NPDES_ICIS_FACILITIES (schema=ENVIRONMENT, landing=FED_EPA_NPDES_ICIS_FACILITIES) ===
+  live=1213737 catalog_csv=1213737 header=500000 disagree=header=500000
+  landing table fresh row_count (info_schema)=1213737
+  CATALOG row: LIFECYCLE=modeled LANDED=1213737 MART_ROW_COUNT=1213737 RUN_ROWS=None IS_SAMPLE=False LAST_INGESTED_AT=None
+  mart tables sharing sid='fed_epa_npdes_icis_facilities' (by landing table name): [('ENVIRONMENT', 'ENVIRONMENT__FED_EPA_NPDES_ICIS_FACILITIES', 'BASE TABLE', 1213737)]
+  mart tables sharing sid='environment__fed_epa_npdes_icis_facilities' (by model name): []
+
+=== ENVIRONMENT__FED_EPA_NPDES_NPDES_INFORMAL_ENFORCEMENT_ACTIONS (schema=ENVIRONMENT, landing=FED_EPA_NPDES_NPDES_INFORMAL_ENFORCEMENT_ACTIONS) ===
+  live=826867 catalog_csv=826867 header=500000 disagree=header=500000
+  landing table fresh row_count (info_schema)=826867
+  CATALOG row: LIFECYCLE=modeled LANDED=826867 MART_ROW_COUNT=478855 RUN_ROWS=None IS_SAMPLE=False LAST_INGESTED_AT=None
+  mart tables sharing sid='fed_epa_npdes_npdes_informal_enforcement_actions' (by landing table name): [('ENVIRONMENT', 'ENVIRONMENT__FED_EPA_NPDES_NPDES_INFORMAL_ENFORCEMENT_ACTIONS', 'BASE TABLE', 478855)]
+  mart tables sharing sid='environment__fed_epa_npdes_npdes_informal_enforcement_actions' (by model name): []
+
+=== ENVIRONMENT__FED_EPA_NPDES_NPDES_INSPECTIONS (schema=ENVIRONMENT, landing=FED_EPA_NPDES_NPDES_INSPECTIONS) ===
+  live=1900067 catalog_csv=1900067 header=500000 disagree=header=500000
+  landing table fresh row_count (info_schema)=1900067
+  CATALOG row: LIFECYCLE=modeled LANDED=1900067 MART_ROW_COUNT=1900067 RUN_ROWS=None IS_SAMPLE=False LAST_INGESTED_AT=None
+  mart tables sharing sid='fed_epa_npdes_npdes_inspections' (by landing table name): [('ENVIRONMENT', 'ENVIRONMENT__FED_EPA_NPDES_NPDES_INSPECTIONS', 'BASE TABLE', 1900067)]
+  mart tables sharing sid='environment__fed_epa_npdes_npdes_inspections' (by model name): []
+
+=== ENVIRONMENT__FED_EPA_NPDES_NPDES_QNCR_HISTORY (schema=ENVIRONMENT, landing=FED_EPA_NPDES_NPDES_QNCR_HISTORY) ===
+  live=7951656 catalog_csv=7951656 header=500000 disagree=header=500000
+  landing table fresh row_count (info_schema)=7951656
+  CATALOG row: LIFECYCLE=modeled LANDED=7951656 MART_ROW_COUNT=7951656 RUN_ROWS=None IS_SAMPLE=False LAST_INGESTED_AT=None
+  mart tables sharing sid='fed_epa_npdes_npdes_qncr_history' (by landing table name): [('ENVIRONMENT', 'ENVIRONMENT__FED_EPA_NPDES_NPDES_QNCR_HISTORY', 'BASE TABLE', 7951656)]
+  mart tables sharing sid='environment__fed_epa_npdes_npdes_qncr_history' (by model name): []
+
+=== ENVIRONMENT__FED_EPA_NPDES_NPDES_SICS (schema=ENVIRONMENT, landing=FED_EPA_NPDES_NPDES_SICS) ===
+  live=792807 catalog_csv=792807 header=500000 disagree=header=500000
+  landing table fresh row_count (info_schema)=792807
+  CATALOG row: LIFECYCLE=modeled LANDED=792807 MART_ROW_COUNT=792807 RUN_ROWS=None IS_SAMPLE=False LAST_INGESTED_AT=None
+  mart tables sharing sid='fed_epa_npdes_npdes_sics' (by landing table name): [('ENVIRONMENT', 'ENVIRONMENT__FED_EPA_NPDES_NPDES_SICS', 'BASE TABLE', 792807)]
+  mart tables sharing sid='environment__fed_epa_npdes_npdes_sics' (by model name): []
+
+=== ENVIRONMENT__FED_EPA_SDWA_SDWA_FACILITIES (schema=ENVIRONMENT, landing=FED_EPA_SDWA_SDWA_FACILITIES) ===
+  live=1554832 catalog_csv=1554832 header=500000 disagree=header=500000
+  landing table fresh row_count (info_schema)=1554832
+  CATALOG row: LIFECYCLE=modeled LANDED=1554832 MART_ROW_COUNT=1554832 RUN_ROWS=None IS_SAMPLE=False LAST_INGESTED_AT=None
+  mart tables sharing sid='fed_epa_sdwa_sdwa_facilities' (by landing table name): [('ENVIRONMENT', 'ENVIRONMENT__FED_EPA_SDWA_SDWA_FACILITIES', 'BASE TABLE', 1554832)]
+  mart tables sharing sid='environment__fed_epa_sdwa_sdwa_facilities' (by model name): []
+
+=== ENVIRONMENT__FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS (schema=ENVIRONMENT, landing=FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS) ===
+  live=578198 catalog_csv=578198 header=500000 disagree=header=500000
+  landing table fresh row_count (info_schema)=578198
+  CATALOG row: LIFECYCLE=modeled LANDED=578198 MART_ROW_COUNT=578198 RUN_ROWS=None IS_SAMPLE=False LAST_INGESTED_AT=None
+  mart tables sharing sid='fed_epa_sdwa_sdwa_geographic_areas' (by landing table name): [('ENVIRONMENT', 'ENVIRONMENT__FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS', 'BASE TABLE', 578198)]
+  mart tables sharing sid='environment__fed_epa_sdwa_sdwa_geographic_areas' (by model name): []
+
+=== ENVIRONMENT__FED_EPA_SDWA_SDWA_LCR_SAMPLES (schema=ENVIRONMENT, landing=FED_EPA_SDWA_SDWA_LCR_SAMPLES) ===
+  live=927415 catalog_csv=927415 header=500000 disagree=header=500000
+  landing table fresh row_count (info_schema)=927415
+  CATALOG row: LIFECYCLE=modeled LANDED=927415 MART_ROW_COUNT=927415 RUN_ROWS=None IS_SAMPLE=False LAST_INGESTED_AT=None
+  mart tables sharing sid='fed_epa_sdwa_sdwa_lcr_samples' (by landing table name): [('ENVIRONMENT', 'ENVIRONMENT__FED_EPA_SDWA_SDWA_LCR_SAMPLES', 'BASE TABLE', 927415)]
+  mart tables sharing sid='environment__fed_epa_sdwa_sdwa_lcr_samples' (by model name): []
+
+=== ENVIRONMENT__FED_EPA_SDWA_SDWA_SITE_VISITS (schema=ENVIRONMENT, landing=FED_EPA_SDWA_SDWA_SITE_VISITS) ===
+  live=2495249 catalog_csv=2495249 header=500000 disagree=header=500000
+  landing table fresh row_count (info_schema)=2495249
+  CATALOG row: LIFECYCLE=modeled LANDED=2495249 MART_ROW_COUNT=2495249 RUN_ROWS=None IS_SAMPLE=False LAST_INGESTED_AT=None
+  mart tables sharing sid='fed_epa_sdwa_sdwa_site_visits' (by landing table name): [('ENVIRONMENT', 'ENVIRONMENT__FED_EPA_SDWA_SDWA_SITE_VISITS', 'BASE TABLE', 2495249)]
+  mart tables sharing sid='environment__fed_epa_sdwa_sdwa_site_visits' (by model name): []
+
+=== ENVIRONMENT__FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT (schema=ENVIRONMENT, landing=FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT) ===
+  live=15432737 catalog_csv=15432737 header=500000 disagree=header=500000
+  landing table fresh row_count (info_schema)=15432737
+  CATALOG row: LIFECYCLE=modeled LANDED=15432737 MART_ROW_COUNT=15432737 RUN_ROWS=None IS_SAMPLE=False LAST_INGESTED_AT=None
+  mart tables sharing sid='fed_epa_sdwa_sdwa_violations_enforcement' (by landing table name): [('ENVIRONMENT', 'ENVIRONMENT__FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT', 'BASE TABLE', 15432737)]
+  mart tables sharing sid='environment__fed_epa_sdwa_sdwa_violations_enforcement' (by model name): []
+
+=== ENVIRONMENT__FED_NOAA_STORM_EVENTS (schema=ENVIRONMENT, landing=FED_NOAA_STORM_EVENTS) ===
+  live=1780730 catalog_csv=1780730 header=69801 disagree=header=69801
+  landing table fresh row_count (info_schema)=1780730
+  CATALOG row: LIFECYCLE=modeled LANDED=1780730 MART_ROW_COUNT=1780730 RUN_ROWS=69801 IS_SAMPLE=False LAST_INGESTED_AT=2026-06-28 18:14:52.253885
+  mart tables sharing sid='fed_noaa_storm_events' (by landing table name): [('ENVIRONMENT', 'ENVIRONMENT__FED_NOAA_STORM_EVENTS', 'BASE TABLE', 1780730)]
+  mart tables sharing sid='environment__fed_noaa_storm_events' (by model name): []
+
+=== FINANCE__FED_FEC_LEADERSHIP_PAC (schema=FINANCE, landing=FED_FEC_LEADERSHIP_PAC) ===
+  live=8619 catalog_csv=17238 header= disagree=catalog=17238
+  landing table fresh row_count (info_schema)=8619
+  CATALOG row: LIFECYCLE=modeled LANDED=8619 MART_ROW_COUNT=17238 RUN_ROWS=8619 IS_SAMPLE=False LAST_INGESTED_AT=2026-07-27 19:54:41.660921
+  mart tables sharing sid='fed_fec_leadership_pac' (by landing table name): [('FINANCE', 'FINANCE__FED_FEC_LEADERSHIP_PAC', 'BASE TABLE', 8619), ('UNCATEGORIZED', 'UNCATEGORIZED__FED_FEC_LEADERSHIP_PAC', 'BASE TABLE', 8619)]
+  mart tables sharing sid='finance__fed_fec_leadership_pac' (by model name): []
+
+=== FINANCE__FED_SEC_13F_POSITIONS (schema=FINANCE, landing=FED_SEC_13F_POSITIONS) ===
+  live=101261252 catalog_csv=202522504 header= disagree=catalog=202522504
+  landing table fresh row_count (info_schema)=3822885
+  CATALOG row: LIFECYCLE=modeled LANDED=3822885 MART_ROW_COUNT=202522504 RUN_ROWS=3822885 IS_SAMPLE=False LAST_INGESTED_AT=2026-07-27 20:49:21.705069
+  mart tables sharing sid='fed_sec_13f_positions' (by landing table name): [('FINANCE', 'FINANCE__FED_SEC_13F_POSITIONS', 'BASE TABLE', 101261252), ('UNCATEGORIZED', 'UNCATEGORIZED__FED_SEC_13F_POSITIONS', 'BASE TABLE', 101261252)]
+  mart tables sharing sid='finance__fed_sec_13f_positions' (by model name): []
+
+=== FINANCE__FED_SEC_EDGAR_FINANCIALS (schema=FINANCE, landing=FED_SEC_EDGAR_FINANCIALS) ===
+  live=55635 catalog_csv=55635 header=6699 disagree=header=6699
+  landing table fresh row_count (info_schema)=55635
+  CATALOG row: LIFECYCLE=modeled LANDED=55635 MART_ROW_COUNT=55635 RUN_ROWS=6699 IS_SAMPLE=False LAST_INGESTED_AT=2026-06-28 17:56:35.841347
+  mart tables sharing sid='fed_sec_edgar_financials' (by landing table name): [('FINANCE', 'FINANCE__FED_SEC_EDGAR_FINANCIALS', 'BASE TABLE', 55635)]
+  mart tables sharing sid='finance__fed_sec_edgar_financials' (by model name): []
+
+=== GOVERNMENT_RECORDS__FED_NARA_AAD (schema=GOVERNMENT_RECORDS, landing=FED_NARA_AAD) ===
+  live=9 catalog_csv=18 header= disagree=catalog=18
+  landing table fresh row_count (info_schema)=554
+  CATALOG row: LIFECYCLE=modeled LANDED=554 MART_ROW_COUNT=18 RUN_ROWS=554 IS_SAMPLE=False LAST_INGESTED_AT=2026-06-17 18:36:54.470431
+  mart tables sharing sid='fed_nara_aad' (by landing table name): [('GOVERNMENT_RECORDS', 'GOVERNMENT_RECORDS__FED_NARA_AAD', 'BASE TABLE', 9), ('_RESTORE_20260701', 'GOVERNMENT_RECORDS__FED_NARA_AAD', 'BASE TABLE', 9)]
+  mart tables sharing sid='government_records__fed_nara_aad' (by model name): []
+
+=== HEALTH__FED_CDC_NNDSS_WEEKLY_2024 (schema=HEALTH, landing=FED_CDC_NNDSS_WEEKLY_2024) ===
+  live=1932840 catalog_csv=1932840 header=500000 disagree=header=500000
+  landing table fresh row_count (info_schema)=1932840
+  CATALOG row: LIFECYCLE=modeled LANDED=1932840 MART_ROW_COUNT=1932840 RUN_ROWS=None IS_SAMPLE=False LAST_INGESTED_AT=None
+  mart tables sharing sid='fed_cdc_nndss_weekly_2024' (by landing table name): [('HEALTH', 'HEALTH__FED_CDC_NNDSS_WEEKLY_2024', 'BASE TABLE', 1932840)]
+  mart tables sharing sid='health__fed_cdc_nndss_weekly_2024' (by model name): []
+
+=== HEALTH__FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY (schema=HEALTH, landing=FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY) ===
+  live=31403215 catalog_csv=31403215 header=500000 disagree=header=500000
+  landing table fresh row_count (info_schema)=31403215
+  CATALOG row: LIFECYCLE=modeled LANDED=31403215 MART_ROW_COUNT=31403215 RUN_ROWS=31403215 IS_SAMPLE=False LAST_INGESTED_AT=2026-08-06 19:42:46.789633
+  mart tables sharing sid='fed_cms_facility_level_minimum_data_set_frequency' (by landing table name): [('HEALTH', 'HEALTH__FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY', 'BASE TABLE', 31403215)]
+  mart tables sharing sid='health__fed_cms_facility_level_minimum_data_set_frequency' (by model name): []
+
+=== HEALTH__FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING (schema=HEALTH, landing=FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING) ===
+  live=2047828 catalog_csv=2047828 header=500000 disagree=header=500000
+  landing table fresh row_count (info_schema)=2047828
+  CATALOG row: LIFECYCLE=modeled LANDED=2047828 MART_ROW_COUNT=2047828 RUN_ROWS=None IS_SAMPLE=False LAST_INGESTED_AT=None
+  mart tables sharing sid='fed_cms_fiscal_intermediary_shared_system_attending_and_rendering' (by landing table name): [('HEALTH', 'HEALTH__FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING', 'BASE TABLE', 2047828)]
+  mart tables sharing sid='health__fed_cms_fiscal_intermediary_shared_system_attending_and_rendering' (by model name): []
+
+=== HEALTH__FED_CMS_MEDICARE_DIALYSIS_FACILITIES (schema=HEALTH, landing=FED_CMS_MEDICARE_DIALYSIS_FACILITIES) ===
+  live=12456456 catalog_csv=12456456 header=500000 disagree=header=500000
+  landing table fresh row_count (info_schema)=12456456
+  CATALOG row: LIFECYCLE=modeled LANDED=12456456 MART_ROW_COUNT=12456456 RUN_ROWS=12456456 IS_SAMPLE=False LAST_INGESTED_AT=2026-08-06 19:47:14.090998
+  mart tables sharing sid='fed_cms_medicare_dialysis_facilities' (by landing table name): [('HEALTH', 'HEALTH__FED_CMS_MEDICARE_DIALYSIS_FACILITIES', 'BASE TABLE', 12456456)]
+  mart tables sharing sid='health__fed_cms_medicare_dialysis_facilities' (by model name): []
+
+=== HEALTH__FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER (schema=HEALTH, landing=FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER) ===
+  live=1296739 catalog_csv=1296739 header=500000 disagree=header=500000
+  landing table fresh row_count (info_schema)=1296739
+  CATALOG row: LIFECYCLE=modeled LANDED=1296739 MART_ROW_COUNT=1296739 RUN_ROWS=None IS_SAMPLE=False LAST_INGESTED_AT=None
+  mart tables sharing sid='fed_cms_medicare_physician_other_practitioners_by_provider' (by landing table name): [('HEALTH', 'HEALTH__FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER', 'BASE TABLE', 1296739)]
+  mart tables sharing sid='health__fed_cms_medicare_physician_other_practitioners_by_provider' (by model name): []
+
+=== HEALTH__FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI (schema=HEALTH, landing=FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI) ===
+  live=9781673 catalog_csv=9781673 header=500000 disagree=header=500000
+  landing table fresh row_count (info_schema)=9781673
+  CATALOG row: LIFECYCLE=modeled LANDED=9781673 MART_ROW_COUNT=9781673 RUN_ROWS=9781673 IS_SAMPLE=False LAST_INGESTED_AT=2026-08-06 19:55:11.142734
+  mart tables sharing sid='fed_cms_medicare_physician_other_practitioners_by_provider_and_servi' (by landing table name): [('HEALTH', 'HEALTH__FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI', 'BASE TABLE', 9781673)]
+  mart tables sharing sid='health__fed_cms_medicare_physician_other_practitioners_by_provider_and_servi' (by model name): []
+
+=== HEALTH__FED_CMS_ORDER_AND_REFERRING (schema=HEALTH, landing=FED_CMS_ORDER_AND_REFERRING) ===
+  live=2018354 catalog_csv=2018354 header=500000 disagree=header=500000
+  landing table fresh row_count (info_schema)=2018354
+  CATALOG row: LIFECYCLE=modeled LANDED=2018354 MART_ROW_COUNT=2018354 RUN_ROWS=None IS_SAMPLE=False LAST_INGESTED_AT=None
+  mart tables sharing sid='fed_cms_order_and_referring' (by landing table name): [('HEALTH', 'HEALTH__FED_CMS_ORDER_AND_REFERRING', 'BASE TABLE', 2018354)]
+  mart tables sharing sid='health__fed_cms_order_and_referring' (by model name): []
+
+=== IMMIGRATION__FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT (schema=IMMIGRATION, landing=FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT) ===
+  live=2978925 catalog_csv=2978925 header=500000 disagree=header=500000
+  landing table fresh row_count (info_schema)=2978925
+  CATALOG row: LIFECYCLE=modeled LANDED=2978925 MART_ROW_COUNT=2978925 RUN_ROWS=None IS_SAMPLE=False LAST_INGESTED_AT=None
+  mart tables sharing sid='fed_cms_medicare_fee_for_service_public_provider_enrollment' (by landing table name): [('IMMIGRATION', 'IMMIGRATION__FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT', 'BASE TABLE', 2978925)]
+  mart tables sharing sid='immigration__fed_cms_medicare_fee_for_service_public_provider_enrollment' (by model name): []
+
+=== JUSTICE__COUNTY_DOUBLE_BURDEN (schema=JUSTICE, landing=FED_CDC_DRUG_POISONING_COUNTY) ===
+  live=3029 catalog_csv=53387 header= disagree=catalog=53387
+  landing table fresh row_count (info_schema)=53387
+  CATALOG row: LIFECYCLE=modeled LANDED=53387 MART_ROW_COUNT=53387 RUN_ROWS=53387 IS_SAMPLE=False LAST_INGESTED_AT=2026-06-28 04:17:01.709390
+  mart tables sharing sid='fed_cdc_drug_poisoning_county' (by landing table name): [('HEALTH', 'HEALTH__FED_CDC_DRUG_POISONING_COUNTY', 'BASE TABLE', 53387)]
+  mart tables sharing sid='justice__county_double_burden' (by model name): []
+
+=== LABOR__FED_MSHA_ACCIDENTS (schema=LABOR, landing=FED_MSHA_ACCIDENTS) ===
+  live=273623 catalog_csv=547246 header= disagree=catalog=547246
+  landing table fresh row_count (info_schema)=273623
+  CATALOG row: LIFECYCLE=modeled LANDED=273623 MART_ROW_COUNT=547246 RUN_ROWS=273623 IS_SAMPLE=False LAST_INGESTED_AT=2026-07-24 00:48:05.173382
+  mart tables sharing sid='fed_msha_accidents' (by landing table name): [('_RESTORE_20260731', 'JUSTICE__FED_MSHA_ACCIDENTS', 'BASE TABLE', 273623), ('LABOR', 'LABOR__FED_MSHA_ACCIDENTS', 'BASE TABLE', 273623)]
+  mart tables sharing sid='labor__fed_msha_accidents' (by model name): []
+
+=== LABOR__FED_MSHA_MINES (schema=LABOR, landing=FED_MSHA_MINES) ===
+  live=91906 catalog_csv=183812 header= disagree=catalog=183812
+  landing table fresh row_count (info_schema)=91906
+  CATALOG row: LIFECYCLE=modeled LANDED=91906 MART_ROW_COUNT=183812 RUN_ROWS=91906 IS_SAMPLE=False LAST_INGESTED_AT=2026-07-24 00:48:30.382433
+  mart tables sharing sid='fed_msha_mines' (by landing table name): [('LABOR', 'LABOR__FED_MSHA_MINES', 'BASE TABLE', 91906), ('_RESTORE_20260731', 'JUSTICE__FED_MSHA_MINES', 'BASE TABLE', 91906)]
+  mart tables sharing sid='labor__fed_msha_mines' (by model name): []
+
+=== LABOR__FED_MSHA_VIOLATIONS (schema=LABOR, landing=FED_MSHA_VIOLATIONS) ===
+  live=3087265 catalog_csv=6174531 header= disagree=catalog=6174531
+  landing table fresh row_count (info_schema)=3087266
+  CATALOG row: LIFECYCLE=modeled LANDED=3087266 MART_ROW_COUNT=6174531 RUN_ROWS=3087266 IS_SAMPLE=False LAST_INGESTED_AT=2026-07-24 00:47:33.860830
+  mart tables sharing sid='fed_msha_violations' (by landing table name): [('LABOR', 'LABOR__FED_MSHA_VIOLATIONS', 'BASE TABLE', 3087265), ('_RESTORE_20260731', 'JUSTICE__FED_MSHA_VIOLATIONS', 'BASE TABLE', 3087266)]
+  mart tables sharing sid='labor__fed_msha_violations' (by model name): []
+
+=== MONEY__DEBT_REPAYMENT_CLIFF (schema=MONEY_FINANCE, landing=INTL_WB_IDS) ===
+  live=938 catalog_csv=62983 header= disagree=catalog=62983
+  landing table fresh row_count (info_schema)=62983
+  CATALOG row: LIFECYCLE=modeled LANDED=62983 MART_ROW_COUNT=62983 RUN_ROWS=62983 IS_SAMPLE=False LAST_INGESTED_AT=2026-06-28 04:13:23.035353
+  mart tables sharing sid='intl_wb_ids' (by landing table name): [('FINANCE', 'FINANCE__INTL_WB_IDS', 'BASE TABLE', 62983)]
+  mart tables sharing sid='money__debt_repayment_cliff' (by model name): []
+
+=== POLITICS__FED_FEC_PAC_SUMMARY (schema=POLITICS, landing=FED_FEC_PAC_SUMMARY) ===
+  live=45709 catalog_csv=94104 header= disagree=catalog=94104
+  landing table fresh row_count (info_schema)=48395
+  CATALOG row: LIFECYCLE=modeled LANDED=48395 MART_ROW_COUNT=94104 RUN_ROWS=48395 IS_SAMPLE=False LAST_INGESTED_AT=2026-07-24 02:14:09.542344
+  mart tables sharing sid='fed_fec_pac_summary' (by landing table name): [('_RESTORE_20260731', 'FINANCE__FED_FEC_PAC_SUMMARY', 'BASE TABLE', 48395), ('POLITICS', 'POLITICS__FED_FEC_PAC_SUMMARY', 'BASE TABLE', 45709)]
+  mart tables sharing sid='politics__fed_fec_pac_summary' (by model name): []
+
+=== POLITICS__MEMBER_SPINE (schema=POLITICS, landing=FED_VOTEVIEW_MEMBERS) ===
+  live=12794 catalog_csv=51061 header= disagree=catalog=51061
+  landing table fresh row_count (info_schema)=51061
+  CATALOG row: LIFECYCLE=modeled LANDED=51061 MART_ROW_COUNT=51061 RUN_ROWS=51061 IS_SAMPLE=False LAST_INGESTED_AT=2026-06-29 20:52:49.197147
+  mart tables sharing sid='fed_voteview_members' (by landing table name): [('POLITICS', 'POLITICS__FED_VOTEVIEW_MEMBERS', 'BASE TABLE', 51061)]
+  mart tables sharing sid='politics__member_spine' (by model name): []
+
+=== POLITICS__MEMBER_VOTING_RECORD (schema=POLITICS, landing=FED_VOTEVIEW_MEMBERS) ===
+  live=1105 catalog_csv=51061 header= disagree=catalog=51061
+  landing table fresh row_count (info_schema)=51061
+  CATALOG row: LIFECYCLE=modeled LANDED=51061 MART_ROW_COUNT=51061 RUN_ROWS=51061 IS_SAMPLE=False LAST_INGESTED_AT=2026-06-29 20:52:49.197147
+  mart tables sharing sid='fed_voteview_members' (by landing table name): [('POLITICS', 'POLITICS__FED_VOTEVIEW_MEMBERS', 'BASE TABLE', 51061)]
+  mart tables sharing sid='politics__member_voting_record' (by model name): []
+
+=== REF__DIM_GEOGRAPHY (schema=REFERENCE, landing=FED_EPA_FRS_FULL) ===
+  live=6988 catalog_csv=5300149 header= disagree=catalog=5300149
+  landing table fresh row_count (info_schema)=5300149
+  CATALOG row: LIFECYCLE=modeled LANDED=5300149 MART_ROW_COUNT=5300149 RUN_ROWS=5300149 IS_SAMPLE=False LAST_INGESTED_AT=2026-07-27 20:18:28.217459
+  mart tables sharing sid='fed_epa_frs_full' (by landing table name): [('_RESTORE_20260731', 'UNCATEGORIZED__FED_EPA_FRS_FULL', 'BASE TABLE', 5300149)]
+  mart tables sharing sid='ref__dim_geography' (by model name): []
+
+=== TRANSPORT__FED_FRA_RAIL_DEATHS_BY_RAILROAD (schema=TRANSPORT, landing=FED_FRA_CASUALTIES) ===
+  live=5152 catalog_csv=1150788 header= disagree=catalog=1150788
+  landing table fresh row_count (info_schema)=1150788
+  CATALOG row: LIFECYCLE=modeled LANDED=1150788 MART_ROW_COUNT=1150788 RUN_ROWS=1150788 IS_SAMPLE=False LAST_INGESTED_AT=2026-08-09 18:26:08.561225
+  mart tables sharing sid='fed_fra_casualties' (by landing table name): [('TRANSPORT', 'TRANSPORT__FED_FRA_CASUALTIES', 'BASE TABLE', 1150788)]
+  mart tables sharing sid='transport__fed_fra_rail_deaths_by_railroad' (by model name): []

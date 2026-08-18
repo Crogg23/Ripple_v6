@@ -13,6 +13,13 @@ with source as (
 -- distinguishing raw column, so _source_row_hash carries each landing row's
 -- full fingerprint: no real row collapses, and apparent duplicates are
 -- provably distinct facts. The real cure is a per-sheet re-model (backlog).
+--
+-- RE-VERIFIED 2026-08-18 (dup-batch investigation): reports/census_grid_2026-08-12/
+-- fill/fill_tables.csv still lists 77.24% dup for this mart -- that number is a
+-- stale pre-fix reading from the 2026-08-11 scan, taken before the fix above
+-- landed same day. Live full-scan today: mart AND landing are both 0.0% dup
+-- (50,740 / 50,740 distinct on both). No SQL change needed here -- flagging so
+-- the census record gets corrected instead of this being "fixed" a second time.
 
 select
     hash(*) as _source_row_hash,
