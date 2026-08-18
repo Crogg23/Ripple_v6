@@ -42,6 +42,32 @@ from tag_portal_index import (  # noqa: E402
 # is excluded by exactness). The portal index and ENTITY_KEYS are untouched.
 EXACT_TOKEN_KEYS: dict[frozenset, tuple[str, str]] = {
     frozenset({"company", "number"}): ("COMPANY_NO", "STEEL"),
+    # --- 2026-08-18: the five key families the 2026-08 spine batch added.
+    # The spine resolves them from explicit (table, column) specs, so it never
+    # needed name detection -- but discover/ does, and without these the whole
+    # batch produced ZERO edges while sitting fine in the spine.
+    #
+    # Every token set below was checked against ALL landing columns first: each
+    # one occurs ONLY inside its own family, so an exact-set rule cannot leak.
+    # Counts are live as of 2026-08-18.
+    frozenset({"npdes", "id"}): ("NPDES_ID", "STEEL"),                 # 15 cols, all FED_EPA_NPDES_*
+    frozenset({"detention", "facility", "code"}): ("ICE_FACILITY", "STEEL"),  # 3 cols, all FED_ICE_*
+    frozenset({"cu", "number"}): ("NCUA_CHARTER", "STEEL"),            # 2 cols, both NCUA call reports
+    frozenset({"charter", "number"}): ("NCUA_CHARTER", "STEEL"),       # 1 col, NCUA insured-CU list
+    frozenset({"continuing", "credit", "union", "charter"}): ("NCUA_CHARTER", "STEEL"),  # 1 col, merger ledger
+    frozenset({"person", "id"}): ("CL_PERSON_ID", "STEEL"),            # 5 cols, all FED_COURTLISTENER_*
+    frozenset({"court", "id"}): ("CL_COURT_ID", "STEEL"),              # 3 cols, all FED_COURTLISTENER_*
+    frozenset({"assigned", "to", "id"}): ("CL_PERSON_ID", "STEEL"),    # 2 cols, both FED_COURTLISTENER_*
+}
+
+# Table-scoped key columns: the LAST resort, for columns whose NAME cannot carry
+# the key safely. Both entries below are a bare "ID" -- which occurs on 180
+# landing tables, so a token rule for it would be a false-merge machine. These
+# two are the registry/anchor tables of their family (the row whose ID every
+# other table points AT), so scoping by table is the only correct way in.
+TABLE_COLUMN_KEYS: dict[tuple[str, str], tuple[str, str]] = {
+    ("FED_COURTLISTENER_COURTS", "ID"): ("CL_COURT_ID", "STEEL"),
+    ("FED_COURTLISTENER_JUDGES", "ID"): ("CL_PERSON_ID", "STEEL"),
 }
 
 

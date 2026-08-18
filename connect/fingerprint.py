@@ -31,7 +31,7 @@ import json
 from pathlib import Path
 
 from . import db
-from .keys import detect_key, join_mode, normalize_sql, quote_ident
+from .keys import TABLE_COLUMN_KEYS, detect_key, join_mode, normalize_sql, quote_ident
 
 OUT = Path(__file__).resolve().parents[1] / "outputs" / "connect_fingerprints.json"
 
@@ -121,13 +121,19 @@ def table_columns(conn, table: str) -> list[str]:
     return [r[0] for r in db.rows(conn, sql)]
 
 
-def _key_columns(columns: list[str]) -> list[dict]:
-    """Detect the key-bearing columns of a table (skip provenance columns)."""
+def _key_columns(columns: list[str], table: str | None = None) -> list[dict]:
+    """Detect the key-bearing columns of a table (skip provenance columns).
+
+    A (table, column) entry in TABLE_COLUMN_KEYS wins over name detection --
+    that is how a bare "ID" on a registry table gets its real key without
+    tagging the other 179 landing tables that also have an "ID" column.
+    """
     out = []
     for c in columns:
         if c.startswith("_"):  # _INGESTED_AT / _SOURCE_RUN_ID / _SRC_SHA256
             continue
-        key, tier = detect_key(c)
+        scoped = TABLE_COLUMN_KEYS.get((table, c)) if table else None
+        key, tier = scoped if scoped else detect_key(c)
         if key:
             out.append({"column": c, "key": key, "tier": tier, "mode": join_mode(key)})
     return out
@@ -135,7 +141,7 @@ def _key_columns(columns: list[str]) -> list[dict]:
 
 def fingerprint_table(conn, table: str) -> dict:
     cols = table_columns(conn, table)
-    keycols = _key_columns(cols)
+    keycols = _key_columns(cols, table)
     rows_total = db.scalar(conn, f"SELECT COUNT(*) FROM {db.fqn(table)}") or 0
 
     # Measure population for the VALUE keys in one scan. Spatial keys (lat/lon,
