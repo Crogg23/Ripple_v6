@@ -939,6 +939,95 @@ DISPLAY_SPECS: dict[str, dict] = {
     },
 }
 
+# --- CourtListener spine wiring (2026-08-17), STAGED behind a flag ------------ #
+# Two new key axes: CL_PERSON_ID (judge) and CL_COURT_ID (court). Every join
+# surface below was measured live 2026-08-17 (read-only; evidence in
+# reports/census_grid_2026-08-12/fill/courtlistener_edges.json): 19 of 20
+# surfaces at 99.2-100% referential match. The one failure is deliberately NOT
+# wired: POSITIONS.APPOINTER_ID matched judges only 47.17% -- it references a
+# different record type than a person (measured, not assumed), and wiring it
+# would manufacture false person entities.
+#
+# Why staged: adding these specs (or their NORM_RULES entries) changes the
+# incremental-config fingerprint, which by design freezes connect-one /
+# connect-changed until a FULL spine rebuild re-pins it -- and the full rebuild
+# is a parked money decision (~$10-15). Flip keys.ENABLE_COURTLISTENER_SPINE to
+# True in the session that runs `python -m connect spine`, never before.
+#
+# Notes carried from measurement:
+#   - JUDGES has 394 alias rows (IS_ALIAS_OF_ID set) out of 16,191; aliases
+#     become their own thin person entities in v1 (no row filter mechanism in
+#     specs). Acceptable: ~2.4% thin duplicates, zero false merges.
+#   - DOCKETS/POSITIONS declare NO name columns on purpose: their name columns
+#     are case/organization names, not the judge's or court's name -- declaring
+#     them would let a case name win survivorship for a court.
+#   - COURTS.FJC_COURT_ID (200 rows) is a future bridge to the FJC IDB world;
+#     not a key axis yet.
+COURTLISTENER_DISPLAY_SPECS: dict[str, dict] = {
+    "FED_COURTLISTENER_JUDGES": {
+        # CL_PERSON_ID -- 16,057 distinct / 16,191 rows, all named. e.g. '370'
+        "key": "CL_PERSON_ID", "key_col": "ID",
+        "person": ["NAME_LAST", "NAME_FIRST"],
+        "authority": 1,
+    },
+    "FED_COURTLISTENER_COURTS": {
+        # CL_COURT_ID -- 3,361 distinct / 3,361 rows, all named. e.g. 'scotus', 'ca9'
+        "key": "CL_COURT_ID", "key_col": "ID",
+        "org": "FULL_NAME",
+        "authority": 1,
+    },
+    "FED_COURTLISTENER_FINANCIAL_DISCLOSURES": {
+        # judge -> disclosure measured 99.82% (29,041/29,092 nonnull person ids)
+        "key": "CL_PERSON_ID", "key_col": "PERSON_ID",
+        "authority": 5,
+    },
+    "FED_COURTLISTENER_POSITIONS": {
+        # judge -> judgeship 100.0% (51,290 rows); court leg 100.0% (22,183 nonnull).
+        # extra_keys carries the court on the same row (the judgeship is the link
+        # between a person and a court). APPOINTER_ID deliberately excluded (47%).
+        "key": "CL_PERSON_ID", "key_col": "PERSON_ID",
+        "extra_keys": [{"key": "CL_COURT_ID", "key_col": "COURT_ID"}],
+        "authority": 5,
+    },
+    "FED_COURTLISTENER_JUDGE_EDUCATIONS": {
+        # 100.0% (12,746 nonnull)
+        "key": "CL_PERSON_ID", "key_col": "PERSON_ID", "authority": 6,
+    },
+    "FED_COURTLISTENER_JUDGE_POLITICAL_AFFILIATIONS": {
+        # 100.0% (8,486 rows)
+        "key": "CL_PERSON_ID", "key_col": "PERSON_ID", "authority": 6,
+    },
+    "FED_COURTLISTENER_JUDGE_RACES": {
+        # 100.0% (6,542 rows)
+        "key": "CL_PERSON_ID", "key_col": "PERSON_ID", "authority": 6,
+    },
+    "FED_COURTLISTENER_DOCKETS": {
+        # court -> docket 100.0% on ALL 71,677,647 rows; assigned judge 100.0%
+        # on 32.4M nonnull. The judge/court caseload ledger.
+        "key": "CL_COURT_ID", "key_col": "COURT_ID",
+        "extra_keys": [{"key": "CL_PERSON_ID", "key_col": "ASSIGNED_TO_ID"}],
+        "authority": 7,
+    },
+    "FED_COURTLISTENER_ORIGINATING_COURT_INFO": {
+        # judge -> originating assignment 100.0% (32,857 nonnull)
+        "key": "CL_PERSON_ID", "key_col": "ASSIGNED_TO_ID", "authority": 7,
+    },
+}
+
+def _maybe_enable_courtlistener() -> None:
+    # This module is imported BOTH as connect.entity_index_specs (package) and as
+    # a top-level module (spine_entity.py path-hacks connect/ onto sys.path), so
+    # the relative import needs a bare fallback. The flag is a module constant
+    # read once at import; both import identities see the same source default.
+    try:
+        from .keys import ENABLE_COURTLISTENER_SPINE
+    except ImportError:
+        from keys import ENABLE_COURTLISTENER_SPINE
+    if ENABLE_COURTLISTENER_SPINE:
+        DISPLAY_SPECS.update(COURTLISTENER_DISPLAY_SPECS)
+
+_maybe_enable_courtlistener()
+
 # spine scope = every table with a nameable hard key (health + money/maritime/corporate).
 SPINE_TABLES = list(DISPLAY_SPECS)
 
@@ -970,6 +1059,13 @@ ENTITY_TYPE_BY_KEY = {
     # registrar's namespace (only the two UK CH tables carry it -- see
     # connect/keys.py EXACT_TOKEN_KEYS), identifying a registered company.
     "COMPANY_NO": "organization",
+    # 2026-08-17 CourtListener wiring (staged -- keys.ENABLE_COURTLISTENER_SPINE).
+    # A judge is a human being; a court is an institution that hires, rules and
+    # can be appealed against -- organization, not facility (a courthouse is the
+    # building; courts move between buildings). Present unconditionally: entity
+    # typing re-labels but never re-keys, so listing dark keys here is inert.
+    "CL_PERSON_ID": "person",
+    "CL_COURT_ID": "organization",
 }
 
 # Entity types that carry no hard-ID column of their own and are assigned from the

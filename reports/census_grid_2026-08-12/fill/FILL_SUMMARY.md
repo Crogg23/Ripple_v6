@@ -64,6 +64,35 @@ rows, 7.8M distinct opinion clusters under 18.1M citations, 9.9M dockets
 referenced by opinion clusters — high-cardinality real keys, still zero edges
 to the entity map (registration remains the unlock).
 
+## CourtListener key registration (2026-08-17, staged — the follow-on "just go")
+
+The court tables' internal IDs are now **measured, wired, and staged** as two
+new spine key axes — judge (person) and court (organization):
+
+- **19 of 20 join surfaces verified at 99.2–100% referential match**
+  (evidence: `courtlistener_edges.json`). Highlights: court → docket **100.0%
+  on all 71.7M dockets**; judge → assigned docket 100.0% on 32.4M; judge →
+  financial disclosure 99.8%; the whole disclosure money chain (1.9M investment
+  lines) 99.4–99.6%.
+- **One defect found and excluded:** the "appointing judge" column on
+  judgeships matches the judge table only 47.2% — it references a different
+  record type. Not wired; wiring it would manufacture false person entities.
+- 16,057 distinct judges (394 alias rows — thin duplicates, zero false merges),
+  3,361 named courts. 200 courts carry a Federal Judicial Center bridge ID —
+  a future crosswalk out of the CourtListener namespace.
+- **Why staged, not live:** flipping the new keys on changes the spine's config
+  fingerprint, which (by design) freezes incremental spine updates until a
+  FULL rebuild re-pins it — and the full rebuild is the parked ~$10–15
+  decision. The wiring ships dark behind a single flag
+  (`connect/keys.py: ENABLE_COURTLISTENER_SPINE`); flip it in the same session
+  that runs the full rebuild. Config verified both ways: flag off = fingerprint
+  unchanged, flag on = specs/normalization/entity-typing all live.
+
+**What goes live at that rebuild:** the judge dossier (career + education +
+politics + disclosures + investments + caseload on one hard ID), court-grain
+caseload ledgers over 71.7M dockets, and the judges-money-cases lane the
+ladder ranked as the court domain's top unlock.
+
 ## Files
 
 | file | what it holds |

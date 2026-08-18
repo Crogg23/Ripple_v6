@@ -186,6 +186,33 @@ NORM_RULES: dict[str, tuple[str, int]] = {
     "ADDRESS": ("address", 0),
 }
 
+# --- CourtListener key axes (2026-08-17 wiring, STAGED behind a flag) --------- #
+# CL_PERSON_ID -- CourtListener's judge/person primary key: a plain integer
+# ('370', '16214'), no leading zeros, so alnum_upper (opaque ID, no pad).
+# CL_COURT_ID -- CourtListener's court primary key: a lowercase slug ('scotus',
+# 'ca9', 'nysd'); alnum_upper canonicalizes case. Both are single-publisher
+# namespaces by construction (only FED_COURTLISTENER_* tables carry them), and
+# both are deliberately NOT in KEY_TOKENS/EXACT_TOKEN_KEYS: the carrying columns
+# are named PERSON_ID / COURT_ID / ASSIGNED_TO_ID -- token detection would tag
+# same-named columns in unrelated sources. The spine specs pin exact columns
+# instead (entity_index_specs.COURTLISTENER_DISPLAY_SPECS).
+#
+# THE FLAG: flipping this changes the incremental-config fingerprint, which
+# freezes `connect-one`/`connect-changed` until the next FULL spine rebuild
+# re-pins it (incremental._guard_config, by design). The full rebuild is a
+# parked money decision (~$10-15). So the wiring ships dark: flip to True in
+# the same session that runs `python -m connect spine`, never before.
+# Join-surface evidence measured 2026-08-17 (read-only):
+# reports/census_grid_2026-08-12/fill/courtlistener_edges.json.
+ENABLE_COURTLISTENER_SPINE = False
+
+_COURTLISTENER_NORM_RULES: dict[str, tuple[str, int]] = {
+    "CL_PERSON_ID": ("alnum_upper", 0),
+    "CL_COURT_ID": ("alnum_upper", 0),
+}
+if ENABLE_COURTLISTENER_SPINE:
+    NORM_RULES.update(_COURTLISTENER_NORM_RULES)
+
 # tokens dropped from a name before matching (legal suffixes + person credentials +
 # a few stopwords). Sorted set so the generated SQL is stable across runs.
 _NAME_NOISE = sorted({

@@ -1,0 +1,322 @@
+{
+ "authorities": {
+  "judges": {
+   "rows": 16191,
+   "distinct_id": 16057,
+   "alias_rows": 394,
+   "named": 16191
+  },
+  "courts": {
+   "rows": 3361,
+   "distinct_id": 3361,
+   "named": 3361,
+   "with_fjc_bridge_id": 200
+  }
+ },
+ "person_edges": [
+  {
+   "edge": "judge -> financial disclosure",
+   "carrier": "FED_COURTLISTENER_FINANCIAL_DISCLOSURES",
+   "column": "PERSON_ID",
+   "authority": "FED_COURTLISTENER_JUDGES",
+   "rows": 108770,
+   "nonnull": 29092,
+   "distinct": 3377,
+   "matched_rows": 29041,
+   "match_pct_of_nonnull": 99.82,
+   "sample_range": [
+    " 000",
+    "\u201d the property was formely my residence until December 2016."
+   ]
+  },
+  {
+   "edge": "judge -> position/judgeship",
+   "carrier": "FED_COURTLISTENER_POSITIONS",
+   "column": "PERSON_ID",
+   "authority": "FED_COURTLISTENER_JUDGES",
+   "rows": 51290,
+   "nonnull": 51290,
+   "distinct": 15524,
+   "matched_rows": 51290,
+   "match_pct_of_nonnull": 100.0,
+   "sample_range": [
+    "1",
+    "9999"
+   ]
+  },
+  {
+   "edge": "appointing judge -> position",
+   "carrier": "FED_COURTLISTENER_POSITIONS",
+   "column": "APPOINTER_ID",
+   "authority": "FED_COURTLISTENER_JUDGES",
+   "rows": 51290,
+   "nonnull": 8664,
+   "distinct": 153,
+   "matched_rows": 4087,
+   "match_pct_of_nonnull": 47.17,
+   "sample_range": [
+    "1",
+    "9761"
+   ]
+  },
+  {
+   "edge": "judge -> education",
+   "carrier": "FED_COURTLISTENER_JUDGE_EDUCATIONS",
+   "column": "PERSON_ID",
+   "authority": "FED_COURTLISTENER_JUDGES",
+   "rows": 12777,
+   "nonnull": 12746,
+   "distinct": 7346,
+   "matched_rows": 12746,
+   "match_pct_of_nonnull": 100.0,
+   "sample_range": [
+    "100",
+    "999"
+   ]
+  },
+  {
+   "edge": "judge -> political affiliation",
+   "carrier": "FED_COURTLISTENER_JUDGE_POLITICAL_AFFILIATIONS",
+   "column": "PERSON_ID",
+   "authority": "FED_COURTLISTENER_JUDGES",
+   "rows": 8486,
+   "nonnull": 8486,
+   "distinct": 7186,
+   "matched_rows": 8486,
+   "match_pct_of_nonnull": 100.0,
+   "sample_range": [
+    "1",
+    "999"
+   ]
+  },
+  {
+   "edge": "judge -> race record",
+   "carrier": "FED_COURTLISTENER_JUDGE_RACES",
+   "column": "PERSON_ID",
+   "authority": "FED_COURTLISTENER_JUDGES",
+   "rows": 6542,
+   "nonnull": 6542,
+   "distinct": 6512,
+   "matched_rows": 6542,
+   "match_pct_of_nonnull": 100.0,
+   "sample_range": [
+    "1",
+    "999"
+   ]
+  },
+  {
+   "edge": "judge -> assigned docket",
+   "carrier": "FED_COURTLISTENER_DOCKETS",
+   "column": "ASSIGNED_TO_ID",
+   "authority": "FED_COURTLISTENER_JUDGES",
+   "rows": 71677647,
+   "nonnull": 32425784,
+   "distinct": 3353,
+   "matched_rows": 32425784,
+   "match_pct_of_nonnull": 100.0,
+   "sample_range": [
+    "100",
+    "9999"
+   ]
+  },
+  {
+   "edge": "judge -> originating-court assignment",
+   "carrier": "FED_COURTLISTENER_ORIGINATING_COURT_INFO",
+   "column": "ASSIGNED_TO_ID",
+   "authority": "FED_COURTLISTENER_JUDGES",
+   "rows": 973419,
+   "nonnull": 32857,
+   "distinct": 1494,
+   "matched_rows": 32857,
+   "match_pct_of_nonnull": 100.0,
+   "sample_range": [
+    "1000",
+    "998"
+   ]
+  },
+  {
+   "edge": "ordering judge -> originating-court info",
+   "carrier": "FED_COURTLISTENER_ORIGINATING_COURT_INFO",
+   "column": "ORDERING_JUDGE_ID",
+   "authority": "FED_COURTLISTENER_JUDGES",
+   "rows": 973419,
+   "nonnull": 1830,
+   "distinct": 84,
+   "matched_rows": 1830,
+   "match_pct_of_nonnull": 100.0,
+   "sample_range": [
+    "10045",
+    "9622"
+   ]
+  }
+ ],
+ "court_edges": [
+  {
+   "edge": "court -> docket",
+   "carrier": "FED_COURTLISTENER_DOCKETS",
+   "column": "COURT_ID",
+   "authority": "FED_COURTLISTENER_COURTS",
+   "rows": 71677647,
+   "nonnull": 71677647,
+   "distinct": 2205,
+   "matched_rows": 71677647,
+   "match_pct_of_nonnull": 100.0,
+   "sample_range": [
+    "acca",
+    "yubadistct"
+   ]
+  },
+  {
+   "edge": "court -> courthouse",
+   "carrier": "FED_COURTLISTENER_COURTHOUSES",
+   "column": "COURT_ID",
+   "authority": "FED_COURTLISTENER_COURTS",
+   "rows": 3361,
+   "nonnull": 3361,
+   "distinct": 3279,
+   "matched_rows": 3361,
+   "match_pct_of_nonnull": 100.0,
+   "sample_range": [
+    "acca",
+    "yubadistct"
+   ]
+  },
+  {
+   "edge": "court -> judgeship",
+   "carrier": "FED_COURTLISTENER_POSITIONS",
+   "column": "COURT_ID",
+   "authority": "FED_COURTLISTENER_COURTS",
+   "rows": 51290,
+   "nonnull": 22183,
+   "distinct": 1051,
+   "matched_rows": 22183,
+   "match_pct_of_nonnull": 100.0,
+   "sample_range": [
+    "akb",
+    "wyo"
+   ]
+  },
+  {
+   "edge": "court -> parent court",
+   "carrier": "FED_COURTLISTENER_COURTS",
+   "column": "PARENT_COURT_ID",
+   "authority": "FED_COURTLISTENER_COURTS",
+   "rows": 3361,
+   "nonnull": 2819,
+   "distinct": 128,
+   "matched_rows": 2819,
+   "match_pct_of_nonnull": 100.0,
+   "sample_range": [
+    "ag",
+    "vacorpct"
+   ]
+  },
+  {
+   "edge": "court -> appeals-from",
+   "carrier": "FED_COURTLISTENER_COURT_APPEALS_TO",
+   "column": "FROM_COURT_ID",
+   "authority": "FED_COURTLISTENER_COURTS",
+   "rows": 8,
+   "nonnull": 8,
+   "distinct": 8,
+   "matched_rows": 8,
+   "match_pct_of_nonnull": 100.0,
+   "sample_range": [
+    "bpai",
+    "uscfc"
+   ]
+  },
+  {
+   "edge": "court -> appeals-to",
+   "carrier": "FED_COURTLISTENER_COURT_APPEALS_TO",
+   "column": "TO_COURT_ID",
+   "authority": "FED_COURTLISTENER_COURTS",
+   "rows": 8,
+   "nonnull": 8,
+   "distinct": 2,
+   "matched_rows": 8,
+   "match_pct_of_nonnull": 100.0,
+   "sample_range": [
+    "cafc",
+    "com"
+   ]
+  }
+ ],
+ "chain_edges": [
+  {
+   "edge": "investment line -> disclosure",
+   "carrier": "FED_COURTLISTENER_INVESTMENTS",
+   "column": "FINANCIAL_DISCLOSURE_ID",
+   "authority": "FED_COURTLISTENER_FINANCIAL_DISCLOSURES",
+   "rows": 1904874,
+   "nonnull": 1904296,
+   "distinct": 29176,
+   "matched_rows": 1893398,
+   "match_pct_of_nonnull": 99.43,
+   "sample_range": [
+    "100",
+    "9999"
+   ]
+  },
+  {
+   "edge": "debt line -> disclosure",
+   "carrier": "FED_COURTLISTENER_DISCLOSURE_DEBTS",
+   "column": "FINANCIAL_DISCLOSURE_ID",
+   "authority": "FED_COURTLISTENER_FINANCIAL_DISCLOSURES",
+   "rows": 18790,
+   "nonnull": 18790,
+   "distinct": 8756,
+   "matched_rows": 18690,
+   "match_pct_of_nonnull": 99.47,
+   "sample_range": [
+    "10001",
+    "9998"
+   ]
+  },
+  {
+   "edge": "gift line -> disclosure",
+   "carrier": "FED_COURTLISTENER_DISCLOSURE_GIFTS",
+   "column": "FINANCIAL_DISCLOSURE_ID",
+   "authority": "FED_COURTLISTENER_FINANCIAL_DISCLOSURES",
+   "rows": 2026,
+   "nonnull": 2026,
+   "distinct": 1453,
+   "matched_rows": 2009,
+   "match_pct_of_nonnull": 99.16,
+   "sample_range": [
+    "10015",
+    "9990"
+   ]
+  },
+  {
+   "edge": "spousal-income line -> disclosure",
+   "carrier": "FED_COURTLISTENER_DISCLOSURE_SPOUSAL_INCOME",
+   "column": "FINANCIAL_DISCLOSURE_ID",
+   "authority": "FED_COURTLISTENER_FINANCIAL_DISCLOSURES",
+   "rows": 20203,
+   "nonnull": 20203,
+   "distinct": 13810,
+   "matched_rows": 20122,
+   "match_pct_of_nonnull": 99.6,
+   "sample_range": [
+    "10000",
+    "9998"
+   ]
+  },
+  {
+   "edge": "position line -> disclosure",
+   "carrier": "FED_COURTLISTENER_DISCLOSURE_POSITIONS",
+   "column": "FINANCIAL_DISCLOSURE_ID",
+   "authority": "FED_COURTLISTENER_FINANCIAL_DISCLOSURES",
+   "rows": 37103,
+   "nonnull": 37103,
+   "distinct": 16332,
+   "matched_rows": 36879,
+   "match_pct_of_nonnull": 99.4,
+   "sample_range": [
+    "10000",
+    "9999"
+   ]
+  }
+ ]
+}
