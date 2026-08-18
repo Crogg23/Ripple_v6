@@ -22,6 +22,48 @@ build or publish anything. It is the census of what is askable, with honest labe
 
 ---
 
+## Post-run corrections (2026-08-12, patched 2026-08-17)
+
+Ten of the ladder's top questions were actually run the same day this file
+shipped (receipts: `reports/ladder_top10_queries/`, narrative:
+`reports/perspective_2026-08-12.md`). The runs corrected several claims a reader
+of this file would otherwise repeat. These stand as amendments to the entries
+below:
+
+1. **Excluded providers still in the drug-money stream** — the headline
+   after-exclusion dollar figure is dominated by two categories that are not
+   consulting/kickback-style money: one neurologist's ~$622k in patent royalty
+   income (likely a pre-exclusion licensing deal still paying out) and ~$174k in
+   manufacturer debt-forgiveness bookkeeping. The honest cash-in-hand figure
+   (consulting, speaking, meals, travel, gifts, honoraria) is roughly **$232k**.
+   Frame the royalty case separately, never inside the headline number.
+2. **Does industry money move prescriptions** — paid prescribers write **2–4×
+   more claims** than unpaid same-specialty peers, but price *per claim* is only
+   modestly higher (~1.2–1.8×; ~flat in cardiology). The raw 2–7× drug-cost gap
+   is a volume story, not a per-claim price story. Relatedly, the claimed
+   steady specialty-wide brand-share gradient across payment deciles is **not
+   supported** once volume is accounted for — in cardiology, brand share is flat
+   or below baseline until only the top decile.
+3. **Lead in the water** — a large share of apparent exceedances is a
+   **mg/L-vs-µg/L unit-mislabeling artifact**. Restricting to the plausible
+   15–100 ppb band drops the national count from 4,515 to 3,898 systems (31.2M
+   people) and cuts Ohio from 488 to 118 systems. Filter to the plausible band
+   before any claim.
+4. **Injuries per hour worked** — 177 of 612 large employers report
+   implausibly low hours, which fabricates sky-high rates. With a reported-hours
+   plausibility floor applied, the worst reliably-sized employer is an airline
+   at ~12 injuries per 100 FTE. Always apply the floor.
+5. **The pension chains (paper trail before the pension died; hurt workers,
+   dumped pension)** — a follow-up session declared these blocked because the
+   plan-level failed-pension table "doesn't exist." **It exists** (labor subject
+   area, built 2026-08-09, with an employer tax-ID column); the session had
+   looked in the wrong subject area. This ladder's matched counts (381; 18,989)
+   were right all along. Still unverified: whether that tax-ID column is
+   populated rather than sentinel-masked — one distinct-count + sample settles
+   it.
+
+---
+
 ## How to read it
 
 **The tiers — complexity = number of sources combined:**
@@ -1270,7 +1312,7 @@ Descriptive questions: who owns what, where, how much, since when, who is missin
 - **Fields of study that vanished from the taxonomy.** Which academic program codes were deleted or reclassified in the 2020 CIP revision, making whole fields statistically invisible? — NCES CIP codes (fed_ed_nces_cip_codes). *Harm:* reclassification breaks the time series any student-outcome study depends on. · medium · caveat: single-revision snapshot; a reference table, so the harm is indirect.
 - **Genomic reference coverage imbalance.** How lopsided is genomic reference coverage across species and ancestries — who gets worse diagnostics because their references are thin? — Ensembl genome browser API (intl_embl_ensembl). *Harm:* under-studied species and ancestries get worse diagnostics and worse conservation decisions. · medium · caveat: 643-row API probe, not the Ensembl corpus — cannot support coverage claims until relanded.
 - **When each place was last mapped.** When was each part of the country last surveyed at scale, which regions only ever got coarse coverage, and which historical place names have vanished from modern records? — USGS historical topographic map collection (fed_usgs_topoview). *Harm:* places last mapped decades ago are the places federal attention left; erased towns are often Black, Indigenous, or company towns displaced and unrecorded. · medium · caveat: 250-row sample; publication date left as raw text; the vanished-names variant needs an external modern gazetteer.
-- **Which incarceration camps are documented.** Which WWII Japanese American incarceration camps are richly documented in the archive and which are nearly forgotten, and what kinds of evidence survive from which period? — Densho Digital Repository (fed_densho_ddr). *Harm:* camps with thin documentation are the ones whose survivors' experience is hardest to prove and easiest to deny. · caveat: only 25 rows in the mart — a sample of the repository; unusable for coverage claims until relanded.
+- **Which incarceration camps are documented.** Which WWII Japanese American incarceration camps are rizchly documented in the archive and which are nearly forgotten, and what kinds of evidence survive from which period? — Densho Digital Repository (fed_densho_ddr). *Harm:* camps with thin documentation are the ones whose survivors' experience is hardest to prove and easiest to deny. · caveat: only 25 rows in the mart — a sample of the repository; unusable for coverage claims until relanded.
 - **Whose voice the Southern archive preserves.** Is the digitised record of the American South mostly planter-class literature or first-person narrative, and whose works survive in volume? — Documenting the American South (fed_docsouth). *Harm:* if the accessible Southern archive is mostly white-authored writing, the accessible history is the enslavers' version. · caveat: 144 rows may be a fraction of the corpus; author names inconsistent; publication dates likely free text.
 - **The internal slave trade: routes, ports, mortality.** Which intra-American trafficking routes killed the highest share of captives, and which buying and selling ports formed the internal network? — SlaveVoyages Intra-American database, 11.5k voyages (fed_slavevoyages_intraamerican). *Harm:* route-level mortality puts a number on how many people specific merchants killed in transit. · caveat: many voyage variables sparsely populated; imputed columns mix estimate with record; port codes need a lookup.
 - **The trade that continued after the ban.** How did the internal American trade in enslaved people continue and grow after the transatlantic ban, and which named captains ran repeat voyages? — SlaveVoyages Intra-American year, flag, captain fields (fed_slavevoyages_intraamerican). *Harm:* naming the repeat operators moves the record from an abstract system to individual accountable people. · caveat: captain names inconsistently spelled — entity-resolve spellings before naming repeat operators; year missing for many voyages.

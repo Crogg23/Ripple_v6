@@ -4,6 +4,12 @@ Synthesis of a 5-reader pass over reports/question_ladder_2026-08-12.md (all 4,4
 Ranking axes: harm-weight (a person on the other end, shown in data) × solidity (SOLID hard-ID
 joins beat FUZZY) × feasibility today × mission fit (systemic mechanism, not one-off story).
 
+> **Corrections note (patched 2026-08-17):** five of the flagship questions below were
+> actually run on 2026-08-12 and their headline claims amended — see "Post-run
+> corrections" at the top of reports/question_ladder_2026-08-12.md before quoting
+> any number from sections B or D (banned-providers dollar figure, prescribing
+> gradient, lead-in-water counts, injury-rate rankings, pension-chain status).
+
 ---
 
 ## A. Domain power rankings (all tiers combined)
