@@ -499,6 +499,13 @@ DISPLAY_SPECS: dict[str, dict] = {
         "org": "FAC_NAME",
         "city": "FAC_CITY", "state": "FAC_STATE",
         "authority": 6,
+        # SDWA_IDS (2026-08-18 sniffer batch): for drinking-water rows the ECHO
+        # facility IS the public water system -- same entity, so sharing
+        # FAC_NAME is correct, not the buyer_dea_no mislabeling. Proven live:
+        # 430,991 of the spine's 434,040 distinct PWSIDs (99.3%) appear here.
+        # Column is plural-named; rows holding several IDs fail the fixed-9
+        # normalizer and drop -- the safe direction.
+        "extra_keys": [{"key": "PWSID", "key_col": "SDWA_IDS"}],
     },
     "FED_FEC_COMMITTEE_TO_CANDIDATE": {
         # FEC_CMTE_ID -- 6,270 distinct / 866,730 rows (100.0% survive norm), +6,270 new to spine. len 9-9. e.g. C00325324
@@ -510,6 +517,12 @@ DISPLAY_SPECS: dict[str, dict] = {
         # edge is real and stays; only the labelling was wrong.
         "key": "FEC_CMTE_ID", "key_col": "CMTE_ID",
         "authority": 9,
+        # OTHER_ID (2026-08-18 sniffer batch): the transaction's counterpart
+        # committee, proven a live FEC_CMTE_ID by value overlap (63.3%,
+        # reports/value_shape_findings_2026-08-18.md). Same ARCOS-style
+        # same-type second column; this table declares NO name/address (see
+        # above), so the extra key can mislabel nothing.
+        "extra_keys": [{"key": "FEC_CMTE_ID", "key_col": "OTHER_ID"}],
     },
     "FED_MSHA_ACCIDENTS": {
         # MINE_ID -- 13,489 distinct / 273,623 rows (100.0% survive norm), +13,489 new to spine. len 7-7. e.g. 1400413
@@ -794,6 +807,12 @@ DISPLAY_SPECS: dict[str, dict] = {
         # FEC_CMTE_ID -- 8,338 distinct / 8,619 rows (100.0% survive norm), +3,464 new to spine. len 9-9. e.g. C00708867
         "key": "FEC_CMTE_ID", "key_col": "FEC_COMMITTEE_ID",
         "authority": 6,
+        # FEC_CANDIDATE_ID (2026-08-18 sniffer batch): the leadership PAC's
+        # sponsoring candidate -- name-invisible ('candidate' is not the
+        # 'cand' token), proven live by 98.4% value overlap. This table
+        # declares no name/address, so nothing can be mislabelled onto the
+        # candidate entity; the PAC->candidate membership edge is the point.
+        "extra_keys": [{"key": "FEC_CAND_ID", "key_col": "FEC_CANDIDATE_ID"}],
     },
     "FED_FEC_BULK_LINKAGES": {
         # FEC_CMTE_ID -- 11,427 distinct / 16,327 rows (100.0% survive norm), +3,493 new to spine. len 9-9. e.g. C00708867
@@ -1295,6 +1314,65 @@ def _maybe_enable_spine_batch() -> None:
         DISPLAY_SPECS.update(SPINE_BATCH_2026_08_DISPLAY_SPECS)
 
 _maybe_enable_spine_batch()
+
+# =========================================================================== #
+# 2026-08-18 VALUE-SHAPE SNIFFER BATCH -- Chris approved wiring same day.
+# Found by live VALUE overlap, not names (the names are exactly what detection
+# could not see). Evidence: reports/value_shape_findings_2026-08-18.md.
+#
+# The four FEC history tables below load with POSITIONAL headers (C1..Cn) --
+# the raw FEC bulk-file layouts, column meanings verified against live sample
+# rows 2026-08-18. They are the MULTI-CYCLE supersets of the wired single-cycle
+# twins (78,039 committees vs FED_FEC_BULK_COMMITTEES' 20,007; 33,506
+# candidates vs FED_FEC_BULK_CANDIDATES' 17,900), dark since landing.
+# ~52-58% of their IDs are already in the spine (current cycles); the rest are
+# the new history entities this batch adds. Header repair at the load layer is
+# the cleaner long-term fix (parked -- needs table DDL rights); wiring the
+# positional names here is correct today and documented per column.
+#
+# Unconditional (no staging flag): wired in the same session that runs the
+# full rebuild, per the flip-only-in-the-rebuild-session rule.
+# =========================================================================== #
+SNIFFER_BATCH_2026_08_18_DISPLAY_SPECS: dict[str, dict] = {
+    "FED_FEC_COMMITTEES": {
+        # cn.txt layout: C1=CMTE_ID (38,693 distinct norm, 54.1% in spine),
+        # C2=CMTE_NM, C6/C7/C8=city/state/zip. C15 (the committee's candidate)
+        # is a DIFFERENT entity on the row -> graph key only
+        # (keys.TABLE_COLUMN_KEYS), NOT an extra_key -- the buyer_dea_no rule.
+        "key": "FEC_CMTE_ID", "key_col": "C1", "org": "C2",
+        "city": "C6", "state": "C7", "zip": "C8", "authority": 6,
+    },
+    "FED_FEC_CANDIDATES": {
+        # candidate-master layout: C1=CAND_ID (19,142 distinct norm, 54.2% in
+        # spine), C2=CAND_NAME ('ROBY, MARTHA' -- name_canon token-sort handles
+        # the comma order), C13/C14/C15=city/state/zip. C10 (the candidate's
+        # principal campaign committee) is a different entity -> graph key only.
+        "key": "FEC_CAND_ID", "key_col": "C1", "org": "C2",
+        "city": "C13", "state": "C14", "zip": "C15", "authority": 6,
+    },
+    "FED_FEC_CAND_CMTE_LINKAGE": {
+        # ccl.txt layout: C1=CAND_ID (57.2% in spine), C4=CMTE_ID (51.6%).
+        # Pure linkage rows -- no name columns exist, so the extra key can
+        # mislabel nothing; the candidate<->committee edge is the point.
+        "key": "FEC_CAND_ID", "key_col": "C1", "authority": 6,
+        "extra_keys": [{"key": "FEC_CMTE_ID", "key_col": "C4"}],
+    },
+    "FED_FEC_PAC_SUMMARY": {
+        # webk.txt layout: C1=CMTE_ID (22,899 distinct norm, 53.7% in spine),
+        # C2=CMTE_NM. Financial summary columns only after that -- no address.
+        "key": "FEC_CMTE_ID", "key_col": "C1", "org": "C2", "authority": 6,
+    },
+    "FED_EPA_ICIS_FEC_CASE_ENFORCEMENT_CONCLUSION_FACILITIES": {
+        # FACILITY_UIN is a full-population FRS ID hidden by its name --
+        # 105,080 of 105,113 distinct (100.0%) live in the spine. Joins formal
+        # enforcement-case CONCLUSIONS to the facility registry, same family
+        # as the sibling ICIS_FEC case/inspection tables above.
+        "key": "FRS_ID", "key_col": "FACILITY_UIN", "org": "FACILITY_NAME",
+        "city": "FACILITY_CITY", "state": "FACILITY_STATE", "zip": "FACILITY_ZIP",
+        "authority": 6,
+    },
+}
+DISPLAY_SPECS.update(SNIFFER_BATCH_2026_08_18_DISPLAY_SPECS)
 
 # spine scope = every table with a nameable hard key (health + money/maritime/corporate).
 SPINE_TABLES = list(DISPLAY_SPECS)

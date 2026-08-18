@@ -68,6 +68,39 @@ EXACT_TOKEN_KEYS: dict[frozenset, tuple[str, str]] = {
 TABLE_COLUMN_KEYS: dict[tuple[str, str], tuple[str, str]] = {
     ("FED_COURTLISTENER_COURTS", "ID"): ("CL_COURT_ID", "STEEL"),
     ("FED_COURTLISTENER_JUDGES", "ID"): ("CL_PERSON_ID", "STEEL"),
+    # --- 2026-08-18 value-shape sniffer batch (Chris approved wiring same day).
+    # Every entry below was proven by LIVE VALUE OVERLAP against the spine
+    # keyset, not by name (the names are exactly why detection missed them) --
+    # evidence: reports/value_shape_findings_2026-08-18.md. Table-scoped on
+    # purpose: C1/OTHER_ID/etc. are generic names a token rule would mis-tag.
+    #
+    # The four multi-cycle FEC history tables load with POSITIONAL headers
+    # (raw FEC bulk layouts, verified live 2026-08-18):
+    ("FED_FEC_COMMITTEES", "C1"): ("FEC_CMTE_ID", "STEEL"),      # cn.txt CMTE_ID (54.1% in spine)
+    ("FED_FEC_COMMITTEES", "C15"): ("FEC_CAND_ID", "STEEL"),     # cn.txt CAND_ID (58.1%)
+    ("FED_FEC_CANDIDATES", "C1"): ("FEC_CAND_ID", "STEEL"),      # cand master CAND_ID (54.2%)
+    ("FED_FEC_CANDIDATES", "C10"): ("FEC_CMTE_ID", "STEEL"),     # cand master CAND_PCC (52.2%)
+    ("FED_FEC_CAND_CMTE_LINKAGE", "C1"): ("FEC_CAND_ID", "STEEL"),   # ccl.txt CAND_ID (57.2%)
+    ("FED_FEC_CAND_CMTE_LINKAGE", "C4"): ("FEC_CMTE_ID", "STEEL"),   # ccl.txt CMTE_ID (51.6%)
+    ("FED_FEC_PAC_SUMMARY", "C1"): ("FEC_CMTE_ID", "STEEL"),     # webk.txt CMTE_ID (53.7%)
+    # Crosswalk columns on already-wired tables (name-invisible spellings):
+    ("FED_FEC_BULK_CANDIDATES", "CAND_PCC"): ("FEC_CMTE_ID", "STEEL"),        # 98.6% overlap
+    ("FED_FEC_LEADERSHIP_PAC", "FEC_CANDIDATE_ID"): ("FEC_CAND_ID", "STEEL"),  # 98.4% ('candidate' != 'cand' token)
+    ("FED_FEC_INDEPENDENT_EXPENDITURES", "spe_id"): ("FEC_CMTE_ID", "STEEL"),  # 80.8% (the SPEnder committee)
+    ("FED_FEC_COMMITTEE_TO_CANDIDATE", "OTHER_ID"): ("FEC_CMTE_ID", "STEEL"),  # 63.3%
+    # EPA:
+    ("FED_EPA_ICIS_FEC_CASE_ENFORCEMENT_CONCLUSION_FACILITIES", "FACILITY_UIN"):
+        ("FRS_ID", "STEEL"),                                     # 100.0% of 105k
+    ("FED_EPA_ECHO", "SDWA_IDS"): ("PWSID", "STEEL"),            # 99.3% of the live PWSID world;
+                                                                 # multi-ID rows fail fixed-9 -> NULL (safe)
+    # CMS facility chain cross-references (all live CCNs at 97.7-100%). These
+    # point at OTHER facilities (parent/related), so they are graph keys only --
+    # deliberately NOT extra_keys in DISPLAY_SPECS (the buyer_dea_no
+    # mislabeling warning in entity_index_specs.py).
+    ("FED_CMS_POS_OTHER", "PARENT_PROVIDER_NUMBER"): ("CCN", "STEEL"),
+    ("FED_CMS_POS_OTHER", "RELATED_PROVIDER_NUMBER"): ("CCN", "STEEL"),
+    ("FED_CMS_POS_OTHER", "CROSS_REF_PROVIDER_NUMBER"): ("CCN", "STEEL"),
+    ("FED_CMS_POS_OTHER", "FQHC_APPROVED_RHC_PROVIDER_NUM"): ("CCN", "STEEL"),
 }
 
 

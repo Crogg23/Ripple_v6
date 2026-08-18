@@ -1,0 +1,1094 @@
+[
+ {
+  "table": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER",
+  "column": "RFRG_PRVDR_FIRST_NAME",
+  "nan": 1,
+  "n": 50000
+ },
+ {
+  "table": "FED_CMS_OPT_OUT_AFFIDAVITS",
+  "column": "FIRST_NAME",
+  "nan": 4,
+  "n": 50000
+ },
+ {
+  "table": "FED_FDIC_FAILED_BANKS",
+  "column": "QBFDEP",
+  "nan": 2,
+  "n": 4115
+ },
+ {
+  "table": "FED_FDIC_FAILED_BANKS",
+  "column": "COST",
+  "nan": 638,
+  "n": 4115
+ },
+ {
+  "table": "FED_FDIC_FAILED_BANKS",
+  "column": "QBFASSET",
+  "nan": 154,
+  "n": 4115
+ },
+ {
+  "table": "FED_FDIC_FAILED_BANKS",
+  "column": "CERT",
+  "nan": 488,
+  "n": 4115
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "H",
+  "nan": 408,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "POSITION_TYPE",
+  "nan": 2,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "SECTOR1",
+  "nan": 11,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "SECTOR1_INTEREST",
+  "nan": 17,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "SECTOR2",
+  "nan": 152,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "SECTOR2_INTEREST",
+  "nan": 180,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "SECTOR3",
+  "nan": 229,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "SECTOR3_INTEREST",
+  "nan": 240,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "SECTOR4",
+  "nan": 263,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "SECTOR4_INTEREST",
+  "nan": 277,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "SECTOR5",
+  "nan": 300,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "SECTOR5_INTEREST",
+  "nan": 306,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "SECTOR6",
+  "nan": 328,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "SECTOR6_INTEREST",
+  "nan": 335,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "SECTOR7",
+  "nan": 343,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "SECTOR7_INTEREST",
+  "nan": 349,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "SECTOR8",
+  "nan": 354,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "SECTOR8_INTEREST",
+  "nan": 357,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "SECTOR9",
+  "nan": 356,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "SECTOR9_INTEREST",
+  "nan": 359,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "SECTOR10",
+  "nan": 357,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "SECTOR10_INTEREST",
+  "nan": 360,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "SECTOR11",
+  "nan": 358,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "SECTOR11_INTEREST",
+  "nan": 360,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "SECTOR12",
+  "nan": 374,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "SECTOR12_INTEREST",
+  "nan": 374,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "SECTOR14",
+  "nan": 388,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "SECTOR14_INTEREST",
+  "nan": 388,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "SECTOR14_1",
+  "nan": 395,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "SECTOR14_INTEREST_1",
+  "nan": 395,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "SECTOR_15",
+  "nan": 397,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "SECTOR15_INTEREST",
+  "nan": 397,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "SECTOR16",
+  "nan": 397,
+  "n": 409
+ },
+ {
+  "table": "FED_REVOLVINGDOOR_PROJECT",
+  "column": "SECTOR16_INTEREST",
+  "nan": 397,
+  "n": 409
+ },
+ {
+  "table": "FED_SEC_INSIDER_SUBMISSION",
+  "column": "ISSUERTRADINGSYMBOL",
+  "nan": 1,
+  "n": 50000
+ },
+ {
+  "table": "FED_HHS_OIG_LEIE",
+  "column": "FIRSTNAME",
+  "nan": 1,
+  "n": 50000
+ },
+ {
+  "table": "FED_HHS_OIG_LEIE",
+  "column": "MIDNAME",
+  "nan": 2,
+  "n": 50000
+ },
+ {
+  "table": "FED_USASPENDING_CONTRACTS_FULL",
+  "column": "sam_exception_description",
+  "nan": 33544,
+  "n": 50000
+ },
+ {
+  "table": "FED_USASPENDING_CONTRACTS_FULL",
+  "column": "recipient_country_code",
+  "nan": 145,
+  "n": 50000
+ },
+ {
+  "table": "FED_USASPENDING_CONTRACTS_FULL",
+  "column": "recipient_state_code",
+  "nan": 3,
+  "n": 50000
+ },
+ {
+  "table": "FED_USASPENDING_CONTRACTS_FULL",
+  "column": "recipient_state_name",
+  "nan": 480,
+  "n": 50000
+ },
+ {
+  "table": "FED_USASPENDING_CONTRACTS_FULL",
+  "column": "type_of_idc",
+  "nan": 33030,
+  "n": 50000
+ },
+ {
+  "table": "FED_USASPENDING_CONTRACTS_FULL",
+  "column": "country_of_product_or_service_origin_code",
+  "nan": 11174,
+  "n": 50000
+ },
+ {
+  "table": "FED_USASPENDING_CONTRACTS_FULL",
+  "column": "research",
+  "nan": 33553,
+  "n": 50000
+ },
+ {
+  "table": "FED_USASPENDING_CONTRACTS_FULL",
+  "column": "fair_opportunity_limited_sources",
+  "nan": 31053,
+  "n": 50000
+ },
+ {
+  "table": "FED_USASPENDING_CONTRACTS_FULL",
+  "column": "fed_biz_opps",
+  "nan": 76,
+  "n": 50000
+ },
+ {
+  "table": "FED_USASPENDING_CONTRACTS_FULL",
+  "column": "cost_accounting_standards_clause",
+  "nan": 626,
+  "n": 50000
+ },
+ {
+  "table": "FED_USASPENDING_CONTRACTS_FULL",
+  "column": "undefinitized_action",
+  "nan": 2,
+  "n": 50000
+ },
+ {
+  "table": "XC_NAGIX_DPRK_MISSILE_TESTS",
+  "column": "SERIES",
+  "nan": 91,
+  "n": 340
+ },
+ {
+  "table": "XC_NAGIX_DPRK_MISSILE_TESTS",
+  "column": "GLIDE",
+  "nan": 336,
+  "n": 340
+ },
+ {
+  "table": "FED_CMS_OPEN_PAYMENTS_2022",
+  "column": "COVERED_RECIPIENT_MIDDLE_NAME",
+  "nan": 1,
+  "n": 50000
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "STREET_ADDRESS",
+  "nan": 3,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "COUNTY",
+  "nan": 556,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "MEDICARE_CBSA_NUMBER",
+  "nan": 82,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "RURAL_VERSUS_URBAN",
+  "nan": 82,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "FTE___EMPLOYEES_ON_PAYROLL",
+  "nan": 141,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "NUMBER_OF_INTERNS_AND_RESIDENTS__FTE",
+  "nan": 4580,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "TOTAL_DAYS_TITLE_V",
+  "nan": 5976,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "TOTAL_DAYS_TITLE_XVIII",
+  "nan": 183,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "TOTAL_DAYS_TITLE_XIX",
+  "nan": 1047,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "TOTAL_DAYS__V___XVIII___XIX___UNKNOWN",
+  "nan": 119,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "NUMBER_OF_BEDS",
+  "nan": 112,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "TOTAL_BED_DAYS_AVAILABLE",
+  "nan": 112,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "TOTAL_DISCHARGES_TITLE_V",
+  "nan": 5981,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "TOTAL_DISCHARGES_TITLE_XVIII",
+  "nan": 177,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "TOTAL_DISCHARGES_TITLE_XIX",
+  "nan": 1125,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "TOTAL_DISCHARGES__V___XVIII___XIX___UNKNOWN",
+  "nan": 121,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "NUMBER_OF_BEDS___TOTAL_FOR_ALL_SUBPROVIDERS",
+  "nan": 105,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "HOSPITAL_TOTAL_DAYS_TITLE_V_FOR_ADULTS___PEDS",
+  "nan": 5987,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "HOSPITAL_TOTAL_DAYS_TITLE_XVIII_FOR_ADULTS___PEDS",
+  "nan": 197,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "HOSPITAL_TOTAL_DAYS_TITLE_XIX_FOR_ADULTS___PEDS",
+  "nan": 1123,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "HOSPITAL_TOTAL_DAYS__V___XVIII___XIX___UNKNOWN__FOR_ADULTS___PEDS",
+  "nan": 124,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "HOSPITAL_NUMBER_OF_BEDS_FOR_ADULTS___PEDS",
+  "nan": 115,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "HOSPITAL_TOTAL_BED_DAYS_AVAILABLE_FOR_ADULTS___PEDS",
+  "nan": 115,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "HOSPITAL_TOTAL_DISCHARGES_TITLE_V_FOR_ADULTS___PEDS",
+  "nan": 5981,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "HOSPITAL_TOTAL_DISCHARGES_TITLE_XVIII_FOR_ADULTS___PEDS",
+  "nan": 177,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "HOSPITAL_TOTAL_DISCHARGES_TITLE_XIX_FOR_ADULTS___PEDS",
+  "nan": 1125,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "HOSPITAL_TOTAL_DISCHARGES__V___XVIII___XIX___UNKNOWN__FOR_ADULTS___PEDS",
+  "nan": 121,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "COST_OF_CHARITY_CARE",
+  "nan": 1869,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "TOTAL_BAD_DEBT_EXPENSE",
+  "nan": 1675,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "COST_OF_UNCOMPENSATED_CARE",
+  "nan": 1597,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "TOTAL_UNREIMBURSED_AND_UNCOMPENSATED_CARE",
+  "nan": 1567,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "TOTAL_SALARIES_FROM_WORKSHEET_A",
+  "nan": 86,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "OVERHEAD_NON_SALARY_COSTS",
+  "nan": 82,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "DEPRECIATION_COST",
+  "nan": 146,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "TOTAL_COSTS",
+  "nan": 82,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "INPATIENT_TOTAL_CHARGES",
+  "nan": 103,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "OUTPATIENT_TOTAL_CHARGES",
+  "nan": 641,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "COMBINED_OUTPATIENT___INPATIENT_TOTAL_CHARGES",
+  "nan": 82,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "WAGE_RELATED_COSTS__CORE",
+  "nan": 2522,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "WAGE_RELATED_COSTS__RHC_FQHC",
+  "nan": 5721,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "TOTAL_SALARIES__ADJUSTED",
+  "nan": 2368,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "CONTRACT_LABOR__DIRECT_PATIENT_CARE",
+  "nan": 3040,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "WAGE_RELATED_COSTS_FOR_PART___A_TEACHING_PHYSICIANS",
+  "nan": 5685,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "WAGE_RELATED_COSTS_FOR_INTERNS_AND_RESIDENTS",
+  "nan": 5248,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "CASH_ON_HAND_AND_IN_BANKS",
+  "nan": 605,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "TEMPORARY_INVESTMENTS",
+  "nan": 5068,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "NOTES_RECEIVABLE",
+  "nan": 5861,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "ACCOUNTS_RECEIVABLE",
+  "nan": 374,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "LESS__ALLOWANCES_FOR_UNCOLLECTIBLE_NOTES_AND_ACCOUNTS_RECEIVABLE",
+  "nan": 1952,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "INVENTORY",
+  "nan": 929,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "PREPAID_EXPENSES",
+  "nan": 1110,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "OTHER_CURRENT_ASSETS",
+  "nan": 3658,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "TOTAL_CURRENT_ASSETS",
+  "nan": 317,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "LAND",
+  "nan": 1911,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "LAND_IMPROVEMENTS",
+  "nan": 2264,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "BUILDINGS",
+  "nan": 1022,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "LEASEHOLD_IMPROVEMENTS",
+  "nan": 3130,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "FIXED_EQUIPMENT",
+  "nan": 2687,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "MAJOR_MOVABLE_EQUIPMENT",
+  "nan": 880,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "MINOR_EQUIPMENT_DEPRECIABLE",
+  "nan": 5164,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "HEALTH_INFORMATION_TECHNOLOGY_DESIGNATED_ASSETS",
+  "nan": 5662,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "TOTAL_FIXED_ASSETS",
+  "nan": 363,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "INVESTMENTS",
+  "nan": 3819,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "OTHER_ASSETS",
+  "nan": 1335,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "TOTAL_OTHER_ASSETS",
+  "nan": 941,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "TOTAL_ASSETS",
+  "nan": 298,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "ACCOUNTS_PAYABLE",
+  "nan": 412,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "SALARIES__WAGES__AND_FEES_PAYABLE",
+  "nan": 900,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "PAYROLL_TAXES_PAYABLE",
+  "nan": 3859,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "NOTES_AND_LOANS_PAYABLE__SHORT_TERM",
+  "nan": 3536,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "DEFERRED_INCOME",
+  "nan": 5082,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "OTHER_CURRENT_LIABILITIES",
+  "nan": 1004,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "TOTAL_CURRENT_LIABILITIES",
+  "nan": 328,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "MORTGAGE_PAYABLE",
+  "nan": 5420,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "NOTES_PAYABLE",
+  "nan": 3697,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "UNSECURED_LOANS",
+  "nan": 5790,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "OTHER_LONG_TERM_LIABILITIES",
+  "nan": 2035,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "TOTAL_LONG_TERM_LIABILITIES",
+  "nan": 979,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "TOTAL_LIABILITIES",
+  "nan": 326,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "GENERAL_FUND_BALANCE",
+  "nan": 311,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "TOTAL_FUND_BALANCES",
+  "nan": 309,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "TOTAL_LIABILITIES_AND_FUND_BALANCES",
+  "nan": 301,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "DRG_AMOUNTS_OTHER_THAN_OUTLIER_PAYMENTS",
+  "nan": 6103,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "DRG_AMOUNTS_BEFORE_OCTOBER_1",
+  "nan": 3538,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "DRG_AMOUNTS_AFTER_OCTOBER_1",
+  "nan": 3075,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "OUTLIER_PAYMENTS_FOR_DISCHARGES",
+  "nan": 6103,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "DISPROPORTIONATE_SHARE_ADJUSTMENT",
+  "nan": 3426,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "ALLOWABLE_DSH_PERCENTAGE",
+  "nan": 3373,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "MANAGED_CARE_SIMULATED_PAYMENTS",
+  "nan": 4131,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "TOTAL_IME_PAYMENT",
+  "nan": 4801,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "INPATIENT_REVENUE",
+  "nan": 253,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "OUTPATIENT_REVENUE",
+  "nan": 785,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "TOTAL_PATIENT_REVENUE",
+  "nan": 238,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "LESS_CONTRACTUAL_ALLOWANCE_AND_DISCOUNTS_ON_PATIENTS__ACCOUNTS",
+  "nan": 309,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "NET_PATIENT_REVENUE",
+  "nan": 237,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "LESS_TOTAL_OPERATING_EXPENSE",
+  "nan": 84,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "NET_INCOME_FROM_SERVICE_TO_PATIENTS",
+  "nan": 84,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "TOTAL_OTHER_INCOME",
+  "nan": 304,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "TOTAL_INCOME",
+  "nan": 88,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "TOTAL_OTHER_EXPENSES",
+  "nan": 4376,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "NET_INCOME",
+  "nan": 89,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "COST_TO_CHARGE_RATIO",
+  "nan": 1490,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "NET_REVENUE_FROM_MEDICAID",
+  "nan": 1725,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "MEDICAID_CHARGES",
+  "nan": 1743,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "NET_REVENUE_FROM_STAND_ALONE_CHIP",
+  "nan": 5151,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_HCRIS",
+  "column": "STAND_ALONE_CHIP_CHARGES",
+  "nan": 5141,
+  "n": 6103
+ },
+ {
+  "table": "FED_CMS_PART_D_PRESCRIBERS",
+  "column": "PRSCRBR_LAST_ORG_NAME",
+  "nan": 1,
+  "n": 50000
+ },
+ {
+  "table": "FED_CMS_PART_D_PRESCRIBERS",
+  "column": "PRSCRBR_FIRST_NAME",
+  "nan": 2,
+  "n": 50000
+ },
+ {
+  "table": "FED_COURTLISTENER_JUDGES",
+  "column": "NAME_FIRST",
+  "nan": 2,
+  "n": 16191
+ },
+ {
+  "table": "FED_CMS_MEDICARE_PROVIDER",
+  "column": "RNDRNG_PRVDR_LAST_ORG_NAME",
+  "nan": 1,
+  "n": 50000
+ },
+ {
+  "table": "FED_CMS_MEDICARE_PROVIDER",
+  "column": "RNDRNG_PRVDR_FIRST_NAME",
+  "nan": 3,
+  "n": 50000
+ },
+ {
+  "table": "FED_CMS_PARTD_PRESCRIBER_DRUG",
+  "column": "Prscrbr_Last_Org_Name",
+  "nan": 1,
+  "n": 50000
+ },
+ {
+  "table": "FED_SEC_EDGAR_COMPANY_TICKERS",
+  "column": "TICKER",
+  "nan": 1,
+  "n": 10414
+ },
+ {
+  "table": "FED_CONGRESS_LEGISLATORS",
+  "column": "NAME_FIRST",
+  "nan": 2,
+  "n": 12847
+ },
+ {
+  "table": "INTL_EMBER_ELEC",
+  "column": "ISO_3_CODE",
+  "nan": 5103,
+  "n": 50000
+ },
+ {
+  "table": "INTL_EMBER_ELEC",
+  "column": "CONTINENT",
+  "nan": 5103,
+  "n": 50000
+ },
+ {
+  "table": "INTL_EMBER_ELEC",
+  "column": "EMBER_REGION",
+  "nan": 5103,
+  "n": 50000
+ },
+ {
+  "table": "INTL_EMBER_ELEC",
+  "column": "EU",
+  "nan": 5103,
+  "n": 50000
+ },
+ {
+  "table": "INTL_EMBER_ELEC",
+  "column": "OECD",
+  "nan": 5103,
+  "n": 50000
+ },
+ {
+  "table": "INTL_EMBER_ELEC",
+  "column": "G20",
+  "nan": 5103,
+  "n": 50000
+ },
+ {
+  "table": "INTL_EMBER_ELEC",
+  "column": "G7",
+  "nan": 5103,
+  "n": 50000
+ },
+ {
+  "table": "INTL_EMBER_ELEC",
+  "column": "ASEAN",
+  "nan": 5103,
+  "n": 50000
+ },
+ {
+  "table": "INTL_EMBER_ELEC",
+  "column": "VALUE",
+  "nan": 1164,
+  "n": 50000
+ },
+ {
+  "table": "INTL_EMBER_ELEC",
+  "column": "YOY_ABSOLUTE_CHANGE",
+  "nan": 14087,
+  "n": 50000
+ },
+ {
+  "table": "INTL_EMBER_ELEC",
+  "column": "YOY___CHANGE",
+  "nan": 27359,
+  "n": 50000
+ }
+]

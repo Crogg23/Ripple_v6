@@ -1,84 +1,82 @@
-# RIPPLE STATUS — 2026-08-17 (session 4) — The full spine batch is staged; one rebuild lights it all
+# RIPPLE STATUS — 2026-08-18 — Sniffer batch wired + tested; rebuild command blocked at the classifier, on Chris's desk
 
 *One screen. Rewritten (never appended) at the end of every session. Sessions read
 this at boot and brief Chris in chat — Chris never has to open it.*
 
 **BROKE: nothing new.** Standing: roll-call vote mart still disagrees with its
-Python-built twin. Suite re-run after the batch: 3,034 passed, 2 skipped, that
-one pre-existing failure only.
+Python-built twin. Suite after the wiring: 3,096 passed, 2 skipped, that one
+standing failure deselected. **BLOCKED: the spine rebuild command — the
+permission classifier refuses warehouse-writing commands from sessions (the
+known DROP-TABLE pattern). Chris runs one line, or grants the permission.**
 
 ---
 
-## THE HEADLINE: "no bits and pieces" is done — everything rides one rebuild
+## WHERE THE REBUILD STANDS (Chris said "go" — everything but the run is done)
 
-Chris asked what else should ride the rebuild so it isn't done piecemeal. A
-full column sweep over all 2,216 live raw tables found every un-wired
-candidate; 41 were measured live against the entity map; every passer is now
-staged behind ONE flag (`connect/keys.py: ENABLE_SPINE_BATCH_2026_08`).
+Chris approved wiring the 2026-08-18 value-shape sniffer findings and running
+the full rebuild (~$12–20, ~4.5h). This session:
 
-**Staged — 48 spec tables total (9 court + 39 batch) + 5 new key families:**
-- Charity/tax: IRS exempt-org master file (1.98M charities, 99.95% overlap —
-  becomes the golden charity name source), the 527 dark-money family (4
-  tables), both failed-pension tables, pension actuarial filings, judges'
-  schools.
-- Providers/facilities: Medicare enrollment (2.5M, 100%), pharma-payment
-  recipient profiles (1.7M), equipment suppliers/referrers, health-center
-  sites, hospital price books.
-- Money: NIH grants + small-business awards (the spine's FIRST DUNS entities,
-  each row carrying UEI too → free old↔new federal-ID crosswalk), auditor
-  issuer IDs, fund registries, ticker map, exchange LEIs, UK-sanctioned hulls.
-- Environment: the EPA facility registry itself (3.28M, 100%), air program,
-  greenhouse gas, toxics 2023, plus the new water-permit family (7 event
-  tables, 100.0% referential vs 1.21M permitted facilities).
-- New families: courts + judges, water permits, credit unions (incl. the
-  merger ledger), ICE detention facilities (2.6M stints, 100.0%).
+- **Wired the graph:** 17 table-scoped column→key entries in the connection
+  key map (the four positional-header FEC history tables' C-columns, the FEC
+  crosswalk columns, the EPA case-facilities ID, ECHO's water-system column,
+  the four CMS facility-chain columns).
+- **Wired the spine:** 5 new spec tables (FEC committees / candidates /
+  linkage / PAC summary multi-cycle histories + EPA enforcement-conclusion
+  facilities) and 3 extra-key additions on wired tables (leadership-PAC →
+  candidate, committee-to-candidate counterpart, ECHO → water system).
+  Column meanings for the positional tables verified against live sample rows
+  (they are the raw FEC bulk layouts). Name-mislabeling audit done per column:
+  cross-entity references (candidate-on-committee-row etc.) are graph-only,
+  never extra_keys — the buyer-DEA precedent.
+- **Deliberately excluded:** legislators' FEC-IDs JSON-list column (would mint
+  concatenated-ID phantom entities; the flatten build is the fix), the CMS
+  chain columns as spine keys (different-entity mislabeling), the TRI
+  Dun&Bradstreet column (unprovable until the DUNS world grows).
+- **Tests:** full suite green after the wiring (3,096 passed / 2 skipped /
+  standing failure only). Committed.
 
-**Rejected on evidence, documented in code so nobody re-tries them:** FCC EIN
-(fully masked), FDIC bank LEI (empty), one dead toxics FRS column, a
-25-company SEC feed posing as a registry, three retired-schema tables, one
-twin load, and the in-house EPA corporate crosswalk (98.6% unmatched/fuzzy —
-stays an overlay; the spine is zero-false-merge). **Parked:** legislator
-FEC-IDs (JSON list per row — needs a tiny flatten build; still the cheapest
-politics unlock), banking certificate/RSSD family. Fixed in passing: the UK
-company-number key's missing collision-math entry.
+**TO RUN (Chris, in the repo, in order):**
+1. `python -m connect spine`         (~4.5h, ~$12–20 — the rebuild)
+2. `python -m connect seed`          (re-pins incremental; prints ONE line at
+   the very END — hours of silence is normal, do not kill it)
+3. Next session then refreshes the graph (re-fingerprint the ~10 affected
+   tables + discover) and re-measures — no money decision there.
 
-Flag verified both ways: off = config fingerprint unchanged (incremental
-updater unaffected today); on = 173 spine tables / 196 table-key pairs.
+Alternative: add a permission rule allowing `python -m connect ...` and a
+session babysits all three steps.
 
-## THE DECISION ON CHRIS'S DESK (§8.7)
+## THIS SESSION ALSO: the sniffer run itself (done, reported)
 
-**The full spine rebuild: ~$10–15, ~4.5h** (may run somewhat longer with the
-new 71.7M-docket and water-permit scans — call it $12–20 ceiling). One "go"
-buys: judge dossiers + court caseload ledgers, the failed-pension EIN legs,
-the charity golden names, 527s, water-permit enforcement chains, credit
-unions, detention-by-operator, first DUNS entities — all in one pass, then
-incremental re-pins and normal operation resumes.
+`reports/value_shape_findings_2026-08-18.md` — scanned all 11,547 non-portal
+landing columns, 18 confirmed hidden-ID columns, rejects documented (zero
+hidden EINs anywhere; lobbying registrant IDs ≠ SEC CIKs; sequence-ID
+impostors killed by the NPI check digit). ~$2–4 spend vs $5–11 estimate.
+Also: 182 columns still hold literal 'nan' text (inventory in reports/).
 
 ## Live/open items
 
-- **Rebuild go/no-go (above).** Next session on "go": flip the flag, run
-  `connect spine`, re-seed incremental, re-measure the graph (expect ~5 new
-  key families and a much bigger EIN/FRS world), update the graph JSON.
-- Data-trap repairs ranked by the fill (FAERS 76% dup, contracts epoch dates,
-  NEISS future dates, SEC year-zero, foreign-assistance EIN, 2 broken staging
-  views).
-- FEC-IDs flatten build (small; flips money→votes to hard-ID).
-- Source-registry reconciliation (staging→raw leg done; onboarding-log leg
-  open).
+- FEC-IDs flatten build (parked; this session proved the values are live).
+- FEC positional-header tables: header repair at the load layer parked as the
+  cleaner long-term fix (needs table-alter rights; wiring-as-is is in and
+  documented per column).
+- Data-trap repairs ranked by the fill + the 182 'nan' columns.
+- Source-registry reconciliation (onboarding-log leg open).
 - Roll-call mart rebuild via Python builder (standing).
 - CourtListener citation-network load retry (standing).
+- Table-count discrepancy (2,216 claimed vs 1,871 live) unchased; non-portal
+  landing = exactly 302 base tables (measured this session).
 
-**YOUR MOVE:** one word — "go" on the rebuild (price above), or hold.
+**YOUR MOVE:** run the two commands above (price shown), or grant the
+permission and say "go" again — a session runs and babysits all three steps.
 
 **NEXT SESSION:**
 1. Boot trust check vs this file and git log.
-2. On go: flag on → full rebuild → re-seed incremental → re-measure every new
-   connection → brief with the new graph numbers.
+2. If the rebuild ran: graph refresh (re-fingerprint affected tables +
+   discover), re-measure, update the graph JSON, brief with new numbers.
 3. Otherwise: FEC-IDs flatten build or top data-trap repairs.
 
-**Tests:** suite run twice today after changes — 3,034 passed, 2 skipped,
-1 pre-existing failure (roll-call mart twin). Nothing new broken.
+**Tests:** 3,096 passed / 2 skipped / 1 standing failure (deselected), run
+after the wiring edits, before commit.
 
-**COST:** session 4 ~$1-2 — the 41-candidate verification (mostly small
-aggregates; a few over 2-8M-row tables) + two local test runs. Whole day
-all-in: ~$5.
+**COST:** session ~$2–4 warehouse (sniffer stages ~55 min busy X-Small) +
+Fable tokens. The rebuild's $12–20 is approved but UNSPENT (blocked command).
