@@ -1,115 +1,87 @@
-# RIPPLE STATUS — 2026-08-18 — Rebuild done, map repaired, all connection checks green
+# RIPPLE STATUS — 2026-08-18 (evening) — Second rebuild done: sniffer batch live, map at 4,899, all checks green
 
 *One screen. Rewritten (never appended) at the end of every session. Sessions read
 this at boot and brief Chris in chat — Chris never has to open it.*
 
 **BROKE: one standing item only.** The roll-call vote mart still disagrees with
-its Python-built twin (113,512 vs 3,364 rows). Not new, not touched today.
-Full suite: 3,096 passed, 2 skipped, that one failure.
+its Python-built twin. Not new, not touched today. Suite after all of today's
+wiring: 3,096 passed, 2 skipped, that one failure (deselected on the final run;
+final-run result pending at close — see Tests line).
 
 ---
 
-## THE HEADLINE: the rebuild ran, and then took all afternoon to actually work
+## THE DAY IN ONE LINE
 
-The full spine rebuild went at 08:48 and finished clean at 10:57 — 33,283,474
-entities (16,859,563 in 2+ sources) over 173 sources. But the step right after
-it, the one that redraws the connection map, crashed. Repairing that exposed
-two more problems underneath, one of them older than today.
+Two rebuilds, both clean: the morning one lit the 2026-08 staged batch (courts,
+water, credit unions, ICE); the evening one lit the **value-shape sniffer
+batch** — 18 columns that hold real IDs under names no detector could read,
+found by scanning all 11,547 non-portal landing columns by VALUE and proving
+each by live overlap.
 
-**Three real causes, all fixed:**
+## THE EVENING REBUILD (Chris approved ~$12–20; ran clean)
 
-1. **Stale schema snapshot.** The map reads a cached picture of the warehouse's
-   shape, last taken 8/9. An EPA superfund table had been reloaded with its
-   columns renamed since, so the map asked for a column that no longer exists
-   and died. Re-profiled the 5 tables whose columns had moved, dropped 2 that
-   no longer exist.
+- **Spine: 33,312,349 entities over 178 sources** (morning: 33,283,474 / 173).
+  +28,875 entities, +34,108 newly multi-source.
+- **Map: 4,899 connections** (morning: 4,762). Hard-ID 1,249 → 1,375 (+126),
+  crosswalk bridges 485 → 496.
+- **What's newly wired:** the four multi-cycle FEC history tables (positional
+  C1/C4/C10/C15 headers — the BIGGER copies of the wired single-cycle twins,
+  dark since landing), candidate↔own-committee crosswalk at hard-ID,
+  leadership-PAC→candidate, independent-expenditure spender committees, EPA
+  enforcement-case→facility-registry (105k, 100%), ECHO→drinking-water
+  (99.3% of the live water-system world), Medicare facility parent/chain
+  columns (graph-only, per the no-mislabeling rule).
+- **Bonus audit while it cooked:** four OLDER spine columns were map-blind for
+  weeks — the 168k-row federal contractor EXCLUSION list's entity ID, SEC
+  insider filers (1.9M rows, 100% ID), leadership-PAC's own committee ID, the
+  credit-union merger ledger. Wired, and a new test now FAILS the build if any
+  spec column is ever map-invisible again.
+- **Pipeline done in the proven order:** rebuild → re-profile the 15 touched
+  tables → map redraw → re-seed WITH the overwrite flag → **all 6 validation
+  checks PASS.** Incremental is unfrozen and pinned (2,109 watermarks).
+- Deliberately excluded: legislators' FEC-IDs JSON list (flatten build is the
+  fix — wiring it raw would mint concatenated-ID phantom entities).
 
-2. **The five new ID types were never taught to the column recognizer.** The
-   spine is told explicitly which table and column to use, so it resolved them
-   fine. The map has to recognize ID columns by name — and had no rules for
-   these. So the whole 2026-08 batch produced ZERO connections while sitting
-   perfectly in the spine. Refreshing the snapshot alone would have fixed
-   nothing.
-
-   Checked every candidate column name against all 2,212 tables before writing
-   a rule: each occurs only inside its own family. Bare "ID" (the judge and
-   court registry columns) exists on 180 tables and got a table-specific
-   override instead of a name rule.
-
-3. **A tier bug older than today.** Hard ID numbers are trusted and skip the
-   "could this be coincidence?" filter; names and zips are not. The code
-   deciding which bucket a key falls in only looked in one of the three places
-   a key can be registered. So the UK company-number link — 2,335,951 matched
-   companies — has been labelled a guess in every map since 8/5, and the
-   court-ID family scored zero today because the coincidence filter ate six
-   real, dense overlaps.
-
-**Also mine, not the code:** the re-seed command silently skips the copy that
-matters unless you pass an explicit overwrite flag. This morning's rebuild
-script and my first two re-seeds all ran the default, which is why one check
-stayed red and its number kept moving without converging. Correct order is
-profile → redraw map → seed with overwrite → validate.
-
-## WHERE THINGS STAND
-
-- **All 6 connection checks pass.** Green for the first time today.
-- **Map: 4,762 verified connections**, 8,902 coincidences rejected, from
-  2,705,233 pairs tested. By trust level: 2,670 name-pinned-to-place, 1,249
-  hard-ID, 485 via crosswalk, 353 geographic, 5 other.
-- **The guess tier went 81 → 0.** All 81 were hard-ID matches wearing the wrong
-  label. Hard-ID went 1,160 → 1,249.
-- **All five new families are on the map:** water permits 45 links, judges 28,
-  courts 6, credit unions 6, detention 3. Courts' 6 is every possible pair of
-  its 4 tables — that family is fully wired.
-
-## WHAT THE REBUILD ACTUALLY BOUGHT (still unopened)
-
-Nobody has asked this data a question yet. Sitting there, resolved and wired:
-
-- **Judges — 16,232, at a 96.6% multi-source rate.** For a typical federal
-  judge: who they are, every position held, schooling, political affiliation,
-  race, financial disclosures, and their dockets, all keyed together.
-- **Water permits — 1,213,740 permitted facilities**, with the full chain from
-  permit → quarterly non-compliance → inspection → violation → enforcement.
-- **Credit unions — 99.9% multi-source**, including a 53-row charter merger
-  ledger (how you trace a credit union that got absorbed).
-- **Detention — 1,490 facility codes, 707 with actual stints.**
-- Plus charity golden names (1.98M), 527 dark money, failed pensions, and the
-  first DUNS entities (which carry old and new federal contractor IDs on the
-  same row — a free crosswalk).
+Receipts: `reports/value_shape_findings_2026-08-18.md` (findings + outcome
+addendum, per-candidate JSON alongside).
 
 ## Live/open items
 
-- **Nobody has read the map.** 4,762 connections, unexamined. Cheapest next
-  move by a distance.
+- **Nobody has read the map.** Now 4,899 connections, unexamined — including
+  the brand-new multi-cycle money→politics wiring. Cheapest next move.
+- FEC-IDs flatten build (small; the sniffer proved the values are live).
+- FEC positional-header tables: load-layer header repair parked as the cleaner
+  long-term fix (needs table-alter rights).
+- 182 columns still hold literal 'nan' text (inventory in reports/) — joins
+  the standing data-trap repair list (FAERS 76% dup, contracts epoch dates,
+  NEISS future dates, SEC year-zero, 2 broken staging views).
+- Two FDA medical-device tables reloaded as raw JSON, unflattened (map-blind).
+- ~900 gated portal tables incl. offshore-leaks (name-keyed; real decision,
+  not a bug).
+- DEA numbers: single-source, inert until a second DEA source lands.
 - Roll-call mart rebuild via Python builder (standing).
-- Two FDA medical-device tables reloaded as raw JSON — data complete inside
-  (7,085 and 39,635 records, matching source totals) but unflattened, so the
-  map can't see them.
-- The ~900 gated portal tables include the four offshore-leaks files (3.34M
-  relationships, 814k entities, 771k officers), the 527 orgs and a UK sanctions
-  list. Gated because they key on names, not ID numbers. Whether to build a
-  name-based path for those is a real question, not a bug.
-- DEA numbers: 149,244 entities, zero cross-source merges. Single-source, inert
-  until a second DEA-carrying source lands.
-- Data-trap repairs ranked by the census fill (FAERS 76% dup, contracts epoch
-  dates, NEISS future dates, SEC year-zero, 2 broken staging views).
-- FEC-IDs flatten build (small; flips money→votes to hard-ID).
-- Source-registry reconciliation (onboarding-log leg still open).
-- CourtListener citation-network load retry (standing).
-- Six polygon tables have unparseable geometry; some EPA/NTSB coordinates are
-  invalid (longitude 435.8). Pre-existing.
+- Source-registry reconciliation (onboarding-log leg), CourtListener
+  citation-network retry (standing).
+- Six polygon tables unparseable geometry; some EPA/NTSB coordinates invalid
+  (longitude 435.8). Pre-existing.
+- Table-count discrepancy (2,216 claimed vs 1,871 live) unchased; non-portal
+  landing = exactly 302 base tables (measured).
 
-**YOUR MOVE:** nothing is blocked. The open question is what to point at first —
-reading the map, or one of the repairs above.
+**YOUR MOVE:** nothing is blocked. Open question stands from this morning:
+point the next session at reading the map (now with the politics history in
+it), or at one of the repairs above.
 
 **NEXT SESSION:**
 1. Boot trust check vs this file and git log.
-2. Read the map: what got newly connected, what's newly askable.
-3. Otherwise: FEC-IDs flatten build or the top data-trap repairs.
+2. Read the map: what the two batches newly connected, what's newly askable —
+   the multi-cycle FEC world and the enforcement chains first.
+3. Otherwise: FEC-IDs flatten build or top data-trap repairs.
 
-**COST:** 2026-08-18 total 11.22 credits ≈ $22–33. Roughly $9–13 of that was
-the morning rebuild Chris approved; the rest was the afternoon repair — three
-map redraws, a profiling pass, two re-seeds and several suite runs. That is
-more than the $5–8 quoted for the afternoon work, because the tier bug forced
-two extra map redraws that were not in the estimate.
+**Tests:** targeted key/visibility tests green after every edit; full suite
+green at the wiring step (3,096/2-skip/standing-failure only); a final
+full-suite run was still finishing at session close — result lands in the next
+boot trust check.
+
+**COST:** evening leg ≈ $8–15 (spine ~2h + map redraw ~1h + re-seed + targeted
+re-profiles on X-Small; estimate, not metered). Day total including the
+morning rebuild + repair: ~$30–48. The sniffer scan itself was ~$2–4 of that.

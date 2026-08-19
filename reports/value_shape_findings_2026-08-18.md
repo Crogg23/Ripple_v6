@@ -196,3 +196,28 @@ name-sniffed columns that assumption doesn't hold — no name evidence exists):
    decision, not taken here.
 3. The FEC_IDS flatten build (already parked) remains the right fix for
    multi-ID legislators; this run confirms the values are live FEC IDs.
+
+---
+
+## OUTCOME ADDENDUM (same day, evening — Chris said "go", then "do it")
+
+The batch was wired and the rebuild ran the same evening:
+
+- **Wired:** all 18 confirmed columns (17 table-scoped graph keys in
+  `connect/keys.py :: TABLE_COLUMN_KEYS`; 5 new DISPLAY_SPECS tables + 3
+  extra_keys). FEC_IDS excluded as planned (flatten build). The FEC positional
+  tables were wired as-is with per-column layout comments; header repair at
+  the load layer stays parked.
+- **Spine rebuild:** 33,312,349 entities over 178 sources (was 33,283,474 /
+  173) — +28,875 entities, +34,108 multi-source.
+- **Map redraw:** 4,899 connections (was 4,762): STEEL 1,249 → 1,375 (+126),
+  BRIDGE 485 → 496 (+11).
+- **Bonus (spine-vs-map visibility audit, run while the rebuild cooked):**
+  four OLDER spine key columns were map-invisible and are now wired —
+  FED_FEC_LEADERSHIP_PAC.FEC_COMMITTEE_ID,
+  FED_NCUA_CHARTER_MERGER_EVENTS.MERGING_CREDIT_UNION_CHARTER,
+  FED_SAM_EXCLUSIONS_FULL_R2.UNIQUE_ENTITY_ID (167,928-row exclusion list!),
+  FED_SEC_INSIDER_REPORTINGOWNER.RPTOWNERCIK (1,934,673 rows, 100% CIK).
+  `tests/test_spine_map_visibility.py` now pins the invariant.
+- **Incremental re-seeded** (`seed --reseed`; keyset twins at 84.4M/177.0M,
+  2,109 watermarks) and **all 6 validation checks pass**.

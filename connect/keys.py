@@ -101,6 +101,14 @@ TABLE_COLUMN_KEYS: dict[tuple[str, str], tuple[str, str]] = {
     ("FED_CMS_POS_OTHER", "RELATED_PROVIDER_NUMBER"): ("CCN", "STEEL"),
     ("FED_CMS_POS_OTHER", "CROSS_REF_PROVIDER_NUMBER"): ("CCN", "STEEL"),
     ("FED_CMS_POS_OTHER", "FQHC_APPROVED_RHC_PROVIDER_NUM"): ("CCN", "STEEL"),
+    # --- 2026-08-18 spine-vs-map visibility audit: every DISPLAY_SPECS key_col
+    # was checked against detect_key + this table; exactly four spine-merged
+    # columns were map-invisible (tests/test_spine_map_visibility.py now pins
+    # the invariant so a spec addition can't silently reopen the gap):
+    ("FED_FEC_LEADERSHIP_PAC", "FEC_COMMITTEE_ID"): ("FEC_CMTE_ID", "STEEL"),   # 'committee' != 'cmte' token
+    ("FED_NCUA_CHARTER_MERGER_EVENTS", "MERGING_CREDIT_UNION_CHARTER"): ("NCUA_CHARTER", "STEEL"),
+    ("FED_SAM_EXCLUSIONS_FULL_R2", "UNIQUE_ENTITY_ID"): ("UEI", "STEEL"),       # no 'uei' token in the name
+    ("FED_SEC_INSIDER_REPORTINGOWNER", "RPTOWNERCIK"): ("CIK", "STEEL"),        # fused name tokenizes whole
 }
 
 
