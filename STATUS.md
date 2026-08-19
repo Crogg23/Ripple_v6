@@ -4,9 +4,9 @@
 this at boot and brief Chris in chat — Chris never has to open it.*
 
 **BROKE: one standing item only.** The roll-call vote mart still disagrees with
-its Python-built twin. Not new, not touched today. Suite after all of today's
-wiring: 3,096 passed, 2 skipped, that one failure (deselected on the final run;
-final-run result pending at close — see Tests line).
+its Python-built twin. Not new, not touched today. Final full suite after ALL
+of today's wiring: 3,097 passed, 2 skipped, that one standing failure only
+(deselected).
 
 ---
 
@@ -77,10 +77,9 @@ it), or at one of the repairs above.
    the multi-cycle FEC world and the enforcement chains first.
 3. Otherwise: FEC-IDs flatten build or top data-trap repairs.
 
-**Tests:** targeted key/visibility tests green after every edit; full suite
-green at the wiring step (3,096/2-skip/standing-failure only); a final
-full-suite run was still finishing at session close — result lands in the next
-boot trust check.
+**Tests:** final full suite AFTER everything: 3,097 passed, 2 skipped,
+standing roll-call failure only. (One more pass than this morning — the new
+spine-vs-map visibility test.)
 
 **COST:** evening leg ≈ $8–15 (spine ~2h + map redraw ~1h + re-seed + targeted
 re-profiles on X-Small; estimate, not metered). Day total including the
