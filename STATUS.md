@@ -84,25 +84,40 @@ turn-of-the-century history.
 - **The scan swept 40 July backup-schema tables** (237M rows) alongside live
   marts. All reported figures exclude them, but the scanner should filter them by
   default — same double-counting trap flagged earlier in the row-count catalog.
-- **The weirdness sweep has not run.** The whole point of the time index was to
-  make it trustworthy: run all eight trend shapes across every table with a
-  clock, rank by how strange the line looks, let outliers nominate themselves.
+- **The trend sweep RAN** (371 series, 307 scored, zero failures) and its result
+  is uncomfortable: most of the strangeness it found is about how data was
+  COLLECTED, not what happened. That settles the long-parked question in the
+  worst way — any trend claim from this warehouse needs its denominator first.
+  Six series do look like the world moving (bank failures, nursing-home
+  deficiencies up 446x, mine violations down 30%, rail crossings flat 14 years,
+  complaints up 50x, pandemic loans). Full read: reports/time_index/TREND_FINDINGS.md.
+- **CORRECTION carried forward:** the opioid shipment data covers 2006-2012, NOT
+  2006-2026. 178.6M rows is right; the span is seven years. The 2026 end came
+  from our own download stamp, which the old census reported as the date range —
+  the exact failure this session existed to kill, caught in its own headline.
 - **Nobody has read the map.** 4,899 connections, unexamined. Unchanged.
 - Carried unchanged: 182 columns with literal 'nan' text; FAERS 76% dup; two FDA
   device tables raw; ~900 gated portal tables; DEA numbers single-source;
   roll-call mart rebuild; source-registry reconciliation; six unparseable polygon
   tables; table-count discrepancy.
 
-**YOUR MOVE:** decide whether the next session rolls the canonical column across
-the warehouse, or goes straight to the weirdness sweep on the 478 tables that
-already have a clean clock. Also standing: the front-door website crash course,
-queued from 2026-08-19 and untouched today.
+**YOUR MOVE:** the sweep says the next real unlock is DENOMINATORS — pairing each
+event series with what would explain it (inspections per inspector, filings per
+filer, monitors online). Without that, no trend from this warehouse is safely
+sayable. The alternative is the canonical-column rollout. Also standing: the
+front-door website crash course, queued from 2026-08-19 and untouched today.
 
-**NEXT SESSION (warehouse lane):** canonical-column rollout, or the trend sweep.
+**NEXT SESSION (warehouse lane):** denominators for the six candidate real
+signals, or the canonical-column rollout.
 **NEXT SESSION (website lane):** Webflow crash course per the 8/19 handoff doc.
 
 **Tests:** dbt — all repaired models rebuilt green; both datetime guards pass.
-Python suite re-run today (see BROKE for the collection caveat).
+Python suite: **1,671 passed, 2 skipped, 1 failed, 12 collection errors** (14m41s).
+The single failure is the KNOWN roll-call mismatch (113,512 rows vs 3,364),
+standing since 2026-08-18 and untouched today — verified, not caused by these
+changes. The 12 collection errors are a missing charting library in this
+environment; they are why the count reads 1,671 rather than the 3,097 of
+2026-08-18, and they hide ~1,400 tests that did not run at all.
 
 **COST today:** ~$6–8 of warehouse compute (scan, probes, 20 rebuilds,
 verification) — inside the $5–12 quoted. The 21-agent labelling pass was the
