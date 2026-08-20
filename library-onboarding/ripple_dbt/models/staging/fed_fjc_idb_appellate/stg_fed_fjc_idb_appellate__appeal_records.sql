@@ -20,7 +20,7 @@ renamed as (
         trim(DOCKET)                                   as docket,
         trim(REOPEN)                                   as reopen,
         trim(TAPEYEAR)                                 as tape_year,
-        try_to_date(trim(DKTDATE))                     as docket_date,
+        try_to_date(nullif(trim(DKTDATE), '01/01/1900'))                     as docket_date,
 
         -- parties
         trim(USAPT)                                    as us_appellant,
@@ -43,9 +43,9 @@ renamed as (
         trim(DDOCKET)                                  as district_docket,
         trim(DDEFNUM)                                  as district_defendant_number,
         trim(FEDCAP)                                   as federal_capacity,
-        try_to_date(trim(DDKTDATE))                    as district_docket_date,
-        try_to_date(trim(APPDATE))                     as appeal_date,
-        try_to_date(trim(TRANSDATE))                   as transfer_date,
+        try_to_date(nullif(trim(DDKTDATE), '01/01/1900'))                    as district_docket_date,
+        try_to_date(nullif(trim(APPDATE), '01/01/1900'))                     as appeal_date,
+        try_to_date(nullif(trim(TRANSDATE), '01/01/1900'))                   as transfer_date,
         trim(TRANSCODE)                                as transfer_code,
         trim(DJUDGE)                                   as district_judge,
         trim(FILEFEE)                                  as filing_fee_status,
@@ -61,11 +61,11 @@ renamed as (
         trim(CONSDKT)                                  as consolidated_docket,
 
         -- milestones
-        try_to_date(trim(CRECDATE))                    as court_record_date,
-        trim(BRFILED)                                  as briefs_filed,
-        try_to_date(trim(SUBDATE))                     as submission_date,
-        try_to_date(trim(HEARDATE))                    as hearing_date,
-        try_to_date(trim(JUDGDATE))                    as judgment_date,
+        try_to_date(nullif(trim(CRECDATE), '01/01/1900'))                    as court_record_date,
+        nullif(trim(BRFILED), '01/01/1900')            as briefs_filed,
+        try_to_date(nullif(trim(SUBDATE), '01/01/1900'))                     as submission_date,
+        try_to_date(nullif(trim(HEARDATE), '01/01/1900'))                    as hearing_date,
+        try_to_date(nullif(trim(JUDGDATE), '01/01/1900'))                    as judgment_date,
         trim(OPINION)                                  as opinion,
 
         -- panel judges

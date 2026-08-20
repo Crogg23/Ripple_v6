@@ -30,7 +30,11 @@ select
     "NARRATIVE"                                     as narrative,
     trim("STRATUM")                                 as stratum,
     try_to_double("WEIGHT")                         as statistical_weight,
-    "_INGESTED_AT" as _loaded_at,
+    -- RECOVERED 2026-08-20 (time-index scan): the LOADER wrote this stamp
+    -- already broken -- all 9,794,971 rows land in the year 56,569,708 because
+    -- microseconds were cast as seconds before the row ever reached dbt. The
+    -- original is exactly recoverable (verified: recovers to 2026-07-26).
+    {{ ripple_recover_ingest_ts('"_INGESTED_AT"') }} as _loaded_at,
     "_SOURCE_RUN_ID" as _source_run_id
 from source
 qualify row_number() over (

@@ -1,70 +1,109 @@
-# RIPPLE STATUS — 2026-08-19 — Front-door website thread opened: Webflow chosen, crash-course session queued; warehouse untouched today
+# RIPPLE STATUS — 2026-08-20 — Time index built; the warehouse now knows what its own dates mean
 
 *One screen. Rewritten (never appended) at the end of every session. Sessions read
 this at boot and brief Chris in chat — Chris never has to open it.*
 
-**BROKE: one standing item only (unchanged).** The roll-call vote mart still
-disagrees with its Python-built twin. Not touched. Warehouse state is exactly
-as the 2026-08-18 evening close left it: suite 3,097 passed / 2 skipped / that
-one standing failure.
+**BROKE: two items.** (1) The roll-call vote mart still disagrees with its
+Python-built twin — untouched, standing since 2026-08-18. (2) Twelve Python test
+modules fail to COLLECT in this environment for a missing charting library —
+pre-existing, unrelated to today's changes, but it means "the suite passed" now
+carries an asterisk until that library is reinstalled.
 
 ---
 
-## TODAY (2026-08-19) — planning session, zero warehouse work
+## TODAY (2026-08-20) — the datetime lane, end to end
 
-New thread: the **front-door website** — a friends/family/hiring-manager-facing
-intro site for Ripple. Decisions made (all Chris's calls, on researched facts):
+Chris asked what was worth trending over time. Answering it exposed that nobody
+knew what the warehouse's dates MEANT, so the session turned into building that
+knowledge and then fixing what it found.
 
-- **Concept locked:** first-person "I had an idea..." scroll story, seven beats
-  (dark screen → 178 source-dots rain in → hero numbers tick up → dots snap
-  into the 4,899-connection web → one anonymous entity's footprints → mission
-  + human-sign-off line → functional cards). ZERO analysis/findings shown.
-- **Tool locked: Webflow, free tier first.** Won a 10-tool bake-off with live
-  Aug-2026 pricing/review research. Why: $0 to learn, best-in-class scroll
-  animation (GSAP-powered, free tier), and the only visual builder that
-  exports real code (exit hatch to self-hosting later). Framer rejected (no
-  export), Wix (buggy scroll), Squarespace/Shorthand (price), Canva/Flourish
-  (can't do it), Figma Sites (messy output).
-- **Division of labor:** Chris designs and owns everything in Webflow; the
-  data-driven constellation pieces (beats 2/4/5) get built later as custom
-  embeds by Claude Code sessions. "Living" numbers = a ~1-hour scheduled
-  stats-export-to-static-file job, later; the public site never touches
-  Snowflake directly.
-- **First learning project:** beats 1 + 3 only, fake numbers, free tier.
-- **Next session is queued:** a "Webflow for dummies" crash course. Handoff
-  doc (audience, decisions, teaching arc, traps) is in the session scratchpad:
-  `handoff-webflow-crash-course.md`. That session teaches; it does not build.
-- Career context that shaped decisions: Chris targets analytics/insights
-  engineer roles — tool choice is resume-irrelevant; the site's CONTENT (the
-  warehouse story, dbt suite, data-quality war stories) is the resume asset.
+### The finding that reframed everything
 
-## Live/open items (warehouse — all carried unchanged from 2026-08-18)
+**The warehouse's dates were never badly broken — they were badly measured.**
+The 2026-08-17 census only looked at columns Snowflake had already typed DATE or
+TIMESTAMP. Landing is all-VARCHAR by design, so it walked past most of the real
+clocks and, on some tables, measured Ripple's own download stamp instead. It also
+reported each column's earliest/latest value, which a single junk row destroys —
+that is why 89 tables looked "corrupt."
 
-- **Nobody has read the map.** 4,899 connections, unexamined — incl. the new
-  multi-cycle money→politics wiring. Still the cheapest next warehouse move.
-- FEC-IDs flatten build (small; sniffer proved values live).
-- FEC positional-header load-layer repair (parked; needs table-alter rights).
-- 182 columns with literal 'nan' text; standing data-trap list (FAERS 76% dup,
-  contracts epoch dates, NEISS future dates, SEC year-zero, 2 broken staging
-  views).
-- Two FDA device tables raw/unflattened (map-blind).
-- ~900 gated portal tables incl. offshore-leaks (name-keyed; real decision).
-- DEA numbers single-source, inert.
-- Roll-call mart rebuild via Python builder (standing failure).
-- Source-registry reconciliation; CourtListener citation-network retry.
-- Six unparseable polygon tables; some invalid EPA/NTSB coordinates.
-- Table-count discrepancy (2,216 claimed vs 1,871 live) unchased.
+Counting actual bad ROWS: **6,084 genuinely bad rows in 1.2 billion.** Everything
+else was two mechanical bugs of ours plus publishers encoding "not applicable" as
+a date.
 
-**YOUR MOVE:** start the Webflow crash-course session whenever ready (it boots
-from the handoff doc). Separately, the warehouse open question stands: point a
-session at reading the map, or at a repair.
+### Built
 
-**NEXT SESSION (website lane):** Webflow crash course per handoff doc — teach,
-don't build; Chris drives.
-**NEXT SESSION (warehouse lane):** read the map (politics history + enforcement
-chains first) or FEC-IDs flatten / top data-trap repairs.
+- **The datetime standard** (`macros/ripple_time.sql`) — eight rules, one shared
+  parser. Shape-guarded: every format is applied only to values that already
+  proved they match it, so it structurally cannot commit the bug it exists to
+  prevent. A four-digit year never reaches a date parser. Proven against every
+  trap case before being applied to anything.
+- **The calendar** (`reference__calendar`) — 155,593 days, 1700→2125, matching
+  the parser's window exactly. Carries federal fiscal year (Oct 1 start), FEC
+  election cycle and Congress number. Verified on the Jan 3 congressional
+  handover, the Oct 1 fiscal boundary and the 1st Congress.
+- **The guard** (`tests/assert_ripple_time_standard.sql`) — fails the build if
+  any of today's repairs regress or the calendar stops being dense. Passing.
+- **The time index** (`reports/time_index/`) — every time column in the warehouse
+  with its trusted window, grain, value shape and junk counts, plus a
+  21-agent adversarially-reviewed labelling of what each column MEANS
+  (happened / reported / decided / span / our download stamp / not a date).
 
-**Tests:** not run today (no code changed). Last known: 3,097 passed, 2
-skipped, standing roll-call failure.
+### Fixed and verified live — 19 tables re-scanned with the same instrument
 
-**COST today:** ~$1-2 (one web-research agent + chat). No warehouse compute.
+**57,664,460 junk rows removed (99.6%). Zero columns got worse.**
+
+- **Download stamps, 12 tables.** `INGESTED_AT` is microseconds; a bare cast read
+  it as seconds and put rows in the year 56,596,956. Nine fixed at the cast; three
+  were corrupted by the LOADER before dbt ever saw them and are now recovered
+  arithmetically. Offshore-leaks now stamps 2026-08-05; consumer injuries
+  2026-07-26.
+- **Century lost on two-digit years.** EPA ships `02-JUN-16`; the year was read
+  literally. 8.1M facility dates were in years 0000–0026, now 2000→2026.
+- **Publishers' "not applicable" markers, 18 columns.** 5.26M criminal defendants
+  carried a fugitive-end-date of 1900-01-01 because they were never fugitives.
+  Now NULL. Criminal sentencing dates went from 4M fake 1900s to a clean
+  1995→2026 window.
+
+### The judgment call worth knowing about
+
+Before nulling any 1900-01-01, each column was tested for whether the marker is
+an isolated spike or real history. **Two columns were deliberately left alone** —
+a bank established-date and UK incorporation dates have thousands of genuine
+records in the surrounding years. Blind nulling would have destroyed real
+turn-of-the-century history.
+
+## Live/open items
+
+- **The canonical column is not rolled out.** Standard, calendar and guard exist;
+  the 686 tables do not yet each expose one canonical timestamp with grain and
+  clock tags. That is the build that makes a single shared timeline queryable,
+  and it is the obvious next move.
+- **The loader can still produce the microsecond bug.** The read side is now
+  immune both ways, but the write side was left alone rather than risk breaking
+  live ingests during a date cleanup.
+- **The scan swept 40 July backup-schema tables** (237M rows) alongside live
+  marts. All reported figures exclude them, but the scanner should filter them by
+  default — same double-counting trap flagged earlier in the row-count catalog.
+- **The weirdness sweep has not run.** The whole point of the time index was to
+  make it trustworthy: run all eight trend shapes across every table with a
+  clock, rank by how strange the line looks, let outliers nominate themselves.
+- **Nobody has read the map.** 4,899 connections, unexamined. Unchanged.
+- Carried unchanged: 182 columns with literal 'nan' text; FAERS 76% dup; two FDA
+  device tables raw; ~900 gated portal tables; DEA numbers single-source;
+  roll-call mart rebuild; source-registry reconciliation; six unparseable polygon
+  tables; table-count discrepancy.
+
+**YOUR MOVE:** decide whether the next session rolls the canonical column across
+the warehouse, or goes straight to the weirdness sweep on the 478 tables that
+already have a clean clock. Also standing: the front-door website crash course,
+queued from 2026-08-19 and untouched today.
+
+**NEXT SESSION (warehouse lane):** canonical-column rollout, or the trend sweep.
+**NEXT SESSION (website lane):** Webflow crash course per the 8/19 handoff doc.
+
+**Tests:** dbt — all repaired models rebuilt green; both datetime guards pass.
+Python suite re-run today (see BROKE for the collection caveat).
+
+**COST today:** ~$6–8 of warehouse compute (scan, probes, 20 rebuilds,
+verification) — inside the $5–12 quoted. The 21-agent labelling pass was the
+larger spend: ~3.4M agent tokens, roughly $20–40, unverified.

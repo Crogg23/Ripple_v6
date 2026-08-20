@@ -30,8 +30,13 @@ select
     EPA_REGION_CODE as epa_region_code,
     SITE_TYPE_NAME as site_type_name,
     LOCATION_DESCRIPTION as location_description,
-    try_to_date(CREATE_DATE) as create_date,
-    try_to_date(UPDATE_DATE) as update_date,
+    -- FIXED 2026-08-20 (time-index scan): EPA ships these as DD-MON-YY with a
+    -- TWO-DIGIT year ('01-MAR-00', '02-JUN-16', '25-SEP-25'). A bare try_to_date
+    -- read the year literally, landing all 5,300,149 create dates and 2,782,106
+    -- update dates in years 0000-0026. Verified against the raw landing table.
+    -- Pivot 2069: EPA's registry postdates 1990, so every 2-digit year is 20xx.
+    {{ ripple_ts_from_date('CREATE_DATE', 'dmon2', 2069) }}::date as create_date,
+    {{ ripple_ts_from_date('UPDATE_DATE', 'dmon2', 2069) }}::date as update_date,
     US_MEXICO_BORDER_IND as us_mexico_border_ind,
     PGM_SYS_ACRNMS as pgm_sys_acrnms,
     try_to_double(LATITUDE83) as latitude83,

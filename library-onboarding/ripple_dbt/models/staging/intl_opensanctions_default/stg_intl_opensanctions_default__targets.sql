@@ -32,7 +32,9 @@ renamed as (
         try_to_timestamp_ntz(trim(FIRST_SEEN))                    as first_seen,
         try_to_timestamp_ntz(trim(LAST_SEEN))                     as last_seen,
         try_to_timestamp_ntz(trim(LAST_CHANGE))                   as last_change,
-        to_timestamp_ntz(_INGESTED_AT)                            as _ingested_at,
+        -- FIXED 2026-08-20 (time-index scan): microseconds read as seconds,
+        -- 1,281,846 rows in the year 56 million. The `, 6` scale is the fix.
+        to_timestamp_ntz(_INGESTED_AT, 6)                         as _ingested_at,
         nullif(trim(_SOURCE_RUN_ID), '')                          as _source_run_id
     from source
 )

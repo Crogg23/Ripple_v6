@@ -63,7 +63,9 @@ renamed as (
         nullif(trim(CONG_DIST), '')                        as cong_dist,
         nullif(trim(REPORTER_PROJECT_URL), '')             as reporter_project_url,
         nullif(trim(TERMS), '')                            as terms,
-        _INGESTED_AT                                       as _ingested_at,
+        -- RECOVERED 2026-08-20 (time-index scan): loader-side microsecond cast,
+        -- 2,122,611 rows stamped year 56,608,739. Recovers to 2026-08-10.
+        {{ ripple_recover_ingest_ts('_INGESTED_AT') }}      as _ingested_at,
         nullif(trim(_SOURCE_RUN_ID), '')                   as _source_run_id
     from source
 )
