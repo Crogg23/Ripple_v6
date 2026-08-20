@@ -1,0 +1,34 @@
+{
+  "counts": {
+    "lag": 70,
+    "spans": 56,
+    "mix": 687,
+    "cohorts": 142
+  },
+  "coverage": [
+    {
+      "shape": "reporting lag",
+      "pulled": 83,
+      "errors": 0,
+      "no_signal": 0
+    },
+    {
+      "shape": "spans",
+      "pulled": 70,
+      "errors": 0,
+      "no_signal": 0
+    },
+    {
+      "shape": "category mix",
+      "pulled": 309,
+      "errors": 0,
+      "no_signal": 18
+    },
+    {
+      "shape": "entity cohorts",
+      "pulled": 329,
+      "errors": 0,
+      "no_signal": 113
+    }
+  ]
+}
