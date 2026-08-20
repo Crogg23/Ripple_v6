@@ -1,86 +1,70 @@
-# RIPPLE STATUS — 2026-08-18 (evening) — Second rebuild done: sniffer batch live, map at 4,899, all checks green
+# RIPPLE STATUS — 2026-08-19 — Front-door website thread opened: Webflow chosen, crash-course session queued; warehouse untouched today
 
 *One screen. Rewritten (never appended) at the end of every session. Sessions read
 this at boot and brief Chris in chat — Chris never has to open it.*
 
-**BROKE: one standing item only.** The roll-call vote mart still disagrees with
-its Python-built twin. Not new, not touched today. Final full suite after ALL
-of today's wiring: 3,097 passed, 2 skipped, that one standing failure only
-(deselected).
+**BROKE: one standing item only (unchanged).** The roll-call vote mart still
+disagrees with its Python-built twin. Not touched. Warehouse state is exactly
+as the 2026-08-18 evening close left it: suite 3,097 passed / 2 skipped / that
+one standing failure.
 
 ---
 
-## THE DAY IN ONE LINE
+## TODAY (2026-08-19) — planning session, zero warehouse work
 
-Two rebuilds, both clean: the morning one lit the 2026-08 staged batch (courts,
-water, credit unions, ICE); the evening one lit the **value-shape sniffer
-batch** — 18 columns that hold real IDs under names no detector could read,
-found by scanning all 11,547 non-portal landing columns by VALUE and proving
-each by live overlap.
+New thread: the **front-door website** — a friends/family/hiring-manager-facing
+intro site for Ripple. Decisions made (all Chris's calls, on researched facts):
 
-## THE EVENING REBUILD (Chris approved ~$12–20; ran clean)
+- **Concept locked:** first-person "I had an idea..." scroll story, seven beats
+  (dark screen → 178 source-dots rain in → hero numbers tick up → dots snap
+  into the 4,899-connection web → one anonymous entity's footprints → mission
+  + human-sign-off line → functional cards). ZERO analysis/findings shown.
+- **Tool locked: Webflow, free tier first.** Won a 10-tool bake-off with live
+  Aug-2026 pricing/review research. Why: $0 to learn, best-in-class scroll
+  animation (GSAP-powered, free tier), and the only visual builder that
+  exports real code (exit hatch to self-hosting later). Framer rejected (no
+  export), Wix (buggy scroll), Squarespace/Shorthand (price), Canva/Flourish
+  (can't do it), Figma Sites (messy output).
+- **Division of labor:** Chris designs and owns everything in Webflow; the
+  data-driven constellation pieces (beats 2/4/5) get built later as custom
+  embeds by Claude Code sessions. "Living" numbers = a ~1-hour scheduled
+  stats-export-to-static-file job, later; the public site never touches
+  Snowflake directly.
+- **First learning project:** beats 1 + 3 only, fake numbers, free tier.
+- **Next session is queued:** a "Webflow for dummies" crash course. Handoff
+  doc (audience, decisions, teaching arc, traps) is in the session scratchpad:
+  `handoff-webflow-crash-course.md`. That session teaches; it does not build.
+- Career context that shaped decisions: Chris targets analytics/insights
+  engineer roles — tool choice is resume-irrelevant; the site's CONTENT (the
+  warehouse story, dbt suite, data-quality war stories) is the resume asset.
 
-- **Spine: 33,312,349 entities over 178 sources** (morning: 33,283,474 / 173).
-  +28,875 entities, +34,108 newly multi-source.
-- **Map: 4,899 connections** (morning: 4,762). Hard-ID 1,249 → 1,375 (+126),
-  crosswalk bridges 485 → 496.
-- **What's newly wired:** the four multi-cycle FEC history tables (positional
-  C1/C4/C10/C15 headers — the BIGGER copies of the wired single-cycle twins,
-  dark since landing), candidate↔own-committee crosswalk at hard-ID,
-  leadership-PAC→candidate, independent-expenditure spender committees, EPA
-  enforcement-case→facility-registry (105k, 100%), ECHO→drinking-water
-  (99.3% of the live water-system world), Medicare facility parent/chain
-  columns (graph-only, per the no-mislabeling rule).
-- **Bonus audit while it cooked:** four OLDER spine columns were map-blind for
-  weeks — the 168k-row federal contractor EXCLUSION list's entity ID, SEC
-  insider filers (1.9M rows, 100% ID), leadership-PAC's own committee ID, the
-  credit-union merger ledger. Wired, and a new test now FAILS the build if any
-  spec column is ever map-invisible again.
-- **Pipeline done in the proven order:** rebuild → re-profile the 15 touched
-  tables → map redraw → re-seed WITH the overwrite flag → **all 6 validation
-  checks PASS.** Incremental is unfrozen and pinned (2,109 watermarks).
-- Deliberately excluded: legislators' FEC-IDs JSON list (flatten build is the
-  fix — wiring it raw would mint concatenated-ID phantom entities).
+## Live/open items (warehouse — all carried unchanged from 2026-08-18)
 
-Receipts: `reports/value_shape_findings_2026-08-18.md` (findings + outcome
-addendum, per-candidate JSON alongside).
+- **Nobody has read the map.** 4,899 connections, unexamined — incl. the new
+  multi-cycle money→politics wiring. Still the cheapest next warehouse move.
+- FEC-IDs flatten build (small; sniffer proved values live).
+- FEC positional-header load-layer repair (parked; needs table-alter rights).
+- 182 columns with literal 'nan' text; standing data-trap list (FAERS 76% dup,
+  contracts epoch dates, NEISS future dates, SEC year-zero, 2 broken staging
+  views).
+- Two FDA device tables raw/unflattened (map-blind).
+- ~900 gated portal tables incl. offshore-leaks (name-keyed; real decision).
+- DEA numbers single-source, inert.
+- Roll-call mart rebuild via Python builder (standing failure).
+- Source-registry reconciliation; CourtListener citation-network retry.
+- Six unparseable polygon tables; some invalid EPA/NTSB coordinates.
+- Table-count discrepancy (2,216 claimed vs 1,871 live) unchased.
 
-## Live/open items
+**YOUR MOVE:** start the Webflow crash-course session whenever ready (it boots
+from the handoff doc). Separately, the warehouse open question stands: point a
+session at reading the map, or at a repair.
 
-- **Nobody has read the map.** Now 4,899 connections, unexamined — including
-  the brand-new multi-cycle money→politics wiring. Cheapest next move.
-- FEC-IDs flatten build (small; the sniffer proved the values are live).
-- FEC positional-header tables: load-layer header repair parked as the cleaner
-  long-term fix (needs table-alter rights).
-- 182 columns still hold literal 'nan' text (inventory in reports/) — joins
-  the standing data-trap repair list (FAERS 76% dup, contracts epoch dates,
-  NEISS future dates, SEC year-zero, 2 broken staging views).
-- Two FDA medical-device tables reloaded as raw JSON, unflattened (map-blind).
-- ~900 gated portal tables incl. offshore-leaks (name-keyed; real decision,
-  not a bug).
-- DEA numbers: single-source, inert until a second DEA source lands.
-- Roll-call mart rebuild via Python builder (standing).
-- Source-registry reconciliation (onboarding-log leg), CourtListener
-  citation-network retry (standing).
-- Six polygon tables unparseable geometry; some EPA/NTSB coordinates invalid
-  (longitude 435.8). Pre-existing.
-- Table-count discrepancy (2,216 claimed vs 1,871 live) unchased; non-portal
-  landing = exactly 302 base tables (measured).
+**NEXT SESSION (website lane):** Webflow crash course per handoff doc — teach,
+don't build; Chris drives.
+**NEXT SESSION (warehouse lane):** read the map (politics history + enforcement
+chains first) or FEC-IDs flatten / top data-trap repairs.
 
-**YOUR MOVE:** nothing is blocked. Open question stands from this morning:
-point the next session at reading the map (now with the politics history in
-it), or at one of the repairs above.
+**Tests:** not run today (no code changed). Last known: 3,097 passed, 2
+skipped, standing roll-call failure.
 
-**NEXT SESSION:**
-1. Boot trust check vs this file and git log.
-2. Read the map: what the two batches newly connected, what's newly askable —
-   the multi-cycle FEC world and the enforcement chains first.
-3. Otherwise: FEC-IDs flatten build or top data-trap repairs.
-
-**Tests:** final full suite AFTER everything: 3,097 passed, 2 skipped,
-standing roll-call failure only. (One more pass than this morning — the new
-spine-vs-map visibility test.)
-
-**COST:** evening leg ≈ $8–15 (spine ~2h + map redraw ~1h + re-seed + targeted
-re-profiles on X-Small; estimate, not metered). Day total including the
-morning rebuild + repair: ~$30–48. The sniffer scan itself was ~$2–4 of that.
+**COST today:** ~$1-2 (one web-research agent + chat). No warehouse compute.
