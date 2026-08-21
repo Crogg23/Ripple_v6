@@ -1,0 +1,116 @@
+[
+ {
+  "batch": "batch00",
+  "file": "reports/_clockwork/batch00.json",
+  "subjects": [
+   "health"
+  ],
+  "tables": 77,
+  "columns": 355
+ },
+ {
+  "batch": "batch01",
+  "file": "reports/_clockwork/batch01.json",
+  "subjects": [
+   "justice"
+  ],
+  "tables": 56,
+  "columns": 280
+ },
+ {
+  "batch": "batch02",
+  "file": "reports/_clockwork/batch02.json",
+  "subjects": [
+   "economics"
+  ],
+  "tables": 37,
+  "columns": 190
+ },
+ {
+  "batch": "batch03",
+  "file": "reports/_clockwork/batch03.json",
+  "subjects": [
+   "criminal_justice",
+   "environment"
+  ],
+  "tables": 59,
+  "columns": 181
+ },
+ {
+  "batch": "batch04",
+  "file": "reports/_clockwork/batch04.json",
+  "subjects": [
+   "investigations",
+   "politics",
+   "procurement"
+  ],
+  "tables": 32,
+  "columns": 182
+ },
+ {
+  "batch": "batch05",
+  "file": "reports/_clockwork/batch05.json",
+  "subjects": [
+   "education",
+   "open_data",
+   "politics_lobbying",
+   "science"
+  ],
+  "tables": 49,
+  "columns": 180
+ },
+ {
+  "batch": "batch06",
+  "file": "reports/_clockwork/batch06.json",
+  "subjects": [
+   "consumer_safety",
+   "corporate_registry",
+   "finance",
+   "foreign_influence",
+   "review"
+  ],
+  "tables": 57,
+  "columns": 180
+ },
+ {
+  "batch": "batch07",
+  "file": "reports/_clockwork/batch07.json",
+  "subjects": [
+   "government_records",
+   "history",
+   "judiciary",
+   "labor",
+   "legal_enforcement",
+   "reference"
+  ],
+  "tables": 44,
+  "columns": 180
+ },
+ {
+  "batch": "batch08",
+  "file": "reports/_clockwork/batch08.json",
+  "subjects": [
+   "energy",
+   "historical_records",
+   "housing",
+   "money_finance",
+   "regulatory"
+  ],
+  "tables": 41,
+  "columns": 179
+ },
+ {
+  "batch": "batch09",
+  "file": "reports/_clockwork/batch09.json",
+  "subjects": [
+   "civil_rights",
+   "consumer_protection",
+   "immigration",
+   "maritime",
+   "science_research",
+   "transport"
+  ],
+  "tables": 30,
+  "columns": 181
+ }
+]

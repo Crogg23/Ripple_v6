@@ -1,0 +1,382 @@
+[
+ {
+  "family": "Enforcement & violations",
+  "line": "Mine safety violations \u2014 3.1M, 1994-2026 (32y) \u2014 per year; type mix over time; seasonality."
+ },
+ {
+  "family": "Enforcement & violations",
+  "line": "Drinking-water violations w/ enforcement \u2014 15.4M, 1900-2028 \u2014 per year; violation-type mix; the enforcement columns sit on the same row, so \"share drawing enforcement over time\" is surface."
+ },
+ {
+  "family": "Enforcement & violations",
+  "line": "Water-discharge violations \u2014 397k + 305k, 50-52y, two violation types \u2014 per year, per type."
+ },
+ {
+  "family": "Enforcement & violations",
+  "line": "Nursing-home deficiencies \u2014 418k health + 200k fire, 24y / 11y \u2014 per year; severity-scope mix over time."
+ },
+ {
+  "family": "Enforcement & violations",
+  "line": "Air formal actions 106k (54y) and informal actions 176k (corrupt floor) \u2014 actions per year."
+ },
+ {
+  "family": "Enforcement & violations",
+  "line": "EPA penalty-gap screen \u2014 93.8k, 122y \u2014 flagged facilities per year."
+ },
+ {
+  "family": "Enforcement & violations",
+  "line": "IRS auto-revocations \u2014 1.2M, 16y \u2014 nonprofits stripped per month; batch seasonality."
+ },
+ {
+  "family": "Enforcement & violations",
+  "line": "Federal contractor exclusions \u2014 168k, far-future trap \u2014 debarments per year; exclusion length over time."
+ },
+ {
+  "family": "Enforcement & violations",
+  "line": "Hazardous-waste violations/enforcement \u2014 708k/383k, year-0001-to-9999 \u2014 repair first."
+ },
+ {
+  "family": "Harm & safety events",
+  "line": "Consumer-finance complaints \u2014 17.2M, 2011-2026 (15.6y) \u2014 per month; product mix; company-response mix; seasonality. Cleanest big harm series we own."
+ },
+ {
+  "family": "Harm & safety events",
+  "line": "Pollution/spill calls \u2014 1.03M, 36.6y \u2014 per year; material mix; seasonality."
+ },
+ {
+  "family": "Harm & safety events",
+  "line": "Mine accidents \u2014 274k, 26.6y \u2014 per year; severity mix."
+ },
+ {
+  "family": "Harm & safety events",
+  "line": "Rail: casualties 1.15M (29.6y), crossing incidents 251k (51.6y), equipment accidents 225k (51.6y) \u2014 three clean half-century series."
+ },
+ {
+  "family": "Harm & safety events",
+  "line": "Aviation accidents \u2014 31k events (18.6y) + 179k injury rows \u2014 per year; severity mix."
+ },
+ {
+  "family": "Harm & safety events",
+  "line": "Fatal police encounters \u2014 10.4k, 2015-2024, complete decade \u2014 per month; seasonality."
+ },
+ {
+  "family": "Harm & safety events",
+  "line": "Drug adverse events \u2014 37M \u2014 clock unmeasured (event date + source quarter). Measure it."
+ },
+ {
+  "family": "Harm & safety events",
+  "line": "Device adverse events \u2014 2.7M, needs a year floor \u2014 per year."
+ },
+ {
+  "family": "Harm & safety events",
+  "line": "ER product injuries \u2014 9.8M \u2014 far-future poisoned. Repair."
+ },
+ {
+  "family": "Harm & safety events",
+  "line": "Malpractice/disciplinary reports \u2014 1.9M \u2014 four year-columns, none measured. Measure it."
+ },
+ {
+  "family": "Harm & safety events",
+  "line": "Vehicle safety complaints \u2014 2.2M \u2014 corrupt range. Repair."
+ },
+ {
+  "family": "Money",
+  "line": "Opioid pill shipments \u2014 178.6M, 2006-2026 (20.6y), clean \u2014 the best trend asset we own. Pills per month; drug mix over time; seasonality; the rise and the fall."
+ },
+ {
+  "family": "Money",
+  "line": "Individual campaign contributions \u2014 84M, floor 2000, corrupt tail \u2014 per cycle; size distribution over time; round-number rate over time."
+ },
+ {
+  "family": "Money",
+  "line": "NYC campaign contributions \u2014 four clean cycle tables, 12-15y each."
+ },
+ {
+  "family": "Money",
+  "line": "Treasury daily deposits \u2014 478k, 20.8y \u2014 daily government cash in; tax-day seasonality is the whole point."
+ },
+ {
+  "family": "Money",
+  "line": "Treasury interest rates 25.4y / debt-to-penny 33.2y / debt outstanding 235.7y."
+ },
+ {
+  "family": "Money",
+  "line": "SBA loans \u2014 2.17M, 41.2y \u2014 per year; loan size over time. PPP is a separate 4.5y bubble (968k)."
+ },
+ {
+  "family": "Money",
+  "line": "Bank branch deposits \u2014 2.8M, epoch trap on 26k rows \u2014 deposits per year."
+ },
+ {
+  "family": "Money",
+  "line": "Google political ad spend \u2014 299k weekly rows, 8.2y \u2014 spend per week; advertiser churn."
+ },
+ {
+  "family": "Money",
+  "line": "Texas lobbying spend on officials \u2014 38.7k, 26.5y \u2014 plus gifts/food/events/entertainment/awards, 21-22y each \u2014 spend per year; category mix."
+ },
+ {
+  "family": "Money",
+  "line": "CFTC futures positions \u2014 287k, 40.6y weekly."
+ },
+ {
+  "family": "Money",
+  "line": "Pharma payments to doctors \u2014 43M \u2014 clock unmeasured. Highest-value measure on the board."
+ },
+ {
+  "family": "Money",
+  "line": "Federal contracts 20M / assistance 19.9M \u2014 epoch-poisoned and unmeasured. Repair."
+ },
+ {
+  "family": "Courts & justice",
+  "line": "Federal case outcomes \u2014 bankruptcy 7.0M (103y), criminal 6.3M (126y), appellate 988k (126y), civil 10.9M (corrupt tail) \u2014 filings per year; case-type mix; disposition mix. A multi-decade backbone."
+ },
+ {
+  "family": "Courts & justice",
+  "line": "Court dockets \u2014 71.7M, 1697-2026 \u2014 dockets per year; per court over time (court is on the row)."
+ },
+ {
+  "family": "Courts & justice",
+  "line": "Supreme Court justice votes \u2014 83.6k, 80.7y \u2014 votes per term; direction mix over time."
+ },
+ {
+  "family": "Courts & justice",
+  "line": "FBI crime data \u2014 238.7k, 41.6y."
+ },
+ {
+  "family": "Courts & justice",
+  "line": "Immigration detention stints \u2014 2.57M, 107.6y \u2014 stints per year; length of stay over time; facility mix."
+ },
+ {
+  "family": "Courts & justice",
+  "line": "Foreign labor certifications \u2014 664.6k, 2012-2023 \u2014 per year; employer mix."
+ },
+ {
+  "family": "Courts & justice",
+  "line": "Case citations \u2014 18.1M but the only date is ingest. No clock."
+ },
+ {
+  "family": "Courts & justice",
+  "line": "Immigration court cases \u2014 12.6M, four columns, no date at all."
+ },
+ {
+  "family": "Courts & justice",
+  "line": "Judge financial disclosures \u2014 epoch-poisoned. Repair."
+ },
+ {
+  "family": "Organizations \u2014 births, deaths, age (the most under-used shape we own)",
+  "line": "UK companies \u2014 5.7M with incorporation dates to 1327 \u2014 company births per year; dissolutions; age distribution of the living."
+ },
+ {
+  "family": "Organizations \u2014 births, deaths, age (the most under-used shape we own)",
+  "line": "UK people with significant control \u2014 7M, to 2026 \u2014 control registrations per year."
+ },
+ {
+  "family": "Organizations \u2014 births, deaths, age (the most under-used shape we own)",
+  "line": "Irish companies \u2014 821.7k, 280y."
+ },
+ {
+  "family": "Organizations \u2014 births, deaths, age (the most under-used shape we own)",
+  "line": "IRS exempt-org master file \u2014 2.0M, ruling dates, 126y \u2014 nonprofit births per year."
+ },
+ {
+  "family": "Organizations \u2014 births, deaths, age (the most under-used shape we own)",
+  "line": "IRS revocations \u2014 1.2M, 16y \u2014 nonprofit deaths per year."
+ },
+ {
+  "family": "Organizations \u2014 births, deaths, age (the most under-used shape we own)",
+  "line": "Dark-money 527 orgs \u2014 77.6k, floor 1808 \u2014 registrations per year; cycle spikes."
+ },
+ {
+  "family": "Organizations \u2014 births, deaths, age (the most under-used shape we own)",
+  "line": "Failed banks \u2014 3,584, 56.4y \u2014 failures per year; the 2008-2010 spike."
+ },
+ {
+  "family": "Organizations \u2014 births, deaths, age (the most under-used shape we own)",
+  "line": "Global legal-entity relationships \u2014 484k, 127y \u2014 parent links registered per year."
+ },
+ {
+  "family": "Organizations \u2014 births, deaths, age (the most under-used shape we own)",
+  "line": "Credit-union charter/merger events \u2014 53 rows, tiny but clean."
+ },
+ {
+  "family": "Organizations \u2014 births, deaths, age (the most under-used shape we own)",
+  "line": "Research org registry \u2014 135.7k, 7.7y."
+ },
+ {
+  "family": "Facilities & infrastructure lifecycle",
+  "line": "Drinking-water systems 434k + facilities 1.55M + site visits 2.5M (~126y) \u2014 activations/deactivations per year; visits per year."
+ },
+ {
+  "family": "Facilities & infrastructure lifecycle",
+  "line": "EPA facility registry 5.3M and compliance snapshot 3.1M \u2014 corrupt floors; facilities registered per year after flooring."
+ },
+ {
+  "family": "Facilities & infrastructure lifecycle",
+  "line": "Mines \u2014 91.9k, 101.6y \u2014 openings and closures per year; status mix. The coal decline is directly visible."
+ },
+ {
+  "family": "Facilities & infrastructure lifecycle",
+  "line": "Air-quality monitoring sites \u2014 20.9k, 69.9y \u2014 monitors online per year (measurement capacity as its own trend)."
+ },
+ {
+  "family": "Facilities & infrastructure lifecycle",
+  "line": "Dams \u2014 92.8k, completion years 1901+ \u2014 dams built per year."
+ },
+ {
+  "family": "Facilities & infrastructure lifecycle",
+  "line": "Superfund boundaries \u2014 2,114, 22.8y."
+ },
+ {
+  "family": "Facilities & infrastructure lifecycle",
+  "line": "Orphaned oil & gas wells \u2014 117.7k, 3.4y only."
+ },
+ {
+  "family": "Facilities & infrastructure lifecycle",
+  "line": "Power plants, generators, hospitals, nursing homes, health centers \u2014 load-date only. Real operating dates likely exist in unmeasured columns."
+ },
+ {
+  "family": "People & careers",
+  "line": "Federal judges \u2014 4,067 judges / 4,766 service rows, 1789-2026 (237y) \u2014 appointments per year; by appointing president; tenure length over time; age at appointment."
+ },
+ {
+  "family": "People & careers",
+  "line": "Judge political affiliations \u2014 8,486, 224y \u2014 party mix of the bench over time."
+ },
+ {
+  "family": "People & careers",
+  "line": "527 directors/officers 189.6k and SEC insider owners 1.9M \u2014 load-date only."
+ },
+ {
+  "family": "Filings & registrations",
+  "line": "Foreign-agent registrations \u2014 48.1k, 84.5y \u2014 registrations per year; country mix over time. Clean and interesting."
+ },
+ {
+  "family": "Filings & registrations",
+  "line": "Federal Register documents \u2014 94.7k, 22.2y \u2014 rules published per year; agency mix. The regulatory-volume series."
+ },
+ {
+  "family": "Filings & registrations",
+  "line": "SEC filing index \u2014 48.9k, 31.1y \u2014 filings per year."
+ },
+ {
+  "family": "Filings & registrations",
+  "line": "SEC insider transactions \u2014 2.7M + 1.0M \u2014 corrupt spans; floor then trades per month; insider selling waves."
+ },
+ {
+  "family": "Filings & registrations",
+  "line": "13F filers \u2014 344k, 14.6y \u2014 new institutional filers per quarter."
+ },
+ {
+  "family": "Filings & registrations",
+  "line": "Single audits of federal money \u2014 411.6k, 24.1y \u2014 audits per year; findings rate over time."
+ },
+ {
+  "family": "Filings & registrations",
+  "line": "Union annual reports \u2014 617.7k, epoch trap on 589k rows \u2014 repair unlocks the union-decline series."
+ },
+ {
+  "family": "Filings & registrations",
+  "line": "Pension filings + actuarial schedules \u2014 33.5k / 41.8k, corrupt. Repair."
+ },
+ {
+  "family": "Filings & registrations",
+  "line": "Federal lobbying filings \u2014 174.9k but only 2020-2021 (known 9% load). Not trendable until refilled."
+ },
+ {
+  "family": "Filings & registrations",
+  "line": "California lobbying 524.8k / Texas lobbying 283.8k \u2014 corrupt tails, floor-filter first."
+ },
+ {
+  "family": "Filings & registrations",
+  "line": "IRS 990 e-file index \u2014 5.5M, 50y span but 3.2M epoch rows and stops 2020."
+ },
+ {
+  "family": "Products & recalls",
+  "line": "Device clearances \u2014 175.7k, 1976-2026 (50.2y) \u2014 clearances per year. The device-approval curve, clean."
+ },
+ {
+  "family": "Products & recalls",
+  "line": "Device approvals (PMA) \u2014 56.9k, 126y span."
+ },
+ {
+  "family": "Products & recalls",
+  "line": "Recalls \u2014 device 39.6k (95.6y), drug 17.8k (20.4y), vehicle 243k (corrupt tail) \u2014 per year; class mix over time."
+ },
+ {
+  "family": "Products & recalls",
+  "line": "Retracted papers \u2014 71.6k, floor 1753 \u2014 retractions per year; the reproducibility curve. Two independent copies to cross-check."
+ },
+ {
+  "family": "Products & recalls",
+  "line": "Unique device IDs \u2014 5.1M, 13.5y \u2014 devices registered per year."
+ },
+ {
+  "family": "Products & recalls",
+  "line": "Drug pricing \u2014 359.5k, 2.1y weekly."
+ },
+ {
+  "family": "Measurements & statistical series",
+  "line": "Lead/copper water samples \u2014 927.4k, 42.5y \u2014 samples per year; exceedance rate over time."
+ },
+ {
+  "family": "Measurements & statistical series",
+  "line": "Earthquakes \u2014 443.3k, 13.3y \u2014 per year (detection capacity as much as seismicity)."
+ },
+ {
+  "family": "Measurements & statistical series",
+  "line": "Health-shortage designations \u2014 165.5k areas + 79.2k scores, 56.5y \u2014 designations per year."
+ },
+ {
+  "family": "Measurements & statistical series",
+  "line": "Electricity generation mix \u2014 369.3k, 2000-2025 \u2014 fuel mix by country over time."
+ },
+ {
+  "family": "Measurements & statistical series",
+  "line": "CDC anxiety/depression + health insurance \u2014 2020-2024 weekly pandemic series."
+ },
+ {
+  "family": "Measurements & statistical series",
+  "line": "Air emissions 10.4M, stream gauge 6.7M, storm events 1.78M, UN votes 1.82M \u2014 all have real time columns, none measured. Cheap wins."
+ },
+ {
+  "family": "Measurements & statistical series",
+  "line": "Slave voyages \u2014 36.1k + 11.5k \u2014 voyages per year over centuries."
+ },
+ {
+  "family": "Codes & taxonomy (the sleeper)",
+  "line": "Species taxonomy \u2014 993k units + 11 sibling tables, all ~30y \u2014 new species described per year; name churn; synonym rate over time."
+ },
+ {
+  "family": "Codes & taxonomy (the sleeper)",
+  "line": "Known-exploited vulnerabilities \u2014 1,631, 4.7y \u2014 added per week."
+ },
+ {
+  "family": "Codes & taxonomy (the sleeper)",
+  "line": "Market identifier codes \u2014 2,864, 23.3y \u2014 exchanges registered and retired per year."
+ },
+ {
+  "family": "Places",
+  "line": "Geographic names \u2014 1.25M, 1700-2026 \u2014 place names recorded per year."
+ },
+ {
+  "family": "Places",
+  "line": "Flood-program communities \u2014 25.1k, 99.7y \u2014 communities joining per year."
+ },
+ {
+  "family": "Places",
+  "line": "Water service and geographic areas \u2014 578k + 422k, 30.9y."
+ },
+ {
+  "family": "Places",
+  "line": "Watersheds 2,456 (14.2y); rural housing projects 13.6k (164y, far-future trap)."
+ },
+ {
+  "family": "Sanctions & screening",
+  "line": "Designations per year across five regimes: consolidated screening 25.9k (81.6y), EU 42.3k (101y), UK 33.8k (26.3y), UN 1,011 (26.3y), OpenSanctions 71k (ends 2022)."
+ },
+ {
+  "family": "Sanctions & screening",
+  "line": "Prop 65 chemical listings \u2014 952, 39.4y \u2014 chemicals listed per year."
+ }
+]

@@ -1,132 +1,190 @@
-# RIPPLE STATUS — 2026-08-20 (evening) — The whole warehouse is on one timeline
+# RIPPLE STATUS — 2026-08-20 (still later) — one counts page: Chris's palette, evidence-based fonts, every table's columns
 
 *One screen. Rewritten (never appended) at the end of every session. Sessions read
 this at boot and brief Chris in chat — Chris never has to open it.*
 
-**BROKE: two items, both carried in, neither touched today.** (1) The roll-call
+**BROKE: nothing new this session.** Carried, both untouched: (1) the roll-call
 vote mart still disagrees with its Python-built twin — standing since 2026-08-18.
 (2) Twelve Python test modules fail to COLLECT on this machine for a missing
-charting library, hiding ~1,400 tests, so "the suite passed" carries an asterisk
-until it is reinstalled. **The Python suite was not run this session** — no
-existing model, macro or test was modified. The dbt side WAS run: 435 new models
-built green and the new guard test passes.
+charting library, hiding ~1,400 tests. The column-classifier substring-match
+cosmetic bug (misreads columns like "facility" as name/id columns) is also still
+there, still not fixed, still doesn't affect any number's correctness.
+
+**Also worth knowing, found but not acted on:** the count-question generator caps
+how many columns of each type it turns into questions per table — 6 ids/names, 6
+categories, 3 places, 3 flags, 2 money, 2 quantity, no matter how many actually
+exist. 320 of 647 tables lose at least one already-classified column to that cap
+(5,222 columns total; worst table drops 325). Chris didn't ask for that fixed —
+he asked for a plain column reference instead (below) — but the cap is real and
+still there if he wants it raised later.
+
+**Then a color-scheme pass, optimized for ADHD — took three tries, landed on
+Chris's own exact palette.** Chris asked to reoptimize the page's colors for
+his brain. Round 1: sketched three real palette directions side by side,
+Chris picked "warm/muted earthy" — shipped it, Chris called it worse, too
+washed out, asked for earth tones with real contrast, and said stop
+overthinking it — function over nuance. Round 2: rebuilt with deep/saturated
+earth tones plus obvious bordered-card sections for the toolbar and each
+opened dataset. Round 3: Chris handed over an exact 5-color hex palette
+(`#264653 #2a9d8f #e9c46a #f4a261 #e76f51` — dark teal, teal, gold, orange,
+red-orange) and said figure out the rest myself, no more back-and-forth.
+Mapped it functionally: the dark teal is the page's ink/text color and the
+dark-mode card surface; teal is the one chrome/interactive accent; gold,
+orange, and red-orange are the three tiers respectively (plain counts /
+cross & share / real joins) — four clearly distinct hues, all five of
+Chris's colors used, nothing invented. Caught and fixed one real contrast
+bug this round would otherwise have shipped: three of Chris's colors are
+medium-light, so the page's old assumption (always use light "ground" text
+on top of a filled/active chip) would have been nearly illegible on gold and
+orange fills — fixed by giving light and dark fills their own correct text
+color instead of one blanket rule. Every round verified in headless
+Chromium, light and dark, same interaction checks throughout, all still
+pass, zero console errors. **Chris hasn't confirmed this third pass yet.**
+
+**Then a font overhaul, researched first.** Chris asked for the best fonts
+for his brain specifically and to actually research it, not guess. Real
+finding, web-verified this session, not recalled from memory: the page's
+headings and dataset names were set in a serif typeface (Newsreader), and
+general accessibility guidance is fairly consistent that serifs add visual
+complexity that hurts ADHD readers more than it helps — sans-serif is the
+safer default throughout, headings included. Swapped the whole page (body
+text, headings, dataset names, questions) from Newsreader+IBM Plex Sans to
+**Lexend** — a font built specifically on reading-speed research (Shaver-Troup
+/ Vanderbilt study, ~2,700 students; Lexend's own published numbers claim
+~20% faster reading vs. Times New Roman for struggling readers, though that
+stat is the font project's own number, not independently re-verified here).
+Runner-up considered and set aside: Atkinson Hyperlegible, which optimizes
+for telling similar letters apart rather than reading speed — more of a
+dyslexia/low-vision fit than an ADHD one specifically. Also removed the
+tightened letter-spacing the serif headings used to have (negative tracking
+reads worse for ADHD; wider spacing reads better) and opened up line-height
+on the actual paragraph text — lede, dataset descriptions, the trust-notes
+list — from ~1.45 to 1.6, inside the commonly-cited 1.5–2.0 range. Left the
+monospace font (IBM Plex Mono, for SQL/labels/column names) untouched —
+nothing in the research flagged monospace code text as an ADHD pain point.
+Verified in headless Chromium, light and dark, same interaction checks as
+every round before it — all pass, zero console errors.
 
 ---
 
-## TODAY, EVENING SESSION — two pieces of work
+## THIS SESSION — a pure UI session: merged layer 1 + layer 2 into one page
 
-Chris picked "widen the sweep" first. Widening it produced the denominators for
-free. He then picked the canonical-clock rollout, which is now built.
+Chris's ask: figure out the optimal UI/usability for the two counts pages — not
+a polish pass, a real "is this even the right shape" pass.
 
-### Piece 1 — the widened time census
+- **Used both live pages hands-on first**, in a real headless browser, before
+  proposing anything. Confirmed by clicking, not just reading code: the kind
+  filters (per year, flags, repeat rate, etc.) were invisible until you were
+  already inside one of 647 datasets or mid-search — no way to browse "every
+  flagged-percent question in the warehouse" from a cold landing. Also found
+  the two pages are close to line-for-line the same interface published twice,
+  with only a one-way link between them.
+- **Brought Chris 3 real sketch-level options**, not one polished build:
+  merge into one page with filters visible on landing; keep two pages plus add
+  a small hub page between them; or a bigger swing — a command-palette /
+  search-first workbench. Chris picked **option 1: one page, tiered.**
+- **Built it.** New script `scripts/census/build_count_page_unified.py` reads
+  the same three untouched source files (`count_possibilities.json`,
+  `count_possibilities_layer2.json`, `layer2_joins.json` if it exists) and
+  renders one page — it does not touch the question-generation or
+  classification logic in any of the three scripts that produce those files,
+  only how the output is shown. **23,381 questions, one dataset list of 647,
+  one URL.** A tier row (plain counts / cross & share / real join, each with
+  a live count) and the kind row both sit on the landing page now, always
+  visible — pick a tier or kind straight from the landing view and it browses
+  that alone across every dataset, no search term or dataset click required
+  first. Same design system as both prior pages on purpose (Newsreader /
+  IBM Plex Sans / IBM Plex Mono, slate-teal palette) — this replaces them,
+  it isn't a new product.
+- **Caught and fixed two real bugs before shipping**, both found by actually
+  clicking through it, not by reading the code: (1) resetting the tier filter
+  back to "everything" didn't clear an active kind filter, so it got stuck
+  showing a filtered list instead of returning to the dataset index; (2) the
+  small tier-color dot next to each question-type heading inside a dataset
+  had no CSS rule wired to it and was rendering invisible.
+- **Verified for real** in headless Chromium after the fixes: light theme,
+  dark theme, mobile width, tier-click-from-landing, kind-click auto-syncing
+  the tier highlight, dataset drill-down, search, copy-to-clipboard, and the
+  empty-state message for "real joins" (correctly explains they're queued,
+  not run — doesn't say "try a plainer word" like a real search miss would).
+  Zero console errors throughout.
+- **Then Chris asked for something different mid-session**: every column of
+  a table available to reference, plain name plus a jargon-free definition,
+  nothing fancy. First read of that ask was wrong — went looking at the
+  question-generator's column cap instead (see above) before Chris corrected
+  it. What actually shipped: opening any of the 647 datasets now has a
+  collapsed "All N columns in this table" section — every column's real name
+  next to a one-line plain-English definition, reusing the exact classifier
+  and glossary already trusted for the questions (no new logic, no new
+  curation). One table ran as high as 473 columns; the list scrolls inside a
+  capped box instead of stretching the page. Adds well under 1MB to the page
+  (10.2MB → 10.9MB) since it's one reference per table, not repeated per
+  question. Verified in headless Chromium on the widest table (473 columns):
+  collapsed by default, expands clean, no console errors.
 
-Four new shapes across every table with a trustworthy clock. **771 measurements,
-zero failures, 14 minutes of warehouse time.** Reporting lag (83 tables), spans
-(70), category mix (309), things arriving and leaving (329, of which 216 have a
-repeating entity).
+**Live link:** https://claude.ai/code/artifact/937c6d0e-3c0b-4442-bc39-a8edb391f068
+This supersedes the two prior links in practice — Chris should use this one
+going forward. Neither old link was deleted or touched; they still work if
+Chris wants them:
+- layer 1 (old): https://claude.ai/code/artifact/f0308e10-6a7c-4049-97fd-075df7737106
+- layer 2 (old): https://claude.ai/code/artifact/fe571d24-0f99-49f7-b870-8ee20b10251a
 
-**The parked "denominators" branch turned out to be answerable for 75 tables with
-no second table.** Where the same entity recurs across years, the population is
-measurable inside that one table — present in a year if first seen on or before
-it and last seen on or after it.
+## Still open, unrelated to this session's work
 
-- **Nursing-home deficiencies — the 446x was mostly coverage.** Facilities went
-  1,823 → 13,451. Per facility, 4.8 → 7.8: a real 62% rise, not 446x.
-- **Mine accidents — the fall survives.** Mines roughly halved, accidents fell
-  63%, per mine still down 32%.
-- **Consumer complaints — survives strongly.** Companies only tripled while
-  complaints rose 28x; per company, up 7x.
-- **Water-pollution enforcement — the raw count and the rate point OPPOSITE
-  ways.** Actions rose 11.8x, facilities covered rose 18.5x, so per facility
-  enforcement FELL 35%.
+- **The trend list has a known, unrepaired defect Chris was told about and
+  has not ruled on.** 67 of 403 charts waste more than half their x-axis on
+  under 1% of their rows. Not touched this session — waiting on Chris's call.
+- Warehouse lane (canonical clock, 771-measurement time census) is exactly
+  where the last warehouse session left it — nothing here changed it.
+- **The 206 real joins are still priced, not run.** Nothing about this
+  session's UI work changes that decision — still waiting on Chris to say go
+  (`python scripts/census/run_layer2_joins.py --sample 15` or `--run`). The
+  new unified page already knows how to pick up `reports/layer2_joins.json`
+  the moment it exists, same as the old layer 2 page did — no rebuild-time
+  change needed once Chris says go, just re-run the unified build script.
 
-**A metric that almost shipped wrong, fixed in code.** The first scorer ranked
-"reporting got faster" and "things last shorter now" at the top of nearly every
-table. Both are the same artifact — an old record has had years in which to be
-reported or to run long, a recent one has not, so raw medians always fall toward
-the present. Everything is now ranked on a fixed horizon, asked only of cohorts
-old enough to answer, after waiting out the 90th-percentile tail. **After the fix
-only 2 tables show a defensible change in reporting promptness.**
+## Carried from the 2026-08-20 warehouse session, untouched since
 
-Mix flips worth a second look, all unverified and single-source: water
-enforcement flipping federal → state (crossover 1987, settled by 2011); new power
-generators flipping hydro → gas → solar (solar 56–66% of new units since 2014,
-carries a survivorship caveat); judicial confirmations flipping voice vote →
-roll call (crossover 2001).
+**435-model canonical clock is live** (403 of 647 tables get a shared timeline;
+244 documented as "here's what kind of nothing this one has"). Full detail: ask,
+or check commit `80e63d79` / `ccd1d01f`.
 
-### Piece 2 — the canonical clock, rolled out
+**Open items carried unchanged:** roll-call mart mismatch; 12 Python test
+collection errors (missing charting lib); 20 tables with only a download-stamp
+clock; clock LABEL correctness untested; 30 tables with no per-entity rate; 13
+tables with clocks in the wrong order; opioid data covers 2006–2012 not
+2006–2026; nobody has read the connection map (4,899 links); 182 columns with
+literal 'nan' text; FAERS 76% dup; ~900 gated portal tables; roll-call mart
+rebuild; source-registry reconciliation; six unparseable polygon tables; the
+column-classifier substring-match bug noted above.
 
-**435 models, 92 seconds, zero failures. The guard test passes.**
+**YOUR MOVE:** look at the new unified page and confirm the merge is the shape
+you want to keep using day to day. If yes, the two old links can just be
+ignored (or ask for them to be formally retired later — not done this
+session, nothing destructive happened). Separately, standing: whenever you
+want the 206 real joins run, say go. Also open, not decided: whether the
+5,222-column question-generator cap (above) is worth raising — flagged, not
+acted on, since it wasn't what was asked for.
 
-Built as a VIEW layer, not by editing the marts — adding three columns to 600+
-models would have meant rebuilding every mart. Views cost nothing to create or
-store, leave the tables untouched, and regenerate in seconds when a clock label
-is corrected, which matters because the labels are one day old.
+**NEXT SESSION:** nothing queued specifically by this session. Whenever real
+joins run, rebuild the unified page (`python
+scripts/census/build_count_page_unified.py`) and it picks the real numbers up
+automatically, same hookup the old layer 2 page had. Everything else carried
+above is still just waiting on a Chris pick — the trend-list axis defect, the
+classifier bug, the column-cap question above, the two warehouse-lane options
+from the prior evening session, the Webflow crash course queued 2026-08-19.
 
-| what | where |
-|---|---|
-| 403 canonical views | every original column plus `ripple_ts` / `ripple_grain` / `ripple_clock` / `ripple_source` |
-| 31 domain rollups | one row per (source, clock, grain, day) with a count |
-| the shared timeline | 1,160,701 rows standing in for 719,999,851 underlying rows across 403 sources |
-| the control table | all 647 live tables and the clock chosen for each — runs on plain SQL, no AI at runtime |
-| the guard | six ways the registry and the views can drift, all fatal to the build |
+**Tests:** nothing run this session outside the new census page-builder
+script and its Playwright verification (local, free, in a scratch dir — no
+warehouse, no repo test suite touched). Last dbt run: 435 timeline models
+green, guard passes. Last full Python run: 1,671 passed, 2 skipped, 1 failed
+(known roll-call mismatch), 12 collection errors (unchanged).
 
-**Coverage stated honestly: 403 of 647 tables get a clock.** The other 244 are in
-the registry too, each saying which kind of nothing it is — 165 never examined,
-43 with time-shaped names holding no readable value, **20 carrying nothing but
-Ripple's own download stamp**, 16 with no time data at all.
-
-**Two rules the layer carries as tags rather than hoping people remember.** A
-year-grain source snaps to Jan 1, so charting mixed grains without faceting on
-grain invents a New Year's Day spike (121 of 403 sources are year-grain). And
-summing a "happened" source with a "reported" source adds two different questions.
-
-**Already answers:** what the whole warehouse saw in any month; which sources went
-quiet and exactly when (Open Payments stops dead at 2023-12-31, 14.7M rows; the
-FBI crime explorer at 2023-12-01; pandemic loans at 2021-07-19); whether any
-source covers a date at all; and how many independent sources touch the same day.
-
-## Live/open items
-
-- **The timeline counts; it does not join.** Row detail lives in the per-table
-  views, one source at a time. A row-level cross-warehouse timeline would be
-  ~720M rows and has not been built.
-- **20 tables carry only a download stamp.** These are the fixable ones — they
-  need a real clock at ingest, upstream of the layer.
-- **Whether a clock LABEL is correct is not tested.** The guard enforces that the
-  registry and the warehouse agree; the labels themselves came from this
-  morning's review pass and are revisable.
-- **30 tables could not get a per-entity rate** because the count sweep and the
-  cohort sweep picked different clocks. **113 tables have no repeating entity**,
-  so they need an outside denominator.
-- **13 tables have their two clocks in the wrong order** — the aircraft registry
-  compares year-of-manufacture against last-registry-action, which is not a
-  reporting gap. Those labels need revisiting.
-- **The loader can still produce the microsecond bug.** Read side immune, write
-  side untouched.
-- Carried unchanged: opioid data covers 2006–2012 not 2006–2026; nobody has read
-  the map (4,899 connections); 182 columns with literal 'nan' text; FAERS 76%
-  dup; two FDA device tables raw; ~900 gated portal tables; DEA numbers
-  single-source; roll-call mart rebuild; source-registry reconciliation; six
-  unparseable polygon tables; table-count discrepancy.
-
-**YOUR MOVE:** the clock work is done, so the two remaining warehouse options
-from earlier are still open — push the denominator method outward to the tables
-it could not reach, or chase the federal-to-state enforcement handoff into an
-actual mechanism. Also still standing and untouched for two days: the front-door
-website crash course queued 2026-08-19.
-
-**NEXT SESSION (warehouse lane):** Chris's pick of those two.
-**NEXT SESSION (website lane):** Webflow crash course per the 8/19 handoff doc.
-
-**Tests:** dbt — 435 timeline models built green; the new registry guard passes;
-this morning's two datetime guards were passing and were not modified. Python
-suite not run (nothing in it was touched). Last full run: 1,671 passed, 2 skipped,
-1 failed (the known roll-call mismatch), 12 collection errors.
-
-**COST today (evening session):** under $3 of warehouse compute all in — the four
-sweeps ran in 14 minutes, the 435-model build in 92 seconds. Quoted $12–20 for
-the sweeps (actual ~$1–2) and $2–4 for the build (actual under $1). **Both
-estimates ran high; the sweep one by roughly ten times.** All scoring and the
-per-entity rates are local arithmetic, zero warehouse. Earlier session today:
-~$6–8 warehouse plus ~$20–40 of agent tokens for the labelling pass.
+**COST this session:** $0 warehouse, $0 external spend throughout, including
+the column-reference add-on and the color pass (all local — one
+`_all_columns.csv` read, no new warehouse query, no paid tools). One new
+script (`build_count_page_unified.py`), one one-off local column-cap
+analysis (read-only, no files changed), one throwaway color-comparison
+artifact plus three publishes total to the counts page's artifact link, six
+real headless-browser verification passes across the session, light and dark
+theme screenshotted repeatedly.
