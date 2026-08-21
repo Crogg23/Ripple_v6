@@ -1,0 +1,590 @@
+model,family,class,n_rows,date_min,date_max,span_years,clock_verdict,time_columns_present,epoch1970,far_future,dup_ratio
+case_queue,organization,noun,899,,,,NO_CLOCK,,0,0,0.0
+civil_rights__fed_nara_wra_aad,dataset,noun,1,,,,UNMEASURED_CLOCK,DATE,0,0,0.0
+cohort_queue,unresolved,event,903,2026-07-30,2026-07-30 10:27:37.676000,0.0,SHORT_SPAN,LEAD_AS_OF_DATE,0,0,0.0
+consumer_protection__fed_cfpb_complaints,complaint,event,17168287,2011-01-01,2026-07-23 17:19:21,15.6,CLEAN,DATE RECEIVED|DATE SENT TO COMPANY|TIMELY RESPONSE?,0,0,0.0
+consumer_safety__fed_cpsc_neiss,case,event+noun,9794971,1999-01-01,56571662-04-06 21:41:58.000,,UNMEASURED_CLOCK,TREATMENT_DATE|_SRC_YEAR,0,9794971,0.0
+consumer_safety__fed_nhtsa_complaints,complaint,event,2227941,0003-10-20,2203-07-26,2199.7,CORRUPT_RANGE,,5,6,0.0
+consumer_safety__fed_nhtsa_investigations,role,link,154209,1972-03-10,2026-07-24 00:43:24,54.4,CLEAN,,0,0,0.0
+consumer_safety__fed_nhtsa_recalls,recall,event+noun,242993,0022-07-29,3019-05-14,2996.7,CORRUPT_RANGE,,0,11,0.0
+corporate_registry__fed_icij_offshoreleaks_addresses,place,noun,402246,56596958-03-20 14:46:15.000,56596958-03-20 14:46:15.000,,NO_CLOCK,,0,402246,0.0
+corporate_registry__fed_icij_offshoreleaks_entities,organization,noun,814344,0199-04-25,56596956-06-04 02:56:43.000,,UNMEASURED_CLOCK,INCORPORATION_DATE|INACTIVATION_DATE|STRUCK_OFF_DATE|DORM_DATE,1904,814348,0.0
+corporate_registry__fed_icij_offshoreleaks_intermediaries,organization,noun,26768,56596958-12-22 15:04:19.000,56596958-12-22 15:04:19.000,,NO_CLOCK,,0,26768,0.0
+corporate_registry__fed_icij_offshoreleaks_officers,role,link,771315,56596957-07-30 19:18:27.000,56596957-07-30 19:18:27.000,,NO_CLOCK,,0,771315,0.0
+corporate_registry__fed_icij_offshoreleaks_others,organization,noun,2989,1933-08-05,56596959-07-23 16:04:31.000,,UNMEASURED_CLOCK,INCORPORATION_DATE|STRUCK_OFF_DATE|CLOSED_DATE,3,2989,0.0
+corporate_registry__fed_icij_offshoreleaks_relationships,role,link,3339267,0003-06-24,56596959-11-04 22:24:53.000,,UNMEASURED_CLOCK,START_DATE|END_DATE,137,3339303,0.0025
+corporate_registry__fed_irs_eo_bmf,organization,noun,1983563,1900-01-01,2026-11-01,126.8,CLEAN,TAX_PERIOD|TAX_PERIOD,11975,0,0.0
+corporate_registry__intl_es_borme,organization,noun,3,2026-01-01,2026-06-01,0.4,SHORT_SPAN,DATE,0,0,0.0
+corporate_registry__intl_ie_cro,organization,noun,821693,1753-01-01,2033-06-30,280.5,CORRUPT_RANGE,COMPANY_REG_DATE|LAST_AR_DATE|COMP_DISSOLVED_DATE|LAST_ACCOUNTS_DATE|COMPANY_STATUS_DATE|COMPANY_NAME_EFF_DATE,2029,1,0.0
+corporate_registry__intl_uk_companies_house,organization,noun,5734780,1327-01-01,2026-07-27 20:53:42,699.6,CORRUPT_RANGE,,2237,0,0.0
+corporate_registry__uk_companies_house_psc,organization,noun,7000000,1776-07-04,2026-08-04,250.1,CORRUPT_RANGE,DOB_MONTH|DOB_YEAR,3,0,0.0
+criminal_justice__fed_bjs_data,accident,event,1000,,,,UNMEASURED_CLOCK,YEARQ|YEAR,0,0,0.044
+economics__fed_bls_qcew,place,noun,3619437,,,,UNMEASURED_CLOCK,YEAR|QTR,0,0,0.0
+economics__fed_dol_form5500,filing,event+noun,33484,1878-01-01,2026-01-01,148.0,CORRUPT_RANGE,FORM_YEAR|PLAN_YEAR_BEGIN_DATE|PLAN_YEAR_END_DATE|DATE_RECEIVED|FORM_PLAN_YEAR_BEGIN_DATE|PLAN_EFF_DATE,71,0,0.0
+economics__fed_fac_single_audit,inspection,event,411638,2002-07-01,2026-07-26,24.1,CLEAN,AUDIT_YEAR|FY_START_DATE|FY_END_DATE|FAC_ACCEPTED_DATE,0,0,0.0
+economics__fed_fdic_failed_banks,organization,noun,3584,1970-02-22,2026-07-30 12:06:15.635000-07:00,56.4,CLEAN,RESDATE|PTRDATE|FAILYR|FAILDATE|BRDATE|INSDATE,7,0,0.0
+economics__fed_foreignassistance,trade,event,95658,,,,UNMEASURED_CLOCK,FISCAL_YEAR,0,0,0.0
+economics__fed_grants_gov,award,event+noun,100,2026-06-25,2027-06-07,1.0,CLEAN,POSTED_DATE|CLOSE_DATE|LAST_UPDATED_DATE|ARCHIVE_DATE,0,0,0.0
+economics__fed_irs_990,organization,noun,200,,,,UNMEASURED_CLOCK,TAXPERIODBEGINDT|TAXPERIODENDDT|TAXYR,0,0,0.0
+economics__fed_irs_990_efile_index,measurement,event,5544626,1970-01-01,2020-01-28,50.1,CLEAN,TAX_PERIOD|SUB_DATE,3192934,0,0.0
+economics__fed_irs_auto_revocations,enforcement,event,1207295,2010-05-15,2026-08-04,16.2,CLEAN,REVOCATION_DATE|REVOCATION_POSTING_DATE|REINSTATEMENT_DATE,0,0,0.0
+economics__fed_irs_bmf,organization,noun,1974830,,,,UNMEASURED_CLOCK,TAX_PERIOD,0,0,0.0
+economics__fed_irs_eo_pr,post,event,2587,,,,UNMEASURED_CLOCK,TAX_PERIOD,0,0,0.0
+economics__fed_irs_pub78_eligible_donees,organization,noun,1435544,,,,NO_CLOCK,,0,0,0.0
+economics__fed_irs_revocation,organization,noun,1187367,,,,UNMEASURED_CLOCK,REVOCATION_DATE|REVOCATION_POSTING_DATE|EXEMPTION_REINSTATEMENT_DATE,0,0,0.0
+economics__fed_irs_soi_charities,organization,noun,2450,,,,UNMEASURED_CLOCK,TAX_PERIOD,0,0,0.0
+economics__fed_pbgc_data,aggregate,aggregate,140454,,,,UNMEASURED_CLOCK,DATA_YEAR|PUBLICATION_DATE,0,0,0.0421
+economics__fed_sba_loans,loan,event+noun,2174502,1987-04-01,2028-06-18,41.2,CLEAN,ASOFDATE|APPROVALDATE|FIRSTDISBURSEMENTDATE|TERMINMONTHS|PAIDINFULLDATE|CHARGEOFFDATE,0,0,0.0011
+economics__fed_sba_ppp,loan,event+noun,968524,2020-04-03,2024-09-30,4.5,CLEAN,DATEAPPROVED|LOANSTATUSDATE|FORGIVENESSDATE,0,0,0.0
+economics__fed_sec_edgar,filing,event+noun,200,,,,UNMEASURED_CLOCK,REPORTDATE|FISCALYEAREND,0,0,0.0
+economics__fed_sec_edgar_company_tickers,instrument,noun,10414,,,,NO_CLOCK,,0,0,0.0
+economics__fed_treasury_avg_interest_rates,measurement,event,4961,2001-01-01,2026-05-31,25.4,CLEAN,RECORD_DATE|RECORD_FISCAL_YEAR|RECORD_FISCAL_QUARTER|RECORD_CALENDAR_YEAR|RECORD_CALENDAR_QUARTER|RECORD_CALENDAR_MONTH,0,0,0.0
+economics__fed_treasury_debt_outstanding,instrument,noun,237,1790-01-01,2025-09-30,235.7,CORRUPT_RANGE,RECORD_DATE|RECORD_FISCAL_YEAR|RECORD_FISCAL_QUARTER|RECORD_CALENDAR_YEAR|RECORD_CALENDAR_QUARTER|RECORD_CALENDAR_MONTH,1,0,0.0
+economics__fed_treasury_debt_to_penny,instrument,noun,8329,1993-04-01,2026-06-15,33.2,CLEAN,RECORD_DATE|RECORD_FISCAL_YEAR|RECORD_FISCAL_QUARTER|RECORD_CALENDAR_YEAR|RECORD_CALENDAR_QUARTER|RECORD_CALENDAR_MONTH,0,0,0.0
+economics__fed_treasury_dts_deposits,payment,event,478149,2005-10-03,2026-08-07,20.8,CLEAN,RECORD_CALENDAR_MONTH|RECORD_CALENDAR_QUARTER|RECORD_CALENDAR_YEAR|RECORD_DATE|RECORD_FISCAL_QUARTER|RECORD_FISCAL_YEAR,0,0,0.0
+economics__fed_treasury_mts_receipts,contribution,event,7490,2015-03-31,2026-06-30,11.2,CLEAN,RECORD_DATE|CURRENT_MONTH_GROSS_RCPT_AMT|CURRENT_MONTH_REFUND_AMT|CURRENT_MONTH_NET_RCPT_AMT|RECORD_FISCAL_YEAR|RECORD_FISCAL_QUARTER,0,0,0.0
+economics__fed_us_sec_edgar,filing,event+noun,48984,1995-05-19,2026-07-01,31.1,CLEAN,PERIOD_OF_REPORT,0,0,0.0
+economics__fed_us_usaspending_api,award,event+noun,300,1978-09-15,2100-12-31,122.3,CORRUPT_RANGE,START_DATE|END_DATE|LAST_MODIFIED_DATE|FISCAL_YEAR,0,13,0.0
+economics__fed_usaspending_assistance_full,trade,event,19902879,,,,UNMEASURED_CLOCK,ACTION_DATE|ACTION_DATE_FISCAL_YEAR|PERIOD_OF_PERFORMANCE_START_DATE|PERIOD_OF_PERFORMANCE_CURRENT_END_DATE|INITIAL_REPORT_DATE|LAST_MODIFIED_DATE,0,0,0.0
+economics__fed_usaspending_contracts,trade,event,6325622,,,,UNMEASURED_CLOCK,ACTION_DATE|PERIOD_OF_PERFORMANCE_START_DATE|PERIOD_OF_PERFORMANCE_CURRENT_END_DATE|LAST_MODIFIED_DATE,0,0,0.0
+economics__fed_usaspending_contracts_full,award,event+noun,20000000,1007-09-14,9999-12-31,8992.1,CORRUPT_RANGE,ACTION_DATE|ACTION_DATE_FISCAL_YEAR|PERIOD_OF_PERFORMANCE_START_DATE|PERIOD_OF_PERFORMANCE_CURRENT_END_DATE|PERIOD_OF_PERFORMANCE_POTENTIAL_END_DATE|ORDERING_PERIOD_END_DATE,20000000,32611,0.0
+economics__fed_usaspending_toptier_agencies,organization,noun,111,,,,NO_CLOCK,,0,0,0.0
+economics__intl_fao_faostat,aggregate,aggregate,69,,,,UNMEASURED_CLOCK,DATEUPDATE,0,0,0.0
+economics__intl_fao_faostat_food_security,product,noun,279470,,,,UNMEASURED_CLOCK,YEAR_CODE|YEAR,0,0,0.0
+economics__intl_gfi_trade,trade,event,25,,,,UNMEASURED_CLOCK,YEAR,0,0,0.0
+economics__intl_gleif,organization,noun,3382301,,,,UNMEASURED_CLOCK,ENTITY.HEADQUARTERSADDRESS.XMLLANG|ENTITY.HEADQUARTERSADDRESS.FIRSTADDRESSLINE|ENTITY.HEADQUARTERSADDRESS.ADDRESSNUMBER|ENTITY.HEADQUARTERSADDRESS.ADDRESSNUMBERWITHINBUILDING|ENTITY.HEADQUARTERSADDRESS.MAILROUTING|ENTITY.HEADQUARTERSADDRESS.ADDITIONALADDRESSLINE.1,0,0,0.0
+economics__intl_gleif_relationships,role,link,484142,1900-01-01,2027-10-09,127.8,CLEAN,RELATIONSHIP_PERIOD_1_STARTDATE|RELATIONSHIP_PERIOD_1_ENDDATE|RELATIONSHIP_PERIOD_1_PERIODTYPE|RELATIONSHIP_PERIOD_2_STARTDATE|RELATIONSHIP_PERIOD_2_ENDDATE|RELATIONSHIP_PERIOD_2_PERIODTYPE,9,0,0.0
+economics__intl_gleif_repex,organization,noun,6259489,,,,NO_CLOCK,,0,0,0.0
+economics__intl_ipc_food_insecurity_global,product,noun,735,,,,UNMEASURED_CLOCK,DATE_OF_ANALYSIS|VALIDITY_PERIOD,0,0,0.0
+economics__intl_it_istat,aggregate,aggregate,213284,2020-01-01,2026-06-18 02:38:14.345764,6.5,CLEAN,DATE,0,0,0.0
+economics__xc_owid_gini,measurement,event,2389,,,,UNMEASURED_CLOCK,YEAR,0,0,0.0
+economics__xc_wikipedia_largest_us_companies,organization,noun,100,,,,UNMEASURED_CLOCK,HEADQUARTERS,0,0,0.0
+education__fed_cftc_cot_financial,aggregate,aggregate,34683,2013-01-08,2026-08-04,13.6,CLEAN,AS_OF_DATE_IN_FORM_YYMMDD|REPORT_DATE_AS_YYYY_MM_DD,0,0,0.0
+education__fed_cftc_cot_futures,instrument,noun,287053,1986-01-15,2026-08-04,40.6,CLEAN,AS_OF_DATE_IN_FORM_YYMMDD|AS_OF_DATE_IN_FORM_YYYY_MM_DD,0,0,0.0
+education__fed_cpsc_neiss_codes,code,code,1250,,,,NO_CLOCK,,0,0,0.0
+education__fed_ed_college_scorecard_institution,organization,noun,6273,2026-08-08 01:55:46.864147,2026-08-08 01:55:46.864147,0.0,LOAD_DATE_ONLY,GRAD_DEBT_MDN10YR|REPAY_DT_MDN|SEPAR_DT_MDN|REPAY_DT_N|SEPAR_DT_N|DTRANS_4,0,0,0.0
+education__fed_ed_nces_cip_codes,code,code,2318,2026-08-07 20:19:08.688446,2026-08-07 20:19:08.688446,0.0,LOAD_DATE_ONLY,,0,0,0.0
+education__fed_frb_h15_selected_rates,measurement,event,16848,,,,UNMEASURED_CLOCK,MARKET_YIELD_ON_U_S_TREASURY_SECURITIES_AT_1_MONTH_CONSTANT_MATURITY_QUOTED_ON_INVESTMENT_BASIS|MARKET_YIELD_ON_U_S_TREASURY_SECURITIES_AT_3_MONTH_CONSTANT_MATURITY_QUOTED_ON_INVESTMENT_BASIS|MARKET_YIELD_ON_U_S_TREASURY_SECURITIES_AT_6_MONTH_CONSTANT_MATURITY_QUOTED_ON_INVESTMENT_BASIS|MARKET_YIELD_ON_U_S_TREASURY_SECURITIES_AT_1_YEAR_CONSTANT_MATURITY_QUOTED_ON_INVESTMENT_BASIS|MARKET_YIELD_ON_U_S_TREASURY_SECURITIES_AT_2_YEAR_CONSTANT_MATURITY_QUOTED_ON_INVESTMENT_BASIS|MARKET_YIELD_ON_U_S_TREASURY_SECURITIES_AT_3_YEAR_CONSTANT_MATURITY_QUOTED_ON_INVESTMENT_BASIS,0,0,0.0
+education__fed_frb_z1_csv,aggregate,aggregate,304,,,,UNMEASURED_CLOCK,DATE,0,0,0.0
+education__fed_google_polads_advertiser_declared_stats,aggregate,aggregate,470,,,,NO_CLOCK,,0,0,0.0
+education__fed_google_polads_advertiser_geo_spend,payment,event,614078,,,,NO_CLOCK,,0,0,0.0
+education__fed_google_polads_advertiser_id_mapping,crosswalk,link,8044,,,,NO_CLOCK,,0,0,0.0
+education__fed_google_polads_advertiser_stats,aggregate,aggregate,21211,,,,NO_CLOCK,,0,0,0.0
+education__fed_google_polads_advertiser_weekly_spend,payment,event,298884,2018-05-27,2026-08-02,8.2,CLEAN,ELECTION_CYCLE|WEEK_START_DATE,0,0,0.0
+education__fed_google_polads_creative_id_mapping,crosswalk,link,971029,,,,NO_CLOCK,,0,0,0.0
+education__fed_google_polads_creative_stats,aggregate,aggregate,1562870,2018-05-31,2026-08-05,8.2,CLEAN,DATE_RANGE_START|DATE_RANGE_END|FIRST_SERVED_TIMESTAMP|LAST_SERVED_TIMESTAMP,0,0,0.0
+education__fed_google_polads_geo_spend,payment,event,1289,,,,NO_CLOCK,,0,0,0.0
+education__fed_senate_lda_filings,filing,event+noun,174871,2020-01-01,2021-12-31,2.0,CLEAN,FILING_YEAR|FILING_PERIOD|FILING_PERIOD_DISPLAY|DT_POSTED|TERMINATION_DATE,0,0,0.0
+energy__fed_eia860_1_utility,organization,noun,6643,2026-08-05 21:37:34.980797,2026-08-05 21:37:34.980797,0.0,LOAD_DATE_ONLY,,0,0,0.0
+energy__fed_eia860_2_plant,facility,noun,16132,2026-08-05 21:37:40.609771,2026-08-05 21:37:40.609771,0.0,LOAD_DATE_ONLY,,0,0,0.0
+energy__fed_eia860_3_1_generator,facility,noun,26855,2026-08-05 21:37:51.630844,2026-08-05 21:37:51.630844,0.0,LOAD_DATE_ONLY,UPRATE_OR_DERATE_COMPLETED_DURING_YEAR|MONTH_UPRATE_OR_DERATE_COMPLETED|YEAR_UPRATE_OR_DERATE_COMPLETED|OPERATING_MONTH|OPERATING_YEAR|PLANNED_RETIREMENT_MONTH,0,0,0.0
+energy__fed_eia860_3_2_wind,facility,noun,1563,2026-08-05 21:37:57.118681,2026-08-05 21:37:57.118681,0.0,LOAD_DATE_ONLY,OPERATING_MONTH|OPERATING_YEAR,0,0,0.0
+energy__fed_eia860_3_3_solar,facility,noun,7154,2026-08-05 21:38:02.108955,2026-08-05 21:38:02.108955,0.0,LOAD_DATE_ONLY,OPERATING_MONTH|OPERATING_YEAR,0,0,0.0
+energy__fed_eia860_3_4_energy_storage,facility,noun,786,2026-08-05 21:38:09.545184,2026-08-05 21:38:09.545184,0.0,LOAD_DATE_ONLY,OPERATING_MONTH|OPERATING_YEAR,0,0,0.0
+energy__fed_eia860_3_5_multifuel,facility,noun,2893,2026-08-05 21:38:18.980503,2026-08-05 21:38:18.980503,0.0,LOAD_DATE_ONLY,OPERATING_MONTH|OPERATING_YEAR|TIME_TO_SWITCH_FROM_GAS_TO_OIL|TIME_TO_SWITCH_FROM_OIL_TO_GAS,0,0,0.0
+energy__fed_eia860_4_owner,ownership,link,5495,2026-08-05 21:38:23.118957,2026-08-05 21:38:23.118957,0.0,LOAD_DATE_ONLY,,0,0,0.0
+energy__fed_eia860_6_1_enviroassoc,facility,noun,7020,2026-08-05 21:38:27.428575,2026-08-05 21:38:27.428575,0.0,LOAD_DATE_ONLY,,0,0,0.0
+energy__fed_eia860_6_2_enviroequip,facility,noun,4428,2026-08-05 21:38:32.380340,2026-08-05 21:38:32.380340,0.0,LOAD_DATE_ONLY,NEW_SOURCE_REVIEW_MONTH|NEW_SOURCE_REVIEW_YEAR|PERIOD_SULFUR|COMPLIANCE_YEAR_SULFUR|PERIOD_NITROGEN|COMPLIANCE_YEAR_NITROGEN,0,0,0.0
+energy__fed_eia861_advanced_meters,organization,noun,2725,2026-08-05 21:38:47.522619,2026-08-05 21:38:47.522619,0.0,LOAD_DATE_ONLY,DATA_YEAR,0,0,0.0
+energy__fed_eia861_delivery_companies,organization,noun,7,2026-08-05 21:38:54.094606,2026-08-05 21:38:54.094606,0.0,LOAD_DATE_ONLY,,0,0,0.0
+energy__fed_eia861_demand_response,action,event,339,2026-08-05 21:38:58.348766,2026-08-05 21:38:58.348766,0.0,LOAD_DATE_ONLY,,0,0,0.0
+energy__fed_eia861_distribution_systems,program,noun,1353,2026-08-05 21:39:01.966059,2026-08-05 21:39:01.966059,0.0,LOAD_DATE_ONLY,,0,0,0.0
+energy__fed_eia861_dynamic_pricing,measurement,event,857,2026-08-05 21:39:05.805460,2026-08-05 21:39:05.805460,0.0,LOAD_DATE_ONLY,TIME_OF_USE_PRICING|REAL_TIME_PRICING,0,0,0.0
+energy__fed_eia861_energy_efficiency,measurement,event,458,2026-08-05 21:39:10.034996,2026-08-05 21:39:10.034996,0.0,LOAD_DATE_ONLY,YEARS,0,0,0.0
+energy__fed_eia861_frame,measurement,event,3412,2026-08-05 21:39:15.252749,2026-08-05 21:39:15.252749,0.0,LOAD_DATE_ONLY,,0,0,0.0
+energy__fed_eia861_mergers,change,event,4,2024-01-01,2026-08-05 21:39:20.077590,2.6,CLEAN,,0,0,0.0
+energy__fed_eia861_net_metering,measurement,event,1004,2026-08-05 21:39:24.621338,2026-08-05 21:39:24.621338,0.0,LOAD_DATE_ONLY,,0,0,0.0
+energy__fed_eia861_non_net_metering_distributed,organization,noun,507,2026-08-05 21:39:28.599333,2026-08-05 21:39:28.599333,0.0,LOAD_DATE_ONLY,YEAR,0,0,0.0
+energy__fed_eia861_operational_data,measurement,event,1711,2026-08-05 21:39:33.079111,2026-08-05 21:39:33.079111,0.0,LOAD_DATE_ONLY,,0,0,0.0
+energy__fed_eia861_reliability,measurement,event,971,2026-08-05 21:39:36.498366,2026-08-05 21:39:36.498366,0.0,LOAD_DATE_ONLY,,0,0,0.0
+energy__fed_eia861_sales_ult_cust,trade,event,2815,2026-08-05 21:39:39.774359,2026-08-05 21:39:39.774359,0.0,LOAD_DATE_ONLY,,0,0,0.0
+energy__fed_eia861_sales_ult_cust_cs,trade,event,674,2026-08-05 21:39:44.016869,2026-08-05 21:39:44.016869,0.0,LOAD_DATE_ONLY,,0,0,0.0
+energy__fed_eia861_service_territory,place,noun,11775,2026-08-05 21:38:37.395426,2026-08-05 21:38:37.395426,0.0,LOAD_DATE_ONLY,,0,0,0.0
+energy__fed_eia861_short_form,filing,event+noun,1724,2026-08-05 21:38:40.445003,2026-08-05 21:38:40.445003,0.0,LOAD_DATE_ONLY,,0,0,0.0
+energy__fed_eia861_utility_data,organization,noun,1701,2026-08-05 21:38:44.000854,2026-08-05 21:38:44.000854,0.0,LOAD_DATE_ONLY,DATA_YEAR,0,0,0.0
+energy__fed_eia_861_balancing_authority,organization,noun,189,56602308-02-11 18:26:39.000,56602308-02-11 18:26:39.000,,UNMEASURED_CLOCK,DATA_YEAR,0,189,0.0
+energy__intl_ember_elec,role,link,369264,2000-01-01,2025-01-01,25.0,CLEAN,DATE,0,0,0.0
+environment__epa_penalty_gap,enforcement,event,93808,1903-12-01,2026-06-18,122.5,CLEAN,,0,0,0.0
+environment__fed_epa_air_emissions_poll_rpt_combined_emissions,measurement,event,10411826,,,,UNMEASURED_CLOCK,REPORTING_YEAR,0,0,0.0002
+environment__fed_epa_aqs_sites,facility,noun,20994,1957-01-01,2026-12-01,69.9,CLEAN,SITE_ESTABLISHED_DATE|SITE_CLOSED_DATE|EXTRACTION_DATE,994,0,0.0
+environment__fed_epa_echo,facility,noun,3135554,1016-04-22,2026-06-19,1010.1,CORRUPT_RANGE,FAC_DATE_LAST_INSPECTION|FAC_DATE_LAST_INFORMAL_ACTION|FAC_DATE_LAST_FORMAL_ACTION|FAC_DATE_LAST_PENALTY|FAC_QTRS_WITH_NC|CAA_DATE_LAST_FORMAL_ACTION,0,0,0.0
+environment__fed_epa_egrid_plant_2022,facility,noun,11974,,,,UNMEASURED_CLOCK,DATA_YEAR,0,0,0.0
+environment__fed_epa_envirofacts,facility,noun,5000,2026-07-02 00:07:49.008704,2026-07-02 00:07:49.008704,0.0,LOAD_DATE_ONLY,CREATED_DATE,0,0,0.0112
+environment__fed_epa_frs_facilities,facility,noun,5300149,0001-03-01,2026-07-27 20:03:27.000,2025.4,CORRUPT_RANGE,,0,0,0.0
+environment__fed_epa_frs_frs_facilities,facility,noun,3277557,,,,NO_CLOCK,,0,0,0.0
+environment__fed_epa_frs_frs_naics_codes,code,code,2179702,,,,NO_CLOCK,,0,0,0.0
+environment__fed_epa_frs_frs_program_links,crosswalk,link,4406498,,,,NO_CLOCK,,0,0,0.0
+environment__fed_epa_frs_frs_sic_codes,code,code,1085211,,,,NO_CLOCK,,0,0,0.0
+environment__fed_epa_ghgrp_emission,measurement,event,346683,,,,UNMEASURED_CLOCK,YEAR,0,0,0.0
+environment__fed_epa_ghgrp_facility,facility,noun,136005,,,,UNMEASURED_CLOCK,YEAR,0,0,0.0
+environment__fed_epa_icis_air_icis_air_facilities,facility,noun,279728,,,,NO_CLOCK,,0,0,0.0
+environment__fed_epa_icis_air_icis_air_fces_pces,inspection,event,1779096,,,,UNMEASURED_CLOCK,ACTUAL_END_DATE,0,0,0.0
+environment__fed_epa_icis_air_icis_air_formal_actions,action,event,106009,1972-10-25,2026-07-30,53.8,CLEAN,SETTLEMENT_ENTERED_DATE,0,0,0.0
+environment__fed_epa_icis_air_icis_air_informal_actions,action,event,175736,0001-01-01,8888-01-01,8886.8,CORRUPT_RANGE,ACHIEVED_DATE,0,5,0.0
+environment__fed_epa_icis_air_icis_air_pollutants,code,code,948342,,,,NO_CLOCK,,0,0,0.0
+environment__fed_epa_icis_air_icis_air_program_subparts,code,code,190980,,,,NO_CLOCK,,0,0,0.0
+environment__fed_epa_icis_air_icis_air_programs,program,noun,457581,0218-03-02,2028-10-29,1810.6,CORRUPT_RANGE,BEGIN_DATE|UPDATED_DATE,109,0,0.0
+environment__fed_epa_icis_air_icis_air_stack_tests,measurement,event,620302,0201-07-24,2026-07-29,1825.0,CORRUPT_RANGE,ACTUAL_END_DATE,1,0,0.0
+environment__fed_epa_icis_air_icis_air_titlev_certs,unresolved,link,499113,0015-02-23,2026-07-30,2011.4,CORRUPT_RANGE,ACTUAL_END_DATE,0,0,0.0
+environment__fed_epa_icis_air_icis_air_violation_history,change,event,102037,,,,UNMEASURED_CLOCK,EARLIEST_FRV_DETERM_DATE|HPV_DAYZERO_DATE|HPV_RESOLVED_DATE|DSCV_PATHWAY_DATE|NFTC_PATHWAY_DATE,0,0,0.0
+environment__fed_epa_npdes_icis_facilities,facility,noun,1213737,,,,NO_CLOCK,,0,0,0.0
+environment__fed_epa_npdes_npdes_cs_violations,violation,event,82187,0218-04-20,2026-07-31,1808.2,CORRUPT_RANGE,SCHEDULE_DATE|ACTUAL_DATE|RNC_DETECTION_DATE|RNC_RESOLUTION_DATE|REPORT_RECEIVED_DATE,0,0,0.0
+environment__fed_epa_npdes_npdes_formal_enforcement_actions,action,event,112373,1970-09-07,2026-07-30,55.9,CLEAN,SETTLEMENT_ENTERED_DATE,1,0,0.0
+environment__fed_epa_npdes_npdes_informal_enforcement_actions,action,event,478855,0001-01-01,8202-06-10,8201.3,CORRUPT_RANGE,ACHIEVED_DATE,0,3,0.0
+environment__fed_epa_npdes_npdes_inspections,inspection,event,1900067,0005-03-20,2026-07-31,2021.3,CORRUPT_RANGE,ACTUAL_BEGIN_DATE|ACTUAL_END_DATE,178,0,0.0
+environment__fed_epa_npdes_npdes_naics,code,code,326473,,,,NO_CLOCK,,0,0,0.0
+environment__fed_epa_npdes_npdes_ps_violations,violation,event,397615,1974-03-30,2026-07-31,52.3,CLEAN,SCHEDULE_DATE|RNC_DETECTION_DATE|RNC_RESOLUTION_DATE|ACTUAL_DATE|REPORT_RECEIVED_DATE,0,0,0.0
+environment__fed_epa_npdes_npdes_qncr_history,change,event,7951656,,,,UNMEASURED_CLOCK,YEARQTR,0,0,0.0
+environment__fed_epa_npdes_npdes_se_violations,violation,event,305478,1976-07-01,2026-07-31,50.1,CLEAN,SINGLE_EVENT_VIOLATION_DATE|SINGLE_EVENT_END_DATE|RNC_DETECTION_DATE|RNC_RESOLUTION_DATE,0,0,0.0001
+environment__fed_epa_npdes_npdes_sics,code,code,792807,,,,NO_CLOCK,,0,0,0.0
+environment__fed_epa_rcra_enforcements,enforcement,event,383519,0999-02-04,2026-07-31,1027.5,CORRUPT_RANGE,ENFORCEMENT_ACTION_DATE,0,0,0.0
+environment__fed_epa_rcra_evaluations,inspection,event,1166410,0005-05-17,2026-07-31,2021.2,CORRUPT_RANGE,EVALUATION_START_DATE,0,0,0.0
+environment__fed_epa_rcra_facilities,facility,noun,1613224,,,,NO_CLOCK,,0,0,0.0
+environment__fed_epa_rcra_rcra_naics,code,code,434734,,,,NO_CLOCK,,0,0,0.0
+environment__fed_epa_rcra_violations,violation,event,708114,0001-01-01,9999-04-26,9998.1,CORRUPT_RANGE,DATE_VIOLATION_DETERMINED|ACTUAL_RTC_DATE|SCHEDULED_COMPLIANCE_DATE,0,78,0.0
+environment__fed_epa_rcra_viosnc_history,change,event,2675581,,,,UNMEASURED_CLOCK,YRMONTH,0,0,0.0
+environment__fed_epa_sdwa_sdwa_events_milestones,action,event,394075,1991-07-01,2099-06-30,108.0,CORRUPT_RANGE,SUBMISSIONYEARQUARTER|EVENT_END_DATE|EVENT_ACTUAL_DATE|FIRST_REPORTED_DATE|LAST_REPORTED_DATE,0,2,0.0
+environment__fed_epa_sdwa_sdwa_facilities,facility,noun,1554832,1900-02-01,2027-10-31,127.7,CLEAN,SUBMISSIONYEARQUARTER|FACILITY_DEACTIVATION_DATE|FIRST_REPORTED_DATE|LAST_REPORTED_DATE,393,0,0.0
+environment__fed_epa_sdwa_sdwa_geographic_areas,place,noun,578198,1995-07-22,2026-06-30,30.9,CLEAN,SUBMISSIONYEARQUARTER|LAST_REPORTED_DATE,0,0,0.0
+environment__fed_epa_sdwa_sdwa_lcr_samples,measurement,event,927415,1991-07-01,2033-12-31,42.5,CORRUPT_RANGE,SUBMISSIONYEARQUARTER|SAMPLING_END_DATE|SAMPLING_START_DATE|SAMPLE_FIRST_REPORTED_DATE|SAMPLE_LAST_REPORTED_DATE|SAR_FIRST_REPORTED_DATE,0,14,0.0
+environment__fed_epa_sdwa_sdwa_pn_violation_assoc,violation,event,387627,1950-01-01,2026-07-01,76.5,CLEAN,SUBMISSIONYEARQUARTER|COMPL_PER_BEGIN_DATE|COMPL_PER_END_DATE|NON_COMPL_PER_BEGIN_DATE|NON_COMPL_PER_END_DATE|FIRST_REPORTED_DATE,0,0,0.0
+environment__fed_epa_sdwa_sdwa_pub_water_systems,program,noun,434040,1900-02-01,2031-05-29,131.3,CORRUPT_RANGE,SUBMISSIONYEARQUARTER|SEASON_BEGIN_DATE|SEASON_END_DATE|PWS_DEACTIVATION_DATE|FIRST_REPORTED_DATE|LAST_REPORTED_DATE,66,0,0.0
+environment__fed_epa_sdwa_sdwa_site_visits,facility,noun,2495249,1900-01-01,2026-07-01,126.5,CLEAN,SUBMISSIONYEARQUARTER|VISIT_DATE|FIRST_REPORTED_DATE|LAST_REPORTED_DATE,32,0,0.0
+environment__fed_epa_sdwa_sdwa_violations_enforcement,action,event,15432737,1900-01-01,2028-12-31,129.0,CLEAN,SUBMISSIONYEARQUARTER|COMPL_PER_BEGIN_DATE|COMPL_PER_END_DATE|NON_COMPL_PER_BEGIN_DATE|NON_COMPL_PER_END_DATE|PWS_DEACTIVATION_DATE,693,0,0.0
+environment__fed_epa_superfund_site_boundaries,place,noun,2114,2003-11-05 00:00:00,2026-08-10 23:35:16.411653,22.8,CLEAN,LAST_CHANGE_DATE|ORIGINAL_CREATION_DATE,0,0,0.0
+environment__fed_epa_tri_basic_2023,facility,noun,78647,,,,UNMEASURED_CLOCK,C_1_YEAR|C_94_OFF_SITE_RECYCLED_TOTAL|C_120_8_8_ONE_TIME_RELEASE,0,0,0.0
+environment__fed_epa_tri_facility,facility,noun,64990,,,,NO_CLOCK,,0,0,0.0
+environment__fed_fracfocus_disclosure_list,filing,event+noun,248835,,,,UNMEASURED_CLOCK,JOBSTARTDATE|JOBENDDATE,0,0,0.0
+environment__fed_fracfocus_registry,filing,event+noun,7200550,,,,UNMEASURED_CLOCK,JOBSTARTDATE|JOBENDDATE,0,0,0.0
+environment__fed_fracfocus_water_source,filing,event+noun,23747,,,,NO_CLOCK,,0,0,0.0
+environment__fed_nid_dams,asset,noun,92766,1901-01-01,5023-05-25,3122.3,CORRUPT_RANGE,YEAR_COMPLETED|YEAR_COMPLETED_CATEGORY|YEARS_MODIFIED|DATA_LAST_UPDATED|LAST_INSPECTION_DATE|CONDITION_ASSESSMENT_DATE,31,2,0.0
+environment__fed_noaa_storm_events,action,event,1780730,,,,UNMEASURED_CLOCK,BEGIN_YEARMONTH|BEGIN_TIME|END_YEARMONTH|END_TIME|YEAR|MONTH_NAME,0,0,0.0
+environment__fed_noaa_weather_api,natural_event,event,287,2026-07-01,2026-07-04,0.0,SHORT_SPAN,TIMESTAMP,0,0,0.0
+environment__fed_phmsa_flagged_incidents,filing,event+noun,2039,2010-03-10,2026-07-31,16.4,CLEAN,REPORT_RECEIVED_DATE|IYEAR|LOCAL_DATETIME|TIME_ZONE|NRC_RPT_DATETIME|SHUTDOWN_DATETIME,0,0,0.0
+environment__fed_uscg_nrc_incident_reports,filing,event+noun,116662,2020-01-01 00:14:00,2024-12-31 22:27:00,5.0,CLEAN,DATE_TIME_RECEIVED|DATE_TIME_COMPLETE,0,0,0.0
+environment__fed_uscg_nrc_incidents,accident,event,1029020,1990-01-01 00:01:00,2026-08-02 23:17:00,36.6,CLEAN,DATE_TIME_RECEIVED|DATE_TIME_COMPLETE|SRC_YEAR,0,0,0.0
+environment__fed_usgs_minerals,aggregate,aggregate,304632,,,,UNMEASURED_CLOCK,YEAR|DISC_YR,0,0,0.0
+environment__fed_usgs_orphaned_oil_gas_wells,asset,noun,117672,2019-07-01,2022-12-10,3.4,CLEAN,QTR|QTR_QTR|QTR_QTR_QTR|DATA_FILE_DATE,0,0,0.0
+environment__fed_usgs_water,measurement,event,6694816,,,,UNMEASURED_CLOCK,DATETIME,0,0,0.0045
+environment__fed_usgs_wbd_huc8,place,noun,2456,2012-06-11 07:54:56,2026-08-08 01:43:01.186418,14.2,CLEAN,LOADDATE,0,0,0.0
+environment__fed_wqp_monitoring_stations,facility,noun,5818,,,,UNMEASURED_CLOCK,CONSTRUCTIONDATETEXT,0,0,0.0
+environment__intl_gem_hazard,natural_event,event,12,,,,UNMEASURED_CLOCK,PGA_10PCT_50YR,0,0,0.0
+environment__intl_global_witness_defenders,accident,event,232,,,,UNMEASURED_CLOCK,YEAR,0,0,0.0
+environment__xc_epa_corporate_crosswalk,crosswalk,link,5300149,,,,NO_CLOCK,,0,0,0.0
+environment__xc_owid_co2,aggregate,aggregate,29384,,,,UNMEASURED_CLOCK,YEAR,0,0,0.0
+environment__xc_owid_fossil_share,aggregate,aggregate,6379,,,,UNMEASURED_CLOCK,YEAR,0,0,0.0
+environment__xc_owid_temp_anomaly,aggregate,aggregate,531,,,,UNMEASURED_CLOCK,YEAR,0,0,0.0
+finance__fed_epa_icis_fec_case_enforcement_conclusion_facilities,facility,noun,150877,,,,NO_CLOCK,,0,0,0.0001
+finance__fed_epa_icis_fec_case_facilities,facility,noun,204019,,,,NO_CLOCK,,0,0,0.0
+finance__fed_epa_icis_fec_epa_informal_enforcement_actions,action,event,21930,1970-06-01,2026-07-17,56.1,CLEAN,ACHIEVED_DATE,1,0,0.0
+finance__fed_epa_icis_fec_icis_fec_epa_inspections,inspection,event,260556,0201-08-01,2026-07-24,1824.9,CORRUPT_RANGE,ACTUAL_BEGIN_DATE|ACTUAL_END_DATE,0,0,0.0
+finance__fed_fatca_ffi,organization,noun,516298,2026-08-05 21:24:50.345862,2026-08-05 21:24:50.345862,0.0,LOAD_DATE_ONLY,,0,0,0.0
+finance__fed_fdic_bank_data,organization,noun,27836,1782-01-01,9999-12-31,8217.8,CORRUPT_RANGE,DATEUPDT|EFFDATE|INSDATE|INSDROPDATE|PROCDATE|RISDATE,544,4444,0.0
+finance__fed_fdic_sod_branch_deposits,payment,event,2823000,1782-01-01,2026-08-10 19:22:47.335969,244.6,CORRUPT_RANGE,SIMS_ACQUIRED_DATE|SIMS_ESTABLISHED_DATE|YEAR,26581,0,0.0
+finance__fed_fec_bulk,contribution,event,20938,,,,NO_CLOCK,,0,0,0.0
+finance__fed_fec_bulk_committees,organization,noun,20007,,,,UNMEASURED_CLOCK,CYCLE,0,0,0.0
+finance__fed_fec_cand_cmte_linkage,crosswalk,link,30536,,,,NO_CLOCK,,0,0,0.0
+finance__fed_fec_candidates,person,noun,33506,,,,NO_CLOCK,,0,0,0.1913
+finance__fed_fec_committee_to_candidate,person,noun,866730,,,,UNMEASURED_CLOCK,TRANSACTION_DT|CYCLE,0,0,0.0
+finance__fed_fec_committees,organization,noun,78039,,,,NO_CLOCK,,0,0,0.2308
+finance__fed_fec_independent_expenditures,trade,event,261033,,,,UNMEASURED_CLOCK,EXP_DATE|FEC_ELECTION_YR|DISSEM_DT,0,0,0.0
+finance__fed_fec_indiv_contributions,contribution,event,84172112,2000-01-01,3312-01-01,1312.0,CORRUPT_RANGE,TRANSACTION_DT,0,4,0.0
+finance__fed_fec_leadership_pac,crosswalk,link,8619,,,,UNMEASURED_CLOCK,FEC_CANDIDATE_ID|CAND_ELECTION_YR|FEC_ELECTION_YR,0,0,0.0
+finance__fed_fhfa_fhlb_membership,membership,link,6327,1973-01-02,2066-04-18,93.3,CORRUPT_RANGE,APPR_DATE|MEM_DATE,0,88,0.0
+finance__fed_finra_mpid_list,registry,noun,4215,,,,NO_CLOCK,,0,0,0.0
+finance__fed_irs_soi,aggregate,aggregate,179796,,,,UNMEASURED_CLOCK,TAX_YEAR,0,0,0.0
+finance__fed_msrb_registrants,organization,noun,925,,,,NO_CLOCK,,0,0,0.0
+finance__fed_ncua_call_reports_foicu,filing,event+noun,4336,1899-12-30,2026-05-19 05:00:00.000,126.4,CORRUPT_RANGE,CYCLE_DATE|YEAR_OPENED|ISSUE_DATE|QUARTER_FLAG|INSURED_DATE|AM_DATEHELD,55,0,0.0
+finance__fed_ncua_call_reports_fs220,filing,event+noun,4336,2026-03-31,2026-05-20 22:02:49.000,0.1,SHORT_SPAN,CYCLE_DATE|UPDATE_DATE,0,0,0.0
+finance__fed_ncua_charter_merger_events,action,event,27,,,,NO_CLOCK,,0,0,0.0
+finance__fed_ncua_federally_insured_cu_list,organization,noun,4250,,,,UNMEASURED_CLOCK,YEAR_AND_QUARTER|TOTAL_DEPOSITS_4_QUARTER_GROWTH|TOTAL_LOANS_4_QUARTER_GROWTH|TOTAL_ASSETS_4_QUARTER_GROWTH|MEMBERS_4_QUARTER_GROWTH|NET_WORTH_4_QUARTER_GROWTH_EXCLUDES_CECL_TRANSITION_PROVISION,0,0,0.0
+finance__fed_occ_national_banks,organization,noun,724,,,,NO_CLOCK,,0,0,0.0
+finance__fed_occ_thrifts,organization,noun,218,,,,NO_CLOCK,,0,0,0.0
+finance__fed_pcaob_form_ap_filings,filing,event+noun,155384,2026-08-08 01:43:19.023062,2026-08-08 01:43:19.023062,0.0,LOAD_DATE_ONLY,AUDIT_REPORT_DATE|FISCAL_PERIOD_END_DATE|IS_MULTIPLE_AUDIT_PERIOD|AUDIT_PERIOD_INFORMATION|DUAL_DATED|AUDIT_DUAL_DATE,0,0,0.0
+finance__fed_sec_13f_filers,organization,noun,344109,2012-10-01,2027-05-17,14.6,CLEAN,REPORTCALENDARORQUARTER|DATEDENIEDEXPIRED|DATEREPORTED,0,0,0.0
+finance__fed_sec_13f_holdings,ownership,link,101261252,,,,NO_CLOCK,,0,0,0.0
+finance__fed_sec_13f_positions,ownership,link,101261252,,,,NO_CLOCK,,0,0,0.0
+finance__fed_sec_13f_submission,filing,event+noun,3822885,,,,NO_CLOCK,,0,0,0.0
+finance__fed_sec_13f_submissions,filing,event+noun,336124,,,,UNMEASURED_CLOCK,FILING_DATE|PERIODOFREPORT,0,0,0.0
+finance__fed_sec_business_development_company_report,filing,event+noun,212,0001-05-01,0095-06-02,94.1,CORRUPT_RANGE,FILING_DATE,0,0,0.0
+finance__fed_sec_closed_end_fund_information,program,noun,973,0001-08-22,0099-08-26,98.0,CORRUPT_RANGE,FILING_DATE,0,0,0.0
+finance__fed_sec_dera_sub_2024q1,filing,event+noun,6028,,,,UNMEASURED_CLOCK,PERIOD,0,0,0.0
+finance__fed_sec_dera_sub_2024q2,filing,event+noun,7675,,,,UNMEASURED_CLOCK,PERIOD,0,0,0.0
+finance__fed_sec_dera_sub_2024q3,filing,event+noun,6699,,,,UNMEASURED_CLOCK,PERIOD,0,0,0.0
+finance__fed_sec_dera_sub_2024q4,filing,event+noun,6491,,,,UNMEASURED_CLOCK,PERIOD,0,0,0.0
+finance__fed_sec_dera_sub_2025q1,filing,event+noun,6231,,,,UNMEASURED_CLOCK,PERIOD,0,0,0.0
+finance__fed_sec_dera_sub_2025q2,filing,event+noun,7009,,,,UNMEASURED_CLOCK,PERIOD,0,0,0.0
+finance__fed_sec_dera_sub_2025q3,filing,event+noun,6541,,,,UNMEASURED_CLOCK,PERIOD,0,0,0.0
+finance__fed_sec_dera_sub_2025q4,filing,event+noun,6304,,,,UNMEASURED_CLOCK,PERIOD,0,0,0.0
+finance__fed_sec_dera_sub_2026q1,filing,event+noun,6169,,,,UNMEASURED_CLOCK,PERIOD,0,0,0.0
+finance__fed_sec_edgar_company_tickers_exchange,instrument,noun,10398,,,,NO_CLOCK,,0,0,0.0
+finance__fed_sec_edgar_financials,filing,event+noun,55635,,,,UNMEASURED_CLOCK,PERIOD,0,0,0.0
+finance__fed_sec_edgar_insiders,filing,event+noun,69259,2020-11-06,2026-03-31,5.4,CLEAN,FILING_DATE|PERIOD_OF_REPORT|DATE_OF_ORIG_SUB,0,0,0.0
+finance__fed_sec_insider_deriv_trans,trade,event,1049121,0018-02-26,2050-12-31,2032.8,CORRUPT_RANGE,TRANS_DATE|TRANS_DATE_FN|DEEMED_EXECUTION_DATE|DEEMED_EXECUTION_DATE_FN|TRANS_TIMELINESS|TRANS_TIMELINESS_FN,0,64164,0.0
+finance__fed_sec_insider_nonderiv_trans,trade,event,2672841,0022-10-12,2047-05-24,2024.6,CORRUPT_RANGE,TRANS_DATE|TRANS_DATE_FN|DEEMED_EXECUTION_DATE|DEEMED_EXECUTION_DATE_FN|TRANS_TIMELINESS|TRANS_TIMELINESS_FN,0,6,0.0
+finance__fed_sec_insider_reportingowner,role,link,1934673,2026-07-24 02:29:10,2026-07-24 02:29:10,0.0,LOAD_DATE_ONLY,,0,0,0.0
+finance__fed_sec_insider_submission,filing,event+noun,1772088,0001-01-01,2027-06-04,2026.4,CORRUPT_RANGE,FILING_DATE|PERIOD_OF_REPORT|DATE_OF_ORIG_SUB,0,0,0.0
+finance__fed_sec_investment_company_series_class,organization,noun,43123,,,,NO_CLOCK,,0,0,0.0
+finance__fed_sec_money_market_fund_information,program,noun,1206,,,,UNMEASURED_CLOCK,REPORTMONTH,0,0,0.0
+finance__intl_iso_mic_registry,code,code,2864,2003-04-01,2026-07-27,23.3,CLEAN,CREATION_DATE|LAST_UPDATE_DATE|LAST_VALIDATION_DATE|EXPIRY_DATE,0,0,0.0
+finance__intl_osfi_regulated_fi,organization,noun,343,,,,NO_CLOCK,,0,0,0.0
+finance__intl_wb_ids,aggregate,aggregate,62983,,,,NO_CLOCK,,0,0,0.0
+foreign_influence__fed_fara_bulk,filing,event+noun,48104,1942-01-16,2026-07-30 12:06:10.313000-07:00,84.5,CLEAN,REGISTRATION_DATE|TERMINATION_DATE|DATE_STAMPED|SHORT_FORM_TERMINATION_DATE|SHORT_FORM_DATE|FOREIGN_PRINCIPAL_TERMINATION_DATE,337,0,0.0
+governance__fed_revolvingdoor_project,ownership,link,406,2026-06-17 19:02:09.104875,2026-06-17 19:02:09.104875,0.0,LOAD_DATE_ONLY,,0,0,0.0
+government_records__fed_nara_aad,dataset,noun,9,,,,UNMEASURED_CLOCK,DATE,0,0,0.0
+government_records__fed_usaspending_tas_filter_tree,award,event+noun,92,2026-08-07 20:20:54.361016,2026-08-07 20:20:54.361016,0.0,LOAD_DATE_ONLY,,0,0,0.0
+health__fed_cdc_anxiety_depression,unresolved,event,16794,2020-04-23 00:00:00,2024-09-16 00:00:00,4.4,CLEAN,TIME_PERIOD|TIME_PERIOD_LABEL|TIME_PERIOD_START_DATE|TIME_PERIOD_END_DATE,0,0,0.0
+health__fed_cdc_data_portal,dataset,noun,1471,2013-06-10 19:09:30.000,2026-08-11 14:00:20.000,13.2,CLEAN,YEAR|UPDATED_AT,0,0,0.0
+health__fed_cdc_drug_poisoning_county,place,noun,53387,,,,UNMEASURED_CLOCK,YEAR,0,0,0.0
+health__fed_cdc_health_insurance,unresolved,event,16056,2020-04-23 00:00:00,2024-09-16 00:00:00,4.4,CLEAN,TIME_PERIOD|TIME_PERIOD_LABEL|TIME_PERIOD_START_DATE|TIME_PERIOD_END_DATE,0,0,0.0
+health__fed_cdc_injury_violence_county,place,noun,132000,,,,UNMEASURED_CLOCK,PERIOD|TTM_DATE_RANGE,0,0,0.0
+health__fed_cdc_leading_causes_state,unresolved,event,10868,2026-08-09 18:18:23.310413,2026-08-09 18:18:23.310413,0.0,LOAD_DATE_ONLY,YEAR,0,0,0.0
+health__fed_cdc_nndss_weekly_2024,unresolved,event,1932840,,,,UNMEASURED_CLOCK,CURRENT_MMWR_YEAR|MMWR_WEEK|CURRENT_WEEK|CURRENT_WEEK_FLAG|PREVIOUS_52_WEEK_MAX|PREVIOUS_52_WEEKS_MAX_FLAG,0,0,0.0
+health__fed_cdc_overdose,accident,event,83790,,,,UNMEASURED_CLOCK,YEAR|MONTH|PERIOD,0,0,0.0
+health__fed_cdc_suicide_rates,measurement,event,6390,,,,UNMEASURED_CLOCK,YEAR|YEAR_NUM,0,0,0.0
+health__fed_cdc_wonder,unresolved,event,880,2026-08-09 18:18:09.399039,2026-08-09 18:18:09.399039,0.0,LOAD_DATE_ONLY,YEAR,0,0,0.0
+health__fed_clinicaltrials,unresolved,event,500,1997-01-01,2032-06-06,35.4,CORRUPT_RANGE,START_DATE|COMPLETION_DATE|PRIMARY_COMPLETION_DATE|RESULTS_FIRST_POSTED_DATE|LAST_UPDATE_POSTED_DATE|FIRST_POSTED_DATE,0,3,0.0
+health__fed_cms_ambulatory_specialty_model_participants,unresolved,noun,6637,,,,NO_CLOCK,,0,0,0.0
+health__fed_cms_dialysis,unresolved,event,7557,,,,UNMEASURED_CLOCK,FIVE_STAR_DATE|CERTIFICATION_DATE|CLAIMS_DATE|EQRS_DATE|SMR_DATE|SHR_DATE,0,0,0.0
+health__fed_cms_facility_affiliation,membership,link,2260193,,,,NO_CLOCK,,0,0,0.0
+health__fed_cms_facility_level_minimum_data_set_frequency,measurement,event,31403215,,,,UNMEASURED_CLOCK,REPORT_DATE,0,0,0.0
+health__fed_cms_federally_qualified_health_center_enrollments,registration,event+noun,11063,1817-01-01,2024-08-26,207.6,CORRUPT_RANGE,INCORPORATION_DATE,281,0,0.0
+health__fed_cms_fiscal_intermediary_shared_system_attending_and_rendering,program,noun,2047828,,,,NO_CLOCK,,0,0,0.0
+health__fed_cms_hcris,unresolved,event,6103,2022-10-01,2024-09-30,2.0,CLEAN,FISCAL_YEAR_BEGIN_DATE|FISCAL_YEAR_END_DATE,0,0,0.0
+health__fed_cms_home_health,unresolved,event,12392,1966-07-01,2025-10-09,59.3,CLEAN,CERTIFICATION_DATE|NUMERATOR_FOR_HOW_OFTEN_THE_HOME_HEALTH_TEAM_BEGAN_THEIR_PATIENTS_CARE_IN_A_TIMELY_MANNER|DENOMINATOR_FOR_HOW_OFTEN_THE_HOME_HEALTH_TEAM_BEGAN_THEIR_PATIENTS_CARE_IN_A_TIMELY_MANNER|HOW_OFTEN_THE_HOME_HEALTH_TEAM_BEGAN_THEIR_PATIENTS_CARE_IN_A_TIMELY_MANNER|FOOTNOTE_FOR_HOW_OFTEN_THE_HOME_HEALTH_TEAM_BEGAN_THEIR_PATIENTS_CARE_IN_A_TIMELY_MANNER|NUMERATOR_FOR_HOW_OFTEN_PHYSICIAN_RECOMMENDED_ACTIONS_TO_ADDRESS_MEDICATION_ISSUES_WERE_COMPLETELY_TIMELY,26,0,0.0
+health__fed_cms_home_health_agency_enrollments,registration,event+noun,11508,1808-03-08,2024-08-09,216.4,CORRUPT_RANGE,INCORPORATION_DATE,7,0,0.0
+health__fed_cms_hospice,unresolved,event,6852,1983-11-01,2025-10-15,42.0,CLEAN,CERTIFICATION_DATE,0,0,0.0
+health__fed_cms_hospital_compare,provider,noun,5432,,,,NO_CLOCK,,0,0,0.0
+health__fed_cms_hospital_enrollments,registration,event+noun,9175,1800-01-01,2026-03-14,226.2,CORRUPT_RANGE,INCORPORATION_DATE|REH_CONVERSION_DATE,60,0,0.0
+health__fed_cms_hospital_general,provider,noun,5432,,,,NO_CLOCK,,0,0,0.0
+health__fed_cms_irf,unresolved,event,1222,1983-10-01,2026-10-01,43.0,CLEAN,CERTIFICATION_DATE,0,0,0.0
+health__fed_cms_ltch,unresolved,event,311,1966-07-01,2025-02-01,58.6,CLEAN,CERTIFICATION_DATE,1,0,0.0
+health__fed_cms_main,unresolved,noun,158,,,,UNMEASURED_CLOCK,UPDATE_FREQUENCY,0,0,0.0
+health__fed_cms_medicare_diabetes_prevention_program,program,noun,1037,,,,NO_CLOCK,,0,0,0.0
+health__fed_cms_medicare_dialysis_facilities,facility,noun,12456456,,,,UNMEASURED_CLOCK,YEAR,0,0,0.0
+health__fed_cms_medicare_durable_medical_equipment_devices_supplies_by_refer,product,noun,381228,,,,NO_CLOCK,,0,0,0.0
+health__fed_cms_medicare_durable_medical_equipment_devices_supplies_by_suppl,product,noun,440670,,,,NO_CLOCK,,0,0,0.0
+health__fed_cms_medicare_inpatient_hospitals_by_provider,provider,noun,3044,,,,NO_CLOCK,,0,0,0.0
+health__fed_cms_medicare_inpatient_hospitals_by_provider_and_service,role,link,145879,,,,NO_CLOCK,,0,0,0.0
+health__fed_cms_medicare_outpatient_hospitals_by_provider_and_service,role,link,116182,,,,NO_CLOCK,,0,0,0.0
+health__fed_cms_medicare_physician_other_practitioners_by_provider,provider,noun,1296739,,,,NO_CLOCK,,0,0,0.0
+health__fed_cms_medicare_physician_other_practitioners_by_provider_and_servi,provider,noun,9781673,,,,NO_CLOCK,,0,0,0.0
+health__fed_cms_medicare_provider,provider,noun,1296739,,,,NO_CLOCK,,0,0,0.0
+health__fed_cms_nadac,product,noun,359514,2022-11-23,2024-12-25,2.1,CLEAN,EFFECTIVE_DATE|CORRESPONDING_GENERIC_DRUG_EFFECTIVE_DATE|AS_OF_DATE,0,0,0.0
+health__fed_cms_nppes,provider,noun,9606683,2005-05-23,2026-06-08,21.0,CLEAN,PROVIDER_ENUMERATION_DATE|LAST_UPDATE_DATE|NPI_DEACTIVATION_DATE|NPI_REACTIVATION_DATE|CERTIFICATION_DATE,0,0,0.0
+health__fed_cms_nursing_home,facility,noun,14700,2026-08-08 07:18:30.556000-07:00,2026-08-08 07:18:30.556000-07:00,0.0,LOAD_DATE_ONLY,DATE_FIRST_APPROVED_TO_PROVIDE_MEDICARE_AND_MEDICAID_SERVICES|MOST_RECENT_HEALTH_INSPECTION_MORE_THAN_2_YEARS_AGO|PROVIDER_CHANGED_OWNERSHIP_IN_LAST_12_MONTHS|TOTAL_NUMBER_OF_NURSE_STAFF_HOURS_PER_RESIDENT_PER_DAY_ON_THE_WEEKEND|REGISTERED_NURSE_HOURS_PER_RESIDENT_PER_DAY_ON_THE_WEEKEND|CASE_MIX_WEEKEND_TOTAL_NURSE_STAFFING_HOURS_PER_RESIDENT_PER_DAY,0,0,0.0
+health__fed_cms_nursing_home_deficiencies,violation,event,418479,2002-04-08,2026-06-29,24.2,CLEAN,SURVEY_DATE|CORRECTION_DATE|INSPECTION_CYCLE|PROCESSING_DATE,0,0,0.0
+health__fed_cms_nursing_home_fire_deficiencies,violation,event,200030,2016-01-15,2027-05-30,11.4,CLEAN,SURVEY_DATE|CORRECTION_DATE|INSPECTION_CYCLE|PROCESSING_DATE,0,0,0.0
+health__fed_cms_nursing_home_penalties,enforcement,event,16180,2023-06-17,2026-06-01,3.0,CLEAN,PENALTY_DATE|PAYMENT_DENIAL_START_DATE|PROCESSING_DATE,0,0,0.0
+health__fed_cms_open_payments,payment,event,15385047,,,,UNMEASURED_CLOCK,DATE_OF_PAYMENT|PROGRAM_YEAR|PAYMENT_PUBLICATION_DATE,0,0,0.0
+health__fed_cms_open_payments_2022,payment,event,13250000,,,,UNMEASURED_CLOCK,DATE_OF_PAYMENT|PROGRAM_YEAR|PAYMENT_PUBLICATION_DATE,0,0,0.0
+health__fed_cms_open_payments_2023,payment,event,14700786,,,,UNMEASURED_CLOCK,DATE_OF_PAYMENT|PROGRAM_YEAR|PAYMENT_PUBLICATION_DATE,0,0,0.0
+health__fed_cms_open_payments_profile_supplement,payment,event,1697025,,,,NO_CLOCK,,0,0,0.0
+health__fed_cms_opioid_treatment_program_providers,provider,noun,1558,2014-10-25,2026-05-20,11.6,CLEAN,MEDICARE_ID_EFFECTIVE_DATE,0,0,0.0
+health__fed_cms_opt_out_affidavits,unresolved,event,57209,1998-01-01,2028-10-01,30.7,CLEAN,OPTOUT_EFFECTIVE_DATE|OPTOUT_END_DATE|LAST_UPDATED,0,0,0.0019
+health__fed_cms_order_and_referring,enforcement,event,2018354,,,,NO_CLOCK,,0,0,0.0
+health__fed_cms_part_d_prescribers,provider,noun,1416883,,,,NO_CLOCK,,0,0,0.0
+health__fed_cms_partd_prescribers,provider,noun,25869521,2026-07-23 22:44:38,2026-07-23 22:44:38,0.0,LOAD_DATE_ONLY,,0,0,0.0
+health__fed_cms_pending_initial_logging_and_tracking_non_physicians,provider,noun,6880,,,,NO_CLOCK,,0,0,0.0
+health__fed_cms_pending_initial_logging_and_tracking_physicians,provider,noun,7240,,,,NO_CLOCK,,0,0,0.0
+health__fed_cms_pos_other,unresolved,event,44429,,,,UNMEASURED_CLOCK,CHOW_DT|CRTFCTN_DT|ORGNL_PRTCPTN_DT|CHOW_PRIOR_DT|TRMNTN_EXPRTN_DT|ACRDTN_EFCTV_DT,0,0,0.0
+health__fed_cms_quality_payment_program_experience,program,noun,503917,,,,UNMEASURED_CLOCK,YEARS_IN_MEDICARE,0,0,0.0
+health__fed_cms_rural_health_clinic_enrollments,registration,event+noun,5530,1859-01-28,2024-08-19,165.6,CORRUPT_RANGE,INCORPORATION_DATE,22,0,0.0
+health__fed_cms_skilled_nursing_facility_enrollments,registration,event+noun,14425,1800-01-01,2024-09-17,224.7,CORRUPT_RANGE,INCORPORATION_DATE,36,0,0.0
+health__fed_dea_arcos,trade,event,178598026,2006-01-01,2026-07-27 15:58:30.224197,20.6,CLEAN,,0,0,0.0
+health__fed_fda_caers,unresolved,event,85511,2001-08-09,2026-08-06 00:02:43,25.0,CLEAN,,0,0,0.0
+health__fed_fda_device_510k,product,noun,175686,1976-05-26,2026-08-06 00:00:35,50.2,CLEAN,,0,0,0.0
+health__fed_fda_device_classification,code,code,7085,,,,NO_CLOCK,,0,0,0.0
+health__fed_fda_device_enforcement,recall,event+noun,39635,1930-12-11,2026-07-29,95.6,CLEAN,,0,0,0.0
+health__fed_fda_device_pma,product,noun,56853,1900-01-01,2026-08-06 00:01:29,126.6,CLEAN,,5,0,0.0
+health__fed_fda_drug_enforcement,recall,event+noun,17816,2006-02-24,2026-07-16,20.4,CLEAN,,0,0,0.0
+health__fed_fda_drug_master_files,organization,noun,41253,1939-07-18,2026-08-08 04:36:49.824519,87.1,CLEAN,SUBMIT_DATE,140,0,0.0
+health__fed_fda_establishment_reg,unresolved,event,263374,2026-08-05 21:43:33,2026-08-05 21:43:33,0.0,LOAD_DATE_ONLY,,0,0,0.0
+health__fed_fda_faers_demo,accident,event,5811086,,,,UNMEASURED_CLOCK,EVENT_DT|MFR_DT|FDA_DT|REPT_DT|DEATH_DT|_SRC_QUARTER,0,0,0.0
+health__fed_fda_faers_drug,product,noun,20914284,,,,UNMEASURED_CLOCK,EXP_DT|_SRC_QUARTER,0,0,0.0
+health__fed_fda_faers_indi,accident,event,9833260,,,,UNMEASURED_CLOCK,_SRC_QUARTER,0,0,0.0
+health__fed_fda_faers_outc,accident,event,1134815,,,,UNMEASURED_CLOCK,_SRC_QUARTER,0,0,0.0
+health__fed_fda_faers_reac,accident,event,20621386,,,,UNMEASURED_CLOCK,_SRC_QUARTER,0,0,0.7619
+health__fed_fda_gudid,unresolved,event,5083948,2013-02-20,2026-08-05 21:50:00,13.5,CLEAN,,0,0,0.0
+health__fed_fda_maude,unresolved,event,2743561,1900-01-01,2026-08-06 00:25:45,126.6,CLEAN,,1,0,0.0
+health__fed_fda_purple_book,unresolved,event,2228,1930-06-14,2037-03-05,106.7,CORRUPT_RANGE,PURPLE_BOOK_MONTHLY_HISTORICAL_DATA_CHANGES_REPORT_JUNE_2026,2,69,0.0
+health__fed_fda_unii_gsrs_substances,crosswalk,link,168046,2026-08-08 04:35:02.628239,2026-08-08 04:35:02.628239,0.0,LOAD_DATE_ONLY,,0,0,0.0
+health__fed_hhs_oig_leie,enforcement,event,83369,2026-06-10 15:59:57.867000,2026-06-10 15:59:57.867000,0.0,LOAD_DATE_ONLY,EXCLDATE|REINDATE|WAIVERDATE,0,0,0.0
+health__fed_hrsa_hpsa_primary_care,measurement,event,79158,1970-01-01,2026-08-07 18:54:15.903191,56.6,CLEAN,HPSA_DESIGNATION_DATE|HPSA_DESIGNATION_LAST_UPDATE_DATE|WITHDRAWN_DATE|HPSA_WITHDRAWN_DATE_STRING|DATA_WAREHOUSE_RECORD_CREATE_DATE|DATA_WAREHOUSE_RECORD_CREATE_DATE_TEXT,1,0,0.0
+health__fed_hrsa_npdb,filing,event+noun,1911185,,,,UNMEASURED_CLOCK,ORIGYEAR|MALYEAR1|MALYEAR2|AAYEAR|AAEFYEAR|AASIGYR,0,0,0.0
+health__fed_hrsa_shortage_areas,place,noun,165531,1970-01-01,2026-06-30,56.5,CLEAN,HPSA_DESIGNATION_DATE|HPSA_DESIGNATION_LAST_UPDATE_DATE|WITHDRAWN_DATE|HPSA_WITHDRAWN_DATE_STRING|DATA_WAREHOUSE_RECORD_CREATE_DATE|DATA_WAREHOUSE_RECORD_CREATE_DATE_TEXT,2,0,0.0006
+health__fed_hrsa_uds_health_center_info,facility,noun,1356,2026-08-05 21:43:43.460403,2026-08-05 21:43:43.460403,0.0,LOAD_DATE_ONLY,REPORTINGYEAR,0,0,0.0
+health__fed_hrsa_uds_service_delivery_sites,provider,noun,19038,1966-01-01,2026-08-07 18:54:01.663552,60.6,CLEAN,OPERATING_HOURS_PER_WEEK|SITE_ADDED_TO_SCOPE_THIS_DATE|DATA_WAREHOUSE_RECORD_CREATE_DATE,32,0,0.0
+health__fed_hrsa_uds_table3a_patients,aggregate,aggregate,1356,2026-08-05 21:43:43.460403,2026-08-05 21:43:43.460403,0.0,LOAD_DATE_ONLY,,0,0,0.0
+health__fed_ihs_facilities,facility,noun,1006,2026-08-07 18:54:32.544914,2026-08-07 18:54:32.544914,0.0,LOAD_DATE_ONLY,,0,0,0.0
+health__fed_ihs_scb_facility,facility,noun,8733,2026-08-08 01:42:33.696100,2026-08-08 01:42:33.696100,0.0,LOAD_DATE_ONLY,,0,0,0.0
+health__fed_nlm_dailymed_spl_setid_map,document,noun,158452,2006-07-13,2026-08-08 01:42:45.275246,20.1,CLEAN,UPLOAD_DATE,0,0,0.0
+health__fed_nursinghome411,unresolved,event,14713,1967-01-01,2025-12-12,58.9,CLEAN,DATE_FIRST_APPROVED_TO_PROVIDE_MEDICARE_AND_MEDICAID_SERVICES|PROBLEM_FACILITIES_SFFS_CANDIDATES_ONE_STAR|MOST_RECENT_HEALTH_INSPECTION_MORE_THAN_2_YEARS_AGO|PROVIDER_CHANGED_OWNERSHIP_IN_LAST_12_MONTHS|TOTAL_NUMBER_OF_NURSE_STAFF_HOURS_PER_RESIDENT_PER_DAY_ON_THE_WEEKEND|REGISTERED_NURSE_HOURS_PER_RESIDENT_PER_DAY_ON_THE_WEEKEND,153,0,0.0
+health__fed_va_allcause_mortality,unresolved,event,2808,2026-08-10 01:24:35.964258,2026-08-10 01:24:35.964258,0.0,LOAD_DATE_ONLY,YEAR,0,0,0.0
+health__fed_va_suicide_appendix,aggregate,aggregate,144,,,,NO_CLOCK,,0,0,0.0208
+health__fed_va_suicide_national,aggregate,aggregate,690,2026-08-10 01:24:35.964258,2026-08-10 01:24:35.964258,0.0,LOAD_DATE_ONLY,YEAR_OF_DEATH,0,0,0.0
+health__fed_va_suicide_state,aggregate,aggregate,1196,2026-08-10 01:24:35.964258,2026-08-10 01:24:35.964258,0.0,LOAD_DATE_ONLY,YEAR_OF_DEATH|YEAR,0,0,0.0
+health__intl_healthcanada_dpd_drug,code,code,13383,2025-03-22,2026-08-07 18:54:55.103559,1.4,CLEAN,,0,0,0.0
+health__pharma_meal_cap_fingerprint,organization,noun,2462,,,,NO_CLOCK,,0,0,0.0
+health__st_oehha_proposition_65_list,registry,noun,952,1987-02-27,2026-07-17,39.4,CLEAN,DATE_LISTED,0,0,0.0
+health__xc_guttmacher_monthly_abortion,unresolved,event,2040,,,,UNMEASURED_CLOCK,MONTH|PUBLISHDATE,0,0,0.0
+health__xc_owid_life_expectancy,aggregate,aggregate,21565,,,,UNMEASURED_CLOCK,YEAR,0,0,0.0
+historical_records__fed_slavevoyages_intraamerican,measurement,event,11521,,,,UNMEASURED_CLOCK,YEARAM|DATEDEPA|DATEDEPB|DATEDEPC|DATE_BUY1|DATE_LEFTAFR,0,0,0.0
+history__fed_david_rumsey,unresolved,event,10,,,,UNMEASURED_CLOCK,DATE_PUBLISHED,0,0,0.0
+history__fed_densho_ddr,unresolved,event,25,,,,UNMEASURED_CLOCK,DATE,0,0,0.0
+history__fed_docsouth,unresolved,event,144,,,,UNMEASURED_CLOCK,PUBLICATION_DATE,0,0,0.0
+history__fed_slavevoyages_transatlantic,measurement,event,36108,,,,UNMEASURED_CLOCK,DATEDEPA|DATEDEPB|DATEDEPC|DATEDEP|DATEBUY|DATELEFTAFR,0,0,0.0
+history__fed_wpa_slave_narratives,unresolved,event,100,1937-01-01,2026-07-30 12:10:48.044000-07:00,89.6,CLEAN,INTERVIEW_DATE,0,0,0.0
+housing__fed_cfpb_hmda,unresolved,event,28301,2026-07-01 21:40:19.856122,2026-07-01 21:40:19.856122,0.0,LOAD_DATE_ONLY,ACTIVITY_YEAR|INTRO_RATE_PERIOD,0,0,0.0022
+housing__fed_cfpb_hmda_arid2017_lei_xref,crosswalk,link,5399,2026-08-07 19:08:11.453342,2026-08-07 19:08:11.453342,0.0,LOAD_DATE_ONLY,,0,0,0.0
+housing__fed_cfpb_hmda_dc_only,unresolved,event,28301,,,,NO_CLOCK,,0,0,0.0022
+housing__fed_cfpb_hmda_historic,unresolved,event,19136434,2026-08-05 17:27:42.452000,2026-08-05 17:27:42.452000,0.0,LOAD_DATE_ONLY,AS_OF_YEAR|SOURCE_YEAR|APPLICATION_DATE_INDICATOR,0,0,0.0
+housing__fed_cfpb_hmda_lar,loan,event+noun,17474,2026-08-08 04:55:47.435095,2026-08-08 04:55:47.435095,0.0,LOAD_DATE_ONLY,ACTIVITY_YEAR|INTRO_RATE_PERIOD,0,0,0.0
+housing__fed_fema_ia_housing_registrations,registration,event+noun,3080000,0003-11-24,2026-11-30,2023.0,CORRUPT_RANGE,APPLIEDDATE|CENSUSYEAR|DECLARATIONDATE|RENTALASSISTANCEENDDATE,0,0,0.0
+housing__fed_fema_nfip_community_status_book,place,noun,25122,1970-02-03,2069-10-01,99.7,CORRUPT_RANGE,CURRENTLYEFFECTIVEMAPDATE|REGULAREMERGENCYPROGRAMDATE|ORIGINALENTRYDATE|CLASSRATINGEFFECTIVEDATE,320,8,0.0
+housing__fed_fhfa_hpi,unresolved,event,184807,,,,UNMEASURED_CLOCK,YR|PERIOD,0,0,0.0
+housing__fed_fhfa_nmdb,unresolved,event,7204,2026-07-01,2026-07-01,0.0,LOAD_DATE_ONLY,PERIOD_TYPE|PERIOD_VALUE|RELEASE_DATE,0,0,0.0
+housing__fed_hud_assisted_housing_projects,unresolved,event,35601,2026-08-05 21:40:52.153263,2026-08-05 21:40:52.153263,0.0,LOAD_DATE_ONLY,QUARTER|MONTHS_SINCE_REPORT|RENT_PER_MONTH|SPENDING_PER_MONTH|MONTHS_WAITING|MONTHS_FROM_MOVEIN,0,0,0.0
+housing__fed_hud_data,unresolved,event,77,,,,UNMEASURED_CLOCK,YEAR,0,0,0.0779
+housing__fed_hud_fha_sf_portfolio_snapshot,document,noun,61647,2026-08-07 20:20:01.477991,2026-08-07 20:20:01.477991,0.0,LOAD_DATE_ONLY,ENDORSEMENT_YEAR|ENDORSEMENT_MONTH,0,0,0.0
+housing__fed_hud_mf_firm_commitments,action,event,25557,2000-10-02,2026-08-07 20:19:33.409255,25.8,CLEAN,,0,0,0.0
+housing__fed_hud_mf_section8_contracts,award,event+noun,24309,1900-01-02,2056-02-29,156.2,CORRUPT_RANGE,TRACS_EFFECTIVE_DATE|TRACS_OVERALL_EXPIRATION_DATE|TRACS_OVERALL_EXP_FISCAL_YEAR|TRACS_OVERALL_EXPIRE_QUARTER|TRACS_CURRENT_EXPIRATION_DATE|CONTRACT_TERM_MONTHS_QTY,0,17283,0.0
+housing__fed_hud_public_housing_authorities,organization,noun,3787,2025-07-16 22:56:19,2026-08-07 20:20:14.677774,1.1,CLEAN,OPFUND_AMNT_PREV_YR|CAPFUND_AMNT_PREV_YR|SPENDING_PER_MONTH|SPENDING_PER_MONTH_PREV_YR|LAST_UPDT_DTTM|ANNL_EXPNS_AMNT_PREV_YR,0,0,0.0
+housing__fed_mapping_inequality,crosswalk,link,1155,,,,UNMEASURED_CLOCK,YEAR_MAPPED,0,0,0.0
+housing__fed_usda_rd_mfh_active_projects,place,noun,13550,1933-09-28,2098-03-01,164.4,CORRUPT_RANGE,DATE_TAX_CREDIT_EXPIRES|DATE_OF_OPERATION|DATE_RESTRICTIVE_CLAUSE_EXPIRES,36,6692,0.0
+immigration__fed_cbp_encounters,measurement,event,9,,,,UNMEASURED_CLOCK,MONTHLY_TOTALS|DATA_AS_OF_DATE,0,0,0.0
+immigration__fed_cms_hospice_enrollments,registration,event+noun,6066,1848-05-29,2024-09-14,176.3,CORRUPT_RANGE,INCORPORATION_DATE,6,0,0.0
+immigration__fed_cms_medicare_fee_for_service_public_provider_enrollment,registration,event+noun,2978925,,,,NO_CLOCK,,0,0,0.0
+immigration__fed_dhs_ohss,filing,event+noun,50740,,,,UNMEASURED_CLOCK,REPORT_MONTH|FISCAL_YEAR|CALENDAR_YEAR|NATIONWIDE_CBP_ENCOUNTERS_BY_ENCOUNTER_TYPE_AND_REGION__FISCAL_YEARS_2014_TO_2025_YTD__NOVEMBER_2024|CBP_SW_BORDER_ENCOUNTERS_BY_AGENCY_AND_SELECTED_CITIZENSHIP__FISCAL_YEARS_2014_TO_2025_YTD__NOVEMBER_2024|CBP_SW_BORDER_ENCOUNTERS_BY_AGENCY_AND_FAMILY_STATUS__FISCAL_YEARS_2014_TO_2025_YTD__NOVEMBER_2024,0,0,0.7724
+immigration__fed_dhs_yearbook,unresolved,event,27,,,,UNMEASURED_CLOCK,FISCAL_YEAR|YEARBOOK_EDITION,0,0,0.0
+immigration__fed_dol_oflc,unresolved,event,664616,2012-09-17,2023-12-31,11.3,CLEAN,DECISION_DATE|ORIGINAL_CERT_DATE|FULL_TIME_POSITION|PERIOD_OF_EMPLOYMENT_START_DATE|PERIOD_OF_EMPLOYMENT_END_DATE|PW_OES_YEAR_1,0,0,0.0
+immigration__fed_eoir_case_data,case,event+noun,12631225,,,,NO_CLOCK,,0,0,0.0
+immigration__fed_epa_sdwa_sdwa_service_areas,place,noun,422464,1995-07-22,2026-06-30,30.9,CLEAN,SUBMISSIONYEARQUARTER|FIRST_REPORTED_DATE|LAST_REPORTED_DATE,0,0,0.0
+immigration__fed_ice_detainers,unresolved,event,609769,1919-07-12,56597796-07-20 23:29:38.000,,UNMEASURED_CLOCK,DETAINER_PREPARE_DATE|DEPARTED_DATE|BIRTH_YEAR|MSC_SENTENCE_MONTHS|MSC_SENTENCE_YEARS|MSC_CHARGE_DATE,27,609769,0.0
+immigration__fed_ice_detention_facility_codes,code,code,1490,,,,NO_CLOCK,,0,0,0.0
+immigration__fed_ice_detention_facility_list,facility,noun,163,,,,NO_CLOCK,,0,0,0.0
+immigration__fed_ice_detention_stints,unresolved,event,2571975,1919-07-12,2027-02-01,107.6,CLEAN,STAY_BOOK_IN_DATE_TIME|BOOK_IN_DATE_TIME|BOOK_OUT_DATE_TIME|STAY_BOOK_OUT_DATE_TIME|STAY_BOOK_OUT_DATE|MSC_SENTENCE_MONTHS,13,0,0.0
+immigration__fed_ice_statistics,aggregate,aggregate,221,2026-07-02,2026-07-02,0.0,LOAD_DATE_ONLY,FISCAL_YEAR|FISCAL_QUARTER|SNAPSHOT_DATE,0,0,0.0769
+immigration__fed_uscis_data,unresolved,event,3204,,,,UNMEASURED_CLOCK,FISCAL_YEAR|QUARTER|AVG_PROCESSING_TIME_DAYS|PUBLICATION_DATE,0,0,0.9448
+immigration__xc_owid_refugees,aggregate,aggregate,7442,,,,UNMEASURED_CLOCK,YEAR,0,0,0.0
+investigations__intl_leiden_russian_ops_europe,action,event,153,,,,UNMEASURED_CLOCK,INCIDENTYEAR|INCIDENTMONTH|INCIDENTDATERANGE|INCIDENTDATESTART|INCIDENTDATEEND,0,0,0.0131
+investigations__xc_wayback_replay_doj_deep_pages,document,noun,2542,2026-02-15 14:31:21,2026-06-12 21:09:19.866000,0.3,SHORT_SPAN,,0,0,0.0
+investigations__xc_wayback_replay_doj_listing,measurement,event,24897,2025-12-19 21:13:27,2026-06-12 19:23:30.350000,0.5,SHORT_SPAN,,0,0,0.0
+judiciary__fed_oyez,unresolved,event,25,1966-01-17,2026-07-30 12:09:56.922000-07:00,60.5,CLEAN,ARGUMENT_DATE|DECISION_DATE,0,0,0.0
+justice__county_double_burden,place,noun,3029,,,,NO_CLOCK,,0,0,0.0
+justice__fed_atf_ffl,unresolved,noun,77514,,,,NO_CLOCK,,0,0,0.0
+justice__fed_cisa_kev,unresolved,event,1631,2021-11-03,2026-07-04,4.7,CLEAN,DATE_ADDED|DUE_DATE,0,0,0.0
+justice__fed_consolidated_screening_list,registry,noun,25918,1974-11-17,2056-06-29,81.6,CORRUPT_RANGE,START_DATE|END_DATE|DATES_OF_BIRTH,0,129,0.0
+justice__fed_courtlistener_citations,violation,event,18123788,2025-09-26,2026-06-30,0.8,SHORT_SPAN,DATE_CREATED|DATE_MODIFIED,0,0,0.0
+justice__fed_courtlistener_court_appeals_to,case,event+noun,8,,,,NO_CLOCK,,0,0,0.0
+justice__fed_courtlistener_courthouses,unresolved,noun,3361,,,,NO_CLOCK,,0,0,0.0
+justice__fed_courtlistener_courts,unresolved,event,3361,1200-01-01,2026-06-12,826.4,CORRUPT_RANGE,DATE_LAST_PACER_CONTACT|DATE_MODIFIED|START_DATE|END_DATE,2,0,0.0
+justice__fed_courtlistener_disclosure_agreements,filing,event+noun,10007,0001-05-01,2642-03-21,2640.8,CORRUPT_RANGE,DATE_CREATED|DATE_MODIFIED|DATE_RAW,6016,11,0.0
+justice__fed_courtlistener_disclosure_debts,filing,event+noun,18775,2021-01-03,2025-02-05,4.1,CLEAN,DATE_CREATED|DATE_MODIFIED,0,0,0.0
+justice__fed_courtlistener_disclosure_gifts,contribution,event,2025,2021-01-04,2023-08-31,2.7,CLEAN,DATE_CREATED|DATE_MODIFIED,0,0,0.0
+justice__fed_courtlistener_disclosure_non_investment_income,filing,event+noun,15302,0001-11-07,2804-02-06,2802.2,CORRUPT_RANGE,DATE_CREATED|DATE_MODIFIED|DATE_RAW,11990,5,0.0
+justice__fed_courtlistener_disclosure_positions,ownership,link,37050,2021-01-03,2023-08-31,2.7,CLEAN,DATE_CREATED|DATE_MODIFIED,0,0,0.0
+justice__fed_courtlistener_disclosure_reimbursements,filing,event+noun,33472,0002-02-11,3201-04-14,3199.1,CORRUPT_RANGE,DATE_CREATED|DATE_MODIFIED|DATE_RAW,599,45,0.0
+justice__fed_courtlistener_disclosure_spousal_income,filing,event+noun,20174,0001-01-17,2955-09-13,2954.6,CORRUPT_RANGE,DATE_CREATED|DATE_MODIFIED|DATE_RAW,17059,41,0.0
+justice__fed_courtlistener_dockets,case,event+noun,71677647,1697-03-29,2026-06-30,329.2,CORRUPT_RANGE,DATE_CREATED|DATE_MODIFIED|DATE_LAST_INDEX|DATE_CERT_GRANTED|DATE_CERT_DENIED|DATE_ARGUED,624,0,0.0
+justice__fed_courtlistener_financial_disclosures,filing,event+noun,66287,0009-03-24,2024-11-15,2015.6,CORRUPT_RANGE,DATE_CREATED|DATE_MODIFIED|YEAR,2007,0,0.0
+justice__fed_courtlistener_fjc_idb_cl_linked,unresolved,event,10323280,1901-01-01,2031-01-01,130.0,CORRUPT_RANGE,DATE_CREATED|DATE_MODIFIED|DATE_FILED|DATE_TRANSFER|DATE_TERMINATED|YEAR_OF_TAPE,81,0,0.0
+justice__fed_courtlistener_investments,unresolved,event,1901599,0001-01-03,2025-02-05,2024.0,CORRUPT_RANGE,DATE_CREATED|DATE_MODIFIED|INCOME_DURING_REPORTING_PERIOD_CODE|INCOME_DURING_REPORTING_PERIOD_TYPE|TRANSACTION_DURING_REPORTING_PERIOD|TRANSACTION_DATE_RAW,57860,0,0.0
+justice__fed_courtlistener_judge_educations,person,noun,12777,2016-04-20,2023-11-08,7.6,CLEAN,DATE_CREATED|DATE_MODIFIED|DEGREE_YEAR,0,0,0.0
+justice__fed_courtlistener_judge_political_affiliations,membership,link,8486,1798-04-11,2022-08-09,224.3,CORRUPT_RANGE,DATE_CREATED|DATE_MODIFIED|DATE_START|DATE_GRANULARITY_START|DATE_END|DATE_GRANULARITY_END,63,0,0.0
+justice__fed_courtlistener_judge_races,person,noun,6542,,,,NO_CLOCK,,0,0,0.0
+justice__fed_courtlistener_judges,person,noun,16191,0031-01-01,2026-06-24,1995.4,CORRUPT_RANGE,DATE_CREATED|DATE_MODIFIED|DATE_COMPLETED|DATE_DOB|DATE_GRANULARITY_DOB|DATE_DOD,59,0,0.0
+justice__fed_courtlistener_opinion_clusters,case,event+noun,10070727,0019-01-31,2028-04-13,2009.2,CORRUPT_RANGE,DATE_CREATED|DATE_MODIFIED|DATE_FILED|DATE_FILED_IS_APPROXIMATE|OTHER_DATES|DATE_BLOCKED,49858,0,0.0
+justice__fed_courtlistener_oral_arguments,unresolved,event,102649,2014-10-31,2026-06-26,11.7,CLEAN,DATE_CREATED|DATE_MODIFIED|DATE_BLOCKED,0,0,0.0
+justice__fed_courtlistener_originating_court_info,unresolved,event,973419,1020-06-01,3036-03-30,2015.8,CORRUPT_RANGE,DATE_CREATED|DATE_MODIFIED|DATE_DISPOSED|DATE_FILED|DATE_JUDGMENT|DATE_JUDGMENT_EOD,1,8,0.0
+justice__fed_courtlistener_parentheticals,unresolved,link,6408887,,,,NO_CLOCK,,0,0,0.0
+justice__fed_courtlistener_positions,ownership,link,51290,0022-01-01,2916-01-01,2893.9,CORRUPT_RANGE,DATE_CREATED|DATE_MODIFIED|DATE_NOMINATED|DATE_ELECTED|DATE_RECESS_APPOINTMENT|DATE_REFERRED_TO_JUDICIAL_COMMITTEE,1053,113,0.0
+justice__fed_courtlistener_race_codes,code,code,8,,,,NO_CLOCK,,0,0,0.0
+justice__fed_courtlistener_schools,organization,noun,6011,2010-06-08,2025-06-16,15.0,CLEAN,DATE_CREATED|DATE_MODIFIED,0,0,0.0
+justice__fed_doj_fca_settlements,enforcement,event,12,,,,UNMEASURED_CLOCK,SETTLEMENT_DATE|FISCAL_YEAR,0,0,0.0
+justice__fed_fbi_cde,unresolved,event,238680,1985-01-01,2026-08-09 19:04:37.430423,41.6,CLEAN,MONTH,0,0,0.0
+justice__fed_fbi_nics_checks,unresolved,event,16445,,,,UNMEASURED_CLOCK,MONTH,0,0,0.0
+justice__fed_fhfa_suspended_counterparties,unresolved,event,222,2013-04-15,2033-03-08,19.9,CORRUPT_RANGE,EFFECTIVE_DATE|SUSPENSION_END_DATE,0,13,0.0
+justice__fed_fjc_idb_appellate,unresolved,event,988183,1900-01-01,2026-03-31,126.2,CLEAN,DKTDATE|DDKTDATE|APPDATE|TRANSDATE|CRECDATE|SUBDATE,11,0,0.0
+justice__fed_fjc_idb_bankruptcy,unresolved,event,6965441,1923-08-25,2026-04-15,102.6,CLEAN,FILEDATE,6,0,0.0
+justice__fed_fjc_idb_civil,unresolved,event,10857396,1900-01-01,2045-05-21,145.4,CORRUPT_RANGE,FILEDATE|FDATEUSE|TERMDATE|TDATEUSE|TAPEYEAR,23,3,0.0
+justice__fed_fjc_idb_criminal,unresolved,event,6299908,1900-01-01,2026-04-21,126.3,CLEAN,FISCALYR|FGSTRTDATE|FGENDDATE|FILEDATE|PROCDATE|APPDATE,6731,0,0.0
+justice__fed_ftc_datasets,dataset,noun,1200,2021-07-28,2026-07-07,4.9,CLEAN,DATE_FILED,0,0,0.1633
+justice__fed_jpml_pending_mdls,unresolved,link,162,,,,NO_CLOCK,,0,0,0.0
+justice__fed_ofac_sdn,organization,noun,19115,2026-06-25 21:55:21.291621,2026-06-25 21:55:21.291621,0.0,LOAD_DATE_ONLY,,0,0,0.0
+justice__fed_scdb,vote,event,83644,1944-10-08,2025-06-30,80.7,CLEAN,DATEDECISION|DATEARGUMENT|DATEREARG,2245,0,0.0
+justice__fed_uscourts_stats,aggregate,aggregate,50,,,,UNMEASURED_CLOCK,REPORTING_PERIOD,0,0,0.0
+justice__intl_austlii,unresolved,event,1,,,,UNMEASURED_CLOCK,DECISION_DATE,0,0,0.0
+justice__intl_eu_sanctions,unresolved,event,42347,1925-01-25,2026-05-06,101.3,CLEAN,DATE_FILE|LEBA_PUBLICATION_DATE|NAAL_LEBA_PUBLICATION_DATE|ADDR_LEBA_PUBLICATION_DATE|BIRT_LEBA_PUBLICATION_DATE|BIRT_DATE,102,0,0.0
+justice__intl_eu_socta_europol,unresolved,event,26,2025-03-18,2025-05-27,0.2,SHORT_SPAN,PUBLISH_DATE|UPDATE_DATE|REPORT_YEAR,0,0,0.0
+justice__intl_eurlex_cellar,unresolved,event,53,1987-01-28,2026-03-26,39.2,CLEAN,DATE_PUBLISHED|DATE_OF_DOCUMENT,0,0,0.0
+justice__intl_hudoc,unresolved,event,2000,,,,UNMEASURED_CLOCK,DATE,0,0,0.0
+justice__intl_nti_cns_dprk_missile_tests,measurement,event,303,2016-12-23,2024-11-18,7.9,CLEAN,DATE|DATE_ENTERED_UPDATED|LAUNCH_TIME_UTC,0,0,0.0
+justice__intl_opensanctions,unresolved,event,71011,1921-05-06,2022-06-08,101.1,CLEAN,BIRTH_DATE,628,0,0.0
+justice__intl_opensanctions_default,unresolved,event,1281846,2018-03-08 00:00:00.000,56596957-10-21 08:27:05.000,,UNMEASURED_CLOCK,BIRTH_DATE,0,1281846,0.0
+justice__intl_ucdp_ged,unresolved,event,385918,1970-01-01,2055-12-31,86.0,CORRUPT_RANGE,YEAR|ACTIVE_YEAR|SOURCE_DATE|DATE_PREC|DATE_START|DATE_END,385918,13,0.0
+justice__racial_jail_disparity,unresolved,event,128507,2026-06-28 03:21:23.476104,2026-06-28 03:21:23.476104,0.0,LOAD_DATE_ONLY,,0,0,0.0
+justice__state_mo_sex_offender_registry,registry,noun,28185,1926-04-17,2026-08-06 04:51:21.325086,100.3,CLEAN,DATE_OF_BIRTH,771,0,0.0
+justice__xc_mapping_police_violence,crosswalk,link,15476,2013-01-01,2026-07-22,13.6,CLEAN,DATE_OF_INCIDENT_MONTH_DAY_YEAR|TOTAL_POPULATION_OF_CENSUS_TRACT_2019_ACS_5_YEAR_ESTIMATES,0,0,0.0
+justice__xc_nagix_dprk_missile_tests,measurement,event,340,,,,UNMEASURED_CLOCK,DATE|TIME,0,0,0.0
+justice__xc_owid_homicide,aggregate,aggregate,4912,,,,UNMEASURED_CLOCK,YEAR,0,0,0.0
+justice__xc_owid_nuclear_warheads,aggregate,aggregate,902,,,,UNMEASURED_CLOCK,YEAR,0,0,0.0
+justice__xc_owid_terrorism_deaths,aggregate,aggregate,10481,,,,UNMEASURED_CLOCK,YEAR,0,0,0.0
+justice__xc_ransomwarelive_victims,unresolved,noun,30661,,,,NO_CLOCK,,0,0,0.0
+justice__xc_uk_sanctions_list,registry,noun,33828,2000-04-12,2026-08-05 21:29:47.929,26.3,CLEAN,LAST_UPDATED|DATE_DESIGNATED|YEAR_BUILT,0,0,0.0021
+justice__xc_un_consolidated_sanctions_list,organization,noun,1011,2000-04-12,2026-07-22,26.3,CLEAN,LAST_DAY_UPDATED|INDIVIDUAL_DATE_OF_BIRTH,0,0,0.0
+justice__xc_vera_incarceration_trends,measurement,event,128507,,,,UNMEASURED_CLOCK,YEAR,0,0,0.0
+justice__xc_wapo_fatal_force,measurement,event,10430,2015-01-02,2024-12-31,10.0,CLEAN,DATE,0,0,0.0
+labor__fed_dol_ebsa_form5500_schedule_sb,filing,event+noun,41802,1956-09-26,2055-09-17,99.0,CORRUPT_RANGE,SB_PLAN_YEAR_BEGIN_DATE|SB_VALUE_DATE|SB_SIGNATURE_DATE|SB_APPLICABLE_MONTH_CD|SB_WVR_APPROVED_LTR_DATE|SB_ELIGIBLE_PLAN_YEAR_1_IND,0,1,0.0
+labor__fed_dol_olms,asset,noun,617710,0003-11-08,9999-01-01,9994.9,CORRUPT_RANGE,EST_DATE|TERM_DATE|REGISTER_DATE|HAS_LIQUIDATED_LIABILITIES|HAS_LIQUIDATED_RECEIVABLES|RECEIVE_DATE,589063,28,0.0
+labor__fed_msha_accidents,accident,event,273623,2000-01-01,2026-07-24 00:47:40,26.6,CLEAN,ACCIDENT_DT|CAL_YR|CAL_QTR|FISCAL_YR|FISCAL_QTR|ACCIDENT_TIME,0,0,0.0
+labor__fed_msha_mines,facility,noun,91906,1925-01-01,2026-07-24 00:48:11,101.6,CLEAN,CURRENT_STATUS_DT|CURRENT_CONTROLLER_BEGIN_DT|CURRENT_103I_DT|DAYS_PER_WEEK,100,0,0.0
+labor__fed_msha_violations,violation,event,3087265,1994-09-09,2026-07-24 00:46:22,31.9,CLEAN,INSPECTION_BEGIN_DT|INSPECTION_END_DT|VIOLATION_ISSUE_DT|VIOLATION_OCCUR_DT|CAL_YR|CAL_QTR,0,0,0.0
+labor__fed_osha_ita_300a_summary_2023,aggregate,aggregate,394234,2024-01-01 00:00:00,2024-12-31 00:00:00,1.0,CLEAN,NAICS_YEAR|CREATED_TIMESTAMP|YEAR_FILING_FOR,0,0,0.0
+labor__fed_osha_ita_300a_summary_2024,aggregate,aggregate,398620,2025-01-01 00:00:00,2025-12-31 00:00:00,1.0,CLEAN,NAICS_YEAR|CREATED_TIMESTAMP|YEAR_FILING_FOR,0,0,0.0
+labor__fed_osha_ita_300a_summary_2025,aggregate,aggregate,383283,2026-01-01 00:00:00,2026-03-15 00:00:00,0.2,SHORT_SPAN,NAICS_YEAR|CREATED_TIMESTAMP|YEAR_FILING_FOR,0,0,0.0
+labor__fed_osha_ita_case_detail_2023,case,event+noun,890934,2022-02-26,2024-12-12,2.8,CLEAN,NAICS_YEAR|DATE_OF_INCIDENT|TIME_STARTED_WORK|TIME_OF_INCIDENT|TIME_UNKNOWN|DATE_OF_DEATH,0,0,0.0
+labor__fed_osha_ita_case_detail_2024,case,event+noun,688649,,,,UNMEASURED_CLOCK,NAICS_YEAR|DATE_OF_INCIDENT|TIME_STARTED_WORK|TIME_OF_INCIDENT|TIME_UNKNOWN|DATE_OF_DEATH,0,0,0.0
+labor__fed_osha_ita_case_detail_2025,case,event+noun,330447,2024-01-01,2025-12-31,2.0,CLEAN,NAICS_YEAR|DATE_OF_INCIDENT|TIME_STARTED_WORK|TIME_OF_INCIDENT|TIME_UNKNOWN|DATE_OF_DEATH,0,0,0.0
+labor__fed_pbgc_trusteed_plans,case,event+noun,5176,1972-04-01,2026-08-06 04:52:42.871859,54.3,CLEAN,DATE_OF_PLAN_TERMINATION|DATE_OF_PBGC_TRUSTEESHIP|NUMBER_OF_PARICIPANTS_AT_DATE_OF_PLAN_TERMINATION,0,0,0.0
+lead_queue,unresolved,event,17306,1995-12-20,2026-08-05 21:08:43.619000,30.6,CLEAN,ACTIVITY_MIN_DATE|ACTIVITY_MAX_DATE|EXCL_DATE|LEAD_AS_OF_DATE,0,0,0.0
+legal_enforcement__fed_naag_multistate_settlements,action,event,882,,,,UNMEASURED_CLOCK,YEAR|DATERESOLVED|DATE_ENTRY_CREATED|DATE_ENTRY_UPDATED|CORPORATEHEADQUARTERS|DATE_FILED,0,0,0.0
+maritime__fed_noaa_ais,unresolved,event,58104610,2024-01-01,2026-06-28 17:54:17.037886,2.5,CLEAN,BASEDATETIME|DATE,0,0,0.0
+money__debt_repayment_cliff,unresolved,event,938,,,,NO_CLOCK,,0,0,0.0
+open_data__intl_ar_datosgob,unresolved,event,3556,,,,UNMEASURED_CLOCK,SERIE_DATE,0,0,0.0014
+open_data__intl_br_dados_gov,unresolved,event,10,,,,UNMEASURED_CLOCK,LAST_UPDATED,0,0,0.0
+open_data__intl_ca_open_canada,unresolved,event,500,,,,UNMEASURED_CLOCK,DATE_PUBLISHED|TIME_PERIOD_COVERAGE_START|TIME_PERIOD_COVERAGE_END,0,0,0.0
+open_data__intl_ch_opendataswiss,unresolved,event,5000,,,,UNMEASURED_CLOCK,ACCRUAL_PERIODICITY,0,0,0.0
+open_data__intl_cl_datosgob,unresolved,event,1000,,,,NO_CLOCK,,0,0,0.0
+open_data__intl_de_govdata,unresolved,event,5000,,,,NO_CLOCK,,0,0,0.0
+open_data__intl_es_datosgob,unresolved,event,1000,,,,NO_CLOCK,,0,0,0.0
+open_data__intl_fr_data_gouv,dataset,noun,130431,0001-01-01,9999-12-31,9998.8,CORRUPT_RANGE,LAST_UPDATE,68,583,0.0
+open_data__intl_ge_datagov,unresolved,event,1,,,,UNMEASURED_CLOCK,DATE_PUBLISHED|DATE_UPDATED,0,0,0.0
+open_data__intl_gh_datagovgh,unresolved,event,10,,,,UNMEASURED_CLOCK,DATE_PUBLISHED,0,0,0.0
+open_data__intl_gr_datagov,unresolved,event,4988,,,,UNMEASURED_CLOCK,DATE_CREATED,0,0,0.0
+open_data__xc_wayback_doj_epstein,measurement,event,1537352,2025-12-19 21:13:27,2026-06-12 04:46:01.295000,0.5,SHORT_SPAN,,0,0,0.0
+politics__bill_cosponsors,unresolved,event,367735,2023-01-09,2026-06-25,3.5,CLEAN,,0,0,0.0
+politics__bills,unresolved,event,36465,2023-01-03,2026-06-26,3.5,CLEAN,,0,0,0.0
+politics__ca_lobby_amendments,filing,event+noun,25249,0107-10-31,5201-11-18,5093.9,CORRUPT_RANGE,EXEC_DATE|FROM_DATE|THRU_DATE,0,15,0.0
+politics__ca_lobby_chg_log,change,event,85765,0001-04-30,7002-02-28,7000.7,CORRUPT_RANGE,LOG_DT|ETHICS_DT|EFFECT_DT,0,8,0.0
+politics__ca_lobby_contributions,contribution,event,6505,0200-06-30,2031-03-01,1830.6,CORRUPT_RANGE,FILING_PERIOD_START_DT|FILING_PERIOD_END_DT|CONTRIBUTION_DT,0,0,0.0186
+politics__ca_lobby_cover,filing,event+noun,524828,0001-07-01 00:00:00,8201-04-01 00:00:00,8199.6,CORRUPT_RANGE,RPT_DATE|FROM_DATE|THRU_DATE|CUM_BEG_DT|SIG_DATE,0,219,0.0
+politics__ca_lobby_cover2,filing,event+noun,206493,2026-08-05 21:36:55.640576,2026-08-05 21:36:55.640576,0.0,LOAD_DATE_ONLY,,0,0,0.0
+politics__ca_lobby_emp_lobbyist,role,link,1500,2026-08-05 21:37:44.838665,2026-08-05 21:37:44.838665,0.0,LOAD_DATE_ONLY,,0,0,0.0
+politics__ca_lobby_employer,organization,noun,1730,2026-08-05 21:37:33.809408,2026-08-05 21:37:33.809408,0.0,LOAD_DATE_ONLY,CURRENT_QTR_AMT|QTR_1|QTR_2|QTR_3|QTR_4|QTR_5,0,0,0.0023
+politics__ca_lobby_employer_firms,role,link,524,2026-08-05 21:37:40.163961,2026-08-05 21:37:40.163961,0.0,LOAD_DATE_ONLY,TERMINATION_DT,0,0,0.0
+politics__ca_lobby_firm,organization,noun,256,2026-08-05 21:37:49.624240,2026-08-05 21:37:49.624240,0.0,LOAD_DATE_ONLY,CURRENT_QTR_AMT|QTR_1|QTR_2|QTR_3|QTR_4|QTR_5,0,0,0.0
+politics__ca_lobby_firm_employer,role,link,170,2001-04-01,2026-08-05 21:37:55.142453,25.3,CLEAN,,0,0,0.0
+politics__ca_lobby_firm_lobbyist,role,link,577,2026-08-05 21:38:00.679767,2026-08-05 21:38:00.679767,0.0,LOAD_DATE_ONLY,,0,0,0.0
+politics__fec_cand_cmte_link,contribution,event,16229,,,,NO_CLOCK,,0,0,0.0
+politics__fec_candidate,person,noun,17900,,,,NO_CLOCK,,0,0,0.0
+politics__fec_candidate_summary,aggregate,aggregate,7933,,,,NO_CLOCK,,0,0,0.0
+politics__fed_congress_committee_membership,person,noun,3879,,,,NO_CLOCK,,0,0,0.0
+politics__fed_congress_legislators,person,noun,12847,,,,NO_CLOCK,,0,0,0.0
+politics__fed_doj_epstein_library,document,noun,777,2026-06-11 16:52:19,2026-06-11 16:52:44.500000,0.0,SHORT_SPAN,,0,0,0.0
+politics__fed_eac_eavs,unresolved,noun,6460,,,,NO_CLOCK,,0,0,0.0
+politics__fed_fcc_licensing,unresolved,event,1689338,1917-07-11,2036-09-24,119.2,CORRUPT_RANGE,GRANT_DATE|EXPIRED_DATE|CANCELLATION_DATE|LAST_ACTION_DATE,0,373860,0.0
+politics__fed_fec_api,contribution,event,500,,,,UNMEASURED_CLOCK,CANDIDATE_ID|CONTRIBUTION_RECEIPT_DATE|ELECTION_YEAR|LOAD_DATE,0,0,0.0
+politics__fed_fec_pac_summary,aggregate,aggregate,45709,2017-01-01,2026-07-24 02:13:26,9.6,CLEAN,,0,0,0.0
+politics__fed_fjc_judges,person,noun,4067,1794-06-09,2025-07-24,231.1,CORRUPT_RANGE,BIRTH_MONTH|BIRTH_YEAR|DEATH_MONTH|DEATH_YEAR|RECESS_APPOINTMENT_DATE_1|NOMINATION_DATE_1,10,0,0.0
+politics__fed_fjc_service,role,link,4766,1789-09-24,2026-06-27,236.8,CORRUPT_RANGE,RECESS_APPOINTMENT_DATE|NOMINATION_DATE|COMMITTEE_REFERRAL_DATE|HEARING_DATE|COMMITTEE_ACTION_DATE|CONFIRMATION_DATE,365,0,0.0
+politics__fed_medsl_house_returns,role,link,29636,,,,UNMEASURED_CLOCK,YEAR|CANDIDATE|CANDIDATEVOTES,0,0,0.0
+politics__fed_medsl_president_returns,role,link,3740,,,,UNMEASURED_CLOCK,YEAR|CANDIDATE|CANDIDATEVOTES,0,0,0.0
+politics__fed_medsl_senate_returns,role,link,3945,,,,UNMEASURED_CLOCK,YEAR|CANDIDATE|CANDIDATEVOTES,0,0,0.0
+politics__fed_voteview_members,person,noun,51061,,,,NO_CLOCK,,0,0,0.0
+politics__fed_voteview_rollcall_meta,vote,event,113512,,,,UNMEASURED_CLOCK,DATE|DTL_DESC,0,0,0.0
+politics__intl_elections_canada_contributions,contribution,event,12646465,0025-04-07,4002-06-15,3977.1,CORRUPT_RANGE,FISCAL_ELECTION_DATE|CONTRIBUTION_RECEIVED_DATE,2,77,0.0
+politics__intl_freedomhouse,aggregate,aggregate,2723,,,,NO_CLOCK,,0,0,0.0
+politics__intl_owid_milspend,aggregate,aggregate,9112,,,,UNMEASURED_CLOCK,YEAR,0,0,0.0
+politics__intl_voeten_unga_votes,vote,event,1823352,,,,UNMEASURED_CLOCK,YEAR,0,0,0.0
+politics__irs527_8871_orgs,unresolved,event,77591,1808-01-01,2026-07-24 20:46:44,218.6,CORRUPT_RANGE,ESTABLISHED_DATE|MATERIAL_CHANGE_DATE|INSERT_DATETIME,34,0,0.0
+politics__irs527_8872_reports,filing,event+noun,55579,1869-09-01,2026-08-05 21:45:35.236922,156.9,CORRUPT_RANGE,PERIOD_BEGIN_DATE|PERIOD_END_DATE|ORG_FORMATION_DATE|QTR_INDICATOR|MONTHLY_RPT_MONTH|PRE_OR_POST_ELECT_DATE,123,0,0.0
+politics__irs527_directors_officers,person,noun,189593,2026-08-05 21:45:02.628518,2026-08-05 21:45:02.628518,0.0,LOAD_DATE_ONLY,,0,0,0.0
+politics__irs527_eain,unresolved,link,17853,2026-08-05 21:45:29.519383,2026-08-05 21:45:29.519383,0.0,LOAD_DATE_ONLY,,0,0,0.0
+politics__irs527_related_entities,organization,noun,64835,2026-08-05 21:45:20.501427,2026-08-05 21:45:20.501427,0.0,LOAD_DATE_ONLY,,0,0,0.0
+politics__member_bill_record,membership,link,1104,,,,NO_CLOCK,,0,0,0.0
+politics__member_crosswalk,membership,link,12794,,,,NO_CLOCK,,0,0,0.0
+politics__member_fec_id,contribution,event,1715,,,,NO_CLOCK,,0,0,0.0
+politics__member_money_raised,membership,link,1050,,,,NO_CLOCK,,0,0,0.0
+politics__member_spine,membership,link,12794,,,,NO_CLOCK,,0,0,0.0
+politics__member_voting_record,membership,link,1105,,,,NO_CLOCK,,0,0,0.0
+politics__st_cannabis_policy_bundles,program,noun,1500,,,,UNMEASURED_CLOCK,YEAR,0,0,0.0
+politics__st_nyc_cfb_campaign_2001_contribution,contribution,event,193741,2026-08-08 01:53:18.818276,2026-08-08 01:53:18.818276,0.0,LOAD_DATE_ONLY,DATE|REFUNDDATE,0,0,0.0
+politics__st_nyc_cfb_campaign_2009_contribution,contribution,event,146112,2000-05-02,2026-08-08 01:53:18.818276,26.3,CLEAN,DATE|REFUNDDATE,0,0,0.0
+politics__st_nyc_cfb_campaign_2013_contribution,contribution,event,197968,1913-06-13,2026-08-08 01:53:18.818276,113.2,CLEAN,DATE|REFUNDDATE,0,0,0.0
+politics__st_nyc_cfb_campaign_2021_contributions,contribution,event,457521,2011-03-11,2026-08-08 01:53:18.818276,15.4,CLEAN,DATE|REFUNDDATE,0,0,0.0
+politics__st_nyc_cfb_campaign_2025_contributions,contribution,event,259537,2014-07-31,2026-08-08 01:53:18.818276,12.0,CLEAN,DATE|REFUNDDATE,0,0,0.0
+politics__tx_lobby_awards,action,event,1589,2005-01-01,2026-08-05 21:32:04.493602,21.6,CLEAN,APPLICABLEYEAR|PERIODSTARTDT|PERIODENDDT|LOBBYACTIVITYPERIODCD,0,0,0.0
+politics__tx_lobby_cover,filing,event+noun,283803,0205-02-28,2027-04-12,1822.1,CORRUPT_RANGE,APPLICABLEYEAR|PERIODSTARTDT|PERIODENDDT,0,0,0.0
+politics__tx_lobby_dockets,case,event+noun,1207,2001-05-01,2027-01-11,25.7,CLEAN,APPLICABLEYEAR|PERIODSTARTDT|PERIODENDDT,0,0,0.0
+politics__tx_lobby_entertainment,action,event,2836,2005-01-01,2026-08-05 21:31:50.401780,21.6,CLEAN,APPLICABLEYEAR|PERIODSTARTDT|PERIODENDDT|ACTIVITYDATE,0,0,0.0
+politics__tx_lobby_events,action,event,3107,2005-01-01,2026-08-05 21:32:13.908658,21.6,CLEAN,APPLICABLEYEAR|PERIODSTARTDT|PERIODENDDT|ACTIVITYDATE,0,0,0.0
+politics__tx_lobby_food_beverage,action,event,14452,2004-01-01,2026-08-05 21:31:41.497811,22.6,CLEAN,APPLICABLEYEAR|PERIODSTARTDT|PERIODENDDT|ACTIVITYDATE,0,0,0.0
+politics__tx_lobby_gifts,action,event,4084,2004-01-01,2026-08-05 21:31:56.893722,22.6,CLEAN,APPLICABLEYEAR|PERIODSTARTDT|PERIODENDDT|LOBBYACTIVITYPERIODCD,0,0,0.0
+politics__tx_lobby_individual_reporting,payment,event,38662,2000-07-01,2027-01-11,26.5,CLEAN,APPLICABLEYEAR|PERIODSTARTDT|PERIODENDDT,0,0,0.0
+politics__tx_lobby_subject_matter,case,event+noun,209957,1999-08-01,2027-04-12,27.7,CLEAN,APPLICABLEYEAR|PERIODSTARTDT|PERIODENDDT,0,0,0.0
+politics__tx_lobby_transportation,role,link,3697,2000-02-06,2028-06-26,28.4,CLEAN,APPLICABLEYEAR|PERIODSTARTDT|PERIODENDDT|LOBBYACTIVITYPERIODCD,0,0,0.0
+politics__voteview_rollcalls,vote,event,3364,2023-01-03,2026-06-25,3.5,CLEAN,,0,0,0.0
+politics__voteview_votes,vote,event,945523,,,,NO_CLOCK,,0,0,0.0
+politics__xc_jcs_coa,UNMAPPED,unclassified,705,,,,NO_CLOCK,,0,0,0.0
+politics__xc_jcs_medians,unresolved,event,102,,,,UNMEASURED_CLOCK,YEAR,0,0,0.0
+politics__xc_jcs_scotus,unresolved,event,782,,,,NO_CLOCK,,0,0,0.0
+politics__xc_owid_cpi,aggregate,aggregate,2312,,,,UNMEASURED_CLOCK,YEAR,0,0,0.0
+procurement__fed_sam_exclusions,enforcement,event,167928,1908-04-20,2227-07-21,319.2,CORRUPT_RANGE,ACTIVATION_DATE|TERMINATION_DATE,0,1690,0.0
+procurement__fed_usaspending_bulk,award,event+noun,49613,,,,UNMEASURED_CLOCK,ACTION_DATE|ACTION_DATE_FISCAL_YEAR|PERIOD_OF_PERFORMANCE_START_DATE|PERIOD_OF_PERFORMANCE_CURRENT_END_DATE|PERIOD_OF_PERFORMANCE_POTENTIAL_END_DATE|ORDERING_PERIOD_END_DATE,0,0,0.0
+procurement__fed_usaspending_subawards,award,event+noun,5000,2008-08-01,2026-06-10 16:00:23.716000,17.9,CLEAN,,0,0,0.0
+procurement__intl_ec_sercop,unresolved,event,132995,2023-12-20,2026-12-17,3.0,CLEAN,DATE|TENDER_DATEPUBLISHED|AWARD_DATE|CONTRACT_DATESIGNED,0,0,0.0
+ref__dim_geography,code,code,6988,,,,NO_CLOCK,,0,0,0.0
+ref__dim_state,place,noun,56,,,,NO_CLOCK,,0,0,0.0
+reference__fed_dhs_hifld,unresolved,event,500,2014-06-12,2026-07-02 15:24:12.681013,12.1,CLEAN,SOURCE_DATE,0,0,0.0
+reference__fed_itis_comments,post,event,70524,1996-06-13 14:51:08,2026-08-08 04:44:10.570840,30.1,CLEAN,COMMENT_TIME_STAMP|UPDATE_DATE,0,0,0.0
+reference__fed_itis_experts,person,noun,197,1998-04-28,2026-08-08 04:44:10.570840,28.3,CLEAN,UPDATE_DATE,0,0,0.0
+reference__fed_itis_geographic_div,code,code,480351,1900-01-01,2026-08-08 04:44:10.570840,126.6,CLEAN,UPDATE_DATE,0,0,0.0
+reference__fed_itis_hierarchy,code,code,678363,2026-08-08 04:44:10.570840,2026-08-08 04:44:10.570840,0.0,LOAD_DATE_ONLY,,0,0,0.0
+reference__fed_itis_jurisdiction,code,code,161922,1997-10-27,2026-08-08 04:44:10.570840,28.8,CLEAN,UPDATE_DATE,0,0,0.0
+reference__fed_itis_kingdoms,unresolved,link,7,1996-03-26,2026-08-08 04:44:10.570840,30.4,CLEAN,UPDATE_DATE,0,0,0.0
+reference__fed_itis_longnames,code,code,993346,2026-08-08 04:44:10.570840,2026-08-08 04:44:10.570840,0.0,LOAD_DATE_ONLY,,0,0,0.0
+reference__fed_itis_nodc_ids,unresolved,link,209565,1996-06-24,2026-08-08 04:44:10.570840,30.1,CLEAN,UPDATE_DATE,0,0,0.0
+reference__fed_itis_other_sources,unresolved,event,1071,1996-01-01,2026-08-08 04:44:10.570840,30.6,CLEAN,ACQUISITION_DATE|UPDATE_DATE,0,0,0.0
+reference__fed_itis_publications,dataset,noun,30772,1753-01-01,2026-08-08 04:44:10.570840,273.6,CORRUPT_RANGE,LISTED_PUB_DATE|ACTUAL_PUB_DATE|UPDATE_DATE,255,0,0.0
+reference__fed_itis_reference_links,code,code,1970107,1996-11-12,2026-08-08 04:44:10.570840,29.7,CLEAN,UPDATE_DATE,0,0,0.0
+reference__fed_itis_strippedauthor,code,code,214445,2026-08-08 04:44:10.570840,2026-08-08 04:44:10.570840,0.0,LOAD_DATE_ONLY,,0,0,0.0
+reference__fed_itis_synonym_links,code,code,315254,1996-06-24,2026-08-08 04:44:10.570840,30.1,CLEAN,UPDATE_DATE,0,0,0.0
+reference__fed_itis_taxon_authors_lkp,code,code,214445,1996-06-13,2026-08-08 04:44:10.570840,30.2,CLEAN,UPDATE_DATE,0,0,0.0
+reference__fed_itis_taxon_unit_types,code,code,182,1996-06-13,2026-08-08 04:44:10.570840,30.2,CLEAN,UPDATE_DATE,0,0,0.0
+reference__fed_itis_taxonomic_units,code,code,993346,1996-06-13 14:51:08,2026-08-08 04:44:10.570840,30.1,CLEAN,INITIAL_TIME_STAMP|UPDATE_DATE,0,0,0.0
+reference__fed_itis_tu_comments_links,code,code,192851,1996-06-17,2026-08-08 04:44:10.570840,30.1,CLEAN,UPDATE_DATE,0,0,0.0
+reference__fed_itis_vern_ref_links,code,code,93078,1900-01-01,2026-08-08 04:44:10.570840,126.6,CLEAN,UPDATE_DATE,0,0,0.0
+reference__fed_itis_vernaculars,code,code,166778,1997-08-20,2026-08-08 04:44:10.570840,29.0,CLEAN,UPDATE_DATE,0,0,0.0
+reference__fed_usgs_gnis_all_names,unresolved,event,1249624,1700-12-31,2026-06-29,325.5,CORRUPT_RANGE,PUBLICATIONDATE|ENDING_DATE|DATE_CREATED,225,0,0.0
+reference__fed_usgs_topoview,unresolved,noun,250,2018-02-18,2025-09-22,7.6,CLEAN,DATECREATED|LASTUPDATED|PUBLICATIONDATE,0,0,0.0
+reference__intl_eg_capmas,unresolved,event,150,,,,UNMEASURED_CLOCK,YEAR,0,0,0.6533
+reference__intl_eurostat,unresolved,event,450,,,,UNMEASURED_CLOCK,TIME,0,0,0.0
+reference__intl_gdelt,unresolved,event,1015,,,,UNMEASURED_CLOCK,SQLDATE|MONTHYEAR|YEAR|FRACTIONDATE|DATEADDED,0,0,0.0
+reference__xc_crossref_funder_registry,organization,noun,45661,2026-08-07 20:23:56.685612,2026-08-07 20:23:56.685612,0.0,LOAD_DATE_ONLY,,0,0,0.0
+reference__xc_owid_fertility,aggregate,aggregate,19402,,,,UNMEASURED_CLOCK,YEAR,0,0,0.0
+reference__xc_ror_research_organizations,organization,noun,135710,2018-11-14,2026-08-07 20:22:52.794000,7.7,CLEAN,ADMIN_CREATED_DATE|ADMIN_LAST_MODIFIED_DATE,0,0,0.0
+regulatory__fed_federal_register_documents,document,noun,94731,2010-12-14,2033-03-07,22.2,CORRUPT_RANGE,PUBLICATION_DATE,0,1,0.0
+science__fed_nasa_open_data,unresolved,event,54,1998-05-02,2026-07-02,28.2,CLEAN,RESPONSE_DATE,0,0,0.0
+science__fed_nsf_awards,award,event+noun,125,2026-01-16,2031-12-31,6.0,CORRUPT_RANGE,AWARD_DATE|START_DATE|END_DATE,0,17,0.08
+science__fed_usgs_earthquakes,action,event,443274,2013-02-27,2026-06-28,13.3,CLEAN,TIME|UPDATED,0,0,0.0
+science__intl_embl_ensembl,unresolved,event,643,,,,NO_CLOCK,,0,0,0.0
+science__xc_owid_ai_incidents_annual,accident,event,14,,,,UNMEASURED_CLOCK,YEAR,0,0,0.0
+science_research__fed_nih_reporter,unresolved,event,2122611,1899-12-31,56608739-01-16 20:56:48.000,,UNMEASURED_CLOCK,FISCAL_YEAR|PROJECT_START_DATE|PROJECT_END_DATE|BUDGET_START_DATE|BUDGET_END_DATE|AWARD_NOTICE_DATE,19,2123056,0.0
+science_research__fed_retraction_watch,recall,event+noun,71591,1753-01-01,2026-08-05 21:24:40.302602,273.6,CORRUPT_RANGE,RETRACTIONDATE|ORIGINALPAPERDATE,15,0,0.003
+science_research__fed_sbir_sttr_awards,award,event+noun,219503,0001-01-01,5025-05-05,5024.2,CORRUPT_RANGE,PROPOSAL_AWARD_DATE|CONTRACT_END_DATE|SOLICITATION_YEAR|SOLICITATION_CLOSE_DATE|PROPOSAL_RECEIPT_DATE|DATE_OF_NOTIFICATION,0,3,0.0
+science_research__xc_biorxiv_medrxiv,unresolved,event,432,2021-06-18,2026-06-01,5.0,CLEAN,DATE|PREPRINT_DATE|PUBLISHED_DATE|MONTH,0,0,0.0
+science_research__xc_osf_registrations,registration,event+noun,10,2025-12-12 14:24:31.802432,2029-01-01 00:00:00,3.1,CLEAN,ATTRIBUTES_DATE_CREATED|ATTRIBUTES_DATE_MODIFIED|ATTRIBUTES_NODE_LICENSE_YEAR|ATTRIBUTES_DATE_REGISTERED|ATTRIBUTES_DATE_WITHDRAWN|ATTRIBUTES_EMBARGO_END_DATE,0,0,0.0
+science_research__xc_retraction_watch_database,recall,event+noun,71388,1753-01-01,2026-08-07 20:23:37.787286,273.6,CORRUPT_RANGE,RETRACTIONDATE|ORIGINALPAPERDATE,15,0,0.0
+transport__fed_dot_bts,unresolved,event,21,,,,UNMEASURED_CLOCK,YEAR|MONTH,0,0,0.0
+transport__fed_faa_aircraft_registry,asset,noun,315447,1920-12-09,2033-08-31,112.7,CORRUPT_RANGE,YEAR_MFR|LAST_ACTION_DATE|CERT_ISSUE_DATE|AIR_WORTH_DATE|EXPIRATION_DATE,2408,64406,0.0
+transport__fed_faa_data_portal,unresolved,event,4,,,,UNMEASURED_CLOCK,UPDATE_FREQUENCY|LAST_UPDATED,0,0,0.25
+transport__fed_faa_registry,registry,noun,314417,1970-08-11,1970-08-24,0.0,SHORT_SPAN,YEAR_MFR|LAST_ACTION_DATE|CERT_ISSUE_DATE|AIR_WORTH_DATE|EXPIRATION_DATE,1199875,0,0.0
+transport__fed_fra_casualties,unresolved,event,1150788,1997-01-01,2026-08-09 18:22:06.422939,29.6,CLEAN,INCIDENT_YEAR|INCIDENT_MONTH|DATE|TIME,0,0,0.0
+transport__fed_fra_crossing_incidents,accident,event,251149,1975-01-01,2026-08-09 18:26:38.946552,51.6,CLEAN,REPORT_YEAR|INCIDENT_YEAR|INCIDENT_MONTH|OTHER_INCIDENT_YEAR|OTHER_INCIDENT_MONTH|MAINTENANCE_INCIDENT_YEAR,0,0,0.0
+transport__fed_fra_equipment_accidents,organization,noun,224941,1975-01-01,2026-08-09 18:32:24.930788,51.6,CLEAN,YEAR|ACCIDENT_YEAR|ACCIDENT_MONTH|OTHER_ACCIDENT_YEAR|OTHER_ACCIDENT_MONTH|MAINTENANCE_ACCIDENT_YEAR,0,0,0.0
+transport__fed_fra_rail_deaths_by_railroad,person,noun,5152,2026-08-09 18:22:06.422939,2026-08-09 18:22:06.422939,0.0,LOAD_DATE_ONLY,,0,0,0.0
+transport__fed_fra_safety,unresolved,event,1,,,,UNMEASURED_CLOCK,EVENT_DATE,0,0,0.0
+transport__fed_ntsb_aviation_aircraft,action,event,31503,1980-06-20,2026-08-08 01:55:07.240125,46.1,CLEAN,DATE_LAST_INSP|DPRT_TIME|DPRT_TIMEZN|LCHG_DATE|ACFT_YEAR,0,0,0.0
+transport__fed_ntsb_aviation_events,accident,event,30968,2008-01-01,2026-08-08 01:55:07.240125,18.6,CLEAN,EV_DATE|EV_TIME|EV_YEAR|EV_MONTH|WX_OBS_TIME|ALTIMETER,0,0,0.0
+transport__fed_ntsb_aviation_injury,accident,event,179179,2020-09-25,2026-08-08 01:55:07.240125,5.9,CLEAN,LCHG_DATE,0,0,0.0

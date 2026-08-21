@@ -12,8 +12,16 @@
 #                         PAT from using ACCOUNTADMIN, and all 243 existing mart tables
 #                         are ACCOUNTADMIN-owned, so it would need an ownership transfer
 # So dbt now uses key-pair auth, which is non-interactive and MFA-exempt by design.
-# The public half lives in CROGG23's previously-unused RSA_PUBLIC_KEY_2 slot; the
-# existing RSA_PUBLIC_KEY (whose private half is lost) was left untouched.
+# TWO MACHINES, TWO SLOTS (corrected 2026-08-20): this is no longer a one-machine
+# setup and BOTH key slots are now live. The Mac laptop holds the private half of
+# RSA_PUBLIC_KEY_2 (set 2026-08-19 ~23:46 PT). This Windows box holds the private
+# half of RSA_PUBLIC_KEY (set 2026-08-20). Snowflake accepts either, so both
+# machines authenticate independently.
+# WARNING: rotating without --slot now CLOBBERS THE OTHER MACHINE. The rotate
+# helper defaults to slot 2 (the Mac's). Always pass --slot explicitly:
+#   this box -> --slot 1 ;  the Mac -> --slot 2
+# The prior note here said RSA_PUBLIC_KEY's private half was lost. That was true
+# from 2026-07-29 until today; it is no longer true.
 #
 # The private key is machine-local and gitignored (.keys/ is in .gitignore). If you
 # move machines, regenerate: see scripts/rotate_dbt_keypair.py.

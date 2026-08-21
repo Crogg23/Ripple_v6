@@ -26,7 +26,11 @@ renamed as (
         nullif(trim(SOURCEID), '')                                as source_leak,
         nullif(trim(VALID_UNTIL), '')                             as valid_until,
         nullif(trim(NOTE), '')                                    as note,
-        to_timestamp_ntz(INGESTED_AT)                             as _ingested_at,
+        -- FIXED 2026-08-20 (time-index scan): INGESTED_AT is MICROSECONDS since epoch
+        -- (e.g. 1785965270036203). A bare to_timestamp reads it as SECONDS and
+        -- lands the row in the year 56,596,956 -- which is what poisoned this
+        -- table's measured date range. The `, 6` scale argument is the fix.
+        to_timestamp_ntz(INGESTED_AT, 6)                             as _ingested_at,
         nullif(trim(SOURCE_RUN_ID), '')                           as _source_run_id
     from source
 )

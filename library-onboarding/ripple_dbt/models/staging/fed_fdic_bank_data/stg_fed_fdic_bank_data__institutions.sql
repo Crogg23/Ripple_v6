@@ -29,6 +29,15 @@
   Grain: one row = one insured institution (CERT unique).
 */
 
+-- SENTINEL NULLED 2026-08-20 (time-index scan): FDIC writes 9999-12-31 to mean
+-- "no end date -- still operating", written as 12/31/9999 -- 4,280 rows on it
+-- and 164 on the insured date. Left as a date it makes every bank look like it
+-- closes in the year 9999 and drags any max() to nonsense; as NULL it reads as
+-- what it means (standard rule 6). NOTE: the branch-deposit file's established
+-- date was checked separately and deliberately LEFT ALONE -- its 1900 dates sit
+-- alongside 14,034 real dates in the surrounding years, so they are plausibly
+-- genuine bank history, not a marker.
+
 with source as (
     select * from {{ source('ripple_raw', 'FED_FDIC_BANK_DATA') }}
 ),
@@ -49,7 +58,7 @@ renamed as (
         nullif(trim(ACTIVE), '')                                   as active,
         try_to_date(left(nullif(trim(DATEUPDT), ''), 10))          as dateupdt,
         try_to_date(left(nullif(trim(ESTYMD), ''), 10))            as estymd,
-        try_to_date(left(nullif(trim(ENDEFYMD), ''), 10))          as endefymd,
+        try_to_date(nullif(left(nullif(trim(ENDEFYMD), ''), 10), '12/31/9999'))          as endefymd,
         try_to_number(nullif(trim(ASSET), ''), 18, 4)              as asset,
         try_to_number(nullif(trim(DEP), ''), 18, 4)                as dep,
         try_to_number(nullif(trim(DEPDOM), ''), 18, 4)             as depdom,
@@ -86,7 +95,7 @@ renamed as (
         nullif(trim(FDICSUPV), '')                                 as fdic_supervisor,
         nullif(trim(OCCDISTDESC), '')                              as occ_district,
         nullif(trim(CONSERVE), '')                                 as in_conservatorship,
-        try_to_date(left(nullif(trim(INSDATE), ''), 10))           as insured_date,
+        try_to_date(nullif(left(nullif(trim(INSDATE), ''), 10), '12/31/9999'))           as insured_date,
         try_to_date(left(nullif(trim(INSDROPDATE), ''), 10))       as insurance_dropped_date,
         -- minority depository institution status
         nullif(trim(MDI_STATUS_CODE), '')                          as mdi_status_code,

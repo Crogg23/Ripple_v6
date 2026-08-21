@@ -31,8 +31,13 @@ select
     "obligated_amount_from_IIJA_supplemental_for_overall_award" as OBLIGATED_AMOUNT_FROM_IIJA_SUPPLEMENTAL_FOR_OVERALL_AWARD,
     "action_date" as ACTION_DATE,
     "action_date_fiscal_year" as ACTION_DATE_FISCAL_YEAR,
-    "period_of_performance_start_date" as PERIOD_OF_PERFORMANCE_START_DATE,
-    "period_of_performance_current_end_date" as PERIOD_OF_PERFORMANCE_CURRENT_END_DATE,
+    -- SENTINEL NULLED 2026-08-20 (time-index scan): USAspending writes 0001-01-01
+    -- to mean "no date on file" -- 56,205 rows on the start date and 56,211 on the
+    -- current-end date. Left alone it drags any earliest-date reading to the year 1
+    -- and makes a 20-year award series look 2,000 years long. These columns stay
+    -- TEXT (standard rule 8: never overwrite the raw value); only the marker goes.
+    nullif("period_of_performance_start_date", '0001-01-01') as PERIOD_OF_PERFORMANCE_START_DATE,
+    nullif("period_of_performance_current_end_date", '0001-01-01') as PERIOD_OF_PERFORMANCE_CURRENT_END_DATE,
     "awarding_agency_code" as AWARDING_AGENCY_CODE,
     "awarding_agency_name" as AWARDING_AGENCY_NAME,
     "awarding_sub_agency_code" as AWARDING_SUB_AGENCY_CODE,

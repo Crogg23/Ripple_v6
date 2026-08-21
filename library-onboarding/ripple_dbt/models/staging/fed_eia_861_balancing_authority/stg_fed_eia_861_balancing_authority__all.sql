@@ -29,7 +29,11 @@ renamed as (
         trim(BALANCING_AUTHORITY_NAME)             as balancing_authority_name,
 
         -- metadata
-        to_timestamp(INGESTED_AT)                  as _loaded_at,
+        -- FIXED 2026-08-20 (time-index scan): INGESTED_AT is MICROSECONDS since epoch
+        -- (e.g. 1785965270036203). A bare to_timestamp reads it as SECONDS and
+        -- lands the row in the year 56,596,956 -- which is what poisoned this
+        -- table's measured date range. The `, 6` scale argument is the fix.
+        to_timestamp_ntz(INGESTED_AT, 6)                  as _loaded_at,
         SOURCE_RUN_ID                              as _source_run_id,
         SRC_SHA256                                 as _src_sha256
 

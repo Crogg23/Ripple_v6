@@ -1,0 +1,1815 @@
+{
+ "ECONOMICS__FED_USASPENDING_CONTRACTS_FULL|PERIOD_OF_PERFORMANCE_CURRENT_END_DATE": {
+  "kind": "century",
+  "raw_table": "FED_USASPENDING_CONTRACTS_FULL",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'PERIOD_OF_PERFORMANCE_CURRENT_END"
+ },
+ "ECONOMICS__FED_USASPENDING_CONTRACTS_FULL|SOLICITATION_DATE": {
+  "kind": "century",
+  "raw_table": "FED_USASPENDING_CONTRACTS_FULL",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'SOLICITATION_DATE'"
+ },
+ "ECONOMICS__FED_USASPENDING_CONTRACTS_FULL|ORDERING_PERIOD_END_DATE": {
+  "kind": "blank_marker",
+  "raw_table": "FED_USASPENDING_CONTRACTS_FULL",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'ORDERING_PERIOD_END_DATE'"
+ },
+ "JUSTICE__FED_COURTLISTENER_DOCKETS|DATE_ARGUED": {
+  "kind": "century",
+  "raw_table": "FED_COURTLISTENER_DOCKETS",
+  "samples": [
+   [
+    "2009-06-10",
+    549
+   ],
+   [
+    "2018-05-15",
+    126
+   ],
+   [
+    "2018-09-26",
+    123
+   ],
+   [
+    "1938-10-04",
+    119
+   ],
+   [
+    "2017-12-06",
+    117
+   ]
+  ]
+ },
+ "FINANCE__FED_SEC_BUSINESS_DEVELOPMENT_COMPANY_REPORT|FILING_DATE": {
+  "kind": "century",
+  "raw_table": "FED_SEC_BUSINESS_DEVELOPMENT_COMPANY_REPORT",
+  "samples": [
+   [
+    "05/29/26",
+    20
+   ],
+   [
+    "05/27/26",
+    17
+   ],
+   [
+    "05/28/26",
+    17
+   ],
+   [
+    "05/12/26",
+    15
+   ],
+   [
+    "05/13/26",
+    14
+   ]
+  ]
+ },
+ "OPEN_DATA__INTL_CA_OPEN_CANADA|TIME_PERIOD_COVERAGE_START": {
+  "kind": "century",
+  "raw_table": "INTL_CA_OPEN_CANADA",
+  "samples": [
+   [
+    "0001-01-01 00:00:00",
+    274
+   ],
+   [
+    "2009-01-01 00:00:00",
+    7
+   ],
+   [
+    "2015-01-01 00:00:00",
+    7
+   ],
+   [
+    "2025-01-01 00:00:00",
+    7
+   ],
+   [
+    "2012-01-01 00:00:00",
+    6
+   ]
+  ]
+ },
+ "FINANCE__FED_SEC_CLOSED_END_FUND_INFORMATION|FILING_DATE": {
+  "kind": "century",
+  "raw_table": "FED_SEC_CLOSED_END_FUND_INFORMATION",
+  "samples": [
+   [
+    "05/29/26",
+    197
+   ],
+   [
+    "05/28/26",
+    114
+   ],
+   [
+    "05/22/26",
+    31
+   ],
+   [
+    "05/27/26",
+    28
+   ],
+   [
+    "05/15/26",
+    19
+   ]
+  ]
+ },
+ "JUSTICE__FED_COURTLISTENER_COURTS|START_DATE": {
+  "kind": "century",
+  "raw_table": "FED_COURTLISTENER_COURTS",
+  "samples": [
+   [
+    "1973-01-01",
+    89
+   ],
+   [
+    "1849-01-01",
+    12
+   ],
+   [
+    "1789-01-01",
+    11
+   ],
+   [
+    "1684-01-01",
+    11
+   ],
+   [
+    "1837-01-01",
+    10
+   ]
+  ]
+ },
+ "JUSTICE__FED_COURTLISTENER_COURTS|END_DATE": {
+  "kind": "century",
+  "raw_table": "FED_COURTLISTENER_COURTS",
+  "samples": [
+   [
+    "1972-12-31",
+    98
+   ],
+   [
+    "2001-01-01",
+    79
+   ],
+   [
+    "1911-12-31",
+    76
+   ],
+   [
+    "1947-12-31",
+    14
+   ],
+   [
+    "1879-12-31",
+    11
+   ]
+  ]
+ },
+ "FINANCE__FED_NCUA_CALL_REPORTS_FOICU|INSURED_DATE": {
+  "kind": "blank_marker",
+  "raw_table": "FED_NCUA_CALL_REPORTS_FOICU",
+  "samples": [
+   [
+    "1/4/1971 0:00:00",
+    1375
+   ],
+   [
+    "1/1/1900 0:00:00",
+    71
+   ],
+   [
+    "1/3/1972 0:00:00",
+    62
+   ],
+   [
+    "1/7/1971 0:00:00",
+    39
+   ],
+   [
+    "1/22/1971 0:00:00",
+    30
+   ]
+  ]
+ },
+ "OPEN_DATA__INTL_CH_OPENDATASWISS|ISSUED": {
+  "kind": "blank_marker",
+  "raw_table": "INTL_CH_OPENDATASWISS",
+  "samples": [
+   [
+    "2026-05-31T00:00:00",
+    236
+   ],
+   [
+    "2016-01-20T00:00:00+01:00",
+    176
+   ],
+   [
+    "2013-01-09T09:00:00+00:00",
+    103
+   ],
+   [
+    "2022-05-15T00:00:00",
+    53
+   ],
+   [
+    "2011-02-03T08:15:00+00:00",
+    43
+   ]
+  ]
+ },
+ "OPEN_DATA__INTL_DE_GOVDATA|TEMPORAL_START": {
+  "kind": "century",
+  "raw_table": "INTL_DE_GOVDATA",
+  "samples": [
+   [
+    "2019-01-01T00:00:00",
+    248
+   ],
+   [
+    "2020-01-01T00:00:00",
+    241
+   ],
+   [
+    "2018-01-01T00:00:00",
+    238
+   ],
+   [
+    "2016-01-01T00:00:00",
+    226
+   ],
+   [
+    "2017-01-01T00:00:00",
+    215
+   ]
+  ]
+ },
+ "OPEN_DATA__INTL_DE_GOVDATA|TEMPORAL_END": {
+  "kind": "blank_marker",
+  "raw_table": "INTL_DE_GOVDATA",
+  "samples": [
+   [
+    "2019-12-31T00:00:00",
+    261
+   ],
+   [
+    "2020-12-31T00:00:00",
+    241
+   ],
+   [
+    "2016-12-31T00:00:00",
+    241
+   ],
+   [
+    "2018-12-31T00:00:00",
+    239
+   ],
+   [
+    "2017-12-31T00:00:00",
+    211
+   ]
+  ]
+ },
+ "POLITICS__CA_LOBBY_CONTRIBUTIONS|FILING_PERIOD_END_DT": {
+  "kind": "century",
+  "raw_table": "CA_LOBBY_CONTRIBUTIONS",
+  "samples": [
+   [
+    "9/30/2000 12:00:00 AM",
+    2559
+   ],
+   [
+    "3/31/2000 12:00:00 AM",
+    1658
+   ],
+   [
+    "12/31/2000 12:00:00 AM",
+    1181
+   ],
+   [
+    "3/31/2001 12:00:00 AM",
+    790
+   ],
+   [
+    "6/30/2000 12:00:00 AM",
+    236
+   ]
+  ]
+ },
+ "HEALTH__FED_CMS_HOSPITAL_ENROLLMENTS|INCORPORATION_DATE": {
+  "kind": "blank_marker",
+  "raw_table": "FED_CMS_HOSPITAL_ENROLLMENTS",
+  "samples": [
+   [
+    "02/19/1948",
+    40
+   ],
+   [
+    "10/11/1954",
+    27
+   ],
+   [
+    "04/01/1975",
+    26
+   ],
+   [
+    "11/09/1998",
+    26
+   ],
+   [
+    "07/01/1970",
+    24
+   ]
+  ]
+ },
+ "HISTORICAL_RECORDS__FED_SLAVEVOYAGES_INTRAAMERICAN|DATE_LEFTAFR": {
+  "kind": "century",
+  "raw_table": "FED_SLAVEVOYAGES_INTRAAMERICAN",
+  "samples": [
+   [
+    " ",
+    7412
+   ],
+   [
+    "6/30/1700",
+    21
+   ],
+   [
+    "6/28/1712",
+    20
+   ],
+   [
+    "11/9/1705",
+    11
+   ],
+   [
+    "12/31/1706",
+    10
+   ]
+  ]
+ },
+ "HISTORICAL_RECORDS__FED_SLAVEVOYAGES_INTRAAMERICAN|DATE_LAND1": {
+  "kind": "century",
+  "raw_table": "FED_SLAVEVOYAGES_INTRAAMERICAN",
+  "samples": [
+   [
+    " ",
+    5924
+   ],
+   [
+    "4/22/1792",
+    5
+   ],
+   [
+    "12/3/1789",
+    5
+   ],
+   [
+    "2/2/1797",
+    5
+   ],
+   [
+    "5/16/1793",
+    5
+   ]
+  ]
+ },
+ "HISTORICAL_RECORDS__FED_SLAVEVOYAGES_INTRAAMERICAN|DATE_LAND2": {
+  "kind": "century",
+  "raw_table": "FED_SLAVEVOYAGES_INTRAAMERICAN",
+  "samples": [
+   [
+    " ",
+    11459
+   ],
+   [
+    "2/11/1730",
+    2
+   ],
+   [
+    "7/17/1771",
+    1
+   ],
+   [
+    "4/19/1727",
+    1
+   ],
+   [
+    "12/4/1741",
+    1
+   ]
+  ]
+ },
+ "JUSTICE__FED_COURTLISTENER_JUDGES|DATE_DOD": {
+  "kind": "century",
+  "raw_table": "FED_COURTLISTENER_JUDGES",
+  "samples": [
+   [
+    "2010-01-01",
+    7
+   ],
+   [
+    "1972-01-01",
+    6
+   ],
+   [
+    "1984-01-01",
+    6
+   ],
+   [
+    "2000-01-01",
+    5
+   ],
+   [
+    "1961-01-01",
+    5
+   ]
+  ]
+ },
+ "POLITICS__CA_LOBBY_AMENDMENTS|THRU_DATE": {
+  "kind": "century",
+  "raw_table": "CA_LOBBY_AMENDMENTS",
+  "samples": [
+   [
+    "12/31/2024 12:00:00 AM",
+    2841
+   ],
+   [
+    "12/31/2020 12:00:00 AM",
+    2709
+   ],
+   [
+    "12/31/2026 12:00:00 AM",
+    2666
+   ],
+   [
+    "12/31/2018 12:00:00 AM",
+    2478
+   ],
+   [
+    "12/31/2022 12:00:00 AM",
+    2448
+   ]
+  ]
+ },
+ "POLITICS__CA_LOBBY_AMENDMENTS|ADD_L_EFF": {
+  "kind": "century",
+  "raw_table": "CA_LOBBY_AMENDMENTS",
+  "samples": [
+   [
+    "1/1/2023 12:00:00 AM",
+    32
+   ],
+   [
+    "1/1/2025 12:00:00 AM",
+    20
+   ],
+   [
+    "1/1/2017 12:00:00 AM",
+    18
+   ],
+   [
+    "1/1/2019 12:00:00 AM",
+    17
+   ],
+   [
+    "1/1/2024 12:00:00 AM",
+    16
+   ]
+  ]
+ },
+ "POLITICS__CA_LOBBY_AMENDMENTS|DEL_L_EFF": {
+  "kind": "century",
+  "raw_table": "CA_LOBBY_AMENDMENTS",
+  "samples": [
+   [
+    "12/31/2019 12:00:00 AM",
+    23
+   ],
+   [
+    "12/31/2023 12:00:00 AM",
+    22
+   ],
+   [
+    "6/30/2025 12:00:00 AM",
+    21
+   ],
+   [
+    "12/31/2025 12:00:00 AM",
+    21
+   ],
+   [
+    "12/31/2017 12:00:00 AM",
+    20
+   ]
+  ]
+ },
+ "POLITICS__CA_LOBBY_AMENDMENTS|OTHER_EFF": {
+  "kind": "century",
+  "raw_table": "CA_LOBBY_AMENDMENTS",
+  "samples": [
+   [
+    "1/1/2025 12:00:00 AM",
+    79
+   ],
+   [
+    "1/1/2021 12:00:00 AM",
+    65
+   ],
+   [
+    "1/1/2007 12:00:00 AM",
+    64
+   ],
+   [
+    "1/1/2013 12:00:00 AM",
+    61
+   ],
+   [
+    "1/1/2011 12:00:00 AM",
+    60
+   ]
+  ]
+ },
+ "FINANCE__FED_FDIC_BANK_DATA|ESTYMD": {
+  "kind": "blank_marker",
+  "raw_table": "FED_FDIC_BANK_DATA",
+  "samples": [
+   [
+    "01/01/1934",
+    283
+   ],
+   [
+    "01/01/1889",
+    209
+   ],
+   [
+    "01/01/1887",
+    181
+   ],
+   [
+    "01/01/1906",
+    181
+   ],
+   [
+    "01/01/1907",
+    180
+   ]
+  ]
+ },
+ "FINANCE__FED_FDIC_BANK_DATA|ENDEFYMD": {
+  "kind": "blank_marker",
+  "raw_table": "FED_FDIC_BANK_DATA",
+  "samples": [
+   [
+    "12/31/9999",
+    4280
+   ],
+   [
+    "01/01/1995",
+    83
+   ],
+   [
+    "06/30/1982",
+    79
+   ],
+   [
+    "01/01/1988",
+    74
+   ],
+   [
+    "12/31/1988",
+    68
+   ]
+  ]
+ },
+ "FINANCE__FED_FDIC_BANK_DATA|INSURED_DATE": {
+  "kind": "blank_marker",
+  "raw_table": "FED_FDIC_BANK_DATA",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'INSURED_DATE'"
+ },
+ "HEALTH__FED_FDA_DEVICE_PMA|DATE_RECEIVED": {
+  "kind": "blank_marker",
+  "raw_table": "FED_FDA_DEVICE_PMA",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'DATE_RECEIVED'"
+ },
+ "ENVIRONMENT__FED_EPA_NPDES_NPDES_CS_VIOLATIONS|ACTUAL_DATE": {
+  "kind": "century",
+  "raw_table": "FED_EPA_NPDES_NPDES_CS_VIOLATIONS",
+  "samples": [
+   [
+    "12/09/2020",
+    418
+   ],
+   [
+    "04/26/2004",
+    268
+   ],
+   [
+    "10/01/2020",
+    171
+   ],
+   [
+    "05/31/2023",
+    138
+   ],
+   [
+    "03/21/2022",
+    131
+   ]
+  ]
+ },
+ "POLITICS__CA_LOBBY_CHG_LOG|LOG_DT": {
+  "kind": "century",
+  "raw_table": "CA_LOBBY_CHG_LOG",
+  "samples": [
+   [
+    "12/30/2020 12:00:00 AM",
+    213
+   ],
+   [
+    "12/31/2024 12:00:00 AM",
+    181
+   ],
+   [
+    "12/30/2024 12:00:00 AM",
+    145
+   ],
+   [
+    "7/20/2012 12:00:00 AM",
+    124
+   ],
+   [
+    "6/27/2000 12:00:00 AM",
+    120
+   ]
+  ]
+ },
+ "POLITICS__CA_LOBBY_CHG_LOG|ETHICS_DT": {
+  "kind": "blank_marker",
+  "raw_table": "CA_LOBBY_CHG_LOG",
+  "samples": [
+   [
+    "1/1/1900 12:00:00 AM",
+    189
+   ],
+   [
+    "1/18/2001 12:00:00 AM",
+    162
+   ],
+   [
+    "1/8/1999 12:00:00 AM",
+    42
+   ],
+   [
+    "3/16/2001 12:00:00 AM",
+    28
+   ],
+   [
+    "8/2/2002 12:00:00 AM",
+    26
+   ]
+  ]
+ },
+ "REFERENCE__FED_ITIS_VERN_REF_LINKS|UPDATE_DATE": {
+  "kind": "blank_marker",
+  "raw_table": "FED_ITIS_VERN_REF_LINKS",
+  "samples": [
+   [
+    "2007-02-15",
+    6809
+   ],
+   [
+    "2006-03-09",
+    5771
+   ],
+   [
+    "2003-05-20",
+    5615
+   ],
+   [
+    "2022-10-27",
+    2855
+   ],
+   [
+    "2025-03-19",
+    2561
+   ]
+  ]
+ },
+ "OPEN_DATA__INTL_FR_DATA_GOUV|CREATED_AT": {
+  "kind": "century",
+  "raw_table": "INTL_FR_DATA_GOUV_FULL",
+  "samples": [
+   [
+    "2024-05-28T00:00:00",
+    1882
+   ],
+   [
+    "2017-10-07T00:00:00",
+    1860
+   ],
+   [
+    "2017-12-14T00:00:00",
+    1042
+   ],
+   [
+    "2017-12-05T00:00:00",
+    855
+   ],
+   [
+    "2021-08-09T00:00:00",
+    713
+   ]
+  ]
+ },
+ "OPEN_DATA__INTL_FR_DATA_GOUV|LAST_MODIFIED": {
+  "kind": "century",
+  "raw_table": "INTL_FR_DATA_GOUV_FULL",
+  "samples": [
+   [
+    "2022-07-11T00:00:00",
+    479
+   ],
+   [
+    "2023-08-22T00:00:00",
+    472
+   ],
+   [
+    "2020-02-21T00:00:00",
+    435
+   ],
+   [
+    "2021-03-04T00:00:00",
+    370
+   ],
+   [
+    "2015-07-08T00:00:00",
+    293
+   ]
+  ]
+ },
+ "ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_INFORMAL_ACTIONS|ACHIEVED_DATE": {
+  "kind": "century",
+  "raw_table": "FED_EPA_ICIS_AIR_ICIS_AIR_INFORMAL_ACTIONS",
+  "samples": [
+   [
+    "12/21/2018",
+    846
+   ],
+   [
+    "10/25/2024",
+    465
+   ],
+   [
+    "04/19/2018",
+    346
+   ],
+   [
+    "03/21/2017",
+    335
+   ],
+   [
+    "06/20/1997",
+    325
+   ]
+  ]
+ },
+ "SCIENCE_RESEARCH__FED_SBIR_STTR_AWARDS|PROPOSAL_RECEIPT_DATE": {
+  "kind": "century",
+  "raw_table": "FED_SBIR_STTR_AWARDS",
+  "samples": [
+   [
+    "2016-02-17",
+    975
+   ],
+   [
+    "2017-02-08",
+    916
+   ],
+   [
+    "2018-02-07",
+    727
+   ],
+   [
+    "2019-07-01",
+    674
+   ],
+   [
+    "2019-02-06",
+    615
+   ]
+  ]
+ },
+ "CONSUMER_SAFETY__FED_NHTSA_RECALLS|NOTIFICATION_DATE": {
+  "kind": "century",
+  "raw_table": "FED_NHTSA_RECALLS",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'NOTIFICATION_DATE'"
+ },
+ "FINANCE__FED_EPA_ICIS_FEC_ICIS_FEC_EPA_INSPECTIONS|ACTUAL_BEGIN_DATE": {
+  "kind": "century",
+  "raw_table": "FED_EPA_ICIS_FEC_ICIS_FEC_EPA_INSPECTIONS",
+  "samples": [
+   [
+    "10/20/2005",
+    428
+   ],
+   [
+    "09/12/2024",
+    272
+   ],
+   [
+    "03/17/2026",
+    255
+   ],
+   [
+    "08/15/2002",
+    248
+   ],
+   [
+    "03/18/2026",
+    244
+   ]
+  ]
+ },
+ "FINANCE__FED_EPA_ICIS_FEC_ICIS_FEC_EPA_INSPECTIONS|ACTUAL_END_DATE": {
+  "kind": "century",
+  "raw_table": "FED_EPA_ICIS_FEC_ICIS_FEC_EPA_INSPECTIONS",
+  "samples": [
+   [
+    "09/12/2024",
+    276
+   ],
+   [
+    "03/17/2026",
+    258
+   ],
+   [
+    "06/09/2022",
+    244
+   ],
+   [
+    "03/18/2026",
+    243
+   ],
+   [
+    "09/28/2021",
+    233
+   ]
+  ]
+ },
+ "POLITICS__TX_LOBBY_COVER|PERIOD_END_DT": {
+  "kind": "century",
+  "raw_table": "TX_LOBBY_COVER",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'PERIOD_END_DT'"
+ },
+ "FINANCE__FED_SEC_13F_FILERS|REPORTCALENDARORQUARTER": {
+  "kind": "blank_marker",
+  "raw_table": "FED_SEC_13F_FILERS",
+  "samples": [
+   [
+    "31-DEC-2025",
+    11025
+   ],
+   [
+    "31-MAR-2026",
+    10776
+   ],
+   [
+    "31-DEC-2024",
+    10356
+   ],
+   [
+    "30-JUN-2025",
+    10305
+   ],
+   [
+    "31-MAR-2025",
+    10299
+   ]
+  ]
+ },
+ "ENVIRONMENT__FED_EPA_RCRA_ENFORCEMENTS|ENFORCEMENT_ACTION_DATE": {
+  "kind": "century",
+  "raw_table": "FED_EPA_RCRA_ENFORCEMENTS",
+  "samples": [
+   [
+    "09/28/2022",
+    879
+   ],
+   [
+    "03/01/1991",
+    494
+   ],
+   [
+    "10/19/1995",
+    386
+   ],
+   [
+    "09/22/2014",
+    349
+   ],
+   [
+    "11/15/2022",
+    299
+   ]
+  ]
+ },
+ "ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_PROGRAMS|BEGIN_DATE": {
+  "kind": "century",
+  "raw_table": "FED_EPA_ICIS_AIR_ICIS_AIR_PROGRAMS",
+  "samples": [
+   [
+    "10/19/2014",
+    213850
+   ],
+   [
+    "10/27/2015",
+    9503
+   ],
+   [
+    "09/29/2025",
+    8601
+   ],
+   [
+    "03/31/2015",
+    8257
+   ],
+   [
+    "03/09/2015",
+    6895
+   ]
+  ]
+ },
+ "REFERENCE__FED_ITIS_GEOGRAPHIC_DIV|UPDATE_DATE": {
+  "kind": "blank_marker",
+  "raw_table": "FED_ITIS_GEOGRAPHIC_DIV",
+  "samples": [
+   [
+    "1996-11-05",
+    26227
+   ],
+   [
+    "2019-09-28",
+    13267
+   ],
+   [
+    "2021-12-19",
+    13262
+   ],
+   [
+    "2001-12-20",
+    12500
+   ],
+   [
+    "2019-11-22",
+    12024
+   ]
+  ]
+ },
+ "ECONOMICS__INTL_GLEIF_RELATIONSHIPS|RELATIONSHIP_PERIOD_1_ENDDATE": {
+  "kind": "blank_marker",
+  "raw_table": "INTL_GLEIF_RELATIONSHIPS",
+  "samples": [
+   [
+    "2024-12-31T00:00:00+01:00",
+    16022
+   ],
+   [
+    "2024-12-31T00:00:00Z",
+    9532
+   ],
+   [
+    "2025-12-30T23:00:00Z",
+    6847
+   ],
+   [
+    "2024-12-30T23:00:00Z",
+    6655
+   ],
+   [
+    "2025-12-31T00:00:00+01:00",
+    5845
+   ]
+  ]
+ },
+ "ECONOMICS__INTL_GLEIF_RELATIONSHIPS|RELATIONSHIP_PERIOD_2_ENDDATE": {
+  "kind": "blank_marker",
+  "raw_table": "INTL_GLEIF_RELATIONSHIPS",
+  "samples": [
+   [
+    "2024-12-31T23:59:59+01:00",
+    6745
+   ],
+   [
+    "2025-03-30T18:30:00.001Z",
+    5861
+   ],
+   [
+    "2022-12-31T00:00:00.000Z",
+    5615
+   ],
+   [
+    "2024-12-31T00:00:00.000Z",
+    4522
+   ],
+   [
+    "2016-12-31T00:00:00.000+01:00",
+    3831
+   ]
+  ]
+ },
+ "ECONOMICS__INTL_GLEIF_RELATIONSHIPS|RELATIONSHIP_PERIOD_3_ENDDATE": {
+  "kind": "blank_marker",
+  "raw_table": "INTL_GLEIF_RELATIONSHIPS",
+  "samples": [
+   [
+    "2022-12-31T00:00:00Z",
+    878
+   ],
+   [
+    "2021-12-31T00:00:00.000Z",
+    775
+   ],
+   [
+    "2024-12-31T00:00:00Z",
+    733
+   ],
+   [
+    "2021-12-31T00:00:00Z",
+    683
+   ],
+   [
+    "2022-12-31T00:00:00.000Z",
+    486
+   ]
+  ]
+ },
+ "ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_TITLEV_CERTS|ACTUAL_END_DATE": {
+  "kind": "century",
+  "raw_table": "FED_EPA_ICIS_AIR_ICIS_AIR_TITLEV_CERTS",
+  "samples": [
+   [
+    "01/30/2017",
+    11860
+   ],
+   [
+    "01/30/2018",
+    9820
+   ],
+   [
+    "01/30/2019",
+    6350
+   ],
+   [
+    "01/30/2012",
+    4805
+   ],
+   [
+    "01/30/2013",
+    4640
+   ]
+  ]
+ },
+ "POLITICS__CA_LOBBY_COVER|THRU_DATE": {
+  "kind": "century",
+  "raw_table": "CA_LOBBY_COVER",
+  "samples": [
+   [
+    "6/30/2024 12:00:00 AM",
+    7411
+   ],
+   [
+    "6/30/2025 12:00:00 AM",
+    7382
+   ],
+   [
+    "9/30/2024 12:00:00 AM",
+    7357
+   ],
+   [
+    "9/30/2025 12:00:00 AM",
+    7301
+   ],
+   [
+    "3/31/2024 12:00:00 AM",
+    7297
+   ]
+  ]
+ },
+ "LABOR__FED_DOL_OLMS|NEXT_ELECTION_DATE": {
+  "kind": "century",
+  "raw_table": "FED_DOL_OLMS",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'NEXT_ELECTION_DATE'"
+ },
+ "ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_STACK_TESTS|ACTUAL_END_DATE": {
+  "kind": "century",
+  "raw_table": "FED_EPA_ICIS_AIR_ICIS_AIR_STACK_TESTS",
+  "samples": [
+   [
+    "06/20/2024",
+    2062
+   ],
+   [
+    "06/05/2024",
+    1908
+   ],
+   [
+    "06/19/2024",
+    1740
+   ],
+   [
+    "06/26/2024",
+    1593
+   ],
+   [
+    "06/11/2024",
+    1317
+   ]
+  ]
+ },
+ "ENVIRONMENT__FED_EPA_RCRA_VIOLATIONS|DATE_VIOLATION_DETERMINED": {
+  "kind": "century",
+  "raw_table": "FED_EPA_RCRA_VIOLATIONS",
+  "samples": [
+   [
+    "02/15/2022",
+    5409
+   ],
+   [
+    "06/08/2021",
+    638
+   ],
+   [
+    "10/19/1995",
+    397
+   ],
+   [
+    "06/16/2015",
+    338
+   ],
+   [
+    "03/02/2025",
+    336
+   ]
+  ]
+ },
+ "ENVIRONMENT__FED_EPA_RCRA_VIOLATIONS|ACTUAL_RTC_DATE": {
+  "kind": "century",
+  "raw_table": "FED_EPA_RCRA_VIOLATIONS",
+  "samples": [
+   [
+    "10/19/2022",
+    4302
+   ],
+   [
+    "12/08/2022",
+    909
+   ],
+   [
+    "09/08/2023",
+    722
+   ],
+   [
+    "01/01/2000",
+    640
+   ],
+   [
+    "07/04/1994",
+    406
+   ]
+  ]
+ },
+ "CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_ENTITIES|STRUCK_OFF_DATE": {
+  "kind": "century",
+  "raw_table": "FED_ICIJ_OFFSHORELEAKS_ENTITIES",
+  "samples": [
+   [
+    "31-AUG-2002",
+    18576
+   ],
+   [
+    "01-JAN-2000",
+    15896
+   ],
+   [
+    "31-JAN-2001",
+    13233
+   ],
+   [
+    "31-DEC-1998",
+    10378
+   ],
+   [
+    "10-APR-2003",
+    7633
+   ]
+  ]
+ },
+ "JUSTICE__FED_FJC_IDB_APPELLATE|DISTRICT_DOCKET_DATE": {
+  "kind": "blank_marker",
+  "raw_table": "FED_FJC_IDB_APPELLATE",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'DISTRICT_DOCKET_DATE'"
+ },
+ "JUSTICE__FED_FJC_IDB_APPELLATE|APPEAL_DATE": {
+  "kind": "blank_marker",
+  "raw_table": "FED_FJC_IDB_APPELLATE",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'APPEAL_DATE'"
+ },
+ "JUSTICE__FED_FJC_IDB_APPELLATE|TRANSFER_DATE": {
+  "kind": "blank_marker",
+  "raw_table": "FED_FJC_IDB_APPELLATE",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'TRANSFER_DATE'"
+ },
+ "JUSTICE__FED_FJC_IDB_APPELLATE|COURT_RECORD_DATE": {
+  "kind": "blank_marker",
+  "raw_table": "FED_FJC_IDB_APPELLATE",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'COURT_RECORD_DATE'"
+ },
+ "JUSTICE__FED_FJC_IDB_APPELLATE|BRIEFS_FILED": {
+  "kind": "blank_marker",
+  "raw_table": "FED_FJC_IDB_APPELLATE",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'BRIEFS_FILED'"
+ },
+ "JUSTICE__FED_FJC_IDB_APPELLATE|SUBMISSION_DATE": {
+  "kind": "blank_marker",
+  "raw_table": "FED_FJC_IDB_APPELLATE",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'SUBMISSION_DATE'"
+ },
+ "JUSTICE__FED_FJC_IDB_APPELLATE|HEARING_DATE": {
+  "kind": "blank_marker",
+  "raw_table": "FED_FJC_IDB_APPELLATE",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'HEARING_DATE'"
+ },
+ "JUSTICE__FED_FJC_IDB_APPELLATE|JUDGMENT_DATE": {
+  "kind": "blank_marker",
+  "raw_table": "FED_FJC_IDB_APPELLATE",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'JUDGMENT_DATE'"
+ },
+ "FINANCE__FED_SEC_INSIDER_DERIV_TRANS|EXPIRATION_DATE": {
+  "kind": "century",
+  "raw_table": "FED_SEC_INSIDER_DERIV_TRANS",
+  "samples": [
+   [
+    "31-DEC-2023",
+    923
+   ],
+   [
+    "31-DEC-2019",
+    910
+   ],
+   [
+    "01-MAR-2026",
+    889
+   ],
+   [
+    "31-DEC-2020",
+    881
+   ],
+   [
+    "01-MAR-2028",
+    821
+   ]
+  ]
+ },
+ "ENVIRONMENT__FED_EPA_RCRA_EVALUATIONS|EVALUATION_START_DATE": {
+  "kind": "century",
+  "raw_table": "FED_EPA_RCRA_EVALUATIONS",
+  "samples": [
+   [
+    "01/15/2022",
+    1023
+   ],
+   [
+    "03/01/2018",
+    802
+   ],
+   [
+    "06/12/2014",
+    610
+   ],
+   [
+    "03/02/2020",
+    593
+   ],
+   [
+    "03/01/2011",
+    587
+   ]
+  ]
+ },
+ "REFERENCE__FED_USGS_GNIS_ALL_NAMES|PUBLICATION_DATE": {
+  "kind": "blank_marker",
+  "raw_table": "FED_USGS_GNIS_ALL_NAMES",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'PUBLICATION_DATE'"
+ },
+ "REFERENCE__FED_USGS_GNIS_ALL_NAMES|DATE_CREATED": {
+  "kind": "blank_marker",
+  "raw_table": "FED_USGS_GNIS_ALL_NAMES",
+  "samples": [
+   [
+    "12/31/1981",
+    71762
+   ],
+   [
+    "01/19/1981",
+    42990
+   ],
+   [
+    "01/01/2000",
+    37471
+   ],
+   [
+    "11/30/1979",
+    30133
+   ],
+   [
+    "10/13/1978",
+    28585
+   ]
+  ]
+ },
+ "FINANCE__FED_SEC_INSIDER_SUBMISSION|PERIOD_OF_REPORT": {
+  "kind": "century",
+  "raw_table": "FED_SEC_INSIDER_SUBMISSION",
+  "samples": [
+   [
+    "31-DEC-2018",
+    4478
+   ],
+   [
+    "31-DEC-2019",
+    4436
+   ],
+   [
+    "31-DEC-2021",
+    4319
+   ],
+   [
+    "31-DEC-2020",
+    4272
+   ],
+   [
+    "31-DEC-2016",
+    3967
+   ]
+  ]
+ },
+ "FINANCE__FED_SEC_INSIDER_SUBMISSION|DATE_OF_ORIGINAL_SUBMISSION": {
+  "kind": "century",
+  "raw_table": "FED_SEC_INSIDER_SUBMISSION",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'DATE_OF_ORIGINAL_SUBMISSION'"
+ },
+ "ENVIRONMENT__FED_EPA_NPDES_NPDES_INSPECTIONS|ACTUAL_BEGIN_DATE": {
+  "kind": "century",
+  "raw_table": "FED_EPA_NPDES_NPDES_INSPECTIONS",
+  "samples": [
+   [
+    "04/11/2017",
+    1186
+   ],
+   [
+    "09/14/2012",
+    803
+   ],
+   [
+    "09/03/2013",
+    582
+   ],
+   [
+    "01/10/2013",
+    561
+   ],
+   [
+    "06/10/2025",
+    518
+   ]
+  ]
+ },
+ "ENVIRONMENT__FED_EPA_NPDES_NPDES_INSPECTIONS|ACTUAL_END_DATE": {
+  "kind": "century",
+  "raw_table": "FED_EPA_NPDES_NPDES_INSPECTIONS",
+  "samples": [
+   [
+    "04/11/2017",
+    1177
+   ],
+   [
+    "09/14/2012",
+    832
+   ],
+   [
+    "09/03/2013",
+    575
+   ],
+   [
+    "01/10/2013",
+    566
+   ],
+   [
+    "06/10/2025",
+    515
+   ]
+  ]
+ },
+ "JUSTICE__FED_COURTLISTENER_INVESTMENTS|TRANSACTION_DATE_RAW": {
+  "kind": "century",
+  "raw_table": "FED_COURTLISTENER_INVESTMENTS",
+  "samples": [
+   [
+    "04/01/20",
+    1194
+   ],
+   [
+    "03/25/20",
+    1095
+   ],
+   [
+    "03/18/20",
+    1080
+   ],
+   [
+    "03/20/20",
+    1049
+   ],
+   [
+    "03/19/20",
+    996
+   ]
+  ]
+ },
+ "ENVIRONMENT__FED_EPA_SDWA_SDWA_SITE_VISITS|VISIT_DATE": {
+  "kind": "blank_marker",
+  "raw_table": "FED_EPA_SDWA_SDWA_SITE_VISITS",
+  "samples": [
+   [
+    "08/11/2004",
+    682
+   ],
+   [
+    "06/22/2017",
+    657
+   ],
+   [
+    "06/14/2017",
+    631
+   ],
+   [
+    "06/21/2017",
+    624
+   ],
+   [
+    "06/13/2017",
+    620
+   ]
+  ]
+ },
+ "FINANCE__FED_SEC_INSIDER_NONDERIV_TRANS|TRANSACTION_DATE": {
+  "kind": "century",
+  "raw_table": "FED_SEC_INSIDER_NONDERIV_TRANS",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'TRANSACTION_DATE'"
+ },
+ "HEALTH__FED_FDA_MAUDE|DATE_OF_EVENT": {
+  "kind": "blank_marker",
+  "raw_table": "FED_FDA_MAUDE",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'DATE_OF_EVENT'"
+ },
+ "FINANCE__FED_FDIC_SOD_BRANCH_DEPOSITS|SIMS_ESTABLISHED_DATE": {
+  "kind": "blank_marker",
+  "raw_table": "FED_FDIC_SOD_BRANCH_DEPOSITS",
+  "samples": [
+   [
+    "1/1/1890 12:00:00 AM",
+    8101
+   ],
+   [
+    "1/1/1889 12:00:00 AM",
+    7957
+   ],
+   [
+    "1/1/1934 12:00:00 AM",
+    7087
+   ],
+   [
+    "1/1/1923 12:00:00 AM",
+    5942
+   ],
+   [
+    "1/1/1887 12:00:00 AM",
+    5781
+   ]
+  ]
+ },
+ "HOUSING__FED_FEMA_IA_HOUSING_REGISTRATIONS|APPLIED_DATE": {
+  "kind": "century",
+  "raw_table": "FED_FEMA_IA_HOUSING_REGISTRATIONS",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'APPLIED_DATE'"
+ },
+ "ENVIRONMENT__FED_EPA_ECHO|DATE_LAST_INSPECTION": {
+  "kind": "century",
+  "raw_table": "FED_EPA_ECHO",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'DATE_LAST_INSPECTION'"
+ },
+ "ENVIRONMENT__FED_EPA_ECHO|DATE_LAST_FORMAL_ACTION": {
+  "kind": "blank_marker",
+  "raw_table": "FED_EPA_ECHO",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'DATE_LAST_FORMAL_ACTION'"
+ },
+ "ENVIRONMENT__FED_EPA_ECHO|DATE_LAST_PENALTY": {
+  "kind": "blank_marker",
+  "raw_table": "FED_EPA_ECHO",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'DATE_LAST_PENALTY'"
+ },
+ "CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_RELATIONSHIPS|END_DATE": {
+  "kind": "century",
+  "raw_table": "FED_ICIJ_OFFSHORELEAKS_RELATIONSHIPS",
+  "samples": [
+   [
+    "30-SEP-2012",
+    9663
+   ],
+   [
+    "29-DEC-2009",
+    852
+   ],
+   [
+    "15-NOV-2014",
+    811
+   ],
+   [
+    "13-JUN-2014",
+    735
+   ],
+   [
+    "08-DEC-2006",
+    622
+   ]
+  ]
+ },
+ "ECONOMICS__INTL_GLEIF|ENTITY_HEADQUARTERSADDRESS_FIRSTADDRESSLINE": {
+  "kind": "century",
+  "raw_table": "INTL_GLEIF",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'ENTITY_HEADQUARTERSADDRESS_FIRSTA"
+ },
+ "ENVIRONMENT__FED_EPA_FRS_FACILITIES|CREATE_DATE": {
+  "kind": "century",
+  "raw_table": "FED_EPA_FRS_FULL",
+  "samples": [
+   [
+    "01-MAR-00",
+    789415
+   ],
+   [
+    "27-OCT-12",
+    169906
+   ],
+   [
+    "26-OCT-12",
+    140657
+   ],
+   [
+    "02-JUN-16",
+    115616
+   ],
+   [
+    "14-OCT-15",
+    83212
+   ]
+  ]
+ },
+ "ENVIRONMENT__FED_EPA_FRS_FACILITIES|UPDATE_DATE": {
+  "kind": "century",
+  "raw_table": "FED_EPA_FRS_FULL",
+  "samples": [
+   [
+    "29-DEC-14",
+    339763
+   ],
+   [
+    "10-MAY-20",
+    201847
+   ],
+   [
+    "01-JUN-17",
+    129355
+   ],
+   [
+    "26-JAN-12",
+    106613
+   ],
+   [
+    "09-AUG-10",
+    98134
+   ]
+  ]
+ },
+ "CORPORATE_REGISTRY__INTL_UK_COMPANIES_HOUSE|INCORPORATION_DATE": {
+  "kind": "blank_marker",
+  "raw_table": "INT_UK_COMPANIES_HOUSE",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'INCORPORATION_DATE'"
+ },
+ "JUSTICE__FED_FJC_IDB_CRIMINAL|FUGITIVE_START_DATE": {
+  "kind": "blank_marker",
+  "raw_table": "FED_FJC_IDB_CRIMINAL",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'FUGITIVE_START_DATE'"
+ },
+ "JUSTICE__FED_FJC_IDB_CRIMINAL|FUGITIVE_END_DATE": {
+  "kind": "blank_marker",
+  "raw_table": "FED_FJC_IDB_CRIMINAL",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'FUGITIVE_END_DATE'"
+ },
+ "JUSTICE__FED_FJC_IDB_CRIMINAL|APP_DATE": {
+  "kind": "blank_marker",
+  "raw_table": "FED_FJC_IDB_CRIMINAL",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'APP_DATE'"
+ },
+ "JUSTICE__FED_FJC_IDB_CRIMINAL|C_UPDATE": {
+  "kind": "blank_marker",
+  "raw_table": "FED_FJC_IDB_CRIMINAL",
+  "samples": [
+   [
+    "01/01/1900",
+    2584772
+   ],
+   [
+    "08/19/1996",
+    143907
+   ],
+   [
+    "01/25/1996",
+    72510
+   ],
+   [
+    "10/05/1993",
+    65407
+   ],
+   [
+    "10/21/2004",
+    50716
+   ]
+  ]
+ },
+ "JUSTICE__FED_FJC_IDB_CRIMINAL|DISPOSITION_DATE": {
+  "kind": "blank_marker",
+  "raw_table": "FED_FJC_IDB_CRIMINAL",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'DISPOSITION_DATE'"
+ },
+ "JUSTICE__FED_FJC_IDB_CRIMINAL|SENTENCE_DATE": {
+  "kind": "blank_marker",
+  "raw_table": "FED_FJC_IDB_CRIMINAL",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'SENTENCE_DATE'"
+ },
+ "JUSTICE__FED_FJC_IDB_CRIMINAL|TERM_DATE": {
+  "kind": "blank_marker",
+  "raw_table": "FED_FJC_IDB_CRIMINAL",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'TERM_DATE'"
+ },
+ "JUSTICE__FED_COURTLISTENER_OPINION_CLUSTERS|DATE_FILED": {
+  "kind": "century",
+  "raw_table": "FED_COURTLISTENER_OPINION_CLUSTERS",
+  "samples": [
+   [
+    "2003-10-06",
+    5717
+   ],
+   [
+    "2010-10-04",
+    4186
+   ],
+   [
+    "2002-10-07",
+    4155
+   ],
+   [
+    "2011-10-03",
+    3879
+   ],
+   [
+    "1998-10-05",
+    3660
+   ]
+  ]
+ },
+ "JUSTICE__FED_FJC_IDB_CIVIL|TERM_DATE": {
+  "kind": "blank_marker",
+  "raw_table": "FED_FJC_IDB_CIVIL",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'TERM_DATE'"
+ },
+ "HEALTH__FED_CMS_OPEN_PAYMENTS|DATE_OF_PAYMENT": {
+  "kind": "century",
+  "raw_table": "FED_CMS_OPEN_PAYMENTS",
+  "samples": [
+   [
+    "11/13/2024",
+    83295
+   ],
+   [
+    "04/24/2024",
+    83192
+   ],
+   [
+    "11/14/2024",
+    80187
+   ],
+   [
+    "05/15/2024",
+    79705
+   ],
+   [
+    "10/23/2024",
+    79652
+   ]
+  ]
+ },
+ "ENVIRONMENT__FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT|COMPL_PER_BEGIN_DATE": {
+  "kind": "blank_marker",
+  "raw_table": "FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT",
+  "samples": [
+   [
+    "01/01/2005",
+    329323
+   ],
+   [
+    "01/01/2008",
+    261889
+   ],
+   [
+    "01/01/2002",
+    252537
+   ],
+   [
+    "01/01/2020",
+    246240
+   ],
+   [
+    "01/01/2011",
+    221004
+   ]
+  ]
+ },
+ "ENVIRONMENT__FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT|NON_COMPL_PER_BEGIN_DATE": {
+  "kind": "blank_marker",
+  "raw_table": "FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT",
+  "samples": [
+   [
+    "01/01/2005",
+    329323
+   ],
+   [
+    "01/01/2008",
+    261889
+   ],
+   [
+    "01/01/2002",
+    252537
+   ],
+   [
+    "01/01/2020",
+    246240
+   ],
+   [
+    "01/01/2011",
+    221004
+   ]
+  ]
+ },
+ "ENVIRONMENT__FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT|ENFORCEMENT_DATE": {
+  "kind": "blank_marker",
+  "raw_table": "FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT",
+  "samples": [
+   [
+    "03/20/2012",
+    132976
+   ],
+   [
+    "11/17/2008",
+    86852
+   ],
+   [
+    "12/31/2012",
+    56651
+   ],
+   [
+    "09/30/1985",
+    52282
+   ],
+   [
+    "09/30/2012",
+    47673
+   ]
+  ]
+ },
+ "ECONOMICS__FED_USASPENDING_ASSISTANCE_FULL|PERIOD_OF_PERFORMANCE_START_DATE": {
+  "kind": "century",
+  "raw_table": "FED_USASPENDING_ASSISTANCE_FULL",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'PERIOD_OF_PERFORMANCE_START_DATE'"
+ },
+ "ECONOMICS__FED_USASPENDING_ASSISTANCE_FULL|PERIOD_OF_PERFORMANCE_CURRENT_END_DATE": {
+  "kind": "century",
+  "raw_table": "FED_USASPENDING_ASSISTANCE_FULL",
+  "error": "000904 (42000): SQL compilation error: error line 1 at position 18\ninvalid identifier 'PERIOD_OF_PERFORMANCE_CURRENT_END"
+ }
+}

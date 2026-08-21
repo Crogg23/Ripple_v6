@@ -1,0 +1,13 @@
+# Ripple's warehouse, read-only, for the charts on this site.
+# These are the same non-secret settings already committed in the dbt profile.
+# The private key itself lives in connection.options.yaml, which is gitignored.
+name: ripple
+type: snowflake
+options:
+  account: ONEAFDA-UMB20733
+  username: CROGG23
+  role: ACCOUNTADMIN
+  warehouse: DBT_WH
+  database: LIBRARY_MARTS
+  schema: TIMELINE
+  authenticator: snowflake_jwt

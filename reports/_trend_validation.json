@@ -1,0 +1,4261 @@
+[
+ {
+  "id":"CONSUMER_PROTECTION.CONSUMER_PROTECTION__FED_CFPB_COMPLAINTS",
+  "name":"Complaints Americans filed against banks",
+  "total":17168287,
+  "months":176,
+  "span":"2011-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"CONSUMER_SAFETY.CONSUMER_SAFETY__FED_CPSC_NEISS",
+  "name":"Emergency room visits caused by consumer products",
+  "total":9794877,
+  "months":324,
+  "span":"1999-2025",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"CONSUMER_SAFETY.CONSUMER_SAFETY__FED_NHTSA_COMPLAINTS",
+  "name":"Complaints drivers filed with federal auto safety...",
+  "total":2117711,
+  "months":675,
+  "span":"1900-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"CONSUMER_SAFETY.CONSUMER_SAFETY__FED_NHTSA_INVESTIGATIONS",
+  "name":"Federal investigations into suspected vehicle defects",
+  "total":154052,
+  "months":633,
+  "span":"1972-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"CONSUMER_SAFETY.CONSUMER_SAFETY__FED_NHTSA_RECALLS",
+  "name":"Every vehicle and car-part recall announced in the United...",
+  "total":238960,
+  "months":205,
+  "span":"1980-2027",
+  "problems":[
+   "FUTURE:0.0%_after_today(max 2027-08)"
+  ]
+ },
+ {
+  "id":"CORPORATE_REGISTRY.CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_ENTITIES",
+  "name":"Shell companies and trusts named in the leaked offshore files",
+  "total":788447,
+  "months":1198,
+  "span":"1865-2025",
+  "problems":[
+   "PRE1900:0.0%(min 1865-10)"
+  ]
+ },
+ {
+  "id":"CORPORATE_REGISTRY.CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_OTHERS",
+  "name":"Other parties named in the leaked offshore files who don't...",
+  "total":888,
+  "months":412,
+  "span":"1933-2016",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"CORPORATE_REGISTRY.CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_RELATIONSHIPS",
+  "name":"Who is connected to whom in the leaked offshore files",
+  "total":703997,
+  "months":813,
+  "span":"1759-2103",
+  "problems":[
+   "FUTURE:0.0%_after_today(max 2103-06)",
+   "PRE1900:0.0%(min 1759-12)",
+   "GAPPY:813\/4123_months_present",
+   "LOW_FILL:21.1%"
+  ]
+ },
+ {
+  "id":"CORPORATE_REGISTRY.CORPORATE_REGISTRY__FED_IRS_EO_BMF",
+  "name":"Every organisation the US tax authority recognises as...",
+  "total":1971976,
+  "months":1363,
+  "span":"1900-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"CORPORATE_REGISTRY.CORPORATE_REGISTRY__INTL_ES_BORME",
+  "name":"Spain's official companies gazette",
+  "total":3,
+  "months":1,
+  "span":"2026-2026",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2026"
+  ]
+ },
+ {
+  "id":"CORPORATE_REGISTRY.CORPORATE_REGISTRY__INTL_IE_CRO",
+  "name":"Every company registered in Ireland",
+  "total":805501,
+  "months":1547,
+  "span":"1753-2026",
+  "problems":[
+   "PRE1900:0.0%(min 1753-01)"
+  ]
+ },
+ {
+  "id":"CORPORATE_REGISTRY.CORPORATE_REGISTRY__INTL_UK_COMPANIES_HOUSE",
+  "name":"Every company registered in the United Kingdom",
+  "total":5734749,
+  "months":1887,
+  "span":"1701-2026",
+  "problems":[
+   "PRE1900:0.0%(min 1701-06)"
+  ]
+ },
+ {
+  "id":"CORPORATE_REGISTRY.CORPORATE_REGISTRY__UK_COMPANIES_HOUSE_PSC",
+  "name":"The real human owners behind UK companies",
+  "total":6489393,
+  "months":125,
+  "span":"1775-2024",
+  "problems":[
+   "PRE1900:0.0%(min 1775-01)",
+   "GAPPY:125\/2989_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"CRIMINAL_JUSTICE.CRIMINAL_JUSTICE__FED_BJS_DATA",
+  "name":"A small sample from the federal statistics office that...",
+  "total":1000,
+  "months":1,
+  "span":"1993-1993",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:1993",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ECONOMICS.ECONOMICS__FED_BLS_QCEW",
+  "name":"Employment and wages by industry and county",
+  "total":3619437,
+  "months":1,
+  "span":"2022-2022",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2022",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ECONOMICS.ECONOMICS__FED_DOL_FORM5500",
+  "name":"Annual reports from company retirement and health benefit...",
+  "total":33066,
+  "months":887,
+  "span":"1878-2026",
+  "problems":[
+   "PRE1900:0.0%(min 1878-01)"
+  ]
+ },
+ {
+  "id":"ECONOMICS.ECONOMICS__FED_FAC_SINGLE_AUDIT",
+  "name":"Audits of organisations that spend federal grant money",
+  "total":411638,
+  "months":121,
+  "span":"2016-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ECONOMICS.ECONOMICS__FED_FDIC_FAILED_BANKS",
+  "name":"Every US bank that has failed",
+  "total":3584,
+  "months":378,
+  "span":"1970-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ECONOMICS.ECONOMICS__FED_FOREIGNASSISTANCE",
+  "name":"US foreign aid",
+  "total":95371,
+  "months":81,
+  "span":"1946-2026",
+  "problems":[
+   "GAPPY:81\/961_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ECONOMICS.ECONOMICS__FED_GRANTS_GOV",
+  "name":"A small sample of federal grant opportunities",
+  "total":100,
+  "months":2,
+  "span":"2026-2026",
+  "problems":[
+   "ONE_YEAR_ONLY:2026"
+  ]
+ },
+ {
+  "id":"ECONOMICS.ECONOMICS__FED_IRS_990",
+  "name":"A small sample of charity tax returns",
+  "total":200,
+  "months":17,
+  "span":"2023-2025",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ECONOMICS.ECONOMICS__FED_IRS_990_EFILE_INDEX",
+  "name":"An index of every annual tax return filed electronically...",
+  "total":5544625,
+  "months":61,
+  "span":"2017-2026",
+  "problems":[
+   "EXPLODES:last12m_7.0x_prior"
+  ]
+ },
+ {
+  "id":"ECONOMICS.ECONOMICS__FED_IRS_AUTO_REVOCATIONS",
+  "name":"Charities that automatically lost their tax-exempt status...",
+  "total":1207295,
+  "months":181,
+  "span":"2011-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ECONOMICS.ECONOMICS__FED_IRS_BMF",
+  "name":"The tax authority's master list of registered businesses...",
+  "total":1963226,
+  "months":1363,
+  "span":"1900-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ECONOMICS.ECONOMICS__FED_IRS_EO_PR",
+  "name":"Tax-exempt organisations registered in Puerto Rico",
+  "total":1796,
+  "months":41,
+  "span":"2011-2026",
+  "problems":[
+   "GAPPY:41\/178_months_present"
+  ]
+ },
+ {
+  "id":"ECONOMICS.ECONOMICS__FED_IRS_REVOCATION",
+  "name":"Organisations whose tax-exempt status was revoked",
+  "total":1187367,
+  "months":179,
+  "span":"2011-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ECONOMICS.ECONOMICS__FED_IRS_SOI_CHARITIES",
+  "name":"Financial summaries of charities",
+  "total":1782,
+  "months":52,
+  "span":"2000-2026",
+  "problems":[
+   "GAPPY:52\/307_months_present"
+  ]
+ },
+ {
+  "id":"ECONOMICS.ECONOMICS__FED_PBGC_DATA",
+  "name":"Figures from the federal agency that takes over company...",
+  "total":134534,
+  "months":14,
+  "span":"2010-2023",
+  "problems":[
+   "GAPPY:14\/157_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ECONOMICS.ECONOMICS__FED_SBA_LOANS",
+  "name":"Small business loans backed by the federal government",
+  "total":1869772,
+  "months":428,
+  "span":"1987-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ECONOMICS.ECONOMICS__FED_SBA_PPP",
+  "name":"Pandemic relief loans to businesses",
+  "total":968524,
+  "months":13,
+  "span":"2020-2021",
+  "problems":[
+   "PILEUP:57%_in_2020-04"
+  ]
+ },
+ {
+  "id":"ECONOMICS.ECONOMICS__FED_SEC_EDGAR",
+  "name":"A small sample of company filings to the US securities...",
+  "total":128,
+  "months":7,
+  "span":"2025-2026",
+  "problems":[
+   "PILEUP:60%_in_2026-06"
+  ]
+ },
+ {
+  "id":"ECONOMICS.ECONOMICS__FED_TREASURY_AVG_INTEREST_RATES",
+  "name":"The average interest rate the US government pays on its debt",
+  "total":4961,
+  "months":305,
+  "span":"2001-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ECONOMICS.ECONOMICS__FED_TREASURY_DEBT_OUTSTANDING",
+  "name":"The total US national debt",
+  "total":237,
+  "months":237,
+  "span":"1790-2025",
+  "problems":[
+   "PRE1900:46.8%(min 1790-01)",
+   "GAPPY:237\/2829_months_present"
+  ]
+ },
+ {
+  "id":"ECONOMICS.ECONOMICS__FED_TREASURY_DEBT_TO_PENNY",
+  "name":"The exact size of the US national debt",
+  "total":8329,
+  "months":399,
+  "span":"1993-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ECONOMICS.ECONOMICS__FED_TREASURY_DTS_DEPOSITS",
+  "name":"Money flowing into the US Treasury each day",
+  "total":478149,
+  "months":251,
+  "span":"2005-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ECONOMICS.ECONOMICS__FED_TREASURY_MTS_RECEIPTS",
+  "name":"What the US government collected in taxes and fees each month",
+  "total":7490,
+  "months":136,
+  "span":"2015-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ECONOMICS.ECONOMICS__FED_USASPENDING_ASSISTANCE_FULL",
+  "name":"Every federal grant",
+  "total":19902879,
+  "months":95,
+  "span":"2006-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ECONOMICS.ECONOMICS__FED_USASPENDING_CONTRACTS",
+  "name":"Federal contract transactions",
+  "total":6325622,
+  "months":12,
+  "span":"2024-2025",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ECONOMICS.ECONOMICS__FED_USASPENDING_CONTRACTS_FULL",
+  "name":"Every contract the US federal government signed",
+  "total":20000000,
+  "months":59,
+  "span":"2007-2026",
+  "problems":[
+   "GAPPY:59\/229_months_present"
+  ]
+ },
+ {
+  "id":"ECONOMICS.ECONOMICS__FED_US_SEC_EDGAR",
+  "name":"Filings companies are legally required to submit to the US...",
+  "total":48984,
+  "months":295,
+  "span":"1995-2026",
+  "problems":[
+   "EXPLODES:last12m_6.9x_prior"
+  ]
+ },
+ {
+  "id":"ECONOMICS.ECONOMICS__FED_US_USASPENDING_API",
+  "name":"A small sample of federal spending records pulled through...",
+  "total":300,
+  "months":31,
+  "span":"2023-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ECONOMICS.ECONOMICS__INTL_FAO_FAOSTAT",
+  "name":"A small sample of United Nations agriculture and food...",
+  "total":69,
+  "months":21,
+  "span":"1991-2026",
+  "problems":[
+   "GAPPY:21\/415_months_present"
+  ]
+ },
+ {
+  "id":"ECONOMICS.ECONOMICS__INTL_FAO_FAOSTAT_FOOD_SECURITY",
+  "name":"United Nations statistics on hunger",
+  "total":144366,
+  "months":26,
+  "span":"2000-2025",
+  "problems":[
+   "GAPPY:26\/301_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ECONOMICS.ECONOMICS__INTL_GLEIF_RELATIONSHIPS",
+  "name":"Which companies own which other companies",
+  "total":483847,
+  "months":1024,
+  "span":"1832-2105",
+  "problems":[
+   "FUTURE:0.0%_after_today(max 2105-10)",
+   "PRE1900:0.0%(min 1832-02)",
+   "GAPPY:1024\/3285_months_present"
+  ]
+ },
+ {
+  "id":"ECONOMICS.ECONOMICS__INTL_IT_ISTAT",
+  "name":"Official statistics published by Italy's national...",
+  "total":213284,
+  "months":37,
+  "span":"2020-2023",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ECONOMICS.ECONOMICS__XC_OWID_GINI",
+  "name":"How unequally income is distributed in each country",
+  "total":2389,
+  "months":63,
+  "span":"1963-2025",
+  "problems":[
+   "GAPPY:63\/745_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"EDUCATION.EDUCATION__FED_CFTC_COT_FINANCIAL",
+  "name":"Who holds bets on financial futures",
+  "total":34683,
+  "months":164,
+  "span":"2013-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"EDUCATION.EDUCATION__FED_CFTC_COT_FUTURES",
+  "name":"Who holds bets on commodity prices",
+  "total":287053,
+  "months":488,
+  "span":"1986-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"EDUCATION.EDUCATION__FED_GOOGLE_POLADS_ADVERTISER_WEEKLY_SPEND",
+  "name":"Weekly spending by each political advertiser on Google and...",
+  "total":298884,
+  "months":100,
+  "span":"2018-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"EDUCATION.EDUCATION__FED_GOOGLE_POLADS_CREATIVE_STATS",
+  "name":"Every political advert run on Google and YouTube",
+  "total":1562870,
+  "months":100,
+  "span":"2018-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"EDUCATION.EDUCATION__FED_SENATE_LDA_FILINGS",
+  "name":"Lobbying disclosures filed with the US Senate",
+  "total":174871,
+  "months":73,
+  "span":"2020-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ENERGY.ENERGY__FED_EIA860_3_1_GENERATOR",
+  "name":"Every electricity generating unit in the US",
+  "total":26854,
+  "months":130,
+  "span":"1891-2024",
+  "problems":[
+   "PRE1900:0.1%(min 1891-01)",
+   "GAPPY:130\/1597_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENERGY.ENERGY__FED_EIA860_3_2_WIND",
+  "name":"Every wind generating unit in the US and its technical details",
+  "total":1563,
+  "months":41,
+  "span":"1981-2024",
+  "problems":[
+   "GAPPY:41\/517_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENERGY.ENERGY__FED_EIA860_3_3_SOLAR",
+  "name":"Every solar generating unit in the US and its technical...",
+  "total":7153,
+  "months":23,
+  "span":"2001-2024",
+  "problems":[
+   "GAPPY:23\/277_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENERGY.ENERGY__FED_EIA860_3_4_ENERGY_STORAGE",
+  "name":"Battery and other storage units attached to the US grid",
+  "total":786,
+  "months":16,
+  "span":"1991-2024",
+  "problems":[
+   "GAPPY:16\/397_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENERGY.ENERGY__FED_EIA860_3_5_MULTIFUEL",
+  "name":"Power plant units that can switch between fuels",
+  "total":2893,
+  "months":88,
+  "span":"1915-2024",
+  "problems":[
+   "GAPPY:88\/1309_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENERGY.ENERGY__FED_EIA860_6_2_ENVIROEQUIP",
+  "name":"Pollution control equipment fitted to US power plants",
+  "total":938,
+  "months":48,
+  "span":"1974-2026",
+  "problems":[
+   "GAPPY:48\/625_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENERGY.ENERGY__FED_EIA861_ADVANCED_METERS",
+  "name":"Smart meter rollout by utility",
+  "total":2724,
+  "months":1,
+  "span":"2024-2024",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2024",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENERGY.ENERGY__FED_EIA861_DELIVERY_COMPANIES",
+  "name":"Companies that deliver electricity without selling it",
+  "total":7,
+  "months":1,
+  "span":"2024-2024",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2024",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENERGY.ENERGY__FED_EIA861_DEMAND_RESPONSE",
+  "name":"Programmes that pay customers to cut electricity use at...",
+  "total":339,
+  "months":1,
+  "span":"2024-2024",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2024",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENERGY.ENERGY__FED_EIA861_DISTRIBUTION_SYSTEMS",
+  "name":"The physical distribution networks utilities operate",
+  "total":1353,
+  "months":1,
+  "span":"2024-2024",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2024",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENERGY.ENERGY__FED_EIA861_DYNAMIC_PRICING",
+  "name":"Utilities that charge different electricity prices at...",
+  "total":857,
+  "months":1,
+  "span":"2024-2024",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2024",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENERGY.ENERGY__FED_EIA861_ENERGY_EFFICIENCY",
+  "name":"Utility energy-saving programmes and what they achieved",
+  "total":458,
+  "months":1,
+  "span":"2024-2024",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2024",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENERGY.ENERGY__FED_EIA861_FRAME",
+  "name":"The master list of electric utilities that report to the...",
+  "total":3412,
+  "months":1,
+  "span":"2024-2024",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2024",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENERGY.ENERGY__FED_EIA861_MERGERS",
+  "name":"Mergers and acquisitions among electric utilities",
+  "total":4,
+  "months":4,
+  "span":"2024-2024",
+  "problems":[
+   "ONE_YEAR_ONLY:2024"
+  ]
+ },
+ {
+  "id":"ENERGY.ENERGY__FED_EIA861_NET_METERING",
+  "name":"Customers who generate their own power and sell the...",
+  "total":1004,
+  "months":1,
+  "span":"2024-2024",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2024",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENERGY.ENERGY__FED_EIA861_NON_NET_METERING_DISTRIBUTED",
+  "name":"Small-scale generation that is not on a net metering...",
+  "total":506,
+  "months":1,
+  "span":"2024-2024",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2024",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENERGY.ENERGY__FED_EIA861_OPERATIONAL_DATA",
+  "name":"Operating figures reported annually by electric utilities",
+  "total":1711,
+  "months":1,
+  "span":"2024-2024",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2024",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENERGY.ENERGY__FED_EIA861_RELIABILITY",
+  "name":"How often and how long each utility's customers lose power",
+  "total":971,
+  "months":1,
+  "span":"2024-2024",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2024",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENERGY.ENERGY__FED_EIA861_SALES_ULT_CUST",
+  "name":"How much electricity each utility sold",
+  "total":2815,
+  "months":1,
+  "span":"2024-2024",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2024",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENERGY.ENERGY__FED_EIA861_SALES_ULT_CUST_CS",
+  "name":"Electricity sales to customers",
+  "total":674,
+  "months":1,
+  "span":"2024-2024",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2024",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENERGY.ENERGY__FED_EIA861_SERVICE_TERRITORY",
+  "name":"Which electric utility serves which counties",
+  "total":11775,
+  "months":1,
+  "span":"2024-2024",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2024",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENERGY.ENERGY__FED_EIA861_SHORT_FORM",
+  "name":"The simplified annual return filed by smaller electric...",
+  "total":1723,
+  "months":1,
+  "span":"2024-2024",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2024",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENERGY.ENERGY__FED_EIA861_UTILITY_DATA",
+  "name":"Basic details of each electric utility that reports to the...",
+  "total":1701,
+  "months":1,
+  "span":"2024-2024",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2024",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENERGY.ENERGY__INTL_EMBER_ELEC",
+  "name":"How each country generates its electricity",
+  "total":369264,
+  "months":26,
+  "span":"2000-2025",
+  "problems":[
+   "GAPPY:26\/301_months_present"
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__EPA_PENALTY_GAP",
+  "name":"A Ripple-built comparison of penalties assessed against...",
+  "total":52494,
+  "months":474,
+  "span":"1978-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_EPA_AIR_EMISSIONS_POLL_RPT_COMBINED_EMISSIONS",
+  "name":"How much of each pollutant every reporting facility...",
+  "total":10411826,
+  "months":13,
+  "span":"2008-2024",
+  "problems":[
+   "GAPPY:13\/193_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_EPA_AQS_SITES",
+  "name":"The physical air quality monitoring stations across the US",
+  "total":20994,
+  "months":738,
+  "span":"1957-2026",
+  "problems":[
+   "FUTURE:0.0%_after_today(max 2026-12)"
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_EPA_ECHO",
+  "name":"The environmental regulator's compliance file",
+  "total":565447,
+  "months":600,
+  "span":"1908-2026",
+  "problems":[
+   "LOW_FILL:18%"
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_EPA_EGRID_PLANT_2022",
+  "name":"Emissions and generation for every US power plant in 2022",
+  "total":11973,
+  "months":1,
+  "span":"2022-2022",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2022",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_EPA_GHGRP_EMISSION",
+  "name":"Greenhouse gas emissions reported by large industrial...",
+  "total":346683,
+  "months":14,
+  "span":"2010-2023",
+  "problems":[
+   "GAPPY:14\/157_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_EPA_GHGRP_FACILITY",
+  "name":"The large industrial facilities required to report their...",
+  "total":136005,
+  "months":14,
+  "span":"2010-2023",
+  "problems":[
+   "GAPPY:14\/157_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_FORMAL_ACTIONS",
+  "name":"Formal legal actions against air polluters",
+  "total":105968,
+  "months":637,
+  "span":"1972-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_INFORMAL_ACTIONS",
+  "name":"Warning letters and informal actions against air polluters",
+  "total":175497,
+  "months":640,
+  "span":"1900-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_PROGRAMS",
+  "name":"Which air pollution programmes each facility falls under",
+  "total":457581,
+  "months":142,
+  "span":"2014-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_STACK_TESTS",
+  "name":"Tests measuring what actually comes out of industrial...",
+  "total":620291,
+  "months":638,
+  "span":"1955-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_TITLEV_CERTS",
+  "name":"Annual statements from major air polluters certifying...",
+  "total":493105,
+  "months":347,
+  "span":"1916-2026",
+  "problems":[
+   "GAPPY:347\/1326_months_present"
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_EPA_NPDES_NPDES_CS_VIOLATIONS",
+  "name":"Water polluters who missed deadlines in a compliance schedule",
+  "total":75535,
+  "months":517,
+  "span":"1977-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_EPA_NPDES_NPDES_FORMAL_ENFORCEMENT_ACTIONS",
+  "name":"Formal legal actions against water polluters",
+  "total":109481,
+  "months":593,
+  "span":"1970-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_EPA_NPDES_NPDES_INFORMAL_ENFORCEMENT_ACTIONS",
+  "name":"Warning letters and informal actions against water polluters",
+  "total":472506,
+  "months":598,
+  "span":"1969-2026",
+  "problems":[
+   "FUTURE:0.0%_after_today(max 2026-12)"
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_EPA_NPDES_NPDES_INSPECTIONS",
+  "name":"Inspections of facilities that discharge pollution into water",
+  "total":983896,
+  "months":629,
+  "span":"1917-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_EPA_NPDES_NPDES_PS_VIOLATIONS",
+  "name":"Water pollution permit breaches involving prohibited...",
+  "total":331294,
+  "months":551,
+  "span":"1974-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_EPA_NPDES_NPDES_QNCR_HISTORY",
+  "name":"Quarterly records of facilities in serious breach of their...",
+  "total":7951602,
+  "months":216,
+  "span":"1973-2027",
+  "problems":[
+   "FUTURE:0.0%_after_today(max 2027-07)",
+   "GAPPY:216\/646_months_present"
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_EPA_NPDES_NPDES_SE_VIOLATIONS",
+  "name":"Water pollution breaches picked up from single-event reporting",
+  "total":305478,
+  "months":570,
+  "span":"1976-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_EPA_RCRA_ENFORCEMENTS",
+  "name":"Formal enforcement actions against hazardous waste handlers",
+  "total":383513,
+  "months":562,
+  "span":"1887-2026",
+  "problems":[
+   "PRE1900:0.0%(min 1887-03)",
+   "GAPPY:562\/1673_months_present"
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_EPA_RCRA_EVALUATIONS",
+  "name":"Inspections and evaluations of hazardous waste handlers",
+  "total":1166393,
+  "months":569,
+  "span":"1901-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_EPA_RCRA_VIOLATIONS",
+  "name":"Hazardous waste rules that facilities were found to have...",
+  "total":697966,
+  "months":545,
+  "span":"1900-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_EPA_RCRA_VIOSNC_HISTORY",
+  "name":"Hazardous waste handlers found in significant non-compliance",
+  "total":2675581,
+  "months":560,
+  "span":"1980-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_EVENTS_MILESTONES",
+  "name":"Milestones in getting a failing drinking water system back...",
+  "total":391434,
+  "months":425,
+  "span":"1991-2027",
+  "problems":[
+   "FUTURE:13.8%_after_today(max 2027-08)"
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_FACILITIES",
+  "name":"The physical parts of public drinking water systems",
+  "total":570313,
+  "months":972,
+  "span":"1900-2027",
+  "problems":[
+   "FUTURE:0.0%_after_today(max 2027-04)",
+   "LOW_FILL:36.7%"
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS",
+  "name":"Which places each public drinking water system serves",
+  "total":578198,
+  "months":369,
+  "span":"1995-2026",
+  "problems":[
+   "EXPLODES:last12m_30.4x_prior"
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_LCR_SAMPLES",
+  "name":"Lead and copper test results from public drinking water...",
+  "total":927415,
+  "months":1,
+  "span":"2026-2026",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2026"
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_PN_VIOLATION_ASSOC",
+  "name":"Cases where a water system failed to tell the public about...",
+  "total":387627,
+  "months":1,
+  "span":"2026-2026",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2026"
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+  "name":"Every public drinking water system in the US and how many...",
+  "total":291116,
+  "months":688,
+  "span":"1900-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_SITE_VISITS",
+  "name":"Visits inspectors made to public drinking water systems",
+  "total":2495234,
+  "months":914,
+  "span":"1900-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT",
+  "name":"Every time a public drinking water system broke a safety rule",
+  "total":4164749,
+  "months":622,
+  "span":"1902-2026",
+  "problems":[
+   "LOW_FILL:27%"
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_EPA_SUPERFUND_SITE_BOUNDARIES",
+  "name":"The mapped boundaries of America's most contaminated...",
+  "total":1859,
+  "months":83,
+  "span":"2003-2026",
+  "problems":[
+   "GAPPY:83\/270_months_present"
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_EPA_TRI_BASIC_2023",
+  "name":"Toxic chemicals released by industrial facilities in 2023",
+  "total":78647,
+  "months":1,
+  "span":"2023-2023",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2023",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_NID_DAMS",
+  "name":"Every significant dam in the US",
+  "total":73709,
+  "months":254,
+  "span":"1700-2026",
+  "problems":[
+   "PRE1900:3.2%(min 1700-01)",
+   "GAPPY:254\/3913_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_NOAA_STORM_EVENTS",
+  "name":"Every recorded storm",
+  "total":1780730,
+  "months":30,
+  "span":"1996-2025",
+  "problems":[
+   "GAPPY:30\/349_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_NOAA_WEATHER_API",
+  "name":"A small sample of weather readings pulled from an...",
+  "total":287,
+  "months":1,
+  "span":"2026-2026",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2026"
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_PHMSA_FLAGGED_INCIDENTS",
+  "name":"Pipeline incidents flagged by federal pipeline safety...",
+  "total":2039,
+  "months":17,
+  "span":"2010-2026",
+  "problems":[
+   "GAPPY:17\/193_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_USCG_NRC_INCIDENTS",
+  "name":"Reports to the national hotline for oil spills and...",
+  "total":1029020,
+  "months":440,
+  "span":"1990-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_USCG_NRC_INCIDENT_REPORTS",
+  "name":"The detailed write-ups behind oil spill and chemical...",
+  "total":116662,
+  "months":60,
+  "span":"2020-2024",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_USGS_MINERALS",
+  "name":"Production and consumption figures for mined minerals",
+  "total":20525,
+  "months":250,
+  "span":"1700-2002",
+  "problems":[
+   "PRE1900:32.5%(min 1700-01)",
+   "GAPPY:250\/3625_months_present",
+   "YEAR_GRAIN",
+   "LOW_FILL:6.7%"
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_USGS_ORPHANED_OIL_GAS_WELLS",
+  "name":"Abandoned oil and gas wells with no owner left to plug them",
+  "total":117672,
+  "months":16,
+  "span":"2019-2022",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_USGS_WATER",
+  "name":"Readings from the national network of river and...",
+  "total":6694816,
+  "months":2,
+  "span":"2026-2026",
+  "problems":[
+   "ONE_YEAR_ONLY:2026"
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__FED_WQP_MONITORING_STATIONS",
+  "name":"Water quality monitoring stations run by federal",
+  "total":1710,
+  "months":368,
+  "span":"1918-2022",
+  "problems":[
+   "GAPPY:368\/1243_months_present"
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__INTL_GLOBAL_WITNESS_DEFENDERS",
+  "name":"Environmental and land defenders killed around the world",
+  "total":66,
+  "months":11,
+  "span":"2005-2026",
+  "problems":[
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__XC_OWID_CO2",
+  "name":"Carbon dioxide emissions by country",
+  "total":29384,
+  "months":275,
+  "span":"1750-2024",
+  "problems":[
+   "PRE1900:20.3%(min 1750-01)",
+   "GAPPY:275\/3289_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__XC_OWID_FOSSIL_SHARE",
+  "name":"What share of each country's energy comes from fossil fuels",
+  "total":6379,
+  "months":60,
+  "span":"1965-2024",
+  "problems":[
+   "GAPPY:60\/709_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"ENVIRONMENT.ENVIRONMENT__XC_OWID_TEMP_ANOMALY",
+  "name":"How far global temperature has drifted from its historical...",
+  "total":531,
+  "months":177,
+  "span":"1850-2026",
+  "problems":[
+   "PRE1900:28.2%(min 1850-01)",
+   "GAPPY:177\/2113_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_EPA_ICIS_FEC_EPA_INFORMAL_ENFORCEMENT_ACTIONS",
+  "name":"Informal environmental enforcement actions logged in the...",
+  "total":20011,
+  "months":316,
+  "span":"1970-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_EPA_ICIS_FEC_ICIS_FEC_EPA_INSPECTIONS",
+  "name":"Federal environmental inspections logged in the...",
+  "total":260480,
+  "months":373,
+  "span":"1958-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_FDIC_BANK_DATA",
+  "name":"Every US bank",
+  "total":161,
+  "months":104,
+  "span":"1985-2018",
+  "problems":[
+   "GAPPY:104\/398_months_present",
+   "LOW_FILL:0.6%"
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_FDIC_SOD_BRANCH_DEPOSITS",
+  "name":"How much money is held at every single bank branch in America",
+  "total":2823000,
+  "months":32,
+  "span":"1994-2025",
+  "problems":[
+   "GAPPY:32\/373_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_FEC_BULK_COMMITTEES",
+  "name":"The master list of federal political committees",
+  "total":20007,
+  "months":1,
+  "span":"2026-2026",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2026",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_FEC_CANDIDATES",
+  "name":"Everyone who has run for federal office in the US",
+  "total":33090,
+  "months":36,
+  "span":"1980-2027",
+  "problems":[
+   "FUTURE:0.0%_after_today(max 2027-01)",
+   "GAPPY:36\/565_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_FEC_CAND_CMTE_LINKAGE",
+  "name":"Which campaign committee belongs to which candidate",
+  "total":30348,
+  "months":36,
+  "span":"1980-2027",
+  "problems":[
+   "FUTURE:0.0%_after_today(max 2027-01)",
+   "GAPPY:36\/565_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_FEC_COMMITTEE_TO_CANDIDATE",
+  "name":"Money moving from political committees to candidates",
+  "total":866730,
+  "months":2,
+  "span":"2024-2026",
+  "problems":[
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_FEC_INDEPENDENT_EXPENDITURES",
+  "name":"Money spent for or against a candidate by groups not...",
+  "total":261033,
+  "months":4,
+  "span":"2018-2024",
+  "problems":[
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_FEC_INDIV_CONTRIBUTIONS",
+  "name":"Every reported donation an individual made to a federal...",
+  "total":84171523,
+  "months":93,
+  "span":"2000-2026",
+  "problems":[
+   "FUTURE:0.0%_after_today(max 2026-12)",
+   "GAPPY:93\/324_months_present"
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_FEC_LEADERSHIP_PAC",
+  "name":"Leadership PACs",
+  "total":8504,
+  "months":32,
+  "span":"1980-2027",
+  "problems":[
+   "FUTURE:0.0%_after_today(max 2027-01)",
+   "GAPPY:32\/565_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_FHFA_FHLB_MEMBERSHIP",
+  "name":"Banks and insurers that belong to the Federal Home Loan...",
+  "total":5809,
+  "months":430,
+  "span":"1990-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_IRS_SOI",
+  "name":"Income and tax statistics compiled by the tax authority",
+  "total":179796,
+  "months":1,
+  "span":"2016-2016",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2016",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_NCUA_CALL_REPORTS_FOICU",
+  "name":"Basic details of every federally insured credit union",
+  "total":4306,
+  "months":110,
+  "span":"1900-2025",
+  "problems":[
+   "GAPPY:110\/1501_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_NCUA_CALL_REPORTS_FS220",
+  "name":"The financial accounts every credit union files with its...",
+  "total":4336,
+  "months":1,
+  "span":"2026-2026",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2026"
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_PCAOB_FORM_AP_FILINGS",
+  "name":"Which audit partner signed off on which public company's...",
+  "total":5394,
+  "months":121,
+  "span":"2016-2026",
+  "problems":[
+   "LOW_FILL:3.5%"
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_SEC_13F_FILERS",
+  "name":"Large investment managers required to disclose what they hold",
+  "total":1581,
+  "months":120,
+  "span":"2007-2026",
+  "problems":[
+   "LOW_FILL:0.5%"
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_SEC_13F_SUBMISSIONS",
+  "name":"The quarterly filings in which big investors reveal their...",
+  "total":336124,
+  "months":136,
+  "span":"2013-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_SEC_DERA_SUB_2024Q1",
+  "name":"Company financial filings submitted in winter 2024",
+  "total":6028,
+  "months":3,
+  "span":"2024-2024",
+  "problems":[
+   "ONE_YEAR_ONLY:2024"
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_SEC_DERA_SUB_2024Q2",
+  "name":"Company financial filings submitted in spring 2024",
+  "total":7675,
+  "months":3,
+  "span":"2024-2024",
+  "problems":[
+   "PILEUP:64%_in_2024-05",
+   "ONE_YEAR_ONLY:2024"
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_SEC_DERA_SUB_2024Q3",
+  "name":"Company financial filings submitted in summer 2024",
+  "total":6699,
+  "months":3,
+  "span":"2024-2024",
+  "problems":[
+   "PILEUP:72%_in_2024-08",
+   "ONE_YEAR_ONLY:2024"
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_SEC_DERA_SUB_2024Q4",
+  "name":"Company financial filings submitted in autumn 2024",
+  "total":6491,
+  "months":3,
+  "span":"2024-2024",
+  "problems":[
+   "PILEUP:68%_in_2024-11",
+   "ONE_YEAR_ONLY:2024"
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_SEC_DERA_SUB_2025Q1",
+  "name":"Company financial filings submitted in winter 2025",
+  "total":6231,
+  "months":3,
+  "span":"2025-2025",
+  "problems":[
+   "ONE_YEAR_ONLY:2025"
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_SEC_DERA_SUB_2025Q2",
+  "name":"Company financial filings submitted in spring 2025",
+  "total":7009,
+  "months":3,
+  "span":"2025-2025",
+  "problems":[
+   "PILEUP:68%_in_2025-05",
+   "ONE_YEAR_ONLY:2025"
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_SEC_DERA_SUB_2025Q3",
+  "name":"Company financial filings submitted in summer 2025",
+  "total":6541,
+  "months":3,
+  "span":"2025-2025",
+  "problems":[
+   "PILEUP:69%_in_2025-08",
+   "ONE_YEAR_ONLY:2025"
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_SEC_DERA_SUB_2025Q4",
+  "name":"Company financial filings submitted in autumn 2025",
+  "total":6304,
+  "months":3,
+  "span":"2025-2025",
+  "problems":[
+   "PILEUP:68%_in_2025-11",
+   "ONE_YEAR_ONLY:2025"
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_SEC_DERA_SUB_2026Q1",
+  "name":"Company financial filings submitted in winter 2026",
+  "total":6169,
+  "months":3,
+  "span":"2026-2026",
+  "problems":[
+   "ONE_YEAR_ONLY:2026"
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_SEC_EDGAR_FINANCIALS",
+  "name":"Financial statement figures pulled from company filings",
+  "total":55635,
+  "months":24,
+  "span":"2023-2024",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_SEC_EDGAR_INSIDERS",
+  "name":"Insider share dealing filings",
+  "total":69259,
+  "months":78,
+  "span":"2002-2026",
+  "problems":[
+   "EXPLODES:last12m_553.6x_prior",
+   "GAPPY:78\/290_months_present"
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_SEC_INSIDER_DERIV_TRANS",
+  "name":"Executives' dealings in share options and other...",
+  "total":1049092,
+  "months":238,
+  "span":"2000-2027",
+  "problems":[
+   "FUTURE:0.0%_after_today(max 2027-05)"
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_SEC_INSIDER_NONDERIV_TRANS",
+  "name":"Company executives and directors buying and selling their...",
+  "total":2672804,
+  "months":267,
+  "span":"1987-2027",
+  "problems":[
+   "FUTURE:0.0%_after_today(max 2027-07)"
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_SEC_INSIDER_SUBMISSION",
+  "name":"The filings themselves in which insiders disclose their...",
+  "total":1772065,
+  "months":276,
+  "span":"1982-2025",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__FED_SEC_MONEY_MARKET_FUND_INFORMATION",
+  "name":"Money market funds and what they hold",
+  "total":1206,
+  "months":1,
+  "span":"2026-2026",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2026"
+  ]
+ },
+ {
+  "id":"FINANCE.FINANCE__INTL_ISO_MIC_REGISTRY",
+  "name":"The official codes identifying stock exchanges and trading...",
+  "total":2864,
+  "months":247,
+  "span":"2003-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"FOREIGN_INFLUENCE.FOREIGN_INFLUENCE__FED_FARA_BULK",
+  "name":"People and firms paid to represent foreign governments and...",
+  "total":12303,
+  "months":996,
+  "span":"1942-2026",
+  "problems":[
+   "LOW_FILL:25.6%"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CDC_ANXIETY_DEPRESSION",
+  "name":"Survey estimates of anxiety and depression across the US...",
+  "total":16794,
+  "months":50,
+  "span":"2020-2024",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CDC_DATA_PORTAL",
+  "name":"The catalogue of datasets the US public health agency...",
+  "total":1471,
+  "months":139,
+  "span":"2013-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CDC_DRUG_POISONING_COUNTY",
+  "name":"Drug poisoning death rates by US county",
+  "total":53387,
+  "months":17,
+  "span":"1999-2015",
+  "problems":[
+   "GAPPY:17\/193_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CDC_HEALTH_INSURANCE",
+  "name":"Survey estimates of how many people have health insurance",
+  "total":16056,
+  "months":50,
+  "span":"2020-2024",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CDC_INJURY_VIOLENCE_COUNTY",
+  "name":"Injury and violence death rates by US county",
+  "total":113142,
+  "months":6,
+  "span":"2019-2024",
+  "problems":[
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CDC_LEADING_CAUSES_STATE",
+  "name":"The leading causes of death in each US state",
+  "total":10868,
+  "months":19,
+  "span":"1999-2017",
+  "problems":[
+   "GAPPY:19\/217_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CDC_NNDSS_WEEKLY_2024",
+  "name":"Weekly counts of notifiable diseases reported by states in...",
+  "total":1932840,
+  "months":5,
+  "span":"2022-2026",
+  "problems":[
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CDC_OVERDOSE",
+  "name":"Drug overdose death counts",
+  "total":83790,
+  "months":12,
+  "span":"2015-2026",
+  "problems":[
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CDC_SUICIDE_RATES",
+  "name":"Suicide rates broken down by group and place",
+  "total":6390,
+  "months":42,
+  "span":"1950-2018",
+  "problems":[
+   "GAPPY:42\/817_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CDC_WONDER",
+  "name":"Death and health statistics from the national public...",
+  "total":880,
+  "months":22,
+  "span":"1999-2020",
+  "problems":[
+   "GAPPY:22\/253_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CLINICALTRIALS",
+  "name":"A sample of registered clinical trials",
+  "total":500,
+  "months":212,
+  "span":"1999-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CMS_DIALYSIS",
+  "name":"Dialysis facilities and their details",
+  "total":7557,
+  "months":605,
+  "span":"1968-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS",
+  "name":"Ownership of federally qualified health centres",
+  "total":9092,
+  "months":698,
+  "span":"1817-2024",
+  "problems":[
+   "PRE1900:0.3%(min 1817-01)",
+   "GAPPY:698\/2492_months_present"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CMS_HCRIS",
+  "name":"The detailed financial accounts hospitals file with Medicare",
+  "total":6103,
+  "months":12,
+  "span":"2022-2023",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CMS_HOME_HEALTH",
+  "name":"Home health agencies and their reported quality measures",
+  "total":12391,
+  "months":694,
+  "span":"1966-2025",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS",
+  "name":"Which companies own and control each home health agency",
+  "total":9211,
+  "months":814,
+  "span":"1808-2024",
+  "problems":[
+   "PRE1900:0.4%(min 1808-03)",
+   "GAPPY:814\/2598_months_present"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CMS_HOSPICE",
+  "name":"Hospice providers and their details",
+  "total":6852,
+  "months":502,
+  "span":"1983-2025",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CMS_HOSPITAL_ENROLLMENTS",
+  "name":"Which companies own and control each hospital",
+  "total":6026,
+  "months":1295,
+  "span":"1800-2024",
+  "problems":[
+   "PRE1900:4.8%(min 1800-01)"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CMS_IRF",
+  "name":"Inpatient rehabilitation facilities and their details",
+  "total":1222,
+  "months":387,
+  "span":"1983-2026",
+  "problems":[
+   "FUTURE:0.2%_after_today(max 2026-10)"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CMS_LTCH",
+  "name":"Long-term care hospitals and their details",
+  "total":311,
+  "months":193,
+  "span":"1966-2025",
+  "problems":[
+   "GAPPY:193\/704_months_present"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CMS_MEDICARE_DIALYSIS_FACILITIES",
+  "name":"Dialysis clinics and their reported quality and outcome...",
+  "total":11622422,
+  "months":4,
+  "span":"2021-2024",
+  "problems":[
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CMS_NADAC",
+  "name":"What pharmacies actually pay to buy each drug",
+  "total":359514,
+  "months":25,
+  "span":"2022-2024",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CMS_NURSING_HOME_DEFICIENCIES",
+  "name":"Every problem inspectors found in a US nursing home",
+  "total":418479,
+  "months":106,
+  "span":"2017-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES",
+  "name":"Fire safety failures found during nursing home inspections",
+  "total":200030,
+  "months":108,
+  "span":"2016-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CMS_NURSING_HOME_PENALTIES",
+  "name":"Fines and payment suspensions imposed on nursing homes",
+  "total":16180,
+  "months":1,
+  "span":"2026-2026",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2026"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CMS_OPEN_PAYMENTS",
+  "name":"Payments and gifts from drug and device companies to...",
+  "total":15384974,
+  "months":12,
+  "span":"2024-2024",
+  "problems":[
+   "ONE_YEAR_ONLY:2024"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CMS_OPEN_PAYMENTS_2022",
+  "name":"Drug and device company payments to doctors in 2022",
+  "total":13250000,
+  "months":12,
+  "span":"2022-2022",
+  "problems":[
+   "ONE_YEAR_ONLY:2022"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CMS_OPEN_PAYMENTS_2023",
+  "name":"Drug and device company payments to doctors in 2023",
+  "total":14700786,
+  "months":12,
+  "span":"2023-2023",
+  "problems":[
+   "ONE_YEAR_ONLY:2023"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CMS_OPIOID_TREATMENT_PROGRAM_PROVIDERS",
+  "name":"Clinics licensed to provide opioid addiction treatment",
+  "total":1558,
+  "months":76,
+  "span":"2014-2026",
+  "problems":[
+   "PILEUP:58%_in_2020-01"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CMS_OPT_OUT_AFFIDAVITS",
+  "name":"Doctors who have formally opted out of Medicare entirely",
+  "total":57209,
+  "months":27,
+  "span":"2024-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CMS_POS_OTHER",
+  "name":"Healthcare facilities certified to treat Medicare patients",
+  "total":4757,
+  "months":525,
+  "span":"1973-2026",
+  "problems":[
+   "LOW_FILL:10.7%"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS",
+  "name":"Ownership of rural health clinics",
+  "total":3541,
+  "months":825,
+  "span":"1859-2024",
+  "problems":[
+   "PRE1900:1.3%(min 1859-01)"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS",
+  "name":"Which companies own and control each skilled nursing facility",
+  "total":8989,
+  "months":1103,
+  "span":"1800-2024",
+  "problems":[
+   "PRE1900:1.1%(min 1800-01)"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_DEA_ARCOS",
+  "name":"Every shipment of prescription opioids in America from...",
+  "total":178598021,
+  "months":84,
+  "span":"2006-2012",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_FDA_CAERS",
+  "name":"Reports of people harmed by food",
+  "total":85511,
+  "months":271,
+  "span":"2001-2025",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_FDA_DEVICE_510K",
+  "name":"Medical devices cleared for sale on the grounds that they...",
+  "total":175686,
+  "months":603,
+  "span":"1976-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_FDA_DEVICE_ENFORCEMENT",
+  "name":"Medical device recalls and enforcement actions",
+  "total":39635,
+  "months":232,
+  "span":"1930-2026",
+  "problems":[
+   "GAPPY:232\/1148_months_present"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_FDA_DEVICE_PMA",
+  "name":"Medical devices that went through the full pre-market...",
+  "total":56853,
+  "months":605,
+  "span":"1900-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_FDA_DRUG_ENFORCEMENT",
+  "name":"Drug recalls and enforcement actions",
+  "total":17816,
+  "months":189,
+  "span":"2006-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_FDA_DRUG_MASTER_FILES",
+  "name":"Confidential files drug makers lodge with regulators about...",
+  "total":41252,
+  "months":901,
+  "span":"1939-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_FDA_ESTABLISHMENT_REG",
+  "name":"Factories and facilities registered to make or handle...",
+  "total":263374,
+  "months":1,
+  "span":"2026-2026",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2026",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_FDA_FAERS_DEMO",
+  "name":"Who the patient was in each suspected side effect report",
+  "total":4580761,
+  "months":497,
+  "span":"1908-2020",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_FDA_FAERS_DRUG",
+  "name":"The drugs named in reports of suspected side effects sent...",
+  "total":20914284,
+  "months":42,
+  "span":"2004-2014",
+  "problems":[
+   "GAPPY:42\/124_months_present"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_FDA_FAERS_INDI",
+  "name":"What each drug was being taken for in reports of suspected...",
+  "total":9833260,
+  "months":41,
+  "span":"2004-2014",
+  "problems":[
+   "GAPPY:41\/124_months_present"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_FDA_FAERS_OUTC",
+  "name":"How each suspected side effect case ended",
+  "total":1134815,
+  "months":42,
+  "span":"2004-2014",
+  "problems":[
+   "GAPPY:42\/124_months_present"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_FDA_FAERS_REAC",
+  "name":"What actually happened to patients in those side effect...",
+  "total":20621386,
+  "months":42,
+  "span":"2004-2014",
+  "problems":[
+   "GAPPY:42\/124_months_present"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_FDA_GUDID",
+  "name":"Every medical device sold in the US and its identifying...",
+  "total":5083948,
+  "months":145,
+  "span":"2013-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_FDA_MAUDE",
+  "name":"Reports of medical devices injuring or killing patients",
+  "total":2379083,
+  "months":413,
+  "span":"1900-2026",
+  "problems":[
+   "GAPPY:413\/1518_months_present"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_FDA_PURPLE_BOOK",
+  "name":"Biologic medicines licensed in the US",
+  "total":2213,
+  "months":407,
+  "span":"1930-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_HHS_OIG_LEIE",
+  "name":"People and companies banned from billing Medicare and Medicaid",
+  "total":83369,
+  "months":562,
+  "span":"1977-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_HRSA_HPSA_PRIMARY_CARE",
+  "name":"Areas designated as short of primary care doctors",
+  "total":79158,
+  "months":456,
+  "span":"1980-2026",
+  "problems":[
+   "EXPLODES:last12m_6.2x_prior"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_HRSA_NPDB",
+  "name":"The national database of malpractice payouts and...",
+  "total":1640256,
+  "months":13,
+  "span":"1900-2020",
+  "problems":[
+   "GAPPY:13\/1441_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_HRSA_SHORTAGE_AREAS",
+  "name":"Places officially designated as short of medical care",
+  "total":165531,
+  "months":479,
+  "span":"1979-2026",
+  "problems":[
+   "EXPLODES:last12m_6.9x_prior"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_HRSA_UDS_HEALTH_CENTER_INFO",
+  "name":"Federally funded community health centres and who they serve",
+  "total":1356,
+  "months":1,
+  "span":"2025-2025",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2025",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_HRSA_UDS_SERVICE_DELIVERY_SITES",
+  "name":"The individual clinic locations run by federally funded...",
+  "total":19038,
+  "months":1,
+  "span":"2026-2026",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2026"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_NLM_DAILYMED_SPL_SETID_MAP",
+  "name":"The mapping between drug products and their official...",
+  "total":158452,
+  "months":241,
+  "span":"2006-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_NURSINGHOME411",
+  "name":"Nursing home ownership and quality information compiled by...",
+  "total":14713,
+  "months":703,
+  "span":"1967-2025",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_VA_ALLCAUSE_MORTALITY",
+  "name":"Death rates among US veterans",
+  "total":2808,
+  "months":6,
+  "span":"2018-2023",
+  "problems":[
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_VA_SUICIDE_NATIONAL",
+  "name":"National veteran suicide figures",
+  "total":690,
+  "months":23,
+  "span":"2001-2023",
+  "problems":[
+   "GAPPY:23\/265_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__FED_VA_SUICIDE_STATE",
+  "name":"Veteran suicide figures by state",
+  "total":1196,
+  "months":23,
+  "span":"2001-2023",
+  "problems":[
+   "GAPPY:23\/265_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__INTL_HEALTHCANADA_DPD_DRUG",
+  "name":"Every drug approved for sale in Canada",
+  "total":13383,
+  "months":17,
+  "span":"2025-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__PHARMA_MEAL_CAP_FINGERPRINT",
+  "name":"A Ripple-built check on drug company payments clustering...",
+  "total":2462,
+  "months":3,
+  "span":"2022-2024",
+  "problems":[
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__ST_OEHHA_PROPOSITION_65_LIST",
+  "name":"Chemicals California officially lists as causing cancer or...",
+  "total":924,
+  "months":148,
+  "span":"1987-2026",
+  "problems":[
+   "GAPPY:148\/474_months_present"
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__XC_GUTTMACHER_MONTHLY_ABORTION",
+  "name":"Monthly abortion counts by state",
+  "total":2040,
+  "months":39,
+  "span":"2023-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"HEALTH.HEALTH__XC_OWID_LIFE_EXPECTANCY",
+  "name":"Life expectancy by country over time",
+  "total":21533,
+  "months":283,
+  "span":"1703-2023",
+  "problems":[
+   "PRE1900:4.2%(min 1703-01)",
+   "GAPPY:283\/3841_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"HISTORICAL_RECORDS.HISTORICAL_RECORDS__FED_SLAVEVOYAGES_INTRAAMERICAN",
+  "name":"Documented slave voyages within the Americas",
+  "total":11025,
+  "months":127,
+  "span":"1700-1841",
+  "problems":[
+   "PRE1900:100.0%(min 1700-01)",
+   "GAPPY:127\/1693_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"HISTORY.HISTORY__FED_WPA_SLAVE_NARRATIVES",
+  "name":"First-person accounts recorded from formerly enslaved...",
+  "total":98,
+  "months":2,
+  "span":"1937-1938",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"HOUSING.HOUSING__FED_CFPB_HMDA",
+  "name":"Recent mortgage application records",
+  "total":28301,
+  "months":1,
+  "span":"2022-2022",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2022",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"HOUSING.HOUSING__FED_CFPB_HMDA_DC_ONLY",
+  "name":"Mortgage application records for Washington DC",
+  "total":28301,
+  "months":1,
+  "span":"2022-2022",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2022",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"HOUSING.HOUSING__FED_CFPB_HMDA_HISTORIC",
+  "name":"Every US mortgage application on record",
+  "total":19136434,
+  "months":3,
+  "span":"2015-2017",
+  "problems":[
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"HOUSING.HOUSING__FED_CFPB_HMDA_LAR",
+  "name":"Loan-level mortgage application records",
+  "total":17474,
+  "months":1,
+  "span":"2023-2023",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2023",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"HOUSING.HOUSING__FED_FEMA_IA_HOUSING_REGISTRATIONS",
+  "name":"Households that applied for federal disaster housing...",
+  "total":3079994,
+  "months":284,
+  "span":"2000-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"HOUSING.HOUSING__FED_FHFA_HPI",
+  "name":"House price indexes tracking how property values move",
+  "total":184807,
+  "months":52,
+  "span":"1975-2026",
+  "problems":[
+   "GAPPY:52\/613_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"HOUSING.HOUSING__FED_FHFA_NMDB",
+  "name":"A statistical sample of US mortgages tracked over their...",
+  "total":5328,
+  "months":333,
+  "span":"1998-2025",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"HOUSING.HOUSING__FED_HUD_DATA",
+  "name":"A small sample from the federal housing department",
+  "total":19,
+  "months":1,
+  "span":"2000-2000",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2000",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"HOUSING.HOUSING__FED_HUD_FHA_SF_PORTFOLIO_SNAPSHOT",
+  "name":"Government-insured single family mortgages currently...",
+  "total":61647,
+  "months":1,
+  "span":"2026-2026",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2026",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"HOUSING.HOUSING__FED_HUD_MF_FIRM_COMMITMENTS",
+  "name":"Government commitments to insure apartment building mortgages",
+  "total":25557,
+  "months":308,
+  "span":"2000-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"HOUSING.HOUSING__FED_HUD_MF_SECTION8_CONTRACTS",
+  "name":"Subsidised housing contracts",
+  "total":24309,
+  "months":304,
+  "span":"1977-2027",
+  "problems":[
+   "FUTURE:0.0%_after_today(max 2027-05)"
+  ]
+ },
+ {
+  "id":"IMMIGRATION.IMMIGRATION__FED_CMS_HOSPICE_ENROLLMENTS",
+  "name":"Ownership of hospice providers. Filed under immigration by...",
+  "total":4818,
+  "months":747,
+  "span":"1848-2024",
+  "problems":[
+   "PRE1900:0.4%(min 1848-05)"
+  ]
+ },
+ {
+  "id":"IMMIGRATION.IMMIGRATION__FED_DHS_OHSS",
+  "name":"Immigration enforcement and benefits statistics from...",
+  "total":872,
+  "months":12,
+  "span":"2014-2025",
+  "problems":[
+   "YEAR_GRAIN",
+   "LOW_FILL:1.7%"
+  ]
+ },
+ {
+  "id":"IMMIGRATION.IMMIGRATION__FED_DHS_YEARBOOK",
+  "name":"Headline immigration statistics from the annual homeland...",
+  "total":27,
+  "months":27,
+  "span":"1996-2022",
+  "problems":[
+   "GAPPY:27\/313_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"IMMIGRATION.IMMIGRATION__FED_DOL_OFLC",
+  "name":"Employer applications to hire foreign workers",
+  "total":664616,
+  "months":12,
+  "span":"2018-2019",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"IMMIGRATION.IMMIGRATION__FED_EPA_SDWA_SDWA_SERVICE_AREAS",
+  "name":"The areas each public drinking water system covers. Filed...",
+  "total":89554,
+  "months":247,
+  "span":"2005-2026",
+  "problems":[
+   "LOW_FILL:21.2%"
+  ]
+ },
+ {
+  "id":"IMMIGRATION.IMMIGRATION__FED_ICE_DETAINERS",
+  "name":"Requests immigration enforcement sent to jails asking them...",
+  "total":609729,
+  "months":95,
+  "span":"1903-2025",
+  "problems":[
+   "GAPPY:95\/1465_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"IMMIGRATION.IMMIGRATION__FED_ICE_DETENTION_STINTS",
+  "name":"Individual stays in US immigration detention",
+  "total":2571974,
+  "months":91,
+  "span":"1930-2025",
+  "problems":[
+   "GAPPY:91\/1141_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"IMMIGRATION.IMMIGRATION__XC_OWID_REFUGEES",
+  "name":"Refugee numbers by country of origin and destination",
+  "total":7442,
+  "months":74,
+  "span":"1951-2024",
+  "problems":[
+   "GAPPY:74\/877_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"INVESTIGATIONS.INVESTIGATIONS__INTL_LEIDEN_RUSSIAN_OPS_EUROPE",
+  "name":"Documented Russian covert operations in Europe",
+  "total":45,
+  "months":16,
+  "span":"2022-2025",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"JUDICIARY.JUDICIARY__FED_OYEZ",
+  "name":"A small sample of Supreme Court case material",
+  "total":25,
+  "months":14,
+  "span":"1966-1973",
+  "problems":[
+   "GAPPY:14\/85_months_present"
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__COUNTY_DOUBLE_BURDEN",
+  "name":"A Ripple-built measure of counties carrying more than one...",
+  "total":3029,
+  "months":31,
+  "span":"1970-2024",
+  "problems":[
+   "GAPPY:31\/649_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__FED_CISA_KEV",
+  "name":"Software security holes that are known to be actively...",
+  "total":1631,
+  "months":57,
+  "span":"2021-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__FED_CONSOLIDATED_SCREENING_LIST",
+  "name":"The combined US list of parties barred from trade and...",
+  "total":5094,
+  "months":348,
+  "span":"1974-2026",
+  "problems":[
+   "LOW_FILL:19.7%"
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__FED_COURTLISTENER_COURTS",
+  "name":"Every court in the United States",
+  "total":419,
+  "months":165,
+  "span":"1701-2023",
+  "problems":[
+   "PRE1900:57.3%(min 1701-01)",
+   "GAPPY:165\/3870_months_present"
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__FED_COURTLISTENER_DOCKETS",
+  "name":"Every federal court case file",
+  "total":236171,
+  "months":1640,
+  "span":"1802-2026",
+  "problems":[
+   "PRE1900:8.7%(min 1802-01)",
+   "LOW_FILL:0.3%"
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__FED_COURTLISTENER_FINANCIAL_DISCLOSURES",
+  "name":"The annual financial disclosures federal judges are...",
+  "total":32313,
+  "months":89,
+  "span":"1700-2099",
+  "problems":[
+   "FUTURE:0.1%_after_today(max 2099-01)",
+   "PRE1900:0.2%(min 1700-01)",
+   "GAPPY:89\/4789_months_present",
+   "YEAR_GRAIN",
+   "LOW_FILL:48.7%"
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__FED_COURTLISTENER_FJC_IDB_CL_LINKED",
+  "name":"Federal court cases matched between two separate court...",
+  "total":10323280,
+  "months":693,
+  "span":"1901-2022",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__FED_COURTLISTENER_INVESTMENTS",
+  "name":"Individual investments federal judges disclosed owning",
+  "total":686226,
+  "months":234,
+  "span":"1969-2022",
+  "problems":[
+   "LOW_FILL:36.1%"
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__FED_COURTLISTENER_JUDGES",
+  "name":"Every federal and state judge on record",
+  "total":7361,
+  "months":1785,
+  "span":"1707-1999",
+  "problems":[
+   "PRE1900:27.3%(min 1707-01)",
+   "LOW_FILL:45.5%"
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__FED_COURTLISTENER_JUDGE_EDUCATIONS",
+  "name":"Where each judge went to school",
+  "total":7910,
+  "months":226,
+  "span":"1751-2023",
+  "problems":[
+   "PRE1900:4.3%(min 1751-01)",
+   "GAPPY:226\/3265_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__FED_COURTLISTENER_JUDGE_POLITICAL_AFFILIATIONS",
+  "name":"The political party each judge was affiliated with",
+  "total":4117,
+  "months":1073,
+  "span":"1798-2022",
+  "problems":[
+   "PRE1900:10.3%(min 1798-04)"
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__FED_COURTLISTENER_OPINION_CLUSTERS",
+  "name":"Written court rulings",
+  "total":10069865,
+  "months":3387,
+  "span":"1700-2026",
+  "problems":[
+   "FUTURE:0.0%_after_today(max 2026-10)",
+   "PRE1900:7.3%(min 1700-05)"
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__FED_COURTLISTENER_ORIGINATING_COURT_INFO",
+  "name":"Which lower court an appealed case came from",
+  "total":45003,
+  "months":519,
+  "span":"1951-2026",
+  "problems":[
+   "FUTURE:0.0%_after_today(max 2026-12)",
+   "LOW_FILL:4.6%"
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__FED_COURTLISTENER_POSITIONS",
+  "name":"Every job a federal judge has held",
+  "total":1728,
+  "months":51,
+  "span":"1980-2022",
+  "problems":[
+   "GAPPY:51\/505_months_present",
+   "LOW_FILL:3.4%"
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__FED_DOJ_FCA_SETTLEMENTS",
+  "name":"A small set of settlements where companies were accused of...",
+  "total":11,
+  "months":4,
+  "span":"2023-2026",
+  "problems":[
+   "PILEUP:55%_in_2025-01",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__FED_FBI_CDE",
+  "name":"Crime figures reported by US police departments to the FBI",
+  "total":238680,
+  "months":468,
+  "span":"1985-2023",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__FED_FBI_NICS_CHECKS",
+  "name":"Monthly counts of background checks run for gun purchases",
+  "total":16445,
+  "months":299,
+  "span":"1998-2023",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__FED_FHFA_SUSPENDED_COUNTERPARTIES",
+  "name":"Firms and individuals barred from doing business with US...",
+  "total":222,
+  "months":56,
+  "span":"2013-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__FED_FJC_IDB_APPELLATE",
+  "name":"Appeals filed in US federal appeals courts",
+  "total":146064,
+  "months":259,
+  "span":"2001-2026",
+  "problems":[
+   "LOW_FILL:14.8%"
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__FED_FJC_IDB_BANKRUPTCY",
+  "name":"Every bankruptcy filed in US federal court",
+  "total":6965441,
+  "months":539,
+  "span":"1950-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__FED_FJC_IDB_CIVIL",
+  "name":"Every civil lawsuit filed in US federal court",
+  "total":813782,
+  "months":589,
+  "span":"1909-2026",
+  "problems":[
+   "LOW_FILL:7.5%"
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__FED_FJC_IDB_CRIMINAL",
+  "name":"Every federal criminal defendant",
+  "total":6299908,
+  "months":762,
+  "span":"1907-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__FED_FTC_DATASETS",
+  "name":"A small set of consumer protection enforcement records",
+  "total":1004,
+  "months":61,
+  "span":"2021-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__FED_SCDB",
+  "name":"Every US Supreme Court decision",
+  "total":74160,
+  "months":585,
+  "span":"1944-2025",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__INTL_EURLEX_CELLAR",
+  "name":"A small sample of European Union legal documents",
+  "total":53,
+  "months":11,
+  "span":"1987-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__INTL_EU_SANCTIONS",
+  "name":"People and entities sanctioned by the European Union",
+  "total":3421,
+  "months":633,
+  "span":"1925-2004",
+  "problems":[
+   "LOW_FILL:8.1%"
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__INTL_EU_SOCTA_EUROPOL",
+  "name":"A small set of European organised crime threat assessments",
+  "total":26,
+  "months":1,
+  "span":"2025-2025",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2025"
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__INTL_NTI_CNS_DPRK_MISSILE_TESTS",
+  "name":"North Korean missile tests",
+  "total":303,
+  "months":83,
+  "span":"1984-2024",
+  "problems":[
+   "GAPPY:83\/488_months_present"
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__INTL_OPENSANCTIONS",
+  "name":"A second cut of the global sanctions and watchlist data",
+  "total":21670,
+  "months":873,
+  "span":"1921-2022",
+  "problems":[
+   "LOW_FILL:30.5%"
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__INTL_OPENSANCTIONS_DEFAULT",
+  "name":"People and companies under sanctions",
+  "total":463657,
+  "months":1377,
+  "span":"1900-2026",
+  "problems":[
+   "LOW_FILL:36.2%"
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__INTL_UCDP_GED",
+  "name":"Every recorded event of organised violence worldwide",
+  "total":385918,
+  "months":36,
+  "span":"1989-2024",
+  "problems":[
+   "GAPPY:36\/421_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__RACIAL_JAIL_DISPARITY",
+  "name":"A Ripple-built measure of racial disparity in county jail...",
+  "total":128507,
+  "months":57,
+  "span":"1970-2026",
+  "problems":[
+   "GAPPY:57\/673_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__STATE_MO_SEX_OFFENDER_REGISTRY",
+  "name":"Missouri's public sex offender registry",
+  "total":28185,
+  "months":843,
+  "span":"1926-2008",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__XC_MAPPING_POLICE_VIOLENCE",
+  "name":"People killed by US police",
+  "total":15476,
+  "months":163,
+  "span":"2013-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__XC_NAGIX_DPRK_MISSILE_TESTS",
+  "name":"North Korean missile tests",
+  "total":332,
+  "months":86,
+  "span":"1984-2026",
+  "problems":[
+   "GAPPY:86\/506_months_present"
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__XC_OWID_HOMICIDE",
+  "name":"Homicide rates by country over time",
+  "total":4912,
+  "months":35,
+  "span":"1990-2024",
+  "problems":[
+   "GAPPY:35\/409_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__XC_OWID_NUCLEAR_WARHEADS",
+  "name":"Nuclear warhead counts by country over time",
+  "total":902,
+  "months":82,
+  "span":"1945-2026",
+  "problems":[
+   "GAPPY:82\/973_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__XC_OWID_TERRORISM_DEATHS",
+  "name":"Deaths from terrorism by country over time",
+  "total":10481,
+  "months":51,
+  "span":"1970-2021",
+  "problems":[
+   "GAPPY:51\/613_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__XC_UK_SANCTIONS_LIST",
+  "name":"People and entities sanctioned by the United Kingdom",
+  "total":33828,
+  "months":202,
+  "span":"2000-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__XC_VERA_INCARCERATION_TRENDS",
+  "name":"Jail and prison populations by US county over decades",
+  "total":128507,
+  "months":57,
+  "span":"1970-2026",
+  "problems":[
+   "GAPPY:57\/673_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"JUSTICE.JUSTICE__XC_WAPO_FATAL_FORCE",
+  "name":"People shot and killed by US police",
+  "total":10430,
+  "months":120,
+  "span":"2015-2024",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"LABOR.LABOR__FED_DOL_EBSA_FORM5500_SCHEDULE_SB",
+  "name":"The actuary's report on whether a company pension plan has...",
+  "total":41458,
+  "months":47,
+  "span":"1956-2026",
+  "problems":[
+   "FUTURE:0.0%_after_today(max 2026-09)",
+   "GAPPY:47\/841_months_present"
+  ]
+ },
+ {
+  "id":"LABOR.LABOR__FED_DOL_OLMS",
+  "name":"The annual financial reports US labour unions must file",
+  "total":617552,
+  "months":27,
+  "span":"2000-2026",
+  "problems":[
+   "GAPPY:27\/313_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"LABOR.LABOR__FED_MSHA_ACCIDENTS",
+  "name":"Every accident",
+  "total":273623,
+  "months":319,
+  "span":"2000-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"LABOR.LABOR__FED_MSHA_MINES",
+  "name":"Every mine in the United States",
+  "total":91906,
+  "months":681,
+  "span":"1925-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"LABOR.LABOR__FED_MSHA_VIOLATIONS",
+  "name":"Every safety violation a federal inspector wrote up at a...",
+  "total":3087265,
+  "months":326,
+  "span":"1994-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"LABOR.LABOR__FED_OSHA_ITA_300A_SUMMARY_2023",
+  "name":"Each workplace's annual injury summary for 2023",
+  "total":394234,
+  "months":1,
+  "span":"2023-2023",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2023",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"LABOR.LABOR__FED_OSHA_ITA_300A_SUMMARY_2024",
+  "name":"Each workplace's annual injury summary for 2024",
+  "total":398620,
+  "months":1,
+  "span":"2024-2024",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2024",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"LABOR.LABOR__FED_OSHA_ITA_300A_SUMMARY_2025",
+  "name":"Each workplace's annual injury summary for 2025",
+  "total":383277,
+  "months":1,
+  "span":"2025-2025",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2025",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"LABOR.LABOR__FED_OSHA_ITA_CASE_DETAIL_2023",
+  "name":"Individual workplace injuries and illnesses employers...",
+  "total":890934,
+  "months":35,
+  "span":"2022-2024",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"LABOR.LABOR__FED_OSHA_ITA_CASE_DETAIL_2024",
+  "name":"Individual workplace injuries and illnesses employers...",
+  "total":688649,
+  "months":1,
+  "span":"2024-2024",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2024",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"LABOR.LABOR__FED_OSHA_ITA_CASE_DETAIL_2025",
+  "name":"Individual workplace injuries and illnesses employers...",
+  "total":330447,
+  "months":24,
+  "span":"2024-2025",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"LABOR.LABOR__FED_PBGC_TRUSTEED_PLANS",
+  "name":"Company pension plans that failed and were taken over by...",
+  "total":5176,
+  "months":609,
+  "span":"1972-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"LEGAL_ENFORCEMENT.LEGAL_ENFORCEMENT__FED_NAAG_MULTISTATE_SETTLEMENTS",
+  "name":"Settlements where groups of state attorneys general sued a...",
+  "total":862,
+  "months":340,
+  "span":"1983-2021",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"MARITIME.MARITIME__FED_NOAA_AIS",
+  "name":"Ship movement tracking",
+  "total":58104610,
+  "months":1,
+  "span":"2024-2024",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2024"
+  ]
+ },
+ {
+  "id":"MONEY_FINANCE.MONEY__DEBT_REPAYMENT_CLIFF",
+  "name":"A public dataset: Debt Repayment Cliff. No plain-English...",
+  "total":268,
+  "months":2,
+  "span":"2026-2027",
+  "problems":[
+   "FUTURE:50.0%_after_today(max 2027-01)",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"OPEN_DATA.OPEN_DATA__INTL_CA_OPEN_CANADA",
+  "name":"The catalogue of datasets the Canadian government publishes",
+  "total":500,
+  "months":1,
+  "span":"2026-2026",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2026"
+  ]
+ },
+ {
+  "id":"OPEN_DATA.OPEN_DATA__INTL_CH_OPENDATASWISS",
+  "name":"The catalogue of datasets the Swiss government publishes",
+  "total":5000,
+  "months":90,
+  "span":"2015-2023",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"OPEN_DATA.OPEN_DATA__INTL_CL_DATOSGOB",
+  "name":"The catalogue of datasets the Chilean government publishes",
+  "total":1000,
+  "months":56,
+  "span":"2015-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"OPEN_DATA.OPEN_DATA__INTL_DE_GOVDATA",
+  "name":"The catalogue of datasets the German government publishes",
+  "total":5000,
+  "months":96,
+  "span":"2013-2025",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"OPEN_DATA.OPEN_DATA__INTL_FR_DATA_GOUV",
+  "name":"The catalogue of datasets the French government publishes",
+  "total":130425,
+  "months":367,
+  "span":"1827-2026",
+  "problems":[
+   "PRE1900:0.0%(min 1827-01)",
+   "GAPPY:367\/2396_months_present"
+  ]
+ },
+ {
+  "id":"OPEN_DATA.OPEN_DATA__INTL_GR_DATAGOV",
+  "name":"The catalogue of datasets the Greek government publishes",
+  "total":4988,
+  "months":8,
+  "span":"2025-2026",
+  "problems":[
+   "PILEUP:65%_in_2026-05"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__BILLS",
+  "name":"Bills introduced in Congress",
+  "total":36465,
+  "months":42,
+  "span":"2023-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__BILL_COSPONSORS",
+  "name":"Which members of Congress signed on to support which bills",
+  "total":367735,
+  "months":42,
+  "span":"2023-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__CA_LOBBY_AMENDMENTS",
+  "name":"Amendments to California lobbying filings",
+  "total":25227,
+  "months":319,
+  "span":"1823-2026",
+  "problems":[
+   "FUTURE:0.0%_after_today(max 2026-12)",
+   "PRE1900:0.0%(min 1823-10)",
+   "GAPPY:319\/2439_months_present"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__CA_LOBBY_CHG_LOG",
+  "name":"Changes filed to California lobbying registrations",
+  "total":74486,
+  "months":339,
+  "span":"1900-2026",
+  "problems":[
+   "FUTURE:0.0%_after_today(max 2026-12)",
+   "GAPPY:339\/1524_months_present"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__CA_LOBBY_CONTRIBUTIONS",
+  "name":"Political donations reported by California lobbying interests",
+  "total":6505,
+  "months":8,
+  "span":"2000-2001",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__CA_LOBBY_COVER",
+  "name":"The cover pages of California lobbying reports",
+  "total":524678,
+  "months":332,
+  "span":"1724-2026",
+  "problems":[
+   "FUTURE:0.0%_after_today(max 2026-12)",
+   "PRE1900:0.0%(min 1724-01)",
+   "GAPPY:332\/3636_months_present"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__CA_LOBBY_EMPLOYER",
+  "name":"The companies and groups that hire California lobbyists",
+  "total":1730,
+  "months":1,
+  "span":"1999-1999",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:1999",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__CA_LOBBY_FIRM",
+  "name":"California lobbying firms",
+  "total":256,
+  "months":1,
+  "span":"2001-2001",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2001",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__CA_LOBBY_FIRM_EMPLOYER",
+  "name":"Which California lobbying firm works for which client",
+  "total":170,
+  "months":1,
+  "span":"2001-2001",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2001"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__FEC_CANDIDATE",
+  "name":"Candidates for federal office",
+  "total":17048,
+  "months":32,
+  "span":"1980-2027",
+  "problems":[
+   "FUTURE:0.1%_after_today(max 2027-01)",
+   "GAPPY:32\/565_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__FEC_CANDIDATE_SUMMARY",
+  "name":"Summary fundraising totals per candidate",
+  "total":7933,
+  "months":46,
+  "span":"2023-2026",
+  "problems":[
+   "FUTURE:0.2%_after_today(max 2026-12)"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__FEC_CAND_CMTE_LINK",
+  "name":"Which campaign committee belongs to which candidate",
+  "total":15725,
+  "months":32,
+  "span":"1980-2027",
+  "problems":[
+   "FUTURE:0.0%_after_today(max 2027-01)",
+   "GAPPY:32\/565_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__FED_CONGRESS_LEGISLATORS",
+  "name":"Current and recent members of Congress and their...",
+  "total":12847,
+  "months":657,
+  "span":"1790-2031",
+  "problems":[
+   "FUTURE:4.2%_after_today(max 2031-01)",
+   "PRE1900:48.1%(min 1790-06)",
+   "EXPLODES:last12m_9.9x_prior",
+   "GAPPY:657\/2888_months_present"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__FED_FCC_LICENSING",
+  "name":"Licences to use the radio spectrum",
+  "total":1667754,
+  "months":483,
+  "span":"1984-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__FED_FEC_API",
+  "name":"A small sample of campaign finance records pulled through...",
+  "total":500,
+  "months":33,
+  "span":"2000-2022",
+  "problems":[
+   "PILEUP:78%_in_2022-05",
+   "GAPPY:33\/261_months_present"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__FED_FEC_PAC_SUMMARY",
+  "name":"Summary totals for each political action committee",
+  "total":37812,
+  "months":97,
+  "span":"2017-2025",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__FED_FJC_JUDGES",
+  "name":"Biographical records of every federal judge in US history",
+  "total":4065,
+  "months":254,
+  "span":"1732-1991",
+  "problems":[
+   "PRE1900:27.6%(min 1732-01)",
+   "GAPPY:254\/3109_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__FED_FJC_SERVICE",
+  "name":"Each federal judge's time on the bench",
+  "total":4731,
+  "months":1179,
+  "span":"1789-2026",
+  "problems":[
+   "PRE1900:12.1%(min 1789-09)"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__FED_MEDSL_HOUSE_RETURNS",
+  "name":"US House election results",
+  "total":29636,
+  "months":22,
+  "span":"1976-2018",
+  "problems":[
+   "GAPPY:22\/505_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__FED_MEDSL_PRESIDENT_RETURNS",
+  "name":"US presidential election results",
+  "total":3740,
+  "months":11,
+  "span":"1976-2016",
+  "problems":[
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__FED_MEDSL_SENATE_RETURNS",
+  "name":"US Senate election results",
+  "total":3945,
+  "months":26,
+  "span":"1976-2024",
+  "problems":[
+   "GAPPY:26\/577_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__FED_VOTEVIEW_ROLLCALL_META",
+  "name":"Every recorded vote taken in Congress",
+  "total":113512,
+  "months":1926,
+  "span":"1789-2026",
+  "problems":[
+   "PRE1900:35.7%(min 1789-05)"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__INTL_ELECTIONS_CANADA_CONTRIBUTIONS",
+  "name":"Every political donation reported in Canada",
+  "total":12600096,
+  "months":317,
+  "span":"1900-2027",
+  "problems":[
+   "FUTURE:0.0%_after_today(max 2027-08)",
+   "GAPPY:317\/1532_months_present"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__INTL_OWID_MILSPEND",
+  "name":"Military spending by country over time",
+  "total":9112,
+  "months":77,
+  "span":"1949-2025",
+  "problems":[
+   "GAPPY:77\/913_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__INTL_VOETEN_UNGA_VOTES",
+  "name":"How every country voted on every United Nations General...",
+  "total":1823352,
+  "months":78,
+  "span":"1946-2024",
+  "problems":[
+   "GAPPY:78\/937_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__IRS527_8871_ORGS",
+  "name":"Political organisations that registered with the tax authority",
+  "total":70767,
+  "months":844,
+  "span":"1808-2026",
+  "problems":[
+   "PRE1900:0.0%(min 1808-01)",
+   "GAPPY:844\/2623_months_present"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__IRS527_8872_REPORTS",
+  "name":"What those political organisations reported raising and...",
+  "total":55579,
+  "months":626,
+  "span":"1869-2026",
+  "problems":[
+   "PRE1900:0.2%(min 1869-09)",
+   "GAPPY:626\/1882_months_present"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__MEMBER_CROSSWALK",
+  "name":"A Ripple-built map linking the same member of Congress...",
+  "total":12794,
+  "months":605,
+  "span":"1789-2026",
+  "problems":[
+   "PRE1900:52.1%(min 1789-03)",
+   "GAPPY:605\/2848_months_present"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__MEMBER_MONEY_RAISED",
+  "name":"A Ripple-built summary of what each member of Congress raised",
+  "total":1050,
+  "months":2,
+  "span":"2024-2026",
+  "problems":[
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__MEMBER_SPINE",
+  "name":"A Ripple-built master list of members of Congress and...",
+  "total":12794,
+  "months":605,
+  "span":"1789-2026",
+  "problems":[
+   "PRE1900:52.1%(min 1789-03)",
+   "GAPPY:605\/2848_months_present"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__ST_CANNABIS_POLICY_BUNDLES",
+  "name":"A compiled view of state cannabis policy over time",
+  "total":1500,
+  "months":30,
+  "span":"1994-2023",
+  "problems":[
+   "GAPPY:30\/349_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__ST_NYC_CFB_CAMPAIGN_2001_CONTRIBUTION",
+  "name":"Donations to New York City candidates in the 2001 election",
+  "total":193741,
+  "months":1,
+  "span":"2001-2001",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2001",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__ST_NYC_CFB_CAMPAIGN_2009_CONTRIBUTION",
+  "name":"Donations to New York City candidates in the 2009 election",
+  "total":145943,
+  "months":75,
+  "span":"2000-2010",
+  "problems":[
+   "EXPLODES:last12m_4.5x_prior"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__ST_NYC_CFB_CAMPAIGN_2013_CONTRIBUTION",
+  "name":"Donations to New York City candidates in the 2013 election",
+  "total":197886,
+  "months":106,
+  "span":"1913-2014",
+  "problems":[
+   "EXPLODES:last12m_4.4x_prior",
+   "GAPPY:106\/1208_months_present"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__ST_NYC_CFB_CAMPAIGN_2021_CONTRIBUTIONS",
+  "name":"Donations to New York City candidates in the 2021 election",
+  "total":457476,
+  "months":76,
+  "span":"2011-2023",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__ST_NYC_CFB_CAMPAIGN_2025_CONTRIBUTIONS",
+  "name":"Donations to New York City candidates in the 2025 election",
+  "total":259480,
+  "months":47,
+  "span":"2014-2025",
+  "problems":[
+   "GAPPY:47\/137_months_present"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__TX_LOBBY_AWARDS",
+  "name":"Awards and mementoes Texas lobbyists gave to officials",
+  "total":1589,
+  "months":182,
+  "span":"2005-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__TX_LOBBY_COVER",
+  "name":"The cover pages of Texas lobbying reports",
+  "total":283802,
+  "months":420,
+  "span":"1988-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__TX_LOBBY_DOCKETS",
+  "name":"Specific regulatory dockets Texas lobbyists worked on",
+  "total":1207,
+  "months":179,
+  "span":"2001-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__TX_LOBBY_ENTERTAINMENT",
+  "name":"Entertainment Texas lobbyists provided to officials",
+  "total":2836,
+  "months":216,
+  "span":"2005-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__TX_LOBBY_EVENTS",
+  "name":"Events Texas lobbyists hosted for officials",
+  "total":2246,
+  "months":201,
+  "span":"2005-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__TX_LOBBY_FOOD_BEVERAGE",
+  "name":"Meals and drinks Texas lobbyists bought for officials",
+  "total":14452,
+  "months":254,
+  "span":"2004-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__TX_LOBBY_GIFTS",
+  "name":"Gifts Texas lobbyists gave to officials",
+  "total":4084,
+  "months":221,
+  "span":"2004-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__TX_LOBBY_INDIVIDUAL_REPORTING",
+  "name":"What Texas lobbyists reported spending on individual officials",
+  "total":38661,
+  "months":313,
+  "span":"2000-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__TX_LOBBY_SUBJECT_MATTER",
+  "name":"What subjects Texas lobbyists were hired to work on",
+  "total":209939,
+  "months":277,
+  "span":"1999-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__TX_LOBBY_TRANSPORTATION",
+  "name":"Travel Texas lobbyists paid for on behalf of officials",
+  "total":3697,
+  "months":23,
+  "span":"2004-2026",
+  "problems":[
+   "GAPPY:23\/265_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__VOTEVIEW_ROLLCALLS",
+  "name":"Recorded congressional votes",
+  "total":3364,
+  "months":40,
+  "span":"2023-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__XC_JCS_MEDIANS",
+  "name":"Academic estimates of the ideological midpoint of the...",
+  "total":102,
+  "months":101,
+  "span":"1924-2024",
+  "problems":[
+   "GAPPY:101\/1201_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__XC_JCS_SCOTUS",
+  "name":"Academic estimates of where each Supreme Court justice...",
+  "total":782,
+  "months":86,
+  "span":"1937-2022",
+  "problems":[
+   "GAPPY:86\/1021_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"POLITICS.POLITICS__XC_OWID_CPI",
+  "name":"Consumer price inflation by country over time",
+  "total":2312,
+  "months":13,
+  "span":"2012-2024",
+  "problems":[
+   "GAPPY:13\/145_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"PROCUREMENT.PROCUREMENT__FED_SAM_EXCLUSIONS",
+  "name":"People and companies barred from receiving US government...",
+  "total":156912,
+  "months":516,
+  "span":"1908-2099",
+  "problems":[
+   "FUTURE:0.0%_after_today(max 2099-12)",
+   "GAPPY:516\/2301_months_present"
+  ]
+ },
+ {
+  "id":"PROCUREMENT.PROCUREMENT__FED_USASPENDING_BULK",
+  "name":"Federal award records pulled in bulk",
+  "total":49613,
+  "months":2,
+  "span":"2026-2026",
+  "problems":[
+   "ONE_YEAR_ONLY:2026"
+  ]
+ },
+ {
+  "id":"PROCUREMENT.PROCUREMENT__FED_USASPENDING_SUBAWARDS",
+  "name":"Money passed down from a prime contractor to subcontractors",
+  "total":5000,
+  "months":192,
+  "span":"2008-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"PROCUREMENT.PROCUREMENT__INTL_EC_SERCOP",
+  "name":"Public procurement records from Ecuador's government...",
+  "total":13543,
+  "months":35,
+  "span":"2023-2026",
+  "problems":[
+   "FUTURE:0.1%_after_today(max 2026-12)",
+   "LOW_FILL:10.2%"
+  ]
+ },
+ {
+  "id":"REFERENCE.REFERENCE__FED_DHS_HIFLD",
+  "name":"A small sample of critical infrastructure location data",
+  "total":500,
+  "months":17,
+  "span":"2014-2021",
+  "problems":[
+   "GAPPY:17\/84_months_present"
+  ]
+ },
+ {
+  "id":"REFERENCE.REFERENCE__FED_ITIS_COMMENTS",
+  "name":"Expert notes attached to species records",
+  "total":70524,
+  "months":271,
+  "span":"1996-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"REFERENCE.REFERENCE__FED_ITIS_EXPERTS",
+  "name":"The taxonomists who vouch for species records",
+  "total":197,
+  "months":84,
+  "span":"1998-2024",
+  "problems":[
+   "GAPPY:84\/315_months_present"
+  ]
+ },
+ {
+  "id":"REFERENCE.REFERENCE__FED_ITIS_GEOGRAPHIC_DIV",
+  "name":"Where each species is found",
+  "total":480351,
+  "months":272,
+  "span":"1900-2026",
+  "problems":[
+   "GAPPY:272\/1519_months_present"
+  ]
+ },
+ {
+  "id":"REFERENCE.REFERENCE__FED_ITIS_JURISDICTION",
+  "name":"Which countries and regions each species is native or...",
+  "total":161922,
+  "months":235,
+  "span":"1997-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"REFERENCE.REFERENCE__FED_ITIS_KINGDOMS",
+  "name":"The top-level kingdoms of life used to organise the...",
+  "total":7,
+  "months":3,
+  "span":"1996-2014",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"REFERENCE.REFERENCE__FED_ITIS_NODC_IDS",
+  "name":"Cross-references between species codes in different systems",
+  "total":209565,
+  "months":3,
+  "span":"1996-1997",
+  "problems":[
+   "PILEUP:74%_in_1996-06"
+  ]
+ },
+ {
+  "id":"REFERENCE.REFERENCE__FED_ITIS_OTHER_SOURCES",
+  "name":"Other sources feeding the species database",
+  "total":1071,
+  "months":271,
+  "span":"1996-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"REFERENCE.REFERENCE__FED_ITIS_PUBLICATIONS",
+  "name":"The scientific publications underpinning species...",
+  "total":30772,
+  "months":2164,
+  "span":"1753-2026",
+  "problems":[
+   "PRE1900:13.3%(min 1753-01)"
+  ]
+ },
+ {
+  "id":"REFERENCE.REFERENCE__FED_ITIS_REFERENCE_LINKS",
+  "name":"Links between species records and the scientific...",
+  "total":1970107,
+  "months":270,
+  "span":"1996-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"REFERENCE.REFERENCE__FED_ITIS_SYNONYM_LINKS",
+  "name":"Alternative scientific names for the same species",
+  "total":315254,
+  "months":286,
+  "span":"1996-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"REFERENCE.REFERENCE__FED_ITIS_TAXONOMIC_UNITS",
+  "name":"The master scientific list of species and their classification",
+  "total":993346,
+  "months":286,
+  "span":"1996-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"REFERENCE.REFERENCE__FED_ITIS_TAXON_AUTHORS_LKP",
+  "name":"The scientists credited with naming each species",
+  "total":214445,
+  "months":283,
+  "span":"1996-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"REFERENCE.REFERENCE__FED_ITIS_TAXON_UNIT_TYPES",
+  "name":"The rank types used in scientific classification",
+  "total":182,
+  "months":13,
+  "span":"1996-2024",
+  "problems":[
+   "GAPPY:13\/338_months_present"
+  ]
+ },
+ {
+  "id":"REFERENCE.REFERENCE__FED_ITIS_TU_COMMENTS_LINKS",
+  "name":"Links between species records and expert comments on them",
+  "total":192851,
+  "months":269,
+  "span":"1996-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"REFERENCE.REFERENCE__FED_ITIS_VERNACULARS",
+  "name":"Common everyday names for species",
+  "total":166778,
+  "months":247,
+  "span":"1997-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"REFERENCE.REFERENCE__FED_ITIS_VERN_REF_LINKS",
+  "name":"Sources backing up each common species name",
+  "total":93078,
+  "months":191,
+  "span":"1900-2026",
+  "problems":[
+   "GAPPY:191\/1519_months_present"
+  ]
+ },
+ {
+  "id":"REFERENCE.REFERENCE__FED_USGS_GNIS_ALL_NAMES",
+  "name":"Every named geographic feature in the US",
+  "total":989023,
+  "months":1198,
+  "span":"1700-2023",
+  "problems":[
+   "PILEUP:78%_in_1981-12",
+   "PRE1900:0.6%(min 1700-12)",
+   "GAPPY:1198\/3868_months_present"
+  ]
+ },
+ {
+  "id":"REFERENCE.REFERENCE__FED_USGS_TOPOVIEW",
+  "name":"Historic US topographic maps and when they were published",
+  "total":250,
+  "months":17,
+  "span":"1943-1994",
+  "problems":[
+   "PILEUP:57%_in_1947-01",
+   "GAPPY:17\/613_months_present"
+  ]
+ },
+ {
+  "id":"REFERENCE.REFERENCE__INTL_GDELT",
+  "name":"A small sample from a global news event monitoring project",
+  "total":1015,
+  "months":3,
+  "span":"2025-2026",
+  "problems":[
+   "PILEUP:98%_in_2026-07"
+  ]
+ },
+ {
+  "id":"REFERENCE.REFERENCE__XC_OWID_FERTILITY",
+  "name":"Birth rates by country over time",
+  "total":19402,
+  "months":133,
+  "span":"1891-2023",
+  "problems":[
+   "PRE1900:0.0%(min 1891-01)",
+   "GAPPY:133\/1585_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"REFERENCE.REFERENCE__XC_ROR_RESEARCH_ORGANIZATIONS",
+  "name":"The global registry of universities",
+  "total":108761,
+  "months":325,
+  "span":"1700-2026",
+  "problems":[
+   "PRE1900:7.4%(min 1700-01)",
+   "GAPPY:325\/3913_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"REGULATORY.REGULATORY__FED_FEDERAL_REGISTER_DOCUMENTS",
+  "name":"Every rule",
+  "total":94731,
+  "months":42,
+  "span":"2023-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"REVIEW.LEAD_QUEUE",
+  "name":"A Ripple-internal work list of leads to review. Not public...",
+  "total":1019,
+  "months":176,
+  "span":"1995-2026",
+  "problems":[
+   "LOW_FILL:5.9%"
+  ]
+ },
+ {
+  "id":"SCIENCE.SCIENCE__FED_NASA_OPEN_DATA",
+  "name":"A small sample of NASA's published datasets",
+  "total":54,
+  "months":17,
+  "span":"1998-2026",
+  "problems":[
+   "GAPPY:17\/339_months_present"
+  ]
+ },
+ {
+  "id":"SCIENCE.SCIENCE__FED_NSF_AWARDS",
+  "name":"A small sample of national science research grants",
+  "total":115,
+  "months":6,
+  "span":"2026-2026",
+  "problems":[
+   "ONE_YEAR_ONLY:2026"
+  ]
+ },
+ {
+  "id":"SCIENCE.SCIENCE__FED_USGS_EARTHQUAKES",
+  "name":"Every recorded earthquake",
+  "total":443274,
+  "months":198,
+  "span":"2010-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"SCIENCE.SCIENCE__XC_OWID_AI_INCIDENTS_ANNUAL",
+  "name":"Annual counts of reported artificial intelligence...",
+  "total":14,
+  "months":14,
+  "span":"2012-2025",
+  "problems":[
+   "GAPPY:14\/157_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"SCIENCE_RESEARCH.SCIENCE_RESEARCH__FED_NIH_REPORTER",
+  "name":"Every federal medical research grant",
+  "total":2122611,
+  "months":27,
+  "span":"2000-2026",
+  "problems":[
+   "GAPPY:27\/313_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"SCIENCE_RESEARCH.SCIENCE_RESEARCH__FED_RETRACTION_WATCH",
+  "name":"Scientific papers that were retracted",
+  "total":71377,
+  "months":615,
+  "span":"1753-2026",
+  "problems":[
+   "PRE1900:0.0%(min 1753-01)",
+   "GAPPY:615\/3281_months_present"
+  ]
+ },
+ {
+  "id":"SCIENCE_RESEARCH.SCIENCE_RESEARCH__FED_SBIR_STTR_AWARDS",
+  "name":"Federal research grants to small businesses",
+  "total":219503,
+  "months":44,
+  "span":"1983-2026",
+  "problems":[
+   "GAPPY:44\/517_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"SCIENCE_RESEARCH.SCIENCE_RESEARCH__XC_BIORXIV_MEDRXIV",
+  "name":"Preprints",
+  "total":60,
+  "months":1,
+  "span":"2026-2026",
+  "problems":[
+   "SINGLE_POINT",
+   "ONE_YEAR_ONLY:2026"
+  ]
+ },
+ {
+  "id":"SCIENCE_RESEARCH.SCIENCE_RESEARCH__XC_OSF_REGISTRATIONS",
+  "name":"Research studies registered in advance",
+  "total":10,
+  "months":2,
+  "span":"2025-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"SCIENCE_RESEARCH.SCIENCE_RESEARCH__XC_RETRACTION_WATCH_DATABASE",
+  "name":"The retracted scientific papers database",
+  "total":71388,
+  "months":615,
+  "span":"1753-2026",
+  "problems":[
+   "PRE1900:0.0%(min 1753-01)",
+   "GAPPY:615\/3281_months_present"
+  ]
+ },
+ {
+  "id":"TRANSPORT.TRANSPORT__FED_FAA_AIRCRAFT_REGISTRY",
+  "name":"Every civil aircraft registered in the US and who owns it",
+  "total":245900,
+  "months":115,
+  "span":"1909-2026",
+  "problems":[
+   "GAPPY:115\/1405_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"TRANSPORT.TRANSPORT__FED_FAA_REGISTRY",
+  "name":"US aircraft registrations",
+  "total":246006,
+  "months":115,
+  "span":"1909-2026",
+  "problems":[
+   "GAPPY:115\/1405_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"TRANSPORT.TRANSPORT__FED_FRA_CASUALTIES",
+  "name":"Every person killed or injured on the US railroads",
+  "total":285648,
+  "months":353,
+  "span":"1997-2026",
+  "problems":[
+   "LOW_FILL:24.8%"
+  ]
+ },
+ {
+  "id":"TRANSPORT.TRANSPORT__FED_FRA_CROSSING_INCIDENTS",
+  "name":"Every collision at a railroad level crossing",
+  "total":251139,
+  "months":617,
+  "span":"1975-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"TRANSPORT.TRANSPORT__FED_FRA_EQUIPMENT_ACCIDENTS",
+  "name":"Train derailments",
+  "total":224940,
+  "months":617,
+  "span":"1975-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"TRANSPORT.TRANSPORT__FED_FRA_RAIL_DEATHS_BY_RAILROAD",
+  "name":"Rail deaths broken down by which railroad they happened on",
+  "total":5152,
+  "months":52,
+  "span":"1975-2026",
+  "problems":[
+   "GAPPY:52\/613_months_present",
+   "YEAR_GRAIN"
+  ]
+ },
+ {
+  "id":"TRANSPORT.TRANSPORT__FED_NTSB_AVIATION_AIRCRAFT",
+  "name":"The aircraft involved in investigated aviation accidents",
+  "total":20662,
+  "months":280,
+  "span":"1980-2026",
+  "problems":[
+
+  ]
+ },
+ {
+  "id":"TRANSPORT.TRANSPORT__FED_NTSB_AVIATION_EVENTS",
+  "name":"Every aviation accident investigated by federal crash...",
+  "total":30968,
+  "months":223,
+  "span":"2008-2026",
+  "problems":[
+
+  ]
+ }
+]

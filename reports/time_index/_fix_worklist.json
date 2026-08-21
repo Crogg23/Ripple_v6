@@ -1,0 +1,1708 @@
+[
+ {
+  "alias": "ECONOMICS__FED_USASPENDING_CONTRACTS_FULL",
+  "model": "economics__fed_usaspending_contracts_full",
+  "subject": "economics",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/economics/economics__fed_usaspending_contracts_full.sql",
+  "staging_sql": "",
+  "n_rows": 20000000,
+  "fixes": {
+   "century": [
+    {
+     "col": "PERIOD_OF_PERFORMANCE_CURRENT_END_DATE",
+     "junk": 21,
+     "dtype": "DATE",
+     "raw_lo": "1929-08-30",
+     "raw_hi": "2035-12-31"
+    },
+    {
+     "col": "SOLICITATION_DATE",
+     "junk": 2,
+     "dtype": "DATE",
+     "raw_lo": "1966-06-29",
+     "raw_hi": "2026-07-03"
+    }
+   ],
+   "blank_marker": [
+    {
+     "col": "ORDERING_PERIOD_END_DATE",
+     "junk": 60,
+     "dtype": "DATE",
+     "raw_lo": "1975-05-30",
+     "raw_hi": "2035-12-31"
+    }
+   ]
+  },
+  "raw_table": "FED_USASPENDING_CONTRACTS_FULL",
+  "raw_from": "library-onboarding/ripple_dbt/models/marts/economics/economics__fed_usaspending_contracts_full.sql"
+ },
+ {
+  "alias": "JUSTICE__FED_COURTLISTENER_DOCKETS",
+  "model": "justice__fed_courtlistener_dockets",
+  "subject": "justice",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/justice/justice__fed_courtlistener_dockets.sql",
+  "staging_sql": "",
+  "n_rows": 71677647,
+  "fixes": {
+   "century": [
+    {
+     "col": "DATE_ARGUED",
+     "junk": 1,
+     "dtype": "DATE",
+     "raw_lo": "1802-01-08",
+     "raw_hi": "2026-06-26"
+    }
+   ]
+  },
+  "raw_table": "FED_COURTLISTENER_DOCKETS",
+  "raw_from": "library-onboarding/ripple_dbt/models/marts/justice/justice__fed_courtlistener_dockets.sql"
+ },
+ {
+  "alias": "ENERGY__FED_EIA_861_BALANCING_AUTHORITY",
+  "model": "energy__fed_eia_861_balancing_authority",
+  "subject": "energy",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/energy/energy__fed_eia_861_balancing_authority.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\fed_eia_861_balancing_authority\\stg_fed_eia_861_balancing_authority__all.sql",
+  "n_rows": 189,
+  "fixes": {
+   "stamp": [
+    {
+     "col": "_LOADED_AT",
+     "junk": 189,
+     "dtype": "TIMESTAMP_NTZ",
+     "raw_lo": "",
+     "raw_hi": ""
+    }
+   ]
+  },
+  "raw_table": "FED_EIA_861_BALANCING_AUTHORITY",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\fed_eia_861_balancing_authority\\stg_fed_eia_861_balancing_authority__all.sql"
+ },
+ {
+  "alias": "FINANCE__FED_SEC_BUSINESS_DEVELOPMENT_COMPANY_REPORT",
+  "model": "finance__fed_sec_business_development_company_report",
+  "subject": "finance",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/finance/finance__fed_sec_business_development_company_report.sql",
+  "staging_sql": "",
+  "n_rows": 212,
+  "fixes": {
+   "century": [
+    {
+     "col": "FILING_DATE",
+     "junk": 212,
+     "dtype": "DATE",
+     "raw_lo": "",
+     "raw_hi": ""
+    }
+   ]
+  },
+  "raw_table": "FED_SEC_BUSINESS_DEVELOPMENT_COMPANY_REPORT",
+  "raw_from": "library-onboarding/ripple_dbt/models/marts/finance/finance__fed_sec_business_development_company_report.sql"
+ },
+ {
+  "alias": "OPEN_DATA__INTL_CA_OPEN_CANADA",
+  "model": "open_data__intl_ca_open_canada",
+  "subject": "open_data",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/open_data/open_data__intl_ca_open_canada.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\intl_ca_open_canada\\stg_intl_ca_open_canada__records.sql",
+  "n_rows": 500,
+  "fixes": {
+   "century": [
+    {
+     "col": "TIME_PERIOD_COVERAGE_START",
+     "junk": 278,
+     "dtype": "TEXT",
+     "raw_lo": "1760-01-01",
+     "raw_hi": "2026-05-28"
+    }
+   ]
+  },
+  "raw_table": "INTL_CA_OPEN_CANADA",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\intl_ca_open_canada\\stg_intl_ca_open_canada__records.sql"
+ },
+ {
+  "alias": "FINANCE__FED_SEC_CLOSED_END_FUND_INFORMATION",
+  "model": "finance__fed_sec_closed_end_fund_information",
+  "subject": "finance",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/finance/finance__fed_sec_closed_end_fund_information.sql",
+  "staging_sql": "",
+  "n_rows": 973,
+  "fixes": {
+   "century": [
+    {
+     "col": "FILING_DATE",
+     "junk": 973,
+     "dtype": "DATE",
+     "raw_lo": "",
+     "raw_hi": ""
+    }
+   ]
+  },
+  "raw_table": "FED_SEC_CLOSED_END_FUND_INFORMATION",
+  "raw_from": "library-onboarding/ripple_dbt/models/marts/finance/finance__fed_sec_closed_end_fund_information.sql"
+ },
+ {
+  "alias": "CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_OTHERS",
+  "model": "corporate_registry__fed_icij_offshoreleaks_others",
+  "subject": "corporate_registry",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/corporate_registry/corporate_registry__fed_icij_offshoreleaks_others.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\fed_icij_offshoreleaks\\stg_fed_icij_offshoreleaks__others.sql",
+  "n_rows": 2989,
+  "fixes": {
+   "stamp": [
+    {
+     "col": "_INGESTED_AT",
+     "junk": 2989,
+     "dtype": "TIMESTAMP_NTZ",
+     "raw_lo": "",
+     "raw_hi": ""
+    }
+   ]
+  },
+  "raw_table": "FED_ICIJ_OFFSHORELEAKS_OTHERS",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\fed_icij_offshoreleaks\\stg_fed_icij_offshoreleaks__others.sql"
+ },
+ {
+  "alias": "JUSTICE__FED_COURTLISTENER_COURTS",
+  "model": "justice__fed_courtlistener_courts",
+  "subject": "justice",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/justice/justice__fed_courtlistener_courts.sql",
+  "staging_sql": "",
+  "n_rows": 3361,
+  "fixes": {
+   "century": [
+    {
+     "col": "START_DATE",
+     "junk": 20,
+     "dtype": "DATE",
+     "raw_lo": "1701-01-01",
+     "raw_hi": "2023-06-09"
+    },
+    {
+     "col": "END_DATE",
+     "junk": 10,
+     "dtype": "DATE",
+     "raw_lo": "1776-07-03",
+     "raw_hi": "2012-09-15"
+    }
+   ]
+  },
+  "raw_table": "FED_COURTLISTENER_COURTS",
+  "raw_from": "library-onboarding/ripple_dbt/models/marts/justice/justice__fed_courtlistener_courts.sql"
+ },
+ {
+  "alias": "FINANCE__FED_NCUA_CALL_REPORTS_FOICU",
+  "model": "finance__fed_ncua_call_reports_foicu",
+  "subject": "finance",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/finance/finance__fed_ncua_call_reports_foicu.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\fed_ncua_call_reports\\stg_fed_ncua_call_reports__foicu.sql",
+  "n_rows": 4336,
+  "fixes": {
+   "blank_marker": [
+    {
+     "col": "INSURED_DATE",
+     "junk": 71,
+     "dtype": "DATE",
+     "raw_lo": "1899-12-30",
+     "raw_hi": "2025-12-05"
+    }
+   ]
+  },
+  "raw_table": "FED_NCUA_CALL_REPORTS_FOICU",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\fed_ncua_call_reports\\stg_fed_ncua_call_reports__foicu.sql"
+ },
+ {
+  "alias": "OPEN_DATA__INTL_CH_OPENDATASWISS",
+  "model": "open_data__intl_ch_opendataswiss",
+  "subject": "open_data",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/open_data/open_data__intl_ch_opendataswiss.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\intl_ch_opendataswiss\\stg_intl_ch_opendataswiss__records.sql",
+  "n_rows": 5000,
+  "fixes": {
+   "blank_marker": [
+    {
+     "col": "ISSUED",
+     "junk": 2,
+     "dtype": "TEXT",
+     "raw_lo": "1767-01-01",
+     "raw_hi": "2026-07-01"
+    }
+   ]
+  },
+  "raw_table": "INTL_CH_OPENDATASWISS",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\intl_ch_opendataswiss\\stg_intl_ch_opendataswiss__records.sql"
+ },
+ {
+  "alias": "OPEN_DATA__INTL_DE_GOVDATA",
+  "model": "open_data__intl_de_govdata",
+  "subject": "open_data",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/open_data/open_data__intl_de_govdata.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\intl_de_govdata\\stg_intl_de_govdata__records.sql",
+  "n_rows": 5000,
+  "fixes": {
+   "century": [
+    {
+     "col": "TEMPORAL_START",
+     "junk": 2,
+     "dtype": "TEXT",
+     "raw_lo": "1849-12-30",
+     "raw_hi": "2025-08-06"
+    }
+   ],
+   "blank_marker": [
+    {
+     "col": "TEMPORAL_END",
+     "junk": 1,
+     "dtype": "TEXT",
+     "raw_lo": "1971-11-08",
+     "raw_hi": "2028-12-31"
+    }
+   ]
+  },
+  "raw_table": "INTL_DE_GOVDATA",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\intl_de_govdata\\stg_intl_de_govdata__records.sql"
+ },
+ {
+  "alias": "POLITICS__CA_LOBBY_CONTRIBUTIONS",
+  "model": "politics__ca_lobby_contributions",
+  "subject": "politics_lobbying",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/politics_lobbying/politics__ca_lobby_contributions.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\ca_lobby\\stg_ca_lobby__contributions.sql",
+  "n_rows": 6505,
+  "fixes": {
+   "century": [
+    {
+     "col": "FILING_PERIOD_END_DT",
+     "junk": 1,
+     "dtype": "DATE",
+     "raw_lo": "2000-03-31",
+     "raw_hi": "2031-03-01"
+    }
+   ]
+  },
+  "raw_table": "CA_LOBBY_CONTRIBUTIONS",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\ca_lobby\\stg_ca_lobby__contributions.sql"
+ },
+ {
+  "alias": "HEALTH__FED_CMS_HOSPITAL_ENROLLMENTS",
+  "model": "health__fed_cms_hospital_enrollments",
+  "subject": "health",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/health/health__fed_cms_hospital_enrollments.sql",
+  "staging_sql": "",
+  "n_rows": 9175,
+  "fixes": {
+   "blank_marker": [
+    {
+     "col": "INCORPORATION_DATE",
+     "junk": 1,
+     "dtype": "DATE",
+     "raw_lo": "1800-01-01",
+     "raw_hi": "2024-10-01"
+    }
+   ]
+  },
+  "raw_table": "FED_CMS_HOSPITAL_ENROLLMENTS",
+  "raw_from": "library-onboarding/ripple_dbt/models/marts/health/health__fed_cms_hospital_enrollments.sql"
+ },
+ {
+  "alias": "HISTORICAL_RECORDS__FED_SLAVEVOYAGES_INTRAAMERICAN",
+  "model": "historical_records__fed_slavevoyages_intraamerican",
+  "subject": "historical_records",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/historical_records/historical_records__fed_slavevoyages_intraamerican.sql",
+  "staging_sql": "",
+  "n_rows": 11521,
+  "fixes": {
+   "century": [
+    {
+     "col": "DATE_LEFTAFR",
+     "junk": 42,
+     "dtype": "TEXT",
+     "raw_lo": "1700-01-05",
+     "raw_hi": "1841-10-30"
+    },
+    {
+     "col": "DATE_LAND1",
+     "junk": 266,
+     "dtype": "TEXT",
+     "raw_lo": "1700-01-08",
+     "raw_hi": "1841-11-12"
+    },
+    {
+     "col": "DATE_LAND2",
+     "junk": 2,
+     "dtype": "TEXT",
+     "raw_lo": "1702-05-01",
+     "raw_hi": "1809-07-31"
+    }
+   ]
+  },
+  "raw_table": "FED_SLAVEVOYAGES_INTRAAMERICAN",
+  "raw_from": "library-onboarding/ripple_dbt/models/marts/historical_records/historical_records__fed_slavevoyages_intraamerican.sql"
+ },
+ {
+  "alias": "JUSTICE__FED_COURTLISTENER_JUDGES",
+  "model": "justice__fed_courtlistener_judges",
+  "subject": "justice",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/justice/justice__fed_courtlistener_judges.sql",
+  "staging_sql": "",
+  "n_rows": 16191,
+  "fixes": {
+   "century": [
+    {
+     "col": "DATE_DOD",
+     "junk": 1,
+     "dtype": "DATE",
+     "raw_lo": "1764-01-01",
+     "raw_hi": "2023-12-01"
+    }
+   ]
+  },
+  "raw_table": "FED_COURTLISTENER_JUDGES",
+  "raw_from": "library-onboarding/ripple_dbt/models/marts/justice/justice__fed_courtlistener_judges.sql"
+ },
+ {
+  "alias": "POLITICS__CA_LOBBY_AMENDMENTS",
+  "model": "politics__ca_lobby_amendments",
+  "subject": "politics_lobbying",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/politics_lobbying/politics__ca_lobby_amendments.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\ca_lobby\\stg_ca_lobby__amendments.sql",
+  "n_rows": 25249,
+  "fixes": {
+   "century": [
+    {
+     "col": "THRU_DATE",
+     "junk": 2,
+     "dtype": "DATE",
+     "raw_lo": "2000-12-04",
+     "raw_hi": "2026-12-31"
+    },
+    {
+     "col": "ADD_L_EFF",
+     "junk": 4,
+     "dtype": "DATE",
+     "raw_lo": "2001-01-16",
+     "raw_hi": "2028-04-27"
+    },
+    {
+     "col": "DEL_L_EFF",
+     "junk": 1,
+     "dtype": "DATE",
+     "raw_lo": "1928-06-29",
+     "raw_hi": "2026-09-30"
+    },
+    {
+     "col": "OTHER_EFF",
+     "junk": 3,
+     "dtype": "DATE",
+     "raw_lo": "2000-12-04",
+     "raw_hi": "2026-08-03"
+    }
+   ]
+  },
+  "raw_table": "CA_LOBBY_AMENDMENTS",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\ca_lobby\\stg_ca_lobby__amendments.sql"
+ },
+ {
+  "alias": "CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_INTERMEDIARIES",
+  "model": "corporate_registry__fed_icij_offshoreleaks_intermediaries",
+  "subject": "corporate_registry",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/corporate_registry/corporate_registry__fed_icij_offshoreleaks_intermediaries.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\fed_icij_offshoreleaks\\stg_fed_icij_offshoreleaks__intermediaries.sql",
+  "n_rows": 26768,
+  "fixes": {
+   "stamp": [
+    {
+     "col": "_INGESTED_AT",
+     "junk": 26768,
+     "dtype": "TIMESTAMP_NTZ",
+     "raw_lo": "",
+     "raw_hi": ""
+    }
+   ]
+  },
+  "raw_table": "FED_ICIJ_OFFSHORELEAKS_INTERMEDIARIES",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\fed_icij_offshoreleaks\\stg_fed_icij_offshoreleaks__intermediaries.sql"
+ },
+ {
+  "alias": "FINANCE__FED_FDIC_BANK_DATA",
+  "model": "finance__fed_fdic_bank_data",
+  "subject": "finance",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/finance/finance__fed_fdic_bank_data.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\fed_fdic_bank_data\\stg_fed_fdic_bank_data__institutions.sql",
+  "n_rows": 27836,
+  "fixes": {
+   "blank_marker": [
+    {
+     "col": "ESTYMD",
+     "junk": 120,
+     "dtype": "DATE",
+     "raw_lo": "1782-01-01",
+     "raw_hi": "2026-06-22"
+    },
+    {
+     "col": "ENDEFYMD",
+     "junk": 4281,
+     "dtype": "DATE",
+     "raw_lo": "1970-01-01",
+     "raw_hi": "2026-07-17"
+    },
+    {
+     "col": "INSURED_DATE",
+     "junk": 164,
+     "dtype": "DATE",
+     "raw_lo": "1934-01-01",
+     "raw_hi": "2026-06-22"
+    }
+   ]
+  },
+  "raw_table": "FED_FDIC_BANK_DATA",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\fed_fdic_bank_data\\stg_fed_fdic_bank_data__institutions.sql"
+ },
+ {
+  "alias": "HEALTH__FED_FDA_DEVICE_PMA",
+  "model": "health__fed_fda_device_pma",
+  "subject": "health",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/health/health__fed_fda_device_pma.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\fed_fda_device_pma\\stg_fed_fda_device_pma__all.sql",
+  "n_rows": 56853,
+  "fixes": {
+   "blank_marker": [
+    {
+     "col": "DATE_RECEIVED",
+     "junk": 5,
+     "dtype": "DATE",
+     "raw_lo": "1900-01-01",
+     "raw_hi": "2026-07-17"
+    }
+   ]
+  },
+  "raw_table": "FED_FDA_DEVICE_PMA",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\fed_fda_device_pma\\stg_fed_fda_device_pma__all.sql"
+ },
+ {
+  "alias": "ENVIRONMENT__FED_EPA_NPDES_NPDES_CS_VIOLATIONS",
+  "model": "environment__fed_epa_npdes_npdes_cs_violations",
+  "subject": "environment",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/environment/environment__fed_epa_npdes_npdes_cs_violations.sql",
+  "staging_sql": "",
+  "n_rows": 82187,
+  "fixes": {
+   "century": [
+    {
+     "col": "ACTUAL_DATE",
+     "junk": 2,
+     "dtype": "DATE",
+     "raw_lo": "1977-02-25",
+     "raw_hi": "2026-07-31"
+    }
+   ]
+  },
+  "raw_table": "FED_EPA_NPDES_NPDES_CS_VIOLATIONS",
+  "raw_from": "library-onboarding/ripple_dbt/models/marts/environment/environment__fed_epa_npdes_npdes_cs_violations.sql"
+ },
+ {
+  "alias": "POLITICS__CA_LOBBY_CHG_LOG",
+  "model": "politics__ca_lobby_chg_log",
+  "subject": "politics_lobbying",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/politics_lobbying/politics__ca_lobby_chg_log.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\ca_lobby\\stg_ca_lobby__chg_log.sql",
+  "n_rows": 85765,
+  "fixes": {
+   "century": [
+    {
+     "col": "LOG_DT",
+     "junk": 25,
+     "dtype": "DATE",
+     "raw_lo": "1999-10-12",
+     "raw_hi": "2026-08-03"
+    }
+   ],
+   "blank_marker": [
+    {
+     "col": "ETHICS_DT",
+     "junk": 189,
+     "dtype": "DATE",
+     "raw_lo": "1900-01-01",
+     "raw_hi": "2025-01-16"
+    }
+   ]
+  },
+  "raw_table": "CA_LOBBY_CHG_LOG",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\ca_lobby\\stg_ca_lobby__chg_log.sql"
+ },
+ {
+  "alias": "REFERENCE__FED_ITIS_VERN_REF_LINKS",
+  "model": "reference__fed_itis_vern_ref_links",
+  "subject": "reference",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/reference/reference__fed_itis_vern_ref_links.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\fed_itis_vern_ref_links\\stg_fed_itis_vern_ref_links__vernacular_ref_links.sql",
+  "n_rows": 93078,
+  "fixes": {
+   "blank_marker": [
+    {
+     "col": "UPDATE_DATE",
+     "junk": 19,
+     "dtype": "DATE",
+     "raw_lo": "1900-01-01",
+     "raw_hi": "2026-07-28"
+    }
+   ]
+  },
+  "raw_table": "FED_ITIS_VERN_REF_LINKS",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\fed_itis_vern_ref_links\\stg_fed_itis_vern_ref_links__vernacular_ref_links.sql"
+ },
+ {
+  "alias": "OPEN_DATA__INTL_FR_DATA_GOUV",
+  "model": "open_data__intl_fr_data_gouv",
+  "subject": "open_data",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/open_data/open_data__intl_fr_data_gouv.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\intl_fr_data_gouv\\stg_intl_fr_data_gouv__records.sql",
+  "n_rows": 130431,
+  "fixes": {
+   "century": [
+    {
+     "col": "CREATED_AT",
+     "junk": 4,
+     "dtype": "TIMESTAMP_NTZ",
+     "raw_lo": "1827-01-01 00:00:00.000",
+     "raw_hi": "2028-07-01 00:00:00.000"
+    },
+    {
+     "col": "LAST_MODIFIED",
+     "junk": 1,
+     "dtype": "TIMESTAMP_NTZ",
+     "raw_lo": "1991-01-01 08:56:11.000",
+     "raw_hi": "2026-08-11 05:45:01.000"
+    }
+   ]
+  },
+  "raw_table": "INTL_FR_DATA_GOUV_FULL",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\intl_fr_data_gouv\\stg_intl_fr_data_gouv__records.sql"
+ },
+ {
+  "alias": "ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_INFORMAL_ACTIONS",
+  "model": "environment__fed_epa_icis_air_icis_air_informal_actions",
+  "subject": "environment",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/environment/environment__fed_epa_icis_air_icis_air_informal_actions.sql",
+  "staging_sql": "",
+  "n_rows": 175736,
+  "fixes": {
+   "century": [
+    {
+     "col": "ACHIEVED_DATE",
+     "junk": 65,
+     "dtype": "DATE",
+     "raw_lo": "1900-01-01",
+     "raw_hi": "2027-11-07"
+    }
+   ]
+  },
+  "raw_table": "FED_EPA_ICIS_AIR_ICIS_AIR_INFORMAL_ACTIONS",
+  "raw_from": "library-onboarding/ripple_dbt/models/marts/environment/environment__fed_epa_icis_air_icis_air_informal_actions.sql"
+ },
+ {
+  "alias": "SCIENCE_RESEARCH__FED_SBIR_STTR_AWARDS",
+  "model": "science_research__fed_sbir_sttr_awards",
+  "subject": "science_research",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/science_research/science_research__fed_sbir_sttr_awards.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\fed_sbir_sttr_awards\\stg_fed_sbir_sttr_awards__awards.sql",
+  "n_rows": 219503,
+  "fixes": {
+   "century": [
+    {
+     "col": "PROPOSAL_RECEIPT_DATE",
+     "junk": 1,
+     "dtype": "DATE",
+     "raw_lo": "1987-01-01",
+     "raw_hi": "2025-10-17"
+    }
+   ]
+  },
+  "raw_table": "FED_SBIR_STTR_AWARDS",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\fed_sbir_sttr_awards\\stg_fed_sbir_sttr_awards__awards.sql"
+ },
+ {
+  "alias": "CONSUMER_SAFETY__FED_NHTSA_RECALLS",
+  "model": "consumer_safety__fed_nhtsa_recalls",
+  "subject": "consumer_safety",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/consumer_safety/consumer_safety__fed_nhtsa_recalls.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\fed_nhtsa_recalls\\stg_fed_nhtsa_recalls__records.sql",
+  "n_rows": 242993,
+  "fixes": {
+   "century": [
+    {
+     "col": "NOTIFICATION_DATE",
+     "junk": 67,
+     "dtype": "DATE",
+     "raw_lo": "1980-12-31",
+     "raw_hi": "2027-08-16"
+    }
+   ]
+  },
+  "raw_table": "FED_NHTSA_RECALLS",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\fed_nhtsa_recalls\\stg_fed_nhtsa_recalls__records.sql"
+ },
+ {
+  "alias": "FINANCE__FED_EPA_ICIS_FEC_ICIS_FEC_EPA_INSPECTIONS",
+  "model": "finance__fed_epa_icis_fec_icis_fec_epa_inspections",
+  "subject": "environment",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/environment/finance__fed_epa_icis_fec_icis_fec_epa_inspections.sql",
+  "staging_sql": "",
+  "n_rows": 260556,
+  "fixes": {
+   "century": [
+    {
+     "col": "ACTUAL_BEGIN_DATE",
+     "junk": 3,
+     "dtype": "DATE",
+     "raw_lo": "1958-05-30",
+     "raw_hi": "2026-07-24"
+    },
+    {
+     "col": "ACTUAL_END_DATE",
+     "junk": 1,
+     "dtype": "DATE",
+     "raw_lo": "1986-07-08",
+     "raw_hi": "2026-07-24"
+    }
+   ]
+  },
+  "raw_table": "FED_EPA_ICIS_FEC_ICIS_FEC_EPA_INSPECTIONS",
+  "raw_from": "library-onboarding/ripple_dbt/models/marts/environment/finance__fed_epa_icis_fec_icis_fec_epa_inspections.sql"
+ },
+ {
+  "alias": "POLITICS__TX_LOBBY_COVER",
+  "model": "politics__tx_lobby_cover",
+  "subject": "politics_lobbying",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/politics_lobbying/politics__tx_lobby_cover.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\tx_lobby_cover\\stg_tx_lobby_cover__reports.sql",
+  "n_rows": 283803,
+  "fixes": {
+   "century": [
+    {
+     "col": "PERIOD_END_DT",
+     "junk": 2,
+     "dtype": "DATE",
+     "raw_lo": "1991-12-31",
+     "raw_hi": "2026-12-31"
+    }
+   ]
+  },
+  "raw_table": "TX_LOBBY_COVER",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\tx_lobby_cover\\stg_tx_lobby_cover__reports.sql"
+ },
+ {
+  "alias": "FINANCE__FED_SEC_13F_FILERS",
+  "model": "finance__fed_sec_13f_filers",
+  "subject": "finance",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/finance/finance__fed_sec_13f_filers.sql",
+  "staging_sql": "",
+  "n_rows": 344109,
+  "fixes": {
+   "blank_marker": [
+    {
+     "col": "REPORTCALENDARORQUARTER",
+     "junk": 1,
+     "dtype": "TEXT",
+     "raw_lo": "1900-01-01",
+     "raw_hi": "2026-03-31"
+    }
+   ]
+  },
+  "raw_table": "FED_SEC_13F_FILERS",
+  "raw_from": "library-onboarding/ripple_dbt/models/marts/finance/finance__fed_sec_13f_filers.sql"
+ },
+ {
+  "alias": "ENVIRONMENT__FED_EPA_RCRA_ENFORCEMENTS",
+  "model": "environment__fed_epa_rcra_enforcements",
+  "subject": "environment",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/environment/environment__fed_epa_rcra_enforcements.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\fed_epa_rcra_enforcements\\stg_fed_epa_rcra_enforcements__enforcements.sql",
+  "n_rows": 383519,
+  "fixes": {
+   "century": [
+    {
+     "col": "ENFORCEMENT_ACTION_DATE",
+     "junk": 6,
+     "dtype": "DATE",
+     "raw_lo": "1887-03-13",
+     "raw_hi": "2026-07-31"
+    }
+   ]
+  },
+  "raw_table": "FED_EPA_RCRA_ENFORCEMENTS",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\fed_epa_rcra_enforcements\\stg_fed_epa_rcra_enforcements__enforcements.sql"
+ },
+ {
+  "alias": "CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_ADDRESSES",
+  "model": "corporate_registry__fed_icij_offshoreleaks_addresses",
+  "subject": "corporate_registry",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/corporate_registry/corporate_registry__fed_icij_offshoreleaks_addresses.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\fed_icij_offshoreleaks\\stg_fed_icij_offshoreleaks__addresses.sql",
+  "n_rows": 402246,
+  "fixes": {
+   "stamp": [
+    {
+     "col": "_INGESTED_AT",
+     "junk": 402246,
+     "dtype": "TIMESTAMP_NTZ",
+     "raw_lo": "",
+     "raw_hi": ""
+    }
+   ]
+  },
+  "raw_table": "FED_ICIJ_OFFSHORELEAKS_ADDRESSES",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\fed_icij_offshoreleaks\\stg_fed_icij_offshoreleaks__addresses.sql"
+ },
+ {
+  "alias": "ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_PROGRAMS",
+  "model": "environment__fed_epa_icis_air_icis_air_programs",
+  "subject": "environment",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/environment/environment__fed_epa_icis_air_icis_air_programs.sql",
+  "staging_sql": "",
+  "n_rows": 457581,
+  "fixes": {
+   "century": [
+    {
+     "col": "BEGIN_DATE",
+     "junk": 1,
+     "dtype": "DATE",
+     "raw_lo": "1940-01-03",
+     "raw_hi": "2028-10-29"
+    }
+   ]
+  },
+  "raw_table": "FED_EPA_ICIS_AIR_ICIS_AIR_PROGRAMS",
+  "raw_from": "library-onboarding/ripple_dbt/models/marts/environment/environment__fed_epa_icis_air_icis_air_programs.sql"
+ },
+ {
+  "alias": "REFERENCE__FED_ITIS_GEOGRAPHIC_DIV",
+  "model": "reference__fed_itis_geographic_div",
+  "subject": "reference",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/reference/reference__fed_itis_geographic_div.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\fed_itis_geographic_div\\stg_fed_itis_geographic_div__geographic_divisions.sql",
+  "n_rows": 480351,
+  "fixes": {
+   "blank_marker": [
+    {
+     "col": "UPDATE_DATE",
+     "junk": 1,
+     "dtype": "DATE",
+     "raw_lo": "1900-01-01",
+     "raw_hi": "2026-07-28"
+    }
+   ]
+  },
+  "raw_table": "FED_ITIS_GEOGRAPHIC_DIV",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\fed_itis_geographic_div\\stg_fed_itis_geographic_div__geographic_divisions.sql"
+ },
+ {
+  "alias": "ECONOMICS__INTL_GLEIF_RELATIONSHIPS",
+  "model": "economics__intl_gleif_relationships",
+  "subject": "economics",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/economics/economics__intl_gleif_relationships.sql",
+  "staging_sql": "",
+  "n_rows": 484142,
+  "fixes": {
+   "blank_marker": [
+    {
+     "col": "RELATIONSHIP_PERIOD_1_ENDDATE",
+     "junk": 44,
+     "dtype": "TEXT",
+     "raw_lo": "1925-06-23",
+     "raw_hi": "2035-12-31"
+    },
+    {
+     "col": "RELATIONSHIP_PERIOD_2_ENDDATE",
+     "junk": 68,
+     "dtype": "TEXT",
+     "raw_lo": "1852-01-01",
+     "raw_hi": "2035-12-31"
+    },
+    {
+     "col": "RELATIONSHIP_PERIOD_3_ENDDATE",
+     "junk": 8,
+     "dtype": "TEXT",
+     "raw_lo": "2006-12-31",
+     "raw_hi": "2035-12-31"
+    }
+   ]
+  },
+  "raw_table": "INTL_GLEIF_RELATIONSHIPS",
+  "raw_from": "library-onboarding/ripple_dbt/models/marts/economics/economics__intl_gleif_relationships.sql"
+ },
+ {
+  "alias": "ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_TITLEV_CERTS",
+  "model": "environment__fed_epa_icis_air_icis_air_titlev_certs",
+  "subject": "environment",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/environment/environment__fed_epa_icis_air_icis_air_titlev_certs.sql",
+  "staging_sql": "",
+  "n_rows": 499113,
+  "fixes": {
+   "century": [
+    {
+     "col": "ACTUAL_END_DATE",
+     "junk": 11,
+     "dtype": "DATE",
+     "raw_lo": "1916-02-25",
+     "raw_hi": "2026-07-30"
+    }
+   ]
+  },
+  "raw_table": "FED_EPA_ICIS_AIR_ICIS_AIR_TITLEV_CERTS",
+  "raw_from": "library-onboarding/ripple_dbt/models/marts/environment/environment__fed_epa_icis_air_icis_air_titlev_certs.sql"
+ },
+ {
+  "alias": "POLITICS__CA_LOBBY_COVER",
+  "model": "politics__ca_lobby_cover",
+  "subject": "politics_lobbying",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/politics_lobbying/politics__ca_lobby_cover.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\ca_lobby_cover\\stg_ca_lobby_cover__filings.sql",
+  "n_rows": 524828,
+  "fixes": {
+   "century": [
+    {
+     "col": "THRU_DATE",
+     "junk": 48,
+     "dtype": "TIMESTAMP_NTZ",
+     "raw_lo": "1899-12-30 00:00:00.000",
+     "raw_hi": "2035-12-31 00:00:00.000"
+    }
+   ]
+  },
+  "raw_table": "CA_LOBBY_COVER",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\ca_lobby_cover\\stg_ca_lobby_cover__filings.sql"
+ },
+ {
+  "alias": "LABOR__FED_DOL_OLMS",
+  "model": "labor__fed_dol_olms",
+  "subject": "labor",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/labor/labor__fed_dol_olms.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\fed_dol_olms\\stg_fed_dol_olms__filings.sql",
+  "n_rows": 617710,
+  "fixes": {
+   "century": [
+    {
+     "col": "NEXT_ELECTION_DATE",
+     "junk": 1989,
+     "dtype": "DATE",
+     "raw_lo": "1806-03-01",
+     "raw_hi": "2032-11-01"
+    }
+   ]
+  },
+  "raw_table": "FED_DOL_OLMS",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\fed_dol_olms\\stg_fed_dol_olms__filings.sql"
+ },
+ {
+  "alias": "ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_STACK_TESTS",
+  "model": "environment__fed_epa_icis_air_icis_air_stack_tests",
+  "subject": "environment",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/environment/environment__fed_epa_icis_air_icis_air_stack_tests.sql",
+  "staging_sql": "",
+  "n_rows": 620302,
+  "fixes": {
+   "century": [
+    {
+     "col": "ACTUAL_END_DATE",
+     "junk": 7,
+     "dtype": "DATE",
+     "raw_lo": "1955-03-15",
+     "raw_hi": "2026-07-29"
+    }
+   ]
+  },
+  "raw_table": "FED_EPA_ICIS_AIR_ICIS_AIR_STACK_TESTS",
+  "raw_from": "library-onboarding/ripple_dbt/models/marts/environment/environment__fed_epa_icis_air_icis_air_stack_tests.sql"
+ },
+ {
+  "alias": "ENVIRONMENT__FED_EPA_RCRA_VIOLATIONS",
+  "model": "environment__fed_epa_rcra_violations",
+  "subject": "environment",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/environment/environment__fed_epa_rcra_violations.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\fed_epa_rcra_violations\\stg_fed_epa_rcra_violations__violations.sql",
+  "n_rows": 708114,
+  "fixes": {
+   "century": [
+    {
+     "col": "DATE_VIOLATION_DETERMINED",
+     "junk": 37,
+     "dtype": "DATE",
+     "raw_lo": "1901-02-12",
+     "raw_hi": "2026-07-24"
+    },
+    {
+     "col": "ACTUAL_RTC_DATE",
+     "junk": 2,
+     "dtype": "DATE",
+     "raw_lo": "1900-01-10",
+     "raw_hi": "2026-07-31"
+    }
+   ]
+  },
+  "raw_table": "FED_EPA_RCRA_VIOLATIONS",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\fed_epa_rcra_violations\\stg_fed_epa_rcra_violations__violations.sql"
+ },
+ {
+  "alias": "CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_OFFICERS",
+  "model": "corporate_registry__fed_icij_offshoreleaks_officers",
+  "subject": "corporate_registry",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/corporate_registry/corporate_registry__fed_icij_offshoreleaks_officers.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\fed_icij_offshoreleaks\\stg_fed_icij_offshoreleaks__officers.sql",
+  "n_rows": 771315,
+  "fixes": {
+   "stamp": [
+    {
+     "col": "_INGESTED_AT",
+     "junk": 771315,
+     "dtype": "TIMESTAMP_NTZ",
+     "raw_lo": "",
+     "raw_hi": ""
+    }
+   ]
+  },
+  "raw_table": "FED_ICIJ_OFFSHORELEAKS_OFFICERS",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\fed_icij_offshoreleaks\\stg_fed_icij_offshoreleaks__officers.sql"
+ },
+ {
+  "alias": "CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_ENTITIES",
+  "model": "corporate_registry__fed_icij_offshoreleaks_entities",
+  "subject": "corporate_registry",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/corporate_registry/corporate_registry__fed_icij_offshoreleaks_entities.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\fed_icij_offshoreleaks\\stg_fed_icij_offshoreleaks__entities.sql",
+  "n_rows": 814344,
+  "fixes": {
+   "century": [
+    {
+     "col": "STRUCK_OFF_DATE",
+     "junk": 19,
+     "dtype": "DATE",
+     "raw_lo": "1919-02-02",
+     "raw_hi": "2024-06-14"
+    }
+   ],
+   "stamp": [
+    {
+     "col": "_INGESTED_AT",
+     "junk": 814344,
+     "dtype": "TIMESTAMP_NTZ",
+     "raw_lo": "",
+     "raw_hi": ""
+    }
+   ]
+  },
+  "raw_table": "FED_ICIJ_OFFSHORELEAKS_ENTITIES",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\fed_icij_offshoreleaks\\stg_fed_icij_offshoreleaks__entities.sql"
+ },
+ {
+  "alias": "JUSTICE__FED_FJC_IDB_APPELLATE",
+  "model": "justice__fed_fjc_idb_appellate",
+  "subject": "justice",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/justice/justice__fed_fjc_idb_appellate.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\fed_fjc_idb_appellate\\stg_fed_fjc_idb_appellate__appeal_records.sql",
+  "n_rows": 988183,
+  "fixes": {
+   "blank_marker": [
+    {
+     "col": "DISTRICT_DOCKET_DATE",
+     "junk": 226742,
+     "dtype": "DATE",
+     "raw_lo": "1900-01-01",
+     "raw_hi": "2026-03-20"
+    },
+    {
+     "col": "APPEAL_DATE",
+     "junk": 227603,
+     "dtype": "DATE",
+     "raw_lo": "1900-01-01",
+     "raw_hi": "2026-03-31"
+    },
+    {
+     "col": "TRANSFER_DATE",
+     "junk": 635733,
+     "dtype": "DATE",
+     "raw_lo": "1900-01-01",
+     "raw_hi": "2013-10-29"
+    },
+    {
+     "col": "COURT_RECORD_DATE",
+     "junk": 988183,
+     "dtype": "DATE",
+     "raw_lo": "1900-01-01",
+     "raw_hi": "1900-01-01"
+    },
+    {
+     "col": "BRIEFS_FILED",
+     "junk": 690542,
+     "dtype": "TEXT",
+     "raw_lo": "1900-01-01",
+     "raw_hi": "2026-03-23"
+    },
+    {
+     "col": "SUBMISSION_DATE",
+     "junk": 534320,
+     "dtype": "DATE",
+     "raw_lo": "1900-01-01",
+     "raw_hi": "2026-03-31"
+    },
+    {
+     "col": "HEARING_DATE",
+     "junk": 842119,
+     "dtype": "DATE",
+     "raw_lo": "1900-01-01",
+     "raw_hi": "2026-03-31"
+    },
+    {
+     "col": "JUDGMENT_DATE",
+     "junk": 35267,
+     "dtype": "DATE",
+     "raw_lo": "1900-01-01",
+     "raw_hi": "2026-03-31"
+    }
+   ]
+  },
+  "raw_table": "FED_FJC_IDB_APPELLATE",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\fed_fjc_idb_appellate\\stg_fed_fjc_idb_appellate__appeal_records.sql"
+ },
+ {
+  "alias": "FINANCE__FED_SEC_INSIDER_DERIV_TRANS",
+  "model": "finance__fed_sec_insider_deriv_trans",
+  "subject": "finance",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/finance/finance__fed_sec_insider_deriv_trans.sql",
+  "staging_sql": "",
+  "n_rows": 1049121,
+  "fixes": {
+   "century": [
+    {
+     "col": "EXPIRATION_DATE",
+     "junk": 19,
+     "dtype": "DATE",
+     "raw_lo": "1988-08-08",
+     "raw_hi": "2035-12-31"
+    }
+   ]
+  },
+  "raw_table": "FED_SEC_INSIDER_DERIV_TRANS",
+  "raw_from": "library-onboarding/ripple_dbt/models/marts/finance/finance__fed_sec_insider_deriv_trans.sql"
+ },
+ {
+  "alias": "ENVIRONMENT__FED_EPA_RCRA_EVALUATIONS",
+  "model": "environment__fed_epa_rcra_evaluations",
+  "subject": "environment",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/environment/environment__fed_epa_rcra_evaluations.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\fed_epa_rcra_evaluations\\stg_fed_epa_rcra_evaluations__evaluations.sql",
+  "n_rows": 1166410,
+  "fixes": {
+   "century": [
+    {
+     "col": "EVALUATION_START_DATE",
+     "junk": 17,
+     "dtype": "DATE",
+     "raw_lo": "1901-05-29",
+     "raw_hi": "2026-07-31"
+    }
+   ]
+  },
+  "raw_table": "FED_EPA_RCRA_EVALUATIONS",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\fed_epa_rcra_evaluations\\stg_fed_epa_rcra_evaluations__evaluations.sql"
+ },
+ {
+  "alias": "REFERENCE__FED_USGS_GNIS_ALL_NAMES",
+  "model": "reference__fed_usgs_gnis_all_names",
+  "subject": "reference",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/reference/reference__fed_usgs_gnis_all_names.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\fed_usgs_gnis_all_names\\stg_fed_usgs_gnis_all_names__name_citations.sql",
+  "n_rows": 1249624,
+  "fixes": {
+   "blank_marker": [
+    {
+     "col": "PUBLICATION_DATE",
+     "junk": 2,
+     "dtype": "DATE",
+     "raw_lo": "1700-12-31",
+     "raw_hi": "2023-03-17"
+    },
+    {
+     "col": "DATE_CREATED",
+     "junk": 2,
+     "dtype": "DATE",
+     "raw_lo": "1700-12-31",
+     "raw_hi": "2026-06-29"
+    }
+   ]
+  },
+  "raw_table": "FED_USGS_GNIS_ALL_NAMES",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\fed_usgs_gnis_all_names\\stg_fed_usgs_gnis_all_names__name_citations.sql"
+ },
+ {
+  "alias": "JUSTICE__INTL_OPENSANCTIONS_DEFAULT",
+  "model": "justice__intl_opensanctions_default",
+  "subject": "justice",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/justice/justice__intl_opensanctions_default.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\intl_opensanctions_default\\stg_intl_opensanctions_default__targets.sql",
+  "n_rows": 1281846,
+  "fixes": {
+   "stamp": [
+    {
+     "col": "_INGESTED_AT",
+     "junk": 1281846,
+     "dtype": "TIMESTAMP_NTZ",
+     "raw_lo": "",
+     "raw_hi": ""
+    }
+   ]
+  },
+  "raw_table": "INTL_OPENSANCTIONS_DEFAULT",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\intl_opensanctions_default\\stg_intl_opensanctions_default__targets.sql"
+ },
+ {
+  "alias": "FINANCE__FED_SEC_INSIDER_SUBMISSION",
+  "model": "finance__fed_sec_insider_submission",
+  "subject": "finance",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/finance/finance__fed_sec_insider_submission.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\fed_sec_insider_submission\\stg_fed_sec_insider_submission__records.sql",
+  "n_rows": 1772088,
+  "fixes": {
+   "century": [
+    {
+     "col": "PERIOD_OF_REPORT",
+     "junk": 23,
+     "dtype": "DATE",
+     "raw_lo": "1982-04-25",
+     "raw_hi": "2025-03-31"
+    },
+    {
+     "col": "DATE_OF_ORIGINAL_SUBMISSION",
+     "junk": 1,
+     "dtype": "DATE",
+     "raw_lo": "1998-11-13",
+     "raw_hi": "2027-06-04"
+    }
+   ]
+  },
+  "raw_table": "FED_SEC_INSIDER_SUBMISSION",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\fed_sec_insider_submission\\stg_fed_sec_insider_submission__records.sql"
+ },
+ {
+  "alias": "ENVIRONMENT__FED_EPA_NPDES_NPDES_INSPECTIONS",
+  "model": "environment__fed_epa_npdes_npdes_inspections",
+  "subject": "environment",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/environment/environment__fed_epa_npdes_npdes_inspections.sql",
+  "staging_sql": "",
+  "n_rows": 1900067,
+  "fixes": {
+   "century": [
+    {
+     "col": "ACTUAL_BEGIN_DATE",
+     "junk": 73,
+     "dtype": "DATE",
+     "raw_lo": "1917-09-13",
+     "raw_hi": "2026-07-31"
+    },
+    {
+     "col": "ACTUAL_END_DATE",
+     "junk": 65,
+     "dtype": "DATE",
+     "raw_lo": "1917-09-13",
+     "raw_hi": "2026-07-31"
+    }
+   ]
+  },
+  "raw_table": "FED_EPA_NPDES_NPDES_INSPECTIONS",
+  "raw_from": "library-onboarding/ripple_dbt/models/marts/environment/environment__fed_epa_npdes_npdes_inspections.sql"
+ },
+ {
+  "alias": "JUSTICE__FED_COURTLISTENER_INVESTMENTS",
+  "model": "justice__fed_courtlistener_investments",
+  "subject": "justice",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/justice/justice__fed_courtlistener_investments.sql",
+  "staging_sql": "",
+  "n_rows": 1901599,
+  "fixes": {
+   "century": [
+    {
+     "col": "TRANSACTION_DATE_RAW",
+     "junk": 5,
+     "dtype": "TEXT",
+     "raw_lo": "1720-01-12",
+     "raw_hi": "2020-12-22"
+    }
+   ]
+  },
+  "raw_table": "FED_COURTLISTENER_INVESTMENTS",
+  "raw_from": "library-onboarding/ripple_dbt/models/marts/justice/justice__fed_courtlistener_investments.sql"
+ },
+ {
+  "alias": "SCIENCE_RESEARCH__FED_NIH_REPORTER",
+  "model": "science_research__fed_nih_reporter",
+  "subject": "science_research",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/science_research/science_research__fed_nih_reporter.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\fed_nih_reporter\\stg_fed_nih_reporter__projects.sql",
+  "n_rows": 2122611,
+  "fixes": {
+   "stamp": [
+    {
+     "col": "_INGESTED_AT",
+     "junk": 2122611,
+     "dtype": "TIMESTAMP_NTZ",
+     "raw_lo": "",
+     "raw_hi": ""
+    }
+   ]
+  },
+  "raw_table": "FED_NIH_REPORTER",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\fed_nih_reporter\\stg_fed_nih_reporter__projects.sql"
+ },
+ {
+  "alias": "ENVIRONMENT__FED_EPA_SDWA_SDWA_SITE_VISITS",
+  "model": "environment__fed_epa_sdwa_sdwa_site_visits",
+  "subject": "environment",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/environment/environment__fed_epa_sdwa_sdwa_site_visits.sql",
+  "staging_sql": "",
+  "n_rows": 2495249,
+  "fixes": {
+   "blank_marker": [
+    {
+     "col": "VISIT_DATE",
+     "junk": 11,
+     "dtype": "DATE",
+     "raw_lo": "1900-01-01",
+     "raw_hi": "2026-06-24"
+    }
+   ]
+  },
+  "raw_table": "FED_EPA_SDWA_SDWA_SITE_VISITS",
+  "raw_from": "library-onboarding/ripple_dbt/models/marts/environment/environment__fed_epa_sdwa_sdwa_site_visits.sql"
+ },
+ {
+  "alias": "FINANCE__FED_SEC_INSIDER_NONDERIV_TRANS",
+  "model": "finance__fed_sec_insider_nonderiv_trans",
+  "subject": "finance",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/finance/finance__fed_sec_insider_nonderiv_trans.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\fed_sec_insider_nonderiv_trans\\stg_fed_sec_insider_nonderiv_trans__records.sql",
+  "n_rows": 2672841,
+  "fixes": {
+   "century": [
+    {
+     "col": "TRANSACTION_DATE",
+     "junk": 16,
+     "dtype": "DATE",
+     "raw_lo": "1987-10-07",
+     "raw_hi": "2033-12-11"
+    }
+   ]
+  },
+  "raw_table": "FED_SEC_INSIDER_NONDERIV_TRANS",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\fed_sec_insider_nonderiv_trans\\stg_fed_sec_insider_nonderiv_trans__records.sql"
+ },
+ {
+  "alias": "HEALTH__FED_FDA_MAUDE",
+  "model": "health__fed_fda_maude",
+  "subject": "health",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/health/health__fed_fda_maude.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\fed_fda_maude\\stg_fed_fda_maude__all.sql",
+  "n_rows": 2743561,
+  "fixes": {
+   "blank_marker": [
+    {
+     "col": "DATE_OF_EVENT",
+     "junk": 10,
+     "dtype": "DATE",
+     "raw_lo": "1900-01-01",
+     "raw_hi": "2026-06-04"
+    }
+   ]
+  },
+  "raw_table": "FED_FDA_MAUDE",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\fed_fda_maude\\stg_fed_fda_maude__all.sql"
+ },
+ {
+  "alias": "FINANCE__FED_FDIC_SOD_BRANCH_DEPOSITS",
+  "model": "finance__fed_fdic_sod_branch_deposits",
+  "subject": "finance",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/finance/finance__fed_fdic_sod_branch_deposits.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\fed_fdic_sod_branch_deposits\\stg_fed_fdic_sod_branch_deposits__branches.sql",
+  "n_rows": 2823000,
+  "fixes": {
+   "blank_marker": [
+    {
+     "col": "SIMS_ESTABLISHED_DATE",
+     "junk": 5165,
+     "dtype": "DATE",
+     "raw_lo": "1782-01-01",
+     "raw_hi": "2025-06-30"
+    }
+   ]
+  },
+  "raw_table": "FED_FDIC_SOD_BRANCH_DEPOSITS",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\fed_fdic_sod_branch_deposits\\stg_fed_fdic_sod_branch_deposits__branches.sql"
+ },
+ {
+  "alias": "HOUSING__FED_FEMA_IA_HOUSING_REGISTRATIONS",
+  "model": "housing__fed_fema_ia_housing_registrations",
+  "subject": "housing",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/housing/housing__fed_fema_ia_housing_registrations.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\fed_fema_ia_housing_registrations\\stg_fed_fema_ia_housing_registrations__registrations.sql",
+  "n_rows": 3080000,
+  "fixes": {
+   "century": [
+    {
+     "col": "APPLIED_DATE",
+     "junk": 2,
+     "dtype": "DATE",
+     "raw_lo": "2000-01-15",
+     "raw_hi": "2026-08-05"
+    }
+   ]
+  },
+  "raw_table": "FED_FEMA_IA_HOUSING_REGISTRATIONS",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\fed_fema_ia_housing_registrations\\stg_fed_fema_ia_housing_registrations__registrations.sql"
+ },
+ {
+  "alias": "ENVIRONMENT__FED_EPA_ECHO",
+  "model": "environment__fed_epa_echo",
+  "subject": "environment",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/environment/environment__fed_epa_echo.sql",
+  "staging_sql": "",
+  "n_rows": 3135554,
+  "fixes": {
+   "century": [
+    {
+     "col": "DATE_LAST_INSPECTION",
+     "junk": 1,
+     "dtype": "DATE",
+     "raw_lo": "1908-07-09",
+     "raw_hi": "2026-06-19"
+    }
+   ],
+   "blank_marker": [
+    {
+     "col": "DATE_LAST_FORMAL_ACTION",
+     "junk": 1,
+     "dtype": "DATE",
+     "raw_lo": "1900-01-01",
+     "raw_hi": "2026-06-18"
+    },
+    {
+     "col": "DATE_LAST_PENALTY",
+     "junk": 1,
+     "dtype": "DATE",
+     "raw_lo": "1900-01-01",
+     "raw_hi": "2026-06-18"
+    }
+   ]
+  },
+  "raw_table": "FED_EPA_ECHO",
+  "raw_from": "library-onboarding/ripple_dbt/models/marts/environment/environment__fed_epa_echo.sql"
+ },
+ {
+  "alias": "CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_RELATIONSHIPS",
+  "model": "corporate_registry__fed_icij_offshoreleaks_relationships",
+  "subject": "corporate_registry",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/corporate_registry/corporate_registry__fed_icij_offshoreleaks_relationships.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\fed_icij_offshoreleaks\\stg_fed_icij_offshoreleaks__relationships.sql",
+  "n_rows": 3339267,
+  "fixes": {
+   "century": [
+    {
+     "col": "END_DATE",
+     "junk": 20,
+     "dtype": "DATE",
+     "raw_lo": "1899-12-30",
+     "raw_hi": "2028-12-01"
+    }
+   ],
+   "stamp": [
+    {
+     "col": "_INGESTED_AT",
+     "junk": 3339267,
+     "dtype": "TIMESTAMP_NTZ",
+     "raw_lo": "",
+     "raw_hi": ""
+    }
+   ]
+  },
+  "raw_table": "FED_ICIJ_OFFSHORELEAKS_RELATIONSHIPS",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\fed_icij_offshoreleaks\\stg_fed_icij_offshoreleaks__relationships.sql"
+ },
+ {
+  "alias": "ECONOMICS__INTL_GLEIF",
+  "model": "economics__intl_gleif",
+  "subject": "economics",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/economics/economics__intl_gleif.sql",
+  "staging_sql": "",
+  "n_rows": 3382301,
+  "fixes": {
+   "century": [
+    {
+     "col": "ENTITY_HEADQUARTERSADDRESS_FIRSTADDRESSLINE",
+     "junk": 4,
+     "dtype": "TEXT",
+     "raw_lo": "",
+     "raw_hi": ""
+    }
+   ]
+  },
+  "raw_table": "INTL_GLEIF",
+  "raw_from": "library-onboarding/ripple_dbt/models/marts/economics/economics__intl_gleif.sql"
+ },
+ {
+  "alias": "ENVIRONMENT__FED_EPA_FRS_FACILITIES",
+  "model": "environment__fed_epa_frs_facilities",
+  "subject": "environment",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/environment/environment__fed_epa_frs_facilities.sql",
+  "staging_sql": "",
+  "n_rows": 5300149,
+  "fixes": {
+   "century": [
+    {
+     "col": "CREATE_DATE",
+     "junk": 5300149,
+     "dtype": "DATE",
+     "raw_lo": "",
+     "raw_hi": ""
+    },
+    {
+     "col": "UPDATE_DATE",
+     "junk": 2782106,
+     "dtype": "DATE",
+     "raw_lo": "",
+     "raw_hi": ""
+    }
+   ]
+  },
+  "raw_table": "FED_EPA_FRS_FULL",
+  "raw_from": "library-onboarding/ripple_dbt/models/marts/environment/environment__fed_epa_frs_facilities.sql"
+ },
+ {
+  "alias": "CORPORATE_REGISTRY__INTL_UK_COMPANIES_HOUSE",
+  "model": "corporate_registry__intl_uk_companies_house",
+  "subject": "corporate_registry",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/corporate_registry/corporate_registry__intl_uk_companies_house.sql",
+  "staging_sql": "",
+  "n_rows": 5734780,
+  "fixes": {
+   "blank_marker": [
+    {
+     "col": "INCORPORATION_DATE",
+     "junk": 1736,
+     "dtype": "DATE",
+     "raw_lo": "1701-06-16",
+     "raw_hi": "2026-06-30"
+    }
+   ]
+  },
+  "raw_table": "INT_UK_COMPANIES_HOUSE",
+  "raw_from": "library-onboarding/ripple_dbt/models/marts/corporate_registry/corporate_registry__intl_uk_companies_house.sql"
+ },
+ {
+  "alias": "JUSTICE__FED_FJC_IDB_CRIMINAL",
+  "model": "justice__fed_fjc_idb_criminal",
+  "subject": "justice",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/justice/justice__fed_fjc_idb_criminal.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\fed_fjc_idb_criminal\\stg_fed_fjc_idb_criminal__defendant_records.sql",
+  "n_rows": 6299908,
+  "fixes": {
+   "blank_marker": [
+    {
+     "col": "FUGITIVE_START_DATE",
+     "junk": 4872717,
+     "dtype": "DATE",
+     "raw_lo": "1900-01-01",
+     "raw_hi": "2026-04-09"
+    },
+    {
+     "col": "FUGITIVE_END_DATE",
+     "junk": 5260985,
+     "dtype": "DATE",
+     "raw_lo": "1900-01-01",
+     "raw_hi": "2026-04-13"
+    },
+    {
+     "col": "APP_DATE",
+     "junk": 1853724,
+     "dtype": "DATE",
+     "raw_lo": "1900-01-01",
+     "raw_hi": "2026-04-10"
+    },
+    {
+     "col": "C_UPDATE",
+     "junk": 2584772,
+     "dtype": "TEXT",
+     "raw_lo": "1900-01-01",
+     "raw_hi": "2012-02-13"
+    },
+    {
+     "col": "DISPOSITION_DATE",
+     "junk": 3815955,
+     "dtype": "DATE",
+     "raw_lo": "1900-01-01",
+     "raw_hi": "2026-03-31"
+    },
+    {
+     "col": "SENTENCE_DATE",
+     "junk": 4062155,
+     "dtype": "DATE",
+     "raw_lo": "1900-01-01",
+     "raw_hi": "2026-03-31"
+    },
+    {
+     "col": "TERM_DATE",
+     "junk": 3815955,
+     "dtype": "DATE",
+     "raw_lo": "1900-01-01",
+     "raw_hi": "2026-03-31"
+    }
+   ]
+  },
+  "raw_table": "FED_FJC_IDB_CRIMINAL",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\fed_fjc_idb_criminal\\stg_fed_fjc_idb_criminal__defendant_records.sql"
+ },
+ {
+  "alias": "CONSUMER_SAFETY__FED_CPSC_NEISS",
+  "model": "consumer_safety__fed_cpsc_neiss",
+  "subject": "consumer_safety",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/consumer_safety/consumer_safety__fed_cpsc_neiss.sql",
+  "staging_sql": "",
+  "n_rows": 9794971,
+  "fixes": {
+   "stamp": [
+    {
+     "col": "_LOADED_AT",
+     "junk": 9794971,
+     "dtype": "TIMESTAMP_NTZ",
+     "raw_lo": "",
+     "raw_hi": ""
+    }
+   ]
+  },
+  "raw_table": "FED_CPSC_NEISS",
+  "raw_from": "library-onboarding/ripple_dbt/models/marts/consumer_safety/consumer_safety__fed_cpsc_neiss.sql"
+ },
+ {
+  "alias": "JUSTICE__FED_COURTLISTENER_OPINION_CLUSTERS",
+  "model": "justice__fed_courtlistener_opinion_clusters",
+  "subject": "justice",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/justice/justice__fed_courtlistener_opinion_clusters.sql",
+  "staging_sql": "",
+  "n_rows": 10070727,
+  "fixes": {
+   "century": [
+    {
+     "col": "DATE_FILED",
+     "junk": 946,
+     "dtype": "DATE",
+     "raw_lo": "1700-05-08",
+     "raw_hi": "2028-04-13"
+    }
+   ]
+  },
+  "raw_table": "FED_COURTLISTENER_OPINION_CLUSTERS",
+  "raw_from": "library-onboarding/ripple_dbt/models/marts/justice/justice__fed_courtlistener_opinion_clusters.sql"
+ },
+ {
+  "alias": "JUSTICE__FED_FJC_IDB_CIVIL",
+  "model": "justice__fed_fjc_idb_civil",
+  "subject": "justice",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/justice/justice__fed_fjc_idb_civil.sql",
+  "staging_sql": "library-onboarding/ripple_dbt/models/staging\\fed_fjc_idb_civil\\stg_fed_fjc_idb_civil__case_records.sql",
+  "n_rows": 10857396,
+  "fixes": {
+   "blank_marker": [
+    {
+     "col": "TERM_DATE",
+     "junk": 462223,
+     "dtype": "DATE",
+     "raw_lo": "1900-01-01",
+     "raw_hi": "2026-03-31"
+    }
+   ]
+  },
+  "raw_table": "FED_FJC_IDB_CIVIL",
+  "raw_from": "library-onboarding/ripple_dbt/models/staging\\fed_fjc_idb_civil\\stg_fed_fjc_idb_civil__case_records.sql"
+ },
+ {
+  "alias": "HEALTH__FED_CMS_OPEN_PAYMENTS",
+  "model": "health__fed_cms_open_payments",
+  "subject": "health",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/health/health__fed_cms_open_payments.sql",
+  "staging_sql": "",
+  "n_rows": 15385047,
+  "fixes": {
+   "century": [
+    {
+     "col": "DATE_OF_PAYMENT",
+     "junk": 73,
+     "dtype": "TEXT",
+     "raw_lo": "2024-01-01",
+     "raw_hi": "2024-12-31"
+    }
+   ]
+  },
+  "raw_table": "FED_CMS_OPEN_PAYMENTS",
+  "raw_from": "library-onboarding/ripple_dbt/models/marts/health/health__fed_cms_open_payments.sql"
+ },
+ {
+  "alias": "ENVIRONMENT__FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT",
+  "model": "environment__fed_epa_sdwa_sdwa_violations_enforcement",
+  "subject": "environment",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/environment/environment__fed_epa_sdwa_sdwa_violations_enforcement.sql",
+  "staging_sql": "",
+  "n_rows": 15432737,
+  "fixes": {
+   "blank_marker": [
+    {
+     "col": "COMPL_PER_BEGIN_DATE",
+     "junk": 296,
+     "dtype": "DATE",
+     "raw_lo": "1900-01-01",
+     "raw_hi": "2026-06-09"
+    },
+    {
+     "col": "NON_COMPL_PER_BEGIN_DATE",
+     "junk": 296,
+     "dtype": "DATE",
+     "raw_lo": "1900-01-01",
+     "raw_hi": "2026-06-09"
+    },
+    {
+     "col": "ENFORCEMENT_DATE",
+     "junk": 843,
+     "dtype": "DATE",
+     "raw_lo": "1900-01-01",
+     "raw_hi": "2026-06-29"
+    }
+   ]
+  },
+  "raw_table": "FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT",
+  "raw_from": "library-onboarding/ripple_dbt/models/marts/environment/environment__fed_epa_sdwa_sdwa_violations_enforcement.sql"
+ },
+ {
+  "alias": "ECONOMICS__FED_USASPENDING_ASSISTANCE_FULL",
+  "model": "economics__fed_usaspending_assistance_full",
+  "subject": "economics",
+  "mart_sql": "library-onboarding/ripple_dbt/models/marts/economics/economics__fed_usaspending_assistance_full.sql",
+  "staging_sql": "",
+  "n_rows": 19902879,
+  "fixes": {
+   "century": [
+    {
+     "col": "PERIOD_OF_PERFORMANCE_START_DATE",
+     "junk": 56221,
+     "dtype": "TEXT",
+     "raw_lo": "1954-07-01",
+     "raw_hi": "2027-06-29"
+    },
+    {
+     "col": "PERIOD_OF_PERFORMANCE_CURRENT_END_DATE",
+     "junk": 56213,
+     "dtype": "TEXT",
+     "raw_lo": "1991-08-31",
+     "raw_hi": "2035-12-31"
+    }
+   ]
+  },
+  "raw_table": "FED_USASPENDING_ASSISTANCE_FULL",
+  "raw_from": "library-onboarding/ripple_dbt/models/marts/economics/economics__fed_usaspending_assistance_full.sql"
+ }
+]

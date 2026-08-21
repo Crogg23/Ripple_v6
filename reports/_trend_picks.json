@@ -1,0 +1,322 @@
+[
+ {
+  "rec": {
+   "id": "CONSUMER_PROTECTION.CONSUMER_PROTECTION__FED_CFPB_COMPLAINTS",
+   "name": "Complaints Americans filed against banks",
+   "what": "Complaints Americans filed against banks, credit card companies, debt collectors and mortgage servicers, to the federal consumer finance watchdog.",
+   "means": "This date is the day it arrived with the agency \u2014 when it was reported, which can be long after it happened.",
+   "theme": "Consumer harm",
+   "subject": "Consumer Protection",
+   "clock": "reported",
+   "grain": "day",
+   "y0": "2011",
+   "y1": "2026",
+   "years": 15,
+   "dated": 17168287,
+   "table_rows": 17168287,
+   "fill": 100.0,
+   "shape": "How many per month, 15 years of it"
+  },
+  "why": "The cleanest big harm series you own. Seventeen million people complaining about banks, card companies and debt collectors, every month since late 2011, still running today."
+ },
+ {
+  "rec": {
+   "id": "HEALTH.HEALTH__FED_DEA_ARCOS",
+   "name": "Every shipment of prescription opioids in America from...",
+   "what": "Every shipment of prescription opioids in America from 2006 to 2012 - manufacturer to distributor to pharmacy, pill by pill. The dataset behind the opioid litigation.",
+   "means": "This date is the day the pills were shipped \u2014 when the thing itself took place.",
+   "theme": "Health & medicine",
+   "subject": "Health",
+   "clock": "happened",
+   "grain": "day",
+   "y0": "2006",
+   "y1": "2012",
+   "years": 6,
+   "dated": 178598021,
+   "table_rows": 178598026,
+   "fill": 100.0,
+   "shape": "How many per month (6 years)"
+  },
+  "why": "Every prescription opioid pill shipped in America, 2006 to 2012. The rise is right there in the line, and so is the exact point the record stops."
+ },
+ {
+  "rec": {
+   "id": "LABOR.LABOR__FED_MSHA_MINES",
+   "name": "Every mine in the United States",
+   "what": "Every mine in the United States, who operates it, and whether it is still active.",
+   "means": "This date is the current status date \u2014 when the thing itself took place.",
+   "theme": "Work & workers",
+   "subject": "Labor",
+   "clock": "happened",
+   "grain": "day",
+   "y0": "1925",
+   "y1": "2026",
+   "years": 101,
+   "dated": 91906,
+   "table_rows": 91906,
+   "fill": 100.0,
+   "shape": "How many per month, across 101 years"
+  },
+  "why": "Mine openings and closures back to 1925. The coal decline shows up as a shape rather than an argument \u2014 and it is the denominator for the violations below."
+ },
+ {
+  "rec": {
+   "id": "LABOR.LABOR__FED_MSHA_VIOLATIONS",
+   "name": "Every safety violation a federal inspector wrote up at a...",
+   "what": "Every safety violation a federal inspector wrote up at a US mine, and the fine that followed.",
+   "means": "This date is the violation issue date \u2014 when an authority ruled on it.",
+   "theme": "Work & workers",
+   "subject": "Labor",
+   "clock": "happened",
+   "grain": "day",
+   "y0": "1994",
+   "y1": "2026",
+   "years": 32,
+   "dated": 3087265,
+   "table_rows": 3087265,
+   "fill": 100.0,
+   "shape": "How many per month, 32 years of it"
+  },
+  "why": "Every safety violation an inspector wrote in a mine, 32 years of it. Worth watching next to the mine count, not on its own."
+ },
+ {
+  "rec": {
+   "id": "HEALTH.HEALTH__FED_CMS_NURSING_HOME_DEFICIENCIES",
+   "name": "Every problem inspectors found in a US nursing home",
+   "what": "Every problem inspectors found in a US nursing home, and how serious they judged it.",
+   "means": "This date is the day inspectors visited the nursing home \u2014 when the thing itself took place.",
+   "theme": "Health & medicine",
+   "subject": "Health",
+   "clock": "happened",
+   "grain": "day",
+   "y0": "2017",
+   "y1": "2026",
+   "years": 9,
+   "dated": 418479,
+   "table_rows": 418479,
+   "fill": 100.0,
+   "shape": "How many per month (9 years)"
+  },
+  "why": "Every problem inspectors found in a nursing home. Handle with care: the raw count rose 446 times, but almost all of that was more homes being inspected. Per home it was 62%."
+ },
+ {
+  "rec": {
+   "id": "ECONOMICS.ECONOMICS__FED_FDIC_FAILED_BANKS",
+   "name": "Every US bank that has failed",
+   "what": "Every US bank that has failed, and the date it was shut down.",
+   "means": "This date is the day it failed \u2014 when the thing itself took place.",
+   "theme": "Money & markets",
+   "subject": "Economics",
+   "clock": "happened",
+   "grain": "day",
+   "y0": "1970",
+   "y1": "2026",
+   "years": 56,
+   "dated": 3584,
+   "table_rows": 3584,
+   "fill": 100.0,
+   "shape": "How many per month, across 56 years"
+  },
+  "why": "Only 3,584 rows and 56 years, and the 2008\u201310 spike does all the work. The smallest interesting series in here."
+ },
+ {
+  "rec": {
+   "id": "HEALTH.HEALTH__FED_FDA_DEVICE_510K",
+   "name": "Medical devices cleared for sale on the grounds that they...",
+   "what": "Medical devices cleared for sale on the grounds that they resemble something already on the market.",
+   "means": "This date is the day it arrived with the agency \u2014 when it was reported, which can be long after it happened.",
+   "theme": "Health & medicine",
+   "subject": "Health",
+   "clock": "reported",
+   "grain": "day",
+   "y0": "1976",
+   "y1": "2026",
+   "years": 50,
+   "dated": 175686,
+   "table_rows": 175686,
+   "fill": 100.0,
+   "shape": "How many per month, across 50 years"
+  },
+  "why": "Every medical device cleared for sale since 1976 on the grounds that it resembles something already on the market. Fifty unbroken years of the approval curve."
+ },
+ {
+  "rec": {
+   "id": "SCIENCE_RESEARCH.SCIENCE_RESEARCH__XC_RETRACTION_WATCH_DATABASE",
+   "name": "The retracted scientific papers database",
+   "what": "The retracted scientific papers database, a second cut.",
+   "means": "This date is the original paper date \u2014 when the thing itself took place.",
+   "theme": "Records & reference",
+   "subject": "Science Research",
+   "clock": "happened",
+   "grain": "day",
+   "y0": "1753",
+   "y1": "2026",
+   "years": 273,
+   "dated": 71388,
+   "table_rows": 71388,
+   "fill": 100.0,
+   "shape": "How many per month, across 273 years"
+  },
+  "why": "Retracted scientific papers per year. The line climbs hard \u2014 whether that is more fraud or more catching is the actual question, and you can see both."
+ },
+ {
+  "rec": {
+   "id": "JUSTICE.JUSTICE__XC_MAPPING_POLICE_VIOLENCE",
+   "name": "People killed by US police",
+   "what": "People killed by US police, documented by an independent project.",
+   "means": "This date is the incident month day year \u2014 when the thing itself took place.",
+   "theme": "Courts & policing",
+   "subject": "Justice",
+   "clock": "happened",
+   "grain": "day",
+   "y0": "2013",
+   "y1": "2026",
+   "years": 13,
+   "dated": 15476,
+   "table_rows": 15476,
+   "fill": 100.0,
+   "shape": "How many per month, 13 years of it"
+  },
+  "why": "Everyone killed by US police since 2013, month by month. A complete decade with no gaps."
+ },
+ {
+  "rec": {
+   "id": "CORPORATE_REGISTRY.CORPORATE_REGISTRY__INTL_UK_COMPANIES_HOUSE",
+   "name": "Every company registered in the United Kingdom",
+   "what": "Every company registered in the United Kingdom.",
+   "means": "This date is the day the company was legally created \u2014 when the thing itself took place.",
+   "theme": "Companies & contracts",
+   "subject": "Corporate Registry",
+   "clock": "happened",
+   "grain": "day",
+   "y0": "1701",
+   "y1": "2026",
+   "years": 325,
+   "dated": 5734749,
+   "table_rows": 5734780,
+   "fill": 100.0,
+   "shape": "How many per month, across 325 years"
+  },
+  "why": "Nearly six million companies with birth dates going back to 1701. Company births per year, deaths per year, and how old the surviving ones are \u2014 three different charts from one table."
+ },
+ {
+  "rec": {
+   "id": "FOREIGN_INFLUENCE.FOREIGN_INFLUENCE__FED_FARA_BULK",
+   "name": "People and firms paid to represent foreign governments and...",
+   "what": "People and firms paid to represent foreign governments and interests inside the United States, as they are legally required to declare.",
+   "means": "This date is the date on the record \u2014 when it was reported, which can be long after it happened.",
+   "theme": "Politics & influence",
+   "subject": "Foreign Influence",
+   "clock": "reported",
+   "grain": "day",
+   "y0": "1942",
+   "y1": "2026",
+   "years": 84,
+   "dated": 12303,
+   "table_rows": 48104,
+   "fill": 25.6,
+   "shape": "How many per month, across 84 years"
+  },
+  "why": "Who registered to lobby the US government on behalf of a foreign one, 1942 to today. Small and clean, and the mix of countries moves with history."
+ },
+ {
+  "rec": {
+   "id": "ECONOMICS.ECONOMICS__FED_TREASURY_DTS_DEPOSITS",
+   "name": "Money flowing into the US Treasury each day",
+   "what": "Money flowing into the US Treasury each day \u2014 the government's daily bank statement, deposits side.",
+   "means": "This date is the day the record was written \u2014 when the thing itself took place.",
+   "theme": "Money & markets",
+   "subject": "Economics",
+   "clock": "happened",
+   "grain": "day",
+   "y0": "2005",
+   "y1": "2026",
+   "years": 21,
+   "dated": 478149,
+   "table_rows": 478149,
+   "fill": 100.0,
+   "shape": "How many per month, 21 years of it"
+  },
+  "why": "Money flowing into the US Treasury every single day for 21 years. Tax deadlines show up as walls."
+ },
+ {
+  "rec": {
+   "id": "FINANCE.FINANCE__FED_FEC_INDIV_CONTRIBUTIONS",
+   "name": "Every reported donation an individual made to a federal...",
+   "what": "Every reported donation an individual made to a federal political campaign \u2014 donor name, employer, amount and date.",
+   "means": "This date is the day the money moved \u2014 when the thing itself took place.",
+   "theme": "Money & markets",
+   "subject": "Finance",
+   "clock": "happened",
+   "grain": "day",
+   "y0": "2000",
+   "y1": "2026",
+   "years": 26,
+   "dated": 84171523,
+   "table_rows": 84172112,
+   "fill": 100.0,
+   "shape": "How many per month, 26 years of it"
+  },
+  "why": "Eighty-four million individual political donations since 2000. Per election cycle, by donation size, and how many land on suspiciously round numbers."
+ },
+ {
+  "rec": {
+   "id": "SCIENCE.SCIENCE__FED_USGS_EARTHQUAKES",
+   "name": "Every recorded earthquake",
+   "what": "Every recorded earthquake - where, when and how strong.",
+   "means": "This date is the moment it was recorded \u2014 when the thing itself took place.",
+   "theme": "Land, water & air",
+   "subject": "Science",
+   "clock": "happened",
+   "grain": "day",
+   "y0": "2010",
+   "y1": "2026",
+   "years": 16,
+   "dated": 443274,
+   "table_rows": 443274,
+   "fill": 100.0,
+   "shape": "How many per month, 16 years of it"
+  },
+  "why": "Every recorded earthquake since 2010. A caution as much as a series: it measures how well we detect as much as how much the ground moves."
+ },
+ {
+  "rec": {
+   "id": "JUSTICE.JUSTICE__INTL_OPENSANCTIONS_DEFAULT",
+   "name": "People and companies under sanctions",
+   "what": "People and companies under sanctions, on watchlists, or flagged as politically exposed, worldwide.",
+   "means": "This date is the day the person was born \u2014 when the thing itself took place.",
+   "theme": "Courts & policing",
+   "subject": "Justice",
+   "clock": "happened",
+   "grain": "day",
+   "y0": "1900",
+   "y1": "2026",
+   "years": 126,
+   "dated": 463657,
+   "table_rows": 1281846,
+   "fill": 36.2,
+   "shape": "How many per month, across 126 years"
+  },
+  "why": "Who got sanctioned, per year, going back to 1900. Watch the designations cluster around the events you already know."
+ },
+ {
+  "rec": {
+   "id": "HEALTH.HEALTH__FED_CMS_OPEN_PAYMENTS",
+   "name": "Payments and gifts from drug and device companies to...",
+   "what": "Payments and gifts from drug and device companies to individual doctors and teaching hospitals.",
+   "means": "This date is the day the payment was made \u2014 when the thing itself took place.",
+   "theme": "Health & medicine",
+   "subject": "Health",
+   "clock": "happened",
+   "grain": "day",
+   "y0": "2024",
+   "y1": "2024",
+   "years": 0,
+   "dated": 15384974,
+   "table_rows": 15385047,
+   "fill": 100.0,
+   "shape": "How many per month \u2014 under two years, so it is a snapshot more than a trend"
+  },
+  "why": "Drug and device company payments and gifts to doctors \u2014 15.4 million of them in 2024 alone. Each year is its own table here, so a long trend needs them stitched together first."
+ }
+]

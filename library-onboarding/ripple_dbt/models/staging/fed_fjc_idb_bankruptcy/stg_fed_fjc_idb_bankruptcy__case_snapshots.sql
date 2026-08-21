@@ -28,8 +28,8 @@ renamed as (
 
         -- filing
         trim(ORIGIN)                                   as origin,
-        try_to_date(trim(ORGFLDT))                     as original_filing_date,
-        try_to_date(trim(FILEDATE))                    as file_date,
+        try_to_date(nullif(trim(ORGFLDT), '01/01/1900'))                     as original_filing_date,
+        try_to_date(nullif(trim(FILEDATE), '01/01/1900'))                    as file_date,
         trim(FILECY)                                   as filing_calendar_year,
         trim(FILEFY)                                   as filing_fiscal_year,
         trim(ORGFLCHP)                                 as original_filing_chapter,
@@ -45,12 +45,12 @@ renamed as (
         trim(D1CNTY)                                   as debtor1_county,
         trim(ORGD1FPRSE)                               as original_debtor1_filing_pro_se,
         trim(D1FPRSE)                                  as debtor1_filing_pro_se,
-        try_to_date(trim(D1CHGDT))                     as debtor1_change_date,
+        try_to_date(nullif(trim(D1CHGDT), '01/01/1900'))                     as debtor1_change_date,
         trim(D2ZIP)                                    as debtor2_zip,
         trim(D2CNTY)                                   as debtor2_county,
         trim(ORGD2FPRSE)                               as original_debtor2_filing_pro_se,
         trim(D2FPRSE)                                  as debtor2_filing_pro_se,
-        try_to_date(trim(D2CHGDT))                     as debtor2_change_date,
+        try_to_date(nullif(trim(D2CHGDT), '01/01/1900'))                     as debtor2_change_date,
 
         -- case attributes
         trim(ORGFEESTS)                                as original_fee_status,
@@ -94,19 +94,19 @@ renamed as (
         trim(FLCMECFV)                                 as filing_cmecf_version,
 
         -- closing / disposition
-        try_to_date(trim(CLOSEDT))                     as close_date,
+        try_to_date(nullif(trim(CLOSEDT), '01/01/1900'))                     as close_date,
         trim(CLOSECY)                                  as closing_calendar_year,
         trim(CLOSEFY)                                  as closing_fiscal_year,
         trim(CLCHPT)                                   as closing_chapter,
         trim(CLSUBCHPT)                                as closing_subchapter,
         trim(D1CPRSE)                                  as debtor1_closing_pro_se,
         trim(D1FDSP)                                   as debtor1_final_disposition,
-        try_to_date(trim(D1FDSPDT))                    as debtor1_final_disposition_date,
+        try_to_date(nullif(trim(D1FDSPDT), '01/01/1900'))                    as debtor1_final_disposition_date,
         trim(D1FDSPCY)                                 as debtor1_final_disposition_calendar_year,
         trim(D1FDSPFY)                                 as debtor1_final_disposition_fiscal_year,
         trim(D2CPRSE)                                  as debtor2_closing_pro_se,
         trim(D2FDSP)                                   as debtor2_final_disposition,
-        try_to_date(trim(D2FDSPDT))                    as debtor2_final_disposition_date,
+        try_to_date(nullif(trim(D2FDSPDT), '01/01/1900'))                    as debtor2_final_disposition_date,
         trim(D2FDSPCY)                                 as debtor2_final_disposition_calendar_year,
         trim(D2FDSPFY)                                 as debtor2_final_disposition_fiscal_year,
         trim(C11DVDND)                                 as chapter11_dividend,
