@@ -1,4 +1,4 @@
-# RIPPLE STATUS — 2026-08-22 (backend squared; batches 1+2 applied; batch 3 staged)
+# RIPPLE STATUS — 2026-08-22 (backend squared; all three pastes applied)
 
 *One screen. Rewritten (never appended) at the end of every session. Sessions read
 this at boot and brief Chris in chat — Chris never has to open it.*
@@ -57,10 +57,11 @@ MACRO pairs automatically: honest picture is 691 judgeable, 214 wired (31%).
 incremental backstop test, which needs the build role by design — expected
 under reader creds, not a defect).
 
-**YOUR MOVE (Chris): run PASTE 3** (same batch file): criminal (84.5%) +
-appellate (60.1%) courts join the docket bridge; bankruptcy measured 33% and
-was refused below the floor. The commented secondary-roles security fix still
-awaits your yes/no ("lock the key").
+**PASTE 3 APPLIED, verified:** edge table 4,910; the whole federal court
+family (civil, criminal, appellate) now hangs off the docket bridge; 17 more
+queue pairs moved onto the map (off-spine 246→229). Bankruptcy stays refused
+at 33%. The commented secondary-roles security fix still awaits Chris's
+yes/no ("lock the key").
 (2) Carried: 5th false-reading for the RIPPLES doc; healthcare pilot weak
 signal; lens-catalogue sweep ($42–64) still awaiting go.
 
