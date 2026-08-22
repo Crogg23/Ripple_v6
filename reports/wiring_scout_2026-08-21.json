@@ -1,0 +1,3439 @@
+{
+ "as_of": "2026-08-21",
+ "spine_tables": 251,
+ "dark_tables_total": 143,
+ "scouted": [
+  {
+   "table": "JUSTICE.JUSTICE__FED_FTC_DATASETS",
+   "blocked_pairs": 61,
+   "n_columns": 8,
+   "keys": [
+    {
+     "kind": "EIN",
+     "column": "EIN",
+     "count": 1004,
+     "distinct": 1,
+     "top_values": [
+      [
+       "",
+       1004
+      ]
+     ],
+     "top_share": 1.0,
+     "verdict": "SUSPECT"
+    }
+   ]
+  },
+  {
+   "table": "REGULATORY.REGULATORY__FED_FEDERAL_REGISTER_DOCUMENTS",
+   "blocked_pairs": 53,
+   "n_columns": 38,
+   "keys": [
+    {
+     "kind": "DOCKET",
+     "column": "DOCKET_IDS",
+     "count": 94731,
+     "distinct": 50531,
+     "top_values": [
+      [
+       "[]",
+       31662
+      ],
+      [
+       "[\"Docket No. RM98-1-000\"]",
+       82
+      ],
+      [
+       "[\"245A2100DD/AAKC001030/A0A501010.999900",
+       80
+      ],
+      [
+       "[\"NRC-2024-0001\"]",
+       57
+      ],
+      [
+       "[\"NRC-2023-0001\"]",
+       54
+      ]
+     ],
+     "top_share": 0.334,
+     "verdict": "SUSPECT"
+    }
+   ]
+  },
+  {
+   "table": "HEALTH.HEALTH__FED_CDC_ANXIETY_DEPRESSION",
+   "blocked_pairs": 49,
+   "n_columns": 14,
+   "keys": [
+    {
+     "kind": "STATE",
+     "column": "STATE",
+     "count": 16794,
+     "distinct": 52,
+     "top_values": [
+      [
+       "United States",
+       5778
+      ],
+      [
+       "Illinois",
+       216
+      ],
+      [
+       "Pennsylvania",
+       216
+      ],
+      [
+       "Iowa",
+       216
+      ],
+      [
+       "Washington",
+       216
+      ]
+     ],
+     "top_share": 0.344,
+     "verdict": "SUSPECT"
+    }
+   ]
+  },
+  {
+   "table": "HEALTH.HEALTH__FED_DEA_ARCOS",
+   "blocked_pairs": 48,
+   "n_columns": 33,
+   "keys": [
+    {
+     "kind": "NAME",
+     "column": "COMPANY_NAME",
+     "count": 178598026,
+     "distinct": 87,
+     "top_values": [
+      [
+       "Mallinckrodt",
+       65380874
+      ],
+      [
+       "Allergan, Inc.",
+       52458781
+      ],
+      [
+       "Endo Pharmaceuticals, Inc.",
+       26366516
+      ],
+      [
+       "Purdue Pharma LP",
+       13934500
+      ],
+      [
+       "Amneal Pharmaceuticals, Inc.",
+       6686972
+      ]
+     ],
+     "top_share": 0.366,
+     "verdict": "SUSPECT"
+    }
+   ]
+  },
+  {
+   "table": "HEALTH.HEALTH__FED_CDC_HEALTH_INSURANCE",
+   "blocked_pairs": 46,
+   "n_columns": 16,
+   "keys": [
+    {
+     "kind": "STATE",
+     "column": "STATE",
+     "count": 16056,
+     "distinct": 52,
+     "top_values": [
+      [
+       "United States",
+       5040
+      ],
+      [
+       "Rhode Island",
+       216
+      ],
+      [
+       "Iowa",
+       216
+      ],
+      [
+       "North Carolina",
+       216
+      ],
+      [
+       "Tennessee",
+       216
+      ]
+     ],
+     "top_share": 0.314,
+     "verdict": "SUSPECT"
+    }
+   ]
+  },
+  {
+   "table": "ECONOMICS.ECONOMICS__FED_TREASURY_DTS_DEPOSITS",
+   "blocked_pairs": 36,
+   "n_columns": 17,
+   "keys": []
+  },
+  {
+   "table": "JUSTICE.JUSTICE__FED_CISA_KEV",
+   "blocked_pairs": 35,
+   "n_columns": 11,
+   "keys": []
+  },
+  {
+   "table": "JUSTICE.JUSTICE__FED_FHFA_SUSPENDED_COUNTERPARTIES",
+   "blocked_pairs": 31,
+   "n_columns": 10,
+   "keys": [
+    {
+     "kind": "STATE",
+     "column": "STATE",
+     "count": 222,
+     "distinct": 37,
+     "top_values": [
+      [
+       "California",
+       40
+      ],
+      [
+       "Florida",
+       25
+      ],
+      [
+       "New York",
+       19
+      ],
+      [
+       "New Jersey",
+       18
+      ],
+      [
+       "Illinois",
+       10
+      ]
+     ],
+     "top_share": 0.18,
+     "verdict": "SUSPECT"
+    }
+   ]
+  },
+  {
+   "table": "EDUCATION.EDUCATION__FED_CFTC_COT_FINANCIAL",
+   "blocked_pairs": 30,
+   "n_columns": 87,
+   "keys": []
+  },
+  {
+   "table": "ECONOMICS.ECONOMICS__FED_TREASURY_DEBT_TO_PENNY",
+   "blocked_pairs": 28,
+   "n_columns": 15,
+   "keys": []
+  },
+  {
+   "table": "JUSTICE.JUSTICE__XC_NAGIX_DPRK_MISSILE_TESTS",
+   "blocked_pairs": 28,
+   "n_columns": 12,
+   "keys": []
+  },
+  {
+   "table": "EDUCATION.EDUCATION__FED_GOOGLE_POLADS_ADVERTISER_WEEKLY_SPEND",
+   "blocked_pairs": 28,
+   "n_columns": 24,
+   "keys": []
+  },
+  {
+   "table": "ECONOMICS.ECONOMICS__FED_TREASURY_MTS_RECEIPTS",
+   "blocked_pairs": 27,
+   "n_columns": 27,
+   "keys": []
+  },
+  {
+   "table": "ECONOMICS.ECONOMICS__FED_USASPENDING_CONTRACTS_FULL",
+   "blocked_pairs": 25,
+   "n_columns": 297,
+   "keys": [
+    {
+     "kind": "DUNS",
+     "column": "RECIPIENT_PARENT_DUNS",
+     "count": 20000000,
+     "distinct": 332675,
+     "top_values": [
+      [
+       "",
+       6668392
+      ],
+      [
+       "039277590",
+       541066
+      ],
+      [
+       "097537435",
+       467028
+      ],
+      [
+       "123456787",
+       266043
+      ],
+      [
+       "078745061",
+       248811
+      ]
+     ],
+     "top_share": 0.333,
+     "verdict": "SUSPECT"
+    },
+    {
+     "kind": "STATE",
+     "column": "PRIMARY_PLACE_OF_PERFORMANCE_STATE_CODE",
+     "count": 20000000,
+     "distinct": 63,
+     "top_values": [
+      [
+       "",
+       1907911
+      ],
+      [
+       "VA",
+       1722740
+      ],
+      [
+       "IL",
+       1501004
+      ],
+      [
+       "PA",
+       1472092
+      ],
+      [
+       "CA",
+       1337528
+      ]
+     ],
+     "top_share": 0.095,
+     "verdict": "REAL"
+    },
+    {
+     "kind": "FIPS",
+     "column": "PRIME_AWARD_TRANSACTION_RECIPIENT_COUNTY_FIPS_CODE",
+     "count": 20000000,
+     "distinct": 3185,
+     "top_values": [
+      [
+       "",
+       5287498
+      ],
+      [
+       "17097",
+       866285
+      ],
+      [
+       "51059",
+       660319
+      ],
+      [
+       "42029",
+       567111
+      ],
+      [
+       "34013",
+       490706
+      ]
+     ],
+     "top_share": 0.264,
+     "verdict": "REAL"
+    },
+    {
+     "kind": "NAME",
+     "column": "RECIPIENT_NAME",
+     "count": 20000000,
+     "distinct": 402567,
+     "top_values": [
+      [
+       "AMERISOURCEBERGEN DRUG CORP",
+       858425
+      ],
+      [
+       "CARDINAL HEALTH 200, LLC",
+       626636
+      ],
+      [
+       "NATIONAL INDUSTRIES FOR THE BLIND",
+       499097
+      ],
+      [
+       "ASRC FEDERAL FACILITIES LOGISTICS, LLC",
+       493475
+      ],
+      [
+       "OWENS & MINOR DISTRIBUTION INC",
+       302148
+      ]
+     ],
+     "top_share": 0.043,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "POLITICS.POLITICS__TX_LOBBY_COVER",
+   "blocked_pairs": 23,
+   "n_columns": 21,
+   "keys": []
+  },
+  {
+   "table": "POLITICS.POLITICS__TX_LOBBY_SUBJECT_MATTER",
+   "blocked_pairs": 23,
+   "n_columns": 20,
+   "keys": []
+  },
+  {
+   "table": "REFERENCE.REFERENCE__FED_ITIS_EXPERTS",
+   "blocked_pairs": 23,
+   "n_columns": 9,
+   "keys": []
+  },
+  {
+   "table": "REFERENCE.REFERENCE__FED_ITIS_REFERENCE_LINKS",
+   "blocked_pairs": 22,
+   "n_columns": 12,
+   "keys": []
+  },
+  {
+   "table": "POLITICS.POLITICS__CA_LOBBY_COVER",
+   "blocked_pairs": 22,
+   "n_columns": 19,
+   "keys": []
+  },
+  {
+   "table": "POLITICS.POLITICS__TX_LOBBY_DOCKETS",
+   "blocked_pairs": 21,
+   "n_columns": 19,
+   "keys": [
+    {
+     "kind": "DOCKET",
+     "column": "DOCKET_ID",
+     "count": 1207,
+     "distinct": 1207,
+     "top_values": [
+      [
+       "100004502",
+       1
+      ],
+      [
+       "100004484",
+       1
+      ],
+      [
+       "100004446",
+       1
+      ],
+      [
+       "100004546",
+       1
+      ],
+      [
+       "100004517",
+       1
+      ]
+     ],
+     "top_share": 0.001,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "POLITICS.POLITICS__TX_LOBBY_INDIVIDUAL_REPORTING",
+   "blocked_pairs": 21,
+   "n_columns": 28,
+   "keys": [
+    {
+     "kind": "ZIP",
+     "column": "ONBEHALFMAILINGPOSTALCODE",
+     "count": 19132,
+     "distinct": 633,
+     "top_values": [
+      [
+       "78701",
+       5599
+      ],
+      [
+       "78752",
+       922
+      ],
+      [
+       "77002",
+       621
+      ],
+      [
+       "78768",
+       614
+      ],
+      [
+       "75201",
+       419
+      ]
+     ],
+     "top_share": 0.293,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "CONSUMER_SAFETY.CONSUMER_SAFETY__FED_NHTSA_COMPLAINTS",
+   "blocked_pairs": 20,
+   "n_columns": 29,
+   "keys": [
+    {
+     "kind": "STATE",
+     "column": "STATE",
+     "count": 2227941,
+     "distinct": 87,
+     "top_values": [
+      [
+       "CA",
+       254916
+      ],
+      [
+       "TX",
+       160761
+      ],
+      [
+       "FL",
+       160327
+      ],
+      [
+       "NY",
+       124191
+      ],
+      [
+       "PA",
+       97725
+      ]
+     ],
+     "top_share": 0.114,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "ENVIRONMENT.ENVIRONMENT__FED_EPA_RCRA_VIOLATIONS",
+   "blocked_pairs": 20,
+   "n_columns": 11,
+   "keys": []
+  },
+  {
+   "table": "JUSTICE.JUSTICE__FED_FJC_IDB_CRIMINAL",
+   "blocked_pairs": 19,
+   "n_columns": 147,
+   "keys": [
+    {
+     "kind": "DOCKET",
+     "column": "DOCKET",
+     "count": 6299908,
+     "distinct": 264765,
+     "top_values": [
+      [
+       "9300470",
+       1824
+      ],
+      [
+       "0400446",
+       1219
+      ],
+      [
+       "9900060",
+       1142
+      ],
+      [
+       "7800834",
+       1059
+      ],
+      [
+       "9700355",
+       1009
+      ]
+     ],
+     "top_share": 0.0,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "EDUCATION.EDUCATION__FED_CFTC_COT_FUTURES",
+   "blocked_pairs": 19,
+   "n_columns": 129,
+   "keys": []
+  },
+  {
+   "table": "CORPORATE_REGISTRY.CORPORATE_REGISTRY__INTL_IE_CRO",
+   "blocked_pairs": 19,
+   "n_columns": 15,
+   "keys": [
+    {
+     "kind": "NAME",
+     "column": "COMPANY_NAME",
+     "count": 821693,
+     "distinct": 819994,
+     "top_values": [
+      [
+       "ULSTER BANK LIMITED",
+       112
+      ],
+      [
+       "BOOTS THE CHEMISTS LIMITED",
+       25
+      ],
+      [
+       "STYLO BARRATT SHOES LIMITED",
+       23
+      ],
+      [
+       "PROVIDENT PERSONAL CREDIT LIMITED",
+       23
+      ],
+      [
+       "ADAMS CHILDRENSWEAR LIMITED",
+       21
+      ]
+     ],
+     "top_share": 0.0,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "HEALTH.HEALTH__FED_CLINICALTRIALS",
+   "blocked_pairs": 19,
+   "n_columns": 44,
+   "keys": [
+    {
+     "kind": "NPI",
+     "column": "NPI",
+     "count": 0,
+     "distinct": 0,
+     "top_values": [],
+     "top_share": null,
+     "verdict": "SUSPECT"
+    },
+    {
+     "kind": "NAME",
+     "column": "LEAD_SPONSOR_NAME",
+     "count": 500,
+     "distinct": 404,
+     "top_values": [
+      [
+       "Yale University",
+       5
+      ],
+      [
+       "National Taiwan University Hospital",
+       5
+      ],
+      [
+       "Assiut University",
+       5
+      ],
+      [
+       "Assistance Publique - H\u00f4pitaux de Paris",
+       5
+      ],
+      [
+       "AstraZeneca",
+       4
+      ]
+     ],
+     "top_share": 0.01,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "EDUCATION.EDUCATION__FED_GOOGLE_POLADS_CREATIVE_STATS",
+   "blocked_pairs": 19,
+   "n_columns": 60,
+   "keys": []
+  },
+  {
+   "table": "REFERENCE.REFERENCE__FED_ITIS_JURISDICTION",
+   "blocked_pairs": 18,
+   "n_columns": 8,
+   "keys": []
+  },
+  {
+   "table": "CORPORATE_REGISTRY.CORPORATE_REGISTRY__INTL_UK_COMPANIES_HOUSE",
+   "blocked_pairs": 18,
+   "n_columns": 19,
+   "keys": [
+    {
+     "kind": "NAME",
+     "column": "COMPANY_NAME",
+     "count": 5734780,
+     "distinct": 5730741,
+     "top_values": [
+      [
+       "DEVON FUEL ASSOCIATES LTD. T/A SERVICETE",
+       10
+      ],
+      [
+       "FOXLEY COURT EQUESTRIAN",
+       4
+      ],
+      [
+       "DIAMOND POINT LIMITED",
+       4
+      ],
+      [
+       "PEGASUS LIMITED",
+       4
+      ],
+      [
+       "ALLIANCE PROPERTY LIMITED",
+       3
+      ]
+     ],
+     "top_share": 0.0,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "REFERENCE.REFERENCE__FED_ITIS_SYNONYM_LINKS",
+   "blocked_pairs": 17,
+   "n_columns": 7,
+   "keys": []
+  },
+  {
+   "table": "POLITICS.POLITICS__INTL_OWID_MILSPEND",
+   "blocked_pairs": 17,
+   "n_columns": 5,
+   "keys": []
+  },
+  {
+   "table": "HEALTH.HEALTH__FED_FDA_FAERS_DEMO",
+   "blocked_pairs": 17,
+   "n_columns": 30,
+   "keys": []
+  },
+  {
+   "table": "JUSTICE.JUSTICE__FED_FJC_IDB_APPELLATE",
+   "blocked_pairs": 17,
+   "n_columns": 57,
+   "keys": [
+    {
+     "kind": "DOCKET",
+     "column": "DOCKET",
+     "count": 988183,
+     "distinct": 514613,
+     "top_values": [
+      [
+       "2001026",
+       16
+      ],
+      [
+       "2301066",
+       13
+      ],
+      [
+       "2401347",
+       13
+      ],
+      [
+       "2301036",
+       13
+      ],
+      [
+       "2201085",
+       13
+      ]
+     ],
+     "top_share": 0.0,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "ECONOMICS.ECONOMICS__FED_PBGC_DATA",
+   "blocked_pairs": 17,
+   "n_columns": 10,
+   "keys": [
+    {
+     "kind": "STATE",
+     "column": "STATE",
+     "count": 134534,
+     "distinct": 81,
+     "top_values": [
+      [
+       "",
+       126549
+      ],
+      [
+       "Florida",
+       128
+      ],
+      [
+       "PACIFIC",
+       128
+      ],
+      [
+       "Kentucky",
+       128
+      ],
+      [
+       "West Virginia",
+       128
+      ]
+     ],
+     "top_share": 0.941,
+     "verdict": "SUSPECT"
+    }
+   ]
+  },
+  {
+   "table": "CONSUMER_SAFETY.CONSUMER_SAFETY__FED_NHTSA_RECALLS",
+   "blocked_pairs": 17,
+   "n_columns": 20,
+   "keys": []
+  },
+  {
+   "table": "JUSTICE.JUSTICE__INTL_EU_SANCTIONS",
+   "blocked_pairs": 17,
+   "n_columns": 59,
+   "keys": [
+    {
+     "kind": "ZIP",
+     "column": "ADDR_ZIPCODE",
+     "count": 42347,
+     "distinct": 572,
+     "top_values": [
+      [
+       "",
+       41623
+      ],
+      [
+       "115184",
+       8
+      ],
+      [
+       "119160",
+       6
+      ],
+      [
+       "115054",
+       5
+      ],
+      [
+       "121357",
+       5
+      ]
+     ],
+     "top_share": 0.983,
+     "verdict": "SUSPECT"
+    }
+   ]
+  },
+  {
+   "table": "JUSTICE.JUSTICE__FED_COURTLISTENER_INVESTMENTS",
+   "blocked_pairs": 17,
+   "n_columns": 18,
+   "keys": []
+  },
+  {
+   "table": "HEALTH.HEALTH__FED_FDA_GUDID",
+   "blocked_pairs": 16,
+   "n_columns": 19,
+   "keys": [
+    {
+     "kind": "DUNS",
+     "column": "LABELER_DUNS_NUMBER",
+     "count": 5083948,
+     "distinct": 11918,
+     "top_values": [
+      [
+       "961027315",
+       370347
+      ],
+      [
+       "025460908",
+       251266
+      ],
+      [
+       "062312087",
+       74463
+      ],
+      [
+       "118380146",
+       63607
+      ],
+      [
+       "315914853",
+       55911
+      ]
+     ],
+     "top_share": 0.073,
+     "verdict": "REAL"
+    },
+    {
+     "kind": "NAME",
+     "column": "COMPANY_NAME",
+     "count": 5083940,
+     "distinct": 11778,
+     "top_values": [
+      [
+       "Cardinal Health 200, LLC",
+       370347
+      ],
+      [
+       "MEDLINE INDUSTRIES, INC.",
+       251266
+      ],
+      [
+       "FGX INTERNATIONAL INC.",
+       74463
+      ],
+      [
+       "ICU MEDICAL, INC.",
+       63607
+      ],
+      [
+       "Bauerfeind AG",
+       55911
+      ]
+     ],
+     "top_share": 0.073,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "ENVIRONMENT.ENVIRONMENT__EPA_PENALTY_GAP",
+   "blocked_pairs": 16,
+   "n_columns": 29,
+   "keys": [
+    {
+     "kind": "FRS_ID",
+     "column": "FRS_ID",
+     "count": 93808,
+     "distinct": 93808,
+     "top_values": [
+      [
+       "110051615463",
+       1
+      ],
+      [
+       "110002978476",
+       1
+      ],
+      [
+       "110018359211",
+       1
+      ],
+      [
+       "110051785797",
+       1
+      ],
+      [
+       "110019095575",
+       1
+      ]
+     ],
+     "top_share": 0.0,
+     "verdict": "REAL"
+    },
+    {
+     "kind": "STATE",
+     "column": "STATE",
+     "count": 93808,
+     "distinct": 61,
+     "top_values": [
+      [
+       "PA",
+       6295
+      ],
+      [
+       "",
+       5796
+      ],
+      [
+       "CA",
+       4678
+      ],
+      [
+       "WA",
+       4638
+      ],
+      [
+       "TX",
+       4624
+      ]
+     ],
+     "top_share": 0.067,
+     "verdict": "REAL"
+    },
+    {
+     "kind": "FIPS",
+     "column": "FIPS_CODE",
+     "count": 93808,
+     "distinct": 3161,
+     "top_values": [
+      [
+       "",
+       6497
+      ],
+      [
+       "06037",
+       1042
+      ],
+      [
+       "48201",
+       809
+      ],
+      [
+       "53033",
+       761
+      ],
+      [
+       "53053",
+       468
+      ]
+     ],
+     "top_share": 0.069,
+     "verdict": "REAL"
+    },
+    {
+     "kind": "NAME",
+     "column": "FACILITY_NAME",
+     "count": 93808,
+     "distinct": 92197,
+     "top_values": [
+      [
+       "UNITED PARCEL SERVICE",
+       14
+      ],
+      [
+       "SAFETY-KLEEN SYSTEMS INC",
+       9
+      ],
+      [
+       "INTERNATIONAL PAPER",
+       8
+      ],
+      [
+       "LEXINGTON COAL CO LLC [CONSOLIDATED]",
+       7
+      ],
+      [
+       "ALYESKA INC",
+       7
+      ]
+     ],
+     "top_share": 0.0,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "HOUSING.HOUSING__FED_HUD_MF_FIRM_COMMITMENTS",
+   "blocked_pairs": 16,
+   "n_columns": 29,
+   "keys": []
+  },
+  {
+   "table": "JUSTICE.JUSTICE__FED_COURTLISTENER_OPINION_CLUSTERS",
+   "blocked_pairs": 16,
+   "n_columns": 36,
+   "keys": [
+    {
+     "kind": "DOCKET",
+     "column": "DOCKET_ID",
+     "count": 10070727,
+     "distinct": 9765364,
+     "top_values": [
+      [
+       "4363195",
+       198
+      ],
+      [
+       "69132953",
+       155
+      ],
+      [
+       "16091874",
+       107
+      ],
+      [
+       "100877",
+       89
+      ],
+      [
+       "4326756",
+       85
+      ]
+     ],
+     "top_share": 0.0,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "HEALTH.HEALTH__FED_CDC_DATA_PORTAL",
+   "blocked_pairs": 16,
+   "n_columns": 20,
+   "keys": []
+  },
+  {
+   "table": "REFERENCE.REFERENCE__FED_ITIS_VERN_REF_LINKS",
+   "blocked_pairs": 15,
+   "n_columns": 9,
+   "keys": []
+  },
+  {
+   "table": "JUSTICE.JUSTICE__XC_OWID_TERRORISM_DEATHS",
+   "blocked_pairs": 15,
+   "n_columns": 5,
+   "keys": []
+  },
+  {
+   "table": "HEALTH.HEALTH__FED_FDA_MAUDE",
+   "blocked_pairs": 15,
+   "n_columns": 27,
+   "keys": []
+  },
+  {
+   "table": "CONSUMER_SAFETY.CONSUMER_SAFETY__FED_CPSC_NEISS",
+   "blocked_pairs": 15,
+   "n_columns": 22,
+   "keys": []
+  },
+  {
+   "table": "HEALTH.HEALTH__FED_FDA_DRUG_ENFORCEMENT",
+   "blocked_pairs": 15,
+   "n_columns": 30,
+   "keys": [
+    {
+     "kind": "ZIP",
+     "column": "POSTAL_CODE",
+     "count": 17816,
+     "distinct": 1380,
+     "top_values": [
+      [
+       "N/A",
+       1069
+      ],
+      [
+       "98684-3501",
+       538
+      ],
+      [
+       "28806-2846",
+       465
+      ],
+      [
+       "37919-4068",
+       383
+      ],
+      [
+       "38059",
+       299
+      ]
+     ],
+     "top_share": 0.06,
+     "verdict": "REAL"
+    },
+    {
+     "kind": "STATE",
+     "column": "STATE",
+     "count": 17816,
+     "distinct": 51,
+     "top_values": [
+      [
+       "NJ",
+       2175
+      ],
+      [
+       "FL",
+       1534
+      ],
+      [
+       "IL",
+       1318
+      ],
+      [
+       "CA",
+       1108
+      ],
+      [
+       "NY",
+       1018
+      ]
+     ],
+     "top_share": 0.122,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "POLITICS.POLITICS__CA_LOBBY_AMENDMENTS",
+   "blocked_pairs": 15,
+   "n_columns": 44,
+   "keys": []
+  },
+  {
+   "table": "REFERENCE.REFERENCE__FED_ITIS_TAXON_AUTHORS_LKP",
+   "blocked_pairs": 14,
+   "n_columns": 8,
+   "keys": []
+  },
+  {
+   "table": "FINANCE.FINANCE__FED_SEC_INSIDER_DERIV_TRANS",
+   "blocked_pairs": 14,
+   "n_columns": 42,
+   "keys": []
+  },
+  {
+   "table": "HOUSING.HOUSING__FED_FHFA_HPI",
+   "blocked_pairs": 14,
+   "n_columns": 12,
+   "keys": []
+  },
+  {
+   "table": "REFERENCE.REFERENCE__FED_ITIS_PUBLICATIONS",
+   "blocked_pairs": 14,
+   "n_columns": 18,
+   "keys": []
+  },
+  {
+   "table": "HEALTH.HEALTH__FED_NLM_DAILYMED_SPL_SETID_MAP",
+   "blocked_pairs": 14,
+   "n_columns": 7,
+   "keys": []
+  },
+  {
+   "table": "JUSTICE.JUSTICE__FED_COURTLISTENER_FJC_IDB_CL_LINKED",
+   "blocked_pairs": 14,
+   "n_columns": 39,
+   "keys": [
+    {
+     "kind": "DOCKET",
+     "column": "DOCKET_NUMBER",
+     "count": 10323280,
+     "distinct": 1162192,
+     "top_values": [
+      [
+       "1300008",
+       854
+      ],
+      [
+       "1300028",
+       821
+      ],
+      [
+       "1200004",
+       817
+      ],
+      [
+       "1500018",
+       802
+      ],
+      [
+       "1300063",
+       757
+      ]
+     ],
+     "top_share": 0.0,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "POLITICS.POLITICS__INTL_ELECTIONS_CANADA_CONTRIBUTIONS",
+   "blocked_pairs": 14,
+   "n_columns": 31,
+   "keys": [
+    {
+     "kind": "ZIP",
+     "column": "CONTRIBUTOR_POSTAL_CODE",
+     "count": 12597089,
+     "distinct": 417578,
+     "top_values": [
+      [
+       "K0L2H0",
+       10491
+      ],
+      [
+       "L0S1J0",
+       9559
+      ],
+      [
+       "K0A1A0",
+       9344
+      ],
+      [
+       "K0G1J0",
+       9328
+      ],
+      [
+       "K0K2T0",
+       8365
+      ]
+     ],
+     "top_share": 0.001,
+     "verdict": "REAL"
+    },
+    {
+     "kind": "NAME",
+     "column": "CONTRIBUTOR_NAME",
+     "count": 12644726,
+     "distinct": 912181,
+     "top_values": [
+      [
+       "Contributions of $200 or less/contributi",
+       32456
+      ],
+      [
+       "Contributions of $20 or less/contributio",
+       6817
+      ],
+      [
+       "Contributions of $25 or less/contributio",
+       1158
+      ],
+      [
+       "Variyan, Carlene",
+       1150
+      ],
+      [
+       "Jhangiani, Suresh",
+       1027
+      ]
+     ],
+     "top_share": 0.003,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "ENVIRONMENT.ENVIRONMENT__FED_EPA_RCRA_ENFORCEMENTS",
+   "blocked_pairs": 14,
+   "n_columns": 14,
+   "keys": []
+  },
+  {
+   "table": "REFERENCE.REFERENCE__FED_ITIS_COMMENTS",
+   "blocked_pairs": 13,
+   "n_columns": 8,
+   "keys": []
+  },
+  {
+   "table": "HEALTH.HEALTH__FED_HRSA_NPDB",
+   "blocked_pairs": 13,
+   "n_columns": 54,
+   "keys": []
+  },
+  {
+   "table": "POLITICS.POLITICS__TX_LOBBY_TRANSPORTATION",
+   "blocked_pairs": 13,
+   "n_columns": 43,
+   "keys": [
+    {
+     "kind": "ZIP",
+     "column": "LODGINGSTREETPOSTALCODE",
+     "count": 2228,
+     "distinct": 223,
+     "top_values": [
+      [
+       "76904",
+       164
+      ],
+      [
+       "78597",
+       135
+      ],
+      [
+       "78205",
+       103
+      ],
+      [
+       "78612",
+       83
+      ],
+      [
+       "76901",
+       75
+      ]
+     ],
+     "top_share": 0.074,
+     "verdict": "REAL"
+    },
+    {
+     "kind": "NAME",
+     "column": "RECIPIENTNAMEORGANIZATION",
+     "count": 0,
+     "distinct": 0,
+     "top_values": [],
+     "top_share": null,
+     "verdict": "SUSPECT"
+    }
+   ]
+  },
+  {
+   "table": "REFERENCE.REFERENCE__FED_ITIS_GEOGRAPHIC_DIV",
+   "blocked_pairs": 13,
+   "n_columns": 7,
+   "keys": []
+  },
+  {
+   "table": "ECONOMICS.ECONOMICS__FED_TREASURY_AVG_INTEREST_RATES",
+   "blocked_pairs": 13,
+   "n_columns": 15,
+   "keys": []
+  },
+  {
+   "table": "FINANCE.FINANCE__FED_SEC_INSIDER_NONDERIV_TRANS",
+   "blocked_pairs": 13,
+   "n_columns": 17,
+   "keys": []
+  },
+  {
+   "table": "TRANSPORT.TRANSPORT__FED_FRA_CASUALTIES",
+   "blocked_pairs": 13,
+   "n_columns": 72,
+   "keys": [
+    {
+     "kind": "STATE",
+     "column": "STATE_CODE",
+     "count": 1150784,
+     "distinct": 52,
+     "top_values": [
+      [
+       "17",
+       96613
+      ],
+      [
+       "36",
+       96041
+      ],
+      [
+       "48",
+       76125
+      ],
+      [
+       "42",
+       71884
+      ],
+      [
+       "06",
+       68487
+      ]
+     ],
+     "top_share": 0.084,
+     "verdict": "REAL"
+    },
+    {
+     "kind": "FIPS",
+     "column": "COUNTY_CODE",
+     "count": 285574,
+     "distinct": 276,
+     "top_values": [
+      [
+       "031",
+       19257
+      ],
+      [
+       "061",
+       12030
+      ],
+      [
+       "017",
+       11020
+      ],
+      [
+       "101",
+       10952
+      ],
+      [
+       "001",
+       9506
+      ]
+     ],
+     "top_share": 0.067,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "REVIEW.LEAD_QUEUE",
+   "blocked_pairs": 13,
+   "n_columns": 36,
+   "keys": [
+    {
+     "kind": "NAME",
+     "column": "NPPES_LEGAL_NAME",
+     "count": 983,
+     "distinct": 796,
+     "top_values": [
+      [
+       "Eduardo Miranda",
+       3
+      ],
+      [
+       "Domingo Barrientos",
+       3
+      ],
+      [
+       "Amit Shah",
+       3
+      ],
+      [
+       "Gamal Zaki",
+       3
+      ],
+      [
+       "Sadye Dexter",
+       3
+      ]
+     ],
+     "top_share": 0.003,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "PROCUREMENT.PROCUREMENT__FED_USASPENDING_SUBAWARDS",
+   "blocked_pairs": 13,
+   "n_columns": 9,
+   "keys": [
+    {
+     "kind": "NAME",
+     "column": "RECIPIENT_NAME",
+     "count": 4998,
+     "distinct": 667,
+     "top_values": [
+      [
+       "GEORGE MASON UNIVERSITY",
+       140
+      ],
+      [
+       "COMMUNITIES CONNECTED FOR KIDS INC",
+       132
+      ],
+      [
+       "DISTRICT OF COLUMBIA PUBLIC SCHOOLS",
+       95
+      ],
+      [
+       "RESEARCH FOUNDATION OF THE CITY UNIVERSI",
+       88
+      ],
+      [
+       "UNIVERSITY OF NEBRASKA",
+       81
+      ]
+     ],
+     "top_share": 0.028,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "HEALTH.HEALTH__ST_OEHHA_PROPOSITION_65_LIST",
+   "blocked_pairs": 13,
+   "n_columns": 12,
+   "keys": []
+  },
+  {
+   "table": "REFERENCE.REFERENCE__FED_ITIS_TU_COMMENTS_LINKS",
+   "blocked_pairs": 12,
+   "n_columns": 7,
+   "keys": []
+  },
+  {
+   "table": "ENVIRONMENT.ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_PROGRAMS",
+   "blocked_pairs": 12,
+   "n_columns": 7,
+   "keys": []
+  },
+  {
+   "table": "JUSTICE.JUSTICE__XC_OWID_HOMICIDE",
+   "blocked_pairs": 12,
+   "n_columns": 5,
+   "keys": []
+  },
+  {
+   "table": "HEALTH.HEALTH__FED_FDA_DEVICE_ENFORCEMENT",
+   "blocked_pairs": 12,
+   "n_columns": 29,
+   "keys": [
+    {
+     "kind": "ZIP",
+     "column": "POSTAL_CODE",
+     "count": 39635,
+     "distinct": 2231,
+     "top_values": [
+      [
+       "N/A",
+       3688
+      ],
+      [
+       "60093-2753",
+       1332
+      ],
+      [
+       "46582-6989",
+       706
+      ],
+      [
+       "00738",
+       682
+      ],
+      [
+       "53188-1615",
+       630
+      ]
+     ],
+     "top_share": 0.093,
+     "verdict": "REAL"
+    },
+    {
+     "kind": "STATE",
+     "column": "STATE",
+     "count": 39635,
+     "distinct": 53,
+     "top_values": [
+      [
+       "CA",
+       4631
+      ],
+      [
+       "MA",
+       3465
+      ],
+      [
+       "IL",
+       3231
+      ],
+      [
+       "PA",
+       2950
+      ],
+      [
+       "IN",
+       2555
+      ]
+     ],
+     "top_share": 0.117,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "JUSTICE.JUSTICE__RACIAL_JAIL_DISPARITY",
+   "blocked_pairs": 11,
+   "n_columns": 28,
+   "keys": [
+    {
+     "kind": "STATE",
+     "column": "STATE_ABBR",
+     "count": 128507,
+     "distinct": 45,
+     "top_values": [
+      [
+       "TX",
+       11755
+      ],
+      [
+       "GA",
+       9044
+      ],
+      [
+       "KY",
+       5436
+      ],
+      [
+       "VA",
+       5381
+      ],
+      [
+       "MO",
+       4618
+      ]
+     ],
+     "top_share": 0.091,
+     "verdict": "SUSPECT"
+    },
+    {
+     "kind": "FIPS",
+     "column": "FIPS",
+     "count": 128507,
+     "distinct": 3075,
+     "top_values": [
+      [
+       "13055",
+       57
+      ],
+      [
+       "13019",
+       57
+      ],
+      [
+       "13015",
+       57
+      ],
+      [
+       "13059",
+       57
+      ],
+      [
+       "13053",
+       57
+      ]
+     ],
+     "top_share": 0.0,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "POLITICS.POLITICS__FEC_CANDIDATE",
+   "blocked_pairs": 11,
+   "n_columns": 11,
+   "keys": [
+    {
+     "kind": "FEC_ID",
+     "column": "CAND_ID",
+     "count": 17900,
+     "distinct": 13240,
+     "top_values": [
+      [
+       "H0AZ06068",
+       2
+      ],
+      [
+       "H0AR01125",
+       2
+      ],
+      [
+       "H0AR03030",
+       2
+      ],
+      [
+       "H0CA25105",
+       2
+      ],
+      [
+       "H0AZ03321",
+       2
+      ]
+     ],
+     "top_share": 0.0,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "POLITICS.POLITICS__FEC_CAND_CMTE_LINK",
+   "blocked_pairs": 11,
+   "n_columns": 8,
+   "keys": [
+    {
+     "kind": "FEC_ID",
+     "column": "CMTE_ID",
+     "count": 16229,
+     "distinct": 11427,
+     "top_values": [
+      [
+       "C00915710",
+       102
+      ],
+      [
+       "C00493783",
+       32
+      ],
+      [
+       "C00846402",
+       16
+      ],
+      [
+       "C00776807",
+       16
+      ],
+      [
+       "C00832576",
+       10
+      ]
+     ],
+     "top_share": 0.006,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "JUSTICE.JUSTICE__COUNTY_DOUBLE_BURDEN",
+   "blocked_pairs": 11,
+   "n_columns": 16,
+   "keys": [
+    {
+     "kind": "STATE",
+     "column": "STATE_ABBR",
+     "count": 3029,
+     "distinct": 45,
+     "top_values": [
+      [
+       "TX",
+       252
+      ],
+      [
+       "GA",
+       157
+      ],
+      [
+       "VA",
+       129
+      ],
+      [
+       "KY",
+       120
+      ],
+      [
+       "MO",
+       113
+      ]
+     ],
+     "top_share": 0.083,
+     "verdict": "SUSPECT"
+    },
+    {
+     "kind": "FIPS",
+     "column": "FIPS",
+     "count": 3029,
+     "distinct": 3029,
+     "top_values": [
+      [
+       "48197",
+       1
+      ],
+      [
+       "08053",
+       1
+      ],
+      [
+       "48411",
+       1
+      ],
+      [
+       "30061",
+       1
+      ],
+      [
+       "37073",
+       1
+      ]
+     ],
+     "top_share": 0.0,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "JUSTICE.JUSTICE__FED_FJC_IDB_BANKRUPTCY",
+   "blocked_pairs": 11,
+   "n_columns": 90,
+   "keys": [
+    {
+     "kind": "DOCKET",
+     "column": "DOCKET",
+     "count": 6965441,
+     "distinct": 674677,
+     "top_values": [
+      [
+       "2110015",
+       158
+      ],
+      [
+       "2110024",
+       147
+      ],
+      [
+       "2110029",
+       146
+      ],
+      [
+       "2110010",
+       146
+      ],
+      [
+       "2110104",
+       145
+      ]
+     ],
+     "top_share": 0.0,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "CONSUMER_PROTECTION.CONSUMER_PROTECTION__FED_CFPB_COMPLAINTS",
+   "blocked_pairs": 11,
+   "n_columns": 24,
+   "keys": [
+    {
+     "kind": "ZIP",
+     "column": "ZIP_CODE",
+     "count": 17166119,
+     "distinct": 36538,
+     "top_values": [
+      [
+       "XXXXX",
+       139587
+      ],
+      [
+       "30349",
+       32607
+      ],
+      [
+       "33025",
+       28234
+      ],
+      [
+       "77449",
+       27842
+      ],
+      [
+       "33311",
+       26192
+      ]
+     ],
+     "top_share": 0.008,
+     "verdict": "REAL"
+    },
+    {
+     "kind": "STATE",
+     "column": "STATE",
+     "count": 17105558,
+     "distinct": 63,
+     "top_values": [
+      [
+       "TX",
+       2359446
+      ],
+      [
+       "FL",
+       2354061
+      ],
+      [
+       "CA",
+       1704092
+      ],
+      [
+       "GA",
+       1265642
+      ],
+      [
+       "NY",
+       995458
+      ]
+     ],
+     "top_share": 0.138,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "JUSTICE.JUSTICE__FED_FJC_IDB_CIVIL",
+   "blocked_pairs": 11,
+   "n_columns": 49,
+   "keys": [
+    {
+     "kind": "DOCKET",
+     "column": "DOCKET",
+     "count": 10857396,
+     "distinct": 1332996,
+     "top_values": [
+      [
+       "8800030",
+       214
+      ],
+      [
+       "8800007",
+       214
+      ],
+      [
+       "8800018",
+       214
+      ],
+      [
+       "9800005",
+       213
+      ],
+      [
+       "9700056",
+       213
+      ]
+     ],
+     "top_share": 0.0,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "ENERGY.ENERGY__FED_EIA860_3_3_SOLAR",
+   "blocked_pairs": 11,
+   "n_columns": 44,
+   "keys": [
+    {
+     "kind": "STATE",
+     "column": "STATE",
+     "count": 7153,
+     "distinct": 50,
+     "top_values": [
+      [
+       "CA",
+       1048
+      ],
+      [
+       "NC",
+       794
+      ],
+      [
+       "MN",
+       700
+      ],
+      [
+       "NY",
+       632
+      ],
+      [
+       "MA",
+       545
+      ]
+     ],
+     "top_share": 0.147,
+     "verdict": "SUSPECT"
+    }
+   ]
+  },
+  {
+   "table": "POLITICS.POLITICS__XC_JCS_SCOTUS",
+   "blocked_pairs": 11,
+   "n_columns": 4,
+   "keys": []
+  },
+  {
+   "table": "ECONOMICS.ECONOMICS__FED_US_USASPENDING_API",
+   "blocked_pairs": 11,
+   "n_columns": 35,
+   "keys": [
+    {
+     "kind": "DUNS",
+     "column": "RECIPIENT_DUNS",
+     "count": 300,
+     "distinct": 1,
+     "top_values": [
+      [
+       "",
+       300
+      ]
+     ],
+     "top_share": 1.0,
+     "verdict": "SUSPECT"
+    },
+    {
+     "kind": "FIPS",
+     "column": "PLACE_OF_PERFORMANCE_FIPS",
+     "count": 300,
+     "distinct": 1,
+     "top_values": [
+      [
+       "",
+       300
+      ]
+     ],
+     "top_share": 1.0,
+     "verdict": "SUSPECT"
+    },
+    {
+     "kind": "NAME",
+     "column": "RECIPIENT_NAME",
+     "count": 300,
+     "distinct": 150,
+     "top_values": [
+      [
+       "LOCKHEED MARTIN CORPORATION",
+       17
+      ],
+      [
+       "THE BOEING COMPANY",
+       12
+      ],
+      [
+       "HEALTH CARE SERVICES, CALIFORNIA DEPARTM",
+       9
+      ],
+      [
+       "LOCKHEED MARTIN CORP",
+       8
+      ],
+      [
+       "MERCK SHARP & DOHME LLC",
+       7
+      ]
+     ],
+     "top_share": 0.057,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "ENVIRONMENT.ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_TITLEV_CERTS",
+   "blocked_pairs": 11,
+   "n_columns": 7,
+   "keys": []
+  },
+  {
+   "table": "REFERENCE.REFERENCE__FED_ITIS_TAXONOMIC_UNITS",
+   "blocked_pairs": 10,
+   "n_columns": 29,
+   "keys": []
+  },
+  {
+   "table": "ECONOMICS.ECONOMICS__FED_US_SEC_EDGAR",
+   "blocked_pairs": 10,
+   "n_columns": 22,
+   "keys": [
+    {
+     "kind": "EIN",
+     "column": "EIN",
+     "count": 48984,
+     "distinct": 25,
+     "top_values": [
+      [
+       "132624428",
+       25351
+      ],
+      [
+       "260267673",
+       1018
+      ],
+      [
+       "710415188",
+       1009
+      ],
+      [
+       "135409005",
+       1008
+      ],
+      [
+       "770059951",
+       1006
+      ]
+     ],
+     "top_share": 0.518,
+     "verdict": "SUSPECT"
+    },
+    {
+     "kind": "CIK",
+     "column": "CIK",
+     "count": 48984,
+     "distinct": 25,
+     "top_values": [
+      [
+       "0000019617",
+       25351
+      ],
+      [
+       "0001403161",
+       1018
+      ],
+      [
+       "0000104169",
+       1009
+      ],
+      [
+       "0000034088",
+       1008
+      ],
+      [
+       "0000858877",
+       1006
+      ]
+     ],
+     "top_share": 0.518,
+     "verdict": "SUSPECT"
+    }
+   ]
+  },
+  {
+   "table": "ENVIRONMENT.ENVIRONMENT__FED_EPA_RCRA_EVALUATIONS",
+   "blocked_pairs": 10,
+   "n_columns": 11,
+   "keys": []
+  },
+  {
+   "table": "CORPORATE_REGISTRY.CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_RELATIONSHIPS",
+   "blocked_pairs": 10,
+   "n_columns": 10,
+   "keys": []
+  },
+  {
+   "table": "ENERGY.ENERGY__FED_EIA860_3_4_ENERGY_STORAGE",
+   "blocked_pairs": 10,
+   "n_columns": 52,
+   "keys": [
+    {
+     "kind": "STATE",
+     "column": "STATE",
+     "count": 786,
+     "distinct": 42,
+     "top_values": [
+      [
+       "CA",
+       227
+      ],
+      [
+       "TX",
+       136
+      ],
+      [
+       "MA",
+       117
+      ],
+      [
+       "NY",
+       48
+      ],
+      [
+       "AZ",
+       35
+      ]
+     ],
+     "top_share": 0.289,
+     "verdict": "SUSPECT"
+    }
+   ]
+  },
+  {
+   "table": "POLITICS.POLITICS__TX_LOBBY_AWARDS",
+   "blocked_pairs": 10,
+   "n_columns": 30,
+   "keys": [
+    {
+     "kind": "NAME",
+     "column": "RECIPIENTNAMEFIRST",
+     "count": 1572,
+     "distinct": 370,
+     "top_values": [
+      [
+       "John",
+       76
+      ],
+      [
+       "Robert",
+       37
+      ],
+      [
+       "Joe",
+       37
+      ],
+      [
+       "David",
+       29
+      ],
+      [
+       "Eddie",
+       29
+      ]
+     ],
+     "top_share": 0.048,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "ENVIRONMENT.ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_INFORMAL_ACTIONS",
+   "blocked_pairs": 10,
+   "n_columns": 10,
+   "keys": []
+  },
+  {
+   "table": "REFERENCE.REFERENCE__FED_USGS_GNIS_ALL_NAMES",
+   "blocked_pairs": 10,
+   "n_columns": 19,
+   "keys": []
+  },
+  {
+   "table": "HEALTH.HEALTH__FED_FDA_CAERS",
+   "blocked_pairs": 10,
+   "n_columns": 16,
+   "keys": []
+  },
+  {
+   "table": "ENVIRONMENT.ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_FORMAL_ACTIONS",
+   "blocked_pairs": 10,
+   "n_columns": 10,
+   "keys": []
+  },
+  {
+   "table": "ENVIRONMENT.ENVIRONMENT__FED_EPA_GHGRP_EMISSION",
+   "blocked_pairs": 9,
+   "n_columns": 9,
+   "keys": []
+  },
+  {
+   "table": "HEALTH.HEALTH__FED_FDA_DEVICE_510K",
+   "blocked_pairs": 9,
+   "n_columns": 25,
+   "keys": [
+    {
+     "kind": "ZIP",
+     "column": "POSTAL_CODE",
+     "count": 175686,
+     "distinct": 12611,
+     "top_values": [
+      [
+       "60050",
+       19861
+      ],
+      [
+       "",
+       4254
+      ],
+      [
+       "49534",
+       3206
+      ],
+      [
+       "92121",
+       1302
+      ],
+      [
+       "46581",
+       1258
+      ]
+     ],
+     "top_share": 0.113,
+     "verdict": "REAL"
+    },
+    {
+     "kind": "STATE",
+     "column": "STATE",
+     "count": 175686,
+     "distinct": 58,
+     "top_values": [
+      [
+       "",
+       29233
+      ],
+      [
+       "CA",
+       27098
+      ],
+      [
+       "IL",
+       25670
+      ],
+      [
+       "MA",
+       9256
+      ],
+      [
+       "NJ",
+       7754
+      ]
+     ],
+     "top_share": 0.166,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "POLITICS.POLITICS__XC_OWID_CPI",
+   "blocked_pairs": 9,
+   "n_columns": 5,
+   "keys": []
+  },
+  {
+   "table": "ENVIRONMENT.ENVIRONMENT__INTL_GLOBAL_WITNESS_DEFENDERS",
+   "blocked_pairs": 9,
+   "n_columns": 11,
+   "keys": []
+  },
+  {
+   "table": "FINANCE.FINANCE__FED_SEC_INSIDER_SUBMISSION",
+   "blocked_pairs": 9,
+   "n_columns": 12,
+   "keys": []
+  },
+  {
+   "table": "POLITICS.POLITICS__INTL_VOETEN_UNGA_VOTES",
+   "blocked_pairs": 9,
+   "n_columns": 11,
+   "keys": []
+  },
+  {
+   "table": "CORPORATE_REGISTRY.CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_ENTITIES",
+   "blocked_pairs": 9,
+   "n_columns": 23,
+   "keys": [
+    {
+     "kind": "NAME",
+     "column": "NAME",
+     "count": 814315,
+     "distinct": 781568,
+     "top_values": [
+      [
+       "DE PALM TOURS N.V. - DE PALM TOURS",
+       19
+      ],
+      [
+       "RENTCAR N.V. - HERTZ",
+       13
+      ],
+      [
+       "KM BM-C-SEVEN LTD.",
+       12
+      ],
+      [
+       "Details temporarily withheld",
+       10
+      ],
+      [
+       "C.O. WILLIAMS ELECTRICAL LIMITED",
+       9
+      ]
+     ],
+     "top_share": 0.0,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "OPEN_DATA.OPEN_DATA__INTL_FR_DATA_GOUV",
+   "blocked_pairs": 9,
+   "n_columns": 28,
+   "keys": []
+  },
+  {
+   "table": "JUSTICE.JUSTICE__XC_UK_SANCTIONS_LIST",
+   "blocked_pairs": 9,
+   "n_columns": 43,
+   "keys": [
+    {
+     "kind": "ZIP",
+     "column": "ADDRESS_POSTAL_CODE",
+     "count": 4184,
+     "distinct": 656,
+     "top_values": [
+      [
+       "103265",
+       423
+      ],
+      [
+       "103426",
+       155
+      ],
+      [
+       "283001",
+       139
+      ],
+      [
+       "19574",
+       90
+      ],
+      [
+       "119019",
+       65
+      ]
+     ],
+     "top_share": 0.101,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "ENVIRONMENT.ENVIRONMENT__XC_OWID_CO2",
+   "blocked_pairs": 8,
+   "n_columns": 4,
+   "keys": []
+  },
+  {
+   "table": "HEALTH.HEALTH__FED_FDA_DEVICE_PMA",
+   "blocked_pairs": 8,
+   "n_columns": 25,
+   "keys": [
+    {
+     "kind": "DOCKET",
+     "column": "DOCKET_NUMBER",
+     "count": 56853,
+     "distinct": 1741,
+     "top_values": [
+      [
+       "",
+       55070
+      ],
+      [
+       "N",
+       29
+      ],
+      [
+       "97M-0204",
+       3
+      ],
+      [
+       "22M-0071",
+       2
+      ],
+      [
+       "87M-0124",
+       2
+      ]
+     ],
+     "top_share": 0.969,
+     "verdict": "SUSPECT"
+    },
+    {
+     "kind": "ZIP",
+     "column": "ZIP",
+     "count": 56853,
+     "distinct": 625,
+     "top_values": [
+      [
+       "55112",
+       10434
+      ],
+      [
+       "55432",
+       2923
+      ],
+      [
+       "55311",
+       2503
+      ],
+      [
+       "91335",
+       1974
+      ],
+      [
+       "92618",
+       1796
+      ]
+     ],
+     "top_share": 0.184,
+     "verdict": "REAL"
+    },
+    {
+     "kind": "STATE",
+     "column": "STATE",
+     "count": 56853,
+     "distinct": 38,
+     "top_values": [
+      [
+       "MN",
+       18490
+      ],
+      [
+       "CA",
+       15165
+      ],
+      [
+       "",
+       2866
+      ],
+      [
+       "MA",
+       2614
+      ],
+      [
+       "TX",
+       2310
+      ]
+     ],
+     "top_share": 0.325,
+     "verdict": "SUSPECT"
+    }
+   ]
+  },
+  {
+   "table": "REFERENCE.REFERENCE__XC_ROR_RESEARCH_ORGANIZATIONS",
+   "blocked_pairs": 8,
+   "n_columns": 38,
+   "keys": []
+  },
+  {
+   "table": "ECONOMICS.ECONOMICS__XC_OWID_GINI",
+   "blocked_pairs": 8,
+   "n_columns": 5,
+   "keys": []
+  },
+  {
+   "table": "ENERGY.ENERGY__FED_EIA860_6_2_ENVIROEQUIP",
+   "blocked_pairs": 8,
+   "n_columns": 52,
+   "keys": [
+    {
+     "kind": "STATE",
+     "column": "STATE",
+     "count": 4428,
+     "distinct": 51,
+     "top_values": [
+      [
+       "TX",
+       466
+      ],
+      [
+       "FL",
+       268
+      ],
+      [
+       "CA",
+       224
+      ],
+      [
+       "NY",
+       180
+      ],
+      [
+       "PA",
+       171
+      ]
+     ],
+     "top_share": 0.105,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "ENERGY.ENERGY__FED_EIA860_3_1_GENERATOR",
+   "blocked_pairs": 8,
+   "n_columns": 76,
+   "keys": [
+    {
+     "kind": "STATE",
+     "column": "STATE",
+     "count": 26854,
+     "distinct": 51,
+     "top_values": [
+      [
+       "CA",
+       3018
+      ],
+      [
+       "TX",
+       2221
+      ],
+      [
+       "NY",
+       1919
+      ],
+      [
+       "MN",
+       1312
+      ],
+      [
+       "NC",
+       1224
+      ]
+     ],
+     "top_share": 0.112,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "TRANSPORT.TRANSPORT__FED_FRA_CROSSING_INCIDENTS",
+   "blocked_pairs": 8,
+   "n_columns": 156,
+   "keys": [
+    {
+     "kind": "STATE",
+     "column": "STATE_CODE",
+     "count": 251146,
+     "distinct": 52,
+     "top_values": [
+      [
+       "48",
+       26352
+      ],
+      [
+       "17",
+       15903
+      ],
+      [
+       "18",
+       14199
+      ],
+      [
+       "39",
+       14172
+      ],
+      [
+       "06",
+       13132
+      ]
+     ],
+     "top_share": 0.105,
+     "verdict": "REAL"
+    },
+    {
+     "kind": "FIPS",
+     "column": "COUNTY_CODE",
+     "count": 249287,
+     "distinct": 283,
+     "top_values": [
+      [
+       "031",
+       8085
+      ],
+      [
+       "037",
+       5300
+      ],
+      [
+       "201",
+       5061
+      ],
+      [
+       "089",
+       4738
+      ],
+      [
+       "033",
+       4237
+      ]
+     ],
+     "top_share": 0.032,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "CORPORATE_REGISTRY.CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_OTHERS",
+   "blocked_pairs": 8,
+   "n_columns": 15,
+   "keys": [
+    {
+     "kind": "NAME",
+     "column": "NAME",
+     "count": 2988,
+     "distinct": 2975,
+     "top_values": [
+      [
+       "Flipflop International Limited",
+       3
+      ],
+      [
+       "Shampaign Investments Limited",
+       3
+      ],
+      [
+       "Orion Group",
+       2
+      ],
+      [
+       "Mivec Limited",
+       2
+      ],
+      [
+       "Magna Group",
+       2
+      ]
+     ],
+     "top_share": 0.001,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "ECONOMICS.ECONOMICS__INTL_FAO_FAOSTAT_FOOD_SECURITY",
+   "blocked_pairs": 7,
+   "n_columns": 13,
+   "keys": []
+  },
+  {
+   "table": "REFERENCE.REFERENCE__FED_ITIS_VERNACULARS",
+   "blocked_pairs": 7,
+   "n_columns": 10,
+   "keys": []
+  },
+  {
+   "table": "ENERGY.ENERGY__FED_EIA860_3_5_MULTIFUEL",
+   "blocked_pairs": 7,
+   "n_columns": 42,
+   "keys": [
+    {
+     "kind": "STATE",
+     "column": "STATE",
+     "count": 2893,
+     "distinct": 51,
+     "top_values": [
+      [
+       "VA",
+       314
+      ],
+      [
+       "FL",
+       198
+      ],
+      [
+       "KS",
+       175
+      ],
+      [
+       "NY",
+       162
+      ],
+      [
+       "PA",
+       150
+      ]
+     ],
+     "top_share": 0.109,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "POLITICS.POLITICS__FED_VOTEVIEW_ROLLCALL_META",
+   "blocked_pairs": 7,
+   "n_columns": 18,
+   "keys": []
+  },
+  {
+   "table": "ECONOMICS.ECONOMICS__FED_FOREIGNASSISTANCE",
+   "blocked_pairs": 7,
+   "n_columns": 10,
+   "keys": [
+    {
+     "kind": "EIN",
+     "column": "EIN",
+     "count": 95658,
+     "distinct": 1,
+     "top_values": [
+      [
+       "",
+       95658
+      ]
+     ],
+     "top_share": 1.0,
+     "verdict": "SUSPECT"
+    }
+   ]
+  },
+  {
+   "table": "HEALTH.HEALTH__FED_FDA_PURPLE_BOOK",
+   "blocked_pairs": 7,
+   "n_columns": 32,
+   "keys": []
+  },
+  {
+   "table": "TRANSPORT.TRANSPORT__FED_FRA_EQUIPMENT_ACCIDENTS",
+   "blocked_pairs": 7,
+   "n_columns": 157,
+   "keys": [
+    {
+     "kind": "STATE",
+     "column": "STATE_CODE",
+     "count": 224941,
+     "distinct": 50,
+     "top_values": [
+      [
+       "48",
+       21954
+      ],
+      [
+       "17",
+       21706
+      ],
+      [
+       "06",
+       11495
+      ],
+      [
+       "42",
+       9787
+      ],
+      [
+       "39",
+       9043
+      ]
+     ],
+     "top_share": 0.098,
+     "verdict": "SUSPECT"
+    },
+    {
+     "kind": "FIPS",
+     "column": "COUNTY_CODE",
+     "count": 221292,
+     "distinct": 284,
+     "top_values": [
+      [
+       "31",
+       14674
+      ],
+      [
+       "37",
+       5022
+      ],
+      [
+       "201",
+       4883
+      ],
+      [
+       "1",
+       4728
+      ],
+      [
+       "95",
+       4560
+      ]
+     ],
+     "top_share": 0.066,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "POLITICS.POLITICS__TX_LOBBY_EVENTS",
+   "blocked_pairs": 7,
+   "n_columns": 34,
+   "keys": [
+    {
+     "kind": "NAME",
+     "column": "RECIPIENTNAMELAST",
+     "count": 2541,
+     "distinct": 885,
+     "top_values": [
+      [
+       "King",
+       31
+      ],
+      [
+       "Rodriguez",
+       29
+      ],
+      [
+       "Howard",
+       28
+      ],
+      [
+       "Stewart",
+       22
+      ],
+      [
+       "Abbott",
+       20
+      ]
+     ],
+     "top_share": 0.012,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "TRANSPORT.TRANSPORT__FED_FRA_RAIL_DEATHS_BY_RAILROAD",
+   "blocked_pairs": 7,
+   "n_columns": 9,
+   "keys": []
+  },
+  {
+   "table": "HOUSING.HOUSING__FED_HUD_MF_SECTION8_CONTRACTS",
+   "blocked_pairs": 7,
+   "n_columns": 35,
+   "keys": []
+  },
+  {
+   "table": "POLITICS.POLITICS__TX_LOBBY_FOOD_BEVERAGE",
+   "blocked_pairs": 7,
+   "n_columns": 35,
+   "keys": [
+    {
+     "kind": "ZIP",
+     "column": "RESTAURANTSTREETPOSTALCODE",
+     "count": 12322,
+     "distinct": 623,
+     "top_values": [
+      [
+       "78701",
+       4343
+      ],
+      [
+       "78703",
+       499
+      ],
+      [
+       "78704",
+       367
+      ],
+      [
+       "77054",
+       313
+      ],
+      [
+       "78205",
+       180
+      ]
+     ],
+     "top_share": 0.352,
+     "verdict": "SUSPECT"
+    },
+    {
+     "kind": "NAME",
+     "column": "RECIPIENTNAMESUFFIXCD",
+     "count": 182,
+     "distinct": 14,
+     "top_values": [
+      [
+       "MD",
+       69
+      ],
+      [
+       "JR",
+       53
+      ],
+      [
+       "DVM",
+       17
+      ],
+      [
+       "III",
+       15
+      ],
+      [
+       "PHD",
+       10
+      ]
+     ],
+     "top_share": 0.379,
+     "verdict": "SUSPECT"
+    }
+   ]
+  },
+  {
+   "table": "HEALTH.HEALTH__FED_FDA_DRUG_MASTER_FILES",
+   "blocked_pairs": 6,
+   "n_columns": 10,
+   "keys": []
+  },
+  {
+   "table": "ECONOMICS.ECONOMICS__FED_FDIC_FAILED_BANKS",
+   "blocked_pairs": 6,
+   "n_columns": 25,
+   "keys": [
+    {
+     "kind": "STATE",
+     "column": "STATE_ABBR",
+     "count": 3584,
+     "distinct": 1,
+     "top_values": [
+      [
+       "",
+       3584
+      ]
+     ],
+     "top_share": 1.0,
+     "verdict": "SUSPECT"
+    },
+    {
+     "kind": "FIPS",
+     "column": "FIPS",
+     "count": 3584,
+     "distinct": 1,
+     "top_values": [
+      [
+       "",
+       3584
+      ]
+     ],
+     "top_share": 1.0,
+     "verdict": "SUSPECT"
+    }
+   ]
+  },
+  {
+   "table": "SCIENCE_RESEARCH.SCIENCE_RESEARCH__XC_RETRACTION_WATCH_DATABASE",
+   "blocked_pairs": 5,
+   "n_columns": 24,
+   "keys": []
+  },
+  {
+   "table": "SCIENCE_RESEARCH.SCIENCE_RESEARCH__FED_RETRACTION_WATCH",
+   "blocked_pairs": 5,
+   "n_columns": 22,
+   "keys": []
+  },
+  {
+   "table": "ENVIRONMENT.ENVIRONMENT__XC_OWID_FOSSIL_SHARE",
+   "blocked_pairs": 5,
+   "n_columns": 4,
+   "keys": []
+  },
+  {
+   "table": "POLITICS.POLITICS__FED_FJC_SERVICE",
+   "blocked_pairs": 5,
+   "n_columns": 30,
+   "keys": []
+  },
+  {
+   "table": "IMMIGRATION.IMMIGRATION__XC_OWID_REFUGEES",
+   "blocked_pairs": 5,
+   "n_columns": 5,
+   "keys": []
+  },
+  {
+   "table": "POLITICS.POLITICS__TX_LOBBY_GIFTS",
+   "blocked_pairs": 5,
+   "n_columns": 30,
+   "keys": [
+    {
+     "kind": "NAME",
+     "column": "RECIPIENTNAMEFIRST",
+     "count": 4013,
+     "distinct": 786,
+     "top_values": [
+      [
+       "John",
+       152
+      ],
+      [
+       "Joe",
+       69
+      ],
+      [
+       "Robert",
+       61
+      ],
+      [
+       "Dan",
+       58
+      ],
+      [
+       "Jim",
+       50
+      ]
+     ],
+     "top_share": 0.038,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "CONSUMER_SAFETY.CONSUMER_SAFETY__FED_NHTSA_INVESTIGATIONS",
+   "blocked_pairs": 5,
+   "n_columns": 15,
+   "keys": []
+  },
+  {
+   "table": "JUSTICE.JUSTICE__INTL_OPENSANCTIONS",
+   "blocked_pairs": 5,
+   "n_columns": 17,
+   "keys": [
+    {
+     "kind": "NAME",
+     "column": "NAME",
+     "count": 71011,
+     "distinct": 68591,
+     "top_values": [
+      [
+       "Cryptocurrency wallet",
+       958
+      ],
+      [
+       "Security",
+       72
+      ],
+      [
+       "Muhammad Aslam",
+       18
+      ],
+      [
+       "Abdullah",
+       16
+      ],
+      [
+       "Muhammad Bilal",
+       15
+      ]
+     ],
+     "top_share": 0.013,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "ENERGY.ENERGY__FED_EIA860_3_2_WIND",
+   "blocked_pairs": 4,
+   "n_columns": 26,
+   "keys": [
+    {
+     "kind": "STATE",
+     "column": "STATE",
+     "count": 1563,
+     "distinct": 43,
+     "top_values": [
+      [
+       "TX",
+       238
+      ],
+      [
+       "IA",
+       158
+      ],
+      [
+       "MN",
+       144
+      ],
+      [
+       "CA",
+       128
+      ],
+      [
+       "OK",
+       72
+      ]
+     ],
+     "top_share": 0.152,
+     "verdict": "SUSPECT"
+    }
+   ]
+  },
+  {
+   "table": "JUSTICE.JUSTICE__INTL_UCDP_GED",
+   "blocked_pairs": 4,
+   "n_columns": 49,
+   "keys": []
+  },
+  {
+   "table": "REFERENCE.REFERENCE__FED_ITIS_OTHER_SOURCES",
+   "blocked_pairs": 4,
+   "n_columns": 12,
+   "keys": []
+  },
+  {
+   "table": "LEGAL_ENFORCEMENT.LEGAL_ENFORCEMENT__FED_NAAG_MULTISTATE_SETTLEMENTS",
+   "blocked_pairs": 4,
+   "n_columns": 55,
+   "keys": []
+  },
+  {
+   "table": "ENVIRONMENT.ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_STACK_TESTS",
+   "blocked_pairs": 4,
+   "n_columns": 10,
+   "keys": []
+  },
+  {
+   "table": "REFERENCE.REFERENCE__XC_OWID_FERTILITY",
+   "blocked_pairs": 3,
+   "n_columns": 4,
+   "keys": []
+  },
+  {
+   "table": "HEALTH.HEALTH__XC_OWID_LIFE_EXPECTANCY",
+   "blocked_pairs": 3,
+   "n_columns": 4,
+   "keys": []
+  },
+  {
+   "table": "JUSTICE.JUSTICE__FED_CONSOLIDATED_SCREENING_LIST",
+   "blocked_pairs": 3,
+   "n_columns": 28,
+   "keys": [
+    {
+     "kind": "NAME",
+     "column": "NAME",
+     "count": 25918,
+     "distinct": 25611,
+     "top_values": [
+      [
+       "China Aerospace Science and Industry Cor",
+       5
+      ],
+      [
+       "China Aerospace Science and Industry Cor",
+       5
+      ],
+      [
+       "China Aerospace Science and Industry Cor",
+       5
+      ],
+      [
+       "AL NASER WINGS AIRLINES",
+       4
+      ],
+      [
+       "BLUE AIRWAYS",
+       4
+      ]
+     ],
+     "top_share": 0.0,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "ENVIRONMENT.ENVIRONMENT__FED_WQP_MONITORING_STATIONS",
+   "blocked_pairs": 3,
+   "n_columns": 40,
+   "keys": [
+    {
+     "kind": "STATE",
+     "column": "STATE_CODE",
+     "count": 5818,
+     "distinct": 1,
+     "top_values": [
+      [
+       "44",
+       5818
+      ]
+     ],
+     "top_share": 1.0,
+     "verdict": "SUSPECT"
+    },
+    {
+     "kind": "FIPS",
+     "column": "COUNTY_CODE",
+     "count": 5526,
+     "distinct": 6,
+     "top_values": [
+      [
+       "009",
+       2914
+      ],
+      [
+       "007",
+       1515
+      ],
+      [
+       "003",
+       735
+      ],
+      [
+       "005",
+       284
+      ],
+      [
+       "001",
+       77
+      ]
+     ],
+     "top_share": 0.527,
+     "verdict": "SUSPECT"
+    },
+    {
+     "kind": "NAME",
+     "column": "PROVIDER_NAME",
+     "count": 5818,
+     "distinct": 2,
+     "top_values": [
+      [
+       "NWIS",
+       4223
+      ],
+      [
+       "STORET",
+       1595
+      ]
+     ],
+     "top_share": 0.726,
+     "verdict": "SUSPECT"
+    }
+   ]
+  },
+  {
+   "table": "HEALTH.HEALTH__FED_CDC_SUICIDE_RATES",
+   "blocked_pairs": 2,
+   "n_columns": 13,
+   "keys": []
+  },
+  {
+   "table": "POLITICS.POLITICS__TX_LOBBY_ENTERTAINMENT",
+   "blocked_pairs": 2,
+   "n_columns": 37,
+   "keys": [
+    {
+     "kind": "ZIP",
+     "column": "ENTERTAINMENTSTREETPOSTALCODE",
+     "count": 2608,
+     "distinct": 225,
+     "top_values": [
+      [
+       "77054",
+       420
+      ],
+      [
+       "78701",
+       300
+      ],
+      [
+       "76011",
+       274
+      ],
+      [
+       "78735",
+       159
+      ],
+      [
+       "77002",
+       103
+      ]
+     ],
+     "top_share": 0.161,
+     "verdict": "REAL"
+    },
+    {
+     "kind": "NAME",
+     "column": "RECIPIENTNAMEORGANIZATION",
+     "count": 0,
+     "distinct": 0,
+     "top_values": [],
+     "top_share": null,
+     "verdict": "SUSPECT"
+    }
+   ]
+  },
+  {
+   "table": "JUSTICE.JUSTICE__INTL_OPENSANCTIONS_DEFAULT",
+   "blocked_pairs": 2,
+   "n_columns": 18,
+   "keys": [
+    {
+     "kind": "NAME",
+     "column": "NAME",
+     "count": 1281846,
+     "distinct": 1237811,
+     "top_values": [
+      [
+       "Cryptocurrency wallet",
+       958
+      ],
+      [
+       "Morten Austestad",
+       100
+      ],
+      [
+       "Person",
+       85
+      ],
+      [
+       "Security",
+       72
+      ],
+      [
+       "\u0411\u0438\u0440\u0436\u0435\u0432\u044b\u0435 \u043e\u0431\u043b\u0438\u0433\u0430\u0446\u0438\u0438 \u043f\u0440\u043e\u0446\u0435\u043d\u0442\u043d\u044b\u0435 \u043d\u0435\u043a\u043e\u043d\u0432\u0435\u0440\u0442\u0438",
+       69
+      ]
+     ],
+     "top_share": 0.001,
+     "verdict": "REAL"
+    }
+   ]
+  },
+  {
+   "table": "POLITICS.POLITICS__XC_JCS_MEDIANS",
+   "blocked_pairs": 1,
+   "n_columns": 34,
+   "keys": []
+  }
+ ]
+}

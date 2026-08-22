@@ -1561,14 +1561,23 @@ def _b_events(df, m):
     # third of the x range as a worked example. Swap the two dates for your own.
     d = df.sort_values(m["x"])
     fig = px.line(d, x=m["x"], y=m["y"], color=m["color"])
-    x0, x1, xv = d[m["x"]].quantile(0.35), d[m["x"]].quantile(0.6), d[m["x"]].quantile(0.8)
+    # positional picks, not .quantile(): quantile interpolates, and interpolating
+    # a datetime axis does Timestamp+int arithmetic that pandas 2.x forbids
+    xs = d[m["x"]].reset_index(drop=True)
+    pick = lambda q: xs.iloc[min(int(len(xs) * q), len(xs) - 1)]
+    x0, x1, xv = pick(0.35), pick(0.6), pick(0.8)
+    # annotations added separately: the annotation_* shortcuts on
+    # add_vrect/add_vline average the x-values with plain sum(), which raises
+    # on a datetime axis under pandas 2.x
     fig.add_vrect(x0=x0, x1=x1, fillcolor=CATS[1], opacity=0.12, line_width=0,
-                  layer="below", annotation_text="example band",
-                  annotation_position="top left",
-                  annotation_font=dict(color=CATS[1], size=11))
-    fig.add_vline(x=xv, line_dash="dash", line_color=CATS[3],
-                  annotation_text="example event", annotation_position="top right",
-                  annotation_font=dict(color=CATS[3], size=11))
+                  layer="below")
+    fig.add_annotation(x=x0, y=1, yref="paper", yanchor="bottom", xanchor="left",
+                       text="example band", showarrow=False,
+                       font=dict(color=CATS[1], size=11))
+    fig.add_vline(x=xv, line_dash="dash", line_color=CATS[3])
+    fig.add_annotation(x=xv, y=1, yref="paper", yanchor="bottom", xanchor="right",
+                       text="example event", showarrow=False,
+                       font=dict(color=CATS[3], size=11))
     return fig
 
 

@@ -67,13 +67,15 @@ def load_events(conn, sql, label):
 
 
 def build_frame(rows):
-    """rows: (noun_id, neighbor_key, quarter, n_events) -> dict structures."""
+    """rows: (noun_id, neighbor_key, quarter, n_events, state) -> dicts."""
     by_noun = defaultdict(dict)          # noun_id -> {quarter: count}
     neighbor_of = {}                     # noun_id -> neighbor_key
-    for noun_id, neighbor_key, quarter, n in rows:
+    state_of = {}                        # noun_id -> state
+    for noun_id, neighbor_key, quarter, n, state in rows:
         by_noun[noun_id][quarter] = int(n)
         neighbor_of[noun_id] = neighbor_key
-    return by_noun, neighbor_of
+        state_of[noun_id] = state
+    return by_noun, neighbor_of, state_of
 
 
 def find_spikes(by_noun):
@@ -118,7 +120,7 @@ def has_nearby_spike(target_noun, target_q, candidate_nouns, spike_lookup):
 def run_domain(cfg, conn):
     print(f"\n=== {cfg['name']} ===")
     rows = load_events(conn, cfg["sql"], cfg["name"])
-    by_noun, neighbor_of = build_frame(rows)
+    by_noun, neighbor_of, state_of = build_frame(rows)
     n_nouns = len(by_noun)
     n_groups = len(set(neighbor_of.values()))
     print(f"  {n_nouns:,} nouns, {n_groups:,} neighbor groups")
@@ -159,20 +161,35 @@ def run_domain(cfg, conn):
 
     rng = np.random.default_rng(SEED)
     all_noun_ids = list(by_noun.keys())
-    control_rates = []
-    for draw in range(N_DRAWS):
-        hits = 0
-        for noun_id, q, c in testable_spikes:
-            group_size = len(multi_groups[neighbor_of[noun_id]])
-            pool = [n for n in all_noun_ids if n != noun_id]
-            control = rng.choice(pool, size=min(group_size - 1, len(pool)),
-                                  replace=False)
-            if has_nearby_spike(noun_id, q, control, spike_lookup):
-                hits += 1
-        control_rates.append(hits / len(testable_spikes))
-    control_rates = np.array(control_rates)
+    by_state = defaultdict(list)
+    for n in all_noun_ids:
+        by_state[state_of.get(n)].append(n)
+
+    def draw_rates(pool_for):
+        rates = []
+        for draw in range(N_DRAWS):
+            hits = 0
+            for noun_id, q, c in testable_spikes:
+                group_size = len(multi_groups[neighbor_of[noun_id]])
+                pool = [n for n in pool_for(noun_id) if n != noun_id]
+                if not pool:
+                    continue
+                control = rng.choice(pool, size=min(group_size - 1, len(pool)),
+                                      replace=False)
+                if has_nearby_spike(noun_id, q, control, spike_lookup):
+                    hits += 1
+            rates.append(hits / len(testable_spikes))
+        return np.array(rates)
+
+    # control 1: strangers from anywhere (the original null)
+    control_rates = draw_rates(lambda n: all_noun_ids)
+    # control 2: strangers from the SAME STATE -- if the same-owner gap
+    # survives this, the co-spiking is not the state inspector's shared
+    # calendar (the honest caveat all three 2026-08-21 results carried)
+    same_state_rates = draw_rates(lambda n: by_state.get(state_of.get(n), []))
 
     gap = same_owner_rate - control_rates.mean()
+    gap_same_state = same_owner_rate - same_state_rates.mean()
     # a crude z-score against the draw-to-draw spread, not a formal test --
     # enough to say "is this bigger than the redraws' own noise"
     z = gap / control_rates.std() if control_rates.std() > 0 else float("inf")
@@ -182,7 +199,12 @@ def run_domain(cfg, conn):
     print(f"  CONTROL co-spike rate:     {control_rates.mean():.1%} "
           f"+/- {control_rates.std():.1%}  ({N_DRAWS} redraws, "
           f"range {control_rates.min():.1%}-{control_rates.max():.1%})")
-    print(f"  GAP: {gap:+.1%}  (z vs. redraw spread: {z:.1f})")
+    print(f"  SAME-STATE control rate:   {same_state_rates.mean():.1%} "
+          f"+/- {same_state_rates.std():.1%}")
+    print(f"  GAP vs anywhere: {gap:+.1%}  (z vs. redraw spread: {z:.1f})")
+    zs = (gap_same_state / same_state_rates.std()
+          if same_state_rates.std() > 0 else float("inf"))
+    print(f"  GAP vs same-state: {gap_same_state:+.1%}  (z: {zs:.1f})")
 
     return {
         "domain": cfg["name"], "n_nouns": n_nouns, "n_groups": n_groups,
@@ -193,6 +215,10 @@ def run_domain(cfg, conn):
         "control_rate_min": float(control_rates.min()),
         "control_rate_max": float(control_rates.max()),
         "gap": gap, "z_vs_redraw_spread": float(z),
+        "same_state_control_mean": float(same_state_rates.mean()),
+        "same_state_control_std": float(same_state_rates.std()),
+        "gap_vs_same_state": gap_same_state,
+        "z_vs_same_state_spread": float(zs),
     }
 
 
