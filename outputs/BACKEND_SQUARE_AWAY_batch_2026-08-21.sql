@@ -27,6 +27,24 @@ grant usage on schema LIBRARY_RAW.LANDING to role RIPPLE_READER;
 grant select on all tables in schema LIBRARY_RAW.LANDING to role RIPPLE_READER;
 grant select on future tables in schema LIBRARY_RAW.LANDING to role RIPPLE_READER;
 
+-- ============================================================
+-- PASTE 2 (2026-08-22, after paste 1 was run and verified)
+-- ============================================================
+
+-- 5. Wiring batch 2 — four new verified edges (preview-measured live):
+--    a 100% environmental-penalty wire, two more politics/FEC ids, and the
+--    99.9% courts bridge (the two federal court systems joined on docket no).
+insert into LIBRARY_META."CONNECT".CONNECT_EDGES (A, B, KEY, TIER, MATCHED, MATCH_RATE) values
+('EPA_PENALTY_GAP',                     'FED_EPA_FRS_FRS_FACILITIES', 'FRS_ID',      'STEEL',   93798, 1.0),
+('FEC_CANDIDATE',                       'FED_FEC_CANDIDATES',         'FEC_CAND_ID', 'STEEL',    9874, 0.746),
+('FEC_CAND_CMTE_LINK',                  'FED_FEC_BULK_COMMITTEES',    'FEC_CMTE_ID', 'STEEL',    7214, 0.631),
+('FED_COURTLISTENER_FJC_IDB_CL_LINKED', 'FED_FJC_IDB_CIVIL',          'DOCKET',      'STEEL', 1160909, 0.999);
+
+-- 6. Last test grants: reader can read the connection layer's entity tables
+--    (6 of the 7 remaining failures; the 7th needs the build role by design).
+grant select on all tables in schema LIBRARY_META."CONNECT" to role RIPPLE_READER;
+grant select on future tables in schema LIBRARY_META."CONNECT" to role RIPPLE_READER;
+
 -- 4. OPTIONAL BUT RECOMMENDED — close the secondary-roles hole.
 --    The session PAT logs in as RIPPLE_READER but currently inherits ALL of
 --    the user's roles as secondary roles (including ACCOUNTADMIN). That means

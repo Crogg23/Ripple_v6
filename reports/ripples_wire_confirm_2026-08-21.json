@@ -1,11 +1,13 @@
 {
  "checked": 1830,
+ "macro_excluded": 1139,
+ "judgeable": 691,
  "direct_wired": 55,
  "direct_wired_hard_id": 23,
  "one_hop_wired": 159,
  "one_hop_hard_id": 9,
  "on_spine_but_unwired": 204,
- "off_spine": 1412,
+ "off_spine": 273,
  "confirmed_direct": [
   {
    "bucket": "month",
@@ -29,6 +31,7 @@
    "fax_machine_suspect": null,
    "a_node": "MEMBER_CROSSWALK",
    "b_node": "MEMBER_SPINE",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "STEEL",
@@ -57,6 +60,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_IRS_REVOCATION",
    "b_node": "FED_IRS_AUTO_REVOCATIONS",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "STEEL",
@@ -85,6 +89,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_HRSA_HPSA_PRIMARY_CARE",
    "b_node": "FED_HRSA_SHORTAGE_AREAS",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "CORROBORATED",
@@ -113,6 +118,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_EPA_SDWA_SDWA_SERVICE_AREAS",
    "b_node": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "STEEL",
@@ -141,6 +147,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
    "b_node": "FED_EPA_SDWA_SDWA_FACILITIES",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "STEEL",
@@ -169,6 +176,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES",
    "b_node": "FED_CMS_NURSING_HOME_DEFICIENCIES",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "STEEL",
@@ -197,6 +205,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_COURTLISTENER_JUDGES",
    "b_node": "FED_COURTLISTENER_POSITIONS",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "STEEL",
@@ -225,6 +234,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_USCG_NRC_INCIDENT_REPORTS",
    "b_node": "FED_USCG_NRC_INCIDENTS",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "CORROBORATED",
@@ -253,6 +263,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_EPA_SDWA_SDWA_SERVICE_AREAS",
    "b_node": "FED_EPA_SDWA_SDWA_FACILITIES",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "STEEL",
@@ -281,6 +292,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_EPA_SDWA_SDWA_PN_VIOLATION_ASSOC",
    "b_node": "FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "STEEL",
@@ -309,6 +321,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
    "b_node": "FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "STEEL",
@@ -337,6 +350,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_FEC_LEADERSHIP_PAC",
    "b_node": "FED_FEC_CAND_CMTE_LINKAGE",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "STEEL",
@@ -365,6 +379,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_FEC_LEADERSHIP_PAC",
    "b_node": "FED_FEC_CANDIDATES",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "STEEL",
@@ -393,6 +408,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_EPA_SDWA_SDWA_PN_VIOLATION_ASSOC",
    "b_node": "FED_EPA_SDWA_SDWA_LCR_SAMPLES",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "STEEL",
@@ -421,6 +437,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_EPA_SDWA_SDWA_SERVICE_AREAS",
    "b_node": "FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "STEEL",
@@ -449,6 +466,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES",
    "b_node": "FED_FAC_SINGLE_AUDIT",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "CORROBORATED",
@@ -477,6 +495,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_FAC_SINGLE_AUDIT",
    "b_node": "FED_CMS_NURSING_HOME_DEFICIENCIES",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "CORROBORATED",
@@ -505,6 +524,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_SBIR_STTR_AWARDS",
    "b_node": "ST_NYC_CFB_CAMPAIGN_2025_CONTRIBUTIONS",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "CORROBORATED",
@@ -533,6 +553,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_MEDSL_SENATE_RETURNS",
    "b_node": "FED_MEDSL_HOUSE_RETURNS",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "GEO",
@@ -561,6 +582,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_EPA_SDWA_SDWA_EVENTS_MILESTONES",
    "b_node": "FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "STEEL",
@@ -589,6 +611,7 @@
    "fax_machine_suspect": null,
    "a_node": "IRS527_8871_ORGS",
    "b_node": "ST_NYC_CFB_CAMPAIGN_2013_CONTRIBUTION",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "CORROBORATED",
@@ -617,6 +640,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_NIH_REPORTER",
    "b_node": "FED_IRS_990_EFILE_INDEX",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "BRIDGE",
@@ -645,6 +669,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
    "b_node": "FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "STEEL",
@@ -673,6 +698,7 @@
    "fax_machine_suspect": true,
    "a_node": "FED_CMS_POS_OTHER",
    "b_node": "CA_LOBBY_CHG_LOG",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "CORROBORATED",
@@ -701,6 +727,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_CMS_OPIOID_TREATMENT_PROGRAM_PROVIDERS",
    "b_node": "FED_FAC_SINGLE_AUDIT",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "CORROBORATED",
@@ -729,6 +756,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS",
    "b_node": "FED_EPA_SDWA_SDWA_FACILITIES",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "STEEL",
@@ -757,6 +785,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_FEC_CAND_CMTE_LINKAGE",
    "b_node": "FED_FEC_CANDIDATES",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "STEEL",
@@ -785,6 +814,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_MEDSL_PRESIDENT_RETURNS",
    "b_node": "FED_MEDSL_HOUSE_RETURNS",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "GEO",
@@ -813,6 +843,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_HRSA_SHORTAGE_AREAS",
    "b_node": "FED_FEC_INDIV_CONTRIBUTIONS",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "CORROBORATED",
@@ -841,6 +872,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_FHFA_FHLB_MEMBERSHIP",
    "b_node": "FED_FAC_SINGLE_AUDIT",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "CORROBORATED",
@@ -869,6 +901,7 @@
    "fax_machine_suspect": null,
    "a_node": "ST_NYC_CFB_CAMPAIGN_2013_CONTRIBUTION",
    "b_node": "FED_IRS_EO_BMF",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "CORROBORATED",
@@ -897,6 +930,7 @@
    "fax_machine_suspect": null,
    "a_node": "IRS527_8871_ORGS",
    "b_node": "ST_NYC_CFB_CAMPAIGN_2025_CONTRIBUTIONS",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "CORROBORATED",
@@ -925,6 +959,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_FAC_SINGLE_AUDIT",
    "b_node": "FED_IRS_EO_BMF",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "STEEL",
@@ -953,6 +988,7 @@
    "fax_machine_suspect": null,
    "a_node": "ST_NYC_CFB_CAMPAIGN_2013_CONTRIBUTION",
    "b_node": "FED_SBIR_STTR_AWARDS",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "CORROBORATED",
@@ -981,6 +1017,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_CMS_OPIOID_TREATMENT_PROGRAM_PROVIDERS",
    "b_node": "FED_IRS_EO_BMF",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "CORROBORATED",
@@ -1009,6 +1046,7 @@
    "fax_machine_suspect": null,
    "a_node": "ST_NYC_CFB_CAMPAIGN_2025_CONTRIBUTIONS",
    "b_node": "FED_FEC_INDIV_CONTRIBUTIONS",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "CORROBORATED",
@@ -1037,6 +1075,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_NTSB_AVIATION_EVENTS",
    "b_node": "FED_USCG_NRC_INCIDENT_REPORTS",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "CORROBORATED",
@@ -1065,6 +1104,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_CMS_IRF",
    "b_node": "FED_CMS_NURSING_HOME_DEFICIENCIES",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "CORROBORATED",
@@ -1093,6 +1133,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_CMS_HOSPITAL_ENROLLMENTS",
    "b_node": "FED_FAC_SINGLE_AUDIT",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "CORROBORATED",
@@ -1121,6 +1162,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_CMS_OPIOID_TREATMENT_PROGRAM_PROVIDERS",
    "b_node": "FED_HRSA_SHORTAGE_AREAS",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "CORROBORATED",
@@ -1149,6 +1191,7 @@
    "fax_machine_suspect": null,
    "a_node": "IRS527_8871_ORGS",
    "b_node": "ST_NYC_CFB_CAMPAIGN_2009_CONTRIBUTION",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "CORROBORATED",
@@ -1177,6 +1220,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_SEC_EDGAR_INSIDERS",
    "b_node": "FED_SEC_13F_SUBMISSIONS",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "STEEL",
@@ -1205,6 +1249,7 @@
    "fax_machine_suspect": null,
    "a_node": "CA_LOBBY_CHG_LOG",
    "b_node": "FED_FEC_INDIV_CONTRIBUTIONS",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "CORROBORATED",
@@ -1233,6 +1278,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_FAC_SINGLE_AUDIT",
    "b_node": "FED_FEC_INDIV_CONTRIBUTIONS",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "CORROBORATED",
@@ -1261,6 +1307,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_FHFA_FHLB_MEMBERSHIP",
    "b_node": "FED_FEC_INDIV_CONTRIBUTIONS",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "CORROBORATED",
@@ -1289,6 +1336,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_SBIR_STTR_AWARDS",
    "b_node": "ST_NYC_CFB_CAMPAIGN_2021_CONTRIBUTIONS",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "CORROBORATED",
@@ -1317,6 +1365,7 @@
    "fax_machine_suspect": null,
    "a_node": "IRS527_8871_ORGS",
    "b_node": "FED_USASPENDING_ASSISTANCE_FULL",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "BRIDGE",
@@ -1345,6 +1394,7 @@
    "fax_machine_suspect": null,
    "a_node": "ST_NYC_CFB_CAMPAIGN_2021_CONTRIBUTIONS",
    "b_node": "FED_IRS_REVOCATION",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "CORROBORATED",
@@ -1373,6 +1423,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_NTSB_AVIATION_AIRCRAFT",
    "b_node": "FED_FAC_SINGLE_AUDIT",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "CORROBORATED",
@@ -1401,6 +1452,7 @@
    "fax_machine_suspect": null,
    "a_node": "ST_NYC_CFB_CAMPAIGN_2025_CONTRIBUTIONS",
    "b_node": "FED_FAA_AIRCRAFT_REGISTRY",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "CORROBORATED",
@@ -1429,6 +1481,7 @@
    "fax_machine_suspect": null,
    "a_node": "ST_NYC_CFB_CAMPAIGN_2021_CONTRIBUTIONS",
    "b_node": "FED_FEC_INDIV_CONTRIBUTIONS",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "CORROBORATED",
@@ -1457,6 +1510,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_SAM_EXCLUSIONS",
    "b_node": "FED_USASPENDING_ASSISTANCE_FULL",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "STEEL",
@@ -1485,6 +1539,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_CMS_OPIOID_TREATMENT_PROGRAM_PROVIDERS",
    "b_node": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "STEEL",
@@ -1513,6 +1568,7 @@
    "fax_machine_suspect": null,
    "a_node": "ST_NYC_CFB_CAMPAIGN_2021_CONTRIBUTIONS",
    "b_node": "FED_IRS_AUTO_REVOCATIONS",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "CORROBORATED",
@@ -1541,6 +1597,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_CMS_HOME_HEALTH",
    "b_node": "FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "direct",
     "tier": "CORROBORATED",
@@ -1571,6 +1628,7 @@
    "fax_machine_suspect": null,
    "a_node": "BILLS",
    "b_node": "BILL_COSPONSORS",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "one_hop",
     "via": "MEMBER_SPINE",
@@ -1599,9 +1657,10 @@
    "fax_machine_suspect": null,
    "a_node": "FED_CMS_OPIOID_TREATMENT_PROGRAM_PROVIDERS",
    "b_node": "FED_CMS_NURSING_HOME_DEFICIENCIES",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "one_hop",
-    "via": "FED_CMS_MEDICARE_DIALYSIS_FACILITIES",
+    "via": "FED_CMS_FACILITY_AFFILIATION",
     "path_tier": "BRIDGE"
    }
   },
@@ -1627,9 +1686,10 @@
    "fax_machine_suspect": null,
    "a_node": "FED_CMS_OPIOID_TREATMENT_PROGRAM_PROVIDERS",
    "b_node": "FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "one_hop",
-    "via": "FED_CMS_NPPES",
+    "via": "FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT",
     "path_tier": "STEEL"
    }
   },
@@ -1655,9 +1715,10 @@
    "fax_machine_suspect": null,
    "a_node": "FED_SEC_13F_SUBMISSIONS",
    "b_node": "FED_IRS_990_EFILE_INDEX",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "one_hop",
-    "via": "FED_OSHA_ITA_CASE_DETAIL_2023",
+    "via": "FED_OSHA_ITA_CASE_DETAIL_2024",
     "path_tier": "BRIDGE"
    }
   },
@@ -1683,9 +1744,10 @@
    "fax_machine_suspect": null,
    "a_node": "FED_CMS_OPIOID_TREATMENT_PROGRAM_PROVIDERS",
    "b_node": "FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "one_hop",
-    "via": "FED_CMS_MEDICARE_DIALYSIS_FACILITIES",
+    "via": "FED_CMS_FACILITY_AFFILIATION",
     "path_tier": "BRIDGE"
    }
   },
@@ -1711,9 +1773,10 @@
    "fax_machine_suspect": null,
    "a_node": "IRS527_8872_REPORTS",
    "b_node": "FED_FAC_SINGLE_AUDIT",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "one_hop",
-    "via": "IRS527_DIRECTORS_OFFICERS",
+    "via": "IRS527_8871_ORGS",
     "path_tier": "STEEL"
    }
   },
@@ -1739,9 +1802,10 @@
    "fax_machine_suspect": null,
    "a_node": "FED_CMS_OPIOID_TREATMENT_PROGRAM_PROVIDERS",
    "b_node": "FED_CMS_HOME_HEALTH",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "one_hop",
-    "via": "FED_CMS_MEDICARE_DIALYSIS_FACILITIES",
+    "via": "FED_CMS_FACILITY_AFFILIATION",
     "path_tier": "BRIDGE"
    }
   },
@@ -1767,6 +1831,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_HHS_OIG_LEIE",
    "b_node": "FED_USASPENDING_ASSISTANCE_FULL",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "one_hop",
     "via": "FED_SAM_EXCLUSIONS_FULL_R2",
@@ -1795,6 +1860,7 @@
    "fax_machine_suspect": null,
    "a_node": "FED_CMS_LTCH",
    "b_node": "FED_CMS_OPT_OUT_AFFIDAVITS",
+   "triage": "WIREABLE",
    "wire": {
     "kind": "one_hop",
     "via": "FED_CMS_FACILITY_AFFILIATION",

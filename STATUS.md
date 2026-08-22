@@ -1,4 +1,4 @@
-# RIPPLE STATUS — 2026-08-21/22 (naming → wiring → backend square-away)
+# RIPPLE STATUS — 2026-08-22 (backend squared; batch 1 applied; batch 2 staged)
 
 *One screen. Rewritten (never appended) at the end of every session. Sessions read
 this at boot and brief Chris in chat — Chris never has to open it.*
@@ -47,15 +47,22 @@ wire-confirm re-ran: 72 pairs moved onto the map.
 chart fix + final batch file additions are in the working tree, uncommitted.
 Nothing pushed beyond origin's prior state unless Chris says push.
 
-**YOUR MOVE (Chris):**
-(1) Run outputs/BACKEND_SQUARE_AWAY_batch_2026-08-21.sql in Snowsight as
-ACCOUNTADMIN — 2 catalog label fixes + the reader grants (~79 tests go green);
-item 4 in the file (closing the ACCOUNTADMIN secondary-roles hole) is left
-commented for your explicit decision.
+**PASTE 1 APPLIED by Chris (verified live):** catalog labels fixed, reader
+grants in — live tests went 85 failures → 7 → after grants, only the 7
+connect-layer/build-role ones remain. Wire-confirm now excludes the 1,139
+MACRO pairs automatically: honest picture is 691 judgeable, 214 wired (31%).
+
+**YOUR MOVE (Chris): run PASTE 2** (appended to the same
+outputs/BACKEND_SQUARE_AWAY_batch_2026-08-21.sql): wiring batch 2 — the 100%
+environmental-penalty wire, two more FEC id wires, the 99.9% COURTS bridge
+(court systems were graph dark matter) — plus the last reader grants (6 of the
+7 remaining test failures). The commented secondary-roles security fix still
+awaits your yes/no.
 (2) Carried: 5th false-reading for the RIPPLES doc; healthcare pilot weak
 signal; lens-catalogue sweep ($42–64) still awaiting go.
 
-**NEXT (natural ticks):** teach wire-confirm to read the triage tags (stop
-counting MACRO pairs as debt); GEO-tier edges for the 6% state-keyed pairs;
-politics roll-call scope ruling (above); per-entity drift; Indiana
-nursing-penalty dead-air context.
+**NEXT (natural ticks):** wire-confirm triage awareness is DONE (this
+session); still open: GEO-tier edges for the 6% state-keyed pairs; politics
+roll-call scope ruling (above); per-entity drift; Indiana nursing-penalty
+dead-air context; FJC criminal/appellate/bankruptcy docket wires (same
+crosswalk pattern as the civil courts bridge).

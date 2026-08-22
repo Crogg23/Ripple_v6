@@ -63,11 +63,26 @@ def main():
         neighbors[a].add((b, tier, key))
         neighbors[b].add((a, tier, key))
 
+    # Triage stamps (queue_triage_pass.py): a MACRO pair has a side with no
+    # entity in it at all -- no wire can ever exist, so it is excluded from the
+    # wiring-debt accounting instead of being counted as fixable forever.
+    triage = {}
+    for fn in sorted(os.listdir(os.path.join(BASE, "reports"))):
+        if fn.startswith("ripples_queue_triage_") and fn.endswith(".json"):
+            with open(os.path.join(BASE, "reports", fn)) as fh:
+                for t in json.load(fh)["pairs"]:
+                    triage[frozenset({t["a"], t["b"]})] = t["tag"]
+
     spine_nodes = set(neighbors)
     confirmed, one_hop, unwired, off_spine = [], [], [], []
+    macro_skipped = 0
     for p in queue:
         na, nb = node_id(p["a_table"]), node_id(p["b_table"])
-        p = dict(p, a_node=na, b_node=nb)
+        tag = triage.get(frozenset({p["a_table"], p["b_table"]}))
+        p = dict(p, a_node=na, b_node=nb, triage=tag)
+        if tag == "MACRO":
+            macro_skipped += 1
+            continue
         if na not in spine_nodes or nb not in spine_nodes:
             off_spine.append(p)
             continue
@@ -96,8 +111,11 @@ def main():
         return [p for p in pairs
                 if (p["wire"].get("tier") or p["wire"].get("path_tier")) in kinds]
 
+    judgeable = len(queue) - macro_skipped
     out = {
         "checked": len(queue),
+        "macro_excluded": macro_skipped,
+        "judgeable": judgeable,
         "direct_wired": len(confirmed),
         "direct_wired_hard_id": len(hard(confirmed)),
         "one_hop_wired": len(one_hop),
@@ -111,6 +129,8 @@ def main():
                         f"ripples_wire_confirm_{date.today().isoformat()}.json")
     with open(path, "w") as fh:
         json.dump(out, fh, indent=1, default=str)
+    print(f"queue {len(queue)}; {macro_skipped} MACRO pairs excluded "
+          f"(no entity exists on one side); {judgeable} judgeable")
     print(f"direct-wired: {len(confirmed)} ({len(hard(confirmed))} on hard IDs)")
     print(f"one-hop-wired: {len(one_hop)} ({len(hard(one_hop))} hard the whole path)")
     print(f"on spine, no wire: {len(unwired)}   off the spine entirely: {len(off_spine)}")
