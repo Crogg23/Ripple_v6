@@ -1,0 +1,47 @@
+[
+  {
+    "domain": "health (nursing homes, re-run with the generalized method)",
+    "n_nouns": 14632,
+    "n_groups": 636,
+    "n_spikes": 2524,
+    "n_testable_spikes": 2524,
+    "same_owner_rate": 0.7682250396196514,
+    "same_owner_hits": 1939,
+    "control_rate_mean": 0.63520206022187,
+    "control_rate_std": 0.006310447874879738,
+    "control_rate_min": 0.6259904912836767,
+    "control_rate_max": 0.6493660855784469,
+    "gap": 0.1330229793977814,
+    "z_vs_redraw_spread": 21.079800045146
+  },
+  {
+    "domain": "labor (mine safety)",
+    "n_nouns": 31248,
+    "n_groups": 14248,
+    "n_spikes": 5517,
+    "n_testable_spikes": 4776,
+    "same_owner_rate": 0.5205192629815746,
+    "same_owner_hits": 2486,
+    "control_rate_mean": 0.1771670854271357,
+    "control_rate_std": 0.003585403439098423,
+    "control_rate_min": 0.1708542713567839,
+    "control_rate_max": 0.18320770519262983,
+    "gap": 0.3433521775544389,
+    "z_vs_redraw_spread": 95.76388916522528
+  },
+  {
+    "domain": "environment (toxic release facilities)",
+    "n_nouns": 3980,
+    "n_groups": 1670,
+    "n_spikes": 931,
+    "n_testable_spikes": 764,
+    "same_owner_rate": 0.1793193717277487,
+    "same_owner_hits": 137,
+    "control_rate_mean": 0.06158376963350785,
+    "control_rate_std": 0.006310950439271805,
+    "control_rate_min": 0.05235602094240838,
+    "control_rate_max": 0.07591623036649214,
+    "gap": 0.11773560209424086,
+    "z_vs_redraw_spread": 18.655764013229344
+  }
+]
