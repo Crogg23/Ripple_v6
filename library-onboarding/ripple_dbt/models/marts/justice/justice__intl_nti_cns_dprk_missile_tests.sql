@@ -9,7 +9,7 @@ with source as (
 
 select
     F1 as f1,
-    "DATE" as date,
+    {{ ripple_dt('"DATE"') }} as date,
     try_to_date(DATE_ENTERED_UPDATED) as date_entered_updated,
     LAUNCH_TIME_UTC as launch_time_utc,
     MISSILE_NAME as missile_name,

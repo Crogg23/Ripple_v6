@@ -12,7 +12,7 @@ select
     provider_ccn,
     hospital_name,
     fiscal_year_end_date,
-    rpt_rec_num,
+    {{ ripple_num('rpt_rec_num') }} as rpt_rec_num,
 
     -- location
     street_address,

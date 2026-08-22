@@ -13,8 +13,8 @@ select
     I_F_COD as i_f_cod,
     FOLL_SEQ as foll_seq,
     IMAGE as image,
-    EVENT_DT as event_dt,
-    MFR_DT as mfr_dt,
+    {{ ripple_dt('EVENT_DT') }} as event_dt,
+    {{ ripple_dt('MFR_DT') }} as mfr_dt,
     FDA_DT as fda_dt,
     REPT_COD as rept_cod,
     MFR_NUM as mfr_num,
@@ -36,6 +36,6 @@ select
     CASEID as caseid,
     CASEVERSION as caseversion,
     I_F_CODE as i_f_code,
-    INIT_FDA_DT as init_fda_dt,
+    {{ ripple_dt('INIT_FDA_DT') }} as init_fda_dt,
     OCCR_COUNTRY as occr_country
 from source

@@ -30,7 +30,7 @@ select
     DOD_COUNTRY as dod_country,
     GENDER as gender,
     RELIGION as religion,
-    FTM_TOTAL_RECEIVED as ftm_total_received,
+    {{ ripple_num('FTM_TOTAL_RECEIVED') }} as ftm_total_received,
     FTM_EID as ftm_eid,
     HAS_PHOTO as has_photo,
     IS_ALIAS_OF_ID as is_alias_of_id

@@ -19,7 +19,7 @@ select
     MODALITY as modality,
     ALTERNATE_CCNS as alternate_ccns,
     MEASURE as measure,
-    MEASURE_SCORE as measure_score,
+    {{ ripple_num('MEASURE_SCORE') }} as measure_score,
     try_to_number("YEAR") as year_col,
     MEASURE_ID as measure_id
 from source

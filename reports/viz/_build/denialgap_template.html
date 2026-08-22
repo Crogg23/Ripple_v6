@@ -1,0 +1,408 @@
+<title>The Denial Gap</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#0b0f14; --panel:#161d26; --panel2:#1b2230; --ink:#e8edf4;
+  --muted:#8b98ab; --grid:#2a3441; --amber:#ffb454; --blue:#5aa9ff;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.5;
+  font-variant-numeric:tabular-nums}
+.wrap{max-width:1060px;margin:0 auto;padding:28px 20px 60px}
+h1{font-family:'Archivo',sans-serif;font-weight:700;font-size:34px;margin:0 0 4px}
+h2{font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;margin:0 0 2px}
+.sub{color:var(--muted);margin:0 0 28px}
+.card{background:var(--panel);border:1px solid var(--grid);border-radius:10px;
+  padding:18px 18px 12px;margin:0 0 26px}
+.card .desc{color:var(--muted);margin:0 0 12px}
+.callout{background:var(--panel2);border:1px solid var(--grid);border-radius:8px;
+  padding:14px 16px;margin:0 0 16px;display:flex;gap:16px;align-items:baseline;flex-wrap:wrap}
+.callout .big{font-family:'Archivo',sans-serif;font-weight:700;font-size:40px;
+  color:var(--amber);font-variant-numeric:tabular-nums;line-height:1}
+.callout .txt{max-width:640px}
+select,button{background:var(--panel2);border:1px solid var(--grid);border-radius:6px;
+  color:var(--ink);font:inherit;padding:5px 10px;cursor:pointer}
+select:focus-visible,button:focus-visible,a:focus-visible{
+  outline:2px solid var(--blue);outline-offset:2px}
+button.active,button[aria-pressed="true"]{border-color:var(--amber);color:var(--amber)}
+.controls{display:flex;gap:10px;align-items:center;margin:0 0 10px;flex-wrap:wrap}
+.controls label{color:var(--muted)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin:10px 2px 4px;color:var(--muted)}
+.legend .li{display:flex;gap:6px;align-items:center}
+.legend .sw{width:10px;height:10px;border-radius:2px;display:inline-block}
+#tooltip{position:absolute;pointer-events:none;display:none;z-index:50;
+  background:#0b0f14;border:1px solid var(--grid);border-radius:6px;
+  padding:8px 10px;font-size:12px;max-width:280px;
+  font-variant-numeric:tabular-nums;box-shadow:0 4px 14px rgba(0,0,0,.5)}
+#tooltip .tt-h{color:var(--muted);margin-bottom:4px}
+#tooltip .row{display:flex;justify-content:space-between;gap:14px}
+.foot{color:var(--muted);font-size:12px;max-width:820px}
+svg text{font-family:'JetBrains Mono',monospace;fill:var(--muted);font-size:11px;
+  font-variant-numeric:tabular-nums}
+svg .axlabel{fill:var(--muted)}
+svg .gridline{stroke:var(--grid);stroke-width:1}
+svg .direct{font-size:11px;font-weight:600}
+</style>
+
+<div class="wrap">
+  <h1>The Denial Gap</h1>
+  <p class="sub">who gets a mortgage no &mdash; 19 million home-purchase applications, 2007&ndash;2017</p>
+
+  <div class="card">
+    <h2>The gap survives income</h2>
+    <p class="desc">Denial rate by income band and race group. Dots are national rates, all years pooled; the thin line spans each band's min&ndash;max across groups.</p>
+    <div class="callout" id="callout">
+      <div class="big" id="calloutNum">&ndash;</div>
+      <div class="txt" id="calloutTxt">computing&hellip;</div>
+    </div>
+    <div class="controls">
+      <label for="stateSel">State</label>
+      <select id="stateSel" aria-label="Filter hero chart by state"><option value="ALL">All states</option></select>
+    </div>
+    <div id="hero"></div>
+    <div class="legend" id="heroLegend"></div>
+  </div>
+
+  <div class="card">
+    <h2>Denial rate by year</h2>
+    <p class="desc">National denial rate per race group, 2007&ndash;2017. Hover for all groups in a year.</p>
+    <div id="trend"></div>
+    <div class="legend" id="trendLegend"></div>
+  </div>
+
+  <div class="card">
+    <h2>Why the no</h2>
+    <p class="desc">Share of stated denial reasons per group (top 6 reasons + Other). Reasons are only reported for some denials.</p>
+    <div id="reasons"></div>
+    <div class="legend" id="reasonsLegend"></div>
+  </div>
+
+  <p class="foot">Only home-purchase applications with reported income; denial rate = denials &divide; (approvals + denials); groups from applicant race/ethnicity fields, Hispanic of any race counted as Hispanic.</p>
+</div>
+<div id="tooltip" role="tooltip"></div>
+
+<script>
+"use strict";
+const GAP=__GAP__;
+const REASONS=__REASONS__;
+
+const GROUPS=["White","Black","Hispanic","Asian","Native American","Pacific Islander"];
+const GCOLOR={
+  "White":"#8b98ab","Black":"#ffb454","Hispanic":"#5aa9ff",
+  "Asian":"#4fd6d2","Native American":"#ff7b9c","Pacific Islander":"#b48cff"
+};
+const BANDS=["<50k","50-100k","100-150k","150k+"];
+const REASON_COLORS=["#6f8db3","#c9a15e","#7fae8e","#a98bb8","#b3766f","#8a94c9","#55606f"];
+
+const tooltip=document.getElementById("tooltip");
+function showTip(html,evt){
+  tooltip.innerHTML=html;tooltip.style.display="block";
+  const pad=14,tw=tooltip.offsetWidth,th=tooltip.offsetHeight;
+  let x=evt.pageX+pad,y=evt.pageY+pad;
+  if(x+tw>document.documentElement.scrollLeft+window.innerWidth-8)x=evt.pageX-tw-pad;
+  if(y+th>document.documentElement.scrollTop+window.innerHeight-8)y=evt.pageY-th-pad;
+  tooltip.style.left=x+"px";tooltip.style.top=y+"px";
+}
+function hideTip(){tooltip.style.display="none";}
+function pct(v,d){return (v*100).toFixed(d===undefined?1:d)+"%";}
+function fmt(n){return n.toLocaleString("en-US");}
+function el(tag,attrs){
+  const e=document.createElementNS("http://www.w3.org/2000/svg",tag);
+  for(const k in attrs)e.setAttribute(k,attrs[k]);
+  return e;
+}
+function legendInto(node,items){
+  node.innerHTML="";
+  items.forEach(function(it){
+    const d=document.createElement("span");d.className="li";
+    d.innerHTML='<span class="sw" style="background:'+it[1]+'"></span>'+it[0];
+    node.appendChild(d);
+  });
+}
+
+/* ---------- aggregation ---------- */
+// key: group|band -> {apps,den}, optionally filtered to a state
+function heroAgg(state){
+  const m={};
+  GAP.forEach(function(r){
+    if(state!=="ALL"&&r[1]!==state)return;
+    const k=r[2]+"|"+r[3];
+    (m[k]=m[k]||{a:0,d:0});m[k].a+=r[4];m[k].d+=r[5];
+  });
+  return m;
+}
+function rateOf(m,g,b){
+  const v=m[g+"|"+b];
+  return (v&&v.a>0)?{rate:v.d/v.a,apps:v.a,den:v.d}:null;
+}
+// national by group+year
+const yearAgg={};
+const yearsSet={};
+GAP.forEach(function(r){
+  yearsSet[r[0]]=1;
+  const k=r[2]+"|"+r[0];
+  (yearAgg[k]=yearAgg[k]||{a:0,d:0});yearAgg[k].a+=r[4];yearAgg[k].d+=r[5];
+});
+const YEARS=Object.keys(yearsSet).sort();
+
+/* states dropdown */
+(function(){
+  const s={};GAP.forEach(function(r){s[r[1]]=1;});
+  const sel=document.getElementById("stateSel");
+  Object.keys(s).sort().forEach(function(st){
+    const o=document.createElement("option");o.value=st;o.textContent=st;sel.appendChild(o);
+  });
+  sel.addEventListener("change",drawHero);
+})();
+
+/* ---------- callout ---------- */
+(function(){
+  const m=heroAgg("ALL");
+  const blackTop=rateOf(m,"Black","150k+");
+  const whiteLow=rateOf(m,"White","<50k");
+  const num=document.getElementById("calloutNum"),txt=document.getElementById("calloutTxt");
+  if(blackTop&&whiteLow&&blackTop.rate>whiteLow.rate){
+    num.textContent=pct(blackTop.rate);
+    txt.textContent="A Black applicant earning 150k+ is denied "+pct(blackTop.rate)+
+      " of the time — more often than a White applicant earning under 50k ("+pct(whiteLow.rate)+").";
+    return;
+  }
+  // fall back: sharpest cross-band comparison where a non-White group's top band
+  // exceeds White's bottom band; else biggest same-band gap vs White.
+  let best=null;
+  GROUPS.forEach(function(g){
+    if(g==="White")return;
+    const gt=rateOf(m,g,"150k+");
+    if(gt&&whiteLow&&gt.rate>whiteLow.rate&&(!best||gt.rate>best.rate))
+      best={g:g,rate:gt.rate};
+  });
+  if(best&&whiteLow){
+    num.textContent=pct(best.rate);
+    txt.textContent="A "+best.g+" applicant earning 150k+ is denied "+pct(best.rate)+
+      " of the time — more often than a White applicant earning under 50k ("+pct(whiteLow.rate)+").";
+    return;
+  }
+  let gap=null;
+  GROUPS.forEach(function(g){
+    if(g==="White")return;
+    BANDS.forEach(function(b){
+      const a=rateOf(m,g,b),w=rateOf(m,"White",b);
+      if(a&&w){
+        const d=a.rate-w.rate;
+        if(!gap||d>gap.d)gap={g:g,b:b,d:d,a:a.rate,w:w.rate};
+      }
+    });
+  });
+  if(gap){
+    num.textContent="+"+(gap.d*100).toFixed(1)+"pp";
+    txt.textContent="The sharpest gap: "+gap.g+" applicants in the "+gap.b+
+      " band are denied "+pct(gap.a)+" vs "+pct(gap.w)+" for White applicants in the same band.";
+  }else{
+    num.textContent="–";txt.textContent="Not enough data to compute the comparison.";
+  }
+})();
+
+/* ---------- hero dot plot ---------- */
+function drawHero(){
+  const state=document.getElementById("stateSel").value;
+  const m=heroAgg(state);
+  const host=document.getElementById("hero");host.innerHTML="";
+  const W=Math.max(480,host.clientWidth||host.parentNode.clientWidth-36);
+  const H=340,ML=52,MR=20,MT=14,MB=34;
+  const iw=W-ML-MR,ih=H-MT-MB;
+  let maxR=0;
+  GROUPS.forEach(function(g){BANDS.forEach(function(b){
+    const v=rateOf(m,g,b);if(v&&v.rate>maxR)maxR=v.rate;});});
+  maxR=Math.max(0.05,Math.ceil(maxR*100/5)*5/100);
+  const y=function(r){return MT+ih-(r/maxR)*ih;};
+  const bx=function(i){return ML+iw*(i+0.5)/BANDS.length;};
+  const svg=el("svg",{width:W,height:H,role:"img","aria-label":"Denial rate by income band and race group"});
+  // gridlines + y labels
+  const step=maxR>0.2?0.05:0.025;
+  for(let r=0;r<=maxR+1e-9;r+=step){
+    svg.appendChild(el("line",{x1:ML,x2:W-MR,y1:y(r),y2:y(r),class:"gridline"}));
+    const t=el("text",{x:ML-8,y:y(r)+4,"text-anchor":"end"});
+    t.textContent=(r*100).toFixed(0)+"%";svg.appendChild(t);
+  }
+  BANDS.forEach(function(b,i){
+    const t=el("text",{x:bx(i),y:H-12,"text-anchor":"middle"});
+    t.textContent=b;svg.appendChild(t);
+    // min-max connector
+    let lo=null,hi=null;
+    GROUPS.forEach(function(g){
+      const v=rateOf(m,g,b);if(!v)return;
+      if(lo===null||v.rate<lo)lo=v.rate;
+      if(hi===null||v.rate>hi)hi=v.rate;
+    });
+    if(lo!==null&&hi!==null)
+      svg.appendChild(el("line",{x1:bx(i),x2:bx(i),y1:y(lo),y2:y(hi),
+        stroke:"#3a4656","stroke-width":1.5}));
+  });
+  // dots (slight horizontal jitter per group for overlap legibility)
+  BANDS.forEach(function(b,i){
+    GROUPS.forEach(function(g,gi){
+      const v=rateOf(m,g,b);if(!v)return;
+      const cx=bx(i)+(gi-(GROUPS.length-1)/2)*7;
+      const c=el("circle",{cx:cx,cy:y(v.rate),r:6,fill:GCOLOR[g],
+        stroke:"#0b0f14","stroke-width":1.5,tabindex:0});
+      const tip='<div class="tt-h">'+g+" · "+b+(state!=="ALL"?" · "+state:"")+"</div>"+
+        '<div class="row"><span>denial rate</span><b>'+pct(v.rate)+"</b></div>"+
+        '<div class="row"><span>applications</span><b>'+fmt(v.apps)+"</b></div>"+
+        '<div class="row"><span>denied</span><b>'+fmt(v.den)+"</b></div>";
+      c.addEventListener("mousemove",function(e){showTip(tip,e);});
+      c.addEventListener("mouseleave",hideTip);
+      c.addEventListener("focus",function(){
+        const r=c.getBoundingClientRect();
+        showTip(tip,{pageX:r.left+window.scrollX,pageY:r.bottom+window.scrollY});
+      });
+      c.addEventListener("blur",hideTip);
+      svg.appendChild(c);
+    });
+  });
+  host.appendChild(svg);
+  legendInto(document.getElementById("heroLegend"),GROUPS.map(function(g){return[g,GCOLOR[g]];}));
+}
+
+/* ---------- trend line chart ---------- */
+function drawTrend(){
+  const host=document.getElementById("trend");host.innerHTML="";
+  const W=Math.max(480,host.clientWidth||host.parentNode.clientWidth-36);
+  const H=340,ML=52,MR=140,MT=14,MB=34;
+  const iw=W-ML-MR,ih=H-MT-MB;
+  let maxR=0;
+  const series={};
+  GROUPS.forEach(function(g){
+    series[g]=YEARS.map(function(yr){
+      const v=yearAgg[g+"|"+yr];
+      const r=(v&&v.a>0)?v.d/v.a:null;
+      if(r!==null&&r>maxR)maxR=r;
+      return r;
+    });
+  });
+  maxR=Math.max(0.05,Math.ceil(maxR*100/5)*5/100);
+  const y=function(r){return MT+ih-(r/maxR)*ih;};
+  const x=function(i){return ML+(YEARS.length>1?iw*i/(YEARS.length-1):iw/2);};
+  const svg=el("svg",{width:W,height:H,role:"img","aria-label":"National denial rate per race group by year"});
+  const step=maxR>0.2?0.05:0.025;
+  for(let r=0;r<=maxR+1e-9;r+=step){
+    svg.appendChild(el("line",{x1:ML,x2:ML+iw,y1:y(r),y2:y(r),class:"gridline"}));
+    const t=el("text",{x:ML-8,y:y(r)+4,"text-anchor":"end"});
+    t.textContent=(r*100).toFixed(0)+"%";svg.appendChild(t);
+  }
+  YEARS.forEach(function(yr,i){
+    if(i%2===0||YEARS.length<=8){
+      const t=el("text",{x:x(i),y:H-12,"text-anchor":"middle"});
+      t.textContent=yr;svg.appendChild(t);
+    }
+  });
+  // lines + direct labels (nudged apart at right edge)
+  const labels=[];
+  GROUPS.forEach(function(g){
+    const pts=[];
+    series[g].forEach(function(r,i){if(r!==null)pts.push([x(i),y(r)]);});
+    if(!pts.length)return;
+    svg.appendChild(el("path",{
+      d:pts.map(function(p,i){return (i?"L":"M")+p[0].toFixed(1)+" "+p[1].toFixed(1);}).join(""),
+      fill:"none",stroke:GCOLOR[g],"stroke-width":2}));
+    labels.push({g:g,y:pts[pts.length-1][1]});
+  });
+  labels.sort(function(a,b){return a.y-b.y;});
+  for(let i=1;i<labels.length;i++)
+    if(labels[i].y-labels[i-1].y<13)labels[i].y=labels[i-1].y+13;
+  labels.forEach(function(L){
+    const t=el("text",{x:ML+iw+8,y:L.y+4,class:"direct",fill:GCOLOR[L.g]});
+    t.style.fill=GCOLOR[L.g];t.textContent=L.g;svg.appendChild(t);
+  });
+  // crosshair overlay
+  const cross=el("line",{y1:MT,y2:MT+ih,stroke:"#3a4656","stroke-width":1,visibility:"hidden"});
+  svg.appendChild(cross);
+  const overlay=el("rect",{x:ML,y:MT,width:iw,height:ih,fill:"transparent"});
+  overlay.addEventListener("mousemove",function(e){
+    const rect=svg.getBoundingClientRect();
+    const mx=e.clientX-rect.left;
+    let idx=0,bd=1e9;
+    YEARS.forEach(function(_,i){const d=Math.abs(x(i)-mx);if(d<bd){bd=d;idx=i;}});
+    cross.setAttribute("x1",x(idx));cross.setAttribute("x2",x(idx));
+    cross.setAttribute("visibility","visible");
+    let html='<div class="tt-h">'+YEARS[idx]+"</div>";
+    GROUPS.slice().sort(function(a,b){
+      return (series[b][idx]||0)-(series[a][idx]||0);
+    }).forEach(function(g){
+      const r=series[g][idx];
+      html+='<div class="row"><span style="color:'+GCOLOR[g]+'">'+g+"</span><b>"+
+        (r===null?"–":pct(r))+"</b></div>";
+    });
+    showTip(html,e);
+  });
+  overlay.addEventListener("mouseleave",function(){
+    cross.setAttribute("visibility","hidden");hideTip();
+  });
+  svg.appendChild(overlay);
+  host.appendChild(svg);
+  legendInto(document.getElementById("trendLegend"),GROUPS.map(function(g){return[g,GCOLOR[g]];}));
+}
+
+/* ---------- reasons 100% stacked bars ---------- */
+function drawReasons(){
+  const host=document.getElementById("reasons");host.innerHTML="";
+  const rGroups=[];
+  REASONS.forEach(function(r){if(rGroups.indexOf(r[0])<0)rGroups.push(r[0]);});
+  // top 6 reasons overall
+  const tot={};
+  REASONS.forEach(function(r){tot[r[1]]=(tot[r[1]]||0)+r[2];});
+  const top=Object.keys(tot).sort(function(a,b){return tot[b]-tot[a];}).slice(0,6);
+  const cats=top.concat(["Other"]);
+  const rcol={};cats.forEach(function(c,i){rcol[c]=REASON_COLORS[i%REASON_COLORS.length];});
+  // per-group shares
+  const shares={};
+  rGroups.forEach(function(g){
+    const m={};let s=0;
+    REASONS.forEach(function(r){
+      if(r[0]!==g)return;
+      const key=top.indexOf(r[1])>=0?r[1]:"Other";
+      m[key]=(m[key]||0)+r[2];s+=r[2];
+    });
+    shares[g]={m:m,total:s};
+  });
+  const W=Math.max(480,host.clientWidth||host.parentNode.clientWidth-36);
+  const rowH=34,gapY=14,ML=120,MR=16,MT=6;
+  const iw=W-ML-MR;
+  const H=MT+rGroups.length*(rowH+gapY);
+  const svg=el("svg",{width:W,height:H,role:"img","aria-label":"Share of denial reasons per race group"});
+  rGroups.forEach(function(g,gi){
+    const yy=MT+gi*(rowH+gapY);
+    const t=el("text",{x:ML-10,y:yy+rowH/2+4,"text-anchor":"end"});
+    t.style.fill=GCOLOR[g]||"var(--muted)";t.textContent=g;svg.appendChild(t);
+    let cx=ML;
+    const S=shares[g];
+    if(!S.total)return;
+    cats.forEach(function(c){
+      const v=S.m[c]||0;if(!v)return;
+      const w=Math.max(0,iw*v/S.total-2); // 2px gap between segments
+      const rect=el("rect",{x:cx,y:yy,width:w,height:rowH,fill:rcol[c],rx:2,tabindex:0});
+      const tip='<div class="tt-h">'+g+"</div>"+
+        '<div class="row"><span>'+c+"</span><b>"+pct(v/S.total)+"</b></div>"+
+        '<div class="row"><span>count</span><b>'+fmt(v)+"</b></div>";
+      rect.addEventListener("mousemove",function(e){showTip(tip,e);});
+      rect.addEventListener("mouseleave",hideTip);
+      rect.addEventListener("focus",function(){
+        const r=rect.getBoundingClientRect();
+        showTip(tip,{pageX:r.left+window.scrollX,pageY:r.bottom+window.scrollY});
+      });
+      rect.addEventListener("blur",hideTip);
+      svg.appendChild(rect);
+      cx+=iw*v/S.total;
+    });
+  });
+  host.appendChild(svg);
+  legendInto(document.getElementById("reasonsLegend"),cats.map(function(c){return[c,rcol[c]];}));
+}
+
+function drawAll(){drawHero();drawTrend();drawReasons();}
+drawAll();
+let rz=null;
+window.addEventListener("resize",function(){
+  clearTimeout(rz);rz=setTimeout(drawAll,120);
+});
+</script>

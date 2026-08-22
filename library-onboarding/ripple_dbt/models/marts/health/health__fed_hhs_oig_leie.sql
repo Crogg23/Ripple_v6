@@ -16,7 +16,12 @@ select
     trim(npi)                                      as npi,
     trim(upin)                                     as upin,
     trim(exclusion_type)                           as exclusion_type,
-    trim(exclusion_date_raw)                       as exclusion_date,
+    -- TYPED 2026-08-22: values are YYYYMMDD (sampled live); explicit format,
+    -- range-guarded like every typing-layer date
+    case when try_to_date(nullif(trim(exclusion_date_raw), ''), 'YYYYMMDD')
+              between '1800-01-01' and '2100-01-01'
+         then try_to_date(nullif(trim(exclusion_date_raw), ''), 'YYYYMMDD') end
+                                                   as exclusion_date,
     trim(reinstatement_date)                       as reinstatement_date,
     trim(address)                                  as address,
     trim(city)                                     as city,

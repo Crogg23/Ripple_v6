@@ -23,7 +23,7 @@ select
     DAC_CATEGORY,
     OBLIGATION_AMOUNT,
     DISBURSEMENT_AMOUNT,
-    FISCAL_YEAR,
+    {{ ripple_dt('FISCAL_YEAR') }} as FISCAL_YEAR,
     EIN,
     TRANSACTION_TYPE
 from source

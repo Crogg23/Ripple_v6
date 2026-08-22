@@ -12,7 +12,7 @@ select
     SITE_NAME as site_name,
     PARAMETER_CD as parameter_cd,
     PARAMETER_NAME as parameter_name,
-    DATETIME as datetime,
+    {{ ripple_dt('DATETIME') }} as datetime,
     try_to_double("VALUE") as value,
     UNIT_CD as unit_cd,
     QUALIFIER as qualifier,

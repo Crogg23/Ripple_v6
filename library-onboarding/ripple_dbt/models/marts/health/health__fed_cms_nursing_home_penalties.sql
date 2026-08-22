@@ -19,7 +19,7 @@ select
     FINE_ID as fine_id,
     try_to_double(FINE_AMOUNT) as fine_amount,
     try_to_date(PAYMENT_DENIAL_START_DATE) as payment_denial_start_date,
-    PAYMENT_DENIAL_LENGTH_IN_DAYS as payment_denial_length_in_days,
+    {{ ripple_num('PAYMENT_DENIAL_LENGTH_IN_DAYS') }} as payment_denial_length_in_days,
     LOCATION as location,
     try_to_date(PROCESSING_DATE) as processing_date
 from source

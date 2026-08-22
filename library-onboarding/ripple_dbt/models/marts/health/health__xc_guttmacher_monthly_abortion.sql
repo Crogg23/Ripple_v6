@@ -10,7 +10,7 @@ with source as (
 select
     STATE as state,
     "MONTH" as month,
-    MEDIAN as median,
+    {{ ripple_num('MEDIAN') }} as median,
     LOWERBOUND as lowerbound,
     UPPERBOUND as upperbound,
     SOURCE as source,

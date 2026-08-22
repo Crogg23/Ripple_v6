@@ -10,15 +10,15 @@ with source as (
 select
     INDICATOR as indicator,
     UNIT as unit,
-    UNIT_NUM as unit_num,
+    {{ ripple_num('UNIT_NUM') }} as unit_num,
     STUB_NAME as stub_name,
     STUB_NAME_NUM as stub_name_num,
     STUB_LABEL as stub_label,
     STUB_LABEL_NUM as stub_label_num,
     try_to_number("YEAR") as year,
-    YEAR_NUM as year_num,
+    {{ ripple_num('YEAR_NUM') }} as year_num,
     AGE as age,
-    AGE_NUM as age_num,
+    {{ ripple_num('AGE_NUM') }} as age_num,
     ESTIMATE as estimate,
     FLAG as flag
 from source

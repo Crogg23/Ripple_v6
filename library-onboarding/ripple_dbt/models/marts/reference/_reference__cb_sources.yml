@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: XC_CENSUS_CB_COUNTY
+      - name: XC_CENSUS_CB_STATE
+      - name: XC_CENSUS_CB_ZCTA

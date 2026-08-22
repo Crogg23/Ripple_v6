@@ -48,7 +48,7 @@ select
     try_to_double(MED_MDCR_ALOWD_AMT) as med_mdcr_alowd_amt,
     try_to_double(MED_MDCR_PYMT_AMT) as med_mdcr_pymt_amt,
     try_to_double(MED_MDCR_STDZD_AMT) as med_mdcr_stdzd_amt,
-    BENE_AVG_AGE as bene_avg_age,
+    {{ ripple_num('BENE_AVG_AGE') }} as bene_avg_age,
     try_to_number(BENE_AGE_LT_65_CNT) as bene_age_lt_65_cnt,
     try_to_number(BENE_AGE_65_74_CNT) as bene_age_65_74_cnt,
     try_to_number(BENE_AGE_75_84_CNT) as bene_age_75_84_cnt,
@@ -88,5 +88,5 @@ select
     try_to_double(BENE_CC_PH_PARKINSON_V2_PCT) as bene_cc_ph_parkinson_v2_pct,
     try_to_double(BENE_CC_PH_ARTHRITIS_V2_PCT) as bene_cc_ph_arthritis_v2_pct,
     try_to_double(BENE_CC_PH_STROKE_TIA_V2_PCT) as bene_cc_ph_stroke_tia_v2_pct,
-    BENE_AVG_RISK_SCRE as bene_avg_risk_scre
+    {{ ripple_num('BENE_AVG_RISK_SCRE') }} as bene_avg_risk_scre
 from source

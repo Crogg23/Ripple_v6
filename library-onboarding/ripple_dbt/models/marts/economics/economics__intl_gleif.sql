@@ -1,6 +1,11 @@
 {{ config(materialized='table', schema='ECONOMICS') }}
 
 -- GRAIN: one row per Legal Entity Identifier (LEI)
+--
+-- TYPED 2026-08-22: the five registry lifecycle dates now cast to TIMESTAMP_TZ
+-- (values are ISO-8601 with offsets, sampled live; empty string is the only
+-- non-castable value). Registry/authority ID columns stay TEXT on purpose --
+-- they are identifiers, not measures, despite numeric-looking names.
 
 with source as (
     select * from {{ source('ripple_raw', 'INTL_GLEIF') }}
@@ -207,8 +212,8 @@ select
     "Entity.AssociatedEntity.AssociatedEntityName" as ENTITY_ASSOCIATEDENTITY_ASSOCIATEDENTITYNAME,
     "Entity.AssociatedEntity.AssociatedEntityName.xmllang" as ENTITY_ASSOCIATEDENTITY_ASSOCIATEDENTITYNAME_XMLLANG,
     "Entity.EntityStatus" as ENTITY_ENTITYSTATUS,
-    "Entity.EntityCreationDate" as ENTITY_ENTITYCREATIONDATE,
-    "Entity.EntityExpirationDate" as ENTITY_ENTITYEXPIRATIONDATE,
+    try_to_timestamp_tz(nullif("Entity.EntityCreationDate", '')) as ENTITY_ENTITYCREATIONDATE,
+    try_to_timestamp_tz(nullif("Entity.EntityExpirationDate", '')) as ENTITY_ENTITYEXPIRATIONDATE,
     "Entity.EntityExpirationReason" as ENTITY_ENTITYEXPIRATIONREASON,
     "Entity.SuccessorEntity.1.SuccessorLEI" as ENTITY_SUCCESSORENTITY_1_SUCCESSORLEI,
     "Entity.SuccessorEntity.1.SuccessorEntityName" as ENTITY_SUCCESSORENTITY_1_SUCCESSORENTITYNAME,
@@ -320,10 +325,10 @@ select
     "Entity.LegalEntityEvents.LegalEntityEvent.5.AffectedFields.4.field_xpath" as ENTITY_LEGALENTITYEVENTS_LEGALENTITYEVENT_5_AFFECTEDFIELDS_4_FIELD_XPATH,
     "Entity.LegalEntityEvents.LegalEntityEvent.5.AffectedFields.5.AffectedField" as ENTITY_LEGALENTITYEVENTS_LEGALENTITYEVENT_5_AFFECTEDFIELDS_5_AFFECTEDFIELD,
     "Entity.LegalEntityEvents.LegalEntityEvent.5.AffectedFields.5.field_xpath" as ENTITY_LEGALENTITYEVENTS_LEGALENTITYEVENT_5_AFFECTEDFIELDS_5_FIELD_XPATH,
-    "Registration.InitialRegistrationDate" as REGISTRATION_INITIALREGISTRATIONDATE,
-    "Registration.LastUpdateDate" as REGISTRATION_LASTUPDATEDATE,
+    try_to_timestamp_tz(nullif("Registration.InitialRegistrationDate", '')) as REGISTRATION_INITIALREGISTRATIONDATE,
+    try_to_timestamp_tz(nullif("Registration.LastUpdateDate", '')) as REGISTRATION_LASTUPDATEDATE,
     "Registration.RegistrationStatus" as REGISTRATION_REGISTRATIONSTATUS,
-    "Registration.NextRenewalDate" as REGISTRATION_NEXTRENEWALDATE,
+    try_to_timestamp_tz(nullif("Registration.NextRenewalDate", '')) as REGISTRATION_NEXTRENEWALDATE,
     "Registration.ManagingLOU" as REGISTRATION_MANAGINGLOU,
     "Registration.ValidationSources" as REGISTRATION_VALIDATIONSOURCES,
     "Registration.ValidationAuthority.ValidationAuthorityID" as REGISTRATION_VALIDATIONAUTHORITY_VALIDATIONAUTHORITYID,

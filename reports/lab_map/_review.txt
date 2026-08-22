@@ -1,0 +1,217 @@
+
+########## Making Massive Scatter Plots Readable
+
+=== Aggregate first (histograms/heatmaps/hexbins)  [READY]
+NEEDS: A table big enough that drawing every row breaks a browser, plus something to group rows by (a place, a category, or a date bucket) and something to count or add up inside each group. No coordinates needed for the histogram/heatmap version.
+BLOCKER: -
+DIST: -
+NOTE: The rollups already exist — 14 of them — and every single one is blind below the state line.
+  CAND LIBRARY_MARTS.HEALTH.HEALTH__FED_DEA_ARCOS (178598026) BUYER_COUNTY/CITY/STATE/ZIP to group by, TOTAL_MME and DOSAGE_UNITS typed FLOAT to sum, TRANSACTION_DATE a real DATE for time buckets — all confirmed in the column list
+  CAND LIBRARY_MARTS.MARITIME.MARITIME__FED_NOAA_AIS (58104610) LATITUDE and LONGITUDE typed FLOAT plus the warehouse's only real GEOGRAPHY column, so a map hexbin needs no join
+  CAND LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY (31403215) 31.4M rows with a real FIPS_COUNTY_CODE — the biggest fact table that joins to the county rung by code instead of by name
+
+=== Encode density not position  [READY]
+NEEDS: Lots of records piling onto the same or nearly the same spot, so you colour the spot by how many landed there instead of drawing a dot per record. Needs a real coordinate pair (or any two real number columns) on a table big enough to overplot.
+BLOCKER: -
+DIST: -
+NOTE: Eight hundred tables look like they have coordinates; only 122 store latitude as an actual number — the rest are text, and that is where the 'nan' corruption lives.
+  CAND LIBRARY_MARTS.MARITIME.MARITIME__FED_NOAA_AIS (58104610) 58.1M position pings, LATITUDE/LONGITUDE typed FLOAT, plus the warehouse's only real GEOGRAPHY column so Snowflake bins server-side
+  CAND LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_FRS_FACILITIES (5300149) 5.3M regulated facilities, LATITUDE/LONGITUDE both FLOAT, and a real FIPS_CODE plus POSTAL_CODE so the density surface can also roll up by county
+  CAND LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_USGS_WATER (6694816) 6.7M water records with LATITUDE typed FLOAT — a second big numerically-typed coordinate table the earlier scoring missed
+
+=== Dimension reduction (PCA/t-SNE)  [READY]
+NEEDS: One row equals one thing, with many real number columns sitting side by side on that same row — twenty-plus measurements per subject. Counts and dollars and percentages, not ID numbers that merely happen to be digits.
+BLOCKER: -
+DIST: -
+NOTE: Raised from PARTIAL: ten tables carry a 20-plus measure vector on 50,000-plus rows, and three of them are large — but the top one has an exact duplicate twin, so pick a side before you reduce or you double every point.
+  CAND LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_MEDICARE_PROVIDER (1296739) 49 numeric columns verified as real measures — payments, beneficiary age and race counts, ~35 chronic-condition percentages — one row per provider
+  CAND LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER (381228) 381k rows and 52 numeric columns, 51 of them genuine measures — a second big-and-wide table the earlier scoring missed entirely
+  CAND LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE (503917) 503,917 rows with 62 numeric columns, though about half are positional MEASURE_ID slots so the usable vector is nearer 30
+
+=== Sample or tier by zoom  [PARTIAL]
+NEEDS: A nesting ladder — state to county to tract to individual point — so the wide view draws a few thousand shapes and only fetches the millions of underlying records when someone zooms in. Each rung needs a place to draw and a number to show.
+BLOCKER: There is no boundary-shape table anywhere in the warehouse, and the technique silently needs one. Exactly two columns out of 162,750 carry a real GEOGRAPHY type and both are the same ship-position point column; the 1,212 tables the geometry signal flagged are name-only TEXT leftovers from city portal crawls, with no national state, county, tract or ZCTA polygon among them. So a zoom that fills in areas has nothing to fill — you get sized dots on centroids. Second, smaller gap: the biggest fact table, ARCOS, has no FIPS code in any of its 33 columns, so tiering it to the county rung is a county-NAME match rather than a code match.
+DIST: Pull one boundary source — Census TIGER state, county, tract and ZCTA polygons — keyed on the FIPS codes DIM_STATE, DIM_COUNTY and DIM_TRACT already carry. That single ingest lights all four rungs at once; everything else is already sitting in LIBRARY_MARTS.CORE.
+NOTE: Every rung of the zoom ladder exists and county and tract even carry population — but nothing in this warehouse knows the shape of a county, so zoom gives you bigger dots, never filled-in areas.
+  CAND LIBRARY_MARTS.CORE.DIM_COUNTY (3222) the middle rung — COUNTY_FIPS and STATE_FIPS keys, POP_CENTER_LAT/LON to draw on, POPULATION_2020 as a ready-made rate denominator
+  CAND LIBRARY_MARTS.CORE.DIM_TRACT (85391) the fine rung — TRACT_GEOID nesting up through COUNTY_FIPS and STATE_FIPS, with its own centroid and 2020 population
+  CAND LIBRARY_MARTS.HOUSING.HOUSING__FED_CFPB_HMDA_HISTORIC (19136434) the only large national table carrying the whole ladder by code on one row — STATE_CODE, COUNTY_CODE and CENSUS_TRACT_NUMBER across 19.1M loan records; the HMDA tables the earlier scoring named instea
+
+########## The Organism Metaphor (Mass / Distance / Circulation / Ripples)
+
+=== Mass (density/heatmaps/bubble/contour)  [READY]
+NEEDS: Something to count, and somewhere to put it — either a real coordinate pair, or a place code (ZIP, county, state, census tract) you can pin to a map. Plus a population number underneath so you can show a rate per person instead of a raw pile that just tracks where people live.
+BLOCKER: -
+DIST: -
+NOTE: The denominator stops at county and tract — no table anywhere carries population by ZIP, and XWALK_ZCTA_COUNTY (46,960 rows) has no population column, so the warehouse's single most common geography cannot be turned into a per-person rate without a many-to-many ZIP-to-county allocation you would have to build.
+  CAND LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_FRS_FACILITIES (5300149) REGISTRY_ID plus numeric LATITUDE/LONGITUDE plus COUNTY, FIPS_CODE, STATE_CODE and POSTAL_CODE — the widest clean census of regulated sites
+  CAND LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_ECHO (3135554) lat/lon, inspection and penalty dates, and compliance flags on one row — but its money column is the documented phantom-fines defect, so map counts, not dollars
+  CAND LIBRARY_MARTS.CORE.DIM_COUNTY (3222) POPULATION_2020 plus population-weighted centroid lat/lon, the denominator that turns a pile into a rate
+
+=== Distance (clustering, dimension reduction over join-key relatedness)  [READY]
+NEEDS: A number saying how close any two things are — either a measured overlap score between a pair of tables, or a row of features per source you can cluster on. Then something to squash it into two dimensions so it can be looked at.
+BLOCKER: -
+DIST: -
+NOTE: Cluster off the registry's feature columns, not off CONNECT_EDGES: 4,910 measured pairs is a sliver of the possible pairs, and a missing pair there means 'never measured,' not 'no overlap' — treating missing as zero would make the warehouse look far more disconnected than it is.
+  CAND LIBRARY_META.REGISTRY.SOURCE_REGISTRY (2778) five ARRAY feature columns plus GRAIN, SPINE_ENTITY, JOIN_KEY_TIER and HAS_EVENTS give every source a vector, no join needed
+  CAND LIBRARY_META.CONNECT.CONNECT_EDGES (4910) MATCH_RATE and CONFIDENCE banded by TIER on measured table pairs is a ready-made similarity score
+  CAND LIBRARY_META.CONNECT.ENTITY_MAP (33312349) MEMBER_TABLES plus SOURCE_COUNT is entity-level co-occurrence, the finest-grain relatedness available
+
+=== Circulation (network / force-directed graphs)  [READY]
+NEEDS: An edge list: two named endpoints on every row, ideally with a label saying what the link is and a weight saying how strong. Plus a node list so the dots have names.
+BLOCKER: -
+DIST: -
+NOTE: The two biggest graphs are sealed islands: I checked every mart column and REPORTER_DEA_NO / BUYER_DEA_NO exist nowhere except ARCOS, ICIJ's NODE_ID nowhere except the ICIJ tables, and COMPANY_NUMBER nowhere except the two UK tables — so ARCOS and ICIJ draw beautiful pictures that cannot be linked to anything else, while the much smaller GLEIF graph is the only one that can.
+  CAND LIBRARY_MARTS.HEALTH.HEALTH__FED_DEA_ARCOS (178598026) REPORTER_DEA_NO to BUYER_DEA_NO with quantity, opioid dose weight and a real date — the biggest directed weighted dated flow network in the building
+  CAND LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_RELATIONSHIPS (3339267) start/end node ids plus a relation type, with five node tables supplying names, addresses and jurisdictions
+  CAND LIBRARY_MARTS.ECONOMICS.ECONOMICS__INTL_GLEIF_RELATIONSHIPS (484142) the only relationship graph whose node identifier reaches outside its own source — LEI also appears in nine other mart tables across four domains
+
+=== Ripples (diffusion/propagation animation)  [PARTIAL]
+NEEDS: Edges plus a clock on the edges. You have to know when each link switched on or fired, or at least have an ordered sequence, or nothing can move and there is nothing to animate.
+BLOCKER: Two things, not one. First, no spine edge table has a world clock — CONNECT_EDGES, MATCH_PAIRS, ENTITY_XREF and ENTITY_MAP carry only BUILT_AT and RUN_ID, a pipeline timestamp. Second, and more binding: the three source graphs that DO have dated edges are sealed — ARCOS's DEA numbers, ICIJ's NODE_IDs and Companies House's COMPANY_NUMBERs appear in no other mart table in the warehouse, so a ripple can be animated inside one source and has nowhere to propagate to.
+DIST: Cast GLEIF RELATIONSHIPS' five TEXT period start/end pairs to real dates. GLEIF is the only dated relationship source whose node identifier (LEI) also appears in nine other mart tables across finance, housing and environment, so this is the one edge set that could actually carry a ripple out of its own source. The previously suggested fix — copying RIPPLE_TS into ENTITY_XREF and MATCH_PAIRS — does not work: those rows are key-value matches, and one key value appears on many source rows with many different dates, so there is no single timestamp to copy.
+NOTE: Do not build on Companies House PSC without checking it first — it sits at exactly 7,000,000 rows in both raw and mart, the same round-number signature as the 5,000-row subawards stub, so the ownership timeline you would animate is probably a truncated slice of the real one.
+  CAND LIBRARY_MARTS.HEALTH.HEALTH__FED_DEA_ARCOS (178598026) dated, weighted, directed shipments — propagation works today, but only inside this one source
+  CAND LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_RELATIONSHIPS (3339267) START_DATE and END_DATE as real DATE columns sitting directly on 3.3M edges
+  CAND LIBRARY_MARTS.ECONOMICS.ECONOMICS__INTL_GLEIF_RELATIONSHIPS (484142) dated ownership links on an identifier nine other mart tables also carry — small, but the only one that can cross a source boundary
+
+########## Physics-Derived Techniques
+
+=== Topological Data Analysis (TDA)  [READY]
+NEEDS: A pile of points where every point is one real thing — a hospital, a plant, a water system — and each point carries a bunch of comparable numbers as its coordinates. The math then hunts for loops, holes and clumps in that pile that ordinary averages never show. The 'how far apart are two points' rule is arithmetic you write at run time, not a column you have to find.
+BLOCKER: -
+DIST: -
+NOTE: This was under-called: the missing piece was a distance calculation, which is arithmetic you write, not a table you need — the clouds exist today, and the real trap is that the 1.3M-row Medicare table is loaded twice under two names.
+  CAND LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_HCRIS (6103) 107 typed-numeric columns on 6,103 hospitals — the densest per-row cloud in the warehouse and small enough to run in seconds
+  CAND LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_POS_OTHER (44429) 204 typed-numeric columns on 44,429 Medicare facilities — the widest numeric table anywhere, no duplicate twin
+  CAND LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE (503917) 62 typed-numeric columns over half a million providers — the biggest genuinely wide cloud with no known duplicate
+
+=== Percolation theory  [READY]
+NEEDS: A network whose links each carry a strength score, so you can turn a dial from 'only rock-solid links count' down to 'count everything' and watch the moment scattered islands snap into one giant blob. The dial setting where the snap happens is the finding.
+BLOCKER: -
+DIST: -
+NOTE: The dial really is already built and labelled — but two of the three networks are the warehouse wired to itself; ARCOS is the only one where the snap point would be about the world, not the database.
+  CAND LIBRARY_META.CONNECT.CONNECT_EDGES (4910) TIER, MATCH_RATE and CONFIDENCE confirmed on every edge — three ready-made threshold dials on a graph small enough to sweep instantly
+  CAND LIBRARY_MARTS.HEALTH.HEALTH__FED_DEA_ARCOS (178598026) REPORTER_DEA_NO to BUYER_DEA_NO with FLOAT quantities and a real DATE — a genuine physical shipment network you can threshold on volume
+  CAND LIBRARY_META.CONNECT.MATCH_PAIRS (181002484) KEY_TYPE, KEY_VALUE, TABLE_A, TABLE_B gives per-value witnesses, so edges can be weighted by real shared values instead of a tier label
+
+=== Network centrality  [READY]
+NEEDS: A list of links where both ends are the actual things you care about — this person to that company, this doctor to that hospital — so 'who is quietly the bridge everything runs through' says something about the world instead of about the database.
+BLOCKER: -
+DIST: -
+NOTE: The spine links things to files, not to each other — so the honest people-to-people graphs are ICIJ, ARCOS and CMS affiliation, and the court-citation network is a dead end because the table that would hold those edges is sitting there empty.
+  CAND LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_RELATIONSHIPS (3339267) NODE_ID_START to NODE_ID_END with a relation type and real start/end dates — a true directed typed edge list over ~2M named nodes
+  CAND LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_FACILITY_AFFILIATION (2260193) NPI to CCN, hard federal identifiers on both ends — a clean doctor-to-facility graph
+  CAND LIBRARY_META.CONNECT.ENTITY_MAP (33312349) SOURCE_COUNT is bipartite degree already computed for 33.3M entities, with MEMBER_TABLES giving the neighbour list for free
+
+=== Entropy / information density  [READY]
+NEEDS: Counts spread across buckets — categories, months, or places — so you can measure whether they are spread evenly or piled into one corner, and catch the moment the spread collapses into a pattern.
+BLOCKER: -
+DIST: -
+NOTE: Four hundred tables all got the same clock column last week, so one query shape runs across the whole warehouse — just know that the biggest mortgage table's clock is a year stored as text, so it can never be sliced finer than annually.
+  CAND LIBRARY_MARTS.CONSUMER_PROTECTION.CONSUMER_PROTECTION__FED_CFPB_COMPLAINTS (17168287) seven text category columns plus state, zip, two real DATEs and three BOOLEANs — textbook category-by-place-by-time entropy, all columns confirmed
+  CAND LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT (15432737) violation, category and contaminant codes with a health-based flag and 13 real DATE columns for time-sliced distributions
+  CAND LIBRARY_META.CONNECT.ENTITY_MAP (33312349) MEMBER_TABLES gives each of 33.3M entities a distribution over source files, so entropy of that mix measures directly whether a thing is visible everywhere or hiding in one place
+
+########## GIS / Geographic Techniques
+
+=== Hotspot analysis (Getis-Ord Gi*)  [READY]
+NEEDS: A number attached to a place (facilities per county, deposits per county, denials per tract), plus a rule for which places count as next-door to which. The rule can be "within so many miles" — it does not have to be a shared border.
+BLOCKER: -
+DIST: -
+NOTE: The blocker is not the missing border list — it is that 88 mart models ran their county and FIPS columns through a number cast, so the key you would join on is the thing most likely to be broken.
+  CAND LIBRARY_MARTS.CORE.DIM_COUNTY (3222) POP_CENTER_LAT and POP_CENTER_LON as FLOAT plus POPULATION_2020 — the neighbour rule and the rate denominator come out of one 3,222-row table
+  CAND LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_FRS_FACILITIES (5300149) FIPS_CODE survived the Aug-10 review unflagged (only COUNTY_NAME and COUNTRY_NAME were bad-cast), so 5.3M regulated facilities roll up to clean county counts
+  CAND LIBRARY_MARTS.FINANCE.FINANCE__FED_FDIC_SOD_BRANCH_DEPOSITS (2823000) verdict OK in the defect review, with BRANCH_COUNTY_FIPS, BRANCH_DEPOSITS_THOUSANDS and SURVEY_YEAR — a clean value per county per year
+
+=== Kernel Density Estimation (KDE)  [READY]
+NEEDS: Dots on a map — a latitude and a longitude per row that are actually numbers, not text. Optionally a weight so a big facility counts more than a small one.
+BLOCKER: -
+DIST: -
+NOTE: The only technique here that needs nothing built first, but check row grain before you plot: FracFocus's 7.2M rows are chemical ingredients, not wells, and a prior session found loaders writing the text 'nan' into coordinate cells.
+  CAND LIBRARY_MARTS.MARITIME.MARITIME__FED_NOAA_AIS (58104610) LATITUDE and LONGITUDE as FLOAT, a genuine GEOGRAPHY column and a DATE — the densest point cloud in the warehouse, and its Aug-10 verdict is OK
+  CAND LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_FRS_FACILITIES (5300149) LATITUDE/LONGITUDE FLOAT on every EPA-regulated facility, with ADDRESS, COUNTY, FIPS_CODE and POSTAL_CODE to slice by — but no NAICS on this table
+  CAND LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_ECHO (3135554) LATITUDE/LONGITUDE FLOAT plus POPULATION_DENSITY on the same row — the heat surface and the people underneath it come from one table
+
+=== Spatial autocorrelation (Moran's I)  [READY]
+NEEDS: A value per place, a rule for which places are near which, and a shuffle test — reshuffle the values across places a few hundred times to see whether the real clustering beats random.
+BLOCKER: -
+DIST: -
+NOTE: The random-shuffle code this test needs is already built and running on corporate ownership — pointing it at distance instead of ownership is the whole job.
+  CAND LIBRARY_MARTS.HEALTH.HEALTH__FED_HRSA_SHORTAGE_AREAS (165531) HPSA_SCORE and HPSA_ESTIMATED_UNDERSERVED_POPULATION as FLOAT sitting on LATITUDE/LONGITUDE FLOAT — use the coordinates, not its seven bad-cast county and FIPS columns
+  CAND LIBRARY_MARTS.CORE.DIM_TRACT (85391) 85,391 tract centroids with POPULATION_2020 — the finest grain at which a distance-band neighbour rule can be built, and the denominator for any rate
+  CAND LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_FRS_FACILITIES (5300149) FIPS_CODE is one of the few county keys the defect review left unflagged, so 5.3M facilities give a clean value per county to test for clustering
+
+=== Voronoi diagrams  [READY]
+NEEDS: Points, plus a genuine reason each point owns the ground around it — a branch that takes deposits, a water system that serves households. Without that ownership meaning it is decoration.
+BLOCKER: -
+DIST: -
+NOTE: Not the dud the catalog assumes — people-per-bank-branch works as a plain join today; only the drawn picture is blocked, because there is no outline anywhere to clip the cells against.
+  CAND LIBRARY_MARTS.FINANCE.FINANCE__FED_FDIC_SOD_BRANCH_DEPOSITS (2823000) SIMS_LATITUDE/SIMS_LONGITUDE FLOAT plus BRANCH_DEPOSITS_THOUSANDS and SURVEY_YEAR, and a clean defect verdict — each point genuinely owns a measurable amount
+  CAND LIBRARY_MARTS.CORE.DIM_TRACT (85391) 85,391 centroids with POPULATION_2020 turn the tessellation into a nearest-point join and hand you people-per-catchment in the same step
+  CAND LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS (578198) CITY_SERVED and ZIP_CODE_SERVED per water system are usable as a declared-territory check, but COUNTY_SERVED is a flagged bad cast and the row count disagrees with its header
+
+=== Flow maps  [PARTIAL]
+NEEDS: One row saying a thing went from here to there — a start place and an end place side by side, ideally with an amount and a date — plus coordinates for both ends so the arc can be drawn.
+BLOCKER: The clean same-row flows are ZIP-to-ZIP and nothing in the warehouse can place a ZIP on a map: LIBRARY_MARTS.CORE.XWALK_ZCTA_COUNTY (46,960 rows) has no coordinates, and neither LIBRARY_MARTS.CORE.DIM_STATE nor LIBRARY_MARTS.REFERENCE.REF__DIM_STATE carries any either. The one source with county FIPS on both ends, LIBRARY_MARTS.ECONOMICS.ECONOMICS__FED_USASPENDING_ASSISTANCE_FULL, has BOTH of those columns — PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_COUNTY_FIPS_CODE and PRIME_AWARD_TRANSACTION_RECIPIENT_COUNTY_FIPS_CODE — pushed through try_to_number in the Aug-10 review, along with ACTION_DATE, so the claim that it joins straight to DIM_COUNTY centroids with no name matching is false as written.
+DIST: Build or load one ZCTA centroid table (roughly 33,000 rows of ZIP plus lat/lon) and every ZIP-to-ZIP flow in the warehouse becomes drawable; repairing the two USASpending county-FIPS casts so leading zeros survive unlocks the county-grain lane in parallel.
+NOTE: Downgraded from READY: the from-and-to columns are real, but the good ones are ZIPs and there is no ZIP centroid anywhere, so today you can count these flows without being able to draw a single arc.
+  CAND LIBRARY_MARTS.HEALTH.HEALTH__FED_DEA_ARCOS (178598026) REPORTER_CITY/STATE/ZIP to BUYER_CITY/STATE/ZIP on 178.6M rows with DOSAGE_UNITS and TOTAL_MME — the city/state/zip ends are clean, but both county columns and TRANSACTION_DATE are flagged bad casts a
+  CAND LIBRARY_MARTS.HOUSING.HOUSING__FED_FEMA_IA_HOUSING_REGISTRATIONS (3080000) DAMAGED_ZIP_CODE/CITY/STATE to RENTAL_RESOURCE_ZIP_CODE/CITY/STATE with RENTAL_ASSISTANCE_AMOUNT — household-grain displacement, though the round row count fits the confirmed load-cap pattern
+  CAND LIBRARY_MARTS.ECONOMICS.ECONOMICS__FED_USASPENDING_ASSISTANCE_FULL (19902879) place-of-performance and recipient county FIPS on the same row, which is the only county-to-county lane there is — but both of those FIPS columns are flagged as number casts, so the leading zeros are 
+
+########## Other Domains Raided for Ideas
+
+=== Epidemiology → contact tracing graphs  [READY]
+NEEDS: Records that put two parties in the same place at the same time — same building, same prescriber, same employer, same address — with a stable ID for each party and a start and end time. Without the clock you get a crowd, not a contact.
+BLOCKER: -
+DIST: -
+NOTE: One table already IS contact tracing — but its book-in/book-out clock was never rated, some book-outs are future-dated scheduled releases, and the table flags its own duplicate rows, so filter those three things before you count a single overlap.
+  CAND LIBRARY_MARTS.IMMIGRATION.IMMIGRATION__FED_ICE_DETENTION_STINTS (2571975) PERSON_HASH + DETENTION_FACILITY + BOOK_IN_AT/BOOK_OUT_AT as TIMESTAMP_NTZ — same place, same time, per person, no join
+  CAND LIBRARY_META.CONNECT.ENTITY_XREF (2672384) KEY_A/VALUE_A to KEY_B/VALUE_B with RELATION and FANOUT — a typed shared-key link with a hub-size counter to cap noise
+  CAND LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_FACILITY_AFFILIATION (2260193) NPI↔CCN bipartite co-affiliation — the doctor-shares-a-building edge, with no date column at all
+
+=== Astronomy → sky surveys / N-body clustering  [READY]
+NEEDS: A very large cloud of points — millions, not thousands — plus some measure that pulls related points together, so you can cluster and render density instead of drawing every dot. Distance on a map counts as that measure.
+BLOCKER: -
+DIST: -
+NOTE: 58 million ship pings is a real star field, but it is one week of January 2024 — a photograph, not a survey — and there is no stored similarity anywhere in the warehouse, so every distance you cluster on has to be computed from scratch.
+  CAND LIBRARY_MARTS.MARITIME.MARITIME__FED_NOAA_AIS (58104610) 58.1M lat/lon points plus POSITION_GEOGRAPHY — one of only two GEOGRAPHY columns in the warehouse, and the densest single cloud by 8x
+  CAND LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_FRACFOCUS_REGISTRY (7200550) 7.2M frack jobs with LATITUDE/LONGITUDE, API_NUMBER as the well id and JOB_START_DATE/JOB_END_DATE — the true second-densest cloud, and a dated one
+  CAND LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_FRS_FACILITIES (5300149) 5.3M mapped facilities with LATITUDE, LONGITUDE, ADDRESS and REGISTRY_ID — the point cloud you can actually label once clustered
+
+=== Neuroscience → connectome mapping  [PARTIAL]
+NEEDS: A huge list of connections between individual things — not between tables — plus enough of them joined into one structure that you can ask which few nodes hold the whole thing together. Millions of edges, one connected map.
+BLOCKER: The pieces never join into one circuit map: the two biggest edge lists are documented graph dark matter — ARCOS (178,598,026 rows) and ICIJ Offshore Leaks (3,339,267) have zero verified connections into the entity spine — and BRIDGE_ENTITIES, the table meant to hold the hub nodes, is confirmed empty at 0 rows while the only warehouse-wide 'edge' table (MATCH_PAIRS, 181,002,484) links TABLE_A to TABLE_B, not entity to entity.
+DIST: Build one crosswalk per island — a DEA-number-to-registry bridge for ARCOS is the single highest-yield one — and the largest island fuses into the spine, at which point centrality can be run across it rather than inside it.
+NOTE: You can run a real connectome inside the opioid shipment table today — 178.6M edges, one ID namespace, no join needed — what you cannot do is run one across the warehouse, because the islands do not touch and the table meant to hold the hub nodes is empty.
+  CAND LIBRARY_MARTS.HEALTH.HEALTH__FED_DEA_ARCOS (178598026) REPORTER_DEA_NO and BUYER_DEA_NO are the same kind of ID, so 178.6M shipments collapse into one self-contained connected circuit you can run centrality on today
+  CAND LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_RELATIONSHIPS (3339267) NODE_ID_START to NODE_ID_END with REL_TYPE — the biggest true entity-to-entity typed edge list, though only 21% carry a start date
+  CAND LIBRARY_META.CONNECT.ENTITY_XREF (2672384) 2.7M bridge edges carrying a RELATION type and a FANOUT count, so noisy hub nodes can be capped before layout
+
+=== Ecology → food web / trophic cascade  [READY]
+NEEDS: Arrows, not lines. A depends on B, so knocking out B has to visibly hurt A — money flowing payer to payee, an owner over its facilities, a prime contractor over its subs. Then a second hop, so the shock can travel.
+BLOCKER: -
+DIST: -
+NOTE: Raised to READY: the opioid shipment table and the corporate ownership table each carry both endpoints in one ID namespace, so a cascade walks two or more hops inside a single table — the capped 5,000-row subaward file blocks one lane of federal money, not the technique.
+  CAND LIBRARY_MARTS.HEALTH.HEALTH__FED_DEA_ARCOS (178598026) reporter-to-buyer in one DEA namespace with quantity, MME and a HIGH-confidence day clock, plus a business-activity code on each side — the chain has real tiers and walks without a join
+  CAND LIBRARY_MARTS.ECONOMICS.ECONOMICS__INTL_GLEIF_RELATIONSHIPS (484142) LEI-to-LEI ownership with a relationship type and a QUANTIFIERAMOUNT share — recursive, so knocking out a parent cascades down several levels
+  CAND LIBRARY_MARTS.LABOR.LABOR__FED_MSHA_MINES (91906) CURRENT_CONTROLLER_ID and CURRENT_CONTROLLER_NAME point an owner down to each mine, and the same controller key repeats on MSHA_VIOLATIONS and MSHA_ACCIDENTS so the shock has somewhere to land
+
+=== Music/Audio → spectrograms  [READY]
+NEEDS: One thing's activity chopped into a dense grid — categories down the side, time buckets across the bottom, intensity in each cell. Needs many time buckets per thing and many categories per thing, in the same table.
+BLOCKER: -
+DIST: -
+NOTE: One pharmacy, drugs down the side, months across the bottom, colour is pills — the opioid shipment table hands you that straight out, 84 months deep; the nursing-home and pollution grids are quarterly and yearly, so their bars are far wider than they look.
+  CAND LIBRARY_MARTS.HEALTH.HEALTH__FED_DEA_ARCOS (178598026) buyer by drug by day with QUANTITY and TOTAL_MME on a HIGH-confidence 2006-2012 clock — a drug-versus-month heat grid per pharmacy, 84 months deep, no join
+  CAND LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY (31403215) CCN by quality measure by REPORT_DATE with three percentage columns as cell intensity, at quarterly resolution
+  CAND LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_AIR_EMISSIONS_POLL_RPT_COMBINED_EMISSIONS (10411826) facility by pollutant by year, 2008-2024 — a pollution fingerprint per site, once the TEXT year and TEXT emission are both cast
+
+=== Finance → correlation matrices / heatmap clustering  [READY]
+NEEDS: Lots of separate lines measured on the same clock at the same grain, long enough to be worth comparing — dozens of time buckets each. Then you score every pair against every other pair and reorder the grid so the ones that move together clump.
+BLOCKER: -
+DIST: -
+NOTE: The shared clock is built and 403 sources sit on it, but the county-employment panel the earlier read leaned on holds only the year 2022 — and the trend sweep warned that things moving together here usually means they were downloaded together, not that the world moved together.
+  CAND LIBRARY_MARTS.TIMELINE.TIMELINE__WAREHOUSE (1161122) RIPPLE_SOURCE by RIPPLE_CLOCK by RIPPLE_GRAIN by RIPPLE_DAY with N_ROWS — 403 sources already counted per day on one shared axis, the matrix input prebuilt
+  CAND LIBRARY_MARTS.CONSUMER_PROTECTION.CONSUMER_PROTECTION__FED_CFPB_COMPLAINTS (17168287) COMPANY by PRODUCT by ISSUE with a fully populated day clock 2011-12 to 2026-07 and a prebuilt RECEIVED_MONTH — thousands of parallel monthly series, ~175 buckets deep, one table
+  CAND LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_POS_OTHER (44429) 204 numeric columns on one row — the genuine widest within-record correlation form in the warehouse, not the 62-column table cited before

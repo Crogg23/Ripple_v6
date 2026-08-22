@@ -1,0 +1,345 @@
+<title>The Shape of Money</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#0b0f14; --panel:#161d26; --panel2:#1b2230; --ink:#e8edf4;
+  --muted:#8b98ab; --grid:#2a3441; --amber:#ffb454; --blue:#5aa9ff;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:'JetBrains Mono',Consolas,monospace;font-size:13px;
+  font-variant-numeric:tabular-nums;line-height:1.5}
+.wrap{max-width:1080px;margin:0 auto;padding:28px 20px 60px}
+h1{font-family:'Archivo',sans-serif;font-weight:700;font-size:30px;margin:0 0 4px;color:var(--ink)}
+.sub{color:var(--muted);margin:0 0 28px}
+.panel{background:var(--panel);border:1px solid var(--grid);border-radius:10px;
+  padding:18px 20px 20px;margin-bottom:22px}
+.panel h2{font-family:'Archivo',sans-serif;font-weight:700;font-size:17px;margin:0 0 2px;color:var(--ink)}
+.panel .desc{color:var(--muted);margin:0 0 12px;font-size:12px}
+.verdict{color:var(--ink);background:var(--panel2);border:1px solid var(--grid);
+  border-radius:6px;padding:8px 12px;margin-top:12px;font-size:12.5px}
+.callout{color:var(--ink);background:var(--panel2);border:1px solid var(--grid);
+  border-radius:6px;padding:8px 12px;margin:0 0 14px;font-size:12.5px}
+.callout b,.verdict b{color:var(--amber);font-weight:600}
+.chart{width:100%;display:block}
+svg text{font-family:'JetBrains Mono',Consolas,monospace}
+.foot{color:var(--muted);font-size:11.5px;margin-top:6px}
+#tip{position:fixed;pointer-events:none;z-index:50;display:none;
+  background:#10151d;border:1px solid var(--grid);border-radius:6px;
+  padding:7px 10px;font-size:12px;color:var(--ink);max-width:280px;
+  box-shadow:0 6px 18px rgba(0,0,0,.5)}
+#tip .t{color:var(--amber);font-weight:600}
+#tip .m{color:var(--muted)}
+button{background:var(--panel2);border:1px solid var(--grid);border-radius:6px;
+  color:var(--ink);font:inherit;padding:5px 12px;cursor:pointer}
+button[aria-pressed="true"]{border-color:var(--amber);color:var(--amber)}
+button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.legend{display:flex;gap:18px;color:var(--muted);font-size:11.5px;margin:6px 0 4px;flex-wrap:wrap}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{display:inline-block;width:11px;height:11px;border-radius:2px}
+</style>
+
+<div class="wrap">
+  <h1>The Shape of Money</h1>
+  <p class="sub">84 million political donations — what the dollar amounts themselves confess</p>
+
+  <section class="panel" aria-labelledby="h-benford">
+    <h2 id="h-benford">First digits vs. Benford's law</h2>
+    <p class="desc">Share of donations starting with each digit (amber) vs. what Benford's law would expect (blue ticks).</p>
+    <div class="legend">
+      <span><span class="sw" style="background:var(--amber)"></span>observed</span>
+      <span><span class="sw" style="background:var(--blue);height:3px"></span>Benford expectation</span>
+    </div>
+    <svg id="svgBenford" class="chart" role="img" aria-label="Benford first-digit bar chart"></svg>
+    <div class="verdict" id="benfordVerdict"></div>
+  </section>
+
+  <section class="panel" aria-labelledby="h-magnets">
+    <h2 id="h-magnets">The magnets</h2>
+    <p class="desc">The 25 exact dollar amounts people land on most. Bar length is log-scaled.</p>
+    <div class="callout" id="magnetCallout"></div>
+    <svg id="svgMagnets" class="chart" role="img" aria-label="Top 25 exact amounts"></svg>
+  </section>
+
+  <section class="panel" aria-labelledby="h-thresh">
+    <h2 id="h-thresh">Threshold bunching</h2>
+    <p class="desc">For each legal threshold: donations at one dollar under (blue), exactly at (amber), and one dollar over (gray). $200 is the disclosure line; the rest are contribution limits across eras.</p>
+    <div class="legend">
+      <span><span class="sw" style="background:var(--blue)"></span>$1 under</span>
+      <span><span class="sw" style="background:var(--amber)"></span>exact</span>
+      <span><span class="sw" style="background:var(--muted)"></span>$1 over</span>
+    </div>
+    <svg id="svgThresh" class="chart" role="img" aria-label="Threshold bunching mini-bars"></svg>
+    <div class="verdict" id="threshVerdict"></div>
+  </section>
+
+  <section class="panel" aria-labelledby="h-river">
+    <h2 id="h-river">The river</h2>
+    <p class="desc">Total dollars donated per year. ▲ marks presidential-election years.</p>
+    <svg id="svgRiver" class="chart" role="img" aria-label="Dollars per year area chart"></svg>
+  </section>
+
+  <p class="foot">Amounts over $1M and non-positive amounts are excluded. Counts are itemized
+  contributions only — small unitemized gifts under $200 never appear in the record, so the wall
+  at $200 is partly a reporting artifact, not purely donor behavior.</p>
+</div>
+
+<div id="tip" role="tooltip"></div>
+
+<script>
+"use strict";
+const AMOUNTS = __AMOUNTS__;
+const DIGITS  = __DIGITS__;
+const YEARS   = __YEARS__;
+
+const tip = document.getElementById('tip');
+function showTip(html, ev){
+  tip.innerHTML = html; tip.style.display = 'block';
+  const pad = 14;
+  let x = ev.clientX + pad, y = ev.clientY + pad;
+  const r = tip.getBoundingClientRect();
+  if (x + r.width > innerWidth - 8)  x = ev.clientX - r.width - pad;
+  if (y + r.height > innerHeight - 8) y = ev.clientY - r.height - pad;
+  tip.style.left = x + 'px'; tip.style.top = y + 'px';
+}
+function hideTip(){ tip.style.display = 'none'; }
+
+const NS = 'http://www.w3.org/2000/svg';
+function el(name, attrs, parent){
+  const n = document.createElementNS(NS, name);
+  for (const k in attrs) n.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(n);
+  return n;
+}
+function txt(parent, x, y, s, attrs){
+  const t = el('text', Object.assign({x, y, fill:'var(--muted)', 'font-size':11}, attrs||{}), parent);
+  t.textContent = s; return t;
+}
+const fmtC = n => n.toLocaleString('en-US');
+function fmtD(n){
+  if (n >= 1e9) return '$' + (n/1e9).toFixed(1) + 'B';
+  if (n >= 1e6) return '$' + (n/1e6).toFixed(1) + 'M';
+  if (n >= 1e3) return '$' + (n/1e3).toFixed(0) + 'K';
+  return '$' + n.toFixed(0);
+}
+const fmtAmt = a => '$' + (a % 1 === 0 ? a.toLocaleString('en-US') : a.toLocaleString('en-US',{minimumFractionDigits:2}));
+const pct = x => (x*100).toFixed(1) + '%';
+
+const totalCount = YEARS.reduce((s,r)=>s+r[1],0);
+const digitTotal = DIGITS.reduce((s,r)=>s+r[1],0);
+
+function widthOf(svg){ return Math.max(320, svg.parentNode.clientWidth - 40); }
+
+/* ---------- 1. Benford ---------- */
+function drawBenford(){
+  const svg = document.getElementById('svgBenford');
+  svg.innerHTML = '';
+  const W = widthOf(svg), H = 260;
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.style.height = H + 'px';
+  const m = {l:52, r:16, t:14, b:34};
+  const iw = W - m.l - m.r, ih = H - m.t - m.b;
+
+  const obs = new Array(10).fill(0);
+  DIGITS.forEach(r => obs[+r[0]] = r[1] / digitTotal);
+  const exp = d => Math.log10(1 + 1/d);
+  let maxV = 0;
+  for (let d=1; d<=9; d++) maxV = Math.max(maxV, obs[d], exp(d));
+  maxV *= 1.1;
+  const y = v => m.t + ih - (v/maxV)*ih;
+
+  // gridlines
+  for (let i=0;i<=4;i++){
+    const v = maxV*i/4, yy = y(v);
+    el('line',{x1:m.l,x2:W-m.r,y1:yy,y2:yy,stroke:'var(--grid)','stroke-width':1},svg);
+    txt(svg, m.l-8, yy+4, (v*100).toFixed(0)+'%', {'text-anchor':'end'});
+  }
+
+  const band = iw/9;
+  for (let d=1; d<=9; d++){
+    const x0 = m.l + (d-1)*band;
+    const bw = band*0.52;
+    const bx = x0 + (band-bw)/2;
+    const o = obs[d], e = exp(d);
+    const bar = el('rect',{x:bx, y:y(o), width:bw, height:m.t+ih-y(o),
+      fill:'var(--amber)', rx:2, tabindex:0}, svg);
+    // benford tick
+    el('rect',{x:x0+band*0.12, y:y(e)-1.5, width:band*0.76, height:3,
+      fill:'var(--blue)', rx:1.5, 'pointer-events':'none'}, svg);
+    txt(svg, x0+band/2, H-12, String(d), {'text-anchor':'middle', fill:'var(--ink)'});
+    const html = `<div class="t">Digit ${d}</div>observed ${pct(o)}<br><span class="m">Benford expects ${pct(e)}</span>`;
+    bar.addEventListener('mousemove', ev=>showTip(html,ev));
+    bar.addEventListener('mouseleave', hideTip);
+    bar.addEventListener('focus', ev=>{const r=bar.getBoundingClientRect();showTip(html,{clientX:r.x+r.width/2,clientY:r.y});});
+    bar.addEventListener('blur', hideTip);
+  }
+
+  // verdict
+  let bestD=1, bestEx=-1;
+  for (let d=1; d<=9; d++){
+    const ex = obs[d]-exp(d);
+    if (ex > bestEx){ bestEx = ex; bestD = d; }
+  }
+  document.getElementById('benfordVerdict').innerHTML =
+    `The digit <b>${bestD}</b> shows up <b>${(bestEx*100).toFixed(1)} percentage points</b> more often than Benford's law would expect — and that's fine: donations aren't supposed to follow Benford. People give round, habitual numbers ($${bestD}0, $${bestD}00, $${bestD},000). The deviation is a portrait of habit, not evidence of fraud.`;
+}
+
+/* ---------- 2. Magnets ---------- */
+function drawMagnets(){
+  const svg = document.getElementById('svgMagnets');
+  svg.innerHTML = '';
+  const top = AMOUNTS.slice(0,25);
+  const rowH = 22, m = {l:86, r:110, t:8, b:8};
+  const W = widthOf(svg), H = m.t + m.b + top.length*rowH;
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.style.height = H + 'px';
+  const iw = W - m.l - m.r;
+
+  const maxC = top[0][1];
+  const lg = c => Math.log10(Math.max(c,1));
+  const minLg = Math.min.apply(null, top.map(r=>lg(r[1]))) - 0.4;
+  const scale = c => Math.max(2, iw * (lg(c)-minLg) / (lg(maxC)-minLg));
+
+  top.forEach((r,i)=>{
+    const [amt, cnt] = r;
+    const yy = m.t + i*rowH;
+    const w = scale(cnt);
+    txt(svg, m.l-8, yy+rowH/2+4, fmtAmt(amt), {'text-anchor':'end', fill:'var(--ink)'});
+    const bar = el('rect',{x:m.l, y:yy+4, width:w, height:rowH-8,
+      fill:'var(--amber)', rx:2, tabindex:0}, svg);
+    txt(svg, m.l+w+8, yy+rowH/2+4, fmtC(cnt), {});
+    const html = `<div class="t">${fmtAmt(amt)}</div>${fmtC(cnt)} donations<br><span class="m">${(cnt/totalCount*100).toFixed(2)}% of all donations</span>`;
+    bar.addEventListener('mousemove', ev=>showTip(html,ev));
+    bar.addEventListener('mouseleave', hideTip);
+    bar.addEventListener('focus', ev=>{const b=bar.getBoundingClientRect();showTip(html,{clientX:b.x+b.width/2,clientY:b.y});});
+    bar.addEventListener('blur', hideTip);
+  });
+
+  const top10 = AMOUNTS.slice(0,10).reduce((s,r)=>s+r[1],0);
+  document.getElementById('magnetCallout').innerHTML =
+    `Just the <b>top 10 exact amounts</b> account for <b>${(top10/totalCount*100).toFixed(1)}%</b> of all ${fmtC(totalCount)} donations.`;
+}
+
+/* ---------- 3. Threshold bunching ---------- */
+function drawThresh(){
+  const svg = document.getElementById('svgThresh');
+  svg.innerHTML = '';
+  const lookup = new Map(AMOUNTS.map(r=>[r[0], r[1]]));
+  const cands = [200,999,1000,2300,2700,2800,2900,3300,5000];
+  const trios = cands
+    .filter(a => lookup.has(a))
+    .map(a => ({amt:a,
+      under: lookup.get(a-1) || 0,
+      exact: lookup.get(a)   || 0,
+      over:  lookup.get(a+1) || 0}));
+
+  const W = widthOf(svg), H = 220;
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.style.height = H + 'px';
+  const m = {l:12, r:12, t:16, b:30};
+  const iw = W - m.l - m.r, ih = H - m.t - m.b;
+  const group = iw / Math.max(trios.length,1);
+  const bw = Math.min(20, group*0.22);
+
+  trios.forEach((t,i)=>{
+    const cx = m.l + group*(i+0.5);
+    const maxV = Math.max(t.under, t.exact, t.over, 1);
+    const bars = [
+      {v:t.under, fill:'var(--blue)',  label:'$1 under'},
+      {v:t.exact, fill:'var(--amber)', label:'exact'},
+      {v:t.over,  fill:'var(--muted)', label:'$1 over'}
+    ];
+    bars.forEach((b,j)=>{
+      const h = Math.max(2, ih * (b.v/maxV));
+      const x = cx + (j-1)*(bw+3) - bw/2;
+      const attrs = {x, y:m.t+ih-h, width:bw, height:h, rx:2, tabindex:0};
+      if (b.v === 0){ attrs.fill='none'; attrs.stroke=b.fill; attrs['stroke-width']=1.5; }
+      else attrs.fill = b.fill;
+      const bar = el('rect', attrs, svg);
+      const html = `<div class="t">${fmtAmt(t.amt)} threshold</div>`+
+        `${b.label}: ${fmtC(b.v)}<br>`+
+        `<span class="m">under ${fmtC(t.under)} · exact ${fmtC(t.exact)} · over ${fmtC(t.over)}${t.amt===200?' — $200 is the disclosure threshold':' — a contribution limit'}</span>`;
+      bar.addEventListener('mousemove', ev=>showTip(html,ev));
+      bar.addEventListener('mouseleave', hideTip);
+      bar.addEventListener('focus', ev=>{const r=bar.getBoundingClientRect();showTip(html,{clientX:r.x+r.width/2,clientY:r.y});});
+      bar.addEventListener('blur', hideTip);
+    });
+    txt(svg, cx, H-10, fmtAmt(t.amt), {'text-anchor':'middle', fill:'var(--ink)'});
+  });
+
+  // starkest just-under spike: under / max(over,1)
+  let best = null;
+  trios.forEach(t=>{
+    const ratio = t.under / Math.max(t.over, 1);
+    if (t.under > 0 && (!best || ratio > best.ratio)) best = {amt:t.amt, ratio};
+  });
+  document.getElementById('threshVerdict').innerHTML = best
+    ? `Starkest just-under spike: <b>${fmtAmt(best.amt-1)}</b> — donations at one dollar under <b>${fmtAmt(best.amt)}</b> outnumber those one dollar over by <b>${best.ratio.toFixed(1)}×</b>. Donors steer just below the line.`
+    : `No just-under spikes present in the top-300 amounts.`;
+}
+
+/* ---------- 4. River ---------- */
+function drawRiver(){
+  const svg = document.getElementById('svgRiver');
+  svg.innerHTML = '';
+  const data = YEARS.slice().sort((a,b)=>a[0]-b[0]);
+  const W = widthOf(svg), H = 280;
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.style.height = H + 'px';
+  const m = {l:56, r:16, t:18, b:32};
+  const iw = W - m.l - m.r, ih = H - m.t - m.b;
+  const y0 = data[0][0], y1 = data[data.length-1][0];
+  const X = yr => m.l + iw * (yr - y0) / Math.max(y1 - y0, 1);
+  const maxS = Math.max.apply(null, data.map(r=>r[2])) * 1.08;
+  const Y = v => m.t + ih - ih * (v/maxS);
+
+  for (let i=0;i<=4;i++){
+    const v = maxS*i/4, yy = Y(v);
+    el('line',{x1:m.l,x2:W-m.r,y1:yy,y2:yy,stroke:'var(--grid)','stroke-width':1},svg);
+    txt(svg, m.l-8, yy+4, fmtD(v), {'text-anchor':'end'});
+  }
+  // presidential years
+  for (let yr=2000; yr<=2024; yr+=4){
+    if (yr < y0 || yr > y1) continue;
+    const x = X(yr);
+    el('line',{x1:x,x2:x,y1:m.t,y2:m.t+ih,stroke:'var(--grid)','stroke-width':1,'stroke-dasharray':'2,4'},svg);
+    txt(svg, x, m.t-4, '▲', {'text-anchor':'middle', 'font-size':9, fill:'var(--muted)'});
+  }
+  // x labels every 4 yrs
+  for (let yr=Math.ceil(y0/4)*4; yr<=y1; yr+=4)
+    txt(svg, X(yr), H-10, String(yr), {'text-anchor':'middle'});
+
+  let area = `M ${X(data[0][0])} ${m.t+ih}`;
+  let line = '';
+  data.forEach((r,i)=>{
+    const x=X(r[0]), yy=Y(r[2]);
+    area += ` L ${x} ${yy}`;
+    line += (i? ' L':'M') + ` ${x} ${yy}`;
+  });
+  area += ` L ${X(data[data.length-1][0])} ${m.t+ih} Z`;
+  el('path',{d:area, fill:'var(--blue)', 'fill-opacity':0.28},svg);
+  el('path',{d:line, fill:'none', stroke:'var(--amber)', 'stroke-width':2},svg);
+
+  const cross = el('line',{x1:0,x2:0,y1:m.t,y2:m.t+ih,stroke:'var(--muted)','stroke-width':1,'stroke-dasharray':'3,3',opacity:0},svg);
+  const dot = el('circle',{r:4, fill:'var(--amber)', opacity:0},svg);
+  const hit = el('rect',{x:m.l,y:m.t,width:iw,height:ih,fill:'transparent',tabindex:0},svg);
+  hit.addEventListener('mousemove', ev=>{
+    const rect = svg.getBoundingClientRect();
+    const sx = (ev.clientX - rect.left) * (W / rect.width);
+    let nearest = data[0], bd = Infinity;
+    data.forEach(r=>{ const d=Math.abs(X(r[0])-sx); if(d<bd){bd=d;nearest=r;} });
+    const x = X(nearest[0]), yy = Y(nearest[2]);
+    cross.setAttribute('x1',x); cross.setAttribute('x2',x); cross.setAttribute('opacity',1);
+    dot.setAttribute('cx',x); dot.setAttribute('cy',yy); dot.setAttribute('opacity',1);
+    showTip(`<div class="t">${nearest[0]}</div>${fmtC(nearest[1])} donations<br><span class="m">${fmtD(nearest[2])} total</span>`, ev);
+  });
+  hit.addEventListener('mouseleave', ()=>{
+    cross.setAttribute('opacity',0); dot.setAttribute('opacity',0); hideTip();
+  });
+}
+
+function drawAll(){ drawBenford(); drawMagnets(); drawThresh(); drawRiver(); }
+drawAll();
+let rT;
+addEventListener('resize', ()=>{ clearTimeout(rT); rT = setTimeout(drawAll, 120); });
+</script>

@@ -6,7 +6,7 @@
 -- Key joins: imo_number â†’ int_sanctioned_vessels; entity â†’ spine
 
 select
-    ent_num,
+    {{ ripple_num('ent_num') }} as ent_num,
     sdn_name,
     sdn_type,
     entity_kind,

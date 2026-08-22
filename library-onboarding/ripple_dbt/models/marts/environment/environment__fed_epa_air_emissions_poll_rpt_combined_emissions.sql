@@ -8,7 +8,7 @@ with source as (
 )
 
 select
-    REPORTING_YEAR as reporting_year,
+    {{ ripple_dt('REPORTING_YEAR') }} as reporting_year,
     REGISTRY_ID as registry_id,
     PGM_SYS_ACRNM as pgm_sys_acrnm,
     PGM_SYS_ID as pgm_sys_id,

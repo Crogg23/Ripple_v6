@@ -13,7 +13,7 @@ with source as (
 
 select
     ID as id,
-    VOLUME as volume,
+    {{ ripple_num('VOLUME') }} as volume,
     REPORTER as reporter,
     PAGE as page,
     TYPE as type,

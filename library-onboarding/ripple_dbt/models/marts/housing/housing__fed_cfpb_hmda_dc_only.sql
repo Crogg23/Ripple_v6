@@ -15,7 +15,7 @@ with source as (
 )
 
 select
-    ACTIVITY_YEAR as activity_year,
+    {{ ripple_dt('ACTIVITY_YEAR') }} as activity_year,
     LEI as lei,
     DERIVED_MSA_MD as derived_msa_md,
     STATE_CODE as state_code,
@@ -50,8 +50,8 @@ select
     PREPAYMENT_PENALTY_TERM as prepayment_penalty_term,
     try_to_double(INTRO_RATE_PERIOD) as intro_rate_period,
     NEGATIVE_AMORTIZATION as negative_amortization,
-    INTEREST_ONLY_PAYMENT as interest_only_payment,
-    BALLOON_PAYMENT as balloon_payment,
+    {{ ripple_num('INTEREST_ONLY_PAYMENT') }} as interest_only_payment,
+    {{ ripple_num('BALLOON_PAYMENT') }} as balloon_payment,
     OTHER_NONAMORTIZING_FEATURES as other_nonamortizing_features,
     try_to_double(PROPERTY_VALUE) as property_value,
     CONSTRUCTION_METHOD as construction_method,
@@ -109,9 +109,9 @@ select
     DENIAL_REASON_4 as denial_reason_4,
     try_to_double(TRACT_POPULATION) as tract_population,
     try_to_double(TRACT_MINORITY_POPULATION_PERCENT) as tract_minority_population_percent,
-    FFIEC_MSA_MD_MEDIAN_FAMILY_INCOME as ffiec_msa_md_median_family_income,
+    {{ ripple_num('FFIEC_MSA_MD_MEDIAN_FAMILY_INCOME') }} as ffiec_msa_md_median_family_income,
     try_to_double(TRACT_TO_MSA_INCOME_PERCENTAGE) as tract_to_msa_income_percentage,
     TRACT_OWNER_OCCUPIED_UNITS as tract_owner_occupied_units,
     TRACT_ONE_TO_FOUR_FAMILY_HOMES as tract_one_to_four_family_homes,
-    TRACT_MEDIAN_AGE_OF_HOUSING_UNITS as tract_median_age_of_housing_units
+    {{ ripple_num('TRACT_MEDIAN_AGE_OF_HOUSING_UNITS') }} as tract_median_age_of_housing_units
 from source

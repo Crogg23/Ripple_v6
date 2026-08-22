@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<title>The Shape of Money</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#0b0f14; --panel:#161d26; --panel2:#1b2230; --ink:#e8edf4;
+  --muted:#8b98ab; --grid:#2a3441; --amber:#ffb454; --blue:#5aa9ff;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:'JetBrains Mono',Consolas,monospace;font-size:13px;
+  font-variant-numeric:tabular-nums;line-height:1.5}
+.wrap{max-width:1080px;margin:0 auto;padding:28px 20px 60px}
+h1{font-family:'Archivo',sans-serif;font-weight:700;font-size:30px;margin:0 0 4px;color:var(--ink)}
+.sub{color:var(--muted);margin:0 0 28px}
+.panel{background:var(--panel);border:1px solid var(--grid);border-radius:10px;
+  padding:18px 20px 20px;margin-bottom:22px}
+.panel h2{font-family:'Archivo',sans-serif;font-weight:700;font-size:17px;margin:0 0 2px;color:var(--ink)}
+.panel .desc{color:var(--muted);margin:0 0 12px;font-size:12px}
+.verdict{color:var(--ink);background:var(--panel2);border:1px solid var(--grid);
+  border-radius:6px;padding:8px 12px;margin-top:12px;font-size:12.5px}
+.callout{color:var(--ink);background:var(--panel2);border:1px solid var(--grid);
+  border-radius:6px;padding:8px 12px;margin:0 0 14px;font-size:12.5px}
+.callout b,.verdict b{color:var(--amber);font-weight:600}
+.chart{width:100%;display:block}
+svg text{font-family:'JetBrains Mono',Consolas,monospace}
+.foot{color:var(--muted);font-size:11.5px;margin-top:6px}
+#tip{position:fixed;pointer-events:none;z-index:50;display:none;
+  background:#10151d;border:1px solid var(--grid);border-radius:6px;
+  padding:7px 10px;font-size:12px;color:var(--ink);max-width:280px;
+  box-shadow:0 6px 18px rgba(0,0,0,.5)}
+#tip .t{color:var(--amber);font-weight:600}
+#tip .m{color:var(--muted)}
+button{background:var(--panel2);border:1px solid var(--grid);border-radius:6px;
+  color:var(--ink);font:inherit;padding:5px 12px;cursor:pointer}
+button[aria-pressed="true"]{border-color:var(--amber);color:var(--amber)}
+button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.legend{display:flex;gap:18px;color:var(--muted);font-size:11.5px;margin:6px 0 4px;flex-wrap:wrap}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{display:inline-block;width:11px;height:11px;border-radius:2px}
+</style>
+
+<div class="wrap">
+  <h1>The Shape of Money</h1>
+  <p class="sub">84 million political donations — what the dollar amounts themselves confess</p>
+
+  <section class="panel" aria-labelledby="h-benford">
+    <h2 id="h-benford">First digits vs. Benford's law</h2>
+    <p class="desc">Share of donations starting with each digit (amber) vs. what Benford's law would expect (blue ticks).</p>
+    <div class="legend">
+      <span><span class="sw" style="background:var(--amber)"></span>observed</span>
+      <span><span class="sw" style="background:var(--blue);height:3px"></span>Benford expectation</span>
+    </div>
+    <svg id="svgBenford" class="chart" role="img" aria-label="Benford first-digit bar chart"></svg>
+    <div class="verdict" id="benfordVerdict"></div>
+  </section>
+
+  <section class="panel" aria-labelledby="h-magnets">
+    <h2 id="h-magnets">The magnets</h2>
+    <p class="desc">The 25 exact dollar amounts people land on most. Bar length is log-scaled.</p>
+    <div class="callout" id="magnetCallout"></div>
+    <svg id="svgMagnets" class="chart" role="img" aria-label="Top 25 exact amounts"></svg>
+  </section>
+
+  <section class="panel" aria-labelledby="h-thresh">
+    <h2 id="h-thresh">Threshold bunching</h2>
+    <p class="desc">For each legal threshold: donations at one dollar under (blue), exactly at (amber), and one dollar over (gray). $200 is the disclosure line; the rest are contribution limits across eras.</p>
+    <div class="legend">
+      <span><span class="sw" style="background:var(--blue)"></span>$1 under</span>
+      <span><span class="sw" style="background:var(--amber)"></span>exact</span>
+      <span><span class="sw" style="background:var(--muted)"></span>$1 over</span>
+    </div>
+    <svg id="svgThresh" class="chart" role="img" aria-label="Threshold bunching mini-bars"></svg>
+    <div class="verdict" id="threshVerdict"></div>
+  </section>
+
+  <section class="panel" aria-labelledby="h-river">
+    <h2 id="h-river">The river</h2>
+    <p class="desc">Total dollars donated per year. ▲ marks presidential-election years.</p>
+    <svg id="svgRiver" class="chart" role="img" aria-label="Dollars per year area chart"></svg>
+  </section>
+
+  <p class="foot">Amounts over $1M and non-positive amounts are excluded. Counts are itemized
+  contributions only — small unitemized gifts under $200 never appear in the record, so the wall
+  at $200 is partly a reporting artifact, not purely donor behavior.</p>
+</div>
+
+<div id="tip" role="tooltip"></div>
+
+<script>
+"use strict";
+const AMOUNTS = [[25.0,6958329],[10.0,6561073],[5.0,5360861],[50.0,5026320],[100.0,4816004],[1.0,4756798],[2.0,3467812],[20.0,3172495],[250.0,3073560],[15.0,2995607],[3.0,2741419],[500.0,1964995],[4.0,1636938],[35.0,1464990],[1000.0,1266088],[30.0,1199751],[9.0,1000927],[21.0,914973],[104.0,844671],[200.0,833241],[6.0,813043],[47.0,774412],[48.0,737022],[7.0,561704],[24.0,559488],[40.0,542558],[26.0,493771],[12.0,490088],[75.0,459019],[19.0,443076],[300.0,388554],[36.0,362823],[14.0,355090],[23.0,344806],[150.0,340549],[27.0,328385],[52.0,326690],[8.0,301869],[3300.0,282896],[38.0,279265],[45.0,260685],[260.0,244265],[60.0,222804],[13.0,213607],[17.0,206587],[33.0,201102],[34.0,196637],[192.0,195154],[18.0,194203],[99.0,184585],[95.0,184311],[49.0,178989],[2000.0,178725],[41.0,178156],[16.0,177656],[46.0,177476],[208.0,174498],[125.0,174343],[11.0,172762],[28.0,156108],[5000.0,140363],[2500.0,138964],[22.0,133258],[3500.0,130580],[80.0,119384],[83.0,116007],[520.0,111327],[400.0,110677],[31.0,110351],[1500.0,104096],[70.0,101714],[29.0,87367],[39.0,87242],[55.0,80354],[76.0,79804],[42.0,79588],[78.0,79543],[96.0,77984],[43.0,75794],[37.0,74650],[90.0,73691],[57.0,73564],[416.0,67322],[44.0,63888],[1041.0,61815],[32.0,59695],[120.0,57937],[62.0,56341],[115.0,55068],[51.0,55055],[750.0,52032],[225.0,50854],[65.0,50678],[350.0,46671],[71.0,43755],[105.0,43064],[58.0,42228],[110.0,42211],[103.0,41846],[6600.0,40871],[3000.0,39717],[384.0,37507],[600.0,36501],[85.0,35405],[10000.0,33641],[247.0,31518],[54.0,31431],[66.0,31188],[77.0,30002],[74.0,29151],[53.0,29109],[375.0,28059],[237.0,27597],[84.0,27562],[63.0,27493],[67.0,26905],[130.0,26819],[56.0,26266],[59.0,25957],[166.0,25659],[61.0,24934],[94.0,24548],[7000.0,24126],[450.0,23672],[69.0,23021],[72.0,22620],[240.0,21749],[175.0,21740],[210.0,21364],[135.0,21043],[1250.0,20354],[180.0,20222],[64.0,19990],[97.0,19842],[140.0,19344],[800.0,19050],[68.0,18808],[160.0,18278],[700.0,16763],[92.0,16415],[230.0,16270],[108.0,16234],[101.0,15963],[220.0,15840],[86.0,15642],[134.0,14814],[475.0,14477],[156.0,14199],[153.0,13921],[270.0,13853],[79.0,13835],[112.0,13406],[1200.0,13253],[495.0,13032],[25000.0,12804],[88.0,12712],[73.0,12690],[98.0,12601],[91.0,12545],[360.0,12497],[93.0,12312],[190.0,12214],[1700.0,12138],[106.0,11955],[102.0,11939],[82.0,11834],[312.0,11741],[193.0,11680],[81.0,11647],[89.0,11576],[87.0,11069],[333.0,11010],[126.0,10403],[187.0,10357],[900.0,10160],[111.0,9985],[1300.0,9981],[116.0,9852],[114.0,9744],[124.0,9714],[275.0,9704],[113.0,9659],[258.0,9417],[576.0,9036],[2900.0,9027],[3435.0,8753],[109.0,8751],[107.0,8642],[1800.0,8490],[2300.0,8421],[118.0,8347],[205.0,8115],[117.0,8112],[145.0,8100],[170.0,7919],[1650.0,7837],[167.0,7641],[4000.0,7518],[50000.0,7372],[154.0,7354],[144.0,7351],[141.0,7321],[142.0,7212],[165.0,7208],[138.0,7059],[132.0,7022],[380.0,6991],[330.0,6961],[235.0,6957],[128.0,6957],[625.0,6802],[950.0,6767],[123.0,6751],[550.0,6637],[255.0,6500],[148.0,6496],[206.0,6437],[119.0,6430],[1100.0,6278],[365.0,6260],[188.0,6201],[516.0,6189],[280.0,6188],[222.0,6088],[217.0,5991],[133.0,5991],[127.0,5963],[122.0,5942],[325.0,5934],[121.0,5911],[155.0,5840],[201.0,5823],[195.0,5729],[136.0,5650],[227.0,5639],[470.0,5594],[209.0,5432],[650.0,5406],[185.0,5267],[202.0,5233],[1750.0,5217],[2800.0,5206],[15000.0,5151],[249.0,5130],[129.0,5093],[147.0,5055],[207.0,5004],[340.0,4803],[288.0,4789],[131.0,4761],[100000.0,4733],[215.0,4725],[143.0,4636],[173.0,4560],[990.0,4552],[216.0,4533],[168.0,4433],[211.0,4217],[285.0,4157],[1600.0,4127],[245.0,4030],[137.0,4019],[204.0,3974],[20000.0,3972],[238.0,3968],[152.0,3940],[212.0,3918],[159.0,3911],[151.0,3878],[203.0,3850],[291.0,3769],[198.0,3761],[146.0,3725],[139.0,3690],[11600.0,3686],[454.0,3682],[184.0,3677],[161.0,3674],[199.0,3655],[158.0,3598],[265.0,3581],[224.0,3355],[214.0,3347],[252.0,3309],[310.0,3290],[162.0,3236],[251.0,3221],[149.0,3166],[269.0,3148],[181.0,3119],[218.0,3104],[320.0,3039],[163.0,3021],[157.0,2961],[172.0,2951],[315.0,2938],[182.0,2899],[1033.0,2897],[231.0,2889],[176.0,2863]];
+const DIGITS  = [["1",25503845,4247935895.0],["2",21811072,3556741118.0],["3",7917271,2316174232.0],["4",5015838,787188826.0],["5",13382321,3196981397.0],["6",1430362,528247271.0],["7",1546653,580264805.0],["8",712970,259951609.0],["9",1654749,314951504.0]];
+const YEARS   = [[2000,3,5114.0],[2003,7,18500.0],[2006,1,10000.0],[2008,6,1998.0],[2013,1,350.0],[2014,1,1000.0],[2017,1,250.0],[2018,3,1100.0],[2019,4,700.0],[2020,33,6331.0],[2021,1183,314195.0],[2022,7373,2221692.0],[2023,17425428,3968993226.0],[2024,38079023,11683615142.0],[2025,18866612,4417721391.0],[2026,4596778,2078884328.0]];
+
+const tip = document.getElementById('tip');
+function showTip(html, ev){
+  tip.innerHTML = html; tip.style.display = 'block';
+  const pad = 14;
+  let x = ev.clientX + pad, y = ev.clientY + pad;
+  const r = tip.getBoundingClientRect();
+  if (x + r.width > innerWidth - 8)  x = ev.clientX - r.width - pad;
+  if (y + r.height > innerHeight - 8) y = ev.clientY - r.height - pad;
+  tip.style.left = x + 'px'; tip.style.top = y + 'px';
+}
+function hideTip(){ tip.style.display = 'none'; }
+
+const NS = 'http://www.w3.org/2000/svg';
+function el(name, attrs, parent){
+  const n = document.createElementNS(NS, name);
+  for (const k in attrs) n.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(n);
+  return n;
+}
+function txt(parent, x, y, s, attrs){
+  const t = el('text', Object.assign({x, y, fill:'var(--muted)', 'font-size':11}, attrs||{}), parent);
+  t.textContent = s; return t;
+}
+const fmtC = n => n.toLocaleString('en-US');
+function fmtD(n){
+  if (n >= 1e9) return '$' + (n/1e9).toFixed(1) + 'B';
+  if (n >= 1e6) return '$' + (n/1e6).toFixed(1) + 'M';
+  if (n >= 1e3) return '$' + (n/1e3).toFixed(0) + 'K';
+  return '$' + n.toFixed(0);
+}
+const fmtAmt = a => '$' + (a % 1 === 0 ? a.toLocaleString('en-US') : a.toLocaleString('en-US',{minimumFractionDigits:2}));
+const pct = x => (x*100).toFixed(1) + '%';
+
+const totalCount = YEARS.reduce((s,r)=>s+r[1],0);
+const digitTotal = DIGITS.reduce((s,r)=>s+r[1],0);
+
+function widthOf(svg){ return Math.max(320, svg.parentNode.clientWidth - 40); }
+
+/* ---------- 1. Benford ---------- */
+function drawBenford(){
+  const svg = document.getElementById('svgBenford');
+  svg.innerHTML = '';
+  const W = widthOf(svg), H = 260;
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.style.height = H + 'px';
+  const m = {l:52, r:16, t:14, b:34};
+  const iw = W - m.l - m.r, ih = H - m.t - m.b;
+
+  const obs = new Array(10).fill(0);
+  DIGITS.forEach(r => obs[+r[0]] = r[1] / digitTotal);
+  const exp = d => Math.log10(1 + 1/d);
+  let maxV = 0;
+  for (let d=1; d<=9; d++) maxV = Math.max(maxV, obs[d], exp(d));
+  maxV *= 1.1;
+  const y = v => m.t + ih - (v/maxV)*ih;
+
+  // gridlines
+  for (let i=0;i<=4;i++){
+    const v = maxV*i/4, yy = y(v);
+    el('line',{x1:m.l,x2:W-m.r,y1:yy,y2:yy,stroke:'var(--grid)','stroke-width':1},svg);
+    txt(svg, m.l-8, yy+4, (v*100).toFixed(0)+'%', {'text-anchor':'end'});
+  }
+
+  const band = iw/9;
+  for (let d=1; d<=9; d++){
+    const x0 = m.l + (d-1)*band;
+    const bw = band*0.52;
+    const bx = x0 + (band-bw)/2;
+    const o = obs[d], e = exp(d);
+    const bar = el('rect',{x:bx, y:y(o), width:bw, height:m.t+ih-y(o),
+      fill:'var(--amber)', rx:2, tabindex:0}, svg);
+    // benford tick
+    el('rect',{x:x0+band*0.12, y:y(e)-1.5, width:band*0.76, height:3,
+      fill:'var(--blue)', rx:1.5, 'pointer-events':'none'}, svg);
+    txt(svg, x0+band/2, H-12, String(d), {'text-anchor':'middle', fill:'var(--ink)'});
+    const html = `<div class="t">Digit ${d}</div>observed ${pct(o)}<br><span class="m">Benford expects ${pct(e)}</span>`;
+    bar.addEventListener('mousemove', ev=>showTip(html,ev));
+    bar.addEventListener('mouseleave', hideTip);
+    bar.addEventListener('focus', ev=>{const r=bar.getBoundingClientRect();showTip(html,{clientX:r.x+r.width/2,clientY:r.y});});
+    bar.addEventListener('blur', hideTip);
+  }
+
+  // verdict
+  let bestD=1, bestEx=-1;
+  for (let d=1; d<=9; d++){
+    const ex = obs[d]-exp(d);
+    if (ex > bestEx){ bestEx = ex; bestD = d; }
+  }
+  document.getElementById('benfordVerdict').innerHTML =
+    `The digit <b>${bestD}</b> shows up <b>${(bestEx*100).toFixed(1)} percentage points</b> more often than Benford's law would expect — and that's fine: donations aren't supposed to follow Benford. People give round, habitual numbers ($${bestD}0, $${bestD}00, $${bestD},000). The deviation is a portrait of habit, not evidence of fraud.`;
+}
+
+/* ---------- 2. Magnets ---------- */
+function drawMagnets(){
+  const svg = document.getElementById('svgMagnets');
+  svg.innerHTML = '';
+  const top = AMOUNTS.slice(0,25);
+  const rowH = 22, m = {l:86, r:110, t:8, b:8};
+  const W = widthOf(svg), H = m.t + m.b + top.length*rowH;
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.style.height = H + 'px';
+  const iw = W - m.l - m.r;
+
+  const maxC = top[0][1];
+  const lg = c => Math.log10(Math.max(c,1));
+  const minLg = Math.min.apply(null, top.map(r=>lg(r[1]))) - 0.4;
+  const scale = c => Math.max(2, iw * (lg(c)-minLg) / (lg(maxC)-minLg));
+
+  top.forEach((r,i)=>{
+    const [amt, cnt] = r;
+    const yy = m.t + i*rowH;
+    const w = scale(cnt);
+    txt(svg, m.l-8, yy+rowH/2+4, fmtAmt(amt), {'text-anchor':'end', fill:'var(--ink)'});
+    const bar = el('rect',{x:m.l, y:yy+4, width:w, height:rowH-8,
+      fill:'var(--amber)', rx:2, tabindex:0}, svg);
+    txt(svg, m.l+w+8, yy+rowH/2+4, fmtC(cnt), {});
+    const html = `<div class="t">${fmtAmt(amt)}</div>${fmtC(cnt)} donations<br><span class="m">${(cnt/totalCount*100).toFixed(2)}% of all donations</span>`;
+    bar.addEventListener('mousemove', ev=>showTip(html,ev));
+    bar.addEventListener('mouseleave', hideTip);
+    bar.addEventListener('focus', ev=>{const b=bar.getBoundingClientRect();showTip(html,{clientX:b.x+b.width/2,clientY:b.y});});
+    bar.addEventListener('blur', hideTip);
+  });
+
+  const top10 = AMOUNTS.slice(0,10).reduce((s,r)=>s+r[1],0);
+  document.getElementById('magnetCallout').innerHTML =
+    `Just the <b>top 10 exact amounts</b> account for <b>${(top10/totalCount*100).toFixed(1)}%</b> of all ${fmtC(totalCount)} donations.`;
+}
+
+/* ---------- 3. Threshold bunching ---------- */
+function drawThresh(){
+  const svg = document.getElementById('svgThresh');
+  svg.innerHTML = '';
+  const lookup = new Map(AMOUNTS.map(r=>[r[0], r[1]]));
+  const cands = [200,999,1000,2300,2700,2800,2900,3300,5000];
+  const trios = cands
+    .filter(a => lookup.has(a))
+    .map(a => ({amt:a,
+      under: lookup.get(a-1) || 0,
+      exact: lookup.get(a)   || 0,
+      over:  lookup.get(a+1) || 0}));
+
+  const W = widthOf(svg), H = 220;
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.style.height = H + 'px';
+  const m = {l:12, r:12, t:16, b:30};
+  const iw = W - m.l - m.r, ih = H - m.t - m.b;
+  const group = iw / Math.max(trios.length,1);
+  const bw = Math.min(20, group*0.22);
+
+  trios.forEach((t,i)=>{
+    const cx = m.l + group*(i+0.5);
+    const maxV = Math.max(t.under, t.exact, t.over, 1);
+    const bars = [
+      {v:t.under, fill:'var(--blue)',  label:'$1 under'},
+      {v:t.exact, fill:'var(--amber)', label:'exact'},
+      {v:t.over,  fill:'var(--muted)', label:'$1 over'}
+    ];
+    bars.forEach((b,j)=>{
+      const h = Math.max(2, ih * (b.v/maxV));
+      const x = cx + (j-1)*(bw+3) - bw/2;
+      const attrs = {x, y:m.t+ih-h, width:bw, height:h, rx:2, tabindex:0};
+      if (b.v === 0){ attrs.fill='none'; attrs.stroke=b.fill; attrs['stroke-width']=1.5; }
+      else attrs.fill = b.fill;
+      const bar = el('rect', attrs, svg);
+      const html = `<div class="t">${fmtAmt(t.amt)} threshold</div>`+
+        `${b.label}: ${fmtC(b.v)}<br>`+
+        `<span class="m">under ${fmtC(t.under)} · exact ${fmtC(t.exact)} · over ${fmtC(t.over)}${t.amt===200?' — $200 is the disclosure threshold':' — a contribution limit'}</span>`;
+      bar.addEventListener('mousemove', ev=>showTip(html,ev));
+      bar.addEventListener('mouseleave', hideTip);
+      bar.addEventListener('focus', ev=>{const r=bar.getBoundingClientRect();showTip(html,{clientX:r.x+r.width/2,clientY:r.y});});
+      bar.addEventListener('blur', hideTip);
+    });
+    txt(svg, cx, H-10, fmtAmt(t.amt), {'text-anchor':'middle', fill:'var(--ink)'});
+  });
+
+  // starkest just-under spike: under / max(over,1)
+  let best = null;
+  trios.forEach(t=>{
+    const ratio = t.under / Math.max(t.over, 1);
+    if (t.under > 0 && (!best || ratio > best.ratio)) best = {amt:t.amt, ratio};
+  });
+  document.getElementById('threshVerdict').innerHTML = best
+    ? `Starkest just-under spike: <b>${fmtAmt(best.amt-1)}</b> — donations at one dollar under <b>${fmtAmt(best.amt)}</b> outnumber those one dollar over by <b>${best.ratio.toFixed(1)}×</b>. Donors steer just below the line.`
+    : `No just-under spikes present in the top-300 amounts.`;
+}
+
+/* ---------- 4. River ---------- */
+function drawRiver(){
+  const svg = document.getElementById('svgRiver');
+  svg.innerHTML = '';
+  const data = YEARS.slice().sort((a,b)=>a[0]-b[0]);
+  const W = widthOf(svg), H = 280;
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.style.height = H + 'px';
+  const m = {l:56, r:16, t:18, b:32};
+  const iw = W - m.l - m.r, ih = H - m.t - m.b;
+  const y0 = data[0][0], y1 = data[data.length-1][0];
+  const X = yr => m.l + iw * (yr - y0) / Math.max(y1 - y0, 1);
+  const maxS = Math.max.apply(null, data.map(r=>r[2])) * 1.08;
+  const Y = v => m.t + ih - ih * (v/maxS);
+
+  for (let i=0;i<=4;i++){
+    const v = maxS*i/4, yy = Y(v);
+    el('line',{x1:m.l,x2:W-m.r,y1:yy,y2:yy,stroke:'var(--grid)','stroke-width':1},svg);
+    txt(svg, m.l-8, yy+4, fmtD(v), {'text-anchor':'end'});
+  }
+  // presidential years
+  for (let yr=2000; yr<=2024; yr+=4){
+    if (yr < y0 || yr > y1) continue;
+    const x = X(yr);
+    el('line',{x1:x,x2:x,y1:m.t,y2:m.t+ih,stroke:'var(--grid)','stroke-width':1,'stroke-dasharray':'2,4'},svg);
+    txt(svg, x, m.t-4, '▲', {'text-anchor':'middle', 'font-size':9, fill:'var(--muted)'});
+  }
+  // x labels every 4 yrs
+  for (let yr=Math.ceil(y0/4)*4; yr<=y1; yr+=4)
+    txt(svg, X(yr), H-10, String(yr), {'text-anchor':'middle'});
+
+  let area = `M ${X(data[0][0])} ${m.t+ih}`;
+  let line = '';
+  data.forEach((r,i)=>{
+    const x=X(r[0]), yy=Y(r[2]);
+    area += ` L ${x} ${yy}`;
+    line += (i? ' L':'M') + ` ${x} ${yy}`;
+  });
+  area += ` L ${X(data[data.length-1][0])} ${m.t+ih} Z`;
+  el('path',{d:area, fill:'var(--blue)', 'fill-opacity':0.28},svg);
+  el('path',{d:line, fill:'none', stroke:'var(--amber)', 'stroke-width':2},svg);
+
+  const cross = el('line',{x1:0,x2:0,y1:m.t,y2:m.t+ih,stroke:'var(--muted)','stroke-width':1,'stroke-dasharray':'3,3',opacity:0},svg);
+  const dot = el('circle',{r:4, fill:'var(--amber)', opacity:0},svg);
+  const hit = el('rect',{x:m.l,y:m.t,width:iw,height:ih,fill:'transparent',tabindex:0},svg);
+  hit.addEventListener('mousemove', ev=>{
+    const rect = svg.getBoundingClientRect();
+    const sx = (ev.clientX - rect.left) * (W / rect.width);
+    let nearest = data[0], bd = Infinity;
+    data.forEach(r=>{ const d=Math.abs(X(r[0])-sx); if(d<bd){bd=d;nearest=r;} });
+    const x = X(nearest[0]), yy = Y(nearest[2]);
+    cross.setAttribute('x1',x); cross.setAttribute('x2',x); cross.setAttribute('opacity',1);
+    dot.setAttribute('cx',x); dot.setAttribute('cy',yy); dot.setAttribute('opacity',1);
+    showTip(`<div class="t">${nearest[0]}</div>${fmtC(nearest[1])} donations<br><span class="m">${fmtD(nearest[2])} total</span>`, ev);
+  });
+  hit.addEventListener('mouseleave', ()=>{
+    cross.setAttribute('opacity',0); dot.setAttribute('opacity',0); hideTip();
+  });
+}
+
+function drawAll(){ drawBenford(); drawMagnets(); drawThresh(); drawRiver(); }
+drawAll();
+let rT;
+addEventListener('resize', ()=>{ clearTimeout(rT); rT = setTimeout(drawAll, 120); });
+</script>
+
+</body>
+</html>

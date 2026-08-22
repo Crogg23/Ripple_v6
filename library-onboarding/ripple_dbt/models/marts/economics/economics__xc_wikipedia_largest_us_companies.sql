@@ -11,8 +11,8 @@ select
     "RANK" as rank,
     NAME as name,
     INDUSTRY as industry,
-    REVENUE_USD_MILLIONS as revenue_usd_millions,
+    {{ ripple_num('REVENUE_USD_MILLIONS') }} as revenue_usd_millions,
     REVENUE_GROWTH as revenue_growth,
-    EMPLOYEES as employees,
+    {{ ripple_num('EMPLOYEES') }} as employees,
     HEADQUARTERS as headquarters
 from source

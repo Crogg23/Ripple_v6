@@ -122,6 +122,17 @@ KNOWN_DIVERGENT: dict[str, str] = {
         "accidents, so deaths-by-railroad is built from casualties instead. "
         "The rollup's SUM(deaths) must equal the detail's fatality='Yes' row "
         "count (verified 53,105 = 53,105 on build day)."),
+    "FED_VOTEVIEW_ROLLCALL_META_FULL": (
+        "POLITICS__FED_VOTEVIEW_ROLLCALL_META (113,512 -- ALL congresses since "
+        "1789, from the 2026-08-11 full re-pull) and POLITICS__VOTEVIEW_ROLLCALLS "
+        "(3,364 -- 118th-119th congress only) read the same source AT DIFFERENT "
+        "SCOPES by design (recorded 2026-08-22): the small one is the Python-built "
+        "canonical table, reconciled to the penny against OpenFEC/GovTrack for the "
+        "current congresses and guarded against dbt rebuild (STANDING POLICY "
+        "no_selectorless_dbt_build, macros/guard_politics_mirror.sql). Extending "
+        "the canonical to full history requires re-reconciliation, not a rebuild. "
+        "Full history lives in the META mart; audited current-congress votes live "
+        "in the canonical."),
 }
 
 # A RATCHET, not an excuse list. Every entry here was already broken when the check

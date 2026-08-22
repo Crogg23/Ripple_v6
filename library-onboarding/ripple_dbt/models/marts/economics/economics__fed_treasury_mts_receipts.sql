@@ -29,9 +29,9 @@ select
     RECORD_TYPE_CD as record_type_cd,
     SEQUENCE_LEVEL_NBR as sequence_level_nbr,
     SEQUENCE_NUMBER_CD as sequence_number_cd,
-    RECORD_FISCAL_YEAR as record_fiscal_year,
+    {{ ripple_dt('RECORD_FISCAL_YEAR') }} as record_fiscal_year,
     RECORD_FISCAL_QUARTER as record_fiscal_quarter,
-    RECORD_CALENDAR_YEAR as record_calendar_year,
+    {{ ripple_dt('RECORD_CALENDAR_YEAR') }} as record_calendar_year,
     RECORD_CALENDAR_QUARTER as record_calendar_quarter,
     RECORD_CALENDAR_MONTH as record_calendar_month,
     RECORD_CALENDAR_DAY as record_calendar_day

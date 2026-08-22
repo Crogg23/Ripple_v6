@@ -10,7 +10,7 @@ select
     campno,
     maketxt                              as make,
     modeltxt                             as model,
-    yeartxt                              as model_year,
+    {{ ripple_dt('yeartxt') }} as model_year,
     compname                             as component,
     mfg_name,
     mfgcampno                            as mfg_recall_number,

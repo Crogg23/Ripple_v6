@@ -13,7 +13,7 @@ final as (
         fara_registration_key,
 
         -- cross-source join identifiers
-        registration_number,
+        {{ ripple_num('registration_number') }} as registration_number,
         person_name,
         company_name                                               as company_id,
         state,

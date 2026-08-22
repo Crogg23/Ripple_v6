@@ -8,7 +8,7 @@ with source as (
 
 select
     C_CASE,
-    "YEAR" as YEAR,
+    {{ ripple_dt('"YEAR"') }} as YEAR,
     DATERESOLVED,
     DEFENDANTS,
     ADDITIONALDEFENDANTS,
@@ -27,7 +27,7 @@ select
     ENFORCEMENTCAMPAIGN,
     PRODUCT_INVOLVED,
     DESCRIPTION,
-    DATE_ENTRY_CREATED,
+    {{ ripple_dt('DATE_ENTRY_CREATED') }} as DATE_ENTRY_CREATED,
     DATE_ENTRY_UPDATED,
     OFAGS,
     FEDERALINVOLVEMENT,

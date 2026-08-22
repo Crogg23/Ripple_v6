@@ -13,7 +13,7 @@ select
     try_to_date(DATE_MODIFIED) as date_modified,
     DEGREE_LEVEL as degree_level,
     DEGREE_DETAIL as degree_detail,
-    DEGREE_YEAR as degree_year,
+    {{ ripple_dt('DEGREE_YEAR') }} as degree_year,
     PERSON_ID as person_id,
     SCHOOL_ID as school_id
 from source

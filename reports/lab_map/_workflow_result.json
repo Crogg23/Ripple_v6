@@ -1,0 +1,885 @@
+{
+  "categories": [
+    {
+      "key": "scatter",
+      "title": "Making Massive Scatter Plots Readable",
+      "techniques": [
+        {
+          "technique": "Aggregate first (histograms/heatmaps/hexbins)",
+          "category": "Making Massive Scatter Plots Readable",
+          "needs": "A table big enough that drawing every row breaks a browser, plus something to group rows by (a place, a category, or a date bucket) and something to count or add up inside each group. No coordinates needed for the histogram/heatmap version.",
+          "what_exists": "Verified: 252 objects carry 1M+ rows and 79 carry 10M+. The flagship LIBRARY_MARTS.HEALTH.HEALTH__FED_DEA_ARCOS really does hold 178,598,026 rows, and I read all 33 of its columns (the prior analyst said 31): QUANTITY, DOSAGE_UNITS, BASE_WEIGHT_GRAMS and TOTAL_MME are all typed FLOAT, TRANSACTION_DATE is a real DATE, and BUYER_COUNTY/CITY/STATE/ZIP are there to group on. FINANCE__FED_FEC_INDIV_CONTRIBUTIONS is 84,172,112 rows with TRANSACTION_AMT as FLOAT, ZIP_CODE/CITY/STATE, and a typed TRANSACTION_DATE. The rollup habit already exists: LIBRARY_MARTS.PUBLIC holds exactly 14 hand-made aggregate tables. The prior analyst said all 14 stop at the state line — two of them are not state rollups at all (one is by manufacturer and payment nature, one by agency and NAICS). The true and stronger statement, which I checked column-by-column: not one of the 14 carries a county, zip, tract, FIPS, or lat/lon column, so none goes below state. For a genuine map hexbin, MARITIME__FED_NOAA_AIS gives 58,104,610 rows with LATITUDE/LONGITUDE typed FLOAT. Rate denominators are real: LIBRARY_MARTS.CORE.DIM_COUNTY (3,222 rows) and DIM_TRACT (85,391) both carry POPULATION_2020. One correction that matters for rates: ARCOS carries no FIPS code anywhere in its 33 columns, so a per-person county rate on the flagship is a county-NAME match. If you want a code-clean county join at scale, HEALTH__FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY has 31,403,215 rows and a real FIPS_COUNTY_CODE.",
+          "tier": "READY",
+          "blocker": "",
+          "distance_to_ready": "",
+          "candidates": [
+            {
+              "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_DEA_ARCOS",
+              "rows": "178598026",
+              "why": "BUYER_COUNTY/CITY/STATE/ZIP to group by, TOTAL_MME and DOSAGE_UNITS typed FLOAT to sum, TRANSACTION_DATE a real DATE for time buckets — all confirmed in the column list"
+            },
+            {
+              "table": "LIBRARY_MARTS.MARITIME.MARITIME__FED_NOAA_AIS",
+              "rows": "58104610",
+              "why": "LATITUDE and LONGITUDE typed FLOAT plus the warehouse's only real GEOGRAPHY column, so a map hexbin needs no join"
+            },
+            {
+              "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY",
+              "rows": "31403215",
+              "why": "31.4M rows with a real FIPS_COUNTY_CODE — the biggest fact table that joins to the county rung by code instead of by name"
+            }
+          ],
+          "note": "The rollups already exist — 14 of them — and every single one is blind below the state line."
+        },
+        {
+          "technique": "Encode density not position",
+          "category": "Making Massive Scatter Plots Readable",
+          "needs": "Lots of records piling onto the same or nearly the same spot, so you colour the spot by how many landed there instead of drawing a dot per record. Needs a real coordinate pair (or any two real number columns) on a table big enough to overplot.",
+          "what_exists": "801 objects carry both a latitude-ish and a longitude-ish column name; 799 of those sit outside the backup schemas, and 24 (not the 23 claimed) have 1M+ rows. But the prior analyst leaned on the name match and then hung the caveat on the wrong hook. The real caveat, measured: of those 801 tables, only 122 have a latitude column with a numeric dtype — 686 store latitude as TEXT. The documented 'nan'-string corruption lives in those TEXT columns, not in the numeric ones, so the tables worth using are the small numeric-typed set, and every table I recommend is in it. MARITIME__FED_NOAA_AIS at 58,104,610 rows has LATITUDE/LONGITUDE as FLOAT plus POSITION_GEOGRAPHY typed GEOGRAPHY — and I confirmed that is one of exactly two GEOGRAPHY/GEOMETRY columns in all 162,750 columns (the other is the same column on its TIMELINE view). Behind it, twelve non-backup mart tables above 500k rows have a numerically typed latitude, more than the three offered: FRACFOCUS 7,200,550; USGS_WATER 6,694,816; EPA_FRS_FACILITIES 5,300,149 (which also carries a real FIPS_CODE); EPA_FRS_FRS_FACILITIES 3,277,557; EPA_ECHO 3,135,554; FDIC_SOD_BRANCH_DEPOSITS 2,823,000; NOAA_STORM_EVENTS 1,780,730; EPA_RCRA_FACILITIES 1,613,224; EPA_NPDES_ICIS_FACILITIES 1,213,737; FRA_CASUALTIES 1,150,788. The non-map version (density across two measure axes) is served by HEALTH__FED_CMS_MEDICARE_PROVIDER, 1,296,739 rows and 49 numeric columns of which 48 are genuine measures.",
+          "tier": "READY",
+          "blocker": "",
+          "distance_to_ready": "",
+          "candidates": [
+            {
+              "table": "LIBRARY_MARTS.MARITIME.MARITIME__FED_NOAA_AIS",
+              "rows": "58104610",
+              "why": "58.1M position pings, LATITUDE/LONGITUDE typed FLOAT, plus the warehouse's only real GEOGRAPHY column so Snowflake bins server-side"
+            },
+            {
+              "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_FRS_FACILITIES",
+              "rows": "5300149",
+              "why": "5.3M regulated facilities, LATITUDE/LONGITUDE both FLOAT, and a real FIPS_CODE plus POSTAL_CODE so the density surface can also roll up by county"
+            },
+            {
+              "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_USGS_WATER",
+              "rows": "6694816",
+              "why": "6.7M water records with LATITUDE typed FLOAT — a second big numerically-typed coordinate table the earlier scoring missed"
+            }
+          ],
+          "note": "Eight hundred tables look like they have coordinates; only 122 store latitude as an actual number — the rest are text, and that is where the 'nan' corruption lives."
+        },
+        {
+          "technique": "Dimension reduction (PCA/t-SNE)",
+          "category": "Making Massive Scatter Plots Readable",
+          "needs": "One row equals one thing, with many real number columns sitting side by side on that same row — twenty-plus measurements per subject. Counts and dollars and percentages, not ID numbers that merely happen to be digits.",
+          "what_exists": "The bleak headline numbers all check out: of 4,847 objects, 3,076 (63%) have zero numeric columns, only 261 have 8+, 81 have 20+, and 30 have 50+ (29 outside the backup schemas). Among the 252 tables with 1M+ rows, zero have 50+ numeric and 110 have none at all. But the prior scoring said 'exactly one table is both wide and big' and called the technique PARTIAL on that basis, and that claim is false. Ten non-backup base tables carry 20+ numeric columns on 50,000+ rows, and three of them are large with genuine measure vectors I read column by column: HEALTH__FED_CMS_MEDICARE_PROVIDER (1,296,739 rows, 49 numeric, 48 real — payments, beneficiary age and race counts, ~35 chronic-condition percentages, one row per provider); HEALTH__FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE (503,917 rows, 62 numeric); and HEALTH__FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER (381,228 rows, 52 numeric — I read all of them and 51 are real measures, same payment/age/race/condition family). Below those: IMMIGRATION__FED_DOL_OFLC 664,616 rows and 22 numeric, JUSTICE__FED_SCDB 83,644 and 47, HEALTH__FED_CMS_POS_OTHER 44,429 and 204. That is a menu, not a single table. Two caveats I verified rather than assumed. First, the duplicate twin is real and exact: HEALTH__FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER has the same 1,296,739 rows and the same 81 column names except NPI where the other says RNDRNG_NPI — though it was created three seconds EARLIER, not later as claimed. Pick one or you double every point. Second, the 62 numeric columns on the quality-payment table are roughly half positional MEASURE_ID_1..28 slots rather than measures, so its usable vector is nearer 30. FEMA IA housing registrations does carry 31 real measure columns on 3,080,000 rows, but that count is a suspiciously round number against a 21,730,000-row raw table — about 14% of source.",
+          "tier": "READY",
+          "blocker": "",
+          "distance_to_ready": "",
+          "candidates": [
+            {
+              "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_MEDICARE_PROVIDER",
+              "rows": "1296739",
+              "why": "49 numeric columns verified as real measures — payments, beneficiary age and race counts, ~35 chronic-condition percentages — one row per provider"
+            },
+            {
+              "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER",
+              "rows": "381228",
+              "why": "381k rows and 52 numeric columns, 51 of them genuine measures — a second big-and-wide table the earlier scoring missed entirely"
+            },
+            {
+              "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE",
+              "rows": "503917",
+              "why": "503,917 rows with 62 numeric columns, though about half are positional MEASURE_ID slots so the usable vector is nearer 30"
+            }
+          ],
+          "note": "Raised from PARTIAL: ten tables carry a 20-plus measure vector on 50,000-plus rows, and three of them are large — but the top one has an exact duplicate twin, so pick a side before you reduce or you double every point."
+        },
+        {
+          "technique": "Sample or tier by zoom",
+          "category": "Making Massive Scatter Plots Readable",
+          "needs": "A nesting ladder — state to county to tract to individual point — so the wide view draws a few thousand shapes and only fetches the millions of underlying records when someone zooms in. Each rung needs a place to draw and a number to show.",
+          "what_exists": "The ladder is real and I confirmed every rung: LIBRARY_MARTS.CORE holds DIM_STATE (56 rows), DIM_COUNTY (3,222), DIM_TRACT (85,391) and XWALK_ZCTA_COUNTY (46,960) bridging ZIP to county. DIM_COUNTY and DIM_TRACT both carry POP_CENTER_LAT, POP_CENTER_LON and POPULATION_2020, so those two rungs have a dot to draw and a per-person denominator. One correction: DIM_STATE has neither — no population, no centroid, just FIPS, USPS, name and a territory flag — so the top rung's denominator has to be summed up from counties. The time-zoom ladder is genuinely built: LIBRARY_MARTS.TIMELINE holds exactly 436 views, including ones over ARCOS, FEC individual contributions, NOAA AIS, EPA ECHO, FEMA housing and all four HMDA tables. The tract rung is where the earlier scoring went wrong twice. It said only 90 tables carry a tract or block-group column; I measure 136 non-backup objects with a tract, GEOID or block-group column name. And it named HMDA_LAR as a main tract source — that table holds 17,474 rows, and HOUSING__FED_CFPB_HMDA and _DC_ONLY hold 28,301 each. They are stubs. The one substantial national tract-level table is HOUSING__FED_CFPB_HMDA_HISTORIC at 19,136,434 rows, and it carries STATE_CODE, COUNTY_CODE and CENSUS_TRACT_NUMBER — a complete code-keyed ladder on one table. FEMA IA housing registrations adds CENSUS_GEOID on 3,080,000 rows. The boundary gap the earlier scoring flagged is real and I re-measured it: of 2,346 columns whose names look geometric, 2,331 are dtype TEXT and exactly two are real GEOGRAPHY (both the same NOAA AIS column). Every table with a GEOMETRY, SHAPE_WKT or THE_GEOM column is a city ArcGIS portal pull sitting in LIBRARY_RAW.LANDING — Harris County and its peers — not a national boundary file.",
+          "tier": "PARTIAL",
+          "blocker": "There is no boundary-shape table anywhere in the warehouse, and the technique silently needs one. Exactly two columns out of 162,750 carry a real GEOGRAPHY type and both are the same ship-position point column; the 1,212 tables the geometry signal flagged are name-only TEXT leftovers from city portal crawls, with no national state, county, tract or ZCTA polygon among them. So a zoom that fills in areas has nothing to fill — you get sized dots on centroids. Second, smaller gap: the biggest fact table, ARCOS, has no FIPS code in any of its 33 columns, so tiering it to the county rung is a county-NAME match rather than a code match.",
+          "distance_to_ready": "Pull one boundary source — Census TIGER state, county, tract and ZCTA polygons — keyed on the FIPS codes DIM_STATE, DIM_COUNTY and DIM_TRACT already carry. That single ingest lights all four rungs at once; everything else is already sitting in LIBRARY_MARTS.CORE.",
+          "candidates": [
+            {
+              "table": "LIBRARY_MARTS.CORE.DIM_COUNTY",
+              "rows": "3222",
+              "why": "the middle rung — COUNTY_FIPS and STATE_FIPS keys, POP_CENTER_LAT/LON to draw on, POPULATION_2020 as a ready-made rate denominator"
+            },
+            {
+              "table": "LIBRARY_MARTS.CORE.DIM_TRACT",
+              "rows": "85391",
+              "why": "the fine rung — TRACT_GEOID nesting up through COUNTY_FIPS and STATE_FIPS, with its own centroid and 2020 population"
+            },
+            {
+              "table": "LIBRARY_MARTS.HOUSING.HOUSING__FED_CFPB_HMDA_HISTORIC",
+              "rows": "19136434",
+              "why": "the only large national table carrying the whole ladder by code on one row — STATE_CODE, COUNTY_CODE and CENSUS_TRACT_NUMBER across 19.1M loan records; the HMDA tables the earlier scoring named instead hold 17k-28k rows"
+            }
+          ],
+          "note": "Every rung of the zoom ladder exists and county and tract even carry population — but nothing in this warehouse knows the shape of a county, so zoom gives you bigger dots, never filled-in areas."
+        }
+      ]
+    },
+    {
+      "key": "organism",
+      "title": "The Organism Metaphor (Mass / Distance / Circulation / Ripples)",
+      "techniques": [
+        {
+          "technique": "Mass (density/heatmaps/bubble/contour)",
+          "category": "The Organism Metaphor (Mass / Distance / Circulation / Ripples)",
+          "needs": "Something to count, and somewhere to put it — either a real coordinate pair, or a place code (ZIP, county, state, census tract) you can pin to a map. Plus a population number underneath so you can show a rate per person instead of a raw pile that just tracks where people live.",
+          "what_exists": "Real supply, but the headline counts were inflated about 8x and I am cutting them. The 801 lat+lon tables, 1,303 ZIP, 768 county and 1,583 state are counts of OBJECTS, and the same source is counted three times as it flows raw to staging to finished. Deduped to the finished mart layer it is 91 point-geo tables, 279 with a ZIP, 174 with a county, 80 pairing place with a clock and 27 pairing place with a harm column. Quality is also thinner than the count suggests: of 805 tables carrying a latitude, 683 store it as text, not a number. The big finished point-geo tables are real and clean though — MARITIME__FED_NOAA_AIS (58,104,610), ENVIRONMENT__FED_FRACFOCUS_REGISTRY (7,200,550), ENVIRONMENT__FED_EPA_FRS_FACILITIES (5,300,149, latitude and longitude both FLOAT), ENVIRONMENT__FED_EPA_ECHO (3,135,554). Denominators exist at county and tract only: LIBRARY_MARTS.CORE.DIM_COUNTY (3,222, POPULATION_2020 + POP_CENTER_LAT/LON), DIM_TRACT (85,391, same shape), DIM_STATE (56). Confirming the prior analyst's correction of The Laboratory's stale number: the doc says '~12.88M entities across 31 spine tables'; ENTITY_GOLDEN and ENTITY_MAP each hold 33,312,349 and ENTITY_INDEX and CONNECT_NODES each hold 84,382,504.",
+          "tier": "READY",
+          "blocker": "",
+          "distance_to_ready": "",
+          "candidates": [
+            {
+              "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_FRS_FACILITIES",
+              "rows": "5300149",
+              "why": "REGISTRY_ID plus numeric LATITUDE/LONGITUDE plus COUNTY, FIPS_CODE, STATE_CODE and POSTAL_CODE — the widest clean census of regulated sites"
+            },
+            {
+              "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_ECHO",
+              "rows": "3135554",
+              "why": "lat/lon, inspection and penalty dates, and compliance flags on one row — but its money column is the documented phantom-fines defect, so map counts, not dollars"
+            },
+            {
+              "table": "LIBRARY_MARTS.CORE.DIM_COUNTY",
+              "rows": "3222",
+              "why": "POPULATION_2020 plus population-weighted centroid lat/lon, the denominator that turns a pile into a rate"
+            }
+          ],
+          "note": "The denominator stops at county and tract — no table anywhere carries population by ZIP, and XWALK_ZCTA_COUNTY (46,960 rows) has no population column, so the warehouse's single most common geography cannot be turned into a per-person rate without a many-to-many ZIP-to-county allocation you would have to build."
+        },
+        {
+          "technique": "Distance (clustering, dimension reduction over join-key relatedness)",
+          "category": "The Organism Metaphor (Mass / Distance / Circulation / Ripples)",
+          "needs": "A number saying how close any two things are — either a measured overlap score between a pair of tables, or a row of features per source you can cluster on. Then something to squash it into two dimensions so it can be looked at.",
+          "what_exists": "Both routes named in the needs exist, so I am raising this from PARTIAL to READY. The feature route is complete: LIBRARY_META.REGISTRY.SOURCE_REGISTRY holds 2,778 rows with five ARRAY columns (DOMAIN_SECONDARY, ENTITY_TYPES, JOIN_KEYS_STD, THEMES, NATURAL_KEY) plus GRAIN, SPINE_ENTITY, JOIN_KEY_TIER, HAS_EVENTS, SOURCE_ROLE and DOMAIN_PRIMARY — every column verified present. That is a full feature matrix you can cluster and project today with nothing new built. The measured-overlap route also exists: LIBRARY_META.CONNECT.CONNECT_EDGES (4,910 rows) carries A, B, KEY, TIER, MATCHED, A_DISTINCT, B_DISTINCT, MATCH_RATE and CONFIDENCE — all verified. ENTITY_MAP (33,312,349) carries MEMBER_TABLES(ARRAY) and SOURCE_COUNT. The previous analyst called this PARTIAL because SOURCE_OVERLAP_MATRIX is 36 rows, DOMAIN_OVERLAP_MATRIX 7, CLUSTER_ASSIGNMENTS 23 and BRIDGE_ENTITIES 0 — I confirmed all four counts, but those are pre-chewed answer tables, not inputs the technique requires. Having to run the clustering yourself is not a missing-data blocker.",
+          "tier": "READY",
+          "blocker": "",
+          "distance_to_ready": "",
+          "candidates": [
+            {
+              "table": "LIBRARY_META.REGISTRY.SOURCE_REGISTRY",
+              "rows": "2778",
+              "why": "five ARRAY feature columns plus GRAIN, SPINE_ENTITY, JOIN_KEY_TIER and HAS_EVENTS give every source a vector, no join needed"
+            },
+            {
+              "table": "LIBRARY_META.CONNECT.CONNECT_EDGES",
+              "rows": "4910",
+              "why": "MATCH_RATE and CONFIDENCE banded by TIER on measured table pairs is a ready-made similarity score"
+            },
+            {
+              "table": "LIBRARY_META.CONNECT.ENTITY_MAP",
+              "rows": "33312349",
+              "why": "MEMBER_TABLES plus SOURCE_COUNT is entity-level co-occurrence, the finest-grain relatedness available"
+            }
+          ],
+          "note": "Cluster off the registry's feature columns, not off CONNECT_EDGES: 4,910 measured pairs is a sliver of the possible pairs, and a missing pair there means 'never measured,' not 'no overlap' — treating missing as zero would make the warehouse look far more disconnected than it is."
+        },
+        {
+          "technique": "Circulation (network / force-directed graphs)",
+          "category": "The Organism Metaphor (Mass / Distance / Circulation / Ripples)",
+          "needs": "An edge list: two named endpoints on every row, ideally with a label saying what the link is and a weight saying how strong. Plus a node list so the dots have names.",
+          "what_exists": "Confirmed READY, and every column claim checked out. Two different graphs live here. The warehouse-wiring graph is CONNECT_EDGES (4,910 rows, A and B hold table names) with MATCH_PAIRS (181,002,484) underneath and ENTITY_INDEX (84,382,504) as a node list, not an edge list. The real-world graphs sit in the marts: HEALTH__FED_DEA_ARCOS (178,598,026) has REPORTER_DEA_NO to BUYER_DEA_NO with QUANTITY, TOTAL_MME and a DATE-typed TRANSACTION_DATE, plus reporter and buyer names inline. ICIJ OFFSHORELEAKS_RELATIONSHIPS (3,339,267) has NODE_ID_START, NODE_ID_END and REL_TYPE — and there are FIVE matching node tables, not four as previously stated: ENTITIES 814,344, OFFICERS 771,315, ADDRESSES 402,246, INTERMEDIARIES 26,768 and OTHERS 2,989, so leaving OTHERS out orphans edges. UK_COMPANIES_HOUSE_PSC (7,000,000) links COMPANY_NUMBER to a named person with NATURES_OF_CONTROL. ECONOMICS__INTL_GLEIF_RELATIONSHIPS (484,142) is parent/child ownership against a 3,382,301-row LEI entity table. HEALTH__FED_CMS_FACILITY_AFFILIATION (2,260,193) has NPI and CCN. On the spine side ENTITY_XREF (2,672,384) is the one genuine key-to-key crosswalk, with RELATION and FANOUT.",
+          "tier": "READY",
+          "blocker": "",
+          "distance_to_ready": "",
+          "candidates": [
+            {
+              "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_DEA_ARCOS",
+              "rows": "178598026",
+              "why": "REPORTER_DEA_NO to BUYER_DEA_NO with quantity, opioid dose weight and a real date — the biggest directed weighted dated flow network in the building"
+            },
+            {
+              "table": "LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_RELATIONSHIPS",
+              "rows": "3339267",
+              "why": "start/end node ids plus a relation type, with five node tables supplying names, addresses and jurisdictions"
+            },
+            {
+              "table": "LIBRARY_MARTS.ECONOMICS.ECONOMICS__INTL_GLEIF_RELATIONSHIPS",
+              "rows": "484142",
+              "why": "the only relationship graph whose node identifier reaches outside its own source — LEI also appears in nine other mart tables across four domains"
+            }
+          ],
+          "note": "The two biggest graphs are sealed islands: I checked every mart column and REPORTER_DEA_NO / BUYER_DEA_NO exist nowhere except ARCOS, ICIJ's NODE_ID nowhere except the ICIJ tables, and COMPANY_NUMBER nowhere except the two UK tables — so ARCOS and ICIJ draw beautiful pictures that cannot be linked to anything else, while the much smaller GLEIF graph is the only one that can."
+        },
+        {
+          "technique": "Ripples (diffusion/propagation animation)",
+          "category": "The Organism Metaphor (Mass / Distance / Circulation / Ripples)",
+          "needs": "Edges plus a clock on the edges. You have to know when each link switched on or fired, or at least have an ordered sequence, or nothing can move and there is nothing to animate.",
+          "what_exists": "Dated edges exist inside single sources and nowhere across them. ARCOS (178,598,026) has a DATE-typed TRANSACTION_DATE with weights — fully animatable today within itself. ICIJ RELATIONSHIPS (3,339,267) has START_DATE and END_DATE as real DATE columns on the edges. Companies House PSC has NOTIFIED_ON and CEASED_ON as real DATE columns, but its row count is exactly 7,000,000 — a hard round number matching the documented load-cap defect pattern, and its sibling UK company table sits at an unrounded 5,734,780, so the PSC edge set is almost certainly truncated. GLEIF RELATIONSHIPS carries five period start/end pairs but all ten are TEXT, the exact cast that has produced epoch-date corruption in this warehouse. Every spine edge table is clockless in the way that matters: CONNECT_EDGES, CONNECT_EDGES_INC, MATCH_PAIRS, ENTITY_XREF, ENTITY_MAP, ENTITY_GOLDEN and CONNECT_NODES carry only BUILT_AT and RUN_ID, and ENTITY_LINKS only CREATED_AT. The TIMELINE layer is real — 436 views, 403 carrying RIPPLE_TS, and all four relationship sources have one — but I confirmed exactly 66 of the 436 carry a hard entity id (EIN, NPI, CIK, CCN, UEI, LEI, DUNS or COMPANY_NUMBER), so the canonical clock cannot be joined onto most of the graph.",
+          "tier": "PARTIAL",
+          "blocker": "Two things, not one. First, no spine edge table has a world clock — CONNECT_EDGES, MATCH_PAIRS, ENTITY_XREF and ENTITY_MAP carry only BUILT_AT and RUN_ID, a pipeline timestamp. Second, and more binding: the three source graphs that DO have dated edges are sealed — ARCOS's DEA numbers, ICIJ's NODE_IDs and Companies House's COMPANY_NUMBERs appear in no other mart table in the warehouse, so a ripple can be animated inside one source and has nowhere to propagate to.",
+          "distance_to_ready": "Cast GLEIF RELATIONSHIPS' five TEXT period start/end pairs to real dates. GLEIF is the only dated relationship source whose node identifier (LEI) also appears in nine other mart tables across finance, housing and environment, so this is the one edge set that could actually carry a ripple out of its own source. The previously suggested fix — copying RIPPLE_TS into ENTITY_XREF and MATCH_PAIRS — does not work: those rows are key-value matches, and one key value appears on many source rows with many different dates, so there is no single timestamp to copy.",
+          "candidates": [
+            {
+              "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_DEA_ARCOS",
+              "rows": "178598026",
+              "why": "dated, weighted, directed shipments — propagation works today, but only inside this one source"
+            },
+            {
+              "table": "LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_RELATIONSHIPS",
+              "rows": "3339267",
+              "why": "START_DATE and END_DATE as real DATE columns sitting directly on 3.3M edges"
+            },
+            {
+              "table": "LIBRARY_MARTS.ECONOMICS.ECONOMICS__INTL_GLEIF_RELATIONSHIPS",
+              "rows": "484142",
+              "why": "dated ownership links on an identifier nine other mart tables also carry — small, but the only one that can cross a source boundary"
+            }
+          ],
+          "note": "Do not build on Companies House PSC without checking it first — it sits at exactly 7,000,000 rows in both raw and mart, the same round-number signature as the 5,000-row subawards stub, so the ownership timeline you would animate is probably a truncated slice of the real one."
+        }
+      ]
+    },
+    {
+      "key": "physics",
+      "title": "Physics-Derived Techniques",
+      "techniques": [
+        {
+          "technique": "Topological Data Analysis (TDA)",
+          "category": "Physics-Derived Techniques",
+          "needs": "A pile of points where every point is one real thing — a hospital, a plant, a water system — and each point carries a bunch of comparable numbers as its coordinates. The math then hunts for loops, holes and clumps in that pile that ordinary averages never show. The 'how far apart are two points' rule is arithmetic you write at run time, not a column you have to find.",
+          "what_exists": "Every number the original scoring gave checks out exactly. The warehouse is overwhelmingly text: of 162,750 columns, 149,003 are TEXT against 7,558 NUMBER and 2,064 FLOAT. Filtering the 20-plus-numeric-column list to real base tables outside the backup/restore schemas gives exactly 34 tables; 13 of those have 50 or more numeric columns; 9 of the 34 also carry 100k or more rows. The named clouds are real and the row and column counts are exact: HCRIS 6,103 rows by 107 numeric of 125 columns, POS_OTHER 44,429 by 204 of 473, QUALITY_PAYMENT_PROGRAM_EXPERIENCE 503,917 by 62 of 212, MEDICARE_PROVIDER 1,296,739 by 49, NURSING_HOME 14,700 by 61 with lat/lon. Two corrections. First, the claim that MEDICARE_PROVIDER is 'the only million-row cloud with real depth' is false: HEALTH__FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER is the identical file loaded twice — same 1,296,739 rows, same 81 columns, the only difference in the whole column list being NPI versus RNDRNG_NPI. Anyone running on both double-counts. Second, the substrate is wider than 34 tables, because a two-column cloud is still a cloud: 801 tables carry lat and lon together, and persistent homology on spatial points is the oldest use of this technique. The distance-column grep was honest — 45 hits, every one a TEXT column named DISTANCE in ATF, portal and DPRK-missile tables, plus no DEGREE/CENTRALITY/PAGERANK/COMPONENT_ID column anywhere. But that absence is not a data gap, which is why the tier moved.",
+          "tier": "READY",
+          "blocker": "",
+          "distance_to_ready": "",
+          "candidates": [
+            {
+              "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_HCRIS",
+              "rows": "6103",
+              "why": "107 typed-numeric columns on 6,103 hospitals — the densest per-row cloud in the warehouse and small enough to run in seconds"
+            },
+            {
+              "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_POS_OTHER",
+              "rows": "44429",
+              "why": "204 typed-numeric columns on 44,429 Medicare facilities — the widest numeric table anywhere, no duplicate twin"
+            },
+            {
+              "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE",
+              "rows": "503917",
+              "why": "62 typed-numeric columns over half a million providers — the biggest genuinely wide cloud with no known duplicate"
+            }
+          ],
+          "note": "This was under-called: the missing piece was a distance calculation, which is arithmetic you write, not a table you need — the clouds exist today, and the real trap is that the 1.3M-row Medicare table is loaded twice under two names."
+        },
+        {
+          "technique": "Percolation theory",
+          "category": "Physics-Derived Techniques",
+          "needs": "A network whose links each carry a strength score, so you can turn a dial from 'only rock-solid links count' down to 'count everything' and watch the moment scattered islands snap into one giant blob. The dial setting where the snap happens is the finding.",
+          "what_exists": "Verified line by line and it holds. CONNECT_EDGES exists in LIBRARY_META.CONNECT at exactly 4,910 rows and its column list is confirmed: A, B, KEY, TIER (TEXT), A_COL, B_COL, MATCHED (NUMBER), A_DISTINCT (NUMBER), B_DISTINCT (NUMBER), MATCH_RATE (FLOAT), CONFIDENCE (FLOAT), SAMPLE, RUN_ID, BUILT_AT — three independent threshold dials plus three weight columns on every edge. V_CONNECTIONS, V_CONNECTIONS_CORE and V_CONNECTION_SUMMARY all exist as views in the same schema. MATCH_PAIRS is confirmed at 181,002,484 rows with KEY_TYPE, KEY_VALUE, TABLE_A, TABLE_B. ARCOS checks out completely: LIBRARY_MARTS.HEALTH.HEALTH__FED_DEA_ARCOS at 178,598,026 rows with REPORTER_DEA_NO and BUYER_DEA_NO both TEXT, TRANSACTION_DATE a real DATE, and QUANTITY, DOSAGE_UNITS, BASE_WEIGHT_GRAMS, DOSAGE_STRENGTH and TOTAL_MME all real FLOATs. Two things to sharpen. The node-count ceiling was stated as ~3,033 tables, but edges can reference views as well, so the honest ceiling is the 4,847 objects in the warehouse — still trivially small. And CONNECT_EDGES_INC sits alongside at 3,182 rows, so the edge set has an incremental sibling; which of the two is current was not checkable from metadata alone.",
+          "tier": "READY",
+          "blocker": "",
+          "distance_to_ready": "",
+          "candidates": [
+            {
+              "table": "LIBRARY_META.CONNECT.CONNECT_EDGES",
+              "rows": "4910",
+              "why": "TIER, MATCH_RATE and CONFIDENCE confirmed on every edge — three ready-made threshold dials on a graph small enough to sweep instantly"
+            },
+            {
+              "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_DEA_ARCOS",
+              "rows": "178598026",
+              "why": "REPORTER_DEA_NO to BUYER_DEA_NO with FLOAT quantities and a real DATE — a genuine physical shipment network you can threshold on volume"
+            },
+            {
+              "table": "LIBRARY_META.CONNECT.MATCH_PAIRS",
+              "rows": "181002484",
+              "why": "KEY_TYPE, KEY_VALUE, TABLE_A, TABLE_B gives per-value witnesses, so edges can be weighted by real shared values instead of a tier label"
+            }
+          ],
+          "note": "The dial really is already built and labelled — but two of the three networks are the warehouse wired to itself; ARCOS is the only one where the snap point would be about the world, not the database."
+        },
+        {
+          "technique": "Network centrality",
+          "category": "Physics-Derived Techniques",
+          "needs": "A list of links where both ends are the actual things you care about — this person to that company, this doctor to that hospital — so 'who is quietly the bridge everything runs through' says something about the world instead of about the database.",
+          "what_exists": "The core reading survives verification. ICIJ is real and exact: CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_RELATIONSHIPS at 3,339,267 rows with NODE_ID_START, NODE_ID_END, REL_TYPE, LINK, STATUS and real DATE columns START_DATE and END_DATE, over node tables that all carry a NODE_ID column — ENTITIES 814,344, OFFICERS 771,315, ADDRESSES 402,246, INTERMEDIARIES 26,768, OTHERS 2,989 (2,017,662 nodes, so '~2.01M' was right). FACILITY_AFFILIATION is exact at 2,260,193 rows with NPI and CCN both present. GLEIF relationships is exact at 484,142, though the columns are named RELATIONSHIP_STARTNODE_NODEID / RELATIONSHIP_ENDNODE_NODEID with a separate NODEIDTYPE column rather than anything literally called LEI. ENTITY_MAP is confirmed at 33,312,349 rows carrying MEMBER_TABLES (ARRAY) and SOURCE_COUNT (NUMBER), BRIDGE_ENTITIES is confirmed empty at 0 rows, and a sweep for DEGREE, CENTRALITY, BETWEENNESS, PAGERANK or COMPONENT_ID turns up nothing but academic degrees on judges and MSHA injury-severity codes — so no graph metric is precomputed, which is fine because these are all computed at run time. The court-citation trap is worse than described and worth stating plainly: the citation table's columns really are ID/VOLUME/REPORTER/PAGE/CLUSTER_ID, and the table that would hold citing-to-cited edges, FED_COURTLISTENER_CITATION_MAP, exists but holds 0 rows. The Laboratory's '~12.88M entities across 31 spine tables' is stale — 33,312,349 in ENTITY_GOLDEN/ENTITY_MAP, 84,382,504 in ENTITY_INDEX/CONNECT_NODES.",
+          "tier": "READY",
+          "blocker": "",
+          "distance_to_ready": "",
+          "candidates": [
+            {
+              "table": "LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_RELATIONSHIPS",
+              "rows": "3339267",
+              "why": "NODE_ID_START to NODE_ID_END with a relation type and real start/end dates — a true directed typed edge list over ~2M named nodes"
+            },
+            {
+              "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_FACILITY_AFFILIATION",
+              "rows": "2260193",
+              "why": "NPI to CCN, hard federal identifiers on both ends — a clean doctor-to-facility graph"
+            },
+            {
+              "table": "LIBRARY_META.CONNECT.ENTITY_MAP",
+              "rows": "33312349",
+              "why": "SOURCE_COUNT is bipartite degree already computed for 33.3M entities, with MEMBER_TABLES giving the neighbour list for free"
+            }
+          ],
+          "note": "The spine links things to files, not to each other — so the honest people-to-people graphs are ICIJ, ARCOS and CMS affiliation, and the court-citation network is a dead end because the table that would hold those edges is sitting there empty."
+        },
+        {
+          "technique": "Entropy / information density",
+          "category": "Physics-Derived Techniques",
+          "needs": "Counts spread across buckets — categories, months, or places — so you can measure whether they are spread evenly or piled into one corner, and catch the moment the spread collapses into a pattern.",
+          "what_exists": "Every count was re-measured and every one is exact. LIBRARY_MARTS.TIMELINE holds exactly 436 views; 435 carry RIPPLE_SOURCE, RIPPLE_GRAIN and RIPPLE_CLOCK; 403 carry RIPPLE_TS. The 32 views without RIPPLE_TS are not failures — they are the per-domain index roll-ups (TIMELINE__HEALTH_INDEX and friends) plus a warehouse-wide one, so the clock rollout is cleaner than the raw gap suggests. Of the 436, exactly 312 match a severity/category signal and 81 match an outcome signal. CFPB complaints verified in full at 17,168,287 rows with PRODUCT, SUB_PRODUCT, ISSUE, SUB_ISSUE, COMPANY_RESPONSE, SUBMITTED_VIA and TAGS as text categories, STATE and ZIP_CODE for place, DATE_RECEIVED and DATE_SENT_TO_COMPANY as real DATEs, and IS_TIMELY, HAS_NARRATIVE, IS_CLOSED as real BOOLEANs. EPA SDWA violations verified at 15,432,737 rows with VIOLATION_CODE, VIOLATION_CATEGORY_CODE, CONTAMINANT_CODE and IS_HEALTH_BASED_IND — but it has 13 real DATE columns, not the four claimed, which makes it better than described. Two corrections on HMDA_HISTORIC (19,136,434 rows, correct): it has no DATE or TIMESTAMP column at all — its only clock is AS_OF_YEAR stored as TEXT, so any time entropy on it is year-grain and no finer; and it has no FIPS column, only STATE_CODE plus COUNTY_CODE plus CENSUS_TRACT_NUMBER, which you compose yourself. Finally, the 312 and 81 signal counts are column-NAME matches from the same loose severity and outcome rules the brief warns over-count badly, so treat them as upper bounds exactly like the 3,341.",
+          "tier": "READY",
+          "blocker": "",
+          "distance_to_ready": "",
+          "candidates": [
+            {
+              "table": "LIBRARY_MARTS.CONSUMER_PROTECTION.CONSUMER_PROTECTION__FED_CFPB_COMPLAINTS",
+              "rows": "17168287",
+              "why": "seven text category columns plus state, zip, two real DATEs and three BOOLEANs — textbook category-by-place-by-time entropy, all columns confirmed"
+            },
+            {
+              "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT",
+              "rows": "15432737",
+              "why": "violation, category and contaminant codes with a health-based flag and 13 real DATE columns for time-sliced distributions"
+            },
+            {
+              "table": "LIBRARY_META.CONNECT.ENTITY_MAP",
+              "rows": "33312349",
+              "why": "MEMBER_TABLES gives each of 33.3M entities a distribution over source files, so entropy of that mix measures directly whether a thing is visible everywhere or hiding in one place"
+            }
+          ],
+          "note": "Four hundred tables all got the same clock column last week, so one query shape runs across the whole warehouse — just know that the biggest mortgage table's clock is a year stored as text, so it can never be sliced finer than annually."
+        }
+      ]
+    },
+    {
+      "key": "gis",
+      "title": "GIS / Geographic Techniques",
+      "techniques": [
+        {
+          "technique": "Hotspot analysis (Getis-Ord Gi*)",
+          "category": "GIS / Geographic Techniques",
+          "needs": "A number attached to a place (facilities per county, deposits per county, denials per tract), plus a rule for which places count as next-door to which. The rule can be \"within so many miles\" — it does not have to be a shared border.",
+          "what_exists": "Both halves are here today. LIBRARY_MARTS.CORE.DIM_COUNTY (3,222 rows) carries POP_CENTER_LAT and POP_CENTER_LON as real FLOATs plus POPULATION_2020, which gives you a distance-band neighbour rule and the per-person denominator out of the same table; LIBRARY_MARTS.CORE.DIM_TRACT does the same for 85,391 tracts. A distance band is Getis and Ord's own original form of the test, so the missing border-adjacency list the prior analyst treated as a blocker is not actually required. Clean county-keyed values exist to feed it: LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_FRS_FACILITIES (5,300,149 rows) has FIPS_CODE, and the 2026-08-10 defect review flagged only its COUNTY_NAME and COUNTRY_NAME, not FIPS_CODE; LIBRARY_MARTS.FINANCE.FINANCE__FED_FDIC_SOD_BRANCH_DEPOSITS (2,823,000) came back a clean OK with BRANCH_COUNTY_FIPS, BRANCH_DEPOSITS_THOUSANDS and an annual SURVEY_YEAR. The real hazard is the join key, not the neighbour rule: 88 of the 610 mart models in that review push a county or FIPS column through try_to_number (29 times on COUNTY, 16 on COUNTY_NAME, 12 on COUNTY_CODE, 6 on COUNTY_FIPS), which wipes leading zeros off FIPS codes and nulls county names outright — and only 9 of the 318 defect-clean models carry a county-FIPS column at all.",
+          "tier": "READY",
+          "blocker": "",
+          "distance_to_ready": "",
+          "candidates": [
+            {
+              "table": "LIBRARY_MARTS.CORE.DIM_COUNTY",
+              "rows": "3222",
+              "why": "POP_CENTER_LAT and POP_CENTER_LON as FLOAT plus POPULATION_2020 — the neighbour rule and the rate denominator come out of one 3,222-row table"
+            },
+            {
+              "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_FRS_FACILITIES",
+              "rows": "5300149",
+              "why": "FIPS_CODE survived the Aug-10 review unflagged (only COUNTY_NAME and COUNTRY_NAME were bad-cast), so 5.3M regulated facilities roll up to clean county counts"
+            },
+            {
+              "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_FDIC_SOD_BRANCH_DEPOSITS",
+              "rows": "2823000",
+              "why": "verdict OK in the defect review, with BRANCH_COUNTY_FIPS, BRANCH_DEPOSITS_THOUSANDS and SURVEY_YEAR — a clean value per county per year"
+            }
+          ],
+          "note": "The blocker is not the missing border list — it is that 88 mart models ran their county and FIPS columns through a number cast, so the key you would join on is the thing most likely to be broken."
+        },
+        {
+          "technique": "Kernel Density Estimation (KDE)",
+          "category": "GIS / Geographic Techniques",
+          "needs": "Dots on a map — a latitude and a longitude per row that are actually numbers, not text. Optionally a weight so a big facility counts more than a small one.",
+          "what_exists": "801 objects have columns NAMED latitude and longitude, but only 120 have both stored as real numbers — the other 679 keep coordinates as text, which is the actual reason the headline number collapses (the 608 hash-named city-portal crawl objects are a subset of that, not the whole story). Of the 120, 54 sit in LIBRARY_MARTS domain schemas and 21 carry 100,000 rows or more; the rest are TIMELINE views and staging copies of the same sources. The big ones are real: LIBRARY_MARTS.MARITIME.MARITIME__FED_NOAA_AIS at 58,104,610 vessel pings (LATITUDE/LONGITUDE FLOAT plus POSITION_GEOGRAPHY, the only true GEOGRAPHY column in all 162,750 columns, exposed twice), LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_FRS_FACILITIES at 5,300,149, and LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_ECHO at 3,135,554 which also carries POPULATION_DENSITY as a FLOAT. Two corrections to the prior read: FRS has no NAICS column at all (its NAICS codes live in a separate 2,179,702-row table whose own header count disagrees at 500,000), and LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_FRACFOCUS_REGISTRY's 7,200,550 rows are ingredient-disclosure records keyed by INGREDIENT_RECORD_ID, not 7.2M wells — plotting them raw would make a chemically talkative operator look like a drilling hotspot.",
+          "tier": "READY",
+          "blocker": "",
+          "distance_to_ready": "",
+          "candidates": [
+            {
+              "table": "LIBRARY_MARTS.MARITIME.MARITIME__FED_NOAA_AIS",
+              "rows": "58104610",
+              "why": "LATITUDE and LONGITUDE as FLOAT, a genuine GEOGRAPHY column and a DATE — the densest point cloud in the warehouse, and its Aug-10 verdict is OK"
+            },
+            {
+              "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_FRS_FACILITIES",
+              "rows": "5300149",
+              "why": "LATITUDE/LONGITUDE FLOAT on every EPA-regulated facility, with ADDRESS, COUNTY, FIPS_CODE and POSTAL_CODE to slice by — but no NAICS on this table"
+            },
+            {
+              "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_ECHO",
+              "rows": "3135554",
+              "why": "LATITUDE/LONGITUDE FLOAT plus POPULATION_DENSITY on the same row — the heat surface and the people underneath it come from one table"
+            }
+          ],
+          "note": "The only technique here that needs nothing built first, but check row grain before you plot: FracFocus's 7.2M rows are chemical ingredients, not wells, and a prior session found loaders writing the text 'nan' into coordinate cells."
+        },
+        {
+          "technique": "Spatial autocorrelation (Moran's I)",
+          "category": "GIS / Geographic Techniques",
+          "needs": "A value per place, a rule for which places are near which, and a shuffle test — reshuffle the values across places a few hundred times to see whether the real clustering beats random.",
+          "what_exists": "All three are available. The neighbour rule comes from the same centroids as hotspot analysis (DIM_COUNTY 3,222 and DIM_TRACT 85,391, both with POP_CENTER_LAT/LON as FLOAT and POPULATION_2020), so no border-adjacency table is needed. The shuffle machinery is already written and running: reports/ripples_neighbor_rule_2026-08-21.md documents a 20-draw random control group across three domains — its neighbour key is corporate ownership rather than geography, so swapping in distance is the only change. On values, the prior read picked LIBRARY_MARTS.HEALTH.HEALTH__FED_HRSA_SHORTAGE_AREAS (165,531 rows) for its county FIPS, but that is exactly the wrong column to lean on — all of its county and FIPS columns are among its 7 bad casts in the Aug-10 review; what saves it is that the same table carries LATITUDE and LONGITUDE as FLOAT alongside HPSA_SCORE and HPSA_ESTIMATED_UNDERSERVED_POPULATION, so it works as points and never touches the broken key. One absolute claim from the prior read is also wrong: a polygon layer does exist — LIBRARY_MARTS.HOUSING.HOUSING__FED_MAPPING_INEQUALITY carries a GEOMETRY column with HOLC_GRADE, FIPS and LAT/LON — though the mart holds only 1,155 rows against 10,154 in raw landing, so it is a redlining sample, not a national layer.",
+          "tier": "READY",
+          "blocker": "",
+          "distance_to_ready": "",
+          "candidates": [
+            {
+              "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_HRSA_SHORTAGE_AREAS",
+              "rows": "165531",
+              "why": "HPSA_SCORE and HPSA_ESTIMATED_UNDERSERVED_POPULATION as FLOAT sitting on LATITUDE/LONGITUDE FLOAT — use the coordinates, not its seven bad-cast county and FIPS columns"
+            },
+            {
+              "table": "LIBRARY_MARTS.CORE.DIM_TRACT",
+              "rows": "85391",
+              "why": "85,391 tract centroids with POPULATION_2020 — the finest grain at which a distance-band neighbour rule can be built, and the denominator for any rate"
+            },
+            {
+              "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_FRS_FACILITIES",
+              "rows": "5300149",
+              "why": "FIPS_CODE is one of the few county keys the defect review left unflagged, so 5.3M facilities give a clean value per county to test for clustering"
+            }
+          ],
+          "note": "The random-shuffle code this test needs is already built and running on corporate ownership — pointing it at distance instead of ownership is the whole job."
+        },
+        {
+          "technique": "Voronoi diagrams",
+          "category": "GIS / Geographic Techniques",
+          "needs": "Points, plus a genuine reason each point owns the ground around it — a branch that takes deposits, a water system that serves households. Without that ownership meaning it is decoration.",
+          "what_exists": "The Laboratory calls this a probable dud; the warehouse disagrees in one strong lane and one broken one. LIBRARY_MARTS.FINANCE.FINANCE__FED_FDIC_SOD_BRANCH_DEPOSITS (2,823,000 rows) came back a clean OK in the Aug-10 defect review and carries SIMS_LATITUDE and SIMS_LONGITUDE as FLOAT, BRANCH_DEPOSITS_THOUSANDS as a NUMBER, BRANCH_COUNTY_FIPS and an annual SURVEY_YEAR — a real dollar amount owned by each individual point. Assigning LIBRARY_MARTS.CORE.DIM_TRACT's 85,391 population-weighted centroids to their nearest branch turns the whole tessellation into a plain nearest-point join with no geometry engine, and POPULATION_2020 gives people-per-catchment immediately, so nothing is missing to get the numbers. The water lane is weaker than the prior read claimed: LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS (434,040) genuinely has POPULATION_SERVED_COUNT and SERVICE_CONNECTIONS_COUNT but no coordinates (correct), and its partner LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS (578,198) has COUNTY_SERVED flagged as a bad cast and a row disagreement against a 500,000 header, so the declared territory is itself defect-flagged. A table literally named SDWA_SERVICE_AREAS does exist (422,464 rows, verdict OK, misfiled under the IMMIGRATION schema) but holds only a service-area type code, not any geography.",
+          "tier": "READY",
+          "blocker": "",
+          "distance_to_ready": "",
+          "candidates": [
+            {
+              "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_FDIC_SOD_BRANCH_DEPOSITS",
+              "rows": "2823000",
+              "why": "SIMS_LATITUDE/SIMS_LONGITUDE FLOAT plus BRANCH_DEPOSITS_THOUSANDS and SURVEY_YEAR, and a clean defect verdict — each point genuinely owns a measurable amount"
+            },
+            {
+              "table": "LIBRARY_MARTS.CORE.DIM_TRACT",
+              "rows": "85391",
+              "why": "85,391 centroids with POPULATION_2020 turn the tessellation into a nearest-point join and hand you people-per-catchment in the same step"
+            },
+            {
+              "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS",
+              "rows": "578198",
+              "why": "CITY_SERVED and ZIP_CODE_SERVED per water system are usable as a declared-territory check, but COUNTY_SERVED is a flagged bad cast and the row count disagrees with its header"
+            }
+          ],
+          "note": "Not the dud the catalog assumes — people-per-bank-branch works as a plain join today; only the drawn picture is blocked, because there is no outline anywhere to clip the cells against."
+        },
+        {
+          "technique": "Flow maps",
+          "category": "GIS / Geographic Techniques",
+          "needs": "One row saying a thing went from here to there — a start place and an end place side by side, ideally with an amount and a date — plus coordinates for both ends so the arc can be drawn.",
+          "what_exists": "The index's 558 origin-and-destination tables is close to worthless, and the prior read's debunk of it checks out: the top origin column names are SOURCE_RUN_ID (1,884), _SOURCE_URL (1,100) and _SOURCE_RUN_ID (948), all loader bookkeeping, and only 32 columns in the signal file are literally named ORIGIN. About six genuine same-row flow families survive, and they are strong on the from-and-to but weak on the coordinates. LIBRARY_MARTS.HEALTH.HEALTH__FED_DEA_ARCOS carries reporter city/state/zip to buyer city/state/zip across 178,598,026 shipment rows with DOSAGE_UNITS and TOTAL_MME — but its BUYER_COUNTY, REPORTER_COUNTY and TRANSACTION_DATE are all bad casts in the Aug-10 review, and the time index corrects its span to 2006-2012, not 2006-2026. LIBRARY_MARTS.HOUSING.HOUSING__FED_FEMA_IA_HOUSING_REGISTRATIONS genuinely pairs DAMAGED_ZIP_CODE/CITY/STATE with RENTAL_RESOURCE_ZIP_CODE/CITY/STATE and RENTAL_ASSISTANCE_AMOUNT, though its 3,080,000 rows is an exactly-round count of the shape that review confirmed as load caps in 18 tables. LIBRARY_MARTS.JUSTICE.JUSTICE__FED_FJC_IDB_CRIMINAL already holds DISTRICT and TRANSFER_DISTRICT on the same row (no self-join needed, contrary to the prior read) but court districts have no geography anywhere in the warehouse, and LIBRARY_MARTS.TRANSPORT.TRANSPORT__FED_DOT_BTS is confirmed a 21-row stub.",
+          "tier": "PARTIAL",
+          "blocker": "The clean same-row flows are ZIP-to-ZIP and nothing in the warehouse can place a ZIP on a map: LIBRARY_MARTS.CORE.XWALK_ZCTA_COUNTY (46,960 rows) has no coordinates, and neither LIBRARY_MARTS.CORE.DIM_STATE nor LIBRARY_MARTS.REFERENCE.REF__DIM_STATE carries any either. The one source with county FIPS on both ends, LIBRARY_MARTS.ECONOMICS.ECONOMICS__FED_USASPENDING_ASSISTANCE_FULL, has BOTH of those columns — PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_COUNTY_FIPS_CODE and PRIME_AWARD_TRANSACTION_RECIPIENT_COUNTY_FIPS_CODE — pushed through try_to_number in the Aug-10 review, along with ACTION_DATE, so the claim that it joins straight to DIM_COUNTY centroids with no name matching is false as written.",
+          "distance_to_ready": "Build or load one ZCTA centroid table (roughly 33,000 rows of ZIP plus lat/lon) and every ZIP-to-ZIP flow in the warehouse becomes drawable; repairing the two USASpending county-FIPS casts so leading zeros survive unlocks the county-grain lane in parallel.",
+          "candidates": [
+            {
+              "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_DEA_ARCOS",
+              "rows": "178598026",
+              "why": "REPORTER_CITY/STATE/ZIP to BUYER_CITY/STATE/ZIP on 178.6M rows with DOSAGE_UNITS and TOTAL_MME — the city/state/zip ends are clean, but both county columns and TRANSACTION_DATE are flagged bad casts and coverage stops at 2012"
+            },
+            {
+              "table": "LIBRARY_MARTS.HOUSING.HOUSING__FED_FEMA_IA_HOUSING_REGISTRATIONS",
+              "rows": "3080000",
+              "why": "DAMAGED_ZIP_CODE/CITY/STATE to RENTAL_RESOURCE_ZIP_CODE/CITY/STATE with RENTAL_ASSISTANCE_AMOUNT — household-grain displacement, though the round row count fits the confirmed load-cap pattern"
+            },
+            {
+              "table": "LIBRARY_MARTS.ECONOMICS.ECONOMICS__FED_USASPENDING_ASSISTANCE_FULL",
+              "rows": "19902879",
+              "why": "place-of-performance and recipient county FIPS on the same row, which is the only county-to-county lane there is — but both of those FIPS columns are flagged as number casts, so the leading zeros are suspect until checked"
+            }
+          ],
+          "note": "Downgraded from READY: the from-and-to columns are real, but the good ones are ZIPs and there is no ZIP centroid anywhere, so today you can count these flows without being able to draw a single arc."
+        }
+      ]
+    },
+    {
+      "key": "raided",
+      "title": "Other Domains Raided for Ideas",
+      "techniques": [
+        {
+          "technique": "Epidemiology → contact tracing graphs",
+          "category": "Other Domains Raided for Ideas",
+          "needs": "Records that put two parties in the same place at the same time — same building, same prescriber, same employer, same address — with a stable ID for each party and a start and end time. Without the clock you get a crowd, not a contact.",
+          "what_exists": "One table is literally contact tracing: LIBRARY_MARTS.IMMIGRATION.IMMIGRATION__FED_ICE_DETENTION_STINTS, 2,571,975 rows carrying PERSON_HASH, DETENTION_FACILITY plus its code, and BOOK_IN_AT / BOOK_OUT_AT as real TIMESTAMP_NTZ columns — verified in the column list. CORRECTION to the prior scoring: the time index does NOT rate that clock CLEAN. Its ruling file says the primary clock is STAY_BOOK_OUT_DATE at confidence MEDIUM (2022-10-01 to 2026-03-11, populated on 2,397,989 of 2,571,975 rows), and states in writing that the four cast book-in/book-out timestamps 'never reached the candidate list' — so the exact columns this technique needs are typed but unrated. It also warns some book-outs are future-dated scheduled releases (max 2027-02-01), which would stretch stays and inflate overlaps. The table additionally ships DUPLICATE_LIKELY, DUPLICATE_LIKELY_SAMEDAY, DUPLICATE_LIKELY_BOND and DUPLICATE_DROP_ROW columns — the mart flags its own suspected duplicate rows, and unfiltered those double-count co-presence. Behind it: LIBRARY_META.CONNECT.ENTITY_XREF holds 2,672,384 rows with RELATION and FANOUT; LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_FACILITY_AFFILIATION adds 2,260,193 NPI↔CCN rows and has ZERO date columns of any type and zero entries in the clock index — genuinely undated, verified. Shared-address tracing is column-name surface only: 1,622 tables match an address-ish name (513 plain ADDRESS), which proves nothing about population. Person keys are thin: the person signal covers 387 tables but is dominated by LAST_NAME (80) and FIRST_NAME (68); PERSON_ID appears in 14 tables and PERSON_HASH in exactly two marts, both ICE.",
+          "tier": "READY",
+          "candidates": [
+            {
+              "table": "LIBRARY_MARTS.IMMIGRATION.IMMIGRATION__FED_ICE_DETENTION_STINTS",
+              "rows": "2571975",
+              "why": "PERSON_HASH + DETENTION_FACILITY + BOOK_IN_AT/BOOK_OUT_AT as TIMESTAMP_NTZ — same place, same time, per person, no join"
+            },
+            {
+              "table": "LIBRARY_META.CONNECT.ENTITY_XREF",
+              "rows": "2672384",
+              "why": "KEY_A/VALUE_A to KEY_B/VALUE_B with RELATION and FANOUT — a typed shared-key link with a hub-size counter to cap noise"
+            },
+            {
+              "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_FACILITY_AFFILIATION",
+              "rows": "2260193",
+              "why": "NPI↔CCN bipartite co-affiliation — the doctor-shares-a-building edge, with no date column at all"
+            }
+          ],
+          "note": "One table already IS contact tracing — but its book-in/book-out clock was never rated, some book-outs are future-dated scheduled releases, and the table flags its own duplicate rows, so filter those three things before you count a single overlap.",
+          "blocker": "",
+          "distance_to_ready": ""
+        },
+        {
+          "technique": "Astronomy → sky surveys / N-body clustering",
+          "category": "Other Domains Raided for Ideas",
+          "needs": "A very large cloud of points — millions, not thousands — plus some measure that pulls related points together, so you can cluster and render density instead of drawing every dot. Distance on a map counts as that measure.",
+          "what_exists": "The point cloud is real and verified: LIBRARY_MARTS.MARITIME.MARITIME__FED_NOAA_AIS holds 58,104,610 ship positions with LATITUDE and LONGITUDE as FLOAT plus POSITION_GEOGRAPHY typed GEOGRAPHY — and a dtype sweep of all 162,750 columns finds only TWO GEOGRAPHY columns in the entire warehouse, so that native spatial type is nearly unique to this table. 801 tables carry a lat AND a lon together. CORRECTION to the prior scoring's ranking: the next-densest point clouds after AIS are ENVIRONMENT__FED_FRACFOCUS_REGISTRY at 7,200,550, then ENVIRONMENT__FED_USGS_WATER at 6,694,816 (which the prior list skipped entirely), then ENVIRONMENT__FED_EPA_FRS_FACILITIES at 5,300,149. SECOND CORRECTION: LIBRARY_META.CONNECT.MATCH_PAIRS was cited as '181M shared-key pairs, the attraction measure for clustering entities' — its columns are KEY_TYPE, KEY_VALUE, TABLE_A, TABLE_B, so a row says one key value appeared in two TABLES, not that entity A attracts entity B. That is the same defect the prior scoring correctly called out under connectome mapping and then relied on here, so it is dropped as a candidate. What genuinely does not exist: a stored similarity of any kind. The full column-type census returns zero VECTOR-typed columns, and a name sweep for EMBED / VECTOR / COSINE / SIMILARITY returns only physical distance fields and false hits like 'GRANTSANDSIMILARAMOUNTSPAIDAMT'. Any similarity has to be computed, never read. Two hard limits: the AIS clock is verified CLEAN but spans only 2024-01-01 to 2024-01-08, and IMO_NUMBER was found sentinel-masked in a prior session, so vessel identity should come off MMSI or IMO_NORMALIZED, both of which exist in the column list.",
+          "tier": "READY",
+          "candidates": [
+            {
+              "table": "LIBRARY_MARTS.MARITIME.MARITIME__FED_NOAA_AIS",
+              "rows": "58104610",
+              "why": "58.1M lat/lon points plus POSITION_GEOGRAPHY — one of only two GEOGRAPHY columns in the warehouse, and the densest single cloud by 8x"
+            },
+            {
+              "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_FRACFOCUS_REGISTRY",
+              "rows": "7200550",
+              "why": "7.2M frack jobs with LATITUDE/LONGITUDE, API_NUMBER as the well id and JOB_START_DATE/JOB_END_DATE — the true second-densest cloud, and a dated one"
+            },
+            {
+              "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_FRS_FACILITIES",
+              "rows": "5300149",
+              "why": "5.3M mapped facilities with LATITUDE, LONGITUDE, ADDRESS and REGISTRY_ID — the point cloud you can actually label once clustered"
+            }
+          ],
+          "note": "58 million ship pings is a real star field, but it is one week of January 2024 — a photograph, not a survey — and there is no stored similarity anywhere in the warehouse, so every distance you cluster on has to be computed from scratch.",
+          "blocker": "",
+          "distance_to_ready": ""
+        },
+        {
+          "technique": "Neuroscience → connectome mapping",
+          "category": "Other Domains Raided for Ideas",
+          "needs": "A huge list of connections between individual things — not between tables — plus enough of them joined into one structure that you can ask which few nodes hold the whole thing together. Millions of edges, one connected map.",
+          "what_exists": "The headline number is misleading and the prior scoring was right to say so. LIBRARY_META.CONNECT.MATCH_PAIRS has 181,002,484 rows but its columns are KEY_TYPE, KEY_VALUE, TABLE_A, TABLE_B — one entity showed up in two TABLES, not entity A links to entity B. LIBRARY_META.CONNECT.CONNECT_EDGES is 4,910 rows and is a table-to-table schema graph by the brief's own statement. The genuine thing-to-thing edge lists, all verified in the column file: LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_RELATIONSHIPS at 3,339,267 (NODE_ID_START, NODE_ID_END, REL_TYPE), LIBRARY_META.CONNECT.ENTITY_XREF at 2,672,384, and HEALTH__FED_CMS_FACILITY_AFFILIATION at 2,260,193 — 8,271,844 typed edges — plus transaction tables that collapse into edges (ARCOS 178,598,026, FEC contributions 84,172,112). ADDED FACT the prior scoring missed: the ICIJ edges DO carry START_DATE and END_DATE as real DATE columns, but only 704,064 of 3,339,267 rows have a start date (21%) and 238,130 an end date, over a range of 1759 to 2029 — so that edge list is mostly undated and partly junk-dated. Nothing precomputes importance: CONNECT.BRIDGE_ENTITIES is confirmed EMPTY at 0 rows, CLUSTER_ASSIGNMENTS holds 23 source-level rows, SOURCE_OVERLAP_MATRIX 36, DOMAIN_OVERLAP_MATRIX 7. The 2026-08-12 question ladder names the wiring hole: DEA ARCOS, ICIJ, ICE detention, sanctions, NPDB and the courts have zero verified connections into the entity graph.",
+          "tier": "PARTIAL",
+          "candidates": [
+            {
+              "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_DEA_ARCOS",
+              "rows": "178598026",
+              "why": "REPORTER_DEA_NO and BUYER_DEA_NO are the same kind of ID, so 178.6M shipments collapse into one self-contained connected circuit you can run centrality on today"
+            },
+            {
+              "table": "LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_RELATIONSHIPS",
+              "rows": "3339267",
+              "why": "NODE_ID_START to NODE_ID_END with REL_TYPE — the biggest true entity-to-entity typed edge list, though only 21% carry a start date"
+            },
+            {
+              "table": "LIBRARY_META.CONNECT.ENTITY_XREF",
+              "rows": "2672384",
+              "why": "2.7M bridge edges carrying a RELATION type and a FANOUT count, so noisy hub nodes can be capped before layout"
+            }
+          ],
+          "note": "You can run a real connectome inside the opioid shipment table today — 178.6M edges, one ID namespace, no join needed — what you cannot do is run one across the warehouse, because the islands do not touch and the table meant to hold the hub nodes is empty.",
+          "blocker": "The pieces never join into one circuit map: the two biggest edge lists are documented graph dark matter — ARCOS (178,598,026 rows) and ICIJ Offshore Leaks (3,339,267) have zero verified connections into the entity spine — and BRIDGE_ENTITIES, the table meant to hold the hub nodes, is confirmed empty at 0 rows while the only warehouse-wide 'edge' table (MATCH_PAIRS, 181,002,484) links TABLE_A to TABLE_B, not entity to entity.",
+          "distance_to_ready": "Build one crosswalk per island — a DEA-number-to-registry bridge for ARCOS is the single highest-yield one — and the largest island fuses into the spine, at which point centrality can be run across it rather than inside it."
+        },
+        {
+          "technique": "Ecology → food web / trophic cascade",
+          "category": "Other Domains Raided for Ideas",
+          "needs": "Arrows, not lines. A depends on B, so knocking out B has to visibly hurt A — money flowing payer to payee, an owner over its facilities, a prime contractor over its subs. Then a second hop, so the shock can travel.",
+          "what_exists": "TIER RAISED from PARTIAL to READY, because the second hop already exists inside single tables and needs no missing table to reach it. LIBRARY_MARTS.HEALTH.HEALTH__FED_DEA_ARCOS is a genuine multi-tier supply chain: 178,598,026 rows of REPORTER_DEA_NO to BUYER_DEA_NO with DRUG_NAME, QUANTITY, TOTAL_MME and TRANSACTION_DATE (verified happened/day, HIGH confidence, 2006-01-01 to 2012-12-31, 178,598,021 of 178,598,026 populated). Both endpoints are DEA registrant numbers in one namespace, so a buyer on one row is a reporter on another — the chain walks manufacturer to distributor to pharmacy in-table, and REPORTER_BUSINESS_ACTIVITY versus BUYER_BUSINESS_ACTIVITY labels the tier. LIBRARY_MARTS.ECONOMICS.ECONOMICS__INTL_GLEIF_RELATIONSHIPS holds 484,142 directed LEI-to-LEI ownership edges (RELATIONSHIP_STARTNODE_NODEID to RELATIONSHIP_ENDNODE_NODEID) with a relationship type and a QUANTIFIERAMOUNT ownership share as FLOAT — recursive, so ownership trees walk several levels. CORRECTION: the prior scoring called GLEIF's clock CLEAN. It is not. Every period start/end column is TEXT, not DATE; the clock index rates them MEDIUM and records an explicit trap — the period slots are a flattened repeating group, so slot 1 is not the same KIND of period on every row and you must filter RELATIONSHIP_PERIOD_1_PERIODTYPE = 'RELATIONSHIP_PERIOD' first; the measured span runs 1832 to 2035, so future-dated junk is present. SECOND CORRECTION: direction is real in more than three places. Beyond ARCOS, GLEIF and the controller keys (LABOR__FED_MSHA_MINES.CURRENT_CONTROLLER_ID, MSHA_VIOLATIONS and MSHA_ACCIDENTS.CONTROLLER_ID, HEALTH__FED_CMS_NURSING_HOME.CHAIN_ID with NUMBER_OF_FACILITIES_IN_CHAIN), ICIJ Offshore Leaks is a fourth directed list at 3,339,267 typed start-to-end edges, and ECONOMICS__FED_USASPENDING_CONTRACTS_FULL carries PARENT_AWARD_ID_PIID — a contract-action to parent-award hop — though its raw table sits at exactly 20,000,000 rows, itself a round-number cap. THIRD CORRECTION: PROCUREMENT__FED_USASPENDING_SUBAWARDS is confirmed at exactly 5,000 rows (a page cap), and its typed columns carry no prime-award key, but it does hold a RECORD_JSON VARIANT column whose contents are unverified from metadata — the prime link may be inside it. The genuinely directionless part is the warehouse's own graph layer: ENTITY_XREF's RELATION values are affiliation and same-row, which have no arrow.",
+          "tier": "READY",
+          "candidates": [
+            {
+              "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_DEA_ARCOS",
+              "rows": "178598026",
+              "why": "reporter-to-buyer in one DEA namespace with quantity, MME and a HIGH-confidence day clock, plus a business-activity code on each side — the chain has real tiers and walks without a join"
+            },
+            {
+              "table": "LIBRARY_MARTS.ECONOMICS.ECONOMICS__INTL_GLEIF_RELATIONSHIPS",
+              "rows": "484142",
+              "why": "LEI-to-LEI ownership with a relationship type and a QUANTIFIERAMOUNT share — recursive, so knocking out a parent cascades down several levels"
+            },
+            {
+              "table": "LIBRARY_MARTS.LABOR.LABOR__FED_MSHA_MINES",
+              "rows": "91906",
+              "why": "CURRENT_CONTROLLER_ID and CURRENT_CONTROLLER_NAME point an owner down to each mine, and the same controller key repeats on MSHA_VIOLATIONS and MSHA_ACCIDENTS so the shock has somewhere to land"
+            }
+          ],
+          "note": "Raised to READY: the opioid shipment table and the corporate ownership table each carry both endpoints in one ID namespace, so a cascade walks two or more hops inside a single table — the capped 5,000-row subaward file blocks one lane of federal money, not the technique.",
+          "blocker": "",
+          "distance_to_ready": ""
+        },
+        {
+          "technique": "Music/Audio → spectrograms",
+          "category": "Other Domains Raided for Ideas",
+          "needs": "One thing's activity chopped into a dense grid — categories down the side, time buckets across the bottom, intensity in each cell. Needs many time buckets per thing and many categories per thing, in the same table.",
+          "what_exists": "The best-supplied technique in the category, and it holds up. LIBRARY_MARTS.HEALTH.HEALTH__FED_DEA_ARCOS delivers it with no join: 178,598,026 rows of BUYER_DEA_NO by DRUG_NAME by TRANSACTION_DATE with QUANTITY and TOTAL_MME, verified at day grain, HIGH confidence, 2006-01-01 to 2012-12-31 — 84 monthly columns for any one pharmacy. LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY adds 31,403,215 rows of CCN by MDS_ITEM_QUESTION_DESCRIPTION by REPORT_DATE with OVERALL_PERCENT, SHORT_STAY_PERCENT and LONG_STAY_PERCENT as intensity — CORRECTION: REPORT_DATE is a real DATE column but the clock index rates it clock=reported, grain=QUARTER, confidence MEDIUM, noting CMS publishes the file quarterly, so it is roughly 4 buckets a year, not daily. LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_AIR_EMISSIONS_POLL_RPT_COMBINED_EMISSIONS gives 10,411,826 rows of REGISTRY_ID by POLLUTANT_NAME by REPORTING_YEAR, verified 2008 to 2024 at MEDIUM confidence — CORRECTION: both ANNUAL_EMISSION and REPORTING_YEAR are stored as TEXT, so the axis needs casting as well as the value. Underneath, 1,152 tables match the entity-plus-time combo and LIBRARY_MARTS.TIMELINE holds 436 views putting one canonical clock on 403 sources. The load-stamp trap the prior scoring flagged is confirmed: HEALTH__FED_CMS_PARTD_PRESCRIBERS looks perfect at 25,869,521 rows of NPI by drug, but the clock index states its only timestamp is _LOADED_AT and that it holds one single value (2026-07-23 22:44:38) across all 25.9M rows — no time axis at all.",
+          "tier": "READY",
+          "candidates": [
+            {
+              "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_DEA_ARCOS",
+              "rows": "178598026",
+              "why": "buyer by drug by day with QUANTITY and TOTAL_MME on a HIGH-confidence 2006-2012 clock — a drug-versus-month heat grid per pharmacy, 84 months deep, no join"
+            },
+            {
+              "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY",
+              "rows": "31403215",
+              "why": "CCN by quality measure by REPORT_DATE with three percentage columns as cell intensity, at quarterly resolution"
+            },
+            {
+              "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_AIR_EMISSIONS_POLL_RPT_COMBINED_EMISSIONS",
+              "rows": "10411826",
+              "why": "facility by pollutant by year, 2008-2024 — a pollution fingerprint per site, once the TEXT year and TEXT emission are both cast"
+            }
+          ],
+          "note": "One pharmacy, drugs down the side, months across the bottom, colour is pills — the opioid shipment table hands you that straight out, 84 months deep; the nursing-home and pollution grids are quarterly and yearly, so their bars are far wider than they look.",
+          "blocker": "",
+          "distance_to_ready": ""
+        },
+        {
+          "technique": "Finance → correlation matrices / heatmap clustering",
+          "category": "Other Domains Raided for Ideas",
+          "needs": "Lots of separate lines measured on the same clock at the same grain, long enough to be worth comparing — dozens of time buckets each. Then you score every pair against every other pair and reorder the grid so the ones that move together clump.",
+          "what_exists": "The shared axis is live and verified. LIBRARY_MARTS.TIMELINE.TIMELINE__WAREHOUSE holds 1,161,122 rows whose columns are exactly RIPPLE_SOURCE, RIPPLE_CLOCK, RIPPLE_GRAIN, RIPPLE_DAY and N_ROWS — one row per source, clock, grain and day with a count — beside 31 domain rollups (ENVIRONMENT_INDEX 274,313, JUSTICE_INDEX 236,956, HEALTH_INDEX 131,105) and RIPPLE_TIME_REGISTRY at 647 rows naming the chosen clock per live table. The series are pulled and scored: 371 measured, 307 scored, 136 carrying 100,000-plus rows, with 953 table-and-column series listed with grain and confidence. HARD CORRECTION: the prior scoring's clean-panel candidate, ECONOMICS__FED_BLS_QCEW, does not work. Its 3,619,437 rows all carry YEAR = 2022 — the measured span is 2022 to 2022 at HIGH confidence — and the clock index rules QUARTER 'not_a_date... a bare 1-4 ordinal with no year in it', so the table yields at most four time buckets against a technique that needs dozens. It is replaced by CONSUMER_PROTECTION__FED_CFPB_COMPLAINTS: 17,168,287 rows, COMPANY by PRODUCT by ISSUE, DATE_RECEIVED verified 100% populated at day grain HIGH confidence from 2011-12-01 to 2026-07-23, with RECEIVED_MONTH already precomputed — roughly 175 monthly buckets across thousands of company series in one table. SECOND CORRECTION: HEALTH__FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE was called 'the widest such table live' at 62 numeric columns; it is the biggest of the wide tables by ROW count, but HEALTH__FED_CMS_POS_OTHER is far wider at 204 numeric columns of 473 (44,429 rows). 81 tables carry 20-plus numeric columns and 30 carry 50-plus. Two limits to respect: the 2026-08-20 trend sweep's own headline is that most strangeness it found is about how data was COLLECTED, not what happened, naming crawl schedules, partial-year files and bulk backfills — so a warehouse-wide matrix surfaces publication twins first; and the shared clock is uneven, with several domain rollups nearly empty (CRIMINAL_JUSTICE 1 row, HISTORY 2, MONEY_FINANCE 7, MARITIME 8, INVESTIGATIONS 16, JUDICIARY 21).",
+          "tier": "READY",
+          "candidates": [
+            {
+              "table": "LIBRARY_MARTS.TIMELINE.TIMELINE__WAREHOUSE",
+              "rows": "1161122",
+              "why": "RIPPLE_SOURCE by RIPPLE_CLOCK by RIPPLE_GRAIN by RIPPLE_DAY with N_ROWS — 403 sources already counted per day on one shared axis, the matrix input prebuilt"
+            },
+            {
+              "table": "LIBRARY_MARTS.CONSUMER_PROTECTION.CONSUMER_PROTECTION__FED_CFPB_COMPLAINTS",
+              "rows": "17168287",
+              "why": "COMPANY by PRODUCT by ISSUE with a fully populated day clock 2011-12 to 2026-07 and a prebuilt RECEIVED_MONTH — thousands of parallel monthly series, ~175 buckets deep, one table"
+            },
+            {
+              "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_POS_OTHER",
+              "rows": "44429",
+              "why": "204 numeric columns on one row — the genuine widest within-record correlation form in the warehouse, not the 62-column table cited before"
+            }
+          ],
+          "note": "The shared clock is built and 403 sources sit on it, but the county-employment panel the earlier read leaned on holds only the year 2022 — and the trend sweep warned that things moving together here usually means they were downloaded together, not that the world moved together.",
+          "blocker": "",
+          "distance_to_ready": ""
+        }
+      ]
+    }
+  ],
+  "critique": [
+    {
+      "kind": "CROSS_CUTTING_BLOCKER",
+      "detail": "THE big one: there is no ZIP centroid and no ZIP population anywhere, and ZIP is the warehouse's dominant geography. Deduped to finished marts (excluding TIMELINE views, _RESTORE and UNCATEGORIZED), 163 tables carry a ZIP against 102 with a county, 104 with a FIPS and only 56 with lat/lon — ZIP beats coordinates roughly 3 to 1. I read CORE.XWALK_ZCTA_COUNTY column by column: ZCTA5, COUNTY_FIPS, STATE_FIPS, COUNTY_NAME, STATE_USPS, XWALK_TYPE, VINTAGE. No latitude, no longitude, no population. A grep of every POPULATION* column in LIBRARY_MARTS returns county (DIM_COUNTY), tract (DIM_TRACT and HMDA_HISTORIC), water-system-served and density — never ZIP. So the biggest tables in the building can be counted by ZIP and never mapped or rated: ARCOS 178,598,026, FEC individual contributions 84,172,112, CMS facility-level MDS 31,403,215, USASpending assistance 19,902,879, CFPB complaints 17,168,287, Open Payments 15,385,047 + 14,700,786 + 13,250,000, NPPES 9,606,683. One ~33,000-row table (ZCTA, lat, lon, population) unblocks at once: Flow maps (that is literally its stated blocker), Mass rates at ZIP, KDE at ZIP grain, Hotspot and Moran's at ZIP grain, Aggregate-first below the state line, and the #1 item on the census-grid parking lot ('per person served', 1,426 models).",
+      "tables": "LIBRARY_MARTS.CORE.XWALK_ZCTA_COUNTY, LIBRARY_MARTS.HEALTH.HEALTH__FED_DEA_ARCOS, LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_INDIV_CONTRIBUTIONS, LIBRARY_MARTS.CONSUMER_PROTECTION.CONSUMER_PROTECTION__FED_CFPB_COMPLAINTS, LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_OPEN_PAYMENTS"
+    },
+    {
+      "kind": "CROSS_CUTTING_BLOCKER",
+      "detail": "Second blocker, same family: zero boundary polygons, which caps the RENDERING half of six techniques at once. Measured across all 162,750 columns, exactly 2 are typed GEOGRAPHY and both are the same NOAA AIS point column (POSITION_GEOGRAPHY on the mart and on its TIMELINE view). Zero GEOMETRY-typed columns exist. I checked the two tables whose NAMES promise boundaries and both dropped the shape at ingest: ENVIRONMENT__FED_EPA_SUPERFUND_SITE_BOUNDARIES (2,114 rows) carries GIS_AREA, GIS_AREA_UNITS and PROJECTION but no shape column; ENVIRONMENT__FED_USGS_WBD_HUC8 (2,456) carries SHAPE_LENGTH and SHAPE_AREA but no shape. That is why the geom name-signal's 1,212 hits are noise — they are area metrics and WKT-in-TEXT. One TIGER ingest (state/county/tract/ZCTA polygons) keyed on the FIPS codes DIM_STATE, DIM_COUNTY and DIM_TRACT already carry lights up: zoom tiering (its blocker), Voronoi's drawn cells, choropleth for Aggregate-first, and the map surface under Hotspot, Moran's and KDE.",
+      "tables": "LIBRARY_MARTS.CORE.DIM_COUNTY, LIBRARY_MARTS.CORE.DIM_TRACT, LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_SUPERFUND_SITE_BOUNDARIES, LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_USGS_WBD_HUC8"
+    },
+    {
+      "kind": "UNCLAIMED_SHAPE",
+      "detail": "Free-text harm narratives — roughly 29 million rows of people describing what happened to them, and not one of the 22 techniques touches text at all. Verified columns and row counts: CFPB complaints carries COMPLAINT_NARRATIVE (TEXT) alongside HAS_NARRATIVE (BOOLEAN) on 17,168,287 rows; CPSC NEISS carries NARRATIVE on 9,794,971 ER injury records; FDA MAUDE 2,743,561 device adverse events; FRA CASUALTIES NARRATIVE on 1,150,788; OSHA ITA case detail carries NEW_INCIDENT_DESCRIPTION and JOB_DESCRIPTION on 890,934 (2023) + 688,649 (2024); MSHA ACCIDENTS NARRATIVE on 273,623. Every one of those tables also carries a clock and a place, so the text is already joinable to the maps the catalog does cover. This is the single largest capability nobody claimed, and it is the closest thing in the warehouse to a human voice — which is exactly what the mission says the map is for.",
+      "tables": "LIBRARY_MARTS.CONSUMER_PROTECTION.CONSUMER_PROTECTION__FED_CFPB_COMPLAINTS, LIBRARY_MARTS.CONSUMER_SAFETY.CONSUMER_SAFETY__FED_CPSC_NEISS, LIBRARY_MARTS.HEALTH.HEALTH__FED_FDA_MAUDE, LIBRARY_MARTS.TRANSPORT.TRANSPORT__FED_FRA_CASUALTIES, LIBRARY_MARTS.LABOR.LABOR__FED_OSHA_ITA_CASE_DETAIL_2023"
+    },
+    {
+      "kind": "UNCLAIMED_SHAPE",
+      "detail": "A whole duration/lifecycle layer is already MEASURED on disk and no technique claims it. reports/time_index/spans_ranked.csv holds 56 tables with a start+end pair already scored for median duration, closure rate, cohort comparability, share-open and backwards-dated rows. Biggest: EPA SDWA violations 14,430,187 span rows (COMPL_PER_BEGIN_DATE to NON_COMPL_PER_END_DATE), USASpending contracts full 19,999,869, USASpending assistance full 11,189,048, NIH RePORTER 1,993,071, FJC IDB criminal fugitive spans 1,427,191, EPA SDWA lead-and-copper samples 927,415, CourtListener judicial positions 50,420. Alongside it, cohorts_ranked.csv holds 142 entity-cohort tables and lag_ranked.csv holds 70 happened-to-reported lag tables (FAERS 4,778,271 rows; EPA ECHO inspection-to-action 565,447; a table literally called ENVIRONMENT__EPA_PENALTY_GAP). The catalog has no survival, hazard, or time-to-event technique anywhere — the closest is contact tracing, which uses ICE stints for co-presence and ignores the duration.",
+      "tables": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT, LIBRARY_MARTS.ECONOMICS.ECONOMICS__FED_USASPENDING_CONTRACTS_FULL, LIBRARY_MARTS.SCIENCE_RESEARCH.SCIENCE_RESEARCH__FED_NIH_REPORTER, LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_ECHO, LIBRARY_MARTS.IMMIGRATION.IMMIGRATION__FED_ICE_DETENTION_STINTS"
+    },
+    {
+      "kind": "UNCLAIMED_SHAPE",
+      "detail": "Demographic disparity columns at scale — the most on-mission shape in the building, claimed by nothing. HOUSING__FED_CFPB_HMDA_HISTORIC (19,136,434 rows) carries five APPLICANT_RACE slots plus five CO_APPLICANT_RACE slots, APPLICANT_ETHNICITY, APPLICANT_SEX, APPLICANT_INCOME_000S, ACTION_TAKEN, DENIAL_REASON_1/2/3, RATE_SPREAD, and — the part every entry missed — its own tract denominators: POPULATION, MINORITY_POPULATION, HUD_MEDIAN_FAMILY_INCOME, NUMBER_OF_OWNER_OCCUPIED_UNITS, on the same row as STATE_CODE + COUNTY_CODE + CENSUS_TRACT_NUMBER. The technique is not hypothetical here: JUSTICE.JUSTICE__RACIAL_JAIL_DISPARITY already exists at 128,507 county-year rows with BLACK_JAIL_RATE, WHITE_JAIL_RATE, LATINX_JAIL_RATE, BW_RATIO, BW_RATE_GAP, per-race working-age population denominators and an IS_MEASURABLE_COHORT flag. Someone already built the disparity mart; the catalog does not know the family exists.",
+      "tables": "LIBRARY_MARTS.HOUSING.HOUSING__FED_CFPB_HMDA_HISTORIC, LIBRARY_MARTS.JUSTICE.JUSTICE__RACIAL_JAIL_DISPARITY, LIBRARY_MARTS.JUSTICE.JUSTICE__XC_VERA_INCARCERATION_TRENDS, LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_MEDICARE_PROVIDER"
+    },
+    {
+      "kind": "UNCLAIMED_SHAPE",
+      "detail": "Denominators that are not resident population, and time-varying ones — every scored entry reached for DIM_COUNTY.POPULATION_2020, a single 2020 snapshot, and missed the better ones. HEALTH__FED_CDC_DRUG_POISONING_COUNTY is 53,387 rows of county x YEAR with its own POPULATION (FLOAT) and an age-adjusted death rate — a per-year county denominator, which is what any rate over a 2006-2012 or 2011-2026 span actually needs. LABOR__FED_OSHA_ITA_300A_SUMMARY_2024 (398,620 establishments) carries TOTAL_HOURS_WORKED and ANNUAL_AVERAGE_EMPLOYEES next to TOTAL_DEATHS and TOTAL_INJURIES — an exposure denominator, not a population one (note both hours and injuries are stored TEXT and need casting). EPA SDWA public water systems carries POPULATION_SERVED_COUNT on 434,040 systems; EPA ECHO carries POPULATION_DENSITY as FLOAT. CDC injury/violence county (132,000 rows) even ships RATE_M_CI, a confidence interval.",
+      "tables": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CDC_DRUG_POISONING_COUNTY, LIBRARY_MARTS.LABOR.LABOR__FED_OSHA_ITA_300A_SUMMARY_2024, LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS, LIBRARY_MARTS.HEALTH.HEALTH__FED_CDC_INJURY_VIOLENCE_COUNTY"
+    },
+    {
+      "kind": "UNCLAIMED_SHAPE",
+      "detail": "The shape of money itself. In finished marts (excluding TIMELINE) there are 656 numerically typed amount columns — 352 FLOAT and 304 NUMBER — against 347 still TEXT. The biggest carriers: SEC 13F positions 101,261,252 rows, FEC individual contributions 84,172,112, Medicare Part D prescribers 25,869,521, USASpending assistance 19,902,879, Open Payments 15,385,047 + 14,700,786 + 13,250,000 (43.3M rows of industry payments to named doctors), USASpending contracts 6,325,622, HRSA NPDB malpractice payouts 1,911,185. Every technique that touches these uses the amount as a weight to sum. Nothing in the catalog looks at the DISTRIBUTION of the amounts — digit tests, round-number and just-under-threshold bunching, concentration curves, tail fitting. Worth noting the 2026-07-27 sweep already found one of these by hand ('a tiny donor cluster generates ~1/5 of all rows at $23 each') — that is a concentration finding produced with no technique behind it.",
+      "tables": "LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_INDIV_CONTRIBUTIONS, LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_OPEN_PAYMENTS, LIBRARY_MARTS.FINANCE.FINANCE__FED_SEC_13F_POSITIONS, LIBRARY_MARTS.HEALTH.HEALTH__FED_HRSA_NPDB"
+    },
+    {
+      "kind": "UNCLAIMED_SHAPE",
+      "detail": "A full calendar dimension nobody claimed. REFERENCE.REFERENCE__CALENDAR is 155,593 rows and 33 columns including FEDERAL_FISCAL_YEAR, FEDERAL_FISCAL_MONTH, FEDERAL_FISCAL_QUARTER, ELECTION_CYCLE, IS_ELECTION_YEAR, CONGRESS_NUMBER, IS_WEEKEND, IS_MONTH_END, IS_YEAR_END plus month/quarter/year start-and-end anchors; CORE.DIM_DATE adds 31,411 rows with US_FISCAL_YEAR and DAY_OF_WEEK_ISO. Bolt that onto the 403 tables now sitting on the RIPPLE_TS clock and you get calendar-effect analysis for free: the September fiscal-year-end contract dump, money timed to election cycles, weekday-only reporting artifacts, month-end filing spikes. No technique in the catalog names seasonality or calendar effects at all — the only time technique listed is correlation matrices.",
+      "tables": "LIBRARY_MARTS.REFERENCE.REFERENCE__CALENDAR, LIBRARY_MARTS.CORE.DIM_DATE, LIBRARY_MARTS.TIMELINE.TIMELINE__WAREHOUSE"
+    },
+    {
+      "kind": "UNCLAIMED_SHAPE",
+      "detail": "Status-span lists with hard identifiers on both sides — the 'banned but still operating' machinery. PROCUREMENT__FED_SAM_EXCLUSIONS (167,928 rows) carries UEI, CAGE_CODE and NPI together with ACTIVATION_DATE and TERMINATION_DATE as real DATE columns plus IS_CURRENTLY_EXCLUDED (BOOLEAN); HEALTH__FED_HHS_OIG_LEIE 83,369; JUSTICE__INTL_OPENSANCTIONS_DEFAULT 1,281,846. UEI joins straight to USASpending, NPI joins straight to NPPES/Medicare/Part D. The capability is proven — LIBRARY_MARTS.FINDINGS already holds EXCLUDED_PROVIDER_PAID_AFTER_EXCLUSION, EXCLUDED_PROVIDER_AT_FACILITY and REVOKED_BUT_DEDUCTIBLE as built views — but no technique in the catalog names the shape. Caveat to carry: the 2026-07-27 sweep found the federal debarment list ≤9% loaded with fabricated status flags, so the span dates are usable and the flags are not.",
+      "tables": "LIBRARY_MARTS.PROCUREMENT.PROCUREMENT__FED_SAM_EXCLUSIONS, LIBRARY_MARTS.HEALTH.HEALTH__FED_HHS_OIG_LEIE, LIBRARY_MARTS.JUSTICE.JUSTICE__INTL_OPENSANCTIONS_DEFAULT, LIBRARY_MARTS.FINDINGS.EXCLUDED_PROVIDER_PAID_AFTER_EXCLUSION"
+    },
+    {
+      "kind": "UNCLAIMED_SHAPE",
+      "detail": "Industry classification: 916 tables carry a NAICS or SIC column (195 named NAICS_CODE, 137 NAICS, 121 SIC, 105 INDUSTRY_SECTOR), and not one technique uses industry as an axis. Biggest carriers: Open Payments 15,385,047, EPA NPDES QNCR history 7,951,656, UK Companies House PSC 7,000,000, USASpending contracts 6,325,622, BLS QCEW 3,619,437, EPA FRS NAICS codes 2,179,702, SBA loans 2,174,502, FRA casualties 1,150,788, EPA FRS SIC codes 1,085,211, OSHA ITA 890,934. That is the natural peer-group axis for 'is this employer unusually bad compared with others doing the same work.' Gap worth stating: a grep of every table name for naics/sic/industry finds no dimension or lookup table anywhere — nothing decodes a code or nests a 6-digit code up to its 2-digit sector, so the hierarchy has to be built or the inline *_DESC columns trusted.",
+      "tables": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_OPEN_PAYMENTS, LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_FRS_FRS_NAICS_CODES, LIBRARY_MARTS.ECONOMICS.ECONOMICS__FED_BLS_QCEW, LIBRARY_MARTS.LABOR.LABOR__FED_OSHA_ITA_CASE_DETAIL_2023"
+    },
+    {
+      "kind": "UNCLAIMED_SHAPE",
+      "detail": "A 6.5-million-row labelled training set sits unused. LIBRARY_META.CONNECT.GOLD_PAIRS holds 6,538,936 rows of NPI, L_LAST, L_FIRST, R_LAST, R_FIRST, PLACE, LABEL (BOOLEAN) and SCORE — human-or-rule-labelled name-match pairs. No technique in the catalog is supervised; every one is descriptive geometry or graph math. This is the substrate for a learned record-linkage model, which is also the thing that would start dissolving the island problem two other entries call a blocker. Related and equally unclaimed: NICKNAME_MAP (102 name variants) and ENTITY_LINKS (2,324 rows with METHOD, SCORE, BAND).",
+      "tables": "LIBRARY_META.CONNECT.GOLD_PAIRS, LIBRARY_META.CONNECT.ENTITY_LINKS, LIBRARY_META.CONNECT.NICKNAME_MAP"
+    },
+    {
+      "kind": "MISSING_TECHNIQUE",
+      "detail": "Survival / time-to-event analysis (Kaplan-Meier curves, hazard rates, cumulative-incidence, cohort funnels). The Laboratory has no duration technique in any of its five sections — the closest is 'Ripples,' which animates spread, not persistence. The substrate is not just present, it is pre-measured: 56 span tables in spans_ranked.csv and 70 lag tables in lag_ranked.csv, already scored for censoring, backwards dates and cohort comparability. The questions it answers are the mission's questions: how long does a water system stay in violation before anyone acts (EPA SDWA, 14,430,187 span rows), how long is someone held (ICE detention stints, 2,571,975 with BOOK_IN_AT/BOOK_OUT_AT as TIMESTAMP_NTZ), how long between an EPA inspection and any formal action (ECHO, 565,447 measured lag rows). The repo's own time-censoring memo already warns that raw durations shrink toward the present — meaning the trap is documented and the technique to handle it is not on the menu.",
+      "tables": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT, LIBRARY_MARTS.IMMIGRATION.IMMIGRATION__FED_ICE_DETENTION_STINTS, LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_ECHO, LIBRARY_MARTS.PROCUREMENT.PROCUREMENT__FED_SAM_EXCLUSIONS"
+    },
+    {
+      "kind": "MISSING_TECHNIQUE",
+      "detail": "Group-disparity testing — rate ratios between demographic groups with a denominator per group, and the regression-adjusted version that asks whether the gap survives controls. This is the most direct answer to 'who gets hurt, and does the data show it,' and it is absent from all five sections of The Laboratory. Ready substrate: HMDA_HISTORIC 19,136,434 applications with race/ethnicity/sex/income/denial-reason and tract-level POPULATION and MINORITY_POPULATION on the same row; JUSTICE__RACIAL_JAIL_DISPARITY 128,507 county-years already carrying per-race rates, ratio and gap; CMS MEDICARE_PROVIDER 1,296,739 providers with beneficiary age and race counts among its 49 numeric columns. Note the one real limit: HMDA_HISTORIC has no DATE or TIMESTAMP column, only AS_OF_YEAR stored as TEXT, so disparity trends are year-grain and no finer.",
+      "tables": "LIBRARY_MARTS.HOUSING.HOUSING__FED_CFPB_HMDA_HISTORIC, LIBRARY_MARTS.JUSTICE.JUSTICE__RACIAL_JAIL_DISPARITY, LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_MEDICARE_PROVIDER"
+    },
+    {
+      "kind": "MISSING_TECHNIQUE",
+      "detail": "Text analytics on the narrative corpus — topic modelling, embedding-space maps, phrase-shift over time, near-duplicate detection on complaint text. Nothing in The Laboratory mentions text in any form. ~29M free-text rows exist (CFPB COMPLAINT_NARRATIVE 17.2M, CPSC NEISS NARRATIVE 9.79M, MAUDE 2.74M, FRA 1.15M, OSHA ITA 1.58M across two years, MSHA 273k), each already carrying a place, a clock and a company or facility id — so a topic map is joinable to every geographic technique in the catalog on day one. One hard limit to state plainly: a full-column dtype census finds zero VECTOR-typed columns in all 162,750, so any embedding must be computed and stored, not read.",
+      "tables": "LIBRARY_MARTS.CONSUMER_PROTECTION.CONSUMER_PROTECTION__FED_CFPB_COMPLAINTS, LIBRARY_MARTS.CONSUMER_SAFETY.CONSUMER_SAFETY__FED_CPSC_NEISS, LIBRARY_MARTS.LABOR.LABOR__FED_MSHA_ACCIDENTS"
+    },
+    {
+      "kind": "MISSING_TECHNIQUE",
+      "detail": "Changepoint / structural-break detection on the shared clock. The catalog's only time-comparison technique is correlation matrices ('what moves together'); it has nothing for 'when did this line break.' TIMELINE.TIMELINE__WAREHOUSE is already the exact input at 1,161,122 rows of RIPPLE_SOURCE x RIPPLE_CLOCK x RIPPLE_GRAIN x RIPPLE_DAY x N_ROWS across 403 sources, with 953 series listed in TRENDABLE.csv and 137 substantial ones pre-ranked in series_ranked_substantial.csv. The caveat is inherited from the 2026-08-20 trend sweep and applies to changepoints even harder than to correlations: most breaks will be collection artifacts (a crawl schedule changing, a bulk backfill) rather than the world changing, so the technique needs a publication-artifact filter built alongside it.",
+      "tables": "LIBRARY_MARTS.TIMELINE.TIMELINE__WAREHOUSE, LIBRARY_MARTS.TIMELINE.RIPPLE_TIME_REGISTRY"
+    },
+    {
+      "kind": "MISSING_TECHNIQUE",
+      "detail": "Funnel plots / uncertainty-aware institutional benchmarking — plotting each facility's harm rate against its size so small-denominator noise is separated from genuine outliers. Absent from The Laboratory, and it is the standard fix for the failure mode the mission most invites (naming a tiny hospital as 'worst in America' because it had two bad months). Substrate: CMS HCRIS 6,103 hospitals x 107 numeric columns, CMS POS_OTHER 44,429 facilities x 204 numeric, CMS NURSING_HOME 14,700 x 61 with lat/lon, CMS NURSING_HOME_DEFICIENCIES 418,479, OSHA 300A 398,620 establishments with hours-worked as the exposure denominator. CDC injury/violence county already ships RATE_M_CI, proving the uncertainty column pattern exists in the warehouse.",
+      "tables": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_HCRIS, LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_POS_OTHER, LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME_DEFICIENCIES, LIBRARY_MARTS.LABOR.LABOR__FED_OSHA_ITA_300A_SUMMARY_2024"
+    },
+    {
+      "kind": "MISSING_TECHNIQUE",
+      "detail": "Sankey / alluvial / chord diagrams — flow WITHOUT geography. The catalog's only movement technique is Flow maps, which the scoring downgraded to PARTIAL solely because there is no ZIP centroid to draw an arc between. A Sankey needs no coordinates at all, so every one of those flows is drawable today: ARCOS reporter-to-buyer across 178,598,026 shipments with TOTAL_MME as the ribbon width and REPORTER_BUSINESS_ACTIVITY / BUYER_BUSINESS_ACTIVITY as the tiers; FEMA IA damaged-ZIP to rental-resource-ZIP on 3,080,000 rows with RENTAL_ASSISTANCE_AMOUNT; FJC IDB criminal DISTRICT to TRANSFER_DISTRICT on the same row across 6,299,908 cases (court districts have no geography anywhere, which kills the map and not the Sankey). This is a whole visual family blocked by an assumption, not by data.",
+      "tables": "LIBRARY_MARTS.HEALTH.HEALTH__FED_DEA_ARCOS, LIBRARY_MARTS.HOUSING.HOUSING__FED_FEMA_IA_HOUSING_REGISTRATIONS, LIBRARY_MARTS.JUSTICE.JUSTICE__FED_FJC_IDB_CRIMINAL"
+    },
+    {
+      "kind": "MISSING_TECHNIQUE",
+      "detail": "Compositional / mix-shift analysis — what share of a total each category holds and how that share moves, including categories that appear or vanish. Not in the catalog (entropy measures how spread a distribution is, never which parts moved). And it is already measured: reports/time_index/mix_ranked.csv holds 687 table-column rulings with mix_shift, dominance_flipped, n_appeared, n_vanished, pct_blank_early/late and explicit snapshot_risk and survivorship_risk flags. Pair it with the category-rich big tables — CFPB complaints (PRODUCT, SUB_PRODUCT, ISSUE, SUB_ISSUE, COMPANY_RESPONSE, TAGS on 17,168,287 rows), EPA SDWA violations (VIOLATION_CODE, CONTAMINANT_CODE, 15,432,737) — and you get 'what changed in the mix' with the collection-artifact risk already scored.",
+      "tables": "LIBRARY_MARTS.CONSUMER_PROTECTION.CONSUMER_PROTECTION__FED_CFPB_COMPLAINTS, LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT"
+    },
+    {
+      "kind": "INCONSISTENCY",
+      "detail": "Two entries contradict each other on whether polygons exist, and the metadata settles it. Sample-or-tier-by-zoom: 'There is no boundary-shape table anywhere in the warehouse... Exactly two columns out of 162,750 carry a real GEOGRAPHY type and both are the same ship-position point column.' Spatial autocorrelation: 'One absolute claim from the prior read is also wrong: a polygon layer does exist — LIBRARY_MARTS.HOUSING.HOUSING__FED_MAPPING_INEQUALITY carries a GEOMETRY column with HOLC_GRADE, FIPS and LAT/LON.' Measured: that column's dtype is TEXT, not GEOMETRY, in the mart, in staging and in raw landing. A full dtype census confirms 2 GEOGRAPHY columns (both NOAA AIS POSITION_GEOGRAPHY) and 0 GEOMETRY columns warehouse-wide. Zoom is right; Moran's overturned a correct claim on a column name. It matters because Moran's I was raised to READY partly on that sentence.",
+      "tables": "LIBRARY_MARTS.HOUSING.HOUSING__FED_MAPPING_INEQUALITY, LIBRARY_MARTS.MARITIME.MARITIME__FED_NOAA_AIS"
+    },
+    {
+      "kind": "INCONSISTENCY",
+      "detail": "Flow maps says ARCOS is broken in ways four other entries say it is not. Flow maps: 'its BUYER_COUNTY, REPORTER_COUNTY and TRANSACTION_DATE are all bad casts in the Aug-10 review.' Aggregate-first: 'TRANSACTION_DATE is a real DATE.' Ecology/food-web: 'verified happened/day, HIGH confidence, 2006-01-01 to 2012-12-31.' Measured: in the live mart HEALTH__FED_DEA_ARCOS, BUYER_COUNTY is TEXT (ordinal 17) — it is only NUMBER in the _RESTORE_20260731 backup copy, which the brief says must never be cited. And reports/time_index/clock_index.csv rates health__fed_dea_arcos.transaction_date as happened / day / is_primary / HIGH with the note 'try_to_date(trim(TRANSACTION_DATE),\\'MMDDYYYY\\') with an explicit format... the cleanest big event clock in this batch.' The flow-maps entry appears to have read a backup-schema row as the live one.",
+      "tables": "LIBRARY_MARTS.HEALTH.HEALTH__FED_DEA_ARCOS, LIBRARY_MARTS._RESTORE_20260731.UNCATEGORIZED__FED_DEA_ARCOS_FULL"
+    },
+    {
+      "kind": "INCONSISTENCY",
+      "detail": "Percolation treats CONNECT_EDGES as a complete network while Distance explicitly warns it is not — and both are READY on the same substrate. Distance: 'a missing pair there means never measured, not no overlap — treating missing as zero would make the warehouse look far more disconnected than it is.' Percolation: 'TIER, MATCH_RATE and CONFIDENCE confirmed on every edge — three ready-made threshold dials on a graph small enough to sweep instantly,' with no such caveat, as its #1 candidate. The arithmetic: 4,910 edges over 3,033 base tables is about 0.1% of the ~4.6M possible pairs. Percolation's entire output is the threshold at which islands snap into one blob — on a 0.1% sample that number measures the sampler, not the warehouse. Distance's caveat is not optional for percolation; it is fatal to it. Same pattern one level down: Astronomy correctly DROPPED MATCH_PAIRS ('a row says one key value appeared in two TABLES, not that entity A attracts entity B') and Connectome flags it too, yet Percolation still lists it as candidate #3.",
+      "tables": "LIBRARY_META.CONNECT.CONNECT_EDGES, LIBRARY_META.CONNECT.CONNECT_EDGES_INC, LIBRARY_META.CONNECT.MATCH_PAIRS"
+    },
+    {
+      "kind": "INCONSISTENCY",
+      "detail": "Three entries are caveated or downgraded on a defect that the same report they cite says was FIXED. Hotspot's closing note: 'the blocker is... that 88 mart models ran their county and FIPS columns through a number cast, so the key you would join on is the thing most likely to be broken.' Flow maps' blocker leans on the same thing for USASpending. But reports/mart_defect_verdicts_2026-08-10.md section 1 records the repair — 'un-wrapped 173 columns across 101 model files... All 101 models rebuilt. 143 of 150 checked columns now carry data' — and states the outcome in the same words: 'county/state FIPS columns are now text, not numbers. That is the fix, not a regression — casting a FIPS to a number strips the leading zero.' Live metadata agrees: PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_COUNTY_FIPS_CODE and PRIME_AWARD_TRANSACTION_RECIPIENT_COUNTY_FIPS_CODE are both TEXT today, and every county/FIPS column on HRSA_SHORTAGE_AREAS is TEXT. The join key is intact; two techniques carry a stale warning.",
+      "tables": "LIBRARY_MARTS.ECONOMICS.ECONOMICS__FED_USASPENDING_ASSISTANCE_FULL, LIBRARY_MARTS.HEALTH.HEALTH__FED_HRSA_SHORTAGE_AREAS, LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_FRS_FACILITIES"
+    },
+    {
+      "kind": "OVERSOLD",
+      "detail": "Flow maps names the wrong defect on its own third candidate. It blames the two county-FIPS columns on ECONOMICS__FED_USASPENDING_ASSISTANCE_FULL (19,902,879 rows). The real problem is far worse and unmentioned: that table has ZERO numeric columns. All 112 are TEXT — FEDERAL_ACTION_OBLIGATION, TOTAL_OBLIGATED_AMOUNT, TOTAL_OUTLAYED_AMOUNT_FOR_OVERALL_AWARD, FACE_VALUE_OF_LOAN, NON_FEDERAL_FUNDING_AMOUNT and ACTION_DATE included. Its twin ECONOMICS__FED_USASPENDING_CONTRACTS_FULL has the identically-named money columns as FLOAT, so this is a per-table modelling miss, not a source limitation. Anyone weighting a flow, a Sankey or a concentration curve on federal assistance dollars gets nothing until those columns are cast. Same pattern worth flagging on two other giants: CMS NPPES is 333 columns with 1 numeric on 9,606,683 rows, and GLEIF is 338 columns with 0 numeric on 3,382,301 — which is the same root cause as the separately-noted 'GLEIF period dates are all TEXT.'",
+      "tables": "LIBRARY_MARTS.ECONOMICS.ECONOMICS__FED_USASPENDING_ASSISTANCE_FULL, LIBRARY_MARTS.ECONOMICS.ECONOMICS__FED_USASPENDING_CONTRACTS_FULL, LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NPPES, LIBRARY_MARTS.ECONOMICS.ECONOMICS__INTL_GLEIF"
+    },
+    {
+      "kind": "UNDERSOLD",
+      "detail": "Three geographic reference assets exist that no entry named. REFERENCE.REF__DIM_GEOGRAPHY (6,988 rows) carries FIPS_CODE, STATE_FIPS, COUNTY_FIPS_SUFFIX, COUNTY_NAME, STATE_ABBR, EPA_REGION and CENTROID_LATITUDE / CENTROID_LONGITUDE as FLOAT — a second county centroid table, with an EPA region rollup DIM_COUNTY lacks. REFERENCE__FED_DHS_HIFLD (500 rows, flagged elsewhere as a sample stub) pairs LATITUDE/LONGITUDE with FIPS, ZIP and NAICS_CODE — small, but it is the only table in the warehouse that carries all three keys with a coordinate, i.e. a worked example of the crosswalk shape the ZIP blocker needs. And HOUSING__FED_CFPB_HMDA_HISTORIC carries POPULATION per census tract on 19.1M rows, a second tract denominator beside DIM_TRACT that nobody mentioned.",
+      "tables": "LIBRARY_MARTS.REFERENCE.REF__DIM_GEOGRAPHY, LIBRARY_MARTS.REFERENCE.REFERENCE__FED_DHS_HIFLD, LIBRARY_MARTS.HOUSING.HOUSING__FED_CFPB_HMDA_HISTORIC"
+    },
+    {
+      "kind": "UNCLAIMED_SHAPE",
+      "detail": "Bipartite two-mode structure — entities on one side, source files on the other. LIBRARY_META.CONNECT.ENTITY_MAP holds 33,312,349 entities each with MEMBER_TABLES (ARRAY) and SOURCE_COUNT (NUMBER). Two entries reach into it (centrality reads SOURCE_COUNT as degree, entropy reads MEMBER_TABLES as a distribution), but nobody claims the shape itself: projecting the two-mode graph onto either side. Project onto tables and you get a co-occurrence map of which sources actually describe the same population — the honest version of the schema graph that CONNECT_EDGES only samples at 0.1%. Project onto entities and you get 'which things are visible in an unusual combination of files,' which is a visibility-anomaly detector rather than a picture. Neither projection needs anything built or ingested.",
+      "tables": "LIBRARY_META.CONNECT.ENTITY_MAP, LIBRARY_META.CONNECT.ENTITY_INDEX"
+    }
+  ],
+  "opportunities": [
+    {
+      "technique": "Flow maps",
+      "current_tier": "PARTIAL",
+      "why_close": "The scoring's blocker is 'the clean same-row flows are ZIP-to-ZIP and nothing in the warehouse can place a ZIP on a map.' That is measurably not true. LIBRARY_MARTS.CORE.XWALK_ZCTA_COUNTY (46,960 rows, verified columns ZCTA5, COUNTY_FIPS, STATE_FIPS, XWALK_TYPE, VINTAGE) already maps every ZIP to a county, and LIBRARY_MARTS.CORE.DIM_COUNTY (3,222 rows) already carries POP_CENTER_LAT and POP_CENTER_LON as FLOAT plus POPULATION_2020. ZIP -> county -> centroid is a two-hop join over tables that both exist today, no ingest. For finer grain there is a second in-warehouse route: 23 mart tables carry a ZIP/POSTAL column alongside a numerically typed latitude, and four of them are large enough to average into per-ZIP centroids on their own -- ENVIRONMENT__FED_EPA_FRS_FACILITIES 5,300,149 (POSTAL_CODE + LATITUDE/LONGITUDE FLOAT + FIPS_CODE, all verified), ENVIRONMENT__FED_EPA_ECHO 3,135,554, FINANCE__FED_FDIC_SOD_BRANCH_DEPOSITS 2,823,000, ENVIRONMENT__FED_EPA_RCRA_FACILITIES 1,613,224 -- roughly 12.9M already-geocoded ZIP-stamped rows. And one end of the flagship displacement flow is already drawable with zero work: LIBRARY_MARTS.HOUSING.HOUSING__FED_FEMA_IA_HOUSING_REGISTRATIONS carries CENSUS_GEOID, which joins straight to LIBRARY_MARTS.CORE.DIM_TRACT's TRACT_GEOID and its POP_CENTER_LAT/LON.",
+      "the_one_step": "Write one dbt model, DIM_ZIP_POINT: ZCTA5 from XWALK_ZCTA_COUNTY joined to DIM_COUNTY's POP_CENTER_LAT/LON, picking the dominant county row per ZIP (XWALK_ZCTA_COUNTY holds 46,960 rows for ~33k ZCTAs, so some ZIPs span counties and need a tie-break or an allocation weight). Every ZIP-to-ZIP flow in the warehouse becomes drawable the moment that model lands -- ARCOS's 178,598,026 reporter-ZIP-to-buyer-ZIP shipments and FEMA's 3,080,000 damaged-ZIP-to-rental-ZIP moves first.",
+      "effort": "Hours to one day. One dbt model over two tables that already exist, plus a tie-break decision on multi-county ZIPs. Optional follow-on of about a day: derive true per-ZIP centroids by averaging coordinates on the 12.9M geocoded facility/branch rows, which buys finer arcs but is facility-weighted rather than population-weighted and will have holes in ZIPs with no regulated site."
+    },
+    {
+      "technique": "Ripples (diffusion/propagation animation)",
+      "current_tier": "PARTIAL",
+      "why_close": "The named fix -- cast GLEIF's TEXT period dates -- is smaller than described, and the 'nowhere to propagate to' half of the blocker is wrong. Two verifications. First, reports/time_index/clock_index.csv already RULED relationship_period_1_startdate and _enddate as span_start/span_end at day grain, medium confidence, and the same file records that the SAME dbt model already applies a guarded to_date(try_to_timestamp_tz(...)) cast to registration_initialregistrationdate, registration_lastupdatedate and registration_nextrenewaldate -- all three confirmed as real DATE dtype in ALL_COLUMNS.csv, at HIGH confidence. So the cast is a copy-paste of a cast living in the same file, and a crude ripple animation actually runs TODAY off the already-typed registration date. Second, the claim that a ripple has nowhere to go misses LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__XC_EPA_CORPORATE_CROSSWALK -- 5,300,149 rows, one per EPA facility, with EPA_REGISTRY_ID, MATCHED_LEI, ULTIMATE_PARENT_LEI, PARENT_CIK, PARENT_UEI, MATCH_METHOD and MATCH_CONFIDENCE. That is a built bridge from GLEIF's LEI namespace to 5.3M geocoded facilities, to 20+ SEC tables via CIK, and to USASpending's 19.9M assistance and 20M contract rows via UEI.",
+      "the_one_step": "In the existing economics__intl_gleif_relationships dbt model, apply the guarded to_date(try_to_timestamp_tz(...)) cast already used there on the registration dates to RELATIONSHIP_PERIOD_1_STARTDATE and _ENDDATE, filtered to RELATIONSHIP_PERIOD_1_PERIODTYPE = 'RELATIONSHIP_PERIOD' (the clock index writes that trap down explicitly -- the five period slots are a flattened repeating group and slot 1 is not the same kind of period on every row).",
+      "effort": "Hours. One cast in one dbt model, reusing a pattern already in that file, then a rebuild of a 484,142-row table. Add a day if you also want to sanity-check the span, since the clock index measures the period range running 1832 to 2035, so future-dated and junk-dated rows are present and need a filter."
+    },
+    {
+      "technique": "Neuroscience -> connectome mapping",
+      "current_tier": "PARTIAL",
+      "why_close": "The scoring's own distance-to-ready is 'build one crosswalk per island.' One of those crosswalks is already built and was never mentioned: LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__XC_EPA_CORPORATE_CROSSWALK, 5,300,149 rows, verified columns EPA_REGISTRY_ID, FACILITY_NAME, MATCHED_LEI, MATCHED_LEGAL_NAME, MATCH_METHOD, MATCH_CONFIDENCE, ULTIMATE_PARENT_LEI, PARENT_LEGAL_NAME, PARENT_CIK, PARENT_UEI, REVIEW_FLAG. And there is live proof the chain traverses: LIBRARY_MARTS.FINDINGS.FEDERAL_CONTRACTOR_EPA_VIOLATOR is an existing view keyed on PARENT_UEI that already carries VIOLATING_FACILITIES, TOTAL_EPA_PENALTIES, FEDERAL_DOLLARS_OBLIGATED, N_AWARDS and N_AGENCIES on the same row -- an EPA-facility-to-federal-award join that is running now. So the corporate island (GLEIF 3,382,301 entities + 484,142 ownership edges, EPA FRS 5,300,149 facilities, USASpending 19.9M assistance + 20M contracts, the SEC CIK family) is already stitched; what is missing is that the spine does not know about it.",
+      "the_one_step": "Register ENVIRONMENT__XC_EPA_CORPORATE_CROSSWALK as an edge source in the spine's key families (LEI, CIK, UEI) so LIBRARY_META.CONNECT sees EPA-facility-to-corporate-parent as edges, rather than the join living only inside one hand-written FINDINGS view. That fuses the largest corporate island into one connected component you can run centrality across instead of inside.",
+      "effort": "Days, not hours, and the cost is the rebuild rather than the SQL. Prior sessions measured a full spine rebuild at roughly 4.5 hours and 10-15 dollars on X-Small, and memory records that flipping the registration flag freezes incremental until that rebuild finishes. Honest caveat: MATCH_METHOD, MATCH_CONFIDENCE and REVIEW_FLAG say this crosswalk is a fuzzy name match, and what share of the 5.3M rows carry a non-null MATCHED_LEI cannot be read from metadata -- check the fill rate before trusting it. The separate DEA island is a much bigger job: ARCOS carries BUYER_NAME/CITY/STATE/ZIP but no street address, and BUYER_DEA_NO and REPORTER_DEA_NO appear in no other table in the warehouse, so that bridge can only reach the name-at-ZIP corroborated tier."
+    },
+    {
+      "technique": "Circulation (network / force-directed graphs) -- the politics lane specifically",
+      "current_tier": "READY overall, but the politics domain inside it is effectively unwired",
+      "why_close": "Prior sessions recorded that politics rides zero verified cross-family joins. The Rosetta stone that fixes it already exists and no scoring row mentions it: LIBRARY_MARTS.POLITICS.POLITICS__MEMBER_CROSSWALK, 12,794 rows, verified columns MEMBER_KEY, BIOGUIDE, ICPSR, GOVTRACK, OPENSECRETS, VOTESMART, LIS, THOMAS, CSPAN, WIKIDATA, BALLOTPEDIA, MAPLIGHT, GOOGLE_ENTITY_ID and FEC_IDS as a VARIANT. That single table connects the money side (LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_INDIV_CONTRIBUTIONS at 84,172,112 rows, keyed CMTE_ID, plus POLITICS__FEC_CAND_CMTE_LINK 16,229) to the behaviour side (POLITICS__VOTEVIEW_VOTES 945,523 keyed ICPSR, POLITICS__BILL_COSPONSORS 367,735 keyed BIOGUIDE). The evidence that the join is currently starved: POLITICS__MEMBER_FEC_ID holds only 1,715 rows and POLITICS__MEMBER_INDIV_DONATIONS, MEMBER_MONEY_RAISED, MEMBER_PAC_MONEY and MEMBER_VOTING_RECORD sit at 1,057, 1,050, 1,258 and 1,105 rows -- roughly a tenth of the 12,794 members the crosswalk covers.",
+      "the_one_step": "LATERAL FLATTEN the FEC_IDS VARIANT array on POLITICS__MEMBER_CROSSWALK into a row-per-member-per-FEC-candidate-id bridge table, then re-point the four MEMBER_* money tables at it instead of the 1,715-row POLITICS__MEMBER_FEC_ID.",
+      "effort": "Hours. One FLATTEN and four re-pointed models. Unverifiable from metadata alone: how many of the 12,794 rows actually carry a populated FEC_IDS array -- if it is as thin as the existing 1,715-row table the ceiling does not move, so measure the fill rate first."
+    },
+    {
+      "technique": "Sample or tier by zoom",
+      "current_tier": "PARTIAL",
+      "why_close": "Every rung of the ladder is verified present and the only missing piece is a single reference file. LIBRARY_MARTS.CORE holds DIM_STATE (56), DIM_COUNTY (3,222 with COUNTY_FIPS, STATE_FIPS, POPULATION_2020, POP_CENTER_LAT/LON), DIM_TRACT (85,391 with TRACT_GEOID nesting up through COUNTY_FIPS and STATE_FIPS, same centroid and population columns) and XWALK_ZCTA_COUNTY (46,960). The FIPS keys a boundary file would join on are already sitting there. What is absent is confirmed absolute: a dtype sweep of all 162,750 columns returns exactly two GEOGRAPHY columns (both the same NOAA AIS point column, exposed twice) and zero GEOMETRY-typed columns anywhere, and a name sweep of ALL_TABLES.csv for tiger/boundary/shapefile/gazetteer/cartographic/zcta/polygon returns only FED_EPA_SUPERFUND_SITE_BOUNDARIES (2,114) and FED_BIA_TRIBAL_GEO (100).",
+      "the_one_step": "Ingest the Census TIGER cartographic boundary files for state, county, tract and ZCTA -- free public downloads, keyed on the exact FIPS codes DIM_STATE, DIM_COUNTY and DIM_TRACT already carry -- and cast them into Snowflake GEOGRAPHY. That is roughly 89,000 polygon rows across all four rungs.",
+      "effort": "One to two days: a download-and-land ingest of the kind this platform runs routinely, plus a WKT-to-GEOGRAPHY cast and a join test against the existing FIPS keys. Ranked last here purely because it is the only step on this list that needs a file from outside the warehouse -- but it has by far the widest blast radius, since the same polygons turn Mass, KDE, hotspot analysis, Moran's I and Voronoi from dots-and-surfaces into filled areas in one go."
+    }
+  ],
+  "opportunity_findings": [
+    {
+      "kind": "UNDERSOLD",
+      "detail": "Flow maps is scored PARTIAL on the blocker 'nothing in the warehouse can place a ZIP on a map,' but the pieces to place a ZIP are both in LIBRARY_MARTS.CORE and were checked column by column: XWALK_ZCTA_COUNTY (46,960 rows) carries ZCTA5, COUNTY_FIPS and STATE_FIPS, and DIM_COUNTY (3,222 rows) carries POP_CENTER_LAT and POP_CENTER_LON as FLOAT. ZIP to county to centroid is a two-hop join with no ingest. The scoring is right that no ZIP-level centroid exists, but wrong that ZIP flows therefore cannot be drawn -- they can be drawn at county resolution today. On top of that, FEMA's origin end needs no crosswalk at all: HOUSING__FED_FEMA_IA_HOUSING_REGISTRATIONS carries CENSUS_GEOID, which joins directly to DIM_TRACT.TRACT_GEOID and its centroid. This changes the opportunity picture because it moves flow maps from 'needs a data source we do not have' to 'needs one dbt model over two tables we do have.'",
+      "tables": "LIBRARY_MARTS.CORE.XWALK_ZCTA_COUNTY, LIBRARY_MARTS.CORE.DIM_COUNTY, LIBRARY_MARTS.CORE.DIM_TRACT, LIBRARY_MARTS.HOUSING.HOUSING__FED_FEMA_IA_HOUSING_REGISTRATIONS, LIBRARY_MARTS.HEALTH.HEALTH__FED_DEA_ARCOS"
+    },
+    {
+      "kind": "MISSING_TECHNIQUE",
+      "detail": "No scoring row mentions LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__XC_EPA_CORPORATE_CROSSWALK, and it is the single most consequential omission in the whole set. Verified: 5,300,149 rows -- exactly one per row of ENVIRONMENT__FED_EPA_FRS_FACILITIES -- with EPA_REGISTRY_ID, FACILITY_NAME, MATCHED_LEI, MATCHED_LEGAL_NAME, MATCH_METHOD, MATCH_CONFIDENCE (NUMBER), ULTIMATE_PARENT_LEI, PARENT_LEGAL_NAME, PARENT_CIK, PARENT_UEI, REVIEW_FLAG (BOOLEAN). This is a pre-built bridge from GLEIF's LEI namespace onto 5.3M geocoded, FIPS-stamped facilities, and onward to the SEC family through PARENT_CIK (CIK appears in 20+ FINANCE and ECONOMICS mart tables) and to federal money through PARENT_UEI (RECIPIENT_UEI / RECIPIENT_PARENT_UEI on USASpending contracts 20,000,000 and assistance 19,902,879). Three separate scoring rows -- Circulation, Ripples and connectome mapping -- describe the corporate lane as sealed or as reaching only 'nine other mart tables,' and all three are working from an incomplete picture. Caveat that must travel with this: MATCH_METHOD/MATCH_CONFIDENCE/REVIEW_FLAG mark it as a fuzzy name match, and the non-null fill rate of MATCHED_LEI is unverified from metadata.",
+      "tables": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__XC_EPA_CORPORATE_CROSSWALK, LIBRARY_MARTS.ECONOMICS.ECONOMICS__INTL_GLEIF_RELATIONSHIPS, LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_FRS_FACILITIES, LIBRARY_MARTS.ECONOMICS.ECONOMICS__FED_USASPENDING_CONTRACTS_FULL, LIBRARY_MARTS.ECONOMICS.ECONOMICS__FED_USASPENDING_ASSISTANCE_FULL"
+    },
+    {
+      "kind": "UNDERSOLD",
+      "detail": "The connectome row calls the islands untouchable and BRIDGE_ENTITIES empty, but LIBRARY_MARTS.FINDINGS holds 13 pre-built cross-domain views that already traverse islands, and one of them proves the corporate chain works end to end: FEDERAL_CONTRACTOR_EPA_VIOLATOR carries PARENT_UEI, COMPANY_NAME, VIOLATING_FACILITIES, ANY_SNC, TOTAL_EPA_PENALTIES, TOTAL_FORMAL_ACTIONS, FEDERAL_DOLLARS_OBLIGATED, N_AWARDS, N_AGENCIES and MATCH_CONFIDENCE on one row. Its siblings do the same for other lanes -- EXCLUDED_PROVIDER_PAID_AFTER_EXCLUSION_IN_SHORTAGE, OPIOID_PRESCRIBER_PAID_HIGH_RX, PAC_FUNDS_BOTH_SIDES, REVOKED_BUT_DEDUCTIBLE, HOSPITAL_CLOSURE_RISK. These are views, so ALL_TABLES.csv reports no row count for them and I cannot say how many rows each returns -- but their existence contradicts the flat claim that cross-island joins are not running. Note the honest counterweight: TOTAL_EPA_PENALTIES on that view is drawing from the EPA penalty column the 2026-07-27 sweep flagged for stamping one settlement onto hundreds of facilities.",
+      "tables": "LIBRARY_MARTS.FINDINGS.FEDERAL_CONTRACTOR_EPA_VIOLATOR, LIBRARY_MARTS.FINDINGS.PAC_FUNDS_BOTH_SIDES, LIBRARY_MARTS.FINDINGS.OPIOID_PRESCRIBER_PAID_HIGH_RX, LIBRARY_META.CONNECT.BRIDGE_ENTITIES"
+    },
+    {
+      "kind": "UNDERSOLD",
+      "detail": "The Ripples row states GLEIF RELATIONSHIPS 'carries five period start/end pairs but all ten are TEXT.' That is true and I confirmed it, but the row omits that the same table already carries three real DATE columns -- REGISTRATION_INITIALREGISTRATIONDATE, REGISTRATION_LASTUPDATEDATE and REGISTRATION_NEXTRENEWALDATE -- and reports/time_index/clock_index.csv rates all three at HIGH confidence, noting they come from a guarded to_date(try_to_timestamp_tz(...)) parse already applied inside that dbt model. So a dated ownership animation runs today off the registration clock, and the outstanding cast is a copy-paste of a cast sitting in the same file rather than new work. The clock index also already ruled the period columns as span_start/span_end at day grain and wrote down the trap in writing: the five slots are a flattened repeating group, so you must filter RELATIONSHIP_PERIOD_1_PERIODTYPE = 'RELATIONSHIP_PERIOD' first.",
+      "tables": "LIBRARY_MARTS.ECONOMICS.ECONOMICS__INTL_GLEIF_RELATIONSHIPS"
+    },
+    {
+      "kind": "MISSING_TECHNIQUE",
+      "detail": "LIBRARY_MARTS.POLITICS.POLITICS__MEMBER_CROSSWALK (12,794 rows) appears in no scoring row, and it is the identifier Rosetta stone for a domain prior sessions recorded as having zero verified cross-family joins. Verified columns: MEMBER_KEY, BIOGUIDE, ICPSR, GOVTRACK, OPENSECRETS, VOTESMART, LIS, THOMAS, CSPAN, WIKIDATA, BALLOTPEDIA, WIKIPEDIA, HOUSE_HISTORY, MAPLIGHT, GOOGLE_ENTITY_ID, FEC_IDS (VARIANT), plus name, party, state and term fields. The downstream tables that should be consuming it are starved: POLITICS__MEMBER_FEC_ID holds 1,715 rows and MEMBER_INDIV_DONATIONS / MEMBER_MONEY_RAISED / MEMBER_PAC_MONEY / MEMBER_VOTING_RECORD hold 1,057 / 1,050 / 1,258 / 1,105 against a 12,794-member spine. Flattening the FEC_IDS array is a hours-long job that could scale the money-to-votes graph roughly tenfold, wiring FEC_INDIV_CONTRIBUTIONS (84,172,112) to VOTEVIEW_VOTES (945,523) and BILL_COSPONSORS (367,735).",
+      "tables": "LIBRARY_MARTS.POLITICS.POLITICS__MEMBER_CROSSWALK, LIBRARY_MARTS.POLITICS.POLITICS__MEMBER_FEC_ID, LIBRARY_MARTS.POLITICS.POLITICS__VOTEVIEW_VOTES, LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_INDIV_CONTRIBUTIONS"
+    },
+    {
+      "kind": "INCONSISTENCY",
+      "detail": "Two scoring rows contradict each other on whether the warehouse holds any polygon. 'Sample or tier by zoom' says exactly two of 162,750 columns are real GEOGRAPHY and there is no boundary shape anywhere; 'Spatial autocorrelation (Moran's I)' says 'One absolute claim from the prior read is also wrong: a polygon layer does exist -- LIBRARY_MARTS.HOUSING.HOUSING__FED_MAPPING_INEQUALITY carries a GEOMETRY column.' Measured from ALL_COLUMNS.csv: that column is named GEOMETRY but its dtype is TEXT, and a dtype sweep of the full column census returns exactly two GEOGRAPHY columns (both MARITIME__FED_NOAA_AIS.POSITION_GEOGRAPHY, once in MARITIME and once in TIMELINE) and zero GEOMETRY-typed columns in the entire warehouse. Whether that TEXT column holds real WKT or GeoJSON cannot be determined from metadata -- call it unverified. The zoom row is right; the Moran's row overstates. This matters because the polygon gap is the one cross-cutting blocker whose fix lights up five techniques at once, and a reader who believes a polygon layer already exists will not go get one.",
+      "tables": "LIBRARY_MARTS.HOUSING.HOUSING__FED_MAPPING_INEQUALITY, LIBRARY_MARTS.MARITIME.MARITIME__FED_NOAA_AIS"
+    },
+    {
+      "kind": "CROSS_CUTTING_BLOCKER",
+      "detail": "The absence of any national boundary polygon is the single widest constraint in the set, and it is confirmed twice over: zero GEOMETRY-typed columns and two GEOGRAPHY columns across 162,750, and a name sweep of ALL_TABLES.csv for tiger/boundary/shapefile/gazetteer/cartographic/zcta/polygon returning only LIBRARY_RAW.LANDING.FED_EPA_SUPERFUND_SITE_BOUNDARIES (2,114 rows) and LIBRARY_RAW.LANDING.FED_BIA_TRIBAL_GEO (100 rows). Every geometry-named column outside those is TEXT, and the bulk of them are city ArcGIS portal crawls in LIBRARY_STAGING.DBT_CROGERS (Harris County, Atlanta, Fort Worth, Columbus). This one gap caps 'Sample or tier by zoom' at PARTIAL and quietly degrades the rendered output of Mass, KDE, hotspot analysis, Moran's I and Voronoi from filled areas to dots and surfaces, even though all five are correctly scored READY on the statistics. One TIGER ingest keyed on the FIPS codes DIM_STATE, DIM_COUNTY and DIM_TRACT already carry lifts all of them together.",
+      "tables": "LIBRARY_MARTS.CORE.DIM_COUNTY, LIBRARY_MARTS.CORE.DIM_TRACT, LIBRARY_MARTS.CORE.DIM_STATE, LIBRARY_RAW.LANDING.FED_EPA_SUPERFUND_SITE_BOUNDARIES"
+    },
+    {
+      "kind": "CROSS_CUTTING_BLOCKER",
+      "detail": "The shape of nearly every cheap unlock on this list is the same: the value is present but stored as text. 91.6% of all columns are TEXT (149,003 of 162,750) against 7,558 NUMBER, 2,150 DATE and 2,064 FLOAT. 805 tables have a latitude-named column and only 122 store it as a number; 4,977 money columns exist and 3,478 are TEXT; 12,562 date-ish columns exist and 9,385 are TEXT. The pattern the verified-facts file records is that the mart layer is where casts happened and the raw landing copies are still text -- so the generic form of a small-effort unlock in this warehouse is 'add a guarded cast to an existing dbt model,' which is exactly what the GLEIF period-date step is. Anyone ranking opportunities should expect the cheapest wins to be casts, and the expensive ones to be ingests and spine rebuilds.",
+      "tables": "LIBRARY_MARTS.ECONOMICS.ECONOMICS__INTL_GLEIF_RELATIONSHIPS, LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_AIR_EMISSIONS_POLL_RPT_COMBINED_EMISSIONS"
+    },
+    {
+      "kind": "UNCLAIMED_SHAPE",
+      "detail": "LIBRARY_MARTS.HOUSING.HOUSING__FED_CFPB_HMDA_ARID2017_LEI_XREF (5,399 rows, columns ARID_2017, RESPONDENT_NAME, LEI_2018, LEI_2019, LEI_2020) is an unused bridge that could pull the warehouse's largest tract-level table into the corporate ownership graph. HOUSING__FED_CFPB_HMDA_HISTORIC holds 19,136,434 loan records carrying RESPONDENT_ID and AGENCY_CODE plus STATE_CODE, COUNTY_CODE and CENSUS_TRACT_NUMBER; the xref maps the pre-2018 respondent identifier to the LEI used from 2018 on, and LEI reaches GLEIF's 3,382,301 entities and 484,142 ownership edges. That would put lender ownership on 19.1M mortgage decisions at census-tract grain -- the redlining lane. Two honest caveats: whether ARID_2017 is simply AGENCY_CODE concatenated with RESPONDENT_ID is an assumption I could not verify from metadata, and HMDA_HISTORIC has no DATE column at all -- its only clock is AS_OF_YEAR stored as TEXT, so the joined result is year-grain at best.",
+      "tables": "LIBRARY_MARTS.HOUSING.HOUSING__FED_CFPB_HMDA_ARID2017_LEI_XREF, LIBRARY_MARTS.HOUSING.HOUSING__FED_CFPB_HMDA_HISTORIC, LIBRARY_MARTS.ECONOMICS.ECONOMICS__INTL_GLEIF_RELATIONSHIPS"
+    },
+    {
+      "kind": "UNCLAIMED_SHAPE",
+      "detail": "The contact-tracing row treats ICE detention as a single sealed table, but LIBRARY_MARTS.IMMIGRATION.IMMIGRATION__FED_ICE_DETENTION_FACILITY_CODES (1,490 rows) carries DETENTION_FACILITY_CODE, DETENTION_FACILITY_NAME, ADDRESS, CITY, COUNTY, STATE, ZIP and LATITUDE/LONGITUDE as NUMBER -- and IMMIGRATION__FED_ICE_DETENTION_STINTS (2,571,975 rows) carries the matching DETENTION_FACILITY_CODE. That is a one-hop join putting 2.57M person-level detention stints, each with real TIMESTAMP_NTZ book-in and book-out columns, onto a map with a county key and a distance-band neighbour rule. It makes the detention data eligible for hotspot analysis, KDE and flow maps, not just contact tracing, and no scoring row claims it.",
+      "tables": "LIBRARY_MARTS.IMMIGRATION.IMMIGRATION__FED_ICE_DETENTION_STINTS, LIBRARY_MARTS.IMMIGRATION.IMMIGRATION__FED_ICE_DETENTION_FACILITY_CODES"
+    },
+    {
+      "kind": "OVERSOLD",
+      "detail": "The flow-maps row states that both USASpending county FIPS columns were 'pushed through try_to_number in the Aug-10 review, along with ACTION_DATE, so the claim that it joins straight to DIM_COUNTY centroids with no name matching is false as written.' Two things soften that. The stored dtype of PRIME_AWARD_TRANSACTION_RECIPIENT_COUNTY_FIPS_CODE and PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_COUNTY_FIPS_CODE in the mart is TEXT, not NUMBER -- so whatever the model SQL does mid-stream, the landed values are strings and may still carry their leading zeros. I cannot settle it from metadata and did not run SQL, so the honest reading is 'suspect, check the values,' not 'confirmed broken.' The distinction matters: if those two columns survived intact, the county-to-county flow lane over 19,902,879 assistance rows is READY today with no repair at all.",
+      "tables": "LIBRARY_MARTS.ECONOMICS.ECONOMICS__FED_USASPENDING_ASSISTANCE_FULL, LIBRARY_MARTS.CORE.DIM_COUNTY"
+    },
+    {
+      "kind": "UNDERSOLD",
+      "detail": "The Circulation row's closing note says GLEIF is 'the only one that can [cross a source boundary]' and grounds that in LEI appearing in nine other mart tables. I counted the LEI-carrying mart tables and get twelve column hits across nine distinct non-backup tables -- ECONOMICS__INTL_GLEIF, ECONOMICS__INTL_GLEIF_REPEX, ENVIRONMENT__XC_EPA_CORPORATE_CROSSWALK (MATCHED_LEI and ULTIMATE_PARENT_LEI), FINANCE__FED_FDIC_BANK_DATA, FINANCE__INTL_ISO_MIC_REGISTRY, HOUSING__FED_CFPB_HMDA, HOUSING__FED_CFPB_HMDA_DC_ONLY, HOUSING__FED_CFPB_HMDA_LAR and HOUSING__FED_CFPB_HMDA_ARID2017_LEI_XREF -- so the count is roughly right but the weighting is badly off. Three of the nine are HMDA stubs at 28,301 / 28,301 / 17,474 rows. The one that carries almost all the mass is the EPA crosswalk at 5,300,149, and it is also the only one that hands LEI a further hop to CIK and UEI. Reading 'nine tables' as nine comparable destinations overstates the breadth and badly understates the depth.",
+      "tables": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__XC_EPA_CORPORATE_CROSSWALK, LIBRARY_MARTS.HOUSING.HOUSING__FED_CFPB_HMDA_LAR, LIBRARY_MARTS.FINANCE.FINANCE__FED_FDIC_BANK_DATA"
+    }
+  ],
+  "tier_counts": {
+    "READY": 19,
+    "PARTIAL": 4
+  }
+}

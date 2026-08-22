@@ -16,7 +16,7 @@ select
     nhtsa_action_number,
     make,
     model,
-    year_txt                             as model_year,
+    {{ ripple_dt('year_txt') }} as model_year,
     compname                             as component,
     mfr_name,
     open_date,

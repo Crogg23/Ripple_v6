@@ -1,0 +1,468 @@
+<title>The Ownership Clock</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#0b0f14; --panel:#161d26; --panel2:#1b2230; --ink:#e8edf4;
+  --muted:#8b98ab; --grid:#2a3441; --amber:#ffb454; --blue:#5aa9ff;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:'JetBrains Mono',ui-monospace,Consolas,monospace;font-size:13px;
+  font-variant-numeric:tabular-nums;line-height:1.5}
+h1,h2{font-family:'Archivo',Arial,sans-serif}
+.wrap{max-width:1200px;margin:0 auto;padding:28px 20px 48px}
+header h1{font-size:30px;font-weight:700;margin:0 0 4px}
+header p{color:var(--muted);margin:0 0 24px}
+.card{background:var(--panel);border:1px solid var(--grid);border-radius:10px;
+  padding:18px 20px;margin-bottom:22px}
+.card h2{font-size:17px;font-weight:700;margin:0 0 4px}
+.card .sub{color:var(--muted);margin:0 0 14px}
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin:0 0 8px;color:var(--muted)}
+.legend .sw{display:inline-block;width:14px;height:3px;border-radius:2px;
+  vertical-align:middle;margin-right:6px}
+#clockSvg{width:100%;height:auto;display:block}
+.tip{position:fixed;pointer-events:none;z-index:20;background:#0e141c;
+  border:1px solid var(--grid);border-radius:6px;padding:8px 10px;
+  color:var(--ink);font-size:12px;box-shadow:0 6px 18px rgba(0,0,0,.5);
+  display:none;max-width:300px;white-space:nowrap}
+.tip .t-amber{color:var(--amber)} .tip .t-blue{color:var(--blue)}
+.tip .t-muted{color:var(--muted)}
+button{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink);
+  background:var(--panel2);border:1px solid var(--grid);border-radius:6px;
+  padding:6px 14px;cursor:pointer}
+button:hover{border-color:var(--muted)}
+button.active,button[aria-pressed="true"]{background:var(--amber);color:#0b0f14;
+  border-color:var(--amber);font-weight:600}
+button:focus-visible,input:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.controls{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:0 0 12px}
+.controls input[type=range]{flex:1;min-width:200px;accent-color:var(--amber);
+  background:transparent}
+#monthBig{font-family:'Archivo',Arial,sans-serif;font-weight:700;font-size:26px;
+  min-width:120px}
+#liveCounts{color:var(--muted)}
+#netWrap{position:relative}
+#netCanvas{width:100%;height:560px;display:block;background:var(--panel2);
+  border:1px solid var(--grid);border-radius:8px;cursor:grab;touch-action:none}
+#netCanvas.dragging{cursor:grabbing}
+footer{color:var(--muted);font-size:12px;max-width:900px}
+@media(max-width:640px){
+  header h1{font-size:24px} #monthBig{font-size:20px}
+  #netCanvas{height:420px}
+}
+</style>
+
+<div class="wrap">
+<header>
+  <h1>The Ownership Clock</h1>
+  <p>corporate ownership links switching on and off, 1995 &rarr; today</p>
+</header>
+
+<section class="card">
+  <h2>The Clock</h2>
+  <p class="sub">links legally switched on per month &mdash; and how many of each month's links have since been switched off</p>
+  <div class="legend">
+    <span><span class="sw" style="background:var(--amber)"></span>switched on</span>
+    <span><span class="sw" style="background:var(--blue)"></span>of those, later switched off</span>
+    <span><span class="sw" style="background:var(--amber);width:6px;height:6px;border-radius:50%"></span>3 biggest months</span>
+  </div>
+  <svg id="clockSvg" viewBox="0 0 1160 360" role="img" aria-label="Monthly ownership links switched on and later switched off, 1995 to 2026"></svg>
+</section>
+
+<section class="card">
+  <h2>The Growing Web</h2>
+  <p class="sub">the 400 biggest parent companies and their direct subsidiaries, appearing as their ownership links legally begin</p>
+  <div class="controls">
+    <button id="playBtn" aria-pressed="false">Play</button>
+    <span id="monthBig">2008-01</span>
+    <input id="scrub" type="range" min="0" max="379" value="0" step="1" aria-label="Time scrubber, months from January 1995">
+    <span id="liveCounts">&mdash;</span>
+  </div>
+  <div id="netWrap">
+    <canvas id="netCanvas"></canvas>
+  </div>
+</section>
+
+<footer>
+  Only relationships with a legally-registered period are counted; the registry itself starts around 2012, so earlier dates are back-filled history reported later. The web shows the 400 largest parents with up to 60 subsidiaries each &mdash; a sample of the 484k-edge whole. Future-dated and pre-1995 junk filtered out.
+</footer>
+</div>
+
+<div class="tip" id="tip"></div>
+
+<script>
+const MONTHLY=__MONTHLY__; const NET=__NET__;
+(function(){
+"use strict";
+const tip=document.getElementById('tip');
+function showTip(html,x,y){tip.innerHTML=html;tip.style.display='block';
+  const r=tip.getBoundingClientRect();
+  let px=x+14, py=y+14;
+  if(px+r.width>innerWidth-8)px=x-r.width-14;
+  if(py+r.height>innerHeight-8)py=y-r.height-14;
+  tip.style.left=px+'px';tip.style.top=py+'px';}
+function hideTip(){tip.style.display='none';}
+
+// ---------- month helpers ----------
+const M0=1995*12+0, M1=2026*12+7; // 1995-01 .. 2026-08
+function mIdx(s){ // "YYYY-MM" -> months since 1995-01, or null
+  if(!s)return null;
+  const y=+s.slice(0,4), m=+s.slice(5,7);
+  if(!y||!m)return null;
+  return y*12+(m-1)-M0;
+}
+function mStr(i){const t=i+M0, y=Math.floor(t/12), m=t%12+1;
+  return y+'-'+String(m).padStart(2,'0');}
+const NMONTHS=M1-M0+1;
+
+// ================= THE CLOCK =================
+(function(){
+  const on=new Float64Array(NMONTHS), off=new Float64Array(NMONTHS);
+  for(const r of MONTHLY){
+    const i=mIdx(r[0]);
+    if(i==null||i<0||i>=NMONTHS)continue;
+    on[i]+=r[2]||0; off[i]+=r[3]||0;
+  }
+  const W=1160,H=360,L=64,R=16,T=14,B=34;
+  const iw=W-L-R, ih=H-T-B;
+  let maxV=1; for(let i=0;i<NMONTHS;i++)if(on[i]>maxV)maxV=on[i];
+  // nice ceiling
+  const pow=Math.pow(10,Math.floor(Math.log10(maxV)));
+  const yMax=Math.ceil(maxV/pow)*pow;
+  const X=i=>L+iw*i/(NMONTHS-1);
+  const Y=v=>T+ih*(1-v/yMax);
+  const svg=document.getElementById('clockSvg');
+  const NS='http://www.w3.org/2000/svg';
+  function el(n,at,parent){const e=document.createElementNS(NS,n);
+    for(const k in at)e.setAttribute(k,at[k]);(parent||svg).appendChild(e);return e;}
+  // gridlines + y labels
+  const yt=5;
+  for(let j=0;j<=yt;j++){
+    const v=yMax*j/yt, y=Y(v);
+    el('line',{x1:L,x2:W-R,y1:y,y2:y,stroke:'var(--grid)','stroke-width':1});
+    el('text',{x:L-8,y:y+4,fill:'var(--muted)','font-size':11,
+      'text-anchor':'end','font-family':"'JetBrains Mono',monospace"}).textContent=
+      v>=1000?(v/1000)+'k':v;
+  }
+  // x ticks every 5 years
+  for(let yy=1995;yy<=2026;yy+=5){
+    const i=yy*12-M0; if(i<0||i>=NMONTHS)continue;
+    const x=X(i);
+    el('line',{x1:x,x2:x,y1:T,y2:T+ih,stroke:'var(--grid)','stroke-width':1,
+      'stroke-dasharray':'2,4'});
+    el('text',{x:x,y:H-12,fill:'var(--muted)','font-size':11,'text-anchor':'middle',
+      'font-family':"'JetBrains Mono',monospace"}).textContent=yy;
+  }
+  function path(arr){let d='';
+    for(let i=0;i<NMONTHS;i++)d+=(i?'L':'M')+X(i).toFixed(1)+' '+Y(arr[i]).toFixed(1);
+    return d;}
+  // amber area fill (subtle)
+  el('path',{d:path(on)+'L'+X(NMONTHS-1)+' '+Y(0)+'L'+X(0)+' '+Y(0)+'Z',
+    fill:'rgba(255,180,84,.10)',stroke:'none'});
+  el('path',{d:path(off),fill:'none',stroke:'var(--blue)','stroke-width':1.5});
+  el('path',{d:path(on),fill:'none',stroke:'var(--amber)','stroke-width':1.7});
+  // top-3 spikes
+  const idx=[...Array(NMONTHS).keys()].sort((a,b)=>on[b]-on[a]).slice(0,3);
+  for(const i of idx){
+    el('circle',{cx:X(i),cy:Y(on[i]),r:3.5,fill:'var(--amber)',
+      stroke:'var(--bg)','stroke-width':1});
+    const anchor=X(i)>W-120?'end':(X(i)<L+60?'start':'middle');
+    el('text',{x:X(i),y:Math.max(T+10,Y(on[i])-10),fill:'var(--amber)',
+      'font-size':11,'text-anchor':anchor,
+      'font-family':"'JetBrains Mono',monospace"}).textContent=mStr(i);
+  }
+  // crosshair
+  const ch=el('line',{x1:0,x2:0,y1:T,y2:T+ih,stroke:'var(--muted)',
+    'stroke-width':1,'stroke-dasharray':'3,3',visibility:'hidden'});
+  const dotA=el('circle',{r:3,fill:'var(--amber)',visibility:'hidden'});
+  const dotB=el('circle',{r:3,fill:'var(--blue)',visibility:'hidden'});
+  el('rect',{x:L,y:T,width:iw,height:ih,fill:'transparent'});
+  svg.addEventListener('mousemove',ev=>{
+    const r=svg.getBoundingClientRect();
+    const sx=(ev.clientX-r.left)*W/r.width;
+    let i=Math.round((sx-L)/iw*(NMONTHS-1));
+    if(i<0||i>=NMONTHS){hideTip();ch.setAttribute('visibility','hidden');
+      dotA.setAttribute('visibility','hidden');dotB.setAttribute('visibility','hidden');return;}
+    const x=X(i);
+    ch.setAttribute('x1',x);ch.setAttribute('x2',x);ch.setAttribute('visibility','visible');
+    dotA.setAttribute('cx',x);dotA.setAttribute('cy',Y(on[i]));dotA.setAttribute('visibility','visible');
+    dotB.setAttribute('cx',x);dotB.setAttribute('cy',Y(off[i]));dotB.setAttribute('visibility','visible');
+    showTip('<b>'+mStr(i)+'</b><br><span class="t-amber">switched on: '+
+      on[i].toLocaleString()+'</span><br><span class="t-blue">since switched off: '+
+      off[i].toLocaleString()+'</span>',ev.clientX,ev.clientY);
+  });
+  svg.addEventListener('mouseleave',()=>{hideTip();
+    ch.setAttribute('visibility','hidden');
+    dotA.setAttribute('visibility','hidden');dotB.setAttribute('visibility','hidden');});
+})();
+
+// ================= THE GROWING WEB =================
+(function(){
+  const canvas=document.getElementById('netCanvas');
+  const ctx=canvas.getContext('2d');
+  const scrub=document.getElementById('scrub');
+  const playBtn=document.getElementById('playBtn');
+  const monthBig=document.getElementById('monthBig');
+  const liveCounts=document.getElementById('liveCounts');
+  scrub.max=NMONTHS-1;
+
+  // build nodes/edges
+  const nodeMap=new Map(); const nodes=[]; const edges=[];
+  function getNode(id,name,country){
+    let n=nodeMap.get(id);
+    if(!n){n={id,name:name||id,country:country||'',deg:0,parent:false,
+      x:0,y:0,vx:0,vy:0,firstM:Infinity,cool:0,visible:false};
+      nodeMap.set(id,n);nodes.push(n);}
+    else if(name&&(n.name===n.id))n.name=name;
+    if(country&&!n.country)n.country=country;
+    return n;
+  }
+  for(const r of NET){
+    const s=mIdx(r[2]); if(r[2]&&s==null)continue;
+    let sm=(s==null)?0:Math.max(0,Math.min(NMONTHS-1,s));
+    if(s!=null&&(s<0))sm=0;
+    if(s!=null&&s>=NMONTHS)continue; // future junk
+    let e=mIdx(r[3]); if(e!=null&&e<sm)e=sm;
+    const c=getNode(r[0],r[4],r[5]);
+    const p=getNode(r[1],r[6],r[7]);
+    p.parent=true; p.deg++;
+    if(sm<p.firstM)p.firstM=sm;
+    if(sm<c.firstM)c.firstM=sm;
+    edges.push({a:c,b:p,start:sm,end:e});
+  }
+  // sort edges by start for fast counting
+  // radius: parents sqrt-scaled 4-22, subs 2
+  let maxDeg=1; for(const n of nodes)if(n.deg>maxDeg)maxDeg=n.deg;
+  for(const n of nodes){
+    n.r = n.parent ? 4+18*Math.sqrt(n.deg/maxDeg) : 2;
+  }
+  // initial layout: parents on a big spiral, subs jittered near parent
+  const parents=nodes.filter(n=>n.parent);
+  parents.forEach((p,i)=>{
+    const a=i*2.39996, rr=60*Math.sqrt(i+1);
+    p.x=Math.cos(a)*rr; p.y=Math.sin(a)*rr;
+  });
+  for(const e of edges){
+    if(!e.a.parent&&e.a.x===0&&e.a.y===0){
+      const a=Math.random()*6.283, rr=25+Math.random()*45;
+      e.a.x=e.b.x+Math.cos(a)*rr; e.a.y=e.b.y+Math.sin(a)*rr;
+    }
+  }
+  for(const n of nodes){if(n.x===0&&n.y===0){
+    n.x=(Math.random()-.5)*800;n.y=(Math.random()-.5)*800;}}
+
+  // view transform
+  let scale=0.28, tx=0, ty=0, dpr=1;
+  function resize(){
+    dpr=Math.min(2,window.devicePixelRatio||1);
+    const r=canvas.getBoundingClientRect();
+    canvas.width=r.width*dpr; canvas.height=r.height*dpr;
+    tx=r.width/2; ty=r.height/2;
+    draw();
+  }
+  window.addEventListener('resize',resize);
+
+  // scrub state
+  let cur=mIdx('2008-01');
+  let playing=false, playTimer=null;
+  let hoverNode=null;
+
+  function updateVisibility(){
+    for(const n of nodes)n.visible=false;
+    let live=0, dead=0;
+    for(const e of edges){
+      e.on = e.start<=cur;
+      if(e.on){
+        e.dead = (e.end!=null && e.end<cur);
+        if(e.dead)dead++;else live++;
+        e.a.visible=true; e.b.visible=true;
+      }
+    }
+    monthBig.textContent=mStr(cur);
+    liveCounts.textContent=live.toLocaleString()+' links live · '+
+      dead.toLocaleString()+' switched off';
+  }
+
+  // ---- physics: velocity verlet-ish, grid repulsion, visible only ----
+  const CELL=90;
+  let simHeat=1;
+  function step(){
+    if(simHeat<=0.003)return;
+    const vis=[];
+    for(const n of nodes)if(n.visible)vis.push(n);
+    const N=vis.length; if(!N)return;
+    // coarse grid: aggregate cell mass centers, repel node<-cell
+    const grid=new Map();
+    for(const n of vis){
+      const k=Math.floor(n.x/CELL)+':'+Math.floor(n.y/CELL);
+      let c=grid.get(k);
+      if(!c){c={x:0,y:0,m:0};grid.set(k,c);}
+      c.x+=n.x;c.y+=n.y;c.m++;
+    }
+    const cells=[];
+    for(const [k,c] of grid){c.x/=c.m;c.y/=c.m;cells.push(c);}
+    const REP=1400, SPR=0.02, LEN=48, DAMP=0.85;
+    for(const n of vis){
+      if(n.cool>60)continue;
+      let fx=0,fy=0;
+      const gx=Math.floor(n.x/CELL), gy=Math.floor(n.y/CELL);
+      for(const c of cells){
+        let dx=n.x-c.x, dy=n.y-c.y;
+        const cgx=Math.floor(c.x/CELL), cgy=Math.floor(c.y/CELL);
+        const near=Math.abs(cgx-gx)<=1&&Math.abs(cgy-gy)<=1;
+        let d2=dx*dx+dy*dy;
+        if(d2<1){dx=Math.random()-.5;dy=Math.random()-.5;d2=1;}
+        // far cells act as one mass; near cells too (coarse but stable)
+        const f=REP*c.m/(d2*(near?1:1.6));
+        const d=Math.sqrt(d2);
+        fx+=f*dx/d; fy+=f*dy/d;
+      }
+      // gentle centering
+      fx-=n.x*0.0015; fy-=n.y*0.0015;
+      n.fx=fx; n.fy=fy;
+    }
+    // springs
+    for(const e of edges){
+      if(!e.on)continue;
+      const a=e.a,b=e.b;
+      let dx=b.x-a.x, dy=b.y-a.y;
+      let d=Math.sqrt(dx*dx+dy*dy)||1;
+      const f=SPR*(d-LEN);
+      const ux=dx/d, uy=dy/d;
+      if(a.cool<=60){a.fx=(a.fx||0)+f*ux; a.fy=(a.fy||0)+f*uy;}
+      if(b.cool<=60){b.fx=(b.fx||0)-f*ux; b.fy=(b.fy||0)-f*uy;}
+    }
+    let tot=0;
+    for(const n of vis){
+      if(n.cool>60)continue;
+      n.vx=(n.vx+(n.fx||0)*0.02)*DAMP;
+      n.vy=(n.vy+(n.fy||0)*0.02)*DAMP;
+      const sp=Math.abs(n.vx)+Math.abs(n.vy);
+      if(sp<0.05)n.cool++; else n.cool=0;
+      n.x+=n.vx; n.y+=n.vy;
+      n.fx=0;n.fy=0;
+      tot+=sp;
+    }
+    simHeat=tot/N;
+  }
+  function reheat(){simHeat=1;for(const n of nodes)n.cool=0;}
+
+  // ---- draw ----
+  function draw(){
+    const w=canvas.width,h=canvas.height;
+    ctx.setTransform(1,0,0,1,0,0);
+    ctx.fillStyle='#1b2230'; ctx.fillRect(0,0,w,h);
+    ctx.setTransform(dpr*scale,0,0,dpr*scale,dpr*tx,dpr*ty);
+    // edges
+    ctx.lineWidth=1/scale;
+    for(const e of edges){
+      if(!e.on)continue;
+      const hl=hoverNode&&(e.b===hoverNode||e.a===hoverNode);
+      if(hl){ctx.strokeStyle=e.dead?'rgba(255,180,84,.30)':'rgba(255,180,84,.85)';}
+      else ctx.strokeStyle=e.dead?'rgba(232,237,244,.05)':'rgba(232,237,244,.18)';
+      ctx.beginPath();ctx.moveTo(e.a.x,e.a.y);ctx.lineTo(e.b.x,e.b.y);ctx.stroke();
+    }
+    // subs
+    ctx.fillStyle='#55647a';
+    ctx.beginPath();
+    for(const n of nodes){
+      if(!n.visible||n.parent)continue;
+      ctx.moveTo(n.x+2/scale,n.y);
+      ctx.arc(n.x,n.y,2/Math.sqrt(scale),0,6.283);
+    }
+    ctx.fill();
+    // parents
+    for(const n of nodes){
+      if(!n.visible||!n.parent)continue;
+      ctx.fillStyle=(n===hoverNode)?'#ffb454':'#5aa9ff';
+      ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,6.283);ctx.fill();
+    }
+    // labels for big parents when zoomed
+    if(scale>0.5){
+      ctx.fillStyle='rgba(232,237,244,.75)';
+      ctx.font=(11/scale)+"px 'JetBrains Mono',monospace";
+      for(const n of nodes){
+        if(!n.visible||!n.parent||n.r<10)continue;
+        ctx.fillText(n.name.slice(0,28),n.x+n.r+3/scale,n.y+4/scale);
+      }
+    }
+  }
+
+  let raf=null;
+  function loop(){
+    step(); draw();
+    raf=requestAnimationFrame(loop);
+  }
+
+  // ---- interaction ----
+  function setMonth(i,keepHeat){
+    cur=Math.max(0,Math.min(NMONTHS-1,i|0));
+    scrub.value=cur;
+    updateVisibility();
+    if(!keepHeat)reheat();
+  }
+  scrub.addEventListener('input',()=>{setMonth(+scrub.value);});
+  function setPlaying(p){
+    playing=p;
+    playBtn.textContent=p?'Pause':'Play';
+    playBtn.setAttribute('aria-pressed',p?'true':'false');
+    playBtn.classList.toggle('active',p);
+    if(playTimer){clearInterval(playTimer);playTimer=null;}
+    if(p)playTimer=setInterval(()=>{
+      if(cur>=NMONTHS-1){setPlaying(false);return;}
+      setMonth(cur+1);
+    },80);
+  }
+  playBtn.addEventListener('click',()=>setPlaying(!playing));
+
+  // pan/zoom/drag
+  let dragging=false,lx=0,ly=0;
+  canvas.addEventListener('pointerdown',ev=>{
+    dragging=true;lx=ev.clientX;ly=ev.clientY;
+    canvas.classList.add('dragging');canvas.setPointerCapture(ev.pointerId);});
+  canvas.addEventListener('pointerup',ev=>{dragging=false;
+    canvas.classList.remove('dragging');});
+  canvas.addEventListener('pointermove',ev=>{
+    if(dragging){
+      tx+=ev.clientX-lx; ty+=ev.clientY-ly; lx=ev.clientX;ly=ev.clientY;
+      hideTip(); return;
+    }
+    // hover parents
+    const r=canvas.getBoundingClientRect();
+    const wx=(ev.clientX-r.left-tx)/scale, wy=(ev.clientY-r.top-ty)/scale;
+    let best=null,bd=Infinity;
+    for(const n of nodes){
+      if(!n.visible||!n.parent)continue;
+      const dx=n.x-wx,dy=n.y-wy,d2=dx*dx+dy*dy;
+      const hit=(n.r+6/scale);
+      if(d2<hit*hit&&d2<bd){bd=d2;best=n;}
+    }
+    if(best!==hoverNode){hoverNode=best;}
+    if(best){
+      let live=0;
+      for(const e of edges)if(e.b===best&&e.on&&!e.dead)live++;
+      showTip('<b>'+best.name+'</b><br><span class="t-muted">'+
+        (best.country||'?')+'</span><br>'+live+' live subsidiaries at '+mStr(cur),
+        ev.clientX,ev.clientY);
+      canvas.style.cursor='pointer';
+    }else{hideTip();canvas.style.cursor=dragging?'grabbing':'grab';}
+  });
+  canvas.addEventListener('pointerleave',()=>{hoverNode=null;hideTip();});
+  canvas.addEventListener('wheel',ev=>{
+    ev.preventDefault();
+    const r=canvas.getBoundingClientRect();
+    const mx=ev.clientX-r.left,my=ev.clientY-r.top;
+    const f=Math.exp(-ev.deltaY*0.0012);
+    const ns=Math.max(0.05,Math.min(6,scale*f));
+    tx=mx-(mx-tx)*(ns/scale); ty=my-(my-ty)*(ns/scale);
+    scale=ns;
+  },{passive:false});
+
+  // boot
+  resize();
+  setMonth(mIdx('2008-01'));
+  loop();
+  // "mid-play paused": run physics warm but leave transport paused
+  setPlaying(false);
+})();
+})();
+</script>

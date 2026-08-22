@@ -1,0 +1,185 @@
+<title>Pill Rivers</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+  :root{--bg:#0b0f14;--panel:#161d26;--panel2:#1b2230;--ink:#e8edf4;--muted:#8b98ab;
+        --grid:#2a3441;--amber:#ffb454;--blue:#5aa9ff;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font-family:'JetBrains Mono',ui-monospace,Consolas,monospace;font-size:13px}
+  header{display:flex;align-items:baseline;gap:16px;padding:14px 20px 10px;flex-wrap:wrap}
+  h1{font-family:'Archivo',system-ui,sans-serif;font-weight:700;font-size:22px;margin:0}
+  .sub{color:var(--muted)}
+  .rail{display:flex;gap:10px;align-items:center;padding:0 20px 10px;flex-wrap:wrap}
+  button{font:inherit;color:var(--ink);background:var(--panel2);border:1px solid var(--grid);
+         border-radius:6px;padding:6px 12px;cursor:pointer}
+  button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+  button.on{border-color:var(--amber);color:var(--amber)}
+  input[type=range]{width:260px;accent-color:var(--amber)}
+  #yr{font-family:'Archivo',sans-serif;font-weight:700;font-size:20px;color:var(--amber);min-width:96px}
+  #wrap{position:relative;margin:0 20px 8px}
+  canvas{display:block;width:100%;background:var(--panel);border:1px solid var(--grid);border-radius:8px}
+  #tip{position:absolute;pointer-events:none;background:#0b0f14;border:1px solid var(--grid);
+       border-radius:6px;padding:8px 10px;display:none;max-width:300px;line-height:1.5;z-index:5}
+  #tip b{color:var(--amber)}
+  .note{color:var(--muted);padding:2px 20px 12px;max-width:76ch;line-height:1.6}
+  #toplist{position:absolute;top:10px;right:10px;background:rgba(11,15,20,.88);border:1px solid var(--grid);
+    border-radius:8px;padding:10px 12px;font-size:11px;min-width:250px;line-height:1.7}
+  #toplist .tr{display:flex;justify-content:space-between;gap:12px;color:var(--muted)}
+  #toplist .tr span:last-child{color:var(--amber);font-variant-numeric:tabular-nums}
+</style>
+<header>
+  <h1>Pill Rivers</h1>
+  <div class="sub">the 3,532 biggest distributor → pharmacy opioid routes, ZIP to ZIP</div>
+</header>
+<div class="rail">
+  <span id="yr">All years</span>
+  <input type="range" id="slider" min="2005" max="2012" value="2005" aria-label="year">
+  <button id="play">▶ Play</button>
+  <button id="all" class="on">All years</button>
+  <span class="sub" id="stat"></span>
+</div>
+<div id="wrap"><canvas id="cv"></canvas><div id="tip"></div>
+  <div id="toplist"></div></div>
+<div class="note"><b style="color:var(--blue)">blue end = distributor</b> · <b style="color:var(--amber)">amber end = pharmacy</b> · click a state to focus routes touching it, click again to clear.</div>
+<div class="note">Each arc is one distributor-ZIP → pharmacy-ZIP route from the public DEA shipment
+records (2006–2012), drawn brighter and thicker the more total morphine-equivalent dose it carried.
+The 4,000 heaviest routes were kept; same-ZIP shipments are excluded. ZIPs are placed at their
+dominant county's population center. Hover an arc's endpoint region for details. Slider position
+2005 shows all years combined.</div>
+<script>
+const FLOWS=__FLOWS__;   // [rz,bz,yr,mme,rlat,rlon,blat,blon,rs,bs]
+const STATES=__STATES__;
+function albersRaw(phi0,phi1,phi2,lam0){
+  const d=Math.PI/180,p1=phi1*d,p2=phi2*d;
+  const n=(Math.sin(p1)+Math.sin(p2))/2, C=Math.cos(p1)**2+2*n*Math.sin(p1);
+  const rho0=Math.sqrt(C-2*n*Math.sin(phi0*d))/n;
+  return (lon,lat)=>{const th=n*(lon-lam0)*d,rho=Math.sqrt(Math.max(0,C-2*n*Math.sin(lat*d)))/n;
+    return [rho*Math.sin(th),rho0-rho*Math.cos(th)];};
+}
+const pMain=albersRaw(37.5,29.5,45.5,-96),pAK=albersRaw(60,55,65,-154),pHI=albersRaw(20.5,19,21,-157);
+function project(lon,lat,st){
+  if(st==="AK"){const[x,y]=pAK(lon,lat);return[x*0.35-0.32,y*0.35+0.26];}
+  if(st==="HI"){const[x,y]=pHI(lon,lat);return[x*0.9-0.12,y*0.9+0.26];}
+  return pMain(lon,lat);
+}
+for(const s of STATES){s.px=s.rings.map(r=>{const o=[];for(let i=0;i<r.length;i+=2)o.push(project(r[i],r[i+1],s.s));return o;});}
+
+// aggregate pairs
+const pairs=new Map();
+for(const f of FLOWS){
+  const k=f[0]+"|"+f[1];
+  let p=pairs.get(k);
+  if(!p){p={rz:f[0],bz:f[1],a:project(f[5],f[4],f[8]),b:project(f[7],f[6],f[9]),
+           rs:f[8],bs:f[9],yr:{},tot:0};pairs.set(k,p);}
+  p.yr[f[2]]=(p.yr[f[2]]||0)+f[3]; p.tot+=f[3];
+}
+const P=[...pairs.values()].sort((x,y)=>x.tot-y.tot); // draw small first, big on top
+let stFocus=null;
+function topList(){
+  const el=document.getElementById('toplist'); if(!el)return;
+  const rows=[...P].filter(p=>!stFocus||p.rs===stFocus||p.bs===stFocus)
+    .map(p=>({p,v:val(p)})).filter(r=>r.v>0).sort((a,b)=>b.v-a.v).slice(0,10);
+  el.innerHTML="<b>Top 10 routes"+(stFocus?(" touching "+stFocus):"")+(year?(" in "+year):"")+"</b>"+
+    rows.map((r,i)=>"<div class='tr'><span>"+(i+1)+". "+r.p.rz+" ("+r.p.rs+") → "+r.p.bz+" ("+r.p.bs+")</span><span>"+
+      (r.v/1e6).toFixed(1)+"M</span></div>").join("");
+}
+const cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+let W,H,scale,ox,oy;
+function size(){
+  W=cv.clientWidth;H=Math.max(430,Math.min(720,W*0.62));
+  cv.width=W*devicePixelRatio;cv.height=H*devicePixelRatio;cv.style.height=H+"px";
+  ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+  scale=Math.min(W/1.55,H/0.95);ox=W/2;oy=H/2+0.03*scale;draw();
+}
+function S(pt){return[pt[0]*scale+ox,-pt[1]*scale+oy];}
+let year=null; // null = all
+let maxAll=Math.max(...P.map(p=>p.tot));
+function val(p){return year==null?p.tot:(p.yr[year]||0);}
+function draw(){
+  ctx.fillStyle="#161d26";ctx.fillRect(0,0,W,H);
+  ctx.strokeStyle="#2a3441";ctx.lineWidth=0.8;
+  for(const s of STATES){ctx.beginPath();
+    for(const ring of s.px){const p0=S(ring[0]);ctx.moveTo(p0[0],p0[1]);
+      for(let i=1;i<ring.length;i++){const p=S(ring[i]);ctx.lineTo(p[0],p[1]);}ctx.closePath();}
+    ctx.stroke();}
+  const mx=year==null?maxAll:maxAll/5;
+  let shown=0,sum=0;
+  ctx.globalCompositeOperation="lighter";
+  for(const p of P){
+    if(stFocus && p.rs!==stFocus && p.bs!==stFocus) continue;
+    const v=val(p); if(v<=0)continue; shown++;sum+=v;
+    const t=Math.pow(v/mx,0.5);
+    const A=S(p.a),B=S(p.b);
+    const cx=(A[0]+B[0])/2+(B[1]-A[1])*0.18, cy=(A[1]+B[1])/2-(B[0]-A[0])*0.18;
+    const al=Math.min(0.85,0.06+t*0.7);
+    const gr=ctx.createLinearGradient(A[0],A[1],B[0],B[1]);
+    gr.addColorStop(0,"rgba(90,169,255,"+(al*0.55)+")");   // source = distributor, blue
+    gr.addColorStop(1,"rgba(255,180,84,"+al+")");          // destination = pharmacy, amber
+    ctx.strokeStyle=gr;
+    ctx.lineWidth=Math.max(0.4,t*4);
+    ctx.beginPath();ctx.moveTo(A[0],A[1]);ctx.quadraticCurveTo(cx,cy,B[0],B[1]);ctx.stroke();
+    ctx.fillStyle="rgba(255,180,84,"+Math.min(0.9,0.15+t*0.6)+")";
+    ctx.beginPath();ctx.arc(B[0],B[1],Math.max(1,t*3),0,7);ctx.fill();
+  }
+  ctx.globalCompositeOperation="source-over";
+  document.getElementById('stat').textContent=
+    shown.toLocaleString()+" routes · "+(sum/1e9).toFixed(1)+"B MME"+(year?(" in "+year):" total")+
+    (stFocus?(" · touching "+stFocus):"");
+  topList();
+}
+// hover: nearest endpoint
+const tip=document.getElementById('tip');
+cv.addEventListener('mousemove',e=>{
+  const r=cv.getBoundingClientRect(),mx=e.clientX-r.left,my=e.clientY-r.top;
+  let best=null,bd=144;
+  for(const p of P){
+    const v=val(p);if(v<=0)continue;
+    const B=S(p.b),d=(B[0]-mx)**2+(B[1]-my)**2;
+    if(d<bd){bd=d;best=p;}
+  }
+  if(best){
+    const v=val(best);
+    tip.innerHTML="<b>"+best.rz+" ("+best.rs+") → "+best.bz+" ("+best.bs+")</b><br>"+
+      (v/1e6).toFixed(1)+"M MME"+(year?(" in "+year):" 2006–2012")+
+      "<br>route rank: top "+P.length+" set";
+    tip.style.left=Math.min(mx+14,W-300)+"px";tip.style.top=(my+14)+"px";tip.style.display='block';
+  }else tip.style.display='none';
+});
+cv.addEventListener('mouseleave',()=>tip.style.display='none');
+cv.addEventListener('click',e=>{
+  const r=cv.getBoundingClientRect(),mx=e.clientX-r.left,my=e.clientY-r.top;
+  let found=null;
+  for(const s of STATES){
+    for(const ring of s.px){
+      let inside=false;
+      for(let i=0,j=ring.length-1;i<ring.length;j=i++){
+        const a=S(ring[i]),b=S(ring[j]);
+        if((a[1]>my)!==(b[1]>my)&&mx<(b[0]-a[0])*(my-a[1])/(b[1]-a[1])+a[0])inside=!inside;
+      }
+      if(inside){found=s.s;break;}
+    }
+    if(found)break;
+  }
+  stFocus=(found&&found!==stFocus)?found:null;
+  draw();
+});
+// controls
+const slider=document.getElementById('slider'),yl=document.getElementById('yr'),
+      allBtn=document.getElementById('all'),playBtn=document.getElementById('play');
+function setYear(y){
+  year=y; yl.textContent=y==null?"All years":String(y);
+  allBtn.classList.toggle('on',y==null);
+  if(y!=null)slider.value=y;
+  draw();
+}
+slider.addEventListener('input',()=>{const v=+slider.value;setYear(v<2006?null:v);});
+allBtn.onclick=()=>setYear(null);
+let timer=null;
+playBtn.onclick=()=>{
+  if(timer){clearInterval(timer);timer=null;playBtn.textContent="▶ Play";return;}
+  playBtn.textContent="⏸ Pause";
+  let y=2006;setYear(y);
+  timer=setInterval(()=>{y++;if(y>2012){clearInterval(timer);timer=null;playBtn.textContent="▶ Play";setYear(null);return;}setYear(y);},1100);
+};
+size();window.addEventListener('resize',size);
+</script>

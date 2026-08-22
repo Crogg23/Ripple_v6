@@ -14,20 +14,20 @@ select
     RELATIONSHIP_ENDNODE_NODEIDTYPE as relationship_endnode_nodeidtype,
     RELATIONSHIP_RELATIONSHIPTYPE as relationship_relationshiptype,
     RELATIONSHIP_RELATIONSHIPSTATUS as relationship_relationshipstatus,
-    RELATIONSHIP_PERIOD_1_STARTDATE as relationship_period_1_startdate,
-    RELATIONSHIP_PERIOD_1_ENDDATE as relationship_period_1_enddate,
+    case when to_date(try_to_timestamp_tz(nullif(RELATIONSHIP_PERIOD_1_STARTDATE, ''))) between '1800-01-01' and '2100-01-01' then to_date(try_to_timestamp_tz(nullif(RELATIONSHIP_PERIOD_1_STARTDATE, ''))) end as relationship_period_1_startdate,
+    case when to_date(try_to_timestamp_tz(nullif(RELATIONSHIP_PERIOD_1_ENDDATE, ''))) between '1800-01-01' and '2100-01-01' then to_date(try_to_timestamp_tz(nullif(RELATIONSHIP_PERIOD_1_ENDDATE, ''))) end as relationship_period_1_enddate,
     RELATIONSHIP_PERIOD_1_PERIODTYPE as relationship_period_1_periodtype,
-    RELATIONSHIP_PERIOD_2_STARTDATE as relationship_period_2_startdate,
-    RELATIONSHIP_PERIOD_2_ENDDATE as relationship_period_2_enddate,
+    case when to_date(try_to_timestamp_tz(nullif(RELATIONSHIP_PERIOD_2_STARTDATE, ''))) between '1800-01-01' and '2100-01-01' then to_date(try_to_timestamp_tz(nullif(RELATIONSHIP_PERIOD_2_STARTDATE, ''))) end as relationship_period_2_startdate,
+    case when to_date(try_to_timestamp_tz(nullif(RELATIONSHIP_PERIOD_2_ENDDATE, ''))) between '1800-01-01' and '2100-01-01' then to_date(try_to_timestamp_tz(nullif(RELATIONSHIP_PERIOD_2_ENDDATE, ''))) end as relationship_period_2_enddate,
     RELATIONSHIP_PERIOD_2_PERIODTYPE as relationship_period_2_periodtype,
-    RELATIONSHIP_PERIOD_3_STARTDATE as relationship_period_3_startdate,
-    RELATIONSHIP_PERIOD_3_ENDDATE as relationship_period_3_enddate,
+    case when to_date(try_to_timestamp_tz(nullif(RELATIONSHIP_PERIOD_3_STARTDATE, ''))) between '1800-01-01' and '2100-01-01' then to_date(try_to_timestamp_tz(nullif(RELATIONSHIP_PERIOD_3_STARTDATE, ''))) end as relationship_period_3_startdate,
+    case when to_date(try_to_timestamp_tz(nullif(RELATIONSHIP_PERIOD_3_ENDDATE, ''))) between '1800-01-01' and '2100-01-01' then to_date(try_to_timestamp_tz(nullif(RELATIONSHIP_PERIOD_3_ENDDATE, ''))) end as relationship_period_3_enddate,
     RELATIONSHIP_PERIOD_3_PERIODTYPE as relationship_period_3_periodtype,
-    RELATIONSHIP_PERIOD_4_STARTDATE as relationship_period_4_startdate,
-    RELATIONSHIP_PERIOD_4_ENDDATE as relationship_period_4_enddate,
+    case when to_date(try_to_timestamp_tz(nullif(RELATIONSHIP_PERIOD_4_STARTDATE, ''))) between '1800-01-01' and '2100-01-01' then to_date(try_to_timestamp_tz(nullif(RELATIONSHIP_PERIOD_4_STARTDATE, ''))) end as relationship_period_4_startdate,
+    case when to_date(try_to_timestamp_tz(nullif(RELATIONSHIP_PERIOD_4_ENDDATE, ''))) between '1800-01-01' and '2100-01-01' then to_date(try_to_timestamp_tz(nullif(RELATIONSHIP_PERIOD_4_ENDDATE, ''))) end as relationship_period_4_enddate,
     RELATIONSHIP_PERIOD_4_PERIODTYPE as relationship_period_4_periodtype,
-    RELATIONSHIP_PERIOD_5_STARTDATE as relationship_period_5_startdate,
-    RELATIONSHIP_PERIOD_5_ENDDATE as relationship_period_5_enddate,
+    case when to_date(try_to_timestamp_tz(nullif(RELATIONSHIP_PERIOD_5_STARTDATE, ''))) between '1800-01-01' and '2100-01-01' then to_date(try_to_timestamp_tz(nullif(RELATIONSHIP_PERIOD_5_STARTDATE, ''))) end as relationship_period_5_startdate,
+    case when to_date(try_to_timestamp_tz(nullif(RELATIONSHIP_PERIOD_5_ENDDATE, ''))) between '1800-01-01' and '2100-01-01' then to_date(try_to_timestamp_tz(nullif(RELATIONSHIP_PERIOD_5_ENDDATE, ''))) end as relationship_period_5_enddate,
     RELATIONSHIP_PERIOD_5_PERIODTYPE as relationship_period_5_periodtype,
     RELATIONSHIP_QUALIFIERS_1_QUALIFIERDIMENSION as relationship_qualifiers_1_qualifierdimension,
     RELATIONSHIP_QUALIFIERS_1_QUALIFIERCATEGORY as relationship_qualifiers_1_qualifiercategory,
@@ -54,6 +54,12 @@ select
     RELATIONSHIP_QUANTIFIERS_5_MEASUREMENTMETHOD as relationship_quantifiers_5_measurementmethod,
     try_to_double(RELATIONSHIP_QUANTIFIERS_5_QUANTIFIERAMOUNT) as relationship_quantifiers_5_quantifieramount,
     RELATIONSHIP_QUANTIFIERS_5_QUANTIFIERUNITS as relationship_quantifiers_5_quantifierunits,
+    -- TYPED 2026-08-22: the ten RELATIONSHIP_PERIOD_n_START/ENDDATE slots now cast
+    -- with a 1800-2100 range guard (source carries year-7 typos and 9999-12-31
+    -- open-ended sentinels; both null out rather than poisoning min/max),
+    -- the same way as the registration dates below (ISO-8601 with offsets). The
+    -- five slots are a flattened repeating group -- filter on the matching
+    -- RELATIONSHIP_PERIOD_n_PERIODTYPE = 'RELATIONSHIP_PERIOD' when reading them.
     -- CAST FIX (2026-08-11): these fields carried try_to_double() on ISO-8601
     -- timestamps / free-text references, nulling them 100%. Landing samples show
     -- mixed timezone forms ('2022-11-14T09:59:48.000Z', '2024-06-24T11:39:46+02:00'),

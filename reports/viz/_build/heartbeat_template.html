@@ -1,0 +1,162 @@
+<title>Heartbeat Wall</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+  :root{--bg:#0b0f14;--panel:#161d26;--panel2:#1b2230;--ink:#e8edf4;--muted:#8b98ab;
+        --grid:#2a3441;--amber:#ffb454;--blue:#5aa9ff;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font-family:'JetBrains Mono',ui-monospace,Consolas,monospace;font-size:13px}
+  header{display:flex;align-items:baseline;gap:16px;padding:14px 20px 8px;flex-wrap:wrap}
+  h1{font-family:'Archivo',system-ui,sans-serif;font-weight:700;font-size:22px;margin:0}
+  .sub{color:var(--muted)}
+  .rail{display:flex;gap:8px;align-items:center;padding:0 20px 12px;flex-wrap:wrap}
+  button,input[type=text]{font:inherit;color:var(--ink);background:var(--panel2);
+    border:1px solid var(--grid);border-radius:6px;padding:6px 12px}
+  button{cursor:pointer}
+  button:focus-visible,input:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+  button.on{border-color:var(--amber);color:var(--amber)}
+  #wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;padding:0 20px 20px}
+  .tile{background:var(--panel);border:1px solid var(--grid);border-left:3px solid var(--grid);border-radius:6px;padding:7px 8px 4px;cursor:pointer}
+  .fdot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;vertical-align:middle}
+  #statebtns button{padding:4px 9px;font-size:11px;margin-left:4px}
+  .tile:hover{border-color:var(--blue)}
+  .tile .nm{font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tile canvas{display:block;width:100%;height:38px}
+  #detail{position:fixed;inset:auto 20px 20px 20px;background:var(--panel2);border:1px solid var(--blue);
+    border-radius:10px;padding:14px 16px;display:none;z-index:9;box-shadow:0 8px 40px rgba(0,0,0,.6)}
+  #detail h2{font-family:'Archivo',sans-serif;margin:0 0 4px;font-size:15px}
+  #detail .m{color:var(--muted);font-size:12px;margin-bottom:8px}
+  #dcv{display:block;width:100%;height:150px}
+  #dclose{position:absolute;top:8px;right:10px}
+  .note{color:var(--muted);padding:0 20px 16px;max-width:76ch;line-height:1.6}
+</style>
+<header>
+  <h1>Heartbeat Wall</h1>
+  <div class="sub">every source in the warehouse, its rows counted per month on one shared clock</div>
+</header>
+<div class="rail">
+  <input type="text" id="q" placeholder="filter sources…" aria-label="filter">
+  <button id="s0" class="on">Sort: biggest</button>
+  <button id="s1">Sort: spikiest</button>
+  <button id="s2">Sort: cliffs</button>
+  <button id="s3">Sort: A→Z</button>
+  <span id="statebtns"></span>
+  <span class="sub" id="count"></span>
+</div>
+<div id="wall"></div>
+<div class="note">Each tile is one source table's row count per month (square-root scale, each tile
+normalized to its own busiest month, shown as the amber dot). Flat-lines, cliffs, and lone spikes
+are collection artifacts as often as world events — this wall is a data x-ray first, a story second.
+Click a tile for the full-size trace.</div>
+<div id="detail">
+  <button id="dclose">✕ close</button>
+  <h2 id="dt"></h2><div class="m" id="dm"></div>
+  <canvas id="dcv"></canvas>
+</div>
+<script>
+const HB=__HB__;
+const FRESH=__FRESH__;
+const STATE_COLOR={fresh:"#4ecb8d",due:"#ffd866",overdue:"#ffb454",stale:"#ff7b9c",dead:"#55647a",future:"#b48cff"};
+const STATE_LABEL={fresh:"fresh",due:"due",overdue:"overdue",stale:"stale",dead:"dead / window over",future:"future-dated"};
+// build series
+const MONTHS=(()=>{const s=new Set();for(const k in HB)for(const m in HB[k])s.add(m);return[...s].sort();})();
+const mi=new Map(MONTHS.map((m,i)=>[m,i]));
+const SRC=Object.keys(HB).map(name=>{
+  const d=HB[name];const arr=new Array(MONTHS.length).fill(0);
+  let tot=0,mx=0,mxm=null;const vals=[];
+  for(const m in d){const v=d[m];arr[mi.get(m)]=v;tot+=v;vals.push(v);if(v>mx){mx=v;mxm=m;}}
+  vals.sort((a,b)=>a-b);
+  const med=vals[Math.floor(vals.length/2)]||1;
+  // cliff score: how hard the trailing 24 months fell vs the 24 before them
+  let lastIdx=MONTHS.length-1; while(lastIdx>0&&arr[lastIdx]===0)lastIdx--;
+  const w=24, recent=arr.slice(Math.max(0,lastIdx-w+1),lastIdx+1).reduce((a,b)=>a+b,0),
+        prior=arr.slice(Math.max(0,lastIdx-2*w+1),Math.max(0,lastIdx-w+1)).reduce((a,b)=>a+b,0);
+  const cliff=prior>1000?prior/Math.max(1,recent):0;
+  return{name,arr,tot,mx,mxm,spike:mx/Math.max(1,med),cliff,nmon:vals.length};
+});
+function shortName(n){return n.replace(/^.*__/,"").replace(/^FED_|^INTL_|^XC_/,"").toLowerCase().replace(/_/g," ");}
+const wall=document.getElementById('wall');
+let sortMode=0,filter="",stateFilter=null;
+function order(){
+  let s=[...SRC];
+  if(filter)s=s.filter(x=>x.name.toLowerCase().includes(filter));
+  if(stateFilter)s=s.filter(x=>(FRESH[x.name]||{}).state===stateFilter);
+  if(sortMode===0)s.sort((a,b)=>b.tot-a.tot);
+  else if(sortMode===1)s.sort((a,b)=>b.spike-a.spike);
+  else if(sortMode===2)s.sort((a,b)=>b.cliff-a.cliff);
+  else s.sort((a,b)=>a.name.localeCompare(b.name));
+  return s;
+}
+function spark(cv,src,big){
+  const w=cv.clientWidth||180,h=big?150:38;
+  cv.width=w*devicePixelRatio;cv.height=h*devicePixelRatio;
+  const x=cv.getContext('2d');x.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+  x.clearRect(0,0,w,h);
+  const n=MONTHS.length,mx=Math.sqrt(src.mx)||1;
+  x.strokeStyle=big?"#5aa9ff":"rgba(90,169,255,.85)";x.lineWidth=big?1.6:1;
+  x.beginPath();let started=false;
+  for(let i=0;i<n;i++){
+    const v=src.arr[i];const px=i/(n-1)*w,py=h-2-(Math.sqrt(v)/mx)*(h-6);
+    if(v===0&&!started)continue;
+    if(!started){x.moveTo(px,py);started=true;}else x.lineTo(px,py);
+  }
+  x.stroke();
+  const pi=mi.get(src.mxm);
+  x.fillStyle="#ffb454";
+  x.beginPath();x.arc(pi/(n-1)*w,h-2-(h-6),big?4:2.5,0,7);x.fill();
+  if(big){
+    x.fillStyle="#8b98ab";x.font="11px JetBrains Mono";
+    x.fillText(MONTHS[0],2,h-4);const t=MONTHS[MONTHS.length-1];
+    x.fillText(t,w-x.measureText(t).width-2,h-4);
+  }
+}
+function render(){
+  const s=order();
+  document.getElementById('count').textContent=s.length+" sources";
+  wall.innerHTML="";
+  for(const src of s){
+    const d=document.createElement('div');d.className='tile';
+    const fs=FRESH[src.name];
+    const dotCol=fs?STATE_COLOR[fs.state]:"#2a3441";
+    d.innerHTML="<div class='nm'><span class='fdot' style='background:"+dotCol+"'></span>"+shortName(src.name)+"</div><canvas></canvas>";
+    if(fs)d.style.borderLeftColor=dotCol;
+    d.title=src.name+(fs?(" · "+STATE_LABEL[fs.state]+" · data through "+fs.last):"");
+    d.onclick=()=>openDetail(src);
+    wall.appendChild(d);
+  }
+  requestAnimationFrame(()=>{
+    const tiles=wall.children;
+    for(let i=0;i<tiles.length;i++)spark(tiles[i].querySelector('canvas'),s[i],false);
+  });
+}
+const detail=document.getElementById('detail');
+function openDetail(src){
+  detail.style.display='block';
+  document.getElementById('dt').textContent=shortName(src.name);
+  const fs=FRESH[src.name];
+  document.getElementById('dm').textContent=
+    src.tot.toLocaleString()+" rows · busiest month "+src.mxm+" ("+src.mx.toLocaleString()+
+    " rows) · spike ratio ×"+Math.round(src.spike).toLocaleString()+" over median · "+src.nmon+" active months"+
+    (fs?(" · "+STATE_LABEL[fs.state].toUpperCase()+": data through "+fs.last+" ("+fs.lag_days+" days behind), expected cadence "+fs.cadence+(fs.curated?"":" (auto-guessed)")):"");
+  requestAnimationFrame(()=>spark(document.getElementById('dcv'),src,true));
+}
+document.getElementById('dclose').onclick=()=>detail.style.display='none';
+const btns=[document.getElementById('s0'),document.getElementById('s1'),document.getElementById('s2'),document.getElementById('s3')];
+btns.forEach((b,i)=>b.onclick=()=>{sortMode=i;btns.forEach((x,j)=>x.classList.toggle('on',i===j));render();});
+document.getElementById('q').addEventListener('input',e=>{filter=e.target.value.toLowerCase();render();});
+(function(){
+  const holder=document.getElementById('statebtns');
+  const counts={};for(const k in FRESH)counts[FRESH[k].state]=(counts[FRESH[k].state]||0)+1;
+  for(const st of ["fresh","due","overdue","stale","dead","future"]){
+    if(!counts[st])continue;
+    const b=document.createElement('button');
+    b.innerHTML="<span class='fdot' style='background:"+STATE_COLOR[st]+"'></span>"+st+" "+counts[st];
+    b.onclick=()=>{stateFilter=stateFilter===st?null:st;
+      holder.querySelectorAll('button').forEach(x=>x.classList.remove('on'));
+      if(stateFilter)b.classList.add('on');render();};
+    holder.appendChild(b);
+  }
+})();
+render();
+window.addEventListener('resize',()=>render());
+</script>

@@ -1,0 +1,306 @@
+<title>Detention Rivers</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#0b0f14; --panel:#161d26; --panel2:#1b2230; --ink:#e8edf4;
+  --muted:#8b98ab; --grid:#2a3441; --amber:#ffb454; --blue:#5aa9ff;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:'JetBrains Mono',ui-monospace,Consolas,monospace;font-size:13px;
+  font-variant-numeric:tabular-nums;line-height:1.5}
+h1,h2,h3{font-family:'Archivo',Arial,sans-serif}
+.wrap{max-width:1280px;margin:0 auto;padding:28px 20px 48px}
+header h1{margin:0 0 4px;font-size:26px;font-weight:700;letter-spacing:.3px}
+header p.sub{margin:0;color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:20px 0}
+.stat{background:var(--panel);border:1px solid var(--grid);border-radius:8px;padding:12px 14px}
+.stat .k{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.stat .v{font-family:'Archivo',Arial,sans-serif;font-size:20px;font-weight:700}
+.stat .v small{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:400;color:var(--muted)}
+.card{background:var(--panel);border:1px solid var(--grid);border-radius:8px;padding:14px}
+.card .colheads{display:flex;justify-content:space-between;color:var(--muted);
+  font-size:11px;text-transform:uppercase;letter-spacing:.08em;padding:0 4px 8px}
+.scroller{overflow-x:auto}
+#sankey{display:block;min-width:860px}
+button{background:var(--panel2);border:1px solid var(--grid);color:var(--ink);
+  border-radius:6px;padding:5px 12px;font:inherit;cursor:pointer}
+button:hover{border-color:var(--muted)}
+button.active{background:var(--amber);color:#0b0f14;border-color:var(--amber);font-weight:600}
+button:focus-visible,#sankey [tabindex]:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.toolbar{display:flex;gap:8px;align-items:center;margin:0 0 10px;flex-wrap:wrap}
+.toolbar .hint{color:var(--muted);font-size:12px}
+#tip{position:fixed;pointer-events:none;z-index:10;background:#10151d;border:1px solid var(--grid);
+  border-radius:6px;padding:8px 10px;color:var(--ink);font-size:12px;max-width:340px;
+  box-shadow:0 6px 18px rgba(0,0,0,.5);display:none;white-space:nowrap}
+#tip b{color:var(--amber)}
+.foot{color:var(--muted);font-size:12px;margin-top:14px;max-width:900px}
+.node-rect{cursor:pointer}
+.node-rect:focus{outline:none}
+text{font-family:'JetBrains Mono',monospace}
+.ribbon{transition:opacity .12s linear}
+.nodeg{transition:opacity .12s linear}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Detention Rivers</h1>
+    <p class="sub">2.6 million detention stays: where people are from &rarr; which state held them &rarr; how it ended</p>
+  </header>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="card">
+    <div class="toolbar">
+      <button id="clearPin" hidden>Clear pinned country</button>
+      <span class="hint">Hover a bar or ribbon for detail &middot; click a country to pin its flows</span>
+    </div>
+    <div class="colheads"><span>Citizenship</span><span>Detention state</span><span>How the stay ended</span></div>
+    <div class="scroller"><svg id="sankey" role="img" aria-label="Sankey diagram of detention flows from country of citizenship to detention state to release outcome"></svg></div>
+  </div>
+
+  <p class="foot">Counts are stints &mdash; one person can appear more than once. &ldquo;No recorded end&rdquo; mixes people still detained with recording gaps. State &ldquo;?&rdquo; = unrecorded.</p>
+</div>
+<div id="tip"></div>
+
+<script>
+const FLOWS=__FLOWS__;
+
+/* ---------- bucket release reasons ---------- */
+function bucket(r){
+  const s=(r||"").toLowerCase();
+  if(!s.trim()||s.startsWith("(still held"))return "No recorded end";
+  if(s.includes("remov")||s.includes("deport"))return "Deported";
+  if(s.includes("bond"))return "Bonded out";
+  if(s.includes("recogniz")||s.includes("supervis")||s.includes("parole"))return "Released with conditions";
+  if(s.includes("transfer"))return "Transferred";
+  if(s.includes("withdraw")||s.includes("relief")||s.includes("terminat")||s.includes("u.s. citizen"))return "Case won / dropped";
+  return "Other";
+}
+const OUT_ORDER=["Deported","No recorded end","Bonded out","Released with conditions","Transferred","Case won / dropped","Other"];
+
+/* ---------- aggregate ---------- */
+const total=FLOWS.reduce((a,f)=>a+f[3],0);
+function topKeys(idx,n){
+  const m=new Map();
+  for(const f of FLOWS)m.set(f[idx],(m.get(f[idx])||0)+f[3]);
+  return [...m.entries()].sort((a,b)=>b[1]-a[1]).slice(0,n).map(e=>e[0]);
+}
+const topC=topKeys(0,12), topS=topKeys(1,12);
+const cSet=new Set(topC), sSet=new Set(topS);
+const cName=c=>cSet.has(c)?c:"OTHER COUNTRIES";
+const sName=s=>sSet.has(s)?s:"OTHER STATES";
+
+const PAL=["#5aa9ff","#ffb454","#4ecb8d","#ff7b9c","#b48cff","#4fd6d2","#ffd866","#ff9f7a"];
+const OTHER_COL="#3a4656";
+const colorOf={};
+topC.forEach((c,i)=>{colorOf[c]=(c==="UNKNOWN")?OTHER_COL:PAL[i%8];});
+colorOf["OTHER COUNTRIES"]=OTHER_COL;
+
+// link maps: country->state and country|state kept per-country for stage2 coloring
+const l1=new Map(), l2=new Map(); // key "ab" (stage2 key "stateoutcountry")
+for(const f of FLOWS){
+  const c=cName(f[0]), s=sName(f[1]), o=bucket(f[2]), n=f[3];
+  const k1=c+""+s; l1.set(k1,(l1.get(k1)||0)+n);
+  const k2=s+""+o+""+c; l2.set(k2,(l2.get(k2)||0)+n);
+}
+
+/* stats */
+const outTotals=new Map();
+for(const[k,v]of l2){const o=k.split("")[1];outTotals.set(o,(outTotals.get(o)||0)+v);}
+let bigRoute=null;
+{ // biggest single country->state->outcome route
+  const m=new Map();
+  for(const f of FLOWS){
+    const k=cName(f[0])+" → "+sName(f[1])+" → "+bucket(f[2]);
+    m.set(k,(m.get(k)||0)+f[3]);
+  }
+  bigRoute=[...m.entries()].sort((a,b)=>b[1]-a[1])[0];
+}
+const fmt=n=>n.toLocaleString("en-US");
+const pct=n=>(100*n/total).toFixed(1)+"%";
+document.getElementById("stats").innerHTML=[
+  ["Total stays",fmt(total),""],
+  ["Ended in deportation",pct(outTotals.get("Deported")||0),fmt(outTotals.get("Deported")||0)+" stays"],
+  ["Bonded out",pct(outTotals.get("Bonded out")||0),fmt(outTotals.get("Bonded out")||0)+" stays"],
+  ["Biggest single route",bigRoute[0],fmt(bigRoute[1])+" stays ("+pct(bigRoute[1])+")"]
+].map(([k,v,s])=>`<div class="stat"><div class="k">${k}</div><div class="v">${v}${s?` <small>${s}</small>`:""}</div></div>`).join("");
+
+/* ---------- layout ---------- */
+const svg=document.getElementById("sankey");
+const tip=document.getElementById("tip");
+let pinned=null;
+
+function nodeList(stage){
+  const m=new Map();
+  if(stage===0){for(const[k,v]of l1)add(m,k.split("")[0],v);}
+  else if(stage===1){for(const[k,v]of l1)add(m,k.split("")[1],v);}
+  else{for(const o of OUT_ORDER)if(outTotals.has(o))m.set(o,outTotals.get(o));}
+  function add(m,k,v){m.set(k,(m.get(k)||0)+v);}
+  let arr=[...m.entries()];
+  if(stage===0){arr.sort((a,b)=>b[1]-a[1]);const i=arr.findIndex(e=>e[0]==="OTHER COUNTRIES");if(i>=0)arr.push(arr.splice(i,1)[0]);}
+  else if(stage===1){arr.sort((a,b)=>b[1]-a[1]);const i=arr.findIndex(e=>e[0]==="OTHER STATES");if(i>=0)arr.push(arr.splice(i,1)[0]);}
+  return arr;
+}
+const cols=[nodeList(0),nodeList(1),nodeList(2)];
+
+function render(){
+  const W=Math.max(860,svg.parentNode.clientWidth-2);
+  const H=Math.max(640,Math.round(W*0.62));
+  svg.setAttribute("width",W);svg.setAttribute("height",H);
+  svg.setAttribute("viewBox",`0 0 ${W} ${H}`);
+  const padT=8,padB=8,gap=8,nw=14;
+  const labelW=Math.min(200,Math.max(140,W*0.16));
+  const xs=[labelW, W/2-nw/2, W-labelW-nw];
+
+  const nodes=[{},{},{}];
+  for(let s=0;s<3;s++){
+    const arr=cols[s];
+    const usable=H-padT-padB-gap*(arr.length-1);
+    const scale=usable/total;
+    let y=padT;
+    for(const[name,val]of arr){
+      const h=Math.max(2,val*scale);
+      nodes[s][name]={x:xs[s],y,h,val,name,stage:s,outIn:y,outOut:y};
+      y+=h+gap;
+    }
+  }
+
+  // build ribbons
+  const ribbons=[];
+  function makeRibs(map,stageA,keyFn){
+    // sort entries by source node order then target node order for tidy stacking
+    const order=(st,n)=>cols[st].findIndex(e=>e[0]===n);
+    const ent=[...map.entries()].map(([k,v])=>{const p=k.split("");return{p,v};});
+    if(stageA===0){
+      ent.sort((a,b)=>order(0,a.p[0])-order(0,b.p[0])||order(1,a.p[1])-order(1,b.p[1]));
+      for(const e of ent){
+        const a=nodes[0][e.p[0]],b=nodes[1][e.p[1]];
+        ribbons.push(rib(a,b,e.v,e.p[0],`${e.p[0]} → ${e.p[1]}`,{c:e.p[0],s:e.p[1]}));
+      }
+    }else{
+      ent.sort((a,b)=>order(1,a.p[0])-order(1,b.p[0])||order(2,a.p[1])-order(2,b.p[1])||order(0,a.p[2])-order(0,b.p[2]));
+      for(const e of ent){
+        const a=nodes[1][e.p[0]],b=nodes[2][e.p[1]];
+        ribbons.push(rib(a,b,e.v,e.p[2],`${e.p[2]} · ${e.p[0]} → ${e.p[1]}`,{c:e.p[2],s:e.p[0],o:e.p[1]}));
+      }
+    }
+  }
+  function rib(a,b,v,country,label,keys){
+    const scaleA=a.h/a.val,scaleB=b.h/b.val;
+    const h1=v*scaleA,h2=v*scaleB;
+    const y0=a.outOut;a.outOut+=h1;
+    const y1=b.outIn;b.outIn+=h2;
+    const x0=a.x+nw,x1=b.x,mx=(x0+x1)/2;
+    const d=`M${x0},${y0} C${mx},${y0} ${mx},${y1} ${x1},${y1} L${x1},${y1+h2} C${mx},${y1+h2} ${mx},${y0+h1} ${x0},${y0+h1} Z`;
+    return{d,v,country,label,keys};
+  }
+  // reset flow cursors (outIn used for both in/out per side since each node is target of one stage & source of next separately)
+  makeRibs(l1,0);
+  // reset middle cursors for stage-2 sources: reuse outOut? middle nodes already consumed outOut? No — stage1 middle nodes were TARGETS (outIn). Sources use outOut fresh.
+  makeRibs(l2,1);
+
+  const NS="http://www.w3.org/2000/svg";
+  svg.innerHTML="";
+  const gR=document.createElementNS(NS,"g"),gN=document.createElementNS(NS,"g");
+  svg.appendChild(gR);svg.appendChild(gN);
+
+  for(const r of ribbons){
+    const p=document.createElementNS(NS,"path");
+    p.setAttribute("d",r.d);
+    p.setAttribute("fill",colorOf[r.country]||OTHER_COL);
+    p.setAttribute("class","ribbon");
+    p.dataset.country=r.keys.c;
+    p.style.opacity=.45;
+    p.addEventListener("mousemove",e=>showTip(e,`<b>${esc(r.label)}</b><br>${fmt(r.v)} stays (${pct(r.v)})`));
+    p.addEventListener("mouseleave",hideTip);
+    p.addEventListener("mouseenter",()=>focusCountryOrRibbon(p,r));
+    p.addEventListener("mouseleave",unfocus);
+    gR.appendChild(p);
+    r.el=p;
+  }
+
+  for(let s=0;s<3;s++){
+    for(const name in nodes[s]){
+      const n=nodes[s][name];
+      const g=document.createElementNS(NS,"g");
+      g.setAttribute("class","nodeg");
+      const rect=document.createElementNS(NS,"rect");
+      rect.setAttribute("x",n.x);rect.setAttribute("y",n.y);
+      rect.setAttribute("width",nw);rect.setAttribute("height",n.h);
+      rect.setAttribute("rx",4);
+      rect.setAttribute("class","node-rect");
+      rect.setAttribute("tabindex","0");
+      rect.setAttribute("fill",s===0?(colorOf[name]||OTHER_COL):"#55637a");
+      if(s===0&&pinned===name){rect.setAttribute("stroke","#ffb454");rect.setAttribute("stroke-width","2");}
+      const t=document.createElementNS(NS,"text");
+      const right=s===2;
+      const anchorX=s===0?n.x-8:(right?n.x+nw+8:n.x+nw+8);
+      t.setAttribute("x",anchorX);
+      t.setAttribute("y",Math.max(11,n.y+Math.min(n.h/2,10)+4));
+      t.setAttribute("text-anchor",s===0?"end":"start");
+      t.setAttribute("fill","#e8edf4");t.setAttribute("font-size","12");
+      const t1=document.createElementNS(NS,"tspan");t1.textContent=name;t1.setAttribute("font-weight","600");
+      const t2=document.createElementNS(NS,"tspan");t2.textContent=" "+fmt(n.val);t2.setAttribute("fill","#8b98ab");
+      t.appendChild(t1);t.appendChild(t2);
+      const enter=e=>{focusNode(s,name);showTip(e,`<b>${esc(name)}</b><br>${fmt(n.val)} stays (${pct(n.val)})`);};
+      rect.addEventListener("mousemove",e=>showTip(e,`<b>${esc(name)}</b><br>${fmt(n.val)} stays (${pct(n.val)})`));
+      rect.addEventListener("mouseenter",enter);
+      rect.addEventListener("mouseleave",()=>{unfocus();hideTip();});
+      rect.addEventListener("focus",e=>focusNode(s,name));
+      rect.addEventListener("blur",unfocus);
+      const act=()=>{ if(s===0){pinned=(pinned===name)?null:name;render();applyPin();} };
+      rect.addEventListener("click",act);
+      rect.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();act();}});
+      g.appendChild(rect);g.appendChild(t);
+      gN.appendChild(g);
+      n.el=g;
+    }
+  }
+
+  function focusNode(stage,name){
+    if(pinned)return;
+    for(const r of ribbons){
+      const k=r.keys;
+      const hit=(stage===0&&k.c===name)||(stage===1&&k.s===name)||(stage===2&&k.o===name);
+      r.el.style.opacity=hit?.85:.06;
+    }
+  }
+  function focusCountryOrRibbon(el,r){
+    if(pinned)return;
+    for(const rr of ribbons)rr.el.style.opacity=(rr===r)?.9:.08;
+  }
+  window.__unfocus=function(){
+    for(const r of ribbons){
+      if(pinned)r.el.style.opacity=(r.keys.c===pinned)?.85:.06;
+      else r.el.style.opacity=.45;
+    }
+  };
+  function unfocus(){window.__unfocus();}
+  window.__unfocus();
+}
+function applyPin(){
+  const b=document.getElementById("clearPin");
+  b.hidden=!pinned;
+  b.textContent=pinned?("Unpin "+pinned):"Clear pinned country";
+  b.classList.toggle("active",!!pinned);
+  if(window.__unfocus)window.__unfocus();
+}
+function unfocus(){if(window.__unfocus)window.__unfocus();}
+document.getElementById("clearPin").addEventListener("click",()=>{pinned=null;render();applyPin();});
+
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+function showTip(e,html){
+  tip.innerHTML=html;tip.style.display="block";
+  const pad=14;let x=e.clientX+pad,y=e.clientY+pad;
+  const r=tip.getBoundingClientRect();
+  if(x+r.width>innerWidth-8)x=e.clientX-r.width-pad;
+  if(y+r.height>innerHeight-8)y=e.clientY-r.height-pad;
+  tip.style.left=x+"px";tip.style.top=y+"px";
+}
+function hideTip(){tip.style.display="none";}
+
+let rt;
+addEventListener("resize",()=>{clearTimeout(rt);rt=setTimeout(()=>{render();applyPin();},150);});
+render();applyPin();
+</script>

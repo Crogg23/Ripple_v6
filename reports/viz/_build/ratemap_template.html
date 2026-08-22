@@ -1,0 +1,218 @@
+<title>The Rate Map</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+  :root{
+    --bg:#0b0f14; --panel:#161d26; --panel2:#1b2230; --ink:#e8edf4; --muted:#8b98ab;
+    --grid:#2a3441; --amber:#ffb454; --blue:#5aa9ff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font-family:'JetBrains Mono',ui-monospace,Consolas,monospace;font-size:13px;}
+  header{display:flex;align-items:baseline;gap:16px;padding:14px 20px 10px;flex-wrap:wrap}
+  h1{font-family:'Archivo',system-ui,sans-serif;font-weight:700;font-size:22px;margin:0;letter-spacing:.2px}
+  .sub{color:var(--muted)}
+  .rail{display:flex;gap:8px;padding:0 20px 10px;flex-wrap:wrap;align-items:center}
+  button{font:inherit;color:var(--ink);background:var(--panel2);border:1px solid var(--grid);
+         border-radius:6px;padding:6px 12px;cursor:pointer}
+  button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+  button.on{border-color:var(--amber);color:var(--amber)}
+  button.on.blue{border-color:var(--blue);color:var(--blue)}
+  #wrap{position:relative;margin:0 20px 8px}
+  canvas{display:block;width:100%;background:var(--panel);border:1px solid var(--grid);border-radius:8px;cursor:grab}
+  #tip{position:absolute;pointer-events:none;background:#0b0f14;border:1px solid var(--grid);
+       border-radius:6px;padding:8px 10px;display:none;max-width:260px;line-height:1.5;z-index:5}
+  #tip b{color:var(--amber)}
+  #legend{display:flex;gap:2px;align-items:center;padding:4px 20px 6px;flex-wrap:wrap}
+  .sw{width:34px;height:12px;border-radius:2px}
+  .lb{color:var(--muted);font-size:11px;margin-right:8px}
+  #tablewrap{margin:8px 20px 20px;overflow-x:auto;display:none}
+  table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+  th,td{text-align:left;padding:5px 12px;border-bottom:1px solid var(--grid)}
+  th{color:var(--muted);font-weight:600}
+  td.num,th.num{text-align:right}
+  .note{color:var(--muted);padding:0 20px 18px;max-width:72ch;line-height:1.6}
+</style>
+<header>
+  <h1>The Rate Map</h1>
+  <div class="sub">every county, colored by a per-person rate · drag to pan · scroll to zoom</div>
+</header>
+<div class="rail">
+  <button id="m0" class="on">Opioid dose (MME) per resident per year, 2006–2012</button>
+  <button id="m1" class="blue">EPA-regulated facilities per 1,000 residents</button>
+  <button id="tbl">Top-25 table</button>
+  <button id="reset">Reset view</button>
+</div>
+<div id="legend"></div>
+<div id="wrap"><canvas id="cv"></canvas><div id="tip"></div></div>
+<div id="tablewrap"><table id="tt"></table></div>
+<div class="note" id="note"></div>
+<script>
+const COUNTIES = __COUNTIES__;
+const STATES = __STATES__;
+
+// ---- Albers USA projection (main + AK/HI insets) ----
+function albersRaw(phi0,phi1,phi2,lam0){
+  const d=Math.PI/180, p1=phi1*d, p2=phi2*d;
+  const n=(Math.sin(p1)+Math.sin(p2))/2;
+  const C=Math.cos(p1)**2+2*n*Math.sin(p1);
+  const rho0=Math.sqrt(C-2*n*Math.sin(phi0*d))/n;
+  return (lon,lat)=>{
+    const th=n*(lon-lam0)*d, rho=Math.sqrt(Math.max(0,C-2*n*Math.sin(lat*d)))/n;
+    return [rho*Math.sin(th), rho0-rho*Math.cos(th)];
+  };
+}
+const pMain=albersRaw(37.5,29.5,45.5,-96);
+const pAK=albersRaw(60,55,65,-154), pHI=albersRaw(20.5,19,21,-157);
+function project(lon,lat,st){
+  if(st==="AK"){const [x,y]=pAK(lon,lat);return [x*0.35-0.32, y*0.35+0.26];}
+  if(st==="HI"){const [x,y]=pHI(lon,lat);return [x*0.9-0.12, y*0.9+0.26];}
+  const [x,y]=pMain(lon,lat);return [x,y];
+}
+
+// precompute projected rings + Path2D in unit coords + bounding boxes
+function buildPaths(list){
+  for(const c of list){
+    c.px=c.rings.map(r=>{const o=[];for(let i=0;i<r.length;i+=2){o.push(project(r[i],r[i+1],c.s));}return o;});
+    const p=new Path2D(); let x0=9,y0=9,x1=-9,y1=-9;
+    for(const ring of c.px){
+      p.moveTo(ring[0][0],-ring[0][1]);
+      for(let i=1;i<ring.length;i++)p.lineTo(ring[i][0],-ring[i][1]);
+      p.closePath();
+      for(const pt of ring){if(pt[0]<x0)x0=pt[0];if(pt[0]>x1)x1=pt[0];if(-pt[1]<y0)y0=-pt[1];if(-pt[1]>y1)y1=-pt[1];}
+    }
+    c.path=p; c.bb=[x0,y0,x1,y1];
+  }
+}
+buildPaths(COUNTIES); buildPaths(STATES);
+
+// metrics
+const RAMPS={
+ 0:["#241a0c","#4a3413","#7a531a","#a97322","#d1913a","#f0ac54","#ffc985"],
+ 1:["#101c2c","#16304e","#1d4674","#2a5f9c","#3f7ec6","#5aa9ff","#9ecfff"]};
+function metricVal(c,m){
+  if(!c.p) return null;
+  if(m===0) return (c.mme!=null && c.yrs) ? c.mme/c.p/c.yrs : null;
+  return c.epa!=null ? c.epa/c.p*1000 : null;
+}
+let mode=0, bins=[], colors={};
+function quantiles(vals,k){
+  const s=[...vals].sort((a,b)=>a-b), out=[];
+  for(let i=1;i<k;i++) out.push(s[Math.floor(i*s.length/k)]);
+  return out;
+}
+function classify(){
+  const vals=COUNTIES.map(c=>metricVal(c,mode)).filter(v=>v!=null&&isFinite(v));
+  bins=quantiles(vals,7); colors={};
+  for(const c of COUNTIES){
+    const v=metricVal(c,mode);
+    if(v==null||!isFinite(v)){colors[c.g]="#12171f";continue;}
+    let i=0; while(i<bins.length&&v>=bins[i]) i++;
+    colors[c.g]=RAMPS[mode][i];
+  }
+  drawLegend(vals);
+}
+const fmt=(v)=> v>=1000?Math.round(v).toLocaleString():(v>=10?v.toFixed(0):v>=1?v.toFixed(1):v.toFixed(2));
+function drawLegend(vals){
+  const lg=document.getElementById('legend'); lg.innerHTML="";
+  const lo=Math.min(...vals), hi=Math.max(...vals);
+  const edges=[lo,...bins,hi];
+  const unit = mode===0?"MME/person/yr":"facilities/1k";
+  const cap=document.createElement('span');cap.className='lb';cap.textContent=unit+" :";lg.appendChild(cap);
+  RAMPS[mode].forEach((col,i)=>{
+    const d=document.createElement('div');d.className='sw';d.style.background=col;lg.appendChild(d);
+    const t=document.createElement('span');t.className='lb';t.textContent=fmt(edges[i+1]);lg.appendChild(t);
+  });
+  const nd=document.createElement('span');nd.className='lb';nd.textContent="· dark grey = no data";lg.appendChild(nd);
+}
+
+// ---- canvas + view transform ----
+const cv=document.getElementById('cv'), ctx=cv.getContext('2d');
+let W,H,scale,ox,oy, vs=1, vx=0, vy=0;
+function size(){
+  W=cv.clientWidth; H=Math.max(420,Math.min(720,W*0.62));
+  cv.width=W*devicePixelRatio; cv.height=H*devicePixelRatio;
+  cv.style.height=H+"px";
+  ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+  scale=Math.min(W/1.55,H/0.95); ox=W/2; oy=H/2+0.03*scale;
+  draw();
+}
+let hovered=null;
+function draw(){
+  const k=scale*vs;
+  ctx.fillStyle="#161d26"; ctx.fillRect(0,0,W,H);
+  ctx.save();
+  ctx.translate(ox+vx,oy+vy); ctx.scale(k,k);
+  for(const c of COUNTIES){ ctx.fillStyle=colors[c.g]||"#12171f"; ctx.fill(c.path); }
+  ctx.strokeStyle="#2a3441"; ctx.lineWidth=Math.max(0.5,0.9*vs**0.4)/k;
+  for(const s of STATES) ctx.stroke(s.path);
+  if(hovered){ ctx.strokeStyle="#e8edf4"; ctx.lineWidth=1.4/k; ctx.stroke(hovered.path); }
+  ctx.restore();
+}
+// hit test in unit (path) space with bounding-box early reject
+function hit(mx,my){
+  const k=scale*vs, ux=(mx-ox-vx)/k, uy=(my-oy-vy)/k;
+  for(const c of COUNTIES){
+    const b=c.bb;
+    if(ux<b[0]||ux>b[2]||uy<b[1]||uy>b[3]) continue;
+    for(const ring of c.px){
+      let inside=false;
+      for(let i=0,j=ring.length-1;i<ring.length;j=i++){
+        const ax=ring[i][0], ay=-ring[i][1], bx=ring[j][0], by=-ring[j][1];
+        if((ay>uy)!==(by>uy) && ux<(bx-ax)*(uy-ay)/(by-ay)+ax) inside=!inside;
+      }
+      if(inside) return c;
+    }
+  }
+  return null;
+}
+const tip=document.getElementById('tip');
+let dragging=false,lx=0,ly=0,moved=false;
+cv.addEventListener('mousedown',e=>{dragging=true;moved=false;lx=e.clientX;ly=e.clientY;cv.style.cursor='grabbing';});
+window.addEventListener('mouseup',()=>{dragging=false;cv.style.cursor='grab';});
+cv.addEventListener('mousemove',e=>{
+  const r=cv.getBoundingClientRect(), mx=e.clientX-r.left, my=e.clientY-r.top;
+  if(dragging){vx+=e.clientX-lx;vy+=e.clientY-ly;lx=e.clientX;ly=e.clientY;moved=true;draw();tip.style.display='none';return;}
+  const c=hit(mx,my);
+  if(c!==hovered){hovered=c;draw();}
+  if(c){
+    const v=metricVal(c,mode);
+    tip.innerHTML="<b>"+c.n+", "+c.s+"</b><br>"+
+      (c.p?("pop "+c.p.toLocaleString()+"<br>"):"pop unknown<br>")+
+      (v!=null?((mode===0?"dose/person/yr: ":"facilities/1k: ")+"<b>"+fmt(v)+"</b>"):"no data")+
+      (mode===0&&c.mme!=null?("<br>total MME "+Math.round(c.mme).toLocaleString()):"")+
+      (mode===1&&c.epa!=null?("<br>"+c.epa.toLocaleString()+" facilities"):"");
+    tip.style.left=Math.min(mx+14,W-270)+"px"; tip.style.top=(my+14)+"px"; tip.style.display='block';
+  } else tip.style.display='none';
+});
+cv.addEventListener('mouseleave',()=>tip.style.display='none');
+cv.addEventListener('wheel',e=>{
+  e.preventDefault();
+  const r=cv.getBoundingClientRect(), mx=e.clientX-r.left, my=e.clientY-r.top;
+  const f=e.deltaY<0?1.25:0.8, ns=Math.max(0.5,Math.min(40,vs*f)), k=ns/vs;
+  vx=(vx+ox-mx)*k+mx-ox; vy=(vy+oy-my)*k+my-oy; vs=ns; draw();
+},{passive:false});
+
+// controls
+const b0=document.getElementById('m0'), b1=document.getElementById('m1');
+function setMode(m){mode=m;b0.classList.toggle('on',m===0);b1.classList.toggle('on',m===1);classify();draw();table();note();}
+b0.onclick=()=>setMode(0); b1.onclick=()=>setMode(1);
+document.getElementById('reset').onclick=()=>{vs=1;vx=vy=0;draw();};
+const tw=document.getElementById('tablewrap');
+document.getElementById('tbl').onclick=()=>{tw.style.display=tw.style.display==='none'||!tw.style.display?'block':'none';};
+function table(){
+  const rows=COUNTIES.map(c=>({c,v:metricVal(c,mode)})).filter(r=>r.v!=null&&isFinite(r.v)&&r.c.p>=1000)
+    .sort((a,b)=>b.v-a.v).slice(0,25);
+  const unit=mode===0?"MME / person / yr":"facilities / 1k residents";
+  document.getElementById('tt').innerHTML=
+    "<tr><th>#</th><th>County</th><th class=num>Population</th><th class=num>"+unit+"</th></tr>"+
+    rows.map((r,i)=>"<tr><td>"+(i+1)+"</td><td>"+r.c.n+", "+r.c.s+"</td><td class=num>"+r.c.p.toLocaleString()+
+      "</td><td class=num>"+fmt(r.v)+"</td></tr>").join("");
+}
+function note(){
+  document.getElementById('note').textContent = mode===0
+   ? "Opioid shipments 2006–2012 (public DEA window), matched to counties by name — 93% of counties matched. Rate = total morphine-equivalent dose ÷ 2020 population ÷ years observed. Counties under 1,000 people are excluded from the table to avoid tiny-denominator winners."
+   : "All EPA-regulated facilities (5.3M sites) joined to counties by FIPS code — a clean key join. Denominator is 2020 census population.";
+}
+classify(); size(); table(); note();
+window.addEventListener('resize',size);
+</script>
