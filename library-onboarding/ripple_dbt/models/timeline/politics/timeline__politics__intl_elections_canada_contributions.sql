@@ -8,14 +8,18 @@
 --   means  : happened -- try_to_date(trim(CONTRIBUTION_RECEIVED_DATE)) — when the contribution was received; the 0025-04-07 / 4002-06-15 extremes, 2 epoch rows and 77 far-future rows ar
 --   grain  : day
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_window('src."CONTRIBUTION_RECEIVED_DATE"::timestamp_ntz')) }} as ripple_ts,
+    {{ ripple_window('src."CONTRIBUTION_RECEIVED_DATE"::timestamp_ntz') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_window('src."CONTRIBUTION_RECEIVED_DATE"::timestamp_ntz'), 'happened') }} as ripple_clock,
     'POLITICS.POLITICS__INTL_ELECTIONS_CANADA_CONTRIBUTIONS'::varchar as ripple_source,
     src.*
 from {{ ref('politics__intl_elections_canada_contributions') }} as src

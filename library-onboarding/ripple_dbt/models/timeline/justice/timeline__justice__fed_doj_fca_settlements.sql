@@ -8,14 +8,18 @@
 --   means  : decided -- try_to_number(trim(FISCAL_YEAR)) -- DOJ's fiscal year for the same settlement, a coarse duplicate of settlement_date. It is a NUMBER: a bare date-parse would re
 --   grain  : year
 --
+-- decided cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'decided'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_year('src."FISCAL_YEAR"')) }} as ripple_ts,
+    {{ ripple_ts_from_year('src."FISCAL_YEAR"') }} as ripple_ts,
     {{ ripple_grain('year') }} as ripple_grain,
-    {{ ripple_clock('decided') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_year('src."FISCAL_YEAR"'), 'decided') }} as ripple_clock,
     'JUSTICE.JUSTICE__FED_DOJ_FCA_SETTLEMENTS'::varchar as ripple_source,
     src.*
 from {{ ref('justice__fed_doj_fca_settlements') }} as src

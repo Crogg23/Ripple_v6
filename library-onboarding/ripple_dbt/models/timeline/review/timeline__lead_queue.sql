@@ -8,14 +8,18 @@
 --   means  : decided -- TRY_TO_DATE(MIN(excldate),'YYYYMMDD') - the HHS-OIG exclusion date, the authority decision that creates the lead; populated only for the exclusion-list rules, s
 --   grain  : day
 --
+-- decided cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'decided'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_window('src."EXCL_DATE"::timestamp_ntz')) }} as ripple_ts,
+    {{ ripple_window('src."EXCL_DATE"::timestamp_ntz') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('decided') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_window('src."EXCL_DATE"::timestamp_ntz'), 'decided') }} as ripple_clock,
     'REVIEW.LEAD_QUEUE'::varchar as ripple_source,
     src.*
 from {{ ref('lead_queue') }} as src

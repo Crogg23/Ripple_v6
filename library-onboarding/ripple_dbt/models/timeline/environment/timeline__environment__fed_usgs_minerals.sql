@@ -8,14 +8,18 @@
 --   means  : happened -- Raw passthrough DISC_YR: the year the mineral deposit was discovered, with DY_BA as its basis code. Integer year.
 --   grain  : year
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_year('src."DISC_YR"')) }} as ripple_ts,
+    {{ ripple_ts_from_year('src."DISC_YR"') }} as ripple_ts,
     {{ ripple_grain('year') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_year('src."DISC_YR"'), 'happened') }} as ripple_clock,
     'ENVIRONMENT.ENVIRONMENT__FED_USGS_MINERALS'::varchar as ripple_source,
     src.*
 from {{ ref('environment__fed_usgs_minerals') }} as src

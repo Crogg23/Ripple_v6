@@ -8,14 +8,18 @@
 --   means  : happened -- Passed through as a raw varchar year with no cast, so it escaped the epoch bug that destroyed all four date columns on this table and is the only honest time va
 --   grain  : year
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_year('src."YEAR_MFR"')) }} as ripple_ts,
+    {{ ripple_ts_from_year('src."YEAR_MFR"') }} as ripple_ts,
     {{ ripple_grain('year') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_year('src."YEAR_MFR"'), 'happened') }} as ripple_clock,
     'TRANSPORT.TRANSPORT__FED_FAA_REGISTRY'::varchar as ripple_source,
     src.*
 from {{ ref('transport__fed_faa_registry') }} as src

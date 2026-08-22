@@ -8,14 +8,18 @@
 --   means  : happened -- raw passthrough - this mart applies NO casts at all, selecting straight from the landing table - naming the date the multistate settlement was resolved, the eve
 --   grain  : day
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_date('src."DATERESOLVED"')) }} as ripple_ts,
+    {{ ripple_ts_from_date('src."DATERESOLVED"') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_date('src."DATERESOLVED"'), 'happened') }} as ripple_clock,
     'LEGAL_ENFORCEMENT.LEGAL_ENFORCEMENT__FED_NAAG_MULTISTATE_SETTLEMENTS'::varchar as ripple_source,
     src.*
 from {{ ref('legal_enforcement__fed_naag_multistate_settlements') }} as src

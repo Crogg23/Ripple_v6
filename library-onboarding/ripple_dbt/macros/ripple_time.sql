@@ -30,6 +30,11 @@
          yearly series grows a fake New Year's Day spike.
       4. The clock kind travels with it too: did it HAPPEN then, was it REPORTED
          then, or did an authority DECIDE then. Same axis, different meanings.
+         A happened/reported/decided value that sits in the future gets a sixth
+         label instead, PLANNED (added 2026-08-21): it hasn't occurred yet and
+         might still change, so a rule reading "what occurred" must exclude it
+         by default. span_start/span_end are exempt -- their future values are
+         normal, correct data (a licence expiring in 2045), not a plan.
       5. Times are naive/UTC. A calendar date is a calendar date, not midnight in
          somebody's timezone.
       6. Unknown is NULL. Never a sentinel. Ever.
@@ -173,14 +178,6 @@ coalesce(
 {%- endmacro %}
 
 
-{#- An EVENT clock cannot be in the future (rule 7 applied to "happened"
-    clocks). Span-end and expiry columns must NOT use this -- their future dates
-    are correct. Anything ahead of today plus a year's slack is nulled. -#}
-{% macro ripple_event_ts(expr) -%}
-    iff({{ expr }} <= dateadd(year, 1, current_timestamp()::timestamp_ntz), {{ expr }}, null)
-{%- endmacro %}
-
-
 {#- The grain and clock tags that must ride alongside every canonical column
     (rules 3 and 4). Emitted as literals so they survive into the mart and can
     be asserted by the standard's test. -#}
@@ -192,10 +189,32 @@ coalesce(
 {%- endmacro %}
 
 {% macro ripple_clock(kind) -%}
-    {%- if kind not in ('happened','reported','decided','span_start','span_end') -%}
-        {{ exceptions.raise_compiler_error("ripple_clock: '" ~ kind ~ "' is not happened/reported/decided/span_start/span_end") }}
+    {%- if kind not in ('happened','reported','decided','span_start','span_end','planned') -%}
+        {{ exceptions.raise_compiler_error("ripple_clock: '" ~ kind ~ "' is not happened/reported/decided/span_start/span_end/planned") }}
     {%- endif -%}
     '{{ kind }}'::varchar
+{%- endmacro %}
+
+
+{#- A HAPPENED/REPORTED/DECIDED clock whose value sits in the future hasn't
+    occurred yet and might still change -- a proposed rule's effective date, a
+    scheduled hearing, an upcoming compliance deadline. Reading it as an ordinary
+    "happened" value is exactly the bug this exists to catch: a naive rule would
+    see it and report the thing as already having occurred.
+
+    This is a PER-ROW check, not a per-column one: the same column (e.g. a
+    "decided" enforcement date) legitimately holds both past rows and a handful
+    of not-yet-final ones. span_start/span_end never pass through here -- an
+    open-ended contract or licence expiring in the future is correct data, not a
+    planned event, and keeps its own label (see ripple_clock).
+
+    ts_call must be the SAME raw macro-call expression used to build ripple_ts,
+    passed unevaluated (no outer {{ }}) so it can be nested inside this one. -#}
+{% macro ripple_row_clock(ts_call, base_kind) -%}
+{%- if base_kind not in ('happened','reported','decided') -%}
+    {{ exceptions.raise_compiler_error("ripple_row_clock: '" ~ base_kind ~ "' must be happened/reported/decided -- span boundaries are legitimately future and keep their own label via ripple_clock") }}
+{%- endif -%}
+iff({{ ts_call }} > date_trunc('day', current_timestamp())::timestamp_ntz, 'planned', '{{ base_kind }}')::varchar
 {%- endmacro %}
 
 

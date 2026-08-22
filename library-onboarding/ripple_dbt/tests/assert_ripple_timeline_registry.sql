@@ -86,6 +86,20 @@ out_of_window as (
     from timeline
     where ripple_day < date_from_parts({{ ripple_time_floor() }}, 1, 1)
        or ripple_day > date_from_parts({{ ripple_time_ceiling() }}, 12, 31)
+),
+
+-- 7. The planned/actual split (added 2026-08-21, see ripple_row_clock in
+--    macros/ripple_time.sql) disagreeing with the value it is tagging: a
+--    'planned' day that is not actually in the future, or a happened/reported/
+--    decided day that silently is. Either means a FLOW rule reading this data
+--    could mistake a scheduled, not-yet-final date for something that already
+--    occurred -- the exact bug this split exists to prevent.
+mistagged_planned as (
+    select ripple_source as subject,
+           'planned/actual split disagrees with the timestamp it is tagging' as problem
+    from timeline
+    where (ripple_clock = 'planned' and ripple_day <= current_date())
+       or (ripple_clock in ('happened', 'reported', 'decided') and ripple_day > current_date())
 )
 
 select * from missing_view
@@ -94,3 +108,4 @@ union all select * from bad_grain
 union all select * from incoherent
 union all select * from orphan_source
 union all select * from out_of_window
+union all select * from mistagged_planned

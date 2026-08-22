@@ -8,14 +8,18 @@
 --   means  : happened -- "DATE" is a raw text passthrough (no cast) on a missile-test row -- the day of the launch. It is the real event clock, but it must be parsed with an explicit fo
 --   grain  : day
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_date('src."DATE"')) }} as ripple_ts,
+    {{ ripple_ts_from_date('src."DATE"') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_date('src."DATE"'), 'happened') }} as ripple_clock,
     'JUSTICE.JUSTICE__INTL_NTI_CNS_DPRK_MISSILE_TESTS'::varchar as ripple_source,
     src.*
 from {{ ref('justice__intl_nti_cns_dprk_missile_tests') }} as src

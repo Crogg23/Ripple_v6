@@ -8,14 +8,18 @@
 --   means  : happened -- try_to_date(C13,'YYYYMMDD') aliased from NHTSA's ODATE - the day owners were notified of the recall; the 11 far-future rows (max 3019) are source typos, and the
 --   grain  : day
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_window('src."NOTIFICATION_DATE"::timestamp_ntz')) }} as ripple_ts,
+    {{ ripple_window('src."NOTIFICATION_DATE"::timestamp_ntz') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_window('src."NOTIFICATION_DATE"::timestamp_ntz'), 'happened') }} as ripple_clock,
     'CONSUMER_SAFETY.CONSUMER_SAFETY__FED_NHTSA_RECALLS'::varchar as ripple_source,
     src.*
 from {{ ref('consumer_safety__fed_nhtsa_recalls') }} as src

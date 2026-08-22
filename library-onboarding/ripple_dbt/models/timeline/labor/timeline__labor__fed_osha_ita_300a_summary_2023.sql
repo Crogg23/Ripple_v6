@@ -8,14 +8,18 @@
 --   means  : happened -- raw passthrough integer naming the recordkeeping year the 300A summary covers; the injury counts on the row are that year's injuries, so this is the honest year
 --   grain  : year
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_year('src."YEAR_FILING_FOR"')) }} as ripple_ts,
+    {{ ripple_ts_from_year('src."YEAR_FILING_FOR"') }} as ripple_ts,
     {{ ripple_grain('year') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_year('src."YEAR_FILING_FOR"'), 'happened') }} as ripple_clock,
     'LABOR.LABOR__FED_OSHA_ITA_300A_SUMMARY_2023'::varchar as ripple_source,
     src.*
 from {{ ref('labor__fed_osha_ita_300a_summary_2023') }} as src

@@ -8,14 +8,18 @@
 --   means  : happened -- The Vera county-year panel year carried through from staging (try_to_number(trim(YEAR))) -- the year the jail populations were measured.
 --   grain  : year
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_year('src."YEAR"')) }} as ripple_ts,
+    {{ ripple_ts_from_year('src."YEAR"') }} as ripple_ts,
     {{ ripple_grain('year') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_year('src."YEAR"'), 'happened') }} as ripple_clock,
     'JUSTICE.JUSTICE__RACIAL_JAIL_DISPARITY'::varchar as ripple_source,
     src.*
 from {{ ref('justice__racial_jail_disparity') }} as src

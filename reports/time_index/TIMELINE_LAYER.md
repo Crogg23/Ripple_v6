@@ -1,9 +1,20 @@
-# The canonical clock layer — 2026-08-20
+# The canonical clock layer — 2026-08-20, extended 2026-08-21
 
 Every table in the warehouse that can be placed in time now exposes the same four
 columns, and all of them roll up onto one shared timeline.
 
 Built in 92 seconds. 435 models, zero failures. The guard test passes.
+
+**2026-08-21 update: added the "planned" clock.** A happened/reported/decided
+value that turns out to sit in the future — a proposed rule's effective date, a
+scheduled hearing, an upcoming compliance deadline — used to either get read as
+an ordinary past event (wrong) or get silently dropped once it was more than a
+year out (data loss). Now every such value is checked per row: if it's after
+today, `ripple_clock` reads `planned` instead of the base label, and the value
+is kept, not nulled. span_start/span_end are untouched — their future values
+were always correct data. See `ripple_row_clock` in `macros/ripple_time.sql`
+and check #7 in `tests/assert_ripple_timeline_registry.sql`, which fails the
+build if a `planned` row isn't actually in the future or vice versa.
 
 ## What exists now
 
@@ -21,10 +32,10 @@ Built in 92 seconds. 435 models, zero failures. The guard test passes.
 |---|---|
 | `ripple_ts` | TIMESTAMP_NTZ, snapped to the start of its period, clamped to 1700–2125 |
 | `ripple_grain` | `day` / `month` / `quarter` / `year` — how precise that timestamp really is |
-| `ripple_clock` | `happened` / `reported` / `decided` / `span_start` / `span_end` — what it MEANS |
+| `ripple_clock` | `happened` / `reported` / `decided` / `span_start` / `span_end` / `planned` — what it MEANS |
 | `ripple_source` | the schema-qualified table it came from |
 
-## The two rules you must respect when querying
+## The three rules you must respect when querying
 
 **1. Always honour `ripple_grain`.** A year-grain source snaps to January 1st. Draw
 a daily chart across mixed grains without filtering and you invent a New Year's
@@ -33,6 +44,13 @@ Day spike out of nothing. 121 of the 403 sources are year-grain.
 **2. Always honour `ripple_clock`.** Summing a `happened` source and a `reported`
 source into one line adds two different questions together. 230 sources are
 `happened`, 95 are `reported`, 33 `decided`, 45 are span boundaries.
+
+**3. Exclude `planned` by default.** A `planned` row hasn't occurred yet and might
+still change — it comes from a happened/reported/decided column whose value turns
+out to be in the future. Any "what occurred" analysis (a FLOW rule, a timeline of
+past events) must filter it out unless the question is specifically about what's
+upcoming. It is a per-row tag, not a per-table one: the same enforcement-date
+column can carry mostly `decided` rows and a handful of `planned` ones.
 
 ## Coverage, stated honestly
 

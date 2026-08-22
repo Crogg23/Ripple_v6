@@ -8,14 +8,18 @@
 --   means  : happened -- try_to_date(transaction_dt,'MMDDYYYY') - the day the individual contribution was made; the explicit format rules out the epoch trap, and the 4 far-future rows (
 --   grain  : day
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_window('src."TRANSACTION_DATE"::timestamp_ntz')) }} as ripple_ts,
+    {{ ripple_window('src."TRANSACTION_DATE"::timestamp_ntz') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_window('src."TRANSACTION_DATE"::timestamp_ntz'), 'happened') }} as ripple_clock,
     'FINANCE.FINANCE__FED_FEC_INDIV_CONTRIBUTIONS'::varchar as ripple_source,
     src.*
 from {{ ref('finance__fed_fec_indiv_contributions') }} as src

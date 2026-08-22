@@ -8,14 +8,18 @@
 --   means  : happened -- try_to_date(ESTABLISHED_DATE,'YYYYMMDD') — when the 527 organization was established; the only real-world event clock here, though it dates the org rather than 
 --   grain  : day
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_window('src."ESTABLISHED_DATE"::timestamp_ntz')) }} as ripple_ts,
+    {{ ripple_window('src."ESTABLISHED_DATE"::timestamp_ntz') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_window('src."ESTABLISHED_DATE"::timestamp_ntz'), 'happened') }} as ripple_clock,
     'POLITICS.POLITICS__IRS527_8871_ORGS'::varchar as ripple_source,
     src.*
 from {{ ref('politics__irs527_8871_orgs') }} as src

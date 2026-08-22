@@ -8,14 +8,18 @@
 --   means  : reported -- Raw TEXT passthrough of FAO's own DATEUPDATE on a 69-row dataset catalogue (one row per FAOSTAT dataset); it is when FAO last refreshed that dataset file, so it
 --   grain  : day
 --
+-- reported cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'reported'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_date('src."DATEUPDATE"')) }} as ripple_ts,
+    {{ ripple_ts_from_date('src."DATEUPDATE"') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('reported') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_date('src."DATEUPDATE"'), 'reported') }} as ripple_clock,
     'ECONOMICS.ECONOMICS__INTL_FAO_FAOSTAT'::varchar as ripple_source,
     src.*
 from {{ ref('economics__intl_fao_faostat') }} as src

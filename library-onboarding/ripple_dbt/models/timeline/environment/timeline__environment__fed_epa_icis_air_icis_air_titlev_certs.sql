@@ -8,14 +8,18 @@
 --   means  : reported -- try_to_date(ACTUAL_END_DATE), the only clock: the completion/receipt date of a Title V annual compliance certification the facility submits to the regulator. LO
 --   grain  : day
 --
+-- reported cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'reported'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_window('src."ACTUAL_END_DATE"::timestamp_ntz')) }} as ripple_ts,
+    {{ ripple_window('src."ACTUAL_END_DATE"::timestamp_ntz') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('reported') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_window('src."ACTUAL_END_DATE"::timestamp_ntz'), 'reported') }} as ripple_clock,
     'ENVIRONMENT.ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_TITLEV_CERTS'::varchar as ripple_source,
     src.*
 from {{ ref('environment__fed_epa_icis_air_icis_air_titlev_certs') }} as src

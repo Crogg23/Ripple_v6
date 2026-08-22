@@ -8,14 +8,18 @@
 --   means  : reported -- Raw passthrough of YEAR (no cast): the NCVS data year. LOW - the compiled SQL shows only a passthrough, so whether it means the incident year or the collection 
 --   grain  : year
 --
+-- reported cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'reported'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_year('src."YEAR"')) }} as ripple_ts,
+    {{ ripple_ts_from_year('src."YEAR"') }} as ripple_ts,
     {{ ripple_grain('year') }} as ripple_grain,
-    {{ ripple_clock('reported') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_year('src."YEAR"'), 'reported') }} as ripple_clock,
     'CRIMINAL_JUSTICE.CRIMINAL_JUSTICE__FED_BJS_DATA'::varchar as ripple_source,
     src.*
 from {{ ref('criminal_justice__fed_bjs_data') }} as src

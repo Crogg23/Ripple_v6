@@ -8,14 +8,18 @@
 --   means  : happened -- try_to_date on the ISO-formatted COT as-of date - when the reported futures positions were held; census range 1986-2026 matches the real COT history.
 --   grain  : day
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_window('src."AS_OF_DATE_IN_FORM_YYYY_MM_DD"::timestamp_ntz')) }} as ripple_ts,
+    {{ ripple_window('src."AS_OF_DATE_IN_FORM_YYYY_MM_DD"::timestamp_ntz') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_window('src."AS_OF_DATE_IN_FORM_YYYY_MM_DD"::timestamp_ntz'), 'happened') }} as ripple_clock,
     'EDUCATION.EDUCATION__FED_CFTC_COT_FUTURES'::varchar as ripple_source,
     src.*
 from {{ ref('education__fed_cftc_cot_futures') }} as src

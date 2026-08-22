@@ -8,14 +8,18 @@
 --   means  : happened -- DEGREE_YEAR passes through as raw text: the year the degree was awarded. Year grain only, and it is a bare year string, so it must never be handed to a plain da
 --   grain  : year
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_year('src."DEGREE_YEAR"')) }} as ripple_ts,
+    {{ ripple_ts_from_year('src."DEGREE_YEAR"') }} as ripple_ts,
     {{ ripple_grain('year') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_year('src."DEGREE_YEAR"'), 'happened') }} as ripple_clock,
     'JUSTICE.JUSTICE__FED_COURTLISTENER_JUDGE_EDUCATIONS'::varchar as ripple_source,
     src.*
 from {{ ref('justice__fed_courtlistener_judge_educations') }} as src

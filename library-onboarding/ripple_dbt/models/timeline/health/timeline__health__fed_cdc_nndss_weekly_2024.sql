@@ -8,14 +8,18 @@
 --   means  : reported -- MMWR reporting year (uncast text); the only standalone time coordinate.
 --   grain  : year
 --
+-- reported cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'reported'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_year('src."CURRENT_MMWR_YEAR"')) }} as ripple_ts,
+    {{ ripple_ts_from_year('src."CURRENT_MMWR_YEAR"') }} as ripple_ts,
     {{ ripple_grain('year') }} as ripple_grain,
-    {{ ripple_clock('reported') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_year('src."CURRENT_MMWR_YEAR"'), 'reported') }} as ripple_clock,
     'HEALTH.HEALTH__FED_CDC_NNDSS_WEEKLY_2024'::varchar as ripple_source,
     src.*
 from {{ ref('health__fed_cdc_nndss_weekly_2024') }} as src

@@ -8,14 +8,18 @@
 --   means  : happened -- try_to_number(trim(ESTABLISHED)) in staging: the year the research organisation was founded - the only real-world event on the row, and an integer year rather t
 --   grain  : year
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_year('src."ESTABLISHED_YEAR"')) }} as ripple_ts,
+    {{ ripple_ts_from_year('src."ESTABLISHED_YEAR"') }} as ripple_ts,
     {{ ripple_grain('year') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_year('src."ESTABLISHED_YEAR"'), 'happened') }} as ripple_clock,
     'REFERENCE.REFERENCE__XC_ROR_RESEARCH_ORGANIZATIONS'::varchar as ripple_source,
     src.*
 from {{ ref('reference__xc_ror_research_organizations') }} as src

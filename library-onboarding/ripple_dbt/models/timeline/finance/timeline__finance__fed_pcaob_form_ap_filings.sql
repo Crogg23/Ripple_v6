@@ -8,14 +8,18 @@
 --   means  : happened -- Left as raw trimmed TEXT while every real date in this model is try_to_date'd - semantically the report's dual date, but it can carry qualifier prose and is unu
 --   grain  : day
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_date('src."AUDIT_DUAL_DATE"')) }} as ripple_ts,
+    {{ ripple_ts_from_date('src."AUDIT_DUAL_DATE"') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_date('src."AUDIT_DUAL_DATE"'), 'happened') }} as ripple_clock,
     'FINANCE.FINANCE__FED_PCAOB_FORM_AP_FILINGS'::varchar as ripple_source,
     src.*
 from {{ ref('finance__fed_pcaob_form_ap_filings') }} as src

@@ -146,10 +146,18 @@ A few windows worth seeing, before and after:
 
 ## What is NOT done
 
-- **The canonical column is not rolled out.** The standard, the calendar and the
-  guard exist and the real bugs are fixed, but the 686 tables do not yet each
-  expose a canonical timestamp with grain and clock tags. That is the next
-  build, and it is what makes one shared timeline actually queryable.
+- ~~The canonical column is not rolled out.~~ **Done, 2026-08-20/21** — see
+  `reports/time_index/TIMELINE_LAYER.md`. 403 tables each expose a canonical
+  timestamp via a view (`LIBRARY_MARTS.TIMELINE.*`), not by rebuilding the
+  underlying marts. A sixth clock, `planned`, was added 2026-08-21 for
+  happened/reported/decided values that turn out to sit in the future. This
+  note was stale for about a day and caused a session to re-queue already-
+  finished work — if you're reading this file instead of TIMELINE_LAYER.md,
+  read that one, it's the current state.
+- **~~253 of 482 tables were never classified.~~ Also wrong** — `clock_index.csv`
+  was complete for all 482 tables the whole time; only the classification
+  write-up's own prose undersold it. See the correction note at the top of
+  `CLOCK_FINDINGS.md`.
 - **~11,000 junk rows remain** across roughly 100 columns, median 5 rows each.
   Below the noise floor; the standard's window clamp nulls them wherever it gets
   applied.

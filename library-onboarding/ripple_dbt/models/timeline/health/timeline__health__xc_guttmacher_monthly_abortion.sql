@@ -8,14 +8,18 @@
 --   means  : happened -- Uncast text month key of the monthly abortion estimate - the row's own period; census measured nothing because it is text.
 --   grain  : day
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_date('src."MONTH"')) }} as ripple_ts,
+    {{ ripple_ts_from_date('src."MONTH"') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_date('src."MONTH"'), 'happened') }} as ripple_clock,
     'HEALTH.HEALTH__XC_GUTTMACHER_MONTHLY_ABORTION'::varchar as ripple_source,
     src.*
 from {{ ref('health__xc_guttmacher_monthly_abortion') }} as src

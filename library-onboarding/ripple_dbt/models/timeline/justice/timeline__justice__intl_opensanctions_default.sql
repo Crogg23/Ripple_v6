@@ -8,14 +8,18 @@
 --   means  : happened -- Staging keeps it as nullif(trim(BIRTH_DATE),'') -- raw, never cast; the sibling OpenSanctions model documents this field as mixed precision (full dates and year
 --   grain  : day
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_date('src."BIRTH_DATE"')) }} as ripple_ts,
+    {{ ripple_ts_from_date('src."BIRTH_DATE"') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_date('src."BIRTH_DATE"'), 'happened') }} as ripple_clock,
     'JUSTICE.JUSTICE__INTL_OPENSANCTIONS_DEFAULT'::varchar as ripple_source,
     src.*
 from {{ ref('justice__intl_opensanctions_default') }} as src

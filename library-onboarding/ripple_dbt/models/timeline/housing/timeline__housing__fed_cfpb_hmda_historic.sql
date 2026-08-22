@@ -8,14 +8,18 @@
 --   means  : happened -- trim(AS_OF_YEAR) TEXT; schema.yml calls it 'HMDA reporting year (2015, 2016, or 2017 only)' - the year the loan action was taken. Only three distinct values acr
 --   grain  : year
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_year('src."AS_OF_YEAR"')) }} as ripple_ts,
+    {{ ripple_ts_from_year('src."AS_OF_YEAR"') }} as ripple_ts,
     {{ ripple_grain('year') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_year('src."AS_OF_YEAR"'), 'happened') }} as ripple_clock,
     'HOUSING.HOUSING__FED_CFPB_HMDA_HISTORIC'::varchar as ripple_source,
     src.*
 from {{ ref('housing__fed_cfpb_hmda_historic') }} as src

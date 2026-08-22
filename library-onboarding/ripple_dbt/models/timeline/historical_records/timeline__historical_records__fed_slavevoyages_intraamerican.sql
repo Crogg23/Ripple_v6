@@ -8,14 +8,18 @@
 --   means  : happened -- The sibling staging model's codebook comment states 'YEARAM = Year of arrival at port of disembarkation' - the canonical voyage year. In this mart it is a raw u
 --   grain  : year
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_year('src."YEARAM"')) }} as ripple_ts,
+    {{ ripple_ts_from_year('src."YEARAM"') }} as ripple_ts,
     {{ ripple_grain('year') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_year('src."YEARAM"'), 'happened') }} as ripple_clock,
     'HISTORICAL_RECORDS.HISTORICAL_RECORDS__FED_SLAVEVOYAGES_INTRAAMERICAN'::varchar as ripple_source,
     src.*
 from {{ ref('historical_records__fed_slavevoyages_intraamerican') }} as src

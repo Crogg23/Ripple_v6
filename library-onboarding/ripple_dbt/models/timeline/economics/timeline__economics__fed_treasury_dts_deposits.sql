@@ -8,14 +8,18 @@
 --   means  : happened -- try_to_date(RECORD_DATE) on the Daily Treasury Statement deposits feed; 478k rows over 2005-10-03 to 2026-08-07 is a genuine daily series.
 --   grain  : day
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_window('src."RECORD_DATE"::timestamp_ntz')) }} as ripple_ts,
+    {{ ripple_window('src."RECORD_DATE"::timestamp_ntz') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_window('src."RECORD_DATE"::timestamp_ntz'), 'happened') }} as ripple_clock,
     'ECONOMICS.ECONOMICS__FED_TREASURY_DTS_DEPOSITS'::varchar as ripple_source,
     src.*
 from {{ ref('economics__fed_treasury_dts_deposits') }} as src

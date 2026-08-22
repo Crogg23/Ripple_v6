@@ -8,14 +8,18 @@
 --   means  : happened -- try_to_date(current_status_dt,'MM/DD/YYYY') in the mart: the date the mine entered its CURRENT status (active/abandoned/temporarily idled), so it is a real chan
 --   grain  : day
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_window('src."CURRENT_STATUS_DT"::timestamp_ntz')) }} as ripple_ts,
+    {{ ripple_window('src."CURRENT_STATUS_DT"::timestamp_ntz') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_window('src."CURRENT_STATUS_DT"::timestamp_ntz'), 'happened') }} as ripple_clock,
     'LABOR.LABOR__FED_MSHA_MINES'::varchar as ripple_source,
     src.*
 from {{ ref('labor__fed_msha_mines') }} as src

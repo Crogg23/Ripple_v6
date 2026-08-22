@@ -8,14 +8,18 @@
 --   means  : happened -- Raw passthrough of C_1_YEAR in the 2023 TRI basic file: the reporting year the releases occurred in. Integer year - the classic column that a bare date-parse tu
 --   grain  : year
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_year('src."C_1_YEAR"')) }} as ripple_ts,
+    {{ ripple_ts_from_year('src."C_1_YEAR"') }} as ripple_ts,
     {{ ripple_grain('year') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_year('src."C_1_YEAR"'), 'happened') }} as ripple_clock,
     'ENVIRONMENT.ENVIRONMENT__FED_EPA_TRI_BASIC_2023'::varchar as ripple_source,
     src.*
 from {{ ref('environment__fed_epa_tri_basic_2023') }} as src

@@ -8,14 +8,18 @@
 --   means  : happened -- Raw passthrough of REPORTING_YEAR (no cast): the inventory year the emissions occurred in. Integer year - date-parsing it is the epoch-1970 trap.
 --   grain  : year
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_year('src."REPORTING_YEAR"')) }} as ripple_ts,
+    {{ ripple_ts_from_year('src."REPORTING_YEAR"') }} as ripple_ts,
     {{ ripple_grain('year') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_year('src."REPORTING_YEAR"'), 'happened') }} as ripple_clock,
     'ENVIRONMENT.ENVIRONMENT__FED_EPA_AIR_EMISSIONS_POLL_RPT_COMBINED_EMISSIONS'::varchar as ripple_source,
     src.*
 from {{ ref('environment__fed_epa_air_emissions_poll_rpt_combined_emissions') }} as src

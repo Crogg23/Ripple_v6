@@ -8,14 +8,18 @@
 --   means  : happened -- Observation year of an annual institution-ideology panel (102 rows, roughly one per year); try_to_number(YEAR) integer.
 --   grain  : year
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_year('src."YEAR"')) }} as ripple_ts,
+    {{ ripple_ts_from_year('src."YEAR"') }} as ripple_ts,
     {{ ripple_grain('year') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_year('src."YEAR"'), 'happened') }} as ripple_clock,
     'POLITICS.POLITICS__XC_JCS_MEDIANS'::varchar as ripple_source,
     src.*
 from {{ ref('politics__xc_jcs_medians') }} as src

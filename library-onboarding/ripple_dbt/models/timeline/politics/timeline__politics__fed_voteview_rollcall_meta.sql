@@ -8,14 +8,18 @@
 --   means  : happened -- The day the roll-call vote was taken; this mart passes raw DATE through UNCAST, but the sibling staging model documents it landing as 'YYYY-MM-DD' and parses it
 --   grain  : day
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_date('src."DATE"')) }} as ripple_ts,
+    {{ ripple_ts_from_date('src."DATE"') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_date('src."DATE"'), 'happened') }} as ripple_clock,
     'POLITICS.POLITICS__FED_VOTEVIEW_ROLLCALL_META'::varchar as ripple_source,
     src.*
 from {{ ref('politics__fed_voteview_rollcall_meta') }} as src

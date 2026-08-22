@@ -8,14 +8,18 @@
 --   means  : reported -- raw passthrough integer (the 2024/2025 marts rename this YEAR_OF_FILING where 2023 called it YEAR_FILING_FOR): the recordkeeping year the case was logged under,
 --   grain  : year
 --
+-- reported cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'reported'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_year('src."YEAR_OF_FILING"')) }} as ripple_ts,
+    {{ ripple_ts_from_year('src."YEAR_OF_FILING"') }} as ripple_ts,
     {{ ripple_grain('year') }} as ripple_grain,
-    {{ ripple_clock('reported') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_year('src."YEAR_OF_FILING"'), 'reported') }} as ripple_clock,
     'LABOR.LABOR__FED_OSHA_ITA_CASE_DETAIL_2024'::varchar as ripple_source,
     src.*
 from {{ ref('labor__fed_osha_ita_case_detail_2024') }} as src

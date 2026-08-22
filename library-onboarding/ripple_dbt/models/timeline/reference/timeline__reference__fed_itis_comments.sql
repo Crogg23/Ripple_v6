@@ -8,14 +8,18 @@
 --   means  : happened -- try_to_timestamp_ntz(trim(COMMENT_TIME_STAMP)) in staging: when the curator wrote the comment - the row IS the comment, so its creation is the event itself; cen
 --   grain  : day
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_window('src."COMMENT_TIME_STAMP"::timestamp_ntz')) }} as ripple_ts,
+    {{ ripple_window('src."COMMENT_TIME_STAMP"::timestamp_ntz') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_window('src."COMMENT_TIME_STAMP"::timestamp_ntz'), 'happened') }} as ripple_clock,
     'REFERENCE.REFERENCE__FED_ITIS_COMMENTS'::varchar as ripple_source,
     src.*
 from {{ ref('reference__fed_itis_comments') }} as src

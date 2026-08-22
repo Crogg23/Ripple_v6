@@ -8,14 +8,18 @@
 --   means  : reported -- try_to_date 'YYYY-MM-DD' - when the device record was published into GUDID.
 --   grain  : day
 --
+-- reported cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'reported'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_window('src."PUBLISH_DATE"::timestamp_ntz')) }} as ripple_ts,
+    {{ ripple_window('src."PUBLISH_DATE"::timestamp_ntz') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('reported') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_window('src."PUBLISH_DATE"::timestamp_ntz'), 'reported') }} as ripple_clock,
     'HEALTH.HEALTH__FED_FDA_GUDID'::varchar as ripple_source,
     src.*
 from {{ ref('health__fed_fda_gudid') }} as src

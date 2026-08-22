@@ -8,14 +8,18 @@
 --   means  : happened -- try_to_date(TRANS_DATE) - the day the derivative transaction occurred; the year-0018 minimum is source typos, not the cast.
 --   grain  : day
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_window('src."TRANS_DATE"::timestamp_ntz')) }} as ripple_ts,
+    {{ ripple_window('src."TRANS_DATE"::timestamp_ntz') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_window('src."TRANS_DATE"::timestamp_ntz'), 'happened') }} as ripple_clock,
     'FINANCE.FINANCE__FED_SEC_INSIDER_DERIV_TRANS'::varchar as ripple_source,
     src.*
 from {{ ref('finance__fed_sec_insider_deriv_trans') }} as src

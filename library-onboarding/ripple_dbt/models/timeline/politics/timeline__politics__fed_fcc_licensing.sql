@@ -8,14 +8,18 @@
 --   means  : decided -- The day the FCC granted the license - the authority's act and the best single anchor for a licence row; explicit try_to_date in the mart.
 --   grain  : day
 --
+-- decided cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'decided'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_window('src."GRANT_DATE"::timestamp_ntz')) }} as ripple_ts,
+    {{ ripple_window('src."GRANT_DATE"::timestamp_ntz') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('decided') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_window('src."GRANT_DATE"::timestamp_ntz'), 'decided') }} as ripple_clock,
     'POLITICS.POLITICS__FED_FCC_LICENSING'::varchar as ripple_source,
     src.*
 from {{ ref('politics__fed_fcc_licensing') }} as src

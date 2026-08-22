@@ -8,14 +8,18 @@
 --   means  : happened -- try_to_date(ACTUAL_END_DATE): the day the stack test was performed/completed. Census min 0201-07-24 plus 1 epoch-1970 row = try_to_date passing malformed source
 --   grain  : day
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_window('src."ACTUAL_END_DATE"::timestamp_ntz')) }} as ripple_ts,
+    {{ ripple_window('src."ACTUAL_END_DATE"::timestamp_ntz') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_window('src."ACTUAL_END_DATE"::timestamp_ntz'), 'happened') }} as ripple_clock,
     'ENVIRONMENT.ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_STACK_TESTS'::varchar as ripple_source,
     src.*
 from {{ ref('environment__fed_epa_icis_air_icis_air_stack_tests') }} as src

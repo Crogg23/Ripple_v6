@@ -8,14 +8,18 @@
 --   means  : decided -- try_to_date(C7,'YYYYMMDD') - the day NHTSA opened the investigation, an agency action.
 --   grain  : day
 --
+-- decided cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'decided'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_window('src."OPEN_DATE"::timestamp_ntz')) }} as ripple_ts,
+    {{ ripple_window('src."OPEN_DATE"::timestamp_ntz') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('decided') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_window('src."OPEN_DATE"::timestamp_ntz'), 'decided') }} as ripple_clock,
     'CONSUMER_SAFETY.CONSUMER_SAFETY__FED_NHTSA_INVESTIGATIONS'::varchar as ripple_source,
     src.*
 from {{ ref('consumer_safety__fed_nhtsa_investigations') }} as src

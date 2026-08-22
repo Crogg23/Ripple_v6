@@ -8,14 +8,18 @@
 --   means  : decided -- try_to_number() year the New Source Review permit was issued - an authority acting on the boiler. Best real clock here, but sparse: only boilers that went throu
 --   grain  : year
 --
+-- decided cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'decided'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_year('src."NEW_SOURCE_REVIEW_YEAR"')) }} as ripple_ts,
+    {{ ripple_ts_from_year('src."NEW_SOURCE_REVIEW_YEAR"') }} as ripple_ts,
     {{ ripple_grain('year') }} as ripple_grain,
-    {{ ripple_clock('decided') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_year('src."NEW_SOURCE_REVIEW_YEAR"'), 'decided') }} as ripple_clock,
     'ENERGY.ENERGY__FED_EIA860_6_2_ENVIROEQUIP'::varchar as ripple_source,
     src.*
 from {{ ref('energy__fed_eia860_6_2_enviroequip') }} as src

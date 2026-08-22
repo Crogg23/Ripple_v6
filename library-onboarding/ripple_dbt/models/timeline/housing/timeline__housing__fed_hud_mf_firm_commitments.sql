@@ -8,14 +8,18 @@
 --   means  : decided -- coalesce(try_to_date(left(raw,10),'YYYY-MM-DD'), try_to_date(raw,'MM/DD/YYYY')) - the day HUD acted on the multifamily firm commitment; census floor 2000-10-02 
 --   grain  : day
 --
+-- decided cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'decided'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_window('src."FIRM_ACTIVITY_DATE"::timestamp_ntz')) }} as ripple_ts,
+    {{ ripple_window('src."FIRM_ACTIVITY_DATE"::timestamp_ntz') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('decided') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_window('src."FIRM_ACTIVITY_DATE"::timestamp_ntz'), 'decided') }} as ripple_clock,
     'HOUSING.HOUSING__FED_HUD_MF_FIRM_COMMITMENTS'::varchar as ripple_source,
     src.*
 from {{ ref('housing__fed_hud_mf_firm_commitments') }} as src

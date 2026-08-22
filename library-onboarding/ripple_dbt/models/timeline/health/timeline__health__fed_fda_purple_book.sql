@@ -8,14 +8,18 @@
 --   means  : decided -- try_to_date 'DD-MON-YY' with a -100-year rollback when the 2-digit year parses into the future; FDA's approval of the BLA product row.
 --   grain  : day
 --
+-- decided cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'decided'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_window('src."APPROVAL_DATE"::timestamp_ntz')) }} as ripple_ts,
+    {{ ripple_window('src."APPROVAL_DATE"::timestamp_ntz') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('decided') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_window('src."APPROVAL_DATE"::timestamp_ntz'), 'decided') }} as ripple_clock,
     'HEALTH.HEALTH__FED_FDA_PURPLE_BOOK'::varchar as ripple_source,
     src.*
 from {{ ref('health__fed_fda_purple_book') }} as src

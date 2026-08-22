@@ -8,14 +8,18 @@
 --   means  : happened -- Staging casts try_to_number(trim(YEAR)) and renames it reporting_year: the calendar year the emissions were emitted and reported for, 2010+. Integer year.
 --   grain  : year
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_year('src."REPORTING_YEAR"')) }} as ripple_ts,
+    {{ ripple_ts_from_year('src."REPORTING_YEAR"') }} as ripple_ts,
     {{ ripple_grain('year') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_year('src."REPORTING_YEAR"'), 'happened') }} as ripple_clock,
     'ENVIRONMENT.ENVIRONMENT__FED_EPA_GHGRP_EMISSION'::varchar as ripple_source,
     src.*
 from {{ ref('environment__fed_epa_ghgrp_emission') }} as src

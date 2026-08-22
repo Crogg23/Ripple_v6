@@ -8,14 +8,18 @@
 --   means  : happened -- try_to_date - the inspection that produced the citation; census 2002-2026 is clean.
 --   grain  : day
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_window('src."SURVEY_DATE"::timestamp_ntz')) }} as ripple_ts,
+    {{ ripple_window('src."SURVEY_DATE"::timestamp_ntz') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_window('src."SURVEY_DATE"::timestamp_ntz'), 'happened') }} as ripple_clock,
     'HEALTH.HEALTH__FED_CMS_NURSING_HOME_DEFICIENCIES'::varchar as ripple_source,
     src.*
 from {{ ref('health__fed_cms_nursing_home_deficiencies') }} as src

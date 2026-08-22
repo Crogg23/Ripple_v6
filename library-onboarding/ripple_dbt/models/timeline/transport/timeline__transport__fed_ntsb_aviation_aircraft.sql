@@ -8,14 +8,18 @@
 --   means  : happened -- try_to_date on the left 10 characters of an ISO string: the date the aircraft's last inspection actually took place, and the only real-world event date on this 
 --   grain  : day
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_window('src."DATE_LAST_INSP"::timestamp_ntz')) }} as ripple_ts,
+    {{ ripple_window('src."DATE_LAST_INSP"::timestamp_ntz') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_window('src."DATE_LAST_INSP"::timestamp_ntz'), 'happened') }} as ripple_clock,
     'TRANSPORT.TRANSPORT__FED_NTSB_AVIATION_AIRCRAFT'::varchar as ripple_source,
     src.*
 from {{ ref('transport__fed_ntsb_aviation_aircraft') }} as src

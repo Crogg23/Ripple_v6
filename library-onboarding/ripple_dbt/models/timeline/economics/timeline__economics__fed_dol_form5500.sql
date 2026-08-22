@@ -8,14 +8,18 @@
 --   means  : happened -- try_to_date(PLAN_EFF_DATE) is when the benefit plan came into existence, a real-world event, but it predates the filing by decades so it must not be used to pla
 --   grain  : day
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_window('src."PLAN_EFF_DATE"::timestamp_ntz')) }} as ripple_ts,
+    {{ ripple_window('src."PLAN_EFF_DATE"::timestamp_ntz') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_window('src."PLAN_EFF_DATE"::timestamp_ntz'), 'happened') }} as ripple_clock,
     'ECONOMICS.ECONOMICS__FED_DOL_FORM5500'::varchar as ripple_source,
     src.*
 from {{ ref('economics__fed_dol_form5500') }} as src

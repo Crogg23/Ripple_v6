@@ -8,14 +8,18 @@
 --   means  : reported -- Raw passthrough of SUBMISSIONYEARQUARTER (no cast): the YYYYQn SDWIS federal-reporting cycle in which the state submitted this row. A submission label, not an e
 --   grain  : quarter
 --
+-- reported cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'reported'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_yearquarter('src."SUBMISSIONYEARQUARTER"')) }} as ripple_ts,
+    {{ ripple_ts_from_yearquarter('src."SUBMISSIONYEARQUARTER"') }} as ripple_ts,
     {{ ripple_grain('quarter') }} as ripple_grain,
-    {{ ripple_clock('reported') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_yearquarter('src."SUBMISSIONYEARQUARTER"'), 'reported') }} as ripple_clock,
     'ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_LCR_SAMPLES'::varchar as ripple_source,
     src.*
 from {{ ref('environment__fed_epa_sdwa_sdwa_lcr_samples') }} as src

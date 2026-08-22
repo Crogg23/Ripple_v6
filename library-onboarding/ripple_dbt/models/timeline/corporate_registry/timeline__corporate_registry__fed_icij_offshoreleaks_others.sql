@@ -8,14 +8,18 @@
 --   means  : happened -- try_to_date(INCORPORATION_DATE,'DD-MON-YYYY') - the day the foundation/partnership was formed.
 --   grain  : day
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_window('src."INCORPORATION_DATE"::timestamp_ntz')) }} as ripple_ts,
+    {{ ripple_window('src."INCORPORATION_DATE"::timestamp_ntz') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_window('src."INCORPORATION_DATE"::timestamp_ntz'), 'happened') }} as ripple_clock,
     'CORPORATE_REGISTRY.CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_OTHERS'::varchar as ripple_source,
     src.*
 from {{ ref('corporate_registry__fed_icij_offshoreleaks_others') }} as src

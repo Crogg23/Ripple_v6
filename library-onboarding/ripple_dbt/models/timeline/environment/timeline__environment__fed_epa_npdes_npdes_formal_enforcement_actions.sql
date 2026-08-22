@@ -8,14 +8,18 @@
 --   means  : decided -- try_to_date(SETTLEMENT_ENTERED_DATE): the day the authority entered the settlement on a Clean Water Act formal enforcement action. Census min 1970-09-07 with 1 
 --   grain  : day
 --
+-- decided cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'decided'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_window('src."SETTLEMENT_ENTERED_DATE"::timestamp_ntz')) }} as ripple_ts,
+    {{ ripple_window('src."SETTLEMENT_ENTERED_DATE"::timestamp_ntz') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('decided') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_window('src."SETTLEMENT_ENTERED_DATE"::timestamp_ntz'), 'decided') }} as ripple_clock,
     'ENVIRONMENT.ENVIRONMENT__FED_EPA_NPDES_NPDES_FORMAL_ENFORCEMENT_ACTIONS'::varchar as ripple_source,
     src.*
 from {{ ref('environment__fed_epa_npdes_npdes_formal_enforcement_actions') }} as src

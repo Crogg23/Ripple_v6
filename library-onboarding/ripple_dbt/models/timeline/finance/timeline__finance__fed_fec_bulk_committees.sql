@@ -8,14 +8,18 @@
 --   means  : reported -- Raw CYCLE passthrough - the two-year FEC election cycle the committee registration file belongs to; a year-grain label, not a date, and the table's only time-sh
 --   grain  : year
 --
+-- reported cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'reported'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_year('src."CYCLE"')) }} as ripple_ts,
+    {{ ripple_ts_from_year('src."CYCLE"') }} as ripple_ts,
     {{ ripple_grain('year') }} as ripple_grain,
-    {{ ripple_clock('reported') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_year('src."CYCLE"'), 'reported') }} as ripple_clock,
     'FINANCE.FINANCE__FED_FEC_BULK_COMMITTEES'::varchar as ripple_source,
     src.*
 from {{ ref('finance__fed_fec_bulk_committees') }} as src

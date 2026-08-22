@@ -8,14 +8,18 @@
 --   means  : happened -- try_to_number(nullif(trim(UNNAMED_0),'.')) - NUMBER year recovered positionally; the 2024 year the customer-sited sales occurred in.
 --   grain  : year
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_year('src."DATA_YEAR"')) }} as ripple_ts,
+    {{ ripple_ts_from_year('src."DATA_YEAR"') }} as ripple_ts,
     {{ ripple_grain('year') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_year('src."DATA_YEAR"'), 'happened') }} as ripple_clock,
     'ENERGY.ENERGY__FED_EIA861_SALES_ULT_CUST_CS'::varchar as ripple_source,
     src.*
 from {{ ref('energy__fed_eia861_sales_ult_cust_cs') }} as src

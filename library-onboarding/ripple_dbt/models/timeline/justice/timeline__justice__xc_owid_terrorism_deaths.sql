@@ -8,14 +8,18 @@
 --   means  : happened -- try_to_number("YEAR") -- the year the terrorism death count refers to, as a NUMBER. Year grain; a bare date-parse would read it as epoch seconds.
 --   grain  : year
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_year('src."YEAR"')) }} as ripple_ts,
+    {{ ripple_ts_from_year('src."YEAR"') }} as ripple_ts,
     {{ ripple_grain('year') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_year('src."YEAR"'), 'happened') }} as ripple_clock,
     'JUSTICE.JUSTICE__XC_OWID_TERRORISM_DEATHS'::varchar as ripple_source,
     src.*
 from {{ ref('justice__xc_owid_terrorism_deaths') }} as src

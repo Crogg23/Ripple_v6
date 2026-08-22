@@ -8,14 +8,18 @@
 --   means  : reported -- try_to_date(DATE_FILED): when the case was filed in the originating (district) court -- the anchor date present on the broadest slice of rows.
 --   grain  : day
 --
+-- reported cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'reported'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_window('src."DATE_FILED"::timestamp_ntz')) }} as ripple_ts,
+    {{ ripple_window('src."DATE_FILED"::timestamp_ntz') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('reported') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_window('src."DATE_FILED"::timestamp_ntz'), 'reported') }} as ripple_clock,
     'JUSTICE.JUSTICE__FED_COURTLISTENER_ORIGINATING_COURT_INFO'::varchar as ripple_source,
     src.*
 from {{ ref('justice__fed_courtlistener_originating_court_info') }} as src

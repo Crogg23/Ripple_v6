@@ -8,14 +8,18 @@
 --   means  : reported -- USASpending's own record-maintenance stamp for when the award record was last changed in their system — publisher bookkeeping about the row, not about the world
 --   grain  : day
 --
+-- reported cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'reported'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_window('src."LAST_MODIFIED_DATE"::timestamp_ntz')) }} as ripple_ts,
+    {{ ripple_window('src."LAST_MODIFIED_DATE"::timestamp_ntz') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('reported') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_window('src."LAST_MODIFIED_DATE"::timestamp_ntz'), 'reported') }} as ripple_clock,
     'ECONOMICS.ECONOMICS__FED_US_USASPENDING_API'::varchar as ripple_source,
     src.*
 from {{ ref('economics__fed_us_usaspending_api') }} as src

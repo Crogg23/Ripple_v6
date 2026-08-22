@@ -8,14 +8,18 @@
 --   means  : decided -- trim(ruling) aliased to ruling_date — the BMF RULING field, the YYYYMM in which the IRS granted the organization's exemption; it is the only real event clock he
 --   grain  : month
 --
+-- decided cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'decided'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_yyyymm('src."RULING_DATE"')) }} as ripple_ts,
+    {{ ripple_ts_from_yyyymm('src."RULING_DATE"') }} as ripple_ts,
     {{ ripple_grain('month') }} as ripple_grain,
-    {{ ripple_clock('decided') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_yyyymm('src."RULING_DATE"'), 'decided') }} as ripple_clock,
     'ECONOMICS.ECONOMICS__FED_IRS_BMF'::varchar as ripple_source,
     src.*
 from {{ ref('economics__fed_irs_bmf') }} as src

@@ -8,14 +8,18 @@
 --   means  : decided -- try_to_date(nullif(trim(DATE_DESIGNATED),''),'DD/MM/YYYY') -- the day OFSI designated the person/entity under a UK sanctions regime; the authority's act and the
 --   grain  : day
 --
+-- decided cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'decided'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_window('src."DATE_DESIGNATED"::timestamp_ntz')) }} as ripple_ts,
+    {{ ripple_window('src."DATE_DESIGNATED"::timestamp_ntz') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('decided') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_window('src."DATE_DESIGNATED"::timestamp_ntz'), 'decided') }} as ripple_clock,
     'JUSTICE.JUSTICE__XC_UK_SANCTIONS_LIST'::varchar as ripple_source,
     src.*
 from {{ ref('justice__xc_uk_sanctions_list') }} as src

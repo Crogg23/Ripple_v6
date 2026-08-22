@@ -8,14 +8,18 @@
 --   means  : decided -- try_to_number(trim(ENDORSEMENT_YEAR)) - the year FHA endorsed (insured) the loan, i.e. the agency's approval action. A NUMBER year, never date-parse it bare.
 --   grain  : year
 --
+-- decided cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'decided'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_year('src."ENDORSEMENT_YEAR"')) }} as ripple_ts,
+    {{ ripple_ts_from_year('src."ENDORSEMENT_YEAR"') }} as ripple_ts,
     {{ ripple_grain('year') }} as ripple_grain,
-    {{ ripple_clock('decided') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_year('src."ENDORSEMENT_YEAR"'), 'decided') }} as ripple_clock,
     'HOUSING.HOUSING__FED_HUD_FHA_SF_PORTFOLIO_SNAPSHOT'::varchar as ripple_source,
     src.*
 from {{ ref('housing__fed_hud_fha_sf_portfolio_snapshot') }} as src

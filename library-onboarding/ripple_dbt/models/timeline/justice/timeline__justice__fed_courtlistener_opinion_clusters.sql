@@ -8,14 +8,18 @@
 --   means  : decided -- try_to_date(DATE_FILED): the day the opinion was handed down by the court. The model's comment records that the ~49,791 rows landing in 1970 are real 1970 opini
 --   grain  : day
 --
+-- decided cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'decided'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_window('src."DATE_FILED"::timestamp_ntz')) }} as ripple_ts,
+    {{ ripple_window('src."DATE_FILED"::timestamp_ntz') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('decided') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_window('src."DATE_FILED"::timestamp_ntz'), 'decided') }} as ripple_clock,
     'JUSTICE.JUSTICE__FED_COURTLISTENER_OPINION_CLUSTERS'::varchar as ripple_source,
     src.*
 from {{ ref('justice__fed_courtlistener_opinion_clusters') }} as src

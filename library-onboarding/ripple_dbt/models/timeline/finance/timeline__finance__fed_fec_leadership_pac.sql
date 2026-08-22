@@ -8,14 +8,18 @@
 --   means  : happened -- Raw year passthrough - the election year the linked candidate is contesting; the only real time anchor on this crosswalk.
 --   grain  : year
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_year('src."CAND_ELECTION_YR"')) }} as ripple_ts,
+    {{ ripple_ts_from_year('src."CAND_ELECTION_YR"') }} as ripple_ts,
     {{ ripple_grain('year') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_year('src."CAND_ELECTION_YR"'), 'happened') }} as ripple_clock,
     'FINANCE.FINANCE__FED_FEC_LEADERSHIP_PAC'::varchar as ripple_source,
     src.*
 from {{ ref('finance__fed_fec_leadership_pac') }} as src

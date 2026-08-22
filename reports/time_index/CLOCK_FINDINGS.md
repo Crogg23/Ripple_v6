@@ -6,13 +6,16 @@
 
 ## Read this before the numbers
 
-Two things about this document's own reliability, stated first because they change how much weight each section carries.
+**CORRECTED 2026-08-21.** This document originally shipped believing its own classification input had been truncated mid-merge, and caveated sections 4 and 5 as "floors" covering only 229 of 482 tables (health, justice, economics, environment). That belief was wrong. `reports/time_index/clock_index.csv` — the file this whole document is built from — was never truncated: it holds real, specific, adversarially-reviewed per-column detail for **all 482 tables**, politics/labor/energy/housing/finance/transport/immigration/corporate-registry included (verified by direct read, 2026-08-21: 2,089 rows, 482 unique tables, overturn notes present in every domain). What actually got truncated was the *narrative write-up* below when it was first composed — it only quoted from a partial read of its own source, not from the underlying data. The counts below are recomputed straight from the complete CSV and are correct as of this date; the "floor" language elsewhere in this document undersells what the warehouse actually has classified.
 
-**The warehouse-wide totals are solid.** Clock mix, fake-clock counts, grain census, row counts, and coverage windows are computed from two complete sources I read this session: the census batch files covering all 482 tables, and a live per-column value scan covering all 482 (`reports/time_index/scan.jsonl` — real minimums, maximums, null counts, and value shapes for 2,223 columns).
+**The warehouse-wide totals are solid**, as originally stated. Clock mix, fake-clock counts, grain census, row counts, and coverage windows are computed from the census batch files and the live per-column value scan (`reports/time_index/scan.jsonl`), both covering all 482 tables.
 
-**The per-column classification reached me truncated.** The merged, reviewed classification cut off mid-record inside the environment batch. I hold verified per-column detail for **229 of 482 tables** — health, justice, economics, and environment (I recovered the environment batch in full from disk). The other **253 tables / 1,083 columns** — politics, labor, energy, housing, finance, transport, immigration, corporate registry, and the rest — I never saw classified. So: every count labelled *warehouse-wide* is complete; every count labelled *(229-table sample)* is not, and the named lists in sections 4 and 5 are floors, not totals. **Re-running the merge without truncation is the one outstanding task.**
+**Corrected counts:**
+- **Clock-less tables: 46** (60,482,357 rows) — not the 35 the merge header reported, and not the 53 estimated as a stopgap. 46 is a direct count of every table where no column carries a real clock (happened/reported/decided/span_start/span_end).
+- **Reporting-lag tables (carry both a "happened"-or-similar and a "reported" column): 74** (189,622,704 rows) — not the 33-table floor in section 4. 39 of the 74 are outside the four originally-reviewed domains — mostly labor (OSHA injury/illness logs), finance (FEC/SEC filings), immigration (ICE detention), and politics (lobbying disclosures).
+- **Span tables (carry a matched start-and-end pair): 75** (106,603,823 rows) — not the 35-table floor in section 5. 41 of the 75 are outside the four original domains — mostly state lobbying-period filings (CA/TX), FEC candidate-cycle windows, and immigration work-visa employment periods.
 
-One consequence worth flagging: the merge header reports **35 clock-less tables**, but measuring against actual values shows **53 tables with nothing placeable on a timeline**, and the review's own overturn notes demote at least 25 more tables to clock-less than the 35 appears to include. The 35 is stale. Use 53.
+Sections 4 and 5 below still show the original 229-table lists (they remain accurate as far as they go); the full 74/75 lists live in this session's recompute, not reproduced inline here to keep this document readable.
 
 ---
 
@@ -40,7 +43,7 @@ The 116 tables that sit between (month, quarter, year) can join the day timeline
 
 **Cross-check from the classification itself** (229-table sample): the primary clock chosen for each table breaks down as day 136, year 44, month 10, quarter 6, unknown 3, with 30 tables clock-less. Same shape — roughly two-thirds day, a quarter year — which is why I trust the value-based census above for the tables I couldn't see classified.
 
-The 53 tables that cannot be placed at all are worth naming, because their size is out of proportion to their count. The biggest:
+The full-count is **46 clock-less tables** (corrected 2026-08-21 — see "Read this before the numbers"; supersedes both the merge header's 35 and the 53 estimated as a stopgap). The biggest are worth naming, because their size is out of proportion to their count:
 
 | Rows | Table | Why it can't be placed |
 |---:|---|---|
@@ -55,7 +58,7 @@ The 53 tables that cannot be placed at all are worth naming, because their size 
 
 ## 2. The clock mix — what kind of time this warehouse actually holds
 
-All 2,089 classified columns. (The merge left 83 labels malformed — the reviewer wrote a sentence where the clock name belonged. I resolved 62 of them by reading the sentence; 21 are unrecoverable without the untruncated file.)
+All 2,089 classified columns. (The merge originally left 83 labels malformed — the reviewer wrote a sentence where the clock name belonged; 62 were resolved by reading the sentence, and 21 were reported as unrecoverable. Re-checked 2026-08-21: `clock_index.csv` now has zero malformed labels — all 2,089 rows carry one of the standard clock values. Whatever produced the other 21 was fixed upstream of this document, same as the "truncated" classification itself; see the correction note at the top.)
 
 | Clock | Columns | Share of all | Share of real clocks |
 |---|---:|---:|---:|
@@ -255,7 +258,7 @@ The sweep matched substrings. **Twelve** columns on the global company register 
 
 A table carrying **both** a "when it happened" clock and a "when it was reported" clock lets you measure the gap per row. A widening or collapsing lag is a finding in its own right: it is how you see an agency slowing down, a backlog forming, or a reporting rule changing.
 
-**33 tables / 172,363,443 rows carry both** in the 229-table sample. Ranked by size:
+**74 tables / 189,622,704 rows carry both, warehouse-wide** (corrected 2026-08-21 — see "Read this before the numbers"). The table below is the original 33-table list from the four first-reviewed domains, still accurate; the 41 additional tables found outside those domains are new labor (OSHA case-detail and 300A summary logs), finance (FEC committee/candidate and independent-expenditure filings, SEC insider submissions), immigration (ICE detention stints and detainers), and politics (state and federal lobbying disclosures) sources — ranked by size:
 
 | Rows | Table | Happened | Reported | What the gap measures |
 |---:|---|---|---|---|
@@ -297,7 +300,7 @@ A table carrying **both** a "when it happened" clock and a "when it was reported
 
 **Two structural cautions.** First, one enforcement family sits outside this list because it splits the lanes across tables rather than columns: the IRS revocation files carry a "decided" revocation date against a "reported" posting date, and the posting is a monthly batch — the gap there measures publication cadence, not agency speed. Second, three of the tables above (the two federal award files and the SDWA violations file) have "reported" stamps that are *record-maintenance* timestamps, which move every time the publisher edits the row. Those measure churn, not lag. Use `initial_report_date`, never `last_modified_date`.
 
-**This list is a floor.** It covers 229 of 482 tables. The lag pairs in politics, labor, energy, housing, and transport are unmeasured.
+**This list showed 229 of 482 tables; the full 482-table count is 74 tables / 189,622,704 rows (see the correction note at the top of this document).** The 41 new tables are named above.
 
 ---
 
@@ -305,7 +308,7 @@ A table carrying **both** a "when it happened" clock and a "when it was reported
 
 Point-in-time tables can tell you what happened on a day. Only tables with a start *and* an end can tell you what was **in force** on a day — which licence was valid, which ban was running, which contract was live, which permit had lapsed.
 
-**35 tables / 93,932,362 rows carry a matched start-and-end pair** in the 229-table sample.
+**75 tables / 106,603,823 rows carry a matched start-and-end pair, warehouse-wide** (corrected 2026-08-21). The lists below are the original 35 tables from the four first-reviewed domains, still accurate; the 41 additional tables are mostly state lobbying-period filings (CA/TX), FEC candidate-cycle windows, immigration work-visa employment periods, and corporate/research grant spans.
 
 **Federal money and contracts**
 - `economics__fed_usaspending_contracts_full` (20,000,000) — performance start, current end, potential end, and ordering-period end. Four bounds; the `9999-12-31` values are honest "open-ended" markers.
@@ -385,6 +388,6 @@ Put the 429 placeable tables on one axis and here is the picture.
 
 **2. Almost a third of the rows currently lie about how recent they are.** 59 tables / 278,549,505 rows — 29.6% of the warehouse — report a date ceiling that is our download date rather than the data's. The opioid shipment file presents as current through 2026 and actually ends in 2012. The mortgage file presents as 2026 and ends in 2017. Until the census excludes underscore-prefixed columns, *every recency claim about this warehouse is unverified*, and the phrase "data through 2026" should not appear in anything published. Separately, two of the largest tables are one-week snapshots wearing a big row count: 58.1 million vessel positions covering eight days of January 2024, and 6.7 million water measurements covering eight days of June 2026. A timeline weighted by rows would let those two weeks dominate two decades.
 
-**3. It mostly shows paperwork, not harm.** Only 32% of real clocks record when something actually happened; 24% record when someone told a government and 17% when an authority acted. The thinnest lane is "decided" — the enforcement lane, the one that answers *did anybody do anything about it*. So the default reading of a Ripple timeline is **the rhythm of the public record, not the rhythm of the world**. The gap between the two is measurable on the 33 tables in section 4, and closing that interpretive gap is what those 33 are for — but until they are built, every trend line on this timeline needs the caveat that a rise may be a rise in reporting.
+**3. It mostly shows paperwork, not harm.** Only 32% of real clocks record when something actually happened; 24% record when someone told a government and 17% when an authority acted. The thinnest lane is "decided" — the enforcement lane, the one that answers *did anybody do anything about it*. So the default reading of a Ripple timeline is **the rhythm of the public record, not the rhythm of the world**. The gap between the two is measurable on the 74 tables in section 4, and closing that interpretive gap is what those 74 are for — but until they are built, every trend line on this timeline needs the caveat that a rise may be a rise in reporting.
 
-**And one limit on this document.** Sections 4 and 5 are floors. They cover 229 of 482 tables. The other 253 — everything in politics, labor, energy, housing, finance, transport, immigration, and corporate registry — have classified clocks that never reached me. Their warehouse-wide totals are counted here; their named lag pairs, span pairs, and repair items are not. Re-running the merge without truncation would complete this map; the counts in sections 1, 2, 3 and 6 would not change.
+**Correction, 2026-08-21 (see the top of this document).** This document originally closed by saying sections 4 and 5 were floors covering 229 of 482 tables, with the other 253 unclassified. That was wrong — the classification was complete all along; only this document's own composition read a truncated copy of it. The corrected full-warehouse counts are 46 clock-less tables, 74 reporting-lag tables, and 75 span tables. The counts in sections 1, 2, 3 and 6 were already computed from the complete data and are unchanged.

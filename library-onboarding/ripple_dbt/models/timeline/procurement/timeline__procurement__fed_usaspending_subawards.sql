@@ -8,14 +8,18 @@
 --   means  : happened -- Day the subaward action occurred, pulled from the JSON record with try_to_date; the census max of 2026-06-10 16:00:23.716 carries a millisecond time and must ha
 --   grain  : day
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_window('src."ACTION_DATE"::timestamp_ntz')) }} as ripple_ts,
+    {{ ripple_window('src."ACTION_DATE"::timestamp_ntz') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_window('src."ACTION_DATE"::timestamp_ntz'), 'happened') }} as ripple_clock,
     'PROCUREMENT.PROCUREMENT__FED_USASPENDING_SUBAWARDS'::varchar as ripple_source,
     src.*
 from {{ ref('procurement__fed_usaspending_subawards') }} as src

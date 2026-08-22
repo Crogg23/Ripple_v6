@@ -8,14 +8,18 @@
 --   means  : happened -- The date the committee received the contribution — the real-world money event; note the staging model explicitly keeps all casts as landed TEXT, so it is an unp
 --   grain  : day
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_date('src."CONTRIBUTION_RECEIPT_DATE"')) }} as ripple_ts,
+    {{ ripple_ts_from_date('src."CONTRIBUTION_RECEIPT_DATE"') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_date('src."CONTRIBUTION_RECEIPT_DATE"'), 'happened') }} as ripple_clock,
     'POLITICS.POLITICS__FED_FEC_API'::varchar as ripple_source,
     src.*
 from {{ ref('politics__fed_fec_api') }} as src

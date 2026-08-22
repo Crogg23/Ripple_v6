@@ -8,14 +8,18 @@
 --   means  : reported -- Uncast TEXT record-creation stamp — when the dataset was registered on data.gov.gr.
 --   grain  : day
 --
+-- reported cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'reported'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_date('src."DATE_CREATED"')) }} as ripple_ts,
+    {{ ripple_ts_from_date('src."DATE_CREATED"') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('reported') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_date('src."DATE_CREATED"'), 'reported') }} as ripple_clock,
     'OPEN_DATA.OPEN_DATA__INTL_GR_DATAGOV'::varchar as ripple_source,
     src.*
 from {{ ref('open_data__intl_gr_datagov') }} as src

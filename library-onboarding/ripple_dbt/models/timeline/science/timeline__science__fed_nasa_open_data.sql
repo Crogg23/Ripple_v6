@@ -8,14 +8,18 @@
 --   means  : happened -- try_to_date(RESPONSE_DATE) on a 54-row API crawl; the census range starts 1998-05-02, which rules out a request stamp, so it appears to be the date carried by t
 --   grain  : day
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_window('src."RESPONSE_DATE"::timestamp_ntz')) }} as ripple_ts,
+    {{ ripple_window('src."RESPONSE_DATE"::timestamp_ntz') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_window('src."RESPONSE_DATE"::timestamp_ntz'), 'happened') }} as ripple_clock,
     'SCIENCE.SCIENCE__FED_NASA_OPEN_DATA'::varchar as ripple_source,
     src.*
 from {{ ref('science__fed_nasa_open_data') }} as src

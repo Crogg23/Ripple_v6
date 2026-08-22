@@ -8,14 +8,18 @@
 --   means  : happened -- Staging parses FAILDATE with two strict formats (YYYY-MM-DD then MM/DD/YYYY); it is the day the bank actually failed, the real-world event this table exists to 
 --   grain  : day
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_window('src."FAIL_DATE"::timestamp_ntz')) }} as ripple_ts,
+    {{ ripple_window('src."FAIL_DATE"::timestamp_ntz') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_window('src."FAIL_DATE"::timestamp_ntz'), 'happened') }} as ripple_clock,
     'ECONOMICS.ECONOMICS__FED_FDIC_FAILED_BANKS'::varchar as ripple_source,
     src.*
 from {{ ref('economics__fed_fdic_failed_banks') }} as src

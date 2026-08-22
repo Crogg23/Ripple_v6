@@ -8,14 +8,18 @@
 --   means  : happened -- Raw passthrough of DATETIME (no cast anywhere in the mart): the moment the water measurement was taken at the gauge. A real event clock, but still an uncast str
 --   grain  : day
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_date('src."DATETIME"')) }} as ripple_ts,
+    {{ ripple_ts_from_date('src."DATETIME"') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_date('src."DATETIME"'), 'happened') }} as ripple_clock,
     'ENVIRONMENT.ENVIRONMENT__FED_USGS_WATER'::varchar as ripple_source,
     src.*
 from {{ ref('environment__fed_usgs_water') }} as src

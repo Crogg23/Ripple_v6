@@ -8,14 +8,18 @@
 --   means  : happened -- try_to_date(period_of_report,'DD-MON-YYYY'); on Forms 3/4/5 the period of report is the date of the event requiring the statement, i.e. the transaction itself, 
 --   grain  : day
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_window('src."PERIOD_OF_REPORT"::timestamp_ntz')) }} as ripple_ts,
+    {{ ripple_window('src."PERIOD_OF_REPORT"::timestamp_ntz') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_window('src."PERIOD_OF_REPORT"::timestamp_ntz'), 'happened') }} as ripple_clock,
     'FINANCE.FINANCE__FED_SEC_INSIDER_SUBMISSION'::varchar as ripple_source,
     src.*
 from {{ ref('finance__fed_sec_insider_submission') }} as src

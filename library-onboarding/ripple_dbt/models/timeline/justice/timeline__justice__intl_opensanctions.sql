@@ -8,14 +8,18 @@
 --   means  : happened -- The mart's guarded CASE only lets exact 'YYYY-MM-DD', non-future values become dates -- the sanctioned person's date of birth. The only real-world clock among t
 --   grain  : day
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_window('src."BIRTH_DATE"::timestamp_ntz')) }} as ripple_ts,
+    {{ ripple_window('src."BIRTH_DATE"::timestamp_ntz') }} as ripple_ts,
     {{ ripple_grain('day') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_window('src."BIRTH_DATE"::timestamp_ntz'), 'happened') }} as ripple_clock,
     'JUSTICE.JUSTICE__INTL_OPENSANCTIONS'::varchar as ripple_source,
     src.*
 from {{ ref('justice__intl_opensanctions') }} as src

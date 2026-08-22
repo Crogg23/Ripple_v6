@@ -8,14 +8,18 @@
 --   means  : happened -- Raw passthrough of YEARQTR (no cast) on a quarterly-noncompliance-report history table: a YYYYQ-style year+quarter code naming the quarter the status applied to
 --   grain  : quarter
 --
+-- happened cannot be in the future -- if this row's value is, ripple_clock
+-- reads 'planned' instead, not 'happened'. See ripple_row_clock in
+-- macros/ripple_time.sql.
+--
 -- The original columns pass through untouched; the canonical four sit in front
 -- of them. Rule 8 of the datetime standard: the raw column is never overwritten,
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_event_ts(ripple_ts_from_yearquarter('src."YEARQTR"')) }} as ripple_ts,
+    {{ ripple_ts_from_yearquarter('src."YEARQTR"') }} as ripple_ts,
     {{ ripple_grain('quarter') }} as ripple_grain,
-    {{ ripple_clock('happened') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_yearquarter('src."YEARQTR"'), 'happened') }} as ripple_clock,
     'ENVIRONMENT.ENVIRONMENT__FED_EPA_NPDES_NPDES_QNCR_HISTORY'::varchar as ripple_source,
     src.*
 from {{ ref('environment__fed_epa_npdes_npdes_qncr_history') }} as src
