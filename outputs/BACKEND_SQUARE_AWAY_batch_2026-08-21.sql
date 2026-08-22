@@ -17,3 +17,20 @@ update LIBRARY_META.REGISTRY.SOURCE_REGISTRY
  where SOURCE_ID = 'fed_retraction_watch';
 
 -- Expect: "1 row updated" twice.
+
+-- 3. Let the reader role SEE the raw landing layer (read-only).
+--    72+ live tests fail today only because RIPPLE_READER can't look at
+--    LIBRARY_RAW.LANDING; the sessions have been reading it accidentally via
+--    secondary roles (see item 4). This makes the intended read path real.
+grant usage on database LIBRARY_RAW to role RIPPLE_READER;
+grant usage on schema LIBRARY_RAW.LANDING to role RIPPLE_READER;
+grant select on all tables in schema LIBRARY_RAW.LANDING to role RIPPLE_READER;
+grant select on future tables in schema LIBRARY_RAW.LANDING to role RIPPLE_READER;
+
+-- 4. OPTIONAL BUT RECOMMENDED — close the secondary-roles hole.
+--    The session PAT logs in as RIPPLE_READER but currently inherits ALL of
+--    the user's roles as secondary roles (including ACCOUNTADMIN). That means
+--    "read-only by design" was not actually true tonight. Run item 3 first,
+--    then this, and sessions keep working through the front door only:
+-- alter user <the PAT's user> set default_secondary_roles = ();
+--    (Left commented out: Chris's call — it affects every tool using this login.)

@@ -1,72 +1,61 @@
-# RIPPLE STATUS — 2026-08-21 (naming + wiring session) — weather vocabulary chosen; first politics wires previewed
+# RIPPLE STATUS — 2026-08-21/22 (naming → wiring → backend square-away)
 
 *One screen. Rewritten (never appended) at the end of every session. Sessions read
 this at boot and brief Chris in chat — Chris never has to open it.*
 
-**BROKE: nothing new this session.** Carried, untouched: (1) roll-call vote mart
-disagrees with its Python twin (since 08-18). (2) Twelve Python test modules fail
-to collect (missing charting library), hiding ~1,400 tests. (3) Column-classifier
-substring cosmetic bug. (4) Count-question generator per-type caps. (5) Two
-catalog nits: water table filed under IMMIGRATION domain; retraction data landed
-twice.
+**BROKE / SECURITY FIRST:**
+- **The "read-only" session login is not actually read-only.** The PAT signs in
+  as RIPPLE_READER but inherits ALL the user's roles as secondary roles —
+  including ACCOUNTADMIN. Every session that believed it couldn't write, could
+  have. Fix is staged (item 4, commented out, Chris's call) in
+  outputs/BACKEND_SQUARE_AWAY_batch_2026-08-21.sql.
+- **Roll-call marts still disagree (carried since 08-18), now DIAGNOSED:** the
+  dbt full-history mart has 113,512 rows; the Python-built audited canonical
+  has 3,364 (118th–119th congresses only). A standing guard correctly blocks
+  dbt from overwriting the audited one. Open question for a session with the
+  politics build context: is the small one "intended recent-only scope" (then
+  add to the duplication test's known-divergent list with the reason) or stale?
+- Carried: column-classifier substring cosmetic bug; count-question generator
+  per-type caps; the physical mart rename for the water service-area table
+  (model file + timeline wrappers live under the immigration schema — queued
+  cleanup with regeneration steps, catalog label fix staged in the batch).
 
-**What this session did — the NAMING session (talking only, zero warehouse):**
+**FIXED THIS SESSION (backend square-away, Chris said "just go"):**
+1. **~1,400 hidden tests un-hidden** (installed the missing charting library,
+   fixed one bad tests.* import). Full suite now collects: 3,096 tests.
+2. Of the 85 real failures that surfaced: **79 are one missing grant** (reader
+   role can't see LIBRARY_RAW.LANDING — grants staged in the batch file);
+   **4 chart-bench failures fixed in code** (pandas 2.x datetime arithmetic in
+   the events chart; suite section now green); 1 is the roll-call finding above;
+   1 KeyError on a spec table (FED_SAM_EXCLUSIONS_FULL_R2) in the same
+   grant-blocked family.
+3. **Queue triage pass shipped and run:** the 1,830-pair queue is now stamped
+   62% MACRO (no entity exists — never wireable, macro/climate questions),
+   31% WIREABLE, 6% GEO_ONLY. The honest wiring debt is 575 pairs, not "81%".
+   scripts/ripples/queue_triage_pass.py + reports/ripples_queue_triage JSON.
+4. **Wiring scout extended to all 147 dark tables** (same-day JSON updated).
+   ARCOS name-match test: only 9/87 distributor names exact-match the corporate
+   crosswalk — parked (needs fuzzy matching + human review).
 
-1. **Chris chose ONE vocabulary for the thinking layer: the WEATHER theme**
-   (it fits early Ripple versions, he said). Written into docs/RIPPLES.md as a
-   GLOSSARY section. Internal-brain language ONLY — never front-end copy, never
-   code/table renames.
-2. **The words, in short:** stations (things) · readings (measurements) ·
-   fronts (connections) · seasons (the clock) · instruments (the dumb
-   questions). Lenses: conditions / systems / patterns (replacing Ripple 1/2/3
-   — "Ripple" now means only the platform). One run = an observation; the
-   unbuilt auto layer = the forecast desk. Outputs: blip (unconfirmed) →
-   warning (worth a human) → finding (signed off); dead air = the hand-off that
-   never happens; leading indicator = a stream that moves first. Traps = false
-   readings; the shared calendar/macro rhythm = the climate.
-3. **"Lead" is retired from the timing sense** (was the worst collision);
-   queue-sense "lead" survives but "warning" is preferred.
-4. All future chat, docs, and report titles use these words. Old strata
-   (spine, connection tiers, clock lanes, detectors, 52-lens catalogue) keep
-   their names.
+**EARLIER SAME DAY (still true):** weather glossary chosen and written into
+docs/RIPPLES.md (internal-brain only); machine-health artifact "The Station
+Wall" (rebuilt plain after "not intuitive enough"); 5 politics edges APPLIED by
+Chris and verified (edge table 4,904; first hard politics→FEC bridge, 66%);
+wire-confirm re-ran: 72 pairs moved onto the map.
 
-**LATE ADDENDUM — Chris said "grow the wiring"; the wiring build started
-(full detail: reports/grow_wiring_2026-08-21.md):**
-5. **Machine-health page shipped** (private artifact "The Station Wall",
-   rebuilt once for plainness after Chris's "not intuitive enough"): three
-   questions (how much / can it tell time / is it wired), per-domain health
-   bars, the week's instrument stories. Surfaced: only 176/589 sources (30%)
-   have a working clock.
-6. **Dark-zone scout ran (read-only)** — the 81% unwired queue splits three
-   ways: 23% entity-wireable now, 18% geography-only, **59% national
-   aggregates with NO entity — structurally unwireable, should be labeled
-   "macro" in the queue, not chased.** Caught a third sentinel fake key (FTC
-   table's EIN column has one distinct value).
-7. **First edge batch previewed and verified live:** four 100% BIOGUIDE wires
-   inside the politics cluster + **the first hard politics→FEC bridge (66%
-   FEC candidate-ID match)** — landmine 3's "politics has zero verified links"
-   gets its first fix. **APPLIED by Chris in Snowsight same night — 5 rows
-   inserted, verified (edge table now 4,904).** Wire-confirm re-ran with the
-   new edges: 72 queue pairs moved off the "not even on the map" pile
-   (1,484→1,412 off-spine; on-spine-unwired 134→204). No flood of instant
-   confirmations — the batch's value is that politics is now ON the grid, so
-   every future edge compounds. Note: the wire-confirm JSON/report files were
-   overwritten by the re-run (same-day filename).
+**Committed:** ae04b20a carries the day's scripts/reports/glossary; the bench
+chart fix + final batch file additions are in the working tree, uncommitted.
+Nothing pushed beyond origin's prior state unless Chris says push.
 
-**Not committed.** This session: docs/RIPPLES.md (glossary), STATUS.md, 2 new
-scripts (wiring scout + pass), 2 new reports (wiring scout JSON + md).
-Yesterday's 5 scripts/reports also still uncommitted.
-Yesterday's 5 new scripts/reports (time-interaction passes) still sit
-uncommitted too — Chris hasn't asked for a commit.
+**YOUR MOVE (Chris):**
+(1) Run outputs/BACKEND_SQUARE_AWAY_batch_2026-08-21.sql in Snowsight as
+ACCOUNTADMIN — 2 catalog label fixes + the reader grants (~79 tests go green);
+item 4 in the file (closing the ACCOUNTADMIN secondary-roles hole) is left
+commented for your explicit decision.
+(2) Carried: 5th false-reading for the RIPPLES doc; healthcare pilot weak
+signal; lens-catalogue sweep ($42–64) still awaiting go.
 
-**YOUR MOVE (Chris), carried decisions:**
-(1) the 5th false-reading (inspector scheduling — measured: ~half the
-nursing-home signal, ALL of the toxic-site one) still isn't in the RIPPLES doc
-— session recommends adding it; (2) whether to chase the healthcare pilot's
-weak signal; (3) lens-catalogue sweep still priced $42-64, awaiting go.
-
-**NEXT (natural ticks):** park-list from the naming handoff — a cheap GREEN
-cleanup session to retitle future reports to the new words (no code renames);
-per-entity drift; widen the spine (81% of the timing queue is unjudgeable until
-wiring grows); Indiana nursing-penalty dead-air needs state context; fix the two
-catalog nits.
+**NEXT (natural ticks):** teach wire-confirm to read the triage tags (stop
+counting MACRO pairs as debt); GEO-tier edges for the 6% state-keyed pairs;
+politics roll-call scope ruling (above); per-entity drift; Indiana
+nursing-penalty dead-air context.
