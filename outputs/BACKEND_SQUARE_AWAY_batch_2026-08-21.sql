@@ -52,3 +52,11 @@ grant select on future tables in schema LIBRARY_META."CONNECT" to role RIPPLE_RE
 --    then this, and sessions keep working through the front door only:
 -- alter user <the PAT's user> set default_secondary_roles = ();
 --    (Left commented out: Chris's call — it affects every tool using this login.)
+
+-- ============================================================
+-- PASTE 3 (2026-08-22): criminal + appellate courts join the bridge.
+-- Bankruptcy measured 33% -- below the 50% floor, deliberately excluded.
+-- ============================================================
+insert into LIBRARY_META."CONNECT".CONNECT_EDGES (A, B, KEY, TIER, MATCHED, MATCH_RATE) values
+('FED_FJC_IDB_CRIMINAL',  'FED_COURTLISTENER_FJC_IDB_CL_LINKED', 'DOCKET', 'STEEL', 223701, 0.845),
+('FED_FJC_IDB_APPELLATE', 'FED_COURTLISTENER_FJC_IDB_CL_LINKED', 'DOCKET', 'STEEL', 309084, 0.601);

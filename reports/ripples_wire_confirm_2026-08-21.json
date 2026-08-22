@@ -2,12 +2,12 @@
  "checked": 1830,
  "macro_excluded": 1139,
  "judgeable": 691,
- "direct_wired": 55,
- "direct_wired_hard_id": 23,
- "one_hop_wired": 159,
- "one_hop_hard_id": 9,
- "on_spine_but_unwired": 204,
- "off_spine": 273,
+ "direct_wired": 57,
+ "direct_wired_hard_id": 25,
+ "one_hop_wired": 171,
+ "one_hop_hard_id": 14,
+ "on_spine_but_unwired": 217,
+ "off_spine": 246,
  "confirmed_direct": [
   {
    "bucket": "month",
@@ -326,6 +326,64 @@
     "kind": "direct",
     "tier": "STEEL",
     "key": "PWSID"
+   }
+  },
+  {
+   "bucket": "month",
+   "a_table": "JUSTICE.JUSTICE__FED_COURTLISTENER_FJC_IDB_CL_LINKED",
+   "a_column": "DATE_FILED",
+   "a_clock": "reported",
+   "a_rows": 10323280,
+   "b_table": "JUSTICE.JUSTICE__FED_FJC_IDB_CIVIL",
+   "b_column": "FILE_DATE",
+   "b_clock": "reported",
+   "b_rows": 10857396,
+   "n_common_periods": 680,
+   "corr_at_zero": 0.481,
+   "best_lag_periods": 0,
+   "best_corr": 0.481,
+   "null_95_threshold": 0.172,
+   "margin_over_null": 0.308,
+   "leader": null,
+   "a_reporting_lag_days": null,
+   "b_reporting_lag_days": null,
+   "fax_machine_suspect": null,
+   "a_node": "FED_COURTLISTENER_FJC_IDB_CL_LINKED",
+   "b_node": "FED_FJC_IDB_CIVIL",
+   "triage": "WIREABLE",
+   "wire": {
+    "kind": "direct",
+    "tier": "STEEL",
+    "key": "DOCKET"
+   }
+  },
+  {
+   "bucket": "year",
+   "a_table": "POLITICS.POLITICS__FEC_CANDIDATE",
+   "a_column": "CAND_ELECTION_YR",
+   "a_clock": "happened",
+   "a_rows": 17900,
+   "b_table": "FINANCE.FINANCE__FED_FEC_CANDIDATES",
+   "b_column": "CAND_ELECTION_YR",
+   "b_clock": "happened",
+   "b_rows": 33506,
+   "n_common_periods": 47,
+   "corr_at_zero": 0.949,
+   "best_lag_periods": 0,
+   "best_corr": 0.949,
+   "null_95_threshold": 0.645,
+   "margin_over_null": 0.304,
+   "leader": null,
+   "a_reporting_lag_days": null,
+   "b_reporting_lag_days": null,
+   "fax_machine_suspect": null,
+   "a_node": "FEC_CANDIDATE",
+   "b_node": "FED_FEC_CANDIDATES",
+   "triage": "WIREABLE",
+   "wire": {
+    "kind": "direct",
+    "tier": "STEEL",
+    "key": "FEC_CAND_ID"
    }
   },
   {
@@ -1636,6 +1694,151 @@
    }
   },
   {
+   "bucket": "year",
+   "a_table": "FINANCE.FINANCE__FED_FEC_LEADERSHIP_PAC",
+   "a_column": "CAND_ELECTION_YR",
+   "a_clock": "happened",
+   "a_rows": 8619,
+   "b_table": "POLITICS.POLITICS__FEC_CAND_CMTE_LINK",
+   "b_column": "CAND_ELECTION_YR",
+   "b_clock": "happened",
+   "b_rows": 16229,
+   "n_common_periods": 41,
+   "corr_at_zero": 0.977,
+   "best_lag_periods": 0,
+   "best_corr": 0.977,
+   "null_95_threshold": 0.704,
+   "margin_over_null": 0.273,
+   "leader": null,
+   "a_reporting_lag_days": 0.0,
+   "b_reporting_lag_days": null,
+   "fax_machine_suspect": null,
+   "a_node": "FED_FEC_LEADERSHIP_PAC",
+   "b_node": "FEC_CAND_CMTE_LINK",
+   "triage": "WIREABLE",
+   "wire": {
+    "kind": "one_hop",
+    "via": "FED_FEC_BULK_COMMITTEES",
+    "path_tier": "STEEL"
+   }
+  },
+  {
+   "bucket": "year",
+   "a_table": "FINANCE.FINANCE__FED_FEC_LEADERSHIP_PAC",
+   "a_column": "CAND_ELECTION_YR",
+   "a_clock": "happened",
+   "a_rows": 8619,
+   "b_table": "POLITICS.POLITICS__FEC_CANDIDATE",
+   "b_column": "CAND_ELECTION_YR",
+   "b_clock": "happened",
+   "b_rows": 17900,
+   "n_common_periods": 41,
+   "corr_at_zero": 0.974,
+   "best_lag_periods": 0,
+   "best_corr": 0.974,
+   "null_95_threshold": 0.709,
+   "margin_over_null": 0.265,
+   "leader": null,
+   "a_reporting_lag_days": 0.0,
+   "b_reporting_lag_days": null,
+   "fax_machine_suspect": null,
+   "a_node": "FED_FEC_LEADERSHIP_PAC",
+   "b_node": "FEC_CANDIDATE",
+   "triage": "WIREABLE",
+   "wire": {
+    "kind": "one_hop",
+    "via": "FED_FEC_CANDIDATES",
+    "path_tier": "STEEL"
+   }
+  },
+  {
+   "bucket": "year",
+   "a_table": "POLITICS.POLITICS__FEC_CAND_CMTE_LINK",
+   "a_column": "CAND_ELECTION_YR",
+   "a_clock": "happened",
+   "a_rows": 16229,
+   "b_table": "FINANCE.FINANCE__FED_FEC_CAND_CMTE_LINKAGE",
+   "b_column": "CAND_ELECTION_YR",
+   "b_clock": "happened",
+   "b_rows": 30536,
+   "n_common_periods": 42,
+   "corr_at_zero": 0.946,
+   "best_lag_periods": 0,
+   "best_corr": 0.946,
+   "null_95_threshold": 0.719,
+   "margin_over_null": 0.227,
+   "leader": null,
+   "a_reporting_lag_days": null,
+   "b_reporting_lag_days": 0.0,
+   "fax_machine_suspect": null,
+   "a_node": "FEC_CAND_CMTE_LINK",
+   "b_node": "FED_FEC_CAND_CMTE_LINKAGE",
+   "triage": "WIREABLE",
+   "wire": {
+    "kind": "one_hop",
+    "via": "FED_FEC_BULK_COMMITTEES",
+    "path_tier": "STEEL"
+   }
+  },
+  {
+   "bucket": "year",
+   "a_table": "POLITICS.POLITICS__FEC_CAND_CMTE_LINK",
+   "a_column": "CAND_ELECTION_YR",
+   "a_clock": "happened",
+   "a_rows": 16229,
+   "b_table": "FINANCE.FINANCE__FED_FEC_CANDIDATES",
+   "b_column": "CAND_ELECTION_YR",
+   "b_clock": "happened",
+   "b_rows": 33506,
+   "n_common_periods": 43,
+   "corr_at_zero": 0.915,
+   "best_lag_periods": 0,
+   "best_corr": 0.915,
+   "null_95_threshold": 0.713,
+   "margin_over_null": 0.202,
+   "leader": null,
+   "a_reporting_lag_days": null,
+   "b_reporting_lag_days": null,
+   "fax_machine_suspect": null,
+   "a_node": "FEC_CAND_CMTE_LINK",
+   "b_node": "FED_FEC_CANDIDATES",
+   "triage": "WIREABLE",
+   "wire": {
+    "kind": "one_hop",
+    "via": "FED_FEC_BULK_COMMITTEES",
+    "path_tier": "STEEL"
+   }
+  },
+  {
+   "bucket": "year",
+   "a_table": "POLITICS.POLITICS__FEC_CANDIDATE",
+   "a_column": "CAND_ELECTION_YR",
+   "a_clock": "happened",
+   "a_rows": 17900,
+   "b_table": "FINANCE.FINANCE__FED_FEC_CAND_CMTE_LINKAGE",
+   "b_column": "CAND_ELECTION_YR",
+   "b_clock": "happened",
+   "b_rows": 30536,
+   "n_common_periods": 42,
+   "corr_at_zero": 0.946,
+   "best_lag_periods": 0,
+   "best_corr": 0.946,
+   "null_95_threshold": 0.746,
+   "margin_over_null": 0.201,
+   "leader": null,
+   "a_reporting_lag_days": null,
+   "b_reporting_lag_days": 0.0,
+   "fax_machine_suspect": null,
+   "a_node": "FEC_CANDIDATE",
+   "b_node": "FED_FEC_CAND_CMTE_LINKAGE",
+   "triage": "WIREABLE",
+   "wire": {
+    "kind": "one_hop",
+    "via": "FED_FEC_CANDIDATES",
+    "path_tier": "STEEL"
+   }
+  },
+  {
    "bucket": "month",
    "a_table": "HEALTH.HEALTH__FED_CMS_OPIOID_TREATMENT_PROGRAM_PROVIDERS",
    "a_column": "MEDICARE_ID_EFFECTIVE_DATE",
@@ -1660,7 +1863,7 @@
    "triage": "WIREABLE",
    "wire": {
     "kind": "one_hop",
-    "via": "FED_CMS_FACILITY_AFFILIATION",
+    "via": "FED_CMS_MEDICARE_DIALYSIS_FACILITIES",
     "path_tier": "BRIDGE"
    }
   },
@@ -1689,7 +1892,7 @@
    "triage": "WIREABLE",
    "wire": {
     "kind": "one_hop",
-    "via": "FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT",
+    "via": "FED_CMS_NPPES",
     "path_tier": "STEEL"
    }
   },
@@ -1718,7 +1921,7 @@
    "triage": "WIREABLE",
    "wire": {
     "kind": "one_hop",
-    "via": "FED_OSHA_ITA_CASE_DETAIL_2024",
+    "via": "FED_DOL_FORM5500",
     "path_tier": "BRIDGE"
    }
   },
@@ -1747,7 +1950,7 @@
    "triage": "WIREABLE",
    "wire": {
     "kind": "one_hop",
-    "via": "FED_CMS_FACILITY_AFFILIATION",
+    "via": "FED_CMS_MEDICARE_DIALYSIS_FACILITIES",
     "path_tier": "BRIDGE"
    }
   },
@@ -1776,7 +1979,7 @@
    "triage": "WIREABLE",
    "wire": {
     "kind": "one_hop",
-    "via": "IRS527_8871_ORGS",
+    "via": "IRS527_DIRECTORS_OFFICERS",
     "path_tier": "STEEL"
    }
   },
@@ -1805,7 +2008,7 @@
    "triage": "WIREABLE",
    "wire": {
     "kind": "one_hop",
-    "via": "FED_CMS_FACILITY_AFFILIATION",
+    "via": "FED_CMS_MEDICARE_DIALYSIS_FACILITIES",
     "path_tier": "BRIDGE"
    }
   },

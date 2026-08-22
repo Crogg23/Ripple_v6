@@ -60,6 +60,19 @@ PROPOSED = [
      'JUSTICE."JUSTICE__FED_COURTLISTENER_FJC_IDB_CL_LINKED"', "DOCKET_NUMBER",
      "FED_FJC_IDB_CIVIL", 'JUSTICE."JUSTICE__FED_FJC_IDB_CIVIL"', "DOCKET",
      "DOCKET", "STEEL"),
+    # ---- batch 3 (2026-08-22): court siblings over the same crosswalk.
+    # Bankruptcy measured 33% (below the floor) -- deliberately NOT proposed;
+    # the crosswalk is civil-flavored and a weak wire is worse than none.
+    ("FED_FJC_IDB_CRIMINAL", 'JUSTICE."JUSTICE__FED_FJC_IDB_CRIMINAL"',
+     "DOCKET",
+     "FED_COURTLISTENER_FJC_IDB_CL_LINKED",
+     'JUSTICE."JUSTICE__FED_COURTLISTENER_FJC_IDB_CL_LINKED"', "DOCKET_NUMBER",
+     "DOCKET", "STEEL"),
+    ("FED_FJC_IDB_APPELLATE", 'JUSTICE."JUSTICE__FED_FJC_IDB_APPELLATE"',
+     "DOCKET",
+     "FED_COURTLISTENER_FJC_IDB_CL_LINKED",
+     'JUSTICE."JUSTICE__FED_COURTLISTENER_FJC_IDB_CL_LINKED"', "DOCKET_NUMBER",
+     "DOCKET", "STEEL"),
 ]
 
 MIN_RATE = 0.5   # refuse to propose an edge whose live match rate fell below

@@ -1,4 +1,4 @@
-# RIPPLE STATUS — 2026-08-22 (backend squared; batch 1 applied; batch 2 staged)
+# RIPPLE STATUS — 2026-08-22 (backend squared; batches 1+2 applied; batch 3 staged)
 
 *One screen. Rewritten (never appended) at the end of every session. Sessions read
 this at boot and brief Chris in chat — Chris never has to open it.*
@@ -52,12 +52,15 @@ grants in — live tests went 85 failures → 7 → after grants, only the 7
 connect-layer/build-role ones remain. Wire-confirm now excludes the 1,139
 MACRO pairs automatically: honest picture is 691 judgeable, 214 wired (31%).
 
-**YOUR MOVE (Chris): run PASTE 2** (appended to the same
-outputs/BACKEND_SQUARE_AWAY_batch_2026-08-21.sql): wiring batch 2 — the 100%
-environmental-penalty wire, two more FEC id wires, the 99.9% COURTS bridge
-(court systems were graph dark matter) — plus the last reader grants (6 of the
-7 remaining test failures). The commented secondary-roles security fix still
-awaits your yes/no.
+**PASTE 2 APPLIED by Chris, verified:** edge table 4,908; wire-confirm now
+57 direct / 171 one-hop of 691 judgeable. Test failures down to ONE (the
+incremental backstop test, which needs the build role by design — expected
+under reader creds, not a defect).
+
+**YOUR MOVE (Chris): run PASTE 3** (same batch file): criminal (84.5%) +
+appellate (60.1%) courts join the docket bridge; bankruptcy measured 33% and
+was refused below the floor. The commented secondary-roles security fix still
+awaits your yes/no ("lock the key").
 (2) Carried: 5th false-reading for the RIPPLES doc; healthcare pilot weak
 signal; lens-catalogue sweep ($42–64) still awaiting go.
 
