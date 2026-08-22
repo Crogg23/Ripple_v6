@@ -38,7 +38,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from bench import app as bench_app  # noqa: E402
 from bench import codegen, controls, knobs, registry  # noqa: E402
-from tests.test_bench_app import Bench  # noqa: E402
+from test_bench_app import Bench  # noqa: E402
 
 
 # =====================================================================

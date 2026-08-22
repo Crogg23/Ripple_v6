@@ -7,6 +7,66 @@ execute it "to the letter," but every session is required to think through it.**
 
 ---
 
+## GLOSSARY — the one vocabulary (chosen by Chris, 2026-08-21)
+
+**Theme: WEATHER.** Ripple is a weather service for public data — we don't make
+the weather, we run stations, take the same readings everywhere, and issue
+warnings a human confirms. **Internal-brain language only** — for chat, docs,
+and thinking. Never front-end/public-facing copy, and never code/table/file
+renames (real names stay stable). "Ripple" now means exactly one thing: the
+platform.
+
+### The five pieces (the machine)
+
+| New name | Replaces | Meaning |
+|---|---|---|
+| **Stations** | nouns, things | The real things we watch — facilities, owners, charities |
+| **Readings** | measurements, census, counts | The same simple measurements, taken at every station |
+| **Fronts** | neighbors (piece 3), wires | Connections — shared owner, address, officer |
+| **Seasons** | ticks, the clock | The shared timeline; each data pull is one observation |
+| **Instruments** | the rule, question, pass, sweep | A dumb question mounted once, then measuring everything automatically |
+
+### The three lenses
+
+| New name | Replaces | Question it answers |
+|---|---|---|
+| **Conditions** | Ripple 1 STATE | What is everything, right now? |
+| **Systems** | Ripple 2 NEIGHBORS | What's connected — and what moves as one thing? |
+| **Patterns** | Ripple 3 FLOW | What's moving, what leads what, where does it stall? |
+
+### The actions
+
+- **An observation** — one run of a question across everything (was: a pass, a sweep).
+- **The forecast desk** — the unbuilt always-on layer: instruments reading automatically every season (piece 5's frontier).
+
+### The outputs
+
+| New name | Replaces | Meaning |
+|---|---|---|
+| **Blip** | statistical hit, queue item | Passed the luck-check but unconfirmed — a queue, never a finding |
+| **Warning** | lead (queue sense) | Answered loudly, worth a human's time — a human decides if it's real |
+| **Leading indicator** | "A leads B" (timing sense) | A stream that consistently moves before another |
+| **Finding** | (unchanged) | A warning that survived resemblance + fronts + Chris's sign-off |
+| **Dead air** | where the wave breaks, silence | The hand-off that should happen but doesn't (complaints in, enforcement never follows) |
+
+**"Lead" is retired from the timing sense.** In chat and docs, "lead" only ever
+means the old queue sense, and even that is now preferably "warning."
+
+### The traps
+
+- **False readings** (was: landmines) — wrong *explanations*, never forbidden
+  data. Instruments should OUTPUT their confounds as readings, not silently
+  control them away.
+- **The climate** — the shared background rhythm (federal fiscal calendar, macro
+  tide) that every instrument must subtract before a blip counts.
+
+### Untouched older strata (load-bearing, fine as-is)
+
+The entity spine, connection tiers, clock lanes, detectors, the 52-lens
+catalogue, queue-vs-finding law. Their names stand.
+
+---
+
 ## The core idea: through simplicity comes complexity
 
 Conway's Game of Life: a grid of squares, alive or dead, one dumb rule

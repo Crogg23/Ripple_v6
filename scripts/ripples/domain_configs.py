@@ -18,7 +18,8 @@ DOMAINS = [
                 m.chain_id::varchar as neighbor_key,
                 to_varchar(year(d.survey_date)) || 'Q' ||
                     to_varchar(quarter(d.survey_date)) as quarter,
-                count(*) as n_events
+                count(*) as n_events,
+                max(m.state) as state
             from LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME_DEFICIENCIES d
             join LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME m
               on m.cms_certification_number_ccn = d.cms_certification_number_ccn
@@ -35,7 +36,8 @@ DOMAINS = [
                 m.current_controller_id::varchar as neighbor_key,
                 to_varchar(year(v.violation_issue_date)) || 'Q' ||
                     to_varchar(quarter(v.violation_issue_date)) as quarter,
-                count(*) as n_events
+                count(*) as n_events,
+                max(m.state) as state
             from LIBRARY_MARTS.LABOR.LABOR__FED_MSHA_VIOLATIONS v
             join LIBRARY_MARTS.LABOR.LABOR__FED_MSHA_MINES m
               on m.mine_id = v.mine_id
@@ -50,7 +52,8 @@ DOMAINS = [
             with noun as (
                 select
                     c_3_frs_id::varchar as noun_id,
-                    max(c_17_standard_parent_co_name) as neighbor_key
+                    max(c_17_standard_parent_co_name) as neighbor_key,
+                    max(c_8_st) as state
                 from LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_TRI_BASIC_2023
                 where c_3_frs_id is not null
                   and c_17_standard_parent_co_name is not null
@@ -61,7 +64,8 @@ DOMAINS = [
                 n.neighbor_key,
                 to_varchar(year(e.achieved_date)) || 'Q' ||
                     to_varchar(quarter(e.achieved_date)) as quarter,
-                count(*) as n_events
+                count(*) as n_events,
+                max(n.state) as state
             from LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_NPDES_NPDES_INFORMAL_ENFORCEMENT_ACTIONS e
             join noun n on n.noun_id = e.registry_id::varchar
             where e.achieved_date is not null
