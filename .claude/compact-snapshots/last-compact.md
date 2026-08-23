@@ -82,73 +82,17 @@ STATUS.md. Warehouse-side: COLUMN_TRUST (174 rows), 11 deduped + 5 FAERS-wiped
 landing tables, ~75 rebuilt marts/views, refreshed UK sanctions + GLEIF + openFDA.
 
 ## Working tree at compaction time
-## main...origin/main
+## main...origin/main [ahead 2]
  M .claude/compact-snapshots/last-compact.md
- M STATUS.md
  M data/osha_inspections/checkpoint.json
- M library-onboarding/ripple_dbt/models/marts/consumer_safety/consumer_safety__fed_nhtsa_complaints.sql
- M library-onboarding/ripple_dbt/models/marts/consumer_safety/consumer_safety__fed_nhtsa_investigations.sql
- M library-onboarding/ripple_dbt/models/marts/consumer_safety/consumer_safety__fed_nhtsa_recalls.sql
- M library-onboarding/ripple_dbt/models/marts/criminal_justice/criminal_justice__fed_bjs_data.sql
- M library-onboarding/ripple_dbt/models/marts/economics/economics__fed_fac_single_audit.sql
- M library-onboarding/ripple_dbt/models/marts/economics/economics__fed_foreignassistance.sql
- M library-onboarding/ripple_dbt/models/marts/economics/economics__fed_pbgc_data.sql
- M library-onboarding/ripple_dbt/models/marts/economics/economics__fed_treasury_avg_interest_rates.sql
- M library-onboarding/ripple_dbt/models/marts/economics/economics__fed_treasury_debt_outstanding.sql
- M library-onboarding/ripple_dbt/models/marts/economics/economics__fed_treasury_dts_deposits.sql
- M library-onboarding/ripple_dbt/models/marts/economics/economics__fed_treasury_mts_receipts.sql
- M library-onboarding/ripple_dbt/models/marts/environment/environment__epa_penalty_gap.sql
- M library-onboarding/ripple_dbt/models/marts/environment/environment__fed_epa_air_emissions_poll_rpt_combined_emissions.sql
- M library-onboarding/ripple_dbt/models/marts/environment/environment__fed_epa_echo.sql
- M library-onboarding/ripple_dbt/models/marts/environment/environment__fed_epa_egrid_plant_2022.sql
- M library-onboarding/ripple_dbt/models/marts/environment/environment__fed_epa_tri_basic_2023.sql
- M library-onboarding/ripple_dbt/models/marts/environment/schema_fed_epa_npdes_npdes_sics.yml
- M library-onboarding/ripple_dbt/models/marts/environment/schema_fed_epa_tri_basic_2023.yml
- M library-onboarding/ripple_dbt/models/marts/finance/finance__fed_irs_soi.sql
- M library-onboarding/ripple_dbt/models/marts/finance/finance__fed_sec_13f_holdings.sql
- M library-onboarding/ripple_dbt/models/marts/health/health__fed_cdc_nndss_weekly_2024.sql
- M library-onboarding/ripple_dbt/models/marts/health/health__fed_cms_open_payments.sql
- M library-onboarding/ripple_dbt/models/marts/health/health__fed_cms_open_payments_2022.sql
- M library-onboarding/ripple_dbt/models/marts/health/health__fed_cms_open_payments_2023.sql
- M library-onboarding/ripple_dbt/models/marts/housing/housing__fed_cfpb_hmda_dc_only.sql
- M library-onboarding/ripple_dbt/models/marts/justice/justice__fed_courtlistener_judge_educations.sql
- M library-onboarding/ripple_dbt/models/marts/justice/justice__intl_eu_socta_europol.sql
- M library-onboarding/ripple_dbt/models/marts/justice/justice__xc_vera_incarceration_trends.sql
- M library-onboarding/ripple_dbt/models/marts/justice/schema_intl_eu_socta_europol.yml
- M library-onboarding/ripple_dbt/models/marts/labor/labor__fed_msha_violations.sql
- M library-onboarding/ripple_dbt/models/marts/labor/labor__fed_osha_ita_300a_summary_2023.sql
- M library-onboarding/ripple_dbt/models/marts/labor/labor__fed_osha_ita_300a_summary_2024.sql
- M library-onboarding/ripple_dbt/models/marts/labor/labor__fed_osha_ita_300a_summary_2025.sql
- M library-onboarding/ripple_dbt/models/marts/labor/labor__fed_osha_ita_case_detail_2023.sql
- M library-onboarding/ripple_dbt/models/marts/labor/labor__fed_osha_ita_case_detail_2024.sql
- M library-onboarding/ripple_dbt/models/marts/labor/labor__fed_osha_ita_case_detail_2025.sql
- M library-onboarding/ripple_dbt/models/marts/labor/schema_fed_osha_ita_300a_summary_2025.yml
- M library-onboarding/ripple_dbt/models/marts/legal_enforcement/legal_enforcement__fed_naag_multistate_settlements.sql
- M library-onboarding/ripple_dbt/models/marts/transport/schema_fed_faa_registry.yml
- M library-onboarding/ripple_dbt/models/marts/transport/transport__fed_faa_registry.sql
- M library-onboarding/ripple_dbt/models/staging/fed_consolidated_screening_list/stg_fed_consolidated_screening_list__entries.sql
- M library-onboarding/ripple_dbt/models/staging/fed_faa_registry/schema.yml
- M library-onboarding/ripple_dbt/models/staging/fed_faa_registry/stg_fed_faa_registry__records.sql
- M library-onboarding/ripple_dbt/models/staging/fed_fec_leadership_pac/stg_fed_fec_leadership_pac__all.sql
- M library-onboarding/ripple_dbt/models/staging/fed_naag_multistate_settlements/schema.yml
- M library-onboarding/ripple_dbt/models/staging/fed_naag_multistate_settlements/stg_fed_naag_multistate_settlements__multistate_settlements.sql
- M library-onboarding/ripple_dbt/models/staging/intl_ember_elec/schema.yml
- M library-onboarding/ripple_dbt/models/timeline/timeline__transport_index.sql
- M library-onboarding/ripple_dbt/models/timeline/transport/timeline__transport__fed_faa_registry.sql
- M library-onboarding/ripple_dbt/seeds/ripple_time_registry.csv
- M outputs/_dq_failures.jsonl
  M outputs/_fema_ia_checkpoint.json
- M reports/typing_index/typing_rulings.csv
- M scripts/sam_exclusions_load.py
- M scripts/senate_lda_load.py
-?? reports/fix_session_plan_next.md
-?? reports/fix_session_results_2026-08-22.md
-?? reports/the_fix_list_2026-08-22.md
-?? reports/wonder_rankings.md
+?? data/osha_inspections/_stdout.log
+?? data/sam_exclusions/
+?? data/usaspending_full/
 
 ## Recent commits
+fd4ed890 Add checkpointed full USASpending contracts re-pull loader (FY2007-FY2026)
+f70c41e5 Sprint: SAM exclusions extract-file loader + 3 staging identity fixes + 13F consolidation
+771067be Refactor code structure for improved readability and maintainability; no functional changes made.
 b78be44f Merge branch 'main' of https://github.com/Crogg23/Ripple_v6
 104162b8 Add scripts for OSHA inspections API load and typing rulings
-080bfaf6 STATUS: paste 3 verified, court family wired
-eec7f6d5 Court-sibling wires staged (criminal 84.5%, appellate 60.1%; bankruptcy refused at 33%)
-a2fb51f7 Wiring batch 2 staged (courts bridge, FRS, FEC ids); wire-confirm respects triage tags
