@@ -80,25 +80,41 @@ def save_checkpoint(cp: dict):
 # API helpers
 # ---------------------------------------------------------------------------
 def api_get(endpoint: str, params: dict | None = None) -> dict:
-    """GET with rate limiting and retry on 429."""
+    """GET with rate limiting; retries 429 AND transient network drops.
+    (2026-08-22: the first full-crawl attempt died on an uncaught
+    RemoteDisconnected mid-year — a multi-hour crawl must survive those.)"""
     url = f"{BASE_URL}/{endpoint}"
-    for attempt in range(5):
+    for attempt in range(8):
         time.sleep(REQUEST_DELAY)
-        r = requests.get(url, headers=HEADERS, params=params, timeout=60)
+        try:
+            r = requests.get(url, headers=HEADERS, params=params, timeout=60)
+        except (requests.exceptions.ConnectionError,
+                requests.exceptions.Timeout) as exc:
+            wait = min(300, 15 * (attempt + 1))
+            print(f"    network error ({str(exc)[:60]}), retry in {wait}s...")
+            time.sleep(wait)
+            continue
         if r.status_code == 429:
             retry_after = int(r.headers.get("Retry-After", 60))
             print(f"    429 throttled, waiting {retry_after}s...")
             time.sleep(retry_after + 1)
             continue
+        if r.status_code >= 500:
+            wait = min(300, 15 * (attempt + 1))
+            print(f"    HTTP {r.status_code}, retry in {wait}s...")
+            time.sleep(wait)
+            continue
         r.raise_for_status()
         return r.json()
-    raise RuntimeError(f"Failed after 5 retries: {url}")
+    raise RuntimeError(f"Failed after 8 retries: {url}")
 
 
 def paginate_all(endpoint: str, year: int, year_param: str = "filing_year") -> list[dict]:
     """Fetch all pages for a given year. Returns list of result dicts."""
     results = []
-    params = {year_param: year, "page_size": 25, "page": 1}
+    # page_size 250 requires the LDA_API_KEY (anonymous cap is 25). Key verified
+    # live 2026-08-22; 250 cuts the full crawl from ~12h to ~2-4h.
+    params = {year_param: year, "page_size": 250 if API_KEY else 25, "page": 1}
     while True:
         data = api_get(endpoint, params)
         results.extend(data.get("results", []))

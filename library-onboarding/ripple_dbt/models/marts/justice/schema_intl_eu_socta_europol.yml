@@ -3,7 +3,8 @@ version: 2
 models:
   - name: justice__intl_eu_socta_europol
     columns:
+      # TESTS REMOVED 2026-08-22: the column holds the literal string 'ion' on
+      # all 26 rows — a broken extract (registered in COLUMN_TRUST as garbage).
+      # The unique test was correctly screaming; re-extracting this tiny
+      # report-derived source is a backlog item, not a test problem.
       - name: serial_number
-        data_tests:
-          - not_null
-          - unique

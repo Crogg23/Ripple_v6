@@ -11,9 +11,9 @@ select
     try_to_date(RECORD_DATE) as record_date,
     try_to_double(DEBT_OUTSTANDING_AMT) as debt_outstanding_amt,
     SRC_LINE_NBR as src_line_nbr,
-    {{ ripple_dt('RECORD_FISCAL_YEAR') }} as record_fiscal_year,
+    {{ ripple_num('RECORD_FISCAL_YEAR') }} as record_fiscal_year,
     RECORD_FISCAL_QUARTER as record_fiscal_quarter,
-    {{ ripple_dt('RECORD_CALENDAR_YEAR') }} as record_calendar_year,
+    {{ ripple_num('RECORD_CALENDAR_YEAR') }} as record_calendar_year,
     RECORD_CALENDAR_QUARTER as record_calendar_quarter,
     RECORD_CALENDAR_MONTH as record_calendar_month,
     RECORD_CALENDAR_DAY as record_calendar_day

@@ -8,7 +8,7 @@ with source as (
 )
 
 select
-    {{ ripple_dt('C_1_YEAR') }} as c_1_year,
+    {{ ripple_num('C_1_YEAR') }} as c_1_year,
     C_2_TRIFD as c_2_trifd,
     C_3_FRS_ID as c_3_frs_id,
     C_4_FACILITY_NAME as c_4_facility_name,

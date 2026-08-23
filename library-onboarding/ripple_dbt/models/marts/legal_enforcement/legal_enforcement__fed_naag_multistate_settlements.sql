@@ -8,7 +8,7 @@ with source as (
 
 select
     C_CASE,
-    {{ ripple_dt('"YEAR"') }} as YEAR,
+    {{ ripple_num('"YEAR"') }} as YEAR,
     DATERESOLVED,
     DEFENDANTS,
     ADDITIONALDEFENDANTS,

@@ -156,6 +156,6 @@ select
     N11902 as n11902,
     A11902 as a11902,
     DATASET_NAME as dataset_name,
-    {{ ripple_dt('TAX_YEAR') }} as tax_year,
+    {{ ripple_num('TAX_YEAR') }} as tax_year,
     N_CHILD_TAX_CREDIT as n_child_tax_credit
 from source

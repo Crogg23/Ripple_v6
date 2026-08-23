@@ -15,7 +15,7 @@ with source as (
 )
 
 select
-    {{ ripple_dt('ACTIVITY_YEAR') }} as activity_year,
+    {{ ripple_num('ACTIVITY_YEAR') }} as activity_year,
     LEI as lei,
     DERIVED_MSA_MD as derived_msa_md,
     STATE_CODE as state_code,

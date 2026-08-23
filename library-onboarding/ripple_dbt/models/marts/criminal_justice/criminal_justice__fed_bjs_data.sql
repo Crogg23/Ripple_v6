@@ -9,7 +9,7 @@ with source as (
 select
     IDPER,
     YEARQ,
-    {{ ripple_dt('"YEAR"') }} as YEAR,
+    {{ ripple_num('"YEAR"') }} as YEAR,
     AGER,
     SEX,
     HISPANIC,

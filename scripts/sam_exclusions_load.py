@@ -98,15 +98,18 @@ def _flatten(e: dict) -> dict:
 
 
 def _fetch_page(key: str, page: int):
-    """One page, up to 6 tries with exponential backoff. Returns json or None (give up)."""
-    for attempt in range(6):
+    """One page, up to 12 tries with LONG backoff (up to 10 min/try).
+    2026-08-22: the old 6x60s cap died at page 14 of ~167 — SAM's per-minute
+    throttle needs OSHA-loader-grade patience, not politeness. A steady
+    inter-page delay in the caller keeps us under the throttle to begin with."""
+    for attempt in range(12):
         try:
             r = requests.get(API, params={"api_key": key, "page": page, "size": PAGE_SIZE}, timeout=120)
             r.raise_for_status()
             return r.json()
         except Exception as ex:  # noqa: BLE001
-            wait = min(60, 5 * (2 ** attempt))
-            print(f"    page {page} retry {attempt + 1}/6 ({str(ex)[:60]}); wait {wait}s", flush=True)
+            wait = min(600, 30 * (attempt + 1))
+            print(f"    page {page} retry {attempt + 1}/12 ({str(ex)[:60]}); wait {wait}s", flush=True)
             time.sleep(wait)
     return None
 
@@ -202,7 +205,7 @@ def main(argv=None) -> int:
                 print(f"    -> flushed (landed {total:,})", flush=True)
             if tot and page * PAGE_SIZE >= tot:
                 break
-            time.sleep(15)                       # SAM throttles hard (429 at 3s); 15s keeps us under
+            time.sleep(25)                       # SAM throttles hard; 15s still died at page 14 (2026-08-22) — 25s + long per-page backoff
         if buf:
             _land(conn, buf, overwrite=first, run_id=run_id, started=started)
             total += len(buf)

@@ -42,8 +42,10 @@ renamed as (
         nullif(trim(NATIONALITIES), '')               as nationalities,
         nullif(trim(PLACES_OF_BIRTH), '')             as places_of_birth,
         nullif(trim(IDS), '')                         as identifier_documents,
-        to_timestamp_ntz(_INGESTED_AT, 6)             as _ingested_at,
-        nullif(trim(_SOURCE_RUN_ID), '')              as _source_run_id
+        -- meta columns landed UNPREFIXED by the 2026-08-22 re-pull (loader
+        -- family drift); repointed 2026-08-22 after the view broke.
+        to_timestamp_ntz(INGESTED_AT, 6)              as _ingested_at,
+        nullif(trim(SOURCE_RUN_ID), '')               as _source_run_id
     from source
 )
 

@@ -19,7 +19,7 @@ with source as (
 -- DISTINCT on the cast values too: raw formatting variants ("1,000" vs
 -- "1000", differing date strings) collapse only after the casts apply.
 select distinct
-    {{ ripple_dt('DATA_YEAR') }} as data_year,
+    {{ ripple_num('DATA_YEAR') }} as data_year,
     try_to_date(PUBLICATION_DATE) as publication_date,
     PROGRAM_TYPE as program_type,
     TABLE_NAME as table_name,

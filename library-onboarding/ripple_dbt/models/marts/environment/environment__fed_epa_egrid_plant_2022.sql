@@ -9,7 +9,7 @@ with source as (
 
 select
     PLANT_FILE_SEQUENCE_NUMBER as plant_file_sequence_number,
-    {{ ripple_dt('DATA_YEAR') }} as data_year,
+    {{ ripple_num('DATA_YEAR') }} as data_year,
     PLANT_STATE_ABBREVIATION as plant_state_abbreviation,
     PLANT_NAME as plant_name,
     DOE_EIA_ORIS_PLANT_OR_FACILITY_CODE as doe_eia_oris_plant_or_facility_code,

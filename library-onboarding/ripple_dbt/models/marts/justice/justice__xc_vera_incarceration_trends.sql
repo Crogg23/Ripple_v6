@@ -7,7 +7,7 @@ with source as (
 )
 
 select
-    {{ ripple_dt('"YEAR"') }} as YEAR,
+    {{ ripple_num('"YEAR"') }} as YEAR,
     COUNTY_FIPS,
     COUNTY_NAME,
     STATE_ABBR,

@@ -197,5 +197,9 @@ models:
         description: Pipeline run identifier that produced this row.
 
     data_tests:
+      # FIXED 2026-08-22: the prior 3-part key (country|date|variable) is
+      # documented as legitimately non-unique in this very file (recurs across
+      # category and unit) — it failed with 84,107 dups on the first verified
+      # suite run. The staging model's full 6-column natural key is the grain.
       - unique:
-          column_name: "country || '|' || date::varchar || '|' || variable"
+          column_name: "country || '|' || date::varchar || '|' || category || '|' || subcategory || '|' || variable || '|' || unit"

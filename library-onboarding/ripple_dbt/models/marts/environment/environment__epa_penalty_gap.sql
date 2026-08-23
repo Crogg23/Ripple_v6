@@ -31,6 +31,10 @@ select
     formal_action_count,
     total_penalties,
     last_penalty_amt,
+    -- case-level stamp corrected: see environment__fed_epa_echo.sql — use the
+    -- allocated column for any sum over facilities
+    last_penalty_amt_allocated,
+    last_penalty_shared_facility_n,
     date_last_inspection,
     date_last_formal_action,
     has_air_program,

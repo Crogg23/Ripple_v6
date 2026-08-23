@@ -10,9 +10,14 @@ models:
         data_tests:
           - not_null
     data_tests:
+      # FIXED 2026-08-22: a facility can file multiple Form R submissions for
+      # the same chemical-year (amendments/revisions) — the document control
+      # number is the submission identity. Verified live: adding it makes the
+      # combo exactly unique (78,647 = row count).
       - dbt_utils.unique_combination_of_columns:
           arguments:
             combination_of_columns:
               - c_1_year
               - c_2_trifd
               - c_39_tri_chemical_compound_id
+              - c_36_doc_ctrl_num

@@ -19,6 +19,19 @@ select
     CUSIP as cusip,
     FIGI as figi,
     "VALUE" as value_col,
+    -- VALUE mixes two units across eras (pattern sweep 2026-07-27, confirmed
+    -- live 2026-08-22): legacy quarterly files (2013q2-2022q3, named
+    -- YYYYqN_form13f.zip) report THOUSANDS of dollars; modern files (2024+,
+    -- named ddmmmyyyy-ddmmmyyyy_form13f.zip) report WHOLE dollars (SEC rule
+    -- change, Jan 2023). Per-file medians split ~500-1,200 vs ~300k-460k — an
+    -- exact 1000x unit gap. value_usd is every era in whole dollars; never sum
+    -- value_col across eras. Files for 2021q3-2023q4 are absent entirely
+    -- (coverage hole, tracked separately).
+    iff(_SRC_FILE rlike '20[0-9][0-9]q[1-4]_form13f\\.zip', 'thousands', 'dollars')
+        as value_unit,
+    try_to_double("VALUE")
+      * iff(_SRC_FILE rlike '20[0-9][0-9]q[1-4]_form13f\\.zip', 1000, 1)
+        as value_usd,
     try_to_double(SSHPRNAMT) as sshprnamt,
     SSHPRNAMTTYPE as sshprnamttype,
     PUTCALL as putcall,

@@ -10,8 +10,12 @@ models:
         data_tests:
           - not_null
     data_tests:
+      # FIXED 2026-08-22: a permit's SIC code legitimately appears as both a
+      # primary and a secondary classification — the flag completes the grain
+      # (verified live: permit+sic+flag distinct = 792,807 = row count exactly).
       - dbt_utils.unique_combination_of_columns:
           arguments:
             combination_of_columns:
               - npdes_id
               - sic_code
+              - primary_indicator_flag

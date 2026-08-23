@@ -18,7 +18,7 @@ select
     STATE as state,
     ZIP_CODE as zip_code,
     NAICS_CODE as naics_code,
-    {{ ripple_dt('NAICS_YEAR') }} as naics_year,
+    {{ ripple_num('NAICS_YEAR') }} as naics_year,
     INDUSTRY_DESCRIPTION as industry_description,
     ESTABLISHMENT_TYPE as establishment_type,
     SIZE as size,

@@ -9,8 +9,9 @@
 
 with source as (
     select * from {{ source('ripple_raw', 'FED_EPA_ECHO') }}
-)
+),
 
+facilities as (
 select
     trim("FRS_ID")                                    as frs_id,
     trim("FAC_NAME")                                  as facility_name,
@@ -77,3 +78,27 @@ qualify row_number() over (
     partition by "FRS_ID"
     order by "_INGESTED_AT" desc
 ) = 1
+)
+
+select
+    facilities.*,
+
+    -- last_penalty_amt is CASE-level, not facility-level (pattern sweep
+    -- 2026-07-27, confirmed): ECHO's exporter stamps one settlement's total on
+    -- every facility the case covered — e.g. $468,600 repeated on 652 Verizon
+    -- cell-site rows, same date. Summing the raw column multiplies settlements
+    -- by their facility count (mart-wide it implies $22.25B vs $10.9B of real
+    -- facility-level TOTAL_PENALTIES). The _allocated column divides the amount
+    -- evenly across facilities sharing the same amount + same penalty date (the
+    -- same-case fingerprint), so facility sums recover each settlement once.
+    -- Rows with no penalty date can't be fingerprinted and pass through raw —
+    -- check last_penalty_shared_facility_n before trusting any aggregate.
+    iff(last_penalty_amt is null or date_last_penalty is null,
+        last_penalty_amt,
+        last_penalty_amt / count(*) over (
+            partition by last_penalty_amt, date_last_penalty))
+                                                      as last_penalty_amt_allocated,
+    count(*) over (
+        partition by last_penalty_amt, date_last_penalty)
+                                                      as last_penalty_shared_facility_n
+from facilities

@@ -12,7 +12,7 @@ select
     REPORT_TYPE as report_type,
     try_to_date(PUBLISH_DATE) as publish_date,
     try_to_date(UPDATE_DATE) as update_date,
-    {{ ripple_dt('REPORT_YEAR') }} as report_year,
+    {{ ripple_num('REPORT_YEAR') }} as report_year,
     LANGUAGE as language,
     FILE_FORMAT as file_format,
     FILE_SIZE_MB as file_size_mb,

@@ -9,16 +9,22 @@ with source as (
 
 select
     REPORTING_AREA as reporting_area,
-    {{ ripple_dt('CURRENT_MMWR_YEAR') }} as current_mmwr_year,
+    -- FIXED 2026-08-22: these three were mis-ruled ambiguous_date and fed to
+    -- the guarded date cast, whose bare-digit lane nulls pure numbers — so the
+    -- MMWR year (a year, e.g. 2024) and both cumulative CASE COUNTS came out
+    -- 100% NULL in the built mart. The nulled year is also the grain dimension
+    -- whose loss made the uniqueness test read 659k "duplicates". Rulings CSV
+    -- corrected to ambiguous_number the same day.
+    {{ ripple_num('CURRENT_MMWR_YEAR') }} as current_mmwr_year,
     MMWR_WEEK as mmwr_week,
     LABEL as label,
     CURRENT_WEEK as current_week,
     CURRENT_WEEK_FLAG as current_week_flag,
     PREVIOUS_52_WEEK_MAX as previous_52_week_max,
     PREVIOUS_52_WEEKS_MAX_FLAG as previous_52_weeks_max_flag,
-    {{ ripple_dt('CUMULATIVE_YTD_CURRENT_MMWR_YEAR') }} as cumulative_ytd_current_mmwr_year,
+    {{ ripple_num('CUMULATIVE_YTD_CURRENT_MMWR_YEAR') }} as cumulative_ytd_current_mmwr_year,
     CUMULATIVE_YTD_CURRENT_MMWR_YEAR_FLAG as cumulative_ytd_current_mmwr_year_flag,
-    {{ ripple_dt('CUMULATIVE_YTD_PREVIOUS_MMWR_YEAR') }} as cumulative_ytd_previous_mmwr_year,
+    {{ ripple_num('CUMULATIVE_YTD_PREVIOUS_MMWR_YEAR') }} as cumulative_ytd_previous_mmwr_year,
     CUMULATIVE_YTD_PREVIOUS_MMWR_YEAR_FLAG as cumulative_ytd_previous_mmwr_year_flag,
     LOCATION1 as location1,
     LOCATION2 as location2,

@@ -28,11 +28,11 @@ final as (
         src_line_nbr,
 
         -- fiscal period
-        {{ ripple_dt('record_fiscal_year') }} as record_fiscal_year,
+        {{ ripple_num('record_fiscal_year') }} as record_fiscal_year,
         record_fiscal_quarter,
 
         -- calendar period
-        {{ ripple_dt('record_calendar_year') }} as record_calendar_year,
+        {{ ripple_num('record_calendar_year') }} as record_calendar_year,
         record_calendar_quarter,
         record_calendar_month,
 

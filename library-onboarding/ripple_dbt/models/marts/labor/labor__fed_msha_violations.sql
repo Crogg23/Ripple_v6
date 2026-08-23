@@ -15,6 +15,9 @@
 select
     event_no,
     violation_no,
+    -- part of the grain key since 2026-07-31 (see header) but never exposed —
+    -- the uniqueness test errored on it for three weeks; added 2026-08-22.
+    docket_no,
     mine_id,
     mine_name,
     mine_type,

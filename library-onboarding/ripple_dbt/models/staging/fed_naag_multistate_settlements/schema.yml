@@ -13,46 +13,32 @@ sources:
 models:
   - name: stg_fed_naag_multistate_settlements__multistate_settlements
     description: >-
-      Staging model for NAAG Multistate Settlements. Renames columns to
-      snake_case, casts TEXT values to appropriate types, and deduplicates
-      on the natural key (company_id, date, state).
+      Staging model for NAAG Multistate Settlements — REWRITTEN 2026-08-22
+      against the schema the 2026-08-22 re-pull actually landed (case number,
+      defendants, AG coalitions, settlement amounts). Grain: one row = one
+      settlement entry, deduped on ID (source's own unique key; verified
+      882 = 882, zero null on rewrite day).
     columns:
-      - name: company_id
-        description: Identifier for the company involved in the settlement.
+      - name: id
+        description: Source-provided unique record identifier.
         data_tests:
           - not_null
+          - unique
 
-      - name: date
-        description: Date of the settlement (cast from TEXT to DATE).
-        data_tests:
-          - not_null:
-              config:
-                severity: warn
-      - name: state
-        description: US state participating in the multistate settlement.
-        data_tests:
-          - not_null
+      - name: case_number
+        description: NAAG case number.
 
-      - name: company_name
-        description: Legal name of the company involved in the settlement.
+      - name: date_resolved
+        description: Date the settlement resolved (cast from M/D/YYYY text).
 
-      - name: settlement_amount
-        description: Monetary value of the settlement in USD (cast to DOUBLE).
+      - name: defendants
+        description: Primary defendant company names, comma-separated.
 
-      - name: case_description
-        description: Narrative description of the case and alleged violations.
+      - name: total_settlement_amount
+        description: Total settlement value in USD (cast to DOUBLE).
 
-      - name: industry
-        description: Industry sector of the company involved.
-
-      - name: lead_state
-        description: The state that led the multistate coalition in the case.
-
-      - name: num_states
-        description: Number of states participating in the settlement (cast to NUMBER).
-
-      - name: document_url
-        description: URL to the official settlement document.
+      - name: lead_ags
+        description: Attorneys general who led the multistate coalition.
 
       - name: _ingested_at
         description: Timestamp when the record was ingested into the landing table.

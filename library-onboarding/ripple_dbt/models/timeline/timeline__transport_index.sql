@@ -23,14 +23,6 @@ union all
 select ripple_source, ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
-from {{ ref('timeline__transport__fed_faa_registry') }}
-where ripple_ts is not null
-group by 1, 2, 3, 4
-union all
-
-select ripple_source, ripple_clock, ripple_grain,
-       date_trunc('day', ripple_ts)::date as ripple_day,
-       count(*) as n_rows
 from {{ ref('timeline__transport__fed_fra_casualties') }}
 where ripple_ts is not null
 group by 1, 2, 3, 4

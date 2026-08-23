@@ -9,7 +9,7 @@ with source as (
 
 select
     REPORT_ID as report_id,
-    {{ ripple_dt('AUDIT_YEAR') }} as audit_year,
+    {{ ripple_num('AUDIT_YEAR') }} as audit_year,
     AUDITEE_UEI as auditee_uei,
     AUDITEE_EIN as auditee_ein,
     AUDITEE_NAME as auditee_name,

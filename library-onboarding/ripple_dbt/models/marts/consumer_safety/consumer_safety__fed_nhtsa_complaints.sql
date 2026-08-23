@@ -11,7 +11,7 @@ select
     mfr_name,
     maketxt                              as make,
     modeltxt                             as model,
-    {{ ripple_dt('yeartxt') }} as model_year,
+    {{ ripple_num('yeartxt') }} as model_year,
     compdesc                             as component,
     crash,
     fire,
