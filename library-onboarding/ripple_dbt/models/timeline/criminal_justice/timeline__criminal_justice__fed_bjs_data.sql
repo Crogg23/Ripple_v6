@@ -17,9 +17,9 @@
 -- so a mis-parse is always recoverable.
 
 select
-    {{ ripple_ts_from_year('src."YEAR"') }} as ripple_ts,
+    {{ ripple_ts_from_year('src.survey_year') }} as ripple_ts,
     {{ ripple_grain('year') }} as ripple_grain,
-    {{ ripple_row_clock(ripple_ts_from_year('src."YEAR"'), 'reported') }} as ripple_clock,
+    {{ ripple_row_clock(ripple_ts_from_year('src.survey_year'), 'reported') }} as ripple_clock,
     'CRIMINAL_JUSTICE.CRIMINAL_JUSTICE__FED_BJS_DATA'::varchar as ripple_source,
     src.*
 from {{ ref('criminal_justice__fed_bjs_data') }} as src

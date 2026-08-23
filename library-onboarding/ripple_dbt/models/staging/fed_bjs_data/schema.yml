@@ -7,66 +7,136 @@ sources:
     tables:
       - name: FED_BJS_DATA
         description: >
-          Raw landing table for BJS Data Collections and APIs sourced from the
-          Bureau of Justice Statistics (source_id: fed_bjs_data).
+          Raw landing table holding NCVS (National Crime Victimization Survey)
+          person-level victimization microdata from the Bureau of Justice
+          Statistics (source_id: fed_bjs_data). One row per reported
+          victimization record; all columns land as TEXT.
 
 models:
   - name: stg_fed_bjs_data__bjs_data_collections
     description: >
-      Staging model for BJS data collections. Renames columns to snake_case,
-      casts types safely, and deduplicates on (fips_code, nacjd_id).
+      Staging model for BJS NCVS victimization microdata. One row per
+      person-level victimization record. Renames columns to descriptive
+      snake_case, nulls empty strings, and safely casts year and survey
+      weights to numeric. NOT unique on person_id — a respondent can report
+      multiple victimizations, and weighted records can repeat.
     columns:
-      - name: fips_code
-        description: FIPS geographic identifier for the data collection record.
+      - name: person_id
+        description: NCVS person identifier (IDPER). Not unique — one row per victimization record.
         data_tests:
           - not_null
 
-      - name: nacjd_id
-        description: National Archive of Criminal Justice Data identifier.
+      - name: year_quarter
+        description: Survey year and quarter as reported (e.g. '1993.1').
         data_tests:
           - not_null
 
-      - name: collection_name
-        description: Name of the BJS data collection.
+      - name: survey_year
+        description: Survey year, cast to numeric.
         data_tests:
           - not_null
 
-      - name: topic
-        description: High-level topic area for the data collection.
+      - name: age_group_code
+        description: Respondent age group code (NCVS coded value; negatives are sentinels).
 
-      - name: description
-        description: Detailed description of the data collection.
+      - name: sex_code
+        description: Respondent sex code.
 
-      - name: geographic_level
-        description: Geographic granularity of the data (e.g., National, State, County).
-        data_tests:
-          - accepted_values:
-              config:
-                severity: warn
-              arguments:
-                values: ['National', 'State', 'County', 'Local', 'Tribal', 'Other']
-      - name: unit_of_enumeration
-        description: The unit being counted or measured in the collection.
+      - name: hispanic_code
+        description: Respondent Hispanic-origin code.
 
-      - name: access_level
-        description: Access restriction level for the dataset.
-        data_tests:
-          - accepted_values:
-              config:
-                severity: warn
-              arguments:
-                values: ['Public', 'Restricted', 'Private', 'NACJD']
-      - name: download_url
-        description: Direct download URL for the collection data files.
+      - name: race_code
+        description: Respondent race code.
 
-      - name: data_tool_url
-        description: URL for the BJS online data analysis or exploration tool.
+      - name: race_ethnicity_code
+        description: Combined race/ethnicity code.
 
-      - name: publication_date
-        description: Date the collection or report was published (cast from TEXT).
+      - name: household_income_code_1
+        description: Household income bracket code (variant 1).
 
-      - name: years_available
-        description: Range or list of years for which data are available.
+      - name: household_income_code_2
+        description: Household income bracket code (variant 2).
+
+      - name: marital_status_code
+        description: Respondent marital status code.
+
+      - name: education_code_1
+        description: Respondent education level code (variant 1).
+
+      - name: education_code_2
+        description: Respondent education level code (variant 2).
+
+      - name: veteran_code
+        description: Veteran status code.
+
+      - name: citizen_code
+        description: Citizenship status code.
+
+      - name: population_size_code
+        description: Population size class of the respondent's area.
+
+      - name: region_code
+        description: Census region code.
+
+      - name: msa_code
+        description: Metropolitan statistical area status code.
+
+      - name: locality_code
+        description: Urban/suburban/rural locality code.
+
+      - name: crime_type_code
+        description: Type-of-crime code for the victimization (NEWCRIME).
+
+      - name: offense_code
+        description: Offense category code (NEWOFF).
+
+      - name: serious_violent_code
+        description: Serious-violent-crime classification code.
+
+      - name: police_notified_code
+        description: Whether the incident was reported to police (coded).
+
+      - name: victim_services_code
+        description: Whether victim services were used (coded).
+
+      - name: location_code
+        description: Incident location code.
+
+      - name: victim_offender_relationship_code
+        description: Victim-offender relationship code (DIREL).
+
+      - name: weapon_code
+        description: Weapon presence code.
+
+      - name: weapon_category_code
+        description: Weapon category code.
+
+      - name: injury_code
+        description: Injury indicator code.
+
+      - name: serious_injury_code
+        description: Serious-injury classification code.
+
+      - name: medical_treatment_code
+        description: Medical treatment received code.
+
+      - name: offender_age_code
+        description: Offender age group code.
+
+      - name: offender_sex_code
+        description: Offender sex code.
+
+      - name: offender_race_code
+        description: Offender race code (OFFTRACENEW).
+
+      - name: victimization_weight
+        description: Victimization survey weight (WGTVICCY), cast to numeric.
+
+      - name: series_flag
+        description: Series-victimization flag.
+
+      - name: adjusted_weight
+        description: Adjusted survey weight (NEWWGT), cast to numeric.
 
       - name: _ingested_at
         description: Timestamp when the record was ingested into the landing table.
@@ -76,29 +146,19 @@ models:
 
   - name: criminal_justice__fed_bjs_data
     description: >
-      Analytics-ready mart for BJS data collections. Exposes FIPS and NACJD
-      identifiers for cross-source joins within the criminal justice domain.
+      Analytics-ready mart of NCVS victimization microdata. One row per
+      person-level victimization record, passed through from staging.
     columns:
-      - name: topic
-        description: High-level topic area for the data collection.
+      - name: person_id
+        description: NCVS person identifier. Not unique.
+        data_tests:
+          - not_null
 
-      - name: description
-        description: Detailed description of the data collection.
+      - name: survey_year
+        description: Survey year, numeric.
 
-      - name: unit_of_enumeration
-        description: The unit being counted or measured in the collection.
-
-      - name: publication_date
-        description: Date the collection or report was published.
-
-      - name: years_available
-        description: Range or list of years for which data are available.
-
-      - name: download_url
-        description: Direct download URL for the collection data files.
-
-      - name: data_tool_url
-        description: URL for the BJS online data analysis or exploration tool.
+      - name: victimization_weight
+        description: Victimization survey weight.
 
       - name: _ingested_at
         description: Timestamp when the record was ingested into the landing table.

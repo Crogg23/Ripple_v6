@@ -7,7 +7,8 @@ sources:
     tables:
       - name: FED_SEC_13F_SUBMISSIONS
         description: >
-          SEC Form 13F submission headers (336K rows). Distinct from
-          FED_SEC_13F_SUBMISSION (singular, 3.8M rows) declared in
-          staging/fed_sec_13f_submission -- these are two different landing
-          tables, not a typo.
+          SEC Form 13F submission headers (336K rows). This is the TRUE
+          submissions table (one row per filing). The landing near-twin
+          FED_SEC_13F_SUBMISSION (singular, 3.8M rows) actually holds
+          holdings-shaped rows that are a 100% subset of FED_SEC_13F_HOLDINGS
+          (verified 2026-08-23) and is queued for retirement.

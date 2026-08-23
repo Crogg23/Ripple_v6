@@ -5,12 +5,29 @@ sources:
     database: LIBRARY_RAW
     schema: LANDING
     tables:
-      - name: FED_SEC_13F_SUBMISSION
+      - name: FED_SEC_13F_SUBMISSION_HEADERS
+        identifier: FED_SEC_13F_SUBMISSIONS
+        description: >
+          SEC Form 13F submission headers (336K rows; one row per filing:
+          accession, CIK, filing date, period, submission type). NOTE the
+          landing near-twin FED_SEC_13F_SUBMISSION (singular, 3.8M rows) is
+          NOT submissions -- it holds holdings-shaped rows and is a 100%
+          subset of FED_SEC_13F_HOLDINGS (verified 2026-08-23); it is queued
+          for retirement and nothing should read it.
 
 models:
   - name: stg_fed_sec_13f_submission__all
-    description: "SEC 13F filer identity table — institutional holders filing quarterly."
+    description: >
+      SEC 13F submissions, one row per filing (accession number). Rewritten
+      2026-08-23: previously pointed at the mislabeled holdings-shaped
+      FED_SEC_13F_SUBMISSION landing table and selected a CIK column that
+      table does not have (the view never built). Now reads the true
+      submission-header table.
     columns:
-      - name: CIK
+      - name: sec_accession_number
+        data_tests:
+          - not_null
+          - unique
+      - name: cik
         data_tests:
           - not_null

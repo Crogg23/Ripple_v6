@@ -4,7 +4,9 @@
 
     select
         "REGISTRY_ID" as FRS_ID,
-"FEDERAL_FACILITY_CODE_EIN" as EIN,
+-- NOTE: an earlier version selected "FEDERAL_FACILITY_CODE_EIN" as EIN, but the
+-- landing table has no EIN column at all. FEDERAL_FACILITY_CODE is a Yes/blank
+-- federal-facility flag, not an identifier, so no EIN is exposed here.
 _INGESTED_AT,
 _SOURCE_RUN_ID
     from source
