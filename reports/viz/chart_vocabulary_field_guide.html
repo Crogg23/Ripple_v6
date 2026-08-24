@@ -1,0 +1,1175 @@
+<title>Chart Vocabulary Field Guide</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Work+Sans:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#0a1620; --surface:#111a22; --ink:#f2e9d8; --ink-soft:#e8dcc2;
+  --muted:#b3a080; --sage:#5f7a4f; --sage-hi:#7fa066; --rust:#b5703f; --teal:#3d8f82;
+  --gold:#c9a25a; --bp:#2f6f8f; --hair:#2a3a44; --dim:#6b7680;
+  --head:'Space Grotesk',sans-serif; --body:'Work Sans',sans-serif; --mono:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; color:var(--ink-soft); font-family:var(--body); font-size:16px; line-height:1.65;
+  background:var(--bg);
+  background-image:
+    radial-gradient(ellipse at 16% 0%, rgba(47,111,143,.18) 0%, rgba(47,111,143,0) 48%),
+    radial-gradient(ellipse at 88% 6%, rgba(181,112,63,.10) 0%, rgba(181,112,63,0) 45%),
+    radial-gradient(circle 1.2px at 0 0, rgba(45,60,73,.85) 1.2px, transparent 1.5px);
+  background-size:100% 100%,100% 100%,64px 64px;
+  background-attachment:fixed,fixed,fixed;
+  overflow-x:hidden;
+}
+::selection{background:var(--gold);color:var(--bg)}
+a{color:var(--gold)}
+a:focus-visible,summary:focus-visible,button:focus-visible,.tile:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.mono{font-family:var(--mono)}
+main{max-width:1180px;margin:0 auto;padding:0 clamp(20px,4vw,56px) 96px}
+code{font-family:var(--mono);font-size:.92em;color:var(--ink-soft);background:rgba(47,111,143,.12);padding:.1em .35em;border-radius:2px}
+
+header.top{max-width:1180px;margin:0 auto;padding:56px clamp(20px,4vw,56px) 40px;position:relative}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--bp);text-transform:uppercase}
+.kicker::before{content:"⌖ ";}
+h1{font-family:var(--head);font-weight:700;letter-spacing:-.015em;color:var(--ink);
+  font-size:clamp(34px,5.2vw,56px);line-height:1.05;margin:14px 0 0;max-width:17em;text-wrap:balance}
+.dek{font-size:clamp(16px,1.6vw,18.5px);color:var(--muted);max-width:66ch;margin:20px 0 0;line-height:1.6}
+.dek strong{color:var(--ink-soft);font-weight:600}
+.origin-note{font-family:var(--mono);font-size:12px;color:var(--dim);margin-top:22px;max-width:66ch;line-height:1.7}
+.origin-note a{color:var(--bp)}
+
+hr.hair{border:none;border-top:1px dashed var(--hair);margin:0}
+
+.howto{padding:36px 0 8px}
+.howto h2{font-family:var(--head);font-weight:700;color:var(--ink);font-size:20px;margin:0 0 14px}
+.howto ol{margin:0;padding-left:0;list-style:none;display:grid;gap:10px;max-width:70ch}
+.howto li{display:flex;gap:12px;font-size:14.5px;color:var(--muted)}
+.howto li b{color:var(--ink-soft);font-weight:600}
+.howto .idx{font-family:var(--mono);color:var(--bp);flex:0 0 20px}
+
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin:22px 0 0;font-family:var(--mono);font-size:11px;color:var(--dim)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.relchip{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;padding:2px 6px;border-radius:2px;text-transform:uppercase}
+.relchip.high{background:rgba(181,112,63,.22);color:var(--rust);border:1px solid rgba(181,112,63,.5)}
+.relchip.medium{background:rgba(201,162,90,.14);color:var(--gold);border:1px solid rgba(201,162,90,.4)}
+.relchip.low{background:transparent;color:var(--dim);border:1px solid var(--hair)}
+
+section.overview{padding:44px 0 8px}
+.overview h2{font-family:var(--head);font-weight:700;color:var(--ink);font-size:22px;margin:0 0 4px}
+.overview .sub{color:var(--dim);font-size:13.5px;margin:0 0 24px;font-family:var(--mono)}
+.tilegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.tile{display:block;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--hair);
+  padding:18px 18px 16px;transition:border-color .15s ease,transform .15s ease;cursor:pointer}
+.tile:hover{border-color:var(--bp);transform:translateY(-2px)}
+.tile .num{font-family:var(--mono);font-size:12px;color:var(--bp);display:flex;justify-content:space-between}
+.tile .count{color:var(--dim)}
+.tile h3{font-family:var(--head);font-weight:700;color:var(--ink);font-size:16.5px;margin:6px 0 8px;line-height:1.25}
+.tile p{font-size:13px;color:var(--muted);margin:0 0 10px;line-height:1.55}
+.tile .pick{font-family:var(--mono);font-size:11px;color:var(--gold);line-height:1.5;border-top:1px dashed var(--hair);padding-top:8px;margin-top:2px}
+.tile .pick b{color:var(--ink-soft)}
+
+.controls{display:flex;gap:10px;margin:36px 0 18px;font-family:var(--mono);font-size:12px}
+.controls button{background:transparent;border:1px solid var(--hair);color:var(--muted);padding:8px 14px;
+  cursor:pointer;font-family:var(--mono);font-size:12px;letter-spacing:.04em;transition:border-color .15s,color .15s}
+.controls button:hover{border-color:var(--gold);color:var(--ink)}
+
+/* family-level details */
+.family{border-top:1px dashed var(--hair);scroll-margin-top:24px}
+.family:last-of-type{border-bottom:1px dashed var(--hair)}
+.family>summary{list-style:none;cursor:pointer;padding:22px 4px;display:flex;align-items:baseline;gap:16px}
+.family>summary::-webkit-details-marker{display:none}
+.family>summary .num{font-family:var(--mono);font-size:13px;color:var(--bp);flex:0 0 30px}
+.family>summary .titleblock{flex:1 1 auto;min-width:0}
+.family>summary h3{font-family:var(--head);font-weight:700;color:var(--ink);font-size:clamp(18px,2.4vw,23px);margin:0;line-height:1.2}
+.family>summary .def{font-family:var(--body);font-size:13.5px;color:var(--dim);margin-top:6px;max-width:70ch;line-height:1.5}
+.family>summary .chev{font-family:var(--mono);color:var(--dim);flex:0 0 auto;transition:transform .2s ease}
+.family[open]>summary .chev{transform:rotate(90deg)}
+.family>summary:hover h3{color:var(--gold)}
+.family-body{padding:0 4px 44px 46px}
+@media(max-width:720px){.family-body{padding-left:4px}}
+
+.priority-callout{background:var(--surface);border-left:2px solid var(--gold);padding:14px 18px;margin:4px 0 20px;max-width:78ch}
+.priority-callout .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;display:block}
+.priority-callout p{margin:0;font-size:14.5px;color:var(--ink-soft);line-height:1.6}
+
+.rules-toggle{border:1px solid var(--hair);margin-bottom:26px;max-width:78ch}
+.rules-toggle>summary{cursor:pointer;padding:10px 16px;font-family:var(--mono);font-size:11.5px;color:var(--bp);letter-spacing:.04em;list-style:none}
+.rules-toggle>summary::-webkit-details-marker{display:none}
+.rules-toggle>summary::before{content:"▸ ";}
+.rules-toggle[open]>summary::before{content:"▾ ";}
+.rules-body{padding:4px 16px 16px}
+.rules-body h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:14px 0 8px}
+.rules-body h4:first-child{margin-top:0}
+.rules-body p{font-size:13.5px;color:var(--dim);line-height:1.65;margin:0}
+
+/* chart-type cards */
+.brick-grid{display:grid;gap:14px;max-width:82ch}
+.brickcard{padding:16px 18px;border:1px solid var(--hair);position:relative}
+.brickcard.rel-high{border-left:3px solid var(--rust)}
+.brickcard.rel-medium{border-left:3px solid var(--gold);opacity:.94}
+.brickcard.rel-low{border-left:3px solid var(--hair);opacity:.72}
+.brickcard.rel-low .brick-name{color:var(--muted)}
+.brick-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.brick-name{font-family:var(--head);font-weight:700;color:var(--ink);font-size:15.5px}
+.brickcard p{font-size:13.5px;color:var(--ink-soft);line-height:1.6;margin:6px 0}
+.brickcard .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--bp);margin-right:6px}
+.brickcard .shows{color:var(--muted);font-style:normal}
+.brickcard .buildnote{font-size:12px;color:var(--dim);border-top:1px dashed var(--hair);padding-top:8px;margin-top:10px}
+
+footer{border-top:1px solid var(--hair);margin-top:52px;padding:30px 4px 8px;font-family:var(--mono);font-size:12px;color:var(--dim)}
+footer p{max-width:66ch;line-height:1.7}
+footer .mark{color:var(--gold)}
+
+@media(max-width:600px){
+  main,header.top{padding-left:18px;padding-right:18px}
+  .family-body{padding-left:26px}
+  .family>summary .num{flex-basis:22px}
+}
+</style>
+
+<header class="top">
+  <div class="kicker">Companion volume — chart vocabulary, tailored to the tokens</div>
+  <h1>108 named chart types, sorted into 10 families, each built into a Ripple brick.</h1>
+  <p class="dek">The layout-systems survey covered how a PAGE gets composed. This covers something narrower and more concrete: the actual visual vocabulary for turning one number, one rate, one network, one document into a mark on the page — using the real chart types data journalism and dataviz practice already invented, translated into <strong>Ripple's actual tokens</strong> (the blueprint palette, the drafting-tick leader lines, the dashed hairlines, the one-reserved-accent discipline) instead of a generic chart library's defaults.</p>
+  <p class="origin-note">Three families were already solved by the hand-built page (magnitude, part-to-whole, before/after) and aren't repeated here. Everything below is the other ten families, researched independently, each pushed to rate its own chart types honestly — high/medium/low relevance to Ripple specifically, not inflated just because a chart type has a recognizable name — and to say plainly which ones to build first.</p>
+</header>
+<hr class="hair">
+
+<main>
+
+<section class="howto">
+  <h2>How to use this page</h2>
+  <ol>
+    <li><span class="idx">01</span><span><b>Scan the 10 family tiles below</b> — each shows what question that family answers and which chart type to build first.</span></li>
+    <li><span class="idx">02</span><span><b>Open a family</b> to see every real chart type inside it, each with a relevance badge — <b>high</b> means build this soon, <b>low</b> means it's here for completeness, not a recommendation to build it.</span></li>
+    <li><span class="idx">03</span><span><b>Each card</b> gives what the chart shows, a real named example of it in actual use, the concrete Ripple-brick construction (actual token colors, actual SVG/CSS approach), and a build note — hand-rollable, or genuinely needs a library.</span></li>
+    <li><span class="idx">04</span><span><b>"Construction rules & brief fit"</b> inside each family is the cross-cutting discipline — read it once per family, it governs every card below it.</span></li>
+  </ol>
+  <div class="legend">
+    <span><span class="relchip high">high</span> likely to get used soon</span>
+    <span><span class="relchip medium">medium</span> real, situational</span>
+    <span><span class="relchip low">low</span> included for completeness, not a build recommendation</span>
+  </div>
+</section>
+
+<section class="overview" id="glance">
+  <h2>The ten families, at a glance</h2>
+  <p class="sub">108 chart types total · click to open</p>
+  <div class="tilegrid">
+
+    <a class="tile" data-target="fam-ranking" href="#fam-ranking">
+      <div class="num"><span>01 / RANKING</span><span class="count">11 types</span></div>
+      <h3>Comparison across many entities</h3>
+      <p>Who's worst, who's best, and how does each one sit against the whole field — as a snapshot, a change, or a moving position.</p>
+      <div class="pick">Build first: <b>ordered bar chart</b>, then dumbbell plot</div>
+    </a>
+
+    <a class="tile" data-target="fam-time-trend" href="#fam-time-trend">
+      <div class="num"><span>02 / TIME · TREND</span><span class="count">17 types</span></div>
+      <h3>Is it getting better or worse</h3>
+      <p>The most load-bearing unsolved family — a systemic pattern isn't proven until it's shown holding across years.</p>
+      <div class="pick">Build first: <b>plain line chart</b>, then sparkline</div>
+    </a>
+
+    <a class="tile" data-target="fam-distribution" href="#fam-distribution">
+      <div class="num"><span>03 / DISTRIBUTION</span><span class="count">14 types</span></div>
+      <h3>How is it actually spread out</h3>
+      <p>Turns "here's one bad case" into "here's the shape of the whole thing" — and how concentrated the harm really is.</p>
+      <div class="pick">Build first: <b>histogram</b>, then ECDF + Lorenz curve</div>
+    </a>
+
+    <a class="tile" data-target="fam-correlation" href="#fam-correlation">
+      <div class="num"><span>04 / CORRELATION</span><span class="count">8 types</span></div>
+      <h3>Do two things move together</h3>
+      <p>Turns "X happened and Y happened" into "X predicts Y" — the step from noticing to claiming a mechanism.</p>
+      <div class="pick">Build first: <b>scatter plot</b>, then quadrant chart</div>
+    </a>
+
+    <a class="tile" data-target="fam-geography" href="#fam-geography">
+      <div class="num"><span>05 / GEOGRAPHY</span><span class="count">11 types</span></div>
+      <h3>Does WHERE carry the pattern</h3>
+      <p>Is harm, access, or oversight concentrated in specific places — and does the map stop lying once size stops dominating.</p>
+      <div class="pick">Build first: <b>choropleth</b>, then proportional-symbol map</div>
+    </a>
+
+    <a class="tile" data-target="fam-network" href="#fam-network">
+      <div class="num"><span>06 / NETWORK</span><span class="count">9 types</span></div>
+      <h3>Who's connected to whom</h3>
+      <p>The literal visual grammar of a power structure — closest to the center of the mission of any family here.</p>
+      <div class="pick">Build first: <b>org chart</b>, then ego network</div>
+    </a>
+
+    <a class="tile" data-target="fam-flow-process" href="#fam-flow-process">
+      <div class="num"><span>07 / FLOW · PROCESS</span><span class="count">9 types</span></div>
+      <h3>What happened to it in between</h3>
+      <p>As money, people, or cases move through stages, where does the system quietly lose, redirect, or loop it back.</p>
+      <div class="pick">Build first: <b>funnel chart</b>, then Sankey diagram</div>
+    </a>
+
+    <a class="tile" data-target="fam-uncertainty" href="#fam-uncertainty">
+      <div class="num"><span>08 / UNCERTAINTY</span><span class="count">11 types</span></div>
+      <h3>How sure are we</h3>
+      <p>Honest data rarely shows a clean single number — showing the doubt instead of hiding it behind false precision.</p>
+      <div class="pick">Build first: <b>error bar</b>, then forest plot</div>
+    </a>
+
+    <a class="tile" data-target="fam-qualitative-evidence" href="#fam-qualitative-evidence">
+      <div class="num"><span>09 / QUALITATIVE EVIDENCE</span><span class="count">10 types</span></div>
+      <h3>A person's own words, on the record</h3>
+      <p>The only family that puts an actual human on the page rather than an aggregate standing in for them.</p>
+      <div class="pick">Build first: <b>attributed quote card</b>, then document facsimile</div>
+    </a>
+
+    <a class="tile" data-target="fam-composition-over-time" href="#fam-composition-over-time">
+      <div class="num"><span>10 / COMPOSITION OVER TIME</span><span class="count">8 types</span></div>
+      <h3>How the mix shifted, year to year</h3>
+      <p>Not just a before/after split — which slice grew, which shrank, and exactly when the balance tipped.</p>
+      <div class="pick">Build first: <b>100%-stacked bar</b>, then stacked column</div>
+    </a>
+
+  </div>
+</section>
+
+<div class="controls">
+  <button id="expand-all" type="button">expand all</button>
+  <button id="collapse-all" type="button">collapse all</button>
+</div>
+
+<!-- ============================================================ FAMILIES ============================================================ -->
+
+<details class="family" id="fam-ranking">
+  <summary><span class="num">01</span><span class="titleblock"><h3>Ranking / Comparison Across Many Entities</h3><span class="def">Given many entities measured the same way, who's the worst, who's the best, and how does each one sit against the rest of the field — as a single snapshot, as a shift between two points, or as a moving position over time. This is the family that turns "we looked at everyone, the same way" into something a reader can actually see.</span></span><span class="chev">▸</span></summary>
+  <div class="family-body">
+    <div class="priority-callout"><span class="lbl">Build first</span><p>The ordered bar chart and the dumbbell/connected dot plot. The bar chart is the highest-odds-of-use chart in the entire family — almost every future investigation will need a "who's worst, ranked" moment, and it reuses the page's existing row/hairline/leader-line grammar almost without modification. The dumbbell plot comes second because Ripple's stories are fundamentally about CHANGE, not just standing — "which of these 50 agencies got worse the most" is the multi-entity version of the single before/after moment the site has already proven works. The leaderboard-with-embedded-bars is a strong third if Catalog/Library utility work is next on the roadmap, since it's the natural "look up your own entity" shape for that surface.</p></div>
+    <details class="rules-toggle"><summary>Construction rules & brief fit for this family</summary><div class="rules-body">
+      <h4>Cross-cutting construction rules</h4>
+      <p>Every ranking brick needs its own explicit demotion mechanism for the N-1 entities that aren't the point: the reserved accent belongs to ONE entity, gap, or crossing-line at a time (the #1 bar, the biggest dumbbell gap, the one slope that crosses everyone else), never to "the ranking" as a whole — everything else stays neutral var(--bp)/var(--muted)/var(--dim). Sort order and relative position/length/icon-count communicate magnitude before any printed number does — value labels are secondary mono annotations, not the headline. This family is inherently denser than magnitude/part-to-whole/before-after (real N is 20, 50, sometimes thousands), so each brick needs its own built-in rest move — collapsing a long tail, capping full-color labels to a handful, or pairing a loud grid with a single quiet caption line right after it. Every brick visibly borrows the page's existing grammar: 1px dashed var(--hair) row dividers doubling as scale lines, drafting-tick leader lines into mono margin captions, tabular-nums JetBrains Mono for every printed value, tilted "Fig. 0X" captions, and fixed-radius dots (never the sqrt-area-true circles reserved for part-to-whole).</p>
+      <h4>Fit against the music brief</h4>
+      <p>Fits unusually well because most bricks are re-shapes of vocabulary Ripple already proved, not new inventions: the dumbbell plot is the before/after brick stretched to many rows; the slopegraph is a smaller cousin of the page's own dotted spine device; the small-multiples grid generalizes the existing tick-wall; the leaderboard table reuses tabular-nums and hairline dividers wholesale. The two genuinely weak fits — radar and parallel coordinates — are weak for the same reason: they ask the reader to hold multiple competing shapes or brush an axis interactively, fighting both the one-sun rule and the reader-not-analyst posture of a published page.</p>
+    </div></details>
+    <div class="brick-grid">
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Ordered (sorted) bar chart</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>How much each of N entities has, arranged so magnitude and rank read in one sweep — the default answer to "who's biggest/worst, and by how much."</p>
+        <p><span class="lbl">Exemplar</span>ProPublica's "Dollars for Docs" — a sortable horizontal bar ranking of pharmaceutical/device companies by total payments made to individual doctors.</p>
+        <p><span class="lbl">Ripple brick</span>Rows of horizontal bars, one per entity, stacked with 1px dashed var(--hair) dividers between rows. Mono entity label right-aligned; the bar is an SVG rect or CSS div, width = value/max, ~22px tall; value in mono, tabular-nums, at the bar's end. Everything renders in neutral var(--bp) EXCEPT the #1 bar, which alone takes the investigation's one reserved accent — that bar is the scene's sun. A drafting-tick leader line runs off it into a mono margin annotation. For real N (20+), collapse everything past the top 8-10 into a dimmed "long tail" cluster with one caption line ("+42 more, avg 3% of #1") instead of 50 equally loud bars.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG/CSS. No library needed at any realistic N.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">Lollipop chart</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>The same ranking as a bar chart, but a thin stem + a dot at the value instead of a filled bar — keeps the eye on the endpoint number, the standard declutter move once a bar list gets long.</p>
+        <p><span class="lbl">Exemplar</span>Datawrapper's own chart-type guidance names it explicitly as the bar-chart alternative for medium-to-long ranked lists; a recurring FiveThirtyEight convention.</p>
+        <p><span class="lbl">Ripple brick</span>A 1px line in var(--hair)/var(--dim) from the axis to the value, capped by a small circle (r=4-5px) — a FIXED radius, deliberately not the sqrt-area-true scaling reserved for part-to-whole circles. Only #1, or an entity crossing a named threshold, gets a filled, larger (r=6) dot in the reserved accent; everyone else stays hollow var(--muted). Best used as the deliberately quiet second scene right after a loud ordered-bar scene of the same data.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG/CSS, trivial.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Cleveland dot plot</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>One value per entity plotted as a position along a shared scale (not a length) — the most perceptually accurate way to compare rates, especially when values don't meaningfully start at zero.</p>
+        <p><span class="lbl">Exemplar</span>Pew Research Center's signature chart form for cross-country/cross-group comparisons; the Urban Institute's Data Visualization Style Guide explicitly recommends it over bar charts for this use.</p>
+        <p><span class="lbl">Ripple brick</span>Same row layout as the bar chart, but the full-row-width dashed var(--hair) divider doubles as the literal scale line the dot sits on. Mono entity label left; filled circle (r=5, var(--bp)) at its value. The outlier(s) that are the actual story get recolored into the reserved accent with a drafting-tick leader to a margin caption. Never implies a zero baseline the way a bar's length does.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG/CSS, identical cost to the bar chart.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Dumbbell / connected dot plot (range plot)</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Two values per entity — before/after, min/max, this-entity-vs-benchmark — as two dots joined by a line, down a ranked list of many entities. The many-entity sibling of the already-solved single before/after brick.</p>
+        <p><span class="lbl">Exemplar</span>The Urban Institute's style guide names it a signature form for policy-gap stories; The Economist and NYT have both run dumbbell charts for state-by-state or country-by-country gap stories.</p>
+        <p><span class="lbl">Ripple brick</span>Directly extends the existing repair-row pattern, reshaped from one hero pair into N stacked rows. Old value = hollow/dim circle (same tone as the struck "0%"); new value = filled circle in the reserved accent, joined by a plain connecting stem (the full arrowhead stays reserved for the single hero moment). Rows sorted by the SIZE of the gap — the only honest sort axis.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG/CSS — two circles plus one line per row, no library needed even at 50+ rows.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Slopegraph</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Rank or value at exactly two points for many entities at once, each entity as one line running left to right — crossing lines are the story (who leapfrogged whom).</p>
+        <p><span class="lbl">Exemplar</span>Invented and named by Edward Tufte (cancer survival rates by country); a recurring form in NYT and Reuters Graphics demographic/election reporting.</p>
+        <p><span class="lbl">Ripple brick</span>Two mono-labeled columns with N thin lines between them. The bulk render in var(--hair)/var(--dim) at 1px as quiet texture; the one or two lines that are the actual finding break into the reserved accent at 2px, labeled only there — the crossing pattern should be felt as a shape first, read as a name second. Sits close to the page's existing dotted-spine device at smaller scale.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG/CSS, hand-rollable at 50-100 entities.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">Bump chart (rank flow over time)</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>How each entity's RANK (not raw value) moves across three or more periods — a slopegraph generalized to many x-positions.</p>
+        <p><span class="lbl">Exemplar</span>FT's recurring Formula 1 championship-standings bump chart; a documented staple for sports-league table trackers (Datawrapper teaching example).</p>
+        <p><span class="lbl">Ripple brick</span>The slopegraph vocabulary extended to K columns, y-position always RANK not raw value, across K dashed guide-lines. Hard-cap full-color labeled lines to the handful the story is about; drop everyone else to opacity:.25 backdrop texture — "one sun, everyone else recedes" in its purest form.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG/CSS up to ~15-20 lines; past that a library (D3) earns its keep for collision-avoided labels.</p>
+      </div>
+
+      <div class="brickcard rel-low"><div class="brick-head"><span class="brick-name">Radar / spider chart</span><span class="relchip low">low</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Profiles a single entity across many attributes at once as spokes around a circle, so the resulting polygon shape becomes the entity's "signature."</p>
+        <p><span class="lbl">Exemplar</span>FIFA/EA Sports player-attribute radars are the most globally recognized use; no honest non-sports/gaming investigative-journalism exemplar found.</p>
+        <p><span class="lbl">Ripple brick</span>If ever used: dashed rings at 25/50/75/100%, one translucent filled polygon per entity. Flag clearly: overlaying two entities creates two competing polygons — two suns fighting one scene — and polygon AREA reads as magnitude even though it's an artifact of axis order, the opposite of the area-true honesty the circles already commit to.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Easy to build (simple trig) — the real difficulty is design justification, not code.</p>
+      </div>
+
+      <div class="brickcard rel-low"><div class="brick-head"><span class="brick-name">Parallel coordinates plot</span><span class="relchip low">low</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Many entities as one line each, crossing K parallel vertical axes — useful for spotting clusters/outliers across many dimensions at once. An analyst's exploration tool.</p>
+        <p><span class="lbl">Exemplar</span>Alfred Inselberg's formalization; real editorial use is genuinely rare — closer to Tableau/Plotly analyst dashboards than finished journalism.</p>
+        <p><span class="lbl">Ripple brick</span>If ever used: K vertical axes, one polyline per entity in var(--dim) low-opacity background, reserved accent held for the 1-3 entities that are the story.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Static rendering is plain SVG, but the real reason to reach for this chart is interactive axis-brushing, which genuinely wants D3/Observable Plot — treat any real build as a tooling job, not a static brick.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Small-multiples ranked grid (trellis/lattice)</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>N entities each get an identical miniature chart, arranged in a grid sorted by rank — lets a reader scan the WHOLE ranked field at once.</p>
+        <p><span class="lbl">Exemplar</span>The Pudding's grid-based visual essays; NYT's COVID-19 state-by-state tracker (a grid of 50 state mini-charts, sorted by case rate).</p>
+        <p><span class="lbl">Ripple brick</span>A CSS grid of small cells, each a miniature bar or lollipop, in reading order by rank — generalizes the page's existing tickwall grid into differentiated per-entity minis. Reserved accent highlights only the cell(s) the story is about. High-value specifically because it shows ALL entities at once, matching the "census, not subpoena" instinct.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG/CSS, the same primitive as the existing tick wall.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Leaderboard / ranked table with embedded bars</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>A numbered list where each row carries both a rank AND a small in-line bar — most useful when the reader wants to look up ONE specific entity.</p>
+        <p><span class="lbl">Exemplar</span>ProPublica's "Nonprofit Explorer" and ICIJ's Offshore Leaks searchable ranked databases.</p>
+        <p><span class="lbl">Ripple brick</span>Mono-numbered list (tabular-nums), entity name in Work Sans, embedded bar sized to a SHARED max across the whole table so bars stay comparable row to row. The #1 row — or, if interactive, the row matching the reader's own search — is the sun.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG/CSS for the row treatment; sortable/searchable needs a small amount of vanilla JS, matching how the page already handles the tick-wall and spine.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">Unit chart / ISOTYPE pictogram ranking</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Ranks entities by representing each one's count as a row of repeated small identical icons rather than a smooth bar — makes "how many actual things or people" concrete.</p>
+        <p><span class="lbl">Exemplar</span>Otto Neurath and Gerd Arntz's original ISOTYPE work — the literal foundational reference; modern NPR/Vox "each icon = 1,000 people" pictogram rankings.</p>
+        <p><span class="lbl">Ripple brick</span>The ranking-scale extension of the already-solved icon-array brick — same glyph-repeat + crop-remainder mechanic, stacked as N rows sorted by icon count. A strong "scale felt before read" device, but gets heavy past 8-12 rows.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG/CSS, same construction as the already-solved icon-array brick.</p>
+      </div>
+
+    </div>
+  </div>
+</details>
+
+<details class="family" id="fam-time-trend">
+  <summary><span class="num">02</span><span class="titleblock"><h3>Time / Trend</h3><span class="def">Not "how big is it" or "how does it split" — "is it getting better or worse, and exactly when did that change." Ripple's mission-critical version: did the harm get worse after a rule changed, a regulator stopped enforcing, or an exclusion period lapsed — and can I point at the exact date it happened.</span></span><span class="chev">▸</span></summary>
+  <div class="family-body">
+    <div class="priority-callout"><span class="lbl">Build first</span><p>The plain line chart (with the drafting-tick inflection-point leader and self-labeling terminus) and the sparkline. The line chart earns its place because almost every other entry here — step, cumulative, area, rebased — is the SAME scale math and path-builder with one data transform bolted on, so building it well effectively buys 4-5 chart types for the price of one. The sparkline is the cheapest possible build in the entire family and plugs directly into the ranking-table/leaderboard instinct, instantly adding a trend dimension to every future "many entities, one table" page.</p></div>
+    <details class="rules-toggle"><summary>Construction rules & brief fit for this family</summary><div class="rules-body">
+      <h4>Cross-cutting construction rules</h4>
+      <p>Every trend brick shares one job the three solved families don't have: pointing at a SPECIFIC MOMENT, not just plotting a shape — the drafting-tick leader plus tilted "Fig. 0X" caption is the mechanism that turns "here's a line" into "here's the year the rule changed." One reserved accent, always var(--rust) for the story series, everything else recedes to var(--ink-soft)/var(--muted)/var(--dim). One dominant shape per scene. No boxed plot area, no dense gridlines — a single dashed var(--hair) baseline does the axis's job. Self-labeling over legends: lines get their value/name at their own terminus. Y-axes stay honest and zero-baselined by default (never a silent truncated axis) — the rebased chart's "start=100" line is the one deliberate, always-disclosed exception. Density needs rest: a dense multi-series scene should be followed by a quiet single-number moment. Tabular-nums throughout.</p>
+      <h4>Fit against the music brief</h4>
+      <p>Arguably the most load-bearing unsolved family relative to Ripple's actual mission — "find the systemic pattern first" is inherently a claim about change over time. A trend line's shape is the purest available instance of "scale felt before read" (a steepening line or a filling area IS the finding, before any number is read); the one-sun rule maps onto "one rust line among many neutral peer lines"; the drafting-tick-leader convention is really the visual form of "point at the exact moment power failed someone." Small multiples, slope charts, and bump charts specifically show one flagged entity's line standing out against the full, honest field of every other entity measured the same way — not cherry-picked, just the loudest line in a fair lineup.</p>
+    </div></details>
+    <div class="brick-grid">
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Line chart (single- and multi-series, with inflection annotation)</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>How one or several measured quantities move over continuous time — the default "is it getting better or worse, and exactly when did it turn" chart.</p>
+        <p><span class="lbl">Exemplar</span>FT's John Burn-Murdoch COVID "trajectory" line charts; the econ-data line charts on FRED that most econ journalism traces back to.</p>
+        <p><span class="lbl">Ripple brick</span>Hand-rolled SVG polyline, one dashed var(--hair) baseline (no full grid). X-axis date ticks sparse (start/end/one inflection). The story series renders 2.5px in var(--rust); every comparison series renders 1px var(--ink-soft)/var(--muted) at 40-60% opacity — no legend box, each line self-labels at its terminal point. The inflection point gets a drafting-tick leader to a tilted "Fig. 0X" caption — this leader mechanism is the one piece of apparatus every other chart in the family reuses.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG/CSS. Only reach for a library for true pan/zoom/brush or 50+ simultaneous series.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Step chart (step-after line)</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>A quantity that jumps at discrete moments rather than drifting continuously — a rate or policy level that holds flat then jumps, because nothing happened between the jumps.</p>
+        <p><span class="lbl">Exemplar</span>FRED's effective federal-funds-rate chart; the same convention in WSJ/Bloomberg Fed-rate-history graphics and minimum-wage-by-state explainers (Vox, NYT).</p>
+        <p><span class="lbl">Ripple brick</span>Same scale math as the line chart, but built with explicit horizontal-then-vertical step-after segments — a genuinely different path-builder. Line in var(--rust) when the threshold IS the story; every jump gets its own vertical drafting-tick plus a date label, since the jump is the whole finding.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG/CSS, same scale code as the line chart, different path builder.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Cumulative total / running-sum chart</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Not "how much per period" but "how much total, ever, by this point" — turns a noisy per-period series into a smooth, monotonic account of accumulated harm.</p>
+        <p><span class="lbl">Exemplar</span>NYT's COVID tracker's daily-new vs. cumulative-total toggle; Reuters' running COVID death-toll graphics.</p>
+        <p><span class="lbl">Ripple brick</span>Same filled-area construction as the area chart, computed on a running-sum transform. Because it never goes down, it's a strong standalone "sun" shape for a hero scene with one terminal numeral. Pair with a small adjacent sparkline of the raw per-period rate, since a cumulative curve can keep climbing even while the rate is falling — an honesty risk worth flagging.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG/CSS, trivial running-sum preprocessing.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Area chart (filled single-series)</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>The line chart's magnitude-emphasized cousin — the filled area under the curve makes the "weight" of the number over time felt, not just its direction.</p>
+        <p><span class="lbl">Exemplar</span>NYT federal budget/deficit area charts; FRED/Calculated Risk recession-shaded GDP area charts.</p>
+        <p><span class="lbl">Ripple brick</span>SVG path closed to baseline, gradient fill from var(--rust) at ~35% opacity to transparent, solid 2px stroke on top edge. This fill IS the scene's one sun — never add a second filled series alongside it; a context series must render as an unfilled thin line only.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG/CSS, same scale math as the line chart plus a closed path.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">Rebased / indexed line chart</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Several series on wildly different scales, redrawn as "% change from a shared start point" so their trajectories become directly comparable.</p>
+        <p><span class="lbl">Exemplar</span>The Economist's constant "indexed, [year]=100" line charts; FT's rebased stock-performance charts.</p>
+        <p><span class="lbl">Ripple brick</span>Identical construction to the multi-line chart, preprocessed by dividing every series by its own first value ×100. A single mono "100" reference line at the shared start is the gut-check line. Needs an honesty caption every time, since rebasing can mislead when a small denominator swings wildly.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG/CSS, same code as the line chart with one preprocessing step.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">Stacked area chart</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>How the mix of categories inside a total shifts year over year — not just the total's size, but which slice is growing or shrinking.</p>
+        <p><span class="lbl">Exemplar</span>Pew Research's stacked-area charts of U.S. religious composition, 2007-2021; NYT's industry-composition-of-immigration stacked areas.</p>
+        <p><span class="lbl">Ripple brick</span>Stacked SVG paths from cumulative sums. All bands neutral (sage/teal/bp/muted/dim) except the one band under investigation, which gets var(--rust), a heavier top stroke, and an end-label. Pin the story band against the zero baseline so its true shape reads without being squeezed by neighbors' wobble.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG, no library at typical category counts, but stacking arithmetic needs care.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">Waterfall chart (bridge chart)</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>How a total walked from a starting value to an ending value through a sequence of positive/negative contributions — which piece moved it.</p>
+        <p><span class="lbl">Exemplar</span>A McKinsey-popularized business-reporting staple; WSJ and Bloomberg break a company's or agency's year-over-year budget change down piece by piece.</p>
+        <p><span class="lbl">Ripple brick</span>Sequential floating rects, each running from the prior total to the new total, connected by dashed step-connectors with a mono delta callout. Positive/improving in var(--sage), negative/harm in var(--rust). Start and end totals render as solid full-weight anchor bars, heavier than any of the small deltas.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG/CSS, running-sum arithmetic.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Sparkline</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>A tiny, axis-less inline trend line meant to sit in text or a table cell — "what's the shape of this number's history," no precision claimed.</p>
+        <p><span class="lbl">Exemplar</span>Edward Tufte's original sparkline concept; FT and WSJ market-data tables use them routinely; Datawrapper formalizes the same as a newsroom-table chart type.</p>
+        <p><span class="lbl">Ripple brick</span>One small inline polyline (~80x24px), no axes, var(--ink-soft) stroke. In a ranked list of many entities, the story entity's sparkline recolors var(--rust) so it pops — the one-sun rule applied at list scale. A small end-dot plus one mono numeral (current value or delta) keeps it from breaking "scale felt before read."</p>
+        <p class="buildnote"><span class="lbl">Build</span>The cheapest chart in the entire family — a good first proof the brick approach works.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Small multiples of line/area charts (trellis panel)</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>The same trend metric repeated in many small, identically-scaled panels, one per entity — trades one big precise chart for many small comparable ones.</p>
+        <p><span class="lbl">Exemplar</span>NYT's small-multiples grid of every state's COVID case curve; The Economist runs small-multiples line grids constantly for country comparisons; Tufte's "small multiple" concept.</p>
+        <p><span class="lbl">Ripple brick</span>A CSS grid of identical tiny panels (the sparkline brick tiled), all sharing one fixed scale — a hard requirement, since mismatched per-panel scales is the #1 way this lies. Panels default var(--ink-soft); the panel(s) matching the subject get a rust surface-tint plus stroke, jumping out before a label is read.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG/CSS, no library even at 50-100 panels; just enforce the shared-scale rule.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Slope chart (multi-entity, two-time-point)</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>For many entities at once, how each one's value moved between exactly two moments — ranks and crossovers become visible where paired bar charts would hide them.</p>
+        <p><span class="lbl">Exemplar</span>Tufte's original slopegraph (cancer survival by country); WSJ and Datawrapper's "Slope chart" preset for before/after policy comparisons.</p>
+        <p><span class="lbl">Ripple brick</span>The multi-entity cousin of the solved before/after brick — its exact grammar repeated as N short parallel segments. Most segments thin var(--ink-soft)/var(--dim); only the investigated entity full-weight var(--rust). Crossing lines are left uncleaned — an entity moving "the wrong way" is often the finding itself.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG/CSS, cheap even at 50-100 entities — mostly the existing before/after brick multiplied.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">Bump chart (rank-over-time)</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>How many entities' ordinal rank changes across a small number of time steps — built for "who overtook whom, and when," not "by how much."</p>
+        <p><span class="lbl">Exemplar</span>FiveThirtyEight's and The Pudding's sports power-ranking bump charts across a season; Datawrapper's "Bump chart" preset.</p>
+        <p><span class="lbl">Ripple brick</span>Same crossing-line construction as the slope chart, but fixed evenly-spaced rank-slots instead of value-scaled positions, and 3+ time-step columns. Only legible with a curated small N — the full 50+ entity census as a bump chart is noise, and needs a "top 10 plus the one we're chasing" cut.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG/CSS for under ~15-20 lines; past that, hand-computing a clean crossing layout hurts and a library earns its keep.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">Connected scatterplot</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Two variables plotted against each other with a line connecting the points in chronological order — reveals a trajectory or reversal neither a plain scatter nor a plain line chart shows alone.</p>
+        <p><span class="lbl">Exemplar</span>Hannah Fairfield's NYT graphic "Driving Shifts Into Reverse" (2010, gas prices vs. miles driven) — the canonical, most-cited instance.</p>
+        <p><span class="lbl">Ripple brick</span>SVG path connecting points in time order, structural var(--bp) stroke since the two axes do the storytelling. The most recent point and/or a sharp reversal gets promoted to var(--rust) with a year label — "the year it reversed" is usually the actual finding. An occasional feature chart, not a workhorse — genuinely harder for a cold reader to parse.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG/CSS, same primitives as the line chart.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Calendar heatmap</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>How a daily count distributes across the calendar — day-of-week clusters, seasonality, or the one specific date something spiked.</p>
+        <p><span class="lbl">Exemplar</span>The GitHub contributions graph is the most widely recognized instance generally; Reuters Graphics' calendar-heatmap incident-date treatments; Datawrapper's built-in "Calendar chart" type.</p>
+        <p><span class="lbl">Ripple brick</span>Grid of small squares (7 cols × ~52 rows), reusing the exact tickwall grid pattern. Empty days reuse the hollow-dashed "gone" tick state. Populated days scale on a single-hue ramp up to var(--rust) — deliberately not green, since sage already means "resolved/healthy" and this is almost always tracking something you don't want healthy.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain CSS grid + inline SVG rects, no library even at multi-year scale.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Interval / duration timeline (Gantt-style)</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Not a value changing over time, but WHEN something started and ended and how many such intervals overlap — durations, tenures, exclusion periods, laid end to end.</p>
+        <p><span class="lbl">Exemplar</span>ProPublica and Reuters have both used Gantt-style timelines for "how long each disciplinary case stayed open" or overlapping-tenure stories.</p>
+        <p><span class="lbl">Ripple brick</span>Horizontal rects, one row per entity/case, left edge = start, width = duration, on a shared date axis. A case still open gets a soft gradient fade to transparent instead of a hard stop — the drawing itself tells you it's unresolved before any label does. Rows sorted by duration (longest first) so the sorted shape reads as a rough distribution before any single row is read.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG/CSS, no library even at a few hundred rows.</p>
+      </div>
+
+      <div class="brickcard rel-low"><div class="brick-head"><span class="brick-name">Streamgraph (ThemeRiver)</span><span class="relchip low">low</span></div>
+        <p class="shows"><span class="lbl">Shows</span>The same composition-over-time data as a stacked area chart, centered/wiggled around a floating baseline instead of a flat zero-axis — optimized for organic swell/shrink shape over precise per-band values.</p>
+        <p><span class="lbl">Exemplar</span>Lee Byron and Martin Wattenberg's NYT interactive "The Ebb and Flow of Movies" (2008) — the piece that popularized the form.</p>
+        <p><span class="lbl">Ripple brick</span>Same stacked-path arithmetic, wiggle-offset baseline. Keep restrained versus the NYT rainbow original — neutral bands at soft opacity, one rust band for the story category, zero gridlines. Use sparingly, for a single "shape of an era's caseload mix" scene at most, never as primary evidence.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG for a handful of bands; the wiggle-baseline math gets hard past that — a real case where Observable Plot's stack-offset helpers save time.</p>
+      </div>
+
+      <div class="brickcard rel-low"><div class="brick-head"><span class="brick-name">Horizon chart</span><span class="relchip low">low</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Crams many time series into a small vertical footprint by folding amplitude into stacked color bands instead of chart height — trades precision for comparing dozens of series' shape on one screen.</p>
+        <p><span class="lbl">Exemplar</span>Studied in Heer, Kong & Agrawala's "Sizing the Horizon" (CHI 2009); popularized via D3 examples. Production use skews toward ops/monitoring dashboards, not newsroom journalism.</p>
+        <p><span class="lbl">Ripple brick</span>The one item actively cautioned against building: folding breaks "scale felt before read" (a folded band's true height doesn't mean what it looks like until you've read the fold count), and cramming 20+ series onto one screen fights the one-sun-per-scene rule directly.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Constructible but nontrivial; the honest recommendation is not to build it at all.</p>
+      </div>
+
+      <div class="brickcard rel-low"><div class="brick-head"><span class="brick-name">Candlestick / OHLC chart</span><span class="relchip low">low</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Four numbers at once (open/high/low/close) for a single period — a form built specifically for financial price-and-trading-range data.</p>
+        <p><span class="lbl">Exemplar</span>Every stock-market chart on Bloomberg, WSJ Markets, or Yahoo Finance.</p>
+        <p><span class="lbl">Ripple brick</span>Small rects with wicks, up-days sage, down-days rust — included here so finance-shaped chart types aren't silently skipped, not because there's a natural Ripple use today.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG/CSS if genuinely needed, but not worth pre-building against a hypothetical story.</p>
+      </div>
+
+    </div>
+  </div>
+</details>
+
+<details class="family" id="fam-distribution">
+  <summary><span class="num">03</span><span class="titleblock"><h3>Distribution</h3><span class="def">Given one measurable quantity across a population of things — dollars fined, days to resolution, violation counts — how are the values actually spread out? What's typical, how fat is the outlier tail, is the population secretly two populations, and — the sharpest, most investigative version — how much of the total is concentrated in a small handful of entities versus shared out evenly. This is the family that turns "here's one bad case" into "here's the shape of the whole thing."</span></span><span class="chev">▸</span></summary>
+  <div class="family-body">
+    <div class="priority-callout"><span class="lbl">Build first</span><p>The histogram. It's the cheapest possible extension of what already exists (the tickwall grid and drafting-tick leader-line vocabulary are already built), it needs zero new math beyond a GROUP BY, and it's the single most reusable brick across almost any future investigation. Second, the ECDF, with the Lorenz curve as a near-free variant on the same sort-and-cumulate code. This pairing earns its priority on mission fit as much as build cost: "X% of entities account for Y% of the harm" is close to Ripple's most repeated sentence, and both reuse the before/after family's already-solved "one gold accent, one leader line" discipline. Box plot and strip plot are close seconds — cheap, hand-rollable, and cover "compare groups" and "every case is a real receipt."</p></div>
+    <details class="rules-toggle"><summary>Construction rules & brief fit for this family</summary><div class="rules-body">
+      <h4>Cross-cutting construction rules</h4>
+      <p>Every brick shares one build discipline: precompute everything (bin counts, KDE values, quartiles, collision layouts, cumulative percentages) ahead of publish, then ship the page as plain, inert SVG. The scene's sun is always the shape of the spread itself (a bar silhouette, a curve, a swarm outline, a box) — never a floating numeral; numerals are always anchored to a specific mark via a drafting-tick leader line. Exactly ONE accent color is reserved per scene, almost always var(--rust) for the flagged group/bin/case or var(--gold) for a single measured line/threshold — every other bin, bar, dot, or lane stays neutral. This is the family most naturally at risk of violating "density needs rest" — several bricks (ridgeline, raincloud, beeswarm at high N) are inherently busy, so each needs a genuinely quiet scene immediately before or after it.</p>
+      <h4>Fit against the music brief</h4>
+      <p>The family most in tension with the brief's spare, one-sun-per-scene discipline, because by nature it wants to show MANY things at once. That tension is why this family needs the strictest color discipline of all ten. Done with restraint, it's one of the best matches for Ripple's actual voice — it can hold the entire honest population AND one individually-named, accent-colored case in the same auditable scene, the literal picture of "the case serves the map, never the other way around." The concentration-shaped bricks (ECDF, Lorenz curve, Pareto chart) fit especially tightly — they state "who holds a disproportionate share of the harm," close to a direct visual restatement of "recon on power."</p>
+    </div></details>
+    <div class="brick-grid">
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Histogram</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Bins a single numeric variable into equal-width intervals and counts how many cases fall in each — reveals shape (skew, modality), the typical value, and where the outlier tail begins.</p>
+        <p><span class="lbl">Exemplar</span>FiveThirtyEight's presidential-forecast pages publish a binned histogram of the ~20,000-40,000 simulated electoral-vote totals under the win-probability needle.</p>
+        <p><span class="lbl">Ripple brick</span>Built directly on the tickwall CSS grid, repurposed as bars: a flex row, one div per bin, height set inline proportional to count so scale is felt, never a floating numeral. The one bin that IS the finding gets solid var(--rust) with a top edge — the only accent, the scene's sun. A drafting-tick leader points off it to a Space Grotesk callout numeral, exactly like the hero scene's deaths-circle treatment.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Fully hand-rollable — bar heights are a trivial linear scale off pre-computed bin counts. No library at any realistic bin count.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">Frequency polygon</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>The same binned counts as a histogram, drawn as a connected line through each bin's midpoint — built so two or more group distributions can share one set of axes without bar-on-bar occlusion.</p>
+        <p><span class="lbl">Exemplar</span>Traces to Karl Pearson's original statistical graphics; still shows up in CDC MMWR "epi curve" overlays and Pew Research's overlaid subgroup comparisons.</p>
+        <p><span class="lbl">Ripple brick</span>Same bin data as the histogram, drawn as a smooth path through midpoints instead of bars. The investigative-subject group gets 2px var(--rust); comparison groups stay var(--dim) with a hairline fill beneath — never two saturated colors competing for the sun.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Trivial once the histogram's bin counts exist — same numbers, drawn as a path.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">Density curve (KDE)</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>A smoothed, continuous version of the histogram that removes bin-width arbitrariness and makes modality unmistakable — one hump versus two humps reads instantly as a silhouette.</p>
+        <p><span class="lbl">Exemplar</span>NPR Planet Money's "The Incredible Shrinking American Middle Class" (2015); Our World in Data's global income-distribution work showing the population splitting into distinct humps.</p>
+        <p><span class="lbl">Ripple brick</span>One smooth filled path, sage fill/stroke for the whole-population curve. If the finding is a SPLIT population, the trough between humps gets a single dashed rust drop-line and a mono callout ("the gap") — the smallest mark on the canvas, but by restraint it becomes the scene's sun.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Rendering is plain SVG, but the y-values require a real kernel-density computation ahead of time — budget real precompute time.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Cumulative distribution function / ECDF</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>For every possible value on the x-axis, what share of the population falls at or below it — turns "the top few dominate" into one readable S-curve.</p>
+        <p><span class="lbl">Exemplar</span>Our World in Data's poverty-line charts ("share of the world population living below $X/day"); Pew Research's standard construction for income-threshold shares.</p>
+        <p><span class="lbl">Ripple brick</span>One path, x = sorted value, y = cumulative % of N. Structural var(--bp) stroke. The one accented element is a single drafting-tick pair in var(--gold) dropped at the exact investigative threshold, with a numeral at the intersection — close to Ripple's signature sentence: "X% of entities accounted for Y% of harm."</p>
+        <p class="buildnote"><span class="lbl">Build</span>Fully hand-rollable — sort, compute a running percentage, draw the path. Arguably the cheapest-to-build, highest-payoff brick in the whole family.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Lorenz curve</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>A specialized cumulative curve for concentration specifically: cumulative share of the population (x) against cumulative share of the thing measured (y) — bowed away from the diagonal "spread evenly" line by exactly how concentrated it is.</p>
+        <p><span class="lbl">Exemplar</span>Max O. Lorenz (1905); underlies the Gini-coefficient graphics Our World in Data and The Economist reuse constantly for inequality reporting.</p>
+        <p><span class="lbl">Ripple brick</span>Same sort-and-cumulate mechanics as the ECDF, plus a dashed diagonal labeled "if it were spread evenly." The curve bows in var(--rust) — the one chart where rust is earned by the math itself, not a stylistic choice. The sliver area between diagonal and curve fills at low opacity, making the inequality literal instead of a bare coefficient.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG, same math as the ECDF plus one static diagonal — no library required.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Box plot (box-and-whisker)</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>The five-number summary (min, Q1, median, Q3, max, outliers) — the fastest way to compare the SPREAD of several groups on one shared axis.</p>
+        <p><span class="lbl">Exemplar</span>John Tukey's 1977 "Exploratory Data Analysis"; The Economist's Graphic Detail column regularly runs box-and-whisker comparisons of country- or state-level distributions.</p>
+        <p><span class="lbl">Ripple brick</span>A horizontal group per entity (reads left-to-right like the page's captions): a thin whisker, a surface-fill box, an ink median tick. Only the ONE flagged group gets its box filled rust with outlier dots as small rust circles — every other group stays neutral, so the eye finds the flagged group first even among ten stacked boxes.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Fully hand-rollable — quartiles computed ahead of publish. No library needed even for 10-20 groups.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">Violin plot</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>A box plot's group-comparison power combined with a density curve's shape detail — mirrors the KDE silhouette left-right so both summary stats AND bimodality are visible.</p>
+        <p><span class="lbl">Exemplar</span>Hintze & Nelson, "Violin Plots" (1998); adopted in sports-analytics data journalism and science journalism reporting clinical spreads.</p>
+        <p><span class="lbl">Ripple brick</span>Two mirrored KDE silhouette paths per group; the flagged group fills rust with a slim vertical box-plot core visible inside — drop the box and it becomes decoration instead of a chart. Sample size N printed below each stem, load-bearing because violin width lies about confidence when N is small.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Hand-rollable once KDE values are precomputed per group — same math budget as the density-curve brick, times group count.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Strip plot / dot plot (jittered)</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Every individual data point plotted as one mark along a single axis, with small deterministic jitter purely to stop overlap — no binning, no smoothing, the rawest honest view because each mark IS one real case.</p>
+        <p><span class="lbl">Exemplar</span>William S. Cleveland's dot plot work (1985); FiveThirtyEight/The Upshot's default "every team, every player, every state as one dot" whenever N is small enough that a bar would waste named information.</p>
+        <p><span class="lbl">Ripple brick</span>Small circles, one per case, positioned by real value with a light deterministic jitter (a fixed hash of the entity ID, not random, so the chart is reproducible on rebuild). The exact cases that ARE the story get full-opacity rust with a ring so they pop off the crowd. This is the chart type that most literally embodies "the case serves the map" — every mark is a real, individually-auditable entity.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Fully hand-rollable for realistic investigative N (tens to a few hundred). Above a few thousand points, canvas or D3-assisted render becomes the honest choice.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">Beeswarm plot</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>The same case-level honesty as a strip plot, but positions are packed by real collision-avoidance so the shape the dots pile into becomes a true density silhouette with zero overlap at any N.</p>
+        <p><span class="lbl">Exemplar</span>The Economist's Graphic Detail beeswarm comparisons of country-level rates; popularized via Mike Bostock's D3 examples.</p>
+        <p><span class="lbl">Ripple brick</span>Visually near-identical to the strip plot (same dots, same color split, same case-is-a-receipt leader-line callout) — the only difference is real force-directed or collision packing instead of a jitter hash.</p>
+        <p class="buildnote"><span class="lbl">Build</span>The family's clearest case for an actual library — hand-computing collision layout past ~30-40 points isn't reasonable manually. Use d3-force or Observable Plot's dodge transform once at build time, bake coordinates into static SVG.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">Ridgeline plot (joyplot)</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Stacks many overlapping density curves, one per group, offset and slightly overlapping vertically — built to show how a distribution's SHAPE changes across an ordered sequence, usually time.</p>
+        <p><span class="lbl">Exemplar</span>The name comes from Joy Division's "Unknown Pleasures" album cover; Spotify's data-visualization blog popularized the journalistic use in 2017.</p>
+        <p><span class="lbl">Ripple brick</span>A vertical stack of density silhouettes, offset by a fixed spacing step, in low-opacity neutrals so they read as calm sediment layers — except the ONE investigative lane, which gets rust fill and sits slightly forward. Visually dense by construction, so give it a full quiet scene with nothing else competing.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Same precompute burden as the density curve, multiplied by lanes — plain SVG paths, no library, but budget real design discipline.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">Population pyramid (mirrored histogram)</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Two histograms back-to-back around a shared vertical axis — classically age, with two subgroups mirrored left/right — so relative size and shape can be compared bin-by-bin in one glance.</p>
+        <p><span class="lbl">Exemplar</span>The standard demographic chart published by the U.S. Census Bureau; used narratively by Pew Research when comparing age structure across groups.</p>
+        <p><span class="lbl">Ripple brick</span>Literally two histogram bricks sharing one central dashed vertical spine, bars extending left and right. One side stays neutral; the other gets the ONE reserved accent — never both sides colored, which would break the single-sun rule.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Fully hand-rollable — two histogram builds mirrored around one axis, no library needed.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">Raincloud plot</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>A deliberate "show everything, hide nothing" hybrid: a half-density "cloud" above, raw individual points as a jittered "rain" below, and a thin box plot in between — summary shape, summary stats, and every raw case visible at once.</p>
+        <p><span class="lbl">Exemplar</span>"Raincloud plots: a multi-platform tool for robust data visualization" (Micah Allen et al., Wellcome Open Research, 2019); adoption concentrates in open-science/science-journalism contexts.</p>
+        <p><span class="lbl">Ripple brick</span>A direct stack of three already-designed bricks sharing one x-axis: density silhouette on top, box-plot core, strip-plot rain of individual dots below — the three layers share one gap and the same x-scale, nothing has to be re-derived.</p>
+        <p class="buildnote"><span class="lbl">Build</span>No new construction cost beyond the density, box, and strip bricks once they exist — closer to an editorial layout decision than new engineering.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Pareto chart</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Ranks discrete categories by frequency (descending bars) and overlays a cumulative-percentage line — answers "which few categories account for most of the total," the visual proof of an 80/20-style concentration among named categories.</p>
+        <p><span class="lbl">Exemplar</span>Vilfredo Pareto's original observation, turned into a quality-control chart by Joseph Juran; appears in state auditor and inspector-general reports whenever a piece ranks violation types or complaint categories by frequency.</p>
+        <p><span class="lbl">Ripple brick</span>Bars ranked descending, built like the histogram's tickwall bars, with named category labels tilted below. A cumulative line in var(--gold) climbs left to right with dot markers. A dashed guide at 80% lets the eye find where the line crosses it; only the bars at-or-left of that crossing promote from dim to rust — the chart recolors itself exactly at the point the claim is proven.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Fully hand-rollable — sort, compute cumulative percentage, draw bars plus one line. No library at any realistic category count.</p>
+      </div>
+
+      <div class="brickcard rel-low"><div class="brick-head"><span class="brick-name">Q-Q plot (quantile-quantile plot)</span><span class="relchip low">low</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Plots one distribution's quantiles against another's to test whether two sets of values are shaped the same way — a straight diagonal means yes; bends mean no.</p>
+        <p><span class="lbl">Exemplar</span>Wilk & Gnanadesikan (1968) — a statistician's diagnostic tool that essentially never appears in general-audience publication. No real mainstream data-journalism exemplar exists, and none should be invented.</p>
+        <p><span class="lbl">Ripple brick</span>N/A for reader-facing use. If ever needed internally to sanity-check a claim, a plain scatter against a dashed 45-degree reference line — but this belongs in an internal QA notebook, never a published scene. It answers "can I trust my own statistics," not "who got hurt," failing the mission's own test outright.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Trivial if ever needed, but skip entirely — treat as an internal-only QA aid at most.</p>
+      </div>
+
+    </div>
+  </div>
+</details>
+
+<details class="family" id="fam-correlation">
+  <summary><span class="num">04</span><span class="titleblock"><h3>Correlation Between Two or More Variables</h3><span class="def">Do two (or more) measured things move together across a set of entities — and if that relationship is real, how strong is it, who sits at the extreme, and does the pattern hold or break down for one flagged case? This is the family that turns "X happened AND Y happened" into "X happening predicts Y happening."</span></span><span class="chev">▸</span></summary>
+  <div class="family-body">
+    <div class="priority-callout"><span class="lbl">Build first</span><p>The scatter plot, then the quadrant chart. Scatter is the base engine — axis construction, the field/flagged-entity color split, the trend-line leader-line annotation — that bubble chart, connected scatterplot, and quadrant chart all reuse directly, so building it once effectively unlocks three more chart types at low marginal cost. Quadrant chart is second, not fourth, because it's nearly free once scatter exists (two divider lines and four plain-language labels) and converts a correlation into a named, plain-words accusation ("who's getting away with it") — the accountability-journalism framing the mission calls for.</p></div>
+    <details class="rules-toggle"><summary>Construction rules & brief fit for this family</summary><div class="rules-body">
+      <h4>Cross-cutting construction rules</h4>
+      <p>Every chart here inherently shows MANY entities or MANY variables at once, which fights directly against "one sun per scene." The fix that applies everywhere: split every population into "the field" (translucent, neutral, never more than ~.55 opacity, no individual labels) and "the flagged one/few" (full-opacity rust, individually labeled with a drafting-tick leader) — almost nothing in this family should render every entity at equal visual weight. Reuse existing primitives rather than inventing new ones: the area-true circle math becomes the bubble-size channel; the tickwall becomes marginal rugs. Axes are always hairlines, never gridlines. Never introduce a second accent color for "positive vs negative correlation" — map relationship STRENGTH to the one reserved accent's intensity, reserve rust only for the specific pair/entity that is the actual finding.</p>
+      <h4>Fit against the music brief</h4>
+      <p>A strong structural fit for Ripple's mechanism-first method — "as inspections dropped, injuries rose" is a correlation chart wearing investigative-journalism language. Honest caveat: only about half this family (scatter, bubble, connected scatterplot, quadrant) is realistically reader-facing; the other half (correlation matrix, SPLOM, parallel coordinates, radar) is an investigator screening tool that belongs in Playground, not on a finished page. Build the reader-facing half first; treat the workbench half as tooling for Chris himself, not content for a page.</p>
+    </div></details>
+    <div class="brick-grid">
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Scatter plot (with trend line and/or marginal rugs)</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Plots every entity as one point at (X,Y) so the reader sees, all at once, whether two measured things move together — and the actual shape of the relationship, not just a coefficient.</p>
+        <p><span class="lbl">Exemplar</span>Anscombe's Quartet (1973) is the field's own classic proof you must plot the points, not just compute a correlation. NYT Upshot's "Some Colleges Have More Students From the Top 1 Percent Than the Bottom 60" (2017) scattered parents'-income percentile against student earnings, college by college.</p>
+        <p><span class="lbl">Ripple brick</span>Points at var(--bp) ~.55 opacity for the whole unremarkable population — the "planets" half of sun/planets. Exactly one (or a small named few) flagged entity gets a larger rust-filled point — the sun. An optional trend line is a single thin dashed line (never a thick regression band), annotated with a drafting-tick leader to a mono caption ("as inspections drop, injuries climb"). Marginal rugs reuse the existing tickwall vocabulary instead of a histogram.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain hand-rolled SVG/CSS, trivial at hundreds-to-low-thousands of entities. Above a few thousand raw points, canvas/WebGL or a hexbin density chart is more honest than raw SVG nodes.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Bubble chart</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>A scatter plot with a third quantity riding on point size — shows a relationship while also showing which entities matter most by scale.</p>
+        <p><span class="lbl">Exemplar</span>Hans Rosling / Gapminder's "Wealth & Health of Nations" — income vs. life expectancy, bubble size = population, popularized via "The Joy of Stats" (2010).</p>
+        <p><span class="lbl">Ripple brick</span>Directly reuses the part-to-whole family's area-true math (r = k·√(value/reference)), just plotted at an (x,y) position instead of stacked. Cap the palette at two categories max; exactly one flagged bubble filled solid rust as the scene's sun. Keeps the size mismatch honest — a 3-facility operator next to a 300-facility chain shouldn't be drawn as equal dots.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG/CSS, comfortable at dozens to low hundreds of bubbles. Overlapping bubbles past that is a design problem no library fixes either — the fix is fewer, better-chosen entities.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">Connected scatterplot</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>The same two variables as a scatter, but for ONE entity/system tracked across time, with each time-step's point joined in sequence — the reader watches the relationship itself evolve.</p>
+        <p><span class="lbl">Exemplar</span>Hannah Fairfield's NYT "Driving Shifts Into Reverse" (2009); the Fed's Phillips Curve charts (unemployment vs. inflation, connected by quarter).</p>
+        <p><span class="lbl">Ripple brick</span>A single path of small circles joined by a thin SOLID line — the one deliberate exception to the usual dashed-line convention, since a solid connecting line reads as "sequence to trace." Start point is open/dim; the end point — almost always the finding — becomes the filled rust sun-circle with a leader to a mono annotation.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Pure SVG/CSS, mechanically simpler than it looks — a scatter plot's points given a drawing order.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Quadrant chart (2×2 framed scatter)</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>A scatter plot split by two threshold lines into four named cells — sorts every entity into a plain-language bucket like "spends a lot, still fails" rather than leaving the reader to eyeball a diffuse cloud.</p>
+        <p><span class="lbl">Exemplar</span>The Boston Consulting Group's Growth-Share Matrix; The Economist and FT regularly publish accountability-journalism 2x2s (e.g. "vaccination rate vs. excess deaths").</p>
+        <p><span class="lbl">Ripple brick</span>Identical to the scatter brick, plus two dashed divider lines at the meaningful threshold. Each cell gets one short plain-words mono label in the corner ("MORE MONEY, MORE HARM" — the Beer Rule applies to chart labels too). Only the quadrant holding the finding gets a faint radial rust wash behind it, echoing the hero's radial-gradient sun treatment.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Pure SVG/CSS — literally the scatter brick plus two lines and four text labels, essentially free.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">Correlation matrix / heatmap (correlogram)</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>A grid of many variables against each other, each cell colored by how strongly that pair moves together — an overview of ALL pairwise relationships at once.</p>
+        <p><span class="lbl">Exemplar</span>FiveThirtyEight's "Ultimate Halloween Candy Power Ranking" (2017) published a correlation table of candy attributes; the "correlogram" is standard in the R/ggplot2 world.</p>
+        <p><span class="lbl">Ripple brick</span>An HTML/CSS grid, not SVG — cells shaded from bg (no relationship) to the ONE reserved accent at full saturation (strong relationship) — deliberately breaking from a diverging red/blue scale, which would smuggle a second accent color in. More Chris's own screening tool than a reader-facing scene — a grid of twenty coefficients is the opposite of "one dominant shape the eye lands on first."</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain CSS grid, fully hand-rollable, trivial even at 20x20 variables.</p>
+      </div>
+
+      <div class="brickcard rel-low"><div class="brick-head"><span class="brick-name">Scatter plot matrix (SPLOM)</span><span class="relchip low">low</span></div>
+        <p class="shows"><span class="lbl">Shows</span>A grid of small scatter plots, one per pair of variables, showing the raw data cloud for every pair — an honesty check against Anscombe's-Quartet-style traps a single coefficient can hide.</p>
+        <p><span class="lbl">Exemplar</span>Traced to Tukey, formalized by Cleveland (1985); the modern reference is Observable Plot's SPLOM example. Real newsroom-published use is rare — mostly a backroom tool.</p>
+        <p><span class="lbl">Ripple brick</span>An NxN grid of thumbnail scatter bricks, stripped-down axes. Should ship undecorated — no accent, no flagged sun — because by definition it has N little scenes, which structurally cannot satisfy "one sun per scene" at the whole-grid level. Internal review tool, not a reader-facing scene.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Hand SVG/CSS fine at small N (4-6 variables); past ~8 it's an information-density problem no library fixes either.</p>
+      </div>
+
+      <div class="brickcard rel-low"><div class="brick-head"><span class="brick-name">Parallel coordinates</span><span class="relchip low">low</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Many variables as parallel vertical axes, each entity drawn as one line crossing all of them — lets the reader spot entities sharing a similar multi-dimensional profile.</p>
+        <p><span class="lbl">Exemplar</span>Alfred Inselberg, mid-1980s; the standard reference is Kai Chang's d3.parcoords. No marquee NYT/Reuters/Economist/ICIJ story built around one could be found — that thinness of real editorial use is the honest finding, not a gap in the search.</p>
+        <p><span class="lbl">Ripple brick</span>N vertical axes; every ordinary entity a thin polyline at low opacity so the mass reads as neutral "weather." Exactly one flagged entity's line renders full-opacity rust — the only way this chart type can honor "one sun per scene" at all.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Mechanically trivial SVG/CSS — the real barrier isn't construction difficulty, it's whether this is ever the right call for a reader-facing scene at all.</p>
+      </div>
+
+      <div class="brickcard rel-low"><div class="brick-head"><span class="brick-name">Radar / spider chart</span><span class="relchip low">low</span></div>
+        <p class="shows"><span class="lbl">Shows</span>A small number of entities compared across several named dimensions at once, each as one polygon meant to be read at a glance. Borderline-relevant to correlation proper — really a multivariate-profile comparison, grouped here with parallel coordinates for completeness.</p>
+        <p><span class="lbl">Exemplar</span>Common in sports scouting (FiveThirtyEight and The Athletic player radar charts) and corporate BI dashboards.</p>
+        <p><span class="lbl">Ripple brick</span>If ever used: hexagon/pentagon of hairline spokes, one entity as a filled rust polygon, never more than two overlapping shapes or the read collapses.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Trivial plain SVG — but constructibility was never the blocker; appropriateness is, and it doesn't clear that bar. Actively caution against building this one — apparent "area" is an artifact of axis ordering, a bad match for a platform whose entire discipline is an honest map.</p>
+      </div>
+
+    </div>
+  </div>
+</details>
+
+<details class="family" id="fam-geography">
+  <summary><span class="num">05</span><span class="titleblock"><h3>Geography / Where</h3><span class="def">Does WHERE something happens carry the pattern? This family answers whether harm, access, oversight, or power is concentrated in specific places, unevenly distributed across a map, or moving between places — questions only answerable because the unit of analysis is literally a location, not a name or a date.</span></span><span class="chev">▸</span></summary>
+  <div class="family-body">
+    <div class="priority-callout"><span class="lbl">Build first</span><p>Before any single chart type, there's a one-time prerequisite: a reusable, simplified, blueprint-blue basemap outline (start with U.S. states — 51 paths is tractable). Once that exists, build choropleth, then proportional-symbol map. Choropleth because it's the single most standard "geographic inequality" shape in accountability journalism. Proportional-symbol second because it reuses the EXACT area-true circle formula already solved for part-to-whole, just re-plotted onto real coordinates. Tile-grid map is a near-free bonus third build — no geometry export needed, and it solves the real "small but important states disappearing" problem. Hold off on cartogram, flow map, hex-bin, bivariate choropleth, and isochrone until a real investigation's dataset specifically calls for them.</p></div>
+    <details class="rules-toggle"><summary>Construction rules & brief fit for this family</summary><div class="rules-body">
+      <h4>Cross-cutting construction rules</h4>
+      <p>Every map should read as a technical drafting exhibit on the same dark table as the rest of the page, never a bolted-on GIS widget. Basemap = schematic, not GIS render — a thin blueprint-blue stroke, fill:none, drawn like tracing paper, never a filled multi-colored map-service render. Geometry is always pre-baked — no live projection or tile library runs at runtime, matching the platform-wide build-time-not-runtime rule; a one-time script exports static SVG paths once, aggressively simplified (these are exhibits, not navigable maps). One accent still governs the data layer even though the basemap is structural blue — sequential magnitude is always a single-hue opacity ramp of the one reserved accent, never a diverging "jet" scale. One sun per scene, geographically — exactly one dominant mark the eye lands on first. Annotation reuses the existing grammar — dashed leader lines with drafting ticks, kicked to mono margin captions, no inline map labels, no hover-only tooltips.</p>
+      <h4>Fit against the music brief</h4>
+      <p>Fits tightly for most chart types, because "where" data mostly reuses tools already solved (area-true circles for proportional-symbol and Dorling cartograms, single-hue opacity ramps, the existing dashed-leader-line annotation grammar) rather than inventing new visual grammar. The real friction points: a bivariate choropleth is inherently two-channel (resolved by pairing the accent with neutral structural blue rather than adding a rainbow), and a fully contiguous distorted cartogram or a live-tile-service map would both read as an imported GIS tool unless the basemap stays a thin schematic line and distortion stays in the gentler Dorling-circle register.</p>
+    </div></details>
+    <div class="brick-grid">
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Locator / Pin Map</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Exact point location(s) of a specific facility, incident, address, or entity — the "here, precisely" register, proof that a systemic finding is grounded in a real, checkable place.</p>
+        <p><span class="lbl">Exemplar</span>John Snow's 1854 Broad Street cholera map is the canonical ancestor of every incident-locator map in journalism; ICIJ's Offshore Leaks / Pandora Papers interactive maps pin shell-company addresses.</p>
+        <p><span class="lbl">Ripple brick</span>One static blueprint-blue outline authored once as a reusable path that every point brick in this family reuses. Each located point is a small filled circle in the reserved accent, with the same dashed leader-line-plus-drafting-tick already used in the hero graphic, kicked out to a mono margin caption. With multiple points, most render small and muted while exactly one point — the sun — gets full accent color and a labeled leader.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Fully hand-rolled SVG/CSS. The only non-trivial step is producing the reusable outline once; after that, plotting points is pure static arithmetic.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Dot-Density Map</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Raw, unaggregated count of individual events or people scattered across geography — one dot equals one (or a fixed N) real occurrence(s), deliberately un-normalized so physical volume of harm is felt.</p>
+        <p><span class="lbl">Exemplar</span>The New York Times' county-level presidential-election dot-density maps — a direct descendant of Snow's cholera map, where each dot was one death.</p>
+        <p><span class="lbl">Ripple brick</span>Same reusable outline. Dots are tiny circles in the reserved accent at reduced opacity so overlapping dots darken naturally where density is real — an honest, un-smoothed texture. Placement computed ONCE at build time (point-in-polygon sampling weighted by each region's real count), baked into a fixed cx/cy list.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Mostly plain SVG/CSS, but dot-placement math is a genuine one-time build-time script — the output is static markup.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Proportional-Symbol Map (graduated symbol map)</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Magnitude of a value AT specific point locations, size-encoded — answers "which of these named places has the most/least X," fusing "where" with the already-solved area-true circle math.</p>
+        <p><span class="lbl">Exemplar</span>Reuters Graphics' proportional-symbol maps of COVID case counts by country/state; The Economist's graduated-symbol maps of military spending or refugee populations.</p>
+        <p><span class="lbl">Ripple brick</span>Reuses the reusable outline plus the exact area-true formula already established, just positioned at real coordinates. Fill in the reserved accent for values that matter, stroke-only ring for smaller/context values — mirroring the existing filled-circle-vs-outline-ring distinction. The largest circle is the sun.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Fully hand-rolled SVG/CSS, reusing existing math and outline — the cheapest genuinely new map brick.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Choropleth Map</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>A rate or intensity value normalized per region, encoded as fill shade — "which places are worst, adjusted for size/population," the standard geographic-inequality chart.</p>
+        <p><span class="lbl">Exemplar</span>The Economist's excess-mortality choropleth maps; the standard-bearer across nearly every outlet's election, health, and policy coverage.</p>
+        <p><span class="lbl">Ripple brick</span>The reusable outline, every region filled using a SINGLE-HUE opacity ramp of the ONE reserved accent instead of a diverging or multi-hue scale — a real departure from typical practice, but required by the "everything neutral except the one thing that matters" rule. The single worst region gets full-opacity fill and a leader-line callout; every other region is pure shade, unlabeled.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG/CSS at runtime; the only real cost is the ONE-TIME geometry export.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">Bivariate Choropleth Map</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Two variables at once, per region, via a combined color grid — "where is the danger BOTH high and unpoliced," a genuinely two-dimensional accountability question.</p>
+        <p><span class="lbl">Exemplar</span>Joshua Stevens' widely cited "How to Make a Bivariate Choropleth Map"; operationalized by the Urban Institute's bivariate-mapping guidance.</p>
+        <p><span class="lbl">Ripple brick</span>The one map type that genuinely strains the one-accent rule, handled honestly: a 3×3 grid from the investigation's ONE reserved accent crossed with the neutral structural blue as the SECOND axis, rather than an unrelated second hue. The legend is a literal small 3×3 grid of tiny squares near the map, styled as another mono annotation block.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG/CSS — no new rendering technology, just a build-time step bucketing each region into one of 9 classes.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">Cartogram (Dorling circle variant preferred)</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Distorts region size to reflect a data value rather than true land area — "does this look different once the map stops lying about which places matter," correcting the "big empty state visually dominates" problem.</p>
+        <p><span class="lbl">Exemplar</span>FiveThirtyEight's cartogram-style election reweighting; the Washington Post's Dorling-style circle cartograms for county-level COVID case-count maps.</p>
+        <p><span class="lbl">Ripple brick</span>Favor the Dorling (circle) variant over a fully contiguous distorted shape — literally the same area-true circle math from part-to-whole, one circle per region near its true centroid. A fully contiguous cartogram reads as unfamiliar or gimmicky to a general reader; Dorling is the pragmatic middle ground for the drafting-table aesthetic.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Dorling: plain SVG/CSS plus a small one-time decluttering pass. A TRUE contiguous cartogram needs a real algorithm (e.g. Gastner-Newman diffusion) run once at build time; only bake the result into static SVG afterward.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">Flow Map</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Movement or transfer BETWEEN places — money, people, goods, permits — "where did it come from and where did it go," turning geography into a directed network.</p>
+        <p><span class="lbl">Exemplar</span>Charles Minard's 1869 map of Napoleon's Russian campaign is the canonical historical flow map; Reuters Graphics' 2022 flow maps of Ukrainian refugee movements.</p>
+        <p><span class="lbl">Ripple brick</span>The reusable outline as background. Each flow is a hand-authored quadratic bezier arcing between origin and destination in the reserved accent, stroke-width scaled to volume, tapered toward the destination to imply direction. Only the top few flows that matter render in full color; the single biggest flow is the sun.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG/CSS for a handful to a few dozen highlighted flows — hand-authored curves are already in the vocabulary. Only breaks down at true network scale, where D3 edge-bundling becomes necessary.</p>
+      </div>
+
+      <div class="brickcard rel-low"><div class="brick-head"><span class="brick-name">Hex-Bin Map</span><span class="relchip low">low</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Smooths a dense, noisy cloud of individual point locations into a grid of equal-area hexagonal cells shaded by count/density — for when there are too many raw points to show individually without blurring into a smear.</p>
+        <p><span class="lbl">Exemplar</span>Popularized broadly through Uber's open-source H3 grid system; standard across ride-share pickup-density showcases and dense GPS-ping reporting.</p>
+        <p><span class="lbl">Ripple brick</span>The reusable outline as a faint reference frame. Hexagon cells tiled in a regular grid, filled at an opacity mapped from bin count — the same single-hue-ramp rule as the choropleth. Most of Ripple's source material is discrete government/corporate record data at moderate row counts, not raw continuous pings, so the overplotting problem hex-bin solves will come up less often.</p>
+        <p class="buildnote"><span class="lbl">Build</span>The binning itself is a real computation, best done in SQL/Python at build time; once binned, rendering is plain, cheap SVG/CSS.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Tile-Grid Map (equal-unit grid map)</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Replaces true geography with one equal-size cell per region laid out in a schematic grid approximating real relative position — answers the choropleth's biggest limitation, a small state with a real problem visually vanishing next to an empty giant one.</p>
+        <p><span class="lbl">Exemplar</span>NPR's well-known 2016 election-results grid map replaced a standard shaded state choropleth with equal-size hexagons/squares, one per state.</p>
+        <p><span class="lbl">Ripple brick</span>A grid of rects/hexagons, one cell per state, positioned from a small fixed lookup table of grid coordinates. Filled with the same accent opacity ramp as the choropleth, with a two-letter mono code centered in each cell — the one map type where an in-cell label is appropriate, since there's no real geography left to annotate against.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Fully hand-rolled SVG/CSS, genuinely the easiest chart to build in this family — a fixed ~50-cell lookup table, not a geometry export project.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Isochrone / Travel-Time (Access) Map</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Draws a boundary around everywhere reachable from a point within a fixed travel time — "who can actually reach this," converting a straight-line-distance claim into a real access claim.</p>
+        <p><span class="lbl">Exemplar</span>The Trust for Public Land's ParkScore mapping of 10-minute walk access to a park; CityLab/Bloomberg "care desert" mapping projects.</p>
+        <p><span class="lbl">Ripple brick</span>The reusable outline as background, with soft-edged filled polygons in the reserved accent at low opacity for the reachable area, layered largest/palest to smallest/densest. The facility/service point is the sun; population OUTSIDE every ring gets a distinct treatment, since the whole point is what's left outside the shape. Echoes language Ripple already uses ("cut off from the people they happened to").</p>
+        <p class="buildnote"><span class="lbl">Build</span>NOT just SVG/CSS — the isochrone polygon is a real routing computation Ripple's warehouse doesn't natively hold, needing a one-time build-time call to a routing service. The hard part is data acquisition, not chart construction.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Small-Multiples Map Series</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>The SAME map repeated many times, one per category or time slice, so change over time becomes a scanning pattern across a grid of tiny identical maps rather than a single animated or overlaid mess.</p>
+        <p><span class="lbl">Exemplar</span>NYT's and The Pudding's recurring use of small-multiple map grids for change over time; the cartographic application of Tufte's "small multiples."</p>
+        <p><span class="lbl">Ripple brick</span>Reuse ONE lightweight basemap outline as an SVG symbol, instantiated repeatedly via use — avoids repeating path geometry N times. Each small map gets its own fill layer; all panels share one fixed color scale so they're honestly comparable. Exactly ONE panel (the worst year) breaks the uniform-size rule as the whole scene's sun.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Fully hand-rolled SVG/CSS. The symbol/use reuse trick keeps file size sane regardless of panel count.</p>
+      </div>
+
+    </div>
+  </div>
+</details>
+
+<details class="family" id="fam-network">
+  <summary><span class="num">06</span><span class="titleblock"><h3>Network / Relationships Between Entities</h3><span class="def">How are these entities tied to each other, and through what structure — direct ties, shared affiliations, or ownership/control chains — such that a reader can see who sits at the center of a web, who controls whom, and which "separate" entities turn out to be the same hand. Close to the literal center of the recon-on-power mission.</span></span><span class="chev">▸</span></summary>
+  <div class="family-body">
+    <div class="priority-callout"><span class="lbl">Build first</span><p>The org chart/hierarchy tree and the ego network. Both are fully hand-rollable plain SVG/CSS with no build-time library dependency, both slot directly into Ripple's most common story shape — one flagged subject with either a chain of control below them or a web of direct ties around them — and both consume the existing brick vocabulary (sqrt-area sizing, dashed hairlines, drafting-tick leaders, tilted captions) almost entirely off the shelf. The general force-directed node-link graph is equally high-relevance but costs more (needs a real layout algorithm at build time) — a strong second-wave build once the two priority bricks prove the family's visual language works.</p></div>
+    <details class="rules-toggle"><summary>Construction rules & brief fit for this family</summary><div class="rules-body">
+      <h4>Cross-cutting construction rules</h4>
+      <p>Reuse, don't reinvent, across all nine bricks: the reserved accent fills or strokes ONLY flagged entities/ties — the neutral register carries everything ordinary. A family-wide shape grammar: circles = people/general entities, rectangles = corporate/legal entities — set once and held constant everywhere so a reader trained on one page reads the next one for free. Node/segment size always encodes a real countable quantity via the SAME sqrt-area rule already established for part-to-whole circles. One sun per scene and per page — in ego-network and org-chart bricks the sun is structurally guaranteed (the center/root IS the subject); in general node-link, chord, matrix, and dendrogram bricks the sun has to be manufactured through size + accent + label. All position-determining math happens at BUILD TIME in an offline prep script, emitting plain coordinates/paths into static SVG — no runtime physics simulation ships to the browser.</p>
+      <h4>Fit against the music brief</h4>
+      <p>Sits closer to the center of the creative brief than any other family — the brief's whole premise is "recon on power," and a network chart is the literal visual grammar of a power structure. The existing token/discipline system transfers onto network bricks almost without modification, which says the original three families were built on primitives general enough to carry a fourth. The one real gap the brief doesn't yet cover: a shape grammar (circle vs. rectangle) to distinguish person-entities from corporate-entities, which this family needs and which the three solved families never had to invent since they weren't drawing multiple entities at once.</p>
+    </div></details>
+    <div class="brick-grid">
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Node-link diagram / force-directed graph (sociogram)</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Who is tied to whom across a whole set of entities, and how the set clusters — reveals hubs and communities. The general-purpose network chart.</p>
+        <p><span class="lbl">Exemplar</span>ICIJ's "Power Players" tool from the Panama Papers; Bloomberg's "Connected China" (2012), a force-directed graph of CCP princelings' ties; LittleSis.org's power-mapping diagrams. The academic root term is "sociogram," coined by Jacob Moreno in the 1930s.</p>
+        <p><span class="lbl">Ripple brick</span>Positions computed once at BUILD TIME (spring_layout or d3-force run offline) and baked into static SVG — no live physics in the browser. Nodes sized by degree using the same area-true sqrt scale already established. Ordinary nodes fill ink-soft; the reserved accent fills ONLY flagged/implicated entities. The highest-degree node is forced to be the scene's sun — largest, near optical center, one of only a few labeled nodes; never label all nodes, that's how these become spaghetti.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Needs a real layout algorithm at build time — hand-rolling good node positions isn't practical past ~15 nodes. Once XY coordinates exist, rendering is plain SVG, no runtime library.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Ego network (radial hub-and-spoke, single-entity-centered)</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>All the direct ties of ONE named entity, radiating outward — "who does X know / who does X control," guaranteeing exactly one center.</p>
+        <p><span class="lbl">Exemplar</span>LittleSis.org's per-entity profile pages render exactly this. The "Kochtopus" diagram — a radial network of Koch-funded organizations, popularized in Greenpeace/DeSmogBlog reporting — is a classic accountability-journalism use.</p>
+        <p><span class="lbl">Ripple brick</span>Literal hub-and-spoke SVG, pure trig, no force simulation. Center circle = the investigated entity, the largest shape on the WHOLE PAGE, filled solid in the reserved accent — the one brick where the accent gets to be a fill rather than a sparing highlight, because the whole scene's point is "this is the subject." Spokes are dashed hairline rules radiating to small ink-soft circles sized via the sqrt-area rule. A good scroll-reveal candidate: spokes draw in sequentially — "the web appears."</p>
+        <p class="buildnote"><span class="lbl">Build</span>Fully hand-rollable plain SVG/CSS — spoke positions are even-angle trigonometry. A same-day build.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">Arc diagram</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Connections between entities arranged along a single ordered line, drawn as arcs above the line — good when entities have a natural linear order and one or two ties should stand out against it.</p>
+        <p><span class="lbl">Exemplar</span>Mike Bostock's canonical D3 arc diagram of character co-occurrence in Les Misérables; applied to legislative co-sponsorship networks ordered by ideology.</p>
+        <p><span class="lbl">Ripple brick</span>Entities on a single horizontal hairline baseline, ordered by a meaningful sort (dollar amount, date) always stated in a mono caption. Arcs drawn ABOVE the baseline only — never mirrored, keeping all visual weight in one register. Ordinary arcs stay hair/dim; the one or two flagged ties get the reserved accent — a single rust arc alone in a field of thin gray arcs is a strong, cheap sun moment.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Fully hand-rollable — arcs are simple semicircle-formula paths. No library needed if order and ties are precomputed with a small sort script.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">Chord diagram</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Total connection/flow volume between entities arranged around a circle — arcs sized by total volume, ribbons connecting them. Good for a SMALL set of entities.</p>
+        <p><span class="lbl">Exemplar</span>The widely-republished global migration flows chord diagram (Abel & Sander, Science 2014); The Economist and Bloomberg have used chord diagrams for trade/capital-flow stories.</p>
+        <p><span class="lbl">Ripple brick</span>Outer ring of arc segments sized by tie volume; ribbons at low opacity, tinted toward the sending entity if directional — capped low so overlapping ribbons stay legible against the dark background. The single largest ribbon is the manufactured sun. Cap entity count hard at roughly 8 arcs, or it becomes a hairball.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Needs real build-time geometry — reaching for d3-chord's layout module at build time (to emit static numbers) is more practical than reimplementing chord geometry by hand.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Adjacency matrix</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>A grid where rows and columns are the same entity list and a filled cell means a tie exists — the network-science alternative to node-link, specifically because it scales to dense networks where node-link collapses into a hairball.</p>
+        <p><span class="lbl">Exemplar</span>Standard since Jacques Bertin's "Semiology of Graphics" matrix-reordering technique; corporate-governance researchers studying interlocking directorates (the Mark Mizruchi tradition of board-interlock studies) have long used director-by-company matrices.</p>
+        <p><span class="lbl">Ripple brick</span>Plain CSS grid, not SVG — cheap and native. Empty cell nearly invisible against bg; filled cell ink-soft at low-medium opacity. Any row/column belonging to a flagged entity gets a full-row background wash in the reserved accent — the eye catches "this row is lit up" before counting individual cells. The densest row/column is reordered to position 1 via a simple clustering pass so related entities visually block together on the diagonal.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Fully hand-rollable — an HTML/CSS grid, no SVG, no library beyond a simple sort/reorder script. One of the easiest bricks in the whole family.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">Dendrogram (hierarchical cluster tree)</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>A branching tree where join height encodes how similar/how far removed two entities are — "how does this set cluster" when clustering is based on measured similarity, not known category membership.</p>
+        <p><span class="lbl">Exemplar</span>Canonical in bioinformatics as phylogenetic trees, not honestly a journalism example on its own. The applicable investigative use: ICIJ's Offshore Leaks explorer rendered ownership chains as branching trees.</p>
+        <p><span class="lbl">Ripple brick</span>Important honesty note: most Ripple "ownership chain" needs are CATEGORICAL (A owns B owns C) — that's really the org-chart brick, not a statistical dendrogram. A true dendrogram belongs where entities cluster by measured similarity (e.g. 40 nursing homes clustering by shared address/ownership pattern to expose a hidden corporate family). The join height where a flagged cluster forms gets a single accent-colored cut-line — that cut line is the scene's sun, not the tree shape around it.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Needs a real clustering algorithm at build time if used for genuine similarity dendrograms — not hand-rollable math. Rendering the resulting tree is plain SVG.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Org chart / hierarchy tree (top-down ownership or control)</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Strict top-down structure — parent owns/controls child, agency oversees sub-agency. The most literal "who controls whom" brick in the family.</p>
+        <p><span class="lbl">Exemplar</span>ProPublica's nursing-home ownership-chain graphics; Reuters/Bloomberg's 2017 charts mapping the Trump Organization's 500+ LLCs into a top-down tree; OCCRP's Kumu.io-based ownership-chain diagrams.</p>
+        <p><span class="lbl">Ripple brick</span>Right-angle elbow connectors (not curved — right angles read as structural/official) in blueprint blue. Each entity a RECTANGLE — establishing a family-wide shape grammar: circles = people, rectangles = corporate/legal entities. The ultimate parent/controller at top is the sun. Ownership percentage renders as a mono tag at a perpendicular tick mid-line. A long shell-company chain should be allowed to grow visually TALL, so the reader feels "that's a lot of layers" from sheer height before reading a layer count.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Fully hand-rollable plain SVG/CSS — simple recursive layout math, no library needed. One of the easiest and highest-value bricks in the family.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Bipartite / two-mode network</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Two distinct entity types where ties only ever run BETWEEN the two types, never within — rendered as two parallel columns, revealing shared affiliations.</p>
+        <p><span class="lbl">Exemplar</span>TheyRule.net (Josh On, 2001/2011) — purpose-built to map corporate board interlocks as a draggable two-mode network of directors and companies; OpenSecrets/FollowTheMoney's donor-to-candidate networks.</p>
+        <p><span class="lbl">Ripple brick</span>Two parallel columns — rectangles for organizations, circles for people, reusing the shape grammar from the org-chart brick. An entity appearing in more than one tie gets a larger node via the same sqrt-degree scaling, and if flagged, the reserved accent — sitting in the middle of a fan of lines, it becomes the obvious sun. Functionally a typed, two-column layout variant of the node-link brick.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Fully hand-rollable SVG/CSS — an even vertical distribution per side, no force simulation needed. Simpler to build than the general force-directed graph.</p>
+      </div>
+
+      <div class="brickcard rel-low"><div class="brick-head"><span class="brick-name">Hierarchical edge bundling</span><span class="relchip low">low</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Non-hierarchical relationship edges routed THROUGH an underlying tree so ties bundle along shared paths instead of crossing the canvas as independent straight lines.</p>
+        <p><span class="lbl">Exemplar</span>Danny Holten's 2006 IEEE InfoVis paper on software class hierarchies is the technique's namesake; popularized via D3's "flare" package-dependency example.</p>
+        <p><span class="lbl">Ripple brick</span>The lowest-priority, most technically demanding brick in the family — needs BOTH a meaningful underlying hierarchy AND a separate set of non-hierarchical edges to bundle, a fairly specific data shape Ripple may rarely produce. Included for completeness, not because it's likely to ship soon.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Needs real build-time algorithmic work — would lean on d3-hierarchy's bundle() at build time. Not a quick hand-roll.</p>
+      </div>
+
+    </div>
+  </div>
+</details>
+
+<details class="family" id="fam-flow-process">
+  <summary><span class="num">07</span><span class="titleblock"><h3>Flow / Process</h3><span class="def">As money, people, or cases move through an ordered sequence of stages, gates, or actors, where does it actually go, how much survives each gate, and where does the system quietly lose, redirect, or loop it back on itself? The mechanism of a process, not just its before/after headline.</span></span><span class="chev">▸</span></summary>
+  <div class="family-body">
+    <div class="priority-callout"><span class="lbl">Build first</span><p>Funnel chart first, Sankey diagram second. Funnel is a near-zero-risk build: a direct width-scaled extension of the "OF EVERY 100" band pattern that already exists on the live page, and attrition-through-a-system is the single most common story shape Ripple's subject matter produces. Sankey is second for build-leverage reasons — the most recognizable "flow of money/people" visual to any reader on sight, and its ribbon-drawing engine is reusable infrastructure that makes alluvial, parallel sets, and chord all cheap follow-on builds. Swimlane is the cheapest build by far (reuses ~80% existing code) and deserves an early slot too, but ranks third on mission grounds — it's a single-case receipt-carrier, not itself a systemic-pattern chart.</p></div>
+    <details class="rules-toggle"><summary>Construction rules & brief fit for this family</summary><div class="rules-body">
+      <h4>Cross-cutting construction rules</h4>
+      <p>Two structural engines cover almost the whole family: a shared bezier-ribbon routine (stack nodes by cumulative value, draw tapered links) powers Sankey, alluvial, parallel sets, and chord — build it once for Sankey and the other three get cheap. The page's already-built band + dashed-hairline-divider + spine-route components power funnel and swimlane almost directly, at near-zero incremental cost. Area/length/width is always the literal value encoding so scale is felt before any percent is read. Every chart singles out exactly ONE path, bar, loop, or ribbon as the finding in the reserved accent, while everything else recedes to neutral. Because Sankey, alluvial, and chord are the densest marks anywhere in the vocabulary, density/rest needs enforcing MORE aggressively here — a quiet single-stat band should immediately follow any of the three. Two named exceptions to the one-accent rule are documented rather than hidden: alluvial's multi-category ribbons and waterfall's binary up/down bars.</p>
+      <h4>Fit against the music brief</h4>
+      <p>Fits cleanly for seven of the nine types using the neutral-plus-one-accent register exactly as built. Two types (alluvial, waterfall) require an honest, documented bend of the one-accent rule to a fixed small categorical or binary set — flagged rather than smoothed over, per the brief's own demand for full truth over easy polish. The family's real risk against the brief is density: Sankey and chord diagrams are structurally the busiest marks Ripple would ever build, so density-needs-rest has to be applied harder here than anywhere else, and chord diagrams specifically should be capped in entity count rather than allowed to become a hairball.</p>
+    </div></details>
+    <div class="brick-grid">
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Sankey diagram</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>How a total quantity splits and re-splits across sequential stages, with the WIDTH of each path proportional to how much actually flowed down it — reveals both the dominant path and the leaks.</p>
+        <p><span class="lbl">Exemplar</span>Matthew Sankey's 1898 steam-engine energy diagram; Lawrence Livermore's annual U.S. energy flow chart; the IPCC AR6 (2022) global greenhouse-gas-flow Sankey. Directly on-mission: the opioid-settlement-money tracking shape (OpioidSettlementTracker.com / KFF Health News).</p>
+        <p><span class="lbl">Ripple brick</span>Nodes as thin vertical bars, height = value, area-true, same discipline as the existing circles. Links: cubic-bezier ribbons from cumulative-sum stacking. ALL ribbons render dim/low-opacity except the one path that is the actual finding, which gets the reserved accent at full opacity with a drafting-tick leader. The page's existing big-numeral brick sits beside it carrying the headline total, so the Sankey itself only carries proportion, not scale.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Genuinely hand-rollable for Ripple's realistic scale (2-4 stages, 3-8 nodes per stage) using cumulative-stacking math — no d3-sankey needed unless auto-layout for dozens of crossing-minimized nodes is ever required.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">Alluvial diagram</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>How the SAME tracked population's category membership shifts across fixed checkpoints over time — a constant-size cohort being re-sorted repeatedly, not a shrinking total splitting once.</p>
+        <p><span class="lbl">Exemplar</span>RawGraphs/DensityDesign's canonical Titanic survival-by-class/sex/age demo; NYT has run alluvial-style charts tracking how House/Senate seat composition shifted party control.</p>
+        <p><span class="lbl">Ripple brick</span>Same ribbon engine as Sankey, but every column has the SAME total height (population conserved), and ribbons are colored by CATEGORY — one of two honest, documented exceptions to the one-accent rule, using a fixed categorical set from the existing token palette. One ribbon-thread still gets a halo/leader-line callout as the investigation's actual finding, so there's still one sun inside a multi-color scene.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Hand-rollable for a small number of columns/categories reusing the Sankey ribbon code; gets harder as category count grows, where a library's algorithmic untangling earns its keep.</p>
+      </div>
+
+      <div class="brickcard rel-low"><div class="brick-head"><span class="brick-name">Parallel sets</span><span class="relchip low">low</span></div>
+        <p class="shows"><span class="lbl">Shows</span>How a population splits across several DIFFERENT categorical dimensions in a chosen sequence — not a time order, a variable order.</p>
+        <p><span class="lbl">Exemplar</span>Kosara, Bendix & Hauser's 2006 IEEE InfoVis paper "Parallel Sets"; most concretely a built-in Tableau chart type. No famous mainstream journalism piece built around it by name could be found.</p>
+        <p><span class="lbl">Ripple brick</span>Visually near-identical to the alluvial brick — same ribbon engine, same categorical colors — but each column represents a different VARIABLE, and column order becomes an explicit editorial choice. Nearly free once Sankey/alluvial exist, but reads more like an internal exploration tool than a publish-ready story graphic.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Same as alluvial — effectively free once that exists, not worth building standalone first.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Funnel chart</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>How many entered a process versus how many survived each successive, strictly narrowing stage — and which single stage produced the biggest drop.</p>
+        <p><span class="lbl">Exemplar</span>RAINN's widely reproduced "out of every 1,000 sexual assaults" criminal-justice attrition funnel; Vera Institute of Justice and Prison Policy Initiative incarceration/parole attrition funnels; the Marshall Project's "arrest to conviction" attrition graphics.</p>
+        <p><span class="lbl">Ripple brick</span>A stack of horizontal bars, NOT a triangular/trapezoid silhouette (wrong register for the blueprint aesthetic) — width literally proportional to count, stacked top to bottom. A direct extension of the page's already-built "OF EVERY 100 / 22 / 100" band pattern. Only the FINAL, smallest, most damning bar gets the full reserved accent.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain CSS/SVG, no library, trivially buildable — nearly identical in difficulty to a pattern that already exists on the live page.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Flowchart / process diagram</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>The actual sequence of steps and decision branches a case or dollar moves through, including where it forks — an explainer of mechanism, optionally weighted by how many cases took each branch.</p>
+        <p><span class="lbl">Exemplar</span>The universally recognized "How a Bill Becomes a Law" civics diagram. ICIJ's FinCEN Files (2020) published a process schematic of how a Suspicious Activity Report is filed and then mostly ignored by regulators — close to identical in intent to what this brick is for.</p>
+        <p><span class="lbl">Ripple brick</span>Sharp/minimal-radius rects (not rounded app-UI boxes), dashed leader-line connectors with a solid arrowhead swapped in for the perpendicular tick. Attach a case count or dollar amount to every branch wherever the data supports it, letting line thickness encode volume — a flowchart with zero attached quantities risks failing the mission's own "no human on the other end of the number" test.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Pure hand-rolled SVG — boxes, elbow connectors, text at explicit coordinates, the exact register as the existing hero SVG. No library needed at Ripple's realistic step-count.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">State transition diagram</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>The possible states an entity can be in, and how often it moves between them — including loops, an entity cycling back to a state it was already in, often the actual finding.</p>
+        <p><span class="lbl">Exemplar</span>The classic finite-state-automaton diagram from computer science/operations research. Closest real-world use: "revolving door"/repeat-violator reporting; more common as an analyst's working diagram than a polished news graphic.</p>
+        <p><span class="lbl">Ripple brick</span>Small circles/rects with uppercase mono state names, thin dashed edges labeled with transition counts. The ONE loop that is the finding gets the reserved accent, drawn as a real curved path returning to its own node, positioned slightly outside the main cluster — "this is the one that doesn't end." A strong candidate for "one sun at the whole-page scale."</p>
+        <p class="buildnote"><span class="lbl">Build</span>Hand-rolled SVG, straightforward for Ripple's realistic scale of 4-8 states. No library needed.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">Waterfall / bridge chart</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Starting from a known total, the sequence of additions and subtractions that arrive at a final total — and which single step drove most of the change.</p>
+        <p><span class="lbl">Exemplar</span>Home turf is corporate-earnings "EBITDA bridge" decks. The legitimate public-accountability version: federal-budget waterfall graphics (USAFacts, the Committee for a Responsible Federal Budget).</p>
+        <p><span class="lbl">Ripple brick</span>Floating bars along a shared baseline, each starting where the previous ended. One of two places the one-accent-color rule structurally bends: up-bars (additions) sage, down-bars (subtractions) rust — up-vs-down is inherently binary. Everything else stays neutral so the sage/rust pair reads as genuinely semantic, not decorative drift.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG rects with y from a running cumulative sum — essentially arithmetic plus rect tags, no library needed.</p>
+      </div>
+
+      <div class="brickcard rel-low"><div class="brick-head"><span class="brick-name">Chord diagram</span><span class="relchip low">low</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Between a set of entities, how much flows each-to-each in a many-to-many web, not a one-directional funnel-down.</p>
+        <p><span class="lbl">Exemplar</span>Circos (circos.ca), originally a genomics tool, is the technique's namesake; the Guardian Data Blog's global migration chord diagram (~2014) is the best-known journalism use.</p>
+        <p><span class="lbl">Ripple brick</span>Entities as arc segments sized by total flow, chords reusing the exact bezier-ribbon technique as Sankey. Cap entity count hard at roughly 8 arcs — most of Ripple's real questions are asymmetric (money from a few sources to many recipients), not genuinely symmetric webs, so this is a narrower slice than Sankey or funnel.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Hand-rollable for a small, capped entity count, but genuinely the most fiddly-by-hand brick in the family — past the cap, d3-chord is the honest choice.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Swimlane / process-timeline diagram</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>As a single case moves through TIME, which actor or desk it's on at each point, showing both sequence and duration/stall — whose desk it sat on, and for how long.</p>
+        <p><span class="lbl">Exemplar</span>The formal technique is "swimlane diagram" (Lean/Six Sigma origin). The WSJ's 2019 Boeing 737 MAX coverage ran a step-by-step regulatory process/timeline graphic showing exactly how long the FAA's approval review took at each stage.</p>
+        <p><span class="lbl">Ripple brick</span>Horizontal lanes reusing the page's EXISTING band component and its dashed-hairline divider verbatim — literally the same structure already used for the three coda bands on the live page. A single dotted path travels through the lanes in time order, reusing the already-coded spine-drawing function almost unchanged. Stage duration is literal horizontal distance — a long stall is a long visual gap, felt physically with no legend required.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG/CSS/JS, no library — the cheapest brick to build in this family, since ~80% of its parts already exist as working code on the live page today.</p>
+      </div>
+
+    </div>
+  </div>
+</details>
+
+<details class="family" id="fam-uncertainty">
+  <summary><span class="num">08</span><span class="titleblock"><h3>Uncertainty / Range</h3><span class="def">How sure are we? Given a number pulled from public records — an estimate, a modeled total, a rate, an extrapolated undercount, a forecast — how wide is the range of plausible truth around it, and does that plausible range still support the claim being made: does the low end still cross the line that matters, or could the real number just be noise?</span></span><span class="chev">▸</span></summary>
+  <div class="family-body">
+    <div class="priority-callout"><span class="lbl">Build first</span><p>The error bar (point-and-whisker), and the forest plot second — treat them as one build, not two. The error bar is the cheapest primitive in the entire family and is needed almost immediately the first time Ripple publishes any modeled or survey-derived number rather than a raw administrative count — skipping it risks implying false precision on the very first estimate-based finding. The forest plot is just that primitive stacked down a column against one reference line, so it costs almost nothing extra, and it's the single highest-structural-fit chart in this whole family to Ripple's actual method. Near-zero-cost bonus: the quantile dot plot is a two-color re-theme of the icon-array/tickwall already built, with no good reason to leave it unbuilt.</p></div>
+    <details class="rules-toggle"><summary>Construction rules & brief fit for this family</summary><div class="rules-body">
+      <h4>Cross-cutting construction rules</h4>
+      <p>The range/band/whisker/track itself is infrastructure, not the finding — render it neutral unless the whole point of the scene is the width of doubt itself, in which case the band carries the ONE reserved accent, but only ever as a low-opacity fill, never a hard color. The moment worth the reader's attention — one point estimate crossing a threshold, one entity's interval sitting clear of the reference line — gets the single full-saturation accent hit, and only one of rust/sage-hi ever appears in a given scene. A forest plot with twelve equally-loud rows has no sun and has failed the rule. Reuse compounds more here than in any other family: the error bar IS the forest-plot row; the icon-array/tickwall IS the quantile dot plot with a two-color re-theme; the range-bar track IS the candlestick wick. The mono caption is doing honesty-work, not decoration — every band, whisker, and interval needs its confidence level, n, or margin of error spelled out nearby.</p>
+      <h4>Fit against the music brief</h4>
+      <p>Fits more deeply than its novelty suggests. Ripple's whole method is "does the data show it" — and honest data almost never shows a clean single number. A platform that already treats a bare null check as a trap until sampled has the exact instinct this chart family exists to serve visually: show the reader the doubt instead of hiding it behind false precision. The strongest matches (forest plot, floating range bar, bullet graph, quantile dot plot) map directly onto "look at all of them the same way" across many entities on one harm metric, with the added honesty of showing which differences are real and which are still statistical noise. The weaker matches (fan chart, spaghetti plot, HOPs, candlestick) exist to serve forward-looking model forecasts or trading-desk mechanics Ripple, as a platform auditing documented past harm, will only rarely need.</p>
+    </div></details>
+    <div class="brick-grid">
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Error bar (point-and-whisker)</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>A single estimate plus the range of plausible true values around it — a dot at the best-guess value with a line to the low/high bound and short perpendicular caps. The atomic unit the whole family builds from.</p>
+        <p><span class="lbl">Exemplar</span>FiveThirtyEight's polling-average charts; The Economist's "Graphic detail" vaccine-efficacy chart with 95% CI whiskers.</p>
+        <p><span class="lbl">Ripple brick</span>Whisker as a dashed leader-line, capped by two short solid drafting ticks. The point estimate is the ONE sun: a filled circle, rust if it crosses a harm/legal threshold, sage-hi if it reads healthy/resolved — never both accents in one scene. Value in Space Grotesk bold above the dot; interval in mono below ("31-46%, 95% CI"), mirroring the existing bigstat+caption pairing.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Fully hand-rollable at the same tier as the existing area-true circles — a line, two ticks, a circle, two text nodes.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">Confidence band / ribbon</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>A trend line over time with a shaded region around it showing the plausible range at each point — constant width for a smoothed historical series, or widening for a forecast.</p>
+        <p><span class="lbl">Exemplar</span>NYT's COVID-19 trend charts shading a reporting-lag/confidence band; the Atlanta Fed's GDPNow-style charts.</p>
+        <p><span class="lbl">Ripple brick</span>One center-line path in ink at 2px; a second filled polygon from upper- and lower-bound points at low opacity in the ONE reserved accent — the band is the "how much doubt" fact worth the color, so the line stays neutral ink. A dashed vertical marks the observed-to-forecast handoff with a mono caption.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Fully hand-rollable — two paths, one filled polygon, no library at Ripple's scale.</p>
+      </div>
+
+      <div class="brickcard rel-low"><div class="brick-head"><span class="brick-name">Fan chart</span><span class="relchip low">low</span></div>
+        <p class="shows"><span class="lbl">Shows</span>A confidence band made explicit and nested — several bands of increasing width and decreasing color intensity fanning outward from a known past into an uncertain future.</p>
+        <p><span class="lbl">Exemplar</span>The Bank of England's Monetary Policy Report "fan chart," in continuous use since 1996 — the single most famous named instance; also the U.S. CBO's deficit projections.</p>
+        <p><span class="lbl">Ripple brick</span>Same construction as the confidence band, 3-4 stacked polygons at descending opacities of the one reserved accent. Ripple audits what already happened rather than building forward-looking forecasts, so there is rarely a "future" for this chart to fan into — honest fit is near zero today.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Hand-rollable, identical cost to the confidence band, just repeated.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Floating range bar (high-low bar)</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>For each entity, a bar that floats between a low and a high value rather than starting at zero — the plausible span side by side across many entities.</p>
+        <p><span class="lbl">Exemplar</span>Daily weather high/low temperature bars; salary-range charts in job-market journalism, floating from a posting's stated min to max.</p>
+        <p><span class="lbl">Ripple brick</span>A rounded-rect spanning low-x to high-x per entity, matching the existing tick block's rounding. Filled blueprint blue for a neutral "just the facts" read, or the reserved accent if that entity's range is the finding worth flagging. Bar length must be pixel-true to the real span — same felt-scale discipline as the area-true circle.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Fully hand-rollable — a positioned rect per row, same tier as the existing tick elements.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">Box-and-whisker plot</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>The five-number summary of a distribution's spread — the classic Tukey device for comparing spread across groups.</p>
+        <p><span class="lbl">Exemplar</span>Standard in CDC/WHO comparative reporting; The Economist has used box plots to compare income or test-score spread across countries.</p>
+        <p><span class="lbl">Ripple brick</span>Box as a low-opacity structural rect, median line in solid ink, whiskers reusing the error-bar's dashed-plus-drafting-tick construction. Outlier points rust ONLY if an outlier is the actual story, otherwise neutral. Overlaps heavily with the Distribution family's territory — expect it reached for less often than the range bar or forest plot.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Hand-rollable, no library needed — quartiles are an upstream SQL/dbt job.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Forest plot</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Many entities' point estimates and confidence intervals stacked in one column against a vertical reference line, so the reader sees which entities' intervals cross the line (inconclusive) versus sit entirely on one side (a real, defensible difference).</p>
+        <p><span class="lbl">Exemplar</span>The canonical medical meta-analysis chart from Cochrane systematic reviews; ProPublica- and Vox-style "risk of X by hospital/state" dot-and-whisker stacks.</p>
+        <p><span class="lbl">Ripple brick</span>The error-bar brick repeated as rows against one solid vertical reference line. Only rows whose ENTIRE interval clears that line get colored (rust if harmful, sage-hi if safe); rows still straddling the line stay neutral dim — the brick literally renders honesty about which findings are solid versus still noise.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Fully hand-rollable — literally the error-bar primitive looped down a column, no library needed even at several dozen rows.</p>
+      </div>
+
+      <div class="brickcard rel-low"><div class="brick-head"><span class="brick-name">Spaghetti / ensemble plot</span><span class="relchip low">low</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Many individual simulated or modeled trajectories overlaid as thin translucent lines, so the density of overlapping lines conveys how much independent models agree or disagree.</p>
+        <p><span class="lbl">Exemplar</span>The National Hurricane Center's storm-track "spaghetti models," republished constantly during every major hurricane; the IPCC's climate-model ensemble charts.</p>
+        <p><span class="lbl">Ripple brick</span>A stack of thin, low-opacity lines in a NEUTRAL hue — not the reserved accent, since with dozens of overlapping lines the accumulated opacity itself becomes the color. One bold line marks the observed outcome or median run. Ripple's investigations are almost entirely about what already happened, not competing forward models — a narrow future use at best.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Hand-rollable for a modest line count; at real "spaghetti" scale a small generation script earns its keep, not a full library.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Quantile dot plot</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>An uncertain quantity shown as a fixed number of individual dots, each one equally-likely outcome, colored by harm-side vs. safe-side of a threshold — turning "73% chance" into "73 out of 100 dots are rust," a countable fact instead of an abstract percentage.</p>
+        <p><span class="lbl">Exemplar</span>Kay, Kola, Hullman & Munson, "Ten Guidelines for Better Quantile Dot Plots" (CHI 2016); dot-array "chance of rain" visualizations and FiveThirtyEight's probabilistic election explainers.</p>
+        <p><span class="lbl">Ripple brick</span>A direct reuse of the already-solved icon-array brick — the same tick/tick.gone grid pattern already shipped, just re-themed from solid-vs-hollow to rust-vs-sage. No new component required. Satisfies "scale felt before read" better than almost any other chart here: the reader COUNTS the harm-colored dots.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Trivially hand-rollable — the existing tickwall grid with a two-color fill rule, essentially zero new build cost.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Bullet graph (threshold range indicator)</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>A single measured value plotted against a background of qualitative reference ranges plus an optional target/threshold tick — "how does this one actual number sit relative to the line that matters."</p>
+        <p><span class="lbl">Exemplar</span>Invented by Stephen Few for business dashboards, replacing gauge/speedometer charts; echoed by EPA/CDC public dashboards plotting a pollutant or blood-lead level against action-level bands, and Flint-water-crisis-style contamination coverage.</p>
+        <p><span class="lbl">Ripple brick</span>A single horizontal track: 2-3 background segments in desaturated fills of increasing concern (sage to gold to rust) as context, not the finding; a thin threshold tick; and the ONE sun of the scene — a single bold marker at the entity's real measured value.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Fully hand-rollable — three flat rects, one tick, one marker. Simpler than the error bar.</p>
+      </div>
+
+      <div class="brickcard rel-low"><div class="brick-head"><span class="brick-name">Hypothetical Outcome Plots (HOPs)</span><span class="relchip low">low</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Uncertainty shown as TIME — a short animated loop flipping through individual random draws from the underlying distribution one at a time, so the viewer experiences uncertainty the way people reason about single random events.</p>
+        <p><span class="lbl">Exemplar</span>Jessica Hullman & Matthew Kay's academic research (CHI 2015). Adoption in mainstream daily journalism is thin, still mostly a research technique.</p>
+        <p><span class="lbl">Ripple brick</span>A single marker that jumps to a new position every ~600-800ms via a JS interval, with a mono counter ("DRAW 7 / 20"). Freezes on the real observed outcome at the end, with the quantile-dot-plot brick as its static/reduced-motion fallback. Reserve for a single showpiece scene, not a repeatable component.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Needs real hand-written JS beyond the static-SVG tier — meaningfully more build/QA effort than any other brick here.</p>
+      </div>
+
+      <div class="brickcard rel-low"><div class="brick-head"><span class="brick-name">Candlestick / OHLC chart</span><span class="relchip low">low</span></div>
+        <p class="shows"><span class="lbl">Shows</span>For a single time period, four numbers at once — open, high, low, close — traditionally for a trading instrument's price.</p>
+        <p><span class="lbl">Exemplar</span>The standard financial-markets chart on Bloomberg, Yahoo Finance, WSJ Markets.</p>
+        <p><span class="lbl">Ripple brick</span>If ever needed, composes from pieces already in the family — the floating-range-bar track for the wick plus a filled body from open-to-close. Ripple should assemble it once from the range-bar primitive the rare time it's needed, not pre-build it as a bespoke brick.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Fully hand-rollable if genuinely needed, but no real reason to pre-build given how rarely it would get reached for.</p>
+      </div>
+
+    </div>
+  </div>
+</details>
+
+<details class="family" id="fam-qualitative-evidence">
+  <summary><span class="num">09</span><span class="titleblock"><h3>Qualitative Evidence (Quotes, Documents, Testimony)</h3><span class="def">How does Ripple let a document or a person's own words stand as evidence — verbatim, attributed, and sourced — so the reader can judge a primary source directly, instead of taking Ripple's paraphrase of what it says?</span></span><span class="chev">▸</span></summary>
+  <div class="family-body">
+    <div class="priority-callout"><span class="lbl">Build first</span><p>The Attributed Quote Card — merge Pull-Quote and Testimony Callout into one flexible component with an optional accent-rule/attribution block, since they share almost all their CSS. It's the cheapest possible build and the one brick every future investigation needs on day one, regardless of subject matter. Second: Document Facsimile with the Redaction Overlay state built in from the start, since they share the same paper-card base. This is the brick that makes Ripple read as real accountability journalism grounded in actual paper — not just a dataviz portfolio.</p></div>
+    <details class="rules-toggle"><summary>Construction rules & brief fit for this family</summary><div class="rules-body">
+      <h4>Cross-cutting construction rules</h4>
+      <p>Reserve a distinct "verbatim" type register for any directly-quoted human or document words — a serif italic, never Space Grotesk bold, which is reserved for MAGNITUDE numerals, so a reader's eye must never mistake someone's exact words for a statistic. Attribution is mandatory, not decorative, always in the established mono byline register. Redaction and highlight are opposites and must stay constructed as opposites: redaction is opaque black OVER text (suppression, never the accent color); highlight is translucent accent color BEHIND text (emphasis) — swapping these breaks the reader's ability to tell "hidden" from "important" at a glance. Documents get a literal pale "paper" surface that sits ON the dark page like a photograph — the one deliberate departure from the site's normal dark register. For a single quote or document, the normal one-sun rule holds; for a quote wall, the mass of many EQUAL, unaccented cards IS the sun at the whole-scene scale — the one brick type where sameness is the correct choice.</p>
+      <h4>Fit against the music brief</h4>
+      <p>Answers CLAUDE.md's one load-bearing question more directly than any other family — "who gets hurt, and does the data show it" — because it's the only family that puts an actual human, in their own words, on the page rather than an aggregate standing in for them. It's what keeps "the map is the deliverable, the case is the receipt" from being a slogan: the Quote Wall is literally the many-receipts view of a pattern, and the Testimony Callout is literally one receipt, sourced and attributed. It also matches Ripple's specific method — public records, not surveys or leaks alone — better than any other family.</p>
+    </div></details>
+    <div class="brick-grid">
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Editorial Pull-Quote</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>A single arresting sentence lifted verbatim from reporting, set large, breaking up a data-heavy passage to remind the reader there is a person or decision behind the numbers.</p>
+        <p><span class="lbl">Exemplar</span>ProPublica's "Lost Mothers" (2017) breaks its maternal-mortality data sections with large verbatim quotes from grieving family members; NYT Magazine, The Atlantic, and The Marshall Project all use the identical convention.</p>
+        <p><span class="lbl">Ripple brick</span>A band-width block dropped between two data scenes, reusing the page's existing rest pause rhythm. Quote text in the verbatim serif/italic register — never Space Grotesk bold. One oversized quotation-mark glyph in low-opacity hairline color sits as pure typographic furniture, never in the accent color. Attribution runs beneath in the exact byline mono treatment. This block IS the "density needs rest" beat between two heavier scenes.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Pure HTML/CSS, trivial, matches exactly how the three solved families were built.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Testimony Callout (attributed quote card)</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>A quote where the speaker's identity and standing IS part of the evidence — sworn testimony, an on-record interview — so attribution has to be as visually load-bearing as the words.</p>
+        <p><span class="lbl">Exemplar</span>Congressional-hearing and courtroom accountability coverage pulling a named witness's exact words into a standalone card with name + title + dateline — Reveal/CIR and Washington Post format, distinct from a magazine pull-quote precisely because the source's authority is the point.</p>
+        <p><span class="lbl">Ripple brick</span>A bordered card lifted off the page bg with a surface fill. A left rule in the ONE reserved accent color is the only accent-colored pixel in the card — it stands for "this testimony is the evidence that matters here." No headshot/avatar by default — Ripple's subjects are often people harmed by the system under investigation.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Pure CSS, trivial.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Document Facsimile / Exhibit</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>The actual primary-source document reproduced so the reader sees the evidence itself, not Ripple's description of it.</p>
+        <p><span class="lbl">Exemplar</span>The Intercept's "The Drone Papers" (2015) reproduces actual leaked military slide facsimiles inline; ICIJ's Panama Papers / Paradise Papers coverage embeds facsimile leaked documents directly in the narrative.</p>
+        <p><span class="lbl">Ripple brick</span>A "paper" card in a warm pale tone derived from ink-soft rather than the page's dark bg, reading as a physically distinct object on the dark page. Dark "ink" text inside in mono for a typed-memo look. A slight tilt-reuse rotation plus a soft drop-shadow reads as a physical object, not a UI panel. A small provenance chip carries the Bates number/FOIA ID in the neutral blueprint register.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Pure CSS for a styled recreation, no library. A real scanned image is just an img/data-URI — but is gated on rights, a sourcing question, not a code one.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Redaction Overlay</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>What a document-holder chose to black out, used as evidence of concealment itself — the redaction is the finding, not decoration on a document.</p>
+        <p><span class="lbl">Exemplar</span>The Mueller Report as published and annotated by NYT and Washington Post (2019), preserving the actual black redaction bars with marginal annotations; the FOIA-reporting beat's DocumentCloud redaction-aware annotation layer.</p>
+        <p><span class="lbl">Ripple brick</span>Built on the Document Facsimile card: spans of the "typed" text get covered with solid opaque black — the one place in the whole system near-black is used as a foreground fill, correct only sitting on the pale paper. The bars stay neutral, never the reserved accent — they are the mass, the "sun" through sheer coverage, not color. The accent is spent only on the leader line pointing at the one line that survived unredacted.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Pure CSS — positioned divs over text spans. A hover/click "peek" reveal is a few lines of vanilla JS.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Annotated Excerpt (line-by-line)</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>A dense passage from a document, statute, or transcript broken open phrase by phrase with plain-English explanation of what each part actually means — translation, not summary.</p>
+        <p><span class="lbl">Exemplar</span>The New York Times's long-running "[X], Annotated" franchise — "The State of the Union, Annotated," "The Mueller Report, Annotated."</p>
+        <p><span class="lbl">Ripple brick</span>The excerpt in the verbatim serif/italic register in a wide column. From flagged phrases, a dashed leader line runs to a margin note in mono — the exact construction already coded in the hero SVG for its data annotations, walked down from chart-annotation to prose-annotation. This brick IS CLAUDE.md's own Beer Rule (plain-words translation) rendered visually.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Pure SVG/CSS, and already proven — reuses a construction that exists in the codebase today.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Redline / Document Diff</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Two versions of the same text compared line for line — what got added, cut, or left suspiciously identical between drafts — used to prove authorship, influence, or last-minute alteration.</p>
+        <p><span class="lbl">Exemplar</span>ProPublica's "Copy, Paste, Legislate" (2019), which used exact-text matching to show which state laws were copied nearly verbatim from lobbyist-drafted model bills.</p>
+        <p><span class="lbl">Ripple brick</span>Before/After's sibling at the sentence grain, borrowing its already-solved color logic: deleted text struck-through in rust exactly like the existing struck old numeral; inserted text underlined in the reserved accent exactly like the existing new value. Two excerpts sit in a two-column band reusing the existing alternating-band component. The diff itself is computed once at build time with a plain algorithm, no runtime engine.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Pure CSS for rendering; the diff computation is a small build-time script, not a library or runtime dependency.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Quote Wall / Testimony Mosaic</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Many short, individually attributed fragments from many different people displayed together so the reader feels the BREADTH of harm — a chorus, not a soloist.</p>
+        <p><span class="lbl">Exemplar</span>The New York Times's front page "U.S. Deaths Near 100,000, an Incalculable Loss" (May 24, 2020), a wall of individual one-line obituary excerpts standing in for an otherwise-abstract number.</p>
+        <p><span class="lbl">Ripple brick</span>A CSS grid of many EQUAL-sized cards — deliberately equal, because "one sun per scene" applies at the whole-wall level: the wall as a mass is the sun, felt as density/count before any single line is read. Zero color variation across the wall except a curated handful pulled forward elsewhere. The most mission-aligned brick in the family — it's the only construction that visually proves "we counted everyone."</p>
+        <p class="buildnote"><span class="lbl">Build</span>Pure CSS grid at dozens to a couple hundred quotes; true thousands-of-entries scale wants pagination, a plain engineering concern.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">Statement Tracker (evolving / contradicted quote over time)</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>The same person's or institution's own words at two or more points in time, set side by side to show reversal, walk-back, or contradiction.</p>
+        <p><span class="lbl">Exemplar</span>PolitiFact's "Flip-O-Meter," a named, running feature built specifically to pair an official's earlier statement against a later contradicting one.</p>
+        <p><span class="lbl">Ripple brick</span>Reuses the existing alternating-band component exactly as built, one band per point in time, each carrying a date-mono label. The reserved accent is spent only on the specific phrase in the LATER band that flatly contradicts the earlier one — the eye is walked straight to the reversal without re-reading both quotes in full.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Pure CSS, trivial — literally reuses existing classes with no new construction needed.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">Marginalia / Highlight Annotation (sticky-note style)</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>One damning line inside a longer, otherwise-unremarkable document, flagged the way a reporter marks up a printout and sticks a note beside it.</p>
+        <p><span class="lbl">Exemplar</span>DocumentCloud's Annotations feature — the standard tool of the IRE/NICAR investigative-reporting community, built originally by NYT and ProPublica.</p>
+        <p><span class="lbl">Ripple brick</span>Built on the Document Facsimile card: the flagged span gets a translucent accent-color rectangle BEHIND the text — the deliberate visual opposite of Redaction Overlay, so "look here" and "you can't see this" never get confused. A small rotated tag reads like a handwritten flag. Overlaps enough with Annotated Excerpt that most investigations reach for one or the other, not both.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Pure CSS/SVG for a single flagged document image. A full scrollable multi-page interactive viewer is a materially heavier build, scoped separately if ever wanted.</p>
+      </div>
+
+      <div class="brickcard rel-low"><div class="brick-head"><span class="brick-name">Redaction-Density Scorecard</span><span class="relchip low">low</span></div>
+        <p class="shows"><span class="lbl">Shows</span>How much of a released document or FOIA response got blacked out, used as a quantitative measure of an agency's opacity across many pages or requests.</p>
+        <p><span class="lbl">Exemplar</span>MuckRock-style FOIA-processing scorecards tracking denial/redaction rates by agency as an accountability metric in its own right.</p>
+        <p><span class="lbl">Ripple brick</span>Honestly, this is PART-TO-WHOLE wearing document texture, not a new construction: an icon-array using page-rectangle glyphs instead of a generic glyph — legible-cream pages vs. solid-black pages, with a cropped remainder glyph. No new brick logic is actually required.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Pure SVG/CSS, but it's a skin on an existing brick, not a new build.</p>
+      </div>
+
+    </div>
+  </div>
+</details>
+
+<details class="family" id="fam-composition-over-time">
+  <summary><span class="num">10</span><span class="titleblock"><h3>Composition Changing Over Time</h3><span class="def">Given a whole made of several parts, how does the internal MIX — and optionally the total — move across many ordered time points, not just a single before/after split, but a multi-point trajectory: which slice grew, which shrank, and exactly when the balance tipped.</span></span><span class="chev">▸</span></summary>
+  <div class="family-body">
+    <div class="priority-callout"><span class="lbl">Build first</span><p>The 100%-stacked bar chart over time. It's the most direct answer to "the mix shifting year to year," the cheapest genuinely new geometry in the family (rows of stacked rects, no interpolation math), needs no y-axis at all so it satisfies "scale felt before read" almost automatically, and matches how Ripple's real source data actually arrives — discrete annual/cyclical public-records snapshots, not smooth continuous series. Build the absolute stacked column chart second: it reuses ~90% of the same code and adds back the "did the total also grow" dimension. Zero-cost bonus: small multiples of the already-shipped part-to-whole circle need no new build at all and can be used today.</p></div>
+    <details class="rules-toggle"><summary>Construction rules & brief fit for this family</summary><div class="rules-body">
+      <h4>Cross-cutting construction rules</h4>
+      <p>Every entry reduces to one shared primitive: compute a per-segment cumulative baseline/top for each time bucket, then render that as a smooth path, a set of discrete rects, or a repeated already-solved shape. Build that stacking function once and every brick is a thin wrapper around it. Color is the biggest deliberate departure from how these charts are normally built — off-the-shelf libraries default to a fresh hue per category; Ripple's one-accent rule forbids that. Order segments by size and fill all from the neutral value ramp except exactly one reserved accent for the segment under investigation. Pick discrete columns whenever the real-world time grain actually is discrete (most of Ripple's public-records data) — never fit a smooth curve through four annual data points just because it looks nicer; that fabricates a precision the underlying records don't have, a bigger sin here than an ugly chart.</p>
+      <h4>Fit against the music brief</h4>
+      <p>Strong fit with one real tension to manage. The family's whole point — a mix shifting over many points — is exactly the pattern-over-time story the mission is built to surface, and the discrete, checkpoint-driven nature of most public records maps directly onto the simplest, cheapest bricks (100%-stacked bar, plain stacked column, small-multiples of the already-solved circle). The tension: this family is inherently the most visually "busy" of the ten, since a stacked chart wants many colors and labels by convention, cutting hard against the one-accent, one-sun discipline. The resolution — a neutral value-ramp for every segment except one reserved accent — is a genuine, disciplined adaptation: it forces every one of these charts to still have a single, unambiguous "sun" even when the underlying data has a dozen categories.</p>
+    </div></details>
+    <div class="brick-grid">
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Stacked area chart (continuous, absolute)</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>How the absolute size of several parts of a whole moves across many closely-spaced time points, with the total height also showing the whole's total volume changing.</p>
+        <p><span class="lbl">Exemplar</span>Our World in Data's "Electricity Mix" stacked area chart — generation broken into coal, gas, nuclear, wind, solar, stacked continuously from the 1980s to present.</p>
+        <p><span class="lbl">Ripple brick</span>One path per segment, cumulative sums per time-bucket. Segments ordered by size, filled from the neutral value ramp (ink-soft down through muted and dim) except the ONE segment under investigation, which gets rust (or sage-hi for a recovery story). No y-axis gridlines — let the rising/falling band height be felt first.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG/CSS, fully hand-rollable at real investigation scale. The only mildly nontrivial part is an optional curve-smoothing helper.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Stacked column chart over time (discrete, absolute)</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Same absolute-composition-plus-total story as the stacked area chart, but for naturally discrete time buckets where connecting them with a continuous line would fake precision the data doesn't have.</p>
+        <p><span class="lbl">Exemplar</span>Federal-budget/appropriations outlets (Committee for a Responsible Federal Budget, Bloomberg Government) routinely run stacked-column-by-fiscal-year spending-composition charts.</p>
+        <p><span class="lbl">Ripple brick</span>One rect column per time bucket on the spacing-scale grid, each subdivided into stacked sub-rects. Same neutral-ramp-plus-one-rust-accent rule. A thin mono total-value label above each column, since column height alone can't be trusted to read precisely across a jagged multi-year total.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Trivially hand-rollable — plain SVG or pure CSS flex columns, no interpolation math at all.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">100%-stacked bar chart over time (normalized, discrete)</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>How the SHARE of each part changes year to year, deliberately throwing away the total-volume dimension so every column is the same height and the only thing left to read is the shifting thickness of each band.</p>
+        <p><span class="lbl">Exemplar</span>Pew Research Center's recurring trend charts on the changing composition of the U.S. electorate and party coalitions (2024) use this exact form.</p>
+        <p><span class="lbl">Ripple brick</span>The cleanest possible expression of Ripple's discipline rules. Every column always sums to 100% of panel height. No y-axis needed at all — 0% and 100% are implied, satisfying "scale felt before read" by construction. Every column neutral-ramp except the one rust band the investigation is about — because every column is the same height, that band's thickness rising or falling is the unambiguous sun with zero legend needed.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Fully hand-rollable, arguably the simplest new brick in the whole family — no interpolation, no curve math, just rows of stacked rects.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">Streamgraph (ThemeRiver / silhouette)</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>The same layered composition-over-time data as a stacked area chart, drawn with a centered or wiggle-minimized baseline instead of a flat one — good for conveying overall rhythm and relative volume rather than precise cumulative reading.</p>
+        <p><span class="lbl">Exemplar</span>The New York Times' "The Ebb and Flow of Movies: Box Office Receipts 1986-2008" (2008), which won the Malofiej Best Graphic prize and formalized the streamgraph technique with Lee Byron and Martin Wattenberg's paper.</p>
+        <p><span class="lbl">Ripple brick</span>Same cumulative-sum stacking math, baseline recentered. Color discipline is the hardest fit here: the whole point is a many-layered organic flow, which fights the one-accent rule — resolved by keeping every layer neutral except a single rust current, so the eye follows one visible thread weaving through a calm, monochrome river.</p>
+        <p class="buildnote"><span class="lbl">Build</span>The simple centered/silhouette baseline is plain-SVG hand-rollable. The true wiggle-minimizing version needs a real short algorithm most cleanly ported from d3-shape, not worth a full dependency.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">Marimekko / Mekko chart (variable-width stacked column)</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Two dimensions of composition at once per time bucket: column WIDTH encodes a magnitude while column HEIGHT (normalized) encodes the internal mix — both "how big was the pie" and "how was it sliced" at once.</p>
+        <p><span class="lbl">Exemplar</span>Named for the Finnish design house Marimekko, popularized as a strategy-consulting tool by McKinsey, BCG and Bain — home turf is the consulting deck, not a dense journalism time series.</p>
+        <p><span class="lbl">Ripple brick</span>Extends the 100%-stacked-bar brick by scaling each column's width LINEARLY to that year's total magnitude (not sqrt — a single 1-D axis). An explicit mono total underneath each column reinforces the felt width, since width-ratio judgment is harder for readers than height-ratio judgment.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG/CSS, hand-rollable — identical difficulty to the 100%-stacked bar plus one extra linear width calculation.</p>
+      </div>
+
+      <div class="brickcard rel-high"><div class="brick-head"><span class="brick-name">Small multiples of the existing part-to-whole circles (snapshot grid)</span><span class="relchip high">high</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Composition at a handful of distinct time checkpoints shown as a repeated row of separate small shapes rather than one continuous trend — trades continuous-trajectory legibility for easy side-by-side comparison when only a few checkpoints exist.</p>
+        <p><span class="lbl">Exemplar</span>Pew Research Center and Reuters Graphics both run this constantly for demographic and generational composition comparisons at a handful of years/decades.</p>
+        <p><span class="lbl">Ripple brick</span>Zero new geometry: this is the already-solved part-to-whole area-true circle brick called N times in a row along the existing full-width alternating-band layout, one per checkpoint, tilted mono year caption beneath each. Public records usually only exist AT a few checkpoints anyway, so this will likely be the default "quick composition-over-time" brick reached for before anyone builds a full stacked area.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Trivially hand-rollable — the existing, already-shipped brick invoked repeatedly. No new math, no new component.</p>
+      </div>
+
+      <div class="brickcard rel-low"><div class="brick-head"><span class="brick-name">Polar area / coxcomb / Nightingale rose diagram</span><span class="relchip low">low</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Composition changing across an ordered or cyclical set of wedges arranged radially, where each wedge is itself subdivided by category, with wedge radius sometimes also carrying a magnitude.</p>
+        <p><span class="lbl">Exemplar</span>Florence Nightingale's 1858 "Diagram of the Causes of Mortality in the Army in the East" — the founding, canonical reference in all of dataviz teaching, built specifically to prove to Parliament that soldiers were dying of preventable neglect.</p>
+        <p><span class="lbl">Ripple brick</span>Polar-coordinate wedges arranged in a circle, each stacked radially like a bent stacked bar. Historically resonant for Ripple specifically (a whistleblower-style chart forcing an audience to see a harm pattern it had ignored) and worth having for a single feature-moment homage, but the same literature documents readers compare polar areas less accurately than plain stacked bars — an occasional special-occasion brick, not a workhorse.</p>
+        <p class="buildnote"><span class="lbl">Build</span>Plain SVG, no library required, but meaningfully fiddlier than any other entry — real angle/radius bookkeeping and arc large-flag logic.</p>
+      </div>
+
+      <div class="brickcard rel-medium"><div class="brick-head"><span class="brick-name">Alluvial diagram (entity-level composition flow) — boundary case</span><span class="relchip medium">medium</span></div>
+        <p class="shows"><span class="lbl">Shows</span>Not just each stage's aggregate composition in isolation, but where the mass actually MOVED FROM and TO between a few time snapshots — e.g. of the market share Company X lost, how much went to Company Y versus a dozen smaller competitors.</p>
+        <p><span class="lbl">Exemplar</span>RAWGraphs, the open-source tool that made alluvial diagrams accessible to journalists, describes them as ideal for "changes between categories on 2 moments in time"; used in financial-flow investigative work.</p>
+        <p><span class="lbl">Ripple brick</span>Genuinely straddles this family and the flow/network family: the stage columns are exactly the 100%-stacked-bar brick above (reuse directly), connected by curved ribbon paths sized by flow magnitude. The STAGE COLUMNS belong to this family; the RIBBON-DRAWING geometry is closer to the flow/network family's Sankey engine and should be reused from there, not re-derived.</p>
+        <p class="buildnote"><span class="lbl">Build</span>The stage-column half is plain SVG/CSS (already covered). The ribbon half needs real hand-geometry — doable by hand (~50-80 lines) but nontrivial; reuse the flow-family's ribbon math rather than re-deriving it twice.</p>
+      </div>
+
+    </div>
+  </div>
+</details>
+
+<!-- END-FAMILIES -->
+</main>
+
+<footer>
+  <p><span class="mark">▪</span> This is the companion volume to the layout-systems survey — that one covers PAGE composition, this one covers MARK vocabulary. Neither picks a winner; both are meant to be scanned, not read start to finish.</p>
+</footer>
+
+<script>
+(function(){
+  document.querySelectorAll('.tile').forEach(function(t){
+    t.addEventListener('click', function(){
+      var id = t.getAttribute('data-target');
+      var el = document.getElementById(id);
+      if(el && el.tagName === 'DETAILS'){ el.open = true; }
+    });
+  });
+  var ea = document.getElementById('expand-all'), ca = document.getElementById('collapse-all');
+  if(ea) ea.addEventListener('click', function(){ document.querySelectorAll('.family, .rules-toggle').forEach(function(d){ d.open = true; }); });
+  if(ca) ca.addEventListener('click', function(){ document.querySelectorAll('.family, .rules-toggle').forEach(function(d){ d.open = false; }); });
+})();
+</script>

@@ -82,17 +82,25 @@ STATUS.md. Warehouse-side: COLUMN_TRUST (174 rows), 11 deduped + 5 FAERS-wiped
 landing tables, ~75 rebuilt marts/views, refreshed UK sanctions + GLEIF + openFDA.
 
 ## Working tree at compaction time
-## main...origin/main [ahead 2]
+## main...origin/main
  M .claude/compact-snapshots/last-compact.md
+ M data/osha_inspections/_stdout.log
  M data/osha_inspections/checkpoint.json
+ M data/usaspending_full/_stdout.log
+ M data/usaspending_full/checkpoint.json
  M outputs/_fema_ia_checkpoint.json
-?? data/osha_inspections/_stdout.log
-?? data/sam_exclusions/
-?? data/usaspending_full/
+?? "Ripple Design System - Blueprint (standalone) (9).html"
+?? reports/viz/board_segments.html
+?? reports/viz/board_segments_sketchbook.html
+?? reports/viz/chart_vocabulary_field_guide.html
+?? reports/viz/deadspace_and_counterweight.html
+?? reports/viz/infographic_composition_blueprint.html
+?? reports/viz/infographic_layout_systems_survey.html
+?? reports/viz/layout_picker.html
 
 ## Recent commits
+cebd0a48 Update checkpoints and logs for OSHA inspections and USASpending data loads
 fd4ed890 Add checkpointed full USASpending contracts re-pull loader (FY2007-FY2026)
 f70c41e5 Sprint: SAM exclusions extract-file loader + 3 staging identity fixes + 13F consolidation
 771067be Refactor code structure for improved readability and maintainability; no functional changes made.
 b78be44f Merge branch 'main' of https://github.com/Crogg23/Ripple_v6
-104162b8 Add scripts for OSHA inspections API load and typing rulings

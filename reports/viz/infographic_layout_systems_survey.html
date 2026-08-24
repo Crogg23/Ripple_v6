@@ -1,0 +1,695 @@
+<title>Layout Grammar Field Guide</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Work+Sans:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#0a1620; --surface:#111a22; --ink:#f2e9d8; --ink-soft:#e8dcc2;
+  --muted:#b3a080; --sage:#5f7a4f; --sage-hi:#7fa066; --rust:#b5703f; --teal:#3d8f82;
+  --gold:#c9a25a; --bp:#2f6f8f; --hair:#2a3a44; --dim:#6b7680;
+  --head:'Space Grotesk',sans-serif; --body:'Work Sans',sans-serif; --mono:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; color:var(--ink-soft); font-family:var(--body); font-size:16px; line-height:1.65;
+  background:var(--bg);
+  background-image:
+    radial-gradient(ellipse at 16% 0%, rgba(47,111,143,.18) 0%, rgba(47,111,143,0) 48%),
+    radial-gradient(ellipse at 88% 6%, rgba(95,122,79,.14) 0%, rgba(95,122,79,0) 45%),
+    radial-gradient(circle 1.2px at 0 0, rgba(45,60,73,.85) 1.2px, transparent 1.5px);
+  background-size:100% 100%,100% 100%,64px 64px;
+  background-attachment:fixed,fixed,fixed;
+  overflow-x:hidden;
+}
+::selection{background:var(--gold);color:var(--bg)}
+a{color:var(--gold)}
+a:focus-visible,summary:focus-visible,button:focus-visible,.tile:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.mono{font-family:var(--mono)}
+main{max-width:1180px;margin:0 auto;padding:0 clamp(20px,4vw,56px) 96px}
+
+/* ---------- masthead ---------- */
+header.top{max-width:1180px;margin:0 auto;padding:56px clamp(20px,4vw,56px) 40px;position:relative}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--bp);text-transform:uppercase}
+.kicker::before{content:"⌖ ";}
+h1{font-family:var(--head);font-weight:700;letter-spacing:-.015em;color:var(--ink);
+  font-size:clamp(34px,5.2vw,58px);line-height:1.04;margin:14px 0 0;max-width:16em;text-wrap:balance}
+.dek{font-size:clamp(16px,1.6vw,18.5px);color:var(--muted);max-width:62ch;margin:20px 0 0;line-height:1.6}
+.dek strong{color:var(--ink-soft);font-weight:600}
+.origin-note{font-family:var(--mono);font-size:12px;color:var(--dim);margin-top:22px;max-width:62ch;line-height:1.7}
+.origin-note a{color:var(--bp)}
+
+hr.hair{border:none;border-top:1px dashed var(--hair);margin:0}
+
+/* ---------- how to read this ---------- */
+.howto{padding:36px 0 8px}
+.howto h2{font-family:var(--head);font-weight:700;color:var(--ink);font-size:20px;margin:0 0 14px}
+.howto ol{margin:0;padding-left:0;list-style:none;display:grid;gap:10px;max-width:68ch}
+.howto li{display:flex;gap:12px;font-size:14.5px;color:var(--muted)}
+.howto li b{color:var(--ink-soft);font-weight:600}
+.howto .idx{font-family:var(--mono);color:var(--bp);flex:0 0 20px}
+
+/* ---------- legend ---------- */
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin:22px 0 0;font-family:var(--mono);font-size:11px;color:var(--dim)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.swatch{width:9px;height:9px;border:1px solid var(--dim);display:inline-block}
+.swatch.data{background:var(--sage-hi);border-color:var(--sage-hi)}
+.swatch.solver{background:var(--bp);border-color:var(--bp)}
+.swatch.human{background:var(--gold);border-color:var(--gold)}
+.swatch.seed{background:var(--rust);border-color:var(--rust)}
+
+/* ---------- overview grid (surface pass) ---------- */
+section.overview{padding:44px 0 8px}
+.overview h2{font-family:var(--head);font-weight:700;color:var(--ink);font-size:22px;margin:0 0 4px}
+.overview .sub{color:var(--dim);font-size:13.5px;margin:0 0 24px;font-family:var(--mono)}
+.tilegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+.tile{display:block;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--hair);
+  padding:18px 18px 16px;transition:border-color .15s ease,transform .15s ease;cursor:pointer}
+.tile:hover{border-color:var(--bp);transform:translateY(-2px)}
+.tile .num{font-family:var(--mono);font-size:12px;color:var(--bp)}
+.tile h3{font-family:var(--head);font-weight:700;color:var(--ink);font-size:16.5px;margin:6px 0 8px;line-height:1.25}
+.tile p{font-size:13.5px;color:var(--muted);margin:0 0 12px;line-height:1.55}
+.tile .badges{display:flex;flex-wrap:wrap;gap:6px}
+.badge{font-family:var(--mono);font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-soft);
+  border:1px solid var(--hair);padding:3px 7px;display:inline-flex;align-items:center;gap:5px}
+.badge .dot{width:6px;height:6px;border-radius:50%;display:inline-block}
+.dot.data{background:var(--sage-hi)}
+.dot.solver{background:var(--bp)}
+.dot.human{background:var(--gold)}
+.dot.seed{background:var(--rust)}
+.badge.effort{color:var(--dim);border-color:var(--dim)}
+
+/* ---------- controls ---------- */
+.controls{display:flex;gap:10px;margin:36px 0 18px;font-family:var(--mono);font-size:12px}
+.controls button{background:transparent;border:1px solid var(--hair);color:var(--muted);padding:8px 14px;
+  cursor:pointer;font-family:var(--mono);font-size:12px;letter-spacing:.04em;transition:border-color .15s,color .15s}
+.controls button:hover{border-color:var(--gold);color:var(--ink)}
+
+/* ---------- dossiers ---------- */
+.dossier{border-top:1px dashed var(--hair);scroll-margin-top:24px}
+.dossier:last-of-type{border-bottom:1px dashed var(--hair)}
+.dossier summary{list-style:none;cursor:pointer;padding:22px 4px;display:flex;align-items:baseline;gap:16px}
+.dossier summary::-webkit-details-marker{display:none}
+.dossier summary .num{font-family:var(--mono);font-size:13px;color:var(--bp);flex:0 0 26px}
+.dossier summary .titleblock{flex:1 1 auto;min-width:0}
+.dossier summary h3{font-family:var(--head);font-weight:700;color:var(--ink);font-size:clamp(18px,2.4vw,23px);margin:0;line-height:1.2}
+.dossier summary .era{font-family:var(--mono);font-size:11.5px;color:var(--dim);margin-top:4px}
+.dossier summary .chev{font-family:var(--mono);color:var(--dim);flex:0 0 auto;transition:transform .2s ease}
+.dossier[open] summary .chev{transform:rotate(90deg)}
+.dossier summary:hover h3{color:var(--gold)}
+.dossier-body{padding:0 4px 44px 46px;max-width:74ch}
+.dossier-body h4{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--bp);
+  margin:26px 0 9px}
+.dossier-body h4:first-child{margin-top:4px}
+.dossier-body p{font-size:15px;color:var(--ink-soft);margin:0 0 4px;line-height:1.68}
+.dossier-body p+p{margin-top:10px}
+.sw-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:26px}
+@media(max-width:720px){.sw-grid{grid-template-columns:1fr}.dossier-body{padding-left:4px}}
+.sw-grid h4{margin-top:0}
+.sw-grid .weak h4{color:var(--rust)}
+.sw-grid .strong h4{color:var(--sage-hi)}
+.applied{background:var(--surface);border-left:2px solid var(--gold);padding:16px 20px;margin-top:10px}
+.applied p{color:var(--ink-soft)}
+.tags-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+
+/* ---------- reading the field ---------- */
+.groups{padding:8px 0 8px}
+.groups h2{font-family:var(--head);font-weight:700;color:var(--ink);font-size:20px;margin:0 0 6px}
+.groups .sub{color:var(--dim);font-size:13px;margin:0 0 20px;font-family:var(--mono)}
+.groupgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.groupcard{border:1px solid var(--hair);padding:16px 18px}
+.groupcard h4{font-family:var(--head);font-weight:700;color:var(--ink-soft);font-size:14.5px;margin:0 0 8px}
+.groupcard ul{margin:0;padding-left:18px;color:var(--muted);font-size:13px;line-height:1.7}
+.groupcard.finish{border-color:var(--rust)}
+.groupcard.finish h4{color:var(--rust)}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--hair);margin-top:52px;padding:30px 4px 8px;font-family:var(--mono);font-size:12px;color:var(--dim)}
+footer p{max-width:64ch;line-height:1.7}
+footer .mark{color:var(--gold)}
+
+@media(max-width:600px){
+  main,header.top{padding-left:18px;padding-right:18px}
+  .dossier-body{padding-left:26px}
+  .dossier summary .num{flex-basis:20px}
+}
+</style>
+
+<header class="top">
+  <div class="kicker">Layout systems research — wide survey, not a recommendation</div>
+  <h1>Thirteen ways to build one infographic page from a finite kit of parts.</h1>
+  <p class="dek">Ripple's investigation pages share one recurring shape: <strong>a claim, a proportional-scale
+    comparison, a density-at-scale moment, a before/after repair, a human-cost close.</strong> The numbers
+    change every time. The question is what reusable rulebook lets a future page get assembled from that
+    shape without either re-inventing composition from zero each time, or collapsing into a template that
+    reads as stamped-out. This page surveys thirteen real, working answers to that exact problem, pulled from
+    fields that solved it decades or centuries before web design existed.</p>
+  <p class="origin-note">Every entry below was researched independently and pushed to show its work against
+    Ripple's actual content and actual token file (the blueprint palette, the ~20 font-pairing themes, the
+    4/8/16/24/40/64/96px spacing scale). None of the thirteen is presented as the answer — that call is
+    yours. Expand whichever ones earn a second look; the rest are here so you know what you're not picking.</p>
+</header>
+<hr class="hair">
+
+<main>
+
+<section class="howto">
+  <h2>How to use this page</h2>
+  <ol>
+    <li><span class="idx">01</span><span><b>Scan the grid below first</b> — thirteen tiles, one line of mechanism each, tagged by what layer of the page it governs and what actually decides the variation.</span></li>
+    <li><span class="idx">02</span><span><b>Click any tile</b> to jump to its full dossier — lineage, the actual mechanism, how it'd apply to Ripple's content beat by beat, an honest strengths/weaknesses read, and what it'd cost to build.</span></li>
+    <li><span class="idx">03</span><span><b>Some of these are macro systems</b> (they decide page/scene order and dominance) and <b>one is a finish layer</b> (it doesn't compose a page, it textures whatever page you already have) — that distinction is called out on every tile.</span></li>
+    <li><span class="idx">04</span><span><b>Nothing here is mutually exclusive.</b> Several of these compose — a macro-sequencing system plus a chart-specific grammar plus a texture pass isn't cheating, it's how the more mature real-world examples (comics, data journalism) actually work.</span></li>
+  </ol>
+  <div class="legend">
+    <span><span class="swatch data"></span>data-driven — the real numbers compute the geometry</span>
+    <span><span class="swatch solver"></span>solver-driven — an algorithm resolves legality/order</span>
+    <span><span class="swatch human"></span>human-chosen — a person (or AI standing in) picks at each fork</span>
+    <span><span class="swatch seed"></span>seeded-random — a bounded, reproducible random nudge</span>
+  </div>
+</section>
+
+<section class="overview" id="glance">
+  <h2>The field, at a glance</h2>
+  <p class="sub">13 lineages · click to open the full dossier</p>
+  <div class="tilegrid">
+
+    <a class="tile" data-target="d-01" href="#d-01">
+      <div class="num">01 / ISOTYPE</div>
+      <h3>Unit-Repeat Grammar</h3>
+      <p>Quantity is never resized, only repeated — a bigger number is more copies of the same fixed icon, tallied and counted, never one bigger picture.</p>
+      <div class="badges"><span class="badge">Chart grammar</span><span class="badge"><span class="dot data"></span>Data-driven</span><span class="badge effort">Low–med effort</span></div>
+    </a>
+
+    <a class="tile" data-target="d-02" href="#d-02">
+      <div class="num">02 / SWISS GRID</div>
+      <h3>Modular Grid + Modular Scale</h3>
+      <p>One fixed lattice — column count, baseline, a type-size ratio ladder — held constant forever; different content just claims different spans on it.</p>
+      <div class="badges"><span class="badge">Macro + discipline</span><span class="badge"><span class="dot human"></span>Human-chosen</span><span class="badge effort">Lowest effort</span></div>
+    </a>
+
+    <a class="tile" data-target="d-03" href="#d-03">
+      <div class="num">03 / ATOMIC DESIGN</div>
+      <h3>Tokens → Components → Pages</h3>
+      <p>Small typed parts nest into bigger typed parts through explicit slots; Ripple's palette/spacing/type file already IS this system's bottom layer.</p>
+      <div class="badges"><span class="badge">Component discipline</span><span class="badge"><span class="dot human"></span>Human-chosen</span><span class="badge effort">Low effort</span></div>
+    </a>
+
+    <a class="tile" data-target="d-04" href="#d-04">
+      <div class="num">04 / SHAPE GRAMMARS</div>
+      <h3>Rewrite-Rule Geometry</h3>
+      <p>A vocabulary of shapes plus if-you-see-this-replace-it-with-that rules, applied recursively — the same tiny rule table generated every real Palladian villa.</p>
+      <div class="badges"><span class="badge">Chart + macro</span><span class="badge"><span class="dot data"></span>Data-driven</span><span class="badge effort">Med effort</span></div>
+    </a>
+
+    <a class="tile" data-target="d-05" href="#d-05">
+      <div class="num">05 / WAVE FUNCTION COLLAPSE</div>
+      <h3>Tile-Adjacency Solving</h3>
+      <p>A small tile library with typed edge-sockets; the solver fills the tightest-constrained slot first, guaranteeing every local transition is legal while leaving the global shape free.</p>
+      <div class="badges"><span class="badge">Macro sequencing</span><span class="badge"><span class="dot solver"></span>Solver-driven</span><span class="badge effort">Med–high effort</span></div>
+    </a>
+
+    <a class="tile" data-target="d-06" href="#d-06">
+      <div class="num">06 / L-SYSTEMS</div>
+      <h3>Botanical Branching Grammar</h3>
+      <p>One trunk axis, branches peel off and rejoin it, every generation shrinks by one fixed ratio and inherits its hue lighter — literally fractal, by construction.</p>
+      <div class="badges"><span class="badge">Macro composition</span><span class="badge"><span class="dot data"></span>Data-driven</span><span class="badge effort">Low–med effort</span></div>
+    </a>
+
+    <a class="tile" data-target="d-07" href="#d-07">
+      <div class="num">07 / COMICS GRAMMAR</div>
+      <h3>Panel &amp; Transition Theory</h3>
+      <p>A beat's narrative job (moment-to-moment, scene-to-scene…) picks its transition type, which picks its panel shape and gutter width — already how the shipped page reads.</p>
+      <div class="badges"><span class="badge">Macro composition</span><span class="badge"><span class="dot human"></span>Human-chosen</span><span class="badge effort">Low effort</span></div>
+    </a>
+
+    <a class="tile" data-target="d-08" href="#d-08">
+      <div class="num">08 / SCROLLYTELLING</div>
+      <h3>Sticky-Stage / Step-Track</h3>
+      <p>One persistent visual per scene, pinned; scroll position fires discrete state changes on it — the actual production model of NYT, Reuters, and The Pudding.</p>
+      <div class="badges"><span class="badge">Macro + engine</span><span class="badge"><span class="dot human"></span>Human-chosen</span><span class="badge effort">Med effort</span></div>
+    </a>
+
+    <a class="tile" data-target="d-09" href="#d-09">
+      <div class="num">09 / MUSIC FORM</div>
+      <h3>Sonata-Form Page Grammar</h3>
+      <p>Exposition → development → recapitulation → coda, fixed order, non-negotiable — resolution means the same shape returns transposed into a different color, not repeated.</p>
+      <div class="badges"><span class="badge">Macro composition</span><span class="badge"><span class="dot human"></span>Human-chosen</span><span class="badge effort">Low effort</span></div>
+    </a>
+
+    <a class="tile" data-target="d-10" href="#d-10">
+      <div class="num">10 / PATTERN LANGUAGE</div>
+      <h3>Alexander's Named Patterns</h3>
+      <p>253 problem→solution cards linked to the scale above and below them; two architects using the same word-list never build the same building. The deepest fit for "sun and planets, fractally."</p>
+      <div class="badges"><span class="badge">Documentation layer</span><span class="badge"><span class="dot human"></span>Human-chosen</span><span class="badge effort">Low effort</span></div>
+    </a>
+
+    <a class="tile" data-target="d-11" href="#d-11">
+      <div class="num">11 / DECK-OF-PARTS</div>
+      <h3>Card &amp; Spread Grammar</h3>
+      <p>A fixed deck of content cards dealt into a fixed spread of named, ordered positions — tarot's actual mechanism, plus Magic's fixed-frame/variable-fill card grammar.</p>
+      <div class="badges"><span class="badge">Macro composition</span><span class="badge"><span class="dot human"></span>Human-chosen</span><span class="badge effort">Low–med effort</span></div>
+    </a>
+
+    <a class="tile" data-target="d-12" href="#d-12">
+      <div class="num">12 / CONSTRAINT LAYOUT</div>
+      <h3>Relationships, Not Positions</h3>
+      <p>Design the rule, not the instance — flex-grow:62.3 IS the ratio; real data pushed through one fixed relationship graph produces truthful, never-eyeballed geometry.</p>
+      <div class="badges"><span class="badge">Chart grammar</span><span class="badge"><span class="dot data"></span>Data-driven</span><span class="badge effort">Lowest effort</span></div>
+    </a>
+
+    <a class="tile" data-target="d-13" href="#d-13">
+      <div class="num">13 / CONTROLLED DISORDER</div>
+      <h3>The Molnár Epsilon</h3>
+      <p>A fixed frame stays exact; a seeded PRNG nudges everything else within a declared, tiered percentage — the sun stays locked, the texture wobbles. Not a macro system: a finish you lay over any of the other twelve.</p>
+      <div class="badges"><span class="badge finish">Finish layer</span><span class="badge"><span class="dot seed"></span>Seeded-random</span><span class="badge effort">Low effort</span></div>
+    </a>
+
+  </div>
+</section>
+
+<section class="groups">
+  <h2>Reading the field</h2>
+  <p class="sub">one way to slice it — not a ranking</p>
+  <div class="groupgrid">
+    <div class="groupcard">
+      <h4>Macro systems — decide page/scene order &amp; dominance</h4>
+      <ul><li>Wave Function Collapse</li><li>L-Systems</li><li>Comics Grammar</li><li>Scrollytelling</li><li>Music Form</li><li>Deck-of-Parts</li><li>Swiss Grid</li></ul>
+    </div>
+    <div class="groupcard">
+      <h4>Chart-specific grammars — how one number becomes one shape</h4>
+      <ul><li>Isotype</li><li>Constraint Layout</li><li>Shape Grammars (partial)</li></ul>
+    </div>
+    <div class="groupcard">
+      <h4>Discipline / documentation layers — no new engine, a shared vocabulary</h4>
+      <ul><li>Pattern Language</li><li>Atomic Design</li></ul>
+    </div>
+    <div class="groupcard finish">
+      <h4>Finish layer — pairs with any of the above, is not a standalone system</h4>
+      <ul><li>Controlled Disorder (the Molnár epsilon)</li></ul>
+    </div>
+  </div>
+</section>
+
+<div class="controls">
+  <button id="expand-all" type="button">expand all</button>
+  <button id="collapse-all" type="button">collapse all</button>
+</div>
+
+<!-- ============================================================ DOSSIERS ============================================================ -->
+
+<details class="dossier" id="d-01">
+  <summary><span class="num">01</span><span class="titleblock"><h3>ISOTYPE Unit-Repeat Grammar</h3><span class="era">Vienna, 1925–34 · Neurath / Arntz / Reidemeister — still alive today as the icon-array chart</span></span><span class="chev">▸</span></summary>
+  <div class="dossier-body">
+    <h4>Lineage</h4>
+    <p>Built at Vienna's Social and Economic Museum by Otto Neurath (a philosopher-economist, not a designer, who set the mission of making statistics legible across language and literacy barriers), drawn by staff artist Gerd Arntz in one consistent flat-silhouette hand, and converted from raw statistics into legible rounded numbers by Marie Reidemeister — a named role Neurath called "the transformer." Shipped at real scale: <em>Gesellschaft und Wirtschaft</em> (1930) was 100 full pictorial-statistics charts, all from one finite icon dictionary. After the Vienna museum was shut down by the Nazis, the team relocated and rebranded as ISOTYPE, running the Isotype Institute in Oxford/London into the 1970s. Direct descendants: AIGA's 50 DOT airport/hazard pictograms, and every icon-array or waffle-pictogram chart in data journalism today.</p>
+    <h4>Core mechanism</h4>
+    <p>One rule above everything else, stated almost verbatim in Neurath's own writing: quantity is shown by <strong>repeating</strong> a fixed-size icon, never by <strong>resizing</strong> one icon. A bigger number is never a bigger picture — it's more copies of the same picture. Five parts make this work: a fixed value-per-icon ratio chosen so the count lands in a legible range (roughly 5–50 icons, never one giant icon, never an uncountable smear); icons sit in a strict grid, clustered in 5s or 10s like tally marks so the eye can subitize the count without counting one by one; a remainder is shown by <em>cropping</em> the last icon at the fraction point, never scaling it down; color codes category only, applied flat, never for decoration; and a visible "[icon] = N units" key states the ratio up front. A sixth, non-visual part matters as much as the drawing rules: the "transformer" step — a human decision, made before layout, about the rounding and ratio that keeps the chart honest at a legible resolution.</p>
+    <h4>Vocabulary units</h4>
+    <p>A finite picture dictionary of master pictograms (worker, ship, coal wagon, house, coffin, coin, book…), each drawn once in a shared house style — flat single-color fill, uniform line weight, same abstraction level — so unrelated icons still read as siblings. Beyond the icons: the grid module they repeat inside, the cropped/partial variant for remainders, the "= N units" key block, and the flat category-color swatch. Five part-types, endlessly recombined.</p>
+    <h4>Combination rule</h4>
+    <p>Quantity → icon count via the fixed ratio. Icons tile into a fixed-width grid, tallied in 5s/10s, strict reading order. A remainder crops rather than shrinks. Color is category-only, flat, sparing. Multiple single-variable icon-grids sit as small multiples rather than one glyph trying to encode several variables at once. The rounding decision is made once, explicitly, by a human, before any drawing happens.</p>
+    <h4>Applied to Ripple's content pattern</h4>
+    <div class="applied">
+      <p><strong>Beat 1 (headline claim)</strong> — untouched; this is a charting grammar, not a typographic one. <strong>Beat 2 (62.3M total / 4.01M severed)</strong> — draw one record-glyph, pick a ratio that lands the total around 40–70 icons (1 icon = 1M records → 62 icons), muted-outline on bg, then re-fill exactly 4 of them solid rust. No carve-out shape, no math to trust — count the rust ones. <strong>Beat 3 (the 100-tick field)</strong> — swap the generic tick for a real pictogram relevant to the dataset, lock the grid to 10-per-row, hollow = hairline stroke, solid = the page's one accent. <strong>Beat 4 (0%→100% repair)</strong> — two identical icon-grids side by side, same glyph, same grid: "before" fully hollow (or a cracked variant), "after" fully solid in sage-hi. Same shapes, same positions, only fill state changes. <strong>Beat 5 (human coda)</strong> — one human-figure glyph, Arntz-style, either oversized alone in rust or a tight cluster (1 icon = 1,000 people), isolated in whitespace as the page's literal sun.</p>
+      <p>Platform-wide, this doubles as the actual reusable vocabulary Chris is after: build ~15–20 flat SVG glyphs once, in one consistent hand pulled toward the blueprint/drafting register rather than 1930s-poster nostalgia, and every future page just picks glyphs + ratio + one accent.</p>
+    </div>
+    <h4>Fit against the music brief</h4>
+    <p>Rhythm and "key it never leaves" are near-textbook fits — an icon-grid beat IS density, and color-as-category-only IS "one color carries the weight, everything else backing vocals." Eye order is strong (row by row, like a sentence). The one real friction: Chris's brief wants scale <em>felt</em> via a bigger shape; Isotype's founding premise is the opposite — Neurath built this precisely because people misjudge area, and insisted magnitude only ever register through count/crowd, never through size. The eye still feels "way more" before finishing reading — just via density, not area. Sun-and-planets fits at both scales: the one recolored icon is the scene's sun, the human-cost beat can be the whole page's.</p>
+    <div class="sw-grid">
+      <div class="strong"><h4>Strengths</h4><p>The most infographic-native prior art in the whole survey — invented to solve exactly this problem, not adapted from elsewhere. A small fixed dictionary carried hundreds of Vienna Method charts across a decade without reading as stamped-out — direct proof the core ask is achievable. Count-based comparison is measurably harder to misread than area-based, a real asset for a platform whose credibility rests on the numbers. Cheap: no JS layout engine needed for static pages.</p></div>
+      <div class="weak"><h4>Weaknesses</h4><p>Narrow scope — covers beats 2–4 well, beat 5 is editorial choice more than coded rule. Philosophically in tension with Chris's own "scale should be felt" instinct, which leans area — adopting this faithfully means giving up the area-proportional carve-out already working on the shipped page, not just adding a tool alongside it. Gets coarse at billion-scale numbers (heavy rounding fights an investigative platform's instinct for precision). Carries a recognizable 1930s-poster aesthetic that needs deliberate pulling toward Ripple's technical register. Needs real upfront illustration labor before any page can use it.</p></div>
+    </div>
+    <h4>Best fit / weak fit</h4>
+    <p>Shines where the evidence is fundamentally a count — how many people, records, dollars, violations — especially "X out of Y," "before N after M" stories, which is precisely Ripple's existing pattern. Weak for relational content (entity networks, org charts) or pure trajectory stories (a time series whose shape matters more than any single count) — no native chart type for either.</p>
+    <h4>Build effort</h4>
+    <p>Low-to-medium, mostly design labor. One-time: illustrate ~15–20 flat pictogram glyphs in one consistent hand (a bounded task, hand-drawn or AI-drafted then cleaned). Then one reusable grid component — pure CSS grid or a ~50-line generator taking (icon, total, value-per-icon, accent) and emitting N whole icons + one cropped partial, 10-per-row. No runtime framework needed. Per-page cost after that: pick glyph, pick the ratio (a five-minute human "transformer" judgment call — not automatable without losing the honesty guardrail the system exists for), pick one accent.</p>
+  </div>
+</details>
+
+<details class="dossier" id="d-02">
+  <summary><span class="num">02</span><span class="titleblock"><h3>Swiss Modular Grid + Modular Scale</h3><span class="era">Müller-Brockmann · Gerstner · Vignelli · Bringhurst — 1960s–present, still running 200+ NPS brochures</span></span><span class="chev">▸</span></summary>
+  <div class="dossier-body">
+    <h4>Lineage</h4>
+    <p>Josef Müller-Brockmann's <em>Grid Systems in Graphic Design</em> (1981) is the canonical text — dozens of visually distinct Zurich Tonhalle posters, all built on the identical underlying grid, proving one lattice produces many different-looking outputs. Karl Gerstner's <em>Designing Programmes</em> (1964) is the more radical cousin: you design a rule-set with legal moves, not one layout, and different content run through it produces different valid results. Massimo Vignelli's National Park Service Unigrid system (1977) is the strongest real-world proof available anywhere in this survey: one grid spec plus a small library of allowed module layouts has produced 200+ park brochures over 45+ years, each visually distinct per park, all instantly recognizable as one family. Robert Bringhurst's modular type scale (a ratio-based ladder of sizes, descended from Renaissance page-construction proportions) supplies the size axis.</p>
+    <h4>Core mechanism</h4>
+    <p>Two fixed lattices, one spatial and one dimensional, that every element must snap to — variation comes only from which cells an element claims, never from inventing new geometry. The grid: a fixed column count, baseline unit, and margin define a module; every element starts on a grid line and spans a whole number of modules. Empty modules are not leftover space — Müller-Brockmann's explicit doctrine treats blank cells as a designed element with the same status as filled ones, which is what gives the grid the capacity for rest. The modular scale: every size on the page — type, spacing, image widths — is a rung on one fixed ratio ladder (golden ratio, or a musical ratio like 3:2), not a number picked by eye. Two pages built from the identical spec look genuinely different because different content spans different modules at different starting positions on the same lattice — Müller-Brockmann's book is 200+ pages of proof, and Vignelli's Unigrid is the real-world case at scale.</p>
+    <h4>Vocabulary units</h4>
+    <p>The module (one grid cell); a fixed column count (8/12/32-field grids were Müller-Brockmann's favorites); a fixed baseline unit; the modular-scale ladder (e.g. base 16 × 1.5 → 16/24/36/54/81/121/182); margin/bleed zones, also grid-defined; a small library of "legal" module-spans per content type (Gerstner's "programme" moves) — a finite menu, not infinite freedom.</p>
+    <h4>Combination rule</h4>
+    <p>Any element must start on a grid line, span a whole number of modules in both axes, take its type size only from the scale ladder, and leave a deliberate share of modules empty. Hierarchy is expressed purely through span size — the "sun" of a scene is simply whichever element claims the most modules; nothing needs a new shape or color to read as dominant. What's held constant across every page: column count, baseline, and the scale ratio. What's re-decided every time: which content claims how many modules, where it starts, how much is left empty — the same fixed meter, different notes.</p>
+    <h4>Applied to Ripple's content pattern</h4>
+    <div class="applied">
+      <p>Define one grid spec, reused everywhere: 12 columns inside the existing 1720px frame, baseline = 8px, modular scale = base 16px × 1.5 (a musical fifth) → 16/24/36/54/81/121/182/273 — forcing the current hand-picked <code>clamp()</code> sizes onto real rungs instead of eyeballed values. Recast the existing alternating bands as literal 12-column rows with different spans per band: the tick-wall band gives its numeral column 3 and its viz column 9 (the dense field needs the room); the repair-arrow band gives the numeral 8 and the caption 4 (the numerals are the sun there). Same lattice underneath three different span decisions — the literal "same grid, different-looking spreads" move.</p>
+      <p>Turns "rhythm" from a felt judgment into a printable number: module-fill percentage per scene. The tick-wall band reads ~85–100% occupancy — a loud bar; the rest sections between scenes read ~5–10% — a quiet bar. The dense/sparse/dense/sparse heartbeat becomes something you can check before publishing, not eyeball. What the grid does <em>not</em> generate on its own — the area-true circles, the tick-wall, the dotted spine — stays exactly as-is; Swiss practice explicitly allows planned grid violations for emphasis, and the diagonal spine is exactly that kind of deliberate exception.</p>
+    </div>
+    <h4>Fit against the music brief</h4>
+    <p>The grid is close to a literal translation of the musical metaphor: it's the bar-lines/time signature (fixed meter, held constant), the modular scale is the set of allowed note durations, and which modules get claimed each scene is the melody played inside that structure. Density/rest is the standout — module-fill percentage is a real, checkable number, more rigorous here than in almost any other candidate. Where it strains: "scale felt before read" is only half-native — the grid happily sizes a bounding box bigger or smaller, but the actual felt-size trick (area-true circle radii) is a separate mechanism riding inside a cell, not something the grid derives on its own.</p>
+    <div class="sw-grid">
+      <div class="strong"><h4>Strengths</h4><p>Cheapest system in the whole field to build — CSS Grid, a spacing scale, a type-ratio function, nothing exotic. Proven at real portfolio scale for decades. Turns two of the brief's fuzziest requirements (rhythm, hierarchy) into countable, auditable numbers. Drops directly onto the page's existing CSS Grid/flex structure. New pages cost authoring time, not new layout invention.</p></div>
+      <div class="weak"><h4>Weaknesses</h4><p>A rigid module grid, used alone, tends cold/bureaucratic rather than hand-composed — the organic feeling in the best Swiss work comes as much from editorial judgment placed inside the grid as from the grid itself. Generates none of Ripple's signature emotional techniques on its own — only decides where they sit. Fundamentally box-based, so anything diagonal (the spine motif) has to be an explicit carved-out exception. Without discipline it can become invisible boilerplate.</p></div>
+    </div>
+    <h4>Best fit / weak fit</h4>
+    <p>Dense, multi-stat, many-discrete-unit content, and pages that need to feel like one recognizable family across a large future catalog (the NPS case is literally this). Weaker for a single-image emotional beat that should dominate without competing bounding-box logic, and inherently at odds with a drawn/diagonal motif like the spine, which has to be a deliberate exception, not something the grid produces.</p>
+    <h4>Build effort</h4>
+    <p>CSS-only: a handful of custom properties (<code>--module</code>, <code>--cols</code>, <code>--baseline</code>, <code>--scale-ratio</code>), a grid scaffold class, either hardcoded type-scale properties or a tiny calc() helper. A few hours to formalize as a reusable layer plus a short written convention. The part that isn't free: discipline — the system stays organic only if span choices are made deliberately per page, not on autopilot.</p>
+  </div>
+</details>
+
+<details class="dossier" id="d-03">
+  <summary><span class="num">03</span><span class="titleblock"><h3>Atomic Design + Token Systems</h3><span class="era">Brad Frost, 2013 · plus Tailwind, Material, shadcn as the industry's own sameness-critique-and-response</span></span><span class="chev">▸</span></summary>
+  <div class="dossier-body">
+    <h4>Lineage</h4>
+    <p>Brad Frost's Atomic Design (2013 blog post, 2016 book): atoms (colors, type, spacing, a button) → molecules → organisms → templates (content-agnostic skeletons) → pages. His reference tool, Pattern Lab, renders the whole hierarchy as a browsable catalog. "Design tokens" (Salesforce Lightning, ~2015) became the standard way to name the atom layer as data rather than hardcoded values. Three production-scale proofs, each a different flavor: Bootstrap (2011) — a 12-column grid plus a fixed component library, the most historically templated-looking of the three ("Bootstrap face" is a real, mocked phenomenon). Tailwind CSS (2017) — utility classes drawn from constrained scales, composed directly in markup; the constraint lives in the scale, not in prebuilt components. Google Material Design (2014, now Material 3) — an 8dp grid, a prescribed elevation ramp, and in M3 an algorithmic color engine that generates a full accessible palette from one seed color. Most relevant to how Ripple would actually use this: shadcn/ui (2023) abandoned the npm-dependency model entirely — you copy component source into your own repo and own/edit it, explicitly to fight the "every app looks the same" critique leveled at this exact lineage.</p>
+    <h4>Core mechanism</h4>
+    <p>Two rules stacked: hierarchical composition (small typed parts assemble into bigger typed parts through an explicit slot contract, so two instances of an organism share structural DNA even with different content inside), and constrained value ramps instead of arbitrary values (a token is a named step on a small finite scale, so no two builders can silently drift apart because the system doesn't offer the in-between values). Practiced honestly: this base mechanism by itself converges toward sameness — it was invented to stop many builders from diverging, the opposite instinct from making many pages each feel hand-composed. The organic variation that DOES exist in mature deployments isn't free — it comes from mechanisms bolted on top: multiple interchangeable variants per slot, selection by content-fit or rotation history rather than always defaulting to variant A, and a mandatory human/judgment pass at final page assembly (Frost's own model puts Pages last, calling them where the system gets validated against real content).</p>
+    <h4>Vocabulary units</h4>
+    <p>Atoms = Ripple's existing tokens, verbatim: the 11 named colors, the 7-step spacing scale, the display/body/mono trio (or any of the ~20 alternate pairings), plus new primitives this system adds — a numeral-size ramp, a tick/unit glyph, a hairline-rule atom, a leader-line atom, a tilted-caption atom. Molecules = fixed small pairings: numeral+caption, a row of 10 ticks, before-arrow-after. Organisms = named section-types with 2–3 interchangeable geometric variants each, not one canonical form. Templates = the fixed 5-beat order plus a rhythm tag per slot. Pages = a template with real numbers dropped in, plus a mandatory composition pass.</p>
+    <h4>Combination rule</h4>
+    <p>Three stacked, enforceable rules: strict order, free variant (the 5-beat sequence never reorders, but which variant fills each slot is chosen per page); content-fit + anti-repeat selection (does this page's real ratio suit this variant, and was this variant used in the immediately-preceding page for the same organism — if yes, force a different one, borrowed directly from editorial CMS module rotation); rhythm-alternation lint (every organism carries a DENSE or REST tag, and assembly refuses two DENSE organisms back to back).</p>
+    <h4>Applied to Ripple's content pattern</h4>
+    <div class="applied">
+      <p>Beat 2 (proportional-scale) gets a <em>Scale-Compare</em> family with three variants sharing tokens but different geometry: (A) two circles side by side, sized true to area; (B) one large shape with the subset cut out as a negative-space bite, used automatically when the ratio drops under ~5% (two circles would make the small one an invisible dot); (C) the horizontal band already built. Beat 3 (density field) gets a <em>Density-Field</em> family: the existing 10×10 tick grid, or the same 100 units repacked as a filled pictogram silhouette, or strung as beads along the dotted route. Beat 4 (before/after) gets a <em>Before/After</em> family, picked to differ from whichever variant Beat 2 just used on this page, so the page never repeats its own geometry.</p>
+      <p>Beat 5 (human coda) is deliberately NOT variant-pooled — always the single largest numeral-token step, always the one reserved key-accent color, full-bleed, alone. A token-search check enforces the color rule directly: only one of {rust, teal, gold, sage} may appear as a hero fill anywhere outside hairlines/dim/muted — everything else that page pulls from the remaining three.</p>
+    </div>
+    <h4>Fit against the music brief</h4>
+    <p>"Sun and planets, fractally" is nearly free here — atom&lt;molecule&lt;organism&lt;template&lt;page is already a literal small-nested-in-bigger structure, the best natural match of any lineage for that specific line. "Scale felt before read" maps directly onto a numeral ramp. Where it strains hardest: rhythm (dense/rest, "heartbeat") is not native at all — components are designed to be independent and order-agnostic, so the DENSE/REST tag system has to be bolted on as an extra rule layer. "One arrow through the layout" is similarly not something component libraries produce — they give well-made independent beads, not the string connecting them. Most important honest note: this is the candidate with the most public, well-documented history of producing exactly the stamped-out sameness Chris fears ("Bootstrap face," "every Tailwind SaaS site") — it needs more deliberate counter-engineering than any other system here just to avoid becoming its own worst-case reputation.</p>
+    <div class="sw-grid">
+      <div class="strong"><h4>Strengths</h4><p>Proven at the largest scale of any candidate — this is the literal architecture behind most production software UI on earth, so failure modes and fixes are both exhaustively field-tested. Converts Chris's already-built palette/spacing/type file directly into the atoms layer with zero rework — the only candidate where most of the vocabulary already exists verbatim. Checkable, not just describable — several brief rules become literal lint checks against the token file.</p></div>
+      <div class="weak"><h4>Weaknesses</h4><p>The base method actively pulls toward convergence, not divergence — every anti-sameness mechanism is an addition it doesn't supply on its own. No native concept of narrative pacing or reading order — rhythm and the "arrow through the layout" are invented and enforced as separate rules. Carries the worst public reputation of any candidate for exactly the failure Chris is naming.</p></div>
+    </div>
+    <h4>Best fit / weak fit</h4>
+    <p>Best for investigation pages sharing Ripple's actual repeating shape — the system's power comes directly from that repetition existing. Struggles for a one-off investigation needing a genuinely different narrative shape (a different beat count, two competing claims rather than one) — forcing an oddly-shaped story into this vocabulary is exactly where it starts reading as a stretched template.</p>
+    <h4>Build effort</h4>
+    <p>Layered, first layer nearly done. Atoms: already exist, zero net-new work. Molecules/organisms: a documented swatch book, ~15–20 variant snippets across 4 organism families, CSS/HTML only — a few days of focused work. Templates + rule: could stay as written guidance an AI-assisted session consults live, matching how the page was actually built — cheapest option, effectively free once the swatch book exists.</p>
+  </div>
+</details>
+
+<details class="dossier" id="d-04">
+  <summary><span class="num">04</span><span class="titleblock"><h3>Shape Grammars</h3><span class="era">Stiny &amp; Gips, 1972 · the Palladian Grammar, ice-ray lattices, real housing at Malagueira</span></span><span class="chev">▸</span></summary>
+  <div class="dossier-body">
+    <h4>Lineage</h4>
+    <p>George Stiny and James Gips invented shape grammars in 1972 as a formal alternative to symbol/string grammars (Chomsky) — rules that rewrite <em>shapes</em>, not labels. Made famous by Stiny &amp; Mitchell's 1978 "Palladian Grammar": a rule set that generates the floor plans of Palladio's actual villas AND plausible new ones in the same style, proving a small rule table can capture an entire architectural language. Other reverse-engineered corpora: Stiny's 1977 ice-ray paper (Chinese lattice designs via recursive subdivision), Koning &amp; Eizenberg's "Language of the Prairie" (Frank Lloyd Wright plans, generated outward from the hearth mass). It left the academy for real production at least once: Duarte's "discursive grammar" (MIT, 2001) generated hundreds of actual unique social-housing floor plans in Álvaro Siza's Malagueira district, Portugal — each family got a distinct house from one shared rule set. It also crossed into product design as literal brand-DNA capture: reverse-engineered grammars for coffee-makers, Harley-Davidson motorcycles, and Buick's product line, each then generating new, recognizably-on-brand concepts.</p>
+    <h4>Core mechanism</h4>
+    <p>Five parts: a vocabulary of basic shapes (points, lines, planes — actual geometry, scalable/rotatable/reflectable); a rule set where each rule is LHS shape → RHS shape ("if you can find a transformed copy of this shape, you may replace or add to it"); markers attached to specific points that control legality and sequencing; an initial seed shape; and a termination rule (usually: erase remaining markers) that turns a mid-generation shape into a finished one. The single most important property is emergence: because rules match actual geometry, not labeled parts, applying one rule can accidentally create a shape nobody explicitly placed, and a later rule can "discover" and act on it — that's what makes a tiny rule set (Palladio's has roughly a dozen rules) generate results that look hand-designed rather than mechanically stamped. Parametric grammars (rules carrying free variables for size/proportion) matter specifically for Ripple: this is exactly r = R·√(value/total), already the literal formula in the shipped page's area-true circles. At most steps more than one rule is legal — a designer picks which fires, so the same grammar walked two different ways yields two different family members.</p>
+    <h4>Vocabulary units</h4>
+    <p>Mapped onto what's already built in the shipped page: the area-true circle cluster; the tick-wall (an N-cell grid of solid vs. hollow ticks); the before/after arrow band; the full-width band container (alternating left/right, dashed hairlines); the leader-line annotation; the tilted marginal caption; the dotted spine; the coda numeral. Seven-plus shape templates, already coded, just not yet extracted into reusable rule form.</p>
+    <h4>Combination rule</h4>
+    <p>A marker-state table drives which shape a section may be, in what order: melody-open (must fire the claim first) → proof-pending (area-true comparison) → density-OR-repair-pending (a genuine fork — either is legal, or a page can skip one) → rest-required (a marker forced onto the state right after any "heavy" band — a heavy band may never be followed by another heavy band) → coda-pending (terminal: one numeral, one sentence). Two dominance rules ride alongside at two grain sizes with the identical formula: within any scene, exactly one shape may carry the sun marker, every sibling capped below it; across the whole page, exactly one band may carry the single accent-color marker. Running the same rule once at page grain and again at scene grain is the literal mechanism for "sun and planets, fractally, at every scale."</p>
+    <h4>Applied to Ripple's content pattern</h4>
+    <div class="applied">
+      <p>A hypothetical new page (banned providers still billing, 1.2M checked, 340 still active): Rule 1 fires the circle cluster in hero position, numeral 1.2M. Rule 2 carves the area-true satellite at r=R·√(340/1.2M) — and exposes the color-role choice as an explicit decision rather than hiding it: this story is about ongoing harm, not repair, so the satellite binds to rust instead of the sage the shipped page used for "healthy" — same shape rule, different token, and the grammar forces someone to make that call on purpose. Rule 3: because rules 1–2 already used the "heavy" tag, the rest-required marker forces the tick-wall alone next, generous whitespace. Rule 4 (repair) is optional by the grammar's own fork rule — this story may have no clean 0→100 moment, so the walk can legally skip straight to coda, which is exactly what keeps a second page from feeling like a reskin of the first.</p>
+    </div>
+    <h4>Fit against the music brief</h4>
+    <p>The strongest match of any formal system for four of the six brief terms. Melody: the seed shape IS the one big idea by construction. Eye path: rule-application is inherently ordered, so a designed reading order isn't bolted on, it's the rule sequence itself. Scale felt before read: the parametric area-true formula isn't decoration added to a shape grammar, it IS how real ones like Palladian and ice-ray work. Sun and planets, fractally: the best fit in the whole survey — recursive rules mean applying one dominance rule at page grain and again at scene grain is calling the same function twice. Rhythm is buildable directly as marker-sequencing. The weakest link: "key" (one accent color) is bolted on as a second co-running grammar (Terry Knight's color-grammar extension), since shape grammars are geometry-native.</p>
+    <div class="sw-grid">
+      <div class="strong"><h4>Strengths</h4><p>Fifty years of peer-reviewed rigor with real generated corpora to check against, not a speculative analogy. Handles Chris's exact tension natively — parametric rules plus more-than-one-legal-option-at-most-steps means the same small rule set produces genuinely different family members. Emergence is a documented mechanism for why output looks hand-composed, not stamped.</p></div>
+      <div class="weak"><h4>Weaknesses</h4><p>Built for continuous 2D/3D geometry — no native concept of the HTML/CSS box model, responsive reflow, or scroll timing, so nothing compiles to a web page automatically. Full "maximal shape" emergence matching is computationally expensive and generally undecidable — every real implementation restricts itself to a small fixed rule library, which quietly turns "shape grammar" into "a parametric production-rule engine that borrows shape-grammar discipline," not the full academic formalism. Almost no production web tooling exists to build on.</p></div>
+    </div>
+    <h4>Best fit / weak fit</h4>
+    <p>Strongest for investigations fundamentally about proportion, rate, or nested scale — data-repair stories, "X out of Y" stories, anywhere the identical rule can meaningfully refire at more than one scale within the same story. Weak for narrative or relational content — a timeline, a chain of actors, a network — since a subdivision/proportion grammar has no native shape for sequence, causality, or connection.</p>
+    <h4>Build effort</h4>
+    <p>Medium, front-loaded: most of the shape vocabulary already exists as working code, so this is largely extraction, not invention. Pull the ~7 shape templates out into standalone parametrized SVG/CSS components; write a small marker-state table (a few dozen rows) as JSON/YAML; write a small assembly script (a few hundred lines) that walks a content brief plus an editorial choice at each fork through the table. Not CSS-only — needs that small rule engine — but not a research project either; a human still picks which legal branch to take at each fork, which is the literal literature, not a gap.</p>
+  </div>
+</details>
+
+<details class="dossier" id="d-05">
+  <summary><span class="num">05</span><span class="titleblock"><h3>Wave Function Collapse</h3><span class="era">Merrell 2007 → Gumin 2016 → Bad North, Townscaper, Caves of Qud</span></span><span class="chev">▸</span></summary>
+  <div class="dossier-body">
+    <h4>Lineage</h4>
+    <p>The formal ancestor is Paul Merrell's "Model Synthesis" (SIGGRAPH 2007) — an academic constraint-satisfaction algorithm for assembling 3D models from small chunk libraries under adjacency rules, years before it had a game-dev audience. Maxim Gumin's 2016 open-source "Wave Function Collapse" project independently reinvented and popularized the same mechanic under a quantum-mechanics-borrowed name — the physics metaphor is just branding; the mechanism is classical discrete constraint propagation, the same family as a Sudoku solver or the 1977 AC-3 arc-consistency algorithm. From there it entered game production directly: Oskar Stålberg (Bad North, Townscaper) has written repeatedly about building WFC-family solvers for procedural terrain; Caves of Qud's own dev blog documents using it for historically-varied but structurally-sound ruin layouts from a small hand-authored room-fragment tileset. It's now a standard indie/game-jam technique via ported Unity/Godot plugins.</p>
+    <h4>Core mechanism</h4>
+    <p>Every cell starts holding the full set of legal tile types, each with a frequency weight. Then loop: scan all uncollapsed cells and pick the one with the <em>lowest entropy</em> — fewest remaining legal options, not a random or sequential cell; collapse it — weighted-random-pick one tile from its remaining options; propagate — for every neighboring cell, throw out any tile whose touching edge doesn't match the one just fixed, then repeat outward to their neighbors until nothing more changes (a full arc-consistency pass); repeat. If a cell's options ever collapse to zero, the algorithm backtracks or restarts. The "organic, not stamped" feeling comes from two separable facts: local legality is a hard guarantee (nothing illegal-looking can ever occur, because every touching pair was pre-vetted), while the global macro-shape is maximally free within that constraint — no two solves look alike even though every micro-transition in both was drawn from the identical tiny legal-pairs table.</p>
+    <h4>Vocabulary units</h4>
+    <p>Tiles — small self-contained visual units, each with typed sockets on its edges. Mapped onto Ripple: small pre-built HTML/SVG component variants, one family per content beat, each tagged with socket values (density in/out, side in/out, accent-color compatibility, sun/planet flag, entry/exit thread position) rather than raw pixel edges.</p>
+    <h4>Combination rule</h4>
+    <p>Three rules, all load-bearing: adjacency legality (typed sockets on each edge must match a pre-declared compatible pair — this IS the actual grammar); weighted frequency (the final pick among legal options is random but weighted, so common transitions stay common); lowest-entropy solve order (the tightest-constrained cell resolves first, propagating outward — the same instinct a person tightening a jigsaw uses on the tightest corner first).</p>
+    <h4>Applied to Ripple's content pattern</h4>
+    <div class="applied">
+      <p>Keep the five content beats as the fixed backbone — WFC doesn't choose what the page says, it chooses how each beat is dressed and how beats snap together. Build each beat as a library of 3–6 pre-designed variants. Tag every variant with sockets built from tokens already in the live page: a DENSITY socket (DENSE cannot follow DENSE, structurally enforcing the heartbeat instead of hoping someone remembers); a SIDE socket mapped onto the existing band/band-r alternation, with same-side-twice forbidden; an ACCENT-LOCK socket fixing one of gold/rust/sage/teal for the whole solve, so the current build's gold arrow and rust coda become two different solves of the same library, never mixed in one page; a SUN-FLAG with cardinality-one, propagating SUN=false to siblings the instant one is chosen, at both scene and page grain automatically.</p>
+      <p>The currently-hardcoded dotted spine bezier could instead be computed FROM the matched socket coordinates of whichever tiles the solver picked — the drawn route becomes a genuine byproduct of the solve, not a decoration laid on after.</p>
+    </div>
+    <h4>Fit against the music brief</h4>
+    <p>Almost suspiciously literal, because the brief is already phrased as constraint rules, not vibes — but it splits cleanly. Rhythm is the single best match in the whole survey — a textbook adjacency socket, no adaptation needed. "Key it never leaves" is also near-perfect — WFC already has the exact concept, one global compatibility class fixed for a whole solve. Sun-and-planets fits as a hard cardinality rule at both scales. What it can't touch: melody — WFC has no concept of "what the page is about," the headline claim has to be fed in as a fixed, un-collapsed anchor authored by a human every time. And it enforces a grammar a person wrote — it doesn't invent good storytelling on its own.</p>
+    <div class="sw-grid">
+      <div class="strong"><h4>Strengths</h4><p>Rule compliance is structural, not a QA checklist — "no two dense sections in a row" becomes something the solver literally cannot violate. Genuine combinatorial variety from a small hand-vetted vocabulary — ~15–25 tile variants can yield hundreds of distinct legal compositions. Every transition is guaranteed to look intentional because a human already approved that specific pair before the algorithm ever runs. A solve is seed-reproducible, useful for versioning a specific page's exact composition.</p></div>
+      <div class="weak"><h4>Weaknesses</h4><p>Generates no meaning — with only 3–6 variants per beat, a reader visiting enough pages will eventually recognize recombination, so staying fresh needs real ongoing library growth. Backtracking is a genuine engineering cost. Textbook WFC assumes a fixed 2D grid of equal-size cells; a scrolling page is a 1D sequence of variable-height sections — a solvable but nonstandard adaptation, closer to Wang tiles on a strip. Still requires real upfront taste — a careless ruleset produces boring pages exactly as easily as a careful one produces great ones.</p></div>
+    </div>
+    <h4>Best fit / weak fit</h4>
+    <p>Fits best as the layer deciding order, side, color-lock, and sun-singularity across a growing library of pages that all share Ripple's five-beat pattern — feed it a stack of pre-built variants and it spits out dozens of legally-composed skeletons with zero manual QA needed to catch a broken rhythm. Poor fit for generating the proof-visuals themselves — those still need a human to hand-build each variant once. Least useful for a single one-off hero page Chris art-directs by feel, exactly how the shipped page got built — the payoff only shows up once there are enough future pages that "does this still feel hand-composed at page 40" is a real risk.</p>
+    <h4>Build effort</h4>
+    <p>Not a weekend hack, but genuinely buildable, and most of the cost is design labor. A small solver (~200–400 lines; Gumin's original is MIT-licensed and multiple JS/TS ports exist to adapt). A tile library (~15–25 hand-built HTML/SVG variants across the five beats — comparable effort to what already exists, multiplied). A socket/metadata schema (a medium data-modeling task, an afternoon). The nonstandard piece: adapting classic grid-WFC to a 1D vertical strip needs a real 1–2 day spike. Realistic v1 estimate: 1–2 weeks solo, mostly tile-authoring.</p>
+  </div>
+</details>
+
+<details class="dossier" id="d-06">
+  <summary><span class="num">06</span><span class="titleblock"><h3>Botanical L-System</h3><span class="era">Lindenmayer 1968 → Prusinkiewicz 1990 → SpeedTree, Structure Synth, generative art</span></span><span class="chev">▸</span></summary>
+  <div class="dossier-body">
+    <h4>Lineage</h4>
+    <p>Aristid Lindenmayer, 1968: a biologist modeling cell division in algae, not a designer — the grammar explains how one growth rule, applied to every cell simultaneously, produces a whole organism. Przemyslaw Prusinkiewicz turned it into graphics in the 1980s by pairing the string grammar with turtle graphics; his book with Lindenmayer, <em>The Algorithmic Beauty of Plants</em> (1990), is the source of essentially every fractal tree, fern, and Koch curve anyone has seen since. Real downstream lineage: SpeedTree and XFrog (procedural game/film vegetation, both explicitly throttling the grammar's branching factor down from biological accuracy so trees read clearly); Context Free Art and Structure Synth (generative-art tools where the grammar IS the tool). Non-plant instances of the identical math: river drainage networks, lightning figures, vascular/neuron branching. The closest web-adjacent cousin already in wide use: radial dendrograms and D3 tree layouts (phylogenetic trees, git commit graphs, org charts) — the same bracketed recursion, just not usually run as a generative grammar with a decay rule.</p>
+    <h4>Core mechanism</h4>
+    <p>An L-system is (alphabet, axiom, rules), applied to every symbol in the string simultaneously — the one non-negotiable technical feature, and why a whole plant grows evenly instead of one branch racing ahead. For layout, the relevant flavor is a bracketed, parametric turtle-graphics L-system: F = draw forward (a trunk/band), + / − = turn left/right by a fixed angle, [ = push position and start a subordinate branch, ] = pop and resume the parent axis exactly where it left off. A rule like F→F[+F]F[−F]F produces a tree because [ ] literally means "branch off, then come back to the spine" — the mechanism, not a metaphor for it. Parametric versions attach numbers (length, width, hue) that shrink by a fixed ratio each generation (real botanical models use roughly 0.6–0.7), which is exactly what makes child branches visibly, proportionally smaller without anyone hand-picking each size. Critically: <strong>monopodial</strong> growth (conifers) keeps one continuous dominant axis running the full height with subordinate branches peeling off and returning to it — there is always exactly one main character, at every level. <strong>Sympodial</strong> growth (most flowering trees) has no single throughline past the first fork. Monopodial is the one that mechanically guarantees "one sun, orbiting planets, at every scale" — sympodial breaks that guarantee by generation 2.</p>
+    <h4>Vocabulary units</h4>
+    <p>Six symbols, full stop: TRUNK (F), TURN-LEFT/RIGHT (+/−, literally the alternating left/right layout Ripple already uses), BRANCH-OPEN/CLOSE ([ ]), and REST (f, a no-op, pure gap). Each F carries a parameter bundle that decays by generation: length, weight, and a lightness step on one inherited hue.</p>
+    <h4>Combination rule</h4>
+    <p>Constrain the grammar hard before using it: exactly one continuous trunk axis top to bottom (this axis IS the existing dotted spine, formalized as the main F-chain rather than hand-tuned); cap children per branch at 1–2, never more (biological accuracy explodes into dozens of twigs by generation 4 — an infographic has 5–7 beats total); constrain turn angle to a narrow 15–35° forward cone rather than realistic branch angles, since a scroll page must always net downward; fix one decay ratio (~0.65) for the whole page and derive every child's size from parent-size × 0.65^depth, replacing a dozen hand-picked <code>clamp()</code> values with one principled number; color rides along the string and only lightens per generation, never changes hue — the mechanical version of "key it never leaves."</p>
+    <h4>Applied to Ripple's content pattern</h4>
+    <div class="applied">
+      <p>Four generations of one monopodial tree, root at the top. GEN 0 = the headline claim, unchanged. GEN 1, branch [+F] = the proportional-scale comparison — already, almost exactly, a parametric L-system in the existing SVG: the 62.3M root circle and 4.01M child circle are precisely a parent-F and child-F related by the same length-decay formula an L-system uses. Formalize it by drawing the currently-implicit leader line as a real bracket-branch stem. The deaths circle and hospitalizations ring become GEN-2 leaves off that branch, each smaller by the same √(count/parent) rule, colored as children of the parent's hue-family rather than new colors.</p>
+      <p>GEN 2, branch [−F] = the tick-wall, rendered as a terminal leaf-cluster — real L-system trees end branches in clusters of identical small leaves, and 100 identical ticks already IS that vocabulary. GEN 2 sibling, branch [+F] = the repair stat, turning the other direction — exactly what the existing reversed-alignment band already does, now given a reason. GEN 3/coda doesn't add a branch, it closes the tree: a small, low-opacity miniature redraw of the whole shape from generations 0–2, sitting beside the final number — since an L-system is exactly reproducible at any scale, this costs nothing extra and gives the reader a literal "here's the shape of the argument you just walked through, small enough to hold."</p>
+    </div>
+    <h4>Fit against the music brief</h4>
+    <p>Key/one color is the best-matched principle in the whole brief — hue-as-inherited-parameter is a real, standard L-system technique, so "the key never leaves" stops being a discipline enforced by eye and becomes a rule enforced by construction. Sun-and-planets, fractal, at every scale is the reason this domain was assigned, and it's an excellent fit — monopodial branching mechanically guarantees exactly one dominant continuing axis at every level, by construction rather than careful hand-composition each time — but only if the branching factor is throttled hard; a biologically faithful L-system produces a bushy canopy by generation 3–4, violating "nothing competes with the sun" almost immediately. Rhythm is the weakest native fit — real growth doesn't rest, it just gets smaller, so "rest" has to be bolted on as an explicit no-op symbol.</p>
+    <div class="sw-grid">
+      <div class="strong"><h4>Strengths</h4><p>Mechanically guarantees exact self-similarity at every scale — not approximated by convention, structurally forced. A genuinely tiny vocabulary — five operators, one parameter bundle, small enough for one page. One tunable decay ratio replaces a whole page's worth of hand-picked font sizes. It isn't a foreign metaphor bolted on — the existing hero circles, band alternation, and tick-wall are already, independently, three pieces of an L-system that just haven't been named as one grammar yet.</p></div>
+      <div class="weak"><h4>Weaknesses</h4><p>Unrestrained, this reads as a science-fair fractal poster, not investigative journalism — it only looks like Ripple's page if branching factor, angle cone, and ornamentation are deliberately clamped down from what botany actually does, an ongoing taste judgment, not a one-time setup. Systematizes geometry but not narrative sequencing — a human still decides which content beat goes on which branch. Turtle geometry's natural pull is sideways/upward, actively fighting a vertical scroll's net-downward requirement.</p></div>
+    </div>
+    <h4>Best fit / weak fit</h4>
+    <p>Shines for investigations whose real narrative shape IS a decomposition tree — one root cause fanning into several genuinely distinct downstream consequences. The Severed Casefile's real content is closer to a linear chain than a branching tree, so it's workable but not ideal there; it fits much better where the claim genuinely branches. Struggles with comparative/parallel content (fifty states ranked side by side — no natural parent/child hierarchy) and pure timelines (L-systems have no time axis, only spatial nesting).</p>
+    <h4>Build effort</h4>
+    <p>Not CSS-only, but close to the cheap end. Cheapest tier: write the grammar down as a one-page reference and apply it by eye — near-zero engineering. Recommended tier: a small build-time script (~150–300 lines) that takes a tiny per-page config (axiom text, branch nodes tagged with content-type and child-count, one seed string), mechanically expands it through real string rewriting, then walks the result with a turtle-to-SVG function — output is committed as static SVG/HTML with zero runtime dependency, roughly a day or two for a genuinely reusable tool.</p>
+  </div>
+</details>
+
+<details class="dossier" id="d-07">
+  <summary><span class="num">07</span><span class="titleblock"><h3>Comics Panel Grammar</h3><span class="era">Scott McCloud, 1993 · Sacco, Sousanis, Watchmen, Chris Ware, Asterios Polyp</span></span><span class="chev">▸</span></summary>
+  <div class="dossier-body">
+    <h4>Lineage</h4>
+    <p>Scott McCloud's <em>Understanding Comics</em> (1993) is the formal source: six panel-transition types, panel size/shape as duration and emphasis, gutters, closure. Predecessor: Will Eisner's <em>Comics and Sequential Art</em> (1985), which coined "sequential art" and the page-as-unit idea McCloud builds on. The closest real-world sibling to what Ripple is building: Joe Sacco (<em>Palestine</em>, <em>Footnotes in Gaza</em>) — comics as investigative journalism, real testimony sequenced with a designed reading path. Nick Sousanis's <em>Unflattening</em> (2015) — a doctoral dissertation written entirely as a comic, arguing sequential-visual form is itself a reasoning tool for seeing systemic patterns, directly on-theme for a mechanism-first mission. Alan Moore/Dave Gibbons's <em>Watchmen</em> — a disciplined 9-panel grid held for an entire book, broken only at climactic beats: the textbook case of "constrain hard, break once" reading as intentional, not templated. David Mazzucchelli's <em>Asterios Polyp</em> assigns a fixed color/line-language per character and holds it for the whole book — the nearest comics analogue to Ripple's one-key-color rule.</p>
+    <h4>Core mechanism</h4>
+    <p>A page is built from a small closed set of panels separated by gutters, and the reader's mind performs closure — completing the missing action in the gap rather than being shown it. The artist's real decision at each gutter is which of six transition types the gap represents: moment-to-moment (a near-imperceptible slice, almost no closure required — good for a slow, held beat); action-to-action (the workhorse — the reader infers missing motion between two clear endpoints); subject-to-subject (stays in one scene, jumps between participants); scene-to-scene (a big jump across time/place, requiring the most reader work, gets the widest gutter); aspect-to-aspect (no time passes, the "camera" wanders across facets of one place — almost never used for plot); non-sequitur (irrelevant here). Panel size/shape is the second lever — a bigger or bleeding panel reads as more important before the reader consciously registers why. The whole page is perceived as one image before the eye ever enters the reading path — gestalt first, sequential second. The generative trick that keeps a page from feeling stamped: hold a fixed underlying tier grid for structural discipline, then deliberately break it exactly once per page, at the moment that earns it.</p>
+    <h4>Vocabulary units</h4>
+    <p>Three orthogonal, small palettes. Panel shapes: splash (full-bleed, one dominant claim, no competition), wide-band (already Ripple's <code>.band</code>), duo (two side by side, for direct comparison), filmstrip (3–5 small sequential cells — already Ripple's zero→arrow→hundred repair row), field (many near-identical cells scanned as texture — already the tickwall), inset (a small panel overlapping a bigger one). Gutter treatments mapped onto the existing spacing scale: bleed (0px), hairline (16px, the existing dashed rule), beat (40px), void (96px + an actual rest block). Transition types map 1:1 onto those gutters.</p>
+    <h4>Combination rule</h4>
+    <p>The narrative function of a beat determines its transition type, which determines its panel shape and gutter — not "pick whatever feels nice." For Ripple's fixed 5-beat pattern the mapping is close to a literal lookup table: Claim → splash, no incoming gutter. Scale comparison → subject-to-subject, duo/multi-circle, beat gutter, WITH a visibly drawn connector — the relationship needs to be exact, not inferred, so the artist draws it rather than leaving it to closure. Density-at-scale → aspect-to-aspect, field panel, tight bleed/hairline gutter — the one beat that should feel almost tedious to look at, because that tedium IS the content. Repair arrow → action-to-action, filmstrip, hairline gutter internally but a void gutter entering from the beat before. Human coda → scene-to-scene, wide-band, the single biggest gutter on the page — the page's one deliberate jump from data-space to human-space.</p>
+    <h4>Applied to Ripple's content pattern</h4>
+    <div class="applied">
+      <p>Reading the actual shipped page, it's already doing this system by instinct, without the vocabulary — the strongest evidence this candidate is cheap to formalize, not rebuild. The hero circle already bleeds past its own frame — that's a splash panel breaking its box, McCloud's exact device for "this doesn't fit in a normal box." The tickwall is textbook aspect-to-aspect, correctly tight-gutter already. The repair row is a 3-cell action-to-action filmstrip with the gold arrow as an explicit hinge panel — worth codifying as a system-wide rule (gold reserved only for the hinge cell of a before/after filmstrip, every future page) rather than a one-off.</p>
+      <p>What's currently missing: the three band boundaries all get the identical hairline gutter regardless of what kind of jump is happening. The jump from the tickwall (aspect-to-aspect) into the repair filmstrip (action-to-action) is the actual pivot of the whole page — blank, then fixed — and it currently gets the same thin rule as every other boundary. Recommend it get the void gutter instead, a real breathing beat, with the connecting caption dropped at exactly that gutter so the reader completes "oh — they fixed THAT" themselves. That's McCloud's closure device used on purpose, once, at the page's real hinge.</p>
+    </div>
+    <h4>Fit against the music brief</h4>
+    <p>Strong on the two hardest requirements, one honest gap. "Eye moves in a designed order, reads like a sentence" is McCloud's actual subject, not an analogy stretched to fit. "Scale felt before read" is native too — panel-size-as-duration/emphasis and the splash-panel convention are exactly "a bigger shape signals importance before the caption is read." "Density needs rest — heartbeat" is native: tempo is literally what the six transition types encode, and McCloud's own American-propulsive-vs-manga-contemplative comparison is a ready-made dial Chris can name per investigation. The one gap: McCloud's book is black-and-white, so this system contributes zero new color logic — "the key" has to be imported wholesale from Ripple's existing palette.</p>
+    <div class="sw-grid">
+      <div class="strong"><h4>Strengths</h4><p>Directly on-mission lineage — Sacco and Sousanis are investigative/reasoning-through-sequential-images precedents, not a borrowed metaphor. Genuinely finite (6 transitions, 6 shapes, 4 gutters) — small enough to ship as a component library plus one lookup table. Comes with its own built-in anti-templating rule from real practice: hold structure everywhere, break it exactly once, on purpose. Most of it already exists in the one page Chris hand-built.</p></div>
+      <div class="weak"><h4>Weaknesses</h4><p>No color theory of its own. Assumes a single linear reading path — no answer for a future page that's a browsable reference or sortable table of many comparable items. The combination rule is really a codified editorial judgment call, not a procedural engine — variation still depends on a human choosing which transition serves which content, honest to the source but means this alone won't auto-produce unattended variation. Live risk of "decompression" — 2000s superhero comics got panned for stretching transitions into padding that added page count, not meaning.</p></div>
+    </div>
+    <h4>Best fit / weak fit</h4>
+    <p>Shines exactly on Ripple's existing 5-beat pattern, because that pattern already IS a comics page in disguise. Struggles the moment a page stops being a single narrated sequence — a dashboard, a sortable ranked table, anything meant to be scanned non-linearly, since the whole toolkit assumes a controlled reading path and one dominant shape per scene.</p>
+    <h4>Build effort</h4>
+    <p>Light — CSS components plus one lookup table, no generative engine, no new JS beyond what already exists. Generalize three components that already exist (tickwall → configurable field panel, repair-row → N-cell filmstrip, band → named wide-panel class), add two or three new panel-shape classes and four gutter utilities keyed to the existing spacing scale, write one lookup table. Buildable in a day or two.</p>
+  </div>
+</details>
+
+<details class="dossier" id="d-08">
+  <summary><span class="num">08</span><span class="titleblock"><h3>Sticky-Stage Scrollytelling</h3><span class="era">NYT "Snow Fall" 2013 → Scrollama, The Pudding, ai2html, Reuters Graphics' bluprint toolkit</span></span><span class="chev">▸</span></summary>
+  <div class="dossier-body">
+    <h4>Lineage</h4>
+    <p>Traces to NYT's "Snow Fall" (2013, bespoke scroll-jacking code that proved the format could carry a serious story), then got industrialized by three separate newsroom lineages. The Pudding — Russell Goldenberg built Scrollama, an MIT-licensed, IntersectionObserver-based step-trigger engine, and The Pudding uses ArchieML (a Google-originated micro-CMS format) so writers edit copy in Google Docs while developers own layout separately. NYT graphics — ai2html, a free Illustrator plugin exporting designer-made vector art straight to fixed-responsive HTML, letting designers ship finished graphics without a developer touching every pixel; it became an industry standard. Reuters Graphics — the most complete public example of turning this into an actual product line: "bluprint_*" scaffold repos that npm-scaffold a new chart or story shell instead of starting from a blank file, and a shared component library shipping a ready-made Scroller. The Economist's data team runs a different-flavored lineage: a strict published visual style guide (fixed typeface, grey/blue palette plus one red mark, "one chart, one message" as a hard rule) rather than a component library, with most charts static and d3 reserved for the minority that are genuinely interactive.</p>
+    <h4>Core mechanism</h4>
+    <p>A persistent "stage" (almost always <code>position:sticky</code>, pinned for a scene's duration) holds exactly one dominant visual. Beside or over it runs a separate scrolling "step track" — a column of narrow annotation blocks, one per beat. An IntersectionObserver-based engine watches each step cross a trigger line and fires a discrete <code>onStepEnter</code> event, plus optionally a continuous 0–100% <code>onStepProgress</code> event while a step sits in view. Story code maps each step index to one specific state of the stage and updates it with a class toggle or transition. Critically, the stage is drawn once and only re-styled after — never rebuilt — so the reveal feels physical, not like a page reflow. State changes are discrete, tied to step boundaries, not a continuous scrub keyed to raw scroll pixels — that discreteness is exactly what keeps the format feeling paced instead of a slippery scroll-jack.</p>
+    <h4>Vocabulary units</h4>
+    <p>Four closed categories reused story to story: StickyStage (one persistent visual per scene — the format's literal sun); Step (one scrolling block owning one state transition — the orbiting planets, in motion); a small fixed set of chart primitives reused across stories (a proportion comparator, a unit/dot-density field, a before/after bar, a map — directly analogous to Reuters' bluprint chart-module templates); house-style chrome (masthead, footer, type, color tokens — built once, shared, never touched again).</p>
+    <h4>Combination rule</h4>
+    <p>A story is authored as an ordered array of Steps, each carrying which stage-state it triggers, its progress behavior, and its copy. Two levers create all the variation: how many steps a beat gets (more = slower/denser, zero = a rest beat that drops the sticky pattern entirely for a plain full-bleed screen), and which chart primitive is chosen as that scene's stage. The component vocabulary stays completely fixed release to release; all story-to-story variation lives in the step-array content, which in the mature versions of this system is authored in a separate document, kept apart from component code, so an editor can rewrite pacing without a developer touching layout.</p>
+    <h4>Applied to Ripple's content pattern</h4>
+    <div class="applied">
+      <p>Beat 1 (claim) — a cold-open step: no chart yet, the stage shows the claim as a huge cream numeral/sentence on bg, exactly how Pudding essays typically open. Beat 2 (proportional-scale) — a <code>ProportionScale</code> primitive as sticky stage: three steps drive it (draw the big shape + caption, carve/reveal the small shape, zoom the small shape) — the stage drawn once, steps only toggle transforms, the direct mechanism for "scale felt before read." Beat 3 (density field) — a <code>TickField</code> primitive wired to <code>onStepProgress</code> so ticks fill solid <em>as the reader scrolls</em>, the density counting up physically rather than appearing pre-rendered — the textbook use case the progress callback was built for. Beat 4 (repair) — a <code>RepairArrow</code> primitive that sweep-fills as the step completes.</p>
+      <p>Beat 5 (coda) deliberately breaks the Scroller pattern: no sticky stage, no chart, full-bleed numeral and one line of text, no steps at all — the newsroom "gut-punch ending" convention, and it doubles as the macro-level rest beat the rhythm rule calls for. Production practice worth borrowing directly: write each future page's step array as a plain beat sheet first, in a doc separate from code, the way Reuters scaffolds new stories — turning Chris's rhythm rule into an actual editable artifact.</p>
+    </div>
+    <h4>Fit against the music brief</h4>
+    <p>"Eye moves in designed order" is close to a free win — in this format the scroll position IS the reading order, steps fire strictly in sequence, arguably the single tightest brief-to-mechanism fit in the whole survey. "Scale felt before read" is a direct mechanism match via progress-driven fill/scale. "One sun, orbiting planets" is close to definitional at the scene level. What's not automatic: "one sun" at the whole-page level — the format doesn't nominate which scene is the page's sun, a human still decides. "Key it never leaves" is compatible but not solved by this domain — house-style tokens govern chrome more than which single accent dominates a story's chart moments; Chris still commits to that per page, same as today.</p>
+    <div class="sw-grid">
+      <div class="strong"><h4>Strengths</h4><p>The only domain in this survey that is literally the same production job Chris is already doing, proven at scale across a decade-plus of major-outlet stories. It resolves organic-vs-stamped honestly rather than papering over it — it does NOT try to automate composition, it automates the plumbing (scroll-trigger engine, sticky positioning, breakpoints, transitions) and deliberately leaves pacing as a per-story human decision — the exact operating model Chris already uses. The core engine is free, open-source, framework-agnostic.</p></div>
+      <div class="weak"><h4>Weaknesses</h4><p>Gives no generative or procedural answer to "does it feel organic" — all of that still comes from a human choosing shapes and wording each story. The core interaction grammar is now extremely recognizable across the whole web after a decade-plus of heavy use — a real risk of reading as "generic data-journalism template" unless dressed hard in Chris's own tokens. Production-grade scrollytelling needs real engineering discipline around mobile scroll performance and reduced-motion accessibility that a solo builder has to budget time for.</p></div>
+    </div>
+    <h4>Best fit / weak fit</h4>
+    <p>Shines exactly for Ripple's stated 5-beat pattern, because every beat maps cleanly onto a known, already-solved scrollytelling scene type. Struggles for content that isn't a single linear narrative arc — an exploratory dataset browser, a side-by-side comparison across many entities — because scroll-position-as-reading-order is fundamentally a linear-read format, not a browse format.</p>
+    <h4>Build effort</h4>
+    <p>Needs a real small JS engine, not a CSS-only trick — either adopt Scrollama directly or hand-roll an equivalent step-trigger observer, plus a StickyStage wrapper, a StepTrack wrapper, and 3–5 chart primitives Ripple's content actually needs. Realistically a multi-day-to-couple-weeks build for a first solid reusable version. After that, each new page becomes mostly content authoring — real numbers plus a beat sheet against existing components.</p>
+  </div>
+</details>
+
+<details class="dossier" id="d-09">
+  <summary><span class="num">09</span><span class="titleblock"><h3>Sonata-Form Page Grammar</h3><span class="era">Haydn/Mozart 1770s–80s, formalized by A.B. Marx · siblings: verse-chorus-bridge, 12-bar blues, rondo, theme &amp; variations</span></span><span class="chev">▸</span></summary>
+  <div class="dossier-body">
+    <h4>Lineage</h4>
+    <p>Sonata-allegro form is the load-bearing architecture of the Classical/Romantic instrumental repertoire — Haydn and Mozart establishing the convention in the 1770s–80s, Beethoven expanding it, theorist A.B. Marx formalizing the exposition/development/recapitulation vocabulary in the 19th century. Sibling forms pulled in for comparison: 32-bar AABA Tin Pan Alley song form and its descendant verse-chorus-bridge pop form; the 12-bar blues (three 4-bar phrases: statement, restatement, response); rondo form (ABACA, a recurring refrain between independent episodes); theme-and-variations (Bach's <em>Goldberg Variations</em>, Elgar's <em>Enigma Variations</em>) — one plain statement, then repeated re-dressings that stay recognizably the same underlying material. Worth naming directly: Segel &amp; Heer's 2010 "Narrative Visualization" taxonomy (the "martini glass" structure, the interactive-slideshow pattern) is the actual established structural vocabulary in data journalism — it's arc-based, not musical, and nobody in that literature maps sonata form onto a page. This candidate is a genuine transplant, not a rediscovery of existing practice.</p>
+    <h4>Core mechanism</h4>
+    <p>Stripped to its mechanical rule: state two ideas in unresolved tension, because they live in two different keys → do developmental work on fragments of that material only, no new themes allowed, building instability → bring both ideas back in the SAME key, resolving the tension by transposition, not repetition → optionally add a coda, a final direct address that steps outside the architecture's own rules for one last unguarded gesture. Four slots in strict order: Exposition (Theme 1 home key, a modulating transition, Theme 2 contrasting key, a closing cadence) → Development (fragmentation, no new material, mounting tension) → Recapitulation (both themes return, but Theme 2 is now transposed into the home key — literal resolution, not repeat) → Coda (often the most direct or outsized moment of the whole piece — Beethoven's "Eroica" coda is nearly as long as the development). The mechanism that makes this different from a generic three-act arc: resolution is achieved specifically by <em>transposing</em> the return, not by merely bringing the idea back — the shape repeats, the color changes.</p>
+    <h4>Vocabulary units</h4>
+    <p>Eight named slots in fixed order, but only five content-bearing: Theme 1 · Transition · Theme 2 · Development · Retransition · Recap of Theme 1 · Recap of Theme 2 (transposed) · Coda. The recap slots aren't independent designs — they're the SAME component as the exposition slots in a different color-state, so the real buildable vocabulary is closer to five components, one of which has two states.</p>
+    <h4>Combination rule</h4>
+    <p>Order is fixed and non-optional — the whole discipline this form imposes. Theme 1 = the headline claim, plainly stated, establishing the key it never leaves. Transition = deliberately short, mostly empty — sonata transitions are structurally the thinnest material in the form, so this slot is not allowed to be as dense as its neighbors. Theme 2 = the proportional-scale comparison, in a related-but-different color from Theme 1 — a contrasting key, not a clash. Development = the density field, under a hard rule borrowed directly from the form: no new visual vocabulary here, only the glyph already shown in Theme 1/2 gets repeated and pushed to its most tension-producing density — literally what a musical development does to a motif. Retransition = one beat of near-total quiet right before the payoff. Recapitulation = the before/after repair stat, built by copying Theme 1's exact composition and re-coloring it into a resolved state. Coda = the human-cost close, licensed to break every rule the rest of the page just enforced.</p>
+    <h4>Applied to Ripple's content pattern</h4>
+    <div class="applied">
+      <p>Five components against the existing tokens: TonicClaim (used twice, as Theme 1 and, in a "resolved" style state, as the Recap — accent = gold, established here and nowhere else at this saturation until the coda). AreaTrueCompare (the total in blueprint blue outline, the subset filled in tan — the contrasting key, related but deliberately not the tonic). TickField (reusing ONLY the tick glyph already established in TonicClaim's leader line — the hard "no new shapes in development" rule — packed at the tightest spacing-scale step). Transition/Retransition (a short band, mostly bg, height capped at roughly a third of its neighbors, enforcing "fastest material in the form" structurally). Coda (every drafting/tick/mono device removed on purpose, gold at the largest size anywhere on the page — bigger than TonicClaim's numeral, functioning as the page's literal sun).</p>
+    </div>
+    <h4>Fit against the music brief</h4>
+    <p>Strong literal fits: "melody = one big idea" is exactly Theme 1's job description. "Density needs rest" comes for free and asymmetrically — a richer, less metronomic rhythm profile than flat alternation. "Reads like a sentence" — of all thirteen candidates, sonata form enforces the single strictest linear order, the hardest possible guarantee against eye-bounce. Genuine friction worth flagging, not silently resolving: "key it never leaves" and sonata form actually pull in opposite directions — the form's entire mechanism REQUIRES leaving the home key to create the tension the recap resolves, so a literal reading says the accent color should shift away during Theme 2/Development and only resolve back at the Recap/Coda. That's a bigger departure from what Chris wrote than a silent "yes it fits" would suggest.</p>
+    <div class="sw-grid">
+      <div class="strong"><h4>Strengths</h4><p>Gives a genuinely non-negotiable rhythm and order for free, derived from centuries of tested craft. The claim/recap pair being the literal same component in two color-states forces visual rhyme rather than leaving cohesion to author taste. The coda slot gives explicit, historically-precedented permission to make the human-cost close the biggest gesture on the page. The strictest-order of the sibling forms — the safest choice against "eye bounces around," the failure mode Chris named as the #1 risk.</p></div>
+      <div class="weak"><h4>Weaknesses</h4><p>Music is forced-linear in time; a webpage is scrolled AND scanned — someone screenshots just the density scene, and the whole resolution logic (which only pays off after the exposition) is invisible to that viewer. Claiming a repeated accent color does the same psychological work as a resolved cadence is overclaiming — closer to a repeated visual motif than a musical resolution, and should be sold to Chris as such. The form structurally requires a resolution — it does not fit an investigation that never got fixed. Forcing an unresolved harm story through a recapitulation risks visually implying closure that isn't true, a real editorial/ethics problem, not just an aesthetic mismatch.</p></div>
+    </div>
+    <h4>Best fit / weak fit</h4>
+    <p>Best for a single investigation with a genuine resolved arc — a real before/after, a repair, a fix — where "same shape, resolved color" has something true to say. The Severed Casefile itself is close to an ideal fit. Weakest for ongoing, unresolved harm with no after-state, for three-plus co-equal claims, and for any multi-story index/landing page — rondo's repeating-refrain-between-episodes shape is the better tool there.</p>
+    <h4>Build effort</h4>
+    <p>Low. A fixed ordered sequence, not a generative system — no engine to build, just five HTML/CSS partials with a handful of parameters each, assembled in one unchanging order. Closer to a slide-template deck than a rules engine. The "organic, not stamped" feeling has to come from two other layers: real content variation scene to scene, and swapping in one of the existing ~20 palette/type pairings per investigation — itself literally the theme-and-variations form already half-built in Chris's token file.</p>
+  </div>
+</details>
+
+<details class="dossier" id="d-10">
+  <summary><span class="num">10</span><span class="titleblock"><h3>Alexander's Pattern Language</h3><span class="era"><em>A Pattern Language</em>, 1977 · Eishin Campus, Mexicali self-build housing, ancestor of the Gang of Four</span></span><span class="chev">▸</span></summary>
+  <div class="dossier-body">
+    <h4>Lineage</h4>
+    <p>Christopher Alexander (architect/mathematician, UC Berkeley), <em>The Timeless Way of Building</em> (1979, the theory) and <em>A Pattern Language: Towns, Buildings, Construction</em> (1977, with Sara Ishikawa and Murray Silverstein — the actual 253-pattern catalog, numbered 1 through 253, organized strictly by descending scale: Towns 1–94, Buildings 95–204, Construction 205–253). Real-world proof: the Eishin Campus in Japan, and the Mexicali self-build project in Mexico, where Alexander used the language as a literal shared vocabulary between architects and future residents — non-professionals co-designed their own houses from the same 253-word language and produced houses that don't look alike. Downstream influence is enormous: Ward Cunningham and Kent Beck imported "pattern language" into software in the late 1980s (Cunningham built the first-ever wiki specifically as a tool for sharing patterns), feeding directly into the Gang of Four's <em>Design Patterns</em> (1994) — the direct ancestor of every modern software/UI pattern library. Alexander's later <em>The Nature of Order</em> (2002–2005) generalizes further into "living structure" and "strong centers" at every level of scale — arguably the closest existing academic language to Chris's own "one sun, orbiting planets, fractally" brief.</p>
+    <h4>Core mechanism</h4>
+    <p>Every one of the 253 patterns has a fixed card structure Alexander enforced rigidly: a photograph of the archetype in the wild, a short scenario, a bolded problem headline, a discussion of the forces in conflict (often citing empirical studies), a solution stated as a direct instruction beginning "Therefore:" with a simple diagram, and — the part that makes it a language rather than a catalog — explicit cross-references to patterns one scale up and one scale down. Each pattern carries a confidence rating (two stars for a near-invariant law of human space, one star for probably true, no stars for a hypothesis) — the catalog is honest about its own reliability, not presented as uniform truth. You never apply patterns as a flat menu: you enter at whatever scale you're working, and each pattern you commit to pulls in its named neighbors above and below, which you reconcile against the site's actual constraints. Two architects using the identical 253-word vocabulary on two different sites produce buildings that share a family resemblance but are never the same building, because the patterns constrain forces, not final form, and the order/selection/resolution is remade every time.</p>
+    <h4>Vocabulary units</h4>
+    <p>The 253 individually named patterns themselves are the indivisible unit — not shapes, not components, but named problem/solution pairs, each with its own number and confidence rating, spanning three fixed scale bands. For a Ripple translation, the equivalent unit is a named layout pattern card (e.g. "Scale Before Label," "Alternating Band") rather than a raw shape or CSS class — the pattern is the problem it solves plus the move that solves it, with the actual visual realization left to be filled in per page.</p>
+    <h4>Combination rule</h4>
+    <p>Two rules working together, not a formal grammar — no algorithm spits out a layout. Scale-nesting: every pattern names explicit links to larger patterns it helps complete and smaller patterns that complete it, so picking a pattern is picking a position in a hierarchy. Human-in-the-loop conflict resolution: patterns are stated as forces/problems, not fixed forms, so applying the same pattern to two different sites produces two different results — the builder walks the applicable patterns top-down and bottom-up, resolving conflicts in the specific context until, in Alexander's words, "the forces acting on every part are locally at rest." The organic, never-identical result comes from three deliberate looseness points: patterns are problems, not exact geometry; the sequence of resolution is chosen per project; and literal copy-paste of a pattern's diagram is explicitly what Alexander warned against as misapplication.</p>
+    <h4>Applied to Ripple's content pattern</h4>
+    <div class="applied">
+      <p>Build "The Ripple Pattern Language" as a numbered card catalog, split into Alexander's three scale bands renamed for the medium: PAGE (governs the whole scroll, the page's one sun), SCENE (one section/beat), MARK (the smallest reusable visual move). A full worked card, using only what's already real in the shipped page:</p>
+      <p><em>07 · The Severed Thread</em> (SCENE band, hypothesis-grade). Problem: a missing-data rate stated as a bare percentage is true but emotionally inert. Forces: the rate needs to feel like a broken connection, because the content beat is literally about one — but it can't compete with the page's one sun. Therefore: render the rate as a physically interrupted line — take the existing dashed-hairline technique and literally break it mid-span with a gap sized to the missing share, rather than shading a percentage bar. Completes → Density Heartbeat. Completed by → Tick Wall, Drafting Tick Leader.</p>
+      <p>Other cards already findable in the shipped page: <em>One Sun Per Page</em> (proven — the hero circle is the biggest shape and boldest text on the document, nothing later matches it); <em>Key That Never Leaves</em> (gold is used only for the repair arrow, and the code even comments "the one gold accent on the page"); <em>Density Heartbeat</em> (a dense scene must be followed by a sparse one before the next dense scene); <em>The Spine</em> (one continuous drawn route, the literal eye-arrow); <em>Alternating Band</em> (named explicitly as the fix Ripple already found for the "two stacked columns" problem, now written down).</p>
+    </div>
+    <h4>Fit against the music brief</h4>
+    <p>The strongest philosophical match of any candidate for one specific line: "one sun, orbiting planets, fractally at every scale" is not a loose analogy to this system, it's close to the literal mechanism — scale-nesting IS a fractal parent/child hierarchy, and <em>The Nature of Order</em> argues explicitly that every living structure at every scale has exactly one dominant "strong center" supported by subordinate centers, recursively — the same claim Chris is making. "Eye moves in designed order" maps well too — Alexander's Buildings-scale patterns are literally about sequencing bodily movement through space. Where it strains hardest: "rhythm" has no direct pattern — Alexander has spatial-intensity patterns that gesture at tension/release but nothing naming a document-level cadence, so this has to be authored fresh. "Key it never leaves" has almost no native support — his color/material patterns are about paint choices for a single room, not a semantic color reserved for one meaning across a whole body of work.</p>
+    <div class="sw-grid">
+      <div class="strong"><h4>Strengths</h4><p>Directly embodies the brief's own governing metaphor, so adopting it doesn't require translating Chris's language into someone else's. Proven at real scale across 45+ years of genuinely non-identical built results from the same finite word-list — the "organic not stamped-out" claim isn't theoretical for this lineage, it's the most load-bearing empirical case in the whole field. The card format is a genuinely good authoring discipline on its own — it forces stating WHY a layout move exists, not just what it looks like, which is exactly what prevents a pattern library from decaying into copy-paste rot.</p></div>
+      <div class="weak"><h4>Weaknesses</h4><p>Zero native vocabulary for the layer that actually makes Chris's pages his — color-as-emotional-key, typography pairing, density-as-graphic-weight — all of it has to be authored from scratch, borrowing only the card format, not the content. It is advisory, not generative or enforced — nothing stops a rushed session from free-handing a scene without consulting the language at all. It does not reduce the amount of live human/AI judgment a new page requires — it makes that judgment more consistent, but if the goal is fewer live-iteration hours, this lineage doesn't buy that.</p></div>
+    </div>
+    <h4>Best fit / weak fit</h4>
+    <p>Best fit: exactly the production mode Chris already uses — one page at a time, worked live with an AI until it feels right, where every page has a genuinely different argument shape and deserves a real judgment call, not a fill-in-the-blank. Shines for governance/consistency across a body of hand-composed work. Wrong tool for unattended, high-volume, low-touch generation — nothing here enforces anything.</p>
+    <h4>Build effort</h4>
+    <p>Cheap to start, no new rendering engine — a documentation/governance layer, not a generator. Write it as a living markdown or HTML pattern catalog next to the design-token file, same authority model Ripple already uses. The real cost is editorial: writing 15–40 well-observed pattern cards, each ideally backed by a screenshot from a page that already shipped, and making "check the pattern language, log which patterns you used" a step in building a new page — the same discipline as reading CLAUDE.md on boot.</p>
+  </div>
+</details>
+
+<details class="dossier" id="d-11">
+  <summary><span class="num">11</span><span class="titleblock"><h3>The Investigation Spread</h3><span class="era">Tarot's Celtic Cross, 1910 · Magic: The Gathering's card frame, 1993 · Wingspan, Gloomhaven</span></span><span class="chev">▸</span></summary>
+  <div class="dossier-body">
+    <h4>Lineage</h4>
+    <p>Three real sub-traditions converge. Tarot spreads: the Rider-Waite-Smith deck (1909) paired with A.E. Waite's Celtic Cross spread (1910) — ten fixed positions, each with a named role ("what crosses you," "what crowns you"), read aloud in a fixed numbered sequence that functions as a literal narrated sentence. Simpler spreads (three-card past/present/future) show the same grammar scaled down — fewer positions, same fixed-role-plus-draw logic. Modern board-game component design: Magic: The Gathering's card frame (1993, standardized further in 2003) — fixed zones for title, cost, art, type line, rules text — filled by wildly different content every card, plus Mark Rosewater's "color pie" (five colors, each a fixed philosophical identity) as a real precedent for "one color carries meaning system-wide." Wingspan (2019) applies the identical fixed-zone-card grammar to nonfiction-flavored stat cards. Constrained-draw narrative generators adjacent to both: Rory's Story Cubes and Oblique Strategies (Brian Eno, 1975) show the "finite deck as a generator, not just a container" edge of this lineage.</p>
+    <h4>Core mechanism</h4>
+    <p>A finite, named deck of content cards (each a self-contained module with a fixed internal template — title zone, art/shape zone, stat zone, caption zone — but variable fill, exactly like a tarot card's fixed border framing whatever scene is painted inside it) is placed into a spread — a fixed arrangement of named positions, each carrying a fixed semantic role and a fixed reading order. Variation across "readings" (pages) comes from two independently-tunable choices, not generative randomness: which spread you pick (how many positions, how complex), and which specific card from the deck you deal into each position. The frame around each unit and the reading order between units are both fixed and reused; only the drawn content and the deck-to-spread pairing change — which is why it feels hand-dealt, not templated, in its native use.</p>
+    <h4>Vocabulary units</h4>
+    <p>Two separate finite decks that compose. Content cards: ~8–10 named types, each a fixed internal zone template with variable fill — CLAIM, SCALE-COMPARE, DENSITY-FIELD, BEFORE/AFTER, HUMAN-COST-CODA, QUOTE, TIMELINE, MAP, METHODOLOGY, SOURCE. Spread positions: named page-skeletons (Quick Spread = 3 positions, Standard = 5, Full Casefile = 9), each position carrying a fixed semantic role — SUN/significator, FOUNDATION, CHALLENGE, OUTCOME, CODA — and a fixed size/weight and place in the reading order.</p>
+    <h4>Combination rule</h4>
+    <p>Choose a spread sized to the story's weight, then for each position deal in the one card type whose role matches that position's job — the Sun position only ever accepts a big-shape, one-idea card, never a quote card. A card's internal zone template never changes regardless of which position it lands in — only its size and visual weight change, set by the position, exactly the way a Magic card's frame is identical whether it's a common or a format-defining bomb. One additional rule locks the emotional key: a single significator/accent color is chosen once per spread and applied consistently to the Sun card and any callouts pointing back to it — never re-chosen mid-page, only page to page.</p>
+    <h4>Applied to Ripple's content pattern</h4>
+    <div class="applied">
+      <p>"The Investigation Spread" — a 5-position layout mapped 1:1 onto Ripple's pattern. SUN → a full-bleed claim card, the single largest type on the page, always solo. FOUNDATION → the scale comparison: the whole rendered in blueprint blue outline, the subset filled in whichever accent is chosen as THIS page's significator color — rust for a severed-records story, gold for a financial-harm story — and that color, once drawn, is then reused ONLY on elements tracing back to it for the rest of the page, exactly the tarot convention of one drawn card coloring the whole reading. CHALLENGE → the density field, solid ticks in the locked significator color — the one position allowed to spawn attendant minor cards (a small source/methodology card docked beside it), where clutter is deliberately permitted to build up.</p>
+      <p>OUTCOME → the before/after card, with sage-hi reserved system-wide, across every future page, to mean exactly "repaired/resolved" — never anything else, the way MTG green always means growth — distinct from the per-page significator color, which changes reading to reading. CODA → the human-cost close, smallest footprint, heaviest ink, solo like the Sun. The reading order is literally drawable as the existing dotted SVG route connecting the five position centers, numbered the way every tarot spread diagram numbers its positions. Skin and structure stay cleanly separated: choosing a different accent/font pairing per investigation is like choosing a different physical deck without changing which spread you lay it out in.</p>
+    </div>
+    <h4>Fit against the music brief</h4>
+    <p>Melody is a near-perfect native fit — the Sun/significator position is a real convention, so "exactly one card gets the claim" isn't imported, it's how the domain already works. Key/one color is the strongest fit of anything in the whole survey — locking one accent per spread mirrors both the tarot significator and MTG's color-identity commitment, genuinely native, not bolted on. Eye order is also strong and native — spreads ship with a fixed numbered reading order, and Chris's existing dotted route is almost exactly the diagram convention every tarot book already uses to show a spread's reading path. The weak spots: rhythm and scale-felt-before-read are neither native — cards don't inherently breathe or vary density, both would have to be imported as house rules rather than found already-solved inside the tradition.</p>
+    <div class="sw-grid">
+      <div class="strong"><h4>Strengths</h4><p>Extremely concrete and teachable — a deck of ~10 card types plus 3–5 named spreads is something Chris can hold in his head and apply consistently, unlike a rule engine that needs re-deriving each time. Cheapest domain to build: pure CSS/HTML plus one documented rulebook, no engine or randomness required for the deterministic core. Cleanly separates skin from structure. The eye-path requirement is nearly free — spreads ship with a numbered order natively.</p></div>
+      <div class="weak"><h4>Weaknesses</h4><p>The domain's core strength — instant recognizability of a fixed frame — is in real tension with "must not read as templated"; without deliberate variation-within-frame this can drift toward a spec sheet. The rhythm the brief wants isn't generated by the system itself — a human has to choose which positions get attendant cards, more discipline than organic generator. Cards are natively rectangular and hard-edged, resisting genuinely continuous or slow-building narratives.</p></div>
+    </div>
+    <h4>Best fit / weak fit</h4>
+    <p>Best for stories with a variable number of beats that doesn't stay fixed page to page, and when the priority is a fast, teachable ritual for assembling a new page with minimal redesign. Strongest for one clean protagonist-claim plus a handful of clean supporting proofs — which matches Ripple's stated pattern almost exactly. Struggles with continuous or slow-building narratives, since cards want to chunk everything into rectangles with hard edges.</p>
+    <h4>Build effort</h4>
+    <p>Low-to-medium, almost entirely front-loaded documentation plus CSS. Build ~8–10 card partials using the existing spacing scale; define 3–5 named spread page-skeletons as CSS grid layouts with labeled slots and legal position-to-card-role rules; write a single-page rulebook documenting each card's zones and each spread's position roles. All static HTML/CSS against the existing token file — no JavaScript needed for a working system a human assembles by hand.</p>
+  </div>
+</details>
+
+<details class="dossier" id="d-12">
+  <summary><span class="num">12</span><span class="titleblock"><h3>Constraint &amp; Auto-Layout Systems</h3><span class="era">Cassowary 2001 → Apple Auto Layout, CSS Flexbox/Grid, Figma Auto Layout, Grasshopper</span></span><span class="chev">▸</span></summary>
+  <div class="dossier-body">
+    <h4>Lineage</h4>
+    <p>Three converging threads. Academic constraint solving into GUI layout: Cassowary (Badros/Borning/Stuckey, 2001) is a linear-arithmetic constraint solver with a strength hierarchy (required/strong/medium/weak); Apple adopted it wholesale as Auto Layout for iOS/macOS in 2012 — a designer writes relationships and the solver finds the values, or the least-bad compromise if over-constrained. CSS itself, evolving into a constraint language without calling itself one: Flexbox (shipped ~2014) and Grid (shipped 2017) are purpose-built, narrower solvers — not general linear programming, but fast, predictable algorithms for one common relationship-family. Jen Simmons's "Intrinsic Web Design" (2017–) is the explicit naming of this idea for editorial layout — designing with ranges and content-driven sizing instead of fixed breakpoints. Designer-facing constraint UIs and parametric CAD: Figma's Auto Layout (2019) wraps flex-like primitives in a GUI; in parallel, architecture/product design built the same idea in node-graph form — Grasshopper (2007, Rhino3D) lets a designer wire parameters through a dataflow graph to geometry. The bridge closest to Ripple's actual medium is CSS itself — this is tooling Chris is already hand-writing, not something new to adopt.</p>
+    <h4>Core mechanism</h4>
+    <p>Stop specifying absolute positions/sizes; specify relationships and ranges between elements, and let a solver compute concrete geometry at render time from whatever data/content/viewport is fed in. General constraint solvers (Cassowary/Apple Auto Layout) express arbitrary relationships as equations tagged with a priority tier, satisfying all required constraints exactly and minimizing weighted violation of the rest. Specialized layout algorithms (Flexbox/Grid) resolve one very common relationship-family with no ambiguity: Flexbox takes leftover space and distributes it in proportion to each child's grow-weight; Grid sizes every row/column simultaneously from fixed/intrinsic/flexible units. Both share the same generative idea as Grasshopper — design the rule, not the instance. Author the relationship graph once; every different input (a new data value, a narrower viewport) re-solves to a new, always-internally-consistent layout. The felt organic variation isn't hand-tuned — it's the visible fingerprint of different real numbers pushed through the same fixed rule.</p>
+    <h4>Vocabulary units</h4>
+    <p>Axis-declared containers with a distribution rule (a flex row carrying grow/shrink/basis weights, or a grid carrying a named track list of <code>fr</code> units and <code>minmax()</code>); a small named set of relationship types (proportional pair, hug, fill, fixed, clamp band); priority tiers, mirroring Cassowary's hierarchy even where plain CSS only approximates it via <code>clamp()</code>/media-query fallback order; reusable parametrized frames — a component with sizing exposed as only 2–4 real parameters, so many visual instances come from one built component, not bespoke CSS per page.</p>
+    <h4>Combination rule</h4>
+    <p>The same container/relationship graph is reused unchanged everywhere; what differs page to page is only the values piped through it. A proportional-scale comparison is one flex row where child A gets <code>flex-grow</code> set to the literal big number and child B to the literal small number — the row is never hand-tuned, it just resolves to a truthful ratio every time. A density field is one grid where each cell's fill state is set by a data-driven modulo — the same handful of CSS lines, a completely different picture depending on the rate. Page-to-page variation is not authored by hand each time — it emerges mechanically from real numbers flowing through a small fixed set of constraint graphs, plus one deliberate editorial layer on top (which band reverses, which scene is the sun) decided once per page.</p>
+    <h4>Applied to Ripple's content pattern</h4>
+    <div class="applied">
+      <p>This candidate is unusually well-grounded because the shipped page is already informally doing this. Already live: the alternating band's flex row with a reversed variant, and the tick-wall's CSS grid — both are constraint containers already, just hand-tuned per instance rather than named and parametrized. Formalized: a <code>.scale-row</code> where the total bar gets <code>flex-grow:62.3</code> and the subset bar gets <code>flex-grow:4.01</code> — bar length IS the ratio, not an eyeballed width. Total bar in blueprint blue (the neutral/backing color), subset bar in rust (already the alarm color from the kicker's flag glyph, keeping "one key color" intact instead of introducing a new accent).</p>
+      <p>The density field becomes a reusable "field of N" primitive — change the fill-count input, every future page's density picture is automatically true, no manual tick placement ever again. The before/after transition becomes a 3-column grid (before / arrow / after) where the arrow renders in teal, a second, consistent "resolution" color distinct from rust's "harm" color — and the 0% and 100% values can literally reuse the same ScaleRow component (<code>flex-grow:0.001</code> and <code>flex-grow:100</code>), one component vocabulary serving two content beats. Sun-and-planets, mechanically: <code>grid-template-areas</code> with one explicitly oversized cell at the scene level, and one CSS custom property (<code>--scene-weight</code>) consumed by every clamp() call for a scene at the page level — so "this is the sun" becomes an enforced number, not just an intention.</p>
+    </div>
+    <h4>Fit against the music brief</h4>
+    <p>Strong, uneven — excellent on the quantitative half of the brief, close to a no-op on the narrative half. Scale-felt-before-read is the single best match in the whole survey: a bar's length literally cannot misrepresent the number behind it, more honest than an eyeballed pixel width. Rhythm fits structurally — <code>grid-template-rows</code> can alternate a dense and a rest sizing function, and the rule can be checked — but the solver has zero opinion about which content READS as dense, that judgment is still a human input weight. The clearest gap: eye path. Flexbox/Grid solve spacing and sizing, not reading order — a solver has no notion of "land here first, then curve to that stat"; the page's drawn route and DOM order do that work, and this candidate contributes nothing to generating them.</p>
+    <div class="sw-grid">
+      <div class="strong"><h4>Strengths</h4><p>Mathematically honest scale — when a bar's size literally comes from <code>flex-grow:62.3</code>, "feel the size before reading the label" stops being craft/eyeballing and becomes a correctness property the layout cannot violate. Directly implementable in plain CSS today, in the exact medium Chris already ships in — the shipped page already uses this pattern, this is naming and generalizing what's built, not adopting a new tool. Responsive reflow comes free from the same rule that produces page-to-page variation. Fully auditable — every output size traces to a readable rule in the CSS.</p></div>
+      <div class="weak"><h4>Weaknesses</h4><p>No narrative intelligence — solves where things sit and how big, not where the eye goes or what order the story unfolds; needs to be paired with something else to fully answer the brief. Organic feel is not automatic — naive Flexbox/Grid is exactly the visibly-stamped-out look Chris wants to avoid; the organic feel in the current page comes from hand-chosen irregularities layered on top (tilted captions, dashed hairlines, the drawn route), none of which a solver generates by itself. Real Ripple numbers break naive proportional sizing at the extremes — a ratio like 999,000:3 makes the smaller bar disappear at true linear scale, needing an explicit floor or an honest log-scale annotation.</p></div>
+    </div>
+    <h4>Best fit / weak fit</h4>
+    <p>Shines for the quantitative beats specifically: the proportional-scale comparison, the density field, the before/after transition — anywhere a real number should directly determine a real geometric size with no hand-eyeballing. Struggles on the narrative/sequencing beats — the opening claim's typographic drama, the coda's emotional landing, and above all the eye-path device — those need an authored layer this system does not generate. It's naturally a sub-system, not a standalone answer to the whole brief.</p>
+    <h4>Build effort</h4>
+    <p>Tiered, and unusually cheap at the entry tier. Tier 0 (near-zero — do this first): formalize what's already in the shipped page into a small documented component set — pure CSS, no JS, doable in one session, every primitive already proven live. Tier 1: a short helper that takes real data values and computes the CSS properties automatically, so a page author pastes numbers into a small object rather than hand-typing custom properties — a few hours' work, generalizing a pattern that already exists in miniature (the tick-generator script). Tier 2 (only worth it if page count/complexity grows a lot): adopt kiwi.js for true priority-tiered solving of relationships CSS can't express.</p>
+  </div>
+</details>
+
+<details class="dossier" id="d-13">
+  <summary><span class="num">13</span><span class="titleblock"><h3>The Molnár Epsilon</h3><span class="era">Vera Molnár, "1% disorder," 1968 · Sol LeWitt's instruction drawings · Art Blocks generative art, 2021–</span></span><span class="chev">▸</span></summary>
+  <div class="dossier-body">
+    <h4>Lineage</h4>
+    <p>Vera Molnár's "1% disorder" practice, starting 1968 at the Centre de Calcul (Sorbonne/CNRS): Fortran and later BASIC/Logo scripts generated rigid grids of squares, lines, and circles, then applied a small permitted percentage of random perturbation to position, angle, or presence of each element. Her own framing: "leaving 99% [order] would have been too perfect; 1% leaves behind 1% of disorder" — codified explicitly in works like "(Dis)Order" (1976). Before she had real machine access she executed the same algorithms by hand on graph paper — her "machine imaginaire" period — proving the technique doesn't require code, only a stated rule and bounded deviation. Sol LeWitt runs an adjacent but distinct version: wall drawings sold only as a certificate plus written instructions ("draw a line from A to B, not straight"), executed by different draftsmen each installation — identical rule, non-identical, individually human-varied output, explicitly likened by LeWitt to a musical score performed anew each time. Processing/p5.js creative-coding practice formalized this as code idiom: a fixed deterministic base plus <code>random()</code>/<code>noise()</code> calls constrained to a small range, with a seed making a run reproducible. The modern industrial-scale version: generative NFT art (Art Blocks, e.g. Tyler Hobbs's "Fidenza") — one fixed script plus a per-instance hash-derived seed produces thousands of outputs that read unmistakably as one family while no two are identical — the most direct precedent for "one system, many future pages, none stamped-out."</p>
+    <h4>Core mechanism</h4>
+    <p>A fixed frame (the grid, the band layout, the shape, the type scale — everything already settled in Ripple's token system) stays exactly as designed. On top of it, a single deterministic pseudo-random generator, seeded once per page from a stable string (the investigation's slug), emits an ordered stream of small numbers. Each number is assigned, in a fixed sequence, to one pre-declared "jitter slot" — a specific property of a specific element type (caption tilt angle, tick-mark rotation, divider offset, fill-order of a grid). Each slot carries its own declared epsilon — a hard min/max bound on how far it may deviate (Molnár's own language: some slots get ±1° of wobble, some get ±5px, some get zero). Same seed always reproduces the exact same page — critical for a page meant to be screenshotted and cited; a different seed produces a visibly different but clearly-related "roll." Epsilon should be assigned BY HIERARCHY TIER, not uniformly — near-zero for the page's single dominant sun element and for any actual digit, larger for mass-produced texture elements — so randomness never competes with what the eye is supposed to land on first. And "organic" reads better from compounding several independent weak perturbations than from one large randomization on a single property, which instead reads as a glitch.</p>
+    <h4>Vocabulary units</h4>
+    <p>Not shapes or cards — perturbable properties, "jitter slots," each a (property, base value, epsilon range, hierarchy tier) tuple: caption rotation angle, hairline-divider offset, tick-mark length/rotation/opacity, grid-cell fill-order, boundary-vertex radius of an area-true shape (so a circle reads hand-drawn-precise rather than SVG-perfect), connective-line waver. The frame elements these attach to are all things Ripple already has: drafting-tick leader lines, dashed hairline dividers, tilted marginal captions, the alternating band structure. Nothing new is invented — existing furniture gets a small, bounded, individually-decided nudge instead of one hand-set value reused everywhere.</p>
+    <h4>Combination rule</h4>
+    <p>Pick one seed per page from a stable identifier, so the roll is reproducible forever. Walk a fixed, declared list of jitter slots in a fixed order, pulling one deterministic pseudo-random value per slot. Clamp every value to that slot's declared epsilon — never more than the stated 1–5% deviation. Set epsilon inversely proportional to information hierarchy: tier 0 (the sun, actual digits) ≈ 0, effectively locked; tier 1 (captions, dividers, leader lines) small (±1–4 units); tier 2 (a massed field of many identical units) the largest, most visible epsilon. Prefer compounding two or three small independent jitters over one large one on a single property.</p>
+    <h4>Applied to Ripple's content pattern</h4>
+    <div class="applied">
+      <p>Build-time only, not runtime JS. Seed = the page's slug. Beat 1 (claim) — tier 0, epsilon ≈ 0: the sentence and any digits are never jittered. Beat 2 (scale comparison) — the shapes' areas stay exactly proportional and locked (that's the data), but each shape's boundary gets a "many-vertex polygon, each vertex nudged ±1–2%" treatment — reads as confidently hand-drawn rather than machine-stamped, and no two pages' "big total" shape has an identical boundary even though all come from the same script.</p>
+      <p>Beat 3 (the 100-tick field) is Molnár's home turf, nearly unmodified: the count stays exact — never touched, that's the reported rate — but which 22 of 100 grid positions are solid is chosen by a seeded shuffle rather than always filling the first 22 in reading order, so the field looks organically scattered rather than a filled progress bar, and every tick gets its own small individual rotation and stroke-length jitter. Beat 4 (repair transition) borrows LeWitt rather than Molnár: the connecting arrow is defined as an instruction ("draw a line from A to B in N segments, each perpendicular-offset by a seeded amount") rather than a ruler-straight line. Beat 5 (coda) returns to tier 0, epsilon ≈ 0 — the page's emotional sun gets the same locked treatment as the headline. Free rhythm win: dialing epsilon up for a beat-3-style dense section and back to ~0 for the coda IS the tension/release heartbeat the brief asks for — the same mechanism does double duty as texture and pacing, no second system required.</p>
+    </div>
+    <h4>Fit against the music brief</h4>
+    <p>Strong, almost literal fit for two of five metaphors. Rhythm/heartbeat — the epsilon dial turned up for a dense beat and down for a rest beat directly implements "dense moments and rest moments alternating," a single numeric knob, not a redesign. Sun-and-planets — hierarchy-tiered epsilon is a buildable encoding of "one dominant shape, everything else orbits," at exactly the fractal scale the brief describes, since the same tiering logic applies whether the "sun" is a whole section or one number within it. Neutral on scale-felt-before-label — this system never decides how big a shape is, it only roughs up the edges of an already-correctly-sized shape, a compatible finish, not a competing mechanism. Weakest on melody/designed eye-path — a seeded PRNG has zero opinion about section order or where the reading arrow points; it must sit on top of whatever macro-composition grammar Chris ends up choosing, and if misapplied (jitter large enough to shift actual reading position, not just texture) it would actively fight "reads like a sentence" by scattering attention.</p>
+    <div class="sw-grid">
+      <div class="strong"><h4>Strengths</h4><p>Cheapest real reusable-variation mechanism in the whole research space — one PRNG function and a short table of epsilon constants, no classification engine, no deck to curate, no adjacency grammar to design. Proven at extreme scale by generative-art platforms — direct evidence this exact mechanism holds up across many future pages. Two of Chris's five music-brief metaphors become literal numeric parameters rather than vague taste calls. Fully deterministic and static-HTML-compatible if seeded and baked at build time.</p></div>
+      <div class="weak"><h4>Weaknesses</h4><p>It is a texture/finish layer, not a composition engine — it has no opinion on section order, band count, or which beat is the page's sun; it must be paired with a macro-layout grammar from elsewhere in this survey or it has nothing to texture. Real failure mode on a data-integrity brand: jitter must never touch an actual digit, unit, or data-bearing label, or it reads as a rendering bug — uniquely costly on a site where readers scrutinize stray pixels as "is that number wrong." Variation is deliberately subtle — on its own it will not make two pages feel structurally different from across the room.</p></div>
+    </div>
+    <h4>Best fit / weak fit</h4>
+    <p>Shines for any beat built from many near-identical repeated units — above all the density field, Molnár's own subject matter, almost unmodified — and as a finishing pass over structural furniture the current page already has. Struggles for single hero numbers, the headline claim, and any element meant to be the scene's sun — those need to stay geometrically pure, so the system explicitly sits those out rather than trying to cover them. Not a tool for deciding macro page structure at all — that's the whole point of the other twelve.</p>
+    <h4>Build effort</h4>
+    <p>Three tiers, cheapest first. CSS-only: hand-curate a table of 12–20 good-looking offset/rotation/opacity values once and cycle them across repeated elements via <code>:nth-child()</code> — could be added to the existing stylesheet today. Build-time seeded PRNG (the realistic target): a ~15–20 line deterministic generator run once by a small script at authoring time, writing concrete inline style values straight into the static HTML — every deployed page stays 100% static and pixel-stable on reload. Optional: expose the seed as a query param so Chris can preview a few candidate rolls before locking one in.</p>
+  </div>
+</details>
+
+<footer>
+  <p><span class="mark">▪</span> Thirteen systems, zero recommendations. Several of these are not rivals — a macro-sequencing grammar (comics, scrollytelling, sonata form, the deck-and-spread) picks the order and the dominant scene; a chart-specific grammar (Isotype, constraint layout) decides how one number becomes one shape inside that order; the Molnár epsilon is a finish you can lay over either. Reasonable next step, whenever you want it: pick one from the first bucket, one from the second, and decide whether the third earns its keep — but that reasonable-next-step sentence is exactly the kind of nudge this research brief asked not to include as a conclusion, so take it as a note about how the pieces fit, not a plan.</p>
+  <p style="margin-top:14px">Built against the existing blueprint token file — no new palette, no new type system. Sources and named exemplars are cited inline throughout; nothing here is asserted without a real precedent behind it.</p>
+</footer>
+
+</main>
+
+<script>
+(function(){
+  document.querySelectorAll('.tile').forEach(function(t){
+    t.addEventListener('click', function(e){
+      var id = t.getAttribute('data-target');
+      var el = document.getElementById(id);
+      if(el && el.tagName === 'DETAILS'){ el.open = true; }
+    });
+  });
+  var ea = document.getElementById('expand-all'), ca = document.getElementById('collapse-all');
+  if(ea) ea.addEventListener('click', function(){ document.querySelectorAll('.dossier').forEach(function(d){ d.open = true; }); });
+  if(ca) ca.addEventListener('click', function(){ document.querySelectorAll('.dossier').forEach(function(d){ d.open = false; }); });
+})();
+</script>

@@ -1,0 +1,257 @@
+<title>Ripple Motif Sketchbook</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Public+Sans:wght@300;400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  /* Committed dark page — night water. Single theme, every color explicit. */
+  :root{
+    --ink:#0b1014;         /* the water at night */
+    --ink-2:#111820;       /* panel ground */
+    --foam:#e8e4dc;        /* primary text */
+    --foam-dim:#9aa3a8;    /* secondary text */
+    --rust:#c25e3a;        /* the sun / the event */
+    --rust-soft:#c25e3a55;
+    --wave:#4a7d8c;        /* wavefronts */
+    --hair:#1f2a33;
+  }
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--ink);
+    color:var(--foam);
+    font-family:"Public Sans",system-ui,sans-serif;
+    font-weight:300;
+    line-height:1.6;
+  }
+  .wrap{max-width:1060px;margin:0 auto;padding:0 28px;}
+  header.page{padding:72px 0 40px;border-bottom:1px solid var(--hair);}
+  .eyebrow{
+    font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--rust);margin:0 0 14px;
+  }
+  h1{
+    font-family:"Fraunces",Georgia,serif;font-weight:340;font-size:clamp(34px,5vw,54px);
+    margin:0 0 14px;text-wrap:balance;letter-spacing:-.01em;
+  }
+  .lede{max-width:62ch;color:var(--foam-dim);font-size:17px;margin:0;}
+  .lede b{color:var(--foam);font-weight:600;}
+
+  section.sketch{padding:56px 0 20px;border-bottom:1px solid var(--hair);}
+  .s-head{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:6px;}
+  .s-tag{
+    font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--wave);
+    letter-spacing:.14em;text-transform:uppercase;
+  }
+  h2{
+    font-family:"Fraunces",Georgia,serif;font-weight:400;font-size:clamp(24px,3vw,32px);
+    margin:0;letter-spacing:-.005em;
+  }
+  .s-claim{color:var(--foam-dim);max-width:66ch;margin:6px 0 22px;font-size:15.5px;}
+  .stage{
+    background:var(--ink-2);border:1px solid var(--hair);border-radius:6px;
+    overflow:hidden;position:relative;
+  }
+  .stage canvas{display:block;width:100%;height:420px;}
+  .stage .cap{
+    position:absolute;left:14px;bottom:10px;font-family:"IBM Plex Mono",monospace;
+    font-size:11px;color:var(--foam-dim);letter-spacing:.06em;
+  }
+  .notes{display:grid;grid-template-columns:1fr 1fr;gap:10px 36px;padding:20px 4px 8px;}
+  .note b{display:block;font-family:"IBM Plex Mono",monospace;font-size:11px;
+    letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:3px;}
+  .note.up b{color:#7ea68a;} .note.down b{color:#b0705c;}
+  .note{font-size:14.5px;color:var(--foam-dim);}
+  @media(max-width:700px){.notes{grid-template-columns:1fr;}}
+
+  footer.page{padding:44px 0 80px;color:var(--foam-dim);font-size:14.5px;max-width:66ch;}
+  footer.page b{color:var(--foam);font-weight:600;}
+  @media (prefers-reduced-motion: reduce){ .stage::after{
+    content:"animation paused (reduced motion)";position:absolute;top:10px;right:14px;
+    font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--foam-dim);} }
+</style>
+
+<div class="wrap">
+<header class="page">
+  <p class="eyebrow">Sketchbook · rough mockups, not designs</p>
+  <h1>Four ways a ripple can mean consequence</h1>
+  <p class="lede">Same motif, four different physics. Each one says something different about
+  cause and effect. <b>These are feel-checks</b> — squint at the motion, ignore the polish.
+  All four run on fake data.</p>
+</header>
+
+<section class="sketch">
+  <div class="s-head"><span class="s-tag">Sketch A</span><h2>The single drop</h2></div>
+  <p class="s-claim">One event hits the water. Rings spread outward, and each ring it crosses is a
+  layer of consequence — the violation, the penalty, the payout, the people. Clean, calm, legible.</p>
+  <div class="stage"><canvas id="cA"></canvas><span class="cap">one cause → ordered consequences</span></div>
+  <div class="notes">
+    <div class="note up"><b>Where it wins</b>Instantly readable. The rust dot is the sun of the page with zero explanation.</div>
+    <div class="note down"><b>Where it breaks</b>It's orderly — says "consequence," not "chaos." Feels like a diagram, not a system.</div>
+  </div>
+</section>
+
+<section class="sketch">
+  <div class="s-head"><span class="s-tag">Sketch B</span><h2>Interference</h2></div>
+  <p class="s-claim">Many events, dropping at random. Their rings collide and the surface becomes
+  a pattern nobody designed. This is the chaos read: no single cause, only the weather of thousands.</p>
+  <div class="stage"><canvas id="cB"></canvas><span class="cap">many causes → emergent pattern</span></div>
+  <div class="notes">
+    <div class="note up"><b>Where it wins</b>Beautiful, alive, ambient. Says "the system is bigger than any one story."</div>
+    <div class="note down"><b>Where it breaks</b>No protagonist. Nothing to point at. Weak as a portfolio "I built this" signal on its own.</div>
+  </div>
+</section>
+
+<section class="sketch">
+  <div class="s-head"><span class="s-tag">Sketch C</span><h2>The cascade</h2></div>
+  <p class="s-claim">Not water — a web. One node fires and the pulse travels the connections,
+  lighting up everything downstream. This is cause-and-effect as your warehouse actually stores it:
+  entities joined to entities.</p>
+  <div class="stage"><canvas id="cC"></canvas><span class="cap">one node fires → the network answers</span></div>
+  <div class="notes">
+    <div class="note up"><b>Where it wins</b>Truest to the mission — "connecting the dots" made literal. Strongest craft signal.</div>
+    <div class="note down"><b>Where it breaks</b>Node graphs are a portfolio cliché if drawn lazily. Needs restraint to not look like every "big data" stock image.</div>
+  </div>
+</section>
+
+<section class="sketch">
+  <div class="s-head"><span class="s-tag">Sketch D</span><h2>The struck surface</h2></div>
+  <p class="s-claim">A calm grid of dots — the public record at rest. One strike displaces it and a
+  real wave rolls through the field, bending everything it passes. Order and disruption in one frame.</p>
+  <div class="stage"><canvas id="cD"></canvas><span class="cap">the record at rest → disturbed by one event</span></div>
+  <div class="notes">
+    <div class="note up"><b>Where it wins</b>Best of both: the calm grid says scale and rigor, the wave says consequence. Very "intentional first visual."</div>
+    <div class="note down"><b>Where it breaks</b>Subtle — on a fast skim it can read as decoration before the wave hits.</div>
+  </div>
+</section>
+
+<footer class="page">
+  <p><b>How to choose:</b> A is the clearest, B is the most atmospheric, C is the most on-mission,
+  D is the most composed. They also combine — a struck surface (D) whose wave travels along real
+  connections (C) is probably the ceiling. Pick the feel; the real data wiring comes after.</p>
+</footer>
+</div>
+
+<script>
+(function(){
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const RUST='#c25e3a', WAVE='#4a7d8c', FOAM='#e8e4dc', DIM='#9aa3a8';
+
+  function setup(id, draw){
+    const cv=document.getElementById(id), ctx=cv.getContext('2d');
+    let w,h,dpr;
+    function size(){ dpr=Math.min(devicePixelRatio||1,2);
+      w=cv.clientWidth; h=cv.clientHeight=420;
+      cv.width=w*dpr; cv.height=h*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); }
+    size(); addEventListener('resize',size);
+    let t=0;
+    function frame(){ draw(ctx,w,h,t); t+=1; if(!reduced) requestAnimationFrame(frame); }
+    frame();
+    if(reduced){ draw(ctx,w,h,140); } // one settled still frame
+  }
+
+  // A — single drop, labeled rings
+  const ringsA=['violation','penalty','payout','people'];
+  setup('cA',(ctx,w,h,t)=>{
+    ctx.clearRect(0,0,w,h);
+    const cx=w/2, cy=h/2, period=260;
+    for(let i=0;i<ringsA.length;i++){
+      const phase=((t - i*55)%period+period)%period;
+      const r=30+phase*0.9, alpha=Math.max(0,1-phase/period);
+      ctx.beginPath(); ctx.arc(cx,cy,r,0,7);
+      ctx.strokeStyle=`rgba(74,125,140,${alpha*0.8})`; ctx.lineWidth=1.4; ctx.stroke();
+      if(alpha>0.25 && r>44){
+        ctx.fillStyle=`rgba(232,228,220,${alpha*0.85})`;
+        ctx.font='11px "IBM Plex Mono",monospace';
+        ctx.fillText(ringsA[i], cx+r*0.71+8, cy-r*0.71);
+      }
+    }
+    ctx.beginPath(); ctx.arc(cx,cy,7+2*Math.sin(t/14),0,7);
+    ctx.fillStyle=RUST; ctx.fill();
+  });
+
+  // B — interference field
+  const drops=[];
+  setup('cB',(ctx,w,h,t)=>{
+    ctx.clearRect(0,0,w,h);
+    if(t%34===0 || drops.length===0){
+      // deterministic-ish scatter without Math.random
+      const k=drops.length*97+13;
+      drops.push({x:(k*37)%Math.max(w,1), y:60+((k*53)%300), t0:t});
+      if(drops.length>14) drops.shift();
+    }
+    for(const d of drops){
+      const age=t-d.t0;
+      for(let j=0;j<3;j++){
+        const r=(age-j*26)*1.15;
+        if(r<0) continue;
+        const a=Math.max(0,0.55-r/420);
+        if(a<=0) continue;
+        ctx.beginPath(); ctx.arc(d.x,d.y,r,0,7);
+        ctx.strokeStyle=`rgba(74,125,140,${a})`; ctx.lineWidth=1.1; ctx.stroke();
+      }
+      if(age<20){ ctx.beginPath(); ctx.arc(d.x,d.y,3,0,7);
+        ctx.fillStyle=`rgba(194,94,58,${1-age/20})`; ctx.fill(); }
+    }
+  });
+
+  // C — cascade through a sparse web
+  let net=null;
+  setup('cC',(ctx,w,h,t)=>{
+    if(!net || net.w!==w){
+      const nodes=[]; const N=42;
+      for(let i=0;i<N;i++){
+        nodes.push({x:40+((i*173)%(w-80)), y:40+((i*97)%(h-80)), lit:-1});
+      }
+      const edges=[];
+      for(let i=0;i<N;i++){ for(let j=i+1;j<N;j++){
+        const dx=nodes[i].x-nodes[j].x, dy=nodes[i].y-nodes[j].y;
+        if(dx*dx+dy*dy<150*150 && (i+j)%3===0) edges.push([i,j]);
+      }}
+      net={w,nodes,edges,src:0};
+      // pick a central-ish source
+      let best=0,bd=1e9;
+      nodes.forEach((n,i)=>{const d=(n.x-w/2)**2+(n.y-h/2)**2; if(d<bd){bd=d;best=i;}});
+      net.src=best;
+      // BFS depth for pulse timing
+      const depth=new Array(N).fill(-1); depth[best]=0; const q=[best];
+      while(q.length){ const u=q.shift();
+        for(const [a,b] of edges){ const v=a===u?b:(b===u?a:-1);
+          if(v>=0&&depth[v]<0){depth[v]=depth[u]+1;q.push(v);} } }
+      net.depth=depth;
+    }
+    ctx.clearRect(0,0,w,h);
+    const cycle=360, ph=t%cycle, speed=34;
+    for(const [a,b] of net.edges){
+      const da=net.depth[a],db=net.depth[b];
+      const on = da>=0&&db>=0 && ph>Math.min(da,db)*speed;
+      ctx.beginPath(); ctx.moveTo(net.nodes[a].x,net.nodes[a].y);
+      ctx.lineTo(net.nodes[b].x,net.nodes[b].y);
+      ctx.strokeStyle= on ? 'rgba(74,125,140,0.55)' : 'rgba(31,42,51,0.9)';
+      ctx.lineWidth= on?1.2:1; ctx.stroke();
+    }
+    net.nodes.forEach((n,i)=>{
+      const d=net.depth[i], lit=d>=0 && ph>d*speed;
+      const isSrc=i===net.src;
+      ctx.beginPath(); ctx.arc(n.x,n.y,isSrc?6:3.2,0,7);
+      ctx.fillStyle= isSrc?RUST : (lit?'rgba(232,228,220,0.9)':'rgba(154,163,168,0.35)');
+      ctx.fill();
+      if(isSrc && ph<40){ ctx.beginPath(); ctx.arc(n.x,n.y,6+ph*1.6,0,7);
+        ctx.strokeStyle=`rgba(194,94,58,${1-ph/40})`; ctx.stroke(); }
+    });
+  });
+
+  // D — dot grid displaced by a traveling wave
+  setup('cD',(ctx,w,h,t)=>{
+    ctx.clearRect(0,0,w,h);
+    const gap=22, cx=w*0.32, cy=h*0.5, cycle=300, R=(t%cycle)*2.2;
+    for(let x=gap;x<w;x+=gap){ for(let y=gap;y<h;y+=gap){
+      const dx=x-cx, dy=y-cy, dist=Math.sqrt(dx*dx+dy*dy);
+      const band=Math.exp(-((dist-R)**2)/900);
+      const push=band*10, ang=Math.atan2(dy,dx);
+      const px=x+Math.cos(ang)*push, py=y+Math.sin(ang)*push;
+      ctx.beginPath(); ctx.arc(px,py,1.6+band*1.8,0,7);
+      ctx.fillStyle= band>0.35 ? `rgba(194,94,58,${0.35+band*0.6})`
+                               : 'rgba(154,163,168,0.4)';
+      ctx.fill();
+    }}
+    if(t%cycle<30){ ctx.beginPath(); ctx.arc(cx,cy,5,0,7); ctx.fillStyle=RUST; ctx.fill(); }
+  });
+})();
+</script>

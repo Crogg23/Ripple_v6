@@ -1,0 +1,337 @@
+<title>Board Segments</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Work+Sans:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#0a1620; --surface:#111a22; --ink:#f2e9d8; --ink-soft:#e8dcc2;
+  --muted:#b3a080; --sage:#5f7a4f; --sage-hi:#7fa066; --rust:#b5703f; --teal:#3d8f82;
+  --gold:#c9a25a; --bp:#2f6f8f; --hair:#2a3a44; --dim:#6b7680;
+  --head:'Space Grotesk',sans-serif; --body:'Work Sans',sans-serif; --mono:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink-soft);font-family:var(--body);font-size:15px;line-height:1.5;background:var(--bg)}
+::selection{background:var(--gold);color:var(--bg)}
+button:focus-visible,[contenteditable]:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+header{padding:20px clamp(16px,3vw,32px) 16px;border-bottom:1px solid var(--hair);display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+header .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--bp);text-transform:uppercase}
+header h1{font-family:var(--head);font-weight:700;color:var(--ink);font-size:22px;margin:6px 0 0}
+header p{font-family:var(--mono);font-size:12px;color:var(--dim);margin:8px 0 0;max-width:62ch;line-height:1.6}
+#regen{background:var(--surface);border:1px solid var(--hair);color:var(--ink-soft);font-family:var(--mono);font-size:12.5px;padding:10px 16px;cursor:pointer;align-self:center}
+#regen:hover{border-color:var(--gold);color:var(--ink)}
+
+main{padding:22px clamp(16px,3vw,32px) 70px;max-width:1180px;margin:0 auto}
+
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px;margin-bottom:8px}
+.thumbcard{border:1px solid var(--hair);background:var(--surface);padding:8px;cursor:pointer;transition:border-color .15s}
+.thumbcard:hover{border-color:var(--bp)}
+.thumbcard.active{border-color:var(--gold)}
+.thumb-clip{width:100%;aspect-ratio:820/900;overflow:hidden;position:relative;background:var(--bg)}
+.thumb-inner{width:820px;transform-origin:top left;pointer-events:none}
+.thumbcard .tlabel{font-family:var(--mono);font-size:9.5px;color:var(--dim);margin-top:8px;text-align:center;text-transform:capitalize}
+
+.detailwrap{margin-top:34px;border-top:1px dashed var(--hair);padding-top:24px}
+.detailwrap h2{font-family:var(--head);font-weight:700;color:var(--ink);font-size:17px;margin:0 0 4px}
+.detailwrap .dsub{font-family:var(--mono);font-size:11.5px;color:var(--dim);margin-bottom:16px}
+.stageouter{overflow-x:auto;border:1px dashed var(--hair);padding:16px;background:radial-gradient(circle 1px at 0 0, rgba(45,60,73,.7) 1px, transparent 1.5px);background-size:48px 48px}
+.pageframe{width:820px}
+
+.scene-row{position:relative;margin-bottom:14px}
+.zone{position:absolute;border:1px solid var(--bp);background:rgba(47,111,143,.07);box-sizing:border-box;padding:8px 10px;overflow:hidden}
+.zone.sun{border:2px solid var(--rust);background:rgba(181,112,63,.08)}
+.zone.shape-circle{border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:14px}
+.zone.align-br{display:flex;flex-direction:column;align-items:flex-end;justify-content:flex-end;text-align:right}
+.spine-divider{position:absolute;top:0;bottom:0;border-left:2px dashed var(--gold);pointer-events:none}
+.void-ring{position:absolute;border-radius:50%;border:1.5px dashed var(--gold);pointer-events:none}
+.zone.tex-dense{background-image:repeating-linear-gradient(0deg,rgba(95,122,79,.28) 0 2px,transparent 2px 15px),repeating-linear-gradient(90deg,rgba(95,122,79,.28) 0 2px,transparent 2px 15px)}
+.zone.tex-flat{background-image:repeating-linear-gradient(0deg,rgba(47,111,143,.22) 0 1.5px,transparent 1.5px 22px)}
+.zlabel{font-family:var(--mono);font-size:9px;letter-spacing:.06em;color:var(--bp);text-transform:uppercase;margin-bottom:4px}
+.zone.sun .zlabel{color:var(--rust)}
+.zcontent{font-family:var(--body);font-size:12.5px;color:var(--ink-soft);outline:none;line-height:1.4}
+.zcontent.placeholder{color:var(--dim);font-style:italic}
+
+footer{border-top:1px solid var(--hair);padding:18px clamp(16px,3vw,32px);font-family:var(--mono);font-size:11px;color:var(--dim);line-height:1.7;max-width:1180px;margin:0 auto}
+</style>
+
+<header>
+  <div>
+    <div class="kicker">Working tool</div>
+    <h1>Board Segments</h1>
+    <p>Each thumbnail is a sequence of 5-7 named composition scenes — circles, diagonals, radial spreads, dense fields, tall columns — not plain rectangle rows. Click one open, click any zone and type what's going there.</p>
+  </div>
+  <button id="regen" type="button">regenerate batch</button>
+</header>
+
+<main>
+  <div id="gallery" class="gallery"></div>
+  <div id="detailwrap" class="detailwrap" style="display:none">
+    <h2 id="dtitle"></h2>
+    <div class="dsub">click any zone below and type what goes there</div>
+    <div class="stageouter"><div id="stage" class="pageframe"></div></div>
+  </div>
+</main>
+
+<footer>21 scene concepts: the shipped 8, 7 hand/angle/scale variants on them, 6 new shapes. Sequences of 5-7 vary per batch; dense scenes never land back to back; exactly one scene per sequence carries the SUN marker. Zone content is never assigned for you.</footer>
+
+<script>
+function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+const HINT = {L:'the hero — lead chart, network, or the big proof', M:'a chart, a map, a paragraph of text', S:'a stat, a quote, a short caption'};
+
+function zoneEl(size, sun, extraClass){
+  const div = document.createElement('div');
+  div.className = 'zone' + (sun?' sun':'') + (extraClass?(' '+extraClass):'');
+  const label = document.createElement('div');
+  label.className='zlabel';
+  label.textContent = size + (sun?' · SUN':'');
+  div.appendChild(label);
+  const content = document.createElement('div');
+  content.className='zcontent placeholder';
+  content.contentEditable='true';
+  const hint = HINT[size];
+  content.textContent = hint;
+  content.addEventListener('focus', ()=>{ if(content.classList.contains('placeholder')){content.textContent='';content.classList.remove('placeholder');} });
+  content.addEventListener('blur', ()=>{ if(content.textContent.trim()===''){content.textContent=hint;content.classList.add('placeholder');} });
+  div.appendChild(content);
+  return div;
+}
+function place(el, style){ Object.assign(el.style, style); return el; }
+
+const SCENES = {
+  circle(sun){
+    const row=document.createElement('div'); row.className='scene-row'; row.style.height='190px';
+    const c = zoneEl('L', sun, 'shape-circle');
+    place(c,{left:'0',top:'0',width:'190px',height:'190px',borderRadius:'50%'});
+    const p = zoneEl('S', false);
+    place(p,{right:'6%',bottom:'8px',width:'34%',height:'78px'});
+    row.append(c,p); return row;
+  },
+  fullbleed(sun){
+    const row=document.createElement('div'); row.className='scene-row'; row.style.height='92px';
+    const z = zoneEl(sun?'L':'M', sun);
+    place(z,{left:'0',top:'0',width:'100%',height:'100%'});
+    row.append(z); return row;
+  },
+  starburst(sun){
+    const row=document.createElement('div'); row.className='scene-row'; row.style.height='210px';
+    const center = zoneEl('M', sun, 'shape-circle');
+    place(center,{left:'38%',top:'20px',width:'110px',height:'110px',borderRadius:'50%'});
+    const t1 = zoneEl('S', false); place(t1,{left:'6%',top:'8px',width:'110px',height:'48px'});
+    const t2 = zoneEl('S', false); place(t2,{right:'5%',top:'26px',width:'112px',height:'48px'});
+    const t3 = zoneEl('S', false); place(t3,{left:'40%',bottom:'4px',width:'120px',height:'48px'});
+    row.append(center,t1,t2,t3); return row;
+  },
+  tallcolumn(sun){
+    const row=document.createElement('div'); row.className='scene-row'; row.style.height='230px';
+    const main = zoneEl('L', sun); place(main,{left:'0',top:'0',width:'32%',height:'100%'});
+    const gutter = zoneEl('S', false); place(gutter,{left:'34%',top:'0',width:'15%',height:'100%'});
+    const extra = zoneEl('M', false); place(extra,{left:'51%',top:'0',width:'49%',height:'100%'});
+    row.append(main,gutter,extra); return row;
+  },
+  densefield(sun){
+    const row=document.createElement('div'); row.className='scene-row'; row.style.height='150px';
+    const grid = zoneEl(sun?'L':'M', sun, 'tex-dense'); place(grid,{left:'0',top:'0',width:'62%',height:'100%'});
+    const calm = zoneEl('M', false); place(calm,{left:'64%',top:'0',width:'36%',height:'100%'});
+    row.append(grid,calm); return row;
+  },
+  offcenter(sun){
+    const row=document.createElement('div'); row.className='scene-row'; row.style.height='190px';
+    const blob = zoneEl('M', sun, 'shape-circle'); place(blob,{left:'3%',top:'18px',width:'150px',height:'150px',borderRadius:'50%'});
+    const pocket = zoneEl('L', false); place(pocket,{right:'4%',top:'0',width:'52%',height:'100%'});
+    row.append(blob,pocket); return row;
+  },
+  diagonal(sun){
+    const row=document.createElement('div'); row.className='scene-row'; row.style.height='150px';
+    const a = zoneEl(sun?'L':'M', sun);
+    place(a,{left:'0',top:'0',width:'100%',height:'100%',clipPath:'polygon(0 0, 62% 0, 38% 100%, 0% 100%)'});
+    const b = zoneEl('S', false, 'align-br');
+    place(b,{left:'0',top:'0',width:'100%',height:'100%',clipPath:'polygon(62% 0, 100% 0, 100% 100%, 38% 100%)'});
+    row.append(a,b); return row;
+  },
+  flatgrid(sun){
+    const row=document.createElement('div'); row.className='scene-row'; row.style.height='130px';
+    const grid = zoneEl(sun?'L':'M', sun, 'tex-flat'); place(grid,{left:'0',top:'0',width:'64%',height:'100%'});
+    const release = zoneEl('M', false); place(release,{left:'66%',top:'0',width:'34%',height:'100%'});
+    row.append(grid,release); return row;
+  },
+  circlemirror(sun){
+    const row=document.createElement('div'); row.className='scene-row'; row.style.height='190px';
+    const c = zoneEl('L', sun, 'shape-circle');
+    place(c,{right:'0',top:'0',width:'190px',height:'190px',borderRadius:'50%'});
+    const p = zoneEl('S', false);
+    place(p,{left:'6%',bottom:'8px',width:'34%',height:'78px'});
+    row.append(c,p); return row;
+  },
+  fullbleedstack(sun){
+    const row=document.createElement('div'); row.className='scene-row'; row.style.height='120px';
+    const hero = zoneEl(sun?'L':'M', sun); place(hero,{left:'0',top:'0',width:'100%',height:'80px'});
+    const echo = zoneEl('S', false); place(echo,{left:'0',top:'92px',width:'100%',height:'28px'});
+    row.append(hero,echo); return row;
+  },
+  starbursteven(sun){
+    const row=document.createElement('div'); row.className='scene-row'; row.style.height='260px';
+    const center = zoneEl('M', sun, 'shape-circle');
+    place(center,{left:'360px',top:'80px',width:'100px',height:'100px',borderRadius:'50%'});
+    const tabs=[
+      {left:'550px',top:'111px'},{left:'452.5px',top:'15.7px'},{left:'257.5px',top:'15.7px'},
+      {left:'160px',top:'111px'},{left:'257.5px',top:'206.3px'},{left:'452.5px',top:'206.3px'}
+    ];
+    row.append(center);
+    tabs.forEach(pos=>{ const t=zoneEl('S', false); place(t,{...pos,width:'110px',height:'38px'}); row.append(t); });
+    return row;
+  },
+  tallcolumnreversed(sun){
+    const row=document.createElement('div'); row.className='scene-row'; row.style.height='230px';
+    const extra = zoneEl('M', false); place(extra,{left:'0',top:'0',width:'49%',height:'100%'});
+    const gutter = zoneEl('S', false); place(gutter,{left:'51%',top:'0',width:'15%',height:'100%'});
+    const main = zoneEl('L', sun); place(main,{left:'68%',top:'0',width:'32%',height:'100%'});
+    row.append(extra,gutter,main); return row;
+  },
+  densefieldgrid(sun){
+    const row=document.createElement('div'); row.className='scene-row'; row.style.height='150px';
+    const cols=['0px','129px','258px','387px'], rows=['0px','79px'];
+    rows.forEach(top=>{ cols.forEach(left=>{
+      const cell=zoneEl('S', false); place(cell,{left,top,width:'121px',height:'71px'}); row.append(cell);
+    }); });
+    const calm = zoneEl('M', sun); place(calm,{left:'64%',top:'0',width:'36%',height:'100%'});
+    row.append(calm); return row;
+  },
+  diagonalsteep(sun){
+    const row=document.createElement('div'); row.className='scene-row'; row.style.height='150px';
+    const a = zoneEl(sun?'L':'M', sun);
+    place(a,{left:'0',top:'0',width:'100%',height:'100%',clipPath:'polygon(0 0, 52% 0, 48% 100%, 0% 100%)'});
+    const b = zoneEl('M', false, 'align-br');
+    place(b,{left:'0',top:'0',width:'100%',height:'100%',clipPath:'polygon(52% 0, 100% 0, 100% 100%, 48% 100%)'});
+    row.append(a,b); return row;
+  },
+  circletwoscales(sun){
+    const row=document.createElement('div'); row.className='scene-row'; row.style.height='200px';
+    const hero = zoneEl('L', sun, 'shape-circle');
+    place(hero,{left:'40px',top:'10px',width:'180px',height:'180px',borderRadius:'50%'});
+    const support = zoneEl('S', false, 'shape-circle');
+    place(support,{right:'80px',top:'110px',width:'90px',height:'90px',borderRadius:'50%'});
+    row.append(hero,support); return row;
+  },
+  staircase(sun){
+    const row=document.createElement('div'); row.className='scene-row'; row.style.height='200px';
+    const b1 = zoneEl('L', sun); place(b1,{left:'0',bottom:'0',width:'22%',height:'180px'});
+    const b2 = zoneEl('M', false); place(b2,{left:'24%',bottom:'0',width:'20%',height:'140px'});
+    const b3 = zoneEl('M', false); place(b3,{left:'46%',bottom:'0',width:'18%',height:'100px'});
+    const b4 = zoneEl('S', false); place(b4,{left:'66%',bottom:'0',width:'16%',height:'60px'});
+    row.append(b1,b2,b3,b4); return row;
+  },
+  nestedframe(sun){
+    const row=document.createElement('div'); row.className='scene-row'; row.style.height='200px';
+    const inner = zoneEl('L', sun); place(inner,{left:'22.5%',top:'20px',width:'55%',height:'160px'});
+    row.append(inner); return row;
+  },
+  splitspine(sun){
+    const row=document.createElement('div'); row.className='scene-row'; row.style.height='200px';
+    const left = zoneEl(sun?'L':'M', sun); place(left,{left:'0',top:'0',width:'48%',height:'100%'});
+    const right = zoneEl('M', false); place(right,{left:'52%',top:'0',width:'48%',height:'100%'});
+    const spine = document.createElement('div'); spine.className='spine-divider';
+    place(spine,{left:'49.5%',top:'0',height:'100%'});
+    row.append(left,right,spine); return row;
+  },
+  orbitring(sun){
+    const row=document.createElement('div'); row.className='scene-row'; row.style.height='260px';
+    const ring = document.createElement('div'); ring.className='void-ring';
+    place(ring,{left:'340px',top:'60px',width:'140px',height:'140px'});
+    row.append(ring);
+    const sats=[
+      {left:'540px',top:'102px'},{left:'442.5px',top:'6.7px'},{left:'247.5px',top:'6.7px'},
+      {left:'150px',top:'102px'},{left:'247.5px',top:'197.3px'},{left:'442.5px',top:'197.3px'}
+    ];
+    sats.forEach(pos=>{ const s=zoneEl('M', sun); place(s,{...pos,width:'130px',height:'56px'}); row.append(s); });
+    return row;
+  },
+  anchorrail(sun){
+    const row=document.createElement('div'); row.className='scene-row'; row.style.height='220px';
+    const header = zoneEl('M', false); place(header,{left:'0',top:'0',width:'100%',height:'40px'});
+    const b1 = zoneEl('L', sun); place(b1,{left:'0',top:'48px',width:'78%',height:'80px'});
+    const b2 = zoneEl('M', false); place(b2,{left:'0',top:'136px',width:'78%',height:'80px'});
+    const rail = zoneEl('S', false); place(rail,{left:'80%',top:'48px',width:'20%',height:'172px'});
+    row.append(header,b1,b2,rail); return row;
+  },
+  terrace(sun){
+    const row=document.createElement('div'); row.className='scene-row'; row.style.height='140px';
+    const b1 = zoneEl(sun?'L':'M', sun); place(b1,{left:'0',top:'6px',width:'100%',height:'26px'});
+    const b2 = zoneEl('M', false); place(b2,{left:'0',top:'40px',width:'70%',height:'26px'});
+    const b3 = zoneEl('M', false); place(b3,{left:'30%',top:'74px',width:'70%',height:'26px'});
+    const b4 = zoneEl('S', false); place(b4,{left:'0',top:'108px',width:'70%',height:'26px'});
+    const gapR = zoneEl('S', false); place(gapR,{left:'72%',top:'40px',width:'26%',height:'26px'});
+    const gapL = zoneEl('S', false); place(gapL,{left:'2%',top:'74px',width:'26%',height:'26px'});
+    row.append(b1,b2,b3,b4,gapR,gapL); return row;
+  }
+};
+const TEMPLATE_KEYS = Object.keys(SCENES);
+const DENSITY = {
+  circle:'quiet',fullbleed:'quiet',starburst:'dense',tallcolumn:'quiet',densefield:'dense',offcenter:'quiet',diagonal:'quiet',flatgrid:'dense',
+  circlemirror:'quiet',fullbleedstack:'quiet',starbursteven:'dense',tallcolumnreversed:'quiet',densefieldgrid:'dense',diagonalsteep:'quiet',
+  circletwoscales:'quiet',staircase:'quiet',nestedframe:'quiet',splitspine:'quiet',orbitring:'dense',anchorrail:'quiet',terrace:'quiet'
+};
+
+function genSequence(){
+  const n = pick([5,6,6,7]);
+  const seq=[]; let last=null, lastDense=false;
+  for(let i=0;i<n;i++){
+    let choices = TEMPLATE_KEYS.filter(t=> t!==last && !(lastDense && DENSITY[t]==='dense'));
+    if(!choices.length) choices = TEMPLATE_KEYS.filter(t=>t!==last);
+    const t = pick(choices);
+    seq.push(t); last=t; lastDense = DENSITY[t]==='dense';
+  }
+  const sunIdx = Math.floor(Math.random()*seq.length);
+  return {seq, sunIdx};
+}
+
+function renderSequence(container, seqObj){
+  container.innerHTML='';
+  seqObj.seq.forEach((key,i)=>{
+    container.appendChild(SCENES[key](i===seqObj.sunIdx));
+  });
+}
+
+let batch=[]; let activeIdx=-1;
+
+function makeBatch(){
+  batch = Array.from({length:9}, ()=> genSequence());
+  activeIdx=-1;
+  const gallery = document.getElementById('gallery');
+  gallery.innerHTML='';
+  batch.forEach((seqObj,i)=>{
+    const card = document.createElement('div'); card.className='thumbcard'; card.dataset.i=i;
+    const clip = document.createElement('div'); clip.className='thumb-clip';
+    const inner = document.createElement('div'); inner.className='thumb-inner';
+    clip.appendChild(inner); card.appendChild(clip);
+    renderSequence(inner, seqObj);
+    requestAnimationFrame(()=>{
+      const scale = clip.clientWidth/820;
+      inner.style.transform='scale('+scale+')';
+    });
+    const lbl = document.createElement('div'); lbl.className='tlabel';
+    lbl.textContent = seqObj.seq.length+' scenes';
+    card.appendChild(lbl);
+    card.addEventListener('click', ()=> selectSequence(i));
+    gallery.appendChild(card);
+  });
+  document.getElementById('detailwrap').style.display='none';
+}
+
+function selectSequence(i){
+  activeIdx=i;
+  document.querySelectorAll('.thumbcard').forEach(c=> c.classList.toggle('active', +c.dataset.i===i));
+  const seqObj = batch[i];
+  document.getElementById('dtitle').textContent = 'Segmentation '+(i+1)+' — ' + seqObj.seq.join(' → ');
+  document.getElementById('detailwrap').style.display='block';
+  renderSequence(document.getElementById('stage'), seqObj);
+  document.getElementById('detailwrap').scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+window.addEventListener('resize', ()=>{
+  document.querySelectorAll('.thumb-clip').forEach(clip=>{
+    const inner = clip.querySelector('.thumb-inner');
+    if(inner) inner.style.transform='scale('+(clip.clientWidth/820)+')';
+  });
+});
+
+document.getElementById('regen').addEventListener('click', makeBatch);
+makeBatch();
+</script>

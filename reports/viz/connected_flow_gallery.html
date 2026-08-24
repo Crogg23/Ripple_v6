@@ -1,0 +1,488 @@
+<title>The Flow Gallery</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Public+Sans:wght@300;400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  /* Night-water identity. Single committed theme. Still page — nothing moves. */
+  :root{
+    --ink:#0b1014; --ink-2:#10171f; --ink-3:#151e27;
+    --foam:#e8e4dc; --foam-dim:#98a1a7; --faint:#5b6a72;
+    --rust:#c25e3a; --rust-bright:#e07a50;
+    --wave:#4a7d8c; --wave-bright:#6fa3b2;
+    --gold:#c9a227; --hair:#1e2933;
+  }
+  html,body{margin:0;padding:0;}
+  body{background:var(--ink);color:var(--foam);
+    font-family:"Public Sans",system-ui,sans-serif;font-weight:300;line-height:1.6;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 28px;}
+  ::selection{background:var(--rust);color:var(--ink);}
+
+  header.page{padding:88px 0 44px;}
+  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--rust);margin:0 0 16px;}
+  h1{font-family:"Fraunces",Georgia,serif;font-weight:320;font-size:clamp(38px,6vw,64px);
+    margin:0 0 16px;letter-spacing:-.015em;text-wrap:balance;line-height:1.08;}
+  .lede{max-width:60ch;color:var(--foam-dim);font-size:17px;margin:0;}
+  .lede b{color:var(--foam);font-weight:600;}
+
+  section.scene{padding:76px 0 30px;border-top:1px solid var(--hair);}
+  .s-head{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;}
+  .s-num{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--wave-bright);letter-spacing:.16em;}
+  h2{font-family:"Fraunces",Georgia,serif;font-weight:400;
+    font-size:clamp(26px,3.4vw,38px);margin:0;letter-spacing:-.01em;}
+  .s-claim{color:var(--foam-dim);max-width:64ch;margin:10px 0 26px;font-size:16px;}
+  .s-claim b{color:var(--foam);font-weight:600;}
+  .stage{background:var(--ink-2);border:1px solid var(--hair);border-radius:8px;overflow:hidden;}
+  .stage canvas{display:block;width:100%;}
+  .panels{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hair);}
+  .panels .p{background:var(--ink-2);}
+  .panels canvas{width:100%;}
+  .plabel{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--faint);
+    letter-spacing:.1em;text-transform:uppercase;padding:12px 14px 4px;}
+  .plabel b{color:var(--foam-dim);font-weight:500;}
+  .plabel.hot b{color:var(--rust-bright);}
+  @media(max-width:720px){.panels{grid-template-columns:1fr;}}
+  .cap{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--faint);
+    letter-spacing:.05em;margin:12px 2px 0;}
+
+  footer.page{padding:60px 0 100px;border-top:1px solid var(--hair);
+    color:var(--foam-dim);font-size:14.5px;max-width:70ch;}
+  footer.page b{color:var(--foam);font-weight:600;}
+</style>
+
+<div class="wrap">
+<header class="page">
+  <p class="eyebrow">Ripple · ten studies in connection &amp; flow</p>
+  <h1>Nothing in the record happens alone</h1>
+  <p class="lede">How big the public record is — and the harder truth: <b>it's all one thing.</b>
+  Money moves, contact spreads, removals cascade, clusters merge.
+  Ten still pictures of it, each readable in one look.
+  Synthetic data shaped like the real warehouse.</p>
+</header>
+
+<!-- 1 FOLLOW THE DOLLAR -->
+<section class="scene">
+  <div class="s-head"><span class="s-num">01</span><h2>Follow the dollar</h2></div>
+  <p class="s-claim">One tax dollar enters at the left and splits downstream — agency, contractor,
+  subcontractor. <b>The width of every stream is the money in it.</b>
+  The rust endings are fines assessed along the way — and never paid.</p>
+  <div class="stage"><canvas id="c1" style="height:430px"></canvas></div>
+  <p class="cap">a river delta of spending · stream width = dollars</p>
+</section>
+
+<!-- 2 CONTACT TRACE -->
+<section class="scene">
+  <div class="s-head"><span class="s-num">02</span><h2>The contact trace</h2></div>
+  <p class="s-claim">Epidemiology's picture, pointed at business. Start with <b>one company</b>,
+  then everything it touched, then everything <i>they</i> touched.
+  Read left to right — by the third panel the frame can't hold it.</p>
+  <div class="stage panels">
+    <div class="p"><div class="plabel"><b>the company</b> · 1</div><canvas id="c2a" style="height:280px"></canvas></div>
+    <div class="p"><div class="plabel"><b>one hop out</b> · 14 touched</div><canvas id="c2b" style="height:280px"></canvas></div>
+    <div class="p"><div class="plabel hot"><b>three hops out</b> · 3,940 touched</div><canvas id="c2c" style="height:280px"></canvas></div>
+  </div>
+  <p class="cap">one bad actor is never one bad actor</p>
+</section>
+
+<!-- 3 FOOD WEB -->
+<section class="scene">
+  <div class="s-head"><span class="s-num">03</span><h2>The food web</h2></div>
+  <p class="s-claim">An ecosystem holds until you pull one piece out. Left: the system intact.
+  Right: <b>the major employer closes</b>, and everything that fed on it — suppliers, workers,
+  the town — goes grey in order.</p>
+  <div class="stage panels" style="grid-template-columns:1fr 1fr;">
+    <div class="p"><div class="plabel"><b>before</b> · everything connected</div><canvas id="c3a" style="height:340px"></canvas></div>
+    <div class="p"><div class="plabel hot"><b>after</b> · the cascade</div><canvas id="c3b" style="height:340px"></canvas></div>
+  </div>
+  <p class="cap">connection shown by what breaks, not by lines on a page</p>
+</section>
+
+<!-- 4 PIPES -->
+<section class="scene">
+  <div class="s-head"><span class="s-num">04</span><h2>Pipes of government</h2></div>
+  <p class="s-claim">Money flows <b>down</b> the building. Complaints and violations flow <b>up</b>.
+  A working system — except where the pipes leak.
+  <b>The gold drips are fines assessed but never collected.</b></p>
+  <div class="stage"><canvas id="c4" style="height:430px"></canvas></div>
+  <p class="cap">teal = money down · rust = complaints up · gold = leakage</p>
+</section>
+
+<!-- 5 PERCOLATION -->
+<section class="scene">
+  <div class="s-head"><span class="s-num">05</span><h2>The percolation moment</h2></div>
+  <p class="s-claim">Hundreds of little clusters — separate stories, separate scandals.
+  Add connections and nothing much changes… until the third panel, where
+  <b>it snaps into one web.</b> Physics calls it percolation.
+  We call it the moment you realize these were never separate stories.</p>
+  <div class="stage panels">
+    <div class="p"><div class="plabel"><b>few connections</b> · largest cluster 9%</div><canvas id="c5a" style="height:290px"></canvas></div>
+    <div class="p"><div class="plabel"><b>more connections</b> · largest cluster 24%</div><canvas id="c5b" style="height:290px"></canvas></div>
+    <div class="p"><div class="plabel hot"><b>the snap</b> · largest cluster 87%</div><canvas id="c5c" style="height:290px"></canvas></div>
+  </div>
+  <p class="cap">teal = the largest connected cluster · same dots in all three panels</p>
+</section>
+
+<!-- 6 SWITCHBOARD -->
+<section class="scene">
+  <div class="s-head"><span class="s-num">06</span><h2>The switchboard</h2></div>
+  <p class="s-claim">Every domain of the record is a terminal, and every arc is a
+  <b>real match</b> — the same name appearing in both places. A doctor in the payments data
+  who is also in the sanctions data. <b>Thicker cable, more matches.</b></p>
+  <div class="stage"><canvas id="c6" style="height:430px"></canvas></div>
+  <p class="cap">arc weight = number of cross-domain matches</p>
+</section>
+
+<!-- 7 MURMURATION -->
+<section class="scene">
+  <div class="s-head"><span class="s-num">07</span><h2>Murmuration</h2></div>
+  <p class="s-claim">No lines at all. Thousands of dots that <b>cluster like a flock</b>
+  because related things pull on each other — companies gathered around their owners.
+  The rust arc is one enforcement action, frozen mid-travel through the sector it hit.</p>
+  <div class="stage"><canvas id="c7" style="height:430px"></canvas></div>
+  <p class="cap">connection as position · density is ownership, not chance</p>
+</section>
+
+<!-- 8 ONE PERSON'S GRAVITY -->
+<section class="scene">
+  <div class="s-head"><span class="s-num">08</span><h2>One person's gravity</h2></div>
+  <p class="s-claim">Start with one worker at one plant and walk the real connections,
+  one hop at a time — employer, parent company, lobbyist, rule change,
+  the inspection that never came. <b>Six degrees, but with receipts.</b></p>
+  <div class="stage"><canvas id="c8" style="height:400px"></canvas></div>
+  <p class="cap">every hop is a real join key · the chain loops back to her shop floor</p>
+</section>
+
+<!-- 9 WHERE IT POOLS -->
+<section class="scene">
+  <div class="s-head"><span class="s-num">09</span><h2>Where it pools</h2></div>
+  <p class="s-claim">Pour everything — money, ownership, violations — onto a flat surface and
+  it doesn't spread evenly. <b>It drains to the same few places.</b>
+  Deep pools where it concentrates, thin channels between them.</p>
+  <div class="stage"><canvas id="c9" style="height:420px"></canvas></div>
+  <p class="cap">depth = concentration · the biggest pool holds more than the smallest fifty combined</p>
+</section>
+
+<!-- 10 HEARTBEAT -->
+<section class="scene">
+  <div class="s-head"><span class="s-num">10</span><h2>The heartbeat</h2></div>
+  <p class="s-claim">Each line is one domain of the record over one year, beating as filings land.
+  Mostly they beat alone. Then something real happens in the world —
+  and <b>every line spikes in the same week.</b> That's how you know it's one organism.</p>
+  <div class="stage"><canvas id="c10" style="height:420px"></canvas></div>
+  <p class="cap">five domains, one year · the shared spike is a hurricane making landfall</p>
+</section>
+
+<footer class="page">
+  <p><b>What this page is:</b> ten templates for showing size, connection, and flow in one still frame —
+  drawn from the Laboratory notes (contact tracing, food webs, percolation, flocking, flow maps).
+  Synthetic data throughout; the real edges exist in the warehouse and wire in scene by scene.</p>
+</footer>
+</div>
+
+<script>
+(function(){
+  const RUST='#c25e3a',RUSTB='#e07a50',WAVE='#4a7d8c',WAVEB='#6fa3b2',
+        FOAM='#e8e4dc',DIM='#98a1a7',FAINT='#5b6a72',HAIR='#1e2933',GOLD='#c9a227';
+  const MONO='11.5px "IBM Plex Mono",monospace';
+  let seed=424242;
+  const rnd=()=>{seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;};
+
+  function canvas(id){
+    const cv=document.getElementById(id),ctx=cv.getContext('2d');
+    const dpr=Math.min(devicePixelRatio||1,2);
+    const w=cv.clientWidth,h=cv.clientHeight;
+    cv.width=w*dpr;cv.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+    return {ctx,w,h};
+  }
+
+  /* 01 — dollar delta (static) */
+  {const {ctx,w,h}=canvas('c1');
+   const root={x:64,y:h/2};
+   const L1=[{n:'Defense',v:.5},{n:'Health',v:.32},{n:'Everything else',v:.18}]
+     .map((d,i)=>({...d,x:w*.34,y:h*(.2+.3*i)}));
+   const L2=[];const names=['prime contractor','hospital chain','builder','supplier','lab','carrier','services firm'];
+   L1.forEach((p,pi)=>{const kids=pi===0?3:2;
+     for(let k=0;k<kids;k++)L2.push({p:pi,n:names[L2.length],v:p.v*(k===0?.55:.45)/(kids===3?1.35:1),
+       x:w*.64,y:p.y+(k-(kids-1)/2)*h*.13});});
+   const L3=[];L2.forEach((f,fi)=>{
+     L3.push({p:fi,n:'subcontractors',v:f.v*.8,x:w*.9,y:f.y-10,c:WAVE});
+     if(fi%3===0)L3.push({p:fi,n:'fine · unpaid',v:f.v*.2,x:w*.9,y:f.y+18,c:RUSTB});});
+   function link(a,b,wd,col,alpha){
+     const mx=(a.x+b.x)/2;
+     ctx.beginPath();ctx.moveTo(a.x,a.y);
+     ctx.bezierCurveTo(mx,a.y,mx,b.y,b.x,b.y);
+     ctx.strokeStyle=col;ctx.globalAlpha=alpha;ctx.lineWidth=Math.max(1,wd);
+     ctx.lineCap='round';ctx.stroke();ctx.globalAlpha=1;}
+   const SC=54;
+   L1.forEach(d=>link(root,d,d.v*SC,WAVE,.45));
+   L2.forEach(d=>link(L1[d.p],d,d.v*SC,WAVE,.45));
+   L3.forEach(d=>link(L2[d.p],d,d.v*SC,d.c===RUSTB?RUSTB:WAVE,d.c===RUSTB?.7:.45));
+   ctx.beginPath();ctx.arc(root.x,root.y,11,0,7);ctx.fillStyle=GOLD;ctx.fill();
+   ctx.fillStyle='#0b1014';ctx.font='bold 10px "IBM Plex Mono",monospace';
+   ctx.textAlign='center';ctx.fillText('$1',root.x,root.y+3.5);ctx.textAlign='left';
+   ctx.font=MONO;
+   L1.forEach(d=>{ctx.fillStyle=FOAM;ctx.fillText(d.n,d.x+10,d.y+4);});
+   L2.forEach(d=>{ctx.fillStyle=DIM;ctx.fillText(d.n,d.x+10,d.y+4);});
+   L3.forEach(d=>{if(d.c===RUSTB){ctx.fillStyle=RUSTB;ctx.fillText(d.n,d.x-96,d.y+4);}});}
+
+  /* 02 — contact trace triptych */
+  function trace(id,hops){
+    const {ctx,w,h}=canvas(id);
+    seed=1357;const r2=()=>{seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;};
+    const nodes=[{x:w/2,y:h/2,hop:0}];
+    for(let hop=1;hop<=3;hop++){
+      const count=hop===1?12:hop===2?46:88;
+      for(let i=0;i<count;i++){
+        const a=r2()*Math.PI*2,r=(hop*.3+.06+r2()*.2)*Math.min(w,h)*.6;
+        nodes.push({x:w/2+Math.cos(a)*r*1.15,y:h/2+Math.sin(a)*r*.85,hop});}}
+    const edges=[];
+    nodes.forEach((n,i)=>{if(i===0)return;
+      const cands=nodes.map((m,j)=>({m,j})).filter(o=>o.m.hop===n.hop-1);
+      edges.push([cands[Math.floor(r2()*cands.length)].j,i]);});
+    edges.forEach(([a,b])=>{
+      const hb=nodes[b].hop;if(hb>hops)return;
+      ctx.beginPath();ctx.moveTo(nodes[a].x,nodes[a].y);ctx.lineTo(nodes[b].x,nodes[b].y);
+      ctx.strokeStyle='rgba(74,125,140,'+(0.55-hb*0.13)+')';ctx.lineWidth=1;ctx.stroke();});
+    nodes.forEach(n=>{if(n.hop>hops)return;
+      ctx.beginPath();ctx.arc(n.x,n.y,n.hop===0?7:3.4-n.hop*.5,0,7);
+      ctx.fillStyle=n.hop===0?RUST:'rgba(232,228,220,'+(0.95-n.hop*.22)+')';ctx.fill();});
+  }
+  trace('c2a',0);trace('c2b',1);trace('c2c',3);
+
+  /* 03 — food web before/after */
+  function web(id,dead){
+    const {ctx,w,h}=canvas(id);
+    const layers=[
+      {y:h*.16,label:'the employer',nodes:[{x:w*.5,big:1}]},
+      {y:h*.42,label:'its suppliers',nodes:[.22,.4,.58,.76].map(f=>({x:w*f}))},
+      {y:h*.66,label:'their workers',nodes:[.14,.28,.42,.56,.7,.84].map(f=>({x:w*f}))},
+      {y:h*.88,label:'the town around them',nodes:[.2,.36,.5,.64,.78].map(f=>({x:w*f}))}];
+    const edges=[];
+    layers[1].nodes.forEach((n,i)=>edges.push({a:[0,0],b:[1,i]}));
+    layers[2].nodes.forEach((n,i)=>edges.push({a:[1,i%4],b:[2,i]}));
+    layers[3].nodes.forEach((n,i)=>edges.push({a:[2,(i+1)%6],b:[3,i]}));
+    const al=li=>dead?(li===0?0:.16):1;
+    edges.forEach(e=>{
+      const A=layers[e.a[0]],B=layers[e.b[0]];
+      const a=A.nodes[e.a[1]],b=B.nodes[e.b[1]];
+      const v=Math.min(al(e.a[0]),al(e.b[0]));
+      ctx.beginPath();ctx.moveTo(a.x,A.y);ctx.lineTo(b.x,B.y);
+      ctx.strokeStyle='rgba(74,125,140,'+(0.4*v+0.04)+')';ctx.stroke();});
+    layers.forEach((L,li)=>{
+      const v=al(li);
+      L.nodes.forEach(n=>{
+        const r=n.big?12:5;
+        if(n.big&&dead){ // absence marker
+          ctx.beginPath();ctx.arc(n.x,L.y,r,0,7);
+          ctx.setLineDash([3,4]);ctx.strokeStyle=RUSTB;ctx.stroke();ctx.setLineDash([]);
+          return;}
+        ctx.beginPath();ctx.arc(n.x,L.y,r,0,7);
+        ctx.fillStyle=n.big?GOLD:'rgba(232,228,220,'+(0.18+0.72*v)+')';ctx.fill();
+        if(dead&&!n.big&&li>0){ctx.beginPath();ctx.arc(n.x,L.y,8,0,7);
+          ctx.strokeStyle='rgba(224,122,80,.5)';ctx.stroke();}});
+      ctx.fillStyle=dead&&li>0?RUSTB:DIM;ctx.font=MONO;
+      ctx.fillText(L.label+(dead&&li>0?' — failing':''),14,L.y-14);});
+  }
+  web('c3a',false);web('c3b',true);
+
+  /* 04 — pipes (static, arrows) */
+  {const {ctx,w,h}=canvas('c4');
+   const floors=['Congress','Agency','Regional office','Inspector','Your street'];
+   const pipeD=w*.4,pipeU=w*.62;
+   floors.forEach((f,i)=>{
+     const y=44+i*(h-88)/4;
+     ctx.strokeStyle=HAIR;ctx.beginPath();ctx.moveTo(70,y);ctx.lineTo(w-70,y);ctx.stroke();
+     ctx.fillStyle=DIM;ctx.font=MONO;ctx.fillText(f,74,y-8);});
+   function pipe(x,col,dir){
+     ctx.strokeStyle='rgba(30,41,51,1)';ctx.lineWidth=14;
+     ctx.beginPath();ctx.moveTo(x,34);ctx.lineTo(x,h-34);ctx.stroke();ctx.lineWidth=1;
+     // flow dashes
+     ctx.strokeStyle=col;ctx.lineWidth=3;ctx.setLineDash([10,14]);
+     ctx.beginPath();ctx.moveTo(x,40);ctx.lineTo(x,h-40);ctx.stroke();
+     ctx.setLineDash([]);ctx.lineWidth=1;
+     // arrowheads
+     for(let i=0;i<3;i++){
+       const y=90+i*(h-180)/2, s=dir>0?1:-1;
+       ctx.beginPath();ctx.moveTo(x-5,y-6*s);ctx.lineTo(x,y);ctx.lineTo(x+5,y-6*s);
+       ctx.strokeStyle=col;ctx.lineWidth=2;ctx.stroke();ctx.lineWidth=1;}}
+   pipe(pipeD,WAVEB,1);pipe(pipeU,RUSTB,-1);
+   // leaks at two joints
+   [[1,0],[3,1]].forEach(([fi])=>{
+     const y=44+fi*(h-88)/4+16;
+     for(let k=0;k<3;k++){
+       ctx.beginPath();ctx.arc(pipeD+12+k*9,y+k*7,2,0,7);
+       ctx.fillStyle='rgba(201,162,39,'+(0.9-k*.25)+')';ctx.fill();}});
+   ctx.font=MONO;
+   ctx.fillStyle=WAVEB;ctx.fillText('money ↓',pipeD-26,24);
+   ctx.fillStyle=RUSTB;ctx.fillText('complaints ↑',pipeU-40,24);
+   ctx.fillStyle=GOLD;ctx.fillText('gold drips = fines that never get collected',70,h-12);}
+
+  /* 05 — percolation triptych (union-find at three edge counts) */
+  function perc(id,frac){
+    const {ctx,w,h}=canvas(id);
+    seed=8642;const r2=()=>{seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;};
+    const N=150,nodes=[];
+    for(let i=0;i<N;i++)nodes.push({x:16+r2()*(w-32),y:16+r2()*(h-46)});
+    const cand=[];
+    for(let i=0;i<N;i++)for(let j=i+1;j<N;j++){
+      const dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y;
+      if(dx*dx+dy*dy<70*70)cand.push([i,j,r2()]);}
+    cand.sort((a,b)=>a[2]-b[2]);
+    const use=cand.slice(0,Math.floor(cand.length*frac));
+    const par=new Array(N).fill(0).map((_,i)=>i);
+    const find=x=>{while(par[x]!==x){par[x]=par[par[x]];x=par[x];}return x;};
+    use.forEach(([a,b])=>{const ra=find(a),rb=find(b);if(ra!==rb)par[ra]=rb;});
+    const sz={};let bigRoot=-1,big=0;
+    for(let i=0;i<N;i++){const r=find(i);sz[r]=(sz[r]||0)+1;
+      if(sz[r]>big){big=sz[r];bigRoot=r;}}
+    use.forEach(([a,b])=>{
+      const inBig=find(a)===bigRoot;
+      ctx.beginPath();ctx.moveTo(nodes[a].x,nodes[a].y);ctx.lineTo(nodes[b].x,nodes[b].y);
+      ctx.strokeStyle=inBig?'rgba(111,163,178,.6)':'rgba(91,106,114,.28)';
+      ctx.lineWidth=inBig?1.1:0.7;ctx.stroke();});
+    for(let i=0;i<N;i++){
+      const inBig=find(i)===bigRoot&&big>3;
+      ctx.beginPath();ctx.arc(nodes[i].x,nodes[i].y,inBig?2.6:2,0,7);
+      ctx.fillStyle=inBig?WAVEB:'rgba(152,161,167,.5)';ctx.fill();}
+  }
+  perc('c5a',.12);perc('c5b',.3);perc('c5c',.62);
+
+  /* 06 — switchboard (static arcs) */
+  {const {ctx,w,h}=canvas('c6');
+   const doms=['Health','Money','Courts','Safety','Environment','Politics','Banks'];
+   const xs=doms.map((d,i)=>70+(w-140)*i/(doms.length-1)),by=h-70;
+   seed=112233;
+   const pairs=[];
+   for(let i=0;i<doms.length;i++)for(let j=i+1;j<doms.length;j++)
+     if(rnd()<.6)pairs.push({a:i,b:j,wt:.5+rnd()*2.8});
+   pairs.sort((a,b)=>a.wt-b.wt);
+   pairs.forEach(p=>{
+     const x1=xs[p.a],x2=xs[p.b],mx=(x1+x2)/2,my=by-Math.abs(x2-x1)*.55;
+     ctx.beginPath();ctx.moveTo(x1,by);ctx.quadraticCurveTo(mx,my,x2,by);
+     ctx.strokeStyle='rgba(111,163,178,'+(0.12+p.wt*.16)+')';
+     ctx.lineWidth=p.wt;ctx.stroke();});
+   // highlight the single heaviest arc
+   const top=pairs[pairs.length-1];
+   {const x1=xs[top.a],x2=xs[top.b],mx=(x1+x2)/2,my=by-Math.abs(x2-x1)*.55;
+    ctx.beginPath();ctx.moveTo(x1,by);ctx.quadraticCurveTo(mx,my,x2,by);
+    ctx.strokeStyle=RUSTB;ctx.lineWidth=top.wt;ctx.stroke();
+    ctx.fillStyle=RUSTB;ctx.font=MONO;ctx.textAlign='center';
+    ctx.fillText('the busiest line: '+doms[top.a]+' ↔ '+doms[top.b],mx,my+((by-my)*.5)-10);
+    ctx.textAlign='left';}
+   xs.forEach((x,i)=>{
+     ctx.beginPath();ctx.arc(x,by,6,0,7);ctx.fillStyle=FOAM;ctx.fill();
+     ctx.fillStyle=DIM;ctx.font=MONO;ctx.textAlign='center';
+     ctx.fillText(doms[i],x,by+26);});
+   ctx.textAlign='left';
+   ctx.fillStyle=FAINT;ctx.font=MONO;
+   ctx.fillText('every arc = names that appear in BOTH domains',20,26);}
+
+  /* 07 — murmuration (static flock via cluster sampling) */
+  {const {ctx,w,h}=canvas('c7');
+   seed=777;
+   const cls=[];for(let i=0;i<7;i++)cls.push({x:w*(.12+rnd()*.76),y:h*(.15+rnd()*.7),
+     s:30+rnd()*70,n:60+Math.floor(rnd()*220)});
+   const px=cls[2].x,py=cls[2].y,pr=cls[2].s*1.7;
+   cls.forEach(c=>{
+     for(let i=0;i<c.n;i++){
+       // gaussian-ish
+       const a=rnd()*Math.PI*2,r=(rnd()+rnd()+rnd())/3*c.s*2;
+       const x=c.x+Math.cos(a)*r*1.3,y=c.y+Math.sin(a)*r*.8;
+       const d=Math.sqrt((x-px)*(x-px)+(y-py)*(y-py));
+       const hit=Math.abs(d-pr)<26;
+       ctx.beginPath();ctx.arc(x,y,1.5,0,7);
+       ctx.fillStyle=hit?RUSTB:'rgba(111,163,178,.75)';ctx.fill();}});
+   ctx.beginPath();ctx.arc(px,py,pr,0,7);
+   ctx.strokeStyle='rgba(224,122,80,.4)';ctx.lineWidth=1.4;ctx.stroke();ctx.lineWidth=1;
+   ctx.fillStyle=DIM;ctx.font=MONO;
+   ctx.fillText('each cluster: one owner and everything it owns',20,26);
+   ctx.fillStyle=RUSTB;
+   ctx.fillText('rust ring: one enforcement action, frozen mid-travel',20,h-16);}
+
+  /* 08 — gravity chain, all visible */
+  {const {ctx,w,h}=canvas('c8');
+   const chain=[
+     {n:'a welder in Toledo',d:'one W-2, one address'},
+     {n:'her employer',d:'61 safety violations on file'},
+     {n:'the parent company',d:'214 facilities, 31 states'},
+     {n:'its lobbying firm',d:'$3.2M the year the rule changed'},
+     {n:'the weakened rule',d:'inspection intervals doubled'},
+     {n:'the inspection that never came',d:'back to her shop floor'}];
+   const pad=80,step=(w-pad*2)/(chain.length-1);
+   chain.forEach((c,i)=>{
+     const x=pad+i*step,y=h/2+(i%2?-34:34);
+     if(i<chain.length-1){
+       const nx=pad+(i+1)*step,ny=h/2+((i+1)%2?-34:34);
+       ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(nx,ny);
+       ctx.strokeStyle='rgba(74,125,140,.55)';ctx.stroke();
+       // arrowhead midway
+       const mx2=(x+nx)/2,my2=(y+ny)/2,ang=Math.atan2(ny-y,nx-x);
+       ctx.beginPath();
+       ctx.moveTo(mx2-Math.cos(ang-.4)*7,my2-Math.sin(ang-.4)*7);
+       ctx.lineTo(mx2,my2);
+       ctx.lineTo(mx2-Math.cos(ang+.4)*7,my2-Math.sin(ang+.4)*7);
+       ctx.strokeStyle='rgba(111,163,178,.8)';ctx.stroke();}
+     ctx.beginPath();ctx.arc(x,y,i===0||i===chain.length-1?8:5.5,0,7);
+     ctx.fillStyle=i===0?RUST:(i===chain.length-1?RUSTB:FOAM);ctx.fill();
+     ctx.font=MONO;ctx.textAlign='center';
+     ctx.fillStyle=FOAM;
+     const above=i%2===1;
+     ctx.fillText(c.n,x,y+(above?-46:38));
+     ctx.fillStyle=FAINT;
+     ctx.fillText(c.d,x,y+(above?-30:54));});
+   ctx.textAlign='left';
+   // return arc: last -> first
+   const x1=pad+(chain.length-1)*step,y1=h/2-34,x0=pad,y0=h/2+34;
+   ctx.beginPath();ctx.moveTo(x1,y1+14);
+   ctx.quadraticCurveTo(w/2,h-24,x0,y0+14);
+   ctx.setLineDash([4,6]);ctx.strokeStyle='rgba(224,122,80,.5)';ctx.stroke();ctx.setLineDash([]);}
+
+  /* 09 — pools (static) */
+  {const {ctx,w,h}=canvas('c9');
+   const pools=[{x:w*.22,y:h*.42,r:88},{x:w*.52,y:h*.64,r:62},{x:w*.78,y:h*.32,r:106},
+                {x:w*.42,y:h*.22,r:34},{x:w*.66,y:h*.74,r:40}];
+   pools.forEach(p=>{
+     const g=ctx.createRadialGradient(p.x,p.y,2,p.x,p.y,p.r);
+     g.addColorStop(0,'rgba(111,163,178,.85)');
+     g.addColorStop(.6,'rgba(74,125,140,.35)');
+     g.addColorStop(1,'rgba(74,125,140,0)');
+     ctx.fillStyle=g;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,7);ctx.fill();});
+   // channels: dashed gold lines between nearest pools
+   const links=[[0,3],[3,2],[0,1],[1,4],[4,2]];
+   links.forEach(([a,b])=>{
+     const A=pools[a],B=pools[b];
+     ctx.beginPath();ctx.moveTo(A.x,A.y);ctx.lineTo(B.x,B.y);
+     ctx.setLineDash([2,7]);ctx.strokeStyle='rgba(201,162,39,.55)';
+     ctx.lineWidth=1.4;ctx.stroke();ctx.setLineDash([]);ctx.lineWidth=1;});
+   ctx.font=MONO;
+   ctx.fillStyle=DIM;
+   ctx.fillText('the deepest pool',pools[2].x-46,pools[2].y+4);
+   ctx.fillStyle=FAINT;
+   ctx.fillText('gold channels = transfers between the same few hands',20,28);}
+
+  /* 10 — heartbeat (static year of traces) */
+  {const {ctx,w,h}=canvas('c10');
+   const doms=['Health','Money','Safety','Housing','Environment'];
+   const eventX=w*.68;
+   doms.forEach((d,ri)=>{
+     const y=56+ri*(h-112)/4;
+     ctx.strokeStyle=HAIR;ctx.beginPath();ctx.moveTo(96,y);ctx.lineTo(w-20,y);ctx.stroke();
+     ctx.beginPath();
+     for(let x=96;x<w-20;x++){
+       let v=Math.sin(x/9+ri*2)>.93?7:0;
+       v+=Math.sin(x/46+ri)*1.4;
+       if(Math.abs(x-eventX)<26)v+=Math.cos((x-eventX)/26*Math.PI/2)*30;
+       x===96?ctx.moveTo(x,y-v):ctx.lineTo(x,y-v);}
+     ctx.strokeStyle=WAVEB;ctx.lineWidth=1.2;ctx.stroke();ctx.lineWidth=1;
+     ctx.fillStyle=DIM;ctx.font=MONO;ctx.fillText(d,16,y+4);});
+   // event band
+   ctx.fillStyle='rgba(224,122,80,.07)';
+   ctx.fillRect(eventX-26,34,52,h-72);
+   ctx.strokeStyle='rgba(224,122,80,.4)';
+   ctx.strokeRect(eventX-26,34,52,h-72);
+   ctx.fillStyle=RUSTB;ctx.font=MONO;ctx.textAlign='center';
+   ctx.fillText('hurricane makes landfall',eventX,26);
+   ctx.textAlign='left';
+   ctx.fillStyle=FAINT;ctx.font=MONO;
+   ctx.fillText('Jan',96,h-14);ctx.textAlign='right';ctx.fillText('Dec',w-20,h-14);
+   ctx.textAlign='left';}
+})();
+</script>

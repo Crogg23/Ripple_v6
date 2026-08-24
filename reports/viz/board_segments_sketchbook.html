@@ -1,0 +1,313 @@
+<title>Segment Sketchbook</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Work+Sans:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#0a1620; --surface:#111a22; --ink:#f2e9d8; --ink-soft:#e8dcc2;
+  --muted:#b3a080; --sage:#5f7a4f; --sage-hi:#7fa066; --rust:#b5703f; --teal:#3d8f82;
+  --gold:#c9a25a; --bp:#2f6f8f; --hair:#2a3a44; --dim:#6b7680;
+  --head:'Space Grotesk',sans-serif; --body:'Work Sans',sans-serif; --mono:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; color:var(--ink-soft); font-family:var(--body); font-size:16px; line-height:1.65;
+  background:var(--bg);
+  background-image:radial-gradient(ellipse at 18% 0%, rgba(47,111,143,.16) 0%, rgba(47,111,143,0) 46%),
+    radial-gradient(circle 1.2px at 0 0, rgba(45,60,73,.85) 1.2px, transparent 1.5px);
+  background-size:100% 100%,64px 64px; background-attachment:fixed,fixed;
+}
+a{color:var(--gold)}
+::selection{background:var(--gold);color:var(--bg)}
+main{max-width:1080px;margin:0 auto;padding:56px clamp(20px,4vw,56px) 96px}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--bp);text-transform:uppercase}
+.kicker::before{content:"◱ ";}
+h1{font-family:var(--head);font-weight:700;letter-spacing:-.015em;color:var(--ink);
+  font-size:clamp(28px,4.2vw,42px);line-height:1.1;margin:14px 0 0;max-width:18em;text-wrap:balance}
+.dek{font-size:clamp(15.5px,1.5vw,17.5px);color:var(--muted);max-width:70ch;margin:20px 0 0;line-height:1.65}
+.dek strong{color:var(--ink-soft);font-weight:600}
+.origin-note{font-family:var(--mono);font-size:11.5px;color:var(--dim);margin-top:20px;max-width:68ch;line-height:1.7}
+hr.hair{border:none;border-top:1px dashed var(--hair);margin:36px 0 40px}
+
+.sec{margin:0 0 6px}
+.sec h2{font-family:var(--head);font-weight:700;color:var(--ink);font-size:20px;margin:0 0 4px}
+.sec .secsub{font-family:var(--mono);font-size:11.5px;color:var(--dim);margin:0 0 22px}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(430px,1fr));gap:20px;margin-bottom:48px}
+.card{border:1px solid var(--hair);background:var(--surface);padding:20px 22px 22px;display:flex;flex-direction:column;gap:14px}
+.card.new{border-color:#294d47}
+.card .num{font-family:var(--mono);font-size:11px;color:var(--bp);letter-spacing:.06em}
+.card.new .num{color:var(--teal)}
+.card h3{font-family:var(--head);font-weight:700;color:var(--ink);font-size:19px;margin:2px 0 0}
+.diagram{width:100%;height:auto;display:block;background:var(--bg);border:1px dashed var(--hair)}
+.why{font-size:14.5px;color:var(--ink-soft);line-height:1.6;margin:0}
+.why b{color:var(--gold);font-weight:600}
+.rowlabels{display:flex;flex-direction:column;gap:6px;margin-top:2px;border-top:1px dashed var(--hair);padding-top:12px}
+.rowlabels div{font-size:13px;line-height:1.55;color:var(--muted)}
+.rowlabels .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--bp);margin-right:6px}
+.card.new .rowlabels .lbl{color:var(--teal)}
+.rowlabels .fits .lbl{color:var(--gold)}
+
+footer{border-top:1px solid var(--hair);margin-top:24px;padding-top:26px;font-family:var(--mono);font-size:12px;color:var(--dim);max-width:66ch;line-height:1.7}
+footer .mark{color:var(--gold)}
+
+@media(max-width:520px){.grid{grid-template-columns:1fr}}
+</style>
+
+<main>
+  <div class="kicker">Sketchbook — not shipped</div>
+  <h1>Thirteen more shapes, sizes, and concepts for Board Segments.</h1>
+  <p class="dek">The generator ships eight scenes. This is the next round to pick from — <strong>seven variants</strong> on shapes already live (same color as the original), and <strong>six shapes that don't exist yet</strong> (teal, new family). Nothing here is wired into the generator. Look through it, mark which ones earn a build, and that becomes the next work — not a guess at what "more" meant.</p>
+  <p class="origin-note">Shape logic and vocabulary come from <a href="../viz/deadspace_and_counterweight.html">Deadspace &amp; Counterweight</a>. The eight shapes these build on are live in <a href="../viz/board_segments.html">Board Segments</a>.</p>
+  <hr class="hair">
+
+  <div class="sec">
+    <h2>Variants on the shipped eight</h2>
+    <p class="secsub">SAME MECHANISM, DIFFERENT HAND, ANGLE, OR SCALE — CHEAPEST TO BUILD, LOWEST RISK</p>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="num">V1 / CIRCLE IN A BOX — MIRRORED</div>
+      <svg class="diagram" viewBox="0 0 220 140">
+        <rect x="4" y="4" width="212" height="132" fill="none" stroke="#2a3a44" stroke-dasharray="1 5"/>
+        <circle cx="142" cy="70" r="52" fill="rgba(47,111,143,.10)" stroke="#2f6f8f" stroke-width="1.5"/>
+        <rect x="18" y="88" width="52" height="38" fill="rgba(42,58,68,.5)"/>
+        <rect x="28" y="96" width="10" height="22" fill="none" stroke="#c9a25a" stroke-width="1.3" stroke-dasharray="2 3"/>
+        <rect x="42" y="102" width="10" height="16" fill="none" stroke="#c9a25a" stroke-width="1.3" stroke-dasharray="2 3"/>
+      </svg>
+      <h3>Circle in a Box — Mirrored</h3>
+      <p class="why">Same geometry, opposite hand. The shipped scene always puts its hero on the left — this puts it on the right, pocket bottom-left.</p>
+      <div class="rowlabels">
+        <div class="shape"><span class="lbl">Changes</span>which side the eye lands on first</div>
+        <div class="fits"><span class="lbl">Use it when</span>the scene before it already put its hero on the left — alternating hands stops a sequence from reading as a repeated template.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="num">V2 / FULL-BLEED BAND — STACKED PAIR</div>
+      <svg class="diagram" viewBox="0 0 220 140">
+        <rect x="4" y="4" width="212" height="132" fill="none" stroke="#2a3a44" stroke-dasharray="1 5"/>
+        <rect x="12" y="18" width="196" height="40" fill="rgba(181,112,63,.16)" stroke="#b5703f" stroke-width="1.5"/>
+        <rect x="12" y="64" width="196" height="16" fill="rgba(181,112,63,.09)" stroke="#b5703f" stroke-width="1" stroke-dasharray="1 3"/>
+        <rect x="12" y="92" width="58" height="34" fill="none" stroke="#c9a25a" stroke-width="1.3" stroke-dasharray="2 3"/>
+        <rect x="81" y="92" width="58" height="34" fill="none" stroke="#c9a25a" stroke-width="1.3" stroke-dasharray="2 3"/>
+        <rect x="150" y="92" width="58" height="34" fill="none" stroke="#c9a25a" stroke-width="1.3" stroke-dasharray="2 3"/>
+      </svg>
+      <h3>Full-Bleed Band — Stacked Pair</h3>
+      <p class="why">Two full-bleed rows back to back usually reads as a mistake — the field guide says so. This is the exception: a tall hero band over a visibly <b>thinner</b> echo band reads as one composed unit, not a stutter, because the weights are clearly unequal.</p>
+      <div class="rowlabels">
+        <div class="shape"><span class="lbl">Changes</span>lets two full-width rows sit together on purpose</div>
+        <div class="fits"><span class="lbl">Use it when</span>a hero finding needs a one-line footnote or source directly under it, not off to the side.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="num">V3 / RADIAL STARBURST — EVEN SPOKES</div>
+      <svg class="diagram" viewBox="0 0 220 140">
+        <rect x="4" y="4" width="212" height="132" fill="none" stroke="#2a3a44" stroke-dasharray="1 5"/>
+        <circle cx="110" cy="70" r="7" fill="#b5703f"/>
+        <g stroke="#2a3a44" stroke-width="1.2">
+          <line x1="110" y1="70" x2="164" y2="70"/><line x1="110" y1="70" x2="137" y2="23"/>
+          <line x1="110" y1="70" x2="83" y2="23"/><line x1="110" y1="70" x2="56" y2="70"/>
+          <line x1="110" y1="70" x2="83" y2="117"/><line x1="110" y1="70" x2="137" y2="117"/>
+        </g>
+        <g fill="#e8dcc2"><circle cx="164" cy="70" r="4"/><circle cx="137" cy="23" r="4"/><circle cx="83" cy="23" r="4"/><circle cx="56" cy="70" r="4"/><circle cx="83" cy="117" r="4"/><circle cx="137" cy="117" r="4"/></g>
+      </svg>
+      <h3>Radial Starburst — Even Spokes</h3>
+      <p class="why">The shipped scene has 3 spokes at uneven angles, which reads as a specific found relationship. Six spokes at exactly 60° apart reads as a <b>taxonomy</b> — every branch weighted the same, on purpose.</p>
+      <div class="rowlabels">
+        <div class="shape"><span class="lbl">Changes</span>irregular → regular spacing, 3 → 6 spokes</div>
+        <div class="fits"><span class="lbl">Use it when</span>the hub really does have equal-weight categories hanging off it, not one dominant branch and some minor ones.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="num">V4 / TALL COLUMN — REVERSED GUTTER</div>
+      <svg class="diagram" viewBox="0 0 220 140">
+        <rect x="4" y="4" width="212" height="132" fill="none" stroke="#2a3a44" stroke-dasharray="1 5"/>
+        <rect x="170" y="18" width="30" height="106" fill="rgba(47,111,143,.14)" stroke="#2f6f8f" stroke-width="1.5"/>
+        <rect x="118" y="18" width="20" height="106" fill="none" stroke="#c9a25a" stroke-width="1.3" stroke-dasharray="2 3"/>
+        <rect x="88" y="18" width="20" height="106" fill="none" stroke="#c9a25a" stroke-width="1.3" stroke-dasharray="2 3" opacity=".55"/>
+      </svg>
+      <h3>Tall Column — Reversed Gutter</h3>
+      <p class="why">The main column moves to the right edge, gutters trail off to the left. Mirrors V1 — pairs the two so a sequence can alternate which edge carries the weight.</p>
+      <div class="rowlabels">
+        <div class="shape"><span class="lbl">Changes</span>which edge the tall element anchors to</div>
+        <div class="fits"><span class="lbl">Use it when</span>the previous scene already anchored left — same reasoning as V1.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="num">V5 / DENSE FIELD — REAL SMALL MULTIPLES</div>
+      <svg class="diagram" viewBox="0 0 220 140">
+        <rect x="4" y="4" width="212" height="132" fill="none" stroke="#2a3a44" stroke-dasharray="1 5"/>
+        <g fill="rgba(95,122,79,.06)" stroke="rgba(95,122,79,.4)" stroke-width="1">
+          <rect x="14" y="18" width="20" height="26"/><rect x="40" y="18" width="20" height="26"/><rect x="66" y="18" width="20" height="26"/><rect x="92" y="18" width="20" height="26"/>
+          <rect x="14" y="50" width="20" height="26"/><rect x="40" y="50" width="20" height="26"/><rect x="66" y="50" width="20" height="26"/><rect x="92" y="50" width="20" height="26"/>
+        </g>
+        <g fill="#5f7a4f">
+          <rect x="20" y="27" width="8" height="14"/><rect x="46" y="34" width="8" height="7"/><rect x="72" y="24" width="8" height="17"/><rect x="98" y="31" width="8" height="10"/>
+          <rect x="20" y="67" width="8" height="6"/><rect x="46" y="58" width="8" height="15"/><rect x="72" y="62" width="8" height="11"/><rect x="98" y="55" width="8" height="18"/>
+        </g>
+        <circle cx="168" cy="55" r="34" fill="none" stroke="#c9a25a" stroke-width="1.3" stroke-dasharray="2 3"/>
+      </svg>
+      <h3>Dense Field — Real Small Multiples</h3>
+      <p class="why">The shipped scene fakes density with a decorative texture. When the content actually IS a small-multiples set, draw the real 8-cell grid — a reader can tell a stand-in from the real thing.</p>
+      <div class="rowlabels">
+        <div class="shape"><span class="lbl">Changes</span>decorative texture → 8 real mini-chart cells</div>
+        <div class="fits"><span class="lbl">Use it when</span>there's an actual repeated small chart to place, not just a "this feels dense" moment.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="num">V6 / DIAGONAL SWEEP — STEEP CUT</div>
+      <svg class="diagram" viewBox="0 0 220 140">
+        <rect x="4" y="4" width="212" height="132" fill="none" stroke="#2a3a44" stroke-dasharray="1 5"/>
+        <path d="M150 4 L70 136" fill="none" stroke="#2f6f8f" stroke-width="1.3" stroke-dasharray="1 6"/>
+        <circle cx="130" cy="40" r="4" fill="#e8dcc2"/><circle cx="90" cy="100" r="4" fill="#e8dcc2"/>
+        <rect x="150" y="20" width="50" height="26" fill="none" stroke="#c9a25a" stroke-width="1.2" stroke-dasharray="2 3"/>
+      </svg>
+      <h3>Diagonal Sweep — Steep Cut</h3>
+      <p class="why">A shallow-angle cut (shipped) reads as "mostly one thing, small aside." A near-vertical cut reads as two <b>co-equal</b> halves — same mechanism, opposite weight balance.</p>
+      <div class="rowlabels">
+        <div class="shape"><span class="lbl">Changes</span>the cut angle — shallow vs. near-vertical</div>
+        <div class="fits"><span class="lbl">Use it when</span>the two things on either side of the line are genuinely equal in importance, not main-path-plus-aside.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="num">V7 / CIRCLE IN A BOX — TWO SCALES</div>
+      <svg class="diagram" viewBox="0 0 220 140">
+        <rect x="4" y="4" width="212" height="132" fill="none" stroke="#2a3a44" stroke-dasharray="1 5"/>
+        <circle cx="60" cy="70" r="44" fill="rgba(47,111,143,.12)" stroke="#2f6f8f" stroke-width="1.5"/>
+        <circle cx="168" cy="100" r="20" fill="rgba(47,111,143,.12)" stroke="#2f6f8f" stroke-width="1.5"/>
+        <line x1="60" y1="20" x2="60" y2="4" stroke="#c9a25a" stroke-width="1" stroke-dasharray="2 3"/>
+        <line x1="168" y1="76" x2="168" y2="60" stroke="#c9a25a" stroke-width="1" stroke-dasharray="2 3"/>
+      </svg>
+      <h3>Circle in a Box — Two Scales</h3>
+      <p class="why">This is the "sizes" gap directly: the same shape family at hero scale and at support scale, in one frame, so the size relationship is a real choice — not every circle defaulting to the shipped 190px.</p>
+      <div class="rowlabels">
+        <div class="shape"><span class="lbl">Changes</span>a size ladder, not just a new shape</div>
+        <div class="fits"><span class="lbl">Use it when</span>a scene needs a hero AND a smaller echo of the same shape, not a hero plus an unrelated stat box.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="sec">
+    <h2>New concepts</h2>
+    <p class="secsub">NOT DERIVED FROM THE SHIPPED EIGHT — TEAL THROUGHOUT SO THEY READ AS A DISTINCT FAMILY</p>
+  </div>
+
+  <div class="grid">
+
+    <div class="card new">
+      <div class="num">N1 / STAIRCASE CASCADE</div>
+      <svg class="diagram" viewBox="0 0 220 140">
+        <rect x="4" y="4" width="212" height="132" fill="none" stroke="#2a3a44" stroke-dasharray="1 5"/>
+        <rect x="14" y="24" width="30" height="100" fill="rgba(61,143,130,.14)" stroke="#3d8f82" stroke-width="1.5"/>
+        <rect x="56" y="48" width="30" height="76" fill="rgba(61,143,130,.14)" stroke="#3d8f82" stroke-width="1.5"/>
+        <rect x="98" y="72" width="30" height="52" fill="rgba(61,143,130,.14)" stroke="#3d8f82" stroke-width="1.5"/>
+        <rect x="140" y="94" width="30" height="30" fill="rgba(61,143,130,.14)" stroke="#3d8f82" stroke-width="1.5"/>
+        <rect x="150" y="14" width="52" height="24" fill="none" stroke="#c9a25a" stroke-width="1.2" stroke-dasharray="2 3"/>
+      </svg>
+      <h3>Staircase Cascade</h3>
+      <p class="why">A ranked list — top costs, worst violators, biggest jumps — IS a staircase. Draw the actual rank order as the shape instead of hiding it inside a bar chart, then float the caption in the triangular void the steps leave above them.</p>
+      <div class="rowlabels">
+        <div class="shape"><span class="lbl">Big shape</span>4-6 descending bars, left to right, bottom-aligned</div>
+        <div class="fits"><span class="lbl">Fits the pocket</span>a short caption naming what's ranked, sitting in the empty triangle over the shortest bars.</div>
+      </div>
+    </div>
+
+    <div class="card new">
+      <div class="num">N2 / NESTED FRAME</div>
+      <svg class="diagram" viewBox="0 0 220 140">
+        <rect x="4" y="4" width="212" height="132" fill="none" stroke="#2a3a44" stroke-dasharray="1 5"/>
+        <rect x="50" y="35" width="120" height="70" fill="rgba(47,111,143,.12)" stroke="#2f6f8f" stroke-width="1.5"/>
+        <line x1="110" y1="4" x2="110" y2="35" stroke="#c9a25a" stroke-width="1" stroke-dasharray="2 3"/>
+        <line x1="110" y1="105" x2="110" y2="136" stroke="#c9a25a" stroke-width="1" stroke-dasharray="2 3"/>
+        <line x1="4" y1="70" x2="50" y2="70" stroke="#c9a25a" stroke-width="1" stroke-dasharray="2 3"/>
+        <line x1="170" y1="70" x2="216" y2="70" stroke="#c9a25a" stroke-width="1" stroke-dasharray="2 3"/>
+      </svg>
+      <h3>Nested Frame</h3>
+      <p class="why">Every other shape here pushes its content to an edge to make a pocket. This does the opposite: center it, leave an <b>even</b> margin on all four sides. The margin is the whole point — it says "nothing competes with this."</p>
+      <div class="rowlabels">
+        <div class="shape"><span class="lbl">Big shape</span>one shape, centered, equal gap on every side</div>
+        <div class="fits"><span class="lbl">Fits the pocket</span>nothing — reserve it for the one number or one quote that needs zero competition, not a supporting fact.</div>
+      </div>
+    </div>
+
+    <div class="card new">
+      <div class="num">N3 / SPLIT SPINE</div>
+      <svg class="diagram" viewBox="0 0 220 140">
+        <rect x="4" y="4" width="212" height="132" fill="none" stroke="#2a3a44" stroke-dasharray="1 5"/>
+        <rect x="14" y="18" width="92" height="106" fill="rgba(61,143,130,.10)" stroke="#3d8f82" stroke-width="1.5"/>
+        <rect x="114" y="18" width="92" height="106" fill="rgba(181,112,63,.10)" stroke="#b5703f" stroke-width="1.5"/>
+        <line x1="110" y1="10" x2="110" y2="134" stroke="#c9a25a" stroke-width="1.5" stroke-dasharray="3 3"/>
+      </svg>
+      <h3>Split Spine</h3>
+      <p class="why">Diagonal Sweep implies a main path and an aside. A straight, full-height spine implies two things read <b>against</b> each other — a claim and a rebuttal, before and after, two agencies compared. The spine is the argument, not a divider — hence the two different colors.</p>
+      <div class="rowlabels">
+        <div class="shape"><span class="lbl">Big shape</span>two equal columns, one thin dotted rule between them</div>
+        <div class="fits"><span class="lbl">Fits the pocket</span>a matched pair of things — the same chart type twice, once per side.</div>
+      </div>
+    </div>
+
+    <div class="card new">
+      <div class="num">N4 / ORBIT RING</div>
+      <svg class="diagram" viewBox="0 0 220 140">
+        <rect x="4" y="4" width="212" height="132" fill="none" stroke="#2a3a44" stroke-dasharray="1 5"/>
+        <circle cx="110" cy="70" r="22" fill="none" stroke="#c9a25a" stroke-width="1" stroke-dasharray="2 3"/>
+        <g fill="rgba(61,143,130,.16)" stroke="#3d8f82" stroke-width="1.3">
+          <circle cx="160" cy="70" r="13"/><circle cx="135" cy="27" r="13"/><circle cx="85" cy="27" r="13"/>
+          <circle cx="60" cy="70" r="13"/><circle cx="85" cy="113" r="13"/><circle cx="135" cy="113" r="13"/>
+        </g>
+      </svg>
+      <h3>Orbit Ring</h3>
+      <p class="why">Radial Starburst has a hub because one thing IS the center of the story. Orbit Ring has none — six satellites evenly spaced, center left <b>deliberately empty</b>. Use it when the finding is that six things are peers with no single controlling one.</p>
+      <div class="rowlabels">
+        <div class="shape"><span class="lbl">Big shape</span>6 equal-size satellites in a ring, hollow middle</div>
+        <div class="fits"><span class="lbl">Fits the pocket</span>nothing in the center — the hollow middle is the finding (no controlling node), not free space to fill.</div>
+      </div>
+    </div>
+
+    <div class="card new">
+      <div class="num">N5 / ANCHOR ROW + RAIL</div>
+      <svg class="diagram" viewBox="0 0 220 140">
+        <rect x="4" y="4" width="212" height="132" fill="none" stroke="#2a3a44" stroke-dasharray="1 5"/>
+        <rect x="12" y="10" width="196" height="26" fill="rgba(61,143,130,.14)" stroke="#3d8f82" stroke-width="1.5"/>
+        <rect x="12" y="44" width="164" height="38" fill="rgba(61,143,130,.09)" stroke="#3d8f82" stroke-width="1.2"/>
+        <rect x="12" y="88" width="164" height="38" fill="rgba(61,143,130,.09)" stroke="#3d8f82" stroke-width="1.2"/>
+        <rect x="184" y="44" width="24" height="82" fill="none" stroke="#c9a25a" stroke-width="1.3" stroke-dasharray="2 3"/>
+      </svg>
+      <h3>Anchor Row + Rail</h3>
+      <p class="why">Not a corner pocket — the rail runs the <b>full remaining height</b> below the header row, so it fits something that applies to everything below it: a running total, a persistent legend, a source list.</p>
+      <div class="rowlabels">
+        <div class="shape"><span class="lbl">Big shape</span>a full-width header row + two stacked blocks + a narrow full-height rail</div>
+        <div class="fits"><span class="lbl">Fits the pocket</span>a legend, a running count, a source note — anything that's true for the whole scene, not just one block.</div>
+      </div>
+    </div>
+
+    <div class="card new">
+      <div class="num">N6 / TERRACE</div>
+      <svg class="diagram" viewBox="0 0 220 140">
+        <rect x="4" y="4" width="212" height="132" fill="none" stroke="#2a3a44" stroke-dasharray="1 5"/>
+        <rect x="14" y="14" width="192" height="22" fill="rgba(61,143,130,.12)" stroke="#3d8f82" stroke-width="1.5"/>
+        <rect x="14" y="42" width="140" height="22" fill="rgba(61,143,130,.12)" stroke="#3d8f82" stroke-width="1.5"/>
+        <rect x="68" y="70" width="140" height="22" fill="rgba(61,143,130,.12)" stroke="#3d8f82" stroke-width="1.5"/>
+        <rect x="14" y="98" width="140" height="22" fill="rgba(61,143,130,.12)" stroke="#3d8f82" stroke-width="1.5"/>
+        <rect x="160" y="42" width="46" height="22" fill="none" stroke="#c9a25a" stroke-width="1.2" stroke-dasharray="2 3"/>
+        <rect x="14" y="70" width="46" height="22" fill="none" stroke="#c9a25a" stroke-width="1.2" stroke-dasharray="2 3"/>
+      </svg>
+      <h3>Terrace</h3>
+      <p class="why">Full-width bands, alternately inset from the left and right edge, leave a <b>zig-zag</b> margin down both sides — not one corner pocket, but a run of small alternating pockets.</p>
+      <div class="rowlabels">
+        <div class="shape"><span class="lbl">Big shape</span>3-4 full-height bands, alternating which edge they're inset from</div>
+        <div class="fits"><span class="lbl">Fits the pocket</span>short alternating annotations — left note, right note, left note — one per zig-zag gap.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer><p><span class="mark">▪</span> Thirteen candidates, zero of them wired in. Next move is picking which ones are worth building into the generator — not building all of them on a guess. The math for each was hand-checked for overlaps and gaps the way the shipped eight's Diagonal Sweep bug should have been the first time.</p></footer>
+</main>

@@ -1,0 +1,434 @@
+<title>Layout Picker</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Work+Sans:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#0a1620; --surface:#111a22; --ink:#f2e9d8; --ink-soft:#e8dcc2;
+  --muted:#b3a080; --sage:#5f7a4f; --sage-hi:#7fa066; --rust:#b5703f; --teal:#3d8f82;
+  --gold:#c9a25a; --bp:#2f6f8f; --hair:#2a3a44; --dim:#6b7680;
+  --head:'Space Grotesk',sans-serif; --body:'Work Sans',sans-serif; --mono:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink-soft);font-family:var(--body);font-size:15px;line-height:1.5;background:var(--bg)}
+::selection{background:var(--gold);color:var(--bg)}
+a{color:var(--gold)}
+input[type=checkbox]{accent-color:var(--gold)}
+button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+header{padding:20px clamp(16px,3vw,32px) 16px;border-bottom:1px solid var(--hair)}
+header .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--bp);text-transform:uppercase}
+header h1{font-family:var(--head);font-weight:700;color:var(--ink);font-size:22px;margin:6px 0 0}
+header p{font-family:var(--mono);font-size:12px;color:var(--dim);margin:8px 0 0;max-width:70ch;line-height:1.6}
+
+.layout{display:grid;grid-template-columns:360px 1fr;min-height:calc(100vh - 108px)}
+@media(max-width:900px){.layout{grid-template-columns:1fr}}
+
+/* ---------- picker panel ---------- */
+.picker{border-right:1px solid var(--hair);padding:16px;max-height:calc(100vh - 108px);overflow-y:auto;position:sticky;top:0}
+@media(max-width:900px){.picker{position:static;max-height:none;border-right:none;border-bottom:1px solid var(--hair)}}
+.pickerhead{display:flex;gap:8px;align-items:center;margin-bottom:12px}
+#search{flex:1;background:var(--surface);border:1px solid var(--hair);color:var(--ink-soft);font-family:var(--mono);font-size:12.5px;padding:8px 10px}
+#clearall{background:transparent;border:1px solid var(--hair);color:var(--dim);font-family:var(--mono);font-size:11px;padding:8px 10px;cursor:pointer;white-space:nowrap}
+#clearall:hover{border-color:var(--gold);color:var(--ink)}
+.selcount{font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:14px}
+.selcount b{color:var(--gold)}
+
+.famgroup{border-top:1px dashed var(--hair)}
+.famgroup>summary{cursor:pointer;padding:9px 2px;list-style:none;font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--muted);display:flex;justify-content:space-between}
+.famgroup>summary::-webkit-details-marker{display:none}
+.famgroup>summary:hover{color:var(--ink)}
+.famgroup .fcount{color:var(--dim)}
+
+.piece-row{display:flex;align-items:center;gap:8px;padding:6px 4px 6px 8px;cursor:pointer;border-left:2px solid transparent}
+.piece-row:hover{background:rgba(47,111,143,.06)}
+.piece-row.rel-high{border-left-color:var(--rust)}
+.piece-row.rel-med{border-left-color:var(--gold)}
+.piece-row.rel-low{border-left-color:var(--hair);opacity:.68}
+.piece-row .icon{width:13px;height:13px;flex:0 0 auto;color:var(--bp)}
+.piece-row .pname{flex:1;font-size:12.5px;color:var(--ink-soft)}
+.piece-row .ptags{font-family:var(--mono);font-size:9.5px;color:var(--dim);white-space:nowrap}
+.piece-row.hidden{display:none}
+
+/* ---------- preview panel ---------- */
+.preview{padding:20px clamp(16px,3vw,32px) 60px}
+.empty{font-family:var(--mono);font-size:13px;color:var(--dim);padding:60px 0;text-align:center}
+
+.tabs{display:flex;gap:8px;margin-bottom:14px}
+.tabs button{background:var(--surface);border:1px solid var(--hair);color:var(--muted);font-family:var(--mono);font-size:12px;padding:7px 14px;cursor:pointer}
+.tabs button.active{border-color:var(--gold);color:var(--ink)}
+.tabs button:hover{color:var(--ink)}
+
+.caption{font-family:var(--mono);font-size:12px;color:var(--muted);border-left:2px solid var(--gold);padding:6px 0 6px 12px;margin-bottom:18px;line-height:1.6;max-width:80ch}
+.warn{color:var(--rust)}
+
+.stage{border:1px dashed var(--hair);padding:18px;background:
+  radial-gradient(circle 1px at 0 0, rgba(45,60,73,.7) 1px, transparent 1.5px);
+  background-size:48px 48px;}
+.prow{display:flex;gap:10px;margin-bottom:10px}
+.prow.flip{flex-direction:row-reverse}
+.pbox{flex:0 0 auto;border:1px solid var(--bp);background:rgba(47,111,143,.08);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:8px;text-align:center}
+.pbox.dense{background:rgba(47,111,143,.16)}
+.pbox.sun{border:2px solid var(--rust);background:rgba(181,112,63,.12)}
+.pbox .bicon{width:20px;height:20px;color:var(--bp)}
+.pbox.sun .bicon{color:var(--rust)}
+.pbox .bname{font-family:var(--head);font-weight:700;font-size:12.5px;color:var(--ink);line-height:1.25}
+.pbox.sun .bname{font-size:13.5px}
+.pbox .bfam{font-family:var(--mono);font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:.04em}
+.rowgap-warn{font-family:var(--mono);font-size:10.5px;color:var(--rust);text-align:center;margin:-2px 0 10px;opacity:.85}
+
+footer{border-top:1px solid var(--hair);padding:18px clamp(16px,3vw,32px);font-family:var(--mono);font-size:11px;color:var(--dim);line-height:1.7}
+</style>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="ic-round" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+    <symbol id="ic-wide" viewBox="0 0 20 20"><rect x="2" y="7" width="16" height="6" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+    <symbol id="ic-starburst" viewBox="0 0 20 20"><circle cx="10" cy="10" r="1.8" fill="currentColor"/><line x1="10" y1="10" x2="4" y2="4" stroke="currentColor" stroke-width="1.4"/><line x1="10" y1="10" x2="17" y2="5" stroke="currentColor" stroke-width="1.4"/><line x1="10" y1="10" x2="16" y2="15" stroke="currentColor" stroke-width="1.4"/><line x1="10" y1="10" x2="5" y2="16" stroke="currentColor" stroke-width="1.4"/></symbol>
+    <symbol id="ic-tall" viewBox="0 0 20 20"><rect x="7" y="2" width="6" height="16" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+    <symbol id="ic-grid" viewBox="0 0 20 20"><circle cx="5" cy="5" r="1.3" fill="currentColor"/><circle cx="10" cy="5" r="1.3" fill="currentColor"/><circle cx="15" cy="5" r="1.3" fill="currentColor"/><circle cx="5" cy="10" r="1.3" fill="currentColor"/><circle cx="10" cy="10" r="1.3" fill="currentColor"/><circle cx="15" cy="10" r="1.3" fill="currentColor"/><circle cx="5" cy="15" r="1.3" fill="currentColor"/><circle cx="10" cy="15" r="1.3" fill="currentColor"/><circle cx="15" cy="15" r="1.3" fill="currentColor"/></symbol>
+    <symbol id="ic-diagonal" viewBox="0 0 20 20"><line x1="3" y1="4" x2="17" y2="16" stroke="currentColor" stroke-width="1.6"/></symbol>
+    <symbol id="ic-flat" viewBox="0 0 20 20"><line x1="3" y1="6" x2="17" y2="6" stroke="currentColor" stroke-width="1.6"/><line x1="3" y1="10" x2="17" y2="10" stroke="currentColor" stroke-width="1.6"/><line x1="3" y1="14" x2="17" y2="14" stroke="currentColor" stroke-width="1.6"/></symbol>
+    <symbol id="ic-field" viewBox="0 0 20 20"><circle cx="4" cy="5" r="1.2" fill="currentColor"/><circle cx="9" cy="3" r="1.2" fill="currentColor"/><circle cx="14" cy="7" r="1.2" fill="currentColor"/><circle cx="6" cy="12" r="1.2" fill="currentColor"/><circle cx="12" cy="14" r="1.2" fill="currentColor"/><circle cx="16" cy="11" r="1.2" fill="currentColor"/></symbol>
+  </defs>
+</svg>
+
+<header>
+  <div class="kicker">Working tool</div>
+  <h1>Layout Picker</h1>
+  <p>Pick the chart types you're using on a real page. It arranges them into a wireframe, respecting one-sun-per-page, density needs rest, and shape-fills-its-gap. Click through the 3 candidates — nothing is locked, you're still placing everything yourself.</p>
+</header>
+
+<div class="layout">
+  <div class="picker">
+    <div class="pickerhead">
+      <input id="search" type="text" placeholder="filter by name...">
+      <button id="clearall" type="button">clear</button>
+    </div>
+    <div class="selcount"><b id="selN">0</b> selected</div>
+    <div id="famlist"></div>
+  </div>
+
+  <div class="preview">
+    <div id="tabs" class="tabs" style="display:none">
+      <button data-v="0">Variant A</button>
+      <button data-v="1">Variant B</button>
+      <button data-v="2">Variant C</button>
+    </div>
+    <div id="caption" class="caption" style="display:none"></div>
+    <div id="stage"><div class="empty">Select chart types on the left to see layout candidates.</div></div>
+  </div>
+</div>
+
+<footer>Sizes: S/M/L = how much page real-estate that chart type typically needs. Density: dense = many marks, needs a quiet neighbor · quiet = simple, low visual mass. Relevance stripe (rust/gold/dim) carried over from the Chart Vocabulary Field Guide.</footer>
+
+<script>
+const PIECES = [
+// Ranking
+{id:'r1',name:'Ordered bar chart',fam:'Ranking',shape:'wide',density:'dense',size:'M',rel:'high'},
+{id:'r2',name:'Lollipop chart',fam:'Ranking',shape:'wide',density:'quiet',size:'M',rel:'med'},
+{id:'r3',name:'Cleveland dot plot',fam:'Ranking',shape:'wide',density:'quiet',size:'M',rel:'high'},
+{id:'r4',name:'Dumbbell / connected dot plot',fam:'Ranking',shape:'wide',density:'dense',size:'M',rel:'high'},
+{id:'r5',name:'Slopegraph',fam:'Ranking',shape:'diagonal',density:'dense',size:'M',rel:'high'},
+{id:'r6',name:'Bump chart (rank flow)',fam:'Ranking',shape:'diagonal',density:'dense',size:'M',rel:'med'},
+{id:'r7',name:'Radar / spider chart',fam:'Ranking',shape:'round',density:'dense',size:'S',rel:'low'},
+{id:'r8',name:'Parallel coordinates',fam:'Ranking',shape:'field',density:'dense',size:'L',rel:'low'},
+{id:'r9',name:'Small-multiples ranked grid',fam:'Ranking',shape:'grid',density:'dense',size:'L',rel:'high'},
+{id:'r10',name:'Leaderboard / ranked table',fam:'Ranking',shape:'tall',density:'dense',size:'L',rel:'high'},
+{id:'r11',name:'Unit chart / ISOTYPE ranking',fam:'Ranking',shape:'grid',density:'dense',size:'M',rel:'med'},
+// Time / Trend
+{id:'t1',name:'Line chart',fam:'Time / Trend',shape:'wide',density:'quiet',size:'M',rel:'high'},
+{id:'t2',name:'Step chart',fam:'Time / Trend',shape:'wide',density:'quiet',size:'M',rel:'high'},
+{id:'t3',name:'Cumulative total chart',fam:'Time / Trend',shape:'wide',density:'quiet',size:'M',rel:'high'},
+{id:'t4',name:'Area chart',fam:'Time / Trend',shape:'wide',density:'quiet',size:'M',rel:'high'},
+{id:'t5',name:'Rebased / indexed line chart',fam:'Time / Trend',shape:'wide',density:'quiet',size:'M',rel:'med'},
+{id:'t6',name:'Stacked area chart',fam:'Time / Trend',shape:'wide',density:'dense',size:'M',rel:'med'},
+{id:'t7',name:'Waterfall chart',fam:'Time / Trend',shape:'wide',density:'dense',size:'M',rel:'med'},
+{id:'t8',name:'Sparkline',fam:'Time / Trend',shape:'wide',density:'quiet',size:'S',rel:'high'},
+{id:'t9',name:'Small multiples of line/area',fam:'Time / Trend',shape:'grid',density:'dense',size:'L',rel:'high'},
+{id:'t10',name:'Slope chart (multi-entity)',fam:'Time / Trend',shape:'diagonal',density:'dense',size:'M',rel:'high'},
+{id:'t11',name:'Bump chart (rank-over-time)',fam:'Time / Trend',shape:'diagonal',density:'dense',size:'M',rel:'med'},
+{id:'t12',name:'Connected scatterplot',fam:'Time / Trend',shape:'diagonal',density:'quiet',size:'M',rel:'med'},
+{id:'t13',name:'Calendar heatmap',fam:'Time / Trend',shape:'grid',density:'dense',size:'L',rel:'high'},
+{id:'t14',name:'Interval / duration timeline',fam:'Time / Trend',shape:'tall',density:'dense',size:'L',rel:'high'},
+{id:'t15',name:'Streamgraph',fam:'Time / Trend',shape:'wide',density:'dense',size:'L',rel:'low'},
+{id:'t16',name:'Horizon chart',fam:'Time / Trend',shape:'wide',density:'dense',size:'L',rel:'low'},
+{id:'t17',name:'Candlestick / OHLC chart',fam:'Time / Trend',shape:'wide',density:'quiet',size:'S',rel:'low'},
+// Distribution
+{id:'d1',name:'Histogram',fam:'Distribution',shape:'wide',density:'dense',size:'M',rel:'high'},
+{id:'d2',name:'Frequency polygon',fam:'Distribution',shape:'wide',density:'quiet',size:'M',rel:'med'},
+{id:'d3',name:'Density curve (KDE)',fam:'Distribution',shape:'wide',density:'quiet',size:'M',rel:'med'},
+{id:'d4',name:'ECDF',fam:'Distribution',shape:'wide',density:'quiet',size:'M',rel:'high'},
+{id:'d5',name:'Lorenz curve',fam:'Distribution',shape:'wide',density:'quiet',size:'M',rel:'high'},
+{id:'d6',name:'Box plot',fam:'Distribution',shape:'wide',density:'quiet',size:'M',rel:'high'},
+{id:'d7',name:'Violin plot',fam:'Distribution',shape:'wide',density:'dense',size:'M',rel:'med'},
+{id:'d8',name:'Strip / dot plot',fam:'Distribution',shape:'field',density:'dense',size:'M',rel:'high'},
+{id:'d9',name:'Beeswarm plot',fam:'Distribution',shape:'field',density:'dense',size:'M',rel:'med'},
+{id:'d10',name:'Ridgeline plot',fam:'Distribution',shape:'tall',density:'dense',size:'L',rel:'med'},
+{id:'d11',name:'Population pyramid',fam:'Distribution',shape:'tall',density:'dense',size:'M',rel:'med'},
+{id:'d12',name:'Raincloud plot',fam:'Distribution',shape:'wide',density:'dense',size:'L',rel:'med'},
+{id:'d13',name:'Pareto chart',fam:'Distribution',shape:'wide',density:'dense',size:'M',rel:'high'},
+{id:'d14',name:'Q-Q plot',fam:'Distribution',shape:'field',density:'quiet',size:'S',rel:'low'},
+// Correlation
+{id:'c1',name:'Scatter plot',fam:'Correlation',shape:'field',density:'quiet',size:'M',rel:'high'},
+{id:'c2',name:'Bubble chart',fam:'Correlation',shape:'field',density:'quiet',size:'M',rel:'high'},
+{id:'c3',name:'Connected scatterplot',fam:'Correlation',shape:'diagonal',density:'quiet',size:'M',rel:'med'},
+{id:'c4',name:'Quadrant chart',fam:'Correlation',shape:'field',density:'quiet',size:'M',rel:'high'},
+{id:'c5',name:'Correlation matrix',fam:'Correlation',shape:'grid',density:'dense',size:'L',rel:'med'},
+{id:'c6',name:'Scatter plot matrix (SPLOM)',fam:'Correlation',shape:'grid',density:'dense',size:'L',rel:'low'},
+{id:'c7',name:'Parallel coordinates',fam:'Correlation',shape:'field',density:'dense',size:'L',rel:'low'},
+{id:'c8',name:'Radar / spider chart',fam:'Correlation',shape:'round',density:'dense',size:'S',rel:'low'},
+// Geography
+{id:'g1',name:'Locator / pin map',fam:'Geography',shape:'wide',density:'quiet',size:'M',rel:'high'},
+{id:'g2',name:'Dot-density map',fam:'Geography',shape:'wide',density:'dense',size:'L',rel:'high'},
+{id:'g3',name:'Proportional-symbol map',fam:'Geography',shape:'wide',density:'quiet',size:'M',rel:'high'},
+{id:'g4',name:'Choropleth map',fam:'Geography',shape:'wide',density:'dense',size:'L',rel:'high'},
+{id:'g5',name:'Bivariate choropleth map',fam:'Geography',shape:'wide',density:'dense',size:'L',rel:'med'},
+{id:'g6',name:'Cartogram (Dorling)',fam:'Geography',shape:'round',density:'dense',size:'L',rel:'med'},
+{id:'g7',name:'Flow map',fam:'Geography',shape:'wide',density:'quiet',size:'M',rel:'med'},
+{id:'g8',name:'Hex-bin map',fam:'Geography',shape:'grid',density:'dense',size:'L',rel:'low'},
+{id:'g9',name:'Tile-grid map',fam:'Geography',shape:'grid',density:'dense',size:'M',rel:'high'},
+{id:'g10',name:'Isochrone / access map',fam:'Geography',shape:'wide',density:'quiet',size:'M',rel:'high'},
+{id:'g11',name:'Small-multiples map series',fam:'Geography',shape:'grid',density:'dense',size:'L',rel:'high'},
+// Network
+{id:'n1',name:'Node-link / force-directed graph',fam:'Network',shape:'starburst',density:'dense',size:'L',rel:'high'},
+{id:'n2',name:'Ego network (hub-and-spoke)',fam:'Network',shape:'starburst',density:'quiet',size:'M',rel:'high'},
+{id:'n3',name:'Arc diagram',fam:'Network',shape:'diagonal',density:'dense',size:'M',rel:'med'},
+{id:'n4',name:'Chord diagram',fam:'Network',shape:'round',density:'dense',size:'L',rel:'med'},
+{id:'n5',name:'Adjacency matrix',fam:'Network',shape:'grid',density:'dense',size:'L',rel:'high'},
+{id:'n6',name:'Dendrogram',fam:'Network',shape:'tall',density:'dense',size:'M',rel:'med'},
+{id:'n7',name:'Org chart / hierarchy tree',fam:'Network',shape:'tall',density:'dense',size:'L',rel:'high'},
+{id:'n8',name:'Bipartite / two-mode network',fam:'Network',shape:'tall',density:'dense',size:'M',rel:'high'},
+{id:'n9',name:'Hierarchical edge bundling',fam:'Network',shape:'starburst',density:'dense',size:'L',rel:'low'},
+// Flow / Process
+{id:'f1',name:'Sankey diagram',fam:'Flow / Process',shape:'wide',density:'dense',size:'L',rel:'high'},
+{id:'f2',name:'Alluvial diagram',fam:'Flow / Process',shape:'wide',density:'dense',size:'L',rel:'med'},
+{id:'f3',name:'Parallel sets',fam:'Flow / Process',shape:'wide',density:'dense',size:'L',rel:'low'},
+{id:'f4',name:'Funnel chart',fam:'Flow / Process',shape:'tall',density:'quiet',size:'M',rel:'high'},
+{id:'f5',name:'Flowchart / process diagram',fam:'Flow / Process',shape:'field',density:'quiet',size:'M',rel:'high'},
+{id:'f6',name:'State transition diagram',fam:'Flow / Process',shape:'round',density:'quiet',size:'S',rel:'med'},
+{id:'f7',name:'Waterfall / bridge chart',fam:'Flow / Process',shape:'wide',density:'dense',size:'M',rel:'med'},
+{id:'f8',name:'Chord diagram (flow)',fam:'Flow / Process',shape:'round',density:'dense',size:'L',rel:'low'},
+{id:'f9',name:'Swimlane / process-timeline',fam:'Flow / Process',shape:'wide',density:'dense',size:'L',rel:'high'},
+// Uncertainty
+{id:'u1',name:'Error bar',fam:'Uncertainty',shape:'wide',density:'quiet',size:'S',rel:'high'},
+{id:'u2',name:'Confidence band',fam:'Uncertainty',shape:'wide',density:'quiet',size:'M',rel:'med'},
+{id:'u3',name:'Fan chart',fam:'Uncertainty',shape:'wide',density:'dense',size:'M',rel:'low'},
+{id:'u4',name:'Floating range bar',fam:'Uncertainty',shape:'wide',density:'quiet',size:'M',rel:'high'},
+{id:'u5',name:'Box-and-whisker plot',fam:'Uncertainty',shape:'wide',density:'quiet',size:'M',rel:'med'},
+{id:'u6',name:'Forest plot',fam:'Uncertainty',shape:'tall',density:'dense',size:'L',rel:'high'},
+{id:'u7',name:'Spaghetti / ensemble plot',fam:'Uncertainty',shape:'field',density:'dense',size:'L',rel:'low'},
+{id:'u8',name:'Quantile dot plot',fam:'Uncertainty',shape:'grid',density:'dense',size:'M',rel:'high'},
+{id:'u9',name:'Bullet graph',fam:'Uncertainty',shape:'wide',density:'quiet',size:'S',rel:'high'},
+{id:'u10',name:'Hypothetical Outcome Plots',fam:'Uncertainty',shape:'wide',density:'quiet',size:'S',rel:'low'},
+{id:'u11',name:'Candlestick / OHLC chart',fam:'Uncertainty',shape:'wide',density:'quiet',size:'S',rel:'low'},
+// Qualitative Evidence
+{id:'q1',name:'Editorial pull-quote',fam:'Qualitative Evidence',shape:'wide',density:'quiet',size:'S',rel:'high'},
+{id:'q2',name:'Testimony callout',fam:'Qualitative Evidence',shape:'wide',density:'quiet',size:'S',rel:'high'},
+{id:'q3',name:'Document facsimile',fam:'Qualitative Evidence',shape:'tall',density:'quiet',size:'M',rel:'high'},
+{id:'q4',name:'Redaction overlay',fam:'Qualitative Evidence',shape:'tall',density:'dense',size:'M',rel:'high'},
+{id:'q5',name:'Annotated excerpt',fam:'Qualitative Evidence',shape:'tall',density:'dense',size:'M',rel:'high'},
+{id:'q6',name:'Redline / document diff',fam:'Qualitative Evidence',shape:'wide',density:'dense',size:'M',rel:'high'},
+{id:'q7',name:'Quote wall / testimony mosaic',fam:'Qualitative Evidence',shape:'grid',density:'dense',size:'L',rel:'high'},
+{id:'q8',name:'Statement tracker',fam:'Qualitative Evidence',shape:'wide',density:'quiet',size:'M',rel:'med'},
+{id:'q9',name:'Marginalia / highlight annotation',fam:'Qualitative Evidence',shape:'tall',density:'quiet',size:'M',rel:'med'},
+{id:'q10',name:'Redaction-density scorecard',fam:'Qualitative Evidence',shape:'grid',density:'dense',size:'M',rel:'low'},
+// Composition Over Time
+{id:'o1',name:'Stacked area chart (continuous)',fam:'Composition Over Time',shape:'wide',density:'dense',size:'M',rel:'high'},
+{id:'o2',name:'Stacked column chart (discrete)',fam:'Composition Over Time',shape:'wide',density:'dense',size:'M',rel:'high'},
+{id:'o3',name:'100%-stacked bar chart',fam:'Composition Over Time',shape:'wide',density:'dense',size:'M',rel:'high'},
+{id:'o4',name:'Streamgraph',fam:'Composition Over Time',shape:'wide',density:'dense',size:'L',rel:'med'},
+{id:'o5',name:'Marimekko chart',fam:'Composition Over Time',shape:'wide',density:'dense',size:'L',rel:'med'},
+{id:'o6',name:'Small multiples of part-to-whole circles',fam:'Composition Over Time',shape:'wide',density:'quiet',size:'M',rel:'high'},
+{id:'o7',name:'Polar area / coxcomb',fam:'Composition Over Time',shape:'round',density:'dense',size:'M',rel:'low'},
+{id:'o8',name:'Alluvial diagram (boundary case)',fam:'Composition Over Time',shape:'wide',density:'dense',size:'L',rel:'med'},
+];
+
+const ICONS = {round:'ic-round',wide:'ic-wide',starburst:'ic-starburst',tall:'ic-tall',grid:'ic-grid',diagonal:'ic-diagonal',flat:'ic-flat',field:'ic-field'};
+const WEIGHT = {S:1,M:2,L:3};
+const RELCLASS = {high:'rel-high',med:'rel-med',low:'rel-low'};
+
+const famlist = document.getElementById('famlist');
+const families = [...new Set(PIECES.map(p=>p.fam))];
+families.forEach(fam=>{
+  const items = PIECES.filter(p=>p.fam===fam);
+  const det = document.createElement('details');
+  det.className='famgroup';
+  det.innerHTML = `<summary><span>${fam}</span><span class="fcount">${items.length}</span></summary>`;
+  items.forEach(p=>{
+    const row = document.createElement('label');
+    row.className = 'piece-row ' + RELCLASS[p.rel];
+    row.dataset.name = p.name.toLowerCase();
+    row.innerHTML = `<input type="checkbox" data-id="${p.id}">
+      <svg class="icon"><use href="#${ICONS[p.shape]}"/></svg>
+      <span class="pname">${p.name}</span>
+      <span class="ptags">${p.size} &middot; ${p.density}</span>`;
+    det.appendChild(row);
+  });
+  famlist.appendChild(det);
+});
+
+let selectedOrder = []; // ids in click order
+let activeVariant = 0;
+
+famlist.addEventListener('change', e=>{
+  if(e.target.tagName!=='INPUT') return;
+  const id = e.target.dataset.id;
+  if(e.target.checked){ if(!selectedOrder.includes(id)) selectedOrder.push(id); }
+  else { selectedOrder = selectedOrder.filter(x=>x!==id); }
+  activeVariant = 0;
+  render();
+});
+
+document.getElementById('clearall').addEventListener('click', ()=>{
+  selectedOrder = [];
+  famlist.querySelectorAll('input[type=checkbox]').forEach(c=>c.checked=false);
+  render();
+});
+
+document.getElementById('search').addEventListener('input', e=>{
+  const q = e.target.value.toLowerCase().trim();
+  famlist.querySelectorAll('.piece-row').forEach(r=>{
+    r.classList.toggle('hidden', q && !r.dataset.name.includes(q));
+  });
+  famlist.querySelectorAll('.famgroup').forEach(det=>{
+    if(q) det.open = true;
+  });
+});
+
+function buildOrders(pieces){
+  const byClick = pieces.slice();
+  const byWeight = pieces.slice().sort((a,b)=>WEIGHT[b.size]-WEIGHT[a.size]);
+  const buckets = {};
+  pieces.forEach(p=>{ (buckets[p.shape] = buckets[p.shape]||[]).push(p); });
+  const shapeKeys = Object.keys(buckets);
+  const byVariety = [];
+  let more = true;
+  while(more){
+    more = false;
+    for(const k of shapeKeys){
+      if(buckets[k].length){ byVariety.push(buckets[k].shift()); more = true; }
+    }
+  }
+  return [byClick, byWeight, byVariety];
+}
+
+function computeRows(order){
+  const used = new Array(order.length).fill(false);
+  const rows = [];
+  function findQuietSmall(){
+    for(let j=0;j<order.length;j++) if(!used[j] && order[j].size==='S' && order[j].density==='quiet') return j;
+    return -1;
+  }
+  while(true){
+    let idx=-1;
+    for(let j=0;j<order.length;j++) if(!used[j]){idx=j;break;}
+    if(idx===-1) break;
+    const p = order[idx]; used[idx]=true;
+    const row = {pieces:[p]};
+    if((p.shape==='wide'||p.shape==='grid'||p.shape==='tall') && p.size==='L'){
+      rows.push(row); continue;
+    }
+    if(p.shape==='round'||p.shape==='starburst'||p.shape==='tall'){
+      const qi = findQuietSmall();
+      if(qi!==-1){ used[qi]=true; row.pieces.push(order[qi]); }
+      rows.push(row); continue;
+    }
+    let weight = WEIGHT[p.size];
+    for(let j=0;j<order.length;j++){
+      if(used[j]) continue;
+      const cand = order[j];
+      if(cand.shape==='wide' && cand.size==='L') continue;
+      if(cand.shape==='grid' && cand.size==='L') continue;
+      if(weight + WEIGHT[cand.size] <= 4.2){ used[j]=true; row.pieces.push(cand); weight += WEIGHT[cand.size]; }
+      if(weight >= 3.7) break;
+    }
+    rows.push(row);
+  }
+  return rows;
+}
+
+function pickSun(pieces){
+  let sun = pieces[0];
+  pieces.forEach(p=>{ if(WEIGHT[p.size] > WEIGHT[sun.size]) sun = p; });
+  return sun.id;
+}
+
+function describe(rows, sunId){
+  const total = rows.reduce((n,r)=>n+r.pieces.length,0);
+  const sunPiece = rows.flatMap(r=>r.pieces).find(p=>p.id===sunId);
+  let s = `Sun: ${sunPiece.name}. ${rows.length} row${rows.length===1?'':'s'}, ${total} piece${total===1?'':'s'}.`;
+  const pairs = rows.filter(r=>r.pieces.length===2 && (r.pieces[0].shape==='round'||r.pieces[0].shape==='starburst'||r.pieces[0].shape==='tall'));
+  if(pairs.length) s += ' Pocket fills: ' + pairs.map(r=>`${r.pieces[0].name} → ${r.pieces[1].name}`).join('; ') + '.';
+  return s;
+}
+
+function warnGaps(rows){
+  const gaps = [];
+  const isDense = r => r.pieces.every(p=>p.density==='dense');
+  for(let i=0;i<rows.length-1;i++) if(isDense(rows[i]) && isDense(rows[i+1])) gaps.push(i);
+  return gaps;
+}
+
+function heightFor(row){
+  const sizes = row.pieces.map(p=>p.size);
+  if(sizes.includes('L')) return 150;
+  if(sizes.includes('M')) return 104;
+  return 72;
+}
+
+function render(){
+  const stage = document.getElementById('stage');
+  const tabs = document.getElementById('tabs');
+  const captionEl = document.getElementById('caption');
+  document.getElementById('selN').textContent = selectedOrder.length;
+
+  if(selectedOrder.length===0){
+    tabs.style.display='none'; captionEl.style.display='none';
+    stage.innerHTML = '<div class="empty">Select chart types on the left to see layout candidates.</div>';
+    return;
+  }
+
+  const pieces = selectedOrder.map(id=>PIECES.find(p=>p.id===id));
+  const orders = buildOrders(pieces);
+  const variants = orders.map(o=>{
+    const rows = computeRows(o);
+    const sunId = pickSun(pieces);
+    return {rows, sunId, caption: describe(rows, sunId), gaps: warnGaps(rows)};
+  });
+
+  tabs.style.display = pieces.length>1 ? 'flex' : 'none';
+  tabs.querySelectorAll('button').forEach((b,i)=>{
+    b.classList.toggle('active', i===activeVariant);
+    b.onclick = ()=>{ activeVariant=i; render(); };
+  });
+
+  const v = variants[Math.min(activeVariant, variants.length-1)];
+  captionEl.style.display='block';
+  captionEl.innerHTML = v.caption + (v.gaps.length ? ' <span class="warn">&#9888; ' + v.gaps.length + ' spot' + (v.gaps.length===1?'':'s') + ' where two dense rows land back to back — no quiet piece in your selection to break it up.</span>' : '');
+
+  stage.innerHTML = '';
+  v.rows.forEach((row,i)=>{
+    const prow = document.createElement('div');
+    prow.className = 'prow' + (i%2===1 ? ' flip':'');
+    prow.style.minHeight = heightFor(row)+'px';
+    row.pieces.forEach(p=>{
+      const box = document.createElement('div');
+      box.className = 'pbox' + (p.density==='dense'?' dense':'') + (p.id===v.sunId?' sun':'');
+      box.style.flexGrow = WEIGHT[p.size];
+      box.style.flexBasis = '0';
+      box.style.minHeight = heightFor(row)+'px';
+      box.innerHTML = `<svg class="bicon"><use href="#${ICONS[p.shape]}"/></svg><div class="bname">${p.name}</div><div class="bfam">${p.fam}</div>`;
+      prow.appendChild(box);
+    });
+    stage.appendChild(prow);
+    if(v.gaps.includes(i)){
+      const gapNote = document.createElement('div');
+      gapNote.className = 'rowgap-warn';
+      gapNote.textContent = '— two dense rows in a row here —';
+      stage.appendChild(gapNote);
+    }
+  });
+}
+
+render();
+</script>

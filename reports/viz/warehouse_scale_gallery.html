@@ -1,0 +1,445 @@
+<title>The Scale Gallery</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Public+Sans:wght@300;400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  /* Committed dark identity — night water. Single theme, every color explicit. */
+  :root{
+    --ink:#0b1014; --ink-2:#10171f; --ink-3:#151e27;
+    --foam:#e8e4dc; --foam-dim:#98a1a7; --faint:#5b6a72;
+    --rust:#c25e3a; --rust-bright:#e07a50;
+    --wave:#4a7d8c; --wave-bright:#6fa3b2;
+    --gold:#c9a227; --hair:#1e2933;
+  }
+  html{scroll-behavior:smooth;}
+  html,body{margin:0;padding:0;}
+  body{background:var(--ink);color:var(--foam);
+    font-family:"Public Sans",system-ui,sans-serif;font-weight:300;line-height:1.6;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 28px;}
+  ::selection{background:var(--rust);color:var(--ink);}
+
+  /* ---------- header ---------- */
+  header.page{padding:88px 0 30px;}
+  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--rust);margin:0 0 16px;}
+  h1{font-family:"Fraunces",Georgia,serif;font-weight:320;font-size:clamp(38px,6vw,64px);
+    margin:0 0 16px;letter-spacing:-.015em;text-wrap:balance;line-height:1.08;}
+  .lede{max-width:60ch;color:var(--foam-dim);font-size:17px;margin:0 0 34px;}
+  .lede b{color:var(--foam);font-weight:600;}
+  .statrow{display:flex;gap:44px;flex-wrap:wrap;padding:22px 0 30px;border-top:1px solid var(--hair);}
+  .stat .n{font-family:"Fraunces",Georgia,serif;font-size:34px;font-weight:400;
+    font-variant-numeric:tabular-nums;color:var(--foam);}
+  .stat .l{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--faint);margin-top:2px;}
+
+  /* ---------- scenes ---------- */
+  section.scene{padding:76px 0 30px;border-top:1px solid var(--hair);}
+  .s-head{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;}
+  .s-num{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--wave-bright);
+    letter-spacing:.16em;}
+  h2{font-family:"Fraunces",Georgia,serif;font-weight:400;
+    font-size:clamp(26px,3.4vw,38px);margin:0;letter-spacing:-.01em;}
+  .s-claim{color:var(--foam-dim);max-width:64ch;margin:10px 0 26px;font-size:16px;}
+  .s-claim b{color:var(--foam);font-weight:600;}
+  .stage{background:var(--ink-2);border:1px solid var(--hair);border-radius:8px;
+    overflow:hidden;position:relative;}
+  .stage canvas{display:block;width:100%;}
+  .cap{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--faint);
+    letter-spacing:.05em;margin:12px 2px 0;}
+
+  /* 1 — counter */
+  .counterbox{padding:64px 40px;text-align:center;}
+  .bignum{font-family:"Fraunces",Georgia,serif;font-weight:340;
+    font-size:clamp(44px,8vw,96px);font-variant-numeric:tabular-nums;
+    letter-spacing:-.01em;color:var(--foam);line-height:1;}
+  .bignum span{color:var(--rust-bright);}
+  .counterbox .sub{font-size:17px;color:var(--foam-dim);margin-top:18px;}
+  .counterbox .sub b{color:var(--foam);font-weight:600;}
+  .counterbox .verdict{font-family:"Fraunces",Georgia,serif;font-style:italic;
+    font-size:clamp(20px,3vw,28px);color:var(--rust-bright);margin-top:26px;}
+
+  /* 3 — bookshelf bars */
+  .compare{padding:38px 40px;}
+  .comp-row{display:grid;grid-template-columns:190px 1fr 90px;gap:16px;
+    align-items:center;margin:14px 0;}
+  .comp-row .name{font-size:14.5px;color:var(--foam-dim);text-align:right;}
+  .comp-row .bar{height:14px;border-radius:3px;background:var(--wave);
+    transform-origin:left;transform:scaleX(0);transition:transform 1.2s cubic-bezier(.2,.7,.2,1);}
+  .comp-row.hero .bar{background:var(--rust);}
+  .comp-row .val{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--foam);}
+  .inview .comp-row .bar{transform:scaleX(1);}
+  @media(max-width:640px){.comp-row{grid-template-columns:110px 1fr 70px;}}
+
+  /* 5 — domain grid */
+  .grid5{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+    gap:10px;padding:28px;}
+  .cell{border:1px solid var(--hair);border-radius:6px;padding:14px 14px 12px;
+    background:var(--ink-3);display:flex;flex-direction:column;justify-content:flex-end;}
+  .cell .sym{font-family:"Fraunces",Georgia,serif;font-size:26px;color:var(--wave-bright);}
+  .cell .dn{font-size:13px;color:var(--foam);font-weight:600;margin-top:6px;}
+  .cell .dv{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--faint);}
+  .cell.hot{border-color:var(--rust);}
+  .cell.hot .sym{color:var(--rust-bright);}
+
+  /* 7 — powers of ten */
+  .pow{padding:34px 40px;}
+  .pow-step{display:grid;grid-template-columns:150px 1fr;gap:22px;align-items:center;
+    padding:13px 0;border-bottom:1px dashed var(--hair);}
+  .pow-step:last-child{border-bottom:none;}
+  .pow-step .pn{font-family:"IBM Plex Mono",monospace;font-size:15px;
+    color:var(--wave-bright);font-variant-numeric:tabular-nums;text-align:right;}
+  .pow-step .pt{font-size:15px;color:var(--foam-dim);}
+  .pow-step .pt b{color:var(--foam);font-weight:600;}
+  .pow-step.final .pn{color:var(--rust-bright);font-size:18px;}
+  .pow-step.final .pt{color:var(--foam);}
+  @media(max-width:640px){.pow-step{grid-template-columns:100px 1fr;}}
+
+  /* 9 — tiles */
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:12px;padding:26px;}
+  .tile{background:var(--ink-3);border:1px solid var(--hair);border-radius:8px;
+    padding:26px 22px;}
+  .tile .tn{font-family:"Fraunces",Georgia,serif;font-size:34px;font-weight:400;
+    color:var(--rust-bright);font-variant-numeric:tabular-nums;line-height:1.1;}
+  .tile .tt{font-size:14.5px;color:var(--foam-dim);margin-top:10px;}
+  .tile .tt b{color:var(--foam);font-weight:600;}
+
+  footer.page{padding:60px 0 100px;border-top:1px solid var(--hair);
+    color:var(--foam-dim);font-size:14.5px;max-width:70ch;}
+  footer.page b{color:var(--foam);font-weight:600;}
+
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.inview{opacity:1;transform:none;}
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    .comp-row .bar{transform:scaleX(1);transition:none;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+
+<div class="wrap">
+<header class="page">
+  <p class="eyebrow">Ripple · ten studies in scale</p>
+  <h1>How big is the public record?</h1>
+  <p class="lede">One warehouse, holding what the government publishes about itself —
+  every payment, inspection, filing, and penalty it admits to. Ten ways to feel the size of it.
+  <b>All figures approximate, as of August 2026.</b></p>
+  <div class="statrow">
+    <div class="stat"><div class="n">1.23B</div><div class="l">rows</div></div>
+    <div class="stat"><div class="n">558</div><div class="l">sources</div></div>
+    <div class="stat"><div class="n">31.8M</div><div class="l">real-world entities</div></div>
+    <div class="stat"><div class="n">589</div><div class="l">built tables</div></div>
+  </div>
+</header>
+
+<!-- 1 · COUNTING PROBLEM -->
+<section class="scene reveal">
+  <div class="s-head"><span class="s-num">01</span><h2>The counting problem</h2></div>
+  <p class="s-claim">Read the warehouse one row per second, no sleep, no breaks.</p>
+  <div class="stage counterbox">
+    <div class="bignum"><span id="tick">0</span></div>
+    <div class="sub">rows read since you opened this page · <b><span id="tickpct">0.000000%</span></b> of the warehouse</div>
+    <div class="verdict">At this pace you finish in 39 years.</div>
+  </div>
+  <p class="cap">1.23 billion seconds ≈ 39 years. The counter is live and will never get anywhere.</p>
+</section>
+
+<!-- 2 · PIXEL PER ENTITY -->
+<section class="scene reveal">
+  <div class="s-head"><span class="s-num">02</span><h2>One pixel per entity</h2></div>
+  <p class="s-claim">Every dot below is one <b>real company, facility, or provider</b> in the warehouse —
+  drawn until 31.8&nbsp;million of them fill the frame. One is circled, because every dot is a someone.</p>
+  <div class="stage"><canvas id="c2" style="height:440px"></canvas></div>
+  <p class="cap">31,800,000 entities · rendering ~120,000 dots per frame until the field is solid</p>
+</section>
+
+<!-- 3 · BOOKSHELF -->
+<section class="scene reveal">
+  <div class="s-head"><span class="s-num">03</span><h2>Printed out, it's a tower</h2></div>
+  <p class="s-claim">Print every row as one line — 40 lines a page. The stack of paper is
+  <b>3.1&nbsp;kilometers tall</b>. Things it out-climbs:</p>
+  <div class="stage compare" id="c3">
+    <div class="comp-row"><div class="name">Eiffel Tower</div><div class="bar" style="width:10.6%"></div><div class="val">330 m</div></div>
+    <div class="comp-row"><div class="name">Burj Khalifa</div><div class="bar" style="width:26.7%"></div><div class="val">828 m</div></div>
+    <div class="comp-row"><div class="name">Grand Canyon, rim to river</div><div class="bar" style="width:58.1%"></div><div class="val">1,800 m</div></div>
+    <div class="comp-row"><div class="name">Cruising skydive altitude</div><div class="bar" style="width:83.9%"></div><div class="val">2,600 m</div></div>
+    <div class="comp-row hero"><div class="name"><b>The warehouse, on paper</b></div><div class="bar" style="width:100%"></div><div class="val">3,100 m</div></div>
+  </div>
+  <p class="cap">1.23B rows ÷ 40 lines/page = 30.8M pages · at 0.1 mm per sheet = 3,075 m</p>
+</section>
+
+<!-- 4 · THE STACK -->
+<section class="scene reveal">
+  <div class="s-head"><span class="s-num">04</span><h2>The skyline of 558 sources</h2></div>
+  <p class="s-claim">Every source as one bar, tallest to smallest. A few giants, then a
+  <b>very long tail</b> — and the tail is the work: every one of those slivers was found,
+  pulled, cleaned, and cataloged.</p>
+  <div class="stage"><canvas id="c4" style="height:380px"></canvas></div>
+  <p class="cap">558 bars, log-shaped by row count · hover intent: the shape is the message, not the labels</p>
+</section>
+
+<!-- 5 · PERIODIC TABLE -->
+<section class="scene reveal">
+  <div class="s-head"><span class="s-num">05</span><h2>Everything the government told on itself</h2></div>
+  <p class="s-claim">The warehouse sorted into its domains. One glance answers the question
+  <b>"what does it cover?"</b> with: nearly everything.</p>
+  <div class="stage grid5">
+    <div class="cell hot"><div class="sym">Rx</div><div class="dn">Health &amp; drugs</div><div class="dv">~310M rows</div></div>
+    <div class="cell hot"><div class="sym">$</div><div class="dn">Federal money</div><div class="dv">~280M rows</div></div>
+    <div class="cell"><div class="sym">⚖</div><div class="dn">Courts &amp; enforcement</div><div class="dv">~120M rows</div></div>
+    <div class="cell"><div class="sym">☣</div><div class="dn">Environment</div><div class="dv">~110M rows</div></div>
+    <div class="cell"><div class="sym">⚠</div><div class="dn">Workplace safety</div><div class="dv">~95M rows</div></div>
+    <div class="cell"><div class="sym">🗳</div><div class="dn">Politics &amp; lobbying</div><div class="dv">~85M rows</div></div>
+    <div class="cell"><div class="sym">🏦</div><div class="dn">Banks &amp; markets</div><div class="dv">~80M rows</div></div>
+    <div class="cell"><div class="sym">⌂</div><div class="dn">Housing &amp; disaster</div><div class="dv">~60M rows</div></div>
+    <div class="cell"><div class="sym">✈</div><div class="dn">Transport &amp; trade</div><div class="dv">~55M rows</div></div>
+    <div class="cell"><div class="sym">⚙</div><div class="dn">Energy &amp; industry</div><div class="dv">~35M rows</div></div>
+  </div>
+  <p class="cap">domain shares illustrative — the real split comes from the census grid when this goes live</p>
+</section>
+
+<!-- 6 · THE RIPPLE -->
+<section class="scene reveal">
+  <div class="s-head"><span class="s-num">06</span><h2>The ripple</h2></div>
+  <p class="s-claim">Start from <b>one person</b>. Each ring outward is the records that touch them —
+  their doctor's payments, their employer's inspections, their bank's filings —
+  until the outermost ring is all 1.23&nbsp;billion rows. Scale and mission in one image.</p>
+  <div class="stage"><canvas id="c6" style="height:460px"></canvas></div>
+  <p class="cap">center: one person · rings: 10² → 10⁴ → 10⁶ → 10⁸ → 1.23 × 10⁹ records</p>
+</section>
+
+<!-- 7 · POWERS OF TEN -->
+<section class="scene reveal">
+  <div class="s-head"><span class="s-num">07</span><h2>Powers of ten</h2></div>
+  <p class="s-claim">From one readable record to the whole warehouse, multiplying by ten each step.</p>
+  <div class="stage pow">
+    <div class="pow-step"><div class="pn">1</div><div class="pt">One row. <b>A real inspection at a real address</b> — you can read it in five seconds.</div></div>
+    <div class="pow-step"><div class="pn">100</div><div class="pt">One facility's full history. A morning of reading.</div></div>
+    <div class="pow-step"><div class="pn">10,000</div><div class="pt">One county. A novel-length dossier.</div></div>
+    <div class="pow-step"><div class="pn">1,000,000</div><div class="pt">One agency's year. No human reads this — <b>this is where the queries take over.</b></div></div>
+    <div class="pow-step"><div class="pn">100,000,000</div><div class="pt">One domain — all of health, or all of federal money.</div></div>
+    <div class="pow-step final"><div class="pn">1,230,000,000</div><div class="pt"><b>The warehouse.</b> Every step above, held in one place, joined together.</div></div>
+  </div>
+  <p class="cap">the full version of this is a scroll journey — each step its own screen</p>
+</section>
+
+<!-- 8 · INGESTION TIMELINE -->
+<section class="scene reveal">
+  <div class="s-head"><span class="s-num">08</span><h2>A warehouse being built</h2></div>
+  <p class="s-claim">Row count over time as sources landed. Not a pile — <b>a thing under construction</b>,
+  with every jump a data source fought into the ground.</p>
+  <div class="stage"><canvas id="c8" style="height:340px"></canvas></div>
+  <p class="cap">curve illustrative — real ingestion dates exist per source and wire in directly</p>
+</section>
+
+<!-- 9 · DATA VS THE FAMILIAR -->
+<section class="scene reveal">
+  <div class="s-head"><span class="s-num">09</span><h2>Against things you know</h2></div>
+  <p class="s-claim">No chart, just arithmetic.</p>
+  <div class="stage tiles">
+    <div class="tile"><div class="tn">39 years</div><div class="tt">to read every row at <b>one per second</b> — half a lifetime, awake the whole time.</div></div>
+    <div class="tile"><div class="tn">≈ Texas</div><div class="tt">31.8M tracked entities — <b>more than the population of Texas</b>, each with a paper trail.</div></div>
+    <div class="tile"><div class="tn">46×</div><div class="tt">558 sources — <b>46 years of reading</b> for someone who finishes a book a month.</div></div>
+    <div class="tile"><div class="tn">150+</div><div class="tt">rows for every person in the United States — <b>the record already knows your neighborhood.</b></div></div>
+  </div>
+  <p class="cap">every figure derived from the four headline numbers up top</p>
+</section>
+
+<!-- 10 · DARK MAP -->
+<section class="scene reveal">
+  <div class="s-head"><span class="s-num">10</span><h2>Nowhere the data doesn't reach</h2></div>
+  <p class="s-claim">The country, dark — then lit state by state as sources with coverage there switch on.
+  It ends fully lit, because <b>the public record has no empty states.</b></p>
+  <div class="stage"><canvas id="c10" style="height:420px"></canvas></div>
+  <p class="cap">tile-grid map · lighting order illustrative; real per-state coverage comes from the geo columns</p>
+</section>
+
+<footer class="page">
+  <p><b>What this page is:</b> ten templates at portfolio polish, all running on the four
+  headline numbers plus synthetic shapes. Pick the keepers and the wiring step swaps
+  synthetic for warehouse-real, one query per scene.</p>
+</footer>
+</div>
+
+<script>
+(function(){
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const RUST='#c25e3a',RUSTB='#e07a50',WAVE='#4a7d8c',WAVEB='#6fa3b2',
+        FOAM='#e8e4dc',DIM='#98a1a7',FAINT='#5b6a72',HAIR='#1e2933';
+
+  /* reveal on scroll */
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('inview');io.unobserve(e.target);}
+  }),{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  io.observe(document.getElementById('c3'));
+
+  function canvas(id){
+    const cv=document.getElementById(id),ctx=cv.getContext('2d');
+    const dpr=Math.min(devicePixelRatio||1,2);
+    function size(){const w=cv.clientWidth,h=cv.clientHeight;
+      cv.width=w*dpr;cv.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+      return {w,h};}
+    return {cv,ctx,size};
+  }
+  function loop(fn){let t=0;
+    (function f(){fn(t);t++;if(!reduced)requestAnimationFrame(f);})();
+    if(reduced)fn(600);}
+
+  /* 01 — live counter */
+  const t0=performance.now(),TOTAL=1.23e9;
+  const tick=document.getElementById('tick'),tpc=document.getElementById('tickpct');
+  (function count(){
+    const s=Math.floor((performance.now()-t0)/1000);
+    tick.textContent=s.toLocaleString('en-US');
+    tpc.textContent=(s/TOTAL*100).toFixed(6)+'%';
+    setTimeout(count,250);
+  })();
+
+  /* 02 — entity dot field, accumulating */
+  {const {ctx,size}=canvas('c2');let {w,h}=size();
+   addEventListener('resize',()=>({w,h}=size()));
+   let seed=12345;const rnd=()=>{seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;};
+   let placed=0;const target=520000;
+   const ring={x:0,y:0};let ringSet=false;
+   loop(t=>{
+     if(t===0){ctx.fillStyle='#10171f';ctx.fillRect(0,0,w,h);}
+     const batch=reduced?target:6000;
+     ctx.fillStyle='rgba(111,163,178,0.5)';
+     for(let i=0;i<batch&&placed<target;i++,placed++){
+       const x=rnd()*w,y=rnd()*h;
+       ctx.fillRect(x,y,1,1);
+       if(!ringSet&&placed===2000){ring.x=x;ring.y=y;ringSet=true;}
+     }
+     if(ringSet){
+       ctx.fillStyle='#10171f';ctx.beginPath();ctx.arc(ring.x,ring.y,26,0,7);ctx.fill();
+       ctx.strokeStyle=RUST;ctx.lineWidth=1.5;
+       ctx.beginPath();ctx.arc(ring.x,ring.y,22,0,7);ctx.stroke();
+       ctx.fillStyle=RUSTB;ctx.beginPath();ctx.arc(ring.x,ring.y,2.5,0,7);ctx.fill();
+       ctx.fillStyle=FOAM;ctx.font='12px "IBM Plex Mono",monospace';
+       const lx=Math.min(ring.x+34,w-260);
+       ctx.fillText('one hospital · Dayton, Ohio',lx,ring.y+4);
+     }
+     ctx.fillStyle='rgba(232,228,220,0.9)';ctx.font='12px "IBM Plex Mono",monospace';
+     ctx.fillStyle='#10171f';ctx.fillRect(w-250,h-34,240,24);
+     ctx.fillStyle=DIM;
+     ctx.fillText((Math.min(placed/target,1)*31.8).toFixed(1)+'M of 31.8M entities',w-238,h-17);
+   });}
+
+  /* 04 — source skyline */
+  {const {ctx,size}=canvas('c4');let {w,h}=size();
+   addEventListener('resize',()=>({w,h}=size()));
+   const N=558,vals=[];
+   for(let i=0;i<N;i++)vals.push(Math.pow(1-i/N,6)*420e6+((i*37)%97)*3e3+2e3);
+   const max=vals[0],pad=34;
+   loop(t=>{
+     ctx.clearRect(0,0,w,h);
+     const bw=(w-pad*2)/N,prog=reduced?1:Math.min(1,t/90);
+     const shown=Math.floor(N*prog);
+     for(let i=0;i<shown;i++){
+       const bh=Math.max(2,Math.pow(vals[i]/max,0.38)*(h-70));
+       ctx.fillStyle=i<8?RUST:(i<60?WAVEB:WAVE);
+       ctx.globalAlpha=i<60?0.95:0.65;
+       ctx.fillRect(pad+i*bw,h-30-bh,Math.max(bw-0.6,0.7),bh);
+     }
+     ctx.globalAlpha=1;
+     ctx.strokeStyle=HAIR;ctx.beginPath();ctx.moveTo(pad,h-30);ctx.lineTo(w-pad,h-30);ctx.stroke();
+     ctx.fillStyle=DIM;ctx.font='11px "IBM Plex Mono",monospace';
+     ctx.fillText('largest: ~420M rows',pad,26);
+     ctx.textAlign='right';ctx.fillText('smallest: a few thousand — pulled anyway',w-pad,26);
+     ctx.textAlign='left';
+   });}
+
+  /* 06 — ripple rings from one person */
+  {const {ctx,size}=canvas('c6');let {w,h}=size();
+   addEventListener('resize',()=>({w,h}=size()));
+   const labels=['one person','10² — their records','10⁴ — their town',
+                 '10⁶ — their industry','10⁸ — their domain','1.23 × 10⁹ — everything'];
+   loop(t=>{
+     ctx.clearRect(0,0,w,h);
+     const cx=w/2,cy=h/2,maxR=Math.min(w,h)/2-34;
+     for(let i=1;i<6;i++){
+       const r=maxR*i/5,pulse=2*Math.sin(t/40-i);
+       ctx.beginPath();ctx.arc(cx,cy,r+pulse,0,7);
+       ctx.strokeStyle=i===5?'rgba(224,122,80,0.85)':'rgba(74,125,140,'+(0.85-i*0.1)+')';
+       ctx.lineWidth=i===5?1.8:1.2;ctx.stroke();
+       ctx.fillStyle=i===5?RUSTB:DIM;ctx.font='11.5px "IBM Plex Mono",monospace';
+       ctx.textAlign='center';
+       ctx.fillStyle='#10171f';
+       const tw=ctx.measureText(labels[i]).width;
+       ctx.fillRect(cx-tw/2-6,cy-r-pulse-9,tw+12,15);
+       ctx.fillStyle=i===5?RUSTB:DIM;
+       ctx.fillText(labels[i],cx,cy-r-pulse+3);
+     }
+     ctx.beginPath();ctx.arc(cx,cy,5+1.5*Math.sin(t/16),0,7);
+     ctx.fillStyle=RUST;ctx.fill();
+     ctx.fillStyle=FOAM;ctx.font='12px "IBM Plex Mono",monospace';
+     ctx.fillText(labels[0],cx,cy+26);
+     ctx.textAlign='left';
+   });}
+
+  /* 08 — growth curve */
+  {const {ctx,size}=canvas('c8');let {w,h}=size();
+   addEventListener('resize',()=>({w,h}=size()));
+   const M=20,pts=[];let acc=0;
+   const jumps=[3,1,6,2,14,4,9,3,22,6,11,38,8,17,49,12,26,64,31,57];
+   for(let i=0;i<M;i++){acc+=jumps[i];pts.push(acc);}
+   const max=acc,pad=44;
+   loop(t=>{
+     ctx.clearRect(0,0,w,h);
+     const prog=reduced?1:Math.min(1,t/110);
+     ctx.beginPath();
+     for(let i=0;i<M*prog;i++){
+       const x=pad+(w-pad*2)*i/(M-1),y=h-36-(h-80)*pts[i]/max;
+       i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+     }
+     ctx.strokeStyle=WAVEB;ctx.lineWidth=2;ctx.stroke();
+     ctx.lineTo(pad+(w-pad*2)*Math.min(prog,1)*(M-1)/(M-1),h-36);
+     ctx.lineTo(pad,h-36);ctx.closePath();
+     ctx.fillStyle='rgba(74,125,140,0.14)';ctx.fill();
+     for(let i=0;i<M*prog;i++){
+       if(jumps[i]>30){
+         const x=pad+(w-pad*2)*i/(M-1),y=h-36-(h-80)*pts[i]/max;
+         ctx.beginPath();ctx.arc(x,y,3.4,0,7);ctx.fillStyle=RUST;ctx.fill();
+       }}
+     ctx.strokeStyle=HAIR;ctx.beginPath();ctx.moveTo(pad,h-36);ctx.lineTo(w-pad,h-36);ctx.stroke();
+     ctx.fillStyle=DIM;ctx.font='11px "IBM Plex Mono",monospace';
+     ctx.fillText('0',pad,h-18);ctx.textAlign='right';
+     ctx.fillText('1.23B rows · rust dots = the big source landings',w-pad,h-18);
+     ctx.textAlign='left';
+   });}
+
+  /* 10 — state tile map lighting up */
+  {const {ctx,size}=canvas('c10');let {w,h}=size();
+   addEventListener('resize',()=>({w,h}=size()));
+   const G=[ // classic US tile grid [col,row,abbr]
+    [0,0,'AK'],[10,0,'ME'],[9,1,'VT'],[10,1,'NH'],
+    [0,2,'WA'],[1,2,'ID'],[2,2,'MT'],[3,2,'ND'],[4,2,'MN'],[5,2,'WI'],[7,2,'MI'],[8,2,'NY'],[9,2,'MA'],[10,2,'RI'],
+    [0,3,'OR'],[1,3,'NV'],[2,3,'WY'],[3,3,'SD'],[4,3,'IA'],[5,3,'IL'],[6,3,'IN'],[7,3,'OH'],[8,3,'PA'],[9,3,'NJ'],[10,3,'CT'],
+    [0,4,'CA'],[1,4,'UT'],[2,4,'CO'],[3,4,'NE'],[4,4,'MO'],[5,4,'KY'],[6,4,'WV'],[7,4,'VA'],[8,4,'MD'],[9,4,'DE'],
+    [1,5,'AZ'],[2,5,'NM'],[3,5,'KS'],[4,5,'AR'],[5,5,'TN'],[6,5,'NC'],[7,5,'SC'],[8,5,'DC'],
+    [3,6,'OK'],[4,6,'LA'],[5,6,'MS'],[6,6,'AL'],[7,6,'GA'],
+    [0,7,'HI'],[3,7,'TX'],[8,7,'FL']];
+   loop(t=>{
+     ctx.clearRect(0,0,w,h);
+     const cols=11,rows=8,cell=Math.min((w-60)/cols,(h-70)/rows),
+           ox=(w-cell*cols)/2,oy=(h-cell*rows)/2+6;
+     const litCount=reduced?G.length:Math.min(G.length,Math.floor(t/5));
+     G.forEach((s,i)=>{
+       const x=ox+s[0]*cell,y=oy+s[1]*cell,lit=((i*29)%G.length)<litCount;
+       ctx.fillStyle=lit?'rgba(74,125,140,0.85)':'#151e27';
+       ctx.strokeStyle=HAIR;
+       ctx.beginPath();ctx.rect(x+2,y+2,cell-4,cell-4);ctx.fill();ctx.stroke();
+       ctx.fillStyle=lit?'#0b1014':FAINT;
+       ctx.font=(cell*0.26)+'px "IBM Plex Mono",monospace';ctx.textAlign='center';
+       ctx.fillText(s[2],x+cell/2,y+cell/2+cell*0.09);
+     });
+     ctx.textAlign='left';
+     ctx.fillStyle=DIM;ctx.font='12px "IBM Plex Mono",monospace';
+     const pct=Math.round(litCount/G.length*100);
+     ctx.fillText(pct>=100?'coverage: everywhere':'coverage lighting up: '+pct+'%',ox,oy-14);
+     if(litCount>=G.length&&t%240<120){
+       ctx.fillStyle=RUSTB;
+       ctx.fillText('— including the block you live on',ox+228,oy-14);
+     }
+   });}
+})();
+</script>
