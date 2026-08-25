@@ -254,15 +254,33 @@ un-wired connection this audit found and deserves an actual `DISPLAY_SPECS`
 entry (or a dedicated "federal case" spine entity) rather than living as an
 unscored `DOCKET` guess.
 
-**2. TRUST IT, NARROWLY — same-agency pairs (2,909 pairs, medium-high
-confidence).** Two tables from the *same* publisher (two EPA enforcement
-tables, two OSHA tables) sharing a docket column almost certainly share the
-same internal numbering system. Real, but scoped: only trust a `DOCKET` match
-between tables from the same agency family. Worth wiring per-agency, not
-warehouse-wide.
+**2. CORRECTION — this session originally called this bucket "same-agency,
+trust it narrowly" and that was wrong.** The claim was that 2,909 pairs
+shared a docket column *with another table from the same publisher* (two EPA
+tables, two OSHA tables) and should be trusted on that basis. **Checked
+directly: 100% of those 2,909 pairs are anonymous city open-data-portal crawl
+tables** (Tucson: 76 tables, Atlanta: 13, Memphis/Maricopa/Maryland a handful
+each — all hash-suffixed, never human-titled in this audit's data). **Zero**
+are the named federal agencies the claim implied. Being hosted on the same
+city's open-data portal is not evidence of sharing a docket-numbering system
+— a city portal bundles wildly different things (parking tickets, business
+licenses, code-enforcement cases) under one crawl. Some Tucson-internal pairs
+hit 88-100% coverage on shared values, which *could* mean two datasets from
+the same city case-management system, or could be the identical small-number-
+collision effect as the FDIC/CourtListener case below (short sequential IDs
+overlapping by chance) — **this audit cannot tell the difference without
+pulling each dataset's real title from the portal catalog first, which
+wasn't done.** Verdict: **treat every portal-crawl `DOCKET` pair as
+unverified, same as cross-agency** — the "same publisher" framing was a false
+comfort, not a real trust signal.
 
-**3. DON'T TRUST IT — cross-agency, non-court pairs (the remaining ~3,600
-pairs). Verdict: mostly noise, and I found the actual mechanism.** 47% of
+**3. DON'T TRUST IT — everything else (~6,475 of the 6,560 total docket
+pairs, once the courts cluster and the 40 same-table mirrors are set aside —
+this now includes the reclassified portal-crawl pairs from #2). Verdict:
+almost the entire `DOCKET` universe outside the federal courts is noise or
+unverified, and I found the actual mechanism for the worst of it.** Within
+the ~3,600 pairs that are cross-agency by publisher name (not counting the
+portal tables), 47% of
 these pairs share 5 or fewer values out of what are often million-row tables
 — that's not a connection, that's short numeric strings coinciding by chance.
 Worse, a handful have deceptively *high* overlap: `FED_FDIC_BANK_DATA`'s
