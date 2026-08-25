@@ -1,0 +1,254 @@
+[
+{
+"a": "FED_CMS_NPPES",
+"b": "FED_CMS_PART_D_PRESCRIBERS",
+"entity": "provider",
+"key": "NPI",
+"shared": 1416881
+},
+{
+"a": "FED_CMS_MEDICARE_PROVIDER",
+"b": "FED_CMS_NPPES",
+"entity": "provider",
+"key": "NPI",
+"shared": 1296736
+},
+{
+"a": "FED_CMS_NPPES",
+"b": "FED_CMS_OPEN_PAYMENTS",
+"entity": "provider",
+"key": "NPI",
+"shared": 979132
+},
+{
+"a": "FED_CMS_NPPES",
+"b": "FED_CMS_OPEN_PAYMENTS_2023",
+"entity": "provider",
+"key": "NPI",
+"shared": 933611
+},
+{
+"a": "FED_CMS_MEDICARE_PROVIDER",
+"b": "FED_CMS_PART_D_PRESCRIBERS",
+"entity": "provider",
+"key": "NPI",
+"shared": 861300
+},
+{
+"a": "FED_CMS_NPPES",
+"b": "FED_CMS_OPEN_PAYMENTS_2022",
+"entity": "provider",
+"key": "NPI",
+"shared": 856692
+},
+{
+"a": "FED_CMS_OPEN_PAYMENTS",
+"b": "FED_CMS_PART_D_PRESCRIBERS",
+"entity": "provider",
+"key": "NPI",
+"shared": 734802
+},
+{
+"a": "FED_CMS_OPEN_PAYMENTS",
+"b": "FED_CMS_OPEN_PAYMENTS_2023",
+"entity": "provider",
+"key": "NPI",
+"shared": 714130
+},
+{
+"a": "FED_CMS_OPEN_PAYMENTS_2023",
+"b": "FED_CMS_PART_D_PRESCRIBERS",
+"entity": "provider",
+"key": "NPI",
+"shared": 704161
+},
+{
+"a": "FED_CMS_OPEN_PAYMENTS_2022",
+"b": "FED_CMS_OPEN_PAYMENTS_2023",
+"entity": "provider",
+"key": "NPI",
+"shared": 660054
+},
+{
+"a": "FED_CMS_OPEN_PAYMENTS_2022",
+"b": "FED_CMS_PART_D_PRESCRIBERS",
+"entity": "provider",
+"key": "NPI",
+"shared": 641608
+},
+{
+"a": "FED_CMS_OPEN_PAYMENTS",
+"b": "FED_CMS_OPEN_PAYMENTS_2022",
+"entity": "provider",
+"key": "NPI",
+"shared": 628972
+},
+{
+"a": "FED_CMS_MEDICARE_PROVIDER",
+"b": "FED_CMS_OPEN_PAYMENTS",
+"entity": "provider",
+"key": "NPI",
+"shared": 601867
+},
+{
+"a": "FED_CMS_MEDICARE_PROVIDER",
+"b": "FED_CMS_OPEN_PAYMENTS_2023",
+"entity": "provider",
+"key": "NPI",
+"shared": 577659
+},
+{
+"a": "FED_CMS_MEDICARE_PROVIDER",
+"b": "FED_CMS_OPEN_PAYMENTS_2022",
+"entity": "provider",
+"key": "NPI",
+"shared": 531576
+},
+{
+"a": "FED_IRS_BMF",
+"b": "FED_IRS_REVOCATION",
+"entity": "organization",
+"key": "EIN",
+"shared": 159938
+},
+{
+"a": "FED_CONGRESS_LEGISLATORS",
+"b": "FED_VOTEVIEW_MEMBERS",
+"entity": "person",
+"key": "BIOGUIDE",
+"shared": 12584
+},
+{
+"a": "FED_CMS_NPPES",
+"b": "FED_HHS_OIG_LEIE",
+"entity": "provider",
+"key": "NPI",
+"shared": 8503
+},
+{
+"a": "FED_SEC_EDGAR_COMPANY_TICKERS",
+"b": "FED_SEC_EDGAR_FINANCIALS",
+"entity": "organization",
+"key": "CIK",
+"shared": 5779
+},
+{
+"a": "FED_CMS_HOSPITAL_GENERAL",
+"b": "FED_CMS_POS_OTHER",
+"entity": "facility",
+"key": "CCN",
+"shared": 5423
+},
+{
+"a": "FED_DOL_FORM5500",
+"b": "FED_IRS_BMF",
+"entity": "organization",
+"key": "EIN",
+"shared": 2445
+},
+{
+"a": "FED_VOTEVIEW_MEMBERS",
+"b": "FED_VOTEVIEW_ROLLCALLS",
+"entity": "person",
+"key": "ICPSR",
+"shared": 639
+},
+{
+"a": "FED_CONGRESS_COMMITTEE_MEMBERSHIP",
+"b": "FED_CONGRESS_LEGISLATORS",
+"entity": "person",
+"key": "BIOGUIDE",
+"shared": 528
+},
+{
+"a": "FED_CONGRESS_COMMITTEE_MEMBERSHIP",
+"b": "FED_VOTEVIEW_MEMBERS",
+"entity": "person",
+"key": "BIOGUIDE",
+"shared": 528
+},
+{
+"a": "FED_CMS_OPEN_PAYMENTS_2022",
+"b": "FED_HHS_OIG_LEIE",
+"entity": "provider",
+"key": "NPI",
+"shared": 503
+},
+{
+"a": "FED_CMS_OPEN_PAYMENTS_2023",
+"b": "FED_HHS_OIG_LEIE",
+"entity": "provider",
+"key": "NPI",
+"shared": 439
+},
+{
+"a": "FED_CMS_IRF",
+"b": "FED_CMS_POS_OTHER",
+"entity": "facility",
+"key": "CCN",
+"shared": 410
+},
+{
+"a": "FED_CMS_OPEN_PAYMENTS",
+"b": "FED_HHS_OIG_LEIE",
+"entity": "provider",
+"key": "NPI",
+"shared": 350
+},
+{
+"a": "FED_CMS_LTCH",
+"b": "FED_CMS_POS_OTHER",
+"entity": "facility",
+"key": "CCN",
+"shared": 311
+},
+{
+"a": "FED_CMS_PART_D_PRESCRIBERS",
+"b": "FED_HHS_OIG_LEIE",
+"entity": "provider",
+"key": "NPI",
+"shared": 243
+},
+{
+"a": "FED_IRS_990",
+"b": "FED_IRS_BMF",
+"entity": "organization",
+"key": "EIN",
+"shared": 192
+},
+{
+"a": "FED_CMS_MEDICARE_PROVIDER",
+"b": "FED_HHS_OIG_LEIE",
+"entity": "provider",
+"key": "NPI",
+"shared": 112
+},
+{
+"a": "FED_DOL_FORM5500",
+"b": "FED_IRS_REVOCATION",
+"entity": "organization",
+"key": "EIN",
+"shared": 29
+},
+{
+"a": "FED_IRS_990",
+"b": "FED_IRS_REVOCATION",
+"entity": "organization",
+"key": "EIN",
+"shared": 15
+},
+{
+"a": "FED_CMS_HOSPITAL_GENERAL",
+"b": "FED_CMS_LTCH",
+"entity": "facility",
+"key": "CCN",
+"shared": 5
+},
+{
+"a": "FED_CFPB_HMDA",
+"b": "INTL_GLEIF",
+"entity": "organization",
+"key": "LEI",
+"shared": 5
+}
+]

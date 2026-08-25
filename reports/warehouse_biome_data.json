@@ -1,0 +1,1338 @@
+[
+{
+"domain": "HEALTH",
+"total_rows": 360184627,
+"n_tables": 95,
+"tables": [
+{
+"name": "HEALTH__FED_DEA_ARCOS",
+"rows": 178598026
+},
+{
+"name": "HEALTH__FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY",
+"rows": 31403215
+},
+{
+"name": "HEALTH__FED_CMS_PARTD_PRESCRIBERS",
+"rows": 25869521
+},
+{
+"name": "HEALTH__FED_CMS_OPEN_PAYMENTS",
+"rows": 15385047
+},
+{
+"name": "HEALTH__FED_CMS_OPEN_PAYMENTS_2023",
+"rows": 14700786
+},
+{
+"name": "HEALTH__FED_CMS_OPEN_PAYMENTS_2022",
+"rows": 13306564
+},
+{
+"name": "HEALTH__FED_CMS_MEDICARE_DIALYSIS_FACILITIES",
+"rows": 12456456
+},
+{
+"name": "HEALTH__FED_FDA_FAERS_INDI",
+"rows": 9833260
+},
+{
+"name": "HEALTH__FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+"rows": 9781673
+},
+{
+"name": "HEALTH__FED_CMS_NPPES",
+"rows": 9606683
+},
+{
+"name": "HEALTH__FED_FDA_FAERS_DEMO",
+"rows": 5811086
+},
+{
+"name": "HEALTH__FED_FDA_FAERS_OUTC",
+"rows": 5147466
+},
+{
+"name": "HEALTH__FED_FDA_GUDID",
+"rows": 5083948
+},
+{
+"name": "HEALTH__FED_FDA_MAUDE",
+"rows": 2743561
+},
+{
+"name": "+81 more tables",
+"rows": 20457335
+}
+]
+},
+{
+"domain": "FINANCE",
+"total_rows": 203331421,
+"n_tables": 55,
+"tables": [
+{
+"name": "FINANCE__FED_SEC_13F_POSITIONS",
+"rows": 101261252
+},
+{
+"name": "FINANCE__FED_FEC_INDIV_CONTRIBUTIONS",
+"rows": 84172112
+},
+{
+"name": "FINANCE__FED_SEC_13F_SUBMISSION",
+"rows": 3822885
+},
+{
+"name": "FINANCE__FED_FDIC_SOD_BRANCH_DEPOSITS",
+"rows": 2823000
+},
+{
+"name": "FINANCE__FED_SEC_INSIDER_NONDERIV_TRANS",
+"rows": 2672841
+},
+{
+"name": "FINANCE__FED_SEC_INSIDER_REPORTINGOWNER",
+"rows": 1934673
+},
+{
+"name": "FINANCE__FED_SEC_INSIDER_SUBMISSION",
+"rows": 1772088
+},
+{
+"name": "FINANCE__FED_SEC_INSIDER_DERIV_TRANS",
+"rows": 1049121
+},
+{
+"name": "FINANCE__FED_FEC_COMMITTEE_TO_CANDIDATE",
+"rows": 866730
+},
+{
+"name": "FINANCE__FED_FATCA_FFI",
+"rows": 516298
+},
+{
+"name": "FINANCE__FED_SEC_13F_FILERS",
+"rows": 344109
+},
+{
+"name": "FINANCE__FED_SEC_13F_SUBMISSIONS",
+"rows": 336124
+},
+{
+"name": "FINANCE__FED_FEC_INDEPENDENT_EXPENDITURES",
+"rows": 261033
+},
+{
+"name": "FINANCE__FED_EPA_ICIS_FEC_ICIS_FEC_EPA_INSPECTIONS",
+"rows": 260556
+},
+{
+"name": "+41 more tables",
+"rows": 1238599
+}
+]
+},
+{
+"domain": "ENVIRONMENT",
+"total_rows": 101419356,
+"n_tables": 70,
+"tables": [
+{
+"name": "ENVIRONMENT__FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT",
+"rows": 15432737
+},
+{
+"name": "ENVIRONMENT__FED_EPA_AIR_EMISSIONS_POLL_RPT_COMBINED_EMISSIONS",
+"rows": 10411826
+},
+{
+"name": "ENVIRONMENT__FED_EPA_NPDES_NPDES_QNCR_HISTORY",
+"rows": 7951656
+},
+{
+"name": "ENVIRONMENT__FED_FRACFOCUS_REGISTRY",
+"rows": 7200550
+},
+{
+"name": "ENVIRONMENT__FED_USGS_WATER",
+"rows": 6694816
+},
+{
+"name": "ENVIRONMENT__FED_EPA_FRS_FACILITIES",
+"rows": 5300149
+},
+{
+"name": "ENVIRONMENT__XC_EPA_CORPORATE_CROSSWALK",
+"rows": 5300149
+},
+{
+"name": "ENVIRONMENT__FED_EPA_FRS_FRS_PROGRAM_LINKS",
+"rows": 4406498
+},
+{
+"name": "ENVIRONMENT__FED_EPA_FRS_FRS_FACILITIES",
+"rows": 3277557
+},
+{
+"name": "ENVIRONMENT__FED_EPA_ECHO",
+"rows": 3135554
+},
+{
+"name": "ENVIRONMENT__FED_EPA_RCRA_VIOSNC_HISTORY",
+"rows": 2675581
+},
+{
+"name": "ENVIRONMENT__FED_EPA_SDWA_SDWA_SITE_VISITS",
+"rows": 2495249
+},
+{
+"name": "ENVIRONMENT__FED_EPA_FRS_FRS_NAICS_CODES",
+"rows": 2179702
+},
+{
+"name": "ENVIRONMENT__FED_EPA_NPDES_NPDES_INSPECTIONS",
+"rows": 1900067
+},
+{
+"name": "+56 more tables",
+"rows": 23057265
+}
+]
+},
+{
+"domain": "MARITIME",
+"total_rows": 58104610,
+"n_tables": 1,
+"tables": [
+{
+"name": "MARITIME__FED_NOAA_AIS",
+"rows": 58104610
+}
+]
+},
+{
+"domain": "JUSTICE",
+"total_rows": 57846907,
+"n_tables": 63,
+"tables": [
+{
+"name": "JUSTICE__FED_FJC_IDB_CIVIL",
+"rows": 10857396
+},
+{
+"name": "JUSTICE__FED_COURTLISTENER_FJC_IDB_CL_LINKED",
+"rows": 10323280
+},
+{
+"name": "JUSTICE__FED_COURTLISTENER_OPINION_CLUSTERS",
+"rows": 10070727
+},
+{
+"name": "JUSTICE__FED_FJC_IDB_BANKRUPTCY",
+"rows": 6965441
+},
+{
+"name": "JUSTICE__FED_COURTLISTENER_PARENTHETICALS",
+"rows": 6408887
+},
+{
+"name": "JUSTICE__FED_FJC_IDB_CRIMINAL",
+"rows": 6299908
+},
+{
+"name": "JUSTICE__FED_COURTLISTENER_INVESTMENTS",
+"rows": 1901599
+},
+{
+"name": "JUSTICE__INTL_OPENSANCTIONS_DEFAULT",
+"rows": 1281846
+},
+{
+"name": "JUSTICE__FED_FJC_IDB_APPELLATE",
+"rows": 988183
+},
+{
+"name": "JUSTICE__FED_COURTLISTENER_ORIGINATING_COURT_INFO",
+"rows": 973419
+},
+{
+"name": "JUSTICE__INTL_UCDP_GED",
+"rows": 385918
+},
+{
+"name": "JUSTICE__FED_FBI_CDE",
+"rows": 238680
+},
+{
+"name": "JUSTICE__XC_VERA_INCARCERATION_TRENDS",
+"rows": 128507
+},
+{
+"name": "JUSTICE__RACIAL_JAIL_DISPARITY",
+"rows": 128507
+},
+{
+"name": "+49 more tables",
+"rows": 894609
+}
+]
+},
+{
+"domain": "ECONOMICS",
+"total_rows": 36303162,
+"n_tables": 39,
+"tables": [
+{
+"name": "ECONOMICS__FED_USASPENDING_CONTRACTS",
+"rows": 6325622
+},
+{
+"name": "ECONOMICS__INTL_GLEIF_REPEX",
+"rows": 6259489
+},
+{
+"name": "ECONOMICS__FED_IRS_990_EFILE_INDEX",
+"rows": 5544626
+},
+{
+"name": "ECONOMICS__FED_BLS_QCEW",
+"rows": 3619437
+},
+{
+"name": "ECONOMICS__INTL_GLEIF",
+"rows": 3382301
+},
+{
+"name": "ECONOMICS__FED_SBA_LOANS",
+"rows": 2174502
+},
+{
+"name": "ECONOMICS__FED_IRS_BMF",
+"rows": 1974830
+},
+{
+"name": "ECONOMICS__FED_IRS_PUB78_ELIGIBLE_DONEES",
+"rows": 1435544
+},
+{
+"name": "ECONOMICS__FED_IRS_AUTO_REVOCATIONS",
+"rows": 1207295
+},
+{
+"name": "ECONOMICS__FED_IRS_REVOCATION",
+"rows": 1187367
+},
+{
+"name": "ECONOMICS__FED_SBA_PPP",
+"rows": 968524
+},
+{
+"name": "ECONOMICS__INTL_GLEIF_RELATIONSHIPS",
+"rows": 484142
+},
+{
+"name": "ECONOMICS__FED_TREASURY_DTS_DEPOSITS",
+"rows": 478149
+},
+{
+"name": "ECONOMICS__FED_FAC_SINGLE_AUDIT",
+"rows": 411638
+},
+{
+"name": "+25 more tables",
+"rows": 849696
+}
+]
+},
+{
+"domain": "CORPORATE_REGISTRY",
+"total_rows": 29701579,
+"n_tables": 11,
+"tables": [
+{
+"name": "CORPORATE_REGISTRY__UK_COMPANIES_HOUSE_PSC",
+"rows": 15804611
+},
+{
+"name": "CORPORATE_REGISTRY__INTL_UK_COMPANIES_HOUSE",
+"rows": 5734780
+},
+{
+"name": "CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_RELATIONSHIPS",
+"rows": 3339267
+},
+{
+"name": "CORPORATE_REGISTRY__FED_IRS_EO_BMF",
+"rows": 1983563
+},
+{
+"name": "CORPORATE_REGISTRY__INTL_IE_CRO",
+"rows": 821693
+},
+{
+"name": "CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_ENTITIES",
+"rows": 814344
+},
+{
+"name": "CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_OFFICERS",
+"rows": 771315
+},
+{
+"name": "CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_ADDRESSES",
+"rows": 402246
+},
+{
+"name": "CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_INTERMEDIARIES",
+"rows": 26768
+},
+{
+"name": "CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_OTHERS",
+"rows": 2989
+},
+{
+"name": "CORPORATE_REGISTRY__INTL_ES_BORME",
+"rows": 3
+}
+]
+},
+{
+"domain": "HOUSING",
+"total_rows": 22678719,
+"n_tables": 17,
+"tables": [
+{
+"name": "HOUSING__FED_CFPB_HMDA_HISTORIC",
+"rows": 19136434
+},
+{
+"name": "HOUSING__FED_FEMA_IA_HOUSING_REGISTRATIONS",
+"rows": 3080000
+},
+{
+"name": "HOUSING__FED_FHFA_HPI",
+"rows": 184807
+},
+{
+"name": "HOUSING__FED_HUD_FHA_SF_PORTFOLIO_SNAPSHOT",
+"rows": 61647
+},
+{
+"name": "HOUSING__FED_HUD_ASSISTED_HOUSING_PROJECTS",
+"rows": 35601
+},
+{
+"name": "HOUSING__FED_CFPB_HMDA_DC_ONLY",
+"rows": 28301
+},
+{
+"name": "HOUSING__FED_CFPB_HMDA",
+"rows": 28301
+},
+{
+"name": "HOUSING__FED_HUD_MF_FIRM_COMMITMENTS",
+"rows": 25557
+},
+{
+"name": "HOUSING__FED_FEMA_NFIP_COMMUNITY_STATUS_BOOK",
+"rows": 25122
+},
+{
+"name": "HOUSING__FED_HUD_MF_SECTION8_CONTRACTS",
+"rows": 24309
+},
+{
+"name": "HOUSING__FED_CFPB_HMDA_LAR",
+"rows": 17474
+},
+{
+"name": "HOUSING__FED_USDA_RD_MFH_ACTIVE_PROJECTS",
+"rows": 13550
+},
+{
+"name": "HOUSING__FED_FHFA_NMDB",
+"rows": 7204
+},
+{
+"name": "HOUSING__FED_CFPB_HMDA_ARID2017_LEI_XREF",
+"rows": 5399
+},
+{
+"name": "+3 more tables",
+"rows": 5013
+}
+]
+},
+{
+"domain": "POLITICS",
+"total_rows": 21033408,
+"n_tables": 79,
+"tables": [
+{
+"name": "POLITICS__INTL_ELECTIONS_CANADA_CONTRIBUTIONS",
+"rows": 12646465
+},
+{
+"name": "POLITICS__INTL_VOETEN_UNGA_VOTES",
+"rows": 1823352
+},
+{
+"name": "POLITICS__FED_FCC_LICENSING",
+"rows": 1689338
+},
+{
+"name": "POLITICS__VOTEVIEW_VOTES",
+"rows": 945523
+},
+{
+"name": "POLITICS__CA_LOBBY_COVER",
+"rows": 524828
+},
+{
+"name": "POLITICS__ST_NYC_CFB_CAMPAIGN_2021_CONTRIBUTIONS",
+"rows": 457521
+},
+{
+"name": "POLITICS__BILL_COSPONSORS",
+"rows": 367735
+},
+{
+"name": "POLITICS__TX_LOBBY_COVER",
+"rows": 283803
+},
+{
+"name": "POLITICS__ST_NYC_CFB_CAMPAIGN_2025_CONTRIBUTIONS",
+"rows": 259537
+},
+{
+"name": "POLITICS__TX_LOBBY_SUBJECT_MATTER",
+"rows": 209957
+},
+{
+"name": "POLITICS__CA_LOBBY_COVER2",
+"rows": 206493
+},
+{
+"name": "POLITICS__ST_NYC_CFB_CAMPAIGN_2013_CONTRIBUTION",
+"rows": 197968
+},
+{
+"name": "POLITICS__ST_NYC_CFB_CAMPAIGN_2001_CONTRIBUTION",
+"rows": 193741
+},
+{
+"name": "POLITICS__IRS527_DIRECTORS_OFFICERS",
+"rows": 189593
+},
+{
+"name": "+65 more tables",
+"rows": 1037554
+}
+]
+},
+{
+"domain": "IMMIGRATION",
+"total_rows": 19945292,
+"n_tables": 15,
+"tables": [
+{
+"name": "IMMIGRATION__FED_EOIR_CASE_DATA",
+"rows": 12631225
+},
+{
+"name": "IMMIGRATION__FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT",
+"rows": 2978925
+},
+{
+"name": "IMMIGRATION__FED_ICE_DETENTION_STINTS",
+"rows": 2571975
+},
+{
+"name": "IMMIGRATION__FED_DOL_OFLC",
+"rows": 664616
+},
+{
+"name": "IMMIGRATION__FED_ICE_DETAINERS",
+"rows": 609769
+},
+{
+"name": "IMMIGRATION__FED_EPA_SDWA_SDWA_SERVICE_AREAS",
+"rows": 422464
+},
+{
+"name": "IMMIGRATION__FED_DHS_OHSS",
+"rows": 50740
+},
+{
+"name": "IMMIGRATION__XC_OWID_REFUGEES",
+"rows": 7442
+},
+{
+"name": "IMMIGRATION__FED_CMS_HOSPICE_ENROLLMENTS",
+"rows": 6066
+},
+{
+"name": "IMMIGRATION__FED_ICE_DETENTION_FACILITY_CODES",
+"rows": 1490
+},
+{
+"name": "IMMIGRATION__FED_ICE_STATISTICS",
+"rows": 204
+},
+{
+"name": "IMMIGRATION__FED_USCIS_DATA",
+"rows": 177
+},
+{
+"name": "IMMIGRATION__FED_ICE_DETENTION_FACILITY_LIST",
+"rows": 163
+},
+{
+"name": "IMMIGRATION__FED_DHS_YEARBOOK",
+"rows": 27
+},
+{
+"name": "+1 more tables",
+"rows": 9
+}
+]
+},
+{
+"domain": "CONSUMER_PROTECTION",
+"total_rows": 17168287,
+"n_tables": 1,
+"tables": [
+{
+"name": "CONSUMER_PROTECTION__FED_CFPB_COMPLAINTS",
+"rows": 17168287
+}
+]
+},
+{
+"domain": "CONSUMER_SAFETY",
+"total_rows": 12418982,
+"n_tables": 4,
+"tables": [
+{
+"name": "CONSUMER_SAFETY__FED_CPSC_NEISS",
+"rows": 9794971
+},
+{
+"name": "CONSUMER_SAFETY__FED_NHTSA_COMPLAINTS",
+"rows": 2227941
+},
+{
+"name": "CONSUMER_SAFETY__FED_NHTSA_RECALLS",
+"rows": 241861
+},
+{
+"name": "CONSUMER_SAFETY__FED_NHTSA_INVESTIGATIONS",
+"rows": 154209
+}
+]
+},
+{
+"domain": "REFERENCE",
+"total_rows": 8438987,
+"n_tables": 34,
+"tables": [
+{
+"name": "REFERENCE__FED_ITIS_REFERENCE_LINKS",
+"rows": 1970107
+},
+{
+"name": "REFERENCE__FED_USGS_GNIS_ALL_NAMES",
+"rows": 1249624
+},
+{
+"name": "REFERENCE__FED_ITIS_TAXONOMIC_UNITS",
+"rows": 993346
+},
+{
+"name": "REFERENCE__FED_ITIS_LONGNAMES",
+"rows": 993346
+},
+{
+"name": "REFERENCE__FED_ITIS_HIERARCHY",
+"rows": 678363
+},
+{
+"name": "REFERENCE__FED_ITIS_GEOGRAPHIC_DIV",
+"rows": 480351
+},
+{
+"name": "REFERENCE__FED_ITIS_SYNONYM_LINKS",
+"rows": 315254
+},
+{
+"name": "REFERENCE__FED_ITIS_TAXON_AUTHORS_LKP",
+"rows": 214445
+},
+{
+"name": "REFERENCE__FED_ITIS_STRIPPEDAUTHOR",
+"rows": 214445
+},
+{
+"name": "REFERENCE__FED_ITIS_NODC_IDS",
+"rows": 209565
+},
+{
+"name": "REFERENCE__FED_ITIS_TU_COMMENTS_LINKS",
+"rows": 192851
+},
+{
+"name": "REFERENCE__FED_ITIS_VERNACULARS",
+"rows": 166778
+},
+{
+"name": "REFERENCE__FED_ITIS_JURISDICTION",
+"rows": 161922
+},
+{
+"name": "REFERENCE__CALENDAR",
+"rows": 155593
+},
+{
+"name": "+20 more tables",
+"rows": 442997
+}
+]
+},
+{
+"domain": "LABOR",
+"total_rows": 7203649,
+"n_tables": 12,
+"tables": [
+{
+"name": "LABOR__FED_MSHA_VIOLATIONS",
+"rows": 3087265
+},
+{
+"name": "LABOR__FED_OSHA_ITA_CASE_DETAIL_2023",
+"rows": 890934
+},
+{
+"name": "LABOR__FED_OSHA_ITA_CASE_DETAIL_2024",
+"rows": 688649
+},
+{
+"name": "LABOR__FED_DOL_OLMS",
+"rows": 617710
+},
+{
+"name": "LABOR__FED_OSHA_ITA_300A_SUMMARY_2024",
+"rows": 398620
+},
+{
+"name": "LABOR__FED_OSHA_ITA_300A_SUMMARY_2023",
+"rows": 394234
+},
+{
+"name": "LABOR__FED_OSHA_ITA_300A_SUMMARY_2025",
+"rows": 383283
+},
+{
+"name": "LABOR__FED_OSHA_ITA_CASE_DETAIL_2025",
+"rows": 330447
+},
+{
+"name": "LABOR__FED_MSHA_ACCIDENTS",
+"rows": 273623
+},
+{
+"name": "LABOR__FED_MSHA_MINES",
+"rows": 91906
+},
+{
+"name": "LABOR__FED_DOL_EBSA_FORM5500_SCHEDULE_SB",
+"rows": 41802
+},
+{
+"name": "LABOR__FED_PBGC_TRUSTEED_PLANS",
+"rows": 5176
+}
+]
+},
+{
+"domain": "EDUCATION",
+"total_rows": 4001508,
+"n_tables": 17,
+"tables": [
+{
+"name": "EDUCATION__FED_GOOGLE_POLADS_CREATIVE_STATS",
+"rows": 1562870
+},
+{
+"name": "EDUCATION__FED_GOOGLE_POLADS_CREATIVE_ID_MAPPING",
+"rows": 971029
+},
+{
+"name": "EDUCATION__FED_GOOGLE_POLADS_ADVERTISER_GEO_SPEND",
+"rows": 614078
+},
+{
+"name": "EDUCATION__FED_GOOGLE_POLADS_ADVERTISER_WEEKLY_SPEND",
+"rows": 298884
+},
+{
+"name": "EDUCATION__FED_CFTC_COT_FUTURES",
+"rows": 287053
+},
+{
+"name": "EDUCATION__FED_SENATE_LDA_FILINGS",
+"rows": 174871
+},
+{
+"name": "EDUCATION__FED_CFTC_COT_FINANCIAL",
+"rows": 34683
+},
+{
+"name": "EDUCATION__FED_GOOGLE_POLADS_ADVERTISER_STATS",
+"rows": 21211
+},
+{
+"name": "EDUCATION__FED_FRB_H15_SELECTED_RATES",
+"rows": 16848
+},
+{
+"name": "EDUCATION__FED_GOOGLE_POLADS_ADVERTISER_ID_MAPPING",
+"rows": 8044
+},
+{
+"name": "EDUCATION__FED_ED_COLLEGE_SCORECARD_INSTITUTION",
+"rows": 6273
+},
+{
+"name": "EDUCATION__FED_ED_NCES_CIP_CODES",
+"rows": 2318
+},
+{
+"name": "EDUCATION__FED_GOOGLE_POLADS_GEO_SPEND",
+"rows": 1289
+},
+{
+"name": "EDUCATION__FED_CPSC_NEISS_CODES",
+"rows": 1250
+},
+{
+"name": "+3 more tables",
+"rows": 807
+}
+]
+},
+{
+"domain": "SCIENCE_RESEARCH",
+"total_rows": 2485535,
+"n_tables": 6,
+"tables": [
+{
+"name": "SCIENCE_RESEARCH__FED_NIH_REPORTER",
+"rows": 2122611
+},
+{
+"name": "SCIENCE_RESEARCH__FED_SBIR_STTR_AWARDS",
+"rows": 219503
+},
+{
+"name": "SCIENCE_RESEARCH__FED_RETRACTION_WATCH",
+"rows": 71591
+},
+{
+"name": "SCIENCE_RESEARCH__XC_RETRACTION_WATCH_DATABASE",
+"rows": 71388
+},
+{
+"name": "SCIENCE_RESEARCH__XC_BIORXIV_MEDRXIV",
+"rows": 432
+},
+{
+"name": "SCIENCE_RESEARCH__XC_OSF_REGISTRATIONS",
+"rows": 10
+}
+]
+},
+{
+"domain": "TIMELINE",
+"total_rows": 2321870,
+"n_tables": 33,
+"tables": [
+{
+"name": "TIMELINE__WAREHOUSE",
+"rows": 1160612
+},
+{
+"name": "TIMELINE__ENVIRONMENT_INDEX",
+"rows": 274298
+},
+{
+"name": "TIMELINE__JUSTICE_INDEX",
+"rows": 236674
+},
+{
+"name": "TIMELINE__HEALTH_INDEX",
+"rows": 131105
+},
+{
+"name": "TIMELINE__POLITICS_INDEX",
+"rows": 106501
+},
+{
+"name": "TIMELINE__CORPORATE_REGISTRY_INDEX",
+"rows": 86054
+},
+{
+"name": "TIMELINE__TRANSPORT_INDEX",
+"rows": 61164
+},
+{
+"name": "TIMELINE__ECONOMICS_INDEX",
+"rows": 59672
+},
+{
+"name": "TIMELINE__LABOR_INDEX",
+"rows": 38246
+},
+{
+"name": "TIMELINE__FINANCE_INDEX",
+"rows": 37808
+},
+{
+"name": "TIMELINE__CONSUMER_SAFETY_INDEX",
+"rows": 30990
+},
+{
+"name": "TIMELINE__REFERENCE_INDEX",
+"rows": 17883
+},
+{
+"name": "TIMELINE__HOUSING_INDEX",
+"rows": 17475
+},
+{
+"name": "TIMELINE__SCIENCE_RESEARCH_INDEX",
+"rows": 15506
+},
+{
+"name": "+19 more tables",
+"rows": 47882
+}
+]
+},
+{
+"domain": "TRANSPORT",
+"total_rows": 2189152,
+"n_tables": 11,
+"tables": [
+{
+"name": "TRANSPORT__FED_FRA_CASUALTIES",
+"rows": 1150788
+},
+{
+"name": "TRANSPORT__FED_FAA_AIRCRAFT_REGISTRY",
+"rows": 315447
+},
+{
+"name": "TRANSPORT__FED_FRA_CROSSING_INCIDENTS",
+"rows": 251149
+},
+{
+"name": "TRANSPORT__FED_FRA_EQUIPMENT_ACCIDENTS",
+"rows": 224941
+},
+{
+"name": "TRANSPORT__FED_NTSB_AVIATION_INJURY",
+"rows": 179179
+},
+{
+"name": "TRANSPORT__FED_NTSB_AVIATION_AIRCRAFT",
+"rows": 31503
+},
+{
+"name": "TRANSPORT__FED_NTSB_AVIATION_EVENTS",
+"rows": 30968
+},
+{
+"name": "TRANSPORT__FED_FRA_RAIL_DEATHS_BY_RAILROAD",
+"rows": 5152
+},
+{
+"name": "TRANSPORT__FED_DOT_BTS",
+"rows": 21
+},
+{
+"name": "TRANSPORT__FED_FAA_DATA_PORTAL",
+"rows": 3
+},
+{
+"name": "TRANSPORT__FED_FRA_SAFETY",
+"rows": 1
+}
+]
+},
+{
+"domain": "OPEN_DATA",
+"total_rows": 1688848,
+"n_tables": 12,
+"tables": [
+{
+"name": "OPEN_DATA__XC_WAYBACK_DOJ_EPSTEIN",
+"rows": 1537352
+},
+{
+"name": "OPEN_DATA__INTL_FR_DATA_GOUV",
+"rows": 130431
+},
+{
+"name": "OPEN_DATA__INTL_CH_OPENDATASWISS",
+"rows": 5000
+},
+{
+"name": "OPEN_DATA__INTL_DE_GOVDATA",
+"rows": 5000
+},
+{
+"name": "OPEN_DATA__INTL_GR_DATAGOV",
+"rows": 4988
+},
+{
+"name": "OPEN_DATA__INTL_AR_DATOSGOB",
+"rows": 3556
+},
+{
+"name": "OPEN_DATA__INTL_CL_DATOSGOB",
+"rows": 1000
+},
+{
+"name": "OPEN_DATA__INTL_ES_DATOSGOB",
+"rows": 1000
+},
+{
+"name": "OPEN_DATA__INTL_CA_OPEN_CANADA",
+"rows": 500
+},
+{
+"name": "OPEN_DATA__INTL_BR_DADOS_GOV",
+"rows": 10
+},
+{
+"name": "OPEN_DATA__INTL_GH_DATAGOVGH",
+"rows": 10
+},
+{
+"name": "OPEN_DATA__INTL_GE_DATAGOV",
+"rows": 1
+}
+]
+},
+{
+"domain": "ENERGY",
+"total_rows": 480459,
+"n_tables": 29,
+"tables": [
+{
+"name": "ENERGY__INTL_EMBER_ELEC",
+"rows": 369264
+},
+{
+"name": "ENERGY__FED_EIA860_3_1_GENERATOR",
+"rows": 26855
+},
+{
+"name": "ENERGY__FED_EIA860_2_PLANT",
+"rows": 16132
+},
+{
+"name": "ENERGY__FED_EIA861_SERVICE_TERRITORY",
+"rows": 11775
+},
+{
+"name": "ENERGY__FED_EIA860_3_3_SOLAR",
+"rows": 7154
+},
+{
+"name": "ENERGY__FED_EIA860_6_1_ENVIROASSOC",
+"rows": 7020
+},
+{
+"name": "ENERGY__FED_EIA860_1_UTILITY",
+"rows": 6643
+},
+{
+"name": "ENERGY__FED_EIA860_4_OWNER",
+"rows": 5495
+},
+{
+"name": "ENERGY__FED_EIA860_6_2_ENVIROEQUIP",
+"rows": 4428
+},
+{
+"name": "ENERGY__FED_EIA861_FRAME",
+"rows": 3412
+},
+{
+"name": "ENERGY__FED_EIA860_3_5_MULTIFUEL",
+"rows": 2893
+},
+{
+"name": "ENERGY__FED_EIA861_SALES_ULT_CUST",
+"rows": 2815
+},
+{
+"name": "ENERGY__FED_EIA861_ADVANCED_METERS",
+"rows": 2725
+},
+{
+"name": "ENERGY__FED_EIA861_SHORT_FORM",
+"rows": 1724
+},
+{
+"name": "+15 more tables",
+"rows": 12124
+}
+]
+},
+{
+"domain": "SCIENCE",
+"total_rows": 444100,
+"n_tables": 5,
+"tables": [
+{
+"name": "SCIENCE__FED_USGS_EARTHQUAKES",
+"rows": 443274
+},
+{
+"name": "SCIENCE__INTL_EMBL_ENSEMBL",
+"rows": 643
+},
+{
+"name": "SCIENCE__FED_NSF_AWARDS",
+"rows": 115
+},
+{
+"name": "SCIENCE__FED_NASA_OPEN_DATA",
+"rows": 54
+},
+{
+"name": "SCIENCE__XC_OWID_AI_INCIDENTS_ANNUAL",
+"rows": 14
+}
+]
+},
+{
+"domain": "PROCUREMENT",
+"total_rows": 355577,
+"n_tables": 5,
+"tables": [
+{
+"name": "PROCUREMENT__FED_SAM_EXCLUSIONS",
+"rows": 167928
+},
+{
+"name": "PROCUREMENT__INTL_EC_SERCOP",
+"rows": 132995
+},
+{
+"name": "PROCUREMENT__FED_USASPENDING_BULK",
+"rows": 49613
+},
+{
+"name": "PROCUREMENT__FED_USASPENDING_SUBAWARDS",
+"rows": 5000
+},
+{
+"name": "PROCUREMENT__INTL_ADB_DATA",
+"rows": 41
+}
+]
+},
+{
+"domain": "EPSTEIN",
+"total_rows": 204263,
+"n_tables": 3,
+"tables": [
+{
+"name": "FCT_WAYBACK_PAGE_CHANGES",
+"rows": 203305
+},
+{
+"name": "FCT_LIBRARY_SNAPSHOT",
+"rows": 619
+},
+{
+"name": "FCT_DATASET_SIZE_HISTORY",
+"rows": 339
+}
+]
+},
+{
+"domain": "REGULATORY",
+"total_rows": 94731,
+"n_tables": 1,
+"tables": [
+{
+"name": "REGULATORY__FED_FEDERAL_REGISTER_DOCUMENTS",
+"rows": 94731
+}
+]
+},
+{
+"domain": "FOREIGN_INFLUENCE",
+"total_rows": 48104,
+"n_tables": 1,
+"tables": [
+{
+"name": "FOREIGN_INFLUENCE__FED_FARA_BULK",
+"rows": 48104
+}
+]
+},
+{
+"domain": "HISTORY",
+"total_rows": 36387,
+"n_tables": 5,
+"tables": [
+{
+"name": "HISTORY__FED_SLAVEVOYAGES_TRANSATLANTIC",
+"rows": 36108
+},
+{
+"name": "HISTORY__FED_DOCSOUTH",
+"rows": 144
+},
+{
+"name": "HISTORY__FED_WPA_SLAVE_NARRATIVES",
+"rows": 100
+},
+{
+"name": "HISTORY__FED_DENSHO_DDR",
+"rows": 25
+},
+{
+"name": "HISTORY__FED_DAVID_RUMSEY",
+"rows": 10
+}
+]
+},
+{
+"domain": "INVESTIGATIONS",
+"total_rows": 27592,
+"n_tables": 3,
+"tables": [
+{
+"name": "INVESTIGATIONS__XC_WAYBACK_REPLAY_DOJ_LISTING",
+"rows": 24897
+},
+{
+"name": "INVESTIGATIONS__XC_WAYBACK_REPLAY_DOJ_DEEP_PAGES",
+"rows": 2542
+},
+{
+"name": "INVESTIGATIONS__INTL_LEIDEN_RUSSIAN_OPS_EUROPE",
+"rows": 153
+}
+]
+},
+{
+"domain": "HISTORICAL_RECORDS",
+"total_rows": 11521,
+"n_tables": 1,
+"tables": [
+{
+"name": "HISTORICAL_RECORDS__FED_SLAVEVOYAGES_INTRAAMERICAN",
+"rows": 11521
+}
+]
+},
+{
+"domain": "CRIMINAL_JUSTICE",
+"total_rows": 1000,
+"n_tables": 1,
+"tables": [
+{
+"name": "CRIMINAL_JUSTICE__FED_BJS_DATA",
+"rows": 1000
+}
+]
+},
+{
+"domain": "MONEY_FINANCE",
+"total_rows": 938,
+"n_tables": 1,
+"tables": [
+{
+"name": "MONEY__DEBT_REPAYMENT_CLIFF",
+"rows": 938
+}
+]
+},
+{
+"domain": "LEGAL_ENFORCEMENT",
+"total_rows": 882,
+"n_tables": 1,
+"tables": [
+{
+"name": "LEGAL_ENFORCEMENT__FED_NAAG_MULTISTATE_SETTLEMENTS",
+"rows": 882
+}
+]
+},
+{
+"domain": "GOVERNANCE",
+"total_rows": 406,
+"n_tables": 1,
+"tables": [
+{
+"name": "GOVERNANCE__FED_REVOLVINGDOOR_PROJECT",
+"rows": 406
+}
+]
+},
+{
+"domain": "GOVERNMENT_RECORDS",
+"total_rows": 101,
+"n_tables": 2,
+"tables": [
+{
+"name": "GOVERNMENT_RECORDS__FED_USASPENDING_TAS_FILTER_TREE",
+"rows": 92
+},
+{
+"name": "GOVERNMENT_RECORDS__FED_NARA_AAD",
+"rows": 9
+}
+]
+},
+{
+"domain": "JUDICIARY",
+"total_rows": 25,
+"n_tables": 1,
+"tables": [
+{
+"name": "JUDICIARY__FED_OYEZ",
+"rows": 25
+}
+]
+},
+{
+"domain": "CIVIL_RIGHTS",
+"total_rows": 1,
+"n_tables": 1,
+"tables": [
+{
+"name": "CIVIL_RIGHTS__FED_NARA_WRA_AAD",
+"rows": 1
+}
+]
+},
+{
+"domain": "DBT_CROGERS",
+"total_rows": 1,
+"n_tables": 1,
+"tables": [
+{
+"name": "LAND_AND_TERRITORY__FED_BIA_TRIBAL_GEO",
+"rows": 1
+}
+]
+}
+]

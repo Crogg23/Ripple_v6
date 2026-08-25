@@ -1,0 +1,406 @@
+<title>Warehouse Spine Tree</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#eef2f2;
+  --surface:#ffffff;
+  --surface-2:#e3eaea;
+  --ink:#0d2224;
+  --ink-2:#3f5457;
+  --muted:#6c8285;
+  --line:#c7d4d5;
+  --accent:#0e7c86;
+  --root:#0d2224;
+  --tide-1:#1f7a8c;
+  --tide-2:#2a9d8f;
+  --tide-3:#457b9d;
+  --tide-4:#8a5a44;
+  --tide-5:#c8933a;
+  --tide-6:#6a4c93;
+  --tide-7:#b5566a;
+  --tide-8:#3d5a80;
+  --tide-9:#588157;
+  --tide-10:#a44a3f;
+  --tide-11:#4c6e5d;
+  --tide-12:#7c6a46;
+  --tide-13:#5c7a99;
+  --shadow: 0 1px 2px rgba(13,34,36,.06);
+}
+:root:not([data-theme="light"]){
+  @media (prefers-color-scheme: dark){
+    --bg:#0a1416; --surface:#0f1c1e; --surface-2:#132628;
+    --ink:#e9f2f2; --ink-2:#aac2c4; --muted:#6f8b8e; --line:#1e3436;
+    --accent:#3fc7cf; --root:#e9f2f2;
+    --tide-1:#3fc7cf; --tide-2:#5fc9a8; --tide-3:#6f9fcf; --tide-4:#c68a5f;
+    --tide-5:#e8bb75; --tide-6:#9b83c9; --tide-7:#d6879a; --tide-8:#7d9fcf;
+    --tide-9:#8fb885; --tide-10:#d17a67; --tide-11:#7fa895; --tide-12:#b0996b; --tide-13:#8fb0cf;
+    --shadow: 0 1px 2px rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0a1416; --surface:#0f1c1e; --surface-2:#132628;
+  --ink:#e9f2f2; --ink-2:#aac2c4; --muted:#6f8b8e; --line:#1e3436;
+  --accent:#3fc7cf; --root:#e9f2f2;
+  --tide-1:#3fc7cf; --tide-2:#5fc9a8; --tide-3:#6f9fcf; --tide-4:#c68a5f;
+  --tide-5:#e8bb75; --tide-6:#9b83c9; --tide-7:#d6879a; --tide-8:#7d9fcf;
+  --tide-9:#8fb885; --tide-10:#d17a67; --tide-11:#7fa895; --tide-12:#b0996b; --tide-13:#8fb0cf;
+  --shadow: 0 1px 2px rgba(0,0,0,.4);
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--bg); color:var(--ink); font-family:'IBM Plex Sans', system-ui, sans-serif; min-height:100vh;}
+
+.page{max-width:1400px; margin:0 auto; padding:2.5rem 2rem 4rem;}
+
+header.top{
+  display:flex; justify-content:space-between; align-items:flex-end; gap:2rem; flex-wrap:wrap;
+  border-bottom:1px solid var(--line); padding-bottom:1.25rem; margin-bottom:1.5rem;
+}
+.eyebrow{font-family:'IBM Plex Mono', monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin:0 0 .5rem;}
+h1{font-family:'Fraunces', Georgia, serif; font-optical-sizing:auto; font-weight:560; font-size:clamp(2rem, 4vw, 2.9rem); line-height:1.02; margin:0; letter-spacing:-.01em; text-wrap:balance;}
+.sub{max-width:52ch; color:var(--ink-2); font-size:.94rem; line-height:1.5; margin:.75rem 0 0;}
+
+.stat-block{display:flex; gap:1.75rem; flex-wrap:wrap;}
+.stat{text-align:right;}
+.stat .n{font-family:'IBM Plex Mono', monospace; font-size:1.5rem; font-weight:500; color:var(--ink); font-variant-numeric:tabular-nums; display:block;}
+.stat .l{font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted);}
+
+.callout{
+  background:var(--surface-2);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:.85rem 1.1rem;
+  font-size:.86rem;
+  line-height:1.5;
+  color:var(--ink-2);
+  margin-bottom:1.5rem;
+}
+.callout b{color:var(--ink);}
+
+.layout{display:grid; grid-template-columns:minmax(0,1fr) 270px; gap:1.75rem; align-items:start;}
+
+.canvas-wrap{
+  position:relative;
+  background:radial-gradient(ellipse at 50% 50%, var(--surface-2), var(--bg) 75%);
+  border:1px solid var(--line); border-radius:18px; overflow:hidden; box-shadow:var(--shadow);
+}
+#tree{display:block; width:100%; height:auto; cursor:pointer;}
+
+.tooltip{
+  position:absolute; pointer-events:none; background:var(--surface); border:1px solid var(--line);
+  border-radius:10px; padding:.6rem .75rem; font-size:.78rem; line-height:1.4; max-width:300px;
+  box-shadow:0 8px 24px rgba(0,0,0,.18); opacity:0; transition:opacity .1s ease; z-index:5;
+}
+.tooltip.show{opacity:1;}
+.tooltip .kind{font-family:'IBM Plex Mono', monospace; font-size:.66rem; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); display:block; margin-bottom:.15rem;}
+.tooltip .name{font-weight:600; color:var(--ink); display:block; word-break:break-word;}
+.tooltip .rows{color:var(--ink-2); font-variant-numeric:tabular-nums; font-family:'IBM Plex Mono', monospace; font-size:.75rem;}
+
+.caption-in{position:absolute; left:1.2rem; bottom:1rem; font-family:'IBM Plex Mono', monospace; font-size:.68rem; color:var(--muted); letter-spacing:.02em;}
+
+.side{display:flex; flex-direction:column; gap:.9rem; position:sticky; top:1.5rem;}
+.side h2{font-family:'IBM Plex Mono', monospace; font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin:0 0 .3rem;}
+.axis-list{display:flex; flex-direction:column; gap:.05rem; max-height:660px; overflow-y:auto; padding-right:.4rem;}
+.axis-row{display:flex; align-items:center; gap:.55rem; padding:.4rem .3rem; border-radius:8px; cursor:pointer; transition:background .12s ease;}
+.axis-row:hover, .axis-row.active{background:var(--surface-2);}
+.axis-row .dot{width:.62rem; height:.62rem; border-radius:50%; flex:0 0 auto;}
+.axis-row .dn{font-size:.78rem; font-weight:500; color:var(--ink); flex:1; letter-spacing:.01em; font-family:'IBM Plex Mono', monospace;}
+.axis-row .dr{font-family:'IBM Plex Mono', monospace; font-size:.66rem; color:var(--muted); font-variant-numeric:tabular-nums;}
+
+footer.note{
+  margin-top:1.75rem; padding-top:1.25rem; border-top:1px solid var(--line);
+  font-size:.86rem; line-height:1.55; color:var(--ink-2); max-width:78ch;
+}
+footer.note b{color:var(--ink); font-weight:600;}
+footer.note .src{display:block; margin-top:.5rem; font-family:'IBM Plex Mono', monospace; font-size:.72rem; color:var(--muted);}
+
+@media (max-width:900px){
+  .layout{grid-template-columns:1fr;}
+  .side{position:static;}
+  .axis-list{max-height:none;}
+}
+</style>
+
+<div class="page">
+  <header class="top">
+    <div>
+      <p class="eyebrow">Ripple &middot; Spine Map</p>
+      <h1>How the Warehouse Actually Connects</h1>
+      <p class="sub">Not a plan — a measurement. Every branch is a real join key (NPI, EIN, LEI...) that Ripple has fingerprinted live across the warehouse, wired to every table that carries it.</p>
+    </div>
+    <div class="stat-block">
+      <div class="stat"><span class="n" id="stat-axes">—</span><span class="l">join keys</span></div>
+      <div class="stat"><span class="n" id="stat-tables">—</span><span class="l">tables wired in</span></div>
+      <div class="stat"><span class="n" id="stat-entities">—</span><span class="l">entities keyed</span></div>
+    </div>
+  </header>
+
+  <div class="callout">
+    <b>Honest read:</b> this is thinner than it should be. Only 202 (key, table) pairs are fingerprinted
+    warehouse-wide — hundreds of landed tables have never been profiled for spine keys at all, so they don't
+    appear here even though some of them likely connect. What's drawn is real; what's missing isn't drawn as
+    "disconnected," it's just not measured yet.
+  </div>
+
+  <div class="layout">
+    <div class="canvas-wrap" id="canvasWrap">
+      <canvas id="tree"></canvas>
+      <div class="tooltip" id="tooltip">
+        <span class="kind" id="tt-kind"></span>
+        <span class="name" id="tt-name"></span>
+        <span class="rows" id="tt-rows"></span>
+      </div>
+      <div class="caption-in">hover a node &middot; click a key to isolate its tables</div>
+    </div>
+
+    <aside class="side">
+      <h2>Join keys, by entities linked</h2>
+      <div class="axis-list" id="axisList"></div>
+    </aside>
+  </div>
+
+  <footer class="note">
+    <b>How to read it:</b> the root is the warehouse. Each first-ring node is one join key — the identifier
+    that actually lets Ripple merge records from different agencies into one entity. Leaves are the tables that
+    carry that key, sized by distinct entity count. <b>NPI</b> (health providers) and <b>FRS_ID</b> (EPA
+    facilities) are the biggest, and mostly self-contained inside Health and Environment. <b>EIN</b> is the
+    one that actually crosses domains — IRS, OSHA, FEC, and courts all key off it, which is what makes it
+    the closest thing this warehouse has to a real cross-domain spine today.
+    <span class="src">Live from LIBRARY_META.CONNECT.SPINE_KEYSET_LIVE, 2026-08-24 — 84.4M raw key rows, deduped to 202 (key, table) pairs.</span>
+  </footer>
+</div>
+
+<script>
+const DATA = [{"axis":"NPI","total_entities":31461872,"n_tables":32,"tables":[{"table":"FED_CMS_NPPES","n_distinct":9606683,"domain":"HEALTH"},{"table":"FED_CMS_PECOS_PROVIDER_ENROLLMENT","n_distinct":2541258,"domain":"HEALTH"},{"table":"FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT","n_distinct":2541258,"domain":"IMMIGRATION"},{"table":"FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING","n_distinct":2047826,"domain":"HEALTH"},{"table":"FED_CMS_ORDER_AND_REFERRING","n_distinct":2018350,"domain":"HEALTH"},{"table":"FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT","n_distinct":1681790,"domain":"HEALTH"},{"table":"FED_CMS_PART_D_PRESCRIBERS","n_distinct":1416883,"domain":"HEALTH"},{"table":"FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER","n_distinct":1296739,"domain":"HEALTH"},{"table":"FED_CMS_MEDICARE_PROVIDER","n_distinct":1296739,"domain":"HEALTH"},{"table":"FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI","n_distinct":1207473,"domain":"HEALTH"},{"table":"FED_CMS_PARTD_PRESCRIBER_DRUG","n_distinct":1057566,"domain":"_RESTORE_20260731"},{"table":"FED_CMS_OPEN_PAYMENTS","n_distinct":979136,"domain":"HEALTH"},{"table":"FED_CMS_FACILITY_AFFILIATION","n_distinct":940350,"domain":"HEALTH"},{"table":"FED_CMS_OPEN_PAYMENTS_2023","n_distinct":933619,"domain":"HEALTH"},{"table":"FED_CMS_OPEN_PAYMENTS_2022","n_distinct":856696,"domain":"HEALTH"},{"table":"FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE","n_distinct":453202,"domain":"HEALTH"},{"table":"FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER","n_distinct":381228,"domain":"HEALTH"},{"table":"FED_CMS_OPT_OUT_AFFIDAVITS","n_distinct":56455,"domain":"HEALTH"},{"table":"FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL","n_distinct":55598,"domain":"HEALTH"},{"table":"FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS","n_distinct":14421,"domain":"HEALTH"},{"table":"FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS","n_distinct":11467,"domain":"HEALTH"},{"table":"FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS","n_distinct":10269,"domain":"HEALTH"},{"table":"FED_CMS_HOSPITAL_ENROLLMENTS","n_distinct":8717,"domain":"HEALTH"},{"table":"FED_HHS_OIG_LEIE","n_distinct":8503,"domain":"HEALTH"},{"table":"FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS","n_distinct":7239,"domain":"HEALTH"},{"table":"FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_NON_PHYSICIANS","n_distinct":6880,"domain":"HEALTH"},{"table":"FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS","n_distinct":6510,"domain":"HEALTH"},{"table":"FED_CMS_HOSPICE_ENROLLMENTS","n_distinct":6056,"domain":"IMMIGRATION"},{"table":"FED_HRSA_UDS_SERVICE_DELIVERY_SITES","n_distinct":6047,"domain":"HEALTH"},{"table":"FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS","n_distinct":5320,"domain":"HEALTH"},{"table":"FED_CMS_OPIOID_TREATMENT_PROGRAM_PROVIDERS","n_distinct":1287,"domain":"HEALTH"},{"table":"FED_CMS_MEDICARE_DIABETES_PREVENTION_PROGRAM","n_distinct":307,"domain":"HEALTH"}]},{"axis":"FRS_ID","total_entities":18759527,"n_tables":15,"tables":[{"table":"FED_EPA_FRS_FULL","n_distinct":5300149,"domain":"_RESTORE_20260731"},{"table":"FED_EPA_FRS_FRS_PROGRAM_LINKS","n_distinct":3422891,"domain":"ENVIRONMENT"},{"table":"FED_EPA_FRS_FRS_FACILITIES","n_distinct":3277557,"domain":"ENVIRONMENT"},{"table":"FED_EPA_ECHO","n_distinct":3135553,"domain":"ENVIRONMENT"},{"table":"FED_EPA_FRS_FRS_NAICS_CODES","n_distinct":1672433,"domain":"ENVIRONMENT"},{"table":"FED_EPA_FRS_FRS_SIC_CODES","n_distinct":831499,"domain":"ENVIRONMENT"},{"table":"FED_EPA_ICIS_ICIS_AIR_FACILITIES","n_distinct":266026,"domain":"ENVIRONMENT"},{"table":"FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES","n_distinct":266026,"domain":"ENVIRONMENT"},{"table":"FED_EPA_AIR_EMISSIONS_POLL_RPT_COMBINED_EMISSIONS","n_distinct":162513,"domain":"ENVIRONMENT"},{"table":"FED_EPA_ICIS_FEC_ICIS_FEC_EPA_INSPECTIONS","n_distinct":156326,"domain":"FINANCE"},{"table":"FED_EPA_ICIS_FEC_CASE_FACILITIES","n_distinct":113854,"domain":"FINANCE"},{"table":"FED_EPA_ICIS_FEC_CASE_ENFORCEMENT_CONCLUSION_FACILITIES","n_distinct":105113,"domain":"FINANCE"},{"table":"FED_EPA_TRI_BASIC_2023","n_distinct":21760,"domain":"ENVIRONMENT"},{"table":"FED_EPA_ICIS_FEC_EPA_INFORMAL_ENFORCEMENT_ACTIONS","n_distinct":14606,"domain":"FINANCE"},{"table":"FED_EPA_GHGRP_FACILITY","n_distinct":13221,"domain":"ENVIRONMENT"}]},{"axis":"COMPANY_NO","total_entities":10842694,"n_tables":2,"tables":[{"table":"INT_UK_COMPANIES_HOUSE","n_distinct":5734779,"domain":"_RESTORE_20260731"},{"table":"UK_COMPANIES_HOUSE_PSC","n_distinct":5107915,"domain":"CORPORATE_REGISTRY"}]},{"axis":"EIN","total_entities":9421153,"n_tables":34,"tables":[{"table":"FED_IRS_EO_BMF","n_distinct":1983563,"domain":"CORPORATE_REGISTRY"},{"table":"FED_IRS_BMF","n_distinct":1974830,"domain":"ECONOMICS"},{"table":"FED_IRS_PUB78_ELIGIBLE_DONEES","n_distinct":1435544,"domain":"ECONOMICS"},{"table":"FED_IRS_AUTO_REVOCATIONS","n_distinct":1187975,"domain":"ECONOMICS"},{"table":"FED_IRS_REVOCATION","n_distinct":1187366,"domain":"ECONOMICS"},{"table":"FED_IRS_990_EFILE_INDEX","n_distinct":899097,"domain":"ECONOMICS"},{"table":"FED_OSHA_ITA_300A_SUMMARY_2023","n_distinct":123206,"domain":"LABOR"},{"table":"FED_OSHA_ITA_300A_SUMMARY_2024","n_distinct":114603,"domain":"LABOR"},{"table":"FED_OSHA_ITA_300A_SUMMARY_2025","n_distinct":106218,"domain":"LABOR"},{"table":"FED_FAC_SINGLE_AUDIT","n_distinct":68126,"domain":"ECONOMICS"},{"table":"FED_IRS_527_ORGS","n_distinct":58915,"domain":"POLITICS"},{"table":"IRS527_DIRECTORS_OFFICERS","n_distinct":58881,"domain":"POLITICS"},{"table":"FED_DOL_EBSA_FORM5500_SCHEDULE_SB","n_distinct":39581,"domain":"LABOR"},{"table":"FED_OSHA_ITA_CASE_DETAIL_2023","n_distinct":33693,"domain":"LABOR"},{"table":"FED_DOL_FORM5500","n_distinct":29069,"domain":"ECONOMICS"},{"table":"FED_PBGC_TRUSTEED_PENSION_PLANS","n_distinct":20835,"domain":"LABOR"},{"table":"FED_OSHA_ITA_CASE_DETAIL_2024","n_distinct":20523,"domain":"LABOR"},{"table":"FED_OSHA_ITA_CASE_DETAIL_2025","n_distinct":13387,"domain":"LABOR"},{"table":"IRS527_RELATED_ENTITIES","n_distinct":8979,"domain":"POLITICS"},{"table":"FED_SEC_DERA_SUB_2024Q2","n_distinct":4744,"domain":"FINANCE"},{"table":"FED_SEC_DERA_SUB_2024Q3","n_distinct":4686,"domain":"FINANCE"},{"table":"FED_SEC_DERA_SUB_2024Q4","n_distinct":4663,"domain":"FINANCE"},{"table":"FED_SEC_DERA_SUB_2025Q2","n_distinct":4508,"domain":"FINANCE"},{"table":"FED_SEC_DERA_SUB_2025Q4","n_distinct":4501,"domain":"FINANCE"},{"table":"FED_SEC_DERA_SUB_2025Q3","n_distinct":4494,"domain":"FINANCE"},{"table":"FED_PBGC_TRUSTEED_PLANS","n_distinct":4431,"domain":"LABOR"},{"table":"FED_SEC_DERA_SUB_2025Q1","n_distinct":4305,"domain":"FINANCE"},{"table":"FED_SEC_DERA_SUB_2024Q1","n_distinct":4238,"domain":"FINANCE"},{"table":"FED_SEC_DERA_SUB_2026Q1","n_distinct":4236,"domain":"FINANCE"},{"table":"IRS527_8872_REPORTS","n_distinct":4150,"domain":"POLITICS"},{"table":"FED_IRS_EO_PR","n_distinct":2587,"domain":"ECONOMICS"},{"table":"FED_COURTLISTENER_SCHOOLS","n_distinct":2569,"domain":"JUSTICE"},{"table":"FED_IRS_SOI_CHARITIES","n_distinct":2450,"domain":"ECONOMICS"},{"table":"FED_IRS_990","n_distinct":200,"domain":"ECONOMICS"}]},{"axis":"LEI","total_entities":6526559,"n_tables":4,"tables":[{"table":"INTL_GLEIF","n_distinct":3382301,"domain":"ECONOMICS"},{"table":"INTL_GLEIF_REPEX","n_distinct":3142660,"domain":"ECONOMICS"},{"table":"INTL_ISO_MIC_REGISTRY","n_distinct":1060,"domain":"FINANCE"},{"table":"FED_CFPB_HMDA","n_distinct":538,"domain":"HOUSING"}]},{"axis":"PWSID","total_entities":2844162,"n_tables":10,"tables":[{"table":"FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS","n_distinct":434040,"domain":"ENVIRONMENT"},{"table":"FED_EPA_ECHO","n_distinct":430993,"domain":"ENVIRONMENT"},{"table":"FED_EPA_SDWA_SDWA_FACILITIES","n_distinct":430916,"domain":"ENVIRONMENT"},{"table":"FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS","n_distinct":413877,"domain":"ENVIRONMENT"},{"table":"FED_EPA_SDWA_SDWA_SERVICE_AREAS","n_distinct":378450,"domain":"IMMIGRATION"},{"table":"FED_EPA_SDWA_SDWA_SITE_VISITS","n_distinct":267052,"domain":"ENVIRONMENT"},{"table":"FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT","n_distinct":258445,"domain":"ENVIRONMENT"},{"table":"FED_EPA_SDWA_SDWA_EVENTS_MILESTONES","n_distinct":98555,"domain":"ENVIRONMENT"},{"table":"FED_EPA_SDWA_SDWA_LCR_SAMPLES","n_distinct":89800,"domain":"ENVIRONMENT"},{"table":"FED_EPA_SDWA_SDWA_PN_VIOLATION_ASSOC","n_distinct":42034,"domain":"ENVIRONMENT"}]},{"axis":"NPDES_ID","total_entities":2491476,"n_tables":8,"tables":[{"table":"FED_EPA_NPDES_ICIS_FACILITIES","n_distinct":1213737,"domain":"ENVIRONMENT"},{"table":"FED_EPA_NPDES_NPDES_QNCR_HISTORY","n_distinct":690126,"domain":"ENVIRONMENT"},{"table":"FED_EPA_NPDES_NPDES_INSPECTIONS","n_distinct":286752,"domain":"ENVIRONMENT"},{"table":"FED_EPA_NPDES_NPDES_INFORMAL_ENFORCEMENT_ACTIONS","n_distinct":119300,"domain":"ENVIRONMENT"},{"table":"FED_EPA_NPDES_NPDES_SE_VIOLATIONS","n_distinct":76438,"domain":"ENVIRONMENT"},{"table":"FED_EPA_NPDES_NPDES_FORMAL_ENFORCEMENT_ACTIONS","n_distinct":49662,"domain":"ENVIRONMENT"},{"table":"FED_EPA_NPDES_NPDES_PS_VIOLATIONS","n_distinct":44872,"domain":"ENVIRONMENT"},{"table":"FED_EPA_NPDES_NPDES_CS_VIOLATIONS","n_distinct":10589,"domain":"ENVIRONMENT"}]},{"axis":"UEI","total_entities":864524,"n_tables":7,"tables":[{"table":"FED_USASPENDING_CONTRACTS_FULL","n_distinct":420990,"domain":"ECONOMICS"},{"table":"FED_USASPENDING_ASSISTANCE_FULL","n_distinct":223721,"domain":"ECONOMICS"},{"table":"FED_USASPENDING_CONTRACTS","n_distinct":92833,"domain":"ECONOMICS"},{"table":"FED_FAC_SINGLE_AUDIT","n_distinct":59493,"domain":"ECONOMICS"},{"table":"FED_SAM_EXCLUSIONS_FULL_R2","n_distinct":38424,"domain":"PROCUREMENT"},{"table":"FED_SBIR_STTR_AWARDS","n_distinct":17160,"domain":"SCIENCE_RESEARCH"},{"table":"FED_NIH_REPORTER","n_distinct":11903,"domain":"SCIENCE_RESEARCH"}]},{"axis":"CIK","total_entities":268512,"n_tables":19,"tables":[{"table":"FED_SEC_INSIDER_REPORTINGOWNER","n_distinct":138006,"domain":"FINANCE"},{"table":"FED_PCAOB_FORM_AP_FILINGS","n_distinct":28773,"domain":"FINANCE"},{"table":"FED_SEC_13F_SUBMISSIONS","n_distinct":16273,"domain":"FINANCE"},{"table":"FED_SEC_EDGAR_FINANCIALS","n_distinct":8112,"domain":"FINANCE"},{"table":"FED_SEC_EDGAR_COMPANY_TICKERS","n_distinct":8018,"domain":"ECONOMICS"},{"table":"FED_SEC_EDGAR_COMPANY_TICKERS_EXCHANGE","n_distinct":7998,"domain":"FINANCE"},{"table":"FED_SEC_DERA_SUB_2024Q2","n_distinct":6250,"domain":"FINANCE"},{"table":"FED_SEC_DERA_SUB_2025Q2","n_distinct":6081,"domain":"FINANCE"},{"table":"FED_SEC_DERA_SUB_2024Q3","n_distinct":6008,"domain":"FINANCE"},{"table":"FED_SEC_DERA_SUB_2025Q3","n_distinct":5909,"domain":"FINANCE"},{"table":"FED_SEC_DERA_SUB_2024Q4","n_distinct":5833,"domain":"FINANCE"},{"table":"FED_SEC_DERA_SUB_2025Q4","n_distinct":5786,"domain":"FINANCE"},{"table":"FED_SEC_DERA_SUB_2026Q1","n_distinct":5750,"domain":"FINANCE"},{"table":"FED_SEC_DERA_SUB_2025Q1","n_distinct":5672,"domain":"FINANCE"},{"table":"FED_SEC_DERA_SUB_2024Q1","n_distinct":5506,"domain":"FINANCE"},{"table":"FED_SEC_EDGAR_INSIDERS","n_distinct":5306,"domain":"FINANCE"},{"table":"FED_SEC_INVESTMENT_COMPANY_SERIES_CLASS","n_distinct":2046,"domain":"FINANCE"},{"table":"FED_SEC_CLOSED_END_FUND_INFORMATION","n_distinct":973,"domain":"FINANCE"},{"table":"FED_SEC_BUSINESS_DEVELOPMENT_COMPANY_REPORT","n_distinct":212,"domain":"FINANCE"}]},{"axis":"CCN","total_entities":222549,"n_tables":23,"tables":[{"table":"FED_CMS_POS_OTHER","n_distinct":41262,"domain":"HEALTH"},{"table":"FED_NURSINGHOME411","n_distinct":14456,"domain":"HEALTH"},{"table":"FED_CMS_NURSING_HOME","n_distinct":14448,"domain":"HEALTH"},{"table":"FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY","n_distinct":14443,"domain":"HEALTH"},{"table":"FED_CMS_NURSING_HOME_DEFICIENCIES","n_distinct":14383,"domain":"HEALTH"},{"table":"FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS","n_distinct":14250,"domain":"HEALTH"},{"table":"FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES","n_distinct":13686,"domain":"HEALTH"},{"table":"FED_CMS_HOME_HEALTH","n_distinct":12392,"domain":"HEALTH"},{"table":"FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS","n_distinct":11413,"domain":"HEALTH"},{"table":"FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS","n_distinct":9954,"domain":"HEALTH"},{"table":"FED_CMS_MEDICARE_DIALYSIS_FACILITIES","n_distinct":8241,"domain":"HEALTH"},{"table":"FED_CMS_DIALYSIS","n_distinct":7557,"domain":"HEALTH"},{"table":"FED_CMS_NURSING_HOME_PENALTIES","n_distinct":6771,"domain":"HEALTH"},{"table":"FED_CMS_HCRIS","n_distinct":6040,"domain":"HEALTH"},{"table":"FED_CMS_HOSPITAL_ENROLLMENTS","n_distinct":5966,"domain":"HEALTH"},{"table":"FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS","n_distinct":5313,"domain":"HEALTH"},{"table":"FED_CMS_HOSPITAL_GENERAL","n_distinct":5268,"domain":"HEALTH"},{"table":"FED_CMS_HOSPICE","n_distinct":5155,"domain":"HEALTH"},{"table":"FED_CMS_HOSPICE_ENROLLMENTS","n_distinct":4798,"domain":"IMMIGRATION"},{"table":"FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE","n_distinct":3126,"domain":"HEALTH"},{"table":"FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE","n_distinct":2906,"domain":"HEALTH"},{"table":"FED_CMS_IRF","n_distinct":410,"domain":"HEALTH"},{"table":"FED_CMS_LTCH","n_distinct":311,"domain":"HEALTH"}]},{"axis":"FEC_CMTE_ID","total_entities":160220,"n_tables":9,"tables":[{"table":"FED_FEC_COMMITTEES","n_distinct":38693,"domain":"FINANCE"},{"table":"FED_FEC_PAC_SUMMARY","n_distinct":22899,"domain":"POLITICS"},{"table":"FED_FEC_BULK","n_distinct":20938,"domain":"FINANCE"},{"table":"FED_FEC_BULK_COMMITTEES","n_distinct":20007,"domain":"FINANCE"},{"table":"FED_FEC_CAND_CMTE_LINKAGE","n_distinct":16251,"domain":"FINANCE"},{"table":"FED_FEC_INDIV_CONTRIBUTIONS","n_distinct":12291,"domain":"FINANCE"},{"table":"FED_FEC_BULK_LINKAGES","n_distinct":11427,"domain":"_RESTORE_20260731"},{"table":"FED_FEC_COMMITTEE_TO_CANDIDATE","n_distinct":9376,"domain":"FINANCE"},{"table":"FED_FEC_LEADERSHIP_PAC","n_distinct":8338,"domain":"FINANCE"}]},{"axis":"DEA_NO","total_entities":149244,"n_tables":1,"tables":[{"table":"FED_DEA_ARCOS_FULL","n_distinct":149244,"domain":"_RESTORE_20260731"}]},{"axis":"MINE_ID","total_entities":136672,"n_tables":3,"tables":[{"table":"FED_MSHA_MINES","n_distinct":91906,"domain":"LABOR"},{"table":"FED_MSHA_VIOLATIONS","n_distinct":31277,"domain":"LABOR"},{"table":"FED_MSHA_ACCIDENTS","n_distinct":13489,"domain":"LABOR"}]},{"axis":"FEC_CAND_ID","total_entities":63379,"n_tables":6,"tables":[{"table":"FED_FEC_CANDIDATES","n_distinct":19142,"domain":"FINANCE"},{"table":"FED_FEC_CAND_CMTE_LINKAGE","n_distinct":15153,"domain":"FINANCE"},{"table":"FED_FEC_BULK_CANDIDATES","n_distinct":13240,"domain":"_RESTORE_20260731"},{"table":"FED_FEC_LEADERSHIP_PAC","n_distinct":8076,"domain":"FINANCE"},{"table":"FED_FEC_BULK_SUMMARY","n_distinct":5754,"domain":"_RESTORE_20260731"},{"table":"FED_FEC_INDEPENDENT_EXPENDITURES","n_distinct":2014,"domain":"FINANCE"}]},{"axis":"CL_PERSON_ID","total_entities":61200,"n_tables":8,"tables":[{"table":"FED_COURTLISTENER_JUDGES","n_distinct":16191,"domain":"JUSTICE"},{"table":"FED_COURTLISTENER_POSITIONS","n_distinct":15613,"domain":"JUSTICE"},{"table":"FED_COURTLISTENER_JUDGE_EDUCATIONS","n_distinct":7398,"domain":"JUSTICE"},{"table":"FED_COURTLISTENER_JUDGE_POLITICAL_AFFILIATIONS","n_distinct":7226,"domain":"JUSTICE"},{"table":"FED_COURTLISTENER_JUDGE_RACES","n_distinct":6521,"domain":"JUSTICE"},{"table":"FED_COURTLISTENER_FINANCIAL_DISCLOSURES","n_distinct":3381,"domain":"JUSTICE"},{"table":"FED_COURTLISTENER_DOCKETS","n_distinct":3350,"domain":"JUSTICE"},{"table":"FED_COURTLISTENER_ORIGINATING_COURT_INFO","n_distinct":1520,"domain":"JUSTICE"}]},{"axis":"DUNS","total_entities":36513,"n_tables":2,"tables":[{"table":"FED_SBIR_STTR_AWARDS","n_distinct":21594,"domain":"SCIENCE_RESEARCH"},{"table":"FED_NIH_REPORTER","n_distinct":14919,"domain":"SCIENCE_RESEARCH"}]},{"axis":"BIOGUIDE","total_entities":27160,"n_tables":5,"tables":[{"table":"FED_CONGRESS_LEGISLATORS","n_distinct":12781,"domain":"POLITICS"},{"table":"FED_VOTEVIEW_MEMBERS","n_distinct":12584,"domain":"POLITICS"},{"table":"FED_GOVINFO_BILL_COSPONSORS","n_distinct":635,"domain":"_RESTORE_20260731"},{"table":"FED_GOVINFO_BILLSTATUS","n_distinct":632,"domain":"_RESTORE_20260731"},{"table":"FED_CONGRESS_COMMITTEE_MEMBERSHIP","n_distinct":528,"domain":"POLITICS"}]},{"axis":"ICPSR","total_entities":13316,"n_tables":2,"tables":[{"table":"FED_VOTEVIEW_MEMBERS","n_distinct":12677,"domain":"POLITICS"},{"table":"FED_VOTEVIEW_ROLLCALLS","n_distinct":639,"domain":"_RESTORE_20260731"}]},{"axis":"NCUA_CHARTER","total_entities":12975,"n_tables":4,"tables":[{"table":"FED_NCUA_CALL_REPORTS_FOICU","n_distinct":4336,"domain":"FINANCE"},{"table":"FED_NCUA_CALL_REPORTS_FS220","n_distinct":4336,"domain":"FINANCE"},{"table":"FED_NCUA_FEDERALLY_INSURED_CU_LIST","n_distinct":4250,"domain":"FINANCE"},{"table":"FED_NCUA_CHARTER_MERGER_EVENTS","n_distinct":53,"domain":"FINANCE"}]},{"axis":"IMO","total_entities":9317,"n_tables":3,"tables":[{"table":"FED_NOAA_AIS","n_distinct":6630,"domain":"MARITIME"},{"table":"FED_OFAC_SDN","n_distinct":2030,"domain":"JUSTICE"},{"table":"INTL_UK_SANCTIONS_LIST","n_distinct":657,"domain":"JUSTICE"}]},{"axis":"CL_COURT_ID","total_entities":6593,"n_tables":3,"tables":[{"table":"FED_COURTLISTENER_COURTS","n_distinct":3361,"domain":"JUSTICE"},{"table":"FED_COURTLISTENER_DOCKETS","n_distinct":2199,"domain":"JUSTICE"},{"table":"FED_COURTLISTENER_POSITIONS","n_distinct":1033,"domain":"JUSTICE"}]},{"axis":"ICE_FACILITY","total_entities":2197,"n_tables":2,"tables":[{"table":"FED_ICE_DETENTION_FACILITY_CODES","n_distinct":1490,"domain":"IMMIGRATION"},{"table":"FED_ICE_DETENTION_STINTS","n_distinct":707,"domain":"IMMIGRATION"}]}];
+
+const palette = ['tide-1','tide-2','tide-3','tide-4','tide-5','tide-6','tide-7','tide-8','tide-9','tide-10','tide-11','tide-12','tide-13'];
+function axisColor(i){
+  return getComputedStyle(document.documentElement).getPropertyValue('--' + palette[i % palette.length]).trim();
+}
+
+let totalTables = 0, totalEntities = 0;
+DATA.forEach((d,i) => { d.color = axisColor(i); d.index = i; totalTables += d.n_tables; totalEntities += d.total_entities; });
+
+document.getElementById('stat-axes').textContent = DATA.length;
+document.getElementById('stat-tables').textContent = totalTables;
+document.getElementById('stat-entities').textContent = (totalEntities/1e6).toFixed(1) + 'M';
+
+const wrap = document.getElementById('canvasWrap');
+const canvas = document.getElementById('tree');
+const ctx = canvas.getContext('2d');
+let W, H, DPR;
+
+function sizeCanvas(){
+  DPR = window.devicePixelRatio || 1;
+  const rect = wrap.getBoundingClientRect();
+  W = rect.width;
+  H = Math.max(620, Math.min(860, W * 0.78));
+  canvas.width = W * DPR; canvas.height = H * DPR;
+  canvas.style.height = H + 'px';
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+}
+
+const maxAxisEntities = Math.max(...DATA.map(d=>d.total_entities));
+const maxTableEntities = Math.max(...DATA.flatMap(d=>d.tables.map(t=>t.n_distinct)));
+
+let nodes = []; // {x,y,r,type,label,color,ref}
+let links = []; // {x1,y1,x2,y2,color}
+
+function buildLayout(){
+  sizeCanvas();
+  nodes = []; links = [];
+  const cx = W*0.5, cy = H*0.52;
+  const rootR = W < 700 ? 20 : 30;
+
+  nodes.push({x:cx, y:cy, r:rootR, type:'root', label:'RIPPLE\nWAREHOUSE', color: getComputedStyle(document.documentElement).getPropertyValue('--root').trim()});
+
+  const axisRingR = Math.min(W,H) * (W<700 ? 0.24 : 0.22);
+  const leafRingMin = axisRingR * 1.55;
+  const leafRingMax = Math.min(W,H) * 0.47;
+
+  const totalWeight = DATA.reduce((s,d)=>s+Math.sqrt(d.total_entities),0);
+  let angle = -Math.PI/2;
+  DATA.forEach(d => {
+    const share = Math.sqrt(d.total_entities)/totalWeight;
+    d.angleSpan = Math.max(share * Math.PI*2, 0.10);
+  });
+  const totalSpan = DATA.reduce((s,d)=>s+d.angleSpan,0);
+  const scaleSpan = (Math.PI*2)/totalSpan;
+  DATA.forEach(d => { d.angleSpan *= scaleSpan; });
+
+  DATA.forEach(d => {
+    d.angleStart = angle;
+    angle += d.angleSpan;
+    const mid = d.angleStart + d.angleSpan/2;
+    const axisR = (W<700?7:11) + Math.sqrt(d.total_entities/maxAxisEntities) * (W<700?16:26);
+    const ax = cx + Math.cos(mid)*axisRingR;
+    const ay = cy + Math.sin(mid)*axisRingR;
+    d.nx = ax; d.ny = ay; d.mid = mid;
+
+    links.push({x1:cx, y1:cy, x2:ax, y2:ay, color:d.color, w:2.2});
+    const axisNode = {x:ax, y:ay, r:axisR, type:'axis', label:d.axis, color:d.color, ref:d};
+    nodes.push(axisNode);
+
+    // distribute tables along an arc segment around this axis node, at increasing radius
+    const nTab = d.tables.length;
+    const tableSpan = Math.min(d.angleSpan*1.6, Math.PI*0.9);
+    d.tables.forEach((t,ti) => {
+      const frac = nTab === 1 ? 0.5 : ti/(nTab-1);
+      const ta = mid - tableSpan/2 + frac*tableSpan;
+      const tr = leafRingMin + (leafRingMax-leafRingMin) * (0.25 + 0.75*(ti/Math.max(nTab-1,1)));
+      const tx = cx + Math.cos(ta)*tr;
+      const ty = cy + Math.sin(ta)*tr;
+      const rad = (W<700?1.6:2.2) + Math.sqrt(t.n_distinct/maxTableEntities) * (W<700?14:20);
+      links.push({x1:ax, y1:ay, x2:tx, y2:ty, color:d.color, w:1});
+      nodes.push({x:tx, y:ty, r:rad, type:'table', label:t.table, rows:t.n_distinct, color:d.color, ref:d, domain:t.domain});
+    });
+  });
+}
+
+let activeAxis = null;
+
+function shortName(n){
+  let s = n.replace(/^[A-Z_]+__/, '').replace(/_/g,' ');
+  if (s.startsWith('FED ')) s = s.slice(4);
+  if (s.startsWith('INTL ')) s = s.slice(5);
+  return s;
+}
+
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  const bgv = getComputedStyle(document.documentElement).getPropertyValue('--bg');
+
+  // links
+  links.forEach(l => {
+    const dimmed = activeAxis!==null && !(l.color === DATA[activeAxis].color);
+    ctx.beginPath();
+    ctx.moveTo(l.x1,l.y1);
+    const mx=(l.x1+l.x2)/2, my=(l.y1+l.y2)/2;
+    ctx.quadraticCurveTo((l.x1+mx)/2+(l.y2-l.y1)*0.05,(l.y1+my)/2-(l.x2-l.x1)*0.05, l.x2,l.y2);
+    ctx.strokeStyle = l.color;
+    ctx.globalAlpha = dimmed ? 0.05 : 0.35;
+    ctx.lineWidth = l.w;
+    ctx.stroke();
+  });
+  ctx.globalAlpha = 1;
+
+  // nodes
+  nodes.forEach(n => {
+    let dimmed = false;
+    if (activeAxis!==null){
+      if (n.type==='table' || n.type==='axis') dimmed = n.ref.index !== activeAxis;
+    }
+    ctx.beginPath();
+    ctx.arc(n.x,n.y,n.r,0,Math.PI*2);
+    ctx.fillStyle = n.color;
+    ctx.globalAlpha = dimmed ? 0.10 : (n.type==='root'?1:0.9);
+    ctx.fill();
+    if (n.type==='root'){
+      ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--accent');
+      ctx.lineWidth = 2; ctx.globalAlpha=1; ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+  });
+
+  // labels: root + axis names always, table names if big enough
+  nodes.forEach(n => {
+    if (n.type==='root'){
+      ctx.font = "600 11px 'IBM Plex Mono', monospace";
+      ctx.fillStyle = bgv;
+      ctx.textAlign='center'; ctx.textBaseline='middle';
+      const lines = n.label.split('\\n');
+      lines.forEach((l,i)=>ctx.fillText(l, n.x, n.y + (i-(lines.length-1)/2)*11));
+    } else if (n.type==='axis'){
+      const dimmed = activeAxis!==null && n.ref.index!==activeAxis;
+      if (dimmed) return;
+      ctx.font = "600 11px 'IBM Plex Mono', monospace";
+      ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--ink');
+      ctx.textAlign='center'; ctx.textBaseline='middle';
+      const angle = n.ref.mid;
+      const lx = n.x + Math.cos(angle)*(n.r+16);
+      const ly = n.y + Math.sin(angle)*(n.r+16);
+      ctx.fillText(n.label, lx, ly);
+    } else if (n.type==='table' && n.r > 10){
+      const dimmed = activeAxis!==null && n.ref.index!==activeAxis;
+      if (dimmed) return;
+      ctx.font = "500 9px 'IBM Plex Sans', sans-serif";
+      ctx.fillStyle = bgv;
+      ctx.textAlign='center'; ctx.textBaseline='middle';
+      ctx.globalAlpha=0.95;
+    }
+  });
+}
+
+const tooltip = document.getElementById('tooltip');
+const ttKind = document.getElementById('tt-kind');
+const ttName = document.getElementById('tt-name');
+const ttRows = document.getElementById('tt-rows');
+
+function findNode(mx,my){
+  for (let i=nodes.length-1;i>=0;i--){
+    const n = nodes[i];
+    const dx=mx-n.x, dy=my-n.y;
+    if (dx*dx+dy*dy <= n.r*n.r) return n;
+  }
+  return null;
+}
+
+canvas.addEventListener('mousemove', e => {
+  const rect = canvas.getBoundingClientRect();
+  const mx=e.clientX-rect.left, my=e.clientY-rect.top;
+  const hit = findNode(mx,my);
+  if (hit && hit.type!=='root'){
+    if (hit.type==='axis'){
+      ttKind.textContent = 'join key';
+      ttName.textContent = hit.label;
+      ttRows.textContent = hit.ref.total_entities.toLocaleString() + ' entities · ' + hit.ref.n_tables + ' tables';
+    } else {
+      ttKind.textContent = hit.domain.replace(/_/g,' ') + ' · ' + hit.ref.axis;
+      ttName.textContent = shortName(hit.label);
+      ttRows.textContent = hit.rows.toLocaleString() + ' distinct keys';
+    }
+    tooltip.style.left = Math.min(mx+16, W-310) + 'px';
+    tooltip.style.top = Math.max(my-10, 8) + 'px';
+    tooltip.classList.add('show');
+    canvas.style.cursor='pointer';
+  } else {
+    tooltip.classList.remove('show');
+    canvas.style.cursor='default';
+  }
+});
+canvas.addEventListener('mouseleave', () => tooltip.classList.remove('show'));
+canvas.addEventListener('click', e => {
+  const rect = canvas.getBoundingClientRect();
+  const mx=e.clientX-rect.left, my=e.clientY-rect.top;
+  const hit = findNode(mx,my);
+  if (hit && hit.type!=='root'){
+    activeAxis = (activeAxis===hit.ref.index) ? null : hit.ref.index;
+    renderAxisList(); draw();
+  } else if (!hit){
+    activeAxis = null; renderAxisList(); draw();
+  }
+});
+
+const axisList = document.getElementById('axisList');
+function renderAxisList(){
+  axisList.innerHTML = '';
+  const sorted = [...DATA].sort((a,b)=>b.total_entities-a.total_entities);
+  sorted.forEach(d => {
+    const row = document.createElement('div');
+    row.className = 'axis-row' + (activeAxis===d.index ? ' active':'');
+    row.innerHTML = `<span class="dot" style="background:${d.color}"></span>
+      <span class="dn">${d.axis}</span>
+      <span class="dr">${d.n_tables}t · ${(d.total_entities/1e6).toFixed(1)}M</span>`;
+    row.addEventListener('click', () => { activeAxis = (activeAxis===d.index)?null:d.index; renderAxisList(); draw(); });
+    axisList.appendChild(row);
+  });
+}
+
+function rebuild(){ buildLayout(); draw(); }
+renderAxisList();
+rebuild();
+window.addEventListener('resize', () => { clearTimeout(window.__rz); window.__rz = setTimeout(rebuild, 200); });
+</script>

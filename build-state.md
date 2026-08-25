@@ -1,5 +1,5 @@
 <!-- GENERATED FILE. DO NOT EDIT BY HAND.
-     Source: LIBRARY_META.BUILD  |  Generated: 2026-08-01T16:48:18Z
+     Source: LIBRARY_META.BUILD  |  Generated: 2026-08-25T01:38:33Z
      To change anything here, change the row and regenerate:
      python3 scripts/gen_build_state.py --write -->
 
@@ -16,34 +16,35 @@
 - parked_hot: **4**
 
 ## DATA STATE (V_STATE)
-- catalog.orphans: 287
-- catalog.sources: 2992
-- connect.edges: 663
-- connect.edges_inc: 1074
-- connect.entities: 22623285
+- catalog.orphans: 505
+- catalog.sources: 3283
+- connect.edges: 4910
+- connect.edges_inc: 3182
+- connect.entities: 33312349
 - decisions.total: 0
-- landing.rows: 875575558
-- landing.tables: 1937
+- landing.rows: 1250067942
+- landing.tables: 2208
 - leads.banned_but_operating.active: 10
 - leads.banned_but_operating.stale: 1
 - leads.banned_but_paid.active: 773
-- leads.debarred_but_funded.active: 53
+- leads.debarred_but_funded.active: 343
+- leads.debarred_but_funded.stale: 1
 - leads.excluded_but_billing.active: 236
 - leads.osha_cohort_outlier_2024.active: 16215
 - leads.sanctioned_vessel_broadcasting.active: 4
 - leads.sanctioned_vessel_broadcasting_v2.active: 12
 - leads.sec_filer_in_irs_bmf.active: 3
-- marts.stale_vs_landing: 1
+- marts.stale_vs_landing: 36
 - reading_room.views: 254
-- registry.sources: 2705
-- taps.empty: 33
-- taps.failed: 262
-- taps.landed: 11
-- taps.modeled: 346
+- registry.sources: 2779
+- taps.empty: 36
+- taps.failed: 265
+- taps.landed: 57
+- taps.modeled: 578
 - taps.queued: 7
-- taps.sampled: 1577
-- taps.scouted: 751
-- taps.stale: 5
+- taps.sampled: 1567
+- taps.scouted: 749
+- taps.stale: 24
 
 ## OPEN DEFECTS
 

@@ -1,0 +1,1166 @@
+[
+{
+"axis": "NPI",
+"total_entities": 31461872,
+"n_tables": 32,
+"tables": [
+{
+"table": "FED_CMS_NPPES",
+"n_distinct": 9606683,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_PECOS_PROVIDER_ENROLLMENT",
+"n_distinct": 2541258,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT",
+"n_distinct": 2541258,
+"domain": "IMMIGRATION"
+},
+{
+"table": "FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING",
+"n_distinct": 2047826,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_ORDER_AND_REFERRING",
+"n_distinct": 2018350,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT",
+"n_distinct": 1681790,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_PART_D_PRESCRIBERS",
+"n_distinct": 1416883,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+"n_distinct": 1296739,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_MEDICARE_PROVIDER",
+"n_distinct": 1296739,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+"n_distinct": 1207473,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_PARTD_PRESCRIBER_DRUG",
+"n_distinct": 1057566,
+"domain": "_RESTORE_20260731"
+},
+{
+"table": "FED_CMS_OPEN_PAYMENTS",
+"n_distinct": 979136,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_FACILITY_AFFILIATION",
+"n_distinct": 940350,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_OPEN_PAYMENTS_2023",
+"n_distinct": 933619,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_OPEN_PAYMENTS_2022",
+"n_distinct": 856696,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE",
+"n_distinct": 453202,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER",
+"n_distinct": 381228,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_OPT_OUT_AFFIDAVITS",
+"n_distinct": 56455,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL",
+"n_distinct": 55598,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS",
+"n_distinct": 14421,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS",
+"n_distinct": 11467,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS",
+"n_distinct": 10269,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_HOSPITAL_ENROLLMENTS",
+"n_distinct": 8717,
+"domain": "HEALTH"
+},
+{
+"table": "FED_HHS_OIG_LEIE",
+"n_distinct": 8503,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS",
+"n_distinct": 7239,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_NON_PHYSICIANS",
+"n_distinct": 6880,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS",
+"n_distinct": 6510,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_HOSPICE_ENROLLMENTS",
+"n_distinct": 6056,
+"domain": "IMMIGRATION"
+},
+{
+"table": "FED_HRSA_UDS_SERVICE_DELIVERY_SITES",
+"n_distinct": 6047,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS",
+"n_distinct": 5320,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_OPIOID_TREATMENT_PROGRAM_PROVIDERS",
+"n_distinct": 1287,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_MEDICARE_DIABETES_PREVENTION_PROGRAM",
+"n_distinct": 307,
+"domain": "HEALTH"
+}
+]
+},
+{
+"axis": "FRS_ID",
+"total_entities": 18759527,
+"n_tables": 15,
+"tables": [
+{
+"table": "FED_EPA_FRS_FULL",
+"n_distinct": 5300149,
+"domain": "_RESTORE_20260731"
+},
+{
+"table": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+"n_distinct": 3422891,
+"domain": "ENVIRONMENT"
+},
+{
+"table": "FED_EPA_FRS_FRS_FACILITIES",
+"n_distinct": 3277557,
+"domain": "ENVIRONMENT"
+},
+{
+"table": "FED_EPA_ECHO",
+"n_distinct": 3135553,
+"domain": "ENVIRONMENT"
+},
+{
+"table": "FED_EPA_FRS_FRS_NAICS_CODES",
+"n_distinct": 1672433,
+"domain": "ENVIRONMENT"
+},
+{
+"table": "FED_EPA_FRS_FRS_SIC_CODES",
+"n_distinct": 831499,
+"domain": "ENVIRONMENT"
+},
+{
+"table": "FED_EPA_ICIS_ICIS_AIR_FACILITIES",
+"n_distinct": 266026,
+"domain": "ENVIRONMENT"
+},
+{
+"table": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+"n_distinct": 266026,
+"domain": "ENVIRONMENT"
+},
+{
+"table": "FED_EPA_AIR_EMISSIONS_POLL_RPT_COMBINED_EMISSIONS",
+"n_distinct": 162513,
+"domain": "ENVIRONMENT"
+},
+{
+"table": "FED_EPA_ICIS_FEC_ICIS_FEC_EPA_INSPECTIONS",
+"n_distinct": 156326,
+"domain": "FINANCE"
+},
+{
+"table": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+"n_distinct": 113854,
+"domain": "FINANCE"
+},
+{
+"table": "FED_EPA_ICIS_FEC_CASE_ENFORCEMENT_CONCLUSION_FACILITIES",
+"n_distinct": 105113,
+"domain": "FINANCE"
+},
+{
+"table": "FED_EPA_TRI_BASIC_2023",
+"n_distinct": 21760,
+"domain": "ENVIRONMENT"
+},
+{
+"table": "FED_EPA_ICIS_FEC_EPA_INFORMAL_ENFORCEMENT_ACTIONS",
+"n_distinct": 14606,
+"domain": "FINANCE"
+},
+{
+"table": "FED_EPA_GHGRP_FACILITY",
+"n_distinct": 13221,
+"domain": "ENVIRONMENT"
+}
+]
+},
+{
+"axis": "COMPANY_NO",
+"total_entities": 10842694,
+"n_tables": 2,
+"tables": [
+{
+"table": "INT_UK_COMPANIES_HOUSE",
+"n_distinct": 5734779,
+"domain": "_RESTORE_20260731"
+},
+{
+"table": "UK_COMPANIES_HOUSE_PSC",
+"n_distinct": 5107915,
+"domain": "CORPORATE_REGISTRY"
+}
+]
+},
+{
+"axis": "EIN",
+"total_entities": 9421153,
+"n_tables": 34,
+"tables": [
+{
+"table": "FED_IRS_EO_BMF",
+"n_distinct": 1983563,
+"domain": "CORPORATE_REGISTRY"
+},
+{
+"table": "FED_IRS_BMF",
+"n_distinct": 1974830,
+"domain": "ECONOMICS"
+},
+{
+"table": "FED_IRS_PUB78_ELIGIBLE_DONEES",
+"n_distinct": 1435544,
+"domain": "ECONOMICS"
+},
+{
+"table": "FED_IRS_AUTO_REVOCATIONS",
+"n_distinct": 1187975,
+"domain": "ECONOMICS"
+},
+{
+"table": "FED_IRS_REVOCATION",
+"n_distinct": 1187366,
+"domain": "ECONOMICS"
+},
+{
+"table": "FED_IRS_990_EFILE_INDEX",
+"n_distinct": 899097,
+"domain": "ECONOMICS"
+},
+{
+"table": "FED_OSHA_ITA_300A_SUMMARY_2023",
+"n_distinct": 123206,
+"domain": "LABOR"
+},
+{
+"table": "FED_OSHA_ITA_300A_SUMMARY_2024",
+"n_distinct": 114603,
+"domain": "LABOR"
+},
+{
+"table": "FED_OSHA_ITA_300A_SUMMARY_2025",
+"n_distinct": 106218,
+"domain": "LABOR"
+},
+{
+"table": "FED_FAC_SINGLE_AUDIT",
+"n_distinct": 68126,
+"domain": "ECONOMICS"
+},
+{
+"table": "FED_IRS_527_ORGS",
+"n_distinct": 58915,
+"domain": "POLITICS"
+},
+{
+"table": "IRS527_DIRECTORS_OFFICERS",
+"n_distinct": 58881,
+"domain": "POLITICS"
+},
+{
+"table": "FED_DOL_EBSA_FORM5500_SCHEDULE_SB",
+"n_distinct": 39581,
+"domain": "LABOR"
+},
+{
+"table": "FED_OSHA_ITA_CASE_DETAIL_2023",
+"n_distinct": 33693,
+"domain": "LABOR"
+},
+{
+"table": "FED_DOL_FORM5500",
+"n_distinct": 29069,
+"domain": "ECONOMICS"
+},
+{
+"table": "FED_PBGC_TRUSTEED_PENSION_PLANS",
+"n_distinct": 20835,
+"domain": "LABOR"
+},
+{
+"table": "FED_OSHA_ITA_CASE_DETAIL_2024",
+"n_distinct": 20523,
+"domain": "LABOR"
+},
+{
+"table": "FED_OSHA_ITA_CASE_DETAIL_2025",
+"n_distinct": 13387,
+"domain": "LABOR"
+},
+{
+"table": "IRS527_RELATED_ENTITIES",
+"n_distinct": 8979,
+"domain": "POLITICS"
+},
+{
+"table": "FED_SEC_DERA_SUB_2024Q2",
+"n_distinct": 4744,
+"domain": "FINANCE"
+},
+{
+"table": "FED_SEC_DERA_SUB_2024Q3",
+"n_distinct": 4686,
+"domain": "FINANCE"
+},
+{
+"table": "FED_SEC_DERA_SUB_2024Q4",
+"n_distinct": 4663,
+"domain": "FINANCE"
+},
+{
+"table": "FED_SEC_DERA_SUB_2025Q2",
+"n_distinct": 4508,
+"domain": "FINANCE"
+},
+{
+"table": "FED_SEC_DERA_SUB_2025Q4",
+"n_distinct": 4501,
+"domain": "FINANCE"
+},
+{
+"table": "FED_SEC_DERA_SUB_2025Q3",
+"n_distinct": 4494,
+"domain": "FINANCE"
+},
+{
+"table": "FED_PBGC_TRUSTEED_PLANS",
+"n_distinct": 4431,
+"domain": "LABOR"
+},
+{
+"table": "FED_SEC_DERA_SUB_2025Q1",
+"n_distinct": 4305,
+"domain": "FINANCE"
+},
+{
+"table": "FED_SEC_DERA_SUB_2024Q1",
+"n_distinct": 4238,
+"domain": "FINANCE"
+},
+{
+"table": "FED_SEC_DERA_SUB_2026Q1",
+"n_distinct": 4236,
+"domain": "FINANCE"
+},
+{
+"table": "IRS527_8872_REPORTS",
+"n_distinct": 4150,
+"domain": "POLITICS"
+},
+{
+"table": "FED_IRS_EO_PR",
+"n_distinct": 2587,
+"domain": "ECONOMICS"
+},
+{
+"table": "FED_COURTLISTENER_SCHOOLS",
+"n_distinct": 2569,
+"domain": "JUSTICE"
+},
+{
+"table": "FED_IRS_SOI_CHARITIES",
+"n_distinct": 2450,
+"domain": "ECONOMICS"
+},
+{
+"table": "FED_IRS_990",
+"n_distinct": 200,
+"domain": "ECONOMICS"
+}
+]
+},
+{
+"axis": "LEI",
+"total_entities": 6526559,
+"n_tables": 4,
+"tables": [
+{
+"table": "INTL_GLEIF",
+"n_distinct": 3382301,
+"domain": "ECONOMICS"
+},
+{
+"table": "INTL_GLEIF_REPEX",
+"n_distinct": 3142660,
+"domain": "ECONOMICS"
+},
+{
+"table": "INTL_ISO_MIC_REGISTRY",
+"n_distinct": 1060,
+"domain": "FINANCE"
+},
+{
+"table": "FED_CFPB_HMDA",
+"n_distinct": 538,
+"domain": "HOUSING"
+}
+]
+},
+{
+"axis": "PWSID",
+"total_entities": 2844162,
+"n_tables": 10,
+"tables": [
+{
+"table": "FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+"n_distinct": 434040,
+"domain": "ENVIRONMENT"
+},
+{
+"table": "FED_EPA_ECHO",
+"n_distinct": 430993,
+"domain": "ENVIRONMENT"
+},
+{
+"table": "FED_EPA_SDWA_SDWA_FACILITIES",
+"n_distinct": 430916,
+"domain": "ENVIRONMENT"
+},
+{
+"table": "FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS",
+"n_distinct": 413877,
+"domain": "ENVIRONMENT"
+},
+{
+"table": "FED_EPA_SDWA_SDWA_SERVICE_AREAS",
+"n_distinct": 378450,
+"domain": "IMMIGRATION"
+},
+{
+"table": "FED_EPA_SDWA_SDWA_SITE_VISITS",
+"n_distinct": 267052,
+"domain": "ENVIRONMENT"
+},
+{
+"table": "FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT",
+"n_distinct": 258445,
+"domain": "ENVIRONMENT"
+},
+{
+"table": "FED_EPA_SDWA_SDWA_EVENTS_MILESTONES",
+"n_distinct": 98555,
+"domain": "ENVIRONMENT"
+},
+{
+"table": "FED_EPA_SDWA_SDWA_LCR_SAMPLES",
+"n_distinct": 89800,
+"domain": "ENVIRONMENT"
+},
+{
+"table": "FED_EPA_SDWA_SDWA_PN_VIOLATION_ASSOC",
+"n_distinct": 42034,
+"domain": "ENVIRONMENT"
+}
+]
+},
+{
+"axis": "NPDES_ID",
+"total_entities": 2491476,
+"n_tables": 8,
+"tables": [
+{
+"table": "FED_EPA_NPDES_ICIS_FACILITIES",
+"n_distinct": 1213737,
+"domain": "ENVIRONMENT"
+},
+{
+"table": "FED_EPA_NPDES_NPDES_QNCR_HISTORY",
+"n_distinct": 690126,
+"domain": "ENVIRONMENT"
+},
+{
+"table": "FED_EPA_NPDES_NPDES_INSPECTIONS",
+"n_distinct": 286752,
+"domain": "ENVIRONMENT"
+},
+{
+"table": "FED_EPA_NPDES_NPDES_INFORMAL_ENFORCEMENT_ACTIONS",
+"n_distinct": 119300,
+"domain": "ENVIRONMENT"
+},
+{
+"table": "FED_EPA_NPDES_NPDES_SE_VIOLATIONS",
+"n_distinct": 76438,
+"domain": "ENVIRONMENT"
+},
+{
+"table": "FED_EPA_NPDES_NPDES_FORMAL_ENFORCEMENT_ACTIONS",
+"n_distinct": 49662,
+"domain": "ENVIRONMENT"
+},
+{
+"table": "FED_EPA_NPDES_NPDES_PS_VIOLATIONS",
+"n_distinct": 44872,
+"domain": "ENVIRONMENT"
+},
+{
+"table": "FED_EPA_NPDES_NPDES_CS_VIOLATIONS",
+"n_distinct": 10589,
+"domain": "ENVIRONMENT"
+}
+]
+},
+{
+"axis": "UEI",
+"total_entities": 864524,
+"n_tables": 7,
+"tables": [
+{
+"table": "FED_USASPENDING_CONTRACTS_FULL",
+"n_distinct": 420990,
+"domain": "ECONOMICS"
+},
+{
+"table": "FED_USASPENDING_ASSISTANCE_FULL",
+"n_distinct": 223721,
+"domain": "ECONOMICS"
+},
+{
+"table": "FED_USASPENDING_CONTRACTS",
+"n_distinct": 92833,
+"domain": "ECONOMICS"
+},
+{
+"table": "FED_FAC_SINGLE_AUDIT",
+"n_distinct": 59493,
+"domain": "ECONOMICS"
+},
+{
+"table": "FED_SAM_EXCLUSIONS_FULL_R2",
+"n_distinct": 38424,
+"domain": "PROCUREMENT"
+},
+{
+"table": "FED_SBIR_STTR_AWARDS",
+"n_distinct": 17160,
+"domain": "SCIENCE_RESEARCH"
+},
+{
+"table": "FED_NIH_REPORTER",
+"n_distinct": 11903,
+"domain": "SCIENCE_RESEARCH"
+}
+]
+},
+{
+"axis": "CIK",
+"total_entities": 268512,
+"n_tables": 19,
+"tables": [
+{
+"table": "FED_SEC_INSIDER_REPORTINGOWNER",
+"n_distinct": 138006,
+"domain": "FINANCE"
+},
+{
+"table": "FED_PCAOB_FORM_AP_FILINGS",
+"n_distinct": 28773,
+"domain": "FINANCE"
+},
+{
+"table": "FED_SEC_13F_SUBMISSIONS",
+"n_distinct": 16273,
+"domain": "FINANCE"
+},
+{
+"table": "FED_SEC_EDGAR_FINANCIALS",
+"n_distinct": 8112,
+"domain": "FINANCE"
+},
+{
+"table": "FED_SEC_EDGAR_COMPANY_TICKERS",
+"n_distinct": 8018,
+"domain": "ECONOMICS"
+},
+{
+"table": "FED_SEC_EDGAR_COMPANY_TICKERS_EXCHANGE",
+"n_distinct": 7998,
+"domain": "FINANCE"
+},
+{
+"table": "FED_SEC_DERA_SUB_2024Q2",
+"n_distinct": 6250,
+"domain": "FINANCE"
+},
+{
+"table": "FED_SEC_DERA_SUB_2025Q2",
+"n_distinct": 6081,
+"domain": "FINANCE"
+},
+{
+"table": "FED_SEC_DERA_SUB_2024Q3",
+"n_distinct": 6008,
+"domain": "FINANCE"
+},
+{
+"table": "FED_SEC_DERA_SUB_2025Q3",
+"n_distinct": 5909,
+"domain": "FINANCE"
+},
+{
+"table": "FED_SEC_DERA_SUB_2024Q4",
+"n_distinct": 5833,
+"domain": "FINANCE"
+},
+{
+"table": "FED_SEC_DERA_SUB_2025Q4",
+"n_distinct": 5786,
+"domain": "FINANCE"
+},
+{
+"table": "FED_SEC_DERA_SUB_2026Q1",
+"n_distinct": 5750,
+"domain": "FINANCE"
+},
+{
+"table": "FED_SEC_DERA_SUB_2025Q1",
+"n_distinct": 5672,
+"domain": "FINANCE"
+},
+{
+"table": "FED_SEC_DERA_SUB_2024Q1",
+"n_distinct": 5506,
+"domain": "FINANCE"
+},
+{
+"table": "FED_SEC_EDGAR_INSIDERS",
+"n_distinct": 5306,
+"domain": "FINANCE"
+},
+{
+"table": "FED_SEC_INVESTMENT_COMPANY_SERIES_CLASS",
+"n_distinct": 2046,
+"domain": "FINANCE"
+},
+{
+"table": "FED_SEC_CLOSED_END_FUND_INFORMATION",
+"n_distinct": 973,
+"domain": "FINANCE"
+},
+{
+"table": "FED_SEC_BUSINESS_DEVELOPMENT_COMPANY_REPORT",
+"n_distinct": 212,
+"domain": "FINANCE"
+}
+]
+},
+{
+"axis": "CCN",
+"total_entities": 222549,
+"n_tables": 23,
+"tables": [
+{
+"table": "FED_CMS_POS_OTHER",
+"n_distinct": 41262,
+"domain": "HEALTH"
+},
+{
+"table": "FED_NURSINGHOME411",
+"n_distinct": 14456,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_NURSING_HOME",
+"n_distinct": 14448,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY",
+"n_distinct": 14443,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_NURSING_HOME_DEFICIENCIES",
+"n_distinct": 14383,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS",
+"n_distinct": 14250,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES",
+"n_distinct": 13686,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_HOME_HEALTH",
+"n_distinct": 12392,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS",
+"n_distinct": 11413,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS",
+"n_distinct": 9954,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_MEDICARE_DIALYSIS_FACILITIES",
+"n_distinct": 8241,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_DIALYSIS",
+"n_distinct": 7557,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_NURSING_HOME_PENALTIES",
+"n_distinct": 6771,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_HCRIS",
+"n_distinct": 6040,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_HOSPITAL_ENROLLMENTS",
+"n_distinct": 5966,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS",
+"n_distinct": 5313,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_HOSPITAL_GENERAL",
+"n_distinct": 5268,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_HOSPICE",
+"n_distinct": 5155,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_HOSPICE_ENROLLMENTS",
+"n_distinct": 4798,
+"domain": "IMMIGRATION"
+},
+{
+"table": "FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE",
+"n_distinct": 3126,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE",
+"n_distinct": 2906,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_IRF",
+"n_distinct": 410,
+"domain": "HEALTH"
+},
+{
+"table": "FED_CMS_LTCH",
+"n_distinct": 311,
+"domain": "HEALTH"
+}
+]
+},
+{
+"axis": "FEC_CMTE_ID",
+"total_entities": 160220,
+"n_tables": 9,
+"tables": [
+{
+"table": "FED_FEC_COMMITTEES",
+"n_distinct": 38693,
+"domain": "FINANCE"
+},
+{
+"table": "FED_FEC_PAC_SUMMARY",
+"n_distinct": 22899,
+"domain": "POLITICS"
+},
+{
+"table": "FED_FEC_BULK",
+"n_distinct": 20938,
+"domain": "FINANCE"
+},
+{
+"table": "FED_FEC_BULK_COMMITTEES",
+"n_distinct": 20007,
+"domain": "FINANCE"
+},
+{
+"table": "FED_FEC_CAND_CMTE_LINKAGE",
+"n_distinct": 16251,
+"domain": "FINANCE"
+},
+{
+"table": "FED_FEC_INDIV_CONTRIBUTIONS",
+"n_distinct": 12291,
+"domain": "FINANCE"
+},
+{
+"table": "FED_FEC_BULK_LINKAGES",
+"n_distinct": 11427,
+"domain": "_RESTORE_20260731"
+},
+{
+"table": "FED_FEC_COMMITTEE_TO_CANDIDATE",
+"n_distinct": 9376,
+"domain": "FINANCE"
+},
+{
+"table": "FED_FEC_LEADERSHIP_PAC",
+"n_distinct": 8338,
+"domain": "FINANCE"
+}
+]
+},
+{
+"axis": "DEA_NO",
+"total_entities": 149244,
+"n_tables": 1,
+"tables": [
+{
+"table": "FED_DEA_ARCOS_FULL",
+"n_distinct": 149244,
+"domain": "_RESTORE_20260731"
+}
+]
+},
+{
+"axis": "MINE_ID",
+"total_entities": 136672,
+"n_tables": 3,
+"tables": [
+{
+"table": "FED_MSHA_MINES",
+"n_distinct": 91906,
+"domain": "LABOR"
+},
+{
+"table": "FED_MSHA_VIOLATIONS",
+"n_distinct": 31277,
+"domain": "LABOR"
+},
+{
+"table": "FED_MSHA_ACCIDENTS",
+"n_distinct": 13489,
+"domain": "LABOR"
+}
+]
+},
+{
+"axis": "FEC_CAND_ID",
+"total_entities": 63379,
+"n_tables": 6,
+"tables": [
+{
+"table": "FED_FEC_CANDIDATES",
+"n_distinct": 19142,
+"domain": "FINANCE"
+},
+{
+"table": "FED_FEC_CAND_CMTE_LINKAGE",
+"n_distinct": 15153,
+"domain": "FINANCE"
+},
+{
+"table": "FED_FEC_BULK_CANDIDATES",
+"n_distinct": 13240,
+"domain": "_RESTORE_20260731"
+},
+{
+"table": "FED_FEC_LEADERSHIP_PAC",
+"n_distinct": 8076,
+"domain": "FINANCE"
+},
+{
+"table": "FED_FEC_BULK_SUMMARY",
+"n_distinct": 5754,
+"domain": "_RESTORE_20260731"
+},
+{
+"table": "FED_FEC_INDEPENDENT_EXPENDITURES",
+"n_distinct": 2014,
+"domain": "FINANCE"
+}
+]
+},
+{
+"axis": "CL_PERSON_ID",
+"total_entities": 61200,
+"n_tables": 8,
+"tables": [
+{
+"table": "FED_COURTLISTENER_JUDGES",
+"n_distinct": 16191,
+"domain": "JUSTICE"
+},
+{
+"table": "FED_COURTLISTENER_POSITIONS",
+"n_distinct": 15613,
+"domain": "JUSTICE"
+},
+{
+"table": "FED_COURTLISTENER_JUDGE_EDUCATIONS",
+"n_distinct": 7398,
+"domain": "JUSTICE"
+},
+{
+"table": "FED_COURTLISTENER_JUDGE_POLITICAL_AFFILIATIONS",
+"n_distinct": 7226,
+"domain": "JUSTICE"
+},
+{
+"table": "FED_COURTLISTENER_JUDGE_RACES",
+"n_distinct": 6521,
+"domain": "JUSTICE"
+},
+{
+"table": "FED_COURTLISTENER_FINANCIAL_DISCLOSURES",
+"n_distinct": 3381,
+"domain": "JUSTICE"
+},
+{
+"table": "FED_COURTLISTENER_DOCKETS",
+"n_distinct": 3350,
+"domain": "JUSTICE"
+},
+{
+"table": "FED_COURTLISTENER_ORIGINATING_COURT_INFO",
+"n_distinct": 1520,
+"domain": "JUSTICE"
+}
+]
+},
+{
+"axis": "DUNS",
+"total_entities": 36513,
+"n_tables": 2,
+"tables": [
+{
+"table": "FED_SBIR_STTR_AWARDS",
+"n_distinct": 21594,
+"domain": "SCIENCE_RESEARCH"
+},
+{
+"table": "FED_NIH_REPORTER",
+"n_distinct": 14919,
+"domain": "SCIENCE_RESEARCH"
+}
+]
+},
+{
+"axis": "BIOGUIDE",
+"total_entities": 27160,
+"n_tables": 5,
+"tables": [
+{
+"table": "FED_CONGRESS_LEGISLATORS",
+"n_distinct": 12781,
+"domain": "POLITICS"
+},
+{
+"table": "FED_VOTEVIEW_MEMBERS",
+"n_distinct": 12584,
+"domain": "POLITICS"
+},
+{
+"table": "FED_GOVINFO_BILL_COSPONSORS",
+"n_distinct": 635,
+"domain": "_RESTORE_20260731"
+},
+{
+"table": "FED_GOVINFO_BILLSTATUS",
+"n_distinct": 632,
+"domain": "_RESTORE_20260731"
+},
+{
+"table": "FED_CONGRESS_COMMITTEE_MEMBERSHIP",
+"n_distinct": 528,
+"domain": "POLITICS"
+}
+]
+},
+{
+"axis": "ICPSR",
+"total_entities": 13316,
+"n_tables": 2,
+"tables": [
+{
+"table": "FED_VOTEVIEW_MEMBERS",
+"n_distinct": 12677,
+"domain": "POLITICS"
+},
+{
+"table": "FED_VOTEVIEW_ROLLCALLS",
+"n_distinct": 639,
+"domain": "_RESTORE_20260731"
+}
+]
+},
+{
+"axis": "NCUA_CHARTER",
+"total_entities": 12975,
+"n_tables": 4,
+"tables": [
+{
+"table": "FED_NCUA_CALL_REPORTS_FOICU",
+"n_distinct": 4336,
+"domain": "FINANCE"
+},
+{
+"table": "FED_NCUA_CALL_REPORTS_FS220",
+"n_distinct": 4336,
+"domain": "FINANCE"
+},
+{
+"table": "FED_NCUA_FEDERALLY_INSURED_CU_LIST",
+"n_distinct": 4250,
+"domain": "FINANCE"
+},
+{
+"table": "FED_NCUA_CHARTER_MERGER_EVENTS",
+"n_distinct": 53,
+"domain": "FINANCE"
+}
+]
+},
+{
+"axis": "IMO",
+"total_entities": 9317,
+"n_tables": 3,
+"tables": [
+{
+"table": "FED_NOAA_AIS",
+"n_distinct": 6630,
+"domain": "MARITIME"
+},
+{
+"table": "FED_OFAC_SDN",
+"n_distinct": 2030,
+"domain": "JUSTICE"
+},
+{
+"table": "INTL_UK_SANCTIONS_LIST",
+"n_distinct": 657,
+"domain": "JUSTICE"
+}
+]
+},
+{
+"axis": "CL_COURT_ID",
+"total_entities": 6593,
+"n_tables": 3,
+"tables": [
+{
+"table": "FED_COURTLISTENER_COURTS",
+"n_distinct": 3361,
+"domain": "JUSTICE"
+},
+{
+"table": "FED_COURTLISTENER_DOCKETS",
+"n_distinct": 2199,
+"domain": "JUSTICE"
+},
+{
+"table": "FED_COURTLISTENER_POSITIONS",
+"n_distinct": 1033,
+"domain": "JUSTICE"
+}
+]
+},
+{
+"axis": "ICE_FACILITY",
+"total_entities": 2197,
+"n_tables": 2,
+"tables": [
+{
+"table": "FED_ICE_DETENTION_FACILITY_CODES",
+"n_distinct": 1490,
+"domain": "IMMIGRATION"
+},
+{
+"table": "FED_ICE_DETENTION_STINTS",
+"n_distinct": 707,
+"domain": "IMMIGRATION"
+}
+]
+}
+]

@@ -1,0 +1,677 @@
+<title>Warehouse Biome</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#eef2f2;
+  --surface:#ffffff;
+  --surface-2:#e3eaea;
+  --ink:#0d2224;
+  --ink-2:#3f5457;
+  --muted:#6c8285;
+  --line:#c7d4d5;
+  --accent:#0e7c86;
+  --accent-2:#c76b3f;
+  --tide-1:#1f7a8c;
+  --tide-2:#2a9d8f;
+  --tide-3:#457b9d;
+  --tide-4:#8a5a44;
+  --tide-5:#e0a458;
+  --tide-6:#6a4c93;
+  --tide-7:#b5566a;
+  --tide-8:#3d5a80;
+  --tide-9:#588157;
+  --tide-10:#a44a3f;
+  --tide-11:#4c6e5d;
+  --tide-12:#7c6a46;
+  --shadow: 0 1px 2px rgba(13,34,36,.06);
+}
+:root:not([data-theme="light"]){
+  @media (prefers-color-scheme: dark){
+    --bg:#0a1416;
+    --surface:#0f1c1e;
+    --surface-2:#132628;
+    --ink:#e9f2f2;
+    --ink-2:#aac2c4;
+    --muted:#6f8b8e;
+    --line:#1e3436;
+    --accent:#3fc7cf;
+    --accent-2:#e2955f;
+    --tide-1:#3fc7cf;
+    --tide-2:#5fc9a8;
+    --tide-3:#6f9fcf;
+    --tide-4:#c68a5f;
+    --tide-5:#e8bb75;
+    --tide-6:#9b83c9;
+    --tide-7:#d6879a;
+    --tide-8:#7d9fcf;
+    --tide-9:#8fb885;
+    --tide-10:#d17a67;
+    --tide-11:#7fa895;
+    --tide-12:#b0996b;
+    --shadow: 0 1px 2px rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0a1416;
+  --surface:#0f1c1e;
+  --surface-2:#132628;
+  --ink:#e9f2f2;
+  --ink-2:#aac2c4;
+  --muted:#6f8b8e;
+  --line:#1e3436;
+  --accent:#3fc7cf;
+  --accent-2:#e2955f;
+  --tide-1:#3fc7cf;
+  --tide-2:#5fc9a8;
+  --tide-3:#6f9fcf;
+  --tide-4:#c68a5f;
+  --tide-5:#e8bb75;
+  --tide-6:#9b83c9;
+  --tide-7:#d6879a;
+  --tide-8:#7d9fcf;
+  --tide-9:#8fb885;
+  --tide-10:#d17a67;
+  --tide-11:#7fa895;
+  --tide-12:#b0996b;
+  --shadow: 0 1px 2px rgba(0,0,0,.4);
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'IBM Plex Sans', system-ui, sans-serif;
+  min-height:100vh;
+}
+
+.page{
+  max-width:1360px;
+  margin:0 auto;
+  padding:2.5rem 2rem 4rem;
+}
+
+header.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:2rem;
+  flex-wrap:wrap;
+  border-bottom:1px solid var(--line);
+  padding-bottom:1.25rem;
+  margin-bottom:1.75rem;
+}
+.eyebrow{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:.72rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin:0 0 .5rem;
+}
+h1{
+  font-family:'Fraunces', Georgia, serif;
+  font-optical-sizing:auto;
+  font-weight:560;
+  font-size:clamp(2rem, 4vw, 2.9rem);
+  line-height:1.02;
+  margin:0;
+  letter-spacing:-.01em;
+  text-wrap:balance;
+}
+.sub{
+  max-width:46ch;
+  color:var(--ink-2);
+  font-size:.94rem;
+  line-height:1.5;
+  margin:.75rem 0 0;
+}
+
+.stat-block{
+  display:flex;
+  gap:1.75rem;
+  flex-wrap:wrap;
+}
+.stat{
+  text-align:right;
+}
+.stat .n{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:1.5rem;
+  font-weight:500;
+  color:var(--ink);
+  font-variant-numeric:tabular-nums;
+  display:block;
+}
+.stat .l{
+  font-size:.68rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+.layout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 260px;
+  gap:1.75rem;
+  align-items:start;
+}
+
+.canvas-wrap{
+  position:relative;
+  background:radial-gradient(ellipse at 50% 38%, var(--surface-2), var(--bg) 72%);
+  border:1px solid var(--line);
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+#biome{
+  display:block;
+  width:100%;
+  height:auto;
+  cursor:pointer;
+}
+
+.tooltip{
+  position:absolute;
+  pointer-events:none;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:.6rem .75rem;
+  font-size:.78rem;
+  line-height:1.4;
+  max-width:280px;
+  box-shadow:0 8px 24px rgba(0,0,0,.18);
+  opacity:0;
+  transition:opacity .1s ease;
+  z-index:5;
+}
+.tooltip.show{opacity:1;}
+.tooltip .domain{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:.66rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--accent);
+  display:block;
+  margin-bottom:.15rem;
+}
+.tooltip .name{
+  font-weight:600;
+  color:var(--ink);
+  display:block;
+  word-break:break-word;
+}
+.tooltip .rows{
+  color:var(--ink-2);
+  font-variant-numeric:tabular-nums;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:.75rem;
+}
+
+.legend-scale{
+  position:absolute;
+  top:1.1rem;
+  right:1.2rem;
+  text-align:center;
+  font-family:'IBM Plex Mono', monospace;
+  z-index:3;
+}
+.legend-scale .lt{
+  font-size:.64rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:.4rem;
+}
+.legend-scale svg circle{
+  fill:none;
+  stroke:var(--muted);
+  stroke-width:1;
+  opacity:.55;
+}
+.legend-scale .lbl{
+  font-size:.62rem;
+  fill:var(--muted);
+}
+
+.caption-in{
+  position:absolute;
+  left:1.2rem;
+  bottom:1rem;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:.68rem;
+  color:var(--muted);
+  letter-spacing:.02em;
+}
+
+/* side legend */
+.side{
+  display:flex;
+  flex-direction:column;
+  gap:.9rem;
+  position:sticky;
+  top:1.5rem;
+}
+.side h2{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:.7rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin:0 0 .3rem;
+}
+.domain-list{
+  display:flex;
+  flex-direction:column;
+  gap:.05rem;
+  max-height:640px;
+  overflow-y:auto;
+  padding-right:.4rem;
+}
+.domain-row{
+  display:flex;
+  align-items:center;
+  gap:.55rem;
+  padding:.4rem .3rem;
+  border-radius:8px;
+  cursor:pointer;
+  transition:background .12s ease;
+}
+.domain-row:hover, .domain-row.active{
+  background:var(--surface-2);
+}
+.domain-row .dot{
+  width:.62rem;
+  height:.62rem;
+  border-radius:50%;
+  flex:0 0 auto;
+}
+.domain-row .dn{
+  font-size:.78rem;
+  font-weight:500;
+  color:var(--ink);
+  flex:1;
+  text-transform:capitalize;
+  letter-spacing:.01em;
+}
+.domain-row .dr{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:.68rem;
+  color:var(--muted);
+  font-variant-numeric:tabular-nums;
+}
+
+footer.note{
+  margin-top:1.75rem;
+  padding-top:1.25rem;
+  border-top:1px solid var(--line);
+  font-size:.86rem;
+  line-height:1.55;
+  color:var(--ink-2);
+  max-width:76ch;
+}
+footer.note b{color:var(--ink); font-weight:600;}
+footer.note .src{
+  display:block;
+  margin-top:.5rem;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:.72rem;
+  color:var(--muted);
+}
+
+@media (max-width:900px){
+  .layout{grid-template-columns:1fr;}
+  .side{position:static;}
+  .domain-list{max-height:none;}
+}
+</style>
+
+<div class="page">
+  <header class="top">
+    <div>
+      <p class="eyebrow">Ripple &middot; Warehouse Census</p>
+      <h1>The Biome of the Warehouse</h1>
+      <p class="sub">Every table in the marts layer, sized by row count, clustered by subject domain — a census of what Ripple has actually pulled in, not a plan of what it should.</p>
+    </div>
+    <div class="stat-block">
+      <div class="stat"><span class="n" id="stat-tables">—</span><span class="l">tables shown</span></div>
+      <div class="stat"><span class="n" id="stat-rows">—</span><span class="l">rows total</span></div>
+      <div class="stat"><span class="n" id="stat-domains">—</span><span class="l">domains</span></div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <div class="canvas-wrap" id="canvasWrap">
+      <canvas id="biome"></canvas>
+      <div class="tooltip" id="tooltip">
+        <span class="domain" id="tt-domain"></span>
+        <span class="name" id="tt-name"></span>
+        <span class="rows" id="tt-rows"></span>
+      </div>
+      <div class="legend-scale">
+        <div class="lt">rows</div>
+        <svg width="150" height="90" id="scaleSvg"></svg>
+      </div>
+      <div class="caption-in">hover a bubble &middot; click a domain to isolate it</div>
+    </div>
+
+    <aside class="side">
+      <h2>Domains, by total rows</h2>
+      <div class="domain-list" id="domainList"></div>
+    </aside>
+  </div>
+
+  <footer class="note">
+    <b>How to read it:</b> each circle is one table in <b>LIBRARY_MARTS</b>, radius scaled to
+    &radic;(row count) so area tracks size honestly. Color groups tables by domain schema — health,
+    finance, environment, and so on. The biggest single table, <b>DEA ARCOS</b> (controlled-substance
+    shipping records, 178.6M rows), sits inside Health; SEC 13F institutional holdings and FEC
+    itemized contributions anchor Finance. This is raw landed volume, not data quality or
+    completeness — a big bubble means a lot of rows loaded, nothing more.
+    <span class="src">Live row counts pulled from LIBRARY_MARTS.INFORMATION_SCHEMA.TABLES, 2026-08-24. Restore/uncategorized schemas excluded.</span>
+  </footer>
+</div>
+
+<script>
+const DATA = [{"domain":"HEALTH","total_rows":360184627,"n_tables":95,"tables":[{"name":"HEALTH__FED_DEA_ARCOS","rows":178598026},{"name":"HEALTH__FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY","rows":31403215},{"name":"HEALTH__FED_CMS_PARTD_PRESCRIBERS","rows":25869521},{"name":"HEALTH__FED_CMS_OPEN_PAYMENTS","rows":15385047},{"name":"HEALTH__FED_CMS_OPEN_PAYMENTS_2023","rows":14700786},{"name":"HEALTH__FED_CMS_OPEN_PAYMENTS_2022","rows":13306564},{"name":"HEALTH__FED_CMS_MEDICARE_DIALYSIS_FACILITIES","rows":12456456},{"name":"HEALTH__FED_FDA_FAERS_INDI","rows":9833260},{"name":"HEALTH__FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI","rows":9781673},{"name":"HEALTH__FED_CMS_NPPES","rows":9606683},{"name":"HEALTH__FED_FDA_FAERS_DEMO","rows":5811086},{"name":"HEALTH__FED_FDA_FAERS_OUTC","rows":5147466},{"name":"HEALTH__FED_FDA_GUDID","rows":5083948},{"name":"HEALTH__FED_FDA_MAUDE","rows":2743561},{"name":"+81 more tables","rows":20457335}]},{"domain":"FINANCE","total_rows":203331421,"n_tables":55,"tables":[{"name":"FINANCE__FED_SEC_13F_POSITIONS","rows":101261252},{"name":"FINANCE__FED_FEC_INDIV_CONTRIBUTIONS","rows":84172112},{"name":"FINANCE__FED_SEC_13F_SUBMISSION","rows":3822885},{"name":"FINANCE__FED_FDIC_SOD_BRANCH_DEPOSITS","rows":2823000},{"name":"FINANCE__FED_SEC_INSIDER_NONDERIV_TRANS","rows":2672841},{"name":"FINANCE__FED_SEC_INSIDER_REPORTINGOWNER","rows":1934673},{"name":"FINANCE__FED_SEC_INSIDER_SUBMISSION","rows":1772088},{"name":"FINANCE__FED_SEC_INSIDER_DERIV_TRANS","rows":1049121},{"name":"FINANCE__FED_FEC_COMMITTEE_TO_CANDIDATE","rows":866730},{"name":"FINANCE__FED_FATCA_FFI","rows":516298},{"name":"FINANCE__FED_SEC_13F_FILERS","rows":344109},{"name":"FINANCE__FED_SEC_13F_SUBMISSIONS","rows":336124},{"name":"FINANCE__FED_FEC_INDEPENDENT_EXPENDITURES","rows":261033},{"name":"FINANCE__FED_EPA_ICIS_FEC_ICIS_FEC_EPA_INSPECTIONS","rows":260556},{"name":"+41 more tables","rows":1238599}]},{"domain":"ENVIRONMENT","total_rows":101419356,"n_tables":70,"tables":[{"name":"ENVIRONMENT__FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT","rows":15432737},{"name":"ENVIRONMENT__FED_EPA_AIR_EMISSIONS_POLL_RPT_COMBINED_EMISSIONS","rows":10411826},{"name":"ENVIRONMENT__FED_EPA_NPDES_NPDES_QNCR_HISTORY","rows":7951656},{"name":"ENVIRONMENT__FED_FRACFOCUS_REGISTRY","rows":7200550},{"name":"ENVIRONMENT__FED_USGS_WATER","rows":6694816},{"name":"ENVIRONMENT__FED_EPA_FRS_FACILITIES","rows":5300149},{"name":"ENVIRONMENT__XC_EPA_CORPORATE_CROSSWALK","rows":5300149},{"name":"ENVIRONMENT__FED_EPA_FRS_FRS_PROGRAM_LINKS","rows":4406498},{"name":"ENVIRONMENT__FED_EPA_FRS_FRS_FACILITIES","rows":3277557},{"name":"ENVIRONMENT__FED_EPA_ECHO","rows":3135554},{"name":"ENVIRONMENT__FED_EPA_RCRA_VIOSNC_HISTORY","rows":2675581},{"name":"ENVIRONMENT__FED_EPA_SDWA_SDWA_SITE_VISITS","rows":2495249},{"name":"ENVIRONMENT__FED_EPA_FRS_FRS_NAICS_CODES","rows":2179702},{"name":"ENVIRONMENT__FED_EPA_NPDES_NPDES_INSPECTIONS","rows":1900067},{"name":"+56 more tables","rows":23057265}]},{"domain":"MARITIME","total_rows":58104610,"n_tables":1,"tables":[{"name":"MARITIME__FED_NOAA_AIS","rows":58104610}]},{"domain":"JUSTICE","total_rows":57846907,"n_tables":63,"tables":[{"name":"JUSTICE__FED_FJC_IDB_CIVIL","rows":10857396},{"name":"JUSTICE__FED_COURTLISTENER_FJC_IDB_CL_LINKED","rows":10323280},{"name":"JUSTICE__FED_COURTLISTENER_OPINION_CLUSTERS","rows":10070727},{"name":"JUSTICE__FED_FJC_IDB_BANKRUPTCY","rows":6965441},{"name":"JUSTICE__FED_COURTLISTENER_PARENTHETICALS","rows":6408887},{"name":"JUSTICE__FED_FJC_IDB_CRIMINAL","rows":6299908},{"name":"JUSTICE__FED_COURTLISTENER_INVESTMENTS","rows":1901599},{"name":"JUSTICE__INTL_OPENSANCTIONS_DEFAULT","rows":1281846},{"name":"JUSTICE__FED_FJC_IDB_APPELLATE","rows":988183},{"name":"JUSTICE__FED_COURTLISTENER_ORIGINATING_COURT_INFO","rows":973419},{"name":"JUSTICE__INTL_UCDP_GED","rows":385918},{"name":"JUSTICE__FED_FBI_CDE","rows":238680},{"name":"JUSTICE__XC_VERA_INCARCERATION_TRENDS","rows":128507},{"name":"JUSTICE__RACIAL_JAIL_DISPARITY","rows":128507},{"name":"+49 more tables","rows":894609}]},{"domain":"ECONOMICS","total_rows":36303162,"n_tables":39,"tables":[{"name":"ECONOMICS__FED_USASPENDING_CONTRACTS","rows":6325622},{"name":"ECONOMICS__INTL_GLEIF_REPEX","rows":6259489},{"name":"ECONOMICS__FED_IRS_990_EFILE_INDEX","rows":5544626},{"name":"ECONOMICS__FED_BLS_QCEW","rows":3619437},{"name":"ECONOMICS__INTL_GLEIF","rows":3382301},{"name":"ECONOMICS__FED_SBA_LOANS","rows":2174502},{"name":"ECONOMICS__FED_IRS_BMF","rows":1974830},{"name":"ECONOMICS__FED_IRS_PUB78_ELIGIBLE_DONEES","rows":1435544},{"name":"ECONOMICS__FED_IRS_AUTO_REVOCATIONS","rows":1207295},{"name":"ECONOMICS__FED_IRS_REVOCATION","rows":1187367},{"name":"ECONOMICS__FED_SBA_PPP","rows":968524},{"name":"ECONOMICS__INTL_GLEIF_RELATIONSHIPS","rows":484142},{"name":"ECONOMICS__FED_TREASURY_DTS_DEPOSITS","rows":478149},{"name":"ECONOMICS__FED_FAC_SINGLE_AUDIT","rows":411638},{"name":"+25 more tables","rows":849696}]},{"domain":"CORPORATE_REGISTRY","total_rows":29701579,"n_tables":11,"tables":[{"name":"CORPORATE_REGISTRY__UK_COMPANIES_HOUSE_PSC","rows":15804611},{"name":"CORPORATE_REGISTRY__INTL_UK_COMPANIES_HOUSE","rows":5734780},{"name":"CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_RELATIONSHIPS","rows":3339267},{"name":"CORPORATE_REGISTRY__FED_IRS_EO_BMF","rows":1983563},{"name":"CORPORATE_REGISTRY__INTL_IE_CRO","rows":821693},{"name":"CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_ENTITIES","rows":814344},{"name":"CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_OFFICERS","rows":771315},{"name":"CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_ADDRESSES","rows":402246},{"name":"CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_INTERMEDIARIES","rows":26768},{"name":"CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_OTHERS","rows":2989},{"name":"CORPORATE_REGISTRY__INTL_ES_BORME","rows":3}]},{"domain":"HOUSING","total_rows":22678719,"n_tables":17,"tables":[{"name":"HOUSING__FED_CFPB_HMDA_HISTORIC","rows":19136434},{"name":"HOUSING__FED_FEMA_IA_HOUSING_REGISTRATIONS","rows":3080000},{"name":"HOUSING__FED_FHFA_HPI","rows":184807},{"name":"HOUSING__FED_HUD_FHA_SF_PORTFOLIO_SNAPSHOT","rows":61647},{"name":"HOUSING__FED_HUD_ASSISTED_HOUSING_PROJECTS","rows":35601},{"name":"HOUSING__FED_CFPB_HMDA_DC_ONLY","rows":28301},{"name":"HOUSING__FED_CFPB_HMDA","rows":28301},{"name":"HOUSING__FED_HUD_MF_FIRM_COMMITMENTS","rows":25557},{"name":"HOUSING__FED_FEMA_NFIP_COMMUNITY_STATUS_BOOK","rows":25122},{"name":"HOUSING__FED_HUD_MF_SECTION8_CONTRACTS","rows":24309},{"name":"HOUSING__FED_CFPB_HMDA_LAR","rows":17474},{"name":"HOUSING__FED_USDA_RD_MFH_ACTIVE_PROJECTS","rows":13550},{"name":"HOUSING__FED_FHFA_NMDB","rows":7204},{"name":"HOUSING__FED_CFPB_HMDA_ARID2017_LEI_XREF","rows":5399},{"name":"+3 more tables","rows":5013}]},{"domain":"POLITICS","total_rows":21033408,"n_tables":79,"tables":[{"name":"POLITICS__INTL_ELECTIONS_CANADA_CONTRIBUTIONS","rows":12646465},{"name":"POLITICS__INTL_VOETEN_UNGA_VOTES","rows":1823352},{"name":"POLITICS__FED_FCC_LICENSING","rows":1689338},{"name":"POLITICS__VOTEVIEW_VOTES","rows":945523},{"name":"POLITICS__CA_LOBBY_COVER","rows":524828},{"name":"POLITICS__ST_NYC_CFB_CAMPAIGN_2021_CONTRIBUTIONS","rows":457521},{"name":"POLITICS__BILL_COSPONSORS","rows":367735},{"name":"POLITICS__TX_LOBBY_COVER","rows":283803},{"name":"POLITICS__ST_NYC_CFB_CAMPAIGN_2025_CONTRIBUTIONS","rows":259537},{"name":"POLITICS__TX_LOBBY_SUBJECT_MATTER","rows":209957},{"name":"POLITICS__CA_LOBBY_COVER2","rows":206493},{"name":"POLITICS__ST_NYC_CFB_CAMPAIGN_2013_CONTRIBUTION","rows":197968},{"name":"POLITICS__ST_NYC_CFB_CAMPAIGN_2001_CONTRIBUTION","rows":193741},{"name":"POLITICS__IRS527_DIRECTORS_OFFICERS","rows":189593},{"name":"+65 more tables","rows":1037554}]},{"domain":"IMMIGRATION","total_rows":19945292,"n_tables":15,"tables":[{"name":"IMMIGRATION__FED_EOIR_CASE_DATA","rows":12631225},{"name":"IMMIGRATION__FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT","rows":2978925},{"name":"IMMIGRATION__FED_ICE_DETENTION_STINTS","rows":2571975},{"name":"IMMIGRATION__FED_DOL_OFLC","rows":664616},{"name":"IMMIGRATION__FED_ICE_DETAINERS","rows":609769},{"name":"IMMIGRATION__FED_EPA_SDWA_SDWA_SERVICE_AREAS","rows":422464},{"name":"IMMIGRATION__FED_DHS_OHSS","rows":50740},{"name":"IMMIGRATION__XC_OWID_REFUGEES","rows":7442},{"name":"IMMIGRATION__FED_CMS_HOSPICE_ENROLLMENTS","rows":6066},{"name":"IMMIGRATION__FED_ICE_DETENTION_FACILITY_CODES","rows":1490},{"name":"IMMIGRATION__FED_ICE_STATISTICS","rows":204},{"name":"IMMIGRATION__FED_USCIS_DATA","rows":177},{"name":"IMMIGRATION__FED_ICE_DETENTION_FACILITY_LIST","rows":163},{"name":"IMMIGRATION__FED_DHS_YEARBOOK","rows":27},{"name":"+1 more tables","rows":9}]},{"domain":"CONSUMER_PROTECTION","total_rows":17168287,"n_tables":1,"tables":[{"name":"CONSUMER_PROTECTION__FED_CFPB_COMPLAINTS","rows":17168287}]},{"domain":"CONSUMER_SAFETY","total_rows":12418982,"n_tables":4,"tables":[{"name":"CONSUMER_SAFETY__FED_CPSC_NEISS","rows":9794971},{"name":"CONSUMER_SAFETY__FED_NHTSA_COMPLAINTS","rows":2227941},{"name":"CONSUMER_SAFETY__FED_NHTSA_RECALLS","rows":241861},{"name":"CONSUMER_SAFETY__FED_NHTSA_INVESTIGATIONS","rows":154209}]},{"domain":"REFERENCE","total_rows":8438987,"n_tables":34,"tables":[{"name":"REFERENCE__FED_ITIS_REFERENCE_LINKS","rows":1970107},{"name":"REFERENCE__FED_USGS_GNIS_ALL_NAMES","rows":1249624},{"name":"REFERENCE__FED_ITIS_TAXONOMIC_UNITS","rows":993346},{"name":"REFERENCE__FED_ITIS_LONGNAMES","rows":993346},{"name":"REFERENCE__FED_ITIS_HIERARCHY","rows":678363},{"name":"REFERENCE__FED_ITIS_GEOGRAPHIC_DIV","rows":480351},{"name":"REFERENCE__FED_ITIS_SYNONYM_LINKS","rows":315254},{"name":"REFERENCE__FED_ITIS_TAXON_AUTHORS_LKP","rows":214445},{"name":"REFERENCE__FED_ITIS_STRIPPEDAUTHOR","rows":214445},{"name":"REFERENCE__FED_ITIS_NODC_IDS","rows":209565},{"name":"REFERENCE__FED_ITIS_TU_COMMENTS_LINKS","rows":192851},{"name":"REFERENCE__FED_ITIS_VERNACULARS","rows":166778},{"name":"REFERENCE__FED_ITIS_JURISDICTION","rows":161922},{"name":"REFERENCE__CALENDAR","rows":155593},{"name":"+20 more tables","rows":442997}]},{"domain":"LABOR","total_rows":7203649,"n_tables":12,"tables":[{"name":"LABOR__FED_MSHA_VIOLATIONS","rows":3087265},{"name":"LABOR__FED_OSHA_ITA_CASE_DETAIL_2023","rows":890934},{"name":"LABOR__FED_OSHA_ITA_CASE_DETAIL_2024","rows":688649},{"name":"LABOR__FED_DOL_OLMS","rows":617710},{"name":"LABOR__FED_OSHA_ITA_300A_SUMMARY_2024","rows":398620},{"name":"LABOR__FED_OSHA_ITA_300A_SUMMARY_2023","rows":394234},{"name":"LABOR__FED_OSHA_ITA_300A_SUMMARY_2025","rows":383283},{"name":"LABOR__FED_OSHA_ITA_CASE_DETAIL_2025","rows":330447},{"name":"LABOR__FED_MSHA_ACCIDENTS","rows":273623},{"name":"LABOR__FED_MSHA_MINES","rows":91906},{"name":"LABOR__FED_DOL_EBSA_FORM5500_SCHEDULE_SB","rows":41802},{"name":"LABOR__FED_PBGC_TRUSTEED_PLANS","rows":5176}]},{"domain":"EDUCATION","total_rows":4001508,"n_tables":17,"tables":[{"name":"EDUCATION__FED_GOOGLE_POLADS_CREATIVE_STATS","rows":1562870},{"name":"EDUCATION__FED_GOOGLE_POLADS_CREATIVE_ID_MAPPING","rows":971029},{"name":"EDUCATION__FED_GOOGLE_POLADS_ADVERTISER_GEO_SPEND","rows":614078},{"name":"EDUCATION__FED_GOOGLE_POLADS_ADVERTISER_WEEKLY_SPEND","rows":298884},{"name":"EDUCATION__FED_CFTC_COT_FUTURES","rows":287053},{"name":"EDUCATION__FED_SENATE_LDA_FILINGS","rows":174871},{"name":"EDUCATION__FED_CFTC_COT_FINANCIAL","rows":34683},{"name":"EDUCATION__FED_GOOGLE_POLADS_ADVERTISER_STATS","rows":21211},{"name":"EDUCATION__FED_FRB_H15_SELECTED_RATES","rows":16848},{"name":"EDUCATION__FED_GOOGLE_POLADS_ADVERTISER_ID_MAPPING","rows":8044},{"name":"EDUCATION__FED_ED_COLLEGE_SCORECARD_INSTITUTION","rows":6273},{"name":"EDUCATION__FED_ED_NCES_CIP_CODES","rows":2318},{"name":"EDUCATION__FED_GOOGLE_POLADS_GEO_SPEND","rows":1289},{"name":"EDUCATION__FED_CPSC_NEISS_CODES","rows":1250},{"name":"+3 more tables","rows":807}]},{"domain":"SCIENCE_RESEARCH","total_rows":2485535,"n_tables":6,"tables":[{"name":"SCIENCE_RESEARCH__FED_NIH_REPORTER","rows":2122611},{"name":"SCIENCE_RESEARCH__FED_SBIR_STTR_AWARDS","rows":219503},{"name":"SCIENCE_RESEARCH__FED_RETRACTION_WATCH","rows":71591},{"name":"SCIENCE_RESEARCH__XC_RETRACTION_WATCH_DATABASE","rows":71388},{"name":"SCIENCE_RESEARCH__XC_BIORXIV_MEDRXIV","rows":432},{"name":"SCIENCE_RESEARCH__XC_OSF_REGISTRATIONS","rows":10}]},{"domain":"TIMELINE","total_rows":2321870,"n_tables":33,"tables":[{"name":"TIMELINE__WAREHOUSE","rows":1160612},{"name":"TIMELINE__ENVIRONMENT_INDEX","rows":274298},{"name":"TIMELINE__JUSTICE_INDEX","rows":236674},{"name":"TIMELINE__HEALTH_INDEX","rows":131105},{"name":"TIMELINE__POLITICS_INDEX","rows":106501},{"name":"TIMELINE__CORPORATE_REGISTRY_INDEX","rows":86054},{"name":"TIMELINE__TRANSPORT_INDEX","rows":61164},{"name":"TIMELINE__ECONOMICS_INDEX","rows":59672},{"name":"TIMELINE__LABOR_INDEX","rows":38246},{"name":"TIMELINE__FINANCE_INDEX","rows":37808},{"name":"TIMELINE__CONSUMER_SAFETY_INDEX","rows":30990},{"name":"TIMELINE__REFERENCE_INDEX","rows":17883},{"name":"TIMELINE__HOUSING_INDEX","rows":17475},{"name":"TIMELINE__SCIENCE_RESEARCH_INDEX","rows":15506},{"name":"+19 more tables","rows":47882}]},{"domain":"TRANSPORT","total_rows":2189152,"n_tables":11,"tables":[{"name":"TRANSPORT__FED_FRA_CASUALTIES","rows":1150788},{"name":"TRANSPORT__FED_FAA_AIRCRAFT_REGISTRY","rows":315447},{"name":"TRANSPORT__FED_FRA_CROSSING_INCIDENTS","rows":251149},{"name":"TRANSPORT__FED_FRA_EQUIPMENT_ACCIDENTS","rows":224941},{"name":"TRANSPORT__FED_NTSB_AVIATION_INJURY","rows":179179},{"name":"TRANSPORT__FED_NTSB_AVIATION_AIRCRAFT","rows":31503},{"name":"TRANSPORT__FED_NTSB_AVIATION_EVENTS","rows":30968},{"name":"TRANSPORT__FED_FRA_RAIL_DEATHS_BY_RAILROAD","rows":5152},{"name":"TRANSPORT__FED_DOT_BTS","rows":21},{"name":"TRANSPORT__FED_FAA_DATA_PORTAL","rows":3},{"name":"TRANSPORT__FED_FRA_SAFETY","rows":1}]},{"domain":"OPEN_DATA","total_rows":1688848,"n_tables":12,"tables":[{"name":"OPEN_DATA__XC_WAYBACK_DOJ_EPSTEIN","rows":1537352},{"name":"OPEN_DATA__INTL_FR_DATA_GOUV","rows":130431},{"name":"OPEN_DATA__INTL_CH_OPENDATASWISS","rows":5000},{"name":"OPEN_DATA__INTL_DE_GOVDATA","rows":5000},{"name":"OPEN_DATA__INTL_GR_DATAGOV","rows":4988},{"name":"OPEN_DATA__INTL_AR_DATOSGOB","rows":3556},{"name":"OPEN_DATA__INTL_CL_DATOSGOB","rows":1000},{"name":"OPEN_DATA__INTL_ES_DATOSGOB","rows":1000},{"name":"OPEN_DATA__INTL_CA_OPEN_CANADA","rows":500},{"name":"OPEN_DATA__INTL_BR_DADOS_GOV","rows":10},{"name":"OPEN_DATA__INTL_GH_DATAGOVGH","rows":10},{"name":"OPEN_DATA__INTL_GE_DATAGOV","rows":1}]},{"domain":"ENERGY","total_rows":480459,"n_tables":29,"tables":[{"name":"ENERGY__INTL_EMBER_ELEC","rows":369264},{"name":"ENERGY__FED_EIA860_3_1_GENERATOR","rows":26855},{"name":"ENERGY__FED_EIA860_2_PLANT","rows":16132},{"name":"ENERGY__FED_EIA861_SERVICE_TERRITORY","rows":11775},{"name":"ENERGY__FED_EIA860_3_3_SOLAR","rows":7154},{"name":"ENERGY__FED_EIA860_6_1_ENVIROASSOC","rows":7020},{"name":"ENERGY__FED_EIA860_1_UTILITY","rows":6643},{"name":"ENERGY__FED_EIA860_4_OWNER","rows":5495},{"name":"ENERGY__FED_EIA860_6_2_ENVIROEQUIP","rows":4428},{"name":"ENERGY__FED_EIA861_FRAME","rows":3412},{"name":"ENERGY__FED_EIA860_3_5_MULTIFUEL","rows":2893},{"name":"ENERGY__FED_EIA861_SALES_ULT_CUST","rows":2815},{"name":"ENERGY__FED_EIA861_ADVANCED_METERS","rows":2725},{"name":"ENERGY__FED_EIA861_SHORT_FORM","rows":1724},{"name":"+15 more tables","rows":12124}]},{"domain":"SCIENCE","total_rows":444100,"n_tables":5,"tables":[{"name":"SCIENCE__FED_USGS_EARTHQUAKES","rows":443274},{"name":"SCIENCE__INTL_EMBL_ENSEMBL","rows":643},{"name":"SCIENCE__FED_NSF_AWARDS","rows":115},{"name":"SCIENCE__FED_NASA_OPEN_DATA","rows":54},{"name":"SCIENCE__XC_OWID_AI_INCIDENTS_ANNUAL","rows":14}]},{"domain":"PROCUREMENT","total_rows":355577,"n_tables":5,"tables":[{"name":"PROCUREMENT__FED_SAM_EXCLUSIONS","rows":167928},{"name":"PROCUREMENT__INTL_EC_SERCOP","rows":132995},{"name":"PROCUREMENT__FED_USASPENDING_BULK","rows":49613},{"name":"PROCUREMENT__FED_USASPENDING_SUBAWARDS","rows":5000},{"name":"PROCUREMENT__INTL_ADB_DATA","rows":41}]},{"domain":"EPSTEIN","total_rows":204263,"n_tables":3,"tables":[{"name":"FCT_WAYBACK_PAGE_CHANGES","rows":203305},{"name":"FCT_LIBRARY_SNAPSHOT","rows":619},{"name":"FCT_DATASET_SIZE_HISTORY","rows":339}]},{"domain":"REGULATORY","total_rows":94731,"n_tables":1,"tables":[{"name":"REGULATORY__FED_FEDERAL_REGISTER_DOCUMENTS","rows":94731}]},{"domain":"FOREIGN_INFLUENCE","total_rows":48104,"n_tables":1,"tables":[{"name":"FOREIGN_INFLUENCE__FED_FARA_BULK","rows":48104}]},{"domain":"HISTORY","total_rows":36387,"n_tables":5,"tables":[{"name":"HISTORY__FED_SLAVEVOYAGES_TRANSATLANTIC","rows":36108},{"name":"HISTORY__FED_DOCSOUTH","rows":144},{"name":"HISTORY__FED_WPA_SLAVE_NARRATIVES","rows":100},{"name":"HISTORY__FED_DENSHO_DDR","rows":25},{"name":"HISTORY__FED_DAVID_RUMSEY","rows":10}]},{"domain":"INVESTIGATIONS","total_rows":27592,"n_tables":3,"tables":[{"name":"INVESTIGATIONS__XC_WAYBACK_REPLAY_DOJ_LISTING","rows":24897},{"name":"INVESTIGATIONS__XC_WAYBACK_REPLAY_DOJ_DEEP_PAGES","rows":2542},{"name":"INVESTIGATIONS__INTL_LEIDEN_RUSSIAN_OPS_EUROPE","rows":153}]},{"domain":"HISTORICAL_RECORDS","total_rows":11521,"n_tables":1,"tables":[{"name":"HISTORICAL_RECORDS__FED_SLAVEVOYAGES_INTRAAMERICAN","rows":11521}]},{"domain":"CRIMINAL_JUSTICE","total_rows":1000,"n_tables":1,"tables":[{"name":"CRIMINAL_JUSTICE__FED_BJS_DATA","rows":1000}]},{"domain":"MONEY_FINANCE","total_rows":938,"n_tables":1,"tables":[{"name":"MONEY__DEBT_REPAYMENT_CLIFF","rows":938}]},{"domain":"LEGAL_ENFORCEMENT","total_rows":882,"n_tables":1,"tables":[{"name":"LEGAL_ENFORCEMENT__FED_NAAG_MULTISTATE_SETTLEMENTS","rows":882}]},{"domain":"GOVERNANCE","total_rows":406,"n_tables":1,"tables":[{"name":"GOVERNANCE__FED_REVOLVINGDOOR_PROJECT","rows":406}]},{"domain":"GOVERNMENT_RECORDS","total_rows":101,"n_tables":2,"tables":[{"name":"GOVERNMENT_RECORDS__FED_USASPENDING_TAS_FILTER_TREE","rows":92},{"name":"GOVERNMENT_RECORDS__FED_NARA_AAD","rows":9}]},{"domain":"JUDICIARY","total_rows":25,"n_tables":1,"tables":[{"name":"JUDICIARY__FED_OYEZ","rows":25}]},{"domain":"CIVIL_RIGHTS","total_rows":1,"n_tables":1,"tables":[{"name":"CIVIL_RIGHTS__FED_NARA_WRA_AAD","rows":1}]},{"domain":"DBT_CROGERS","total_rows":1,"n_tables":1,"tables":[{"name":"LAND_AND_TERRITORY__FED_BIA_TRIBAL_GEO","rows":1}]}];
+
+const palette = ['tide-1','tide-2','tide-3','tide-4','tide-5','tide-6','tide-7','tide-8','tide-9','tide-10','tide-11','tide-12'];
+function domainColor(i){
+  const v = getComputedStyle(document.documentElement).getPropertyValue('--' + palette[i % palette.length]).trim();
+  return v;
+}
+
+// flatten into bubble list
+let bubbles = [];
+let domainMeta = [];
+DATA.forEach((d, di) => {
+  const color = domainColor(di);
+  domainMeta.push({domain: d.domain, total_rows: d.total_rows, n_tables: d.n_tables, color, index: di});
+  d.tables.forEach(t => {
+    bubbles.push({
+      name: t.name,
+      rows: t.rows,
+      domain: d.domain,
+      domainIndex: di,
+      color
+    });
+  });
+});
+
+const totalRows = DATA.reduce((s,d) => s + d.total_rows, 0);
+document.getElementById('stat-tables').textContent = bubbles.length.toLocaleString();
+document.getElementById('stat-rows').textContent = (totalRows/1e6).toFixed(0) + 'M';
+document.getElementById('stat-domains').textContent = DATA.length;
+
+// radius scale: sqrt of rows, clamp
+const maxRows = Math.max(...bubbles.map(b => b.rows));
+const minRows = Math.min(...bubbles.map(b => b.rows));
+function radiusFor(rows, W){
+  const minR = W < 700 ? 2.2 : 3;
+  const maxR = W < 700 ? 46 : 62;
+  const t = Math.sqrt(rows) / Math.sqrt(maxRows);
+  return minR + t * (maxR - minR);
+}
+
+// ---- layout: canvas sizing ----
+const wrap = document.getElementById('canvasWrap');
+const canvas = document.getElementById('biome');
+const ctx = canvas.getContext('2d');
+let W, H, DPR;
+
+function sizeCanvas(){
+  DPR = window.devicePixelRatio || 1;
+  const rect = wrap.getBoundingClientRect();
+  W = rect.width;
+  H = Math.max(560, Math.min(760, W * 0.68));
+  canvas.width = W * DPR;
+  canvas.height = H * DPR;
+  canvas.style.height = H + 'px';
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+}
+
+// ---- simulation setup ----
+let sim = [];
+function initSim(){
+  sizeCanvas();
+  const cx = W/2, cy = H/2;
+  const outerR = Math.min(W,H) * 0.46;
+
+  // assign each domain a target angle sector, sized by sqrt(total_rows) share
+  const totalWeight = domainMeta.reduce((s,d)=>s+Math.sqrt(d.total_rows),0);
+  let angle = -Math.PI/2;
+  domainMeta.forEach(d => {
+    const share = Math.sqrt(d.total_rows) / totalWeight;
+    d.angleStart = angle;
+    d.angleSpan = Math.max(share * Math.PI * 2, 0.09);
+    angle += d.angleSpan;
+  });
+  // normalize spans to fill 2π exactly
+  const totalSpan = domainMeta.reduce((s,d)=>s+d.angleSpan,0);
+  const scaleSpan = (Math.PI*2) / totalSpan;
+  angle = -Math.PI/2;
+  domainMeta.forEach(d => {
+    d.angleSpan *= scaleSpan;
+    d.angleStart = angle;
+    angle += d.angleSpan;
+    const mid = d.angleStart + d.angleSpan/2;
+    // target radius fraction from center based on domain size (bigger = more central)
+    const wshare = Math.sqrt(d.total_rows) / Math.max(...domainMeta.map(x=>Math.sqrt(x.total_rows)));
+    const rr = outerR * (0.72 - 0.30*wshare);
+    d.targetX = cx + Math.cos(mid) * rr;
+    d.targetY = cy + Math.sin(mid) * rr;
+    d.mid = mid;
+  });
+
+  sim = bubbles.map(b => {
+    const dm = domainMeta[b.domainIndex];
+    const jitterA = dm.angleStart + Math.random()*dm.angleSpan;
+    const jitterR = Math.random()*outerR*0.55;
+    return {
+      ...b,
+      r: radiusFor(b.rows, W),
+      x: cx + Math.cos(jitterA)*jitterR + (Math.random()-0.5)*20,
+      y: cy + Math.sin(jitterA)*jitterR + (Math.random()-0.5)*20,
+      tx: dm.targetX,
+      ty: dm.targetY
+    };
+  });
+  // sort so big bubbles simulate first (more stable)
+  sim.sort((a,b) => b.r - a.r);
+
+  runSimulation(cx, cy, outerR);
+}
+
+function runSimulation(cx, cy, outerR){
+  const N = sim.length;
+  const iterations = 260;
+  for (let iter=0; iter<iterations; iter++){
+    const pull = 0.028 + (iter/iterations)*0.01;
+    // attract to domain target
+    for (let i=0;i<N;i++){
+      const s = sim[i];
+      s.x += (s.tx - s.x) * pull;
+      s.y += (s.ty - s.y) * pull;
+    }
+    // collision resolution (simple grid-free O(n^2) but bubble count is small ~270)
+    for (let i=0;i<N;i++){
+      for (let j=i+1;j<N;j++){
+        const a = sim[i], b = sim[j];
+        let dx = b.x - a.x, dy = b.y - a.y;
+        let dist = Math.sqrt(dx*dx+dy*dy) || 0.001;
+        const minDist = a.r + b.r + 1.4;
+        if (dist < minDist){
+          const overlap = (minDist - dist) / 2;
+          const nx = dx/dist, ny = dy/dist;
+          a.x -= nx*overlap; a.y -= ny*overlap;
+          b.x += nx*overlap; b.y += ny*overlap;
+        }
+      }
+    }
+    // keep within outer bound
+    for (let i=0;i<N;i++){
+      const s = sim[i];
+      const dx = s.x-cx, dy = s.y-cy;
+      const d = Math.sqrt(dx*dx+dy*dy);
+      const bound = outerR + 6;
+      if (d + s.r > bound){
+        const nx = dx/d, ny = dy/d;
+        s.x = cx + nx*(bound - s.r);
+        s.y = cy + ny*(bound - s.r);
+      }
+    }
+  }
+}
+
+let activeDomain = null;
+
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  sim.forEach(s => {
+    const dimmed = activeDomain !== null && s.domainIndex !== activeDomain;
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+    ctx.fillStyle = s.color;
+    ctx.globalAlpha = dimmed ? 0.10 : 0.88;
+    ctx.fill();
+    if (s.r > 22 && !dimmed){
+      ctx.globalAlpha = 0.9;
+      ctx.font = (s.r>40 ? '600 12px' : '500 10px') + " 'IBM Plex Sans', sans-serif";
+      ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--bg');
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      const label = shortName(s.name, s.r);
+      wrapText(label, s.x, s.y, s.r*1.7);
+    }
+    ctx.globalAlpha = 1;
+  });
+}
+
+function shortName(n, r){
+  let s = n.replace(/^[A-Z_]+__/, '').replace(/_/g,' ');
+  if (s.startsWith('FED ')) s = s.slice(4);
+  if (s.startsWith('INTL ')) s = s.slice(5);
+  return s;
+}
+function wrapText(text, x, y, maxWidth){
+  const words = text.split(' ');
+  let lines = [];
+  let cur = '';
+  for (const w of words){
+    const test = cur ? cur+' '+w : w;
+    if (ctx.measureText(test).width > maxWidth && cur){
+      lines.push(cur); cur = w;
+    } else cur = test;
+  }
+  if (cur) lines.push(cur);
+  lines = lines.slice(0,3);
+  const lh = 12;
+  const startY = y - (lines.length-1)*lh/2;
+  lines.forEach((l,i) => ctx.fillText(l, x, startY + i*lh));
+}
+
+// ---- interaction ----
+const tooltip = document.getElementById('tooltip');
+const ttDomain = document.getElementById('tt-domain');
+const ttName = document.getElementById('tt-name');
+const ttRows = document.getElementById('tt-rows');
+
+function findBubble(mx, my){
+  for (let i=sim.length-1;i>=0;i--){
+    const s = sim[i];
+    const dx = mx-s.x, dy = my-s.y;
+    if (dx*dx+dy*dy <= s.r*s.r) return s;
+  }
+  return null;
+}
+
+canvas.addEventListener('mousemove', (e) => {
+  const rect = canvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+  const hit = findBubble(mx, my);
+  if (hit){
+    ttDomain.textContent = hit.domain.replace(/_/g,' ');
+    ttName.textContent = hit.name;
+    ttRows.textContent = hit.rows.toLocaleString() + ' rows';
+    tooltip.style.left = Math.min(mx+16, W-290) + 'px';
+    tooltip.style.top = Math.max(my-10, 8) + 'px';
+    tooltip.classList.add('show');
+    canvas.style.cursor = 'pointer';
+  } else {
+    tooltip.classList.remove('show');
+    canvas.style.cursor = 'default';
+  }
+});
+canvas.addEventListener('mouseleave', () => tooltip.classList.remove('show'));
+canvas.addEventListener('click', (e) => {
+  const rect = canvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+  const hit = findBubble(mx, my);
+  if (hit){
+    activeDomain = (activeDomain === hit.domainIndex) ? null : hit.domainIndex;
+    renderDomainList();
+    draw();
+  }
+});
+
+// ---- side legend ----
+const domainList = document.getElementById('domainList');
+function renderDomainList(){
+  domainList.innerHTML = '';
+  const sorted = [...domainMeta].sort((a,b)=>b.total_rows-a.total_rows);
+  sorted.forEach(d => {
+    const row = document.createElement('div');
+    row.className = 'domain-row' + (activeDomain===d.index ? ' active' : '');
+    row.innerHTML = `<span class="dot" style="background:${d.color}"></span>
+      <span class="dn">${d.domain.replace(/_/g,' ').toLowerCase()}</span>
+      <span class="dr">${d.n_tables} &middot; ${(d.total_rows/1e6).toFixed(1)}M</span>`;
+    row.addEventListener('click', () => {
+      activeDomain = (activeDomain === d.index) ? null : d.index;
+      renderDomainList();
+      draw();
+    });
+    domainList.appendChild(row);
+  });
+}
+
+// ---- scale legend ----
+function drawScale(){
+  const svg = document.getElementById('scaleSvg');
+  svg.innerHTML = '';
+  const refs = [maxRows, Math.round(maxRows/12), Math.round(maxRows/120)];
+  const cx = 40, baseY = 78;
+  let x = cx;
+  refs.forEach((v, i) => {
+    const r = radiusFor(v, W) * 0.62;
+    const cyy = baseY - r;
+    const ns = 'http://www.w3.org/2000/svg';
+    const c = document.createElementNS(ns,'circle');
+    c.setAttribute('cx', x); c.setAttribute('cy', cyy); c.setAttribute('r', r);
+    svg.appendChild(c);
+    const t = document.createElementNS(ns,'text');
+    t.setAttribute('x', x); t.setAttribute('y', baseY+14);
+    t.setAttribute('text-anchor','middle');
+    t.setAttribute('class','lbl');
+    t.textContent = v >= 1e6 ? (v/1e6).toFixed(0)+'M' : v >= 1e3 ? (v/1e3).toFixed(0)+'k' : v;
+    svg.appendChild(t);
+    x += 52;
+  });
+}
+
+function rebuild(){
+  initSim();
+  draw();
+  drawScale();
+}
+
+renderDomainList();
+rebuild();
+window.addEventListener('resize', () => {
+  clearTimeout(window.__rz);
+  window.__rz = setTimeout(rebuild, 200);
+});
+</script>
