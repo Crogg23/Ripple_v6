@@ -7,6 +7,12 @@ models:
         data_tests:
           - not_null
     data_tests:
+      # GRAIN FIX (2026-08-25): date+time+missile+landing alone drops a real dimension.
+      # North Korea often fires multiple missiles in one salvo (e.g. 18 KN-25s on
+      # 2024-05-29 21:13 UTC, all sea-of-japan) -- each individual missile is its own
+      # real-world event, distinguished by `series` (the model already selects it: "1
+      # of 18", "2 of 18", ...). Verified live: 15 dup groups on the 4-column grain,
+      # zero once series (100% populated, 340/340) is added.
       - dbt_utils.unique_combination_of_columns:
           arguments:
             combination_of_columns:
@@ -14,3 +20,4 @@ models:
               - time
               - missile
               - landing
+              - series

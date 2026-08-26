@@ -108,6 +108,31 @@ def main() -> int:
     started = dt.datetime.now(dt.timezone.utc).replace(tzinfo=None)
     from snowflake.connector.pandas_tools import write_pandas
 
+    # Reconcile against the warehouse before trusting the checkpoint file.
+    # 2026-08-25 finding: a run that crashes between write_pandas succeeding
+    # and CKPT.write_text() running leaves the checkpoint behind what's
+    # actually landed -- the next --run then re-fetches and re-appends a
+    # block of already-loaded pages (415,000 duplicate rows caught live this
+    # session). Snowflake is ground truth for what's landed; the checkpoint
+    # is only a resume hint.
+    if args.run and state.get("table_created"):
+        try:
+            cur = conn.cursor()
+            cur.execute(
+                f"SELECT MAX(TRY_TO_NUMBER(ACTIVITY_NR)), COUNT(*) FROM "
+                f"{bulk.LANDING_DB}.{bulk.LANDING_SCHEMA}.{TABLE}")
+            live_max, live_count = cur.fetchone()
+            if live_max is not None and int(live_max) > state["last_activity_nr"]:
+                print(f"Checkpoint said last_activity_nr={state['last_activity_nr']:,} but "
+                      f"the warehouse already has rows up to {int(live_max):,} "
+                      f"({live_count:,} total) -- trusting the warehouse, not the stale "
+                      f"checkpoint.", flush=True)
+                state["last_activity_nr"] = int(live_max)
+                state["rows_loaded"] = int(live_count)
+        except Exception as e:
+            print(f"Warehouse reconciliation check failed ({e}); "
+                  f"trusting checkpoint file as-is.", flush=True)
+
     pages = 0
     while True:
         rows = fetch_page(key, state["last_activity_nr"])

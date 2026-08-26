@@ -39,7 +39,17 @@ deduped as (
             order by last_updated desc nulls last, _ingested_at desc nulls last
         ) as _row_num
     from renamed_cast
-    where fips is not null
+    -- 2026-08-25: raw source currently contains ONLY ArcGIS Hub portal-crawl
+    -- catalog metadata (StoryMaps/Web Maps/Apps listed on the BIA Open Data
+    -- Hub site), not real tribal-land geospatial features. Verified live:
+    -- all 100 raw rows have FIPS = '' (empty string, not NULL -- so it slid
+    -- past the old filter), STATE/AREA_SQMI also '', and OBJECTID is a
+    -- 32-char Hub item GUID rather than the FeatureServer's numeric OBJECTID.
+    -- The FIPS dedup below collapses all 100 junk rows to one survivor with
+    -- a null object_id, which is what tripped this test. Excluding fips=''
+    -- here until the loader is pointed at the real FeatureServer/query
+    -- endpoint -- this currently zeroes out the mart pending that reload.
+    where fips is not null and fips != ''
 
 )
 

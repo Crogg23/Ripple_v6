@@ -25,3 +25,27 @@ select
     FOR_DISCUSSION as for_discussion,
     NOTE as note
 from source
+-- Source has no incident ID column (checked raw table 2026-08-25, only these 16
+-- content columns exist). 3 of 153 rows are entirely blank across all 16 columns --
+-- trailing spreadsheet filler rows, not real incidents -- and collide with each
+-- other on the full grain. Every other row (including several genuine
+-- curator-note rows with real WHAT/NOTE text) is already unique. Dropping only
+-- the fully-blank rows.
+where not (
+    coalesce(nullif(trim(INCIDENTYEAR), ''), '') = ''
+    and coalesce(nullif(trim(INCIDENTMONTH), ''), '') = ''
+    and coalesce(nullif(trim(INCIDENTDATERANGE), ''), '') = ''
+    and coalesce(nullif(trim(INCIDENTDATESTART), ''), '') = ''
+    and coalesce(nullif(trim(INCIDENTDATEEND), ''), '') = ''
+    and coalesce(nullif(trim(WHAT), ''), '') = ''
+    and coalesce(nullif(trim(C_WHERE), ''), '') = ''
+    and coalesce(nullif(trim(EVENTCATEGORY), ''), '') = ''
+    and coalesce(nullif(trim(EVENTCATEGORY2), ''), '') = ''
+    and coalesce(nullif(trim(APPARENTGOAL1), ''), '') = ''
+    and coalesce(nullif(trim(APPARENTGOAL2), ''), '') = ''
+    and coalesce(nullif(trim(TARGETTYPE), ''), '') = ''
+    and coalesce(nullif(trim(TARGETTYPE2), ''), '') = ''
+    and coalesce(nullif(trim(DISPOSABLEAGENTSINVOLVED), ''), '') = ''
+    and coalesce(nullif(trim(FOR_DISCUSSION), ''), '') = ''
+    and coalesce(nullif(trim(NOTE), ''), '') = ''
+)

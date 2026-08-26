@@ -7,6 +7,15 @@ models:
         data_tests:
           - not_null
     data_tests:
+      # Grain corrected 2026-08-25: indicator+c_group+state+subgroup+phase+
+      # time_period collided 81 times, all within phase = '-1', time_period = '1'.
+      # That pair is a generic/trend bucket CDC reuses across many distinct real
+      # collection windows (confirmed: the 10 colliding rows per group have 10
+      # different time_period_label / start-end dates, e.g. "Aug 24-Sep 13 2022"
+      # vs "Dec 22 2020-Jan 5 2021" -- genuinely different survey periods, not
+      # duplicates). Adding time_period_start_date makes the combination fully
+      # unique (16794 rows, 16794 distinct combos, verified; column is always
+      # populated and parses cleanly).
       - dbt_utils.unique_combination_of_columns:
           arguments:
             combination_of_columns:
@@ -16,3 +25,4 @@ models:
               - subgroup
               - phase
               - time_period
+              - time_period_start_date

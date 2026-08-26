@@ -10,9 +10,18 @@ models:
         data_tests:
           - not_null
     data_tests:
+      # Grain corrected 2026-08-25: reportmonth+series_id+class_id alone collided
+      # 85 times. Real data shows one fund class can be run by more than one
+      # advisor/sub-advisor pairing in the same month (e.g. multiple regional
+      # sub-advisors under one advisor, or an advisor handoff recorded as two
+      # rows) -- these are genuinely different real-world records, not
+      # duplicates. Adding investment_advisor + sub_advisor makes the
+      # combination fully unique (1206 rows, 1206 distinct combos, verified).
       - dbt_utils.unique_combination_of_columns:
           arguments:
             combination_of_columns:
               - reportmonth
               - series_id
               - class_id
+              - investment_advisor
+              - sub_advisor

@@ -27,7 +27,12 @@ renamed_cast as (
 
         -- identifiers (ENT_NUM is the SDN entity number; verified unique).
         -- nullif drops the one blank trailer row (ENT_NUM='' ) at the final filter.
-        nullif(trim(ENT_NUM), '')                           as ent_num,
+        -- 2026-08-25: found a SECOND trailer row the plain trim() didn't catch --
+        -- ENT_NUM = CHR(26) (the DOS/Windows Ctrl-Z / SUB "end of file" byte),
+        -- every other column blank, verified live as the only non-digit ENT_NUM
+        -- in the raw table. trim() doesn't strip control characters, only
+        -- whitespace, so replace() strips this specific EOF-marker byte first.
+        nullif(trim(replace(ENT_NUM, chr(26), '')), '')     as ent_num,
         trim(SDN_NAME)                                      as sdn_name,
 
         -- entity type: '-0- ' null token cleaned; null => organization

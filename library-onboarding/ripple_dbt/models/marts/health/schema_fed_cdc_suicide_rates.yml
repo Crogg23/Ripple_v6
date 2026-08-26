@@ -2,6 +2,18 @@ version: 2
 
 models:
   - name: health__fed_cdc_suicide_rates
+    description: >
+      9 of 6390 rows (0.14%) collide on indicator+unit+stub_name+stub_label+year+age.
+      Verified live against the source (data.cdc.gov resource 9j2v-jamp, checked
+      2026-08-25): CDC's own current feed genuinely publishes two different ESTIMATE
+      values for the identical combination -- confirmed this is not an ingestion
+      artifact. All 9 collisions are year=2018, race=Black or African American,
+      age 45-64 or 65+ -- consistent with NCHS's 2018 death-certificate race-coding
+      transition (bridged-race vs single-race counts landing in the same series
+      with no method flag). The source's own data dictionary lists only these 13
+      columns -- there is no extra column to widen the grain with, and no way to
+      tell which of the two estimates is authoritative, so nothing can be safely
+      deduped without discarding a real published number. Softened to warn.
     columns:
       - name: indicator
         data_tests:
@@ -16,3 +28,5 @@ models:
               - stub_label
               - year
               - age
+          config:
+            severity: warn

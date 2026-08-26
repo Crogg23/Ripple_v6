@@ -5,32 +5,27 @@
 -- Source: DOL OSHA — ~5.2M inspections back to 1970s
 -- Key joins: NAICS/SIC → industry lookups; ESTAB_NAME → entity resolution
 --
--- ⚠ BROKEN 2026-08-18: source table LIBRARY_RAW.LANDING.FED_DOL_OSHA_INSPECTION
--- DOES NOT EXIST. It is not a rename/re-pull -- checked every schema in
--- LIBRARY_RAW (EPSTEIN, LANDING, PUBLIC, RETIRED) for any OSHA inspection/
--- enforcement/citation table under any name; nothing exists except the
--- unrelated FED_OSHA_ITA_* self-reported-injury tables (a different OSHA
--- program, 2023-2025 only -- not a substitute).
--- History: the table landed once on 2026-07-27 (~5.19M rows) via
--- scripts/dol_enforce_bulk_load.py, but the chunked write_pandas load
--- corrupted the first column's header (a Snowflake staged-chunk filename got
--- prepended to it instead of a clean ACTIVITY_NR), breaking every downstream
--- query. Someone debugged it that evening, could not fix it in place, and ran
--- DROP TABLE IF EXISTS on it (2026-07-27 19:27) -- it was never reloaded.
--- scripts/fix_errored_models.py already disabled the downstream mart
--- (labor__fed_dol_osha_inspection.sql, enabled=false) for this same reason,
--- but left this staging view enabled and pointed at the dead table -- that is
--- the break the census grid caught (reports/census_grid_2026-08-12/fill/).
--- DO NOT silently "fix" this by relaxing the query -- there is no data to
--- read. A real fix needs someone to re-run scripts/dol_enforce_bulk_load.py
--- (it has a --force flag for exactly this re-pour) AND check the reload for
--- the same column-mangling defect before trusting it -- the root cause of
--- *why* write_pandas produced the bad header was never diagnosed, only that
--- it happened. Left as-is (not disabled) per investigation-session instruction
--- so the break stays visible instead of being paved over.
+-- FIXED 2026-08-25: the source table this view pointed at
+-- (LIBRARY_RAW.LANDING.FED_DOL_OSHA_INSPECTION, singular) was DROP TABLE'd
+-- 2026-07-27 after a corrupt chunked write_pandas load (see git history on
+-- this file for the original incident note). This staging view was left
+-- enabled and pointing at the dead table on purpose so the break stayed
+-- visible -- that is the break the census grid caught
+-- (reports/census_grid_2026-08-12/fill/) and that the not_null/unique tests
+-- on activity_nr kept failing on ("...does not exist or not authorized").
+-- scripts/osha_inspections_api_load.py has since re-pulled the source under
+-- a NEW table name, LIBRARY_RAW.LANDING.FED_DOL_OSHA_INSPECTIONS (plural --
+-- not a rename of the old table, a fresh load), confirmed live via
+-- INFORMATION_SCHEMA.COLUMNS with the same 39-column shape this model
+-- already expected (plus _SRC_SHA256, not present on the old table, now
+-- carried through as metadata below). That loader is still running as of
+-- this fix, so row counts here will keep climbing -- expected, not a bug.
+-- The downstream mart (labor__fed_dol_osha_inspection.sql) is still
+-- config(enabled=false) from the old incident and was left untouched here;
+-- re-enabling it is a separate call.
 
 with source as (
-    select * from {{ source('ripple_raw', 'FED_DOL_OSHA_INSPECTION') }}
+    select * from {{ source('ripple_raw', 'FED_DOL_OSHA_INSPECTIONS') }}
 ),
 
 renamed as (
@@ -72,7 +67,8 @@ renamed as (
         try_to_date("CLOSE_CASE_DATE")                as close_case_date,
         try_to_date("LOAD_DT")                        as load_dt,
         "_INGESTED_AT"                               as _ingested_at,
-        "_SOURCE_RUN_ID"                             as _source_run_id
+        "_SOURCE_RUN_ID"                             as _source_run_id,
+        "_SRC_SHA256"                                as _src_sha256
     from source
 )
 

@@ -13,8 +13,16 @@ models:
         data_tests:
           - not_null
     data_tests:
+      # GRAIN (2026-08-25 verification): pgm_sys_id + program_code alone collides
+      # on exactly 1 pair out of 457,581 rows (ALJEF0000107300465 / CAASIP) -- the
+      # same facility re-enrolled in the same air program under a new begin_date
+      # (2015-06-01, then 2020-05-01), both rows otherwise identical. The real
+      # grain is one row per facility-program ENROLLMENT PERIOD, not just
+      # facility-program: adding begin_date makes the combination exactly unique
+      # across all 457,581 rows (fully populated, no nulls).
       - dbt_utils.unique_combination_of_columns:
           arguments:
             combination_of_columns:
               - pgm_sys_id
               - program_code
+              - begin_date

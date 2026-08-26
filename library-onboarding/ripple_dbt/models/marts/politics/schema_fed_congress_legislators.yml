@@ -3,10 +3,14 @@ version: 2
 models:
   - name: politics__fed_congress_legislators
     description: >
-      GRAIN: one row per legislator (bioguide is the person-level key; the
-      12,847 row count matches the unitedstates/congress-legislators
-      historical+current person roster, not a per-term log -- term_start/
-      term_end/n_terms summarize a person's terms, they don't repeat per term).
+      GRAIN: one row per legislator (bioguide is the person-level key).
+      term_start/term_end/n_terms summarize a person's congressional terms,
+      they don't repeat per term. Filtered to TERM_TYPE in (rep, sen): the
+      raw source (12,847 rows) also carries 45 president + 35 VP rows from
+      the unitedstates/executive roster merged into the same table, which
+      collide with the congressional bioguide 53 times (dual-service people
+      like Ford, LBJ) and add 13 blank-bioguide pure-executive rows. This
+      mart is 12,767 rows -- one row per person who served in Congress.
     columns:
       - name: bioguide
         data_tests:

@@ -3,6 +3,16 @@
 with source as (
 
     select * from {{ source('ripple_raw', 'FED_FARA_BULK') }}
+    -- 2026-08-25: one row in FARA_All_ForeignPrincipals.csv is column-shifted in
+    -- DOJ's own bulk export -- a date ("03/20/2024") sits in registration_number
+    -- while name/business_name/city/state/document_type are all blank and an
+    -- address (Kyiv, Ukraine) has bled into registrant_name/address_2 instead.
+    -- Verified live against the raw file: every other one of the 221,900 rows
+    -- has a pure-digit registration_number, so this allowlist drops exactly
+    -- that one garbled row (no real registration data survives in it anyway)
+    -- before it reaches the ripple_num() cast downstream that would otherwise
+    -- silently null the join key.
+    where trim(registration_number) rlike '^[0-9]+$'
 
 ),
 

@@ -5,10 +5,14 @@ sources:
     database: LIBRARY_RAW
     schema: LANDING
     tables:
-      - name: FED_DOL_OSHA_INSPECTION
+      - name: FED_DOL_OSHA_INSPECTIONS
         description: >
           DOL OSHA inspection records. ~5.2M inspections from 1970s to present.
           All columns arrive as TEXT and are cast in the staging layer.
+          Reloaded 2026-08 via scripts/osha_inspections_api_load.py under the
+          plural table name (the earlier singularly-named FED_DOL_OSHA_INSPECTION
+          table was dropped 2026-07-27 after a corrupt chunked load; this is a
+          fresh table, not a rename).
 
 models:
   - name: stg_fed_dol_osha_inspection__all

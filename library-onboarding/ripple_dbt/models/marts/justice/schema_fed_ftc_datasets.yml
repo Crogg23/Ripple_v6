@@ -7,9 +7,16 @@ models:
         data_tests:
           - not_null
     data_tests:
+      # GRAIN FIX (2026-08-25): action_name+respondent+date_filed alone is one column
+      # short. Verified live: 1 real collision -- the same FTC "Statement" item
+      # (blank respondent/case_type/status/topic, i.e. not an enforcement action)
+      # posted at two different document URLs (.../…-energy and .../…-energy-0).
+      # document_url is what tells them apart, and with it added the combination is
+      # 100% unique across all 1,004 rows.
       - dbt_utils.unique_combination_of_columns:
           arguments:
             combination_of_columns:
               - action_name
               - respondent
               - date_filed
+              - document_url

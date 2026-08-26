@@ -13,13 +13,16 @@ models:
         data_tests:
           - not_null
     data_tests:
+      # GRAIN FIX (2026-08-25): this table is a CATALOG of downloadable statistics-table
+      # listings, not row-level breakdown data. Verified live (50/50 rows): reporting_
+      # period, circuit, district, fips_code, chapter_code, and case_type are 100% blank
+      # for every row -- the source never populates them, they only ever repeat as ''
+      # and add no distinguishing information. title (which embeds the real period and
+      # the table variant, e.g. "(One Month)" vs "(Three Months)" for the same
+      # table_number) is what's actually unique -- confirmed 50/50 distinct alone, and
+      # table_number+title has zero duplicate groups.
       - dbt_utils.unique_combination_of_columns:
           arguments:
             combination_of_columns:
               - table_number
-              - reporting_period
-              - circuit
-              - district
-              - fips_code
-              - chapter_code
-              - case_type
+              - title

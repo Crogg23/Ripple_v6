@@ -3,8 +3,12 @@ version: 2
 models:
   - name: open_data__xc_wayback_doj_epstein
     description: >
-      GRAIN: one row per Wayback Machine capture (urlkey + capture_timestamp
-      _raw), per the model's own header comment.
+      GRAIN: one row per Wayback Machine capture (urlkey + capture_timestamp_raw +
+      content_digest), per the model's own header comment. A handful of captures
+      round to the same UTC second as another real capture of the same URL (e.g. a
+      301 redirect and its 200 destination) -- content_digest is what tells those
+      apart; the model also collapses true CDX-index duplicate entries that share
+      urlkey + capture_timestamp_raw + content_digest.
     columns:
       - name: status_code
         data_tests:
@@ -15,3 +19,4 @@ models:
             combination_of_columns:
               - urlkey
               - capture_timestamp_raw
+              - content_digest

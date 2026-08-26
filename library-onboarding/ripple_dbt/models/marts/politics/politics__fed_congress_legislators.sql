@@ -38,3 +38,15 @@ select
     TERM_END as term_end,
     N_TERMS as n_terms
 from source
+-- 2026-08-25: source table merges the congress-legislators roster with
+-- executive-branch entries (TERM_TYPE = 'prez'/'viceprez') under the same
+-- schema. That caused 53 bioguide collisions (people who also served as
+-- President/VP get a 2nd row for their executive term, e.g. Gerald Ford:
+-- one 'rep' row covering 1949-1975 + one separate 'prez' row) plus 13
+-- pure-president rows with a blank bioguide (never served in Congress at
+-- all). Congressional service is already collapsed to one row per person
+-- per office-track (verified: no bioguide has separate 'rep' and 'sen'
+-- rows), so restricting to rep/sen restores this mart's declared grain --
+-- one row per congressional legislator -- without dropping any legislator
+-- or any of their congressional term history.
+where TERM_TYPE in ('rep', 'sen')

@@ -2,6 +2,23 @@ version: 2
 
 models:
   - name: health__fed_cms_opioid_treatment_program_providers
+    description: >
+      One row = one enrollment record, not one row per NPI or per NPI+address.
+      A single organizational NPI legitimately enrolls multiple physical OTP
+      locations (e.g. "HABIT OPCO, LLC" has 1 NPI across 13 MA/PA clinic
+      addresses in the live source), and the same NPI+address can carry more
+      than one concurrent enrollment record (a re-validation, a suite/name
+      correction, or a new effective date without the old record being
+      retired). Verified live against CMS's own weekly feed
+      (data.cms.gov OPIOID_TREATMENT_PROGRAM_PROVIDERS, both the 2025-08-18
+      and 2026-03-30 releases, checked 2026-08-25): 9 of the 10 npi+address_
+      line_1 collisions in our table are genuine, currently-live duplicate
+      pairs in CMS's own file, not a loader artifact -- e.g. NPI 1366789158
+      carries two live enrollment records at the same address dated
+      01/01/2020 and 02/03/2021. Grouping on every source column (npi,
+      provider_name, address_line_1, address_line_2, city, state, zip,
+      medicare_id_effective_date, phone) is confirmed unique with zero
+      collisions -- that is the true grain.
     columns:
       - name: npi
         data_tests:
@@ -11,4 +28,11 @@ models:
           arguments:
             combination_of_columns:
               - npi
+              - provider_name
               - address_line_1
+              - address_line_2
+              - city
+              - state
+              - zip
+              - medicare_id_effective_date
+              - phone

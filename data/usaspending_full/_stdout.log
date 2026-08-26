@@ -1270,3 +1270,1148 @@ C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: P
 C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
   ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
   2021-10: +436,899 rows in 345s (total 63,729,002)
+=== USASpending FULL re-pull: 58/239 months to go (landed so far 63,729,002) ===
+python : C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has 
+non-standard index of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing 
+the index to pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+At line:1 char:302
++ ... tch {} } }; python scripts/usaspending_contracts_full_load.py --run * ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (C:\Code\Ripple_...ex as column(s):String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2021-11: +456,757 rows in 568s (total 64,185,759)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2021-12: +434,396 rows in 692s (total 64,620,155)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2022-01: +491,556 rows in 861s (total 65,111,711)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2022-02: +500,261 rows in 993s (total 65,611,972)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2022-03: +639,636 rows in 1360s (total 66,251,608)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2022-04: +560,753 rows in 1023s (total 66,812,361)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2022-05: +542,886 rows in 910s (total 67,355,247)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2022-06: +505,361 rows in 992s (total 67,860,608)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2022-07: +481,419 rows in 576s (total 68,342,027)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2022-08: +652,035 rows in 761s (total 68,994,062)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2022-09: +713,270 rows in 739s (total 69,707,332)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2022-10: +443,744 rows in 677s (total 70,151,076)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2022-11: +472,121 rows in 467s (total 70,623,197)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2022-12: +433,596 rows in 1065s (total 71,056,793)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2023-01: +526,587 rows in 848s (total 71,583,380)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2023-02: +533,450 rows in 920s (total 72,116,830)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2023-03: +630,444 rows in 556s (total 72,747,274)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2023-04: +529,069 rows in 620s (total 73,276,343)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2023-05: +562,312 rows in 433s (total 73,838,655)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2023-06: +488,972 rows in 699s (total 74,327,627)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2023-07: +488,625 rows in 678s (total 74,816,252)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2023-08: +661,220 rows in 968s (total 75,477,472)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2023-09: +678,989 rows in 854s (total 76,156,461)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2023-10: +475,694 rows in 1194s (total 76,632,155)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2023-11: +482,910 rows in 820s (total 77,115,065)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2023-12: +462,136 rows in 567s (total 77,577,201)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2024-01: +541,139 rows in 439s (total 78,118,340)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2024-02: +548,254 rows in 709s (total 78,666,594)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2024-03: +533,023 rows in 854s (total 79,199,617)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2024-04: +554,214 rows in 711s (total 79,753,831)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2024-05: +551,062 rows in 907s (total 80,304,893)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2024-06: +457,239 rows in 761s (total 80,762,132)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2024-07: +530,779 rows in 748s (total 81,292,911)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2024-08: +621,838 rows in 771s (total 81,914,749)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2024-09: +673,420 rows in 614s (total 82,588,169)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2024-10: +490,363 rows in 351s (total 83,078,532)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2024-11: +451,490 rows in 424s (total 83,530,022)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2024-12: +435,691 rows in 625s (total 83,965,713)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2025-01: +505,995 rows in 444s (total 84,471,708)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2025-02: +513,108 rows in 420s (total 84,984,816)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2025-03: +564,404 rows in 469s (total 85,549,220)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2025-04: +574,230 rows in 633s (total 86,123,450)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2025-05: +534,476 rows in 616s (total 86,657,926)
+    request retry 1/8 (gen job failed: An error occurred.); wait 30s
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2025-06: +461,128 rows in 784s (total 87,119,054)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2025-07: +522,796 rows in 404s (total 87,641,850)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2025-08: +579,037 rows in 344s (total 88,220,887)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2025-09: +694,295 rows in 557s (total 88,915,182)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2025-10: +373,761 rows in 267s (total 89,288,943)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2025-11: +356,278 rows in 412s (total 89,645,221)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2025-12: +479,795 rows in 415s (total 90,125,016)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2026-01: +520,951 rows in 357s (total 90,645,967)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2026-02: +493,518 rows in 279s (total 91,139,485)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2026-03: +564,454 rows in 415s (total 91,703,939)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2026-04: +561,241 rows in 367s (total 92,265,180)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2026-05: +437,780 rows in 572s (total 92,702,960)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2026-06: +149,430 rows in 173s (total 92,852,390)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2026-07: +172,084 rows in 145s (total 93,024,474)
+C:\Code\Ripple_v6\scripts\usaspending_contracts_full_load.py:176: UserWarning: Pandas Dataframe has non-standard index 
+of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to 
+pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE,
+  2026-08: +128,950 rows in 89s (total 93,153,424)
+  FY2007: 4,003,524 rows  2006-10-01 .. 2007-09-30
+  FY2008: 4,387,754 rows  2007-10-01 .. 2008-09-30
+  FY2009: 3,342,439 rows  2008-10-01 .. 2009-09-30
+  FY2010: 3,366,562 rows  2009-10-01 .. 2010-09-30
+  FY2011: 3,221,914 rows  2010-10-01 .. 2011-09-30
+  FY2012: 2,943,050 rows  2011-10-01 .. 2012-09-30
+  FY2013: 2,310,120 rows  2012-10-01 .. 2013-09-30
+  FY2014: 2,324,385 rows  2013-10-01 .. 2014-09-30
+  FY2015: 4,170,614 rows  2014-10-01 .. 2015-09-30
+  FY2016: 4,614,642 rows  2015-10-01 .. 2016-09-30
+  FY2017: 4,706,237 rows  2016-10-01 .. 2017-09-30
+  FY2018: 5,397,524 rows  2017-10-01 .. 2018-09-30
+  FY2019: 6,287,043 rows  2018-10-01 .. 2019-09-30
+  FY2020: 6,039,609 rows  2019-10-01 .. 2020-09-30
+  FY2021: 6,176,686 rows  2020-10-01 .. 2021-09-30
+  FY2022: 6,415,229 rows  2021-10-01 .. 2022-09-30
+  FY2023: 6,449,129 rows  2022-10-01 .. 2023-09-30
+  FY2024: 6,431,708 rows  2023-10-01 .. 2024-09-30
+  FY2025: 6,327,013 rows  2024-10-01 .. 2025-09-30
+  FY2026: 4,238,242 rows  2025-10-01 .. 2026-08-22
+  [DQ OK] fed_usaspending_contracts_full_r2/FED_USASPENDING_CONTRACTS_FULL_R2: 93,153,424 rows, density 0.0769
+
+LOADED 93,153,424 rows -> LIBRARY_RAW.LANDING.FED_USASPENDING_CONTRACTS_FULL_R2
