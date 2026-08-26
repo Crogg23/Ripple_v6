@@ -216,11 +216,12 @@ DISPLAY_SPECS: dict[str, dict] = {
     # keys.py already normalizes UEI/CIK/IMO; ENTITY_TYPE_BY_KEY maps them to
     # organization/vessel. Adding these makes a debarred-and-funded UEI, a
     # sanctioned-and-broadcasting IMO, and a SEC CIK first-class multi-source entities.
-    "FED_USASPENDING_CONTRACTS": {            # UEI organization (the money anchor, 6.3M rows)
-        "key": "UEI", "key_col": "RECIPIENT_UEI", "org": "RECIPIENT_NAME",
-        "city": "RECIPIENT_CITY_NAME", "state": "RECIPIENT_STATE_CODE",
-        "zip": "RECIPIENT_ZIP_4_CODE", "authority": 4,
-    },
+    # 2026-08-26: removed FED_USASPENDING_CONTRACTS (6.3M-row early pull, authority
+    # 4) -- test_spine_inputs_live.py's shadowed-sibling check caught it being
+    # superseded by FED_USASPENDING_CONTRACTS_FULL_R2 (93.2M rows, same UEI key,
+    # see that entry below). Two entries for the same real dataset is redundant at
+    # best; the smaller one's authority=4 would also have quietly outranked the
+    # fuller one's authority=6 for canonical name selection, which is backwards.
     # Repointed 2026-08-11 (spine audit): the spine was still reading the 9,000-row
     # capped sample (2,940 distinct UEIs) three weeks after the complete debarment
     # list landed as ..._FULL_R2 (167,928 rows, 38,425 distinct UEIs -- 13x the
@@ -749,8 +750,12 @@ DISPLAY_SPECS: dict[str, dict] = {
     },
     "FED_FEC_INDEPENDENT_EXPENDITURES": {
         # FEC_CAND_ID -- 2,014 distinct / 228,643 rows (87.59% survive norm), +607 new to spine. len 9-9. e.g. P80000722
-        "key": "FEC_CAND_ID", "key_col": "cand_id",
-        "org": "cand_name",
+        # 2026-08-26: key_col/org were lowercase (cand_id/cand_name) -- a hard SQL
+        # error under quoted-identifier lookup, since the real columns are
+        # CAND_ID/CAND_NAME (uppercase). Pre-existing, caught by
+        # test_every_spine_key_column_carries_real_values, not tonight's change.
+        "key": "FEC_CAND_ID", "key_col": "CAND_ID",
+        "org": "CAND_NAME",
         "authority": 6,
     },
     "FED_EPA_ICIS_FEC_ICIS_FEC_EPA_INSPECTIONS": {
@@ -957,19 +962,21 @@ DISPLAY_SPECS: dict[str, dict] = {
     # running raw DDL) -- see STATUS.md.
     "FED_USASPENDING_CONTRACTS_FULL_R2": {
         # UEI -- 582,656 distinct / 93,152,192 rows (100.0% survive norm). len 12-12. e.g. KB1EKZ5BXVL8
-        "key": "UEI", "key_col": "recipient_uei",
-        "org": "recipient_name",
+        # 2026-08-26: key_col/org were lowercase here (recipient_uei/recipient_name),
+        # which is a hard SQL error under quoted-identifier lookup -- Snowflake
+        # columns are actually RECIPIENT_UEI/RECIPIENT_NAME (all uppercase). This
+        # entry was completely non-functional from the moment it was added tonight
+        # until test_every_spine_key_column_carries_real_values caught it.
+        "key": "UEI", "key_col": "RECIPIENT_UEI",
+        "org": "RECIPIENT_NAME",
         "authority": 6,
     },
     # ---- 2026-08-26 wave-3 breadth pass (scripts/gen_spine_specs.py --wave 3) ----
-    "FED_SAM_EXCLUSIONS": {
-        # UEI -- 3,210 distinct / 3,482 rows (34.82% survive norm), +5 new to spine. len 12-12. e.g. GRX8CJ2ZCNL5
-        "key": "UEI", "key_col": "UEI",
-        "person": ["LAST_NAME", "FIRST_NAME"],
-        "org": "ENTITY_NAME",
-        "city": "CITY", "state": "STATE", "zip": "ZIP",
-        "authority": 6,
-    },
+    # FED_SAM_EXCLUSIONS (bare) generated here by the wave-3 tool tonight, but it's
+    # the exact 10,000-row capped sample the 2026-08-11 spine audit already fixed
+    # (see FED_SAM_EXCLUSIONS_FULL_R2 above) -- the shadowed-sibling test caught
+    # the tool re-adding a table a prior audit had deliberately moved off of.
+    # Removed, not repointed: the correct entry already exists.
     "IRS527_8871_ORGS": {
         # EIN -- 58,915 distinct / 77,590 rows (100.0% survive norm), +0 new to spine. len 9-9. e.g. 912082049
         "key": "EIN", "key_col": "EIN",
@@ -977,21 +984,13 @@ DISPLAY_SPECS: dict[str, dict] = {
         "city": "MAILING_CITY", "state": "MAILING_STATE", "zip": "MAILING_ZIP",
         "authority": 6,
     },
-    "FED_US_SEC_EDGAR": {
-        # CIK -- 25 distinct / 48,990 rows (100.0% survive norm), +0 new to spine. len 10-10. e.g. 0000320193
-        "key": "CIK", "key_col": "CIK",
-        "org": "ENTITY_NAME",
-        # extra: EIN -- 24 distinct, +0 new to spine
-        "extra_keys": [{"key": "EIN", "key_col": "EIN"}],
-        "authority": 6,
-    },
-    "FED_SEC_EDGAR": {
-        # CIK -- 20 distinct / 200 rows (100.0% survive norm), +0 new to spine. len 10-10. e.g. 0001318605
-        "key": "CIK", "key_col": "CIK",
-        # extra: EIN -- 19 distinct, +0 new to spine
-        "extra_keys": [{"key": "EIN", "key_col": "EIN"}],
-        "authority": 6,
-    },
+    # FED_US_SEC_EDGAR and FED_SEC_EDGAR also generated here by the wave-3 tool
+    # tonight, despite both being explicitly ruled stale test/sample loads on
+    # 2026-07-28 (see the FED_SEC_EDGAR_FINANCIALS note above) -- the wave-3
+    # generator doesn't know about that ruling, so it re-added both. The
+    # shadowed-sibling test caught them being superseded by FED_SEC_EDGAR_FINANCIALS
+    # and FED_SEC_EDGAR_INSIDERS, which is what they were replaced by. Removed
+    # again, not repointed -- the correct entries already exist.
     # ---- 2026-08-26 wave-3b, after the join-key catalog backfill (--apply) ----
     "FED_USASPENDING_BULK": {
         # UEI -- 10,216 distinct / 50,000 rows (100.0% survive norm), +0 new to spine. len 12-12. e.g. LAD2HL1R71Z3
@@ -1258,11 +1257,6 @@ SPINE_BATCH_2026_08_DISPLAY_SPECS: dict[str, dict] = {
         "key": "FRS_ID", "key_col": "REGISTRY_ID", "org": "FAC_NAME",
         "city": "FAC_CITY", "state": "FAC_STATE", "zip": "FAC_ZIP",
         "authority": 2,
-    },
-    "FED_EPA_ICIS_ICIS_AIR_FACILITIES": {
-        # 266,026 distinct, 100.0% overlap -- air-program facilities.
-        "key": "FRS_ID", "key_col": "REGISTRY_ID", "org": "FACILITY_NAME",
-        "city": "CITY", "state": "STATE", "zip": "ZIP_CODE", "authority": 6,
     },
     "FED_EPA_GHGRP_FACILITY": {
         # 13,221 distinct, 83.1% overlap -- greenhouse-gas reporters.
