@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_USACE_NID_DAMS
+        description: >
+          Raw landing table for USACE National Inventory of Dams. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_fed_usace_nid_dams__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (NID_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: nid_id
+        data_tests:
+          - unique
+          - not_null

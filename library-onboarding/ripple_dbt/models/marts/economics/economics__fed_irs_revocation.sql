@@ -24,3 +24,7 @@ select
     _loaded_at,
     _source_url
 from {{ ref('stg_fed_irs_revocation__organizations') }}
+-- IRS-published test/placeholder record baked into the publisher's own bulk
+-- file (legal_name literally "TEST COMPANY INC1 TESTS"), not a real org --
+-- correctly fails to resolve a spine entity. Excluded here, 2026-08-26.
+where ein != '999999999'

@@ -1,16 +1,24 @@
 # Spine backfill profiling report
 
-HIGH 492 | MEDIUM 320 | AMBIGUOUS 971 | NO_TABLE 0 | NO_REGISTRY_ROW 18
+HIGH 524 | MEDIUM 400 | AMBIGUOUS 1075 | NO_TABLE 4 | NO_REGISTRY_ROW 199
 
-## HIGH (492)
+## HIGH (524)
 
 | source_id | spine_entity | natural_key | grain |
 |---|---|---|---|
-| fed_cdc_wonder | (unresolved -- grain proven, entity unknown) | DATABASE_ID | one row per record (spine_entity not determined -- no registry hint available) (DATABASE_ID is unique) |
+| FED_EPA_FRS_FULL | facility | REGISTRY_ID | one row per facility (FRS_ID is unique) |
+| FED_IRS_EO_PR | organization | EIN | one row per organization (EIN is unique) |
+| FED_MSHA_MINES | facility | MINE_ID | one row per facility (MINE_ID is unique) |
+| INTL_GLEIF | organization | LEI | one row per organization (LEI is unique) |
+| INT_UK_COMPANIES_HOUSE | organization | CompanyNumber | one row per organization (COMPANY_NO is unique) |
+| ca_lobby_firm | (unresolved -- grain proven, entity unknown) | FIRM_ID | one row per record (spine_entity not determined -- no registry hint available) (FIRM_ID is unique) |
+| ca_lobby_firm_lobbyist | (unresolved -- grain proven, entity unknown) | LOBBYIST_ID | one row per record (spine_entity not determined -- no registry hint available) (LOBBYIST_ID is unique) |
 | fed_cisa_kev | (unresolved -- grain proven, entity unknown) | CVE_ID | one row per record (spine_entity not determined -- no registry hint available) (CVE_ID is unique) |
 | fed_clinicaltrials | (unresolved -- grain proven, entity unknown) | NCT_ID | one row per record (spine_entity not determined -- no registry hint available) (NCT_ID is unique) |
+| fed_cms_ambulatory_specialty_model_participants | provider | NPI | one row per provider (NPI is unique) |
 | fed_cms_dialysis | facility | CCN | one row per facility (CCN is unique) |
 | fed_cms_facility_affiliation | provider | CCN,NPI | one row per facility-provider relationship (CCN+NPI is unique) |
+| fed_cms_fiscal_intermediary_shared_system_attending_and_rendering | provider | NPI | one row per provider (NPI is unique) |
 | fed_cms_hcris | facility | PROVIDER_CCN | one row per facility (CCN is unique) |
 | fed_cms_home_health | facility | CCN | one row per facility (CCN is unique) |
 | fed_cms_hospice | facility | CCN | one row per facility (CCN is unique) |
@@ -18,25 +26,46 @@ HIGH 492 | MEDIUM 320 | AMBIGUOUS 971 | NO_TABLE 0 | NO_REGISTRY_ROW 18
 | fed_cms_hpt_mrf | provider | NPI | one row per provider (NPI is unique) |
 | fed_cms_irf | facility | CCN | one row per facility (CCN is unique) |
 | fed_cms_ltch | facility | CCN | one row per facility (CCN is unique) |
+| fed_cms_medicare_durable_medical_equipment_devices_supplies_by_refer | provider | RFRG_NPI | one row per provider (NPI is unique) |
+| fed_cms_medicare_inpatient_hospitals_by_provider | facility | RNDRNG_PRVDR_CCN | one row per facility (CCN is unique) |
+| fed_cms_medicare_physician_other_practitioners_by_provider | provider | RNDRNG_NPI | one row per provider (NPI is unique) |
 | fed_cms_medicare_provider | provider | NPI | one row per provider (NPI is unique) |
 | fed_cms_nppes | provider | EMPLOYER_IDENTIFICATION_NUMBER_EIN,NPI,NPI_DEACTIVATION_DATE,NPI_DEACTIVATION_REASON_CODE,NPI_REACTIVATION_DATE,REPLACEMENT_NPI | one row per organization-provider relationship (EIN+NPI+NPI+NPI+NPI+NPI is unique) |
 | fed_cms_nursing_home | provider | CMS_CERTIFICATION_NUMBER__CCN,NPI | one row per facility-provider relationship (CCN+NPI is unique) |
+| fed_cms_opt_out_affidavits | provider | NPI | one row per provider (NPI is unique) |
+| fed_cms_order_and_referring | provider | NPI | one row per provider (NPI is unique) |
 | fed_cms_part_d_prescribers | provider | NPI | one row per provider (NPI is unique) |
+| fed_cms_pending_initial_logging_and_tracking_non_physicians | provider | NPI | one row per provider (NPI is unique) |
+| fed_cms_pending_initial_logging_and_tracking_physicians | provider | NPI | one row per provider (NPI is unique) |
 | fed_cms_pos_other | facility | CCN | one row per facility (CCN is unique) |
 | fed_congress_legislators | person | BIOGUIDE | one row per person (BIOGUIDE is unique) |
+| fed_courtlistener_investments | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID is unique) |
 | fed_david_rumsey | (unresolved -- grain proven, entity unknown) | MANIFEST_ID | one row per record (spine_entity not determined -- no registry hint available) (MANIFEST_ID is unique) |
-| fed_fbi_cde | place | FIPS_COUNTY_CODE | one row per place (FIPS is unique) |
+| fed_epa_echo | facility | FRS_ID | one row per facility (FRS_ID is unique) |
+| fed_epa_npdes_icis_facilities | facility | NPDES_ID | one row per facility (NPDES_ID is unique) |
+| fed_epa_sdwa_sdwa_pub_water_systems | facility | PWSID | one row per facility (PWSID is unique) |
+| fed_fec_bulk | person | FEC_CAND_ID,FEC_CMTE_ID | one row per organization-person relationship (FEC_CAND_ID+FEC_CMTE_ID is unique) |
+| fed_fec_bulk_committees | person | FEC_CAND_ID,FEC_CMTE_ID | one row per organization-person relationship (FEC_CAND_ID+FEC_CMTE_ID is unique) |
 | fed_fincen_boi | organization | EIN | one row per organization (EIN is unique) |
 | fed_fjc_judges | person | SEAT_ID_1 | one row per person (SEAT_ID_1 is unique) |
 | fed_fjc_service | person | SEAT_ID | one row per person (SEAT_ID is unique) |
-| fed_fra_safety | place | COUNTY_FIPS | one row per place (FIPS is unique) |
+| fed_google_polads_advertiser_declared_stats | (unresolved -- grain proven, entity unknown) | ADVERTISER_ID | one row per record (spine_entity not determined -- no registry hint available) (ADVERTISER_ID is unique) |
+| fed_google_polads_advertiser_stats | (unresolved -- grain proven, entity unknown) | ADVERTISER_ID | one row per record (spine_entity not determined -- no registry hint available) (ADVERTISER_ID is unique) |
+| fed_google_polads_creative_stats | (unresolved -- grain proven, entity unknown) | AD_ID | one row per record (spine_entity not determined -- no registry hint available) (AD_ID is unique) |
+| fed_google_polads_geo_spend | place | COUNTRY_SUBDIVISION_SECONDARY | one row per place (COUNTRY is unique) |
 | fed_grants_gov | (unresolved -- grain proven, entity unknown) | OPPORTUNITY_ID | one row per record (spine_entity not determined -- no registry hint available) (OPPORTUNITY_ID is unique) |
 | fed_irs_990 | organization | EIN | one row per organization (EIN is unique) |
+| fed_irs_auto_revocations | organization | EIN | one row per organization (EIN is unique) |
 | fed_irs_bmf | organization | EIN | one row per organization (EIN is unique) |
+| fed_irs_eo_bmf | organization | EIN | one row per organization (EIN is unique) |
+| fed_irs_pub78_eligible_donees | organization | EIN | one row per organization (EIN is unique) |
 | fed_irs_revocation | organization | EIN | one row per organization (EIN is unique) |
+| fed_irs_soi_charities | organization | EIN | one row per organization (EIN is unique) |
 | fed_naag_multistate_settlements | (unresolved -- grain proven, entity unknown) | SORT_ID | one row per record (spine_entity not determined -- no registry hint available) (SORT_ID is unique) |
 | fed_nursinghome411 | facility | CMS_CERTIFICATION_NUMBER_CCN | one row per facility (CCN is unique) |
 | fed_oyez | case | DOCKET | one row per case (DOCKET is unique) |
+| fed_sec_business_development_company_report | organization | CIK | one row per organization (CIK is unique) |
+| fed_sec_closed_end_fund_information | organization | CIK | one row per organization (CIK is unique) |
 | fed_usaspending_toptier_agencies | (unresolved -- grain proven, entity unknown) | AGENCY_ID | one row per record (spine_entity not determined -- no registry hint available) (AGENCY_ID is unique) |
 | fed_usgs_3dep | place | SHAPE | one row per place (GEOM is unique) |
 | intl_br_dados_gov | (unresolved -- grain proven, entity unknown) | DATASET_ID | one row per record (spine_entity not determined -- no registry hint available) (DATASET_ID is unique) |
@@ -46,10 +75,9 @@ HIGH 492 | MEDIUM 320 | AMBIGUOUS 971 | NO_TABLE 0 | NO_REGISTRY_ROW 18
 | intl_de_govdata | (unresolved -- grain proven, entity unknown) | DATASET_ID | one row per record (spine_entity not determined -- no registry hint available) (DATASET_ID is unique) |
 | intl_ec_sercop | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID is unique) |
 | intl_embl_ensembl | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID is unique) |
-| intl_ge_datagov | place | COUNTRY | one row per place (COUNTRY is unique) |
-| intl_gleif | organization | LEI | one row per organization (LEI is unique) |
 | intl_gr_datagov | (unresolved -- grain proven, entity unknown) | DATASET_ID | one row per record (spine_entity not determined -- no registry hint available) (DATASET_ID is unique) |
 | intl_opensanctions | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID is unique) |
+| intl_opensanctions_default | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID is unique) |
 | portal_arc_atlanta_dataatla_d8df9588a6 | case | DOCKET_NO | one row per case (DOCKET is unique) |
 | portal_arc_columbus_gis_ope_8259461c2a | organization | EIN | one row per organization (EIN is unique) |
 | portal_arc_fort_worth_open_2259070522 | place | GEOMETRY | one row per place (GEOM is unique) |
@@ -315,7 +343,7 @@ HIGH 492 | MEDIUM 320 | AMBIGUOUS 971 | NO_TABLE 0 | NO_REGISTRY_ROW 18
 | portal_cka_western_pennsylv_11aebe4994 | place | GEOID | one row per place (FIPS is unique) |
 | portal_cka_western_pennsylv_13793abc24 | place | DATASPATIAL_WKB | one row per place (GEOM is unique) |
 | portal_cka_western_pennsylv_1430aba184 | place | GEOMETRY | one row per place (GEOM is unique) |
-| portal_cka_western_pennsylv_152133d5ed | (unresolved -- grain proven, entity unknown) | WUDS_ID | one row per record (spine_entity not determined -- no registry hint available) (WUDS_ID is unique) |
+| portal_cka_western_pennsylv_152133d5ed | facility | PWS_ID | one row per facility (PWSID is unique) |
 | portal_cka_western_pennsylv_1629502c35 | place | GEOMETRY | one row per place (GEOM is unique) |
 | portal_cka_western_pennsylv_1a89f1526c | place | LONGITUDE | one row per place (LATLON is unique) |
 | portal_cka_western_pennsylv_22bdd189f5 | place | GEOMETRY | one row per place (GEOM is unique) |
@@ -474,7 +502,7 @@ HIGH 492 | MEDIUM 320 | AMBIGUOUS 971 | NO_TABLE 0 | NO_REGISTRY_ROW 18
 | portal_cka_wprdc_allegheny_ddca0024ec | place | DATASPATIAL_WKT | one row per place (GEOM is unique) |
 | portal_cka_wprdc_allegheny_e2d2938646 | place | GEOMETRY | one row per place (GEOM is unique) |
 | portal_cka_wprdc_allegheny_e6260cdfe6 | place | GEOMETRY | one row per place (GEOM is unique) |
-| portal_cka_wprdc_allegheny_eef5b53bc5 | (unresolved -- grain proven, entity unknown) | WUDS_ID | one row per record (spine_entity not determined -- no registry hint available) (WUDS_ID is unique) |
+| portal_cka_wprdc_allegheny_eef5b53bc5 | facility | PWS_ID | one row per facility (PWSID is unique) |
 | portal_cka_wprdc_allegheny_f05d32c3d6 | place | GEOMETRY | one row per place (GEOM is unique) |
 | portal_cka_wprdc_allegheny_f2cf388e3d | place | GEOMETRY | one row per place (GEOM is unique) |
 | portal_cka_wprdc_allegheny_fa5c68d20d | place | GEOMETRY | one row per place (GEOM is unique) |
@@ -486,58 +514,143 @@ HIGH 492 | MEDIUM 320 | AMBIGUOUS 971 | NO_TABLE 0 | NO_REGISTRY_ROW 18
 | portal_soc_colorado_informa_4bad70f01f | organization | EIN | one row per organization (EIN is unique) |
 | portal_soc_connecticut_open_6be2302812 | organization | EIN | one row per organization (EIN is unique) |
 | portal_soc_connecticut_open_dea6c4224a | place | ZIP_CODE | one row per place (ZIP is unique) |
+| portal_soc_new_york_state_o_0c94dd2b8a | facility | NPDES_ID | one row per facility (NPDES_ID is unique) |
 | portal_soc_new_york_state_o_49cd8c5b65 | asset | PATENT_NUMBER | one row per asset (PATENT is unique) |
 | portal_soc_santa_clara_coun_487fcd1fab | case | DOCKET | one row per case (DOCKET is unique) |
 | portal_soc_texas_open_data_24c81c0c8a | (unresolved -- grain proven, entity unknown) | TWC_ID | one row per record (spine_entity not determined -- no registry hint available) (TWC_ID is unique) |
 | portal_soc_texas_open_data_b4fdc1dc58 | facility | CCN_NO | one row per facility (CCN is unique) |
 | portal_soc_texas_open_data_f525266f32 | facility | CCN_NO | one row per facility (CCN is unique) |
+| portal_soc_utah_open_data_p_1614522f52 | facility | NPDES_ID | one row per facility (NPDES_ID is unique) |
 | portal_soc_utah_open_data_p_17cb6b615f | organization | EIN | one row per organization (EIN is unique) |
+| portal_soc_utah_open_data_p_589cc47a29 | facility | NPDES_ID | one row per facility (NPDES_ID is unique) |
 | portal_soc_utah_open_data_p_701571fd92 | provider | NPI | one row per provider (NPI is unique) |
 | portal_soc_utah_open_data_p_8a9374ea5d | organization | EIN | one row per organization (EIN is unique) |
 | portal_soc_utah_open_data_p_c357f1f9e1 | organization | PLAN_EIN | one row per organization (EIN is unique) |
 | portal_soc_utah_open_data_p_dcd75231f6 | facility | PROVIDER_CCN | one row per facility (CCN is unique) |
 | portal_soc_utah_open_data_p_f87fb2bfb7 | organization | EIN | one row per organization (EIN is unique) |
 | portal_soc_washington_state_11cd1995b7 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID is unique) |
+| xc_epa_corporate_crosswalk | facility | EPA_REGISTRY_ID,MATCHED_LEI,PARENT_CIK,PARENT_UEI,ULTIMATE_PARENT_LEI | one row per facility-organization relationship (FRS_ID+LEI+CIK+UEI+LEI is unique) |
 
-## MEDIUM (320)
+## MEDIUM (400)
 
 | source_id | spine_entity | natural_key | grain |
 |---|---|---|---|
-| fed_cfpb_complaints | (unresolved -- grain proven, entity unknown) | Complaint ID | one row per record (spine_entity not determined -- no registry hint available) (Complaint ID unique) |
+| FED_CFPB_COMPLAINTS | (unresolved -- grain proven, entity unknown) | Complaint ID | one row per record (spine_entity not determined -- no registry hint available) (Complaint ID unique) |
+| FED_FAC_SINGLE_AUDIT | (unresolved -- grain proven, entity unknown) | REPORT_ID | one row per record (spine_entity not determined -- no registry hint available) (REPORT_ID unique) |
+| FED_FEC_LEADERSHIP_PAC | (unresolved -- grain proven, entity unknown) | FEC_CANDIDATE_ID,FEC_COMMITTEE_ID | one row per record (spine_entity not determined -- no registry hint available) (FEC_CANDIDATE_ID+FEC_COMMITTEE_ID unique) |
+| FED_IRS_990_EFILE_INDEX | (unresolved -- grain proven, entity unknown) | OBJECT_ID | one row per record (spine_entity not determined -- no registry hint available) (OBJECT_ID unique) |
+| FED_PHMSA_FLAGGED_INCIDENTS | place | ONSHORE_POSTAL_CODE,REPORT_RECEIVED_DATE | one row per place (ZIP+REPORT_RECEIVED_DATE unique) |
+| FED_USASPENDING_CONTRACTS_FULL | organization | recipient_uei,action_date,action_date_fiscal_year,period_of_performance_start_date,award_id_piid,parent_award_agency_id,parent_award_id_piid | one row per organization (UEI+action_date+action_date_fiscal_year+period_of_performance_start_date+award_id_piid+parent_award_agency_id+parent_award_id_piid unique) |
+| ca_lobby_amendments | filing | FILING_ID,AMEND_ID | one row per filing (FILING_ID+AMEND_ID unique) |
+| ca_lobby_cover | filing | FILING_ID,AMEND_ID | one row per filing (FILING_ID+AMEND_ID unique) |
+| ca_lobby_cover2 | filing | AMEND_ID,ENTITY_ID,FILING_ID,TRAN_ID | one row per filing (AMEND_ID+ENTITY_ID+FILING_ID+TRAN_ID unique) |
+| ca_lobby_emp_lobbyist | (unresolved -- grain proven, entity unknown) | LOBBYIST_ID,SESSION_ID | one row per record (spine_entity not determined -- no registry hint available) (LOBBYIST_ID+SESSION_ID unique) |
+| fed_cms_federally_qualified_health_center_enrollments | (unresolved -- grain proven, entity unknown) | ENROLLMENT_ID | one row per record (spine_entity not determined -- no registry hint available) (ENROLLMENT_ID unique) |
+| fed_cms_home_health_agency_enrollments | (unresolved -- grain proven, entity unknown) | ENROLLMENT_ID | one row per record (spine_entity not determined -- no registry hint available) (ENROLLMENT_ID unique) |
+| fed_cms_hospice_enrollments | (unresolved -- grain proven, entity unknown) | ENROLLMENT_ID | one row per record (spine_entity not determined -- no registry hint available) (ENROLLMENT_ID unique) |
 | fed_cms_hospital_compare | facility | FACILITY_ID | one row per facility (FACILITY_ID unique) |
+| fed_cms_hospital_enrollments | (unresolved -- grain proven, entity unknown) | ENROLLMENT_ID | one row per record (spine_entity not determined -- no registry hint available) (ENROLLMENT_ID unique) |
 | fed_cms_main | (unresolved -- grain proven, entity unknown) | DATASET_ID | one row per record (spine_entity not determined -- no registry hint available) (DATASET_ID unique) |
+| fed_cms_medicare_diabetes_prevention_program | (unresolved -- grain proven, entity unknown) | UNIQUE_ID | one row per record (spine_entity not determined -- no registry hint available) (UNIQUE_ID unique) |
+| fed_cms_medicare_dialysis_facilities | provider | CCN,NPI,YEAR,OWNERSHIP_TYPE,MEASURE_ID | one row per provider (CCN+NPI+YEAR+OWNERSHIP_TYPE+MEASURE_ID unique) |
+| fed_cms_medicare_fee_for_service_public_provider_enrollment | (unresolved -- grain proven, entity unknown) | ENRLMT_ID | one row per record (spine_entity not determined -- no registry hint available) (ENRLMT_ID unique) |
+| fed_cms_nursing_home_penalties | facility | CMS_CERTIFICATION_NUMBER_CCN,PENALTY_DATE,PAYMENT_DENIAL_START_DATE,PROCESSING_DATE,FINE_ID | one row per facility (CCN+PENALTY_DATE+PAYMENT_DENIAL_START_DATE+PROCESSING_DATE+FINE_ID unique) |
 | fed_cms_open_payments | (unresolved -- grain proven, entity unknown) | RECORD_ID | one row per record (spine_entity not determined -- no registry hint available) (RECORD_ID unique) |
 | fed_cms_open_payments_2022 | (unresolved -- grain proven, entity unknown) | RECORD_ID | one row per record (spine_entity not determined -- no registry hint available) (RECORD_ID unique) |
 | fed_cms_open_payments_2023 | (unresolved -- grain proven, entity unknown) | RECORD_ID | one row per record (spine_entity not determined -- no registry hint available) (RECORD_ID unique) |
+| fed_cms_quality_payment_program_experience | provider | NPI,CLINICIAN_TYPE,SMALL_PRACTICE_STATUS,RURAL_STATUS,MIPS_VALUE_PATHWAY_ID,QUALITY_MEASURE_ID_1,QUALITY_MEASURE_ID_2,QUALITY_MEASURE_ID_3,QUALITY_MEASURE_ID_4,QUALITY_MEASURE_ID_5,QUALITY_MEASURE_ID_6,QUALITY_MEASURE_ID_7,QUALITY_MEASURE_ID_8,QUALITY_MEASURE_ID_9,QUALITY_MEASURE_ID_10,QUALITY_MEASURE_ID_11,QUALITY_MEASURE_ID_12,CEHRT_ID,PI_MEASURE_ID_1,PI_MEASURE_ID_2,PI_MEASURE_ID_3,PI_MEASURE_ID_4,PI_MEASURE_ID_5,PI_MEASURE_ID_6,PI_MEASURE_ID_7,PI_MEASURE_ID_8,PI_MEASURE_ID_9,PI_MEASURE_ID_10,PI_MEASURE_ID_11,PI_MEASURE_ID_12,PI_MEASURE_ID_13,PI_MEASURE_ID_14,PI_MEASURE_ID_15,PI_MEASURE_ID_16,PI_MEASURE_ID_17,PI_MEASURE_ID_18,PI_MEASURE_ID_19,PI_MEASURE_ID_20,PI_MEASURE_ID_21,IA_MEASURE_ID_1,IA_MEASURE_ID_2,IA_MEASURE_ID_3,IA_MEASURE_ID_4,COST_MEASURE_ID_1,COST_MEASURE_ID_2,COST_MEASURE_ID_3,COST_MEASURE_ID_4,COST_MEASURE_ID_5,COST_MEASURE_ID_6,COST_MEASURE_ID_7,COST_MEASURE_ID_8,COST_MEASURE_ID_9,COST_MEASURE_ID_10,COST_MEASURE_ID_11,COST_MEASURE_ID_12,COST_MEASURE_ID_13,COST_MEASURE_ID_14,COST_MEASURE_ID_15,COST_MEASURE_ID_16,COST_MEASURE_ID_17,COST_MEASURE_ID_18,COST_MEASURE_ID_19,COST_MEASURE_ID_20,COST_MEASURE_ID_21,COST_MEASURE_ID_22,COST_MEASURE_ID_23,COST_MEASURE_ID_24,COST_MEASURE_ID_25,COST_MEASURE_ID_26,COST_MEASURE_ID_27,COST_MEASURE_ID_28 | one row per provider (NPI+CLINICIAN_TYPE+SMALL_PRACTICE_STATUS+RURAL_STATUS+MIPS_VALUE_PATHWAY_ID+QUALITY_MEASURE_ID_1+QUALITY_MEASURE_ID_2+QUALITY_MEASURE_ID_3+QUALITY_MEASURE_ID_4+QUALITY_MEASURE_ID_5+QUALITY_MEASURE_ID_6+QUALITY_MEASURE_ID_7+QUALITY_MEASURE_ID_8+QUALITY_MEASURE_ID_9+QUALITY_MEASURE_ID_10+QUALITY_MEASURE_ID_11+QUALITY_MEASURE_ID_12+CEHRT_ID+PI_MEASURE_ID_1+PI_MEASURE_ID_2+PI_MEASURE_ID_3+PI_MEASURE_ID_4+PI_MEASURE_ID_5+PI_MEASURE_ID_6+PI_MEASURE_ID_7+PI_MEASURE_ID_8+PI_MEASURE_ID_9+PI_MEASURE_ID_10+PI_MEASURE_ID_11+PI_MEASURE_ID_12+PI_MEASURE_ID_13+PI_MEASURE_ID_14+PI_MEASURE_ID_15+PI_MEASURE_ID_16+PI_MEASURE_ID_17+PI_MEASURE_ID_18+PI_MEASURE_ID_19+PI_MEASURE_ID_20+PI_MEASURE_ID_21+IA_MEASURE_ID_1+IA_MEASURE_ID_2+IA_MEASURE_ID_3+IA_MEASURE_ID_4+COST_MEASURE_ID_1+COST_MEASURE_ID_2+COST_MEASURE_ID_3+COST_MEASURE_ID_4+COST_MEASURE_ID_5+COST_MEASURE_ID_6+COST_MEASURE_ID_7+COST_MEASURE_ID_8+COST_MEASURE_ID_9+COST_MEASURE_ID_10+COST_MEASURE_ID_11+COST_MEASURE_ID_12+COST_MEASURE_ID_13+COST_MEASURE_ID_14+COST_MEASURE_ID_15+COST_MEASURE_ID_16+COST_MEASURE_ID_17+COST_MEASURE_ID_18+COST_MEASURE_ID_19+COST_MEASURE_ID_20+COST_MEASURE_ID_21+COST_MEASURE_ID_22+COST_MEASURE_ID_23+COST_MEASURE_ID_24+COST_MEASURE_ID_25+COST_MEASURE_ID_26+COST_MEASURE_ID_27+COST_MEASURE_ID_28 unique) |
+| fed_cms_rural_health_clinic_enrollments | (unresolved -- grain proven, entity unknown) | ENROLLMENT_ID | one row per record (spine_entity not determined -- no registry hint available) (ENROLLMENT_ID unique) |
+| fed_cms_skilled_nursing_facility_enrollments | (unresolved -- grain proven, entity unknown) | ENROLLMENT_ID | one row per record (spine_entity not determined -- no registry hint available) (ENROLLMENT_ID unique) |
 | fed_congress_committee_membership | person | BIOGUIDE,COMMITTEE_CODE | one row per person (BIOGUIDE+COMMITTEE_CODE unique) |
+| fed_consolidated_screening_list | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
+| fed_courtlistener_dockets | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
+| fed_courtlistener_financial_disclosures | person | PERSON_ID,DATE_CREATED,DATE_MODIFIED,YEAR,ID | one row per person (CL_PERSON_ID+DATE_CREATED+DATE_MODIFIED+YEAR+ID unique) |
+| fed_courtlistener_judges | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
+| fed_courtlistener_positions | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
+| fed_dea_arcos_full | organization | REPORTER_DEA_NO,TRANSACTION_DATE,TRANSACTION_CODE,DRUG_CODE,TRANSACTION_ID | one row per organization (DEA_NO+TRANSACTION_DATE+TRANSACTION_CODE+DRUG_CODE+TRANSACTION_ID unique) |
 | fed_densho_ddr | (unresolved -- grain proven, entity unknown) | OBJECT_ID | one row per record (spine_entity not determined -- no registry hint available) (OBJECT_ID unique) |
 | fed_dhs_yearbook | place | COUNTRY_OF_LAST_RESIDENCE,FISCAL_YEAR | one row per place (COUNTRY+FISCAL_YEAR unique) |
 | fed_dol_form5500 | (unresolved -- grain proven, entity unknown) | ACK_ID | one row per record (spine_entity not determined -- no registry hint available) (ACK_ID unique) |
-| fed_epa_echo | (unresolved -- grain proven, entity unknown) | FRS_ID | one row per record (spine_entity not determined -- no registry hint available) (FRS_ID unique) |
-| fed_faa_registry | (unresolved -- grain proven, entity unknown) | UNIQUE_ID | one row per record (spine_entity not determined -- no registry hint available) (UNIQUE_ID unique) |
+| fed_epa_egrid_plant_2022 | facility | PLANT_FIPS_COUNTY_CODE,DATA_YEAR,DOE_EIA_ORIS_PLANT_OR_FACILITY_CODE | one row per facility (FIPS+DATA_YEAR+DOE_EIA_ORIS_PLANT_OR_FACILITY_CODE unique) |
+| fed_epa_frs_frs_naics_codes | facility | REGISTRY_ID,NAICS_CODE,PGM_SYS_ID | one row per facility (FRS_ID+NAICS+PGM_SYS_ID unique) |
+| fed_epa_frs_frs_program_links | (unresolved -- grain proven, entity unknown) | PGM_SYS_ID | one row per record (spine_entity not determined -- no registry hint available) (PGM_SYS_ID unique) |
+| fed_epa_frs_frs_sic_codes | facility | REGISTRY_ID,SIC_CODE,PGM_SYS_ID | one row per facility (FRS_ID+SIC+PGM_SYS_ID unique) |
+| fed_epa_icis_air_icis_air_facilities | (unresolved -- grain proven, entity unknown) | PGM_SYS_ID | one row per record (spine_entity not determined -- no registry hint available) (PGM_SYS_ID unique) |
+| fed_epa_icis_air_icis_air_fces_pces | (unresolved -- grain proven, entity unknown) | PGM_SYS_ID,ACTIVITY_ID | one row per record (spine_entity not determined -- no registry hint available) (PGM_SYS_ID+ACTIVITY_ID unique) |
+| fed_epa_icis_air_icis_air_formal_actions | (unresolved -- grain proven, entity unknown) | PGM_SYS_ID,ACTIVITY_ID | one row per record (spine_entity not determined -- no registry hint available) (PGM_SYS_ID+ACTIVITY_ID unique) |
+| fed_epa_icis_air_icis_air_program_subparts | (unresolved -- grain proven, entity unknown) | PGM_SYS_ID,PROGRAM_CODE,PROGRAM_DESC,AIR_PROGRAM_SUBPART_CODE | one row per record (spine_entity not determined -- no registry hint available) (PGM_SYS_ID+PROGRAM_CODE+PROGRAM_DESC+AIR_PROGRAM_SUBPART_CODE unique) |
+| fed_epa_icis_air_icis_air_programs | (unresolved -- grain proven, entity unknown) | PGM_SYS_ID,BEGIN_DATE,UPDATED_DATE,PROGRAM_CODE | one row per record (spine_entity not determined -- no registry hint available) (PGM_SYS_ID+BEGIN_DATE+UPDATED_DATE+PROGRAM_CODE unique) |
+| fed_epa_icis_air_icis_air_stack_tests | (unresolved -- grain proven, entity unknown) | PGM_SYS_ID,ACTIVITY_ID | one row per record (spine_entity not determined -- no registry hint available) (PGM_SYS_ID+ACTIVITY_ID unique) |
+| fed_epa_icis_air_icis_air_titlev_certs | (unresolved -- grain proven, entity unknown) | PGM_SYS_ID,ACTIVITY_ID | one row per record (spine_entity not determined -- no registry hint available) (PGM_SYS_ID+ACTIVITY_ID unique) |
+| fed_epa_icis_air_icis_air_violation_history | (unresolved -- grain proven, entity unknown) | PGM_SYS_ID,ACTIVITY_ID | one row per record (spine_entity not determined -- no registry hint available) (PGM_SYS_ID+ACTIVITY_ID unique) |
+| fed_epa_icis_fec_icis_fec_epa_inspections | (unresolved -- grain proven, entity unknown) | ACTIVITY_ID | one row per record (spine_entity not determined -- no registry hint available) (ACTIVITY_ID unique) |
+| fed_epa_npdes_npdes_cs_violations | (unresolved -- grain proven, entity unknown) | NPDES_VIOLATION_ID | one row per record (spine_entity not determined -- no registry hint available) (NPDES_VIOLATION_ID unique) |
+| fed_epa_npdes_npdes_formal_enforcement_actions | facility | NPDES_ID,SETTLEMENT_ENTERED_DATE,ACTIVITY_TYPE_CODE,ENF_TYPE_CODE,ACTIVITY_ID | one row per facility (NPDES_ID+SETTLEMENT_ENTERED_DATE+ACTIVITY_TYPE_CODE+ENF_TYPE_CODE+ACTIVITY_ID unique) |
+| fed_epa_npdes_npdes_informal_enforcement_actions | (unresolved -- grain proven, entity unknown) | ACTIVITY_ID | one row per record (spine_entity not determined -- no registry hint available) (ACTIVITY_ID unique) |
+| fed_epa_npdes_npdes_ps_violations | (unresolved -- grain proven, entity unknown) | NPDES_VIOLATION_ID | one row per record (spine_entity not determined -- no registry hint available) (NPDES_VIOLATION_ID unique) |
+| fed_epa_npdes_npdes_se_violations | (unresolved -- grain proven, entity unknown) | NPDES_VIOLATION_ID | one row per record (spine_entity not determined -- no registry hint available) (NPDES_VIOLATION_ID unique) |
+| fed_epa_sdwa_sdwa_events_milestones | facility | PWSID,EVENT_END_DATE,EVENT_ACTUAL_DATE,FIRST_REPORTED_DATE,EVENT_SCHEDULE_ID | one row per facility (PWSID+EVENT_END_DATE+EVENT_ACTUAL_DATE+FIRST_REPORTED_DATE+EVENT_SCHEDULE_ID unique) |
+| fed_epa_sdwa_sdwa_facilities | facility | PWSID,FACILITY_DEACTIVATION_DATE,FIRST_REPORTED_DATE,LAST_REPORTED_DATE,FACILITY_ID,STATE_FACILITY_ID | one row per facility (PWSID+FACILITY_DEACTIVATION_DATE+FIRST_REPORTED_DATE+LAST_REPORTED_DATE+FACILITY_ID+STATE_FACILITY_ID unique) |
+| fed_epa_sdwa_sdwa_geographic_areas | (unresolved -- grain proven, entity unknown) | GEO_ID | one row per record (spine_entity not determined -- no registry hint available) (GEO_ID unique) |
+| fed_epa_sdwa_sdwa_lcr_samples | (unresolved -- grain proven, entity unknown) | SAR_ID | one row per record (spine_entity not determined -- no registry hint available) (SAR_ID unique) |
+| fed_epa_sdwa_sdwa_pn_violation_assoc | facility | PWSID,COMPL_PER_BEGIN_DATE,COMPL_PER_END_DATE,NON_COMPL_PER_BEGIN_DATE,PN_VIOLATION_ID,RELATED_VIOLATION_ID | one row per facility (PWSID+COMPL_PER_BEGIN_DATE+COMPL_PER_END_DATE+NON_COMPL_PER_BEGIN_DATE+PN_VIOLATION_ID+RELATED_VIOLATION_ID unique) |
+| fed_epa_sdwa_sdwa_service_areas | facility | PWSID,FIRST_REPORTED_DATE,LAST_REPORTED_DATE,SERVICE_AREA_TYPE_CODE | one row per facility (PWSID+FIRST_REPORTED_DATE+LAST_REPORTED_DATE+SERVICE_AREA_TYPE_CODE unique) |
+| fed_epa_sdwa_sdwa_site_visits | facility | PWSID,VISIT_DATE,FIRST_REPORTED_DATE,LAST_REPORTED_DATE | one row per facility (PWSID+VISIT_DATE+FIRST_REPORTED_DATE+LAST_REPORTED_DATE unique) |
+| fed_epa_sdwa_sdwa_violations_enforcement | facility | PWSID,COMPL_PER_BEGIN_DATE,COMPL_PER_END_DATE,NON_COMPL_PER_BEGIN_DATE,VIOLATION_ID,FACILITY_ID,SAMPLE_RESULT_ID,CORRECTIVE_ACTION_ID,ENFORCEMENT_ID | one row per facility (PWSID+COMPL_PER_BEGIN_DATE+COMPL_PER_END_DATE+NON_COMPL_PER_BEGIN_DATE+VIOLATION_ID+FACILITY_ID+SAMPLE_RESULT_ID+CORRECTIVE_ACTION_ID+ENFORCEMENT_ID unique) |
+| fed_epa_tri_basic_2023 | facility | C_3_FRS_ID,C_1_YEAR,C_22_INDUSTRY_SECTOR_CODE,C_23_INDUSTRY_SECTOR,C_39_TRI_CHEMICAL_COMPOUND_ID,C_41_SRS_ID | one row per facility (FRS_ID+C_1_YEAR+C_22_INDUSTRY_SECTOR_CODE+C_23_INDUSTRY_SECTOR+C_39_TRI_CHEMICAL_COMPOUND_ID+C_41_SRS_ID unique) |
+| fed_faa_aircraft_registry | (unresolved -- grain proven, entity unknown) | UNIQUE_ID | one row per record (spine_entity not determined -- no registry hint available) (UNIQUE_ID unique) |
+| fed_fdic_bank_data | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | fed_fdic_failed_banks | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | fed_fec_api | (unresolved -- grain proven, entity unknown) | TRANSACTION_ID | one row per record (spine_entity not determined -- no registry hint available) (TRANSACTION_ID unique) |
-| fed_fec_bulk | (unresolved -- grain proven, entity unknown) | FEC_CMTE_ID | one row per record (spine_entity not determined -- no registry hint available) (FEC_CMTE_ID unique) |
-| fed_fec_bulk_candidates | place | CAND_ZIP,CAND_ELECTION_YR,CYCLE,CAND_STATUS,CAND_ID | one row per place (ZIP+CAND_ELECTION_YR+CYCLE+CAND_STATUS+CAND_ID unique) |
-| fed_fec_bulk_committees | (unresolved -- grain proven, entity unknown) | FEC_CMTE_ID | one row per record (spine_entity not determined -- no registry hint available) (FEC_CMTE_ID unique) |
-| fed_fec_bulk_linkages | (unresolved -- grain proven, entity unknown) | CAND_ID,CMTE_ID,LINKAGE_ID | one row per record (spine_entity not determined -- no registry hint available) (CAND_ID+CMTE_ID+LINKAGE_ID unique) |
-| fed_fec_bulk_summary | (unresolved -- grain proven, entity unknown) | CAND_ID,CYCLE | one row per record (spine_entity not determined -- no registry hint available) (CAND_ID+CYCLE unique) |
+| fed_fec_bulk_candidates | person | CAND_ID,CAND_ELECTION_YR,CYCLE | one row per person (FEC_CAND_ID+CAND_ELECTION_YR+CYCLE unique) |
+| fed_fec_bulk_linkages | (unresolved -- grain proven, entity unknown) | LINKAGE_ID | one row per record (spine_entity not determined -- no registry hint available) (LINKAGE_ID unique) |
+| fed_fec_bulk_summary | person | CAND_ID,CYCLE | one row per person (FEC_CAND_ID+CYCLE unique) |
 | fed_fec_committee_to_candidate | (unresolved -- grain proven, entity unknown) | SUB_ID | one row per record (spine_entity not determined -- no registry hint available) (SUB_ID unique) |
 | fed_fec_indiv_contributions | (unresolved -- grain proven, entity unknown) | SUB_ID | one row per record (spine_entity not determined -- no registry hint available) (SUB_ID unique) |
+| fed_google_polads_advertiser_weekly_spend | (unresolved -- grain proven, entity unknown) | ADVERTISER_ID,ELECTION_CYCLE,WEEK_START_DATE | one row per record (spine_entity not determined -- no registry hint available) (ADVERTISER_ID+ELECTION_CYCLE+WEEK_START_DATE unique) |
+| fed_ice_detention_stints | (unresolved -- grain proven, entity unknown) | STINT_ID | one row per record (spine_entity not determined -- no registry hint available) (STINT_ID unique) |
+| fed_icij_offshoreleaks_addresses | (unresolved -- grain proven, entity unknown) | NODE_ID | one row per record (spine_entity not determined -- no registry hint available) (NODE_ID unique) |
+| fed_icij_offshoreleaks_entities | (unresolved -- grain proven, entity unknown) | NODE_ID | one row per record (spine_entity not determined -- no registry hint available) (NODE_ID unique) |
+| fed_icij_offshoreleaks_intermediaries | (unresolved -- grain proven, entity unknown) | NODE_ID | one row per record (spine_entity not determined -- no registry hint available) (NODE_ID unique) |
+| fed_icij_offshoreleaks_officers | (unresolved -- grain proven, entity unknown) | NODE_ID | one row per record (spine_entity not determined -- no registry hint available) (NODE_ID unique) |
+| fed_icij_offshoreleaks_others | (unresolved -- grain proven, entity unknown) | NODE_ID | one row per record (spine_entity not determined -- no registry hint available) (NODE_ID unique) |
+| fed_nid_dams | (unresolved -- grain proven, entity unknown) | NID_ID | one row per record (spine_entity not determined -- no registry hint available) (NID_ID unique) |
+| fed_nih_reporter | (unresolved -- grain proven, entity unknown) | APPL_ID | one row per record (spine_entity not determined -- no registry hint available) (APPL_ID unique) |
 | fed_noaa_storm_events | event | EVENT_ID | one row per event (EVENT_ID unique) |
 | fed_noaa_weather_api | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
+| fed_ntsb_aviation_aircraft | (unresolved -- grain proven, entity unknown) | EV_ID | one row per record (spine_entity not determined -- no registry hint available) (EV_ID unique) |
+| fed_ntsb_aviation_events | (unresolved -- grain proven, entity unknown) | EV_ID | one row per record (spine_entity not determined -- no registry hint available) (EV_ID unique) |
+| fed_osha_ita_300a_summary_2023 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
+| fed_osha_ita_300a_summary_2024 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
+| fed_osha_ita_300a_summary_2025 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
+| fed_osha_ita_case_detail_2023 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
+| fed_osha_ita_case_detail_2024 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
+| fed_osha_ita_case_detail_2025 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
+| fed_pbgc_trusteed_plans | organization | EIN,DATE_OF_PLAN_TERMINATION,DATE_OF_PBGC_TRUSTEESHIP,NUMBER_OF_PARICIPANTS_AT_DATE_OF_PLAN_TERMINATION | one row per organization (EIN+DATE_OF_PLAN_TERMINATION+DATE_OF_PBGC_TRUSTEESHIP+NUMBER_OF_PARICIPANTS_AT_DATE_OF_PLAN_TERMINATION unique) |
+| fed_retraction_watch | (unresolved -- grain proven, entity unknown) | RECORD_ID | one row per record (spine_entity not determined -- no registry hint available) (RECORD_ID unique) |
+| fed_sec_dera_sub_2025q4 | organization | CIK,PERIOD,FY | one row per organization (CIK+PERIOD+FY unique) |
+| fed_sec_dera_sub_2026q1 | organization | CIK,PERIOD,FY | one row per organization (CIK+PERIOD+FY unique) |
+| fed_treasury_mts_receipts | (unresolved -- grain proven, entity unknown) | PARENT_ID,CLASSIFICATION_ID | one row per record (spine_entity not determined -- no registry hint available) (PARENT_ID+CLASSIFICATION_ID unique) |
 | fed_us_usaspending_api | (unresolved -- grain proven, entity unknown) | AWARD_ID | one row per record (spine_entity not determined -- no registry hint available) (AWARD_ID unique) |
+| fed_usace_nid_dams | (unresolved -- grain proven, entity unknown) | NID_ID | one row per record (spine_entity not determined -- no registry hint available) (NID_ID unique) |
 | fed_usaspending_bulk | organization | RECIPIENT_UEI,ACTION_DATE,ACTION_DATE_FISCAL_YEAR,PERIOD_OF_PERFORMANCE_START_DATE,AWARD_ID_PIID,PARENT_AWARD_AGENCY_ID,PARENT_AWARD_ID_PIID | one row per organization (UEI+ACTION_DATE+ACTION_DATE_FISCAL_YEAR+PERIOD_OF_PERFORMANCE_START_DATE+AWARD_ID_PIID+PARENT_AWARD_AGENCY_ID+PARENT_AWARD_ID_PIID unique) |
 | fed_usaspending_contracts | organization | RECIPIENT_UEI,ACTION_DATE,PERIOD_OF_PERFORMANCE_START_DATE,PERIOD_OF_PERFORMANCE_CURRENT_END_DATE,AWARD_ID_PIID | one row per organization (UEI+ACTION_DATE+PERIOD_OF_PERFORMANCE_START_DATE+PERIOD_OF_PERFORMANCE_CURRENT_END_DATE+AWARD_ID_PIID unique) |
+| fed_usaspending_contracts_full_r2 | organization | RECIPIENT_UEI,ACTION_DATE,PERIOD_OF_PERFORMANCE_START_DATE,PERIOD_OF_PERFORMANCE_CURRENT_END_DATE,AWARD_ID_PIID | one row per organization (UEI+ACTION_DATE+PERIOD_OF_PERFORMANCE_START_DATE+PERIOD_OF_PERFORMANCE_CURRENT_END_DATE+AWARD_ID_PIID unique) |
 | fed_usgs_earthquakes | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | fed_usgs_minerals | (unresolved -- grain proven, entity unknown) | DEP_ID | one row per record (spine_entity not determined -- no registry hint available) (DEP_ID unique) |
 | fed_wpa_slave_narratives | (unresolved -- grain proven, entity unknown) | LOC_ITEM_ID | one row per record (spine_entity not determined -- no registry hint available) (LOC_ITEM_ID unique) |
 | intl_eu_sanctions | place | ADDR_ZIPCODE,DATE_FILE,LEBA_PUBLICATION_DATE,NAAL_LEBA_PUBLICATION_DATE,ENTITY_LOGICAL_ID,NAAL_LOGICAL_ID,ENTITY_LOGICAL_ID_1,ENTITY_LOGICAL_ID_2,BIRT_LOGICAL_ID,ENTITY_LOGICAL_ID_3,IDEN_LOGICAL_ID,ENTITY_LOGICAL_ID_4,CITI_LOGICAL_ID,ENTITY_LOGICAL_ID_5 | one row per place (ZIP+DATE_FILE+LEBA_PUBLICATION_DATE+NAAL_LEBA_PUBLICATION_DATE+ENTITY_LOGICAL_ID+NAAL_LOGICAL_ID+ENTITY_LOGICAL_ID_1+ENTITY_LOGICAL_ID_2+BIRT_LOGICAL_ID+ENTITY_LOGICAL_ID_3+IDEN_LOGICAL_ID+ENTITY_LOGICAL_ID_4+CITI_LOGICAL_ID+ENTITY_LOGICAL_ID_5 unique) |
 | intl_fr_data_gouv | (unresolved -- grain proven, entity unknown) | DATASET_ID,RESOURCE_ID | one row per record (spine_entity not determined -- no registry hint available) (DATASET_ID+RESOURCE_ID unique) |
 | intl_gem_hazard | (unresolved -- grain proven, entity unknown) | HAZARD_MODEL_ID | one row per record (spine_entity not determined -- no registry hint available) (HAZARD_MODEL_ID unique) |
+| intl_gleif_repex | organization | LEI,EXCEPTION_CATEGORY | one row per organization (LEI+EXCEPTION_CATEGORY unique) |
 | intl_hudoc | case | CASE_ID | one row per case (CASE_ID unique) |
 | intl_ucdp_ged | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | intl_wb_ids | place | COUNTRY_CODE,COUNTERPART_AREA_CODE,SERIES_CODE | one row per place (COUNTRY+COUNTERPART_AREA_CODE+SERIES_CODE unique) |
+| irs527_8871_orgs | (unresolved -- grain proven, entity unknown) | FORM_ID_NUMBER | one row per record (spine_entity not determined -- no registry hint available) (FORM_ID_NUMBER unique) |
+| irs527_8872_reports | (unresolved -- grain proven, entity unknown) | FORM_ID_NUMBER | one row per record (spine_entity not determined -- no registry hint available) (FORM_ID_NUMBER unique) |
+| irs527_directors_officers | (unresolved -- grain proven, entity unknown) | DIRECTOR_ID | one row per record (spine_entity not determined -- no registry hint available) (DIRECTOR_ID unique) |
+| irs527_eain | (unresolved -- grain proven, entity unknown) | FORM_ID_NUMBER,EAIN_ID | one row per record (spine_entity not determined -- no registry hint available) (FORM_ID_NUMBER+EAIN_ID unique) |
+| irs527_related_entities | (unresolved -- grain proven, entity unknown) | ENTITY_ID | one row per record (spine_entity not determined -- no registry hint available) (ENTITY_ID unique) |
 | portal_arc_atlanta_dataatla_1a7f4adc21 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | portal_arc_atlanta_dataatla_4ab9f9e31e | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | portal_arc_atlanta_dataatla_51a606f539 | place | LONGITUDE,BUSINESS_LICENSE_YEAR,DATE_OF_OPENING_IN_ATLANTA,PREVIOUS_YEAR_REPORTED_REVENUE | one row per place (LATLON+BUSINESS_LICENSE_YEAR+DATE_OF_OPENING_IN_ATLANTA+PREVIOUS_YEAR_REPORTED_REVENUE unique) |
@@ -632,13 +745,14 @@ HIGH 492 | MEDIUM 320 | AMBIGUOUS 971 | NO_TABLE 0 | NO_REGISTRY_ROW 18
 | portal_cka_analyze_boston_e4c004d662 | case | CASE_ID | one row per case (CASE_ID unique) |
 | portal_cka_analyze_boston_f1b3f76830 | place | CONTACT_ZIP,STATUS_DTTM | one row per place (ZIP+STATUS_DTTM unique) |
 | portal_cka_california_open_0ad648012f | (unresolved -- grain proven, entity unknown) | STATION_ID | one row per record (spine_entity not determined -- no registry hint available) (STATION_ID unique) |
+| portal_cka_california_open_3501b678fa | facility | PWSID,SYSTEM_START_DATE,SYSTEM_END_DATE,APPLICABLE_START_DATE | one row per facility (PWSID+SYSTEM_START_DATE+SYSTEM_END_DATE+APPLICABLE_START_DATE unique) |
 | portal_cka_california_open_35e42b9770 | (unresolved -- grain proven, entity unknown) | ORG_ID,WATER_SYSTEM_ID,REPORT_PERIOD_START_DATE | one row per record (spine_entity not determined -- no registry hint available) (ORG_ID+WATER_SYSTEM_ID+REPORT_PERIOD_START_DATE unique) |
 | portal_cka_california_open_3b70ad4f80 | (unresolved -- grain proven, entity unknown) | STN_ID | one row per record (spine_entity not determined -- no registry hint available) (STN_ID unique) |
 | portal_cka_california_open_490b55c81b | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | portal_cka_california_open_6611464444 | place | LONGITUDE,SITE_CODE | one row per place (LATLON+SITE_CODE unique) |
 | portal_cka_california_open_a5d78a8b63 | place | LATITUDE,LAST_MODIFIED_DATE,DATE_DATA_REFERS_TO,DWR_GW_SITE_CODE | one row per place (LATLON+LAST_MODIFIED_DATE+DATE_DATA_REFERS_TO+DWR_GW_SITE_CODE unique) |
 | portal_cka_california_open_ac6c9e2b47 | (unresolved -- grain proven, entity unknown) | STN_ID | one row per record (spine_entity not determined -- no registry hint available) (STN_ID unique) |
-| portal_cka_california_open_c19a7c8625 | place | COUNTRY,SUBMITTED_DATE | one row per place (COUNTRY+SUBMITTED_DATE unique) |
+| portal_cka_california_open_c19a7c8625 | facility | PWS_ID_OR_OTHER_ID,SUBMITTED_DATE | one row per facility (PWSID+SUBMITTED_DATE unique) |
 | portal_cka_california_open_c65b641866 | (unresolved -- grain proven, entity unknown) | STATION_ID | one row per record (spine_entity not determined -- no registry hint available) (STATION_ID unique) |
 | portal_cka_california_open_f8f7b5716b | (unresolved -- grain proven, entity unknown) | ORG_ID,FY_START_DATE | one row per record (spine_entity not determined -- no registry hint available) (ORG_ID+FY_START_DATE unique) |
 | portal_cka_houston_open_dat_07c9c99eb1 | event | TEMP_EVENT_ID,INSPECTION_DATE,ACTIVITY_TYPE,STAFF_CODE | one row per event (TEMP_EVENT_ID+INSPECTION_DATE+ACTIVITY_TYPE+STAFF_CODE unique) |
@@ -695,7 +809,7 @@ HIGH 492 | MEDIUM 320 | AMBIGUOUS 971 | NO_TABLE 0 | NO_REGISTRY_ROW 18
 | portal_cka_virginia_open_da_e4498c978c | (unresolved -- grain proven, entity unknown) | PRP_REPORT_ID | one row per record (spine_entity not determined -- no registry hint available) (PRP_REPORT_ID unique) |
 | portal_cka_western_pennsylv_070a16004d | place | ZIPCODE,LAST_EDIT_DATE | one row per place (ZIP+LAST_EDIT_DATE unique) |
 | portal_cka_western_pennsylv_09335a764b | (unresolved -- grain proven, entity unknown) | START_STATION_ID,END_STATION_ID,START_DATE | one row per record (spine_entity not determined -- no registry hint available) (START_STATION_ID+END_STATION_ID+START_DATE unique) |
-| portal_cka_western_pennsylv_0af7431c6c | facility | STATE_COUNTY_FIPS_CODE,REPORTING_YEAR,ZIP_CODE,PRIMARY_SIC_CODE,TRI_FACILITY_ID,EPA_REGISTRY_ID,TRI_CHEM_ID,SRS_ID | one row per facility (FIPS+REPORTING_YEAR+ZIP+SIC+TRI_FACILITY_ID+EPA_REGISTRY_ID+TRI_CHEM_ID+SRS_ID unique) |
+| portal_cka_western_pennsylv_0af7431c6c | facility | EPA_REGISTRY_ID,REPORTING_YEAR,STATE_COUNTY_FIPS_CODE,ZIP_CODE,TRI_FACILITY_ID,TRI_CHEM_ID,SRS_ID | one row per facility (FRS_ID+REPORTING_YEAR+FIPS+ZIP+TRI_FACILITY_ID+TRI_CHEM_ID+SRS_ID unique) |
 | portal_cka_western_pennsylv_20c6fc6029 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | portal_cka_western_pennsylv_20e1a330ce | (unresolved -- grain proven, entity unknown) | CLIENT_ID | one row per record (spine_entity not determined -- no registry hint available) (CLIENT_ID unique) |
 | portal_cka_western_pennsylv_23b8b5b7d2 | place | ZIP_CODE,CREATE_DATE,PROPERTY_TYPE,INSPECTION_STATUS,PARCEL_ID | one row per place (ZIP+CREATE_DATE+PROPERTY_TYPE+INSPECTION_STATUS+PARCEL_ID unique) |
@@ -739,7 +853,7 @@ HIGH 492 | MEDIUM 320 | AMBIGUOUS 971 | NO_TABLE 0 | NO_REGISTRY_ROW 18
 | portal_cka_wprdc_allegheny_c96164a13d | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | portal_cka_wprdc_allegheny_ce7a2694fc | place | LATITUDE,START_YEAR,APPROVED_DATE | one row per place (LATLON+START_YEAR+APPROVED_DATE unique) |
 | portal_cka_wprdc_allegheny_da448e7083 | (unresolved -- grain proven, entity unknown) | INSPECTION_ID | one row per record (spine_entity not determined -- no registry hint available) (INSPECTION_ID unique) |
-| portal_cka_wprdc_allegheny_de448d04d4 | facility | STATE_COUNTY_FIPS_CODE,REPORTING_YEAR,ZIP_CODE,PRIMARY_SIC_CODE,TRI_FACILITY_ID,EPA_REGISTRY_ID,TRI_CHEM_ID,SRS_ID | one row per facility (FIPS+REPORTING_YEAR+ZIP+SIC+TRI_FACILITY_ID+EPA_REGISTRY_ID+TRI_CHEM_ID+SRS_ID unique) |
+| portal_cka_wprdc_allegheny_de448d04d4 | facility | EPA_REGISTRY_ID,REPORTING_YEAR,STATE_COUNTY_FIPS_CODE,ZIP_CODE,TRI_FACILITY_ID,TRI_CHEM_ID,SRS_ID | one row per facility (FRS_ID+REPORTING_YEAR+FIPS+ZIP+TRI_FACILITY_ID+TRI_CHEM_ID+SRS_ID unique) |
 | portal_cka_wprdc_allegheny_fa3191e7a1 | (unresolved -- grain proven, entity unknown) | EV_ID | one row per record (spine_entity not determined -- no registry hint available) (EV_ID unique) |
 | portal_soc_austin_open_data_0b4c639a1c | (unresolved -- grain proven, entity unknown) | EMPLOYEE_ID | one row per record (spine_entity not determined -- no registry hint available) (EMPLOYEE_ID unique) |
 | portal_soc_cambridge_open_d_8a1152140c | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
@@ -757,11 +871,10 @@ HIGH 492 | MEDIUM 320 | AMBIGUOUS 971 | NO_TABLE 0 | NO_REGISTRY_ROW 18
 | portal_soc_colorado_informa_f78543c045 | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | portal_soc_colorado_informa_f9498d9b7f | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 | portal_soc_connecticut_open_88b075d7af | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
-| portal_soc_connecticut_open_aeb46f6c94 | place | C_9_ZIP,C_1_YEAR,C_18_INDUSTRY_SECTOR_CODE,C_19_INDUSTRY_SECTOR,C_3_FRS_ID,C_35_CAS_COMPOUND_ID,C_36_SRS_ID | one row per place (ZIP+C_1_YEAR+C_18_INDUSTRY_SECTOR_CODE+C_19_INDUSTRY_SECTOR+C_3_FRS_ID+C_35_CAS_COMPOUND_ID+C_36_SRS_ID unique) |
+| portal_soc_connecticut_open_aeb46f6c94 | facility | C_3_FRS_ID,C_1_YEAR,C_18_INDUSTRY_SECTOR_CODE,C_19_INDUSTRY_SECTOR,C_35_CAS_COMPOUND_ID,C_36_SRS_ID | one row per facility (FRS_ID+C_1_YEAR+C_18_INDUSTRY_SECTOR_CODE+C_19_INDUSTRY_SECTOR+C_35_CAS_COMPOUND_ID+C_36_SRS_ID unique) |
 | portal_soc_connecticut_open_ff2b86a533 | place | ZIP_CODE,FISCAL_YEAR,CONTRACT_EXECUTION_DATE | one row per place (ZIP+FISCAL_YEAR+CONTRACT_EXECUTION_DATE unique) |
 | portal_soc_datala_los_angel_361b8161b7 | place | MAILING_ZIP_CODE,LOCATION_START_DATE,LOCATION_END_DATE,ZIP_CODE | one row per place (ZIP+LOCATION_START_DATE+LOCATION_END_DATE+ZIP unique) |
 | portal_soc_datala_los_angel_dc3670afe1 | place | MAILING_ZIP_CODE,LOCATION_START_DATE,ZIP_CODE | one row per place (ZIP+LOCATION_START_DATE+ZIP unique) |
-| portal_soc_new_york_state_o_0c94dd2b8a | (unresolved -- grain proven, entity unknown) | NPDES_ID | one row per record (spine_entity not determined -- no registry hint available) (NPDES_ID unique) |
 | portal_soc_new_york_state_o_c08efa40c8 | (unresolved -- grain proven, entity unknown) | DEC_ID,YEAR | one row per record (spine_entity not determined -- no registry hint available) (DEC_ID+YEAR unique) |
 | portal_soc_new_york_state_o_eff72c4402 | (unresolved -- grain proven, entity unknown) | PROJECT_ID_NUMBER | one row per record (spine_entity not determined -- no registry hint available) (PROJECT_ID_NUMBER unique) |
 | portal_soc_open_data_br_6083bc2934 | (unresolved -- grain proven, entity unknown) | LOT_ID | one row per record (spine_entity not determined -- no registry hint available) (LOT_ID unique) |
@@ -779,7 +892,6 @@ HIGH 492 | MEDIUM 320 | AMBIGUOUS 971 | NO_TABLE 0 | NO_REGISTRY_ROW 18
 | portal_soc_texas_open_data_d83872d208 | case | DISTRICT_COURT_DOCKET_NO,ORDER_DATE | one row per case (DOCKET+ORDER_DATE unique) |
 | portal_soc_texas_open_data_da657010b1 | place | LOC_ZIP,RESP_BEGIN_DATE | one row per place (ZIP+RESP_BEGIN_DATE unique) |
 | portal_soc_utah_open_data_p_103f7d641f | organization | RECIPIENT_DUNS,PERIOD_OF_PERFORMANCE_START,PERIOD_OF_PERFORMANCE_CURRENT,LAST_MODIFIED_DATE,AWARD_ID_FAIN,AWARD_ID_URI | one row per organization (DUNS+PERIOD_OF_PERFORMANCE_START+PERIOD_OF_PERFORMANCE_CURRENT+LAST_MODIFIED_DATE+AWARD_ID_FAIN+AWARD_ID_URI unique) |
-| portal_soc_utah_open_data_p_1614522f52 | (unresolved -- grain proven, entity unknown) | NPDES_ID | one row per record (spine_entity not determined -- no registry hint available) (NPDES_ID unique) |
 | portal_soc_utah_open_data_p_289c31329b | case | CASE_ID | one row per case (CASE_ID unique) |
 | portal_soc_utah_open_data_p_33421b5a2a | facility | TRI_FACILITY_ID,CAS_COMPOUND_ID,YEAR | one row per facility (TRI_FACILITY_ID+CAS_COMPOUND_ID+YEAR unique) |
 | portal_soc_utah_open_data_p_38579bbdbc | facility | TRI_FACILITY_ID,CAS_COMPOUND_ID | one row per facility (TRI_FACILITY_ID+CAS_COMPOUND_ID unique) |
@@ -788,13 +900,12 @@ HIGH 492 | MEDIUM 320 | AMBIGUOUS 971 | NO_TABLE 0 | NO_REGISTRY_ROW 18
 | portal_soc_utah_open_data_p_4388c129f2 | facility | TRI_FACILITY_ID,CAS_COMPOUND_ID | one row per facility (TRI_FACILITY_ID+CAS_COMPOUND_ID unique) |
 | portal_soc_utah_open_data_p_4eba247771 | provider | PROVIDER_NPI,REPORTING_PERIOD,PROVIDER_POSTAL_CODE,MEASURE_ID | one row per provider (NPI+REPORTING_PERIOD+ZIP+MEASURE_ID unique) |
 | portal_soc_utah_open_data_p_55ef6ef0c6 | provider | NPI,HCPCS_CODE | one row per provider (NPI+HCPCS_CODE unique) |
-| portal_soc_utah_open_data_p_589cc47a29 | (unresolved -- grain proven, entity unknown) | NPDES_ID | one row per record (spine_entity not determined -- no registry hint available) (NPDES_ID unique) |
 | portal_soc_utah_open_data_p_5c3521189e | facility | TRI_FACILITY_ID,CAS_COMPOUND_ID | one row per facility (TRI_FACILITY_ID+CAS_COMPOUND_ID unique) |
 | portal_soc_utah_open_data_p_5e73751281 | facility | TRI_FACILITY_ID,CAS_COMPOUND_ID | one row per facility (TRI_FACILITY_ID+CAS_COMPOUND_ID unique) |
 | portal_soc_utah_open_data_p_5ef68422ff | organization | RECIPIENT_DUNS,PERIOD_OF_PERFORMANCE_START,PERIOD_OF_PERFORMANCE_CURRENT,PERIOD_OF_PERFORMANCE,AWARD_ID_PIID,PARENT_AWARD_AGENCY_ID,PARENT_AWARD_ID | one row per organization (DUNS+PERIOD_OF_PERFORMANCE_START+PERIOD_OF_PERFORMANCE_CURRENT+PERIOD_OF_PERFORMANCE+AWARD_ID_PIID+PARENT_AWARD_AGENCY_ID+PARENT_AWARD_ID unique) |
 | portal_soc_utah_open_data_p_636fffdfa2 | facility | TRI_FACILITY_ID,CAS_COMPOUND_ID | one row per facility (TRI_FACILITY_ID+CAS_COMPOUND_ID unique) |
 | portal_soc_utah_open_data_p_66c519bccf | facility | TRI_FACILITY_ID,CAS_COMPOUND_ID | one row per facility (TRI_FACILITY_ID+CAS_COMPOUND_ID unique) |
-| portal_soc_utah_open_data_p_6f5fcc229f | facility | TRI_FACILITY_ID,FRS_ID,CAS_COMPOUND_ID | one row per facility (TRI_FACILITY_ID+FRS_ID+CAS_COMPOUND_ID unique) |
+| portal_soc_utah_open_data_p_6f5fcc229f | facility | FRS_ID,YEAR,INDUSTRY_SECTOR_CODE,INDUSTRY_SECTOR,TRI_FACILITY_ID,CAS_COMPOUND_ID,SRS_ID | one row per facility (FRS_ID+YEAR+INDUSTRY_SECTOR_CODE+INDUSTRY_SECTOR+TRI_FACILITY_ID+CAS_COMPOUND_ID+SRS_ID unique) |
 | portal_soc_utah_open_data_p_7186edb84b | facility | PROVIDER_CCN,YEAR,FISCAL_YEAR_BEGIN_DATE | one row per facility (CCN+YEAR+FISCAL_YEAR_BEGIN_DATE unique) |
 | portal_soc_utah_open_data_p_7a3c73b2fd | facility | TRI_FACILITY_ID,CAS_COMPOUND_ID,YEAR | one row per facility (TRI_FACILITY_ID+CAS_COMPOUND_ID+YEAR unique) |
 | portal_soc_utah_open_data_p_7f45e582f7 | facility | TRI_FACILITY_ID,CAS_COMPOUND_ID | one row per facility (TRI_FACILITY_ID+CAS_COMPOUND_ID unique) |
@@ -812,7 +923,7 @@ HIGH 492 | MEDIUM 320 | AMBIGUOUS 971 | NO_TABLE 0 | NO_REGISTRY_ROW 18
 | portal_soc_utah_open_data_p_b5e39c25f8 | facility | TRI_FACILITY_ID,CAS_COMPOUND_ID | one row per facility (TRI_FACILITY_ID+CAS_COMPOUND_ID unique) |
 | portal_soc_utah_open_data_p_cdbdd459c0 | facility | TRI_FACILITY_ID,CAS_COMPOUND_ID | one row per facility (TRI_FACILITY_ID+CAS_COMPOUND_ID unique) |
 | portal_soc_utah_open_data_p_d4aca49a9b | provider | PROVIDER_NPI,REPORTING_PERIOD,PROVIDER_POSTAL_CODE,MEASURE_ID | one row per provider (NPI+REPORTING_PERIOD+ZIP+MEASURE_ID unique) |
-| portal_soc_utah_open_data_p_d5f7ca2621 | place | C_9_ZIP,C_1_YEAR,C_18_INDUSTRY_SECTOR_CODE,C_19_INDUSTRY_SECTOR,C_35_CAS_COMPOUND_ID,C_36_SRS_ID,C_3_FRS_ID | one row per place (ZIP+C_1_YEAR+C_18_INDUSTRY_SECTOR_CODE+C_19_INDUSTRY_SECTOR+C_35_CAS_COMPOUND_ID+C_36_SRS_ID+C_3_FRS_ID unique) |
+| portal_soc_utah_open_data_p_d5f7ca2621 | facility | C_3_FRS_ID,C_1_YEAR,C_18_INDUSTRY_SECTOR_CODE,C_19_INDUSTRY_SECTOR,C_35_CAS_COMPOUND_ID,C_36_SRS_ID | one row per facility (FRS_ID+C_1_YEAR+C_18_INDUSTRY_SECTOR_CODE+C_19_INDUSTRY_SECTOR+C_35_CAS_COMPOUND_ID+C_36_SRS_ID unique) |
 | portal_soc_utah_open_data_p_f1292b8d2f | organization | DUNS_NO,FISCAL_YEAR,EVALUATION_CLOSED_DATE | one row per organization (DUNS+FISCAL_YEAR+EVALUATION_CLOSED_DATE unique) |
 | portal_soc_utah_open_data_p_f326bad0fc | facility | TRI_FACILITY_ID,CAS_COMPOUND_ID | one row per facility (TRI_FACILITY_ID+CAS_COMPOUND_ID unique) |
 | portal_soc_utah_open_data_p_f8cdd62630 | provider | PROVIDER_NPI,REPORTING_PERIOD,PROVIDER_POSTAL_CODE,MEASURE_ID | one row per provider (NPI+REPORTING_PERIOD+ZIP+MEASURE_ID unique) |
@@ -820,14 +931,47 @@ HIGH 492 | MEDIUM 320 | AMBIGUOUS 971 | NO_TABLE 0 | NO_REGISTRY_ROW 18
 | portal_soc_washington_state_1a95fb1665 | organization | UBI_EIN,AUDIT_CLOSED_DATE,RECIPIENT_TYPE,AUDIT_TYPE | one row per organization (EIN+AUDIT_CLOSED_DATE+NAME+AUDIT_TYPE unique) |
 | portal_soc_washington_state_48eeef5dfc | (unresolved -- grain proven, entity unknown) | BUSINESS_ID,ID | one row per record (spine_entity not determined -- no registry hint available) (BUSINESS_ID+ID unique) |
 | st_cannabis_policy_bundles | place | FIPS,YEAR | one row per place (FIPS+YEAR unique) |
+| xc_mapping_police_violence | (unresolved -- grain proven, entity unknown) | MPV_ID | one row per record (spine_entity not determined -- no registry hint available) (MPV_ID unique) |
 | xc_owid_refugees | place | REFUGEES_BY_COUNTRY_OF_ORIGIN,YEAR,CODE | one row per place (COUNTRY+YEAR+CODE unique) |
 | xc_vera_incarceration_trends | place | STATE_FIPS,YEAR,STATE_CODE,COUNTY_CODE | one row per place (FIPS+YEAR+STATE_CODE+COUNTY_CODE unique) |
 | xc_wapo_fatal_force | (unresolved -- grain proven, entity unknown) | ID | one row per record (spine_entity not determined -- no registry hint available) (ID unique) |
 
-## AMBIGUOUS (971) -- needs a human call, never auto-written
+## AMBIGUOUS (1075) -- needs a human call, never auto-written
 
 | source_id | reason | detail |
 |---|---|---|
+| FED_CMS_PARTD_PRESCRIBER_DRUG | not-unique-after-dimension-search | base=Prscrbr_NPI key_ratio=0.0409 dims_tried=[Prscrbr_Type, Prscrbr_Type_Src] ratios_at_each_level=[0.0409, 0.0409, 0.0409] |
+| FED_FDA_CAERS | no-key-column | ENTITY_TYPES hint: (none) |
+| FED_FDA_DEVICE_510K | no-key-column | ENTITY_TYPES hint: (none) |
+| FED_FDA_DEVICE_CLASSIFICATION | no-key-column | ENTITY_TYPES hint: (none) |
+| FED_FDA_DEVICE_ENFORCEMENT | no-key-column | ENTITY_TYPES hint: (none) |
+| FED_FDA_DEVICE_PMA | no-key-column | ENTITY_TYPES hint: (none) |
+| FED_FDA_DRUG_ENFORCEMENT | no-key-column | ENTITY_TYPES hint: (none) |
+| FED_FDA_ESTABLISHMENT_REG | no-key-column | ENTITY_TYPES hint: (none) |
+| FED_FDA_GUDID | no-key-column | ENTITY_TYPES hint: (none) |
+| FED_FDA_MAUDE | no-key-column | ENTITY_TYPES hint: (none) |
+| FED_FEC_CANDIDATES | no-key-column | ENTITY_TYPES hint: (none) |
+| FED_FEC_CAND_CMTE_LINKAGE | no-key-column | ENTITY_TYPES hint: (none) |
+| FED_FEC_COMMITTEES | no-key-column | ENTITY_TYPES hint: (none) |
+| FED_FEC_INDEPENDENT_EXPENDITURES | not-unique-after-dimension-search | base=CAND_ID key_ratio=0.0135 dims_tried=[EXP_DATE, FEC_ELECTION_YR, CYCLE_FILE, SPE_ID, TRAN_ID] ratios_at_each_level=[0.0135, 0.0155, 0.6483, 0.1927, 0.1936, 0.1936, 0.8649] |
+| FED_FEC_PAC_SUMMARY | no-key-column | ENTITY_TYPES hint: (none) |
+| FED_MSHA_ACCIDENTS | not-unique-after-dimension-search | base=MINE_ID key_ratio=0.0493 dims_tried=[CAL_YR, CAL_QTR, FISCAL_YR, CONTROLLER_ID, OPERATOR_ID, CONTRACTOR_ID] ratios_at_each_level=[0.0493, 0.0242, 0.0292, 0.0188, 0.2566, 0.4572, 0.4572, 0.512] |
+| FED_MSHA_VIOLATIONS | not-unique-after-dimension-search | base=DOCKET_NO+DOCKET_STATUS_CD+MINE_ID key_ratio=0.0063 dims_tried=[CAL_YR, CAL_QTR, FISCAL_YR, CONTROLLER_ID, VIOLATOR_ID, CONTRACTOR_ID] ratios_at_each_level=[0.0063, 0.014, 0.0071, 0.0223, 0.0956, 0.1518, 0.1518, 0.181] |
+| FED_NHTSA_COMPLAINTS | no-key-column | ENTITY_TYPES hint: (none) |
+| FED_NHTSA_INVESTIGATIONS | no-key-column | ENTITY_TYPES hint: (none) |
+| FED_NHTSA_RECALLS | no-key-column | ENTITY_TYPES hint: (none) |
+| FED_SEC_13F_POSITIONS | no-key-column | ENTITY_TYPES hint: (none) |
+| FED_SEC_13F_SUBMISSION | no-key-column | ENTITY_TYPES hint: (none) |
+| FED_SEC_INSIDER_DERIV_TRANS | no-key-column | ENTITY_TYPES hint: (none) |
+| FED_SEC_INSIDER_NONDERIV_TRANS | no-key-column | ENTITY_TYPES hint: (none) |
+| FED_SEC_INSIDER_REPORTINGOWNER | not-unique-after-dimension-search | base=RPTOWNER_ZIPCODE key_ratio=0.0056 dims_tried=[(none found)] ratios_at_each_level=[0.0056] |
+| FED_SEC_INSIDER_SUBMISSION | no-key-column | ENTITY_TYPES hint: (none) |
+| FED_USASPENDING_ASSISTANCE_FULL | not-unique-after-dimension-search | base=recipient_uei key_ratio=0.0112 dims_tried=[action_date, action_date_fiscal_year, period_of_performance_start_date, award_id_fain, award_id_uri] ratios_at_each_level=[0.0112, 0.5185, 0.4008, 0.1763, 0.1763, 0.2368, 0.8984] |
+| ca_lobby_chg_log | not-unique-after-dimension-search | base=ENTITY_ZIP key_ratio=0.0064 dims_tried=[FILER_TYPE, ENTITY_TYPE, FILER_ID, SESSION_ID, ENTITY_ID] ratios_at_each_level=[0.0064, 0.2535, 0.0002, 0.2307, 0.0116, 0.0134, 0.8216] |
+| ca_lobby_contributions | not-unique-after-dimension-search | base=FILER_ID key_ratio=0.0912 dims_tried=[FILING_PERIOD_START_DT, FILING_PERIOD_END_DT] ratios_at_each_level=[0.0912, 0.1465, 0.1467] |
+| ca_lobby_employer | not-unique-after-dimension-search | base=SESSION_ID key_ratio=0.0006 dims_tried=[CONTRIBUTOR_ID, CURRENT_QTR_AMT, SESSION_YR_1] ratios_at_each_level=[0.0006, 0.0092, 0.0786, 0.0786] |
+| ca_lobby_employer_firms | not-unique-after-dimension-search | base=FIRM_ID key_ratio=0.25 dims_tried=[SESSION_ID] ratios_at_each_level=[0.25, 0.5477] |
+| ca_lobby_firm_employer | not-unique-after-dimension-search | base=FIRM_ID key_ratio=0.1412 dims_tried=[FILING_ID] ratios_at_each_level=[0.1412, 0.1412] |
 | fed_bia_tribal_geo | not-unique-after-dimension-search | base=FIPS key_ratio=0.01 dims_tried=[(none found)] ratios_at_each_level=[0.01] |
 | fed_bjs_data | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_bls_qcew | not-unique-after-dimension-search | base=AREA_FIPS key_ratio=0.0012 dims_tried=[YEAR, QTR, OWN_CODE] ratios_at_each_level=[0.0012, 0.0012, 0.0012, 0.0053] |
@@ -838,45 +982,90 @@ HIGH 492 | MEDIUM 320 | AMBIGUOUS 971 | NO_TABLE 0 | NO_REGISTRY_ROW 18
 | fed_cdc_drug_poisoning_county | not-unique-after-dimension-search | base=FIPS_STATE key_ratio=0.001 dims_tried=[YEAR] ratios_at_each_level=[0.001, 0.0162] |
 | fed_cdc_health_insurance | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_cdc_injury_violence_county | not-unique-after-dimension-search | base=ST_GEOID key_ratio=0.0004 dims_tried=[PERIOD, TTM_DATE_RANGE] ratios_at_each_level=[0.0004, 0.0027, 0.0031] |
+| fed_cdc_leading_causes_state | no-key-column | ENTITY_TYPES hint: (none) |
+| fed_cdc_nndss_weekly_2024 | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_cdc_overdose | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_cdc_suicide_rates | no-key-column | ENTITY_TYPES hint: (none) |
+| fed_cdc_wonder | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_cfpb_hmda | not-unique-after-dimension-search | base=LEI key_ratio=0.019 dims_tried=[ACTIVITY_YEAR, INTRO_RATE_PERIOD, STATE_CODE] ratios_at_each_level=[0.019, 0.019, 0.0348, 0.0348] |
+| fed_cftc_cot_financial | no-key-column | ENTITY_TYPES hint: (none) |
+| fed_cftc_cot_futures | no-key-column | ENTITY_TYPES hint: (none) |
+| fed_cms_facility_level_minimum_data_set_frequency | not-unique-after-dimension-search | base=CCN key_ratio=0.0005 dims_tried=[REPORT_DATE, ZIP_CODE, FIPS_COUNTY_CODE] ratios_at_each_level=[0.0005, 0.0005, 0.0005, 0.0005] |
+| fed_cms_medicare_durable_medical_equipment_devices_supplies_by_suppl | not-unique-after-dimension-search | base=SUPLR_NPI key_ratio=0.1262 dims_tried=[RBCS_ID] ratios_at_each_level=[0.1262, 0.0001] |
+| fed_cms_medicare_inpatient_hospitals_by_provider_and_service | not-unique-after-dimension-search | base=RNDRNG_PRVDR_CCN key_ratio=0.0199 dims_tried=[(none found)] ratios_at_each_level=[0.0199] |
+| fed_cms_medicare_outpatient_hospitals_by_provider_and_service | not-unique-after-dimension-search | base=RNDRNG_PRVDR_CCN key_ratio=0.0269 dims_tried=[(none found)] ratios_at_each_level=[0.0269] |
+| fed_cms_medicare_physician_other_practitioners_by_provider_and_servi | not-unique-after-dimension-search | base=RNDRNG_NPI key_ratio=0.1234 dims_tried=[RNDRNG_PRVDR_TYPE] ratios_at_each_level=[0.1234, 0.1234] |
 | fed_cms_nadac | no-key-column | ENTITY_TYPES hint: (none) |
+| fed_cms_nursing_home_deficiencies | not-unique-after-dimension-search | base=CMS_CERTIFICATION_NUMBER_CCN key_ratio=0.035 dims_tried=[SURVEY_DATE, CORRECTION_DATE, INSPECTION_CYCLE] ratios_at_each_level=[0.035, 0.2169, 0.2519, 0.2536] |
+| fed_cms_nursing_home_fire_deficiencies | not-unique-after-dimension-search | base=CMS_CERTIFICATION_NUMBER_CCN key_ratio=0.0696 dims_tried=[SURVEY_DATE, CORRECTION_DATE, INSPECTION_CYCLE] ratios_at_each_level=[0.0696, 0.1846, 0.2804, 0.2808] |
+| fed_cms_opioid_treatment_program_providers | not-unique-after-dimension-search | base=NPI key_ratio=0.8601 dims_tried=[MEDICARE_ID_EFFECTIVE_DATE] ratios_at_each_level=[0.8601, 0.8659] |
+| fed_cpsc_neiss | no-key-column | ENTITY_TYPES hint: (none) |
+| fed_cpsc_neiss_codes | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_dhs_hifld | not-unique-after-dimension-search | base=FIPS key_ratio=0.002 dims_tried=[SOURCE_DATE, NAICS_CODE, STATUS] ratios_at_each_level=[0.002, 0.08, 0.08, 0.082] |
 | fed_dhs_ohss | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_docsouth | no-key-column | ENTITY_TYPES hint: (none) |
-| fed_doj_crt_cases | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_doj_epstein_library | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_doj_fca_settlements | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_dol_oflc | not-unique-after-dimension-search | base=WORKSITE_POSTAL_CODE_10 key_ratio=0.0003 dims_tried=[DECISION_DATE, ORIGINAL_CERT_DATE, PERIOD_OF_EMPLOYMENT_START_DATE] ratios_at_each_level=[0.0003, 0.0719, 0.1186, 0.5928] |
+| fed_dol_osha_inspections | not-unique-after-dimension-search | base=MAIL_ZIP key_ratio=0.008 dims_tried=[OPEN_DATE, CASE_MOD_DATE, CLOSE_CONF_DATE, REPORTING_ID] ratios_at_each_level=[0.008, 0.0001, 0.5336, 0.6171, 0.6605, 0.7582] |
 | fed_dot_bts | not-unique-after-dimension-search | base=COUNTY_FIPS key_ratio=0.0476 dims_tried=[YEAR, MONTH, CARRIER_CODE] ratios_at_each_level=[0.0476, 0.0476, 0.0476, 0.0476] |
 | fed_eac_eavs | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_ed_edfacts | not-unique-after-dimension-search | base=STATE_FIPS key_ratio=0.0303 dims_tried=[SCHOOL_YEAR, PROGRAM_PARTICIPATION, PROFICIENCY_LEVEL, LEA_ID, SCHOOL_ID, SEA_ID] ratios_at_each_level=[0.0303, 0.0303, 0.0303, 0.0303, 0.0303, 0.6667, 0.6667, 0.6667] |
 | fed_eoir_case_data | no-key-column | ENTITY_TYPES hint: (none) |
-| fed_epa_envirofacts | not-unique-after-dimension-search | base=POSTAL_CODE key_ratio=0.3064 dims_tried=[CREATED_DATE, PROGRAM_SCHEMA, STATE_CODE, FRS_ID, HANDLER_ID, SITE_ID] ratios_at_each_level=[0.3064, 0.0002, 0.0002, 0.0002, 0.3064, 0.3064, 0.3064, 0.3064] |
+| fed_epa_air_emissions_poll_rpt_combined_emissions | not-unique-after-dimension-search | base=REGISTRY_ID key_ratio=0.0156 dims_tried=[REPORTING_YEAR, NEI_TYPE, PGM_SYS_ID] ratios_at_each_level=[0.0156, 0.018, 0.0654, 0.105, 0.1111] |
+| fed_epa_envirofacts | not-unique-after-dimension-search | base=FRS_ID key_ratio=0.0002 dims_tried=[CREATED_DATE, PROGRAM_SCHEMA, STATE_CODE, HANDLER_ID, SITE_ID] ratios_at_each_level=[0.0002, 0.0002, 0.0002, 0.0002, 0.0002, 0.0002, 0.0002] |
+| fed_epa_icis_air_icis_air_informal_actions | not-unique-after-dimension-search | base=PGM_SYS_ID key_ratio=0.1791 dims_tried=[ACTIVITY_ID, ACHIEVED_DATE, ACTIVITY_TYPE_CODE] ratios_at_each_level=[0.1791, 0.5194, 0.5194, 0.5194] |
+| fed_epa_icis_air_icis_air_pollutants | not-unique-after-dimension-search | base=PGM_SYS_ID key_ratio=0.2617 dims_tried=[SRS_ID, POLLUTANT_CODE, AIR_POLLUTANT_CLASS_CODE] ratios_at_each_level=[0.2617, 0.8695, 0.8847, 0.9693] |
+| fed_epa_icis_fec_case_enforcement_conclusion_facilities | not-unique-after-dimension-search | base=FACILITY_ZIP key_ratio=0.2411 dims_tried=[ACTIVITY_ID, ENF_CONCLUSION_ID, ICIS_FACILITY_INTEREST_ID] ratios_at_each_level=[0.2411, 0.8064, 0.8242, 0.7764] |
+| fed_epa_icis_fec_case_facilities | not-unique-after-dimension-search | base=REGISTRY_ID key_ratio=0.5581 dims_tried=[STATE_CODE, PRIMARY_SIC_CODE, PRIMARY_NAICS_CODE, ACTIVITY_ID] ratios_at_each_level=[0.5581, 0.6598, 0.5584, 0.5928, 0.6295, 0.9772] |
+| fed_epa_icis_fec_epa_informal_enforcement_actions | not-unique-after-dimension-search | base=REGISTRY_ID key_ratio=0.666 dims_tried=[ACHIEVED_DATE, ACTIVITY_TYPE_CODE, ENF_TYPE_CODE, PGM_SYS_ID] ratios_at_each_level=[0.666, 0.6948, 0.9497, 0.9497, 0.9508, 0.9783] |
+| fed_epa_npdes_npdes_inspections | not-unique-after-dimension-search | base=REGISTRY_ID key_ratio=0.1385 dims_tried=[ACTUAL_BEGIN_DATE, ACTUAL_END_DATE, ACTIVITY_TYPE_CODE, ACTIVITY_ID] ratios_at_each_level=[0.1385, 0.9405, 0.5125, 0.8967, 0.8967, 0.9405] |
+| fed_epa_npdes_npdes_naics | not-unique-after-dimension-search | base=NPDES_ID key_ratio=0.9398 dims_tried=[NAICS_CODE] ratios_at_each_level=[0.9398, 0.9732] |
+| fed_epa_npdes_npdes_qncr_history | not-unique-after-dimension-search | base=NPDES_ID key_ratio=0.0868 dims_tried=[(none found)] ratios_at_each_level=[0.0868] |
+| fed_epa_npdes_npdes_sics | not-unique-after-dimension-search | base=NPDES_ID key_ratio=0.902 dims_tried=[SIC_CODE] ratios_at_each_level=[0.902, 0.9732] |
+| fed_epa_superfund_site_boundaries | not-unique-after-dimension-search | base=ZIP_CODE key_ratio=0.7488 dims_tried=[LAST_CHANGE_DATE, ORIGINAL_CREATION_DATE, REGION_CODE, EPA_ID] ratios_at_each_level=[0.7488, 0.9026, 0.8803, 0.886, 0.886, 0.9125] |
 | fed_faa_data_portal | not-unique-after-dimension-search | base=FIPS key_ratio=0.25 dims_tried=[CATEGORY, DATASET_ID, AIRPORT_ID] ratios_at_each_level=[0.25, 0.25, 0.25, 0.25, 0.25] |
 | fed_fara | not-unique-after-dimension-search | base=EIN key_ratio=0.0333 dims_tried=[REGISTRATION_DATE, TERMINATION_DATE, PERIOD_START] ratios_at_each_level=[0.0333, 0.0333, 0.0333, 0.0333] |
 | fed_fara_bulk | not-unique-after-dimension-search | base=ZIP key_ratio=0.0075 dims_tried=[REGISTRATION_DATE, TERMINATION_DATE, DATE_STAMPED] ratios_at_each_level=[0.0075, 0.0314, 0.0535, 0.1164] |
+| fed_fatca_ffi | not-unique-after-dimension-search | base=COUNTRY_NAME key_ratio=0.0005 dims_tried=[(none found)] ratios_at_each_level=[0.0005] |
+| fed_fbi_cde | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_fbi_nics_checks | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_fcc_licensing | not-unique-after-dimension-search | base=EIN key_ratio=0.0 dims_tried=[GRANT_DATE, EXPIRED_DATE, CANCELLATION_DATE, EBF_TRANSACTION_ID] ratios_at_each_level=[0.0, 0.0, 0.0059, 0.176, 0.2863, 0.2863] |
-| fed_fda_drug_enforcement | no-key-column | ENTITY_TYPES hint: (none) |
-| fed_fdic_bank_data | not-unique-after-dimension-search | base=FIPS key_ratio=0.0001 dims_tried=[(none found)] ratios_at_each_level=[0.0001] |
+| fed_fda_faers_demo | not-unique-after-dimension-search | base=OCCR_COUNTRY key_ratio=0.0 dims_tried=[I_F_CODE] ratios_at_each_level=[0.0, 0.0001] |
+| fed_fda_faers_drug | no-key-column | ENTITY_TYPES hint: (none) |
+| fed_fda_faers_indi | no-key-column | ENTITY_TYPES hint: (none) |
+| fed_fda_faers_outc | no-key-column | ENTITY_TYPES hint: (none) |
+| fed_fda_faers_reac | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_fdic_enforcement | no-key-column | ENTITY_TYPES hint: (none) |
-| fed_fec_independent_expenditures | not-unique-after-dimension-search | base=cand_id key_ratio=0.0078 dims_tried=[spe_id, tran_id, exp_date] ratios_at_each_level=[0.0078, 0.0567, 0.8231, 0.8631] |
 | fed_federal_register_documents | not-unique-after-dimension-search | base=DOCKET_IDS key_ratio=0.5334 dims_tried=[PUBLICATION_DATE, TYPE, SUBTYPE, REGULATION_ID_NUMBERS] ratios_at_each_level=[0.5334, 0.042, 0.6677, 0.6828, 0.685, 0.6909] |
 | fed_ffiec_call_reports | not-unique-after-dimension-search | base=RSSD_ID key_ratio=0.0033 dims_tried=[REPORTING_PERIOD_END_DATE, MDRM_CONCEPT_CODE] ratios_at_each_level=[0.0033, 0.0033, 0.0033] |
 | fed_fhfa_hpi | not-unique-after-dimension-search | base=PLACE_ID key_ratio=0.0026 dims_tried=[YR, PERIOD, HPI_TYPE] ratios_at_each_level=[0.0026, 0.1159, 0.4677, 0.5107] |
 | fed_fhfa_nmdb | no-key-column | ENTITY_TYPES hint: (none) |
-| fed_foreignassistance | not-unique-after-dimension-search | base=EIN key_ratio=0.0 dims_tried=[FISCAL_YEAR, USG_SECTOR, DAC_CATEGORY] ratios_at_each_level=[0.0, 0.0, 0.0, 0.0] |
+| fed_fhfa_suspended_counterparty_program | no-key-column | ENTITY_TYPES hint: (none) |
+| fed_foreignassistance | not-unique-after-dimension-search | base=EIN key_ratio=0.0 dims_tried=[FISCAL_YEAR, USG_SECTOR, DAC_CATEGORY] ratios_at_each_level=[0.0, 0.0009, 0.0009, 0.0009] |
+| fed_fra_casualties | not-unique-after-dimension-search | base=LONGITUDE key_ratio=0.0438 dims_tried=[INCIDENT_YEAR, INCIDENT_MONTH, DATE] ratios_at_each_level=[0.0438, 0.0475, 0.0511, 0.0616] |
+| fed_fra_crossing_incidents | not-unique-after-dimension-search | base=GRADE_CROSSING_ID key_ratio=0.4017 dims_tried=[REPORT_YEAR, INCIDENT_YEAR, INCIDENT_MONTH] ratios_at_each_level=[0.4017, 0.8771, 0.8771, 0.9501] |
+| fed_fra_equipment_accidents | not-unique-after-dimension-search | base=LONGITUDE key_ratio=0.1197 dims_tried=[YEAR, ACCIDENT_YEAR, ACCIDENT_MONTH, GRADE_CROSSING_ID] ratios_at_each_level=[0.1197, 0.0376, 0.1273, 0.1273, 0.1371, 0.17] |
+| fed_frb_h15_selected_rates | no-key-column | ENTITY_TYPES hint: (none) |
+| fed_frb_z1_csv | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_ftc_datasets | not-unique-after-dimension-search | base=EIN key_ratio=0.0008 dims_tried=[DATE_FILED, CASE_TYPE, STATUS] ratios_at_each_level=[0.0008, 0.4583, 0.4583, 0.4583] |
+| fed_google_polads_advertiser_geo_spend | not-unique-after-dimension-search | base=COUNTRY_SUBDIVISION_PRIMARY key_ratio=0.0001 dims_tried=[ADVERTISER_ID] ratios_at_each_level=[0.0001, 0.0262] |
+| fed_google_polads_advertiser_id_mapping | no-key-column | ENTITY_TYPES hint: (none) |
+| fed_google_polads_creative_id_mapping | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_govinfo_bill_cosponsors | not-unique-after-dimension-search | base=COSPONSOR_BIOGUIDE key_ratio=0.0017 dims_tried=[SPONSORSHIP_DATE, SPONSORSHIP_WITHDRAWN_DATE, BILL_TYPE] ratios_at_each_level=[0.0017, 0.464, 0.4642, 0.577] |
 | fed_govinfo_billstatus | not-unique-after-dimension-search | base=SPONSOR_BIOGUIDE key_ratio=0.0173 dims_tried=[INTRODUCED_DATE, LATEST_ACTION_DATE, BILL_TYPE] ratios_at_each_level=[0.0173, 0.8089, 0.8543, 0.8732] |
 | fed_hhs_oig_leie | not-unique-after-dimension-search | base=NPI key_ratio=0.1019 dims_tried=[(none found)] ratios_at_each_level=[0.1019] |
-| fed_hhs_taggs | not-unique-after-dimension-search | base=RECIPIENT_EIN key_ratio=0.0222 dims_tried=[AWARD_DATE, FISCAL_YEAR, RECIPIENT_CLASS] ratios_at_each_level=[0.0222, 0.0222, 0.0222, 0.0222] |
 | fed_hrsa_shortage_areas | not-unique-after-dimension-search | base=STATE_FIPS_CODE key_ratio=0.0004 dims_tried=[HPSA_DESIGNATION_DATE, HPSA_DESIGNATION_LAST_UPDATE_DATE, WITHDRAWN_DATE, HPSA_ID] ratios_at_each_level=[0.0004, 0.2556, 0.0876, 0.1229, 0.123, 0.2559] |
+| fed_hrsa_uds_health_center_info | no-key-column | ENTITY_TYPES hint: (none) |
+| fed_hrsa_uds_table3a_patients | no-key-column | ENTITY_TYPES hint: (none) |
+| fed_hud_assisted_housing_projects | not-unique-after-dimension-search | base=STD_ZIP5 key_ratio=0.2892 dims_tried=[QUARTER, RENT_PER_MONTH, SPENDING_PER_MONTH] ratios_at_each_level=[0.2892, 0.2892, 0.7848, 0.7909] |
 | fed_hud_data | not-unique-after-dimension-search | base=EIN key_ratio=0.013 dims_tried=[YEAR] ratios_at_each_level=[0.013, 0.026] |
+| fed_ice_detainers | not-unique-after-dimension-search | base=DETENTION_FACILITY_CODE key_ratio=0.0087 dims_tried=[DETAINER_PREPARE_DATE, DEPARTED_DATE, BIRTH_YEAR] ratios_at_each_level=[0.0087, 0.575, 0.7264, 0.9629] |
+| fed_ice_detention_facility_list | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_ice_statistics | not-unique-after-dimension-search | base=COUNTRY_OF_CITIZENSHIP key_ratio=0.8959 dims_tried=[FISCAL_YEAR, FISCAL_QUARTER, SNAPSHOT_DATE] ratios_at_each_level=[0.8959, 0.8959, 0.8959, 0.8959] |
+| fed_icij_offshoreleaks_relationships | not-unique-after-dimension-search | base=NODE_ID_START key_ratio=0.3388 dims_tried=[NODE_ID_END, START_DATE, END_DATE] ratios_at_each_level=[0.3388, 0.8676, 0.8855, 0.8878] |
 | fed_irs_soi | not-unique-after-dimension-search | base=STATE_FIPS key_ratio=0.0003 dims_tried=[TAX_YEAR, ZIP_CODE] ratios_at_each_level=[0.0003, 0.0003, 0.1667] |
+| fed_jpml_pending_mdls | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_mapping_inequality | not-unique-after-dimension-search | base=FIPS key_ratio=0.0001 dims_tried=[YEAR_MAPPED, HOLC_ID] ratios_at_each_level=[0.0001, 0.0001, 0.0001, 0.0001] |
 | fed_medsl_house_returns | not-unique-after-dimension-search | base=STATE_FIPS key_ratio=0.0017 dims_tried=[YEAR] ratios_at_each_level=[0.0017, 0.0371] |
 | fed_medsl_president_returns | not-unique-after-dimension-search | base=STATE_FIPS key_ratio=0.0136 dims_tried=[YEAR] ratios_at_each_level=[0.0136, 0.15] |
@@ -884,26 +1073,39 @@ HIGH 492 | MEDIUM 320 | AMBIGUOUS 971 | NO_TABLE 0 | NO_REGISTRY_ROW 18
 | fed_nara_aad | not-unique-after-dimension-search | base=DATASET_ID key_ratio=0.0162 dims_tried=[RECORD_ID, DATE, RECORD_GROUP] ratios_at_each_level=[0.0162, 0.0162, 0.0162, 0.0162] |
 | fed_nara_wra_aad | not-unique-after-dimension-search | base=FIPS key_ratio=0.0278 dims_tried=[DATE, CITIZENSHIP_STATUS, SERIES_ID, RECORD_ID] ratios_at_each_level=[0.0278, 0.0278, 0.0278, 0.0278, 0.0278, 0.0278] |
 | fed_nasa_open_data | no-key-column | ENTITY_TYPES hint: (none) |
-| fed_ncua_call_reports | not-unique-after-dimension-search | base=EIN key_ratio=0.0 dims_tried=[CYCLE_DATE, ACCT_CODE, ZIP_CODE] ratios_at_each_level=[0.0, 0.0, 0.0, 0.045] |
-| fed_nhtsa_complaints | no-key-column | ENTITY_TYPES hint: (none) |
-| fed_nhtsa_recalls | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_noaa_ais | not-unique-after-dimension-search | base=MMSI key_ratio=0.0004 dims_tried=[DATE, STATUS, TRANSCEIVER_CLASS] ratios_at_each_level=[0.0004, 0.0021, 0.0023, 0.0023] |
 | fed_nsf_awards | not-unique-after-dimension-search | base=EIN key_ratio=0.008 dims_tried=[AWARD_DATE, START_DATE, END_DATE, AWARD_ID] ratios_at_each_level=[0.008, 0.92, 0.304, 0.44, 0.568, 0.92] |
 | fed_ofac_sdn | not-unique-after-dimension-search | base=IMO key_ratio=0.1063 dims_tried=[SDN_TYPE, PROGRAM, VESS_TYPE] ratios_at_each_level=[0.1063, 0.1065, 0.1247, 0.1247] |
 | fed_pbgc_data | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_revolvingdoor_project | no-key-column | ENTITY_TYPES hint: (none) |
-| fed_sam_exclusions | not-unique-after-dimension-search | base=NPI+UEI key_ratio=0.3268 dims_tried=[ACTIVATION_DATE, TERMINATION_DATE, CLASSIFICATION] ratios_at_each_level=[0.3268, 0.3268, 0.3268, 0.327] |
+| fed_sam_exclusions | not-unique-after-dimension-search | base=NPI+UEI key_ratio=0.3242 dims_tried=[ACTIVATION_DATE, TERMINATION_DATE, CLASSIFICATION] ratios_at_each_level=[0.3242, 0.3242, 0.5122, 0.5138] |
 | fed_sba_loans | not-unique-after-dimension-search | base=CDC_ZIP key_ratio=0.0001 dims_tried=[PROGRAM] ratios_at_each_level=[0.0001, 0.0001] |
 | fed_sba_ppp | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_scdb | not-unique-after-dimension-search | base=DOCKET key_ratio=0.0826 dims_tried=[(none found)] ratios_at_each_level=[0.0826] |
+| fed_sec_13f_filers | not-unique-after-dimension-search | base=FILINGMANAGER_ZIPCODE key_ratio=0.0166 dims_tried=[(none found)] ratios_at_each_level=[0.0166] |
+| fed_sec_13f_holdings | no-key-column | ENTITY_TYPES hint: (none) |
+| fed_sec_13f_submissions | not-unique-after-dimension-search | base=CIK key_ratio=0.0485 dims_tried=[FILING_DATE] ratios_at_each_level=[0.0485, 0.9605] |
+| fed_sec_dera_sub_2024q1 | not-unique-after-dimension-search | base=CIK key_ratio=0.9134 dims_tried=[PERIOD, FY] ratios_at_each_level=[0.9134, 0.9637, 0.9726] |
+| fed_sec_dera_sub_2024q2 | not-unique-after-dimension-search | base=CIK key_ratio=0.8143 dims_tried=[PERIOD, FY] ratios_at_each_level=[0.8143, 0.9483, 0.9707] |
+| fed_sec_dera_sub_2024q3 | not-unique-after-dimension-search | base=CIK key_ratio=0.8969 dims_tried=[PERIOD, FY] ratios_at_each_level=[0.8969, 0.964, 0.977] |
+| fed_sec_dera_sub_2024q4 | not-unique-after-dimension-search | base=CIK key_ratio=0.8986 dims_tried=[PERIOD, FY] ratios_at_each_level=[0.8986, 0.9623, 0.9767] |
+| fed_sec_dera_sub_2025q1 | not-unique-after-dimension-search | base=CIK key_ratio=0.9103 dims_tried=[PERIOD, FY] ratios_at_each_level=[0.9103, 0.9597, 0.9677] |
+| fed_sec_dera_sub_2025q2 | not-unique-after-dimension-search | base=CIK key_ratio=0.8676 dims_tried=[PERIOD, FY] ratios_at_each_level=[0.8676, 0.9541, 0.9729] |
+| fed_sec_dera_sub_2025q3 | not-unique-after-dimension-search | base=CIK key_ratio=0.9034 dims_tried=[PERIOD, FY] ratios_at_each_level=[0.9034, 0.967, 0.9787] |
 | fed_sec_edgar | not-unique-after-dimension-search | base=CIK key_ratio=0.1 dims_tried=[REPORTDATE] ratios_at_each_level=[0.1, 0.46] |
 | fed_sec_edgar_company_tickers | not-unique-after-dimension-search | base=CIK_STR key_ratio=0.7699 dims_tried=[(none found)] ratios_at_each_level=[0.7699] |
+| fed_sec_edgar_company_tickers_exchange | not-unique-after-dimension-search | base=CIK key_ratio=0.7692 dims_tried=[(none found)] ratios_at_each_level=[0.7692] |
 | fed_sec_edgar_financials | not-unique-after-dimension-search | base=CIK key_ratio=0.1458 dims_tried=[PERIOD, FY] ratios_at_each_level=[0.1458, 0.9275, 0.9537] |
 | fed_sec_edgar_insiders | not-unique-after-dimension-search | base=CIK key_ratio=0.0766 dims_tried=[FILING_DATE, PERIOD_OF_REPORT, DATE_OF_ORIG_SUB] ratios_at_each_level=[0.0766, 0.3117, 0.3444, 0.346] |
+| fed_sec_money_market_fund_information | not-unique-after-dimension-search | base=REGISTRANT_CIK key_ratio=0.1459 dims_tried=[SERIES_CATEGORY, CLASS_NAME, CLASS_ID, SERIES_ID] ratios_at_each_level=[0.1459, 0.2653, 0.1857, 0.6459, 0.869, 0.869] |
+| fed_senate_lda_filings | not-unique-after-dimension-search | base=CLIENT_COUNTRY key_ratio=0.0003 dims_tried=[FILING_YEAR, FILING_PERIOD, FILING_PERIOD_DISPLAY, REGISTRANT_ID, CLIENT_ID] ratios_at_each_level=[0.0003, 0.0226, 0.1525, 0.0014, 0.0032, 0.0032, 0.8333] |
+| fed_senate_stock_watcher | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_slavevoyages_intraamerican | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_slavevoyages_transatlantic | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_treasury_avg_interest_rates | no-key-column | ENTITY_TYPES hint: (none) |
+| fed_treasury_debt_outstanding | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_treasury_debt_to_penny | no-key-column | ENTITY_TYPES hint: (none) |
+| fed_treasury_dts_deposits | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_us_sec_edgar | not-unique-after-dimension-search | base=CIK key_ratio=0.0005 dims_tried=[PERIOD_OF_REPORT, FORM_TYPE, SIC_CODE] ratios_at_each_level=[0.0005, 0.1848, 0.2215, 0.2215] |
 | fed_usaspending_subawards | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_uscis_data | not-unique-after-dimension-search | base=COUNTRY key_ratio=0.0003 dims_tried=[FISCAL_YEAR, QUARTER, PUBLICATION_DATE] ratios_at_each_level=[0.0003, 0.0006, 0.0006, 0.0006] |
@@ -912,14 +1114,14 @@ HIGH 492 | MEDIUM 320 | AMBIGUOUS 971 | NO_TABLE 0 | NO_REGISTRY_ROW 18
 | fed_usgs_water | not-unique-after-dimension-search | base=LONGITUDE key_ratio=0.0006 dims_tried=[DATA_TYPE] ratios_at_each_level=[0.0006, 0.0011] |
 | fed_va_allcause_mortality | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_va_suicide_appendix | no-key-column | ENTITY_TYPES hint: (none) |
+| fed_va_suicide_national | no-key-column | ENTITY_TYPES hint: (none) |
+| fed_va_suicide_state | no-key-column | ENTITY_TYPES hint: (none) |
 | fed_voteview_members | not-unique-after-dimension-search | base=ICPSR key_ratio=0.2483 dims_tried=[DISTRICT_CODE, PARTY_CODE] ratios_at_each_level=[0.2483, 0.3304, 0.3547] |
 | fed_voteview_rollcall_meta | no-key-column | ENTITY_TYPES hint: event |
 | fed_voteview_rollcalls | not-unique-after-dimension-search | base=ICPSR key_ratio=0.0007 dims_tried=[CAST_CODE] ratios_at_each_level=[0.0007, 0.0022] |
 | intl_adb_data | not-unique-after-dimension-search | base=COUNTRY key_ratio=0.0244 dims_tried=[APPROVAL_DATE, YEAR, SECTOR, PROJECT_ID] ratios_at_each_level=[0.0244, 0.0244, 0.0244, 0.0244, 0.0244, 0.0244] |
 | intl_ar_datosgob | not-unique-after-dimension-search | base=DATASET_ID key_ratio=0.1409 dims_tried=[SERIE_ID, PROVINCIA_ID, MUNICIPIO_ID, DEPARTAMENTO_ID] ratios_at_each_level=[0.1409, 0.0284, 0.1409, 0.1474, 0.1755, 0.2036] |
-| intl_austlii | no-key-column | ENTITY_TYPES hint: (none) |
 | intl_bd_datagov | no-key-column | ENTITY_TYPES hint: (none) |
-| intl_ch_zefix | not-unique-after-dimension-search | base=ADDRESS_ZIP key_ratio=0.0556 dims_tried=[SOGC_PUBLICATION_DATE, STATUS, MUTATION_TYPE, COMMUNITY_BFS_ID] ratios_at_each_level=[0.0556, 0.0556, 0.0556, 0.0556, 0.0556, 0.0556] |
 | intl_eg_capmas | not-unique-after-dimension-search | base=COUNTRY key_ratio=0.0067 dims_tried=[YEAR, CATEGORY] ratios_at_each_level=[0.0067, 0.0067, 0.0067] |
 | intl_ember_elec | not-unique-after-dimension-search | base=COUNTRY_OR_REGION key_ratio=0.0006 dims_tried=[DATE, ISO_3_CODE, AREA_TYPE] ratios_at_each_level=[0.0006, 0.0155, 0.0155, 0.0155] |
 | intl_es_borme | not-unique-after-dimension-search | base=COUNTRY key_ratio=0.04 dims_tried=[DATE, ACT_TYPE] ratios_at_each_level=[0.04, 0.04, 0.04] |
@@ -934,14 +1136,15 @@ HIGH 492 | MEDIUM 320 | AMBIGUOUS 971 | NO_TABLE 0 | NO_REGISTRY_ROW 18
 | intl_gdelt | not-unique-after-dimension-search | base=ACTIONGEO_LAT key_ratio=0.2246 dims_tried=[YEAR, ACTOR1CODE, ACTOR1TYPE1CODE] ratios_at_each_level=[0.2246, 0.2276, 0.4956, 0.4956] |
 | intl_gfi_trade | not-unique-after-dimension-search | base=COUNTRY key_ratio=0.04 dims_tried=[YEAR] ratios_at_each_level=[0.04, 0.04] |
 | intl_gh_datagovgh | no-key-column | ENTITY_TYPES hint: (none) |
+| intl_gleif_relationships | no-key-column | ENTITY_TYPES hint: (none) |
 | intl_global_witness_defenders | not-unique-after-dimension-search | base=COUNTRY key_ratio=0.0302 dims_tried=[YEAR, INCIDENT_TYPE, SECTOR] ratios_at_each_level=[0.0302, 0.1078, 0.2328, 0.2629] |
-| intl_gr_gemi | not-unique-after-dimension-search | base=POSTAL_CODE key_ratio=0.025 dims_tried=[FORMATION_DATE, CLOSURE_DATE, KAK_CHANGE_DATE] ratios_at_each_level=[0.025, 0.025, 0.025, 0.025] |
 | intl_ie_cro | no-key-column | ENTITY_TYPES hint: (none) |
 | intl_ipc_food_insecurity_global | not-unique-after-dimension-search | base=TOTAL_COUNTRY_POPULATION key_ratio=0.0667 dims_tried=[DATE_OF_ANALYSIS, VALIDITY_PERIOD] ratios_at_each_level=[0.0667, 0.068, 0.1429] |
 | intl_it_istat | not-unique-after-dimension-search | base=DATAFLOW_ID key_ratio=0.0 dims_tried=[DATE, OBS_STATUS] ratios_at_each_level=[0.0, 0.0002, 0.0003] |
 | intl_leiden_russian_ops_europe | no-key-column | ENTITY_TYPES hint: (none) |
 | intl_nti_cns_dprk_missile_tests | not-unique-after-dimension-search | base=FACILITY_LONGITUDE key_ratio=0.1584 dims_tried=[DATE, DATE_ENTERED_UPDATED, MISSILE_TYPE] ratios_at_each_level=[0.1584, 0.5248, 0.5347, 0.5545] |
 | intl_owid_milspend | no-key-column | ENTITY_TYPES hint: (none) |
+| intl_uk_sanctions_list | not-unique-after-dimension-search | base=IMO_NUMBER key_ratio=0.0114 dims_tried=[DATE_DESIGNATED, YEAR_BUILT, OFSI_GROUP_ID, UNIQUE_ID] ratios_at_each_level=[0.0114, 0.1086, 0.0189, 0.0189, 0.0995, 0.1086] |
 | intl_voeten_unga_votes | no-key-column | ENTITY_TYPES hint: (none) |
 | portal_arc_atlanta_dataatla_03dc194f2a | not-unique-after-dimension-search | base=ZIP key_ratio=0.0846 dims_tried=[(none found)] ratios_at_each_level=[0.0846] |
 | portal_arc_atlanta_dataatla_05328f7540 | not-unique-after-dimension-search | base=DOCKET_NO key_ratio=0.6885 dims_tried=[CREATED_DATE, LAST_EDITED_DATE, STATUS] ratios_at_each_level=[0.6885, 0.8065, 0.858, 0.864] |
@@ -1073,9 +1276,9 @@ HIGH 492 | MEDIUM 320 | AMBIGUOUS 971 | NO_TABLE 0 | NO_REGISTRY_ROW 18
 | portal_arc_open_data_dc_43dcbd8be3 | not-unique-after-dimension-search | base=CCN key_ratio=0.774 dims_tried=[REPORTDATE, YEAR_BUILT, LEVEL, WARD_ID, ANC_ID, SMD_ID, GIS_ID, LEA_ID, SCHOOL_ID, MAR_ID, FACILITY_ID, ID] ratios_at_each_level=[0.774, 0.004, 0.019, 0.0945, 0.1125, 0.025, 0.0875, 0.07, 0.0885, 0.0215, 0.7745, 0.7745, 0.7745, 0.7745] |
 | portal_arc_open_data_dc_8c6ef16235 | not-unique-after-dimension-search | base=SUM_CCN key_ratio=0.8235 dims_tried=[YEAR] ratios_at_each_level=[0.8235, 0.8235] |
 | portal_arc_open_data_dc_9a20ce1fc5 | not-unique-after-dimension-search | base=CCN_ANONYMIZED key_ratio=0.801 dims_tried=[STOP_DATE, ARREST_DATE, STOP_TYPE] ratios_at_each_level=[0.801, 0.801, 0.8285, 0.8285] |
-| portal_arc_open_data_dc_b1daeccb1b | not-unique-after-dimension-search | base=FACILITY_ZIPCODE key_ratio=0.2169 dims_tried=[EFFECTIVE_DATE, ORIGINAL_ISSUE_DATE, TYPE_OF_FACILITY, OBJ_ID, NPDES_ID] ratios_at_each_level=[0.2169, 0.7952, 0.7952, 0.6747, 0.747, 0.747, 0.7952] |
+| portal_arc_open_data_dc_b1daeccb1b | not-unique-after-dimension-search | base=NPDES_ID key_ratio=0.7952 dims_tried=[EFFECTIVE_DATE, ORIGINAL_ISSUE_DATE, TYPE_OF_FACILITY, OBJ_ID] ratios_at_each_level=[0.7952, 0.7952, 0.7952, 0.7952, 0.7952, 0.7952] |
 | portal_arc_open_data_dc_d74755206a | no-key-column | ENTITY_TYPES hint: (none) |
-| portal_arc_open_data_dc_e28c8c471a | not-unique-after-dimension-search | base=FACILITY_ZIPCODE key_ratio=0.2169 dims_tried=[EFFECTIVE_DATE, ORIGINAL_ISSUE_DATE, TYPE_OF_FACILITY, OBJ_ID, NPDES_ID] ratios_at_each_level=[0.2169, 0.7952, 0.7952, 0.6747, 0.747, 0.747, 0.7952] |
+| portal_arc_open_data_dc_e28c8c471a | not-unique-after-dimension-search | base=NPDES_ID key_ratio=0.7952 dims_tried=[EFFECTIVE_DATE, ORIGINAL_ISSUE_DATE, TYPE_OF_FACILITY, OBJ_ID] ratios_at_each_level=[0.7952, 0.7952, 0.7952, 0.7952, 0.7952, 0.7952] |
 | portal_arc_open_data_hartfo_8a24ea33e4 | not-unique-after-dimension-search | base=SECONDARY_ZIP_CODE key_ratio=0.0165 dims_tried=[CENSUS_BLOCK_GROUP, PRIMARY_SIC_CODE, NAICS_CODE] ratios_at_each_level=[0.0165, 0.0335, 0.553, 0.553] |
 | portal_arc_open_data_minnea_5381ac03f1 | not-unique-after-dimension-search | base=ZIP key_ratio=0.195 dims_tried=[STATUS, MATCH_TYPE, ADDR_TYPE] ratios_at_each_level=[0.195, 0.1975, 0.1975, 0.2385] |
 | portal_arc_open_data_minnea_5605a903bd | not-unique-after-dimension-search | base=ZIP key_ratio=0.4103 dims_tried=[VAL_DATE, TYPE, STATUS, SHELTER_ID] ratios_at_each_level=[0.4103, 0.0513, 0.9487, 0.9487, 0.9487, 0.9487] |
@@ -1237,7 +1440,6 @@ HIGH 492 | MEDIUM 320 | AMBIGUOUS 971 | NO_TABLE 0 | NO_REGISTRY_ROW 18
 | portal_cka_california_open_1424436f0d | not-unique-after-dimension-search | base=ZIP_CODE key_ratio=0.0205 dims_tried=[FISCAL_YEAR, TYPE, CATEGORY] ratios_at_each_level=[0.0205, 0.0324, 0.0324, 0.0633] |
 | portal_cka_california_open_22f6b7db0f | not-unique-after-dimension-search | base=RES_ZIP_CODE key_ratio=0.096 dims_tried=[TYPE, PROGRAM_TYPE, STATUS] ratios_at_each_level=[0.096, 0.316, 0.316, 0.3393] |
 | portal_cka_california_open_2d939c89a5 | no-key-column | ENTITY_TYPES hint: (none) |
-| portal_cka_california_open_3501b678fa | not-unique-after-dimension-search | base=ORG_ID key_ratio=0.7115 dims_tried=[SYSTEM_START_DATE, SYSTEM_END_DATE, APPLICABLE_START_DATE] ratios_at_each_level=[0.7115, 0.7115, 0.7168, 0.7587] |
 | portal_cka_california_open_3972a98745 | no-key-column | ENTITY_TYPES hint: (none) |
 | portal_cka_california_open_4789f4fdc3 | no-key-column | ENTITY_TYPES hint: (none) |
 | portal_cka_california_open_59afd10b01 | no-key-column | ENTITY_TYPES hint: (none) |
@@ -1777,6 +1979,18 @@ HIGH 492 | MEDIUM 320 | AMBIGUOUS 971 | NO_TABLE 0 | NO_REGISTRY_ROW 18
 | portal_soc_utah_open_data_p_fb657aa744 | no-key-column | ENTITY_TYPES hint: (none) |
 | portal_soc_washington_state_0dae4a9b61 | no-key-column | ENTITY_TYPES hint: (none) |
 | portal_soc_washington_state_914cf85743 | not-unique-after-dimension-search | base=GASO_NPI key_ratio=0.3988 dims_tried=[RECORDED_DATE, EFFECTIVE_DATE, RATE_TYPE] ratios_at_each_level=[0.3988, 0.7166, 0.7551, 0.9777] |
+| st_oehha_proposition_65_list | no-key-column | ENTITY_TYPES hint: (none) |
+| state_mo_sex_offender_registry | not-unique-after-dimension-search | base=ZIP key_ratio=0.0369 dims_tried=[DATE_OF_BIRTH, TIER] ratios_at_each_level=[0.0369, 0.7846, 0.7868] |
+| tx_lobby_awards | no-key-column | ENTITY_TYPES hint: (none) |
+| tx_lobby_cover | no-key-column | ENTITY_TYPES hint: (none) |
+| tx_lobby_dockets | no-key-column | ENTITY_TYPES hint: (none) |
+| tx_lobby_entertainment | no-key-column | ENTITY_TYPES hint: (none) |
+| tx_lobby_events | no-key-column | ENTITY_TYPES hint: (none) |
+| tx_lobby_food_beverage | no-key-column | ENTITY_TYPES hint: (none) |
+| tx_lobby_gifts | no-key-column | ENTITY_TYPES hint: (none) |
+| tx_lobby_individual_reporting | no-key-column | ENTITY_TYPES hint: (none) |
+| tx_lobby_subject_matter | no-key-column | ENTITY_TYPES hint: (none) |
+| tx_lobby_transportation | no-key-column | ENTITY_TYPES hint: (none) |
 | xc_biorxiv_medrxiv | not-unique-after-dimension-search | base=FUNDING_ID key_ratio=0.0023 dims_tried=[FUNDING_ID_TYPE, DATE, PREPRINT_DATE] ratios_at_each_level=[0.0023, 0.0023, 0.0046, 0.6134] |
 | xc_guttmacher_monthly_abortion | no-key-column | ENTITY_TYPES hint: (none) |
 | xc_jcs_coa | no-key-column | ENTITY_TYPES hint: person |
@@ -1794,32 +2008,219 @@ HIGH 492 | MEDIUM 320 | AMBIGUOUS 971 | NO_TABLE 0 | NO_REGISTRY_ROW 18
 | xc_owid_nuclear_warheads | no-key-column | ENTITY_TYPES hint: (none) |
 | xc_owid_temp_anomaly | no-key-column | ENTITY_TYPES hint: (none) |
 | xc_owid_terrorism_deaths | no-key-column | ENTITY_TYPES hint: (none) |
-| xc_ransomwarelive_victims | not-unique-after-dimension-search | base=COUNTRY key_ratio=0.0065 dims_tried=[GROUP_NAME] ratios_at_each_level=[0.0065, 0.1362] |
+| xc_ransomwarelive_victims | not-unique-after-dimension-search | base=COUNTRY key_ratio=0.006 dims_tried=[GROUP_NAME] ratios_at_each_level=[0.006, 0.1369] |
+| xc_uk_sanctions_list | not-unique-after-dimension-search | base=IMO_NUMBER key_ratio=0.0114 dims_tried=[DATE_DESIGNATED, YEAR_BUILT, OFSI_GROUP_ID, UNIQUE_ID] ratios_at_each_level=[0.0114, 0.1091, 0.019, 0.019, 0.1002, 0.1091] |
+| xc_un_consolidated_sanctions_list | no-key-column | ENTITY_TYPES hint: (none) |
 | xc_wayback_doj_epstein | no-key-column | ENTITY_TYPES hint: (none) |
 | xc_wayback_replay_doj_deep_pages | no-key-column | ENTITY_TYPES hint: (none) |
 | xc_wayback_replay_doj_listing | no-key-column | ENTITY_TYPES hint: (none) |
 | xc_wikipedia_largest_us_companies | no-key-column | ENTITY_TYPES hint: (none) |
 
-## No physical LANDING table (0)
+## No physical LANDING table (4)
 
+- INT_GLEIF_RR (modeled)
+- fed_dea_arcos (modeled)
+- fed_fjc_idb (modeled)
+- intl_uk_companies_house (modeled)
 
-## No SOURCE_REGISTRY row (18)
+## No SOURCE_REGISTRY row (199)
 
-- fed_cms_open_payments_gnrl (landed)
-- fed_cms_partd_prescriber_drug (landed)
-- fed_fec_cand_cmte_linkage (landed)
-- fed_fec_candidates (landed)
-- fed_fec_committees (landed)
-- fed_fec_pac_summary (landed)
-- fed_irs_990_efile_index (landed)
-- fed_irs_eo_pr (landed)
-- fed_msha_accidents (landed)
-- fed_msha_mines (landed)
-- fed_msha_violations (landed)
-- fed_nhtsa_investigations (landed)
-- fed_sec_insider_deriv_trans (landed)
-- fed_sec_insider_nonderiv_trans (landed)
-- fed_sec_insider_reportingowner (landed)
-- fed_sec_insider_submission (landed)
-- fed_usaspending_assistance_full (landed)
-- fed_usaspending_contracts_full (landed)
+- fed_atf_ffl (modeled)
+- fed_atf_ffl_locations (sampled)
+- fed_cdc_data_portal_full (landed)
+- fed_cfpb_hmda_arid2017_lei_xref (modeled)
+- fed_cfpb_hmda_historic (modeled)
+- fed_cfpb_hmda_lar (modeled)
+- fed_cftc_cot_financial_hist (landed)
+- fed_cms_marketplace_plan_attributes_puf (landed)
+- fed_cms_open_payments_profile_supplement (modeled)
+- fed_cms_pecos_provider_enrollment (landed)
+- fed_courtlistener_citation_map (landed)
+- fed_courtlistener_citations (modeled)
+- fed_courtlistener_court_appeals_to (modeled)
+- fed_courtlistener_courthouses (modeled)
+- fed_courtlistener_courts (modeled)
+- fed_courtlistener_disclosure_agreements (modeled)
+- fed_courtlistener_disclosure_debts (modeled)
+- fed_courtlistener_disclosure_gifts (modeled)
+- fed_courtlistener_disclosure_non_investment_income (modeled)
+- fed_courtlistener_disclosure_positions (modeled)
+- fed_courtlistener_disclosure_reimbursements (modeled)
+- fed_courtlistener_disclosure_spousal_income (modeled)
+- fed_courtlistener_fjc_idb_cl_linked (modeled)
+- fed_courtlistener_judge_educations (modeled)
+- fed_courtlistener_judge_political_affiliations (modeled)
+- fed_courtlistener_judge_races (modeled)
+- fed_courtlistener_opinion_clusters (modeled)
+- fed_courtlistener_oral_arguments (modeled)
+- fed_courtlistener_originating_court_info (modeled)
+- fed_courtlistener_parentheticals (modeled)
+- fed_courtlistener_race_codes (modeled)
+- fed_courtlistener_schools (modeled)
+- fed_dol_ebsa_form5500_schedule_sb (modeled)
+- fed_dol_ofccp_csal (sampled)
+- fed_dol_olms (modeled)
+- fed_dtcc_dtc_participants (landed)
+- fed_ed_college_scorecard_institution (modeled)
+- fed_ed_nces_cip_codes (modeled)
+- fed_eia860_1_utility (modeled)
+- fed_eia860_2_plant (modeled)
+- fed_eia860_3_1_generator (modeled)
+- fed_eia860_3_2_wind (modeled)
+- fed_eia860_3_3_solar (modeled)
+- fed_eia860_3_4_energy_storage (modeled)
+- fed_eia860_3_5_multifuel (modeled)
+- fed_eia860_4_owner (modeled)
+- fed_eia860_6_1_enviroassoc (modeled)
+- fed_eia860_6_2_enviroequip (modeled)
+- fed_eia861_advanced_meters (modeled)
+- fed_eia861_balancing_authority (landed)
+- fed_eia861_delivery_companies (modeled)
+- fed_eia861_demand_response (modeled)
+- fed_eia861_distribution_systems (modeled)
+- fed_eia861_dynamic_pricing (modeled)
+- fed_eia861_energy_efficiency (modeled)
+- fed_eia861_frame (modeled)
+- fed_eia861_mergers (modeled)
+- fed_eia861_net_metering (modeled)
+- fed_eia861_non_net_metering_distributed (modeled)
+- fed_eia861_operational_data (modeled)
+- fed_eia861_reliability (modeled)
+- fed_eia861_sales_ult_cust (modeled)
+- fed_eia861_sales_ult_cust_cs (modeled)
+- fed_eia861_service_territory (modeled)
+- fed_eia861_short_form (modeled)
+- fed_eia861_utility_data (modeled)
+- fed_eia_860_generator (landed)
+- fed_eia_860_plant (landed)
+- fed_eia_860_utility (landed)
+- fed_eia_861_balancing_authority (modeled)
+- fed_epa_aqs_sites (modeled)
+- fed_epa_frs_frs_facilities (modeled)
+- fed_epa_ghgrp_emission (modeled)
+- fed_epa_ghgrp_facility (modeled)
+- fed_epa_rcra_enforcements (modeled)
+- fed_epa_rcra_evaluations (modeled)
+- fed_epa_rcra_facilities (modeled)
+- fed_epa_rcra_rcra_enforcements (landed)
+- fed_epa_rcra_rcra_evaluations (landed)
+- fed_epa_rcra_rcra_facilities (landed)
+- fed_epa_rcra_rcra_naics (modeled)
+- fed_epa_rcra_rcra_violations (landed)
+- fed_epa_rcra_rcra_viosnc_history (landed)
+- fed_epa_rcra_violations (modeled)
+- fed_epa_rcra_viosnc_history (modeled)
+- fed_epa_tri_facility (modeled)
+- fed_faa_adip_private_airports (landed)
+- fed_fda_device_enforcement__staging (landed)
+- fed_fda_drug_master_files (modeled)
+- fed_fda_gudid__staging (landed)
+- fed_fda_purple_book (modeled)
+- fed_fda_unii_gsrs_substances (modeled)
+- fed_fdic_sod_branch_deposits (modeled)
+- fed_fema_ia_housing_registrations (modeled)
+- fed_fema_nfip_community_status_book (modeled)
+- fed_fema_nfip_community_status_book_full_r2 (landed)
+- fed_fhfa_fhlb_membership (modeled)
+- fed_fhfa_suspended_counterparties (modeled)
+- fed_fhfa_suspended_counterparty (landed)
+- fed_finra_mpid_list (modeled)
+- fed_fjc_article_iii_judges (landed)
+- fed_fjc_idb_appellate (modeled)
+- fed_fjc_idb_bankruptcy (modeled)
+- fed_fjc_idb_civil (modeled)
+- fed_fjc_idb_criminal (modeled)
+- fed_fracfocus_disclosure_list (modeled)
+- fed_fracfocus_registry (modeled)
+- fed_fracfocus_water_source (modeled)
+- fed_hrsa_hpsa_primary_care (modeled)
+- fed_hrsa_npdb (modeled)
+- fed_hrsa_uds_service_delivery_sites (modeled)
+- fed_hud_fha_sf_portfolio_snapshot (modeled)
+- fed_hud_mf_firm_commitments (modeled)
+- fed_hud_mf_section8_contracts (modeled)
+- fed_hud_public_housing_authorities (modeled)
+- fed_ice_detention_facility_codes (modeled)
+- fed_ihs_facilities (modeled)
+- fed_ihs_scb_facility (modeled)
+- fed_irs_527_orgs (landed)
+- fed_irs_fatca_ffi_list (landed)
+- fed_itis_comments (modeled)
+- fed_itis_experts (modeled)
+- fed_itis_geographic_div (modeled)
+- fed_itis_hierarchy (modeled)
+- fed_itis_jurisdiction (modeled)
+- fed_itis_kingdoms (modeled)
+- fed_itis_longnames (modeled)
+- fed_itis_nodc_ids (modeled)
+- fed_itis_other_sources (modeled)
+- fed_itis_publications (modeled)
+- fed_itis_reference_links (modeled)
+- fed_itis_strippedauthor (modeled)
+- fed_itis_synonym_links (modeled)
+- fed_itis_taxon_authors_lkp (modeled)
+- fed_itis_taxon_unit_types (modeled)
+- fed_itis_taxonomic_units (modeled)
+- fed_itis_tu_comments_links (modeled)
+- fed_itis_vern_ref_links (modeled)
+- fed_itis_vernaculars (modeled)
+- fed_jpml_pending_mdl (landed)
+- fed_msrb_registrants (modeled)
+- fed_ncua_call_reports_foicu (modeled)
+- fed_ncua_call_reports_fs220 (modeled)
+- fed_ncua_charter_merger_events (modeled)
+- fed_ncua_federally_insured_cu_list (modeled)
+- fed_nlm_dailymed_spl_setid_map (modeled)
+- fed_ntsb_aviation_injury (modeled)
+- fed_occ_national_banks (modeled)
+- fed_occ_national_banks_by_name (landed)
+- fed_occ_thrifts (modeled)
+- fed_pbgc_trusteed_pension_plans (landed)
+- fed_pcaob_form_ap_filings (modeled)
+- fed_sam_exclusions_full_r2 (landed)
+- fed_sba_ppp_loans_150k_plus (landed)
+- fed_sbir_sttr_awards (modeled)
+- fed_sec_investment_company_series_class (modeled)
+- fed_trade_consolidated_screening_list (landed)
+- fed_usaspending_tas_filter_tree (modeled)
+- fed_uscg_nrc_incident_reports (modeled)
+- fed_uscg_nrc_incidents (modeled)
+- fed_usda_rd_mfh_active_projects (modeled)
+- fed_usgs_gnis_all_names (modeled)
+- fed_usgs_orphaned_oil_gas_wells (modeled)
+- fed_usgs_wbd_huc8 (modeled)
+- fed_voteview_rollcall_meta_full (landed)
+- fed_wqp_monitoring_stations (modeled)
+- icij_offshore_leaks_addresses (landed)
+- icij_offshore_leaks_entities (landed)
+- icij_offshore_leaks_intermediaries (landed)
+- icij_offshore_leaks_officers (landed)
+- icij_offshore_leaks_relationships (landed)
+- intl_elections_canada_contributions (modeled)
+- intl_fr_data_gouv_full (landed)
+- intl_healthcanada_dpd_drug (modeled)
+- intl_iso_mic_registry (modeled)
+- intl_osfi_regulated_fi (modeled)
+- intl_un_consolidated_sanctions (landed)
+- intl_un_sc_consolidated_sanctions (landed)
+- st_ca_oehha_prop65_chemicals (landed)
+- st_nyc_cfb_campaign_2001_contribution (modeled)
+- st_nyc_cfb_campaign_2009_contribution (modeled)
+- st_nyc_cfb_campaign_2013_contribution (modeled)
+- st_nyc_cfb_campaign_2021_contributions (modeled)
+- st_nyc_cfb_campaign_2025_contributions (modeled)
+- state_oehha_prop65_chemicals (landed)
+- uk_companies_house_psc (modeled)
+- xc_census_cb_county (landed)
+- xc_census_cb_state (landed)
+- xc_census_cb_zcta (landed)
+- xc_crossref_funder_registry (modeled)
+- xc_icij_offshore_nodes_addresses (landed)
+- xc_icij_offshore_nodes_entities (landed)
+- xc_icij_offshore_nodes_intermediaries (landed)
+- xc_icij_offshore_nodes_officers (landed)
+- xc_icij_offshore_relationships (landed)
+- xc_osf_registrations (modeled)
+- xc_ransomwarelive_victims_full_r2 (landed)
+- xc_retraction_watch_database (modeled)
+- xc_ror_research_organizations (modeled)

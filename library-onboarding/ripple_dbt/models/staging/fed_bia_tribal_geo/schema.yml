@@ -14,13 +14,14 @@ models:
 
   - name: stg_fed_bia_tribal_geo__bia_geospatial_features
     description: >
-      Staging model for BIA geospatial features. Renames columns to snake_case,
-      casts TEXT columns to appropriate types, and deduplicates on FIPS (most
-      recent record wins).
+      Staging model for the BIA American Indian & Alaska Native Land Area
+      Representations (AIAN-LAR). Renames columns to snake_case, casts TEXT
+      columns to appropriate types, and deduplicates on LARID (most recent
+      record wins).
     columns:
 
-      - name: fips
-        description: Federal Information Processing Standard code — primary key for this entity.
+      - name: lar_id
+        description: BIA Land Area Representation ID — primary key for this entity.
         data_tests:
           - unique
           - not_null
@@ -30,26 +31,19 @@ models:
         data_tests:
           - not_null
 
-      - name: layer_name
-        description: Name of the GIS layer this feature belongs to.
+      - name: lar_name
+        description: Name of the tribal Land Area Representation (e.g. "Cheyenne River LAR").
 
-      - name: feature_name
-        description: Human-readable name of the tribal geospatial feature.
+      - name: gis_acres
+        description: Acreage of the land area, as computed by the source GIS system.
 
-      - name: state
-        description: US state abbreviation or name associated with the feature.
+      - name: shape_area
+        description: Polygon area in the source's native units.
 
-      - name: area_sqmi
-        description: Area of the feature in square miles (cast from TEXT).
+      - name: shape_length
+        description: Polygon perimeter length in the source's native units.
 
-      - name: geometry
-        description: Raw geometry representation (WKT or GeoJSON string).
-
-      - name: data_source
-        description: Originating data source identifier.
-
-      - name: last_updated
-        description: Date the record was last updated in the source system.
+      - name: geometry_json
 
       - name: _ingested_at
         description: Timestamp when the record was ingested into the landing layer.
@@ -59,13 +53,13 @@ models:
 
   - name: land_and_territory__fed_bia_tribal_geo
     description: >
-      Analytics-ready mart table for BIA tribal geospatial features. Exposes
-      key identifiers for cross-source joins and presents clean, typed columns
-      suitable for downstream analysis and mapping.
+      Analytics-ready mart table for BIA tribal Land Area Representations.
+      Exposes key identifiers for cross-source joins and presents clean,
+      typed columns suitable for downstream analysis and mapping.
     columns:
 
-      - name: fips
-        description: Federal Information Processing Standard code — primary key for this entity.
+      - name: lar_id
+        description: BIA Land Area Representation ID — primary key for this entity.
         data_tests:
           - unique
           - not_null
@@ -75,26 +69,19 @@ models:
         data_tests:
           - not_null
 
-      - name: layer_name
-        description: Name of the GIS layer this feature belongs to.
+      - name: lar_name
+        description: Name of the tribal Land Area Representation.
 
-      - name: feature_name
-        description: Human-readable name of the tribal geospatial feature.
+      - name: gis_acres
+        description: Acreage of the land area.
 
-      - name: state
-        description: US state abbreviation or name associated with the feature.
+      - name: shape_area
+        description: Polygon area in the source's native units.
 
-      - name: area_sqmi
-        description: Area of the feature in square miles.
+      - name: shape_length
+        description: Polygon perimeter length in the source's native units.
 
-      - name: geometry
-        description: Raw geometry representation (WKT or GeoJSON string).
-
-      - name: data_source
-        description: Originating data source identifier.
-
-      - name: last_updated
-        description: Date the record was last updated in the source system.
+      - name: geometry_json
 
       - name: _ingested_at
         description: Timestamp when the record was ingested into the landing layer.

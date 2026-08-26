@@ -9,17 +9,15 @@ with base as (
 select
 
     -- key identifiers (exposed for cross-source joins)
-    fips,
+    lar_id,
 
     -- descriptive attributes
     object_id,
-    layer_name,
-    name                                                            as feature_name,
-    state,
-    area_sqmi,
-    geometry,
-    data_source,
-    last_updated,
+    lar_name,
+    gis_acres,
+    shape_area,
+    shape_length,
+    geometry_json,
 
     -- metadata
     _ingested_at,

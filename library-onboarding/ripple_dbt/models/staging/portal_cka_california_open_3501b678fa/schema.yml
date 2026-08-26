@@ -1,0 +1,36 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: PORTAL_CKA_CALIFORNIA_OPEN_3501B678FA
+        description: >
+          Raw landing table for Urban Water Use Objectives – Relevant Data. All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_portal_cka_california_open_3501b678fa__facilities
+    description: "GRAIN: one row per facility (PWSID+SYSTEM_START_DATE+SYSTEM_END_DATE+APPLICABLE_START_DATE unique). SPINE_ENTITY: facility."
+    columns:
+      - name: pwsid
+        data_tests:
+          - not_null
+      - name: system_start_date
+        data_tests:
+          - not_null
+      - name: system_end_date
+        data_tests:
+          - not_null
+      - name: applicable_start_date
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - pwsid
+              - system_start_date
+              - system_end_date
+              - applicable_start_date

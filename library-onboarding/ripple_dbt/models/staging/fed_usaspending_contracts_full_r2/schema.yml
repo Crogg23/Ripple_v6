@@ -1,0 +1,40 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_USASPENDING_CONTRACTS_FULL_R2
+        description: >
+          Raw landing table for USASpending — Federal Prime Contract Awards (FULL re-pull). All columns arrive as TEXT and
+          are cast in the staging layer.
+
+models:
+  - name: stg_fed_usaspending_contracts_full_r2__organizations
+    description: "GRAIN: one row per organization (UEI+ACTION_DATE+PERIOD_OF_PERFORMANCE_START_DATE+PERIOD_OF_PERFORMANCE_CURRENT_END_DATE+AWARD_ID_PIID unique). SPINE_ENTITY: organization."
+    columns:
+      - name: recipient_uei
+        data_tests:
+          - not_null
+      - name: action_date
+        data_tests:
+          - not_null
+      - name: period_of_performance_start_date
+        data_tests:
+          - not_null
+      - name: period_of_performance_current_end_date
+        data_tests:
+          - not_null
+      - name: award_id_piid
+        data_tests:
+          - not_null
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - recipient_uei
+              - action_date
+              - period_of_performance_start_date
+              - period_of_performance_current_end_date
+              - award_id_piid

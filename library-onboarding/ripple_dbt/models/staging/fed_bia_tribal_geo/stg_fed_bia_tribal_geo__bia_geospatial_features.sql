@@ -11,21 +11,20 @@ renamed_cast as (
     select
 
         -- primary key
-        FIPS                                                        as fips,
+        LARID                                                       as lar_id,
 
         -- descriptive attributes
         TRY_TO_NUMBER(OBJECTID)                                     as object_id,
-        LAYER_NAME                                                  as layer_name,
-        NAME                                                        as name,
-        STATE                                                       as state,
-        TRY_TO_DOUBLE(AREA_SQMI)                                    as area_sqmi,
-        GEOMETRY                                                    as geometry,
-        DATA_SOURCE                                                 as data_source,
-        TRY_TO_DATE(LAST_UPDATED)                                   as last_updated,
+        LARNAME                                                     as lar_name,
+        TRY_TO_DOUBLE(GISACRES)                                     as gis_acres,
+        TRY_TO_DOUBLE(SHAPE__AREA)                                  as shape_area,
+        TRY_TO_DOUBLE(SHAPE__LENGTH)                                as shape_length,
+        GEOMETRY_JSON                                               as geometry_json,
 
-        -- metadata
-        _ingested_at,
-        _source_run_id
+        -- metadata (raw columns carry no leading underscore in this table)
+        INGESTED_AT                                                 as _ingested_at,
+        SOURCE_RUN_ID                                                as _source_run_id,
+        SRC_SHA256                                                  as _src_sha256
 
     from source
 
@@ -33,37 +32,31 @@ renamed_cast as (
 
 deduped as (
 
+    -- 2026-08-26: reloaded from the real BIA AIAN-LAR FeatureServer (the
+    -- registered URL was an ArcGIS Hub home page, not a dataset -- see
+    -- scripts/bia_tribal_geo_reload.py). LARID is this source's real natural
+    -- key (one row per Land Area Representation polygon); the old FIPS-based
+    -- dedup matched the old garbage schema and no longer applies.
     select *,
         ROW_NUMBER() over (
-            partition by fips
-            order by last_updated desc nulls last, _ingested_at desc nulls last
+            partition by lar_id
+            order by _ingested_at desc nulls last
         ) as _row_num
     from renamed_cast
-    -- 2026-08-25: raw source currently contains ONLY ArcGIS Hub portal-crawl
-    -- catalog metadata (StoryMaps/Web Maps/Apps listed on the BIA Open Data
-    -- Hub site), not real tribal-land geospatial features. Verified live:
-    -- all 100 raw rows have FIPS = '' (empty string, not NULL -- so it slid
-    -- past the old filter), STATE/AREA_SQMI also '', and OBJECTID is a
-    -- 32-char Hub item GUID rather than the FeatureServer's numeric OBJECTID.
-    -- The FIPS dedup below collapses all 100 junk rows to one survivor with
-    -- a null object_id, which is what tripped this test. Excluding fips=''
-    -- here until the loader is pointed at the real FeatureServer/query
-    -- endpoint -- this currently zeroes out the mart pending that reload.
-    where fips is not null and fips != ''
+    where lar_id is not null and lar_id != ''
 
 )
 
 select
     object_id,
-    layer_name,
-    name,
-    fips,
-    state,
-    area_sqmi,
-    geometry,
-    data_source,
-    last_updated,
+    lar_id,
+    lar_name,
+    gis_acres,
+    shape_area,
+    shape_length,
+    geometry_json,
     _ingested_at,
-    _source_run_id
+    _source_run_id,
+    _src_sha256
 from deduped
 where _row_num = 1

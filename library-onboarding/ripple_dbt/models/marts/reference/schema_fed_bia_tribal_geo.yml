@@ -7,3 +7,7 @@ models:
         data_tests:
           - not_null
           - unique
+      - name: lar_id
+        data_tests:
+          - not_null
+          - unique

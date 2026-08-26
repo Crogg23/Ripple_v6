@@ -172,24 +172,19 @@ models:
       government_records:
         government_records__fed_nara_aad:
           +enabled: true  # re-enabled 2026-07-24: source re-ingested (554 rows)
-      # 2026-07-31: FED_BIA_TRIBAL_GEO's registered URL is an ArcGIS Hub HOME PAGE
-      # (https://opendata-1-bia-geospatial.hub.arcgis.com/), not a dataset endpoint.
-      # The loader scraped the portal's item DIRECTORY LISTING instead of downloading
-      # tribal land data -- confirmed live: the 100 landed rows are unrelated public
-      # web maps (NAME values like "How Has the Greenland Ice Sheet Changed", "Plan
-      # de Gestión de Riesgos de la parroquia..."), LAYER_NAME is an ArcGIS item type
-      # (StoryMap / Web Map / Feature Service), OBJECTID is a 32-char GUID, and FIPS
-      # is blank on every row. NEITHER existing mart is trustworthy: the hand-built
-      # one collapses to 1 row via a broken FIPS dedupe key, and the "fix" is NOT to
-      # repair that key -- restoring it would promote all 100 rows of scraped-portal
-      # garbage as if they were real tribal geography. Both disabled until the
-      # source is re-pointed at an actual BIA geospatial dataset endpoint.
+      # 2026-08-26: RE-ENABLED. FED_BIA_TRIBAL_GEO's registered URL was an ArcGIS
+      # Hub HOME PAGE (https://opendata-1-bia-geospatial.hub.arcgis.com/), not a
+      # dataset endpoint -- the loader scraped the portal's item directory
+      # instead of real tribal land data (see the 2026-07-31 note in git history
+      # for the full symptom writeup). Re-pointed at the real BIA AIAN-LAR
+      # FeatureServer (scripts/bia_tribal_geo_reload.py); 335 real Land Area
+      # Representation polygons landed, staging model rekeyed on LARID.
       land_and_territory:
         land_and_territory__fed_bia_tribal_geo:
-          +enabled: false
+          +enabled: true
       reference:
         reference__fed_bia_tribal_geo:
-          +enabled: false
+          +enabled: true
       politics:
         # 2026-07-30: STANDING POLICY no_selectorless_dbt_build enforced for real,
         # not just documented. These models mirror Python-built canonical tables

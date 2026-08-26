@@ -301,8 +301,8 @@ def render_schema_yml(model_name: str, src: dict, nk_snake: list[str], landing_t
         )
         model_tests = (
             "\n    data_tests:\n      - dbt_utils.unique_combination_of_columns:\n"
-            "          combination_of_columns:\n"
-            + "\n".join(f"            - {c}" for c in nk_snake)
+            "          arguments:\n            combination_of_columns:\n"
+            + "\n".join(f"              - {c}" for c in nk_snake)
         )
     return f"""version: 2
 
