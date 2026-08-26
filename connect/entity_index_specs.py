@@ -950,8 +950,13 @@ DISPLAY_SPECS: dict[str, dict] = {
         "city": "CITY", "state": "STATE", "zip": "ZIP_CODE",
         "authority": 6,
     },
-    "FED_USASPENDING_CONTRACTS_FULL": {
-        # UEI -- 420,990 distinct / 19,999,806 rows (100.0% survive norm), +316,786 new to spine. len 12-12. e.g. KB1EKZ5BXVL8
+    # 2026-08-26: repointed from FED_USASPENDING_CONTRACTS_FULL (20M-row sampling
+    # artifact, superseded) to the real full re-pull -- test_spine_inputs_live.py's
+    # shadowed-sibling check caught the old table still being wired here. The old
+    # table is flagged for a DROP TABLE (Chris's call, repo policy blocks agents
+    # running raw DDL) -- see STATUS.md.
+    "FED_USASPENDING_CONTRACTS_FULL_R2": {
+        # UEI -- 582,656 distinct / 93,152,192 rows (100.0% survive norm). len 12-12. e.g. KB1EKZ5BXVL8
         "key": "UEI", "key_col": "recipient_uei",
         "org": "recipient_name",
         "authority": 6,
