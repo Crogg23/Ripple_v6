@@ -1,0 +1,110 @@
+{
+  "fqtn": "LIBRARY_MARTS.ECONOMICS.ECONOMICS__INTL_GLEIF_REPEX",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "LEI",
+    "EXCEPTION_CATEGORY",
+    "EXCEPTION_REASON_1",
+    "EXCEPTION_REASON_2",
+    "EXCEPTION_REASON_3",
+    "EXCEPTION_REASON_4",
+    "EXCEPTION_REASON_5",
+    "EXCEPTION_REFERENCE_1",
+    "EXCEPTION_REFERENCE_2",
+    "EXCEPTION_REFERENCE_3",
+    "EXCEPTION_REFERENCE_4",
+    "EXCEPTION_REFERENCE_5"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "LEI",
+      "column": "LEI",
+      "total_rows": 6259489,
+      "nonnull_after_norm": 6259489,
+      "distinct_after_norm": 3142660,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "LEI": "335800ZU724RJUJZ9O26",
+      "EXCEPTION_CATEGORY": "ULTIMATE_ACCOUNTING_CONSOLIDATION_PARENT",
+      "EXCEPTION_REASON_1": "NON_PUBLIC",
+      "EXCEPTION_REASON_2": null,
+      "EXCEPTION_REASON_3": null,
+      "EXCEPTION_REASON_4": null,
+      "EXCEPTION_REASON_5": null,
+      "EXCEPTION_REFERENCE_1": null,
+      "EXCEPTION_REFERENCE_2": null,
+      "EXCEPTION_REFERENCE_3": null,
+      "EXCEPTION_REFERENCE_4": null,
+      "EXCEPTION_REFERENCE_5": null
+    },
+    {
+      "LEI": "969500XYXYQ5IA0B7Y69",
+      "EXCEPTION_CATEGORY": "DIRECT_ACCOUNTING_CONSOLIDATION_PARENT",
+      "EXCEPTION_REASON_1": "NATURAL_PERSONS",
+      "EXCEPTION_REASON_2": null,
+      "EXCEPTION_REASON_3": null,
+      "EXCEPTION_REASON_4": null,
+      "EXCEPTION_REASON_5": null,
+      "EXCEPTION_REFERENCE_1": null,
+      "EXCEPTION_REFERENCE_2": null,
+      "EXCEPTION_REFERENCE_3": null,
+      "EXCEPTION_REFERENCE_4": null,
+      "EXCEPTION_REFERENCE_5": null
+    },
+    {
+      "LEI": "984500F9CD55DFE43E85",
+      "EXCEPTION_CATEGORY": "DIRECT_ACCOUNTING_CONSOLIDATION_PARENT",
+      "EXCEPTION_REASON_1": "NATURAL_PERSONS",
+      "EXCEPTION_REASON_2": null,
+      "EXCEPTION_REASON_3": null,
+      "EXCEPTION_REASON_4": null,
+      "EXCEPTION_REASON_5": null,
+      "EXCEPTION_REFERENCE_1": null,
+      "EXCEPTION_REFERENCE_2": null,
+      "EXCEPTION_REFERENCE_3": null,
+      "EXCEPTION_REFERENCE_4": null,
+      "EXCEPTION_REFERENCE_5": null
+    },
+    {
+      "LEI": "836800DGMWCS6NY6S451",
+      "EXCEPTION_CATEGORY": "ULTIMATE_ACCOUNTING_CONSOLIDATION_PARENT",
+      "EXCEPTION_REASON_1": "NON_CONSOLIDATING",
+      "EXCEPTION_REASON_2": null,
+      "EXCEPTION_REASON_3": null,
+      "EXCEPTION_REASON_4": null,
+      "EXCEPTION_REASON_5": null,
+      "EXCEPTION_REFERENCE_1": null,
+      "EXCEPTION_REFERENCE_2": null,
+      "EXCEPTION_REFERENCE_3": null,
+      "EXCEPTION_REFERENCE_4": null,
+      "EXCEPTION_REFERENCE_5": null
+    },
+    {
+      "LEI": "2138002PNWQBTLSFQY35",
+      "EXCEPTION_CATEGORY": "DIRECT_ACCOUNTING_CONSOLIDATION_PARENT",
+      "EXCEPTION_REASON_1": "NATURAL_PERSONS",
+      "EXCEPTION_REASON_2": null,
+      "EXCEPTION_REASON_3": null,
+      "EXCEPTION_REASON_4": null,
+      "EXCEPTION_REASON_5": null,
+      "EXCEPTION_REFERENCE_1": null,
+      "EXCEPTION_REFERENCE_2": null,
+      "EXCEPTION_REFERENCE_3": null,
+      "EXCEPTION_REFERENCE_4": null,
+      "EXCEPTION_REFERENCE_5": null
+    }
+  ],
+  "sample_error": null
+}

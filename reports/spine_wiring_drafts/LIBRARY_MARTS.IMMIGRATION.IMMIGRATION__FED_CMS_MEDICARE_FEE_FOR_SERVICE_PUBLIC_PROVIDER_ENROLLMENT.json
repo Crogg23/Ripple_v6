@@ -1,0 +1,121 @@
+{
+  "fqtn": "LIBRARY_MARTS.IMMIGRATION.IMMIGRATION__FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NPI",
+    "MULTIPLE_NPI_FLAG",
+    "PECOS_ASCT_CNTL_ID",
+    "ENRLMT_ID",
+    "PROVIDER_TYPE_CD",
+    "PROVIDER_TYPE_DESC",
+    "STATE_CD",
+    "FIRST_NAME",
+    "MDL_NAME",
+    "LAST_NAME",
+    "ORG_NAME"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "PROVIDER_TYPE_CD",
+      "PROVIDER_TYPE_DESC",
+      "FIRST_NAME",
+      "MDL_NAME",
+      "LAST_NAME",
+      "ORG_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [
+        "STATE_CD"
+      ],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPI",
+      "column": "NPI",
+      "total_rows": 2978925,
+      "nonnull_after_norm": 2978925,
+      "distinct_after_norm": 2541258,
+      "trap_verdict": "REAL"
+    },
+    {
+      "key_label": "NPI",
+      "column": "MULTIPLE_NPI_FLAG",
+      "total_rows": 2978925,
+      "nonnull_after_norm": 0,
+      "distinct_after_norm": 0,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "NPI": "1215141163",
+      "MULTIPLE_NPI_FLAG": "N",
+      "PECOS_ASCT_CNTL_ID": 8224128178,
+      "ENRLMT_ID": "I20071217000232",
+      "PROVIDER_TYPE_CD": "14-05",
+      "PROVIDER_TYPE_DESC": "PRACTITIONER - ANESTHESIOLOGY",
+      "STATE_CD": "TX",
+      "FIRST_NAME": "SILVIA",
+      "MDL_NAME": null,
+      "LAST_NAME": "OLEJNIKOVA",
+      "ORG_NAME": null
+    },
+    {
+      "NPI": "1841390689",
+      "MULTIPLE_NPI_FLAG": "N",
+      "PECOS_ASCT_CNTL_ID": 1557451457,
+      "ENRLMT_ID": "I20071215000094",
+      "PROVIDER_TYPE_CD": "14-35",
+      "PROVIDER_TYPE_DESC": "PRACTITIONER - CHIROPRACTIC",
+      "STATE_CD": "NY",
+      "FIRST_NAME": "DANIEL",
+      "MDL_NAME": "P",
+      "LAST_NAME": "WALSH",
+      "ORG_NAME": null
+    },
+    {
+      "NPI": "1811944929",
+      "MULTIPLE_NPI_FLAG": "N",
+      "PECOS_ASCT_CNTL_ID": 4284028564,
+      "ENRLMT_ID": "I20220302002188",
+      "PROVIDER_TYPE_CD": "33-C5",
+      "PROVIDER_TYPE_DESC": "ORDER AND REFERRING ONLY - DENTIST",
+      "STATE_CD": "MO",
+      "FIRST_NAME": "VIRGINIA",
+      "MDL_NAME": null,
+      "LAST_NAME": "DOOLEY",
+      "ORG_NAME": null
+    },
+    {
+      "NPI": "1407869852",
+      "MULTIPLE_NPI_FLAG": "N",
+      "PECOS_ASCT_CNTL_ID": 2769388677,
+      "ENRLMT_ID": "O20240926000225",
+      "PROVIDER_TYPE_CD": "12-70",
+      "PROVIDER_TYPE_DESC": "PART B SUPPLIER - CLINIC/GROUP PRACTICE",
+      "STATE_CD": "GA",
+      "FIRST_NAME": null,
+      "MDL_NAME": null,
+      "LAST_NAME": null,
+      "ORG_NAME": "MAHASKA COUNTY HOSPITAL"
+    },
+    {
+      "NPI": "1609043017",
+      "MULTIPLE_NPI_FLAG": "N",
+      "PECOS_ASCT_CNTL_ID": 1850557091,
+      "ENRLMT_ID": "I20180110002428",
+      "PROVIDER_TYPE_CD": "14-26",
+      "PROVIDER_TYPE_DESC": "PRACTITIONER - PSYCHIATRY",
+      "STATE_CD": "NY",
+      "FIRST_NAME": "JEREMY",
+      "MDL_NAME": "R",
+      "LAST_NAME": "CLAIBORNE",
+      "ORG_NAME": null
+    }
+  ],
+  "sample_error": null
+}

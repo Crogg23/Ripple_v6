@@ -27,6 +27,16 @@ from connect.keys import normalize_sql
 # it, with the reason. A sibling missing from here fails the test on purpose:
 # somebody must look and say which it is.
 ACKNOWLEDGED_SIBLINGS = {
+    # 2026-08-24: the checkpointed FY2007-> contracts re-pull is spec'd in its
+    # own right but is STALLED at action_date 2021-10-31 (63.7M rows); the
+    # 6.3M FY2025 table and the 20M 2007-2026 sample still carry FY2022-FY2026.
+    # Not a fuller copy until it gets there -- re-evaluate (and drop the two
+    # older specs) once R2's MAX(ACTION_DATE) passes theirs.
+    "FED_USASPENDING_CONTRACTS_FULL_R2":
+        "re-pull stalled at 2021-10; older tables still carry FY2022-FY2026",
+    "FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE":
+        "by-provider-AND-SERVICE (DRG) grain: 2,906 CCNs, a subset of the 3,044 "
+        "in the by-provider file -- finer grain, not a fuller copy",
     "FED_CFPB_HMDA_HISTORIC": "different grain (loan records), carries no LEI column",
     "FED_CFPB_HMDA_LAR": "different grain (loan application register), separate dataset",
     "FED_CFPB_HMDA_ARID2017_LEI_XREF": "a crosswalk, not a fuller HMDA copy",

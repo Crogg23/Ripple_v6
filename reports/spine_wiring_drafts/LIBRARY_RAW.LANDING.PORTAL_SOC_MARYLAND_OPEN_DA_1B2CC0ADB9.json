@@ -1,0 +1,155 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_SOC_MARYLAND_OPEN_DA_1B2CC0ADB9",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "THE_GEOM",
+    "OBJECTID",
+    "COUNTY",
+    "FACILITY_NAME",
+    "FACILITY_ADDRESS",
+    "FACILITY_CITY",
+    "FACILITY_STATE",
+    "FACILITY_ZIP",
+    "FACILITY_PHONE",
+    "FACILITY_CONTACT",
+    "LICENSE_CAPACITY",
+    "LICENSE_INFO",
+    "CCN",
+    "TYPE",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "FACILITY_NAME",
+      "FACILITY_ADDRESS",
+      "FACILITY_CITY",
+      "FACILITY_STATE",
+      "FACILITY_ZIP",
+      "FACILITY_PHONE",
+      "FACILITY_CONTACT"
+    ],
+    "address_candidates": {
+      "city": [
+        "FACILITY_CITY",
+        "LICENSE_CAPACITY"
+      ],
+      "state": [
+        "FACILITY_STATE"
+      ],
+      "zip": [
+        "FACILITY_ZIP"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CCN",
+      "column": "CCN",
+      "total_rows": 64,
+      "nonnull_after_norm": 60,
+      "distinct_after_norm": 60,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "THE_GEOM": "{\"type\": \"Point\", \"coordinates\": [-76.721758743583, 39.266980188402]}",
+      "OBJECTID": "88",
+      "COUNTY": "BALTIMORE COUNTY",
+      "FACILITY_NAME": "SPRING GROVE HOSPITAL CENTER",
+      "FACILITY_ADDRESS": "WADE AVENUE",
+      "FACILITY_CITY": "CATONSVILLE",
+      "FACILITY_STATE": "MD",
+      "FACILITY_ZIP": "21228",
+      "FACILITY_PHONE": "(410) 402-7455",
+      "FACILITY_CONTACT": "CHERYL HEILMAN",
+      "LICENSE_CAPACITY": "639",
+      "LICENSE_INFO": "Licensed from: 07/25/2014 to 10/25/2017",
+      "CCN": "214018",
+      "TYPE": "Psychiatric Hospital",
+      "INGESTED_AT": "2026-06-24 04:45:35.828837",
+      "SOURCE_RUN_ID": "aa6c6595-cf7e-4b68-8785-fa29ed3afd22",
+      "SRC_SHA256": "2414c8dc6f8d7a8a19afdd17e036bbeb488e236395b1b2acb3500d1a39bcc403"
+    },
+    {
+      "THE_GEOM": "{\"type\": \"Point\", \"coordinates\": [-77.035090270267, 39.01483327553]}",
+      "OBJECTID": "110",
+      "COUNTY": "MONTGOMERY COUNTY",
+      "FACILITY_NAME": "HOLY CROSS HOSPITAL",
+      "FACILITY_ADDRESS": "1500 FOREST GLEN ROAD",
+      "FACILITY_CITY": "SILVER SPRING",
+      "FACILITY_STATE": "MD",
+      "FACILITY_ZIP": "20910",
+      "FACILITY_PHONE": "(301) 754-7000",
+      "FACILITY_CONTACT": "JUDITH ROGERS",
+      "LICENSE_CAPACITY": "409",
+      "LICENSE_INFO": "Licensed from: 06/21/2014 to 06/21/2017",
+      "CCN": "210004",
+      "TYPE": "Acute, General and Special Hospitals",
+      "INGESTED_AT": "2026-06-24 04:45:35.828837",
+      "SOURCE_RUN_ID": "aa6c6595-cf7e-4b68-8785-fa29ed3afd22",
+      "SRC_SHA256": "2414c8dc6f8d7a8a19afdd17e036bbeb488e236395b1b2acb3500d1a39bcc403"
+    },
+    {
+      "THE_GEOM": "{\"type\": \"Point\", \"coordinates\": [-75.852578034881, 37.996824115367]}",
+      "OBJECTID": "120",
+      "COUNTY": "SOMERSET COUNTY",
+      "FACILITY_NAME": "EDWARD MCCREADY MEMORIAL HOSPITAL",
+      "FACILITY_ADDRESS": "201 HALL HIGHWAY",
+      "FACILITY_CITY": "CRISFIELD",
+      "FACILITY_STATE": "MD",
+      "FACILITY_ZIP": "21817",
+      "FACILITY_PHONE": "(410) 726-9496",
+      "FACILITY_CONTACT": "JOY STRAND",
+      "LICENSE_CAPACITY": "3",
+      "LICENSE_INFO": "Licensed from: 03/29/2016 to 06/29/2019",
+      "CCN": "210045",
+      "TYPE": "Acute, General and Special Hospitals",
+      "INGESTED_AT": "2026-06-24 04:45:35.828837",
+      "SOURCE_RUN_ID": "aa6c6595-cf7e-4b68-8785-fa29ed3afd22",
+      "SRC_SHA256": "2414c8dc6f8d7a8a19afdd17e036bbeb488e236395b1b2acb3500d1a39bcc403"
+    },
+    {
+      "THE_GEOM": "{\"type\": \"Point\", \"coordinates\": [-76.885867150563, 39.214292940293]}",
+      "OBJECTID": "103",
+      "COUNTY": "HOWARD COUNTY",
+      "FACILITY_NAME": "HOWARD COUNTY GENERAL HOSPITAL",
+      "FACILITY_ADDRESS": "5755 CEDAR LANE",
+      "FACILITY_CITY": "COLUMBIA",
+      "FACILITY_STATE": "MD",
+      "FACILITY_ZIP": "21044",
+      "FACILITY_PHONE": "(410) 740-7890",
+      "FACILITY_CONTACT": "STEVEN SNELGROVE",
+      "LICENSE_CAPACITY": "264",
+      "LICENSE_INFO": "Licensed from: 04/21/2016 to 07/21/2019",
+      "CCN": "210048",
+      "TYPE": "Acute, General and Special Hospitals",
+      "INGESTED_AT": "2026-06-24 04:45:35.828837",
+      "SOURCE_RUN_ID": "aa6c6595-cf7e-4b68-8785-fa29ed3afd22",
+      "SRC_SHA256": "2414c8dc6f8d7a8a19afdd17e036bbeb488e236395b1b2acb3500d1a39bcc403"
+    },
+    {
+      "THE_GEOM": "{\"type\": \"Point\", \"coordinates\": [-76.707651748583, 39.314007806942]}",
+      "OBJECTID": "80",
+      "COUNTY": "BALTIMORE CITY",
+      "FACILITY_NAME": "UNIV OF MD REHABILITATION &  ORTHOPAEDIC INSTITUTE",
+      "FACILITY_ADDRESS": "2200 KERNAN DRIVE",
+      "FACILITY_CITY": "BALTIMORE",
+      "FACILITY_STATE": "MD",
+      "FACILITY_ZIP": "21207",
+      "FACILITY_PHONE": "(410) 448-6701",
+      "FACILITY_CONTACT": "CYNTHIA KELLEHER",
+      "LICENSE_CAPACITY": "138",
+      "LICENSE_INFO": "Licensed from: 10/28/2014 to 01/28/2017",
+      "CCN": "210058",
+      "TYPE": "Acute, General and Special Hospitals",
+      "INGESTED_AT": "2026-06-24 04:45:35.828837",
+      "SOURCE_RUN_ID": "aa6c6595-cf7e-4b68-8785-fa29ed3afd22",
+      "SRC_SHA256": "2414c8dc6f8d7a8a19afdd17e036bbeb488e236395b1b2acb3500d1a39bcc403"
+    }
+  ],
+  "sample_error": null
+}

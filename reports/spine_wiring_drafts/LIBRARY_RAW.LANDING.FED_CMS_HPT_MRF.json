@@ -1,0 +1,107 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.FED_CMS_HPT_MRF",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "HOSPITAL_NAME",
+    "HOSPITAL_LOCATION",
+    "HOSPITAL_ADDRESS",
+    "HOSPITAL_LICENSURE_INFORMATION",
+    "NPI",
+    "MRF_DATE",
+    "CMS_TEMPLATE_VERSION",
+    "ATTESTATION_STATEMENT",
+    "ATTESTER_NAME",
+    "GENERAL_DESCRIPTION",
+    "SETTING",
+    "BILLING_CODE",
+    "CODE_TYPE",
+    "MODIFIERS",
+    "PAYER_NAME",
+    "PLAN_NAME",
+    "STANDARD_CHARGE_METHOD",
+    "GROSS_CHARGE",
+    "DISCOUNTED_CASH_PRICE",
+    "PAYER_SPECIFIC_NEGOTIATED_CHARGE_DOLLAR",
+    "PAYER_SPECIFIC_NEGOTIATED_CHARGE_PERCENTAGE",
+    "PAYER_SPECIFIC_NEGOTIATED_CHARGE_ALGORITHM",
+    "MEDIAN_ALLOWED_AMOUNT",
+    "TENTH_PERCENTILE_ALLOWED_AMOUNT",
+    "NINETIETH_PERCENTILE_ALLOWED_AMOUNT",
+    "COUNT_OF_ALLOWED_AMOUNTS",
+    "DE_IDENTIFIED_MIN_NEGOTIATED_CHARGE",
+    "DE_IDENTIFIED_MAX_NEGOTIATED_CHARGE",
+    "DRUG_UNIT_OF_MEASUREMENT",
+    "DRUG_TYPE_OF_MEASUREMENT",
+    "ADDITIONAL_GENERIC_NOTES",
+    "ADDITIONAL_PAYER_SPECIFIC_NOTES",
+    "_INGESTED_AT",
+    "_SOURCE_RUN_ID",
+    "_SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "HOSPITAL_NAME",
+      "ATTESTER_NAME",
+      "PAYER_NAME",
+      "PLAN_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [
+        "ATTESTATION_STATEMENT"
+      ],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPI",
+      "column": "NPI",
+      "total_rows": 1,
+      "nonnull_after_norm": 0,
+      "distinct_after_norm": 0,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "HOSPITAL_NAME": "",
+      "HOSPITAL_LOCATION": "",
+      "HOSPITAL_ADDRESS": "",
+      "HOSPITAL_LICENSURE_INFORMATION": "",
+      "NPI": "",
+      "MRF_DATE": "",
+      "CMS_TEMPLATE_VERSION": "",
+      "ATTESTATION_STATEMENT": "",
+      "ATTESTER_NAME": "",
+      "GENERAL_DESCRIPTION": "",
+      "SETTING": "",
+      "BILLING_CODE": "",
+      "CODE_TYPE": "",
+      "MODIFIERS": "",
+      "PAYER_NAME": "",
+      "PLAN_NAME": "",
+      "STANDARD_CHARGE_METHOD": "",
+      "GROSS_CHARGE": "",
+      "DISCOUNTED_CASH_PRICE": "",
+      "PAYER_SPECIFIC_NEGOTIATED_CHARGE_DOLLAR": "",
+      "PAYER_SPECIFIC_NEGOTIATED_CHARGE_PERCENTAGE": "",
+      "PAYER_SPECIFIC_NEGOTIATED_CHARGE_ALGORITHM": "",
+      "MEDIAN_ALLOWED_AMOUNT": "",
+      "TENTH_PERCENTILE_ALLOWED_AMOUNT": "",
+      "NINETIETH_PERCENTILE_ALLOWED_AMOUNT": "",
+      "COUNT_OF_ALLOWED_AMOUNTS": "",
+      "DE_IDENTIFIED_MIN_NEGOTIATED_CHARGE": "",
+      "DE_IDENTIFIED_MAX_NEGOTIATED_CHARGE": "",
+      "DRUG_UNIT_OF_MEASUREMENT": "",
+      "DRUG_TYPE_OF_MEASUREMENT": "",
+      "ADDITIONAL_GENERIC_NOTES": "[{'name': '.gitignore', 'path': '.gitignore', 'sha': 'e43b0f988953ae3a84b00331d0ccf5f7d51cb3cf', 'size': 10, 'url': 'https://api.github.com/repos/CMSgov/hospital-price-transparency/contents/.gitignore?ref=master', 'html_url': 'https://github.com/CMSgov/hospital-price-transparency/blob/master/.gitignore', 'git_url': 'https://api.github.com/repos/CMSgov/hospital-price-transparency/git/blobs/e43b0f988953ae3a84b00331d0ccf5f7d51cb3cf', 'download_url': 'https://raw.githubusercontent.com/CMSgov/hospital-price-transparency/master/.gitignore', 'type': 'file', '_links': {'self': 'https://api.github.com/repos/CMSgov/hospital-price-transparency/contents/.gitignore?ref=master', 'git': 'https://api.github.com/repos/CMSgov/hospital-price-transparency/git/blobs/e43b0f988953ae3a84b00331d0ccf5f7d51cb3cf', 'html': 'https://github.com/CMSgov/hospital-price-transparency/blob/master/.gitignore'}}, {'name': 'README.md', 'path': 'README.md', 'sha': 'c1d3e538b0e9bc902cbb53efe78f7e3ccf8bfc95', 'size': 12679, 'url': 'https://api.github.com/repos/CMSgov/hospital-price-transparency/contents/README.md?ref=master', 'html_url': 'https://github.com/CMSgov/hospital-price-transparency/blob/master/README.md', 'git_url': 'https://api.github.com/repos/CMSgov/hospital-price-transparency/git/blobs/c1d3e538b0e9bc902cbb53efe78f7e3ccf8bfc95', 'download_url': 'https://raw.githubusercontent.com/CMSgov/hospital-price-transparency/master/README.md', 'type': 'file', '_links': {'self': 'https://api.github.com/repos/CMSgov/hospital-price-transparency/contents/README.md?ref=master', 'git': 'https://api.github.com/repos/CMSgov/hospital-price-transparency/git/blobs/c1d3e538b0e9bc902cbb53efe78f7e3ccf8bfc95', 'html': 'https://github.com/CMSgov/hospital-price-transparency/blob/master/README.md'}}, {'name': 'archive', 'path': 'archive', 'sha': '2842c7f1aed2168062462ac0c28042f417a0c960', 'size': 0, 'url': 'https://api.github.com/repos/CMSgov/hospital-price-transparency/contents/archive?ref=master', 'html_url': 'https://github.com/CMSgov/hospital-price-transparency/tree/master/archive', 'git_url': 'https://api.github.com/repos/CMSgov/hospital-price-transparency/git/trees/2842c7f1aed2168062462ac0c28042f417a0c960', 'download_url': None, 'type': 'dir', '_links': {'self': 'https://api.github.com/repos/CMSgov/hospital-price-transparency/contents/archive?ref=master', 'git': 'https://api.github.com/repos/CMSgov/hospital-price-transparency/git/trees/2842c7f1aed2168062462ac0c28042f417a0c960', 'html': 'https://github.com/CMSgov/hospital-price-transparency/tree/master/archive'}}, {'name': 'documentation', 'path': 'documentation', 'sha': '11a9e7a4579598a2b65645eb325dd91c59d4ab7a', 'size': 0, 'url': 'https://api.github.com/repos/CMSgov/hospital-price-transparency/contents/documentation?ref=master', 'html_url': 'https://github.com/CMSgov/hospital-price-transparency/tree/master/documentation', 'git_url': 'https://api.github.com/repos/CMSgov/hospital-price-transparency/git/trees/11a9e7a4579598a2b65645eb325dd91c59d4ab7a', 'download_url': None, 'type': 'dir', '_links': {'self': 'https://api.github.com/repos/CMSgov/hospital-price-transparency/contents/documentation?ref=master', 'git': 'https://api.github.com/repos/CMSgov/hospital-price-transparency/git/trees/11a9e7a4579598a2b65645eb325dd91c59d4ab7a', 'html': 'https://github.com/CMSgov/hospital-price-transparency/tree/master/documentation'}}, {'name': 'examples', 'path': 'examples', 'sha': 'ed9ea431c8134f86d781bc68d3fd3c131b93da82', 'size': 0, 'url': 'https://api.github.com/repos/CMSgov/hospital-price-transparency/contents/examples?ref=master', 'html_url': 'https://github.com/CMSgov/hospital-price-transparency/tree/master/examples', 'git_url': 'https://api.github.com/repos/CMSgov/hospital-price-transparency/git/trees/ed9ea431c8134f86d781bc68d3fd3c131b93da82', 'download_url': None, 'type': 'dir', '_links': {'self': 'https://api.github.com/repos/CMSgov/hospital-price-transparency/contents/examples?ref=master', 'git': 'https://api.github.com/repos/CMSgov/hospital-price-transparency/git/trees/ed9ea431c8134f86d781bc68d3fd3c131b93da82', 'html': 'https://github.com/CMSgov/hospital-price-transparency/tree/master/examples'}}, {'name': 'resources', 'path': 'resources', 'sha': '3140b0dffdf5193c8fa0fd2fcbedb37d69f9656f', 'size': 0, 'url': 'https://api.github.com/repos/CMSgov/hospital-price-transparency/contents/resources?ref=master', 'html_url': 'https://github.com/CMSgov/hospital-price-transparency/tree/master/resources', 'git_url': 'https://api.github.com/repos/CMSgov/hospital-price-transparency/git/trees/3140b0dffdf5193c8fa0fd2fcbedb37d69f9656f', 'download_url': None, 'type': 'dir', '_links': {'self': 'https://api.github.com/repos/CMSgov/hospital-price-transparency/contents/resources?ref=master', 'git': 'https://api.github.com/repos/CMSgov/hospital-price-transparency/git/trees/3140b0dffdf5193c8fa0fd2fcbedb37d69f9656f', 'html': 'https://github.com/CMSgov/hospital-price-transparency/tree/master/resources'}}]",
+      "ADDITIONAL_PAYER_SPECIFIC_NOTES": "",
+      "_INGESTED_AT": 1782942533230416,
+      "_SOURCE_RUN_ID": "fbee3544-a992-4ab6-a482-c46827b66eb8",
+      "_SRC_SHA256": "260fe60b1ad9c2976edf931ced5e9bfed53240951df5c08214479c1febd9a990"
+    }
+  ],
+  "sample_error": null
+}

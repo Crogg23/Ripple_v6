@@ -1,0 +1,59 @@
+{
+  "fqtn": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_NON_PHYSICIANS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NPI",
+    "LAST_NAME",
+    "FIRST_NAME"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "LAST_NAME",
+      "FIRST_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPI",
+      "column": "NPI",
+      "total_rows": 6880,
+      "nonnull_after_norm": 6880,
+      "distinct_after_norm": 6880,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "NPI": "1184889768",
+      "LAST_NAME": "BROKENICKY",
+      "FIRST_NAME": "ALAN"
+    },
+    {
+      "NPI": "1710668470",
+      "LAST_NAME": "BERGLUND",
+      "FIRST_NAME": "SHAUNA"
+    },
+    {
+      "NPI": "1942134309",
+      "LAST_NAME": "DILERNIA",
+      "FIRST_NAME": "CATHERINE"
+    },
+    {
+      "NPI": "1225542020",
+      "LAST_NAME": "BAKER",
+      "FIRST_NAME": "ANDREW"
+    },
+    {
+      "NPI": "1073374484",
+      "LAST_NAME": "ENGLESON",
+      "FIRST_NAME": "MONICA"
+    }
+  ],
+  "sample_error": null
+}

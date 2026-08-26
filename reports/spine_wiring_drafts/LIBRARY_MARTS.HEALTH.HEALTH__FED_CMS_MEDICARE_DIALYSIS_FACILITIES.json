@@ -1,0 +1,136 @@
+{
+  "fqtn": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_MEDICARE_DIALYSIS_FACILITIES",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "STATE",
+    "CCN",
+    "PROVIDER_NAME",
+    "CITY",
+    "OWNERSHIP_TYPE",
+    "ESRD_NETWORK",
+    "NPI",
+    "CHAIN",
+    "MODALITY",
+    "ALTERNATE_CCNS",
+    "MEASURE",
+    "MEASURE_SCORE",
+    "YEAR_COL",
+    "MEASURE_ID"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "PROVIDER_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "STATE"
+      ],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CCN",
+      "column": "CCN",
+      "total_rows": 12456456,
+      "nonnull_after_norm": 12456456,
+      "distinct_after_norm": 8241,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    },
+    {
+      "key_label": "NPI",
+      "column": "NPI",
+      "total_rows": 12456456,
+      "nonnull_after_norm": 12411454,
+      "distinct_after_norm": 8140,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "STATE": "PA",
+      "CCN": "392597",
+      "PROVIDER_NAME": "DIALYSIS CLINIC INC",
+      "CITY": "WASHINGTON",
+      "OWNERSHIP_TYPE": "Unavailable",
+      "ESRD_NETWORK": "04",
+      "NPI": "1265468672",
+      "CHAIN": "DIALYSIS CLINIC, INC.",
+      "MODALITY": "Hemodialysis and Peritoneal Dialysis",
+      "ALTERNATE_CCNS": "392597",
+      "MEASURE": "F: SHR (Admissions) - P-value, 2021",
+      "MEASURE_SCORE": 0.22208,
+      "YEAR_COL": 2021,
+      "MEASURE_ID": "pchtay1_f"
+    },
+    {
+      "STATE": "MI",
+      "CCN": "232563",
+      "PROVIDER_NAME": "PDI-GRAND HAVEN",
+      "CITY": "GRAND HAVEN",
+      "OWNERSHIP_TYPE": "For Profit",
+      "ESRD_NETWORK": "11",
+      "NPI": "1699736116",
+      "CHAIN": "DAVITA",
+      "MODALITY": "Hemodialysis",
+      "ALTERNATE_CCNS": "232563",
+      "MEASURE": "F: Patient Placement - % of patients transfered into facility, 2023",
+      "MEASURE_SCORE": 15.789473684,
+      "YEAR_COL": 2023,
+      "MEASURE_ID": "pptdy3_f"
+    },
+    {
+      "STATE": "WY",
+      "CCN": "532304",
+      "PROVIDER_NAME": "MEM HOSP OF SWEETWATER CNTY",
+      "CITY": "ROCK SPRINGS",
+      "OWNERSHIP_TYPE": "Unavailable",
+      "ESRD_NETWORK": "15",
+      "NPI": "1558361949",
+      "CHAIN": "INDEPENDENT",
+      "MODALITY": "Hemodialysis",
+      "ALTERNATE_CCNS": "530011,532304",
+      "MEASURE": "F: SEDR - Years at Risk, 2022",
+      "MEASURE_SCORE": 27.567419576,
+      "YEAR_COL": 2022,
+      "MEASURE_ID": "edyy2_f"
+    },
+    {
+      "STATE": "PA",
+      "CCN": "392821",
+      "PROVIDER_NAME": "EAGLE VALLEY DIALYSIS",
+      "CITY": "EAST STROUDSBURG",
+      "OWNERSHIP_TYPE": "For Profit",
+      "ESRD_NETWORK": "04",
+      "NPI": "1538582051",
+      "CHAIN": "DAVITA",
+      "MODALITY": "Hemodialysis",
+      "ALTERNATE_CCNS": "392821",
+      "MEASURE": "F: End of Year Status - % of patient deaths attributed to this facility, 2024",
+      "MEASURE_SCORE": 14.084507042,
+      "YEAR_COL": 2024,
+      "MEASURE_ID": "pdhdy4_f"
+    },
+    {
+      "STATE": "TX",
+      "CCN": "452699",
+      "PROVIDER_NAME": "REDBIRD DIALYSIS CENTER",
+      "CITY": "DALLAS",
+      "OWNERSHIP_TYPE": "For Profit",
+      "ESRD_NETWORK": "14",
+      "NPI": "1710099601",
+      "CHAIN": "FRESENIUS MEDICAL CARE",
+      "MODALITY": "Hemodialysis",
+      "ALTERNATE_CCNS": "452699",
+      "MEASURE": "F: Prevalent Comorbidities - % with Alcohol Dependence, 2022",
+      "MEASURE_SCORE": 1.3513513514,
+      "YEAR_COL": 2022,
+      "MEASURE_ID": "clmalcomy2_f"
+    }
+  ],
+  "sample_error": null
+}

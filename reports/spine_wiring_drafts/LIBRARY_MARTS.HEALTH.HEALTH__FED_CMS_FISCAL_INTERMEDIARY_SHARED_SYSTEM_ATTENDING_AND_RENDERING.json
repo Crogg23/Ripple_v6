@@ -1,0 +1,59 @@
+{
+  "fqtn": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NPI",
+    "LAST_NAME",
+    "FIRST_NAME"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "LAST_NAME",
+      "FIRST_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPI",
+      "column": "NPI",
+      "total_rows": 2047828,
+      "nonnull_after_norm": 2047828,
+      "distinct_after_norm": 2047826,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "NPI": "1639436322",
+      "LAST_NAME": "ZISKIND",
+      "FIRST_NAME": "HELEN"
+    },
+    {
+      "NPI": "1609819069",
+      "LAST_NAME": "HUTSON",
+      "FIRST_NAME": "THOMAS"
+    },
+    {
+      "NPI": "1851374706",
+      "LAST_NAME": "ADAMS",
+      "FIRST_NAME": "ROBERT"
+    },
+    {
+      "NPI": "1508187873",
+      "LAST_NAME": "GAMBINO",
+      "FIRST_NAME": "RYAN"
+    },
+    {
+      "NPI": "1861558561",
+      "LAST_NAME": "LUCCI",
+      "FIRST_NAME": "EDWARD"
+    }
+  ],
+  "sample_error": null
+}

@@ -1,0 +1,106 @@
+{
+  "fqtn": "LIBRARY_MARTS.FINANCE.FINANCE__FED_EPA_ICIS_FEC_CASE_FACILITIES",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "ACTIVITY_ID",
+    "CASE_NUMBER",
+    "REGISTRY_ID",
+    "FACILITY_NAME",
+    "LOCATION_ADDRESS",
+    "CITY",
+    "STATE_CODE",
+    "ZIP",
+    "PRIMARY_SIC_CODE",
+    "PRIMARY_NAICS_CODE"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "FACILITY_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "STATE_CODE"
+      ],
+      "zip": [
+        "ZIP"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "FRS_ID",
+      "column": "REGISTRY_ID",
+      "total_rows": 204019,
+      "nonnull_after_norm": 203232,
+      "distinct_after_norm": 113854,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "ACTIVITY_ID": "23320",
+      "CASE_NUMBER": "04-1999-0455",
+      "REGISTRY_ID": "110000458950",
+      "FACILITY_NAME": "PALM HARBOR HOMES",
+      "LOCATION_ADDRESS": "401 S. BURLESON BLVD.",
+      "CITY": "BURLESON",
+      "STATE_CODE": "TX",
+      "ZIP": "76028",
+      "PRIMARY_SIC_CODE": null,
+      "PRIMARY_NAICS_CODE": null
+    },
+    {
+      "ACTIVITY_ID": "3239",
+      "CASE_NUMBER": "02-1988-0710",
+      "REGISTRY_ID": "110009327022",
+      "FACILITY_NAME": "WAUCONDA SAND & GRAVEL",
+      "LOCATION_ADDRESS": "BONNER & GARLAND RD",
+      "CITY": "WAUCONDA",
+      "STATE_CODE": "IL",
+      "ZIP": "60084",
+      "PRIMARY_SIC_CODE": "5211",
+      "PRIMARY_NAICS_CODE": null
+    },
+    {
+      "ACTIVITY_ID": "2600021073",
+      "CASE_NUMBER": "08-2011-0073",
+      "REGISTRY_ID": "110000428500",
+      "FACILITY_NAME": "MONTANA REFINING COMPANY",
+      "LOCATION_ADDRESS": "1900 10TH STREET NORTHEAST",
+      "CITY": "GREAT FALLS",
+      "STATE_CODE": "MT",
+      "ZIP": "59404",
+      "PRIMARY_SIC_CODE": "1629",
+      "PRIMARY_NAICS_CODE": "325199"
+    },
+    {
+      "ACTIVITY_ID": "3400157699",
+      "CASE_NUMBER": "06-2013-3349",
+      "REGISTRY_ID": "110000597337",
+      "FACILITY_NAME": "EQUILON ENTERPRISES LLC - SHELL OIL PRODUCTS US - CONVENT REFINERY",
+      "LOCATION_ADDRESS": "10700 HWY 44",
+      "CITY": "CONVENT",
+      "STATE_CODE": "LA",
+      "ZIP": "70723    ",
+      "PRIMARY_SIC_CODE": "5171",
+      "PRIMARY_NAICS_CODE": "324110"
+    },
+    {
+      "ACTIVITY_ID": "8495",
+      "CASE_NUMBER": "02-2001-7505",
+      "REGISTRY_ID": "110006082531",
+      "FACILITY_NAME": "GETTY PETROLEUM CORP",
+      "LOCATION_ADDRESS": "237 RTE 35",
+      "CITY": "MIDDLETOWN",
+      "STATE_CODE": "NJ",
+      "ZIP": "07748",
+      "PRIMARY_SIC_CODE": "5541",
+      "PRIMARY_NAICS_CODE": null
+    }
+  ],
+  "sample_error": null
+}

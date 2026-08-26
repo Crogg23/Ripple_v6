@@ -1,0 +1,86 @@
+{
+  "fqtn": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_NPDES_NPDES_QNCR_HISTORY",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NPDES_ID",
+    "YEARQTR",
+    "HLRNC",
+    "NUME90_Q",
+    "NUMCVDT",
+    "NUMSVCD",
+    "NUMPSCH",
+    "NUMD8090_Q"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPDES_ID",
+      "column": "NPDES_ID",
+      "total_rows": 7951656,
+      "nonnull_after_norm": 7951656,
+      "distinct_after_norm": 690126,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "NPDES_ID": "IA0024597",
+      "YEARQTR": "20134",
+      "HLRNC": "S",
+      "NUME90_Q": "0",
+      "NUMCVDT": "0",
+      "NUMSVCD": "0",
+      "NUMPSCH": "0",
+      "NUMD8090_Q": "2"
+    },
+    {
+      "NPDES_ID": "WVG415375",
+      "YEARQTR": "20214",
+      "HLRNC": "D",
+      "NUME90_Q": "0",
+      "NUMCVDT": "0",
+      "NUMSVCD": "0",
+      "NUMPSCH": "0",
+      "NUMD8090_Q": "0"
+    },
+    {
+      "NPDES_ID": "GAG640001",
+      "YEARQTR": "20183",
+      "HLRNC": " ",
+      "NUME90_Q": "0",
+      "NUMCVDT": "0",
+      "NUMSVCD": "0",
+      "NUMPSCH": "0",
+      "NUMD8090_Q": "0"
+    },
+    {
+      "NPDES_ID": "MOR102538",
+      "YEARQTR": "20124",
+      "HLRNC": "U",
+      "NUME90_Q": "0",
+      "NUMCVDT": "0",
+      "NUMSVCD": "0",
+      "NUMPSCH": "0",
+      "NUMD8090_Q": "0"
+    },
+    {
+      "NPDES_ID": "MOR109EC5",
+      "YEARQTR": "20134",
+      "HLRNC": "U",
+      "NUME90_Q": "0",
+      "NUMCVDT": "0",
+      "NUMSVCD": "0",
+      "NUMPSCH": "0",
+      "NUMD8090_Q": "0"
+    }
+  ],
+  "sample_error": null
+}

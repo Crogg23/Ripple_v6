@@ -1,0 +1,80 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.FED_EPA_NPDES_NPDES_NAICS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NPDES_ID",
+    "NAICS_CODE",
+    "NAICS_DESC",
+    "PRIMARY_INDICATOR_FLAG",
+    "_INGESTED_AT",
+    "_SOURCE_RUN_ID",
+    "_SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPDES_ID",
+      "column": "NPDES_ID",
+      "total_rows": 326473,
+      "nonnull_after_norm": 326473,
+      "distinct_after_norm": 306831,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "NPDES_ID": "PAC020528",
+      "NAICS_CODE": "236116",
+      "NAICS_DESC": "New Multifamily Housing Construction [except For-Sale Builders]",
+      "PRIMARY_INDICATOR_FLAG": "Y",
+      "_INGESTED_AT": 1786043926558927,
+      "_SOURCE_RUN_ID": "68c090ac-130f-45eb-8520-b1d2b4443cad",
+      "_SRC_SHA256": "c8aefda0acaf4e4d517810791bb00d97da02ff7872e91a4d7299a54fd368b6ff"
+    },
+    {
+      "NPDES_ID": "PAC090674",
+      "NAICS_CODE": "236115",
+      "NAICS_DESC": "New Single-Family Housing Construction [except For-Sale Builders]",
+      "PRIMARY_INDICATOR_FLAG": "Y",
+      "_INGESTED_AT": 1786043926558927,
+      "_SOURCE_RUN_ID": "68c090ac-130f-45eb-8520-b1d2b4443cad",
+      "_SRC_SHA256": "c8aefda0acaf4e4d517810791bb00d97da02ff7872e91a4d7299a54fd368b6ff"
+    },
+    {
+      "NPDES_ID": "NCC251585",
+      "NAICS_CODE": "236115",
+      "NAICS_DESC": "New Single-Family Housing Construction [except For-Sale Builders]",
+      "PRIMARY_INDICATOR_FLAG": "Y",
+      "_INGESTED_AT": 1786043926558927,
+      "_SOURCE_RUN_ID": "68c090ac-130f-45eb-8520-b1d2b4443cad",
+      "_SRC_SHA256": "c8aefda0acaf4e4d517810791bb00d97da02ff7872e91a4d7299a54fd368b6ff"
+    },
+    {
+      "NPDES_ID": "GAR18B0C2",
+      "NAICS_CODE": "236210",
+      "NAICS_DESC": "Industrial Building Construction",
+      "PRIMARY_INDICATOR_FLAG": "Y",
+      "_INGESTED_AT": 1786043926558927,
+      "_SOURCE_RUN_ID": "68c090ac-130f-45eb-8520-b1d2b4443cad",
+      "_SRC_SHA256": "c8aefda0acaf4e4d517810791bb00d97da02ff7872e91a4d7299a54fd368b6ff"
+    },
+    {
+      "NPDES_ID": "GAR350551",
+      "NAICS_CODE": "236115",
+      "NAICS_DESC": "New Single-Family Housing Construction [except For-Sale Builders]",
+      "PRIMARY_INDICATOR_FLAG": "Y",
+      "_INGESTED_AT": 1786043926558927,
+      "_SOURCE_RUN_ID": "68c090ac-130f-45eb-8520-b1d2b4443cad",
+      "_SRC_SHA256": "c8aefda0acaf4e4d517810791bb00d97da02ff7872e91a4d7299a54fd368b6ff"
+    }
+  ],
+  "sample_error": null
+}

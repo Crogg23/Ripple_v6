@@ -1,0 +1,113 @@
+{
+  "fqtn": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_PN_VIOLATION_ASSOC",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "SUBMISSIONYEARQUARTER",
+    "PWSID",
+    "PN_VIOLATION_ID",
+    "RELATED_VIOLATION_ID",
+    "COMPL_PER_BEGIN_DATE",
+    "COMPL_PER_END_DATE",
+    "NON_COMPL_PER_BEGIN_DATE",
+    "NON_COMPL_PER_END_DATE",
+    "VIOLATION_CODE",
+    "CONTAMINANT_CODE",
+    "FIRST_REPORTED_DATE",
+    "LAST_REPORTED_DATE"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "FIRST_REPORTED_DATE",
+      "LAST_REPORTED_DATE"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "PWSID",
+      "column": "PWSID",
+      "total_rows": 387627,
+      "nonnull_after_norm": 387627,
+      "distinct_after_norm": 42034,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "SUBMISSIONYEARQUARTER": "2026Q2",
+      "PWSID": "MS0120011",
+      "PN_VIOLATION_ID": "1122656",
+      "RELATED_VIOLATION_ID": "1122554",
+      "COMPL_PER_BEGIN_DATE": "2009-07-01",
+      "COMPL_PER_END_DATE": "2009-09-30",
+      "NON_COMPL_PER_BEGIN_DATE": "2009-07-01",
+      "NON_COMPL_PER_END_DATE": "2009-09-30",
+      "VIOLATION_CODE": "03",
+      "CONTAMINANT_CODE": "4020",
+      "FIRST_REPORTED_DATE": "2012-06-15",
+      "LAST_REPORTED_DATE": "2022-01-03"
+    },
+    {
+      "SUBMISSIONYEARQUARTER": "2026Q2",
+      "PWSID": "LA1005152",
+      "PN_VIOLATION_ID": "2003590",
+      "RELATED_VIOLATION_ID": "2003576",
+      "COMPL_PER_BEGIN_DATE": "2013-10-01",
+      "COMPL_PER_END_DATE": "2013-12-31",
+      "NON_COMPL_PER_BEGIN_DATE": "2013-10-01",
+      "NON_COMPL_PER_END_DATE": "2013-12-31",
+      "VIOLATION_CODE": "27",
+      "CONTAMINANT_CODE": "2456",
+      "FIRST_REPORTED_DATE": "2014-08-15",
+      "LAST_REPORTED_DATE": "2020-05-13"
+    },
+    {
+      "SUBMISSIONYEARQUARTER": "2026Q2",
+      "PWSID": "NM3591330",
+      "PN_VIOLATION_ID": "62439",
+      "RELATED_VIOLATION_ID": "62425",
+      "COMPL_PER_BEGIN_DATE": "2010-02-01",
+      "COMPL_PER_END_DATE": "2010-02-28",
+      "NON_COMPL_PER_BEGIN_DATE": "2010-02-01",
+      "NON_COMPL_PER_END_DATE": "2010-02-28",
+      "VIOLATION_CODE": "23",
+      "CONTAMINANT_CODE": "3100",
+      "FIRST_REPORTED_DATE": "2011-11-30",
+      "LAST_REPORTED_DATE": "2023-08-22"
+    },
+    {
+      "SUBMISSIONYEARQUARTER": "2026Q2",
+      "PWSID": "OH3831012",
+      "PN_VIOLATION_ID": "8094432",
+      "RELATED_VIOLATION_ID": "8094431",
+      "COMPL_PER_BEGIN_DATE": "2020-05-01",
+      "COMPL_PER_END_DATE": "2020-05-31",
+      "NON_COMPL_PER_BEGIN_DATE": "2020-05-01",
+      "NON_COMPL_PER_END_DATE": "2020-05-31",
+      "VIOLATION_CODE": "3A",
+      "CONTAMINANT_CODE": "8000",
+      "FIRST_REPORTED_DATE": "2020-11-24",
+      "LAST_REPORTED_DATE": "2023-08-22"
+    },
+    {
+      "SUBMISSIONYEARQUARTER": "2026Q2",
+      "PWSID": "TX2400006",
+      "PN_VIOLATION_ID": "60",
+      "RELATED_VIOLATION_ID": "55",
+      "COMPL_PER_BEGIN_DATE": "2023-04-01",
+      "COMPL_PER_END_DATE": "2023-06-30",
+      "NON_COMPL_PER_BEGIN_DATE": "2023-04-01",
+      "NON_COMPL_PER_END_DATE": "2023-06-30",
+      "VIOLATION_CODE": "27",
+      "CONTAMINANT_CODE": "0999",
+      "FIRST_REPORTED_DATE": "2026-06-26",
+      "LAST_REPORTED_DATE": null
+    }
+  ],
+  "sample_error": null
+}

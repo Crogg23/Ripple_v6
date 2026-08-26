@@ -1,0 +1,140 @@
+{
+  "fqtn": "LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_BULK",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "FEC_CMTE_ID",
+    "CMTE_NM",
+    "TRES_NM",
+    "CMTE_ST1",
+    "CMTE_ST2",
+    "CMTE_CITY",
+    "CMTE_ST",
+    "CMTE_ZIP",
+    "CMTE_DSGN",
+    "CMTE_TP",
+    "CMTE_PTY_AFFILIATION",
+    "CMTE_FILING_FREQ",
+    "ORG_TP",
+    "CONNECTED_ORG_NM",
+    "FEC_CAND_ID"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [
+        "CMTE_CITY"
+      ],
+      "state": [],
+      "zip": [
+        "CMTE_ZIP"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "FEC_CAND_ID",
+      "column": "FEC_CAND_ID",
+      "total_rows": 20938,
+      "nonnull_after_norm": 8221,
+      "distinct_after_norm": 7746,
+      "trap_verdict": "REAL"
+    },
+    {
+      "key_label": "FEC_CMTE_ID",
+      "column": "FEC_CMTE_ID",
+      "total_rows": 20938,
+      "nonnull_after_norm": 20938,
+      "distinct_after_norm": 20938,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "FEC_CMTE_ID": "C90019878",
+      "CMTE_NM": "WAY TO WIN ACTION FUND",
+      "TRES_NM": "",
+      "CMTE_ST1": "340 S LEMON AVE",
+      "CMTE_ST2": "SUITE 1940",
+      "CMTE_CITY": "WALNUT",
+      "CMTE_ST": "CA",
+      "CMTE_ZIP": "91780",
+      "CMTE_DSGN": "U",
+      "CMTE_TP": "I",
+      "CMTE_PTY_AFFILIATION": "",
+      "CMTE_FILING_FREQ": "Q",
+      "ORG_TP": "",
+      "CONNECTED_ORG_NM": "",
+      "FEC_CAND_ID": ""
+    },
+    {
+      "FEC_CMTE_ID": "C00558809",
+      "CMTE_NM": "O. C. TANNER COMPANY POLITICAL ACTION COMMITTEE",
+      "TRES_NM": "WASHINGTON, BEATRYX",
+      "CMTE_ST1": "1930 SOUTH STATE STREET",
+      "CMTE_ST2": "",
+      "CMTE_CITY": "SALT LAKE CITY",
+      "CMTE_ST": "UT",
+      "CMTE_ZIP": "84115",
+      "CMTE_DSGN": "U",
+      "CMTE_TP": "Q",
+      "CMTE_PTY_AFFILIATION": "",
+      "CMTE_FILING_FREQ": "Q",
+      "ORG_TP": "C",
+      "CONNECTED_ORG_NM": "O.C. TANNER COMPANY",
+      "FEC_CAND_ID": ""
+    },
+    {
+      "FEC_CMTE_ID": "C00386755",
+      "CMTE_NM": "PROJECTHEALTHSOLUTIONS PAC - PHSPAC",
+      "TRES_NM": "KILGORE, PAUL",
+      "CMTE_ST1": "P.O. BOX 425",
+      "CMTE_ST2": "",
+      "CMTE_CITY": "ROSWELL",
+      "CMTE_ST": "GA",
+      "CMTE_ZIP": "30077",
+      "CMTE_DSGN": "U",
+      "CMTE_TP": "N",
+      "CMTE_PTY_AFFILIATION": "REP",
+      "CMTE_FILING_FREQ": "M",
+      "ORG_TP": "",
+      "CONNECTED_ORG_NM": "",
+      "FEC_CAND_ID": "H4GA06087"
+    },
+    {
+      "FEC_CMTE_ID": "C00824706",
+      "CMTE_NM": "RYAN SEARCY FOR US SENATE",
+      "TRES_NM": "SEARCY, RYAN",
+      "CMTE_ST1": "PO BOX 2548",
+      "CMTE_ST2": "",
+      "CMTE_CITY": "LONGVIEW",
+      "CMTE_ST": "WA",
+      "CMTE_ZIP": "98632",
+      "CMTE_DSGN": "P",
+      "CMTE_TP": "S",
+      "CMTE_PTY_AFFILIATION": "REP",
+      "CMTE_FILING_FREQ": "T",
+      "ORG_TP": "",
+      "CONNECTED_ORG_NM": "",
+      "FEC_CAND_ID": "S4WA00615"
+    },
+    {
+      "FEC_CMTE_ID": "C00849422",
+      "CMTE_NM": "ERIN PARE FOR CONGRESS",
+      "TRES_NM": "MCMICHAEL, COLLIN",
+      "CMTE_ST1": "PO BOX 97275",
+      "CMTE_ST2": "",
+      "CMTE_CITY": "RALEIGH",
+      "CMTE_ST": "NC",
+      "CMTE_ZIP": "27624",
+      "CMTE_DSGN": "P",
+      "CMTE_TP": "H",
+      "CMTE_PTY_AFFILIATION": "REP",
+      "CMTE_FILING_FREQ": "T",
+      "ORG_TP": "",
+      "CONNECTED_ORG_NM": "",
+      "FEC_CAND_ID": "H4NC13082"
+    }
+  ],
+  "sample_error": null
+}

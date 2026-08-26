@@ -1,0 +1,125 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_SOC_TEXAS_OPEN_DATA_6F798A64FA",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NAIC_ID",
+    "COMPANY",
+    "ACTIVE_DATE",
+    "APPOINTMENT_TYPE",
+    "NPN",
+    "EIN",
+    "AGENCY_NAME",
+    "CITY",
+    "STATE",
+    "ZIP",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "COMPANY",
+      "AGENCY_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "STATE"
+      ],
+      "zip": [
+        "ZIP"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "EIN",
+      "column": "EIN",
+      "total_rows": 2000,
+      "nonnull_after_norm": 2000,
+      "distinct_after_norm": 133,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "NAIC_ID": "11512",
+      "COMPANY": "Employers Compensation Insurance Company",
+      "ACTIVE_DATE": "2022-03-28T00:00:00.000",
+      "APPOINTMENT_TYPE": "Property and Casualty",
+      "NPN": "2005519",
+      "EIN": "231898112",
+      "AGENCY_NAME": "PENNOCK INSURANCE INC",
+      "CITY": "CHADDS FORD",
+      "STATE": "PA",
+      "ZIP": "19317",
+      "INGESTED_AT": "2026-06-24 04:44:00.821840",
+      "SOURCE_RUN_ID": "34b25f64-39a7-445a-bfc6-98e6dfa453af",
+      "SRC_SHA256": "5e6af0a5b64c49d31bd15662455d02f9f5496fe3086465873183c3e8941f602d"
+    },
+    {
+      "NAIC_ID": "60054",
+      "COMPANY": "Aetna Life Insurance Company",
+      "ACTIVE_DATE": "2013-02-20T00:00:00.000",
+      "APPOINTMENT_TYPE": "Life, Accident, Health and HMO",
+      "NPN": "16881043",
+      "EIN": "461334301",
+      "AGENCY_NAME": "SPELLINGS INSURANCE AGENCY LLC",
+      "CITY": "ROUND ROCK",
+      "STATE": "TX",
+      "ZIP": "78664",
+      "INGESTED_AT": "2026-06-24 04:44:00.821840",
+      "SOURCE_RUN_ID": "34b25f64-39a7-445a-bfc6-98e6dfa453af",
+      "SRC_SHA256": "5e6af0a5b64c49d31bd15662455d02f9f5496fe3086465873183c3e8941f602d"
+    },
+    {
+      "NAIC_ID": "10969",
+      "COMPANY": "United Property & Casualty Insurance Company",
+      "ACTIVE_DATE": "2018-04-09T00:00:00.000",
+      "APPOINTMENT_TYPE": "Property and Casualty",
+      "NPN": "18217808",
+      "EIN": "811808537",
+      "AGENCY_NAME": "CRCU INSURANCE SERVICES LLC",
+      "CITY": "EAST WINDSOR",
+      "STATE": "CT",
+      "ZIP": "060889582",
+      "INGESTED_AT": "2026-06-24 04:44:00.821840",
+      "SOURCE_RUN_ID": "34b25f64-39a7-445a-bfc6-98e6dfa453af",
+      "SRC_SHA256": "5e6af0a5b64c49d31bd15662455d02f9f5496fe3086465873183c3e8941f602d"
+    },
+    {
+      "NAIC_ID": "95490",
+      "COMPANY": "Aetna Health Inc.",
+      "ACTIVE_DATE": "2022-01-31T00:00:00.000",
+      "APPOINTMENT_TYPE": "Life, Accident, Health and HMO",
+      "NPN": "13804714",
+      "EIN": "264384637",
+      "AGENCY_NAME": "NEW HEALTH PLANS, LLC",
+      "CITY": "MIAMI SPRINGS",
+      "STATE": "FL",
+      "ZIP": "331664957",
+      "INGESTED_AT": "2026-06-24 04:44:00.821840",
+      "SOURCE_RUN_ID": "34b25f64-39a7-445a-bfc6-98e6dfa453af",
+      "SRC_SHA256": "5e6af0a5b64c49d31bd15662455d02f9f5496fe3086465873183c3e8941f602d"
+    },
+    {
+      "NAIC_ID": "10885",
+      "COMPANY": "Key Risk Insurance Company",
+      "ACTIVE_DATE": "2019-10-07T00:00:00.000",
+      "APPOINTMENT_TYPE": "Property and Casualty",
+      "NPN": "77110",
+      "EIN": "630834817",
+      "AGENCY_NAME": "CRC INSURANCE SERVICES, LLC",
+      "CITY": "BIRMINGHAM",
+      "STATE": "AL",
+      "ZIP": "352096895",
+      "INGESTED_AT": "2026-06-24 04:44:00.821840",
+      "SOURCE_RUN_ID": "34b25f64-39a7-445a-bfc6-98e6dfa453af",
+      "SRC_SHA256": "5e6af0a5b64c49d31bd15662455d02f9f5496fe3086465873183c3e8941f602d"
+    }
+  ],
+  "sample_error": null
+}

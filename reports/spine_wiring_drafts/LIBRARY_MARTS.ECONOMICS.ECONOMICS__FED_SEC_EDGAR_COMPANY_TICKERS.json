@@ -1,0 +1,76 @@
+{
+  "fqtn": "LIBRARY_MARTS.ECONOMICS.ECONOMICS__FED_SEC_EDGAR_COMPANY_TICKERS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "CIK",
+    "TICKER",
+    "INDEX_KEY",
+    "COMPANY_TITLE",
+    "_INGESTED_AT",
+    "_SOURCE_RUN_ID"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "COMPANY_TITLE"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CIK",
+      "column": "CIK",
+      "total_rows": 10414,
+      "nonnull_after_norm": 10414,
+      "distinct_after_norm": 8018,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "CIK": 1960355,
+      "TICKER": "EXYN",
+      "INDEX_KEY": 5280,
+      "COMPANY_TITLE": "Exyn Technologies, Inc.",
+      "_INGESTED_AT": 1781648018212984,
+      "_SOURCE_RUN_ID": "76fdd3c2-5392-4e22-a3cb-bd68f5502aec"
+    },
+    {
+      "CIK": 912593,
+      "TICKER": "SUI",
+      "INDEX_KEY": 727,
+      "COMPANY_TITLE": "SUN COMMUNITIES INC",
+      "_INGESTED_AT": 1781648018212984,
+      "_SOURCE_RUN_ID": "76fdd3c2-5392-4e22-a3cb-bd68f5502aec"
+    },
+    {
+      "CIK": 1569994,
+      "TICKER": "WSBF",
+      "INDEX_KEY": 3705,
+      "COMPANY_TITLE": "Waterstone Financial, Inc.",
+      "_INGESTED_AT": 1781648018212984,
+      "_SOURCE_RUN_ID": "76fdd3c2-5392-4e22-a3cb-bd68f5502aec"
+    },
+    {
+      "CIK": 1973239,
+      "TICKER": "ARM",
+      "INDEX_KEY": 29,
+      "COMPANY_TITLE": "ARM HOLDINGS PLC /UK",
+      "_INGESTED_AT": 1781648018212984,
+      "_SOURCE_RUN_ID": "76fdd3c2-5392-4e22-a3cb-bd68f5502aec"
+    },
+    {
+      "CIK": 1489079,
+      "TICKER": "PADEF",
+      "INDEX_KEY": 7724,
+      "COMPANY_TITLE": "Adaro Energy PT/ADR/",
+      "_INGESTED_AT": 1781648018212984,
+      "_SOURCE_RUN_ID": "76fdd3c2-5392-4e22-a3cb-bd68f5502aec"
+    }
+  ],
+  "sample_error": null
+}

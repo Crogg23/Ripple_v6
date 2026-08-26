@@ -1,0 +1,152 @@
+{
+  "fqtn": "LIBRARY_MARTS.FINDINGS.HOSPITAL_CLOSURE_RISK",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "CCN",
+    "HOSPITAL_NAME",
+    "STATE",
+    "ZIP5",
+    "COUNTY_FIPS",
+    "IS_RURAL",
+    "TYPE_OF_CONTROL",
+    "FY_END",
+    "OPERATING_INCOME",
+    "NET_PATIENT_REVENUE",
+    "OPERATING_MARGIN_PCT",
+    "MEDICAID_REVENUE",
+    "MEDICAID_DEPENDENCE_PCT",
+    "UNCOMPENSATED_CARE",
+    "IN_DESIGNATED_SHORTAGE_COUNTY",
+    "NEGATIVE_OPERATING_MARGIN",
+    "MEDICAID_DEPENDENT",
+    "RISK_TIER"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "HOSPITAL_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [
+        "STATE"
+      ],
+      "zip": [
+        "ZIP5"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CCN",
+      "column": "CCN",
+      "total_rows": 4435,
+      "nonnull_after_norm": 4435,
+      "distinct_after_norm": 4435,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "CCN": "140062",
+      "HOSPITAL_NAME": "PALOS COMMUNITY HOSPITAL",
+      "STATE": "IL",
+      "ZIP5": "60462",
+      "COUNTY_FIPS": "17031",
+      "IS_RURAL": false,
+      "TYPE_OF_CONTROL": "2",
+      "FY_END": "08/31/2024",
+      "OPERATING_INCOME": -96715018.0,
+      "NET_PATIENT_REVENUE": 433503104.0,
+      "OPERATING_MARGIN_PCT": -22.3,
+      "MEDICAID_REVENUE": 41076098.0,
+      "MEDICAID_DEPENDENCE_PCT": 9.5,
+      "UNCOMPENSATED_CARE": 19437650.0,
+      "IN_DESIGNATED_SHORTAGE_COUNTY": true,
+      "NEGATIVE_OPERATING_MARGIN": true,
+      "MEDICAID_DEPENDENT": false,
+      "RISK_TIER": "elevated"
+    },
+    {
+      "CCN": "100330",
+      "HOSPITAL_NAME": "MEDICAL CENTER OF DELTONA",
+      "STATE": "FL",
+      "ZIP5": "32725",
+      "COUNTY_FIPS": "12127",
+      "IS_RURAL": false,
+      "TYPE_OF_CONTROL": "11",
+      "FY_END": "09/30/2023",
+      "OPERATING_INCOME": -17205086.0,
+      "NET_PATIENT_REVENUE": 46413654.0,
+      "OPERATING_MARGIN_PCT": -37.1,
+      "MEDICAID_REVENUE": 3138982.0,
+      "MEDICAID_DEPENDENCE_PCT": 6.8,
+      "UNCOMPENSATED_CARE": 10255825.0,
+      "IN_DESIGNATED_SHORTAGE_COUNTY": true,
+      "NEGATIVE_OPERATING_MARGIN": true,
+      "MEDICAID_DEPENDENT": false,
+      "RISK_TIER": "elevated"
+    },
+    {
+      "CCN": "241353",
+      "HOSPITAL_NAME": "CUYUNA REGIONAL MEDICAL CENTER",
+      "STATE": "MN",
+      "ZIP5": "56441",
+      "COUNTY_FIPS": "27035",
+      "IS_RURAL": true,
+      "TYPE_OF_CONTROL": "2",
+      "FY_END": "03/31/2024",
+      "OPERATING_INCOME": -15937973.0,
+      "NET_PATIENT_REVENUE": 183771726.0,
+      "OPERATING_MARGIN_PCT": -8.7,
+      "MEDICAID_REVENUE": 1752106.0,
+      "MEDICAID_DEPENDENCE_PCT": 1.0,
+      "UNCOMPENSATED_CARE": 2881418.0,
+      "IN_DESIGNATED_SHORTAGE_COUNTY": true,
+      "NEGATIVE_OPERATING_MARGIN": true,
+      "MEDICAID_DEPENDENT": false,
+      "RISK_TIER": "elevated"
+    },
+    {
+      "CCN": "174024",
+      "HOSPITAL_NAME": "ST ANTHONYS SENIOR CARE HOSPITAL LLC",
+      "STATE": "KS",
+      "ZIP5": "66062",
+      "COUNTY_FIPS": "20091",
+      "IS_RURAL": false,
+      "TYPE_OF_CONTROL": "4",
+      "FY_END": "10/30/2023",
+      "OPERATING_INCOME": NaN,
+      "NET_PATIENT_REVENUE": NaN,
+      "OPERATING_MARGIN_PCT": NaN,
+      "MEDICAID_REVENUE": NaN,
+      "MEDICAID_DEPENDENCE_PCT": NaN,
+      "UNCOMPENSATED_CARE": NaN,
+      "IN_DESIGNATED_SHORTAGE_COUNTY": true,
+      "NEGATIVE_OPERATING_MARGIN": false,
+      "MEDICAID_DEPENDENT": true,
+      "RISK_TIER": "elevated"
+    },
+    {
+      "CCN": "314027",
+      "HOSPITAL_NAME": "CORNERSTONE BEHAVIORAL HEALTH HOSPIT",
+      "STATE": "NJ",
+      "ZIP5": "07922",
+      "COUNTY_FIPS": "34039",
+      "IS_RURAL": false,
+      "TYPE_OF_CONTROL": "9",
+      "FY_END": "12/31/2023",
+      "OPERATING_INCOME": -3176217.0,
+      "NET_PATIENT_REVENUE": 16893601.0,
+      "OPERATING_MARGIN_PCT": -18.8,
+      "MEDICAID_REVENUE": NaN,
+      "MEDICAID_DEPENDENCE_PCT": NaN,
+      "UNCOMPENSATED_CARE": NaN,
+      "IN_DESIGNATED_SHORTAGE_COUNTY": true,
+      "NEGATIVE_OPERATING_MARGIN": true,
+      "MEDICAID_DEPENDENT": true,
+      "RISK_TIER": "critical"
+    }
+  ],
+  "sample_error": null
+}

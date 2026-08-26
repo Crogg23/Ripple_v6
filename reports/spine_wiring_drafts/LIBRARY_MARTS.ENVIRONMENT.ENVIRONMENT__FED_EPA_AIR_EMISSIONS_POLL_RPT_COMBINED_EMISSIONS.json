@@ -1,0 +1,94 @@
+{
+  "fqtn": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_AIR_EMISSIONS_POLL_RPT_COMBINED_EMISSIONS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "REPORTING_YEAR",
+    "REGISTRY_ID",
+    "PGM_SYS_ACRNM",
+    "PGM_SYS_ID",
+    "POLLUTANT_NAME",
+    "ANNUAL_EMISSION",
+    "UNIT_OF_MEASURE",
+    "NEI_TYPE",
+    "NEI_HAP_VOC_FLAG"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "POLLUTANT_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "FRS_ID",
+      "column": "REGISTRY_ID",
+      "total_rows": 10411826,
+      "nonnull_after_norm": 10411826,
+      "distinct_after_norm": 162513,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "REPORTING_YEAR": 2011.0,
+      "REGISTRY_ID": "110000859991",
+      "PGM_SYS_ACRNM": "EIS",
+      "PGM_SYS_ID": "993211",
+      "POLLUTANT_NAME": "Acetaldehyde",
+      "ANNUAL_EMISSION": ".495",
+      "UNIT_OF_MEASURE": "Pounds",
+      "NEI_TYPE": "HAP",
+      "NEI_HAP_VOC_FLAG": "VOC"
+    },
+    {
+      "REPORTING_YEAR": 2011.0,
+      "REGISTRY_ID": "110041469096",
+      "PGM_SYS_ACRNM": "EIS",
+      "PGM_SYS_ID": "12166111",
+      "POLLUTANT_NAME": "Hexane",
+      "ANNUAL_EMISSION": ".203092",
+      "UNIT_OF_MEASURE": "Pounds",
+      "NEI_TYPE": "HAP",
+      "NEI_HAP_VOC_FLAG": "VOC"
+    },
+    {
+      "REPORTING_YEAR": 2014.0,
+      "REGISTRY_ID": "110071797631",
+      "PGM_SYS_ACRNM": "EIS",
+      "PGM_SYS_ID": "662611",
+      "POLLUTANT_NAME": "Ammonia",
+      "ANNUAL_EMISSION": "8572.8",
+      "UNIT_OF_MEASURE": "Pounds",
+      "NEI_TYPE": "CAP",
+      "NEI_HAP_VOC_FLAG": null
+    },
+    {
+      "REPORTING_YEAR": 2008.0,
+      "REGISTRY_ID": "110041565017",
+      "PGM_SYS_ACRNM": "EIS",
+      "PGM_SYS_ID": "12479811",
+      "POLLUTANT_NAME": "Benzo[ghi]perylene",
+      "ANNUAL_EMISSION": ".000815094",
+      "UNIT_OF_MEASURE": "Pounds",
+      "NEI_TYPE": "HAP",
+      "NEI_HAP_VOC_FLAG": "VOC"
+    },
+    {
+      "REPORTING_YEAR": 2017.0,
+      "REGISTRY_ID": "110071875837",
+      "PGM_SYS_ACRNM": "EIS",
+      "PGM_SYS_ID": "11485911",
+      "POLLUTANT_NAME": "Methanol",
+      "ANNUAL_EMISSION": ".8756044",
+      "UNIT_OF_MEASURE": "Pounds",
+      "NEI_TYPE": "HAP",
+      "NEI_HAP_VOC_FLAG": "VOC"
+    }
+  ],
+  "sample_error": null
+}

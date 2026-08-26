@@ -1,0 +1,112 @@
+{
+  "fqtn": "LIBRARY_MARTS.FINANCE.FINANCE__FED_SEC_INSIDER_SUBMISSION",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "ACCESSION_NUMBER",
+    "FILING_DATE",
+    "PERIOD_OF_REPORT",
+    "DATE_OF_ORIGINAL_SUBMISSION",
+    "DOCUMENT_TYPE",
+    "ISSUER_CIK",
+    "ISSUER_NAME",
+    "ISSUER_TICKER",
+    "NO_SECURITIES_OWNED",
+    "NOT_SUBJECT_TO_SECTION16",
+    "REMARKS",
+    "_LOADED_AT"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "ISSUER_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CIK",
+      "column": "ISSUER_CIK",
+      "total_rows": 1772088,
+      "nonnull_after_norm": 1772088,
+      "distinct_after_norm": 10401,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "ACCESSION_NUMBER": "0001127602-18-018760",
+      "FILING_DATE": "2018-05-24",
+      "PERIOD_OF_REPORT": "2018-05-23",
+      "DATE_OF_ORIGINAL_SUBMISSION": null,
+      "DOCUMENT_TYPE": "4",
+      "ISSUER_CIK": "0000853816",
+      "ISSUER_NAME": "LANDSTAR SYSTEM INC",
+      "ISSUER_TICKER": "LSTR",
+      "NO_SECURITIES_OWNED": false,
+      "NOT_SUBJECT_TO_SECTION16": false,
+      "REMARKS": "",
+      "_LOADED_AT": "2026-07-24 02:28:15"
+    },
+    {
+      "ACCESSION_NUMBER": "0000911916-18-000083",
+      "FILING_DATE": "2018-03-22",
+      "PERIOD_OF_REPORT": "2018-03-20",
+      "DATE_OF_ORIGINAL_SUBMISSION": null,
+      "DOCUMENT_TYPE": "4",
+      "ISSUER_CIK": "0000917491",
+      "ISSUER_NAME": "FARO TECHNOLOGIES INC",
+      "ISSUER_TICKER": "FARO",
+      "NO_SECURITIES_OWNED": false,
+      "NOT_SUBJECT_TO_SECTION16": false,
+      "REMARKS": "",
+      "_LOADED_AT": "2026-07-24 02:28:15"
+    },
+    {
+      "ACCESSION_NUMBER": "0000020212-25-000038",
+      "FILING_DATE": "2025-02-10",
+      "PERIOD_OF_REPORT": "2025-02-06",
+      "DATE_OF_ORIGINAL_SUBMISSION": null,
+      "DOCUMENT_TYPE": "4",
+      "ISSUER_CIK": "0000020212",
+      "ISSUER_NAME": "Churchill Downs Inc",
+      "ISSUER_TICKER": "CHDN",
+      "NO_SECURITIES_OWNED": false,
+      "NOT_SUBJECT_TO_SECTION16": false,
+      "REMARKS": "",
+      "_LOADED_AT": "2026-07-24 02:28:15"
+    },
+    {
+      "ACCESSION_NUMBER": "0001209191-19-002983",
+      "FILING_DATE": "2019-01-09",
+      "PERIOD_OF_REPORT": "2019-01-07",
+      "DATE_OF_ORIGINAL_SUBMISSION": null,
+      "DOCUMENT_TYPE": "4",
+      "ISSUER_CIK": "0000821026",
+      "ISSUER_NAME": "Andersons, Inc.",
+      "ISSUER_TICKER": "ANDE",
+      "NO_SECURITIES_OWNED": false,
+      "NOT_SUBJECT_TO_SECTION16": false,
+      "REMARKS": "",
+      "_LOADED_AT": "2026-07-24 02:28:15"
+    },
+    {
+      "ACCESSION_NUMBER": "0001328581-24-000058",
+      "FILING_DATE": "2024-04-08",
+      "PERIOD_OF_REPORT": "2024-04-05",
+      "DATE_OF_ORIGINAL_SUBMISSION": null,
+      "DOCUMENT_TYPE": "4",
+      "ISSUER_CIK": "0001328581",
+      "ISSUER_NAME": "BOISE CASCADE Co",
+      "ISSUER_TICKER": "BCC",
+      "NO_SECURITIES_OWNED": false,
+      "NOT_SUBJECT_TO_SECTION16": false,
+      "REMARKS": "",
+      "_LOADED_AT": "2026-07-24 02:28:15"
+    }
+  ],
+  "sample_error": null
+}

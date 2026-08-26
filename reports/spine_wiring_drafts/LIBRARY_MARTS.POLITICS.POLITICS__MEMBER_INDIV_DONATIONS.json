@@ -1,0 +1,138 @@
+{
+  "fqtn": "LIBRARY_MARTS.POLITICS.POLITICS__MEMBER_INDIV_DONATIONS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "BIOGUIDE",
+    "CYCLE",
+    "FULL_NAME",
+    "PARTY",
+    "STATE",
+    "CHAMBER",
+    "ITEMIZED_INDIV",
+    "DIRECT_INDIV",
+    "EARMARKED_INDIV",
+    "EARMARKED_SHARE",
+    "SELF_CONTRIB_15C",
+    "REATTRIB_AMOUNT",
+    "N_CONTRIBUTIONS",
+    "N_REATTRIBUTIONS",
+    "N_AUTHORIZED_CMTES",
+    "CMTE_IDS"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "FULL_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [
+        "STATE"
+      ],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "BIOGUIDE",
+      "column": "BIOGUIDE",
+      "total_rows": 1057,
+      "nonnull_after_norm": 1057,
+      "distinct_after_norm": 533,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "BIOGUIDE": "S001205",
+      "CYCLE": "2026",
+      "FULL_NAME": "Mary Gay Scanlon",
+      "PARTY": "Democrat",
+      "STATE": "PA",
+      "CHAMBER": "rep",
+      "ITEMIZED_INDIV": "394572.00",
+      "DIRECT_INDIV": "55900.00",
+      "EARMARKED_INDIV": "338672.00",
+      "EARMARKED_SHARE": "0.8583",
+      "SELF_CONTRIB_15C": "0.00",
+      "REATTRIB_AMOUNT": "0.00",
+      "N_CONTRIBUTIONS": 1466,
+      "N_REATTRIBUTIONS": 0,
+      "N_AUTHORIZED_CMTES": 1,
+      "CMTE_IDS": "[\n  \"C00669358\"\n]"
+    },
+    {
+      "BIOGUIDE": "T000250",
+      "CYCLE": "2026",
+      "FULL_NAME": "John Thune",
+      "PARTY": "Republican",
+      "STATE": "SD",
+      "CHAMBER": "sen",
+      "ITEMIZED_INDIV": "875697.00",
+      "DIRECT_INDIV": "384783.00",
+      "EARMARKED_INDIV": "490914.00",
+      "EARMARKED_SHARE": "0.5606",
+      "SELF_CONTRIB_15C": "0.00",
+      "REATTRIB_AMOUNT": "0.00",
+      "N_CONTRIBUTIONS": 1750,
+      "N_REATTRIBUTIONS": 0,
+      "N_AUTHORIZED_CMTES": 1,
+      "CMTE_IDS": "[\n  \"C00409581\"\n]"
+    },
+    {
+      "BIOGUIDE": "B001303",
+      "CYCLE": "2024",
+      "FULL_NAME": "Lisa Blunt Rochester",
+      "PARTY": "Democrat",
+      "STATE": "DE",
+      "CHAMBER": "sen",
+      "ITEMIZED_INDIV": "4182902.00",
+      "DIRECT_INDIV": "963864.00",
+      "EARMARKED_INDIV": "3219038.00",
+      "EARMARKED_SHARE": "0.7696",
+      "SELF_CONTRIB_15C": "268.00",
+      "REATTRIB_AMOUNT": "0.00",
+      "N_CONTRIBUTIONS": 13387,
+      "N_REATTRIBUTIONS": 0,
+      "N_AUTHORIZED_CMTES": 2,
+      "CMTE_IDS": "[\n  \"C00590778\",\n  \"C00843391\"\n]"
+    },
+    {
+      "BIOGUIDE": "S001205",
+      "CYCLE": "2024",
+      "FULL_NAME": "Mary Gay Scanlon",
+      "PARTY": "Democrat",
+      "STATE": "PA",
+      "CHAMBER": "rep",
+      "ITEMIZED_INDIV": "698360.00",
+      "DIRECT_INDIV": "149085.00",
+      "EARMARKED_INDIV": "549275.00",
+      "EARMARKED_SHARE": "0.7865",
+      "SELF_CONTRIB_15C": "0.00",
+      "REATTRIB_AMOUNT": "0.00",
+      "N_CONTRIBUTIONS": 2378,
+      "N_REATTRIBUTIONS": 0,
+      "N_AUTHORIZED_CMTES": 1,
+      "CMTE_IDS": "[\n  \"C00669358\"\n]"
+    },
+    {
+      "BIOGUIDE": "W000806",
+      "CYCLE": "2024",
+      "FULL_NAME": "Daniel Webster",
+      "PARTY": "Republican",
+      "STATE": "FL",
+      "CHAMBER": "rep",
+      "ITEMIZED_INDIV": "490420.00",
+      "DIRECT_INDIV": "254546.00",
+      "EARMARKED_INDIV": "235874.00",
+      "EARMARKED_SHARE": "0.4810",
+      "SELF_CONTRIB_15C": "0.00",
+      "REATTRIB_AMOUNT": "0.00",
+      "N_CONTRIBUTIONS": 379,
+      "N_REATTRIBUTIONS": 0,
+      "N_AUTHORIZED_CMTES": 1,
+      "CMTE_IDS": "[\n  \"C00481911\"\n]"
+    }
+  ],
+  "sample_error": null
+}

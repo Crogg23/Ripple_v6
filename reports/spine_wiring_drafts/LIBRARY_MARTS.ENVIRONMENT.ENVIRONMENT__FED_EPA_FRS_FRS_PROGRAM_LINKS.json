@@ -1,0 +1,129 @@
+{
+  "fqtn": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_FRS_FRS_PROGRAM_LINKS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "PGM_SYS_ACRNM",
+    "PGM_SYS_ID",
+    "REGISTRY_ID",
+    "PRIMARY_NAME",
+    "LOCATION_ADDRESS",
+    "SUPPLEMENTAL_LOCATION",
+    "CITY_NAME",
+    "COUNTY_NAME",
+    "FIPS_CODE",
+    "STATE_CODE",
+    "STATE_NAME",
+    "COUNTRY_NAME",
+    "POSTAL_CODE"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "PRIMARY_NAME",
+      "CITY_NAME",
+      "COUNTY_NAME",
+      "STATE_NAME",
+      "COUNTRY_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY_NAME"
+      ],
+      "state": [
+        "STATE_CODE",
+        "STATE_NAME"
+      ],
+      "zip": [
+        "POSTAL_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "FRS_ID",
+      "column": "REGISTRY_ID",
+      "total_rows": 4406498,
+      "nonnull_after_norm": 4406498,
+      "distinct_after_norm": 3422891,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "PGM_SYS_ACRNM": "RCRAINFO",
+      "PGM_SYS_ID": "CAC003364493",
+      "REGISTRY_ID": "110072119311",
+      "PRIMARY_NAME": "RESIDENCE",
+      "LOCATION_ADDRESS": "1206 E SYCAMORE AVE",
+      "SUPPLEMENTAL_LOCATION": null,
+      "CITY_NAME": "EL SEGUNDO",
+      "COUNTY_NAME": "LOS ANGELES",
+      "FIPS_CODE": "06037",
+      "STATE_CODE": "CA",
+      "STATE_NAME": "CALIFORNIA",
+      "COUNTRY_NAME": "UNITED STATES",
+      "POSTAL_CODE": "90245"
+    },
+    {
+      "PGM_SYS_ACRNM": "RCRAINFO",
+      "PGM_SYS_ID": "WAH000018713",
+      "REGISTRY_ID": "110000897968",
+      "PRIMARY_NAME": "BAYER HEALTHCARE PHARMACEUTICALS BOTHELL",
+      "LOCATION_ADDRESS": "21511 23RD DR SE MF BLDG",
+      "SUPPLEMENTAL_LOCATION": null,
+      "CITY_NAME": "BOTHELL",
+      "COUNTY_NAME": "SNOHOMISH",
+      "FIPS_CODE": "53061",
+      "STATE_CODE": "WA",
+      "STATE_NAME": "WASHINGTON",
+      "COUNTRY_NAME": "UNITED STATES",
+      "POSTAL_CODE": "98021"
+    },
+    {
+      "PGM_SYS_ACRNM": "NPDES",
+      "PGM_SYS_ID": "INR10M970",
+      "REGISTRY_ID": "110070107722",
+      "PRIMARY_NAME": "EEL RIVER CANOE LAUNCH AND PARK DEVELOPMENT",
+      "LOCATION_ADDRESS": "EEL RIVER & MILL ST",
+      "SUPPLEMENTAL_LOCATION": null,
+      "CITY_NAME": "NORTH MANCHESTER",
+      "COUNTY_NAME": "WABASH",
+      "FIPS_CODE": "IN169",
+      "STATE_CODE": "IN",
+      "STATE_NAME": "INDIANA",
+      "COUNTRY_NAME": "USA",
+      "POSTAL_CODE": "46962"
+    },
+    {
+      "PGM_SYS_ACRNM": "RCRAINFO",
+      "PGM_SYS_ID": "MIP200000892",
+      "REGISTRY_ID": "110015882981",
+      "PRIMARY_NAME": "CITY OF LAPEER",
+      "LOCATION_ADDRESS": "576 LIBERTY PARK",
+      "SUPPLEMENTAL_LOCATION": null,
+      "CITY_NAME": "LAPEER",
+      "COUNTY_NAME": "LAPEER",
+      "FIPS_CODE": "26087",
+      "STATE_CODE": "MI",
+      "STATE_NAME": "MICHIGAN",
+      "COUNTRY_NAME": "UNITED STATES",
+      "POSTAL_CODE": "48446"
+    },
+    {
+      "PGM_SYS_ACRNM": "RCRAINFO",
+      "PGM_SYS_ID": "LAD982555245",
+      "REGISTRY_ID": "110003310827",
+      "PRIMARY_NAME": "CLECO EUNICE SVC CNTR",
+      "LOCATION_ADDRESS": "1088 N SAMUEL DR",
+      "SUPPLEMENTAL_LOCATION": null,
+      "CITY_NAME": "EUNICE",
+      "COUNTY_NAME": "ST LANDRY",
+      "FIPS_CODE": "22097",
+      "STATE_CODE": "LA",
+      "STATE_NAME": "LOUISIANA",
+      "COUNTRY_NAME": "UNITED STATES",
+      "POSTAL_CODE": "70535"
+    }
+  ],
+  "sample_error": null
+}

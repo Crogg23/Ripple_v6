@@ -1,0 +1,104 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.FED_CFPB_HMDA_ARID2017_LEI_XREF",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "RESPONDENT_NAME",
+    "ARID_2017",
+    "LEI_2018",
+    "LEI_2019",
+    "LEI_2020",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "RESPONDENT_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "LEI",
+      "column": "LEI_2020",
+      "total_rows": 5399,
+      "nonnull_after_norm": 4130,
+      "distinct_after_norm": 4130,
+      "trap_verdict": "REAL"
+    },
+    {
+      "key_label": "LEI",
+      "column": "LEI_2019",
+      "total_rows": 5399,
+      "nonnull_after_norm": 5070,
+      "distinct_after_norm": 5070,
+      "trap_verdict": "REAL"
+    },
+    {
+      "key_label": "LEI",
+      "column": "LEI_2018",
+      "total_rows": 5399,
+      "nonnull_after_norm": 5399,
+      "distinct_after_norm": 5399,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "RESPONDENT_NAME": "Old Plank Trail Community Bank, National Association",
+      "ARID_2017": "124646",
+      "LEI_2018": "54930010ZG6EHTCJ1L21",
+      "LEI_2019": "54930010ZG6EHTCJ1L21",
+      "LEI_2020": null,
+      "INGESTED_AT": 1786129691453342,
+      "SOURCE_RUN_ID": "c7e1b3ab-c640-490a-bc79-9b478cac2e8e",
+      "SRC_SHA256": "1bc1da95e78b85e39e06d65c799c62e66f648d5ba5d465c765f169edcc20d6c1"
+    },
+    {
+      "RESPONDENT_NAME": "CLASS ACT FEDERAL CREDIT UNION",
+      "ARID_2017": "59106",
+      "LEI_2018": "549300VNVP1PTYHESA41",
+      "LEI_2019": "549300VNVP1PTYHESA41",
+      "LEI_2020": "549300VNVP1PTYHESA41",
+      "INGESTED_AT": 1786129691453342,
+      "SOURCE_RUN_ID": "c7e1b3ab-c640-490a-bc79-9b478cac2e8e",
+      "SRC_SHA256": "1bc1da95e78b85e39e06d65c799c62e66f648d5ba5d465c765f169edcc20d6c1"
+    },
+    {
+      "RESPONDENT_NAME": "BLUELEAF LENDING, LLC",
+      "ARID_2017": "7870788512",
+      "LEI_2018": "549300AI4ZHB6MX23W09",
+      "LEI_2019": "549300AI4ZHB6MX23W09",
+      "LEI_2020": "549300AI4ZHB6MX23W09",
+      "INGESTED_AT": 1786129691453342,
+      "SOURCE_RUN_ID": "c7e1b3ab-c640-490a-bc79-9b478cac2e8e",
+      "SRC_SHA256": "1bc1da95e78b85e39e06d65c799c62e66f648d5ba5d465c765f169edcc20d6c1"
+    },
+    {
+      "RESPONDENT_NAME": "COASTHILLS",
+      "ARID_2017": "568653",
+      "LEI_2018": "5493000KTY8YQ4SFHT59",
+      "LEI_2019": "5493000KTY8YQ4SFHT59",
+      "LEI_2020": "5493000KTY8YQ4SFHT59",
+      "INGESTED_AT": 1786129691453342,
+      "SOURCE_RUN_ID": "c7e1b3ab-c640-490a-bc79-9b478cac2e8e",
+      "SRC_SHA256": "1bc1da95e78b85e39e06d65c799c62e66f648d5ba5d465c765f169edcc20d6c1"
+    },
+    {
+      "RESPONDENT_NAME": "Pinnacle Bank",
+      "ARID_2017": "310634",
+      "LEI_2018": "549300PZ44DNQDPOV865",
+      "LEI_2019": "549300PZ44DNQDPOV865",
+      "LEI_2020": "549300PZ44DNQDPOV865",
+      "INGESTED_AT": 1786129691453342,
+      "SOURCE_RUN_ID": "c7e1b3ab-c640-490a-bc79-9b478cac2e8e",
+      "SRC_SHA256": "1bc1da95e78b85e39e06d65c799c62e66f648d5ba5d465c765f169edcc20d6c1"
+    }
+  ],
+  "sample_error": null
+}

@@ -1,0 +1,89 @@
+{
+  "fqtn": "LIBRARY_MARTS.POLITICS.POLITICS__FED_CONGRESS_COMMITTEE_MEMBERSHIP",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "COMMITTEE_CODE",
+    "COMMITTEE_NAME",
+    "IS_SUBCOMMITTEE",
+    "BIOGUIDE",
+    "MEMBER_NAME",
+    "PARTY",
+    "RANK",
+    "TITLE"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "COMMITTEE_NAME",
+      "MEMBER_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "BIOGUIDE",
+      "column": "BIOGUIDE",
+      "total_rows": 3879,
+      "nonnull_after_norm": 3879,
+      "distinct_after_norm": 528,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "COMMITTEE_CODE": "SSJU",
+      "COMMITTEE_NAME": "Senate Committee on the Judiciary",
+      "IS_SUBCOMMITTEE": "False",
+      "BIOGUIDE": "B001277",
+      "MEMBER_NAME": "Richard Blumenthal",
+      "PARTY": "minority",
+      "RANK": "5",
+      "TITLE": ""
+    },
+    {
+      "COMMITTEE_CODE": "HSFA17",
+      "COMMITTEE_NAME": "House Committee on Foreign Affairs -- Oversight and Intelligence",
+      "IS_SUBCOMMITTEE": "True",
+      "BIOGUIDE": "L000596",
+      "MEMBER_NAME": "Anna Paulina Luna",
+      "PARTY": "majority",
+      "RANK": "7",
+      "TITLE": ""
+    },
+    {
+      "COMMITTEE_CODE": "HSAP06",
+      "COMMITTEE_NAME": "House Committee on Appropriations -- Interior, Environment, and Related Agencies",
+      "IS_SUBCOMMITTEE": "True",
+      "BIOGUIDE": "M001228",
+      "MEMBER_NAME": "Celeste Maloy",
+      "PARTY": "majority",
+      "RANK": "7",
+      "TITLE": "Vice Chair"
+    },
+    {
+      "COMMITTEE_CODE": "HSAS26",
+      "COMMITTEE_NAME": "House Committee on Armed Services -- Intelligence and Special Operations",
+      "IS_SUBCOMMITTEE": "True",
+      "BIOGUIDE": "G000592",
+      "MEMBER_NAME": "Jared F. Golden",
+      "PARTY": "minority",
+      "RANK": "3",
+      "TITLE": ""
+    },
+    {
+      "COMMITTEE_CODE": "HSHM",
+      "COMMITTEE_NAME": "House Committee on Homeland Security",
+      "IS_SUBCOMMITTEE": "False",
+      "BIOGUIDE": "H001103",
+      "MEMBER_NAME": "Pablo Jos\u00e9 Hern\u00e1ndez",
+      "PARTY": "minority",
+      "RANK": "10",
+      "TITLE": ""
+    }
+  ],
+  "sample_error": null
+}

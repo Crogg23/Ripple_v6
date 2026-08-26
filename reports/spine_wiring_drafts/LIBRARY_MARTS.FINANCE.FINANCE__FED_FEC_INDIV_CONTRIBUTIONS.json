@@ -1,0 +1,137 @@
+{
+  "fqtn": "LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_INDIV_CONTRIBUTIONS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "SUB_ID",
+    "CMTE_ID",
+    "DONOR_NAME",
+    "CITY",
+    "STATE",
+    "ZIP_CODE",
+    "EMPLOYER",
+    "OCCUPATION",
+    "TRANSACTION_DATE",
+    "TRANSACTION_AMT",
+    "TRANSACTION_TYPE",
+    "ENTITY_TYPE",
+    "OTHER_ID",
+    "MEMO_TEXT",
+    "_LOADED_AT"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "DONOR_NAME",
+      "ENTITY_TYPE"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "STATE"
+      ],
+      "zip": [
+        "ZIP_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "FEC_CMTE_ID",
+      "column": "CMTE_ID",
+      "total_rows": 84172112,
+      "nonnull_after_norm": 84172112,
+      "distinct_after_norm": 12291,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "SUB_ID": "4042820251186965217",
+      "CMTE_ID": "C00839597",
+      "DONOR_NAME": "SOFFAR, MYRA",
+      "CITY": "HOUSTON",
+      "STATE": "TX",
+      "ZIP_CODE": "770633762",
+      "EMPLOYER": "NOT EMPLOYED",
+      "OCCUPATION": "NOT EMPLOYED",
+      "TRANSACTION_DATE": "2024-11-03",
+      "TRANSACTION_AMT": 5.0,
+      "TRANSACTION_TYPE": "15E",
+      "ENTITY_TYPE": "IND",
+      "OTHER_ID": "C00401224",
+      "MEMO_TEXT": "* EARMARKED CONTRIBUTION: SEE BELOW",
+      "_LOADED_AT": 1782850399466960
+    },
+    {
+      "SUB_ID": "4112020231810951268",
+      "CMTE_ID": "C00103903",
+      "DONOR_NAME": "BRANYON, RONALD",
+      "CITY": "SAN ANTONIO",
+      "STATE": "TX",
+      "ZIP_CODE": "782165550",
+      "EMPLOYER": "HDR ENGINEERING INC.",
+      "OCCUPATION": "SENIOR CLIENT MANAGER",
+      "TRANSACTION_DATE": "2023-10-27",
+      "TRANSACTION_AMT": 50.0,
+      "TRANSACTION_TYPE": "15",
+      "ENTITY_TYPE": "IND",
+      "OTHER_ID": "",
+      "MEMO_TEXT": "",
+      "_LOADED_AT": 1782850399466960
+    },
+    {
+      "SUB_ID": "4012720261303806114",
+      "CMTE_ID": "C00833566",
+      "DONOR_NAME": "KATZMAN, JERRY",
+      "CITY": "RIVERVIEW",
+      "STATE": "FL",
+      "ZIP_CODE": "33579",
+      "EMPLOYER": "SANOVAS INC",
+      "OCCUPATION": "CEO",
+      "TRANSACTION_DATE": "2025-08-16",
+      "TRANSACTION_AMT": 5.0,
+      "TRANSACTION_TYPE": "10",
+      "ENTITY_TYPE": "IND",
+      "OTHER_ID": "",
+      "MEMO_TEXT": "",
+      "_LOADED_AT": 1782850399466960
+    },
+    {
+      "SUB_ID": "4062520251207200101",
+      "CMTE_ID": "C00042366",
+      "DONOR_NAME": "KAISER, DANNY",
+      "CITY": "MUSKOGEE",
+      "STATE": "OK",
+      "ZIP_CODE": "744038455",
+      "EMPLOYER": "NONE",
+      "OCCUPATION": "NOT EMPLOYED",
+      "TRANSACTION_DATE": "2025-05-29",
+      "TRANSACTION_AMT": 15.0,
+      "TRANSACTION_TYPE": "15E",
+      "ENTITY_TYPE": "IND",
+      "OTHER_ID": "C00401224",
+      "MEMO_TEXT": "* EARMARKED CONTRIBUTION: SEE BELOW",
+      "_LOADED_AT": 1782850399466960
+    },
+    {
+      "SUB_ID": "4051220241923092559",
+      "CMTE_ID": "C00412304",
+      "DONOR_NAME": "THIEL, RICHARD",
+      "CITY": "SEQUOIA NATIONAL PARK",
+      "STATE": "CA",
+      "ZIP_CODE": "932629622",
+      "EMPLOYER": "NATIONAL PARK SERVICE",
+      "OCCUPATION": "BIOLOGICAL SCIENCE TECHNICIAN",
+      "TRANSACTION_DATE": "2024-03-08",
+      "TRANSACTION_AMT": 25.0,
+      "TRANSACTION_TYPE": "15E",
+      "ENTITY_TYPE": "IND",
+      "OTHER_ID": "C00401224",
+      "MEMO_TEXT": "* EARMARKED CONTRIBUTION: SEE BELOW",
+      "_LOADED_AT": 1782850399466960
+    }
+  ],
+  "sample_error": null
+}

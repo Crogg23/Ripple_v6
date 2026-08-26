@@ -1,0 +1,80 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.FED_EPA_NPDES_NPDES_SICS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NPDES_ID",
+    "SIC_CODE",
+    "SIC_DESC",
+    "PRIMARY_INDICATOR_FLAG",
+    "_INGESTED_AT",
+    "_SOURCE_RUN_ID",
+    "_SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPDES_ID",
+      "column": "NPDES_ID",
+      "total_rows": 792807,
+      "nonnull_after_norm": 792807,
+      "distinct_after_norm": 715074,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "NPDES_ID": "WAR303735",
+      "SIC_CODE": "1794",
+      "SIC_DESC": "Excavation Work",
+      "PRIMARY_INDICATOR_FLAG": "N",
+      "_INGESTED_AT": 1786043934360401,
+      "_SOURCE_RUN_ID": "1948554e-dd48-47f6-8368-6745c66e039e",
+      "_SRC_SHA256": "8a1f35cdc7c965dc945ca7a1474322192f42f005c9a9782ed50f7cf256e2bc47"
+    },
+    {
+      "NPDES_ID": "WAR315726",
+      "SIC_CODE": "1794",
+      "SIC_DESC": "Excavation Work",
+      "PRIMARY_INDICATOR_FLAG": "Y",
+      "_INGESTED_AT": 1786043934360401,
+      "_SOURCE_RUN_ID": "1948554e-dd48-47f6-8368-6745c66e039e",
+      "_SRC_SHA256": "8a1f35cdc7c965dc945ca7a1474322192f42f005c9a9782ed50f7cf256e2bc47"
+    },
+    {
+      "NPDES_ID": "KYR10R364",
+      "SIC_CODE": "1611",
+      "SIC_DESC": "Highway And Street Construction",
+      "PRIMARY_INDICATOR_FLAG": "Y",
+      "_INGESTED_AT": 1786043934360401,
+      "_SOURCE_RUN_ID": "1948554e-dd48-47f6-8368-6745c66e039e",
+      "_SRC_SHA256": "8a1f35cdc7c965dc945ca7a1474322192f42f005c9a9782ed50f7cf256e2bc47"
+    },
+    {
+      "NPDES_ID": "PAR803531",
+      "SIC_CODE": "5171",
+      "SIC_DESC": "Petroleum Bulk Stations & Terminals",
+      "PRIMARY_INDICATOR_FLAG": "Y",
+      "_INGESTED_AT": 1786043934360401,
+      "_SOURCE_RUN_ID": "1948554e-dd48-47f6-8368-6745c66e039e",
+      "_SRC_SHA256": "8a1f35cdc7c965dc945ca7a1474322192f42f005c9a9782ed50f7cf256e2bc47"
+    },
+    {
+      "NPDES_ID": "ALR10AAC1",
+      "SIC_CODE": "1521",
+      "SIC_DESC": "Single-Family Housing Construction",
+      "PRIMARY_INDICATOR_FLAG": "Y",
+      "_INGESTED_AT": 1786043934360401,
+      "_SOURCE_RUN_ID": "1948554e-dd48-47f6-8368-6745c66e039e",
+      "_SRC_SHA256": "8a1f35cdc7c965dc945ca7a1474322192f42f005c9a9782ed50f7cf256e2bc47"
+    }
+  ],
+  "sample_error": null
+}

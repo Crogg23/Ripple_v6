@@ -1,0 +1,146 @@
+{
+  "fqtn": "LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_BULK_COMMITTEES",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "FEC_CMTE_ID",
+    "CMTE_NM",
+    "TRES_NM",
+    "CMTE_ST1",
+    "CMTE_ST2",
+    "CMTE_CITY",
+    "CMTE_ST",
+    "CMTE_ZIP",
+    "CMTE_DSGN",
+    "CMTE_TP",
+    "CMTE_PTY_AFFILIATION",
+    "CMTE_FILING_FREQ",
+    "ORG_TP",
+    "CONNECTED_ORG_NM",
+    "FEC_CAND_ID",
+    "CYCLE"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [
+        "CMTE_CITY"
+      ],
+      "state": [],
+      "zip": [
+        "CMTE_ZIP"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "FEC_CMTE_ID",
+      "column": "FEC_CMTE_ID",
+      "total_rows": 20007,
+      "nonnull_after_norm": 20007,
+      "distinct_after_norm": 20007,
+      "trap_verdict": "REAL"
+    },
+    {
+      "key_label": "FEC_CAND_ID",
+      "column": "FEC_CAND_ID",
+      "total_rows": 20007,
+      "nonnull_after_norm": 7223,
+      "distinct_after_norm": 6921,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "FEC_CMTE_ID": "C00609966",
+      "CMTE_NM": "GRAIN AND FEED PAC",
+      "TRES_NM": "SATTERFIELD, DAVID",
+      "CMTE_ST1": "228 S WASHINGTON STREET",
+      "CMTE_ST2": "SUITE 115",
+      "CMTE_CITY": "ALEXANDRIA",
+      "CMTE_ST": "VA",
+      "CMTE_ZIP": "22314",
+      "CMTE_DSGN": "U",
+      "CMTE_TP": "Q",
+      "CMTE_PTY_AFFILIATION": "",
+      "CMTE_FILING_FREQ": "Q",
+      "ORG_TP": "",
+      "CONNECTED_ORG_NM": "",
+      "FEC_CAND_ID": "",
+      "CYCLE": "2026"
+    },
+    {
+      "FEC_CMTE_ID": "C00208439",
+      "CMTE_NM": "ARKANSAS RIGHT TO LIFE POLITICAL ACTION COMMITTEE",
+      "TRES_NM": "JACKI S RAGAN",
+      "CMTE_ST1": "PO BOX 1697",
+      "CMTE_ST2": "",
+      "CMTE_CITY": "LITTLE ROCK",
+      "CMTE_ST": "AR",
+      "CMTE_ZIP": "772031697",
+      "CMTE_DSGN": "B",
+      "CMTE_TP": "N",
+      "CMTE_PTY_AFFILIATION": "",
+      "CMTE_FILING_FREQ": "Q",
+      "ORG_TP": "M",
+      "CONNECTED_ORG_NM": "ARKANSAS RIGHT TO LIFE COMMITTEE INC",
+      "FEC_CAND_ID": "",
+      "CYCLE": "2026"
+    },
+    {
+      "FEC_CMTE_ID": "C00493304",
+      "CMTE_NM": "PRUDENTIAL FINANCIAL, INC. STATE & FEDERAL POLITICAL ACTION COMMITTEE (AKA PRUDENTIAL STATE & FEDERAL PAC)",
+      "TRES_NM": "BADLANI, RAKHI",
+      "CMTE_ST1": "751 BROAD STREET",
+      "CMTE_ST2": "22ND FLOOR",
+      "CMTE_CITY": "NEWARK",
+      "CMTE_ST": "NJ",
+      "CMTE_ZIP": "07102",
+      "CMTE_DSGN": "B",
+      "CMTE_TP": "Q",
+      "CMTE_PTY_AFFILIATION": "",
+      "CMTE_FILING_FREQ": "M",
+      "ORG_TP": "C",
+      "CONNECTED_ORG_NM": "PRUDENTIAL FINANCIAL, INC.",
+      "FEC_CAND_ID": "",
+      "CYCLE": "2026"
+    },
+    {
+      "FEC_CMTE_ID": "C00866160",
+      "CMTE_NM": "JONES FOR AMERICA",
+      "TRES_NM": "JONES, JODY",
+      "CMTE_ST1": "4411 SUNBEAM RD. #23245",
+      "CMTE_ST2": "",
+      "CMTE_CITY": "JACKSONVILLE",
+      "CMTE_ST": "FL",
+      "CMTE_ZIP": "32241",
+      "CMTE_DSGN": "P",
+      "CMTE_TP": "P",
+      "CMTE_PTY_AFFILIATION": "LIB",
+      "CMTE_FILING_FREQ": "Q",
+      "ORG_TP": "",
+      "CONNECTED_ORG_NM": "NONE",
+      "FEC_CAND_ID": "",
+      "CYCLE": "2026"
+    },
+    {
+      "FEC_CMTE_ID": "C00623884",
+      "CMTE_NM": "MCMULLIN FOR PRESIDENT COMMITTEE INC.",
+      "TRES_NM": "SEARBY, JOEL",
+      "CMTE_ST1": "3824 SW 170TH ST",
+      "CMTE_ST2": "",
+      "CMTE_CITY": "ARCHER",
+      "CMTE_ST": "FL",
+      "CMTE_ZIP": "32618",
+      "CMTE_DSGN": "P",
+      "CMTE_TP": "P",
+      "CMTE_PTY_AFFILIATION": "IND",
+      "CMTE_FILING_FREQ": "Q",
+      "ORG_TP": "",
+      "CONNECTED_ORG_NM": "NONE",
+      "FEC_CAND_ID": "P60022654",
+      "CYCLE": "2026"
+    }
+  ],
+  "sample_error": null
+}

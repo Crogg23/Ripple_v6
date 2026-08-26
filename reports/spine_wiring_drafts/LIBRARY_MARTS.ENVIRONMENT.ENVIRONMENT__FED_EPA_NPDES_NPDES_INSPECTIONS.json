@@ -1,0 +1,114 @@
+{
+  "fqtn": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_NPDES_NPDES_INSPECTIONS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "REGISTRY_ID",
+    "NPDES_ID",
+    "ACTIVITY_ID",
+    "ACTIVITY_TYPE_CODE",
+    "COMP_MONITOR_TYPE_CODE",
+    "COMP_MONITOR_TYPE_DESC",
+    "STATE_EPA_FLAG",
+    "ACTUAL_BEGIN_DATE",
+    "ACTUAL_END_DATE",
+    "ACTIVITY_OUTCOME_CODE",
+    "ACTIVITY_OUTCOME_DESC"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [
+        "STATE_EPA_FLAG"
+      ],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPDES_ID",
+      "column": "NPDES_ID",
+      "total_rows": 1900067,
+      "nonnull_after_norm": 1900067,
+      "distinct_after_norm": 286752,
+      "trap_verdict": "REAL"
+    },
+    {
+      "key_label": "FRS_ID",
+      "column": "REGISTRY_ID",
+      "total_rows": 1900067,
+      "nonnull_after_norm": 1899932,
+      "distinct_after_norm": 263075,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "REGISTRY_ID": "110069600373",
+      "NPDES_ID": "WV1015451",
+      "ACTIVITY_ID": "3602325771",
+      "ACTIVITY_TYPE_CODE": "INS",
+      "COMP_MONITOR_TYPE_CODE": "ROS",
+      "COMP_MONITOR_TYPE_DESC": "Reconnaissance without Sampling",
+      "STATE_EPA_FLAG": "S",
+      "ACTUAL_BEGIN_DATE": "2020-09-23",
+      "ACTUAL_END_DATE": "2020-09-23",
+      "ACTIVITY_OUTCOME_CODE": null,
+      "ACTIVITY_OUTCOME_DESC": null
+    },
+    {
+      "REGISTRY_ID": "110064618640",
+      "NPDES_ID": "GA0024082",
+      "ACTIVITY_ID": "400903981",
+      "ACTIVITY_TYPE_CODE": "INS",
+      "COMP_MONITOR_TYPE_CODE": "CEI",
+      "COMP_MONITOR_TYPE_DESC": "Evaluation",
+      "STATE_EPA_FLAG": "S",
+      "ACTUAL_BEGIN_DATE": null,
+      "ACTUAL_END_DATE": "1984-08-02",
+      "ACTIVITY_OUTCOME_CODE": null,
+      "ACTIVITY_OUTCOME_DESC": null
+    },
+    {
+      "REGISTRY_ID": "110045503040",
+      "NPDES_ID": "NHG910047",
+      "ACTIVITY_ID": "3600024710",
+      "ACTIVITY_TYPE_CODE": "INS",
+      "COMP_MONITOR_TYPE_CODE": "ROS",
+      "COMP_MONITOR_TYPE_DESC": "Reconnaissance without Sampling",
+      "STATE_EPA_FLAG": "S",
+      "ACTUAL_BEGIN_DATE": "2014-07-21",
+      "ACTUAL_END_DATE": "2014-07-21",
+      "ACTIVITY_OUTCOME_CODE": null,
+      "ACTIVITY_OUTCOME_DESC": null
+    },
+    {
+      "REGISTRY_ID": "110001104126",
+      "NPDES_ID": "IL0030384",
+      "ACTIVITY_ID": "800116559",
+      "ACTIVITY_TYPE_CODE": "INS",
+      "COMP_MONITOR_TYPE_CODE": "ROS",
+      "COMP_MONITOR_TYPE_DESC": "Reconnaissance without Sampling",
+      "STATE_EPA_FLAG": "S",
+      "ACTUAL_BEGIN_DATE": null,
+      "ACTUAL_END_DATE": "2003-06-24",
+      "ACTIVITY_OUTCOME_CODE": null,
+      "ACTIVITY_OUTCOME_DESC": null
+    },
+    {
+      "REGISTRY_ID": "110055177918",
+      "NPDES_ID": "WY0020427",
+      "ACTIVITY_ID": "3600731720",
+      "ACTIVITY_TYPE_CODE": "INS",
+      "COMP_MONITOR_TYPE_CODE": "CEI",
+      "COMP_MONITOR_TYPE_DESC": "Evaluation",
+      "STATE_EPA_FLAG": "S",
+      "ACTUAL_BEGIN_DATE": "2016-05-18",
+      "ACTUAL_END_DATE": "2016-05-18",
+      "ACTIVITY_OUTCOME_CODE": null,
+      "ACTIVITY_OUTCOME_DESC": null
+    }
+  ],
+  "sample_error": null
+}

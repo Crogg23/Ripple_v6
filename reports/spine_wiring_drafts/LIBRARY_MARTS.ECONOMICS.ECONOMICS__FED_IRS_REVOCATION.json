@@ -1,0 +1,146 @@
+{
+  "fqtn": "LIBRARY_MARTS.ECONOMICS.ECONOMICS__FED_IRS_REVOCATION",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "EIN",
+    "LEGAL_NAME",
+    "DBA_NAME",
+    "ADDRESS",
+    "CITY",
+    "STATE",
+    "ZIP_CODE",
+    "COUNTRY",
+    "EXEMPTION_TYPE",
+    "REVOCATION_DATE",
+    "REVOCATION_POSTING_DATE",
+    "REINSTATEMENT_DATE",
+    "WAS_REINSTATED",
+    "SPINE_ENTITY_ID",
+    "_LOADED_AT",
+    "_SOURCE_URL"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "LEGAL_NAME",
+      "DBA_NAME",
+      "SPINE_ENTITY_ID"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "STATE",
+        "REINSTATEMENT_DATE",
+        "WAS_REINSTATED"
+      ],
+      "zip": [
+        "ZIP_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "EIN",
+      "column": "EIN",
+      "total_rows": 1187367,
+      "nonnull_after_norm": 1187366,
+      "distinct_after_norm": 1187366,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "EIN": "237296218",
+      "LEGAL_NAME": "WAUSAU SWITCHBOARD INCORPORATED",
+      "DBA_NAME": "",
+      "ADDRESS": "PO BOX 426",
+      "CITY": "WAUSAU",
+      "STATE": "WI",
+      "ZIP_CODE": "54402-0426",
+      "COUNTRY": "US",
+      "EXEMPTION_TYPE": "03",
+      "REVOCATION_DATE": "15-FEB-2011",
+      "REVOCATION_POSTING_DATE": "07-OCT-2011",
+      "REINSTATEMENT_DATE": "",
+      "WAS_REINSTATED": false,
+      "SPINE_ENTITY_ID": "ENT_fe30e095699cb78d",
+      "_LOADED_AT": 1782521646301251,
+      "_SOURCE_URL": "https://www.irs.gov/charities-non-profits/tax-exempt-organization-search-bulk-data-downloads"
+    },
+    {
+      "EIN": "680443499",
+      "LEGAL_NAME": "THE PRACTICE CENTER",
+      "DBA_NAME": "",
+      "ADDRESS": "491 GREEN GLEN WAY",
+      "CITY": "MILL VALLEY",
+      "STATE": "CA",
+      "ZIP_CODE": "94941-4018",
+      "COUNTRY": "US",
+      "EXEMPTION_TYPE": "03",
+      "REVOCATION_DATE": "15-MAY-2010",
+      "REVOCATION_POSTING_DATE": "09-JUN-2011",
+      "REINSTATEMENT_DATE": "",
+      "WAS_REINSTATED": false,
+      "SPINE_ENTITY_ID": "ENT_18e52e358faa1fd5",
+      "_LOADED_AT": 1782521646301251,
+      "_SOURCE_URL": "https://www.irs.gov/charities-non-profits/tax-exempt-organization-search-bulk-data-downloads"
+    },
+    {
+      "EIN": "873644335",
+      "LEGAL_NAME": "MARLIN TX JUNETEENTH ORGANIZATION",
+      "DBA_NAME": "MARLIN TX JUNETEENTH ORG",
+      "ADDRESS": "PO BOX 66",
+      "CITY": "KILLEEN",
+      "STATE": "TX",
+      "ZIP_CODE": "76540-0066",
+      "COUNTRY": "US",
+      "EXEMPTION_TYPE": "03",
+      "REVOCATION_DATE": "15-NOV-2024",
+      "REVOCATION_POSTING_DATE": "10-MAR-2025",
+      "REINSTATEMENT_DATE": "",
+      "WAS_REINSTATED": false,
+      "SPINE_ENTITY_ID": "ENT_46c3986486295950",
+      "_LOADED_AT": 1782521646301251,
+      "_SOURCE_URL": "https://www.irs.gov/charities-non-profits/tax-exempt-organization-search-bulk-data-downloads"
+    },
+    {
+      "EIN": "844869353",
+      "LEGAL_NAME": "THIRD VOICE MEDIA",
+      "DBA_NAME": "",
+      "ADDRESS": "37457 JASPER LOWELL RD",
+      "CITY": "JASPER",
+      "STATE": "OR",
+      "ZIP_CODE": "97438-9719",
+      "COUNTRY": "US",
+      "EXEMPTION_TYPE": "03",
+      "REVOCATION_DATE": "15-MAY-2023",
+      "REVOCATION_POSTING_DATE": "14-AUG-2023",
+      "REINSTATEMENT_DATE": "",
+      "WAS_REINSTATED": false,
+      "SPINE_ENTITY_ID": "ENT_9791c4eb83b3efc3",
+      "_LOADED_AT": 1782521646301251,
+      "_SOURCE_URL": "https://www.irs.gov/charities-non-profits/tax-exempt-organization-search-bulk-data-downloads"
+    },
+    {
+      "EIN": "200285993",
+      "LEGAL_NAME": "ANOTHER CHANCE 4 HORSES INC",
+      "DBA_NAME": "",
+      "ADDRESS": "166 STATION RD",
+      "CITY": "BERNVILLE",
+      "STATE": "PA",
+      "ZIP_CODE": "19506-8820",
+      "COUNTRY": "US",
+      "EXEMPTION_TYPE": "03",
+      "REVOCATION_DATE": "15-MAY-2014",
+      "REVOCATION_POSTING_DATE": "11-AUG-2014",
+      "REINSTATEMENT_DATE": "",
+      "WAS_REINSTATED": false,
+      "SPINE_ENTITY_ID": "ENT_609692aeaf54d7f2",
+      "_LOADED_AT": 1782521646301251,
+      "_SOURCE_URL": "https://www.irs.gov/charities-non-profits/tax-exempt-organization-search-bulk-data-downloads"
+    }
+  ],
+  "sample_error": null
+}

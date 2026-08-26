@@ -1,0 +1,122 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_SOC_CONNECTICUT_OPEN_1CD7311280",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "TOWN",
+    "ADDRESS",
+    "USER",
+    "STRUCTURE_OWNER",
+    "TWR_TYPE",
+    "ANT_HEIGHT",
+    "TWR_HEIGHT",
+    "BACKUP_POWER_TYPE",
+    "C_5G_SERVICES",
+    "DOCKET_OR_PETITION_NUM",
+    "BACKUP_POWER_SIZE_DURATION",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "DOCKET",
+      "column": "DOCKET_OR_PETITION_NUM",
+      "total_rows": 1606,
+      "nonnull_after_norm": 1606,
+      "distinct_after_norm": 130,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "TOWN": "Branford",
+      "ADDRESS": "** Hosley Avenue",
+      "USER": "T-Mobile",
+      "STRUCTURE_OWNER": "Amtrak",
+      "TWR_TYPE": "monopole",
+      "ANT_HEIGHT": "150",
+      "TWR_HEIGHT": "150",
+      "BACKUP_POWER_TYPE": "nan",
+      "C_5G_SERVICES": "nan",
+      "DOCKET_OR_PETITION_NUM": "nan",
+      "BACKUP_POWER_SIZE_DURATION": "nan",
+      "INGESTED_AT": "2026-06-24 05:08:02.477650",
+      "SOURCE_RUN_ID": "0d0d91a5-f34e-4114-aecb-d712f7499e14",
+      "SRC_SHA256": "d5a13c4f37c070530274e7506be9fae422bcaf62c8b786e08605509e2d0a1536"
+    },
+    {
+      "TOWN": "Bridgeport",
+      "ADDRESS": "*** Kaechele Place",
+      "USER": "DISH",
+      "STRUCTURE_OWNER": "SNET Cellular",
+      "TWR_TYPE": "monopole",
+      "ANT_HEIGHT": "128",
+      "TWR_HEIGHT": "150",
+      "BACKUP_POWER_TYPE": "nan",
+      "C_5G_SERVICES": "yes",
+      "DOCKET_OR_PETITION_NUM": "nan",
+      "BACKUP_POWER_SIZE_DURATION": "nan",
+      "INGESTED_AT": "2026-06-24 05:08:02.477650",
+      "SOURCE_RUN_ID": "0d0d91a5-f34e-4114-aecb-d712f7499e14",
+      "SRC_SHA256": "d5a13c4f37c070530274e7506be9fae422bcaf62c8b786e08605509e2d0a1536"
+    },
+    {
+      "TOWN": "Bolton",
+      "ADDRESS": "*** Vernon Road",
+      "USER": "T-Mobile",
+      "STRUCTURE_OWNER": "Mountaintop Enterprises",
+      "TWR_TYPE": "guyed-lattice",
+      "ANT_HEIGHT": "130",
+      "TWR_HEIGHT": "150",
+      "BACKUP_POWER_TYPE": "nan",
+      "C_5G_SERVICES": "nan",
+      "DOCKET_OR_PETITION_NUM": "nan",
+      "BACKUP_POWER_SIZE_DURATION": "nan",
+      "INGESTED_AT": "2026-06-24 05:08:02.477650",
+      "SOURCE_RUN_ID": "0d0d91a5-f34e-4114-aecb-d712f7499e14",
+      "SRC_SHA256": "d5a13c4f37c070530274e7506be9fae422bcaf62c8b786e08605509e2d0a1536"
+    },
+    {
+      "TOWN": "Bethel",
+      "ADDRESS": "** Spring Hill Lane",
+      "USER": "Others (see Comments)",
+      "STRUCTURE_OWNER": "AT&T",
+      "TWR_TYPE": "monopole",
+      "ANT_HEIGHT": "125",
+      "TWR_HEIGHT": "125",
+      "BACKUP_POWER_TYPE": "nan",
+      "C_5G_SERVICES": "nan",
+      "DOCKET_OR_PETITION_NUM": "Docket No. 288",
+      "BACKUP_POWER_SIZE_DURATION": "nan",
+      "INGESTED_AT": "2026-06-24 05:08:02.477650",
+      "SOURCE_RUN_ID": "0d0d91a5-f34e-4114-aecb-d712f7499e14",
+      "SRC_SHA256": "d5a13c4f37c070530274e7506be9fae422bcaf62c8b786e08605509e2d0a1536"
+    },
+    {
+      "TOWN": "Berlin",
+      "ADDRESS": "**** Chamberlain Highway",
+      "USER": "Cellco",
+      "STRUCTURE_OWNER": "Sprint",
+      "TWR_TYPE": "monopole",
+      "ANT_HEIGHT": "95",
+      "TWR_HEIGHT": "125",
+      "BACKUP_POWER_TYPE": "nan",
+      "C_5G_SERVICES": "nan",
+      "DOCKET_OR_PETITION_NUM": "nan",
+      "BACKUP_POWER_SIZE_DURATION": "nan",
+      "INGESTED_AT": "2026-06-24 05:08:02.477650",
+      "SOURCE_RUN_ID": "0d0d91a5-f34e-4114-aecb-d712f7499e14",
+      "SRC_SHA256": "d5a13c4f37c070530274e7506be9fae422bcaf62c8b786e08605509e2d0a1536"
+    }
+  ],
+  "sample_error": null
+}

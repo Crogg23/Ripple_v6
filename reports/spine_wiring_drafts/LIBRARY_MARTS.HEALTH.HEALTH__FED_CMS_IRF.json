@@ -1,0 +1,118 @@
+{
+  "fqtn": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_IRF",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "CCN",
+    "PROVIDER_NAME",
+    "ADDRESS_LINE_1",
+    "ADDRESS_LINE_2",
+    "CITY_TOWN",
+    "STATE",
+    "ZIP_CODE",
+    "COUNTY_PARISH",
+    "TELEPHONE_NUMBER",
+    "CMS_REGION",
+    "OWNERSHIP_TYPE",
+    "CERTIFICATION_DATE"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "PROVIDER_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY_TOWN"
+      ],
+      "state": [
+        "STATE"
+      ],
+      "zip": [
+        "ZIP_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CCN",
+      "column": "CCN",
+      "total_rows": 1222,
+      "nonnull_after_norm": 410,
+      "distinct_after_norm": 410,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "CCN": "23T077",
+      "PROVIDER_NAME": "ST MARY'S OF MICHIGAN MEDICAL CENTER",
+      "ADDRESS_LINE_1": "800 S WASHINGTON AVENU",
+      "ADDRESS_LINE_2": "-",
+      "CITY_TOWN": "SAGINAW",
+      "STATE": "MI",
+      "ZIP_CODE": "48601",
+      "COUNTY_PARISH": "Saginaw",
+      "TELEPHONE_NUMBER": "(989) 776-1677",
+      "CMS_REGION": "5",
+      "OWNERSHIP_TYPE": "Non-profit",
+      "CERTIFICATION_DATE": "2006-07-01"
+    },
+    {
+      "CCN": "50T079",
+      "PROVIDER_NAME": "MULTICARE GOOD SAMARITAN HOSPITAL",
+      "ADDRESS_LINE_1": "401 15TH AVE SE",
+      "ADDRESS_LINE_2": "-",
+      "CITY_TOWN": "PUYALLUP",
+      "STATE": "WA",
+      "ZIP_CODE": "98372",
+      "COUNTY_PARISH": "Pierce",
+      "TELEPHONE_NUMBER": "(253) 697-1663",
+      "CMS_REGION": "10",
+      "OWNERSHIP_TYPE": "Non-profit",
+      "CERTIFICATION_DATE": "2016-08-01"
+    },
+    {
+      "CCN": "14T082",
+      "PROVIDER_NAME": "LOUIS A. WEISS MEMORIAL HOSPITAL",
+      "ADDRESS_LINE_1": "4646 N. MARINE DRIVE",
+      "ADDRESS_LINE_2": "-",
+      "CITY_TOWN": "CHICAGO",
+      "STATE": "IL",
+      "ZIP_CODE": "60640",
+      "COUNTY_PARISH": "Cook",
+      "TELEPHONE_NUMBER": "(773) 878-8700",
+      "CMS_REGION": "5",
+      "OWNERSHIP_TYPE": "For profit",
+      "CERTIFICATION_DATE": "1993-07-01"
+    },
+    {
+      "CCN": "37T019",
+      "PROVIDER_NAME": "GREAT PLAINS REGIONAL MEDICAL CENTER",
+      "ADDRESS_LINE_1": "1801 WEST 3RD STREET",
+      "ADDRESS_LINE_2": "-",
+      "CITY_TOWN": "ELK CITY",
+      "STATE": "OK",
+      "ZIP_CODE": "73644",
+      "COUNTY_PARISH": "Beckham",
+      "TELEPHONE_NUMBER": "-",
+      "CMS_REGION": "6",
+      "OWNERSHIP_TYPE": "Non-profit",
+      "CERTIFICATION_DATE": "2017-07-31"
+    },
+    {
+      "CCN": "45T617",
+      "PROVIDER_NAME": "CLEAR LAKE REGIONAL MEDICAL CENTER",
+      "ADDRESS_LINE_1": "500 MEDICAL CENTER BLVD",
+      "ADDRESS_LINE_2": "-",
+      "CITY_TOWN": "WEBSTER",
+      "STATE": "TX",
+      "ZIP_CODE": "77598",
+      "COUNTY_PARISH": "Harris",
+      "TELEPHONE_NUMBER": "(281) 338-3972",
+      "CMS_REGION": "6",
+      "OWNERSHIP_TYPE": "For profit",
+      "CERTIFICATION_DATE": "2011-04-01"
+    }
+  ],
+  "sample_error": null
+}

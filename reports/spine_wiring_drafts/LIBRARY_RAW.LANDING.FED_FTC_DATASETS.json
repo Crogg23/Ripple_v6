@@ -1,0 +1,106 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.FED_FTC_DATASETS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "ACTION_NAME",
+    "RESPONDENT",
+    "DATE_FILED",
+    "CASE_TYPE",
+    "STATUS",
+    "TOPIC",
+    "DOCUMENT_URL",
+    "EIN",
+    "_INGESTED_AT",
+    "_SOURCE_RUN_ID",
+    "_SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "ACTION_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "EIN",
+      "column": "EIN",
+      "total_rows": 1200,
+      "nonnull_after_norm": 0,
+      "distinct_after_norm": 0,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "ACTION_NAME": "FTC v. Jonathan and Sandra Hanley (9th Cir.), Answering Brief of the FTC, 20-15144",
+      "RESPONDENT": "",
+      "DATE_FILED": "2021-08-23T12:00:00Z",
+      "CASE_TYPE": "",
+      "STATUS": "",
+      "TOPIC": "",
+      "DOCUMENT_URL": "https://www.ftc.gov/legal-library/browse/cases-proceedings/merit-brief/ftc-v-jonathan-sandra-hanley-9th-cir-answering-brief-ftc-20-15144",
+      "EIN": "",
+      "_INGESTED_AT": 1782954371105196,
+      "_SOURCE_RUN_ID": "5443253f-5e6f-4705-a6ae-3afa7743c7ff",
+      "_SRC_SHA256": "d4a557e19afd391f232c998f2b8e919900fc9d49660488dddbdd88829032b13e"
+    },
+    {
+      "ACTION_NAME": "Solar XChange, U.S. v.",
+      "RESPONDENT": "",
+      "DATE_FILED": "2023-07-18T12:00:00Z",
+      "CASE_TYPE": "",
+      "STATUS": "",
+      "TOPIC": "",
+      "DOCUMENT_URL": "https://www.ftc.gov/legal-library/browse/cases-proceedings/2223063-solar-xchange-us-v",
+      "EIN": "",
+      "_INGESTED_AT": 1782954371105196,
+      "_SOURCE_RUN_ID": "5443253f-5e6f-4705-a6ae-3afa7743c7ff",
+      "_SRC_SHA256": "d4a557e19afd391f232c998f2b8e919900fc9d49660488dddbdd88829032b13e"
+    },
+    {
+      "ACTION_NAME": "FTC v. Simple Health et al (11th Cir.), Brief of the FTC, 21-13116",
+      "RESPONDENT": "",
+      "DATE_FILED": "2022-01-26T12:00:00Z",
+      "CASE_TYPE": "",
+      "STATUS": "",
+      "TOPIC": "",
+      "DOCUMENT_URL": "https://www.ftc.gov/legal-library/browse/cases-proceedings/merit-brief/ftc-v-simple-health-et-al-11th-cir-brief-ftc-21-13116",
+      "EIN": "",
+      "_INGESTED_AT": 1782954371105196,
+      "_SOURCE_RUN_ID": "5443253f-5e6f-4705-a6ae-3afa7743c7ff",
+      "_SRC_SHA256": "d4a557e19afd391f232c998f2b8e919900fc9d49660488dddbdd88829032b13e"
+    },
+    {
+      "ACTION_NAME": "FTC v. Burton Katz et al (11th Cir.), FTC Petition for Panel Rehearing, 21-50981",
+      "RESPONDENT": "",
+      "DATE_FILED": "2021-11-29T12:00:00Z",
+      "CASE_TYPE": "",
+      "STATUS": "",
+      "TOPIC": "",
+      "DOCUMENT_URL": "https://www.ftc.gov/legal-library/browse/cases-proceedings/merit-brief/ftc-v-burton-katz-et-al-11th-cir-ftc-petition-panel-rehearing-21-50981",
+      "EIN": "",
+      "_INGESTED_AT": 1782954371105196,
+      "_SOURCE_RUN_ID": "5443253f-5e6f-4705-a6ae-3afa7743c7ff",
+      "_SRC_SHA256": "d4a557e19afd391f232c998f2b8e919900fc9d49660488dddbdd88829032b13e"
+    },
+    {
+      "ACTION_NAME": "Chair Khan Letter to Rep. Gluesenkamp Perez Regarding Right to Repair Act",
+      "RESPONDENT": "",
+      "DATE_FILED": "2025-01-17T12:00:00Z",
+      "CASE_TYPE": "",
+      "STATUS": "",
+      "TOPIC": "",
+      "DOCUMENT_URL": "https://www.ftc.gov/legal-library/browse/cases-proceedings/public-statements/chair-khan-letter-rep-gluesenkamp-perez-regarding-right-repair-act",
+      "EIN": "",
+      "_INGESTED_AT": 1782954371105196,
+      "_SOURCE_RUN_ID": "5443253f-5e6f-4705-a6ae-3afa7743c7ff",
+      "_SRC_SHA256": "d4a557e19afd391f232c998f2b8e919900fc9d49660488dddbdd88829032b13e"
+    }
+  ],
+  "sample_error": null
+}

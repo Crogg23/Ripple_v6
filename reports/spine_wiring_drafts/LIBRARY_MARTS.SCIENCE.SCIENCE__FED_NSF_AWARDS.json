@@ -1,0 +1,169 @@
+{
+  "fqtn": "LIBRARY_MARTS.SCIENCE.SCIENCE__FED_NSF_AWARDS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "AWARD_ID",
+    "TITLE",
+    "AWARDEE_NAME",
+    "INSTITUTION",
+    "PI_NAME",
+    "CO_PI_NAMES",
+    "PROGRAM_OFFICER",
+    "AWARD_AMOUNT",
+    "AWARD_DATE",
+    "START_DATE",
+    "END_DATE",
+    "STATUS",
+    "ABSTRACT",
+    "PROGRAM_NAME",
+    "EIN",
+    "ZIP",
+    "CITY",
+    "STATE",
+    "COUNTRY",
+    "CFDA_NUMBER"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "AWARDEE_NAME",
+      "PI_NAME",
+      "CO_PI_NAMES",
+      "PROGRAM_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "STATE"
+      ],
+      "zip": [
+        "ZIP"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "EIN",
+      "column": "EIN",
+      "total_rows": 115,
+      "nonnull_after_norm": 0,
+      "distinct_after_norm": 0,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "AWARD_ID": "2626240",
+      "TITLE": "Conference: Trustworthy Foundation Models for Emerging Networked Systems",
+      "AWARDEE_NAME": "Clemson University",
+      "INSTITUTION": "Clemson University",
+      "PI_NAME": "Linke Guo",
+      "CO_PI_NAMES": "",
+      "PROGRAM_OFFICER": "Linke Guo",
+      "AWARD_AMOUNT": 50000.0,
+      "AWARD_DATE": "2026-06-30",
+      "START_DATE": "2026-10-01",
+      "END_DATE": "2027-09-30",
+      "STATUS": "",
+      "ABSTRACT": "AI, especially the widely used foundation models have reshaped modern networked computing infrastructures, facilitating emerging applications that benefit people\u2019s daily lives. On the other side, AI introduces critical challenges related to AI trustworthiness, including robustness, security, privacy, interpretability, safety, resource efficiency, and reliability under practical, dynamic, and adversarial environments. There is critical need to establish scientific foundation for AI enabled future networking systems that ensure trustworthy operation across heterogeneous environments. \r\n\r\nThis proposal seeks funding to support travel expenses and logistic costs for the NSF Workshop on Trustworthy Foundation Models for Emerging Networked Systems, scheduled for 2027. The workshop is an by invitation-only interdisciplinary event that will bring together researchers from academia and government across AI/ML, networking, wireless communications, robotics, edge computing, and cybersecurity. The workshop will feature keynote talks, lightning presentations, panel discussions, and roundtable sessions designed to encourage interactive discussion and collaboration. Requested funding will primarily support participant travel from U.S. institutions to broaden participation and foster sustained interdisciplinary engagement on trustworthy AI technologies for future networked systems.\r\n\r\nThis award reflects NSF's statutory mission and has been deemed worthy of support through evaluation using the Foundation's intellectual merit and broader impacts review criteria.",
+      "PROGRAM_NAME": "Secure &Trustworthy Cyberspace",
+      "EIN": "",
+      "ZIP": "296340001",
+      "CITY": "CLEMSON",
+      "STATE": "SC",
+      "COUNTRY": "US",
+      "CFDA_NUMBER": "47.070"
+    },
+    {
+      "AWARD_ID": "2622697",
+      "TITLE": "A gecko, a snake, and a scorpion: behavior and ontogeny of dual mimicry.",
+      "AWARDEE_NAME": "University of Oklahoma Norman Campus",
+      "INSTITUTION": "University of Oklahoma Norman Campus",
+      "PI_NAME": "Ingo Schlupp",
+      "CO_PI_NAMES": "",
+      "PROGRAM_OFFICER": "Ingo Schlupp",
+      "AWARD_AMOUNT": 584541.0,
+      "AWARD_DATE": "2026-06-26",
+      "START_DATE": "2026-12-01",
+      "END_DATE": "2029-11-30",
+      "STATUS": "",
+      "ABSTRACT": "One of the most intriguing aspects of the life of any organism is how it interacts with other species. Maybe the most important interaction includes how predators and prey interact. Clearly, prey must avoid being eaten, but how to do this? An especially important and sometimes puzzling way to achieve this is to look like an animal that is poisonous, venomous, or just tastes bad; a phenomenon called mimicry. The present project will study a situation that may be widespread, but overlooked: dual mimicry, in which one species mimics more than one venomous species. Here the banded gecko, which already mimics a highly venomous coral snake that is prominently know for its yellow and red banding pattern, will be studied. Young geckos show coloration and even snake-like movement. Older geckos change their strategy, they lose the snake like body coloration, and potentially mimic highly venomous scorpions. They bend their tail similar to the defensive posture of the scorpion. This project will promote the progress of science by investigating a phenomenon that may be quite common but overlooked. Broader impacts include expanding our understanding of how species interact, student training and education, and planned educational events aimed at helping people be less fearful of, and more careful around, reptiles.\r\n\r\nBatesian mimicry \u2013 where one species resembles a toxic or venomous species without being venomous itself - offers a classic example of how species can interact. While typically studied as a one-model, one-mimic system, some species may face diverse predatory pressures that favor dual mimicry across life stages. This study explores such a system in the Yucatan banded gecko (Coleonyx elegans), which appears to mimic venomous coral snakes as juveniles via conspicuous coloration and scorpions as adults through tail-bending displays. This will be studied using an integrative approach to analyze morphological, behavioral, ecological, and perceptual aspects of this ontogenetic shift, aiming to understand how mimetic strategies change across life stages, how predators respond to these strategies, and what selective advantages they confer throughout life. This project addresses key gaps in mimicry research by examining how a species employs dual mimicry across life stages. Unlike most mimicry studies focused on static visual traits within a single life stage, this project highlights dynamic ontogenetic shifts between visual and behavioral strategies. It integrates ecological and environmental data to analyze habitat overlap with models, predator behavior, and how microhabitat features like leaf litter, humidity, and temperature influence mimicry effectiveness. By combining analyses of dorsal color patterns and behavioral defenses, the study contributes to understanding the functional role of these traits in survival. Furthermore, it provides new insight into stage-specific adaptations shaped by predator-prey interactions, complementing macroevolutionary studies with real-time ecological and behavioral data, and deepening our knowledge of mimicry, sensory ecology, and coevolution in reptiles.\r\n\r\nThis award reflects NSF's statutory mission and has been deemed worthy of support through evaluation using the Foundation's intellectual merit and broader impacts review criteria.",
+      "PROGRAM_NAME": "Org Interaction & Ecology",
+      "EIN": "",
+      "ZIP": "730193003",
+      "CITY": "NORMAN",
+      "STATE": "OK",
+      "COUNTRY": "US",
+      "CFDA_NUMBER": "47.074"
+    },
+    {
+      "AWARD_ID": "2531827",
+      "TITLE": "EPSCoR Research Fellows: NSF: Linking Numerical and Metabolic Theories of Life History",
+      "AWARDEE_NAME": "University of Kentucky Research Foundation",
+      "INSTITUTION": "University of Kentucky Research Foundation",
+      "PI_NAME": "Joseph Burger",
+      "CO_PI_NAMES": "",
+      "PROGRAM_OFFICER": "Joseph R Burger",
+      "AWARD_AMOUNT": 235654.0,
+      "AWARD_DATE": "2026-03-31",
+      "START_DATE": "2027-01-01",
+      "END_DATE": "2028-12-31",
+      "STATUS": "",
+      "ABSTRACT": "This Research Infrastructure Improvement (RII) EPSCoR Research Fellows project provides a fellowship to an Assistant Professor and training for a graduate student at the University of Kentucky. This work is conducted in collaboration with Dr. Shripad Tuljapurkar at Stanford University. Through the fellowship, the PI will investigate how organisms allocate energy to growth, survival, and reproduction across their life cycles. The research will examine why species that differ greatly in body size, lifespan, and metabolic rate can nevertheless achieve similar long-term reproductive success. To address this question, the project will advance a new scientific framework called the Equal Fitness Paradigm, which links metabolism of organisms to life history, population dynamics, and energy flows in ecosystems. By combining approaches from ecology, physiology, and population biology, the project will improve understanding of the fundamental processes that shape the diversity of life on Earth. The work will strengthen collaboration between Kentucky and Stanford researchers, train students in quantitative ecological methods, and develop open-source data tools that support research, education, and applied natural resource management.\r\n\r\nThis project will integrate numerical and metabolic theories of life history to advance the Equal Fitness Paradigm (EFP), a framework that links energetic constraints to life history evolution and population dynamics. The research will develop mathematical connections between metabolic scaling theory and matrix population models to quantify trade-offs among survival, growth, and reproduction across species. Using published databases for wild organisms, the project will establish computational workflows to standardize life history parameters and incorporate energetic variables for comparative analyses across taxa. These analyses will evaluate how energetic and numerical constraints produce common scaling relationships between energy use, generation time, and reproductive output resulting in approximately equally fit strategies. The fellowship will enhance research infrastructure by expanding faculty expertise in mathematical biology and strengthening collaboration between the University of Kentucky and Stanford University. Training activities will provide graduate students with advanced skills in population modeling, ecological theory, and data science. The resulting open-source datasets and analytical workflows will support future research and education in ecological theory, biodiversity science, and applied population studies. This project is supported by the EPSCoR Research Infrastructure Improvement Program: EPSCoR Research Fellows, which supports early- and mid-career investigators in eligible jurisdictions to develop collaborations at the nation\u2019s private, government or academic research institutions.\r\n\r\nThis award reflects NSF's statutory mission and has been deemed worthy of support through evaluation using the Foundation's intellectual merit and broader impacts review criteria.",
+      "PROGRAM_NAME": "EPSCoR RII: EPSCoR Research Fe",
+      "EIN": "",
+      "ZIP": "405260001",
+      "CITY": "LEXINGTON",
+      "STATE": "KY",
+      "COUNTRY": "US",
+      "CFDA_NUMBER": "47.083"
+    },
+    {
+      "AWARD_ID": "2551964",
+      "TITLE": "Collaborative Research: CER: From Classroom to Career Readiness: Enhancing Undergraduate Computing Education Through Collaborative Research Experience in AI Security and Privacy",
+      "AWARDEE_NAME": "University of Hawaii",
+      "INSTITUTION": "University of Hawaii",
+      "PI_NAME": "Hanqing Guo",
+      "CO_PI_NAMES": "",
+      "PROGRAM_OFFICER": "Hanqing Guo",
+      "AWARD_AMOUNT": 214246.0,
+      "AWARD_DATE": "2026-06-02",
+      "START_DATE": "2026-10-01",
+      "END_DATE": "2029-09-30",
+      "STATUS": "",
+      "ABSTRACT": "Artificial Intelligence (AI) technologies are transforming daily life, but their rapid adoption has also introduced serious security and privacy challenges. Addressing these risks requires a workforce that can both advance AI innovation and safeguard its deployment. This project will help meet that need by strengthening undergraduate computing education through a curriculum-based research experience program that connects classroom learning with real world research experiences. The effort will integrate the latest AI security and privacy topics into existing computing courses while helping students build professional skills such as communication, teamwork, and leadership. By creating flexible learning modules that can be used across a range of undergraduate computing courses and institutions, the project will support workforce development and contribute to the secure, reliable, and responsible use of AI in society.\r\n\r\nThe project will establish a curriculum-based undergraduate research experience program focused on AI security and privacy across partner institutions. The research team will design, implement, and evaluate flexible educational modules including labs, tutorials, assignments, and research activities in computer vision, speech and audio, and network systems. These modules will address vulnerabilities across the AI lifecycle and will be designed for seamless integration into undergraduate computing courses. The instructional materials will also be aligned with the NICE (National Initiative for Cybersecurity Education) Cybersecurity Workforce Framework to strengthen career-relevant competencies. In parallel, the research team will study educational approaches that embed research into coursework, including project-based and competition-based learning, and evaluate their effects on student engagement, success, technical growth, and professional skill development. The project will generate transferable resources and evidence-based practices that can be adopted more broadly in computing education and shared with academic and community audiences.\r\n\r\nThis award reflects NSF's statutory mission and has been deemed worthy of support through evaluation using the Foundation's intellectual merit and broader impacts review criteria.",
+      "PROGRAM_NAME": "CER-ComputingEducationResearch",
+      "EIN": "",
+      "ZIP": "968222247",
+      "CITY": "HONOLULU",
+      "STATE": "HI",
+      "COUNTRY": "US",
+      "CFDA_NUMBER": "47.070"
+    },
+    {
+      "AWARD_ID": "2548388",
+      "TITLE": "REU SITE: WAVE SURF: Workforce Advancement in Verification and Emulation of Semiconductor Chips -- Undergraduate Research Fellowships",
+      "AWARDEE_NAME": "Texas A&M Engineering Experiment Station",
+      "INSTITUTION": "Texas A&M Engineering Experiment Station",
+      "PI_NAME": "Jiang Hu",
+      "CO_PI_NAMES": "",
+      "PROGRAM_OFFICER": "Jiang Hu",
+      "AWARD_AMOUNT": 480300.0,
+      "AWARD_DATE": "2026-05-12",
+      "START_DATE": "2026-10-01",
+      "END_DATE": "2029-09-30",
+      "STATUS": "",
+      "ABSTRACT": "Semiconductor chips power nearly every aspect of modern life, from smartphones and medical devices to national defense systems and critical infrastructure. As these chips grow more complex, verifying that they function correctly and securely has become one of the most costly and time-consuming stages of development. At the same time, the United States faces a critical shortage of engineers trained in chip verification, a gap that threatens both economic competitiveness and national security. This project establishes a Research Experiences for Undergraduates (REU) Site at Texas A&M University to train the next generation of verification engineers and semiconductor researchers. Each summer, ten undergraduate students will participate in a ten-week immersive research program focused on chip verification and the application of artificial intelligence (AI) to semiconductor design evaluation. The project specifically targets students from community colleges, regional universities, and institutions with limited research infrastructure, with emphasis on first-generation college students, veterans, and students with no prior research experience. Participants will receive layered mentorship from faculty, graduate students, and industry professionals, along with professional development training in scientific communication, ethics, and career readiness. Industry partners will contribute guest lectures, mentorship, and site visits, connecting students directly to career pathways in the semiconductor workforce. By combining cutting-edge research training with inclusive recruitment and sustained post-program engagement, this project addresses a pressing national workforce need while broadening participation in a strategically vital field.\r\n\r\nThis project engages undergraduate researchers in four interconnected themes spanning hardware security, performance analysis, design automation, and functional verification. The first theme develops scalable security verification frameworks that adapt fuzzing, formal analysis, and symbolic execution to detect vulnerabilities in hardware designs described at the register-transfer level and prototyped on field-programmable gate arrays. The second theme applies machine learning (ML) to processor performance debugging, training models to automatically detect and localize performance anomalies using hardware counter data, estimate fine-grained performance breakdowns from limited counter sets, and accelerate design simulation through early-run inference. The third theme investigates the use of large language models to automate chip design tasks, including hardware description language code generation, physical synthesis using open-source tool flows, and timing optimization. The fourth theme targets ML-driven functional verification, developing techniques for automated testbench generation, structure-aware coverage acceleration, multimodal failure triage that combines text and waveform data, and closed-loop testbench correction guided by dynamic bug mutation analysis. Students will work with commercial electronic design automation tools and open-source processor platforms, producing weekly progress reports, final presentations, and potential conference submissions. The program integrates structured mentorship, professional skills training, and industry exposure through site visits and seminars with engineers from leading semiconductor companies. An external evaluator will conduct formative and summative assessments, and participants will be tracked for five years to measure long-term impact on graduate school enrollment, research productivity, and career outcomes.\r\n\r\nThis award reflects NSF's statutory mission and has been deemed worthy of support through evaluation using the Foundation's intellectual merit and broader impacts review criteria.",
+      "PROGRAM_NAME": "RSCH EXPER FOR UNDERGRAD SITES",
+      "EIN": "",
+      "ZIP": "778433124",
+      "CITY": "COLLEGE STATION",
+      "STATE": "TX",
+      "COUNTRY": "US",
+      "CFDA_NUMBER": "47.070"
+    }
+  ],
+  "sample_error": null
+}

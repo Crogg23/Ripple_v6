@@ -1,0 +1,118 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_SOC_TEXAS_OPEN_DATA_28E2F49084",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NAIC_ID",
+    "COMPANY",
+    "ACTIVE_DATE",
+    "APPOINTMENT_TYPE",
+    "NPN_EIN",
+    "LICENSEE",
+    "CITY",
+    "STATE",
+    "POSTAL_CD",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "COMPANY"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "STATE"
+      ],
+      "zip": [
+        "POSTAL_CD"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "EIN",
+      "column": "NPN_EIN",
+      "total_rows": 2000,
+      "nonnull_after_norm": 2000,
+      "distinct_after_norm": 274,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "NAIC_ID": "66575",
+      "COMPANY": "RELIANCE STANDARD LIFE INSURANCE COMPANY OF TEXAS",
+      "ACTIVE_DATE": "2001-01-08T00:00:00.000",
+      "APPOINTMENT_TYPE": "Life, Accident, Health and HMO",
+      "NPN_EIN": "326649",
+      "LICENSEE": "GARY DAIGLE",
+      "CITY": "PLANO",
+      "STATE": "TX",
+      "POSTAL_CD": "75093",
+      "INGESTED_AT": "2026-06-24 04:45:10.247541",
+      "SOURCE_RUN_ID": "5f4ce3fc-7a4c-458b-82c0-b291a5661963",
+      "SRC_SHA256": "69dba59f24f80deb41e3aa61f78ca8c9a5c411e71f004645893aaf2414338dca"
+    },
+    {
+      "NAIC_ID": "67091",
+      "COMPANY": "Northwestern Mutual Life Insurance Company, The",
+      "ACTIVE_DATE": "2019-12-24T00:00:00.000",
+      "APPOINTMENT_TYPE": "Life, Accident, Health and HMO",
+      "NPN_EIN": "18783105",
+      "LICENSEE": "SEAN CONNORS",
+      "CITY": "BOSTON",
+      "STATE": "MA",
+      "POSTAL_CD": "021083196",
+      "INGESTED_AT": "2026-06-24 04:45:10.247541",
+      "SOURCE_RUN_ID": "5f4ce3fc-7a4c-458b-82c0-b291a5661963",
+      "SRC_SHA256": "69dba59f24f80deb41e3aa61f78ca8c9a5c411e71f004645893aaf2414338dca"
+    },
+    {
+      "NAIC_ID": "11215",
+      "COMPANY": "Safeco Insurance Company of Indiana",
+      "ACTIVE_DATE": "2020-02-14T00:00:00.000",
+      "APPOINTMENT_TYPE": "Property and Casualty",
+      "NPN_EIN": "8761141",
+      "LICENSEE": "DARIN MURAKAMI",
+      "CITY": "WESTLAKE VILLAGE",
+      "STATE": "CA",
+      "POSTAL_CD": "913623872",
+      "INGESTED_AT": "2026-06-24 04:45:10.247541",
+      "SOURCE_RUN_ID": "5f4ce3fc-7a4c-458b-82c0-b291a5661963",
+      "SRC_SHA256": "69dba59f24f80deb41e3aa61f78ca8c9a5c411e71f004645893aaf2414338dca"
+    },
+    {
+      "NAIC_ID": "11558",
+      "COMPANY": "AssuranceAmerica Insurance Company",
+      "ACTIVE_DATE": "2024-10-03T00:00:00.000",
+      "APPOINTMENT_TYPE": "Property and Casualty",
+      "NPN_EIN": "16185407",
+      "LICENSEE": "ISSAC MIRANDA",
+      "CITY": "MISSION",
+      "STATE": "TX",
+      "POSTAL_CD": "78572",
+      "INGESTED_AT": "2026-06-24 04:45:10.247541",
+      "SOURCE_RUN_ID": "5f4ce3fc-7a4c-458b-82c0-b291a5661963",
+      "SRC_SHA256": "69dba59f24f80deb41e3aa61f78ca8c9a5c411e71f004645893aaf2414338dca"
+    },
+    {
+      "NAIC_ID": "35882",
+      "COMPANY": "GEICO General Insurance Company",
+      "ACTIVE_DATE": "2005-11-09T00:00:00.000",
+      "APPOINTMENT_TYPE": "Property and Casualty",
+      "NPN_EIN": "8208465",
+      "LICENSEE": "SILVIA RAMALHO",
+      "CITY": "FREDERICKSBURG",
+      "STATE": "VA",
+      "POSTAL_CD": "224051775",
+      "INGESTED_AT": "2026-06-24 04:45:10.247541",
+      "SOURCE_RUN_ID": "5f4ce3fc-7a4c-458b-82c0-b291a5661963",
+      "SRC_SHA256": "69dba59f24f80deb41e3aa61f78ca8c9a5c411e71f004645893aaf2414338dca"
+    }
+  ],
+  "sample_error": null
+}

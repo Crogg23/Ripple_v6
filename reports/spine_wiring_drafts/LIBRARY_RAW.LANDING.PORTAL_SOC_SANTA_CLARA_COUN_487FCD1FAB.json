@@ -1,0 +1,98 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_SOC_SANTA_CLARA_COUN_487FCD1FAB",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "DAO_MEDIA_ID",
+    "DEFENDANT",
+    "DOCKET",
+    "PROSECUTOR",
+    "CHARGES",
+    "NEXT_COURT_DATE",
+    "UPDATE_DATE",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "DOCKET",
+      "column": "DOCKET",
+      "total_rows": 8,
+      "nonnull_after_norm": 8,
+      "distinct_after_norm": 8,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "DAO_MEDIA_ID": "3857",
+      "DEFENDANT": "Sarceno Orla, Franklin Enrique\r\n\r\n",
+      "DOCKET": "B2402302",
+      "PROSECUTOR": "Matthew Savage\r\n\r\n",
+      "CHARGES": "1. PC.209(b)(1)\r\n   -Sarceno Orla, Franklin Enrique\r\n     1. PC.1170(b)\r\n     2. PC.12022.7(a)\r\n\r\n2. PC.289(a)(1)(A)\r\n   -Sarceno Orla, Franklin Enrique\r\n     1. PC.1170(b)\r\n     2. PC.12022.8\r\n     3. PC.667.61(a)\r\n\r\n3. PC.289(d)\r\n   -Sarceno Orla, Franklin Enrique\r\n     2. PC.1170(b)\r\n\r\n4. PC.220(a)(1)\r\n   -Sarceno Orla, Franklin Enrique\r\n     1. PC.1170(b)\r\n\r\n5. PC.220(a)(1)\r\n   -Sarceno Orla, Franklin Enrique\r\n     1. PC.1170(b)\r\n\r\n6. PC.288a(f)\r\n   -Sarceno Orla, Franklin Enrique\r\n     1. PC.1170(b)\r\n\r\n7. PC.243.4(a)\r\n   -Sarceno Orla, Franklin Enrique\r\n     1. PC.1170(b)\r\n\r\n8. PC.287(c)(2)(A)\r\n   -Sarceno Orla, Franklin Enrique\r\n     1. PC.1170(b)\r\n     2. PC.667.61(b)\r\n     3. PC.12022.85(a)\r\n\r\n9. PC.287(f)\r\n   -Sarceno Orla, Franklin Enrique\r\n     1. PC.1170(b)\r\n     2. PC.12022.85(a)\r\n\r\n10. PC.243.4(a)\r\n   -Sarceno Orla, Franklin Enrique\r\n     1. PC.1170(b)\r\n\r\n11. PC.243.4(e)(1)\r\n   -Sarceno Orla, Franklin Enrique\r\n\r\n12. PC.209(b)(1)\r\n   -Sarceno Orla, Franklin Enrique\r\n     1. PC.1170(b)\r\n\r\n13. PC.289(a)(1)(A)\r\n   -Sarceno Orla, Franklin Enrique\r\n     2. PC.667.61(a)\r\n     3. PC.12022.8\r\n     4. PC.1170(b)\r\n\r\n14. PC.289(d)\r\n   -Sarceno Orla, Franklin Enrique\r\n     1. PC.1170(b)\r\n\r\n15. PC.220(a)(1)\r\n   -Sarceno Orla, Franklin Enrique\r\n     1. PC.1170(b)\r\n\r\n16. PC.209(b)(1)\r\n   -Sarceno Orla, Franklin Enrique\r\n     1. PC.1170(b)\r\n\r\n17. PC.136.1(c)(1)\r\n   -Sarceno Orla, Franklin Enrique\r\n     1. PC.1170(b)\r\n\r\n18. PC.289(a)(1)(A)\r\n   -Sarceno Orla, Franklin Enrique\r\n     1. PC.667.61(a)\r\n     2. PC.12022.8\r\n     3. PC.1170(b)\r\n\r\n19. PC.289(d)\r\n   -Sarceno Orla, Franklin Enrique\r\n     1. PC.1170(b)\r\n\r\n20. PC.211\r\n   -Sarceno Orla, Franklin Enrique\r\n     1. PC.1170(b)\r\n\r\n21. PC.220(a)(1)\r\n   -Sarceno Orla, Franklin Enrique\r\n     1. PC.1170(b)\r\n\r\n22. PC.243.4(a)\r\n   -Sarceno Orla, Franklin Enrique\r\n     1. PC.1170(b)\r\n\r\n23. PC.243.4(e)(1)\r\n   -Sarceno Orla, Franklin Enrique\r\n\r\n24. PC.209(b)(1)\r\n   -Sarceno Orla, Franklin Enrique\r\n     1. PC.1170(b)\r\n     2. PC.1170(b)\r\n\r\n25. PC.286(c)(2)(A)\r\n   -Sarceno Orla, Franklin Enrique\r\n     1. PC.12022.8\r\n     2. PC.12022.85(a)\r\n     3. PC.667.61(a)\r\n     4. PC.1170(b)\r\n     5. PC.1170(b)\r\n\r\n26. PC.286(i)\r\n   -Sarceno Orla, Franklin Enrique\r\n     1. PC.12022.85(a)\r\n     2. PC.1170(b)\r\n     3. PC.1170(b)\r\n\r\n27. PC.220(a)(1)\r\n   -Sarceno Orla, Franklin Enrique\r\n     1. PC.1170(b)\r\n     2. PC.1170(b)\r\n\r\n28. PC.243.4(a)\r\n   -Sarceno Orla, Franklin Enrique\r\n     1. PC.1170(b)\r\n     2. PC.1170(b)\r\n\r\n29. PC.243.4(e)(1)\r\n   -Sarceno Orla, Franklin Enrique\r\n\r\n30. PC.287(f)\r\n   -Sarceno Orla, Franklin Enrique\r\n     1. PC.12022.85(a)\r\n     2. PC.1170(b)\r\n\r\n31. PC.220(a)(1)\r\n   -Sarceno Orla, Franklin Enrique\r\n     1. PC.1170(b)\r\n\r\n32. PC.243.4(e)(1)\r\n   -Sarceno Orla, Franklin Enrique\r\n\r\n",
+      "NEXT_COURT_DATE": "Date & Time - 07/28/2026  9:00AM\r\nCourt Facility - Santa Clara County Superior Court\r\nDepartment - 84\r\nEvent - Plea\r\n\r\n",
+      "UPDATE_DATE": "2026-06-18T07:30:00.000",
+      "INGESTED_AT": "2026-06-24 05:08:25.674325",
+      "SOURCE_RUN_ID": "4a82097f-e49e-4b35-9fbc-463230b8824d",
+      "SRC_SHA256": "0227b5644aea2adae9c4c851237cfc90500708ab46d5d97102cf84823dc748c1"
+    },
+    {
+      "DAO_MEDIA_ID": "3853",
+      "DEFENDANT": "Hernandezsantos, Rene Aaron\r\n\r\nHernandez, Rene Trigueros\r\n\r\nHernandez, Claudia Elisa\r\n\r\n",
+      "DOCKET": "C2205609",
+      "PROSECUTOR": "Marisa A. McKeown\r\n\r\nRebekah Wise\r\n\r\n",
+      "CHARGES": "1. PC.273ab(a)\r\n   -Hernandez, Claudia Elisa\r\n\r\n2. PC.273ab(a)\r\n   -Hernandezsantos, Rene Aaron\r\n\r\n   -Hernandez, Rene Trigueros\r\n\r\n",
+      "NEXT_COURT_DATE": "Date & Time - 07/29/2026  9:00AM\r\nCourt Facility - Santa Clara County Superior Court\r\nDepartment - 36\r\nEvent - Motion for Discovery-Pitches\r\n\r\nDate & Time - 07/29/2026  9:00AM\r\nCourt Facility - Santa Clara County Superior Court\r\nDepartment - 36\r\nEvent - Motion for Discovery-Pitches\r\n\r\n",
+      "UPDATE_DATE": "2026-06-18T07:30:00.000",
+      "INGESTED_AT": "2026-06-24 05:08:25.674325",
+      "SOURCE_RUN_ID": "4a82097f-e49e-4b35-9fbc-463230b8824d",
+      "SRC_SHA256": "0227b5644aea2adae9c4c851237cfc90500708ab46d5d97102cf84823dc748c1"
+    },
+    {
+      "DAO_MEDIA_ID": "3854",
+      "DEFENDANT": "Hornsby, Dupree Kenneth\r\n\r\n",
+      "DOCKET": "C2500183",
+      "PROSECUTOR": "Maia Maszara\r\n\r\n",
+      "CHARGES": "1. PC.261(a)(2)\r\n   -Hornsby, Dupree Kenneth\r\n     1. PC.667.61(j)(1)\r\n\r\n2. PC.287(c)(2)(B)\r\n   -Hornsby, Dupree Kenneth\r\n     1. PC.667.61(j)(1)\r\n\r\n3. PC.269(a)(1)\r\n   -Hornsby, Dupree Kenneth\r\n\r\n4. PC.269(a)(4)\r\n   -Hornsby, Dupree Kenneth\r\n\r\n5. PC.288.7(a)\r\n   -Hornsby, Dupree Kenneth\r\n\r\n6. PC.288.7(b)\r\n   -Hornsby, Dupree Kenneth\r\n\r\n7. PC.220(b)\r\n   -Hornsby, Dupree Kenneth\r\n\r\n8. PC.209(b)(1)\r\n   -Hornsby, Dupree Kenneth\r\n\r\n",
+      "NEXT_COURT_DATE": "Date & Time - 07/27/2026  8:55AM\r\nCourt Facility - Santa Clara County Superior Court\r\nDepartment - 24\r\nEvent - Preliminary Hearing\r\n\r\n",
+      "UPDATE_DATE": "2026-06-18T07:30:00.000",
+      "INGESTED_AT": "2026-06-24 05:08:25.674325",
+      "SOURCE_RUN_ID": "4a82097f-e49e-4b35-9fbc-463230b8824d",
+      "SRC_SHA256": "0227b5644aea2adae9c4c851237cfc90500708ab46d5d97102cf84823dc748c1"
+    },
+    {
+      "DAO_MEDIA_ID": "3858",
+      "DEFENDANT": "Taylor-Black, Hunter\r\n\r\nTerrazas, Isabella\r\n\r\nEdelman, Zoe Georgia\r\n\r\nGonzalez, German\r\n\r\nZhai, Amy Jing\r\n\r\nMccann, Taylor\r\n\r\nFuchs, Eliana Lindsay\r\n\r\nGiumarin, Gretchen Rose\r\n\r\nWang, Kaiden\r\n\r\nRichardson, John Thomas\r\n\r\nPennington, Cameron Michael\r\n\r\nBurke, Maya\r\n\r\n",
+      "DOCKET": "C2515372",
+      "PROSECUTOR": "Marina Mankaryous\r\n\r\n",
+      "CHARGES": "1. PC.182(a)(1)\r\n   -Taylor-Black, Hunter\r\n     1. PC.182\r\n\r\n   -Terrazas, Isabella\r\n     1. PC.182\r\n\r\n   -Edelman, Zoe Georgia\r\n     1. PC.182\r\n\r\n   -Gonzalez, German\r\n     1. PC.182\r\n\r\n   -Zhai, Amy Jing\r\n     1. PC.182\r\n\r\n   -Mccann, Taylor\r\n     1. PC.182\r\n\r\n   -Fuchs, Eliana Lindsay\r\n     1. PC.182\r\n\r\n   -Giumarin, Gretchen Rose\r\n     1. PC.182\r\n\r\n   -Wang, Kaiden\r\n     1. PC.182\r\n\r\n   -Richardson, John Thomas\r\n     1. PC.182\r\n\r\n   -Pennington, Cameron Michael\r\n     1. PC.182\r\n\r\n   -Burke, Maya\r\n     1. PC.182\r\n\r\n2. PC.594(a)\r\n   -Taylor-Black, Hunter\r\n\r\n   -Terrazas, Isabella\r\n\r\n   -Edelman, Zoe Georgia\r\n\r\n   -Gonzalez, German\r\n\r\n   -Zhai, Amy Jing\r\n\r\n   -Mccann, Taylor\r\n\r\n   -Fuchs, Eliana Lindsay\r\n\r\n   -Giumarin, Gretchen Rose\r\n\r\n   -Wang, Kaiden\r\n\r\n   -Richardson, John Thomas\r\n\r\n   -Pennington, Cameron Michael\r\n\r\n   -Burke, Maya\r\n\r\n",
+      "NEXT_COURT_DATE": "Date & Time - 07/08/2026  1:30PM\r\nCourt Facility - Santa Clara County Superior Court\r\nDepartment - 61\r\nEvent - MHDI5\r\n\r\nDate & Time - 07/08/2026  1:30PM\r\nCourt Facility - Santa Clara County Superior Court\r\nDepartment - 62\r\nEvent - YADER\r\n\r\nDate & Time - 07/08/2026  1:30PM\r\nCourt Facility - Santa Clara County Superior Court\r\nDepartment - 61\r\nEvent - MHDI5\r\n\r\n",
+      "UPDATE_DATE": "2026-06-18T07:30:00.000",
+      "INGESTED_AT": "2026-06-24 05:08:25.674325",
+      "SOURCE_RUN_ID": "4a82097f-e49e-4b35-9fbc-463230b8824d",
+      "SRC_SHA256": "0227b5644aea2adae9c4c851237cfc90500708ab46d5d97102cf84823dc748c1"
+    },
+    {
+      "DAO_MEDIA_ID": "3859",
+      "DEFENDANT": "Torres, Antolin Garcia\r\n\r\n",
+      "DOCKET": "213515",
+      "PROSECUTOR": "Sheryl Leung\r\n\r\nDavid R. Boyd\r\n\r\nO'Bryan Kenney\r\n\r\n",
+      "CHARGES": "1. PC.187(a)\r\n   -Torres, Antolin Garcia\r\n     1. PC.190.2(a)(17)\r\n\r\n2. PC.664-664/209.5\r\n   -Torres, Antolin Garcia\r\n     1. PC.12022(b)(1)\r\n\r\n3. PC.664-664/209.5\r\n   -Torres, Antolin Garcia\r\n\r\n4. PC.664-664/209.5\r\n   -Torres, Antolin Garcia\r\n\r\n",
+      "NEXT_COURT_DATE": "Date & Time - 06/29/2026  8:30AM\r\nCourt Facility - Santa Clara County Superior Court\r\nDepartment - 24\r\nEvent - Master Trial Calendar\r\n\r\n",
+      "UPDATE_DATE": "2026-06-18T07:30:00.000",
+      "INGESTED_AT": "2026-06-24 05:08:25.674325",
+      "SOURCE_RUN_ID": "4a82097f-e49e-4b35-9fbc-463230b8824d",
+      "SRC_SHA256": "0227b5644aea2adae9c4c851237cfc90500708ab46d5d97102cf84823dc748c1"
+    }
+  ],
+  "sample_error": null
+}

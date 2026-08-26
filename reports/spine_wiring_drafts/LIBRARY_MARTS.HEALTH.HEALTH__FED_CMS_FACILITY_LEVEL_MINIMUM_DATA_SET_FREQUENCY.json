@@ -1,0 +1,143 @@
+{
+  "fqtn": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "CCN",
+    "PROVIDER_NAME",
+    "CITY",
+    "STATE",
+    "ZIP_CODE",
+    "FIPS_COUNTY_CODE",
+    "COUNTY_NAME",
+    "REPORT_DATE",
+    "MDS_ITEM_QUESTION_DESCRIPTION",
+    "MDS_ITEM_RESPONSE",
+    "OVERALL_PERCENT",
+    "TOTAL_RESIDENTS",
+    "SHORT_STAY_PERCENT",
+    "SHORT_STAY_RESIDENTS",
+    "LONG_STAY_PERCENT",
+    "LONG_STAY_RESIDENTS"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "PROVIDER_NAME",
+      "COUNTY_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "STATE"
+      ],
+      "zip": [
+        "ZIP_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CCN",
+      "column": "CCN",
+      "total_rows": 31403215,
+      "nonnull_after_norm": 30864691,
+      "distinct_after_norm": 14443,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "CCN": "055645",
+      "PROVIDER_NAME": "THE WIN POST-ACUTE",
+      "CITY": "SANTA CLARA",
+      "STATE": "CA",
+      "ZIP_CODE": "95050",
+      "FIPS_COUNTY_CODE": "085",
+      "COUNTY_NAME": "Santa Clara",
+      "REPORT_DATE": null,
+      "MDS_ITEM_QUESTION_DESCRIPTION": "GG0130B2: Functional Abilities - Self Care: Oral Hygiene goal by End of SNF PPS Part A Stay",
+      "MDS_ITEM_RESPONSE": "Not Attempted Due To Environmental Limitations",
+      "OVERALL_PERCENT": null,
+      "TOTAL_RESIDENTS": "_",
+      "SHORT_STAY_PERCENT": null,
+      "SHORT_STAY_RESIDENTS": "_",
+      "LONG_STAY_PERCENT": null,
+      "LONG_STAY_RESIDENTS": "_"
+    },
+    {
+      "CCN": "555522",
+      "PROVIDER_NAME": "COMMUNITY HOSPITAL OF SAN BERNARDINO DP SNF",
+      "CITY": "SAN BERNARDINO",
+      "STATE": "CA",
+      "ZIP_CODE": "92411",
+      "FIPS_COUNTY_CODE": "071",
+      "COUNTY_NAME": "San Bernardino",
+      "REPORT_DATE": null,
+      "MDS_ITEM_QUESTION_DESCRIPTION": "H0100B: Bladder and Bowel - Appliances: External catheter",
+      "MDS_ITEM_RESPONSE": "Yes",
+      "OVERALL_PERCENT": null,
+      "TOTAL_RESIDENTS": "_",
+      "SHORT_STAY_PERCENT": null,
+      "SHORT_STAY_RESIDENTS": "_",
+      "LONG_STAY_PERCENT": null,
+      "LONG_STAY_RESIDENTS": "_"
+    },
+    {
+      "CCN": "325092",
+      "PROVIDER_NAME": "New Mexico State Veterans Home",
+      "CITY": "Truth or Consequences",
+      "STATE": "NM",
+      "ZIP_CODE": "87901",
+      "FIPS_COUNTY_CODE": "051",
+      "COUNTY_NAME": "Sierra",
+      "REPORT_DATE": null,
+      "MDS_ITEM_QUESTION_DESCRIPTION": "GG0130F5: Functional Abilities and Goals - Self-Care: Upper body dressing OBRA/Interim Performance",
+      "MDS_ITEM_RESPONSE": "Setup or clean-up assistance",
+      "OVERALL_PERCENT": null,
+      "TOTAL_RESIDENTS": "_",
+      "SHORT_STAY_PERCENT": null,
+      "SHORT_STAY_RESIDENTS": "_",
+      "LONG_STAY_PERCENT": null,
+      "LONG_STAY_RESIDENTS": "_"
+    },
+    {
+      "CCN": "235584",
+      "PROVIDER_NAME": "Argentine Care Center",
+      "CITY": "Linden",
+      "STATE": "MI",
+      "ZIP_CODE": "48451",
+      "FIPS_COUNTY_CODE": "049",
+      "COUNTY_NAME": "Genesee",
+      "REPORT_DATE": null,
+      "MDS_ITEM_QUESTION_DESCRIPTION": "GG0130I1: Functional Abilities and Goals - Self-Care: Personal Hygiene Ability at Start of SNF PPS Part A Stay",
+      "MDS_ITEM_RESPONSE": "Not attempted due to environmental limitations",
+      "OVERALL_PERCENT": null,
+      "TOTAL_RESIDENTS": "_",
+      "SHORT_STAY_PERCENT": null,
+      "SHORT_STAY_RESIDENTS": "_",
+      "LONG_STAY_PERCENT": null,
+      "LONG_STAY_RESIDENTS": "_"
+    },
+    {
+      "CCN": "676157",
+      "PROVIDER_NAME": "Ussery Roan Texas State Veterans Home",
+      "CITY": "Amarillo",
+      "STATE": "TX",
+      "ZIP_CODE": "79124",
+      "FIPS_COUNTY_CODE": "375",
+      "COUNTY_NAME": "Potter",
+      "REPORT_DATE": null,
+      "MDS_ITEM_QUESTION_DESCRIPTION": "GG0170F1: Functional Abilities and Goals - Mobility: Toilet transfer at Start of SNF PPS Part A Stay",
+      "MDS_ITEM_RESPONSE": "Substantial/maximal assistance",
+      "OVERALL_PERCENT": null,
+      "TOTAL_RESIDENTS": "_",
+      "SHORT_STAY_PERCENT": null,
+      "SHORT_STAY_RESIDENTS": "_",
+      "LONG_STAY_PERCENT": null,
+      "LONG_STAY_RESIDENTS": "_"
+    }
+  ],
+  "sample_error": null
+}

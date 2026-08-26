@@ -1,0 +1,122 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_SOC_UTAH_OPEN_DATA_P_52003D36F8",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NPI",
+    "PROVIDER_ORGANIZATION_NAME",
+    "OFFICE_VISIT_TYPE",
+    "POS_CATEGORY",
+    "CPT4_CD",
+    "TOTAL_PROVIDER_PAYMENT_25",
+    "TOTAL_PROVIDER_PAYMENT_50",
+    "TOTAL_PROVIDER_PAYMENT_75",
+    "PROCEDURE_CLAIM_CNT",
+    "PROVIDER_OTHER_ORGANIZATION",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "PROVIDER_ORGANIZATION_NAME",
+      "TOTAL_PROVIDER_PAYMENT_25",
+      "TOTAL_PROVIDER_PAYMENT_50",
+      "TOTAL_PROVIDER_PAYMENT_75",
+      "PROVIDER_OTHER_ORGANIZATION"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPI",
+      "column": "NPI",
+      "total_rows": 2000,
+      "nonnull_after_norm": 2000,
+      "distinct_after_norm": 374,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "NPI": "1497089908",
+      "PROVIDER_ORGANIZATION_NAME": "UTAH ORTHOPAEDICS LLC",
+      "OFFICE_VISIT_TYPE": "Established",
+      "POS_CATEGORY": "Nonfacility",
+      "CPT4_CD": "99214",
+      "TOTAL_PROVIDER_PAYMENT_25": "105.23",
+      "TOTAL_PROVIDER_PAYMENT_50": "116.26",
+      "TOTAL_PROVIDER_PAYMENT_75": "127.13",
+      "PROCEDURE_CLAIM_CNT": "25",
+      "PROVIDER_OTHER_ORGANIZATION": "nan",
+      "INGESTED_AT": "2026-06-24 04:44:42.058853",
+      "SOURCE_RUN_ID": "b6447919-678e-45d9-9fbc-9036d7c1b1d6",
+      "SRC_SHA256": "10d232de73a2324552fa0893a5c2db57c89f34b6f7bdbd19ae9a8276580baac6"
+    },
+    {
+      "NPI": "1013038231",
+      "PROVIDER_ORGANIZATION_NAME": "UTAH ORTHOPAEDIC ASSOCIATES",
+      "OFFICE_VISIT_TYPE": "Established",
+      "POS_CATEGORY": "Nonfacility",
+      "CPT4_CD": "99213",
+      "TOTAL_PROVIDER_PAYMENT_25": "72.86",
+      "TOTAL_PROVIDER_PAYMENT_50": "82.14",
+      "TOTAL_PROVIDER_PAYMENT_75": "85.26",
+      "PROCEDURE_CLAIM_CNT": "52",
+      "PROVIDER_OTHER_ORGANIZATION": "nan",
+      "INGESTED_AT": "2026-06-24 04:44:42.058853",
+      "SOURCE_RUN_ID": "b6447919-678e-45d9-9fbc-9036d7c1b1d6",
+      "SRC_SHA256": "10d232de73a2324552fa0893a5c2db57c89f34b6f7bdbd19ae9a8276580baac6"
+    },
+    {
+      "NPI": "1558404426",
+      "PROVIDER_ORGANIZATION_NAME": "IHC HEALTH SERVICES, INC",
+      "OFFICE_VISIT_TYPE": "Established",
+      "POS_CATEGORY": "Nonfacility",
+      "CPT4_CD": "99212",
+      "TOTAL_PROVIDER_PAYMENT_25": "54.24",
+      "TOTAL_PROVIDER_PAYMENT_50": "56.41",
+      "TOTAL_PROVIDER_PAYMENT_75": "56.41",
+      "PROCEDURE_CLAIM_CNT": "36",
+      "PROVIDER_OTHER_ORGANIZATION": "UVRMC MERRILL GAPPMAYER",
+      "INGESTED_AT": "2026-06-24 04:44:42.058853",
+      "SOURCE_RUN_ID": "b6447919-678e-45d9-9fbc-9036d7c1b1d6",
+      "SRC_SHA256": "10d232de73a2324552fa0893a5c2db57c89f34b6f7bdbd19ae9a8276580baac6"
+    },
+    {
+      "NPI": "1457482234",
+      "PROVIDER_ORGANIZATION_NAME": "IHC HEALTH SERVICES INC",
+      "OFFICE_VISIT_TYPE": "Established",
+      "POS_CATEGORY": "Nonfacility",
+      "CPT4_CD": "99212",
+      "TOTAL_PROVIDER_PAYMENT_25": "53.64",
+      "TOTAL_PROVIDER_PAYMENT_50": "56.41",
+      "TOTAL_PROVIDER_PAYMENT_75": "56.41",
+      "PROCEDURE_CLAIM_CNT": "45",
+      "PROVIDER_OTHER_ORGANIZATION": "ORTHOPEDIC SPECIALTY GROUP - ALTA VIEW",
+      "INGESTED_AT": "2026-06-24 04:44:42.058853",
+      "SOURCE_RUN_ID": "b6447919-678e-45d9-9fbc-9036d7c1b1d6",
+      "SRC_SHA256": "10d232de73a2324552fa0893a5c2db57c89f34b6f7bdbd19ae9a8276580baac6"
+    },
+    {
+      "NPI": "1003210808",
+      "PROVIDER_ORGANIZATION_NAME": "UNIVERSITY OF UTAH ADULT SERVICES",
+      "OFFICE_VISIT_TYPE": "New",
+      "POS_CATEGORY": "Facility",
+      "CPT4_CD": "99204",
+      "TOTAL_PROVIDER_PAYMENT_25": "168.49",
+      "TOTAL_PROVIDER_PAYMENT_50": "170.17",
+      "TOTAL_PROVIDER_PAYMENT_75": "170.17",
+      "PROCEDURE_CLAIM_CNT": "25",
+      "PROVIDER_OTHER_ORGANIZATION": "UNIVERSITY OF UTAH HOSPITAL OTOLARYNGOLOGY",
+      "INGESTED_AT": "2026-06-24 04:44:42.058853",
+      "SOURCE_RUN_ID": "b6447919-678e-45d9-9fbc-9036d7c1b1d6",
+      "SRC_SHA256": "10d232de73a2324552fa0893a5c2db57c89f34b6f7bdbd19ae9a8276580baac6"
+    }
+  ],
+  "sample_error": null
+}

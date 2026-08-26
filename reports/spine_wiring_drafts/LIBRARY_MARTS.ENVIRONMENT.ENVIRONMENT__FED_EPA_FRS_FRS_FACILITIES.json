@@ -1,0 +1,124 @@
+{
+  "fqtn": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_FRS_FRS_FACILITIES",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "REGISTRY_ID",
+    "FAC_NAME",
+    "FAC_STREET",
+    "FAC_CITY",
+    "FAC_STATE",
+    "FAC_ZIP",
+    "FAC_COUNTY",
+    "FAC_EPA_REGION",
+    "LATITUDE_MEASURE",
+    "LONGITUDE_MEASURE",
+    "_INGESTED_AT",
+    "_SOURCE_RUN_ID",
+    "_SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "FAC_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "FAC_CITY"
+      ],
+      "state": [
+        "FAC_STATE"
+      ],
+      "zip": [
+        "FAC_ZIP"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "FRS_ID",
+      "column": "REGISTRY_ID",
+      "total_rows": 3277557,
+      "nonnull_after_norm": 3277557,
+      "distinct_after_norm": 3277557,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "REGISTRY_ID": "110003373260",
+      "FAC_NAME": "AUTO ELECTRIC OF HUNTSVILLE",
+      "FAC_STREET": "415 MERIDIAN",
+      "FAC_CITY": "HUNTSVILLE",
+      "FAC_STATE": "AL",
+      "FAC_ZIP": "35801",
+      "FAC_COUNTY": "MADISON",
+      "FAC_EPA_REGION": "04",
+      "LATITUDE_MEASURE": "34.73571700",
+      "LONGITUDE_MEASURE": "-86.58652000",
+      "_INGESTED_AT": 1785965830970473,
+      "_SOURCE_RUN_ID": "2b998581-72e7-4452-9522-893591efd224",
+      "_SRC_SHA256": "5b4b9e46f401f60cd0cc90d7ab1193a42ceedc66d71cba704d6ca1f13c7ecd5b"
+    },
+    {
+      "REGISTRY_ID": "110072038513",
+      "FAC_NAME": "PATHFINDER SOUTH BAY HOLDINGS LLC",
+      "FAC_STREET": "240 QUINTARD ST",
+      "FAC_CITY": "CHULA VISTA",
+      "FAC_STATE": "CA",
+      "FAC_ZIP": "91911",
+      "FAC_COUNTY": "SAN DIEGO",
+      "FAC_EPA_REGION": null,
+      "LATITUDE_MEASURE": "32.60409200",
+      "LONGITUDE_MEASURE": "-117.06226600",
+      "_INGESTED_AT": 1785965830970473,
+      "_SOURCE_RUN_ID": "2b998581-72e7-4452-9522-893591efd224",
+      "_SRC_SHA256": "5b4b9e46f401f60cd0cc90d7ab1193a42ceedc66d71cba704d6ca1f13c7ecd5b"
+    },
+    {
+      "REGISTRY_ID": "110058583199",
+      "FAC_NAME": "REAL DEALS AUTO SALVAGE",
+      "FAC_STREET": "1227 E CR 650 N",
+      "FAC_CITY": "ATTICA",
+      "FAC_STATE": "IN",
+      "FAC_ZIP": "47998",
+      "FAC_COUNTY": "FOUNTAIN",
+      "FAC_EPA_REGION": "05",
+      "LATITUDE_MEASURE": null,
+      "LONGITUDE_MEASURE": null,
+      "_INGESTED_AT": 1785965830970473,
+      "_SOURCE_RUN_ID": "2b998581-72e7-4452-9522-893591efd224",
+      "_SRC_SHA256": "5b4b9e46f401f60cd0cc90d7ab1193a42ceedc66d71cba704d6ca1f13c7ecd5b"
+    },
+    {
+      "REGISTRY_ID": "110071374347",
+      "FAC_NAME": "MYTON OFFLOAD",
+      "FAC_STREET": "2 MILES SW OF THE TOWN OF MYTON",
+      "FAC_CITY": "MYTON",
+      "FAC_STATE": "UT",
+      "FAC_ZIP": "84052",
+      "FAC_COUNTY": "DUCHESNE COUNTY",
+      "FAC_EPA_REGION": "08",
+      "LATITUDE_MEASURE": "40.16209900",
+      "LONGITUDE_MEASURE": "-110.07755700",
+      "_INGESTED_AT": 1785965830970473,
+      "_SOURCE_RUN_ID": "2b998581-72e7-4452-9522-893591efd224",
+      "_SRC_SHA256": "5b4b9e46f401f60cd0cc90d7ab1193a42ceedc66d71cba704d6ca1f13c7ecd5b"
+    },
+    {
+      "REGISTRY_ID": "110049395472",
+      "FAC_NAME": "PAANANENS CABINS",
+      "FAC_STREET": null,
+      "FAC_CITY": null,
+      "FAC_STATE": "MI",
+      "FAC_ZIP": null,
+      "FAC_COUNTY": null,
+      "FAC_EPA_REGION": "05",
+      "LATITUDE_MEASURE": null,
+      "LONGITUDE_MEASURE": null,
+      "_INGESTED_AT": 1785965830970473,
+      "_SOURCE_RUN_ID": "2b998581-72e7-4452-9522-893591efd224",
+      "_SRC_SHA256": "5b4b9e46f401f60cd0cc90d7ab1193a42ceedc66d71cba704d6ca1f13c7ecd5b"
+    }
+  ],
+  "sample_error": null
+}

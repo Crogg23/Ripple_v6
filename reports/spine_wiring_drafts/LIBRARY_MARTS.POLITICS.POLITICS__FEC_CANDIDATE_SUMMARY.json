@@ -1,0 +1,130 @@
+{
+  "fqtn": "LIBRARY_MARTS.POLITICS.POLITICS__FEC_CANDIDATE_SUMMARY",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "CAND_ID",
+    "CYCLE",
+    "CAND_NAME",
+    "INCUMBENT_CHALLENGER",
+    "PARTY",
+    "TTL_RECEIPTS",
+    "TRANS_FROM_AUTH",
+    "TTL_DISB",
+    "TRANS_TO_AUTH",
+    "CASH_ON_HAND_CLOSE",
+    "TTL_INDIV_CONTRIB",
+    "DEBTS_OWED_BY",
+    "COVERAGE_END_DATE",
+    "NET_RECEIPTS",
+    "NET_DISBURSEMENTS"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "CAND_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "FEC_CAND_ID",
+      "column": "CAND_ID",
+      "total_rows": 7933,
+      "nonnull_after_norm": 7933,
+      "distinct_after_norm": 5754,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "CAND_ID": "H4NH02324",
+      "CYCLE": "2024",
+      "CAND_NAME": "WAGNER, PAUL MICHAEL",
+      "INCUMBENT_CHALLENGER": "O",
+      "PARTY": "REP",
+      "TTL_RECEIPTS": "6279.20",
+      "TRANS_FROM_AUTH": "0.00",
+      "TTL_DISB": "5693.30",
+      "TRANS_TO_AUTH": "0.00",
+      "CASH_ON_HAND_CLOSE": "585.90",
+      "TTL_INDIV_CONTRIB": "550.00",
+      "DEBTS_OWED_BY": "0.00",
+      "COVERAGE_END_DATE": "08/21/2024",
+      "NET_RECEIPTS": "6279.20",
+      "NET_DISBURSEMENTS": "5693.30"
+    },
+    {
+      "CAND_ID": "H2CA25242",
+      "CYCLE": "2024",
+      "CAND_NAME": "TYSON, BRIAN",
+      "INCUMBENT_CHALLENGER": "C",
+      "PARTY": "REP",
+      "TTL_RECEIPTS": "5140.99",
+      "TRANS_FROM_AUTH": "0.00",
+      "TTL_DISB": "5504.30",
+      "TRANS_TO_AUTH": "0.00",
+      "CASH_ON_HAND_CLOSE": "0.00",
+      "TTL_INDIV_CONTRIB": "100.00",
+      "DEBTS_OWED_BY": "0.00",
+      "COVERAGE_END_DATE": "03/31/2024",
+      "NET_RECEIPTS": "5140.99",
+      "NET_DISBURSEMENTS": "5504.30"
+    },
+    {
+      "CAND_ID": "H6IN03229",
+      "CYCLE": "2024",
+      "CAND_NAME": "BANKS, JAMES E HON.",
+      "INCUMBENT_CHALLENGER": "I",
+      "PARTY": "REP",
+      "TTL_RECEIPTS": "7288500.99",
+      "TRANS_FROM_AUTH": "1234991.51",
+      "TTL_DISB": "6010627.68",
+      "TRANS_TO_AUTH": "3072.86",
+      "CASH_ON_HAND_CLOSE": "2613356.72",
+      "TTL_INDIV_CONTRIB": "4534399.13",
+      "DEBTS_OWED_BY": "151180.00",
+      "COVERAGE_END_DATE": "12/31/2024",
+      "NET_RECEIPTS": "6053509.48",
+      "NET_DISBURSEMENTS": "6007554.82"
+    },
+    {
+      "CAND_ID": "H4PA16101",
+      "CYCLE": "2024",
+      "CAND_NAME": "KRAMER, TIMOTHY D",
+      "INCUMBENT_CHALLENGER": "C",
+      "PARTY": "REP",
+      "TTL_RECEIPTS": "14250.14",
+      "TRANS_FROM_AUTH": "0.00",
+      "TTL_DISB": "14162.49",
+      "TRANS_TO_AUTH": "0.00",
+      "CASH_ON_HAND_CLOSE": "87.65",
+      "TTL_INDIV_CONTRIB": "1598.47",
+      "DEBTS_OWED_BY": "0.00",
+      "COVERAGE_END_DATE": "12/31/2024",
+      "NET_RECEIPTS": "14250.14",
+      "NET_DISBURSEMENTS": "14162.49"
+    },
+    {
+      "CAND_ID": "H6CA21234",
+      "CYCLE": "2026",
+      "CAND_NAME": "RIOS, LORENZO",
+      "INCUMBENT_CHALLENGER": "C",
+      "PARTY": "REP",
+      "TTL_RECEIPTS": "413226.22",
+      "TRANS_FROM_AUTH": "0.00",
+      "TTL_DISB": "341298.19",
+      "TRANS_TO_AUTH": "0.00",
+      "CASH_ON_HAND_CLOSE": "71928.03",
+      "TTL_INDIV_CONTRIB": "383228.22",
+      "DEBTS_OWED_BY": "57243.78",
+      "COVERAGE_END_DATE": "05/13/2026",
+      "NET_RECEIPTS": "413226.22",
+      "NET_DISBURSEMENTS": "341298.19"
+    }
+  ],
+  "sample_error": null
+}

@@ -1,0 +1,132 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_SOC_OREGON_OPEN_DATA_E338C547C2",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "RECORDED_DATE",
+    "GASO_NAME",
+    "GASO_LICENSE_NUMBER",
+    "GASO_NPI",
+    "FIREMED_YN",
+    "EFFECTIVE_DATE",
+    "ZIP_CODE",
+    "RATE_TYPE",
+    "RATE_CODE",
+    "ESTABLISHED_RATE",
+    "COMMENTS",
+    "FIREMED_INFO",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "GASO_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": [
+        "ZIP_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPI",
+      "column": "GASO_NPI",
+      "total_rows": 2000,
+      "nonnull_after_norm": 1750,
+      "distinct_after_norm": 24,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "RECORDED_DATE": "2026-01-08T17:20:52.000",
+      "GASO_NAME": "American Medical Response NW-Multnomah County",
+      "GASO_LICENSE_NUMBER": "3433",
+      "GASO_NPI": "1972609923",
+      "FIREMED_YN": "",
+      "EFFECTIVE_DATE": "2026-01-01T00:00:00.000",
+      "ZIP_CODE": "97124",
+      "RATE_TYPE": "Single Rate",
+      "RATE_CODE": "ALS1-E (A0427)",
+      "ESTABLISHED_RATE": "4003.00",
+      "COMMENTS": "nan",
+      "FIREMED_INFO": "nan",
+      "INGESTED_AT": "2026-06-24 04:44:36.569298",
+      "SOURCE_RUN_ID": "878c19dc-566e-4666-ad49-0e1708556b6f",
+      "SRC_SHA256": "ef1a0fe118e2a50ef6830dc24f42222067a2e3e8517871550d154947a6b077fa"
+    },
+    {
+      "RECORDED_DATE": "2025-12-30T23:02:36.000",
+      "GASO_NAME": "Tualatin Valley Fire & Rescue",
+      "GASO_LICENSE_NUMBER": "3402",
+      "GASO_NPI": "1750652673",
+      "FIREMED_YN": "",
+      "EFFECTIVE_DATE": "2025-07-01T00:00:00.000",
+      "ZIP_CODE": "97225",
+      "RATE_TYPE": "Single Rate",
+      "RATE_CODE": "ALS2 (A0433)",
+      "ESTABLISHED_RATE": "2333.00",
+      "COMMENTS": "A0426, A0427, A0428, A0429, A0433 Interfacility Transfer (HH) - $2916.16",
+      "FIREMED_INFO": "nan",
+      "INGESTED_AT": "2026-06-24 04:44:36.569298",
+      "SOURCE_RUN_ID": "878c19dc-566e-4666-ad49-0e1708556b6f",
+      "SRC_SHA256": "ef1a0fe118e2a50ef6830dc24f42222067a2e3e8517871550d154947a6b077fa"
+    },
+    {
+      "RECORDED_DATE": "2025-12-31T19:21:12.000",
+      "GASO_NAME": "South Lane County Fire & Rescue",
+      "GASO_LICENSE_NUMBER": "2002",
+      "GASO_NPI": "1578562112",
+      "FIREMED_YN": "",
+      "EFFECTIVE_DATE": "2012-06-14T00:00:00.000",
+      "ZIP_CODE": "97434",
+      "RATE_TYPE": "Resident",
+      "RATE_CODE": "ALS2 (A0433)",
+      "ESTABLISHED_RATE": "1600.00",
+      "COMMENTS": "nan",
+      "FIREMED_INFO": "nan",
+      "INGESTED_AT": "2026-06-24 04:44:36.569298",
+      "SOURCE_RUN_ID": "878c19dc-566e-4666-ad49-0e1708556b6f",
+      "SRC_SHA256": "ef1a0fe118e2a50ef6830dc24f42222067a2e3e8517871550d154947a6b077fa"
+    },
+    {
+      "RECORDED_DATE": "2026-01-09T16:54:48.000",
+      "GASO_NAME": "UMATILLA COUNTY FIRE DISTRICT 1",
+      "GASO_LICENSE_NUMBER": "3003",
+      "GASO_NPI": "1083061121",
+      "FIREMED_YN": "",
+      "EFFECTIVE_DATE": "2026-01-01T00:00:00.000",
+      "ZIP_CODE": "97838",
+      "RATE_TYPE": "Resident",
+      "RATE_CODE": "MILEAGE (A0425)",
+      "ESTABLISHED_RATE": "31.00",
+      "COMMENTS": "EVENT STANDBY 160 PER HOUR\nEXTRA CARE PROVIDER 250.00",
+      "FIREMED_INFO": "nan",
+      "INGESTED_AT": "2026-06-24 04:44:36.569298",
+      "SOURCE_RUN_ID": "878c19dc-566e-4666-ad49-0e1708556b6f",
+      "SRC_SHA256": "ef1a0fe118e2a50ef6830dc24f42222067a2e3e8517871550d154947a6b077fa"
+    },
+    {
+      "RECORDED_DATE": "2026-04-13T20:57:47.000",
+      "GASO_NAME": "Sunriver Service District Fire Department",
+      "GASO_LICENSE_NUMBER": "0907",
+      "GASO_NPI": "1154535946",
+      "FIREMED_YN": "True",
+      "EFFECTIVE_DATE": "2025-07-01T00:00:00.000",
+      "ZIP_CODE": "97707",
+      "RATE_TYPE": "Single Rate",
+      "RATE_CODE": "MILEAGE (A0425)",
+      "ESTABLISHED_RATE": "22.00",
+      "COMMENTS": "nan",
+      "FIREMED_INFO": "nan",
+      "INGESTED_AT": "2026-06-24 04:44:36.569298",
+      "SOURCE_RUN_ID": "878c19dc-566e-4666-ad49-0e1708556b6f",
+      "SRC_SHA256": "ef1a0fe118e2a50ef6830dc24f42222067a2e3e8517871550d154947a6b077fa"
+    }
+  ],
+  "sample_error": null
+}

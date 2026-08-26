@@ -1,79 +1,90 @@
-# RIPPLE STATUS — 2026-08-23 (early am) — Fix sweep complete; FAERS reload launched
+# RIPPLE STATUS — 2026-08-25 — Visualization options map delivered (60 picture ideas, 30 tools, no pick made); spine rebuild is STILL the gate
 
 *One screen. Rewritten (never appended) at the end of every session. Sessions read
 this at boot and brief Chris in chat — Chris never has to open it.*
 
-**Scoreboard (standing frame): warehouse at ~64/100, heading for ~68-69 once the
-overnight loads land** (trust ~73 · build-completeness ~50). Tonight: full fix-list
-sweep (Tiers 1+2), the year-killer found and fixed warehouse-wide, the whole
-test-failure tail cleared, and the FAERS legacy reload launched. Remaining big
-levers: contracts re-pull (+5-6, Chris-priced decision), no-loader wing.
+## DONE (this session)
 
-**BROKE: nothing.**
+- **Built the visualization options menu Chris asked for.** Not a
+  recommendation and no shortlist — deliberately. Covers the nine groups of
+  warehouse-audit numbers (overall size, per-database split, the 847→178→267
+  registration correction, the entity-graph scale chain, the 24,011 measured
+  overlaps, the docket trust split, the dead weight, the four-step pipeline,
+  the key trust tiers) with **6-7 different picture ideas per group — 60 in
+  total, plus 6 deliberately wild ones**, each scored on the same nine
+  dimensions (page weight, build hours, interactivity, design ceiling, scale
+  fit, accessibility, theme flexibility, self-regeneration, differentiation).
+- **Compared 30 tools** with versions and licenses checked live against current
+  documentation, not recalled. Written up in
+  `reports/VIZ_OPTIONS_MAP_2026-08-25.md` (964 lines).
+- **Published a browsable version** so the menu can actually be used to choose:
+  filter by group, sort by any dimension, hide the ideas already built, star
+  picks into a shortlist that persists. Local original:
+  `reports/viz/options_board_2026-08-25.html`. Rendered and screenshot-verified
+  in headless Chrome — all three tabs.
+- **Checked what's actually on this Mac** rather than assuming: plotly, altair,
+  pandas, numpy, networkx, pydeck, dash, Pillow and duckdb are installed;
+  **matplotlib is NOT** (which blocks seaborn, plotnine, PyWaffle and part of
+  Datashader without an install first). **Node IS installed** (v22.23.2 via
+  nvm) — this corrects a standing note in memory that said there was none.
+- **Flagged one licensing trap**: the friendly wrapper around the fastest
+  big-graph renderer (Cosmograph) is non-commercial-only; the underlying engine
+  (cosmos.gl) is MIT and unrestricted. Also flagged that the most common
+  interactive chart library adds ~318KB gzipped to a page — heavier than every
+  hand-rolled option in the map combined.
 
-**✅ FAERS RELOAD DONE AND VERIFIED** (same night, ~90 min): all 35 corrupted
-quarters re-landed with the fixed parser; all 5 tables back to full counts
-(62.3M total); **verified to the row** — all 4,012,896 legacy outcome rows now
-carry a numeric case key (was 0%) and a valid outcome code (was 22%); 512,848
-deaths / 1.38M hospitalizations now joinable. The Tier-1 FAERS item is CLOSED
-**end-to-end**: the 5 downstream marts rebuilt and tested same night (8/8 PASS).
-Scoreboard: ~68/100 (trust ~78 · build-completeness ~50).
+## BROKE
 
-**THREE loads still running** (all checkpointed):
-1. **Senate lobbying crawl** — first attempt died on an unhandled network drop;
-   loader now retries network errors + 5xx (and pages at 250 with the key);
-   relaunched from year 1999 → verify `FED_SENATE_LDA_FILINGS`.
-2. **Federal debarment re-pull, ATTEMPT 2** — attempt 1 was throttled to death by
-   SAM's API at page 14 (landed 10,000; quality gate correctly refused to call it
-   success). Loader patched: 12 retries up to 10 min each + 25s page pacing;
-   relaunched → verify `FED_SAM_EXCLUSIONS` (target ~167k). If attempt 2 also dies
-   on sustained 429s, the binding constraint is the key's quota — fall back to
-   SAM's monthly public exclusions extract file (or the OpenSanctions mirror of
-   the same list) instead of the paged API.
-3. **FEMA housing registrations resume** — 22.05M → 25.9M target, slow API with
-   timeouts → verify `FED_FEMA_IA_HOUSING_REGISTRATIONS`.
+- **Nothing broke this session.** No warehouse writes, no code changes, no
+  tests run (none were touched).
+
+Carried forward, unchanged from 2026-08-24 — these are still true:
+
+- **The full spine rebuild still has NOT run.** The 90 tables wired on 08-24
+  (11 federal + 79 portal samples) are registered but not live until it does.
+  Session permission guards block it; Chris runs it himself.
+- **The USAspending contracts re-pull is stalled**, not growing — last write
+  08-23 21:43 PDT, stopped at FY2021, 63.7M rows. It runs on the Windows box.
+- Other loads with unknown completion state: FEMA housing registrations
+  (23.97M rows, last write 08-23), SAM exclusions (168,328 rows, looks
+  complete), Senate lobbying filings (273,821 rows, stopped 08-22).
+- **Nothing is committed.** The 08-24 registry edits, the wiring plan, the
+  audit updates, and this session's two new files are all uncommitted
+  (standing rule: Chris confirms before commit/push).
+- Still no Snowflake billing visibility.
+- One test file (the staging-model normalizer parity check) hangs for minutes
+  on this Mac — pre-existing, looks like the iCloud-evicted-files problem.
 
 ## YOUR MOVE (Chris)
 
-1. Carried: contracts re-pull price tag; corporate bridge; security fix; roll-call
-   scope ruling; CourtListener bulk pull. (All drop one-liners from tonight: DONE.)
-2. FYI, no action: **290 newer leads are now in your review lane** — the queue mart
-   was stale; rebuilt via the sanctioned wrapper, reconcile guard green.
+1. **Pick from the menu.** Open the options board, star what you like. That's
+   the taste call this session deliberately didn't make.
+2. **Full spine rebuild** (~$10-15, the standing parked money item) — still the
+   gate on 90 wired tables going live.
+3. Contracts re-pull: restart on the Windows box, or call FY2007-2021 good
+   enough.
+4. Two USAspending contract tables (20M and 6.3M rows) are now redundant with
+   the re-pull — drop from the spine or keep. Flagged, not decided.
+5. Still open from before: corporate bridge; security fix; roll-call scope;
+   CourtListener bulk pull; dead-database cleanup; billing access.
 
-## Tonight's full tally (receipts: reports/fix_session_results_2026-08-22.md)
+## NEXT (for the session picking this up)
 
-- 18-item quick-wins plan: all resolved (a third were stale/false alarms — verified,
-  not assumed). ~29.3M junk rows deleted across 11 tables. EPA penalty allocation +
-  13F dollar normalization live. 174-column trust registry created.
-- **Year-killer**: 61 year columns mis-ruled as dates, NULLed in 29 built marts
-  (Treasury, Open Payments, PBGC, OSHA, foreign aid, NHTSA, CDC NNDSS) — all
-  rulings + models fixed, marts rebuilt, tests green.
-- First verified full test run (4,831 tests) → failure tail now FULLY triaged:
-  grain fixes (TRI + doc-control-num, NPDES SICs + primary flag, Ember 6-part key,
-  MSHA docket exposed), 3 staging views rewritten (NAAG new schema, screening list
-  meta drift, leadership-PAC rename + linkage grain), review queue rebuilt, OSHA
-  3-blank-ids downgraded to warn, Europol garbage column fenced in COLUMN_TRUST.
-  Remaining known-broken: 3 staging views with DATA-IDENTITY mismatches (13F
-  "submission" holds holdings-shaped rows; BJS holds NCVS microdata; FRS-full
-  column variant) + OSHA-inspection staging awaiting its still-running API load.
-- Short-of-publisher batch: 9 VARIANT-chunk false alarms, ransomware verified
-  exactly complete (line-count artifact), GLEIF relationships re-pulled to exact
-  publisher match (485,285), UK sanctions refreshed (58,336, FCDO husk dropped).
+1. If Chris has starred picks, the next job is building them — not re-opening
+   the menu. The map's own note applies: the biggest fork is static vs.
+   interactive vs. illustrated, not which library.
+2. Anything illustrated (the metaphor concepts) does NOT regenerate itself when
+   the audit re-runs. That's a knowing cost, not an oversight to fix later.
+3. Six of the nine number-groups need no charting library at all — typography,
+   SVG, and one canvas loop. Only the graph-scale and browse-the-data ideas
+   actually need one.
+4. If a static-image route gets picked, matplotlib and kaleido both need
+   installing first; if a Vega/Altair route gets picked, vl-convert-python does
+   (it needs no Node or browser).
+5. After the full spine rebuild: re-run the audit's overlap pass to turn
+   "90 tables wired" into "N new real connections" — every number in the
+   options map moves when that happens.
 
-## NEXT
-
-Boot: verify the four loads (counts above), then rebuild FAERS-downstream marts +
-rerun their tests; contracts decision; 13F family consolidation; no-loader
-worklist; tighten auto-guessed cadences over time.
-
-**Cost note:** ~2 credits (~$4) this session so far excluding the in-flight FAERS
-landing (+$4-6 as it runs); day total ≈ 8.6 credits ≈ $17-23 all-in. Meter-verified.
-
-## Not committed
-
-All of tonight's model/yml/staging/rulings edits (29 year-fix marts, NNDSS, Ember,
-TRI, NPDES SICs, MSHA, NAAG, screening list, leadership PAC, Europol, OSHA 2025,
-FAA retirement, EPA ECHO + penalty gap, 13F holdings, LDA loader retry+page-size
-fix), reports/fix_session_results_2026-08-22.md, trimmed FAERS checkpoint,
-STATUS.md. Warehouse-side: COLUMN_TRUST (174 rows), 11 deduped + 5 FAERS-wiped
-landing tables, ~75 rebuilt marts/views, refreshed UK sanctions + GLEIF + openFDA.
+**Cost note:** Claude session cost not metered. **Zero Snowflake compute this
+session** — no queries were run; every number came from the audit CSVs already
+on disk. Roughly a dozen web searches/fetches for library verification.

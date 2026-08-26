@@ -1,0 +1,112 @@
+{
+  "fqtn": "LIBRARY_MARTS.JUSTICE.JUSTICE__FED_COURTLISTENER_COURTHOUSES",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "ID",
+    "COURT_SEAT",
+    "BUILDING_NAME",
+    "ADDRESS1",
+    "ADDRESS2",
+    "CITY",
+    "COUNTY",
+    "STATE",
+    "ZIP_CODE",
+    "COUNTRY_CODE",
+    "COURT_ID"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "BUILDING_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "STATE"
+      ],
+      "zip": [
+        "ZIP_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CL_COURT_ID",
+      "column": "COURT_ID",
+      "total_rows": 3361,
+      "nonnull_after_norm": 3361,
+      "distinct_after_norm": 3286,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "ID": "1687",
+      "COURT_SEAT": "f",
+      "BUILDING_NAME": null,
+      "ADDRESS1": null,
+      "ADDRESS2": null,
+      "CITY": null,
+      "COUNTY": null,
+      "STATE": "TX",
+      "ZIP_CODE": null,
+      "COUNTRY_CODE": "US",
+      "COURT_ID": "texdistct188"
+    },
+    {
+      "ID": "3250",
+      "COURT_SEAT": "f",
+      "BUILDING_NAME": null,
+      "ADDRESS1": null,
+      "ADDRESS2": null,
+      "CITY": null,
+      "COUNTY": null,
+      "STATE": "NY",
+      "ZIP_CODE": null,
+      "COUNTRY_CODE": "US",
+      "COURT_ID": "nysurctmadison"
+    },
+    {
+      "ID": "1313",
+      "COURT_SEAT": "f",
+      "BUILDING_NAME": null,
+      "ADDRESS1": null,
+      "ADDRESS2": null,
+      "CITY": null,
+      "COUNTY": null,
+      "STATE": "TX",
+      "ZIP_CODE": null,
+      "COUNTRY_CODE": "US",
+      "COURT_ID": "texctyct101"
+    },
+    {
+      "ID": "1621",
+      "COURT_SEAT": "f",
+      "BUILDING_NAME": null,
+      "ADDRESS1": null,
+      "ADDRESS2": null,
+      "CITY": null,
+      "COUNTY": null,
+      "STATE": "TX",
+      "ZIP_CODE": null,
+      "COUNTRY_CODE": "US",
+      "COURT_ID": "texdistct122"
+    },
+    {
+      "ID": "908",
+      "COURT_SEAT": "f",
+      "BUILDING_NAME": null,
+      "ADDRESS1": null,
+      "ADDRESS2": null,
+      "CITY": null,
+      "COUNTY": null,
+      "STATE": "NY",
+      "ZIP_CODE": null,
+      "COUNTRY_CODE": "US",
+      "COURT_ID": "nyclaimsct"
+    }
+  ],
+  "sample_error": null
+}

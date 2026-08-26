@@ -1,0 +1,138 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_CKA_WPRDC_ALLEGHENY_EEF5B53BC5",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "OBJECTID",
+    "WUDS_ID",
+    "NAME",
+    "CNTY_CODE",
+    "CNTY_NAME",
+    "OWNERSHIP",
+    "GW_SOURCE",
+    "SW_SOURCE",
+    "INTCONNECT",
+    "LAST_DATE",
+    "PWS_ID",
+    "SHAPEAREA",
+    "SHAPELEN",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "NAME",
+      "CNTY_NAME",
+      "LAST_DATE"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "PWSID",
+      "column": "PWS_ID",
+      "total_rows": 1792,
+      "nonnull_after_norm": 0,
+      "distinct_after_norm": 0,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "OBJECTID": "15798",
+      "WUDS_ID": "19597",
+      "NAME": "SHEFFIELD TWP MUNI AUTH",
+      "CNTY_CODE": "62",
+      "CNTY_NAME": "Warren",
+      "OWNERSHIP": "Authority",
+      "GW_SOURCE": "Y",
+      "SW_SOURCE": "N",
+      "INTCONNECT": "N",
+      "LAST_DATE": "2020/11/12 00:00:00+00",
+      "PWS_ID": "6620031",
+      "SHAPEAREA": "2995944.94674056",
+      "SHAPELEN": "13183.9755779191",
+      "INGESTED_AT": "2026-07-02 23:26:45.671769",
+      "SOURCE_RUN_ID": "72697736-106d-4edd-839c-f56837fc23bd",
+      "SRC_SHA256": "586e718c89566d86b1e77a9da4faa2c2c2e850a4ccbeb5f6bf4c15046fe0d544"
+    },
+    {
+      "OBJECTID": "15886",
+      "WUDS_ID": "18733",
+      "NAME": "EAST DEER TWP WATERWORKS",
+      "CNTY_CODE": "02",
+      "CNTY_NAME": "Allegheny",
+      "OWNERSHIP": "Municipal",
+      "GW_SOURCE": "N",
+      "SW_SOURCE": "N",
+      "INTCONNECT": "Y",
+      "LAST_DATE": "2003/01/01 00:00:00+00",
+      "PWS_ID": "5020013",
+      "SHAPEAREA": "9894144.29569628",
+      "SHAPELEN": "19350.9415270976",
+      "INGESTED_AT": "2026-07-02 23:26:45.671769",
+      "SOURCE_RUN_ID": "72697736-106d-4edd-839c-f56837fc23bd",
+      "SRC_SHA256": "586e718c89566d86b1e77a9da4faa2c2c2e850a4ccbeb5f6bf4c15046fe0d544"
+    },
+    {
+      "OBJECTID": "15661",
+      "WUDS_ID": "19338",
+      "NAME": "AQUA PA BARRETT",
+      "CNTY_CODE": "40",
+      "CNTY_NAME": "Luzerne",
+      "OWNERSHIP": "Private Investor Owned",
+      "GW_SOURCE": "Y",
+      "SW_SOURCE": "N",
+      "INTCONNECT": "N",
+      "LAST_DATE": "2015/02/05 00:00:00+00",
+      "PWS_ID": "2400085",
+      "SHAPEAREA": "614559.530585435",
+      "SHAPELEN": "3629.37037542904",
+      "INGESTED_AT": "2026-07-02 23:26:45.671769",
+      "SOURCE_RUN_ID": "72697736-106d-4edd-839c-f56837fc23bd",
+      "SRC_SHA256": "586e718c89566d86b1e77a9da4faa2c2c2e850a4ccbeb5f6bf4c15046fe0d544"
+    },
+    {
+      "OBJECTID": "16456",
+      "WUDS_ID": "20027",
+      "NAME": "FREEMANSBURG MHC",
+      "CNTY_CODE": "48",
+      "CNTY_NAME": "Northampton",
+      "OWNERSHIP": "Mobile Home Park",
+      "GW_SOURCE": "Y",
+      "SW_SOURCE": "N",
+      "INTCONNECT": "N",
+      "LAST_DATE": "2016/03/16 00:00:00+00",
+      "PWS_ID": "3480012",
+      "SHAPEAREA": "39783.81145082",
+      "SHAPELEN": "1136.36019316341",
+      "INGESTED_AT": "2026-07-02 23:26:45.671769",
+      "SOURCE_RUN_ID": "72697736-106d-4edd-839c-f56837fc23bd",
+      "SRC_SHA256": "586e718c89566d86b1e77a9da4faa2c2c2e850a4ccbeb5f6bf4c15046fe0d544"
+    },
+    {
+      "OBJECTID": "16936",
+      "WUDS_ID": "19275",
+      "NAME": "QUARRYVILLE BORO",
+      "CNTY_CODE": "36",
+      "CNTY_NAME": "Lancaster",
+      "OWNERSHIP": "Municipal",
+      "GW_SOURCE": "Y",
+      "SW_SOURCE": "N",
+      "INTCONNECT": "Y",
+      "LAST_DATE": "2020/03/25 00:00:00+00",
+      "PWS_ID": "7360112",
+      "SHAPEAREA": "4921959.37986382",
+      "SHAPELEN": "22133.6236654857",
+      "INGESTED_AT": "2026-07-02 23:26:45.671769",
+      "SOURCE_RUN_ID": "72697736-106d-4edd-839c-f56837fc23bd",
+      "SRC_SHA256": "586e718c89566d86b1e77a9da4faa2c2c2e850a4ccbeb5f6bf4c15046fe0d544"
+    }
+  ],
+  "sample_error": null
+}

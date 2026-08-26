@@ -1,0 +1,148 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_ARC_OPEN_BALTIMORE_751D91C991",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "COUNTY",
+    "FACILITY_NAME",
+    "FACILITY_ADDRESS",
+    "FACILITY_CITY",
+    "FACILITY_STATE",
+    "FACILITY_ZIP",
+    "FACILITY_PHONE",
+    "LICENSE_CAPACITY",
+    "LICENSE_NO",
+    "CCN",
+    "TYPE",
+    "OBJECTID",
+    "GEOMETRY",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "FACILITY_NAME",
+      "FACILITY_ADDRESS",
+      "FACILITY_CITY",
+      "FACILITY_STATE",
+      "FACILITY_ZIP",
+      "FACILITY_PHONE"
+    ],
+    "address_candidates": {
+      "city": [
+        "FACILITY_CITY",
+        "LICENSE_CAPACITY"
+      ],
+      "state": [
+        "FACILITY_STATE"
+      ],
+      "zip": [
+        "FACILITY_ZIP"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CCN",
+      "column": "CCN",
+      "total_rows": 62,
+      "nonnull_after_norm": 0,
+      "distinct_after_norm": 0,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "COUNTY": "BALTIMORE COUNTY",
+      "FACILITY_NAME": "LEVINDALE HEBREW GERIATRIC CENTER AND HOSPITAL",
+      "FACILITY_ADDRESS": "2434 WEST BELVEDERE AVENUE",
+      "FACILITY_CITY": "BALTIMORE",
+      "FACILITY_STATE": "MD",
+      "FACILITY_ZIP": "21209",
+      "FACILITY_PHONE": "(410) 601-2400",
+      "LICENSE_CAPACITY": "100.0",
+      "LICENSE_NO": "30088",
+      "CCN": "210064.0",
+      "TYPE": "Acute, General and Special Hospitals",
+      "OBJECTID": "20",
+      "GEOMETRY": "{\"type\": \"Point\", \"coordinates\": [-76.6650691337485, 39.3533006026709]}",
+      "INGESTED_AT": "2026-06-24 04:31:57.238957",
+      "SOURCE_RUN_ID": "3bfc57ab-9d1c-4091-8c77-de10e8af64e6",
+      "SRC_SHA256": "3f6f6b6cdd53e9a874895a73ad16a93c53b9b0b9f05e6ed063ebf2c1aa01e41b"
+    },
+    {
+      "COUNTY": "MONTGOMERY COUNTY",
+      "FACILITY_NAME": "HOLY CROSS GERMANTOWN HOSPITAL",
+      "FACILITY_ADDRESS": "19801 OBSERVATION DRIVE",
+      "FACILITY_CITY": "GERMANTOWN",
+      "FACILITY_STATE": "MD",
+      "FACILITY_ZIP": "20876",
+      "FACILITY_PHONE": "(301) 557-6020",
+      "LICENSE_CAPACITY": "70.0",
+      "LICENSE_NO": "015080",
+      "CCN": "210065.0",
+      "TYPE": "Acute, General and Special Hospitals",
+      "OBJECTID": "44",
+      "GEOMETRY": "{\"type\": \"Point\", \"coordinates\": [-77.2433144863035, 39.1803176770626]}",
+      "INGESTED_AT": "2026-06-24 04:31:57.238957",
+      "SOURCE_RUN_ID": "3bfc57ab-9d1c-4091-8c77-de10e8af64e6",
+      "SRC_SHA256": "3f6f6b6cdd53e9a874895a73ad16a93c53b9b0b9f05e6ed063ebf2c1aa01e41b"
+    },
+    {
+      "COUNTY": "CHARLES COUNTY",
+      "FACILITY_NAME": "UMD CHARLES REGIONAL  MEDICAL CENTER",
+      "FACILITY_ADDRESS": "5 GARRETT AVENUE",
+      "FACILITY_CITY": "LA PLATA",
+      "FACILITY_STATE": "MD",
+      "FACILITY_ZIP": "20646",
+      "FACILITY_PHONE": "(301) 609-4265",
+      "LICENSE_CAPACITY": "99.0",
+      "LICENSE_NO": "08001",
+      "CCN": "210035.0",
+      "TYPE": "Acute, General and Special Hospitals",
+      "OBJECTID": "30",
+      "GEOMETRY": "{\"type\": \"Point\", \"coordinates\": [-76.9712157901619, 38.5296801701112]}",
+      "INGESTED_AT": "2026-06-24 04:31:57.238957",
+      "SOURCE_RUN_ID": "3bfc57ab-9d1c-4091-8c77-de10e8af64e6",
+      "SRC_SHA256": "3f6f6b6cdd53e9a874895a73ad16a93c53b9b0b9f05e6ed063ebf2c1aa01e41b"
+    },
+    {
+      "COUNTY": "PRINCE GEORGE'S COUNTY",
+      "FACILITY_NAME": "MEDSTAR SOUTHERN MARYLAND HOSPITAL CENTER",
+      "FACILITY_ADDRESS": "7503 SURRATTS ROAD",
+      "FACILITY_CITY": "CLINTON",
+      "FACILITY_STATE": "MD",
+      "FACILITY_ZIP": "20735",
+      "FACILITY_PHONE": "(301) 868-8000",
+      "LICENSE_CAPACITY": "182.0",
+      "LICENSE_NO": "16041",
+      "CCN": "210062.0",
+      "TYPE": "Acute, General and Special Hospitals",
+      "OBJECTID": "51",
+      "GEOMETRY": "{\"type\": \"Point\", \"coordinates\": [-76.8756284997047, 38.74815900012]}",
+      "INGESTED_AT": "2026-06-24 04:31:57.238957",
+      "SOURCE_RUN_ID": "3bfc57ab-9d1c-4091-8c77-de10e8af64e6",
+      "SRC_SHA256": "3f6f6b6cdd53e9a874895a73ad16a93c53b9b0b9f05e6ed063ebf2c1aa01e41b"
+    },
+    {
+      "COUNTY": "CARROLL COUNTY",
+      "FACILITY_NAME": "SPRINGFIELD HOSPITAL CENTER",
+      "FACILITY_ADDRESS": "6655 SYKESVILLE ROAD",
+      "FACILITY_CITY": "SYKESVILLE",
+      "FACILITY_STATE": "MD",
+      "FACILITY_ZIP": "21784",
+      "FACILITY_PHONE": "(410) 970-7000",
+      "LICENSE_CAPACITY": "522.0",
+      "LICENSE_NO": "06009",
+      "CCN": "214004.0",
+      "TYPE": "Psychiatric Hospital",
+      "OBJECTID": "28",
+      "GEOMETRY": "{\"type\": \"Point\", \"coordinates\": [-76.9552560001257, 39.3883559998688]}",
+      "INGESTED_AT": "2026-06-24 04:31:57.238957",
+      "SOURCE_RUN_ID": "3bfc57ab-9d1c-4091-8c77-de10e8af64e6",
+      "SRC_SHA256": "3f6f6b6cdd53e9a874895a73ad16a93c53b9b0b9f05e6ed063ebf2c1aa01e41b"
+    }
+  ],
+  "sample_error": null
+}

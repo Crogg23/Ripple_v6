@@ -1,0 +1,100 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_SOC_WASHINGTON_STATE_1A95FB1665",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "AUDIT_CONTROL_NUMBER",
+    "RECIPIENT_NAME",
+    "RECIPIENT_TYPE",
+    "AUDIT_TYPE",
+    "AUDIT_RECEIVED_OR_CONDUCTED",
+    "AUDIT_CLOSED_DATE",
+    "UBI_EIN",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "RECIPIENT_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "EIN",
+      "column": "UBI_EIN",
+      "total_rows": 112,
+      "nonnull_after_norm": 79,
+      "distinct_after_norm": 36,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "AUDIT_CONTROL_NUMBER": "25-019_SR",
+      "RECIPIENT_NAME": "Department of Fish and Wildlife",
+      "RECIPIENT_TYPE": "Public",
+      "AUDIT_TYPE": "Security Review",
+      "AUDIT_RECEIVED_OR_CONDUCTED": "2025-04-30T00:00:00.000",
+      "AUDIT_CLOSED_DATE": "2025-04-30T00:00:00.000",
+      "UBI_EIN": "4770",
+      "INGESTED_AT": "2026-06-24 04:41:34.591062",
+      "SOURCE_RUN_ID": "0fd6f91d-bd15-49c2-9969-efbdcef340dc",
+      "SRC_SHA256": "e4cf4b22bd70d71573b8175ec91508a9ca254f4d9d4649b141a1943056808304"
+    },
+    {
+      "AUDIT_CONTROL_NUMBER": "23-016_DSA",
+      "RECIPIENT_NAME": "RL Polk",
+      "RECIPIENT_TYPE": "Private",
+      "AUDIT_TYPE": "Data Security",
+      "AUDIT_RECEIVED_OR_CONDUCTED": "2023-01-26T00:00:00.000",
+      "AUDIT_CLOSED_DATE": "2023-05-04T00:00:00.000",
+      "UBI_EIN": "409001390",
+      "INGESTED_AT": "2026-06-24 04:41:34.591062",
+      "SOURCE_RUN_ID": "0fd6f91d-bd15-49c2-9969-efbdcef340dc",
+      "SRC_SHA256": "e4cf4b22bd70d71573b8175ec91508a9ca254f4d9d4649b141a1943056808304"
+    },
+    {
+      "AUDIT_CONTROL_NUMBER": "23-008_DSA",
+      "RECIPIENT_NAME": "American Traffic Solutions",
+      "RECIPIENT_TYPE": "Private",
+      "AUDIT_TYPE": "Data Security",
+      "AUDIT_RECEIVED_OR_CONDUCTED": "2023-05-09T00:00:00.000",
+      "AUDIT_CLOSED_DATE": "2023-07-20T00:00:00.000",
+      "UBI_EIN": "602548774",
+      "INGESTED_AT": "2026-06-24 04:41:34.591062",
+      "SOURCE_RUN_ID": "0fd6f91d-bd15-49c2-9969-efbdcef340dc",
+      "SRC_SHA256": "e4cf4b22bd70d71573b8175ec91508a9ca254f4d9d4649b141a1943056808304"
+    },
+    {
+      "AUDIT_CONTROL_NUMBER": "22-026_PUA",
+      "RECIPIENT_NAME": "Seattle Municipal Court",
+      "RECIPIENT_TYPE": "Public",
+      "AUDIT_TYPE": "Permissible Use",
+      "AUDIT_RECEIVED_OR_CONDUCTED": "2022-06-23T00:00:00.000",
+      "AUDIT_CLOSED_DATE": "2022-09-12T00:00:00.000",
+      "UBI_EIN": "nan",
+      "INGESTED_AT": "2026-06-24 04:41:34.591062",
+      "SOURCE_RUN_ID": "0fd6f91d-bd15-49c2-9969-efbdcef340dc",
+      "SRC_SHA256": "e4cf4b22bd70d71573b8175ec91508a9ca254f4d9d4649b141a1943056808304"
+    },
+    {
+      "AUDIT_CONTROL_NUMBER": "24-018_DSA",
+      "RECIPIENT_NAME": "Insurance Information Exchange, LLC",
+      "RECIPIENT_TYPE": "Private",
+      "AUDIT_TYPE": "Data Security",
+      "AUDIT_RECEIVED_OR_CONDUCTED": "2024-02-06T00:00:00.000",
+      "AUDIT_CLOSED_DATE": "2024-09-30T00:00:00.000",
+      "UBI_EIN": "601795907",
+      "INGESTED_AT": "2026-06-24 04:41:34.591062",
+      "SOURCE_RUN_ID": "0fd6f91d-bd15-49c2-9969-efbdcef340dc",
+      "SRC_SHA256": "e4cf4b22bd70d71573b8175ec91508a9ca254f4d9d4649b141a1943056808304"
+    }
+  ],
+  "sample_error": null
+}

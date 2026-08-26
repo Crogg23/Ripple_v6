@@ -1,0 +1,157 @@
+{
+  "fqtn": "LIBRARY_MARTS.FINANCE.FINANCE__FED_SEC_INVESTMENT_COMPANY_SERIES_CLASS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "SERIES_CLASS_RECORD_ID",
+    "REPORTING_FILE_NUMBER",
+    "CIK_NUMBER",
+    "ENTITY_NAME",
+    "ENTITY_ORG_TYPE",
+    "SERIES_ID",
+    "SERIES_NAME",
+    "CLASS_ID",
+    "CLASS_NAME",
+    "CLASS_TICKER",
+    "ADDRESS_1",
+    "ADDRESS_2",
+    "CITY",
+    "STATE",
+    "ZIP_CODE",
+    "_LOADED_AT",
+    "_SOURCE_RUN_ID",
+    "_SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "ENTITY_NAME",
+      "ENTITY_ORG_TYPE",
+      "SERIES_NAME",
+      "CLASS_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "STATE"
+      ],
+      "zip": [
+        "ZIP_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CIK",
+      "column": "CIK_NUMBER",
+      "total_rows": 43123,
+      "nonnull_after_norm": 43121,
+      "distinct_after_norm": 2046,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "SERIES_CLASS_RECORD_ID": "c8b15a31ce013fe5cbc2b0dd2857d0d1-1",
+      "REPORTING_FILE_NUMBER": "811-23872",
+      "CIK_NUMBER": "0001976322",
+      "ENTITY_NAME": "Themes ETF Trust",
+      "ENTITY_ORG_TYPE": "30",
+      "SERIES_ID": "S000105568",
+      "SERIES_NAME": "Leverage Shares 2X Long AXTI Daily ETF",
+      "CLASS_ID": "C000276344",
+      "CLASS_NAME": "Leverage Shares 2X Long AXTI Daily ETF",
+      "CLASS_TICKER": null,
+      "ADDRESS_1": "34 EAST PUTNAM STREET",
+      "ADDRESS_2": "SUITE 112",
+      "CITY": "GREENWICH",
+      "STATE": "CT",
+      "ZIP_CODE": "06830",
+      "_LOADED_AT": 1786165015456670,
+      "_SOURCE_RUN_ID": "d09c7e4f-5c2a-4e40-a4d3-7f50783d9581",
+      "_SRC_SHA256": "9fdb6d24157bbec44244366dfddebe2300404ab591da479cf537db884078af6a"
+    },
+    {
+      "SERIES_CLASS_RECORD_ID": "e3c80ad9f456c01f0c840d68518ed947-1",
+      "REPORTING_FILE_NUMBER": "811-05349",
+      "CIK_NUMBER": "0000822977",
+      "ENTITY_NAME": "GOLDMAN SACHS TRUST",
+      "ENTITY_ORG_TYPE": "30",
+      "SERIES_ID": "S000009305",
+      "SERIES_NAME": "Goldman Sachs U.S. Mortgages Fund",
+      "CLASS_ID": "C000090760",
+      "CLASS_NAME": "Investor Shares",
+      "CLASS_TICKER": "GGIRX",
+      "ADDRESS_1": "71  SOUTH WACKER DRIVE",
+      "ADDRESS_2": "C/O GOLDMAN SACHS & CO",
+      "CITY": "CHICAGO",
+      "STATE": "IL",
+      "ZIP_CODE": "60606",
+      "_LOADED_AT": 1786165015456670,
+      "_SOURCE_RUN_ID": "d09c7e4f-5c2a-4e40-a4d3-7f50783d9581",
+      "_SRC_SHA256": "9fdb6d24157bbec44244366dfddebe2300404ab591da479cf537db884078af6a"
+    },
+    {
+      "SERIES_CLASS_RECORD_ID": "db705de010949851b80de54884971021-1",
+      "REPORTING_FILE_NUMBER": "811-05200",
+      "CIK_NUMBER": "0000815915",
+      "ENTITY_NAME": "Brighthouse Variable Annuity Account C",
+      "ENTITY_ORG_TYPE": "32",
+      "SERIES_ID": "S000005147",
+      "SERIES_NAME": "BRIGHTHOUSE VARIABLE ANNUITY ACCOUNT C",
+      "CLASS_ID": "C000151864",
+      "CLASS_NAME": "Class VA (CA)",
+      "CLASS_TICKER": null,
+      "ADDRESS_1": "BRIGHTHOUSE LIFE INSURANCE CO",
+      "ADDRESS_2": "11225 NORTH COMMUNITY HOUSE ROAD",
+      "CITY": "CHARLOTTE",
+      "STATE": "NC",
+      "ZIP_CODE": "28277",
+      "_LOADED_AT": 1786165015456670,
+      "_SOURCE_RUN_ID": "d09c7e4f-5c2a-4e40-a4d3-7f50783d9581",
+      "_SRC_SHA256": "9fdb6d24157bbec44244366dfddebe2300404ab591da479cf537db884078af6a"
+    },
+    {
+      "SERIES_CLASS_RECORD_ID": "e7cf93293cd6d393677dca1e278555d3-1",
+      "REPORTING_FILE_NUMBER": "811-07989",
+      "CIK_NUMBER": "0001028621",
+      "ENTITY_NAME": "TCW Metropolitan West Funds",
+      "ENTITY_ORG_TYPE": "30",
+      "SERIES_ID": "S000072616",
+      "SERIES_NAME": "TCW METWEST Sustainable Securitized Fund",
+      "CLASS_ID": "C000228996",
+      "CLASS_NAME": "Class M",
+      "CLASS_TICKER": "MWERX",
+      "ADDRESS_1": "515 SOUTH FLOWER ST",
+      "ADDRESS_2": null,
+      "CITY": "LOS ANGELES",
+      "STATE": "CA",
+      "ZIP_CODE": "90071",
+      "_LOADED_AT": 1786165015456670,
+      "_SOURCE_RUN_ID": "d09c7e4f-5c2a-4e40-a4d3-7f50783d9581",
+      "_SRC_SHA256": "9fdb6d24157bbec44244366dfddebe2300404ab591da479cf537db884078af6a"
+    },
+    {
+      "SERIES_CLASS_RECORD_ID": "7a2fc64afe1c5fe7ed3f97ce2a68bbfa-1",
+      "REPORTING_FILE_NUMBER": "811-22985",
+      "CIK_NUMBER": "0001614370",
+      "ENTITY_NAME": "Smead Funds Trust",
+      "ENTITY_ORG_TYPE": "30",
+      "SERIES_ID": "S000047006",
+      "SERIES_NAME": "Smead Value Fund",
+      "CLASS_ID": "C000146937",
+      "CLASS_NAME": "CLASS Y SHARES",
+      "CLASS_TICKER": "SVFYX",
+      "ADDRESS_1": "2502 EAST CAMELBACK ROAD, SUITE 210",
+      "ADDRESS_2": null,
+      "CITY": "PHOENIX",
+      "STATE": "AZ",
+      "ZIP_CODE": "85016",
+      "_LOADED_AT": 1786165015456670,
+      "_SOURCE_RUN_ID": "d09c7e4f-5c2a-4e40-a4d3-7f50783d9581",
+      "_SRC_SHA256": "9fdb6d24157bbec44244366dfddebe2300404ab591da479cf537db884078af6a"
+    }
+  ],
+  "sample_error": null
+}

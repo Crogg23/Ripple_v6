@@ -1,0 +1,168 @@
+{
+  "fqtn": "LIBRARY_MARTS.POLITICS.POLITICS__IRS527_8871_ORGS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "FORM_ID_NUMBER",
+    "EIN",
+    "ORGANIZATION_NAME",
+    "INITIAL_REPORT_IND",
+    "AMENDED_REPORT_IND",
+    "FINAL_REPORT_IND",
+    "ESTABLISHED_DATE",
+    "MAILING_ADDR1",
+    "MAILING_CITY",
+    "MAILING_STATE",
+    "MAILING_ZIP",
+    "EMAIL_ADDRESS",
+    "CUSTODIAN_NAME",
+    "CONTACT_NAME",
+    "EXEMPT_8872_IND",
+    "EXEMPT_990_IND",
+    "PURPOSE",
+    "INSERT_DATETIME",
+    "_LOADED_AT",
+    "_SOURCE_URL"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "ORGANIZATION_NAME",
+      "CUSTODIAN_NAME",
+      "CONTACT_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "MAILING_CITY"
+      ],
+      "state": [
+        "MAILING_STATE"
+      ],
+      "zip": [
+        "MAILING_ZIP"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "EIN",
+      "column": "EIN",
+      "total_rows": 77591,
+      "nonnull_after_norm": 77590,
+      "distinct_after_norm": 58915,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "FORM_ID_NUMBER": "9660423",
+      "EIN": "823827491",
+      "ORGANIZATION_NAME": "Friends of Julie Henn",
+      "INITIAL_REPORT_IND": "1",
+      "AMENDED_REPORT_IND": "0",
+      "FINAL_REPORT_IND": "0",
+      "ESTABLISHED_DATE": "2017-10-23",
+      "MAILING_ADDR1": "5039 Forge Haven Drive",
+      "MAILING_CITY": "Perry Hall",
+      "MAILING_STATE": "MD",
+      "MAILING_ZIP": "21128",
+      "EMAIL_ADDRESS": "julie.henn@gmail.com",
+      "CUSTODIAN_NAME": "Carla Naydan",
+      "CONTACT_NAME": "Carla Naydan",
+      "EXEMPT_8872_IND": "1",
+      "EXEMPT_990_IND": "1",
+      "PURPOSE": "Friends of Julie Henn is a candidate committee to elect Julie Henn to the Board of Education of Baltimore County.",
+      "INSERT_DATETIME": "2018-01-02 09:28:47",
+      "_LOADED_AT": 1785966285390828,
+      "_SOURCE_URL": "https://www.irs.gov/charities-non-profits/political-organizations/political-organization-filing-and-disclosure"
+    },
+    {
+      "FORM_ID_NUMBER": "9654182",
+      "EIN": "815198655",
+      "ORGANIZATION_NAME": "Friends of Tanya Bamford",
+      "INITIAL_REPORT_IND": "1",
+      "AMENDED_REPORT_IND": "0",
+      "FINAL_REPORT_IND": "0",
+      "ESTABLISHED_DATE": "2017-02-02",
+      "MAILING_ADDR1": "132 Wentworth Drive",
+      "MAILING_CITY": "Lansdale",
+      "MAILING_STATE": "PA",
+      "MAILING_ZIP": "19446",
+      "EMAIL_ADDRESS": "no@email",
+      "CUSTODIAN_NAME": "Tina Stoll",
+      "CONTACT_NAME": "Tina Stoll",
+      "EXEMPT_8872_IND": "1",
+      "EXEMPT_990_IND": "1",
+      "PURPOSE": "A PAC in support of the election of Tanya Bamford to Montgomery Township Supervisor ",
+      "INSERT_DATETIME": "2017-05-12 13:17:00",
+      "_LOADED_AT": 1785966285390828,
+      "_SOURCE_URL": "https://www.irs.gov/charities-non-profits/political-organizations/political-organization-filing-and-disclosure"
+    },
+    {
+      "FORM_ID_NUMBER": "9626872",
+      "EIN": "471212286",
+      "ORGANIZATION_NAME": "Strong Orange County Neighborhoods PAC",
+      "INITIAL_REPORT_IND": "1",
+      "AMENDED_REPORT_IND": "0",
+      "FINAL_REPORT_IND": "0",
+      "ESTABLISHED_DATE": "2014-06-27",
+      "MAILING_ADDR1": "455 Capitol Mall, Suite 600",
+      "MAILING_CITY": "Sacramento",
+      "MAILING_STATE": "CA",
+      "MAILING_ZIP": "95814",
+      "EMAIL_ADDRESS": "fppc@bmhlaw.com",
+      "CUSTODIAN_NAME": "Thomas W. Hiltachk",
+      "CONTACT_NAME": "Thomas W. Hiltachk",
+      "EXEMPT_8872_IND": "1",
+      "EXEMPT_990_IND": "0",
+      "PURPOSE": "To support or oppose state or local candidates or measures.",
+      "INSERT_DATETIME": "2014-06-27 17:49:35",
+      "_LOADED_AT": 1785966285390828,
+      "_SOURCE_URL": "https://www.irs.gov/charities-non-profits/political-organizations/political-organization-filing-and-disclosure"
+    },
+    {
+      "FORM_ID_NUMBER": "9663160",
+      "EIN": "824500913",
+      "ORGANIZATION_NAME": "Team Pohlmeier",
+      "INITIAL_REPORT_IND": "1",
+      "AMENDED_REPORT_IND": "0",
+      "FINAL_REPORT_IND": "0",
+      "ESTABLISHED_DATE": "2018-02-21",
+      "MAILING_ADDR1": "108 E Bay RD",
+      "MAILING_CITY": "Plattsmouth",
+      "MAILING_STATE": "NE",
+      "MAILING_ZIP": "68048",
+      "EMAIL_ADDRESS": "Lori@liquidtrucking.com",
+      "CUSTODIAN_NAME": "Lori Trabert-Blotzer",
+      "CONTACT_NAME": "Lori Trabert-Blotzer",
+      "EXEMPT_8872_IND": "1",
+      "EXEMPT_990_IND": "1",
+      "PURPOSE": "Political Committee to Elect Laura Pohlmeier to the Cass County Register of Deeds, in Cass County, Nebraska.",
+      "INSERT_DATETIME": "2018-02-21 15:43:48",
+      "_LOADED_AT": 1785966285390828,
+      "_SOURCE_URL": "https://www.irs.gov/charities-non-profits/political-organizations/political-organization-filing-and-disclosure"
+    },
+    {
+      "FORM_ID_NUMBER": "9616496",
+      "EIN": "462410543",
+      "ORGANIZATION_NAME": "Cabellos for Delegate",
+      "INITIAL_REPORT_IND": "1",
+      "AMENDED_REPORT_IND": "0",
+      "FINAL_REPORT_IND": "0",
+      "ESTABLISHED_DATE": "2013-04-03",
+      "MAILING_ADDR1": "9049 Old Hickory Ct.",
+      "MAILING_CITY": "Manassas",
+      "MAILING_STATE": "VA",
+      "MAILING_ZIP": "20110",
+      "EMAIL_ADDRESS": "richard.cabellos@gmail.com",
+      "CUSTODIAN_NAME": "Richard Cabellos",
+      "CONTACT_NAME": "Richard Cabellos",
+      "EXEMPT_8872_IND": "1",
+      "EXEMPT_990_IND": "1",
+      "PURPOSE": "I am filing IRS Form 8871 my Federal Tax Identification number I was designated for my political organization is 46-2410543",
+      "INSERT_DATETIME": "2013-04-03 17:24:34",
+      "_LOADED_AT": 1785966285390828,
+      "_SOURCE_URL": "https://www.irs.gov/charities-non-profits/political-organizations/political-organization-filing-and-disclosure"
+    }
+  ],
+  "sample_error": null
+}

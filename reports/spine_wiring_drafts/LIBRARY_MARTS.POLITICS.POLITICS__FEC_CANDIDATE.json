@@ -1,0 +1,116 @@
+{
+  "fqtn": "LIBRARY_MARTS.POLITICS.POLITICS__FEC_CANDIDATE",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "CAND_ID",
+    "CYCLE",
+    "CAND_NAME",
+    "PARTY",
+    "OFFICE",
+    "OFFICE_STATE",
+    "OFFICE_DISTRICT",
+    "INCUMBENT_CHALLENGER",
+    "CAND_STATUS",
+    "PRINCIPAL_CMTE_ID",
+    "CAND_ELECTION_YR"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "CAND_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [
+        "OFFICE_STATE"
+      ],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "FEC_CMTE_ID",
+      "column": "PRINCIPAL_CMTE_ID",
+      "total_rows": 17900,
+      "nonnull_after_norm": 15290,
+      "distinct_after_norm": 10630,
+      "trap_verdict": "REAL"
+    },
+    {
+      "key_label": "FEC_CAND_ID",
+      "column": "CAND_ID",
+      "total_rows": 17900,
+      "nonnull_after_norm": 17900,
+      "distinct_after_norm": 13240,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "CAND_ID": "P20002440",
+      "CYCLE": "2024",
+      "CAND_NAME": "DENAME, MICHAEL JR",
+      "PARTY": "NNE",
+      "OFFICE": "P",
+      "OFFICE_STATE": "US",
+      "OFFICE_DISTRICT": "00",
+      "INCUMBENT_CHALLENGER": "O",
+      "CAND_STATUS": "N",
+      "PRINCIPAL_CMTE_ID": "C00834697",
+      "CAND_ELECTION_YR": 2016
+    },
+    {
+      "CAND_ID": "P40015026",
+      "CYCLE": "2024",
+      "CAND_NAME": "SLACK, DANIEL",
+      "PARTY": "IND",
+      "OFFICE": "P",
+      "OFFICE_STATE": "US",
+      "OFFICE_DISTRICT": "00",
+      "INCUMBENT_CHALLENGER": "C",
+      "CAND_STATUS": "N",
+      "PRINCIPAL_CMTE_ID": "C00848895",
+      "CAND_ELECTION_YR": 2024
+    },
+    {
+      "CAND_ID": "S4MI00595",
+      "CYCLE": "2026",
+      "CAND_NAME": "ROGERS, MICHAEL J",
+      "PARTY": "REP",
+      "OFFICE": "S",
+      "OFFICE_STATE": "MI",
+      "OFFICE_DISTRICT": "00",
+      "INCUMBENT_CHALLENGER": "O",
+      "CAND_STATUS": "C",
+      "PRINCIPAL_CMTE_ID": "C00849810",
+      "CAND_ELECTION_YR": 2026
+    },
+    {
+      "CAND_ID": "P40008963",
+      "CYCLE": "2026",
+      "CAND_NAME": "GLASS, ANGELA",
+      "PARTY": "IND",
+      "OFFICE": "P",
+      "OFFICE_STATE": "US",
+      "OFFICE_DISTRICT": "00",
+      "INCUMBENT_CHALLENGER": null,
+      "CAND_STATUS": "N",
+      "PRINCIPAL_CMTE_ID": "C00914754",
+      "CAND_ELECTION_YR": 2028
+    },
+    {
+      "CAND_ID": "H2MO04207",
+      "CYCLE": "2026",
+      "CAND_NAME": "ALFORD, MARK",
+      "PARTY": "REP",
+      "OFFICE": "H",
+      "OFFICE_STATE": "MO",
+      "OFFICE_DISTRICT": "04",
+      "INCUMBENT_CHALLENGER": "I",
+      "CAND_STATUS": "C",
+      "PRINCIPAL_CMTE_ID": "C00792598",
+      "CAND_ELECTION_YR": 2026
+    }
+  ],
+  "sample_error": null
+}

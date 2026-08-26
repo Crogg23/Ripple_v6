@@ -1,0 +1,134 @@
+{
+  "fqtn": "LIBRARY_MARTS.POLITICS.POLITICS__FEC_COMMITTEE",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "CMTE_ID",
+    "CYCLE",
+    "CMTE_NM",
+    "TRES_NM",
+    "CMTE_CITY",
+    "CMTE_ST",
+    "CMTE_ZIP",
+    "CMTE_DSGN",
+    "CMTE_TP",
+    "CMTE_PTY_AFFILIATION",
+    "CMTE_FILING_FREQ",
+    "ORG_TP",
+    "CONNECTED_ORG_NM",
+    "CAND_ID"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [
+        "CMTE_CITY"
+      ],
+      "state": [],
+      "zip": [
+        "CMTE_ZIP"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "FEC_CAND_ID",
+      "column": "CAND_ID",
+      "total_rows": 40945,
+      "nonnull_after_norm": 15444,
+      "distinct_after_norm": 10662,
+      "trap_verdict": "REAL"
+    },
+    {
+      "key_label": "FEC_CMTE_ID",
+      "column": "CMTE_ID",
+      "total_rows": 40945,
+      "nonnull_after_norm": 40945,
+      "distinct_after_norm": 26655,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "CMTE_ID": "C90017260",
+      "CYCLE": "2026",
+      "CMTE_NM": "CHRISTI L ELLWOOD",
+      "TRES_NM": null,
+      "CMTE_CITY": "LIBBY",
+      "CMTE_ST": "MT",
+      "CMTE_ZIP": "59923",
+      "CMTE_DSGN": "U",
+      "CMTE_TP": "I",
+      "CMTE_PTY_AFFILIATION": null,
+      "CMTE_FILING_FREQ": "Q",
+      "ORG_TP": null,
+      "CONNECTED_ORG_NM": null,
+      "CAND_ID": null
+    },
+    {
+      "CMTE_ID": "C00833020",
+      "CYCLE": "2024",
+      "CMTE_NM": "JOSEPH MALDONADO TO FREE AMERICA",
+      "TRES_NM": "TAMARA SPRINGER",
+      "CMTE_CITY": "GRANGER",
+      "CMTE_ST": "IN",
+      "CMTE_ZIP": "46530",
+      "CMTE_DSGN": "P",
+      "CMTE_TP": "P",
+      "CMTE_PTY_AFFILIATION": "LIB",
+      "CMTE_FILING_FREQ": "T",
+      "ORG_TP": null,
+      "CONNECTED_ORG_NM": null,
+      "CAND_ID": "P60018249"
+    },
+    {
+      "CMTE_ID": "C00934661",
+      "CYCLE": "2026",
+      "CMTE_NM": "BYRD FOR PRESIDENT 2028",
+      "TRES_NM": "CUNNINGHAM, MARY",
+      "CMTE_CITY": "MCNEAL",
+      "CMTE_ST": "AZ",
+      "CMTE_ZIP": "85617",
+      "CMTE_DSGN": "A",
+      "CMTE_TP": "P",
+      "CMTE_PTY_AFFILIATION": "NNE",
+      "CMTE_FILING_FREQ": "Q",
+      "ORG_TP": null,
+      "CONNECTED_ORG_NM": "NONE",
+      "CAND_ID": "P80008725"
+    },
+    {
+      "CMTE_ID": "C00914028",
+      "CYCLE": "2026",
+      "CMTE_NM": "NORTH CAROLINA FIRST",
+      "TRES_NM": "CRATE, BRADLEY T.",
+      "CMTE_CITY": "RALEIGH",
+      "CMTE_ST": "NC",
+      "CMTE_ZIP": "27605",
+      "CMTE_DSGN": "D",
+      "CMTE_TP": "Q",
+      "CMTE_PTY_AFFILIATION": null,
+      "CMTE_FILING_FREQ": "M",
+      "ORG_TP": null,
+      "CONNECTED_ORG_NM": "WHATLEY VICTORY COMMITTEE",
+      "CAND_ID": null
+    },
+    {
+      "CMTE_ID": "C00879858",
+      "CYCLE": "2026",
+      "CMTE_NM": "BUILD WISCONSIN PAC",
+      "TRES_NM": "LISKER, LISA",
+      "CMTE_CITY": "ALEXANDRIA",
+      "CMTE_ST": "VA",
+      "CMTE_ZIP": "22314",
+      "CMTE_DSGN": "D",
+      "CMTE_TP": "N",
+      "CMTE_PTY_AFFILIATION": null,
+      "CMTE_FILING_FREQ": "Q",
+      "ORG_TP": null,
+      "CONNECTED_ORG_NM": "HOVDE VICTORY COMMITTEE",
+      "CAND_ID": null
+    }
+  ],
+  "sample_error": null
+}

@@ -1,0 +1,145 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_SOC_TEXAS_OPEN_DATA_F525266F32",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "CCN_NO",
+    "UTILITY_NAME",
+    "RP_ORGANIZATION",
+    "RP_INDIVIDUAL",
+    "OFFICAL_ADDRESS_1",
+    "CITY",
+    "STATE",
+    "ZIP_CODE",
+    "BUSINESS_PHONE",
+    "EMAIL",
+    "PRIMARY_COUNTY",
+    "ALL_COUNTIES",
+    "DBA_NAME",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "UTILITY_NAME",
+      "RP_ORGANIZATION",
+      "BUSINESS_PHONE",
+      "DBA_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "STATE"
+      ],
+      "zip": [
+        "ZIP_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CCN",
+      "column": "CCN_NO",
+      "total_rows": 474,
+      "nonnull_after_norm": 465,
+      "distinct_after_norm": 463,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "CCN_NO": "13309",
+      "UTILITY_NAME": "HYDROTEX",
+      "RP_ORGANIZATION": "HYDROTEX LLC",
+      "RP_INDIVIDUAL": "nan",
+      "OFFICAL_ADDRESS_1": "101 PARKLANE BLVD STE 10",
+      "CITY": "SUGAR LAND",
+      "STATE": "TX",
+      "ZIP_CODE": "77478",
+      "BUSINESS_PHONE": "7135625084",
+      "EMAIL": "nan",
+      "PRIMARY_COUNTY": "LIBERTY",
+      "ALL_COUNTIES": "LIBERTY",
+      "DBA_NAME": "nan",
+      "INGESTED_AT": "2026-06-24 04:45:22.851996",
+      "SOURCE_RUN_ID": "24bac015-11b8-4b85-9f17-a23462624797",
+      "SRC_SHA256": "8a32e2f088c6d905245670b1a8d108ca940dfc8be1df3e0a2682f8d31149c6d5"
+    },
+    {
+      "CCN_NO": "13098",
+      "UTILITY_NAME": "C & R WATER SUPPLY INC",
+      "RP_ORGANIZATION": "C & R WATER SUPPLY",
+      "RP_INDIVIDUAL": "nan",
+      "OFFICAL_ADDRESS_1": "PO BOX 187",
+      "CITY": "WILLIS",
+      "STATE": "TX",
+      "ZIP_CODE": "77378",
+      "BUSINESS_PHONE": "9368564199",
+      "EMAIL": "nan",
+      "PRIMARY_COUNTY": "MONTGOMERY",
+      "ALL_COUNTIES": "GRIMES, LEON, LIBERTY, MADISON, MONTGOMERY, SAN JACINTO",
+      "DBA_NAME": "nan",
+      "INGESTED_AT": "2026-06-24 04:45:22.851996",
+      "SOURCE_RUN_ID": "24bac015-11b8-4b85-9f17-a23462624797",
+      "SRC_SHA256": "8a32e2f088c6d905245670b1a8d108ca940dfc8be1df3e0a2682f8d31149c6d5"
+    },
+    {
+      "CCN_NO": "11785",
+      "UTILITY_NAME": "BRENDA LOPEZ",
+      "RP_ORGANIZATION": "GREEN ACRES MOBILE HOME PARK-RIVERVIEW ESTATES",
+      "RP_INDIVIDUAL": "BRENDA LOPEZ",
+      "OFFICAL_ADDRESS_1": "4869 TITANIC AVE",
+      "CITY": "EL PASO",
+      "STATE": "TX",
+      "ZIP_CODE": "79904",
+      "BUSINESS_PHONE": "9154226466",
+      "EMAIL": "nan",
+      "PRIMARY_COUNTY": "EL PASO",
+      "ALL_COUNTIES": "EL PASO",
+      "DBA_NAME": "GREEN ACRES MOBILE HOME PARK-RIVERVIEW ESTATES",
+      "INGESTED_AT": "2026-06-24 04:45:22.851996",
+      "SOURCE_RUN_ID": "24bac015-11b8-4b85-9f17-a23462624797",
+      "SRC_SHA256": "8a32e2f088c6d905245670b1a8d108ca940dfc8be1df3e0a2682f8d31149c6d5"
+    },
+    {
+      "CCN_NO": "21037",
+      "UTILITY_NAME": "BC HUMBLE ENTERPRISES",
+      "RP_ORGANIZATION": "BC HUMBLE ENTERPRISES LLC",
+      "RP_INDIVIDUAL": "nan",
+      "OFFICAL_ADDRESS_1": "7135 W TIDWELL RD",
+      "CITY": "HOUSTON",
+      "STATE": "TX",
+      "ZIP_CODE": "77092",
+      "BUSINESS_PHONE": "7136998100",
+      "EMAIL": "EXCELLENCEPMT@ATT.NET",
+      "PRIMARY_COUNTY": "HARRIS",
+      "ALL_COUNTIES": "HARRIS",
+      "DBA_NAME": "nan",
+      "INGESTED_AT": "2026-06-24 04:45:22.851996",
+      "SOURCE_RUN_ID": "24bac015-11b8-4b85-9f17-a23462624797",
+      "SRC_SHA256": "8a32e2f088c6d905245670b1a8d108ca940dfc8be1df3e0a2682f8d31149c6d5"
+    },
+    {
+      "CCN_NO": "12270",
+      "UTILITY_NAME": "LAKELAND SECTION FOUR CIVIC CLUB",
+      "RP_ORGANIZATION": "LAKELAND SECTION FOUR CIVIC CLUB",
+      "RP_INDIVIDUAL": "nan",
+      "OFFICAL_ADDRESS_1": "27351 BLUEBERRY HLL DR",
+      "CITY": "CONROE",
+      "STATE": "TX",
+      "ZIP_CODE": "77385",
+      "BUSINESS_PHONE": "2813679419",
+      "EMAIL": "nan",
+      "PRIMARY_COUNTY": "MONTGOMERY",
+      "ALL_COUNTIES": "MONTGOMERY",
+      "DBA_NAME": "nan",
+      "INGESTED_AT": "2026-06-24 04:45:22.851996",
+      "SOURCE_RUN_ID": "24bac015-11b8-4b85-9f17-a23462624797",
+      "SRC_SHA256": "8a32e2f088c6d905245670b1a8d108ca940dfc8be1df3e0a2682f8d31149c6d5"
+    }
+  ],
+  "sample_error": null
+}

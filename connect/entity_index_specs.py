@@ -749,8 +749,11 @@ DISPLAY_SPECS: dict[str, dict] = {
     },
     "FED_FEC_INDEPENDENT_EXPENDITURES": {
         # FEC_CAND_ID -- 2,014 distinct / 228,643 rows (87.59% survive norm), +607 new to spine. len 9-9. e.g. P80000722
-        "key": "FEC_CAND_ID", "key_col": "cand_id",
-        "org": "cand_name",
+        # 2026-08-24: table was re-landed with UPPERCASE columns (87,541 rows /
+        # 1,186 distinct CAND_ID live today); the lowercase names crashed the
+        # dead-key guard ("invalid identifier") and would have crashed the spine.
+        "key": "FEC_CAND_ID", "key_col": "CAND_ID",
+        "org": "CAND_NAME",
         "authority": 6,
     },
     "FED_EPA_ICIS_FEC_ICIS_FEC_EPA_INSPECTIONS": {
@@ -1216,11 +1219,10 @@ SPINE_BATCH_2026_08_DISPLAY_SPECS: dict[str, dict] = {
         "city": "FAC_CITY", "state": "FAC_STATE", "zip": "FAC_ZIP",
         "authority": 2,
     },
-    "FED_EPA_ICIS_ICIS_AIR_FACILITIES": {
-        # 266,026 distinct, 100.0% overlap -- air-program facilities.
-        "key": "FRS_ID", "key_col": "REGISTRY_ID", "org": "FACILITY_NAME",
-        "city": "CITY", "state": "STATE", "zip": "ZIP_CODE", "authority": 6,
-    },
+    # FED_EPA_ICIS_ICIS_AIR_FACILITIES entry REMOVED 2026-08-24: that table name
+    # never existed in LANDING (typo'd twin of FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES,
+    # which the wave-3 block above already wires with the same columns). The
+    # spine's golden-record UNION would have crashed on the missing table.
     "FED_EPA_GHGRP_FACILITY": {
         # 13,221 distinct, 83.1% overlap -- greenhouse-gas reporters.
         "key": "FRS_ID", "key_col": "FRS_ID", "org": "FACILITY_NAME",
@@ -1373,6 +1375,745 @@ SNIFFER_BATCH_2026_08_18_DISPLAY_SPECS: dict[str, dict] = {
     },
 }
 DISPLAY_SPECS.update(SNIFFER_BATCH_2026_08_18_DISPLAY_SPECS)
+
+# =========================================================================== #
+# 2026-08-24 SPINE-WIRING BATCH 1 -- the federal (non-portal) remainder.
+#
+# Source: reports/SPINE_WIRING_PLAN_2026-08-24.md (§8, the reconciliation) and
+# the per-table draft packets in reports/spine_wiring_drafts/. The audit's
+# "596 unwired" worklist reconciled to 30 federal landing tables once mart
+# mirrors of already-wired tables (156), landing tables the audit missed as
+# wired (37), derived/meta/retired tables (14), DOCKET (parked, 135) and the
+# 153 city/state portal crawls (separate scope call) were removed. Of the 30,
+# these 11 verified live 2026-08-24 (COUNT / COUNT DISTINCT after the axis's
+# own normalization / name fill / 5 distinct name samples, on COMPUTE_WH).
+# The other 19 are documented gaps -- see the block at the end of this dict.
+# Spot-check: the exact _name_expr/_addr_expr SELECT the spine builds was run
+# read-only (LIMIT 5) against every entry below; no crash, no blank names.
+# NOTE: adding specs moves the incremental-config fingerprint (same accepted
+# freeze as the 08-17/08-18 batches) -- a full `connect spine` rebuild is the
+# parked money item that re-pins it.
+# =========================================================================== #
+SPINE_WIRING_BATCH_2026_08_24_DISPLAY_SPECS: dict[str, dict] = {
+    # LEI axis ---------------------------------------------------------------- #
+    "FED_CFPB_HMDA_ARID2017_LEI_XREF": {
+        # CFPB's own 2017-respondent-id -> LEI crosswalk for HMDA lenders.
+        # LEI_2018 is 100% filled and 100% distinct (5,399/5,399); LEI_2019/2020
+        # are the same lender's LEI re-listed (0 rows where 2018 <> 2020; 1,269
+        # rows simply lack a 2020 value) -- NOT extra_keys, same key type would
+        # mint the same entity. RESPONDENT_NAME filled on every row (bank names).
+        # ARID_2017 is a CFPB-only id, not a key axis here (parked).
+        "key": "LEI", "key_col": "LEI_2018", "org": "RESPONDENT_NAME",
+        "authority": 6,
+    },
+    "FED_CFPB_HMDA_LAR": {
+        # Loan-level HMDA records, 17,474 rows / 478 distinct lender LEIs
+        # (100% filled). A DC-only slice (its mart is literally named DC_ONLY).
+        # No lender-name column on the row -- same shape as FED_CFPB_HMDA above;
+        # STATE_CODE is the property state, not the lender's, so no address.
+        "key": "LEI", "key_col": "LEI", "authority": 8,
+    },
+    # CCN axis ---------------------------------------------------------------- #
+    "FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER": {
+        # CMS Medicare inpatient utilization by hospital: 3,044 rows = 3,044
+        # distinct CCNs, org name + street/city/state/zip on every row. CMS's
+        # own claims-derived file -> same tier as the POS/Care Compare tables.
+        "key": "CCN", "key_col": "RNDRNG_PRVDR_CCN", "org": "RNDRNG_PRVDR_ORG_NAME",
+        "city": "RNDRNG_PRVDR_CITY", "state": "RNDRNG_PRVDR_STATE_ABRVTN",
+        "zip": "RNDRNG_PRVDR_ZIP5", "authority": 3,
+    },
+    # CL_COURT_ID axis -------------------------------------------------------- #
+    "FED_COURTLISTENER_COURTHOUSES": {
+        # One row per courthouse BUILDING for a court: 3,361 rows / 3,286
+        # distinct COURT_IDs, 100% filled. BUILDING_NAME is filled on 3 rows
+        # only, so no name (the court's name comes from FED_COURTLISTENER_COURTS,
+        # authority 1); city/state/zip are the building's, useful as address.
+        "key": "CL_COURT_ID", "key_col": "COURT_ID",
+        "city": "CITY", "state": "STATE", "zip": "ZIP_CODE", "authority": 8,
+    },
+    # NPDES_ID axis ----------------------------------------------------------- #
+    "FED_EPA_NPDES_NPDES_NAICS": {
+        # Permit -> NAICS industry codes: 326,473 rows / 306,831 distinct
+        # permits (100% filled). Code table, no names -- key-only like the
+        # sibling NPDES event tables above.
+        "key": "NPDES_ID", "key_col": "NPDES_ID", "authority": 8,
+    },
+    "FED_EPA_NPDES_NPDES_SICS": {
+        # Permit -> SIC industry codes: 792,807 rows / 715,074 distinct permits
+        # (100% filled). Key-only, same reasoning.
+        "key": "NPDES_ID", "key_col": "NPDES_ID", "authority": 8,
+    },
+    # FRS_ID axis ------------------------------------------------------------- #
+    "FED_EPA_TRI_FACILITY": {
+        # EPA Toxics Release Inventory facility file. The column literally
+        # named FRS_ID is EMPTY (0 of 64,990) -- the real FRS id is
+        # EPA_REGISTRY_ID (64,990 filled / 64,728 distinct; a few facilities
+        # re-list under one registry id). FACILITY_NAME on every row, physical
+        # street/city/state/zip. PARENT_CO_DB_NUM is the parent's DUNS -- a
+        # DIFFERENT entity on the row -> not an extra_key (the buyer_dea_no rule).
+        "key": "FRS_ID", "key_col": "EPA_REGISTRY_ID", "org": "FACILITY_NAME",
+        "city": "CITY_NAME", "state": "STATE_ABBR", "zip": "ZIP_CODE",
+        "authority": 5,
+    },
+    # CIK axis ---------------------------------------------------------------- #
+    "FED_SEC_MONEY_MARKET_FUND_INFORMATION": {
+        # SEC N-MFP money-market fund list: 1,206 rows / 176 distinct registrant
+        # CIKs (100% filled), REGISTRANT name on every row (some carry literal
+        # '&AMP;' HTML escapes -- name_canon strips punctuation, so harmless).
+        "key": "CIK", "key_col": "REGISTRANT_CIK", "org": "REGISTRANT",
+        "authority": 6,
+    },
+    # UEI / DUNS axis --------------------------------------------------------- #
+    "FED_USASPENDING_BULK": {
+        # A single 50,000-row pull (one ingest run, action dates 2026-05-26..
+        # 06-04) of the 300-column bulk contract layout: 10,216 distinct
+        # recipient UEIs, RECIPIENT_NAME + city/state/zip on every row.
+        # RECIPIENT_PARENT_UEI is the parent company (a different entity) ->
+        # graph key only, never an extra_key. RECIPIENT_DUNS is empty here.
+        # Small and capped -- kept because it is the only landed sample of the
+        # full bulk layout; superseded for coverage by CONTRACTS_FULL_R2 below.
+        "key": "UEI", "key_col": "RECIPIENT_UEI", "org": "RECIPIENT_NAME",
+        "city": "RECIPIENT_CITY_NAME", "state": "RECIPIENT_STATE_CODE",
+        "zip": "RECIPIENT_ZIP_4_CODE", "authority": 6,
+    },
+    "FED_USASPENDING_CONTRACTS_FULL_R2": {
+        # The checkpointed FY2007-> contracts re-pull (scripts/
+        # usaspending_contracts_full_load.py). 63,729,002 rows as of
+        # 2026-08-24, through 2021-10 -- the loader had written nothing for
+        # ~24h at review time, so treat coverage as FY2007-FY2021 until it
+        # moves again. RECIPIENT_UEI: 63.73M filled / 537,328 distinct;
+        # RECIPIENT_DUNS: 57.42M filled / 507,273 distinct -- both flagged
+        # "suspect" by the prep tool purely on the distinct/row ratio, which is
+        # what a TRANSACTION table looks like, not masking (5-name sample is
+        # real vendors). DUNS is the same recipient's legacy id on the same row
+        # -> extra_keys (the sanctioned use). RECIPIENT_PARENT_UEI = parent
+        # company = different entity -> graph key only. Supersedes the 20M-row
+        # FED_USASPENDING_CONTRACTS_FULL and the 6.3M FED_USASPENDING_CONTRACTS
+        # for coverage; both left wired (dropping them is a YELLOW call for
+        # Chris, not made here).
+        "key": "UEI", "key_col": "RECIPIENT_UEI", "org": "RECIPIENT_NAME",
+        "city": "RECIPIENT_CITY_NAME", "state": "RECIPIENT_STATE_CODE",
+        "zip": "RECIPIENT_ZIP_4_CODE", "authority": 6,
+        "extra_keys": [{"key": "DUNS", "key_col": "RECIPIENT_DUNS"}],
+    },
+    # ICE_FACILITY axis ------------------------------------------------------- #
+    "FED_ICE_DETAINERS": {
+        # ICE detainer requests (FOIA release, FY2025 sheets): 609,769 rows /
+        # 5,305 distinct DETENTION_FACILITY_CODEs (99.996% filled). Only 967 of
+        # those codes appear in FED_ICE_DETENTION_FACILITY_CODES (the 1,470-
+        # code ICE detention list) -- the other ~4,300 are county jails and
+        # police departments where a detainer was lodged, same ICE code
+        # namespace (same 7-char shape, e.g. LACKAPA), so they are REAL new
+        # facility entities, not junk. DETENTION_FACILITY (name) filled on
+        # every row; FACILITY_CITY used; FACILITY_STATE is the full state name
+        # ('CALIFORNIA'), not a code, so it is left out of the address.
+        "key": "ICE_FACILITY", "key_col": "DETENTION_FACILITY_CODE",
+        "org": "DETENTION_FACILITY", "city": "FACILITY_CITY", "authority": 7,
+    },
+    # ----------------------------------------------------------------------- #
+    # DOCUMENTED GAPS (2026-08-24) -- the other 19 of the 30 federal candidates.
+    # Deliberately NOT wired; reason recorded so nobody re-reviews them blind.
+    #   Empty/junk scrapes (key column 0% filled, rows are HTML nav or a
+    #   dataset catalog, not records): FED_CMS_HPT_MRF (1 row), FED_CMS_MAIN
+    #   (158 rows = data.cms.gov catalog listing), FED_ED_FSA_DATACENTER (1
+    #   row), FED_FARA (30 rows of page chrome), FED_FINCEN_BOI (1 row:
+    #   'ACCESS RESTRICTED'), FED_FTC_DATASETS (1,200 rows, EIN empty),
+    #   FED_HHS_TAGGS (45 rows of page chrome), FED_HUD_DATA (77 rows =
+    #   catalog listing), FED_US_USASPENDING_API (300 rows, all 3 id columns
+    #   empty), FED_FOREIGNASSISTANCE (95,658 coded rows, EIN empty).
+    #   Real records but NO recognized key axis (the tagged column is empty):
+    #   FED_FCC_LICENSING (1.69M rows; FRN is the FCC's own id -- new axis,
+    #   parked), FED_FDIC_BANK_DATA (27,836 banks; CERT / FED_RSSD are the
+    #   FDIC/Fed ids -- new axis, parked; LEI column empty), FED_NSF_AWARDS
+    #   (125 rows, EIN empty), FED_EPA_ENVIROFACTS (5,000-row capped TRI
+    #   sample, FRS_ID empty; FED_EPA_TRI_FACILITY above is the real file).
+    #   Superseded / duplicate / ruled: FED_SAM_EXCLUSIONS (10,000-row capped
+    #   sample of ..._FULL_R2, already wired), IRS527_8871_ORGS (byte-identical
+    #   twin of FED_IRS_527_ORGS, ruled 2026-08-17), FED_SEC_EDGAR and
+    #   FED_US_SEC_EDGAR (stale test loads, ruled 2026-07-28: 20 / 25 CIKs).
+    #   Derived: XC_EPA_CORPORATE_CROSSWALK (5.3M rows = the FRS registry plus
+    #   fuzzy-matched parent LEI/CIK/UEI with MATCH_CONFIDENCE/REVIEW_FLAG --
+    #   the FRS ids add no new entities and the matched parents are NOT hard
+    #   ids; they belong in ENTITY_LINKS via the gated resolver, never the
+    #   zero-false-merge spine).
+    # ----------------------------------------------------------------------- #
+}
+DISPLAY_SPECS.update(SPINE_WIRING_BATCH_2026_08_24_DISPLAY_SPECS)
+
+# =========================================================================== #
+# 2026-08-24 SPINE-WIRING BATCH 2 -- city/state open-data portal crawls,
+# wired AS SAMPLES (Chris's ruling, 2026-08-24: "mark them as sample").
+#
+# Every table here is a capped crawl of a portal dataset (portal_loader.py
+# stops at 2,000 rows for most; a few at 5,000/10,000), NOT the dataset. The
+# IDs and names are real -- verified live 2026-08-24 (column existence, COUNT /
+# COUNT DISTINCT after the axis's own normalization, name fill) -- but coverage
+# is a slice, so:
+#   * "sample": True on every entry (inert to spine.py / entity_index.py, which
+#     read only the known keys; it is the machine-readable warning label)
+#   * authority 9 (below every federal source) so a portal name never wins
+#     survivorship over a national authority
+#   * the comment carries the dataset title, the portal, rows at source vs
+#     rows landed, and the live key/name counts (rows / keyed / distinct / named)
+# Findings built on these tables must carry the sample caveat -- the map shows
+# who appears in the crawl, not who is in the dataset.
+# The 74 portal tables NOT wired (56 with every tagged ID column empty, 18
+# false-key/unusable) are listed at the end of this dict with reasons.
+# =========================================================================== #
+SPINE_WIRING_PORTAL_SAMPLES_2026_08_24_DISPLAY_SPECS: dict[str, dict] = {
+    "PORTAL_ARC_COLUMBUS_GIS_OPE_8259461C2A": {
+        # Charitable Trusts and Organizations -- Columbus GIS Open Data. Source 5,423 rows; landed 2,000;
+        # EIN keyed 2,000 / distinct 2,000; named 2,000.
+        "key": "EIN", "key_col": "EIN", "org": "ORGANIZATION", "city": "BUSINESSCITY",
+        "state": "BUSINESSSTATE", "zip": "BUSINESSZIPCODE", "authority": 9, "sample": True,
+    },
+    "PORTAL_ARC_HARRIS_COUNTY_OP_5AB72D4A23": {
+        # DSHS Ambulatory Surgical Centers 04 01 20 -- Harris County Open Data / Dashboards & Datasets Hub. Source 526 rows; landed 526;
+        # CCN keyed 14 / distinct 14; named 526.
+        "key": "CCN", "key_col": "CCN", "org": "NAME", "city": "CITY", "state": "STATE",
+        "zip": "ZIP", "authority": 9, "sample": True,
+    },
+    "PORTAL_ARC_HARRIS_COUNTY_OP_86AE12CFC0": {
+        # Pharmacies -- Harris County Open Data / Dashboards & Datasets Hub. Source 1,128 rows; landed 1,128;
+        # NPI keyed 1,128 / distinct 1,128; named 1,128.
+        "key": "NPI", "key_col": "NPI", "org": "NAME", "city": "CITY", "state": "STATE",
+        "zip": "ZIP", "authority": 9, "sample": True,
+    },
+    "PORTAL_ARC_HARRIS_COUNTY_OP_CAF5C156E3": {
+        # DSHS Assisted Living Facilities Geo -- Harris County Open Data / Dashboards & Datasets Hub. Source 526 rows; landed 526;
+        # CCN keyed 14 / distinct 14; named 526.
+        "key": "CCN", "key_col": "USER_CCN", "org": "USER_NAME", "city": "USER_CITY",
+        "state": "USER_STATE", "zip": "USER_ZIP", "authority": 9, "sample": True,
+    },
+    "PORTAL_ARC_HARRIS_COUNTY_OP_CBD49C80E4": {
+        # TXHHS Facilities -- Harris County Open Data / Dashboards & Datasets Hub. Source 513 rows; landed 513;
+        # CCN keyed 208 / distinct 62; named 513.
+        "key": "CCN", "key_col": "CCN", "org": "NAME", "city": "CITY", "state": "STATE",
+        "zip": "ZIP", "authority": 9, "sample": True,
+    },
+    "PORTAL_ARC_HARRIS_COUNTY_OP_FA9969D82E": {
+        # Pharmacies -- Harris County Open Data / Dashboards & Datasets Hub. Source 1,128 rows; landed 1,128;
+        # NPI keyed 1,128 / distinct 1,128; named 1,128.
+        "key": "NPI", "key_col": "NPI", "org": "NAME", "city": "CITY", "state": "STATE",
+        "zip": "ZIP", "authority": 9, "sample": True,
+    },
+    "PORTAL_ARC_HARRIS_COUNTY_OP_FE2134F2C8": {
+        # DSHS Ambulatory Surgical Centers 07 01 20 Geo -- Harris County Open Data / Dashboards & Datasets Hub. Source 526 rows; landed 526;
+        # CCN keyed 14 / distinct 14; named 526.
+        "key": "CCN", "key_col": "USER_CCN", "org": "USER_NAME", "city": "USER_CITY",
+        "state": "USER_STATE", "zip": "USER_ZIP", "authority": 9, "sample": True,
+    },
+    "PORTAL_ARC_LA_COUNTY_OPEN_D_0A94DB308E": {
+        # Hospitals -- LA County Open Data Portal. Source 93 rows; landed 93;
+        # CCN keyed 90 / distinct 85; named 93.; other real key on row: NPI (graph key only)
+        "key": "CCN", "key_col": "CCN", "org": "FACNAME", "city": "CITY", "zip": "ZIP",
+        "authority": 9, "sample": True,
+    },
+    "PORTAL_ARC_LA_COUNTY_OPEN_D_1A6706943D": {
+        # Medical Facilities -- LA County Open Data Portal. Source 2,720 rows; landed 2,000;
+        # NPI keyed 968 / distinct 955; named 2,000.
+        "key": "NPI", "key_col": "NPI", "org": "FACNAME", "city": "CITY", "zip": "ZIP",
+        "authority": 9, "sample": True,
+    },
+    "PORTAL_ARC_LA_COUNTY_OPEN_D_1EDD056661": {
+        # CDPH Healthcare Facilities -- LA County Open Data Portal. Source 3,933 rows; landed 2,000;
+        # NPI keyed 759 / distinct 708; named 2,000.; other real key on row: CCN (graph key only)
+        "key": "NPI", "key_col": "NPI", "org": "FACNAME", "city": "CITY", "zip": "ZIP",
+        "authority": 9, "sample": True,
+    },
+    "PORTAL_ARC_LA_COUNTY_OPEN_D_6DF63A4983": {
+        # ahn -- LA County Open Data Portal. Source 187 rows; landed 187;
+        # NPI keyed 187 / distinct 185; named 187.
+        "key": "NPI", "key_col": "NPI", "org": "BUSINESS_NAME", "city": "CITY",
+        "state": "STATE", "zip": "ZIP_CODE", "authority": 9, "sample": True,
+    },
+    "PORTAL_ARC_OPEN_BALTIMORE_6C2257F1C4": {
+        # Hospitals -- Open Baltimore. Source 21 rows; landed 21;
+        # CCN keyed 21 / distinct 21; named 21.
+        "key": "CCN", "key_col": "CCN", "org": "FACILITY_N", "city": "FACILITY_C",
+        "state": "FACILITY_S", "zip": "FACILITY_Z", "authority": 9, "sample": True,
+    },
+    "PORTAL_ARC_OPEN_DATA_DC_B1DAECCB1B": {
+        # NPDES Core and MSGP -- Open Data DC. Source 83 rows; landed 83;
+        # NPDES_ID keyed 83 / distinct 66; named 76.
+        "key": "NPDES_ID", "key_col": "NPDES_ID", "org": "FACILITY_NAME",
+        "city": "FACILITY_CITY", "authority": 9, "sample": True,
+    },
+    "PORTAL_ARC_OPEN_DATA_DC_E28C8C471A": {
+        # NPDES Core Subtype -- Open Data DC. Source 83 rows; landed 83;
+        # NPDES_ID keyed 83 / distinct 66; named 76.
+        "key": "NPDES_ID", "key_col": "NPDES_ID", "org": "FACILITY_NAME",
+        "city": "FACILITY_CITY", "authority": 9, "sample": True,
+    },
+    "PORTAL_ARC_WAKE_COUNTY_OPEN_4B425FD089": {
+        # Wake County Nonprofits -- Wake County Open Data. Source 3,638 rows; landed 2,000;
+        # EIN keyed 2,000 / distinct 2,000; named 2,000.
+        "key": "EIN", "key_col": "EIN_FIXED", "org": "USER_ORGANIZATION_NAME",
+        "city": "USER_CITY", "state": "USER_STATE", "zip": "USER_ZIP_CODE", "authority": 9,
+        "sample": True,
+    },
+    "PORTAL_CKA_CALIFORNIA_OPEN_3501B678FA": {
+        # Urban Water Use Objectives – Relevant Data -- California Open Data Portal. Source 529 rows; landed 572;
+        # PWSID keyed 572 / distinct 533; named 572.
+        "key": "PWSID", "key_col": "PWSID", "org": "SUPPLIER_NAME", "authority": 9,
+        "sample": True,
+    },
+    "PORTAL_CKA_CALIFORNIA_OPEN_5DD35F95D8": {
+        # Licensed and Certified Healthcare Facility Listing -- California Open Data Portal. Source 15,436 rows; landed 5,000;
+        # NPI keyed 3,781 / distinct 3,505; named 5,000.; other real key on row: CCN (graph key only)
+        "key": "NPI", "key_col": "NPI", "org": "FACNAME", "city": "CITY", "zip": "ZIP",
+        "authority": 9, "sample": True,
+    },
+    "PORTAL_CKA_CALIFORNIA_OPEN_C19A7C8625": {
+        # CA Urban Retail Water System Water Loss Annual Loss Audit Data -- California Open Data Portal. Source 4,858 rows; landed 4,858;
+        # PWSID keyed 4,842 / distinct 603; named 4,858.
+        "key": "PWSID", "key_col": "PWS_ID_OR_OTHER_ID", "org": "WATER_SUPPLIER_NAME",
+        "authority": 9, "sample": True,
+    },
+    "PORTAL_CKA_INDIANA_DATA_HUB_66A945CF17": {
+        # Medicaid Claims -- Indiana Data Hub. Source 63,569 rows; landed 5,000;
+        # NPI keyed 5,000 / distinct 840; named 5,000.
+        "key": "NPI", "key_col": "PROVIDER_NPI", "org": "PROVIDER_NAME", "authority": 9,
+        "sample": True,
+    },
+    "PORTAL_CKA_WESTERN_PENNSYLV_0AF7431C6C": {
+        # Allegheny County Toxics Release Inventory -- Western Pennsylvania Regional Data Center (WPRDC) - Pittsburgh Data. Source 27,496 rows; landed 10,000;
+        # FRS_ID keyed 10,000 / distinct 200; named 10,000.
+        "key": "FRS_ID", "key_col": "EPA_REGISTRY_ID", "org": "FACILITY_NAME",
+        "city": "CITY_NAME", "state": "STATE_ABBR", "zip": "ZIP_CODE", "authority": 9,
+        "sample": True,
+    },
+    "PORTAL_CKA_WPRDC_ALLEGHENY_DE448D04D4": {
+        # Allegheny County Toxics Release Inventory -- WPRDC Allegheny County Data. Source 27,496 rows; landed 10,000;
+        # FRS_ID keyed 10,000 / distinct 200; named 10,000.
+        "key": "FRS_ID", "key_col": "EPA_REGISTRY_ID", "org": "FACILITY_NAME",
+        "city": "CITY_NAME", "state": "STATE_ABBR", "zip": "ZIP_CODE", "authority": 9,
+        "sample": True,
+    },
+    "PORTAL_SOC_CAMBRIDGE_OPEN_D_FB7C7229D0": {
+        # Non-Profit Corporations -- Cambridge Open Data Portal. Source n/a rows; landed 1,259;
+        # EIN keyed 1,259 / distinct 1,259; named 1,259.
+        "key": "EIN", "key_col": "EIN", "org": "NAME", "zip": "ZIP_CODE", "authority": 9,
+        "sample": True,
+    },
+    "PORTAL_SOC_COLORADO_INFORMA_239FBA8B76": {
+        # Total Revenue of Charities Operating in Colorado -- Colorado Information Marketplace. Source n/a rows; landed 2,000;
+        # EIN keyed 2,000 / distinct 1,161; named 2,000.
+        "key": "EIN", "key_col": "EIN", "org": "BUSINESSNAME1", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_COLORADO_INFORMA_46101BE391": {
+        # IRS Filing Information for Charities Operating in Colorado -- Colorado Information Marketplace. Source n/a rows; landed 2,000;
+        # EIN keyed 2,000 / distinct 1,345; named 2,000.
+        "key": "EIN", "key_col": "EIN", "org": "BUSINESSNAME1", "city": "CITY",
+        "zip": "POSTAL_CODE", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_COLORADO_INFORMA_4BAD70F01F": {
+        # Colorado Art, Culture and Humanities Non-Profits -- Colorado Information Marketplace. Source n/a rows; landed 2,456;
+        # EIN keyed 2,456 / distinct 2,456; named 2,456.
+        "key": "EIN", "key_col": "EIN", "org": "NAME", "city": "CITY", "state": "STATE",
+        "zip": "ZIP", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_COLORADO_INFORMA_6367A44C92": {
+        # Activities of Charities Operating in Colorado -- Colorado Information Marketplace. Source n/a rows; landed 1,989;
+        # EIN keyed 1,989 / distinct 1,075; named 1,989.
+        "key": "EIN", "key_col": "EIN", "org": "BUSINESSNAME1", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_COLORADO_INFORMA_A50DA9B699": {
+        # Purpose and Operational Size of Charities Operating in Colorado -- Colorado Information Marketplace. Source n/a rows; landed 2,000;
+        # EIN keyed 2,000 / distinct 1,238; named 2,000.
+        "key": "EIN", "key_col": "EIN", "org": "BUSINESSNAME1", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_COLORADO_INFORMA_B4DD509314": {
+        # Expenses of Charities Operating in Colorado -- Colorado Information Marketplace. Source n/a rows; landed 2,000;
+        # EIN keyed 2,000 / distinct 1,230; named 2,000.
+        "key": "EIN", "key_col": "EIN", "org": "BUSINESSNAME1", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_COLORADO_INFORMA_D017CFCF7F": {
+        # Total Revenue and Types of Art for Charities Operating in Colorado -- Colorado Information Marketplace. Source n/a rows; landed 327;
+        # EIN keyed 327 / distinct 189; named 327.
+        "key": "EIN", "key_col": "EIN", "org": "BUSINESSNAME1", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_COLORADO_INFORMA_F0E162D7A8": {
+        # Expenses of Charities Filing IRS Form EZ Operating in Colorado -- Colorado Information Marketplace. Source n/a rows; landed 2,000;
+        # EIN keyed 2,000 / distinct 1,024; named 2,000.
+        "key": "EIN", "key_col": "EIN", "org": "BUSINESSNAME1", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_COLORADO_INFORMA_F78543C045": {
+        # Conservation Easements for Charities Operating in Colorado -- Colorado Information Marketplace. Source n/a rows; landed 249;
+        # EIN keyed 249 / distinct 159; named 249.
+        "key": "EIN", "key_col": "EIN", "org": "BUSINESSNAME1", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_COLORADO_INFORMA_F9498D9B7F": {
+        # Fundraising Revenue of Charities Operating in Colorado -- Colorado Information Marketplace. Source n/a rows; landed 2,000;
+        # EIN keyed 2,000 / distinct 1,113; named 2,000.
+        "key": "EIN", "key_col": "EIN", "org": "BUSINESSNAME1", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_CONNECTICUT_OPEN_6BE2302812": {
+        # Tax Exempt Organizations (Extracted from the Internal Revenue Service) -- Connecticut Open Data Portal. Source n/a rows; landed 5,000;
+        # EIN keyed 5,000 / distinct 5,000; named 5,000.
+        "key": "EIN", "key_col": "EIN", "org": "NAME", "city": "CITY", "state": "STATE",
+        "zip": "ZIP_CODE", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_CONNECTICUT_OPEN_9A34CD28AE": {
+        # COVID-19 Reported Patient Impact and Hospital Capacity by Facility -- Connecticut Open Data Portal. Source n/a rows; landed 2,000;
+        # CCN keyed 2,000 / distinct 30; named 2,000.
+        "key": "CCN", "key_col": "CCN", "org": "HOSPITAL_NAME", "city": "CITY",
+        "state": "STATE", "zip": "ZIP", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_CONNECTICUT_OPEN_AEB46F6C94": {
+        # Toxics Release Inventory Facility List -- Connecticut Open Data Portal. Source n/a rows; landed 2,000;
+        # FRS_ID keyed 2,000 / distinct 300; named 2,000.
+        "key": "FRS_ID", "key_col": "C_3_FRS_ID", "org": "C_4_FACILITY_NAME",
+        "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_MARYLAND_OPEN_DA_1B2CC0ADB9": {
+        # Hospitals -- Maryland Open Data Portal. Source n/a rows; landed 64;
+        # CCN keyed 60 / distinct 60; named 64.
+        "key": "CCN", "key_col": "CCN", "org": "FACILITY_NAME", "city": "FACILITY_CITY",
+        "zip": "FACILITY_ZIP", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_MARYLAND_OPEN_DA_7CE817C5CE": {
+        # Hospitals -- Maryland Open Data Portal. Source n/a rows; landed 64;
+        # CCN keyed 60 / distinct 60; named 64.
+        "key": "CCN", "key_col": "CCN", "org": "FACILITY_NAME", "city": "FACILITY_CITY",
+        "zip": "FACILITY_ZIP", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_NEW_YORK_STATE_O_0C94DD2B8A": {
+        # SPDES Multi-Sector General Permit (MSGP) Facilities -- New York State Open Data. Source n/a rows; landed 1,999;
+        # NPDES_ID keyed 1,999 / distinct 1,973; named 1,999.
+        "key": "NPDES_ID", "key_col": "NPDES_ID", "org": "NAME_OF_FACILITY",
+        "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_NEW_YORK_STATE_O_7DD1C9CB24": {
+        # Governor’s Office of Storm Recovery (GOSR) Quarterly Contract Reportin -- New York State Open Data. Source n/a rows; landed 743;
+        # DUNS keyed 733 / distinct 461; named 0.
+        "key": "DUNS", "key_col": "DUNS_NUMBER", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_NJ_OPEN_DATA_CEN_A0D94510CA": {
+        # Ineligible Provider Report -- NJ Open Data Center. Source n/a rows; landed 2,000;
+        # NPI keyed 587 / distinct 487; named 2,000.
+        "key": "NPI", "key_col": "NPI_NUMBER", "org": "PROVIDER_NAME", "city": "CITY",
+        "state": "STATE", "zip": "ZIP", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_OREGON_OPEN_DATA_E338C547C2": {
+        # Oregon Balance Billing Protection - Ground Ambulance Service Organizat -- Oregon Open Data Portal. Source n/a rows; landed 2,000;
+        # NPI keyed 1,750 / distinct 24; named 2,000.
+        "key": "NPI", "key_col": "GASO_NPI", "org": "GASO_NAME", "zip": "ZIP_CODE",
+        "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_PA_OPEN_DATA_POR_CD66682741": {
+        # COVID-19 Reported Patient Impact and Hospital Capacity by Facility US  -- PA Open Data Portal. Source n/a rows; landed 2,000;
+        # CCN keyed 1,991 / distinct 183; named 2,000.
+        "key": "CCN", "key_col": "CCN", "org": "HOSPITAL_NAME", "city": "CITY",
+        "state": "STATE", "zip": "ZIP", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_SF_OPENDATA_DATA_8DCCC91916": {
+        # Mental Health (MH) and Substance Use Disorder (SUD) Provider Directory -- SF OpenData (DataSF). Source n/a rows; landed 1,560;
+        # NPI keyed 1,560 / distinct 1,265; named 1,560.
+        "key": "NPI", "key_col": "NPI", "person": ["LAST_NAME", "FIRST_NAME"],
+        "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_SF_OPENDATA_DATA_C19EE9EB44": {
+        # Mental Health (MH) and Substance Use Disorder (SUD) Provider Directory -- SF OpenData (DataSF). Source n/a rows; landed 157;
+        # NPI keyed 99 / distinct 85; named 157.
+        "key": "NPI", "key_col": "NPI", "org": "LEGAL_ENTITY", "city": "CITY",
+        "state": "STATE", "zip": "ZIP", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_TEXAS_OPEN_DATA_6F798A64FA": {
+        # Active insurance company appointments for agencies and businesses -- Texas Open Data Portal. Source n/a rows; landed 2,000;
+        # EIN keyed 2,000 / distinct 133; named 2,000.
+        "key": "EIN", "key_col": "EIN", "org": "AGENCY_NAME", "city": "CITY",
+        "state": "STATE", "zip": "ZIP", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_TEXAS_OPEN_DATA_91F1C8D27D": {
+        # Business relationships between agents, agencies, adjusters, and insura -- Texas Open Data Portal. Source n/a rows; landed 2,000;
+        # EIN keyed 1,111 / distinct 877; named 2,000.
+        "key": "EIN", "key_col": "ASSOCIATED_LICENSEE_EIN",
+        "org": "ASSOCIATED_LICENSEE_NAME", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_TEXAS_OPEN_DATA_A7AB49CB1A": {
+        # Emergency Services Billing Rates - NPIs -- Texas Open Data Portal. Source n/a rows; landed 447;
+        # NPI keyed 447 / distinct 279; named 0.
+        "key": "NPI", "key_col": "NPI", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_TEXAS_OPEN_DATA_B8DDC96BFF": {
+        # SNP CE Applications, PY19-PY25 -- Texas Open Data Portal. Source n/a rows; landed 2,000;
+        # UEI keyed 1,959 / distinct 1,187; named 2,000.
+        "key": "UEI", "key_col": "UEI", "org": "CENAME", "city": "CESTREETADDRESSCITY",
+        "state": "CESTREETADDRESSSTATE", "zip": "CESTREETADDRESSZIPCODE", "authority": 9,
+        "sample": True,
+    },
+    "PORTAL_SOC_UTAH_OPEN_DATA_P_103F7D641F": {
+        # Federal Prime Grant Awards to Utah or other Utah entities 2008-2018 -- Utah Open Data Portal. Source n/a rows; landed 2,000;
+        # DUNS keyed 1,944 / distinct 77; named 2,000.
+        "key": "DUNS", "key_col": "RECIPIENT_DUNS", "org": "RECIPIENT_NAME",
+        "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_UTAH_OPEN_DATA_P_1614522F52": {
+        # DWQUPDESDischargers_data -- Utah Open Data Portal. Source n/a rows; landed 575;
+        # NPDES_ID keyed 575 / distinct 574; named 575.
+        "key": "NPDES_ID", "key_col": "NPDES_ID", "org": "NAME", "city": "CITY",
+        "state": "STATE", "zip": "ZIPCODE", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_UTAH_OPEN_DATA_P_17CB6B615F": {
+        # IRS Tax Exempt Organizations in Utah 2018 -- Utah Open Data Portal. Source n/a rows; landed 5,000;
+        # EIN keyed 5,000 / distinct 5,000; named 5,000.
+        "key": "EIN", "key_col": "EIN", "org": "NAME", "city": "CITY", "state": "STATE",
+        "zip": "ZIP", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_UTAH_OPEN_DATA_P_1A3EDE9CAD": {
+        # 2017 Utah Provider Payment Comparison: Hospital Inpatient MS-DRG -- Utah Open Data Portal. Source n/a rows; landed 643;
+        # NPI keyed 643 / distinct 52; named 643.
+        "key": "NPI", "key_col": "NPI", "org": "PROVIDER_ORGANIZATION_NAME",
+        "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_UTAH_OPEN_DATA_P_4EBA247771": {
+        # 2019 - 2021 Utah Clinic Quality Comparisons -- Utah Open Data Portal. Source n/a rows; landed 2,000;
+        # NPI keyed 2,000 / distinct 420; named 2,000.
+        "key": "NPI", "key_col": "PROVIDER_NPI", "org": "ORGANIZATION_NAME",
+        "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_UTAH_OPEN_DATA_P_52003D36F8": {
+        # 2017 Utah Office Visit Provider Payment Comparisons: Office Visits (CP -- Utah Open Data Portal. Source n/a rows; landed 2,000;
+        # NPI keyed 2,000 / distinct 374; named 2,000.
+        "key": "NPI", "key_col": "NPI", "org": "PROVIDER_ORGANIZATION_NAME",
+        "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_UTAH_OPEN_DATA_P_55EF6EF0C6": {
+        # Utah Clinician Utilization Data 2019 -- Utah Open Data Portal. Source n/a rows; landed 2,000;
+        # NPI keyed 2,000 / distinct 766; named 2,000.
+        "key": "NPI", "key_col": "NPI", "person": ["LST_NM", "FRST_NM"],
+        "state": "PRAC_ST", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_UTAH_OPEN_DATA_P_589CC47A29": {
+        # DWQAssessedWaters_data -- Utah Open Data Portal. Source n/a rows; landed 4,432;
+        # NPDES_ID keyed 4,432 / distinct 4,432; named 4,432.
+        "key": "NPDES_ID", "key_col": "NPDES_ID", "org": "NAME", "city": "CITY",
+        "state": "STATE", "zip": "ZIPCODE", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_UTAH_OPEN_DATA_P_5EF25AF42C": {
+        # 2017 - 2018 Utah Clinic Quality Comparisons -- Utah Open Data Portal. Source n/a rows; landed 2,000;
+        # NPI keyed 1,304 / distinct 222; named 2,000.
+        "key": "NPI", "key_col": "IMPUTED_PROVIDER_NPI",
+        "org": "IMPUTED_ORGANIZATION_NAME", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_UTAH_OPEN_DATA_P_5EF68422FF": {
+        # All State of Utah Federal Prime Contracts 2008 - 2018 -- Utah Open Data Portal. Source n/a rows; landed 2,000;
+        # DUNS keyed 2,000 / distinct 695; named 2,000.
+        "key": "DUNS", "key_col": "RECIPIENT_DUNS", "org": "RECIPIENT_NAME",
+        "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_UTAH_OPEN_DATA_P_62BB6C079E": {
+        # Medicare Referring Provider DMEPOS PUF CY2014 Utah Detail -- Utah Open Data Portal. Source n/a rows; landed 2,000;
+        # NPI keyed 2,000 / distinct 397; named 2,000.
+        "key": "NPI", "key_col": "REFERRING_NPI",
+        "person": ["REFERRING_PROVIDER_LAST_ORGANIZATION_NAME",
+        "REFERRING_PROVIDER_FIRST_NAME"], "city": "REFERRING_PROVIDER_CITY",
+        "state": "REFERRING_PROVIDER_STATE", "zip": "REFERRING_PROVIDER_ZIP",
+        "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_UTAH_OPEN_DATA_P_6862B465D5": {
+        # State of Utah federal funding Prime awards & subawards 2008-2018 -- Utah Open Data Portal. Source n/a rows; landed 1,883;
+        # DUNS keyed 1,879 / distinct 239; named 1,879.
+        "key": "DUNS", "key_col": "SUBAWARDEE_DUNS", "org": "SUBAWARDEE_NAME",
+        "city": "SUBAWARDEE_CITY_NAME", "state": "SUBAWARDEE_STATE_CODE",
+        "zip": "SUBAWARDEE_ZIP_4", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_UTAH_OPEN_DATA_P_6F316DE0B0": {
+        # 2016 & 2015 Clinic Quality Comparisons for Clinics with Five or More S -- Utah Open Data Portal. Source n/a rows; landed 1,392;
+        # NPI keyed 1,392 / distinct 197; named 1,373.
+        "key": "NPI", "key_col": "BILLING_NPI",
+        "org": "PROVIDER_ORGANIZATION_NAME__LEGAL_BUSINESS_NAME",
+        "city": "PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_CITY_NAME",
+        "zip": "PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_POSTAL_CODE", "authority": 9,
+        "sample": True,
+    },
+    "PORTAL_SOC_UTAH_OPEN_DATA_P_6F5FCC229F": {
+        # 2015 Toxic Release Inventory Utah -- Utah Open Data Portal. Source n/a rows; landed 842;
+        # FRS_ID keyed 842 / distinct 178; named 842.
+        "key": "FRS_ID", "key_col": "FRS_ID", "org": "FACILITY_NAME", "state": "ST",
+        "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_UTAH_OPEN_DATA_P_701571FD92": {
+        # 2014 Clinic Quality Comparisons for Clinics with Five or More Service  -- Utah Open Data Portal. Source n/a rows; landed 231;
+        # NPI keyed 231 / distinct 231; named 231.
+        "key": "NPI", "key_col": "NPI", "org": "LEGAL_BUSINESS_NAME",
+        "city": "PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_CITY_NAME",
+        "zip": "PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_POSTAL_CODE", "authority": 9,
+        "sample": True,
+    },
+    "PORTAL_SOC_UTAH_OPEN_DATA_P_7186EDB84B": {
+        # Skilled Nursing Center Costs Utah County 2016_2019 -- Utah Open Data Portal. Source n/a rows; landed 67;
+        # CCN keyed 67 / distinct 15; named 67.
+        "key": "CCN", "key_col": "PROVIDER_CCN", "org": "FACILITY_NAME", "city": "CITY",
+        "state": "STATE_CODE", "zip": "ZIP_CODE", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_UTAH_OPEN_DATA_P_8A9374EA5D": {
+        # Exempt Organizations registered with the IRS in Utah 2014 -- Utah Open Data Portal. Source n/a rows; landed 5,000;
+        # EIN keyed 5,000 / distinct 5,000; named 5,000.
+        "key": "EIN", "key_col": "EIN", "org": "NAME", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_UTAH_OPEN_DATA_P_990C78C284": {
+        # Common Medical Procedure Prices in Utah in 2023 -- Utah Open Data Portal. Source n/a rows; landed 2,000;
+        # NPI keyed 2,000 / distinct 108; named 2,000.
+        "key": "NPI", "key_col": "BILLING_PROVIDER_NPI",
+        "org": "PROVIDER_ORGANIZATION_NAME", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_UTAH_OPEN_DATA_P_A5AE4FD7A4": {
+        # Skilled Nursing Center Costs Utah 2019 -- Utah Open Data Portal. Source n/a rows; landed 94;
+        # CCN keyed 94 / distinct 92; named 94.
+        "key": "CCN", "key_col": "PROVIDER_CCN", "org": "FACILITY_NAME", "city": "CITY",
+        "state": "STATE_CODE", "zip": "ZIP_CODE", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_UTAH_OPEN_DATA_P_A9B7E273C8": {
+        # Hospital Provider Cost Report Utah 2019 -- Utah Open Data Portal. Source n/a rows; landed 61;
+        # CCN keyed 61 / distinct 59; named 61.
+        "key": "CCN", "key_col": "PROVIDER_CCN", "org": "HOSPITAL_NAME", "city": "CITY",
+        "state": "STATE_CODE", "zip": "ZIP_CODE", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_UTAH_OPEN_DATA_P_AC08D0651F": {
+        # Common Medical Procedure Prices in Utah -- Utah Open Data Portal. Source n/a rows; landed 2,000;
+        # NPI keyed 2,000 / distinct 97; named 2,000.
+        "key": "NPI", "key_col": "BILLING_PROVIDER_NPI",
+        "org": "PROVIDER_ORGANIZATION_NAME", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_UTAH_OPEN_DATA_P_C357F1F9E1": {
+        # Utah Employee Benefits (EBSA) Enforcement Data 2000-2012 -- Utah Open Data Portal. Source n/a rows; landed 28;
+        # EIN keyed 28 / distinct 28; named 28.
+        "key": "EIN", "key_col": "PLAN_EIN", "org": "PLAN_ADMINISTRATOR",
+        "zip": "ADMIN_ZIP_CODE", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_UTAH_OPEN_DATA_P_D4ACA49A9B": {
+        # 2022 - 2023 Utah Clinic Quality Comparisons -- Utah Open Data Portal. Source n/a rows; landed 1,997;
+        # NPI keyed 1,997 / distinct 531; named 1,997.
+        "key": "NPI", "key_col": "PROVIDER_NPI", "org": "ORGANIZATION_NAME",
+        "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_UTAH_OPEN_DATA_P_D5F7CA2621": {
+        # Utah Toxic Release Spills Inventory 2015-2018 EPA -- Utah Open Data Portal. Source n/a rows; landed 2,000;
+        # FRS_ID keyed 1,995 / distinct 203; named 2,000.
+        "key": "FRS_ID", "key_col": "C_3_FRS_ID", "org": "C_4_FACILITY_NAME",
+        "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_UTAH_OPEN_DATA_P_DCD75231F6": {
+        # Utah Hospitals Cost Report 2015 -- Utah Open Data Portal. Source n/a rows; landed 61;
+        # CCN keyed 61 / distinct 60; named 61.
+        "key": "CCN", "key_col": "PROVIDER_CCN", "org": "HOSPITAL_NAME", "city": "CITY",
+        "state": "STATE_CODE", "zip": "ZIP_CODE", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_UTAH_OPEN_DATA_P_F10F70DE47": {
+        # Common Medical Procedure Prices in Utah in 2022 -- Utah Open Data Portal. Source n/a rows; landed 2,000;
+        # NPI keyed 2,000 / distinct 144; named 2,000.
+        "key": "NPI", "key_col": "BILLING_PROVIDER_NPI",
+        "org": "PROVIDER_ORGANIZATION_NAME", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_UTAH_OPEN_DATA_P_F1292B8D2F": {
+        # Office Of Federal Contract Community Investigations Utah 2004-2013 -- Utah Open Data Portal. Source n/a rows; landed 249;
+        # DUNS keyed 216 / distinct 185; named 0.
+        "key": "DUNS", "key_col": "DUNS_NO", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_UTAH_OPEN_DATA_P_F7CB1E8C0D": {
+        # Common Medical Procedure Prices in Utah in 2021 -- Utah Open Data Portal. Source n/a rows; landed 2,000;
+        # NPI keyed 2,000 / distinct 135; named 2,000.
+        "key": "NPI", "key_col": "BILLING_PROVIDER_NPI",
+        "org": "PROVIDER_ORGANIZATION_NAME", "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_UTAH_OPEN_DATA_P_F87FB2BFB7": {
+        # Mine Safety and Health Administration (MSHA) Enforcement Data For Utah -- Utah Open Data Portal. Source n/a rows; landed 25;
+        # EIN keyed 25 / distinct 25; named 25.
+        "key": "EIN", "key_col": "EIN", "org": "PLAN_ADMIN", "zip": "PLAN_ADMIN_ZIP_CODE",
+        "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_UTAH_OPEN_DATA_P_F8CDD62630": {
+        # 2024 Utah Clinic Quality Comparisons -- Utah Open Data Portal. Source n/a rows; landed 1,968;
+        # NPI keyed 1,968 / distinct 499; named 1,968.
+        "key": "NPI", "key_col": "PROVIDER_NPI", "org": "ORGANIZATION_NAME",
+        "authority": 9, "sample": True,
+    },
+    "PORTAL_SOC_WASHINGTON_STATE_914CF85743": {
+        # WA Ground Ambulance Locally Set Rates -- Washington State Open Data Portal. Source n/a rows; landed 494;
+        # NPI keyed 462 / distinct 196; named 494.
+        "key": "NPI", "key_col": "GASO_NPI", "org": "GASO_NAME", "authority": 9, "sample": True,
+    },
+    # ----------------------------------------------------------------------- #
+    # PORTAL TABLES NOT WIRED (2026-08-24), one line each: table -- reason.
+    #   PORTAL_ARC_CLEVELAND_OPEN_D_590209B88B (Cleveland SPA Neighborhoods Salesforce) -- every tagged ID column is empty in the crawl: NPI_SII 0/34
+    #   PORTAL_ARC_HARRIS_COUNTY_OP_167EC31B95 (DSHS Assisted Living Facilities Harris Only 0) -- every tagged ID column is empty in the crawl: USER_CCN 1/96
+    #   PORTAL_ARC_HARRIS_COUNTY_OP_2718B3279A (DSHS General Special Hospitals 07 01 20 Geo H) -- every tagged ID column is empty in the crawl: USER_CCN 0/77
+    #   PORTAL_ARC_HARRIS_COUNTY_OP_374D2E791F (DSHS General Special Hospitals 04 01 20 Harri) -- every tagged ID column is empty in the crawl: CCN 0/77
+    #   PORTAL_ARC_HARRIS_COUNTY_OP_3E1A188E92 (DSHS General Special Hospitals 04 01 20) -- every tagged ID column is empty in the crawl: CCN 0/642
+    #   PORTAL_ARC_HARRIS_COUNTY_OP_4E0F396A33 (DSHS End Stage Renal Disease Facilities 04 01) -- every tagged ID column is empty in the crawl: CCN 0/755
+    #   PORTAL_ARC_HARRIS_COUNTY_OP_4F19F66C45 (DSHS PsychiatricHospitals 07 01 20 Geo) -- every tagged ID column is empty in the crawl: USER_CCN 0/56
+    #   PORTAL_ARC_HARRIS_COUNTY_OP_619A8F0A78 (DSHS General Special Hospitals 07 01 20 Geo) -- every tagged ID column is empty in the crawl: USER_CCN 0/642
+    #   PORTAL_ARC_HARRIS_COUNTY_OP_BEF7C03176 (DSHS End Stage Renal Disease Facilities 07 01) -- every tagged ID column is empty in the crawl: USER_CCN 0/755
+    #   PORTAL_ARC_HARRIS_COUNTY_OP_F22D53C24D (DSHS PsychiatricHospitals 04 01 20) -- every tagged ID column is empty in the crawl: CCN 0/56
+    #   PORTAL_ARC_LA_COUNTY_OPEN_D_58A85AED74 (Review) -- every tagged ID column is empty in the crawl: NPI 2/2
+    #   PORTAL_ARC_LA_COUNTY_OPEN_D_5AB83C24A0 (Sheet1) -- every tagged ID column is empty in the crawl: NPI 0/225
+    #   PORTAL_ARC_LA_COUNTY_OPEN_D_83F0BA30FB (Review) -- every tagged ID column is empty in the crawl: NPI 5/5
+    #   PORTAL_ARC_LA_COUNTY_OPEN_D_92CD102DA7 (scc) -- every tagged ID column is empty in the crawl: NPI 0/777
+    #   PORTAL_ARC_LA_COUNTY_OPEN_D_E034245E05 (Review) -- every tagged ID column is empty in the crawl: NPI 6/8
+    #   PORTAL_ARC_OPEN_BALTIMORE_751D91C991 (Hospitals in Maryland 2020) -- every tagged ID column is empty in the crawl: CCN 0/62
+    #   PORTAL_ARC_OPEN_DATA_DC_008BA480F6 (southern ave crashes 2019 to 2022) -- every tagged ID column is empty in the crawl: CCN 0/1915
+    #   PORTAL_ARC_OPEN_DATA_DC_01F2D9886C (good hope crashes 2019 2022) -- every tagged ID column is empty in the crawl: CCN 0/437
+    #   PORTAL_ARC_OPEN_DATA_DC_32AD83D2EC (DC Crashes 2018   ARCGIS Pro Essentials WFL1) -- every tagged ID column is empty in the crawl: CCN 0/2000
+    #   PORTAL_ARC_OPEN_DATA_DC_43DCBD8BE3 (Intersect of 450 ft Buffer of All Schools Lis) -- every tagged ID column is empty in the crawl: CCN 0/2000
+    #   PORTAL_ARC_OPEN_DATA_DC_454981B380 (MPD Crime Blotter Survey results) -- every tagged ID column is empty in the crawl: CCN 0/2
+    #   PORTAL_ARC_OPEN_DATA_DC_56C4F04CF0 (Fatal Crashes - ANC 8C) -- every tagged ID column is empty in the crawl: CCN 0/9
+    #   PORTAL_ARC_OPEN_DATA_DC_59913164D2 (DC Bus Stops) -- every tagged ID column is empty in the crawl: BSTP_PDP_HAS_CCN 0/2000, BSTP_SWK_HAS_CCN 0/2000
+    #   PORTAL_ARC_OPEN_DATA_DC_5B867C795C (Fatality Crashes Heat Map) -- every tagged ID column is empty in the crawl: CCN_REV 0/133
+    #   PORTAL_ARC_OPEN_DATA_DC_74D9616143 (Metro Bus Stops 2023 - 2025) -- every tagged ID column is empty in the crawl: BSTP_PDP_HAS_CCN 0/2000, BSTP_SWK_HAS_CCN 0/2000
+    #   PORTAL_ARC_OPEN_DATA_DC_8C6EF16235 (All Gun Violence Incidents YoY Comparison) -- every tagged ID column is empty in the crawl: SUM_CCN 0/204
+    #   PORTAL_ARC_OPEN_DATA_DC_98319AB13D (MPD Crime Blotter Survey TEST) -- every tagged ID column is empty in the crawl: CCN 0/2
+    #   PORTAL_ARC_OPEN_DATA_DC_9A20CE1FC5 (Stop Incidents July 22 2019 to August 18 2019) -- every tagged ID column is empty in the crawl: CCN_ANONYMIZED 0/2000
+    #   PORTAL_ARC_OPEN_DATA_DC_D8E55D5B7F (Fatality Crashes Dot Map) -- every tagged ID column is empty in the crawl: CCN_REV 0/133
+    #   PORTAL_ARC_OPEN_DATA_MINNEA_0426858DFE (MSTAT Burg 2wk) -- every tagged ID column is empty in the crawl: CCN 0/110
+    #   PORTAL_ARC_OPEN_DATA_MINNEA_09E3680FD2 (Police Incidents 2018) -- every tagged ID column is empty in the crawl: CCN 0/2000
+    #   PORTAL_ARC_OPEN_DATA_MINNEA_1AD7E106E4 (Police Incidents 2013) -- every tagged ID column is empty in the crawl: CCN 0/2000
+    #   PORTAL_ARC_OPEN_DATA_MINNEA_4C5820FD0A (Police Incidents 2012) -- every tagged ID column is empty in the crawl: CCN 0/2000
+    #   PORTAL_ARC_OPEN_DATA_MINNEA_5AC94C44DA (Police Incidents 2011) -- every tagged ID column is empty in the crawl: CCN 0/2000
+    #   PORTAL_ARC_OPEN_DATA_MINNEA_6CDCE692AA (Police Incidents 2010) -- every tagged ID column is empty in the crawl: CCN 0/2000
+    #   PORTAL_ARC_OPEN_DATA_MINNEA_7C8C54BD8C (Police Incidents 2016) -- every tagged ID column is empty in the crawl: CCN 0/2000
+    #   PORTAL_ARC_OPEN_DATA_MINNEA_7EFDCA0423 (Police Incidents 2017) -- every tagged ID column is empty in the crawl: CCN 0/2000
+    #   PORTAL_ARC_OPEN_DATA_MINNEA_BD6A1CACBB (Police Incidents 2015) -- every tagged ID column is empty in the crawl: CCN 0/2000
+    #   PORTAL_ARC_OPEN_DATA_MINNEA_BE5550EBF6 (Police Incidents 2014) -- every tagged ID column is empty in the crawl: CCN 0/2000
+    #   PORTAL_ARC_OPEN_DATA_MINNEA_D808F6BF62 (MSTAT RECVEH) -- every tagged ID column is empty in the crawl: CCN 0/25
+    #   PORTAL_ARC_WISCONSIN_OPEN_D_022EFD1AE5 (Level I Trauma Centers) -- every tagged ID column is empty in the crawl: NPI_ID 0/2
+    #   PORTAL_ARC_WISCONSIN_OPEN_D_07CF3C3824 (Level I  Pediatric Trauma Center) -- every tagged ID column is empty in the crawl: NPI_ID 0/2
+    #   PORTAL_ARC_WISCONSIN_OPEN_D_4EBC995C5D (Level IV Trauma Centers) -- every tagged ID column is empty in the crawl: NPI_ID 0/56
+    #   PORTAL_ARC_WISCONSIN_OPEN_D_5206358BDD (Out of State Hospitals) -- every tagged ID column is empty in the crawl: NPI_ID 0/604
+    #   PORTAL_ARC_WISCONSIN_OPEN_D_601E691159 (Level II Pediatric Trauma Centers) -- every tagged ID column is empty in the crawl: NPI_ID 0/1
+    #   PORTAL_ARC_WISCONSIN_OPEN_D_717F8037EB (Level II Trauma Centers) -- every tagged ID column is empty in the crawl: NPI_ID 0/9
+    #   PORTAL_ARC_WISCONSIN_OPEN_D_B2EFA24715 (Unclassified Hospitals) -- every tagged ID column is empty in the crawl: NPI_ID 0/14
+    #   PORTAL_ARC_WISCONSIN_OPEN_D_CB1509F410 (Level III Trauma Centers) -- every tagged ID column is empty in the crawl: NPI_ID 0/42
+    #   PORTAL_ARC_WISCONSIN_OPEN_D_D05399642C (Hospital) -- every tagged ID column is empty in the crawl: NPI_ID 0/8
+    #   PORTAL_CKA_WESTERN_PENNSYLV_152133D5ED (Public Water Supplier Service Areas) -- every tagged ID column is empty in the crawl: PWS_ID 0/1792
+    #   PORTAL_CKA_WPRDC_ALLEGHENY_EEF5B53BC5 (Public Water Supplier Service Areas) -- every tagged ID column is empty in the crawl: PWS_ID 0/1792
+    #   PORTAL_SOC_AUSTIN_OPEN_DATA_0B4C639A1C (APD Sworn Retirements and Separations) -- every tagged ID column is empty in the crawl: COUNT_DISTINCT_EIN 526/526
+    #   PORTAL_SOC_CONNECTICUT_OPEN_95AC60CEE1 (Patents by Connecticut Inventors 1800-1890) -- real 1800s patent numbers, but a patent is a document not an entity; no PATENT entity type in the spine (parked)
+    #   PORTAL_SOC_DELAWARE_OPEN_DA_98A9EE0BC7 (I Can Help with Supplies During Coronavirus R) -- DUNS_NUM is free text ('NO' on most rows) from a COVID supplier sign-up form (unusable key)
+    #   PORTAL_SOC_NEW_YORK_STATE_O_49CD8C5B65 (US Patents Issued to Health Research Inc on B) -- real patent numbers; same reason -- no PATENT entity type (parked)
+    #   PORTAL_SOC_NEW_YORK_STATE_O_EFF72C4402 (Database of Economic Incentives) -- every tagged ID column is empty in the crawl: EIN_OF_THE_RECIPIENT 2/2000
+    #   PORTAL_SOC_TEXAS_OPEN_DATA_28E2F49084 (Active insurance company appointments for age) -- NPN_EIN is the agent's 6-digit National Producer Number, not an EIN (false key)
+    #   PORTAL_SOC_TEXAS_OPEN_DATA_B4FDC1DC58 (Public Utility Commission of Texas - Water an) -- every tagged ID column is empty in the crawl: CCN_NO 1/2000
+    #   PORTAL_SOC_TEXAS_OPEN_DATA_F525266F32 (Public Utility Commission of Texas - Water an) -- CCN_NO is a Texas PUC Certificate of Convenience & Necessity (5-digit), not a Medicare CCN (false key)
+    #   PORTAL_SOC_UTAH_OPEN_DATA_P_18582DDC54 (Subdivision Ownership_data) -- PATENT_NBR/PATENT_NR is a Utah state trust-lands LAND patent ('P-20361-50-404'), not a US patent (false key)
+    #   PORTAL_SOC_UTAH_OPEN_DATA_P_2F94947455 (Partial Mineral_data) -- PATENT_NBR/PATENT_NR is a Utah state trust-lands LAND patent ('P-20361-50-404'), not a US patent (false key)
+    #   PORTAL_SOC_UTAH_OPEN_DATA_P_3967E73A16 (Surface Subdivision Ownership_data) -- PATENT_NBR/PATENT_NR is a Utah state trust-lands LAND patent ('P-20361-50-404'), not a US patent (false key)
+    #   PORTAL_SOC_UTAH_OPEN_DATA_P_4C3C656C61 (SITLA Transactions Completed_data) -- PATENT_NBR/PATENT_NR is a Utah state trust-lands LAND patent ('P-20361-50-404'), not a US patent (false key)
+    #   PORTAL_SOC_UTAH_OPEN_DATA_P_5822AAEE01 (All Mineral_data) -- PATENT_NBR/PATENT_NR is a Utah state trust-lands LAND patent ('P-20361-50-404'), not a US patent (false key)
+    #   PORTAL_SOC_UTAH_OPEN_DATA_P_6E687D44E0 (Historic Ownership_data) -- PATENT_NBR/PATENT_NR is a Utah state trust-lands LAND patent ('P-20361-50-404'), not a US patent (false key)
+    #   PORTAL_SOC_UTAH_OPEN_DATA_P_7105312F13 (SITLA Transactions Completed_data) -- PATENT_NBR/PATENT_NR is a Utah state trust-lands LAND patent ('P-20361-50-404'), not a US patent (false key)
+    #   PORTAL_SOC_UTAH_OPEN_DATA_P_AA0AB39DEE (SITLA.PUB.Development_Lots_Subdivision_data) -- PATENT_NBR/PATENT_NR is a Utah state trust-lands LAND patent ('P-20361-50-404'), not a US patent (false key)
+    #   PORTAL_SOC_UTAH_OPEN_DATA_P_ACB06F036D (SITLA.PUB.Development_Lots_Subdivision_data) -- PATENT_NBR/PATENT_NR is a Utah state trust-lands LAND patent ('P-20361-50-404'), not a US patent (false key)
+    #   PORTAL_SOC_UTAH_OPEN_DATA_P_B21F81E6F9 (All Mineral_data) -- PATENT_NBR/PATENT_NR is a Utah state trust-lands LAND patent ('P-20361-50-404'), not a US patent (false key)
+    #   PORTAL_SOC_UTAH_OPEN_DATA_P_C3B6301825 (Subdivision Ownership_data) -- PATENT_NBR/PATENT_NR is a Utah state trust-lands LAND patent ('P-20361-50-404'), not a US patent (false key)
+    #   PORTAL_SOC_UTAH_OPEN_DATA_P_C68BC3F05C (ESRD QIP Complete QIP Data For Dialysis Facil) -- every tagged ID column is empty in the crawl: ALTERNATE_CCN_1 8/37
+    #   PORTAL_SOC_UTAH_OPEN_DATA_P_E801B0732D (Partial Mineral_data) -- PATENT_NBR/PATENT_NR is a Utah state trust-lands LAND patent ('P-20361-50-404'), not a US patent (false key)
+    #   PORTAL_SOC_UTAH_OPEN_DATA_P_FB07CFAF59 (ESRD QIP Total Performance Scores Dialysis Fa) -- every tagged ID column is empty in the crawl: ALTERNATE_CCN_1 8/37
+    #   PORTAL_SOC_WASHINGTON_STATE_1A95FB1665 (Department of Licensing Data Sharing Contract) -- UBI_EIN holds WA UBI numbers ('4770'), not EINs (false key)
+    # ----------------------------------------------------------------------- #
+}
+DISPLAY_SPECS.update(SPINE_WIRING_PORTAL_SAMPLES_2026_08_24_DISPLAY_SPECS)
 
 # spine scope = every table with a nameable hard key (health + money/maritime/corporate).
 SPINE_TABLES = list(DISPLAY_SPECS)

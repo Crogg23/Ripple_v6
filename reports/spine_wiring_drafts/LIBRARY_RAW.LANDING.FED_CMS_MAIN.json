@@ -1,0 +1,118 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.FED_CMS_MAIN",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "DATASET_ID",
+    "DATASET_TITLE",
+    "PUBLISHER",
+    "DESCRIPTION",
+    "UPDATE_FREQUENCY",
+    "FORMAT",
+    "ACCESS_URL",
+    "NPI",
+    "FIPS",
+    "ZIP",
+    "_INGESTED_AT",
+    "_SOURCE_RUN_ID",
+    "_SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": [
+        "ZIP"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPI",
+      "column": "NPI",
+      "total_rows": 158,
+      "nonnull_after_norm": 0,
+      "distinct_after_norm": 0,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "DATASET_ID": "https://data.cms.gov/data-api/v1/dataset/4e73f1b5-82cb-4682-8ad2-28493f0b6840/data-viewer",
+      "DATASET_TITLE": "Medicare Post-Acute Care Utilization - Hospice by Geography and Provider",
+      "PUBLISHER": "Centers for Medicare & Medicaid Services",
+      "DESCRIPTION": "The Medicare Post-Acute Care (PAC) Utilization - Hospice by Geography and Provider\u00a0dataset contains information on demographic and clinical characteristics of beneficiaries served, professional and paraprofessional service utilization, and payment information at the provider, state, and national levels at the hospice setting.",
+      "UPDATE_FREQUENCY": "R/P1Y",
+      "FORMAT": "API; text/csv; API; text/csv; API; text/csv; API; text/csv; API; text/csv; API; text/csv; API; text/csv; API; text/csv; API; text/csv; API; text/csv; API",
+      "ACCESS_URL": "https://data.cms.gov/data-api/v1/dataset/4e73f1b5-82cb-4682-8ad2-28493f0b6840/data; https://data.cms.gov/sites/default/files/2025-08/7c92ef92-85ff-4f2a-a1a6-b1f4f25210e4/RY_2025_RY_25_PAC_PUF_HOS_2023_main_final_unformatted.csv; https://data.cms.gov/data-api/v1/dataset/f8fad9ec-84a0-4836-b96a-b37b9509a7e4/data; https://data.cms.gov/sites/default/files/2025-08/8336ff27-0000-4f02-8fd5-8d3c4fd8a439/RY_2025_RY_25_PAC_PUF_HOS_2022_main_final_unformatted.csv; https://data.cms.gov/data-api/v1/dataset/e50d8bd9-d955-4037-af58-d20f223128a3/data; https://data.cms.gov/sites/default/files/2025-08/1ca73c58-9d07-482e-9f76-708bb446b3e6/RY_2025_RY_25_PAC_PUF_HOS_2021_main_final_unformatted.csv; https://data.cms.gov/data-api/v1/dataset/a3a2b455-2188-4e53-9051-c498d24244ca/data; https://data.cms.gov/sites/default/files/2025-08/f295dcc6-444d-4c97-ace3-ed165d2a8208/RY_2025_RY_25_PAC_PUF_HOS_2020_main_final_unformatted.csv; https://data.cms.gov/data-api/v1/dataset/81c2e34b-ce96-46aa-bc61-49813a2704ed/data; https://data.cms.gov/sites/default/files/2025-08/68cc9c83-103b-4cb4-86fe-97a982b63a97/RY_2025_RY_25_PAC_PUF_HOS_2019_main_final_unformatted.csv; https://data.cms.gov/data-api/v1/dataset/ed2b66a1-3fec-411a-a026-7af9ab645dc3/data; https://data.cms.gov/sites/default/files/2025-08/91d03074-7569-4d57-9b48-2b967256e6ae/RY_2025_RY_25_PAC_PUF_HOS_2018_main_final_unformatted.csv; https://data.cms.gov/data-api/v1/dataset/9acc2d77-dc5d-48c9-ae4e-a10672c1f606/data; https://data.cms.gov/sites/default/files/2025-08/7089627c-dd3f-4ae7-a0dd-8c0fa983403d/RY_2025_RY_25_PAC_PUF_HOS_2017_main_final_unformatted.csv; https://data.cms.gov/data-api/v1/dataset/ef4eaf4a-7048-41fb-901c-a70ac5c03808/data; https://data.cms.gov/sites/default/files/2025-08/a8f08861-fad6-469a-a92c-ac116731182b/RY_2025_RY_25_PAC_PUF_HOS_2016_main_final_unformatted.csv; https://data.cms.gov/data-api/v1/dataset/ce59a417-de72-4c02-83bb-ced76a5c6b7d/data; https://data.cms.gov/sites/default/files/2025-08/3fec50b9-6428-423f-9812-eec192accb2c/RY_2025_RY_25_PAC_PUF_HOS_2015_main_final_unformatted.csv; https://data.cms.gov/data-api/v1/dataset/fd3a19d1-2e88-40d2-bde5-afac3fdc3b59/data; https://data.cms.gov/sites/default/files/2025-08/f99adbb6-0c35-42d6-af66-c6ddcceb0e97/RY_2025_RY_25_PAC_PUF_HOS_2014_main_final_unformatted.csv; https://data.cms.gov/data-api/v1/dataset/316ad14c-93ef-4427-8ca0-ea218fc45608/data",
+      "NPI": "",
+      "FIPS": "",
+      "ZIP": "",
+      "_INGESTED_AT": 1782942748495870,
+      "_SOURCE_RUN_ID": "076d5b56-98d1-4acc-8b62-92307994693d",
+      "_SRC_SHA256": "10475ef2811bfee86e4e8f76235231fdf06fe69c2d5ec7ba2b412ad9b5c1d395"
+    },
+    {
+      "DATASET_ID": "https://data.cms.gov/data-api/v1/dataset/7dae1d4a-1e14-4dd5-81b6-ba1dc0509a25/data-viewer",
+      "DATASET_TITLE": "Medicare Alternative Payment Model Adoption",
+      "PUBLISHER": "Centers for Medicare & Medicaid Services",
+      "DESCRIPTION": "The Medicare Alternative Payment Model (APM) Adoption data set provides information on the amount and percent of Medicare payments flowing through APMs, including downside risk models. The data is segmented according to the categories of the HCP-LAN APM framework, which provides a common, industry framework for classifying payment models. The Framework classifies APMs in four categories and eight subcategories, specifying decision rules to standardize classification efforts.\u00a0",
+      "UPDATE_FREQUENCY": "R/P1Y",
+      "FORMAT": "API; text/csv; API",
+      "ACCESS_URL": "https://data.cms.gov/data-api/v1/dataset/7dae1d4a-1e14-4dd5-81b6-ba1dc0509a25/data; https://data.cms.gov/sites/default/files/2026-02/f58b9561-bbb2-4ada-8232-cdf9c139ee34/Medicare%20Alternative%20Payment%20Model%20%28APM%29%20Adoption_CY24_v2.csv; https://data.cms.gov/data-api/v1/dataset/678b33e1-9185-4154-8e0b-126cf371d101/data",
+      "NPI": "",
+      "FIPS": "",
+      "ZIP": "",
+      "_INGESTED_AT": 1782942748495870,
+      "_SOURCE_RUN_ID": "076d5b56-98d1-4acc-8b62-92307994693d",
+      "_SRC_SHA256": "10475ef2811bfee86e4e8f76235231fdf06fe69c2d5ec7ba2b412ad9b5c1d395"
+    },
+    {
+      "DATASET_ID": "https://data.cms.gov/data-api/v1/dataset/4ce4157f-4e02-4188-b43a-2b21b7769b4e/data-viewer",
+      "DATASET_TITLE": "Innovation Center Milestones and Updates",
+      "PUBLISHER": "Centers for Medicare & Medicaid Services",
+      "DESCRIPTION": "The Innovation Center Milestones and Updates dataset contains a variety of contributions from CMS Innovation Center models, demonstrations, initiatives and programs. These resources include relevant milestones, dates, and changes to the status or parameters of a model, demonstration, or initiative.",
+      "UPDATE_FREQUENCY": "R/P1W",
+      "FORMAT": "API; text/csv; API",
+      "ACCESS_URL": "https://data.cms.gov/data-api/v1/dataset/4ce4157f-4e02-4188-b43a-2b21b7769b4e/data; https://data.cms.gov/sites/default/files/2026-05/dfc9c711-4c86-4df0-8ac3-b8af0f5563e0/Milestones%20and%20Updates-InCK-05-05-26.csv; https://data.cms.gov/data-api/v1/dataset/3817f5a4-bb28-416e-93b5-9cd794a76024/data",
+      "NPI": "",
+      "FIPS": "",
+      "ZIP": "",
+      "_INGESTED_AT": 1782942748495870,
+      "_SOURCE_RUN_ID": "076d5b56-98d1-4acc-8b62-92307994693d",
+      "_SRC_SHA256": "10475ef2811bfee86e4e8f76235231fdf06fe69c2d5ec7ba2b412ad9b5c1d395"
+    },
+    {
+      "DATASET_ID": "https://data.cms.gov/data-api/v1/dataset/a15c198e-4cf3-46ab-a30e-15c69bd13edd/data-viewer",
+      "DATASET_TITLE": "Medicare Diabetes Prevention Program",
+      "PUBLISHER": "Centers for Medicare & Medicaid Services",
+      "DESCRIPTION": "The Medicare Diabetes Prevention Program dataset contains information about suppliers from which eligible Medicare beneficiaries may be furnished associated services. The information in this dataset can include organization name, location, contact information, National Provider Identifier (NPI) among other data points. Location data populates the \"Map of MDPP Suppliers furnishing MDPP Services\" map.",
+      "UPDATE_FREQUENCY": "R/P3M",
+      "FORMAT": "API; text/csv; API",
+      "ACCESS_URL": "https://data.cms.gov/data-api/v1/dataset/a15c198e-4cf3-46ab-a30e-15c69bd13edd/data; https://data.cms.gov/sites/default/files/2026-06/9e8bc0b5-e28f-4f5d-b586-24a1687e4f4f/MDPP_Supplier_Mapping_06.01.26.csv; https://data.cms.gov/data-api/v1/dataset/84f9514b-815e-4bda-9323-e65cff0ed5c3/data",
+      "NPI": "",
+      "FIPS": "",
+      "ZIP": "",
+      "_INGESTED_AT": 1782942748495870,
+      "_SOURCE_RUN_ID": "076d5b56-98d1-4acc-8b62-92307994693d",
+      "_SRC_SHA256": "10475ef2811bfee86e4e8f76235231fdf06fe69c2d5ec7ba2b412ad9b5c1d395"
+    },
+    {
+      "DATASET_ID": "https://data.cms.gov/data-api/v1/dataset/4c2a8bf6-8560-4b00-bc56-1a0322677b7f/data-viewer",
+      "DATASET_TITLE": "Medicare Post-Acute Care Utilization - Skilled Nursing Facility by Geography, Provider and Service",
+      "PUBLISHER": "Centers for Medicare & Medicaid Services",
+      "DESCRIPTION": "The Medicare Post-Acute Care (PAC) Utilization - Skilled Nursing Facility (SNF) by Geography, Provider and Service supplemental dataset provides detailed information on payments and utilization for SNFs. For Fiscal Years (FY)s 2014\u20132019, data is organized by provider and Resource Utilization Group (RUG) type. Starting in FY 2020, following the shift to the Patient-Driven Payment Model (PDPM), the dataset no longer includes RUG-level data. Instead, it features therapy minutes by discipline, stays by clinical category, and the percentage of stays involving depression or swallowing disorders.",
+      "UPDATE_FREQUENCY": "R/P1Y",
+      "FORMAT": "API; text/csv; API; text/csv; API; text/csv; API; text/csv; API; text/csv; API; text/csv; API; text/csv; API; text/csv; API; text/csv; API; text/csv; API",
+      "ACCESS_URL": "https://data.cms.gov/data-api/v1/dataset/4c2a8bf6-8560-4b00-bc56-1a0322677b7f/data; https://data.cms.gov/sites/default/files/2025-08/607ac422-72f8-4d09-8002-007b938faa20/RY_2025_RY_25_PAC_PUF_SNF_2023_SUPP.csv; https://data.cms.gov/data-api/v1/dataset/74123d60-8379-4f7f-94d1-15a98ba0082f/data; https://data.cms.gov/sites/default/files/2025-08/402ed9a5-f386-4d1a-9592-1713fc38163a/RY_2025_RY_25_PAC_PUF_SNF_2022_SUPP.csv; https://data.cms.gov/data-api/v1/dataset/190f63df-b389-4031-bfe6-24d4edb02dc4/data; https://data.cms.gov/sites/default/files/2025-08/8bb2e0c8-abdc-48db-92d1-9a921382ecfb/RY_2025_RY_25_PAC_PUF_SNF_2021_SUPP.csv; https://data.cms.gov/data-api/v1/dataset/56a7f3b5-f8e4-4b43-96df-006bcce1f590/data; https://data.cms.gov/sites/default/files/2025-08/f7728628-c78d-4314-bcf0-51fbca9ff115/RY_2025_RY_25_PAC_PUF_SNF_2020_SUPP.csv; https://data.cms.gov/data-api/v1/dataset/a98b3029-16ff-40f8-90ff-5b20d1623ff6/data; https://data.cms.gov/sites/default/files/2025-08/2acf6a5e-8dcf-4700-b0bf-3e8a0603e9ef/RY_2025_RY_25_PAC_PUF_SNF_2019_SUPP.csv; https://data.cms.gov/data-api/v1/dataset/e0635a55-83ae-4aa2-ad69-0e653d9294c8/data; https://data.cms.gov/sites/default/files/2025-08/d2877428-8977-4d3f-bf3b-c38b9cf2d250/RY_2025_pac_puf_SNF_2018_supp.csv; https://data.cms.gov/data-api/v1/dataset/5154f211-0666-48b2-9026-1d2ee9d0d310/data; https://data.cms.gov/sites/default/files/2025-08/65be463a-88f2-434a-98d4-868aae7adb22/RY_2025_RY_25_PAC_PUF_SNF_2017_SUPP.csv; https://data.cms.gov/data-api/v1/dataset/48e8d97f-8bfb-4849-b086-d212151fe20b/data; https://data.cms.gov/sites/default/files/2025-08/626d3704-7281-47b1-b9b6-4f4a9b5a6ec2/RY_2025_RY_25_PAC_PUF_SNF_2016_SUPP.csv; https://data.cms.gov/data-api/v1/dataset/bb17c8a6-d143-44f8-9206-37eebf590d8b/data; https://data.cms.gov/sites/default/files/2025-08/58f208c1-6845-413f-b656-adcf0d9c22bc/RY_2025_RY_25_PAC_PUF_SNF_2015_SUPP.csv; https://data.cms.gov/data-api/v1/dataset/6cc46f08-bf7a-4600-8573-6c6f24e05cec/data; https://data.cms.gov/sites/default/files/2025-08/9205f9d2-ecb1-4630-9fae-ccdf3aef0254/RY_2025_RY_25_PAC_PUF_SNF_2014_SUPP.csv; https://data.cms.gov/data-api/v1/dataset/675f7a96-dbdc-4938-ba75-dda8fc9daaaf/data",
+      "NPI": "",
+      "FIPS": "",
+      "ZIP": "",
+      "_INGESTED_AT": 1782942748495870,
+      "_SOURCE_RUN_ID": "076d5b56-98d1-4acc-8b62-92307994693d",
+      "_SRC_SHA256": "10475ef2811bfee86e4e8f76235231fdf06fe69c2d5ec7ba2b412ad9b5c1d395"
+    }
+  ],
+  "sample_error": null
+}

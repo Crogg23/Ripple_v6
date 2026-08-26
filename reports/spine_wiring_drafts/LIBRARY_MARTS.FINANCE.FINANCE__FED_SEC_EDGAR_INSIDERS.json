@@ -1,0 +1,124 @@
+{
+  "fqtn": "LIBRARY_MARTS.FINANCE.FINANCE__FED_SEC_EDGAR_INSIDERS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "ACCESSION_NUMBER",
+    "FILING_DATE",
+    "PERIOD_OF_REPORT",
+    "DATE_OF_ORIG_SUB",
+    "NO_SECURITIES_OWNED",
+    "NOT_SUBJECT_SEC16",
+    "FORM3_HOLDINGS_REPORTED",
+    "FORM4_TRANS_REPORTED",
+    "DOCUMENT_TYPE",
+    "CIK",
+    "ISSUERNAME",
+    "ISSUERTRADINGSYMBOL",
+    "REMARKS",
+    "AFF10B5ONE"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "ISSUERNAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CIK",
+      "column": "CIK",
+      "total_rows": 69259,
+      "nonnull_after_norm": 69259,
+      "distinct_after_norm": 5306,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "ACCESSION_NUMBER": "0000004962-26-000069",
+      "FILING_DATE": "2026-02-03",
+      "PERIOD_OF_REPORT": "01-FEB-2026",
+      "DATE_OF_ORIG_SUB": null,
+      "NO_SECURITIES_OWNED": "",
+      "NOT_SUBJECT_SEC16": "",
+      "FORM3_HOLDINGS_REPORTED": "",
+      "FORM4_TRANS_REPORTED": "",
+      "DOCUMENT_TYPE": "4",
+      "CIK": "0000004962",
+      "ISSUERNAME": "AMERICAN EXPRESS CO",
+      "ISSUERTRADINGSYMBOL": "AXP",
+      "REMARKS": "Exhibit 24: Power of Attorney",
+      "AFF10B5ONE": "0"
+    },
+    {
+      "ACCESSION_NUMBER": "0001076930-26-000019",
+      "FILING_DATE": "2026-01-06",
+      "PERIOD_OF_REPORT": "02-JAN-2026",
+      "DATE_OF_ORIG_SUB": null,
+      "NO_SECURITIES_OWNED": "",
+      "NOT_SUBJECT_SEC16": "",
+      "FORM3_HOLDINGS_REPORTED": "",
+      "FORM4_TRANS_REPORTED": "",
+      "DOCUMENT_TYPE": "4",
+      "CIK": "0001076930",
+      "ISSUERNAME": "NOVANTA INC",
+      "ISSUERTRADINGSYMBOL": "NOVT",
+      "REMARKS": "Power of Attorney on file",
+      "AFF10B5ONE": "0"
+    },
+    {
+      "ACCESSION_NUMBER": "0001437749-26-006153",
+      "FILING_DATE": "2026-02-27",
+      "PERIOD_OF_REPORT": "27-FEB-2026",
+      "DATE_OF_ORIG_SUB": null,
+      "NO_SECURITIES_OWNED": "",
+      "NOT_SUBJECT_SEC16": "",
+      "FORM3_HOLDINGS_REPORTED": "",
+      "FORM4_TRANS_REPORTED": "",
+      "DOCUMENT_TYPE": "4",
+      "CIK": "0001595248",
+      "ISSUERNAME": "Genprex, Inc.",
+      "ISSUERTRADINGSYMBOL": "GNPX",
+      "REMARKS": "",
+      "AFF10B5ONE": "0"
+    },
+    {
+      "ACCESSION_NUMBER": "0001193125-26-057346",
+      "FILING_DATE": "2026-02-18",
+      "PERIOD_OF_REPORT": "15-FEB-2026",
+      "DATE_OF_ORIG_SUB": null,
+      "NO_SECURITIES_OWNED": "",
+      "NOT_SUBJECT_SEC16": "",
+      "FORM3_HOLDINGS_REPORTED": "",
+      "FORM4_TRANS_REPORTED": "",
+      "DOCUMENT_TYPE": "4",
+      "CIK": "0001002047",
+      "ISSUERNAME": "NetApp, Inc.",
+      "ISSUERTRADINGSYMBOL": "NTAP",
+      "REMARKS": "",
+      "AFF10B5ONE": "false"
+    },
+    {
+      "ACCESSION_NUMBER": "0001789940-26-000028",
+      "FILING_DATE": "2026-03-12",
+      "PERIOD_OF_REPORT": "10-MAR-2026",
+      "DATE_OF_ORIG_SUB": null,
+      "NO_SECURITIES_OWNED": "",
+      "NOT_SUBJECT_SEC16": "0",
+      "FORM3_HOLDINGS_REPORTED": "",
+      "FORM4_TRANS_REPORTED": "",
+      "DOCUMENT_TYPE": "4",
+      "CIK": "0001789940",
+      "ISSUERNAME": "First Watch Restaurant Group, Inc.",
+      "ISSUERTRADINGSYMBOL": "FWRG",
+      "REMARKS": "",
+      "AFF10B5ONE": "0"
+    }
+  ],
+  "sample_error": null
+}

@@ -1,0 +1,133 @@
+{
+  "fqtn": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_NPDES_ICIS_FACILITIES",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "ICIS_FACILITY_INTEREST_ID",
+    "NPDES_ID",
+    "FACILITY_UIN",
+    "FACILITY_TYPE_CODE",
+    "FACILITY_NAME",
+    "LOCATION_ADDRESS",
+    "SUPPLEMENTAL_ADDRESS_TEXT",
+    "CITY",
+    "COUNTY_CODE",
+    "STATE_CODE",
+    "ZIP",
+    "GEOCODE_LATITUDE",
+    "GEOCODE_LONGITUDE",
+    "IMPAIRED_WATERS"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "ICIS_FACILITY_INTEREST_ID",
+      "FACILITY_UIN",
+      "FACILITY_TYPE_CODE",
+      "FACILITY_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "STATE_CODE"
+      ],
+      "zip": [
+        "ZIP"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPDES_ID",
+      "column": "NPDES_ID",
+      "total_rows": 1213737,
+      "nonnull_after_norm": 1213737,
+      "distinct_after_norm": 1213737,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "ICIS_FACILITY_INTEREST_ID": "3601273387",
+      "NPDES_ID": "GAR38D3AD",
+      "FACILITY_UIN": "110070876384",
+      "FACILITY_TYPE_CODE": "POF",
+      "FACILITY_NAME": "TROTTERS FARMS LOT 108",
+      "LOCATION_ADDRESS": "FELLOWSHIP ROAD",
+      "SUPPLEMENTAL_ADDRESS_TEXT": null,
+      "CITY": "FAIRBURN",
+      "COUNTY_CODE": null,
+      "STATE_CODE": "GA",
+      "ZIP": "30213",
+      "GEOCODE_LATITUDE": 33.560457,
+      "GEOCODE_LONGITUDE": -84.55758,
+      "IMPAIRED_WATERS": null
+    },
+    {
+      "ICIS_FACILITY_INTEREST_ID": "1400015606",
+      "NPDES_ID": "NYR10L256",
+      "FACILITY_UIN": "110038443752",
+      "FACILITY_TYPE_CODE": "POF",
+      "FACILITY_NAME": "KINGS PLAZA SHOPPING CENTER",
+      "LOCATION_ADDRESS": "5502 AVENUE U",
+      "SUPPLEMENTAL_ADDRESS_TEXT": null,
+      "CITY": "BROOKLYN",
+      "COUNTY_CODE": "NY047",
+      "STATE_CODE": "NY",
+      "ZIP": "11234",
+      "GEOCODE_LATITUDE": 40.611578,
+      "GEOCODE_LONGITUDE": -73.919629,
+      "IMPAIRED_WATERS": "303(D) Listed"
+    },
+    {
+      "ICIS_FACILITY_INTEREST_ID": "3601415124",
+      "NPDES_ID": "SDR10J411",
+      "FACILITY_UIN": "110071276957",
+      "FACILITY_TYPE_CODE": null,
+      "FACILITY_NAME": "1710 NORTH M AVENUE PARKING LOT IMPROVEMENTS",
+      "LOCATION_ADDRESS": "1710 NORTH M AVENUE",
+      "SUPPLEMENTAL_ADDRESS_TEXT": null,
+      "CITY": "SIOUX FALLS",
+      "COUNTY_CODE": null,
+      "STATE_CODE": "SD",
+      "ZIP": "57104",
+      "GEOCODE_LATITUDE": 43.5701109,
+      "GEOCODE_LONGITUDE": -96.749146,
+      "IMPAIRED_WATERS": "303(D) Listed"
+    },
+    {
+      "ICIS_FACILITY_INTEREST_ID": "3600478069",
+      "NPDES_ID": "COG075812",
+      "FACILITY_UIN": "110070045298",
+      "FACILITY_TYPE_CODE": null,
+      "FACILITY_NAME": "E PLUM CREEK CR 1 DIVERSION",
+      "LOCATION_ADDRESS": "1935 LIGGETT RD",
+      "SUPPLEMENTAL_ADDRESS_TEXT": null,
+      "CITY": "CASTLE ROCK",
+      "COUNTY_CODE": "CO035",
+      "STATE_CODE": "CO",
+      "ZIP": "80109",
+      "GEOCODE_LATITUDE": 39.386096,
+      "GEOCODE_LONGITUDE": -104.863059,
+      "IMPAIRED_WATERS": "303(D) Listed"
+    },
+    {
+      "ICIS_FACILITY_INTEREST_ID": "3601130568",
+      "NPDES_ID": "NDR109701",
+      "FACILITY_UIN": "110070619858",
+      "FACILITY_TYPE_CODE": null,
+      "FACILITY_NAME": "CP MACHINE, INC.",
+      "LOCATION_ADDRESS": "5221 142ND DRIVE NW WILLISTON ND",
+      "SUPPLEMENTAL_ADDRESS_TEXT": null,
+      "CITY": "UNKNOWN",
+      "COUNTY_CODE": null,
+      "STATE_CODE": "ND",
+      "ZIP": "58000",
+      "GEOCODE_LATITUDE": null,
+      "GEOCODE_LONGITUDE": null,
+      "IMPAIRED_WATERS": null
+    }
+  ],
+  "sample_error": null
+}

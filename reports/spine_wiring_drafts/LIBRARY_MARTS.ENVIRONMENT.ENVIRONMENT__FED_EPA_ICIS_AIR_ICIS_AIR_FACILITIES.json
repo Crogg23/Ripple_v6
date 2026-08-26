@@ -1,0 +1,163 @@
+{
+  "fqtn": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "PGM_SYS_ID",
+    "REGISTRY_ID",
+    "FACILITY_NAME",
+    "STREET_ADDRESS",
+    "CITY",
+    "COUNTY_NAME",
+    "STATE",
+    "ZIP_CODE",
+    "EPA_REGION",
+    "SIC_CODES",
+    "NAICS_CODES",
+    "FACILITY_TYPE_CODE",
+    "AIR_POLLUTANT_CLASS_CODE",
+    "AIR_POLLUTANT_CLASS_DESC",
+    "AIR_OPERATING_STATUS_CODE",
+    "AIR_OPERATING_STATUS_DESC",
+    "CURRENT_HPV",
+    "LOCAL_CONTROL_REGION_CODE",
+    "LOCAL_CONTROL_REGION_NAME"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "FACILITY_NAME",
+      "COUNTY_NAME",
+      "FACILITY_TYPE_CODE",
+      "LOCAL_CONTROL_REGION_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "STATE"
+      ],
+      "zip": [
+        "ZIP_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "FRS_ID",
+      "column": "REGISTRY_ID",
+      "total_rows": 279728,
+      "nonnull_after_norm": 279541,
+      "distinct_after_norm": 266026,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "PGM_SYS_ID": "OK0000004004700200",
+      "REGISTRY_ID": "110064743755",
+      "FACILITY_NAME": "SANDRIDGE EXPLORATION AND PRODUCTION LL / BOWEN FEEDLOT 1 5H BOWEN FEEDLOT 2 5H ",
+      "STREET_ADDRESS": "SE OF CR830 / W UNION RD",
+      "CITY": "HILLSDALE",
+      "COUNTY_NAME": "Garfield",
+      "STATE": "OK",
+      "ZIP_CODE": "73743",
+      "EPA_REGION": "06",
+      "SIC_CODES": "1311",
+      "NAICS_CODES": "211120",
+      "FACILITY_TYPE_CODE": "POF",
+      "AIR_POLLUTANT_CLASS_CODE": "MIN",
+      "AIR_POLLUTANT_CLASS_DESC": "Minor Emissions",
+      "AIR_OPERATING_STATUS_CODE": "OPR",
+      "AIR_OPERATING_STATUS_DESC": "Operating",
+      "CURRENT_HPV": "No Violation Identified",
+      "LOCAL_CONTROL_REGION_CODE": null,
+      "LOCAL_CONTROL_REGION_NAME": null
+    },
+    {
+      "PGM_SYS_ID": "NM0000003501501042",
+      "REGISTRY_ID": "110061076464",
+      "FACILITY_NAME": "FEDERAL  AB NO 13H",
+      "STREET_ADDRESS": "9.1 MI SW OF ARTESIA",
+      "CITY": "ARTESIA",
+      "COUNTY_NAME": "Eddy",
+      "STATE": "NM",
+      "ZIP_CODE": "88210",
+      "EPA_REGION": "06",
+      "SIC_CODES": "1311",
+      "NAICS_CODES": "999999",
+      "FACILITY_TYPE_CODE": "POF",
+      "AIR_POLLUTANT_CLASS_CODE": "MIN",
+      "AIR_POLLUTANT_CLASS_DESC": "Minor Emissions",
+      "AIR_OPERATING_STATUS_CODE": "OPR",
+      "AIR_OPERATING_STATUS_DESC": "Operating",
+      "CURRENT_HPV": "No Violation Identified",
+      "LOCAL_CONTROL_REGION_CODE": null,
+      "LOCAL_CONTROL_REGION_NAME": null
+    },
+    {
+      "PGM_SYS_ID": "OK0000004014300269",
+      "REGISTRY_ID": "110042149993",
+      "FACILITY_NAME": "VERIZON WIRELESS / EAST TRACT PARK OK",
+      "STREET_ADDRESS": "12807 E 31ST ST",
+      "CITY": "TULSA",
+      "COUNTY_NAME": "Tulsa",
+      "STATE": "OK",
+      "ZIP_CODE": "74146",
+      "EPA_REGION": "06",
+      "SIC_CODES": "4812",
+      "NAICS_CODES": "517112",
+      "FACILITY_TYPE_CODE": "POF",
+      "AIR_POLLUTANT_CLASS_CODE": "MIN",
+      "AIR_POLLUTANT_CLASS_DESC": "Minor Emissions",
+      "AIR_OPERATING_STATUS_CODE": "OPR",
+      "AIR_OPERATING_STATUS_DESC": "Operating",
+      "CURRENT_HPV": "No Violation Identified",
+      "LOCAL_CONTROL_REGION_CODE": null,
+      "LOCAL_CONTROL_REGION_NAME": null
+    },
+    {
+      "PGM_SYS_ID": "CO0000000812304869",
+      "REGISTRY_ID": "110023160684",
+      "FACILITY_NAME": "NOBLE ENERGY - HANSCOME T4N-R64W-S28 L02",
+      "STREET_ADDRESS": "NWNW SEC 28 T4N R64W",
+      "CITY": "KERSEY 6.4 MI. S OF",
+      "COUNTY_NAME": "Weld",
+      "STATE": "CO",
+      "ZIP_CODE": "80644",
+      "EPA_REGION": "08",
+      "SIC_CODES": "1321",
+      "NAICS_CODES": "211112 211130",
+      "FACILITY_TYPE_CODE": "NON",
+      "AIR_POLLUTANT_CLASS_CODE": "MIN",
+      "AIR_POLLUTANT_CLASS_DESC": "Minor Emissions",
+      "AIR_OPERATING_STATUS_CODE": "OPR",
+      "AIR_OPERATING_STATUS_DESC": "Operating",
+      "CURRENT_HPV": "No Violation Identified",
+      "LOCAL_CONTROL_REGION_CODE": null,
+      "LOCAL_CONTROL_REGION_NAME": null
+    },
+    {
+      "PGM_SYS_ID": "IL000043030AKP",
+      "REGISTRY_ID": "110070684405",
+      "FACILITY_NAME": "BP",
+      "STREET_ADDRESS": "1200 75TH ST",
+      "CITY": "DOWNERS GROVE",
+      "COUNTY_NAME": "DuPage",
+      "STATE": "IL",
+      "ZIP_CODE": "60515",
+      "EPA_REGION": "05",
+      "SIC_CODES": "5541",
+      "NAICS_CODES": "447190",
+      "FACILITY_TYPE_CODE": "POF",
+      "AIR_POLLUTANT_CLASS_CODE": "MIN",
+      "AIR_POLLUTANT_CLASS_DESC": "Minor Emissions",
+      "AIR_OPERATING_STATUS_CODE": "OPR",
+      "AIR_OPERATING_STATUS_DESC": "Operating",
+      "CURRENT_HPV": "No Violation Identified",
+      "LOCAL_CONTROL_REGION_CODE": null,
+      "LOCAL_CONTROL_REGION_NAME": null
+    }
+  ],
+  "sample_error": null
+}

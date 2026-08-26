@@ -1,0 +1,116 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_SOC_UTAH_OPEN_DATA_P_1A3EDE9CAD",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NPI",
+    "PROVIDER_ORGANIZATION_NAME",
+    "MSDRG",
+    "DESCRIPTION",
+    "TOTAL_PROVIDER_PAYMENT_25",
+    "TOTAL_PROVIDER_PAYMENT_50",
+    "TOTAL_PROVIDER_PAYMENT_75",
+    "CLAIM_CNT_TOTAL",
+    "PROVIDER_OTHER_ORGANIZATION",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "PROVIDER_ORGANIZATION_NAME",
+      "TOTAL_PROVIDER_PAYMENT_25",
+      "TOTAL_PROVIDER_PAYMENT_50",
+      "TOTAL_PROVIDER_PAYMENT_75",
+      "PROVIDER_OTHER_ORGANIZATION"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPI",
+      "column": "NPI",
+      "total_rows": 643,
+      "nonnull_after_norm": 643,
+      "distinct_after_norm": 52,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "NPI": "1366440620",
+      "PROVIDER_ORGANIZATION_NAME": "JORDAN VALLEY MEDICAL CENTER LP",
+      "MSDRG": "470",
+      "DESCRIPTION": "Major Joint Replacement or Reattachment of Lower Extremity w/o MCC",
+      "TOTAL_PROVIDER_PAYMENT_25": "16605.97",
+      "TOTAL_PROVIDER_PAYMENT_50": "20739.03",
+      "TOTAL_PROVIDER_PAYMENT_75": "22439.65",
+      "CLAIM_CNT_TOTAL": "19",
+      "PROVIDER_OTHER_ORGANIZATION": "nan",
+      "INGESTED_AT": "2026-06-24 04:44:17.957335",
+      "SOURCE_RUN_ID": "7957536b-c922-4fe5-92e5-4f36735e168c",
+      "SRC_SHA256": "3834699b796d08e2243b7b0eb79e9e3516b63887cde22bbececc2a57693f291b"
+    },
+    {
+      "NPI": "1043220650",
+      "PROVIDER_ORGANIZATION_NAME": "IHC HEALTH SERVICES INC",
+      "MSDRG": "791",
+      "DESCRIPTION": "Prematurity w Major Problems",
+      "TOTAL_PROVIDER_PAYMENT_25": "19385.34",
+      "TOTAL_PROVIDER_PAYMENT_50": "29112.01",
+      "TOTAL_PROVIDER_PAYMENT_75": "87831.61",
+      "CLAIM_CNT_TOTAL": "80",
+      "PROVIDER_OTHER_ORGANIZATION": "INTERMOUNTAIN MEDICAL CENTER",
+      "INGESTED_AT": "2026-06-24 04:44:17.957335",
+      "SOURCE_RUN_ID": "7957536b-c922-4fe5-92e5-4f36735e168c",
+      "SRC_SHA256": "3834699b796d08e2243b7b0eb79e9e3516b63887cde22bbececc2a57693f291b"
+    },
+    {
+      "NPI": "1043220650",
+      "PROVIDER_ORGANIZATION_NAME": "IHC HEALTH SERVICES INC",
+      "MSDRG": "5",
+      "DESCRIPTION": "Liver Transplant w MCC or Intestinal Transplant",
+      "TOTAL_PROVIDER_PAYMENT_25": "69135.00",
+      "TOTAL_PROVIDER_PAYMENT_50": "111271.00",
+      "TOTAL_PROVIDER_PAYMENT_75": "163447.24",
+      "CLAIM_CNT_TOTAL": "13",
+      "PROVIDER_OTHER_ORGANIZATION": "INTERMOUNTAIN MEDICAL CENTER",
+      "INGESTED_AT": "2026-06-24 04:44:17.957335",
+      "SOURCE_RUN_ID": "7957536b-c922-4fe5-92e5-4f36735e168c",
+      "SRC_SHA256": "3834699b796d08e2243b7b0eb79e9e3516b63887cde22bbececc2a57693f291b"
+    },
+    {
+      "NPI": "1720031636",
+      "PROVIDER_ORGANIZATION_NAME": "COLUMBIA OGDEN MEDICAL CENTER, INC.",
+      "MSDRG": "795",
+      "DESCRIPTION": "Normal Newborn",
+      "TOTAL_PROVIDER_PAYMENT_25": "1398.00",
+      "TOTAL_PROVIDER_PAYMENT_50": "1837.64",
+      "TOTAL_PROVIDER_PAYMENT_75": "2301.22",
+      "CLAIM_CNT_TOTAL": "200",
+      "PROVIDER_OTHER_ORGANIZATION": "OGDEN REGIONAL MEDICAL CENTER",
+      "INGESTED_AT": "2026-06-24 04:44:17.957335",
+      "SOURCE_RUN_ID": "7957536b-c922-4fe5-92e5-4f36735e168c",
+      "SRC_SHA256": "3834699b796d08e2243b7b0eb79e9e3516b63887cde22bbececc2a57693f291b"
+    },
+    {
+      "NPI": "1528078581",
+      "PROVIDER_ORGANIZATION_NAME": "IHC HEALTH SERVICES INC.",
+      "MSDRG": "795",
+      "DESCRIPTION": "Normal Newborn",
+      "TOTAL_PROVIDER_PAYMENT_25": "1774.60",
+      "TOTAL_PROVIDER_PAYMENT_50": "1778.10",
+      "TOTAL_PROVIDER_PAYMENT_75": "2026.30",
+      "CLAIM_CNT_TOTAL": "399",
+      "PROVIDER_OTHER_ORGANIZATION": "LDS HOSPITAL",
+      "INGESTED_AT": "2026-06-24 04:44:17.957335",
+      "SOURCE_RUN_ID": "7957536b-c922-4fe5-92e5-4f36735e168c",
+      "SRC_SHA256": "3834699b796d08e2243b7b0eb79e9e3516b63887cde22bbececc2a57693f291b"
+    }
+  ],
+  "sample_error": null
+}

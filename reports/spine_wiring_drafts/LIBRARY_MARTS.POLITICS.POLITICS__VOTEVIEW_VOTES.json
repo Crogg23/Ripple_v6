@@ -1,0 +1,80 @@
+{
+  "fqtn": "LIBRARY_MARTS.POLITICS.POLITICS__VOTEVIEW_VOTES",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "CONGRESS",
+    "CHAMBER",
+    "ROLLNUMBER",
+    "ICPSR",
+    "CAST_CODE",
+    "VOTE_POSITION",
+    "PROB"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "ICPSR",
+      "column": "ICPSR",
+      "total_rows": 945523,
+      "nonnull_after_norm": 945523,
+      "distinct_after_norm": 639,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "CONGRESS": 119,
+      "CHAMBER": "House",
+      "ROLLNUMBER": 181,
+      "ICPSR": 22377,
+      "CAST_CODE": 6,
+      "VOTE_POSITION": "nay",
+      "PROB": 100.0
+    },
+    {
+      "CONGRESS": 118,
+      "CHAMBER": "Senate",
+      "ROLLNUMBER": 151,
+      "ICPSR": 49703,
+      "CAST_CODE": 1,
+      "VOTE_POSITION": "yea",
+      "PROB": 100.0
+    },
+    {
+      "CONGRESS": 119,
+      "CHAMBER": "Senate",
+      "ROLLNUMBER": 598,
+      "ICPSR": 21173,
+      "CAST_CODE": 6,
+      "VOTE_POSITION": "nay",
+      "PROB": 98.4
+    },
+    {
+      "CONGRESS": 119,
+      "CHAMBER": "House",
+      "ROLLNUMBER": 394,
+      "ICPSR": 22514,
+      "CAST_CODE": 1,
+      "VOTE_POSITION": "yea",
+      "PROB": 100.0
+    },
+    {
+      "CONGRESS": 118,
+      "CHAMBER": "House",
+      "ROLLNUMBER": 737,
+      "ICPSR": 22142,
+      "CAST_CODE": 6,
+      "VOTE_POSITION": "nay",
+      "PROB": 100.0
+    }
+  ],
+  "sample_error": null
+}

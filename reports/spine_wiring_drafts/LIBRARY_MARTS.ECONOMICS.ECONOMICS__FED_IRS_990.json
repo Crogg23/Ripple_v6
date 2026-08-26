@@ -1,0 +1,153 @@
+{
+  "fqtn": "LIBRARY_MARTS.ECONOMICS.ECONOMICS__FED_IRS_990",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "EIN",
+    "ORGANIZATION_NAME",
+    "TAX_PERIOD_BEGIN_DATE",
+    "TAX_PERIOD_END_DATE",
+    "FORM_TYPE",
+    "TAX_YEAR",
+    "GROSS_RECEIPTS_AMT",
+    "TOTAL_ASSETS_EOY_AMT",
+    "TOTAL_LIABILITIES_EOY_AMT",
+    "TOTAL_REVENUE_AMT",
+    "TOTAL_EXPENSES_AMT",
+    "OFFICER_COMPENSATION_AMT",
+    "STATE",
+    "ZIP_CODE",
+    "EXEMPTION_CODE",
+    "SPINE_ENTITY_ID",
+    "_LOADED_AT",
+    "_SOURCE_URL"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "ORGANIZATION_NAME",
+      "SPINE_ENTITY_ID"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [
+        "STATE"
+      ],
+      "zip": [
+        "ZIP_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "EIN",
+      "column": "EIN",
+      "total_rows": 200,
+      "nonnull_after_norm": 200,
+      "distinct_after_norm": 200,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "EIN": "844034111",
+      "ORGANIZATION_NAME": "RHG4EVER Foundation",
+      "TAX_PERIOD_BEGIN_DATE": null,
+      "TAX_PERIOD_END_DATE": null,
+      "FORM_TYPE": "EFILE",
+      "TAX_YEAR": 202412,
+      "GROSS_RECEIPTS_AMT": null,
+      "TOTAL_ASSETS_EOY_AMT": null,
+      "TOTAL_LIABILITIES_EOY_AMT": null,
+      "TOTAL_REVENUE_AMT": null,
+      "TOTAL_EXPENSES_AMT": null,
+      "OFFICER_COMPENSATION_AMT": null,
+      "STATE": "",
+      "ZIP_CODE": "",
+      "EXEMPTION_CODE": "",
+      "SPINE_ENTITY_ID": "ENT_520fe6dac2c06bde",
+      "_LOADED_AT": 1783010271261511,
+      "_SOURCE_URL": "https://www.irs.gov/charities-non-profits/form-990-series-downloads"
+    },
+    {
+      "EIN": "363108372",
+      "ORGANIZATION_NAME": "SAFE PASSAGE INC",
+      "TAX_PERIOD_BEGIN_DATE": null,
+      "TAX_PERIOD_END_DATE": null,
+      "FORM_TYPE": "EFILE",
+      "TAX_YEAR": 202506,
+      "GROSS_RECEIPTS_AMT": null,
+      "TOTAL_ASSETS_EOY_AMT": null,
+      "TOTAL_LIABILITIES_EOY_AMT": null,
+      "TOTAL_REVENUE_AMT": null,
+      "TOTAL_EXPENSES_AMT": null,
+      "OFFICER_COMPENSATION_AMT": null,
+      "STATE": "",
+      "ZIP_CODE": "",
+      "EXEMPTION_CODE": "",
+      "SPINE_ENTITY_ID": "ENT_b6c1c747bf308832",
+      "_LOADED_AT": 1783010271261511,
+      "_SOURCE_URL": "https://www.irs.gov/charities-non-profits/form-990-series-downloads"
+    },
+    {
+      "EIN": "381613981",
+      "ORGANIZATION_NAME": "RBC MINISTRIES",
+      "TAX_PERIOD_BEGIN_DATE": null,
+      "TAX_PERIOD_END_DATE": null,
+      "FORM_TYPE": "EFILE",
+      "TAX_YEAR": 202503,
+      "GROSS_RECEIPTS_AMT": null,
+      "TOTAL_ASSETS_EOY_AMT": null,
+      "TOTAL_LIABILITIES_EOY_AMT": null,
+      "TOTAL_REVENUE_AMT": null,
+      "TOTAL_EXPENSES_AMT": null,
+      "OFFICER_COMPENSATION_AMT": null,
+      "STATE": "",
+      "ZIP_CODE": "",
+      "EXEMPTION_CODE": "",
+      "SPINE_ENTITY_ID": "ENT_c74ac0bfea78eb86",
+      "_LOADED_AT": 1783010271261511,
+      "_SOURCE_URL": "https://www.irs.gov/charities-non-profits/form-990-series-downloads"
+    },
+    {
+      "EIN": "884239440",
+      "ORGANIZATION_NAME": "Elevate Wrestling Club",
+      "TAX_PERIOD_BEGIN_DATE": null,
+      "TAX_PERIOD_END_DATE": null,
+      "FORM_TYPE": "EFILE",
+      "TAX_YEAR": 202508,
+      "GROSS_RECEIPTS_AMT": null,
+      "TOTAL_ASSETS_EOY_AMT": null,
+      "TOTAL_LIABILITIES_EOY_AMT": null,
+      "TOTAL_REVENUE_AMT": null,
+      "TOTAL_EXPENSES_AMT": null,
+      "OFFICER_COMPENSATION_AMT": null,
+      "STATE": "",
+      "ZIP_CODE": "",
+      "EXEMPTION_CODE": "",
+      "SPINE_ENTITY_ID": "ENT_4b8ba10b400ce679",
+      "_LOADED_AT": 1783010271261511,
+      "_SOURCE_URL": "https://www.irs.gov/charities-non-profits/form-990-series-downloads"
+    },
+    {
+      "EIN": "813460269",
+      "ORGANIZATION_NAME": "Ashante and Anthony Community Empowerment Inc",
+      "TAX_PERIOD_BEGIN_DATE": null,
+      "TAX_PERIOD_END_DATE": null,
+      "FORM_TYPE": "EFILE",
+      "TAX_YEAR": 202412,
+      "GROSS_RECEIPTS_AMT": null,
+      "TOTAL_ASSETS_EOY_AMT": null,
+      "TOTAL_LIABILITIES_EOY_AMT": null,
+      "TOTAL_REVENUE_AMT": null,
+      "TOTAL_EXPENSES_AMT": null,
+      "OFFICER_COMPENSATION_AMT": null,
+      "STATE": "",
+      "ZIP_CODE": "",
+      "EXEMPTION_CODE": "",
+      "SPINE_ENTITY_ID": "ENT_950dfdcf1dfa7e7a",
+      "_LOADED_AT": 1783010271261511,
+      "_SOURCE_URL": "https://www.irs.gov/charities-non-profits/form-990-series-downloads"
+    }
+  ],
+  "sample_error": null
+}

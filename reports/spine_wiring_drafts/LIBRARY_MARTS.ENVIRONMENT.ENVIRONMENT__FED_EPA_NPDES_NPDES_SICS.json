@@ -1,0 +1,62 @@
+{
+  "fqtn": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_NPDES_NPDES_SICS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NPDES_ID",
+    "SIC_CODE",
+    "SIC_DESC",
+    "PRIMARY_INDICATOR_FLAG"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPDES_ID",
+      "column": "NPDES_ID",
+      "total_rows": 792807,
+      "nonnull_after_norm": 792807,
+      "distinct_after_norm": 715074,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "NPDES_ID": "ALR108141",
+      "SIC_CODE": "1629",
+      "SIC_DESC": "Heavy Construction",
+      "PRIMARY_INDICATOR_FLAG": "N"
+    },
+    {
+      "NPDES_ID": "AKG524053",
+      "SIC_CODE": "2092",
+      "SIC_DESC": "Fresh Or Frozen Prepared Fish",
+      "PRIMARY_INDICATOR_FLAG": "Y"
+    },
+    {
+      "NPDES_ID": "PAG033726",
+      "SIC_CODE": "4222",
+      "SIC_DESC": "Refrigerated Warehousing And Storage",
+      "PRIMARY_INDICATOR_FLAG": "N"
+    },
+    {
+      "NPDES_ID": "MORA23899",
+      "SIC_CODE": "1629",
+      "SIC_DESC": "Heavy Construction",
+      "PRIMARY_INDICATOR_FLAG": "Y"
+    },
+    {
+      "NPDES_ID": "COR03N920",
+      "SIC_CODE": "1629",
+      "SIC_DESC": "Heavy Construction",
+      "PRIMARY_INDICATOR_FLAG": "Y"
+    }
+  ],
+  "sample_error": null
+}

@@ -1,0 +1,113 @@
+{
+  "fqtn": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "SUBMISSIONYEARQUARTER",
+    "PWSID",
+    "GEO_ID",
+    "AREA_TYPE_CODE",
+    "TRIBAL_CODE",
+    "STATE_SERVED",
+    "ANSI_ENTITY_CODE",
+    "ZIP_CODE_SERVED",
+    "CITY_SERVED",
+    "COUNTY_SERVED",
+    "LAST_REPORTED_DATE"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "ANSI_ENTITY_CODE",
+      "LAST_REPORTED_DATE"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY_SERVED"
+      ],
+      "state": [
+        "STATE_SERVED"
+      ],
+      "zip": [
+        "ZIP_CODE_SERVED"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "PWSID",
+      "column": "PWSID",
+      "total_rows": 578198,
+      "nonnull_after_norm": 578198,
+      "distinct_after_norm": 413877,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "SUBMISSIONYEARQUARTER": "2026Q2",
+      "PWSID": "FL6532380",
+      "GEO_ID": "17910846",
+      "AREA_TYPE_CODE": "CT",
+      "TRIBAL_CODE": null,
+      "STATE_SERVED": "FL",
+      "ANSI_ENTITY_CODE": null,
+      "ZIP_CODE_SERVED": null,
+      "CITY_SERVED": "WINTER HAVEN",
+      "COUNTY_SERVED": null,
+      "LAST_REPORTED_DATE": "1995-07-22"
+    },
+    {
+      "SUBMISSIONYEARQUARTER": "2026Q2",
+      "PWSID": "VT0006769",
+      "GEO_ID": "18088691",
+      "AREA_TYPE_CODE": "CN",
+      "TRIBAL_CODE": null,
+      "STATE_SERVED": null,
+      "ANSI_ENTITY_CODE": "023",
+      "ZIP_CODE_SERVED": null,
+      "CITY_SERVED": null,
+      "COUNTY_SERVED": "Washington",
+      "LAST_REPORTED_DATE": "1998-05-13"
+    },
+    {
+      "SUBMISSIONYEARQUARTER": "2026Q2",
+      "PWSID": "IL0102269",
+      "GEO_ID": "17854888",
+      "AREA_TYPE_CODE": "CN",
+      "TRIBAL_CODE": null,
+      "STATE_SERVED": null,
+      "ANSI_ENTITY_CODE": "031",
+      "ZIP_CODE_SERVED": null,
+      "CITY_SERVED": null,
+      "COUNTY_SERVED": "Cook",
+      "LAST_REPORTED_DATE": "1995-07-22"
+    },
+    {
+      "SUBMISSIONYEARQUARTER": "2026Q2",
+      "PWSID": "NC0454415",
+      "GEO_ID": "18000817",
+      "AREA_TYPE_CODE": "CT",
+      "TRIBAL_CODE": null,
+      "STATE_SERVED": "NC",
+      "ANSI_ENTITY_CODE": null,
+      "ZIP_CODE_SERVED": null,
+      "CITY_SERVED": "KINSTON",
+      "COUNTY_SERVED": null,
+      "LAST_REPORTED_DATE": "1995-07-22"
+    },
+    {
+      "SUBMISSIONYEARQUARTER": "2026Q2",
+      "PWSID": "DE0000429",
+      "GEO_ID": "18326392",
+      "AREA_TYPE_CODE": "CN",
+      "TRIBAL_CODE": null,
+      "STATE_SERVED": null,
+      "ANSI_ENTITY_CODE": "005",
+      "ZIP_CODE_SERVED": null,
+      "CITY_SERVED": null,
+      "COUNTY_SERVED": "Sussex",
+      "LAST_REPORTED_DATE": "2026-04-30"
+    }
+  ],
+  "sample_error": null
+}

@@ -1,0 +1,80 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_SOC_TEXAS_OPEN_DATA_A7AB49CB1A",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "YEAR",
+    "DATE_SUBMITTED",
+    "POLITICAL_SUBDIVISION",
+    "NPI",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPI",
+      "column": "NPI",
+      "total_rows": 447,
+      "nonnull_after_norm": 447,
+      "distinct_after_norm": 279,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "YEAR": "2024",
+      "DATE_SUBMITTED": "2023-12-13T00:00:00.000",
+      "POLITICAL_SUBDIVISION": "City of Marble Falls",
+      "NPI": "1780605311",
+      "INGESTED_AT": "2026-06-24 04:44:12.589112",
+      "SOURCE_RUN_ID": "9793be40-05a2-46c8-960b-822d315d9ccd",
+      "SRC_SHA256": "35e83159fdceeb6848681790ebf450ca1451a3e681643dc97c3e538ee493b2d8"
+    },
+    {
+      "YEAR": "2024",
+      "DATE_SUBMITTED": "2023-12-08T00:00:00.000",
+      "POLITICAL_SUBDIVISION": "Justin Community Volunteer Fire Department",
+      "NPI": "1831229384",
+      "INGESTED_AT": "2026-06-24 04:44:12.589112",
+      "SOURCE_RUN_ID": "9793be40-05a2-46c8-960b-822d315d9ccd",
+      "SRC_SHA256": "35e83159fdceeb6848681790ebf450ca1451a3e681643dc97c3e538ee493b2d8"
+    },
+    {
+      "YEAR": "2024",
+      "DATE_SUBMITTED": "2023-11-27T00:00:00.000",
+      "POLITICAL_SUBDIVISION": "Town of Edgeclliff Village",
+      "NPI": "1710981774",
+      "INGESTED_AT": "2026-06-24 04:44:12.589112",
+      "SOURCE_RUN_ID": "9793be40-05a2-46c8-960b-822d315d9ccd",
+      "SRC_SHA256": "35e83159fdceeb6848681790ebf450ca1451a3e681643dc97c3e538ee493b2d8"
+    },
+    {
+      "YEAR": "2024",
+      "DATE_SUBMITTED": "2024-01-08T00:00:00.000",
+      "POLITICAL_SUBDIVISION": "City of Stinnett",
+      "NPI": "1770566077",
+      "INGESTED_AT": "2026-06-24 04:44:12.589112",
+      "SOURCE_RUN_ID": "9793be40-05a2-46c8-960b-822d315d9ccd",
+      "SRC_SHA256": "35e83159fdceeb6848681790ebf450ca1451a3e681643dc97c3e538ee493b2d8"
+    },
+    {
+      "YEAR": "2026",
+      "DATE_SUBMITTED": "2026-03-04T00:00:00.000",
+      "POLITICAL_SUBDIVISION": "Terrell County",
+      "NPI": "1407027493",
+      "INGESTED_AT": "2026-06-24 04:44:12.589112",
+      "SOURCE_RUN_ID": "9793be40-05a2-46c8-960b-822d315d9ccd",
+      "SRC_SHA256": "35e83159fdceeb6848681790ebf450ca1451a3e681643dc97c3e538ee493b2d8"
+    }
+  ],
+  "sample_error": null
+}

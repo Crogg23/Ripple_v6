@@ -1,0 +1,100 @@
+{
+  "fqtn": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_OPIOID_TREATMENT_PROGRAM_PROVIDERS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NPI",
+    "PROVIDER_NAME",
+    "ADDRESS_LINE_1",
+    "ADDRESS_LINE_2",
+    "CITY",
+    "STATE",
+    "ZIP",
+    "MEDICARE_ID_EFFECTIVE_DATE",
+    "PHONE"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "PROVIDER_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "STATE"
+      ],
+      "zip": [
+        "ZIP"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPI",
+      "column": "NPI",
+      "total_rows": 1558,
+      "nonnull_after_norm": 1502,
+      "distinct_after_norm": 1287,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "NPI": "1063637817",
+      "PROVIDER_NAME": "LOWER EASTSIDE SERVICE CENTER, INC.",
+      "ADDRESS_LINE_1": "46 E BROADWAY",
+      "ADDRESS_LINE_2": null,
+      "CITY": "NEW YORK",
+      "STATE": "NY",
+      "ZIP": "10002-6803",
+      "MEDICARE_ID_EFFECTIVE_DATE": "2026-02-09",
+      "PHONE": "2123433520"
+    },
+    {
+      "NPI": "1629282470",
+      "PROVIDER_NAME": "QUALITY ADDICTION MANAGEMENT INC",
+      "ADDRESS_LINE_1": "2357 W MASON ST",
+      "ADDRESS_LINE_2": null,
+      "CITY": "GREEN BAY",
+      "STATE": "WI",
+      "ZIP": "54303-4708",
+      "MEDICARE_ID_EFFECTIVE_DATE": "2020-01-01",
+      "PHONE": "9203376740"
+    },
+    {
+      "NPI": "1114093523",
+      "PROVIDER_NAME": "SOUTH BROOKLYN MEDICAL ADMINISTRATI",
+      "ADDRESS_LINE_1": "685 3RD AVE",
+      "ADDRESS_LINE_2": null,
+      "CITY": "BROOKLYN",
+      "STATE": "NY",
+      "ZIP": "11232-1108",
+      "MEDICARE_ID_EFFECTIVE_DATE": "2020-01-01",
+      "PHONE": "7187882594x117"
+    },
+    {
+      "NPI": "1568143857",
+      "PROVIDER_NAME": "COMMUNITY MEDICAL SERVICES MONTANA",
+      "ADDRESS_LINE_1": "702 CHURCH ST NE",
+      "ADDRESS_LINE_2": null,
+      "CITY": "SALEM",
+      "STATE": "OR",
+      "ZIP": "97301-2404",
+      "MEDICARE_ID_EFFECTIVE_DATE": "2024-07-23",
+      "PHONE": "5039915903"
+    },
+    {
+      "NPI": "1609470186",
+      "PROVIDER_NAME": "CRC HEALTH TREATMENT CLINICS LLC",
+      "ADDRESS_LINE_1": "3928 S NOVA RD",
+      "ADDRESS_LINE_2": "VOLUSIA COUNTY COMPREHENSIVE TREATMENT",
+      "CITY": "PORT ORANGE",
+      "STATE": "FL",
+      "ZIP": "32127-4911",
+      "MEDICARE_ID_EFFECTIVE_DATE": "2020-01-01",
+      "PHONE": "3868229941"
+    }
+  ],
+  "sample_error": null
+}

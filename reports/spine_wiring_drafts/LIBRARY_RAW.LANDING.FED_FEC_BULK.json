@@ -1,0 +1,150 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.FED_FEC_BULK",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "FEC_CMTE_ID",
+    "CMTE_NM",
+    "TRES_NM",
+    "CMTE_ST1",
+    "CMTE_ST2",
+    "CMTE_CITY",
+    "CMTE_ST",
+    "CMTE_ZIP",
+    "CMTE_DSGN",
+    "CMTE_TP",
+    "CMTE_PTY_AFFILIATION",
+    "CMTE_FILING_FREQ",
+    "ORG_TP",
+    "CONNECTED_ORG_NM",
+    "FEC_CAND_ID",
+    "_INGESTED_AT",
+    "_SOURCE_RUN_ID",
+    "_SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [
+        "CMTE_CITY"
+      ],
+      "state": [],
+      "zip": [
+        "CMTE_ZIP"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "FEC_CAND_ID",
+      "column": "FEC_CAND_ID",
+      "total_rows": 20938,
+      "nonnull_after_norm": 8221,
+      "distinct_after_norm": 7746,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "FEC_CMTE_ID": "C00880708",
+      "CMTE_NM": "JOHN AVLON VICTORY FUND",
+      "TRES_NM": "LEE, LAUREN DECOT",
+      "CMTE_ST1": "611 PENNSYLVANIA AVENUE SE",
+      "CMTE_ST2": "SUITE 143",
+      "CMTE_CITY": "WASHINGTON",
+      "CMTE_ST": "DC",
+      "CMTE_ZIP": "20003",
+      "CMTE_DSGN": "J",
+      "CMTE_TP": "N",
+      "CMTE_PTY_AFFILIATION": "",
+      "CMTE_FILING_FREQ": "T",
+      "ORG_TP": "",
+      "CONNECTED_ORG_NM": "",
+      "FEC_CAND_ID": "",
+      "_INGESTED_AT": 1782521708043145,
+      "_SOURCE_RUN_ID": "39480fdb-d658-422c-83b3-86ea24fc8460",
+      "_SRC_SHA256": "cfebda3f42b391633bb12d5411d10ae79c13525288cf7f07e03e7b4816698ef5"
+    },
+    {
+      "FEC_CMTE_ID": "C00223297",
+      "CMTE_NM": "CHRISTOPHER COX CONGRESSIONAL COMMITTEE",
+      "TRES_NM": "SYME, DAVID",
+      "CMTE_ST1": "3843 S. BRISTOL ST., #101",
+      "CMTE_ST2": "",
+      "CMTE_CITY": "SANTA ANA",
+      "CMTE_ST": "CA",
+      "CMTE_ZIP": "92704",
+      "CMTE_DSGN": "P",
+      "CMTE_TP": "H",
+      "CMTE_PTY_AFFILIATION": "REP",
+      "CMTE_FILING_FREQ": "T",
+      "ORG_TP": "",
+      "CONNECTED_ORG_NM": "",
+      "FEC_CAND_ID": "H8CA40057",
+      "_INGESTED_AT": 1782521708043145,
+      "_SOURCE_RUN_ID": "39480fdb-d658-422c-83b3-86ea24fc8460",
+      "_SRC_SHA256": "cfebda3f42b391633bb12d5411d10ae79c13525288cf7f07e03e7b4816698ef5"
+    },
+    {
+      "FEC_CMTE_ID": "C00872226",
+      "CMTE_NM": "BUCKEYE PATRIOT ALLIANCE",
+      "TRES_NM": "LEDESMA, KIM",
+      "CMTE_ST1": "13520 MCLEAREN RD",
+      "CMTE_ST2": "NO 711024",
+      "CMTE_CITY": "HERNDON",
+      "CMTE_ST": "VA",
+      "CMTE_ZIP": "20171",
+      "CMTE_DSGN": "U",
+      "CMTE_TP": "O",
+      "CMTE_PTY_AFFILIATION": "",
+      "CMTE_FILING_FREQ": "Q",
+      "ORG_TP": "",
+      "CONNECTED_ORG_NM": "NONE",
+      "FEC_CAND_ID": "",
+      "_INGESTED_AT": 1782521708043145,
+      "_SOURCE_RUN_ID": "39480fdb-d658-422c-83b3-86ea24fc8460",
+      "_SRC_SHA256": "cfebda3f42b391633bb12d5411d10ae79c13525288cf7f07e03e7b4816698ef5"
+    },
+    {
+      "FEC_CMTE_ID": "C00870493",
+      "CMTE_NM": "MONTANA BUSINESS PAC",
+      "TRES_NM": "KUNEY, LORNA",
+      "CMTE_ST1": "616 HELENA AVE",
+      "CMTE_ST2": "",
+      "CMTE_CITY": "HELENA",
+      "CMTE_ST": "MT",
+      "CMTE_ZIP": "59601",
+      "CMTE_DSGN": "U",
+      "CMTE_TP": "N",
+      "CMTE_PTY_AFFILIATION": "",
+      "CMTE_FILING_FREQ": "T",
+      "ORG_TP": "",
+      "CONNECTED_ORG_NM": "",
+      "FEC_CAND_ID": "",
+      "_INGESTED_AT": 1782521708043145,
+      "_SOURCE_RUN_ID": "39480fdb-d658-422c-83b3-86ea24fc8460",
+      "_SRC_SHA256": "cfebda3f42b391633bb12d5411d10ae79c13525288cf7f07e03e7b4816698ef5"
+    },
+    {
+      "FEC_CMTE_ID": "C00697052",
+      "CMTE_NM": "PA PATRIOTS FUND",
+      "TRES_NM": "JUKUS, JOEL",
+      "CMTE_ST1": "4075 LINGLESTOWN ROAD",
+      "CMTE_ST2": "PMB 119",
+      "CMTE_CITY": "HARRISBURG",
+      "CMTE_ST": "PA",
+      "CMTE_ZIP": "17112",
+      "CMTE_DSGN": "U",
+      "CMTE_TP": "Q",
+      "CMTE_PTY_AFFILIATION": "REP",
+      "CMTE_FILING_FREQ": "Q",
+      "ORG_TP": "",
+      "CONNECTED_ORG_NM": "",
+      "FEC_CAND_ID": "H0PA12181",
+      "_INGESTED_AT": 1782521708043145,
+      "_SOURCE_RUN_ID": "39480fdb-d658-422c-83b3-86ea24fc8460",
+      "_SRC_SHA256": "cfebda3f42b391633bb12d5411d10ae79c13525288cf7f07e03e7b4816698ef5"
+    }
+  ],
+  "sample_error": null
+}

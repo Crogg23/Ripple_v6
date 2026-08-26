@@ -1,0 +1,96 @@
+{
+  "fqtn": "LIBRARY_MARTS.FINANCE.FINANCE__FED_SEC_EDGAR_COMPANY_TICKERS_EXCHANGE",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "CIK",
+    "TICKER",
+    "CIK_TICKER",
+    "COMPANY_NAME",
+    "EXCHANGE",
+    "_LOADED_AT",
+    "_SOURCE_RUN_ID",
+    "_SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "COMPANY_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CIK",
+      "column": "CIK_TICKER",
+      "total_rows": 10398,
+      "nonnull_after_norm": 2,
+      "distinct_after_norm": 2,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    },
+    {
+      "key_label": "CIK",
+      "column": "CIK",
+      "total_rows": 10398,
+      "nonnull_after_norm": 10398,
+      "distinct_after_norm": 7998,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "CIK": 701719,
+      "TICKER": "ELA",
+      "CIK_TICKER": "701719-ELA",
+      "COMPANY_NAME": "Envela Corp",
+      "EXCHANGE": "NYSE",
+      "_LOADED_AT": 1786383840532081,
+      "_SOURCE_RUN_ID": "060c8a27-537c-4f99-91c7-ef64efae8a4b",
+      "_SRC_SHA256": "3392905b11d6fa18c5c99641a2781c40abe493f18f27f4f0a2ff9753ef19817f"
+    },
+    {
+      "CIK": 1640147,
+      "TICKER": "SNOW",
+      "CIK_TICKER": "1640147-SNOW",
+      "COMPANY_NAME": "Snowflake Inc.",
+      "EXCHANGE": "NYSE",
+      "_LOADED_AT": 1786383840532081,
+      "_SOURCE_RUN_ID": "060c8a27-537c-4f99-91c7-ef64efae8a4b",
+      "_SRC_SHA256": "3392905b11d6fa18c5c99641a2781c40abe493f18f27f4f0a2ff9753ef19817f"
+    },
+    {
+      "CIK": 2055879,
+      "TICKER": "VNME",
+      "CIK_TICKER": "2055879-VNME",
+      "COMPANY_NAME": "Vendome Acquisition Corp I",
+      "EXCHANGE": "Nasdaq",
+      "_LOADED_AT": 1786383840532081,
+      "_SOURCE_RUN_ID": "060c8a27-537c-4f99-91c7-ef64efae8a4b",
+      "_SRC_SHA256": "3392905b11d6fa18c5c99641a2781c40abe493f18f27f4f0a2ff9753ef19817f"
+    },
+    {
+      "CIK": 1858681,
+      "TICKER": "APO",
+      "CIK_TICKER": "1858681-APO",
+      "COMPANY_NAME": "Apollo Global Management, Inc.",
+      "EXCHANGE": "NYSE",
+      "_LOADED_AT": 1786383840532081,
+      "_SOURCE_RUN_ID": "060c8a27-537c-4f99-91c7-ef64efae8a4b",
+      "_SRC_SHA256": "3392905b11d6fa18c5c99641a2781c40abe493f18f27f4f0a2ff9753ef19817f"
+    },
+    {
+      "CIK": 6281,
+      "TICKER": "ADI",
+      "CIK_TICKER": "6281-ADI",
+      "COMPANY_NAME": "ANALOG DEVICES INC",
+      "EXCHANGE": "Nasdaq",
+      "_LOADED_AT": 1786383840532081,
+      "_SOURCE_RUN_ID": "060c8a27-537c-4f99-91c7-ef64efae8a4b",
+      "_SRC_SHA256": "3392905b11d6fa18c5c99641a2781c40abe493f18f27f4f0a2ff9753ef19817f"
+    }
+  ],
+  "sample_error": null
+}

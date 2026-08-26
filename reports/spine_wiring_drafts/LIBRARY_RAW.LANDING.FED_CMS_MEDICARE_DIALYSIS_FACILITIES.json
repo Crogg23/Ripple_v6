@@ -1,0 +1,140 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.FED_CMS_MEDICARE_DIALYSIS_FACILITIES",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "STATE",
+    "CCN",
+    "PROVIDER_NAME",
+    "CITY",
+    "OWNERSHIP_TYPE",
+    "ESRD_NETWORK",
+    "NPI",
+    "CHAIN",
+    "MODALITY",
+    "ALTERNATE_CCNS",
+    "MEASURE",
+    "MEASURE_SCORE",
+    "YEAR",
+    "MEASURE_ID",
+    "_INGESTED_AT",
+    "_SOURCE_RUN_ID"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "PROVIDER_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "STATE"
+      ],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPI",
+      "column": "NPI",
+      "total_rows": 12456456,
+      "nonnull_after_norm": 12411454,
+      "distinct_after_norm": 8140,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "STATE": "NJ",
+      "CCN": "312669",
+      "PROVIDER_NAME": "RAHWAY DIALYSIS",
+      "CITY": "RAHWAY",
+      "OWNERSHIP_TYPE": "For Profit",
+      "ESRD_NETWORK": "03",
+      "NPI": "1497113880",
+      "CHAIN": "DAVITA",
+      "MODALITY": "Hemodialysis and Peritoneal Dialysis",
+      "ALTERNATE_CCNS": "312669",
+      "MEASURE": "F (2728): Incident Patients  - Percent with cardiovascular disease, cerebral vascular incident, and transient ischemic attack, 2021",
+      "MEASURE_SCORE": "8.6956521739",
+      "YEAR": "2021",
+      "MEASURE_ID": "cvamy1_f",
+      "_INGESTED_AT": "2026-08-06 12:47:02.850000",
+      "_SOURCE_RUN_ID": "a8ed8a2f-31e8-4cda-92db-a2ce35be7f20"
+    },
+    {
+      "STATE": "HI",
+      "CCN": "122518",
+      "PROVIDER_NAME": "LIBERTY DIALYSIS HAWAII-SULLIVAN DIALYSIS",
+      "CITY": "HONOLULU",
+      "OWNERSHIP_TYPE": "For Profit",
+      "ESRD_NETWORK": "17",
+      "NPI": "1740221621",
+      "CHAIN": "FRESENIUS MEDICAL CARE",
+      "MODALITY": "Hemodialysis and Peritoneal Dialysis",
+      "ALTERNATE_CCNS": "122518",
+      "MEASURE": "F: Calcium (Adult) - % of patient-months with uncorrected calcium 8.4-10.2 mg/dL, 2022",
+      "MEASURE_SCORE": "85.817865429",
+      "YEAR": "2022",
+      "MEASURE_ID": "CWunCa2y2_f",
+      "_INGESTED_AT": "2026-08-06 12:47:02.850000",
+      "_SOURCE_RUN_ID": "f024e993-8a0e-482f-9c89-6ba83fd5483f"
+    },
+    {
+      "STATE": "VA",
+      "CCN": "492572",
+      "PROVIDER_NAME": "RUSSELL COUNTY DIALYSIS FACILITY",
+      "CITY": "LEBANON",
+      "OWNERSHIP_TYPE": "For Profit",
+      "ESRD_NETWORK": "05",
+      "NPI": "1255435020",
+      "CHAIN": "FRESENIUS MEDICAL CARE",
+      "MODALITY": "Hemodialysis and Peritoneal Dialysis",
+      "ALTERNATE_CCNS": "492572",
+      "MEASURE": "F (2728): Incident Patients  - Average age, 2022",
+      "MEASURE_SCORE": "63.60797399",
+      "YEAR": "2022",
+      "MEASURE_ID": "agemy2_f",
+      "_INGESTED_AT": "2026-08-06 12:47:02.850000",
+      "_SOURCE_RUN_ID": "2a8bc74b-8ffb-4808-baa2-2b5c8636b375"
+    },
+    {
+      "STATE": "NC",
+      "CCN": "342596",
+      "PROVIDER_NAME": "FMC DIALYSIS SERVICES EAST CAROLINA UNIVERSITY",
+      "CITY": "GREENVILLE",
+      "OWNERSHIP_TYPE": "For Profit",
+      "ESRD_NETWORK": "06",
+      "NPI": "1215039615",
+      "CHAIN": "FRESENIUS MEDICAL CARE",
+      "MODALITY": "Hemodialysis and Peritoneal Dialysis",
+      "ALTERNATE_CCNS": "342596",
+      "MEASURE": "F: Influenza - % of dialysis patients with <1 year of prior ESRD therapy vaccinated, 8/1-12/31, 2024",
+      "MEASURE_SCORE": "80.64516129",
+      "YEAR": "2024",
+      "MEASURE_ID": "FVVCat1hy4_f",
+      "_INGESTED_AT": "2026-08-06 12:47:02.850000",
+      "_SOURCE_RUN_ID": "fe616dd9-079b-49a1-abdb-f3bd83a78335"
+    },
+    {
+      "STATE": "MO",
+      "CCN": "262576",
+      "PROVIDER_NAME": "ST JOSEPH DIALYSIS",
+      "CITY": "SAINT JOSEPH",
+      "OWNERSHIP_TYPE": "For Profit",
+      "ESRD_NETWORK": "12",
+      "NPI": "1578524104",
+      "CHAIN": "DAVITA",
+      "MODALITY": "Hemodialysis and Peritoneal Dialysis",
+      "ALTERNATE_CCNS": "262576",
+      "MEASURE": "F: Hospitalization - Diagnosis: % with Septicemia, 2021",
+      "MEASURE_SCORE": "9.4594594595",
+      "YEAR": "2021",
+      "MEASURE_ID": "sepiy1_f",
+      "_INGESTED_AT": "2026-08-06 12:47:02.850000",
+      "_SOURCE_RUN_ID": "d2e51be0-eb4d-47ff-8185-5951308eb003"
+    }
+  ],
+  "sample_error": null
+}

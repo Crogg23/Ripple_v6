@@ -1,0 +1,116 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.FED_CMS_FACILITY_AFFILIATION",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NPI",
+    "IND_PAC_ID",
+    "PROVIDER_LAST_NAME",
+    "PROVIDER_FIRST_NAME",
+    "PROVIDER_MIDDLE_NAME",
+    "SUFF",
+    "FACILITY_TYPE",
+    "CCN",
+    "FACILITY_TYPE_CERTIFICATION_NUMBER",
+    "_INGESTED_AT",
+    "_SOURCE_RUN_ID",
+    "_SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "PROVIDER_LAST_NAME",
+      "PROVIDER_FIRST_NAME",
+      "PROVIDER_MIDDLE_NAME",
+      "FACILITY_TYPE",
+      "FACILITY_TYPE_CERTIFICATION_NUMBER"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CCN",
+      "column": "CCN",
+      "total_rows": 2260193,
+      "nonnull_after_norm": 2249998,
+      "distinct_after_norm": 38103,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "NPI": "1780685834",
+      "IND_PAC_ID": "2567491244",
+      "PROVIDER_LAST_NAME": "HO",
+      "PROVIDER_FIRST_NAME": "CHARLES",
+      "PROVIDER_MIDDLE_NAME": "C",
+      "SUFF": "",
+      "FACILITY_TYPE": "Hospital",
+      "CCN": "110005",
+      "FACILITY_TYPE_CERTIFICATION_NUMBER": "",
+      "_INGESTED_AT": 1783783392626274,
+      "_SOURCE_RUN_ID": "e9e3f1a8-f13f-430a-8348-e3b79dba5a98",
+      "_SRC_SHA256": "55c84c5de7c2cbc4f616a4e098649aa88e1fd1ea8b66be70392001362313261c"
+    },
+    {
+      "NPI": "1053872184",
+      "IND_PAC_ID": "2668814617",
+      "PROVIDER_LAST_NAME": "TOTH",
+      "PROVIDER_FIRST_NAME": "TYLER",
+      "PROVIDER_MIDDLE_NAME": "",
+      "SUFF": "",
+      "FACILITY_TYPE": "Hospital",
+      "CCN": "310113",
+      "FACILITY_TYPE_CERTIFICATION_NUMBER": "",
+      "_INGESTED_AT": 1783783392626274,
+      "_SOURCE_RUN_ID": "e9e3f1a8-f13f-430a-8348-e3b79dba5a98",
+      "_SRC_SHA256": "4b82763f049354bf8189e1d5cbb014892c6c4a2b3fcabf1ffb130b49aacafc43"
+    },
+    {
+      "NPI": "1932631892",
+      "IND_PAC_ID": "7315353687",
+      "PROVIDER_LAST_NAME": "ELURI",
+      "PROVIDER_FIRST_NAME": "MADHULIKA",
+      "PROVIDER_MIDDLE_NAME": "",
+      "SUFF": "",
+      "FACILITY_TYPE": "Hospital",
+      "CCN": "450076",
+      "FACILITY_TYPE_CERTIFICATION_NUMBER": "",
+      "_INGESTED_AT": 1783783392626274,
+      "_SOURCE_RUN_ID": "e9e3f1a8-f13f-430a-8348-e3b79dba5a98",
+      "_SRC_SHA256": "7373e9b183c2aa77429f3e7960f8ae855c24f5a22d4bde937df3a774d2c765a8"
+    },
+    {
+      "NPI": "1447819198",
+      "IND_PAC_ID": "3779918354",
+      "PROVIDER_LAST_NAME": "AHMAD",
+      "PROVIDER_FIRST_NAME": "TAHREEM",
+      "PROVIDER_MIDDLE_NAME": "",
+      "SUFF": "",
+      "FACILITY_TYPE": "Hospital",
+      "CCN": "210017",
+      "FACILITY_TYPE_CERTIFICATION_NUMBER": "",
+      "_INGESTED_AT": 1783783392626274,
+      "_SOURCE_RUN_ID": "e9e3f1a8-f13f-430a-8348-e3b79dba5a98",
+      "_SRC_SHA256": "570d60238af9fd7abea078c3fe383b58a0c2fd8764815db1cb19b3b2f5aed14c"
+    },
+    {
+      "NPI": "1124102637",
+      "IND_PAC_ID": "8921039934",
+      "PROVIDER_LAST_NAME": "PRANSKY",
+      "PROVIDER_FIRST_NAME": "GARY",
+      "PROVIDER_MIDDLE_NAME": "S",
+      "SUFF": "",
+      "FACILITY_TYPE": "Hospice",
+      "CCN": "221562",
+      "FACILITY_TYPE_CERTIFICATION_NUMBER": "",
+      "_INGESTED_AT": 1783783392626274,
+      "_SOURCE_RUN_ID": "e9e3f1a8-f13f-430a-8348-e3b79dba5a98",
+      "_SRC_SHA256": "e42585609657bc5ac70c7b3203f036abdca9b3e38e841cabde5b2420fc522a98"
+    }
+  ],
+  "sample_error": null
+}

@@ -1,0 +1,153 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.FED_US_SEC_EDGAR",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "ACCESSION_NUMBER",
+    "CIK",
+    "ENTITY_NAME",
+    "TICKER",
+    "FORM_TYPE",
+    "FILED_AT",
+    "PERIOD_OF_REPORT",
+    "FILING_URL",
+    "DOCUMENT_URL",
+    "SIC_CODE",
+    "STATE_OF_INCORPORATION",
+    "BUSINESS_ADDRESS",
+    "ISIN",
+    "EIN",
+    "_INGESTED_AT",
+    "_SOURCE_RUN_ID",
+    "_SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "ENTITY_NAME",
+      "BUSINESS_ADDRESS"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [
+        "STATE_OF_INCORPORATION"
+      ],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "EIN",
+      "column": "EIN",
+      "total_rows": 48990,
+      "nonnull_after_norm": 48400,
+      "distinct_after_norm": 24,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    },
+    {
+      "key_label": "CIK",
+      "column": "CIK",
+      "total_rows": 48990,
+      "nonnull_after_norm": 48990,
+      "distinct_after_norm": 25,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "ACCESSION_NUMBER": "0001213900-26-065736",
+      "CIK": "0000019617",
+      "ENTITY_NAME": "JPMORGAN CHASE & CO",
+      "TICKER": "JPM",
+      "FORM_TYPE": "424B2",
+      "FILED_AT": "2026-06-05",
+      "PERIOD_OF_REPORT": "",
+      "FILING_URL": "https://www.sec.gov/Archives/edgar/data/19617/000121390026065736/",
+      "DOCUMENT_URL": "https://www.sec.gov/Archives/edgar/data/19617/000121390026065736/ea0293791-01_424b2.htm",
+      "SIC_CODE": "6021",
+      "STATE_OF_INCORPORATION": "DE",
+      "BUSINESS_ADDRESS": "270 PARK AVENUE, NEW YORK, NY, 10017",
+      "ISIN": "",
+      "EIN": "132624428",
+      "_INGESTED_AT": 1782938391987908,
+      "_SOURCE_RUN_ID": "d124f698-ff64-462e-803c-9cc544751043",
+      "_SRC_SHA256": "d70ee4b6aa808882e62d207648e850ca87754a7813107add76a78024bfe7b695"
+    },
+    {
+      "ACCESSION_NUMBER": "0001213900-25-112047",
+      "CIK": "0000019617",
+      "ENTITY_NAME": "JPMORGAN CHASE & CO",
+      "TICKER": "JPM",
+      "FORM_TYPE": "424B2",
+      "FILED_AT": "2025-11-18",
+      "PERIOD_OF_REPORT": "",
+      "FILING_URL": "https://www.sec.gov/Archives/edgar/data/19617/000121390025112047/",
+      "DOCUMENT_URL": "https://www.sec.gov/Archives/edgar/data/19617/000121390025112047/ea0266285-01_424b2.htm",
+      "SIC_CODE": "6021",
+      "STATE_OF_INCORPORATION": "DE",
+      "BUSINESS_ADDRESS": "270 PARK AVENUE, NEW YORK, NY, 10017",
+      "ISIN": "",
+      "EIN": "132624428",
+      "_INGESTED_AT": 1782938391987908,
+      "_SOURCE_RUN_ID": "d124f698-ff64-462e-803c-9cc544751043",
+      "_SRC_SHA256": "d70ee4b6aa808882e62d207648e850ca87754a7813107add76a78024bfe7b695"
+    },
+    {
+      "ACCESSION_NUMBER": "0000104169-23-000043",
+      "CIK": "0000104169",
+      "ENTITY_NAME": "Walmart Inc.",
+      "TICKER": "WMT",
+      "FORM_TYPE": "8-K",
+      "FILED_AT": "2023-05-18",
+      "PERIOD_OF_REPORT": "2023-05-18",
+      "FILING_URL": "https://www.sec.gov/Archives/edgar/data/104169/000010416923000043/",
+      "DOCUMENT_URL": "https://www.sec.gov/Archives/edgar/data/104169/000010416923000043/wmt-20230518.htm",
+      "SIC_CODE": "5331",
+      "STATE_OF_INCORPORATION": "DE",
+      "BUSINESS_ADDRESS": "1 CUSTOMER DRIVE, BENTONVILLE, AR, 72716",
+      "ISIN": "",
+      "EIN": "710415188",
+      "_INGESTED_AT": 1782938391987908,
+      "_SOURCE_RUN_ID": "d124f698-ff64-462e-803c-9cc544751043",
+      "_SRC_SHA256": "d70ee4b6aa808882e62d207648e850ca87754a7813107add76a78024bfe7b695"
+    },
+    {
+      "ACCESSION_NUMBER": "0001193125-15-050299",
+      "CIK": "0000707549",
+      "ENTITY_NAME": "LAM RESEARCH CORP",
+      "TICKER": "LRCX",
+      "FORM_TYPE": "S-3ASR",
+      "FILED_AT": "2015-02-13",
+      "PERIOD_OF_REPORT": "",
+      "FILING_URL": "https://www.sec.gov/Archives/edgar/data/707549/000119312515050299/",
+      "DOCUMENT_URL": "https://www.sec.gov/Archives/edgar/data/707549/000119312515050299/d828450ds3asr.htm",
+      "SIC_CODE": "3559",
+      "STATE_OF_INCORPORATION": "DE",
+      "BUSINESS_ADDRESS": "4650 CUSHING BLVD, FREMONT, CA, 94538",
+      "ISIN": "",
+      "EIN": "942634797",
+      "_INGESTED_AT": 1782938391987908,
+      "_SOURCE_RUN_ID": "d124f698-ff64-462e-803c-9cc544751043",
+      "_SRC_SHA256": "d70ee4b6aa808882e62d207648e850ca87754a7813107add76a78024bfe7b695"
+    },
+    {
+      "ACCESSION_NUMBER": "0001839882-25-067122",
+      "CIK": "0000019617",
+      "ENTITY_NAME": "JPMORGAN CHASE & CO",
+      "TICKER": "JPM",
+      "FORM_TYPE": "FWP",
+      "FILED_AT": "2025-11-25",
+      "PERIOD_OF_REPORT": "",
+      "FILING_URL": "https://www.sec.gov/Archives/edgar/data/19617/000183988225067122/",
+      "DOCUMENT_URL": "https://www.sec.gov/Archives/edgar/data/19617/000183988225067122/jpm_fwp-39270.htm",
+      "SIC_CODE": "6021",
+      "STATE_OF_INCORPORATION": "DE",
+      "BUSINESS_ADDRESS": "270 PARK AVENUE, NEW YORK, NY, 10017",
+      "ISIN": "",
+      "EIN": "132624428",
+      "_INGESTED_AT": 1782938391987908,
+      "_SOURCE_RUN_ID": "d124f698-ff64-462e-803c-9cc544751043",
+      "_SRC_SHA256": "d70ee4b6aa808882e62d207648e850ca87754a7813107add76a78024bfe7b695"
+    }
+  ],
+  "sample_error": null
+}

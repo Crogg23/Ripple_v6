@@ -1,0 +1,138 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_CKA_WESTERN_PENNSYLV_152133D5ED",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "OBJECTID",
+    "WUDS_ID",
+    "NAME",
+    "CNTY_CODE",
+    "CNTY_NAME",
+    "OWNERSHIP",
+    "GW_SOURCE",
+    "SW_SOURCE",
+    "INTCONNECT",
+    "LAST_DATE",
+    "PWS_ID",
+    "SHAPEAREA",
+    "SHAPELEN",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "NAME",
+      "CNTY_NAME",
+      "LAST_DATE"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "PWSID",
+      "column": "PWS_ID",
+      "total_rows": 1792,
+      "nonnull_after_norm": 0,
+      "distinct_after_norm": 0,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "OBJECTID": "16629",
+      "WUDS_ID": "19453",
+      "NAME": "UTILITIES INC WESTGATE",
+      "CNTY_CODE": "48",
+      "CNTY_NAME": "Northampton",
+      "OWNERSHIP": "Private Investor Owned",
+      "GW_SOURCE": "N",
+      "SW_SOURCE": "N",
+      "INTCONNECT": "Y",
+      "LAST_DATE": "2016/02/27 00:00:00+00",
+      "PWS_ID": "3480024",
+      "SHAPEAREA": "5509007.60230519",
+      "SHAPELEN": "10927.7375581263",
+      "INGESTED_AT": "2026-07-02 23:26:53.081409",
+      "SOURCE_RUN_ID": "4574852b-790b-4e31-ae05-c2606f0da81c",
+      "SRC_SHA256": "586e718c89566d86b1e77a9da4faa2c2c2e850a4ccbeb5f6bf4c15046fe0d544"
+    },
+    {
+      "OBJECTID": "15648",
+      "WUDS_ID": "20429",
+      "NAME": "OAK VILLAGE MHP",
+      "CNTY_CODE": "01",
+      "CNTY_NAME": "Adams",
+      "OWNERSHIP": "Mobile Home Park",
+      "GW_SOURCE": "Y",
+      "SW_SOURCE": "N",
+      "INTCONNECT": "N",
+      "LAST_DATE": "2003/01/01 00:00:00+00",
+      "PWS_ID": "7010011",
+      "SHAPEAREA": "136789.380332205",
+      "SHAPELEN": "1614.82400313431",
+      "INGESTED_AT": "2026-07-02 23:26:53.081409",
+      "SOURCE_RUN_ID": "4574852b-790b-4e31-ae05-c2606f0da81c",
+      "SRC_SHA256": "586e718c89566d86b1e77a9da4faa2c2c2e850a4ccbeb5f6bf4c15046fe0d544"
+    },
+    {
+      "OBJECTID": "15357",
+      "WUDS_ID": "18440",
+      "NAME": "WOODHAVEN MHP",
+      "CNTY_CODE": "25",
+      "CNTY_NAME": "Erie",
+      "OWNERSHIP": "Mobile Home Park",
+      "GW_SOURCE": "N",
+      "SW_SOURCE": "Y",
+      "INTCONNECT": "N",
+      "LAST_DATE": "2003/01/01 00:00:00+00",
+      "PWS_ID": "6250084",
+      "SHAPEAREA": "411851.442802005",
+      "SHAPELEN": "3165.27881380123",
+      "INGESTED_AT": "2026-07-02 23:26:53.081409",
+      "SOURCE_RUN_ID": "4574852b-790b-4e31-ae05-c2606f0da81c",
+      "SRC_SHA256": "586e718c89566d86b1e77a9da4faa2c2c2e850a4ccbeb5f6bf4c15046fe0d544"
+    },
+    {
+      "OBJECTID": "16832",
+      "WUDS_ID": "19710",
+      "NAME": "HAZLETON CITY AUTH DELANO AND PARK PLACE",
+      "CNTY_CODE": "54",
+      "CNTY_NAME": "Schuylkill",
+      "OWNERSHIP": "Authority",
+      "GW_SOURCE": "Y",
+      "SW_SOURCE": "Y",
+      "INTCONNECT": "N",
+      "LAST_DATE": "2003/01/01 00:00:00+00",
+      "PWS_ID": "2408007",
+      "SHAPEAREA": "4597513.16589173",
+      "SHAPELEN": "19577.6768974235",
+      "INGESTED_AT": "2026-07-02 23:26:53.081409",
+      "SOURCE_RUN_ID": "4574852b-790b-4e31-ae05-c2606f0da81c",
+      "SRC_SHA256": "586e718c89566d86b1e77a9da4faa2c2c2e850a4ccbeb5f6bf4c15046fe0d544"
+    },
+    {
+      "OBJECTID": "15629",
+      "WUDS_ID": "19047",
+      "NAME": "BURNSIDE BORO WATER SYS",
+      "CNTY_CODE": "17",
+      "CNTY_NAME": "Clearfield",
+      "OWNERSHIP": "Municipal",
+      "GW_SOURCE": "Y",
+      "SW_SOURCE": "N",
+      "INTCONNECT": "N",
+      "LAST_DATE": "2003/01/01 00:00:00+00",
+      "PWS_ID": "6170004",
+      "SHAPEAREA": "7878849.82315544",
+      "SHAPELEN": "11230.2445504506",
+      "INGESTED_AT": "2026-07-02 23:26:53.081409",
+      "SOURCE_RUN_ID": "4574852b-790b-4e31-ae05-c2606f0da81c",
+      "SRC_SHA256": "586e718c89566d86b1e77a9da4faa2c2c2e850a4ccbeb5f6bf4c15046fe0d544"
+    }
+  ],
+  "sample_error": null
+}

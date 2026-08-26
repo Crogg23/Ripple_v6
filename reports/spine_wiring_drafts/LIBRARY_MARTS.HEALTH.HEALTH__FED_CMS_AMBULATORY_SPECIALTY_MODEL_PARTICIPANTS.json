@@ -1,0 +1,140 @@
+{
+  "fqtn": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NPI",
+    "FIRST_NAME",
+    "LAST_NAME",
+    "STATE",
+    "ASM_COHORT",
+    "ORGANIZATION_LEGAL_NAME",
+    "ASM_CY27_PARTICIPANT",
+    "ASM_CY27_SMALLPRACTICE",
+    "ASM_CY28_PARTICIPANT",
+    "ASM_CY28_SMALLPRACTICE",
+    "ASM_CY29_PARTICIPANT",
+    "ASM_CY29_SMALLPRACTICE",
+    "ASM_CY30_PARTICIPANT",
+    "ASM_CY30_SMALLPRACTICE",
+    "ASM_CY31_PARTICIPANT",
+    "ASM_CY31_SMALLPRACTICE"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "FIRST_NAME",
+      "LAST_NAME",
+      "ORGANIZATION_LEGAL_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [
+        "STATE"
+      ],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPI",
+      "column": "NPI",
+      "total_rows": 6637,
+      "nonnull_after_norm": 6637,
+      "distinct_after_norm": 6510,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "NPI": "1750671400",
+      "FIRST_NAME": "ZWADE",
+      "LAST_NAME": "MARSHALL",
+      "STATE": "GA",
+      "ASM_COHORT": "Low Back Pain",
+      "ORGANIZATION_LEGAL_NAME": "REGENERATIVE SPINE AND PAIN SPECIALISTS",
+      "ASM_CY27_PARTICIPANT": "Yes",
+      "ASM_CY27_SMALLPRACTICE": "Yes",
+      "ASM_CY28_PARTICIPANT": "Null",
+      "ASM_CY28_SMALLPRACTICE": "Null",
+      "ASM_CY29_PARTICIPANT": "Null",
+      "ASM_CY29_SMALLPRACTICE": "Null",
+      "ASM_CY30_PARTICIPANT": "Null",
+      "ASM_CY30_SMALLPRACTICE": "Null",
+      "ASM_CY31_PARTICIPANT": "Null",
+      "ASM_CY31_SMALLPRACTICE": "Null"
+    },
+    {
+      "NPI": "1598785321",
+      "FIRST_NAME": "SELVIN",
+      "LAST_NAME": "SUDHAKAR",
+      "STATE": "TX",
+      "ASM_COHORT": "Heart Failure",
+      "ORGANIZATION_LEGAL_NAME": "RAJ K BHALLA MD PA",
+      "ASM_CY27_PARTICIPANT": "Yes",
+      "ASM_CY27_SMALLPRACTICE": "Yes",
+      "ASM_CY28_PARTICIPANT": "Null",
+      "ASM_CY28_SMALLPRACTICE": "Null",
+      "ASM_CY29_PARTICIPANT": "Null",
+      "ASM_CY29_SMALLPRACTICE": "Null",
+      "ASM_CY30_PARTICIPANT": "Null",
+      "ASM_CY30_SMALLPRACTICE": "Null",
+      "ASM_CY31_PARTICIPANT": "Null",
+      "ASM_CY31_SMALLPRACTICE": "Null"
+    },
+    {
+      "NPI": "1801825203",
+      "FIRST_NAME": "MICHAEL",
+      "LAST_NAME": "GIROLAMI",
+      "STATE": "CA",
+      "ASM_COHORT": "Heart Failure",
+      "ORGANIZATION_LEGAL_NAME": "MICHAEL H GIROLAMI MD A MEDICAL CORPORATION",
+      "ASM_CY27_PARTICIPANT": "Yes",
+      "ASM_CY27_SMALLPRACTICE": "Yes",
+      "ASM_CY28_PARTICIPANT": "Null",
+      "ASM_CY28_SMALLPRACTICE": "Null",
+      "ASM_CY29_PARTICIPANT": "Null",
+      "ASM_CY29_SMALLPRACTICE": "Null",
+      "ASM_CY30_PARTICIPANT": "Null",
+      "ASM_CY30_SMALLPRACTICE": "Null",
+      "ASM_CY31_PARTICIPANT": "Null",
+      "ASM_CY31_SMALLPRACTICE": "Null"
+    },
+    {
+      "NPI": "1467896019",
+      "FIRST_NAME": "RAECHEL",
+      "LAST_NAME": "PERCY",
+      "STATE": "NY",
+      "ASM_COHORT": "Low Back Pain",
+      "ORGANIZATION_LEGAL_NAME": "BUFFALO SPINE MEDICINE & REHAB PLLC",
+      "ASM_CY27_PARTICIPANT": "Yes",
+      "ASM_CY27_SMALLPRACTICE": "Yes",
+      "ASM_CY28_PARTICIPANT": "Null",
+      "ASM_CY28_SMALLPRACTICE": "Null",
+      "ASM_CY29_PARTICIPANT": "Null",
+      "ASM_CY29_SMALLPRACTICE": "Null",
+      "ASM_CY30_PARTICIPANT": "Null",
+      "ASM_CY30_SMALLPRACTICE": "Null",
+      "ASM_CY31_PARTICIPANT": "Null",
+      "ASM_CY31_SMALLPRACTICE": "Null"
+    },
+    {
+      "NPI": "1407866528",
+      "FIRST_NAME": "DANIEL",
+      "LAST_NAME": "KEAN",
+      "STATE": "KY",
+      "ASM_COHORT": "Low Back Pain",
+      "ORGANIZATION_LEGAL_NAME": "COMMUNITY MEDICAL ASSOCIATES INC",
+      "ASM_CY27_PARTICIPANT": "Yes",
+      "ASM_CY27_SMALLPRACTICE": "No",
+      "ASM_CY28_PARTICIPANT": "Null",
+      "ASM_CY28_SMALLPRACTICE": "Null",
+      "ASM_CY29_PARTICIPANT": "Null",
+      "ASM_CY29_SMALLPRACTICE": "Null",
+      "ASM_CY30_PARTICIPANT": "Null",
+      "ASM_CY30_SMALLPRACTICE": "Null",
+      "ASM_CY31_PARTICIPANT": "Null",
+      "ASM_CY31_SMALLPRACTICE": "Null"
+    }
+  ],
+  "sample_error": null
+}

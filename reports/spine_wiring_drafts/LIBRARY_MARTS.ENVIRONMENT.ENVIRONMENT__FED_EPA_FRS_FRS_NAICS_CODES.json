@@ -1,0 +1,62 @@
+{
+  "fqtn": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_FRS_FRS_NAICS_CODES",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "PGM_SYS_ID",
+    "PGM_SYS_ACNRM",
+    "NAICS_CODE",
+    "REGISTRY_ID"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "FRS_ID",
+      "column": "REGISTRY_ID",
+      "total_rows": 2179702,
+      "nonnull_after_norm": 2178276,
+      "distinct_after_norm": 1672433,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "PGM_SYS_ID": "IA0000001918300049",
+      "PGM_SYS_ACNRM": "AIR",
+      "NAICS_CODE": "327320",
+      "REGISTRY_ID": "110027236907"
+    },
+    {
+      "PGM_SYS_ID": "OK0000004001900204",
+      "PGM_SYS_ACNRM": "AIR",
+      "NAICS_CODE": "211111",
+      "REGISTRY_ID": "110058897190"
+    },
+    {
+      "PGM_SYS_ID": "VTR000507582",
+      "PGM_SYS_ACNRM": "RCRAINFO",
+      "NAICS_CODE": "621210",
+      "REGISTRY_ID": "110015587337"
+    },
+    {
+      "PGM_SYS_ID": "DED984073148",
+      "PGM_SYS_ACNRM": "RCRAINFO",
+      "NAICS_CODE": "423930",
+      "REGISTRY_ID": "110002510523"
+    },
+    {
+      "PGM_SYS_ID": "MIK829266606",
+      "PGM_SYS_ACNRM": "RCRAINFO",
+      "NAICS_CODE": "611110",
+      "REGISTRY_ID": "110070121239"
+    }
+  ],
+  "sample_error": null
+}

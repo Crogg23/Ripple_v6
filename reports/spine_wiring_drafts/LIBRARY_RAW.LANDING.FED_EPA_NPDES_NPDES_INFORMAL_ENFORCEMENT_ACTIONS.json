@@ -1,0 +1,122 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.FED_EPA_NPDES_NPDES_INFORMAL_ENFORCEMENT_ACTIONS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NPDES_ID",
+    "REGISTRY_ID",
+    "AGENCY",
+    "ACTIVITY_ID",
+    "ACTIVITY_TYPE_CODE",
+    "ACTIVITY_TYPE_DESC",
+    "ENF_TYPE_CODE",
+    "ENF_TYPE_DESC",
+    "ACHIEVED_DATE",
+    "ENF_IDENTIFIER",
+    "OFFICIAL_FLG",
+    "_INGESTED_AT",
+    "_SOURCE_RUN_ID",
+    "_SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "FRS_ID",
+      "column": "REGISTRY_ID",
+      "total_rows": 478855,
+      "nonnull_after_norm": 478836,
+      "distinct_after_norm": 112933,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "NPDES_ID": "WY0026026",
+      "REGISTRY_ID": "110055194935",
+      "AGENCY": "State",
+      "ACTIVITY_ID": "3604346548",
+      "ACTIVITY_TYPE_CODE": "AIF",
+      "ACTIVITY_TYPE_DESC": "Administrative - Informal",
+      "ENF_TYPE_CODE": "LOVWL",
+      "ENF_TYPE_DESC": "Letter of Violation/ Warning Letter",
+      "ACHIEVED_DATE": "03/29/2006",
+      "ENF_IDENTIFIER": "WY-8110",
+      "OFFICIAL_FLG": "Y",
+      "_INGESTED_AT": 1786044028753063,
+      "_SOURCE_RUN_ID": "2e0286a6-b615-4614-b1e4-daac221434e8",
+      "_SRC_SHA256": "4efc9ba7de539755aa5d6cc8e45e4b7a703b24aa417c8ee8fcab712b8f4aeecc"
+    },
+    {
+      "NPDES_ID": "KY0024881",
+      "REGISTRY_ID": "110006752148",
+      "AGENCY": "State",
+      "ACTIVITY_ID": "3602467478",
+      "ACTIVITY_TYPE_CODE": "AIF",
+      "ACTIVITY_TYPE_DESC": "Administrative - Informal",
+      "ENF_TYPE_CODE": "NOV",
+      "ENF_TYPE_DESC": "Notice of Violation",
+      "ACHIEVED_DATE": "03/24/2021",
+      "ENF_IDENTIFIER": "KY-10517987",
+      "OFFICIAL_FLG": "Y",
+      "_INGESTED_AT": 1786044028753063,
+      "_SOURCE_RUN_ID": "2e0286a6-b615-4614-b1e4-daac221434e8",
+      "_SRC_SHA256": "4efc9ba7de539755aa5d6cc8e45e4b7a703b24aa417c8ee8fcab712b8f4aeecc"
+    },
+    {
+      "NPDES_ID": "IA0042838",
+      "REGISTRY_ID": "110010033659",
+      "AGENCY": "State",
+      "ACTIVITY_ID": "3200198991",
+      "ACTIVITY_TYPE_CODE": "AIF",
+      "ACTIVITY_TYPE_DESC": "Administrative - Informal",
+      "ENF_TYPE_CODE": "LOVWL",
+      "ENF_TYPE_DESC": "Letter of Violation/ Warning Letter",
+      "ACHIEVED_DATE": "04/22/1996",
+      "ENF_IDENTIFIER": "IA-N00005272",
+      "OFFICIAL_FLG": "Y",
+      "_INGESTED_AT": 1786044028753063,
+      "_SOURCE_RUN_ID": "2e0286a6-b615-4614-b1e4-daac221434e8",
+      "_SRC_SHA256": "4efc9ba7de539755aa5d6cc8e45e4b7a703b24aa417c8ee8fcab712b8f4aeecc"
+    },
+    {
+      "NPDES_ID": "AR0036692",
+      "REGISTRY_ID": "110000525469",
+      "AGENCY": "State",
+      "ACTIVITY_ID": "1200075373",
+      "ACTIVITY_TYPE_CODE": "AIF",
+      "ACTIVITY_TYPE_DESC": "Administrative - Informal",
+      "ENF_TYPE_CODE": "PHEMAIL",
+      "ENF_TYPE_DESC": "Phone Call/ EMAIL",
+      "ACHIEVED_DATE": "10/13/1995",
+      "ENF_IDENTIFIER": "AR-N00004263",
+      "OFFICIAL_FLG": "N",
+      "_INGESTED_AT": 1786044028753063,
+      "_SOURCE_RUN_ID": "2e0286a6-b615-4614-b1e4-daac221434e8",
+      "_SRC_SHA256": "4efc9ba7de539755aa5d6cc8e45e4b7a703b24aa417c8ee8fcab712b8f4aeecc"
+    },
+    {
+      "NPDES_ID": "FLG110195",
+      "REGISTRY_ID": "110035630243",
+      "AGENCY": "State",
+      "ACTIVITY_ID": "3604456034",
+      "ACTIVITY_TYPE_CODE": "AIF",
+      "ACTIVITY_TYPE_DESC": "Administrative - Informal",
+      "ENF_TYPE_CODE": "NONC",
+      "ENF_TYPE_DESC": "Notice of Noncompliance Issued",
+      "ACHIEVED_DATE": "06/26/2025",
+      "ENF_IDENTIFIER": "FL-NCOMET12582831",
+      "OFFICIAL_FLG": "Y",
+      "_INGESTED_AT": 1786044028753063,
+      "_SOURCE_RUN_ID": "2e0286a6-b615-4614-b1e4-daac221434e8",
+      "_SRC_SHA256": "4efc9ba7de539755aa5d6cc8e45e4b7a703b24aa417c8ee8fcab712b8f4aeecc"
+    }
+  ],
+  "sample_error": null
+}

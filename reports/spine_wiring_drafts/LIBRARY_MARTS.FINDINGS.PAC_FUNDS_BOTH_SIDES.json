@@ -1,0 +1,112 @@
+{
+  "fqtn": "LIBRARY_MARTS.FINDINGS.PAC_FUNDS_BOTH_SIDES",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "CMTE_ID",
+    "CMTE_NAME",
+    "CONNECTED_ORG",
+    "CMTE_TYPE",
+    "MEMBERS_FUNDED",
+    "DEM_MEMBERS",
+    "REP_MEMBERS",
+    "TOTAL_USD",
+    "TOTAL_TO_DEMS",
+    "TOTAL_TO_REPS",
+    "BIPARTISAN_BALANCE",
+    "BOTH_SIDES_FLAG"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "CMTE_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "FEC_CMTE_ID",
+      "column": "CMTE_ID",
+      "total_rows": 2680,
+      "nonnull_after_norm": 2680,
+      "distinct_after_norm": 2680,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "CMTE_ID": "C00484535",
+      "CMTE_NAME": "VOTESANE PAC",
+      "CONNECTED_ORG": null,
+      "CMTE_TYPE": "N",
+      "MEMBERS_FUNDED": 20,
+      "DEM_MEMBERS": 7,
+      "REP_MEMBERS": 13,
+      "TOTAL_USD": 11058.0,
+      "TOTAL_TO_DEMS": 2690.0,
+      "TOTAL_TO_REPS": 8368.0,
+      "BIPARTISAN_BALANCE": "0.538",
+      "BOTH_SIDES_FLAG": true
+    },
+    {
+      "CMTE_ID": "C00428052",
+      "CMTE_NAME": "MAJORITY COMMITTEE PAC--MC PAC",
+      "CONNECTED_ORG": "MCCARTHY VICTORY FUND",
+      "CMTE_TYPE": "Q",
+      "MEMBERS_FUNDED": 112,
+      "DEM_MEMBERS": 0,
+      "REP_MEMBERS": 111,
+      "TOTAL_USD": 1070000.0,
+      "TOTAL_TO_DEMS": 0.0,
+      "TOTAL_TO_REPS": 1060000.0,
+      "BIPARTISAN_BALANCE": "0.000",
+      "BOTH_SIDES_FLAG": false
+    },
+    {
+      "CMTE_ID": "C00610212",
+      "CMTE_NAME": "WAGING PEACE",
+      "CONNECTED_ORG": null,
+      "CMTE_TYPE": "Q",
+      "MEMBERS_FUNDED": 25,
+      "DEM_MEMBERS": 0,
+      "REP_MEMBERS": 25,
+      "TOTAL_USD": 181500.0,
+      "TOTAL_TO_DEMS": 0.0,
+      "TOTAL_TO_REPS": 181500.0,
+      "BIPARTISAN_BALANCE": "0.000",
+      "BOTH_SIDES_FLAG": false
+    },
+    {
+      "CMTE_ID": "C00842104",
+      "CMTE_NAME": "FIGHT LIKE HELL PAC",
+      "CONNECTED_ORG": null,
+      "CMTE_TYPE": "W",
+      "MEMBERS_FUNDED": 16,
+      "DEM_MEMBERS": 16,
+      "REP_MEMBERS": 0,
+      "TOTAL_USD": 87400.0,
+      "TOTAL_TO_DEMS": 87400.0,
+      "TOTAL_TO_REPS": 0.0,
+      "BIPARTISAN_BALANCE": "0.000",
+      "BOTH_SIDES_FLAG": false
+    },
+    {
+      "CMTE_ID": "C00150805",
+      "CMTE_NAME": "CROP INSURANCE REINSURANCE BUREAU (CIRB)-PAC",
+      "CONNECTED_ORG": "CROP INSURANCE AND REINSURANCE BUREAU",
+      "CMTE_TYPE": "Q",
+      "MEMBERS_FUNDED": 21,
+      "DEM_MEMBERS": 8,
+      "REP_MEMBERS": 13,
+      "TOTAL_USD": 36500.0,
+      "TOTAL_TO_DEMS": 12500.0,
+      "TOTAL_TO_REPS": 24000.0,
+      "BIPARTISAN_BALANCE": "0.615",
+      "BOTH_SIDES_FLAG": true
+    }
+  ],
+  "sample_error": null
+}

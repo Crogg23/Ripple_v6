@@ -1,0 +1,98 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.FED_JPML_PENDING_MDL",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "MDL_NUMBER",
+    "CASE_CAPTION",
+    "TRANSFEREE_JUDGE",
+    "TRANSFEREE_DISTRICT",
+    "MASTER_DOCKET",
+    "DATE_FILED",
+    "DATE_TRANSFERRED",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "DOCKET",
+      "column": "MASTER_DOCKET",
+      "total_rows": 161,
+      "nonnull_after_norm": 161,
+      "distinct_after_norm": 161,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "MDL_NUMBER": "3172",
+      "CASE_CAPTION": "IN RE: Cartiva Synthetic Cartilage Implant Products Liability Litigation",
+      "TRANSFEREE_JUDGE": "Baker, Kristine G.",
+      "TRANSFEREE_DISTRICT": "ARE",
+      "MASTER_DOCKET": "4:26-md-3172",
+      "DATE_FILED": "10/31/2025",
+      "DATE_TRANSFERRED": "02/05/2026",
+      "INGESTED_AT": 1785965463144649,
+      "SOURCE_RUN_ID": "f1384067-53d1-4bf8-80d7-882a9eea2f3c",
+      "SRC_SHA256": "1d46bf0b72f9ac0d39c1e3ce86d2b349ac931208ab0c1ec9b39a55fdfd6d3887"
+    },
+    {
+      "MDL_NUMBER": "3047",
+      "CASE_CAPTION": "IN RE: Social Media Adolescent Addiction/Personal Injury Products Liability Litigation",
+      "TRANSFEREE_JUDGE": "Rogers, Yvonne Gonzalez",
+      "TRANSFEREE_DISTRICT": "CAN",
+      "MASTER_DOCKET": "4:22-md-3047",
+      "DATE_FILED": "08/01/2022",
+      "DATE_TRANSFERRED": "10/06/2022",
+      "INGESTED_AT": 1785965463144649,
+      "SOURCE_RUN_ID": "f1384067-53d1-4bf8-80d7-882a9eea2f3c",
+      "SRC_SHA256": "1d46bf0b72f9ac0d39c1e3ce86d2b349ac931208ab0c1ec9b39a55fdfd6d3887"
+    },
+    {
+      "MDL_NUMBER": "3155",
+      "CASE_CAPTION": "IN RE: Air Crash at Toronto Pearson International Airport on February 17, 2025",
+      "TRANSFEREE_JUDGE": "Blackwell, Jerry W.",
+      "TRANSFEREE_DISTRICT": "MN",
+      "MASTER_DOCKET": "0:25-md-3155",
+      "DATE_FILED": "05/22/2025",
+      "DATE_TRANSFERRED": "08/08/2025",
+      "INGESTED_AT": 1785965463144649,
+      "SOURCE_RUN_ID": "f1384067-53d1-4bf8-80d7-882a9eea2f3c",
+      "SRC_SHA256": "1d46bf0b72f9ac0d39c1e3ce86d2b349ac931208ab0c1ec9b39a55fdfd6d3887"
+    },
+    {
+      "MDL_NUMBER": "2998",
+      "CASE_CAPTION": "IN RE: Pork Antitrust Litigation",
+      "TRANSFEREE_JUDGE": "Tunheim, John R.",
+      "TRANSFEREE_DISTRICT": "MN",
+      "MASTER_DOCKET": "0:21-md-2998",
+      "DATE_FILED": "03/10/2021",
+      "DATE_TRANSFERRED": "06/09/2021",
+      "INGESTED_AT": 1785965463144649,
+      "SOURCE_RUN_ID": "f1384067-53d1-4bf8-80d7-882a9eea2f3c",
+      "SRC_SHA256": "1d46bf0b72f9ac0d39c1e3ce86d2b349ac931208ab0c1ec9b39a55fdfd6d3887"
+    },
+    {
+      "MDL_NUMBER": "2931",
+      "CASE_CAPTION": "IN RE: Delta Dental Antitrust Litigation",
+      "TRANSFEREE_JUDGE": "Harjani, Sunil R.",
+      "TRANSFEREE_DISTRICT": "ILN",
+      "MASTER_DOCKET": "1:19-cv-6734",
+      "DATE_FILED": "12/13/2019",
+      "DATE_TRANSFERRED": "03/27/2020",
+      "INGESTED_AT": 1785965463144649,
+      "SOURCE_RUN_ID": "f1384067-53d1-4bf8-80d7-882a9eea2f3c",
+      "SRC_SHA256": "1d46bf0b72f9ac0d39c1e3ce86d2b349ac931208ab0c1ec9b39a55fdfd6d3887"
+    }
+  ],
+  "sample_error": null
+}

@@ -1,0 +1,77 @@
+{
+  "fqtn": "LIBRARY_MARTS.IMMIGRATION.IMMIGRATION__FED_EPA_SDWA_SDWA_SERVICE_AREAS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "SUBMISSIONYEARQUARTER",
+    "PWSID",
+    "SERVICE_AREA_TYPE_CODE",
+    "IS_PRIMARY_SERVICE_AREA_CODE",
+    "FIRST_REPORTED_DATE",
+    "LAST_REPORTED_DATE"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "FIRST_REPORTED_DATE",
+      "LAST_REPORTED_DATE"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "PWSID",
+      "column": "PWSID",
+      "total_rows": 422464,
+      "nonnull_after_norm": 422464,
+      "distinct_after_norm": 378450,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "SUBMISSIONYEARQUARTER": "2026Q2",
+      "PWSID": "NC0326264",
+      "SERVICE_AREA_TYPE_CODE": "MP",
+      "IS_PRIMARY_SERVICE_AREA_CODE": "Y",
+      "FIRST_REPORTED_DATE": null,
+      "LAST_REPORTED_DATE": "2001-12-22"
+    },
+    {
+      "SUBMISSIONYEARQUARTER": "2026Q2",
+      "PWSID": "IL3046201",
+      "SERVICE_AREA_TYPE_CODE": "IN",
+      "IS_PRIMARY_SERVICE_AREA_CODE": null,
+      "FIRST_REPORTED_DATE": null,
+      "LAST_REPORTED_DATE": "2026-05-29"
+    },
+    {
+      "SUBMISSIONYEARQUARTER": "2026Q2",
+      "PWSID": "CA3400232",
+      "SERVICE_AREA_TYPE_CODE": "IA",
+      "IS_PRIMARY_SERVICE_AREA_CODE": "Y",
+      "FIRST_REPORTED_DATE": "2014-08-19",
+      "LAST_REPORTED_DATE": "2026-06-22"
+    },
+    {
+      "SUBMISSIONYEARQUARTER": "2026Q2",
+      "PWSID": "MS0630025",
+      "SERVICE_AREA_TYPE_CODE": "IA",
+      "IS_PRIMARY_SERVICE_AREA_CODE": "Y",
+      "FIRST_REPORTED_DATE": null,
+      "LAST_REPORTED_DATE": "1995-07-22"
+    },
+    {
+      "SUBMISSIONYEARQUARTER": "2026Q2",
+      "PWSID": "IL3073148",
+      "SERVICE_AREA_TYPE_CODE": "IN",
+      "IS_PRIMARY_SERVICE_AREA_CODE": "Y",
+      "FIRST_REPORTED_DATE": null,
+      "LAST_REPORTED_DATE": "2020-03-04"
+    }
+  ],
+  "sample_error": null
+}

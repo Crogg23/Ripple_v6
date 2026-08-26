@@ -1,0 +1,128 @@
+{
+  "fqtn": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_NPDES_NPDES_SE_VIOLATIONS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NPDES_ID",
+    "NPDES_VIOLATION_ID",
+    "VIOLATION_TYPE_CODE",
+    "VIOLATION_CODE",
+    "VIOLATION_DESC",
+    "SINGLE_EVENT_VIOLATION_DATE",
+    "SINGLE_EVENT_END_DATE",
+    "SINGLE_EVENT_VIOLATION_COMMENT",
+    "SINGLE_EVENT_AGENCY_TYPE_CODE",
+    "RNC_DETECTION_CODE",
+    "RNC_DETECTION_DESC",
+    "RNC_DETECTION_DATE",
+    "RNC_RESOLUTION_CODE",
+    "RNC_RESOLUTION_DESC",
+    "RNC_RESOLUTION_DATE"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPDES_ID",
+      "column": "NPDES_ID",
+      "total_rows": 305478,
+      "nonnull_after_norm": 305478,
+      "distinct_after_norm": 76438,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "NPDES_ID": "PA0023566",
+      "NPDES_VIOLATION_ID": "3638199469",
+      "VIOLATION_TYPE_CODE": "S",
+      "VIOLATION_CODE": "A0020",
+      "VIOLATION_DESC": "WW SSO - Discharge to Waters",
+      "SINGLE_EVENT_VIOLATION_DATE": "2018-07-24",
+      "SINGLE_EVENT_END_DATE": "2018-07-25",
+      "SINGLE_EVENT_VIOLATION_COMMENT": null,
+      "SINGLE_EVENT_AGENCY_TYPE_CODE": "ST6",
+      "RNC_DETECTION_CODE": "J",
+      "RNC_DETECTION_DESC": "Manual 2A3 - Unpermitted Discharge",
+      "RNC_DETECTION_DATE": "2018-07-24",
+      "RNC_RESOLUTION_CODE": "9",
+      "RNC_RESOLUTION_DESC": "RE - Manual by Back into Compliance/Administratively Resolved",
+      "RNC_RESOLUTION_DATE": "2018-07-25"
+    },
+    {
+      "NPDES_ID": "WV0020257",
+      "NPDES_VIOLATION_ID": "3602886584",
+      "VIOLATION_TYPE_CODE": "S",
+      "VIOLATION_CODE": "BS42J",
+      "VIOLATION_DESC": "WW SSO - Violation of milestone in judicial decree",
+      "SINGLE_EVENT_VIOLATION_DATE": "2014-03-18",
+      "SINGLE_EVENT_END_DATE": "2014-03-18",
+      "SINGLE_EVENT_VIOLATION_COMMENT": null,
+      "SINGLE_EVENT_AGENCY_TYPE_CODE": "ST6",
+      "RNC_DETECTION_CODE": null,
+      "RNC_DETECTION_DESC": null,
+      "RNC_DETECTION_DATE": null,
+      "RNC_RESOLUTION_CODE": null,
+      "RNC_RESOLUTION_DESC": null,
+      "RNC_RESOLUTION_DATE": null
+    },
+    {
+      "NPDES_ID": "OR0044571",
+      "NPDES_VIOLATION_ID": "3200005382",
+      "VIOLATION_TYPE_CODE": "S",
+      "VIOLATION_CODE": "A0021",
+      "VIOLATION_DESC": "WW CSO - Unauthorized CSO Discharge to Waters/Wet Weather",
+      "SINGLE_EVENT_VIOLATION_DATE": "2006-05-26",
+      "SINGLE_EVENT_END_DATE": "2006-06-30",
+      "SINGLE_EVENT_VIOLATION_COMMENT": null,
+      "SINGLE_EVENT_AGENCY_TYPE_CODE": "ST6",
+      "RNC_DETECTION_CODE": "D",
+      "RNC_DETECTION_DESC": "Manual Other",
+      "RNC_DETECTION_DATE": "2006-05-27",
+      "RNC_RESOLUTION_CODE": "B",
+      "RNC_RESOLUTION_DESC": "RE - Manual by EPA/State/Tribal Action",
+      "RNC_RESOLUTION_DATE": "2006-06-30"
+    },
+    {
+      "NPDES_ID": "FLR10PU38",
+      "NPDES_VIOLATION_ID": "3608683550",
+      "VIOLATION_TYPE_CODE": "S",
+      "VIOLATION_CODE": "B0C18",
+      "VIOLATION_DESC": "WW Storm Water Construction - Failure to Implement SWPPP/SWMP",
+      "SINGLE_EVENT_VIOLATION_DATE": "2016-04-12",
+      "SINGLE_EVENT_END_DATE": "2016-04-12",
+      "SINGLE_EVENT_VIOLATION_COMMENT": null,
+      "SINGLE_EVENT_AGENCY_TYPE_CODE": "ST6",
+      "RNC_DETECTION_CODE": null,
+      "RNC_DETECTION_DESC": null,
+      "RNC_DETECTION_DATE": null,
+      "RNC_RESOLUTION_CODE": null,
+      "RNC_RESOLUTION_DESC": null,
+      "RNC_RESOLUTION_DATE": null
+    },
+    {
+      "NPDES_ID": "AR0021482",
+      "NPDES_VIOLATION_ID": "3402328348",
+      "VIOLATION_TYPE_CODE": "S",
+      "VIOLATION_CODE": "A0026",
+      "VIOLATION_DESC": "WW SSO - Overflow to Dry Land or Building Backup",
+      "SINGLE_EVENT_VIOLATION_DATE": "2010-02-21",
+      "SINGLE_EVENT_END_DATE": "2010-02-21",
+      "SINGLE_EVENT_VIOLATION_COMMENT": null,
+      "SINGLE_EVENT_AGENCY_TYPE_CODE": "ST6",
+      "RNC_DETECTION_CODE": null,
+      "RNC_DETECTION_DESC": null,
+      "RNC_DETECTION_DATE": null,
+      "RNC_RESOLUTION_CODE": null,
+      "RNC_RESOLUTION_DESC": null,
+      "RNC_RESOLUTION_DATE": null
+    }
+  ],
+  "sample_error": null
+}

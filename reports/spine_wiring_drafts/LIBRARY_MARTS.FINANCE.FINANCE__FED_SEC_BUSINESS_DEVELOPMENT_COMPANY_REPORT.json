@@ -1,0 +1,106 @@
+{
+  "fqtn": "LIBRARY_MARTS.FINANCE.FINANCE__FED_SEC_BUSINESS_DEVELOPMENT_COMPANY_REPORT",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "FILE_NO",
+    "CIK",
+    "REGISTRANT_NAME",
+    "ADDRESS_1",
+    "ADDRESS_2",
+    "CITY",
+    "STATE",
+    "ZIP_CODE",
+    "FILING_DATE",
+    "FILING_TYPE"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "REGISTRANT_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "STATE"
+      ],
+      "zip": [
+        "ZIP_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CIK",
+      "column": "CIK",
+      "total_rows": 212,
+      "nonnull_after_norm": 212,
+      "distinct_after_norm": 212,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "FILE_NO": "814-01301",
+      "CIK": "0001742313",
+      "REGISTRANT_NAME": "Monroe Capital Income Plus Corp",
+      "ADDRESS_1": "155 NORTH WACKER DRIVE",
+      "ADDRESS_2": "FLOOR 35",
+      "CITY": "CHICAGO",
+      "STATE": "IL",
+      "ZIP_CODE": "60606",
+      "FILING_DATE": "0026-05-21",
+      "FILING_TYPE": "8-K"
+    },
+    {
+      "FILE_NO": "814-01299",
+      "CIK": "0001736035",
+      "REGISTRANT_NAME": "Blackstone Secured Lending Fund",
+      "ADDRESS_1": "345 PARK AVENUE",
+      "ADDRESS_2": "31ST FLOOR",
+      "CITY": "NEW YORK",
+      "STATE": "NY",
+      "ZIP_CODE": "10154",
+      "FILING_DATE": "0026-05-21",
+      "FILING_TYPE": "8-K"
+    },
+    {
+      "FILE_NO": "814-01360",
+      "CIK": "0001825248",
+      "REGISTRANT_NAME": "Franklin BSP Capital Corp",
+      "ADDRESS_1": "ONE MADISON AVENUE",
+      "ADDRESS_2": "SUITE 1600",
+      "CITY": "NEW YORK",
+      "STATE": "NY",
+      "ZIP_CODE": "10010",
+      "FILING_DATE": "0026-05-18",
+      "FILING_TYPE": "N-14 8C"
+    },
+    {
+      "FILE_NO": "814-01196",
+      "CIK": "0001634452",
+      "REGISTRANT_NAME": "AB Private Credit Investors Corp",
+      "ADDRESS_1": "405 COLORADO STREET",
+      "ADDRESS_2": "SUITE 1500",
+      "CITY": "AUSTIN",
+      "STATE": "TX",
+      "ZIP_CODE": "78701",
+      "FILING_DATE": "0026-05-29",
+      "FILING_TYPE": "SC TO-I"
+    },
+    {
+      "FILE_NO": "814-00818",
+      "CIK": "0001490349",
+      "REGISTRANT_NAME": "PhenixFIN Corp",
+      "ADDRESS_1": "445 PARK AVENUE",
+      "ADDRESS_2": "9TH FLOOR",
+      "CITY": "NEW YORK",
+      "STATE": "NY",
+      "ZIP_CODE": "10022",
+      "FILING_DATE": "0026-05-15",
+      "FILING_TYPE": "SCHEDULE 13G/A"
+    }
+  ],
+  "sample_error": null
+}

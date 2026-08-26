@@ -1,0 +1,104 @@
+{
+  "fqtn": "LIBRARY_MARTS.HOUSING.HOUSING__FED_CFPB_HMDA_ARID2017_LEI_XREF",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "ARID_2017",
+    "RESPONDENT_NAME",
+    "LEI_2018",
+    "LEI_2019",
+    "LEI_2020",
+    "_INGESTED_AT",
+    "_SOURCE_RUN_ID",
+    "_SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "RESPONDENT_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "LEI",
+      "column": "LEI_2018",
+      "total_rows": 5399,
+      "nonnull_after_norm": 5399,
+      "distinct_after_norm": 5399,
+      "trap_verdict": "REAL"
+    },
+    {
+      "key_label": "LEI",
+      "column": "LEI_2019",
+      "total_rows": 5399,
+      "nonnull_after_norm": 5070,
+      "distinct_after_norm": 5070,
+      "trap_verdict": "REAL"
+    },
+    {
+      "key_label": "LEI",
+      "column": "LEI_2020",
+      "total_rows": 5399,
+      "nonnull_after_norm": 4130,
+      "distinct_after_norm": 4130,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "ARID_2017": "7112961751",
+      "RESPONDENT_NAME": "ASSOCIATED MORTGAGE BANKERS, INC.",
+      "LEI_2018": "549300IL3HLQ2SW5VN73",
+      "LEI_2019": "549300IL3HLQ2SW5VN73",
+      "LEI_2020": "549300IL3HLQ2SW5VN73",
+      "_INGESTED_AT": "2026-08-07 19:08:11.453342",
+      "_SOURCE_RUN_ID": "c7e1b3ab-c640-490a-bc79-9b478cac2e8e",
+      "_SRC_SHA256": "1bc1da95e78b85e39e06d65c799c62e66f648d5ba5d465c765f169edcc20d6c1"
+    },
+    {
+      "ARID_2017": "114328",
+      "RESPONDENT_NAME": "First National Bank",
+      "LEI_2018": "549300IFU5D50EZHEU18",
+      "LEI_2019": "549300IFU5D50EZHEU18",
+      "LEI_2020": "549300IFU5D50EZHEU18",
+      "_INGESTED_AT": "2026-08-07 19:08:11.453342",
+      "_SOURCE_RUN_ID": "c7e1b3ab-c640-490a-bc79-9b478cac2e8e",
+      "_SRC_SHA256": "1bc1da95e78b85e39e06d65c799c62e66f648d5ba5d465c765f169edcc20d6c1"
+    },
+    {
+      "ARID_2017": "2506249",
+      "RESPONDENT_NAME": "CENTRAL BANK OF ST. LOUIS",
+      "LEI_2018": "549300ZQKLX5VHD8E865",
+      "LEI_2019": "549300ZQKLX5VHD8E865",
+      "LEI_2020": "549300ZQKLX5VHD8E865",
+      "_INGESTED_AT": "2026-08-07 19:08:11.453342",
+      "_SOURCE_RUN_ID": "c7e1b3ab-c640-490a-bc79-9b478cac2e8e",
+      "_SRC_SHA256": "1bc1da95e78b85e39e06d65c799c62e66f648d5ba5d465c765f169edcc20d6c1"
+    },
+    {
+      "ARID_2017": "510164",
+      "RESPONDENT_NAME": "Heart of Louisiana Federal Credit Union",
+      "LEI_2018": "549300X7EIYXZ10LDJ13",
+      "LEI_2019": "549300X7EIYXZ10LDJ13",
+      "LEI_2020": "549300X7EIYXZ10LDJ13",
+      "_INGESTED_AT": "2026-08-07 19:08:11.453342",
+      "_SOURCE_RUN_ID": "c7e1b3ab-c640-490a-bc79-9b478cac2e8e",
+      "_SRC_SHA256": "1bc1da95e78b85e39e06d65c799c62e66f648d5ba5d465c765f169edcc20d6c1"
+    },
+    {
+      "ARID_2017": "310623",
+      "RESPONDENT_NAME": "State Bank of Missouri",
+      "LEI_2018": "549300EMI4DCHFPR1811",
+      "LEI_2019": "549300EMI4DCHFPR1811",
+      "LEI_2020": null,
+      "_INGESTED_AT": "2026-08-07 19:08:11.453342",
+      "_SOURCE_RUN_ID": "c7e1b3ab-c640-490a-bc79-9b478cac2e8e",
+      "_SRC_SHA256": "1bc1da95e78b85e39e06d65c799c62e66f648d5ba5d465c765f169edcc20d6c1"
+    }
+  ],
+  "sample_error": null
+}

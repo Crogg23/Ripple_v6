@@ -1,0 +1,107 @@
+{
+  "fqtn": "LIBRARY_MARTS.FINANCE.FINANCE__FED_SEC_MONEY_MARKET_FUND_INFORMATION",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "REPORTMONTH",
+    "REGISTRANT_CIK",
+    "REGISTRANT",
+    "SERIES_NAME",
+    "SERIES_ID",
+    "SERIES_CATEGORY",
+    "CLASS_NAME",
+    "CLASS_ID",
+    "INVESTMENT_ADVISOR",
+    "CLASS_TICKER_SYMBOL",
+    "SUB_ADVISOR"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "SERIES_NAME",
+      "CLASS_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CIK",
+      "column": "REGISTRANT_CIK",
+      "total_rows": 1206,
+      "nonnull_after_norm": 1206,
+      "distinct_after_norm": 176,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "REPORTMONTH": "2026-04-30",
+      "REGISTRANT_CIK": "0001454975",
+      "REGISTRANT": "AMERICAN FUNDS U.S. GOVERNMENT MONEY MARKET FUND",
+      "SERIES_NAME": "AMERICAN FUNDS U.S. GOVERNMENT MONEY MARKET FUND",
+      "SERIES_ID": "S000025394",
+      "SERIES_CATEGORY": "Government",
+      "CLASS_NAME": "Class F-3",
+      "CLASS_ID": "C000179955",
+      "INVESTMENT_ADVISOR": "Capital Research and Management Company",
+      "CLASS_TICKER_SYMBOL": "USGXX",
+      "SUB_ADVISOR": null
+    },
+    {
+      "REPORTMONTH": "2026-04-30",
+      "REGISTRANT_CIK": "0000756913",
+      "REGISTRANT": "JOHN HANCOCK VARIABLE INSURANCE TRUST",
+      "SERIES_NAME": "MONEY MARKET TRUST",
+      "SERIES_ID": "S000008290",
+      "SERIES_CATEGORY": "Government",
+      "CLASS_NAME": "NAV",
+      "CLASS_ID": "C000022640",
+      "INVESTMENT_ADVISOR": "John Hancock Variable Trust Advisers LLC",
+      "CLASS_TICKER_SYMBOL": "JABXX",
+      "SUB_ADVISOR": "Manulife Investment Management (US) LLC"
+    },
+    {
+      "REPORTMONTH": "2026-04-30",
+      "REGISTRANT_CIK": "0000844779",
+      "REGISTRANT": "BLACKROCK FUNDS",
+      "SERIES_NAME": "BLACKROCK WEALTH LIQUID ENVIRONMENTALLY AWARE FUND",
+      "SERIES_ID": "S000001503",
+      "SERIES_CATEGORY": "Prime",
+      "CLASS_NAME": "INSTITUTIONAL",
+      "CLASS_ID": "C000004025",
+      "INVESTMENT_ADVISOR": "BlackRock Advisors, LLC",
+      "CLASS_TICKER_SYMBOL": "PNIXX",
+      "SUB_ADVISOR": "BlackRock International Limited"
+    },
+    {
+      "REPORTMONTH": "2026-04-30",
+      "REGISTRANT_CIK": "0001454975",
+      "REGISTRANT": "AMERICAN FUNDS U.S. GOVERNMENT MONEY MARKET FUND",
+      "SERIES_NAME": "AMERICAN FUNDS U.S. GOVERNMENT MONEY MARKET FUND",
+      "SERIES_ID": "S000025394",
+      "SERIES_CATEGORY": "Government",
+      "CLASS_NAME": "Class 529-E",
+      "CLASS_ID": "C000075901",
+      "INVESTMENT_ADVISOR": "Capital Research and Management Company",
+      "CLASS_TICKER_SYMBOL": "EAFXX",
+      "SUB_ADVISOR": null
+    },
+    {
+      "REPORTMONTH": "2026-04-30",
+      "REGISTRANT_CIK": "0000822977",
+      "REGISTRANT": "GOLDMAN SACHS TRUST",
+      "SERIES_NAME": "GOLDMAN SACHS FINANCIAL SQUARE TREASURY INSTRUMENTS FUND",
+      "SERIES_ID": "S000009261",
+      "SERIES_CATEGORY": "Government",
+      "CLASS_NAME": "Capital Shares",
+      "CLASS_ID": "C000025314",
+      "INVESTMENT_ADVISOR": "Goldman Sachs Asset Management, L.P.",
+      "CLASS_TICKER_SYMBOL": "GCIXX",
+      "SUB_ADVISOR": null
+    }
+  ],
+  "sample_error": null
+}

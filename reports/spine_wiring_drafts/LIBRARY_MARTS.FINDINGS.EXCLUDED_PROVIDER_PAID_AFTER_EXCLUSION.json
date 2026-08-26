@@ -1,0 +1,103 @@
+{
+  "fqtn": "LIBRARY_MARTS.FINDINGS.EXCLUDED_PROVIDER_PAID_AFTER_EXCLUSION",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NPI",
+    "LAST_NAME",
+    "FIRST_NAME",
+    "EXCLUSION_TYPE",
+    "EXCLUSION_YEAR",
+    "POST_EXCLUSION_PAYMENTS",
+    "TOTAL_PAID_AFTER_EXCLUSION",
+    "FIRST_PAID_YEAR",
+    "LAST_PAID_YEAR",
+    "DISTINCT_PAYERS"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "LAST_NAME",
+      "FIRST_NAME",
+      "FIRST_PAID_YEAR",
+      "LAST_PAID_YEAR"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPI",
+      "column": "NPI",
+      "total_rows": 287,
+      "nonnull_after_norm": 287,
+      "distinct_after_norm": 287,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "NPI": "1033263439",
+      "LAST_NAME": "ROBERTSON",
+      "FIRST_NAME": "MICHAEL",
+      "EXCLUSION_TYPE": "1128a1",
+      "EXCLUSION_YEAR": 2021,
+      "POST_EXCLUSION_PAYMENTS": 1,
+      "TOTAL_PAID_AFTER_EXCLUSION": 59.34,
+      "FIRST_PAID_YEAR": 2024,
+      "LAST_PAID_YEAR": 2024,
+      "DISTINCT_PAYERS": 1
+    },
+    {
+      "NPI": "1194972224",
+      "LAST_NAME": "WILLEMS",
+      "FIRST_NAME": "DONALD",
+      "EXCLUSION_TYPE": "1128a3",
+      "EXCLUSION_YEAR": 2021,
+      "POST_EXCLUSION_PAYMENTS": 1,
+      "TOTAL_PAID_AFTER_EXCLUSION": 158.29,
+      "FIRST_PAID_YEAR": 2023,
+      "LAST_PAID_YEAR": 2023,
+      "DISTINCT_PAYERS": 1
+    },
+    {
+      "NPI": "1427120583",
+      "LAST_NAME": "KEELEY",
+      "FIRST_NAME": "BRIAN",
+      "EXCLUSION_TYPE": "1128a4",
+      "EXCLUSION_YEAR": 2020,
+      "POST_EXCLUSION_PAYMENTS": 1,
+      "TOTAL_PAID_AFTER_EXCLUSION": 115.0,
+      "FIRST_PAID_YEAR": 2024,
+      "LAST_PAID_YEAR": 2024,
+      "DISTINCT_PAYERS": 1
+    },
+    {
+      "NPI": "1689837452",
+      "LAST_NAME": "RAMACHANDRAN",
+      "FIRST_NAME": "ANIL",
+      "EXCLUSION_TYPE": "1128b4",
+      "EXCLUSION_YEAR": 2016,
+      "POST_EXCLUSION_PAYMENTS": 1,
+      "TOTAL_PAID_AFTER_EXCLUSION": 22.02,
+      "FIRST_PAID_YEAR": 2024,
+      "LAST_PAID_YEAR": 2024,
+      "DISTINCT_PAYERS": 1
+    },
+    {
+      "NPI": "1265696769",
+      "LAST_NAME": "NICHOLS",
+      "FIRST_NAME": "BRANTLEY",
+      "EXCLUSION_TYPE": "1128a3",
+      "EXCLUSION_YEAR": 2022,
+      "POST_EXCLUSION_PAYMENTS": 11,
+      "TOTAL_PAID_AFTER_EXCLUSION": 543.75,
+      "FIRST_PAID_YEAR": 2023,
+      "LAST_PAID_YEAR": 2024,
+      "DISTINCT_PAYERS": 2
+    }
+  ],
+  "sample_error": null
+}

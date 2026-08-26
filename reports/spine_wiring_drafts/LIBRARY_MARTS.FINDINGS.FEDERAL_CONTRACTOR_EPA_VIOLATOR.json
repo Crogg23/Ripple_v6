@@ -1,0 +1,100 @@
+{
+  "fqtn": "LIBRARY_MARTS.FINDINGS.FEDERAL_CONTRACTOR_EPA_VIOLATOR",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "PARENT_UEI",
+    "COMPANY_NAME",
+    "VIOLATING_FACILITIES",
+    "ANY_SNC",
+    "TOTAL_EPA_PENALTIES",
+    "TOTAL_FORMAL_ACTIONS",
+    "FEDERAL_DOLLARS_OBLIGATED",
+    "N_AWARDS",
+    "N_AGENCIES",
+    "MATCH_CONFIDENCE"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "COMPANY_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "UEI",
+      "column": "PARENT_UEI",
+      "total_rows": 57,
+      "nonnull_after_norm": 57,
+      "distinct_after_norm": 57,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "PARENT_UEI": "CN7NRYVDXEA7",
+      "COMPANY_NAME": "Sun Pharmaceutical Industries, Inc.",
+      "VIOLATING_FACILITIES": 1,
+      "ANY_SNC": "N",
+      "TOTAL_EPA_PENALTIES": 3600.0,
+      "TOTAL_FORMAL_ACTIONS": 1,
+      "FEDERAL_DOLLARS_OBLIGATED": 825435.0,
+      "N_AWARDS": 3,
+      "N_AGENCIES": 1,
+      "MATCH_CONFIDENCE": "1.00"
+    },
+    {
+      "PARENT_UEI": "MLY8QSPNYWG3",
+      "COMPANY_NAME": "UNION PACIFIC CORPORATION",
+      "VIOLATING_FACILITIES": 1,
+      "ANY_SNC": "N",
+      "TOTAL_EPA_PENALTIES": 0.0,
+      "TOTAL_FORMAL_ACTIONS": 1,
+      "FEDERAL_DOLLARS_OBLIGATED": 137852.0,
+      "N_AWARDS": 2,
+      "N_AGENCIES": 1,
+      "MATCH_CONFIDENCE": "0.85"
+    },
+    {
+      "PARENT_UEI": "EBD3SM6LH8D3",
+      "COMPANY_NAME": "Columbia Helicopters, Inc.",
+      "VIOLATING_FACILITIES": 1,
+      "ANY_SNC": "N",
+      "TOTAL_EPA_PENALTIES": 6800.0,
+      "TOTAL_FORMAL_ACTIONS": 1,
+      "FEDERAL_DOLLARS_OBLIGATED": 328830806.0,
+      "N_AWARDS": 32,
+      "N_AGENCIES": 3,
+      "MATCH_CONFIDENCE": "0.80"
+    },
+    {
+      "PARENT_UEI": "KX87VKR598K3",
+      "COMPANY_NAME": "TriCore Reference Laboratories",
+      "VIOLATING_FACILITIES": 1,
+      "ANY_SNC": "N",
+      "TOTAL_EPA_PENALTIES": 2500.0,
+      "TOTAL_FORMAL_ACTIONS": 1,
+      "FEDERAL_DOLLARS_OBLIGATED": 1112080.0,
+      "N_AWARDS": 6,
+      "N_AGENCIES": 1,
+      "MATCH_CONFIDENCE": "1.00"
+    },
+    {
+      "PARENT_UEI": "FTHHCHVEPDD6",
+      "COMPANY_NAME": "ECOLAB INC.",
+      "VIOLATING_FACILITIES": 1,
+      "ANY_SNC": "N",
+      "TOTAL_EPA_PENALTIES": 0.0,
+      "TOTAL_FORMAL_ACTIONS": 11,
+      "FEDERAL_DOLLARS_OBLIGATED": 9618.0,
+      "N_AWARDS": 1,
+      "N_AGENCIES": 1,
+      "MATCH_CONFIDENCE": "1.00"
+    }
+  ],
+  "sample_error": null
+}

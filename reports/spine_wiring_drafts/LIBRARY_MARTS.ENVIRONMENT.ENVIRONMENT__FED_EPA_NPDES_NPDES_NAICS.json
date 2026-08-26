@@ -1,0 +1,62 @@
+{
+  "fqtn": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_NPDES_NPDES_NAICS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NPDES_ID",
+    "NAICS_CODE",
+    "NAICS_DESC",
+    "PRIMARY_INDICATOR_FLAG"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPDES_ID",
+      "column": "NPDES_ID",
+      "total_rows": 326473,
+      "nonnull_after_norm": 326473,
+      "distinct_after_norm": 306831,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "NPDES_ID": "SCG731602",
+      "NAICS_CODE": "212399",
+      "NAICS_DESC": "All Other Nonmetallic Mineral Mining",
+      "PRIMARY_INDICATOR_FLAG": "N"
+    },
+    {
+      "NPDES_ID": "ALR10AY18",
+      "NAICS_CODE": "236220",
+      "NAICS_DESC": "Commercial and Institutional Building Construction",
+      "PRIMARY_INDICATOR_FLAG": "N"
+    },
+    {
+      "NPDES_ID": "FLR05I390",
+      "NAICS_CODE": "481211",
+      "NAICS_DESC": "Nonscheduled Chartered Passenger Air Transportation",
+      "PRIMARY_INDICATOR_FLAG": "Y"
+    },
+    {
+      "NPDES_ID": "GAR396EED",
+      "NAICS_CODE": "236115",
+      "NAICS_DESC": "New Single-Family Housing Construction [except For-Sale Builders]",
+      "PRIMARY_INDICATOR_FLAG": "Y"
+    },
+    {
+      "NPDES_ID": "FLR10NO70",
+      "NAICS_CODE": "611110",
+      "NAICS_DESC": "Elementary and Secondary Schools",
+      "PRIMARY_INDICATOR_FLAG": "Y"
+    }
+  ],
+  "sample_error": null
+}

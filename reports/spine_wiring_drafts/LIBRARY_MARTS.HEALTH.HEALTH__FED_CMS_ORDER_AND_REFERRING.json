@@ -1,0 +1,89 @@
+{
+  "fqtn": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_ORDER_AND_REFERRING",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NPI",
+    "LAST_NAME",
+    "FIRST_NAME",
+    "PARTB",
+    "DME",
+    "HHA",
+    "PMD",
+    "HOSPICE"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "LAST_NAME",
+      "FIRST_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPI",
+      "column": "NPI",
+      "total_rows": 2018354,
+      "nonnull_after_norm": 2018354,
+      "distinct_after_norm": 2018350,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "NPI": "1114913225",
+      "LAST_NAME": "TARTER",
+      "FIRST_NAME": "THOMAS",
+      "PARTB": "Y",
+      "DME": "Y",
+      "HHA": "Y",
+      "PMD": "Y",
+      "HOSPICE": "Y"
+    },
+    {
+      "NPI": "1194361253",
+      "LAST_NAME": "GITTEMEIER",
+      "FIRST_NAME": "KARI",
+      "PARTB": "Y",
+      "DME": "Y",
+      "HHA": "Y",
+      "PMD": "Y",
+      "HOSPICE": "N"
+    },
+    {
+      "NPI": "1881627693",
+      "LAST_NAME": "PALTIN",
+      "FIRST_NAME": "SHARON",
+      "PARTB": "Y",
+      "DME": "Y",
+      "HHA": "Y",
+      "PMD": "Y",
+      "HOSPICE": "Y"
+    },
+    {
+      "NPI": "1134757479",
+      "LAST_NAME": "ABOU-SAMRA",
+      "FIRST_NAME": "ABDULLAH",
+      "PARTB": "Y",
+      "DME": "Y",
+      "HHA": "Y",
+      "PMD": "Y",
+      "HOSPICE": "Y"
+    },
+    {
+      "NPI": "1639795131",
+      "LAST_NAME": "LACKEY",
+      "FIRST_NAME": "SATIVA",
+      "PARTB": "Y",
+      "DME": "Y",
+      "HHA": "Y",
+      "PMD": "Y",
+      "HOSPICE": "N"
+    }
+  ],
+  "sample_error": null
+}

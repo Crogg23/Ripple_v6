@@ -1,0 +1,85 @@
+{
+  "fqtn": "LIBRARY_MARTS.POLITICS.POLITICS__MEMBER_FEC_ID",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "MEMBER_KEY",
+    "BIOGUIDE",
+    "FEC_ID",
+    "FULL_NAME",
+    "PARTY",
+    "STATE",
+    "LAST_TERM_TYPE"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "FULL_NAME",
+      "LAST_TERM_TYPE"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [
+        "STATE"
+      ],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "BIOGUIDE",
+      "column": "BIOGUIDE",
+      "total_rows": 1715,
+      "nonnull_after_norm": 1714,
+      "distinct_after_norm": 1530,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "MEMBER_KEY": "B001230",
+      "BIOGUIDE": "B001230",
+      "FEC_ID": "S2WI00219",
+      "FULL_NAME": "Tammy Baldwin",
+      "PARTY": "Democrat",
+      "STATE": "WI",
+      "LAST_TERM_TYPE": "sen"
+    },
+    {
+      "MEMBER_KEY": "W000273",
+      "BIOGUIDE": "W000273",
+      "FEC_ID": "H4IL11096",
+      "FULL_NAME": "Gerald Weller",
+      "PARTY": "Republican",
+      "STATE": "IL",
+      "LAST_TERM_TYPE": "rep"
+    },
+    {
+      "MEMBER_KEY": "S001184",
+      "BIOGUIDE": "S001184",
+      "FEC_ID": "H0SC01279",
+      "FULL_NAME": "Tim Scott",
+      "PARTY": "Republican",
+      "STATE": "SC",
+      "LAST_TERM_TYPE": "sen"
+    },
+    {
+      "MEMBER_KEY": "F000476",
+      "BIOGUIDE": "F000476",
+      "FEC_ID": "H2FL10259",
+      "FULL_NAME": "Maxwell Frost",
+      "PARTY": "Democrat",
+      "STATE": "FL",
+      "LAST_TERM_TYPE": "rep"
+    },
+    {
+      "MEMBER_KEY": "C001122",
+      "BIOGUIDE": "C001122",
+      "FEC_ID": "H8SC01116",
+      "FULL_NAME": "Joe Cunningham",
+      "PARTY": "Democrat",
+      "STATE": "SC",
+      "LAST_TERM_TYPE": "rep"
+    }
+  ],
+  "sample_error": null
+}

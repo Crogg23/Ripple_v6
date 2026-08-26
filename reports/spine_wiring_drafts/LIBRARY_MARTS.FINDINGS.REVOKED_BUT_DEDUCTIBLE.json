@@ -1,0 +1,96 @@
+{
+  "fqtn": "LIBRARY_MARTS.FINDINGS.REVOKED_BUT_DEDUCTIBLE",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "EIN",
+    "ORG_NAME",
+    "STATE",
+    "NTEE_CODE",
+    "REVOCATION_DATE",
+    "REVOKED_EXEMPTION_TYPE",
+    "REVENUE_AMT",
+    "ASSET_AMT",
+    "REVIEW_BUCKET"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "ORG_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [
+        "STATE"
+      ],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "EIN",
+      "column": "EIN",
+      "total_rows": 22512,
+      "nonnull_after_norm": 22512,
+      "distinct_after_norm": 22512,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "EIN": "237362227",
+      "ORG_NAME": "SHRINERS INTERNATIONAL",
+      "STATE": "ME",
+      "NTEE_CODE": "",
+      "REVOCATION_DATE": "15-MAY-2023",
+      "REVOKED_EXEMPTION_TYPE": "10",
+      "REVENUE_AMT": 0.0,
+      "ASSET_AMT": 0.0,
+      "REVIEW_BUCKET": "long_tail"
+    },
+    {
+      "EIN": "263618498",
+      "ORG_NAME": "OVERFLOW MINISTRIES INTERNATIONAL INC",
+      "STATE": "GA",
+      "NTEE_CODE": "X20",
+      "REVOCATION_DATE": "15-MAY-2011",
+      "REVOKED_EXEMPTION_TYPE": "03",
+      "REVENUE_AMT": 0.0,
+      "ASSET_AMT": 0.0,
+      "REVIEW_BUCKET": "long_tail"
+    },
+    {
+      "EIN": "201120112",
+      "ORG_NAME": "ALLIANCE CHRISTIAN ACADEMY-LITTLE SPROUTS PRESCHOOL",
+      "STATE": "TX",
+      "NTEE_CODE": "B20",
+      "REVOCATION_DATE": "15-MAY-2018",
+      "REVOKED_EXEMPTION_TYPE": "03",
+      "REVENUE_AMT": 1250116.0,
+      "ASSET_AMT": 1697921.0,
+      "REVIEW_BUCKET": "long_tail"
+    },
+    {
+      "EIN": "541247606",
+      "ORG_NAME": "AMERICAN LEGION UNIT 77 AUXILIARY",
+      "STATE": "VA",
+      "NTEE_CODE": "",
+      "REVOCATION_DATE": "15-NOV-2015",
+      "REVOKED_EXEMPTION_TYPE": "19",
+      "REVENUE_AMT": 0.0,
+      "ASSET_AMT": 0.0,
+      "REVIEW_BUCKET": "long_tail"
+    },
+    {
+      "EIN": "872960876",
+      "ORG_NAME": "APPROACHABLE COUNSELING",
+      "STATE": "WA",
+      "NTEE_CODE": "F60",
+      "REVOCATION_DATE": "15-MAR-2024",
+      "REVOKED_EXEMPTION_TYPE": "03",
+      "REVENUE_AMT": 0.0,
+      "ASSET_AMT": 0.0,
+      "REVIEW_BUCKET": "long_tail"
+    }
+  ],
+  "sample_error": null
+}

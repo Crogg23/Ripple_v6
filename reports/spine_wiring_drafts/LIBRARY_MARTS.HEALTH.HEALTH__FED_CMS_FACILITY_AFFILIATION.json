@@ -1,0 +1,107 @@
+{
+  "fqtn": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_FACILITY_AFFILIATION",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NPI",
+    "IND_PAC_ID",
+    "PROVIDER_LAST_NAME",
+    "PROVIDER_FIRST_NAME",
+    "PROVIDER_MIDDLE_NAME",
+    "NAME_SUFFIX",
+    "FACILITY_TYPE",
+    "CCN",
+    "FACILITY_TYPE_CERTIFICATION_NUMBER"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "PROVIDER_LAST_NAME",
+      "PROVIDER_FIRST_NAME",
+      "PROVIDER_MIDDLE_NAME",
+      "NAME_SUFFIX",
+      "FACILITY_TYPE",
+      "FACILITY_TYPE_CERTIFICATION_NUMBER"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CCN",
+      "column": "CCN",
+      "total_rows": 2260193,
+      "nonnull_after_norm": 2249998,
+      "distinct_after_norm": 38103,
+      "trap_verdict": "REAL"
+    },
+    {
+      "key_label": "NPI",
+      "column": "NPI",
+      "total_rows": 2260193,
+      "nonnull_after_norm": 2260193,
+      "distinct_after_norm": 940350,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "NPI": "1871538462",
+      "IND_PAC_ID": "7618866922",
+      "PROVIDER_LAST_NAME": "LARACUENTE",
+      "PROVIDER_FIRST_NAME": "RITA",
+      "PROVIDER_MIDDLE_NAME": "",
+      "NAME_SUFFIX": "",
+      "FACILITY_TYPE": "Home health agency",
+      "CCN": "687368",
+      "FACILITY_TYPE_CERTIFICATION_NUMBER": ""
+    },
+    {
+      "NPI": "1003165564",
+      "IND_PAC_ID": "9335394402",
+      "PROVIDER_LAST_NAME": "DROLLINGER",
+      "PROVIDER_FIRST_NAME": "LINDY",
+      "PROVIDER_MIDDLE_NAME": "",
+      "NAME_SUFFIX": "",
+      "FACILITY_TYPE": "Hospital",
+      "CCN": "140091",
+      "FACILITY_TYPE_CERTIFICATION_NUMBER": ""
+    },
+    {
+      "NPI": "1982821906",
+      "IND_PAC_ID": "1254525447",
+      "PROVIDER_LAST_NAME": "BAYLISS",
+      "PROVIDER_FIRST_NAME": "TREVOR",
+      "PROVIDER_MIDDLE_NAME": "J",
+      "NAME_SUFFIX": "",
+      "FACILITY_TYPE": "Hospital",
+      "CCN": "220077",
+      "FACILITY_TYPE_CERTIFICATION_NUMBER": ""
+    },
+    {
+      "NPI": "1669598942",
+      "IND_PAC_ID": "0446304737",
+      "PROVIDER_LAST_NAME": "SCHULTE",
+      "PROVIDER_FIRST_NAME": "RYAN",
+      "PROVIDER_MIDDLE_NAME": "T",
+      "NAME_SUFFIX": "",
+      "FACILITY_TYPE": "Hospital",
+      "CCN": "160101",
+      "FACILITY_TYPE_CERTIFICATION_NUMBER": ""
+    },
+    {
+      "NPI": "1629655113",
+      "IND_PAC_ID": "6709288939",
+      "PROVIDER_LAST_NAME": "KANUKUNTA",
+      "PROVIDER_FIRST_NAME": "MANISH",
+      "PROVIDER_MIDDLE_NAME": "REDDY",
+      "NAME_SUFFIX": "",
+      "FACILITY_TYPE": "Hospital",
+      "CCN": "290062",
+      "FACILITY_TYPE_CERTIFICATION_NUMBER": ""
+    }
+  ],
+  "sample_error": null
+}

@@ -1,0 +1,124 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_SOC_NJ_OPEN_DATA_CEN_A0D94510CA",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "PROVIDER_NAME",
+    "NPI_NUMBER",
+    "STREET",
+    "CITY",
+    "STATE",
+    "ZIP",
+    "ACTION",
+    "EFFECTIVE_DATE",
+    "EXPIRATION_DATE",
+    "TITLE",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "PROVIDER_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "STATE"
+      ],
+      "zip": [
+        "ZIP"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPI",
+      "column": "NPI_NUMBER",
+      "total_rows": 2000,
+      "nonnull_after_norm": 587,
+      "distinct_after_norm": 487,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "PROVIDER_NAME": "FLOYD, JAMES",
+      "NPI_NUMBER": "nan",
+      "STREET": "1733 BLAKE BOTTOM ROAD NW",
+      "CITY": "HUNTSVILLE",
+      "STATE": "AL",
+      "ZIP": "35806",
+      "ACTION": "DISQUALIFICATION",
+      "EFFECTIVE_DATE": "2/26/2010",
+      "EXPIRATION_DATE": "nan",
+      "TITLE": "nan",
+      "INGESTED_AT": "2026-06-24 04:41:12.177418",
+      "SOURCE_RUN_ID": "c30271a1-3623-4f5c-860a-055f0dbf7243",
+      "SRC_SHA256": "93c0d527b8765d8a5961d627f7b289956e2a9f6dc7e085c6cc4ea71a2dfebdd7"
+    },
+    {
+      "PROVIDER_NAME": "ABDOLLAHI, MITRA",
+      "NPI_NUMBER": "1033329230",
+      "STREET": "646 N. SARATOGA DRIVE",
+      "CITY": "MOORESTOWN",
+      "STATE": "NJ",
+      "ZIP": "08057",
+      "ACTION": "DISQUALIFICATION",
+      "EFFECTIVE_DATE": "11/5/2007",
+      "EXPIRATION_DATE": "7/19/2019",
+      "TITLE": "DMD",
+      "INGESTED_AT": "2026-06-24 04:41:12.177418",
+      "SOURCE_RUN_ID": "c30271a1-3623-4f5c-860a-055f0dbf7243",
+      "SRC_SHA256": "93c0d527b8765d8a5961d627f7b289956e2a9f6dc7e085c6cc4ea71a2dfebdd7"
+    },
+    {
+      "PROVIDER_NAME": "GOLDSTEIN, JACK",
+      "NPI_NUMBER": "1154355055",
+      "STREET": "695A MAIN STREET",
+      "CITY": "LUMBERTON",
+      "STATE": "NJ",
+      "ZIP": "08048",
+      "ACTION": "DISQUALIFICATION",
+      "EFFECTIVE_DATE": "11/20/2015",
+      "EXPIRATION_DATE": "DECEASED",
+      "TITLE": "DO",
+      "INGESTED_AT": "2026-06-24 04:41:12.177418",
+      "SOURCE_RUN_ID": "c30271a1-3623-4f5c-860a-055f0dbf7243",
+      "SRC_SHA256": "93c0d527b8765d8a5961d627f7b289956e2a9f6dc7e085c6cc4ea71a2dfebdd7"
+    },
+    {
+      "PROVIDER_NAME": "DUMITRU, DAN",
+      "NPI_NUMBER": "1073639530",
+      "STREET": "1657 JFK BOULEVARD, FL 1",
+      "CITY": "JERSEY CITY",
+      "STATE": "NJ",
+      "ZIP": "07305",
+      "ACTION": "DEBARMENT",
+      "EFFECTIVE_DATE": "1/11/2016",
+      "EXPIRATION_DATE": "nan",
+      "TITLE": "MD",
+      "INGESTED_AT": "2026-06-24 04:41:12.177418",
+      "SOURCE_RUN_ID": "c30271a1-3623-4f5c-860a-055f0dbf7243",
+      "SRC_SHA256": "93c0d527b8765d8a5961d627f7b289956e2a9f6dc7e085c6cc4ea71a2dfebdd7"
+    },
+    {
+      "PROVIDER_NAME": "CRUCIANI, RICARDO",
+      "NPI_NUMBER": "1881615268",
+      "STREET": "77 HUDSON STREET, APT. 4401",
+      "CITY": "JERSEY CITY",
+      "STATE": "NJ",
+      "ZIP": "07302",
+      "ACTION": "DISQUALIFICATION",
+      "EFFECTIVE_DATE": "4/16/2018",
+      "EXPIRATION_DATE": "PERMANENT",
+      "TITLE": "MD",
+      "INGESTED_AT": "2026-06-24 04:41:12.177418",
+      "SOURCE_RUN_ID": "c30271a1-3623-4f5c-860a-055f0dbf7243",
+      "SRC_SHA256": "93c0d527b8765d8a5961d627f7b289956e2a9f6dc7e085c6cc4ea71a2dfebdd7"
+    }
+  ],
+  "sample_error": null
+}

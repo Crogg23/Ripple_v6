@@ -1,0 +1,125 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.FED_SEC_MONEY_MARKET_FUND_INFORMATION",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "REPORTMONTH",
+    "REGISTRANT_CIK",
+    "REGISTRANT",
+    "SERIES_NAME",
+    "SERIES_ID",
+    "SERIES_CATEGORY",
+    "CLASS_NAME",
+    "CLASS_ID",
+    "INVESTMENT_ADVISOR",
+    "CLASS_TICKER_SYMBOL",
+    "SUB_ADVISOR",
+    "_INGESTED_AT",
+    "_SOURCE_RUN_ID",
+    "_SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "SERIES_NAME",
+      "CLASS_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CIK",
+      "column": "REGISTRANT_CIK",
+      "total_rows": 1206,
+      "nonnull_after_norm": 1206,
+      "distinct_after_norm": 176,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "REPORTMONTH": "2026-04-30",
+      "REGISTRANT_CIK": "0001719812",
+      "REGISTRANT": "COLLABORATIVE INVESTMENT SERIES TRUST",
+      "SERIES_NAME": "RAREVIEW GOVERNMENT MONEY MARKET ETF",
+      "SERIES_ID": "S000097155",
+      "SERIES_CATEGORY": "Government",
+      "CLASS_NAME": "RAREVIEW GOVERNMENT MONEY MARKET ETF",
+      "CLASS_ID": "C000266327",
+      "INVESTMENT_ADVISOR": "Rareview Capital LLC",
+      "CLASS_TICKER_SYMBOL": "RMME",
+      "SUB_ADVISOR": null,
+      "_INGESTED_AT": 1785096119721890,
+      "_SOURCE_RUN_ID": "598adf30-9e90-4709-8134-36e0dbe187c3",
+      "_SRC_SHA256": "cd9dbe7bfe19f246cbe6b0d68d858673f5bb0717d16732595fa4e9401c0fab9c"
+    },
+    {
+      "REPORTMONTH": "2026-04-30",
+      "REGISTRANT_CIK": "0000892071",
+      "REGISTRANT": "TCW FUNDS, INC.",
+      "SERIES_NAME": "TCW CENTRAL CASH FUND",
+      "SERIES_ID": "S000085371",
+      "SERIES_CATEGORY": "Government",
+      "CLASS_NAME": "Cash Management Shares",
+      "CLASS_ID": "C000250374",
+      "INVESTMENT_ADVISOR": "TCW Investment Management Company",
+      "CLASS_TICKER_SYMBOL": null,
+      "SUB_ADVISOR": null,
+      "_INGESTED_AT": 1785096119721890,
+      "_SOURCE_RUN_ID": "598adf30-9e90-4709-8134-36e0dbe187c3",
+      "_SRC_SHA256": "cd9dbe7bfe19f246cbe6b0d68d858673f5bb0717d16732595fa4e9401c0fab9c"
+    },
+    {
+      "REPORTMONTH": "2026-04-30",
+      "REGISTRANT_CIK": "0001227155",
+      "REGISTRANT": "MORGAN STANLEY INSTITUTIONAL LIQUIDITY FUNDS",
+      "SERIES_NAME": "GOVERNMENT PORTFOLIO",
+      "SERIES_ID": "S000004148",
+      "SERIES_CATEGORY": "Government",
+      "CLASS_NAME": "Investor Class",
+      "CLASS_ID": "C000011657",
+      "INVESTMENT_ADVISOR": "Morgan Stanley Investment Management, Inc.",
+      "CLASS_TICKER_SYMBOL": "MVVXX",
+      "SUB_ADVISOR": null,
+      "_INGESTED_AT": 1785096119721890,
+      "_SOURCE_RUN_ID": "598adf30-9e90-4709-8134-36e0dbe187c3",
+      "_SRC_SHA256": "cd9dbe7bfe19f246cbe6b0d68d858673f5bb0717d16732595fa4e9401c0fab9c"
+    },
+    {
+      "REPORTMONTH": "2026-04-30",
+      "REGISTRANT_CIK": "0000798244",
+      "REGISTRANT": "MFS SERIES TRUST I",
+      "SERIES_NAME": "MFS U.S. GOVERNMENT CASH RESERVE FUND",
+      "SERIES_ID": "S000000762",
+      "SERIES_CATEGORY": "Government",
+      "CLASS_NAME": "I",
+      "CLASS_ID": "C000206005",
+      "INVESTMENT_ADVISOR": "Massachusetts Financial Services Company",
+      "CLASS_TICKER_SYMBOL": "CRHXX",
+      "SUB_ADVISOR": null,
+      "_INGESTED_AT": 1785096119721890,
+      "_SOURCE_RUN_ID": "598adf30-9e90-4709-8134-36e0dbe187c3",
+      "_SRC_SHA256": "cd9dbe7bfe19f246cbe6b0d68d858673f5bb0717d16732595fa4e9401c0fab9c"
+    },
+    {
+      "REPORTMONTH": "2026-04-30",
+      "REGISTRANT_CIK": "0000828806",
+      "REGISTRANT": "INVESCO TREASURER'S SERIES TRUST",
+      "SERIES_NAME": "INVESCO PREMIER U.S. GOVERNMENT MONEY PORTFOLIO",
+      "SERIES_ID": "S000000176",
+      "SERIES_CATEGORY": "Government",
+      "CLASS_NAME": "Investor Class",
+      "CLASS_ID": "C000000400",
+      "INVESTMENT_ADVISOR": "Invesco Advisers, Inc.",
+      "CLASS_TICKER_SYMBOL": "FUGXX",
+      "SUB_ADVISOR": null,
+      "_INGESTED_AT": 1785096119721890,
+      "_SOURCE_RUN_ID": "598adf30-9e90-4709-8134-36e0dbe187c3",
+      "_SRC_SHA256": "cd9dbe7bfe19f246cbe6b0d68d858673f5bb0717d16732595fa4e9401c0fab9c"
+    }
+  ],
+  "sample_error": null
+}
