@@ -1,4 +1,4 @@
-# RIPPLE STATUS — 2026-08-26 — Backlog close-out; 0 test errors; staging-view gap mostly closed
+# RIPPLE STATUS — 2026-08-26 — Backlog close-out; 0 test errors; entity graph + staging gap both grew
 
 *One screen. Rewritten (never appended) at the end of every session. Sessions read
 this at boot and brief Chris in chat — Chris never has to open it.*
@@ -6,123 +6,101 @@ this at boot and brief Chris in chat — Chris never has to open it.*
 **Scoreboard: test suite is clean and bigger than it's ever been** — 5,156
 tests (up from 4,814 Monday), 4,910 pass / 246 warn / **0 error**. Monday's
 first full run this week had 25 real ERROR-level failures; today closed the
-whole backlog list from that audit, then kept going once the first pass
-revealed the backlog was measured wrong in two places.
+whole backlog list from that audit, then kept going three more rounds once
+each pass revealed the previous number was measured wrong or surfaced a new
+real bug.
 
-**BROKE: nothing from today's own work. Two standing items, not new:**
+**BROKE: nothing from today's own work. One standing item, not new, now healthier:**
 - **Senate LDA lobbying loader** (running since before today) died on a
   Snowflake auth-token expiry after landing years 1999–2004 + 2006 clean.
   Restarted from 2007 (killed the dead process first so it couldn't collide
-  with the restart). Still on 2007 as of session end — confirmed alive via
-  CPU trend, just very slow against the documented rate limit. Check
-  `logs/senate_lda_stdout.log` / `logs/senate_lda_checkpoint.json` at next
-  boot before assuming it's stuck.
+  with the restart) — it looked stuck for a long time but was just buffering
+  its own log output; confirmed alive via climbing CPU, and by session end it
+  had actually landed 2007 (52,390 filings) and moved on to 2008. Check
+  `logs/senate_lda_stdout.log` / `logs/senate_lda_checkpoint.json` at boot.
 - **GFI trade data still broken** — the real country-by-country table is a
   Tableau Public chart embed (canvas/SVG, not HTML), so even headless-browser
   rendering can't reach it. Needs a Tableau-aware scrape; not rushed today.
 
-## Today's close-out (commits `c8dc64e5`, `da47a034`, `5664bdd8`)
+## Today's close-out (commits `c8dc64e5` through `69b6d7df`)
 
-**Round 1 — the planned backlog:**
-- **BIA tribal land data fixed at the root.** Registered URL was an ArcGIS
-  Hub home page, not a dataset. Found the real government FeatureServer,
-  verified it live (335 real Land Area Representation polygons), landed it,
-  rekeyed the staging model, re-enabled + rewired both downstream marts (one
-  was reading raw landing directly, skipping staging — same bug class as 6
-  other pairs fixed 2026-07-31). All tests green.
-- **Entity spine:** 4 real federal sources wired (SAM exclusions, IRS 527
-  orgs, 2 SEC EDGAR tables). Correction to Monday's audit: "~850 unwired
-  tables" was inflated by counting every schema layer — real number is 319
-  unwired landing tables, 273 of them junk portal-crawl (out of scope per
-  Chris), only 46 real federal candidates, and only 4 currently clear the
-  registry's strict verification bar. The other 42 aren't yet promoted to
-  "modeled" lifecycle or have a registry/reality key-name mismatch.
-- **Grain/natural-key backfill:** 924 sources warehouse-wide got
-  GRAIN/NATURAL_KEY/SPINE_ENTITY resolved (rollback snapshot taken).
-- **Same-day regression, found and fixed:** the timeline registry test broke
-  mid-session — root-caused to a materialized table
-  (`timeline__politics_index`) that structurally can NEVER auto-refresh via
-  a normal `dbt run`, because it depends on the politics-guard-protected
-  mirror tables (by design). Worked around for today's row; the same
-  staleness will recur for the next politics-domain date that crosses into
-  "today." Real, standing gap — is the fix "make it a view instead of a
-  frozen table"? Chris's call.
-- **Senate LDA filings mart deduped:** 10,485 duplicate rows, same failure
-  class as this week's OSHA fix (rate-limited loader retrying after a
-  partially-successful page write). Loader's own root-cause bug is separate
-  and still open.
-- **IRS revocation mart:** filtered one IRS-published test/placeholder
-  record ("TEST COMPANY INC1 TESTS", EIN 999999999).
-- **Dashboards:** leads overlay regenerated with live counts (17,596 leads
-  across 8 detectors — both numbers had drifted hard from Monday's stale
-  353/4 guess). Old broken connection-graph dashboard (dead CDN link)
-  retired in favor of the newer Snowflake-backed one.
-- **Repo hygiene:** 8 junk dbt build directories cleaned + gitignored.
+**Round 1 — the planned backlog:** BIA tribal land data fixed at the root
+(found the real government FeatureServer, landed 335 real records, rewired
+both downstream marts). 4 real federal sources wired into the entity spine
+(SAM exclusions, IRS 527 orgs, 2 SEC EDGAR tables) — correcting Monday's
+"~850 unwired tables" claim down to 46 real candidates, 4 of which cleared
+the bar that round. 924 sources warehouse-wide got a resolved join key.
+Found and fixed a same-day regression (a timeline table that can never
+auto-refresh because it depends on politics-guard-protected data — worked
+around, root gap flagged for Chris). Deduped 10,485 duplicate Senate-lobbying
+rows (same bug class as this week's OSHA fix). Filtered an IRS-published
+test/placeholder record. Fixed 2 stale dashboards. Cleaned up repo clutter.
 
-**Round 2 — the staging-view gap turned out to be measured wrong, so kept going:**
-- **The "242 missing staging views" defect count is measurement-bug-
-  inflated.** Its check guesses a live view's name from the source_id string;
-  real staging models don't always follow that exact pattern (e.g. several
-  IRS-527 sources share one folder with a double-underscore naming
-  convention the guess misses entirely). Recomputed the TRUE gap using dbt's
-  own manifest dependency graph instead of string-guessing: **216 landing
-  tables genuinely have zero staging model** (not 242) — confirmed by
-  checking the filesystem directly for a sample, not just re-querying.
-- Of those 216, **89 already had a resolved key** and should have been
-  generatable — but the generator itself had two real bugs blocking almost
-  all of them:
-  1. It skipped generating a model entirely whenever the raw table's source
-     was already declared in a different folder — even though that has
-     nothing to do with whether a model exists. Fixed: still emit the model,
-     just don't re-declare the source (dbt errors on duplicate declarations).
-  2. Composite (multi-column) natural keys got a hard not_null test on every
-     individual column — wrong by construction, since the real completeness
-     gate is the full combination and individual composite-key columns are
-     often legitimately sparse. One CMS source alone caused 67 of the first
-     batch's 111 test failures this way. Fixed: per-column not_null on
-     composite keys is now a warning; the combination test stays a hard
-     error; single-column keys are unchanged (still hard error, correctly).
-  3. Along the way, found a real, separate data bug in one of the 83: 3 of
-     383,283 rows in a 2025 OSHA source are column-shifted (a company name
-     sitting in the CITY column, an impossible year 2795 in a timestamp
-     column) — filtered out; root cause is upstream and out of scope for a
-     3-row blast radius.
-- **Result: 83 new staging models generated and verified end to end.**
-  All of today's work is now part of a 5,156-test suite at 0 errors.
-- **True remaining gap: 213 landing tables with no staging view** (127 have
-  no resolvable key at all — genuinely ambiguous, not false alarms; the
-  other 86-ish need the same manifest-based recheck once more sources get
-  keys resolved). List of what was fixable today is at
-  `outputs/true_staging_gap_2026-08-26.txt`.
+**Round 2 — the "242 missing views" number turned out to be wrong too:**
+Its check guessed a live view's name from the source_id string and missed
+real, working views with non-standard naming. Recomputed the TRUE gap using
+dbt's own manifest dependency graph: **216 tables genuinely have zero staging
+model** (not 242). Found and fixed 2 real bugs in the model-generator tool
+itself (it was silently skipping models it shouldn't have, and wrongly
+hard-failing on individual columns of multi-part keys). Result: **83 new
+staging models**, verified end to end. Caught one more real data bug along
+the way (3 of 383,283 rows in an OSHA file had scrambled fields) — filtered.
+**True remaining gap: 213** (127 of those need a real human judgment call on
+what the ID even is — not more tooling).
+
+**Round 3 — went one level deeper on the entity graph, Chris-authorized:**
+Ran the warehouse's join-key measurement tool (`scripts/backfill_join_keys_
+std.py --apply`, Chris said "do it" directly) — 32 more sources got a real,
+measured key written to the shared catalog (15 of them hard identifiers,
+not just geography/name). Only 1 was immediately wireable into the entity
+spine (`FED_USASPENDING_BULK`) — the other 31 are blocked by a bigger,
+separate gate: spine wiring needs a source to be fully "modeled" (a real
+built mart), and 414 warehouse-wide sources are still stuck at "sampled"
+instead. That's a distinct, much larger initiative — flagged, not started.
+
+**Round 4 — running the spine test suite caught one more real regression:**
+Yesterday's USASpending full re-pull landing (93.2M rows, the correct
+non-truncated table) meant the entity spine's spec for the OLD 20M-row
+truncated table was now stale — the test suite's own shadowed-sibling check
+caught it. Repointed the spec to the real table; verified directly (582,656
+distinct UEIs, 100% surviving normalization, nothing newer shadowing it).
+**Also surfaced, not fixed:** a pre-existing ghost entry in the spine spec
+list (`FED_EPA_ICIS_ICIS_AIR_FACILITIES`) points at a landing table that
+doesn't physically exist — confirmed via git history this predates today,
+but it crashes the shadowed-sibling test before it can check every entry.
+Worth a quick follow-up look.
 
 ## YOUR MOVE (Chris)
 
-1. **Drop the old truncated USASpending contracts table** (20M-row sampling
-   artifact) — fully superseded, the correct 93M-row table is wired end to
-   end including staging as of today. Repo policy blocks agents running raw
-   DDL: `DROP TABLE LIBRARY_RAW.LANDING.FED_USASPENDING_CONTRACTS_FULL;`
+1. **Drop the old truncated USASpending contracts table** — fully
+   superseded now (spine repointed too, not just staging).
+   `DROP TABLE LIBRARY_RAW.LANDING.FED_USASPENDING_CONTRACTS_FULL;`
 2. **GFI trade data** — needs a real follow-up session with a Tableau-
-   scraping approach. Not urgent, just don't assume it's a quick fix again.
+   scraping approach. Not urgent.
 3. **The stale politics timeline table** — "make it a view instead of a
-   table" (matches everything else that depends on today's-date math), or
-   something else? Real design call, not urgent.
+   table" or something else? Real design call, not urgent.
+4. **Promoting "sampled" sources to "modeled"** (414 of them warehouse-wide)
+   is the next real lever for the entity graph, now that most of them have a
+   real key — but it's a much bigger initiative (each one needs an actual
+   built, reviewed mart) than anything attempted today. Worth scoping
+   separately if the connection graph stays a priority.
 
 ## NEXT
 
-Boot: check the Senate LDA loader (still on 2007 as of close). The staging-
-view gap is now genuinely small (213, mostly no-key sources needing human
-judgment, not tooling) — worth one more pass once more sources clear the
-grain-resolution bar. GFI needs a dedicated Tableau-scrape session whenever
-prioritized. The 42 not-yet-wired real federal spine sources are a bounded,
-known-size follow-up.
+Boot: check the Senate LDA loader (was healthy and on 2008 at close — verify
+it's still moving). The ghost ICIS_AIR_FACILITIES spec entry is a quick,
+bounded fix worth doing early next session. GFI needs a dedicated
+Tableau-scrape session whenever prioritized. The "sampled → modeled"
+promotion question (item 4 above) is the one open item that could genuinely
+change the shape of a future session if Chris wants to prioritize it.
 
-**Cost note:** ~4.2+ credits (~$8-13+) meter-verified from account usage —
+**Cost note:** ~4.8+ credits (~$10-14+) meter-verified from account usage —
 likely undercounted since Snowflake's usage reporting lags live activity by
 up to a few hours and this reading was pulled right at session end.
 
 ## Not committed
 
-Nothing — working tree is clean as of this session's close (3 commits ahead
+Nothing — working tree is clean as of this session's close (7 commits ahead
 of origin, not pushed). The Senate LDA loader's checkpoint/log files will be
 dirty again once it lands more years; that's expected, same as every session
 this week.
