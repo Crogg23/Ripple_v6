@@ -12,3 +12,11 @@ sources:
           FED_SEC_13F_SUBMISSION (singular, 3.8M rows) actually holds
           holdings-shaped rows that are a 100% subset of FED_SEC_13F_HOLDINGS
           (verified 2026-08-23) and is queued for retirement.
+      - name: XC_ICIJ_OFFSHORE_RELATIONSHIPS
+      - name: ICIJ_OFFSHORE_LEAKS_RELATIONSHIPS
+      - name: XC_ICIJ_OFFSHORE_NODES_ENTITIES
+      - name: ICIJ_OFFSHORE_LEAKS_ENTITIES
+      - name: XC_ICIJ_OFFSHORE_NODES_OFFICERS
+      - name: ICIJ_OFFSHORE_LEAKS_OFFICERS
+      - name: XC_ICIJ_OFFSHORE_NODES_ADDRESSES
+      - name: ICIJ_OFFSHORE_LEAKS_ADDRESSES
