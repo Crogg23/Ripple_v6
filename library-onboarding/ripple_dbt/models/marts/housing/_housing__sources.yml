@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FHFA_SUSPENDED_COUNTERPARTY
