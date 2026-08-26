@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: stg_fed_epa_sdwa_sdwa_lcr_samples__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (SAR_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: sar_id
+        data_tests:
+          - unique
+          - not_null

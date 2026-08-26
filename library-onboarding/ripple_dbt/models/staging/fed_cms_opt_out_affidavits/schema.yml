@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: stg_fed_cms_opt_out_affidavits__providers
+    description: "GRAIN: one row per provider (NPI is unique). SPINE_ENTITY: provider."
+    columns:
+      - name: npi
+        data_tests:
+          - unique
+          - not_null

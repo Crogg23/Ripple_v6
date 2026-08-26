@@ -1,0 +1,40 @@
+version: 2
+
+models:
+  - name: stg_fed_epa_npdes_npdes_formal_enforcement_actions__facilities
+    description: "GRAIN: one row per facility (NPDES_ID+SETTLEMENT_ENTERED_DATE+ACTIVITY_TYPE_CODE+ENF_TYPE_CODE+ACTIVITY_ID unique). SPINE_ENTITY: facility."
+    columns:
+      - name: npdes_id
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: settlement_entered_date
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: activity_type_code
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: enf_type_code
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: activity_id
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - npdes_id
+              - settlement_entered_date
+              - activity_type_code
+              - enf_type_code
+              - activity_id

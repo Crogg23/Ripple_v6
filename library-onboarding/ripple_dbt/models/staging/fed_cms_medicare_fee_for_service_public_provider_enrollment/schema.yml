@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: stg_fed_cms_medicare_fee_for_service_public_provider_enrollment__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ENRLMT_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: enrlmt_id
+        data_tests:
+          - unique
+          - not_null

@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: stg_fed_epa_icis_air_icis_air_programs__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (PGM_SYS_ID+BEGIN_DATE+UPDATED_DATE+PROGRAM_CODE unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: pgm_sys_id
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: begin_date
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: updated_date
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: program_code
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - pgm_sys_id
+              - begin_date
+              - updated_date
+              - program_code

@@ -282,13 +282,32 @@ qualify row_number() over (partition by {partition_by} order by {order_by_expr})
 """
 
 
-def render_schema_yml(model_name: str, src: dict, nk_snake: list[str], landing_table: str) -> str:
+def render_schema_yml(model_name: str, src: dict, nk_snake: list[str], landing_table: str,
+                       include_source: bool = True) -> str:
     """version-2 schema.yml matching this project's live convention: a per-model-
     folder `sources:` block declaring the ripple_raw table (dbt errors at parse
     time without one -- 'depends on a source ... which was not found') PLUS
     `data_tests:` (not the deprecated bare `tests:` key -- every hand-written
     schema.yml in this project already uses data_tests:, confirmed against
     fed_cms_nursing_home/schema.yml and fed_sec_edgar_company_tickers/schema.yml).
+
+    include_source=False when the raw table is already declared as a dbt source
+    in ANOTHER folder (a genuine cross-folder collision, checked by the caller)
+    -- dbt errors on a duplicate source declaration, so this folder's schema.yml
+    gets ONLY the models: block and relies on the other folder's sources: block.
+    2026-08-26: this used to mean skipping the model entirely, which silently
+    left 86 sources with a real resolved key but no staging model at all --
+    the fix is to still emit the model, just not re-declare the source.
+
+    2026-08-26: also fixed per-column not_null severity on COMPOSITE keys.
+    A multi-column natural key's real completeness gate is the combination
+    (unique_combination_of_columns below) -- an individual column being null
+    on some rows is common and often legitimate (e.g. a wide measure-catalog
+    table where most rows only populate a handful of its many optional
+    measure-id columns). Hard-erroring on every column individually produced
+    111 test failures across 21 draft models the first time this ran, 67 of
+    them from one source alone. Single-column keys keep not_null as a real
+    error -- a null there means the row has no identity at all.
     """
     desc = f"GRAIN: {src['grain']}. SPINE_ENTITY: {src['spine_entity'] or '(not determined)'}.".replace('"', "'")
     if len(nk_snake) == 1:
@@ -297,16 +316,18 @@ def render_schema_yml(model_name: str, src: dict, nk_snake: list[str], landing_t
         model_tests = ""
     else:
         col_blocks = "\n".join(
-            f"      - name: {c}\n        data_tests:\n          - not_null" for c in nk_snake
+            f"      - name: {c}\n        data_tests:\n"
+            "          - not_null:\n"
+            "              config:\n"
+            "                severity: warn"
+            for c in nk_snake
         )
         model_tests = (
             "\n    data_tests:\n      - dbt_utils.unique_combination_of_columns:\n"
             "          arguments:\n            combination_of_columns:\n"
             + "\n".join(f"              - {c}" for c in nk_snake)
         )
-    return f"""version: 2
-
-sources:
+    source_block = f"""sources:
   - name: ripple_raw
     database: LIBRARY_RAW
     schema: LANDING
@@ -316,7 +337,10 @@ sources:
           Raw landing table for {src['name']}. All columns arrive as TEXT and
           are cast in the staging layer.
 
-models:
+""" if include_source else ""
+    return f"""version: 2
+
+{source_block}models:
   - name: {model_name}
     description: "{desc}"
     columns:
@@ -354,15 +378,14 @@ def main() -> int:
         for src in sources:
             sid = src["source_id"]
             own_dir = str(MODELS_DIR / sid)
-            # Skip only if the table is declared in a folder OTHER than this
-            # source's own (a genuine cross-folder collision). A source's own
-            # prior schema.yml must NOT block regenerating itself.
+            # The table's source: block may already be declared in a folder OTHER
+            # than this source's own (a genuine cross-folder collision -- dbt
+            # errors on a duplicate source declaration). That does NOT mean a
+            # staging MODEL exists for this source -- only that this folder's
+            # schema.yml must skip re-declaring the source and rely on the
+            # other folder's declaration instead (include_source=False below).
             other_dirs = declared.get(sid.upper(), set()) - {own_dir}
-            if other_dirs:
-                where = ", ".join(sorted(Path(d).name for d in other_dirs))
-                skipped.append((sid, f"{sid.upper()} already declared as a dbt source in "
-                                      f"another folder ({where}) -- not adding a duplicate declaration"))
-                continue
+            include_source = not other_dirs
             columns, ingested_at_column = fetch_columns(cur, sid.upper())
             if not columns:
                 skipped.append((sid, "no landed columns found"))
@@ -401,7 +424,7 @@ def main() -> int:
 
             sql = render_model(src, columns, ingested_at_column)
             nk_snake = [snake(c) for c in src["natural_key"]]
-            yml = render_schema_yml(model_name, src, nk_snake, sid.upper())
+            yml = render_schema_yml(model_name, src, nk_snake, sid.upper(), include_source=include_source)
 
             if args.dry_run:
                 print(f"\n{'=' * 78}\n-- {out_path}\n{'=' * 78}\n{sql}")

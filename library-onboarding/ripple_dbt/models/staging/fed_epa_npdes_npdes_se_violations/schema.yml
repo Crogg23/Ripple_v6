@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: stg_fed_epa_npdes_npdes_se_violations__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (NPDES_VIOLATION_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: npdes_violation_id
+        data_tests:
+          - unique
+          - not_null

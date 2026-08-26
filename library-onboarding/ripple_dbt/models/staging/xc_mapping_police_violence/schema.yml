@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: stg_xc_mapping_police_violence__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (MPV_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: mpv_id
+        data_tests:
+          - unique
+          - not_null

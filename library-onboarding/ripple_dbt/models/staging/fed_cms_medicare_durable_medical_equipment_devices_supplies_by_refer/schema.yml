@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: stg_fed_cms_medicare_durable_medical_equipment_devices_supplies_by_refer__providers
+    description: "GRAIN: one row per provider (NPI is unique). SPINE_ENTITY: provider."
+    columns:
+      - name: rfrg_npi
+        data_tests:
+          - unique
+          - not_null

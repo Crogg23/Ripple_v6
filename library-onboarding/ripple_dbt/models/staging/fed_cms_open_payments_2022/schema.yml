@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: stg_fed_cms_open_payments_2022__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (RECORD_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: record_id
+        data_tests:
+          - unique
+          - not_null

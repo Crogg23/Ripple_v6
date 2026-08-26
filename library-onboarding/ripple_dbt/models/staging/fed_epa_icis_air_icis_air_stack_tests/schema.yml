@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: stg_fed_epa_icis_air_icis_air_stack_tests__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (PGM_SYS_ID+ACTIVITY_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: pgm_sys_id
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: activity_id
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - pgm_sys_id
+              - activity_id

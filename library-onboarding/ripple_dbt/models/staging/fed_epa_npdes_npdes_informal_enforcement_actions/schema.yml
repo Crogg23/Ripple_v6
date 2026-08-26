@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: stg_fed_epa_npdes_npdes_informal_enforcement_actions__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ACTIVITY_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: activity_id
+        data_tests:
+          - unique
+          - not_null

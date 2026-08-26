@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: stg_fed_epa_icis_air_icis_air_facilities__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (PGM_SYS_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: pgm_sys_id
+        data_tests:
+          - unique
+          - not_null

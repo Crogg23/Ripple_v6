@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: stg_fed_cms_medicare_physician_other_practitioners_by_provider__providers
+    description: "GRAIN: one row per provider (NPI is unique). SPINE_ENTITY: provider."
+    columns:
+      - name: rndrng_npi
+        data_tests:
+          - unique
+          - not_null

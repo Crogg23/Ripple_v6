@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: stg_FED_FAC_SINGLE_AUDIT__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (REPORT_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: report_id
+        data_tests:
+          - unique
+          - not_null

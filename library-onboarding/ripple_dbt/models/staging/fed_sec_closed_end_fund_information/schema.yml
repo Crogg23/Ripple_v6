@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: stg_fed_sec_closed_end_fund_information__organizations
+    description: "GRAIN: one row per organization (CIK is unique). SPINE_ENTITY: organization."
+    columns:
+      - name: cik
+        data_tests:
+          - unique
+          - not_null

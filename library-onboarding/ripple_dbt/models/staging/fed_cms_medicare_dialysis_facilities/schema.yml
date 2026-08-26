@@ -1,0 +1,40 @@
+version: 2
+
+models:
+  - name: stg_fed_cms_medicare_dialysis_facilities__providers
+    description: "GRAIN: one row per provider (CCN+NPI+YEAR+OWNERSHIP_TYPE+MEASURE_ID unique). SPINE_ENTITY: provider."
+    columns:
+      - name: ccn
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: npi
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: year
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: ownership_type
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: measure_id
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - ccn
+              - npi
+              - year
+              - ownership_type
+              - measure_id

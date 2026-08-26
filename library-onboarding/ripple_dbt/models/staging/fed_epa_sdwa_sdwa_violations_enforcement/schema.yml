@@ -1,0 +1,64 @@
+version: 2
+
+models:
+  - name: stg_fed_epa_sdwa_sdwa_violations_enforcement__facilities
+    description: "GRAIN: one row per facility (PWSID+COMPL_PER_BEGIN_DATE+COMPL_PER_END_DATE+NON_COMPL_PER_BEGIN_DATE+VIOLATION_ID+FACILITY_ID+SAMPLE_RESULT_ID+CORRECTIVE_ACTION_ID+ENFORCEMENT_ID unique). SPINE_ENTITY: facility."
+    columns:
+      - name: pwsid
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: compl_per_begin_date
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: compl_per_end_date
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: non_compl_per_begin_date
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: violation_id
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: facility_id
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: sample_result_id
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: corrective_action_id
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: enforcement_id
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - pwsid
+              - compl_per_begin_date
+              - compl_per_end_date
+              - non_compl_per_begin_date
+              - violation_id
+              - facility_id
+              - sample_result_id
+              - corrective_action_id
+              - enforcement_id

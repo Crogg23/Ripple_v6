@@ -1,0 +1,46 @@
+version: 2
+
+models:
+  - name: stg_fed_epa_tri_basic_2023__facilities
+    description: "GRAIN: one row per facility (FRS_ID+C_1_YEAR+C_22_INDUSTRY_SECTOR_CODE+C_23_INDUSTRY_SECTOR+C_39_TRI_CHEMICAL_COMPOUND_ID+C_41_SRS_ID unique). SPINE_ENTITY: facility."
+    columns:
+      - name: c_3_frs_id
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: c_1_year
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: c_22_industry_sector_code
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: c_23_industry_sector
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: c_39_tri_chemical_compound_id
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: c_41_srs_id
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - c_3_frs_id
+              - c_1_year
+              - c_22_industry_sector_code
+              - c_23_industry_sector
+              - c_39_tri_chemical_compound_id
+              - c_41_srs_id

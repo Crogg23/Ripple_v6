@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: stg_fed_epa_egrid_plant_2022__facilities
+    description: "GRAIN: one row per facility (FIPS+DATA_YEAR+DOE_EIA_ORIS_PLANT_OR_FACILITY_CODE unique). SPINE_ENTITY: facility."
+    columns:
+      - name: plant_fips_county_code
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: data_year
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: doe_eia_oris_plant_or_facility_code
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - plant_fips_county_code
+              - data_year
+              - doe_eia_oris_plant_or_facility_code

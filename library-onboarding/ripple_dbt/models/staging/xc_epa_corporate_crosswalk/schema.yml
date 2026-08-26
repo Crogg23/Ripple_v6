@@ -1,0 +1,40 @@
+version: 2
+
+models:
+  - name: stg_xc_epa_corporate_crosswalk__facilities
+    description: "GRAIN: one row per facility-organization relationship (FRS_ID+LEI+CIK+UEI+LEI is unique). SPINE_ENTITY: facility."
+    columns:
+      - name: epa_registry_id
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: matched_lei
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: parent_cik
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: parent_uei
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: ultimate_parent_lei
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - epa_registry_id
+              - matched_lei
+              - parent_cik
+              - parent_uei
+              - ultimate_parent_lei

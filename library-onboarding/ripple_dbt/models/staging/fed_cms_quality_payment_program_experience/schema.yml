@@ -1,0 +1,436 @@
+version: 2
+
+models:
+  - name: stg_fed_cms_quality_payment_program_experience__providers
+    description: "GRAIN: one row per provider (NPI+CLINICIAN_TYPE+SMALL_PRACTICE_STATUS+RURAL_STATUS+MIPS_VALUE_PATHWAY_ID+QUALITY_MEASURE_ID_1+QUALITY_MEASURE_ID_2+QUALITY_MEASURE_ID_3+QUALITY_MEASURE_ID_4+QUALITY_MEASURE_ID_5+QUALITY_MEASURE_ID_6+QUALITY_MEASURE_ID_7+QUALITY_MEASURE_ID_8+QUALITY_MEASURE_ID_9+QUALITY_MEASURE_ID_10+QUALITY_MEASURE_ID_11+QUALITY_MEASURE_ID_12+CEHRT_ID+PI_MEASURE_ID_1+PI_MEASURE_ID_2+PI_MEASURE_ID_3+PI_MEASURE_ID_4+PI_MEASURE_ID_5+PI_MEASURE_ID_6+PI_MEASURE_ID_7+PI_MEASURE_ID_8+PI_MEASURE_ID_9+PI_MEASURE_ID_10+PI_MEASURE_ID_11+PI_MEASURE_ID_12+PI_MEASURE_ID_13+PI_MEASURE_ID_14+PI_MEASURE_ID_15+PI_MEASURE_ID_16+PI_MEASURE_ID_17+PI_MEASURE_ID_18+PI_MEASURE_ID_19+PI_MEASURE_ID_20+PI_MEASURE_ID_21+IA_MEASURE_ID_1+IA_MEASURE_ID_2+IA_MEASURE_ID_3+IA_MEASURE_ID_4+COST_MEASURE_ID_1+COST_MEASURE_ID_2+COST_MEASURE_ID_3+COST_MEASURE_ID_4+COST_MEASURE_ID_5+COST_MEASURE_ID_6+COST_MEASURE_ID_7+COST_MEASURE_ID_8+COST_MEASURE_ID_9+COST_MEASURE_ID_10+COST_MEASURE_ID_11+COST_MEASURE_ID_12+COST_MEASURE_ID_13+COST_MEASURE_ID_14+COST_MEASURE_ID_15+COST_MEASURE_ID_16+COST_MEASURE_ID_17+COST_MEASURE_ID_18+COST_MEASURE_ID_19+COST_MEASURE_ID_20+COST_MEASURE_ID_21+COST_MEASURE_ID_22+COST_MEASURE_ID_23+COST_MEASURE_ID_24+COST_MEASURE_ID_25+COST_MEASURE_ID_26+COST_MEASURE_ID_27+COST_MEASURE_ID_28 unique). SPINE_ENTITY: provider."
+    columns:
+      - name: npi
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: clinician_type
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: small_practice_status
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: rural_status
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: mips_value_pathway_id
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: quality_measure_id_1
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: quality_measure_id_2
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: quality_measure_id_3
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: quality_measure_id_4
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: quality_measure_id_5
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: quality_measure_id_6
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: quality_measure_id_7
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: quality_measure_id_8
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: quality_measure_id_9
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: quality_measure_id_10
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: quality_measure_id_11
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: quality_measure_id_12
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: cehrt_id
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: pi_measure_id_1
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: pi_measure_id_2
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: pi_measure_id_3
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: pi_measure_id_4
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: pi_measure_id_5
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: pi_measure_id_6
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: pi_measure_id_7
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: pi_measure_id_8
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: pi_measure_id_9
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: pi_measure_id_10
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: pi_measure_id_11
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: pi_measure_id_12
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: pi_measure_id_13
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: pi_measure_id_14
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: pi_measure_id_15
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: pi_measure_id_16
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: pi_measure_id_17
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: pi_measure_id_18
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: pi_measure_id_19
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: pi_measure_id_20
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: pi_measure_id_21
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: ia_measure_id_1
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: ia_measure_id_2
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: ia_measure_id_3
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: ia_measure_id_4
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: cost_measure_id_1
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: cost_measure_id_2
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: cost_measure_id_3
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: cost_measure_id_4
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: cost_measure_id_5
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: cost_measure_id_6
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: cost_measure_id_7
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: cost_measure_id_8
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: cost_measure_id_9
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: cost_measure_id_10
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: cost_measure_id_11
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: cost_measure_id_12
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: cost_measure_id_13
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: cost_measure_id_14
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: cost_measure_id_15
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: cost_measure_id_16
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: cost_measure_id_17
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: cost_measure_id_18
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: cost_measure_id_19
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: cost_measure_id_20
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: cost_measure_id_21
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: cost_measure_id_22
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: cost_measure_id_23
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: cost_measure_id_24
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: cost_measure_id_25
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: cost_measure_id_26
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: cost_measure_id_27
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: cost_measure_id_28
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - npi
+              - clinician_type
+              - small_practice_status
+              - rural_status
+              - mips_value_pathway_id
+              - quality_measure_id_1
+              - quality_measure_id_2
+              - quality_measure_id_3
+              - quality_measure_id_4
+              - quality_measure_id_5
+              - quality_measure_id_6
+              - quality_measure_id_7
+              - quality_measure_id_8
+              - quality_measure_id_9
+              - quality_measure_id_10
+              - quality_measure_id_11
+              - quality_measure_id_12
+              - cehrt_id
+              - pi_measure_id_1
+              - pi_measure_id_2
+              - pi_measure_id_3
+              - pi_measure_id_4
+              - pi_measure_id_5
+              - pi_measure_id_6
+              - pi_measure_id_7
+              - pi_measure_id_8
+              - pi_measure_id_9
+              - pi_measure_id_10
+              - pi_measure_id_11
+              - pi_measure_id_12
+              - pi_measure_id_13
+              - pi_measure_id_14
+              - pi_measure_id_15
+              - pi_measure_id_16
+              - pi_measure_id_17
+              - pi_measure_id_18
+              - pi_measure_id_19
+              - pi_measure_id_20
+              - pi_measure_id_21
+              - ia_measure_id_1
+              - ia_measure_id_2
+              - ia_measure_id_3
+              - ia_measure_id_4
+              - cost_measure_id_1
+              - cost_measure_id_2
+              - cost_measure_id_3
+              - cost_measure_id_4
+              - cost_measure_id_5
+              - cost_measure_id_6
+              - cost_measure_id_7
+              - cost_measure_id_8
+              - cost_measure_id_9
+              - cost_measure_id_10
+              - cost_measure_id_11
+              - cost_measure_id_12
+              - cost_measure_id_13
+              - cost_measure_id_14
+              - cost_measure_id_15
+              - cost_measure_id_16
+              - cost_measure_id_17
+              - cost_measure_id_18
+              - cost_measure_id_19
+              - cost_measure_id_20
+              - cost_measure_id_21
+              - cost_measure_id_22
+              - cost_measure_id_23
+              - cost_measure_id_24
+              - cost_measure_id_25
+              - cost_measure_id_26
+              - cost_measure_id_27
+              - cost_measure_id_28

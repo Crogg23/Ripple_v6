@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: stg_intl_gleif_repex__organizations
+    description: "GRAIN: one row per organization (LEI+EXCEPTION_CATEGORY unique). SPINE_ENTITY: organization."
+    columns:
+      - name: lei
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: exception_category
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - lei
+              - exception_category

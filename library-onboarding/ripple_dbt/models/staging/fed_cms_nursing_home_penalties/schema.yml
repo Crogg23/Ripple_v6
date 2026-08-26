@@ -1,0 +1,40 @@
+version: 2
+
+models:
+  - name: stg_fed_cms_nursing_home_penalties__facilities
+    description: "GRAIN: one row per facility (CCN+PENALTY_DATE+PAYMENT_DENIAL_START_DATE+PROCESSING_DATE+FINE_ID unique). SPINE_ENTITY: facility."
+    columns:
+      - name: cms_certification_number_ccn
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: penalty_date
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: payment_denial_start_date
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: processing_date
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: fine_id
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - cms_certification_number_ccn
+              - penalty_date
+              - payment_denial_start_date
+              - processing_date
+              - fine_id

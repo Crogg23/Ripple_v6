@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: stg_fed_courtlistener_investments__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ID is unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: id
+        data_tests:
+          - unique
+          - not_null

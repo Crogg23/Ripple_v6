@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: stg_fed_epa_sdwa_sdwa_pub_water_systems__facilities
+    description: "GRAIN: one row per facility (PWSID is unique). SPINE_ENTITY: facility."
+    columns:
+      - name: pwsid
+        data_tests:
+          - unique
+          - not_null

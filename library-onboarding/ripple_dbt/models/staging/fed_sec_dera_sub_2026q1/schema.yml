@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: stg_fed_sec_dera_sub_2026q1__organizations
+    description: "GRAIN: one row per organization (CIK+PERIOD+FY unique). SPINE_ENTITY: organization."
+    columns:
+      - name: cik
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: period
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: fy
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - cik
+              - period
+              - fy

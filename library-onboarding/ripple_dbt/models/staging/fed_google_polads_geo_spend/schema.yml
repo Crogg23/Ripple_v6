@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: stg_fed_google_polads_geo_spend__places
+    description: "GRAIN: one row per place (COUNTRY is unique). SPINE_ENTITY: place."
+    columns:
+      - name: country_subdivision_secondary
+        data_tests:
+          - unique
+          - not_null

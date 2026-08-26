@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: stg_fed_cms_medicare_inpatient_hospitals_by_provider__facilities
+    description: "GRAIN: one row per facility (CCN is unique). SPINE_ENTITY: facility."
+    columns:
+      - name: rndrng_prvdr_ccn
+        data_tests:
+          - unique
+          - not_null

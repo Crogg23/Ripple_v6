@@ -1,0 +1,46 @@
+version: 2
+
+models:
+  - name: stg_fed_epa_sdwa_sdwa_pn_violation_assoc__facilities
+    description: "GRAIN: one row per facility (PWSID+COMPL_PER_BEGIN_DATE+COMPL_PER_END_DATE+NON_COMPL_PER_BEGIN_DATE+PN_VIOLATION_ID+RELATED_VIOLATION_ID unique). SPINE_ENTITY: facility."
+    columns:
+      - name: pwsid
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: compl_per_begin_date
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: compl_per_end_date
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: non_compl_per_begin_date
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: pn_violation_id
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: related_violation_id
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - pwsid
+              - compl_per_begin_date
+              - compl_per_end_date
+              - non_compl_per_begin_date
+              - pn_violation_id
+              - related_violation_id

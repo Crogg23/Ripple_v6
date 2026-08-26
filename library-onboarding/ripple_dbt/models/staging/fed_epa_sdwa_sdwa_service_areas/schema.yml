@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: stg_fed_epa_sdwa_sdwa_service_areas__facilities
+    description: "GRAIN: one row per facility (PWSID+FIRST_REPORTED_DATE+LAST_REPORTED_DATE+SERVICE_AREA_TYPE_CODE unique). SPINE_ENTITY: facility."
+    columns:
+      - name: pwsid
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: first_reported_date
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: last_reported_date
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: service_area_type_code
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - pwsid
+              - first_reported_date
+              - last_reported_date
+              - service_area_type_code
