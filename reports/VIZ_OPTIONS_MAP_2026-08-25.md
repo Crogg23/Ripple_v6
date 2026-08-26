@@ -1,79 +1,73 @@
 # Warehouse Metrics → Visualization Options Map
 
-**Dated 2026-08-25.** A menu, not a decision. Nothing here is a recommendation
-and there is no shortlist at the end — that's on purpose. The pick is Chris's.
+**Dated 2026-08-25.** A menu, not a decision. No recommendation, no shortlist —
+on purpose. The pick is Chris's. *(Optimized + Round 2 + polish pass, all
+2026-08-25. Every concept now ends with a **Lift** — the single conceptual
+design decision that would make that piece beautiful, not just correct. Facts
+and scores unchanged; original archived in session scratchpad.)*
 
 ---
 
-## Plain-English intro
-
-You have a pile of numbers about your own data warehouse — how big it is, how
-much of it is connected, how much of it is junk, and how much of what looks
-connected is actually fake. This document lists **every sensible way to draw
-those numbers on a website**, and every tool that could draw them.
+## How to use this
 
 Two separate choices hide inside "how should I visualize this":
 
-1. **The picture** — is this a bar chart, a flowing river, a grid of dots, a
-   drawing of a building? That's the *concept*.
+1. **The picture** — bar chart, river, dot grid, drawing? That's the *concept*.
 2. **The tool** — what software draws it? That's the *library*.
 
-Most people collapse those two into one and end up with whatever their tool
-draws by default. This document keeps them apart. Section by section it gives
-**9 metric groups × 6-7 different picture ideas each (60 concepts total)**,
-scores each one on nine practical dimensions, and then — separately — lists
-**30 tools** with what each can and can't do.
+Most people collapse the two and get their tool's default. This document keeps
+them apart: **9 metric groups × 6-7 picture ideas each (60 concepts, plus 24
+more + 3 more wild in Round 2 near the end — 93 total)**, each scored on nine
+dimensions, then **30 tools** listed separately.
 
-**Direction of the scores:** more dots = better on that dimension, always.
-Page weight and effort are shown as real numbers (KB, hours) instead of dots,
-because a dot rating there hides the thing you'd actually want to know.
+**Score direction:** more dots = better, always. Page weight and effort are
+real numbers (KB, hours) because dots would hide what you'd want to know.
+
+**The Lift lines:** each concept's *Lift* is the detail that separates a
+portfolio piece from a dashboard widget — one decision, stated so it can be
+kept or discarded deliberately. Lifts are design intent, not extra features;
+none changes the effort or score estimates materially unless it says so.
+
+**Static-first ruling (Chris, 2026-08-25): minimal moving parts or animation.**
+The default for every piece is fully still. Lifts that added motion to
+otherwise-static concepts have been rewritten static. Concepts that *cannot
+exist* without continuous motion stay on the menu but are tagged and sit
+outside the default — see the static-first note in the cross-cutting section.
 
 ---
 
-## What's already built (so nothing here is presented as new when it isn't)
+## Already built (verified on disk this session)
 
-You already have a body of visual work in this repo. Verified on disk this
-session, not remembered:
-
-| Existing page | What it already does |
+| Existing page | What it does |
 |---|---|
-| the scale gallery (10 scenes) | counting-problem clock, one-pixel-per-entity field, printed-tower metaphor, source skyline, domain treemap, ripple, powers-of-ten, build-over-time, human-scale arithmetic, map-lighting-up |
-| the chart vocabulary field guide | a catalogue of chart forms already drawn once |
-| the infographic layout systems survey | page-composition patterns |
-| the warehouse biome page | mart row counts as a biome |
-| the spine tree page | spine axis → table membership as a tree |
-| ten data pages (rate map, pill rivers, heartbeat, denial gap, waiting room, detention rivers, own clock, pulse grid, bank deserts, money shape) | the existing house style: dark "night water" palette, hand-rolled HTML + canvas, data baked in at build time |
+| scale gallery (10 scenes) | counting clock, pixel-per-entity field, printed tower, source skyline, domain treemap, ripple, powers-of-ten, build-over-time, human-scale arithmetic, map lighting up |
+| chart vocabulary field guide | catalogue of chart forms, drawn once |
+| infographic layout survey | page-composition patterns |
+| warehouse biome page | mart row counts as a biome |
+| spine tree page | spine axis → table membership as a tree |
+| ten data pages (rate map, pill rivers, heartbeat, denial gap, waiting room, detention rivers, own clock, pulse grid, bank deserts, money shape) | the house style: dark "night water" palette, hand-rolled HTML + canvas, data baked in at build |
 
-**Where that matters below:** concepts that already exist in some form are
-marked **[BUILT]**, concepts that are a variation on something built are
-marked **[NEAR-BUILT]**. Everything else is new to this repo. This is context,
-not a ceiling — several new concepts below deliberately overlap the same
-metric a built page covers, because a second, better picture of the same
-number is a real option.
+**[BUILT]** = exists in some form. **[NEAR-BUILT]** = variation on something
+built. Context, not a ceiling — a second, better picture of a covered number is
+a real option.
 
 ---
 
-## What's actually installed on this Mac (verified this session)
-
-This changes the effort numbers a lot, so it's stated up front rather than
-assumed.
+## Installed on this Mac (verified this session)
 
 **Present:** Python 3.9 with plotly 6.6.0, altair 5.5.0, pandas 2.3.3,
 numpy 2.0.2, networkx 3.2.1, pydeck 0.9.2, dash 4.4.1, Pillow 11.3.0,
-duckdb 1.4.5. **Node v22.23.2 is installed** (via nvm). Chrome is installed
-(used for headless screenshotting).
+duckdb 1.4.5. **Node v22.23.2** (via nvm — corrects the old "no Node" memory
+note). Chrome (headless screenshotting).
 
 **Absent:** matplotlib, seaborn, plotnine, datashader, bokeh, holoviews,
 hvplot, pyecharts, kaleido, vl-convert-python, geopandas, graphviz, scipy.
-
-Two corrections worth noting: an older note in memory says there is **no Node
-on this Mac** — there is, v22.23.2. And **matplotlib is not installed**, which
-matters because five of the Python options below (seaborn, plotnine, PyWaffle,
-Datashader's mpl path, and matplotlib itself) all sit on top of it.
+**matplotlib being absent blocks five options below** (seaborn, plotnine,
+PyWaffle, Datashader's mpl path, matplotlib itself).
 
 ---
 
-## The numbers being visualized (pulled from the audit, not re-derived)
+## The numbers (from the audit, not re-derived)
 
 | # | Metric group | The numbers |
 |---|---|---|
@@ -89,71 +83,71 @@ Datashader's mpl path, and matplotlib itself) all sit on top of it.
 
 ---
 
-# How to read the score tables
+# Reading the score tables
 
-Every concept below gets scored on all nine dimensions. Same nine, every time,
-no weighting — the weighting is yours.
+Same nine dimensions every time, no weighting — the weighting is yours.
 
-| Column | Means | Scale |
-|---|---|---|
-| **Weight** | what the visitor's browser downloads for this one graphic | real KB estimate |
-| **Effort** | rough hours: first working draft → portfolio-polished | real hours |
-| **Interact** | does clicking/hovering/zooming add real meaning here, or is it decoration? | ●○○○○ decoration → ●●●●● interaction *is* the point |
-| **Design** | how good this can look with real design effort applied (not the default theme) | ●○○○○ stuck ugly → ●●●●● magazine-grade |
-| **Scale** | does it survive the actual row counts without sampling? | ●○○○○ needs aggregation → ●●●●● handles it natively |
-| **A11y** | colorblind-safe + screen-reader/alt-text feasible | ●○○○○ canvas blob, no text layer → ●●●●● real text/SVG, describable |
-| **Theme** | works in both your light and dark site themes | ●○○○○ one theme only → ●●●●● token-driven, flips free |
-| **Regen** | can it rebuild itself next time the audit runs? | ●○○○○ hand-tuned art → ●●●●● one script, zero hand-touching |
-| **Wow** | how differentiated vs. a generic dashboard chart | ●○○○○ seen it → ●●●●● nobody has one of these |
+| Column | Means |
+|---|---|
+| **Weight** | browser download for this one graphic (real KB) |
+| **Effort** | hours: first working draft → portfolio-polished |
+| **Interact** | does clicking/hovering add meaning? ●○○○○ decoration → ●●●●● interaction *is* the point |
+| **Design** | ceiling with real design effort. ●○○○○ stuck ugly → ●●●●● magazine-grade |
+| **Scale** | survives the real row counts without sampling? |
+| **A11y** | colorblind-safe + screen-reader feasible. ●○○○○ canvas blob → ●●●●● real text/SVG |
+| **Theme** | works in light and dark. ●○○○○ one theme → ●●●●● token-driven |
+| **Regen** | rebuilds itself when the audit re-runs? ●○○○○ hand-tuned art → ●●●●● one script |
+| **Wow** | differentiation vs. a generic dashboard chart |
 
-**One honesty note applied throughout:** any concept scoring ●●●●● on Wow and
-●○○○○ on Regen is *art*, not a chart — beautiful once, stale the moment the
-numbers change. That trade-off is real and is never smoothed over below.
+**Standing honesty note:** ●●●●● Wow + ●○○○○ Regen = *art*, not a chart —
+beautiful once, stale the moment the numbers change. That trade-off is real
+everywhere below.
 
 ---
 
 # A. Warehouse scale — the headline number
 
-**What this section shows:** the one number that says "this is big" — 4.97
-billion rows, 185.4GB, 5,436 objects across 7 databases. The problem with a
-headline number is that a human can't feel a billion. Every concept here is a
-different answer to *how do you make 4.97B mean something.*
+4.97B rows, 185.4GB, 5,436 objects, 7 databases. A human can't feel a billion —
+every concept here is a different answer to *making 4.97B mean something.*
 
-### A1. Big-type stat block **[BUILT]**
-Four or five enormous numerals in your serif face, with a one-line plain
-sentence under each. No chart at all — typography carrying the whole load. The
-existing gallery header already does this.
-
-### A2. The counting clock **[BUILT]**
-"Read one row per second, no sleep." 4.97B seconds = ~158 years. An animated
-counter that visibly can't finish, with the elapsed-years figure ticking beside
-it. Already built as scene 1.
-
-### A3. One-pixel-per-entity field **[BUILT]**
-A canvas where each dot is one entity, filling the screen until it's texture
-rather than dots. Works because the eye reads density directly. Already built.
-
-### A4. Powers-of-ten ladder **[BUILT]**
-Ten steps from one readable record to the full warehouse, each ×10, each
-annotated with a real-world comparison at that size. Already built as scene 7.
-
-### A5. Nested-square area nest (new)
-One square = 4.97B rows. Inside it, a square for the largest database, inside
-that the largest schema, then the largest table — four true-to-area nestings
-that show, in one static image, how much of "everything" one table actually is.
-Different from a treemap: it's a *zoom*, not a partition.
-
-### A6. Physical-object scale stack (new)
-Render the warehouse as a to-scale physical object next to a known reference —
-185.4GB as a stack of 1.44MB floppy disks (~125,700 of them; at 3.2mm each
-that's ~402m / ~1,320 ft, taller than the Empire State Building's 1,250 ft
-roof), beside a drawn building for reference. Static illustration, numbers
-computed, drawing hand-composed.
-
-### A7. Scrolling odometer strip (new)
-A single horizontal band that scrolls the digits of 4,974,176,335 past as the
-visitor scrolls the page, with tick labels marking where each database's
-contribution ends. The number becomes a *distance* you travel through.
+- **A1. Big-type stat block [BUILT]** — enormous numerals, one plain sentence
+  each; typography carries it all. The gallery header already does this.
+  *Lift:* never round — set all ten digits of 4,974,176,335 at poster scale,
+  with "counted 2026-08-24" in small type beneath. The unrounded figure plus
+  its exact date does the "still counting" work — completely still.
+- **A2. Counting clock [BUILT]** — "one row per second" = ~158 years; an
+  animated counter that visibly can't finish. Built as scene 1.
+  *Lift:* the clock never resets — it remembers each visitor's position and
+  resumes counting where they left off. Coming back a week later and finding
+  it barely moved is the exhibit.
+- **A3. One-pixel-per-entity field [BUILT]** — dots fill the screen into
+  texture; the eye reads density directly.
+  *Lift:* light exactly one pixel and caption it — "this one is a real
+  hospital in Ohio." One named dot turns 33 million pixels of texture into
+  33 million somebodies.
+- **A4. Powers-of-ten ladder [BUILT]** — ten ×10 steps from one record to the
+  warehouse, real-world comparison at each. Built as scene 7.
+  *Lift:* at every step, keep the previous step visible as a tiny glowing
+  square in the corner — a breadcrumb trail of scale, so the visitor never
+  loses the thread of how far they've zoomed.
+- **A5. Nested-square area nest (new)** — true-to-area squares nested four
+  deep: warehouse → biggest database → schema → table. A *zoom*, not a treemap
+  partition.
+  *Lift:* draw it honestly enough that the innermost square nearly vanishes —
+  then label the vanishing: "this table holds 63 million rows and you can
+  barely see it." The chart's failure to show it IS the message.
+- **A6. Physical-object scale stack (new)** — 185.4GB as ~125,700 floppy disks
+  = a ~402m / ~1,320ft stack, taller than the Empire State roof (1,250ft),
+  drawn beside a building. Static illustration, hand-composed.
+  *Lift:* draw it in strict two-tone blueprint convention — elevation drawing,
+  dimension lines, title block — and put a tiny aircraft-warning light on top
+  of the disk stack. One deadpan joke that states the altitude.
+- **A7. Scrolling odometer strip (new)** — the digits of 4,974,176,335 scroll
+  past as the visitor scrolls, ticks marking each database's share. The number
+  becomes a distance.
+  *Lift:* mile-marker signage at each database boundary, and when the visitor
+  inevitably stops scrolling, print where they gave up: "you made it to row
+  212,004,318 — 4.3% of the way." Their surrender is the data point.
 
 | Concept | Weight | Effort | Interact | Design | Scale | A11y | Theme | Regen | Wow |
 |---|---|---|---|---|---|---|---|---|---|
@@ -165,60 +159,56 @@ contribution ends. The number becomes a *distance* you travel through.
 | A6 physical stack | ~180 KB* | 8→30 | ●○○○○ | ●●●●● | ●●●●● | ●●●○○ | ●●○○○ | ●○○○○ | ●●●●● |
 | A7 odometer strip | ~5 KB | 4→14 | ●●●●○ | ●●●●○ | ●●●●● | ●●○○○ | ●●●●● | ●●●●○ | ●●●●○ |
 
-\* A6's weight is an embedded illustration; as inline SVG instead it drops to
-~30 KB but the drawing effort roughly doubles.
+\* A6 as inline SVG drops to ~30 KB but drawing effort roughly doubles.
 
-**Tools that can draw these:** A1/A5/A7 are plain HTML+CSS+SVG, no library.
-A2/A3 are canvas + ~40 lines of JS. A4 is either. A6 is Pillow (installed) or
-hand-drawn SVG, or a generative pass in p5.js. Nothing in this group needs a
-charting library at all — worth knowing, because a charting library is the
-default assumption and it buys you nothing here.
+**Tools:** A1/A5/A7 plain HTML+CSS+SVG; A2/A3 canvas + ~40 lines JS; A4
+either; A6 Pillow (installed), hand SVG, or p5.js. **No charting library needed
+anywhere in this group.**
 
 ---
 
 # B. Per-database breakdown — seven wildly different things
 
-**What this section shows:** the warehouse isn't one database, it's seven, and
-they're not comparable. Three hold ~1.3B rows each. One holds 135,812. Two hold
-literally zero. Any chart that puts all seven on one linear axis makes four of
-them invisible — that's the whole design problem here.
+Three databases hold ~1.3B rows each, one holds 135,812, two hold zero. One
+linear axis makes four of the seven invisible — that's the design problem.
 
-### B1. Log-scale horizontal bars (the honest default)
-Seven bars on a log axis, each labeled with its real number in plain digits so
-the log distortion can't mislead. The two zero-row databases get an explicit
-"zero — not a short bar" treatment, since log scales cannot draw zero.
-
-### B2. Small-multiple cards
-Seven identical cards, one per database, each with its own tiny bar showing
-rows / tables / views / GB — comparison happens by scanning cards, not by
-sharing an axis. Sidesteps the scale problem entirely by refusing to share a
-scale.
-
-### B3. Treemap by database → schema **[NEAR-BUILT]**
-Area = rows. Seven top blocks subdivided into their schemas (the mart side has
-~40). Shows both "which database is biggest" and "which schema inside it
-dominates" in one shape. The biome page does a version of this for marts only.
-
-### B4. Stacked ribbon / horizon strip
-One horizontal band per database, height ∝ log(rows), colored by layer role
-(landing / staging / marts / metadata / backup / dead). The strip reads as a
-cross-section of the warehouse, like geological strata.
-
-### B5. Dot-matrix waffle grid
-One square = 10M rows. 497 squares total, grouped and colored by database. The
-zero-row databases appear as labeled empty outlines — the only form in this
-group where "nothing" is visually as loud as "something."
-
-### B6. Bubble-in-a-box packing
-Seven circles, area ∝ rows, packed inside one frame. Fast to read the ranking;
-weak at exact comparison. Handles the two zero cases badly (a zero circle is a
-dot) — flagged as a real weakness, not a nitpick.
-
-### B7. Two-axis scatter: tables vs. rows
-X = table count, Y = row count, both log. Instantly exposes the shape story
-that a bar chart hides: RAW has 2,212 tables holding 1.27B rows while META has
-108 tables holding *more* (1.50B). That "few tables, enormous rows" outlier is
-the actual finding, and only this form shows it.
+- **B1. Log-scale horizontal bars (the honest default)** — real numbers printed
+  on each bar so the log distortion can't mislead; the two zeros get an
+  explicit "zero — not a short bar" treatment (log can't draw zero).
+  *Lift:* draw each zero as a dotted outline of the bar it doesn't have, with
+  a two-word verdict inside: "empty on purpose" vs. "empty by accident." The
+  chart distinguishes intent — most charts can't.
+- **B2. Small-multiple cards** — seven cards, each with its own tiny bars
+  (rows/tables/views/GB); refuses to share an axis, so no scale problem.
+  *Lift:* give every card a one-word character title over its stats — The
+  Landing Zone, The Showroom, The Ledger, The Frozen Backup, The Workbench,
+  The Empty Library, The Toolshed. The taxonomy becomes the design, and a
+  visitor remembers seven characters where they'd forget seven bar charts.
+- **B3. Treemap by database → schema [NEAR-BUILT]** — area = rows, two levels;
+  the biome page does a marts-only version.
+  *Lift:* in the night-water palette, map depth to darkness — descending from
+  database to schema literally descends into deeper water. The hierarchy
+  becomes a dive, not an outline.
+- **B4. Stacked ribbon / horizon strip** — one band per database, height ∝
+  log(rows), colored by layer role; reads like geological strata.
+  *Lift:* commit fully to the core-sample: label the layers like a field
+  geologist — bedrock (raw), sediment (marts), fossil layer (backups) — with
+  a depth scale in rows down the side. Metaphor held with a straight face.
+- **B5. Dot-matrix waffle grid** — 1 square = 10M rows, 497 squares grouped by
+  database; the only form where the zero databases are as loud as the full ones.
+  *Lift:* the two empty databases get full-size empty grids with their names
+  set inside the blank space — silence given equal floor area, which no other
+  chart form grants it.
+- **B6. Bubble-in-a-box packing** — area ∝ rows; fast ranking, weak exact
+  comparison, handles the zeros badly (a zero circle is a dot) — real weakness.
+  *Lift:* if built anyway, draw the zeros as burst-bubble rings — a thin
+  circle with a break in it. Absence rendered as a pop, not a dot.
+- **B7. Tables-vs-rows scatter (both log)** — exposes what bars hide: RAW =
+  2,212 tables / 1.27B rows, META = 108 tables / *more* (1.50B). Only this form
+  shows that outlier.
+  *Lift:* add faint diagonal guide lines of constant rows-per-table, so the
+  eye reads "average table size" as position without doing math — and the
+  metadata outlier sits visibly on the wrong diagonal, annotated in-plot.
 
 | Concept | Weight | Effort | Interact | Design | Scale | A11y | Theme | Regen | Wow |
 |---|---|---|---|---|---|---|---|---|---|
@@ -230,62 +220,64 @@ the actual finding, and only this form shows it.
 | B6 bubble pack | ~20 KB | 2→7 | ●●●○○ | ●●●○○ | ●●●●● | ●●○○○ | ●●●●○ | ●●●●● | ●●○○○ |
 | B7 tables-vs-rows scatter | ~4 KB | 2→6 | ●●●○○ | ●●●●○ | ●●●●● | ●●●●○ | ●●●●● | ●●●●● | ●●●○○ |
 
-**Tools:** all seven are trivially drawable in Vega-Lite/Altair (installed),
-Plotly (installed), ECharts/pyecharts (not installed, MIT + Apache-2.0), or
-hand-rolled SVG. B3 specifically: `d3-hierarchy` gives squarified treemap
-layout and is the algorithm most other libraries wrap; ECharts and Plotly both
-ship treemaps natively. B5 in Python is PyWaffle (MIT) — but PyWaffle sits on
-matplotlib, which is **not installed here**.
+**Tools:** all seven trivial in Vega-Lite/Altair (installed), Plotly
+(installed), ECharts/pyecharts (not installed), or hand SVG. B3: `d3-hierarchy`
+is the squarified-treemap algorithm most libraries wrap; ECharts and Plotly
+ship treemaps natively. B5 in Python = PyWaffle (MIT) — but it sits on
+matplotlib, **not installed here**.
 
 ---
 
 # C. The registration gap and its correction — 847 → 178 → 267
 
-**What this section shows:** the most interesting story in the whole audit, and
-the one a bar chart would actively ruin. The morning number said 847 tables had
-real keys but only 178 were registered — a 669-table backlog. By evening that
-was mostly wrong: 289 were duplicate mirrors, 37 were already registered but
-mis-flagged, 14 weren't sources at all. The real backlog was 183 tables, of
-which 90 got wired that day. **The shape here is "a number that corrected
-itself," which is a before/after, not a quantity.**
+The best story in the audit and the one a bar chart would ruin. Morning: 847
+keyed tables, only 178 registered — a 669 backlog. Evening: mostly wrong — 289
+mirrors, 37 mis-flagged, 14 not sources. Real backlog 183, of which 90 wired
+that day. **The shape is "a number that corrected itself" — a before/after,
+not a quantity.**
 
-### C1. Waterfall / bridge chart
-Start at 847, step down through each deduction (−289 mirrors, −37 mis-flagged,
-−14 derived, −20 mart-only, −135 docket parked), land at 183 real backlog, then
-step to 90 wired / 93 gaps. The single most literal form for "how a big number
-became a small one," and the steps are self-labeling.
-
-### C2. Side-by-side before/after with a connecting flow
-Left column: the 847 as one block. Right column: the corrected buckets. Curved
-ribbons connect left to right, width ∝ tables. The ribbons carry the
-"where did they go" information a waterfall states but doesn't show.
-
-### C3. Sankey of the full reconciliation
-847 splits into 7 destination buckets, and the portal and federal buckets split
-again into wired vs. gap. Two levels of branching, ~11 terminal nodes. Denser
-than C2 and shows the second-level split the waterfall flattens.
-
-### C4. Sieve / filter-stack illustration
-Draw it as a physical sieve stack: 847 tables poured in the top, each mesh
-layer catching one category (mirrors, mis-flags, derived, parked), 183 falling
-through to the bottom. Static illustration, honest to the mechanism, and it
-makes "de-duplication" legible to someone with no data background.
-
-### C5. Two-state toggle **[interactive only]**
-One chart, one button: "as first counted" / "after checking." The bars
-physically re-arrange between states. The correction becomes something the
-visitor *does*, which is a much stronger honesty signal than describing it.
-
-### C6. Annotated number line with a strike-through
-A horizontal line from 0 to 847, with 847 struck through and re-marked at 183,
-each deduction annotated as a labeled bracket beneath. Deliberately plain — the
-"editorial correction" look, like a printed erratum.
-
-### C7. Unit grid of 847 squares, recolored
-847 tiny squares in a grid. Color-code every one by its fate. You see the real
-backlog as the small colored minority it turned out to be, and — unlike every
-other form here — you can see that the mirrors bucket alone is a third of the
-whole picture.
+- **C1. Waterfall / bridge** — 847 stepping down through each deduction (−289,
+  −37, −14, −20, −135) to 183, then to 90 wired / 93 gaps. The most literal
+  form for "how a big number became small," self-labeling steps.
+  *Lift:* color each falling step by the *kind of check that caught it* —
+  automated dedup vs. a human actually reading the table. The waterfall stops
+  being arithmetic and becomes a portrait of the checking itself.
+- **C2. Before/after with connecting ribbons** — 847 block on the left,
+  corrected buckets on the right, ribbon width ∝ tables; shows the "where did
+  they go" a waterfall only states.
+  *Lift:* draw the mirrors ribbon as two identical halves folding onto each
+  other mid-flight — the form physically enacts "this was the same thing
+  counted twice."
+- **C3. Sankey of the full reconciliation** — 847 → 7 buckets, portal and
+  federal splitting again into wired/gap; ~11 terminal nodes. Denser than C2,
+  keeps the second-level split.
+  *Lift:* order the terminal nodes resolved→unresolved top to bottom, so the
+  reader's eye lands last on the 93 gaps. The honest residue is the final
+  thing read — composition doing the disclosure.
+- **C4. Sieve / filter-stack illustration** — 847 poured in the top, each mesh
+  catching one category, 183 falling through. Static art; makes de-duplication
+  legible to a non-data visitor.
+  *Lift:* etch each mesh with the actual question that layer asked — "is this
+  the same file twice?", "was this already registered?" — so the illustration
+  documents the method, not just the outcome.
+- **C5. Two-state toggle [interactive only]** — one button: "as first counted"
+  / "after checking"; the bars re-arrange. The correction becomes something the
+  visitor *does* — a strong honesty signal.
+  *Lift:* label the two states with times, not words — "the 8am count" / "the
+  10pm count." The toggle becomes a day you can flip back and forth, and the
+  work it took lives in the gap between the labels.
+- **C6. Struck-through number line** — 0→847 line, 847 struck and re-marked at
+  183, deductions as labeled brackets. The printed-erratum look, deliberately
+  plain.
+  *Lift:* typeset it exactly like a book's errata page — the old value struck
+  in red-pencil style, the correction in a marginal annotation hand. Borrow
+  the full visual grammar of print correction, not just the strikethrough.
+- **C7. Unit grid of 847 squares** — every table colored by its fate; the real
+  backlog reads as a small minority, and the mirrors bucket is visibly a third
+  of the whole.
+  *Lift:* print a small ghost of the uniform morning grid beside the
+  recolored evening grid — before/after as two stills, no animation. The
+  visitor performs the blink comparison with their own eyes.
 
 | Concept | Weight | Effort | Interact | Design | Scale | A11y | Theme | Regen | Wow |
 |---|---|---|---|---|---|---|---|---|---|
@@ -297,69 +289,62 @@ whole picture.
 | C6 struck number line | ~3 KB | 2→8 | ●○○○○ | ●●●●● | ●●●●● | ●●●●● | ●●●●● | ●●●●● | ●●●●○ |
 | C7 847-square grid | ~12 KB | 3→10 | ●●●○○ | ●●●●○ | ●●●●● | ●●●○○ | ●●●●● | ●●●●● | ●●●●○ |
 
-**Tools:** C1 is native in ECharts and Plotly; in Vega-Lite it's a hand-built
-stacked bar with transparent bases (doable, ~30 lines). C3 Sankey is native in
-Plotly, ECharts, and `d3-sankey`. C2/C6/C7 are SVG by hand. C5 needs any JS —
-no library required if the chart is SVG.
+**Tools:** C1 native in ECharts and Plotly; in Vega-Lite it's a hand-built
+stacked bar with transparent bases (~30 lines). C3 native in Plotly, ECharts,
+`d3-sankey`. C2/C6/C7 hand SVG. C5 needs only vanilla JS over SVG.
 
 ---
 
-# D. Entity graph scale — six orders of magnitude in one pipeline
+# D. Entity graph scale — six orders of magnitude
 
-**What this section shows:** the pipeline's stage counts, which span from 181
-million down to 4,910 — a factor of ~37,000 — in one sequence. And there's a
-trap: the sequence is **not** a shrinking funnel. It goes 33.3M golden entities
-→ 84.4M keyset nodes → 181M match pairs → 4,910 edges → 17,598 leads. It grows
-twice, collapses hard, then grows again. **A standard funnel chart drawn on
-these numbers tells a lie**, because funnel charts assume each stage is a
-subset of the last. Every concept below has to state how it handles that.
+Stage counts span 181M down to 4,910 (~37,000×), and the sequence is **not a
+funnel**: 33.3M entities → 84.4M nodes → 181M pairs → 4,910 edges → 17,598
+leads. It grows twice, collapses hard, grows again. **A funnel chart on these
+numbers lies** (funnels assume each stage subsets the last); every concept must
+handle that. *(It grows because one company can carry five ID types, and pairs
+are combinatorial; scoring then discards almost everything.)*
 
-*(Why the numbers grow: one real-world company can have five different ID
-types, so 33.3M entities produce 84.4M key nodes; and pairs of nodes are
-combinatorial, so 84.4M nodes produce 181M candidate pairs. Then scoring throws
-almost all of them away.)*
-
-### D1. Log-scale stage strip (the honest baseline)
-Five bars on a log axis, left to right in pipeline order, each labeled with its
-real number and a plain sentence. Log scale is the only linear form where 4,910
-and 181M are both visible. Non-monotonic movement shows correctly because
-nothing about a bar chart implies subsetting.
-
-### D2. Sankey with explicit expansion and collapse
-Flows sized by count, with the expansion steps drawn as *fan-outs* (one node
-splitting into several) and the collapse drawn as a hard narrowing. Solves the
-funnel lie by using a grammar that permits growth. Cost: at true scale the
-4,910 edge is a hairline — needs a log-width or a break-out inset.
-
-### D3. Nested rings, each ring ÷10
-Concentric circles, one per power of ten from 10⁰ to 10⁹, with each pipeline
-stage plotted as a marker at its true radius. Reads as a zoom, and the
-non-monotonic order shows as markers that jump inward and outward — which is
-exactly the truth.
-
-### D4. Two-panel "grows then collapses"
-Split the story into two charts side by side, because it's honestly two
-stories. Panel 1: entities → nodes → pairs (expansion, linear axis works).
-Panel 2: pairs → edges → leads (collapse, log axis). Refuses to force one
-grammar onto two different behaviors.
-
-### D5. Animated scrubber **[interactive only]**
-A slider or scroll-driven walk through the five stages, one at a time, with a
-count-up and a one-sentence explanation per stage, and a persistent
-mini-timeline showing where you are. The expansion/collapse is felt as motion
-rather than argued in a caption.
-
-### D6. Sand-through-a-funnel physical metaphor
-Static art: five vessels, sized to true scale under a log transform, with the
-grain volume in each vessel drawn to match. The middle vessel visibly overflows
-the one before it — which is the point, and is much easier to accept as
-"correct" in a physical metaphor than in a funnel chart.
-
-### D7. Hundred-thousand-dot field with a survivor highlight
-Render a sampled field of match-pairs as dots, then highlight the 4,910 that
-survived scoring — visually, a near-empty scattering in a dense fog. The best
-form for the emotional truth ("almost nothing survives"), the worst for exact
-reading. Needs explicit "this is a 1-in-N sample" labeling or it's dishonest.
+- **D1. Log-scale stage strip (honest baseline)** — five bars, pipeline order,
+  real number + one sentence each. Log is the only linear form where 4,910 and
+  181M are both visible; bars don't imply subsetting, so the growth is honest.
+  *Lift:* caption each bar with one verb — GATHER, SPLIT, PAIR, JUDGE, KEEP —
+  so the axis reads as a sentence. Five bars become grammar.
+- **D2. Sankey with expansion and collapse** — expansions drawn as fan-outs,
+  the collapse as hard narrowing. A grammar that permits growth. Cost: the
+  4,910 flow is a hairline at true scale — needs log-width or an inset.
+  *Lift:* let the discarded flow fade to transparent instead of routing to a
+  "rejected" node — 181 million candidates dissolving into the background,
+  which is what rejection actually looks like. The survivors' thread stays
+  crisp all the way across.
+- **D3. Nested rings (÷10 per ring)** — ten concentric powers of ten, stages
+  plotted at true radius; markers jumping in and out *is* the truth.
+  *Lift:* style it as sonar — a slow sweep line, stages as pings that glow
+  when swept, depth rings labeled in powers of ten. The pipeline becomes
+  something being *searched*, which it is.
+- **D4. Two-panel "grows then collapses"** — panel 1: expansion (linear axis);
+  panel 2: collapse (log). Refuses to force one grammar onto two behaviors.
+  *Lift:* title the panels like chapters — "The explosion" / "The verdict."
+  Two named acts admit the story has two natures instead of apologizing for
+  the split.
+- **D5. Animated scrubber [interactive only]** — scroll/slider walk through the
+  five stages, count-up + one sentence each, persistent mini-timeline. The
+  expansion/collapse is felt as motion.
+  *Lift:* tune the easing so the count races through the millions and then
+  *brakes* — decelerating hard into 4,910 and stopping dead. The deceleration
+  is the judgment; the visitor feels the cull in their scroll finger.
+- **D6. Sand-through-a-funnel art** — five vessels, log-scaled, the middle one
+  visibly overflowing its predecessor; a physical metaphor accepts "it grew"
+  more easily than a funnel chart does.
+  *Lift:* make it an hourglass, not a funnel — implying the process takes time
+  and can be turned over and run again. The sand shifts color at the trust
+  boundary: everything below the neck is a different, cleaner grain.
+- **D7. Dot field with survivor highlight** — sampled match-pair fog with the
+  4,910 survivors lit. Best for the emotional truth ("almost nothing
+  survives"), worst for exact reading; needs explicit "1-in-N sample" labeling
+  or it's dishonest.
+  *Lift:* pin one survivor with a real annotation — the actual two datasets
+  it connects, in plain words. One receipt pinned to the fog keeps the
+  emotional picture attached to something checkable.
 
 | Concept | Weight | Effort | Interact | Design | Scale | A11y | Theme | Regen | Wow |
 |---|---|---|---|---|---|---|---|---|---|
@@ -371,58 +356,60 @@ reading. Needs explicit "this is a 1-in-N sample" labeling or it's dishonest.
 | D6 sand funnel | ~140 KB | 10→30 | ●○○○○ | ●●●●● | ●●●●● | ●●○○○ | ●●○○○ | ●○○○○ | ●●●●● |
 | D7 survivor field | ~60 KB | 5→16 | ●●●○○ | ●●●●○ | ●●○○○ | ●●○○○ | ●●●○○ | ●●●○○ | ●●●●● |
 
-**Tools:** D7 is the one place in this whole document where **Datashader**
-earns its keep — it's built to rasterize hundreds of millions of points into a
-fixed-size image server-side, so the browser only ever downloads a PNG. Its
-docs claim billion-point rendering and it's at v0.19.1; it is **not installed
-here** and it needs matplotlib/Numba, so budget install time. The alternative
-is doing the aggregation in DuckDB (installed) and drawing the resulting grid
-in plain canvas — fewer dependencies, more hand-written code.
+**Tools:** D7 is the one place **Datashader** earns its keep — server-side
+rasterization of hundreds of millions of points into a PNG (docs claim
+billions; v0.19.1; **not installed**, needs matplotlib/Numba). Alternative:
+aggregate in DuckDB (installed), draw the grid in plain canvas — fewer deps,
+more hand code.
 
 ---
 
 # E. Overlap coverage — 24,011 measured table pairs
 
-**What this section shows:** how much of the warehouse has actually been
-checked for connections, and by which kind of ID. 24,011 pairs measured;
-11,839 confirm what the platform already found, 12,172 are new. Split across
-25 key types that range from DOCKET's 6,560 pairs down to MMSI's 3.
+How much of the warehouse has been checked for connections, by ID type. 24,011
+pairs: 11,839 confirm known links, 12,172 are new; 25 key types from DOCKET
+(6,560) down to MMSI (3).
 
-### E1. Stacked bars by key type, split confirmed/new
-25 rows, each bar split into confirmed vs. new. Sorted by total. The long tail
-(DEA_NO 4, MMSI 3) either gets a "+19 more" rollup or its own zoomed inset.
-
-### E2. Slope chart: confirmed vs. new per key type
-Two vertical axes, a line per key type. The lines that slope steeply upward
-(DOCKET: 386 confirmed → 6,174 new) are visually the story: which key types
-this audit opened up that the platform had barely touched.
-
-### E3. Key-type matrix heatmap
-Rows = key types, columns = coverage buckets, cell shading = pair count. The
-grid form makes 25 categories scannable where 25 bars start to feel like a list.
-
-### E4. The actual network, aggregated
-Draw the 816 keyed tables as nodes and the 24,011 overlaps as edges — but
-aggregated: bundle edges by schema pair so it renders as ~40 fat bundles rather
-than 24,011 hairlines. This is the only concept in the group that shows the
-*shape* of the connection map rather than its counts.
-
-### E5. Chord diagram by domain
-Collapse tables to their domain (HEALTH, FINANCE, JUSTICE…) and draw arcs
-between domains, thickness ∝ number of measured overlaps. Answers a question no
-bar chart in this group answers: **which subject areas actually touch each
-other.** ECharts 6 shipped a native chord series (verified this session).
-
-### E6. Coverage-percentage histogram
-For each pair, coverage_a_pct is already computed. Plot the distribution: a
-huge spike near 100% (mirrors — same table twice) and a huge spike near 0%
-(coincidence). The bimodal shape *is* the finding, and it's invisible in every
-count-based form above.
-
-### E7. Interactive filterable pair explorer **[interactive only]**
-A searchable, sortable table/scatter hybrid — pick a key type, see every pair
-plotted by (distinct_a, overlap), click one to read its numbers. Portfolio
-value: proves the underlying data is real and browsable, not a claim.
+- **E1. Stacked bars by key type (confirmed/new)** — 25 rows sorted by total;
+  the tail (DEA_NO 4, MMSI 3) gets a "+19 more" rollup or a zoomed inset.
+  *Lift:* set "confirmed" in quiet gray and "new" in the accent color — the
+  chart's color budget spent entirely on *what this audit added*. The gray
+  is the platform; the color is the news.
+- **E2. Slope chart, confirmed → new** — a line per key type; the steep risers
+  (DOCKET 386 → 6,174) are the story: what this audit opened up.
+  *Lift:* gray every line except the risers past a stated threshold, and
+  annotate the steepest with its multiple ("×16") right on the line. A
+  spaghetti chart becomes three colored lines and a crowd of context.
+- **E3. Key-type matrix heatmap** — key types × coverage buckets, shading =
+  pair count; a grid scans where 25 bars read as a list.
+  *Lift:* put the real numbers *in* the cells and demote the shading to a
+  whisper behind them — a designed numeric table where color assists reading
+  instead of replacing it. More honest, and it prints.
+- **E4. The actual network, aggregated** — 816 keyed tables as nodes, the
+  24,011 overlaps bundled by schema pair into ~40 fat bundles. The only concept
+  showing the *shape* of the map, not its counts.
+  *Lift:* fix the layout by hand once, like a cartographer — domains in stable
+  positions, labels placed with care — instead of letting a physics simulation
+  land wherever it lands. The difference between a map and a hairball is that
+  someone *drew* the map.
+- **E5. Chord diagram by domain** — HEALTH/FINANCE/JUSTICE… arcs, thickness ∝
+  overlaps. Answers what nothing else here does: **which subject areas touch.**
+  ECharts 6 ships a native chord series (verified).
+  *Lift:* dim the expected arcs (health↔health) and light the surprising ones
+  (health↔justice) — the diagram points at its own discoveries instead of
+  making the visitor hunt for them.
+- **E6. Coverage-percentage histogram** — coverage_a_pct is already computed;
+  the distribution is bimodal (spike near 100% = mirrors, spike near 0% =
+  coincidence). That shape *is* the finding, invisible in every count form.
+  *Lift:* label the two spikes in plain words directly on the chart — "same
+  table, counted twice" over one, "strangers sharing a zip code" over the
+  other. The annotations do the teaching; no caption needed.
+- **E7. Filterable pair explorer [interactive only]** — pick a key type, see
+  every pair plotted, click for its numbers. Proves the data is real and
+  browsable, not a claim.
+  *Lift:* never open on an empty search box — open mid-story, on one curated
+  pair with its numbers already unpacked. The visitor arrives inside the
+  evidence and works outward, instead of facing a blank tool.
 
 | Concept | Weight | Effort | Interact | Design | Scale | A11y | Theme | Regen | Wow |
 |---|---|---|---|---|---|---|---|---|---|
@@ -434,66 +421,67 @@ value: proves the underlying data is real and browsable, not a claim.
 | E6 coverage histogram | ~5 KB | 2→6 | ●●○○○ | ●●●●○ | ●●●●● | ●●●●● | ●●●●● | ●●●●● | ●●●○○ |
 | E7 pair explorer | ~120 KB | 10→30 | ●●●●● | ●●●○○ | ●●●○○ | ●●●○○ | ●●●●○ | ●●●●● | ●●●●○ |
 
-**Tools:** E4's edge bundling is `d3-hierarchy` + hierarchical edge bundling,
-or — if you want it live and draggable — cosmos.gl (MIT, WebGL2, v3.0, claims
-hundreds of thousands of points/links) or sigma.js v3 on graphology. **Caution
-on licensing:** cosmos.gl the engine is MIT, but *Cosmograph*, the friendlier
-wrapper product built on it, is **CC-BY-NC-4.0 — non-commercial only**. A
-portfolio site is a gray area there; the MIT engine isn't. E5 chord is native
-in ECharts 6 and in `d3-chord`.
+**Tools:** E4 = `d3-hierarchy` + hierarchical edge bundling, or live/draggable
+via cosmos.gl (MIT, WebGL2, v3.0) or sigma.js v3 on graphology. **Licensing
+caution:** cosmos.gl the engine is MIT, but *Cosmograph*, the friendly wrapper
+on it, is **CC-BY-NC-4.0 — non-commercial only**; a portfolio site is a gray
+area there, the MIT engine isn't. E5 chord native in ECharts 6 and `d3-chord`.
 
 ---
 
 # F. The DOCKET trust breakdown — the honesty centerpiece
 
-**What this section shows:** of 6,560 docket-number overlaps, 45 are
-trustworthy, 2,909 were *actively downgraded* mid-audit after a claim turned
-out to be wrong, and ~6,475 are noise or unverified. Two things make this the
-most visually interesting metric you have: the trustworthy share is **0.7%**,
-and one pair overlaps at **99.98% purely by coincidence.**
+Of 6,560 docket overlaps: 45 trustworthy, 2,909 *actively downgraded*
+mid-audit, ~6,475 noise/unverified. The trustworthy share is **0.7%**, and one
+pair overlaps at **99.98% purely by coincidence** — the two most visually
+interesting facts you have.
 
-**A note that governs this whole group:** a bar chart with a 6,475 bar and a 45
-bar renders the 45 as a hairline — which undersells the finding. "We found 45
-real ones" is the *good news*; the form has to let it be seen.
+**Governing note:** a bar chart renders the 45 as a hairline next to 6,475 —
+underselling the finding. "We found 45 real ones" is the *good news*; the form
+has to let it be seen.
 
-### F1. Icon array / dot grid, 6,560 dots
-6,560 dots, 45 of them lit. The single most literal answer to "how rare is
-rare," and the one form where 0.7% is felt rather than read. At a 100×66 grid
-each dot is ~6px on a 700px-wide figure — legible.
-
-### F2. Three-tier confidence stack with a visible correction mark
-A vertical stack: TRUST / RECLASSIFIED / DON'T TRUST, sized to count, with the
-2,909 band drawn with a strike-through or "was: trusted" ghost above it. Puts
-the mid-audit correction *into* the chart instead of a footnote.
-
-### F3. Coverage-vs-plausibility scatter with a labeled trap
-Plot every docket pair: X = overlap coverage %, Y = shared value count (log).
-The federal-courts cluster sits high-right. The FDIC/CourtListener pair sits at
-99.98% coverage on ~11,800 values and is labeled *"coincidence — small ID
-space landing inside a huge one."* One annotated dot carries the entire
-argument for why coincidence-scoring exists.
-
-### F4. The 47% short-string histogram
-Distribution of shared-value counts across the ~3,600 cross-agency pairs, with
-the ≤5-values region shaded. 47% of the mass sits in a band that means "these
-tables share four numbers, by chance." Blunt, cheap, devastating.
-
-### F5. Before/after reclassification flow
-A small Sankey or ribbon: the original three buckets on the left, the corrected
-three on the right, with the 2,909 visibly moving from "trust narrowly" to
-"unverified." The chart's subject is *the audit correcting itself*, which is a
-different subject than the docket data.
-
-### F6. The 45, named
-Skip aggregate visualization entirely. List all 45 trustworthy pairs as a
-designed table — publisher, publisher, coverage %, shared case count. On a
-portfolio site, "here are the 45, by name" is a stronger credibility signal
-than any chart of 6,560.
-
-### F7. Two-color skyline of all 6,560, sorted by coverage
-Every pair as a 1px vertical line, sorted left-to-right by coverage %, colored
-by trust tier. Produces a distinctive ragged silhouette where the trustworthy
-sliver is visible as a colored band at one end. Dense, printable, unusual.
+- **F1. Icon array, 6,560 dots, 45 lit** — the literal answer to "how rare is
+  rare"; 0.7% is felt, not read. 100×66 grid → ~6px dots at 700px wide, legible.
+  *Lift:* compose it as stars over night water — 6,515 dots barely brighter
+  than the dark, 45 in warm gold. Under it, one line: "…and that's all of
+  them." The house palette was built for exactly this picture.
+- **F2. Three-tier stack with a correction mark** — TRUST / RECLASSIFIED /
+  DON'T TRUST sized to count, the 2,909 band carrying a "was: trusted" ghost.
+  *Lift:* render the ghost as a true afterimage — the band's former position
+  faintly visible above where it now sits, like a shape that moved and left
+  its light behind. The correction becomes physics, not a footnote.
+- **F3. Coverage-vs-plausibility scatter with a labeled trap** — X = coverage
+  %, Y = shared values (log). Federal courts cluster high-right; the
+  FDIC/CourtListener dot sits at 99.98% labeled *"coincidence — small ID space
+  inside a huge one."* One dot carries the whole argument for
+  coincidence-scoring.
+  *Lift:* title the piece **"The pair that lied"** and give the coincidence
+  dot a museum-plaque caption. One villain, named and framed, teaches
+  coincidence-scoring better than any legend.
+- **F4. The 47% short-string histogram** — shared-value counts across ~3,600
+  cross-agency pairs, ≤5-value region shaded; 47% of the mass means "these
+  tables share four numbers, by chance." Blunt, cheap, devastating.
+  *Lift:* render the bars in the ≤5 zone with a crumbling dither texture —
+  visibly disintegrating — against solid bars beyond it. Statistical dust,
+  drawn as dust.
+- **F5. Reclassification flow** — small Sankey, the 2,909 visibly moving from
+  "trust narrowly" to "unverified." Subject: *the audit correcting itself.*
+  *Lift:* stamp the moving band with the date and the plain sentence that
+  triggered it ("same-agency pairs had been counted as cross-checks"). A
+  correction with a timestamp and a cause reads as integrity; one without
+  reads as noise.
+- **F6. The 45, named** — no chart; a designed table of all 45 trustworthy
+  pairs (publishers, coverage %, shared cases). "Here are the 45, by name"
+  beats any chart of 6,560 for credibility.
+  *Lift:* typeset it as a formal register — numbered 01–45, rule lines,
+  small-caps headings, the register of record for the whole platform. The
+  formality *is* the design; it should look like something you'd swear on.
+- **F7. Two-color skyline of all 6,560** — 1px line per pair, sorted by
+  coverage, colored by tier; the trustworthy sliver shows as a band at one end.
+  Dense, printable, unusual.
+  *Lift:* title it **"The silhouette of noise,"** and in the print version,
+  foot it with all 45 trustworthy pairs named in fine type — the skyline
+  above, its only real citizens listed below.
 
 | Concept | Weight | Effort | Interact | Design | Scale | A11y | Theme | Regen | Wow |
 |---|---|---|---|---|---|---|---|---|---|
@@ -505,57 +493,57 @@ sliver is visible as a colored band at one end. Dense, printable, unusual.
 | F6 the 45, named | ~8 KB | 2→8 | ●●●○○ | ●●●●● | ●●●●● | ●●●●● | ●●●●● | ●●●●● | ●●●●○ |
 | F7 6,560-line skyline | ~30 KB | 4→12 | ●●○○○ | ●●●●● | ●●●●● | ●●○○○ | ●●●●○ | ●●●●● | ●●●●● |
 
-**Tools:** F1 is hand-rolled SVG (6,560 `<rect>`s ≈ 200-300 KB of markup —
-better as a single canvas draw or a CSS grid of divs) or PyWaffle for a static
-PNG (MIT, but needs matplotlib, absent here). F3/F4 are Vega-Lite or Plotly,
-both installed. F7 is one canvas loop, no library.
+**Tools:** F1 as SVG is 6,560 `<rect>`s ≈ 200-300 KB of markup — better as one
+canvas draw or a CSS grid of divs; PyWaffle does it as a PNG (MIT, needs
+matplotlib, absent). F3/F4: Vega-Lite or Plotly, both installed. F7: one
+canvas loop, no library.
 
 ---
 
 # G. Dead weight — the waste story
 
-**What this section shows:** roughly a third of the warehouse is doing no work.
-One whole database is 254 empty views. Another is a frozen backup with 894
-million rows and 34.4GB. Two spine backups hold 272,607,989 rows *each*. And
-one landing table is stuck at exactly 20,000,000 rows — a loader cap masquerading
-as a row count.
+Roughly a third of the warehouse does no work: one database is 254 empty
+views; another is a frozen 894M-row / 34.4GB backup; two spine backups hold
+272,607,989 rows *each*; one landing table sits at exactly 20,000,000 rows — a
+loader cap masquerading as a count.
 
-**The framing choice here is a taste call in itself**, and it changes the
-picture: is this a *waste* story (money and space wasted), a *rigor* story (we
-found it and named it), or a *housekeeping* story (here's the cleanup list)?
-The concepts below split roughly along those three framings.
+**The framing is itself a taste call:** *waste* story (money/space), *rigor*
+story (we found and named it), or *housekeeping* story (cleanup list). The
+concepts split along those framings.
 
-### G1. Live vs. dead donut, stated in GB
-185.4GB total; ~59GB of it is backups, legacy, and junk schemas. One ring, two
-colors, the number in the middle. Simplest possible version of the waste
-framing.
-
-### G2. Warehouse floorplan with the dead rooms greyed
-Draw the seven databases as rooms sized by storage, grey out the dead ones,
-label each with what it is and why it's dead. Turns an abstract "33% waste" into
-something spatial and immediately readable by a non-technical visitor.
-
-### G3. The truncation trap, magnified
-A single chart about the 20,000,000-row table: a bar at exactly 20.0M sitting
-next to the re-pull's 63.7M, with the round number circled and the caption
-"round numbers in data are almost always a cap, not a count." One graphic that
-teaches a transferable idea rather than reporting a local fact.
-
-### G4. Duplicate-pair strip
-Every table that exists more than once (mart mirror, TIMELINE copy, restore
-schema) drawn as a paired mark, sorted by size. Makes the 289-mirror finding
-and the storage duplication visible as a repeated visual rhythm.
-
-### G5. The empty-shelf illustration
-THE_LIBRARY as a drawn library: 254 shelf slots, 26 labeled sections, every
-shelf empty. Literal, memorable, and the one concept where "zero" gets to be
-the subject of the picture instead of an absence in it.
-
-### G6. Cost-framed bar
-Convert dead storage to a monthly dollar figure and show that instead of GB.
-**Blocked today**: there is no billing visibility on this account, so this
-concept cannot be built honestly without a price per GB — listed because it's a
-real option, flagged because it currently has no verified input.
+- **G1. Live vs. dead donut in GB** — 185.4GB total, ~59GB dead; one ring, two
+  colors, number in the middle. Simplest waste framing.
+  *Lift:* give the dead arc a flat, desaturated tone that visibly does not
+  belong to the site's palette — dead even in color. The living arc gets the
+  night-water blues; the dead arc gets cardboard.
+- **G2. Floorplan with dead rooms greyed** — seven rooms sized by storage,
+  dead ones grey with a why-label. Makes "33% waste" spatial and
+  non-technical-readable.
+  *Lift:* full architectural convention — wall lines, door swings, a title
+  block — with the dead rooms diagonal-hatched and door-tagged CONDEMNED:
+  followed by the reason. Building-inspector deadpan, held throughout.
+- **G3. The truncation trap, magnified** — one chart: the 20.0M bar beside the
+  re-pull's 63.7M, round number circled, caption "round numbers are almost
+  always a cap, not a count." Teaches a transferable idea.
+  *Lift:* typeset 20,000,000 with the seven zeros at display size — the
+  roundness itself is the exhibit. The caption is phrased as a rule the
+  visitor can steal and use on their own data tomorrow.
+- **G4. Duplicate-pair strip** — every twice-existing table as a paired mark,
+  sorted by size; the 289-mirror finding as a repeated visual rhythm.
+  *Lift:* draw each pair as a reflection across a horizontal waterline — the
+  original above, its copy mirrored below, slightly dimmed. The mirror
+  finding drawn as an actual mirror, in the house's water idiom.
+- **G5. The empty-shelf illustration** — the empty database drawn as a library:
+  254 shelf slots, 26 labeled sections, all bare. The one concept where "zero"
+  is the subject, not an absence.
+  *Lift:* one shelf holds a single yellowed card: "reserved." 254 empty slots
+  and one small joke — restraint everywhere, wit in exactly one place.
+- **G6. Cost-framed bar** — dead storage as monthly dollars. **Blocked today:
+  no billing visibility on this account**, so no honest price per GB exists.
+  Listed as real, flagged as unbuildable now.
+  *Lift:* if ever built before billing access lands, design it as a price tag
+  with the amount blank and "pending" stamped across it — the blocker itself
+  drawn as the graphic, which is more honest than an estimate.
 
 | Concept | Weight | Effort | Interact | Design | Scale | A11y | Theme | Regen | Wow |
 |---|---|---|---|---|---|---|---|---|---|
@@ -570,46 +558,44 @@ real option, flagged because it currently has no verified input.
 
 # H. The four-verb pipeline — the system diagram
 
-**What this section shows:** how the machine works, in four steps, with live
-counts attached: SCOUT (catalogs portals, tags key types before loading) →
-COLLECT (2,212 landing tables, 1.27B rows) → CONNECT (267 registered tables,
-84.4M key nodes, 4,910 edges) → DETECT (17,598 leads in the review queue).
+SCOUT (catalogs portals, tags key types) → COLLECT (2,212 landing tables,
+1.27B rows) → CONNECT (267 registered, 84.4M nodes, 4,910 edges) → DETECT
+(17,598 leads). **The one graphic a visitor most needs** — every other number
+is meaningless without it — and the one where a generic four-box diagram is the
+biggest missed opportunity.
 
-**This is the one graphic a portfolio visitor most needs**, because every other
-number on the page is meaningless without it. It's also the one where a generic
-four-box-and-arrows diagram would be the biggest missed opportunity.
-
-### H1. Four boxes, arrows, live counts
-The baseline. Clean typography, four labeled stages, a count under each, one
-plain sentence each. Boring is not automatically wrong — this is the version
-that definitely communicates.
-
-### H2. Widening-then-narrowing pipe
-Draw the pipeline as an actual pipe whose diameter tracks the volume at each
-stage — wide through COLLECT, narrow at CONNECT's edge count, with a small
-outlet at DETECT. The shape carries the "we throw almost everything away"
-message without a word of caption.
-
-### H3. Layered stack with drill-downs **[interactive]**
-Four horizontal bands; clicking one expands it to reveal its internals (COLLECT
-expands into its source families; CONNECT expands into the trust tiers). One
-diagram that serves both the five-second visitor and the five-minute one.
-
-### H4. Assembly-line / factory illustration
-An isometric drawing: raw material in at one end, four machines, a small tray of
-finished leads at the other. The most "designed" option and the most likely to
-be screenshotted by someone else.
-
-### H5. Annotated timeline of a single record
-Follow ONE real row from a government file all the way to a lead, with each of
-the four verbs shown acting on it. Narrative, not aggregate — the form that
-teaches best and shows scale worst.
-
-### H6. Live status version
-The same four boxes, but each carries a freshness state pulled from the source
-freshness table — so the diagram doubles as a system-health readout. Highest
-maintenance burden of the group, and the only one where the picture keeps
-changing after you ship it.
+- **H1. Four boxes, arrows, live counts** — the baseline; clean typography, a
+  count and one sentence per stage. Boring but it definitely communicates.
+  *Lift:* set the four verbs in stenciled crate lettering with the counts as
+  manifest lines beneath — industrial shipping-label typography. Utilitarian
+  on purpose, and suddenly the boring version has a voice.
+- **H2. Widening-then-narrowing pipe** — pipe diameter tracks volume per stage;
+  the "we throw almost everything away" message with zero caption.
+  *Lift:* end the pipe at a small tap over a waiting dish — 17,598 leads as
+  the distillate of 1.27 billion rows. The dish is the whole point of the
+  machine, drawn at its true, humble size.
+- **H3. Layered stack with drill-downs [interactive]** — click a band to expand
+  its internals (COLLECT → source families; CONNECT → trust tiers). One diagram
+  for the five-second and the five-minute visitor.
+  *Lift:* two registers, one component: closed bands speak in single plain
+  sentences, opened bands swap prose for pure numbers. The click changes not
+  just what you see but what language the diagram speaks.
+- **H4. Assembly-line / factory illustration** — isometric: raw material in,
+  four machines, a small tray of leads out. Most designed, most screenshotable.
+  *Lift:* light it as the night shift — four machines glowing in a dark
+  warehouse. "Shining a light on hidden harm" is the mission sentence; this
+  is the one graphic that can draw it literally without saying it.
+- **H5. One record's journey** — follow ONE real row from government file to
+  lead, each verb acting on it. Teaches best, shows scale worst.
+  *Lift:* format it as a chain-of-custody document — the record as an
+  evidence item, each verb a dated stamp and initials. The pipeline becomes
+  a custody chain, which for a trust-obsessed platform is the perfect frame.
+- **H6. Live status version** — the four boxes carrying freshness states from
+  the source-freshness table; diagram doubles as a health readout. Highest
+  maintenance; the picture keeps changing after you ship it.
+  *Lift:* express freshness as weather — clear, overcast, storm — one glyph
+  per box. It borrows the platform's own internal weather vocabulary, so the
+  public diagram and the internal language become the same picture.
 
 | Concept | Weight | Effort | Interact | Design | Scale | A11y | Theme | Regen | Wow |
 |---|---|---|---|---|---|---|---|---|---|
@@ -620,55 +606,53 @@ changing after you ship it.
 | H5 one record's journey | ~10 KB | 5→18 | ●●●○○ | ●●●●● | ●○○○○ | ●●●●● | ●●●●● | ●●○○○ | ●●●●○ |
 | H6 live status boxes | ~12 KB | 6→18 | ●●●○○ | ●●●●○ | ●●●●● | ●●●●○ | ●●●●● | ●●●●● | ●●●●○ |
 
-**Tools:** H1/H2 are hand SVG. Graphviz (not installed) auto-lays-out H1-style
-diagrams but its default aesthetic is academic and hard to design past. H4 needs
-an illustrator or a generative pass — not a chart library.
+**Tools:** H1/H2 hand SVG. Graphviz (not installed) auto-lays-out H1-style
+diagrams but its academic default look is hard to design past. H4 needs an
+illustrator or generative pass — not a chart library.
 
 ---
 
 # I. Key trust tiers — what counts as proof
 
-**What this section shows:** the four-tier vocabulary that governs everything
-(STEEL = hard government ID, STRONG = narrower code, GEO = location,
-PROBABILISTIC = a name), with the real column counts behind it: of 3,619
-verified key columns, **2,368 are GEO, 1,025 are STEEL, 226 are STRONG**. And
-underneath, what those keys identify: 2,368 places, 434 organizations, 285
-facilities, 226 cases, 176 providers, 93 people, 23 assets, 14 vessels.
+The four-tier vocabulary (STEEL = hard government ID, STRONG = narrower code,
+GEO = location, PROBABILISTIC = a name) with real counts: of 3,619 verified key
+columns — GEO 2,368, STEEL 1,025, STRONG 226. By what they identify: place
+2,368, organization 434, facility 285, case 226, provider 176, person 93,
+asset 23, vessel 14. **The hidden finding: the most common key type (location)
+is the weakest.** Most concepts below exist to make that visible.
 
-**The finding hiding in these counts:** the most common key type in the
-warehouse (location) is also the weakest one. Most concepts below are built to
-make that visible rather than to just tabulate the tiers.
-
-### I1. Tier ladder with counts
-Four rungs, STEEL at top, PROBABILISTIC at bottom, each with its count and a
-one-line definition in plain words. Vertical position encodes trust; bar length
-encodes quantity. The inversion (biggest bar on the weakest rung) is the payload.
-
-### I2. Quantity-vs-trust quadrant
-X = how many columns carry it, Y = how much it proves. GEO lands bottom-right
-(everywhere, proves little); STEEL lands top-left (rarer, proves a lot). The
-one form that states the trade-off as a position rather than a caption.
-
-### I3. Entity-grain sunburst
-Inner ring = tier, outer ring = what it identifies (place / organization /
-facility / case / provider / person / asset / vessel). Two questions answered in
-one shape.
-
-### I4. The proof gradient
-A continuous horizontal gradient from "fact" to "hint," with each key type
-placed along it as a labeled marker sized by count. Rejects the four-bucket
-framing in favor of the continuum the buckets approximate — arguably more honest,
-definitely less standard.
-
-### I5. Side-by-side evidence cards
-Four cards, each showing a *real example value* from the warehouse: an actual
-EIN, an actual ZIP, an actual name — with "what this proves" under each. Teaches
-the vocabulary by showing the thing rather than counting it.
-
-### I6. Vessel/person/facility pictogram row
-The eight entity grains as icon rows, each icon = 10 columns. Vessels (14) and
-assets (23) show as one-or-two-icon slivers next to place's 237 icons. Makes the
-rare, exotic entity types visible as rare rather than invisible.
+- **I1. Tier ladder** — STEEL top, PROBABILISTIC bottom; position = trust, bar
+  length = quantity. The inversion (biggest bar, weakest rung) is the payload.
+  *Lift:* draw the rungs in their actual materials — a steel bar, cut timber,
+  a chalk line, a pencil stroke. Material = trust, felt before it's read; the
+  huge bar resting on the chalk rung makes the inversion physical.
+- **I2. Quantity-vs-trust quadrant** — X = how many columns, Y = how much it
+  proves; GEO bottom-right, STEEL top-left. The trade-off as a position.
+  *Lift:* write plain verdicts into the corners — "everywhere, proves little"
+  / "rare, proves a lot" — so the plot reads like an editorial with no
+  caption. The corners do the arguing.
+- **I3. Entity-grain sunburst** — inner ring = tier, outer = what it
+  identifies. Two questions in one shape.
+  *Lift:* outline the person-grade segments in the warning color — the one
+  place the ethics question is drawn *into* the chart rather than footnoted
+  under it.
+- **I4. The proof gradient** — a continuous "fact → hint" gradient with key
+  types placed along it, sized by count. Rejects the four-bucket framing for
+  the continuum it approximates — arguably more honest, less standard.
+  *Lift:* print the four bucket names as fading tick labels *underneath* the
+  continuum — the buckets visibly admitting they're approximations of the
+  smooth truth above them. A chart that shows its own simplification.
+- **I5. Evidence cards** — four cards, each a *real example value* (an actual
+  EIN, ZIP, name) with "what this proves." Teaches by showing.
+  *Lift:* design them as literal evidence bags — translucent sleeve, item
+  tag, case number. The courtroom metaphor made physical, which is exactly
+  the register the trust doctrine speaks in.
+- **I6. Pictogram rows** — eight entity grains as icon rows, 1 icon = 10
+  columns; vessels (14) and assets (23) as slivers beside place's 237 icons.
+  Makes the rare types visible as rare.
+  *Lift:* use each entity's own silhouette — ships for vessels, buildings for
+  facilities, figures for people. The 14 vessels become a tiny flotilla of
+  one-and-a-half ships; rarity rendered as charm instead of as a short bar.
 
 | Concept | Weight | Effort | Interact | Design | Scale | A11y | Theme | Regen | Wow |
 |---|---|---|---|---|---|---|---|---|---|
@@ -679,286 +663,518 @@ rare, exotic entity types visible as rare rather than invisible.
 | I5 evidence cards | ~6 KB | 2→8 | ●●○○○ | ●●●●● | ●●●●● | ●●●●● | ●●●●● | ●●●●○ | ●●●●○ |
 | I6 pictogram rows | ~12 KB | 3→10 | ●●○○○ | ●●●●○ | ●●●●● | ●●●●○ | ●●●●● | ●●●●● | ●●●●○ |
 
-**One caution on I5:** showing real example values on a public site means
-publishing real identifiers. EINs and ZIPs of organizations are public record;
-anything person-grade is not the same call. That's a RED-lane decision, flagged
-here, not made.
+**Caution on I5:** real example values on a public site = publishing real
+identifiers. Org EINs/ZIPs are public record; anything person-grade is not the
+same call. **RED-lane decision — flagged, not made.**
 
 ---
 
 # The library capability matrix
 
-**What this table is for:** picking a *tool* is a separate decision from picking
-a *picture*. This is every tool worth considering, what it can actually do, and
-whether it's already on this machine.
-
-**Verification rule applied:** every version number and license marked ✅ was
-checked against current documentation or the local install **this session**.
-Anything marked ⚠️ is from general knowledge and has NOT been re-verified — do
-not treat those as facts.
+Picking a *tool* is separate from picking a *picture*. **Verification rule:**
+✅ = checked against current docs or the local install this session; ⚠️ = from
+general knowledge, NOT re-verified — do not treat as fact.
 
 ## Python, static-image output
 
-| Tool | Version / license | Installed here? | Interactive | Scale ceiling | Static export | Web embed | Honest note |
-|---|---|---|---|---|---|---|---|
-| **matplotlib** | 3.11.1, Jul 2026 ✅ / BSD ⚠️ | ❌ no | none | ~100k points before it crawls | PNG/SVG/PDF — best in class | as an image | 3.11 overhauled text/font handling (HarfBuzz, full internationalization) ✅. Total control, ugly defaults, real design work possible via stylesheets. Five other options below depend on it. |
-| **seaborn** | ⚠️ not verified / BSD ⚠️ | ❌ no | none | inherits matplotlib | via matplotlib | as an image | Statistical convenience layer. Buys you little here — these are counts, not distributions (except F4/E6). |
-| **plotnine** | 0.15.7, Jun 2026 ✅ / MIT ⚠️ | ❌ no | none | inherits matplotlib | via matplotlib | as an image | Grammar-of-graphics (ggplot2 grammar in Python). If you think in "map this column to this channel," this is the most fluent Python option. |
-| **Datashader** | 0.19.1 ✅ / BSD ⚠️ | ❌ no | none alone | **claims billions of points** ✅ | PNG | as an image | The only Python tool built for your 181M/84M numbers. Rasterizes server-side so the browser downloads a picture, not data. Needs Numba; pairs with HoloViews for interactivity. |
-| **PyWaffle** | ⚠️ not verified / MIT ✅ | ❌ no | none | thousands of icons | via matplotlib | as an image | Icon arrays / pictograms — directly relevant to F1 and I6. Font Awesome icon support. Requires matplotlib. |
-| **NetworkX** | 3.2.1 ✅ / BSD ⚠️ | ✅ **yes** | none | layout gets slow past ~10k nodes | via matplotlib | as an image | Graph *algorithms* more than graph drawing. Use it to compute the layout, draw it elsewhere. |
-| **Graphviz / PyGraphviz** | ⚠️ not verified / EPL ⚠️ | ❌ no | none | thousands of nodes | SVG/PNG | SVG embeds fine | Best automatic layout for H1-style system diagrams. Distinctive academic look that is genuinely hard to design past. |
-| **Pillow** | 11.3.0 ✅ / MIT-CMU ⚠️ | ✅ **yes** | none | pixel-bound | PNG/JPG | as an image | Not a chart library — a pixel canvas. This is what you'd drive for A6/D6/G5-style hand-built metaphor art from Python. |
+| Tool | Version / license | Installed? | Interactive | Scale ceiling | Static export | Note |
+|---|---|---|---|---|---|---|
+| **matplotlib** | 3.11.1, Jul 2026 ✅ / BSD ⚠️ | ❌ | none | ~100k points | PNG/SVG/PDF, best in class | 3.11 overhauled text/fonts (HarfBuzz) ✅. Total control, ugly defaults, real design possible via stylesheets. Five options below depend on it. |
+| **seaborn** | ⚠️ / BSD ⚠️ | ❌ | none | inherits mpl | via mpl | Statistical layer; buys little here — these are counts, not distributions (except F4/E6). |
+| **plotnine** | 0.15.7, Jun 2026 ✅ / MIT ⚠️ | ❌ | none | inherits mpl | via mpl | ggplot2 grammar in Python; most fluent if you think in channel mappings. |
+| **Datashader** | 0.19.1 ✅ / BSD ⚠️ | ❌ | none alone | **billions of points** ✅ | PNG | The only Python tool built for the 181M/84M numbers; browser downloads a picture, not data. Needs Numba; pairs with HoloViews for interactivity. |
+| **PyWaffle** | ⚠️ / MIT ✅ | ❌ | none | thousands of icons | via mpl | Icon arrays — relevant to F1/I6. Requires matplotlib. |
+| **NetworkX** | 3.2.1 ✅ / BSD ⚠️ | ✅ | none | slow past ~10k nodes | via mpl | Graph *algorithms*, not drawing — compute the layout, draw elsewhere. |
+| **Graphviz / PyGraphviz** | ⚠️ / EPL ⚠️ | ❌ | none | thousands of nodes | SVG/PNG | Best auto-layout for H1-style diagrams; academic look, hard to design past. |
+| **Pillow** | 11.3.0 ✅ / MIT-CMU ⚠️ | ✅ | none | pixel-bound | PNG/JPG | A pixel canvas, not a chart library — the Python route to A6/D6/G5 metaphor art. |
 
 ## Python → interactive web output
 
-| Tool | Version / license | Installed here? | Interactive | Scale ceiling | Static export | Web embed | Honest note |
-|---|---|---|---|---|---|---|---|
-| **Plotly (py)** | 6.6.0 local ✅ / MIT ⚠️ | ✅ **yes** | strong, built-in | ~50-100k SVG points; WebGL traces go higher | needs kaleido (**not installed**) | writes standalone HTML | Fastest path from a dataframe to a working interactive chart on this machine right now. Its default look is recognizably "a Plotly chart" — polish takes real theming work. |
-| **plotly.js** | bundle: full 3.3MB raw / 1.2MB min / ~391KB gzipped; "basic" partial ~318KB gzipped ✅ | (bundled) | strong | as above | — | script tag | **The page-weight problem in this whole document.** ~318KB gzipped minimum is more than every hand-rolled option in this map combined. Partial bundles help; they don't make it small. |
-| **Altair / Vega-Lite** | altair 5.5.0 local ✅ (6.x exists ✅) / BSD ⚠️ | ✅ **yes** | good (Vega signals) | tens of thousands of marks | via **vl-convert-python** — self-contained, **no Node or browser needed** ✅ (not installed) | JSON spec + vega-embed | Declarative: you describe the chart, not the drawing. Best "regenerate automatically" story of any option here — the chart is a JSON file your audit script can emit. |
-| **Bokeh** | ⚠️ not verified / BSD ⚠️ | ❌ no | strong | good; server-callback model for big data | PNG via headless browser ⚠️ | standalone HTML | Sits between Plotly and D3. Its real edge is the server-side callback model, which you don't need for a static portfolio page. |
-| **HoloViews / hvPlot** | holoviews 1.23.x ✅ (doc title) / BSD ⚠️ | ❌ no | strong | **inherits Datashader's scale** ✅ | via backend | Bokeh/Plotly HTML | The reason to care: HoloViews + Datashader is the documented path to *interactive* views of hundreds of millions of points. That combination is unique in Python. |
-| **pyecharts** | 2.1.0, Feb 2026 ✅ / MIT ✅ | ❌ no | strong | ECharts handles ~100k+ via canvas | — | standalone HTML | Python wrapper over Apache ECharts. Matters because ECharts has the best "editorial/graphic-design" default look of the mainstream libraries and ships forms the others don't. |
-| **Apache ECharts (js)** | 6.1.0 ✅ / Apache-2.0 ✅ | (CDN/inline) | strong | canvas-based, good | SVG or canvas render modes | script tag | v6 added a **native chord series** and a **matrix coordinate system** ✅ — directly relevant to E5 and E3. Also has treemap, sunburst, sankey, graph, and themeable rivers built in. |
-| **pydeck / deck.gl** | pydeck 0.9.2 local ✅ / deck.gl v9, WebGL2 via luma.gl v9 ✅ / MIT ⚠️ | ✅ **pydeck yes** | strong, GPU | **millions of points** | — | HTML/JS | Built for geographic layers but the layer model works for abstract point clouds too. WebGPU is in progress, **not enabled in 9.0** ✅ — so WebGL2 is what you'd ship. |
-| **Panel / Dash** | dash 4.4.1 local ✅ / MIT ⚠️ | ✅ dash yes, ❌ panel no | full app | depends on backing chart | — | needs a running server | **Both need a live Python server.** For a static portfolio site that is a hosting commitment, not a chart. Listed for completeness; the mismatch is structural. |
+| Tool | Version / license | Installed? | Interactive | Scale ceiling | Static export | Note |
+|---|---|---|---|---|---|---|
+| **Plotly (py)** | 6.6.0 ✅ / MIT ⚠️ | ✅ | strong | ~50-100k SVG pts; WebGL higher | needs kaleido (**not installed**) | Fastest dataframe→interactive path on this machine; default look is recognizably "Plotly," polish takes real theming. Writes standalone HTML. |
+| **plotly.js** | full 3.3MB raw / 1.2MB min / ~391KB gz; "basic" ~318KB gz ✅ | (bundled) | strong | as above | — | **The page-weight problem of this document** — ~318KB gz minimum, more than every hand-rolled option combined. |
+| **Altair / Vega-Lite** | altair 5.5.0 ✅ (6.x exists ✅) / BSD ⚠️ | ✅ | good (signals) | tens of thousands of marks | via **vl-convert-python** — no Node/browser ✅ (not installed) | Declarative JSON spec = **best regeneration story here**; the audit script can emit the chart. |
+| **Bokeh** | ⚠️ / BSD ⚠️ | ❌ | strong | good | headless-browser PNG ⚠️ | Real edge is server callbacks — which a static portfolio page doesn't need. |
+| **HoloViews / hvPlot** | 1.23.x ✅ / BSD ⚠️ | ❌ | strong | **inherits Datashader** ✅ | via backend | The documented path to *interactive* views of hundreds of millions of points — unique in Python. |
+| **pyecharts** | 2.1.0, Feb 2026 ✅ / MIT ✅ | ❌ | strong | ~100k+ via canvas | — | Wrapper over ECharts, which has the best editorial default look of the mainstream libraries. Standalone HTML. |
+| **Apache ECharts (js)** | 6.1.0 ✅ / Apache-2.0 ✅ | (CDN/inline) | strong | canvas, good | SVG or canvas | v6 added **native chord + matrix coordinate system** ✅ (→ E5, E3); treemap, sunburst, sankey, graph, rivers built in. |
+| **pydeck / deck.gl** | pydeck 0.9.2 ✅ / deck.gl v9, WebGL2 ✅ / MIT ⚠️ | ✅ pydeck | strong, GPU | **millions of points** | — | Geo-first but works for abstract point clouds. WebGPU not enabled in 9.0 ✅ — WebGL2 is what ships. |
+| **Panel / Dash** | dash 4.4.1 ✅ / MIT ⚠️ | ✅ dash, ❌ panel | full app | per backing chart | — | **Both need a live Python server** — a hosting commitment, not a chart. Structural mismatch with a static site. |
 
 ## JavaScript, for the site itself
 
-| Tool | Version / license | Interactive | Scale ceiling | Static export | Honest note |
+| Tool | Version / license | Interactive | Scale ceiling | Static export | Note |
 |---|---|---|---|---|---|
-| **D3.js** | 7.9.0 is latest on npm; **no v8** ✅ / ISC ⚠️ | anything you write | SVG: ~10k marks; canvas: millions | render to SVG string | Not a chart library — a set of tools for building one. Beats every Python option on total control and design ceiling. Costs hand-written code for every element. Its sub-modules (`d3-hierarchy`, `d3-sankey`, `d3-chord`, `d3-scale`) are usable **without** the rest of D3, which is how you keep the page light. |
-| **Observable Plot** | ⚠️ current version not verified / ISC ⚠️ | good | thousands of marks | **SSR via JSDOM works** ✅ — but docs warn it's "only practical for simple plots of small data" ✅ | The concise middle ground: D3's grammar with far less code. Stylesheet is now inlined into the generated SVG ✅, which makes single-file embedding clean. |
-| **Observable Framework** | 1.13.4 ✅ / open source, exact license not verified ⚠️ | full | data loaders precompute static snapshots ✅ | it *is* a static site generator | If the portfolio page becomes a whole data site rather than a few graphics, this is the purpose-built option: your Python audit script becomes a data loader, the site builds static. |
-| **cosmos.gl** | v3.0 ✅ / **MIT** ✅ / npm `@cosmos.gl/graph` ✅ | GPU force-graph, live | claims "hundreds of thousands of points and links" ✅ | canvas snapshot only | OpenJS Foundation incubating project ✅, rendering ported from regl to luma.gl in v3 ✅. The serious option for E4 as a *live* graph. |
-| **Cosmograph** | **CC-BY-NC-4.0 — non-commercial only; commercial use requires contacting them** ✅ | as above, friendlier API | as above | — | ⚠️ **Licensing flag.** A portfolio site is a gray zone. The underlying MIT engine above has no such restriction. |
-| **sigma.js + graphology** | v3 ✅ / license **not verified this session** ⚠️ | strong, WebGL | "thousands of nodes and edges" ✅ | — | The established WebGL graph option. graphology handles the data structure and layout algorithms separately from rendering, which is a cleaner split than most. |
-| **three.js** | ⚠️ not verified / MIT ⚠️ | full 3D | GPU-bound, very high | — | For genuinely 3D or heavily animated pieces. Big bundle, big effort, big differentiation. Overkill for any bar chart in this document; correct for two of the wild ideas below. |
-| **regl** | ⚠️ not verified / MIT ⚠️ | low-level WebGL | millions of points | — | Thin functional layer over WebGL. What you'd use for a custom million-dot field where you want no framework at all. |
-| **p5.js** | ⚠️ not verified / LGPL ⚠️ | creative-coding loop | canvas-bound | canvas snapshot | The creative-coding option: generative, sketch-like, made for visual metaphor rather than charts. Relevant to A6/D6/G5. |
-| **rough.js / roughViz** | rough.js <9kB gzipped ✅; roughViz 2.0.5 ✅, built on D3v5 ✅ / MIT ⚠️ | basic | small data only | SVG | Hand-drawn sketchy aesthetic. Its own docs say to use it where the goal is *intent or generality, not absolute precision* ✅ — which is a real argument against using it for audit numbers, and a real argument for it on a concept diagram. |
-| **Chart.js / Recharts / Nivo** | ⚠️ none verified this session | standard | thousands | varies | The "web dev default" tier. Fast, fine, and visually identical to every dashboard on the internet — which is the opposite of what a portfolio piece is for. |
-| **LayerCake (Svelte)** | ⚠️ not verified / MIT ⚠️ | full | your call | SSR-able | If the site is Svelte, this gives D3-level control with component structure. Only relevant if the site's framework is already chosen. |
-| **DuckDB-WASM** | duckdb 1.4.5 locally ✅; WASM build ⚠️ not verified | queries in the browser | millions of rows client-side | — | Not a chart library — the thing that would let a visitor *query* the audit data live in their browser. Relevant to E7 and to wild idea 4. |
-| **Highcharts / Flourish / Datawrapper** | ⚠️ none verified / **commercial licensing** | strong | varies | yes | The paid tier. Datawrapper and Flourish produce genuinely good-looking editorial charts with near-zero code. **Cost and licensing not verified this session** — and per the money rule, any of these needs a price tag before it's a real option. |
+| **D3.js** | 7.9.0 latest, **no v8** ✅ / ISC ⚠️ | anything you write | SVG ~10k marks; canvas millions | SVG string | Toolkit, not chart library. Highest control and design ceiling; costs hand code. Sub-modules (`d3-hierarchy`, `d3-sankey`, `d3-chord`, `d3-scale`) work **without** the rest — that's how the page stays light. |
+| **Observable Plot** | version ⚠️ / ISC ⚠️ | good | thousands of marks | SSR via JSDOM ✅, but docs: "only practical for simple plots of small data" ✅ | D3's grammar, far less code; stylesheet now inlined in the SVG ✅ — clean single-file embeds. |
+| **Observable Framework** | 1.13.4 ✅ / open source, exact license ⚠️ | full | data loaders precompute ✅ | it *is* a static site generator | If this becomes a whole data site: the audit script becomes a data loader, site builds static. |
+| **cosmos.gl** | v3.0 ✅ / **MIT** ✅ / `@cosmos.gl/graph` ✅ | GPU force-graph | "hundreds of thousands of points/links" ✅ | canvas snapshot | OpenJS incubating ✅; luma.gl rendering since v3 ✅. The serious option for a *live* E4. |
+| **Cosmograph** | **CC-BY-NC-4.0 — non-commercial only** ✅ | as above, friendlier | as above | — | ⚠️ Licensing flag: portfolio = gray zone. The MIT engine above has no restriction. |
+| **sigma.js + graphology** | v3 ✅ / license ⚠️ | strong, WebGL | "thousands of nodes/edges" ✅ | — | Established WebGL graph option; graphology cleanly splits data/layout from rendering. |
+| **three.js** | ⚠️ / MIT ⚠️ | full 3D | GPU-bound, very high | — | Big bundle, big effort, big differentiation. Overkill for charts; correct for two wild ideas below. |
+| **regl** | ⚠️ / MIT ⚠️ | low-level WebGL | millions of points | — | Thin WebGL layer for a custom million-dot field with no framework. |
+| **p5.js** | ⚠️ / LGPL ⚠️ | creative-coding | canvas-bound | canvas snapshot | Generative/sketch route for metaphor art (A6/D6/G5). |
+| **rough.js / roughViz** | rough.js <9kB gz ✅; roughViz 2.0.5, D3v5 ✅ / MIT ⚠️ | basic | small data | SVG | Sketchy aesthetic; its own docs say "intent or generality, not absolute precision" ✅ — an argument against it for audit numbers, for it on concept diagrams. |
+| **Chart.js / Recharts / Nivo** | ⚠️ none verified | standard | thousands | varies | The web-dev default tier — visually identical to every dashboard, the opposite of a portfolio piece. |
+| **LayerCake (Svelte)** | ⚠️ / MIT ⚠️ | full | your call | SSR-able | Only relevant if the site is already Svelte. |
+| **DuckDB-WASM** | duckdb 1.4.5 local ✅; WASM build ⚠️ | in-browser SQL | millions of rows client-side | — | Lets a visitor *query* the audit data live. Relevant to E7 and wild idea W4. |
+| **Highcharts / Flourish / Datawrapper** | ⚠️ / **commercial** | strong | varies | yes | Paid tier; genuinely good editorial output near-zero code. **Cost/licensing not verified — needs a price tag before it's a real option.** |
 
 ---
 
 # Cross-cutting notes
 
-These apply to almost every row above and are easy to discover too late.
+### Page weight, ranked
+- **Hand SVG/CSS:** 2-15 KB — nothing beats it.
+- **Static PNG from Python:** 30-200 KB, zero JS, works with JS off, lazy-loads.
+- **Vega-Lite embed:** spec ~2-10 KB, but the runtime is a few hundred KB ⚠️ (not measured).
+- **plotly.js:** ~318 KB gz minimum ✅ — the heaviest common choice here.
+- **WebGL:** hundreds of KB to MBs, and renders nothing without working WebGL.
 
-### Page weight, ranked honestly
-- **Hand-rolled SVG/CSS:** 2-15 KB. Nothing beats it.
-- **Static PNG from Python:** 30-200 KB, zero JavaScript, works with JS
-  disabled, and can be `loading="lazy"`.
-- **Vega-Lite embed:** the spec is ~2-10 KB but vega + vega-lite + vega-embed
-  runtime is a few hundred KB ⚠️ (not measured this session).
-- **plotly.js:** ~318 KB gzipped minimum, verified ✅. That's the single
-  heaviest common choice in this document.
-- **WebGL (deck.gl / cosmos.gl / three.js):** hundreds of KB to megabytes, plus
-  it will not render at all on a device without working WebGL.
+**The editorial hybrid:** ship a static image, load the interactive version
+only on "explore this" click. Fast page *and* deep option — static vs.
+interactive isn't actually an exclusive choice.
 
-**The hybrid that most editorial sites use:** ship a static image, and only
-load the interactive version when the visitor clicks "explore this." You get a
-fast page and a deep option. Worth knowing this exists before choosing between
-"static" and "interactive" as if they were exclusive.
+### Where interactivity earns its place
+- **Earns it:** E7 (browsing 24,011 pairs), H3 (two audiences, one diagram),
+  C5 (the correction as an action), D5 (walking the stages).
+- **Decoration:** hover-tooltips on a 7-bar chart. A printed number label costs
+  0 KB and works on touchscreens.
 
-### Where interactivity genuinely earns its place — and where it doesn't
-- **Earns it:** E7 (browsing 24,011 real pairs), H3 (one diagram for two
-  audiences), C5 (the correction as an action the visitor performs), D5 (walking
-  the pipeline stages).
-- **Decoration:** hovering a 7-bar chart to see the number that could have been
-  printed on the bar. Most tooltips on most of these charts are in this
-  category. A number label costs 0 KB and works on touchscreens.
+### Static-first — the ruling, applied to all 93 (Chris, 2026-08-25)
 
-### Accessibility, by rendering technology
-- **SVG/HTML:** every element is a real DOM node — `aria-label`, `<title>`, and
-  a text alternative all work. Best case.
-- **Static image:** one `alt` attribute carries everything. Limited but honest,
-  and it never breaks.
-- **Canvas / WebGL:** a screen reader sees one empty box. **Any canvas concept
-  in this document (A2, A3, D7, F1-as-canvas, F7, E4, and all the WebGL options)
-  needs a parallel text or table description written by hand** — that's real
-  work, not a checkbox, and it's not in the effort estimates above.
-- **Color:** every concept that encodes trust tiers by color needs a
-  colorblind-safe ramp plus a second channel (shape, position, or label).
-  Trust tiers are exactly the kind of ordered category where color-alone fails.
+The menu now sorts into three motion classes. This is the standing default,
+not a per-piece suggestion:
+
+- **Fully still (the default — ~75 of 93):** everything not listed below.
+  Type, SVG, printed numbers, illustrations. No animation, no state.
+- **Light interaction, no continuous motion (acceptable):** one click or
+  scroll and it's still again — C5 (one toggle), H3 (click to expand), E7
+  (filterable explorer), A7/A11 (scroll-driven, moves only when the visitor
+  scrolls), F8 (a drawn lens, zero motion despite looking dynamic), W4 (type
+  a query), W5 (two sliders).
+- **Continuous motion is the concept (outside the default):** A2 (counting
+  clock — already built, grandfathered), C9 (digit morph), D5 (animated
+  scrubber), H6 (live-updating status), W1 (walkable 3D city), W2 (audio),
+  W9 (timelapse). These stay on the menu because a menu keeps its options,
+  but they now carry this ruling against them.
+
+### Accessibility, by technology
+- **SVG/HTML:** real DOM nodes — aria-labels and text alternatives work. Best case.
+- **Static image:** one `alt` attribute. Limited but honest, never breaks.
+- **Canvas/WebGL:** a screen reader sees an empty box. **Every canvas concept
+  (A2, A3, D7, F1-as-canvas, F7, E4, all WebGL) needs a hand-written parallel
+  text/table** — real work NOT included in the effort estimates above.
+- **Color:** trust tiers encoded by color need a colorblind-safe ramp PLUS a
+  second channel (shape/position/label) — ordered categories are exactly where
+  color-alone fails.
+- **Motion:** under the static-first ruling, only the inherently-motion
+  concepts animate at all — and any that gets built needs a
+  `prefers-reduced-motion` static fallback, planned up front.
 
 ### Light/dark theme
-Anything drawn from CSS variables flips themes for free. Anything baked into a
-PNG needs **two exports**, one per theme — which doubles the regeneration step
-for every static-image option. Your existing pages are committed dark-only,
-which sidesteps this entirely; adopting a light theme later reopens it for
-every static image ever exported.
+CSS-variable graphics flip free. PNGs need **two exports per theme change** —
+doubling regeneration for every static image. Existing pages are dark-only,
+which sidesteps this; adopting a light theme later reopens it for every static
+image ever exported.
 
-### Regeneration — the question that decides whether this ages
-There's a clean split in this document:
-- **Regenerates itself:** anything where the audit script emits data and a
-  template renders it (all the chart-grammar options, all the hand-rolled SVG
-  built from a JSON file).
-- **Doesn't:** every illustration and metaphor concept (A6, C4, D6, G2, G5, H4).
-  Those are drawings with numbers in them, and when the numbers change, someone
-  redraws them. That's not a flaw — it's the price of the highest Wow scores in
-  this document, and it should be paid knowingly.
+### Regeneration — what decides whether this ages
+- **Regenerates itself:** anything where the audit emits data and a template
+  renders it (chart grammars, hand SVG from JSON).
+- **Doesn't:** every illustration/metaphor concept (A6, C4, D6, G2, G5, H4) —
+  drawings with numbers in them; when the numbers change, someone redraws.
+  That's the price of the highest Wow scores, paid knowingly.
 
-The pattern already in this repo handles the first case: extract to JSON,
-template with a placeholder, string-replace at build. That's a durable
-regeneration path and it exists today.
+The repo's existing pattern (extract to JSON → template placeholder →
+string-replace at build) already covers the first case.
 
 ---
 
 # The wildest ideas
 
-**Kept in deliberately, including the impractical ones.** Each is labeled with
-what could go wrong. None of these is being suggested — they're here because a
-menu that only contains safe options isn't a menu.
+Kept in deliberately, including the impractical. None is being suggested — a
+menu of only safe options isn't a menu.
 
-### W1. The warehouse as a walkable city
-An isometric or first-person 3D scene where every table is a building: height ∝
-rows, district = schema, materials = layer (landing / mart / metadata). The two
-dead databases are an unlit district with 254 empty storefronts. The visitor
-moves through it. Every number in this entire document has a physical address.
+- **W1. The warehouse as a walkable city** — every table a building (height ∝
+  rows, district = schema, materials = layer); the dead databases an unlit
+  district of 254 empty storefronts. *Tool:* three.js, or deck.gl polygons for
+  flat isometric. *Risk:* very high — 15-60+ hours, MBs of bundle, dead on
+  low-end phones, needs a full text alternative, can read as tech demo. Also
+  the single most differentiated thing on this list.
+  *Lift:* spawn the visitor at the city's most-connected intersection — the
+  single best-linked table — with the skyline receding in every direction.
+  First impression: you are somewhere specific in something vast.
+- **W2. Sonification** — each database an instrument; the docket noise becomes
+  literal noise, the 45 trustworthy pairs 45 clean bell strikes. ~40s audio +
+  visual score. *Tool:* Web Audio API; optionally Tone.js ⚠️. *Risk:* high and
+  pure taste — striking or gimmick, little middle. Upside: the only concept
+  fully accessible to a blind visitor *by design*.
+  *Lift:* end the piece with ten seconds of only the 45 bells, the noise floor
+  cut dead. Trust, rendered as the silence after the static.
+- **W3. The broadsheet** — the audit set as a newspaper front page, with a
+  boxed **CORRECTION** notice carrying the 2,909 reclassification and 847→183
+  re-count in genuine erratum register. *Tool:* HTML/CSS + editorial typeface,
+  inline SVG charts. *Risk:* low technically, high on execution — bad pastiche
+  looks cheap instantly. Payoff: "we correct ourselves in public" becomes the
+  *form* of the page.
+  *Lift:* date the masthead with the audit date and mark it "SECOND EDITION" —
+  corrections as editions. Re-running the audit prints the next edition, which
+  quietly gives this art concept a regeneration story.
+- **W4. Don't trust me — run it yourself** — an embedded query engine with the
+  audit CSVs; visitors type SQL and get the page's numbers themselves, plus
+  preset query buttons. *Tool:* DuckDB-WASM (local DuckDB 1.4.5 ✅; WASM size/
+  version ⚠️). *Risk:* medium-high — several MB of WASM, and it invites
+  scrutiny; whether that's the point or a liability isn't a design question.
+  *Lift:* pre-fill the query box with the query that would *disprove the
+  page's biggest number if it were wrong*. Opening on the hardest question
+  you could be asked is the strongest trust gesture available.
+- **W5. The coincidence machine** — two sliders set two ID ranges; the visitor
+  watches false overlap climb toward 100% with zero real connections, then one
+  button: "this is the 99.98% pair." *Tool:* ~150 lines vanilla JS + SVG.
+  *Risk:* low technically; it teaches distrust of overlap numbers — including
+  yours. Most credible thing on the site or a self-inflicted wound; not a
+  technical judgment.
+  *Lift:* start the sliders already set to the real pair's actual ranges — the
+  visitor's first act is *discovering* the trap is real, not building a toy
+  version of it.
+- **W6. The entity constellation, printed** — 33.3M entities as a generated
+  star field at poster resolution, A1 print + deep-zoom web image. *Tool:*
+  Pillow (installed) or Datashader; tiling zoom viewer. *Risk:* medium —
+  regenerates badly (it's art) and star fields are well-worn; its strength is
+  existing off the screen.
+  *Lift:* name the clusters like constellations — The Providers, The Vessels,
+  The Facilities — with a proper astronomical legend. A star chart, not a
+  scatter plot; the legend is what makes it a map of something.
 
-- **Tool:** three.js, or deck.gl's polygon layers for a flatter isometric version.
-- **Risk:** very high. 15-60+ hours, megabytes of bundle, unusable on low-end
-  phones, needs a full accessible text alternative, and it can very easily read
-  as a tech demo rather than as evidence. It is also the single most
-  differentiated thing on this list — nobody's data portfolio has this.
+---
 
-### W2. Sonification — the warehouse as sound
-Each database is an instrument, pitch by row count, density by table count. The
-DOCKET noise story becomes literal noise; the 45 trustworthy pairs become 45
-clean bell strikes over it. A 40-second audio piece plus a visual score.
+# ROUND 2 — 24 more concepts + 3 more wild ideas
 
-- **Tool:** Web Audio API, no library needed. Optionally Tone.js ⚠️ (not verified).
-- **Risk:** high, and it's *taste*, not engineering — sonification either lands
-  as striking or as gimmick, with little middle ground. Genuine upside: it's the
-  only concept in this document that's fully accessible to a blind visitor by
-  design rather than by retrofit.
+**Added later on 2026-08-25, second brainstorm pass.** Same groups, same nine
+scoring dimensions, deliberately different angles from Round 1: derived ratios,
+editorial formats, matrix forms, and comparisons to things people already know.
+**Not yet in the interactive options board.** Data-availability flags are
+honest: anything needing numbers not already in the audit CSVs says so.
 
-### W3. The broadsheet — the audit as a printed front page
-Set the whole thing as a newspaper page: masthead, headline number, columns of
-text, small precise charts inline in the text column, and — bottom right, boxed
-— a **CORRECTION** notice carrying the 2,909 reclassification and the 847→183
-re-count, in the exact register a newspaper uses to correct itself.
+---
 
-- **Tool:** pure HTML/CSS with a real editorial typeface; charts as inline SVG.
-- **Risk:** low technically, high on execution — bad newspaper pastiche looks
-  cheap instantly. The conceptual payoff is unusually strong: it makes "we
-  correct ourselves in public" the *form* of the page, not a claim inside it.
+## A. Warehouse scale — four more
 
-### W4. Don't trust me — run it yourself
-Embed a real query engine in the page with the audit's CSVs loaded. A visitor
-types SQL, gets the same numbers the page claims, in their own browser. Ship
-four or five pre-written queries as buttons ("count the trustworthy docket
-pairs yourself").
+- **A8. Famous-dataset ranking shelf** — one bar chart placing the warehouse
+  among datasets people have heard of (all English Wikipedia, a national
+  census file, a music-service catalog). "You are here" among the known.
+  ⚠️ Comparison figures are general knowledge, unverified — each needs a
+  sourced number before publishing.
+  *Lift:* set it as a museum wall label — small type, generous margins, the
+  warehouse's entry in bold among its peers. "You are here" delivered in the
+  visual language of an institution.
+- **A9. The Excel wall** — Excel maxes out at 1,048,576 rows per sheet; the
+  warehouse is **~4,744 completely maxed-out spreadsheets**. Draw the wall of
+  spreadsheet icons. Instantly meaningful to anyone who's ever hit that limit.
+  *Lift:* draw one spreadsheet open, scrolled to row 1,048,576 — the exact
+  wall every analyst has hit — and behind it, the other 4,743 as spines on a
+  shelf. The known frustration in front, the unthinkable quantity behind.
+- **A10. The download clock** — how long to download 185.4GB: ~4.1 hours at
+  100 Mbps, ~25 minutes at gigabit. The size stated as *your time*.
+  *Lift:* render it as the download dialog everyone has stared at — progress
+  bar, "3.1 hours remaining" — frozen at 25%. Instant recognition, mild
+  dread, message delivered.
+- **A11. The bottomless scrollbar [interactive]** — a page whose scrollbar
+  represents every row; the thumb is sub-pixel and the bottom is unreachable.
+  One control everyone already understands, repurposed as the exhibit.
+  *Lift:* add a magnifier callout showing the scrollbar thumb at true scale —
+  a sliver thinner than one pixel — beside the enlarged version you can
+  actually grab. The interface element itself becomes the scale comparison.
 
-- **Tool:** DuckDB-WASM (DuckDB 1.4.5 is installed locally ✅; the WASM build's
-  current size and version were **not verified this session** ⚠️).
-- **Risk:** medium-high. Several MB of WASM, and it invites scrutiny of the data
-  — which is either the whole point or a liability, depending on how ready the
-  numbers are. That readiness call is not a design question.
+| Concept | Weight | Effort | Interact | Design | Scale | A11y | Theme | Regen | Wow |
+|---|---|---|---|---|---|---|---|---|---|
+| A8 ranking shelf | ~4 KB | 2→7 | ●●○○○ | ●●●●○ | ●●●●● | ●●●●● | ●●●●● | ●●●○○ | ●●●○○ |
+| A9 Excel wall | ~8 KB | 2→8 | ●●○○○ | ●●●●○ | ●●●●● | ●●●●○ | ●●●●● | ●●●●● | ●●●●○ |
+| A10 download clock | ~3 KB | 1→4 | ●●○○○ | ●●●●○ | ●●●●● | ●●●●● | ●●●●● | ●●●●● | ●●●○○ |
+| A11 bottomless scrollbar | ~6 KB | 4→14 | ●●●●● | ●●●○○ | ●●●●● | ●●○○○ | ●●●●● | ●●●●● | ●●●●● |
 
-### W5. The coincidence machine
-A small interactive toy: two sliders set two ID ranges (say "a small bank ID
-space" and "a huge court docket space"). The visitor watches the false-overlap
-percentage climb toward 100% without a single real connection existing. Then
-one button: "this is the FDIC/CourtListener pair — 99.98%."
+## B. Per-database breakdown — three more
 
-- **Tool:** ~150 lines of vanilla JS and an SVG. Genuinely small.
-- **Risk:** low technically. The real risk is that it teaches the visitor to
-  distrust overlap numbers — including your own. That's either the most
-  credible thing on the site or a self-inflicted wound, and which one it is
-  isn't a technical judgment.
+- **B8. Parallel-coordinates profile lines** — four vertical axes (rows,
+  tables, views, GB), one line per database. The *shape* of each line is its
+  personality: the metadata database spikes on rows while staying low on
+  tables; the landing database does the reverse. Round 1 had no
+  multi-metric form at all.
+  *Lift:* present each line as that database's *signature* — seven scrawls,
+  one per database, with the axes faded back. You learn to recognize them by
+  handwriting, which is exactly what a profile line is.
+- **B9. Marimekko / mosaic** — column width = table count, height = average
+  rows per table, so area = total rows. Tall-and-thin vs. short-and-wide is
+  the story bars can't tell.
+  *Lift:* annotate directly inside the extreme columns — "few tables, enormous
+  ones" written vertically up the tall thin column. The shapes get to explain
+  themselves in their own space.
+- **B10. Average-table-size bars** — a derived ratio Round 1 never plotted:
+  rows per table. META ~13.9M avg · PREDBT ~2.8M · MARTS ~1.9M · RAW ~574k ·
+  STAGING ~12k. Flips the intuition — the "biggest" database has the
+  *smallest* average tables.
+  *Lift:* frame it as "average serving size" — plates of proportional size at
+  the end of each bar. The kitchen metaphor makes the inversion (most tables,
+  smallest servings) land for a visitor who will never read "rows per table."
 
-### W6. The entity constellation, as a physical print
-33.3M golden entities as a generated star field, clustered by entity type,
-rendered at poster resolution — a one-off piece of art with a legend, designed
-to be printed at A1 and also shown on the site as a deep-zoomable image.
+| Concept | Weight | Effort | Interact | Design | Scale | A11y | Theme | Regen | Wow |
+|---|---|---|---|---|---|---|---|---|---|
+| B8 parallel coordinates | ~6 KB | 3→10 | ●●●○○ | ●●●●○ | ●●●●● | ●●●○○ | ●●●●● | ●●●●● | ●●●●○ |
+| B9 Marimekko | ~7 KB | 3→10 | ●●●○○ | ●●●●○ | ●●●●● | ●●●○○ | ●●●●○ | ●●●●● | ●●●●○ |
+| B10 avg-table-size bars | ~3 KB | 1→4 | ●●○○○ | ●●●●○ | ●●●●● | ●●●●● | ●●●●● | ●●●●● | ●●●○○ |
 
-- **Tool:** Pillow (installed) or Datashader for the render; a tiling zoom
-  viewer for the web version.
-- **Risk:** medium. It regenerates badly (it's art), and a star field is a
-  well-worn visual. Its strength is that it's the only concept here that exists
-  off the screen.
+## C. The registration correction — three more
+
+- **C8. The receipt** — the correction typeset as a store receipt: 847 at the
+  top, each deduction a line item, SUBTOTAL 183, "PAID: 90 wired," balance 93.
+  Everyone reads receipts; nobody misreads one. Pure HTML/CSS.
+  *Lift:* full thermal-paper commitment — monospace face, faint print
+  banding, a slight scan skew, and a real barcode that encodes the audit
+  date. An artifact you'd believe fell out of a pocket, carrying true numbers.
+- **C9. The digit morph [interactive]** — scroll-driven: the numeral 847
+  physically breaks apart, pieces flying into labeled bins (mirrors,
+  mis-flags…), the remainder reassembling as 183. The recount as motion.
+  *Lift:* every fragment keeps its bin's color from the moment it splits, so
+  a viewer can visually trace *which part of 847* went where. The animation
+  becomes auditable — rewatch it and follow one shard.
+- **C10. One day of checking, as a timeline** — the correction plotted against
+  the actual hours of 08-24: morning count, each bucket discovered through the
+  day, evening total. Frames it as *work*, not magic. ⚠️ Needs per-correction
+  timestamps — not confirmed the audit logged them.
+  *Lift:* draw it as a workday — hour ticks, a lunch gap if the record shows
+  one, the evening total in heavier weight. The chart's subject becomes the
+  labor, and the number's credibility rides on the visible effort.
+
+| Concept | Weight | Effort | Interact | Design | Scale | A11y | Theme | Regen | Wow |
+|---|---|---|---|---|---|---|---|---|---|
+| C8 the receipt | ~4 KB | 2→8 | ●○○○○ | ●●●●● | ●●●●● | ●●●●● | ●●●●● | ●●●●○ | ●●●●● |
+| C9 digit morph | ~10 KB | 6→20 | ●●●●○ | ●●●●● | ●●●●● | ●●○○○ | ●●●●● | ●●●○○ | ●●●●● |
+| C10 correction timeline | ~5 KB | 3→10 | ●●○○○ | ●●●●○ | ●●●●● | ●●●●○ | ●●●●● | ●●●○○ | ●●●○○ |
+
+## D. Entity graph scale — two more
+
+- **D8. The multiplier staircase** — plot the *ratios between stages*, not the
+  counts: ×2.5 (entities→nodes), ×2.1 (nodes→pairs), **÷36,864**
+  (pairs→edges), ×3.6 (edges→leads). Four numbers instead of five huge ones;
+  the ÷36,864 step is the whole story and finally gets to be the biggest thing
+  on screen.
+  *Lift:* draw the three gentle multipliers as stairs and the ÷36,864 as a
+  sheer cliff face — one break in the drawing's own grammar, carrying the
+  entire finding. The eye falls off the edge exactly where the data does.
+- **D9. The odds ladder** — "a candidate pair's chance of becoming a real
+  edge: 1 in 36,864," placed on a ladder of familiar odds. ⚠️ The familiar
+  odds are general knowledge — each rung needs a sourced figure before
+  publishing.
+  *Lift:* space the rungs *logarithmically true*, so the empty stretch of
+  ladder between the last familiar odd and yours is drawn at honest length.
+  The gap — not the rungs — is the exhibit.
+
+| Concept | Weight | Effort | Interact | Design | Scale | A11y | Theme | Regen | Wow |
+|---|---|---|---|---|---|---|---|---|---|
+| D8 multiplier staircase | ~4 KB | 2→8 | ●●○○○ | ●●●●● | ●●●●● | ●●●●● | ●●●●● | ●●●●● | ●●●●○ |
+| D9 odds ladder | ~4 KB | 2→8 | ●●○○○ | ●●●●○ | ●●●●● | ●●●●● | ●●●●● | ●●●○○ | ●●●●○ |
+
+## E. Overlap coverage — three more
+
+- **E8. Arc diagram** — tables (or schemas) on one horizontal line, overlaps
+  as arcs above it. The printable, orderly cousin of the E4 network: same
+  connections, readable left-to-right, real SVG text throughout.
+  *Lift:* order the line to minimize crossings and color arcs by key type —
+  at which point it reads as a musical score: connections as phrases, key
+  types as voices. Print it wide and it's a frieze.
+- **E9. Schema-adjacency matrix** — schemas × schemas grid, cell shade = pair
+  count between them. The classic answer to "node-link diagrams stop working";
+  scales cleanly, screen-reader-friendly, and distinct from E3 (that was key
+  type × coverage bucket).
+  *Lift:* visibly mask the diagonal — self-pairs and mirrors crossed out with
+  a printed "we don't count these." The chart refusing to flatter itself is
+  the most on-brand pixel in the whole group.
+- **E10. Twenty-five constellation stamps** — one tiny network per key type,
+  small-multiple grid. Shows at a glance which key types form dense hubs
+  (EIN, NPI) and which are two dots and a line (MMSI). No single-network
+  hairball, same insight.
+  *Lift:* uniform frames like a stamp album — each key type a stamp, its pair
+  count as the denomination in the corner. Collectible, scannable, and the
+  three-pair stamp is exactly as dignified as the six-thousand-pair one.
+
+| Concept | Weight | Effort | Interact | Design | Scale | A11y | Theme | Regen | Wow |
+|---|---|---|---|---|---|---|---|---|---|
+| E8 arc diagram | ~15 KB | 4→12 | ●●●○○ | ●●●●● | ●●●●○ | ●●●○○ | ●●●●● | ●●●●○ | ●●●●○ |
+| E9 adjacency matrix | ~12 KB | 3→10 | ●●●○○ | ●●●●○ | ●●●●● | ●●●●○ | ●●●●○ | ●●●●● | ●●●○○ |
+| E10 constellation stamps | ~25 KB | 5→16 | ●●○○○ | ●●●●● | ●●●●○ | ●●○○○ | ●●●●○ | ●●●●○ | ●●●●● |
+
+## F. DOCKET trust — two more
+
+- **F8. The magnifier inset** — the full 6,560-dot field with a drawn lens
+  pulled out to one corner, enlarging the region holding the 45. The
+  needle-in-a-haystack composition, literal. Half chart, half illustration.
+  *Lift:* render the lens with real optics — edge distortion, a faint glass
+  highlight — so the enlargement reads as *looking closer*, not as a zoomed
+  crop. Craft in the lens is what signals care about what's under it.
+- **F9. Looks-real vs. is-real 2×2** — a quadrant chart of the whole trust
+  problem: high-overlap-and-real (the 45), high-overlap-but-fake (the 99.98%
+  pair), low-and-noise (the thousands), low-but-real (rare). Teaches *false
+  positive* without ever saying it. The one form here about the logic, not
+  the counts.
+  *Lift:* name the quadrants like a field guide — **True friends · Impostors
+  · Static · The overlooked** — with the impostor quadrant holding exactly one
+  labeled specimen: the 99.98% pair. A memorable taxonomy outlives any chart.
+
+| Concept | Weight | Effort | Interact | Design | Scale | A11y | Theme | Regen | Wow |
+|---|---|---|---|---|---|---|---|---|---|
+| F8 magnifier inset | ~30 KB | 5→16 | ●●○○○ | ●●●●● | ●●●●● | ●●○○○ | ●●●●○ | ●●●○○ | ●●●●● |
+| F9 real-vs-looks 2×2 | ~5 KB | 2→8 | ●●○○○ | ●●●●● | ●●●●● | ●●●●● | ●●●●● | ●●●●○ | ●●●●○ |
+
+## G. Dead weight — three more
+
+- **G7. Before/after cleanup bars** — the warehouse today (185.4GB) beside the
+  warehouse after deleting the dead weight (~126GB). The only concept that
+  shows the *payoff* of cleanup rather than the existence of waste.
+  *Lift:* draw the "after" bar with a clean dotted cut line, the freed ~59GB
+  drifting off it as pale, dissolving blocks. Deletion drawn as release, not
+  as absence — the picture argues for the cleanup without a word.
+- **G8. The graveyard timeline** — every dead object plotted by when it was
+  last touched. Shows the dead weight isn't one accident, it accumulated.
+  ⚠️ Needs last-touched dates per object — in the warehouse's metadata in
+  principle, not confirmed pulled into the audit CSVs.
+  *Lift:* restraint plus one cue — plain tick marks along the time axis, but
+  each tick shaped as the smallest possible headstone. One illustration
+  decision, held at whisper volume, and the axis becomes a burial record.
+- **G9. Cause-of-death cards** — each class of dead weight as a labeled card:
+  MIRROR · BACKUP · CAP · EMPTY, with its count and one plain sentence.
+  The housekeeping framing at its most scannable.
+  *Lift:* design them as archive toe-tags — string hole, stamped
+  classification, deadpan cause line ("died of being counted twice"). Dark
+  humor at exactly the volume a cleanup list can carry.
+
+| Concept | Weight | Effort | Interact | Design | Scale | A11y | Theme | Regen | Wow |
+|---|---|---|---|---|---|---|---|---|---|
+| G7 before/after bars | ~3 KB | 1→4 | ●●○○○ | ●●●●○ | ●●●●● | ●●●●● | ●●●●● | ●●●●● | ●●○○○ |
+| G8 graveyard timeline | ~8 KB | 4→12 | ●●●○○ | ●●●●○ | ●●●●● | ●●●●○ | ●●●●● | ●●●○○ | ●●●●○ |
+| G9 cause-of-death cards | ~5 KB | 2→7 | ●●○○○ | ●●●●● | ●●●●● | ●●●●● | ●●●●● | ●●●●● | ●●●○○ |
+
+## H. The four-verb pipeline — two more
+
+- **H7. The subway map** — the four verbs as stations on a transit line;
+  source families are colored lines converging into COLLECT, one line exiting
+  to DETECT. A visual language everyone can already read, and it extends
+  naturally as sources grow.
+  *Lift:* obey real transit-map discipline — 45° angles only, even station
+  spacing, an official-looking legend — and make CONNECT the grand
+  interchange where every line meets. That's not decoration; the interchange
+  *is* the platform's thesis, drawn in a grammar everyone reads fluently.
+- **H8. Four-panel storyboard** — the pipeline as a comic strip: one drawn
+  panel per verb, one caption each. The friendliest possible entry for a
+  visitor who will not read a diagram.
+  *Lift:* make it a silent comic — no dialogue, no captions, only the counts
+  appearing as the panels' sole text. The numbers become the punchlines, and
+  the strip works in any language.
+
+| Concept | Weight | Effort | Interact | Design | Scale | A11y | Theme | Regen | Wow |
+|---|---|---|---|---|---|---|---|---|---|
+| H7 subway map | ~10 KB | 5→16 | ●●●○○ | ●●●●● | ●●●●● | ●●●●○ | ●●●●● | ●●●○○ | ●●●●● |
+| H8 storyboard | ~120 KB | 8→24 | ●○○○○ | ●●●●● | ●●●●● | ●●●○○ | ●●○○○ | ●○○○○ | ●●●●○ |
+
+## I. Key trust tiers — two more
+
+- **I7. The plain 100% bar** — one horizontal bar, 3,619 columns split
+  GEO / STEEL / STRONG. Round 1 skipped the simplest form in the entire
+  vocabulary; it belongs on the menu, and the GEO share doing most of the bar
+  *is* the finding.
+  *Lift:* give the hairline STRONG segment a long callout leader and the
+  loudest label on the chart — the smallest slice gets the biggest voice.
+  Inverting the visual hierarchy once, deliberately, is the design.
+- **I8. Tier × entity-grain matrix** — which trust tiers identify which kinds
+  of thing: rows = tier, columns = place/org/facility/…, cell = column count.
+  Would show whether people are only ever identified by weak keys — a real
+  question. ⚠️ Needs the cross-tab; the audit CSVs have each axis separately,
+  the combination not confirmed.
+  *Lift:* border the *person* column so the ethics question is visible as a
+  highlighted column before a single number is read. The chart declares what
+  it's really asking.
+
+| Concept | Weight | Effort | Interact | Design | Scale | A11y | Theme | Regen | Wow |
+|---|---|---|---|---|---|---|---|---|---|
+| I7 plain 100% bar | ~2 KB | 1→3 | ●○○○○ | ●●●●○ | ●●●●● | ●●●●● | ●●●●● | ●●●●● | ●○○○○ |
+| I8 tier×grain matrix | ~8 KB | 3→10 | ●●●○○ | ●●●●○ | ●●●●● | ●●●○○ | ●●●●○ | ●●●●● | ●●●○○ |
+
+## Three more wild ideas
+
+- **W7. The map room** — all nine metric groups composed onto ONE giant
+  deep-zoomable poster: scale in the center, pipeline as the spine, trust
+  tiers as the legend, dead weight as greyed territory. One artifact instead
+  of nine graphics; also printable at A0. *Risk:* very high effort (30-60+
+  hours), and one bad composition decision sinks the whole thing instead of
+  one chart.
+  *Lift:* commit to full cartographic convention — compass rose, a scale bar
+  denominated in rows, marginalia, "surveyed 2026-08-24" in the corner. Not
+  a dashboard that looks like a map; a survey document of a territory that
+  happens to be data.
+- **W8. The data fingerprint** — a generative mark seeded deterministically by
+  the audit's numbers: every audit run produces a unique visual signature, and
+  the mark *changing* between runs is itself the message ("the warehouse
+  moved"). The one art concept that regenerates *by design* — it dodges the
+  standing art-vs-regen trade-off instead of paying it. *Risk:* abstract; it
+  proves nothing on its own and needs the real charts next to it.
+  *Lift:* make it the site's actual mark — favicon, masthead, page footer —
+  so the identity of the whole site is a hash of the current audit. When the
+  numbers change, the site visibly changes its face. Show last audit's mark
+  faintly beside it: the drift between the two IS the changelog.
+- **W9. The audit timelapse** — the warehouse growing across audit runs as an
+  animation: databases inflating, connections lighting up, dead weight
+  accumulating. *Risk:* ⚠️ needs historical audit snapshots — only the
+  2026-08-24 audit is confirmed to exist in this form, so this one starts
+  paying off on audit #3, not today.
+  *Lift:* include a "play it backwards" control — the warehouse un-growing to
+  nothing. Watching it rewind to zero is the cleanest possible statement of
+  how much got built; the empty first frame is the origin story.
 
 ---
 
 # End of options
 
-No recommendation, no shortlist, no "if I had to pick" — by design. What's
-above is **60 picture concepts across 9 metric groups, plus 6 wild ones, plus
-30 tools**, each scored on the same nine dimensions so they can be compared
-without being ranked for you.
+No recommendation, no shortlist, no "if I had to pick" — by design. **60
+concepts across 9 groups + 6 wild ones + 30 tools in Round 1, plus 24 concepts
+and 3 wild ones in Round 2 — 93 total**, all scored the same way so they
+compare without being ranked for you. Every concept carries a **Lift** — keep
+it or drop it per piece; they're intent, not requirements.
 
-Two things worth knowing before you weigh them, stated as facts rather than
-advice:
+Two facts (not advice) worth holding while weighing:
 
-1. **The single biggest fork isn't which library — it's static vs. interactive
-   vs. illustrated.** Static regenerates itself and loads instantly. Interactive
-   earns its keep on roughly four of the 60 concepts. Illustrated wins every Wow
-   score and every one of them goes stale when the numbers change.
-2. **Six of the nine metric groups need no charting library at all.** Groups A,
-   C, F, G, H, and I are mostly typography, SVG, and one canvas loop. The
-   library question only really bites on the graph-scale concepts (D7, E4) and
-   the exploratory ones (E7).
+1. **The biggest fork isn't the library — it's static vs. interactive vs.
+   illustrated.** Static regenerates and loads instantly; interactive earns its
+   keep on ~4 of 60 concepts; illustrated wins every Wow score and every one
+   goes stale when the numbers change.
+2. **Six of nine groups need no charting library at all** (A, C, F, G, H, I —
+   typography, SVG, one canvas loop). The library question only bites on the
+   graph-scale concepts (D7, E4) and the exploratory one (E7).
 
 ---
 
-# Appendix: what was verified this session, and where
+# Appendix: verified this session (2026-08-25)
 
-Checked against live documentation or the local machine on 2026-08-25:
+Checked against live documentation or the local machine:
 
-- **Datashader** v0.19.1; billion-point claim; Python 3.10-3.14 —
-  [datashader.org](https://datashader.org/releases.html),
-  [github.com/holoviz/datashader](https://github.com/holoviz/datashader)
-- **pyecharts** 2.1.0 (Feb 10 2026), MIT —
-  [PyPI](https://pypi.org/project/pyecharts/),
-  [GitHub](https://github.com/pyecharts/pyecharts)
-- **Apache ECharts** 6.1.0, Apache-2.0, new chord series + matrix coordinate
-  system in v6 —
-  [ECharts 6 features](https://echarts.apache.org/handbook/en/basics/release-note/v6-feature/),
-  [npm](https://www.npmjs.com/package/echarts)
-- **Observable Plot** server-side rendering via JSDOM, and its own warning that
-  SSR suits only simple/small plots; stylesheet now inlined in the SVG —
-  [Plot docs](https://observablehq.com/plot/features/plots),
-  [GitHub](https://github.com/observablehq/plot)
-- **cosmos.gl** MIT, v3.0, WebGL2 via luma.gl, `@cosmos.gl/graph`, OpenJS
-  incubating — [GitHub](https://github.com/cosmosgl/graph),
-  [OpenJS announcement](https://openjsf.org/blog/introducing-cosmos-gl)
-- **Cosmograph** CC-BY-NC-4.0, commercial use requires contacting them —
-  [Cosmograph docs](https://cosmograph.app/docs-general/)
-- **deck.gl** v9, WebGL2 via luma.gl v9, WebGPU not enabled in 9.0 —
-  [deck.gl what's new](https://deck.gl/docs/whats-new),
-  [WebGPU doc](https://deck.gl/docs/developer-guide/webgpu)
-- **plotly.js** bundle sizes (full 3.3MB raw / 1.2MB min / ~391KB gzipped;
-  basic partial ~318KB gzipped) —
-  [plotly.js dist README](https://github.com/plotly/plotly.js/blob/master/dist/README.md)
-- **vl-convert-python** self-contained static export, no Node or browser
-  needed — [GitHub](https://github.com/vega/vl-convert),
-  [PyPI](https://pypi.org/project/vl-convert-python)
-- **D3** latest published is 7.9.0; no v8 — [npm](https://www.npmjs.com/package/d3?activeTab=versions)
-- **sigma.js** v3 on graphology, WebGL — [sigmajs.org](https://www.sigmajs.org/docs/)
-  *(license not verified)*
-- **PyWaffle** MIT, Font Awesome icon support, matplotlib-based —
-  [GitHub](https://github.com/gyli/PyWaffle)
-- **rough.js** <9kB gzipped; **roughViz** 2.0.5, built on D3v5, explicitly for
-  "intent or generality, not absolute precision" —
-  [roughjs.com](https://roughjs.com/), [roughViz](https://github.com/jwilber/roughViz)
-- **Observable Framework** 1.13.4, static site generator with data loaders —
-  [GitHub](https://github.com/observablehq/framework)
-- **matplotlib** 3.11.1 (3.11.0 released Jun 11 2026), text/font overhaul —
-  [release notes](https://matplotlib.org/stable/release/release_notes.html)
+- **Datashader** 0.19.1; billion-point claim; Py 3.10-3.14 — [datashader.org](https://datashader.org/releases.html), [GitHub](https://github.com/holoviz/datashader)
+- **pyecharts** 2.1.0 (Feb 10 2026), MIT — [PyPI](https://pypi.org/project/pyecharts/), [GitHub](https://github.com/pyecharts/pyecharts)
+- **Apache ECharts** 6.1.0, Apache-2.0, chord + matrix coords new in v6 — [handbook](https://echarts.apache.org/handbook/en/basics/release-note/v6-feature/), [npm](https://www.npmjs.com/package/echarts)
+- **Observable Plot** SSR via JSDOM + its "simple plots of small data" warning; stylesheet inlined — [docs](https://observablehq.com/plot/features/plots), [GitHub](https://github.com/observablehq/plot)
+- **cosmos.gl** MIT, v3.0, WebGL2/luma.gl, `@cosmos.gl/graph`, OpenJS incubating — [GitHub](https://github.com/cosmosgl/graph), [OpenJS](https://openjsf.org/blog/introducing-cosmos-gl)
+- **Cosmograph** CC-BY-NC-4.0, commercial use by contact — [docs](https://cosmograph.app/docs-general/)
+- **deck.gl** v9, WebGL2 via luma.gl v9, WebGPU not enabled in 9.0 — [what's new](https://deck.gl/docs/whats-new), [WebGPU](https://deck.gl/docs/developer-guide/webgpu)
+- **plotly.js** bundle sizes (3.3MB raw / 1.2MB min / ~391KB gz; basic ~318KB gz) — [dist README](https://github.com/plotly/plotly.js/blob/master/dist/README.md)
+- **vl-convert-python** self-contained export, no Node/browser — [GitHub](https://github.com/vega/vl-convert), [PyPI](https://pypi.org/project/vl-convert-python)
+- **D3** 7.9.0 latest, no v8 — [npm](https://www.npmjs.com/package/d3?activeTab=versions)
+- **sigma.js** v3 on graphology, WebGL — [sigmajs.org](https://www.sigmajs.org/docs/) *(license not verified)*
+- **PyWaffle** MIT, Font Awesome icons, matplotlib-based — [GitHub](https://github.com/gyli/PyWaffle)
+- **rough.js** <9kB gz; **roughViz** 2.0.5 on D3v5, "intent or generality, not absolute precision" — [roughjs.com](https://roughjs.com/), [roughViz](https://github.com/jwilber/roughViz)
+- **Observable Framework** 1.13.4, static site generator with data loaders — [GitHub](https://github.com/observablehq/framework)
+- **matplotlib** 3.11.1 (3.11.0 Jun 11 2026), text/font overhaul — [release notes](https://matplotlib.org/stable/release/release_notes.html)
 - **plotnine** 0.15.7 (Jun 13 2026) — [changelog](https://plotnine.org/changelog.html)
-- **Local machine** (checked directly): plotly 6.6.0, altair 5.5.0, pandas
-  2.3.3, numpy 2.0.2, networkx 3.2.1, pydeck 0.9.2, dash 4.4.1, Pillow 11.3.0,
-  duckdb 1.4.5, Node v22.23.2, Chrome present. **Absent:** matplotlib, seaborn,
-  plotnine, datashader, bokeh, holoviews, hvplot, pyecharts, kaleido,
-  vl-convert-python, graphviz, scipy, geopandas.
+- **Local machine** (checked directly): plotly 6.6.0, altair 5.5.0, pandas 2.3.3, numpy 2.0.2, networkx 3.2.1, pydeck 0.9.2, dash 4.4.1, Pillow 11.3.0, duckdb 1.4.5, Node v22.23.2, Chrome present. **Absent:** matplotlib, seaborn, plotnine, datashader, bokeh, holoviews, hvplot, pyecharts, kaleido, vl-convert-python, graphviz, scipy, geopandas.
 
 **Not verified this session** (do not treat as fact): Bokeh, Panel, three.js,
 regl, p5.js, Chart.js, Recharts, Nivo, LayerCake, DuckDB-WASM, Graphviz, and
-all Highcharts / Flourish / Datawrapper pricing and licensing. Every license
-marked ⚠️ above is from general knowledge only.
+all Highcharts / Flourish / Datawrapper pricing and licensing. Every ⚠️ license
+above is general knowledge only.
