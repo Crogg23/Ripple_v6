@@ -1,0 +1,140 @@
+{
+  "fqtn": "LIBRARY_MARTS.POLITICS.POLITICS__IRS527_RELATED_ENTITIES",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "FORM_ID_NUMBER",
+    "ENTITY_ID",
+    "ORG_NAME",
+    "EIN",
+    "ENTITY_NAME",
+    "ENTITY_RELATIONSHIP",
+    "ENTITY_ADDR1",
+    "ENTITY_ADDR2",
+    "ENTITY_CITY",
+    "ENTITY_STATE",
+    "ENTITY_ZIP",
+    "ENTITY_ZIP_EXT",
+    "_INGESTED_AT",
+    "_SOURCE_RUN_ID"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "ENTITY_ID",
+      "ORG_NAME",
+      "ENTITY_NAME",
+      "ENTITY_RELATIONSHIP",
+      "ENTITY_ADDR1",
+      "ENTITY_ADDR2",
+      "ENTITY_CITY",
+      "ENTITY_STATE",
+      "ENTITY_ZIP",
+      "ENTITY_ZIP_EXT"
+    ],
+    "address_candidates": {
+      "city": [
+        "ENTITY_CITY"
+      ],
+      "state": [
+        "ENTITY_STATE"
+      ],
+      "zip": [
+        "ENTITY_ZIP",
+        "ENTITY_ZIP_EXT"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "EIN",
+      "column": "EIN",
+      "total_rows": 64835,
+      "nonnull_after_norm": 64835,
+      "distinct_after_norm": 8979,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "FORM_ID_NUMBER": "9562988",
+      "ENTITY_ID": "16574",
+      "ORG_NAME": "Now Our Way",
+      "EIN": "341997529",
+      "ENTITY_NAME": "C C REED, Inc.",
+      "ENTITY_RELATIONSHIP": "Affiliated",
+      "ENTITY_ADDR1": "1601 N. W. First Court,  Suite 201",
+      "ENTITY_ADDR2": null,
+      "ENTITY_CITY": "Miami",
+      "ENTITY_STATE": "FL",
+      "ENTITY_ZIP": "33136",
+      "ENTITY_ZIP_EXT": "1952",
+      "_INGESTED_AT": "2026-08-05 21:45:20.501427",
+      "_SOURCE_RUN_ID": "db58fcc8-1ca1-4342-925c-c3d14d353788"
+    },
+    {
+      "FORM_ID_NUMBER": "9617711",
+      "ENTITY_ID": "57737",
+      "ORG_NAME": "Florida Farm PAC",
+      "EIN": "463085970",
+      "ENTITY_NAME": "Florida Farm Bureau Federation",
+      "ENTITY_RELATIONSHIP": "Connected",
+      "ENTITY_ADDR1": "PO Box 147030",
+      "ENTITY_ADDR2": null,
+      "ENTITY_CITY": "Gainesville",
+      "ENTITY_STATE": "FL",
+      "ENTITY_ZIP": "32614",
+      "ENTITY_ZIP_EXT": "7030",
+      "_INGESTED_AT": "2026-08-05 21:45:20.501427",
+      "_SOURCE_RUN_ID": "db58fcc8-1ca1-4342-925c-c3d14d353788"
+    },
+    {
+      "FORM_ID_NUMBER": "9749424",
+      "ENTITY_ID": "108696652",
+      "ORG_NAME": "Florida Opinion Leaders",
+      "EIN": "812849515",
+      "ENTITY_NAME": "Florida Influence",
+      "ENTITY_RELATIONSHIP": "Connected",
+      "ENTITY_ADDR1": "1103 Hays Street",
+      "ENTITY_ADDR2": null,
+      "ENTITY_CITY": "Tallahassee",
+      "ENTITY_STATE": "FL",
+      "ENTITY_ZIP": "32301",
+      "ENTITY_ZIP_EXT": null,
+      "_INGESTED_AT": "2026-08-05 21:45:20.501427",
+      "_SOURCE_RUN_ID": "db58fcc8-1ca1-4342-925c-c3d14d353788"
+    },
+    {
+      "FORM_ID_NUMBER": "9635509",
+      "ENTITY_ID": "63764",
+      "ORG_NAME": "NATIONWIDE INSURANCE BETTER CITIZEN FUND",
+      "EIN": "311225639",
+      "ENTITY_NAME": "NATIONWIDE FINANCIAL ASSIGNMENT COMPANY",
+      "ENTITY_RELATIONSHIP": "Connected",
+      "ENTITY_ADDR1": "ONE WEST NATIONWIDE PLAZA  1-03-701",
+      "ENTITY_ADDR2": null,
+      "ENTITY_CITY": "COLUMBUS",
+      "ENTITY_STATE": "OH",
+      "ENTITY_ZIP": "43215",
+      "ENTITY_ZIP_EXT": "2220",
+      "_INGESTED_AT": "2026-08-05 21:45:20.501427",
+      "_SOURCE_RUN_ID": "db58fcc8-1ca1-4342-925c-c3d14d353788"
+    },
+    {
+      "FORM_ID_NUMBER": "9669807",
+      "ENTITY_ID": "75905",
+      "ORG_NAME": "Mo Energy Dev Association Gateway Political Action Committee",
+      "EIN": "831462233",
+      "ENTITY_NAME": "Missouri Energy Development Association PAC",
+      "ENTITY_RELATIONSHIP": "Connected",
+      "ENTITY_ADDR1": "326 E Capitol Ave",
+      "ENTITY_ADDR2": null,
+      "ENTITY_CITY": "Jefferson Cty",
+      "ENTITY_STATE": "MO",
+      "ENTITY_ZIP": "65101",
+      "ENTITY_ZIP_EXT": null,
+      "_INGESTED_AT": "2026-08-05 21:45:20.501427",
+      "_SOURCE_RUN_ID": "db58fcc8-1ca1-4342-925c-c3d14d353788"
+    }
+  ],
+  "sample_error": null
+}

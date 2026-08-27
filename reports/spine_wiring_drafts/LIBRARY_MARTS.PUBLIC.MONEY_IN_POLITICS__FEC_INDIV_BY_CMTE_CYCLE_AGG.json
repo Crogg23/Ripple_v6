@@ -1,0 +1,62 @@
+{
+  "fqtn": "LIBRARY_MARTS.PUBLIC.MONEY_IN_POLITICS__FEC_INDIV_BY_CMTE_CYCLE_AGG",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "CMTE_ID",
+    "CYCLE_YEAR",
+    "N_RECORDS",
+    "TOTAL_AMOUNT"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "FEC_CMTE_ID",
+      "column": "CMTE_ID",
+      "total_rows": 29858,
+      "nonnull_after_norm": 29858,
+      "distinct_after_norm": 12277,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "CMTE_ID": "C00843540",
+      "CYCLE_YEAR": 2024,
+      "N_RECORDS": 1,
+      "TOTAL_AMOUNT": -137.0
+    },
+    {
+      "CMTE_ID": "C00940999",
+      "CYCLE_YEAR": 2026,
+      "N_RECORDS": 13,
+      "TOTAL_AMOUNT": 11300.0
+    },
+    {
+      "CMTE_ID": "C00831289",
+      "CYCLE_YEAR": 2024,
+      "N_RECORDS": 373,
+      "TOTAL_AMOUNT": 185168.0
+    },
+    {
+      "CMTE_ID": "C00580415",
+      "CYCLE_YEAR": 2023,
+      "N_RECORDS": 6,
+      "TOTAL_AMOUNT": 9500.0
+    },
+    {
+      "CMTE_ID": "C00913897",
+      "CYCLE_YEAR": 2026,
+      "N_RECORDS": 646,
+      "TOTAL_AMOUNT": 530422.0
+    }
+  ],
+  "sample_error": null
+}

@@ -19,8 +19,16 @@ of it is copied from an older report.
 - **847 real tables** carry at least one genuine entity-grade key (person /
   organization / facility / provider / case / asset) by live column-NAME
   detection — versus **178** formally registered in the spine's own gate
-  (`DISPLAY_SPECS`). That gap is the platform's real unwired-connectivity
-  backlog. (This audit's detector is name-based, same as the platform's own
+  (`DISPLAY_SPECS`) at the time of the morning sweep.
+  **CORRECTED the same evening (see §4a):** the 847-vs-178 gap was mostly
+  double counting. 289 of the 847 are `LIBRARY_MARTS` mirrors of landing
+  tables that were already registered, 37 landing tables were registered
+  but mis-flagged, and 14 are derived/meta/retired outputs. The real
+  backlog was **30 federal landing tables + 153 portal crawls**; by the end
+  of the day **267 tables are registered** (178 + 11 federal − 1 typo'd
+  + 79 portal crawls wired as sample-flagged), and the remaining 354
+  entity-grade table rows in `key_columns_verified.csv` are DOCKET
+  (parked), derived/mart-only, or documented gaps. (This audit's detector is name-based, same as the platform's own
   scout tagger — it does **not** catch the ~20 table-scoped special-cased
   keys `DISPLAY_SPECS` registers by exact `(table, column)` pair for columns
   whose name alone can't carry the key, e.g. FEC's positional `C1`/`C15`
@@ -144,8 +152,33 @@ of that registry) found **847 real tables** carrying at least one genuine
 entity-grade key (person/organization/facility/provider/case/asset — not
 counting the coarse "place" keys; see the headline-numbers caveat above on
 what name-based detection can't see). That gap — 847 detected vs. 178
-registered — is the platform's real "known but not yet wired into the spine"
-backlog; see `key_columns_all.csv`'s `spine_wired` column for the exact list.
+registered — looked like the platform's backlog at the time; §4a below shows
+what it actually was once de-duplicated (use `spine_wired_2026_08_24_late`,
+not `spine_wired`, in the CSVs).
+
+### 4a. Reconciliation (late 2026-08-24) — the gap, re-counted against the registry
+
+Every candidate table was matched against the registry by the name the spine
+actually reads (bare `LIBRARY_RAW.LANDING` table name). Result:
+
+| Bucket | Tables | Outcome |
+|---|---:|---|
+| Mart mirror (`LIBRARY_MARTS.<domain>__<table>`) of an already-registered landing table | 289 (156 unique landing names) | no work — same data, already in |
+| Landing table already registered, mis-flagged `spine_wired=False` by this audit | 37 | flag corrected |
+| Derived / meta / retired (FINDINGS, CONNECT outputs, RETIRED) | 14 | not sources |
+| Mart-only tables with no landing twin (politics marts) | ~20 | parked — spine reads landing only |
+| `DOCKET` landing tables | 135 | parked (§6b) |
+| Portal crawls (`PORTAL_*`) | 153 | **79 wired as samples** (Chris's ruling, flag `"sample": True`, authority 9); 74 gaps (56 empty key, 18 false keys) |
+| Federal landing tables | 30 | **11 wired**; 19 documented gaps |
+
+`key_columns_verified.csv` now carries two extra columns:
+`spine_wired_2026_08_24_late` (the corrected flag) and `wired_via`
+(`landing` / `sample` / `mirror_of_wired_landing`). Per-table reasons for
+every gap live in the registry's two 2026-08-24 batch blocks. Two pre-existing
+registry entries that would have crashed the next rebuild (a table name that
+never existed; lowercase column names on a re-landed FEC table) were fixed in
+the same pass. Full plan and outcome: `reports/SPINE_WIRING_PLAN_2026-08-24.md`
+§8–§9.
 
 **A table not in `DISPLAY_SPECS` is not in the spine or entity index today** —
 this is stated directly in the module's own docstring, correcting an earlier,

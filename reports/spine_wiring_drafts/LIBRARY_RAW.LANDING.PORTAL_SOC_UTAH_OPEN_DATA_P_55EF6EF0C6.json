@@ -1,0 +1,116 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_SOC_UTAH_OPEN_DATA_P_55EF6EF0C6",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NPI",
+    "IND_PAC_ID",
+    "LST_NM",
+    "FRST_NM",
+    "SPEC",
+    "PRAC_ST",
+    "HCPCS_CODE",
+    "HCPCS_DESCRIPTION",
+    "LINE_SRVC_CNT",
+    "BENE_CNT",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPI",
+      "column": "NPI",
+      "total_rows": 2000,
+      "nonnull_after_norm": 2000,
+      "distinct_after_norm": 766,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "NPI": "1164666061",
+      "IND_PAC_ID": "3274713839",
+      "LST_NM": "Loper",
+      "FRST_NM": "Stephen",
+      "SPEC": "PHYSICIAN ASSISTANT",
+      "PRAC_ST": "UT",
+      "HCPCS_CODE": "51741",
+      "HCPCS_DESCRIPTION": "Electronic assessment of bladder emptying",
+      "LINE_SRVC_CNT": "27",
+      "BENE_CNT": "25",
+      "INGESTED_AT": "2026-06-24 04:45:28.362622",
+      "SOURCE_RUN_ID": "0fe78de2-45db-44ae-bfb5-7a364ee4cdcc",
+      "SRC_SHA256": "73e7ca54be95d8aa7450b7dd736710b915a0b22d7582c9bf37e550a49a0e1958"
+    },
+    {
+      "NPI": "1174569131",
+      "IND_PAC_ID": "749253680",
+      "LST_NM": "Wright",
+      "FRST_NM": "Dalton",
+      "SPEC": "DIAGNOSTIC RADIOLOGY",
+      "PRAC_ST": "UT",
+      "HCPCS_CODE": "74176",
+      "HCPCS_DESCRIPTION": "CT scan of abdomen and pelvis",
+      "LINE_SRVC_CNT": "18",
+      "BENE_CNT": "18",
+      "INGESTED_AT": "2026-06-24 04:45:28.362622",
+      "SOURCE_RUN_ID": "0fe78de2-45db-44ae-bfb5-7a364ee4cdcc",
+      "SRC_SHA256": "73e7ca54be95d8aa7450b7dd736710b915a0b22d7582c9bf37e550a49a0e1958"
+    },
+    {
+      "NPI": "1063452050",
+      "IND_PAC_ID": "5294637898",
+      "LST_NM": "Merrell",
+      "FRST_NM": "Steven",
+      "SPEC": "VASCULAR SURGERY",
+      "PRAC_ST": "UT",
+      "HCPCS_CODE": "93922",
+      "HCPCS_DESCRIPTION": "Ultrasound study of arteries of both arms and legs",
+      "LINE_SRVC_CNT": "60",
+      "BENE_CNT": "58",
+      "INGESTED_AT": "2026-06-24 04:45:28.362622",
+      "SOURCE_RUN_ID": "0fe78de2-45db-44ae-bfb5-7a364ee4cdcc",
+      "SRC_SHA256": "73e7ca54be95d8aa7450b7dd736710b915a0b22d7582c9bf37e550a49a0e1958"
+    },
+    {
+      "NPI": "1144415969",
+      "IND_PAC_ID": "8123106036",
+      "LST_NM": "Tward",
+      "FRST_NM": "Jonathan",
+      "SPEC": "RADIATION ONCOLOGY",
+      "PRAC_ST": "UT",
+      "HCPCS_CODE": "77334",
+      "HCPCS_DESCRIPTION": "Radiation treatment devices, design and construction, complex",
+      "LINE_SRVC_CNT": "130",
+      "BENE_CNT": "55",
+      "INGESTED_AT": "2026-06-24 04:45:28.362622",
+      "SOURCE_RUN_ID": "0fe78de2-45db-44ae-bfb5-7a364ee4cdcc",
+      "SRC_SHA256": "73e7ca54be95d8aa7450b7dd736710b915a0b22d7582c9bf37e550a49a0e1958"
+    },
+    {
+      "NPI": "1023453768",
+      "IND_PAC_ID": "9537458781",
+      "LST_NM": "Romney",
+      "FRST_NM": "Pace",
+      "SPEC": "NEPHROLOGY",
+      "PRAC_ST": "UT",
+      "HCPCS_CODE": "90960",
+      "HCPCS_DESCRIPTION": "Dialysis services (4 or more physician visits per month), patient 20 years of age and older",
+      "LINE_SRVC_CNT": "153",
+      "BENE_CNT": "69",
+      "INGESTED_AT": "2026-06-24 04:45:28.362622",
+      "SOURCE_RUN_ID": "0fe78de2-45db-44ae-bfb5-7a364ee4cdcc",
+      "SRC_SHA256": "73e7ca54be95d8aa7450b7dd736710b915a0b22d7582c9bf37e550a49a0e1958"
+    }
+  ],
+  "sample_error": null
+}

@@ -1,0 +1,144 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_ARC_LA_COUNTY_OPEN_D_6DF63A4983",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NPI",
+    "LEGAL_NAME",
+    "BUSINESS_NAME",
+    "FACILITY_TYPE",
+    "COUNTY",
+    "ADDRESS_LINE_1",
+    "ADDRESS_LINE_2",
+    "CITY",
+    "STATE",
+    "ZIP_CODE",
+    "PHONE",
+    "FID",
+    "GEOMETRY",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "LEGAL_NAME",
+      "BUSINESS_NAME",
+      "FACILITY_TYPE"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "STATE"
+      ],
+      "zip": [
+        "ZIP_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPI",
+      "column": "NPI",
+      "total_rows": 187,
+      "nonnull_after_norm": 187,
+      "distinct_after_norm": 185,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "NPI": "1891938122",
+      "LEGAL_NAME": "Ahmc Anaheim Reg Med Ctr",
+      "BUSINESS_NAME": "Ahmc Anaheim Reg Med Ctr",
+      "FACILITY_TYPE": "Special",
+      "COUNTY": "Orange",
+      "ADDRESS_LINE_1": "1111 W La Palma Avenue",
+      "ADDRESS_LINE_2": "nan",
+      "CITY": "Anaheim",
+      "STATE": "CA",
+      "ZIP_CODE": "92801-2804",
+      "PHONE": "(714) 774-1450",
+      "FID": "1",
+      "GEOMETRY": "{\"type\": \"Point\", \"coordinates\": [-117.9322175564, 33.8472157645679]}",
+      "INGESTED_AT": "2026-06-24 04:32:41.541215",
+      "SOURCE_RUN_ID": "50c620b1-f1de-454d-b792-970116089c01",
+      "SRC_SHA256": "7f55000fc2f685ba820fd46cadd20f97d03e21d667d3f75c3d493fe72cdfc5e1"
+    },
+    {
+      "NPI": "1699868398",
+      "LEGAL_NAME": "Childrens Hosp At",
+      "BUSINESS_NAME": "Childrens Hosp of Orange",
+      "FACILITY_TYPE": "Pediatric Community",
+      "COUNTY": "Orange",
+      "ADDRESS_LINE_1": "27700 Med Center Road",
+      "ADDRESS_LINE_2": "5th Fl",
+      "CITY": "Mission Viejo",
+      "STATE": "CA",
+      "ZIP_CODE": "92691-6426",
+      "PHONE": "(714) 365-2180",
+      "FID": "14",
+      "GEOMETRY": "{\"type\": \"Point\", \"coordinates\": [-117.667004781084, 33.5611246358654]}",
+      "INGESTED_AT": "2026-06-24 04:32:41.541215",
+      "SOURCE_RUN_ID": "50c620b1-f1de-454d-b792-970116089c01",
+      "SRC_SHA256": "7f55000fc2f685ba820fd46cadd20f97d03e21d667d3f75c3d493fe72cdfc5e1"
+    },
+    {
+      "NPI": "1073519443",
+      "LEGAL_NAME": "Pioneers Memorial Health",
+      "BUSINESS_NAME": "Pioneers Memorial Health",
+      "FACILITY_TYPE": "Standard",
+      "COUNTY": "Imperial",
+      "ADDRESS_LINE_1": "207 W Legion Road",
+      "ADDRESS_LINE_2": "nan",
+      "CITY": "Brawley",
+      "STATE": "CA",
+      "ZIP_CODE": "92227-7780",
+      "PHONE": "(760) 351-3333",
+      "FID": "163",
+      "GEOMETRY": "{\"type\": \"Point\", \"coordinates\": [-115.552905692749, 32.9599949788913]}",
+      "INGESTED_AT": "2026-06-24 04:32:41.541215",
+      "SOURCE_RUN_ID": "50c620b1-f1de-454d-b792-970116089c01",
+      "SRC_SHA256": "7f55000fc2f685ba820fd46cadd20f97d03e21d667d3f75c3d493fe72cdfc5e1"
+    },
+    {
+      "NPI": "1669456299",
+      "LEGAL_NAME": "St Mary Medical Center",
+      "BUSINESS_NAME": "Providence St Mary Medical",
+      "FACILITY_TYPE": "Special",
+      "COUNTY": "San Bernardino",
+      "ADDRESS_LINE_1": "18300 Us Hwy 18",
+      "ADDRESS_LINE_2": "nan",
+      "CITY": "Apple Valley",
+      "STATE": "CA",
+      "ZIP_CODE": "92307-2206",
+      "PHONE": "(760) 242-2311",
+      "FID": "93",
+      "GEOMETRY": "{\"type\": \"Point\", \"coordinates\": [-117.26469550819, 34.5404233018003]}",
+      "INGESTED_AT": "2026-06-24 04:32:41.541215",
+      "SOURCE_RUN_ID": "50c620b1-f1de-454d-b792-970116089c01",
+      "SRC_SHA256": "7f55000fc2f685ba820fd46cadd20f97d03e21d667d3f75c3d493fe72cdfc5e1"
+    },
+    {
+      "NPI": "1134152549",
+      "LEGAL_NAME": "St Joseph Health Northern",
+      "BUSINESS_NAME": "Providence Santa Rosa Memori",
+      "FACILITY_TYPE": "Pediatric Community",
+      "COUNTY": "Sonoma",
+      "ADDRESS_LINE_1": "1165 Montgomery Drive",
+      "ADDRESS_LINE_2": "nan",
+      "CITY": "Santa Rosa",
+      "STATE": "CA",
+      "ZIP_CODE": "95405-4801",
+      "PHONE": "(707) 525-5300",
+      "FID": "90",
+      "GEOMETRY": "{\"type\": \"Point\", \"coordinates\": [-122.701082678015, 38.4429922281207]}",
+      "INGESTED_AT": "2026-06-24 04:32:41.541215",
+      "SOURCE_RUN_ID": "50c620b1-f1de-454d-b792-970116089c01",
+      "SRC_SHA256": "7f55000fc2f685ba820fd46cadd20f97d03e21d667d3f75c3d493fe72cdfc5e1"
+    }
+  ],
+  "sample_error": null
+}

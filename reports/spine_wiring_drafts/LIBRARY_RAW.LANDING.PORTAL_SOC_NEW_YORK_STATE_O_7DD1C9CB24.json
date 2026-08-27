@@ -1,0 +1,106 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_SOC_NEW_YORK_STATE_O_7DD1C9CB24",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "CONTRACTOR_NAME",
+    "DUNS_NUMBER",
+    "PROCURED_BY",
+    "CONTRACT_EXECUTION_DATE",
+    "CONTRACT_END_DATE",
+    "TOTAL_CONTRACT_AMOUNT",
+    "AMOUNT_OF_CDBG_DR_FUNDS",
+    "BRIEF_DESCRIPTION_OF_CONTRACT",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "CONTRACTOR_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "DUNS",
+      "column": "DUNS_NUMBER",
+      "total_rows": 743,
+      "nonnull_after_norm": 733,
+      "distinct_after_norm": 461,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "CONTRACTOR_NAME": "Congdon & Company, Inc.",
+      "DUNS_NUMBER": "16-609-1116",
+      "PROCURED_BY": "Village of Johnson City",
+      "CONTRACT_EXECUTION_DATE": "2015-10-29T00:00:00.000",
+      "CONTRACT_END_DATE": "nan",
+      "TOTAL_CONTRACT_AMOUNT": "2200",
+      "AMOUNT_OF_CDBG_DR_FUNDS": "2200",
+      "BRIEF_DESCRIPTION_OF_CONTRACT": "Appraisal Services",
+      "INGESTED_AT": "2026-06-24 05:11:02.887262",
+      "SOURCE_RUN_ID": "484d6461-c186-41a6-8786-4264c13f5b79",
+      "SRC_SHA256": "52424b9f7279e61e204af7d6aace090d89528244e08e4e5f25bf3ad916d31210"
+    },
+    {
+      "CONTRACTOR_NAME": "N&P Engineers & Land Surveyor, PLLC (d/b/a Nelson & Pope, Engineers and Surveyors)",
+      "DUNS_NUMBER": "05-773-2869",
+      "PROCURED_BY": "Town of Hempstead",
+      "CONTRACT_EXECUTION_DATE": "2018-01-17T00:00:00.000",
+      "CONTRACT_END_DATE": "nan",
+      "TOTAL_CONTRACT_AMOUNT": "46000",
+      "AMOUNT_OF_CDBG_DR_FUNDS": "46000",
+      "BRIEF_DESCRIPTION_OF_CONTRACT": "Design and bidding consultant services for the Atlantic Beach Fire Rescue Building Resilience and Hardening Project",
+      "INGESTED_AT": "2026-06-24 05:11:02.887262",
+      "SOURCE_RUN_ID": "484d6461-c186-41a6-8786-4264c13f5b79",
+      "SRC_SHA256": "52424b9f7279e61e204af7d6aace090d89528244e08e4e5f25bf3ad916d31210"
+    },
+    {
+      "CONTRACTOR_NAME": "Nelson & Pope Engineers & Surveyors",
+      "DUNS_NUMBER": "05-773-2869",
+      "PROCURED_BY": "Town of Babylon",
+      "CONTRACT_EXECUTION_DATE": "2018-05-04T00:00:00.000",
+      "CONTRACT_END_DATE": "nan",
+      "TOTAL_CONTRACT_AMOUNT": "212148",
+      "AMOUNT_OF_CDBG_DR_FUNDS": "212148",
+      "BRIEF_DESCRIPTION_OF_CONTRACT": "Village of Babylon/W. Babylon Coastal Outfall Backflow Infrastructure",
+      "INGESTED_AT": "2026-06-24 05:11:02.887262",
+      "SOURCE_RUN_ID": "484d6461-c186-41a6-8786-4264c13f5b79",
+      "SRC_SHA256": "52424b9f7279e61e204af7d6aace090d89528244e08e4e5f25bf3ad916d31210"
+    },
+    {
+      "CONTRACTOR_NAME": "Competitive Edge Development Inc.",
+      "DUNS_NUMBER": "08-059-3848",
+      "PROCURED_BY": "HTFC/GOSR",
+      "CONTRACT_EXECUTION_DATE": "2017-04-25T00:00:00.000",
+      "CONTRACT_END_DATE": "2018-04-24T00:00:00.000",
+      "TOTAL_CONTRACT_AMOUNT": "64300",
+      "AMOUNT_OF_CDBG_DR_FUNDS": "64300",
+      "BRIEF_DESCRIPTION_OF_CONTRACT": "Equal Employment Opportunity and Diversity and Inclusion training",
+      "INGESTED_AT": "2026-06-24 05:11:02.887262",
+      "SOURCE_RUN_ID": "484d6461-c186-41a6-8786-4264c13f5b79",
+      "SRC_SHA256": "52424b9f7279e61e204af7d6aace090d89528244e08e4e5f25bf3ad916d31210"
+    },
+    {
+      "CONTRACTOR_NAME": "Copiague Commons, LLC",
+      "DUNS_NUMBER": "06-593-1115",
+      "PROCURED_BY": "HCR/GOSR",
+      "CONTRACT_EXECUTION_DATE": "2015-12-08T00:00:00.000",
+      "CONTRACT_END_DATE": "nan",
+      "TOTAL_CONTRACT_AMOUNT": "33563857.00",
+      "AMOUNT_OF_CDBG_DR_FUNDS": "8750000.00",
+      "BRIEF_DESCRIPTION_OF_CONTRACT": "Multi-Family Affordable Housing",
+      "INGESTED_AT": "2026-06-24 05:11:02.887262",
+      "SOURCE_RUN_ID": "484d6461-c186-41a6-8786-4264c13f5b79",
+      "SRC_SHA256": "52424b9f7279e61e204af7d6aace090d89528244e08e4e5f25bf3ad916d31210"
+    }
+  ],
+  "sample_error": null
+}

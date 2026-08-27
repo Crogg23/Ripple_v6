@@ -1,0 +1,106 @@
+{
+  "fqtn": "LIBRARY_MARTS.FINANCE.FINANCE__FED_SEC_INSIDER_REPORTINGOWNER",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "ACCESSION_NUMBER",
+    "OWNER_CIK",
+    "OWNER_NAME",
+    "RELATIONSHIP",
+    "TITLE",
+    "STREET1",
+    "CITY",
+    "STATE",
+    "ZIP_CODE",
+    "_LOADED_AT"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "OWNER_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "STATE"
+      ],
+      "zip": [
+        "ZIP_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CIK",
+      "column": "OWNER_CIK",
+      "total_rows": 1934673,
+      "nonnull_after_norm": 1934673,
+      "distinct_after_norm": 138006,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "ACCESSION_NUMBER": "0001418812-19-000025",
+      "OWNER_CIK": "0001351073",
+      "OWNER_NAME": "ValueAct Capital Management, LLC",
+      "RELATIONSHIP": "DirectorOther",
+      "TITLE": "",
+      "STREET1": "ONE LETTERMAN DRIVE",
+      "CITY": "SAN FRANCISCO",
+      "STATE": "CA",
+      "ZIP_CODE": "94129",
+      "_LOADED_AT": "2026-07-24 02:29:10"
+    },
+    {
+      "ACCESSION_NUMBER": "0000899243-22-027698",
+      "OWNER_CIK": "0001675855",
+      "OWNER_NAME": "Blue Pool Management Ltd.",
+      "RELATIONSHIP": "TenPercentOwner",
+      "TITLE": "",
+      "STREET1": "25/F HYSAN PLACE",
+      "CITY": "HONG KONG",
+      "STATE": "K3",
+      "ZIP_CODE": "",
+      "_LOADED_AT": "2026-07-24 02:29:10"
+    },
+    {
+      "ACCESSION_NUMBER": "0001056823-20-000148",
+      "OWNER_CIK": "0001056823",
+      "OWNER_NAME": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+      "RELATIONSHIP": "TenPercentOwner",
+      "TITLE": "",
+      "STREET1": "470 PARK AVENUE SOUTH",
+      "CITY": "NEW YORK",
+      "STATE": "NY",
+      "ZIP_CODE": "10016",
+      "_LOADED_AT": "2026-07-24 02:29:10"
+    },
+    {
+      "ACCESSION_NUMBER": "0001415889-24-021634",
+      "OWNER_CIK": "0001882348",
+      "OWNER_NAME": "Muniz Thomas Paul",
+      "RELATIONSHIP": "Officer",
+      "TITLE": "CHIEF TECHNOLOGY OFFICER",
+      "STREET1": "C/O ARCHER AVIATION INC.",
+      "CITY": "SAN JOSE",
+      "STATE": "CA",
+      "ZIP_CODE": "95134",
+      "_LOADED_AT": "2026-07-24 02:29:10"
+    },
+    {
+      "ACCESSION_NUMBER": "0001209191-22-035400",
+      "OWNER_CIK": "0001295744",
+      "OWNER_NAME": "Lyne Susan M",
+      "RELATIONSHIP": "Director",
+      "TITLE": "",
+      "STREET1": "3025 CLEARVIEW WAY",
+      "CITY": "SAN MATEO",
+      "STATE": "CA",
+      "ZIP_CODE": "94402",
+      "_LOADED_AT": "2026-07-24 02:29:10"
+    }
+  ],
+  "sample_error": null
+}

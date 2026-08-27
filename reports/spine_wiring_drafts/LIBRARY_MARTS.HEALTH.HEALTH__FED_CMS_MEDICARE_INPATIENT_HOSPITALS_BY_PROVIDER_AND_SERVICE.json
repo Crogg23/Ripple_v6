@@ -1,0 +1,137 @@
+{
+  "fqtn": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "RNDRNG_PRVDR_CCN",
+    "RNDRNG_PRVDR_ORG_NAME",
+    "RNDRNG_PRVDR_CITY",
+    "RNDRNG_PRVDR_ST",
+    "RNDRNG_PRVDR_STATE_FIPS",
+    "RNDRNG_PRVDR_ZIP5",
+    "RNDRNG_PRVDR_STATE_ABRVTN",
+    "RNDRNG_PRVDR_RUCA",
+    "RNDRNG_PRVDR_RUCA_DESC",
+    "DRG_CD",
+    "DRG_DESC",
+    "TOT_DSCHRGS",
+    "AVG_SUBMTD_CVRD_CHRG",
+    "AVG_TOT_PYMT_AMT",
+    "AVG_MDCR_PYMT_AMT"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "RNDRNG_PRVDR_ORG_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "RNDRNG_PRVDR_CITY"
+      ],
+      "state": [
+        "RNDRNG_PRVDR_STATE_FIPS",
+        "RNDRNG_PRVDR_STATE_ABRVTN"
+      ],
+      "zip": [
+        "RNDRNG_PRVDR_ZIP5"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CCN",
+      "column": "RNDRNG_PRVDR_CCN",
+      "total_rows": 145879,
+      "nonnull_after_norm": 145879,
+      "distinct_after_norm": 2906,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "RNDRNG_PRVDR_CCN": "280065",
+      "RNDRNG_PRVDR_ORG_NAME": "Great Plains Health",
+      "RNDRNG_PRVDR_CITY": "North Platte",
+      "RNDRNG_PRVDR_ST": "601 West Leota St",
+      "RNDRNG_PRVDR_STATE_FIPS": "31",
+      "RNDRNG_PRVDR_ZIP5": "69101",
+      "RNDRNG_PRVDR_STATE_ABRVTN": "NE",
+      "RNDRNG_PRVDR_RUCA": "4",
+      "RNDRNG_PRVDR_RUCA_DESC": "Micropolitan area core: primary flow within an urban cluster of 10,000 to 49,999",
+      "DRG_CD": "321",
+      "DRG_DESC": "PERCUTANEOUS CARDIOVASCULAR PROCEDURES WITH INTRALUMINAL DEVICE WITH MCC OR 4+ ARTERIES/",
+      "TOT_DSCHRGS": "13",
+      "AVG_SUBMTD_CVRD_CHRG": "143863.07692",
+      "AVG_TOT_PYMT_AMT": 22024.384615,
+      "AVG_MDCR_PYMT_AMT": 20602.769231
+    },
+    {
+      "RNDRNG_PRVDR_CCN": "030103",
+      "RNDRNG_PRVDR_ORG_NAME": "Mayo Clinic Hospital",
+      "RNDRNG_PRVDR_CITY": "Phoenix",
+      "RNDRNG_PRVDR_ST": "5777 East Mayo Boulevard",
+      "RNDRNG_PRVDR_STATE_FIPS": "04",
+      "RNDRNG_PRVDR_ZIP5": "85054",
+      "RNDRNG_PRVDR_STATE_ABRVTN": "AZ",
+      "RNDRNG_PRVDR_RUCA": "1",
+      "RNDRNG_PRVDR_RUCA_DESC": "Metropolitan area core: primary flow within an urbanized area of 50,000 and greater",
+      "DRG_CD": "386",
+      "DRG_DESC": "INFLAMMATORY BOWEL DISEASE WITH CC",
+      "TOT_DSCHRGS": "26",
+      "AVG_SUBMTD_CVRD_CHRG": "36486.384615",
+      "AVG_TOT_PYMT_AMT": 14365.346154,
+      "AVG_MDCR_PYMT_AMT": 7064.4615385
+    },
+    {
+      "RNDRNG_PRVDR_CCN": "220110",
+      "RNDRNG_PRVDR_ORG_NAME": "Brigham And Women's Hospital",
+      "RNDRNG_PRVDR_CITY": "Boston",
+      "RNDRNG_PRVDR_ST": "75 Francis Street",
+      "RNDRNG_PRVDR_STATE_FIPS": "25",
+      "RNDRNG_PRVDR_ZIP5": "02115",
+      "RNDRNG_PRVDR_STATE_ABRVTN": "MA",
+      "RNDRNG_PRVDR_RUCA": "1",
+      "RNDRNG_PRVDR_RUCA_DESC": "Metropolitan area core: primary flow within an urbanized area of 50,000 and greater",
+      "DRG_CD": "040",
+      "DRG_DESC": "PERIPHERAL, CRANIAL NERVE AND OTHER NERVOUS SYSTEM PROCEDURES WITH MCC",
+      "TOT_DSCHRGS": "14",
+      "AVG_SUBMTD_CVRD_CHRG": "232437.5",
+      "AVG_TOT_PYMT_AMT": 53012.0,
+      "AVG_MDCR_PYMT_AMT": 42941.071429
+    },
+    {
+      "RNDRNG_PRVDR_CCN": "500008",
+      "RNDRNG_PRVDR_ORG_NAME": "University Of Washington Medical Ctr",
+      "RNDRNG_PRVDR_CITY": "Seattle",
+      "RNDRNG_PRVDR_ST": "1959 Ne Pacific St  Box 356151",
+      "RNDRNG_PRVDR_STATE_FIPS": "53",
+      "RNDRNG_PRVDR_ZIP5": "98195",
+      "RNDRNG_PRVDR_STATE_ABRVTN": "WA",
+      "RNDRNG_PRVDR_RUCA": "1",
+      "RNDRNG_PRVDR_RUCA_DESC": "Metropolitan area core: primary flow within an urbanized area of 50,000 and greater",
+      "DRG_CD": "982",
+      "DRG_DESC": "EXTENSIVE O.R. PROCEDURES UNRELATED TO PRINCIPAL DIAGNOSIS WITH CC",
+      "TOT_DSCHRGS": "14",
+      "AVG_SUBMTD_CVRD_CHRG": "144492",
+      "AVG_TOT_PYMT_AMT": 41992.071429,
+      "AVG_MDCR_PYMT_AMT": 25685.142857
+    },
+    {
+      "RNDRNG_PRVDR_CCN": "380004",
+      "RNDRNG_PRVDR_ORG_NAME": "Providence St Vincent Medical Center",
+      "RNDRNG_PRVDR_CITY": "Portland",
+      "RNDRNG_PRVDR_ST": "9205 Sw Barnes Road",
+      "RNDRNG_PRVDR_STATE_FIPS": "41",
+      "RNDRNG_PRVDR_ZIP5": "97225",
+      "RNDRNG_PRVDR_STATE_ABRVTN": "OR",
+      "RNDRNG_PRVDR_RUCA": "1",
+      "RNDRNG_PRVDR_RUCA_DESC": "Metropolitan area core: primary flow within an urbanized area of 50,000 and greater",
+      "DRG_CD": "872",
+      "DRG_DESC": "SEPTICEMIA OR SEVERE SEPSIS WITHOUT MV >96 HOURS WITHOUT MCC",
+      "TOT_DSCHRGS": "88",
+      "AVG_SUBMTD_CVRD_CHRG": "21364.034091",
+      "AVG_TOT_PYMT_AMT": 10832.045455,
+      "AVG_MDCR_PYMT_AMT": 7162.1022727
+    }
+  ],
+  "sample_error": null
+}

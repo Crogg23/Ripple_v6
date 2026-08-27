@@ -1,0 +1,158 @@
+{
+  "fqtn": "LIBRARY_MARTS.ECONOMICS.ECONOMICS__FED_SEC_EDGAR",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "CIK",
+    "ENTITYNAME",
+    "EIN",
+    "ACCESSIONNUMBER",
+    "FILEDAT",
+    "REPORTDATE",
+    "FORM",
+    "PRIMARYDOCUMENT",
+    "PRIMARYDOCDESCRIPTION",
+    "ITEMS",
+    "ISINLINEXBRL",
+    "ISXBRL",
+    "SIC",
+    "SICDESCRIPTION",
+    "STATEOFINCORPORATION",
+    "FISCALYEAREND",
+    "TICKERS",
+    "EXCHANGES"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "ENTITYNAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [
+        "STATEOFINCORPORATION"
+      ],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CIK",
+      "column": "CIK",
+      "total_rows": 200,
+      "nonnull_after_norm": 200,
+      "distinct_after_norm": 20,
+      "trap_verdict": "REAL"
+    },
+    {
+      "key_label": "EIN",
+      "column": "EIN",
+      "total_rows": 200,
+      "nonnull_after_norm": 190,
+      "distinct_after_norm": 19,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "CIK": "0001018724",
+      "ENTITYNAME": "AMAZON COM INC",
+      "EIN": "911646860",
+      "ACCESSIONNUMBER": "0002024813-26-000008",
+      "FILEDAT": "2026-05-26",
+      "REPORTDATE": "2026-05-21",
+      "FORM": "4",
+      "PRIMARYDOCUMENT": "xslF345X06/wk-form4_1779835185.xml",
+      "PRIMARYDOCDESCRIPTION": "FORM 4",
+      "ITEMS": "",
+      "ISINLINEXBRL": "0",
+      "ISXBRL": "0",
+      "SIC": "5961",
+      "SICDESCRIPTION": "Retail-Catalog & Mail-Order Houses",
+      "STATEOFINCORPORATION": "DE",
+      "FISCALYEAREND": "1231",
+      "TICKERS": "[\"AMZN\"]",
+      "EXCHANGES": "[\"Nasdaq\"]"
+    },
+    {
+      "CIK": "0001018724",
+      "ENTITYNAME": "AMAZON COM INC",
+      "EIN": "911646860",
+      "ACCESSIONNUMBER": "0001936006-26-000018",
+      "FILEDAT": "2026-06-03",
+      "REPORTDATE": "2026-06-01",
+      "FORM": "4",
+      "PRIMARYDOCUMENT": "xslF345X06/wk-form4_1780518424.xml",
+      "PRIMARYDOCDESCRIPTION": "FORM 4",
+      "ITEMS": "",
+      "ISINLINEXBRL": "0",
+      "ISXBRL": "0",
+      "SIC": "5961",
+      "SICDESCRIPTION": "Retail-Catalog & Mail-Order Houses",
+      "STATEOFINCORPORATION": "DE",
+      "FISCALYEAREND": "1231",
+      "TICKERS": "[\"AMZN\"]",
+      "EXCHANGES": "[\"Nasdaq\"]"
+    },
+    {
+      "CIK": "0001403161",
+      "ENTITYNAME": "VISA INC.",
+      "EIN": "260267673",
+      "ACCESSIONNUMBER": "0001964306-26-000307",
+      "FILEDAT": "2026-07-01",
+      "REPORTDATE": "",
+      "FORM": "144",
+      "PRIMARYDOCUMENT": "xsl144X01/primary_doc.xml",
+      "PRIMARYDOCDESCRIPTION": "",
+      "ITEMS": "",
+      "ISINLINEXBRL": "0",
+      "ISXBRL": "0",
+      "SIC": "7389",
+      "SICDESCRIPTION": "Services-Business Services, NEC",
+      "STATEOFINCORPORATION": "DE",
+      "FISCALYEAREND": "0930",
+      "TICKERS": "[\"V\"]",
+      "EXCHANGES": "[\"NYSE\"]"
+    },
+    {
+      "CIK": "0000019617",
+      "ENTITYNAME": "JPMORGAN CHASE & CO",
+      "EIN": "132624428",
+      "ACCESSIONNUMBER": "0001213900-26-074764",
+      "FILEDAT": "2026-07-02",
+      "REPORTDATE": "",
+      "FORM": "424B2",
+      "PRIMARYDOCUMENT": "ea0296837-01_424b2.htm",
+      "PRIMARYDOCDESCRIPTION": "PRICING SUPPLEMENT",
+      "ITEMS": "",
+      "ISINLINEXBRL": "1",
+      "ISXBRL": "1",
+      "SIC": "6021",
+      "SICDESCRIPTION": "National Commercial Banks",
+      "STATEOFINCORPORATION": "DE",
+      "FISCALYEAREND": "1231",
+      "TICKERS": "[\"JPM\", \"JPM-PC\", \"AMJB\", \"JPM-PD\", \"JPM-PJ\", \"JPM-PK\", \"JPM-PL\", \"JPM-PM\", \"VYLD\"]",
+      "EXCHANGES": "[\"NYSE\", \"NYSE\", \"NYSE\", \"NYSE\", \"NYSE\", \"NYSE\", \"NYSE\", \"NYSE\", \"NYSE\"]"
+    },
+    {
+      "CIK": "0001730168",
+      "ENTITYNAME": "Broadcom Inc.",
+      "EIN": "352617337",
+      "ACCESSIONNUMBER": "0001730168-26-000064",
+      "FILEDAT": "2026-06-29",
+      "REPORTDATE": "2026-06-25",
+      "FORM": "4",
+      "PRIMARYDOCUMENT": "xslF345X06/wk-form4_1782775021.xml",
+      "PRIMARYDOCDESCRIPTION": "FORM 4",
+      "ITEMS": "",
+      "ISINLINEXBRL": "0",
+      "ISXBRL": "0",
+      "SIC": "3674",
+      "SICDESCRIPTION": "Semiconductors & Related Devices",
+      "STATEOFINCORPORATION": "",
+      "FISCALYEAREND": "1101",
+      "TICKERS": "[\"AVGO\"]",
+      "EXCHANGES": "[\"Nasdaq\"]"
+    }
+  ],
+  "sample_error": null
+}

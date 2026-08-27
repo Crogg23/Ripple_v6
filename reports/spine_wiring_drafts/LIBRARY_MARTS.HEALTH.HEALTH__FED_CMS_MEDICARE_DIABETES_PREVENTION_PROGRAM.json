@@ -1,0 +1,126 @@
+{
+  "fqtn": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_MEDICARE_DIABETES_PREVENTION_PROGRAM",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NAME_OF_INITIATIVE",
+    "ORGANIZATION_NAME",
+    "LOCATION_NAME",
+    "LOCATION_1",
+    "STREET_ADDRESS_LINE_1",
+    "STREET_ADDRESS_LINE_2",
+    "CITY",
+    "STATE",
+    "ZIP_CODE",
+    "TELEPHONE_NUMBER",
+    "NPI",
+    "CATEGORY",
+    "UNIQUE_ID"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "NAME_OF_INITIATIVE",
+      "ORGANIZATION_NAME",
+      "LOCATION_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "STATE"
+      ],
+      "zip": [
+        "ZIP_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPI",
+      "column": "NPI",
+      "total_rows": 1037,
+      "nonnull_after_norm": 1037,
+      "distinct_after_norm": 307,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "NAME_OF_INITIATIVE": "Medicare Diabetes Prevention Program (MDPP) Expanded Model",
+      "ORGANIZATION_NAME": "Korean Community Services Of Metropolitan New York Inc",
+      "LOCATION_NAME": "Korean Community Services Of Metropolitan New York Inc",
+      "LOCATION_1": "20305 32nd Ave  Bayside NY 11361 (40.770763, -73.786531)",
+      "STREET_ADDRESS_LINE_1": "20305 32nd Ave",
+      "STREET_ADDRESS_LINE_2": null,
+      "CITY": "Bayside",
+      "STATE": "NY",
+      "ZIP_CODE": "11361",
+      "TELEPHONE_NUMBER": "(718) 939-6137",
+      "NPI": "1720426257",
+      "CATEGORY": "Administrative Location",
+      "UNIQUE_ID": "415"
+    },
+    {
+      "NAME_OF_INITIATIVE": "Medicare Diabetes Prevention Program (MDPP) Expanded Model",
+      "ORGANIZATION_NAME": "Public Health District 1",
+      "LOCATION_NAME": "Public Health District 1",
+      "LOCATION_1": "2101 Pine St  Sandpoint ID 83864 (48.272588, -116.578538)",
+      "STREET_ADDRESS_LINE_1": "2101 Pine St",
+      "STREET_ADDRESS_LINE_2": null,
+      "CITY": "Sandpoint",
+      "STATE": "ID",
+      "ZIP_CODE": "83864",
+      "TELEPHONE_NUMBER": "(208) 263-5159",
+      "NPI": "1427616846",
+      "CATEGORY": "Administrative Location",
+      "UNIQUE_ID": "418"
+    },
+    {
+      "NAME_OF_INITIATIVE": "Medicare Diabetes Prevention Program (MDPP) Expanded Model",
+      "ORGANIZATION_NAME": "Uho - Ymca Of Metropolitan Milwaukee",
+      "LOCATION_NAME": "Uho - Ymca Of Metropolitan Milwaukee",
+      "LOCATION_1": "98 Turin Ter Ymca At Flagler Health Village St Augustine FL 32092 (29.960019, -81.491735)",
+      "STREET_ADDRESS_LINE_1": "98 Turin Ter",
+      "STREET_ADDRESS_LINE_2": "Ymca At Flagler Health Village",
+      "CITY": "St Augustine",
+      "STATE": "FL",
+      "ZIP_CODE": "32092",
+      "TELEPHONE_NUMBER": "(904) 265-1777",
+      "NPI": "1508523770",
+      "CATEGORY": "Administrative Location",
+      "UNIQUE_ID": "886"
+    },
+    {
+      "NAME_OF_INITIATIVE": "Medicare Diabetes Prevention Program (MDPP) Expanded Model",
+      "ORGANIZATION_NAME": "Lewis County General Hospital",
+      "LOCATION_NAME": "Lewis County",
+      "LOCATION_1": "7395 East Rd  Lowville NY 13367 (43.80728, -75.489814)",
+      "STREET_ADDRESS_LINE_1": "7395 East Rd",
+      "STREET_ADDRESS_LINE_2": null,
+      "CITY": "Lowville",
+      "STATE": "NY",
+      "ZIP_CODE": "13367",
+      "TELEPHONE_NUMBER": "(315) 376-9701",
+      "NPI": "1114659778",
+      "CATEGORY": "Community Setting",
+      "UNIQUE_ID": "731"
+    },
+    {
+      "NAME_OF_INITIATIVE": "Medicare Diabetes Prevention Program (MDPP) Expanded Model",
+      "ORGANIZATION_NAME": "Excellent Health Llc",
+      "LOCATION_NAME": "Excellent Health Llc",
+      "LOCATION_1": "2494 Whitney Ave Ste 2 Hamden CT 06518 (41.38767, -72.900693)",
+      "STREET_ADDRESS_LINE_1": "2494 Whitney Ave",
+      "STREET_ADDRESS_LINE_2": "Ste 2",
+      "CITY": "Hamden",
+      "STATE": "CT",
+      "ZIP_CODE": "06518",
+      "TELEPHONE_NUMBER": "(203) 710-5519",
+      "NPI": "1134605652",
+      "CATEGORY": "Administrative Location",
+      "UNIQUE_ID": "951"
+    }
+  ],
+  "sample_error": null
+}

@@ -1,0 +1,100 @@
+{
+  "fqtn": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_NPDES_NPDES_FORMAL_ENFORCEMENT_ACTIONS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NPDES_ID",
+    "ENF_IDENTIFIER",
+    "ACTIVITY_ID",
+    "ACTIVITY_TYPE_CODE",
+    "ENF_TYPE_CODE",
+    "ENF_TYPE_DESC",
+    "AGENCY",
+    "SETTLEMENT_ENTERED_DATE",
+    "FED_PENALTY_ASSESSED_AMT",
+    "STATE_LOCAL_PENALTY_AMT"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [
+        "STATE_LOCAL_PENALTY_AMT"
+      ],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPDES_ID",
+      "column": "NPDES_ID",
+      "total_rows": 112373,
+      "nonnull_after_norm": 112373,
+      "distinct_after_norm": 49662,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "NPDES_ID": "TX0073423",
+      "ENF_IDENTIFIER": "06-1995-N384",
+      "ACTIVITY_ID": "1600213497",
+      "ACTIVITY_TYPE_CODE": "AFR",
+      "ENF_TYPE_CODE": "309A",
+      "ENF_TYPE_DESC": "CWA 309A AO For Compliance",
+      "AGENCY": "EPA",
+      "SETTLEMENT_ENTERED_DATE": "1995-06-15",
+      "FED_PENALTY_ASSESSED_AMT": null,
+      "STATE_LOCAL_PENALTY_AMT": null
+    },
+    {
+      "NPDES_ID": "LAG570191",
+      "ENF_IDENTIFIER": "LA-N00003602",
+      "ACTIVITY_ID": "1600181943",
+      "ACTIVITY_TYPE_CODE": "AFR",
+      "ENF_TYPE_CODE": "SCWAAO",
+      "ENF_TYPE_DESC": "State CWA Non Penalty AO",
+      "AGENCY": "State",
+      "SETTLEMENT_ENTERED_DATE": "2001-12-23",
+      "FED_PENALTY_ASSESSED_AMT": null,
+      "STATE_LOCAL_PENALTY_AMT": null
+    },
+    {
+      "NPDES_ID": "MIS110536",
+      "ENF_IDENTIFIER": "MI-86208891540114582",
+      "ACTIVITY_ID": "3603324081",
+      "ACTIVITY_TYPE_CODE": "AFR",
+      "ENF_TYPE_CODE": "STAOCO",
+      "ENF_TYPE_DESC": "State Administrative Order of Consent",
+      "AGENCY": "State",
+      "SETTLEMENT_ENTERED_DATE": "2017-07-25",
+      "FED_PENALTY_ASSESSED_AMT": null,
+      "STATE_LOCAL_PENALTY_AMT": 260.0
+    },
+    {
+      "NPDES_ID": "ME0022985",
+      "ENF_IDENTIFIER": "ME-N00000004",
+      "ACTIVITY_ID": "3200200338",
+      "ACTIVITY_TYPE_CODE": "JDC",
+      "ENF_TYPE_CODE": "CIV",
+      "ENF_TYPE_DESC": "Civil Judicial Action",
+      "AGENCY": "State",
+      "SETTLEMENT_ENTERED_DATE": "1986-12-31",
+      "FED_PENALTY_ASSESSED_AMT": null,
+      "STATE_LOCAL_PENALTY_AMT": null
+    },
+    {
+      "NPDES_ID": "PA0060372",
+      "ENF_IDENTIFIER": "PA-0060372_11202025",
+      "ACTIVITY_ID": "3604716054",
+      "ACTIVITY_TYPE_CODE": "AFR",
+      "ENF_TYPE_CODE": "SCWAAPO",
+      "ENF_TYPE_DESC": "State CWA Penalty AO",
+      "AGENCY": "State",
+      "SETTLEMENT_ENTERED_DATE": "2025-11-20",
+      "FED_PENALTY_ASSESSED_AMT": null,
+      "STATE_LOCAL_PENALTY_AMT": 8978.0
+    }
+  ],
+  "sample_error": null
+}

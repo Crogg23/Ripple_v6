@@ -1,0 +1,118 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_SOC_CONNECTICUT_OPEN_95AC60CEE1",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "CLASS",
+    "PATENT_NO",
+    "INVENTOR",
+    "TOWN",
+    "STATE",
+    "PATENTDATE",
+    "INVENTION",
+    "NOTES",
+    "CO_INVENTOR",
+    "ASSIGNED",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [
+        "STATE"
+      ],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "PATENT",
+      "column": "PATENT_NO",
+      "total_rows": 1999,
+      "nonnull_after_norm": 1999,
+      "distinct_after_norm": 1658,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "CLASS": "28",
+      "PATENT_NO": "0015228",
+      "INVENTOR": "French, A.",
+      "TOWN": "Waterbury",
+      "STATE": "CT",
+      "PATENTDATE": "1856-07-01",
+      "INVENTION": "box making machine",
+      "NOTES": "nan",
+      "CO_INVENTOR": "Frost, C.",
+      "ASSIGNED": "nan",
+      "INGESTED_AT": "2026-06-24 05:11:08.874762",
+      "SOURCE_RUN_ID": "b7937ef2-ac17-4286-b56a-689992b32ec4",
+      "SRC_SHA256": "72e68074283b771eac3f22c078a267a5012264700091a722a773d4c53184e89e"
+    },
+    {
+      "CLASS": "10",
+      "PATENT_NO": "N/A",
+      "INVENTOR": "Strong, C.",
+      "TOWN": "South Glastonbury",
+      "STATE": "CT",
+      "PATENTDATE": "1829-03-03",
+      "INVENTION": "claw hammer",
+      "NOTES": "Record likely missing",
+      "CO_INVENTOR": "nan",
+      "ASSIGNED": "nan",
+      "INGESTED_AT": "2026-06-24 05:11:08.874762",
+      "SOURCE_RUN_ID": "b7937ef2-ac17-4286-b56a-689992b32ec4",
+      "SRC_SHA256": "72e68074283b771eac3f22c078a267a5012264700091a722a773d4c53184e89e"
+    },
+    {
+      "CLASS": "22",
+      "PATENT_NO": "0017911",
+      "INVENTOR": "White, L.",
+      "TOWN": "Hartford",
+      "STATE": "CT",
+      "PATENTDATE": "1857-07-28",
+      "INVENTION": "curtain roller fixture",
+      "NOTES": "nan",
+      "CO_INVENTOR": "nan",
+      "ASSIGNED": "nan",
+      "INGESTED_AT": "2026-06-24 05:11:08.874762",
+      "SOURCE_RUN_ID": "b7937ef2-ac17-4286-b56a-689992b32ec4",
+      "SRC_SHA256": "72e68074283b771eac3f22c078a267a5012264700091a722a773d4c53184e89e"
+    },
+    {
+      "CLASS": "18",
+      "PATENT_NO": "0025196",
+      "INVENTOR": "Hill, R.",
+      "TOWN": "Naugatuck",
+      "STATE": "CT",
+      "PATENTDATE": "1859-08-23",
+      "INVENTION": "cook stove",
+      "NOTES": "nan",
+      "CO_INVENTOR": "nan",
+      "ASSIGNED": "nan",
+      "INGESTED_AT": "2026-06-24 05:11:08.874762",
+      "SOURCE_RUN_ID": "b7937ef2-ac17-4286-b56a-689992b32ec4",
+      "SRC_SHA256": "72e68074283b771eac3f22c078a267a5012264700091a722a773d4c53184e89e"
+    },
+    {
+      "CLASS": "1",
+      "PATENT_NO": "0019961",
+      "INVENTOR": "White, R.",
+      "TOWN": "Hartford",
+      "STATE": "CT",
+      "PATENTDATE": "1858-04-13",
+      "INVENTION": "revolving firearm",
+      "NOTES": "nan",
+      "CO_INVENTOR": "nan",
+      "ASSIGNED": "nan",
+      "INGESTED_AT": "2026-06-24 05:11:08.874762",
+      "SOURCE_RUN_ID": "b7937ef2-ac17-4286-b56a-689992b32ec4",
+      "SRC_SHA256": "72e68074283b771eac3f22c078a267a5012264700091a722a773d4c53184e89e"
+    }
+  ],
+  "sample_error": null
+}

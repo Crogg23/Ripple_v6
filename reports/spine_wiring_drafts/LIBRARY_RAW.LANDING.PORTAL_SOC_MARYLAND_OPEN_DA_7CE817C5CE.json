@@ -1,0 +1,155 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_SOC_MARYLAND_OPEN_DA_7CE817C5CE",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "THE_GEOM",
+    "OBJECTID",
+    "COUNTY",
+    "FACILITY_NAME",
+    "FACILITY_ADDRESS",
+    "FACILITY_CITY",
+    "FACILITY_STATE",
+    "FACILITY_ZIP",
+    "FACILITY_PHONE",
+    "FACILITY_CONTACT",
+    "LICENSE_CAPACITY",
+    "LICENSE_INFO",
+    "CCN",
+    "TYPE",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "FACILITY_NAME",
+      "FACILITY_ADDRESS",
+      "FACILITY_CITY",
+      "FACILITY_STATE",
+      "FACILITY_ZIP",
+      "FACILITY_PHONE",
+      "FACILITY_CONTACT"
+    ],
+    "address_candidates": {
+      "city": [
+        "FACILITY_CITY",
+        "LICENSE_CAPACITY"
+      ],
+      "state": [
+        "FACILITY_STATE"
+      ],
+      "zip": [
+        "FACILITY_ZIP"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CCN",
+      "column": "CCN",
+      "total_rows": 64,
+      "nonnull_after_norm": 60,
+      "distinct_after_norm": 60,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "THE_GEOM": "{\"type\": \"Point\", \"coordinates\": [-75.598405336117, 38.362027348821]}",
+      "OBJECTID": "127",
+      "COUNTY": "WICOMICO COUNTY",
+      "FACILITY_NAME": "PENINSULA REGIONAL MEDICAL CENTER",
+      "FACILITY_ADDRESS": "100 EAST CARROLL AVENUE",
+      "FACILITY_CITY": "SALISBURY",
+      "FACILITY_STATE": "MD",
+      "FACILITY_ZIP": "21801",
+      "FACILITY_PHONE": "(410) 543-7111",
+      "FACILITY_CONTACT": "PEGGY NAIPPA",
+      "LICENSE_CAPACITY": "281",
+      "LICENSE_INFO": "Licensed from: 06/11/2016 to 09/11/2019",
+      "CCN": "210019",
+      "TYPE": "Acute, General and Special Hospitals",
+      "INGESTED_AT": "2026-06-24 04:43:23.834965",
+      "SOURCE_RUN_ID": "0041cab7-ba2a-4825-8e27-b98beb1e42a1",
+      "SRC_SHA256": "2414c8dc6f8d7a8a19afdd17e036bbeb488e236395b1b2acb3500d1a39bcc403"
+    },
+    {
+      "THE_GEOM": "{\"type\": \"Point\", \"coordinates\": [-77.242181717018, 39.181810945889]}",
+      "OBJECTID": "109",
+      "COUNTY": "MONTGOMERY COUNTY",
+      "FACILITY_NAME": "HOLY CROSS GERMANTOWN HOSPITAL",
+      "FACILITY_ADDRESS": "19801 OBSERVATION DRIVE",
+      "FACILITY_CITY": "GERMANTOWN",
+      "FACILITY_STATE": "MD",
+      "FACILITY_ZIP": "20876",
+      "FACILITY_PHONE": "(301) 557-6020",
+      "FACILITY_CONTACT": "DOUG RYDER",
+      "LICENSE_CAPACITY": "93",
+      "LICENSE_INFO": "Licensed from: 10/17/2014 to 10/17/2017",
+      "CCN": "210065",
+      "TYPE": "Acute, General and Special Hospitals",
+      "INGESTED_AT": "2026-06-24 04:43:23.834965",
+      "SOURCE_RUN_ID": "0041cab7-ba2a-4825-8e27-b98beb1e42a1",
+      "SRC_SHA256": "2414c8dc6f8d7a8a19afdd17e036bbeb488e236395b1b2acb3500d1a39bcc403"
+    },
+    {
+      "THE_GEOM": "{\"type\": \"Point\", \"coordinates\": [-76.481301951971, 39.351629355447]}",
+      "OBJECTID": "85",
+      "COUNTY": "BALTIMORE COUNTY",
+      "FACILITY_NAME": "MEDSTAR FRANKLIN SQUARE MEDICAL CENTER",
+      "FACILITY_ADDRESS": "9000 FRANKLIN SQUARE DRIVE",
+      "FACILITY_CITY": "BALTIMORE",
+      "FACILITY_STATE": "MD",
+      "FACILITY_ZIP": "21237",
+      "FACILITY_PHONE": "(443) 777-7850",
+      "FACILITY_CONTACT": "SAM MOSKOWITZ",
+      "LICENSE_CAPACITY": "353",
+      "LICENSE_INFO": "Licensed from: 05/06/2016 to 08/06/2019",
+      "CCN": "210015",
+      "TYPE": "Acute, General and Special Hospitals",
+      "INGESTED_AT": "2026-06-24 04:43:23.834965",
+      "SOURCE_RUN_ID": "0041cab7-ba2a-4825-8e27-b98beb1e42a1",
+      "SRC_SHA256": "2414c8dc6f8d7a8a19afdd17e036bbeb488e236395b1b2acb3500d1a39bcc403"
+    },
+    {
+      "THE_GEOM": "{\"type\": \"Point\", \"coordinates\": [-77.001988182989, 38.98567601868]}",
+      "OBJECTID": "107",
+      "COUNTY": "MONTGOMERY COUNTY",
+      "FACILITY_NAME": "ADVENTIST HEALTHCARE WASHINGTON ADVENTIST HOSPITAL",
+      "FACILITY_ADDRESS": "7600 CARROLL AVENUE",
+      "FACILITY_CITY": "TAKOMA PARK",
+      "FACILITY_STATE": "MD",
+      "FACILITY_ZIP": "20912",
+      "FACILITY_PHONE": "(301) 891-5651",
+      "FACILITY_CONTACT": "ERIK WANGSNESS",
+      "LICENSE_CAPACITY": "204",
+      "LICENSE_INFO": "Licensed from: 10/21/2013 to 01/21/2017",
+      "CCN": "210016",
+      "TYPE": "Acute, General and Special Hospitals",
+      "INGESTED_AT": "2026-06-24 04:43:23.834965",
+      "SOURCE_RUN_ID": "0041cab7-ba2a-4825-8e27-b98beb1e42a1",
+      "SRC_SHA256": "2414c8dc6f8d7a8a19afdd17e036bbeb488e236395b1b2acb3500d1a39bcc403"
+    },
+    {
+      "THE_GEOM": "{\"type\": \"Point\", \"coordinates\": [-76.721758743583, 39.266980188402]}",
+      "OBJECTID": "88",
+      "COUNTY": "BALTIMORE COUNTY",
+      "FACILITY_NAME": "SPRING GROVE HOSPITAL CENTER",
+      "FACILITY_ADDRESS": "WADE AVENUE",
+      "FACILITY_CITY": "CATONSVILLE",
+      "FACILITY_STATE": "MD",
+      "FACILITY_ZIP": "21228",
+      "FACILITY_PHONE": "(410) 402-7455",
+      "FACILITY_CONTACT": "CHERYL HEILMAN",
+      "LICENSE_CAPACITY": "639",
+      "LICENSE_INFO": "Licensed from: 07/25/2014 to 10/25/2017",
+      "CCN": "214018",
+      "TYPE": "Psychiatric Hospital",
+      "INGESTED_AT": "2026-06-24 04:43:23.834965",
+      "SOURCE_RUN_ID": "0041cab7-ba2a-4825-8e27-b98beb1e42a1",
+      "SRC_SHA256": "2414c8dc6f8d7a8a19afdd17e036bbeb488e236395b1b2acb3500d1a39bcc403"
+    }
+  ],
+  "sample_error": null
+}

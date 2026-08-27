@@ -1,0 +1,152 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.FED_EPA_ENVIROFACTS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "TABLE_NAME",
+    "PROGRAM_SCHEMA",
+    "STATE_CODE",
+    "CITY_NAME",
+    "POSTAL_CODE",
+    "COUNTY_NAME",
+    "FRS_ID",
+    "HANDLER_ID",
+    "SITE_ID",
+    "FACILITY_NAME",
+    "LATITUDE",
+    "LONGITUDE",
+    "CREATED_DATE",
+    "MEDIA_NAME",
+    "_INGESTED_AT",
+    "_SOURCE_RUN_ID",
+    "_SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "TABLE_NAME",
+      "CITY_NAME",
+      "COUNTY_NAME",
+      "FACILITY_NAME",
+      "MEDIA_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY_NAME"
+      ],
+      "state": [
+        "STATE_CODE"
+      ],
+      "zip": [
+        "POSTAL_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "FRS_ID",
+      "column": "FRS_ID",
+      "total_rows": 5000,
+      "nonnull_after_norm": 0,
+      "distinct_after_norm": 0,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "TABLE_NAME": "tri.tri_facility",
+      "PROGRAM_SCHEMA": "TRI",
+      "STATE_CODE": "",
+      "CITY_NAME": "WILMINGTON",
+      "POSTAL_CODE": "018874401",
+      "COUNTY_NAME": "MIDDLESEX",
+      "FRS_ID": "",
+      "HANDLER_ID": "",
+      "SITE_ID": "",
+      "FACILITY_NAME": "ADVANCED ELECTRON BEAMS INC.",
+      "LATITUDE": "",
+      "LONGITUDE": "",
+      "CREATED_DATE": "",
+      "MEDIA_NAME": "",
+      "_INGESTED_AT": 1782950869008704,
+      "_SOURCE_RUN_ID": "60bff868-e540-4580-8cef-e5ae2b922119",
+      "_SRC_SHA256": "ed7ab5828ac50c3b7bfc681bebe2ee109d6cee8be1c251f4c0dbcb8619d037c4"
+    },
+    {
+      "TABLE_NAME": "tri.tri_facility",
+      "PROGRAM_SCHEMA": "TRI",
+      "STATE_CODE": "",
+      "CITY_NAME": "NEWBURYPORT",
+      "POSTAL_CODE": "019501930",
+      "COUNTY_NAME": "ESSEX",
+      "FRS_ID": "",
+      "HANDLER_ID": "",
+      "SITE_ID": "",
+      "FACILITY_NAME": "MERSEN USA NEWBURYPORT MA LLC",
+      "LATITUDE": "",
+      "LONGITUDE": "",
+      "CREATED_DATE": "",
+      "MEDIA_NAME": "",
+      "_INGESTED_AT": 1782950869008704,
+      "_SOURCE_RUN_ID": "60bff868-e540-4580-8cef-e5ae2b922119",
+      "_SRC_SHA256": "ed7ab5828ac50c3b7bfc681bebe2ee109d6cee8be1c251f4c0dbcb8619d037c4"
+    },
+    {
+      "TABLE_NAME": "tri.tri_facility",
+      "PROGRAM_SCHEMA": "TRI",
+      "STATE_CODE": "",
+      "CITY_NAME": "NEW HAVEN",
+      "POSTAL_CODE": "06510",
+      "COUNTY_NAME": "NEW HAVEN",
+      "FRS_ID": "",
+      "HANDLER_ID": "",
+      "SITE_ID": "",
+      "FACILITY_NAME": "LENDER'S BAGEL BAKERY",
+      "LATITUDE": "",
+      "LONGITUDE": "",
+      "CREATED_DATE": "",
+      "MEDIA_NAME": "",
+      "_INGESTED_AT": 1782950869008704,
+      "_SOURCE_RUN_ID": "60bff868-e540-4580-8cef-e5ae2b922119",
+      "_SRC_SHA256": "ed7ab5828ac50c3b7bfc681bebe2ee109d6cee8be1c251f4c0dbcb8619d037c4"
+    },
+    {
+      "TABLE_NAME": "tri.tri_facility",
+      "PROGRAM_SCHEMA": "TRI",
+      "STATE_CODE": "",
+      "CITY_NAME": "WILTON",
+      "POSTAL_CODE": "06897",
+      "COUNTY_NAME": "FAIRFIELD",
+      "FRS_ID": "",
+      "HANDLER_ID": "",
+      "SITE_ID": "",
+      "FACILITY_NAME": "KENNETH LYNCH & SONS",
+      "LATITUDE": "",
+      "LONGITUDE": "",
+      "CREATED_DATE": "",
+      "MEDIA_NAME": "",
+      "_INGESTED_AT": 1782950869008704,
+      "_SOURCE_RUN_ID": "60bff868-e540-4580-8cef-e5ae2b922119",
+      "_SRC_SHA256": "ed7ab5828ac50c3b7bfc681bebe2ee109d6cee8be1c251f4c0dbcb8619d037c4"
+    },
+    {
+      "TABLE_NAME": "tri.tri_facility",
+      "PROGRAM_SCHEMA": "TRI",
+      "STATE_CODE": "",
+      "CITY_NAME": "SMITHFIELD",
+      "POSTAL_CODE": "029171596",
+      "COUNTY_NAME": "PROVIDENCE",
+      "FRS_ID": "",
+      "HANDLER_ID": "",
+      "SITE_ID": "",
+      "FACILITY_NAME": "FREDERICK GUMM CHEMICAL CO NEW ENGLAND DIV",
+      "LATITUDE": "",
+      "LONGITUDE": "",
+      "CREATED_DATE": "",
+      "MEDIA_NAME": "",
+      "_INGESTED_AT": 1782950869008704,
+      "_SOURCE_RUN_ID": "60bff868-e540-4580-8cef-e5ae2b922119",
+      "_SRC_SHA256": "ed7ab5828ac50c3b7bfc681bebe2ee109d6cee8be1c251f4c0dbcb8619d037c4"
+    }
+  ],
+  "sample_error": null
+}

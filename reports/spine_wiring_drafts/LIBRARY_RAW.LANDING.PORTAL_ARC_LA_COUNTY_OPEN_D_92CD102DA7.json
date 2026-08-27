@@ -1,0 +1,156 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_ARC_LA_COUNTY_OPEN_D_92CD102DA7",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "SCC",
+    "CENTER_NAME",
+    "SCC_TYPE",
+    "COUNTY",
+    "NPI",
+    "PROVIDER_NAME",
+    "BUSINESS_NAME",
+    "ADDRESS_LINE_1",
+    "ADDRESS_LINE_2",
+    "CITY",
+    "STATE",
+    "ZIP_CODE",
+    "PHONE",
+    "FID",
+    "GEOMETRY",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "CENTER_NAME",
+      "PROVIDER_NAME",
+      "BUSINESS_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "STATE"
+      ],
+      "zip": [
+        "ZIP_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPI",
+      "column": "NPI",
+      "total_rows": 777,
+      "nonnull_after_norm": 0,
+      "distinct_after_norm": 0,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "SCC": "7.13.04",
+      "CENTER_NAME": "Zuckerberg San Francisco General Hospital And Trauma Center",
+      "SCC_TYPE": "Community Neonatal Intensive Care Unit",
+      "COUNTY": "San Francisco",
+      "NPI": "nan",
+      "PROVIDER_NAME": "San Francisco Gen Hosp",
+      "BUSINESS_NAME": "San Francisco Gen Hosp",
+      "ADDRESS_LINE_1": "1001 Potrero Avenue",
+      "ADDRESS_LINE_2": "nan",
+      "CITY": "San Francisco",
+      "STATE": "CA",
+      "ZIP_CODE": "94110-3594",
+      "PHONE": "(415) 821-8200",
+      "FID": "719",
+      "GEOMETRY": "{\"type\": \"Point\", \"coordinates\": [-122.40662848795, 37.7568245547797]}",
+      "INGESTED_AT": "2026-06-24 04:33:53.941724",
+      "SOURCE_RUN_ID": "9b0b8946-30b1-422f-9c02-92d09a4d98f0",
+      "SRC_SHA256": "3b4e40fbb205749942767e90d3a436d6636342327bd9f9485c63d4ba693d23a7"
+    },
+    {
+      "SCC": "7.33.102",
+      "CENTER_NAME": "Ears Hearing Healthcare",
+      "SCC_TYPE": "Communication Disorders Center Type A",
+      "COUNTY": "Riverside",
+      "NPI": "1093091662.0",
+      "PROVIDER_NAME": "American Hearing Aid Center",
+      "BUSINESS_NAME": "Ears Hearing Healthcare",
+      "ADDRESS_LINE_1": "81833 Doctor Carreon Blv",
+      "ADDRESS_LINE_2": "Unit 1",
+      "CITY": "Indio",
+      "STATE": "CA",
+      "ZIP_CODE": "92201-5590",
+      "PHONE": "(960) 775-1113",
+      "FID": "43",
+      "GEOMETRY": "{\"type\": \"Point\", \"coordinates\": [-116.236127288159, 33.7073455745999]}",
+      "INGESTED_AT": "2026-06-24 04:33:53.941724",
+      "SOURCE_RUN_ID": "9b0b8946-30b1-422f-9c02-92d09a4d98f0",
+      "SRC_SHA256": "3b4e40fbb205749942767e90d3a436d6636342327bd9f9485c63d4ba693d23a7"
+    },
+    {
+      "SCC": "7.29.08",
+      "CENTER_NAME": "Sutter Medical Center, Sacramento",
+      "SCC_TYPE": "Neonatal Extra-Corporeal Membrane Oxygenation (ECMO)",
+      "COUNTY": "Sacramento",
+      "NPI": "1811946734.0",
+      "PROVIDER_NAME": "Sutter Chs Central",
+      "BUSINESS_NAME": "Sutter Hlth Sacto Sierra",
+      "ADDRESS_LINE_1": "2801 L Street",
+      "ADDRESS_LINE_2": "nan",
+      "CITY": "Sacramento",
+      "STATE": "CA",
+      "ZIP_CODE": "95816-5615",
+      "PHONE": "(916) 455-2661",
+      "FID": "690",
+      "GEOMETRY": "{\"type\": \"Point\", \"coordinates\": [-121.470114899385, 38.5717110516117]}",
+      "INGESTED_AT": "2026-06-24 04:33:53.941724",
+      "SOURCE_RUN_ID": "9b0b8946-30b1-422f-9c02-92d09a4d98f0",
+      "SRC_SHA256": "3b4e40fbb205749942767e90d3a436d6636342327bd9f9485c63d4ba693d23a7"
+    },
+    {
+      "SCC": "7.25.18",
+      "CENTER_NAME": "Children's Hospital Los Angeles",
+      "SCC_TYPE": "Pediatric Intensive Care Unit",
+      "COUNTY": "Los Angeles",
+      "NPI": "1124073366.0",
+      "PROVIDER_NAME": "Childrens Hospital of La",
+      "BUSINESS_NAME": "Childrens Hospital of La",
+      "ADDRESS_LINE_1": "4650 W Sunset Boulevard",
+      "ADDRESS_LINE_2": "nan",
+      "CITY": "Los Angeles",
+      "STATE": "CA",
+      "ZIP_CODE": "90027-6062",
+      "PHONE": "(213) 660-2450",
+      "FID": "86",
+      "GEOMETRY": "{\"type\": \"Point\", \"coordinates\": [-118.29064662049, 34.0978773198466]}",
+      "INGESTED_AT": "2026-06-24 04:33:53.941724",
+      "SOURCE_RUN_ID": "9b0b8946-30b1-422f-9c02-92d09a4d98f0",
+      "SRC_SHA256": "3b4e40fbb205749942767e90d3a436d6636342327bd9f9485c63d4ba693d23a7"
+    },
+    {
+      "SCC": "7.13.101",
+      "CENTER_NAME": "Valley Children's Hospital At Saint Agnes Medical Center",
+      "SCC_TYPE": "Community Neonatal Intensive Care Unit",
+      "COUNTY": "Fresno",
+      "NPI": "1205845567.0",
+      "PROVIDER_NAME": "Saint Agnes Medical Center",
+      "BUSINESS_NAME": "Saint Agnes Medical Center",
+      "ADDRESS_LINE_1": "1303 E Herndon Avenue",
+      "ADDRESS_LINE_2": "nan",
+      "CITY": "Fresno",
+      "STATE": "CA",
+      "ZIP_CODE": "93720-3309",
+      "PHONE": "(559) 450-3000",
+      "FID": "680",
+      "GEOMETRY": "{\"type\": \"Point\", \"coordinates\": [-119.766157346685, 36.8370280804492]}",
+      "INGESTED_AT": "2026-06-24 04:33:53.941724",
+      "SOURCE_RUN_ID": "9b0b8946-30b1-422f-9c02-92d09a4d98f0",
+      "SRC_SHA256": "3b4e40fbb205749942767e90d3a436d6636342327bd9f9485c63d4ba693d23a7"
+    }
+  ],
+  "sample_error": null
+}

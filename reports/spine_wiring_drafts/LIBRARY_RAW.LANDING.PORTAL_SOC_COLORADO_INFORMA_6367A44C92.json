@@ -1,0 +1,152 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_SOC_COLORADO_INFORMA_6367A44C92",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "ID",
+    "TAXYR",
+    "BUSINESSNAME1",
+    "EIN",
+    "MISSIONDESC",
+    "LOBBYINGACTIVITIESIND",
+    "INDEPENDENTAUDITFINCLSTMTIND",
+    "CONSOLIDATEDAUDITFINCLSTMTIND",
+    "FORM990PROVIDEDTOGVRNBODYIND",
+    "CONFLICTOFINTERESTPOLICYIND",
+    "WHISTLEBLOWERPOLICYIND",
+    "DOCUMENTRETENTIONPOLICYIND",
+    "BUSINESSNAME2",
+    "LICENSEDSTATESCD",
+    "ALLSTATESCD",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "BUSINESSNAME1",
+      "BUSINESSNAME2"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [
+        "LICENSEDSTATESCD",
+        "ALLSTATESCD"
+      ],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "EIN",
+      "column": "EIN",
+      "total_rows": 1989,
+      "nonnull_after_norm": 1989,
+      "distinct_after_norm": 1075,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "ID": "201302539349300410",
+      "TAXYR": "2012",
+      "BUSINESSNAME1": "PLAN DE SALUD DEL VALLE INC",
+      "EIN": "840613540",
+      "MISSIONDESC": "PRIMARY HEALTH CARE SERVICES TO MEDICAL AND DENTAL UNDERSERVED POPULATIONS AND THE COMMUNITY WITHIN THE SIX COUNTIES IN NORTH - CENTRAL COLORADO. ESTIMATE OVER 290,000 VISITS ANNUALLY.",
+      "LOBBYINGACTIVITIESIND": "f",
+      "INDEPENDENTAUDITFINCLSTMTIND": "t",
+      "CONSOLIDATEDAUDITFINCLSTMTIND": "f",
+      "FORM990PROVIDEDTOGVRNBODYIND": "t",
+      "CONFLICTOFINTERESTPOLICYIND": "t",
+      "WHISTLEBLOWERPOLICYIND": "t",
+      "DOCUMENTRETENTIONPOLICYIND": "t",
+      "BUSINESSNAME2": "nan",
+      "LICENSEDSTATESCD": "nan",
+      "ALLSTATESCD": "nan",
+      "INGESTED_AT": "2026-06-24 04:45:41.446015",
+      "SOURCE_RUN_ID": "9b0ec5a0-2463-409a-ad47-b01565f372eb",
+      "SRC_SHA256": "6c693802065a902da4b2664be8b7673b9a10d51b2c4f2b4c18278d87c44a3bac"
+    },
+    {
+      "ID": "201320359349300967",
+      "TAXYR": "2011",
+      "BUSINESSNAME1": "VETERANS GREEN JOBS",
+      "EIN": "262252100",
+      "MISSIONDESC": "VETERANS GREEN JOBS MISSION IS TO ENGAGE, TRANSITION AND CONNECT MILITARY VETERANS WITH MEANINGFUL EMPLOYMENT OPPORTUNITIES THAT SERVE OUR COMMUNITIES AND ENVIRONMENT.",
+      "LOBBYINGACTIVITIESIND": "f",
+      "INDEPENDENTAUDITFINCLSTMTIND": "t",
+      "CONSOLIDATEDAUDITFINCLSTMTIND": "f",
+      "FORM990PROVIDEDTOGVRNBODYIND": "t",
+      "CONFLICTOFINTERESTPOLICYIND": "t",
+      "WHISTLEBLOWERPOLICYIND": "t",
+      "DOCUMENTRETENTIONPOLICYIND": "t",
+      "BUSINESSNAME2": "nan",
+      "LICENSEDSTATESCD": "nan",
+      "ALLSTATESCD": "nan",
+      "INGESTED_AT": "2026-06-24 04:45:41.446015",
+      "SOURCE_RUN_ID": "9b0ec5a0-2463-409a-ad47-b01565f372eb",
+      "SRC_SHA256": "6c693802065a902da4b2664be8b7673b9a10d51b2c4f2b4c18278d87c44a3bac"
+    },
+    {
+      "ID": "201142289349300019",
+      "TAXYR": "2009",
+      "BUSINESSNAME1": "Thistle Community Housing",
+      "EIN": "742449502",
+      "MISSIONDESC": "The Mission of Thistle Communities is to create and preserve quality, permanently affordable rental and ownership homes for working families, seniors and people with disabilities. Thistle's homes allow teachers, health-care workers, and others who are the backbone of our economy to live in the communities they serve.",
+      "LOBBYINGACTIVITIESIND": "f",
+      "INDEPENDENTAUDITFINCLSTMTIND": "f",
+      "CONSOLIDATEDAUDITFINCLSTMTIND": "t",
+      "FORM990PROVIDEDTOGVRNBODYIND": "t",
+      "CONFLICTOFINTERESTPOLICYIND": "t",
+      "WHISTLEBLOWERPOLICYIND": "t",
+      "DOCUMENTRETENTIONPOLICYIND": "t",
+      "BUSINESSNAME2": "nan",
+      "LICENSEDSTATESCD": "nan",
+      "ALLSTATESCD": "nan",
+      "INGESTED_AT": "2026-06-24 04:45:41.446015",
+      "SOURCE_RUN_ID": "9b0ec5a0-2463-409a-ad47-b01565f372eb",
+      "SRC_SHA256": "6c693802065a902da4b2664be8b7673b9a10d51b2c4f2b4c18278d87c44a3bac"
+    },
+    {
+      "ID": "201131369349302593",
+      "TAXYR": "2010",
+      "BUSINESSNAME1": "NATIONAL FOUNDATION FOR FERTILITY",
+      "EIN": "208702202",
+      "MISSIONDESC": "ADVANCE UNDERSTANDING OF HUMAN REPRODUCTION THROUGH HIGH QUALITY LABORATORY AND CLINICAL RESEARCH TO IMPROVE HUMAN REPRODUCTION POTENTIAL AND TRANSLATE DISCOVERIES INTO THE CLINICAL ENVIRONMENT",
+      "LOBBYINGACTIVITIESIND": "f",
+      "INDEPENDENTAUDITFINCLSTMTIND": "f",
+      "CONSOLIDATEDAUDITFINCLSTMTIND": "f",
+      "FORM990PROVIDEDTOGVRNBODYIND": "f",
+      "CONFLICTOFINTERESTPOLICYIND": "t",
+      "WHISTLEBLOWERPOLICYIND": "f",
+      "DOCUMENTRETENTIONPOLICYIND": "f",
+      "BUSINESSNAME2": "RESEARCH",
+      "LICENSEDSTATESCD": "nan",
+      "ALLSTATESCD": "nan",
+      "INGESTED_AT": "2026-06-24 04:45:41.446015",
+      "SOURCE_RUN_ID": "9b0ec5a0-2463-409a-ad47-b01565f372eb",
+      "SRC_SHA256": "6c693802065a902da4b2664be8b7673b9a10d51b2c4f2b4c18278d87c44a3bac"
+    },
+    {
+      "ID": "201241189349300234",
+      "TAXYR": "2011",
+      "BUSINESSNAME1": "Mountainfilm Ltd",
+      "EIN": "841271056",
+      "MISSIONDESC": "A film festival, symposium and tour dedicated to educating and inspiring audiences about issues that matter, cultures worth exploring, environments worth preserving and conversations worth sustaining.",
+      "LOBBYINGACTIVITIESIND": "f",
+      "INDEPENDENTAUDITFINCLSTMTIND": "f",
+      "CONSOLIDATEDAUDITFINCLSTMTIND": "f",
+      "FORM990PROVIDEDTOGVRNBODYIND": "t",
+      "CONFLICTOFINTERESTPOLICYIND": "t",
+      "WHISTLEBLOWERPOLICYIND": "f",
+      "DOCUMENTRETENTIONPOLICYIND": "f",
+      "BUSINESSNAME2": "nan",
+      "LICENSEDSTATESCD": "nan",
+      "ALLSTATESCD": "nan",
+      "INGESTED_AT": "2026-06-24 04:45:41.446015",
+      "SOURCE_RUN_ID": "9b0ec5a0-2463-409a-ad47-b01565f372eb",
+      "SRC_SHA256": "6c693802065a902da4b2664be8b7673b9a10d51b2c4f2b4c18278d87c44a3bac"
+    }
+  ],
+  "sample_error": null
+}

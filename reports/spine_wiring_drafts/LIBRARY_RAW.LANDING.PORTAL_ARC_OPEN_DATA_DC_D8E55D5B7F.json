@@ -1,0 +1,98 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_ARC_OPEN_DATA_DC_D8E55D5B7F",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "FID",
+    "CCN_REV",
+    "DATE",
+    "FATALITIES",
+    "Y",
+    "X",
+    "GEOMETRY",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CCN",
+      "column": "CCN_REV",
+      "total_rows": 133,
+      "nonnull_after_norm": 0,
+      "distinct_after_norm": 0,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "FID": "24",
+      "CCN_REV": "11142876",
+      "DATE": "1317254400000",
+      "FATALITIES": "1",
+      "Y": "38.88553",
+      "X": "-77.03189",
+      "GEOMETRY": "{\"type\": \"Point\", \"coordinates\": [-77.03189, 38.88553]}",
+      "INGESTED_AT": "2026-06-24 04:32:31.072319",
+      "SOURCE_RUN_ID": "fef0d7e6-1ba4-49d1-adba-29d86f7f5b42",
+      "SRC_SHA256": "ad799af09cf50638d8d060e5a32d02521be5e0df0cbbce6a7ddc8be737ca81a3"
+    },
+    {
+      "FID": "14",
+      "CCN_REV": "11076688",
+      "DATE": "1306800000000",
+      "FATALITIES": "1",
+      "Y": "38.89012",
+      "X": "-76.97726",
+      "GEOMETRY": "{\"type\": \"Point\", \"coordinates\": [-76.97726, 38.89012]}",
+      "INGESTED_AT": "2026-06-24 04:32:31.072319",
+      "SOURCE_RUN_ID": "fef0d7e6-1ba4-49d1-adba-29d86f7f5b42",
+      "SRC_SHA256": "ad799af09cf50638d8d060e5a32d02521be5e0df0cbbce6a7ddc8be737ca81a3"
+    },
+    {
+      "FID": "111",
+      "CCN_REV": "15130407",
+      "DATE": "1440115200000",
+      "FATALITIES": "1",
+      "Y": "38.83573",
+      "X": "-76.982958",
+      "GEOMETRY": "{\"type\": \"Point\", \"coordinates\": [-76.982958, 38.83573]}",
+      "INGESTED_AT": "2026-06-24 04:32:31.072319",
+      "SOURCE_RUN_ID": "fef0d7e6-1ba4-49d1-adba-29d86f7f5b42",
+      "SRC_SHA256": "ad799af09cf50638d8d060e5a32d02521be5e0df0cbbce6a7ddc8be737ca81a3"
+    },
+    {
+      "FID": "82",
+      "CCN_REV": "14064208",
+      "DATE": "1399420800000",
+      "FATALITIES": "1",
+      "Y": "38.948657",
+      "X": "-77.086228",
+      "GEOMETRY": "{\"type\": \"Point\", \"coordinates\": [-77.086228, 38.948657]}",
+      "INGESTED_AT": "2026-06-24 04:32:31.072319",
+      "SOURCE_RUN_ID": "fef0d7e6-1ba4-49d1-adba-29d86f7f5b42",
+      "SRC_SHA256": "ad799af09cf50638d8d060e5a32d02521be5e0df0cbbce6a7ddc8be737ca81a3"
+    },
+    {
+      "FID": "117",
+      "CCN_REV": "USPP",
+      "DATE": "1446163200000",
+      "FATALITIES": "1",
+      "Y": "38.884592",
+      "X": "-77.03375",
+      "GEOMETRY": "{\"type\": \"Point\", \"coordinates\": [-77.03375, 38.884592]}",
+      "INGESTED_AT": "2026-06-24 04:32:31.072319",
+      "SOURCE_RUN_ID": "fef0d7e6-1ba4-49d1-adba-29d86f7f5b42",
+      "SRC_SHA256": "ad799af09cf50638d8d060e5a32d02521be5e0df0cbbce6a7ddc8be737ca81a3"
+    }
+  ],
+  "sample_error": null
+}

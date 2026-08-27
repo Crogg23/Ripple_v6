@@ -1,0 +1,68 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.FED_ED_FSA_DATACENTER",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "LOAN_TYPE",
+    "BORROWER_COUNT",
+    "OUTSTANDING_BALANCE",
+    "REPAYMENT_STATUS",
+    "DEFAULT_RATE",
+    "SCHOOL_NAME",
+    "SCHOOL_OPEID",
+    "EIN",
+    "STATE",
+    "QUARTER_DATE",
+    "AID_YEAR",
+    "DISBURSEMENT_AMOUNT",
+    "LOAN_SERVICER",
+    "INCOME_DRIVEN_REPAYMENT_PLAN",
+    "_INGESTED_AT",
+    "_SOURCE_RUN_ID",
+    "_SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "SCHOOL_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [
+        "STATE"
+      ],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "EIN",
+      "column": "EIN",
+      "total_rows": 1,
+      "nonnull_after_norm": 0,
+      "distinct_after_norm": 0,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "LOAN_TYPE": "",
+      "BORROWER_COUNT": "",
+      "OUTSTANDING_BALANCE": "",
+      "REPAYMENT_STATUS": "",
+      "DEFAULT_RATE": "",
+      "SCHOOL_NAME": "",
+      "SCHOOL_OPEID": "",
+      "EIN": "",
+      "STATE": "",
+      "QUARTER_DATE": "",
+      "AID_YEAR": "",
+      "DISBURSEMENT_AMOUNT": "",
+      "LOAN_SERVICER": "",
+      "INCOME_DRIVEN_REPAYMENT_PLAN": "",
+      "_INGESTED_AT": 1782945482389071,
+      "_SOURCE_RUN_ID": "0d448e0e-1227-4046-b781-572f73fe4646",
+      "_SRC_SHA256": "587d8f220aaf0e35ab82e92bc6152b9f11613d113d8d5bc530c934866007f009"
+    }
+  ],
+  "sample_error": null
+}

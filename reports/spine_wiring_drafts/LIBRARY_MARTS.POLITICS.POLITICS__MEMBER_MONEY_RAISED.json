@@ -1,0 +1,114 @@
+{
+  "fqtn": "LIBRARY_MARTS.POLITICS.POLITICS__MEMBER_MONEY_RAISED",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "BIOGUIDE",
+    "CYCLE",
+    "FULL_NAME",
+    "PARTY",
+    "STATE",
+    "CHAMBER",
+    "N_CANDIDATE_IDS",
+    "CAND_IDS",
+    "TTL_RECEIPTS_GROSS",
+    "TRANS_FROM_AUTH",
+    "MONEY_RAISED_NET",
+    "CASH_ON_HAND_CLOSE"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "FULL_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [
+        "STATE"
+      ],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "BIOGUIDE",
+      "column": "BIOGUIDE",
+      "total_rows": 1050,
+      "nonnull_after_norm": 1050,
+      "distinct_after_norm": 533,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "BIOGUIDE": "F000475",
+      "CYCLE": "2024",
+      "FULL_NAME": "Brad Finstad",
+      "PARTY": "Republican",
+      "STATE": "MN",
+      "CHAMBER": "rep",
+      "N_CANDIDATE_IDS": 1,
+      "CAND_IDS": "[\n  \"H2MN01223\"\n]",
+      "TTL_RECEIPTS_GROSS": "1975242.85",
+      "TRANS_FROM_AUTH": "161784.88",
+      "MONEY_RAISED_NET": "1813457.97",
+      "CASH_ON_HAND_CLOSE": "61409.23"
+    },
+    {
+      "BIOGUIDE": "M001212",
+      "CYCLE": "2026",
+      "FULL_NAME": "Barry Moore",
+      "PARTY": "Republican",
+      "STATE": "AL",
+      "CHAMBER": "rep",
+      "N_CANDIDATE_IDS": 1,
+      "CAND_IDS": "[\n  \"H8AL02171\"\n]",
+      "TTL_RECEIPTS_GROSS": "2990325.29",
+      "TRANS_FROM_AUTH": "168292.05",
+      "MONEY_RAISED_NET": "2822033.24",
+      "CASH_ON_HAND_CLOSE": "499621.92"
+    },
+    {
+      "BIOGUIDE": "S001217",
+      "CYCLE": "2026",
+      "FULL_NAME": "Rick Scott",
+      "PARTY": "Republican",
+      "STATE": "FL",
+      "CHAMBER": "sen",
+      "N_CANDIDATE_IDS": 1,
+      "CAND_IDS": "[\n  \"S8FL00273\"\n]",
+      "TTL_RECEIPTS_GROSS": "1458779.64",
+      "TRANS_FROM_AUTH": "429958.00",
+      "MONEY_RAISED_NET": "1028821.64",
+      "CASH_ON_HAND_CLOSE": "799890.86"
+    },
+    {
+      "BIOGUIDE": "J000289",
+      "CYCLE": "2026",
+      "FULL_NAME": "Jim Jordan",
+      "PARTY": "Republican",
+      "STATE": "OH",
+      "CHAMBER": "rep",
+      "N_CANDIDATE_IDS": 1,
+      "CAND_IDS": "[\n  \"H6OH04082\"\n]",
+      "TTL_RECEIPTS_GROSS": "3692364.06",
+      "TRANS_FROM_AUTH": "173032.56",
+      "MONEY_RAISED_NET": "3519331.50",
+      "CASH_ON_HAND_CLOSE": "5975946.60"
+    },
+    {
+      "BIOGUIDE": "S001156",
+      "CYCLE": "2026",
+      "FULL_NAME": "Linda T. S\u00e1nchez",
+      "PARTY": "Democrat",
+      "STATE": "CA",
+      "CHAMBER": "rep",
+      "N_CANDIDATE_IDS": 1,
+      "CAND_IDS": "[\n  \"H2CA39078\"\n]",
+      "TTL_RECEIPTS_GROSS": "1325095.90",
+      "TRANS_FROM_AUTH": "0.00",
+      "MONEY_RAISED_NET": "1325095.90",
+      "CASH_ON_HAND_CLOSE": "658354.65"
+    }
+  ],
+  "sample_error": null
+}

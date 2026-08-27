@@ -86,7 +86,7 @@ TABLE_COLUMN_KEYS: dict[tuple[str, str], tuple[str, str]] = {
     # Crosswalk columns on already-wired tables (name-invisible spellings):
     ("FED_FEC_BULK_CANDIDATES", "CAND_PCC"): ("FEC_CMTE_ID", "STEEL"),        # 98.6% overlap
     ("FED_FEC_LEADERSHIP_PAC", "FEC_CANDIDATE_ID"): ("FEC_CAND_ID", "STEEL"),  # 98.4% ('candidate' != 'cand' token)
-    ("FED_FEC_INDEPENDENT_EXPENDITURES", "spe_id"): ("FEC_CMTE_ID", "STEEL"),  # 80.8% (the SPEnder committee)
+    ("FED_FEC_INDEPENDENT_EXPENDITURES", "SPE_ID"): ("FEC_CMTE_ID", "STEEL"),  # 80.8% (the SPEnder committee); uppercased 2026-08-24 (re-land)
     ("FED_FEC_COMMITTEE_TO_CANDIDATE", "OTHER_ID"): ("FEC_CMTE_ID", "STEEL"),  # 63.3%
     # EPA:
     ("FED_EPA_ICIS_FEC_CASE_ENFORCEMENT_CONCLUSION_FACILITIES", "FACILITY_UIN"):

@@ -1,0 +1,92 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_SOC_AUSTIN_OPEN_DATA_0B4C639A1C",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "EMPLOYEE_ID",
+    "DATE",
+    "YEAR_DATE",
+    "NUM_MONTH_DATE",
+    "REASON",
+    "COUNT_DISTINCT_EIN",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "EIN",
+      "column": "COUNT_DISTINCT_EIN",
+      "total_rows": 526,
+      "nonnull_after_norm": 526,
+      "distinct_after_norm": 1,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "EMPLOYEE_ID": "RMREPERN",
+      "DATE": "2023-05-23T00:00:00.000",
+      "YEAR_DATE": "2023",
+      "NUM_MONTH_DATE": "5",
+      "REASON": "Resignation",
+      "COUNT_DISTINCT_EIN": "1",
+      "INGESTED_AT": "2026-06-24 04:41:18.133679",
+      "SOURCE_RUN_ID": "23dbe3e2-6788-4669-825c-f725ee5b2fd7",
+      "SRC_SHA256": "f58ccbddeb7ea1d20ae75b592b35b0f54b3416eb983716f72818083b6d1f39d0"
+    },
+    {
+      "EMPLOYEE_ID": "RMRENNMP",
+      "DATE": "2023-05-23T00:00:00.000",
+      "YEAR_DATE": "2023",
+      "NUM_MONTH_DATE": "5",
+      "REASON": "Resignation",
+      "COUNT_DISTINCT_EIN": "1",
+      "INGESTED_AT": "2026-06-24 04:41:18.133679",
+      "SOURCE_RUN_ID": "23dbe3e2-6788-4669-825c-f725ee5b2fd7",
+      "SRC_SHA256": "f58ccbddeb7ea1d20ae75b592b35b0f54b3416eb983716f72818083b6d1f39d0"
+    },
+    {
+      "EMPLOYEE_ID": "RMRSMMMR",
+      "DATE": "2022-07-11T00:00:00.000",
+      "YEAR_DATE": "2022",
+      "NUM_MONTH_DATE": "7",
+      "REASON": "Termination",
+      "COUNT_DISTINCT_EIN": "1",
+      "INGESTED_AT": "2026-06-24 04:41:18.133679",
+      "SOURCE_RUN_ID": "23dbe3e2-6788-4669-825c-f725ee5b2fd7",
+      "SRC_SHA256": "f58ccbddeb7ea1d20ae75b592b35b0f54b3416eb983716f72818083b6d1f39d0"
+    },
+    {
+      "EMPLOYEE_ID": "RMMOPOAS",
+      "DATE": "2022-05-30T00:00:00.000",
+      "YEAR_DATE": "2022",
+      "NUM_MONTH_DATE": "5",
+      "REASON": "Retirement",
+      "COUNT_DISTINCT_EIN": "1",
+      "INGESTED_AT": "2026-06-24 04:41:18.133679",
+      "SOURCE_RUN_ID": "23dbe3e2-6788-4669-825c-f725ee5b2fd7",
+      "SRC_SHA256": "f58ccbddeb7ea1d20ae75b592b35b0f54b3416eb983716f72818083b6d1f39d0"
+    },
+    {
+      "EMPLOYEE_ID": "RMMPGSOE",
+      "DATE": "2023-03-19T00:00:00.000",
+      "YEAR_DATE": "2023",
+      "NUM_MONTH_DATE": "3",
+      "REASON": "Retirement",
+      "COUNT_DISTINCT_EIN": "1",
+      "INGESTED_AT": "2026-06-24 04:41:18.133679",
+      "SOURCE_RUN_ID": "23dbe3e2-6788-4669-825c-f725ee5b2fd7",
+      "SRC_SHA256": "f58ccbddeb7ea1d20ae75b592b35b0f54b3416eb983716f72818083b6d1f39d0"
+    }
+  ],
+  "sample_error": null
+}

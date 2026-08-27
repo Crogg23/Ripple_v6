@@ -1,0 +1,59 @@
+{
+  "fqtn": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NPI",
+    "LAST_NAME",
+    "FIRST_NAME"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "LAST_NAME",
+      "FIRST_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPI",
+      "column": "NPI",
+      "total_rows": 7240,
+      "nonnull_after_norm": 7239,
+      "distinct_after_norm": 7239,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "NPI": "1043847502",
+      "LAST_NAME": "TROTTO",
+      "FIRST_NAME": "NATALIE"
+    },
+    {
+      "NPI": "1144780925",
+      "LAST_NAME": "JOHNSON",
+      "FIRST_NAME": "MARK"
+    },
+    {
+      "NPI": "1346942893",
+      "LAST_NAME": "JENNINGS",
+      "FIRST_NAME": "CARSON"
+    },
+    {
+      "NPI": "1760001093",
+      "LAST_NAME": "BRAVO",
+      "FIRST_NAME": "MARISA"
+    },
+    {
+      "NPI": "1205415239",
+      "LAST_NAME": "SAH BANDAR",
+      "FIRST_NAME": "IVO"
+    }
+  ],
+  "sample_error": null
+}

@@ -1,0 +1,149 @@
+{
+  "fqtn": "LIBRARY_MARTS.FINDINGS.EXCLUDED_PROVIDER_PAID_AFTER_EXCLUSION_IN_SHORTAGE",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NPI",
+    "LAST_NAME",
+    "FIRST_NAME",
+    "EXCLUSION_TYPE",
+    "EXCLUSION_YEAR",
+    "POST_EXCLUSION_PAYMENTS",
+    "TOTAL_PAID_AFTER_EXCLUSION",
+    "FIRST_PAID_YEAR",
+    "LAST_PAID_YEAR",
+    "DISTINCT_PAYERS",
+    "EXCL_STATE",
+    "ZIP5",
+    "COUNTY_FIPS",
+    "SHORTAGE_PRIMARY_CARE",
+    "SHORTAGE_MENTAL_HEALTH",
+    "SHORTAGE_DENTAL",
+    "IN_DESIGNATED_SHORTAGE_COUNTY"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "LAST_NAME",
+      "FIRST_NAME",
+      "FIRST_PAID_YEAR",
+      "LAST_PAID_YEAR"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [
+        "EXCL_STATE"
+      ],
+      "zip": [
+        "ZIP5"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPI",
+      "column": "NPI",
+      "total_rows": 287,
+      "nonnull_after_norm": 287,
+      "distinct_after_norm": 287,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "NPI": "1891722237",
+      "LAST_NAME": "CALABRESE",
+      "FIRST_NAME": "ANGELO",
+      "EXCLUSION_TYPE": "1128a1",
+      "EXCLUSION_YEAR": 2015,
+      "POST_EXCLUSION_PAYMENTS": 1,
+      "TOTAL_PAID_AFTER_EXCLUSION": 98.92,
+      "FIRST_PAID_YEAR": 2024,
+      "LAST_PAID_YEAR": 2024,
+      "DISTINCT_PAYERS": 1,
+      "EXCL_STATE": "PA",
+      "ZIP5": "17954",
+      "COUNTY_FIPS": "42107",
+      "SHORTAGE_PRIMARY_CARE": 1,
+      "SHORTAGE_MENTAL_HEALTH": 1,
+      "SHORTAGE_DENTAL": 1,
+      "IN_DESIGNATED_SHORTAGE_COUNTY": true
+    },
+    {
+      "NPI": "1174506711",
+      "LAST_NAME": "HALPER",
+      "FIRST_NAME": "BRETT",
+      "EXCLUSION_TYPE": "1128a1",
+      "EXCLUSION_YEAR": 2017,
+      "POST_EXCLUSION_PAYMENTS": 9,
+      "TOTAL_PAID_AFTER_EXCLUSION": 164.9,
+      "FIRST_PAID_YEAR": 2023,
+      "LAST_PAID_YEAR": 2024,
+      "DISTINCT_PAYERS": 2,
+      "EXCL_STATE": "NY",
+      "ZIP5": "10007",
+      "COUNTY_FIPS": "36061",
+      "SHORTAGE_PRIMARY_CARE": 1,
+      "SHORTAGE_MENTAL_HEALTH": 1,
+      "SHORTAGE_DENTAL": 1,
+      "IN_DESIGNATED_SHORTAGE_COUNTY": true
+    },
+    {
+      "NPI": "1972039451",
+      "LAST_NAME": "BROWN",
+      "FIRST_NAME": "BRITTANY",
+      "EXCLUSION_TYPE": "1128b4",
+      "EXCLUSION_YEAR": 2019,
+      "POST_EXCLUSION_PAYMENTS": 1,
+      "TOTAL_PAID_AFTER_EXCLUSION": 18.83,
+      "FIRST_PAID_YEAR": 2024,
+      "LAST_PAID_YEAR": 2024,
+      "DISTINCT_PAYERS": 1,
+      "EXCL_STATE": "AZ",
+      "ZIP5": "85641",
+      "COUNTY_FIPS": "04019",
+      "SHORTAGE_PRIMARY_CARE": 1,
+      "SHORTAGE_MENTAL_HEALTH": 1,
+      "SHORTAGE_DENTAL": 1,
+      "IN_DESIGNATED_SHORTAGE_COUNTY": true
+    },
+    {
+      "NPI": "1932311735",
+      "LAST_NAME": "LEBRETON",
+      "FIRST_NAME": "DIANA",
+      "EXCLUSION_TYPE": "1128a1",
+      "EXCLUSION_YEAR": 2020,
+      "POST_EXCLUSION_PAYMENTS": 4,
+      "TOTAL_PAID_AFTER_EXCLUSION": 140.34,
+      "FIRST_PAID_YEAR": 2024,
+      "LAST_PAID_YEAR": 2024,
+      "DISTINCT_PAYERS": 2,
+      "EXCL_STATE": "LA",
+      "ZIP5": "70714",
+      "COUNTY_FIPS": "22033",
+      "SHORTAGE_PRIMARY_CARE": 1,
+      "SHORTAGE_MENTAL_HEALTH": 1,
+      "SHORTAGE_DENTAL": 1,
+      "IN_DESIGNATED_SHORTAGE_COUNTY": true
+    },
+    {
+      "NPI": "1932260064",
+      "LAST_NAME": "PERSAUD",
+      "FIRST_NAME": "ANAND",
+      "EXCLUSION_TYPE": "1128a4",
+      "EXCLUSION_YEAR": 2017,
+      "POST_EXCLUSION_PAYMENTS": 1,
+      "TOTAL_PAID_AFTER_EXCLUSION": 30.57,
+      "FIRST_PAID_YEAR": 2023,
+      "LAST_PAID_YEAR": 2023,
+      "DISTINCT_PAYERS": 1,
+      "EXCL_STATE": "NY",
+      "ZIP5": "11432",
+      "COUNTY_FIPS": "36081",
+      "SHORTAGE_PRIMARY_CARE": 1,
+      "SHORTAGE_MENTAL_HEALTH": 1,
+      "SHORTAGE_DENTAL": 1,
+      "IN_DESIGNATED_SHORTAGE_COUNTY": true
+    }
+  ],
+  "sample_error": null
+}

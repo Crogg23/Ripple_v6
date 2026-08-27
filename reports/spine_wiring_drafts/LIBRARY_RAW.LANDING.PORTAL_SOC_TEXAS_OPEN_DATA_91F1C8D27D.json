@@ -1,0 +1,121 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_SOC_TEXAS_OPEN_DATA_91F1C8D27D",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "ASSOCIATED_LICENSEE_NAME",
+    "ASSOCIATED_LICENSEE_NPN",
+    "ASSOCIATED_LICENSEE_EIN",
+    "ASSOCIATION_TYPE",
+    "LICENSEE_NAME",
+    "LICENSEE_NPN",
+    "LICENSEE_EIN",
+    "ASSOCIATION_BEGIN_DATE",
+    "ASSOCIATED_LICENSEE_NAIC_ID",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "ASSOCIATED_LICENSEE_NAME",
+      "LICENSEE_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "EIN",
+      "column": "LICENSEE_EIN",
+      "total_rows": 2000,
+      "nonnull_after_norm": 237,
+      "distinct_after_norm": 112,
+      "trap_verdict": "REAL"
+    },
+    {
+      "key_label": "EIN",
+      "column": "ASSOCIATED_LICENSEE_EIN",
+      "total_rows": 2000,
+      "nonnull_after_norm": 1111,
+      "distinct_after_norm": 877,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "ASSOCIATED_LICENSEE_NAME": "ELEMENT RISK LLC",
+      "ASSOCIATED_LICENSEE_NPN": "22077168",
+      "ASSOCIATED_LICENSEE_EIN": "395053579",
+      "ASSOCIATION_TYPE": "Officer/Director",
+      "LICENSEE_NAME": "AARON BICKLE",
+      "LICENSEE_NPN": "7548916",
+      "LICENSEE_EIN": "nan",
+      "ASSOCIATION_BEGIN_DATE": "2026-02-25T00:00:00.000",
+      "ASSOCIATED_LICENSEE_NAIC_ID": "nan",
+      "INGESTED_AT": "2026-06-24 04:40:51.140097",
+      "SOURCE_RUN_ID": "0edb6bf0-ddfd-4b3e-bcd6-35b1d5ea0bb6",
+      "SRC_SHA256": "720973bcec913ffc0bf1ba5d1e192612c2de9a0057396a85c65bf140a468172b"
+    },
+    {
+      "ASSOCIATED_LICENSEE_NAME": "LATONYA JAMES",
+      "ASSOCIATED_LICENSEE_NPN": "19013874",
+      "ASSOCIATED_LICENSEE_EIN": "nan",
+      "ASSOCIATION_TYPE": "Sub-Agent",
+      "LICENSEE_NAME": "ADOLPHAS GWENA",
+      "LICENSEE_NPN": "19469150",
+      "LICENSEE_EIN": "nan",
+      "ASSOCIATION_BEGIN_DATE": "2020-04-09T00:00:00.000",
+      "ASSOCIATED_LICENSEE_NAIC_ID": "nan",
+      "INGESTED_AT": "2026-06-24 04:40:51.140097",
+      "SOURCE_RUN_ID": "0edb6bf0-ddfd-4b3e-bcd6-35b1d5ea0bb6",
+      "SRC_SHA256": "720973bcec913ffc0bf1ba5d1e192612c2de9a0057396a85c65bf140a468172b"
+    },
+    {
+      "ASSOCIATED_LICENSEE_NAME": "ADRIAN CANTU",
+      "ASSOCIATED_LICENSEE_NPN": "12560893",
+      "ASSOCIATED_LICENSEE_EIN": "nan",
+      "ASSOCIATION_TYPE": "Adjuster",
+      "LICENSEE_NAME": "ADRIAN CANTU",
+      "LICENSEE_NPN": "12560893",
+      "LICENSEE_EIN": "nan",
+      "ASSOCIATION_BEGIN_DATE": "2015-10-20T00:00:00.000",
+      "ASSOCIATED_LICENSEE_NAIC_ID": "nan",
+      "INGESTED_AT": "2026-06-24 04:40:51.140097",
+      "SOURCE_RUN_ID": "0edb6bf0-ddfd-4b3e-bcd6-35b1d5ea0bb6",
+      "SRC_SHA256": "720973bcec913ffc0bf1ba5d1e192612c2de9a0057396a85c65bf140a468172b"
+    },
+    {
+      "ASSOCIATED_LICENSEE_NAME": "THE VALLEYS INSURANCE BROKERS LLC",
+      "ASSOCIATED_LICENSEE_NPN": "19593439",
+      "ASSOCIATED_LICENSEE_EIN": "852014036",
+      "ASSOCIATION_TYPE": "Desig-Resp-Lic-Person",
+      "LICENSEE_NAME": "ABRIL FLORES ARANDA",
+      "LICENSEE_NPN": "19083811",
+      "LICENSEE_EIN": "nan",
+      "ASSOCIATION_BEGIN_DATE": "2020-07-31T00:00:00.000",
+      "ASSOCIATED_LICENSEE_NAIC_ID": "nan",
+      "INGESTED_AT": "2026-06-24 04:40:51.140097",
+      "SOURCE_RUN_ID": "0edb6bf0-ddfd-4b3e-bcd6-35b1d5ea0bb6",
+      "SRC_SHA256": "720973bcec913ffc0bf1ba5d1e192612c2de9a0057396a85c65bf140a468172b"
+    },
+    {
+      "ASSOCIATED_LICENSEE_NAME": "ABIGAIL GOLBUFF",
+      "ASSOCIATED_LICENSEE_NPN": "16667584",
+      "ASSOCIATED_LICENSEE_EIN": "nan",
+      "ASSOCIATION_TYPE": "Adjuster",
+      "LICENSEE_NAME": "ABIGAIL GOLBUFF",
+      "LICENSEE_NPN": "16667584",
+      "LICENSEE_EIN": "nan",
+      "ASSOCIATION_BEGIN_DATE": "2024-11-27T00:00:00.000",
+      "ASSOCIATED_LICENSEE_NAIC_ID": "nan",
+      "INGESTED_AT": "2026-06-24 04:40:51.140097",
+      "SOURCE_RUN_ID": "0edb6bf0-ddfd-4b3e-bcd6-35b1d5ea0bb6",
+      "SRC_SHA256": "720973bcec913ffc0bf1ba5d1e192612c2de9a0057396a85c65bf140a468172b"
+    }
+  ],
+  "sample_error": null
+}

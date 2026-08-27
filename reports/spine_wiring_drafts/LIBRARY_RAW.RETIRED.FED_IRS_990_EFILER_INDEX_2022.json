@@ -1,0 +1,112 @@
+{
+  "fqtn": "LIBRARY_RAW.RETIRED.FED_IRS_990_EFILER_INDEX_2022",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "RETURN_ID",
+    "FILING_TYPE",
+    "EIN",
+    "TAX_PERIOD",
+    "SUB_DATE",
+    "TAXPAYER_NAME",
+    "RETURN_TYPE",
+    "DLN",
+    "OBJECT_ID",
+    "_INGESTED_AT",
+    "_SOURCE_RUN_ID",
+    "_SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "TAXPAYER_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "EIN",
+      "column": "EIN",
+      "total_rows": 500000,
+      "nonnull_after_norm": 500000,
+      "distinct_after_norm": 461993,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "RETURN_ID": "20921901",
+      "FILING_TYPE": "EFILE",
+      "EIN": "931259182",
+      "TAX_PERIOD": "202112",
+      "SUB_DATE": "2022",
+      "TAXPAYER_NAME": "TODD JUDSON TRUST",
+      "RETURN_TYPE": "990PF",
+      "DLN": "93491266005052",
+      "OBJECT_ID": "202202669349100505",
+      "_INGESTED_AT": 1785098063828835,
+      "_SOURCE_RUN_ID": "2254671b-805d-4072-b5d4-bbf7c09e07c9",
+      "_SRC_SHA256": "5493bf8850e25dbd3d44acf53faa92faed4f50931600aadc5e4e425379b74631"
+    },
+    {
+      "RETURN_ID": "21038660",
+      "FILING_TYPE": "EFILE",
+      "EIN": "262048747",
+      "TAX_PERIOD": "201912",
+      "SUB_DATE": "2022",
+      "TAXPAYER_NAME": "GOSPEL TALENT SEARCH",
+      "RETURN_TYPE": "990EZ",
+      "DLN": "93492301010612",
+      "OBJECT_ID": "202213019349201061",
+      "_INGESTED_AT": 1785098063828835,
+      "_SOURCE_RUN_ID": "2254671b-805d-4072-b5d4-bbf7c09e07c9",
+      "_SRC_SHA256": "5493bf8850e25dbd3d44acf53faa92faed4f50931600aadc5e4e425379b74631"
+    },
+    {
+      "RETURN_ID": "20234935",
+      "FILING_TYPE": "EFILE",
+      "EIN": "205666181",
+      "TAX_PERIOD": "202106",
+      "SUB_DATE": "2022",
+      "TAXPAYER_NAME": "ALLIES HOMES 2005 INC",
+      "RETURN_TYPE": "990",
+      "DLN": "93493133048382",
+      "OBJECT_ID": "202231339349304838",
+      "_INGESTED_AT": 1785098063828835,
+      "_SOURCE_RUN_ID": "2254671b-805d-4072-b5d4-bbf7c09e07c9",
+      "_SRC_SHA256": "5493bf8850e25dbd3d44acf53faa92faed4f50931600aadc5e4e425379b74631"
+    },
+    {
+      "RETURN_ID": "21078204",
+      "FILING_TYPE": "EFILE",
+      "EIN": "460390971",
+      "TAX_PERIOD": "202112",
+      "SUB_DATE": "2022",
+      "TAXPAYER_NAME": "MITCHELL AREA CHARITABLE FOUNDATION",
+      "RETURN_TYPE": "990",
+      "DLN": "93493313055132",
+      "OBJECT_ID": "202233139349305513",
+      "_INGESTED_AT": 1785098063828835,
+      "_SOURCE_RUN_ID": "2254671b-805d-4072-b5d4-bbf7c09e07c9",
+      "_SRC_SHA256": "5493bf8850e25dbd3d44acf53faa92faed4f50931600aadc5e4e425379b74631"
+    },
+    {
+      "RETURN_ID": "20468061",
+      "FILING_TYPE": "EFILE",
+      "EIN": "363622069",
+      "TAX_PERIOD": "202112",
+      "SUB_DATE": "2022",
+      "TAXPAYER_NAME": "FIRST LUTHERAN CHURCH FOUNDATION OF MILES CITY",
+      "RETURN_TYPE": "990EZ",
+      "DLN": "93492101000332",
+      "OBJECT_ID": "202231019349200033",
+      "_INGESTED_AT": 1785098063828835,
+      "_SOURCE_RUN_ID": "2254671b-805d-4072-b5d4-bbf7c09e07c9",
+      "_SRC_SHA256": "5493bf8850e25dbd3d44acf53faa92faed4f50931600aadc5e4e425379b74631"
+    }
+  ],
+  "sample_error": null
+}

@@ -1,0 +1,86 @@
+{
+  "fqtn": "LIBRARY_MARTS.JUSTICE.JUSTICE__FED_COURTLISTENER_JUDGE_EDUCATIONS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "ID",
+    "DATE_CREATED",
+    "DATE_MODIFIED",
+    "DEGREE_LEVEL",
+    "DEGREE_DETAIL",
+    "DEGREE_YEAR",
+    "PERSON_ID",
+    "SCHOOL_ID"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CL_PERSON_ID",
+      "column": "PERSON_ID",
+      "total_rows": 12777,
+      "nonnull_after_norm": 12746,
+      "distinct_after_norm": 7398,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "ID": "5998",
+      "DATE_CREATED": "2016-04-20",
+      "DATE_MODIFIED": "2016-04-20",
+      "DEGREE_LEVEL": "ba",
+      "DEGREE_DETAIL": null,
+      "DEGREE_YEAR": null,
+      "PERSON_ID": "7226",
+      "SCHOOL_ID": "1107"
+    },
+    {
+      "ID": "10517",
+      "DATE_CREATED": "2022-04-02",
+      "DATE_MODIFIED": "2022-04-02",
+      "DEGREE_LEVEL": "jd",
+      "DEGREE_DETAIL": null,
+      "DEGREE_YEAR": 1972.0,
+      "PERSON_ID": "14699",
+      "SCHOOL_ID": "738"
+    },
+    {
+      "ID": "9438",
+      "DATE_CREATED": "2022-03-10",
+      "DATE_MODIFIED": "2022-03-10",
+      "DEGREE_LEVEL": "ma",
+      "DEGREE_DETAIL": "Public Administration",
+      "DEGREE_YEAR": 1969.0,
+      "PERSON_ID": "11689",
+      "SCHOOL_ID": "3117"
+    },
+    {
+      "ID": "1149",
+      "DATE_CREATED": "2016-04-20",
+      "DATE_MODIFIED": "2016-04-20",
+      "DEGREE_LEVEL": "llb",
+      "DEGREE_DETAIL": "LL.B.",
+      "DEGREE_YEAR": 1930.0,
+      "PERSON_ID": "1379",
+      "SCHOOL_ID": "860"
+    },
+    {
+      "ID": "7062",
+      "DATE_CREATED": "2022-02-08",
+      "DATE_MODIFIED": "2022-02-08",
+      "DEGREE_LEVEL": "ba",
+      "DEGREE_DETAIL": "Sociology, English Literature",
+      "DEGREE_YEAR": 1978.0,
+      "PERSON_ID": "13774",
+      "SCHOOL_ID": "473"
+    }
+  ],
+  "sample_error": null
+}

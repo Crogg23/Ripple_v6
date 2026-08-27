@@ -1,0 +1,76 @@
+{
+  "fqtn": "LIBRARY_MARTS.JUSTICE.JUSTICE__FED_COURTLISTENER_SCHOOLS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "ID",
+    "DATE_CREATED",
+    "DATE_MODIFIED",
+    "NAME",
+    "EIN",
+    "IS_ALIAS_OF_ID"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "EIN",
+      "column": "EIN",
+      "total_rows": 6011,
+      "nonnull_after_norm": 3526,
+      "distinct_after_norm": 2569,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "ID": "4725",
+      "DATE_CREATED": "2010-06-08",
+      "DATE_MODIFIED": "2010-06-08",
+      "NAME": "Midwest College of Oriental Medicine-Racine",
+      "EIN": "363414252",
+      "IS_ALIAS_OF_ID": null
+    },
+    {
+      "ID": "4748",
+      "DATE_CREATED": "2010-06-08",
+      "DATE_MODIFIED": "2010-06-08",
+      "NAME": "ITT Technical Institute-Rancho Cordova",
+      "EIN": "362061311",
+      "IS_ALIAS_OF_ID": null
+    },
+    {
+      "ID": "1046",
+      "DATE_CREATED": "2010-06-08",
+      "DATE_MODIFIED": "2010-06-08",
+      "NAME": "University of Phoenix-Cheyenne Campus",
+      "EIN": "860344364",
+      "IS_ALIAS_OF_ID": null
+    },
+    {
+      "ID": "389",
+      "DATE_CREATED": "2010-06-08",
+      "DATE_MODIFIED": "2010-06-08",
+      "NAME": "Oklahoma Wesleyan University",
+      "EIN": "736085616",
+      "IS_ALIAS_OF_ID": null
+    },
+    {
+      "ID": "5582",
+      "DATE_CREATED": "2010-06-08",
+      "DATE_MODIFIED": "2010-06-08",
+      "NAME": "AGTS",
+      "EIN": null,
+      "IS_ALIAS_OF_ID": "5581"
+    }
+  ],
+  "sample_error": null
+}

@@ -1,0 +1,106 @@
+{
+  "fqtn": "LIBRARY_MARTS.FINANCE.FINANCE__FED_SEC_CLOSED_END_FUND_INFORMATION",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "FILE_NO",
+    "CIK",
+    "REGISTRANT_NAME",
+    "ADDRESS_1",
+    "ADDRESS_2",
+    "CITY",
+    "STATE",
+    "ZIP_CODE",
+    "FILING_DATE",
+    "FILING_TYPE"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "REGISTRANT_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "STATE"
+      ],
+      "zip": [
+        "ZIP_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CIK",
+      "column": "CIK",
+      "total_rows": 973,
+      "nonnull_after_norm": 973,
+      "distinct_after_norm": 973,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "FILE_NO": "811-24074",
+      "CIK": "0002061233",
+      "REGISTRANT_NAME": "Morgan Stanley Private Markets & Alternatives Fund",
+      "ADDRESS_1": "60 EAST 42ND STREET, 26TH FLOOR",
+      "ADDRESS_2": null,
+      "CITY": "NEW YORK",
+      "STATE": "NY",
+      "ZIP_CODE": "10165",
+      "FILING_DATE": "0026-05-15",
+      "FILING_TYPE": "SC TO-I"
+    },
+    {
+      "FILE_NO": "811-07816",
+      "CIK": "0000908187",
+      "REGISTRANT_NAME": "PCM FUND, INC.",
+      "ADDRESS_1": "1633 BROADWAY",
+      "ADDRESS_2": null,
+      "CITY": "NEW YORK",
+      "STATE": "NY",
+      "ZIP_CODE": "10019",
+      "FILING_DATE": "0026-05-29",
+      "FILING_TYPE": "NPORT-P"
+    },
+    {
+      "FILE_NO": "811-23265",
+      "CIK": "0001709447",
+      "REGISTRANT_NAME": "AIP Alternative Lending Fund A",
+      "ADDRESS_1": "1585 BROADWAY",
+      "ADDRESS_2": null,
+      "CITY": "NEW YORK",
+      "STATE": "NY",
+      "ZIP_CODE": "10036",
+      "FILING_DATE": "0026-05-22",
+      "FILING_TYPE": "NPORT-P"
+    },
+    {
+      "FILE_NO": "811-23958",
+      "CIK": "0002020407",
+      "REGISTRANT_NAME": "HarbourVest Private Investments Fund",
+      "ADDRESS_1": "C/O HARBOURVEST PARTNERS, LLC",
+      "ADDRESS_2": "ONE LINCOLN STREET, SUITE 1700",
+      "CITY": "BOSTON",
+      "STATE": "MA",
+      "ZIP_CODE": "02111",
+      "FILING_DATE": "0026-05-29",
+      "FILING_TYPE": "NPORT-P"
+    },
+    {
+      "FILE_NO": "811-23917",
+      "CIK": "0001998759",
+      "REGISTRANT_NAME": "Nuveen Enhanced Corporate Opportunities Fund",
+      "ADDRESS_1": "333 WEST WACKER DR.",
+      "ADDRESS_2": null,
+      "CITY": "CHICAGO",
+      "STATE": "IL",
+      "ZIP_CODE": "60606",
+      "FILING_DATE": "0026-05-19",
+      "FILING_TYPE": "N-2/A"
+    }
+  ],
+  "sample_error": null
+}

@@ -1,0 +1,133 @@
+{
+  "fqtn": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_LCR_SAMPLES",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "SUBMISSIONYEARQUARTER",
+    "PWSID",
+    "SAMPLE_ID",
+    "SAMPLING_END_DATE",
+    "SAMPLING_START_DATE",
+    "RECONCILIATION_ID",
+    "SAMPLE_FIRST_REPORTED_DATE",
+    "SAMPLE_LAST_REPORTED_DATE",
+    "SAR_ID",
+    "CONTAMINANT_CODE",
+    "RESULT_SIGN_CODE",
+    "SAMPLE_MEASURE",
+    "UNIT_OF_MEASURE",
+    "SAR_FIRST_REPORTED_DATE",
+    "SAR_LAST_REPORTED_DATE"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "SAMPLE_FIRST_REPORTED_DATE",
+      "SAMPLE_LAST_REPORTED_DATE",
+      "SAR_FIRST_REPORTED_DATE",
+      "SAR_LAST_REPORTED_DATE"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "PWSID",
+      "column": "PWSID",
+      "total_rows": 927415,
+      "nonnull_after_norm": 927415,
+      "distinct_after_norm": 89800,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "SUBMISSIONYEARQUARTER": "2026Q2",
+      "PWSID": "TX0710096",
+      "SAMPLE_ID": "49904",
+      "SAMPLING_END_DATE": "1999-12-31",
+      "SAMPLING_START_DATE": "1997-01-01",
+      "RECONCILIATION_ID": null,
+      "SAMPLE_FIRST_REPORTED_DATE": "2004-04-07",
+      "SAMPLE_LAST_REPORTED_DATE": "2004-04-07",
+      "SAR_ID": "8101037",
+      "CONTAMINANT_CODE": "PB90",
+      "RESULT_SIGN_CODE": null,
+      "SAMPLE_MEASURE": ".0006",
+      "UNIT_OF_MEASURE": "mg/L",
+      "SAR_FIRST_REPORTED_DATE": null,
+      "SAR_LAST_REPORTED_DATE": null
+    },
+    {
+      "SUBMISSIONYEARQUARTER": "2026Q2",
+      "PWSID": "AK2270948",
+      "SAMPLE_ID": "6",
+      "SAMPLING_END_DATE": "1999-12-31",
+      "SAMPLING_START_DATE": "1997-01-01",
+      "RECONCILIATION_ID": null,
+      "SAMPLE_FIRST_REPORTED_DATE": "2004-04-14",
+      "SAMPLE_LAST_REPORTED_DATE": "2004-04-14",
+      "SAR_ID": "10417100",
+      "CONTAMINANT_CODE": "PB90",
+      "RESULT_SIGN_CODE": null,
+      "SAMPLE_MEASURE": "0",
+      "UNIT_OF_MEASURE": "mg/L",
+      "SAR_FIRST_REPORTED_DATE": null,
+      "SAR_LAST_REPORTED_DATE": null
+    },
+    {
+      "SUBMISSIONYEARQUARTER": "2026Q2",
+      "PWSID": "IA2394017",
+      "SAMPLE_ID": "IA15804",
+      "SAMPLING_END_DATE": "2001-12-31",
+      "SAMPLING_START_DATE": "2001-01-01",
+      "RECONCILIATION_ID": null,
+      "SAMPLE_FIRST_REPORTED_DATE": "2006-03-02",
+      "SAMPLE_LAST_REPORTED_DATE": "2009-05-15",
+      "SAR_ID": "12299062",
+      "CONTAMINANT_CODE": "PB90",
+      "RESULT_SIGN_CODE": null,
+      "SAMPLE_MEASURE": "0",
+      "UNIT_OF_MEASURE": "mg/L",
+      "SAR_FIRST_REPORTED_DATE": "2006-03-02",
+      "SAR_LAST_REPORTED_DATE": "2009-05-15"
+    },
+    {
+      "SUBMISSIONYEARQUARTER": "2026Q2",
+      "PWSID": "VA2139825",
+      "SAMPLE_ID": "VA9612",
+      "SAMPLING_END_DATE": "2006-12-31",
+      "SAMPLING_START_DATE": "2004-01-01",
+      "RECONCILIATION_ID": null,
+      "SAMPLE_FIRST_REPORTED_DATE": "2006-08-25",
+      "SAMPLE_LAST_REPORTED_DATE": "2007-05-22",
+      "SAR_ID": "12839513",
+      "CONTAMINANT_CODE": "PB90",
+      "RESULT_SIGN_CODE": null,
+      "SAMPLE_MEASURE": ".001",
+      "UNIT_OF_MEASURE": "mg/L",
+      "SAR_FIRST_REPORTED_DATE": "2006-08-25",
+      "SAR_LAST_REPORTED_DATE": "2007-05-22"
+    },
+    {
+      "SUBMISSIONYEARQUARTER": "2026Q2",
+      "PWSID": "TX2030010",
+      "SAMPLE_ID": "4996",
+      "SAMPLING_END_DATE": "1996-12-31",
+      "SAMPLING_START_DATE": "1996-01-01",
+      "RECONCILIATION_ID": null,
+      "SAMPLE_FIRST_REPORTED_DATE": "2004-04-06",
+      "SAMPLE_LAST_REPORTED_DATE": "2004-04-06",
+      "SAR_ID": "8925695",
+      "CONTAMINANT_CODE": "PB90",
+      "RESULT_SIGN_CODE": null,
+      "SAMPLE_MEASURE": ".001",
+      "UNIT_OF_MEASURE": "mg/L",
+      "SAR_FIRST_REPORTED_DATE": null,
+      "SAR_LAST_REPORTED_DATE": null
+    }
+  ],
+  "sample_error": null
+}

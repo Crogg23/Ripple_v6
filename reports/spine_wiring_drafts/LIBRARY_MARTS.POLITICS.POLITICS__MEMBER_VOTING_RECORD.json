@@ -1,0 +1,132 @@
+{
+  "fqtn": "LIBRARY_MARTS.POLITICS.POLITICS__MEMBER_VOTING_RECORD",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "BIOGUIDE",
+    "CONGRESS",
+    "CHAMBER",
+    "ICPSRS",
+    "BIONAME",
+    "STATE",
+    "PARTY",
+    "VOTES_ELIGIBLE",
+    "VOTES_CAST",
+    "MISSED_VOTES",
+    "MISSED_VOTE_PCT",
+    "PARTY_UNITY_VOTES",
+    "PARTY_UNITY_WITH",
+    "PARTY_UNITY_PCT",
+    "CONGRESS_PARTIAL"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "BIONAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [
+        "STATE"
+      ],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "BIOGUIDE",
+      "column": "BIOGUIDE",
+      "total_rows": 1105,
+      "nonnull_after_norm": 1105,
+      "distinct_after_norm": 635,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "BIOGUIDE": "W000788",
+      "CONGRESS": 118,
+      "CHAMBER": "House",
+      "ICPSRS": "[\n  22156\n]",
+      "BIONAME": "WILLIAMS, Nikema",
+      "STATE": "GA",
+      "PARTY": "Democrat",
+      "VOTES_ELIGIBLE": 1235,
+      "VOTES_CAST": 1227,
+      "MISSED_VOTES": 8,
+      "MISSED_VOTE_PCT": "0.65",
+      "PARTY_UNITY_VOTES": 863,
+      "PARTY_UNITY_WITH": 856,
+      "PARTY_UNITY_PCT": "99.19",
+      "CONGRESS_PARTIAL": false
+    },
+    {
+      "BIOGUIDE": "B001267",
+      "CONGRESS": 118,
+      "CHAMBER": "Senate",
+      "ICPSRS": "[\n  40910\n]",
+      "BIONAME": "BENNET, Michael F.",
+      "STATE": "CO",
+      "PARTY": "Democrat",
+      "VOTES_ELIGIBLE": 691,
+      "VOTES_CAST": 687,
+      "MISSED_VOTES": 4,
+      "MISSED_VOTE_PCT": "0.58",
+      "PARTY_UNITY_VOTES": 535,
+      "PARTY_UNITY_WITH": 529,
+      "PARTY_UNITY_PCT": "98.88",
+      "CONGRESS_PARTIAL": false
+    },
+    {
+      "BIOGUIDE": "C001075",
+      "CONGRESS": 118,
+      "CHAMBER": "Senate",
+      "ICPSRS": "[\n  20919\n]",
+      "BIONAME": "CASSIDY, Bill",
+      "STATE": "LA",
+      "PARTY": "Republican",
+      "VOTES_ELIGIBLE": 691,
+      "VOTES_CAST": 648,
+      "MISSED_VOTES": 43,
+      "MISSED_VOTE_PCT": "6.22",
+      "PARTY_UNITY_VOTES": 507,
+      "PARTY_UNITY_WITH": 440,
+      "PARTY_UNITY_PCT": "86.79",
+      "CONGRESS_PARTIAL": false
+    },
+    {
+      "BIOGUIDE": "W000823",
+      "CONGRESS": 119,
+      "CHAMBER": "House",
+      "ICPSRS": "[\n  21981\n]",
+      "BIONAME": "WALTZ, Michael",
+      "STATE": "FL",
+      "PARTY": "Republican",
+      "VOTES_ELIGIBLE": 16,
+      "VOTES_CAST": 7,
+      "MISSED_VOTES": 9,
+      "MISSED_VOTE_PCT": "56.25",
+      "PARTY_UNITY_VOTES": 6,
+      "PARTY_UNITY_WITH": 6,
+      "PARTY_UNITY_PCT": "100.00",
+      "CONGRESS_PARTIAL": true
+    },
+    {
+      "BIOGUIDE": "B001236",
+      "CONGRESS": 118,
+      "CHAMBER": "Senate",
+      "ICPSRS": "[\n  20101\n]",
+      "BIONAME": "BOOZMAN, John",
+      "STATE": "AR",
+      "PARTY": "Republican",
+      "VOTES_ELIGIBLE": 691,
+      "VOTES_CAST": 680,
+      "MISSED_VOTES": 11,
+      "MISSED_VOTE_PCT": "1.59",
+      "PARTY_UNITY_VOTES": 531,
+      "PARTY_UNITY_WITH": 503,
+      "PARTY_UNITY_PCT": "94.73",
+      "CONGRESS_PARTIAL": false
+    }
+  ],
+  "sample_error": null
+}

@@ -1,0 +1,89 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_ARC_LA_COUNTY_OPEN_D_58A85AED74",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "SCC",
+    "BUSINESS_NAME",
+    "CENTER_NAME",
+    "ADDRESS_LINE_1",
+    "ADDRESS_LINE_2",
+    "CITY",
+    "STATE",
+    "ZIP_CODE",
+    "PHONE",
+    "NPI",
+    "SCC_TYPE",
+    "FAMILY_FRIENDLY_SCC_TYPE",
+    "FID",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "BUSINESS_NAME",
+      "CENTER_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "STATE"
+      ],
+      "zip": [
+        "ZIP_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPI",
+      "column": "NPI",
+      "total_rows": 2,
+      "nonnull_after_norm": 2,
+      "distinct_after_norm": 2,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "SCC": "7.33.107",
+      "BUSINESS_NAME": "Sonus Sf0010",
+      "CENTER_NAME": "SONUS NORTHRIDGE",
+      "ADDRESS_LINE_1": "Unknown",
+      "ADDRESS_LINE_2": "",
+      "CITY": "Unknown",
+      "STATE": "CA",
+      "ZIP_CODE": "0",
+      "PHONE": "(818) 734-9124",
+      "NPI": "1760783344",
+      "SCC_TYPE": "Communication Disorders Center Type A",
+      "FAMILY_FRIENDLY_SCC_TYPE": "Hearing Center (ages 5 and up)",
+      "FID": "1",
+      "INGESTED_AT": "2026-06-24 04:30:14.648270",
+      "SOURCE_RUN_ID": "639de7c1-0043-46e8-8813-df5788b467f1",
+      "SRC_SHA256": "e2f72a14dbd42f9fdcd8aaf9e62864259129acbc922800599651c103fa6df9ef"
+    },
+    {
+      "SCC": "7.13.58",
+      "BUSINESS_NAME": "Providence St Joseph Med",
+      "CENTER_NAME": "Providence Saint Joseph Nicu",
+      "ADDRESS_LINE_1": "Buena Vista Alameda Street",
+      "ADDRESS_LINE_2": "",
+      "CITY": "Burbank",
+      "STATE": "CA",
+      "ZIP_CODE": "91505-4809",
+      "PHONE": "",
+      "NPI": "1336173269",
+      "SCC_TYPE": "Community Neonatal Intensive Care Unit",
+      "FAMILY_FRIENDLY_SCC_TYPE": "NICU and HRIF Center",
+      "FID": "2",
+      "INGESTED_AT": "2026-06-24 04:30:14.648270",
+      "SOURCE_RUN_ID": "639de7c1-0043-46e8-8813-df5788b467f1",
+      "SRC_SHA256": "e2f72a14dbd42f9fdcd8aaf9e62864259129acbc922800599651c103fa6df9ef"
+    }
+  ],
+  "sample_error": null
+}

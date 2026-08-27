@@ -1,0 +1,128 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_SOC_UTAH_OPEN_DATA_P_F87FB2BFB7",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "CASE_TYPE",
+    "EIN",
+    "PN",
+    "PLAN_YEAR",
+    "PLAN_NAME",
+    "PLAN_ADMIN",
+    "PLAN_ADMIN_STATE",
+    "PLAN_ADMIN_ZIP_CODE",
+    "FINAL_CLOSE_REASON",
+    "FINAL_CLOSE_DATE",
+    "PENALTY_AMOUNT",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "PLAN_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [
+        "PLAN_ADMIN_STATE"
+      ],
+      "zip": [
+        "PLAN_ADMIN_ZIP_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "EIN",
+      "column": "EIN",
+      "total_rows": 25,
+      "nonnull_after_norm": 25,
+      "distinct_after_norm": 25,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "CASE_TYPE": "Deficient Filer",
+      "EIN": "87-0495960",
+      "PN": "1",
+      "PLAN_YEAR": "2004",
+      "PLAN_NAME": "SME 401K EMPLOYEE SAVINGS PLAN",
+      "PLAN_ADMIN": "SME",
+      "PLAN_ADMIN_STATE": "Utah",
+      "PLAN_ADMIN_ZIP_CODE": "84088-5667",
+      "FINAL_CLOSE_REASON": "Closed after Correspondence",
+      "FINAL_CLOSE_DATE": "2007-02-27T00:00:00.000",
+      "PENALTY_AMOUNT": "$0-$10,000",
+      "INGESTED_AT": "2026-06-24 04:42:19.999643",
+      "SOURCE_RUN_ID": "1d64c1ac-353f-4ce7-871a-ea1b3d87bf2a",
+      "SRC_SHA256": "85ceb6ab1391e1754bc3345d79b96a23482fed6c6cbbf963493d9544d1e1d7bc"
+    },
+    {
+      "CASE_TYPE": "Deficient Filer",
+      "EIN": "87-0503440",
+      "PN": "1",
+      "PLAN_YEAR": "2007",
+      "PLAN_NAME": "VALLEY SERVICES, INC. PROFIT SHARING PLAN",
+      "PLAN_ADMIN": "VALLEY SERVICES, INC.",
+      "PLAN_ADMIN_STATE": "Utah",
+      "PLAN_ADMIN_ZIP_CODE": "84118-3731",
+      "FINAL_CLOSE_REASON": "Closed after Correspondence",
+      "FINAL_CLOSE_DATE": "2010-03-25T00:00:00.000",
+      "PENALTY_AMOUNT": "$50,001 - $100,000",
+      "INGESTED_AT": "2026-06-24 04:42:19.999643",
+      "SOURCE_RUN_ID": "1d64c1ac-353f-4ce7-871a-ea1b3d87bf2a",
+      "SRC_SHA256": "85ceb6ab1391e1754bc3345d79b96a23482fed6c6cbbf963493d9544d1e1d7bc"
+    },
+    {
+      "CASE_TYPE": "Deficient Filer",
+      "EIN": "22-3863257",
+      "PN": "1",
+      "PLAN_YEAR": "2010",
+      "PLAN_NAME": "MERIDIAN RESTAURANTS UNLIMITED 401(K) & PROFIT SHARING PLAN",
+      "PLAN_ADMIN": "MERIDIAN RESTAURANTS UNLIMITED",
+      "PLAN_ADMIN_STATE": "Utah",
+      "PLAN_ADMIN_ZIP_CODE": "84401- ",
+      "FINAL_CLOSE_REASON": "Closed after Correspondence",
+      "FINAL_CLOSE_DATE": "2012-07-23T00:00:00.000",
+      "PENALTY_AMOUNT": "$10,001 - $50,000",
+      "INGESTED_AT": "2026-06-24 04:42:19.999643",
+      "SOURCE_RUN_ID": "1d64c1ac-353f-4ce7-871a-ea1b3d87bf2a",
+      "SRC_SHA256": "85ceb6ab1391e1754bc3345d79b96a23482fed6c6cbbf963493d9544d1e1d7bc"
+    },
+    {
+      "CASE_TYPE": "Deficient Filer",
+      "EIN": "87-0536150",
+      "PN": "1",
+      "PLAN_YEAR": "2010",
+      "PLAN_NAME": "SANSEGAL SPORTSWEAR 401K PENSION PLAN AND TRUST",
+      "PLAN_ADMIN": "SANSEGAL SPORTSWEAR",
+      "PLAN_ADMIN_STATE": "Utah",
+      "PLAN_ADMIN_ZIP_CODE": "84070- ",
+      "FINAL_CLOSE_REASON": "Closed after Correspondence",
+      "FINAL_CLOSE_DATE": "2013-05-06T00:00:00.000",
+      "PENALTY_AMOUNT": "$10,001 - $50,000",
+      "INGESTED_AT": "2026-06-24 04:42:19.999643",
+      "SOURCE_RUN_ID": "1d64c1ac-353f-4ce7-871a-ea1b3d87bf2a",
+      "SRC_SHA256": "85ceb6ab1391e1754bc3345d79b96a23482fed6c6cbbf963493d9544d1e1d7bc"
+    },
+    {
+      "CASE_TYPE": "Deficient Filer",
+      "EIN": "87-0234702",
+      "PN": "1",
+      "PLAN_YEAR": "2004",
+      "PLAN_NAME": "STATE BANK OF SOUTHERN UTAH PROFIT SHARING 401K PLAN",
+      "PLAN_ADMIN": "STATE BANK OF SOUTHERN UTAH",
+      "PLAN_ADMIN_STATE": "Utah",
+      "PLAN_ADMIN_ZIP_CODE": "84720-2639",
+      "FINAL_CLOSE_REASON": "Closed after Correspondence",
+      "FINAL_CLOSE_DATE": "2006-10-10T00:00:00.000",
+      "PENALTY_AMOUNT": "$0-$10,000",
+      "INGESTED_AT": "2026-06-24 04:42:19.999643",
+      "SOURCE_RUN_ID": "1d64c1ac-353f-4ce7-871a-ea1b3d87bf2a",
+      "SRC_SHA256": "85ceb6ab1391e1754bc3345d79b96a23482fed6c6cbbf963493d9544d1e1d7bc"
+    }
+  ],
+  "sample_error": null
+}

@@ -1,0 +1,144 @@
+{
+  "fqtn": "LIBRARY_MARTS.POLITICS.POLITICS__MEMBER_BILL_RECORD",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "BIOGUIDE",
+    "CONGRESS",
+    "FULL_NAME",
+    "PARTY",
+    "STATE",
+    "CHAMBER",
+    "IDEOLOGY_LABEL",
+    "BILLS_SPONSORED",
+    "BILLS_SPONSORED_SUBSTANTIVE",
+    "RESOLUTIONS_SPONSORED",
+    "BILLS_ENACTED",
+    "ENACTED_RATE",
+    "ADVANCED_PAST_COMMITTEE_COUNT",
+    "ADVANCED_RATE",
+    "COSPONSORED_COUNT",
+    "CONGRESS_PARTIAL",
+    "HAS_SPINE_MATCH"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "FULL_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [
+        "STATE"
+      ],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "BIOGUIDE",
+      "column": "BIOGUIDE",
+      "total_rows": 1104,
+      "nonnull_after_norm": 1104,
+      "distinct_after_norm": 635,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "BIOGUIDE": "G000359",
+      "CONGRESS": 118,
+      "FULL_NAME": "Lindsey Graham",
+      "PARTY": "Republican",
+      "STATE": "SC",
+      "CHAMBER": "sen",
+      "IDEOLOGY_LABEL": "right/conservative",
+      "BILLS_SPONSORED": 39,
+      "BILLS_SPONSORED_SUBSTANTIVE": 20,
+      "RESOLUTIONS_SPONSORED": 19,
+      "BILLS_ENACTED": 1,
+      "ENACTED_RATE": "5.00",
+      "ADVANCED_PAST_COMMITTEE_COUNT": 3,
+      "ADVANCED_RATE": "15.00",
+      "COSPONSORED_COUNT": 268,
+      "CONGRESS_PARTIAL": false,
+      "HAS_SPINE_MATCH": true
+    },
+    {
+      "BIOGUIDE": "A000375",
+      "CONGRESS": 118,
+      "FULL_NAME": "Jodey C. Arrington",
+      "PARTY": "Republican",
+      "STATE": "TX",
+      "CHAMBER": "rep",
+      "IDEOLOGY_LABEL": "right/conservative",
+      "BILLS_SPONSORED": 56,
+      "BILLS_SPONSORED_SUBSTANTIVE": 49,
+      "RESOLUTIONS_SPONSORED": 7,
+      "BILLS_ENACTED": 0,
+      "ENACTED_RATE": "0.00",
+      "ADVANCED_PAST_COMMITTEE_COUNT": 19,
+      "ADVANCED_RATE": "38.78",
+      "COSPONSORED_COUNT": 172,
+      "CONGRESS_PARTIAL": false,
+      "HAS_SPINE_MATCH": true
+    },
+    {
+      "BIOGUIDE": "B001301",
+      "CONGRESS": 119,
+      "FULL_NAME": "Jack Bergman",
+      "PARTY": "Republican",
+      "STATE": "MI",
+      "CHAMBER": "rep",
+      "IDEOLOGY_LABEL": "right/conservative",
+      "BILLS_SPONSORED": 25,
+      "BILLS_SPONSORED_SUBSTANTIVE": 22,
+      "RESOLUTIONS_SPONSORED": 3,
+      "BILLS_ENACTED": 1,
+      "ENACTED_RATE": "4.55",
+      "ADVANCED_PAST_COMMITTEE_COUNT": 12,
+      "ADVANCED_RATE": "54.55",
+      "COSPONSORED_COUNT": 252,
+      "CONGRESS_PARTIAL": true,
+      "HAS_SPINE_MATCH": true
+    },
+    {
+      "BIOGUIDE": "D000629",
+      "CONGRESS": 119,
+      "FULL_NAME": "Sharice Davids",
+      "PARTY": "Democrat",
+      "STATE": "KS",
+      "CHAMBER": "rep",
+      "IDEOLOGY_LABEL": "left/liberal",
+      "BILLS_SPONSORED": 25,
+      "BILLS_SPONSORED_SUBSTANTIVE": 21,
+      "RESOLUTIONS_SPONSORED": 4,
+      "BILLS_ENACTED": 0,
+      "ENACTED_RATE": "0.00",
+      "ADVANCED_PAST_COMMITTEE_COUNT": 4,
+      "ADVANCED_RATE": "19.05",
+      "COSPONSORED_COUNT": 455,
+      "CONGRESS_PARTIAL": true,
+      "HAS_SPINE_MATCH": true
+    },
+    {
+      "BIOGUIDE": "M001215",
+      "CONGRESS": 119,
+      "FULL_NAME": "Mariannette Miller-Meeks",
+      "PARTY": "Republican",
+      "STATE": "IA",
+      "CHAMBER": "rep",
+      "IDEOLOGY_LABEL": "unknown",
+      "BILLS_SPONSORED": 48,
+      "BILLS_SPONSORED_SUBSTANTIVE": 46,
+      "RESOLUTIONS_SPONSORED": 2,
+      "BILLS_ENACTED": 0,
+      "ENACTED_RATE": "0.00",
+      "ADVANCED_PAST_COMMITTEE_COUNT": 16,
+      "ADVANCED_RATE": "34.78",
+      "COSPONSORED_COUNT": 249,
+      "CONGRESS_PARTIAL": true,
+      "HAS_SPINE_MATCH": true
+    }
+  ],
+  "sample_error": null
+}

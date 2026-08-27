@@ -1,0 +1,74 @@
+{
+  "fqtn": "LIBRARY_MARTS.POLITICS.POLITICS__MEMBER_PAC_MONEY",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "BIOGUIDE",
+    "CYCLE",
+    "PAC_DONATIONS",
+    "N_PAC_DONORS",
+    "OUTSIDE_FOR",
+    "OUTSIDE_AGAINST"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "BIOGUIDE",
+      "column": "BIOGUIDE",
+      "total_rows": 1258,
+      "nonnull_after_norm": 1256,
+      "distinct_after_norm": 684,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "BIOGUIDE": "C001137",
+      "CYCLE": "2024",
+      "PAC_DONATIONS": "238500.00",
+      "N_PAC_DONORS": 90,
+      "OUTSIDE_FOR": "551491.00",
+      "OUTSIDE_AGAINST": "6047.00"
+    },
+    {
+      "BIOGUIDE": "S000929",
+      "CYCLE": "2024",
+      "PAC_DONATIONS": "211606.00",
+      "N_PAC_DONORS": 64,
+      "OUTSIDE_FOR": "60000.00",
+      "OUTSIDE_AGAINST": "75000.00"
+    },
+    {
+      "BIOGUIDE": "S001194",
+      "CYCLE": "2024",
+      "PAC_DONATIONS": "128150.00",
+      "N_PAC_DONORS": 50,
+      "OUTSIDE_FOR": "0.00",
+      "OUTSIDE_AGAINST": "0.00"
+    },
+    {
+      "BIOGUIDE": "T000463",
+      "CYCLE": "2026",
+      "PAC_DONATIONS": "371000.00",
+      "N_PAC_DONORS": 89,
+      "OUTSIDE_FOR": "0.00",
+      "OUTSIDE_AGAINST": "0.00"
+    },
+    {
+      "BIOGUIDE": "S001184",
+      "CYCLE": "2026",
+      "PAC_DONATIONS": "173300.00",
+      "N_PAC_DONORS": 55,
+      "OUTSIDE_FOR": "0.00",
+      "OUTSIDE_AGAINST": "0.00"
+    }
+  ],
+  "sample_error": null
+}

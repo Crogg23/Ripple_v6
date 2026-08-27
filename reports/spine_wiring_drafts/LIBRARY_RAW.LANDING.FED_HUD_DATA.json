@@ -1,0 +1,108 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.FED_HUD_DATA",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "DATASET_NAME",
+    "DATASET_URL",
+    "DESCRIPTION",
+    "FIPS",
+    "ZIP",
+    "EIN",
+    "YEAR",
+    "VALUE",
+    "_INGESTED_AT",
+    "_SOURCE_RUN_ID",
+    "_SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "DATASET_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": [
+        "ZIP"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "EIN",
+      "column": "EIN",
+      "total_rows": 77,
+      "nonnull_after_norm": 0,
+      "distinct_after_norm": 0,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "DATASET_NAME": "State of the Cities Data Systems (SOCDS)",
+      "DATASET_URL": "https://www.huduser.gov/portal/datasets/socds.html",
+      "DESCRIPTION": "",
+      "FIPS": "",
+      "ZIP": "",
+      "EIN": "",
+      "YEAR": "",
+      "VALUE": "",
+      "_INGESTED_AT": 1782955018158662,
+      "_SOURCE_RUN_ID": "aa344aae-c7f6-4abb-9b4b-c93bd547b79e",
+      "_SRC_SHA256": "d0ad885799fdcc553315bbe93d9498e60f39fa6963a7be57722e6c8035b6d2cb"
+    },
+    {
+      "DATASET_NAME": "Consolidated Planning/CHAS Data",
+      "DATASET_URL": "https://www.huduser.gov/portal/datasets/cp.html",
+      "DESCRIPTION": "",
+      "FIPS": "",
+      "ZIP": "",
+      "EIN": "",
+      "YEAR": "",
+      "VALUE": "",
+      "_INGESTED_AT": 1782955018158662,
+      "_SOURCE_RUN_ID": "aa344aae-c7f6-4abb-9b4b-c93bd547b79e",
+      "_SRC_SHA256": "d0ad885799fdcc553315bbe93d9498e60f39fa6963a7be57722e6c8035b6d2cb"
+    },
+    {
+      "DATASET_NAME": "HUD-USPS ZIP Code Crosswalk Data",
+      "DATASET_URL": "https://www.huduser.gov/portal/datasets/usps_crosswalk.html",
+      "DESCRIPTION": "Download USPS ZIP Code Crosswalk files and mapping resources for housing research, geographic analysis, and HUD program data integration.",
+      "FIPS": "",
+      "ZIP": "",
+      "EIN": "",
+      "YEAR": "2000",
+      "VALUE": "https://www.huduser.gov/portal/sites/default/files/xls/State_FIPS_Codes.xlsx",
+      "_INGESTED_AT": 1782955018158662,
+      "_SOURCE_RUN_ID": "aa344aae-c7f6-4abb-9b4b-c93bd547b79e",
+      "_SRC_SHA256": "d0ad885799fdcc553315bbe93d9498e60f39fa6963a7be57722e6c8035b6d2cb"
+    },
+    {
+      "DATASET_NAME": "Physical Inspection Scores",
+      "DATASET_URL": "https://www.huduser.gov/portal/datasets/pis.html",
+      "DESCRIPTION": "",
+      "FIPS": "",
+      "ZIP": "",
+      "EIN": "",
+      "YEAR": "",
+      "VALUE": "",
+      "_INGESTED_AT": 1782955018158662,
+      "_SOURCE_RUN_ID": "aa344aae-c7f6-4abb-9b4b-c93bd547b79e",
+      "_SRC_SHA256": "d0ad885799fdcc553315bbe93d9498e60f39fa6963a7be57722e6c8035b6d2cb"
+    },
+    {
+      "DATASET_NAME": "Housing Trust Fund Rent Limits",
+      "DATASET_URL": "https://www.huduser.gov/portal/datasets/HTF-Rent-limits.html",
+      "DESCRIPTION": "",
+      "FIPS": "",
+      "ZIP": "",
+      "EIN": "",
+      "YEAR": "",
+      "VALUE": "",
+      "_INGESTED_AT": 1782955018158662,
+      "_SOURCE_RUN_ID": "aa344aae-c7f6-4abb-9b4b-c93bd547b79e",
+      "_SRC_SHA256": "d0ad885799fdcc553315bbe93d9498e60f39fa6963a7be57722e6c8035b6d2cb"
+    }
+  ],
+  "sample_error": null
+}

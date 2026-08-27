@@ -1,0 +1,189 @@
+{
+  "fqtn": "LIBRARY_MARTS.IMMIGRATION.IMMIGRATION__FED_CMS_HOSPICE_ENROLLMENTS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "ENROLLMENT_ID",
+    "ENROLLMENT_STATE",
+    "PROVIDER_TYPE_CODE",
+    "PROVIDER_TYPE_TEXT",
+    "NPI",
+    "MULTIPLE_NPI_FLAG",
+    "CCN",
+    "ASSOCIATE_ID",
+    "ORGANIZATION_NAME",
+    "DOING_BUSINESS_AS_NAME",
+    "INCORPORATION_DATE",
+    "INCORPORATION_STATE",
+    "ORGANIZATION_TYPE_STRUCTURE",
+    "ORGANIZATION_OTHER_TYPE_TEXT",
+    "PROPRIETARY_NONPROFIT",
+    "ADDRESS_LINE_1",
+    "ADDRESS_LINE_2",
+    "CITY",
+    "STATE",
+    "ZIP_CODE"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "PROVIDER_TYPE_CODE",
+      "PROVIDER_TYPE_TEXT",
+      "ORGANIZATION_NAME",
+      "DOING_BUSINESS_AS_NAME",
+      "ORGANIZATION_TYPE_STRUCTURE",
+      "ORGANIZATION_OTHER_TYPE_TEXT"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "ENROLLMENT_STATE",
+        "INCORPORATION_STATE",
+        "STATE"
+      ],
+      "zip": [
+        "ZIP_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CCN",
+      "column": "CCN",
+      "total_rows": 6066,
+      "nonnull_after_norm": 4798,
+      "distinct_after_norm": 4798,
+      "trap_verdict": "REAL"
+    },
+    {
+      "key_label": "NPI",
+      "column": "NPI",
+      "total_rows": 6066,
+      "nonnull_after_norm": 6066,
+      "distinct_after_norm": 6056,
+      "trap_verdict": "REAL"
+    },
+    {
+      "key_label": "NPI",
+      "column": "MULTIPLE_NPI_FLAG",
+      "total_rows": 6066,
+      "nonnull_after_norm": 0,
+      "distinct_after_norm": 0,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "ENROLLMENT_ID": "O20170918002416",
+      "ENROLLMENT_STATE": "TX",
+      "PROVIDER_TYPE_CODE": "00-08",
+      "PROVIDER_TYPE_TEXT": "PART A PROVIDER - HOSPICE",
+      "NPI": "1215467907",
+      "MULTIPLE_NPI_FLAG": "N",
+      "CCN": "741655",
+      "ASSOCIATE_ID": "4385918101",
+      "ORGANIZATION_NAME": "SYNERHEALTH CARE LLC",
+      "DOING_BUSINESS_AS_NAME": "KINDFUL HEALTH",
+      "INCORPORATION_DATE": null,
+      "INCORPORATION_STATE": null,
+      "ORGANIZATION_TYPE_STRUCTURE": "LLC",
+      "ORGANIZATION_OTHER_TYPE_TEXT": null,
+      "PROPRIETARY_NONPROFIT": "P",
+      "ADDRESS_LINE_1": "3369 PREMIER DR",
+      "ADDRESS_LINE_2": "STE 300",
+      "CITY": "PLANO",
+      "STATE": "TX",
+      "ZIP_CODE": "750237027"
+    },
+    {
+      "ENROLLMENT_ID": "O20230828002779",
+      "ENROLLMENT_STATE": "TX",
+      "PROVIDER_TYPE_CODE": "00-08",
+      "PROVIDER_TYPE_TEXT": "PART A PROVIDER - HOSPICE",
+      "NPI": "1710357389",
+      "MULTIPLE_NPI_FLAG": "N",
+      "CCN": "A91704",
+      "ASSOCIATE_ID": "2365805116",
+      "ORGANIZATION_NAME": "MARILUX INCORPORATED",
+      "DOING_BUSINESS_AS_NAME": "MARILUX PALLIATIVE AND HOSPICE CARE",
+      "INCORPORATION_DATE": "2015-06-29",
+      "INCORPORATION_STATE": "TX",
+      "ORGANIZATION_TYPE_STRUCTURE": "CORPORATION",
+      "ORGANIZATION_OTHER_TYPE_TEXT": null,
+      "PROPRIETARY_NONPROFIT": "P",
+      "ADDRESS_LINE_1": "9889 BELLAIRE BLVD",
+      "ADDRESS_LINE_2": "STE 134",
+      "CITY": "HOUSTON",
+      "STATE": "TX",
+      "ZIP_CODE": "770363468"
+    },
+    {
+      "ENROLLMENT_ID": "O20081016000075",
+      "ENROLLMENT_STATE": "IA",
+      "PROVIDER_TYPE_CODE": "00-08",
+      "PROVIDER_TYPE_TEXT": "PART A PROVIDER - HOSPICE",
+      "NPI": "1619133196",
+      "MULTIPLE_NPI_FLAG": "N",
+      "CCN": "161595",
+      "ASSOCIATE_ID": "3870575350",
+      "ORGANIZATION_NAME": "CARE INITIATIVES",
+      "DOING_BUSINESS_AS_NAME": "CARE INITATIVES HOSPICE GREENFIELD",
+      "INCORPORATION_DATE": "1989-08-01",
+      "INCORPORATION_STATE": "TX",
+      "ORGANIZATION_TYPE_STRUCTURE": "CORPORATION",
+      "ORGANIZATION_OTHER_TYPE_TEXT": null,
+      "PROPRIETARY_NONPROFIT": "N",
+      "ADDRESS_LINE_1": "122 PUBLIC SQ",
+      "ADDRESS_LINE_2": null,
+      "CITY": "GREENFIELD",
+      "STATE": "IA",
+      "ZIP_CODE": "508491261"
+    },
+    {
+      "ENROLLMENT_ID": "O20120802000111",
+      "ENROLLMENT_STATE": "MI",
+      "PROVIDER_TYPE_CODE": "00-08",
+      "PROVIDER_TYPE_TEXT": "PART A PROVIDER - HOSPICE",
+      "NPI": "1740548577",
+      "MULTIPLE_NPI_FLAG": "N",
+      "CCN": "231629",
+      "ASSOCIATE_ID": "9537315874",
+      "ORGANIZATION_NAME": "EMMANUEL HOSPICE",
+      "DOING_BUSINESS_AS_NAME": null,
+      "INCORPORATION_DATE": null,
+      "INCORPORATION_STATE": null,
+      "ORGANIZATION_TYPE_STRUCTURE": "CORPORATION",
+      "ORGANIZATION_OTHER_TYPE_TEXT": null,
+      "PROPRIETARY_NONPROFIT": "N",
+      "ADDRESS_LINE_1": "401 HALL ST SW",
+      "ADDRESS_LINE_2": "STE 263",
+      "CITY": "GRAND RAPIDS",
+      "STATE": "MI",
+      "ZIP_CODE": "495034988"
+    },
+    {
+      "ENROLLMENT_ID": "O20040203000205",
+      "ENROLLMENT_STATE": "PA",
+      "PROVIDER_TYPE_CODE": "00-08",
+      "PROVIDER_TYPE_TEXT": "PART A PROVIDER - HOSPICE",
+      "NPI": "1417917097",
+      "MULTIPLE_NPI_FLAG": "N",
+      "CCN": "391550A",
+      "ASSOCIATE_ID": "9931012580",
+      "ORGANIZATION_NAME": "SPIRITRUST LUTHERAN HOME CARE & HOSPICE",
+      "DOING_BUSINESS_AS_NAME": null,
+      "INCORPORATION_DATE": "1992-10-01",
+      "INCORPORATION_STATE": "PA",
+      "ORGANIZATION_TYPE_STRUCTURE": "CORPORATION",
+      "ORGANIZATION_OTHER_TYPE_TEXT": null,
+      "PROPRIETARY_NONPROFIT": "N",
+      "ADDRESS_LINE_1": "2700 LUTHER DR",
+      "ADDRESS_LINE_2": null,
+      "CITY": "CHAMBERSBURG",
+      "STATE": "PA",
+      "ZIP_CODE": "172028131"
+    }
+  ],
+  "sample_error": null
+}

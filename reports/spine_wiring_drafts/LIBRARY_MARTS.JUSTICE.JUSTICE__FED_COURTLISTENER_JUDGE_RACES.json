@@ -1,0 +1,56 @@
+{
+  "fqtn": "LIBRARY_MARTS.JUSTICE.JUSTICE__FED_COURTLISTENER_JUDGE_RACES",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "ID",
+    "PERSON_ID",
+    "RACE_ID"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CL_PERSON_ID",
+      "column": "PERSON_ID",
+      "total_rows": 6542,
+      "nonnull_after_norm": 6542,
+      "distinct_after_norm": 6521,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "ID": "6299",
+      "PERSON_ID": "15784",
+      "RACE_ID": "1"
+    },
+    {
+      "ID": "2127",
+      "PERSON_ID": "2122",
+      "RACE_ID": "2"
+    },
+    {
+      "ID": "1448",
+      "PERSON_ID": "1444",
+      "RACE_ID": "1"
+    },
+    {
+      "ID": "2629",
+      "PERSON_ID": "2624",
+      "RACE_ID": "1"
+    },
+    {
+      "ID": "4121",
+      "PERSON_ID": "14223",
+      "RACE_ID": "1"
+    }
+  ],
+  "sample_error": null
+}

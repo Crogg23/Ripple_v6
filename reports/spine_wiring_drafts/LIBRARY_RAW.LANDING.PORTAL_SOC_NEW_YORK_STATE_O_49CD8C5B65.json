@@ -1,0 +1,108 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_SOC_NEW_YORK_STATE_O_49CD8C5B65",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "PATENT_NUMBER",
+    "STATUS",
+    "ISSUE_DATE",
+    "COUNTRY",
+    "PATENT_TITLE",
+    "PATENT_ASSIGNEE_OWNER",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "PATENT",
+      "column": "PATENT_NUMBER",
+      "total_rows": 161,
+      "nonnull_after_norm": 161,
+      "distinct_after_norm": 160,
+      "trap_verdict": "REAL"
+    },
+    {
+      "key_label": "PATENT",
+      "column": "PATENT_ASSIGNEE_OWNER",
+      "total_rows": 161,
+      "nonnull_after_norm": 161,
+      "distinct_after_norm": 14,
+      "trap_verdict": "REAL"
+    },
+    {
+      "key_label": "PATENT",
+      "column": "PATENT_TITLE",
+      "total_rows": 161,
+      "nonnull_after_norm": 161,
+      "distinct_after_norm": 135,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "PATENT_NUMBER": "6,984,384",
+      "STATUS": "Issued",
+      "ISSUE_DATE": "2006-01-10T00:00:00.000",
+      "COUNTRY": "United States",
+      "PATENT_TITLE": "Stress Protein Compositions and Methods for Prevention and Treatment of Cancer and Infectious Disease",
+      "PATENT_ASSIGNEE_OWNER": "Health Research, Inc, for Roswell Park Comprehensive Cancer Center",
+      "INGESTED_AT": "2026-06-24 05:10:27.895146",
+      "SOURCE_RUN_ID": "8f6864da-f710-4a24-9d65-88426a26ab18",
+      "SRC_SHA256": "d3adf788fda1c11030d5ffad72d0947a39e508266f128ddac58bf7892d62b57f"
+    },
+    {
+      "PATENT_NUMBER": "6,965,009",
+      "STATUS": "Issued",
+      "ISSUE_DATE": "2005-11-15T00:00:00.000",
+      "COUNTRY": "United States",
+      "PATENT_TITLE": "P53 as Protein and Antibody Therefor",
+      "PATENT_ASSIGNEE_OWNER": "Health Research, Inc, for Roswell Park Comprehensive Cancer Center",
+      "INGESTED_AT": "2026-06-24 05:10:27.895146",
+      "SOURCE_RUN_ID": "8f6864da-f710-4a24-9d65-88426a26ab18",
+      "SRC_SHA256": "d3adf788fda1c11030d5ffad72d0947a39e508266f128ddac58bf7892d62b57f"
+    },
+    {
+      "PATENT_NUMBER": "3,183,342",
+      "STATUS": "Issued",
+      "ISSUE_DATE": "2021-05-21T00:00:00.000",
+      "COUNTRY": "United States",
+      "PATENT_TITLE": "Method for Prophylaxis and/or Treatment  of ErbB2 Positive Cancers",
+      "PATENT_ASSIGNEE_OWNER": "Health Research, Inc. for Roswell Park Comprehensive Cancer Center",
+      "INGESTED_AT": "2026-06-24 05:10:27.895146",
+      "SOURCE_RUN_ID": "8f6864da-f710-4a24-9d65-88426a26ab18",
+      "SRC_SHA256": "d3adf788fda1c11030d5ffad72d0947a39e508266f128ddac58bf7892d62b57f"
+    },
+    {
+      "PATENT_NUMBER": "3,325,095",
+      "STATUS": "Issued",
+      "ISSUE_DATE": "2022-03-30T00:00:00.000",
+      "COUNTRY": "United States",
+      "PATENT_TITLE": "System and Method for Administering Light Therapy to Curved and Large Surfaces",
+      "PATENT_ASSIGNEE_OWNER": "Health Research, Inc.",
+      "INGESTED_AT": "2026-06-24 05:10:27.895146",
+      "SOURCE_RUN_ID": "8f6864da-f710-4a24-9d65-88426a26ab18",
+      "SRC_SHA256": "d3adf788fda1c11030d5ffad72d0947a39e508266f128ddac58bf7892d62b57f"
+    },
+    {
+      "PATENT_NUMBER": "10,478,477",
+      "STATUS": "Issued",
+      "ISSUE_DATE": "2019-10-15T00:00:00.000",
+      "COUNTRY": "United States",
+      "PATENT_TITLE": "Method for Prophylaxis and/or Treatment of ErbB1 Positive Cancers Using a Variant Peptidase D with Reduced Activity",
+      "PATENT_ASSIGNEE_OWNER": "Health Research, Inc. for Roswell Park Comprehensive Cancer Center",
+      "INGESTED_AT": "2026-06-24 05:10:27.895146",
+      "SOURCE_RUN_ID": "8f6864da-f710-4a24-9d65-88426a26ab18",
+      "SRC_SHA256": "d3adf788fda1c11030d5ffad72d0947a39e508266f128ddac58bf7892d62b57f"
+    }
+  ],
+  "sample_error": null
+}

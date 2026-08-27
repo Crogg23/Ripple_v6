@@ -1,0 +1,108 @@
+{
+  "fqtn": "LIBRARY_MARTS.POLITICS.POLITICS__BILL_COSPONSORS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "CONGRESS",
+    "BILL_TYPE",
+    "BILL_NUMBER",
+    "COSPONSOR_BIOGUIDE",
+    "COSPONSOR_NAME",
+    "COSPONSOR_PARTY",
+    "COSPONSOR_STATE",
+    "IS_ORIGINAL",
+    "IS_WITHDRAWN",
+    "SPONSORSHIP_DATE",
+    "SPONSORSHIP_WITHDRAWN_DATE"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "COSPONSOR_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [
+        "COSPONSOR_STATE"
+      ],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "BIOGUIDE",
+      "column": "COSPONSOR_BIOGUIDE",
+      "total_rows": 367735,
+      "nonnull_after_norm": 367735,
+      "distinct_after_norm": 635,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "CONGRESS": 119,
+      "BILL_TYPE": "HR",
+      "BILL_NUMBER": 8153,
+      "COSPONSOR_BIOGUIDE": "H001081",
+      "COSPONSOR_NAME": "Rep. Hayes, Jahana [D-CT-5]",
+      "COSPONSOR_PARTY": "D",
+      "COSPONSOR_STATE": "CT",
+      "IS_ORIGINAL": true,
+      "IS_WITHDRAWN": false,
+      "SPONSORSHIP_DATE": "2026-03-27",
+      "SPONSORSHIP_WITHDRAWN_DATE": null
+    },
+    {
+      "CONGRESS": 119,
+      "BILL_TYPE": "HR",
+      "BILL_NUMBER": 3514,
+      "COSPONSOR_BIOGUIDE": "L000599",
+      "COSPONSOR_NAME": "Rep. Lawler, Michael [R-NY-17]",
+      "COSPONSOR_PARTY": "R",
+      "COSPONSOR_STATE": "NY",
+      "IS_ORIGINAL": false,
+      "IS_WITHDRAWN": false,
+      "SPONSORSHIP_DATE": "2025-08-29",
+      "SPONSORSHIP_WITHDRAWN_DATE": null
+    },
+    {
+      "CONGRESS": 118,
+      "BILL_TYPE": "HCONRES",
+      "BILL_NUMBER": 113,
+      "COSPONSOR_BIOGUIDE": "S000250",
+      "COSPONSOR_NAME": "Rep. Sessions, Pete [R-TX-17]",
+      "COSPONSOR_PARTY": "R",
+      "COSPONSOR_STATE": "TX",
+      "IS_ORIGINAL": true,
+      "IS_WITHDRAWN": false,
+      "SPONSORSHIP_DATE": "2024-06-12",
+      "SPONSORSHIP_WITHDRAWN_DATE": null
+    },
+    {
+      "CONGRESS": 119,
+      "BILL_TYPE": "HR",
+      "BILL_NUMBER": 3174,
+      "COSPONSOR_BIOGUIDE": "W000829",
+      "COSPONSOR_NAME": "Rep. Wied, Tony [R-WI-8]",
+      "COSPONSOR_PARTY": "R",
+      "COSPONSOR_STATE": "WI",
+      "IS_ORIGINAL": false,
+      "IS_WITHDRAWN": false,
+      "SPONSORSHIP_DATE": "2025-07-17",
+      "SPONSORSHIP_WITHDRAWN_DATE": null
+    },
+    {
+      "CONGRESS": 118,
+      "BILL_TYPE": "HR",
+      "BILL_NUMBER": 3507,
+      "COSPONSOR_BIOGUIDE": "E000246",
+      "COSPONSOR_NAME": "Rep. Edwards, Chuck [R-NC-11]",
+      "COSPONSOR_PARTY": "R",
+      "COSPONSOR_STATE": "NC",
+      "IS_ORIGINAL": false,
+      "IS_WITHDRAWN": false,
+      "SPONSORSHIP_DATE": "2024-03-21",
+      "SPONSORSHIP_WITHDRAWN_DATE": null
+    }
+  ],
+  "sample_error": null
+}

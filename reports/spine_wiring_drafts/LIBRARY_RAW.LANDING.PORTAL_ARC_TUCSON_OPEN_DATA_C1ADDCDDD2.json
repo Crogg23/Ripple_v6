@@ -1,0 +1,128 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_ARC_TUCSON_OPEN_DATA_C1ADDCDDD2",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "OBJECTID",
+    "RES",
+    "DESCRIPTION",
+    "DOCKET_PAGE",
+    "R_W_AFFECTED",
+    "URL",
+    "DATASOURCE",
+    "STATUS",
+    "ACTION_STATUS",
+    "SHAPE__AREA",
+    "SHAPE__LENGTH",
+    "GEOMETRY",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "DOCKET",
+      "column": "DOCKET_PAGE",
+      "total_rows": 2000,
+      "nonnull_after_norm": 2000,
+      "distinct_after_norm": 699,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "OBJECTID": "1818",
+      "RES": "1996-047",
+      "DESCRIPTION": "nan",
+      "DOCKET_PAGE": "nan",
+      "R_W_AFFECTED": "nan",
+      "URL": "No recorded documents available",
+      "DATASOURCE": "RE_RES_POLY",
+      "STATUS": "nan",
+      "ACTION_STATUS": "nan",
+      "SHAPE__AREA": "nan",
+      "SHAPE__LENGTH": "nan",
+      "GEOMETRY": "nan",
+      "INGESTED_AT": "2026-06-24 04:58:02.088105",
+      "SOURCE_RUN_ID": "8543069e-3023-4be4-bcf9-317bddbedb78",
+      "SRC_SHA256": "d00ba17ad2f3c26f9c9d07efc4b07932a8b5b305e545e3180a44e9cbaf0aa0a9"
+    },
+    {
+      "OBJECTID": "1636",
+      "RES": "1981-074",
+      "DESCRIPTION": "TRE for landscaping",
+      "DOCKET_PAGE": "nan",
+      "R_W_AFFECTED": "-",
+      "URL": "https://maps2.tucsonaz.gov/RealEstatePDFs/TREs/1981-074.pdf",
+      "DATASOURCE": "RE_RES_POLY",
+      "STATUS": "nan",
+      "ACTION_STATUS": "TRE Inactive",
+      "SHAPE__AREA": "953.0368957519531",
+      "SHAPE__LENGTH": "193.7087881661569",
+      "GEOMETRY": "{\"type\": \"Polygon\", \"coordinates\": [[[-110.961400791586, 32.2360393678599], [-110.961399328479, 32.2360718070821], [-110.961226399487, 32.236071453846], [-110.961171914251, 32.2361273525847], [-110.961141836942, 32.236104219768], [-110.961215480958, 32.2360417842975], [-110.961400791586, 32.2360393678599]]]}",
+      "INGESTED_AT": "2026-06-24 04:58:02.088105",
+      "SOURCE_RUN_ID": "8543069e-3023-4be4-bcf9-317bddbedb78",
+      "SRC_SHA256": "d00ba17ad2f3c26f9c9d07efc4b07932a8b5b305e545e3180a44e9cbaf0aa0a9"
+    },
+    {
+      "OBJECTID": "1639",
+      "RES": "2011-016",
+      "DESCRIPTION": "TRE for Awning Sign Downtown",
+      "DOCKET_PAGE": "nan",
+      "R_W_AFFECTED": "Congress",
+      "URL": "https://maps2.tucsonaz.gov/RealEstatePDFs/TREs/2011-016.pdf",
+      "DATASOURCE": "RE_RES_POLY",
+      "STATUS": "nan",
+      "ACTION_STATUS": "TRE Active",
+      "SHAPE__AREA": "nan",
+      "SHAPE__LENGTH": "nan",
+      "GEOMETRY": "nan",
+      "INGESTED_AT": "2026-06-24 04:58:02.088105",
+      "SOURCE_RUN_ID": "8543069e-3023-4be4-bcf9-317bddbedb78",
+      "SRC_SHA256": "d00ba17ad2f3c26f9c9d07efc4b07932a8b5b305e545e3180a44e9cbaf0aa0a9"
+    },
+    {
+      "OBJECTID": "720",
+      "RES": "nan",
+      "DESCRIPTION": "nan",
+      "DOCKET_PAGE": "nan",
+      "R_W_AFFECTED": "nan",
+      "URL": "No recorded documents available",
+      "DATASOURCE": "RE_RES_POLY",
+      "STATUS": "nan",
+      "ACTION_STATUS": "nan",
+      "SHAPE__AREA": "nan",
+      "SHAPE__LENGTH": "nan",
+      "GEOMETRY": "nan",
+      "INGESTED_AT": "2026-06-24 04:58:02.088105",
+      "SOURCE_RUN_ID": "8543069e-3023-4be4-bcf9-317bddbedb78",
+      "SRC_SHA256": "d00ba17ad2f3c26f9c9d07efc4b07932a8b5b305e545e3180a44e9cbaf0aa0a9"
+    },
+    {
+      "OBJECTID": "781",
+      "RES": "2004-091",
+      "DESCRIPTION": "Sale of a portion of RP #1184, Simpson Street right of way and Alley",
+      "DOCKET_PAGE": "12625-4358",
+      "R_W_AFFECTED": "Simpson Street, RP #1184",
+      "URL": "https://maps2.tucsonaz.gov/RealEstatePDFs/TREs/2004-091.pdf",
+      "DATASOURCE": "RE_RES_POLY",
+      "STATUS": "nan",
+      "ACTION_STATUS": "TRE Active",
+      "SHAPE__AREA": "158.8978271484375",
+      "SHAPE__LENGTH": "70.29506908107619",
+      "GEOMETRY": "{\"type\": \"Polygon\", \"coordinates\": [[[-110.974916072191, 32.2157594195797], [-110.974914408539, 32.2157458644502], [-110.975006005344, 32.2157240606558], [-110.975010657753, 32.215739426371], [-110.974916072191, 32.2157594195797]]]}",
+      "INGESTED_AT": "2026-06-24 04:58:02.088105",
+      "SOURCE_RUN_ID": "8543069e-3023-4be4-bcf9-317bddbedb78",
+      "SRC_SHA256": "d00ba17ad2f3c26f9c9d07efc4b07932a8b5b305e545e3180a44e9cbaf0aa0a9"
+    }
+  ],
+  "sample_error": null
+}

@@ -1,0 +1,103 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.FED_USASPENDING_CONTRACTS_FULL_R2",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "CONTRACT_AWARD_UNIQUE_KEY",
+    "AWARD_ID_PIID",
+    "ACTION_DATE",
+    "PERIOD_OF_PERFORMANCE_START_DATE",
+    "PERIOD_OF_PERFORMANCE_CURRENT_END_DATE",
+    "FEDERAL_ACTION_OBLIGATION",
+    "TOTAL_DOLLARS_OBLIGATED",
+    "CURRENT_TOTAL_VALUE_OF_AWARD",
+    "AWARDING_AGENCY_NAME",
+    "AWARDING_SUB_AGENCY_NAME",
+    "FUNDING_AGENCY_NAME",
+    "RECIPIENT_UEI",
+    "RECIPIENT_DUNS",
+    "CAGE_CODE",
+    "RECIPIENT_NAME",
+    "RECIPIENT_DOING_BUSINESS_AS_NAME",
+    "RECIPIENT_PARENT_UEI",
+    "RECIPIENT_PARENT_NAME",
+    "RECIPIENT_CITY_NAME",
+    "RECIPIENT_STATE_CODE",
+    "RECIPIENT_ZIP_4_CODE",
+    "RECIPIENT_COUNTRY_NAME",
+    "PRIMARY_PLACE_OF_PERFORMANCE_STATE_CODE",
+    "PRIMARY_PLACE_OF_PERFORMANCE_CITY_NAME",
+    "AWARD_TYPE",
+    "NAICS_CODE",
+    "NAICS_DESCRIPTION",
+    "PRODUCT_OR_SERVICE_CODE_DESCRIPTION",
+    "TRANSACTION_DESCRIPTION",
+    "HIGHLY_COMPENSATED_OFFICER_1_NAME",
+    "HIGHLY_COMPENSATED_OFFICER_1_AMOUNT",
+    "HIGHLY_COMPENSATED_OFFICER_2_NAME",
+    "HIGHLY_COMPENSATED_OFFICER_2_AMOUNT",
+    "FOREIGN_OWNED",
+    "USASPENDING_PERMALINK",
+    "LAST_MODIFIED_DATE",
+    "_INGESTED_AT",
+    "_SOURCE_RUN_ID",
+    "_SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "AWARDING_AGENCY_NAME",
+      "AWARDING_SUB_AGENCY_NAME",
+      "FUNDING_AGENCY_NAME",
+      "RECIPIENT_NAME",
+      "RECIPIENT_DOING_BUSINESS_AS_NAME",
+      "RECIPIENT_PARENT_NAME",
+      "RECIPIENT_CITY_NAME",
+      "RECIPIENT_COUNTRY_NAME",
+      "PRIMARY_PLACE_OF_PERFORMANCE_CITY_NAME",
+      "HIGHLY_COMPENSATED_OFFICER_1_NAME",
+      "HIGHLY_COMPENSATED_OFFICER_2_NAME",
+      "LAST_MODIFIED_DATE"
+    ],
+    "address_candidates": {
+      "city": [
+        "RECIPIENT_CITY_NAME",
+        "PRIMARY_PLACE_OF_PERFORMANCE_CITY_NAME"
+      ],
+      "state": [
+        "RECIPIENT_STATE_CODE",
+        "PRIMARY_PLACE_OF_PERFORMANCE_STATE_CODE"
+      ],
+      "zip": [
+        "RECIPIENT_ZIP_4_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "DUNS",
+      "column": "RECIPIENT_DUNS",
+      "total_rows": 63729002,
+      "nonnull_after_norm": 57419884,
+      "distinct_after_norm": 507273,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    },
+    {
+      "key_label": "UEI",
+      "column": "RECIPIENT_UEI",
+      "total_rows": 63729002,
+      "nonnull_after_norm": 63727770,
+      "distinct_after_norm": 537328,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    },
+    {
+      "key_label": "UEI",
+      "column": "RECIPIENT_PARENT_UEI",
+      "total_rows": 63729002,
+      "nonnull_after_norm": 63679373,
+      "distinct_after_norm": 499643,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [],
+  "sample_error": "252005: Failed to convert current row, cause: year 56645473 is out of range"
+}

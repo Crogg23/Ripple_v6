@@ -1,0 +1,118 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_CKA_WESTERN_PENNSYLV_C0A2A6745A",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "PIN",
+    "BLOCK_LOT",
+    "FILING_DATE",
+    "CASE_ID",
+    "MUNICIPALITY",
+    "WARD",
+    "DOCKET_TYPE",
+    "AMOUNT",
+    "PLAINTIFF",
+    "LAST_ACTIVITY",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "LAST_ACTIVITY"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "DOCKET",
+      "column": "DOCKET_TYPE",
+      "total_rows": 10000,
+      "nonnull_after_norm": 10000,
+      "distinct_after_norm": 114,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "PIN": "0063H00144000000",
+      "BLOCK_LOT": "63H144",
+      "FILING_DATE": "2010-04-23",
+      "CASE_ID": "MG-10-001053",
+      "MUNICIPALITY": "Dormont Boro",
+      "WARD": "",
+      "DOCKET_TYPE": "Certificate-Recorder of Deeds",
+      "AMOUNT": "69396.43",
+      "PLAINTIFF": "Wells Fargo Bank N.A",
+      "LAST_ACTIVITY": "",
+      "INGESTED_AT": "2026-07-02 21:04:49.604195",
+      "SOURCE_RUN_ID": "203cdb4b-a2ab-4590-868b-8568e89940c7",
+      "SRC_SHA256": "fdcfd7066c2d17029dc45650f75e947bc1576f2260b456f01ecb00c4eecf41ff"
+    },
+    {
+      "PIN": "0457N00244000000",
+      "BLOCK_LOT": "457N244",
+      "FILING_DATE": "2010-04-05",
+      "CASE_ID": "GD-10-006903",
+      "MUNICIPALITY": "N. Versailles Twp.",
+      "WARD": "",
+      "DOCKET_TYPE": "Sheriff Return",
+      "AMOUNT": "37974.87",
+      "PLAINTIFF": "Bank of America N.A.",
+      "LAST_ACTIVITY": "",
+      "INGESTED_AT": "2026-07-02 21:04:49.604195",
+      "SOURCE_RUN_ID": "203cdb4b-a2ab-4590-868b-8568e89940c7",
+      "SRC_SHA256": "fdcfd7066c2d17029dc45650f75e947bc1576f2260b456f01ecb00c4eecf41ff"
+    },
+    {
+      "PIN": "0223N00072000000",
+      "BLOCK_LOT": "223N72",
+      "FILING_DATE": "2010-06-07",
+      "CASE_ID": "MG-10-001401",
+      "MUNICIPALITY": "O'Hara Township",
+      "WARD": "",
+      "DOCKET_TYPE": "Certificate-Recorder of Deeds",
+      "AMOUNT": "77267.52",
+      "PLAINTIFF": "HSBC Bank USA National Association",
+      "LAST_ACTIVITY": "",
+      "INGESTED_AT": "2026-07-02 21:04:49.604195",
+      "SOURCE_RUN_ID": "203cdb4b-a2ab-4590-868b-8568e89940c7",
+      "SRC_SHA256": "fdcfd7066c2d17029dc45650f75e947bc1576f2260b456f01ecb00c4eecf41ff"
+    },
+    {
+      "PIN": "0140M00174000000",
+      "BLOCK_LOT": "140M174",
+      "FILING_DATE": "2010-07-24",
+      "CASE_ID": "MG-10-001776",
+      "MUNICIPALITY": "Baldwin Township",
+      "WARD": "",
+      "DOCKET_TYPE": "Complaint",
+      "AMOUNT": "111989.87",
+      "PLAINTIFF": "Citimortgage Inc.",
+      "LAST_ACTIVITY": "",
+      "INGESTED_AT": "2026-07-02 21:04:49.604195",
+      "SOURCE_RUN_ID": "203cdb4b-a2ab-4590-868b-8568e89940c7",
+      "SRC_SHA256": "fdcfd7066c2d17029dc45650f75e947bc1576f2260b456f01ecb00c4eecf41ff"
+    },
+    {
+      "PIN": "0160E00269000000",
+      "BLOCK_LOT": "160E269",
+      "FILING_DATE": "2011-01-11",
+      "CASE_ID": "MG-11-000076",
+      "MUNICIPALITY": "Avalon Boro",
+      "WARD": "",
+      "DOCKET_TYPE": "Discontinued without Prejudice",
+      "AMOUNT": "107992.84",
+      "PLAINTIFF": "Citimortgage Inc.",
+      "LAST_ACTIVITY": "",
+      "INGESTED_AT": "2026-07-02 21:04:49.604195",
+      "SOURCE_RUN_ID": "203cdb4b-a2ab-4590-868b-8568e89940c7",
+      "SRC_SHA256": "fdcfd7066c2d17029dc45650f75e947bc1576f2260b456f01ecb00c4eecf41ff"
+    }
+  ],
+  "sample_error": null
+}

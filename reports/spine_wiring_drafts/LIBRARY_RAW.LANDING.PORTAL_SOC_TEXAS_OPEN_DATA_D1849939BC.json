@@ -1,0 +1,106 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_SOC_TEXAS_OPEN_DATA_D1849939BC",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "ORDER_NUMBER_STR",
+    "ORDER_TYPE",
+    "ORDER_SUB_TYPE",
+    "SIGNED_DATE",
+    "ORDER_NAME",
+    "DOCKET_NUMBER",
+    "STATUTE",
+    "FILE_URL",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "ORDER_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "DOCKET",
+      "column": "DOCKET_NUMBER",
+      "total_rows": 1572,
+      "nonnull_after_norm": 1572,
+      "distinct_after_norm": 1371,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "ORDER_NUMBER_STR": "10-0018",
+      "ORDER_TYPE": "COMMISSION ORDER",
+      "ORDER_SUB_TYPE": "AGREED ORDER-CIVIL PENALTY",
+      "SIGNED_DATE": "2009-10-02T00:00:00.000",
+      "ORDER_NAME": "MEMORANDUM OF AGREEMENT AND CONSENT ORDER IN THE MATTER OF GARY PAUL GARRISON",
+      "DOCKET_NUMBER": "2010-1",
+      "STATUTE": "\u00a7 2001.451(b), 2001.554(3)",
+      "FILE_URL": "{\"url\": \"https://www.texaslottery.com/export/sites/lottery/Documents/legal/orders/OTDdoc_16_10723828.pdf\"}",
+      "INGESTED_AT": "2026-06-24 05:07:19.549163",
+      "SOURCE_RUN_ID": "8b2794a4-0529-424c-9826-0b85f2f0fd64",
+      "SRC_SHA256": "feb64798b6054d49ff4330699102195b4159800719f21b011d952bcc5e1b6cda"
+    },
+    {
+      "ORDER_NUMBER_STR": "10-0035",
+      "ORDER_TYPE": "COMMISSION ORDER",
+      "ORDER_SUB_TYPE": "SOAH ORDER-REVOCATION PFD",
+      "SIGNED_DATE": "2010-01-06T00:00:00.000",
+      "ORDER_NAME": "MATAS MEAT MARKET & FOOD STORE, AGENT D/B/A MATAS MEAT MARKET & FOOD STORE",
+      "DOCKET_NUMBER": "362-10-0554",
+      "STATUTE": "TEX. GOVT. CODE ANN. \u00a7466.351",
+      "FILE_URL": "{\"url\": \"https://www.texaslottery.com/export/sites/lottery/Documents/legal/orders/OTDdoc_29_10723854.pdf\"}",
+      "INGESTED_AT": "2026-06-24 05:07:19.549163",
+      "SOURCE_RUN_ID": "8b2794a4-0529-424c-9826-0b85f2f0fd64",
+      "SRC_SHA256": "feb64798b6054d49ff4330699102195b4159800719f21b011d952bcc5e1b6cda"
+    },
+    {
+      "ORDER_NUMBER_STR": "14-0051",
+      "ORDER_TYPE": "COMMISSION ORDER",
+      "ORDER_SUB_TYPE": "SOAH ORDER-REVOCATION PFD",
+      "SIGNED_DATE": "2014-06-23T00:00:00.000",
+      "ORDER_NAME": "SAN FRANCISCO SUPER MERCADO, INC. D/B/A SUPER MERCADO SAN FRANCISO",
+      "DOCKET_NUMBER": "362-14-2821",
+      "STATUTE": "TEX. GOVT. CODE ANN. \u00a7466.351",
+      "FILE_URL": "{\"url\": \"https://www.texaslottery.com/export/sites/lottery/Documents/legal/orders/OTDdoc_1457_10777979.pdf\"}",
+      "INGESTED_AT": "2026-06-24 05:07:19.549163",
+      "SOURCE_RUN_ID": "8b2794a4-0529-424c-9826-0b85f2f0fd64",
+      "SRC_SHA256": "feb64798b6054d49ff4330699102195b4159800719f21b011d952bcc5e1b6cda"
+    },
+    {
+      "ORDER_NUMBER_STR": "13-0010",
+      "ORDER_TYPE": "COMMISSION ORDER",
+      "ORDER_SUB_TYPE": "SOAH ORDER-REVOCATION PFD",
+      "SIGNED_DATE": "2012-11-08T00:00:00.000",
+      "ORDER_NAME": "SAKKAR INVESTMENT, INC. D/B/A DIAMOND FOOD MART #6",
+      "DOCKET_NUMBER": "362-12-7868",
+      "STATUTE": "TEX. GOVT. CODE ANN. \u00a7466.351",
+      "FILE_URL": "{\"url\": \"https://www.texaslottery.com/export/sites/lottery/Documents/legal/orders/OTDdoc_1055_10781785.pdf\"}",
+      "INGESTED_AT": "2026-06-24 05:07:19.549163",
+      "SOURCE_RUN_ID": "8b2794a4-0529-424c-9826-0b85f2f0fd64",
+      "SRC_SHA256": "feb64798b6054d49ff4330699102195b4159800719f21b011d952bcc5e1b6cda"
+    },
+    {
+      "ORDER_NUMBER_STR": "12-0060",
+      "ORDER_TYPE": "COMMISSION ORDER",
+      "ORDER_SUB_TYPE": "SOAH ORDER-REVOCATION PFD",
+      "SIGNED_DATE": "2012-06-07T00:00:00.000",
+      "ORDER_NAME": "THE REVOCATION OF CERTAIN LOTTERY RETAILER LICENSES",
+      "DOCKET_NUMBER": "362-12-4815 et al.",
+      "STATUTE": "TEX. GOVT. CODE ANN. \u00a7466.351",
+      "FILE_URL": "{\"url\": \"https://www.texaslottery.com/export/sites/lottery/Documents/legal/orders/OTDdoc_945_10779687.pdf\"}",
+      "INGESTED_AT": "2026-06-24 05:07:19.549163",
+      "SOURCE_RUN_ID": "8b2794a4-0529-424c-9826-0b85f2f0fd64",
+      "SRC_SHA256": "feb64798b6054d49ff4330699102195b4159800719f21b011d952bcc5e1b6cda"
+    }
+  ],
+  "sample_error": null
+}

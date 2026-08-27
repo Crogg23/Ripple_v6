@@ -1,0 +1,149 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_ARC_LA_COUNTY_OPEN_D_5AB83C24A0",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "SCC",
+    "BUSINESS_NAME",
+    "CENTER_NAME",
+    "ADDRESS_LINE_1",
+    "ADDRESS_LINE_2",
+    "CITY",
+    "STATE",
+    "ZIP_CODE",
+    "PHONE",
+    "NPI",
+    "SCC_TYPE",
+    "FAMILY_FRIENDLY_SCC_TYPE",
+    "FID",
+    "GEOMETRY",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "BUSINESS_NAME",
+      "CENTER_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "STATE"
+      ],
+      "zip": [
+        "ZIP_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPI",
+      "column": "NPI",
+      "total_rows": 225,
+      "nonnull_after_norm": 0,
+      "distinct_after_norm": 0,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "SCC": "7.38.61",
+      "BUSINESS_NAME": "Kaiser Foundation Hospital",
+      "CENTER_NAME": "Kaiser Permanente Downey Medical Center",
+      "ADDRESS_LINE_1": "9333 Imperial Highway",
+      "ADDRESS_LINE_2": "nan",
+      "CITY": "Downey",
+      "STATE": "CA",
+      "ZIP_CODE": "90242-2812",
+      "PHONE": "(562) 657-9000",
+      "NPI": "1518012301.0",
+      "SCC_TYPE": "HRIF - Community",
+      "FAMILY_FRIENDLY_SCC_TYPE": "NICU and HRIF Center",
+      "FID": "82",
+      "GEOMETRY": "{\"type\": \"Point\", \"coordinates\": [-118.129048965202, 33.9171132773252]}",
+      "INGESTED_AT": "2026-06-24 04:32:52.327203",
+      "SOURCE_RUN_ID": "034f36b9-3f42-4ac3-8232-7c990bdd81f1",
+      "SRC_SHA256": "9d5933c5eda63166b20c33a119e155c24b6082cacd7a46779223fff3d8c2afd3"
+    },
+    {
+      "SCC": "7.35.107",
+      "BUSINESS_NAME": "Kaiser Fndtn-Baldwin Prk",
+      "CENTER_NAME": "Kaiser Permanente Baldwin Park Medical Center",
+      "ADDRESS_LINE_1": "1011 Baldwin Park Boulevard",
+      "ADDRESS_LINE_2": "nan",
+      "CITY": "Baldwin Park",
+      "STATE": "CA",
+      "ZIP_CODE": "91706-5806",
+      "PHONE": "(626) 851-1011",
+      "NPI": "1477608271.0",
+      "SCC_TYPE": "Communication Disorders Center Type C",
+      "FAMILY_FRIENDLY_SCC_TYPE": "Hearing Center (all ages)",
+      "FID": "51",
+      "GEOMETRY": "{\"type\": \"Point\", \"coordinates\": [-117.985896029571, 34.0653814408355]}",
+      "INGESTED_AT": "2026-06-24 04:32:52.327203",
+      "SOURCE_RUN_ID": "034f36b9-3f42-4ac3-8232-7c990bdd81f1",
+      "SRC_SHA256": "9d5933c5eda63166b20c33a119e155c24b6082cacd7a46779223fff3d8c2afd3"
+    },
+    {
+      "SCC": "7.17.09",
+      "BUSINESS_NAME": "Ronald Reagan UCLA Med",
+      "CENTER_NAME": "UCLA Mattel Children's Hospital At Ronald Reagan",
+      "ADDRESS_LINE_1": "757 Westwood Plaza",
+      "ADDRESS_LINE_2": "nan",
+      "CITY": "Los Angeles",
+      "STATE": "CA",
+      "ZIP_CODE": "90095-8358",
+      "PHONE": "(310) 825-8021",
+      "NPI": "1902803315.0",
+      "SCC_TYPE": "Sickle Cell Center",
+      "FAMILY_FRIENDLY_SCC_TYPE": "nan",
+      "FID": "167",
+      "GEOMETRY": "{\"type\": \"Point\", \"coordinates\": [-118.445949629665, 34.0661997301396]}",
+      "INGESTED_AT": "2026-06-24 04:32:52.327203",
+      "SOURCE_RUN_ID": "034f36b9-3f42-4ac3-8232-7c990bdd81f1",
+      "SRC_SHA256": "9d5933c5eda63166b20c33a119e155c24b6082cacd7a46779223fff3d8c2afd3"
+    },
+    {
+      "SCC": "7.25.27",
+      "BUSINESS_NAME": "Kaiser Foundation Hospit",
+      "CENTER_NAME": "Kaiser Permanente Los Angeles Medical Center",
+      "ADDRESS_LINE_1": "4867 W Sunset Boulevard",
+      "ADDRESS_LINE_2": "nan",
+      "CITY": "Los Angeles",
+      "STATE": "CA",
+      "ZIP_CODE": "90027-5969",
+      "PHONE": "(323) 783-7897",
+      "NPI": "1821143777.0",
+      "SCC_TYPE": "Pediatric Intensive Care Unit",
+      "FAMILY_FRIENDLY_SCC_TYPE": "Prosthetics/Orthotics Center",
+      "FID": "135",
+      "GEOMETRY": "{\"type\": \"Point\", \"coordinates\": [-118.295656603881, 34.0983262936087]}",
+      "INGESTED_AT": "2026-06-24 04:32:52.327203",
+      "SOURCE_RUN_ID": "034f36b9-3f42-4ac3-8232-7c990bdd81f1",
+      "SRC_SHA256": "9d5933c5eda63166b20c33a119e155c24b6082cacd7a46779223fff3d8c2afd3"
+    },
+    {
+      "SCC": "7.16.24",
+      "BUSINESS_NAME": "Harbor-UCLA Medical Ctr",
+      "CENTER_NAME": "Harbor-UCLA Medical Center",
+      "ADDRESS_LINE_1": "1000 W Carson Street",
+      "ADDRESS_LINE_2": "nan",
+      "CITY": "Torrance",
+      "STATE": "CA",
+      "ZIP_CODE": "90502-2004",
+      "PHONE": "(310) 222-2345",
+      "NPI": "1811919558.0",
+      "SCC_TYPE": "Hematology/Oncology Center",
+      "FAMILY_FRIENDLY_SCC_TYPE": "Hematology/Oncology Center",
+      "FID": "70",
+      "GEOMETRY": "{\"type\": \"Point\", \"coordinates\": [-118.292409588489, 33.8313629406993]}",
+      "INGESTED_AT": "2026-06-24 04:32:52.327203",
+      "SOURCE_RUN_ID": "034f36b9-3f42-4ac3-8232-7c990bdd81f1",
+      "SRC_SHA256": "9d5933c5eda63166b20c33a119e155c24b6082cacd7a46779223fff3d8c2afd3"
+    }
+  ],
+  "sample_error": null
+}

@@ -1,0 +1,144 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_SOC_TEXAS_OPEN_DATA_B4FDC1DC58",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "CCN_NO",
+    "UTILITY_NAME",
+    "UTILITY_TYPE",
+    "OFFICAL_ADDRESS_1",
+    "CITY",
+    "STATE",
+    "ZIP_CODE",
+    "RP_ORGANIZATION",
+    "BUSINESS_PHONE",
+    "PRIMARY_COUNTY",
+    "ALL_COUNTIES",
+    "RP_INDIVIDUAL",
+    "EMAIL",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "UTILITY_NAME",
+      "RP_ORGANIZATION",
+      "BUSINESS_PHONE"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "STATE"
+      ],
+      "zip": [
+        "ZIP_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CCN",
+      "column": "CCN_NO",
+      "total_rows": 2000,
+      "nonnull_after_norm": 1,
+      "distinct_after_norm": 1,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "CCN_NO": "S10283",
+      "UTILITY_NAME": "LUXE AT CEDAR HILL APARTMENTS",
+      "UTILITY_TYPE": "SUBMETER",
+      "OFFICAL_ADDRESS_1": "1240 E PLEASANT RUN RD",
+      "CITY": "CEDAR HILL",
+      "STATE": "TX",
+      "ZIP_CODE": "75104",
+      "RP_ORGANIZATION": "WELL 1031 HOLDCO I LLC",
+      "BUSINESS_PHONE": "9729455893",
+      "PRIMARY_COUNTY": "DALLAS",
+      "ALL_COUNTIES": "DALLAS",
+      "RP_INDIVIDUAL": "nan",
+      "EMAIL": "LEGAL@CONSERVICE.COM",
+      "INGESTED_AT": "2026-06-24 04:41:29.363755",
+      "SOURCE_RUN_ID": "7ec2e7c1-3bed-44de-a45e-3919e68b3734",
+      "SRC_SHA256": "af80b2f68235b67b8c547fa8892ba8b0715435c5e93909069920c947697a8396"
+    },
+    {
+      "CCN_NO": "S0278",
+      "UTILITY_NAME": "RANDOL MILL TERRACE APARTMENTS",
+      "UTILITY_TYPE": "ALLOCATION",
+      "OFFICAL_ADDRESS_1": "1300 ALEXIS AVE",
+      "CITY": "FORT WORTH",
+      "STATE": "TX",
+      "ZIP_CODE": "76120",
+      "RP_ORGANIZATION": "CAMDEN PLAZA DEVELOPMENT LP",
+      "BUSINESS_PHONE": "7139643555",
+      "PRIMARY_COUNTY": "TARRANT",
+      "ALL_COUNTIES": "TARRANT",
+      "RP_INDIVIDUAL": "nan",
+      "EMAIL": "nan",
+      "INGESTED_AT": "2026-06-24 04:41:29.363755",
+      "SOURCE_RUN_ID": "7ec2e7c1-3bed-44de-a45e-3919e68b3734",
+      "SRC_SHA256": "af80b2f68235b67b8c547fa8892ba8b0715435c5e93909069920c947697a8396"
+    },
+    {
+      "CCN_NO": "S0057",
+      "UTILITY_NAME": "GODLEY MHP",
+      "UTILITY_TYPE": "SUBMETER",
+      "OFFICAL_ADDRESS_1": "3430 POOL ROAD",
+      "CITY": "GRAPEVINE",
+      "STATE": "TX",
+      "ZIP_CODE": "76051",
+      "RP_ORGANIZATION": "nan",
+      "BUSINESS_PHONE": "8174814969",
+      "PRIMARY_COUNTY": "TARRANT",
+      "ALL_COUNTIES": "TARRANT",
+      "RP_INDIVIDUAL": "R A WASCHKA",
+      "EMAIL": "nan",
+      "INGESTED_AT": "2026-06-24 04:41:29.363755",
+      "SOURCE_RUN_ID": "7ec2e7c1-3bed-44de-a45e-3919e68b3734",
+      "SRC_SHA256": "af80b2f68235b67b8c547fa8892ba8b0715435c5e93909069920c947697a8396"
+    },
+    {
+      "CCN_NO": "S10754",
+      "UTILITY_NAME": "CHALET APARTMENTS",
+      "UTILITY_TYPE": "ALLOCATION",
+      "OFFICAL_ADDRESS_1": "963 FRENCH ST",
+      "CITY": "IRVING",
+      "STATE": "TX",
+      "ZIP_CODE": "75061",
+      "RP_ORGANIZATION": "FRENCH ST LLC",
+      "BUSINESS_PHONE": "4695864924",
+      "PRIMARY_COUNTY": "DALLAS",
+      "ALL_COUNTIES": "DALLAS",
+      "RP_INDIVIDUAL": "nan",
+      "EMAIL": "THECHALETLLC@GMAIL.COM",
+      "INGESTED_AT": "2026-06-24 04:41:29.363755",
+      "SOURCE_RUN_ID": "7ec2e7c1-3bed-44de-a45e-3919e68b3734",
+      "SRC_SHA256": "af80b2f68235b67b8c547fa8892ba8b0715435c5e93909069920c947697a8396"
+    },
+    {
+      "CCN_NO": "S0497",
+      "UTILITY_NAME": "THE TIMBERS APARTMENTS",
+      "UTILITY_TYPE": "ALLOCATION",
+      "OFFICAL_ADDRESS_1": "3565 TIMBERGLEN RD",
+      "CITY": "DALLAS",
+      "STATE": "TX",
+      "ZIP_CODE": "75287",
+      "RP_ORGANIZATION": "THE TIMBERS EQUITY FUND LLC",
+      "BUSINESS_PHONE": "9723060730",
+      "PRIMARY_COUNTY": "DENTON",
+      "ALL_COUNTIES": "DALLAS, DENTON",
+      "RP_INDIVIDUAL": "nan",
+      "EMAIL": "TIMBERSMANAGER@UAGINC.COM",
+      "INGESTED_AT": "2026-06-24 04:41:29.363755",
+      "SOURCE_RUN_ID": "7ec2e7c1-3bed-44de-a45e-3919e68b3734",
+      "SRC_SHA256": "af80b2f68235b67b8c547fa8892ba8b0715435c5e93909069920c947697a8396"
+    }
+  ],
+  "sample_error": null
+}

@@ -1,0 +1,155 @@
+{
+  "fqtn": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "RNDRNG_PRVDR_CCN",
+    "RNDRNG_PRVDR_ORG_NAME",
+    "RNDRNG_PRVDR_ST",
+    "RNDRNG_PRVDR_CITY",
+    "RNDRNG_PRVDR_STATE_ABRVTN",
+    "RNDRNG_PRVDR_STATE_FIPS",
+    "RNDRNG_PRVDR_ZIP5",
+    "RNDRNG_PRVDR_RUCA",
+    "RNDRNG_PRVDR_RUCA_DESC",
+    "APC_CD",
+    "APC_DESC",
+    "BENE_CNT",
+    "CAPC_SRVCS",
+    "AVG_TOT_SBMTD_CHRGS",
+    "AVG_MDCR_ALOWD_AMT",
+    "AVG_MDCR_PYMT_AMT",
+    "OUTLIER_SRVCS",
+    "AVG_MDCR_OUTLIER_AMT"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "RNDRNG_PRVDR_ORG_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "RNDRNG_PRVDR_CITY"
+      ],
+      "state": [
+        "RNDRNG_PRVDR_STATE_ABRVTN",
+        "RNDRNG_PRVDR_STATE_FIPS"
+      ],
+      "zip": [
+        "RNDRNG_PRVDR_ZIP5"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CCN",
+      "column": "RNDRNG_PRVDR_CCN",
+      "total_rows": 116182,
+      "nonnull_after_norm": 116182,
+      "distinct_after_norm": 3126,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "RNDRNG_PRVDR_CCN": "340183",
+      "RNDRNG_PRVDR_ORG_NAME": "Novant Health Huntersville Medical Center",
+      "RNDRNG_PRVDR_ST": "10030 Gilead Road",
+      "RNDRNG_PRVDR_CITY": "Huntersville",
+      "RNDRNG_PRVDR_STATE_ABRVTN": "NC",
+      "RNDRNG_PRVDR_STATE_FIPS": "37",
+      "RNDRNG_PRVDR_ZIP5": "28078",
+      "RNDRNG_PRVDR_RUCA": "1",
+      "RNDRNG_PRVDR_RUCA_DESC": "Metropolitan area core: primary flow within an urbanized area of 50,000 and greater",
+      "APC_CD": "5184",
+      "APC_DESC": "Level 4 Vascular Procedures",
+      "BENE_CNT": null,
+      "CAPC_SRVCS": null,
+      "AVG_TOT_SBMTD_CHRGS": null,
+      "AVG_MDCR_ALOWD_AMT": null,
+      "AVG_MDCR_PYMT_AMT": null,
+      "OUTLIER_SRVCS": null,
+      "AVG_MDCR_OUTLIER_AMT": null
+    },
+    {
+      "RNDRNG_PRVDR_CCN": "170020",
+      "RNDRNG_PRVDR_ORG_NAME": "Hutchinson Regional Medical Center Inc",
+      "RNDRNG_PRVDR_ST": "1701 E 23rd Avenue",
+      "RNDRNG_PRVDR_CITY": "Hutchinson",
+      "RNDRNG_PRVDR_STATE_ABRVTN": "KS",
+      "RNDRNG_PRVDR_STATE_FIPS": "20",
+      "RNDRNG_PRVDR_ZIP5": "67502",
+      "RNDRNG_PRVDR_RUCA": "4",
+      "RNDRNG_PRVDR_RUCA_DESC": "Micropolitan area core: primary flow within an urban cluster of 10,000 to 49,999",
+      "APC_CD": "5182",
+      "APC_DESC": "Level 2 Vascular Procedures",
+      "BENE_CNT": 28,
+      "CAPC_SRVCS": "29",
+      "AVG_TOT_SBMTD_CHRGS": "15537.3786206896",
+      "AVG_MDCR_ALOWD_AMT": 1312.8724137931,
+      "AVG_MDCR_PYMT_AMT": 1046.03068965517,
+      "OUTLIER_SRVCS": null,
+      "AVG_MDCR_OUTLIER_AMT": null
+    },
+    {
+      "RNDRNG_PRVDR_CCN": "440046",
+      "RNDRNG_PRVDR_ORG_NAME": "Tristar Horizon Medical Center",
+      "RNDRNG_PRVDR_ST": "111 Highway 70 East",
+      "RNDRNG_PRVDR_CITY": "Dickson",
+      "RNDRNG_PRVDR_STATE_ABRVTN": "TN",
+      "RNDRNG_PRVDR_STATE_FIPS": "47",
+      "RNDRNG_PRVDR_ZIP5": "37055",
+      "RNDRNG_PRVDR_RUCA": "4",
+      "RNDRNG_PRVDR_RUCA_DESC": "Micropolitan area core: primary flow within an urban cluster of 10,000 to 49,999",
+      "APC_CD": "5183",
+      "APC_DESC": "Level 3 Vascular Procedures",
+      "BENE_CNT": 23,
+      "CAPC_SRVCS": "23",
+      "AVG_TOT_SBMTD_CHRGS": "24691.9260869565",
+      "AVG_MDCR_ALOWD_AMT": 2659.56391304347,
+      "AVG_MDCR_PYMT_AMT": 2084.69826086956,
+      "OUTLIER_SRVCS": "0",
+      "AVG_MDCR_OUTLIER_AMT": 0.0
+    },
+    {
+      "RNDRNG_PRVDR_CCN": "390327",
+      "RNDRNG_PRVDR_ORG_NAME": "Wellspan Surgery And Rehabilitation Hospital",
+      "RNDRNG_PRVDR_ST": "55 Monument Road",
+      "RNDRNG_PRVDR_CITY": "York",
+      "RNDRNG_PRVDR_STATE_ABRVTN": "PA",
+      "RNDRNG_PRVDR_STATE_FIPS": "42",
+      "RNDRNG_PRVDR_ZIP5": "17403",
+      "RNDRNG_PRVDR_RUCA": "1",
+      "RNDRNG_PRVDR_RUCA_DESC": "Metropolitan area core: primary flow within an urbanized area of 50,000 and greater",
+      "APC_CD": "5471",
+      "APC_DESC": "Implantation of Drug Infusion Device",
+      "BENE_CNT": null,
+      "CAPC_SRVCS": null,
+      "AVG_TOT_SBMTD_CHRGS": null,
+      "AVG_MDCR_ALOWD_AMT": null,
+      "AVG_MDCR_PYMT_AMT": null,
+      "OUTLIER_SRVCS": null,
+      "AVG_MDCR_OUTLIER_AMT": null
+    },
+    {
+      "RNDRNG_PRVDR_CCN": "340075",
+      "RNDRNG_PRVDR_ORG_NAME": "Carolinas Healthcare System-Blue Ridge",
+      "RNDRNG_PRVDR_ST": "2201 S Sterling St",
+      "RNDRNG_PRVDR_CITY": "Morganton",
+      "RNDRNG_PRVDR_STATE_ABRVTN": "NC",
+      "RNDRNG_PRVDR_STATE_FIPS": "37",
+      "RNDRNG_PRVDR_ZIP5": "28655",
+      "RNDRNG_PRVDR_RUCA": "1",
+      "RNDRNG_PRVDR_RUCA_DESC": "Metropolitan area core: primary flow within an urbanized area of 50,000 and greater",
+      "APC_CD": "5431",
+      "APC_DESC": "Level 1 Nerve Procedures",
+      "BENE_CNT": 75,
+      "CAPC_SRVCS": "84",
+      "AVG_TOT_SBMTD_CHRGS": "23619.4117857143",
+      "AVG_MDCR_ALOWD_AMT": 1654.36559523809,
+      "AVG_MDCR_PYMT_AMT": 1309.21761904762,
+      "OUTLIER_SRVCS": "0",
+      "AVG_MDCR_OUTLIER_AMT": 0.0
+    }
+  ],
+  "sample_error": null
+}

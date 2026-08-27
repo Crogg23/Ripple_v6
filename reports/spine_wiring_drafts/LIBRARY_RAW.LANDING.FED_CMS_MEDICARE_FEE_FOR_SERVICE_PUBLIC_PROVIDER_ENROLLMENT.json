@@ -1,0 +1,125 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NPI",
+    "MULTIPLE_NPI_FLAG",
+    "PECOS_ASCT_CNTL_ID",
+    "ENRLMT_ID",
+    "PROVIDER_TYPE_CD",
+    "PROVIDER_TYPE_DESC",
+    "STATE_CD",
+    "FIRST_NAME",
+    "MDL_NAME",
+    "LAST_NAME",
+    "ORG_NAME",
+    "_INGESTED_AT",
+    "_SOURCE_RUN_ID"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "PROVIDER_TYPE_CD",
+      "PROVIDER_TYPE_DESC",
+      "FIRST_NAME",
+      "MDL_NAME",
+      "LAST_NAME",
+      "ORG_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [
+        "STATE_CD"
+      ],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPI",
+      "column": "MULTIPLE_NPI_FLAG",
+      "total_rows": 2978925,
+      "nonnull_after_norm": 0,
+      "distinct_after_norm": 0,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "NPI": "1881566792",
+      "MULTIPLE_NPI_FLAG": "N",
+      "PECOS_ASCT_CNTL_ID": "8729557210",
+      "ENRLMT_ID": "O20260513004253",
+      "PROVIDER_TYPE_CD": "12-70",
+      "PROVIDER_TYPE_DESC": "PART B SUPPLIER - CLINIC/GROUP PRACTICE",
+      "STATE_CD": "NE",
+      "FIRST_NAME": null,
+      "MDL_NAME": null,
+      "LAST_NAME": null,
+      "ORG_NAME": "A LIGHT IN THE DARKNESS COUNSELING LLC",
+      "_INGESTED_AT": "2026-08-05 15:04:48.150000",
+      "_SOURCE_RUN_ID": "2796d913-1afb-4476-a598-11ac2d156627"
+    },
+    {
+      "NPI": "1366054116",
+      "MULTIPLE_NPI_FLAG": "N",
+      "PECOS_ASCT_CNTL_ID": "4981018645",
+      "ENRLMT_ID": "I20211101000176",
+      "PROVIDER_TYPE_CD": "14-97",
+      "PROVIDER_TYPE_DESC": "PRACTITIONER - PHYSICIAN ASSISTANT",
+      "STATE_CD": "WI",
+      "FIRST_NAME": "STEPHANIE",
+      "MDL_NAME": "N",
+      "LAST_NAME": "BLAHA",
+      "ORG_NAME": null,
+      "_INGESTED_AT": "2026-08-05 15:04:48.150000",
+      "_SOURCE_RUN_ID": "566c1800-7a82-4d48-b93f-8007ed197f17"
+    },
+    {
+      "NPI": "1053791962",
+      "MULTIPLE_NPI_FLAG": "N",
+      "PECOS_ASCT_CNTL_ID": "4789126178",
+      "ENRLMT_ID": "I20260227000267",
+      "PROVIDER_TYPE_CD": "14-11",
+      "PROVIDER_TYPE_DESC": "PRACTITIONER - INTERNAL MEDICINE",
+      "STATE_CD": "CA",
+      "FIRST_NAME": "ERIK",
+      "MDL_NAME": "C",
+      "LAST_NAME": "BAKKEN",
+      "ORG_NAME": null,
+      "_INGESTED_AT": "2026-08-05 15:04:48.150000",
+      "_SOURCE_RUN_ID": "ada3e736-db3e-4495-af04-4c9d979036c1"
+    },
+    {
+      "NPI": "1790830628",
+      "MULTIPLE_NPI_FLAG": "N",
+      "PECOS_ASCT_CNTL_ID": "8729145370",
+      "ENRLMT_ID": "I20090325000668",
+      "PROVIDER_TYPE_CD": "14-11",
+      "PROVIDER_TYPE_DESC": "PRACTITIONER - INTERNAL MEDICINE",
+      "STATE_CD": "CA",
+      "FIRST_NAME": "JATIN",
+      "MDL_NAME": "K",
+      "LAST_NAME": "SHAH",
+      "ORG_NAME": null,
+      "_INGESTED_AT": "2026-08-05 15:04:48.150000",
+      "_SOURCE_RUN_ID": "d25afbd7-c1e6-4799-99da-72ec8addd020"
+    },
+    {
+      "NPI": "1124245188",
+      "MULTIPLE_NPI_FLAG": "N",
+      "PECOS_ASCT_CNTL_ID": "7618297383",
+      "ENRLMT_ID": "I20150520000889",
+      "PROVIDER_TYPE_CD": "33-19",
+      "PROVIDER_TYPE_DESC": "ORDER AND REFERRING ONLY - ORAL SURGERY",
+      "STATE_CD": "PA",
+      "FIRST_NAME": "ABBE",
+      "MDL_NAME": "A",
+      "LAST_NAME": "ORLANSKY",
+      "ORG_NAME": null,
+      "_INGESTED_AT": "2026-08-05 15:04:48.150000",
+      "_SOURCE_RUN_ID": "90457e7e-4316-4ad7-a183-a12c2e415996"
+    }
+  ],
+  "sample_error": null
+}

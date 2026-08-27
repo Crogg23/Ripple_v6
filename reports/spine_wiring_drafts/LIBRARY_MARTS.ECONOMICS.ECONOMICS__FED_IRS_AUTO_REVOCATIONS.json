@@ -1,0 +1,121 @@
+{
+  "fqtn": "LIBRARY_MARTS.ECONOMICS.ECONOMICS__FED_IRS_AUTO_REVOCATIONS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "EIN",
+    "LEGAL_NAME",
+    "DOING_BUSINESS_AS",
+    "ORGANIZATION_ADDRESS",
+    "CITY",
+    "STATE",
+    "ZIP_CODE",
+    "COUNTRY",
+    "EXEMPTION_TYPE",
+    "REVOCATION_DATE",
+    "REVOCATION_POSTING_DATE",
+    "REINSTATEMENT_DATE"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "LEGAL_NAME",
+      "DOING_BUSINESS_AS",
+      "ORGANIZATION_ADDRESS"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "STATE",
+        "REINSTATEMENT_DATE"
+      ],
+      "zip": [
+        "ZIP_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "EIN",
+      "column": "EIN",
+      "total_rows": 1207295,
+      "nonnull_after_norm": 1207294,
+      "distinct_after_norm": 1187975,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "EIN": "474046680",
+      "LEGAL_NAME": "PLAYING TO HEAL ",
+      "DOING_BUSINESS_AS": "PLAY TO HEAL",
+      "ORGANIZATION_ADDRESS": "10204 E CLINTON ST",
+      "CITY": "SCOTTSDALE",
+      "STATE": "AZ",
+      "ZIP_CODE": "85260-6343",
+      "COUNTRY": "US",
+      "EXEMPTION_TYPE": "04",
+      "REVOCATION_DATE": "2018-05-15",
+      "REVOCATION_POSTING_DATE": "2018-08-13",
+      "REINSTATEMENT_DATE": null
+    },
+    {
+      "EIN": "161575625",
+      "LEGAL_NAME": "HISERT FAMILY PARK CORPORATION",
+      "DOING_BUSINESS_AS": null,
+      "ORGANIZATION_ADDRESS": "237A EAKER RD",
+      "CITY": "FORT PLAIN",
+      "STATE": "NY",
+      "ZIP_CODE": "13339-2525",
+      "COUNTRY": "US",
+      "EXEMPTION_TYPE": "07",
+      "REVOCATION_DATE": "2011-05-15",
+      "REVOCATION_POSTING_DATE": "2012-02-22",
+      "REINSTATEMENT_DATE": "2012-05-15"
+    },
+    {
+      "EIN": "470945284",
+      "LEGAL_NAME": "HOLBROOK YOUTH BASKETBALL LEAGUE ",
+      "DOING_BUSINESS_AS": null,
+      "ORGANIZATION_ADDRESS": "209 DESERT VIEW DR",
+      "CITY": "HOLBROOK",
+      "STATE": "AZ",
+      "ZIP_CODE": "86025-2014",
+      "COUNTRY": "US",
+      "EXEMPTION_TYPE": "03",
+      "REVOCATION_DATE": "2022-05-15",
+      "REVOCATION_POSTING_DATE": "2022-08-08",
+      "REINSTATEMENT_DATE": null
+    },
+    {
+      "EIN": "270818476",
+      "LEGAL_NAME": "MOTORCOPS FOR KIDS ",
+      "DOING_BUSINESS_AS": null,
+      "ORGANIZATION_ADDRESS": "1525 ARKANSAS LN",
+      "CITY": "GRAND PRAIRIE",
+      "STATE": "TX",
+      "ZIP_CODE": "75052-7401",
+      "COUNTRY": "US",
+      "EXEMPTION_TYPE": "03",
+      "REVOCATION_DATE": "2022-05-15",
+      "REVOCATION_POSTING_DATE": "2022-08-08",
+      "REINSTATEMENT_DATE": null
+    },
+    {
+      "EIN": "200419095",
+      "LEGAL_NAME": "ECUMENICAL INSTITUTE FOR MINISTRY",
+      "DOING_BUSINESS_AS": null,
+      "ORGANIZATION_ADDRESS": "4000 SAINT JOSEPHS PL NW",
+      "CITY": "ALBUQUERQUE",
+      "STATE": "NM",
+      "ZIP_CODE": "87120-1714",
+      "COUNTRY": "US",
+      "EXEMPTION_TYPE": "03",
+      "REVOCATION_DATE": "2011-05-15",
+      "REVOCATION_POSTING_DATE": "2012-02-22",
+      "REINSTATEMENT_DATE": "2011-05-15"
+    }
+  ],
+  "sample_error": null
+}

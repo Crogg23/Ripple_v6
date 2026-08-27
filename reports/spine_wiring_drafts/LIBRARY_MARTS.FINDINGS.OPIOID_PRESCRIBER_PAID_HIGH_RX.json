@@ -1,0 +1,153 @@
+{
+  "fqtn": "LIBRARY_MARTS.FINDINGS.OPIOID_PRESCRIBER_PAID_HIGH_RX",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NPI",
+    "LAST_NAME",
+    "FIRST_NAME",
+    "SPECIALTY",
+    "STATE",
+    "ZIP5",
+    "OPIOID_RATE",
+    "OPIOID_CLAIMS",
+    "TOTAL_CLAIMS",
+    "RATE_PCTILE_IN_SPECIALTY",
+    "OPIOID_PAY_USD",
+    "OPIOID_PAY_COUNT",
+    "DISTINCT_OPIOID_PAYERS",
+    "COUNTY_FIPS_2015",
+    "OVERDOSE_BAND_2015",
+    "OVERDOSE_BAND_LO_2015",
+    "IN_HIGH_OVERDOSE_COUNTY_2015",
+    "REVIEW_TIER"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "LAST_NAME",
+      "FIRST_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [
+        "STATE"
+      ],
+      "zip": [
+        "ZIP5"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPI",
+      "column": "NPI",
+      "total_rows": 6020,
+      "nonnull_after_norm": 6020,
+      "distinct_after_norm": 6020,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "NPI": "1881685444",
+      "LAST_NAME": "Richardson",
+      "FIRST_NAME": "Ty",
+      "SPECIALTY": "Orthopedic Surgery",
+      "STATE": "KY",
+      "ZIP5": "40207",
+      "OPIOID_RATE": 70.04950495,
+      "OPIOID_CLAIMS": 283.0,
+      "TOTAL_CLAIMS": 404.0,
+      "RATE_PCTILE_IN_SPECIALTY": 0.9427,
+      "OPIOID_PAY_USD": 116.38,
+      "OPIOID_PAY_COUNT": 5,
+      "DISTINCT_OPIOID_PAYERS": 3,
+      "COUNTY_FIPS_2015": "21111",
+      "OVERDOSE_BAND_2015": "20.1-22",
+      "OVERDOSE_BAND_LO_2015": 20.1,
+      "IN_HIGH_OVERDOSE_COUNTY_2015": true,
+      "REVIEW_TIER": "low"
+    },
+    {
+      "NPI": "1518039718",
+      "LAST_NAME": "Dohse",
+      "FIRST_NAME": "Anthony",
+      "SPECIALTY": "Oral Surgery (Dentist only)",
+      "STATE": "IL",
+      "ZIP5": "60126",
+      "OPIOID_RATE": 46.188340807,
+      "OPIOID_CLAIMS": 103.0,
+      "TOTAL_CLAIMS": 223.0,
+      "RATE_PCTILE_IN_SPECIALTY": 0.9508,
+      "OPIOID_PAY_USD": 73.87,
+      "OPIOID_PAY_COUNT": 5,
+      "DISTINCT_OPIOID_PAYERS": 1,
+      "COUNTY_FIPS_2015": "17043",
+      "OVERDOSE_BAND_2015": "12.1-14",
+      "OVERDOSE_BAND_LO_2015": 12.1,
+      "IN_HIGH_OVERDOSE_COUNTY_2015": false,
+      "REVIEW_TIER": "low"
+    },
+    {
+      "NPI": "1447477625",
+      "LAST_NAME": "Hummel",
+      "FIRST_NAME": "Laura",
+      "SPECIALTY": "Family Practice",
+      "STATE": "KY",
+      "ZIP5": "40503",
+      "OPIOID_RATE": 60.212383318,
+      "OPIOID_CLAIMS": 7031.0,
+      "TOTAL_CLAIMS": 11677.0,
+      "RATE_PCTILE_IN_SPECIALTY": 0.9981,
+      "OPIOID_PAY_USD": 51.26,
+      "OPIOID_PAY_COUNT": 2,
+      "DISTINCT_OPIOID_PAYERS": 2,
+      "COUNTY_FIPS_2015": "21067",
+      "OVERDOSE_BAND_2015": "20.1-22",
+      "OVERDOSE_BAND_LO_2015": 20.1,
+      "IN_HIGH_OVERDOSE_COUNTY_2015": true,
+      "REVIEW_TIER": "low"
+    },
+    {
+      "NPI": "1578820569",
+      "LAST_NAME": "Lee",
+      "FIRST_NAME": "Lance",
+      "SPECIALTY": "Family Practice",
+      "STATE": "CA",
+      "ZIP5": "96021",
+      "OPIOID_RATE": 8.9006696429,
+      "OPIOID_CLAIMS": 319.0,
+      "TOTAL_CLAIMS": 3584.0,
+      "RATE_PCTILE_IN_SPECIALTY": 0.9343,
+      "OPIOID_PAY_USD": 23.79,
+      "OPIOID_PAY_COUNT": 1,
+      "DISTINCT_OPIOID_PAYERS": 1,
+      "COUNTY_FIPS_2015": "06103",
+      "OVERDOSE_BAND_2015": "14.1-16",
+      "OVERDOSE_BAND_LO_2015": 14.1,
+      "IN_HIGH_OVERDOSE_COUNTY_2015": false,
+      "REVIEW_TIER": "low"
+    },
+    {
+      "NPI": "1568896165",
+      "LAST_NAME": "Lyle",
+      "FIRST_NAME": "Lana",
+      "SPECIALTY": "Nurse Practitioner",
+      "STATE": "MS",
+      "ZIP5": "39759",
+      "OPIOID_RATE": 58.348326736,
+      "OPIOID_CLAIMS": 3243.0,
+      "TOTAL_CLAIMS": 5558.0,
+      "RATE_PCTILE_IN_SPECIALTY": 0.958,
+      "OPIOID_PAY_USD": 112.96,
+      "OPIOID_PAY_COUNT": 6,
+      "DISTINCT_OPIOID_PAYERS": 1,
+      "COUNTY_FIPS_2015": "28105",
+      "OVERDOSE_BAND_2015": "4.1-6",
+      "OVERDOSE_BAND_LO_2015": 4.1,
+      "IN_HIGH_OVERDOSE_COUNTY_2015": false,
+      "REVIEW_TIER": "low"
+    }
+  ],
+  "sample_error": null
+}

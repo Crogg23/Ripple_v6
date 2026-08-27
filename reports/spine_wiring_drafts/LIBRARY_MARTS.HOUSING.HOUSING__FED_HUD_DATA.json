@@ -1,0 +1,90 @@
+{
+  "fqtn": "LIBRARY_MARTS.HOUSING.HOUSING__FED_HUD_DATA",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "DATASET_NAME",
+    "DATASET_URL",
+    "DESCRIPTION",
+    "FIPS",
+    "ZIP",
+    "EIN",
+    "YEAR",
+    "VALUE"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "DATASET_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": [
+        "ZIP"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "EIN",
+      "column": "EIN",
+      "total_rows": 71,
+      "nonnull_after_norm": 0,
+      "distinct_after_norm": 0,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "DATASET_NAME": "Special Tabulations of Households",
+      "DATASET_URL": "https://www.huduser.gov/portal/datasets/spectabs.html",
+      "DESCRIPTION": "Access customized housing and demographic tabulations supporting research, planning, and community development initiatives.",
+      "FIPS": "",
+      "ZIP": "",
+      "EIN": "",
+      "YEAR": 2000,
+      "VALUE": null
+    },
+    {
+      "DATASET_NAME": "HUD Income Limits",
+      "DATASET_URL": "https://www.huduser.gov/portal/datasets/il.html",
+      "DESCRIPTION": "Access HUD Income Limits data by year, county, and metro area. Find Area Median Income (AMI), Section 8, HOME, and housing program eligibility limits, methodology, and datasets.",
+      "FIPS": "",
+      "ZIP": "",
+      "EIN": "",
+      "YEAR": 2000,
+      "VALUE": null
+    },
+    {
+      "DATASET_NAME": "NCHS - HUD Data Linkage",
+      "DATASET_URL": "https://www.huduser.gov/portal/datasets/nchs-hud-data-linkage.html",
+      "DESCRIPTION": "Access linked housing and health datasets that support research on housing assistance, health outcomes, demographics, and public policy.",
+      "FIPS": "",
+      "ZIP": "",
+      "EIN": "",
+      "YEAR": 2000,
+      "VALUE": null
+    },
+    {
+      "DATASET_NAME": "Low-Income Housing Tax Credit",
+      "DATASET_URL": "https://www.huduser.gov/portal/datasets/lihtc.html",
+      "DESCRIPTION": "",
+      "FIPS": "",
+      "ZIP": "",
+      "EIN": "",
+      "YEAR": null,
+      "VALUE": null
+    },
+    {
+      "DATASET_NAME": "USPS Zip Code Crosswalk Files",
+      "DATASET_URL": "https://www.huduser.gov/portal/datasets/usps_crosswalk.html",
+      "DESCRIPTION": "",
+      "FIPS": "",
+      "ZIP": "",
+      "EIN": "",
+      "YEAR": null,
+      "VALUE": null
+    }
+  ],
+  "sample_error": null
+}

@@ -1,0 +1,124 @@
+{
+  "fqtn": "LIBRARY_MARTS.FINANCE.FINANCE__FED_FARA",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "REGISTRANT_NAME",
+    "REGISTRATION_NUMBER",
+    "FOREIGN_PRINCIPAL",
+    "FOREIGN_PRINCIPAL_COUNTRY",
+    "EIN",
+    "REGISTRATION_DATE",
+    "FILING_TYPE",
+    "DOCUMENT_URL",
+    "TERMINATION_DATE",
+    "ACTIVITY_DESCRIPTION",
+    "RECEIPTS_AMOUNT",
+    "DISBURSEMENTS_AMOUNT",
+    "PERIOD_START",
+    "PERIOD_END"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "REGISTRANT_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "EIN",
+      "column": "EIN",
+      "total_rows": 30,
+      "nonnull_after_norm": 0,
+      "distinct_after_norm": 0,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "REGISTRANT_NAME": "AboutThe Attorney GeneralOrganizational ChartBudget & PerformanceHistoryPrivacy Program",
+      "REGISTRATION_NUMBER": null,
+      "FOREIGN_PRINCIPAL": "",
+      "FOREIGN_PRINCIPAL_COUNTRY": null,
+      "EIN": "",
+      "REGISTRATION_DATE": null,
+      "FILING_TYPE": "",
+      "DOCUMENT_URL": "",
+      "TERMINATION_DATE": null,
+      "ACTIVITY_DESCRIPTION": "AboutThe Attorney GeneralOrganizational ChartBudget & PerformanceHistoryPrivacy Program",
+      "RECEIPTS_AMOUNT": null,
+      "DISBURSEMENTS_AMOUNT": null,
+      "PERIOD_START": "",
+      "PERIOD_END": ""
+    },
+    {
+      "REGISTRANT_NAME": "NewsPress ReleasesSpeechesVideosPhoto GalleriesBlogsPodcasts",
+      "REGISTRATION_NUMBER": null,
+      "FOREIGN_PRINCIPAL": "",
+      "FOREIGN_PRINCIPAL_COUNTRY": null,
+      "EIN": "",
+      "REGISTRATION_DATE": null,
+      "FILING_TYPE": "",
+      "DOCUMENT_URL": "",
+      "TERMINATION_DATE": null,
+      "ACTIVITY_DESCRIPTION": "NewsPress ReleasesSpeechesVideosPhoto GalleriesBlogsPodcasts",
+      "RECEIPTS_AMOUNT": null,
+      "DISBURSEMENTS_AMOUNT": null,
+      "PERIOD_START": "",
+      "PERIOD_END": ""
+    },
+    {
+      "REGISTRANT_NAME": "The FARA Unit Public Office is open on official business daysby appointment onlybetween 11 a.m. and 3 p.m. To schedule an appointment, please contact the FARA Unit at (202) 233-0777. \u00a0Registration sta",
+      "REGISTRATION_NUMBER": null,
+      "FOREIGN_PRINCIPAL": "",
+      "FOREIGN_PRINCIPAL_COUNTRY": null,
+      "EIN": "",
+      "REGISTRATION_DATE": null,
+      "FILING_TYPE": "",
+      "DOCUMENT_URL": "https://efile.fara.gov/ords/fara/f?p=1235:10",
+      "TERMINATION_DATE": null,
+      "ACTIVITY_DESCRIPTION": "The FARA Unit Public Office is open on official business daysby appointment onlybetween 11 a.m. and 3 p.m. To schedule an appointment, please contact the FARA Unit at (202) 233-0777. \u00a0Registration statements are available online atfara.govby using the available search tools.\u00a0 Appointments are only necessary to review materials that are not currently available online.",
+      "RECEIPTS_AMOUNT": null,
+      "DISBURSEMENTS_AMOUNT": null,
+      "PERIOD_START": "",
+      "PERIOD_END": ""
+    },
+    {
+      "REGISTRANT_NAME": "MENUForeign Agents Registration Act HomeLegal AuthorityFARA Index And Act (22 U.S.C. \u00a7 611 et seq.)Related StatutesEnforcementFARA eFileAdvisory OpinionsLetters of DeterminationFrequently Asked Questi",
+      "REGISTRATION_NUMBER": null,
+      "FOREIGN_PRINCIPAL": "",
+      "FOREIGN_PRINCIPAL_COUNTRY": null,
+      "EIN": "",
+      "REGISTRATION_DATE": null,
+      "FILING_TYPE": "",
+      "DOCUMENT_URL": "/nsd-fara",
+      "TERMINATION_DATE": null,
+      "ACTIVITY_DESCRIPTION": "MENUForeign Agents Registration Act HomeLegal AuthorityFARA Index And Act (22 U.S.C. \u00a7 611 et seq.)Related StatutesEnforcementFARA eFileAdvisory OpinionsLetters of DeterminationFrequently Asked QuestionsFAQseFile FAQsRegistration Forms and TemplatesFee ScheduleBrowse FilingsSearch FilingsReports to CongressContact FARANSD FOIA",
+      "RECEIPTS_AMOUNT": null,
+      "DISBURSEMENTS_AMOUNT": null,
+      "PERIOD_START": "",
+      "PERIOD_END": ""
+    },
+    {
+      "REGISTRANT_NAME": "ResourcesGuidance DocumentsFormsPublicationsInformation for Victims in Large CasesJustice ManualBusiness and Contracts",
+      "REGISTRATION_NUMBER": null,
+      "FOREIGN_PRINCIPAL": "",
+      "FOREIGN_PRINCIPAL_COUNTRY": null,
+      "EIN": "",
+      "REGISTRATION_DATE": null,
+      "FILING_TYPE": "",
+      "DOCUMENT_URL": "",
+      "TERMINATION_DATE": null,
+      "ACTIVITY_DESCRIPTION": "ResourcesGuidance DocumentsFormsPublicationsInformation for Victims in Large CasesJustice ManualBusiness and Contracts",
+      "RECEIPTS_AMOUNT": null,
+      "DISBURSEMENTS_AMOUNT": null,
+      "PERIOD_START": "",
+      "PERIOD_END": ""
+    }
+  ],
+  "sample_error": null
+}

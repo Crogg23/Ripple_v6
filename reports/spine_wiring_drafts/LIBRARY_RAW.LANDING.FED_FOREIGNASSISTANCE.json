@@ -1,0 +1,116 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.FED_FOREIGNASSISTANCE",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "COUNTRY",
+    "MANAGING_AGENCY",
+    "FUNDING_AGENCY",
+    "USG_SECTOR",
+    "DAC_CATEGORY",
+    "OBLIGATION_AMOUNT",
+    "DISBURSEMENT_AMOUNT",
+    "FISCAL_YEAR",
+    "EIN",
+    "TRANSACTION_TYPE",
+    "_INGESTED_AT",
+    "_SOURCE_RUN_ID",
+    "_SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "EIN",
+      "column": "EIN",
+      "total_rows": 95658,
+      "nonnull_after_norm": 0,
+      "distinct_after_norm": 0,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "COUNTRY": "496",
+      "MANAGING_AGENCY": "4",
+      "FUNDING_AGENCY": "4",
+      "USG_SECTOR": "",
+      "DAC_CATEGORY": "",
+      "OBLIGATION_AMOUNT": "",
+      "DISBURSEMENT_AMOUNT": "",
+      "FISCAL_YEAR": "2019",
+      "EIN": "",
+      "TRANSACTION_TYPE": "3",
+      "_INGESTED_AT": 1783008610800015,
+      "_SOURCE_RUN_ID": "a99494b4-9369-42e7-b3ee-e7b55fdd5a75",
+      "_SRC_SHA256": "bb599147f88b9428518ff4a0c343652ca886c29e8adcda67a494b99715f8fe22"
+    },
+    {
+      "COUNTRY": "792",
+      "MANAGING_AGENCY": "14",
+      "FUNDING_AGENCY": "2",
+      "USG_SECTOR": "",
+      "DAC_CATEGORY": "",
+      "OBLIGATION_AMOUNT": "",
+      "DISBURSEMENT_AMOUNT": "",
+      "FISCAL_YEAR": "2012",
+      "EIN": "",
+      "TRANSACTION_TYPE": "2",
+      "_INGESTED_AT": 1783008610800015,
+      "_SOURCE_RUN_ID": "a99494b4-9369-42e7-b3ee-e7b55fdd5a75",
+      "_SRC_SHA256": "bb599147f88b9428518ff4a0c343652ca886c29e8adcda67a494b99715f8fe22"
+    },
+    {
+      "COUNTRY": "368",
+      "MANAGING_AGENCY": "1",
+      "FUNDING_AGENCY": "1",
+      "USG_SECTOR": "",
+      "DAC_CATEGORY": "",
+      "OBLIGATION_AMOUNT": "",
+      "DISBURSEMENT_AMOUNT": "",
+      "FISCAL_YEAR": "2003",
+      "EIN": "",
+      "TRANSACTION_TYPE": "2",
+      "_INGESTED_AT": 1783008610800015,
+      "_SOURCE_RUN_ID": "a99494b4-9369-42e7-b3ee-e7b55fdd5a75",
+      "_SRC_SHA256": "bb599147f88b9428518ff4a0c343652ca886c29e8adcda67a494b99715f8fe22"
+    },
+    {
+      "COUNTRY": "384",
+      "MANAGING_AGENCY": "4",
+      "FUNDING_AGENCY": "4",
+      "USG_SECTOR": "",
+      "DAC_CATEGORY": "",
+      "OBLIGATION_AMOUNT": "",
+      "DISBURSEMENT_AMOUNT": "",
+      "FISCAL_YEAR": "2013",
+      "EIN": "",
+      "TRANSACTION_TYPE": "3",
+      "_INGESTED_AT": 1783008610800015,
+      "_SOURCE_RUN_ID": "a99494b4-9369-42e7-b3ee-e7b55fdd5a75",
+      "_SRC_SHA256": "bb599147f88b9428518ff4a0c343652ca886c29e8adcda67a494b99715f8fe22"
+    },
+    {
+      "COUNTRY": "208",
+      "MANAGING_AGENCY": "7",
+      "FUNDING_AGENCY": "2",
+      "USG_SECTOR": "",
+      "DAC_CATEGORY": "",
+      "OBLIGATION_AMOUNT": "",
+      "DISBURSEMENT_AMOUNT": "",
+      "FISCAL_YEAR": "1964",
+      "EIN": "",
+      "TRANSACTION_TYPE": "2",
+      "_INGESTED_AT": 1783008610800015,
+      "_SOURCE_RUN_ID": "a99494b4-9369-42e7-b3ee-e7b55fdd5a75",
+      "_SRC_SHA256": "bb599147f88b9428518ff4a0c343652ca886c29e8adcda67a494b99715f8fe22"
+    }
+  ],
+  "sample_error": null
+}

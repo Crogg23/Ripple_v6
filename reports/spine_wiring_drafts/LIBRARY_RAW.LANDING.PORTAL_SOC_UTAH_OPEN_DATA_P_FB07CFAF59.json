@@ -1,0 +1,108 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_SOC_UTAH_OPEN_DATA_P_FB07CFAF59",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "FACILITY_NAME",
+    "CMS_CERTIFICATION_NUMBER",
+    "ALTERNATE_CCN_1",
+    "ZIP_CODE",
+    "NETWORK",
+    "TOTAL_PERFORMANCE_SCORE",
+    "NATIONAL_AVG_TOTAL_PERFORMANCE_SCORE",
+    "LOCATION_1",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "FACILITY_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": [
+        "ZIP_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CCN",
+      "column": "ALTERNATE_CCN_1",
+      "total_rows": 37,
+      "nonnull_after_norm": 8,
+      "distinct_after_norm": 8,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "FACILITY_NAME": "LIBERTY DIALYSIS - OGDEN (FMC)",
+      "CMS_CERTIFICATION_NUMBER": "462540",
+      "ALTERNATE_CCN_1": "nan",
+      "ZIP_CODE": "84403",
+      "NETWORK": "15",
+      "TOTAL_PERFORMANCE_SCORE": "85",
+      "NATIONAL_AVG_TOTAL_PERFORMANCE_SCORE": "82",
+      "LOCATION_1": "{\"latitude\": \"41.17618864900004\", \"longitude\": \"-111.94772524999996\", \"human_address\": \"{\\\"address\\\": \\\"4780 OLD POST ROAD\\\", \\\"city\\\": \\\"OGDEN\\\", \\\"state\\\": \\\"UT\\\", \\\"zip\\\": \\\"\\\"}\"}",
+      "INGESTED_AT": "2026-06-24 04:45:00.631027",
+      "SOURCE_RUN_ID": "f5937748-59d1-4cb3-8e80-c771e110eed5",
+      "SRC_SHA256": "e7ed64f2a6292d59ec6471004e2fc8defaa0588030fc8397c5cdd63ef574c464"
+    },
+    {
+      "FACILITY_NAME": "WASATCH ARTIFICIAL KIDNEY CENTER",
+      "CMS_CERTIFICATION_NUMBER": "462530",
+      "ALTERNATE_CCN_1": "nan",
+      "ZIP_CODE": "84107",
+      "NETWORK": "15",
+      "TOTAL_PERFORMANCE_SCORE": "82",
+      "NATIONAL_AVG_TOTAL_PERFORMANCE_SCORE": "82",
+      "LOCATION_1": "{\"latitude\": \"40.674333045000026\", \"longitude\": \"-111.87311039299999\", \"human_address\": \"{\\\"address\\\": \\\"650 EAST 4500 SOUTH SUITE 150\\\", \\\"city\\\": \\\"SALT LAKE CITY\\\", \\\"state\\\": \\\"UT\\\", \\\"zip\\\": \\\"\\\"}\"}",
+      "INGESTED_AT": "2026-06-24 04:45:00.631027",
+      "SOURCE_RUN_ID": "f5937748-59d1-4cb3-8e80-c771e110eed5",
+      "SRC_SHA256": "e7ed64f2a6292d59ec6471004e2fc8defaa0588030fc8397c5cdd63ef574c464"
+    },
+    {
+      "FACILITY_NAME": "LOGAN REGIONAL HOSPITAL DIALYSIS CENTER",
+      "CMS_CERTIFICATION_NUMBER": "460015",
+      "ALTERNATE_CCN_1": "462307",
+      "ZIP_CODE": "84341",
+      "NETWORK": "15",
+      "TOTAL_PERFORMANCE_SCORE": "85",
+      "NATIONAL_AVG_TOTAL_PERFORMANCE_SCORE": "82",
+      "LOCATION_1": "{\"latitude\": \"41.75658232700005\", \"longitude\": \"-111.82119776899998\", \"human_address\": \"{\\\"address\\\": \\\"1400 NORTH 500 EAST\\\", \\\"city\\\": \\\"LOGAN\\\", \\\"state\\\": \\\"UT\\\", \\\"zip\\\": \\\"\\\"}\"}",
+      "INGESTED_AT": "2026-06-24 04:45:00.631027",
+      "SOURCE_RUN_ID": "f5937748-59d1-4cb3-8e80-c771e110eed5",
+      "SRC_SHA256": "e7ed64f2a6292d59ec6471004e2fc8defaa0588030fc8397c5cdd63ef574c464"
+    },
+    {
+      "FACILITY_NAME": "OQUIRRH ARTIFICIAL KIDNEY CENTER",
+      "CMS_CERTIFICATION_NUMBER": "462529",
+      "ALTERNATE_CCN_1": "nan",
+      "ZIP_CODE": "84118",
+      "NETWORK": "15",
+      "TOTAL_PERFORMANCE_SCORE": "94",
+      "NATIONAL_AVG_TOTAL_PERFORMANCE_SCORE": "82",
+      "LOCATION_1": "{\"latitude\": \"40.66764798300005\", \"longitude\": \"-111.95500917099997\", \"human_address\": \"{\\\"address\\\": \\\"2496 WEST 4700 SOUTH\\\", \\\"city\\\": \\\"TAYLORSVILLE\\\", \\\"state\\\": \\\"UT\\\", \\\"zip\\\": \\\"\\\"}\"}",
+      "INGESTED_AT": "2026-06-24 04:45:00.631027",
+      "SOURCE_RUN_ID": "f5937748-59d1-4cb3-8e80-c771e110eed5",
+      "SRC_SHA256": "e7ed64f2a6292d59ec6471004e2fc8defaa0588030fc8397c5cdd63ef574c464"
+    },
+    {
+      "FACILITY_NAME": "WEBER VALLEY DIALYSIS (DVA)",
+      "CMS_CERTIFICATION_NUMBER": "462539",
+      "ALTERNATE_CCN_1": "nan",
+      "ZIP_CODE": "84404",
+      "NETWORK": "15",
+      "TOTAL_PERFORMANCE_SCORE": "88",
+      "NATIONAL_AVG_TOTAL_PERFORMANCE_SCORE": "82",
+      "LOCATION_1": "{\"latitude\": \"41.26360847800004\", \"longitude\": \"-112.02609620999999\", \"human_address\": \"{\\\"address\\\": \\\"1920 WEST 250 NORTH\\\", \\\"city\\\": \\\"OGDEN\\\", \\\"state\\\": \\\"UT\\\", \\\"zip\\\": \\\"\\\"}\"}",
+      "INGESTED_AT": "2026-06-24 04:45:00.631027",
+      "SOURCE_RUN_ID": "f5937748-59d1-4cb3-8e80-c771e110eed5",
+      "SRC_SHA256": "e7ed64f2a6292d59ec6471004e2fc8defaa0588030fc8397c5cdd63ef574c464"
+    }
+  ],
+  "sample_error": null
+}

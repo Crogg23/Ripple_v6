@@ -1,0 +1,130 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.FED_COURTLISTENER_COURTHOUSES",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "ID",
+    "COURT_SEAT",
+    "BUILDING_NAME",
+    "ADDRESS1",
+    "ADDRESS2",
+    "CITY",
+    "COUNTY",
+    "STATE",
+    "ZIP_CODE",
+    "COUNTRY_CODE",
+    "COURT_ID",
+    "_INGESTED_AT",
+    "_SOURCE_RUN_ID",
+    "_SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "BUILDING_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "STATE"
+      ],
+      "zip": [
+        "ZIP_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CL_COURT_ID",
+      "column": "COURT_ID",
+      "total_rows": 3361,
+      "nonnull_after_norm": 3361,
+      "distinct_after_norm": 3286,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "ID": "2256",
+      "COURT_SEAT": "f",
+      "BUILDING_NAME": null,
+      "ADDRESS1": null,
+      "ADDRESS2": null,
+      "CITY": null,
+      "COUNTY": null,
+      "STATE": "NJ",
+      "ZIP_CODE": null,
+      "COUNTRY_CODE": "US",
+      "COURT_ID": "njcirctsussex",
+      "_INGESTED_AT": "2026-08-12 00:03:51.782961",
+      "_SOURCE_RUN_ID": "c188d016-32d3-43e5-9c72-1cdcbd0ef9b0",
+      "_SRC_SHA256": "ba6b39442687d6be453b01e50f1a3e1e2fe28f270eb44305f94364dc8b8ed102"
+    },
+    {
+      "ID": "3025",
+      "COURT_SEAT": "f",
+      "BUILDING_NAME": null,
+      "ADDRESS1": null,
+      "ADDRESS2": null,
+      "CITY": null,
+      "COUNTY": null,
+      "STATE": "PA",
+      "ZIP_CODE": null,
+      "COUNTRY_CODE": "US",
+      "COURT_ID": "paorphctperry",
+      "_INGESTED_AT": "2026-08-12 00:03:51.782961",
+      "_SOURCE_RUN_ID": "c188d016-32d3-43e5-9c72-1cdcbd0ef9b0",
+      "_SRC_SHA256": "ba6b39442687d6be453b01e50f1a3e1e2fe28f270eb44305f94364dc8b8ed102"
+    },
+    {
+      "ID": "1855",
+      "COURT_SEAT": "f",
+      "BUILDING_NAME": null,
+      "ADDRESS1": null,
+      "ADDRESS2": null,
+      "CITY": null,
+      "COUNTY": null,
+      "STATE": "TX",
+      "ZIP_CODE": null,
+      "COUNTRY_CODE": "US",
+      "COURT_ID": "texdistct356",
+      "_INGESTED_AT": "2026-08-12 00:03:51.782961",
+      "_SOURCE_RUN_ID": "c188d016-32d3-43e5-9c72-1cdcbd0ef9b0",
+      "_SRC_SHA256": "ba6b39442687d6be453b01e50f1a3e1e2fe28f270eb44305f94364dc8b8ed102"
+    },
+    {
+      "ID": "1764",
+      "COURT_SEAT": "f",
+      "BUILDING_NAME": null,
+      "ADDRESS1": null,
+      "ADDRESS2": null,
+      "CITY": null,
+      "COUNTY": null,
+      "STATE": "TX",
+      "ZIP_CODE": null,
+      "COUNTRY_CODE": "US",
+      "COURT_ID": "texdistct265",
+      "_INGESTED_AT": "2026-08-12 00:03:51.782961",
+      "_SOURCE_RUN_ID": "c188d016-32d3-43e5-9c72-1cdcbd0ef9b0",
+      "_SRC_SHA256": "ba6b39442687d6be453b01e50f1a3e1e2fe28f270eb44305f94364dc8b8ed102"
+    },
+    {
+      "ID": "1188",
+      "COURT_SEAT": "f",
+      "BUILDING_NAME": null,
+      "ADDRESS1": null,
+      "ADDRESS2": null,
+      "CITY": null,
+      "COUNTY": null,
+      "STATE": "VA",
+      "ZIP_CODE": null,
+      "COUNTRY_CODE": "US",
+      "COURT_ID": "vaccrussell",
+      "_INGESTED_AT": "2026-08-12 00:03:51.782961",
+      "_SOURCE_RUN_ID": "c188d016-32d3-43e5-9c72-1cdcbd0ef9b0",
+      "_SRC_SHA256": "ba6b39442687d6be453b01e50f1a3e1e2fe28f270eb44305f94364dc8b8ed102"
+    }
+  ],
+  "sample_error": null
+}

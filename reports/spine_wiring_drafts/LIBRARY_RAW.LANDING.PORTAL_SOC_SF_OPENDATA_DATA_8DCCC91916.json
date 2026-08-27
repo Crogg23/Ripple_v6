@@ -1,0 +1,135 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_SOC_SF_OPENDATA_DATA_8DCCC91916",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "PROVIDER_DIRECTORY",
+    "SITE_ID",
+    "NPI",
+    "LAST_NAME",
+    "FIRST_NAME",
+    "PROVIDER_TYPE",
+    "STATE_LICENSE_NUMBER",
+    "LANGUAGES",
+    "CULTURAL_COMPETENCY_TRAINING",
+    "DATA_AS_OF",
+    "DATA_UPDATED_AT",
+    "DATA_LOADED_AT",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "PROVIDER_DIRECTORY",
+      "LAST_NAME",
+      "FIRST_NAME",
+      "PROVIDER_TYPE"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [
+        "STATE_LICENSE_NUMBER"
+      ],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPI",
+      "column": "NPI",
+      "total_rows": 1560,
+      "nonnull_after_norm": 1560,
+      "distinct_after_norm": 1265,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "PROVIDER_DIRECTORY": "MH",
+      "SITE_ID": "50",
+      "NPI": "1821720384",
+      "LAST_NAME": "Nambiar",
+      "FIRST_NAME": "Diya",
+      "PROVIDER_TYPE": "Other",
+      "STATE_LICENSE_NUMBER": "nan",
+      "LANGUAGES": "nan",
+      "CULTURAL_COMPETENCY_TRAINING": "Yes",
+      "DATA_AS_OF": "2026-06-23T12:20:27.087",
+      "DATA_UPDATED_AT": "2026-06-23T12:21:43.663",
+      "DATA_LOADED_AT": "2026-06-23T13:07:58.578",
+      "INGESTED_AT": "2026-06-24 04:44:07.036135",
+      "SOURCE_RUN_ID": "409f77b5-48c4-4d1f-a793-2265383a595d",
+      "SRC_SHA256": "28fdeea359f468e0d545b9b836c3ec307dbfce49502c57dbe4b5776372183d45"
+    },
+    {
+      "PROVIDER_DIRECTORY": "MH",
+      "SITE_ID": "50",
+      "NPI": "1912898172",
+      "LAST_NAME": "Wong",
+      "FIRST_NAME": "Natalie",
+      "PROVIDER_TYPE": "Other",
+      "STATE_LICENSE_NUMBER": "nan",
+      "LANGUAGES": "nan",
+      "CULTURAL_COMPETENCY_TRAINING": "No",
+      "DATA_AS_OF": "2026-06-23T12:20:27.087",
+      "DATA_UPDATED_AT": "2026-06-23T12:21:43.663",
+      "DATA_LOADED_AT": "2026-06-23T13:07:58.578",
+      "INGESTED_AT": "2026-06-24 04:44:07.036135",
+      "SOURCE_RUN_ID": "409f77b5-48c4-4d1f-a793-2265383a595d",
+      "SRC_SHA256": "28fdeea359f468e0d545b9b836c3ec307dbfce49502c57dbe4b5776372183d45"
+    },
+    {
+      "PROVIDER_DIRECTORY": "MH",
+      "SITE_ID": "99",
+      "NPI": "1043744097",
+      "LAST_NAME": "Morales-Wang",
+      "FIRST_NAME": "Rita",
+      "PROVIDER_TYPE": "Psychiatrist",
+      "STATE_LICENSE_NUMBER": "A171607",
+      "LANGUAGES": "Spanish",
+      "CULTURAL_COMPETENCY_TRAINING": "Yes",
+      "DATA_AS_OF": "2026-06-23T12:20:27.087",
+      "DATA_UPDATED_AT": "2026-06-23T12:21:43.663",
+      "DATA_LOADED_AT": "2026-06-23T13:07:58.578",
+      "INGESTED_AT": "2026-06-24 04:44:07.036135",
+      "SOURCE_RUN_ID": "409f77b5-48c4-4d1f-a793-2265383a595d",
+      "SRC_SHA256": "28fdeea359f468e0d545b9b836c3ec307dbfce49502c57dbe4b5776372183d45"
+    },
+    {
+      "PROVIDER_DIRECTORY": "MH",
+      "SITE_ID": "46",
+      "NPI": "1659335925",
+      "LAST_NAME": "Zahiri",
+      "FIRST_NAME": "Heather",
+      "PROVIDER_TYPE": "Nurse Practitioner",
+      "STATE_LICENSE_NUMBER": "NP15898",
+      "LANGUAGES": "Filipino",
+      "CULTURAL_COMPETENCY_TRAINING": "Yes",
+      "DATA_AS_OF": "2026-06-23T12:20:27.087",
+      "DATA_UPDATED_AT": "2026-06-23T12:21:43.663",
+      "DATA_LOADED_AT": "2026-06-23T13:07:58.578",
+      "INGESTED_AT": "2026-06-24 04:44:07.036135",
+      "SOURCE_RUN_ID": "409f77b5-48c4-4d1f-a793-2265383a595d",
+      "SRC_SHA256": "28fdeea359f468e0d545b9b836c3ec307dbfce49502c57dbe4b5776372183d45"
+    },
+    {
+      "PROVIDER_DIRECTORY": "MH",
+      "SITE_ID": "18",
+      "NPI": "1679747760",
+      "LAST_NAME": "Bath",
+      "FIRST_NAME": "Harneet",
+      "PROVIDER_TYPE": "Physician",
+      "STATE_LICENSE_NUMBER": "A103419",
+      "LANGUAGES": "Hindi; Punjabi",
+      "CULTURAL_COMPETENCY_TRAINING": "Yes",
+      "DATA_AS_OF": "2026-06-23T12:20:27.087",
+      "DATA_UPDATED_AT": "2026-06-23T12:21:43.663",
+      "DATA_LOADED_AT": "2026-06-23T13:07:58.578",
+      "INGESTED_AT": "2026-06-24 04:44:07.036135",
+      "SOURCE_RUN_ID": "409f77b5-48c4-4d1f-a793-2265383a595d",
+      "SRC_SHA256": "28fdeea359f468e0d545b9b836c3ec307dbfce49502c57dbe4b5776372183d45"
+    }
+  ],
+  "sample_error": null
+}

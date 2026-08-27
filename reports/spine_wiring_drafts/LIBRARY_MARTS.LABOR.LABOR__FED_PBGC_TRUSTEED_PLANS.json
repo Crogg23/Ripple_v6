@@ -1,0 +1,117 @@
+{
+  "fqtn": "LIBRARY_MARTS.LABOR.LABOR__FED_PBGC_TRUSTEED_PLANS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "CASE_NUMBER",
+    "SPONSOR_NAME",
+    "PLAN_NAME",
+    "EIN",
+    "PLAN_NUMBER",
+    "CITY",
+    "STATE",
+    "DATE_OF_PLAN_TERMINATION",
+    "DATE_OF_PBGC_TRUSTEESHIP",
+    "NUMBER_OF_PARICIPANTS_AT_DATE_OF_PLAN_TERMINATION",
+    "_INGESTED_AT",
+    "_SOURCE_RUN_ID"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "SPONSOR_NAME",
+      "PLAN_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "STATE"
+      ],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "EIN",
+      "column": "EIN",
+      "total_rows": 5176,
+      "nonnull_after_norm": 5176,
+      "distinct_after_norm": 4431,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "CASE_NUMBER": "23041200",
+      "SPONSOR_NAME": "METAL TECHNOLOGY SOLUTIONS INC",
+      "PLAN_NAME": "PENSION PLAN FOR SALARIED EMPLOYEES OF METAL TECHNOLOGY SOLUTIONS",
+      "EIN": "522337203",
+      "PLAN_NUMBER": "2",
+      "CITY": "YOUNGSTOWN",
+      "STATE": "OH",
+      "DATE_OF_PLAN_TERMINATION": "2016-05-31",
+      "DATE_OF_PBGC_TRUSTEESHIP": "2017-07-03",
+      "NUMBER_OF_PARICIPANTS_AT_DATE_OF_PLAN_TERMINATION": "93.0000",
+      "_INGESTED_AT": "2026-08-06 04:52:42.871859",
+      "_SOURCE_RUN_ID": "03cb1f5a-56cd-41db-a146-b5fe753e6458"
+    },
+    {
+      "CASE_NUMBER": "18034500",
+      "SPONSOR_NAME": "MIDDLEBURG MANAGMENT CORP",
+      "PLAN_NAME": "MIDDLEBURG MANAGEMENT CORP RET PLAN FOR EMPS",
+      "EIN": "133008688",
+      "PLAN_NUMBER": "1",
+      "CITY": "NEW YORK",
+      "STATE": "NY",
+      "DATE_OF_PLAN_TERMINATION": "1994-10-29",
+      "DATE_OF_PBGC_TRUSTEESHIP": "1998-06-18",
+      "NUMBER_OF_PARICIPANTS_AT_DATE_OF_PLAN_TERMINATION": "19.0000",
+      "_INGESTED_AT": "2026-08-06 04:52:42.871859",
+      "_SOURCE_RUN_ID": "03cb1f5a-56cd-41db-a146-b5fe753e6458"
+    },
+    {
+      "CASE_NUMBER": "18856600",
+      "SPONSOR_NAME": "TWIN COUNTY GROCERS INC.",
+      "PLAN_NAME": "TWIN COUNTY GROCERS EES' RETIREMENT PLAN",
+      "EIN": "221439607",
+      "PLAN_NUMBER": "1",
+      "CITY": "EDISON",
+      "STATE": "NJ",
+      "DATE_OF_PLAN_TERMINATION": "1998-12-23",
+      "DATE_OF_PBGC_TRUSTEESHIP": "1999-05-17",
+      "NUMBER_OF_PARICIPANTS_AT_DATE_OF_PLAN_TERMINATION": "513.0000",
+      "_INGESTED_AT": "2026-08-06 04:52:42.871859",
+      "_SOURCE_RUN_ID": "03cb1f5a-56cd-41db-a146-b5fe753e6458"
+    },
+    {
+      "CASE_NUMBER": "2208400",
+      "SPONSOR_NAME": "MARHOEFER PACKING CO INC",
+      "PLAN_NAME": "MARHOEFER PACKING CO INC HRLY EES REVISED PEN",
+      "EIN": "350455200",
+      "PLAN_NUMBER": "2",
+      "CITY": "MUCIE",
+      "STATE": "IN",
+      "DATE_OF_PLAN_TERMINATION": "1978-05-19",
+      "DATE_OF_PBGC_TRUSTEESHIP": "1979-11-15",
+      "NUMBER_OF_PARICIPANTS_AT_DATE_OF_PLAN_TERMINATION": "757.0000",
+      "_INGESTED_AT": "2026-08-06 04:52:42.871859",
+      "_SOURCE_RUN_ID": "03cb1f5a-56cd-41db-a146-b5fe753e6458"
+    },
+    {
+      "CASE_NUMBER": "22066800",
+      "SPONSOR_NAME": "DEWEY & LEBOEUF LLP",
+      "PLAN_NAME": "DEWEY & LEBOEUF LLP PENSION PLAN",
+      "EIN": "135608594",
+      "PLAN_NUMBER": "2",
+      "CITY": "NEW YORK",
+      "STATE": "NY",
+      "DATE_OF_PLAN_TERMINATION": "2012-05-11",
+      "DATE_OF_PBGC_TRUSTEESHIP": "2012-06-13",
+      "NUMBER_OF_PARICIPANTS_AT_DATE_OF_PLAN_TERMINATION": "984.0000",
+      "_INGESTED_AT": "2026-08-06 04:52:42.871859",
+      "_SOURCE_RUN_ID": "03cb1f5a-56cd-41db-a146-b5fe753e6458"
+    }
+  ],
+  "sample_error": null
+}

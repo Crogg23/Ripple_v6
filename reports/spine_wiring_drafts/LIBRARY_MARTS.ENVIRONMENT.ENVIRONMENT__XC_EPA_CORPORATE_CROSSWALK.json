@@ -1,0 +1,140 @@
+{
+  "fqtn": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__XC_EPA_CORPORATE_CROSSWALK",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "EPA_REGISTRY_ID",
+    "FACILITY_NAME",
+    "MATCHED_LEI",
+    "MATCHED_LEGAL_NAME",
+    "MATCH_METHOD",
+    "MATCH_CONFIDENCE",
+    "ULTIMATE_PARENT_LEI",
+    "PARENT_LEGAL_NAME",
+    "PARENT_CIK",
+    "PARENT_UEI",
+    "REVIEW_FLAG"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "FACILITY_NAME",
+      "MATCHED_LEGAL_NAME",
+      "PARENT_LEGAL_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "LEI",
+      "column": "MATCHED_LEI",
+      "total_rows": 5300149,
+      "nonnull_after_norm": 279621,
+      "distinct_after_norm": 22743,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    },
+    {
+      "key_label": "CIK",
+      "column": "PARENT_CIK",
+      "total_rows": 5300149,
+      "nonnull_after_norm": 119382,
+      "distinct_after_norm": 704,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    },
+    {
+      "key_label": "FRS_ID",
+      "column": "EPA_REGISTRY_ID",
+      "total_rows": 5300149,
+      "nonnull_after_norm": 5300149,
+      "distinct_after_norm": 5300149,
+      "trap_verdict": "REAL"
+    },
+    {
+      "key_label": "UEI",
+      "column": "PARENT_UEI",
+      "total_rows": 5300149,
+      "nonnull_after_norm": 37934,
+      "distinct_after_norm": 31685,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    },
+    {
+      "key_label": "LEI",
+      "column": "ULTIMATE_PARENT_LEI",
+      "total_rows": 5300149,
+      "nonnull_after_norm": 37640,
+      "distinct_after_norm": 1174,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "EPA_REGISTRY_ID": "110070248465",
+      "FACILITY_NAME": "PAXTON RESOURCES LLC - KOSHY A1-15 HD1",
+      "MATCHED_LEI": null,
+      "MATCHED_LEGAL_NAME": null,
+      "MATCH_METHOD": null,
+      "MATCH_CONFIDENCE": null,
+      "ULTIMATE_PARENT_LEI": null,
+      "PARENT_LEGAL_NAME": null,
+      "PARENT_CIK": null,
+      "PARENT_UEI": null,
+      "REVIEW_FLAG": null
+    },
+    {
+      "EPA_REGISTRY_ID": "110043731682",
+      "FACILITY_NAME": "GORDON FOOD SERVICE",
+      "MATCHED_LEI": null,
+      "MATCHED_LEGAL_NAME": null,
+      "MATCH_METHOD": null,
+      "MATCH_CONFIDENCE": null,
+      "ULTIMATE_PARENT_LEI": null,
+      "PARENT_LEGAL_NAME": null,
+      "PARENT_CIK": null,
+      "PARENT_UEI": null,
+      "REVIEW_FLAG": false
+    },
+    {
+      "EPA_REGISTRY_ID": "110003848757",
+      "FACILITY_NAME": "PAINTERS GEAR INC",
+      "MATCHED_LEI": null,
+      "MATCHED_LEGAL_NAME": null,
+      "MATCH_METHOD": null,
+      "MATCH_CONFIDENCE": null,
+      "ULTIMATE_PARENT_LEI": null,
+      "PARENT_LEGAL_NAME": null,
+      "PARENT_CIK": null,
+      "PARENT_UEI": null,
+      "REVIEW_FLAG": null
+    },
+    {
+      "EPA_REGISTRY_ID": "110072159462",
+      "FACILITY_NAME": "M & S MAGICAL STARS DAY CARE",
+      "MATCHED_LEI": null,
+      "MATCHED_LEGAL_NAME": null,
+      "MATCH_METHOD": null,
+      "MATCH_CONFIDENCE": null,
+      "ULTIMATE_PARENT_LEI": null,
+      "PARENT_LEGAL_NAME": null,
+      "PARENT_CIK": null,
+      "PARENT_UEI": null,
+      "REVIEW_FLAG": null
+    },
+    {
+      "EPA_REGISTRY_ID": "110007713625",
+      "FACILITY_NAME": "BP OIL CO  *",
+      "MATCHED_LEI": null,
+      "MATCHED_LEGAL_NAME": null,
+      "MATCH_METHOD": null,
+      "MATCH_CONFIDENCE": null,
+      "ULTIMATE_PARENT_LEI": null,
+      "PARENT_LEGAL_NAME": null,
+      "PARENT_CIK": null,
+      "PARENT_UEI": null,
+      "REVIEW_FLAG": null
+    }
+  ],
+  "sample_error": null
+}

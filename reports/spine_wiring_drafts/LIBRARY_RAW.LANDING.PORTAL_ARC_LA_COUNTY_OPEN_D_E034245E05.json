@@ -1,0 +1,150 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_ARC_LA_COUNTY_OPEN_D_E034245E05",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "SCC",
+    "CENTER_NAME",
+    "SCC_TYPE",
+    "COUNTY",
+    "NPI",
+    "PROVIDER_NAME",
+    "BUSINESS_NAME",
+    "ADDRESS_LINE_1",
+    "ADDRESS_LINE_2",
+    "CITY",
+    "STATE",
+    "ZIP_CODE",
+    "PHONE",
+    "FID",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "CENTER_NAME",
+      "PROVIDER_NAME",
+      "BUSINESS_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "STATE"
+      ],
+      "zip": [
+        "ZIP_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPI",
+      "column": "NPI",
+      "total_rows": 8,
+      "nonnull_after_norm": 6,
+      "distinct_after_norm": 6,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "SCC": "7.09.30A",
+      "CENTER_NAME": "UCSF Benioff Children's Hospital Oakland",
+      "SCC_TYPE": "Metabolic Center",
+      "COUNTY": "Alameda",
+      "NPI": "1003961251",
+      "PROVIDER_NAME": "Childrens Hosp Med Ctr",
+      "BUSINESS_NAME": "Children's Hosp Med Cent",
+      "ADDRESS_LINE_1": "51ST And Grove Street",
+      "ADDRESS_LINE_2": "",
+      "CITY": "Oakland",
+      "STATE": "CA",
+      "ZIP_CODE": "94609",
+      "PHONE": "(510) 428-3885x5724",
+      "FID": "8",
+      "INGESTED_AT": "2026-06-24 04:30:43.131032",
+      "SOURCE_RUN_ID": "1be32d57-641f-42c2-8dde-6a0891d76c40",
+      "SRC_SHA256": "0d4dc62318db594c16df4c71bb6a7c16f28e9f1bbd508ab37fe51222d0c0f682"
+    },
+    {
+      "SCC": "7.13.58",
+      "CENTER_NAME": "Providence Saint Joseph Nicu",
+      "SCC_TYPE": "Community Neonatal Intensive Care Unit",
+      "COUNTY": "Los Angeles",
+      "NPI": "1336173269",
+      "PROVIDER_NAME": "Providence St Joseph Med",
+      "BUSINESS_NAME": "Providence St Joseph Med",
+      "ADDRESS_LINE_1": "Buena Vista Alameda Street",
+      "ADDRESS_LINE_2": "",
+      "CITY": "Burbank",
+      "STATE": "CA",
+      "ZIP_CODE": "91505-4809",
+      "PHONE": "",
+      "FID": "2",
+      "INGESTED_AT": "2026-06-24 04:30:43.131032",
+      "SOURCE_RUN_ID": "1be32d57-641f-42c2-8dde-6a0891d76c40",
+      "SRC_SHA256": "0d4dc62318db594c16df4c71bb6a7c16f28e9f1bbd508ab37fe51222d0c0f682"
+    },
+    {
+      "SCC": "7.35.77",
+      "CENTER_NAME": "UC Irvine Medical Center",
+      "SCC_TYPE": "Communication Disorders Center Type C",
+      "COUNTY": "Orange",
+      "NPI": "1669437075",
+      "PROVIDER_NAME": "University Head Neck Surge",
+      "BUSINESS_NAME": "Regents of The University of",
+      "ADDRESS_LINE_1": "101 City Dr S",
+      "ADDRESS_LINE_2": "Building 25",
+      "CITY": "Orange",
+      "STATE": "CA",
+      "ZIP_CODE": "92868-3201",
+      "PHONE": "(714) 456-7890",
+      "FID": "6",
+      "INGESTED_AT": "2026-06-24 04:30:43.131032",
+      "SOURCE_RUN_ID": "1be32d57-641f-42c2-8dde-6a0891d76c40",
+      "SRC_SHA256": "0d4dc62318db594c16df4c71bb6a7c16f28e9f1bbd508ab37fe51222d0c0f682"
+    },
+    {
+      "SCC": "7.37.20",
+      "CENTER_NAME": "UC Irvine Medical Center",
+      "SCC_TYPE": "HRIF - Regional",
+      "COUNTY": "Orange",
+      "NPI": "0",
+      "PROVIDER_NAME": "Univ of Calif Irvine",
+      "BUSINESS_NAME": "Univ of Calif Irvine",
+      "ADDRESS_LINE_1": "101 City Dr S",
+      "ADDRESS_LINE_2": "",
+      "CITY": "Orange",
+      "STATE": "CA",
+      "ZIP_CODE": "92868-3201",
+      "PHONE": "(714) 456-6011",
+      "FID": "7",
+      "INGESTED_AT": "2026-06-24 04:30:43.131032",
+      "SOURCE_RUN_ID": "1be32d57-641f-42c2-8dde-6a0891d76c40",
+      "SRC_SHA256": "0d4dc62318db594c16df4c71bb6a7c16f28e9f1bbd508ab37fe51222d0c0f682"
+    },
+    {
+      "SCC": "7.05.20",
+      "CENTER_NAME": "UC Irvine Medical Center",
+      "SCC_TYPE": "Rehabilitation Center",
+      "COUNTY": "Orange",
+      "NPI": "0",
+      "PROVIDER_NAME": "Univ of Calif Irvine",
+      "BUSINESS_NAME": "Univ of Calif Irvine",
+      "ADDRESS_LINE_1": "101 City Dr S",
+      "ADDRESS_LINE_2": "",
+      "CITY": "Orange",
+      "STATE": "CA",
+      "ZIP_CODE": "92868-3201",
+      "PHONE": "(714) 456-6011",
+      "FID": "5",
+      "INGESTED_AT": "2026-06-24 04:30:43.131032",
+      "SOURCE_RUN_ID": "1be32d57-641f-42c2-8dde-6a0891d76c40",
+      "SRC_SHA256": "0d4dc62318db594c16df4c71bb6a7c16f28e9f1bbd508ab37fe51222d0c0f682"
+    }
+  ],
+  "sample_error": null
+}

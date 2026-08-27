@@ -1,0 +1,69 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.FED_FINCEN_BOI",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "FINCEN_ID",
+    "REPORTING_COMPANY_NAME",
+    "JURISDICTION_OF_FORMATION",
+    "US_REGISTRATION_STATE",
+    "US_REGISTRATION_DATE",
+    "EIN",
+    "BENEFICIAL_OWNER_FULL_NAME",
+    "BENEFICIAL_OWNER_DOB",
+    "BENEFICIAL_OWNER_ADDRESS",
+    "BENEFICIAL_OWNER_ID_TYPE",
+    "BENEFICIAL_OWNER_ID_NUMBER",
+    "BENEFICIAL_OWNER_ID_ISSUING_JURISDICTION",
+    "REPORT_TYPE",
+    "DATE_FILED",
+    "_INGESTED_AT",
+    "_SOURCE_RUN_ID",
+    "_SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "REPORTING_COMPANY_NAME",
+      "BENEFICIAL_OWNER_FULL_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [
+        "US_REGISTRATION_STATE"
+      ],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "EIN",
+      "column": "EIN",
+      "total_rows": 1,
+      "nonnull_after_norm": 0,
+      "distinct_after_norm": 0,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "FINCEN_ID": "N/A",
+      "REPORTING_COMPANY_NAME": "ACCESS RESTRICTED: FinCEN BOI registry requires registration and FinCEN ID. Public/researcher bulk access is not documented and is restricted under CTA confidentiality provisions. No structured records were found on the public page.",
+      "JURISDICTION_OF_FORMATION": "",
+      "US_REGISTRATION_STATE": "",
+      "US_REGISTRATION_DATE": "",
+      "EIN": "",
+      "BENEFICIAL_OWNER_FULL_NAME": "",
+      "BENEFICIAL_OWNER_DOB": "",
+      "BENEFICIAL_OWNER_ADDRESS": "",
+      "BENEFICIAL_OWNER_ID_TYPE": "",
+      "BENEFICIAL_OWNER_ID_NUMBER": "",
+      "BENEFICIAL_OWNER_ID_ISSUING_JURISDICTION": "",
+      "REPORT_TYPE": "N/A - restricted system",
+      "DATE_FILED": "",
+      "_INGESTED_AT": 1782953922157708,
+      "_SOURCE_RUN_ID": "a1896bb1-a516-4d12-943b-a589fd96cf85",
+      "_SRC_SHA256": "c65f5a2ee152b1c1fcb51dfd824814b9a07e4bde9ee32ef807db5c47cf4eaac7"
+    }
+  ],
+  "sample_error": null
+}

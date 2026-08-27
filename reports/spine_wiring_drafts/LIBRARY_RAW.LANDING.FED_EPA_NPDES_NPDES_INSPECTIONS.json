@@ -1,0 +1,124 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.FED_EPA_NPDES_NPDES_INSPECTIONS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "REGISTRY_ID",
+    "NPDES_ID",
+    "ACTIVITY_ID",
+    "ACTIVITY_TYPE_CODE",
+    "COMP_MONITOR_TYPE_CODE",
+    "COMP_MONITOR_TYPE_DESC",
+    "STATE_EPA_FLAG",
+    "ACTUAL_BEGIN_DATE",
+    "ACTUAL_END_DATE",
+    "ACTIVITY_OUTCOME_CODE",
+    "ACTIVITY_OUTCOME_DESC",
+    "_INGESTED_AT",
+    "_SOURCE_RUN_ID",
+    "_SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [
+        "STATE_EPA_FLAG"
+      ],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "FRS_ID",
+      "column": "REGISTRY_ID",
+      "total_rows": 1900067,
+      "nonnull_after_norm": 1899932,
+      "distinct_after_norm": 263075,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "REGISTRY_ID": "110010025757",
+      "NPDES_ID": "ILG580049",
+      "ACTIVITY_ID": "800136133",
+      "ACTIVITY_TYPE_CODE": "INS",
+      "COMP_MONITOR_TYPE_CODE": "CEI",
+      "COMP_MONITOR_TYPE_DESC": "Evaluation",
+      "STATE_EPA_FLAG": "S",
+      "ACTUAL_BEGIN_DATE": null,
+      "ACTUAL_END_DATE": "05/09/2006",
+      "ACTIVITY_OUTCOME_CODE": null,
+      "ACTIVITY_OUTCOME_DESC": null,
+      "_INGESTED_AT": 1786043945108358,
+      "_SOURCE_RUN_ID": "92f9b3c3-4140-4fb3-933b-9a2b3813285d",
+      "_SRC_SHA256": "d83c0198f28389741343017977de25f6347bab89f92ea2ce3abd387daf502707"
+    },
+    {
+      "REGISTRY_ID": "110070874698",
+      "NPDES_ID": "GAR188BF8",
+      "ACTIVITY_ID": "3604503825",
+      "ACTIVITY_TYPE_CODE": "INS",
+      "COMP_MONITOR_TYPE_CODE": "CEI",
+      "COMP_MONITOR_TYPE_DESC": "Evaluation",
+      "STATE_EPA_FLAG": "S",
+      "ACTUAL_BEGIN_DATE": "08/21/2025",
+      "ACTUAL_END_DATE": "08/21/2025",
+      "ACTIVITY_OUTCOME_CODE": null,
+      "ACTIVITY_OUTCOME_DESC": null,
+      "_INGESTED_AT": 1786043945108358,
+      "_SOURCE_RUN_ID": "92f9b3c3-4140-4fb3-933b-9a2b3813285d",
+      "_SRC_SHA256": "d83c0198f28389741343017977de25f6347bab89f92ea2ce3abd387daf502707"
+    },
+    {
+      "REGISTRY_ID": "110010852005",
+      "NPDES_ID": "WV0027740",
+      "ACTIVITY_ID": "3601133310",
+      "ACTIVITY_TYPE_CODE": "INS",
+      "COMP_MONITOR_TYPE_CODE": "CEI",
+      "COMP_MONITOR_TYPE_DESC": "Evaluation",
+      "STATE_EPA_FLAG": "S",
+      "ACTUAL_BEGIN_DATE": "05/17/2017",
+      "ACTUAL_END_DATE": "05/17/2017",
+      "ACTIVITY_OUTCOME_CODE": null,
+      "ACTIVITY_OUTCOME_DESC": null,
+      "_INGESTED_AT": 1786043945108358,
+      "_SOURCE_RUN_ID": "92f9b3c3-4140-4fb3-933b-9a2b3813285d",
+      "_SRC_SHA256": "d83c0198f28389741343017977de25f6347bab89f92ea2ce3abd387daf502707"
+    },
+    {
+      "REGISTRY_ID": "110006750934",
+      "NPDES_ID": "KY0073091",
+      "ACTIVITY_ID": "2400402957",
+      "ACTIVITY_TYPE_CODE": "INS",
+      "COMP_MONITOR_TYPE_CODE": "SA1",
+      "COMP_MONITOR_TYPE_DESC": "Sampling",
+      "STATE_EPA_FLAG": "S",
+      "ACTUAL_BEGIN_DATE": null,
+      "ACTUAL_END_DATE": "09/22/2005",
+      "ACTIVITY_OUTCOME_CODE": null,
+      "ACTIVITY_OUTCOME_DESC": null,
+      "_INGESTED_AT": 1786043945108358,
+      "_SOURCE_RUN_ID": "92f9b3c3-4140-4fb3-933b-9a2b3813285d",
+      "_SRC_SHA256": "d83c0198f28389741343017977de25f6347bab89f92ea2ce3abd387daf502707"
+    },
+    {
+      "REGISTRY_ID": "110000874894",
+      "NPDES_ID": "KY0000477",
+      "ACTIVITY_ID": "2400347444",
+      "ACTIVITY_TYPE_CODE": "INS",
+      "COMP_MONITOR_TYPE_CODE": "CEI",
+      "COMP_MONITOR_TYPE_DESC": "Evaluation",
+      "STATE_EPA_FLAG": "S",
+      "ACTUAL_BEGIN_DATE": null,
+      "ACTUAL_END_DATE": "08/06/1992",
+      "ACTIVITY_OUTCOME_CODE": null,
+      "ACTIVITY_OUTCOME_DESC": null,
+      "_INGESTED_AT": 1786043945108358,
+      "_SOURCE_RUN_ID": "92f9b3c3-4140-4fb3-933b-9a2b3813285d",
+      "_SRC_SHA256": "d83c0198f28389741343017977de25f6347bab89f92ea2ce3abd387daf502707"
+    }
+  ],
+  "sample_error": null
+}

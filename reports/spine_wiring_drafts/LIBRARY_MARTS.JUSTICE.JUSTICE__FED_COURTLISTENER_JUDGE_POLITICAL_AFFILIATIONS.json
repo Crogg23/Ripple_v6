@@ -1,0 +1,98 @@
+{
+  "fqtn": "LIBRARY_MARTS.JUSTICE.JUSTICE__FED_COURTLISTENER_JUDGE_POLITICAL_AFFILIATIONS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "ID",
+    "DATE_CREATED",
+    "DATE_MODIFIED",
+    "POLITICAL_PARTY",
+    "SOURCE",
+    "DATE_START",
+    "DATE_GRANULARITY_START",
+    "DATE_END",
+    "DATE_GRANULARITY_END",
+    "PERSON_ID"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CL_PERSON_ID",
+      "column": "PERSON_ID",
+      "total_rows": 8486,
+      "nonnull_after_norm": 8486,
+      "distinct_after_norm": 7226,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "ID": "8167",
+      "DATE_CREATED": "2022-07-05",
+      "DATE_MODIFIED": "2022-07-05",
+      "POLITICAL_PARTY": "r",
+      "SOURCE": "o",
+      "DATE_START": null,
+      "DATE_GRANULARITY_START": null,
+      "DATE_END": null,
+      "DATE_GRANULARITY_END": null,
+      "PERSON_ID": "15659"
+    },
+    {
+      "ID": "4248",
+      "DATE_CREATED": "2016-04-20",
+      "DATE_MODIFIED": "2016-04-20",
+      "POLITICAL_PARTY": "d",
+      "SOURCE": null,
+      "DATE_START": null,
+      "DATE_GRANULARITY_START": null,
+      "DATE_END": null,
+      "DATE_GRANULARITY_END": null,
+      "PERSON_ID": "5292"
+    },
+    {
+      "ID": "8413",
+      "DATE_CREATED": "2022-07-29",
+      "DATE_MODIFIED": "2022-07-29",
+      "POLITICAL_PARTY": "d",
+      "SOURCE": "o",
+      "DATE_START": null,
+      "DATE_GRANULARITY_START": null,
+      "DATE_END": null,
+      "DATE_GRANULARITY_END": null,
+      "PERSON_ID": "16029"
+    },
+    {
+      "ID": "6765",
+      "DATE_CREATED": "2022-03-11",
+      "DATE_MODIFIED": "2022-03-11",
+      "POLITICAL_PARTY": "r",
+      "SOURCE": "a",
+      "DATE_START": null,
+      "DATE_GRANULARITY_START": null,
+      "DATE_END": null,
+      "DATE_GRANULARITY_END": null,
+      "PERSON_ID": "13730"
+    },
+    {
+      "ID": "7570",
+      "DATE_CREATED": "2022-04-11",
+      "DATE_MODIFIED": "2022-04-11",
+      "POLITICAL_PARTY": "d",
+      "SOURCE": "a",
+      "DATE_START": "2008-01-01",
+      "DATE_GRANULARITY_START": null,
+      "DATE_END": null,
+      "DATE_GRANULARITY_END": null,
+      "PERSON_ID": "14897"
+    }
+  ],
+  "sample_error": null
+}

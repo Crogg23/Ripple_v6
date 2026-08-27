@@ -1,0 +1,118 @@
+{
+  "fqtn": "LIBRARY_MARTS.POLITICS.POLITICS__SENATE_TRADES",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "TRANSACTION_DATE",
+    "OWNER",
+    "TICKER",
+    "ASSET_DESCRIPTION",
+    "ASSET_TYPE",
+    "TRANSACTION_TYPE",
+    "AMOUNT_BAND",
+    "COMMENT",
+    "SENATOR",
+    "PTR_LINK",
+    "BIOGUIDE",
+    "SPINE_NAME",
+    "MATCH_METHOD"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "SPINE_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "BIOGUIDE",
+      "column": "BIOGUIDE",
+      "total_rows": 8350,
+      "nonnull_after_norm": 8350,
+      "distinct_after_norm": 57,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "TRANSACTION_DATE": "2019-04-25",
+      "OWNER": "Spouse",
+      "TICKER": "--",
+      "ASSET_DESCRIPTION": "Chester County Pennsylvania General Obligation Bond <div class=\"text-muted\"><em>Rate/Coupon:</em> 5.0%<br> <em>Matures:</em> 07/15/2029</div>",
+      "ASSET_TYPE": "Municipal Security",
+      "TRANSACTION_TYPE": "Purchase",
+      "AMOUNT_BAND": "$1,000,001 - $5,000,000",
+      "COMMENT": "--",
+      "SENATOR": "Rick Scott",
+      "PTR_LINK": "https://efdsearch.senate.gov/search/view/ptr/493baf8c-4c4a-449f-a5e6-d20fe910bf3b/",
+      "BIOGUIDE": "S001217",
+      "SPINE_NAME": "Rick Scott",
+      "MATCH_METHOD": "surname+senate+term-span"
+    },
+    {
+      "TRANSACTION_DATE": "2020-04-15",
+      "OWNER": "Joint",
+      "TICKER": "PBA",
+      "ASSET_DESCRIPTION": "Pembina Pipeline Corporation",
+      "ASSET_TYPE": "Stock",
+      "TRANSACTION_TYPE": "Sale (Full)",
+      "AMOUNT_BAND": "$1,001 - $15,000",
+      "COMMENT": "--",
+      "SENATOR": "David A Perdue , Jr",
+      "PTR_LINK": "https://efdsearch.senate.gov/search/view/ptr/bc6c5872-1fdd-4e99-857e-08b4ec2c85c8/",
+      "BIOGUIDE": "P000612",
+      "SPINE_NAME": "David Perdue",
+      "MATCH_METHOD": "surname+senate+term-span"
+    },
+    {
+      "TRANSACTION_DATE": "2015-02-10",
+      "OWNER": "Spouse",
+      "TICKER": "MIK",
+      "ASSET_DESCRIPTION": "The Michaels Companies, Inc. (NASDAQ)",
+      "ASSET_TYPE": "Stock",
+      "TRANSACTION_TYPE": "Sale (Full)",
+      "AMOUNT_BAND": "$1,001 - $15,000",
+      "COMMENT": "R",
+      "SENATOR": "Pat Roberts",
+      "PTR_LINK": "https://efdsearch.senate.gov/search/view/ptr/b51eca09-bc7d-447a-8cdc-e6066b910541/",
+      "BIOGUIDE": "R000307",
+      "SPINE_NAME": "Pat Roberts",
+      "MATCH_METHOD": "surname+senate+term-span"
+    },
+    {
+      "TRANSACTION_DATE": "2016-01-21",
+      "OWNER": "Spouse",
+      "TICKER": "--",
+      "ASSET_DESCRIPTION": "Blackrock Res &amp; Comm Strat Tr",
+      "ASSET_TYPE": "Stock",
+      "TRANSACTION_TYPE": "Sale (Full)",
+      "AMOUNT_BAND": "$1,001 - $15,000",
+      "COMMENT": "--",
+      "SENATOR": "Thomas R Carper",
+      "PTR_LINK": "https://efdsearch.senate.gov/search/view/ptr/4664aeee-9dd2-4135-a4f7-b2ecdc786f48/",
+      "BIOGUIDE": "C000174",
+      "SPINE_NAME": "Thomas R. Carper",
+      "MATCH_METHOD": "surname+senate+term-span"
+    },
+    {
+      "TRANSACTION_DATE": "2020-04-14",
+      "OWNER": "Joint",
+      "TICKER": "NWS",
+      "ASSET_DESCRIPTION": "News Corporation",
+      "ASSET_TYPE": "Stock",
+      "TRANSACTION_TYPE": "Sale (Full)",
+      "AMOUNT_BAND": "$1,001 - $15,000",
+      "COMMENT": "--",
+      "SENATOR": "David A Perdue , Jr",
+      "PTR_LINK": "https://efdsearch.senate.gov/search/view/ptr/bc6c5872-1fdd-4e99-857e-08b4ec2c85c8/",
+      "BIOGUIDE": "P000612",
+      "SPINE_NAME": "David Perdue",
+      "MATCH_METHOD": "surname+senate+term-span"
+    }
+  ],
+  "sample_error": null
+}

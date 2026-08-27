@@ -1,0 +1,112 @@
+{
+  "fqtn": "LIBRARY_RAW.RETIRED.FED_IRS_990_EFILER_INDEX_2023",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "RETURN_ID",
+    "FILING_TYPE",
+    "EIN",
+    "TAX_PERIOD",
+    "SUB_DATE",
+    "TAXPAYER_NAME",
+    "RETURN_TYPE",
+    "DLN",
+    "OBJECT_ID",
+    "_INGESTED_AT",
+    "_SOURCE_RUN_ID",
+    "_SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "TAXPAYER_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "EIN",
+      "column": "EIN",
+      "total_rows": 500000,
+      "nonnull_after_norm": 500000,
+      "distinct_after_norm": 463122,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "RETURN_ID": "21506778",
+      "FILING_TYPE": "EFILE",
+      "EIN": "562043300",
+      "TAX_PERIOD": "202212",
+      "SUB_DATE": "2023",
+      "TAXPAYER_NAME": "SHINING ACRES FOUNDATION",
+      "RETURN_TYPE": "990PF",
+      "DLN": "93491060000113",
+      "OBJECT_ID": "202310609349100011",
+      "_INGESTED_AT": 1785098042191570,
+      "_SOURCE_RUN_ID": "dc3ec42c-f6a8-442b-aec6-2d18a3b59b84",
+      "_SRC_SHA256": "3906ff84e87285f3a3cf2ba328505b1ba348d9814f5dc95864fa7d1f9575a58e"
+    },
+    {
+      "RETURN_ID": "21530165",
+      "FILING_TYPE": "EFILE",
+      "EIN": "834475370",
+      "TAX_PERIOD": "202212",
+      "SUB_DATE": "2023",
+      "TAXPAYER_NAME": "2050 HAWAII INC",
+      "RETURN_TYPE": "990PF",
+      "DLN": "93491134001123",
+      "OBJECT_ID": "202321349349100112",
+      "_INGESTED_AT": 1785098042191570,
+      "_SOURCE_RUN_ID": "dc3ec42c-f6a8-442b-aec6-2d18a3b59b84",
+      "_SRC_SHA256": "3906ff84e87285f3a3cf2ba328505b1ba348d9814f5dc95864fa7d1f9575a58e"
+    },
+    {
+      "RETURN_ID": null,
+      "FILING_TYPE": "EFILE",
+      "EIN": "251655056",
+      "TAX_PERIOD": "202306",
+      "SUB_DATE": "2023",
+      "TAXPAYER_NAME": "FRIENDS OF THE RIVERFRONT INC",
+      "RETURN_TYPE": "990",
+      "DLN": "93493332007013",
+      "OBJECT_ID": "202313329349300701",
+      "_INGESTED_AT": 1785098042191570,
+      "_SOURCE_RUN_ID": "dc3ec42c-f6a8-442b-aec6-2d18a3b59b84",
+      "_SRC_SHA256": "3906ff84e87285f3a3cf2ba328505b1ba348d9814f5dc95864fa7d1f9575a58e"
+    },
+    {
+      "RETURN_ID": "21540492",
+      "FILING_TYPE": "EFILE",
+      "EIN": "956068478",
+      "TAX_PERIOD": "202303",
+      "SUB_DATE": "2023",
+      "TAXPAYER_NAME": "GEORGIA ANNA CAMP FOUNDATION",
+      "RETURN_TYPE": "990PF",
+      "DLN": "93491205008183",
+      "OBJECT_ID": "202332059349100818",
+      "_INGESTED_AT": 1785098042191570,
+      "_SOURCE_RUN_ID": "dc3ec42c-f6a8-442b-aec6-2d18a3b59b84",
+      "_SRC_SHA256": "3906ff84e87285f3a3cf2ba328505b1ba348d9814f5dc95864fa7d1f9575a58e"
+    },
+    {
+      "RETURN_ID": "21437698",
+      "FILING_TYPE": "EFILE",
+      "EIN": "060646957",
+      "TAX_PERIOD": "202206",
+      "SUB_DATE": "2023",
+      "TAXPAYER_NAME": "THE WEST HAVEN COMMUNITY HOUSE ASSOCIATION INC",
+      "RETURN_TYPE": "990",
+      "DLN": "93493132061013",
+      "OBJECT_ID": "202311329349306101",
+      "_INGESTED_AT": 1785098042191570,
+      "_SOURCE_RUN_ID": "dc3ec42c-f6a8-442b-aec6-2d18a3b59b84",
+      "_SRC_SHA256": "3906ff84e87285f3a3cf2ba328505b1ba348d9814f5dc95864fa7d1f9575a58e"
+    }
+  ],
+  "sample_error": null
+}

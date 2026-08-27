@@ -1,0 +1,33 @@
+{
+  "fqtn": "LIBRARY_META.CONNECT.GOLD_PAIRS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NPI",
+    "L_LAST",
+    "L_FIRST",
+    "R_LAST",
+    "R_FIRST",
+    "PLACE",
+    "LABEL",
+    "SCORE"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPI",
+      "column": "NPI",
+      "error": "001003 (42000): SQL compilation error:\nsyntax error line 2 at position 34 unexpected 'CONNECT'.\nsyntax error line 2 at position 41 unexpected '.'.",
+      "trap_verdict": "CHECK_FAILED"
+    }
+  ],
+  "sample_rows": [],
+  "sample_error": "001003 (42000): SQL compilation error:\nsyntax error line 1 at position 27 unexpected 'CONNECT'.\nsyntax error line 1 at position 34 unexpected '.'."
+}

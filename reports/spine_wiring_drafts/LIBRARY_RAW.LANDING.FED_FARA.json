@@ -1,0 +1,142 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.FED_FARA",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "REGISTRANT_NAME",
+    "REGISTRATION_NUMBER",
+    "FOREIGN_PRINCIPAL",
+    "FOREIGN_PRINCIPAL_COUNTRY",
+    "EIN",
+    "REGISTRATION_DATE",
+    "FILING_TYPE",
+    "DOCUMENT_URL",
+    "TERMINATION_DATE",
+    "ACTIVITY_DESCRIPTION",
+    "RECEIPTS_AMOUNT",
+    "DISBURSEMENTS_AMOUNT",
+    "PERIOD_START",
+    "PERIOD_END",
+    "_INGESTED_AT",
+    "_SOURCE_RUN_ID",
+    "_SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "REGISTRANT_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "EIN",
+      "column": "EIN",
+      "total_rows": 30,
+      "nonnull_after_norm": 0,
+      "distinct_after_norm": 0,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "REGISTRANT_NAME": "Legal AuthorityFARA Index And Act (22 U.S.C. \u00a7 611 et seq.)Related StatutesEnforcementFARA eFileAdvisory OpinionsLetters of DeterminationFrequently Asked QuestionsFAQseFile FAQsRegistration Forms and ",
+      "REGISTRATION_NUMBER": "",
+      "FOREIGN_PRINCIPAL": "",
+      "FOREIGN_PRINCIPAL_COUNTRY": "",
+      "EIN": "",
+      "REGISTRATION_DATE": "",
+      "FILING_TYPE": "",
+      "DOCUMENT_URL": "/nsd-fara/legal-authority",
+      "TERMINATION_DATE": "",
+      "ACTIVITY_DESCRIPTION": "Legal AuthorityFARA Index And Act (22 U.S.C. \u00a7 611 et seq.)Related StatutesEnforcementFARA eFileAdvisory OpinionsLetters of DeterminationFrequently Asked QuestionsFAQseFile FAQsRegistration Forms and TemplatesFee ScheduleBrowse FilingsSearch FilingsReports to CongressContact FARANSD FOIA",
+      "RECEIPTS_AMOUNT": "",
+      "DISBURSEMENTS_AMOUNT": "",
+      "PERIOD_START": "",
+      "PERIOD_END": "",
+      "_INGESTED_AT": 1783026918427533,
+      "_SOURCE_RUN_ID": "6cd83b54-9055-43c5-8bad-9056a1216621",
+      "_SRC_SHA256": "5b0d9b35b5fff96d4cd7206032fd1df99bc4b7cea706e01d8e0b5454207d6e0d"
+    },
+    {
+      "REGISTRANT_NAME": "AboutAboutThe Attorney GeneralOrganizational ChartBudget & PerformanceHistoryPrivacy ProgramOur WorkNewsNewsPress ReleasesSpeechesVideosPhoto GalleriesBlogsPodcastsResourcesResourcesGuidance Documents",
+      "REGISTRATION_NUMBER": "",
+      "FOREIGN_PRINCIPAL": "",
+      "FOREIGN_PRINCIPAL_COUNTRY": "",
+      "EIN": "",
+      "REGISTRATION_DATE": "",
+      "FILING_TYPE": "",
+      "DOCUMENT_URL": "",
+      "TERMINATION_DATE": "",
+      "ACTIVITY_DESCRIPTION": "AboutAboutThe Attorney GeneralOrganizational ChartBudget & PerformanceHistoryPrivacy ProgramOur WorkNewsNewsPress ReleasesSpeechesVideosPhoto GalleriesBlogsPodcastsResourcesResourcesGuidance DocumentsFormsPublicationsInformation for Victims in Large CasesJustice ManualBusiness and ContractsGrantsEmploymentEmploymentWhy Justice ?BenefitsDOJ VacanciesLegal Careers at DOJOur OfficesFind HelpContact Us",
+      "RECEIPTS_AMOUNT": "",
+      "DISBURSEMENTS_AMOUNT": "",
+      "PERIOD_START": "",
+      "PERIOD_END": "",
+      "_INGESTED_AT": 1783026918427533,
+      "_SOURCE_RUN_ID": "6cd83b54-9055-43c5-8bad-9056a1216621",
+      "_SRC_SHA256": "5b0d9b35b5fff96d4cd7206032fd1df99bc4b7cea706e01d8e0b5454207d6e0d"
+    },
+    {
+      "REGISTRANT_NAME": "U.S. Department of Justice950 Pennsylvania Avenue NWWashington DC 20530Contact the DepartmentPhone: 202-514-2000TTY: 711|TRS InfoSignup for Email UpdatesSocial Mediatwitterfacebookyoutubeinstagramlink",
+      "REGISTRATION_NUMBER": "",
+      "FOREIGN_PRINCIPAL": "",
+      "FOREIGN_PRINCIPAL_COUNTRY": "",
+      "EIN": "",
+      "REGISTRATION_DATE": "",
+      "FILING_TYPE": "",
+      "DOCUMENT_URL": "",
+      "TERMINATION_DATE": "",
+      "ACTIVITY_DESCRIPTION": "U.S. Department of Justice950 Pennsylvania Avenue NWWashington DC 20530Contact the DepartmentPhone: 202-514-2000TTY: 711|TRS InfoSignup for Email UpdatesSocial MediatwitterfacebookyoutubeinstagramlinkedinAboutBudget & PerformanceArchivesFOIAAccessibilityLegal Policies & DisclaimersPrivacyFor EmployeesOffice of the Inspector GeneralNo FEAR Act DataEEO Policy StatementVulnerability DisclosureMultilingualVote.govHave a question about Government Services?Contact USA.govTop",
+      "RECEIPTS_AMOUNT": "",
+      "DISBURSEMENTS_AMOUNT": "",
+      "PERIOD_START": "",
+      "PERIOD_END": "",
+      "_INGESTED_AT": 1783026918427533,
+      "_SOURCE_RUN_ID": "6cd83b54-9055-43c5-8bad-9056a1216621",
+      "_SRC_SHA256": "5b0d9b35b5fff96d4cd7206032fd1df99bc4b7cea706e01d8e0b5454207d6e0d"
+    },
+    {
+      "REGISTRANT_NAME": "System NotificationThe FARA eFile application is currently experiencing technical issues that causes delays or the inability to successfully complete and submit a filing. The technical team is working",
+      "REGISTRATION_NUMBER": "",
+      "FOREIGN_PRINCIPAL": "",
+      "FOREIGN_PRINCIPAL_COUNTRY": "",
+      "EIN": "",
+      "REGISTRATION_DATE": "",
+      "FILING_TYPE": "",
+      "DOCUMENT_URL": "",
+      "TERMINATION_DATE": "",
+      "ACTIVITY_DESCRIPTION": "System NotificationThe FARA eFile application is currently experiencing technical issues that causes delays or the inability to successfully complete and submit a filing. The technical team is working towards a solution, thank you.",
+      "RECEIPTS_AMOUNT": "",
+      "DISBURSEMENTS_AMOUNT": "",
+      "PERIOD_START": "",
+      "PERIOD_END": "",
+      "_INGESTED_AT": 1783026918427533,
+      "_SOURCE_RUN_ID": "6cd83b54-9055-43c5-8bad-9056a1216621",
+      "_SRC_SHA256": "5b0d9b35b5fff96d4cd7206032fd1df99bc4b7cea706e01d8e0b5454207d6e0d"
+    },
+    {
+      "REGISTRANT_NAME": "Frequently Asked QuestionsFAQseFile FAQs",
+      "REGISTRATION_NUMBER": "",
+      "FOREIGN_PRINCIPAL": "",
+      "FOREIGN_PRINCIPAL_COUNTRY": "",
+      "EIN": "",
+      "REGISTRATION_DATE": "",
+      "FILING_TYPE": "",
+      "DOCUMENT_URL": "/nsd-fara/fara-frequently-asked-questions",
+      "TERMINATION_DATE": "",
+      "ACTIVITY_DESCRIPTION": "Frequently Asked QuestionsFAQseFile FAQs",
+      "RECEIPTS_AMOUNT": "",
+      "DISBURSEMENTS_AMOUNT": "",
+      "PERIOD_START": "",
+      "PERIOD_END": "",
+      "_INGESTED_AT": 1783026918427533,
+      "_SOURCE_RUN_ID": "6cd83b54-9055-43c5-8bad-9056a1216621",
+      "_SRC_SHA256": "5b0d9b35b5fff96d4cd7206032fd1df99bc4b7cea706e01d8e0b5454207d6e0d"
+    }
+  ],
+  "sample_error": null
+}

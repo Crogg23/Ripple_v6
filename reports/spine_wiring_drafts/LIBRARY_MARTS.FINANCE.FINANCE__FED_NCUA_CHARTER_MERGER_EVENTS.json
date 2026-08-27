@@ -1,0 +1,131 @@
+{
+  "fqtn": "LIBRARY_MARTS.FINANCE.FINANCE__FED_NCUA_CHARTER_MERGER_EVENTS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "REGION",
+    "CONTINUING_CREDIT_UNION_CHARTER",
+    "CONTINUING_NAME",
+    "CONTINUING_LOCATION",
+    "CONTINUING_ASSETS",
+    "MERGING_CREDIT_UNION_CHARTER",
+    "MERGING_CREDIT_UNION_NAME",
+    "MERGING_LOCATION",
+    "MERGING_ASSETS",
+    "MERGING_REASON",
+    "CONTINUING_FIELD_OF_MEMBERSHIP",
+    "MERGING_FIELD_OF_MEMBERSHIP",
+    "_LOADED_AT",
+    "_SOURCE_RUN_ID",
+    "_SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "CONTINUING_NAME",
+      "MERGING_CREDIT_UNION_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NCUA_CHARTER",
+      "column": "CONTINUING_CREDIT_UNION_CHARTER",
+      "total_rows": 27,
+      "nonnull_after_norm": 27,
+      "distinct_after_norm": 26,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "REGION": "3",
+      "CONTINUING_CREDIT_UNION_CHARTER": "68687",
+      "CONTINUING_NAME": "ROCK VALLEY",
+      "CONTINUING_LOCATION": "LOVES PARK, IL",
+      "CONTINUING_ASSETS": 172275712,
+      "MERGING_CREDIT_UNION_CHARTER": "62826",
+      "MERGING_CREDIT_UNION_NAME": "ROCKFORD MUNICIPAL EMPLOYEES",
+      "MERGING_LOCATION": "ROCKFORD, IL",
+      "MERGING_ASSETS": 23476108,
+      "MERGING_REASON": "EXPANDED SERVICES",
+      "CONTINUING_FIELD_OF_MEMBERSHIP": "Persons who live, work, worship, or attend school in Winnebago, Boone, Ogle, DeKalb, Lee, or Stephenson Counties, Illinois, or Green, Rock, or Walworth Counties, Wisconsin.",
+      "MERGING_FIELD_OF_MEMBERSHIP": "Employees of City of Rockford who work in Illinois; other occupational groups.",
+      "_LOADED_AT": 1786153388050031,
+      "_SOURCE_RUN_ID": "1b51fadb-e341-4e8c-b807-07d67c599a3b",
+      "_SRC_SHA256": "100b43cfa7575c531761b4ddc630539ad1d1cc968594815026f958740ac57523"
+    },
+    {
+      "REGION": "3",
+      "CONTINUING_CREDIT_UNION_CHARTER": "63602",
+      "CONTINUING_NAME": "CORDA",
+      "CONTINUING_LOCATION": "CEDAR RAPIDS, IA",
+      "CONTINUING_ASSETS": 726261542,
+      "MERGING_CREDIT_UNION_CHARTER": "65136",
+      "MERGING_CREDIT_UNION_NAME": "ST. ATHANASIUS",
+      "MERGING_LOCATION": "JESUP, IA",
+      "MERGING_ASSETS": 502130,
+      "MERGING_REASON": "EXPANDED SERVICES",
+      "CONTINUING_FIELD_OF_MEMBERSHIP": "Persons who live or work in 22 Counties, Iowa.",
+      "MERGING_FIELD_OF_MEMBERSHIP": "Employees and members of St. Athanasius Parish, employees of St. Athanasius Parish located in Jesup, Iowa; other occupational group.",
+      "_LOADED_AT": 1786153388050031,
+      "_SOURCE_RUN_ID": "1b51fadb-e341-4e8c-b807-07d67c599a3b",
+      "_SRC_SHA256": "100b43cfa7575c531761b4ddc630539ad1d1cc968594815026f958740ac57523"
+    },
+    {
+      "REGION": "1",
+      "CONTINUING_CREDIT_UNION_CHARTER": "7573",
+      "CONTINUING_NAME": "ARLINGTON COMMUNITY",
+      "CONTINUING_LOCATION": "ARLINGTON, VA",
+      "CONTINUING_ASSETS": 527555000,
+      "MERGING_CREDIT_UNION_CHARTER": "5134",
+      "MERGING_CREDIT_UNION_NAME": "COMMONWEALTH ONE",
+      "MERGING_LOCATION": "ALEXANDRIA, VA",
+      "MERGING_ASSETS": 521280242,
+      "MERGING_REASON": "EXPANDED SERVICES",
+      "CONTINUING_FIELD_OF_MEMBERSHIP": "Employees of Animal Welfare League of Arlington (AWLA) who work in or are supervised from Arlington, Virginia; other occupational groups.",
+      "MERGING_FIELD_OF_MEMBERSHIP": "Civilian and military personnel of U. S. Army Materiel Command who work at or are assigned at Headquarters, U. S. Army Materiel Command; other civilian and military personnel of the Department of Defense who work at or are stationed in U.S. Army Materiel Command Headquarters in Alexandria or Fort Belvoir, Virginia; other occupational groups or associational groups.",
+      "_LOADED_AT": 1786153388050031,
+      "_SOURCE_RUN_ID": "1b51fadb-e341-4e8c-b807-07d67c599a3b",
+      "_SRC_SHA256": "100b43cfa7575c531761b4ddc630539ad1d1cc968594815026f958740ac57523"
+    },
+    {
+      "REGION": "2",
+      "CONTINUING_CREDIT_UNION_CHARTER": "60619",
+      "CONTINUING_NAME": "EPB EMPLOYEES",
+      "CONTINUING_LOCATION": "CHATTANOOGA, TN",
+      "CONTINUING_ASSETS": 39260168,
+      "MERGING_CREDIT_UNION_CHARTER": "12826",
+      "MERGING_CREDIT_UNION_NAME": "BASF CHATTANOOGA",
+      "MERGING_LOCATION": "CHATTANOOGA, TN",
+      "MERGING_ASSETS": 3383703,
+      "MERGING_REASON": "EXPANDED SERVICES",
+      "CONTINUING_FIELD_OF_MEMBERSHIP": "Employees of EPB and EPB Employees Credit Union; employees of Current EPB Contractors; employees of TN American Water.",
+      "MERGING_FIELD_OF_MEMBERSHIP": "Employees of BASF Corporation; other occupational groups.",
+      "_LOADED_AT": 1786153388050031,
+      "_SOURCE_RUN_ID": "1b51fadb-e341-4e8c-b807-07d67c599a3b",
+      "_SRC_SHA256": "100b43cfa7575c531761b4ddc630539ad1d1cc968594815026f958740ac57523"
+    },
+    {
+      "REGION": "3",
+      "CONTINUING_CREDIT_UNION_CHARTER": "24606",
+      "CONTINUING_NAME": "GREAT NORTHWEST",
+      "CONTINUING_LOCATION": "ABERDEEN, WA",
+      "CONTINUING_ASSETS": 262716696,
+      "MERGING_CREDIT_UNION_CHARTER": "68231",
+      "MERGING_CREDIT_UNION_NAME": "STRAIT VIEW",
+      "MERGING_LOCATION": "PORT ANGELES, WA",
+      "MERGING_ASSETS": 105173169,
+      "MERGING_REASON": "EXPANDED SERVICES",
+      "CONTINUING_FIELD_OF_MEMBERSHIP": "Persons who live, work, (or regularly conduct business in), worship or attend school in, and businesses and other legal entities located in the rural district of Clallam, Grays Harbor, Jefferson, Lewis, Mason, Pacific, Thurston, or Wahkiakum Counties, Was",
+      "MERGING_FIELD_OF_MEMBERSHIP": "Person who live and work in Grays Harbor, Pacific, Lewis, Mason, Wahkiakum, Clallam, Jefferson, and Thurston Counties in Washington.",
+      "_LOADED_AT": 1786153388050031,
+      "_SOURCE_RUN_ID": "1b51fadb-e341-4e8c-b807-07d67c599a3b",
+      "_SRC_SHA256": "100b43cfa7575c531761b4ddc630539ad1d1cc968594815026f958740ac57523"
+    }
+  ],
+  "sample_error": null
+}

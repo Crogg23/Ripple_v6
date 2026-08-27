@@ -1,0 +1,150 @@
+{
+  "fqtn": "LIBRARY_MARTS.JUSTICE.JUSTICE__FED_COURTLISTENER_ORIGINATING_COURT_INFO",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "ID",
+    "DATE_CREATED",
+    "DATE_MODIFIED",
+    "DOCKET_NUMBER",
+    "ASSIGNED_TO_STR",
+    "ORDERING_JUDGE_STR",
+    "COURT_REPORTER",
+    "DATE_DISPOSED",
+    "DATE_FILED",
+    "DATE_JUDGMENT",
+    "DATE_JUDGMENT_EOD",
+    "DATE_FILED_NOA",
+    "DATE_RECEIVED_COA",
+    "ASSIGNED_TO_ID",
+    "ORDERING_JUDGE_ID",
+    "DOCKET_NUMBER_RAW"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CL_PERSON_ID",
+      "column": "ASSIGNED_TO_ID",
+      "total_rows": 973419,
+      "nonnull_after_norm": 32857,
+      "distinct_after_norm": 1520,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    },
+    {
+      "key_label": "DOCKET",
+      "column": "DOCKET_NUMBER",
+      "total_rows": 973419,
+      "nonnull_after_norm": 902366,
+      "distinct_after_norm": 736212,
+      "trap_verdict": "REAL"
+    },
+    {
+      "key_label": "DOCKET",
+      "column": "DOCKET_NUMBER_RAW",
+      "total_rows": 973419,
+      "nonnull_after_norm": 902366,
+      "distinct_after_norm": 736247,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "ID": "12601",
+      "DATE_CREATED": "2019-12-09",
+      "DATE_MODIFIED": "2019-12-09",
+      "DOCKET_NUMBER": "1:17-cv-02503",
+      "ASSIGNED_TO_STR": "Donald C. Nugent",
+      "ORDERING_JUDGE_STR": null,
+      "COURT_REPORTER": null,
+      "DATE_DISPOSED": null,
+      "DATE_FILED": "2017-11-30",
+      "DATE_JUDGMENT": "2019-05-07",
+      "DATE_JUDGMENT_EOD": null,
+      "DATE_FILED_NOA": "2019-05-14",
+      "DATE_RECEIVED_COA": null,
+      "ASSIGNED_TO_ID": "2437",
+      "ORDERING_JUDGE_ID": null,
+      "DOCKET_NUMBER_RAW": "1:17-cv-02503"
+    },
+    {
+      "ID": "7108",
+      "DATE_CREATED": "2019-02-01",
+      "DATE_MODIFIED": "2019-02-01",
+      "DOCKET_NUMBER": "1:18-cv-00990",
+      "ASSIGNED_TO_STR": "Gordon J. Quist",
+      "ORDERING_JUDGE_STR": null,
+      "COURT_REPORTER": null,
+      "DATE_DISPOSED": null,
+      "DATE_FILED": null,
+      "DATE_JUDGMENT": null,
+      "DATE_JUDGMENT_EOD": null,
+      "DATE_FILED_NOA": null,
+      "DATE_RECEIVED_COA": null,
+      "ASSIGNED_TO_ID": null,
+      "ORDERING_JUDGE_ID": null,
+      "DOCKET_NUMBER_RAW": "1:18-cv-00990"
+    },
+    {
+      "ID": "824142",
+      "DATE_CREATED": "2026-03-26",
+      "DATE_MODIFIED": "2026-03-26",
+      "DOCKET_NUMBER": "11-03-00064-CR",
+      "ASSIGNED_TO_STR": null,
+      "ORDERING_JUDGE_STR": null,
+      "COURT_REPORTER": null,
+      "DATE_DISPOSED": null,
+      "DATE_FILED": null,
+      "DATE_JUDGMENT": null,
+      "DATE_JUDGMENT_EOD": null,
+      "DATE_FILED_NOA": null,
+      "DATE_RECEIVED_COA": null,
+      "ASSIGNED_TO_ID": null,
+      "ORDERING_JUDGE_ID": null,
+      "DOCKET_NUMBER_RAW": "11-03-00064-CR"
+    },
+    {
+      "ID": "86679",
+      "DATE_CREATED": "2026-03-12",
+      "DATE_MODIFIED": "2026-04-14",
+      "DOCKET_NUMBER": "03-50199",
+      "ASSIGNED_TO_STR": null,
+      "ORDERING_JUDGE_STR": null,
+      "COURT_REPORTER": null,
+      "DATE_DISPOSED": null,
+      "DATE_FILED": null,
+      "DATE_JUDGMENT": "2003-10-23",
+      "DATE_JUDGMENT_EOD": null,
+      "DATE_FILED_NOA": null,
+      "DATE_RECEIVED_COA": null,
+      "ASSIGNED_TO_ID": null,
+      "ORDERING_JUDGE_ID": null,
+      "DOCKET_NUMBER_RAW": "(03-50199)"
+    },
+    {
+      "ID": "570637",
+      "DATE_CREATED": "2026-03-25",
+      "DATE_MODIFIED": "2026-03-25",
+      "DOCKET_NUMBER": "98-1171",
+      "ASSIGNED_TO_STR": "Honorable Alex R. Hernandez",
+      "ORDERING_JUDGE_STR": null,
+      "COURT_REPORTER": null,
+      "DATE_DISPOSED": null,
+      "DATE_FILED": null,
+      "DATE_JUDGMENT": null,
+      "DATE_JUDGMENT_EOD": null,
+      "DATE_FILED_NOA": null,
+      "DATE_RECEIVED_COA": null,
+      "ASSIGNED_TO_ID": null,
+      "ORDERING_JUDGE_ID": null,
+      "DOCKET_NUMBER_RAW": "98-1171"
+    }
+  ],
+  "sample_error": null
+}

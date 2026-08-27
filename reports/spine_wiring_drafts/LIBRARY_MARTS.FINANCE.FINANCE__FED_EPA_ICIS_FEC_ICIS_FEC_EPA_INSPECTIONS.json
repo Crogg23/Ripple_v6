@@ -1,0 +1,136 @@
+{
+  "fqtn": "LIBRARY_MARTS.FINANCE.FINANCE__FED_EPA_ICIS_FEC_ICIS_FEC_EPA_INSPECTIONS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "REGISTRY_ID",
+    "PGM_SYS_ACRNM",
+    "PGM_SYS_ID",
+    "FACILITY_NAME",
+    "EPA_REGION_CODE",
+    "ACTIVITY_ID",
+    "ACTIVITY_TYPE_CODE",
+    "ACTIVITY_TYPE_DESC",
+    "COMP_MONITOR_UID",
+    "COMP_MONITOR_TYPES",
+    "STATUTE_CODE",
+    "LAW_SECTION_CODE",
+    "ACTUAL_BEGIN_DATE",
+    "ACTUAL_END_DATE",
+    "AGENCY",
+    "COMP_MONITOR_AGENCY_TYPES"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "FACILITY_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "FRS_ID",
+      "column": "REGISTRY_ID",
+      "total_rows": 260556,
+      "nonnull_after_norm": 259137,
+      "distinct_after_norm": 156326,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "REGISTRY_ID": "110000467637",
+      "PGM_SYS_ACRNM": "ICIS",
+      "PGM_SYS_ID": "1400005711",
+      "FACILITY_NAME": "CARGILL MEAT SOLUTIONS",
+      "EPA_REGION_CODE": "08",
+      "ACTIVITY_ID": "3000049966",
+      "ACTIVITY_TYPE_CODE": "INS",
+      "ACTIVITY_TYPE_DESC": "Inspection/Evaluation",
+      "COMP_MONITOR_UID": "08000F937461",
+      "COMP_MONITOR_TYPES": "Evaluation",
+      "STATUTE_CODE": "EPCRA",
+      "LAW_SECTION_CODE": "311",
+      "ACTUAL_BEGIN_DATE": "2012-09-11",
+      "ACTUAL_END_DATE": "2012-09-11",
+      "AGENCY": "EPA",
+      "COMP_MONITOR_AGENCY_TYPES": "U.S. EPA"
+    },
+    {
+      "REGISTRY_ID": "110014378397",
+      "PGM_SYS_ACRNM": "RCRAINFO",
+      "PGM_SYS_ID": "AZR000045138",
+      "FACILITY_NAME": "PMA PHOTOMETALS OF ARIZONA LLC",
+      "EPA_REGION_CODE": "09",
+      "ACTIVITY_ID": "153375",
+      "ACTIVITY_TYPE_CODE": "INS",
+      "ACTIVITY_TYPE_DESC": "Inspection/Evaluation",
+      "COMP_MONITOR_UID": "09000F36417",
+      "COMP_MONITOR_TYPES": "Evaluation",
+      "STATUTE_CODE": "RCRA",
+      "LAW_SECTION_CODE": "3002",
+      "ACTUAL_BEGIN_DATE": "2005-06-27",
+      "ACTUAL_END_DATE": "2005-06-27",
+      "AGENCY": "EPA",
+      "COMP_MONITOR_AGENCY_TYPES": "U.S. EPA"
+    },
+    {
+      "REGISTRY_ID": "110039228323",
+      "PGM_SYS_ACRNM": "ICIS",
+      "PGM_SYS_ID": "3601203235",
+      "FACILITY_NAME": "AMAZON.COM",
+      "EPA_REGION_CODE": "10",
+      "ACTIVITY_ID": "3604312096",
+      "ACTIVITY_TYPE_CODE": "OSR",
+      "ACTIVITY_TYPE_DESC": "Offsite Record Review",
+      "COMP_MONITOR_UID": "10000FFIFRA20250042",
+      "COMP_MONITOR_TYPES": "Desk Audit",
+      "STATUTE_CODE": "FIFRA",
+      "LAW_SECTION_CODE": "8",
+      "ACTUAL_BEGIN_DATE": "2024-11-07",
+      "ACTUAL_END_DATE": "2024-11-07",
+      "AGENCY": "EPA",
+      "COMP_MONITOR_AGENCY_TYPES": "U.S. EPA"
+    },
+    {
+      "REGISTRY_ID": "110045512334",
+      "PGM_SYS_ACRNM": "OIL",
+      "PGM_SYS_ID": "R6-LA-01483",
+      "FACILITY_NAME": "BELLE CHASSE FUEL DOCK",
+      "EPA_REGION_CODE": "06",
+      "ACTIVITY_ID": "3400231156",
+      "ACTIVITY_TYPE_CODE": "INS",
+      "ACTIVITY_TYPE_DESC": "Inspection/Evaluation",
+      "COMP_MONITOR_UID": "06000FOIL0000000000000032",
+      "COMP_MONITOR_TYPES": "Evaluation",
+      "STATUTE_CODE": "CWA",
+      "LAW_SECTION_CODE": "311",
+      "ACTUAL_BEGIN_DATE": "2014-04-15",
+      "ACTUAL_END_DATE": "2014-04-15",
+      "AGENCY": "EPA",
+      "COMP_MONITOR_AGENCY_TYPES": "U.S. EPA"
+    },
+    {
+      "REGISTRY_ID": "110035379060",
+      "PGM_SYS_ACRNM": "ICIS",
+      "PGM_SYS_ID": "2200009674",
+      "FACILITY_NAME": "MR DISCOUNT",
+      "EPA_REGION_CODE": "06",
+      "ACTIVITY_ID": "2200018590",
+      "ACTIVITY_TYPE_CODE": "INS",
+      "ACTIVITY_TYPE_DESC": "Inspection/Evaluation",
+      "COMP_MONITOR_UID": "06000F731665",
+      "COMP_MONITOR_TYPES": "Evaluation",
+      "STATUTE_CODE": "RCRA",
+      "LAW_SECTION_CODE": "9002",
+      "ACTUAL_BEGIN_DATE": "2010-08-17",
+      "ACTUAL_END_DATE": "2010-08-17",
+      "AGENCY": "EPA",
+      "COMP_MONITOR_AGENCY_TYPES": "U.S. EPA"
+    }
+  ],
+  "sample_error": null
+}

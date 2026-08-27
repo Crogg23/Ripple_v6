@@ -1,0 +1,131 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_CKA_CALIFORNIA_OPEN_3501B678FA",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "ORG_ID",
+    "PWSID",
+    "SUPPLIER_NAME",
+    "PWS_NAME",
+    "COUNTY",
+    "WS_INCLUDED_YN",
+    "SYSTEM_START_DATE",
+    "SYSTEM_END_DATE",
+    "APPLICABLE_START_DATE",
+    "APPLICABLE_END_DATE",
+    "NUM_SC_LT200",
+    "NOTES",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "SUPPLIER_NAME",
+      "PWS_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "PWSID",
+      "column": "PWSID",
+      "total_rows": 572,
+      "nonnull_after_norm": 572,
+      "distinct_after_norm": 533,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "ORG_ID": "1701",
+      "PWSID": "CA2810003",
+      "SUPPLIER_NAME": "Napa  City Of",
+      "PWS_NAME": "NAPA, CITY OF",
+      "COUNTY": "NAPA",
+      "WS_INCLUDED_YN": "Yes",
+      "SYSTEM_START_DATE": "",
+      "SYSTEM_END_DATE": "",
+      "APPLICABLE_START_DATE": "2023-07-01T00:00:00",
+      "APPLICABLE_END_DATE": "",
+      "NUM_SC_LT200": "",
+      "NOTES": "",
+      "INGESTED_AT": "2026-07-02 23:21:32.908041",
+      "SOURCE_RUN_ID": "5ed376e2-0e8d-4938-9430-50e3157d4c64",
+      "SRC_SHA256": "c19369522e1371ba19ee260be8fc770eaf773b64569e78a06dbd609f9617edd3"
+    },
+    {
+      "ORG_ID": "372",
+      "PWSID": "CA3410013",
+      "SUPPLIER_NAME": "California American Water Company - Sacramento District",
+      "PWS_NAME": "CAL AM - LINCOLN OAKS",
+      "COUNTY": "SACRAMENTO",
+      "WS_INCLUDED_YN": "Yes",
+      "SYSTEM_START_DATE": "",
+      "SYSTEM_END_DATE": "",
+      "APPLICABLE_START_DATE": "2023-07-01T00:00:00",
+      "APPLICABLE_END_DATE": "",
+      "NUM_SC_LT200": "",
+      "NOTES": "",
+      "INGESTED_AT": "2026-07-02 23:21:32.908041",
+      "SOURCE_RUN_ID": "5ed376e2-0e8d-4938-9430-50e3157d4c64",
+      "SRC_SHA256": "c19369522e1371ba19ee260be8fc770eaf773b64569e78a06dbd609f9617edd3"
+    },
+    {
+      "ORG_ID": "1642",
+      "PWSID": "CA3610029",
+      "SUPPLIER_NAME": "Monte Vista Water District",
+      "PWS_NAME": "MONTE VISTA CWD",
+      "COUNTY": "SAN BERNARDINO",
+      "WS_INCLUDED_YN": "Yes",
+      "SYSTEM_START_DATE": "",
+      "SYSTEM_END_DATE": "",
+      "APPLICABLE_START_DATE": "2023-07-01T00:00:00",
+      "APPLICABLE_END_DATE": "",
+      "NUM_SC_LT200": "",
+      "NOTES": "",
+      "INGESTED_AT": "2026-07-02 23:21:32.908041",
+      "SOURCE_RUN_ID": "5ed376e2-0e8d-4938-9430-50e3157d4c64",
+      "SRC_SHA256": "c19369522e1371ba19ee260be8fc770eaf773b64569e78a06dbd609f9617edd3"
+    },
+    {
+      "ORG_ID": "2218",
+      "PWSID": "CA4210011",
+      "SUPPLIER_NAME": "Santa Maria  City Of",
+      "PWS_NAME": "SANTA MARIA WATER DEPARTMENT",
+      "COUNTY": "SANTA BARBARA",
+      "WS_INCLUDED_YN": "Yes",
+      "SYSTEM_START_DATE": "",
+      "SYSTEM_END_DATE": "",
+      "APPLICABLE_START_DATE": "2023-07-01T00:00:00",
+      "APPLICABLE_END_DATE": "",
+      "NUM_SC_LT200": "",
+      "NOTES": "",
+      "INGESTED_AT": "2026-07-02 23:21:32.908041",
+      "SOURCE_RUN_ID": "5ed376e2-0e8d-4938-9430-50e3157d4c64",
+      "SRC_SHA256": "c19369522e1371ba19ee260be8fc770eaf773b64569e78a06dbd609f9617edd3"
+    },
+    {
+      "ORG_ID": "264",
+      "PWSID": "CA0710004",
+      "SUPPLIER_NAME": "Brentwood  City Of",
+      "PWS_NAME": "BRENTWOOD",
+      "COUNTY": "CONTRA COSTA",
+      "WS_INCLUDED_YN": "Yes",
+      "SYSTEM_START_DATE": "",
+      "SYSTEM_END_DATE": "",
+      "APPLICABLE_START_DATE": "2023-07-01T00:00:00",
+      "APPLICABLE_END_DATE": "",
+      "NUM_SC_LT200": "",
+      "NOTES": "",
+      "INGESTED_AT": "2026-07-02 23:21:32.908041",
+      "SOURCE_RUN_ID": "5ed376e2-0e8d-4938-9430-50e3157d4c64",
+      "SRC_SHA256": "c19369522e1371ba19ee260be8fc770eaf773b64569e78a06dbd609f9617edd3"
+    }
+  ],
+  "sample_error": null
+}

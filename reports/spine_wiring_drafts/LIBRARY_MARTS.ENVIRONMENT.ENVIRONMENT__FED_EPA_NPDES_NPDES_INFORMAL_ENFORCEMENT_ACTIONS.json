@@ -1,0 +1,112 @@
+{
+  "fqtn": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_NPDES_NPDES_INFORMAL_ENFORCEMENT_ACTIONS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NPDES_ID",
+    "REGISTRY_ID",
+    "AGENCY",
+    "ACTIVITY_ID",
+    "ACTIVITY_TYPE_CODE",
+    "ACTIVITY_TYPE_DESC",
+    "ENF_TYPE_CODE",
+    "ENF_TYPE_DESC",
+    "ACHIEVED_DATE",
+    "ENF_IDENTIFIER",
+    "OFFICIAL_FLG"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPDES_ID",
+      "column": "NPDES_ID",
+      "total_rows": 478855,
+      "nonnull_after_norm": 478855,
+      "distinct_after_norm": 119300,
+      "trap_verdict": "REAL"
+    },
+    {
+      "key_label": "FRS_ID",
+      "column": "REGISTRY_ID",
+      "total_rows": 478855,
+      "nonnull_after_norm": 478836,
+      "distinct_after_norm": 112933,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "NPDES_ID": "SC0022471",
+      "REGISTRY_ID": "110072238424",
+      "AGENCY": "State",
+      "ACTIVITY_ID": "3200287261",
+      "ACTIVITY_TYPE_CODE": "AIF",
+      "ACTIVITY_TYPE_DESC": "Administrative - Informal",
+      "ENF_TYPE_CODE": "LOVWL",
+      "ENF_TYPE_DESC": "Letter of Violation/ Warning Letter",
+      "ACHIEVED_DATE": "1996-10-23",
+      "ENF_IDENTIFIER": "SC-N00000181",
+      "OFFICIAL_FLG": "Y"
+    },
+    {
+      "NPDES_ID": "NY0092860",
+      "REGISTRY_ID": "110028131260",
+      "AGENCY": "State",
+      "ACTIVITY_ID": "400076527",
+      "ACTIVITY_TYPE_CODE": "AIF",
+      "ACTIVITY_TYPE_DESC": "Administrative - Informal",
+      "ENF_TYPE_CODE": "AER",
+      "ENF_TYPE_DESC": "Agency Enforcement Review",
+      "ACHIEVED_DATE": "1989-03-20",
+      "ENF_IDENTIFIER": "NY-N00000581",
+      "OFFICIAL_FLG": "N"
+    },
+    {
+      "NPDES_ID": "LA0042188",
+      "REGISTRY_ID": "110040028038",
+      "AGENCY": "EPA",
+      "ACTIVITY_ID": "1600184722",
+      "ACTIVITY_TYPE_CODE": "AIF",
+      "ACTIVITY_TYPE_DESC": "Administrative - Informal",
+      "ENF_TYPE_CODE": "UNDREV",
+      "ENF_TYPE_DESC": "Under Review",
+      "ACHIEVED_DATE": "2007-05-25",
+      "ENF_IDENTIFIER": "06-N00010317",
+      "OFFICIAL_FLG": "N"
+    },
+    {
+      "NPDES_ID": "GA0050275",
+      "REGISTRY_ID": "110070251668",
+      "AGENCY": "State",
+      "ACTIVITY_ID": "3604244341",
+      "ACTIVITY_TYPE_CODE": "AIF",
+      "ACTIVITY_TYPE_DESC": "Administrative - Informal",
+      "ENF_TYPE_CODE": "NONC",
+      "ENF_TYPE_DESC": "Notice of Noncompliance Issued",
+      "ACHIEVED_DATE": "2024-05-07",
+      "ENF_IDENTIFIER": "GA-NPDENF015777",
+      "OFFICIAL_FLG": "Y"
+    },
+    {
+      "NPDES_ID": "OH0027740",
+      "REGISTRY_ID": "110000556577",
+      "AGENCY": "State",
+      "ACTIVITY_ID": "2400303004",
+      "ACTIVITY_TYPE_CODE": "AIF",
+      "ACTIVITY_TYPE_DESC": "Administrative - Informal",
+      "ENF_TYPE_CODE": "LOVWL",
+      "ENF_TYPE_DESC": "Letter of Violation/ Warning Letter",
+      "ACHIEVED_DATE": "1987-10-19",
+      "ENF_IDENTIFIER": "OH-N00000434",
+      "OFFICIAL_FLG": "Y"
+    }
+  ],
+  "sample_error": null
+}

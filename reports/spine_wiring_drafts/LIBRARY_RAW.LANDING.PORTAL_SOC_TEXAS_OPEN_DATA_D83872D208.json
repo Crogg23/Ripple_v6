@@ -1,0 +1,130 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_SOC_TEXAS_OPEN_DATA_D83872D208",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "PROGRAM",
+    "CASE_NO",
+    "DISTRICT_COURT_DOCKET_NO",
+    "RESPONDENT_NAME",
+    "TCEQ_ID",
+    "COUNTY",
+    "ORDER_DATE",
+    "PENALTY_ASSESSED",
+    "PENALTY_DEFERRED",
+    "PAYABLE_AMOUNT",
+    "ATTORNEY_FEES",
+    "COURT_COSTS",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "RESPONDENT_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "DOCKET",
+      "column": "DISTRICT_COURT_DOCKET_NO",
+      "total_rows": 239,
+      "nonnull_after_norm": 239,
+      "distinct_after_norm": 231,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "PROGRAM": "MUNICIPAL SOLID WASTE",
+      "CASE_NO": "53842",
+      "DISTRICT_COURT_DOCKET_NO": "D-1-GN-23-006867",
+      "RESPONDENT_NAME": "*Rastex2 LLC",
+      "TCEQ_ID": "ZBA001A",
+      "COUNTY": "BEXAR",
+      "ORDER_DATE": "2024-03-25T00:00:00.000",
+      "PENALTY_ASSESSED": "314600",
+      "PENALTY_DEFERRED": "0",
+      "PAYABLE_AMOUNT": "314600",
+      "ATTORNEY_FEES": "62288",
+      "COURT_COSTS": "0",
+      "INGESTED_AT": "2026-06-24 05:08:46.988044",
+      "SOURCE_RUN_ID": "6453b3c4-2a13-4d94-a85c-75fb09e8ace5",
+      "SRC_SHA256": "ca440ba119d62b53a95282b8fd587868cabf4f82454099bb244a5f63ac8317ba"
+    },
+    {
+      "PROGRAM": "MULTI-MEDIA",
+      "CASE_NO": "36265",
+      "DISTRICT_COURT_DOCKET_NO": "D-1-GN-16-001037",
+      "RESPONDENT_NAME": "VASQUEZ, MARK A",
+      "TCEQ_ID": "TXR000025247",
+      "COUNTY": "BEXAR",
+      "ORDER_DATE": "2021-03-18T00:00:00.000",
+      "PENALTY_ASSESSED": "298556",
+      "PENALTY_DEFERRED": "0",
+      "PAYABLE_AMOUNT": "298556",
+      "ATTORNEY_FEES": "24256",
+      "COURT_COSTS": "0",
+      "INGESTED_AT": "2026-06-24 05:08:46.988044",
+      "SOURCE_RUN_ID": "6453b3c4-2a13-4d94-a85c-75fb09e8ace5",
+      "SRC_SHA256": "ca440ba119d62b53a95282b8fd587868cabf4f82454099bb244a5f63ac8317ba"
+    },
+    {
+      "PROGRAM": "AIR QUALITY",
+      "CASE_NO": "61441",
+      "DISTRICT_COURT_DOCKET_NO": "D-1-GN-21-006888",
+      "RESPONDENT_NAME": "LyondellBasell Acetyls, LLC",
+      "TCEQ_ID": "ZBA001A",
+      "COUNTY": "HARRIS",
+      "ORDER_DATE": "2023-07-07T00:00:00.000",
+      "PENALTY_ASSESSED": "1025000",
+      "PENALTY_DEFERRED": "0",
+      "PAYABLE_AMOUNT": "1025000",
+      "ATTORNEY_FEES": "75000",
+      "COURT_COSTS": "0",
+      "INGESTED_AT": "2026-06-24 05:08:46.988044",
+      "SOURCE_RUN_ID": "6453b3c4-2a13-4d94-a85c-75fb09e8ace5",
+      "SRC_SHA256": "ca440ba119d62b53a95282b8fd587868cabf4f82454099bb244a5f63ac8317ba"
+    },
+    {
+      "PROGRAM": "WATER QUALITY",
+      "CASE_NO": "52931",
+      "DISTRICT_COURT_DOCKET_NO": "D-1-GN-16-002360",
+      "RESPONDENT_NAME": "PROOF & COOPER LLC *",
+      "TCEQ_ID": "LGL109262360",
+      "COUNTY": "TRAVIS",
+      "ORDER_DATE": "2019-01-07T00:00:00.000",
+      "PENALTY_ASSESSED": "23000",
+      "PENALTY_DEFERRED": "12500",
+      "PAYABLE_AMOUNT": "10500",
+      "ATTORNEY_FEES": "2000",
+      "COURT_COSTS": "0",
+      "INGESTED_AT": "2026-06-24 05:08:46.988044",
+      "SOURCE_RUN_ID": "6453b3c4-2a13-4d94-a85c-75fb09e8ace5",
+      "SRC_SHA256": "ca440ba119d62b53a95282b8fd587868cabf4f82454099bb244a5f63ac8317ba"
+    },
+    {
+      "PROGRAM": "MULTI-MEDIA",
+      "CASE_NO": "60577",
+      "DISTRICT_COURT_DOCKET_NO": "2020-06802",
+      "RESPONDENT_NAME": "MRH CLEARING SN MRH0001 *",
+      "TCEQ_ID": "960799W",
+      "COUNTY": "HARRIS",
+      "ORDER_DATE": "2021-03-23T00:00:00.000",
+      "PENALTY_ASSESSED": "41406",
+      "PENALTY_DEFERRED": "0",
+      "PAYABLE_AMOUNT": "41406",
+      "ATTORNEY_FEES": "4375",
+      "COURT_COSTS": "0",
+      "INGESTED_AT": "2026-06-24 05:08:46.988044",
+      "SOURCE_RUN_ID": "6453b3c4-2a13-4d94-a85c-75fb09e8ace5",
+      "SRC_SHA256": "ca440ba119d62b53a95282b8fd587868cabf4f82454099bb244a5f63ac8317ba"
+    }
+  ],
+  "sample_error": null
+}

@@ -1,0 +1,118 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_CKA_WPRDC_ALLEGHENY_31D26600C9",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "PIN",
+    "BLOCK_LOT",
+    "FILING_DATE",
+    "CASE_ID",
+    "MUNICIPALITY",
+    "WARD",
+    "DOCKET_TYPE",
+    "AMOUNT",
+    "PLAINTIFF",
+    "LAST_ACTIVITY",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "LAST_ACTIVITY"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "DOCKET",
+      "column": "DOCKET_TYPE",
+      "total_rows": 10000,
+      "nonnull_after_norm": 10000,
+      "distinct_after_norm": 114,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "PIN": "0374B00192000000",
+      "BLOCK_LOT": "374B192",
+      "FILING_DATE": "2009-05-26",
+      "CASE_ID": "MG-09-001295",
+      "MUNICIPALITY": "Forest Hills Boro",
+      "WARD": "",
+      "DOCKET_TYPE": "Sheriff Return",
+      "AMOUNT": "74932.82",
+      "PLAINTIFF": "Chase Home Finance LLC",
+      "LAST_ACTIVITY": "",
+      "INGESTED_AT": "2026-07-02 21:04:37.044132",
+      "SOURCE_RUN_ID": "e1c6e056-b96c-48c5-847f-54df1689b2d7",
+      "SRC_SHA256": "fdcfd7066c2d17029dc45650f75e947bc1576f2260b456f01ecb00c4eecf41ff"
+    },
+    {
+      "PIN": "0655B00069000000",
+      "BLOCK_LOT": "655B69",
+      "FILING_DATE": "2010-10-06",
+      "CASE_ID": "MG-10-002347",
+      "MUNICIPALITY": "Lincoln Boro",
+      "WARD": "",
+      "DOCKET_TYPE": "Sheriff Return",
+      "AMOUNT": "218110.53",
+      "PLAINTIFF": "Sarris Gust",
+      "LAST_ACTIVITY": "",
+      "INGESTED_AT": "2026-07-02 21:04:37.044132",
+      "SOURCE_RUN_ID": "e1c6e056-b96c-48c5-847f-54df1689b2d7",
+      "SRC_SHA256": "fdcfd7066c2d17029dc45650f75e947bc1576f2260b456f01ecb00c4eecf41ff"
+    },
+    {
+      "PIN": "0517K00155000000",
+      "BLOCK_LOT": "517K155",
+      "FILING_DATE": "2010-05-28",
+      "CASE_ID": "MG-10-001358",
+      "MUNICIPALITY": "Ross Township",
+      "WARD": "",
+      "DOCKET_TYPE": "Sheriff Return",
+      "AMOUNT": "137743.18",
+      "PLAINTIFF": "Bank of America National Association",
+      "LAST_ACTIVITY": "",
+      "INGESTED_AT": "2026-07-02 21:04:37.044132",
+      "SOURCE_RUN_ID": "e1c6e056-b96c-48c5-847f-54df1689b2d7",
+      "SRC_SHA256": "fdcfd7066c2d17029dc45650f75e947bc1576f2260b456f01ecb00c4eecf41ff"
+    },
+    {
+      "PIN": "0035A00078000000",
+      "BLOCK_LOT": "35A78",
+      "FILING_DATE": "2009-03-23",
+      "CASE_ID": "MG-09-000677",
+      "MUNICIPALITY": "Pittsburgh",
+      "WARD": "19",
+      "DOCKET_TYPE": "Correction to Judgment Index",
+      "AMOUNT": "58918.98",
+      "PLAINTIFF": "Wells Fargo Bank N.A.",
+      "LAST_ACTIVITY": "",
+      "INGESTED_AT": "2026-07-02 21:04:37.044132",
+      "SOURCE_RUN_ID": "e1c6e056-b96c-48c5-847f-54df1689b2d7",
+      "SRC_SHA256": "fdcfd7066c2d17029dc45650f75e947bc1576f2260b456f01ecb00c4eecf41ff"
+    },
+    {
+      "PIN": "0547H00036000000",
+      "BLOCK_LOT": "547H36",
+      "FILING_DATE": "2010-09-27",
+      "CASE_ID": "MG-10-002254",
+      "MUNICIPALITY": "N. Versailles Twp.",
+      "WARD": "",
+      "DOCKET_TYPE": "Sheriff Return",
+      "AMOUNT": "61712.97",
+      "PLAINTIFF": "Midfirst Bank",
+      "LAST_ACTIVITY": "",
+      "INGESTED_AT": "2026-07-02 21:04:37.044132",
+      "SOURCE_RUN_ID": "e1c6e056-b96c-48c5-847f-54df1689b2d7",
+      "SRC_SHA256": "fdcfd7066c2d17029dc45650f75e947bc1576f2260b456f01ecb00c4eecf41ff"
+    }
+  ],
+  "sample_error": null
+}

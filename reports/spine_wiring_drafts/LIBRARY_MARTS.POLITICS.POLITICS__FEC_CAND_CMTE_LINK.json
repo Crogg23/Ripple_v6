@@ -1,0 +1,94 @@
+{
+  "fqtn": "LIBRARY_MARTS.POLITICS.POLITICS__FEC_CAND_CMTE_LINK",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "CAND_ID",
+    "CMTE_ID",
+    "CYCLE",
+    "CMTE_TP",
+    "CMTE_DSGN",
+    "CAND_ELECTION_YR",
+    "FEC_ELECTION_YR",
+    "LINKAGE_ID"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "FEC_CAND_ID",
+      "column": "CAND_ID",
+      "total_rows": 16229,
+      "nonnull_after_norm": 16229,
+      "distinct_after_norm": 11177,
+      "trap_verdict": "REAL"
+    },
+    {
+      "key_label": "FEC_CMTE_ID",
+      "column": "CMTE_ID",
+      "total_rows": 16229,
+      "nonnull_after_norm": 16229,
+      "distinct_after_norm": 11427,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "CAND_ID": "S8AL00308",
+      "CMTE_ID": "C00629451",
+      "CYCLE": "2024",
+      "CMTE_TP": "S",
+      "CMTE_DSGN": "P",
+      "CAND_ELECTION_YR": 2018,
+      "FEC_ELECTION_YR": 2024,
+      "LINKAGE_ID": "247208"
+    },
+    {
+      "CAND_ID": "H2IN04184",
+      "CMTE_ID": "C00818245",
+      "CYCLE": "2024",
+      "CMTE_TP": "H",
+      "CMTE_DSGN": "P",
+      "CAND_ELECTION_YR": 2022,
+      "FEC_ELECTION_YR": 2024,
+      "LINKAGE_ID": "251778"
+    },
+    {
+      "CAND_ID": "H6NY23542",
+      "CMTE_ID": "C00918672",
+      "CYCLE": "2026",
+      "CMTE_TP": "H",
+      "CMTE_DSGN": "P",
+      "CAND_ELECTION_YR": 2026,
+      "FEC_ELECTION_YR": 2026,
+      "LINKAGE_ID": "266757"
+    },
+    {
+      "CAND_ID": "H4IA02083",
+      "CMTE_ID": "C00866061",
+      "CYCLE": "2024",
+      "CMTE_TP": "H",
+      "CMTE_DSGN": "P",
+      "CAND_ELECTION_YR": 2024,
+      "FEC_ELECTION_YR": 2024,
+      "LINKAGE_ID": "256276"
+    },
+    {
+      "CAND_ID": "S6SC04247",
+      "CMTE_ID": "C00907709",
+      "CYCLE": "2026",
+      "CMTE_TP": "S",
+      "CMTE_DSGN": "P",
+      "CAND_ELECTION_YR": 2026,
+      "FEC_ELECTION_YR": 2026,
+      "LINKAGE_ID": "265233"
+    }
+  ],
+  "sample_error": null
+}

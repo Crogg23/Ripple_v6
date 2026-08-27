@@ -1,0 +1,158 @@
+{
+  "fqtn": "LIBRARY_MARTS.POLITICS.POLITICS__WHO_WON",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "OFFICE",
+    "YEAR",
+    "STATE",
+    "DISTRICT",
+    "IS_SPECIAL",
+    "WINNER",
+    "WINNER_PARTY",
+    "WINNER_VOTES",
+    "TOTAL_VOTES",
+    "VOTE_SHARE",
+    "MARGIN_VOTES",
+    "MARGIN_PCT",
+    "RUNNER_UP",
+    "RUNNER_UP_PARTY",
+    "BIOGUIDE",
+    "SPINE_NAME",
+    "ICPSR",
+    "MATCH_METHOD"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "SPINE_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [
+        "STATE"
+      ],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "ICPSR",
+      "column": "ICPSR",
+      "total_rows": 10976,
+      "nonnull_after_norm": 9682,
+      "distinct_after_norm": 2001,
+      "trap_verdict": "REAL"
+    },
+    {
+      "key_label": "BIOGUIDE",
+      "column": "BIOGUIDE",
+      "total_rows": 10976,
+      "nonnull_after_norm": 9716,
+      "distinct_after_norm": 2028,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "OFFICE": "HOUSE",
+      "YEAR": 1990,
+      "STATE": "IN",
+      "DISTRICT": "4",
+      "IS_SPECIAL": false,
+      "WINNER": "Jill L. Long",
+      "WINNER_PARTY": "democrat",
+      "WINNER_VOTES": 99347,
+      "TOTAL_VOTES": 163762,
+      "VOTE_SHARE": "0.6067",
+      "MARGIN_VOTES": 34932,
+      "MARGIN_PCT": "0.2133",
+      "RUNNER_UP": "Richard Walter Hawks",
+      "RUNNER_UP_PARTY": "republican",
+      "BIOGUIDE": null,
+      "SPINE_NAME": null,
+      "ICPSR": null,
+      "MATCH_METHOD": "unmatched"
+    },
+    {
+      "OFFICE": "HOUSE",
+      "YEAR": 2004,
+      "STATE": "CA",
+      "DISTRICT": "47",
+      "IS_SPECIAL": false,
+      "WINNER": "Loretta Sanchez",
+      "WINNER_PARTY": "democrat",
+      "WINNER_VOTES": 65684,
+      "TOTAL_VOTES": 108783,
+      "VOTE_SHARE": "0.6038",
+      "MARGIN_VOTES": 22585,
+      "MARGIN_PCT": "0.2076",
+      "RUNNER_UP": "Alexandria A. \"\"Alex\"\" Coronado",
+      "RUNNER_UP_PARTY": "republican",
+      "BIOGUIDE": "S000030",
+      "SPINE_NAME": "Loretta Sanchez",
+      "ICPSR": 29709,
+      "MATCH_METHOD": "surname+state+chamber+term-span"
+    },
+    {
+      "OFFICE": "HOUSE",
+      "YEAR": 1990,
+      "STATE": "MN",
+      "DISTRICT": "8",
+      "IS_SPECIAL": false,
+      "WINNER": "James L. Oberstar",
+      "WINNER_PARTY": "democratic-farmer-labor",
+      "WINNER_VOTES": 151145,
+      "TOTAL_VOTES": 207312,
+      "VOTE_SHARE": "0.7291",
+      "MARGIN_VOTES": 95077,
+      "MARGIN_PCT": "0.4586",
+      "RUNNER_UP": "Jerry Shuster",
+      "RUNNER_UP_PARTY": "republican",
+      "BIOGUIDE": "O000006",
+      "SPINE_NAME": "James Oberstar",
+      "ICPSR": 14265,
+      "MATCH_METHOD": "surname+state+chamber+term-span"
+    },
+    {
+      "OFFICE": "HOUSE",
+      "YEAR": 1996,
+      "STATE": "FL",
+      "DISTRICT": "16",
+      "IS_SPECIAL": false,
+      "WINNER": "Mark Foley",
+      "WINNER_PARTY": "republican",
+      "WINNER_VOTES": 175714,
+      "TOTAL_VOTES": 274541,
+      "VOTE_SHARE": "0.6400",
+      "MARGIN_VOTES": 76887,
+      "MARGIN_PCT": "0.2801",
+      "RUNNER_UP": "Jim Stuber",
+      "RUNNER_UP_PARTY": "democrat",
+      "BIOGUIDE": "F000238",
+      "SPINE_NAME": "Mark Foley",
+      "ICPSR": 29510,
+      "MATCH_METHOD": "surname+state+chamber+term-span"
+    },
+    {
+      "OFFICE": "HOUSE",
+      "YEAR": 2016,
+      "STATE": "TX",
+      "DISTRICT": "15",
+      "IS_SPECIAL": false,
+      "WINNER": "Vicente Gonzalez",
+      "WINNER_PARTY": "democrat",
+      "WINNER_VOTES": 101712,
+      "TOTAL_VOTES": 177479,
+      "VOTE_SHARE": "0.5731",
+      "MARGIN_VOTES": 34835,
+      "MARGIN_PCT": "0.1963",
+      "RUNNER_UP": "Tim Westley",
+      "RUNNER_UP_PARTY": "republican",
+      "BIOGUIDE": "G000581",
+      "SPINE_NAME": "Vicente Gonzalez",
+      "ICPSR": 21722,
+      "MATCH_METHOD": "surname+state+chamber+term-span"
+    }
+  ],
+  "sample_error": null
+}

@@ -1,0 +1,100 @@
+{
+  "fqtn": "LIBRARY_MARTS.ECONOMICS.ECONOMICS__FED_IRS_990_EFILE_INDEX",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "RETURN_ID",
+    "FILING_TYPE",
+    "EIN",
+    "TAX_PERIOD",
+    "SUB_DATE",
+    "SUB_DATE_RAW",
+    "TAXPAYER_NAME",
+    "RETURN_TYPE",
+    "DLN",
+    "OBJECT_ID"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "TAXPAYER_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "EIN",
+      "column": "EIN",
+      "total_rows": 5544626,
+      "nonnull_after_norm": 5544626,
+      "distinct_after_norm": 899097,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "RETURN_ID": "20516821",
+      "FILING_TYPE": "EFILE",
+      "EIN": "470950816",
+      "TAX_PERIOD": "202106",
+      "SUB_DATE": "2022-10-24",
+      "SUB_DATE_RAW": "10/24/2022 7:18:13 AM",
+      "TAXPAYER_NAME": "SIGNAL MOUNTAIN MIDDLE-HIGH SCHOOL SPORTS BOOSTERS",
+      "RETURN_TYPE": "990EZ",
+      "DLN": "93492319012121",
+      "OBJECT_ID": "202123199349201212"
+    },
+    {
+      "RETURN_ID": "18252870",
+      "FILING_TYPE": "EFILE",
+      "EIN": "464623115",
+      "TAX_PERIOD": "201912",
+      "SUB_DATE": "2021-06-03",
+      "SUB_DATE_RAW": "6/3/2021 7:05:14 AM",
+      "TAXPAYER_NAME": "FAMILY AGRICULTURE RESOURCE MANAGEMENT SERVICES",
+      "RETURN_TYPE": "990EZ",
+      "DLN": "93492011004261",
+      "OBJECT_ID": "202110119349200426"
+    },
+    {
+      "RETURN_ID": "21970131",
+      "FILING_TYPE": "EFILE",
+      "EIN": "471116790",
+      "TAX_PERIOD": "202212",
+      "SUB_DATE": "2023-01-01",
+      "SUB_DATE_RAW": "2023",
+      "TAXPAYER_NAME": "NORCOM CARES FOUNDATION INC",
+      "RETURN_TYPE": "990EZ",
+      "DLN": "93492289020793",
+      "OBJECT_ID": "202342899349202079"
+    },
+    {
+      "RETURN_ID": "22206997",
+      "FILING_TYPE": "EFILE",
+      "EIN": "742951618",
+      "TAX_PERIOD": "202212",
+      "SUB_DATE": "2023-01-01",
+      "SUB_DATE_RAW": "2023",
+      "TAXPAYER_NAME": "Texas Operation Lifesaver Inc",
+      "RETURN_TYPE": "990",
+      "DLN": "93493319085183",
+      "OBJECT_ID": "202333199349308518"
+    },
+    {
+      "RETURN_ID": "23815933",
+      "FILING_TYPE": "EFILE",
+      "EIN": "860100882",
+      "TAX_PERIOD": "202406",
+      "SUB_DATE": "2025-01-01",
+      "SUB_DATE_RAW": "2025",
+      "TAXPAYER_NAME": "Verde Valley Medical Center",
+      "RETURN_TYPE": "990",
+      "DLN": "93493135127535",
+      "OBJECT_ID": "202531359349312753"
+    }
+  ],
+  "sample_error": null
+}

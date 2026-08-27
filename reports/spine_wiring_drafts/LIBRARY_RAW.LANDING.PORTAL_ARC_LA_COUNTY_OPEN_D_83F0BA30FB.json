@@ -1,0 +1,138 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_ARC_LA_COUNTY_OPEN_D_83F0BA30FB",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NPI",
+    "LEGAL_NAME",
+    "BUSINESS_NAME",
+    "FACILITY_TYPE",
+    "COUNTY",
+    "ADDRESS_LINE_1",
+    "ADDRESS_LINE_2",
+    "CITY",
+    "STATE",
+    "ZIP_CODE",
+    "PHONE",
+    "FID",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "LEGAL_NAME",
+      "BUSINESS_NAME",
+      "FACILITY_TYPE"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "STATE"
+      ],
+      "zip": [
+        "ZIP_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPI",
+      "column": "NPI",
+      "total_rows": 5,
+      "nonnull_after_norm": 5,
+      "distinct_after_norm": 5,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "NPI": "1003133695",
+      "LEGAL_NAME": "Mountain View Child Care Inc",
+      "BUSINESS_NAME": "Totally Kids Rehabilitation",
+      "FACILITY_TYPE": "Special",
+      "COUNTY": "San Bernardino",
+      "ADDRESS_LINE_1": "1720 Mountain View Avenue",
+      "ADDRESS_LINE_2": "",
+      "CITY": "Loma Linda",
+      "STATE": "CA",
+      "ZIP_CODE": "92354-1727",
+      "PHONE": "(909) 796-6915",
+      "FID": "1",
+      "INGESTED_AT": "2026-06-24 04:30:36.950992",
+      "SOURCE_RUN_ID": "49271ef5-1220-4942-a631-f24055bd29d8",
+      "SRC_SHA256": "362d096693adb4d41279e2d743526263aceca5b9eeb4c416e264944cdd4044d7"
+    },
+    {
+      "NPI": "1194876821",
+      "LEGAL_NAME": "Oroville Hospital",
+      "BUSINESS_NAME": "Oroville Hospital",
+      "FACILITY_TYPE": "Limited",
+      "COUNTY": "Butte",
+      "ADDRESS_LINE_1": "2767 Olive Highway",
+      "ADDRESS_LINE_2": "",
+      "CITY": "Oroville",
+      "STATE": "CA",
+      "ZIP_CODE": "95966-6118",
+      "PHONE": "(916) 533-8500",
+      "FID": "2",
+      "INGESTED_AT": "2026-06-24 04:30:36.950992",
+      "SOURCE_RUN_ID": "49271ef5-1220-4942-a631-f24055bd29d8",
+      "SRC_SHA256": "362d096693adb4d41279e2d743526263aceca5b9eeb4c416e264944cdd4044d7"
+    },
+    {
+      "NPI": "1457321317",
+      "LEGAL_NAME": "Palomar Health",
+      "BUSINESS_NAME": "Palomar Health Downtown Camp",
+      "FACILITY_TYPE": "Pediatric Community",
+      "COUNTY": "San Diego",
+      "ADDRESS_LINE_1": "2185 Citracado Parkway",
+      "ADDRESS_LINE_2": "",
+      "CITY": "Escondido",
+      "STATE": "CA",
+      "ZIP_CODE": "92025-4159",
+      "PHONE": "(760) 739-3000",
+      "FID": "3",
+      "INGESTED_AT": "2026-06-24 04:30:36.950992",
+      "SOURCE_RUN_ID": "49271ef5-1220-4942-a631-f24055bd29d8",
+      "SRC_SHA256": "362d096693adb4d41279e2d743526263aceca5b9eeb4c416e264944cdd4044d7"
+    },
+    {
+      "NPI": "1689732885",
+      "LEGAL_NAME": "Sutter Bay Hospitals",
+      "BUSINESS_NAME": "Calif Pacific Med Ctr",
+      "FACILITY_TYPE": "Tertiary",
+      "COUNTY": "San Francisco",
+      "ADDRESS_LINE_1": "Clay Buchanan Street",
+      "ADDRESS_LINE_2": "",
+      "CITY": "San Francisco",
+      "STATE": "CA",
+      "ZIP_CODE": "94115",
+      "PHONE": "(415) 600-1400",
+      "FID": "4",
+      "INGESTED_AT": "2026-06-24 04:30:36.950992",
+      "SOURCE_RUN_ID": "49271ef5-1220-4942-a631-f24055bd29d8",
+      "SRC_SHA256": "362d096693adb4d41279e2d743526263aceca5b9eeb4c416e264944cdd4044d7"
+    },
+    {
+      "NPI": "1356339543",
+      "LEGAL_NAME": "Willits Hospital Inc",
+      "BUSINESS_NAME": "Frank R Howard Memorial Hosp",
+      "FACILITY_TYPE": "Limited",
+      "COUNTY": "Mendocino",
+      "ADDRESS_LINE_1": "1 Marcela Drive",
+      "ADDRESS_LINE_2": "",
+      "CITY": "Willits",
+      "STATE": "CA",
+      "ZIP_CODE": "95490-5769",
+      "PHONE": "(707) 459-6801",
+      "FID": "5",
+      "INGESTED_AT": "2026-06-24 04:30:36.950992",
+      "SOURCE_RUN_ID": "49271ef5-1220-4942-a631-f24055bd29d8",
+      "SRC_SHA256": "362d096693adb4d41279e2d743526263aceca5b9eeb4c416e264944cdd4044d7"
+    }
+  ],
+  "sample_error": null
+}

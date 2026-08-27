@@ -1,0 +1,131 @@
+{
+  "fqtn": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME_PENALTIES",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "CMS_CERTIFICATION_NUMBER_CCN",
+    "PROVIDER_NAME",
+    "PROVIDER_ADDRESS",
+    "CITY_TOWN",
+    "STATE",
+    "ZIP_CODE",
+    "PENALTY_DATE",
+    "PENALTY_TYPE",
+    "FINE_ID",
+    "FINE_AMOUNT",
+    "PAYMENT_DENIAL_START_DATE",
+    "PAYMENT_DENIAL_LENGTH_IN_DAYS",
+    "LOCATION",
+    "PROCESSING_DATE"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "PROVIDER_NAME",
+      "PROVIDER_ADDRESS"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY_TOWN"
+      ],
+      "state": [
+        "STATE"
+      ],
+      "zip": [
+        "ZIP_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CCN",
+      "column": "CMS_CERTIFICATION_NUMBER_CCN",
+      "total_rows": 16180,
+      "nonnull_after_norm": 16032,
+      "distinct_after_norm": 6771,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "CMS_CERTIFICATION_NUMBER_CCN": "555099",
+      "PROVIDER_NAME": "LAKEWOOD HEALTHCARE CENTER",
+      "PROVIDER_ADDRESS": "12023 LAKEWOOD BLVD.",
+      "CITY_TOWN": "DOWNEY",
+      "STATE": "CA",
+      "ZIP_CODE": "90242",
+      "PENALTY_DATE": "2025-06-13",
+      "PENALTY_TYPE": "Payment Denial",
+      "FINE_ID": null,
+      "FINE_AMOUNT": null,
+      "PAYMENT_DENIAL_START_DATE": "2025-07-10",
+      "PAYMENT_DENIAL_LENGTH_IN_DAYS": 13.0,
+      "LOCATION": "12023 LAKEWOOD BLVD.,DOWNEY,CA,90242",
+      "PROCESSING_DATE": "2026-06-01"
+    },
+    {
+      "CMS_CERTIFICATION_NUMBER_CCN": "146075",
+      "PROVIDER_NAME": "Evercare of Granite City",
+      "PROVIDER_ADDRESS": "3500 CENTURY DRIVE",
+      "CITY_TOWN": "GRANITE CITY",
+      "STATE": "IL",
+      "ZIP_CODE": "62040",
+      "PENALTY_DATE": "2025-06-06",
+      "PENALTY_TYPE": "Fine",
+      "FINE_ID": "135885",
+      "FINE_AMOUNT": 10358.0,
+      "PAYMENT_DENIAL_START_DATE": null,
+      "PAYMENT_DENIAL_LENGTH_IN_DAYS": null,
+      "LOCATION": "3500 CENTURY DRIVE,GRANITE CITY,IL,62040",
+      "PROCESSING_DATE": "2026-06-01"
+    },
+    {
+      "CMS_CERTIFICATION_NUMBER_CCN": "32E083",
+      "PROVIDER_NAME": "South Valley Care Center LLC",
+      "PROVIDER_ADDRESS": "1629 Bowe Lane Sw",
+      "CITY_TOWN": "Albuquerque",
+      "STATE": "NM",
+      "ZIP_CODE": "87105",
+      "PENALTY_DATE": "2025-07-03",
+      "PENALTY_TYPE": "Payment Denial",
+      "FINE_ID": null,
+      "FINE_AMOUNT": null,
+      "PAYMENT_DENIAL_START_DATE": "2025-10-03",
+      "PAYMENT_DENIAL_LENGTH_IN_DAYS": 58.0,
+      "LOCATION": "1629 Bowe Lane Sw,Albuquerque,NM,87105",
+      "PROCESSING_DATE": "2026-06-01"
+    },
+    {
+      "CMS_CERTIFICATION_NUMBER_CCN": "205068",
+      "PROVIDER_NAME": "SPRINGBROOK CENTER",
+      "PROVIDER_ADDRESS": "300 SPRING ST",
+      "CITY_TOWN": "WESTBROOK",
+      "STATE": "ME",
+      "ZIP_CODE": "04092",
+      "PENALTY_DATE": "2025-05-12",
+      "PENALTY_TYPE": "Fine",
+      "FINE_ID": "135415",
+      "FINE_AMOUNT": 8278.0,
+      "PAYMENT_DENIAL_START_DATE": null,
+      "PAYMENT_DENIAL_LENGTH_IN_DAYS": null,
+      "LOCATION": "300 SPRING ST,WESTBROOK,ME,04092",
+      "PROCESSING_DATE": "2026-06-01"
+    },
+    {
+      "CMS_CERTIFICATION_NUMBER_CCN": "105447",
+      "PROVIDER_NAME": "WEST VOLUSIA HEALTHCARE AND REHABILITATION CENTER",
+      "PROVIDER_ADDRESS": "1851 ELKCAM BLVD",
+      "CITY_TOWN": "DELTONA",
+      "STATE": "FL",
+      "ZIP_CODE": "32725",
+      "PENALTY_DATE": "2023-09-11",
+      "PENALTY_TYPE": "Fine",
+      "FINE_ID": "30421",
+      "FINE_AMOUNT": 13409.0,
+      "PAYMENT_DENIAL_START_DATE": null,
+      "PAYMENT_DENIAL_LENGTH_IN_DAYS": null,
+      "LOCATION": "1851 ELKCAM BLVD,DELTONA,FL,32725",
+      "PROCESSING_DATE": "2026-06-01"
+    }
+  ],
+  "sample_error": null
+}

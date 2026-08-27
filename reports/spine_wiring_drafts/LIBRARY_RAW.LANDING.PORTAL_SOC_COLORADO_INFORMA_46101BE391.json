@@ -1,0 +1,141 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.PORTAL_SOC_COLORADO_INFORMA_46101BE391",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "ID",
+    "TAXYR",
+    "EIN",
+    "BUSINESSNAME1",
+    "ADDRESS_LINE_1",
+    "CITY",
+    "POSTAL_CODE",
+    "PROVINCE",
+    "TAXPERIODBEGINDT",
+    "TAXPERIODENDDT",
+    "RETURNTYPECD",
+    "ADDRESS_LINE_2",
+    "BUSINESSNAME2",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "BUSINESSNAME1",
+      "BUSINESSNAME2"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [],
+      "zip": [
+        "POSTAL_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "EIN",
+      "column": "EIN",
+      "total_rows": 2000,
+      "nonnull_after_norm": 2000,
+      "distinct_after_norm": 1345,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "ID": "201221309349301137",
+      "TAXYR": "2011",
+      "EIN": "205183152",
+      "BUSINESSNAME1": "COLORADO FINANCIAL SERVICE CENTERS ASSOCIATION",
+      "ADDRESS_LINE_1": "PO BOX 11584",
+      "CITY": "DENVER",
+      "POSTAL_CODE": "80211",
+      "PROVINCE": "CO",
+      "TAXPERIODBEGINDT": "2011-01-01T00:00:00.000",
+      "TAXPERIODENDDT": "2011-12-31T00:00:00.000",
+      "RETURNTYPECD": "990",
+      "ADDRESS_LINE_2": "nan",
+      "BUSINESSNAME2": "nan",
+      "INGESTED_AT": "2026-06-24 04:42:40.932219",
+      "SOURCE_RUN_ID": "3edf03e3-a200-4c8b-b99e-fe6a2c2cca75",
+      "SRC_SHA256": "19e05055b8d839dcf80049adecb36822423837c4b71fff12fa6429199ebbdc7a"
+    },
+    {
+      "ID": "201113189349302886",
+      "TAXYR": "2010",
+      "EIN": "264810482",
+      "BUSINESSNAME1": "Neighborhood Development Collaborative Inc",
+      "ADDRESS_LINE_1": "777 Grant Street 6th Floor",
+      "CITY": "Denver",
+      "POSTAL_CODE": "80203",
+      "PROVINCE": "CO",
+      "TAXPERIODBEGINDT": "2010-01-01T00:00:00.000",
+      "TAXPERIODENDDT": "2010-12-31T00:00:00.000",
+      "RETURNTYPECD": "990",
+      "ADDRESS_LINE_2": "nan",
+      "BUSINESSNAME2": "nan",
+      "INGESTED_AT": "2026-06-24 04:42:40.932219",
+      "SOURCE_RUN_ID": "3edf03e3-a200-4c8b-b99e-fe6a2c2cca75",
+      "SRC_SHA256": "19e05055b8d839dcf80049adecb36822423837c4b71fff12fa6429199ebbdc7a"
+    },
+    {
+      "ID": "201110289349200316",
+      "TAXYR": "2009",
+      "EIN": "841557372",
+      "BUSINESSNAME1": "DENVER EAST SPEECH TEAM FOUNDATION",
+      "ADDRESS_LINE_1": "1545 DETROIT STREET No 207",
+      "CITY": "DENVER",
+      "POSTAL_CODE": "802061515",
+      "PROVINCE": "CO",
+      "TAXPERIODBEGINDT": "2009-07-01T00:00:00.000",
+      "TAXPERIODENDDT": "2010-06-30T00:00:00.000",
+      "RETURNTYPECD": "990EZ",
+      "ADDRESS_LINE_2": "nan",
+      "BUSINESSNAME2": "nan",
+      "INGESTED_AT": "2026-06-24 04:42:40.932219",
+      "SOURCE_RUN_ID": "3edf03e3-a200-4c8b-b99e-fe6a2c2cca75",
+      "SRC_SHA256": "19e05055b8d839dcf80049adecb36822423837c4b71fff12fa6429199ebbdc7a"
+    },
+    {
+      "ID": "201141369349202679",
+      "TAXYR": "2009",
+      "EIN": "742302470",
+      "BUSINESSNAME1": "Rocky Mountain Peace and Justice Center",
+      "ADDRESS_LINE_1": "PO Box 1156",
+      "CITY": "Boulder",
+      "POSTAL_CODE": "80306",
+      "PROVINCE": "CO",
+      "TAXPERIODBEGINDT": "2009-10-01T00:00:00.000",
+      "TAXPERIODENDDT": "2010-09-30T00:00:00.000",
+      "RETURNTYPECD": "990EZ",
+      "ADDRESS_LINE_2": "nan",
+      "BUSINESSNAME2": "nan",
+      "INGESTED_AT": "2026-06-24 04:42:40.932219",
+      "SOURCE_RUN_ID": "3edf03e3-a200-4c8b-b99e-fe6a2c2cca75",
+      "SRC_SHA256": "19e05055b8d839dcf80049adecb36822423837c4b71fff12fa6429199ebbdc7a"
+    },
+    {
+      "ID": "201203049349300820",
+      "TAXYR": "2011",
+      "EIN": "841353605",
+      "BUSINESSNAME1": "SLAVENS SCHOOL PTA",
+      "ADDRESS_LINE_1": "3000 SOUTH CLAYTON STREET",
+      "CITY": "DENVER",
+      "POSTAL_CODE": "80210",
+      "PROVINCE": "CO",
+      "TAXPERIODBEGINDT": "2011-07-01T00:00:00.000",
+      "TAXPERIODENDDT": "2012-06-30T00:00:00.000",
+      "RETURNTYPECD": "990",
+      "ADDRESS_LINE_2": "nan",
+      "BUSINESSNAME2": "nan",
+      "INGESTED_AT": "2026-06-24 04:42:40.932219",
+      "SOURCE_RUN_ID": "3edf03e3-a200-4c8b-b99e-fe6a2c2cca75",
+      "SRC_SHA256": "19e05055b8d839dcf80049adecb36822423837c4b71fff12fa6429199ebbdc7a"
+    }
+  ],
+  "sample_error": null
+}

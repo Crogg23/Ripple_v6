@@ -1,0 +1,134 @@
+{
+  "fqtn": "LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_CANDIDATES",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "CAND_ID",
+    "CAND_NAME",
+    "CAND_PTY_AFFILIATION",
+    "CAND_ELECTION_YR",
+    "CAND_OFFICE_ST",
+    "CAND_OFFICE",
+    "CAND_OFFICE_DISTRICT",
+    "CAND_ICI",
+    "CAND_STATUS",
+    "CAND_PCC",
+    "CAND_ST1",
+    "CAND_ST2",
+    "CAND_CITY",
+    "CAND_ST",
+    "CAND_ZIP"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "CAND_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "CAND_CITY"
+      ],
+      "state": [],
+      "zip": [
+        "CAND_ZIP"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "FEC_CAND_ID",
+      "column": "CAND_ID",
+      "total_rows": 27095,
+      "nonnull_after_norm": 27095,
+      "distinct_after_norm": 19142,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "CAND_ID": "S2OH00493",
+      "CAND_NAME": "TINSLEY, LASHONDRA",
+      "CAND_PTY_AFFILIATION": "DEM",
+      "CAND_ELECTION_YR": 2022,
+      "CAND_OFFICE_ST": "OH",
+      "CAND_OFFICE": "S",
+      "CAND_OFFICE_DISTRICT": "00",
+      "CAND_ICI": "O",
+      "CAND_STATUS": "N",
+      "CAND_PCC": "C00792820",
+      "CAND_ST1": "2138 VIA DA VINCI ST",
+      "CAND_ST2": "C",
+      "CAND_CITY": "COLUMBUS",
+      "CAND_ST": "OH",
+      "CAND_ZIP": "43229"
+    },
+    {
+      "CAND_ID": "P60006566",
+      "CAND_NAME": "SIGSBY, ROBERT WAYNE",
+      "CAND_PTY_AFFILIATION": "IND",
+      "CAND_ELECTION_YR": 2016,
+      "CAND_OFFICE_ST": "US",
+      "CAND_OFFICE": "P",
+      "CAND_OFFICE_DISTRICT": "00",
+      "CAND_ICI": "O",
+      "CAND_STATUS": "N",
+      "CAND_PCC": "C00575720",
+      "CAND_ST1": "1058 DOWAGIAC AVE.",
+      "CAND_ST2": "",
+      "CAND_CITY": "MOUNT MORRIS",
+      "CAND_ST": "MI",
+      "CAND_ZIP": "48458"
+    },
+    {
+      "CAND_ID": "H8FL26021",
+      "CAND_NAME": "MACHAT, STEVEN",
+      "CAND_PTY_AFFILIATION": "DEM",
+      "CAND_ELECTION_YR": 2018,
+      "CAND_OFFICE_ST": "FL",
+      "CAND_OFFICE": "H",
+      "CAND_OFFICE_DISTRICT": "26",
+      "CAND_ICI": "C",
+      "CAND_STATUS": "P",
+      "CAND_PCC": "C00649541",
+      "CAND_ST1": "1900 PURDY AVE.",
+      "CAND_ST2": "#1601",
+      "CAND_CITY": "MIAMI BEACH",
+      "CAND_ST": "FL",
+      "CAND_ZIP": "33139"
+    },
+    {
+      "CAND_ID": "H0NH01316",
+      "CAND_NAME": "FOWLER, WILLIAM",
+      "CAND_PTY_AFFILIATION": "REP",
+      "CAND_ELECTION_YR": 2020,
+      "CAND_OFFICE_ST": "NH",
+      "CAND_OFFICE": "H",
+      "CAND_OFFICE_DISTRICT": "01",
+      "CAND_ICI": "C",
+      "CAND_STATUS": "N",
+      "CAND_PCC": "C00733543",
+      "CAND_ST1": "14A WASHINGTON ST",
+      "CAND_ST2": "",
+      "CAND_CITY": "SEABROOK",
+      "CAND_ST": "NH",
+      "CAND_ZIP": "03874"
+    },
+    {
+      "CAND_ID": "P00007005",
+      "CAND_NAME": "GRAVEN, JASON G",
+      "CAND_PTY_AFFILIATION": "NPA",
+      "CAND_ELECTION_YR": 2020,
+      "CAND_OFFICE_ST": "US",
+      "CAND_OFFICE": "P",
+      "CAND_OFFICE_DISTRICT": "00",
+      "CAND_ICI": "",
+      "CAND_STATUS": "N",
+      "CAND_PCC": "",
+      "CAND_ST1": "PO BOX 297",
+      "CAND_ST2": "",
+      "CAND_CITY": "CABOOL",
+      "CAND_ST": "MO",
+      "CAND_ZIP": "65689"
+    }
+  ],
+  "sample_error": null
+}

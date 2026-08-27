@@ -1,0 +1,152 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.XC_EPA_CORPORATE_CROSSWALK",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "EPA_REGISTRY_ID",
+    "FACILITY_NAME",
+    "MATCHED_LEI",
+    "MATCHED_LEGAL_NAME",
+    "MATCH_METHOD",
+    "MATCH_CONFIDENCE",
+    "ULTIMATE_PARENT_LEI",
+    "PARENT_LEGAL_NAME",
+    "PARENT_CIK",
+    "PARENT_UEI",
+    "REVIEW_FLAG",
+    "_INGESTED_AT",
+    "_SOURCE_RUN_ID"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "FACILITY_NAME",
+      "MATCHED_LEGAL_NAME",
+      "PARENT_LEGAL_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "UEI",
+      "column": "PARENT_UEI",
+      "total_rows": 5300149,
+      "nonnull_after_norm": 37934,
+      "distinct_after_norm": 31685,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    },
+    {
+      "key_label": "LEI",
+      "column": "ULTIMATE_PARENT_LEI",
+      "total_rows": 5300149,
+      "nonnull_after_norm": 37640,
+      "distinct_after_norm": 1174,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    },
+    {
+      "key_label": "CIK",
+      "column": "PARENT_CIK",
+      "total_rows": 5300149,
+      "nonnull_after_norm": 119382,
+      "distinct_after_norm": 704,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    },
+    {
+      "key_label": "LEI",
+      "column": "MATCHED_LEI",
+      "total_rows": 5300149,
+      "nonnull_after_norm": 279621,
+      "distinct_after_norm": 22743,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    },
+    {
+      "key_label": "FRS_ID",
+      "column": "EPA_REGISTRY_ID",
+      "total_rows": 5300149,
+      "nonnull_after_norm": 5300149,
+      "distinct_after_norm": 5300149,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "EPA_REGISTRY_ID": "110009967688",
+      "FACILITY_NAME": "CORNING WASTE WATER TREATMENT PLANT",
+      "MATCHED_LEI": null,
+      "MATCHED_LEGAL_NAME": null,
+      "MATCH_METHOD": null,
+      "MATCH_CONFIDENCE": null,
+      "ULTIMATE_PARENT_LEI": null,
+      "PARENT_LEGAL_NAME": null,
+      "PARENT_CIK": null,
+      "PARENT_UEI": null,
+      "REVIEW_FLAG": null,
+      "_INGESTED_AT": "2026-07-28 18:42:38.554000",
+      "_SOURCE_RUN_ID": "xc-build-v1"
+    },
+    {
+      "EPA_REGISTRY_ID": "110040057808",
+      "FACILITY_NAME": "FARMLAND FOODS INC, SALT LAKE CITY, UT",
+      "MATCHED_LEI": null,
+      "MATCHED_LEGAL_NAME": null,
+      "MATCH_METHOD": null,
+      "MATCH_CONFIDENCE": null,
+      "ULTIMATE_PARENT_LEI": null,
+      "PARENT_LEGAL_NAME": null,
+      "PARENT_CIK": null,
+      "PARENT_UEI": null,
+      "REVIEW_FLAG": null,
+      "_INGESTED_AT": "2026-07-28 18:42:38.554000",
+      "_SOURCE_RUN_ID": "xc-build-v1"
+    },
+    {
+      "EPA_REGISTRY_ID": "110071303172",
+      "FACILITY_NAME": "14487 RATH ST",
+      "MATCHED_LEI": null,
+      "MATCHED_LEGAL_NAME": null,
+      "MATCH_METHOD": null,
+      "MATCH_CONFIDENCE": null,
+      "ULTIMATE_PARENT_LEI": null,
+      "PARENT_LEGAL_NAME": null,
+      "PARENT_CIK": null,
+      "PARENT_UEI": null,
+      "REVIEW_FLAG": null,
+      "_INGESTED_AT": "2026-07-28 18:42:38.554000",
+      "_SOURCE_RUN_ID": "xc-build-v1"
+    },
+    {
+      "EPA_REGISTRY_ID": "110071179561",
+      "FACILITY_NAME": "SILVERHAWK AVIATION ACADEMY, LLC",
+      "MATCHED_LEI": null,
+      "MATCHED_LEGAL_NAME": null,
+      "MATCH_METHOD": null,
+      "MATCH_CONFIDENCE": null,
+      "ULTIMATE_PARENT_LEI": null,
+      "PARENT_LEGAL_NAME": null,
+      "PARENT_CIK": null,
+      "PARENT_UEI": "RBBDG2AM19B7",
+      "REVIEW_FLAG": null,
+      "_INGESTED_AT": "2026-07-28 18:42:38.554000",
+      "_SOURCE_RUN_ID": "xc-build-v1"
+    },
+    {
+      "EPA_REGISTRY_ID": "110071760058",
+      "FACILITY_NAME": "WHIPPLE ROAD UNION 76",
+      "MATCHED_LEI": null,
+      "MATCHED_LEGAL_NAME": null,
+      "MATCH_METHOD": null,
+      "MATCH_CONFIDENCE": null,
+      "ULTIMATE_PARENT_LEI": null,
+      "PARENT_LEGAL_NAME": null,
+      "PARENT_CIK": null,
+      "PARENT_UEI": null,
+      "REVIEW_FLAG": null,
+      "_INGESTED_AT": "2026-07-28 18:42:38.554000",
+      "_SOURCE_RUN_ID": "xc-build-v1"
+    }
+  ],
+  "sample_error": null
+}

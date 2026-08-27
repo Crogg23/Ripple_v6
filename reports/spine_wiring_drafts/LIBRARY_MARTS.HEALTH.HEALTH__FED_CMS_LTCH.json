@@ -1,0 +1,124 @@
+{
+  "fqtn": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_LTCH",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "CCN",
+    "PROVIDER_NAME",
+    "ADDRESS_LINE_1",
+    "ADDRESS_LINE_2",
+    "CITY_TOWN",
+    "STATE",
+    "ZIP_CODE",
+    "COUNTY_PARISH",
+    "TELEPHONE_NUMBER",
+    "CMS_REGION",
+    "OWNERSHIP_TYPE",
+    "CERTIFICATION_DATE",
+    "TOTAL_NUMBER_OF_BEDS"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "PROVIDER_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY_TOWN"
+      ],
+      "state": [
+        "STATE"
+      ],
+      "zip": [
+        "ZIP_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CCN",
+      "column": "CCN",
+      "total_rows": 311,
+      "nonnull_after_norm": 311,
+      "distinct_after_norm": 311,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "CCN": "232034",
+      "PROVIDER_NAME": "BEACON PLAINWELL",
+      "ADDRESS_LINE_1": "411 NAOMI STREET",
+      "ADDRESS_LINE_2": "-",
+      "CITY_TOWN": "PLAINWELL",
+      "STATE": "MI",
+      "ZIP_CODE": "49080",
+      "COUNTY_PARISH": "Allegan",
+      "TELEPHONE_NUMBER": "(269) 685-0700",
+      "CMS_REGION": "5",
+      "OWNERSHIP_TYPE": "Non-profit",
+      "CERTIFICATION_DATE": "2003-07-01",
+      "TOTAL_NUMBER_OF_BEDS": 43.0
+    },
+    {
+      "CCN": "042010",
+      "PROVIDER_NAME": "CORNERSTONE SPECIALTY HOSPITALS LITTLE ROCK",
+      "ADDRESS_LINE_1": "2 ST VINCENT CIRCLE, 6TH FLOOR",
+      "ADDRESS_LINE_2": "-",
+      "CITY_TOWN": "LITTLE ROCK",
+      "STATE": "AR",
+      "ZIP_CODE": "72205",
+      "COUNTY_PARISH": "Pulaski",
+      "TELEPHONE_NUMBER": "(501) 265-0622",
+      "CMS_REGION": "6",
+      "OWNERSHIP_TYPE": "For profit",
+      "CERTIFICATION_DATE": "2007-06-01",
+      "TOTAL_NUMBER_OF_BEDS": 40.0
+    },
+    {
+      "CCN": "232033",
+      "PROVIDER_NAME": "SELECT SPECIALTY HOSPITAL-SAGINAW",
+      "ADDRESS_LINE_1": "1447 NORTH HARRISON, 7TH & 8TH FLOOR",
+      "ADDRESS_LINE_2": "-",
+      "CITY_TOWN": "SAGINAW",
+      "STATE": "MI",
+      "ZIP_CODE": "48602",
+      "COUNTY_PARISH": "Saginaw",
+      "TELEPHONE_NUMBER": "(989) 583-4667",
+      "CMS_REGION": "5",
+      "OWNERSHIP_TYPE": "For profit",
+      "CERTIFICATION_DATE": "2003-03-01",
+      "TOTAL_NUMBER_OF_BEDS": 32.0
+    },
+    {
+      "CCN": "052057",
+      "PROVIDER_NAME": "SONOMA SPECIALTY HOSPITAL",
+      "ADDRESS_LINE_1": "501 PETALUMA AVENUE",
+      "ADDRESS_LINE_2": "-",
+      "CITY_TOWN": "SEBASTOPOL",
+      "STATE": "CA",
+      "ZIP_CODE": "95472",
+      "COUNTY_PARISH": "Sonoma",
+      "TELEPHONE_NUMBER": "(707) 823-8511",
+      "CMS_REGION": "9",
+      "OWNERSHIP_TYPE": "For profit",
+      "CERTIFICATION_DATE": "2019-04-01",
+      "TOTAL_NUMBER_OF_BEDS": 37.0
+    },
+    {
+      "CCN": "452039",
+      "PROVIDER_NAME": "KINDRED HOSPITAL HOUSTON NW",
+      "ADDRESS_LINE_1": "11297 FALLBROOK",
+      "ADDRESS_LINE_2": "-",
+      "CITY_TOWN": "HOUSTON",
+      "STATE": "TX",
+      "ZIP_CODE": "77065",
+      "COUNTY_PARISH": "Harris",
+      "TELEPHONE_NUMBER": "(281) 897-8114",
+      "CMS_REGION": "6",
+      "OWNERSHIP_TYPE": "For profit",
+      "CERTIFICATION_DATE": "1994-06-01",
+      "TOTAL_NUMBER_OF_BEDS": 158.0
+    }
+  ],
+  "sample_error": null
+}

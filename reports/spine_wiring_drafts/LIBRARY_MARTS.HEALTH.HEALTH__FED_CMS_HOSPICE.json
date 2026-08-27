@@ -1,0 +1,118 @@
+{
+  "fqtn": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_HOSPICE",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "CCN",
+    "FACILITY_NAME",
+    "ADDRESS_LINE_1",
+    "ADDRESS_LINE_2",
+    "CITY_TOWN",
+    "STATE",
+    "ZIP_CODE",
+    "COUNTY_PARISH",
+    "TELEPHONE_NUMBER",
+    "CMS_REGION",
+    "OWNERSHIP_TYPE",
+    "CERTIFICATION_DATE"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "FACILITY_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY_TOWN"
+      ],
+      "state": [
+        "STATE"
+      ],
+      "zip": [
+        "ZIP_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "CCN",
+      "column": "CCN",
+      "total_rows": 6852,
+      "nonnull_after_norm": 5155,
+      "distinct_after_norm": 5155,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "CCN": "A01512",
+      "FACILITY_NAME": "GENTLE TOUCH HOSPICE, INC",
+      "ADDRESS_LINE_1": "15600 DEVONSHIRE ST, SUITE 202",
+      "ADDRESS_LINE_2": "",
+      "CITY_TOWN": "GRANADA HILLS",
+      "STATE": "CA",
+      "ZIP_CODE": "91344",
+      "COUNTY_PARISH": "Los Angeles",
+      "TELEPHONE_NUMBER": "(818) 219-6045",
+      "CMS_REGION": "9",
+      "OWNERSHIP_TYPE": "For-Profit",
+      "CERTIFICATION_DATE": "2017-10-26"
+    },
+    {
+      "CCN": "341585",
+      "FACILITY_NAME": "COMMUNITY HOME CARE & HOSPICE",
+      "ADDRESS_LINE_1": "52 ANNA LOUISE LANE",
+      "ADDRESS_LINE_2": "",
+      "CITY_TOWN": "ROANOKE RAPIDS",
+      "STATE": "NC",
+      "ZIP_CODE": "27870",
+      "COUNTY_PARISH": "Halifax",
+      "TELEPHONE_NUMBER": "(252) 291-5353",
+      "CMS_REGION": "4",
+      "OWNERSHIP_TYPE": "For-Profit",
+      "CERTIFICATION_DATE": "2002-12-16"
+    },
+    {
+      "CCN": "231581",
+      "FACILITY_NAME": "ELARA CARING",
+      "ADDRESS_LINE_1": "209 E WASHINGTON AVE, SUITE 450A",
+      "ADDRESS_LINE_2": "",
+      "CITY_TOWN": "JACKSON",
+      "STATE": "MI",
+      "ZIP_CODE": "49202",
+      "COUNTY_PARISH": "Jackson",
+      "TELEPHONE_NUMBER": "(517) 435-3055",
+      "CMS_REGION": "5",
+      "OWNERSHIP_TYPE": "For-Profit",
+      "CERTIFICATION_DATE": "1998-10-26"
+    },
+    {
+      "CCN": "361700",
+      "FACILITY_NAME": "INTERIM HEALTHCARE HOSPICE OF LIMA",
+      "ADDRESS_LINE_1": "3745 SHAWNEE ROAD SUITE 108",
+      "ADDRESS_LINE_2": "",
+      "CITY_TOWN": "LIMA",
+      "STATE": "OH",
+      "ZIP_CODE": "45806",
+      "COUNTY_PARISH": "Allen",
+      "TELEPHONE_NUMBER": "(419) 228-2535",
+      "CMS_REGION": "5",
+      "OWNERSHIP_TYPE": "For-Profit",
+      "CERTIFICATION_DATE": "2017-09-19"
+    },
+    {
+      "CCN": "B51758",
+      "FACILITY_NAME": "GLOWING SMILE HOSPICE",
+      "ADDRESS_LINE_1": "104 W BEVERLY BLVD SUITE A",
+      "ADDRESS_LINE_2": "",
+      "CITY_TOWN": "MONTEBELLO",
+      "STATE": "CA",
+      "ZIP_CODE": "90640",
+      "COUNTY_PARISH": "Los Angeles",
+      "TELEPHONE_NUMBER": "(747) 257-0030",
+      "CMS_REGION": "9",
+      "OWNERSHIP_TYPE": "",
+      "CERTIFICATION_DATE": "2023-10-16"
+    }
+  ],
+  "sample_error": null
+}

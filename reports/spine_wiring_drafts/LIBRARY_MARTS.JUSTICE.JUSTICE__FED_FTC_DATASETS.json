@@ -1,0 +1,88 @@
+{
+  "fqtn": "LIBRARY_MARTS.JUSTICE.JUSTICE__FED_FTC_DATASETS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "ACTION_NAME",
+    "RESPONDENT",
+    "DATE_FILED",
+    "CASE_TYPE",
+    "STATUS",
+    "TOPIC",
+    "DOCUMENT_URL",
+    "EIN"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "ACTION_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "EIN",
+      "column": "EIN",
+      "total_rows": 1004,
+      "nonnull_after_norm": 0,
+      "distinct_after_norm": 0,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "ACTION_NAME": "National Urological Group, Inc., et al.",
+      "RESPONDENT": "",
+      "DATE_FILED": "2022-05-04",
+      "CASE_TYPE": "",
+      "STATUS": "",
+      "TOPIC": "",
+      "DOCUMENT_URL": "https://www.ftc.gov/legal-library/browse/cases-proceedings/022-3165-x050009-national-urological-group-inc-et-al",
+      "EIN": ""
+    },
+    {
+      "ACTION_NAME": "SPM Thermo-Shield, Inc.",
+      "RESPONDENT": "",
+      "DATE_FILED": "2022-06-21",
+      "CASE_TYPE": "",
+      "STATUS": "",
+      "TOPIC": "",
+      "DOCUMENT_URL": "https://www.ftc.gov/legal-library/browse/cases-proceedings/192-3152-spm-thermo-shield-inc",
+      "EIN": ""
+    },
+    {
+      "ACTION_NAME": "Dissenting Statement of Commissioner Melissa Holyoak In Matter of Mobilewalla, Inc.",
+      "RESPONDENT": "",
+      "DATE_FILED": "2024-12-03",
+      "CASE_TYPE": "",
+      "STATUS": "",
+      "TOPIC": "",
+      "DOCUMENT_URL": "https://www.ftc.gov/legal-library/browse/cases-proceedings/public-statements/dissenting-statement-commissioner-melissa-holyoak-matter-mobilewalla-inc",
+      "EIN": ""
+    },
+    {
+      "ACTION_NAME": "Ring, LLC",
+      "RESPONDENT": "",
+      "DATE_FILED": "2024-04-23",
+      "CASE_TYPE": "",
+      "STATUS": "",
+      "TOPIC": "",
+      "DOCUMENT_URL": "https://www.ftc.gov/legal-library/browse/cases-proceedings/2023113-ring-llc",
+      "EIN": ""
+    },
+    {
+      "ACTION_NAME": "Oral Remarks of Commissioner Christine S. Wilson Regarding the 6(b) Study on the Privacy Practices of Six Major Internet Service Providers",
+      "RESPONDENT": "",
+      "DATE_FILED": "2021-10-21",
+      "CASE_TYPE": "",
+      "STATUS": "",
+      "TOPIC": "",
+      "DOCUMENT_URL": "https://www.ftc.gov/legal-library/browse/cases-proceedings/public-statements/oral-remarks-commissioner-christine-s-wilson-regarding-6b-study-privacy-practices-six-major-internet",
+      "EIN": ""
+    }
+  ],
+  "sample_error": null
+}

@@ -1,0 +1,139 @@
+{
+  "fqtn": "LIBRARY_MARTS.POLITICS.POLITICS__IRS527_DIRECTORS_OFFICERS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "FORM_ID_NUMBER",
+    "DIRECTOR_ID",
+    "ORG_NAME",
+    "EIN",
+    "ENTITY_NAME",
+    "ENTITY_TITLE",
+    "ENTITY_ADDR1",
+    "ENTITY_ADDR2",
+    "ENTITY_CITY",
+    "ENTITY_STATE",
+    "ENTITY_ZIP",
+    "ENTITY_ZIP_EXT",
+    "_INGESTED_AT",
+    "_SOURCE_RUN_ID"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "ORG_NAME",
+      "ENTITY_NAME",
+      "ENTITY_TITLE",
+      "ENTITY_ADDR1",
+      "ENTITY_ADDR2",
+      "ENTITY_CITY",
+      "ENTITY_STATE",
+      "ENTITY_ZIP",
+      "ENTITY_ZIP_EXT"
+    ],
+    "address_candidates": {
+      "city": [
+        "ENTITY_CITY"
+      ],
+      "state": [
+        "ENTITY_STATE"
+      ],
+      "zip": [
+        "ENTITY_ZIP",
+        "ENTITY_ZIP_EXT"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "EIN",
+      "column": "EIN",
+      "total_rows": 189593,
+      "nonnull_after_norm": 189592,
+      "distinct_after_norm": 58881,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "FORM_ID_NUMBER": "9702697",
+      "DIRECTOR_ID": "204398",
+      "ORG_NAME": "Working Together PC",
+      "EIN": "852864149",
+      "ENTITY_NAME": "Natalie Kato",
+      "ENTITY_TITLE": "Chairperson and Treasurer",
+      "ENTITY_ADDR1": "1563 Capital Circle SE #93",
+      "ENTITY_ADDR2": null,
+      "ENTITY_CITY": "Tallahassee",
+      "ENTITY_STATE": "FL",
+      "ENTITY_ZIP": "32301",
+      "ENTITY_ZIP_EXT": null,
+      "_INGESTED_AT": "2026-08-05 21:45:02.628518",
+      "_SOURCE_RUN_ID": "6adb3591-78a6-4d79-b776-1eabc5a78a57"
+    },
+    {
+      "FORM_ID_NUMBER": "9664062",
+      "DIRECTOR_ID": "159151",
+      "ORG_NAME": "Dignity CA SEIU Local 2015",
+      "EIN": "474477966",
+      "ENTITY_NAME": "Dereck Smith",
+      "ENTITY_TITLE": "Treasurer",
+      "ENTITY_ADDR1": "2910 Beverly Blvd.",
+      "ENTITY_ADDR2": null,
+      "ENTITY_CITY": "Los Angeles",
+      "ENTITY_STATE": "CA",
+      "ENTITY_ZIP": "90057",
+      "ENTITY_ZIP_EXT": null,
+      "_INGESTED_AT": "2026-08-05 21:45:02.628518",
+      "_SOURCE_RUN_ID": "6adb3591-78a6-4d79-b776-1eabc5a78a57"
+    },
+    {
+      "FORM_ID_NUMBER": "9739988",
+      "DIRECTOR_ID": "246397",
+      "ORG_NAME": "FLORIDA CHIROPRACTIC PHYSICIAN ASSOCIATION PAC",
+      "EIN": "993078863",
+      "ENTITY_NAME": "Abby Dupree",
+      "ENTITY_TITLE": "Treasurer",
+      "ENTITY_ADDR1": "2640A MITCHAM DRIVE",
+      "ENTITY_ADDR2": null,
+      "ENTITY_CITY": "TALLAHASSEE",
+      "ENTITY_STATE": "FL",
+      "ENTITY_ZIP": "32308",
+      "ENTITY_ZIP_EXT": null,
+      "_INGESTED_AT": "2026-08-05 21:45:02.628518",
+      "_SOURCE_RUN_ID": "6adb3591-78a6-4d79-b776-1eabc5a78a57"
+    },
+    {
+      "FORM_ID_NUMBER": "9761286",
+      "DIRECTOR_ID": "268681",
+      "ORG_NAME": "Moving Orlando Ahead",
+      "EIN": "394652094",
+      "ENTITY_NAME": "Noreen Fenner",
+      "ENTITY_TITLE": "Treasurer",
+      "ENTITY_ADDR1": "527 East Park Avenue",
+      "ENTITY_ADDR2": null,
+      "ENTITY_CITY": "Tallahassee",
+      "ENTITY_STATE": "FL",
+      "ENTITY_ZIP": "32301",
+      "ENTITY_ZIP_EXT": null,
+      "_INGESTED_AT": "2026-08-05 21:45:02.628518",
+      "_SOURCE_RUN_ID": "6adb3591-78a6-4d79-b776-1eabc5a78a57"
+    },
+    {
+      "FORM_ID_NUMBER": "1315",
+      "DIRECTOR_ID": "8267",
+      "ORG_NAME": "COMMITTEE TO RE-ELECT JUDGE DANA MITCHELL JAFFE",
+      "EIN": "753010401",
+      "ENTITY_NAME": "MICHAEL MIROTZNIK",
+      "ENTITY_TITLE": "CHAIRPERSON",
+      "ENTITY_ADDR1": "2115 HEMPSTEAD TPK",
+      "ENTITY_ADDR2": null,
+      "ENTITY_CITY": "EAST MEADOW",
+      "ENTITY_STATE": "NY",
+      "ENTITY_ZIP": "11554",
+      "ENTITY_ZIP_EXT": null,
+      "_INGESTED_AT": "2026-08-05 21:45:02.628518",
+      "_SOURCE_RUN_ID": "6adb3591-78a6-4d79-b776-1eabc5a78a57"
+    }
+  ],
+  "sample_error": null
+}

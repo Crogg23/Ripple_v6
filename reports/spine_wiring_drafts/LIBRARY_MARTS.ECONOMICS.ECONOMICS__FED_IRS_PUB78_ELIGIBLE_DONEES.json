@@ -1,0 +1,80 @@
+{
+  "fqtn": "LIBRARY_MARTS.ECONOMICS.ECONOMICS__FED_IRS_PUB78_ELIGIBLE_DONEES",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "EIN",
+    "LEGAL_NAME",
+    "CITY",
+    "STATE",
+    "COUNTRY",
+    "DEDUCTIBILITY_STATUS"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "LEGAL_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "STATE"
+      ],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "EIN",
+      "column": "EIN",
+      "total_rows": 1435544,
+      "nonnull_after_norm": 1435544,
+      "distinct_after_norm": 1435544,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "EIN": "923857970",
+      "LEGAL_NAME": "Oregon State Voice",
+      "CITY": "Albany",
+      "STATE": "OR",
+      "COUNTRY": "United States",
+      "DEDUCTIBILITY_STATUS": "PC"
+    },
+    {
+      "EIN": "921945564",
+      "LEGAL_NAME": "Second Verses Inc.",
+      "CITY": "Chattanooga",
+      "STATE": "TN",
+      "COUNTRY": "United States",
+      "DEDUCTIBILITY_STATUS": "PC"
+    },
+    {
+      "EIN": "991938760",
+      "LEGAL_NAME": "Nsb Skate Park Society Inc.",
+      "CITY": "New Smyrna",
+      "STATE": "FL",
+      "COUNTRY": "United States",
+      "DEDUCTIBILITY_STATUS": "PC"
+    },
+    {
+      "EIN": "680528832",
+      "LEGAL_NAME": "Be Restored Org Ministries Inc.",
+      "CITY": "Lithia Spgs",
+      "STATE": "GA",
+      "COUNTRY": "United States",
+      "DEDUCTIBILITY_STATUS": "PC"
+    },
+    {
+      "EIN": "237212872",
+      "LEGAL_NAME": "His Broadcasting Inc.",
+      "CITY": "Comfort",
+      "STATE": "TX",
+      "COUNTRY": "United States",
+      "DEDUCTIBILITY_STATUS": "PC"
+    }
+  ],
+  "sample_error": null
+}

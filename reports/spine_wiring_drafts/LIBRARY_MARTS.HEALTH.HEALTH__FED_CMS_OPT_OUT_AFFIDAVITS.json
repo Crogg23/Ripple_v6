@@ -1,0 +1,128 @@
+{
+  "fqtn": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_OPT_OUT_AFFIDAVITS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "FIRST_NAME",
+    "LAST_NAME",
+    "NPI",
+    "SPECIALTY",
+    "OPTOUT_EFFECTIVE_DATE",
+    "OPTOUT_END_DATE",
+    "FIRST_LINE_STREET_ADDRESS",
+    "SECOND_LINE_STREET_ADDRESS",
+    "CITY_NAME",
+    "STATE_CODE",
+    "ZIP_CODE",
+    "ELIGIBLE_TO_ORDER_AND_REFER",
+    "LAST_UPDATED"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "FIRST_NAME",
+      "LAST_NAME",
+      "FIRST_LINE_STREET_ADDRESS",
+      "CITY_NAME",
+      "LAST_UPDATED"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY_NAME"
+      ],
+      "state": [
+        "STATE_CODE"
+      ],
+      "zip": [
+        "ZIP_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPI",
+      "column": "NPI",
+      "total_rows": 57209,
+      "nonnull_after_norm": 57209,
+      "distinct_after_norm": 56455,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "FIRST_NAME": "Jodie",
+      "LAST_NAME": "Carvalho",
+      "NPI": "1295292795",
+      "SPECIALTY": "Clinical Social Worker",
+      "OPTOUT_EFFECTIVE_DATE": "2024-09-27",
+      "OPTOUT_END_DATE": "2026-09-27",
+      "FIRST_LINE_STREET_ADDRESS": "101 E 8TH AVE",
+      "SECOND_LINE_STREET_ADDRESS": "STE 107",
+      "CITY_NAME": "CONSHOHOCKEN",
+      "STATE_CODE": "PA",
+      "ZIP_CODE": "194281771",
+      "ELIGIBLE_TO_ORDER_AND_REFER": "N",
+      "LAST_UPDATED": "2024-11-15"
+    },
+    {
+      "FIRST_NAME": "Jennifer",
+      "LAST_NAME": "Bradt",
+      "NPI": "1487895876",
+      "SPECIALTY": "Mental Health Counselor",
+      "OPTOUT_EFFECTIVE_DATE": "2024-03-11",
+      "OPTOUT_END_DATE": "2028-03-11",
+      "FIRST_LINE_STREET_ADDRESS": "3535 VICTORY GROUP WAY",
+      "SECOND_LINE_STREET_ADDRESS": null,
+      "CITY_NAME": "FRISCO",
+      "STATE_CODE": "TX",
+      "ZIP_CODE": "750346719",
+      "ELIGIBLE_TO_ORDER_AND_REFER": "N",
+      "LAST_UPDATED": "2026-04-16"
+    },
+    {
+      "FIRST_NAME": "Margaret",
+      "LAST_NAME": "Whitbeck",
+      "NPI": "1568709962",
+      "SPECIALTY": "Registered Dietitian Or Nutrition Professional",
+      "OPTOUT_EFFECTIVE_DATE": "2025-04-16",
+      "OPTOUT_END_DATE": "2027-04-16",
+      "FIRST_LINE_STREET_ADDRESS": "10 SOUTH ST",
+      "SECOND_LINE_STREET_ADDRESS": "STE 102",
+      "CITY_NAME": "RIDGEFIELD",
+      "STATE_CODE": "CT",
+      "ZIP_CODE": "068774125",
+      "ELIGIBLE_TO_ORDER_AND_REFER": "N",
+      "LAST_UPDATED": "2025-05-15"
+    },
+    {
+      "FIRST_NAME": "Kerry",
+      "LAST_NAME": "Jarvi",
+      "NPI": "1598314320",
+      "SPECIALTY": "Mental Health Counselor",
+      "OPTOUT_EFFECTIVE_DATE": "2024-06-02",
+      "OPTOUT_END_DATE": "2028-06-02",
+      "FIRST_LINE_STREET_ADDRESS": "3206 TOWER OAKS BLVD",
+      "SECOND_LINE_STREET_ADDRESS": "STE 300",
+      "CITY_NAME": "ROCKVILLE",
+      "STATE_CODE": "MD",
+      "ZIP_CODE": "208524220",
+      "ELIGIBLE_TO_ORDER_AND_REFER": "N",
+      "LAST_UPDATED": "2026-07-13"
+    },
+    {
+      "FIRST_NAME": "David",
+      "LAST_NAME": "Schreiber",
+      "NPI": "1831357805",
+      "SPECIALTY": "Psychiatry",
+      "OPTOUT_EFFECTIVE_DATE": "2014-08-11",
+      "OPTOUT_END_DATE": "2026-08-11",
+      "FIRST_LINE_STREET_ADDRESS": "60 REVERE DR 100",
+      "SECOND_LINE_STREET_ADDRESS": null,
+      "CITY_NAME": "NORTHBROOK",
+      "STATE_CODE": "IL",
+      "ZIP_CODE": "600621590",
+      "ELIGIBLE_TO_ORDER_AND_REFER": "Y",
+      "LAST_UPDATED": "2024-09-15"
+    }
+  ],
+  "sample_error": null
+}

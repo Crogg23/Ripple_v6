@@ -1,0 +1,98 @@
+{
+  "fqtn": "LIBRARY_MARTS.FINANCE.FINANCE__FED_EPA_ICIS_FEC_EPA_INFORMAL_ENFORCEMENT_ACTIONS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "PGM_SYS_ACRNM",
+    "PGM_SYS_ID",
+    "REGISTRY_ID",
+    "AGENCY",
+    "ACTIVITY_TYPE_CODE",
+    "ENF_TYPE_CODE",
+    "ENF_TYPE_DESC",
+    "ACHIEVED_DATE",
+    "ENF_IDENTIFIER",
+    "STATUTE"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "FRS_ID",
+      "column": "REGISTRY_ID",
+      "total_rows": 21930,
+      "nonnull_after_norm": 21930,
+      "distinct_after_norm": 14606,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "PGM_SYS_ACRNM": "ICIS",
+      "PGM_SYS_ID": "3400101648",
+      "REGISTRY_ID": "110018461118",
+      "AGENCY": "EPA",
+      "ACTIVITY_TYPE_CODE": "AIF",
+      "ENF_TYPE_CODE": "NOV",
+      "ENF_TYPE_DESC": "Notice of Violation",
+      "ACHIEVED_DATE": "2014-10-16",
+      "ENF_IDENTIFIER": "05-200105152",
+      "STATUTE": "FIFRA"
+    },
+    {
+      "PGM_SYS_ACRNM": "ICIS",
+      "PGM_SYS_ID": "600011645",
+      "REGISTRY_ID": "110028247412",
+      "AGENCY": "EPA",
+      "ACTIVITY_TYPE_CODE": "AIF",
+      "ENF_TYPE_CODE": "NONC",
+      "ENF_TYPE_DESC": "Notice of Noncompliance Issued",
+      "ACHIEVED_DATE": "2007-04-03",
+      "ENF_IDENTIFIER": "07-200005942",
+      "STATUTE": "TSCA"
+    },
+    {
+      "PGM_SYS_ACRNM": "ICIS",
+      "PGM_SYS_ID": "3600043727",
+      "REGISTRY_ID": "110037244835",
+      "AGENCY": "EPA",
+      "ACTIVITY_TYPE_CODE": "AIF",
+      "ENF_TYPE_CODE": "LOVWL",
+      "ENF_TYPE_DESC": "Letter of Violation/ Warning Letter",
+      "ACHIEVED_DATE": "2015-04-30",
+      "ENF_IDENTIFIER": "09-200120705",
+      "STATUTE": "FIFRA"
+    },
+    {
+      "PGM_SYS_ACRNM": "ICIS",
+      "PGM_SYS_ID": "2659200",
+      "REGISTRY_ID": "110014427414",
+      "AGENCY": "EPA",
+      "ACTIVITY_TYPE_CODE": "AIF",
+      "ENF_TYPE_CODE": "NOV",
+      "ENF_TYPE_DESC": "Notice of Violation",
+      "ACHIEVED_DATE": "2013-08-14",
+      "ENF_IDENTIFIER": "06-200086598",
+      "STATUTE": "SDWA"
+    },
+    {
+      "PGM_SYS_ACRNM": "RCRAINFO",
+      "PGM_SYS_ID": "ILD070015938",
+      "REGISTRY_ID": "110001229858",
+      "AGENCY": "EPA",
+      "ACTIVITY_TYPE_CODE": "AIF",
+      "ENF_TYPE_CODE": "NOV",
+      "ENF_TYPE_DESC": "Notice of Violation",
+      "ACHIEVED_DATE": "2011-06-20",
+      "ENF_IDENTIFIER": "05-200048468",
+      "STATUTE": "RCRA"
+    }
+  ],
+  "sample_error": null
+}

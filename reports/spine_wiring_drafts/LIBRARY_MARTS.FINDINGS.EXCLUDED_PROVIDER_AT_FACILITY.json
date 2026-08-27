@@ -1,0 +1,91 @@
+{
+  "fqtn": "LIBRARY_MARTS.FINDINGS.EXCLUDED_PROVIDER_AT_FACILITY",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NPI",
+    "EXCLUDED_LAST",
+    "EXCLUDED_FIRST",
+    "EXCLUSION_TYPE",
+    "EXCLUSION_DATE",
+    "FACILITY_CCN",
+    "FACILITY_TYPE"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "FACILITY_CCN",
+      "FACILITY_TYPE"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPI",
+      "column": "NPI",
+      "total_rows": 28,
+      "nonnull_after_norm": 28,
+      "distinct_after_norm": 10,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    },
+    {
+      "key_label": "CCN",
+      "column": "FACILITY_CCN",
+      "total_rows": 28,
+      "nonnull_after_norm": 24,
+      "distinct_after_norm": 24,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "NPI": "1184685281",
+      "EXCLUDED_LAST": "BARRIENTOS",
+      "EXCLUDED_FIRST": "DOMINGO",
+      "EXCLUSION_TYPE": "1128a1",
+      "EXCLUSION_DATE": "20251120",
+      "FACILITY_CCN": "B51537",
+      "FACILITY_TYPE": "Hospice"
+    },
+    {
+      "NPI": "1285673012",
+      "EXCLUDED_LAST": "MIRANDA",
+      "EXCLUDED_FIRST": "EDUARDO",
+      "EXCLUSION_TYPE": "1128a1",
+      "EXCLUSION_DATE": "20150618",
+      "FACILITY_CCN": "450643",
+      "FACILITY_TYPE": "Hospital"
+    },
+    {
+      "NPI": "1831714906",
+      "EXCLUDED_LAST": "DEXTER",
+      "EXCLUDED_FIRST": "SADYE",
+      "EXCLUSION_TYPE": "1128b4",
+      "EXCLUSION_DATE": "20260618",
+      "FACILITY_CCN": "100014",
+      "FACILITY_TYPE": "Hospital"
+    },
+    {
+      "NPI": "1285673012",
+      "EXCLUDED_LAST": "MIRANDA",
+      "EXCLUDED_FIRST": "EDUARDO",
+      "EXCLUSION_TYPE": "1128a1",
+      "EXCLUSION_DATE": "20150618",
+      "FACILITY_CCN": "451387",
+      "FACILITY_TYPE": "Hospital"
+    },
+    {
+      "NPI": "1184685281",
+      "EXCLUDED_LAST": "BARRIENTOS",
+      "EXCLUDED_FIRST": "DOMINGO",
+      "EXCLUSION_TYPE": "1128a1",
+      "EXCLUSION_DATE": "20251120",
+      "FACILITY_CCN": "A11688",
+      "FACILITY_TYPE": "Hospice"
+    }
+  ],
+  "sample_error": null
+}

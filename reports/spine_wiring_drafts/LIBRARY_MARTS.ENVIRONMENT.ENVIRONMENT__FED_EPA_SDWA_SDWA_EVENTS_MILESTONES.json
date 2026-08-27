@@ -1,0 +1,101 @@
+{
+  "fqtn": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_EVENTS_MILESTONES",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "SUBMISSIONYEARQUARTER",
+    "PWSID",
+    "EVENT_SCHEDULE_ID",
+    "EVENT_END_DATE",
+    "EVENT_ACTUAL_DATE",
+    "EVENT_COMMENTS_TEXT",
+    "EVENT_MILESTONE_CODE",
+    "EVENT_REASON_CODE",
+    "FIRST_REPORTED_DATE",
+    "LAST_REPORTED_DATE"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "FIRST_REPORTED_DATE",
+      "LAST_REPORTED_DATE"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "PWSID",
+      "column": "PWSID",
+      "total_rows": 394075,
+      "nonnull_after_norm": 394075,
+      "distinct_after_norm": 98555,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "SUBMISSIONYEARQUARTER": "2026Q2",
+      "PWSID": "MI0004605",
+      "EVENT_SCHEDULE_ID": "826",
+      "EVENT_END_DATE": null,
+      "EVENT_ACTUAL_DATE": "1998-12-31",
+      "EVENT_COMMENTS_TEXT": null,
+      "EVENT_MILESTONE_CODE": "DEEM",
+      "EVENT_REASON_CODE": "B1",
+      "FIRST_REPORTED_DATE": "2004-05-19",
+      "LAST_REPORTED_DATE": "2007-03-28"
+    },
+    {
+      "SUBMISSIONYEARQUARTER": "2026Q2",
+      "PWSID": "OH2036412",
+      "EVENT_SCHEDULE_ID": "4900",
+      "EVENT_END_DATE": null,
+      "EVENT_ACTUAL_DATE": "2016-06-30",
+      "EVENT_COMMENTS_TEXT": null,
+      "EVENT_MILESTONE_CODE": "DEEM",
+      "EVENT_REASON_CODE": "B1",
+      "FIRST_REPORTED_DATE": "2018-02-22",
+      "LAST_REPORTED_DATE": "2026-05-15"
+    },
+    {
+      "SUBMISSIONYEARQUARTER": "2026Q2",
+      "PWSID": "VT0005578",
+      "EVENT_SCHEDULE_ID": "TTT-VT537950",
+      "EVENT_END_DATE": "2022-08-25",
+      "EVENT_ACTUAL_DATE": "2022-09-17",
+      "EVENT_COMMENTS_TEXT": "LVL2 TTT MULTIPLE TC+ 2ND LVL 1-12 MN;0;Sample Lab ID: Sample Collection Date: Assessment conducted: Site Visit/Assessment Number:",
+      "EVENT_MILESTONE_CODE": "RTL2",
+      "EVENT_REASON_CODE": "L2TB",
+      "FIRST_REPORTED_DATE": "2022-11-10",
+      "LAST_REPORTED_DATE": "2026-07-01"
+    },
+    {
+      "SUBMISSIONYEARQUARTER": "2026Q2",
+      "PWSID": "UTAH26044",
+      "EVENT_SCHEDULE_ID": "COR-UT2221422204",
+      "EVENT_END_DATE": "2017-08-16",
+      "EVENT_ACTUAL_DATE": "2016-10-21",
+      "EVENT_COMMENTS_TEXT": "GWR CORRECT DEFICIENCY 120 DAYS;S001-UNAPPROVED SOURCE IN SERVICE-DEFICIENCY ADDED AS PER 6/23/2016 CONDITIONAL PLAN APPROVAL LETTER DRAFTED BY NAGENDRA DEV - JHO    10/12/2016 THE G001 SIG. DEFICIENCY 200 PTS, FOR UNFINISHED FILE #06723 REPLACEMENT WELL #2 (WS002) OPERATING PERMIT HAD BEEN LISTED AS 'NOT EFFECTIVE  IN IPS REPORT, BUT CHANGED TO EFFECTIVE ON 6-23-16 SJO",
+      "EVENT_MILESTONE_CODE": "SDFF",
+      "EVENT_REASON_CODE": "GW",
+      "FIRST_REPORTED_DATE": "2016-12-21",
+      "LAST_REPORTED_DATE": "2020-08-19"
+    },
+    {
+      "SUBMISSIONYEARQUARTER": "2026Q2",
+      "PWSID": "MP0000229",
+      "EVENT_SCHEDULE_ID": "0000229312998SDFF",
+      "EVENT_END_DATE": "2021-04-24",
+      "EVENT_ACTUAL_DATE": "2021-04-30",
+      "EVENT_COMMENTS_TEXT": "Provided an airgap between discharge and water level.",
+      "EVENT_MILESTONE_CODE": "SDFF",
+      "EVENT_REASON_CODE": "GW",
+      "FIRST_REPORTED_DATE": "2021-09-27",
+      "LAST_REPORTED_DATE": "2026-06-08"
+    }
+  ],
+  "sample_error": null
+}

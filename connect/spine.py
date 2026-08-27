@@ -50,7 +50,10 @@ def _name_expr(spec: dict) -> str:
     """Canonical-name expression: prefer org/facility name, else 'LAST, FIRST'."""
     parts = []
     if spec.get("org"):
-        parts.append(f"NULLIF(TRIM({quote_ident(spec['org'])}), '')")
+        # 2026-08-24: the portal crawls were written through pandas, so a missing
+        # name lands as the literal string 'nan' (7/83 rows on the DC NPDES tables,
+        # 19/1,392 on a Utah clinic table). Treat it as no name, never as a name.
+        parts.append(f"NULLIF(NULLIF(TRIM({quote_ident(spec['org'])}), ''), 'nan')")
     if spec.get("person"):
         last, first = spec["person"]
         parts.append(f"NULLIF(TRIM({quote_ident(last)}) || ', ' || TRIM({quote_ident(first)}), ', ')")

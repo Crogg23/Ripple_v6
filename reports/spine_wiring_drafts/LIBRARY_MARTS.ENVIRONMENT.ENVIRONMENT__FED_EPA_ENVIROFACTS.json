@@ -1,0 +1,146 @@
+{
+  "fqtn": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_ENVIROFACTS",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "TABLE_NAME",
+    "PROGRAM_SCHEMA",
+    "STATE_CODE",
+    "CITY_NAME",
+    "POSTAL_CODE",
+    "COUNTY_NAME",
+    "FRS_ID",
+    "HANDLER_ID",
+    "SITE_ID",
+    "FACILITY_NAME",
+    "LATITUDE",
+    "LONGITUDE",
+    "CREATED_DATE",
+    "MEDIA_NAME",
+    "_INGESTED_AT",
+    "_SOURCE_RUN_ID"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "TABLE_NAME",
+      "CITY_NAME",
+      "COUNTY_NAME",
+      "FACILITY_NAME",
+      "MEDIA_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY_NAME"
+      ],
+      "state": [
+        "STATE_CODE"
+      ],
+      "zip": [
+        "POSTAL_CODE"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "FRS_ID",
+      "column": "FRS_ID",
+      "total_rows": 5000,
+      "nonnull_after_norm": 0,
+      "distinct_after_norm": 0,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "TABLE_NAME": "tri.tri_facility",
+      "PROGRAM_SCHEMA": "TRI",
+      "STATE_CODE": null,
+      "CITY_NAME": "SALEM",
+      "POSTAL_CODE": "03079",
+      "COUNTY_NAME": "ROCKINGHAM",
+      "FRS_ID": null,
+      "HANDLER_ID": null,
+      "SITE_ID": null,
+      "FACILITY_NAME": "SANMINA CORP",
+      "LATITUDE": null,
+      "LONGITUDE": null,
+      "CREATED_DATE": null,
+      "MEDIA_NAME": null,
+      "_INGESTED_AT": "2026-07-02 00:07:49.008704",
+      "_SOURCE_RUN_ID": "60bff868-e540-4580-8cef-e5ae2b922119"
+    },
+    {
+      "TABLE_NAME": "tri.tri_facility",
+      "PROGRAM_SCHEMA": "TRI",
+      "STATE_CODE": null,
+      "CITY_NAME": "PAWTUCKET",
+      "POSTAL_CODE": "02862",
+      "COUNTY_NAME": "PROVIDENCE",
+      "FRS_ID": null,
+      "HANDLER_ID": null,
+      "SITE_ID": null,
+      "FACILITY_NAME": "UNION WADDING CO",
+      "LATITUDE": null,
+      "LONGITUDE": null,
+      "CREATED_DATE": null,
+      "MEDIA_NAME": null,
+      "_INGESTED_AT": "2026-07-02 00:07:49.008704",
+      "_SOURCE_RUN_ID": "60bff868-e540-4580-8cef-e5ae2b922119"
+    },
+    {
+      "TABLE_NAME": "tri.tri_facility",
+      "PROGRAM_SCHEMA": "TRI",
+      "STATE_CODE": null,
+      "CITY_NAME": "HUDSON",
+      "POSTAL_CODE": "03051",
+      "COUNTY_NAME": "HILLSBOROUGH",
+      "FRS_ID": null,
+      "HANDLER_ID": null,
+      "SITE_ID": null,
+      "FACILITY_NAME": "SPRAYING SYSTEMS CO. - EAST COAST FACILITY",
+      "LATITUDE": null,
+      "LONGITUDE": null,
+      "CREATED_DATE": null,
+      "MEDIA_NAME": null,
+      "_INGESTED_AT": "2026-07-02 00:07:49.008704",
+      "_SOURCE_RUN_ID": "60bff868-e540-4580-8cef-e5ae2b922119"
+    },
+    {
+      "TABLE_NAME": "tri.tri_facility",
+      "PROGRAM_SCHEMA": "TRI",
+      "STATE_CODE": null,
+      "CITY_NAME": "BOURNE",
+      "POSTAL_CODE": "02542",
+      "COUNTY_NAME": "BARNSTABLE",
+      "FRS_ID": null,
+      "HANDLER_ID": null,
+      "SITE_ID": null,
+      "FACILITY_NAME": "U.S. ARMY NATIONAL GUARD CAMP EDWARDS RANGE",
+      "LATITUDE": null,
+      "LONGITUDE": null,
+      "CREATED_DATE": null,
+      "MEDIA_NAME": null,
+      "_INGESTED_AT": "2026-07-02 00:07:49.008704",
+      "_SOURCE_RUN_ID": "60bff868-e540-4580-8cef-e5ae2b922119"
+    },
+    {
+      "TABLE_NAME": "tri.tri_facility",
+      "PROGRAM_SCHEMA": "TRI",
+      "STATE_CODE": null,
+      "CITY_NAME": "SEABROOK",
+      "POSTAL_CODE": "03874",
+      "COUNTY_NAME": "ROCKINGHAM",
+      "FRS_ID": null,
+      "HANDLER_ID": null,
+      "SITE_ID": null,
+      "FACILITY_NAME": "HYSOL AEROSPACE & INDL PRODUCTS DIV",
+      "LATITUDE": null,
+      "LONGITUDE": null,
+      "CREATED_DATE": null,
+      "MEDIA_NAME": null,
+      "_INGESTED_AT": "2026-07-02 00:07:49.008704",
+      "_SOURCE_RUN_ID": "60bff868-e540-4580-8cef-e5ae2b922119"
+    }
+  ],
+  "sample_error": null
+}

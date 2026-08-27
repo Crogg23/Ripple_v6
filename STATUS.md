@@ -1,97 +1,134 @@
-# RIPPLE STATUS — 2026-08-26 (late) — Mart-generator bug fixed; ready-now backlog closed; the "414" number was wrong
+# RIPPLE STATUS — 2026-08-26 (late) — Merged a stranded Mac session; entity graph is now KNOWN STALE; one real scope contradiction found, not resolved
 
 *One screen. Rewritten (never appended) at the end of every session. Sessions read
 this at boot and brief Chris in chat — Chris never has to open it.*
 
-**Scoreboard: test suite still clean, unchanged by tonight's extra work** — 5,156
-tests, 4,910 pass / 246 warn / **0 error**. Verified twice tonight (before and
-after adding 43 new marts) to make sure nothing broke while building on top of
-this week's earlier fixes — same numbers both times.
+## 🚨 Read this part first — three things need a decision before more work happens
 
-**BROKE: nothing tonight, verified twice. Two standing items, not new:**
-- **Senate LDA lobbying loader** (running for days now) — still alive, still on
-  2008, still getting rate-limited (normal, not stuck). Check
-  `logs/senate_lda_stdout.log` / `logs/senate_lda_checkpoint.json` at boot.
-- **GFI trade data still broken** — the real country-by-country table is a
-  Tableau Public chart embed (canvas/SVG, not HTML); needs a Tableau-aware
-  scrape. Not touched tonight.
+1. **The live entity graph is stale again, on purpose — do NOT just re-run the
+   rebuild.** Merging in a second machine's stranded work (below) added 88 more
+   sources to the wiring list, ~79 of them low-trust scraped city/county open-data
+   portals. Those portal sources were wired in on 2026-08-24, on a different
+   machine, **before** today's separate ruling that portal data is out of scope
+   for the entity graph. That's a live contradiction between two sessions'
+   decisions, not something to silently pick a side on.
+2. **A viz options menu from yesterday is still waiting on a pick.** Nothing
+   since has picked from it. Real, finished deliverable, zero Chris input yet:
+   `reports/VIZ_OPTIONS_MAP_2026-08-25.md` (60 picture ideas, 30 tools compared)
+   + a browsable, filterable version at `reports/viz/options_board_2026-08-25.html`.
+3. **The 385-hard-cap reload task from earlier tonight is still undecided.**
+   99% of that bucket (381 of 385) turned out to be the same low-trust portal
+   data — Chris was asked how to proceed and said "something else" with no
+   detail before moving to this handoff. Only 4 sources in that bucket are
+   real: USGS 3DEP, ATF firearm-dealer locations, DOL/OFCCP compliance list,
+   Bangladesh's national open-data portal.
 
-## Tonight's work (commits `d4036743`, `c00ddc0a`)
+## What actually happened tonight (long session, several real turns)
 
-**Chris asked for a plan to finish the whole backlog. First finding: the plan
-handed off from earlier tonight was built on a wrong number.**
+**Round A — the planned work:** fixed the tool that builds analytics tables on
+top of raw data pulls (it was silently copying raw data instead of building on
+a cleaner, already-deduped version, whenever one existed — the same bug class
+behind 8 known bad-mart incidents this month). Ran it against the one backlog
+that was genuinely ready (real, complete data, just no finished table yet):
+**43 new finished tables**, tested clean. Also corrected a wrong headline
+number from earlier tonight: the real count of sources stuck at "only a
+preview pulled, not the real data" is **1,567**, not 414 as first claimed.
 
-**1. Found and fixed the real bug behind the "414 stuck sources" plan.**
-The batch mart-generator (the tool that builds a finished analytics table on
-top of a raw data pull) always wrote a straight copy of raw landing data, even
-when a clean, deduped staging model already existed for that source. That's
-the exact bug class that caused 8 known duplicate/bad-cast mart pairs earlier
-this month. Fixed: the generator now checks for an existing clean staging
-model first and builds on top of that instead of raw data, whenever one
-exists.
+**Round B — six real bugs found and fixed in the entity-graph wiring file,**
+caught because a crash on a dead/typo'd table reference was hiding them:
+a leftover duplicate reference to already-superseded data, three tables a
+prior review had explicitly ruled out getting silently re-added by a
+generator tool, and two cases where a table reference used lowercase column
+names that are a hard database error under how this system actually reads
+them (meaning those two data sources were contributing **zero** rows to the
+entity graph despite looking "wired," including the single biggest one —
+93 million federal contract records).
 
-**2. The "414" figure itself didn't hold up.** Checked it against the live
-warehouse before building anything on top of it: the real number is **1,567**
-sources stuck at that stage, not 414 — nobody had verified the actual count
-before handing it off. Worse, checked what the stage actually means in the
-code that assigns it (not guessed): it means *only a small preview pull ever
-happened*, not "data's here, just missing a mart." Split by how confident that
-is: **385 sources hit an exact, deliberate row cap** (unambiguous — need a
-real full reload, not a mart). **1,182 are smaller and more scattered** — no
-clean cap pattern, need a per-source look to tell "genuinely small and
-complete" apart from "broken partial pull." Neither bucket has been reloaded
-or fixed yet — this is a sizing finding, not a fix.
+**Round C — ran the full entity-graph rebuild** (with sign-off; real cost,
+real time) to make Round B's fixes actually reach the live data instead of
+sitting in source files. Result, checked live: **35,951,018 entities**, 20
+million of them linked across more than one data source, built from 90
+million raw rows. Confirmed live that removed sources dropped to zero rows
+and previously-broken sources now genuinely contribute (528,670 rows from
+the once-broken 93M-row USASpending table alone).
 
-**3. Piloted the fixed generator, then ran it to completion on the one
-population that's actually ready today** (real, complete data already landed,
-just no mart yet — this is a different, much smaller pool than the 1,567
-above). Built and verified 43 new marts in two batches (18, then 25),
-`dbt build` clean on every one. Spot-checked row counts by hand against the
-raw data for several of them — two looked off at first glance, both traced to
-real duplicate rows in the raw data being correctly removed, not a bug.
-Result: **that backlog is now fully closed** — re-running the generator finds
-zero real gaps left, only sources already modeled elsewhere under a different
-name (correctly left alone). All 43 sources now show as "modeled" automatically
-(that flag is computed from the mart's existence, no manual step needed) and
-are ready for the next entity-graph wiring pass whenever that's prioritized.
+**Round D — while starting the next task, discovered this machine's copy of
+the code had fallen behind a second machine's work that never got pulled in.**
+A routine sync (not run by this session — likely triggered from the editor)
+surfaced a merge with 2 hours of real work from a Mac session on 2026-08-24/25
+that had been sitting on the shared remote, unmerged, the whole time this
+session ran. Reconciling it found:
+- The Mac session had **already independently found and fixed 2 of the same 6
+  bugs from Round B** (the dead/typo'd reference, one of the lowercase-column
+  cases) two days earlier — same bugs, found twice, because the two machines
+  hadn't synced.
+- It also fixed **2 more real bugs** this session hadn't touched: another
+  lowercase-column mismatch, and a real data-quality gap where a missing name
+  on some scraped-portal rows was landing as the literal text "nan" instead of
+  a true blank (a known trap, documented before — see memory — now fixed in a
+  second place it was hiding).
+- It added **92 new candidate sources** to the wiring file (draft packets
+  written for human review by a new tool, `scripts/spine_wiring_prep.py`) —
+  11 real federal ones plus ~79 scraped-portal ones, the portal-scope
+  contradiction flagged above.
+- Merging created **2 accidental duplicate entries** (two sessions had each
+  added a fix for the same table under the same name, in different spots in
+  the file) — found and cleaned up; confirmed via the live code which version
+  was actually taking effect before touching anything, both times the more
+  complete version was already winning.
+- **Also surfaced, not fixed:** 2 *pre-existing* duplicate entries (predate
+  both sessions) for two EPA water-discharge tables, each defined twice under
+  two genuinely different key types (one measured/verified, one not) — a real
+  data-quality question, needs someone to check which key is actually better
+  populated on live data before picking one. Not touched tonight; flagged only.
 
-**One thing surfaced, not fixed:** two of the new marts (a California/general
-Prop 65 chemical-list pair) turned out to hold slightly different row counts —
-looks like the same real-world list pulled by two separate scrapes under two
-different names, not a code bug. Worth a human glance, not urgent.
+**After reconciling:** full test suite re-run clean — 304 checks passed, 0
+failures (up from 215 before the merge, since the merge added real coverage).
+The merge is otherwise complete and safe to build on. **The rebuild from
+Round C has NOT been re-run since this merge** — see item 1 at the top.
+
+## BROKE
+
+Nothing from this session's own work — every fix was checked against a live
+test before being trusted, twice over (once for tonight's own changes, again
+after reconciling the second machine's work). The Senate LDA lobbying loader
+is still running in the background, still healthy, last confirmed on year
+2008.
 
 ## YOUR MOVE (Chris)
 
-1. **Drop the old truncated USASpending contracts table** — still open from
-   earlier tonight, fully superseded.
+1. **The portal-scope contradiction (item 1 above)** — should those ~79
+   already-wired scraped-portal sources come OUT of the entity-graph wiring
+   file to match today's ruling, or does today's ruling only apply going
+   forward? Real decision, not a technical one.
+2. **Pick from the visualization options menu** (item 2 above) — still
+   nobody's chosen anything from it.
+3. **The 385-bucket reload decision (item 3 above)** — still open.
+4. **Drop the old truncated USASpending contracts table** — still open,
+   fully superseded now twice over.
    `DROP TABLE LIBRARY_RAW.LANDING.FED_USASPENDING_CONTRACTS_FULL;`
-2. **GFI trade data** — needs a dedicated Tableau-scraping session. Not urgent.
-3. **The stale politics timeline table** — view instead of table, or something
-   else? Real design call, not urgent.
-4. **The real 1,567-source backlog** (not 414) is the next real lever for the
-   entity graph. Two different jobs live inside it: reloading the 385 with a
-   confirmed hard cap, and a human/tool pass to sort the other 1,182. Both are
-   bigger than anything done tonight — worth scoping as its own session before
-   committing real time or spend to either.
-5. **Push tonight's 10 local commits to origin**, whenever you want them off
-   this machine — not done automatically, no standing approval for it.
+5. **GFI trade data** — still needs a dedicated Tableau-scraping session.
+6. **The stale politics timeline table** — view instead of table, or
+   something else? Still undecided, not urgent.
+7. **Push local commits to origin** whenever wanted — not automatic.
 
 ## NEXT
 
-Boot: check the Senate LDA loader is still moving. The ghost
-`ICIS_AIR_FACILITIES` spec entry (found last round, still not fixed) is a
-quick, bounded fix worth doing early. The real 1,567-source split (item 4
-above) is the one open item that could genuinely reshape a future session —
-worth a scoping-only pass (no reloads yet) before deciding how big to go.
+The very next session's stated focus (per Chris) is a **full, comprehensive
+numeric audit of the whole warehouse** — turn everything measurable into a
+number. That's a distinct, large piece of work; see the handoff document
+(path given to that session directly) for how it's scoped. Before or
+alongside that: the portal-scope contradiction (YOUR MOVE #1) should get
+resolved before anyone spends real money re-running the entity-graph rebuild
+again, since the answer changes what that rebuild should even include.
 
-**Cost note:** tonight's extra work (on top of the ~$10-14 already logged
-earlier today) was a handful of small `dbt build` runs plus three full
-test-suite passes (~3 min of warehouse compute each) — same small ballpark,
-not separately meter-verified this instant.
+**Cost note:** tonight's spend beyond the day's earlier ~$10-14: the full
+entity-graph rebuild (real warehouse compute, approved before running, came
+in noticeably faster than the ~4.5-hour estimate) plus several quick test
+runs and small table builds. Not separately meter-verified this instant.
 
 ## Not committed
 
-Nothing — working tree is clean as of this session's close (10 commits ahead
-of origin, not pushed). The Senate LDA loader's checkpoint/log files will be
-dirty again once it lands more years; that's expected, same as every session
-this week.
+Working tree has an in-progress merge being finalized as this file is
+written — commit follows immediately after. Once committed: local commits
+sit ahead of origin, not pushed (no standing approval to push automatically).

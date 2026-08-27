@@ -1,0 +1,62 @@
+{
+  "fqtn": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_FRS_FRS_SIC_CODES",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "PGM_SYS_ID",
+    "PGM_SYS_ACNRM",
+    "SIC_CODE",
+    "REGISTRY_ID"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [],
+    "address_candidates": {
+      "city": [],
+      "state": [],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "FRS_ID",
+      "column": "REGISTRY_ID",
+      "total_rows": 1085211,
+      "nonnull_after_norm": 1082848,
+      "distinct_after_norm": 831499,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "PGM_SYS_ID": "TXR1555QU",
+      "PGM_SYS_ACNRM": "NPDES",
+      "SIC_CODE": "1522",
+      "REGISTRY_ID": "110071728403"
+    },
+    {
+      "PGM_SYS_ID": "FLRNEE049",
+      "PGM_SYS_ACNRM": "NPDES",
+      "SIC_CODE": "3724",
+      "REGISTRY_ID": "110000363589"
+    },
+    {
+      "PGM_SYS_ID": "PRR053183",
+      "PGM_SYS_ACNRM": "NPDES",
+      "SIC_CODE": "4225",
+      "REGISTRY_ID": "110000580657"
+    },
+    {
+      "PGM_SYS_ID": "GAR385D18",
+      "PGM_SYS_ACNRM": "NPDES",
+      "SIC_CODE": "1521",
+      "REGISTRY_ID": "110070257997"
+    },
+    {
+      "PGM_SYS_ID": "MD0000002451002854",
+      "PGM_SYS_ACNRM": "AIR",
+      "SIC_CODE": "7542",
+      "REGISTRY_ID": "110038607451"
+    }
+  ],
+  "sample_error": null
+}

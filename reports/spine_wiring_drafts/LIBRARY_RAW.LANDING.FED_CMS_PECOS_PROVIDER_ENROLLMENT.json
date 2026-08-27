@@ -1,0 +1,131 @@
+{
+  "fqtn": "LIBRARY_RAW.LANDING.FED_CMS_PECOS_PROVIDER_ENROLLMENT",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "NPI",
+    "MULTIPLE_NPI_FLAG",
+    "PECOS_ASCT_CNTL_ID",
+    "ENRLMT_ID",
+    "PROVIDER_TYPE_CD",
+    "PROVIDER_TYPE_DESC",
+    "STATE_CD",
+    "FIRST_NAME",
+    "MDL_NAME",
+    "LAST_NAME",
+    "ORG_NAME",
+    "INGESTED_AT",
+    "SOURCE_RUN_ID",
+    "SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "PROVIDER_TYPE_CD",
+      "PROVIDER_TYPE_DESC",
+      "FIRST_NAME",
+      "MDL_NAME",
+      "LAST_NAME",
+      "ORG_NAME"
+    ],
+    "address_candidates": {
+      "city": [],
+      "state": [
+        "STATE_CD"
+      ],
+      "zip": []
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "NPI",
+      "column": "MULTIPLE_NPI_FLAG",
+      "total_rows": 2978925,
+      "nonnull_after_norm": 0,
+      "distinct_after_norm": 0,
+      "trap_verdict": "SUSPECT_MASKED_OR_SPARSE"
+    }
+  ],
+  "sample_rows": [
+    {
+      "NPI": "1982232724",
+      "MULTIPLE_NPI_FLAG": "N",
+      "PECOS_ASCT_CNTL_ID": "1850890351",
+      "ENRLMT_ID": "I20250820001004",
+      "PROVIDER_TYPE_CD": "33-07",
+      "PROVIDER_TYPE_DESC": "ORDER AND REFERRING ONLY - DERMATOLOGY",
+      "STATE_CD": "CA",
+      "FIRST_NAME": "KATHRYN",
+      "MDL_NAME": "S",
+      "LAST_NAME": "HINCHEE",
+      "ORG_NAME": null,
+      "INGESTED_AT": 1786163502463229,
+      "SOURCE_RUN_ID": "41392c91-89ae-471f-9204-21a285e1cd57",
+      "SRC_SHA256": "e5d362addc825ced40e6ae2da378bbe12a22cb9a25572a1742f663bb5a72c435"
+    },
+    {
+      "NPI": "1811027303",
+      "MULTIPLE_NPI_FLAG": "N",
+      "PECOS_ASCT_CNTL_ID": "3779488010",
+      "ENRLMT_ID": "I20130510000413",
+      "PROVIDER_TYPE_CD": "14-78",
+      "PROVIDER_TYPE_DESC": "PRACTITIONER - CARDIAC SURGERY",
+      "STATE_CD": "GA",
+      "FIRST_NAME": "ADAM",
+      "MDL_NAME": "MICHAEL",
+      "LAST_NAME": "BROOK",
+      "ORG_NAME": null,
+      "INGESTED_AT": 1786163502463229,
+      "SOURCE_RUN_ID": "41392c91-89ae-471f-9204-21a285e1cd57",
+      "SRC_SHA256": "e5d362addc825ced40e6ae2da378bbe12a22cb9a25572a1742f663bb5a72c435"
+    },
+    {
+      "NPI": "1164493201",
+      "MULTIPLE_NPI_FLAG": "N",
+      "PECOS_ASCT_CNTL_ID": "6406750835",
+      "ENRLMT_ID": "I20041001000155",
+      "PROVIDER_TYPE_CD": "14-06",
+      "PROVIDER_TYPE_DESC": "PRACTITIONER - CARDIOVASCULAR DISEASE (CARDIOLOGY)",
+      "STATE_CD": "KS",
+      "FIRST_NAME": "HOSSEIN",
+      "MDL_NAME": null,
+      "LAST_NAME": "AMIRANI",
+      "ORG_NAME": null,
+      "INGESTED_AT": 1786163502463229,
+      "SOURCE_RUN_ID": "41392c91-89ae-471f-9204-21a285e1cd57",
+      "SRC_SHA256": "e5d362addc825ced40e6ae2da378bbe12a22cb9a25572a1742f663bb5a72c435"
+    },
+    {
+      "NPI": "1447236401",
+      "MULTIPLE_NPI_FLAG": "N",
+      "PECOS_ASCT_CNTL_ID": "6507812781",
+      "ENRLMT_ID": "I20050330001046",
+      "PROVIDER_TYPE_CD": "14-10",
+      "PROVIDER_TYPE_DESC": "PRACTITIONER - GASTROENTEROLOGY",
+      "STATE_CD": "MI",
+      "FIRST_NAME": "GHIATH",
+      "MDL_NAME": null,
+      "LAST_NAME": "TAYEB",
+      "ORG_NAME": null,
+      "INGESTED_AT": 1786163502463229,
+      "SOURCE_RUN_ID": "41392c91-89ae-471f-9204-21a285e1cd57",
+      "SRC_SHA256": "e5d362addc825ced40e6ae2da378bbe12a22cb9a25572a1742f663bb5a72c435"
+    },
+    {
+      "NPI": "1881013886",
+      "MULTIPLE_NPI_FLAG": "N",
+      "PECOS_ASCT_CNTL_ID": "9032482666",
+      "ENRLMT_ID": "I20170901002811",
+      "PROVIDER_TYPE_CD": "14-08",
+      "PROVIDER_TYPE_DESC": "PRACTITIONER - FAMILY PRACTICE",
+      "STATE_CD": "FL",
+      "FIRST_NAME": "SARAH",
+      "MDL_NAME": "L",
+      "LAST_NAME": "SKELLY",
+      "ORG_NAME": null,
+      "INGESTED_AT": 1786163502463229,
+      "SOURCE_RUN_ID": "41392c91-89ae-471f-9204-21a285e1cd57",
+      "SRC_SHA256": "e5d362addc825ced40e6ae2da378bbe12a22cb9a25572a1742f663bb5a72c435"
+    }
+  ],
+  "sample_error": null
+}

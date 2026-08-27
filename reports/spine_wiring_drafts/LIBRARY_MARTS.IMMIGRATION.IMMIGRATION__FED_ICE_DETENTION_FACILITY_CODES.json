@@ -1,0 +1,137 @@
+{
+  "fqtn": "LIBRARY_MARTS.IMMIGRATION.IMMIGRATION__FED_ICE_DETENTION_FACILITY_CODES",
+  "status": "DRAFTED",
+  "checked": true,
+  "live_columns": [
+    "DETENTION_FACILITY_CODE",
+    "DETENTION_FACILITY_NAME",
+    "ADDRESS",
+    "CITY",
+    "COUNTY",
+    "STATE",
+    "ZIP",
+    "AOR",
+    "LATITUDE",
+    "LONGITUDE",
+    "TYPE_DETAILED",
+    "TYPE_GROUPED",
+    "_LOADED_AT",
+    "_SOURCE_RUN_ID",
+    "_SRC_SHA256"
+  ],
+  "name_addr_guesses": {
+    "name_candidates": [
+      "DETENTION_FACILITY_CODE",
+      "DETENTION_FACILITY_NAME"
+    ],
+    "address_candidates": {
+      "city": [
+        "CITY"
+      ],
+      "state": [
+        "STATE"
+      ],
+      "zip": [
+        "ZIP"
+      ]
+    }
+  },
+  "key_checks": [
+    {
+      "key_label": "ICE_FACILITY",
+      "column": "DETENTION_FACILITY_CODE",
+      "total_rows": 1490,
+      "nonnull_after_norm": 1490,
+      "distinct_after_norm": 1490,
+      "trap_verdict": "REAL"
+    }
+  ],
+  "sample_rows": [
+    {
+      "DETENTION_FACILITY_CODE": "BERKSPA",
+      "DETENTION_FACILITY_NAME": "Berks County Jail, PA",
+      "ADDRESS": "1287 County Welfare Road",
+      "CITY": "Leesport",
+      "COUNTY": "Berks",
+      "STATE": "PA",
+      "ZIP": "19533",
+      "AOR": "Philadelphia",
+      "LATITUDE": 40,
+      "LONGITUDE": -76,
+      "TYPE_DETAILED": "USMS IGA",
+      "TYPE_GROUPED": "Federal",
+      "_LOADED_AT": 1785965529980834,
+      "_SOURCE_RUN_ID": "2e9397be-fb77-4be7-9bfc-a829b4050851",
+      "_SRC_SHA256": "c0fa39d2a30f306e40c86ccab2840e28e36aa83c9691f15cb3fd5ce83c02afdd"
+    },
+    {
+      "DETENTION_FACILITY_CODE": "PVHOSIN",
+      "DETENTION_FACILITY_NAME": "Parkview Hospital Randallia",
+      "ADDRESS": "2200 Randallia Dr",
+      "CITY": "Fort Wayne",
+      "COUNTY": "Allen",
+      "STATE": "IN",
+      "ZIP": "46805",
+      "AOR": "Chicago",
+      "LATITUDE": 41,
+      "LONGITUDE": -85,
+      "TYPE_DETAILED": "Medical",
+      "TYPE_GROUPED": "Medical",
+      "_LOADED_AT": 1785965529980834,
+      "_SOURCE_RUN_ID": "2e9397be-fb77-4be7-9bfc-a829b4050851",
+      "_SRC_SHA256": "c0fa39d2a30f306e40c86ccab2840e28e36aa83c9691f15cb3fd5ce83c02afdd"
+    },
+    {
+      "DETENTION_FACILITY_CODE": "DALHOLD",
+      "DETENTION_FACILITY_NAME": "Dallas F.O. Hold",
+      "ADDRESS": "8101 N Stemmons Fwy",
+      "CITY": "Dallas",
+      "COUNTY": "Dallas",
+      "STATE": "TX",
+      "ZIP": "75247",
+      "AOR": "Dallas",
+      "LATITUDE": 33,
+      "LONGITUDE": -97,
+      "TYPE_DETAILED": "Hold",
+      "TYPE_GROUPED": "Hold/Staging",
+      "_LOADED_AT": 1785965529980834,
+      "_SOURCE_RUN_ID": "2e9397be-fb77-4be7-9bfc-a829b4050851",
+      "_SRC_SHA256": "c0fa39d2a30f306e40c86ccab2840e28e36aa83c9691f15cb3fd5ce83c02afdd"
+    },
+    {
+      "DETENTION_FACILITY_CODE": "UINTAWY",
+      "DETENTION_FACILITY_NAME": "Uinta County Jail",
+      "ADDRESS": "77 County Road 109",
+      "CITY": "Evanston",
+      "COUNTY": "Uinta",
+      "STATE": "WY",
+      "ZIP": "82930",
+      "AOR": "Denver",
+      "LATITUDE": 41,
+      "LONGITUDE": -111,
+      "TYPE_DETAILED": "USMS IGA",
+      "TYPE_GROUPED": "Federal",
+      "_LOADED_AT": 1785965529980834,
+      "_SOURCE_RUN_ID": "2e9397be-fb77-4be7-9bfc-a829b4050851",
+      "_SRC_SHA256": "c0fa39d2a30f306e40c86ccab2840e28e36aa83c9691f15cb3fd5ce83c02afdd"
+    },
+    {
+      "DETENTION_FACILITY_CODE": "PRLDCTX",
+      "DETENTION_FACILITY_NAME": "Prairieland Detention Center",
+      "ADDRESS": "1209 Sunflower Ln",
+      "CITY": "Alvarado",
+      "COUNTY": "Johnson",
+      "STATE": "TX",
+      "ZIP": "76009",
+      "AOR": "Dallas",
+      "LATITUDE": 32,
+      "LONGITUDE": -97,
+      "TYPE_DETAILED": "DIGSA",
+      "TYPE_GROUPED": "Dedicated",
+      "_LOADED_AT": 1785965529980834,
+      "_SOURCE_RUN_ID": "2e9397be-fb77-4be7-9bfc-a829b4050851",
+      "_SRC_SHA256": "c0fa39d2a30f306e40c86ccab2840e28e36aa83c9691f15cb3fd5ce83c02afdd"
+    }
+  ],
+  "sample_error": null
+}
