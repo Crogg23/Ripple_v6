@@ -1,4 +1,22 @@
-# RIPPLE STATUS — 2026-08-27 (early) — Warehouse audit re-verified adversarially; generator's mis-filing bug fixed; cleanup reduced to a short drop list awaiting Chris
+# RIPPLE STATUS — 2026-08-27 (early) — Audit re-verified adversarially, generator fixed, drop list EXECUTED, depth triaged (60x smaller than labeled); gotcha pass clean; auto-push discovered
+
+*Late additions from the depth pass + final gotcha sweep (all live-verified):*
+- **Depth**: the "1,567 shallow sources" = 1,563 portals (scope ruling) + 4 real.
+  FEMA housing registrations are 99.996% complete vs the publisher's live count
+  (26,250,920 of 26,251,944, zero dupes — publisher API checked directly); UK
+  PSC is fully modeled (mart 15,804,611 vs raw 15,804,612) with a 1.8% raw-side
+  resume-seam overlap to dedupe. Both stale registry sample notes corrected at
+  the base table. Full ranked gap ledger: `reports/depth_triage_2026-08-26.md`.
+- **STEEL key families = 13** (recounted from connect/keys.py), not the
+  remembered 14. 200 of 645 non-portal landing tables have no registry row
+  (mostly multi-table sources) — mapping them is a queued 1-hour chore.
+- **"Landed-but-never-modeled" registry list is stale**: every meaningful entry
+  spot-checked already HAS a mart with matching counts. Lifecycle labels need
+  the same never-re-checked fix as the sample notes.
+- **Gotcha pass**: 0 dangling views over the 27 dropped tables in any live DB;
+  dbt parses clean (1 pre-existing cosmetic warning: unused config path for a
+  nonexistent gleif_rr model); targeted live tests 301/301 green post-drops;
+  LDA loader healthy on year 2008.
 
 *One screen. Rewritten (never appended) at the end of every session. Sessions read
 this at boot and brief Chris in chat — Chris never has to open it.*
@@ -90,10 +108,15 @@ says so first).
    it's a new ~7 GB download + ~15M-row load (hours in background, ~$1-2
    compute), built on the bridge-fuel path per the 2022-year precedent. Say go
    and a session builds+runs it.
-3. Still open from before, untouched tonight: portal-scope contradiction on
+3. 🚨 **Commits are being auto-pushed to GitHub without approval.** The final
+   gotcha pass found local main == origin main — this session never pushed, so
+   the editor's git auto-sync is pushing on its own (same mechanism as the
+   08-26 surprise merge). Nothing sensitive went up, but "push is Chris's
+   explicit call" is currently not true in practice. Fix: turn off VS Code's
+   git sync/auto-push, or bless auto-push as policy. Chris's call.
+4. Still open from before, untouched tonight: portal-scope contradiction on
    ~79 wired scraped sources; viz options menu pick; 385-bucket reload; GFI
-   Tableau scrape; politics timeline view question; push to origin (now 2 more
-   local commits ahead).
+   Tableau scrape; politics timeline view question.
 
 ## NEXT
 
