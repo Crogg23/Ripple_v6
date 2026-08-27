@@ -99,6 +99,20 @@ ID_HINTS = [
     # advertising and lobbying disclosure.
     ("google_polads", "politics_lobbying"), ("senate_lda", "politics_lobbying"),
     ("frb_", "finance"), ("cpsc_", "consumer_safety"),
+    # Added 2026-08-26 after the fallback filed 24 marts into UNCATEGORIZED in a
+    # single run (all of them thinner duplicates of existing categorized marts).
+    # Every family below already had a categorized home the hint list didn't know
+    # about, so the fallback fired even though the right folder existed.
+    ("eia", "energy"),                       # EIA-860/861 -> ENERGY (10 existing marts)
+    ("icij", "corporate_registry"),          # Offshore Leaks -> CORPORATE_REGISTRY set
+    ("occ_", "finance"),                     # OCC national banks -> FINANCE
+    ("dtcc", "finance"),                     # DTC participants -> FINANCE
+    ("jpml", "justice"),                     # pending MDLs -> JUSTICE
+    ("usace", "environment"),                # NID dams -> ENVIRONMENT
+    ("oehha", "environment"),                # CA Prop 65 -> ENVIRONMENT
+    ("sanctions", "justice"),                # UN/UK consolidated lists -> JUSTICE
+    ("companies_house", "corporate_registry"),
+    ("consolidated_screening", "justice"),
 ]
 
 
@@ -503,6 +517,11 @@ def main():
     ap.add_argument("--limit", type=int)
     ap.add_argument("--match", default="",
                     help="only sources whose id contains this substring")
+    ap.add_argument("--allow-uncategorized", action="store_true",
+                    help="permit writing models into marts/uncategorized/. Off by "
+                         "default since 2026-08-26: the fallback filed 24 duplicate "
+                         "marts there in one run. An unclassifiable source is a "
+                         "classification task, not a mart to build.")
     args = ap.parse_args()
 
     declared = index_declared_sources()
@@ -533,9 +552,19 @@ def main():
     print(f"{len(already)} source(s) already have a mart somewhere in the project")
     staging_map = staging_models_by_source()
     print(f"{len(staging_map)} source(s) have a staging model available to ref()")
+    uncategorized_parked = []
     for source_id, name, domain, rows in todo:
         table = source_id.upper()
         folder = domain_folder(source_id, domain)
+        # FAIL CLOSED on the junk bucket (2026-08-26). The old behavior silently
+        # wrote unclassifiable sources into marts/uncategorized/, which is how 24
+        # duplicate marts landed there in a single run -- every one of them had a
+        # categorized home the ID_HINTS list didn't know about. Park them loudly
+        # instead: the fix is a new hint or a registry domain, never a junk mart.
+        if folder == "uncategorized" and not args.allow_uncategorized:
+            uncategorized_parked.append(source_id)
+            skipped += 1
+            continue
         model = f"{folder}__{source_id.lower()}"
         target = os.path.join(MARTS, folder, f"{model}.sql")
         if os.path.exists(target):
@@ -551,12 +580,27 @@ def main():
             skipped += 1
             continue
 
+        # UNPARSED-HEADER GUARD (2026-08-26). Several landing tables (EIA-860,
+        # DTCC participants, Prop 65) were loaded without their header row parsed,
+        # leaving columns named UNNAMED_1..N (often with the real title or a run
+        # timestamp as the first column name). A mart over those columns is
+        # unusable; the fix is a reload, not a model.
+        cols_probe = sc.columns_of(table, conn=conn, with_types=True)
+        if cols_probe:
+            unnamed = sum(1 for c in cols_probe if c[0].upper().startswith("UNNAMED_"))
+            if unnamed >= max(2, len(cols_probe) // 2):
+                print(f"  SKIP {source_id}: {unnamed}/{len(cols_probe)} columns are "
+                      f"UNNAMED_* -- landing header never parsed; RELOAD the source "
+                      f"before generating a mart")
+                skipped += 1
+                continue
+
         staged_model = staging_map.get(table)
         if staged_model:
             sql = build_ref_model_sql(staged_model, folder, name, rows)
             staged_count += 1
         else:
-            cols = sc.columns_of(table, conn=conn, with_types=True)
+            cols = cols_probe
             if not cols:
                 skipped += 1
                 continue
@@ -582,6 +626,11 @@ def main():
         print(f"\nmaterialized as VIEWS (> {VIEW_ROW_THRESHOLD:,} rows):")
         for mname, rows in views:
             print(f"   {rows:>12,}  {mname}")
+    if uncategorized_parked:
+        print(f"\nPARKED (no domain, no ID_HINT -- fix the hint list or the registry "
+              f"domain, do NOT build junk marts): {len(uncategorized_parked)}")
+        for sid in uncategorized_parked:
+            print(f"   {sid}")
     if not args.apply:
         print("\nDRY RUN -- rerun with --apply to write files")
     return 0

@@ -228,8 +228,61 @@ def flatten_contribution(c: dict) -> list[dict]:
 # ---------------------------------------------------------------------------
 # Upload to Snowflake
 # ---------------------------------------------------------------------------
-def upload_df(conn, df: pd.DataFrame, table: str, run_id: str):
-    """Upload a DataFrame to Snowflake landing using write_pandas."""
+# FIXED 2026-08-26: the connection used to be opened ONCE at the top of main()
+# and never re-established. A single year's fetch can take hours under the
+# API's 429 throttling, so by the time the upload fired, the Snowflake auth
+# token had expired ("390114: Authentication token has expired") and the whole
+# run died -- twice on 2026-08-26 alone, each time losing a finished multi-hour
+# download. Every upload now goes through get_conn(), which health-checks the
+# session and reconnects if the server has closed it, and retries once on an
+# auth-expiry raised mid-write.
+_conn = None
+
+
+def get_conn():
+    global _conn
+    if _conn is not None:
+        try:
+            _conn.cursor().execute("select 1")
+            return _conn
+        except Exception:
+            try:
+                _conn.close()
+            except Exception:
+                pass
+            _conn = None
+            print("    (snowflake session expired -- reconnecting)", flush=True)
+    _conn = snow.connect()
+    return _conn
+
+
+def _reset_conn():
+    global _conn
+    try:
+        if _conn is not None:
+            _conn.close()
+    except Exception:
+        pass
+    _conn = None
+
+
+def upload_df(df: pd.DataFrame, table: str, run_id: str):
+    """Upload a DataFrame to Snowflake landing using write_pandas.
+
+    Retries once on an expired-session error: the hours-long fetch that precedes
+    an upload routinely outlives the auth token."""
+    try:
+        return _upload_df_inner(get_conn(), df, table, run_id)
+    except Exception as e:
+        if "390114" not in str(e) and "expired" not in str(e).lower():
+            raise
+        print("    (auth expired mid-upload -- reconnecting and retrying once)",
+              flush=True)
+        _reset_conn()
+        return _upload_df_inner(get_conn(), df, table, run_id)
+
+
+def _upload_df_inner(conn, df: pd.DataFrame, table: str, run_id: str):
     from snowflake.connector.pandas_tools import write_pandas
 
     df["_INGESTED_AT"] = pd.Timestamp.utcnow()
@@ -280,7 +333,7 @@ def main():
 
     cp = load_checkpoint()
     run_id = str(uuid.uuid4())
-    conn = snow.connect()
+    get_conn()  # fail fast on credentials before the first multi-hour fetch
 
     years = list(range(args.start_year, args.end_year + 1))
 
@@ -305,7 +358,7 @@ def main():
         rows = [flatten_filing(f) for f in raw]
         df = pd.DataFrame(rows)
         print(f"{len(df)} filings, uploading...", end=" ", flush=True)
-        upload_df(conn, df, TBL_FILINGS, run_id)
+        upload_df(df, TBL_FILINGS, run_id)
         print("done")
         cp[cp_key] = len(df)
         save_checkpoint(cp)
@@ -335,7 +388,7 @@ def main():
             rows.extend(flatten_contribution(c))
         df = pd.DataFrame(rows)
         print(f"{len(df)} contribution items, uploading...", end=" ", flush=True)
-        upload_df(conn, df, TBL_CONTRIBUTIONS, run_id)
+        upload_df(df, TBL_CONTRIBUTIONS, run_id)
         print("done")
         cp[cp_key] = len(df)
         save_checkpoint(cp)
@@ -372,20 +425,20 @@ def main():
     gate_failed = []
     if total_filings > 0:
         passed, report = bulk.run_quality_gate(
-            conn, "fed_senate_lda_filings", TBL_FILINGS, run_id,
+            get_conn(), "fed_senate_lda_filings", TBL_FILINGS, run_id,
             row_count=total_filings, source_url=BASE_URL)
         if not passed:
             print(f"QUALITY GATE FAILED {TBL_FILINGS}: {report}")
             gate_failed.append(TBL_FILINGS)
     if total_contribs > 0:
         passed, report = bulk.run_quality_gate(
-            conn, "fed_senate_lda_contributions", TBL_CONTRIBUTIONS, run_id,
+            get_conn(), "fed_senate_lda_contributions", TBL_CONTRIBUTIONS, run_id,
             row_count=total_contribs, source_url=BASE_URL)
         if not passed:
             print(f"QUALITY GATE FAILED {TBL_CONTRIBUTIONS}: {report}")
             gate_failed.append(TBL_CONTRIBUTIONS)
 
-    conn.close()
+    _reset_conn()
     if gate_failed:
         sys.exit(1)
     print("DONE")

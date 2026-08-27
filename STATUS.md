@@ -1,134 +1,98 @@
-# RIPPLE STATUS — 2026-08-26 (late) — Merged a stranded Mac session; entity graph is now KNOWN STALE; one real scope contradiction found, not resolved
+# RIPPLE STATUS — 2026-08-27 (early) — Warehouse audit re-verified adversarially; generator's mis-filing bug fixed; cleanup reduced to a short drop list awaiting Chris
 
 *One screen. Rewritten (never appended) at the end of every session. Sessions read
 this at boot and brief Chris in chat — Chris never has to open it.*
 
-## 🚨 Read this part first — three things need a decision before more work happens
+## 🚨 Read this first
 
-1. **The live entity graph is stale again, on purpose — do NOT just re-run the
-   rebuild.** Merging in a second machine's stranded work (below) added 88 more
-   sources to the wiring list, ~79 of them low-trust scraped city/county open-data
-   portals. Those portal sources were wired in on 2026-08-24, on a different
-   machine, **before** today's separate ruling that portal data is out of scope
-   for the entity graph. That's a live contradiction between two sessions'
-   decisions, not something to silently pick a side on.
-2. **A viz options menu from yesterday is still waiting on a pick.** Nothing
-   since has picked from it. Real, finished deliverable, zero Chris input yet:
-   `reports/VIZ_OPTIONS_MAP_2026-08-25.md` (60 picture ideas, 30 tools compared)
-   + a browsable, filterable version at `reports/viz/options_board_2026-08-25.html`.
-3. **The 385-hard-cap reload task from earlier tonight is still undecided.**
-   99% of that bucket (381 of 385) turned out to be the same low-trust portal
-   data — Chris was asked how to proceed and said "something else" with no
-   detail before moving to this handoff. Only 4 sources in that bucket are
-   real: USGS 3DEP, ATF firearm-dealer locations, DOL/OFCCP compliance list,
-   Bangladesh's national open-data portal.
+1. **Do NOT trust "dead / junk / 0 rows" labels in any audit CSV.** Two audits
+   in a row (08-24 and 08-26) hardcoded those verdicts by schema NAME and
+   summed uncounted views as zero. That chain nearly produced
+   `DROP DATABASE THE_LIBRARY` (live: 254 views serving 100M+ rows, and the
+   default DB of `viz/sqlrun.py`) and labeled the REVIEW sign-off machinery
+   "junk". `scripts/warehouse_audit_2026-08-26.py` is now fixed (name labels
+   renamed to non-verdicts, views marked NOT_MEASURED, DB list from
+   SHOW DATABASES) — but the CSVs in `reports/the_audit_2026-08-26/` were
+   written by the OLD code. Re-run the script before citing them.
+2. **The mart-generator's OTHER bug is fixed: it was mis-filing marts into
+   UNCATEGORIZED.** On 08-26 it built 24 thinner duplicates of existing
+   categorized marts in one run (missing ID_HINTS + a dedupe guard that can't
+   see raw-layer duplicate landings). Fixed in `scripts/gen_mart_models.py`:
+   10 new hints, fail-closed on uncategorized (`--allow-uncategorized` to
+   override), and an unparsed-header guard (UNNAMED_* columns → "reload the
+   source", not "build a mart"). 26 uncategorized dbt models disabled with
+   dated comments; 1 (UK sanctions, 58k rows — MORE than its justice twin)
+   refiled to `models/marts/justice/`. `scripts/fix_errored_models.py` is
+   retired with a hard sys.exit (rerunning it would regenerate duplicates).
+3. **Drop list for Chris (classifier blocks these for sessions — by design).**
+   All verified safe by live dependency sweep (0 views / deps / procs / tasks
+   across all DBs, only audit-script reads in 120 days of query history), and
+   all fully backed up in `LIBRARY_MARTS_PREDBT_20260729.UNCATEGORIZED`:
+   - `DROP TABLE LIBRARY_MARTS.UNCATEGORIZED.UNCATEGORIZED__FED_SEC_13F_POSITIONS;` (101.3M rows, hash-identical to the FINANCE copy)
+   - `DROP TABLE LIBRARY_MARTS.FINANCE.FINANCE__FED_SEC_13F_POSITIONS;` (its twin — model retired 08-23, `finance__fed_sec_13f_holdings` is the authoritative successor with the value_usd unit fix; dropping only one leaves false closure)
+   - `DROP TABLE LIBRARY_MARTS.UNCATEGORIZED.UNCATEGORIZED__FED_FEC_LEADERSHIP_PAC;` (degraded copy — its FEC_CANDIDATE_ID was date-cast to 100% NULL; FINANCE copy dominates)
+   - The 24 duplicate tables built 08-26 into `LIBRARY_MARTS.UNCATEGORIZED` (their models are now disabled; each table's keeper is named in its model file's comment).
+   NOT on the list: the backups (mostly zero-cost clone shadow AND for many
+   clone groups the LAST copy of pre-dbt data — see below), THE_LIBRARY,
+   REVIEW anything, `LIBRARY_RAW.RETIRED` (deliberate quarantine with a live
+   rollback script; 2 of its tables are the ONLY copies of round-capped
+   990-efiler indexes).
 
-## What actually happened tonight (long session, several real turns)
+## What this session did (Fable, overnight)
 
-**Round A — the planned work:** fixed the tool that builds analytics tables on
-top of raw data pulls (it was silently copying raw data instead of building on
-a cleaner, already-deduped version, whenever one existed — the same bug class
-behind 8 known bad-mart incidents this month). Ran it against the one backlog
-that was genuinely ready (real, complete data, just no finished table yet):
-**43 new finished tables**, tested clean. Also corrected a wrong headline
-number from earlier tonight: the real count of sources stuck at "only a
-preview pulled, not the real data" is **1,567**, not 414 as first claimed.
-
-**Round B — six real bugs found and fixed in the entity-graph wiring file,**
-caught because a crash on a dead/typo'd table reference was hiding them:
-a leftover duplicate reference to already-superseded data, three tables a
-prior review had explicitly ruled out getting silently re-added by a
-generator tool, and two cases where a table reference used lowercase column
-names that are a hard database error under how this system actually reads
-them (meaning those two data sources were contributing **zero** rows to the
-entity graph despite looking "wired," including the single biggest one —
-93 million federal contract records).
-
-**Round C — ran the full entity-graph rebuild** (with sign-off; real cost,
-real time) to make Round B's fixes actually reach the live data instead of
-sitting in source files. Result, checked live: **35,951,018 entities**, 20
-million of them linked across more than one data source, built from 90
-million raw rows. Confirmed live that removed sources dropped to zero rows
-and previously-broken sources now genuinely contribute (528,670 rows from
-the once-broken 93M-row USASpending table alone).
-
-**Round D — while starting the next task, discovered this machine's copy of
-the code had fallen behind a second machine's work that never got pulled in.**
-A routine sync (not run by this session — likely triggered from the editor)
-surfaced a merge with 2 hours of real work from a Mac session on 2026-08-24/25
-that had been sitting on the shared remote, unmerged, the whole time this
-session ran. Reconciling it found:
-- The Mac session had **already independently found and fixed 2 of the same 6
-  bugs from Round B** (the dead/typo'd reference, one of the lowercase-column
-  cases) two days earlier — same bugs, found twice, because the two machines
-  hadn't synced.
-- It also fixed **2 more real bugs** this session hadn't touched: another
-  lowercase-column mismatch, and a real data-quality gap where a missing name
-  on some scraped-portal rows was landing as the literal text "nan" instead of
-  a true blank (a known trap, documented before — see memory — now fixed in a
-  second place it was hiding).
-- It added **92 new candidate sources** to the wiring file (draft packets
-  written for human review by a new tool, `scripts/spine_wiring_prep.py`) —
-  11 real federal ones plus ~79 scraped-portal ones, the portal-scope
-  contradiction flagged above.
-- Merging created **2 accidental duplicate entries** (two sessions had each
-  added a fix for the same table under the same name, in different spots in
-  the file) — found and cleaned up; confirmed via the live code which version
-  was actually taking effect before touching anything, both times the more
-  complete version was already winning.
-- **Also surfaced, not fixed:** 2 *pre-existing* duplicate entries (predate
-  both sessions) for two EPA water-discharge tables, each defined twice under
-  two genuinely different key types (one measured/verified, one not) — a real
-  data-quality question, needs someone to check which key is actually better
-  populated on live data before picking one. Not touched tonight; flagged only.
-
-**After reconciling:** full test suite re-run clean — 304 checks passed, 0
-failures (up from 215 before the merge, since the merge added real coverage).
-The merge is otherwise complete and safe to build on. **The rebuild from
-Round C has NOT been re-run since this merge** — see item 1 at the top.
+- **Adversarially re-verified the whole cleanup plan live** (9-agent pass, all
+  read-only): full verdicts in the session transcript; headline corrections —
+  the "51 GB reclaimable" was ~82% zero-copy clone shadow (bills ≈ $0; only
+  `_RESTORE_20260731`'s 9.18 GB is real storage), the two 07-30 spine backups
+  are content-identical clones of each other AND the only copy of 9 pre-spine
+  tables, and `LIBRARY_MARTS.FINDINGS` ("0 rows" in the audit) is actually the
+  investigative output layer: 37,105 rows across 13 live views, read 08-24.
+- **Fixed the false dead-key verdict** in `LIBRARY_META.REGISTRY.COLUMN_TRUST`:
+  FEC_CANDIDATE_ID on the leadership-PAC family was marked dead_id/1.0 from
+  measuring the cast-destroyed mart copy; raw source is 8,619/8,619 populated,
+  8,076 distinct — a live STEEL spine key. Row corrected (UPDATE, logged in WHY).
+- **Hardened the Senate LDA loader** (`scripts/senate_lda_load.py`): connection
+  now health-checked/reconnected per upload with one retry on auth expiry —
+  the 390114 token-expiry that killed it twice on 08-26 can't kill a finished
+  multi-hour download any more. NOTE: the running loader then recovered on its
+  own (2005 uploaded + checkpointed, now fetching 2008) — it was slow under
+  API throttling, never hung. Leave it running; the fix applies from the next
+  restart.
+- **Dropped 8 broken views** in `LIBRARY_STAGING.CORE` — pre-rename relics
+  referencing databases (`RIPPLE_RAW/STAGING/META`) that no longer exist;
+  each one's DDL was individually verified before dropping. Zero readers.
+- **Added `tests/test_review_gate_live.py`** — canary on the publish gate,
+  which has never recorded a real decision (2 smoke rows only) so its broken
+  and healthy outputs were indistinguishable. 3 tests, green.
+- **Solved the "superseded copies have MORE rows" mystery, both cases:**
+  CFPB backup's +11,501 rows are duplicate COMPLAINT_IDs the dbt rebuild
+  correctly deduped (live mart is exactly distinct — good news). CMS Open
+  Payments: the RETIRED copy is a NEWER snapshot (July 23) than the surviving
+  LANDING table (June 27) — wrong-direction retirement; the right fix is a
+  fresh re-pull of Open Payments, not un-retiring.
 
 ## BROKE
 
-Nothing from this session's own work — every fix was checked against a live
-test before being trusted, twice over (once for tonight's own changes, again
-after reconciling the second machine's work). The Senate LDA lobbying loader
-is still running in the background, still healthy, last confirmed on year
-2008.
+Nothing this session. Full test suite was started at close — result in the
+final chat message (this file written while it ran; if it failed, the chat
+says so first).
 
 ## YOUR MOVE (Chris)
 
-1. **The portal-scope contradiction (item 1 above)** — should those ~79
-   already-wired scraped-portal sources come OUT of the entity-graph wiring
-   file to match today's ruling, or does today's ruling only apply going
-   forward? Real decision, not a technical one.
-2. **Pick from the visualization options menu** (item 2 above) — still
-   nobody's chosen anything from it.
-3. **The 385-bucket reload decision (item 3 above)** — still open.
-4. **Drop the old truncated USASpending contracts table** — still open,
-   fully superseded now twice over.
-   `DROP TABLE LIBRARY_RAW.LANDING.FED_USASPENDING_CONTRACTS_FULL;`
-5. **GFI trade data** — still needs a dedicated Tableau-scraping session.
-6. **The stale politics timeline table** — view instead of table, or
-   something else? Still undecided, not urgent.
-7. **Push local commits to origin** whenever wanted — not automatic.
+1. **Run the drop list above** (or say "no" — each line is independent).
+2. **The backup piles**: keep or clear is now an informed call — real cost is
+   ~9 GB in one pile; several clone groups are last-copies. Needs your ruling,
+   no urgency.
+3. **CMS Open Payments re-pull** (newer data currently sits in quarantine).
+4. Still open from before, untouched tonight: portal-scope contradiction on
+   ~79 wired scraped sources; viz options menu pick; 385-bucket reload; GFI
+   Tableau scrape; politics timeline view question; push to origin.
 
 ## NEXT
 
-The very next session's stated focus (per Chris) is a **full, comprehensive
-numeric audit of the whole warehouse** — turn everything measurable into a
-number. That's a distinct, large piece of work; see the handoff document
-(path given to that session directly) for how it's scoped. Before or
-alongside that: the portal-scope contradiction (YOUR MOVE #1) should get
-resolved before anyone spends real money re-running the entity-graph rebuild
-again, since the answer changes what that rebuild should even include.
+Re-run the (fixed) warehouse audit for clean CSVs, then the deferred backlog
+above. The entity-graph rebuild still waits on the portal-scope ruling.
 
-**Cost note:** tonight's spend beyond the day's earlier ~$10-14: the full
-entity-graph rebuild (real warehouse compute, approved before running, came
-in noticeably faster than the ~4.5-hour estimate) plus several quick test
-runs and small table builds. Not separately meter-verified this instant.
-
-## Not committed
-
-Working tree has an in-progress merge being finalized as this file is
-written — commit follows immediately after. Once committed: local commits
-sit ahead of origin, not pushed (no standing approval to push automatically).
+**Cost note:** tonight ≈ pennies of warehouse compute (metadata + counts,
+one 8-row UPDATE, 8 DROP VIEWs); the big spend was Claude-side agent tokens
+(~0.9M) on the verification pass, on plan.
