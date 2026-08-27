@@ -24,15 +24,18 @@ this at boot and brief Chris in chat — Chris never has to open it.*
    dated comments; 1 (UK sanctions, 58k rows — MORE than its justice twin)
    refiled to `models/marts/justice/`. `scripts/fix_errored_models.py` is
    retired with a hard sys.exit (rerunning it would regenerate duplicates).
-3. **Drop list for Chris (classifier blocks these for sessions — by design).**
-   All verified safe by live dependency sweep (0 views / deps / procs / tasks
-   across all DBs, only audit-script reads in 120 days of query history), and
-   all fully backed up in `LIBRARY_MARTS_PREDBT_20260729.UNCATEGORIZED`:
-   - `DROP TABLE LIBRARY_MARTS.UNCATEGORIZED.UNCATEGORIZED__FED_SEC_13F_POSITIONS;` (101.3M rows, hash-identical to the FINANCE copy)
-   - `DROP TABLE LIBRARY_MARTS.FINANCE.FINANCE__FED_SEC_13F_POSITIONS;` (its twin — model retired 08-23, `finance__fed_sec_13f_holdings` is the authoritative successor with the value_usd unit fix; dropping only one leaves false closure)
-   - `DROP TABLE LIBRARY_MARTS.UNCATEGORIZED.UNCATEGORIZED__FED_FEC_LEADERSHIP_PAC;` (degraded copy — its FEC_CANDIDATE_ID was date-cast to 100% NULL; FINANCE copy dominates)
-   - The 24 duplicate tables built 08-26 into `LIBRARY_MARTS.UNCATEGORIZED` (their models are now disabled; each table's keeper is named in its model file's comment).
-   NOT on the list: the backups (mostly zero-cost clone shadow AND for many
+3. **Drop list EXECUTED (Chris said "do it", 08-26 ~20:52).** All 27 drops ran
+   clean: the whole `LIBRARY_MARTS.UNCATEGORIZED` bucket (26 tables) plus the
+   retired `FINANCE__FED_SEC_13F_POSITIONS` twin. Bucket now holds 0 objects.
+   Rollback: `outputs/_rollback_uncategorized_drops_20260826_205217.sql`
+   (UNDROP good ~24h from then; permanent copies verified in
+   `LIBRARY_MARTS_PREDBT_20260729.UNCATEGORIZED` first — do not drop that DB
+   while these matter). The refiled UK sanctions mart was rebuilt as
+   `JUSTICE.JUSTICE__INTL_UK_SANCTIONS_LIST` (58,336 rows) BEFORE its old copy
+   dropped; the 3 stale seed rows in the time registry were removed + re-seeded.
+   The fixed audit re-ran clean CSVs (edge tiers now visible: STEEL 1,386,
+   CORROBORATED 2,670, BRIDGE 496, GEO 353, STRONG 5).
+   NOT dropped, deliberately: the backups (mostly zero-cost clone shadow AND for many
    clone groups the LAST copy of pre-dbt data — see below), THE_LIBRARY,
    REVIEW anything, `LIBRARY_RAW.RETIRED` (deliberate quarantine with a live
    rollback script; 2 of its tables are the ONLY copies of round-capped
@@ -79,19 +82,24 @@ says so first).
 
 ## YOUR MOVE (Chris)
 
-1. **Run the drop list above** (or say "no" — each line is independent).
-2. **The backup piles**: keep or clear is now an informed call — real cost is
+1. **The backup piles**: keep or clear is now an informed call — real cost is
    ~9 GB in one pile; several clone groups are last-copies. Needs your ruling,
    no urgency.
-3. **CMS Open Payments re-pull** (newer data currently sits in quarantine).
-4. Still open from before, untouched tonight: portal-scope contradiction on
+2. **CMS Open Payments re-pull** — the newer (July 23) snapshot sits in
+   quarantine while the June 27 one serves. No ready-made loader spec exists;
+   it's a new ~7 GB download + ~15M-row load (hours in background, ~$1-2
+   compute), built on the bridge-fuel path per the 2022-year precedent. Say go
+   and a session builds+runs it.
+3. Still open from before, untouched tonight: portal-scope contradiction on
    ~79 wired scraped sources; viz options menu pick; 385-bucket reload; GFI
-   Tableau scrape; politics timeline view question; push to origin.
+   Tableau scrape; politics timeline view question; push to origin (now 2 more
+   local commits ahead).
 
 ## NEXT
 
-Re-run the (fixed) warehouse audit for clean CSVs, then the deferred backlog
-above. The entity-graph rebuild still waits on the portal-scope ruling.
+The deferred backlog above. The entity-graph rebuild still waits on the
+portal-scope ruling. The Senate LDA loader is still working through its 28-year
+backfill in the background (healthy, throttled by the API, checkpointing).
 
 **Cost note:** tonight ≈ pennies of warehouse compute (metadata + counts,
 one 8-row UPDATE, 8 DROP VIEWs); the big spend was Claude-side agent tokens
