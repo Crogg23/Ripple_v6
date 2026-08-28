@@ -20,7 +20,7 @@ from pathlib import Path
 
 from . import db
 from .fingerprint import OUT as FP_PATH
-from .keys import TIER_RANK, normalize_sql, quote_ident
+from .keys import TIER_RANK, edge_norm_sql, quote_ident
 from .overlap import _is_lon, spatial_overlap
 
 GRAPH_OUT = Path(__file__).resolve().parents[1] / "outputs" / "connect_graph.json"
@@ -100,6 +100,12 @@ KEY_DOMAIN = {           # ~size of each key's value space, for the collision ma
 # "shared dimensions" surface can use them), but they never become graph edges.
 # Mirrors connect/spine_entity.py's _CLASSIFICATION_CODES exclusion from the spine.
 VOCAB_KEYS = {"NAICS", "SIC", "NCES"}
+
+# 2026-08-27 connections audit: COUNTRY-only overlap ("both tables mention
+# Uganda") carries zero entity meaning — all 18 GEO/COUNTRY families were noise.
+# Same treatment as VOCAB_KEYS: stays tagged + in the keyset (it still powers
+# the ZIP country-gate and future shared-dimension surfaces), never an edge.
+CONTEXT_NOISE_KEYS = {"COUNTRY"}
 
 # 2026-07-28 repair pass (audit: reports/library_spine_audit_2026-07-28.md):
 # CONNECT_EDGES was scanning ~456 distinct tables (fingerprint.py's landed_tables()
@@ -198,6 +204,8 @@ def confidence(key, tier, a_distinct, b_distinct, matched):
     if matched <= 0:
         return 0.0, False
     if key in VOCAB_KEYS:                    # D17: classification code, not an entity link
+        return 0.0, False
+    if key in CONTEXT_NOISE_KEYS:            # country-level co-occurrence: never an edge
         return 0.0, False
     floor = MIN_MATCH_PROB if tier in ("PROBABILISTIC", "CORROBORATED") else MIN_MATCH
     if matched < floor:
@@ -433,11 +441,26 @@ def _build_keysets(conn, fp, name_max_rows) -> tuple[dict, int]:
             # ZIP country-gate (Chris 2026-08-09): if this table also carries a
             # country column, foreign-country rows contribute no ZIP keys.
             ccol = _best_value_col(info["keys"], "COUNTRY") if key == "ZIP" else None
-            norm = normalize_sql(key, quote_ident(best["column"]),
+            # edge_norm_sql = normalize_sql + edge-quality gates (DOCKET issuer
+            # namespace, FIPS granularity floor) -- see connect/keys.py.
+            norm = edge_norm_sql(key, quote_ident(best["column"]), table=tbl,
                                  country_col=quote_ident(ccol["column"]) if ccol else None)
-            db.rows(conn, f"INSERT INTO {KEYSET_FQN} "
-                          f"SELECT DISTINCT '{tbl}', '{key}', {norm} "
-                          f"FROM {db.fqn(tbl)} WHERE {norm} IS NOT NULL")
+            try:
+                db.rows(conn, f"INSERT INTO {KEYSET_FQN} "
+                              f"SELECT DISTINCT '{tbl}', '{key}', {norm} "
+                              f"FROM {db.fqn(tbl)} WHERE {norm} IS NOT NULL")
+            except Exception as ex:
+                # a fingerprinted table can vanish between fingerprint and run
+                # (drops/renames); a dead table must not kill the whole regen
+                if "does not exist" in str(ex) or "invalid identifier" in str(ex):
+                    # vanished table OR vanished/renamed column since fingerprint
+                    members.pop((tbl, key), None)
+                    skipped += 1
+                    print(f"  [keysets] skipping stale fingerprint {tbl} ({key})")
+                    continue
+                raise RuntimeError(
+                    f"keyset INSERT failed for {tbl} ({key}), col "
+                    f"{best['column']!r}, norm SQL: {norm}") from ex
 
         # --- corroborated composite key: NAME pinned to a place (ZIP, else FIPS).
         # A name alone is noise ("JOHN SMITH"); a name + the same ZIP is a real
@@ -448,14 +471,25 @@ def _build_keysets(conn, fp, name_max_rows) -> tuple[dict, int]:
             geo_col = _best_value_col(info["keys"], geo)
             if name_col and geo_col:
                 ck = f"NAME@{geo}"
-                nexpr = normalize_sql("NAME", quote_ident(name_col["column"]))
+                nexpr = edge_norm_sql("NAME", quote_ident(name_col["column"]))
                 ccol = _best_value_col(info["keys"], "COUNTRY") if geo == "ZIP" else None
-                gexpr = normalize_sql(geo, quote_ident(geo_col["column"]),
+                # FIPS granularity floor applies inside the composite too: a name
+                # pinned to a bare state code is not corroboration.
+                gexpr = edge_norm_sql(geo, quote_ident(geo_col["column"]), table=tbl,
                                       country_col=quote_ident(ccol["column"]) if ccol else None)
                 members[(tbl, ck)] = (f"{name_col['column']}+{geo_col['column']}", "CORROBORATED")
-                db.rows(conn, f"INSERT INTO {KEYSET_FQN} "
-                              f"SELECT DISTINCT '{tbl}', '{ck}', {nexpr} || '|' || {gexpr} "
-                              f"FROM {db.fqn(tbl)} WHERE {nexpr} IS NOT NULL AND {gexpr} IS NOT NULL")
+                try:
+                    db.rows(conn, f"INSERT INTO {KEYSET_FQN} "
+                                  f"SELECT DISTINCT '{tbl}', '{ck}', {nexpr} || '|' || {gexpr} "
+                                  f"FROM {db.fqn(tbl)} WHERE {nexpr} IS NOT NULL AND {gexpr} IS NOT NULL")
+                except Exception as ex:
+                    # same stale-fingerprint guard as above (table or column)
+                    if "does not exist" in str(ex) or "invalid identifier" in str(ex):
+                        members.pop((tbl, ck), None)
+                        skipped += 1
+                        print(f"  [keysets] skipping stale fingerprint {tbl} ({ck})")
+                        break
+                    raise
                 break   # one composite per table (prefer ZIP) to bound the keyset
     return members, skipped
 

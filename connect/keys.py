@@ -483,6 +483,65 @@ def normalize_sql(key: str, col: str, country_col: str | None = None) -> str:
     raise KeyError(f"Unknown norm mode '{mode}' for key '{key}'.")
 
 
+# --------------------------------------------------------------------------- #
+# Edge-quality gates (2026-08-27 connections audit) — applied ONLY on the
+# discover/edge lane via edge_norm_sql(), NEVER inside normalize_sql itself.
+# The incremental config fingerprint hashes normalize_sql's output per key
+# (incremental._config_fingerprint), so changing normalize_sql would freeze
+# connect-one/connect-changed until the parked full rebuild. These wrappers
+# leave that surface byte-identical; only the discover keyset values change,
+# and a stale-vs-new mismatch there can only LOSE an edge, never fake one.
+# --------------------------------------------------------------------------- #
+
+# DOCKET is not a globally unique key across issuers: FDIC *certificate numbers*
+# and Supreme Court *docket numbers* are both small integers, and 3 of the 5
+# STRONG-tier families (~1,300 row edges) were pure FDIC-cert x SCOTUS-docket
+# numeric collisions (reports/connections_audit_2026-08-27/graph_structure.md).
+# Fix: namespace every DOCKET keyset value by ISSUER so cross-issuer values can
+# never equi-join. Court sources share one namespace (a CourtListener docket and
+# an FJC IDB docket ARE the same case-numbering world — the 3 STEEL DOCKET
+# families are exactly those links and must survive); FDIC is its own; any other
+# publisher falls back to its table-name prefix, which isolates it (an unknown
+# docket column matching nothing is the safe direction).
+_DOCKET_COURT_PREFIXES = ("FED_COURTLISTENER", "FED_FJC_IDB", "FED_OYEZ", "FED_SCDB")
+
+
+def docket_issuer(table: str) -> str:
+    """Issuer namespace for a table's DOCKET column ('COURT', 'FDIC', or a
+    publisher prefix like 'FED_MSHA'). Deliberately coarse: same-issuer tables
+    keep matching, cross-issuer numeric coincidences cannot."""
+    t = (table or "").upper()
+    if t.startswith(_DOCKET_COURT_PREFIXES):
+        return "COURT"
+    if t.startswith("FED_FDIC"):
+        return "FDIC"
+    parts = [p for p in t.split("_") if p]
+    return "_".join(parts[:2]) if parts else "UNKNOWN"
+
+
+# GEO granularity floors: a FIPS value shorter than 5 chars is a bare state code
+# ('18') or a state-less county code ('393') — identity-meaningless across
+# sources (197 of 275 GEO/FIPS families matched only on those; the 78 real
+# county-level families all carry >= 5-char values like '39083' / 'TX273').
+GEO_MIN_LEN: dict[str, int] = {"FIPS": 5}
+
+
+def edge_norm_sql(key: str, col: str, table: str | None = None,
+                  country_col: str | None = None) -> str:
+    """normalize_sql for the DISCOVER/edge lane: same canonicalization plus the
+    edge-quality gates above (DOCKET issuer namespace, GEO granularity floor).
+    Spine paths keep calling normalize_sql directly — entity keys need none of
+    this and the config fingerprint stays stable."""
+    expr = normalize_sql(key, col, country_col=country_col)
+    if key == "DOCKET" and table:
+        # NULL || anything is NULL in Snowflake, so NULLed dirty values stay NULL.
+        expr = f"('{docket_issuer(table)}:' || {expr})"
+    min_len = GEO_MIN_LEN.get(key)
+    if min_len:
+        expr = f"CASE WHEN LENGTH({expr}) >= {min_len} THEN {expr} ELSE NULL END"
+    return expr
+
+
 def quote_ident(name: str) -> str:
     """Quote a Snowflake identifier (landing columns can be odd)."""
     return '"' + str(name).replace('"', '""') + '"'

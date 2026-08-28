@@ -61,7 +61,7 @@ from .discover import (
 )
 from .entity_index_specs import DISPLAY_SPECS, table_keys
 from .entity_index_specs import entity_type_sql as _entity_type_sql_shared
-from .keys import NORM_RULES, normalize_sql, quote_ident
+from .keys import NORM_RULES, edge_norm_sql, normalize_sql, quote_ident
 from .spine import _addr_expr, _name_expr  # one definition of name/addr, shared
 
 # --- persisted state (all NEW, all additive) -------------------------------- #
@@ -657,16 +657,20 @@ def _discover_keyset_inserts(conn, table: str) -> list[tuple[str, str]]:
             continue   # huge fuzzy-name table: skip (mirrors discover's name cap)
         # ZIP country-gate (Chris 2026-08-09) — mirrors discover._build_keysets.
         ccol = _best_value_col(info_keys, "COUNTRY") if key == "ZIP" else None
-        inserts.append((key, normalize_sql(
-            key, quote_ident(best["column"]),
+        # edge_norm_sql (NOT normalize_sql): the discover keyset carries the
+        # edge-quality gates (DOCKET issuer namespace, FIPS granularity floor) --
+        # mirrors discover._build_keysets. The spine paths above stay on
+        # normalize_sql, so the config fingerprint is untouched.
+        inserts.append((key, edge_norm_sql(
+            key, quote_ident(best["column"]), table=table,
             country_col=quote_ident(ccol["column"]) if ccol else None)))
     name_col = _best_value_col(info_keys, "NAME")
     for geo in ("ZIP", "FIPS"):
         geo_col = _best_value_col(info_keys, geo)
         if name_col and geo_col:
-            nexpr = normalize_sql("NAME", quote_ident(name_col["column"]))
+            nexpr = edge_norm_sql("NAME", quote_ident(name_col["column"]))
             ccol = _best_value_col(info_keys, "COUNTRY") if geo == "ZIP" else None
-            gexpr = normalize_sql(geo, quote_ident(geo_col["column"]),
+            gexpr = edge_norm_sql(geo, quote_ident(geo_col["column"]), table=table,
                                   country_col=quote_ident(ccol["column"]) if ccol else None)
             inserts.append((f"NAME@{geo}", f"{nexpr} || '|' || {gexpr}"))
             break

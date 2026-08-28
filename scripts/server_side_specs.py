@@ -483,6 +483,33 @@ SPECS = [
         "notes": "Re-ingest: prior API loader failed at first page and landed 1 junk row. Adverse events (MAUDE/FAERS/CAERS) stay deferred (RED).",
     },
     {
+        "source_id": "FED_FDA_MAUDE_FULL",
+        "name": "openFDA Device Adverse Events (MAUDE, full bulk)",
+        # Loaded via scripts/fda_bulk_split_load.py (parts exceed the 128MB
+        # whole-doc VARIANT parse limit). Manifest: openFDA download.json,
+        # device.event partitions (~365 quarterly part files, ~25.7M records).
+        "url": "https://download.open.fda.gov/device/event/",
+        "kind": "json",
+        "manifest": {"type": "json", "url": "https://api.fda.gov/download.json",
+                     "path": "results.device.event.partitions", "item": "file"},
+        "publisher": "U.S. Food and Drug Administration (openFDA)",
+        "description": (
+            "FDA MAUDE medical-device adverse-event reports (malfunctions, injuries, "
+            "deaths) -- full openFDA bulk export, all quarters. openFDA JSON parts "
+            "(each a doc with a results array; rows are chunks, use ARRAY_SIZE)."),
+        "jurisdiction": "US", "category": "Health", "subcategory": "device_safety",
+        "unit_of_observation": "device adverse-event reports (in RAW:results)",
+        "geographic_scope": "United States",
+        "access_method": "bulk", "format": "json", "update_cadence": "quarterly",
+        "license_terms": "Public domain (US Gov)",
+        "join_keys": "mdr_report_key; device.device_report_product_code",
+        "accountability_relevance": (
+            "The device-harm event layer itself: who was hurt by which device, "
+            "pairs with GUDID/classification/enforcement for the full device map."),
+        "priority_tier": "1",
+        "notes": "Full replacement for the 1,386-row FED_FDA_MAUDE stub (left untouched). Authorized 2026-08-27.",
+    },
+    {
         "source_id": "FED_FDA_DEVICE_ENFORCEMENT",
         "name": "openFDA Device Enforcement (recalls)",
         "url": "https://download.open.fda.gov/device/enforcement/device-enforcement-0001-of-0001.json.zip",

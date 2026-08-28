@@ -348,6 +348,12 @@ DISPLAY_SPECS: dict[str, dict] = {
         "key": "UEI", "key_col": "recipient_uei",
         "org": "recipient_name",
         "authority": 6,
+        # DUNS -- 478,278 distinct / 7,247,861 non-blank rows (63.6% of column is
+        # blank-string sentinel; placeholders die in pad-norm). Verified 2026-08-27
+        # (reports/connections_audit_2026-08-27/duns_backfill.md); closes the 94%
+        # DUNS orphan gap. recipient_parent_duns deliberately excluded (parent =
+        # different entity).
+        "extra_keys": [{"key": "DUNS", "key_col": "recipient_duns"}],
     },
     "FED_OSHA_ITA_CASE_DETAIL_2024": {
         # EIN -- 15,659 distinct / 455,271 rows (91.05% survive norm), +12,243 new to spine. len 9-9. e.g. 742489930
