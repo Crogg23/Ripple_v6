@@ -356,6 +356,142 @@ _SPINE_BATCH_NORM_RULES: dict[str, tuple[str, int]] = {
 if ENABLE_SPINE_BATCH_2026_08:
     NORM_RULES.update(_SPINE_BATCH_NORM_RULES)
 
+# --- 2026-08-29 bucket-B batch (STAGED behind one flag) ----------------------- #
+# Chris's "go" on wiring the held-but-unregistered ID systems, in this order:
+# CAGE + award keys -> PECOS enrollment -> FDIC cert + Fed RSSD -> EIA plant /
+# utility. Every width/mode below was read off LIVE values 2026-08-29
+# (reports/recon/bucket_b_verify_2026-08-29.json + _verify2_):
+#   CAGE           -- DLA Commercial and Government Entity code, uniformly 5
+#                     alnum ('1XUY5', '07TA6'). Contracts R2: 55.4M/93.2M rows
+#                     filled, 246,832 distinct. SAM exclusions: 435 filled / 392
+#                     distinct, 182 (46%) also in contracts. 'fixed' -- never
+#                     written short.
+#   AWARD_KEY      -- USAspending award unique key ('CONT_AWD_<piid>_<agency>_
+#                     <parent>_<agency>' / 'ASST_NON_...'). Composite, punctuated
+#                     -> alnum_upper. NOT an entity (an award is a document, the
+#                     CUSIP/ACCESSION_NUMBER ruling) -- graph key only, joins
+#                     prime <-> subaward: subawards prime key 279,553 distinct,
+#                     39.4% found in contracts R2 (through FY2021) and 94,063 in
+#                     assistance (14.25M distinct).
+#   PECOS_PAC_ID   -- CMS PECOS associate-control id (the provider/org's PECOS
+#                     identity), 10 digits, leading zeros significant
+#                     ('0941278253') -> pad 10. 2,456,135 distinct on the FFS
+#                     enrollment file; facility-affiliation IND_PAC_ID 99.7% in
+#                     it (937,541 / 940,364); the six facility enrollment
+#                     files' ASSOCIATE_ID 98.6-99.7%.
+#   PECOS_ENRLMT_ID-- PECOS enrollment record id ('I20250910003949',
+#                     'O2003...'), 15 chars, letter prefix = individual/org.
+#                     One row per enrollment EVENT, not an actor -> graph key
+#                     only (hospital file 99.2% in the FFS file).
+#   FDIC_CERT      -- FDIC certificate number, integer, 1-5 digits live, zero-
+#                     padded to 5 in the FHLB membership file ('03182') -> pad 6
+#                     (headroom; pad never strips). Bank master 27,836 = all
+#                     distinct; branch/deposits file 15,497/15,505 (99.9%) in
+#                     it; FHLB members 2,766/3,984 (69.4% -- the rest are
+#                     credit unions and insurers with no cert).
+#                     EXCLUDED: FED_FDIC_FAILED_BANKS / FED_OCC_* carry CERT
+#                     as float text ('19117.0', 'nan') -- _alnum would turn
+#                     '19117.0' into '191170' = a silent wrong key. Repair the
+#                     float-text first (scripts/repair_nan_text.py class), then
+#                     add them.
+#   RSSD           -- Federal Reserve RSSD id, one namespace for banks, thrifts,
+#                     credit unions AND holding companies. Integer, 1-7 digits
+#                     (3 eight-digit outliers in the branch file) -> pad 8.
+#                     '0' = FDIC's "no RSSD" placeholder (330 rows) -> the
+#                     all-zero kill in pad-mode NULLs it. Branch file RSSDID
+#                     98.5% in bank master FED_RSSD; holding-company column
+#                     (RSSDHCR) is the PARENT -> graph key only, never
+#                     extra_keys. CERT vs RSSD collide on 2.4% of values --
+#                     separate families on purpose.
+#   EIA_PLANT_ID   -- EIA plant code == EPA/eGRID "DOE/EIA ORIS" code, integer
+#                     1-6 digits -> pad 6. Plant master 16,132 all distinct;
+#                     generators 100.0%, owners 100.0%, eGRID 2022 98.6%
+#                     (11,802 / 11,974) in it.
+#   EIA_UTILITY_ID -- EIA utility id, integer 1-5 digits -> pad 6. Utility
+#                     master 6,643 all distinct; plant file 100.0%, eGRID 94.6%,
+#                     EIA-861 UTILITY_NUMBER 22% (different reporting universe;
+#                     '88888' = withheld, 15 rows -> repeated-digit kill).
+#                     Generator file has free-text footer rows in UTILITY_ID
+#                     (len 258) -> pad NULLs anything > 6.
+#   PARKED: NDC (drug code). NADAC carries 11-digit package NDCs, the FDA NDC
+#   directory carries hyphenated 2-segment PRODUCT NDCs ('0006-0081') -- 0
+#   overlap at face value because it's a grain mismatch (5-4-2 vs 4-4/5-3),
+#   not a data fault. Needs a segment-aware norm mode, which is a
+#   normalize_sql change (trips the config guard on its own). Not this batch.
+#
+# All eight are single-publisher namespaces with generic carrying names
+# (CERT, RSSD, PLANT_CODE, ASSOCIATE_ID...) -> table-scoped, never token rules.
+#
+# THE FLAG (2026-08-29, later the same day): the freeze contract is GONE. A
+# config change is now applied as bounded per-table reslices by
+# `python -m connect apply-config` (connect/incremental.py), which also pins
+# the flags-off baseline on first run. No full rebuild is required to take a
+# new key batch live. The flag stays only so the batch can be switched off in
+# one place if a reslice misbehaves.
+ENABLE_SPINE_BATCH_2026_08_29 = True
+
+_BATCH_2026_08_29_NORM_RULES: dict[str, tuple[str, int]] = {
+    "CAGE": ("fixed", 5),
+    "AWARD_KEY": ("alnum_upper", 0),
+    "PECOS_PAC_ID": ("pad", 10),
+    "PECOS_ENRLMT_ID": ("alnum_upper", 0),
+    "FDIC_CERT": ("pad", 6),
+    "RSSD": ("pad", 8),
+    "EIA_PLANT_ID": ("pad", 6),
+    "EIA_UTILITY_ID": ("pad", 6),
+}
+
+_EIA860_PLANT_TABLES = (
+    "FED_EIA860_2_PLANT", "FED_EIA860_3_1_GENERATOR", "FED_EIA860_3_2_WIND",
+    "FED_EIA860_3_3_SOLAR", "FED_EIA860_3_4_ENERGY_STORAGE",
+    "FED_EIA860_3_5_MULTIFUEL", "FED_EIA860_4_OWNER",
+    "FED_EIA860_6_1_ENVIROASSOC", "FED_EIA860_6_2_ENVIROEQUIP",
+)
+_CMS_FACILITY_ENROLLMENT_TABLES = (
+    "FED_CMS_HOSPITAL_ENROLLMENTS", "FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS",
+    "FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS", "FED_CMS_HOSPICE_ENROLLMENTS",
+    "FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS",
+    "FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS",
+)
+_BATCH_2026_08_29_TABLE_COLUMN_KEYS: dict[tuple[str, str], tuple[str, str]] = {
+    # CAGE
+    ("FED_USASPENDING_CONTRACTS_FULL_R2", "CAGE_CODE"): ("CAGE", "STEEL"),
+    ("FED_USASPENDING_CONTRACTS", "CAGE_CODE"): ("CAGE", "STEEL"),
+    ("FED_SAM_EXCLUSIONS_FULL_R2", "CAGE"): ("CAGE", "STEEL"),
+    # AWARD_KEY (graph only)
+    ("FED_USASPENDING_CONTRACTS_FULL_R2", "CONTRACT_AWARD_UNIQUE_KEY"): ("AWARD_KEY", "STEEL"),
+    ("FED_USASPENDING_CONTRACTS", "CONTRACT_AWARD_UNIQUE_KEY"): ("AWARD_KEY", "STEEL"),
+    ("FED_USASPENDING_SUBAWARDS_FULL", "PRIME_AWARD_UNIQUE_KEY"): ("AWARD_KEY", "STEEL"),
+    ("FED_USASPENDING_ASSISTANCE_FULL", "assistance_award_unique_key"): ("AWARD_KEY", "STEEL"),
+    # PECOS
+    ("FED_CMS_PECOS_PROVIDER_ENROLLMENT", "PECOS_ASCT_CNTL_ID"): ("PECOS_PAC_ID", "STEEL"),
+    ("FED_CMS_PECOS_PROVIDER_ENROLLMENT", "ENRLMT_ID"): ("PECOS_ENRLMT_ID", "STEEL"),
+    ("FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT", "PECOS_ASCT_CNTL_ID"): ("PECOS_PAC_ID", "STEEL"),
+    ("FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT", "ENRLMT_ID"): ("PECOS_ENRLMT_ID", "STEEL"),
+    ("FED_CMS_FACILITY_AFFILIATION", "IND_PAC_ID"): ("PECOS_PAC_ID", "STEEL"),
+    **{(t, "ASSOCIATE_ID"): ("PECOS_PAC_ID", "STEEL") for t in _CMS_FACILITY_ENROLLMENT_TABLES},
+    **{(t, "ENROLLMENT_ID"): ("PECOS_ENRLMT_ID", "STEEL") for t in _CMS_FACILITY_ENROLLMENT_TABLES},
+    # Banks
+    ("FED_FDIC_BANK_DATA", "CERT"): ("FDIC_CERT", "STEEL"),
+    ("FED_FDIC_SOD_BRANCH_DEPOSITS", "CERT"): ("FDIC_CERT", "STEEL"),
+    ("FED_FHFA_FHLB_MEMBERSHIP", "CERT"): ("FDIC_CERT", "STEEL"),
+    ("FED_FDIC_BANK_DATA", "FED_RSSD"): ("RSSD", "STEEL"),
+    ("FED_FDIC_BANK_DATA", "RSSDHCR"): ("RSSD", "STEEL"),        # holding company (parent) -- graph only
+    ("FED_FDIC_SOD_BRANCH_DEPOSITS", "RSSDID"): ("RSSD", "STEEL"),
+    ("FED_FDIC_SOD_BRANCH_DEPOSITS", "RSSDHCR"): ("RSSD", "STEEL"),  # parent -- graph only
+    ("FED_NCUA_CALL_REPORTS_FOICU", "RSSD"): ("RSSD", "STEEL"),
+    # EIA
+    **{(t, "PLANT_CODE"): ("EIA_PLANT_ID", "STEEL") for t in _EIA860_PLANT_TABLES},
+    **{(t, "UTILITY_ID"): ("EIA_UTILITY_ID", "STEEL") for t in _EIA860_PLANT_TABLES},
+    ("FED_EIA860_1_UTILITY", "UTILITY_ID"): ("EIA_UTILITY_ID", "STEEL"),
+    ("FED_EPA_EGRID_PLANT_2022", "DOE_EIA_ORIS_PLANT_OR_FACILITY_CODE"): ("EIA_PLANT_ID", "STEEL"),
+    ("FED_EPA_EGRID_PLANT_2022", "UTILITY_ID"): ("EIA_UTILITY_ID", "STEEL"),
+    ("FED_EIA861_UTILITY_DATA", "UTILITY_NUMBER"): ("EIA_UTILITY_ID", "STEEL"),
+}
+if ENABLE_SPINE_BATCH_2026_08_29:
+    NORM_RULES.update(_BATCH_2026_08_29_NORM_RULES)
+    TABLE_COLUMN_KEYS.update(_BATCH_2026_08_29_TABLE_COLUMN_KEYS)
+
 # tokens dropped from a name before matching (legal suffixes + person credentials +
 # a few stopwords). Sorted set so the generated SQL is stable across runs.
 _NAME_NOISE = sorted({

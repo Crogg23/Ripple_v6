@@ -89,6 +89,18 @@ KEY_DOMAIN = {           # ~size of each key's value space, for the collision ma
     # EXACT_TOKEN_KEYS, which that check doesn't iterate). 8-char alphanumeric,
     # zero-padded at source -> 36^8.
     "COMPANY_NO": 36**8,
+    # 2026-08-29 bucket-B batch (staged behind keys.ENABLE_SPINE_BATCH_2026_08_29).
+    # Sizes read off live values: CAGE = 5 alnum; AWARD_KEY = long punctuated
+    # composite (agency + PIID + parent), effectively unique; PECOS PAC id = 10
+    # digits; enrollment id = letter + 14 digits; FDIC cert / EIA ids are small
+    # dense integers (10^5-10^6 headroom); RSSD up to 7-8 digits.
+    "CAGE": 36**5, "AWARD_KEY": 36**20, "PECOS_PAC_ID": 10**10,
+    "PECOS_ENRLMT_ID": 2 * 10**14, "FDIC_CERT": 10**6, "RSSD": 10**8,
+    "EIA_PLANT_ID": 10**6, "EIA_UTILITY_ID": 10**6,
+    # CUSIP + MSHA (wired 2026-08-28 with no value space here -- the same
+    # COMPANY_NO footgun). CUSIP = 9 alnum; MSHA controller/operator ids are a
+    # letter + 5 digits or a bare 7-digit number.
+    "CUSIP": 36**9, "MSHA_CONTROLLER_ID": 26 * 10**5, "MSHA_OPERATOR_ID": 26 * 10**5,
 }
 
 # D17: classification codes are NOT entity identifiers. NAICS/SIC/NCES describe

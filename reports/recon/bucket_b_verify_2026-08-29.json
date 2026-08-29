@@ -1,0 +1,935 @@
+{
+ "profiles": [
+  {
+   "table": "FED_USASPENDING_CONTRACTS_FULL_R2",
+   "col": "CONTRACT_AWARD_UNIQUE_KEY",
+   "rows": 93153424,
+   "filled": 93153424,
+   "distinct": 74488536,
+   "minlen": 21,
+   "maxlen": 99,
+   "top": "[\n  [\n    \"CONTAWD36C25026P08873600NONENONE\",\n    88952\n  ],\n  [\n    \"CONTAWD47QSWA26F1L47473247QSWA23A001F4732\",\n    88952\n  ],\n  [\n    \"CONTAWD47QSSC26FAZ38473247QSWA22D00094732\",\n    88952\n  ]\n]",
+   "sample": [
+    "CONT_AWD_V650P71573_3600_GS14F0721G_4730",
+    "CONT_AWD_V405E70630_3600_-NONE-_-NONE-",
+    "CONT_AWD_V573JX7117_3600_-NONE-_-NONE-",
+    "CONT_AWD_TFSW007401_2036_BPA4520_2036",
+    "CONT_AWD_GSRPNNW61677_4730_GS30FR0005_4730"
+   ]
+  },
+  {
+   "table": "FED_USASPENDING_CONTRACTS_FULL_R2",
+   "col": "CAGE_CODE",
+   "rows": 93153424,
+   "filled": 55416452,
+   "distinct": 246832,
+   "minlen": 5,
+   "maxlen": 5,
+   "top": "[\n  [\n    \"1XUY5\",\n    3869991\n  ],\n  [\n    \"07TA6\",\n    2712701\n  ],\n  [\n    \"79343\",\n    2660658\n  ]\n]",
+   "sample": [
+    "1GCH6",
+    "0PR81",
+    "1MB86",
+    "8B358",
+    "0Z428"
+   ]
+  },
+  {
+   "table": "FED_SAM_EXCLUSIONS_FULL_R2",
+   "col": "CAGE",
+   "rows": 168328,
+   "filled": 435,
+   "distinct": 392,
+   "minlen": 5,
+   "maxlen": 5,
+   "top": "[\n  [\n    \"34EU3\",\n    5\n  ],\n  [\n    \"0XLE0\",\n    5\n  ],\n  [\n    \"1TRJ2\",\n    5\n  ]\n]",
+   "sample": [
+    "7HY88",
+    "L0KT7",
+    "5ARZ8",
+    "7RAC2",
+    "8RLG4"
+   ]
+  },
+  {
+   "table": "FED_USASPENDING_SUBAWARDS_FULL",
+   "col": "PRIME_AWARD_UNIQUE_KEY",
+   "rows": 4742460,
+   "filled": 4742460,
+   "distinct": 279553,
+   "minlen": 15,
+   "maxlen": 54,
+   "top": "[\n  [\n    \"CONTAWDN0002416C21169700NONENONE\",\n    124201\n  ],\n  [\n    \"CONTAWDN0002418C21069700NONENONE\",\n    39545\n  ],\n  [\n    \"ASSTNON211PA305N1099012\",\n    36379\n  ]\n]",
+   "sample": [
+    "CONT_IDV_GS00Q14OADS610_4732",
+    "CONT_IDV_75N93019D00031_7529",
+    "ASST_NON_EMW-2024-UA-05215_070",
+    "CONT_AWD_47PE5526F0319_4740_47PE0725A0001_4740",
+    "CONT_AWD_47QFLA23F0143_4732_47QFLA20D0014_4732"
+   ]
+  },
+  {
+   "table": "FED_FDIC_BANK_DATA",
+   "col": "CERT",
+   "rows": 27836,
+   "filled": 27836,
+   "distinct": 27836,
+   "minlen": 1,
+   "maxlen": 5,
+   "top": "[\n  [\n    \"15658\",\n    76\n  ],\n  [\n    \"15657\",\n    76\n  ],\n  [\n    \"15656\",\n    76\n  ]\n]",
+   "sample": [
+    "28568",
+    "28588",
+    "15972",
+    "16000",
+    "76"
+   ]
+  },
+  {
+   "table": "FED_FDIC_BANK_DATA",
+   "col": "FED_RSSD",
+   "rows": 27836,
+   "filled": 27836,
+   "distinct": 26578,
+   "minlen": 1,
+   "maxlen": 7,
+   "top": "[\n  [\n    \"0\",\n    330\n  ],\n  [\n    \"428855\",\n    76\n  ],\n  [\n    \"928449\",\n    76\n  ]\n]",
+   "sample": [
+    "422406",
+    "569374",
+    "519472",
+    "1005637",
+    "782548"
+   ]
+  },
+  {
+   "table": "FED_FDIC_BANK_DATA",
+   "col": "RSSDHCR",
+   "rows": 27836,
+   "filled": 17072,
+   "distinct": 8736,
+   "minlen": 5,
+   "maxlen": 7,
+   "top": "[\n  [\n    \"1120754\",\n    325\n  ],\n  [\n    \"1073757\",\n    120\n  ],\n  [\n    \"1101753\",\n    115\n  ]\n]",
+   "sample": [
+    "1060476",
+    "2266387",
+    "3836965",
+    "1115424",
+    "1111994"
+   ]
+  },
+  {
+   "table": "FED_FDIC_SOD_BRANCH_DEPOSITS",
+   "col": "CERT",
+   "rows": 2822977,
+   "filled": 2822977,
+   "distinct": 15505,
+   "minlen": 1,
+   "maxlen": 5,
+   "top": "[\n  [\n    \"3510\",\n    134516\n  ],\n  [\n    \"3511\",\n    121226\n  ],\n  [\n    \"628\",\n    107919\n  ]\n]",
+   "sample": [
+    "20872",
+    "2270",
+    "22192",
+    "20624",
+    "20663"
+   ]
+  },
+  {
+   "table": "FED_FDIC_SOD_BRANCH_DEPOSITS",
+   "col": "RSSDHCR",
+   "rows": 2822977,
+   "filled": 2822977,
+   "distinct": 9729,
+   "minlen": 1,
+   "maxlen": 7,
+   "top": "[\n  [\n    \"0\",\n    356651\n  ],\n  [\n    \"1073757\",\n    144133\n  ],\n  [\n    \"1120754\",\n    131630\n  ]\n]",
+   "sample": [
+    "1129382",
+    "1399000",
+    "1053526",
+    "1079441",
+    "1124163"
+   ]
+  },
+  {
+   "table": "FED_FDIC_SOD_BRANCH_DEPOSITS",
+   "col": "RSSDID",
+   "rows": 2822977,
+   "filled": 2822977,
+   "distinct": 15544,
+   "minlen": 1,
+   "maxlen": 8,
+   "top": "[\n  [\n    \"480228\",\n    135033\n  ],\n  [\n    \"451965\",\n    121645\n  ],\n  [\n    \"852218\",\n    108143\n  ]\n]",
+   "sample": [
+    "20512",
+    "422406",
+    "95314",
+    "2007991",
+    "102016"
+   ]
+  },
+  {
+   "table": "FED_FDIC_FAILED_BANKS",
+   "col": "CERT",
+   "rows": 4115,
+   "filled": 4115,
+   "distinct": 3584,
+   "minlen": 3,
+   "maxlen": 6,
+   "top": "[\n  [\n    \"NAN\",\n    488\n  ],\n  [\n    \"137970\",\n    28\n  ],\n  [\n    \"94770\",\n    28\n  ]\n]",
+   "sample": [
+    "19117.0",
+    "28621.0",
+    "14308.0",
+    "9391.0",
+    "nan"
+   ]
+  },
+  {
+   "table": "FED_FHFA_FHLB_MEMBERSHIP",
+   "col": "CERT",
+   "rows": 6327,
+   "filled": 3984,
+   "distinct": 3984,
+   "minlen": 5,
+   "maxlen": 5,
+   "top": "[\n  [\n    \"03182\",\n    31\n  ],\n  [\n    \"05619\",\n    31\n  ],\n  [\n    \"35583\",\n    31\n  ]\n]",
+   "sample": [
+    "27678",
+    "28837",
+    "27969",
+    "28288",
+    "29743"
+   ]
+  },
+  {
+   "table": "FED_OCC_NATIONAL_BANKS",
+   "col": "CERT",
+   "rows": 724,
+   "filled": 724,
+   "distinct": 722,
+   "minlen": 2,
+   "maxlen": 6,
+   "top": "[\n  [\n    \"NAN\",\n    6\n  ],\n  [\n    \"22700\",\n    6\n  ],\n  [\n    \"184540\",\n    6\n  ]\n]",
+   "sample": [
+    "29510.0",
+    "2224.0",
+    "91325.0",
+    "31390.0",
+    "25644.0"
+   ]
+  },
+  {
+   "table": "FED_OCC_NATIONAL_BANKS",
+   "col": "RSSD",
+   "rows": 724,
+   "filled": 724,
+   "distinct": 722,
+   "minlen": 3,
+   "maxlen": 8,
+   "top": "[\n  [\n    \"NAN\",\n    6\n  ],\n  [\n    \"2765790\",\n    6\n  ],\n  [\n    \"2182610\",\n    6\n  ]\n]",
+   "sample": [
+    "321273.0",
+    "5728916.0",
+    "594947.0",
+    "931207.0",
+    "339858.0"
+   ]
+  },
+  {
+   "table": "FED_OCC_THRIFTS",
+   "col": "CERT",
+   "rows": 218,
+   "filled": 218,
+   "distinct": 218,
+   "minlen": 3,
+   "maxlen": 6,
+   "top": "[\n  [\n    \"NAN\",\n    2\n  ],\n  [\n    \"294260\",\n    2\n  ],\n  [\n    \"292380\",\n    2\n  ]\n]",
+   "sample": [
+    "31823.0",
+    "30350.0",
+    "27015.0",
+    "58303.0",
+    "16418.0"
+   ]
+  },
+  {
+   "table": "FED_OCC_THRIFTS",
+   "col": "RSSD",
+   "rows": 218,
+   "filled": 218,
+   "distinct": 218,
+   "minlen": 3,
+   "maxlen": 8,
+   "top": "[\n  [\n    \"NAN\",\n    2\n  ],\n  [\n    \"2588740\",\n    2\n  ],\n  [\n    \"6614740\",\n    2\n  ]\n]",
+   "sample": [
+    "268677.0",
+    "901974.0",
+    "2806877.0",
+    "86675.0",
+    "541307.0"
+   ]
+  },
+  {
+   "table": "FED_NCUA_CALL_REPORTS_FOICU",
+   "col": "RSSD",
+   "rows": 4336,
+   "filled": 4336,
+   "distinct": 4336,
+   "minlen": 2,
+   "maxlen": 7,
+   "top": "[\n  [\n    \"868488\",\n    33\n  ],\n  [\n    \"851695\",\n    33\n  ],\n  [\n    \"774598\",\n    33\n  ]\n]",
+   "sample": [
+    "540270",
+    "782771",
+    "1007770",
+    "582074",
+    "199874"
+   ]
+  },
+  {
+   "table": "FED_EPA_EGRID_PLANT_2022",
+   "col": "DOE_EIA_ORIS_PLANT_OR_FACILITY_CODE",
+   "rows": 11974,
+   "filled": 11974,
+   "distinct": 11974,
+   "minlen": 1,
+   "maxlen": 6,
+   "top": "[\n  [\n    \"6101\",\n    91\n  ],\n  [\n    \"56596\",\n    91\n  ],\n  [\n    \"56319\",\n    91\n  ]\n]",
+   "sample": [
+    "58982",
+    "55409",
+    "52184",
+    "55293",
+    "7437"
+   ]
+  },
+  {
+   "table": "FED_EPA_EGRID_PLANT_2022",
+   "col": "UTILITY_ID",
+   "rows": 11974,
+   "filled": 11974,
+   "distinct": 5120,
+   "minlen": 1,
+   "maxlen": 8,
+   "top": "[\n  [\n    \"61060\",\n    213\n  ],\n  [\n    \"61012\",\n    211\n  ],\n  [\n    \"64778\",\n    180\n  ]\n]",
+   "sample": [
+    "UTLSRVID",
+    "179",
+    "221",
+    "14856",
+    "4329"
+   ]
+  },
+  {
+   "table": "FED_EIA860_1_UTILITY",
+   "col": "UTILITY_ID",
+   "rows": 6643,
+   "filled": 6643,
+   "distinct": 6643,
+   "minlen": 1,
+   "maxlen": 5,
+   "top": "[\n  [\n    \"67250\",\n    51\n  ],\n  [\n    \"67239\",\n    51\n  ],\n  [\n    \"67238\",\n    51\n  ]\n]",
+   "sample": [
+    "219",
+    "406",
+    "3084",
+    "8",
+    "3265"
+   ]
+  },
+  {
+   "table": "FED_EIA860_2_PLANT",
+   "col": "UTILITY_ID",
+   "rows": 16132,
+   "filled": 16132,
+   "distinct": 6640,
+   "minlen": 1,
+   "maxlen": 5,
+   "top": "[\n  [\n    \"61060\",\n    287\n  ],\n  [\n    \"61012\",\n    258\n  ],\n  [\n    \"60025\",\n    240\n  ]\n]",
+   "sample": [
+    "5701",
+    "63560",
+    "195",
+    "20160",
+    "19647"
+   ]
+  },
+  {
+   "table": "FED_EIA860_2_PLANT",
+   "col": "PLANT_CODE",
+   "rows": 16132,
+   "filled": 16132,
+   "distinct": 16132,
+   "minlen": 1,
+   "maxlen": 5,
+   "top": "[\n  [\n    \"69099\",\n    123\n  ],\n  [\n    \"69098\",\n    123\n  ],\n  [\n    \"69097\",\n    123\n  ]\n]",
+   "sample": [
+    "2",
+    "4",
+    "193",
+    "225",
+    "88"
+   ]
+  },
+  {
+   "table": "FED_EIA860_3_1_GENERATOR",
+   "col": "UTILITY_ID",
+   "rows": 26856,
+   "filled": 26856,
+   "distinct": 5608,
+   "minlen": 1,
+   "maxlen": 258,
+   "top": "[\n  [\n    \"64812\",\n    433\n  ],\n  [\n    \"55938\",\n    423\n  ],\n  [\n    \"64315\",\n    409\n  ]\n]",
+   "sample": [
+    "13402",
+    "40606",
+    "10210",
+    "63560",
+    "195"
+   ]
+  },
+  {
+   "table": "FED_EIA860_3_1_GENERATOR",
+   "col": "PLANT_CODE",
+   "rows": 26856,
+   "filled": 26855,
+   "distinct": 13371,
+   "minlen": 1,
+   "maxlen": 5,
+   "top": "[\n  [\n    \"66567\",\n    222\n  ],\n  [\n    \"67318\",\n    219\n  ],\n  [\n    \"66595\",\n    218\n  ]\n]",
+   "sample": [
+    "4",
+    "9",
+    "20",
+    "2",
+    "72"
+   ]
+  },
+  {
+   "table": "FED_EIA860_4_OWNER",
+   "col": "UTILITY_ID",
+   "rows": 5496,
+   "filled": 5496,
+   "distinct": 811,
+   "minlen": 3,
+   "maxlen": 5,
+   "top": "[\n  [\n    \"40577\",\n    285\n  ],\n  [\n    \"57280\",\n    211\n  ],\n  [\n    \"64778\",\n    155\n  ]\n]",
+   "sample": [
+    "8245",
+    "213",
+    "195",
+    "3522",
+    "10633"
+   ]
+  },
+  {
+   "table": "FED_EIA860_4_OWNER",
+   "col": "PLANT_CODE",
+   "rows": 5496,
+   "filled": 5496,
+   "distinct": 2329,
+   "minlen": 2,
+   "maxlen": 5,
+   "top": "[\n  [\n    \"7440\",\n    66\n  ],\n  [\n    \"7791\",\n    64\n  ],\n  [\n    \"7777\",\n    64\n  ]\n]",
+   "sample": [
+    "77",
+    "26",
+    "60",
+    "541",
+    "557"
+   ]
+  },
+  {
+   "table": "FED_EIA861_UTILITY_DATA",
+   "col": "UTILITY_NUMBER",
+   "rows": 1701,
+   "filled": 1701,
+   "distinct": 1699,
+   "minlen": 2,
+   "maxlen": 5,
+   "top": "[\n  [\n    \"88888\",\n    15\n  ],\n  [\n    \"67251\",\n    13\n  ],\n  [\n    \"67122\",\n    13\n  ]\n]",
+   "sample": [
+    "3892",
+    "55",
+    "155",
+    "577",
+    "1723"
+   ]
+  },
+  {
+   "table": "FED_CMS_NADAC",
+   "col": "NDC",
+   "rows": 1497925,
+   "filled": 1497925,
+   "distinct": 32881,
+   "minlen": 11,
+   "maxlen": 11,
+   "top": "[\n  [\n    \"42385095612\",\n    3848\n  ],\n  [\n    \"31722053812\",\n    3848\n  ],\n  [\n    \"31722053805\",\n    3848\n  ]\n]",
+   "sample": [
+    "64980041812",
+    "60687045521",
+    "24385005452",
+    "63323069404",
+    "70000036202"
+   ]
+  },
+  {
+   "table": "FED_FDA_NDC_DIRECTORY",
+   "col": "PRODUCTNDC",
+   "rows": 115802,
+   "filled": 115802,
+   "distinct": 114649,
+   "minlen": 8,
+   "maxlen": 9,
+   "top": "[\n  [\n    \"73564813\",\n    745\n  ],\n  [\n    \"73564812\",\n    745\n  ],\n  [\n    \"73564804\",\n    745\n  ]\n]",
+   "sample": [
+    "0006-0081",
+    "0002-0213",
+    "0002-8233",
+    "0006-0461",
+    "0003-1614"
+   ]
+  },
+  {
+   "table": "FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT",
+   "col": "PECOS_ASCT_CNTL_ID",
+   "rows": 2978925,
+   "filled": 2978925,
+   "distinct": 2456135,
+   "minlen": 10,
+   "maxlen": 10,
+   "top": "[\n  [\n    \"0941278253\",\n    7971\n  ],\n  [\n    \"5193863504\",\n    3228\n  ],\n  [\n    \"9335477793\",\n    3228\n  ]\n]",
+   "sample": [
+    "1254395155",
+    "6002871597",
+    "3476518127",
+    "7315902970",
+    "8123923364"
+   ]
+  },
+  {
+   "table": "FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT",
+   "col": "ENRLMT_ID",
+   "rows": 2978925,
+   "filled": 2978925,
+   "distinct": 2978925,
+   "minlen": 15,
+   "maxlen": 15,
+   "top": "[\n  [\n    \"I20250910003949\",\n    3228\n  ],\n  [\n    \"I20250910003901\",\n    3228\n  ],\n  [\n    \"I20250910003882\",\n    3228\n  ]\n]",
+   "sample": [
+    "I20041118000848",
+    "I20041119001082",
+    "I20041120000143",
+    "I20041118000239",
+    "I20041118000229"
+   ]
+  },
+  {
+   "table": "FED_CMS_PECOS_PROVIDER_ENROLLMENT",
+   "col": "PECOS_ASCT_CNTL_ID",
+   "rows": 2978925,
+   "filled": 2978925,
+   "distinct": 2456135,
+   "minlen": 10,
+   "maxlen": 10,
+   "top": "[\n  [\n    \"0941278253\",\n    14433\n  ],\n  [\n    \"6204749997\",\n    11572\n  ],\n  [\n    \"6406260736\",\n    6247\n  ]\n]",
+   "sample": [
+    "4486566106",
+    "2466364161",
+    "0840102158",
+    "2860304185",
+    "6507778826"
+   ]
+  },
+  {
+   "table": "FED_CMS_PECOS_PROVIDER_ENROLLMENT",
+   "col": "ENRLMT_ID",
+   "rows": 2978925,
+   "filled": 2978925,
+   "distinct": 2978925,
+   "minlen": 15,
+   "maxlen": 15,
+   "top": "[\n  [\n    \"O20231006003240\",\n    3131\n  ],\n  [\n    \"O20231006002799\",\n    3131\n  ],\n  [\n    \"O20231006002476\",\n    3131\n  ]\n]",
+   "sample": [
+    "I20031104000698",
+    "I20031105000089",
+    "I20031103000001",
+    "I20031105000049",
+    "I20031103000007"
+   ]
+  },
+  {
+   "table": "FED_CMS_FACILITY_AFFILIATION",
+   "col": "IND_PAC_ID",
+   "rows": 2260193,
+   "filled": 2260193,
+   "distinct": 940364,
+   "minlen": 10,
+   "maxlen": 10,
+   "top": "[\n  [\n    \"8022913698\",\n    3794\n  ],\n  [\n    \"8628056363\",\n    3794\n  ],\n  [\n    \"3779518121\",\n    3794\n  ]\n]",
+   "sample": [
+    "0941471577",
+    "3971756214",
+    "9830382365",
+    "9931376399",
+    "4284693490"
+   ]
+  },
+  {
+   "table": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "col": "ENROLLMENT_ID",
+   "rows": 9175,
+   "filled": 9175,
+   "distinct": 9175,
+   "minlen": 15,
+   "maxlen": 15,
+   "top": "[\n  [\n    \"O20260312003172\",\n    70\n  ],\n  [\n    \"O20260310000372\",\n    70\n  ],\n  [\n    \"O20260302002830\",\n    70\n  ]\n]",
+   "sample": [
+    "O20030416000003",
+    "O20030423000065",
+    "O20030505000080",
+    "O20021002000017",
+    "O20030220000021"
+   ]
+  },
+  {
+   "table": "FED_CMS_HOSPITAL_ENROLLMENTS",
+   "col": "ASSOCIATE_ID",
+   "rows": 9175,
+   "filled": 9175,
+   "distinct": 5280,
+   "minlen": 10,
+   "maxlen": 10,
+   "top": "[\n  [\n    \"5193213650\",\n    72\n  ],\n  [\n    \"7719899947\",\n    72\n  ],\n  [\n    \"1052764677\",\n    72\n  ]\n]",
+   "sample": [
+    "8325955347",
+    "0547177552",
+    "5193633618",
+    "0446169510",
+    "5890605224"
+   ]
+  },
+  {
+   "table": "FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS",
+   "col": "ENROLLMENT_ID",
+   "rows": 14425,
+   "filled": 14425,
+   "distinct": 14425,
+   "minlen": 15,
+   "maxlen": 15,
+   "top": "[\n  [\n    \"O20260212003637\",\n    110\n  ],\n  [\n    \"O20260203002866\",\n    110\n  ],\n  [\n    \"O20260203001303\",\n    110\n  ]\n]",
+   "sample": [
+    "O20030131000023",
+    "O20030321000022",
+    "O20020801000000",
+    "O20021007000020",
+    "O20021030000005"
+   ]
+  },
+  {
+   "table": "FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS",
+   "col": "ASSOCIATE_ID",
+   "rows": 14425,
+   "filled": 14425,
+   "distinct": 12218,
+   "minlen": 10,
+   "maxlen": 10,
+   "top": "[\n  [\n    \"7517952047\",\n    165\n  ],\n  [\n    \"3870712482\",\n    135\n  ],\n  [\n    \"2062326234\",\n    131\n  ]\n]",
+   "sample": [
+    "2466369467",
+    "1850208877",
+    "9032027859",
+    "2961311089",
+    "8022927151"
+   ]
+  },
+  {
+   "table": "FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS",
+   "col": "ENROLLMENT_ID",
+   "rows": 11508,
+   "filled": 11508,
+   "distinct": 11508,
+   "minlen": 15,
+   "maxlen": 15,
+   "top": "[\n  [\n    \"O20260224000672\",\n    88\n  ],\n  [\n    \"O20260217000774\",\n    88\n  ],\n  [\n    \"O20260128001260\",\n    88\n  ]\n]",
+   "sample": [
+    "O20020928000005",
+    "O20030312000010",
+    "O20020809000002",
+    "O20030304000007",
+    "O20030506000008"
+   ]
+  },
+  {
+   "table": "FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS",
+   "col": "ASSOCIATE_ID",
+   "rows": 11508,
+   "filled": 11508,
+   "distinct": 10223,
+   "minlen": 10,
+   "maxlen": 10,
+   "top": "[\n  [\n    \"2860309671\",\n    100\n  ],\n  [\n    \"6002898160\",\n    94\n  ],\n  [\n    \"9830133941\",\n    93\n  ]\n]",
+   "sample": [
+    "4688581663",
+    "7618884529",
+    "3870401458",
+    "2961310446",
+    "7618885112"
+   ]
+  },
+  {
+   "table": "FED_CMS_HOSPICE_ENROLLMENTS",
+   "col": "ENROLLMENT_ID",
+   "rows": 6066,
+   "filled": 6066,
+   "distinct": 6066,
+   "minlen": 15,
+   "maxlen": 15,
+   "top": "[\n  [\n    \"O20260203002892\",\n    46\n  ],\n  [\n    \"O20251204004351\",\n    46\n  ],\n  [\n    \"O20251119001053\",\n    46\n  ]\n]",
+   "sample": [
+    "O20030129000022",
+    "O20030328000004",
+    "O20031003000028",
+    "O20020823000006",
+    "O20031124000778"
+   ]
+  },
+  {
+   "table": "FED_CMS_HOSPICE_ENROLLMENTS",
+   "col": "ASSOCIATE_ID",
+   "rows": 6066,
+   "filled": 6066,
+   "distinct": 5372,
+   "minlen": 10,
+   "maxlen": 10,
+   "top": "[\n  [\n    \"5799968392\",\n    59\n  ],\n  [\n    \"6002723004\",\n    58\n  ],\n  [\n    \"8527977735\",\n    54\n  ]\n]",
+   "sample": [
+    "2264349109",
+    "3577466531",
+    "1850208414",
+    "9032103304",
+    "6406754019"
+   ]
+  },
+  {
+   "table": "FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS",
+   "col": "ENROLLMENT_ID",
+   "rows": 11063,
+   "filled": 11063,
+   "distinct": 11063,
+   "minlen": 15,
+   "maxlen": 15,
+   "top": "[\n  [\n    \"O20260313002212\",\n    84\n  ],\n  [\n    \"O20260310003091\",\n    84\n  ],\n  [\n    \"O20260305001014\",\n    84\n  ]\n]",
+   "sample": [
+    "O20021011000026",
+    "O20030217000008",
+    "O20021218000023",
+    "O20031008000019",
+    "O20030630000024"
+   ]
+  },
+  {
+   "table": "FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS",
+   "col": "ASSOCIATE_ID",
+   "rows": 11063,
+   "filled": 11063,
+   "distinct": 1559,
+   "minlen": 10,
+   "maxlen": 10,
+   "top": "[\n  [\n    \"6305947789\",\n    158\n  ],\n  [\n    \"5496733925\",\n    131\n  ],\n  [\n    \"1052220985\",\n    124\n  ]\n]",
+   "sample": [
+    "2668380106",
+    "5193634509",
+    "2769393180",
+    "6002727849",
+    "3678484300"
+   ]
+  },
+  {
+   "table": "FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS",
+   "col": "ENROLLMENT_ID",
+   "rows": 5530,
+   "filled": 5530,
+   "distinct": 5530,
+   "minlen": 15,
+   "maxlen": 15,
+   "top": "[\n  [\n    \"O20260213001934\",\n    42\n  ],\n  [\n    \"O20251218001109\",\n    42\n  ],\n  [\n    \"O20251125001195\",\n    42\n  ]\n]",
+   "sample": [
+    "O20021029000029",
+    "O20030526000000",
+    "O20030919000032",
+    "O20040302001332",
+    "O20020815000017"
+   ]
+  },
+  {
+   "table": "FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS",
+   "col": "ASSOCIATE_ID",
+   "rows": 5530,
+   "filled": 5530,
+   "distinct": 2500,
+   "minlen": 10,
+   "maxlen": 10,
+   "top": "[\n  [\n    \"5395881841\",\n    143\n  ],\n  [\n    \"0143525998\",\n    75\n  ],\n  [\n    \"3678832029\",\n    64\n  ]\n]",
+   "sample": [
+    "0042127045",
+    "0648187542",
+    "1850283995",
+    "5294648937",
+    "1052221447"
+   ]
+  }
+ ],
+ "overlaps": [
+  {
+   "a": "FED_USASPENDING_SUBAWARDS_FULL.PRIME_AWARD_UNIQUE_KEY",
+   "b": "FED_USASPENDING_CONTRACTS_FULL_R2.CONTRACT_AWARD_UNIQUE_KEY",
+   "a_distinct": 279553,
+   "b_distinct": 74488536,
+   "both": 110195,
+   "pct_a": 39.4,
+   "pct_b": 0.1
+  },
+  {
+   "a": "FED_CMS_FACILITY_AFFILIATION.IND_PAC_ID",
+   "b": "FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.PECOS_ASCT_CNTL_ID",
+   "a_distinct": 940364,
+   "b_distinct": 2456135,
+   "both": 937541,
+   "pct_a": 99.7,
+   "pct_b": 38.2
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS.ASSOCIATE_ID",
+   "b": "FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.PECOS_ASCT_CNTL_ID",
+   "a_distinct": 5280,
+   "b_distinct": 2456135,
+   "both": 5264,
+   "pct_a": 99.7,
+   "pct_b": 0.2
+  },
+  {
+   "a": "FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.ASSOCIATE_ID",
+   "b": "FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.PECOS_ASCT_CNTL_ID",
+   "a_distinct": 12218,
+   "b_distinct": 2456135,
+   "both": 12042,
+   "pct_a": 98.6,
+   "pct_b": 0.5
+  },
+  {
+   "a": "FED_CMS_HOSPITAL_ENROLLMENTS.ENROLLMENT_ID",
+   "b": "FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.ENRLMT_ID",
+   "a_distinct": 9175,
+   "b_distinct": 2978925,
+   "both": 9103,
+   "pct_a": 99.2,
+   "pct_b": 0.3
+  },
+  {
+   "a": "FED_FHFA_FHLB_MEMBERSHIP.CERT",
+   "b": "FED_FDIC_BANK_DATA.CERT",
+   "a_distinct": 3984,
+   "b_distinct": 27836,
+   "both": 2766,
+   "pct_a": 69.4,
+   "pct_b": 9.9
+  },
+  {
+   "a": "FED_FDIC_FAILED_BANKS.CERT",
+   "b": "FED_FDIC_BANK_DATA.CERT",
+   "a_distinct": 3584,
+   "b_distinct": 27836,
+   "both": 149,
+   "pct_a": 4.2,
+   "pct_b": 0.5
+  },
+  {
+   "a": "FED_OCC_NATIONAL_BANKS.CERT",
+   "b": "FED_FDIC_BANK_DATA.CERT",
+   "a_distinct": 722,
+   "b_distinct": 27836,
+   "both": 89,
+   "pct_a": 12.3,
+   "pct_b": 0.3
+  },
+  {
+   "a": "FED_OCC_THRIFTS.CERT",
+   "b": "FED_FDIC_BANK_DATA.CERT",
+   "a_distinct": 218,
+   "b_distinct": 27836,
+   "both": 0,
+   "pct_a": 0.0,
+   "pct_b": 0.0
+  },
+  {
+   "a": "FED_EPA_EGRID_PLANT_2022.DOE_EIA_ORIS_PLANT_OR_FACILITY_CODE",
+   "b": "FED_EIA860_2_PLANT.PLANT_CODE",
+   "a_distinct": 11974,
+   "b_distinct": 16132,
+   "both": 11802,
+   "pct_a": 98.6,
+   "pct_b": 73.2
+  },
+  {
+   "a": "FED_EIA860_3_1_GENERATOR.PLANT_CODE",
+   "b": "FED_EIA860_2_PLANT.PLANT_CODE",
+   "a_distinct": 13371,
+   "b_distinct": 16132,
+   "both": 13370,
+   "pct_a": 100.0,
+   "pct_b": 82.9
+  },
+  {
+   "a": "FED_EIA860_4_OWNER.PLANT_CODE",
+   "b": "FED_EIA860_2_PLANT.PLANT_CODE",
+   "a_distinct": 2329,
+   "b_distinct": 16132,
+   "both": 2329,
+   "pct_a": 100.0,
+   "pct_b": 14.4
+  },
+  {
+   "a": "FED_EIA860_2_PLANT.UTILITY_ID",
+   "b": "FED_EIA860_1_UTILITY.UTILITY_ID",
+   "a_distinct": 6640,
+   "b_distinct": 6643,
+   "both": 6640,
+   "pct_a": 100.0,
+   "pct_b": 100.0
+  },
+  {
+   "a": "FED_EPA_EGRID_PLANT_2022.UTILITY_ID",
+   "b": "FED_EIA860_1_UTILITY.UTILITY_ID",
+   "a_distinct": 5120,
+   "b_distinct": 6643,
+   "both": 4842,
+   "pct_a": 94.6,
+   "pct_b": 72.9
+  },
+  {
+   "a": "FED_EIA861_UTILITY_DATA.UTILITY_NUMBER",
+   "b": "FED_EIA860_1_UTILITY.UTILITY_ID",
+   "a_distinct": 1699,
+   "b_distinct": 6643,
+   "both": 373,
+   "pct_a": 22.0,
+   "pct_b": 5.6
+  },
+  {
+   "a": "FED_CMS_NADAC.NDC",
+   "b": "FED_FDA_NDC_DIRECTORY.PRODUCTNDC",
+   "a_distinct": 32881,
+   "b_distinct": 114649,
+   "both": 0,
+   "pct_a": 0.0,
+   "pct_b": 0.0
+  }
+ ],
+ "errors": [
+  "FED_USASPENDING_ASSISTANCE_FULL.assistance_award_unique_key: 000904 (42000): SQL compilation error: error line 1 at position 47\ninvalid identifier 'ASSISTANCE_AWARD_UNIQUE_KEY'"
+ ]
+}

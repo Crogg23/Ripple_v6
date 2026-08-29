@@ -242,13 +242,338 @@ def _config_fingerprint() -> str:
 
 
 def _guard_config(conn) -> None:
+    """Config drift is applied, not refused (2026-08-29): when per-unit pins exist
+    and the code moved, run the bounded apply first. The legacy whole-config
+    sentinel check below only bites when there are no per-unit pins yet."""
+    if _config_drifted(conn):
+        print("config drift detected -> applying bounded config change first")
+        _apply_config_conn(conn, dry_run=False)
     stored = db.scalar(conn, f"SELECT CONTENT_KEY FROM {WATERMARK_FQN} "
                             f"WHERE TABLE_NAME = '{CONFIG_SENTINEL}'")
     if stored is not None and stored != _config_fingerprint():
         raise RuntimeError(
-            "keys.py NORM_RULES or DISPLAY_SPECS changed since the last full rebuild. "
-            "Incremental MERGE is unsafe (entities may re-key). Run `python -m connect spine` "
-            "(full reconciliation), then `python -m connect.incremental seed` to re-pin config.")
+            "keys.py NORM_RULES / TABLE_COLUMN_KEYS / DISPLAY_SPECS changed since the last "
+            "pin. Run `python -m connect apply-config` (bounded: reslices only the tables the "
+            "change touches, then re-pins) -- a full `connect spine` is NOT required.")
+
+
+# =========================================================================== #
+# CONFIG DRIFT AS A BOUNDED CHANGE (2026-08-29) -- the end of the "every new key
+# needs a full rebuild" rule.
+#
+# The old guard hashed the WHOLE config and, on any drift, refused to run until a
+# full rebuild. That was blunt: ENTITY_ID = hash(key_type | normalized value), so a
+# NEW key family, a NEW spec table, or a NEW extra_keys column never re-keys an
+# existing entity -- it only adds (key_type, value) rows, exactly what
+# reslice_spine already handles per table (its _OLD/_NEW symmetric difference
+# retracts what a config change removes and inserts what it adds, and its golden/
+# index recompute re-derives the touched entities from every member table). Even a
+# changed normalizer for an EXISTING family is bounded: reslice every table that
+# carries the family and the old values retract while the new ones insert.
+#
+# So the config is now pinned PER UNIT (one row per norm rule, per table spec, per
+# table's scoped graph keys). On drift, classify_config_drift() diffs the units and
+# names the tables to touch; apply_config() reslices exactly those and re-pins. The
+# full rebuild remains the backstop (validate() proves equivalence), never the
+# ritual.
+# =========================================================================== #
+AFFECTED_SQL = """CREATE OR REPLACE TEMPORARY TABLE _AFFECTED AS
+    (SELECT KEY_TYPE, VAL FROM _NEW MINUS SELECT KEY_TYPE, VAL FROM _OLD)
+    UNION
+    (SELECT KEY_TYPE, VAL FROM _OLD MINUS SELECT KEY_TYPE, VAL FROM _NEW)"""
+
+PIN_FQN = store.cfqn("CONNECT_CONFIG_PIN")
+_UNIT_NORM, _UNIT_SPEC, _UNIT_TCK = "norm", "spec", "tck"
+
+
+def _ddl_pins(conn) -> None:
+    db.rows(conn, f"""
+        CREATE TABLE IF NOT EXISTS {PIN_FQN} (
+            UNIT_KIND  STRING NOT NULL,   -- norm | spec | tck
+            UNIT_NAME  STRING NOT NULL,   -- key family | spec table | landing table
+            DIGEST     STRING NOT NULL,
+            DETAIL     STRING,            -- the repr the digest was taken over (for diff prints)
+            PINNED_AT  TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+        )""")
+
+
+def _config_units() -> dict[tuple[str, str], str]:
+    """The current config as {(kind, name): detail}. Digest = MD5(detail).
+
+    norm : the ACTUAL emitted SQL per key (catches an implementation edit, not just
+           a NORM_RULES dict edit -- same reasoning as _config_fingerprint).
+    spec : the DISPLAY_SPECS entry (key, key_col, extra_keys, survivorship).
+    tck  : the table-scoped graph keys (keys.TABLE_COLUMN_KEYS) grouped by table --
+           a new scoped key on a NON-spec table needs a discover reslice, not a
+           spine one.
+    """
+    from .keys import TABLE_COLUMN_KEYS
+    units: dict[tuple[str, str], str] = {}
+    for k in sorted(NORM_RULES):
+        try:
+            units[(_UNIT_NORM, k)] = normalize_sql(k, '"__CFG__"')
+        except Exception as exc:
+            units[(_UNIT_NORM, k)] = f"ERR:{type(exc).__name__}"
+    for t, spec in DISPLAY_SPECS.items():
+        units[(_UNIT_SPEC, t)] = repr(sorted(spec.items(), key=lambda kv: kv[0]))
+    by_table: dict[str, list] = {}
+    for (t, col), (key, tier) in TABLE_COLUMN_KEYS.items():
+        by_table.setdefault(t, []).append((col, key, tier))
+    for t, cols in by_table.items():
+        units[(_UNIT_TCK, t)] = repr(sorted(cols))
+    return units
+
+
+def _baseline_units_and_fingerprint():
+    """Config units + legacy fingerprint with every staged batch flag OFF, computed
+    by temporarily removing the staged dict entries and restoring them. Returns
+    (None, None) when no staged batch is on (nothing to strip)."""
+    from . import keys as K
+    from . import entity_index_specs as S
+    staged = []
+    if getattr(K, "ENABLE_SPINE_BATCH_2026_08_29", False):
+        staged.append(("2026_08_29", K._BATCH_2026_08_29_NORM_RULES,
+                       K._BATCH_2026_08_29_TABLE_COLUMN_KEYS,
+                       S.SPINE_BATCH_2026_08_29_DISPLAY_SPECS,
+                       S._SPINE_BATCH_2026_08_29_EXTRA_KEYS))
+    if not staged:
+        return None, None
+    saved_norm = dict(K.NORM_RULES)
+    saved_tck = dict(K.TABLE_COLUMN_KEYS)
+    saved_specs = {t: dict(sp, extra_keys=list(sp.get("extra_keys", [])))
+                   for t, sp in S.DISPLAY_SPECS.items()}
+    try:
+        for _name, norms, tck, specs, extras in staged:
+            for k in norms:
+                K.NORM_RULES.pop(k, None)
+            for tc in tck:
+                K.TABLE_COLUMN_KEYS.pop(tc, None)
+            for t in specs:
+                S.DISPLAY_SPECS.pop(t, None)
+            for t, ex in extras.items():
+                sp = S.DISPLAY_SPECS.get(t)
+                if sp is None:
+                    continue
+                drop = {(e["key"], e["key_col"]) for e in ex}
+                kept = [e for e in sp.get("extra_keys", []) if (e["key"], e["key_col"]) not in drop]
+                if kept:
+                    sp["extra_keys"] = kept
+                else:
+                    sp.pop("extra_keys", None)
+        # DISPLAY_SPECS / NORM_RULES here are the same dict objects this module
+        # imported, so the legacy fingerprint sees the stripped state too.
+        return _config_units(), _config_fingerprint()
+    finally:
+        K.NORM_RULES.clear(); K.NORM_RULES.update(saved_norm)
+        K.TABLE_COLUMN_KEYS.clear(); K.TABLE_COLUMN_KEYS.update(saved_tck)
+        S.DISPLAY_SPECS.clear()
+        for t, sp in saved_specs.items():
+            if not sp.get("extra_keys"):
+                sp.pop("extra_keys", None)
+            S.DISPLAY_SPECS[t] = sp
+
+
+def _digest(detail: str) -> str:
+    return hashlib.md5(detail.encode("utf-8")).hexdigest()
+
+
+def _stored_pins(conn) -> dict[tuple[str, str], str]:
+    rows = db.dicts(conn, f"SELECT UNIT_KIND, UNIT_NAME, DIGEST FROM {PIN_FQN}")
+    return {(r["UNIT_KIND"], r["UNIT_NAME"]): r["DIGEST"] for r in rows}
+
+
+def _pin_units(conn, units: dict[tuple[str, str], str] | None = None) -> int:
+    """Overwrite the pin table with the CURRENT config (called after a full rebuild,
+    a seed, or a successful apply_config)."""
+    units = units if units is not None else _config_units()
+    _ddl_pins(conn)
+    db.rows(conn, f"TRUNCATE TABLE {PIN_FQN}")
+    rows = [(k, n, _digest(d), d[:4000]) for (k, n), d in units.items()]
+    cur = conn.cursor()
+    try:
+        cur.executemany(
+            f"INSERT INTO {PIN_FQN} (UNIT_KIND, UNIT_NAME, DIGEST, DETAIL) VALUES (%s, %s, %s, %s)",
+            rows)
+    finally:
+        cur.close()
+    return len(rows)
+
+
+def _tables_carrying(key: str, specs: dict | None = None) -> set[str]:
+    specs = DISPLAY_SPECS if specs is None else specs
+    return {t for t, s in specs.items() if any(k == key for k, _ in table_keys(s))}
+
+
+def classify_config_drift(stored: dict[tuple[str, str], str],
+                          current: dict[tuple[str, str], str],
+                          specs: dict | None = None) -> dict:
+    """Diff pinned vs current config units and name the bounded work.
+
+    Returns {
+      'changes':  [(kind, name, 'added'|'changed'|'removed'), ...],
+      'reslice':  sorted spec tables to reslice_spine (additive OR re-normalized),
+      'retract':  sorted tables whose spec was removed (their slice is retracted),
+      'discover': sorted non-spec landing tables whose scoped graph keys moved,
+    }
+    Pure function (no warehouse) so the classification is unit-testable.
+    """
+    specs = DISPLAY_SPECS if specs is None else specs
+    cur_d = {u: _digest(d) for u, d in current.items()}
+    changes: list[tuple[str, str, str]] = []
+    reslice: set[str] = set()
+    retract: set[str] = set()
+    discover: set[str] = set()
+    for unit in sorted(set(stored) | set(cur_d)):
+        kind, name = unit
+        if unit not in stored:
+            how = "added"
+        elif unit not in cur_d:
+            how = "removed"
+        elif stored[unit] != cur_d[unit]:
+            how = "changed"
+        else:
+            continue
+        changes.append((kind, name, how))
+        if kind == _UNIT_NORM:
+            # new family: only its spec tables (their _OLD slice lacks it);
+            # changed family: every table carrying it (old values retract, new insert);
+            # removed family: its former tables show up as spec changes/removals.
+            reslice |= _tables_carrying(name, specs)
+        elif kind == _UNIT_SPEC:
+            if how == "removed":
+                retract.add(name)
+            else:
+                reslice.add(name)
+        elif kind == _UNIT_TCK:
+            if name in specs:
+                reslice.add(name)      # reslice_spine refreshes the discover partition too
+            else:
+                discover.add(name)
+    return {"changes": changes, "reslice": sorted(reslice - retract),
+            "retract": sorted(retract), "discover": sorted(discover - reslice)}
+
+
+def retract_spine_table(conn, table: str, run_id: str) -> dict:
+    """Remove a table that LEFT DISPLAY_SPECS: its persisted slice is retracted, the
+    entities it alone carried are deleted, shared entities are re-derived from their
+    remaining members. Mirrors reslice_spine with an empty _NEW."""
+    lit = table.replace("'", "''")
+    db.rows(conn, f"CREATE OR REPLACE TEMPORARY TABLE _OLD AS "
+                  f"SELECT KEY_TYPE, VAL FROM {SKEYSET_FQN} WHERE TABLE_NAME = '{lit}'")
+    db.rows(conn, "CREATE OR REPLACE TEMPORARY TABLE _NEW AS SELECT * FROM _OLD WHERE 1 = 0")
+    db.rows(conn, "CREATE OR REPLACE TEMPORARY TABLE _AFFECTED AS SELECT KEY_TYPE, VAL FROM _OLD")
+    db.rows(conn, "CREATE OR REPLACE TEMPORARY TABLE _RECOMPUTE AS SELECT KEY_TYPE, VAL FROM _OLD")
+    n_old = int(db.scalar(conn, "SELECT COUNT(*) FROM _OLD") or 0)
+    db.rows(conn, f"CREATE OR REPLACE TEMPORARY TABLE _AFFENT AS "
+                  f"SELECT DISTINCT {_entity_id_sql('KEY_TYPE', 'VAL')} AS ENTITY_ID FROM _AFFECTED")
+    db.rows(conn, f"DELETE FROM {SKEYSET_FQN} WHERE TABLE_NAME = '{lit}'")
+    db.rows(conn, f"DELETE FROM {INDEX_FQN} WHERE SOURCE_TABLE = '{lit}'")
+    stats = {"table": table, "old_keys": n_old, "mode": "retracted"}
+    stats.update(_merge_entity_map(conn, run_id))
+    db.rows(conn, f"DELETE FROM {NODES_FQN} WHERE TABLE_NAME = '{lit}'")
+    db.rows(conn, f"DELETE FROM {PAIRS_FQN} WHERE TABLE_A = '{lit}' OR TABLE_B = '{lit}'")
+    stats.update(_merge_golden(conn, run_id, "_RECOMPUTE"))
+    return stats
+
+
+def apply_config(dry_run: bool = False) -> dict:
+    """Bring the live spine/graph up to the CURRENT code config with bounded work.
+
+    1. diff pinned units vs current -> classify (pure)
+    2. reslice_spine each touched spec table; retract removed ones; reslice_discover
+       non-spec tables whose scoped graph keys moved
+    3. re-pin units + the legacy sentinel
+    First run (no pins yet): pins the current config IF the legacy sentinel matches
+    (state is coherent) and does nothing else; otherwise refuses -- the operator
+    must decide whether the live spine matches the code (seed) or not (rebuild).
+    """
+    conn = db.connect()
+    try:
+        _reset_caches()
+        validate_key_config()
+        _ddl(conn)
+        return _apply_config_conn(conn, dry_run=dry_run)
+    finally:
+        conn.close()
+
+
+def _config_drifted(conn) -> bool:
+    _ddl_pins(conn)
+    stored = _stored_pins(conn)
+    if not stored:
+        return False   # never pinned per-unit: the legacy sentinel guard decides
+    return bool(classify_config_drift(stored, _config_units())["changes"])
+
+
+def _apply_config_conn(conn, dry_run: bool = False) -> dict:
+    run_id = uuid.uuid4().hex[:16]
+    if True:
+        _ddl_pins(conn)
+        current = _config_units()
+        stored = _stored_pins(conn)
+        if not stored:
+            sentinel = db.scalar(conn, f"SELECT CONTENT_KEY FROM {WATERMARK_FQN} "
+                                       f"WHERE TABLE_NAME = '{CONFIG_SENTINEL}'")
+            if sentinel == _config_fingerprint():
+                n = _pin_units(conn, current)
+                return {"mode": "pinned-initial", "units": n}
+            # The live spine was pinned by a rebuild that ran with the staged batch
+            # flags OFF. If the flags-off config reproduces the sentinel, that IS the
+            # baseline: pin it, then fall through and apply the flagged batch as an
+            # ordinary bounded drift -- one command, no rebuild.
+            base_units, base_fp = _baseline_units_and_fingerprint()
+            if base_units is not None and sentinel == base_fp:
+                _pin_units(conn, base_units)
+                stored = _stored_pins(conn)
+                print("apply-config: pinned the flags-off baseline (matches the live sentinel); "
+                      "applying the staged batch as bounded drift")
+            else:
+                raise RuntimeError(
+                    "no per-unit pins yet AND the legacy config sentinel matches neither the "
+                    "current code nor the flags-off baseline, so the live spine's config is "
+                    "unknown. Either check out the code the last rebuild ran with and "
+                    "`apply-config` once to pin it, or run the full `connect spine` backstop.")
+        plan = classify_config_drift(stored, current)
+        plan["mode"] = "preview" if dry_run else "applied"
+        print(f"apply-config: {len(plan['changes'])} config change(s) -> "
+              f"reslice {len(plan['reslice'])}, retract {len(plan['retract'])}, "
+              f"discover {len(plan['discover'])} table(s)")
+        for kind, name, how in plan["changes"]:
+            print(f"  [{kind}] {name}: {how}")
+        if not plan["changes"]:
+            return plan
+        exists = _landing_tables(conn)
+        results = []
+        for t in plan["reslice"]:
+            if t not in exists:
+                results.append({"table": t, "mode": "skip (no landing table)"})
+                continue
+            r = reslice_spine(conn, t, run_id, dry_run=dry_run)
+            print(f"  reslice {t}: {r.get('mode')} affected={r.get('affected'):,}")
+            results.append(r)
+        for t in plan["retract"]:
+            if dry_run:
+                results.append({"table": t, "mode": "preview-retract"})
+                continue
+            r = retract_spine_table(conn, t, run_id)
+            print(f"  retract {t}: {r}")
+            results.append(r)
+        for t in plan["discover"]:
+            if t not in exists:
+                results.append({"table": t, "mode": "skip (no landing table)"})
+                continue
+            r = reslice_discover(conn, t, run_id, dry_run=dry_run)
+            if not dry_run:
+                _upsert_watermark(conn, t, compute_watermarks(conn).get(t, {}))
+            print(f"  discover {t}: {r.get('mode')}")
+            results.append(r)
+        plan["results"] = results
+        if not dry_run:
+            _pin_units(conn, current)
+            _upsert_watermark(conn, CONFIG_SENTINEL,
+                              {"source_id": None, "content_key": _config_fingerprint(),
+                               "last_change_at": None, "n_success": 0})
+    return plan
 
 
 # =========================================================================== #
@@ -300,6 +625,7 @@ def sync_after_rebuild(conn, reseed: bool = True) -> dict:
     _upsert_watermark(conn, CONFIG_SENTINEL,
                       {"source_id": None, "content_key": _config_fingerprint(),
                        "last_change_at": None, "n_success": 0})
+    _pin_units(conn)   # per-unit pins: a later key add is a bounded apply-config, not a rebuild
     return {
         "spine_keyset": int(db.scalar(conn, f"SELECT COUNT(*) FROM {SKEYSET_FQN}") or 0),
         "discover_keyset": int(db.scalar(conn, f"SELECT COUNT(*) FROM {KEYSET_FQN}") or 0),
@@ -365,10 +691,15 @@ def reslice_spine(conn, table: str, run_id: str, dry_run: bool = False) -> dict:
     db.rows(conn, f"CREATE OR REPLACE TEMPORARY TABLE _OLD AS "
                   f"SELECT KEY_TYPE, VAL FROM {SKEYSET_FQN} WHERE TABLE_NAME = '{lit}'")
     # --- SEAM #3 (membership): affected = symmetric difference (added UNION removed) --
-    db.rows(conn, """CREATE OR REPLACE TEMPORARY TABLE _AFFECTED AS
-                     SELECT KEY_TYPE, VAL FROM _NEW MINUS SELECT KEY_TYPE, VAL FROM _OLD
-                     UNION
-                     SELECT KEY_TYPE, VAL FROM _OLD MINUS SELECT KEY_TYPE, VAL FROM _NEW""")
+    # PARENTHESES ARE LOAD-BEARING (bug found 2026-08-29): Snowflake gives MINUS and
+    # UNION equal precedence, left to right, so the unparenthesized form
+    #   NEW MINUS OLD UNION OLD MINUS NEW
+    # evaluated as ((NEW - OLD) + OLD) - NEW == OLD - NEW: only REMOVED keys ever
+    # reached _AFFECTED and every ADDED key was silently skipped by the map/nodes/
+    # pairs merges (index + golden use _RECOMPUTE = NEW + AFFECTED, so they were
+    # right). Live-verified: a brand-new spec table previewed affected=0 with
+    # 54,406 new keys. tests/test_apply_config.py pins the parenthesized shape.
+    db.rows(conn, AFFECTED_SQL)
     n_aff = int(db.scalar(conn, "SELECT COUNT(*) FROM _AFFECTED") or 0)
     n_new = int(db.scalar(conn, "SELECT COUNT(*) FROM _NEW") or 0)
     n_old = int(db.scalar(conn, "SELECT COUNT(*) FROM _OLD") or 0)
@@ -973,6 +1304,8 @@ def main(argv=None) -> int:
     cc.add_argument("--dry-run", action="store_true")
     va = sub.add_parser("validate", help="non-destructive equivalence proof vs the backstop")
     va.add_argument("--table", default=None)
+    ac = sub.add_parser("apply-config", help="apply a keys.py / DISPLAY_SPECS change with bounded reslices (no full rebuild)")
+    ac.add_argument("--dry-run", action="store_true")
     args = ap.parse_args(argv)
 
     if args.cmd == "seed":
@@ -983,6 +1316,8 @@ def main(argv=None) -> int:
         connect_changed(scope=args.scope, dry_run=args.dry_run)
     elif args.cmd == "validate":
         validate(table=args.table)
+    elif args.cmd == "apply-config":
+        apply_config(dry_run=args.dry_run)
     return 0
 
 

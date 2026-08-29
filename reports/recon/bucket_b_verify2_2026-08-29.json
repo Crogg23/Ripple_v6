@@ -1,0 +1,119 @@
+[
+ {
+  "a": "FED_USASPENDING_CONTRACTS_FULL_R2.CAGE_CODE",
+  "b": "FED_SAM_EXCLUSIONS_FULL_R2.CAGE",
+  "a_distinct": 246832,
+  "b_distinct": 392,
+  "both": 182,
+  "pct_a": 0.1,
+  "pct_b": 46.4
+ },
+ {
+  "a": "FED_FDIC_SOD_BRANCH_DEPOSITS.CERT",
+  "b": "FED_FDIC_BANK_DATA.CERT",
+  "a_distinct": 15505,
+  "b_distinct": 27836,
+  "both": 15497,
+  "pct_a": 99.9,
+  "pct_b": 55.7
+ },
+ {
+  "a": "FED_FDIC_SOD_BRANCH_DEPOSITS.RSSDID",
+  "b": "FED_FDIC_BANK_DATA.FED_RSSD",
+  "a_distinct": 15544,
+  "b_distinct": 26578,
+  "both": 15304,
+  "pct_a": 98.5,
+  "pct_b": 57.6
+ },
+ {
+  "a": "FED_FDIC_SOD_BRANCH_DEPOSITS.RSSDHCR",
+  "b": "FED_FDIC_BANK_DATA.RSSDHCR",
+  "a_distinct": 9729,
+  "b_distinct": 8736,
+  "both": 7243,
+  "pct_a": 74.4,
+  "pct_b": 82.9
+ },
+ {
+  "a": "FED_OCC_NATIONAL_BANKS.RSSD",
+  "b": "FED_FDIC_BANK_DATA.FED_RSSD",
+  "a_distinct": 722,
+  "b_distinct": 26578,
+  "both": 2,
+  "pct_a": 0.3,
+  "pct_b": 0.0
+ },
+ {
+  "a": "FED_OCC_THRIFTS.RSSD",
+  "b": "FED_FDIC_BANK_DATA.FED_RSSD",
+  "a_distinct": 218,
+  "b_distinct": 26578,
+  "both": 1,
+  "pct_a": 0.5,
+  "pct_b": 0.0
+ },
+ {
+  "a": "FED_NCUA_CALL_REPORTS_FOICU.RSSD",
+  "b": "FED_FDIC_BANK_DATA.FED_RSSD",
+  "a_distinct": 4336,
+  "b_distinct": 26578,
+  "both": 14,
+  "pct_a": 0.3,
+  "pct_b": 0.1
+ },
+ {
+  "a": "FED_FDIC_BANK_DATA.RSSDHCR",
+  "b": "FED_FDIC_BANK_DATA.FED_RSSD",
+  "a_distinct": 8736,
+  "b_distinct": 26578,
+  "both": 2,
+  "pct_a": 0.0,
+  "pct_b": 0.0
+ },
+ {
+  "a": "FED_FDIC_BANK_DATA.CERT",
+  "b": "FED_FDIC_BANK_DATA.FED_RSSD",
+  "a_distinct": 27836,
+  "b_distinct": 26578,
+  "both": 660,
+  "pct_a": 2.4,
+  "pct_b": 2.5
+ },
+ {
+  "a": "FED_FDIC_FAILED_BANKS.CERT",
+  "b": "FED_FDIC_BANK_DATA.CERT",
+  "a_distinct": 3583,
+  "b_distinct": 27836,
+  "both": 149,
+  "pct_a": 4.2,
+  "pct_b": 0.5
+ },
+ {
+  "a": "FED_FHFA_FHLB_MEMBERSHIP.CERT",
+  "b": "FED_FDIC_BANK_DATA.CERT",
+  "a_distinct": 3984,
+  "b_distinct": 27836,
+  "both": 2766,
+  "pct_a": 69.4,
+  "pct_b": 9.9
+ },
+ {
+  "a": "FED_OCC_NATIONAL_BANKS.CERT",
+  "b": "FED_FDIC_BANK_DATA.CERT",
+  "a_distinct": 721,
+  "b_distinct": 27836,
+  "both": 89,
+  "pct_a": 12.3,
+  "pct_b": 0.3
+ },
+ {
+  "a": "FED_OCC_THRIFTS.CERT",
+  "b": "FED_FDIC_BANK_DATA.CERT",
+  "a_distinct": 217,
+  "b_distinct": 27836,
+  "both": 0,
+  "pct_a": 0.0,
+  "pct_b": 0.0
+ }
+]

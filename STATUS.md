@@ -1,82 +1,66 @@
-# RIPPLE STATUS — 2026-08-28 — Fable recon done: 13 unregistered ID candidates ranked (CAGE code is the headline); mega-loads still running; spine rebuild landed clean earlier tonight
+# RIPPLE STATUS — 2026-08-29 — Full-rebuild ritual retired: `apply-config` applies key/spec changes as bounded reslices; 08-29 ID batch flipped ON in code, waiting for Chris to run the one command
 
 *One screen. Rewritten (never appended) at the end of every session.*
 
 ## 🚨 Read this first
 
-1. **Fable recon mission (unregistered ID columns) is DONE.** Full ranked
-   deliverable: `reports/recon/unregistered_id_candidates_2026-08-28.md`.
-   Headline results, all verified against the live warehouse this session:
-   - The packet's step 1 came back **empty**: zero rows in COLUMN_CATALOG with
-     DETECTED_KEY set but KEY_TIER blank — every detected key is already
-     tiered. All candidates came from name/shape scanning the 626 undetected
-     columns (751 total → 277 grouped candidates → 13 keepers).
-   - **CAGE code** (defense-contractor ID) in the contracts table: 6.32M of
-     6.33M rows filled, 92,530 distinct — a whole registered-family-grade axis
-     sitting unregistered.
-   - **Profiler blind spot found:** COLUMN_CATALOG's samples for NPPES read
-     early rows only — all 200 "other provider identifier" columns showed
-     empty, but slot 1 alone has 1.56M filled / 1.34M distinct (state Medicaid
-     IDs, Railroad Medicare, UPINs). License slot 1: 5.78M filled / 3.91M
-     distinct. The catalog under-reports sparse-at-top columns.
-   - Easy wins: 4 politics-mart columns are exact formats of already-registered
-     families (FEC candidate/committee IDs, Bioguide) under other names — two
-     are JSON arrays.
-   - Scope honesty: COLUMN_CATALOG only covers ~15 pack tables, so the
-     "appears in 2+ tables" test was mostly untestable inside it; warehouse-wide
-     spread in the report is marked inferred. The 2026-08-18 value-shape
-     sniffer covered warehouse-wide and found different things — the two lists
-     complement, not duplicate.
-   - Nothing was registered, no code written, connect layer untouched (per
-     packet).
-2. **Still open from earlier tonight (unchanged by this recon):**
-   - 8 spatial join errors — malformed lat/lng in EPA Toxic Release Inventory
-     and NTSB aviation events broke point-in-polygon for those pairs. Skipped
-     safely, not yet fixed.
-   - 5 new loader scripts + connect-layer edits **still uncommitted** in the
-     working tree.
-3. **Loads running overnight, checkpointed + resumable:**
-   - MAUDE device injuries → `FED_FDA_MAUDE_FULL`: 25,711,469 records, ~6–8h.
-     Resume: `python scripts/fda_bulk_split_load.py --spec FED_FDA_MAUDE_FULL
-     --run`. Verify with SUM(ARRAY_SIZE) not row count.
-   - USAspending subawards → `FED_USASPENDING_SUBAWARDS_FULL`: 227 monthly
-     chunks, ~20–30h. Resume: `python -u
-     scripts/usaspending_subawards_full_load.py --run`.
-   - Senate LDA backfill also still running (healthy, throttled).
-4. **Spine rebuild from earlier tonight landed clean** (context for the recon):
-   entities 35.95M → 37.25M, index rows 90.0M → 92.6M, STRONG families 5 → 2
-   (docket collision dead), incremental catch-up unfrozen (2,122 watermarks
-   re-pinned).
+1. **The "every new key needs a 4.5h rebuild" rule is dead — and the 4.5h was never
+   true.** Query history: the 08-28 rebuild was ~50 busy-minutes on X-Small (~$2–3);
+   the 08-11 one took 25 min. The stale "$10–15 / 4.5h" quote had been repeated since
+   08-08. Logged as feedback memory.
+2. **New system (shipped, tested offline, not yet run live):** config is pinned per
+   unit (per key family / per spine spec / per table's graph keys). On drift,
+   `python -m connect apply-config` classifies the change and reslices ONLY the tables
+   it touches (new family → its tables; changed normalizer → tables carrying it; new
+   extra key → that table; removed spec → retract). The heartbeat auto-applies drift
+   instead of refusing. A full rebuild re-pins and stays the equivalence backstop.
+   Design + measured numbers: `reports/recon/apply_config_design_2026-08-29.md`.
+3. **The 08-29 ID batch is now ON in code** (CAGE, award key, PECOS PAC/enrollment ids,
+   FDIC cert, Fed RSSD, EIA plant + utility ids; verified live earlier today —
+   `reports/recon/bucket_b_wiring_2026-08-29.md`). Offline plan: 19 spine reslices +
+   11 graph reslices, 0 retractions; the 93M-row contracts table is the long pole.
+   First run auto-pins the flags-off baseline (proven: it reproduces the live sentinel).
+4. **🚨 Pre-existing bug found and fixed in the incremental engine:** the "what changed"
+   set was written as `NEW MINUS OLD UNION OLD MINUS NEW` without parentheses;
+   Snowflake reads that left-to-right, so it collapsed to `OLD MINUS NEW` — every
+   incremental run since the engine shipped has silently skipped ADDED keys in the
+   entity map / nodes / pairs (index + golden were unaffected). Live-proven: a new
+   table previewed affected=0 with 54,406 keys; after the fix 54,406. No live damage
+   today (no incremental run since the 08-28 full rebuild), but any earlier
+   incremental-only period may have under-merged — the 08-28 rebuild reset it.
+   Pinned by a test.
+5. **Chris's move (the classifier blocks the spine write from this session; the
+   dry-run ran and pinned the baseline):** `python -m connect apply-config`.
+   Expect minutes, not hours. Then `python -m connect validate-incremental` for the
+   equivalence proof.
+6. **Pre-existing, unchanged:** incremental-vs-backstop drift test red (9 keyset tables
+   from the 08-28 rebuild; apply-config's re-pin + a later re-seed clears it); 8 spatial
+   join errors (EPA TRI + NTSB coordinates); overnight loads (MAUDE, subawards 4.74M so
+   far, LDA) not checked; Snowflake MCP token rejected.
+7. **Working tree uncommitted:** keys.py, entity_index_specs.py, discover.py,
+   incremental.py, __main__.py, 2 new test files, 6 report files, STATUS.md.
 
 ## BROKE
 
-Nothing new broke. Two pre-existing open bugs restated above (spatial lat/lng,
-uncommitted work). The direct Snowflake MCP connector rejected its token this
-session — worked around via the repo's own key-pair connection
-(`scripts/_snowflake_conn.py`); Chris may want to refresh that token.
+Nothing new broke. Offline suites 143 passed (apply-config classifier, batch pins,
+incremental, keys, visibility, honesty, leads).
 
 ## YOUR MOVE (Chris)
 
-Read the ranked candidate table (it's short — 13 rows) and pick which ID
-families are worth wiring. The recon deliberately registered nothing. Top 3 by
-connective value: CAGE code, the contracts↔subawards award key (pairs with the
-subawards load finishing overnight), and the NPPES legacy-ID block (the bridge
-toward state Medicaid data).
+Run `python -m connect apply-config` (item 5). Then say whether to commit.
 
 ## NEXT
 
-1. The major sweep/refinement conversation (keyless giants FEMA 26M / HMDA 19M
-   / CFPB 17M; dead domains; broken axes) — now with the recon list as input.
-2. Commit the 5 loader scripts + connect-layer edits.
-3. Re-run the DUNS orphan check (query still needs schema-name quoting fix).
-4. Fix the 2 spatial source tables (EPA TRI, NTSB) malformed coordinates.
-5. Wire the 5 verified-but-unregistered keys from prior sessions (MSHA
-   controller, OFLC case, EIN+PN plan, NDC, CUSIP) — now joined by this
-   session's 13 candidates for triage.
-6. Point name+zip machinery at the keyless giants; repoint contracts staging
-   to the R2 full table; known-truth tracer capstone.
+1. After apply-config lands: measure edges for the 8 new families; refresh the graph
+   map snapshot (`connect fingerprint`) so the map sees them (08-18 lesson).
+2. Retire the staged-batch flags entirely (apply-config makes them unnecessary).
+3. Repair float-text CERT/RSSD in failed-banks + OCC tables → add 3 scoped keys.
+4. NDC segment-aware normalizer.
+5. Verify overnight loads; re-run subawards↔contracts award-key overlap once both
+   finish.
+6. EPA TRI + NTSB coordinates; DOCKET issuer namespace; optional bucket-C census via
+   the 338k-dataset portal index.
 
-**Cost note:** this recon was cheap — one catalog dump (751 rows) plus three
-full-table verify scans (~16M rows total), well under $1 of warehouse compute.
-Earlier tonight's rebuild ran on the quoted ~$12–18; exact credits still not
-pulled from the meter. Overnight loads carry forward from the 08-27 log.
+**Cost note:** ~$2–3 warehouse compute this session (verify passes over ~100M rows,
+normalizer dry-runs, two runs of the live incremental test). apply-config itself:
+expected minutes on X-Small.

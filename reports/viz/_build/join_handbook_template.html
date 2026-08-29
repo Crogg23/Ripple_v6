@@ -1,0 +1,648 @@
+<title>The Join Handbook</title>
+<style>
+:root {
+  --bg: #f4f5f7;
+  --surface: #ffffff;
+  --surface-2: #eceef2;
+  --surface-3: #e2e5eb;
+  --border: #d8dce3;
+  --ink: #171a21;
+  --ink-2: #4c5261;
+  --ink-3: #7d8494;
+  --accent: #2c4a6e;
+  --accent-soft: #e4ebf3;
+  --tier-steel: #2f5680;
+  --tier-steel-bg: #e6edf5;
+  --tier-strong: #2f5680;
+  --tier-bridge: #93611c;
+  --tier-bridge-bg: #f4ebda;
+  --tier-geo: #3c7259;
+  --tier-geo-bg: #e5f1eb;
+  --tier-corrob: #7c7290;
+  --tier-corrob-bg: #edeaf3;
+  --warn: #9c4a2f;
+  --warn-bg: #f6e8e2;
+  --focus: #2c4a6e;
+  --shadow: 0 1px 2px rgba(23,26,33,0.06), 0 8px 24px -12px rgba(23,26,33,0.12);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14171d;
+    --surface: #1b1f27;
+    --surface-2: #232833;
+    --surface-3: #2b313d;
+    --border: #313847;
+    --ink: #e7e9ee;
+    --ink-2: #b1b7c4;
+    --ink-3: #7d8494;
+    --accent: #8fb2dc;
+    --accent-soft: #223549;
+    --tier-steel: #9dc0ea;
+    --tier-steel-bg: #1f3450;
+    --tier-strong: #9dc0ea;
+    --tier-bridge: #e0b169;
+    --tier-bridge-bg: #3a2f18;
+    --tier-geo: #8fceac;
+    --tier-geo-bg: #1c3327;
+    --tier-corrob: #b6acce;
+    --tier-corrob-bg: #2c2740;
+    --warn: #e3937a;
+    --warn-bg: #3a231c;
+    --focus: #9dc0ea;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #14171d;
+  --surface: #1b1f27;
+  --surface-2: #232833;
+  --surface-3: #2b313d;
+  --border: #313847;
+  --ink: #e7e9ee;
+  --ink-2: #b1b7c4;
+  --ink-3: #7d8494;
+  --accent: #8fb2dc;
+  --accent-soft: #223549;
+  --tier-steel: #9dc0ea;
+  --tier-steel-bg: #1f3450;
+  --tier-strong: #9dc0ea;
+  --tier-bridge: #e0b169;
+  --tier-bridge-bg: #3a2f18;
+  --tier-geo: #8fceac;
+  --tier-geo-bg: #1c3327;
+  --tier-corrob: #b6acce;
+  --tier-corrob-bg: #2c2740;
+  --warn: #e3937a;
+  --warn-bg: #3a231c;
+  --focus: #9dc0ea;
+  --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.mono { font-family: "IBM Plex Mono", ui-monospace, "SF Mono", Consolas, monospace; }
+p { text-wrap: pretty; }
+a { color: var(--accent); }
+::selection { background: var(--accent-soft); }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+button { font: inherit; }
+
+.app {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+  max-height: 100vh;
+}
+
+header.top {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+header.top .titles { display: flex; flex-direction: column; gap: 2px; }
+header.top h1 {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+header.top .sub {
+  color: var(--ink-3);
+  font-size: 12.5px;
+}
+header.top .meter {
+  margin-left: auto;
+  color: var(--ink-3);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+.help-btn {
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--ink-2);
+  border-radius: 7px;
+  padding: 7px 12px;
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.help-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+.rail {
+  border-right: 1px solid var(--border);
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.rail-search { padding: 14px 14px 10px; border-bottom: 1px solid var(--border); }
+.rail-search input {
+  width: 100%;
+  padding: 9px 11px;
+  border-radius: 7px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--ink);
+  font-size: 13.5px;
+}
+.rail-search input::placeholder { color: var(--ink-3); }
+.rail-count {
+  padding: 8px 14px 6px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+}
+.rail-list { overflow-y: auto; flex: 1; min-height: 0; padding: 0 6px 12px; }
+.rail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  width: 100%;
+  text-align: left;
+  padding: 7px 9px;
+  border: none;
+  background: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--ink);
+}
+.rail-item:hover { background: var(--surface-2); }
+.rail-item.active { background: var(--accent-soft); }
+.rail-item .row1 { display: flex; align-items: center; gap: 8px; }
+.rail-item .name {
+  flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-family: "IBM Plex Mono", monospace; font-size: 12px;
+}
+.rail-item.active .name { color: var(--accent); }
+.rail-item .friendly {
+  font-size: 11px; color: var(--ink-3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.rail-item .count {
+  font-size: 10.5px; color: var(--ink-3); background: var(--surface-2);
+  border-radius: 20px; padding: 1px 7px; font-variant-numeric: tabular-nums;
+}
+.rail-item.active .count { background: var(--surface); }
+.rail-item.zero .count { visibility: hidden; }
+
+main { overflow-y: auto; min-height: 0; padding: 30px 40px 70px; }
+main.narrow { max-width: 900px; }
+
+.empty-state { max-width: 640px; margin: 20px auto 0; color: var(--ink-2); }
+.empty-state h2 { font-size: 19px; margin: 0 0 10px; color: var(--ink); }
+.empty-state p { margin: 0 0 12px; }
+.empty-state .card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+  padding: 18px 20px; margin-top: 18px; box-shadow: var(--shadow);
+}
+.empty-state .card h3 { margin: 0 0 8px; font-size: 13px; color: var(--ink); }
+.empty-state .card p { font-size: 13px; margin: 0 0 8px; color: var(--ink-2); }
+.tier-legend { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+.tier-legend-row { display: flex; gap: 10px; align-items: baseline; font-size: 13px; }
+.tier-legend-row .dot { width: 9px; height: 9px; border-radius: 50%; flex: none; margin-top: 4px; }
+.tier-legend-row b { color: var(--ink); }
+.tier-legend-row span.desc { color: var(--ink-2); }
+
+.detail-head { margin-bottom: 2px; }
+.detail-head .eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: .07em; color: var(--ink-3); margin-bottom: 4px; }
+.detail-head h2 {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 21px; font-weight: 600; margin: 0; word-break: break-word;
+}
+.detail-head .friendly-name { font-size: 15px; color: var(--ink-2); margin-top: 5px; }
+.detail-sub { color: var(--ink-3); font-size: 13px; margin: 8px 0 20px; }
+
+.controls {
+  display: flex; align-items: center; gap: 16px; margin: 18px 0 18px;
+  padding-bottom: 14px; border-bottom: 1px solid var(--border); flex-wrap: wrap;
+}
+.controls .toggle {
+  display: flex; align-items: center; gap: 7px; font-size: 12.5px; color: var(--ink-2);
+  cursor: pointer; user-select: none;
+}
+.controls input[type="checkbox"] { accent-color: var(--accent); width: 14px; height: 14px; }
+
+.tier-group { margin-bottom: 30px; }
+.tier-group .tier-head { margin-bottom: 12px; }
+.tier-group .tier-head .label {
+  font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px;
+}
+.tier-group .tier-head .dot { width: 8px; height: 8px; border-radius: 50%; }
+.tier-group .tier-head .n { color: var(--ink-3); font-weight: 400; font-variant-numeric: tabular-nums; }
+.tier-group .tier-head .desc { font-size: 12px; color: var(--ink-3); margin: 3px 0 0 16px; max-width: 62ch; }
+.tier-group.warn .tier-head .desc { color: var(--warn); }
+
+.edge-list { display: flex; flex-direction: column; gap: 8px; }
+.edge-row {
+  padding: 13px 16px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 9px;
+  cursor: pointer; box-shadow: var(--shadow);
+}
+.edge-row:hover { border-color: var(--accent); }
+.edge-top { display: flex; align-items: flex-start; gap: 14px; }
+.edge-main { flex: 1; min-width: 0; }
+.edge-table { font-family: "IBM Plex Mono", monospace; font-size: 13.5px; font-weight: 500; }
+.edge-friendly { font-size: 12px; color: var(--ink-3); margin-top: 1px; }
+.edge-stat { text-align: right; flex: none; }
+.edge-stat .pct { font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.edge-stat .bar { height: 4px; border-radius: 2px; background: var(--surface-2); margin-top: 6px; width: 84px; overflow: hidden; }
+.edge-stat .bar > span { display: block; height: 100%; border-radius: 2px; }
+.edge-sentence {
+  font-size: 12.5px; color: var(--ink-2); margin-top: 9px; padding-top: 9px;
+  border-top: 1px solid var(--border);
+}
+.edge-sentence b { color: var(--ink); font-weight: 600; }
+.edge-tech {
+  font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--ink-3);
+  margin-top: 6px;
+}
+
+.tier-STEEL .dot, .tier-STRONG .dot { background: var(--tier-steel); }
+.tier-STEEL .bar > span, .tier-STRONG .bar > span { background: var(--tier-steel); }
+.tier-STEEL .pct, .tier-STRONG .pct { color: var(--tier-steel); }
+.tier-BRIDGE .dot { background: var(--tier-bridge); }
+.tier-BRIDGE .bar > span { background: var(--tier-bridge); }
+.tier-BRIDGE .pct { color: var(--tier-bridge); }
+.tier-GEO .dot { background: var(--tier-geo); }
+.tier-GEO .bar > span { background: var(--tier-geo); }
+.tier-GEO .pct { color: var(--tier-geo); }
+.tier-CORROBORATED .dot { background: var(--tier-corrob); }
+.tier-CORROBORATED .bar > span { background: var(--tier-corrob); }
+.tier-CORROBORATED .pct { color: var(--tier-corrob); }
+
+.no-results { color: var(--ink-3); padding: 30px 4px; font-size: 13px; }
+
+/* help overlay */
+.help-overlay {
+  position: fixed; inset: 0; background: rgba(15,17,21,0.45);
+  display: flex; align-items: flex-start; justify-content: center;
+  padding: 60px 20px; z-index: 50; overflow-y: auto;
+}
+.help-overlay[hidden] { display: none; }
+.help-panel {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+  max-width: 640px; width: 100%; padding: 30px 32px 26px; box-shadow: var(--shadow);
+}
+.help-panel h2 { margin: 0 0 6px; font-size: 19px; }
+.help-panel .lede { color: var(--ink-2); margin: 0 0 22px; font-size: 13.5px; }
+.help-panel h3 { font-size: 12.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-3); margin: 22px 0 10px; }
+.help-panel h3:first-of-type { margin-top: 0; }
+.help-panel p { font-size: 13.5px; color: var(--ink-2); margin: 0 0 10px; }
+.help-panel .close-row { display: flex; justify-content: flex-end; margin-top: 22px; }
+.help-panel .close-btn {
+  background: var(--accent); color: var(--surface); border: none; border-radius: 7px;
+  padding: 9px 18px; font-size: 13px; font-weight: 500; cursor: pointer;
+}
+.def-row { display: flex; gap: 10px; align-items: baseline; margin-bottom: 8px; font-size: 13px; }
+.def-row .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; margin-top: 4px; }
+.def-row b { color: var(--ink); }
+.def-row span { color: var(--ink-2); }
+
+@media (max-width: 860px) {
+  .app { grid-template-columns: 1fr; }
+  .rail { display: none; }
+}
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<div class="app">
+  <header class="top">
+    <div class="titles">
+      <h1>The Join Handbook</h1>
+      <span class="sub">every table in the warehouse &rarr; what it connects to, and how sure we are</span>
+    </div>
+    <span class="meter" id="meter"></span>
+    <button class="help-btn" id="help-open">What am I looking at?</button>
+  </header>
+
+  <nav class="rail">
+    <div class="rail-search">
+      <input id="search" type="text" placeholder="search a table&hellip;" autocomplete="off" spellcheck="false">
+    </div>
+    <div class="rail-count" id="rail-count"></div>
+    <div class="rail-list" id="rail-list"></div>
+  </nav>
+
+  <main id="main">
+    <div class="empty-state">
+      <h2>Pick a table on the left.</h2>
+      <p>Every table with at least one measured connection is on the left &mdash; pick one and this side shows every other table it links to, what column they share, and how confident that link actually is.</p>
+      <div class="card">
+        <h3>The four kinds of connection, from most to least sure</h3>
+        <div class="tier-legend" id="empty-legend"></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="help-overlay" id="help-overlay" hidden>
+  <div class="help-panel">
+    <h2>What am I looking at?</h2>
+    <p class="lede">This is a map of which tables in the warehouse can be joined to which other tables, and on what column &mdash; built by actually running the joins against live data, not by guessing from column names.</p>
+
+    <h3>Why this exists</h3>
+    <p>560+ government data sources, each built by a different agency that never talked to the others. The same hospital shows up as a different-looking row in Medicare's files, OSHA's files, and the federal contracts file. Nothing tells you those rows are the same hospital &mdash; except that they all print the same official ID number somewhere. This handbook is that list: which tables share a real ID number, and how well the values actually lined up when we checked.</p>
+
+    <h3>How to read a connection</h3>
+    <p>Every row on the right says: <b>this table</b> and <b>that table</b> both have a column holding the same kind of ID number. We counted how many of the ID values in one table also show up in the other. That percentage is the confidence score.</p>
+
+    <h3>The four kinds of connection</h3>
+    <div class="tier-legend" id="help-legend"></div>
+
+    <div class="close-row"><button class="close-btn" id="help-close">Got it</button></div>
+  </div>
+</div>
+
+<script>
+const DATA = __DATA_PLACEHOLDER__;
+
+const TIER_INFO = {
+  STEEL:  { label: 'Rock-solid match', color: 'var(--tier-steel)',
+            desc: 'Both tables print the exact same official ID number (a tax ID, a provider number, a facility code&hellip;). This is as close to certain as it gets.' },
+  STRONG: { label: 'Strong code match', color: 'var(--tier-strong)',
+            desc: 'Same official code in both tables, but this code system occasionally reuses numbers across unrelated things, so treat it as very likely rather than certain.' },
+  BRIDGE: { label: 'Different number, known translation', color: 'var(--tier-bridge)',
+            desc: 'The two tables use two different ID systems for the same kind of thing (say, an old ID and its replacement) &mdash; there’s a known, verified way to translate one into the other.' },
+  GEO:    { label: 'Same location', color: 'var(--tier-geo)',
+            desc: 'Matched on geography &mdash; same county, same coordinates &mdash; not on an identity number. Good for "what else happened near here," not for "is this the same organization."' },
+  CORROBORATED: { label: 'Educated guess (name + ZIP)', color: 'var(--tier-corrob)',
+            desc: 'No shared ID at all. Matched because the name and ZIP code look similar. Least reliable by far &mdash; most of these guesses turn out to be different organizations that just share a name or a ZIP. Hidden by default.' },
+};
+const TIER_ORDER = ['STEEL','STRONG','BRIDGE','GEO','CORROBORATED'];
+
+// Plain-English name + one-line description for every ID/key type seen in the data.
+// "bridge" entries (X~Y) are two ID systems for the same underlying thing.
+const KEY_INFO = {
+  NPI:  { name: 'Provider Number (NPI)', desc: 'the federal ID every individual doctor or healthcare organization is assigned' },
+  EIN:  { name: 'Employer Tax ID (EIN)', desc: 'the IRS tax ID for a company, nonprofit, or other organization — like an SSN for a business' },
+  CIK:  { name: 'SEC Filer ID (CIK)', desc: 'the number the SEC assigns to anyone who files public paperwork — stock filings, 10-Ks, etc.' },
+  CCN:  { name: 'Medicare Facility Number (CCN)', desc: 'the ID a hospital, nursing home, or clinic uses to bill Medicare' },
+  UEI:  { name: 'Federal Contractor ID (UEI)', desc: 'the current ID the government assigns to anyone who does business with it (replaced DUNS in 2022)' },
+  DUNS: { name: 'Old Federal Contractor ID (DUNS)', desc: 'the ID system UEI replaced — still shows up in older contract and grant records' },
+  LEI:  { name: 'Global Legal Entity ID (LEI)', desc: 'a 20-character ID used worldwide to identify companies in financial markets' },
+  FRS_ID: { name: 'EPA Facility ID', desc: 'the ID the EPA assigns to any site it regulates — a factory, landfill, power plant, etc.' },
+  PWSID: { name: 'Water System ID (PWSID)', desc: 'the EPA’s ID for a specific public water utility or system' },
+  NPDES_ID: { name: 'Water Discharge Permit ID', desc: 'the EPA’s ID for a permit to release treated water or waste into a waterway' },
+  FEC_CMTE_ID: { name: 'Campaign Committee ID', desc: 'the FEC’s ID for a specific political committee or PAC' },
+  FEC_CAND_ID: { name: 'Federal Candidate ID', desc: 'the FEC’s ID for a specific candidate for federal office' },
+  BIOGUIDE: { name: 'Member of Congress ID', desc: 'the official ID for a current or former member of the U.S. Congress' },
+  ICPSR: { name: 'Legislator Voting-Record ID', desc: 'an ID political scientists use to track one lawmaker’s votes over their whole career' },
+  CL_PERSON_ID: { name: 'Federal Judge ID', desc: 'an ID for a specific federal judge' },
+  CL_COURT_ID: { name: 'Federal Court ID', desc: 'an ID for a specific federal court' },
+  NCUA_CHARTER: { name: 'Credit Union Charter #', desc: 'the ID the federal credit union regulator assigns to a credit union' },
+  MINE_ID: { name: 'Mine ID', desc: 'the ID the mine safety regulator assigns to a specific mine' },
+  ICE_FACILITY: { name: 'Detention Facility Code', desc: 'ICE’s ID for a specific immigration detention site' },
+  COMPANY_NO: { name: 'UK Company Number', desc: 'the official ID the UK government assigns to a registered company' },
+  DOCKET: { name: 'Court Docket / Case Number', desc: 'a court case number — currently unreliable here, see the warning below' },
+  FIPS: { name: 'County/State Code (FIPS)', desc: 'the standard federal numeric code for a U.S. state or county' },
+  ZIP: { name: 'ZIP Code', desc: 'a U.S. postal ZIP code' },
+  GEO_IN: { name: 'Falls inside (map boundary)', desc: 'one record’s coordinates fall inside the other’s mapped area — e.g., a facility located inside a county' },
+  'NAME@ZIP': { name: 'Similar name + ZIP', desc: 'no shared ID — matched only because the name and ZIP code look alike' },
+  'NAME@FIPS': { name: 'Similar name + county', desc: 'no shared ID — matched only because the name and county look alike' },
+  'CCN~NPI': { name: 'Facility ID ↔ Provider ID', desc: 'a Medicare facility linked to the individual provider(s) who work there' },
+  'EIN~UEI': { name: 'Tax ID ↔ Contractor ID', desc: 'the same organization’s IRS tax ID and its federal contractor ID' },
+  'CIK~EIN': { name: 'SEC Filer ID ↔ Tax ID', desc: 'the same company’s SEC filer number and IRS tax ID' },
+  'DUNS~UEI': { name: 'Old ↔ New Contractor ID', desc: 'the same organization’s retired DUNS number and its current UEI' },
+};
+function keyInfo(k) {
+  return KEY_INFO[k] || { name: k, desc: 'a shared identifier between these two tables' };
+}
+
+// Agency / publisher prefixes → plain-English expansion, for the friendly subtitle.
+const AGENCY_MAP = [
+  ['FED_CMS_NPPES', 'Medicare & Medicaid (CMS) — National Provider Registry'],
+  ['FED_CMS_PECOS', 'Medicare & Medicaid (CMS) — Provider Enrollment (PECOS)'],
+  ['FED_CMS_HCRIS', 'Medicare & Medicaid (CMS) — Hospital Cost Reports'],
+  ['FED_CMS', 'Medicare & Medicaid (CMS)'],
+  ['FED_HHS_OIG', 'HHS Inspector General — Excluded Providers'],
+  ['FED_HHS', 'Health & Human Services (HHS)'],
+  ['FED_CDC', 'CDC (Public Health)'],
+  ['FED_NIH', 'NIH (Medical Research)'],
+  ['FED_FDA', 'FDA (Food & Drug)'],
+  ['FED_DEA', 'DEA (Drug Enforcement)'],
+  ['FED_IRS_EO_BMF', 'IRS — Nonprofit / Charity Master File'],
+  ['FED_IRS', 'IRS'],
+  ['IRS527', 'IRS — Political Groups (527s)'],
+  ['FED_EPA_FRS', 'EPA — Facility Registry'],
+  ['FED_EPA_ECHO', 'EPA — Enforcement & Compliance'],
+  ['FED_EPA', 'EPA (Environment)'],
+  ['FED_FEC', 'FEC (Campaign Finance)'],
+  ['FED_FDIC', 'FDIC (Bank Insurance)'],
+  ['FED_OCC', 'OCC (National Bank Regulator)'],
+  ['FED_FHFA', 'FHFA (Housing Finance Regulator)'],
+  ['FED_NCUA', 'NCUA (Credit Union Regulator)'],
+  ['FED_EIA', 'EIA (Dept. of Energy — Statistics)'],
+  ['FED_FERC', 'FERC (Energy Regulator)'],
+  ['FED_SEC', 'SEC (Securities Regulator)'],
+  ['FED_DOL_EBSA', 'Dept. of Labor — Pension Plans (EBSA)'],
+  ['FED_DOL', 'Dept. of Labor'],
+  ['FED_OSHA', 'OSHA (Workplace Safety)'],
+  ['FED_MSHA', 'MSHA (Mine Safety)'],
+  ['FED_NLRB', 'NLRB (Labor Relations)'],
+  ['FED_EEOC', 'EEOC (Workplace Discrimination)'],
+  ['FED_SAM_EXCLUSIONS', 'SAM.gov — Federal Debarment List'],
+  ['FED_SAM', 'SAM.gov (Federal Contractor Registry)'],
+  ['FED_USASPENDING', 'USAspending (Federal Contracts & Grants)'],
+  ['FED_SBIR', 'SBIR (Small Business Research Grants)'],
+  ['FED_NSF', 'NSF (Science Foundation)'],
+  ['FED_PBGC', 'PBGC (Pension Insurance)'],
+  ['FED_FCC', 'FCC (Communications)'],
+  ['FED_CFPB_HMDA', 'CFPB — Mortgage Lending Data (HMDA)'],
+  ['FED_CFPB', 'CFPB (Consumer Finance)'],
+  ['FED_ICE', 'ICE (Immigration Enforcement)'],
+  ['FED_FEMA', 'FEMA (Disaster Aid)'],
+  ['FED_HUD', 'HUD (Housing)'],
+  ['FED_ATF', 'ATF (Firearms & Explosives)'],
+  ['FED_BLS', 'BLS (Labor Statistics)'],
+  ['FED_NTSB', 'NTSB (Transportation Safety)'],
+  ['FED_FAA', 'FAA (Aviation)'],
+  ['FED_COURTLISTENER', 'CourtListener (Federal Court Records)'],
+  ['FED_FJC', 'Federal Judicial Center'],
+  ['FED_SCDB', 'Supreme Court Database'],
+  ['FED_OYEZ', 'Oyez (Supreme Court Archive)'],
+  ['FED_OFAC', 'OFAC (Sanctions List)'],
+  ['FED_NOAA', 'NOAA (Weather / Ocean)'],
+  ['FED_NARA', 'National Archives'],
+  ['XC_', 'Cross-reference / bridge table'],
+  ['INTL_', 'International source'],
+  ['ST_', 'State-level source'],
+  ['UK_', 'United Kingdom source'],
+  ['CA_', 'California state source'],
+];
+function friendlyName(table) {
+  for (const [prefix, label] of AGENCY_MAP) {
+    if (table.startsWith(prefix)) {
+      const rest = table.slice(prefix.length).replace(/^_/, '');
+      const words = rest.split('_').filter(Boolean).map(w =>
+        w.length <= 4 && w === w.toUpperCase() ? w : w.charAt(0) + w.slice(1).toLowerCase()
+      ).join(' ');
+      return words ? label + ': ' + words : label;
+    }
+  }
+  const words = table.replace(/^FED_/, '').split('_').filter(Boolean).map(w =>
+    w.length <= 4 && w === w.toUpperCase() ? w : w.charAt(0) + w.slice(1).toLowerCase()
+  ).join(' ');
+  return words || table;
+}
+
+function renderLegendInto(el) {
+  el.innerHTML = TIER_ORDER.map(t => {
+    const info = TIER_INFO[t];
+    return '<div class="tier-legend-row"><span class="dot" style="background:' + info.color + '"></span>' +
+      '<div><b>' + info.label + '.</b> <span class="desc">' + info.desc + '</span></div></div>';
+  }).join('');
+}
+
+let activeTable = null;
+let showFuzzy = false;
+
+const railList = document.getElementById('rail-list');
+const railCount = document.getElementById('rail-count');
+const searchInput = document.getElementById('search');
+const main = document.getElementById('main');
+const meter = document.getElementById('meter');
+
+renderLegendInto(document.getElementById('empty-legend'));
+renderLegendInto(document.getElementById('help-legend'));
+
+const helpOverlay = document.getElementById('help-overlay');
+document.getElementById('help-open').addEventListener('click', () => { helpOverlay.hidden = false; });
+document.getElementById('help-close').addEventListener('click', () => { helpOverlay.hidden = true; });
+helpOverlay.addEventListener('click', (e) => { if (e.target === helpOverlay) helpOverlay.hidden = true; });
+
+const allTables = DATA.tables.slice().sort((a,b) => b.n_hard - a.n_hard || b.n_conn - a.n_conn || a.name.localeCompare(b.name));
+const totalJoins = Object.values(DATA.edges).reduce((s,v)=>s+v.length,0);
+meter.textContent = allTables.length.toLocaleString() + ' tables\\n' + totalJoins.toLocaleString() + ' measured joins';
+meter.style.whiteSpace = 'pre-line';
+
+function renderRail(filter) {
+  const q = (filter || '').trim().toUpperCase();
+  const list = q ? allTables.filter(t => t.name.includes(q) || friendlyName(t.name).toUpperCase().includes(q)) : allTables;
+  railCount.textContent = q ? list.length.toLocaleString() + ' match' + (list.length===1?'':'es') : list.length.toLocaleString() + ' tables';
+  railList.innerHTML = '';
+  if (!list.length) {
+    railList.innerHTML = '<div class="no-results">no table named that</div>';
+    return;
+  }
+  const frag = document.createDocumentFragment();
+  list.forEach(t => {
+    const btn = document.createElement('button');
+    btn.className = 'rail-item' + (t.name === activeTable ? ' active' : '') + (t.n_hard === 0 ? ' zero' : '');
+    btn.innerHTML = '<div class="row1"><span class="name">' + t.name + '</span><span class="count">' + t.n_conn + '</span></div>' +
+                     '<div class="friendly">' + friendlyName(t.name) + '</div>';
+    btn.addEventListener('click', () => selectTable(t.name));
+    frag.appendChild(btn);
+  });
+  railList.appendChild(frag);
+}
+
+function selectTable(name) {
+  activeTable = name;
+  renderRail(searchInput.value);
+  renderDetail(name);
+  try { localStorage.setItem('handbook_last_table', name); } catch(e) {}
+}
+
+function joinSentence(name, e) {
+  const info = keyInfo(e.key);
+  const rate = Math.min(100, e.rate);
+  if (e.tier === 'CORROBORATED') {
+    return 'Matched by <b>' + info.name.toLowerCase() + '</b> only \\u2014 no shared ID number. Take this one with a grain of salt.';
+  }
+  if (e.tier === 'GEO') {
+    return 'Matched on <b>' + info.name.toLowerCase() + '</b> \\u2014 same place, not necessarily the same organization.';
+  }
+  return 'About <b>' + rate.toFixed(0) + '%</b> of the ' + info.name.toLowerCase() + ' values in this table also show up in ' +
+         e.other + ' \\u2014 ' + e.matched.toLocaleString() + ' matching values in all.';
+}
+
+function renderDetail(name) {
+  const edges = (DATA.edges[name] || []).slice();
+  const groups = {};
+  edges.forEach(e => { (groups[e.tier] = groups[e.tier] || []).push(e); });
+
+  const hardCount = TIER_ORDER.slice(0,3).reduce((s,t) => s + (groups[t]?groups[t].length:0), 0);
+  const geoCount = groups.GEO ? groups.GEO.length : 0;
+  const fuzzyCount = groups.CORROBORATED ? groups.CORROBORATED.length : 0;
+  const hasDocket = edges.some(e => e.key === 'DOCKET');
+
+  let html = '';
+  html += '<div class="detail-head"><div class="eyebrow">' + friendlyName(name).split(':')[0] + '</div>';
+  html += '<h2>' + name + '</h2>';
+  html += '<div class="friendly-name">' + friendlyName(name) + '</div></div>';
+  html += '<div class="detail-sub">' + hardCount + ' reliable connection' + (hardCount===1?'':'s') +
+          (geoCount ? ', ' + geoCount + ' place-based' : '') +
+          (fuzzyCount ? ', ' + fuzzyCount + ' name-guess' + (fuzzyCount===1?'':'es') + ' (hidden by default)' : '') + '</div>';
+
+  if (hasDocket) {
+    html += '<div class="tier-group warn" style="margin-bottom:18px;"><div class="tier-head"><div class="label">\\u26a0 Heads up</div>' +
+      '<div class="desc">This table has a docket/case-number connection. That code system currently mixes bank ID numbers with Supreme Court case numbers, so roughly 4 in 10 of those matches turn out to be wrong. Worth a second look before you trust one.</div></div></div>';
+  }
+
+  html += '<div class="controls">';
+  html += '<label class="toggle"><input type="checkbox" id="fuzzy-toggle"' + (showFuzzy?' checked':'') + '> also show ' + fuzzyCount + ' name+ZIP guesses</label>';
+  html += '</div>';
+
+  if (!edges.length) {
+    html += '<p class="no-results">No measured connections for this table yet.</p>';
+  } else {
+    TIER_ORDER.forEach(tier => {
+      if (tier === 'CORROBORATED' && !showFuzzy) return;
+      const list = groups[tier];
+      if (!list || !list.length) return;
+      const info = TIER_INFO[tier];
+      html += '<div class="tier-group tier-' + tier + '">';
+      html += '<div class="tier-head"><div class="label"><span class="dot"></span>' + info.label + ' <span class="n">(' + list.length + ')</span></div>' +
+              '<div class="desc">' + info.desc + '</div></div>';
+      html += '<div class="edge-list">';
+      list.forEach(e => {
+        const rate = Math.min(100, e.rate);
+        html += '<div class="edge-row" data-target="' + e.other.replace(/"/g,'&quot;') + '">';
+        html += '<div class="edge-top"><div class="edge-main">';
+        html += '<div class="edge-table">' + e.other + '</div>';
+        html += '<div class="edge-friendly">' + friendlyName(e.other) + '</div>';
+        html += '</div>';
+        html += '<div class="edge-stat"><span class="pct">' + rate.toFixed(1) + '%</span><div class="bar"><span style="width:' + rate + '%"></span></div></div>';
+        html += '</div>';
+        html += '<div class="edge-sentence">' + joinSentence(name, e) + '</div>';
+        html += '<div class="edge-tech">' + name + '.' + e.col_self + ' = ' + e.other + '.' + e.col_other + '</div>';
+        html += '</div>';
+      });
+      html += '</div></div>';
+    });
+  }
+
+  main.innerHTML = html;
+  main.scrollTop = 0;
+  const toggle = document.getElementById('fuzzy-toggle');
+  if (toggle) toggle.addEventListener('change', (ev) => { showFuzzy = ev.target.checked; renderDetail(name); });
+  main.querySelectorAll('.edge-row').forEach(row => {
+    row.addEventListener('click', () => selectTable(row.getAttribute('data-target')));
+  });
+}
+
+searchInput.addEventListener('input', (e) => renderRail(e.target.value));
+renderRail('');
+
+try {
+  const saved = localStorage.getItem('handbook_last_table');
+  if (saved && DATA.edges[saved]) selectTable(saved);
+} catch(e) {}
+</script>

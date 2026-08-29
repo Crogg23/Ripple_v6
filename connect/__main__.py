@@ -42,6 +42,8 @@ def main() -> int:
     # `validate-incremental` here == the module CLI's `validate` verb (incremental.py:915); both dispatch to incremental.validate()
     vi = sub.add_parser("validate-incremental", help="non-destructive proof incremental == full rebuild")
     vi.add_argument("--table", default=None)
+    ac = sub.add_parser("apply-config", help="incremental: apply a new key family / spec change with bounded reslices (no full rebuild)")
+    ac.add_argument("--dry-run", action="store_true")
 
     p = sub.add_parser("probe", help="overlap of one ad-hoc pair")
     p.add_argument("--a", required=True); p.add_argument("--akey", required=True)
@@ -134,6 +136,9 @@ def main() -> int:
     if args.cmd == "validate-incremental":
         from . import incremental
         incremental.validate(table=getattr(args, "table", None))
+    if args.cmd == "apply-config":
+        from . import incremental
+        incremental.apply_config(dry_run=getattr(args, "dry_run", False))
     if args.cmd in ("explore", "all"):
         from . import explore
         explore.render()

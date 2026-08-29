@@ -2169,6 +2169,111 @@ SPINE_WIRING_PORTAL_SAMPLES_2026_08_24_DISPLAY_SPECS: dict[str, dict] = {
 }
 DISPLAY_SPECS.update(SPINE_WIRING_PORTAL_SAMPLES_2026_08_24_DISPLAY_SPECS)
 
+# =========================================================================== #
+# 2026-08-29 BUCKET-B BATCH -- Chris's "go" on wiring the ID systems the
+# warehouse already held but the spine ignored (reports/recon/
+# official_id_inventory_2026-08-29.md, bucket B). STAGED behind
+# keys.ENABLE_SPINE_BATCH_2026_08_29 (same freeze contract as the 2026-08
+# batch: flip only in the full-rebuild session). Every count below is live,
+# 2026-08-29 (reports/recon/bucket_b_verify_2026-08-29.json / _verify2_).
+# Key shapes + exclusions are documented on the NORM_RULES block in keys.py.
+# =========================================================================== #
+SPINE_BATCH_2026_08_29_DISPLAY_SPECS: dict[str, dict] = {
+    # FDIC_CERT axis (banks) --------------------------------------------------- #
+    "FED_FDIC_BANK_DATA": {
+        # The FDIC institution master: 27,836 rows, CERT all distinct (4,254
+        # active). FED_RSSD is the SAME bank's Fed id -> extra_keys (the
+        # sanctioned same-row use); RSSDHCR is the holding company = a
+        # different entity -> graph key only (keys.py). LEI column is empty
+        # (ruled 2026-08-24).
+        "key": "FDIC_CERT", "key_col": "CERT", "org": "NAME",
+        "city": "CITY", "state": "STALP", "zip": "ZIP",
+        "extra_keys": [{"key": "RSSD", "key_col": "FED_RSSD"}],
+        "authority": 3,
+    },
+    "FED_FDIC_SOD_BRANCH_DEPOSITS": {
+        # Summary of Deposits, one row per branch-year (2.82M rows). CERT =
+        # the owning bank, 15,497 / 15,505 distinct in the master. NAMEFULL is
+        # the bank's legal name; branch address deliberately NOT declared (a
+        # branch is not the bank's location). RSSDID = same bank -> extra_keys.
+        "key": "FDIC_CERT", "key_col": "CERT", "org": "NAMEFULL",
+        "extra_keys": [{"key": "RSSD", "key_col": "RSSDID"}],
+        "authority": 6,
+    },
+    "FED_FHFA_FHLB_MEMBERSHIP": {
+        # Federal Home Loan Bank members (6,327 rows). CERT filled on 3,984
+        # (the banks/thrifts; credit unions and insurers carry NCUA_ID /
+        # NAIC_ID instead -- NCUA_ID -> NCUA_CHARTER and NAIC_ID are parked,
+        # unverified this session). 2,766 (69.4%) of the certs are in the
+        # FDIC master. The name+zip probe in the 2026-08-27 audit matched
+        # FHLB<->FDIC at 48.6% with NO hard key -- this is that hard key.
+        "key": "FDIC_CERT", "key_col": "CERT", "org": "MEMBER_NAME",
+        "city": "CITY", "state": "STATE", "zip": "ZIP", "authority": 6,
+    },
+    # EIA plant / utility axes (turns the ENERGY domain on) --------------------- #
+    "FED_EIA860_1_UTILITY": {
+        # EIA-860 utility master: 6,643 rows, UTILITY_ID all distinct.
+        "key": "EIA_UTILITY_ID", "key_col": "UTILITY_ID", "org": "UTILITY_NAME",
+        "city": "CITY", "state": "STATE", "zip": "ZIP", "authority": 4,
+    },
+    "FED_EIA860_2_PLANT": {
+        # EIA-860 plant master: 16,132 rows, PLANT_CODE all distinct, with a
+        # street address. UTILITY_ID on the row is the OPERATOR (a different
+        # entity) -> graph key only, not extra_keys.
+        "key": "EIA_PLANT_ID", "key_col": "PLANT_CODE", "org": "PLANT_NAME",
+        "city": "CITY", "state": "STATE", "zip": "ZIP", "authority": 4,
+    },
+    "FED_EPA_EGRID_PLANT_2022": {
+        # EPA eGRID 2022 plant file: 11,974 plants keyed by the DOE/EIA ORIS
+        # code = EIA PLANT_CODE (11,802 = 98.6% in the EIA-860 master). The
+        # emissions side of the plant axis. One header-echo row ('UTLSRVID')
+        # dies in pad-norm.
+        "key": "EIA_PLANT_ID", "key_col": "DOE_EIA_ORIS_PLANT_OR_FACILITY_CODE",
+        "org": "PLANT_NAME", "state": "PLANT_STATE_ABBREVIATION", "authority": 6,
+    },
+}
+
+# Same-row extra keys on tables that are ALREADY wired on another axis
+# (UEI / NPI). Applied as patches so the existing spec comments stay put.
+_SPINE_BATCH_2026_08_29_EXTRA_KEYS: dict[str, list[dict]] = {
+    # CAGE: the recipient's own DLA code on the same contract row (55.4M of
+    # 93.2M rows, 246,832 distinct). SAM exclusions: 435 rows carry one.
+    "FED_USASPENDING_CONTRACTS_FULL_R2": [{"key": "CAGE", "key_col": "CAGE_CODE"}],
+    "FED_SAM_EXCLUSIONS_FULL_R2": [{"key": "CAGE", "key_col": "CAGE"}],
+    # PECOS associate-control id: the enrolled provider's PECOS identity on the
+    # same row as its NPI (2,456,135 distinct). Facility affiliation IND_PAC_ID
+    # 99.7% in the FFS file; the six facility files' ASSOCIATE_ID 98.6-99.7%.
+    "FED_CMS_PECOS_PROVIDER_ENROLLMENT": [{"key": "PECOS_PAC_ID", "key_col": "PECOS_ASCT_CNTL_ID"}],
+    "FED_CMS_FACILITY_AFFILIATION": [{"key": "PECOS_PAC_ID", "key_col": "IND_PAC_ID"}],
+    "FED_CMS_HOSPITAL_ENROLLMENTS": [{"key": "PECOS_PAC_ID", "key_col": "ASSOCIATE_ID"}],
+    "FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS": [{"key": "PECOS_PAC_ID", "key_col": "ASSOCIATE_ID"}],
+    "FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS": [{"key": "PECOS_PAC_ID", "key_col": "ASSOCIATE_ID"}],
+    "FED_CMS_HOSPICE_ENROLLMENTS": [{"key": "PECOS_PAC_ID", "key_col": "ASSOCIATE_ID"}],
+    "FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS": [{"key": "PECOS_PAC_ID", "key_col": "ASSOCIATE_ID"}],
+    "FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS": [{"key": "PECOS_PAC_ID", "key_col": "ASSOCIATE_ID"}],
+}
+
+
+def _maybe_enable_spine_batch_2026_08_29() -> None:
+    try:
+        from .keys import ENABLE_SPINE_BATCH_2026_08_29
+    except ImportError:
+        from keys import ENABLE_SPINE_BATCH_2026_08_29
+    if not ENABLE_SPINE_BATCH_2026_08_29:
+        return
+    DISPLAY_SPECS.update(SPINE_BATCH_2026_08_29_DISPLAY_SPECS)
+    for table, extras in _SPINE_BATCH_2026_08_29_EXTRA_KEYS.items():
+        spec = DISPLAY_SPECS.get(table)
+        if spec is None:
+            raise RuntimeError(
+                f"2026-08-29 batch: {table} has no DISPLAY_SPECS entry to patch")
+        have = {(e["key"], e["key_col"]) for e in spec.get("extra_keys", [])}
+        spec.setdefault("extra_keys", []).extend(
+            e for e in extras if (e["key"], e["key_col"]) not in have)
+
+
+_maybe_enable_spine_batch_2026_08_29()
+
 # spine scope = every table with a nameable hard key (health + money/maritime/corporate).
 SPINE_TABLES = list(DISPLAY_SPECS)
 
@@ -2212,6 +2317,19 @@ ENTITY_TYPE_BY_KEY = {
     "NPDES_ID": "facility",
     "NCUA_CHARTER": "organization",
     "ICE_FACILITY": "facility",
+    # 2026-08-29 bucket-B batch (staged -- keys.ENABLE_SPINE_BATCH_2026_08_29).
+    # A CAGE-coded contractor and an FDIC-certified bank are institutions; a
+    # PECOS associate-control id is the enrolled provider (person OR org --
+    # the FFS file mixes both; 'organization' is the stable default, same as
+    # the ELSE branch); an RSSD id is a bank / holding company; an EIA plant
+    # is a fixed site (CCN/FRS/mine grain); an EIA utility is an institution.
+    # AWARD_KEY / PECOS_ENRLMT_ID are graph-only (documents), never entities.
+    "CAGE": "organization",
+    "PECOS_PAC_ID": "organization",
+    "FDIC_CERT": "organization",
+    "RSSD": "organization",
+    "EIA_PLANT_ID": "facility",
+    "EIA_UTILITY_ID": "organization",
 }
 
 # Entity types that carry no hard-ID column of their own and are assigned from the
