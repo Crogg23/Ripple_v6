@@ -402,3 +402,178 @@ C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:185: PerformanceWar
 C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:186: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
   out[ingest.META_SRC_SHA256] = hashlib.sha256(
   2020-06: +47,472 rows in 1018s (total 4,039,878)
+    request retry 1/8 (gen job failed: An error occurred.); wait 30s
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:184: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:185: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:186: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SRC_SHA256] = hashlib.sha256(
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:184: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:185: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:186: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SRC_SHA256] = hashlib.sha256(
+  2020-05: +43,021 rows in 2102s (total 4,082,899)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:184: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:185: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:186: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SRC_SHA256] = hashlib.sha256(
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:184: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:185: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:186: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SRC_SHA256] = hashlib.sha256(
+  2020-04: +50,346 rows in 1132s (total 4,133,245)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:184: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:185: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:186: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SRC_SHA256] = hashlib.sha256(
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:184: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:185: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:186: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SRC_SHA256] = hashlib.sha256(
+  2020-03: +42,867 rows in 1089s (total 4,176,112)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:184: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:185: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:186: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SRC_SHA256] = hashlib.sha256(
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:184: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:185: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:186: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SRC_SHA256] = hashlib.sha256(
+  2020-02: +43,269 rows in 933s (total 4,219,381)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:184: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:185: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:186: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SRC_SHA256] = hashlib.sha256(
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:184: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:185: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:186: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SRC_SHA256] = hashlib.sha256(
+  2020-01: +49,504 rows in 901s (total 4,268,885)
+    request retry 1/8 (('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', Non); wait 30s
+    request retry 2/8 (('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', Non); wait 60s
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:184: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:185: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:186: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SRC_SHA256] = hashlib.sha256(
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:184: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:185: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:186: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SRC_SHA256] = hashlib.sha256(
+  2019-12: +44,556 rows in 946s (total 4,313,441)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:184: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:185: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:186: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SRC_SHA256] = hashlib.sha256(
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:184: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:185: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:186: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SRC_SHA256] = hashlib.sha256(
+  2019-11: +46,586 rows in 976s (total 4,360,027)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:184: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:185: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:186: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SRC_SHA256] = hashlib.sha256(
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:184: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:185: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:186: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SRC_SHA256] = hashlib.sha256(
+  2019-10: +98,889 rows in 1621s (total 4,458,916)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:184: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:185: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:186: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SRC_SHA256] = hashlib.sha256(
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:184: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:185: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:186: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SRC_SHA256] = hashlib.sha256(
+  2019-09: +56,430 rows in 1432s (total 4,515,346)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:184: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:185: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:186: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SRC_SHA256] = hashlib.sha256(
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:184: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:185: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:186: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SRC_SHA256] = hashlib.sha256(
+  2019-08: +49,549 rows in 1768s (total 4,564,895)
+    request retry 1/8 (gen job failed: An error occurred.); wait 30s
+    request retry 2/8 (gen job failed: An error occurred.); wait 60s
+    request retry 3/8 (gen job failed: An error occurred.); wait 90s
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:184: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:185: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:186: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SRC_SHA256] = hashlib.sha256(
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:184: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:185: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:186: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SRC_SHA256] = hashlib.sha256(
+  2019-07: +94,250 rows in 1827s (total 4,659,145)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:184: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:185: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:186: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SRC_SHA256] = hashlib.sha256(
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:184: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:185: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:186: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SRC_SHA256] = hashlib.sha256(
+  2019-06: +41,691 rows in 725s (total 4,700,836)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:184: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:185: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:186: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SRC_SHA256] = hashlib.sha256(
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:184: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:185: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SOURCE_RUN_ID] = run_id
+C:\Code\Ripple_v6\scripts\usaspending_subawards_full_load.py:186: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out[ingest.META_SRC_SHA256] = hashlib.sha256(
+  2019-05: +41,624 rows in 725s (total 4,742,460)
