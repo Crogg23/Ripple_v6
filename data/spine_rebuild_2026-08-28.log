@@ -1,0 +1,39 @@
+spine: building hard-key set over 266 sources …
+  synced incremental state (SPINE_KEYSET_LIVE + CONNECT_WATERMARK)
+spine: 36,892,480 entities (20,382,062 multi-source) from 92,156,751 nodes; 36,892,480 golden records; by type: organization=19,977,926, provider=9,608,832, facility=7,232,058, person=64,645, vessel=9,019
+  entity index: 92,156,751 (entity, source) rows
+  backfilled LEFT_ENTITY_ID on 1383 leads
+seed: SPINE_KEYSET_LIVE=92,156,751  KEYSET_LIVE=181,333,165  watermarks=2,121 pinned
+  [keysets] skipping stale fingerprint FED_EPA_ICIS_ICIS_AIR_FACILITIES (FRS_ID)
+  [keysets] skipping stale fingerprint FED_EPA_ICIS_ICIS_AIR_FACILITIES (ZIP)
+  [keysets] skipping stale fingerprint FED_EPA_ICIS_ICIS_AIR_FACILITIES (SIC)
+  [keysets] skipping stale fingerprint FED_EPA_ICIS_ICIS_AIR_FACILITIES (NAICS)
+  [keysets] skipping stale fingerprint FED_EPA_ICIS_ICIS_AIR_FACILITIES (NAME@ZIP)
+  [keysets] skipping stale fingerprint FED_FAA_REGISTRY (ZIP)
+  [keysets] skipping stale fingerprint FED_FAA_REGISTRY (COUNTRY)
+  [keysets] skipping stale fingerprint FED_FAA_REGISTRY (NAME@ZIP)
+  [keysets] skipping stale fingerprint FED_FEC_INDEPENDENT_EXPENDITURES (FEC_CAND_ID)
+  [keysets] skipping stale fingerprint FED_FEC_INDEPENDENT_EXPENDITURES (FEC_CMTE_ID)
+  [value] 3948 kept / 8670 gated from 12618 co-occurring pairs (set-based)
+  [skip spatial-poly] FED_ATF_FFL_LOCATIONS: geometry not WGS84/parseable
+  [skip spatial-poly] FED_BIA_TRIBAL_GEO: geometry not WGS84/parseable
+  [skip spatial-poly] FED_EPA_SUPERFUND_SITE_BOUNDARIES: geometry not WGS84/parseable
+  [skip spatial-poly] FED_NTSB_AVIATION_EVENTS: geometry not WGS84/parseable
+  [skip spatial-poly] FED_USGS_3DEP: geometry not WGS84/parseable
+  [skip spatial-poly] FED_USGS_WBD_HUC8: geometry not WGS84/parseable
+  [skip spatial-poly] FED_PHMSA_FLAGGED_INCIDENTS: geometry not WGS84/parseable
+  [spatial] 21 point tables x 4 WGS84 polygon tables
+  [err] spatial FED_EPA_TRI_FACILITY in FED_MAPPING_INEQUALITY: 100205 (P0000): GeoJSON::Point: Invalid Lng/Lat pair: '67081
+  [err] spatial FED_EPA_TRI_FACILITY in FED_NOAA_WEATHER_API: 100205 (P0000): GeoJSON::Point: Invalid Lng/Lat pair: '67111
+  [err] spatial FED_EPA_TRI_FACILITY in INTL_UCDP_GED: 100205 (P0000): GeoJSON::Point: Invalid Lng/Lat pair: '66350
+  [err] spatial FED_EPA_TRI_FACILITY in INTL_FR_DATA_GOUV_FULL: 100205 (P0000): GeoJSON::Point: Invalid Lng/Lat pair: '66271
+  [err] spatial FED_NTSB_AVIATION_EVENTS in FED_MAPPING_INEQUALITY: 100205 (P0000): GeoJSON::Point: Invalid Lng/Lat pair: '-8946
+  [err] spatial FED_NTSB_AVIATION_EVENTS in FED_NOAA_WEATHER_API: 100205 (P0000): GeoJSON::Point: Invalid Lng/Lat pair: '47500
+  [err] spatial FED_NTSB_AVIATION_EVENTS in INTL_UCDP_GED: 100205 (P0000): GeoJSON::Point: Invalid Lng/Lat pair: '47500
+  [err] spatial FED_NTSB_AVIATION_EVENTS in INTL_FR_DATA_GOUV_FULL: 100205 (P0000): GeoJSON::Point: Invalid Lng/Lat pair: 'nan,5
+  [bridge] 512 transitive edges via 6 crosswalk relations (2,692,260 pairs); 0 gated, 426 already-direct
+
+4512 real connections kept (8671 flukes gated out) from 2704961 pairs tested (433 skipped).
+  by tier: CORROBORATED=2513, STEEL=1345, BRIDGE=512, GEO=140, STRONG=2
+wrote C:\Code\Ripple_v6\outputs\connect_graph.json
+wrote 4,512 edges -> "LIBRARY_META"."CONNECT"."CONNECT_EDGES"

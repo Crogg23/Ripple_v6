@@ -124,7 +124,7 @@ def _iter_result_chunks(json_path: Path, chunk_records: int):
             yield buf
 
 
-def _put_chunk(conn, chunk: list, stage_path: str, tmpdir: Path) -> None:
+def _put_chunk(conn_holder: list, chunk: list, stage_path: str, tmpdir: Path) -> None:
     # PUT keeps the LOCAL basename as the staged object name, so the local temp
     # file must already be named exactly like the target part (part_NNNN_MMMMM.json.gz).
     doc = json.dumps({"results": chunk}).encode("utf-8")
@@ -133,23 +133,38 @@ def _put_chunk(conn, chunk: list, stage_path: str, tmpdir: Path) -> None:
     gz_path = tmpdir / fname
     with gzip.open(gz_path, "wb", compresslevel=6) as gz:
         gz.write(doc)
-    cur = conn.cursor()
-    try:
-        uri = "file://" + str(gz_path.resolve()).replace("\\", "/")
-        cur.execute(
-            f"PUT '{uri}' '@{ssl.STAGE}/{stage_dir}/' AUTO_COMPRESS=FALSE OVERWRITE=TRUE"
-        )
-    finally:
-        cur.close()
+    uri = "file://" + str(gz_path.resolve()).replace("\\", "/")
+    last_err = None
+    for attempt in range(3):
+        try:
+            cur = conn_holder[0].cursor()
+            try:
+                cur.execute(
+                    f"PUT '{uri}' '@{ssl.STAGE}/{stage_dir}/' AUTO_COMPRESS=FALSE OVERWRITE=TRUE"
+                )
+            finally:
+                cur.close()
+            last_err = None
+            break
+        except Exception as e:
+            last_err = e
+            print(f"        PUT failed (attempt {attempt+1}/3): {e} -- reconnecting")
+            try:
+                conn_holder[0].close()
+            except Exception:
+                pass
+            conn_holder[0] = snow.connect()
+    if last_err is not None:
+        raise last_err
     gz_path.unlink(missing_ok=True)
 
 
 def load_source(source_id: str, do_run: bool, chunk_records: int, force: bool) -> dict:
     s = _load_spec(source_id)
     table = source_id.upper()
-    conn = snow.connect()
+    conn_holder = [snow.connect()]
     try:
-        if not force and do_run and ingest._latest_success_sha(conn, source_id) is not None:
+        if not force and do_run and ingest._latest_success_sha(conn_holder[0], source_id) is not None:
             print("    already landed -- skipping (use --force)")
             return {"source_id": source_id, "status": "skip (already landed)"}
         urls = _urls(s)
@@ -171,7 +186,7 @@ def load_source(source_id: str, do_run: bool, chunk_records: int, force: bool) -
             # Clear any stale/contaminated staged files (e.g. a leftover whole-doc
             # part from a prior failed server_side_load.py attempt at this source_id)
             # -- only when we have no checkpointed progress to protect.
-            cur = conn.cursor()
+            cur = conn_holder[0].cursor()
             try:
                 cur.execute(f"REMOVE '@{ssl.STAGE}/bulk/{source_id.lower()}/'")
             except Exception:
@@ -194,7 +209,7 @@ def load_source(source_id: str, do_run: bool, chunk_records: int, force: bool) -
                     part_name = f"part_{fi:04d}_{ci:05d}.json.gz"
                     stage_path = f"bulk/{source_id.lower()}/{part_name}"
                     if do_run:
-                        _put_chunk(conn, chunk, stage_path, tmpdir)
+                        _put_chunk(conn_holder, chunk, stage_path, tmpdir)
                     total_parts += 1
                     total_records += len(chunk)
                     url_records += len(chunk)
@@ -209,9 +224,9 @@ def load_source(source_id: str, do_run: bool, chunk_records: int, force: bool) -
         # COPY every staged chunk into one VARIANT staging table, then finalize
         # through server_side_load's own shared tail (density gate + atomic swap +
         # INGEST_RUNS log + SOURCE_REGISTRY upsert).
-        fmt = ssl._json_format(conn)
-        stg = ssl._build_variant_staging(conn, table)
-        cur = conn.cursor()
+        fmt = ssl._json_format(conn_holder[0])
+        stg = ssl._build_variant_staging(conn_holder[0], table)
+        cur = conn_holder[0].cursor()
         try:
             cur.execute(f"LIST '@{ssl.STAGE}/bulk/{source_id.lower()}/'")
             rows = cur.fetchall()
@@ -223,12 +238,12 @@ def load_source(source_id: str, do_run: bool, chunk_records: int, force: bool) -
         )
         total = 0
         for i, sp in enumerate(staged_paths):
-            total += ssl._copy_json(conn, stg, sp, fmt)
+            total += ssl._copy_json(conn_holder[0], stg, sp, fmt)
             if (i + 1) % 20 == 0:
                 print(f"        COPY progress: {i+1}/{len(staged_paths)} parts, {total:,} rows")
         print(f"    COPY -> staging {stg}: {total:,} VARIANT row(s) from {len(staged_paths)} part(s)")
         sha = f"split_json:{len(staged_paths)}:{total_records}"
-        result = ssl._finalize_table(conn, s, source_id, table, stg, total, run_id, started, sha, urls[0], min_rows=1)
+        result = ssl._finalize_table(conn_holder[0], s, source_id, table, stg, total, run_id, started, sha, urls[0], min_rows=1)
         # Successful finalize means the table is live; clear this source's checkpoint
         # so a future --force reload starts clean instead of "resuming" a stale state.
         cp2 = _load_checkpoint()
@@ -236,7 +251,7 @@ def load_source(source_id: str, do_run: bool, chunk_records: int, force: bool) -
         _save_checkpoint(cp2)
         return result
     finally:
-        conn.close()
+        conn_holder[0].close()
 
 
 def main(argv=None) -> int:

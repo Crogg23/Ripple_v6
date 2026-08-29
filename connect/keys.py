@@ -109,6 +109,33 @@ TABLE_COLUMN_KEYS: dict[tuple[str, str], tuple[str, str]] = {
     ("FED_NCUA_CHARTER_MERGER_EVENTS", "MERGING_CREDIT_UNION_CHARTER"): ("NCUA_CHARTER", "STEEL"),
     ("FED_SAM_EXCLUSIONS_FULL_R2", "UNIQUE_ENTITY_ID"): ("UEI", "STEEL"),       # no 'uei' token in the name
     ("FED_SEC_INSIDER_REPORTINGOWNER", "RPTOWNERCIK"): ("CIK", "STEEL"),        # fused name tokenizes whole
+    # --- 2026-08-28: CUSIP wiring. Deliberately NOT a token rule in the shared
+    # portal tagger (NDC/CUSIP are excluded there as ambiguous across the wild
+    # 338k-column portal crawl) -- but every CUSIP-named column in OUR OWN
+    # landing set (checked live 2026-08-28: exactly these 4 tables, all SEC,
+    # zero false friends) really is a 9-char CUSIP. Verified live overlap
+    # against the new FTD-CUSIP bridge: 13F_HOLDINGS 8.1% (12,415 CUSIPs),
+    # 13F_POSITIONS 32.8% (11,685 CUSIPs) -- both real, both worth the edge.
+    ("FED_SEC_13F_HOLDINGS", "CUSIP"): ("CUSIP", "STEEL"),
+    ("FED_SEC_13F_POSITIONS", "CUSIP"): ("CUSIP", "STEEL"),
+    ("FED_SEC_13F_SUBMISSION", "CUSIP"): ("CUSIP", "STEEL"),
+    ("FED_SEC_FTD_CUSIP_BRIDGE", "CUSIP"): ("CUSIP", "STEEL"),
+    # --- 2026-08-28: MSHA controller/operator wiring. Table-scoped: the
+    # carrying columns (CONTROLLER_ID, CURRENT_OPERATOR_ID, VIOLATOR_ID) are
+    # generic names a token rule would mis-tag elsewhere. Values arrive
+    # quote-wrapped from a bad CSV parse ('"C15455"') -- same known trap as
+    # MINE_ID above; _alnum() strips the quotes.
+    # MSHA_CONTROLLER_ID -- the parent/holding company controlling a mine.
+    # Verified live 2026-08-28: accidents<->mines overlap 4,686/6,635 (70.6%).
+    ("FED_MSHA_ACCIDENTS", "CONTROLLER_ID"): ("MSHA_CONTROLLER_ID", "STEEL"),
+    ("FED_MSHA_MINES", "CURRENT_CONTROLLER_ID"): ("MSHA_CONTROLLER_ID", "STEEL"),
+    ("FED_MSHA_VIOLATIONS", "CONTROLLER_ID"): ("MSHA_CONTROLLER_ID", "STEEL"),
+    # MSHA_OPERATOR_ID -- the operating company cited on a violation. Two
+    # different-spelling columns for the SAME entity family (VIOLATOR_ID on
+    # violations, CURRENT_OPERATOR_ID on mines) -- verified live overlap
+    # 16,528/43,276 (38.2%).
+    ("FED_MSHA_VIOLATIONS", "VIOLATOR_ID"): ("MSHA_OPERATOR_ID", "STEEL"),
+    ("FED_MSHA_MINES", "CURRENT_OPERATOR_ID"): ("MSHA_OPERATOR_ID", "STEEL"),
 }
 
 
@@ -272,6 +299,21 @@ NORM_RULES: dict[str, tuple[str, int]] = {
     "NAME": ("name_canon", 0), "PERSON": ("name_canon", 0),
     # Address: standardize street-type abbreviations; do NOT sort (order matters).
     "ADDRESS": ("address", 0),
+    # CUSIP -- 9-char alphanumeric security ID. Verified live 2026-08-28: 100%
+    # of rows on all 4 carrying tables (holdings 101.3M, positions 3.8M,
+    # submission 3.8M, the new FTD-CUSIP bridge 128k) are exactly 9 chars, no
+    # exceptions. 'fixed' -- a CUSIP is never written short, so anything not
+    # exactly 9 chars is dirty input, not a paddable value (same reasoning as
+    # PWSID/COMPANY_NO above).
+    "CUSIP": ("fixed", 9),
+    # MSHA controller/operator IDs -- opaque alnum ('C15455', 'M04546', or a
+    # bare 7-digit number), quote-wrapped at source. alnum_upper: _alnum()
+    # strips the literal quotes and other punctuation, upper-cases, no width
+    # pad (mixed letter-prefix and bare-digit forms coexist in the same
+    # column -- padding the bare-digit ones would NOT make them comparable to
+    # the letter-prefixed ones, so 'pad' is wrong here unlike MINE_ID).
+    "MSHA_CONTROLLER_ID": ("alnum_upper", 0),
+    "MSHA_OPERATOR_ID": ("alnum_upper", 0),
 }
 
 # --- 2026-08 spine batch (STAGED behind one flag) ----------------------------- #

@@ -168,7 +168,12 @@ DISPLAY_SPECS: dict[str, dict] = {
         "state": "USADDRESS_STATEABBREVIATIONCD", "zip": "USADDRESS_ZIPCD",
         "authority": 2,   # no CITY column
     },
-    "FED_DOL_FORM5500": {             # EIN organization (benefit-plan sponsor)
+    "FED_DOL_FORM5500_FULL": {        # EIN organization (benefit-plan sponsor)
+        # Repointed 2026-08-28: FED_DOL_FORM5500 (33,484 rows, 2022-2023 only)
+        # was shadowed by this table (4,299,671 rows, 2009-2024, pulled
+        # 2026-08-27) -- caught live by
+        # test_no_spec_table_is_shadowed_by_an_unacknowledged_newer_sibling.
+        # Column names verified identical on both tables.
         "key": "EIN", "key_col": "SPONS_DFE_EIN", "org": "SPONSOR_DFE_NAME",
         "city": "SPONS_DFE_MAIL_US_CITY", "state": "SPONS_DFE_MAIL_US_STATE",
         "zip": "SPONS_DFE_MAIL_US_ZIP", "authority": 3,
