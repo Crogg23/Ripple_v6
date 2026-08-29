@@ -1,106 +1,83 @@
 # Snapshot taken right before context compaction
 
 ## STATUS.md at compaction time
-# RIPPLE STATUS — 2026-08-23 (early am) — Fix sweep complete; FAERS reload launched
+# RIPPLE STATUS — 2026-08-29 — Full-rebuild ritual retired: `apply-config` applies key/spec changes as bounded reslices; 08-29 ID batch flipped ON in code, waiting for Chris to run the one command
 
-*One screen. Rewritten (never appended) at the end of every session. Sessions read
-this at boot and brief Chris in chat — Chris never has to open it.*
+*One screen. Rewritten (never appended) at the end of every session.*
 
-**Scoreboard (standing frame): warehouse at ~64/100, heading for ~68-69 once the
-overnight loads land** (trust ~73 · build-completeness ~50). Tonight: full fix-list
-sweep (Tiers 1+2), the year-killer found and fixed warehouse-wide, the whole
-test-failure tail cleared, and the FAERS legacy reload launched. Remaining big
-levers: contracts re-pull (+5-6, Chris-priced decision), no-loader wing.
+## 🚨 Read this first
 
-**BROKE: nothing.**
+1. **The "every new key needs a 4.5h rebuild" rule is dead — and the 4.5h was never
+   true.** Query history: the 08-28 rebuild was ~50 busy-minutes on X-Small (~$2–3);
+   the 08-11 one took 25 min. The stale "$10–15 / 4.5h" quote had been repeated since
+   08-08. Logged as feedback memory.
+2. **New system (shipped, tested offline, not yet run live):** config is pinned per
+   unit (per key family / per spine spec / per table's graph keys). On drift,
+   `python -m connect apply-config` classifies the change and reslices ONLY the tables
+   it touches (new family → its tables; changed normalizer → tables carrying it; new
+   extra key → that table; removed spec → retract). The heartbeat auto-applies drift
+   instead of refusing. A full rebuild re-pins and stays the equivalence backstop.
+   Design + measured numbers: `reports/recon/apply_config_design_2026-08-29.md`.
+3. **The 08-29 ID batch is now ON in code** (CAGE, award key, PECOS PAC/enrollment ids,
+   FDIC cert, Fed RSSD, EIA plant + utility ids; verified live earlier today —
+   `reports/recon/bucket_b_wiring_2026-08-29.md`). Offline plan: 19 spine reslices +
+   11 graph reslices, 0 retractions; the 93M-row contracts table is the long pole.
+   First run auto-pins the flags-off baseline (proven: it reproduces the live sentinel).
+4. **🚨 Pre-existing bug found and fixed in the incremental engine:** the "what changed"
+   set was written as `NEW MINUS OLD UNION OLD MINUS NEW` without parentheses;
+   Snowflake reads that left-to-right, so it collapsed to `OLD MINUS NEW` — every
+   incremental run since the engine shipped has silently skipped ADDED keys in the
+   entity map / nodes / pairs (index + golden were unaffected). Live-proven: a new
+   table previewed affected=0 with 54,406 keys; after the fix 54,406. No live damage
+   today (no incremental run since the 08-28 full rebuild), but any earlier
+   incremental-only period may have under-merged — the 08-28 rebuild reset it.
+   Pinned by a test.
+5. **Chris's move (the classifier blocks the spine write from this session; the
+   dry-run ran and pinned the baseline):** `python -m connect apply-config`.
+   Expect minutes, not hours. Then `python -m connect validate-incremental` for the
+   equivalence proof.
+6. **Pre-existing, unchanged:** incremental-vs-backstop drift test red (9 keyset tables
+   from the 08-28 rebuild; apply-config's re-pin + a later re-seed clears it); 8 spatial
+   join errors (EPA TRI + NTSB coordinates); overnight loads (MAUDE, subawards 4.74M so
+   far, LDA) not checked; Snowflake MCP token rejected.
+7. **Working tree uncommitted:** keys.py, entity_index_specs.py, discover.py,
+   incremental.py, __main__.py, 2 new test files, 6 report files, STATUS.md.
 
-**✅ FAERS RELOAD DONE AND VERIFIED** (same night, ~90 min): all 35 corrupted
-quarters re-landed with the fixed parser; all 5 tables back to full counts
-(62.3M total); **verified to the row** — all 4,012,896 legacy outcome rows now
-carry a numeric case key (was 0%) and a valid outcome code (was 22%); 512,848
-deaths / 1.38M hospitalizations now joinable. The Tier-1 FAERS item is CLOSED
-**end-to-end**: the 5 downstream marts rebuilt and tested same night (8/8 PASS).
-Scoreboard: ~68/100 (trust ~78 · build-completeness ~50).
+## BROKE
 
-**THREE loads still running** (all checkpointed):
-1. **Senate lobbying crawl** — first attempt died on an unhandled network drop;
-   loader now retries network errors + 5xx (and pages at 250 with the key);
-   relaunched from year 1999 → verify `FED_SENATE_LDA_FILINGS`.
-2. **Federal debarment re-pull, ATTEMPT 2** — attempt 1 was throttled to death by
-   SAM's API at page 14 (landed 10,000; quality gate correctly refused to call it
-   success). Loader patched: 12 retries up to 10 min each + 25s page pacing;
-   relaunched → verify `FED_SAM_EXCLUSIONS` (target ~167k). If attempt 2 also dies
-   on sustained 429s, the binding constraint is the key's quota — fall back to
-   SAM's monthly public exclusions extract file (or the OpenSanctions mirror of
-   the same list) instead of the paged API.
-3. **FEMA housing registrations resume** — 22.05M → 25.9M target, slow API with
-   timeouts → verify `FED_FEMA_IA_HOUSING_REGISTRATIONS`.
+Nothing new broke. Offline suites 143 passed (apply-config classifier, batch pins,
+incremental, keys, visibility, honesty, leads).
 
 ## YOUR MOVE (Chris)
 
-1. Carried: contracts re-pull price tag; corporate bridge; security fix; roll-call
-   scope ruling; CourtListener bulk pull. (All drop one-liners from tonight: DONE.)
-2. FYI, no action: **290 newer leads are now in your review lane** — the queue mart
-   was stale; rebuilt via the sanctioned wrapper, reconcile guard green.
-
-## Tonight's full tally (receipts: reports/fix_session_results_2026-08-22.md)
-
-- 18-item quick-wins plan: all resolved (a third were stale/false alarms — verified,
-  not assumed). ~29.3M junk rows deleted across 11 tables. EPA penalty allocation +
-  13F dollar normalization live. 174-column trust registry created.
-- **Year-killer**: 61 year columns mis-ruled as dates, NULLed in 29 built marts
-  (Treasury, Open Payments, PBGC, OSHA, foreign aid, NHTSA, CDC NNDSS) — all
-  rulings + models fixed, marts rebuilt, tests green.
-- First verified full test run (4,831 tests) → failure tail now FULLY triaged:
-  grain fixes (TRI + doc-control-num, NPDES SICs + primary flag, Ember 6-part key,
-  MSHA docket exposed), 3 staging views rewritten (NAAG new schema, screening list
-  meta drift, leadership-PAC rename + linkage grain), review queue rebuilt, OSHA
-  3-blank-ids downgraded to warn, Europol garbage column fenced in COLUMN_TRUST.
-  Remaining known-broken: 3 staging views with DATA-IDENTITY mismatches (13F
-  "submission" holds holdings-shaped rows; BJS holds NCVS microdata; FRS-full
-  column variant) + OSHA-inspection staging awaiting its still-running API load.
-- Short-of-publisher batch: 9 VARIANT-chunk false alarms, ransomware verified
-  exactly complete (line-count artifact), GLEIF relationships re-pulled to exact
-  publisher match (485,285), UK sanctions refreshed (58,336, FCDO husk dropped).
+Run `python -m connect apply-config` (item 5). Then say whether to commit.
 
 ## NEXT
 
-Boot: verify the four loads (counts above), then rebuild FAERS-downstream marts +
-rerun their tests; contracts decision; 13F family consolidation; no-loader
-worklist; tighten auto-guessed cadences over time.
+1. After apply-config lands: measure edges for the 8 new families; refresh the graph
+   map snapshot (`connect fingerprint`) so the map sees them (08-18 lesson).
+2. Retire the staged-batch flags entirely (apply-config makes them unnecessary).
+3. Repair float-text CERT/RSSD in failed-banks + OCC tables → add 3 scoped keys.
+4. NDC segment-aware normalizer.
+5. Verify overnight loads; re-run subawards↔contracts award-key overlap once both
+   finish.
+6. EPA TRI + NTSB coordinates; DOCKET issuer namespace; optional bucket-C census via
+   the 338k-dataset portal index.
 
-**Cost note:** ~2 credits (~$4) this session so far excluding the in-flight FAERS
-landing (+$4-6 as it runs); day total ≈ 8.6 credits ≈ $17-23 all-in. Meter-verified.
-
-## Not committed
-
-All of tonight's model/yml/staging/rulings edits (29 year-fix marts, NNDSS, Ember,
-TRI, NPDES SICs, MSHA, NAAG, screening list, leadership PAC, Europol, OSHA 2025,
-FAA retirement, EPA ECHO + penalty gap, 13F holdings, LDA loader retry+page-size
-fix), reports/fix_session_results_2026-08-22.md, trimmed FAERS checkpoint,
-STATUS.md. Warehouse-side: COLUMN_TRUST (174 rows), 11 deduped + 5 FAERS-wiped
-landing tables, ~75 rebuilt marts/views, refreshed UK sanctions + GLEIF + openFDA.
+**Cost note:** ~$2–3 warehouse compute this session (verify passes over ~100M rows,
+normalizer dry-runs, two runs of the live incremental test). apply-config itself:
+expected minutes on X-Small.
 
 ## Working tree at compaction time
 ## main...origin/main
  M .claude/compact-snapshots/last-compact.md
- M data/osha_inspections/_stdout.log
- M data/osha_inspections/checkpoint.json
- M data/usaspending_full/_stdout.log
- M data/usaspending_full/checkpoint.json
- M outputs/_fema_ia_checkpoint.json
-?? "Ripple Design System - Blueprint (standalone) (9).html"
-?? reports/viz/board_segments.html
-?? reports/viz/board_segments_sketchbook.html
-?? reports/viz/chart_vocabulary_field_guide.html
-?? reports/viz/deadspace_and_counterweight.html
-?? reports/viz/infographic_composition_blueprint.html
-?? reports/viz/infographic_layout_systems_survey.html
-?? reports/viz/layout_picker.html
+ M reports/viz/_build/join_handbook_template.html
+ M reports/viz/join_handbook.html
+?? reports/viz/_build/build_join_handbook.py
 
 ## Recent commits
-cebd0a48 Update checkpoints and logs for OSHA inspections and USASpending data loads
-fd4ed890 Add checkpointed full USASpending contracts re-pull loader (FY2007-FY2026)
-f70c41e5 Sprint: SAM exclusions extract-file loader + 3 staging identity fixes + 13F consolidation
-771067be Refactor code structure for improved readability and maintainability; no functional changes made.
-b78be44f Merge branch 'main' of https://github.com/Crogg23/Ripple_v6
+3f2839a4 Add tests for apply-config changes and introduce join_handbook.html
+38843a2c Update checkpoint data and add report on unregistered ID candidates
+83c2e991 Refactor code structure for improved readability and maintainability
+08b3376d Add spine wiring preparation script and update test acknowledgments
+3f4fc4bd STATUS: depth triage results, gotcha-pass results, auto-push discovery

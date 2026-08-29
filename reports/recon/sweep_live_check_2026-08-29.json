@@ -1,0 +1,5391 @@
+[
+ {
+  "cand": "PIID",
+  "table": "FED_USASPENDING_BULK",
+  "col": "AWARD_ID_PIID",
+  "rows": 50000,
+  "filled": 50000,
+  "distinct": 48610,
+  "distinct_nonblank": 48610,
+  "sample": [
+   "1202RZ25T0088",
+   "47QTCA19D00MJ",
+   "70Z03125CALAM0008"
+  ]
+ },
+ {
+  "cand": "PIID",
+  "table": "FED_USASPENDING_CONTRACTS",
+  "col": "AWARD_ID_PIID",
+  "rows": 6325622,
+  "filled": 6325622,
+  "distinct": 5706424,
+  "distinct_nonblank": 5706424,
+  "sample": [
+   "SPE4A525FAJ60",
+   "SPE4A525FAN71",
+   "47QSWA25F0TWC"
+  ]
+ },
+ {
+  "cand": "PIID",
+  "table": "FED_USASPENDING_CONTRACTS_FULL",
+  "col": "award_id_piid",
+  "rows": 20000000,
+  "filled": 20000000,
+  "distinct": 13993029,
+  "distinct_nonblank": 13993029,
+  "sample": [
+   "DJBMCKGA110036",
+   "V6737F4373",
+   "V438PROSFY07SEPIDVV797P4243A"
+  ]
+ },
+ {
+  "cand": "PIID",
+  "table": "FED_USASPENDING_CONTRACTS_FULL_R2",
+  "col": "AWARD_ID_PIID",
+  "rows": 93153424,
+  "filled": 93153424,
+  "distinct": 63135849,
+  "distinct_nonblank": 63135848,
+  "sample": [
+   "GSFPNE0J7287",
+   "GSMPNECP0557",
+   "GSMPNECP3727"
+  ]
+ },
+ {
+  "cand": "PIID",
+  "table": "PORTAL_SOC_UTAH_OPEN_DATA_P_5EF68422FF",
+  "col": "AWARD_ID_PIID",
+  "rows": 2000,
+  "filled": 2000,
+  "distinct": 1602,
+  "distinct_nonblank": 1602,
+  "sample": [
+   "DTFAWA08C00009",
+   "W912DR10C0094",
+   "DEDT0002936"
+  ]
+ },
+ {
+  "cand": "PIID",
+  "table": "PORTAL_SOC_UTAH_OPEN_DATA_P_5EF68422FF",
+  "col": "PARENT_AWARD_ID",
+  "rows": 2000,
+  "filled": 2000,
+  "distinct": 513,
+  "distinct_nonblank": 513,
+  "sample": [
+   "DEEM0000842",
+   "DEAM0905SR22406",
+   "SP060012D4537"
+  ]
+ },
+ {
+  "cand": "URI (grants)",
+  "table": "INTL_ES_DATOSGOB",
+  "col": "URI",
+  "rows": 1000,
+  "filled": 1000,
+  "distinct": 1,
+  "distinct_nonblank": 0,
+  "sample": []
+ },
+ {
+  "cand": "URI (grants)",
+  "table": "INT_UK_COMPANIES_HOUSE",
+  "col": "URI",
+  "rows": 5734780,
+  "filled": 5734779,
+  "distinct": 5734779,
+  "distinct_nonblank": 5734779,
+  "sample": [
+   "http://business.data.gov.uk/id/company/1",
+   "http://business.data.gov.uk/id/company/1",
+   "http://business.data.gov.uk/id/company/1"
+  ]
+ },
+ {
+  "cand": "URI (grants)",
+  "table": "XC_CROSSREF_FUNDER_REGISTRY",
+  "col": "URI",
+  "rows": 45661,
+  "filled": 45661,
+  "distinct": 45661,
+  "distinct_nonblank": 45661,
+  "sample": [
+   "http://dx.doi.org/10.13039/100022722",
+   "http://dx.doi.org/10.13039/100021236",
+   "http://dx.doi.org/10.13039/100017526"
+  ]
+ },
+ {
+  "cand": "NSF award id",
+  "table": "FED_NSF_AWARDS",
+  "col": "AWARD_ID",
+  "rows": 125,
+  "filled": 125,
+  "distinct": 115,
+  "distinct_nonblank": 115,
+  "sample": [
+   "2548170",
+   "2620840",
+   "2620838"
+  ]
+ },
+ {
+  "cand": "NSF award id",
+  "table": "FED_US_USASPENDING_API",
+  "col": "AWARD_ID",
+  "rows": 300,
+  "filled": 300,
+  "distinct": 300,
+  "distinct_nonblank": 300,
+  "sample": [
+   "HT940216C0001",
+   "DEAC0494AL85000",
+   "DENA0003525"
+  ]
+ },
+ {
+  "cand": "NSF award id",
+  "table": "INTL_EC_SERCOP",
+  "col": "AWARD_ID",
+  "rows": 132995,
+  "filled": 132995,
+  "distinct": 127223,
+  "distinct_nonblank": 127222,
+  "sample": [
+   "8173243-CDC-CELECEP-2025-07058",
+   "8078175-CDC-EEGA-2025-004",
+   "8341276-CDC-EEGA-2025-016"
+  ]
+ },
+ {
+  "cand": "NSF award id",
+  "table": "FED_USASPENDING_ASSISTANCE_FULL",
+  "col": "award_id_uri",
+  "rows": 19902879,
+  "filled": 19902879,
+  "distinct": 7977685,
+  "distinct_nonblank": 7977684,
+  "sample": [
+   "75-120-U58DP923530-001-5-2009-93283-75-0",
+   "75-71-D19HP08200-04-6-2015-93178-75-0353",
+   "7526-153-H80CS06662-10-13-2018-93527-75-"
+  ]
+ },
+ {
+  "cand": "NSF award id",
+  "table": "PORTAL_SOC_UTAH_OPEN_DATA_P_103F7D641F",
+  "col": "AWARD_ID_URI",
+  "rows": 2000,
+  "filled": 2000,
+  "distinct": 60,
+  "distinct_nonblank": 60,
+  "sample": [
+   "12F200354249925011310 0     1243542  REC",
+   "17.310-UTAH-PIUTE-20090331-10",
+   "17.310-UTAH-GRAND-20081231-06"
+  ]
+ },
+ {
+  "cand": "NSF award id",
+  "table": "FED_USASPENDING_ASSISTANCE_FULL",
+  "col": "award_id_fain",
+  "rows": 19902879,
+  "filled": 19902879,
+  "distinct": 10319583,
+  "distinct_nonblank": 10319582,
+  "sample": [
+   "U58DP923530",
+   "T08HP06983",
+   "D19HP08200"
+  ]
+ },
+ {
+  "cand": "PSC",
+  "table": "FED_USASPENDING_BULK",
+  "col": "PRODUCT_OR_SERVICE_CODE",
+  "rows": 50000,
+  "filled": 50000,
+  "distinct": 1140,
+  "distinct_nonblank": 1140,
+  "sample": [
+   "F099",
+   "D399",
+   "Z1AZ"
+  ]
+ },
+ {
+  "cand": "PSC",
+  "table": "FED_USASPENDING_CONTRACTS_FULL",
+  "col": "product_or_service_code",
+  "rows": 20000000,
+  "filled": 20000000,
+  "distinct": 3297,
+  "distinct_nonblank": 3296,
+  "sample": [
+   "7025",
+   "6530",
+   "D313"
+  ]
+ },
+ {
+  "cand": "PSC",
+  "table": "PORTAL_SOC_UTAH_OPEN_DATA_P_5EF68422FF",
+  "col": "PRODUCT_OR_SERVICE_CODE",
+  "rows": 2000,
+  "filled": 2000,
+  "distinct": 463,
+  "distinct_nonblank": 463,
+  "sample": [
+   "AD26",
+   "Y111",
+   "F999"
+  ]
+ },
+ {
+  "cand": "PSC",
+  "table": "PORTAL_SOC_UTAH_OPEN_DATA_P_5EF68422FF",
+  "col": "PRODUCT_OR_SERVICE_CODE_1",
+  "rows": 2000,
+  "filled": 2000,
+  "distinct": 563,
+  "distinct_nonblank": 563,
+  "sample": [
+   "R&D- DEFENSE OTHER: SERVICES (MANAGEMENT",
+   "CONSTRUCTION OF OFFICE BUILDINGS",
+   "OTHER ENVIRONMENTAL SERVICES"
+  ]
+ },
+ {
+  "cand": "PSC",
+  "table": "FED_USASPENDING_BULK",
+  "col": "PRODUCT_OR_SERVICE_CODE_DESCRIPTION",
+  "rows": 50000,
+  "filled": 50000,
+  "distinct": 1137,
+  "distinct_nonblank": 1137,
+  "sample": [
+   "NATURAL RESOURCES/CONSERVATION- OTHER",
+   "IT AND TELECOM- OTHER IT AND TELECOMMUNI",
+   "MAINTENANCE OF OTHER ADMINISTRATIVE FACI"
+  ]
+ },
+ {
+  "cand": "PSC",
+  "table": "FED_USASPENDING_CONTRACTS",
+  "col": "PRODUCT_OR_SERVICE_CODE_DESCRIPTION",
+  "rows": 6325622,
+  "filled": 6325622,
+  "distinct": 2391,
+  "distinct_nonblank": 2390,
+  "sample": [
+   "FRUITS AND VEGETABLES",
+   "FRUITS AND VEGETABLES",
+   "FRUITS AND VEGETABLES"
+  ]
+ },
+ {
+  "cand": "Funding opportunity #",
+  "table": "FED_GRANTS_GOV",
+  "col": "OPPORTUNITY_NUMBER",
+  "rows": 100,
+  "filled": 100,
+  "distinct": 100,
+  "distinct_nonblank": 100,
+  "sample": [
+   "SHTG-FY-26-01",
+   "SHTG-FY-26-02",
+   "DHS-26-NPD-005-00-96"
+  ]
+ },
+ {
+  "cand": "Funding opportunity #",
+  "table": "FED_NIH_REPORTER",
+  "col": "OPPORTUNITY_NUMBER",
+  "rows": 2122611,
+  "filled": 1481322,
+  "distinct": 19998,
+  "distinct_nonblank": 19997,
+  "sample": [
+   "RFA-AI-18-002",
+   "RFA-OD-19-028",
+   "PA-18-484"
+  ]
+ },
+ {
+  "cand": "Funding opportunity #",
+  "table": "FED_USASPENDING_ASSISTANCE_FULL",
+  "col": "funding_opportunity_number",
+  "rows": 19902879,
+  "filled": 19902879,
+  "distinct": 32728,
+  "distinct_nonblank": 32727,
+  "sample": [
+   "NOT APPLICABLE",
+   "NOT APPLICABLE",
+   "NOT APPLICABLE"
+  ]
+ },
+ {
+  "cand": "Funding opportunity #",
+  "table": "FED_USASPENDING_ASSISTANCE_FULL",
+  "col": "funding_opportunity_goals_text",
+  "rows": 19902879,
+  "filled": 19902879,
+  "distinct": 11957,
+  "distinct_nonblank": 11956,
+  "sample": [
+   "NOT APPLICABLE",
+   "NOT APPLICABLE",
+   "NOT APPLICABLE"
+  ]
+ },
+ {
+  "cand": "EDGAR accession",
+  "table": "FED_SEC_DERA_SUB_2024Q1",
+  "col": "ADSH",
+  "rows": 6028,
+  "filled": 6028,
+  "distinct": 6028,
+  "distinct_nonblank": 6028,
+  "sample": [
+   "0001161697-24-000084",
+   "0001059556-24-000017",
+   "0001206264-24-000050"
+  ]
+ },
+ {
+  "cand": "EDGAR accession",
+  "table": "FED_SEC_DERA_SUB_2024Q2",
+  "col": "ADSH",
+  "rows": 7675,
+  "filled": 7675,
+  "distinct": 7675,
+  "distinct_nonblank": 7675,
+  "sample": [
+   "0000002178-24-000054",
+   "0000002488-24-000056",
+   "0000002969-24-000026"
+  ]
+ },
+ {
+  "cand": "EDGAR accession",
+  "table": "FED_SEC_DERA_SUB_2024Q3",
+  "col": "ADSH",
+  "rows": 6699,
+  "filled": 6699,
+  "distinct": 6699,
+  "distinct_nonblank": 6699,
+  "sample": [
+   "0000002178-24-000076",
+   "0000002488-24-000123",
+   "0000002969-24-000043"
+  ]
+ },
+ {
+  "cand": "EDGAR accession",
+  "table": "FED_SEC_DERA_SUB_2024Q4",
+  "col": "ADSH",
+  "rows": 6491,
+  "filled": 6491,
+  "distinct": 6491,
+  "distinct_nonblank": 6491,
+  "sample": [
+   "0001628280-24-043777",
+   "0000950170-24-122438",
+   "0000060667-24-000169"
+  ]
+ },
+ {
+  "cand": "EDGAR accession",
+  "table": "FED_SEC_DERA_SUB_2025Q1",
+  "col": "ADSH",
+  "rows": 6231,
+  "filled": 6231,
+  "distinct": 6231,
+  "distinct_nonblank": 6231,
+  "sample": [
+   "0000015615-25-000021",
+   "0000016058-25-000032",
+   "0000016732-25-000026"
+  ]
+ },
+ {
+  "cand": "EDGAR accession",
+  "table": "FED_SEC_DERA_SUB_2025Q2",
+  "col": "ADSH",
+  "rows": 7009,
+  "filled": 7009,
+  "distinct": 7009,
+  "distinct_nonblank": 7009,
+  "sample": [
+   "0000950170-25-071771",
+   "0000950170-25-070633",
+   "0000816956-25-000011"
+  ]
+ },
+ {
+  "cand": "Ticker",
+  "table": "FED_SEC_EDGAR_COMPANY_TICKERS",
+  "col": "TICKER",
+  "rows": 10414,
+  "filled": 10414,
+  "distinct": 10414,
+  "distinct_nonblank": 10414,
+  "sample": [
+   "NVDA",
+   "AAPL",
+   "GOOGL"
+  ]
+ },
+ {
+  "cand": "Ticker",
+  "table": "FED_SEC_EDGAR_COMPANY_TICKERS_EXCHANGE",
+  "col": "TICKER",
+  "rows": 10398,
+  "filled": 10398,
+  "distinct": 10397,
+  "distinct_nonblank": 10396,
+  "sample": [
+   "NVDA",
+   "AAPL",
+   "GOOGL"
+  ]
+ },
+ {
+  "cand": "Ticker",
+  "table": "FED_SEC_FTD_CUSIP_BRIDGE",
+  "col": "SYMBOL",
+  "rows": 128303,
+  "filled": 128303,
+  "distinct": 14882,
+  "distinct_nonblank": 14881,
+  "sample": [
+   "MDXH",
+   "MBGAF",
+   "DB"
+  ]
+ },
+ {
+  "cand": "Ticker",
+  "table": "FED_SENATE_STOCK_WATCHER",
+  "col": "TICKER",
+  "rows": 8350,
+  "filled": 8350,
+  "distinct": 1009,
+  "distinct_nonblank": 1009,
+  "sample": [
+   "BYND",
+   "BA",
+   "V"
+  ]
+ },
+ {
+  "cand": "Ticker",
+  "table": "FED_US_SEC_EDGAR",
+  "col": "TICKER",
+  "rows": 48990,
+  "filled": 48990,
+  "distinct": 25,
+  "distinct_nonblank": 25,
+  "sample": [
+   "NVDA",
+   "NVDA",
+   "NVDA"
+  ]
+ },
+ {
+  "cand": "Ticker",
+  "table": "INTL_EMBL_ENSEMBL",
+  "col": "SYMBOL",
+  "rows": 643,
+  "filled": 643,
+  "distinct": 643,
+  "distinct_nonblank": 643,
+  "sample": [
+   "BRCA1",
+   "BRCA1-222",
+   "BRCA1-216"
+  ]
+ },
+ {
+  "cand": "SEC file number",
+  "table": "PORTAL_CKA_SAN_JOSE_OPEN_DA_0E84D71B5D",
+  "col": "FILENUM",
+  "rows": 112,
+  "filled": 112,
+  "distinct": 111,
+  "distinct_nonblank": 111,
+  "sample": [
+   "SP21-045",
+   "HP15-003",
+   "H18-045"
+  ]
+ },
+ {
+  "cand": "SEC file number",
+  "table": "FED_FEC_COMMITTEE_TO_CANDIDATE",
+  "col": "FILE_NUM",
+  "rows": 866730,
+  "filled": 866730,
+  "distinct": 49031,
+  "distinct_nonblank": 49031,
+  "sample": [
+   "1675104",
+   "1675104",
+   "1675104"
+  ]
+ },
+ {
+  "cand": "SEC file number",
+  "table": "FED_FEC_INDEPENDENT_EXPENDITURES",
+  "col": "FILE_NUM",
+  "rows": 87541,
+  "filled": 87541,
+  "distinct": 16980,
+  "distinct_nonblank": 16980,
+  "sample": [
+   "1845617",
+   "1820306",
+   "1820306"
+  ]
+ },
+ {
+  "cand": "SEC file number",
+  "table": "FED_FEC_INDIV_CONTRIBUTIONS",
+  "col": "FILE_NUM",
+  "rows": 84172112,
+  "filled": 84172112,
+  "distinct": 105649,
+  "distinct_nonblank": 105649,
+  "sample": [
+   "1828579",
+   "1828579",
+   "1828579"
+  ]
+ },
+ {
+  "cand": "SEC file number",
+  "table": "PORTAL_CKA_SAN_JOSE_OPEN_DA_4218690BB6",
+  "col": "FILENUMBER",
+  "rows": 134,
+  "filled": 134,
+  "distinct": 134,
+  "distinct_nonblank": 134,
+  "sample": [
+   "HT-06-008-C",
+   "HT-10-007",
+   "HT-02-009"
+  ]
+ },
+ {
+  "cand": "SEC file number",
+  "table": "FED_SEC_INSIDER_REPORTINGOWNER",
+  "col": "FILE_NUMBER",
+  "rows": 1934673,
+  "filled": 1934665,
+  "distinct": 10904,
+  "distinct_nonblank": 10904,
+  "sample": [
+   "001-36788",
+   "001-05491",
+   "001-05491"
+  ]
+ },
+ {
+  "cand": "FinCEN id",
+  "table": "FED_FINCEN_BOI",
+  "col": "FINCEN_ID",
+  "rows": 1,
+  "filled": 1,
+  "distinct": 1,
+  "distinct_nonblank": 1,
+  "sample": [
+   "N/A"
+  ]
+ },
+ {
+  "cand": "OFAC SDN id docs",
+  "table": "INTL_CH_ZEFIX",
+  "col": "UID",
+  "rows": 18,
+  "filled": 18,
+  "distinct": 1,
+  "distinct_nonblank": 0,
+  "sample": []
+ },
+ {
+  "cand": "OFAC SDN id docs",
+  "table": "PORTAL_CKA_CALIFORNIA_OPEN_21E0E694B5",
+  "col": "UID",
+  "rows": 991,
+  "filled": 991,
+  "distinct": 991,
+  "distinct_nonblank": 991,
+  "sample": [
+   "FNWS0001",
+   "FNWS0002",
+   "FNWS0003"
+  ]
+ },
+ {
+  "cand": "OFAC SDN id docs",
+  "table": "PORTAL_CKA_CALIFORNIA_OPEN_C86733ED60",
+  "col": "UID",
+  "rows": 10000,
+  "filled": 10000,
+  "distinct": 10000,
+  "distinct_nonblank": 10000,
+  "sample": [
+   "DEVA00001",
+   "DEVA00002",
+   "DEVA00003"
+  ]
+ },
+ {
+  "cand": "OFAC SDN id docs",
+  "table": "FED_FDA_UNII_GSRS_SUBSTANCES",
+  "col": "UUID",
+  "rows": 168046,
+  "filled": 168046,
+  "distinct": 168046,
+  "distinct_nonblank": 168046,
+  "sample": [
+   "15f0bc75-ff62-4ca4-a8a2-9132a0c211ce",
+   "4d3e2f1f-80f6-4f92-80cf-8daa37480cea",
+   "c3c04d85-4363-4b75-9c6e-1d752b00056b"
+  ]
+ },
+ {
+  "cand": "OFAC SDN id docs",
+  "table": "PORTAL_CKA_WESTERN_PENNSYLV_9EF4C60F58",
+  "col": "GUID",
+  "rows": 2217,
+  "filled": 2217,
+  "distinct": 2217,
+  "distinct_nonblank": 2217,
+  "sample": [
+   "EE7C4FB7-038A-461A-A667-002870BA4155",
+   "13630A6A-2076-4637-8AFC-00315DA945BA",
+   "5BAC585B-FE5C-4090-ABF8-005D6C670EF1"
+  ]
+ },
+ {
+  "cand": "OFAC SDN id docs",
+  "table": "PORTAL_CKA_WPRDC_ALLEGHENY_C96164A13D",
+  "col": "GUID",
+  "rows": 2217,
+  "filled": 2217,
+  "distinct": 2217,
+  "distinct_nonblank": 2217,
+  "sample": [
+   "EE7C4FB7-038A-461A-A667-002870BA4155",
+   "13630A6A-2076-4637-8AFC-00315DA945BA",
+   "5BAC585B-FE5C-4090-ABF8-005D6C670EF1"
+  ]
+ },
+ {
+  "cand": "Aircraft MSN",
+  "table": "FED_FAA_AIRCRAFT_REGISTRY",
+  "col": "SERIAL_NUMBER",
+  "rows": 315447,
+  "filled": 315447,
+  "distinct": 247465,
+  "distinct_nonblank": 247464,
+  "sample": [
+   "270                           ",
+   "310R1811                      ",
+   "2881378                       "
+  ]
+ },
+ {
+  "cand": "Aircraft MSN",
+  "table": "INTL_EU_SOCTA_EUROPOL",
+  "col": "SERIAL_NUMBER",
+  "rows": 26,
+  "filled": 26,
+  "distinct": 1,
+  "distinct_nonblank": 1,
+  "sample": [
+   "ion",
+   "ion",
+   "ion"
+  ]
+ },
+ {
+  "cand": "Aircraft MSN",
+  "table": "FED_NTSB_AVIATION_AIRCRAFT",
+  "col": "ACFT_SERIAL_NO",
+  "rows": 31503,
+  "filled": 31503,
+  "distinct": 25029,
+  "distinct_nonblank": 25027,
+  "sample": [
+   "None",
+   "28-2104",
+   "5496"
+  ]
+ },
+ {
+  "cand": "Aircraft MSN",
+  "table": "PORTAL_CKA_ISRAEL_NATIONAL_5A45B45E6B",
+  "col": "PRODUCT_SERIAL_NUMBER",
+  "rows": 110,
+  "filled": 110,
+  "distinct": 109,
+  "distinct_nonblank": 109,
+  "sample": [
+   "Profal 75 R-RS Anodized ",
+   "Profal 100 R",
+   "Profal 75R - RS"
+  ]
+ },
+ {
+  "cand": "FRA crossing #",
+  "table": "FED_PHMSA_FLAGGED_INCIDENTS",
+  "col": "CROSSING",
+  "rows": 2039,
+  "filled": 2039,
+  "distinct": 3,
+  "distinct_nonblank": 2,
+  "sample": [
+   "NO",
+   "NO",
+   "NO"
+  ]
+ },
+ {
+  "cand": "FRA crossing #",
+  "table": "PORTAL_CKA_SAN_JOSE_OPEN_DA_981E07D5DB",
+  "col": "CROSSING",
+  "rows": 10000,
+  "filled": 10000,
+  "distinct": 5475,
+  "distinct_nonblank": 5474,
+  "sample": [
+   "1ST ST AND ALMA",
+   "MONTEREY X COTTAGE GROVE AVE",
+   "FILAN WAY / FOWLER RD"
+  ]
+ },
+ {
+  "cand": "FRA crossing #",
+  "table": "FED_FRA_CROSSING_INCIDENTS",
+  "col": "GRADE_CROSSING_ID",
+  "rows": 251149,
+  "filled": 251149,
+  "distinct": 100887,
+  "distinct_nonblank": 100886,
+  "sample": [
+   "630474Y",
+   "849894N",
+   "715352H"
+  ]
+ },
+ {
+  "cand": "FRA crossing #",
+  "table": "FED_FRA_EQUIPMENT_ACCIDENTS",
+  "col": "GRADE_CROSSING_ID",
+  "rows": 224941,
+  "filled": 224941,
+  "distinct": 8461,
+  "distinct_nonblank": 8460,
+  "sample": [
+   "735220C",
+   "513394K",
+   "469386Y"
+  ]
+ },
+ {
+  "cand": "FRA crossing #",
+  "table": "FED_PHMSA_FLAGGED_INCIDENTS",
+  "col": "ROAD_CROSSING_IND",
+  "rows": 2039,
+  "filled": 2039,
+  "distinct": 2,
+  "distinct_nonblank": 1,
+  "sample": [
+   "YES",
+   "YES",
+   "YES"
+  ]
+ },
+ {
+  "cand": "FRA crossing #",
+  "table": "FED_PHMSA_FLAGGED_INCIDENTS",
+  "col": "CROSSING_100_FEET",
+  "rows": 2039,
+  "filled": 2039,
+  "distinct": 3,
+  "distinct_nonblank": 2,
+  "sample": [
+   "NO",
+   "YES",
+   "NO"
+  ]
+ },
+ {
+  "cand": "FRA railroad code",
+  "table": "FED_FRA_CASUALTIES",
+  "col": "RAILROAD_CODE",
+  "rows": 1150788,
+  "filled": 1150788,
+  "distinct": 1288,
+  "distinct_nonblank": 1288,
+  "sample": [
+   "ATK",
+   "ATK",
+   "ATK"
+  ]
+ },
+ {
+  "cand": "FRA railroad code",
+  "table": "FED_FRA_CASUALTIES",
+  "col": "RAILROAD_NAME",
+  "rows": 1150788,
+  "filled": 1150788,
+  "distinct": 1283,
+  "distinct_nonblank": 1283,
+  "sample": [
+   "Amtrak (National Railroad Passenger Corp",
+   "Amtrak (National Railroad Passenger Corp",
+   "Amtrak (National Railroad Passenger Corp"
+  ]
+ },
+ {
+  "cand": "FRA railroad code",
+  "table": "FED_FRA_CROSSING_INCIDENTS",
+  "col": "RAILROAD_CODE",
+  "rows": 251149,
+  "filled": 251149,
+  "distinct": 1066,
+  "distinct_nonblank": 1066,
+  "sample": [
+   "CNW",
+   "CNW",
+   "CNW"
+  ]
+ },
+ {
+  "cand": "FRA railroad code",
+  "table": "FED_FRA_CROSSING_INCIDENTS",
+  "col": "RAILROAD_NAME",
+  "rows": 251149,
+  "filled": 251149,
+  "distinct": 1063,
+  "distinct_nonblank": 1063,
+  "sample": [
+   "Union Pacific Railroad Company",
+   "Union Pacific Railroad Company",
+   "Union Pacific Railroad Company"
+  ]
+ },
+ {
+  "cand": "FRA railroad code",
+  "table": "FED_FRA_CROSSING_INCIDENTS",
+  "col": "RAILROAD_TYPE",
+  "rows": 251149,
+  "filled": 251149,
+  "distinct": 16,
+  "distinct_nonblank": 15,
+  "sample": [
+   "1L",
+   "1L",
+   "1L"
+  ]
+ },
+ {
+  "cand": "FRA railroad code",
+  "table": "FED_FRA_SAFETY",
+  "col": "RAILROAD_NAME",
+  "rows": 1,
+  "filled": 1,
+  "distinct": 1,
+  "distinct_nonblank": 1,
+  "sample": [
+   "N/A"
+  ]
+ },
+ {
+  "cand": "FRA accident #",
+  "table": "FED_NTSB_AVIATION_AIRCRAFT",
+  "col": "EV_ID",
+  "rows": 31503,
+  "filled": 31503,
+  "distinct": 30968,
+  "distinct_nonblank": 30968,
+  "sample": [
+   "20080211X00175",
+   "20080107X00026",
+   "20080107X00026"
+  ]
+ },
+ {
+  "cand": "FRA accident #",
+  "table": "FED_NTSB_AVIATION_EVENTS",
+  "col": "EV_ID",
+  "rows": 30968,
+  "filled": 30968,
+  "distinct": 30968,
+  "distinct_nonblank": 30968,
+  "sample": [
+   "20080211X00175",
+   "20080107X00026",
+   "20080109X00036"
+  ]
+ },
+ {
+  "cand": "FRA accident #",
+  "table": "FED_NTSB_AVIATION_INJURY",
+  "col": "EV_ID",
+  "rows": 179179,
+  "filled": 179179,
+  "distinct": 29516,
+  "distinct_nonblank": 29516,
+  "sample": [
+   "20080211X00175",
+   "20080211X00175",
+   "20080211X00175"
+  ]
+ },
+ {
+  "cand": "FRA accident #",
+  "table": "PORTAL_CKA_WESTERN_PENNSYLV_F82E02E6B2",
+  "col": "EV_ID",
+  "rows": 10000,
+  "filled": 10000,
+  "distinct": 10000,
+  "distinct_nonblank": 10000,
+  "sample": [
+   "8,840",
+   "5,725",
+   "4,343"
+  ]
+ },
+ {
+  "cand": "FRA accident #",
+  "table": "PORTAL_CKA_WPRDC_ALLEGHENY_FA3191E7A1",
+  "col": "EV_ID",
+  "rows": 10000,
+  "filled": 10000,
+  "distinct": 10000,
+  "distinct_nonblank": 10000,
+  "sample": [
+   "8,840",
+   "5,725",
+   "4,343"
+  ]
+ },
+ {
+  "cand": "FRA accident #",
+  "table": "FED_NOAA_STORM_EVENTS",
+  "col": "EVENT_ID",
+  "rows": 1780730,
+  "filled": 1780730,
+  "distinct": 1780730,
+  "distinct_nonblank": 1780730,
+  "sample": [
+   "5570068",
+   "5570362",
+   "5570363"
+  ]
+ },
+ {
+  "cand": "PBGC plan #",
+  "table": "FED_PBGC_TRUSTEED_PENSION_PLANS",
+  "col": "PN",
+  "rows": 21596,
+  "filled": 21596,
+  "distinct": 127,
+  "distinct_nonblank": 127,
+  "sample": [
+   "002",
+   "002",
+   "002"
+  ]
+ },
+ {
+  "cand": "PBGC plan #",
+  "table": "PORTAL_SOC_UTAH_OPEN_DATA_P_F87FB2BFB7",
+  "col": "PN",
+  "rows": 25,
+  "filled": 25,
+  "distinct": 3,
+  "distinct_nonblank": 3,
+  "sample": [
+   "1",
+   "2",
+   "2"
+  ]
+ },
+ {
+  "cand": "PBGC plan #",
+  "table": "FED_DOL_FORM5500",
+  "col": "PLAN_NUM",
+  "rows": 33484,
+  "filled": 33484,
+  "distinct": 1,
+  "distinct_nonblank": 0,
+  "sample": []
+ },
+ {
+  "cand": "PBGC plan #",
+  "table": "FED_PBGC_TRUSTEED_PLANS",
+  "col": "PLAN_NUMBER",
+  "rows": 5176,
+  "filled": 5176,
+  "distinct": 104,
+  "distinct_nonblank": 104,
+  "sample": [
+   "72",
+   "2",
+   "1"
+  ]
+ },
+ {
+  "cand": "PBGC plan #",
+  "table": "FED_DOL_FORM5500",
+  "col": "SPONS_DFE_PN",
+  "rows": 33484,
+  "filled": 33484,
+  "distinct": 266,
+  "distinct_nonblank": 266,
+  "sample": [
+   "001",
+   "002",
+   "001"
+  ]
+ },
+ {
+  "cand": "PBGC plan #",
+  "table": "FED_DOL_FORM5500_FULL",
+  "col": "SPONS_DFE_PN",
+  "rows": 4299671,
+  "filled": 4299671,
+  "distinct": 999,
+  "distinct_nonblank": 999,
+  "sample": [
+   "501",
+   "502",
+   "503"
+  ]
+ },
+ {
+  "cand": "ORISPL/unit",
+  "table": "PORTAL_ARC_TUCSON_OPEN_DATA_726A6C58E2",
+  "col": "UNIT_ID",
+  "rows": 2000,
+  "filled": 2000,
+  "distinct": 1,
+  "distinct_nonblank": 0,
+  "sample": []
+ },
+ {
+  "cand": "ORISPL/unit",
+  "table": "PORTAL_CKA_CALIFORNIA_OPEN_27DC9C9E51",
+  "col": "UNIT_ID",
+  "rows": 10000,
+  "filled": 10000,
+  "distinct": 112,
+  "distinct_nonblank": 111,
+  "sample": [
+   "LPF",
+   "LPF",
+   "SNF"
+  ]
+ },
+ {
+  "cand": "ORISPL/unit",
+  "table": "PORTAL_CKA_CALIFORNIA_OPEN_F039E82E72",
+  "col": "UNIT_ID",
+  "rows": 83,
+  "filled": 83,
+  "distinct": 37,
+  "distinct_nonblank": 37,
+  "sample": [
+   "SHF",
+   "RRU",
+   "LAC"
+  ]
+ },
+ {
+  "cand": "ORISPL/unit",
+  "table": "PORTAL_CKA_CALIFORNIA_OPEN_F406AAD424",
+  "col": "UNIT_ID",
+  "rows": 10000,
+  "filled": 10000,
+  "distinct": 112,
+  "distinct_nonblank": 111,
+  "sample": [
+   "LPF",
+   "LPF",
+   "SNF"
+  ]
+ },
+ {
+  "cand": "ORISPL/unit",
+  "table": "FED_CMS_HOSPITAL_COMPARE",
+  "col": "FACILITY_ID",
+  "rows": 5432,
+  "filled": 5432,
+  "distinct": 5432,
+  "distinct_nonblank": 5432,
+  "sample": [
+   "010001",
+   "010005",
+   "010006"
+  ]
+ },
+ {
+  "cand": "ORISPL/unit",
+  "table": "FED_EPA_GHGRP_EMISSION",
+  "col": "FACILITY_ID",
+  "rows": 346683,
+  "filled": 346683,
+  "distinct": 11277,
+  "distinct_nonblank": 11277,
+  "sample": [
+   "1000001",
+   "1000001",
+   "1000001"
+  ]
+ },
+ {
+  "cand": "GHGRP facility id",
+  "table": "FED_CMS_HOSPITAL_COMPARE",
+  "col": "FACILITY_ID",
+  "rows": 5432,
+  "filled": 5432,
+  "distinct": 5432,
+  "distinct_nonblank": 5432,
+  "sample": [
+   "010001",
+   "010005",
+   "010006"
+  ]
+ },
+ {
+  "cand": "GHGRP facility id",
+  "table": "FED_EPA_GHGRP_EMISSION",
+  "col": "FACILITY_ID",
+  "rows": 346683,
+  "filled": 346683,
+  "distinct": 11277,
+  "distinct_nonblank": 11277,
+  "sample": [
+   "1000001",
+   "1000001",
+   "1000001"
+  ]
+ },
+ {
+  "cand": "GHGRP facility id",
+  "table": "FED_EPA_GHGRP_FACILITY",
+  "col": "FACILITY_ID",
+  "rows": 136005,
+  "filled": 136005,
+  "distinct": 11358,
+  "distinct_nonblank": 11358,
+  "sample": [
+   "1000001",
+   "1000001",
+   "1000001"
+  ]
+ },
+ {
+  "cand": "GHGRP facility id",
+  "table": "FED_EPA_SDWA_SDWA_FACILITIES",
+  "col": "FACILITY_ID",
+  "rows": 1554832,
+  "filled": 1554832,
+  "distinct": 224130,
+  "distinct_nonblank": 224130,
+  "sample": [
+   "0106001CH001",
+   "0106001CH003",
+   "0106001DS001"
+  ]
+ },
+ {
+  "cand": "GHGRP facility id",
+  "table": "FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT",
+  "col": "FACILITY_ID",
+  "rows": 15432737,
+  "filled": 5755384,
+  "distinct": 50362,
+  "distinct_nonblank": 50362,
+  "sample": [
+   "309",
+   "309",
+   "311"
+  ]
+ },
+ {
+  "cand": "GHGRP facility id",
+  "table": "PORTAL_ARC_OPEN_DATA_DC_43DCBD8BE3",
+  "col": "FACILITY_ID",
+  "rows": 2000,
+  "filled": 2000,
+  "distinct": 177,
+  "distinct_nonblank": 177,
+  "sample": [
+   "PCSB_6BLD",
+   "PCSB_6BLD",
+   "DGS_0454.0"
+  ]
+ },
+ {
+  "cand": "CFTC trader id",
+  "table": "FED_COURTLISTENER_JUDGE_RETENTION_EVENTS",
+  "col": "POSITION_ID",
+  "rows": 0,
+  "filled": 0,
+  "distinct": 0,
+  "distinct_nonblank": 0,
+  "sample": []
+ },
+ {
+  "cand": "CFTC trader id",
+  "table": "FED_CFTC_COT_FINANCIAL",
+  "col": "TRADERS_TOT_ALL",
+  "rows": 42473,
+  "filled": 42473,
+  "distinct": 1260,
+  "distinct_nonblank": 774,
+  "sample": [
+   "    101",
+   "    104",
+   "    108"
+  ]
+ },
+ {
+  "cand": "CFTC trader id",
+  "table": "FED_CFTC_COT_FINANCIAL_HIST",
+  "col": "TRADERS_TOT_ALL",
+  "rows": 4615,
+  "filled": 4615,
+  "distinct": 382,
+  "distinct_nonblank": 382,
+  "sample": [
+   "     84",
+   "     72",
+   "     82"
+  ]
+ },
+ {
+  "cand": "CFTC trader id",
+  "table": "FED_CFTC_COT_FUTURES",
+  "col": "TRADERS_TOTAL_ALL",
+  "rows": 287053,
+  "filled": 287053,
+  "distinct": 946,
+  "distinct_nonblank": 946,
+  "sample": [
+   "    256",
+   "    267",
+   "    276"
+  ]
+ },
+ {
+  "cand": "CFTC trader id",
+  "table": "FED_CFTC_COT_FUTURES",
+  "col": "TRADERS_TOTAL_OLD",
+  "rows": 287053,
+  "filled": 287053,
+  "distinct": 944,
+  "distinct_nonblank": 944,
+  "sample": [
+   "    183",
+   "    193",
+   "    194"
+  ]
+ },
+ {
+  "cand": "CFTC trader id",
+  "table": "FED_CFTC_COT_FUTURES",
+  "col": "TRADERS_TOTAL_OTHER",
+  "rows": 287053,
+  "filled": 287053,
+  "distinct": 784,
+  "distinct_nonblank": 784,
+  "sample": [
+   "     14",
+   "     13",
+   "     10"
+  ]
+ },
+ {
+  "cand": "MC/MX number",
+  "table": "FED_COURTLISTENER_DOCKETS",
+  "col": "DOCKET_NUMBER",
+  "rows": 71677647,
+  "filled": 68649626,
+  "distinct": 20826545,
+  "distinct_nonblank": 20826295,
+  "sample": [
+   "01-60882",
+   "94-01596",
+   "1:08-bk-02921"
+  ]
+ },
+ {
+  "cand": "MC/MX number",
+  "table": "FED_COURTLISTENER_FJC_IDB_CL_LINKED",
+  "col": "DOCKET_NUMBER",
+  "rows": 10323280,
+  "filled": 10323280,
+  "distinct": 1162192,
+  "distinct_nonblank": 1162192,
+  "sample": [
+   "0517744",
+   "0517760",
+   "0517992"
+  ]
+ },
+ {
+  "cand": "MC/MX number",
+  "table": "FED_COURTLISTENER_ORIGINATING_COURT_INFO",
+  "col": "DOCKET_NUMBER",
+  "rows": 973419,
+  "filled": 902368,
+  "distinct": 751101,
+  "distinct_nonblank": 751101,
+  "sample": [
+   "FMC-13-02",
+   "2:14-cv-15413",
+   "906, September Term, 2005"
+  ]
+ },
+ {
+  "cand": "MC/MX number",
+  "table": "PORTAL_SOC_CAMBRIDGE_OPEN_D_8A1152140C",
+  "col": "DOCKET_NUMBER",
+  "rows": 749,
+  "filled": 749,
+  "distinct": 5,
+  "distinct_nonblank": 5,
+  "sample": [
+   "22 MISC 000220 (DRR)",
+   "Middlesex Superior Court C.A. No. 2281CV",
+   "24 MISC 00528"
+  ]
+ },
+ {
+  "cand": "MC/MX number",
+  "table": "PORTAL_SOC_CHICAGO_DATA_POR_26DE83BAF4",
+  "col": "DOCKET_NUMBER",
+  "rows": 2000,
+  "filled": 2000,
+  "distinct": 599,
+  "distinct_nonblank": 599,
+  "sample": [
+   "26DT10195M",
+   "26DT10195M",
+   "26DT10195M"
+  ]
+ },
+ {
+  "cand": "MC/MX number",
+  "table": "PORTAL_SOC_CHICAGO_DATA_POR_51304D7360",
+  "col": "DOCKET_NUMBER",
+  "rows": 2000,
+  "filled": 2000,
+  "distinct": 1849,
+  "distinct_nonblank": 1849,
+  "sample": [
+   "11CP015666",
+   "11CP020396",
+   "11CP024049"
+  ]
+ },
+ {
+  "cand": "FCC call sign",
+  "table": "FED_NOAA_AIS",
+  "col": "CALLSIGN",
+  "rows": 58106517,
+  "filled": 58106517,
+  "distinct": 17438,
+  "distinct_nonblank": 17437,
+  "sample": [
+   "WDK8685",
+   "A8TX8",
+   "WDE3528"
+  ]
+ },
+ {
+  "cand": "FCC call sign",
+  "table": "FED_CONSOLIDATED_SCREENING_LIST",
+  "col": "CALL_SIGN",
+  "rows": 25988,
+  "filled": 25988,
+  "distinct": 933,
+  "distinct_nonblank": 931,
+  "sample": [
+   "Presumption of denial for all others.",
+   "CL2192",
+   "CL2059"
+  ]
+ },
+ {
+  "cand": "FCC call sign",
+  "table": "FED_FCC_LICENSING",
+  "col": "CALL_SIGN",
+  "rows": 1689338,
+  "filled": 1689338,
+  "distinct": 1597270,
+  "distinct_nonblank": 1597269,
+  "sample": [
+   "AA0A",
+   "AA0AA",
+   "AA0AB"
+  ]
+ },
+ {
+  "cand": "FCC call sign",
+  "table": "FED_OFAC_SDN",
+  "col": "CALL_SIGN",
+  "rows": 19115,
+  "filled": 19115,
+  "distinct": 900,
+  "distinct_nonblank": 899,
+  "sample": [
+   "-0- ",
+   "-0- ",
+   "-0- "
+  ]
+ },
+ {
+  "cand": "FCC call sign",
+  "table": "FED_TRADE_CONSOLIDATED_SCREENING_LIST",
+  "col": "CALL_SIGN",
+  "rows": 25929,
+  "filled": 924,
+  "distinct": 922,
+  "distinct_nonblank": 921,
+  "sample": [
+   "Presumption of denial for all others.",
+   "CL2192",
+   "CL2059"
+  ]
+ },
+ {
+  "cand": "FCC FRN",
+  "table": "FED_FCC_LICENSING",
+  "col": "FRN",
+  "rows": 1689338,
+  "filled": 1689338,
+  "distinct": 1198926,
+  "distinct_nonblank": 1198925,
+  "sample": [
+   "0002274249",
+   "0002268431",
+   "0002144756"
+  ]
+ },
+ {
+  "cand": "MSHA controller",
+  "table": "FED_MSHA_ACCIDENTS",
+  "col": "OPERATOR_ID",
+  "rows": 273623,
+  "filled": 273623,
+  "distinct": 7998,
+  "distinct_nonblank": 7997,
+  "sample": [
+   "\"P23970\"",
+   "\"0090965\"",
+   "\"L37696\""
+  ]
+ },
+ {
+  "cand": "MSHA controller",
+  "table": "FED_MSHA_VIOLATIONS",
+  "col": "VIOLATOR_ID",
+  "rows": 3087266,
+  "filled": 3087266,
+  "distinct": 43276,
+  "distinct_nonblank": 43275,
+  "sample": [
+   "\"L13586\"",
+   "\"L13586\"",
+   "\"L13586\""
+  ]
+ },
+ {
+  "cand": "MSHA controller",
+  "table": "FED_MSHA_ACCIDENTS",
+  "col": "CONTROLLER_ID",
+  "rows": 273623,
+  "filled": 273623,
+  "distinct": 6635,
+  "distinct_nonblank": 6634,
+  "sample": [
+   "\"0105613\"",
+   "\"0076273\"",
+   "\"M37696\""
+  ]
+ },
+ {
+  "cand": "MSHA controller",
+  "table": "FED_MSHA_VIOLATIONS",
+  "col": "CONTROLLER_ID",
+  "rows": 3087266,
+  "filled": 3087266,
+  "distinct": 19431,
+  "distinct_nonblank": 19430,
+  "sample": [
+   "\"0041044\"",
+   "\"0041044\"",
+   "\"0041044\""
+  ]
+ },
+ {
+  "cand": "MSHA controller",
+  "table": "FED_PHMSA_FLAGGED_INCIDENTS",
+  "col": "PHMSA_OPERATOR_ID",
+  "rows": 2039,
+  "filled": 2039,
+  "distinct": 262,
+  "distinct_nonblank": 262,
+  "sample": [
+   "31728",
+   "13769",
+   "405"
+  ]
+ },
+ {
+  "cand": "MSHA controller",
+  "table": "FED_MSHA_MINES",
+  "col": "CURRENT_OPERATOR_ID",
+  "rows": 91906,
+  "filled": 91906,
+  "distinct": 49791,
+  "distinct_nonblank": 49790,
+  "sample": [
+   "\"L13586\"",
+   "\"L13586\"",
+   "\"L10998\""
+  ]
+ },
+ {
+  "cand": "OFLC case #",
+  "table": "FED_OYEZ",
+  "col": "CASE_ID",
+  "rows": 25,
+  "filled": 25,
+  "distinct": 25,
+  "distinct_nonblank": 25,
+  "sample": [
+   "49051",
+   "49422",
+   "49891"
+  ]
+ },
+ {
+  "cand": "OFLC case #",
+  "table": "INTL_HUDOC",
+  "col": "CASE_ID",
+  "rows": 2000,
+  "filled": 2000,
+  "distinct": 2000,
+  "distinct_nonblank": 2000,
+  "sample": [
+   "001-250564",
+   "001-250902",
+   "001-250549"
+  ]
+ },
+ {
+  "cand": "OFLC case #",
+  "table": "PORTAL_CKA_ANALYZE_BOSTON_E4C004D662",
+  "col": "CASE_ID",
+  "rows": 10000,
+  "filled": 10000,
+  "distinct": 10000,
+  "distinct_nonblank": 10000,
+  "sample": [
+   "BCS-00230100",
+   "BCS-00236695",
+   "BCS-00239078"
+  ]
+ },
+ {
+  "cand": "OFLC case #",
+  "table": "PORTAL_CKA_ANALYZE_BOSTON_F1B3F76830",
+  "col": "CASE_NO",
+  "rows": 9999,
+  "filled": 9999,
+  "distinct": 9962,
+  "distinct_nonblank": 9962,
+  "sample": [
+   "V91983",
+   "V920395",
+   "V920369"
+  ]
+ },
+ {
+  "cand": "OFLC case #",
+  "table": "PORTAL_CKA_WESTERN_PENNSYLV_ABEFC58C3E",
+  "col": "CASE_ID",
+  "rows": 563,
+  "filled": 563,
+  "distinct": 481,
+  "distinct_nonblank": 481,
+  "sample": [
+   "CS-21-000004",
+   "CS-21-000019",
+   "CS-21-000039"
+  ]
+ },
+ {
+  "cand": "OFLC case #",
+  "table": "PORTAL_CKA_WESTERN_PENNSYLV_C0A2A6745A",
+  "col": "CASE_ID",
+  "rows": 10000,
+  "filled": 10000,
+  "distinct": 9483,
+  "distinct_nonblank": 9483,
+  "sample": [
+   "GD-09-000087",
+   "GD-09-000093",
+   "GD-09-000110"
+  ]
+ },
+ {
+  "cand": "NDC",
+  "table": "FED_CMS_NADAC",
+  "col": "NDC",
+  "rows": 1497925,
+  "filled": 1497925,
+  "distinct": 32881,
+  "distinct_nonblank": 32881,
+  "sample": [
+   "24385005452",
+   "70000047501",
+   "46122038576"
+  ]
+ },
+ {
+  "cand": "FDA FEI",
+  "table": "FED_FARA",
+  "col": "REGISTRATION_NUMBER",
+  "rows": 30,
+  "filled": 30,
+  "distinct": 1,
+  "distinct_nonblank": 0,
+  "sample": []
+ },
+ {
+  "cand": "FDA FEI",
+  "table": "FED_FARA_BULK",
+  "col": "REGISTRATION_NUMBER",
+  "rows": 221900,
+  "filled": 221900,
+  "distinct": 7060,
+  "distinct_nonblank": 7060,
+  "sample": [
+   "7736",
+   "7734",
+   "7732"
+  ]
+ },
+ {
+  "cand": "FDA FEI",
+  "table": "PORTAL_CKA_WESTERN_PENNSYLV_B26184ED51",
+  "col": "REGISTRATION_NUMBER",
+  "rows": 602,
+  "filled": 602,
+  "distinct": 602,
+  "distinct_nonblank": 602,
+  "sample": [
+   "05682",
+   "05865",
+   "03914"
+  ]
+ },
+ {
+  "cand": "FDA FEI",
+  "table": "PORTAL_CKA_WPRDC_ALLEGHENY_2D99F866D7",
+  "col": "REGISTRATION_NUMBER",
+  "rows": 602,
+  "filled": 602,
+  "distinct": 602,
+  "distinct_nonblank": 602,
+  "sample": [
+   "05682",
+   "05865",
+   "03914"
+  ]
+ },
+ {
+  "cand": "FDA FEI",
+  "table": "UK_COMPANIES_HOUSE_PSC",
+  "col": "REGISTRATION_NUMBER",
+  "rows": 15804612,
+  "filled": 997731,
+  "distinct": 461570,
+  "distinct_nonblank": 461570,
+  "sample": [
+   "12938281",
+   "5276020",
+   "122154"
+  ]
+ },
+ {
+  "cand": "FDA FEI",
+  "table": "INTL_UK_SANCTIONS_LIST",
+  "col": "BUSINESS_REGISTRATION_NUMBER_S",
+  "rows": 58336,
+  "filled": 58336,
+  "distinct": 720,
+  "distinct_nonblank": 719,
+  "sample": [
+   "(\u0423\u041d\u041d/\u0418\u041d\u041d): 190950894 (Belarus),  7704734",
+   "(\u0423\u041d\u041d/\u0418\u041d\u041d): 190950894 (Belarus),  7704734",
+   "UK Company no. 06527449"
+  ]
+ },
+ {
+  "cand": "510k/PMA #",
+  "table": "FED_SEC_INVESTMENT_COMPANY_SERIES_CLASS",
+  "col": "CIK_NUMBER",
+  "rows": 43123,
+  "filled": 43121,
+  "distinct": 2046,
+  "distinct_nonblank": 2046,
+  "sample": [
+   "0000048200",
+   "0002038891",
+   "0002038891"
+  ]
+ },
+ {
+  "cand": "510k/PMA #",
+  "table": "PORTAL_CKA_CALIFORNIA_OPEN_B100823F62",
+  "col": "APPLICATION_NUMBER",
+  "rows": 2285,
+  "filled": 2285,
+  "distinct": 2285,
+  "distinct_nonblank": 2285,
+  "sample": [
+   "010001DN",
+   "010001AN",
+   "010001EN"
+  ]
+ },
+ {
+  "cand": "510k/PMA #",
+  "table": "PORTAL_CKA_ANALYZE_BOSTON_D5A9AD584E",
+  "col": "PERMIT_APPLICATION_NUMBER",
+  "rows": 10000,
+  "filled": 10000,
+  "distinct": 10000,
+  "distinct_nonblank": 10000,
+  "sample": [
+   "A1000569",
+   "A1000896",
+   "A1001012"
+  ]
+ },
+ {
+  "cand": "510k/PMA #",
+  "table": "PORTAL_CKA_ANALYZE_BOSTON_D5A9AD584E",
+  "col": "BOARD_OF_APPEAL_APPLICATION_NUMBER",
+  "rows": 10000,
+  "filled": 10000,
+  "distinct": 982,
+  "distinct_nonblank": 981,
+  "sample": [
+   "BOA1022767",
+   "BOA1003353",
+   "BOA1028121"
+  ]
+ },
+ {
+  "cand": "UDI",
+  "table": "PORTAL_CKA_WESTERN_PENNSYLV_0DD7796234",
+  "col": "DEVICE_ID",
+  "rows": 420,
+  "filled": 420,
+  "distinct": 420,
+  "distinct_nonblank": 420,
+  "sample": [
+   "85",
+   "140",
+   "11"
+  ]
+ },
+ {
+  "cand": "UDI",
+  "table": "PORTAL_CKA_WPRDC_ALLEGHENY_8E6BDE379C",
+  "col": "DEVICE_ID",
+  "rows": 420,
+  "filled": 420,
+  "distinct": 420,
+  "distinct_nonblank": 420,
+  "sample": [
+   "85",
+   "140",
+   "11"
+  ]
+ },
+ {
+  "cand": "CAS",
+  "table": "PORTAL_SOC_COLORADO_INFORMA_9A760AEFAA",
+  "col": "CAS",
+  "rows": 732,
+  "filled": 732,
+  "distinct": 98,
+  "distinct_nonblank": 98,
+  "sample": [
+   "N495",
+   "68-12-2",
+   "7782-50-5"
+  ]
+ },
+ {
+  "cand": "UNII",
+  "table": "FED_FDA_UNII_GSRS_SUBSTANCES",
+  "col": "UNII",
+  "rows": 168046,
+  "filled": 168046,
+  "distinct": 168046,
+  "distinct_nonblank": 168046,
+  "sample": [
+   "0001H6R5H1",
+   "000360VJE1",
+   "0005633KTU"
+  ]
+ },
+ {
+  "cand": "ISIN",
+  "table": "FED_US_SEC_EDGAR",
+  "col": "ISIN",
+  "rows": 48990,
+  "filled": 48990,
+  "distinct": 1,
+  "distinct_nonblank": 0,
+  "sample": []
+ },
+ {
+  "cand": "ICIJ node id",
+  "table": "FED_ICIJ_OFFSHORELEAKS_ADDRESSES",
+  "col": "NODE_ID",
+  "rows": 402246,
+  "filled": 402246,
+  "distinct": 402246,
+  "distinct_nonblank": 402246,
+  "sample": [
+   "24000001",
+   "24000002",
+   "24000003"
+  ]
+ },
+ {
+  "cand": "ICIJ node id",
+  "table": "FED_ICIJ_OFFSHORELEAKS_ENTITIES",
+  "col": "NODE_ID",
+  "rows": 814344,
+  "filled": 814344,
+  "distinct": 814344,
+  "distinct_nonblank": 814344,
+  "sample": [
+   "10000001",
+   "10000002",
+   "10000003"
+  ]
+ },
+ {
+  "cand": "ICIJ node id",
+  "table": "FED_ICIJ_OFFSHORELEAKS_INTERMEDIARIES",
+  "col": "NODE_ID",
+  "rows": 26768,
+  "filled": 26768,
+  "distinct": 26768,
+  "distinct_nonblank": 26768,
+  "sample": [
+   "11000001",
+   "11000002",
+   "11000003"
+  ]
+ },
+ {
+  "cand": "ICIJ node id",
+  "table": "FED_ICIJ_OFFSHORELEAKS_OFFICERS",
+  "col": "NODE_ID",
+  "rows": 771315,
+  "filled": 771315,
+  "distinct": 771315,
+  "distinct_nonblank": 771315,
+  "sample": [
+   "12000001",
+   "12000002",
+   "12000003"
+  ]
+ },
+ {
+  "cand": "ICIJ node id",
+  "table": "FED_ICIJ_OFFSHORELEAKS_OTHERS",
+  "col": "NODE_ID",
+  "rows": 2989,
+  "filled": 2989,
+  "distinct": 2989,
+  "distinct_nonblank": 2989,
+  "sample": [
+   "85004929",
+   "85008443",
+   "85008517"
+  ]
+ },
+ {
+  "cand": "ICIJ node id",
+  "table": "ICIJ_OFFSHORE_LEAKS_ADDRESSES",
+  "col": "NODE_ID",
+  "rows": 402246,
+  "filled": 402246,
+  "distinct": 402246,
+  "distinct_nonblank": 402246,
+  "sample": [
+   "24000001",
+   "24000002",
+   "24000003"
+  ]
+ },
+ {
+  "cand": "IRS 990 object id",
+  "table": "FED_IRS_990_EFILE_INDEX",
+  "col": "DLN",
+  "rows": 5544626,
+  "filled": 5544626,
+  "distinct": 5544575,
+  "distinct_nonblank": 5544575,
+  "sample": [
+   "93493135164013",
+   "93493132086853",
+   "93493132063453"
+  ]
+ },
+ {
+  "cand": "IRS 990 object id",
+  "table": "FED_DENSHO_DDR",
+  "col": "OBJECT_ID",
+  "rows": 25,
+  "filled": 25,
+  "distinct": 25,
+  "distinct_nonblank": 25,
+  "sample": [
+   "ddr-densho-259-587",
+   "ddr-densho-390-133",
+   "ddr-densho-229-1"
+  ]
+ },
+ {
+  "cand": "IRS 990 object id",
+  "table": "FED_IRS_990_EFILE_INDEX",
+  "col": "OBJECT_ID",
+  "rows": 5544626,
+  "filled": 5544626,
+  "distinct": 5544626,
+  "distinct_nonblank": 5544626,
+  "sample": [
+   "201721609349300117",
+   "201721609349300302",
+   "201721619349300302"
+  ]
+ },
+ {
+  "cand": "IRS 990 object id",
+  "table": "PORTAL_ARC_HARRIS_COUNTY_OP_1F4D98F329",
+  "col": "OBJECT_ID",
+  "rows": 1143,
+  "filled": 1143,
+  "distinct": 254,
+  "distinct_nonblank": 254,
+  "sample": [
+   "1",
+   "2",
+   "3"
+  ]
+ },
+ {
+  "cand": "IRS 990 object id",
+  "table": "PORTAL_ARC_HARRIS_COUNTY_OP_2D6F9D0DA7",
+  "col": "OBJECT_ID",
+  "rows": 2000,
+  "filled": 2000,
+  "distinct": 2000,
+  "distinct_nonblank": 2000,
+  "sample": [
+   "1",
+   "2",
+   "3"
+  ]
+ },
+ {
+  "cand": "IRS 990 object id",
+  "table": "PORTAL_ARC_HARRIS_COUNTY_OP_3304C540B7",
+  "col": "OBJECT_ID",
+  "rows": 645,
+  "filled": 645,
+  "distinct": 253,
+  "distinct_nonblank": 253,
+  "sample": [
+   "1",
+   "1",
+   "1"
+  ]
+ },
+ {
+  "cand": "TAS/agency code",
+  "table": "FED_CFPB_HMDA_HISTORIC",
+  "col": "AGENCY_CODE",
+  "rows": 19136434,
+  "filled": 19136434,
+  "distinct": 6,
+  "distinct_nonblank": 6,
+  "sample": [
+   "9",
+   "9",
+   "9"
+  ]
+ },
+ {
+  "cand": "TAS/agency code",
+  "table": "FED_GRANTS_GOV",
+  "col": "AGENCY_CODE",
+  "rows": 100,
+  "filled": 100,
+  "distinct": 31,
+  "distinct_nonblank": 31,
+  "sample": [
+   "DOL-OSHA",
+   "DOL-OSHA",
+   "DHS-DHS"
+  ]
+ },
+ {
+  "cand": "TAS/agency code",
+  "table": "FED_NIH_REPORTER",
+  "col": "AGENCY_CODE",
+  "rows": 2122611,
+  "filled": 2122611,
+  "distinct": 12,
+  "distinct_nonblank": 12,
+  "sample": [
+   "NIH",
+   "NIH",
+   "VA"
+  ]
+ },
+ {
+  "cand": "TAS/agency code",
+  "table": "PORTAL_CKA_OKLAHOMA_OPEN_DA_017A35122C",
+  "col": "AGENCY_CODE",
+  "rows": 4346,
+  "filled": 4346,
+  "distinct": 14,
+  "distinct_nonblank": 14,
+  "sample": [
+   "20",
+   "20",
+   "20"
+  ]
+ },
+ {
+  "cand": "TAS/agency code",
+  "table": "FED_USASPENDING_TOPTIER_AGENCIES",
+  "col": "TOPTIER_CODE",
+  "rows": 111,
+  "filled": 111,
+  "distinct": 111,
+  "distinct_nonblank": 111,
+  "sample": [
+   "247",
+   "310",
+   "302"
+  ]
+ },
+ {
+  "cand": "TAS/agency code",
+  "table": "PORTAL_SOC_NEW_YORK_STATE_O_EFF72C4402",
+  "col": "LEAD_AGENCY_CODE",
+  "rows": 2000,
+  "filled": 2000,
+  "distinct": 1,
+  "distinct_nonblank": 1,
+  "sample": [
+   "291910",
+   "291910",
+   "291910"
+  ]
+ },
+ {
+  "cand": "CFDA",
+  "table": "FED_NIH_REPORTER",
+  "col": "CFDA_CODE",
+  "rows": 2122611,
+  "filled": 1715825,
+  "distinct": 473,
+  "distinct_nonblank": 473,
+  "sample": [
+   "93.395",
+   "93.067",
+   "93.242"
+  ]
+ },
+ {
+  "cand": "CFDA",
+  "table": "FED_USASPENDING_ASSISTANCE_FULL",
+  "col": "cfda_title",
+  "rows": 19902879,
+  "filled": 19902879,
+  "distinct": 4225,
+  "distinct_nonblank": 4224,
+  "sample": [
+   "STATE CEMETERY GRANTS",
+   "FEDERAL DIRECT STUDENT LOANS",
+   "FEDERAL DIRECT STUDENT LOANS"
+  ]
+ },
+ {
+  "cand": "CFDA",
+  "table": "FED_US_USASPENDING_API",
+  "col": "CFDA_TITLE",
+  "rows": 300,
+  "filled": 300,
+  "distinct": 1,
+  "distinct_nonblank": 0,
+  "sample": []
+ },
+ {
+  "cand": "CFDA",
+  "table": "PORTAL_SOC_UTAH_OPEN_DATA_P_103F7D641F",
+  "col": "CFDA_TITLE",
+  "rows": 2000,
+  "filled": 2000,
+  "distinct": 373,
+  "distinct_nonblank": 373,
+  "sample": [
+   "MEDICAL ASSISTANCE PROGRAM",
+   "MEDICAL ASSISTANCE PROGRAM",
+   "MEDICAL ASSISTANCE PROGRAM"
+  ]
+ },
+ {
+  "cand": "CFDA",
+  "table": "FED_NSF_AWARDS",
+  "col": "CFDA_NUMBER",
+  "rows": 125,
+  "filled": 125,
+  "distinct": 10,
+  "distinct_nonblank": 10,
+  "sample": [
+   "47.074",
+   "47.074",
+   "47.074"
+  ]
+ },
+ {
+  "cand": "CFDA",
+  "table": "FED_USASPENDING_ASSISTANCE_FULL",
+  "col": "cfda_number",
+  "rows": 19902879,
+  "filled": 19902879,
+  "distinct": 3192,
+  "distinct_nonblank": 3191,
+  "sample": [
+   "93.224",
+   "93.994",
+   "93.918"
+  ]
+ },
+ {
+  "cand": "NIH appl id",
+  "table": "FED_NIH_REPORTER",
+  "col": "APPL_ID",
+  "rows": 2122611,
+  "filled": 2122611,
+  "distinct": 2122611,
+  "distinct_nonblank": 2122611,
+  "sample": [
+   "6443315",
+   "6495624",
+   "10802368"
+  ]
+ },
+ {
+  "cand": "NIH appl id",
+  "table": "FED_NIH_REPORTER",
+  "col": "PROJECT_NUM",
+  "rows": 2122611,
+  "filled": 2122611,
+  "distinct": 1741390,
+  "distinct_nonblank": 1741390,
+  "sample": [
+   "2P41RR008079-16",
+   "5R01GM059234-09",
+   "5K02AG033629-04"
+  ]
+ },
+ {
+  "cand": "NIH appl id",
+  "table": "FED_NIH_REPORTER",
+  "col": "CORE_PROJECT_NUM",
+  "rows": 2122611,
+  "filled": 2122582,
+  "distinct": 439228,
+  "distinct_nonblank": 439228,
+  "sample": [
+   "P01AR042919",
+   "P30ES000260",
+   "R01MD017205"
+  ]
+ },
+ {
+  "cand": "NIH appl id",
+  "table": "PORTAL_CKA_VIRGINIA_OPEN_DA_97AD4BC66C",
+  "col": "STATE_PROJECT_NUMBER",
+  "rows": 4457,
+  "filled": 4457,
+  "distinct": 179,
+  "distinct_nonblank": 178,
+  "sample": [
+   "SS4A-964 P401",
+   "SS4A-964 P401",
+   "SS4A-964 P401"
+  ]
+ },
+ {
+  "cand": "LDA ids",
+  "table": "FED_SENATE_LDA_FILINGS",
+  "col": "CLIENT_ID",
+  "rows": 831376,
+  "filled": 831376,
+  "distinct": 88607,
+  "distinct_nonblank": 88607,
+  "sample": [
+   "202232",
+   "200518",
+   "200523"
+  ]
+ },
+ {
+  "cand": "LDA ids",
+  "table": "PORTAL_CKA_WESTERN_PENNSYLV_20E1A330CE",
+  "col": "CLIENT_ID",
+  "rows": 672,
+  "filled": 672,
+  "distinct": 672,
+  "distinct_nonblank": 672,
+  "sample": [
+   "201211150002",
+   "201511040005",
+   "201212130003"
+  ]
+ },
+ {
+  "cand": "LDA ids",
+  "table": "PORTAL_CKA_WPRDC_ALLEGHENY_16A0BB67B4",
+  "col": "CLIENT_ID",
+  "rows": 672,
+  "filled": 672,
+  "distinct": 672,
+  "distinct_nonblank": 672,
+  "sample": [
+   "201211150002",
+   "201511040005",
+   "201212130003"
+  ]
+ },
+ {
+  "cand": "LDA ids",
+  "table": "CA_LOBBY_EMP_LOBBYIST",
+  "col": "LOBBYIST_ID",
+  "rows": 1500,
+  "filled": 1500,
+  "distinct": 677,
+  "distinct_nonblank": 677,
+  "sample": [
+   "1148125",
+   "1148126",
+   "1148126"
+  ]
+ },
+ {
+  "cand": "LDA ids",
+  "table": "CA_LOBBY_FIRM_LOBBYIST",
+  "col": "LOBBYIST_ID",
+  "rows": 577,
+  "filled": 577,
+  "distinct": 577,
+  "distinct_nonblank": 577,
+  "sample": [
+   "1148658",
+   "1149154",
+   "1149173"
+  ]
+ },
+ {
+  "cand": "LDA ids",
+  "table": "FED_SENATE_LDA_FILINGS",
+  "col": "REGISTRANT_ID",
+  "rows": 831376,
+  "filled": 831376,
+  "distinct": 11723,
+  "distinct_nonblank": 11723,
+  "sample": [
+   "9181",
+   "39837",
+   "24624"
+  ]
+ },
+ {
+  "cand": "Committee code",
+  "table": "FED_FEC_API",
+  "col": "COMMITTEE_ID",
+  "rows": 500,
+  "filled": 500,
+  "distinct": 25,
+  "distinct_nonblank": 25,
+  "sample": [
+   "C00849802",
+   "C00793976",
+   "C00793976"
+  ]
+ },
+ {
+  "cand": "Committee code",
+  "table": "FED_CONGRESS_COMMITTEE_MEMBERSHIP",
+  "col": "COMMITTEE_CODE",
+  "rows": 3879,
+  "filled": 3879,
+  "distinct": 228,
+  "distinct_nonblank": 228,
+  "sample": [
+   "SSAF",
+   "SSAF",
+   "SSAF"
+  ]
+ },
+ {
+  "cand": "Committee code",
+  "table": "FED_FEC_LEADERSHIP_PAC",
+  "col": "FEC_COMMITTEE_ID",
+  "rows": 8619,
+  "filled": 8619,
+  "distinct": 8338,
+  "distinct_nonblank": 8338,
+  "sample": [
+   "C00607515",
+   "C00697789",
+   "C00708867"
+  ]
+ },
+ {
+  "cand": "Bill #",
+  "table": "FED_GOVINFO_BILLSTATUS",
+  "col": "BILL_NUMBER",
+  "rows": 36465,
+  "filled": 36465,
+  "distinct": 10564,
+  "distinct_nonblank": 10564,
+  "sample": [
+   "184",
+   "760",
+   "363"
+  ]
+ },
+ {
+  "cand": "Bill #",
+  "table": "FED_GOVINFO_BILL_COSPONSORS",
+  "col": "BILL_NUMBER",
+  "rows": 367742,
+  "filled": 367742,
+  "distinct": 10025,
+  "distinct_nonblank": 10025,
+  "sample": [
+   "760",
+   "760",
+   "760"
+  ]
+ },
+ {
+  "cand": "Bill #",
+  "table": "FED_VOTEVIEW_ROLLCALL_META",
+  "col": "BILL_NUMBER",
+  "rows": 3364,
+  "filled": 3364,
+  "distinct": 1380,
+  "distinct_nonblank": 1379,
+  "sample": [
+   "HRES5",
+   "HRES5",
+   "HRES5"
+  ]
+ },
+ {
+  "cand": "Bill #",
+  "table": "FED_VOTEVIEW_ROLLCALL_META_FULL",
+  "col": "BILL_NUMBER",
+  "rows": 113512,
+  "filled": 89594,
+  "distinct": 16221,
+  "distinct_nonblank": 16221,
+  "sample": [
+   "HCONRES118",
+   "HRES643",
+   "HRES643"
+  ]
+ },
+ {
+  "cand": "Bill #",
+  "table": "PORTAL_CKA_VIRGINIA_OPEN_DA_8A70DE2FB1",
+  "col": "BILL_NUMBER",
+  "rows": 10000,
+  "filled": 10000,
+  "distinct": 6313,
+  "distinct_nonblank": 6313,
+  "sample": [
+   "1126043169",
+   "1115081742",
+   "1116051097"
+  ]
+ },
+ {
+  "cand": "FJC NID",
+  "table": "FED_FJC_ARTICLE_III_JUDGES",
+  "col": "NID",
+  "rows": 4074,
+  "filled": 4074,
+  "distinct": 4074,
+  "distinct_nonblank": 4074,
+  "sample": [
+   "13761857",
+   "1393931",
+   "1376976"
+  ]
+ },
+ {
+  "cand": "FJC NID",
+  "table": "FED_FJC_ARTICLE_III_JUDGES",
+  "col": "JID",
+  "rows": 4074,
+  "filled": 4074,
+  "distinct": 4074,
+  "distinct_nonblank": 4074,
+  "sample": [
+   "13761857",
+   "3419",
+   "1"
+  ]
+ },
+ {
+  "cand": "FJC NID",
+  "table": "FED_FJC_JUDGES",
+  "col": "NID",
+  "rows": 4067,
+  "filled": 4067,
+  "distinct": 4067,
+  "distinct_nonblank": 4067,
+  "sample": [
+   "13761857",
+   "1393931",
+   "1376976"
+  ]
+ },
+ {
+  "cand": "FJC NID",
+  "table": "FED_FJC_JUDGES",
+  "col": "JID",
+  "rows": 4067,
+  "filled": 4067,
+  "distinct": 4067,
+  "distinct_nonblank": 4067,
+  "sample": [
+   "13761857",
+   "3419",
+   "1"
+  ]
+ },
+ {
+  "cand": "FJC NID",
+  "table": "FED_FJC_SERVICE",
+  "col": "NID",
+  "rows": 4766,
+  "filled": 4766,
+  "distinct": 4067,
+  "distinct_nonblank": 4067,
+  "sample": [
+   "13761857",
+   "1393931",
+   "1376976"
+  ]
+ },
+ {
+  "cand": "FJC NID",
+  "table": "PORTAL_CKA_SAN_JOSE_OPEN_DA_5ED011D868",
+  "col": "PRJID",
+  "rows": 60,
+  "filled": 60,
+  "distinct": 37,
+  "distinct_nonblank": 37,
+  "sample": [
+   "8511",
+   "8512",
+   "8675"
+  ]
+ },
+ {
+  "cand": "CL cluster/opinion",
+  "table": "FED_COURTLISTENER_OPINION_CLUSTERS",
+  "col": "DOCKET_ID",
+  "rows": 10070727,
+  "filled": 10070727,
+  "distinct": 9765364,
+  "distinct_nonblank": 9765364,
+  "sample": [
+   "64286486",
+   "70691250",
+   "64286547"
+  ]
+ },
+ {
+  "cand": "CL cluster/opinion",
+  "table": "FED_COURTLISTENER_ORAL_ARGUMENTS",
+  "col": "DOCKET_ID",
+  "rows": 102649,
+  "filled": 102649,
+  "distinct": 102372,
+  "distinct_nonblank": 102372,
+  "sample": [
+   "8063703",
+   "3088698",
+   "3047540"
+  ]
+ },
+ {
+  "cand": "CL cluster/opinion",
+  "table": "FED_COURTLISTENER_CITATIONS",
+  "col": "CLUSTER_ID",
+  "rows": 18123788,
+  "filled": 18123788,
+  "distinct": 7844636,
+  "distinct_nonblank": 7844636,
+  "sample": [
+   "142375",
+   "142376",
+   "142377"
+  ]
+ },
+ {
+  "cand": "CL cluster/opinion",
+  "table": "FED_FEDERAL_REGISTER_DOCUMENTS",
+  "col": "DOCKET_IDS",
+  "rows": 94731,
+  "filled": 94731,
+  "distinct": 50531,
+  "distinct_nonblank": 50531,
+  "sample": [
+   "[]",
+   "[]",
+   "[]"
+  ]
+ },
+ {
+  "cand": "CL cluster/opinion",
+  "table": "FED_COURTLISTENER_DOCKETS",
+  "col": "PACER_CASE_ID",
+  "rows": 71677647,
+  "filled": 60757651,
+  "distinct": 2250759,
+  "distinct_nonblank": 2250759,
+  "sample": [
+   "29643",
+   "40289",
+   "734542"
+  ]
+ },
+ {
+  "cand": "CL cluster/opinion",
+  "table": "PORTAL_SOC_MARYLAND_OPEN_DA_786470E96F",
+  "col": "FDMS_DOCKET_ID",
+  "rows": 194,
+  "filled": 194,
+  "distinct": 7,
+  "distinct_nonblank": 7,
+  "sample": [
+   "{\"url\": \"https://www.regulations.gov/doc",
+   "{\"url\": \"https://www.regulations.gov/doc",
+   "{\"url\": \"https://www.regulations.gov/doc"
+  ]
+ },
+ {
+  "cand": "SCDB justice",
+  "table": "FED_SCDB",
+  "col": "JUSTICE",
+  "rows": 83644,
+  "filled": 83644,
+  "distinct": 40,
+  "distinct_nonblank": 40,
+  "sample": [
+   "86",
+   "84",
+   "81"
+  ]
+ },
+ {
+  "cand": "SCDB justice",
+  "table": "FED_SCDB",
+  "col": "JUSTICENAME",
+  "rows": 83644,
+  "filled": 83644,
+  "distinct": 40,
+  "distinct_nonblank": 40,
+  "sample": [
+   "HHBurton",
+   "RHJackson",
+   "WODouglas"
+  ]
+ },
+ {
+  "cand": "SCDB justice",
+  "table": "XC_JCS_SCOTUS",
+  "col": "JUSTICENAME",
+  "rows": 782,
+  "filled": 782,
+  "distinct": 49,
+  "distinct_nonblank": 49,
+  "sample": [
+   "ACBarrett",
+   "ACBarrett",
+   "ACBarrett"
+  ]
+ },
+ {
+  "cand": "SCDB justice",
+  "table": "FED_OYEZ",
+  "col": "JUSTICE_VOTES",
+  "rows": 25,
+  "filled": 25,
+  "distinct": 25,
+  "distinct_nonblank": 25,
+  "sample": [
+   "[{\"member\": {\"ID\": 15099, \"name\": \"Earl ",
+   "[{\"member\": {\"ID\": 15099, \"name\": \"Earl ",
+   "[{\"member\": {\"ID\": 15099, \"name\": \"Earl "
+  ]
+ },
+ {
+  "cand": "SCDB justice",
+  "table": "PORTAL_SOC_CONNECTICUT_OPEN_BD88772B17",
+  "col": "VINTAGEJUSTICE40",
+  "rows": 1367,
+  "filled": 1367,
+  "distinct": 2,
+  "distinct_nonblank": 2,
+  "sample": [
+   "Justice 40",
+   "Not Justice 40",
+   "Not Justice 40"
+  ]
+ },
+ {
+  "cand": "OSHA establishment",
+  "table": "FED_EPA_ENVIROFACTS",
+  "col": "SITE_ID",
+  "rows": 5000,
+  "filled": 5000,
+  "distinct": 1,
+  "distinct_nonblank": 0,
+  "sample": []
+ },
+ {
+  "cand": "OSHA establishment",
+  "table": "PORTAL_SOC_SF_OPENDATA_DATA_8DCCC91916",
+  "col": "SITE_ID",
+  "rows": 1560,
+  "filled": 1560,
+  "distinct": 108,
+  "distinct_nonblank": 108,
+  "sample": [
+   "46",
+   "74",
+   "50"
+  ]
+ },
+ {
+  "cand": "OSHA establishment",
+  "table": "PORTAL_SOC_SF_OPENDATA_DATA_C19EE9EB44",
+  "col": "SITE_ID",
+  "rows": 157,
+  "filled": 157,
+  "distinct": 151,
+  "distinct_nonblank": 151,
+  "sample": [
+   "1",
+   "2",
+   "3"
+  ]
+ },
+ {
+  "cand": "OSHA establishment",
+  "table": "FED_DOL_OSHA_INSPECTIONS",
+  "col": "ACTIVITY_NR",
+  "rows": 5611412,
+  "filled": 5611412,
+  "distinct": 5196412,
+  "distinct_nonblank": 5196412,
+  "sample": [
+   "11970811",
+   "11970829",
+   "11970837"
+  ]
+ },
+ {
+  "cand": "OSHA establishment",
+  "table": "PORTAL_SOC_UTAH_OPEN_DATA_P_D903A6FE0D",
+  "col": "ESTABLISHMENT",
+  "rows": 2000,
+  "filled": 2000,
+  "distinct": 89,
+  "distinct_nonblank": 89,
+  "sample": [
+   "HILL AIR FORCE BASE",
+   "HILL AIR FORCE BASE",
+   "HILL AIR FORCE BASE"
+  ]
+ },
+ {
+  "cand": "OSHA establishment",
+  "table": "PORTAL_CKA_OPEN_DATA_SA_D4BC1D6201",
+  "col": "ESTABLISHMENTS",
+  "rows": 101,
+  "filled": 101,
+  "distinct": 95,
+  "distinct_nonblank": 95,
+  "sample": [
+   "384",
+   "237",
+   "52"
+  ]
+ },
+ {
+  "cand": "EIA ids",
+  "table": "FED_EIA860_1_UTILITY",
+  "col": "UTILITY_ID",
+  "rows": 6643,
+  "filled": 6643,
+  "distinct": 6643,
+  "distinct_nonblank": 6643,
+  "sample": [
+   "7",
+   "8",
+   "25"
+  ]
+ },
+ {
+  "cand": "EIA ids",
+  "table": "FED_EIA860_2_PLANT",
+  "col": "PLANT_CODE",
+  "rows": 16132,
+  "filled": 16132,
+  "distinct": 16132,
+  "distinct_nonblank": 16132,
+  "sample": [
+   "1",
+   "2",
+   "3"
+  ]
+ },
+ {
+  "cand": "EIA ids",
+  "table": "FED_EIA860_2_PLANT",
+  "col": "UTILITY_ID",
+  "rows": 16132,
+  "filled": 16132,
+  "distinct": 6640,
+  "distinct_nonblank": 6640,
+  "sample": [
+   "63560",
+   "195",
+   "195"
+  ]
+ },
+ {
+  "cand": "EIA ids",
+  "table": "FED_EIA860_3_1_GENERATOR",
+  "col": "UTILITY_ID",
+  "rows": 26856,
+  "filled": 26856,
+  "distinct": 5608,
+  "distinct_nonblank": 5608,
+  "sample": [
+   "63560",
+   "63560",
+   "63560"
+  ]
+ },
+ {
+  "cand": "EIA ids",
+  "table": "FED_EIA860_3_1_GENERATOR",
+  "col": "PLANT_CODE",
+  "rows": 26856,
+  "filled": 26855,
+  "distinct": 13371,
+  "distinct_nonblank": 13371,
+  "sample": [
+   "1",
+   "1",
+   "1"
+  ]
+ },
+ {
+  "cand": "EIA ids",
+  "table": "FED_EIA860_3_2_WIND",
+  "col": "PLANT_CODE",
+  "rows": 1563,
+  "filled": 1563,
+  "distinct": 1356,
+  "distinct_nonblank": 1356,
+  "sample": [
+   "1",
+   "1",
+   "90"
+  ]
+ },
+ {
+  "cand": "FERC",
+  "table": "PORTAL_CKA_SAN_JOSE_OPEN_DA_5F864A8799",
+  "col": "CID",
+  "rows": 4482,
+  "filled": 4482,
+  "distinct": 23,
+  "distinct_nonblank": 23,
+  "sample": [
+   "60337",
+   "60348",
+   "60349"
+  ]
+ },
+ {
+  "cand": "FERC",
+  "table": "INTL_EC_SERCOP",
+  "col": "OCID",
+  "rows": 132995,
+  "filled": 132995,
+  "distinct": 132995,
+  "distinct_nonblank": 132995,
+  "sample": [
+   "ocds-5wno2w-CDC-CELECEP-2025-07058-23894",
+   "ocds-5wno2w-CDC-EEGA-2025-004-3217",
+   "ocds-5wno2w-CDC-EEGA-2025-016-3217"
+  ]
+ },
+ {
+  "cand": "FERC",
+  "table": "PORTAL_ARC_LA_COUNTY_OPEN_D_0A94DB308E",
+  "col": "FACID",
+  "rows": 93,
+  "filled": 93,
+  "distinct": 93,
+  "distinct_nonblank": 93,
+  "sample": [
+   "060000027",
+   "060000028",
+   "060000035"
+  ]
+ },
+ {
+  "cand": "FERC",
+  "table": "PORTAL_ARC_LA_COUNTY_OPEN_D_1A6706943D",
+  "col": "FACID",
+  "rows": 2000,
+  "filled": 2000,
+  "distinct": 2000,
+  "distinct_nonblank": 2000,
+  "sample": [
+   "630016333",
+   "630012865",
+   "630014606"
+  ]
+ },
+ {
+  "cand": "FERC",
+  "table": "PORTAL_ARC_LA_COUNTY_OPEN_D_1EDD056661",
+  "col": "FACID",
+  "rows": 2000,
+  "filled": 2000,
+  "distinct": 2000,
+  "distinct_nonblank": 2000,
+  "sample": [
+   "630016797",
+   "630025720",
+   "060000027"
+  ]
+ },
+ {
+  "cand": "FERC",
+  "table": "PORTAL_ARC_LOUISVILLE_OPEN_733584A9A0",
+  "col": "T4CID",
+  "rows": 11,
+  "filled": 11,
+  "distinct": 1,
+  "distinct_nonblank": 0,
+  "sample": []
+ },
+ {
+  "cand": "PHMSA OPID",
+  "table": "FED_MSHA_ACCIDENTS",
+  "col": "OPERATOR_ID",
+  "rows": 273623,
+  "filled": 273623,
+  "distinct": 7998,
+  "distinct_nonblank": 7997,
+  "sample": [
+   "\"P23970\"",
+   "\"0090965\"",
+   "\"L37696\""
+  ]
+ },
+ {
+  "cand": "PHMSA OPID",
+  "table": "FED_PHMSA_FLAGGED_INCIDENTS",
+  "col": "PHMSA_OPERATOR_ID",
+  "rows": 2039,
+  "filled": 2039,
+  "distinct": 262,
+  "distinct_nonblank": 262,
+  "sample": [
+   "31728",
+   "13769",
+   "405"
+  ]
+ },
+ {
+  "cand": "PHMSA OPID",
+  "table": "FED_MSHA_MINES",
+  "col": "CURRENT_OPERATOR_ID",
+  "rows": 91906,
+  "filled": 91906,
+  "distinct": 49791,
+  "distinct_nonblank": 49790,
+  "sample": [
+   "\"L13586\"",
+   "\"L13586\"",
+   "\"L10998\""
+  ]
+ },
+ {
+  "cand": "PHMSA OPID",
+  "table": "PORTAL_CKA_VIRGINIA_OPEN_DA_77706D86DA",
+  "col": "SWC_MS4_OPERATOR_ID",
+  "rows": 10000,
+  "filled": 10000,
+  "distinct": 91,
+  "distinct_nonblank": 90,
+  "sample": [
+   "2",
+   "4",
+   "4"
+  ]
+ },
+ {
+  "cand": "PHMSA OPID",
+  "table": "FED_HRSA_UDS_SERVICE_DELIVERY_SITES",
+  "col": "HEALTH_CENTER_OPERATOR_IDENTIFICATION_NUMBER",
+  "rows": 19038,
+  "filled": 19038,
+  "distinct": 3,
+  "distinct_nonblank": 3,
+  "sample": [
+   "1",
+   "1",
+   "1"
+  ]
+ },
+ {
+  "cand": "TRI facility",
+  "table": "FED_EPA_ECHO",
+  "col": "TRI_IDS",
+  "rows": 3157891,
+  "filled": 3157891,
+  "distinct": 64275,
+  "distinct_nonblank": 64274,
+  "sample": [
+   "06040TYCNG50HAR",
+   "30172GLYLRBURLI",
+   "75006LCTRP1525C"
+  ]
+ },
+ {
+  "cand": "TRI facility",
+  "table": "FED_EPA_TRI_FACILITY",
+  "col": "TRI_FACILITY_ID",
+  "rows": 64990,
+  "filled": 64990,
+  "distinct": 64990,
+  "distinct_nonblank": 64990,
+  "sample": [
+   "00602BXTRF111CO",
+   "00602BXTRHRD115",
+   "00602DSCFPPOBOA"
+  ]
+ },
+ {
+  "cand": "TRI facility",
+  "table": "PORTAL_ARC_HARRIS_COUNTY_OP_1BA6E8027E",
+  "col": "TRI_FACILITY_ID",
+  "rows": 27,
+  "filled": 27,
+  "distinct": 10,
+  "distinct_nonblank": 10,
+  "sample": [
+   "7750WSLVYS5761U&77507QSTRC5761U",
+   "7750WSLVYS5761U&77507QSTRC5761U",
+   "7750WSLVYS5761U&77507QSTRC5761U"
+  ]
+ },
+ {
+  "cand": "TRI facility",
+  "table": "PORTAL_ARC_LA_COUNTY_OPEN_D_D75E8EA051",
+  "col": "TRI_FACILITY_ID",
+  "rows": 385,
+  "filled": 385,
+  "distinct": 385,
+  "distinct_nonblank": 385,
+  "sample": [
+   "90001FBRCT724E6",
+   "90001LLYSC1960E",
+   "90001SLVST8125B"
+  ]
+ },
+ {
+  "cand": "TRI facility",
+  "table": "PORTAL_ARC_LA_COUNTY_OPEN_D_E549C7C921",
+  "col": "TRI_FACILITY_ID",
+  "rows": 76,
+  "filled": 76,
+  "distinct": 76,
+  "distinct_nonblank": 76,
+  "sample": [
+   "90001LLYSC1960E",
+   "9000WLDCNT5855H",
+   "90023DVSCL3700E"
+  ]
+ },
+ {
+  "cand": "TRI facility",
+  "table": "PORTAL_CKA_WESTERN_PENNSYLV_0AF7431C6C",
+  "col": "TRI_FACILITY_ID",
+  "rows": 10000,
+  "filled": 10000,
+  "distinct": 200,
+  "distinct_nonblank": 200,
+  "sample": [
+   "15204PRTTSTABOR",
+   "15104PCMTL11TAL",
+   "15104PCMTL11TAL"
+  ]
+ },
+ {
+  "cand": "RCRA handler",
+  "table": "FED_EPA_SUPERFUND_SITE_BOUNDARIES",
+  "col": "EPA_ID",
+  "rows": 2114,
+  "filled": 2114,
+  "distinct": 1908,
+  "distinct_nonblank": 1908,
+  "sample": [
+   "CTD001452093",
+   "VTD000860239",
+   "VTD981062441"
+  ]
+ },
+ {
+  "cand": "RCRA handler",
+  "table": "FED_EPA_ECHO",
+  "col": "RCRA_IDS",
+  "rows": 3157891,
+  "filled": 3157891,
+  "distinct": 1499169,
+  "distinct_nonblank": 1499168,
+  "sample": [
+   "CAL000403677",
+   "AL0000266726",
+   "CAT080010465"
+  ]
+ },
+ {
+  "cand": "RCRA handler",
+  "table": "PORTAL_SOC_DELAWARE_OPEN_DA_9E200409C5",
+  "col": "RCRA_REL",
+  "rows": 1858,
+  "filled": 1858,
+  "distinct": 1,
+  "distinct_nonblank": 1,
+  "sample": [
+   "0",
+   "0",
+   "0"
+  ]
+ },
+ {
+  "cand": "RCRA handler",
+  "table": "FED_EPA_ECHO",
+  "col": "RCRA_FLAG",
+  "rows": 3157891,
+  "filled": 3157891,
+  "distinct": 2,
+  "distinct_nonblank": 2,
+  "sample": [
+   "Y",
+   "Y",
+   "Y"
+  ]
+ },
+ {
+  "cand": "RCRA handler",
+  "table": "FED_EPA_ECHO",
+  "col": "RCRA_NAICS",
+  "rows": 3157891,
+  "filled": 3157891,
+  "distinct": 37381,
+  "distinct_nonblank": 37380,
+  "sample": [
+   "621493",
+   "56299",
+   "56299"
+  ]
+ },
+ {
+  "cand": "RCRA handler",
+  "table": "FED_EPA_ENVIROFACTS",
+  "col": "HANDLER_ID",
+  "rows": 5000,
+  "filled": 5000,
+  "distinct": 1,
+  "distinct_nonblank": 0,
+  "sample": []
+ },
+ {
+  "cand": "ICIS ids",
+  "table": "FED_EPA_AIR_EMISSIONS_POLL_RPT_COMBINED_EMISSIONS",
+  "col": "PGM_SYS_ID",
+  "rows": 10411826,
+  "filled": 10411826,
+  "distinct": 187922,
+  "distinct_nonblank": 187922,
+  "sample": [
+   "97113SHLDN300N2",
+   "55616STNLY1538S",
+   "45365MCHNC933OA"
+  ]
+ },
+ {
+  "cand": "ICIS ids",
+  "table": "FED_EPA_FRS_FRS_NAICS_CODES",
+  "col": "PGM_SYS_ID",
+  "rows": 2179702,
+  "filled": 2179702,
+  "distinct": 2032602,
+  "distinct_nonblank": 2032602,
+  "sample": [
+   "43130HXCLC815LA",
+   "11050NDSTR7HARB",
+   "02071BRDMC100NE"
+  ]
+ },
+ {
+  "cand": "ICIS ids",
+  "table": "FED_EPA_FRS_FRS_PROGRAM_LINKS",
+  "col": "PGM_SYS_ID",
+  "rows": 4406498,
+  "filled": 4406498,
+  "distinct": 4396854,
+  "distinct_nonblank": 4396854,
+  "sample": [
+   "15437411",
+   "15391211",
+   "15392011"
+  ]
+ },
+ {
+  "cand": "ICIS ids",
+  "table": "FED_EPA_FRS_FRS_SIC_CODES",
+  "col": "PGM_SYS_ID",
+  "rows": 1085211,
+  "filled": 1085211,
+  "distinct": 991332,
+  "distinct_nonblank": 991332,
+  "sample": [
+   "00619HBFLLCALLE",
+   "00620RMCCH83EST",
+   "00659CNTRLRD2KM"
+  ]
+ },
+ {
+  "cand": "ICIS ids",
+  "table": "FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES",
+  "col": "PGM_SYS_ID",
+  "rows": 279728,
+  "filled": 279728,
+  "distinct": 279728,
+  "distinct_nonblank": 279728,
+  "sample": [
+   "020000003400390046",
+   "020000003400390047",
+   "020000003400390048"
+  ]
+ },
+ {
+  "cand": "ICIS ids",
+  "table": "FED_EPA_ICIS_AIR_ICIS_AIR_FCES_PCES",
+  "col": "PGM_SYS_ID",
+  "rows": 1779096,
+  "filled": 1779096,
+  "distinct": 148280,
+  "distinct_nonblank": 148280,
+  "sample": [
+   "PR0000007212300011",
+   "080000004904700004",
+   "080000005601300005"
+  ]
+ },
+ {
+  "cand": "HUC/USGS site",
+  "table": "FED_USGS_WBD_HUC8",
+  "col": "HUC8",
+  "rows": 2456,
+  "filled": 2456,
+  "distinct": 2456,
+  "distinct_nonblank": 2456,
+  "sample": [
+   "04080204",
+   "04090003",
+   "04030106"
+  ]
+ },
+ {
+  "cand": "HUC/USGS site",
+  "table": "PORTAL_ARC_KENTUCKY_OPEN_GI_2A1893FE0B",
+  "col": "HUC8",
+  "rows": 2000,
+  "filled": 2000,
+  "distinct": 41,
+  "distinct_nonblank": 41,
+  "sample": [
+   "05100201",
+   "05070203",
+   "05140102"
+  ]
+ },
+ {
+  "cand": "HUC/USGS site",
+  "table": "PORTAL_ARC_KENTUCKY_OPEN_GI_2A1893FE0B",
+  "col": "HUC12",
+  "rows": 2000,
+  "filled": 2000,
+  "distinct": 610,
+  "distinct_nonblank": 610,
+  "sample": [
+   "051002010306",
+   "050702030105",
+   "051401020803"
+  ]
+ },
+ {
+  "cand": "HUC/USGS site",
+  "table": "FED_USGS_WATER",
+  "col": "SITE_NO",
+  "rows": 6694816,
+  "filled": 6694816,
+  "distinct": 3767,
+  "distinct_nonblank": 3767,
+  "sample": [
+   "02339495",
+   "02339495",
+   "02339495"
+  ]
+ },
+ {
+  "cand": "HUC/USGS site",
+  "table": "PORTAL_ARC_KENTUCKY_OPEN_GI_2A1893FE0B",
+  "col": "HUC8_NAME",
+  "rows": 2000,
+  "filled": 2000,
+  "distinct": 41,
+  "distinct_nonblank": 41,
+  "sample": [
+   "North Fork Kentucky",
+   "Lower Levisa",
+   "Salt"
+  ]
+ },
+ {
+  "cand": "HUC/USGS site",
+  "table": "PORTAL_ARC_KENTUCKY_OPEN_GI_2A1893FE0B",
+  "col": "HUC12_NAME",
+  "rows": 2000,
+  "filled": 2000,
+  "distinct": 593,
+  "distinct_nonblank": 593,
+  "sample": [
+   "Big Creek",
+   "Lower Left Fork Beaver Creek-Beaver Cree",
+   "Currys Fork"
+  ]
+ },
+ {
+  "cand": "NCES/IPEDS/OPEID",
+  "table": "FED_ED_COLLEGE_SCORECARD_INSTITUTION",
+  "col": "OPEID",
+  "rows": 6273,
+  "filled": 6252,
+  "distinct": 6222,
+  "distinct_nonblank": 6222,
+  "sample": [
+   "00100200",
+   "00105200",
+   "02503400"
+  ]
+ },
+ {
+  "cand": "NCES/IPEDS/OPEID",
+  "table": "FED_ED_COLLEGE_SCORECARD_INSTITUTION",
+  "col": "OPEID6",
+  "rows": 6273,
+  "filled": 6252,
+  "distinct": 4956,
+  "distinct_nonblank": 4956,
+  "sample": [
+   "001002",
+   "001052",
+   "025034"
+  ]
+ },
+ {
+  "cand": "NCES/IPEDS/OPEID",
+  "table": "FED_ED_COLLEGE_SCORECARD_INSTITUTION",
+  "col": "UNITID",
+  "rows": 6273,
+  "filled": 6273,
+  "distinct": 6273,
+  "distinct_nonblank": 6273,
+  "sample": [
+   "100654",
+   "100663",
+   "100690"
+  ]
+ },
+ {
+  "cand": "NCES/IPEDS/OPEID",
+  "table": "PORTAL_ARC_HARRIS_COUNTY_OP_1966AC023B",
+  "col": "NCESID",
+  "rows": 55,
+  "filled": 55,
+  "distinct": 55,
+  "distinct_nonblank": 55,
+  "sample": [
+   "481428006666",
+   "481428006523",
+   "481428011416"
+  ]
+ },
+ {
+  "cand": "NCES/IPEDS/OPEID",
+  "table": "PORTAL_ARC_HARRIS_COUNTY_OP_19FE875D1D",
+  "col": "NCESID",
+  "rows": 35,
+  "filled": 35,
+  "distinct": 35,
+  "distinct_nonblank": 35,
+  "sample": [
+   "BB942821",
+   "A1790516",
+   "01327003"
+  ]
+ },
+ {
+  "cand": "NCES/IPEDS/OPEID",
+  "table": "PORTAL_ARC_HARRIS_COUNTY_OP_33A3918C80",
+  "col": "NCESID",
+  "rows": 363,
+  "filled": 363,
+  "distinct": 363,
+  "distinct_nonblank": 363,
+  "sample": [
+   "481428007004",
+   "481428000909",
+   "481428004066"
+  ]
+ },
+ {
+  "cand": "Open payments profile",
+  "table": "FED_NIH_REPORTER",
+  "col": "PI_PROFILE_IDS",
+  "rows": 2122611,
+  "filled": 2116867,
+  "distinct": 262758,
+  "distinct_nonblank": 262757,
+  "sample": [
+   "15719384",
+   "9732306",
+   "9236865,1860326,1873597"
+  ]
+ },
+ {
+  "cand": "Open payments profile",
+  "table": "FED_CMS_OPEN_PAYMENTS",
+  "col": "COVERED_RECIPIENT_PROFILE_ID",
+  "rows": 15385047,
+  "filled": 15385047,
+  "distinct": 984035,
+  "distinct_nonblank": 984034,
+  "sample": [
+   "10823186",
+   "11167138",
+   "11028439"
+  ]
+ },
+ {
+  "cand": "Open payments profile",
+  "table": "FED_CMS_OPEN_PAYMENTS_2022",
+  "col": "COVERED_RECIPIENT_PROFILE_ID",
+  "rows": 13306564,
+  "filled": 13306564,
+  "distinct": 867722,
+  "distinct_nonblank": 867721,
+  "sample": [
+   "2784861",
+   "2784861",
+   "53223"
+  ]
+ },
+ {
+  "cand": "Open payments profile",
+  "table": "FED_CMS_OPEN_PAYMENTS_2023",
+  "col": "COVERED_RECIPIENT_PROFILE_ID",
+  "rows": 14700786,
+  "filled": 14700786,
+  "distinct": 938293,
+  "distinct_nonblank": 938292,
+  "sample": [
+   "130522",
+   "6978178",
+   "93030"
+  ]
+ },
+ {
+  "cand": "Open payments profile",
+  "table": "FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT",
+  "col": "COVERED_RECIPIENT_PROFILE_ID",
+  "rows": 1697025,
+  "filled": 1697025,
+  "distinct": 1697025,
+  "distinct_nonblank": 1697025,
+  "sample": [
+   "1",
+   "3",
+   "4"
+  ]
+ },
+ {
+  "cand": "Open payments profile",
+  "table": "FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT",
+  "col": "ASSOCIATED_COVERED_RECIPIENT_PROFILE_ID_1",
+  "rows": 1697025,
+  "filled": 8641,
+  "distinct": 8460,
+  "distinct_nonblank": 8460,
+  "sample": [
+   "8800653",
+   "8789778",
+   "11424250"
+  ]
+ },
+ {
+  "cand": "HCRIS rpt rec",
+  "table": "FED_CMS_HCRIS",
+  "col": "RPT_REC_NUM",
+  "rows": 6103,
+  "filled": 6103,
+  "distinct": 6103,
+  "distinct_nonblank": 6103,
+  "sample": [
+   "747534",
+   "748262",
+   "748457"
+  ]
+ },
+ {
+  "cand": "HCRIS rpt rec",
+  "table": "PORTAL_SOC_UTAH_OPEN_DATA_P_7186EDB84B",
+  "col": "RPT_REC_NUM",
+  "rows": 67,
+  "filled": 67,
+  "distinct": 67,
+  "distinct_nonblank": 67,
+  "sample": [
+   "1207062",
+   "1223106",
+   "1223336"
+  ]
+ },
+ {
+  "cand": "HCRIS rpt rec",
+  "table": "PORTAL_SOC_UTAH_OPEN_DATA_P_A5AE4FD7A4",
+  "col": "RPT_REC_NUM",
+  "rows": 94,
+  "filled": 94,
+  "distinct": 94,
+  "distinct_nonblank": 94,
+  "sample": [
+   "1249263",
+   "1249935",
+   "1253472"
+  ]
+ },
+ {
+  "cand": "HCRIS rpt rec",
+  "table": "PORTAL_SOC_UTAH_OPEN_DATA_P_A9B7E273C8",
+  "col": "RPT_REC_NUM",
+  "rows": 61,
+  "filled": 61,
+  "distinct": 61,
+  "distinct_nonblank": 61,
+  "sample": [
+   "668988",
+   "669158",
+   "669340"
+  ]
+ },
+ {
+  "cand": "HCRIS rpt rec",
+  "table": "PORTAL_SOC_UTAH_OPEN_DATA_P_DCD75231F6",
+  "col": "RPT_REC_NUM",
+  "rows": 61,
+  "filled": 61,
+  "distinct": 61,
+  "distinct_nonblank": 61,
+  "sample": [
+   "579455",
+   "588055",
+   "591794"
+  ]
+ },
+ {
+  "cand": "NTSB event",
+  "table": "FED_NTSB_AVIATION_AIRCRAFT",
+  "col": "EV_ID",
+  "rows": 31503,
+  "filled": 31503,
+  "distinct": 30968,
+  "distinct_nonblank": 30968,
+  "sample": [
+   "20080211X00175",
+   "20080107X00026",
+   "20080107X00026"
+  ]
+ },
+ {
+  "cand": "NTSB event",
+  "table": "FED_NTSB_AVIATION_EVENTS",
+  "col": "EV_ID",
+  "rows": 30968,
+  "filled": 30968,
+  "distinct": 30968,
+  "distinct_nonblank": 30968,
+  "sample": [
+   "20080211X00175",
+   "20080107X00026",
+   "20080109X00036"
+  ]
+ },
+ {
+  "cand": "NTSB event",
+  "table": "FED_NTSB_AVIATION_INJURY",
+  "col": "EV_ID",
+  "rows": 179179,
+  "filled": 179179,
+  "distinct": 29516,
+  "distinct_nonblank": 29516,
+  "sample": [
+   "20080211X00175",
+   "20080211X00175",
+   "20080211X00175"
+  ]
+ },
+ {
+  "cand": "NTSB event",
+  "table": "PORTAL_CKA_WESTERN_PENNSYLV_F82E02E6B2",
+  "col": "EV_ID",
+  "rows": 10000,
+  "filled": 10000,
+  "distinct": 10000,
+  "distinct_nonblank": 10000,
+  "sample": [
+   "8,840",
+   "5,725",
+   "4,343"
+  ]
+ },
+ {
+  "cand": "NTSB event",
+  "table": "PORTAL_CKA_WPRDC_ALLEGHENY_FA3191E7A1",
+  "col": "EV_ID",
+  "rows": 10000,
+  "filled": 10000,
+  "distinct": 10000,
+  "distinct_nonblank": 10000,
+  "sample": [
+   "8,840",
+   "5,725",
+   "4,343"
+  ]
+ },
+ {
+  "cand": "NTSB event",
+  "table": "FED_NTSB_AVIATION_AIRCRAFT",
+  "col": "NTSB_NO",
+  "rows": 31503,
+  "filled": 31503,
+  "distinct": 31503,
+  "distinct_nonblank": 31503,
+  "sample": [
+   "DFW08RA039",
+   "SEA08LA057A",
+   "SEA08LA057B"
+  ]
+ },
+ {
+  "cand": "Airport id",
+  "table": "FED_FAA_DATA_PORTAL",
+  "col": "AIRPORT_ID",
+  "rows": 4,
+  "filled": 4,
+  "distinct": 1,
+  "distinct_nonblank": 0,
+  "sample": []
+ },
+ {
+  "cand": "Airport id",
+  "table": "FED_USASPENDING_BULK",
+  "col": "AIRPORT_AUTHORITY",
+  "rows": 50000,
+  "filled": 50000,
+  "distinct": 2,
+  "distinct_nonblank": 2,
+  "sample": [
+   "f",
+   "f",
+   "f"
+  ]
+ },
+ {
+  "cand": "Airport id",
+  "table": "FED_USASPENDING_CONTRACTS_FULL",
+  "col": "airport_authority",
+  "rows": 20000000,
+  "filled": 20000000,
+  "distinct": 2,
+  "distinct_nonblank": 2,
+  "sample": [
+   "f",
+   "f",
+   "f"
+  ]
+ },
+ {
+  "cand": "Airport id",
+  "table": "PORTAL_SOC_UTAH_OPEN_DATA_P_5EF68422FF",
+  "col": "AIRPORT_AUTHORITY",
+  "rows": 2000,
+  "filled": 2000,
+  "distinct": 1,
+  "distinct_nonblank": 1,
+  "sample": [
+   "False",
+   "False",
+   "False"
+  ]
+ },
+ {
+  "cand": "Airport id",
+  "table": "FED_FAA_ADIP_PRIVATE_AIRPORTS",
+  "col": "PRIVATE_AIRPORT_LIST_FOR_WHICH_INFORMATION_HAS_NOT_BEEN_UPDATED_IN_THE_LAST_3_YEARS",
+  "rows": 3589,
+  "filled": 3588,
+  "distinct": 3588,
+  "distinct_nonblank": 3588,
+  "sample": [
+   "LOC Id",
+   "AK97",
+   "98AK"
+  ]
+ },
+ {
+  "cand": "FEMA disaster #",
+  "table": "PORTAL_CKA_CALIFORNIA_OPEN_4789F4FDC3",
+  "col": "PDR_NUMBER",
+  "rows": 805,
+  "filled": 805,
+  "distinct": 546,
+  "distinct_nonblank": 544,
+  "sample": [
+   "1295241",
+   "1454979",
+   "1415798"
+  ]
+ },
+ {
+  "cand": "FEMA disaster #",
+  "table": "INTL_EU_SANCTIONS",
+  "col": "ADDR_NUMBER",
+  "rows": 42347,
+  "filled": 42347,
+  "distinct": 1,
+  "distinct_nonblank": 0,
+  "sample": []
+ },
+ {
+  "cand": "FEMA disaster #",
+  "table": "FED_FEMA_IA_HOUSING_REGISTRATIONS",
+  "col": "DISASTERNUMBER",
+  "rows": 26250920,
+  "filled": 26250920,
+  "distinct": 626,
+  "distinct_nonblank": 626,
+  "sample": [
+   "1607",
+   "1607",
+   "1607"
+  ]
+ },
+ {
+  "cand": "FEMA disaster #",
+  "table": "FED_CMS_POS_OTHER",
+  "col": "MEDICARE_MEDICAID_PRVDR_NUMBER",
+  "rows": 44429,
+  "filled": 44429,
+  "distinct": 1,
+  "distinct_nonblank": 0,
+  "sample": []
+ },
+ {
+  "cand": "LIHTC/HUD",
+  "table": "FED_USDA_RD_MFH_ACTIVE_PROJECTS",
+  "col": "PROJECT_ID",
+  "rows": 13550,
+  "filled": 13550,
+  "distinct": 33,
+  "distinct_nonblank": 33,
+  "sample": [
+   "01",
+   "01",
+   "02"
+  ]
+ },
+ {
+  "cand": "LIHTC/HUD",
+  "table": "INTL_ADB_DATA",
+  "col": "PROJECT_ID",
+  "rows": 41,
+  "filled": 41,
+  "distinct": 1,
+  "distinct_nonblank": 0,
+  "sample": []
+ },
+ {
+  "cand": "LIHTC/HUD",
+  "table": "PORTAL_CKA_ANALYZE_BOSTON_824B1B659E",
+  "col": "PROJECT_ID",
+  "rows": 988,
+  "filled": 988,
+  "distinct": 988,
+  "distinct_nonblank": 988,
+  "sample": [
+   "4867",
+   "1422",
+   "3255"
+  ]
+ },
+ {
+  "cand": "LIHTC/HUD",
+  "table": "PORTAL_CKA_CALIFORNIA_OPEN_E27DBB825C",
+  "col": "PROJECT_ID",
+  "rows": 1715,
+  "filled": 1715,
+  "distinct": 74,
+  "distinct_nonblank": 74,
+  "sample": [
+   "2021-9",
+   "2021-9",
+   "2021-9"
+  ]
+ },
+ {
+  "cand": "LIHTC/HUD",
+  "table": "PORTAL_CKA_IRELAND_NATIONAL_F2EFDE1A8C",
+  "col": "PROJECT_ID",
+  "rows": 1206,
+  "filled": 1206,
+  "distinct": 1206,
+  "distinct_nonblank": 1206,
+  "sample": [
+   "25/ESS/4045",
+   "25/HERA/4046",
+   "25/HERA/4047"
+  ]
+ },
+ {
+  "cand": "LIHTC/HUD",
+  "table": "PORTAL_CKA_ISRAEL_NATIONAL_32CF786F4C",
+  "col": "PROJECT_ID",
+  "rows": 7534,
+  "filled": 7534,
+  "distinct": 6282,
+  "distinct_nonblank": 6282,
+  "sample": [
+   "2",
+   "52",
+   "66"
+  ]
+ },
+ {
+  "cand": "CVE",
+  "table": "INTL_ES_BORME",
+  "col": "CVE",
+  "rows": 25,
+  "filled": 25,
+  "distinct": 3,
+  "distinct_nonblank": 2,
+  "sample": [
+   "BORME-A-2026-102-08",
+   "BORME-A-2026-102-24"
+  ]
+ },
+ {
+  "cand": "CVE",
+  "table": "FED_CISA_KEV",
+  "col": "CVE_ID",
+  "rows": 1674,
+  "filled": 1674,
+  "distinct": 1674,
+  "distinct_nonblank": 1674,
+  "sample": [
+   "CVE-2026-73570",
+   "CVE-2026-72530",
+   "CVE-2026-72529"
+  ]
+ },
+ {
+  "cand": "BIS denied",
+  "table": "FED_COURTLISTENER_DOCKETS",
+  "col": "DATE_CERT_DENIED",
+  "rows": 71677647,
+  "filled": 7941,
+  "distinct": 1925,
+  "distinct_nonblank": 1925,
+  "sample": [
+   "2003-05-16",
+   "2009-12-10",
+   "2010-01-15"
+  ]
+ },
+ {
+  "cand": "BIS denied",
+  "table": "FED_SEC_13F_FILERS",
+  "col": "CONFDENIEDEXPIRED",
+  "rows": 344109,
+  "filled": 5762,
+  "distinct": 2,
+  "distinct_nonblank": 2,
+  "sample": [
+   "N",
+   "Y",
+   "Y"
+  ]
+ },
+ {
+  "cand": "BIS denied",
+  "table": "FED_SEC_13F_FILERS",
+  "col": "DATEDENIEDEXPIRED",
+  "rows": 344109,
+  "filled": 1581,
+  "distinct": 256,
+  "distinct_nonblank": 256,
+  "sample": [
+   "01-MAR-2018",
+   "14-FEB-2018",
+   "14-FEB-2018"
+  ]
+ },
+ {
+  "cand": "BIS denied",
+  "table": "FED_COURTLISTENER_DOCKETS",
+  "col": "DATE_REARGUMENT_DENIED",
+  "rows": 71677647,
+  "filled": 108277,
+  "distinct": 17755,
+  "distinct_nonblank": 17755,
+  "sample": [
+   "1991-05-31",
+   "1991-05-02",
+   "1992-02-18"
+  ]
+ },
+ {
+  "cand": "HMDA respondent/LEI",
+  "table": "FED_CFPB_HMDA",
+  "col": "LEI",
+  "rows": 28301,
+  "filled": 28301,
+  "distinct": 538,
+  "distinct_nonblank": 538,
+  "sample": [
+   "549300KBWX4NV5Q1E376",
+   "549300KBWX4NV5Q1E376",
+   "549300KBWX4NV5Q1E376"
+  ]
+ },
+ {
+  "cand": "HMDA respondent/LEI",
+  "table": "FED_CFPB_HMDA_LAR",
+  "col": "LEI",
+  "rows": 17474,
+  "filled": 17474,
+  "distinct": 478,
+  "distinct_nonblank": 478,
+  "sample": [
+   "549300VZVN841I2ILS84",
+   "549300VZVN841I2ILS84",
+   "549300VZVN841I2ILS84"
+  ]
+ },
+ {
+  "cand": "HMDA respondent/LEI",
+  "table": "FED_FDIC_BANK_DATA",
+  "col": "LEI",
+  "rows": 27836,
+  "filled": 2252,
+  "distinct": 2241,
+  "distinct_nonblank": 2241,
+  "sample": [
+   "549300HMUOLWELP0",
+   "549300NWBESFDVWE",
+   "5493001ZYMBN3CK8"
+  ]
+ },
+ {
+  "cand": "HMDA respondent/LEI",
+  "table": "INTL_GLEIF",
+  "col": "LEI",
+  "rows": 3382301,
+  "filled": 3382301,
+  "distinct": 3382301,
+  "distinct_nonblank": 3382301,
+  "sample": [
+   "21380019ZFQB4KBJ4808",
+   "2138001A1171KGNW6G39",
+   "2138001A1VOKSQI8DM95"
+  ]
+ },
+ {
+  "cand": "HMDA respondent/LEI",
+  "table": "INTL_GLEIF_REPEX",
+  "col": "LEI",
+  "rows": 6313372,
+  "filled": 6313372,
+  "distinct": 3169671,
+  "distinct_nonblank": 3169671,
+  "sample": [
+   "001GPB6A9XPE8XJICC14",
+   "004L5FPTUREIWK9T2N63",
+   "00EHHQ2ZHDCFXJCPCL46"
+  ]
+ },
+ {
+  "cand": "HMDA respondent/LEI",
+  "table": "INTL_ISO_MIC_REGISTRY",
+  "col": "LEI",
+  "rows": 2864,
+  "filled": 2236,
+  "distinct": 1061,
+  "distinct_nonblank": 1061,
+  "sample": [
+   "969500HMVSZ0TCV65D58",
+   "5493006GZOHISU7JTC27",
+   "549300I0NONVB9S5DZ56"
+  ]
+ },
+ {
+  "cand": "FDIC cert",
+  "table": "FED_FDIC_BANK_DATA",
+  "col": "CERT",
+  "rows": 27836,
+  "filled": 27836,
+  "distinct": 27836,
+  "distinct_nonblank": 27836,
+  "sample": [
+   "28566",
+   "28567",
+   "28568"
+  ]
+ },
+ {
+  "cand": "FDIC cert",
+  "table": "FED_FDIC_FAILED_BANKS",
+  "col": "CERT",
+  "rows": 4115,
+  "filled": 4115,
+  "distinct": 3584,
+  "distinct_nonblank": 3584,
+  "sample": [
+   "30965.0",
+   "18388.0",
+   "5177.0"
+  ]
+ },
+ {
+  "cand": "FDIC cert",
+  "table": "FED_FDIC_SOD_BRANCH_DEPOSITS",
+  "col": "CERT",
+  "rows": 2822977,
+  "filled": 2822977,
+  "distinct": 15505,
+  "distinct_nonblank": 15505,
+  "sample": [
+   "16170",
+   "16706",
+   "16707"
+  ]
+ },
+ {
+  "cand": "FDIC cert",
+  "table": "FED_FHFA_FHLB_MEMBERSHIP",
+  "col": "CERT",
+  "rows": 6327,
+  "filled": 3984,
+  "distinct": 3984,
+  "distinct_nonblank": 3984,
+  "sample": [
+   "27619",
+   "27643",
+   "27654"
+  ]
+ },
+ {
+  "cand": "FDIC cert",
+  "table": "FED_OCC_NATIONAL_BANKS",
+  "col": "CERT",
+  "rows": 724,
+  "filled": 724,
+  "distinct": 722,
+  "distinct_nonblank": 722,
+  "sample": [
+   "6646.0",
+   "19600.0",
+   "59194.0"
+  ]
+ },
+ {
+  "cand": "FDIC cert",
+  "table": "FED_OCC_THRIFTS",
+  "col": "CERT",
+  "rows": 218,
+  "filled": 218,
+  "distinct": 218,
+  "distinct_nonblank": 218,
+  "sample": [
+   "27015.0",
+   "32257.0",
+   "29140.0"
+  ]
+ },
+ {
+  "cand": "RSSD",
+  "table": "FED_NCUA_CALL_REPORTS_FOICU",
+  "col": "RSSD",
+  "rows": 4336,
+  "filled": 4336,
+  "distinct": 4336,
+  "distinct_nonblank": 4336,
+  "sample": [
+   "50377",
+   "54571",
+   "56678"
+  ]
+ },
+ {
+  "cand": "RSSD",
+  "table": "FED_OCC_NATIONAL_BANKS",
+  "col": "RSSD",
+  "rows": 724,
+  "filled": 724,
+  "distinct": 722,
+  "distinct_nonblank": 722,
+  "sample": [
+   "480723.0",
+   "535753.0",
+   "5397639.0"
+  ]
+ },
+ {
+  "cand": "RSSD",
+  "table": "FED_OCC_THRIFTS",
+  "col": "RSSD",
+  "rows": 218,
+  "filled": 218,
+  "distinct": 218,
+  "distinct_nonblank": 218,
+  "sample": [
+   "541307.0",
+   "762773.0",
+   "637170.0"
+  ]
+ },
+ {
+  "cand": "RSSD",
+  "table": "FED_FDIC_SOD_BRANCH_DEPOSITS",
+  "col": "RSSDID",
+  "rows": 2822977,
+  "filled": 2822977,
+  "distinct": 15544,
+  "distinct_nonblank": 15544,
+  "sample": [
+   "979375",
+   "979375",
+   "979375"
+  ]
+ },
+ {
+  "cand": "RSSD",
+  "table": "FED_FFIEC_CALL_REPORTS",
+  "col": "IDRSSD",
+  "rows": 302,
+  "filled": 302,
+  "distinct": 1,
+  "distinct_nonblank": 0,
+  "sample": []
+ },
+ {
+  "cand": "RSSD",
+  "table": "FED_FDIC_BANK_DATA",
+  "col": "RSSDHCR",
+  "rows": 27836,
+  "filled": 17072,
+  "distinct": 8736,
+  "distinct_nonblank": 8736,
+  "sample": [
+   "1060476",
+   "4864590",
+   "2473260"
+  ]
+ },
+ {
+  "cand": "CAGE",
+  "table": "FED_SAM_EXCLUSIONS",
+  "col": "CAGE",
+  "rows": 10000,
+  "filled": 10000,
+  "distinct": 225,
+  "distinct_nonblank": 224,
+  "sample": [
+   "0XLE0",
+   "1MJ52",
+   "318R5"
+  ]
+ },
+ {
+  "cand": "CAGE",
+  "table": "FED_SAM_EXCLUSIONS_FULL_R2",
+  "col": "CAGE",
+  "rows": 168328,
+  "filled": 435,
+  "distinct": 392,
+  "distinct_nonblank": 392,
+  "sample": [
+   "L0KT7",
+   "L0FX9",
+   "7RAC2"
+  ]
+ },
+ {
+  "cand": "CAGE",
+  "table": "FED_USASPENDING_BULK",
+  "col": "CAGE_CODE",
+  "rows": 50000,
+  "filled": 50000,
+  "distinct": 10214,
+  "distinct_nonblank": 10213,
+  "sample": [
+   "3L8Y5",
+   "5FFN5",
+   "9WDW2"
+  ]
+ },
+ {
+  "cand": "CAGE",
+  "table": "FED_USASPENDING_CONTRACTS",
+  "col": "CAGE_CODE",
+  "rows": 6325622,
+  "filled": 6325622,
+  "distinct": 92531,
+  "distinct_nonblank": 92530,
+  "sample": [
+   "JSJG7",
+   "1L027",
+   "08DR0"
+  ]
+ },
+ {
+  "cand": "CAGE",
+  "table": "FED_USASPENDING_CONTRACTS_FULL",
+  "col": "cage_code",
+  "rows": 20000000,
+  "filled": 20000000,
+  "distinct": 174921,
+  "distinct_nonblank": 174920,
+  "sample": [
+   "1UVT5",
+   "0RN82",
+   "3JEV3"
+  ]
+ },
+ {
+  "cand": "CAGE",
+  "table": "FED_USASPENDING_CONTRACTS_FULL_R2",
+  "col": "CAGE_CODE",
+  "rows": 93153424,
+  "filled": 93153424,
+  "distinct": 246833,
+  "distinct_nonblank": 246832,
+  "sample": [
+   "48348",
+   "0V8Y9",
+   "80309"
+  ]
+ },
+ {
+  "cand": "Award unique key",
+  "table": "FED_USASPENDING_SUBAWARDS_FULL",
+  "col": "PRIME_AWARD_UNIQUE_KEY",
+  "rows": 4742460,
+  "filled": 4742460,
+  "distinct": 279554,
+  "distinct_nonblank": 279554,
+  "sample": [
+   "CONT_AWD_75P00123F37026_7570_HHSP2332015",
+   "CONT_AWD_75N91024F00032_7529_75N91019D00",
+   "CONT_AWD_W58RGZ22F0274_9700_W58RGZ18D000"
+  ]
+ },
+ {
+  "cand": "Award unique key",
+  "table": "FED_USASPENDING_BULK",
+  "col": "CONTRACT_AWARD_UNIQUE_KEY",
+  "rows": 50000,
+  "filled": 50000,
+  "distinct": 48755,
+  "distinct_nonblank": 48755,
+  "sample": [
+   "CONT_IDV_1202RZ25T0088_12C2",
+   "CONT_IDV_47QTCA19D00MJ_4732",
+   "CONT_AWD_70Z03125CALAM0008_7008_-NONE-_-"
+  ]
+ },
+ {
+  "cand": "Award unique key",
+  "table": "FED_USASPENDING_CONTRACTS",
+  "col": "CONTRACT_AWARD_UNIQUE_KEY",
+  "rows": 6325622,
+  "filled": 6325622,
+  "distinct": 5719566,
+  "distinct_nonblank": 5719566,
+  "sample": [
+   "CONT_AWD_FA527023F0101_9700_FA527023A001",
+   "CONT_AWD_HC101324FA901_9700_HC101321D000",
+   "CONT_AWD_HC101324FD752_9700_HC101320D000"
+  ]
+ },
+ {
+  "cand": "Award unique key",
+  "table": "FED_USASPENDING_CONTRACTS_FULL",
+  "col": "contract_award_unique_key",
+  "rows": 20000000,
+  "filled": 20000000,
+  "distinct": 16738030,
+  "distinct_nonblank": 16738030,
+  "sample": [
+   "CONT_AWD_N6264508F0300_9700_V797P4530A_3",
+   "CONT_AWD_55EC_9700_SPM75004D9704_9700",
+   "CONT_AWD_0007_9700_W9124M05G0004_9700"
+  ]
+ },
+ {
+  "cand": "Award unique key",
+  "table": "FED_USASPENDING_CONTRACTS_FULL_R2",
+  "col": "CONTRACT_AWARD_UNIQUE_KEY",
+  "rows": 93153424,
+  "filled": 93153424,
+  "distinct": 74488537,
+  "distinct_nonblank": 74488537,
+  "sample": [
+   "CONT_AWD_V578U75939_3600_GS14F0167D_4730",
+   "CONT_AWD_V595Q72549_3600_GS06F0007J_4730",
+   "CONT_AWD_V603P72274_3600_GS00F0072N_4730"
+  ]
+ },
+ {
+  "cand": "Award unique key",
+  "table": "FED_USASPENDING_ASSISTANCE_FULL",
+  "col": "assistance_award_unique_key",
+  "rows": 19902879,
+  "filled": 19902879,
+  "distinct": 14251911,
+  "distinct_nonblank": 14251911,
+  "sample": [
+   "ASST_NON_H02MC00088_075",
+   "ASST_NON_SMX199700-07_075",
+   "ASST_NON_H33MC06724_075"
+  ]
+ },
+ {
+  "cand": "PECOS",
+  "table": "FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT",
+  "col": "ENRLMT_ID",
+  "rows": 2978925,
+  "filled": 2978925,
+  "distinct": 2978925,
+  "distinct_nonblank": 2978925,
+  "sample": [
+   "I20031103000001",
+   "I20031103000005",
+   "I20031103000007"
+  ]
+ },
+ {
+  "cand": "PECOS",
+  "table": "FED_CMS_PECOS_PROVIDER_ENROLLMENT",
+  "col": "ENRLMT_ID",
+  "rows": 2978925,
+  "filled": 2978925,
+  "distinct": 2978925,
+  "distinct_nonblank": 2978925,
+  "sample": [
+   "I20031103000001",
+   "I20031103000005",
+   "I20031103000007"
+  ]
+ },
+ {
+  "cand": "PECOS",
+  "table": "FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS",
+  "col": "ASSOCIATE_ID",
+  "rows": 11063,
+  "filled": 11063,
+  "distinct": 1559,
+  "distinct_nonblank": 1559,
+  "sample": [
+   "2365359387",
+   "6608783568",
+   "2365359387"
+  ]
+ },
+ {
+  "cand": "PECOS",
+  "table": "FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS",
+  "col": "ASSOCIATE_ID",
+  "rows": 11508,
+  "filled": 11508,
+  "distinct": 10223,
+  "distinct_nonblank": 10223,
+  "sample": [
+   "6800703877",
+   "4486561453",
+   "4688581663"
+  ]
+ },
+ {
+  "cand": "PECOS",
+  "table": "FED_CMS_HOSPICE_ENROLLMENTS",
+  "col": "ASSOCIATE_ID",
+  "rows": 6066,
+  "filled": 6066,
+  "distinct": 5372,
+  "distinct_nonblank": 5372,
+  "sample": [
+   "3274440268",
+   "3476461872",
+   "4789591710"
+  ]
+ },
+ {
+  "cand": "PECOS",
+  "table": "FED_CMS_HOSPITAL_ENROLLMENTS",
+  "col": "ASSOCIATE_ID",
+  "rows": 9175,
+  "filled": 9175,
+  "distinct": 5280,
+  "distinct_nonblank": 5280,
+  "sample": [
+   "5193632180",
+   "2567379563",
+   "8325955347"
+  ]
+ },
+ {
+  "cand": "Medicaid/other ids (NPPES)",
+  "table": "FED_CMS_NPPES",
+  "col": "OTHER_PROVIDER_IDENTIFIER_1",
+  "rows": 9606683,
+  "filled": 9606683,
+  "distinct": 1343027,
+  "distinct_nonblank": 1343026,
+  "sample": [
+   "2340701",
+   "916212415A",
+   "005621534"
+  ]
+ },
+ {
+  "cand": "License (NPPES)",
+  "table": "FED_CMS_NPPES",
+  "col": "PROVIDER_LICENSE_NUMBER_1",
+  "rows": 9606683,
+  "filled": 9606683,
+  "distinct": 3909403,
+  "distinct_nonblank": 3909402,
+  "sample": [
+   "12637",
+   "ME68414",
+   "HC0283"
+  ]
+ },
+ {
+  "cand": "UPIN",
+  "table": "FED_HHS_OIG_LEIE",
+  "col": "UPIN",
+  "rows": 83842,
+  "filled": 83842,
+  "distinct": 5787,
+  "distinct_nonblank": 5786,
+  "sample": [
+   "A00000",
+   "T71384",
+   "T19554"
+  ]
+ },
+ {
+  "cand": "ATF FFL",
+  "table": "FED_FJC_IDB_CRIMINAL",
+  "col": "TOFFLVL5",
+  "rows": 6299908,
+  "filled": 6299908,
+  "distinct": 4,
+  "distinct_nonblank": 4,
+  "sample": [
+   "4",
+   "-8",
+   "4"
+  ]
+ },
+ {
+  "cand": "ATF FFL",
+  "table": "FED_FJC_IDB_CRIMINAL",
+  "col": "TOFFLVL1",
+  "rows": 6299908,
+  "filled": 6299908,
+  "distinct": 4,
+  "distinct_nonblank": 4,
+  "sample": [
+   "4",
+   "4",
+   "4"
+  ]
+ },
+ {
+  "cand": "ATF FFL",
+  "table": "FED_FJC_IDB_CRIMINAL",
+  "col": "TOFFLVL4",
+  "rows": 6299908,
+  "filled": 6299908,
+  "distinct": 4,
+  "distinct_nonblank": 4,
+  "sample": [
+   "-8",
+   "-8",
+   "-8"
+  ]
+ },
+ {
+  "cand": "ATF FFL",
+  "table": "FED_FJC_IDB_CRIMINAL",
+  "col": "FOFFLVL4",
+  "rows": 6299908,
+  "filled": 6299908,
+  "distinct": 4,
+  "distinct_nonblank": 4,
+  "sample": [
+   "-8",
+   "-8",
+   "-8"
+  ]
+ },
+ {
+  "cand": "ATF FFL",
+  "table": "FED_FJC_IDB_CRIMINAL",
+  "col": "FOFFLVL5",
+  "rows": 6299908,
+  "filled": 6299908,
+  "distinct": 4,
+  "distinct_nonblank": 4,
+  "sample": [
+   "-8",
+   "-8",
+   "-8"
+  ]
+ },
+ {
+  "cand": "ATF FFL",
+  "table": "FED_FJC_IDB_CRIMINAL",
+  "col": "TOFFLVL2",
+  "rows": 6299908,
+  "filled": 6299908,
+  "distinct": 4,
+  "distinct_nonblank": 4,
+  "sample": [
+   "4",
+   "4",
+   "4"
+  ]
+ },
+ {
+  "cand": "NID dams",
+  "table": "FED_NID_DAMS",
+  "col": "NID_ID",
+  "rows": 92766,
+  "filled": 92764,
+  "distinct": 91978,
+  "distinct_nonblank": 91978,
+  "sample": [
+   "OK20998",
+   "OK20994",
+   "KY00728"
+  ]
+ },
+ {
+  "cand": "NID dams",
+  "table": "FED_USACE_NID_DAMS",
+  "col": "NID_ID",
+  "rows": 92766,
+  "filled": 92766,
+  "distinct": 91979,
+  "distinct_nonblank": 91978,
+  "sample": [
+   "OK20998",
+   "OK20994",
+   "KY00728"
+  ]
+ },
+ {
+  "cand": "JPML MDL",
+  "table": "FED_JPML_PENDING_MDL",
+  "col": "MDL_NUMBER",
+  "rows": 161,
+  "filled": 161,
+  "distinct": 161,
+  "distinct_nonblank": 161,
+  "sample": [
+   "1358",
+   "1570",
+   "1663"
+  ]
+ },
+ {
+  "cand": "DEA number",
+  "table": "FED_DEA_ARCOS_FULL",
+  "col": "BUYER_DEA_NO",
+  "rows": 178598026,
+  "filled": 178598026,
+  "distinct": 148588,
+  "distinct_nonblank": 148588,
+  "sample": [
+   "BT4328767",
+   "BT4328767",
+   "BT4328767"
+  ]
+ },
+ {
+  "cand": "DEA number",
+  "table": "FED_DEA_ARCOS_FULL",
+  "col": "REPORTER_DEA_NO",
+  "rows": 178598026,
+  "filled": 178598026,
+  "distinct": 656,
+  "distinct_nonblank": 656,
+  "sample": [
+   "PD0029567",
+   "PD0029567",
+   "PD0029567"
+  ]
+ },
+ {
+  "cand": "NHTSA campaign",
+  "table": "FED_GOOGLE_POLADS_CREATIVE_STATS",
+  "col": "AD_CAMPAIGNS_LIST",
+  "rows": 1562870,
+  "filled": 0,
+  "distinct": 0,
+  "distinct_nonblank": 0,
+  "sample": []
+ },
+ {
+  "cand": "NHTSA campaign",
+  "table": "FED_NAAG_MULTISTATE_SETTLEMENTS",
+  "col": "ENFORCEMENTCAMPAIGN",
+  "rows": 882,
+  "filled": 882,
+  "distinct": 99,
+  "distinct_nonblank": 98,
+  "sample": [
+   "Robocalls",
+   "Charities Fraud",
+   "Charities Fraud"
+  ]
+ },
+ {
+  "cand": "NHTSA campaign",
+  "table": "PORTAL_SOC_COLORADO_INFORMA_F9498D9B7F",
+  "col": "FEDERATEDCAMPAIGNSAMT",
+  "rows": 2000,
+  "filled": 2000,
+  "distinct": 90,
+  "distinct_nonblank": 90,
+  "sample": [
+   "0",
+   "240",
+   "0"
+  ]
+ },
+ {
+  "cand": "NHTSA campaign",
+  "table": "FED_CISA_KEV",
+  "col": "KNOWN_RANSOMWARE_CAMPAIGN_USE",
+  "rows": 1674,
+  "filled": 1674,
+  "distinct": 2,
+  "distinct_nonblank": 2,
+  "sample": [
+   "Unknown",
+   "Unknown",
+   "Unknown"
+  ]
+ },
+ {
+  "cand": "NEISS case",
+  "table": "FED_DOJ_FCA_SETTLEMENTS",
+  "col": "CASE_NUMBER",
+  "rows": 19,
+  "filled": 19,
+  "distinct": 1,
+  "distinct_nonblank": 0,
+  "sample": []
+ },
+ {
+  "cand": "NEISS case",
+  "table": "FED_DOL_OFLC",
+  "col": "CASE_NUMBER",
+  "rows": 664616,
+  "filled": 664616,
+  "distinct": 664616,
+  "distinct_nonblank": 664616,
+  "sample": [
+   "I-200-16092-327771",
+   "I-203-17188-450729",
+   "I-203-17229-572307"
+  ]
+ },
+ {
+  "cand": "NEISS case",
+  "table": "FED_EPA_ICIS_FEC_CASE_ENFORCEMENT_CONCLUSION_FACILITIES",
+  "col": "CASE_NUMBER",
+  "rows": 150877,
+  "filled": 150877,
+  "distinct": 121661,
+  "distinct_nonblank": 121661,
+  "sample": [
+   "03-1989-0090",
+   "03-1988-0638",
+   "02-1999-1047"
+  ]
+ },
+ {
+  "cand": "NEISS case",
+  "table": "FED_EPA_ICIS_FEC_CASE_FACILITIES",
+  "col": "CASE_NUMBER",
+  "rows": 204019,
+  "filled": 204019,
+  "distinct": 134616,
+  "distinct_nonblank": 134616,
+  "sample": [
+   "02-2000-0537",
+   "02-1997-0164",
+   "06-1982-0047"
+  ]
+ },
+ {
+  "cand": "NEISS case",
+  "table": "FED_OSHA_ITA_CASE_DETAIL_2023",
+  "col": "CASE_NUMBER",
+  "rows": 890934,
+  "filled": 890921,
+  "distinct": 423023,
+  "distinct_nonblank": 423023,
+  "sample": [
+   "3",
+   "7",
+   "1"
+  ]
+ },
+ {
+  "cand": "NEISS case",
+  "table": "FED_OSHA_ITA_CASE_DETAIL_2024",
+  "col": "CASE_NUMBER",
+  "rows": 688649,
+  "filled": 688641,
+  "distinct": 369483,
+  "distinct_nonblank": 369483,
+  "sample": [
+   "1",
+   "2",
+   "3"
+  ]
+ },
+ {
+  "cand": "MAUDE MDR",
+  "table": "FED_PHMSA_FLAGGED_INCIDENTS",
+  "col": "REPORT_NUMBER",
+  "rows": 2039,
+  "filled": 2039,
+  "distinct": 2039,
+  "distinct_nonblank": 2039,
+  "sample": [
+   "20260063",
+   "20260062",
+   "20260061"
+  ]
+ },
+ {
+  "cand": "MAUDE MDR",
+  "table": "PORTAL_CKA_VIRGINIA_OPEN_DA_F4FC6168EA",
+  "col": "REPORT_NUMBER",
+  "rows": 356,
+  "filled": 356,
+  "distinct": 92,
+  "distinct_nonblank": 92,
+  "sample": [
+   "TIP-76",
+   "TIP-76",
+   "TIP-14"
+  ]
+ },
+ {
+  "cand": "MAUDE MDR",
+  "table": "PORTAL_CKA_WESTERN_PENNSYLV_42719841F1",
+  "col": "REPORT_NUMBER",
+  "rows": 9116,
+  "filled": 9116,
+  "distinct": 2866,
+  "distinct_nonblank": 2866,
+  "sample": [
+   "PGHP24000068",
+   "PGHP24000068",
+   "PGHP24000068"
+  ]
+ },
+ {
+  "cand": "MAUDE MDR",
+  "table": "PORTAL_CKA_WESTERN_PENNSYLV_6D0F07679B",
+  "col": "REPORT_NUMBER",
+  "rows": 9904,
+  "filled": 9904,
+  "distinct": 6240,
+  "distinct_nonblank": 6239,
+  "sample": [
+   "PGHP24000024",
+   "PGHP24000024",
+   "PGHP24000024"
+  ]
+ },
+ {
+  "cand": "MAUDE MDR",
+  "table": "PORTAL_CKA_WPRDC_ALLEGHENY_90E172F9B4",
+  "col": "REPORT_NUMBER",
+  "rows": 9116,
+  "filled": 9116,
+  "distinct": 2866,
+  "distinct_nonblank": 2866,
+  "sample": [
+   "PGHP24000068",
+   "PGHP24000068",
+   "PGHP24000068"
+  ]
+ },
+ {
+  "cand": "MAUDE MDR",
+  "table": "PORTAL_CKA_WPRDC_ALLEGHENY_F891A6D2EE",
+  "col": "REPORT_NUMBER",
+  "rows": 9904,
+  "filled": 9904,
+  "distinct": 6240,
+  "distinct_nonblank": 6239,
+  "sample": [
+   "PGHP24000024",
+   "PGHP24000024",
+   "PGHP24000024"
+  ]
+ },
+ {
+  "cand": "FAERS",
+  "table": "FED_FDA_FAERS_DEMO",
+  "col": "ISR",
+  "rows": 5811086,
+  "filled": 4276200,
+  "distinct": 4271506,
+  "distinct_nonblank": 4271506,
+  "sample": [
+   "4263257",
+   "4264430",
+   "4264435"
+  ]
+ },
+ {
+  "cand": "FAERS",
+  "table": "FED_FDA_FAERS_DRUG",
+  "col": "ISR",
+  "rows": 20914284,
+  "filled": 15915637,
+  "distinct": 4271506,
+  "distinct_nonblank": 4271506,
+  "sample": [
+   "4263257",
+   "4264430",
+   "4264430"
+  ]
+ },
+ {
+  "cand": "FAERS",
+  "table": "FED_FDA_FAERS_INDI",
+  "col": "ISR",
+  "rows": 9833260,
+  "filled": 7382451,
+  "distinct": 3456533,
+  "distinct_nonblank": 3456533,
+  "sample": [
+   "4793437",
+   "4802758",
+   "4807735"
+  ]
+ },
+ {
+  "cand": "FAERS",
+  "table": "FED_FDA_FAERS_OUTC",
+  "col": "ISR",
+  "rows": 5147466,
+  "filled": 4012896,
+  "distinct": 3173960,
+  "distinct_nonblank": 3173960,
+  "sample": [
+   "4263257",
+   "4264430",
+   "4264435"
+  ]
+ },
+ {
+  "cand": "FAERS",
+  "table": "FED_FDA_FAERS_REAC",
+  "col": "ISR",
+  "rows": 20621386,
+  "filled": 15997301,
+  "distinct": 4271497,
+  "distinct_nonblank": 4271497,
+  "sample": [
+   "7350588",
+   "7350588",
+   "7350588"
+  ]
+ },
+ {
+  "cand": "FAERS",
+  "table": "FED_FDA_FAERS_DEMO",
+  "col": "CASEID",
+  "rows": 5811086,
+  "filled": 1534886,
+  "distinct": 1516992,
+  "distinct_nonblank": 1516992,
+  "sample": [
+   "9540240",
+   "9540241",
+   "9540243"
+  ]
+ },
+ {
+  "cand": "SBA loan #",
+  "table": "FED_SBA_PPP",
+  "col": "LOANNUMBER",
+  "rows": 968524,
+  "filled": 968524,
+  "distinct": 968524,
+  "distinct_nonblank": 968524,
+  "sample": [
+   "9547507704",
+   "9777677704",
+   "5791407702"
+  ]
+ },
+ {
+  "cand": "SBA loan #",
+  "table": "FED_SBA_PPP_LOANS_150K_PLUS",
+  "col": "LOANNUMBER",
+  "rows": 968524,
+  "filled": 968524,
+  "distinct": 968524,
+  "distinct_nonblank": 968524,
+  "sample": [
+   "9547507704",
+   "9777677704",
+   "5791407702"
+  ]
+ },
+ {
+  "cand": "PPP/SBA borrower",
+  "table": "FED_SBA_PPP",
+  "col": "BORROWERZIP",
+  "rows": 968524,
+  "filled": 968524,
+  "distinct": 520180,
+  "distinct_nonblank": 520179,
+  "sample": [
+   "85016",
+   "85016-6738",
+   "85282"
+  ]
+ },
+ {
+  "cand": "PPP/SBA borrower",
+  "table": "FED_SBA_PPP_LOANS_150K_PLUS",
+  "col": "BORROWERZIP",
+  "rows": 968524,
+  "filled": 968511,
+  "distinct": 520179,
+  "distinct_nonblank": 520179,
+  "sample": [
+   "29150-9662",
+   "29420-9000",
+   "98112-2922"
+  ]
+ },
+ {
+  "cand": "PPP/SBA borrower",
+  "table": "FED_USDA_RD_MFH_ACTIVE_PROJECTS",
+  "col": "BORROWER_ID",
+  "rows": 13550,
+  "filled": 13550,
+  "distinct": 12397,
+  "distinct_nonblank": 12397,
+  "sample": [
+   "000123850",
+   "000325444",
+   "000346622"
+  ]
+ },
+ {
+  "cand": "PPP/SBA borrower",
+  "table": "FED_SBA_PPP",
+  "col": "BORROWERCITY",
+  "rows": 968524,
+  "filled": 968524,
+  "distinct": 28700,
+  "distinct_nonblank": 28700,
+  "sample": [
+   "PHOENIX",
+   "Goodyear",
+   "Tucson"
+  ]
+ },
+ {
+  "cand": "PPP/SBA borrower",
+  "table": "FED_SBA_PPP",
+  "col": "BORROWERNAME",
+  "rows": 968524,
+  "filled": 968524,
+  "distinct": 857119,
+  "distinct_nonblank": 857119,
+  "sample": [
+   "SUMTER COATINGS, INC.",
+   "PLEASANT PLACES, INC.",
+   "BOYER CHILDREN'S CLINIC"
+  ]
+ },
+ {
+  "cand": "PPP/SBA borrower",
+  "table": "FED_SBA_PPP_LOANS_150K_PLUS",
+  "col": "BORROWERCITY",
+  "rows": 968524,
+  "filled": 968512,
+  "distinct": 28699,
+  "distinct_nonblank": 28699,
+  "sample": [
+   "MESA",
+   "PHOENIX",
+   "Mesa"
+  ]
+ },
+ {
+  "cand": "HUD PHA code",
+  "table": "FED_HUD_PUBLIC_HOUSING_AUTHORITIES",
+  "col": "PARTICIPANT_CODE",
+  "rows": 3787,
+  "filled": 3787,
+  "distinct": 3787,
+  "distinct_nonblank": 3787,
+  "sample": [
+   "RQ072",
+   "RQ044",
+   "RQ021"
+  ]
+ },
+ {
+  "cand": "ROR/ORCID/PMID/DOI",
+  "table": "INTL_EU_SOCTA_EUROPOL",
+  "col": "DOI",
+  "rows": 26,
+  "filled": 26,
+  "distinct": 1,
+  "distinct_nonblank": 1,
+  "sample": [
+   "10.2813/0758057",
+   "10.2813/0758057",
+   "10.2813/0758057"
+  ]
+ },
+ {
+  "cand": "ROR/ORCID/PMID/DOI",
+  "table": "INTL_GEM_HAZARD",
+  "col": "DOI",
+  "rows": 12,
+  "filled": 12,
+  "distinct": 12,
+  "distinct_nonblank": 12,
+  "sample": [
+   "10.13117/AUSSHA23",
+   "10.13117/CANSHA23",
+   "10.13117/EURSHA23"
+  ]
+ },
+ {
+  "cand": "ROR/ORCID/PMID/DOI",
+  "table": "XC_BIORXIV_MEDRXIV",
+  "col": "DOI",
+  "rows": 432,
+  "filled": 432,
+  "distinct": 61,
+  "distinct_nonblank": 60,
+  "sample": [
+   "10.64898/2026.05.15.725547",
+   "10.64898/2026.05.15.725447",
+   "10.64898/2026.05.15.725578"
+  ]
+ },
+ {
+  "cand": "ROR/ORCID/PMID/DOI",
+  "table": "PORTAL_CKA_IRELAND_NATIONAL_F2EFDE1A8C",
+  "col": "ORCID_ID",
+  "rows": 1206,
+  "filled": 1206,
+  "distinct": 1139,
+  "distinct_nonblank": 1138,
+  "sample": [
+   "https://orcid.org/0000-0002-5403-8931",
+   "https://orcid.org/0000-0002-7096-4249",
+   "https://orcid.org/0000-0001-9500-057X"
+  ]
+ },
+ {
+  "cand": "PCAOB firm",
+  "table": "CA_LOBBY_COVER",
+  "col": "FIRM_ID",
+  "rows": 568988,
+  "filled": 568988,
+  "distinct": 13383,
+  "distinct_nonblank": 13218,
+  "sample": [
+   "1385058",
+   "1336408",
+   "1467034"
+  ]
+ },
+ {
+  "cand": "PCAOB firm",
+  "table": "CA_LOBBY_EMPLOYER_FIRMS",
+  "col": "FIRM_ID",
+  "rows": 524,
+  "filled": 524,
+  "distinct": 131,
+  "distinct_nonblank": 131,
+  "sample": [
+   "1147529",
+   "1147529",
+   "1147235"
+  ]
+ },
+ {
+  "cand": "PCAOB firm",
+  "table": "CA_LOBBY_FIRM",
+  "col": "FIRM_ID",
+  "rows": 256,
+  "filled": 256,
+  "distinct": 256,
+  "distinct_nonblank": 256,
+  "sample": [
+   "1222712",
+   "1222921",
+   "1222973"
+  ]
+ },
+ {
+  "cand": "PCAOB firm",
+  "table": "CA_LOBBY_FIRM_EMPLOYER",
+  "col": "FIRM_ID",
+  "rows": 170,
+  "filled": 170,
+  "distinct": 24,
+  "distinct_nonblank": 24,
+  "sample": [
+   "1147720",
+   "1147720",
+   "1147720"
+  ]
+ },
+ {
+  "cand": "PCAOB firm",
+  "table": "CA_LOBBY_FIRM_LOBBYIST",
+  "col": "FIRM_ID",
+  "rows": 577,
+  "filled": 577,
+  "distinct": 340,
+  "distinct_nonblank": 340,
+  "sample": [
+   "1147311",
+   "1147634",
+   "1147252"
+  ]
+ },
+ {
+  "cand": "PCAOB firm",
+  "table": "FED_PCAOB_FORM_AP_FILINGS",
+  "col": "FIRM_ID",
+  "rows": 155384,
+  "filled": 155384,
+  "distinct": 737,
+  "distinct_nonblank": 737,
+  "sample": [
+   "248",
+   "248",
+   "248"
+  ]
+ },
+ {
+  "cand": "GIIN",
+  "table": "FED_FATCA_FFI",
+  "col": "GIIN",
+  "rows": 516298,
+  "filled": 516298,
+  "distinct": 516298,
+  "distinct_nonblank": 516298,
+  "sample": [
+   "X5PYX1.00000.LE.076",
+   "MTEGUP.99999.SL.076",
+   "H8JE86.00201.ME.076"
+  ]
+ },
+ {
+  "cand": "GIIN",
+  "table": "FED_IRS_FATCA_FFI_LIST",
+  "col": "GIIN",
+  "rows": 516298,
+  "filled": 516298,
+  "distinct": 516298,
+  "distinct_nonblank": 516298,
+  "sample": [
+   "X5PYX1.00000.LE.076",
+   "MTEGUP.99999.SL.076",
+   "H8JE86.00201.ME.076"
+  ]
+ },
+ {
+  "cand": "Airline carrier id",
+  "table": "FED_DOT_BTS",
+  "col": "CARRIER_CODE",
+  "rows": 21,
+  "filled": 21,
+  "distinct": 1,
+  "distinct_nonblank": 0,
+  "sample": []
+ },
+ {
+  "cand": "Airline carrier id",
+  "table": "PORTAL_ARC_OPEN_DATA_DC_D359158BC8",
+  "col": "PRIMARY_CARRIER_ROUTE_CODE",
+  "rows": 733,
+  "filled": 733,
+  "distinct": 82,
+  "distinct_nonblank": 82,
+  "sample": [
+   "C044",
+   "C045",
+   "C018"
+  ]
+ },
+ {
+  "cand": "Airline carrier id",
+  "table": "PORTAL_ARC_OPEN_DATA_RALEIG_8EE851C810",
+  "col": "PRIMARY_CARRIER_ROUTE_CODE",
+  "rows": 2000,
+  "filled": 2000,
+  "distinct": 68,
+  "distinct_nonblank": 68,
+  "sample": [
+   "C024",
+   "C024",
+   "C022"
+  ]
+ },
+ {
+  "cand": "Airline carrier id",
+  "table": "PORTAL_ARC_OPEN_DATA_RALEIG_DF19DCBB03",
+  "col": "PRIMARY_CARRIER_ROUTE_CODE",
+  "rows": 2000,
+  "filled": 2000,
+  "distinct": 68,
+  "distinct_nonblank": 68,
+  "sample": [
+   "C024",
+   "C024",
+   "C022"
+  ]
+ },
+ {
+  "cand": "Airline carrier id",
+  "table": "PORTAL_ARC_OPEN_DATA_RALEIG_EFBB617010",
+  "col": "PRIMARY_CARRIER_ROUTE_CODE",
+  "rows": 2000,
+  "filled": 2000,
+  "distinct": 90,
+  "distinct_nonblank": 90,
+  "sample": [
+   "C004",
+   "R008",
+   "R008"
+  ]
+ },
+ {
+  "cand": "Airline carrier id",
+  "table": "PORTAL_ARC_OPEN_DATA_DC_D359158BC8",
+  "col": "TERTIARY_CARRIER_ROUTE_CODE",
+  "rows": 733,
+  "filled": 733,
+  "distinct": 1,
+  "distinct_nonblank": 0,
+  "sample": []
+ },
+ {
+  "cand": "NRC docket",
+  "table": "FED_FDIC_BANK_DATA",
+  "col": "DOCKET",
+  "rows": 27836,
+  "filled": 27836,
+  "distinct": 11818,
+  "distinct_nonblank": 11818,
+  "sample": [
+   "0",
+   "0",
+   "0"
+  ]
+ },
+ {
+  "cand": "NRC docket",
+  "table": "FED_FDIC_SOD_BRANCH_DEPOSITS",
+  "col": "DOCKET",
+  "rows": 2822977,
+  "filled": 2811322,
+  "distinct": 10842,
+  "distinct_nonblank": 10842,
+  "sample": [
+   "10882",
+   "0",
+   "11850"
+  ]
+ },
+ {
+  "cand": "NRC docket",
+  "table": "FED_FJC_IDB_APPELLATE",
+  "col": "DOCKET",
+  "rows": 988183,
+  "filled": 988183,
+  "distinct": 514613,
+  "distinct_nonblank": 514613,
+  "sample": [
+   "1302287",
+   "1302297",
+   "1302300"
+  ]
+ },
+ {
+  "cand": "NRC docket",
+  "table": "FED_FJC_IDB_BANKRUPTCY",
+  "col": "DOCKET",
+  "rows": 6965441,
+  "filled": 6965441,
+  "distinct": 674677,
+  "distinct_nonblank": 674677,
+  "sample": [
+   "2120211",
+   "0910840",
+   "2025473"
+  ]
+ },
+ {
+  "cand": "NRC docket",
+  "table": "FED_FJC_IDB_CIVIL",
+  "col": "DOCKET",
+  "rows": 10857396,
+  "filled": 10857396,
+  "distinct": 1332996,
+  "distinct_nonblank": 1332996,
+  "sample": [
+   "9000072",
+   "9000088",
+   "9000097"
+  ]
+ },
+ {
+  "cand": "NRC docket",
+  "table": "FED_FJC_IDB_CRIMINAL",
+  "col": "DOCKET",
+  "rows": 6299908,
+  "filled": 6299908,
+  "distinct": 264765,
+  "distinct_nonblank": 264765,
+  "sample": [
+   "0301765",
+   "0301766",
+   "0301767"
+  ]
+ }
+]

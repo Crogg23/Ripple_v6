@@ -1,370 +1,361 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Join Handbook</title>
 <style>
 :root {
-  --bg: #f4f5f7;
+  --bg: #f6f7f9;
   --surface: #ffffff;
-  --surface-2: #eceef2;
-  --surface-3: #e2e5eb;
-  --border: #d8dce3;
-  --ink: #171a21;
-  --ink-2: #4c5261;
-  --ink-3: #7d8494;
+  --surface-2: #eef0f4;
+  --hover: #f2f4f8;
+  --border: #e2e5ea;
+  --border-soft: #edeff3;
+  --ink: #14171d;
+  --ink-2: #565d6d;
+  --ink-3: #8b92a1;
   --accent: #2c4a6e;
-  --accent-soft: #e4ebf3;
-  --tier-steel: #2f5680;
-  --tier-steel-bg: #e6edf5;
-  --tier-strong: #2f5680;
-  --tier-bridge: #93611c;
-  --tier-bridge-bg: #f4ebda;
-  --tier-geo: #3c7259;
-  --tier-geo-bg: #e5f1eb;
-  --tier-corrob: #7c7290;
-  --tier-corrob-bg: #edeaf3;
+  --accent-soft: #e6edf5;
+  --on-accent: #ffffff;
+  --t-steel: #2f5680;
+  --t-bridge: #9a6413;
+  --t-geo: #2f6f55;
+  --t-corrob: #776c8c;
   --warn: #9c4a2f;
-  --warn-bg: #f6e8e2;
+  --warn-bg: #fbf0ea;
+  --warn-br: #e6cbbd;
+  --track: #e7eaef;
   --focus: #2c4a6e;
-  --shadow: 0 1px 2px rgba(23,26,33,0.06), 0 8px 24px -12px rgba(23,26,33,0.12);
+  --radius: 8px;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #14171d;
-    --surface: #1b1f27;
-    --surface-2: #232833;
-    --surface-3: #2b313d;
-    --border: #313847;
-    --ink: #e7e9ee;
-    --ink-2: #b1b7c4;
-    --ink-3: #7d8494;
-    --accent: #8fb2dc;
-    --accent-soft: #223549;
-    --tier-steel: #9dc0ea;
-    --tier-steel-bg: #1f3450;
-    --tier-strong: #9dc0ea;
-    --tier-bridge: #e0b169;
-    --tier-bridge-bg: #3a2f18;
-    --tier-geo: #8fceac;
-    --tier-geo-bg: #1c3327;
-    --tier-corrob: #b6acce;
-    --tier-corrob-bg: #2c2740;
-    --warn: #e3937a;
-    --warn-bg: #3a231c;
-    --focus: #9dc0ea;
-    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+    --bg: #101318; --surface: #171a21; --surface-2: #1f232c; --hover: #1e222a;
+    --border: #2a303b; --border-soft: #23282f;
+    --ink: #e8eaef; --ink-2: #a8aebc; --ink-3: #767d8c;
+    --accent: #8fb2dc; --accent-soft: #1e2f42; --on-accent: #101318;
+    --t-steel: #9dc0ea; --t-bridge: #ddad64; --t-geo: #7fc9a4; --t-corrob: #b3a9cb;
+    --warn: #e59b83; --warn-bg: #2e1f19; --warn-br: #513227; --track: #262b34; --focus: #9dc0ea;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #14171d;
-  --surface: #1b1f27;
-  --surface-2: #232833;
-  --surface-3: #2b313d;
-  --border: #313847;
-  --ink: #e7e9ee;
-  --ink-2: #b1b7c4;
-  --ink-3: #7d8494;
-  --accent: #8fb2dc;
-  --accent-soft: #223549;
-  --tier-steel: #9dc0ea;
-  --tier-steel-bg: #1f3450;
-  --tier-strong: #9dc0ea;
-  --tier-bridge: #e0b169;
-  --tier-bridge-bg: #3a2f18;
-  --tier-geo: #8fceac;
-  --tier-geo-bg: #1c3327;
-  --tier-corrob: #b6acce;
-  --tier-corrob-bg: #2c2740;
-  --warn: #e3937a;
-  --warn-bg: #3a231c;
-  --focus: #9dc0ea;
-  --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+  --bg: #101318; --surface: #171a21; --surface-2: #1f232c; --hover: #1e222a;
+  --border: #2a303b; --border-soft: #23282f;
+  --ink: #e8eaef; --ink-2: #a8aebc; --ink-3: #767d8c;
+  --accent: #8fb2dc; --accent-soft: #1e2f42; --on-accent: #101318;
+  --t-steel: #9dc0ea; --t-bridge: #ddad64; --t-geo: #7fc9a4; --t-corrob: #b3a9cb;
+  --warn: #e59b83; --warn-bg: #2e1f19; --warn-br: #513227; --track: #262b34; --focus: #9dc0ea;
 }
 
 * { box-sizing: border-box; }
 html, body { height: 100%; }
 body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--ink);
+  margin: 0; background: var(--bg); color: var(--ink);
   font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 14px;
-  line-height: 1.55;
+  font-size: 14px; line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
-.mono { font-family: "IBM Plex Mono", ui-monospace, "SF Mono", Consolas, monospace; }
-p { text-wrap: pretty; }
+.m { font-family: "IBM Plex Mono", ui-monospace, "SF Mono", Consolas, monospace; }
+.num { font-variant-numeric: tabular-nums; }
+p { text-wrap: pretty; margin: 0 0 10px; }
 a { color: var(--accent); }
 ::selection { background: var(--accent-soft); }
-:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
-button { font: inherit; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
+button { font: inherit; color: inherit; }
 
-.app {
-  display: grid;
-  grid-template-columns: 340px 1fr;
-  grid-template-rows: auto 1fr;
-  height: 100vh;
-  max-height: 100vh;
-}
+/* ---------------- shell ---------------- */
+.app { display: grid; grid-template-columns: 312px 1fr; grid-template-rows: auto 1fr; height: 100vh; }
 
 header.top {
-  grid-column: 1 / -1;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 16px 24px;
-  border-bottom: 1px solid var(--border);
-  background: var(--surface);
+  grid-column: 1 / -1; display: flex; align-items: center; gap: 14px;
+  padding: 0 18px; height: 52px; border-bottom: 1px solid var(--border); background: var(--surface);
 }
-header.top .titles { display: flex; flex-direction: column; gap: 2px; }
-header.top h1 {
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  margin: 0;
+header.top h1 { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; margin: 0; white-space: nowrap; }
+header.top .sub { color: var(--ink-3); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+header.top .meter { color: var(--ink-3); font-size: 12px; white-space: nowrap; }
+header.top .meter b { color: var(--ink-2); font-weight: 600; }
+.grow { flex: 1; }
+.ghost-btn {
+  border: 1px solid var(--border); background: none; color: var(--ink-2);
+  border-radius: 6px; padding: 5px 10px; font-size: 12px; cursor: pointer; white-space: nowrap;
 }
-header.top .sub {
-  color: var(--ink-3);
-  font-size: 12.5px;
-}
-header.top .meter {
-  margin-left: auto;
-  color: var(--ink-3);
-  font-size: 12px;
-  font-variant-numeric: tabular-nums;
-  text-align: right;
-}
-.help-btn {
-  border: 1px solid var(--border);
-  background: var(--surface-2);
-  color: var(--ink-2);
-  border-radius: 7px;
-  padding: 7px 12px;
-  font-size: 12.5px;
-  font-weight: 500;
-  cursor: pointer;
-  white-space: nowrap;
-}
-.help-btn:hover { border-color: var(--accent); color: var(--accent); }
+.ghost-btn:hover { border-color: var(--accent); color: var(--accent); }
+.menu-btn { display: none; }
 
-.rail {
-  border-right: 1px solid var(--border);
-  background: var(--surface);
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
+/* ---------------- rail ---------------- */
+.rail { border-right: 1px solid var(--border); background: var(--surface); display: flex; flex-direction: column; min-height: 0; }
+.rail-top { padding: 10px 12px 8px; border-bottom: 1px solid var(--border-soft); display: flex; flex-direction: column; gap: 8px; }
+.searchwrap { position: relative; }
+.searchwrap input {
+  width: 100%; padding: 7px 28px 7px 10px; border-radius: 6px;
+  border: 1px solid var(--border); background: var(--bg); color: var(--ink); font-size: 13px;
 }
-.rail-search { padding: 14px 14px 10px; border-bottom: 1px solid var(--border); }
-.rail-search input {
-  width: 100%;
-  padding: 9px 11px;
-  border-radius: 7px;
-  border: 1px solid var(--border);
-  background: var(--surface-2);
-  color: var(--ink);
-  font-size: 13.5px;
+.searchwrap input::placeholder { color: var(--ink-3); }
+.searchwrap .slash {
+  position: absolute; right: 7px; top: 50%; transform: translateY(-50%);
+  font-size: 10px; color: var(--ink-3); border: 1px solid var(--border); border-radius: 4px;
+  padding: 0 4px; pointer-events: none; background: var(--surface);
 }
-.rail-search input::placeholder { color: var(--ink-3); }
-.rail-count {
-  padding: 8px 14px 6px;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--ink-3);
+.rail-opts { display: flex; align-items: center; gap: 10px; font-size: 11.5px; color: var(--ink-3); }
+.rail-opts label { display: flex; align-items: center; gap: 5px; cursor: pointer; user-select: none; }
+.rail-opts input { accent-color: var(--accent); width: 13px; height: 13px; margin: 0; }
+.rail-opts select {
+  font: inherit; font-size: 11.5px; color: var(--ink-2); background: var(--bg);
+  border: 1px solid var(--border); border-radius: 5px; padding: 2px 4px; cursor: pointer;
 }
-.rail-list { overflow-y: auto; flex: 1; min-height: 0; padding: 0 6px 12px; }
+.rail-count { padding: 8px 14px 5px; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ink-3); }
+.rail-list { overflow-y: auto; flex: 1; min-height: 0; padding: 0 6px 16px; scrollbar-width: thin; }
 .rail-item {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-  width: 100%;
-  text-align: left;
-  padding: 7px 9px;
-  border: none;
-  background: none;
-  border-radius: 6px;
-  cursor: pointer;
-  color: var(--ink);
+  display: block; width: 100%; text-align: left; padding: 6px 8px;
+  border: none; background: none; border-radius: 6px; cursor: pointer; color: var(--ink);
 }
-.rail-item:hover { background: var(--surface-2); }
+.rail-item:hover { background: var(--hover); }
 .rail-item.active { background: var(--accent-soft); }
-.rail-item .row1 { display: flex; align-items: center; gap: 8px; }
+.rail-item .r1 { display: flex; align-items: baseline; gap: 8px; }
 .rail-item .name {
-  flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-  font-family: "IBM Plex Mono", monospace; font-size: 12px;
+  flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-family: "IBM Plex Mono", monospace; font-size: 11.5px; letter-spacing: -0.01em;
 }
-.rail-item.active .name { color: var(--accent); }
-.rail-item .friendly {
-  font-size: 11px; color: var(--ink-3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-}
-.rail-item .count {
-  font-size: 10.5px; color: var(--ink-3); background: var(--surface-2);
-  border-radius: 20px; padding: 1px 7px; font-variant-numeric: tabular-nums;
-}
-.rail-item.active .count { background: var(--surface); }
-.rail-item.zero .count { visibility: hidden; }
+.rail-item.active .name { color: var(--accent); font-weight: 500; }
+.rail-item .count { font-size: 10.5px; color: var(--ink-3); font-variant-numeric: tabular-nums; flex: none; }
+.rail-item .friendly { font-size: 10.5px; color: var(--ink-3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-top: 1px; }
+.rail-item .mix { display: flex; gap: 1.5px; height: 3px; width: 46px; margin-top: 5px; border-radius: 2px; overflow: hidden; opacity: .75; }
+.rail-item .mix i { display: block; height: 100%; }
 
-main { overflow-y: auto; min-height: 0; padding: 30px 40px 70px; }
-main.narrow { max-width: 900px; }
+/* ---------------- main ---------------- */
+main { overflow-y: auto; min-height: 0; }
+.pad { padding: 22px 30px 90px; max-width: 1120px; }
 
-.empty-state { max-width: 640px; margin: 20px auto 0; color: var(--ink-2); }
-.empty-state h2 { font-size: 19px; margin: 0 0 10px; color: var(--ink); }
-.empty-state p { margin: 0 0 12px; }
-.empty-state .card {
-  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
-  padding: 18px 20px; margin-top: 18px; box-shadow: var(--shadow);
-}
-.empty-state .card h3 { margin: 0 0 8px; font-size: 13px; color: var(--ink); }
-.empty-state .card p { font-size: 13px; margin: 0 0 8px; color: var(--ink-2); }
-.tier-legend { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
-.tier-legend-row { display: flex; gap: 10px; align-items: baseline; font-size: 13px; }
-.tier-legend-row .dot { width: 9px; height: 9px; border-radius: 50%; flex: none; margin-top: 4px; }
-.tier-legend-row b { color: var(--ink); }
-.tier-legend-row span.desc { color: var(--ink-2); }
-
-.detail-head { margin-bottom: 2px; }
-.detail-head .eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: .07em; color: var(--ink-3); margin-bottom: 4px; }
-.detail-head h2 {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 21px; font-weight: 600; margin: 0; word-break: break-word;
-}
-.detail-head .friendly-name { font-size: 15px; color: var(--ink-2); margin-top: 5px; }
-.detail-sub { color: var(--ink-3); font-size: 13px; margin: 8px 0 20px; }
-
-.controls {
-  display: flex; align-items: center; gap: 16px; margin: 18px 0 18px;
-  padding-bottom: 14px; border-bottom: 1px solid var(--border); flex-wrap: wrap;
-}
-.controls .toggle {
-  display: flex; align-items: center; gap: 7px; font-size: 12.5px; color: var(--ink-2);
-  cursor: pointer; user-select: none;
-}
-.controls input[type="checkbox"] { accent-color: var(--accent); width: 14px; height: 14px; }
-
-.tier-group { margin-bottom: 30px; }
-.tier-group .tier-head { margin-bottom: 12px; }
-.tier-group .tier-head .label {
-  font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px;
-}
-.tier-group .tier-head .dot { width: 8px; height: 8px; border-radius: 50%; }
-.tier-group .tier-head .n { color: var(--ink-3); font-weight: 400; font-variant-numeric: tabular-nums; }
-.tier-group .tier-head .desc { font-size: 12px; color: var(--ink-3); margin: 3px 0 0 16px; max-width: 62ch; }
-.tier-group.warn .tier-head .desc { color: var(--warn); }
-
-.edge-list { display: flex; flex-direction: column; gap: 8px; }
-.edge-row {
-  padding: 13px 16px;
-  background: var(--surface); border: 1px solid var(--border); border-radius: 9px;
-  cursor: pointer; box-shadow: var(--shadow);
-}
-.edge-row:hover { border-color: var(--accent); }
-.edge-top { display: flex; align-items: flex-start; gap: 14px; }
-.edge-main { flex: 1; min-width: 0; }
-.edge-table { font-family: "IBM Plex Mono", monospace; font-size: 13.5px; font-weight: 500; }
-.edge-friendly { font-size: 12px; color: var(--ink-3); margin-top: 1px; }
-.edge-stat { text-align: right; flex: none; }
-.edge-stat .pct { font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums; }
-.edge-stat .bar { height: 4px; border-radius: 2px; background: var(--surface-2); margin-top: 6px; width: 84px; overflow: hidden; }
-.edge-stat .bar > span { display: block; height: 100%; border-radius: 2px; }
-.edge-sentence {
-  font-size: 12.5px; color: var(--ink-2); margin-top: 9px; padding-top: 9px;
-  border-top: 1px solid var(--border);
-}
-.edge-sentence b { color: var(--ink); font-weight: 600; }
-.edge-tech {
-  font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--ink-3);
-  margin-top: 6px;
+.intro { max-width: 720px; }
+.intro h2 { font-size: 20px; margin: 0 0 8px; letter-spacing: -0.01em; }
+.intro .lede { color: var(--ink-2); font-size: 14px; margin-bottom: 22px; }
+.panel { border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); padding: 16px 18px; margin-bottom: 14px; }
+.panel h3 { margin: 0 0 12px; font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); font-weight: 600; }
+.stack { display: flex; flex-direction: column; }
+.srow { display: grid; grid-template-columns: 9px 1fr; gap: 10px; padding: 7px 0; font-size: 13px; border-top: 1px solid var(--border-soft); }
+.srow:first-child { border-top: none; padding-top: 0; }
+.srow .dot { width: 7px; height: 7px; border-radius: 50%; margin-top: 6px; }
+.srow b { color: var(--ink); font-weight: 600; }
+.srow .d { color: var(--ink-2); }
+.srow.wide { grid-template-columns: 1fr auto; align-items: center; }
+.tips { display: flex; flex-direction: column; gap: 7px; font-size: 12.5px; color: var(--ink-2); }
+.tips div { display: flex; gap: 10px; align-items: baseline; }
+kbd {
+  font-family: "IBM Plex Mono", monospace; font-size: 10.5px; border: 1px solid var(--border);
+  border-bottom-width: 2px; border-radius: 4px; padding: 1px 5px; color: var(--ink-2);
+  background: var(--surface-2); flex: none; min-width: 24px; text-align: center;
 }
 
-.tier-STEEL .dot, .tier-STRONG .dot { background: var(--tier-steel); }
-.tier-STEEL .bar > span, .tier-STRONG .bar > span { background: var(--tier-steel); }
-.tier-STEEL .pct, .tier-STRONG .pct { color: var(--tier-steel); }
-.tier-BRIDGE .dot { background: var(--tier-bridge); }
-.tier-BRIDGE .bar > span { background: var(--tier-bridge); }
-.tier-BRIDGE .pct { color: var(--tier-bridge); }
-.tier-GEO .dot { background: var(--tier-geo); }
-.tier-GEO .bar > span { background: var(--tier-geo); }
-.tier-GEO .pct { color: var(--tier-geo); }
-.tier-CORROBORATED .dot { background: var(--tier-corrob); }
-.tier-CORROBORATED .bar > span { background: var(--tier-corrob); }
-.tier-CORROBORATED .pct { color: var(--tier-corrob); }
-
-.no-results { color: var(--ink-3); padding: 30px 4px; font-size: 13px; }
-
-/* help overlay */
-.help-overlay {
-  position: fixed; inset: 0; background: rgba(15,17,21,0.45);
-  display: flex; align-items: flex-start; justify-content: center;
-  padding: 60px 20px; z-index: 50; overflow-y: auto;
+.dhead { margin-bottom: 14px; }
+.dhead .eyebrow { font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); margin-bottom: 5px; }
+.dhead h2 {
+  font-family: "IBM Plex Mono", monospace; font-size: 18px; font-weight: 600;
+  margin: 0; word-break: break-all; letter-spacing: -0.02em; line-height: 1.25;
 }
-.help-overlay[hidden] { display: none; }
-.help-panel {
-  background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
-  max-width: 640px; width: 100%; padding: 30px 32px 26px; box-shadow: var(--shadow);
-}
-.help-panel h2 { margin: 0 0 6px; font-size: 19px; }
-.help-panel .lede { color: var(--ink-2); margin: 0 0 22px; font-size: 13.5px; }
-.help-panel h3 { font-size: 12.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-3); margin: 22px 0 10px; }
-.help-panel h3:first-of-type { margin-top: 0; }
-.help-panel p { font-size: 13.5px; color: var(--ink-2); margin: 0 0 10px; }
-.help-panel .close-row { display: flex; justify-content: flex-end; margin-top: 22px; }
-.help-panel .close-btn {
-  background: var(--accent); color: var(--surface); border: none; border-radius: 7px;
-  padding: 9px 18px; font-size: 13px; font-weight: 500; cursor: pointer;
-}
-.def-row { display: flex; gap: 10px; align-items: baseline; margin-bottom: 8px; font-size: 13px; }
-.def-row .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; margin-top: 4px; }
-.def-row b { color: var(--ink); }
-.def-row span { color: var(--ink-2); }
+.dhead .friendly { font-size: 13.5px; color: var(--ink-2); margin-top: 4px; }
 
-@media (max-width: 860px) {
+.tally { display: flex; flex-wrap: wrap; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); overflow: hidden; margin-bottom: 14px; }
+.tally .cell { padding: 9px 18px; border-right: 1px solid var(--border-soft); min-width: 104px; }
+.tally .cell:last-child { border-right: none; }
+.tally .v { font-size: 17px; font-weight: 600; line-height: 1.15; }
+.tally .cell.zero .v, .tally .cell.zero .k { color: var(--ink-3); }
+.tally .k { font-size: 10.5px; color: var(--ink-3); text-transform: uppercase; letter-spacing: .06em; margin-top: 2px; }
+
+.notice {
+  display: flex; gap: 10px; align-items: flex-start; background: var(--warn-bg);
+  border: 1px solid var(--warn-br); border-radius: var(--radius);
+  padding: 10px 14px; margin-bottom: 14px; font-size: 12.5px; color: var(--warn);
+}
+.notice .ic { flex: none; line-height: 1.4; }
+
+.bar-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.chips { display: flex; gap: 5px; flex-wrap: wrap; }
+.chip {
+  border: 1px solid var(--border); background: var(--surface); color: var(--ink-2);
+  border-radius: 20px; padding: 3px 10px; font-size: 11.5px; cursor: pointer; white-space: nowrap;
+}
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.chip .n { opacity: .62; margin-left: 5px; font-variant-numeric: tabular-nums; }
+.mini-search {
+  border: 1px solid var(--border); background: var(--surface); border-radius: 6px;
+  padding: 4px 8px; font-size: 12px; color: var(--ink); width: 148px;
+}
+.sortsel {
+  font: inherit; font-size: 11.5px; color: var(--ink-2); background: var(--surface);
+  border: 1px solid var(--border); border-radius: 6px; padding: 4px 6px; cursor: pointer;
+}
+.keydef { font-size: 12px; color: var(--ink-2); margin: 10px 0 0; }
+.keydef b { color: var(--ink); }
+
+/* ---------------- the list ---------------- */
+.group { margin-top: 20px; }
+.ghead {
+  position: sticky; top: 0; z-index: 3; background: var(--bg);
+  padding: 7px 2px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border);
+}
+.ghead .dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+.ghead .lbl { font-size: 12.5px; font-weight: 600; }
+.ghead .n { font-size: 11.5px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.ghead .d { font-size: 11.5px; color: var(--ink-3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.rows { display: flex; flex-direction: column; }
+.row {
+  display: grid; grid-template-columns: 1fr 168px 138px 18px;
+  align-items: center; gap: 14px;
+  padding: 8px 8px 8px 10px; border-bottom: 1px solid var(--border-soft);
+  cursor: pointer; border-radius: 5px;
+}
+.row:hover { background: var(--hover); }
+.row.soft .c-name .t, .row.soft .c-key { opacity: .72; }
+.row.open { background: var(--surface); border-bottom-color: transparent; }
+.c-name { min-width: 0; }
+.c-name .t {
+  font-family: "IBM Plex Mono", monospace; font-size: 12.5px; font-weight: 500;
+  letter-spacing: -0.01em; word-break: break-all; line-height: 1.35;
+}
+.c-name .f { font-size: 11px; color: var(--ink-3); margin-top: 1px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.c-key { font-size: 11.5px; color: var(--ink-2); min-width: 0; }
+.c-key .kn { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.c-key .kk { font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--ink-3); display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.c-rate { display: flex; align-items: center; gap: 9px; justify-content: flex-end; }
+.c-rate .pct { font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; min-width: 46px; text-align: right; }
+.c-rate .bar { height: 4px; border-radius: 2px; background: var(--track); width: 72px; flex: none; overflow: hidden; }
+.c-rate .bar > i { display: block; height: 100%; border-radius: 2px; }
+.c-rate .nores { color: var(--ink-3); font-size: 11.5px; }
+.chev { color: var(--ink-3); font-size: 11px; opacity: .55; text-align: center; transition: transform .12s ease; }
+.row.open .chev { transform: rotate(90deg); }
+
+.expand { padding: 4px 12px 14px 12px; border-bottom: 1px solid var(--border-soft); background: var(--surface); border-radius: 0 0 5px 5px; }
+.expand .say { font-size: 12.5px; color: var(--ink-2); margin: 0 0 10px; max-width: 80ch; }
+.expand .say b { color: var(--ink); font-weight: 600; }
+.expand .facts { display: flex; flex-wrap: wrap; gap: 2px 26px; font-size: 11.5px; color: var(--ink-3); margin-bottom: 10px; }
+.expand .facts b { color: var(--ink-2); font-weight: 600; font-variant-numeric: tabular-nums; }
+.sql { display: flex; align-items: center; gap: 8px; background: var(--surface-2); border: 1px solid var(--border-soft); border-radius: 6px; padding: 6px 8px 6px 10px; }
+.sql code { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--ink-2); flex: 1; overflow-x: auto; white-space: nowrap; }
+.copy-btn { border: 1px solid var(--border); background: var(--surface); border-radius: 5px; padding: 3px 8px; font-size: 10.5px; color: var(--ink-2); cursor: pointer; flex: none; }
+.copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+.copy-btn.done { color: var(--t-geo); border-color: var(--t-geo); }
+.goto { margin-top: 10px; }
+.link-btn { background: none; border: none; padding: 0; color: var(--accent); font-size: 12px; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; white-space: nowrap; }
+
+.more-btn {
+  margin: 8px 0 0; border: 1px dashed var(--border); background: none; color: var(--ink-2);
+  border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; width: 100%;
+}
+.more-btn:hover { border-color: var(--accent); color: var(--accent); }
+.none { color: var(--ink-3); padding: 26px 2px; font-size: 13px; }
+
+.t-STEEL .dot, .t-STRONG .dot { background: var(--t-steel); }
+.t-STEEL .bar > i, .t-STRONG .bar > i { background: var(--t-steel); }
+.t-STEEL .pct, .t-STRONG .pct { color: var(--t-steel); }
+.t-BRIDGE .dot { background: var(--t-bridge); }
+.t-BRIDGE .bar > i { background: var(--t-bridge); }
+.t-BRIDGE .pct { color: var(--t-bridge); }
+.t-GEO .dot { background: var(--t-geo); }
+.t-GEO .bar > i { background: var(--t-geo); }
+.t-GEO .pct { color: var(--t-geo); }
+.t-CORROBORATED .dot { background: var(--t-corrob); }
+.t-CORROBORATED .bar > i { background: var(--t-corrob); }
+.t-CORROBORATED .pct { color: var(--t-corrob); }
+
+/* ---------------- overlay ---------------- */
+.overlay {
+  position: fixed; inset: 0; background: rgba(12,14,18,0.5); z-index: 50;
+  display: flex; align-items: flex-start; justify-content: center; padding: 48px 20px; overflow-y: auto;
+}
+.overlay[hidden] { display: none !important; }
+.sheet { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; max-width: 720px; width: 100%; padding: 24px 26px 20px; }
+.sheet h2 { margin: 0 0 4px; font-size: 17px; }
+.sheet .lede { color: var(--ink-2); margin: 0 0 18px; font-size: 13px; }
+.sheet h3 { font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); margin: 20px 0 9px; font-weight: 600; }
+.sheet p { font-size: 13px; color: var(--ink-2); }
+.sheet .close-row { display: flex; justify-content: flex-end; margin-top: 18px; }
+.sheet .close-btn { background: var(--accent); color: var(--on-accent); border: none; border-radius: 6px; padding: 8px 16px; font-size: 12.5px; font-weight: 500; cursor: pointer; }
+.gloss { display: grid; grid-template-columns: minmax(150px, 230px) 1fr; gap: 6px 16px; font-size: 12.5px; max-height: 320px; overflow-y: auto; padding-right: 4px; }
+.gloss b { color: var(--ink); font-weight: 600; }
+.gloss span { color: var(--ink-2); }
+
+/* ---------------- responsive ---------------- */
+@media (max-width: 940px) {
   .app { grid-template-columns: 1fr; }
-  .rail { display: none; }
+  .menu-btn { display: inline-block; }
+  header.top .sub, header.top .meter { display: none; }
+  .rail {
+    position: fixed; inset: 52px auto 0 0; width: min(320px, 86vw); z-index: 40;
+    transform: translateX(-101%); transition: transform .16s ease;
+  }
+  .rail.open { transform: none; box-shadow: 0 0 0 100vw rgba(12,14,18,0.42); }
+  .pad { padding: 18px 16px 70px; }
+  .row { grid-template-columns: 1fr auto; gap: 4px 10px; }
+  .c-key { grid-column: 1; grid-row: 2; font-size: 11px; }
+  .c-rate { grid-column: 2; grid-row: 1 / span 2; }
+  .chev { display: none; }
+  .tally { display: grid; grid-template-columns: 1fr 1fr; }
+  .tally .cell { border-bottom: 1px solid var(--border-soft); }
+  .tally .cell:nth-child(even) { border-right: none; }
+  .tally .cell:nth-last-child(-n+2) { border-bottom: none; }
+  .bar-controls .grow { display: none; }
+  .mini-search { flex: 1; width: auto; min-width: 120px; }
+  .chips { width: 100%; }
+  .gloss { grid-template-columns: 1fr; gap: 1px 0; }
+  .gloss b { margin-top: 9px; }
 }
 </style>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
 <div class="app">
   <header class="top">
-    <div class="titles">
-      <h1>The Join Handbook</h1>
-      <span class="sub">every table in the warehouse &rarr; what it connects to, and how sure we are</span>
-    </div>
+    <button class="ghost-btn menu-btn" id="menu-btn" aria-label="Show table list">&#9776;</button>
+    <h1>The Join Handbook</h1>
+    <span class="sub">every table &rarr; what it connects to, and how sure we are</span>
+    <span class="grow"></span>
     <span class="meter" id="meter"></span>
-    <button class="help-btn" id="help-open">What am I looking at?</button>
+    <button class="ghost-btn" id="help-open">What am I looking at?</button>
   </header>
 
-  <nav class="rail">
-    <div class="rail-search">
-      <input id="search" type="text" placeholder="search a table&hellip;" autocomplete="off" spellcheck="false">
+  <nav class="rail" id="rail">
+    <div class="rail-top">
+      <div class="searchwrap">
+        <input id="search" type="text" placeholder="search a table&hellip;" autocomplete="off" spellcheck="false" aria-label="Search tables">
+        <span class="slash">/</span>
+      </div>
+      <div class="rail-opts">
+        <label><input type="checkbox" id="hide-weak"> only tables with real IDs</label>
+        <span class="grow"></span>
+        <select id="rail-sort" aria-label="Sort table list">
+          <option value="strength">most connected</option>
+          <option value="name">A &rarr; Z</option>
+        </select>
+      </div>
     </div>
     <div class="rail-count" id="rail-count"></div>
     <div class="rail-list" id="rail-list"></div>
   </nav>
 
-  <main id="main">
-    <div class="empty-state">
-      <h2>Pick a table on the left.</h2>
-      <p>Every table with at least one measured connection is on the left &mdash; pick one and this side shows every other table it links to, what column they share, and how confident that link actually is.</p>
-      <div class="card">
-        <h3>The four kinds of connection, from most to least sure</h3>
-        <div class="tier-legend" id="empty-legend"></div>
-      </div>
-    </div>
-  </main>
+  <main id="main"></main>
 </div>
 
-<div class="help-overlay" id="help-overlay" hidden>
-  <div class="help-panel">
+<div class="overlay" id="help-overlay" hidden>
+  <div class="sheet">
     <h2>What am I looking at?</h2>
-    <p class="lede">This is a map of which tables in the warehouse can be joined to which other tables, and on what column &mdash; built by actually running the joins against live data, not by guessing from column names.</p>
+    <p class="lede">A map of which tables in the warehouse can be joined to which other tables, and on what column &mdash; built by actually running the joins against live data, not by guessing from column names.</p>
 
     <h3>Why this exists</h3>
     <p>560+ government data sources, each built by a different agency that never talked to the others. The same hospital shows up as a different-looking row in Medicare's files, OSHA's files, and the federal contracts file. Nothing tells you those rows are the same hospital &mdash; except that they all print the same official ID number somewhere. This handbook is that list: which tables share a real ID number, and how well the values actually lined up when we checked.</p>
 
     <h3>How to read a connection</h3>
-    <p>Every row on the right says: <b>this table</b> and <b>that table</b> both have a column holding the same kind of ID number. We counted how many of the ID values in one table also show up in the other. That percentage is the confidence score.</p>
+    <p>Every row says: <b>this table</b> and <b>that table</b> both have a column holding the same kind of ID number. We counted how many of the ID values in one table also show up in the other. That percentage is the confidence score. Click any row to see the exact join, the raw counts behind it, and a copy button for the SQL.</p>
 
-    <h3>The four kinds of connection</h3>
-    <div class="tier-legend" id="help-legend"></div>
+    <h3>The five kinds of connection</h3>
+    <div class="stack" id="help-legend"></div>
+
+    <h3>Keyboard</h3>
+    <div class="tips" id="help-keys"></div>
+
+    <h3>ID glossary</h3>
+    <div class="gloss" id="help-gloss"></div>
 
     <div class="close-row"><button class="close-btn" id="help-close">Got it</button></div>
   </div>
@@ -374,21 +365,20 @@ main.narrow { max-width: 900px; }
 const DATA = __DATA_PLACEHOLDER__;
 
 const TIER_INFO = {
-  STEEL:  { label: 'Rock-solid match', color: 'var(--tier-steel)',
+  STEEL:  { label: 'Rock-solid match', short: 'exact same official ID printed in both tables', color: 'var(--t-steel)',
             desc: 'Both tables print the exact same official ID number (a tax ID, a provider number, a facility code&hellip;). This is as close to certain as it gets.' },
-  STRONG: { label: 'Strong code match', color: 'var(--tier-strong)',
+  STRONG: { label: 'Strong code match', short: 'same code, but the system occasionally reuses numbers', color: 'var(--t-steel)',
             desc: 'Same official code in both tables, but this code system occasionally reuses numbers across unrelated things, so treat it as very likely rather than certain.' },
-  BRIDGE: { label: 'Different number, known translation', color: 'var(--tier-bridge)',
-            desc: 'The two tables use two different ID systems for the same kind of thing (say, an old ID and its replacement) &mdash; there’s a known, verified way to translate one into the other.' },
-  GEO:    { label: 'Same location', color: 'var(--tier-geo)',
+  BRIDGE: { label: 'Different number, known translation', short: 'two ID systems, one verified crosswalk between them', color: 'var(--t-bridge)',
+            desc: 'The two tables use two different ID systems for the same kind of thing (say, an old ID and its replacement) &mdash; there is a known, verified way to translate one into the other.' },
+  GEO:    { label: 'Same location', short: 'same place &mdash; not necessarily the same organization', color: 'var(--t-geo)',
             desc: 'Matched on geography &mdash; same county, same coordinates &mdash; not on an identity number. Good for "what else happened near here," not for "is this the same organization."' },
-  CORROBORATED: { label: 'Educated guess (name + ZIP)', color: 'var(--tier-corrob)',
-            desc: 'No shared ID at all. Matched because the name and ZIP code look similar. Least reliable by far &mdash; most of these guesses turn out to be different organizations that just share a name or a ZIP. Hidden by default.' },
+  CORROBORATED: { label: 'Educated guess (name + ZIP)', short: 'no shared ID at all &mdash; least reliable by far', color: 'var(--t-corrob)',
+            desc: 'No shared ID at all. Matched because the name and ZIP code look similar. Least reliable by far &mdash; most of these guesses turn out to be different organizations that just share a name or a ZIP. Hidden until you switch them on.' },
 };
 const TIER_ORDER = ['STEEL','STRONG','BRIDGE','GEO','CORROBORATED'];
+const HARD_TIERS = ['STEEL','STRONG','BRIDGE'];
 
-// Plain-English name + one-line description for every ID/key type seen in the data.
-// "bridge" entries (X~Y) are two ID systems for the same underlying thing.
 const KEY_INFO = {
   NPI:  { name: 'Provider Number (NPI)', desc: 'the federal ID every individual doctor or healthcare organization is assigned' },
   EIN:  { name: 'Employer Tax ID (EIN)', desc: 'the IRS tax ID for a company, nonprofit, or other organization — like an SSN for a business' },
@@ -410,7 +400,7 @@ const KEY_INFO = {
   MINE_ID: { name: 'Mine ID', desc: 'the ID the mine safety regulator assigns to a specific mine' },
   ICE_FACILITY: { name: 'Detention Facility Code', desc: 'ICE’s ID for a specific immigration detention site' },
   COMPANY_NO: { name: 'UK Company Number', desc: 'the official ID the UK government assigns to a registered company' },
-  DOCKET: { name: 'Court Docket / Case Number', desc: 'a court case number — currently unreliable here, see the warning below' },
+  DOCKET: { name: 'Court Docket / Case Number', desc: 'a court case number — currently unreliable here, see the warning on the table' },
   FIPS: { name: 'County/State Code (FIPS)', desc: 'the standard federal numeric code for a U.S. state or county' },
   ZIP: { name: 'ZIP Code', desc: 'a U.S. postal ZIP code' },
   GEO_IN: { name: 'Falls inside (map boundary)', desc: 'one record’s coordinates fall inside the other’s mapped area — e.g., a facility located inside a county' },
@@ -421,11 +411,8 @@ const KEY_INFO = {
   'CIK~EIN': { name: 'SEC Filer ID ↔ Tax ID', desc: 'the same company’s SEC filer number and IRS tax ID' },
   'DUNS~UEI': { name: 'Old ↔ New Contractor ID', desc: 'the same organization’s retired DUNS number and its current UEI' },
 };
-function keyInfo(k) {
-  return KEY_INFO[k] || { name: k, desc: 'a shared identifier between these two tables' };
-}
+const keyInfo = k => KEY_INFO[k] || { name: k, desc: 'a shared identifier between these two tables' };
 
-// Agency / publisher prefixes → plain-English expansion, for the friendly subtitle.
 const AGENCY_MAP = [
   ['FED_CMS_NPPES', 'Medicare & Medicaid (CMS) — National Provider Registry'],
   ['FED_CMS_PECOS', 'Medicare & Medicaid (CMS) — Provider Enrollment (PECOS)'],
@@ -486,163 +473,416 @@ const AGENCY_MAP = [
   ['UK_', 'United Kingdom source'],
   ['CA_', 'California state source'],
 ];
+const _fnCache = new Map();
 function friendlyName(table) {
-  for (const [prefix, label] of AGENCY_MAP) {
-    if (table.startsWith(prefix)) {
-      const rest = table.slice(prefix.length).replace(/^_/, '');
-      const words = rest.split('_').filter(Boolean).map(w =>
-        w.length <= 4 && w === w.toUpperCase() ? w : w.charAt(0) + w.slice(1).toLowerCase()
-      ).join(' ');
-      return words ? label + ': ' + words : label;
-    }
+  if (_fnCache.has(table)) return _fnCache.get(table);
+  const titled = rest => rest.split('_').filter(Boolean).map(w =>
+    (w.length <= 4 && w === w.toUpperCase()) ? w : w.charAt(0) + w.slice(1).toLowerCase()).join(' ');
+  const hit = AGENCY_MAP.find(([p]) => table.startsWith(p));
+  let out;
+  if (hit) {
+    const words = titled(table.slice(hit[0].length).replace(/^_/, ''));
+    out = words ? hit[1] + ': ' + words : hit[1];
+  } else {
+    out = titled(table.replace(/^FED_/, '')) || table;
   }
-  const words = table.replace(/^FED_/, '').split('_').filter(Boolean).map(w =>
-    w.length <= 4 && w === w.toUpperCase() ? w : w.charAt(0) + w.slice(1).toLowerCase()
-  ).join(' ');
-  return words || table;
+  _fnCache.set(table, out);
+  return out;
 }
+const agencyOf = t => friendlyName(t).split(':')[0];
 
-function renderLegendInto(el) {
-  el.innerHTML = TIER_ORDER.map(t => {
-    const info = TIER_INFO[t];
-    return '<div class="tier-legend-row"><span class="dot" style="background:' + info.color + '"></span>' +
-      '<div><b>' + info.label + '.</b> <span class="desc">' + info.desc + '</span></div></div>';
+const ESCMAP = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
+const esc = s => String(s).replace(/[&<>"']/g, c => ESCMAP[c]);
+const nf = n => Number(n).toLocaleString();
+
+/* ---------------- state ---------------- */
+let activeTable = null;
+let showFuzzy   = false;
+let keyFilter   = null;
+let rowQuery    = '';
+let sortMode    = 'rate';
+let railSort    = 'strength';
+let hideWeak    = false;
+let expanded    = new Set();
+let shownCap    = new Map();
+const PAGE = 30;
+
+const $ = id => document.getElementById(id);
+const railList = $('rail-list'), railCount = $('rail-count'), searchInput = $('search'),
+      main = $('main'), rail = $('rail');
+
+/* ---------------- static bits ---------------- */
+function legendHTML(short) {
+  return TIER_ORDER.map(t => {
+    const i = TIER_INFO[t];
+    return '<div class="srow"><span class="dot" style="background:' + i.color + '"></span>' +
+           '<div><b>' + i.label + '.</b> <span class="d">' + (short ? i.short : i.desc) + '</span></div></div>';
   }).join('');
 }
+$('help-legend').innerHTML = legendHTML(false);
+$('help-gloss').innerHTML = Object.keys(KEY_INFO)
+  .sort((a, b) => keyInfo(a).name.localeCompare(keyInfo(b).name))
+  .map(k => '<b>' + esc(keyInfo(k).name) + '</b><span>' + keyInfo(k).desc + '</span>').join('');
 
-let activeTable = null;
-let showFuzzy = false;
+const KEYTIPS = [
+  ['/', 'jump to the search box'],
+  ['&uarr; &darr;', 'step through the table list'],
+  ['&crarr;', 'open the highlighted table'],
+  ['f', 'toggle the name + ZIP guesses'],
+  ['Esc', 'clear the search / close this'],
+];
+const tipsHTML = KEYTIPS.map(([k, d]) => '<div><kbd>' + k + '</kbd><span>' + d + '</span></div>').join('');
+$('help-keys').innerHTML = tipsHTML;
 
-const railList = document.getElementById('rail-list');
-const railCount = document.getElementById('rail-count');
-const searchInput = document.getElementById('search');
-const main = document.getElementById('main');
-const meter = document.getElementById('meter');
+const helpOverlay = $('help-overlay');
+const openHelp = () => { helpOverlay.hidden = false; };
+const closeHelp = () => { helpOverlay.hidden = true; };
+$('help-open').addEventListener('click', openHelp);
+$('help-close').addEventListener('click', closeHelp);
+helpOverlay.addEventListener('click', e => { if (e.target === helpOverlay) closeHelp(); });
+$('menu-btn').addEventListener('click', () => rail.classList.toggle('open'));
 
-renderLegendInto(document.getElementById('empty-legend'));
-renderLegendInto(document.getElementById('help-legend'));
+const allTables = DATA.tables.slice();
+// Every connection is stored on both tables, so count each undirected pair once.
+const _seen = new Set(), _seenHard = new Set();
+Object.keys(DATA.edges).forEach(self => DATA.edges[self].forEach(e => {
+  const pair = [self, e.other].sort().join(' ') + ' ' + e.key +
+               ' ' + [e.col_self, e.col_other].sort().join(' ');
+  _seen.add(pair);
+  if (HARD_TIERS.indexOf(e.tier) > -1) _seenHard.add(pair);
+}));
+const totalJoins = _seen.size;
+const hardJoins = _seenHard.size;
+$('meter').innerHTML = '<b>' + nf(allTables.length) + '</b> tables &nbsp;&middot;&nbsp; <b>' +
+  nf(hardJoins) + '</b> reliable joins &nbsp;&middot;&nbsp; ' + nf(totalJoins) + ' measured';
 
-const helpOverlay = document.getElementById('help-overlay');
-document.getElementById('help-open').addEventListener('click', () => { helpOverlay.hidden = false; });
-document.getElementById('help-close').addEventListener('click', () => { helpOverlay.hidden = true; });
-helpOverlay.addEventListener('click', (e) => { if (e.target === helpOverlay) helpOverlay.hidden = true; });
+/* ---------------- rail ---------------- */
+let railView = [];
+let railCursor = -1;
 
-const allTables = DATA.tables.slice().sort((a,b) => b.n_hard - a.n_hard || b.n_conn - a.n_conn || a.name.localeCompare(b.name));
-const totalJoins = Object.values(DATA.edges).reduce((s,v)=>s+v.length,0);
-meter.textContent = allTables.length.toLocaleString() + ' tables\\n' + totalJoins.toLocaleString() + ' measured joins';
-meter.style.whiteSpace = 'pre-line';
+function renderRail() {
+  const q = searchInput.value.trim().toUpperCase();
+  let list = allTables;
+  if (hideWeak) list = list.filter(t => t.n_hard > 0);
+  if (q) list = list.filter(t => t.name.indexOf(q) > -1 || friendlyName(t.name).toUpperCase().indexOf(q) > -1);
+  list = list.slice().sort(railSort === 'name'
+    ? (a, b) => a.name.localeCompare(b.name)
+    : (a, b) => b.n_hard - a.n_hard || b.n_conn - a.n_conn || a.name.localeCompare(b.name));
+  railView = list;
+  railCount.textContent = q
+    ? nf(list.length) + ' match' + (list.length === 1 ? '' : 'es')
+    : nf(list.length) + ' tables';
 
-function renderRail(filter) {
-  const q = (filter || '').trim().toUpperCase();
-  const list = q ? allTables.filter(t => t.name.includes(q) || friendlyName(t.name).toUpperCase().includes(q)) : allTables;
-  railCount.textContent = q ? list.length.toLocaleString() + ' match' + (list.length===1?'':'es') : list.length.toLocaleString() + ' tables';
   railList.innerHTML = '';
-  if (!list.length) {
-    railList.innerHTML = '<div class="no-results">no table named that</div>';
-    return;
-  }
+  if (!list.length) { railList.innerHTML = '<div class="none" style="padding:20px 10px">no table named that</div>'; return; }
+
   const frag = document.createDocumentFragment();
-  list.forEach(t => {
+  list.forEach((t, idx) => {
+    const counts = {};
+    (DATA.edges[t.name] || []).forEach(e => { counts[e.tier] = (counts[e.tier] || 0) + 1; });
+    const mix = TIER_ORDER.filter(k => counts[k])
+      .map(k => '<i style="background:' + TIER_INFO[k].color + ';flex:' + counts[k] + '"></i>').join('');
     const btn = document.createElement('button');
-    btn.className = 'rail-item' + (t.name === activeTable ? ' active' : '') + (t.n_hard === 0 ? ' zero' : '');
-    btn.innerHTML = '<div class="row1"><span class="name">' + t.name + '</span><span class="count">' + t.n_conn + '</span></div>' +
-                     '<div class="friendly">' + friendlyName(t.name) + '</div>';
-    btn.addEventListener('click', () => selectTable(t.name));
+    btn.className = 'rail-item' + (t.name === activeTable ? ' active' : '');
+    btn.dataset.idx = idx;
+    btn.title = t.n_hard + ' reliable of ' + t.n_conn + ' measured connections';
+    btn.innerHTML =
+      '<div class="r1"><span class="name">' + esc(t.name) + '</span>' +
+      '<span class="count">' + (t.n_hard ? t.n_hard + '&#8239;/&#8239;' : '') + t.n_conn + '</span></div>' +
+      '<div class="friendly">' + esc(friendlyName(t.name)) + '</div>' +
+      '<div class="mix">' + mix + '</div>';
+    btn.addEventListener('click', () => { selectTable(t.name); rail.classList.remove('open'); });
     frag.appendChild(btn);
   });
   railList.appendChild(frag);
 }
 
-function selectTable(name) {
+function moveCursor(delta) {
+  if (!railView.length) return;
+  const next = railCursor < 0 ? 0 : railCursor + delta;
+  railCursor = Math.max(0, Math.min(railView.length - 1, next));
+  selectTable(railView[railCursor].name, true);
+  const el = railList.querySelector('.rail-item[data-idx="' + railCursor + '"]');
+  if (el) el.scrollIntoView({ block: 'nearest' });
+}
+
+/* ---------------- selection ---------------- */
+function selectTable(name, keepCursor) {
+  if (!DATA.edges[name]) return;
   activeTable = name;
-  renderRail(searchInput.value);
-  renderDetail(name);
-  try { localStorage.setItem('handbook_last_table', name); } catch(e) {}
+  keyFilter = null; rowQuery = ''; expanded = new Set(); shownCap = new Map();
+  if (!keepCursor) railCursor = railView.findIndex(t => t.name === name);
+  renderRail();
+  renderDetail();
+  try { localStorage.setItem('handbook_last_table', name); } catch (e) {}
+  if (decodeURIComponent(location.hash.slice(1)) !== name) history.replaceState(null, '', '#' + name);
 }
 
-function joinSentence(name, e) {
-  const info = keyInfo(e.key);
-  const rate = Math.min(100, e.rate);
-  if (e.tier === 'CORROBORATED') {
-    return 'Matched by <b>' + info.name.toLowerCase() + '</b> only \\u2014 no shared ID number. Take this one with a grain of salt.';
-  }
-  if (e.tier === 'GEO') {
-    return 'Matched on <b>' + info.name.toLowerCase() + '</b> \\u2014 same place, not necessarily the same organization.';
-  }
-  return 'About <b>' + rate.toFixed(0) + '%</b> of the ' + info.name.toLowerCase() + ' values in this table also show up in ' +
-         e.other + ' \\u2014 ' + e.matched.toLocaleString() + ' matching values in all.';
+/* ---------------- sentences ---------------- */
+function joinSentence(e) {
+  const info = keyInfo(e.key), rate = Math.min(100, e.rate);
+  if (e.tier === 'CORROBORATED')
+    return 'Matched by <b>' + esc(info.name.toLowerCase()) + '</b> only &mdash; no shared ID number. Take this one with a grain of salt.';
+  if (e.tier === 'GEO')
+    return 'Matched on <b>' + esc(info.name.toLowerCase()) + '</b> &mdash; same place, not necessarily the same organization.';
+  return 'About <b>' + rate.toFixed(0) + '%</b> of the ' + esc(info.name.toLowerCase()) +
+         ' values in this table also show up in ' + esc(e.other) + ' &mdash; ' + nf(e.matched) + ' matching values in all.';
 }
 
-function renderDetail(name) {
-  const edges = (DATA.edges[name] || []).slice();
-  const groups = {};
-  edges.forEach(e => { (groups[e.tier] = groups[e.tier] || []).push(e); });
+/* ---------------- detail ---------------- */
+function visibleEdges() {
+  let list = (DATA.edges[activeTable] || []).slice();
+  if (!showFuzzy) list = list.filter(e => e.tier !== 'CORROBORATED');
+  if (keyFilter) list = list.filter(e => e.key === keyFilter);
+  if (rowQuery) {
+    const q = rowQuery.trim().toUpperCase();
+    list = list.filter(e => e.other.indexOf(q) > -1 || friendlyName(e.other).toUpperCase().indexOf(q) > -1);
+  }
+  return list;
+}
 
-  const hardCount = TIER_ORDER.slice(0,3).reduce((s,t) => s + (groups[t]?groups[t].length:0), 0);
-  const geoCount = groups.GEO ? groups.GEO.length : 0;
-  const fuzzyCount = groups.CORROBORATED ? groups.CORROBORATED.length : 0;
-  const hasDocket = edges.some(e => e.key === 'DOCKET');
+const cell = (v, k) => '<div class="cell' + (v ? '' : ' zero') + '"><div class="v num">' + nf(v) + '</div><div class="k">' + k + '</div></div>';
+const opt = (v, l) => '<option value="' + v + '"' + (sortMode === v ? ' selected' : '') + '>' + l + '</option>';
 
-  let html = '';
-  html += '<div class="detail-head"><div class="eyebrow">' + friendlyName(name).split(':')[0] + '</div>';
-  html += '<h2>' + name + '</h2>';
-  html += '<div class="friendly-name">' + friendlyName(name) + '</div></div>';
-  html += '<div class="detail-sub">' + hardCount + ' reliable connection' + (hardCount===1?'':'s') +
-          (geoCount ? ', ' + geoCount + ' place-based' : '') +
-          (fuzzyCount ? ', ' + fuzzyCount + ' name-guess' + (fuzzyCount===1?'':'es') + ' (hidden by default)' : '') + '</div>';
+function renderDetail() {
+  const name = activeTable;
+  if (!name) { renderIntro(); return; }
+  const all = DATA.edges[name] || [];
+  const count = t => all.filter(e => e.tier === t).length;
+  const hardCount = HARD_TIERS.reduce((s, t) => s + count(t), 0);
+  const geoCount = count('GEO');
+  const fuzzyCount = count('CORROBORATED');
+  const agencies = new Set(all.filter(e => HARD_TIERS.indexOf(e.tier) > -1).map(e => agencyOf(e.other))).size;
+  const hasDocket = all.some(e => e.key === 'DOCKET');
+
+  let h = '<div class="pad">';
+
+  h += '<div class="dhead"><div class="eyebrow">' + esc(agencyOf(name)) + '</div>' +
+       '<h2>' + esc(name) + '</h2>' +
+       '<div class="friendly">' + esc(friendlyName(name)) + '</div></div>';
+
+  h += '<div class="tally">' + cell(hardCount, 'reliable joins') + cell(agencies, 'other agencies') +
+       cell(geoCount, 'place-based') + cell(fuzzyCount, 'name guesses') + '</div>';
 
   if (hasDocket) {
-    html += '<div class="tier-group warn" style="margin-bottom:18px;"><div class="tier-head"><div class="label">\\u26a0 Heads up</div>' +
-      '<div class="desc">This table has a docket/case-number connection. That code system currently mixes bank ID numbers with Supreme Court case numbers, so roughly 4 in 10 of those matches turn out to be wrong. Worth a second look before you trust one.</div></div></div>';
+    h += '<div class="notice"><span class="ic">&#9888;</span><div><b>Heads up.</b> This table has a docket/case-number ' +
+         'connection. That code system currently mixes bank ID numbers with Supreme Court case numbers, so roughly 4 in 10 ' +
+         'of those matches turn out to be wrong. Worth a second look before you trust one.</div></div>';
   }
 
-  html += '<div class="controls">';
-  html += '<label class="toggle"><input type="checkbox" id="fuzzy-toggle"' + (showFuzzy?' checked':'') + '> also show ' + fuzzyCount + ' name+ZIP guesses</label>';
-  html += '</div>';
+  const pool = showFuzzy ? all : all.filter(e => e.tier !== 'CORROBORATED');
+  const keyCounts = {};
+  pool.forEach(e => { keyCounts[e.key] = (keyCounts[e.key] || 0) + 1; });
+  const keys = Object.keys(keyCounts).sort((a, b) => keyCounts[b] - keyCounts[a] || a.localeCompare(b));
 
-  if (!edges.length) {
-    html += '<p class="no-results">No measured connections for this table yet.</p>';
-  } else {
-    TIER_ORDER.forEach(tier => {
-      if (tier === 'CORROBORATED' && !showFuzzy) return;
-      const list = groups[tier];
-      if (!list || !list.length) return;
-      const info = TIER_INFO[tier];
-      html += '<div class="tier-group tier-' + tier + '">';
-      html += '<div class="tier-head"><div class="label"><span class="dot"></span>' + info.label + ' <span class="n">(' + list.length + ')</span></div>' +
-              '<div class="desc">' + info.desc + '</div></div>';
-      html += '<div class="edge-list">';
-      list.forEach(e => {
-        const rate = Math.min(100, e.rate);
-        html += '<div class="edge-row" data-target="' + e.other.replace(/"/g,'&quot;') + '">';
-        html += '<div class="edge-top"><div class="edge-main">';
-        html += '<div class="edge-table">' + e.other + '</div>';
-        html += '<div class="edge-friendly">' + friendlyName(e.other) + '</div>';
-        html += '</div>';
-        html += '<div class="edge-stat"><span class="pct">' + rate.toFixed(1) + '%</span><div class="bar"><span style="width:' + rate + '%"></span></div></div>';
-        html += '</div>';
-        html += '<div class="edge-sentence">' + joinSentence(name, e) + '</div>';
-        html += '<div class="edge-tech">' + name + '.' + e.col_self + ' = ' + e.other + '.' + e.col_other + '</div>';
-        html += '</div>';
-      });
-      html += '</div></div>';
-    });
-  }
-
-  main.innerHTML = html;
-  main.scrollTop = 0;
-  const toggle = document.getElementById('fuzzy-toggle');
-  if (toggle) toggle.addEventListener('change', (ev) => { showFuzzy = ev.target.checked; renderDetail(name); });
-  main.querySelectorAll('.edge-row').forEach(row => {
-    row.addEventListener('click', () => selectTable(row.getAttribute('data-target')));
+  h += '<div class="bar-controls"><div class="chips">';
+  h += '<button class="chip' + (keyFilter === null ? ' on' : '') + '" data-key="">All IDs<span class="n">' + pool.length + '</span></button>';
+  keys.forEach(k => {
+    h += '<button class="chip' + (keyFilter === k ? ' on' : '') + '" data-key="' + esc(k) + '" title="' + esc(keyInfo(k).desc) + '">' +
+         esc(keyInfo(k).name) + '<span class="n">' + keyCounts[k] + '</span></button>';
   });
+  h += '</div><span class="grow"></span>';
+  h += '<input class="mini-search" id="row-search" placeholder="filter these&hellip;" value="' + esc(rowQuery) + '" autocomplete="off" aria-label="Filter connections">';
+  h += '<select class="sortsel" id="sortsel" aria-label="Sort connections">' +
+       opt('rate', 'best match first') + opt('tier', 'grouped by certainty') + opt('name', 'A &rarr; Z') + '</select>';
+  h += '<button class="chip' + (showFuzzy ? ' on' : '') + '" id="fuzzy-chip" title="Name + ZIP guesses. No shared ID &mdash; least reliable by far.">' +
+       'name guesses<span class="n">' + fuzzyCount + '</span></button>';
+  h += '</div>';
+
+  if (keyFilter) {
+    const ki = keyInfo(keyFilter);
+    h += '<p class="keydef"><b>' + esc(ki.name) + '</b> &mdash; ' + ki.desc + '</p>';
+  }
+
+  const list = visibleEdges();
+  if (!all.length) {
+    h += '<p class="none">No measured connections for this table yet.</p>';
+  } else if (!list.length) {
+    h += '<p class="none">Nothing matches those filters.</p>';
+  } else if (sortMode === 'tier') {
+    TIER_ORDER.forEach(tier => {
+      const g = list.filter(e => e.tier === tier).sort((a, b) => b.rate - a.rate || a.other.localeCompare(b.other));
+      if (g.length) h += groupHTML(tier, g, name);
+    });
+  } else {
+    // Certainty always outranks the raw percentage: a name+ZIP guess never
+    // sits above a rock-solid match just because its overlap number is high.
+    const rank = e => TIER_ORDER.indexOf(e.tier);
+    const sorted = list.slice().sort(sortMode === 'name'
+      ? (a, b) => rank(a) - rank(b) || a.other.localeCompare(b.other)
+      : (a, b) => rank(a) - rank(b) || b.rate - a.rate || a.other.localeCompare(b.other));
+    h += groupHTML(null, sorted, name);
+  }
+
+  h += '</div>';
+  main.innerHTML = h;
+  main.scrollTop = 0;
+  wireDetail();
 }
 
-searchInput.addEventListener('input', (e) => renderRail(e.target.value));
-renderRail('');
+function groupHTML(tier, list, self) {
+  const gk = tier || 'ALL';
+  const cap = shownCap.get(gk) || PAGE;
+  const slice = list.slice(0, cap);
+  let h = '<div class="group' + (tier ? ' t-' + tier : '') + '">';
+  if (tier) {
+    const i = TIER_INFO[tier];
+    h += '<div class="ghead"><span class="dot"></span><span class="lbl">' + i.label + '</span>' +
+         '<span class="n">' + list.length + '</span><span class="d">' + i.short + '</span></div>';
+  } else {
+    h += '<div class="ghead"><span class="lbl">Connects to</span><span class="n">' + list.length + '</span>' +
+         '<span class="grow"></span><span class="d">shared ID &nbsp;&middot;&nbsp; overlap</span></div>';
+  }
+  h += '<div class="rows">';
+  slice.forEach(e => {
+    const id = e.other + '|' + e.key + '|' + e.col_self + '|' + e.col_other;
+    const isOpen = expanded.has(id);
+    const rate = Math.min(100, e.rate);
+    const noRate = e.tier === 'GEO' || e.tier === 'CORROBORATED';
+    h += '<div class="row' + (tier ? '' : ' t-' + e.tier) + (noRate ? ' soft' : '') + (isOpen ? ' open' : '') + '" data-id="' + esc(id) + '" tabindex="0" role="button">';
+    h += '<div class="c-name"><div class="t">' + esc(e.other) + '</div><div class="f">' + esc(friendlyName(e.other)) + '</div></div>';
+    const cols = (e.col_self && e.col_other) ? esc(e.col_self) + ' = ' + esc(e.col_other) : 'via a crosswalk table';
+    h += '<div class="c-key"><span class="kn">' + esc(keyInfo(e.key).name) + '</span>' +
+         '<span class="kk">' + cols + '</span></div>';
+    h += noRate
+      ? '<div class="c-rate"><span class="nores">' + (e.tier === 'GEO' ? 'location match' : 'name + ZIP') + '</span></div>'
+      : '<div class="c-rate"><span class="bar"><i style="width:' + rate + '%"></i></span>' +
+        '<span class="pct">' + rate.toFixed(1) + '%</span></div>';
+    h += '<div class="chev">&#9656;</div></div>';
+    if (isOpen) {
+      const hasCols = !!(e.col_self && e.col_other);
+      const sql = hasCols ? (self + '.' + e.col_self + ' = ' + e.other + '.' + e.col_other) : '';
+      h += '<div class="expand">';
+      h += '<p class="say">' + joinSentence(e) + '</p>';
+      h += '<div class="facts">' +
+           '<span>distinct IDs here <b>' + nf(e.distinct_self) + '</b></span>' +
+           '<span>distinct IDs there <b>' + nf(e.distinct_other) + '</b></span>' +
+           '<span>values that matched <b>' + nf(e.matched) + '</b></span>' +
+           '<span>certainty <b>' + TIER_INFO[e.tier].label + '</b></span></div>';
+      h += hasCols
+        ? '<div class="sql"><code>' + esc(sql) + '</code><button class="copy-btn" data-copy="' + esc(sql) + '">copy</button></div>'
+        : '<div class="sql"><code>join runs through a crosswalk table &mdash; the two ID systems are translated, ' +
+          'not compared directly, so there is no single column pair to copy</code></div>';
+      h += '<div class="goto"><button class="link-btn" data-goto="' + esc(e.other) + '">open ' + esc(e.other) + ' &rarr;</button></div>';
+      h += '</div>';
+    }
+  });
+  h += '</div>';
+  if (list.length > cap) {
+    h += '<button class="more-btn" data-more="' + gk + '">show ' + Math.min(PAGE, list.length - cap) +
+         ' more &mdash; ' + (list.length - cap) + ' still hidden</button>';
+  }
+  h += '</div>';
+  return h;
+}
 
-try {
-  const saved = localStorage.getItem('handbook_last_table');
-  if (saved && DATA.edges[saved]) selectTable(saved);
-} catch(e) {}
+function wireDetail() {
+  main.querySelectorAll('.chip[data-key]').forEach(b => b.addEventListener('click', () => {
+    const k = b.dataset.key;
+    keyFilter = (k === '' || keyFilter === k) ? null : k;
+    shownCap = new Map();
+    renderDetail();
+  }));
+  const fz = $('fuzzy-chip');
+  if (fz) fz.addEventListener('click', () => { showFuzzy = !showFuzzy; keyFilter = null; shownCap = new Map(); renderDetail(); });
+  const rs = $('row-search');
+  if (rs) rs.addEventListener('input', e => {
+    rowQuery = e.target.value;
+    const pos = e.target.selectionStart;
+    shownCap = new Map();
+    renderDetail();
+    const n = $('row-search');
+    if (n) { n.focus(); n.setSelectionRange(pos, pos); }
+  });
+  const ss = $('sortsel');
+  if (ss) ss.addEventListener('change', e => { sortMode = e.target.value; shownCap = new Map(); renderDetail(); });
+
+  const toggleRow = r => {
+    const id = r.dataset.id;
+    if (expanded.has(id)) expanded.delete(id); else expanded.add(id);
+    const y = main.scrollTop;
+    renderDetail();
+    main.scrollTop = y;
+  };
+  main.querySelectorAll('.row').forEach(r => {
+    r.addEventListener('click', ev => { if (!ev.target.closest('button')) toggleRow(r); });
+    r.addEventListener('keydown', ev => {
+      if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); toggleRow(r); }
+    });
+  });
+  main.querySelectorAll('[data-goto]').forEach(b => b.addEventListener('click', ev => {
+    ev.stopPropagation(); selectTable(b.dataset.goto);
+  }));
+  main.querySelectorAll('[data-more]').forEach(b => b.addEventListener('click', () => {
+    shownCap.set(b.dataset.more, (shownCap.get(b.dataset.more) || PAGE) + PAGE);
+    const y = main.scrollTop;
+    renderDetail();
+    main.scrollTop = y;
+  }));
+  main.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click', ev => {
+    ev.stopPropagation();
+    navigator.clipboard.writeText(b.dataset.copy).then(() => {
+      b.textContent = 'copied'; b.classList.add('done');
+      setTimeout(() => { b.textContent = 'copy'; b.classList.remove('done'); }, 1200);
+    }).catch(() => { b.textContent = 'select it'; });
+  }));
+}
+
+/* ---------------- intro ---------------- */
+function renderIntro() {
+  const top = allTables.slice().sort((a, b) => b.n_hard - a.n_hard || b.n_conn - a.n_conn).slice(0, 6);
+  main.innerHTML = '<div class="pad"><div class="intro">' +
+    '<h2>Pick a table on the left.</h2>' +
+    '<p class="lede">Every table with at least one measured connection is listed there. Pick one and this side shows every ' +
+    'other table it links to, the column they share, and how much the values actually overlapped when the join was run.</p>' +
+    '<div class="panel"><h3>The five kinds of connection &mdash; most to least sure</h3>' +
+    '<div class="stack">' + legendHTML(true) + '</div></div>' +
+    '<div class="panel"><h3>Best connected tables</h3><div class="stack">' +
+      top.map(t => '<div class="srow wide"><div><b class="m" style="font-size:12px">' + esc(t.name) + '</b>' +
+        '<div class="d" style="font-size:11.5px">' + esc(friendlyName(t.name)) + '</div></div>' +
+        '<button class="link-btn" data-goto="' + esc(t.name) + '">' + t.n_hard + ' reliable &rarr;</button></div>').join('') +
+    '</div></div>' +
+    '<div class="panel"><h3>Shortcuts</h3><div class="tips">' + tipsHTML + '</div></div>' +
+    '</div></div>';
+  main.querySelectorAll('[data-goto]').forEach(b => b.addEventListener('click', () => selectTable(b.dataset.goto)));
+}
+
+/* ---------------- events ---------------- */
+searchInput.addEventListener('input', () => { railCursor = -1; renderRail(); });
+searchInput.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { searchInput.value = ''; renderRail(); searchInput.blur(); }
+  else if (e.key === 'ArrowDown') { e.preventDefault(); moveCursor(1); }
+  else if (e.key === 'ArrowUp') { e.preventDefault(); moveCursor(-1); }
+  else if (e.key === 'Enter' && railView.length) {
+    e.preventDefault();
+    selectTable(railView[Math.max(0, railCursor)].name);
+    searchInput.blur();
+  }
+});
+$('hide-weak').addEventListener('change', e => { hideWeak = e.target.checked; railCursor = -1; renderRail(); });
+$('rail-sort').addEventListener('change', e => { railSort = e.target.value; railCursor = -1; renderRail(); });
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && !helpOverlay.hidden) { closeHelp(); return; }
+  if (/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) return;
+  if (e.key === '/') { e.preventDefault(); searchInput.focus(); searchInput.select(); }
+  else if (e.key === 'ArrowDown') { e.preventDefault(); moveCursor(1); }
+  else if (e.key === 'ArrowUp') { e.preventDefault(); moveCursor(-1); }
+  else if (e.key === 'f' && activeTable) { showFuzzy = !showFuzzy; keyFilter = null; shownCap = new Map(); renderDetail(); }
+  else if (e.key === '?') openHelp();
+});
+
+window.addEventListener('hashchange', () => {
+  const t = decodeURIComponent(location.hash.slice(1));
+  if (t && t !== activeTable && DATA.edges[t]) selectTable(t);
+});
+
+/* ---------------- boot ---------------- */
+renderRail();
+const fromHash = decodeURIComponent(location.hash.slice(1));
+let saved = null;
+try { saved = localStorage.getItem('handbook_last_table'); } catch (e) {}
+if (fromHash && DATA.edges[fromHash]) selectTable(fromHash);
+else if (saved && DATA.edges[saved]) selectTable(saved);
+else renderIntro();
 </script>
